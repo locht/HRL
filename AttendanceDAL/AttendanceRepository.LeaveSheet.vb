@@ -15,6 +15,18 @@ Imports Oracle.DataAccess.Client
 Imports System.Globalization
 Imports HistaffFrameworkPublic.HistaffFrameworkEnum
 Partial Public Class AttendanceRepository
+    Public Function ValidateLeaveSheetDetail(ByVal objValidate As AT_LEAVESHEETDTO) As Boolean
+        Try
+            Dim q = (From p In Context.AT_LEAVESHEET_DETAIL Where p.EMPLOYEE_ID = objValidate.EMPLOYEE_ID And p.LEAVE_DAY >= objValidate.LEAVE_FROM And p.LEAVE_DAY <= objValidate.LEAVE_TO And (p.LEAVESHEET_ID <> objValidate.ID Or objValidate.ID = 0) Select p).ToList()
+            If q.Count > 0 Then
+                Return False
+            Else
+                Return True
+            End If
+        Catch ex As Exception
+            Return False
+        End Try
+    End Function
     Public Function GetLeaveSheet_ById(ByVal Leave_SheetID As Decimal, ByVal Struct As Decimal) As DataSet
         Dim dsData As New DataSet()
         Try
@@ -65,7 +77,7 @@ Partial Public Class AttendanceRepository
                 Return False
             End If
             'ket thuc kiem tra va gan du lieu
-            If Not IsNumeric(rPH("ID")) OrElse rPH("ID") > 0 Then
+            If IsNumeric(rPH("ID")) AndAlso rPH("ID") > 0 Then
                 'update
                 Dim ID_LEAVE As Decimal = CDec(rPH("ID"))
                 Dim objPH = (From p In Context.AT_LEAVESHEET Where p.ID = ID_LEAVE Select p).SingleOrDefault
@@ -125,6 +137,7 @@ Partial Public Class AttendanceRepository
                 Next
             End If
             Context.SaveChanges(log)
+            Return True
         Catch ex As Exception
             Return False
         Finally
@@ -154,7 +167,6 @@ Partial Public Class AttendanceRepository
                         From s In Context.HU_STAFF_RANK.Where(Function(F) F.ID = e.STAFF_RANK_ID).DefaultIfEmpty
                         From o In Context.HU_ORGANIZATION.Where(Function(f) f.ID = e.ORG_ID).DefaultIfEmpty
                         From m In Context.AT_TIME_MANUAL.Where(Function(f) f.ID = p.MANUAL_ID).DefaultIfEmpty
-                        From en In Context.AT_ENTITLEMENT.Where(Function(F) F.EMPLOYEE_ID = p.EMPLOYEE_ID And p.WORKINGDAY.Value.Year = F.YEAR).DefaultIfEmpty
                         From nb In Context.AT_COMPENSATORY.Where(Function(F) F.EMPLOYEE_ID = p.EMPLOYEE_ID And F.YEAR = _filter.FROM_DATE.Value.Year).DefaultIfEmpty
                         From k In Context.SE_CHOSEN_ORG.Where(Function(f) e.ORG_ID = f.ORG_ID And f.USERNAME.ToUpper = log.Username.ToUpper)
                         Where (lstID.Contains(p.ID))
@@ -215,16 +227,9 @@ Partial Public Class AttendanceRepository
                                                                        .MANUAL_ID = p.p.MANUAL_ID,
                                                                        .MORNING_ID = p.m.MORNING_ID,
                                                                        .AFTERNOON_ID = p.m.AFTERNOON_ID,
-                                                                       .BALANCE_NOW = If((p.m.MORNING_ID = 251 Or p.m.AFTERNOON_ID = 251), p.en.CUR_HAVE, Nothing),
-                                                                       .NGHIBUCONLAI = If((p.m.MORNING_ID = 251 Or p.m.AFTERNOON_ID = 251), p.nb.CUR_HAVE, Nothing),
-                                                                       .WORKINGDAY = p.p.WORKINGDAY,
                                                                        .NOTE = p.p.NOTE,
-                                                                       .IS_WORKING_DAY = p.p.IS_WORKING_DAY,
-                                                                       .IN_PLAN_DAYS = p.p.IN_PLAN_DAYS,
-                                                                       .NOT_IN_PLAN_DAYS = p.p.NOT_IN_PLAN_DAYS,
                                                                        .DAY_NUM = p.p.DAY_NUM,
                                                                        .EMP_APPROVES_NAME = p.p.EMP_APPROVES_NAME,
-                                                                       .NOTE_APP = p.p.NOTE_APP,
                                                                        .CREATED_BY = p.p.CREATED_BY,
                                                                        .CREATED_DATE = p.p.CREATED_DATE,
                                                                        .CREATED_LOG = p.p.CREATED_LOG,

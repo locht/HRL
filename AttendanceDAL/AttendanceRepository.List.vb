@@ -3480,21 +3480,6 @@ Partial Public Class AttendanceRepository
             _isAvailable = False
             Dim result As Decimal
 
-            Dim P_APP As Decimal = (From p In Context.AT_LEAVESHEET
-                         From e In Context.AT_TIME_MANUAL.Where(Function(f) f.ID = p.MANUAL_ID).DefaultIfEmpty
-                         From f In Context.AT_FML.Where(Function(f) f.ID = e.MORNING_ID).DefaultIfEmpty
-                         From f2 In Context.AT_FML.Where(Function(a) a.ID = e.AFTERNOON_ID).DefaultIfEmpty
-            Where p.EMPLOYEE_ID = empid _
-            And p.WORKINGDAY.Value.Year = p_year
-                         Select If((f.ID = f2.ID And f.CODE = "P"), 1, (If((f.ID <> f2.ID And (f.CODE = "P" Or f2.CODE = "P")), 0.5, 0)))).Sum
-
-            Dim query = (From p In Context.AT_PORTAL_REG
-                         From e In Context.AT_TIME_MANUAL.Where(Function(f) f.ID = p.ID_SIGN)
-                         Where p.ID_EMPLOYEE = empid _
-                         And p.FROM_DATE.Value.Year = p_year And (p.STATUS <> 3) And (p.STATUS <> 2) And p.SVALUE = "LEAVE" And (e.MORNING_ID = 251 Or e.AFTERNOON_ID = 251)
-                         Select p.NVALUE).Sum
-
-            result = If(query Is Nothing, 0, query) + P_APP
             Return result
         Catch ex As Exception
             WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iTime")
@@ -4350,37 +4335,7 @@ Partial Public Class AttendanceRepository
             Next
 
 
-            For Each itm In registerRecord
-                Dim exists = (From r In Context.AT_LEAVESHEET Where r.EMPLOYEE_ID = itm.p.ID_EMPLOYEE And r.WORKINGDAY = itm.p.FROM_DATE).Any
-                If exists = False Then
-                    leave = New AT_LEAVESHEET
-                    leave.ID = Utilities.GetNextSequence(Context, Context.AT_LEAVESHEET.EntitySet.Name)
-                    leave.EMPLOYEE_ID = itm.p.ID_EMPLOYEE
-                    leave.WORKINGDAY = itm.p.FROM_DATE
-                    leave.LEAVE_FROM = fromdate
-                    leave.LEAVE_TO = todate
-                    leave.MANUAL_ID = itm.s.ID
-                    leave.NOTE = itm.p.NOTE
-                    Context.AT_LEAVESHEET.AddObject(leave)
-                    'itm.p.FROM_DATE = itm.p.FROM_DATE.Value.AddDays(1)
-                Else
-                    Dim details = (From r In Context.AT_LEAVESHEET Where r.EMPLOYEE_ID = itm.p.ID_EMPLOYEE And r.WORKINGDAY = itm.p.FROM_DATE).ToList
-                    For index = 0 To details.Count - 1
-                        Context.AT_LEAVESHEET.DeleteObject(details(index))
-                    Next
-                    leave = New AT_LEAVESHEET
-                    leave.ID = Utilities.GetNextSequence(Context, Context.AT_LEAVESHEET.EntitySet.Name)
-                    leave.EMPLOYEE_ID = itm.p.ID_EMPLOYEE
-                    leave.WORKINGDAY = itm.p.FROM_DATE
-                    leave.LEAVE_FROM = fromdate
-                    leave.LEAVE_TO = todate
-                    leave.MANUAL_ID = itm.s.ID
-                    leave.NOTE = itm.p.NOTE_AT
-                    Context.AT_LEAVESHEET.AddObject(leave)
-                    'itm.p.FROM_DATE = itm.p.FROM_DATE.Value.AddDays(1)
-                End If
-            Next
-            Context.SaveChanges(log)
+          
             Return True
         Catch ex As Exception
             WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iTime")

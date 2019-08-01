@@ -9,6 +9,8 @@ Namespace AttendanceBusiness.ServiceContracts
     Public Interface IAttendanceBusiness
 #Region "LeaveSheet"
         <OperationContract()>
+        Function ValidateLeaveSheetDetail(ByVal objValidate As AT_LEAVESHEETDTO) As Boolean
+        <OperationContract()>
         Function GetLeaveSheet_ById(ByVal Leave_SheetID As Decimal, ByVal Struct As Decimal) As DataSet
         <OperationContract()>
         Function GetLeaveSheet_Detail_ByDate(ByVal employee_id As Decimal, ByVal fromDate As Date, ByVal toDate As Date, manualId As Decimal) As DataTable

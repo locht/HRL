@@ -275,13 +275,31 @@ Partial Public Class ctrlRegisterCONewEdit
     Protected WithEvents CompareValidator2 As Global.System.Web.UI.WebControls.CompareValidator
     
     '''<summary>
-    '''txtNote control.
+    '''rtNote control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents txtNote As Global.Telerik.Web.UI.RadTextBox
+    Protected WithEvents rtNote As Global.Telerik.Web.UI.RadTextBox
+    
+    '''<summary>
+    '''reNOTE control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents reNOTE As Global.System.Web.UI.WebControls.RequiredFieldValidator
+    
+    '''<summary>
+    '''rnIS_APP control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents rnIS_APP As Global.Telerik.Web.UI.RadNumericTextBox
     
     '''<summary>
     '''rgData control.

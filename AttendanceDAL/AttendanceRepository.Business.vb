@@ -3222,8 +3222,6 @@ Partial Public Class AttendanceRepository
                         From t In Context.HU_TITLE.Where(Function(f) f.ID = e.TITLE_ID).DefaultIfEmpty
                         From o In Context.HU_ORGANIZATION.Where(Function(f) f.ID = e.ORG_ID).DefaultIfEmpty
                         From m In Context.AT_TIME_MANUAL.Where(Function(F) F.ID = p.MANUAL_ID).DefaultIfEmpty
-                        From en In Context.AT_ENTITLEMENT.Where(Function(F) F.EMPLOYEE_ID = p.EMPLOYEE_ID And p.WORKINGDAY.Value.Year = F.YEAR).DefaultIfEmpty()
-                        From nb In Context.AT_COMPENSATORY.Where(Function(F) F.EMPLOYEE_ID = p.EMPLOYEE_ID And p.WORKINGDAY.Value.Year = F.YEAR).DefaultIfEmpty()
                         Where p.ID = _id
 
             Dim lst = query.Select(Function(p) New AT_LEAVESHEETDTO With {
@@ -3242,15 +3240,7 @@ Partial Public Class AttendanceRepository
                                                                        .MANUAL_NAME = p.m.NAME,
                                                                        .MORNING_ID = p.m.MORNING_ID,
                                                                        .AFTERNOON_ID = p.m.AFTERNOON_ID,
-                                                                       .BALANCE_NOW = p.en.CUR_HAVE,
-                                                                       .NBCL = p.nb.CUR_HAVE,
-                                                                       .WORKINGDAY = p.p.WORKINGDAY,
                                                                        .NOTE = p.p.NOTE,
-                                                                       .IS_WORKING_DAY = p.p.IS_WORKING_DAY,
-                                                                       .DAY_NUM = p.p.DAY_NUM,
-                                                                       .IN_PLAN_DAYS = p.p.IN_PLAN_DAYS,
-                                                                       .NOT_IN_PLAN_DAYS = p.p.NOT_IN_PLAN_DAYS,
-                                                                       .NOTE_APP = p.p.NOTE_APP,
                                                                        .CREATED_BY = p.p.CREATED_BY,
                                                                        .CREATED_DATE = p.p.CREATED_DATE,
                                                                        .CREATED_LOG = p.p.CREATED_LOG,
@@ -3267,76 +3257,7 @@ Partial Public Class AttendanceRepository
     Public Function InsertLeaveSheet(ByVal objLeave As AT_LEAVESHEETDTO, ByVal log As UserLog, ByRef gID As Decimal) As Boolean
         Dim fromdate As Date?
         Try
-            Dim exists = (From r In Context.AT_LEAVESHEET Where r.EMPLOYEE_ID = objLeave.EMPLOYEE_ID And r.WORKINGDAY <= objLeave.LEAVE_TO And r.WORKINGDAY >= objLeave.LEAVE_FROM).Any
-            If exists Then ' trường hợp nếu đã có bản ghi trùng thì xóa đi và cập nhật bản ghi mới nhất
-                Dim details = (From r In Context.AT_LEAVESHEET Where r.EMPLOYEE_ID = objLeave.EMPLOYEE_ID And r.WORKINGDAY <= objLeave.LEAVE_TO And r.WORKINGDAY >= objLeave.LEAVE_FROM).ToList
-                For index = 0 To details.Count - 1
-                    Context.AT_LEAVESHEET.DeleteObject(details(index))
-                Next
-                Dim objLeaveData As AT_LEAVESHEET
-                'Dim emp = (From p In Context.HU_EMPLOYEE Where p.EMPLOYEE_CODE.ToLower().Contains(objLeave.EMPLOYEE_CODE.ToLower())).FirstOrDefault
-                fromdate = objLeave.LEAVE_FROM
-                While objLeave.LEAVE_FROM <= objLeave.LEAVE_TO
-                    If objLeave.LEAVE_FROM.Value.DayOfWeek = DayOfWeek.Sunday Then
-                        objLeave.LEAVE_FROM = objLeave.LEAVE_FROM.Value.AddDays(1)
-                        Continue While
-                    End If
-                    objLeaveData = New AT_LEAVESHEET
-                    objLeaveData.ID = Utilities.GetNextSequence(Context, Context.AT_LEAVESHEET.EntitySet.Name)
-                    objLeaveData.WORKINGDAY = objLeave.LEAVE_FROM
-                    Dim emp = (From e In Context.HU_EMPLOYEE
-                               Where e.EMPLOYEE_CODE = objLeave.EMPLOYEE_CODE And e.JOIN_DATE <= objLeaveData.WORKINGDAY And
-                                 (e.TER_EFFECT_DATE Is Nothing Or
-                                  (e.TER_EFFECT_DATE IsNot Nothing And
-                                   e.TER_EFFECT_DATE >= objLeaveData.WORKINGDAY))
-                               Select e).FirstOrDefault
 
-                    objLeaveData.EMPLOYEE_ID = emp.ID
-                    objLeaveData.LEAVE_FROM = fromdate
-                    objLeaveData.LEAVE_TO = objLeave.LEAVE_TO
-                    objLeaveData.MANUAL_ID = objLeave.MANUAL_ID
-                    objLeaveData.AFTERNOON_ID = objLeave.AFTERNOON_ID
-                    objLeaveData.MORNING_ID = objLeave.MORNING_ID
-                    objLeaveData.NOTE = objLeave.NOTE
-                    objLeave.LEAVE_FROM = objLeave.LEAVE_FROM.Value.AddDays(1)
-                    Context.AT_LEAVESHEET.AddObject(objLeaveData)
-                End While
-                Context.SaveChanges(log)
-            Else
-                Dim objLeaveData As AT_LEAVESHEET
-                fromdate = objLeave.LEAVE_FROM
-                While objLeave.LEAVE_FROM <= objLeave.LEAVE_TO
-                    If objLeave.LEAVE_FROM.Value.DayOfWeek = DayOfWeek.Sunday Then
-                        objLeave.LEAVE_FROM = objLeave.LEAVE_FROM.Value.AddDays(1)
-                        Continue While
-                    End If
-                    objLeaveData = New AT_LEAVESHEET
-                    objLeaveData.ID = Utilities.GetNextSequence(Context, Context.AT_LEAVESHEET.EntitySet.Name)
-                    objLeaveData.WORKINGDAY = objLeave.LEAVE_FROM
-                    Dim emp = (From e In Context.HU_EMPLOYEE
-                               Where e.EMPLOYEE_CODE = objLeave.EMPLOYEE_CODE And e.JOIN_DATE <= objLeaveData.WORKINGDAY And
-                               (e.TER_EFFECT_DATE Is Nothing Or
-                                (e.TER_EFFECT_DATE IsNot Nothing And
-                                 e.TER_EFFECT_DATE >= objLeaveData.WORKINGDAY))
-                               Select e).FirstOrDefault
-
-                    If emp IsNot Nothing Then
-                        objLeaveData.EMPLOYEE_ID = emp.ID
-                        objLeaveData.LEAVE_FROM = fromdate
-                        objLeaveData.LEAVE_TO = objLeave.LEAVE_TO
-                        objLeaveData.MANUAL_ID = objLeave.MANUAL_ID
-                        objLeaveData.AFTERNOON_ID = objLeave.AFTERNOON_ID
-                        objLeaveData.MORNING_ID = objLeave.MORNING_ID
-                        objLeaveData.NOTE = objLeave.NOTE
-                        objLeave.LEAVE_FROM = objLeave.LEAVE_FROM.Value.AddDays(1)
-                        Context.AT_LEAVESHEET.AddObject(objLeaveData)
-                    Else
-                        objLeave.LEAVE_FROM = objLeave.LEAVE_FROM.Value.AddDays(1)
-                    End If
-
-                End While
-            End If
-            Context.SaveChanges(log)
             Return True
         Catch ex As Exception
             WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iTime")
@@ -3349,80 +3270,7 @@ Partial Public Class AttendanceRepository
         Dim fromdateNext As Date?
         Dim objDataList As New AT_LEAVESHEETDTO
         Try
-            For iteam = 0 To objLeaveList.Count - 1
-                objDataList = objLeaveList(iteam)
 
-                Dim exists = (From r In Context.AT_LEAVESHEET Where r.EMPLOYEE_ID = objDataList.EMPLOYEE_ID And r.WORKINGDAY <= objLeave.LEAVE_TO And r.WORKINGDAY >= objLeave.LEAVE_FROM).Any
-                If exists Then ' trường hợp nếu đã có bản ghi trùng thì xóa đi và cập nhật bản ghi mới nhất
-                    Dim details = (From r In Context.AT_LEAVESHEET Where r.EMPLOYEE_ID = objDataList.EMPLOYEE_ID And r.WORKINGDAY <= objLeave.LEAVE_TO And r.WORKINGDAY >= objLeave.LEAVE_FROM).ToList
-                    For index = 0 To details.Count - 1
-                        Context.AT_LEAVESHEET.DeleteObject(details(index))
-                    Next
-                    Dim objLeaveData As AT_LEAVESHEET
-                    'Dim emp = (From p In Context.HU_EMPLOYEE Where p.EMPLOYEE_CODE.ToLower().Contains(objLeave.EMPLOYEE_CODE.ToLower())).FirstOrDefault
-                    fromdate = objLeave.LEAVE_FROM
-                    fromdateNext = objLeave.LEAVE_FROM
-                    While fromdateNext <= objLeave.LEAVE_TO
-                        objLeaveData = New AT_LEAVESHEET
-                        objLeaveData.ID = Utilities.GetNextSequence(Context, Context.AT_LEAVESHEET.EntitySet.Name)
-                        objLeaveData.WORKINGDAY = fromdateNext
-                        Dim emp = (From e In Context.HU_EMPLOYEE
-                                   Where e.EMPLOYEE_CODE = objDataList.EMPLOYEE_CODE And e.JOIN_DATE <= objLeaveData.WORKINGDAY And
-                                     (e.TER_EFFECT_DATE Is Nothing Or
-                                      (e.TER_EFFECT_DATE IsNot Nothing And
-                                       e.TER_EFFECT_DATE >= objLeaveData.WORKINGDAY))
-                                   Select e).FirstOrDefault
-                        If emp IsNot Nothing Then
-                            objLeaveData.EMPLOYEE_ID = emp.ID
-                            objLeaveData.LEAVE_FROM = fromdate
-                            objLeaveData.LEAVE_TO = objLeave.LEAVE_TO
-                            objLeaveData.MANUAL_ID = objLeave.MANUAL_ID
-                            objLeaveData.AFTERNOON_ID = objLeave.AFTERNOON_ID
-                            objLeaveData.MORNING_ID = objLeave.MORNING_ID
-                            'objLeaveData.NOTE = objLeave.NOTE
-                            objLeaveData.IS_WORKING_DAY = objLeave.IS_WORKING_DAY
-                            objLeaveData.DAY_NUM = objLeave.DAY_NUM
-                            objLeaveData.NOTE_APP = objLeave.NOTE_APP
-                            fromdateNext = fromdateNext.Value.AddDays(1)
-                            Context.AT_LEAVESHEET.AddObject(objLeaveData)
-                        End If
-                    End While
-                    Context.SaveChanges(log)
-                Else
-                    Dim objLeaveData As AT_LEAVESHEET
-                    fromdate = objLeave.LEAVE_FROM
-                    fromdateNext = objLeave.LEAVE_FROM
-                    While fromdateNext <= objLeave.LEAVE_TO
-                        objLeaveData = New AT_LEAVESHEET
-                        objLeaveData.ID = Utilities.GetNextSequence(Context, Context.AT_LEAVESHEET.EntitySet.Name)
-                        objLeaveData.WORKINGDAY = fromdateNext
-                        Dim emp = (From e In Context.HU_EMPLOYEE
-                                   Where e.EMPLOYEE_CODE = objDataList.EMPLOYEE_CODE And e.JOIN_DATE <= objLeaveData.WORKINGDAY And
-                                   (e.TER_EFFECT_DATE Is Nothing Or
-                                    (e.TER_EFFECT_DATE IsNot Nothing And
-                                     e.TER_EFFECT_DATE >= objLeaveData.WORKINGDAY))
-                                   Select e).FirstOrDefault
-                        If emp IsNot Nothing Then
-                            objLeaveData.EMPLOYEE_ID = emp.ID
-                            objLeaveData.LEAVE_FROM = fromdate
-                            objLeaveData.LEAVE_TO = objLeave.LEAVE_TO
-                            objLeaveData.MANUAL_ID = objLeave.MANUAL_ID
-                            objLeaveData.AFTERNOON_ID = objLeave.AFTERNOON_ID
-                            objLeaveData.MORNING_ID = objLeave.MORNING_ID
-                            objLeaveData.IS_WORKING_DAY = objLeave.IS_WORKING_DAY
-                            objLeaveData.DAY_NUM = objLeave.DAY_NUM
-                            'objLeaveData.NOTE = objLeave.NOTE
-                            objLeaveData.NOTE_APP = objLeave.NOTE_APP
-                            fromdateNext = fromdateNext.Value.AddDays(1)
-                            Context.AT_LEAVESHEET.AddObject(objLeaveData)
-                        Else
-                            fromdateNext = fromdateNext.Value.AddDays(1)
-                        End If
-
-                    End While
-                End If
-                Context.SaveChanges(log)
-            Next
             Return True
         Catch ex As Exception
             WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iTime")
@@ -3433,23 +3281,7 @@ Partial Public Class AttendanceRepository
     Public Function ValidateLeaveSheet(ByVal _validate As AT_LEAVESHEETDTO)
         Dim query
         Try
-            Dim dDay = _validate.LEAVE_FROM
-            While dDay <= _validate.LEAVE_TO
-                _validate.WORKINGDAY = dDay
-                If _validate.WORKINGDAY.HasValue Then
-                    If _validate.ID <> 0 Then
-                        query = (From p In Context.AT_LEAVESHEET
-                                 Where p.WORKINGDAY = _validate.WORKINGDAY And p.EMPLOYEE_ID = _validate.EMPLOYEE_ID And p.ID <> _validate.ID).Any
-                    Else
-                        query = (From p In Context.AT_LEAVESHEET
-                                 Where p.WORKINGDAY = _validate.WORKINGDAY And p.EMPLOYEE_ID = _validate.EMPLOYEE_ID).Any
-                    End If
-                    If query Then
-                        Return True
-                    End If
-                    dDay = dDay.Value.AddDays(1)
-                End If
-            End While
+
             Return False
         Catch ex As Exception
             WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iTime")
@@ -3459,40 +3291,7 @@ Partial Public Class AttendanceRepository
 
     Public Function ModifyLeaveSheet(ByVal objLeave As AT_LEAVESHEETDTO, ByVal log As UserLog, ByRef gID As Decimal) As Boolean
         Try
-            Dim leave = (From r In Context.AT_LEAVESHEET Where r.ID = objLeave.ID).FirstOrDefault
-            Dim details = (From r In Context.AT_LEAVESHEET Where r.LEAVE_FROM = leave.LEAVE_FROM And r.LEAVE_TO = leave.LEAVE_TO).ToList
-            For index = 0 To details.Count - 1
-                Context.AT_LEAVESHEET.DeleteObject(details(index))
-            Next
-            Dim fromdate As Date?
-            Dim objLeaveData As AT_LEAVESHEET
-            'Dim emp = (From p In Context.HU_EMPLOYEE Where p.EMPLOYEE_CODE.ToLower().Contains(objLeave.EMPLOYEE_CODE.ToLower())).FirstOrDefault
-            fromdate = objLeave.LEAVE_FROM
-            While objLeave.LEAVE_FROM <= objLeave.LEAVE_TO
-                objLeaveData = New AT_LEAVESHEET
-                objLeaveData.ID = Utilities.GetNextSequence(Context, Context.AT_LEAVESHEET.EntitySet.Name)
-                objLeaveData.WORKINGDAY = objLeave.LEAVE_FROM
-                Dim emp = (From e In Context.HU_EMPLOYEE
-                           Where e.EMPLOYEE_CODE = objLeave.EMPLOYEE_CODE And e.JOIN_DATE <= objLeaveData.WORKINGDAY And
-                             (e.TER_EFFECT_DATE Is Nothing Or
-                              (e.TER_EFFECT_DATE IsNot Nothing And
-                               e.TER_EFFECT_DATE >= objLeaveData.WORKINGDAY))
-                           Select e).FirstOrDefault
 
-                objLeaveData.EMPLOYEE_ID = emp.ID
-                objLeaveData.LEAVE_FROM = fromdate
-                objLeaveData.LEAVE_TO = objLeave.LEAVE_TO
-                objLeaveData.MANUAL_ID = objLeave.MANUAL_ID
-                objLeaveData.AFTERNOON_ID = objLeave.AFTERNOON_ID
-                objLeaveData.MORNING_ID = objLeave.MORNING_ID
-                'objLeaveData.NOTE = objLeave.NOTE
-                objLeaveData.NOTE_APP = objLeave.NOTE_APP
-                objLeaveData.IS_WORKING_DAY = objLeave.IS_WORKING_DAY
-                objLeaveData.DAY_NUM = objLeave.DAY_NUM
-                objLeave.LEAVE_FROM = objLeave.LEAVE_FROM.Value.AddDays(1)
-                Context.AT_LEAVESHEET.AddObject(objLeaveData)
-            End While
-            Context.SaveChanges(log)
             Return True
         Catch ex As Exception
             WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iTime")

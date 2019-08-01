@@ -385,14 +385,32 @@ Public Class ctrlRegisterCONewEdit
         Dim rep As New AttendanceRepository
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
         Try
+            Dim objValidate As New AT_LEAVESHEETDTO
             Dim startTime As DateTime = DateTime.UtcNow
             Select Case CType(e.Item, RadToolBarButton).CommandName
                 Case CommonMessage.TOOLBARITEM_SAVE
                     If Page.IsValid Then
+                        'check so ngay dang ky nghi
+                        If Not IsNumeric(rnDAY_NUM.Value) OrElse rnDAY_NUM.Value < 1 Then
+                            ShowMessage(Translate("Số ngày đăng ký nghỉ phải lơn hơn 0"), NotifyType.Warning)
+                            Exit Sub
+                        End If
 
+                        objValidate.LEAVE_FROM = rdLEAVE_FROM.SelectedDate
+                        objValidate.LEAVE_TO = rdLEAVE_TO.SelectedDate
+                        objValidate.ID = rPH("ID")
+                        objValidate.EMPLOYEE_ID = CDec(rtEmployee_id.Text)
+                        If (New AttendanceBusinessClient).ValidateLeaveSheetDetail(objValidate) = False Then
+                            ShowMessage(Translate("Ngày đăng ký nghỉ đã bị trùng"), NotifyType.Warning)
+                            Exit Sub
+                        End If
                         CreateDataBinDing(0)
-                        SaveDB()
-                        Response.Redirect("/Default.aspx?mid=Attendance&fid=ctrlRegisterCO&group=Business")
+                        If SaveDB() Then
+                            Response.Redirect("/Default.aspx?mid=Attendance&fid=ctrlRegisterCO&group=Business")
+                        Else
+                            ShowMessage(Translate("Xảy ra lỗi"), NotifyType.Error)
+                        End If
+
                     Else
                         ExcuteScript("Resize", "ResizeSplitter(splitterID, pane1ID, pane2ID, validateID, oldSize, 'rgWorkschedule')")
                     End If
@@ -446,6 +464,7 @@ Public Class ctrlRegisterCONewEdit
             arr = Nothing
         End Try
     End Sub
+
 
 #End Region
 
@@ -604,9 +623,11 @@ Public Class ctrlRegisterCONewEdit
         Try
             Dim LEAVE_DAY = EditItem.GetDataKeyValue("LEAVE_DAY")
             Dim STATUS_SHIFT
+            Dim MANUAL_ID
             For Each rows As DataRow In dtDetail.Rows
                 If rows("LEAVE_DAY") = LEAVE_DAY Then
                     STATUS_SHIFT = rows("STATUS_SHIFT")
+                    MANUAL_ID = rows("MANUAL_ID")
                     Exit For
                 End If
             Next
@@ -623,6 +644,7 @@ Public Class ctrlRegisterCONewEdit
             End With
             If IsNumeric(STATUS_SHIFT) Then
                 cbo.SelectedValue = STATUS_SHIFT
+                cbo.Enabled = If(Not IsNumeric(MANUAL_ID), False, True)
             End If
         Catch ex As Exception
         End Try
@@ -679,12 +701,14 @@ Public Class ctrlRegisterCONewEdit
         Dim PH As DataTable = New DataTable()
         Dim dr As DataRow() = New DataRow() {rPH}
         PH = dr.CopyToDataTable()
-        'PH.ImportRow(rPH)
-        Dim dsLeaveSheet As New DataSet()
-        Dim CT As DataTable = dtDetail
-
+        PH.TableName = "PH"
+        Dim dsLeaveSheet As New DataSet("DATA")
+        Dim CT As New DataTable()
         dsLeaveSheet.Tables.Add(PH)
-        dsLeaveSheet.Tables.Add(CT)
+        CT = dtDetail
+        CT.TableName = "CT"
+        'dsLeaveSheet.Tables.Remove("CT")
+        dsLeaveSheet.Tables.Add(CT.Copy())
         Try
             Return rep.SaveLeaveSheet(dsLeaveSheet)
         Catch ex As Exception

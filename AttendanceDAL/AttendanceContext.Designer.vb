@@ -18,7 +18,7 @@ Imports System.Runtime.Serialization
 Imports System.Xml.Serialization
 
 
-<Assembly: EdmSchemaAttribute("91a8e9df-15c6-4083-bc84-a5161f9e41cc")>
+<Assembly: EdmSchemaAttribute("c0fbf448-8324-4e17-a8f6-594c7dd1d480")>
 #Region "EDM Relationship Metadata"
 <Assembly: EdmRelationshipAttribute("AttendanceModel", "FK_OOLT_OOL", "OT_OTHER_LIST_TYPE", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(OT_OTHER_LIST_TYPE), "OT_OTHER_LIST", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(OT_OTHER_LIST), True)>
 <Assembly: EdmRelationshipAttribute("AttendanceModel", "FK_OOLG_OOLT", "OT_OTHER_LIST_GROUP", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(OT_OTHER_LIST_GROUP), "OT_OTHER_LIST_TYPE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(OT_OTHER_LIST_TYPE), True)>
@@ -599,20 +599,6 @@ Public Partial Class AttendanceContext
     End Property
 
     Private _AT_LATE_COMBACKOUT As ObjectSet(Of AT_LATE_COMBACKOUT)
-
-    ''' <summary>
-    ''' No Metadata Documentation available.
-    ''' </summary>
-    Public ReadOnly Property AT_LEAVESHEET() As ObjectSet(Of AT_LEAVESHEET)
-        Get
-            If (_AT_LEAVESHEET Is Nothing) Then
-                _AT_LEAVESHEET = MyBase.CreateObjectSet(Of AT_LEAVESHEET)("AT_LEAVESHEET")
-            End If
-            Return _AT_LEAVESHEET
-        End Get
-    End Property
-
-    Private _AT_LEAVESHEET As ObjectSet(Of AT_LEAVESHEET)
 
     ''' <summary>
     ''' No Metadata Documentation available.
@@ -1300,6 +1286,20 @@ Public Partial Class AttendanceContext
 
     Private _AT_LEAVESHEET_DETAIL As ObjectSet(Of AT_LEAVESHEET_DETAIL)
 
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    Public ReadOnly Property AT_LEAVESHEET() As ObjectSet(Of AT_LEAVESHEET)
+        Get
+            If (_AT_LEAVESHEET Is Nothing) Then
+                _AT_LEAVESHEET = MyBase.CreateObjectSet(Of AT_LEAVESHEET)("AT_LEAVESHEET")
+            End If
+            Return _AT_LEAVESHEET
+        End Get
+    End Property
+
+    Private _AT_LEAVESHEET As ObjectSet(Of AT_LEAVESHEET)
+
     #End Region
 
     #Region "AddTo Methods"
@@ -1561,13 +1561,6 @@ Public Partial Class AttendanceContext
     ''' </summary>
     Public Sub AddToAT_LATE_COMBACKOUT(ByVal aT_LATE_COMBACKOUT As AT_LATE_COMBACKOUT)
         MyBase.AddObject("AT_LATE_COMBACKOUT", aT_LATE_COMBACKOUT)
-    End Sub
-
-    ''' <summary>
-    ''' Deprecated Method for adding a new object to the AT_LEAVESHEET EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
-    ''' </summary>
-    Public Sub AddToAT_LEAVESHEET(ByVal aT_LEAVESHEET As AT_LEAVESHEET)
-        MyBase.AddObject("AT_LEAVESHEET", aT_LEAVESHEET)
     End Sub
 
     ''' <summary>
@@ -1911,6 +1904,13 @@ Public Partial Class AttendanceContext
     ''' </summary>
     Public Sub AddToAT_LEAVESHEET_DETAIL(ByVal aT_LEAVESHEET_DETAIL As AT_LEAVESHEET_DETAIL)
         MyBase.AddObject("AT_LEAVESHEET_DETAIL", aT_LEAVESHEET_DETAIL)
+    End Sub
+
+    ''' <summary>
+    ''' Deprecated Method for adding a new object to the AT_LEAVESHEET EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+    ''' </summary>
+    Public Sub AddToAT_LEAVESHEET(ByVal aT_LEAVESHEET As AT_LEAVESHEET)
+        MyBase.AddObject("AT_LEAVESHEET", aT_LEAVESHEET)
     End Sub
 
     #End Region
@@ -11961,31 +11961,6 @@ Public Partial Class AT_LEAVESHEET
     ''' </summary>
     <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
     <DataMemberAttribute()>
-    Public Property WORKINGDAY() As Nullable(Of Global.System.DateTime)
-        Get
-            Return _WORKINGDAY
-        End Get
-        Set
-            OnWORKINGDAYChanging(value)
-            ReportPropertyChanging("WORKINGDAY")
-            _WORKINGDAY = StructuralObject.SetValidValue(value)
-            ReportPropertyChanged("WORKINGDAY")
-            OnWORKINGDAYChanged()
-        End Set
-    End Property
-
-    Private _WORKINGDAY As Nullable(Of Global.System.DateTime)
-    Private Partial Sub OnWORKINGDAYChanging(value As Nullable(Of Global.System.DateTime))
-    End Sub
-
-    Private Partial Sub OnWORKINGDAYChanged()
-    End Sub
-
-    ''' <summary>
-    ''' No Metadata Documentation available.
-    ''' </summary>
-    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
-    <DataMemberAttribute()>
     Public Property BALANCE_NOW() As Nullable(Of Global.System.Decimal)
         Get
             Return _BALANCE_NOW
@@ -12236,56 +12211,6 @@ Public Partial Class AT_LEAVESHEET
     ''' </summary>
     <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
     <DataMemberAttribute()>
-    Public Property MORNING_ID() As Nullable(Of Global.System.Decimal)
-        Get
-            Return _MORNING_ID
-        End Get
-        Set
-            OnMORNING_IDChanging(value)
-            ReportPropertyChanging("MORNING_ID")
-            _MORNING_ID = StructuralObject.SetValidValue(value)
-            ReportPropertyChanged("MORNING_ID")
-            OnMORNING_IDChanged()
-        End Set
-    End Property
-
-    Private _MORNING_ID As Nullable(Of Global.System.Decimal)
-    Private Partial Sub OnMORNING_IDChanging(value As Nullable(Of Global.System.Decimal))
-    End Sub
-
-    Private Partial Sub OnMORNING_IDChanged()
-    End Sub
-
-    ''' <summary>
-    ''' No Metadata Documentation available.
-    ''' </summary>
-    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
-    <DataMemberAttribute()>
-    Public Property AFTERNOON_ID() As Nullable(Of Global.System.Decimal)
-        Get
-            Return _AFTERNOON_ID
-        End Get
-        Set
-            OnAFTERNOON_IDChanging(value)
-            ReportPropertyChanging("AFTERNOON_ID")
-            _AFTERNOON_ID = StructuralObject.SetValidValue(value)
-            ReportPropertyChanged("AFTERNOON_ID")
-            OnAFTERNOON_IDChanged()
-        End Set
-    End Property
-
-    Private _AFTERNOON_ID As Nullable(Of Global.System.Decimal)
-    Private Partial Sub OnAFTERNOON_IDChanging(value As Nullable(Of Global.System.Decimal))
-    End Sub
-
-    Private Partial Sub OnAFTERNOON_IDChanged()
-    End Sub
-
-    ''' <summary>
-    ''' No Metadata Documentation available.
-    ''' </summary>
-    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
-    <DataMemberAttribute()>
     Public Property MANUAL_ID() As Nullable(Of Global.System.Decimal)
         Get
             Return _MANUAL_ID
@@ -12304,106 +12229,6 @@ Public Partial Class AT_LEAVESHEET
     End Sub
 
     Private Partial Sub OnMANUAL_IDChanged()
-    End Sub
-
-    ''' <summary>
-    ''' No Metadata Documentation available.
-    ''' </summary>
-    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
-    <DataMemberAttribute()>
-    Public Property NOTE_APP() As Global.System.String
-        Get
-            Return _NOTE_APP
-        End Get
-        Set
-            OnNOTE_APPChanging(value)
-            ReportPropertyChanging("NOTE_APP")
-            _NOTE_APP = StructuralObject.SetValidValue(value, true)
-            ReportPropertyChanged("NOTE_APP")
-            OnNOTE_APPChanged()
-        End Set
-    End Property
-
-    Private _NOTE_APP As Global.System.String
-    Private Partial Sub OnNOTE_APPChanging(value As Global.System.String)
-    End Sub
-
-    Private Partial Sub OnNOTE_APPChanged()
-    End Sub
-
-    ''' <summary>
-    ''' No Metadata Documentation available.
-    ''' </summary>
-    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
-    <DataMemberAttribute()>
-    Public Property IS_WORKING_DAY() As Nullable(Of Global.System.Decimal)
-        Get
-            Return _IS_WORKING_DAY
-        End Get
-        Set
-            OnIS_WORKING_DAYChanging(value)
-            ReportPropertyChanging("IS_WORKING_DAY")
-            _IS_WORKING_DAY = StructuralObject.SetValidValue(value)
-            ReportPropertyChanged("IS_WORKING_DAY")
-            OnIS_WORKING_DAYChanged()
-        End Set
-    End Property
-
-    Private _IS_WORKING_DAY As Nullable(Of Global.System.Decimal)
-    Private Partial Sub OnIS_WORKING_DAYChanging(value As Nullable(Of Global.System.Decimal))
-    End Sub
-
-    Private Partial Sub OnIS_WORKING_DAYChanged()
-    End Sub
-
-    ''' <summary>
-    ''' No Metadata Documentation available.
-    ''' </summary>
-    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
-    <DataMemberAttribute()>
-    Public Property IN_PLAN_DAYS() As Nullable(Of Global.System.Decimal)
-        Get
-            Return _IN_PLAN_DAYS
-        End Get
-        Set
-            OnIN_PLAN_DAYSChanging(value)
-            ReportPropertyChanging("IN_PLAN_DAYS")
-            _IN_PLAN_DAYS = StructuralObject.SetValidValue(value)
-            ReportPropertyChanged("IN_PLAN_DAYS")
-            OnIN_PLAN_DAYSChanged()
-        End Set
-    End Property
-
-    Private _IN_PLAN_DAYS As Nullable(Of Global.System.Decimal)
-    Private Partial Sub OnIN_PLAN_DAYSChanging(value As Nullable(Of Global.System.Decimal))
-    End Sub
-
-    Private Partial Sub OnIN_PLAN_DAYSChanged()
-    End Sub
-
-    ''' <summary>
-    ''' No Metadata Documentation available.
-    ''' </summary>
-    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
-    <DataMemberAttribute()>
-    Public Property NOT_IN_PLAN_DAYS() As Nullable(Of Global.System.Decimal)
-        Get
-            Return _NOT_IN_PLAN_DAYS
-        End Get
-        Set
-            OnNOT_IN_PLAN_DAYSChanging(value)
-            ReportPropertyChanging("NOT_IN_PLAN_DAYS")
-            _NOT_IN_PLAN_DAYS = StructuralObject.SetValidValue(value)
-            ReportPropertyChanged("NOT_IN_PLAN_DAYS")
-            OnNOT_IN_PLAN_DAYSChanged()
-        End Set
-    End Property
-
-    Private _NOT_IN_PLAN_DAYS As Nullable(Of Global.System.Decimal)
-    Private Partial Sub OnNOT_IN_PLAN_DAYSChanging(value As Nullable(Of Global.System.Decimal))
-    End Sub
-
-    Private Partial Sub OnNOT_IN_PLAN_DAYSChanged()
     End Sub
 
     ''' <summary>
