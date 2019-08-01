@@ -7182,6 +7182,9 @@ Namespace InsuranceBusiness
         Private IDField As System.Nullable(Of Decimal)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private MIN_AMOUNTField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private MODIFIED_BYField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -7303,6 +7306,19 @@ Namespace InsuranceBusiness
                 If (Me.IDField.Equals(value) <> true) Then
                     Me.IDField = value
                     Me.RaisePropertyChanged("ID")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property MIN_AMOUNT() As System.Nullable(Of Decimal)
+            Get
+                Return Me.MIN_AMOUNTField
+            End Get
+            Set
+                If (Me.MIN_AMOUNTField.Equals(value) <> true) Then
+                    Me.MIN_AMOUNTField = value
+                    Me.RaisePropertyChanged("MIN_AMOUNT")
                 End If
             End Set
         End Property

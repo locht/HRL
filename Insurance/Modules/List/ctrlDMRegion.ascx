@@ -27,15 +27,27 @@
                     <asp:RequiredFieldValidator ID="RequiredFieldValidator1" ControlToValidate="txtEFFECTIVE_DATE"
                         runat="server" Text="*" ErrorMessage="<%$ Translate: Bạn phải nhập ngày hiệu lực. %>"></asp:RequiredFieldValidator>
                 </td>
+
                 <td class="lb">
-                    <%# Translate("Giá trị")%><span class="lbReq">*</span>
+                    <%# Translate("Mức lương tối thiểu")%><span class="lbReq">*</span>
+                </td>
+                <td>
+                    <tlk:RadNumericTextBox ID="txtMIN_AMOUNT" MaxLength="10" MinValue="0" runat="server">
+                        <NumberFormat GroupSeparator="," DecimalDigits="0" />
+                    </tlk:RadNumericTextBox>
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator4" ControlToValidate="txtMIN_AMOUNT"
+                        runat="server" Text="*" ErrorMessage="<%$ Translate: Bạn phải nhập Mức lương tối thiểu. %>"></asp:RequiredFieldValidator>
+                </td>
+
+                <td class="lb">
+                    <%# Translate("Mức trần BHTN")%><span class="lbReq">*</span>
                 </td>
                 <td>
                     <tlk:RadNumericTextBox ID="txtCEILING_AMOUNT" MaxLength="10" MinValue="0" runat="server">
                         <NumberFormat GroupSeparator="," DecimalDigits="0" />
                     </tlk:RadNumericTextBox>
                     <asp:RequiredFieldValidator ID="RequiredFieldValidator2" ControlToValidate="txtCEILING_AMOUNT"
-                        runat="server" Text="*" ErrorMessage="<%$ Translate: Bạn phải nhập giá trị vùng. %>"></asp:RequiredFieldValidator>
+                        runat="server" Text="*" ErrorMessage="<%$ Translate: Bạn phải nhập Mức trần BHTN. %>"></asp:RequiredFieldValidator>
                 </td>
             </tr>
             <tr>
@@ -57,7 +69,7 @@
                 <ClientEvents OnGridCreated="GridCreated" />
                 <ClientEvents OnCommand="ValidateFilter" />
             </ClientSettings>
-            <MasterTableView DataKeyNames="ID" ClientDataKeyNames="AREA_ID,AREA_NAME,NOTE,EFFECTIVE_DATE,CEILING_AMOUNT">
+            <MasterTableView DataKeyNames="ID" ClientDataKeyNames="AREA_ID,AREA_NAME,NOTE,EFFECTIVE_DATE,CEILING_AMOUNT,MIN_AMOUNT">
                 <Columns>
                     <tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderStyle-HorizontalAlign="Center"
                         HeaderStyle-Width="30px" ItemStyle-HorizontalAlign="Center">
@@ -68,7 +80,9 @@
                         UniqueName="AREA_NAME" SortExpression="AREA_NAME" />
                     <tlk:GridBoundColumn HeaderText="<%$ Translate: Ngày hiệu lực %>" DataFormatString="{0:dd/MM/yyyy}"
                         DataField="EFFECTIVE_DATE" UniqueName="EFFECTIVE_DATE" SortExpression="EFFECTIVE_DATE" />
-                    <tlk:GridNumericColumn HeaderText="<%$ Translate: Giá trị %>" DataField="CEILING_AMOUNT"
+                    <tlk:GridNumericColumn HeaderText="<%$ Translate: Mức lương tối thiểu %>" DataField="MIN_AMOUNT"
+                        UniqueName="MIN_AMOUNT" SortExpression="MIN_AMOUNT"  DataFormatString="{0:N0}"/>
+                    <tlk:GridNumericColumn HeaderText="<%$ Translate: Mức trần BHTN %>" DataField="CEILING_AMOUNT"
                         UniqueName="CEILING_AMOUNT" SortExpression="CEILING_AMOUNT"  DataFormatString="{0:N0}"/>
                     <tlk:GridBoundColumn HeaderText="<%$ Translate: Mô tả %>" DataField="NOTE" UniqueName="NOTE"
                         SortExpression="NOTE" />

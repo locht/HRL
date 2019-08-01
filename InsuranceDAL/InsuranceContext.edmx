@@ -6,49 +6,49 @@
     <edmx:StorageModels>
     <Schema Namespace="InsuranceModel.Store" Alias="Self" Provider="Oracle.DataAccess.Client" ProviderManifestToken="11.2" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator">
         <EntityContainer Name="InsuranceModelStoreContainer">
-            <EntitySet Name="HU_EMPLOYEE" EntityType="InsuranceModel.Store.HU_EMPLOYEE" store:Type="Tables" />
-            <EntitySet Name="HU_EMPLOYEE_EDUCATION" EntityType="InsuranceModel.Store.HU_EMPLOYEE_EDUCATION" store:Type="Tables" />
-            <EntitySet Name="HU_EMPLOYEE_FILES" EntityType="InsuranceModel.Store.HU_EMPLOYEE_FILES" store:Type="Tables" />
-            <EntitySet Name="HU_EMPLOYEE_HEALTH" EntityType="InsuranceModel.Store.HU_EMPLOYEE_HEALTH" store:Type="Tables" />
-            <EntitySet Name="HU_EMPLOYEE_OTHER_INFO" EntityType="InsuranceModel.Store.HU_EMPLOYEE_OTHER_INFO" store:Type="Tables" />
-            <EntitySet Name="HU_EMPLOYEE_SALARY" EntityType="InsuranceModel.Store.HU_EMPLOYEE_SALARY" store:Type="Tables" />
-            <EntitySet Name="HU_EMPLOYEE_TRAIN" EntityType="InsuranceModel.Store.HU_EMPLOYEE_TRAIN" store:Type="Tables" />
-            <EntitySet Name="HU_ORG_TITLE" EntityType="InsuranceModel.Store.HU_ORG_TITLE" store:Type="Tables" />
-            <EntitySet Name="HU_ORGANIZATION" EntityType="InsuranceModel.Store.HU_ORGANIZATION" store:Type="Tables" />
-            <EntitySet Name="HU_TITLE" EntityType="InsuranceModel.Store.HU_TITLE" store:Type="Tables" />
-            <EntitySet Name="HU_WORKING" EntityType="InsuranceModel.Store.HU_WORKING" store:Type="Tables" />
-            <EntitySet Name="OT_OTHER_LIST" EntityType="InsuranceModel.Store.OT_OTHER_LIST" store:Type="Tables" />
-            <EntitySet Name="OT_OTHER_LIST_GROUP" EntityType="InsuranceModel.Store.OT_OTHER_LIST_GROUP" store:Type="Tables" />
-            <EntitySet Name="OT_OTHER_LIST_TYPE" EntityType="InsuranceModel.Store.OT_OTHER_LIST_TYPE" store:Type="Tables" />
-            <EntitySet Name="HU_DISTRICT" EntityType="InsuranceModel.Store.HU_DISTRICT" store:Type="Tables" />
-            <EntitySet Name="HU_NATION" EntityType="InsuranceModel.Store.HU_NATION" store:Type="Tables" />
-            <EntitySet Name="HU_PROVINCE" EntityType="InsuranceModel.Store.HU_PROVINCE" store:Type="Tables" />
-            <EntitySet Name="SE_CHOSEN_ORG" EntityType="InsuranceModel.Store.SE_CHOSEN_ORG" store:Type="Tables" />
-            <EntitySet Name="HU_CONTRACT" EntityType="InsuranceModel.Store.HU_CONTRACT" store:Type="Tables" />
-            <EntitySet Name="HU_CONTRACT_TYPE" EntityType="InsuranceModel.Store.HU_CONTRACT_TYPE" store:Type="Tables" />
-            <EntitySet Name="HU_CONTRACT_MAX_V" EntityType="InsuranceModel.Store.HU_CONTRACT_MAX_V" store:Type="Tables" />
-            <EntitySet Name="HU_STAFF_RANK" EntityType="InsuranceModel.Store.HU_STAFF_RANK" store:Type="Tables" />
-            <EntitySet Name="INS_ARISING" EntityType="InsuranceModel.Store.INS_ARISING" store:Type="Tables" />
-            <EntitySet Name="INS_CHANGE" EntityType="InsuranceModel.Store.INS_CHANGE" store:Type="Tables" />
-            <EntitySet Name="INS_COST_FOLLOW_LEVER" EntityType="InsuranceModel.Store.INS_COST_FOLLOW_LEVER" store:Type="Tables" />
-            <EntitySet Name="INS_ENTITLED_TYPE" EntityType="InsuranceModel.Store.INS_ENTITLED_TYPE" store:Type="Tables" />
-            <EntitySet Name="INS_GROUP_REGIMES" EntityType="InsuranceModel.Store.INS_GROUP_REGIMES" store:Type="Tables" />
-            <EntitySet Name="INS_GROUP_SUN_CARE" EntityType="InsuranceModel.Store.INS_GROUP_SUN_CARE" store:Type="Tables" />
-            <EntitySet Name="INS_SUN_CARE" EntityType="InsuranceModel.Store.INS_SUN_CARE" store:Type="Tables" />
-            <EntitySet Name="INS_WHEREHEALTH" EntityType="InsuranceModel.Store.INS_WHEREHEALTH" store:Type="Tables" />
-            <EntitySet Name="HU_EMPLOYEE_CV" EntityType="InsuranceModel.Store.HU_EMPLOYEE_CV" store:Type="Tables" />
-            <EntitySet Name="HU_WORKING_ALLOW" EntityType="InsuranceModel.Store.HU_WORKING_ALLOW" store:Type="Tables" />
-            <EntitySet Name="HU_WORKING_MAX" EntityType="InsuranceModel.Store.HU_WORKING_MAX" store:Type="Tables" />
-            <EntitySet Name="INS_SPECIFIED_OBJECTS" EntityType="InsuranceModel.Store.INS_SPECIFIED_OBJECTS" store:Type="Tables" />
-            <EntitySet Name="HU_WORKING_ALLOW1" EntityType="InsuranceModel.Store.HU_WORKING_ALLOW1" store:Type="Tables" />
-            <EntitySet Name="INS_INFOOLD" EntityType="InsuranceModel.Store.INS_INFOOLD" store:Type="Tables" />
-            <EntitySet Name="INS_INFORMATION" EntityType="InsuranceModel.Store.INS_INFORMATION" store:Type="Tables" />
-            <EntitySet Name="INS_CHANGE_TYPE" EntityType="InsuranceModel.Store.INS_CHANGE_TYPE" store:Type="Tables" />
-            <EntitySet Name="INS_REMIGE_MANAGER" EntityType="InsuranceModel.Store.INS_REMIGE_MANAGER" store:Type="Tables" />
-            <EntitySet Name="INS_REGION" EntityType="InsuranceModel.Store.INS_REGION" store:Type="Tables" />
-            <EntitySet Name="SE_USER" EntityType="InsuranceModel.Store.SE_USER" store:Type="Tables" />
-            <EntitySet Name="SE_REPORT" EntityType="InsuranceModel.Store.SE_REPORT" store:Type="Tables" />
-            <EntitySet Name="SE_USER_REPORT" EntityType="InsuranceModel.Store.SE_USER_REPORT" store:Type="Tables" />
+            <EntitySet Name="HU_EMPLOYEE" EntityType="InsuranceModel.Store.HU_EMPLOYEE" store:Type="Tables"  />
+            <EntitySet Name="HU_EMPLOYEE_EDUCATION" EntityType="InsuranceModel.Store.HU_EMPLOYEE_EDUCATION" store:Type="Tables"  />
+            <EntitySet Name="HU_EMPLOYEE_FILES" EntityType="InsuranceModel.Store.HU_EMPLOYEE_FILES" store:Type="Tables"  />
+            <EntitySet Name="HU_EMPLOYEE_HEALTH" EntityType="InsuranceModel.Store.HU_EMPLOYEE_HEALTH" store:Type="Tables"  />
+            <EntitySet Name="HU_EMPLOYEE_OTHER_INFO" EntityType="InsuranceModel.Store.HU_EMPLOYEE_OTHER_INFO" store:Type="Tables"  />
+            <EntitySet Name="HU_EMPLOYEE_SALARY" EntityType="InsuranceModel.Store.HU_EMPLOYEE_SALARY" store:Type="Tables"  />
+            <EntitySet Name="HU_EMPLOYEE_TRAIN" EntityType="InsuranceModel.Store.HU_EMPLOYEE_TRAIN" store:Type="Tables"  />
+            <EntitySet Name="HU_ORG_TITLE" EntityType="InsuranceModel.Store.HU_ORG_TITLE" store:Type="Tables"  />
+            <EntitySet Name="HU_ORGANIZATION" EntityType="InsuranceModel.Store.HU_ORGANIZATION" store:Type="Tables"  />
+            <EntitySet Name="HU_TITLE" EntityType="InsuranceModel.Store.HU_TITLE" store:Type="Tables"  />
+            <EntitySet Name="HU_WORKING" EntityType="InsuranceModel.Store.HU_WORKING" store:Type="Tables"  />
+            <EntitySet Name="OT_OTHER_LIST" EntityType="InsuranceModel.Store.OT_OTHER_LIST" store:Type="Tables"  />
+            <EntitySet Name="OT_OTHER_LIST_GROUP" EntityType="InsuranceModel.Store.OT_OTHER_LIST_GROUP" store:Type="Tables"  />
+            <EntitySet Name="OT_OTHER_LIST_TYPE" EntityType="InsuranceModel.Store.OT_OTHER_LIST_TYPE" store:Type="Tables"  />
+            <EntitySet Name="HU_DISTRICT" EntityType="InsuranceModel.Store.HU_DISTRICT" store:Type="Tables"  />
+            <EntitySet Name="HU_NATION" EntityType="InsuranceModel.Store.HU_NATION" store:Type="Tables"  />
+            <EntitySet Name="HU_PROVINCE" EntityType="InsuranceModel.Store.HU_PROVINCE" store:Type="Tables"  />
+            <EntitySet Name="SE_CHOSEN_ORG" EntityType="InsuranceModel.Store.SE_CHOSEN_ORG" store:Type="Tables"  />
+            <EntitySet Name="HU_CONTRACT" EntityType="InsuranceModel.Store.HU_CONTRACT" store:Type="Tables"  />
+            <EntitySet Name="HU_CONTRACT_TYPE" EntityType="InsuranceModel.Store.HU_CONTRACT_TYPE" store:Type="Tables"  />
+            <EntitySet Name="HU_CONTRACT_MAX_V" EntityType="InsuranceModel.Store.HU_CONTRACT_MAX_V" store:Type="Tables"  />
+            <EntitySet Name="HU_STAFF_RANK" EntityType="InsuranceModel.Store.HU_STAFF_RANK" store:Type="Tables"  />
+            <EntitySet Name="INS_ARISING" EntityType="InsuranceModel.Store.INS_ARISING" store:Type="Tables"  />
+            <EntitySet Name="INS_CHANGE" EntityType="InsuranceModel.Store.INS_CHANGE" store:Type="Tables"  />
+            <EntitySet Name="INS_COST_FOLLOW_LEVER" EntityType="InsuranceModel.Store.INS_COST_FOLLOW_LEVER" store:Type="Tables"  />
+            <EntitySet Name="INS_ENTITLED_TYPE" EntityType="InsuranceModel.Store.INS_ENTITLED_TYPE" store:Type="Tables"  />
+            <EntitySet Name="INS_GROUP_REGIMES" EntityType="InsuranceModel.Store.INS_GROUP_REGIMES" store:Type="Tables"  />
+            <EntitySet Name="INS_GROUP_SUN_CARE" EntityType="InsuranceModel.Store.INS_GROUP_SUN_CARE" store:Type="Tables"  />
+            <EntitySet Name="INS_SUN_CARE" EntityType="InsuranceModel.Store.INS_SUN_CARE" store:Type="Tables"  />
+            <EntitySet Name="INS_WHEREHEALTH" EntityType="InsuranceModel.Store.INS_WHEREHEALTH" store:Type="Tables"  />
+            <EntitySet Name="HU_EMPLOYEE_CV" EntityType="InsuranceModel.Store.HU_EMPLOYEE_CV" store:Type="Tables"  />
+            <EntitySet Name="HU_WORKING_ALLOW" EntityType="InsuranceModel.Store.HU_WORKING_ALLOW" store:Type="Tables"  />
+            <EntitySet Name="HU_WORKING_MAX" EntityType="InsuranceModel.Store.HU_WORKING_MAX" store:Type="Tables"  />
+            <EntitySet Name="INS_SPECIFIED_OBJECTS" EntityType="InsuranceModel.Store.INS_SPECIFIED_OBJECTS" store:Type="Tables"  />
+            <EntitySet Name="HU_WORKING_ALLOW1" EntityType="InsuranceModel.Store.HU_WORKING_ALLOW1" store:Type="Tables"  />
+            <EntitySet Name="INS_INFOOLD" EntityType="InsuranceModel.Store.INS_INFOOLD" store:Type="Tables"  />
+            <EntitySet Name="INS_INFORMATION" EntityType="InsuranceModel.Store.INS_INFORMATION" store:Type="Tables"  />
+            <EntitySet Name="INS_CHANGE_TYPE" EntityType="InsuranceModel.Store.INS_CHANGE_TYPE" store:Type="Tables"  />
+            <EntitySet Name="INS_REMIGE_MANAGER" EntityType="InsuranceModel.Store.INS_REMIGE_MANAGER" store:Type="Tables"  />
+            <EntitySet Name="INS_REGION" EntityType="InsuranceModel.Store.INS_REGION" store:Type="Tables"  />
+            <EntitySet Name="SE_USER" EntityType="InsuranceModel.Store.SE_USER" store:Type="Tables"  />
+            <EntitySet Name="SE_REPORT" EntityType="InsuranceModel.Store.SE_REPORT" store:Type="Tables"  />
+            <EntitySet Name="SE_USER_REPORT" EntityType="InsuranceModel.Store.SE_USER_REPORT" store:Type="Tables"  />
             <AssociationSet Name="FK_FE_HEH" Association="InsuranceModel.Store.FK_FE_HEH">
                 <End Role="HU_EMPLOYEE" EntitySet="HU_EMPLOYEE" />
                 <End Role="HU_EMPLOYEE_HEALTH" EntitySet="HU_EMPLOYEE_HEALTH" />
@@ -1104,6 +1104,7 @@
             <Property Name="EFFECTIVE_DATE" Type="date" Nullable="true" />
             <Property Name="AREA_ID" Type="number" Nullable="true" Precision="38" />
             <Property Name="CEILING_AMOUNT" Type="number" Nullable="true" Precision="38" />
+            <Property Name="MIN_AMOUNT" Type="number" Nullable="true" Precision="38" />
         </EntityType>
         <EntityType Name="SE_USER">
             <Key>
@@ -2808,6 +2809,7 @@
           <Property Type="DateTime" Name="EFFECTIVE_DATE" />
           <Property Type="Decimal" Name="AREA_ID" Precision="38" Scale="0" />
           <Property Type="Decimal" Name="CEILING_AMOUNT" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="MIN_AMOUNT" />
         </EntityType>
         <EntityType Name="SE_USER">
           <Key>
@@ -3869,6 +3871,7 @@
                     <ScalarProperty Name="EFFECTIVE_DATE" ColumnName="EFFECTIVE_DATE" />
                     <ScalarProperty Name="AREA_ID" ColumnName="AREA_ID" />
                     <ScalarProperty Name="CEILING_AMOUNT" ColumnName="CEILING_AMOUNT" />
+                    <ScalarProperty Name="MIN_AMOUNT" ColumnName="MIN_AMOUNT" />
                 </MappingFragment>
             </EntityTypeMapping>
         </EntitySetMapping>
@@ -4090,7 +4093,7 @@
         <EntityTypeShape EntityType="InsuranceModel.INS_INFORMATION" Width="1.875" PointX="7.75" PointY="12.75" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="InsuranceModel.INS_CHANGE_TYPE" Width="1.5" PointX="10.25" PointY="8.875" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="InsuranceModel.INS_REMIGE_MANAGER" Width="1.5" PointX="5.25" PointY="12.75" Height="0.4" IsExpanded="false" />
-        <EntityTypeShape EntityType="InsuranceModel.INS_REGION" Width="1.5" PointX="0.75" PointY="12.75" Height="2.7494921874999996" IsExpanded="true" />
+        <EntityTypeShape EntityType="InsuranceModel.INS_REGION" Width="1.5" PointX="0.75" PointY="12.75" Height="3.3263964843749996" IsExpanded="true" />
         <EntityTypeShape EntityType="InsuranceModel.SE_USER" Width="2" PointX="3.625" PointY="13.875" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="InsuranceModel.SE_REPORT" Width="1.75" PointX="0.625" PointY="13.875" IsExpanded="false" Height="0.4" />
         <AssociationConnector Association="InsuranceModel.SE_USER_REPORT" >

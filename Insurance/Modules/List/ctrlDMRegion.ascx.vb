@@ -238,6 +238,7 @@ Public Class ctrlDMRegion
             dic.Add("AREA_ID", ddlAREA_ID)
             dic.Add("EFFECTIVE_DATE", txtEFFECTIVE_DATE)
             dic.Add("CEILING_AMOUNT", txtCEILING_AMOUNT)
+            dic.Add("MIN_AMOUNT", txtMIN_AMOUNT)
             dic.Add("NOTE", txtNote)
             Utilities.OnClientRowSelectedChanged(rgDanhMuc, dic)
             _myLog.WriteLog(_myLog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
@@ -329,6 +330,7 @@ Public Class ctrlDMRegion
                         objRegion.EFFECTIVE_DATE = txtEFFECTIVE_DATE.SelectedDate
                         objRegion.CEILING_AMOUNT = txtCEILING_AMOUNT.Value
                         objRegion.NOTE = txtNote.Text.Trim
+                        objRegion.MIN_AMOUNT = txtMIN_AMOUNT.Value
                         Select Case CurrentState
                             Case CommonMessage.STATE_NEW
                                 If rep.InsertINS_REGION(objRegion, gID) Then

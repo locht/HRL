@@ -903,7 +903,8 @@ Partial Public Class InsuranceRepository
                                        .CREATED_LOG = p.p.CREATED_LOG,
                                        .MODIFIED_BY = p.p.MODIFIED_BY,
                                        .MODIFIED_DATE = p.p.MODIFIED_DATE,
-                                       .MODIFIED_LOG = p.p.MODIFIED_LOG})
+                                       .MODIFIED_LOG = p.p.MODIFIED_LOG,
+                                       .MIN_AMOUNT = p.p.MIN_AMOUNT})
 
 
             If _filter.CEILING_AMOUNT.HasValue Then
@@ -914,6 +915,10 @@ Partial Public Class InsuranceRepository
             End If
             If Not String.IsNullOrEmpty(_filter.AREA_NAME) Then
                 lst = lst.Where(Function(f) f.AREA_NAME.ToLower().Contains(_filter.AREA_NAME.ToLower()))
+            End If
+
+            If _filter.MIN_AMOUNT.HasValue Then
+                lst = lst.Where(Function(f) f.MIN_AMOUNT = _filter.MIN_AMOUNT)
             End If
 
             lst = lst.OrderBy(Sorts)
@@ -937,6 +942,7 @@ Partial Public Class InsuranceRepository
             objTitleData.AREA_ID = objTitle.AREA_ID
             objTitleData.CEILING_AMOUNT = objTitle.CEILING_AMOUNT
             objTitleData.EFFECTIVE_DATE = objTitle.EFFECTIVE_DATE
+            objTitleData.MIN_AMOUNT = objTitle.MIN_AMOUNT
             'objTitleData.CREATED_BY = objTitle.CREATED_BY
             'objTitleData.CREATED_DATE = objTitle.CREATED_DATE
             'objTitleData.CREATED_LOG = objTitle.CREATED_LOG
@@ -973,6 +979,7 @@ Partial Public Class InsuranceRepository
             objTitleData.CEILING_AMOUNT = objTitle.CEILING_AMOUNT
             objTitleData.EFFECTIVE_DATE = objTitle.EFFECTIVE_DATE
             objTitleData.NOTE = objTitle.NOTE
+            objTitleData.MIN_AMOUNT = objTitle.MIN_AMOUNT
             'objTitleData.CREATED_BY = objTitle.CREATED_BY
             'objTitleData.CREATED_DATE = objTitle.CREATED_DATE
             'objTitleData.CREATED_LOG = objTitle.CREATED_LOG
