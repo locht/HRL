@@ -595,7 +595,7 @@ Public Class ctrlHU_Organization
                 rep.Dispose()
                 UpdateToolbarState(CurrentState)
                 UpdateControlState()
-                FillDataByTree()
+                'FillDataByTree()
                 check = ""
                 If CurrentState.ToUpper() = "NEW" Then
                     chkOrgChart.Checked = True
@@ -898,6 +898,7 @@ Public Class ctrlHU_Organization
                     treeOrgFunction.Enabled = False
                     txtCode.ReadOnly = False
                     txtNameVN.ReadOnly = False
+                    txtNameEN.ReadOnly = False
                     txtREMARK.ReadOnly = False
                     rtADDRESS.ReadOnly = False
                     txtLocationWork.ReadOnly = False
@@ -1135,7 +1136,7 @@ Public Class ctrlHU_Organization
             orgItem = (From p In Organizations Where p.ID = Decimal.Parse(treeOrgFunction.SelectedNode.Value)).SingleOrDefault
             If orgItem IsNot Nothing Then
                 hidParentID.Value = orgItem.PARENT_ID.ToString
-                txtParent_Name.Text = orgItem.PARENT_NAME
+                'txtParent_Name.Text = orgItem.PARENT_NAME
                 txtCode.Text = orgItem.CODE
                 txtLocationWork.Text = orgItem.LOCATION_WORK
                 txtNumberDecision.Text = orgItem.NUMBER_DECISION
