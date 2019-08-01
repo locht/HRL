@@ -311,6 +311,24 @@ Partial Public Class ctrlInsTotalSalary
     Protected WithEvents txtHC_1_UI_G As Global.Telerik.Web.UI.RadNumericTextBox
 
     '''<summary>
+    '''txtHC_1_BHTNLD_T control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtHC_1_BHTNLD_T As Global.Telerik.Web.UI.RadNumericTextBox
+
+    '''<summary>
+    '''txtHC_1_BHTNLD_G control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtHC_1_BHTNLD_G As Global.Telerik.Web.UI.RadNumericTextBox
+
+    '''<summary>
     '''txtTotalSal_1_SI_T control.
     '''</summary>
     '''<remarks>
@@ -363,6 +381,24 @@ Partial Public Class ctrlInsTotalSalary
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtTotalSal_1_UI_G As Global.Telerik.Web.UI.RadNumericTextBox
+
+    '''<summary>
+    '''txtTotalSal_1_BHTNLD_T control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtTotalSal_1_BHTNLD_T As Global.Telerik.Web.UI.RadNumericTextBox
+
+    '''<summary>
+    '''txtTotalSal_1_BHTNLD_G control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtTotalSal_1_BHTNLD_G As Global.Telerik.Web.UI.RadNumericTextBox
 
     '''<summary>
     '''txtSumit_1_SI_T control.
@@ -419,6 +455,24 @@ Partial Public Class ctrlInsTotalSalary
     Protected WithEvents txtSumit_1_UI_G As Global.Telerik.Web.UI.RadNumericTextBox
 
     '''<summary>
+    '''txtSumit_1_BHTNLD_T control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtSumit_1_BHTNLD_T As Global.Telerik.Web.UI.RadNumericTextBox
+
+    '''<summary>
+    '''txtSumit_1_BHTNLD_G control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtSumit_1_BHTNLD_G As Global.Telerik.Web.UI.RadNumericTextBox
+
+    '''<summary>
     '''txtAdjust_1_SI_T control.
     '''</summary>
     '''<remarks>
@@ -471,6 +525,24 @@ Partial Public Class ctrlInsTotalSalary
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtAdjust_1_UI_G As Global.Telerik.Web.UI.RadNumericTextBox
+
+    '''<summary>
+    '''txtAdjust_1_BHTNLD_T control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtAdjust_1_BHTNLD_T As Global.Telerik.Web.UI.RadNumericTextBox
+
+    '''<summary>
+    '''txtAdjust_1_BHTNLD_G control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtAdjust_1_BHTNLD_G As Global.Telerik.Web.UI.RadNumericTextBox
 
     '''<summary>
     '''rpvInfor2 control.
@@ -536,6 +608,24 @@ Partial Public Class ctrlInsTotalSalary
     Protected WithEvents txtHC_2_UI_G As Global.Telerik.Web.UI.RadNumericTextBox
 
     '''<summary>
+    '''txtHC_2_BHTNLD_T control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtHC_2_BHTNLD_T As Global.Telerik.Web.UI.RadNumericTextBox
+
+    '''<summary>
+    '''txtHC_2_BHTNLD_G control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtHC_2_BHTNLD_G As Global.Telerik.Web.UI.RadNumericTextBox
+
+    '''<summary>
     '''txtTotalSal_2_SI_T control.
     '''</summary>
     '''<remarks>
@@ -590,6 +680,24 @@ Partial Public Class ctrlInsTotalSalary
     Protected WithEvents txtTotalSal_2_UI_G As Global.Telerik.Web.UI.RadNumericTextBox
 
     '''<summary>
+    '''txtTotalSal_2_BHTNLD_T control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtTotalSal_2_BHTNLD_T As Global.Telerik.Web.UI.RadNumericTextBox
+
+    '''<summary>
+    '''txtTotalSal_2_BHTNLD_G control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtTotalSal_2_BHTNLD_G As Global.Telerik.Web.UI.RadNumericTextBox
+
+    '''<summary>
     '''txtSumit_2_SI_T control.
     '''</summary>
     '''<remarks>
@@ -642,6 +750,24 @@ Partial Public Class ctrlInsTotalSalary
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtSumit_2_UI_G As Global.Telerik.Web.UI.RadNumericTextBox
+
+    '''<summary>
+    '''txtSumit_2_BHTNLD_T control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtSumit_2_BHTNLD_T As Global.Telerik.Web.UI.RadNumericTextBox
+
+    '''<summary>
+    '''txtSumit_2_BHTNLD_G control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtSumit_2_BHTNLD_G As Global.Telerik.Web.UI.RadNumericTextBox
 
     '''<summary>
     '''ctrlMessageBox control.

@@ -79,9 +79,8 @@ Public Class ctrlInsTotalSalary
             Common.Common.BuildToolbar(Me.MainToolBar,
                                         ToolbarItem.Calculate,
                                         ToolbarItem.Export,
-                                        ToolbarItem.Seperator,
-                                        ToolbarItem.Create)
-            tbarOtherLists.Items(3).Text = Translate("Tổng hợp hàng loạt")
+                                        ToolbarItem.Seperator)
+            'tbarOtherLists.Items(3).Text = Translate("Tổng hợp hàng loạt")
             Me.MainToolBar.OnClientButtonClicking = "OnClientButtonClicking"
             CType(Me.Page, AjaxPage).AjaxManager.ClientEvents.OnRequestStart = "onRequestStart"
 
@@ -367,6 +366,9 @@ Public Class ctrlInsTotalSalary
                 InsCommon.SetNumber(txtHC_1_HI_G, lstDataCur.Rows(0)("HC_1_HI_G"))
                 InsCommon.SetNumber(txtHC_1_UI_T, lstDataCur.Rows(0)("HC_1_UI_T"))
                 InsCommon.SetNumber(txtHC_1_UI_G, lstDataCur.Rows(0)("HC_1_UI_G"))
+                ' THEM MOI
+                InsCommon.SetNumber(txtHC_1_BHTNLD_T, lstDataCur.Rows(0)("HC_1_TNLD_T"))
+                InsCommon.SetNumber(txtHC_1_BHTNLD_G, lstDataCur.Rows(0)("HC_1_TNLD_G"))
 
 
                 '<%# Translate("2. Tổng quỹ lương")%>
@@ -376,7 +378,9 @@ Public Class ctrlInsTotalSalary
                 InsCommon.SetNumber(txtTotalSal_1_HI_G, lstDataCur.Rows(0)("TotalSal_1_HI_G"))
                 InsCommon.SetNumber(txtTotalSal_1_UI_T, lstDataCur.Rows(0)("TotalSal_1_UI_T"))
                 InsCommon.SetNumber(txtTotalSal_1_UI_G, lstDataCur.Rows(0)("TotalSal_1_UI_G"))
-
+                ' THEM MOI
+                InsCommon.SetNumber(txtTotalSal_1_BHTNLD_T, lstDataCur.Rows(0)("TOTALSAL_1_TNLD_T"))
+                InsCommon.SetNumber(txtTotalSal_1_BHTNLD_G, lstDataCur.Rows(0)("TOTALSAL_1_TNLD_G"))
 
                 '<%# Translate("3. Số phải đóng")%>
                 InsCommon.SetNumber(txtSumit_1_SI_T, lstDataCur.Rows(0)("Sumit_1_SI_T"))
@@ -385,6 +389,9 @@ Public Class ctrlInsTotalSalary
                 InsCommon.SetNumber(txtSumit_1_HI_G, lstDataCur.Rows(0)("Sumit_1_HI_G"))
                 InsCommon.SetNumber(txtSumit_1_UI_T, lstDataCur.Rows(0)("Sumit_1_UI_T"))
                 InsCommon.SetNumber(txtSumit_1_UI_G, lstDataCur.Rows(0)("Sumit_1_UI_G"))
+                ' THEM MOI
+                InsCommon.SetNumber(txtSumit_1_BHTNLD_T, lstDataCur.Rows(0)("SUMIT_1_TNLD_T"))
+                InsCommon.SetNumber(txtSumit_1_BHTNLD_G, lstDataCur.Rows(0)("SUMIT_1_TNLD_G"))
 
                 '<%# Translate("4. Điều chỉnh")%>
                 InsCommon.SetNumber(txtAdjust_1_SI_T, lstDataCur.Rows(0)("Adjust_1_SI_T"))
@@ -393,6 +400,9 @@ Public Class ctrlInsTotalSalary
                 InsCommon.SetNumber(txtAdjust_1_HI_G, lstDataCur.Rows(0)("Adjust_1_HI_G"))
                 InsCommon.SetNumber(txtAdjust_1_UI_T, lstDataCur.Rows(0)("Adjust_1_UI_T"))
                 InsCommon.SetNumber(txtAdjust_1_UI_G, lstDataCur.Rows(0)("Adjust_1_UI_G"))
+                'THEM MOI
+                InsCommon.SetNumber(txtAdjust_1_BHTNLD_T, lstDataCur.Rows(0)("ADJUST_1_TNLD_T"))
+                InsCommon.SetNumber(txtAdjust_1_BHTNLD_G, lstDataCur.Rows(0)("ADJUST_1_TNLD_G"))
             End If
 
 
@@ -404,7 +414,9 @@ Public Class ctrlInsTotalSalary
                 InsCommon.SetNumber(txtHC_2_HI_G, lstDataPre.Rows(0)("HC_1_HI_G"))
                 InsCommon.SetNumber(txtHC_2_UI_T, lstDataPre.Rows(0)("HC_1_UI_T"))
                 InsCommon.SetNumber(txtHC_2_UI_G, lstDataPre.Rows(0)("HC_1_UI_G"))
-
+                ' THEM MOI
+                InsCommon.SetNumber(txtHC_2_BHTNLD_T, lstDataPre.Rows(0)("HC_1_TNLD_T"))
+                InsCommon.SetNumber(txtHC_2_BHTNLD_G, lstDataPre.Rows(0)("HC_1_TNLD_G"))
 
                 '<%# Translate("2. Tổng quỹ lương")%>
                 InsCommon.SetNumber(txtTotalSal_2_SI_T, lstDataPre.Rows(0)("TotalSal_1_SI_T"))
@@ -413,7 +425,9 @@ Public Class ctrlInsTotalSalary
                 InsCommon.SetNumber(txtTotalSal_2_HI_G, lstDataPre.Rows(0)("TotalSal_1_HI_G"))
                 InsCommon.SetNumber(txtTotalSal_2_UI_T, lstDataPre.Rows(0)("TotalSal_1_UI_T"))
                 InsCommon.SetNumber(txtTotalSal_2_UI_G, lstDataPre.Rows(0)("TotalSal_1_UI_G"))
-
+                ' THEM MOI
+                InsCommon.SetNumber(txtTotalSal_2_BHTNLD_T, lstDataPre.Rows(0)("TOTALSAL_1_TNLD_T"))
+                InsCommon.SetNumber(txtTotalSal_2_BHTNLD_G, lstDataPre.Rows(0)("TOTALSAL_1_TNLD_G"))
 
                 '<%# Translate("3. Số phải đóng")%>
                 InsCommon.SetNumber(txtSumit_2_SI_T, lstDataPre.Rows(0)("Sumit_1_SI_T"))
@@ -422,7 +436,9 @@ Public Class ctrlInsTotalSalary
                 InsCommon.SetNumber(txtSumit_2_HI_G, lstDataPre.Rows(0)("Sumit_1_HI_G"))
                 InsCommon.SetNumber(txtSumit_2_UI_T, lstDataPre.Rows(0)("Sumit_1_UI_T"))
                 InsCommon.SetNumber(txtSumit_2_UI_G, lstDataPre.Rows(0)("Sumit_1_UI_G"))
-
+                ' THEM MOI
+                InsCommon.SetNumber(txtSumit_2_BHTNLD_T, lstDataPre.Rows(0)("SUMIT_1_TNLD_T"))
+                InsCommon.SetNumber(txtSumit_2_BHTNLD_G, lstDataPre.Rows(0)("SUMIT_1_TNLD_G"))
                 '<%# Translate("4. Điều chỉnh")%>
                 'txtAdjust_2_SI_T.Text = lstDataPre.Rows(0)("Adjust_1_SI_T")
                 'txtAdjust_2_SI_G.Text = lstDataPre.Rows(0)("Adjust_1_SI_G")

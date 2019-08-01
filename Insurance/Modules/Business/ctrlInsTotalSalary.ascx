@@ -127,52 +127,84 @@
                     <tlk:GridBoundColumn HeaderText="<%$ Translate: Chức danh %>" DataField="TITLE" UniqueName="TITLE"
                         CurrentFilterFunction="Contains" HeaderStyle-Width="170px" FilterControlWidth="60%"
                         SortExpression="TITLE" />
-                    <tlk:GridBoundColumn HeaderText="<%$ Translate: BHXH công ty %>" DataFormatString="{0:N0}"
-                        HeaderStyle-Width="110px" DataField="SI_COM" UniqueName="SI_COM" SortExpression="SI_COM" />
-                    <tlk:GridBoundColumn HeaderText="<%$ Translate: BHYT công ty %>" DataFormatString="{0:N0}"
-                        HeaderStyle-Width="110px" DataField="HI_COM" UniqueName="HI_COM" SortExpression="HI_COM" />
-                    <tlk:GridBoundColumn HeaderText="<%$ Translate: BHTN công ty %>" DataFormatString="{0:N0}"
-                        HeaderStyle-Width="110px" DataField="UI_COM" UniqueName="UI_COM" SortExpression="UI_COM" />
-                    <tlk:GridBoundColumn HeaderText="<%$ Translate: BHXH nhân viên %>" DataFormatString="{0:N0}"
+                    <tlk:GridBoundColumn HeaderText="<%$ Translate: Số sổ bảo hiểm %>" DataField="SOCIAL_NUMBER" UniqueName="SOCIAL_NUMBER"
+                        CurrentFilterFunction="Contains" HeaderStyle-Width="170px" FilterControlWidth="60%"
+                        SortExpression="SOCIAL_NUMBER" />
+                      <tlk:GridBoundColumn HeaderText="<%$ Translate: BHXH nhân viên %>" DataFormatString="{0:N0}"
                         HeaderStyle-Width="110px" DataField="SI_EMP" UniqueName="SI_EMP" SortExpression="SI_EMP" />
+                     <tlk:GridBoundColumn HeaderText="<%$ Translate: BHXH công ty %>" DataFormatString="{0:N0}"
+                        HeaderStyle-Width="110px" DataField="SI_COM" UniqueName="SI_COM" SortExpression="SI_COM" />
                     <tlk:GridBoundColumn HeaderText="<%$ Translate: BHYT nhân viên %>" DataFormatString="{0:N0}"
                         HeaderStyle-Width="110px" DataField="HI_EMP" UniqueName="HI_EMP" SortExpression="HI_EMP" />
+                    <tlk:GridBoundColumn HeaderText="<%$ Translate: BHYT công ty %>" DataFormatString="{0:N0}"
+                        HeaderStyle-Width="110px" DataField="HI_COM" UniqueName="HI_COM" SortExpression="HI_COM" />
                     <tlk:GridBoundColumn HeaderText="<%$ Translate: BHTN nhân viên %>" DataFormatString="{0:N0}"
                         HeaderStyle-Width="110px" DataField="UI_EMP" UniqueName="UI_EMP" SortExpression="UI_EMP" />
-                    <tlk:GridBoundColumn HeaderText="<%$ Translate: Mức lương cũ %>" DataFormatString="{0:N0}"
+                    <tlk:GridBoundColumn HeaderText="<%$ Translate: BHTN công ty %>" DataFormatString="{0:N0}"
+                        HeaderStyle-Width="110px" DataField="UI_COM" UniqueName="UI_COM" SortExpression="UI_COM" />
+                    <tlk:GridBoundColumn HeaderText="<%$ Translate: BHTNLD – BNN nhân viên %>" DataFormatString="{0:N0}"
+                        HeaderStyle-Width="110px" DataField="BHTNLD_BNN_EMP" UniqueName="BHTNLD_BNN_EMP" SortExpression="BHTNLD_BNN_EMP" />
+                    <tlk:GridBoundColumn HeaderText="<%$ Translate: BHTNLD – BNN Công ty %>" DataFormatString="{0:N0}"
+                        HeaderStyle-Width="110px" DataField="BHTNLD_BNN_COM" UniqueName="BHTNLD_BNN_COM" SortExpression="BHTNLD_BNN_COM" />
+                    <tlk:GridBoundColumn HeaderText="<%$ Translate: Mức đóng BHXH cũ %>" DataFormatString="{0:N0}"
+                        HeaderStyle-Width="110px" DataField="SI_SAL_OLD" UniqueName="SI_SAL_OLD" SortExpression="SI_SAL_OLD" />
+                    <tlk:GridBoundColumn HeaderText="<%$ Translate: Mức đóng BHXH mới %>" DataFormatString="{0:N0}"
+                        HeaderStyle-Width="110px" DataField="SI_SAL" UniqueName="SI_SAL" SortExpression="SI_SAL" />
+                    <tlk:GridBoundColumn HeaderText="<%$ Translate: Mức đóng BHYT cũ %>" DataFormatString="{0:N0}"
+                        HeaderStyle-Width="110px" DataField="HI_SAL_OLD" UniqueName="HI_SAL_OLD" SortExpression="HI_SAL_OLD" />
+                    <tlk:GridBoundColumn HeaderText="<%$ Translate: Mức đóng BHYT mới %>" DataFormatString="{0:N0}"
+                        HeaderStyle-Width="110px" DataField="HI_SAL" UniqueName="HI_SAL" SortExpression="HI_SAL" />
+                    <tlk:GridBoundColumn HeaderText="<%$ Translate: Mức đóng BHTN cũ %>" DataFormatString="{0:N0}"
+                        HeaderStyle-Width="110px" DataField="UI_SAL_OLD" UniqueName="UI_SAL_OLD" SortExpression="UI_SAL_OLD" />
+                    <tlk:GridBoundColumn HeaderText="<%$ Translate: Mức đóng BHTN mới %>" DataFormatString="{0:N0}"
+                        HeaderStyle-Width="110px" DataField="UI_SAL" UniqueName="UI_SAL" SortExpression="UI_SAL" />
+                   <tlk:GridBoundColumn HeaderText="<%$ Translate: Mức đóng BHTNLD-BNN cũ %>" DataFormatString="{0:N0}"
+                        HeaderStyle-Width="110px" DataField="BHTNLD_SAL_OLD" UniqueName="BHTNLD_SAL_OLD" SortExpression="BHTNLD_SAL_OLD" />
+                    <tlk:GridBoundColumn HeaderText="<%$ Translate: Mức đóng BHTNLD-BNN mới %>" DataFormatString="{0:N0}"
+                        HeaderStyle-Width="110px" DataField="BHTNLD_SAL" UniqueName="BHTNLD_SAL" SortExpression="BHTNLD_SAL" />
+                    <tlk:GridBoundColumn HeaderText="<%$ Translate: Đợt khai báo %>" DataFormatString="{0:dd/MM/yyyy}"
+                        HeaderStyle-Width="110px" DataField="PERIOD" UniqueName="PERIOD" SortExpression="PERIOD" />
+                    <tlk:GridBoundColumn HeaderText="<%$ Translate: Điều chỉnh BHXH(NV)  %>" DataFormatString="{0:N0}"
+                        HeaderStyle-Width="110px" DataField="SI_ADJUST" UniqueName="SI_ADJUST" SortExpression="SI_ADJUST" />
+                    <tlk:GridBoundColumn HeaderText="<%$ Translate: Điều chỉnh BHYT(NV) %>" DataFormatString="{0:N0}"
+                        HeaderStyle-Width="110px" DataField="HI_ADJUST" UniqueName="HI_ADJUST" SortExpression="HI_ADJUST" />
+                    <tlk:GridBoundColumn HeaderText="<%$ Translate: Điều chỉnh BHTN(NV) %>" DataFormatString="{0:N0}"
+                        HeaderStyle-Width="110px" DataField="UI_ADJUST" UniqueName="UI_ADJUST" SortExpression="UI_ADJUST" />
+                    <tlk:GridBoundColumn HeaderText="<%$ Translate: Điều chỉnh BHTNLD-BNN (NV) %>" DataFormatString="{0:N0}"
+                        HeaderStyle-Width="110px" DataField="BHTNLD_BNN_ADJUST_EMP" UniqueName="BHTNLD_BNN_ADJUST_EMP" SortExpression="BHTNLD_BNN_ADJUST_EMP" />
+                  <tlk:GridBoundColumn HeaderText="<%$ Translate: Điều chỉnh BHXH(CTY)  %>" DataFormatString="{0:N0}"
+                        HeaderStyle-Width="110px" DataField="SI_ADJUST_COM" UniqueName="SI_ADJUST_COM" SortExpression="SI_ADJUST_COM" />
+                    <tlk:GridBoundColumn HeaderText="<%$ Translate: Điều chỉnh BHYT(CTY) %>" DataFormatString="{0:N0}"
+                        HeaderStyle-Width="110px" DataField="HI_ADJUST_COM" UniqueName="HI_ADJUST_COM" SortExpression="HI_ADJUST_COM" />
+                    <tlk:GridBoundColumn HeaderText="<%$ Translate: Điều chỉnh BHTN(CTY) %>" DataFormatString="{0:N0}"
+                        HeaderStyle-Width="110px" DataField="UI_ADJUST_COM" UniqueName="UI_ADJUST_COM" SortExpression="UI_ADJUST_COM" />
+                    <tlk:GridBoundColumn HeaderText="<%$ Translate: Điều chỉnh BHTNLD-BNN(CTY) %>" DataFormatString="{0:N0}"
+                        HeaderStyle-Width="110px" DataField="BHTNLD_BNN_ADJUST_COM" UniqueName="BHTNLD_BNN_ADJUST_COM" SortExpression="BHTNLD_BNN_ADJUST_COM" />
+                     <tlk:GridBoundColumn HeaderText="<%$ Translate: %BHXH công ty %>" DataFormatString="{0:#,##0.#}%"
+                        HeaderStyle-Width="110px" DataField="RATE_SI_COM" UniqueName="RATE_SI_COM" SortExpression="RATE_SI_COM" />
+                    <tlk:GridBoundColumn HeaderText="<%$ Translate: %BHXH nhân viên %>" DataFormatString="{0:#,##0.#}%"
+                        HeaderStyle-Width="120px" DataField="RATE_SI_EMP" UniqueName="RATE_SI_EMP" SortExpression="RATE_SI_EMP" />
+                    <tlk:GridBoundColumn HeaderText="<%$ Translate: %BHYT công ty %>" DataFormatString="{0:#,##0.#}%"
+                        HeaderStyle-Width="110px" DataField="RATE_HI_COM" UniqueName="RATE_HI_COM" SortExpression="RATE_HI_COM" />
+                    <tlk:GridBoundColumn HeaderText="<%$ Translate: %BHYT nhân viên %>" DataFormatString="{0:#,##0.#}%"
+                        HeaderStyle-Width="120px" DataField="RATE_HI_EMP" UniqueName="RATE_HI_EMP" SortExpression="RATE_HI_EMP" />
+                    <tlk:GridBoundColumn HeaderText="<%$ Translate: %BHTN công ty %>" DataFormatString="{0:#,##0.#}%"
+                        HeaderStyle-Width="110px" DataField="RATE_UI_COM" UniqueName="RATE_UI_COM" SortExpression="RATE_UI_COM" />
+                    <tlk:GridBoundColumn HeaderText="<%$ Translate: %BHTN nhân viên %>" DataFormatString="{0:#,##0.#}%"
+                        HeaderStyle-Width="120px" DataField="RATE_UI_EMP" UniqueName="RATE_UI_EMP" SortExpression="RATE_UI_EMP" />
+                    <tlk:GridBoundColumn HeaderText="<%$ Translate: % BHTNLD-BNN Công ty %>" DataFormatString="{0:#,##0.#}%"
+                        HeaderStyle-Width="120px" DataField="RATE_BHTNLD_BNN_COM" UniqueName="RATE_BHTNLD_BNN_COM" SortExpression="RATE_BHTNLD_BNN_COM" />
+                     <tlk:GridBoundColumn HeaderText="<%$ Translate: % BHTNLD-BNN nhân viên %>" DataFormatString="{0:#,##0.#}%"
+                        HeaderStyle-Width="120px" DataField="RATE_BHTNLD_BNN_EMP" UniqueName="RATE_BHTNLD_BNN_EMP" SortExpression="RATE_BHTNLD_BNN_EMP" />
+
+<%--                    <tlk:GridBoundColumn HeaderText="<%$ Translate: Mức lương cũ %>" DataFormatString="{0:N0}"
                         HeaderStyle-Width="110px" DataField="OLD_SAL" UniqueName="OLD_SAL" SortExpression="OLD_SAL" />
                     <tlk:GridBoundColumn HeaderText="<%$ Translate: Mức lương mới %>" DataFormatString="{0:N0}"
                         HeaderStyle-Width="110px" DataField="NEW_SAL" UniqueName="NEW_SAL" SortExpression="NEW_SAL" />
-                    <tlk:GridBoundColumn HeaderText="<%$ Translate: Đợt khai báo %>" DataFormatString="{0:dd/MM/yyyy}"
-                        HeaderStyle-Width="110px" DataField="PERIOD" UniqueName="PERIOD" SortExpression="PERIOD" />
-                    <tlk:GridBoundColumn HeaderText="<%$ Translate: Điều chỉnh BHXH NV  %>" DataFormatString="{0:N0}"
-                        HeaderStyle-Width="110px" DataField="SI_ADJUST" UniqueName="SI_ADJUST" SortExpression="SI_ADJUST" />
-                    <tlk:GridBoundColumn HeaderText="<%$ Translate: Điều chỉnh BHYT NV %>" DataFormatString="{0:N0}"
-                        HeaderStyle-Width="110px" DataField="HI_ADJUST" UniqueName="HI_ADJUST" SortExpression="HI_ADJUST" />
-                    <tlk:GridBoundColumn HeaderText="<%$ Translate: Điều chỉnh BHTN NV %>" DataFormatString="{0:N0}"
-                        HeaderStyle-Width="110px" DataField="UI_ADJUST" UniqueName="UI_ADJUST" SortExpression="UI_ADJUST" />
-                    <tlk:GridBoundColumn HeaderText="<%$ Translate: Điều chỉnh BHXH CTY  %>" DataFormatString="{0:N0}"
-                        HeaderStyle-Width="110px" DataField="SI_ADJUST_COM" UniqueName="SI_ADJUST_COM" SortExpression="SI_ADJUST_COM" />
-                    <tlk:GridBoundColumn HeaderText="<%$ Translate: Điều chỉnh BHYT CTY %>" DataFormatString="{0:N0}"
-                        HeaderStyle-Width="110px" DataField="HI_ADJUST_COM" UniqueName="HI_ADJUST_COM" SortExpression="HI_ADJUST_COM" />
-                    <tlk:GridBoundColumn HeaderText="<%$ Translate: Điều chỉnh BHTN CTY %>" DataFormatString="{0:N0}"
-                        HeaderStyle-Width="110px" DataField="UI_ADJUST_COM" UniqueName="UI_ADJUST_COM" SortExpression="UI_ADJUST_COM" />
                     <tlk:GridBoundColumn HeaderText="<%$ Translate: Bổ sung BHYT  %>" DataFormatString="{0:N0}"
                         HeaderStyle-Width="110px" DataField="HI_ADD" UniqueName="HI_ADD" SortExpression="HI_ADD" />
                     <tlk:GridBoundColumn HeaderText="<%$ Translate: Bổ sung BHTN %>" DataFormatString="{0:N0}"
-                        HeaderStyle-Width="110px" DataField="UI_ADD" UniqueName="UI_ADD" SortExpression="UI_ADD" />
-                    <tlk:GridBoundColumn HeaderText="<%$ Translate: %BHXH công ty %>" DataFormatString="{0:#,##0.#}%"
-                        HeaderStyle-Width="110px" DataField="RATE_SI_COM" UniqueName="RATE_SI_COM" SortExpression="RATE_SI_COM" />
-                    <tlk:GridBoundColumn HeaderText="<%$ Translate: %BHYT công ty %>" DataFormatString="{0:#,##0.#}%"
-                        HeaderStyle-Width="110px" DataField="RATE_HI_COM" UniqueName="RATE_HI_COM" SortExpression="RATE_HI_COM" />
-                    <tlk:GridBoundColumn HeaderText="<%$ Translate: %BHTN công ty %>" DataFormatString="{0:#,##0.#}%"
-                        HeaderStyle-Width="110px" DataField="RATE_UI_COM" UniqueName="RATE_UI_COM" SortExpression="RATE_UI_COM" />
-                    <tlk:GridBoundColumn HeaderText="<%$ Translate: %BHXH nhân viên %>" DataFormatString="{0:#,##0.#}%"
-                        HeaderStyle-Width="120px" DataField="RATE_SI_EMP" UniqueName="RATE_SI_EMP" SortExpression="RATE_SI_EMP" />
-                    <tlk:GridBoundColumn HeaderText="<%$ Translate: %BHYT nhân viên %>" DataFormatString="{0:#,##0.#}%"
-                        HeaderStyle-Width="120px" DataField="RATE_HI_EMP" UniqueName="RATE_HI_EMP" SortExpression="RATE_HI_EMP" />
-                    <tlk:GridBoundColumn HeaderText="<%$ Translate: %BHTN nhân viên %>" DataFormatString="{0:#,##0.#}%"
-                        HeaderStyle-Width="120px" DataField="RATE_UI_EMP" UniqueName="RATE_UI_EMP" SortExpression="RATE_UI_EMP" />
+                        HeaderStyle-Width="110px" DataField="UI_ADD" UniqueName="UI_ADD" SortExpression="UI_ADD" />--%>
                 </Columns>
             </MasterTableView>
         </tlk:RadGrid>
@@ -209,6 +241,10 @@
                                     <b>
                                         <%# Translate("BẢO HIỂM THẤT NGHIỆP")%></b>
                                 </td>
+                                <td colspan="2" align="center">
+                                    <b>
+                                        <%# Translate("BHTNLD-BNN")%></b>
+                                </td>
                             </tr>
                             <tr>
                                 <td class="lb">
@@ -226,6 +262,12 @@
                                     <%# Translate("Giảm")%>
                                 </td>
                                 <td align="center">
+                                    <%# Translate("Tăng")%>
+                                </td>
+                                <td align="center">
+                                    <%# Translate("Giảm")%>
+                                </td>
+                                 <td align="center">
                                     <%# Translate("Tăng")%>
                                 </td>
                                 <td align="center">
@@ -263,6 +305,16 @@
                                 </td>
                                 <td>
                                     <tlk:RadNumericTextBox ID="txtHC_1_UI_G" MinValue="0" Value="0" ReadOnly="true" runat="server">
+                                        <NumberFormat GroupSeparator="," DecimalDigits="0" />
+                                    </tlk:RadNumericTextBox>
+                                </td>
+                                <td>
+                                    <tlk:RadNumericTextBox ID="txtHC_1_BHTNLD_T" MinValue="0" Value="0" ReadOnly="true" runat="server" Width="115px">
+                                        <NumberFormat GroupSeparator="," DecimalDigits="0" />
+                                    </tlk:RadNumericTextBox>
+                                </td>
+                                <td>
+                                    <tlk:RadNumericTextBox ID="txtHC_1_BHTNLD_G" MinValue="0" Value="0" ReadOnly="true" runat="server" Width="115px">
                                         <NumberFormat GroupSeparator="," DecimalDigits="0" />
                                     </tlk:RadNumericTextBox>
                                 </td>
@@ -307,6 +359,18 @@
                                         <NumberFormat GroupSeparator="," DecimalDigits="0" />
                                     </tlk:RadNumericTextBox>
                                 </td>
+                                <td>
+                                    <tlk:RadNumericTextBox ID="txtTotalSal_1_BHTNLD_T" MinValue="0" Value="0" ReadOnly="true"
+                                        runat="server" Width="115px">
+                                        <NumberFormat GroupSeparator="," DecimalDigits="0" />
+                                    </tlk:RadNumericTextBox>
+                                </td>
+                                <td>
+                                    <tlk:RadNumericTextBox ID="txtTotalSal_1_BHTNLD_G" MinValue="0" Value="0" ReadOnly="true"
+                                        runat="server" Width="115px">
+                                        <NumberFormat GroupSeparator="," DecimalDigits="0" />
+                                    </tlk:RadNumericTextBox>
+                                </td>
                             </tr>
                             <tr>
                                 <td class="lb">
@@ -345,6 +409,18 @@
                                 <td>
                                     <tlk:RadNumericTextBox ID="txtSumit_1_UI_G" MinValue="0" Value="0" ReadOnly="true"
                                         runat="server">
+                                        <NumberFormat GroupSeparator="," DecimalDigits="0" />
+                                    </tlk:RadNumericTextBox>
+                                </td>
+                                 <td>
+                                    <tlk:RadNumericTextBox ID="txtSumit_1_BHTNLD_T" MinValue="0" Value="0" ReadOnly="true"
+                                        runat="server" Width="115px">
+                                        <NumberFormat GroupSeparator="," DecimalDigits="0" />
+                                    </tlk:RadNumericTextBox>
+                                </td>
+                                <td>
+                                    <tlk:RadNumericTextBox ID="txtSumit_1_BHTNLD_G" MinValue="0" Value="0" ReadOnly="true"
+                                        runat="server" Width="115px">
                                         <NumberFormat GroupSeparator="," DecimalDigits="0" />
                                     </tlk:RadNumericTextBox>
                                 </td>
@@ -389,6 +465,18 @@
                                         <NumberFormat GroupSeparator="," DecimalDigits="0" />
                                     </tlk:RadNumericTextBox>
                                 </td>
+                                <td>
+                                    <tlk:RadNumericTextBox ID="txtAdjust_1_BHTNLD_T" MinValue="0" Value="0" ReadOnly="true"
+                                        runat="server" Width="115px">
+                                        <NumberFormat GroupSeparator="," DecimalDigits="0" />
+                                    </tlk:RadNumericTextBox>
+                                </td>
+                                <td>
+                                    <tlk:RadNumericTextBox ID="txtAdjust_1_BHTNLD_G" MinValue="0" Value="0" ReadOnly="true"
+                                        runat="server" Width="115px">
+                                        <NumberFormat GroupSeparator="," DecimalDigits="0" />
+                                    </tlk:RadNumericTextBox>
+                                </td>
                             </tr>
                         </table>
                     </tlk:RadPageView>
@@ -409,9 +497,19 @@
                                     <b>
                                         <%# Translate("BẢO HIỂM THẤT NGHIỆP")%></b>
                                 </td>
+                                <td colspan="2" align="center">
+                                    <b>
+                                        <%# Translate("BHTNLD-BNN")%></b>
+                                </td>
                             </tr>
                             <tr>
                                 <td class="lb">
+                                </td>
+                                <td align="center">
+                                    <%# Translate("Kỳ trước")%>
+                                </td>
+                                <td align="center">
+                                    <%# Translate("Kỳ này")%>
                                 </td>
                                 <td align="center">
                                     <%# Translate("Kỳ trước")%>
@@ -466,6 +564,16 @@
                                         <NumberFormat GroupSeparator="," DecimalDigits="0" />
                                     </tlk:RadNumericTextBox>
                                 </td>
+                                <td>
+                                    <tlk:RadNumericTextBox ID="txtHC_2_BHTNLD_T" MinValue="0" Value="0" ReadOnly="true" runat="server" Width="115px">
+                                        <NumberFormat GroupSeparator="," DecimalDigits="0" />
+                                    </tlk:RadNumericTextBox>
+                                </td>
+                                <td>
+                                    <tlk:RadNumericTextBox ID="txtHC_2_BHTNLD_G" MinValue="0" Value="0" ReadOnly="true" runat="server" Width="115px">
+                                        <NumberFormat GroupSeparator="," DecimalDigits="0" />
+                                    </tlk:RadNumericTextBox>
+                                </td>
                             </tr>
                             <tr>
                                 <td class="lb">
@@ -504,6 +612,18 @@
                                 <td>
                                     <tlk:RadNumericTextBox ID="txtTotalSal_2_UI_G" MinValue="0" Value="0" ReadOnly="true"
                                         runat="server">
+                                        <NumberFormat GroupSeparator="," DecimalDigits="0" />
+                                    </tlk:RadNumericTextBox>
+                                </td>
+                                <td>
+                                    <tlk:RadNumericTextBox ID="txtTotalSal_2_BHTNLD_T" MinValue="0" Value="0" ReadOnly="true"
+                                        runat="server" Width="115px">
+                                        <NumberFormat GroupSeparator="," DecimalDigits="0" />
+                                    </tlk:RadNumericTextBox>
+                                </td>
+                                <td>
+                                    <tlk:RadNumericTextBox ID="txtTotalSal_2_BHTNLD_G" MinValue="0" Value="0" ReadOnly="true"
+                                        runat="server" Width="115px">
                                         <NumberFormat GroupSeparator="," DecimalDigits="0" />
                                     </tlk:RadNumericTextBox>
                                 </td>
@@ -548,30 +668,19 @@
                                         <NumberFormat GroupSeparator="," DecimalDigits="0" />
                                     </tlk:RadNumericTextBox>
                                 </td>
+                                <td>
+                                    <tlk:RadNumericTextBox ID="txtSumit_2_BHTNLD_T" MinValue="0" Value="0" ReadOnly="true"
+                                        runat="server" Width="115px">
+                                        <NumberFormat GroupSeparator="," DecimalDigits="0" />
+                                    </tlk:RadNumericTextBox>
+                                </td>
+                                <td>
+                                    <tlk:RadNumericTextBox ID="txtSumit_2_BHTNLD_G" MinValue="0" Value="0" ReadOnly="true"
+                                        runat="server" Width="115px">
+                                        <NumberFormat GroupSeparator="," DecimalDigits="0" />
+                                    </tlk:RadNumericTextBox>
+                                </td>
                             </tr>
-                            <%--<tr>
-                                                    <td class="lb">
-                                                        <%# Translate("4. Điều chỉnh")%>
-                                                    </td>
-                                                    <td>
-                                                        <tlk:RadNumericTextBox ID="txtAdjust_2_SI_T"  runat="server"></tlk:RadNumericTextBox>                          
-                                                    </td>
-                                                    <td class="lb">
-                                                        <tlk:RadNumericTextBox ID="txtAdjust_2_SI_G"  runat="server"></tlk:RadNumericTextBox> 
-                                                    </td>
-                                                    <td>
-                                                        <tlk:RadNumericTextBox ID="txtAdjust_2_HI_T"  runat="server"></tlk:RadNumericTextBox>                          
-                                                    </td>
-                                                    <td>
-                                                        <tlk:RadNumericTextBox ID="txtAdjust_2_HI_G"  runat="server"></tlk:RadNumericTextBox>                          
-                                                    </td>
-                                                    <td>
-                                                        <tlk:RadNumericTextBox ID="txtAdjust_2_UI_T"  runat="server"></tlk:RadNumericTextBox>                          
-                                                    </td>
-                                                    <td>
-                                                        <tlk:RadNumericTextBox ID="txtAdjust_2_UI_G"  runat="server"></tlk:RadNumericTextBox>                          
-                                                    </td>
-                                                </tr>--%>
                         </table>
                     </tlk:RadPageView>
                 </tlk:RadMultiPage>
@@ -588,11 +697,6 @@
             if (item.get_commandName() == "EXPORT") {
                 enableAjax = false;
             }
-            //            if (item.get_commandName() == "CREATE") {
-            //                OpenCalInsBatch(sender, args);
-            //                args.set_cancel(true);
-            //                enableAjax = false;
-            //            }
         }
 
         function onRequestStart(sender, eventArgs) {
@@ -600,36 +704,5 @@
             enableAjax = true;
         }
 
-        //        function popupclose(oWnd, args) {
-        //            //window.location.reload();
-        //        }
-
-
-        //        function OnClientBeforeClose(sender, eventArgs) {
-        //            if (!confirm("Bạn có muốn đóng màn hình không?")) {
-        //                //if cancel is clicked prevent the window from closing
-        //                args.set_cancel(true);
-        //            }
-        //        }
-
-        //        function OnClientClose(oWnd, args) {
-        //            oWnd = $find('<%#popupId %>');
-        //            oWnd.setSize(screen.width - 250, screen.height - 300);
-        //            oWnd.remove_close(OnClientClose);
-        //            var arg = args.get_argument();
-        //            if (arg) {
-        //                postBack(arg);
-        //            }
-        //        }
-
-        //        function OpenCalInsBatch(sender, eventArgs) {
-        //            var oWindow = radopen('Dialog.aspx?mid=Insurance&fid=ctrlInsTotalSalaryBatch&group=Business', "rwPopup");
-        //            var pos = $("html").offset();
-        //            //oWindow.setSize($(window).width(), $(window).height());
-        //            oWindow.moveTo(pos.left, pos.top);
-        //            oWindow.setSize(550, 250);
-        //            return 0;
-        //        }
-		
     </script>
 </tlk:RadCodeBlock>
