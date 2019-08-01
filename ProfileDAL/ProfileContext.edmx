@@ -1450,7 +1450,7 @@
             <Property Name="FORM_TRAIN_ID" Type="number" Nullable="true" Precision="38" />
             <Property Name="SPECIALIZED_TRAIN" Type="nvarchar2" Nullable="true" MaxLength="255" />
             <Property Name="RESULT_TRAIN" Type="nvarchar2" Nullable="true" MaxLength="255" />
-            <Property Name="CERTIFICATE" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="CERTIFICATE" Type="number" Nullable="true" Precision="38" />
             <Property Name="EFFECTIVE_DATE_FROM" Type="date" Nullable="true" />
             <Property Name="EFFECTIVE_DATE_TO" Type="date" Nullable="true" />
             <Property Name="CREATED_DATE" Type="date" Nullable="true" />
@@ -5836,7 +5836,7 @@
           <Property Type="Decimal" Name="FORM_TRAIN_ID" Precision="38" Scale="0" />
           <Property Type="String" Name="SPECIALIZED_TRAIN" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="RESULT_TRAIN" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="CERTIFICATE" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="Decimal" Name="CERTIFICATE" />
           <Property Type="DateTime" Name="EFFECTIVE_DATE_FROM" />
           <Property Type="DateTime" Name="EFFECTIVE_DATE_TO" />
           <Property Type="DateTime" Name="CREATED_DATE" />
@@ -11620,7 +11620,7 @@
     </Options>
     <!-- Diagram content (shape and connector positions) -->
     <Diagrams>
-      <Diagram Name="ProfileContext" ZoomLevel="85" ShowGrid="false" DisplayType="true" SnapToGrid="true">
+      <Diagram Name="ProfileContext" ZoomLevel="59" ShowGrid="false" DisplayType="true" SnapToGrid="true">
         <EntityTypeShape EntityType="ProfileModel.HU_PROVINCE" Width="1.5" PointX="3" PointY="9.625" Height="0.39999999999999858" IsExpanded="false" />
         <EntityTypeShape EntityType="ProfileModel.HU_DISTRICT" Width="1.75" PointX="5.25" PointY="9" Height="0.39999999999999858" IsExpanded="false" />
         <EntityTypeShape EntityType="ProfileModel.HU_NATION" Width="1.5" PointX="0.75" PointY="9.625" Height="0.40000000000000213" IsExpanded="false" />

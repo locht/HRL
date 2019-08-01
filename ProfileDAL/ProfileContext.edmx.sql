@@ -1,7 +1,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for Oracle database
 -- --------------------------------------------------
--- Date Created: 08/01/2019 11:19:42 AM
+-- Date Created: 08/01/2019 3:14:36 PM
 -- Generated from EDMX file: D:\MyProject\TNG\TNG\ProfileDAL\ProfileContext.edmx
 -- --------------------------------------------------
 
@@ -1489,7 +1489,7 @@ CREATE TABLE "dbo"."HU_PRO_TRAIN_OUT_COMPANY" (
    "FORM_TRAIN_ID" NUMBER(38,0) NULL,
    "SPECIALIZED_TRAIN" NVARCHAR2(255) NULL,
    "RESULT_TRAIN" NVARCHAR2(255) NULL,
-   "CERTIFICATE" NVARCHAR2(255) NULL,
+   "CERTIFICATE" NUMBER(38,0) NULL,
    "EFFECTIVE_DATE_FROM" DATE NULL,
    "EFFECTIVE_DATE_TO" DATE NULL,
    "CREATED_DATE" DATE NULL,

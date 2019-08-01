@@ -230,7 +230,7 @@ Public Class ctrlHU_ApproveCertificateEmployee
                     Next
                     sContent = "2:" & txtRemark.Text.Trim
 
-                    rep.UpdateStatusEmployeeFamilyEdit(lstID, sContent)
+                    rep.UpdateStatusEmployeeCetificateEdit(lstID, sContent)
                     ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), NotifyType.Success)
                     rgData.Rebind()
                     txtRemark.Text = ""
@@ -245,7 +245,7 @@ Public Class ctrlHU_ApproveCertificateEmployee
                     Next
                     sContent = "3:" & txtRemark.Text.Trim
 
-                    rep.UpdateStatusEmployeeFamilyEdit(lstID, sContent)
+                    rep.UpdateStatusEmployeeCetificateEdit(lstID, sContent)
                     ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), NotifyType.Success)
                     rgData.Rebind()
                     txtRemark.Text = ""
@@ -297,12 +297,12 @@ Public Class ctrlHU_ApproveCertificateEmployee
     ''' <remarks></remarks>
     Protected Function CreateDataFilter(Optional ByVal isFull As Boolean = False) As DataTable
         Dim rep As New ProfileBusinessRepository
-        Dim _filter As New CETIFICATE_EDITDTO
+        Dim _filter As New HU_PRO_TRAIN_OUT_COMPANYDTOEDIT
         Dim startTime As DateTime = DateTime.UtcNow
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
         Try
             If ctrlOrg.CurrentValue Is Nothing Then
-                rgData.DataSource = New List(Of FamilyEditDTO)
+                rgData.DataSource = New List(Of HU_PRO_TRAIN_OUT_COMPANYDTOEDIT)
                 Exit Function
             End If
             Dim _param = New ParamDTO With {.ORG_ID = Decimal.Parse(ctrlOrg.CurrentValue),

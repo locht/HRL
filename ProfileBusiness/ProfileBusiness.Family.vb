@@ -211,6 +211,18 @@ Namespace ProfileBusiness.ServiceImplementations
                 End Try
             End Using
         End Function
+        Public Function UpdateStatusEmployeeCetificateEdit(ByVal lstID As List(Of Decimal),
+                                                  status As String,
+                                                  ByVal log As UserLog) As Boolean _
+                                               Implements ServiceContracts.IProfileBusiness.UpdateStatusEmployeeCetificateEdit
+            Using rep As New ProfileRepository
+                Try
+                    Return rep.UpdateStatusEmployeeCetificateEdit(lstID, status, log)
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
 
         Public Function GetApproveFamilyEdit(ByVal _filter As FamilyEditDTO,
                                          ByVal PageIndex As Integer,
@@ -227,12 +239,12 @@ Namespace ProfileBusiness.ServiceImplementations
                 End Try
             End Using
         End Function
-        Public Function GetApproveEmployeeCertificateEdit(ByVal _filter As CETIFICATE_EDITDTO,
+        Public Function GetApproveEmployeeCertificateEdit(ByVal _filter As HU_PRO_TRAIN_OUT_COMPANYDTOEDIT,
                                          ByVal PageIndex As Integer,
                                          ByVal PageSize As Integer,
                                          ByRef Total As Integer, ByVal _param As ParamDTO,
                                          Optional ByVal Sorts As String = "EMPLOYEE_CODE desc",
-                                         Optional ByVal log As UserLog = Nothing) As List(Of CETIFICATE_EDITDTO) _
+                                         Optional ByVal log As UserLog = Nothing) As List(Of HU_PRO_TRAIN_OUT_COMPANYDTOEDIT) _
              Implements ServiceContracts.IProfileBusiness.GetApproveEmployeeCertificateEdit
             Using rep As New ProfileRepository
                 Try

@@ -1440,6 +1440,10 @@ Namespace ProfileBusiness.ServiceContracts
         Function UpdateStatusEmployeeFamilyEdit(ByVal lstID As List(Of Decimal),
                                                    ByVal status As String,
                                                    ByVal log As UserLog) As Boolean
+        <OperationContract()>
+        Function UpdateStatusEmployeeCetificateEdit(ByVal lstID As List(Of Decimal),
+                                                  status As String,
+                                                  ByVal log As UserLog) As Boolean
 
         <OperationContract()>
         Function GetApproveFamilyEdit(ByVal _filter As FamilyEditDTO,
@@ -1449,12 +1453,12 @@ Namespace ProfileBusiness.ServiceContracts
                                          Optional ByVal Sorts As String = "EMPLOYEE_CODE desc",
                                          Optional ByVal log As UserLog = Nothing) As List(Of FamilyEditDTO)
         <OperationContract()>
-        Function GetApproveEmployeeCertificateEdit(ByVal _filter As CETIFICATE_EDITDTO,
+        Function GetApproveEmployeeCertificateEdit(ByVal _filter As HU_PRO_TRAIN_OUT_COMPANYDTOEDIT,
                                         ByVal PageIndex As Integer,
                                         ByVal PageSize As Integer,
                                         ByRef Total As Integer, ByVal _param As ParamDTO,
                                         Optional ByVal Sorts As String = "EMPLOYEE_CODE desc",
-                                        Optional ByVal log As UserLog = Nothing) As List(Of CETIFICATE_EDITDTO)
+                                        Optional ByVal log As UserLog = Nothing) As List(Of HU_PRO_TRAIN_OUT_COMPANYDTOEDIT)
 
 #End Region
 

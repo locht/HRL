@@ -47,7 +47,10 @@
                 <%# Translate("Năm tốt nghiệp")%>
             </td>
             <td>
-                <tlk:RadNumericTextBox runat="server" ID="txtYear">
+                <tlk:RadNumericTextBox ID="txtYear" runat="server" NumberFormat-DecimalDigits="1"
+                    NumberFormat-GroupSeparator="" ShowSpinButtons="true" MaxLength="4" MinValue="1900"
+                    MaxValue="9999" SkinID="Number" CausesValidation="false">
+                    <NumberFormat AllowRounding="false" KeepNotRoundedValue="true" DecimalDigits="1" />
                 </tlk:RadNumericTextBox>
             </td>
             <td class="lb">
@@ -170,8 +173,8 @@
         <ClientSettings EnableRowHoverStyle="true" EnablePostBackOnRowClick="true">
             <Selecting AllowRowSelect="true" />
         </ClientSettings>
-        <MasterTableView DataKeyNames="ID,EMPLOYEE_ID,FROM_DATE,TO_DATE,YEAR_GRA,NAME_SHOOLS,FORM_TRAIN_NAME,SPECIALIZED_TRAIN,TYPE_TRAIN_NAME,RESULT_TRAIN,CERTIFICATE,RECEIVE_DEGREE_DATE,EFFECTIVE_DATE_FROM,EFFECTIVE_DATE_TO,UPLOAD_FILE,FILE_NAME,FK_PKEY,FORM_TRAIN_ID,TYPE_TRAIN_ID,CERTIFICATE_ID,IS_RENEWED"
-            ClientDataKeyNames="ID,EMPLOYEE_ID,FROM_DATE,TO_DATE,YEAR_GRA,NAME_SHOOLS,FORM_TRAIN_NAME,SPECIALIZED_TRAIN,TYPE_TRAIN_NAME,RESULT_TRAIN,CERTIFICATE,RECEIVE_DEGREE_DATE,EFFECTIVE_DATE_FROM,EFFECTIVE_DATE_TO,UPLOAD_FILE,FILE_NAME,FK_PKEY,FORM_TRAIN_ID,TYPE_TRAIN_ID,CERTIFICATE_ID,IS_RENEWED"
+        <MasterTableView DataKeyNames="ID,EMPLOYEE_ID,FROM_DATE,TO_DATE,YEAR_GRA,NAME_SHOOLS,FORM_TRAIN_NAME,SPECIALIZED_TRAIN,TYPE_TRAIN_NAME,RESULT_TRAIN,CERTIFICATE,RECEIVE_DEGREE_DATE,EFFECTIVE_DATE_FROM,EFFECTIVE_DATE_TO,UPLOAD_FILE,FILE_NAME,FK_PKEY,FORM_TRAIN_ID,TYPE_TRAIN_ID,CERTIFICATE_ID,IS_RENEWED,STATUS"
+            ClientDataKeyNames="ID,EMPLOYEE_ID,FROM_DATE,TO_DATE,YEAR_GRA,NAME_SHOOLS,FORM_TRAIN_NAME,SPECIALIZED_TRAIN,TYPE_TRAIN_NAME,RESULT_TRAIN,CERTIFICATE,RECEIVE_DEGREE_DATE,EFFECTIVE_DATE_FROM,EFFECTIVE_DATE_TO,UPLOAD_FILE,FILE_NAME,FK_PKEY,FORM_TRAIN_ID,TYPE_TRAIN_ID,CERTIFICATE_ID,IS_RENEWED,STATUS"
             Caption="<%$ Translate: Thông tin chỉnh sửa %>">
             <Columns>
                 <tlk:GridButtonColumn HeaderText="" Text="Sửa" CommandName="EditRow">
@@ -192,10 +195,14 @@
                     <HeaderStyle Width="120px" />
                     <ItemStyle Width="120px" />
                 </tlk:GridDateTimeColumn>
-                <tlk:GridNumericColumn DataField="YEAR_GRA" HeaderText="Năm tốt nghiệp" UniqueName="YEAR_GRA"
+               <%-- <tlk:GridNumericColumn DataField="YEAR_GRA" HeaderText="Năm tốt nghiệp" UniqueName="YEAR_GRA"
                     ShowFilterIcon="false" AutoPostBackOnFilter="true" CurrentFilterFunction="EqualTo"
                     Visible="true">
-                </tlk:GridNumericColumn>
+                </tlk:GridNumericColumn>--%>
+                  <tlk:GridBoundColumn DataField="YEAR_GRA" HeaderText="Năm tốt nghiệp" UniqueName="YEAR_GRA"
+                    ShowFilterIcon="false" AutoPostBackOnFilter="true" CurrentFilterFunction="Contains"
+                    Visible="true">
+                </tlk:GridBoundColumn>
                 <tlk:GridBoundColumn DataField="NAME_SHOOLS" HeaderText="Tên trường" UniqueName="NAME_SHOOLS"
                     ShowFilterIcon="false" AutoPostBackOnFilter="true" CurrentFilterFunction="Contains"
                     Visible="true">
@@ -232,6 +239,10 @@
                     ItemStyle-HorizontalAlign="Center" DataFormatString="{0:dd/MM/yyyy}" SortExpression="EFFECTIVE_DATE_TO"
                     UniqueName="EFFECTIVE_DATE_TO">
                 </tlk:GridDateTimeColumn>
+                  <tlk:GridBoundColumn HeaderText="Trạng thái" DataField="STATUS_NAME" UniqueName="STATUS_NAME"
+                    SortExpression="STATUS_NAME" AutoPostBackOnFilter="true" CurrentFilterFunction="Contains"
+                    Visible="TRUE">
+                </tlk:GridBoundColumn>
                 <tlk:GridBoundColumn HeaderText="Trạng thái" DataField="UPLOAD_FILE" UniqueName="UPLOAD_FILE"
                     SortExpression="UPLOAD_FILE" AutoPostBackOnFilter="true" CurrentFilterFunction="Contains"
                     Visible="false">

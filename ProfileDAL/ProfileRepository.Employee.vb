@@ -2878,18 +2878,12 @@ Partial Class ProfileRepository
             Dim query = From p In Context.HU_PRO_TRAIN_OUT_COMPANY
                         From ot In Context.OT_OTHER_LIST.Where(Function(F) F.ID = p.FORM_TRAIN_ID).DefaultIfEmpty
                         From ott In Context.OT_OTHER_LIST.Where(Function(F) F.ID = p.TYPE_TRAIN_ID).DefaultIfEmpty
+                         From ot1 In Context.OT_OTHER_LIST.Where(Function(F) F.ID = p.CERTIFICATE).DefaultIfEmpty
                         From ot_train In Context.OT_OTHER_LIST_TYPE.Where(Function(f) f.ID = ot.TYPE_ID And f.CODE = "TRAINING_FORM").DefaultIfEmpty
                         From ot_type In Context.OT_OTHER_LIST_TYPE.Where(Function(f) f.ID = ott.TYPE_ID And f.CODE = "TRAINING_TYPE").DefaultIfEmpty
             If Not String.IsNullOrEmpty(_filter.EMPLOYEE_ID) Then
                 query = query.Where(Function(f) f.p.EMPLOYEE_ID = _filter.EMPLOYEE_ID)
             End If
-
-            'If Not String.IsNullOrEmpty(_filter.ARISING_NAME_OT) Then
-            '    query = query.Where(Function(f) f.o.NAME_VN.ToLower().Contains(_filter.ARISING_NAME_OT.ToLower()))
-            'End If
-            'If Not String.IsNullOrEmpty(_filter.NOTE) Then
-            '    query = query.Where(Function(f) f.p.NOTE.ToLower().Contains(_filter.NOTE.ToLower()))
-            'End If
 
             Dim lst = query.Select(Function(p) New HU_PRO_TRAIN_OUT_COMPANYDTO With {
                                        .ID = p.p.ID,
@@ -2904,7 +2898,8 @@ Partial Class ProfileRepository
                                        .FILE_NAME = p.p.FILE_NAME,
                                        .SPECIALIZED_TRAIN = p.p.SPECIALIZED_TRAIN,
                                        .RESULT_TRAIN = p.p.RESULT_TRAIN,
-                                       .CERTIFICATE = p.p.CERTIFICATE,
+                                       .CERTIFICATE = p.ot1.NAME_VN,
+                                       .CERTIFICATE_ID = p.p.CERTIFICATE,
                                        .EFFECTIVE_DATE_FROM = p.p.EFFECTIVE_DATE_FROM,
                                        .EFFECTIVE_DATE_TO = p.p.EFFECTIVE_DATE_TO,
                                        .TYPE_TRAIN_ID = p.p.TYPE_TRAIN_ID,

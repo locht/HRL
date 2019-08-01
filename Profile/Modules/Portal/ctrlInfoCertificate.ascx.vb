@@ -409,7 +409,7 @@ Public Class ctrlInfoCertificate
                 cboBangCap.Text = item.GetDataKeyValue("CERTIFICATE")
                 is_Renew.Checked = item.GetDataKeyValue("IS_RENEWED")
                 cboBangCap.SelectedValue = item.GetDataKeyValue("CERTIFICATE_ID")
-                rdDayGra.SelectedDate = item.GetDataKeyValue("EFFECTIVE_DATE_FROM")
+                rdDayGra.SelectedDate = item.GetDataKeyValue("RECEIVE_DEGREE_DATE")
                 rdEffectFrom.SelectedDate = item.GetDataKeyValue("EFFECTIVE_DATE_FROM")
                 rdEffectTo.SelectedDate = item.GetDataKeyValue("EFFECTIVE_DATE_TO")
                 txtUploadFile.Text = item.GetDataKeyValue("FILE_NAME")
@@ -611,7 +611,7 @@ Public Class ctrlInfoCertificate
         Try
             Dim crc As New CRC32()
             'Dim fileNameZip As String = "QuanLiChucDanh.zip"
-            Dim fileNameZip As String = txtRemark.Text.Trim
+            Dim fileNameZip As String = txtUploadFile.Text.Trim
             Dim file As System.IO.FileInfo = New System.IO.FileInfo(path & fileNameZip)
             Response.Clear()
             Response.AddHeader("Content-Disposition", "attachment; filename=" + file.Name)
@@ -668,7 +668,7 @@ Public Class ctrlInfoCertificate
             txtResultTrain.Text = item.GetDataKeyValue("RESULT_TRAIN")
             cboBangCap.Text = item.GetDataKeyValue("CERTIFICATE")
             cboBangCap.SelectedValue = item.GetDataKeyValue("CERTIFICATE_ID")
-            rdDayGra.SelectedDate = item.GetDataKeyValue("EFFECTIVE_DATE_FROM")
+            rdDayGra.SelectedDate = item.GetDataKeyValue("RECEIVE_DEGREE_DATE")
             rdEffectFrom.SelectedDate = item.GetDataKeyValue("EFFECTIVE_DATE_FROM")
             rdEffectTo.SelectedDate = item.GetDataKeyValue("EFFECTIVE_DATE_TO")
             txtUploadFile.Text = item.GetDataKeyValue("FILE_NAME")

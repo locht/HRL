@@ -20,13 +20,14 @@ Partial Class ProfileRepository
                         .EMPLOYEE_ID = p.EMPLOYEE_ID,
                         .FROM_DATE = p.FROM_DATE,
                         .TO_DATE = p.TO_DATE,
+                         .RECEIVE_DEGREE_DATE = p.RECEIVE_DEGREE_DATE,
                         .YEAR_GRA = p.YEAR_GRA,
                         .NAME_SHOOLS = p.NAME_SHOOLS,
                         .FORM_TRAIN_ID = p.FORM_TRAIN_ID,
                         .FORM_TRAIN_NAME = ot.NAME_VN,
                         .SPECIALIZED_TRAIN = p.SPECIALIZED_TRAIN,
                         .RESULT_TRAIN = p.RESULT_TRAIN,
-                        .CERTIFICATE = ot.NAME_VN,
+                        .CERTIFICATE = OT1.NAME_VN,
                         .CERTIFICATE_ID = p.CERTIFICATE,
                         .EFFECTIVE_DATE_FROM = p.EFFECTIVE_DATE_FROM,
                         .EFFECTIVE_DATE_TO = p.EFFECTIVE_DATE_TO,
@@ -85,6 +86,7 @@ Partial Class ProfileRepository
             objCertificatetData.EMPLOYEE_ID = objCertificateEdit.EMPLOYEE_ID
             objCertificatetData.TYPE_TRAIN_ID = objCertificateEdit.TYPE_TRAIN_ID
             objCertificatetData.FK_PKEY = objCertificateEdit.FK_PKEY
+            objCertificatetData.STATUS = 0
             objCertificatetData.RECEIVE_DEGREE_DATE = objCertificateEdit.RECEIVE_DEGREE_DATE
             objCertificatetData.IS_RENEW = objCertificateEdit.IS_RENEWED
             Context.HU_PRO_TRAIN_OUT_COMPANY_EDIT.AddObject(objCertificatetData)
@@ -118,6 +120,7 @@ Partial Class ProfileRepository
             objCertificatetData.EMPLOYEE_ID = objCertificateEdit.EMPLOYEE_ID
             objCertificatetData.TYPE_TRAIN_ID = objCertificateEdit.TYPE_TRAIN_ID
             objCertificatetData.FK_PKEY = objCertificateEdit.FK_PKEY
+            objCertificatetData.STATUS = 0
             objCertificatetData.RECEIVE_DEGREE_DATE = objCertificateEdit.RECEIVE_DEGREE_DATE
             objCertificatetData.IS_RENEW = objCertificateEdit.IS_RENEWED
             Context.SaveChanges(log)
@@ -607,12 +610,12 @@ Partial Class ProfileRepository
             Throw ex
         End Try
     End Function
-    Public Function GetApproveEmployeeCertificateEdit(ByVal _filter As CETIFICATE_EDITDTO,
+    Public Function GetApproveEmployeeCertificateEdit(ByVal _filter As HU_PRO_TRAIN_OUT_COMPANYDTOEDIT,
                                          ByVal PageIndex As Integer,
                                          ByVal PageSize As Integer,
                                          ByRef Total As Integer, ByVal _param As ParamDTO,
                                          Optional ByVal Sorts As String = "EMPLOYEE_CODE desc",
-                                         Optional ByVal log As UserLog = Nothing) As List(Of CETIFICATE_EDITDTO)
+                                         Optional ByVal log As UserLog = Nothing) As List(Of HU_PRO_TRAIN_OUT_COMPANYDTOEDIT)
         Try
             Using cls As New DataAccess.QueryData
                 cls.ExecuteStore("PKG_COMMON_LIST.INSERT_CHOSEN_ORG",
@@ -620,39 +623,46 @@ Partial Class ProfileRepository
                                            .P_ORGID = _param.ORG_ID,
                                            .P_ISDISSOLVE = _param.IS_DISSOLVE})
             End Using
-            Dim query = (From p In Context.HU_CERTIFICATE_EDIT
-                        From e In Context.HU_EMPLOYEE.Where(Function(f) f.ID = p.EMPLOYEE_ID).DefaultIfEmpty
-                          From ot In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.FIELD_TRAIN).DefaultIfEmpty
-                     From ot1 In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.MAJOR).DefaultIfEmpty
-                     From ot2 In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.LEVEL_TRAIN).DefaultIfEmpty
+            Dim query = (From p In Context.HU_PRO_TRAIN_OUT_COMPANY_EDIT
+                         From e In Context.HU_EMPLOYEE.Where(Function(f) f.ID = p.EMPLOYEE_ID).DefaultIfEmpty
+                    From ot In Context.OT_OTHER_LIST.Where(Function(F) F.ID = p.FORM_TRAIN_ID).DefaultIfEmpty
+                    From OT1 In Context.OT_OTHER_LIST.Where(Function(F) F.ID = p.CERTIFICATE).DefaultIfEmpty
+                    From OT2 In Context.OT_OTHER_LIST.Where(Function(F) F.ID = p.TYPE_TRAIN_ID).DefaultIfEmpty
                         From chosen In Context.SE_CHOSEN_ORG.Where(Function(f) f.ORG_ID = e.ORG_ID And f.USERNAME = log.Username.ToUpper)
                        Where p.STATUS = 1
-                       Select New CETIFICATE_EDITDTO With {
+                       Select New HU_PRO_TRAIN_OUT_COMPANYDTOEDIT With {
                                .EMPLOYEE_CODE = e.EMPLOYEE_CODE,
                                .EMPLOYEE_NAME = e.FULLNAME_VN,
-                               .FIELD = p.FIELD_TRAIN,
-                               .FIELD_NAME = ot.NAME_VN,
-                               .FROM_DATE = p.FROM_DATE,
-                               .TO_DATE = p.TO_DATE,
-                               .SCHOOL_NAME = p.SCHOOL_NAME,
-                               .MAJOR = p.MAJOR,
-                               .MAJOR_NAME = ot1.NAME_VN,
-                               .LEVEL = p.LEVEL_TRAIN,
-                               .LEVEL_NAME = ot2.NAME_VN,
-                               .MARK = p.MARK,
-                               .CONTENT_NAME = p.CONTENT_TRAIN,
-                               .TYPE_NAME = p.TYPE_TRAIN,
-                               .CODE_CERTIFICATE = p.CODE_CETIFICATE,
-                               .EFFECT_FROM = p.EFFECT_FROM,
-                               .EFFECT_TO = p.EFFECT_TO,
-                               .CLASSIFICATION = p.CLASSIFICATION,
-                                .YEAR = p.YEAR,
-                                .REMARK = p.REMARK,
-                               .RENEW = p.RENEW,
-                                .UPLOAD = p.UPLOAD_FILE,
-                               .FILENAME = p.FILE_NAME,
-                                 .STATUS = p.STATUS,
-                                 .STATUS_NAME = If(p.STATUS = 0, "Chưa gửi duyệt",
+                              .ID = p.ID,
+                        .EMPLOYEE_ID = p.EMPLOYEE_ID,
+                        .FROM_DATE = p.FROM_DATE,
+                        .TO_DATE = p.TO_DATE,
+                         .RECEIVE_DEGREE_DATE = p.RECEIVE_DEGREE_DATE,
+                        .YEAR_GRA = p.YEAR_GRA,
+                        .NAME_SHOOLS = p.NAME_SHOOLS,
+                        .FORM_TRAIN_ID = p.FORM_TRAIN_ID,
+                        .FORM_TRAIN_NAME = ot.NAME_VN,
+                        .SPECIALIZED_TRAIN = p.SPECIALIZED_TRAIN,
+                        .RESULT_TRAIN = p.RESULT_TRAIN,
+                        .CERTIFICATE = OT1.NAME_VN,
+                        .CERTIFICATE_ID = p.CERTIFICATE,
+                        .EFFECTIVE_DATE_FROM = p.EFFECTIVE_DATE_FROM,
+                        .EFFECTIVE_DATE_TO = p.EFFECTIVE_DATE_TO,
+                        .CREATED_BY = p.CREATED_BY,
+                         .IS_RENEWED = p.IS_RENEW,
+                         .TYPE_TRAIN_ID = p.TYPE_TRAIN_ID,
+                         .TYPE_TRAIN_NAME = OT2.NAME_VN,
+                        .CREATED_DATE = p.CREATED_DATE,
+                        .CREATED_LOG = p.CREATED_LOG,
+                        .MODIFIED_BY = p.MODIFIED_BY,
+                        .MODIFIED_DATE = p.MODIFIED_DATE,
+                        .MODIFIED_LOG = p.MODIFIED_LOG,
+                        .REASON_UNAPROVE = p.REASON_UNAPROVE,
+                        .FK_PKEY = p.FK_PKEY,
+                         .UPLOAD_FILE = p.UPLOAD_FILE,
+                         .FILE_NAME = p.FILE_NAME,
+                        .STATUS = p.STATUS,
+                        .STATUS_NAME = If(p.STATUS = 0, "Chưa gửi duyệt",
                                            If(p.STATUS = 1, "Chờ phê duyệt",
                                               If(p.STATUS = 2, "Phê duyệt",
                                                  If(p.STATUS = 3, "Không phê duyệt", ""))))})
@@ -888,63 +898,67 @@ Partial Class ProfileRepository
 
     End Function
 
-    'Public Function UpdateStatusEmployeeCetificateEdit(ByVal lstID As List(Of Decimal),
-    '                                               status As String,
-    '                                               ByVal log As UserLog) As Boolean
-    '    Dim lst As List(Of HU_CERTIFICATE_EDIT)
-    '    Dim sStatus() As String = status.Split(":")
+    Public Function UpdateStatusEmployeeCetificateEdit(ByVal lstID As List(Of Decimal),
+                                                   status As String,
+                                                   ByVal log As UserLog) As Boolean
+        Dim lst As List(Of HU_PRO_TRAIN_OUT_COMPANY_EDIT)
+        Dim sStatus() As String = status.Split(":")
+        Try
+            lst = (From p In Context.HU_PRO_TRAIN_OUT_COMPANY_EDIT Where lstID.Contains(p.ID)).ToList
+            For Each item In lst
+                item.STATUS = sStatus(0)
+                item.REASON_UNAPROVE = sStatus(1)
+                If sStatus(0) = 2 Then
+                    If item.FK_PKEY IsNot Nothing Then
+                        Dim objFamilyData As HU_PRO_TRAIN_OUT_COMPANY
+                        objFamilyData = (From p In Context.HU_PRO_TRAIN_OUT_COMPANY Where p.ID = item.FK_PKEY).FirstOrDefault
+                        objFamilyData.EMPLOYEE_ID = item.EMPLOYEE_ID
+                        objFamilyData.YEAR_GRA = item.YEAR_GRA
+                        objFamilyData.NAME_SHOOLS = item.NAME_SHOOLS
+                        objFamilyData.FORM_TRAIN_ID = item.FORM_TRAIN_ID
+                        objFamilyData.SPECIALIZED_TRAIN = item.SPECIALIZED_TRAIN
+                        objFamilyData.RESULT_TRAIN = item.RESULT_TRAIN
+                        objFamilyData.CERTIFICATE = item.CERTIFICATE
+                        objFamilyData.EFFECTIVE_DATE_FROM = item.EFFECTIVE_DATE_FROM
+                        objFamilyData.EFFECTIVE_DATE_TO = item.EFFECTIVE_DATE_TO
+                        objFamilyData.FROM_DATE = item.FROM_DATE
+                        objFamilyData.TO_DATE = item.TO_DATE
+                        objFamilyData.UPLOAD_FILE = item.UPLOAD_FILE
+                        objFamilyData.FILE_NAME = item.FILE_NAME
+                        objFamilyData.TYPE_TRAIN_ID = item.TYPE_TRAIN_ID
+                        objFamilyData.RECEIVE_DEGREE_DATE = item.RECEIVE_DEGREE_DATE
+                        objFamilyData.IS_RENEWED = item.IS_RENEW
+                    Else
+                        Dim objFamilyData As New HU_PRO_TRAIN_OUT_COMPANY
+                        objFamilyData.ID = Utilities.GetNextSequence(Context, Context.HU_PRO_TRAIN_OUT_COMPANY.EntitySet.Name)
+                         objFamilyData.EMPLOYEE_ID = item.EMPLOYEE_ID
+                        objFamilyData.YEAR_GRA = item.YEAR_GRA
+                        objFamilyData.NAME_SHOOLS = item.NAME_SHOOLS
+                        objFamilyData.FORM_TRAIN_ID = item.FORM_TRAIN_ID
+                        objFamilyData.SPECIALIZED_TRAIN = item.SPECIALIZED_TRAIN
+                        objFamilyData.RESULT_TRAIN = item.RESULT_TRAIN
+                        objFamilyData.CERTIFICATE = item.CERTIFICATE
+                        objFamilyData.EFFECTIVE_DATE_FROM = item.EFFECTIVE_DATE_FROM
+                        objFamilyData.EFFECTIVE_DATE_TO = item.EFFECTIVE_DATE_TO
+                        objFamilyData.FROM_DATE = item.FROM_DATE
+                        objFamilyData.TO_DATE = item.TO_DATE
+                        objFamilyData.UPLOAD_FILE = item.UPLOAD_FILE
+                        objFamilyData.FILE_NAME = item.FILE_NAME
+                        objFamilyData.TYPE_TRAIN_ID = item.TYPE_TRAIN_ID
+                        objFamilyData.RECEIVE_DEGREE_DATE = item.RECEIVE_DEGREE_DATE
+                        objFamilyData.IS_RENEWED = item.IS_RENEW
+                        Context.HU_PRO_TRAIN_OUT_COMPANY.AddObject(objFamilyData)
+                    End If
+                End If
+            Next
+            Context.SaveChanges(log)
+            Return True
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iProfile")
+            Throw ex
+        End Try
 
-    '    Try
-    '        lst = (From p In Context.HU_CERTIFICATE_EDIT Where lstID.Contains(p.ID)).ToList
-    '        For Each item In lst
-    '            item.STATUS = sStatus(0)
-    '            item.REASON_UNAPROVE = sStatus(1)
-
-    '            If sStatus(0) = 2 Then
-    '                If item.FK_PKEY IsNot Nothing Then
-    '                    Dim objFamilyData As HU_PRO_TRAIN_OUT_COMPANY
-    '                    objFamilyData = (From p In Context.HU_PRO_TRAIN_OUT_COMPANY Where p.ID = item.FK_PKEY).FirstOrDefault
-    '                    objFamilyData.EMPLOYEE_ID = item.EMPLOYEE_ID
-    '                    objFamilyData.YEAR_GRA = item.YEAR
-    '                    objFamilyData.NAME_SHOOLS = item.SCHOOL_NAME
-    '                    objFamilyData.FORM_TRAIN_ID = item.FIELD_TRAIN
-    '                    objFamilyData.SPECIALIZED_TRAIN = item.TYPE_TRAIN
-    '                    objFamilyData.RESULT_TRAIN = item.CLASSIFICATION
-    '                    objFamilyData.
-
-    '                Else
-    '                    Dim objFamilyData As New HU_FAMILY
-    '                    objFamilyData.ID = Utilities.GetNextSequence(Context, Context.HU_FAMILY.EntitySet.Name)
-    '                    objFamilyData.EMPLOYEE_ID = item.EMPLOYEE_ID
-    '                    objFamilyData.FULLNAME = item.FULLNAME
-    '                    objFamilyData.RELATION_ID = item.RELATION_ID
-    '                    objFamilyData.BIRTH_DATE = item.BIRTH_DATE
-    '                    objFamilyData.DEDUCT_REG = item.DEDUCT_REG
-    '                    objFamilyData.ID_NO = item.ID_NO
-    '                    objFamilyData.IS_DEDUCT = item.IS_DEDUCT
-    '                    objFamilyData.DEDUCT_FROM = item.DEDUCT_FROM
-    '                    objFamilyData.TAXTATION = item.TAXTATION
-    '                    objFamilyData.DEDUCT_TO = item.DEDUCT_TO
-    '                    objFamilyData.REMARK = item.REMARK
-    '                    objFamilyData.ADDRESS = item.ADDRESS
-
-    '                    ' 20190520 CanhNX: Edit cho lưu Nguyên quán, Nghề nghiệp, Chức danh
-    '                    objFamilyData.CAREER = item.CAREER
-    '                    objFamilyData.TITLE_NAME = item.TITLE_NAME
-    '                    objFamilyData.PROVINCE_ID = item.PROVINCE_ID
-
-    '                    Context.HU_FAMILY.AddObject(objFamilyData)
-    '                End If
-    '            End If
-    '        Next
-    '        Context.SaveChanges(log)
-    '        Return True
-    '    Catch ex As Exception
-    '        WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iProfile")
-    '        Throw ex
-    '    End Try
-
-    'End Function
+    End Function
 
 #End Region
 

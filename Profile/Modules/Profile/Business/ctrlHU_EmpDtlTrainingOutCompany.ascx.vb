@@ -205,54 +205,9 @@ Public Class ctrlHU_EmpDtlTrainingOutCompany
                 Case CommonMessage.STATE_NEW
 
                     EnabledGridNotPostback(rgEmployeeTrain, False)
-                    'If checkClickUpload <> 1 Then
-                    '    rdToiThang.SelectedDate = Nothing
-                    '    rdTuThang.SelectedDate = Nothing
-                    '    cboTrainingForm.SelectedValue = ""
-                    '    cboTrainingType.SelectedValue = ""
-                    'End If
-                    'rntGraduateYear.Text = ""
-                    'txtRemark.Text = ""
-                    'txtTrainingSchool.Text = ""
-                    'txtRemark.Text = ""
-                    'cboRemark.SelectedValue = ""
-                    'txtChuyenNganh.Text = ""
-                    'txtKetQua.Text = ""
-                    'rdFrom.SelectedDate = Nothing
-                    'rdTo.SelectedDate = Nothing
-                    'rdReceiveDegree.SelectedDate = Nothing
-                    'chkTerminate.Checked = False
                     EnableControlAll(True, rdToiThang, cboRemark, rdTuThang, rntGraduateYear, txtRemark, cboTrainingForm, txtChuyenNganh, txtKetQua, txtTrainingSchool, cboTrainingType, rdReceiveDegree, chkTerminate)
                     EnabledGrid(rgEmployeeTrain, False)
                 Case CommonMessage.STATE_NORMAL
-                    'Select Case checkCRUD
-                    '    'Insert
-                    '    Case 1
-                    '        rdToiThang.SelectedDate = Nothing
-                    '        rdTuThang.SelectedDate = Nothing
-                    '        'Edit
-                    '    Case 2
-                    '        'Save
-                    '    Case 3
-                    '        rdToiThang.SelectedDate = Nothing
-                    '        rdTuThang.SelectedDate = Nothing
-                    '        'Delete
-                    '    Case 4
-                    '        rdToiThang.SelectedDate = Nothing
-                    '        rdTuThang.SelectedDate = Nothing
-                    'End Select
-                    'rntGraduateYear.Text = ""
-                    'txtRemark.Text = ""
-                    'txtTrainingSchool.Text = ""
-                    'cboTrainingForm.SelectedValue = ""
-                    'cboRemark.SelectedValue = ""
-                    'txtChuyenNganh.Text = ""
-                    'txtKetQua.Text = ""
-                    'rdFrom.SelectedDate = Nothing
-                    'rdTo.SelectedDate = Nothing
-                    'cboTrainingType.SelectedValue = ""
-                    'rdReceiveDegree.SelectedDate = Nothing
-                    'chkTerminate.Checked = False
                     EnabledGridNotPostback(rgEmployeeTrain, True)
                     EnableControlAll(False, rdTuThang, cboRemark, rdToiThang, rntGraduateYear, rdFrom, rdTo, txtRemark, cboTrainingForm, txtChuyenNganh, txtKetQua, txtTrainingSchool, cboTrainingType, rdReceiveDegree, chkTerminate)
                     EnabledGrid(rgEmployeeTrain, True)
@@ -306,11 +261,10 @@ Public Class ctrlHU_EmpDtlTrainingOutCompany
         dic.Add("UPLOAD_FILE", txtUploadFile)
         dic.Add("FILE_NAME", txtRemark)
         dic.Add("TYPE_TRAIN_ID", cboTrainingType)
+        dic.Add("TYPE_TRAIN_NAME", cboTrainingType)
         dic.Add("RECEIVE_DEGREE_DATE", rdReceiveDegree)
         dic.Add("IS_RENEWED", chkTerminate)
-
         Utilities.OnClientRowSelectedChanged(rgEmployeeTrain, dic)
-
         Try
             Dim rep As New ProfileRepository
             Dim comboBoxDataDTO As New ComboBoxDataDTO
@@ -318,7 +272,7 @@ Public Class ctrlHU_EmpDtlTrainingOutCompany
                 comboBoxDataDTO = New ComboBoxDataDTO
             End If
             comboBoxDataDTO.GET_TRAINING_FORM = True
-            comboBoxDataDTO.GET_LEARNING_LEVEL = True
+            comboBoxDataDTO.GET_TRAINING_TYPE = True
             comboBoxDataDTO.GET_MAJOR = True
             comboBoxDataDTO.GET_MARK_EDU = True
             comboBoxDataDTO.GET_CERTIFICATE_TYPE = True
@@ -328,19 +282,10 @@ Public Class ctrlHU_EmpDtlTrainingOutCompany
                 FillDropDownList(cboTrainingType, comboBoxDataDTO.LIST_TRAINING_TYPE, "NAME_VN", "ID", Common.Common.SystemLanguage, True, cboTrainingType.SelectedValue)
                 FillDropDownList(cboRemark, comboBoxDataDTO.LIST_CERTIFICATE_TYPE, "NAME_VN", "ID", Common.Common.SystemLanguage, True, cboRemark.SelectedValue)
             End If
-            'cboRemark.SelectedValue = 0
-            'Using profileBusiness As New ProfileBusinessRepository
-            '    Dim cbo
-            '    cbo = profileBusiness.GetCertificateType()
-            '    FillDropDownList(cboRemark, cbo, "NAME_VN", "ID")
-            'End Using
-
             rep.Dispose()
         Catch ex As Exception
             DisplayException(Me.ViewName, Me.ID, ex)
         End Try
-
-
     End Sub
 
 #End Region
@@ -480,7 +425,6 @@ Public Class ctrlHU_EmpDtlTrainingOutCompany
                                     UpdateControlState()
                                     Return
                                 End If
-
                                 objTrain.ID = rgEmployeeTrain.SelectedValue
                                 If rep.ModifyProcessTraining(objTrain, gID) Then
                                     CurrentState = CommonMessage.STATE_NORMAL
@@ -530,46 +474,9 @@ Public Class ctrlHU_EmpDtlTrainingOutCompany
         Dim startTime As DateTime = DateTime.UtcNow
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
         Dim bCheck As Boolean = False
-
         Try
-            'If txtRemark.CheckedItems.Count >= 1 Then
-            'Using zip As New ZipFile
-            '    zip.AlternateEncodingUsage = ZipOption.AsNecessary
-            '    zip.AddDirectoryByName("Files")
-
-            '    For Each item As RadComboBoxItem In txtRemark.CheckedItems
-            '        Dim file As System.IO.FileInfo = New System.IO.FileInfo(System.IO.Path.Combine(Server.MapPath("~/ReportTemplates/Profile/Commend/"), item.Text))
-            '        If file.Exists Then
-            '            zip.AddFile(file.FullName, "Files")
-            '        End If
-            '    Next
-
-            '    Response.Clear()
-            '    Response.BufferOutput = False
-            '    Dim zipName As String = [String].Format("Zip_{0}.zip", DateTime.Now.ToString("yyyy-MMM-dd-HHmmss"))
-            '    Response.ContentType = "application/zip"
-            '    Response.AddHeader("content-disposition", "attachment; filename=" + zipName)
-            '    zip.Save(Response.OutputStream)
-            '    Response.[End]()
-            'End Using
-
-            'Dim strPath As String = Server.MapPath("~/ReportTemplates/Profile/Title/")
-            'If Title IsNot Nothing Then
-            '    Dim strPath As String = Server.MapPath("~/ReportTemplates/Profile/Title/" + Title.UPLOAD_FILE)
-            '    'For Each item As RadComboBoxItem In txtRemark.CheckedItems
-            '    'Dim file As System.IO.FileInfo = New System.IO.FileInfo(System.IO.Path.Combine(strPath, item.Text))
-            '    'If file.Exists Then
-            '    bCheck = True
-            '    'End If
-            '    'Next
-
-            '    If bCheck Then
-            '        ZipFiles(strPath)
-            '    End If
-            'End If
             If txtRemark.Text <> "" Then
                 Dim strPath As String
-
                 If txtRemindLink.Text IsNot Nothing Then
                     If txtRemindLink.Text <> "" Then
                         strPath = Server.MapPath("~/ReportTemplates/Profile/TrainOutCompany/" + txtRemindLink.Text)
@@ -584,7 +491,6 @@ Public Class ctrlHU_EmpDtlTrainingOutCompany
                     ZipFiles(strPath)
                 End If
             End If
-            'End If
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
             _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
@@ -597,55 +503,7 @@ Public Class ctrlHU_EmpDtlTrainingOutCompany
 
         Try
             Dim crc As New Crc32()
-            'Dim fileNameZip As String = "QuanLiChucDanh.zip"
             Dim fileNameZip As String = txtRemark.Text.Trim
-
-            'If Not Directory.Exists(pathZip) Then
-            '    Directory.CreateDirectory(pathZip)
-            'Else
-            '    For Each deleteFile In Directory.GetFiles(pathZip, "*.*", SearchOption.TopDirectoryOnly)
-            '        File.Delete(deleteFile)
-            '    Next
-            'End If
-
-            'Dim s As New ZipOutputStream(File.Create(pathZip & fileNameZip))
-            's.SetLevel(0)
-            '' 0 - store only to 9 - means best compression
-            'For i As Integer = 0 To Directory.GetFiles(path).Length - 1
-            '    ' Must use a relative path here so that files show up in the Windows Zip File Viewer
-            '    ' .. hence the use of Path.GetFileName(...)
-            '    Dim fileName As String = System.IO.Path.GetFileName(Directory.GetFiles(path)(i))
-
-            '    Dim entry As New ZipEntry(fileName)
-            '    entry.DateTime = DateTime.Now
-
-            '    ' Read in the 
-            '    Using fs As FileStream = File.Open(Directory.GetFiles(path)(i), FileMode.Open)
-            '        Dim buffer As Byte() = New Byte(fs.Length - 1) {}
-            '        fs.Read(buffer, 0, buffer.Length)
-            '        entry.Size = fs.Length
-            '        fs.Close()
-            '        crc.Reset()
-            '        crc.Update(buffer)
-            '        entry.Crc = crc.Value
-            '        s.PutNextEntry(entry)
-            '        s.Write(buffer, 0, buffer.Length)
-            '    End Using
-            'Next
-            's.Finish()
-            's.Close()
-            'Using FileStream = File.Open(path & fileNameZip, FileMode.Open)
-            '    Dim buffer As Byte() = New Byte(FileStream.Length - 1) {}
-            '    FileStream.Read(buffer, 0, buffer.Length)
-            '    Dim rEx As New System.Text.RegularExpressions.Regex("[^a-zA-Z0-9_\-\.]+")
-            '    Response.Clear()
-            '    Response.AddHeader("Content-Disposition", "attachment; filename=" + rEx.Replace(fileNameZip, "_"))
-            '    Response.AddHeader("Content-Length", FileStream.Length.ToString())
-            '    Response.ContentType = "application/octet-stream"
-            '    Response.BinaryWrite(buffer)
-            '    FileStream.Close()
-            'End Using
-
             Dim file As System.IO.FileInfo = New System.IO.FileInfo(path & fileNameZip)
             Response.Clear()
             Response.AddHeader("Content-Disposition", "attachment; filename=" + file.Name)
@@ -683,18 +541,7 @@ Public Class ctrlHU_EmpDtlTrainingOutCompany
                     Dim file As UploadedFile = ctrlUpload1.UploadedFiles(i)
                     Dim str_Filename = Guid.NewGuid.ToString() + "\"
                     If listExtension.Any(Function(x) x.ToUpper().Trim() = file.GetExtension.ToUpper().Trim()) Then
-                        'If Title IsNot Nothing Then
-                        '    If Title.UPLOAD_FILE IsNot Nothing Then
-                        '        strPath += Title.UPLOAD_FILE
-                        '    Else
-                        '        System.IO.Directory.CreateDirectory(strPath + str_Filename)
-                        '        strPath = strPath + str_Filename
-                        '    End If
-                        '    fileName = System.IO.Path.Combine(strPath, file.FileName)
-                        '    file.SaveAs(fileName, True)
-                        '    Title.UPLOAD_FILE = str_Filename
-                        '    txtUploadFile.Text = file.FileName
-                        'Else
+                        
                         System.IO.Directory.CreateDirectory(strPath + str_Filename)
                         strPath = strPath + str_Filename
                         fileName = System.IO.Path.Combine(strPath, file.FileName)
@@ -719,34 +566,12 @@ Public Class ctrlHU_EmpDtlTrainingOutCompany
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
 
         Try
-            'Dim data As New DataTable
-            'data.Columns.Add("FileName")
-            'Dim row As DataRow
-            'Dim str() As String
 
             If strUpload <> "" Then
                 txtRemark.Text = strUpload
                 FileOldName = txtRemark.Text
                 txtRemark.Text = strUpload
-                'str = strUpload.Split(";")
-
-                'For Each s As String In str
-                '    If s <> "" Then
-                '        row = data.NewRow
-                '        row("FileName") = s
-                '        data.Rows.Add(row)
-                '    End If
-                'Next
-
-                'txtRemark.DataSource = data
-                'txtRemark.DataTextField = "FileName"
-                'txtRemark.DataValueField = "FileName"
-                'txtRemark.DataBind()
             Else
-                'txtRemark.DataSource = Nothing
-                'txtRemark.ClearSelection()
-                'txtRemark.ClearCheckedItems()
-                'txtRemark.Items.Clear()
                 strUpload = String.Empty
             End If
 
@@ -755,37 +580,7 @@ Public Class ctrlHU_EmpDtlTrainingOutCompany
             _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
         End Try
     End Sub
-    'Private Sub RadGrid_ItemDataBound(ByVal sender As Object, ByVal e As Telerik.Web.UI.GridItemEventArgs) Handles rgEmployeeTrain.ItemDataBound
-    '    Try
-    '        If e.Item.ItemType = GridItemType.Item Or e.Item.ItemType = GridItemType.AlternatingItem Then
-    '            Dim datarow As GridDataItem = DirectCast(e.Item, GridDataItem)
-    '            If IDSelect <> 0 Then
-    '                If IDSelect = datarow.GetDataKeyValue("ID") Then
-    '                    e.Item.Selected = True
-    '                End If
-    '            End If
-
-    '            Dim a = CType(datarow.DataItem, EmployeeTrainDTO)
-    '            Dim strFromMonthYear As String = ""
-    '            Dim strToMonthYear As String = ""
-    '            Dim lblFromMonthYear As Label = CType(datarow.FindControl("lblFromMonthYear"), Label)
-    '            Dim lblToMonthYear As Label = CType(datarow.FindControl("lblToMonthYear"), Label)
-
-    '            strFromMonthYear = a.FMONTH.ToString + "/" + a.FYEAR.ToString
-    '            strToMonthYear = a.TMONTH.ToString + "/" + a.TYEAR.ToString
-
-    '            If lblFromMonthYear IsNot Nothing Then
-    '                lblFromMonthYear.Text = strFromMonthYear
-    '            End If
-    '            If lblToMonthYear IsNot Nothing Then
-    '                lblToMonthYear.Text = strToMonthYear
-    '            End If
-    '        End If
-    '    Catch ex As Exception
-    '        DisplayException(Me.ViewName, Me.ID, ex)
-    '    End Try
-
-    'End Sub
+    
 
 #End Region
 
@@ -813,8 +608,10 @@ Public Class ctrlHU_EmpDtlTrainingOutCompany
             cboTrainingForm.SelectedValue = dataItem.GetDataKeyValue("FORM_TRAIN_ID")
             txtChuyenNganh.Text = dataItem.GetDataKeyValue("SPECIALIZED_TRAIN")
             cboTrainingType.SelectedValue = dataItem.GetDataKeyValue("TYPE_TRAIN_ID")
+            cboTrainingType.Text = dataItem.GetDataKeyValue("TYPE_TRAIN_NAME")
             txtKetQua.Text = dataItem.GetDataKeyValue("RESULT_TRAIN")
-            cboRemark.SelectedValue = dataItem.GetDataKeyValue("CERTIFICATE")
+            cboRemark.SelectedValue = dataItem.GetDataKeyValue("CERTIFICATE_ID")
+            cboRemark.Text = dataItem.GetDataKeyValue("CERTIFICATE")
             rdReceiveDegree.SelectedDate = dataItem.GetDataKeyValue("RECEIVE_DEGREE_DATE")
             rdFrom.SelectedDate = dataItem.GetDataKeyValue("EFFECTIVE_DATE_FROM")
             rdTo.SelectedDate = dataItem.GetDataKeyValue("EFFECTIVE_DATE_TO")
@@ -824,24 +621,7 @@ Public Class ctrlHU_EmpDtlTrainingOutCompany
             EnableControlAll(False, rdFrom, rdTo)
         End If
     End Sub
-    ' ''' Phương thức xử lý việc load dữ liệu cho các combobox
-    ' ''' </summary>
-    ' ''' <remarks></remarks>
-    'Private Sub GetDataCombo()
-    '    Dim startTime As DateTime = DateTime.UtcNow
-    '    Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
-    '    Dim rep As New ProfileRepository
-    '    Try
-    '        ListComboData = New ComboBoxDataDTO
-    '        ListComboData.GET_WELFARE = True
-    '        rep.GetComboList(ListComboData)
-    '        rep.Dispose()
-    '        _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
-    '    Catch ex As Exception
-    '        Throw ex
-    '        _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
-    '    End Try
-    'End Sub
+   
     Protected Sub cboRemark_SelectedIndexChanged(sender As Object, e As Telerik.Web.UI.RadComboBoxSelectedIndexChangedEventArgs) Handles cboRemark.SelectedIndexChanged
         Dim startTime As DateTime = DateTime.UtcNow
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()

@@ -14,6 +14,7 @@
     Public Property SPECIALIZED_TRAIN As String
     Public Property RESULT_TRAIN As String
     Public Property CERTIFICATE As String
+    Public Property CERTIFICATE_ID As String
     Public Property EFFECTIVE_DATE_FROM As Date?
     Public Property EFFECTIVE_DATE_TO As Date?
     Public Property CREATED_DATE As Date?

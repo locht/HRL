@@ -18,7 +18,7 @@ Imports System.Runtime.Serialization
 Imports System.Xml.Serialization
 
 
-<Assembly: EdmSchemaAttribute("359bdbd6-449f-4536-8e95-85a9c83e4202")>
+<Assembly: EdmSchemaAttribute("6968679f-649e-4306-bd7c-c65eb098ce31")>
 #Region "EDM Relationship Metadata"
 <Assembly: EdmRelationshipAttribute("ProfileModel", "FK_HU_NAT_HU_PRO", "HU_NATION", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_NATION), "HU_PROVINCE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_PROVINCE), True)>
 <Assembly: EdmRelationshipAttribute("ProfileModel", "FK_HU_PRO_HU_DIS", "HU_PROVINCE", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_PROVINCE), "HU_DISTRICT", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_DISTRICT), True)>
@@ -43465,21 +43465,21 @@ Public Partial Class HU_PRO_TRAIN_OUT_COMPANY
     ''' </summary>
     <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
     <DataMemberAttribute()>
-    Public Property CERTIFICATE() As Global.System.String
+    Public Property CERTIFICATE() As Nullable(Of Global.System.Decimal)
         Get
             Return _CERTIFICATE
         End Get
         Set
             OnCERTIFICATEChanging(value)
             ReportPropertyChanging("CERTIFICATE")
-            _CERTIFICATE = StructuralObject.SetValidValue(value, true)
+            _CERTIFICATE = StructuralObject.SetValidValue(value)
             ReportPropertyChanged("CERTIFICATE")
             OnCERTIFICATEChanged()
         End Set
     End Property
 
-    Private _CERTIFICATE As Global.System.String
-    Private Partial Sub OnCERTIFICATEChanging(value As Global.System.String)
+    Private _CERTIFICATE As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnCERTIFICATEChanging(value As Nullable(Of Global.System.Decimal))
     End Sub
 
     Private Partial Sub OnCERTIFICATEChanged()
