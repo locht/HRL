@@ -547,6 +547,12 @@ Public Class Utilities
             Return If(path IsNot Nothing, path, "")
         End Get
     End Property
+    Public Shared ReadOnly Property PathCetificateFolder As String
+        Get
+            Dim path As Object = ConfigurationManager.AppSettings("PathCetificateFolder")
+            Return If(path IsNot Nothing, path, "")
+        End Get
+    End Property
 
     Public Shared ReadOnly Property PathImportTempFolder As String
         Get

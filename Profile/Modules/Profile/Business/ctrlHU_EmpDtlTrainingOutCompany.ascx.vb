@@ -474,17 +474,18 @@ Public Class ctrlHU_EmpDtlTrainingOutCompany
         Dim startTime As DateTime = DateTime.UtcNow
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
         Dim bCheck As Boolean = False
+        Dim configPath As String = ConfigurationManager.AppSettings("PathCetificateFolder")
         Try
             If txtRemark.Text <> "" Then
                 Dim strPath As String
                 If txtRemindLink.Text IsNot Nothing Then
                     If txtRemindLink.Text <> "" Then
-                        strPath = Server.MapPath("~/ReportTemplates/Profile/TrainOutCompany/" + txtRemindLink.Text)
+                        strPath = configPath + txtRemindLink.Text
                         bCheck = True
                     End If
                 End If
                 If Down_File <> "" Then
-                    strPath = Server.MapPath("~/ReportTemplates/Profile/TrainOutCompany/" + Down_File)
+                    strPath = configPath + Down_File
                     bCheck = True
                 End If
                 If bCheck Then
@@ -500,7 +501,6 @@ Public Class ctrlHU_EmpDtlTrainingOutCompany
     Private Sub ZipFiles(ByVal path As String)
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
         Dim startTime As DateTime = DateTime.UtcNow
-
         Try
             Dim crc As New Crc32()
             Dim fileNameZip As String = txtRemark.Text.Trim
@@ -534,8 +534,8 @@ Public Class ctrlHU_EmpDtlTrainingOutCompany
             listExtension.Add(".jpg")
             listExtension.Add(".png")
             Dim fileName As String
-
-            Dim strPath As String = Server.MapPath("~/ReportTemplates/Profile/TrainOutCompany/")
+            Dim configPath As String = ConfigurationManager.AppSettings("PathCetificateFolder")
+            Dim strPath As String = configPath
             If ctrlUpload1.UploadedFiles.Count >= 1 Then
                 For i = 0 To ctrlUpload1.UploadedFiles.Count - 1
                     Dim file As UploadedFile = ctrlUpload1.UploadedFiles(i)

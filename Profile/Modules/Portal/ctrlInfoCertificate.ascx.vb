@@ -99,21 +99,22 @@ Public Class ctrlInfoCertificate
                 End If
             End Using
             Dim dic As New Dictionary(Of String, Control)
-            'dic.Add("ADDRESS", txtAdress)
-            'dic.Add("ID_NO", txtIDNO)
-            'dic.Add("FULLNAME", txtFullName)
-            'dic.Add("TAXTATION", txtTax)
-            'dic.Add("REMARK", txtRemark)
-            'dic.Add("BIRTH_DATE", rdBirthDate)
-            'dic.Add("IS_DEDUCT", chkIsDeduct)
-            'dic.Add("DEDUCT_REG", rdDeductReg)
-            'dic.Add("DEDUCT_FROM", rdDeductFrom)
-            'dic.Add("DEDUCT_TO", rdDeductTo)
-            'dic.Add("RELATION_ID", cboRelationship)
-            'dic.Add("ID", hidFamilyID)
-            'dic.Add("CAREER", txtCareer)
-            'dic.Add("TITLE_NAME", txtTitle)
-            'dic.Add("PROVINCE_ID", cboNguyenQuan)
+            dic.Add("FROM_DATE", rdFromDate)
+            dic.Add("TO_DATE", rdToDate)
+            dic.Add("YEAR_GRA", txtYear)
+            dic.Add("NAME_SCHOOLS", txtSchool)
+            dic.Add("FORM_TRAIN_ID", cboTrainingForm)
+            dic.Add("SPECIALIZED_TRAIN", txtChuyenNganh)
+            dic.Add("TYPE_TRAIN_ID", cboTrainingType)
+            dic.Add("CERTIFICATE", cboBangCap)
+            dic.Add("IS_RENEW", is_Renew)
+            dic.Add("RESULT_TRAIN", txtResultTrain)
+            dic.Add("RECEIVE_DEGREE_DATE", rdDayGra)
+            dic.Add("EFFECTIVE_DATE_FROM", rdEffectFrom)
+            dic.Add("EFFECTIVE_DATE_TO", rdEffectTo)
+            dic.Add("FK_PKEY", hidFamilyID)
+            dic.Add("FILE_NAME", txtUploadFile)
+            dic.Add("UPLOAD_FILE", btnUploadFile)
             Utilities.OnClientRowSelectedChanged(rgCetificate, dic)
             Dim dic1 As New Dictionary(Of String, Control)
             dic1.Add("FROM_DATE", rdFromDate)
@@ -356,10 +357,10 @@ Public Class ctrlInfoCertificate
 
     Private Sub rgCetificate_NeedDataSource(ByVal sender As Object, ByVal e As Telerik.Web.UI.GridNeedDataSourceEventArgs) Handles rgCetificate.NeedDataSource
         Try
-            SetValueObjectByRadGrid(rgCetificate, New CETIFICATEDTO)
+            SetValueObjectByRadGrid(rgCetificate, New HU_PRO_TRAIN_OUT_COMPANYDTO)
 
             Using rep As New ProfileBusinessRepository
-                rgCetificate.DataSource = rep.GetCertificate(New CETIFICATEDTO With {.EMPLOYEE_ID = EmployeeID})
+                rgCetificate.DataSource = rep.GetProcessTraining(New HU_PRO_TRAIN_OUT_COMPANYDTO With {.EMPLOYEE_ID = EmployeeID})
             End Using
         Catch ex As Exception
             Me.DisplayException(Me.ViewName, Me.ID, ex)
@@ -431,65 +432,26 @@ Public Class ctrlInfoCertificate
                 CurrentState = CommonMessage.STATE_EDIT
                 Dim item = CType(e.Item, GridDataItem)
                 hidFamilyID.Value = item.GetDataKeyValue("ID")
-                'txtAdress.Text = item.GetDataKeyValue("ADDRESS")
-                'txtIDNO.Text = item.GetDataKeyValue("ID_NO")
-                'txtFullName.Text = item.GetDataKeyValue("FULLNAME")
-                'txtTax.Text = item.GetDataKeyValue("TAXTATION")
-                'txtRemark.Text = item.GetDataKeyValue("REMARK")
-                'rdBirthDate.SelectedDate = item.GetDataKeyValue("BIRTH_DATE")
-                'chkIsDeduct.Checked = item.GetDataKeyValue("IS_DEDUCT")
-                'rdDeductReg.SelectedDate = item.GetDataKeyValue("DEDUCT_REG")
-                'rdDeductFrom.SelectedDate = item.GetDataKeyValue("DEDUCT_FROM")
-                'rdDeductTo.SelectedDate = item.GetDataKeyValue("DEDUCT_TO")
-                'cboRelationship.SelectedValue = item.GetDataKeyValue("RELATION_ID")
-                'txtCareer.Text = item.GetDataKeyValue("CAREER")
-                'txtTitle.Text = item.GetDataKeyValue("TITLE_NAME")
-                'cboNguyenQuan.SelectedValue = item.GetDataKeyValue("PROVINCE_ID")
-                'txtHouseCertificate_Code.Text = item.GetDataKeyValue("CERTIFICATE_CODE")
-                'txtHouseCertificate_Num.Text = item.GetDataKeyValue("CERTIFICATE_NUM")
-                'txtTempAdress.Text = item.GetDataKeyValue("ADDRESS_TT")
-                'txtAD_Village.Text = item.GetDataKeyValue("AD_VILLAGE")
-                'If IsNumeric(item.GetDataKeyValue("AD_PROVINCE_ID")) Then
-                '    cbPROVINCE_ID.SelectedValue = item.GetDataKeyValue("AD_PROVINCE_ID")
-                'End If
-                'If IsNumeric(item.GetDataKeyValue("TT_PROVINCE_ID")) Then
-                '    cbTempPROVINCE_ID.SelectedValue = item.GetDataKeyValue("TT_PROVINCE_ID")
-                'End If
-                'Using rep As New ProfileRepository
-                '    If cbPROVINCE_ID.SelectedValue <> "" Then
-                '        Dim dt As DataTable = rep.GetDistrictList(cbPROVINCE_ID.SelectedValue, False)
-                '        FillRadCombobox(cbDISTRICT_ID, dt, "NAME", "ID")
-                '    End If
-                '    If IsNumeric(item.GetDataKeyValue("AD_DISTRICT_ID")) Then
-                '        cbDISTRICT_ID.SelectedValue = item.GetDataKeyValue("AD_DISTRICT_ID")
-                '    End If
-                '    If cbDISTRICT_ID.SelectedValue <> "" Then
-                '        Dim dt As DataTable = rep.GetWardList(cbDISTRICT_ID.SelectedValue, False)
-                '        FillRadCombobox(cbWARD_ID, dt, "NAME", "ID")
-                '    End If
-                '    If IsNumeric(item.GetDataKeyValue("AD_WARD_ID")) Then
-                '        cbWARD_ID.SelectedValue = item.GetDataKeyValue("AD_WARD_ID")
-                '    End If
-                '    If cbTempPROVINCE_ID.SelectedValue <> "" Then
-                '        Dim dt As DataTable = rep.GetDistrictList(cbTempPROVINCE_ID.SelectedValue, False)
-                '        FillRadCombobox(cbTempDISTRICT_ID, dt, "NAME", "ID")
-                '    End If
-                '    If IsNumeric(item.GetDataKeyValue("TT_DISTRICT_ID")) Then
-                '        cbTempDISTRICT_ID.SelectedValue = item.GetDataKeyValue("TT_DISTRICT_ID")
-                '    End If
-                '    If cbTempDISTRICT_ID.SelectedValue <> "" Then
-                '        Dim dt As DataTable = rep.GetWardList(cbTempDISTRICT_ID.SelectedValue, False)
-                '        FillRadCombobox(cbTempWARD_ID, dt, "NAME", "ID")
-                '    End If
-                '    If IsNumeric(item.GetDataKeyValue("TT_WARD_ID")) Then
-                '        cbTempWARD_ID.SelectedValue = item.GetDataKeyValue("TT_WARD_ID")
-                '    End If
-                'End Using
-                'chkIs_Owner.Checked = item.GetDataKeyValue("IS_OWNER")
-                'chkIs_Pass.Checked = item.GetDataKeyValue("IS_PASS")
+                rdFromDate.SelectedDate = item.GetDataKeyValue("FROM_DATE")
+                rdToDate.SelectedDate = item.GetDataKeyValue("TO_DATE")
+                txtYear.Text = item.GetDataKeyValue("YEAR_GRA")
+                txtSchool.Text = item.GetDataKeyValue("NAME_SHOOLS")
+                cboTrainingForm.Text = item.GetDataKeyValue("FORM_TRAIN_NAME")
+                cboTrainingForm.SelectedValue = item.GetDataKeyValue("FORM_TRAIN_ID")
+                txtChuyenNganh.Text = item.GetDataKeyValue("SPECIALIZED_TRAIN")
+                cboTrainingType.Text = item.GetDataKeyValue("TYPE_TRAIN_NAME")
+                cboTrainingType.SelectedValue = item.GetDataKeyValue("TYPE_TRAIN_ID")
+                txtResultTrain.Text = item.GetDataKeyValue("RESULT_TRAIN")
+                cboBangCap.Text = item.GetDataKeyValue("CERTIFICATE")
+                is_Renew.Checked = item.GetDataKeyValue("IS_RENEWED")
+                cboBangCap.SelectedValue = item.GetDataKeyValue("CERTIFICATE_ID")
+                rdDayGra.SelectedDate = item.GetDataKeyValue("RECEIVE_DEGREE_DATE")
+                rdEffectFrom.SelectedDate = item.GetDataKeyValue("EFFECTIVE_DATE_FROM")
+                rdEffectTo.SelectedDate = item.GetDataKeyValue("EFFECTIVE_DATE_TO")
+                txtUploadFile.Text = item.GetDataKeyValue("FILE_NAME")
+                txtRemindLink.Text = item.GetDataKeyValue("UPLOAD_FILE")
                 hidFamilyID.Value = item.GetDataKeyValue("ID")
                 hidID.Value = ""
-                ' chkIsDeduct_CheckedChanged(Nothing, Nothing)
                 UpdateControlState()
             End If
         Catch ex As Exception
@@ -550,8 +512,8 @@ Public Class ctrlInfoCertificate
             listExtension.Add(".jpg")
             listExtension.Add(".png")
             Dim fileName As String
-
-            Dim strPath As String = Server.MapPath("~/ReportTemplates/Profile/CETIFICATE/")
+            Dim configPath As String = ConfigurationManager.AppSettings("PathCetificateFolder")
+            Dim strPath As String = configPath
             If ctrlUpload1.UploadedFiles.Count >= 1 Then
                 For i = 0 To ctrlUpload1.UploadedFiles.Count - 1
                     Dim file As UploadedFile = ctrlUpload1.UploadedFiles(i)
@@ -582,19 +544,18 @@ Public Class ctrlInfoCertificate
         Dim startTime As DateTime = DateTime.UtcNow
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
         Dim bCheck As Boolean = False
-
+        Dim configPath As String = ConfigurationManager.AppSettings("PathCetificateFolder")
         Try
             If txtUploadFile.Text <> "" Then
                 Dim strPath As String
-
                 If txtRemindLink.Text IsNot Nothing Then
                     If txtRemindLink.Text <> "" Then
-                        strPath = Server.MapPath("~/ReportTemplates/Profile/CETIFICATE/" + txtRemindLink.Text)
+                        strPath = configPath + txtRemindLink.Text
                         bCheck = True
                     End If
                 End If
                 If Down_File <> "" Then
-                    strPath = Server.MapPath("~/ReportTemplates/Profile/CETIFICATE/" + Down_File)
+                    strPath = configPath + Down_File
                     bCheck = True
                 End If
                 If bCheck Then
@@ -686,14 +647,12 @@ Public Class ctrlInfoCertificate
     Private Sub rgCetificate_SelectedIndexChanged(sender As Object, e As System.EventArgs) Handles rgCetificate.SelectedIndexChanged
         Try
             If rgCetificate.SelectedItems.Count = 0 Then
-                'dung
                 ClearControlValue(rdFromDate, rdToDate, txtYear, txtSchool, cboTrainingForm, txtChuyenNganh,
                                           cboTrainingType, cboBangCap, is_Renew, txtResultTrain, rdDayGra,
                                           rdEffectFrom, rdEffectTo, txtRemark, txtUploadFile, btnUploadFile,
                                           btnDownload)
                 Exit Sub
             End If
-
             ClearControlValue(rdFromDate, rdToDate, txtYear, txtSchool, cboTrainingForm, txtChuyenNganh,
                                           cboTrainingType, cboBangCap, is_Renew, txtResultTrain, rdDayGra,
                                           rdEffectFrom, rdEffectTo, txtRemark, txtUploadFile, btnUploadFile,
@@ -701,59 +660,26 @@ Public Class ctrlInfoCertificate
             CurrentState = CommonMessage.STATE_NORMAL
             Dim item = CType(rgCetificate.SelectedItems(rgCetificate.SelectedItems.Count - 1), GridDataItem)
             hidFamilyID.Value = item.GetDataKeyValue("ID")
-            'txtAdress.Text = item.GetDataKeyValue("ADDRESS")
-            'txtIDNO.Text = item.GetDataKeyValue("ID_NO")
-            'txtFullName.Text = item.GetDataKeyValue("FULLNAME")
-            'txtTax.Text = item.GetDataKeyValue("TAXTATION")
-            'txtRemark.Text = item.GetDataKeyValue("REMARK")
-            'rdBirthDate.SelectedDate = item.GetDataKeyValue("BIRTH_DATE")
-            'chkIsDeduct.Checked = item.GetDataKeyValue("IS_DEDUCT")
-            'rdDeductReg.SelectedDate = item.GetDataKeyValue("DEDUCT_REG")
-            'rdDeductFrom.SelectedDate = item.GetDataKeyValue("DEDUCT_FROM")
-            'rdDeductTo.SelectedDate = item.GetDataKeyValue("DEDUCT_TO")
-            'cboRelationship.SelectedValue = item.GetDataKeyValue("RELATION_ID")
-            'txtCareer.Text = item.GetDataKeyValue("CAREER")
-            'txtTitle.Text = item.GetDataKeyValue("TITLE_NAME")
-            'cboNguyenQuan.SelectedValue = item.GetDataKeyValue("PROVINCE_ID")
-            'txtHouseCertificate_Code.Text = item.GetDataKeyValue("CERTIFICATE_CODE")
-            'txtHouseCertificate_Num.Text = item.GetDataKeyValue("CERTIFICATE_NUM")
-            'txtTempAdress.Text = item.GetDataKeyValue("ADDRESS_TT")
-            'txtAD_Village.Text = item.GetDataKeyValue("AD_VILLAGE")
-            'Using rep As New ProfileRepository
-            '    If cbPROVINCE_ID.SelectedValue <> "" Then
-            '        Dim dt As DataTable = rep.GetDistrictList(cbPROVINCE_ID.SelectedValue, False)
-            '        FillRadCombobox(cbDISTRICT_ID, dt, "NAME", "ID")
-            '    End If
-            '    If IsNumeric(item.GetDataKeyValue("AD_DISTRICT_ID")) Then
-            '        cbDISTRICT_ID.SelectedValue = item.GetDataKeyValue("AD_DISTRICT_ID")
-            '    End If
-            '    If cbDISTRICT_ID.SelectedValue <> "" Then
-            '        Dim dt As DataTable = rep.GetWardList(cbDISTRICT_ID.SelectedValue, False)
-            '        FillRadCombobox(cbWARD_ID, dt, "NAME", "ID")
-            '    End If
-            '    If IsNumeric(item.GetDataKeyValue("AD_WARD_ID")) Then
-            '        cbWARD_ID.SelectedValue = item.GetDataKeyValue("AD_WARD_ID")
-            '    End If
-            '    If cbTempPROVINCE_ID.SelectedValue <> "" Then
-            '        Dim dt As DataTable = rep.GetDistrictList(cbTempPROVINCE_ID.SelectedValue, False)
-            '        FillRadCombobox(cbTempDISTRICT_ID, dt, "NAME", "ID")
-            '    End If
-            '    If IsNumeric(item.GetDataKeyValue("TT_DISTRICT_ID")) Then
-            '        cbTempDISTRICT_ID.SelectedValue = item.GetDataKeyValue("TT_DISTRICT_ID")
-            '    End If
-            '    If cbTempDISTRICT_ID.SelectedValue <> "" Then
-            '        Dim dt As DataTable = rep.GetWardList(cbTempDISTRICT_ID.SelectedValue, False)
-            '        FillRadCombobox(cbTempWARD_ID, dt, "NAME", "ID")
-            '    End If
-            '    If IsNumeric(item.GetDataKeyValue("TT_WARD_ID")) Then
-            '        cbTempWARD_ID.SelectedValue = item.GetDataKeyValue("TT_WARD_ID")
-            '    End If
-            'End Using
-            'chkIs_Owner.Checked = item.GetDataKeyValue("IS_OWNER")
-            'chkIs_Pass.Checked = item.GetDataKeyValue("IS_PASS")
+            rdFromDate.SelectedDate = item.GetDataKeyValue("FROM_DATE")
+            rdToDate.SelectedDate = item.GetDataKeyValue("TO_DATE")
+            txtYear.Text = item.GetDataKeyValue("YEAR_GRA")
+            txtSchool.Text = item.GetDataKeyValue("NAME_SHOOLS")
+            cboTrainingForm.Text = item.GetDataKeyValue("FORM_TRAIN_NAME")
+            cboTrainingForm.SelectedValue = item.GetDataKeyValue("FORM_TRAIN_ID")
+            txtChuyenNganh.Text = item.GetDataKeyValue("SPECIALIZED_TRAIN")
+            cboTrainingType.Text = item.GetDataKeyValue("TYPE_TRAIN_NAME")
+            cboTrainingType.SelectedValue = item.GetDataKeyValue("TYPE_TRAIN_ID")
+            txtResultTrain.Text = item.GetDataKeyValue("RESULT_TRAIN")
+            cboBangCap.Text = item.GetDataKeyValue("CERTIFICATE")
+            is_Renew.Checked = item.GetDataKeyValue("IS_RENEWED")
+            cboBangCap.SelectedValue = item.GetDataKeyValue("CERTIFICATE_ID")
+            rdDayGra.SelectedDate = item.GetDataKeyValue("RECEIVE_DEGREE_DATE")
+            rdEffectFrom.SelectedDate = item.GetDataKeyValue("EFFECTIVE_DATE_FROM")
+            rdEffectTo.SelectedDate = item.GetDataKeyValue("EFFECTIVE_DATE_TO")
+            txtUploadFile.Text = item.GetDataKeyValue("FILE_NAME")
+            txtRemindLink.Text = item.GetDataKeyValue("UPLOAD_FILE")
             hidFamilyID.Value = item.GetDataKeyValue("ID")
             hidID.Value = ""
-            'chkIsDeduct_CheckedChanged(Nothing, Nothing)
             UpdateControlState()
         Catch ex As Exception
             Throw ex

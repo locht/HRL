@@ -352,5 +352,6 @@
                 pane2.set_height(splitter.get_height() - oldSize - 1);
             }
         }
+
     </script>
 </tlk:RadCodeBlock>

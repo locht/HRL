@@ -228,7 +228,7 @@
                     Visible="true">
                 </tlk:GridBoundColumn>
                 <tlk:GridBoundColumn DataField="RECEIVE_DEGREE_DATE" HeaderText="Ngày nhận bằng"
-                    ItemStyle-HorizontalAlign="Center" DataFormatString="{0:dd/MM/yyyy}" SortExpression="EFFECTIVE_DATE_FROM"
+                    ItemStyle-HorizontalAlign="Center" DataFormatString="{0:dd/MM/yyyy}" SortExpression="RECEIVE_DEGREE_DATE"
                     UniqueName="RECEIVE_DEGREE_DATE">
                 </tlk:GridBoundColumn>
                 <tlk:GridDateTimeColumn HeaderText="Ngày hiệu lực" DataField="EFFECTIVE_DATE_FROM"
@@ -259,75 +259,76 @@
         <ClientSettings EnableRowHoverStyle="true" EnablePostBackOnRowClick="true">
             <Selecting AllowRowSelect="true" />
         </ClientSettings>
-        <MasterTableView DataKeyNames="ID" ClientDataKeyNames="ID" Caption="<%$ Translate: Thông tin hiện tại %>">
+        <MasterTableView DataKeyNames="ID,EMPLOYEE_ID,FROM_DATE,TO_DATE,YEAR_GRA,NAME_SHOOLS,FORM_TRAIN_NAME,SPECIALIZED_TRAIN,TYPE_TRAIN_NAME,RESULT_TRAIN,CERTIFICATE,RECEIVE_DEGREE_DATE,EFFECTIVE_DATE_FROM,EFFECTIVE_DATE_TO,UPLOAD_FILE,FILE_NAME,FORM_TRAIN_ID,TYPE_TRAIN_ID,CERTIFICATE_ID,IS_RENEWED" 
+        ClientDataKeyNames="ID,EMPLOYEE_ID,FROM_DATE,TO_DATE,YEAR_GRA,NAME_SHOOLS,FORM_TRAIN_NAME,SPECIALIZED_TRAIN,TYPE_TRAIN_NAME,RESULT_TRAIN,CERTIFICATE,RECEIVE_DEGREE_DATE,EFFECTIVE_DATE_FROM,EFFECTIVE_DATE_TO,UPLOAD_FILE,FILE_NAME,FORM_TRAIN_ID,TYPE_TRAIN_ID,CERTIFICATE_ID,IS_RENEWED" 
+        Caption="<%$ Translate: Thông tin hiện tại %>">
             <Columns>
                 <tlk:GridButtonColumn HeaderText="" Text="Sửa" CommandName="EditRow">
                     <HeaderStyle Wrap="False" Width="60px" />
                     <ItemStyle Font-Underline="true" Wrap="false" Width="60px" ForeColor="Blue" />
                 </tlk:GridButtonColumn>
-                <tlk:GridBoundColumn HeaderText="<%$ Translate: Lĩnh vực đào tạo %>" DataField=""
-                    UniqueName="" SortExpression="">
-                    <HeaderStyle HorizontalAlign="Center" />
+                <tlk:GridBoundColumn DataField="ID" HeaderText="ID" UniqueName="ID" Display="false">
                 </tlk:GridBoundColumn>
-                <tlk:GridDateTimeColumn UniqueName="" HeaderText="<%$ Translate: Thời gian đào tạo từ tháng %>"
-                    ReadOnly="True" DataFormatString="{0:dd/MM/yyyy}" DataField="">
-                    <HeaderStyle HorizontalAlign="Center" />
+                <tlk:GridDateTimeColumn DataField="FROM_DATE" HeaderText="Từ tháng" UniqueName="FROM_DATE"
+                    ShowFilterIcon="false" AutoPostBackOnFilter="true" CurrentFilterFunction="EqualTo"
+                    Visible="true" DataFormatString="{0:MM/yyyy}">
+                    <HeaderStyle Width="120px" />
+                    <ItemStyle Width="120px" />
                 </tlk:GridDateTimeColumn>
-                <tlk:GridDateTimeColumn UniqueName="" HeaderText="<%$ Translate: Đến tháng %>" ReadOnly="True"
-                    DataFormatString="{0:dd/MM/yyyy}" DataField="">
-                    <HeaderStyle HorizontalAlign="Center" />
+                <tlk:GridDateTimeColumn DataField="TO_DATE" HeaderText="Tới tháng" UniqueName="TO_DATE"
+                    ShowFilterIcon="false" AutoPostBackOnFilter="true" DataFormatString="{0:MM/yyyy}"
+                    CurrentFilterFunction="EqualTo" Visible="true">
+                    <HeaderStyle Width="120px" />
+                    <ItemStyle Width="120px" />
                 </tlk:GridDateTimeColumn>
-                <tlk:GridBoundColumn HeaderText="<%$ Translate: Tên trường %>" DataField="" UniqueName=""
-                    SortExpression="">
-                    <HeaderStyle HorizontalAlign="Center" />
+                 <tlk:GridBoundColumn DataField="YEAR_GRA" HeaderText="Năm tốt nghiệp" UniqueName="YEAR_GRA"
+                    ShowFilterIcon="false" AutoPostBackOnFilter="true" CurrentFilterFunction="Contains"
+                    Visible="true">
                 </tlk:GridBoundColumn>
-                <tlk:GridBoundColumn HeaderText="<%$ Translate: Chuyên ngành %>" DataField="" UniqueName=""
-                    SortExpression="">
-                    <HeaderStyle HorizontalAlign="Center" />
+                <tlk:GridBoundColumn DataField="NAME_SHOOLS" HeaderText="Tên trường" UniqueName="NAME_SHOOLS"
+                    ShowFilterIcon="false" AutoPostBackOnFilter="true" CurrentFilterFunction="Contains"
+                    Visible="true">
                 </tlk:GridBoundColumn>
-                <tlk:GridBoundColumn HeaderText="<%$ Translate: Trình độ %>" DataField="" UniqueName=""
-                    SortExpression="">
-                    <HeaderStyle HorizontalAlign="Center" />
+                <tlk:GridBoundColumn DataField="FORM_TRAIN_NAME" HeaderText="Hình thức đào tạo" UniqueName="FORM_TRAIN_NAME"
+                    ShowFilterIcon="false" AutoPostBackOnFilter="true" CurrentFilterFunction="Contains"
+                    Visible="true">
                 </tlk:GridBoundColumn>
-                <tlk:GridBoundColumn HeaderText="<%$ Translate: Điểm số %>" DataField="" UniqueName=""
-                    SortExpression="">
-                    <HeaderStyle HorizontalAlign="Center" />
+                <tlk:GridBoundColumn DataField="SPECIALIZED_TRAIN" HeaderText="Chuyên ngành" UniqueName="SPECIALIZED_TRAIN"
+                    ShowFilterIcon="false" AutoPostBackOnFilter="true" CurrentFilterFunction="Contains"
+                    Visible="true">
                 </tlk:GridBoundColumn>
-                <tlk:GridBoundColumn HeaderText="<%$ Translate: Nội dung đào tạo %>" DataField=""
-                    UniqueName="" SortExpression="">
-                    <HeaderStyle HorizontalAlign="Center" />
+                <tlk:GridBoundColumn DataField="TYPE_TRAIN_NAME" HeaderText="Loại hình đào tạo" UniqueName="TYPE_TRAIN_NAME"
+                    ShowFilterIcon="false" AutoPostBackOnFilter="true" CurrentFilterFunction="Contains"
+                    Visible="true">
                 </tlk:GridBoundColumn>
-                <tlk:GridBoundColumn HeaderText="<%$ Translate: Loại hình đào tạo %>" DataField=""
-                    UniqueName="" SortExpression="">
-                    <HeaderStyle HorizontalAlign="Center" />
+                <tlk:GridBoundColumn DataField="RESULT_TRAIN" HeaderText="Kết quả" UniqueName="RESULT_TRAIN"
+                    ShowFilterIcon="false" AutoPostBackOnFilter="true" CurrentFilterFunction="Contains"
+                    Visible="true">
                 </tlk:GridBoundColumn>
-                <tlk:GridBoundColumn HeaderText="<%$ Translate: Mã số chứng chỉ %>" DataField=""
-                    UniqueName="" SortExpression="">
-                    <HeaderStyle HorizontalAlign="Center" />
+                <tlk:GridBoundColumn DataField="CERTIFICATE" HeaderText="Bằng cấp" UniqueName="CERTIFICATE"
+                    ShowFilterIcon="false" AutoPostBackOnFilter="true" CurrentFilterFunction="Contains"
+                    Visible="true">
                 </tlk:GridBoundColumn>
-                <tlk:GridDateTimeColumn UniqueName="" HeaderText="<%$ Translate: Hiệu lực chứng chỉ từ %>"
-                    ReadOnly="True" DataFormatString="{0:dd/MM/yyyy}" DataField="">
-                    <HeaderStyle HorizontalAlign="Center" />
+                <tlk:GridBoundColumn DataField="RECEIVE_DEGREE_DATE" HeaderText="Ngày nhận bằng"
+                    ItemStyle-HorizontalAlign="Center" DataFormatString="{0:dd/MM/yyyy}" SortExpression="RECEIVE_DEGREE_DATE"
+                    UniqueName="RECEIVE_DEGREE_DATE">
+                </tlk:GridBoundColumn>
+                <tlk:GridDateTimeColumn HeaderText="Ngày hiệu lực" DataField="EFFECTIVE_DATE_FROM"
+                    ItemStyle-HorizontalAlign="Center" DataFormatString="{0:dd/MM/yyyy}" SortExpression="EFFECTIVE_DATE_FROM"
+                    UniqueName="EFFECTIVE_DATE_FROM">
                 </tlk:GridDateTimeColumn>
-                <tlk:GridDateTimeColumn UniqueName="" HeaderText="<%$ Translate: Hiệu lực chứng chỉ đến %>"
-                    ReadOnly="True" DataFormatString="{0:dd/MM/yyyy}" DataField="">
-                    <HeaderStyle HorizontalAlign="Center" />
+                <tlk:GridDateTimeColumn HeaderText="Ngày hết hiệu lực" DataField="EFFECTIVE_DATE_TO"
+                    ItemStyle-HorizontalAlign="Center" DataFormatString="{0:dd/MM/yyyy}" SortExpression="EFFECTIVE_DATE_TO"
+                    UniqueName="EFFECTIVE_DATE_TO">
                 </tlk:GridDateTimeColumn>
-                <tlk:GridBoundColumn HeaderText="<%$ Translate: Xếp loại tốt nghiệp %>" DataField=""
-                    UniqueName="" SortExpression="">
-                    <HeaderStyle HorizontalAlign="Center" />
+                
+                <tlk:GridBoundColumn HeaderText="Trạng thái" DataField="UPLOAD_FILE" UniqueName="UPLOAD_FILE"
+                    SortExpression="UPLOAD_FILE" AutoPostBackOnFilter="true" CurrentFilterFunction="Contains"
+                    Visible="false">
                 </tlk:GridBoundColumn>
-                <tlk:GridBoundColumn HeaderText="<%$ Translate: Năm tốt nghiệp %>" DataField="" UniqueName=""
-                    SortExpression="">
-                    <HeaderStyle HorizontalAlign="Center" />
-                </tlk:GridBoundColumn>
-                <tlk:GridBoundColumn HeaderText="<%$ Translate: Tệp tin %>" DataField="" UniqueName=""
-                    SortExpression="">
-                    <HeaderStyle HorizontalAlign="Center" />
-                </tlk:GridBoundColumn>
-                <tlk:GridBoundColumn HeaderText="<%$ Translate: Ghi chú %>" DataField="" UniqueName=""
-                    SortExpression="">
-                    <HeaderStyle HorizontalAlign="Center" />
+                <tlk:GridBoundColumn HeaderText="Trạng thái" DataField="FILE_NAME" UniqueName="FILE_NAME"
+                    SortExpression="FILE_NAME" AutoPostBackOnFilter="true" CurrentFilterFunction="Contains"
+                    Visible="false">
                 </tlk:GridBoundColumn>
             </Columns>
         </MasterTableView>
