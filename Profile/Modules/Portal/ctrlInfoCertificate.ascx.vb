@@ -57,7 +57,7 @@ Public Class ctrlInfoCertificate
 
     Public Overrides Sub ViewInit(ByVal e As System.EventArgs)
         InitControl()
-      
+
     End Sub
 
     Protected Sub InitControl()
@@ -88,19 +88,16 @@ Public Class ctrlInfoCertificate
         Try
             Dim ComboBoxDataDTO As New ComboBoxDataDTO
             Using rep As New ProfileRepository
-                
-                ComboBoxDataDTO.GET_FIELD_TRAIN = True
-                ComboBoxDataDTO.GET_MAJOR_TRAIN = True
-                ComboBoxDataDTO.GET_LEVEL_TRAIN = True
+                ComboBoxDataDTO.GET_TRAINING_FORM = True
+                ComboBoxDataDTO.GET_TRAINING_TYPE = True
+                ComboBoxDataDTO.GET_CERTIFICATE_TYPE = True
                 rep.GetComboList(ComboBoxDataDTO)
                 If ComboBoxDataDTO IsNot Nothing Then
-                    FillDropDownList(cbField, ComboBoxDataDTO.LIST_FIELD_TRAIN, "NAME_VN", "ID", Common.Common.SystemLanguage, True, cbField.SelectedValue)
-                    FillDropDownList(cbLevel, ComboBoxDataDTO.LIST_LEVEL_TRAIN, "NAME_VN", "ID", Common.Common.SystemLanguage, True, cbLevel.SelectedValue)
-                    FillDropDownList(cbMajor, ComboBoxDataDTO.LIST_MAJOR_TRAIN, "NAME_VN", "ID", Common.Common.SystemLanguage, True, cbMajor.SelectedValue)
-
+                    FillDropDownList(cboTrainingForm, ComboBoxDataDTO.LIST_TRAINING_FORM, "NAME_VN", "ID", Common.Common.SystemLanguage, True, cboTrainingForm.SelectedValue)
+                    FillDropDownList(cboTrainingType, ComboBoxDataDTO.LIST_TRAINING_TYPE, "NAME_VN", "ID", Common.Common.SystemLanguage, True, cboTrainingType.SelectedValue)
+                    FillDropDownList(cboBangCap, ComboBoxDataDTO.LIST_CERTIFICATE_TYPE, "NAME_VN", "ID", Common.Common.SystemLanguage, True, cboBangCap.SelectedValue)
                 End If
             End Using
-
             Dim dic As New Dictionary(Of String, Control)
             'dic.Add("ADDRESS", txtAdress)
             'dic.Add("ID_NO", txtIDNO)
@@ -118,27 +115,25 @@ Public Class ctrlInfoCertificate
             'dic.Add("TITLE_NAME", txtTitle)
             'dic.Add("PROVINCE_ID", cboNguyenQuan)
             Utilities.OnClientRowSelectedChanged(rgCetificate, dic)
-
             Dim dic1 As New Dictionary(Of String, Control)
-            dic1.Add("CODE_CERTIFICATE", txtCodeCertificate)
-            dic1.Add("FIELD", cbField)
             dic1.Add("FROM_DATE", rdFromDate)
             dic1.Add("TO_DATE", rdToDate)
-            dic1.Add("REMARK", txtRemark)
-            dic1.Add("MAJOR", cbMajor)
-            dic1.Add("LEVEL", cbLevel)
-            dic1.Add("MARK", txtMark)
-            dic1.Add("CONTENT_NAME", txtContentTrain)
-            dic1.Add("TYPE_NAME", txtTypeTrain)
-            dic1.Add("EFFECT_FROM", rdEffectFrom)
-            dic1.Add("EFFECT_TO", rdEffectTo)
-            dic1.Add("ID", hidID)
+            dic1.Add("YEAR_GRA", txtYear)
+            dic1.Add("NAME_SCHOOLS", txtSchool)
+            dic1.Add("FORM_TRAIN_ID", cboTrainingForm)
+            dic1.Add("SPECIALIZED_TRAIN", txtChuyenNganh)
+            dic1.Add("TYPE_TRAIN_ID", cboTrainingType)
+            dic1.Add("CERTIFICATE", cboBangCap)
+            dic1.Add("IS_RENEW", is_Renew)
+            dic1.Add("RESULT_TRAIN", txtResultTrain)
+            dic1.Add("RECEIVE_DEGREE_DATE", rdDayGra)
+            dic1.Add("EFFECTIVE_DATE_FROM", rdEffectFrom)
+            dic1.Add("EFFECTIVE_DATE_TO", rdEffectTo)
             dic1.Add("FK_PKEY", hidFamilyID)
-            dic1.Add("CLASSIFICATION", txtClassification)
-            dic1.Add("YEAR", txtYear)
-            dic1.Add("FILENAME", txtUploadFile)
+            dic1.Add("ID", hidID)
+            dic1.Add("FILE_NAME", txtUploadFile)
+            dic1.Add("UPLOAD_FILE", btnUploadFile)
             Utilities.OnClientRowSelectedChanged(rgCetificateEdit, dic1)
-
         Catch ex As Exception
             DisplayException(Me.ViewName, Me.ID, ex)
         End Try
@@ -149,10 +144,10 @@ Public Class ctrlInfoCertificate
             Select Case CurrentState
                 Case CommonMessage.STATE_NORMAL
                     'dung
-                    EnableControlAll(False, cbField, rdFromDate, rdToDate, txtSchool, cbMajor, cbLevel,
-                                     txtMark, txtContentTrain, txtTypeTrain, txtCodeCertificate, rdEffectFrom,
-                                     rdEffectTo, txtClassification, txtYear, is_Renew, txtRemark, txtUploadFile, btnUploadFile, btnDownload)
-
+                    EnableControlAll(False, rdFromDate, rdToDate, txtYear, txtSchool, cboTrainingForm, txtChuyenNganh,
+                                          cboTrainingType, cboBangCap, is_Renew, txtResultTrain, rdDayGra,
+                                          rdEffectFrom, rdEffectTo, txtRemark, txtUploadFile, btnUploadFile,
+                                          btnDownload)
                     'If Not chkIsDeduct.Checked Then
                     '    chkIsDeduct_CheckedChanged(Nothing, Nothing)
                     'End If
@@ -161,9 +156,10 @@ Public Class ctrlInfoCertificate
                     EnabledGridNotPostback(rgCetificateEdit, True)
                 Case CommonMessage.STATE_NEW
                     'dung
-                    EnableControlAll(True, cbField, rdFromDate, rdToDate, txtSchool, cbMajor, cbLevel,
-                                     txtMark, txtContentTrain, txtTypeTrain, txtCodeCertificate, rdEffectFrom,
-                                     rdEffectTo, txtClassification, txtYear, is_Renew, txtRemark, txtUploadFile, btnUploadFile, btnDownload)
+                    EnableControlAll(True, rdFromDate, rdToDate, txtYear, txtSchool, cboTrainingForm, txtChuyenNganh,
+                                          cboTrainingType, cboBangCap, is_Renew, txtResultTrain, rdDayGra,
+                                          rdEffectFrom, rdEffectTo, txtRemark, txtUploadFile, btnUploadFile,
+                                          btnDownload)
 
                     'If Not chkIsDeduct.Checked Then
                     '    chkIsDeduct_CheckedChanged(Nothing, Nothing)
@@ -173,9 +169,10 @@ Public Class ctrlInfoCertificate
                     EnabledGridNotPostback(rgCetificateEdit, False)
                 Case CommonMessage.STATE_EDIT
                     'dung
-                    EnableControlAll(True, cbField, rdFromDate, rdToDate, txtSchool, cbMajor, cbLevel,
-                                     txtMark, txtContentTrain, txtTypeTrain, txtCodeCertificate, rdEffectFrom,
-                                     rdEffectTo, txtClassification, txtYear, is_Renew, txtRemark, txtUploadFile, btnUploadFile, btnDownload)
+                    EnableControlAll(True, rdFromDate, rdToDate, txtYear, txtSchool, cboTrainingForm, txtChuyenNganh,
+                                          cboTrainingType, cboBangCap, is_Renew, txtResultTrain, rdDayGra,
+                                          rdEffectFrom, rdEffectTo, txtRemark, txtUploadFile, btnUploadFile,
+                                          btnDownload)
 
                     'If Not chkIsDeduct.Checked Then
                     '    chkIsDeduct_CheckedChanged(Nothing, Nothing)
@@ -203,48 +200,44 @@ Public Class ctrlInfoCertificate
                 Case CommonMessage.TOOLBARITEM_CREATE
                     CurrentState = CommonMessage.STATE_NEW
                     'dung
-                    ClearControlValue(cbField, rdFromDate, rdToDate, txtSchool, cbMajor, cbLevel,
-                                     txtMark, txtContentTrain, txtTypeTrain, txtCodeCertificate, rdEffectFrom,
-                                     rdEffectTo, txtClassification, txtYear, is_Renew, txtRemark, txtUploadFile, btnUploadFile, btnDownload, hidFamilyID)
+                    ClearControlValue(rdFromDate, rdToDate, txtYear, txtSchool, cboTrainingForm, txtChuyenNganh,
+                                          cboTrainingType, cboBangCap, is_Renew, txtResultTrain, rdDayGra,
+                                          rdEffectFrom, rdEffectTo, txtRemark, txtUploadFile, btnUploadFile,
+                                          btnDownload, hidFamilyID, hidID)
                     UpdateControlState()
                 Case CommonMessage.TOOLBARITEM_SAVE
                     If Page.IsValid Then
                         Dim isInsert As Boolean = True
 
-                        Dim obj As New CETIFICATE_EDITDTO
+                        Dim obj As New HU_PRO_TRAIN_OUT_COMPANYDTOEDIT
                         obj.EMPLOYEE_ID = EmployeeID
-                        If cbField.SelectedValue <> "" Then
-                            obj.FIELD = cbField.SelectedValue
-                        End If
+
                         obj.FROM_DATE = rdFromDate.SelectedDate
                         obj.TO_DATE = rdToDate.SelectedDate
-                        obj.SCHOOL_NAME = txtSchool.Text
-                        If cbMajor.SelectedValue <> "" Then
-                            obj.MAJOR = cbMajor.SelectedValue
-                        End If
-                        If cbLevel.SelectedValue <> "" Then
-                            obj.LEVEL = cbLevel.SelectedValue
-                        End If
-                        If txtMark.Text <> "" Then
-                            obj.MARK = txtMark.Text
-                        End If
-
-                        obj.CONTENT_NAME = txtContentTrain.Text
-                        obj.TYPE_NAME = txtTypeTrain.Text
-                        obj.CODE_CERTIFICATE = txtCodeCertificate.Text
-                        obj.EFFECT_FROM = rdEffectFrom.SelectedDate
-                        obj.EFFECT_TO = rdEffectTo.SelectedDate
-                        obj.CLASSIFICATION = txtClassification.Text
                         If txtYear.Text <> "" Then
-                            obj.YEAR = txtYear.Text
+                            obj.YEAR_GRA = txtYear.Text
                         End If
-                        obj.RENEW = is_Renew.Checked
-                        obj.REMARK = txtRemark.Text
-                        obj.FILENAME = txtUploadFile.Text
+                        obj.NAME_SHOOLS = txtSchool.Text
+                        If cboTrainingForm.SelectedValue <> "" Then
+                            obj.FORM_TRAIN_ID = cboTrainingForm.SelectedValue
+                        End If
+                        obj.SPECIALIZED_TRAIN = txtChuyenNganh.Text
+                        If cboTrainingType.SelectedValue <> "" Then
+                            obj.TYPE_TRAIN_ID = cboTrainingType.SelectedValue
+                        End If
+                        If cboBangCap.SelectedValue <> "" Then
+                            obj.CERTIFICATE = cboBangCap.SelectedValue
+                        End If
+                        obj.IS_RENEWED = is_Renew.Checked
+                        obj.RESULT_TRAIN = txtResultTrain.Text
+                        obj.RECEIVE_DEGREE_DATE = rdDayGra.SelectedDate
+                        obj.EFFECTIVE_DATE_FROM = rdEffectFrom.SelectedDate
+                        obj.EFFECTIVE_DATE_TO = rdEffectTo.SelectedDate
+                        obj.FILE_NAME = txtUploadFile.Text
                         If Down_File = Nothing Then
-                            obj.UPLOAD = If(txtRemindLink.Text Is Nothing, "", txtRemindLink.Text)
+                            obj.UPLOAD_FILE = If(txtRemindLink.Text Is Nothing, "", txtRemindLink.Text)
                         Else
-                            obj.UPLOAD = If(Down_File Is Nothing, "", Down_File.ToString)
+                            obj.UPLOAD_FILE = If(Down_File Is Nothing, "", Down_File.ToString)
                         End If
                         Using rep As New ProfileBusinessRepository
                             If hidFamilyID.Value <> "" Then
@@ -316,9 +309,10 @@ Public Class ctrlInfoCertificate
                         ' chkIsDeduct_CheckedChanged(Nothing, Nothing)
                     Else
                         'dung
-                        ClearControlValue(cbField, rdFromDate, rdToDate, txtSchool, cbMajor, cbLevel,
-                                     txtMark, txtContentTrain, txtTypeTrain, txtCodeCertificate, rdEffectFrom,
-                                     rdEffectTo, txtClassification, txtYear, is_Renew, txtRemark, txtUploadFile, btnUploadFile, btnDownload)
+                        ClearControlValue(rdFromDate, rdToDate, txtYear, txtSchool, cboTrainingForm, txtChuyenNganh,
+                                          cboTrainingType, cboBangCap, is_Renew, txtResultTrain, rdDayGra,
+                                          rdEffectFrom, rdEffectTo, txtRemark, txtUploadFile, btnUploadFile,
+                                          btnDownload)
                     End If
 
 
@@ -374,9 +368,9 @@ Public Class ctrlInfoCertificate
 
     Private Sub rgCetificateEdit_NeedDataSource(ByVal source As Object, ByVal e As Telerik.Web.UI.GridNeedDataSourceEventArgs) Handles rgCetificateEdit.NeedDataSource
         Try
-            SetValueObjectByRadGrid(rgCetificateEdit, New CETIFICATE_EDITDTO)
+            SetValueObjectByRadGrid(rgCetificateEdit, New HU_PRO_TRAIN_OUT_COMPANYDTOEDIT)
             Using rep As New ProfileBusinessRepository
-                rgCetificateEdit.DataSource = rep.GetCertificateEdit(New CETIFICATE_EDITDTO With {.EMPLOYEE_ID = EmployeeID})
+                rgCetificateEdit.DataSource = rep.GetCertificateEdit(New HU_PRO_TRAIN_OUT_COMPANYDTOEDIT With {.EMPLOYEE_ID = EmployeeID})
             End Using
         Catch ex As Exception
             Me.DisplayException(Me.ViewName, Me.ID, ex)
@@ -402,27 +396,24 @@ Public Class ctrlInfoCertificate
                         CurrentState = CommonMessage.STATE_EDIT
                 End Select
                 hidFamilyID.Value = item.GetDataKeyValue("ID")
-                cbField.SelectedValue = item.GetDataKeyValue("FIELD")
-                cbField.Text = item.GetDataKeyValue("FIELD_NAME")
                 rdFromDate.SelectedDate = item.GetDataKeyValue("FROM_DATE")
                 rdToDate.SelectedDate = item.GetDataKeyValue("TO_DATE")
-                txtSchool.Text = item.GetDataKeyValue("SCHOOL_NAME")
-                cbMajor.SelectedValue = item.GetDataKeyValue("MAJOR")
-                cbMajor.Text = item.GetDataKeyValue("MAJOR_NAME")
-                cbLevel.SelectedValue = item.GetDataKeyValue("LEVEL")
-                cbLevel.Text = item.GetDataKeyValue("LEVEL_NAME")
-                txtMark.Text = item.GetDataKeyValue("MARK")
-                txtContentTrain.Text = item.GetDataKeyValue("CONTENT_NAME")
-                txtTypeTrain.Text = item.GetDataKeyValue("TYPE_NAME")
-                txtCodeCertificate.Text = item.GetDataKeyValue("CODE_CERTIFICATE")
-                rdEffectFrom.SelectedDate = item.GetDataKeyValue("EFFECT_FROM")
-                rdEffectTo.SelectedDate = item.GetDataKeyValue("EFFECT_TO")
-                txtClassification.Text = item.GetDataKeyValue("CLASSIFICATION")
-                txtYear.Text = item.GetDataKeyValue("YEAR")
-                is_Renew.Checked = item.GetDataKeyValue("RENEW")
-                txtRemark.Text = item.GetDataKeyValue("REMARK")
-                txtUploadFile.Text = item.GetDataKeyValue("FILENAME")
-                txtRemindLink.Text = item.GetDataKeyValue("UPLOAD")
+                txtYear.Text = item.GetDataKeyValue("YEAR_GRA")
+                txtSchool.Text = item.GetDataKeyValue("NAME_SHOOLS")
+                cboTrainingForm.Text = item.GetDataKeyValue("FORM_TRAIN_NAME")
+                cboTrainingForm.SelectedValue = item.GetDataKeyValue("FORM_TRAIN_ID")
+                txtChuyenNganh.Text = item.GetDataKeyValue("SPECIALIZED_TRAIN")
+                cboTrainingType.Text = item.GetDataKeyValue("TYPE_TRAIN_NAME")
+                cboTrainingType.SelectedValue = item.GetDataKeyValue("TYPE_TRAIN_ID")
+                txtResultTrain.Text = item.GetDataKeyValue("RESULT_TRAIN")
+                cboBangCap.Text = item.GetDataKeyValue("CERTIFICATE")
+                is_Renew.Checked = item.GetDataKeyValue("IS_RENEWED")
+                cboBangCap.SelectedValue = item.GetDataKeyValue("CERTIFICATE_ID")
+                rdDayGra.SelectedDate = item.GetDataKeyValue("EFFECTIVE_DATE_FROM")
+                rdEffectFrom.SelectedDate = item.GetDataKeyValue("EFFECTIVE_DATE_FROM")
+                rdEffectTo.SelectedDate = item.GetDataKeyValue("EFFECTIVE_DATE_TO")
+                txtUploadFile.Text = item.GetDataKeyValue("FILE_NAME")
+                txtRemindLink.Text = item.GetDataKeyValue("UPLOAD_FILE")
                 If item.GetDataKeyValue("FK_PKEY") IsNot Nothing Then
                     hidFamilyID.Value = item.GetDataKeyValue("FK_PKEY")
                 End If
@@ -506,7 +497,7 @@ Public Class ctrlInfoCertificate
         End Try
     End Sub
 
- 
+
 
     Private Sub ctrlMessageBox_ButtonCommand(ByVal sender As Object, ByVal e As MessageBoxEventArgs) Handles ctrlMessageBox.ButtonCommand
         Try
@@ -537,7 +528,7 @@ Public Class ctrlInfoCertificate
 
 #End Region
 
-    
+
     Private Sub btnUploadFile_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnUploadFile.Click
 
         ctrlUpload1.AllowedExtensions = "xls,xlsx,txt,ctr,doc,docx,xml,png,jpg,bitmap,jpeg,pdf"
@@ -566,7 +557,7 @@ Public Class ctrlInfoCertificate
                     Dim file As UploadedFile = ctrlUpload1.UploadedFiles(i)
                     Dim str_Filename = Guid.NewGuid.ToString() + "\"
                     If listExtension.Any(Function(x) x.ToUpper().Trim() = file.GetExtension.ToUpper().Trim()) Then
-                        
+
                         System.IO.Directory.CreateDirectory(strPath + str_Filename)
                         strPath = strPath + str_Filename
                         fileName = System.IO.Path.Combine(strPath, file.FileName)
@@ -651,44 +642,41 @@ Public Class ctrlInfoCertificate
             Throw ex
         End Try
     End Sub
-    
+
 
     Protected Sub rgFamilyEdit_SelectedIndexChanged(sender As Object, e As EventArgs) Handles rgCetificateEdit.SelectedIndexChanged
         Try
             'dung
-            ClearControlValue(cbField, rdFromDate, rdToDate, txtSchool, cbMajor, cbLevel,
-                                     txtMark, txtContentTrain, txtTypeTrain, txtCodeCertificate, rdEffectFrom,
-                                     rdEffectTo, txtClassification, txtYear, is_Renew, txtRemark, txtUploadFile, btnUploadFile, btnDownload)
+            ClearControlValue(rdFromDate, rdToDate, txtYear, txtSchool, cboTrainingForm, txtChuyenNganh,
+                                          cboTrainingType, cboBangCap, is_Renew, txtResultTrain, rdDayGra,
+                                          rdEffectFrom, rdEffectTo, txtRemark, txtUploadFile, btnUploadFile,
+                                          btnDownload)
 
             Dim item = CType(rgCetificateEdit.SelectedItems(rgCetificateEdit.SelectedItems.Count - 1), GridDataItem)
             CurrentState = CommonMessage.STATE_NORMAL
             hidFamilyID.Value = item.GetDataKeyValue("ID")
-            cbField.SelectedValue = item.GetDataKeyValue("FIELD")
-            cbField.Text = item.GetDataKeyValue("FIELD_NAME")
             rdFromDate.SelectedDate = item.GetDataKeyValue("FROM_DATE")
             rdToDate.SelectedDate = item.GetDataKeyValue("TO_DATE")
-            txtSchool.Text = item.GetDataKeyValue("SCHOOL_NAME")
-            cbMajor.SelectedValue = item.GetDataKeyValue("MAJOR")
-            cbMajor.Text = item.GetDataKeyValue("MAJOR_NAME")
-            cbLevel.SelectedValue = item.GetDataKeyValue("LEVEL")
-            cbLevel.Text = item.GetDataKeyValue("LEVEL_NAME")
-            txtMark.Text = item.GetDataKeyValue("MARK")
-            txtContentTrain.Text = item.GetDataKeyValue("CONTENT_NAME")
-            txtTypeTrain.Text = item.GetDataKeyValue("TYPE_NAME")
-            txtCodeCertificate.Text = item.GetDataKeyValue("CODE_CERTIFICATE")
-            rdEffectFrom.SelectedDate = item.GetDataKeyValue("EFFECT_FROM")
-            rdEffectTo.SelectedDate = item.GetDataKeyValue("EFFECT_TO")
-            txtClassification.Text = item.GetDataKeyValue("CLASSIFICATION")
-            txtYear.Text = item.GetDataKeyValue("YEAR")
-            is_Renew.Checked = item.GetDataKeyValue("RENEW")
-            txtRemark.Text = item.GetDataKeyValue("REMARK")
-            txtUploadFile.Text = item.GetDataKeyValue("FILENAME")
-            txtRemindLink.Text = item.GetDataKeyValue("UPLOAD")
+            txtYear.Text = item.GetDataKeyValue("YEAR_GRA")
+            is_Renew.Checked = item.GetDataKeyValue("IS_RENEWED")
+            txtSchool.Text = item.GetDataKeyValue("NAME_SHOOLS")
+            cboTrainingForm.Text = item.GetDataKeyValue("FORM_TRAIN_NAME")
+            cboTrainingForm.SelectedValue = item.GetDataKeyValue("FORM_TRAIN_ID")
+            txtChuyenNganh.Text = item.GetDataKeyValue("SPECIALIZED_TRAIN")
+            cboTrainingType.Text = item.GetDataKeyValue("TYPE_TRAIN_NAME")
+            cboTrainingType.SelectedValue = item.GetDataKeyValue("TYPE_TRAIN_ID")
+            txtResultTrain.Text = item.GetDataKeyValue("RESULT_TRAIN")
+            cboBangCap.Text = item.GetDataKeyValue("CERTIFICATE")
+            cboBangCap.SelectedValue = item.GetDataKeyValue("CERTIFICATE_ID")
+            rdDayGra.SelectedDate = item.GetDataKeyValue("EFFECTIVE_DATE_FROM")
+            rdEffectFrom.SelectedDate = item.GetDataKeyValue("EFFECTIVE_DATE_FROM")
+            rdEffectTo.SelectedDate = item.GetDataKeyValue("EFFECTIVE_DATE_TO")
+            txtUploadFile.Text = item.GetDataKeyValue("FILE_NAME")
+            txtRemindLink.Text = item.GetDataKeyValue("UPLOAD_FILE")
             If item.GetDataKeyValue("FK_PKEY") IsNot Nothing Then
                 hidFamilyID.Value = item.GetDataKeyValue("FK_PKEY")
             End If
             hidID.Value = item.GetDataKeyValue("ID")
-            'chkIsDeduct_CheckedChanged(Nothing, Nothing)
             UpdateControlState()
         Catch ex As Exception
             Throw ex
@@ -699,15 +687,17 @@ Public Class ctrlInfoCertificate
         Try
             If rgCetificate.SelectedItems.Count = 0 Then
                 'dung
-                ClearControlValue(cbField, rdFromDate, rdToDate, txtSchool, cbMajor, cbLevel,
-                                     txtMark, txtContentTrain, txtTypeTrain, txtCodeCertificate, rdEffectFrom,
-                                     rdEffectTo, txtClassification, txtYear, is_Renew, txtRemark, txtUploadFile, btnUploadFile, btnDownload)
+                ClearControlValue(rdFromDate, rdToDate, txtYear, txtSchool, cboTrainingForm, txtChuyenNganh,
+                                          cboTrainingType, cboBangCap, is_Renew, txtResultTrain, rdDayGra,
+                                          rdEffectFrom, rdEffectTo, txtRemark, txtUploadFile, btnUploadFile,
+                                          btnDownload)
                 Exit Sub
             End If
-            'dung
-            ClearControlValue(cbField, rdFromDate, rdToDate, txtSchool, cbMajor, cbLevel,
-                                     txtMark, txtContentTrain, txtTypeTrain, txtCodeCertificate, rdEffectFrom,
-                                     rdEffectTo, txtClassification, txtYear, is_Renew, txtRemark, txtUploadFile, btnUploadFile, btnDownload)
+
+            ClearControlValue(rdFromDate, rdToDate, txtYear, txtSchool, cboTrainingForm, txtChuyenNganh,
+                                          cboTrainingType, cboBangCap, is_Renew, txtResultTrain, rdDayGra,
+                                          rdEffectFrom, rdEffectTo, txtRemark, txtUploadFile, btnUploadFile,
+                                          btnDownload)
             CurrentState = CommonMessage.STATE_NORMAL
             Dim item = CType(rgCetificate.SelectedItems(rgCetificate.SelectedItems.Count - 1), GridDataItem)
             hidFamilyID.Value = item.GetDataKeyValue("ID")
@@ -765,6 +755,27 @@ Public Class ctrlInfoCertificate
             hidID.Value = ""
             'chkIsDeduct_CheckedChanged(Nothing, Nothing)
             UpdateControlState()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+    Protected Sub cboBangCap_SelectedIndexChanged(sender As Object, e As Telerik.Web.UI.RadComboBoxSelectedIndexChangedEventArgs) Handles cboBangCap.SelectedIndexChanged
+        Dim startTime As DateTime = DateTime.UtcNow
+        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+        rdEffectFrom.SelectedDate = Nothing
+        rdEffectTo.SelectedDate = Nothing
+        Try
+            If cboBangCap.SelectedItem.Text = "Chứng chỉ" Then
+                EnableControlAll(True, rdEffectFrom, rdEffectTo)
+                rqEffectFrom.Visible = True
+                rqEffectTo.Visible = True
+            Else
+                EnableControlAll(False, rdEffectFrom, rdEffectTo)
+                rqEffectFrom.Visible = False
+                rqEffectTo.Visible = False
+                rdEffectFrom.ClearValue()
+                rdEffectTo.ClearValue()
+            End If
         Catch ex As Exception
             Throw ex
         End Try

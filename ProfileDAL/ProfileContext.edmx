@@ -1663,7 +1663,7 @@
             <Property Name="FORM_TRAIN_ID" Type="number" Nullable="true" Precision="38" />
             <Property Name="SPECIALIZED_TRAIN" Type="nvarchar2" Nullable="true" MaxLength="255" />
             <Property Name="RESULT_TRAIN" Type="nvarchar2" Nullable="true" MaxLength="255" />
-            <Property Name="CERTIFICATE" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="CERTIFICATE" Type="number" Nullable="true" Precision="38" />
             <Property Name="EFFECTIVE_DATE_FROM" Type="date" Nullable="true" />
             <Property Name="EFFECTIVE_DATE_TO" Type="date" Nullable="true" />
             <Property Name="CREATED_DATE" Type="date" Nullable="true" />
@@ -1676,6 +1676,11 @@
             <Property Name="REASON_UNAPROVE" Type="nvarchar2" Nullable="true" MaxLength="250" />
             <Property Name="FK_PKEY" Type="number" Nullable="true" Precision="38" />
             <Property Name="SEND_DATE" Type="date" Nullable="true" />
+            <Property Name="UPLOAD_FILE" Type="nclob" Nullable="true" />
+            <Property Name="FILE_NAME" Type="nclob" Nullable="true" />
+            <Property Name="IS_RENEW" Type="number" Nullable="true" Precision="38" />
+            <Property Name="TYPE_TRAIN_ID" Type="number" Nullable="true" Precision="38" />
+            <Property Name="RECEIVE_DEGREE_DATE" Type="date" Nullable="true" />
         </EntityType>
         <EntityType Name="HU_WORKING_BEFORE_EDIT">
             <Key>
@@ -6044,7 +6049,7 @@
           <Property Type="Decimal" Name="FORM_TRAIN_ID" Precision="38" Scale="0" />
           <Property Type="String" Name="SPECIALIZED_TRAIN" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="RESULT_TRAIN" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="CERTIFICATE" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="Decimal" Name="CERTIFICATE" />
           <Property Type="DateTime" Name="EFFECTIVE_DATE_FROM" />
           <Property Type="DateTime" Name="EFFECTIVE_DATE_TO" />
           <Property Type="DateTime" Name="CREATED_DATE" />
@@ -6057,6 +6062,11 @@
           <Property Type="String" Name="REASON_UNAPROVE" MaxLength="250" FixedLength="false" Unicode="true" />
           <Property Type="Decimal" Name="FK_PKEY" Precision="38" Scale="0" />
           <Property Type="DateTime" Name="SEND_DATE" />
+          <Property Type="String" Name="UPLOAD_FILE" />
+          <Property Type="String" Name="FILE_NAME" />
+          <Property Type="Decimal" Name="IS_RENEW" />
+          <Property Type="Decimal" Name="TYPE_TRAIN_ID" />
+          <Property Type="DateTime" Name="RECEIVE_DEGREE_DATE" />
         </EntityType>
         <EntityType Name="HU_WORKING_BEFORE_EDIT">
           <Key>
@@ -9525,6 +9535,11 @@
                     <ScalarProperty Name="REASON_UNAPROVE" ColumnName="REASON_UNAPROVE" />
                     <ScalarProperty Name="FK_PKEY" ColumnName="FK_PKEY" />
                     <ScalarProperty Name="SEND_DATE" ColumnName="SEND_DATE" />
+                    <ScalarProperty Name="UPLOAD_FILE" ColumnName="UPLOAD_FILE" />
+                    <ScalarProperty Name="FILE_NAME" ColumnName="FILE_NAME" />
+                    <ScalarProperty Name="IS_RENEW" ColumnName="IS_RENEW" />
+                    <ScalarProperty Name="TYPE_TRAIN_ID" ColumnName="TYPE_TRAIN_ID" />
+                    <ScalarProperty Name="RECEIVE_DEGREE_DATE" ColumnName="RECEIVE_DEGREE_DATE" />
                 </MappingFragment>
             </EntityTypeMapping>
         </EntitySetMapping>
@@ -11800,7 +11815,7 @@
         <EntityTypeShape EntityType="ProfileModel.HU_ASSET_MNG" Width="1.5" PointX="16.25" PointY="25" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="ProfileModel.HU_FAMILY_EDIT" Width="2.125" PointX="16.625" PointY="16.375" Height="8.3262337239583353" IsExpanded="true" />
         <EntityTypeShape EntityType="ProfileModel.HU_EMPLOYEE_EDIT" Width="1.5" PointX="18.75" PointY="19.875" Height="0.40000000000000568" IsExpanded="false" />
-        <EntityTypeShape EntityType="ProfileModel.HU_PRO_TRAIN_OUT_COMPANY_EDIT" Width="2.875" PointX="2.375" PointY="31.875" Height="0.39999999999999147" IsExpanded="false" />
+        <EntityTypeShape EntityType="ProfileModel.HU_PRO_TRAIN_OUT_COMPANY_EDIT" Width="2.875" PointX="2.375" PointY="31.875" Height="6.2109179687500031" IsExpanded="true" />
         <EntityTypeShape EntityType="ProfileModel.HU_WORKING_BEFORE_EDIT" Width="2.125" PointX="23.125" PointY="0.5" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="ProfileModel.HU_WELFARE_MNG" Width="1.5" PointX="2.75" PointY="20.875" Height="0.39999999999999147" IsExpanded="false" />
         <EntityTypeShape EntityType="ProfileModel.HU_TERMINATE_3B" Width="1.5" PointX="20.75" PointY="4.875" Height="0.39999999999999147" IsExpanded="false" />

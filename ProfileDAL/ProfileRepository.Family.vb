@@ -8,77 +8,86 @@ Imports System.Reflection
 
 Partial Class ProfileRepository
 #Region "HU_CERTIFICATE_edit"
-    Public Function GetCertificateEdit(ByVal _filter As CETIFICATE_EDITDTO) As List(Of CETIFICATE_EDITDTO)
-        Dim query As ObjectQuery(Of CETIFICATE_EDITDTO)
+    Public Function GetCertificateEdit(ByVal _filter As HU_PRO_TRAIN_OUT_COMPANYDTOEDIT) As List(Of HU_PRO_TRAIN_OUT_COMPANYDTOEDIT)
+        Dim query As ObjectQuery(Of HU_PRO_TRAIN_OUT_COMPANYDTOEDIT)
         Try
-            query = (From p In Context.HU_CERTIFICATE_EDIT
-                     From e In Context.HU_EMPLOYEE.Where(Function(f) f.ID = p.EMPLOYEE_ID).DefaultIfEmpty
-                     From ot In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.FIELD_TRAIN).DefaultIfEmpty
-                     From ot1 In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.MAJOR).DefaultIfEmpty
-                     From ot2 In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.LEVEL_TRAIN).DefaultIfEmpty
-                     Select New CETIFICATE_EDITDTO With {
+            query = (From p In Context.HU_PRO_TRAIN_OUT_COMPANY_EDIT
+                    From ot In Context.OT_OTHER_LIST.Where(Function(F) F.ID = p.FORM_TRAIN_ID).DefaultIfEmpty
+                    From OT1 In Context.OT_OTHER_LIST.Where(Function(F) F.ID = p.CERTIFICATE).DefaultIfEmpty
+                    From OT2 In Context.OT_OTHER_LIST.Where(Function(F) F.ID = p.TYPE_TRAIN_ID).DefaultIfEmpty
+                     Select New HU_PRO_TRAIN_OUT_COMPANYDTOEDIT With {
                          .ID = p.ID,
-                         .FIELD = p.FIELD_TRAIN,
-                         .FIELD_NAME = ot.NAME_VN,
-                         .FROM_DATE = p.FROM_DATE,
-                         .TO_DATE = p.TO_DATE,
-                         .SCHOOL_NAME = p.SCHOOL_NAME,
-                         .MAJOR = p.MAJOR,
-                         .MAJOR_NAME = ot1.NAME_VN,
-                         .LEVEL = p.LEVEL_TRAIN,
-                         .FK_PKEY = p.FK_PKEY,
-                         .LEVEL_NAME = ot2.NAME_VN,
-                         .MARK = p.MARK,
-                         .CONTENT_NAME = p.CONTENT_TRAIN,
-                         .TYPE_NAME = p.TYPE_TRAIN,
-                         .CODE_CERTIFICATE = p.CODE_CETIFICATE,
-                         .EFFECT_FROM = p.EFFECT_FROM,
-                         .EFFECT_TO = p.EFFECT_TO,
-                         .CLASSIFICATION = p.CLASSIFICATION,
-                         .YEAR = p.YEAR,
-                         .REMARK = p.REMARK,
-                         .RENEW = p.RENEW,
-                         .UPLOAD = p.UPLOAD_FILE,
-                         .FILENAME = p.FILE_NAME,
-                          .STATUS = p.STATUS,
-                         .STATUS_NAME = If(p.STATUS = 0, "Chưa gửi duyệt",
+                        .EMPLOYEE_ID = p.EMPLOYEE_ID,
+                        .FROM_DATE = p.FROM_DATE,
+                        .TO_DATE = p.TO_DATE,
+                        .YEAR_GRA = p.YEAR_GRA,
+                        .NAME_SHOOLS = p.NAME_SHOOLS,
+                        .FORM_TRAIN_ID = p.FORM_TRAIN_ID,
+                        .FORM_TRAIN_NAME = ot.NAME_VN,
+                        .SPECIALIZED_TRAIN = p.SPECIALIZED_TRAIN,
+                        .RESULT_TRAIN = p.RESULT_TRAIN,
+                        .CERTIFICATE = ot.NAME_VN,
+                        .CERTIFICATE_ID = p.CERTIFICATE,
+                        .EFFECTIVE_DATE_FROM = p.EFFECTIVE_DATE_FROM,
+                        .EFFECTIVE_DATE_TO = p.EFFECTIVE_DATE_TO,
+                        .CREATED_BY = p.CREATED_BY,
+                         .IS_RENEWED = p.IS_RENEW,
+                         .TYPE_TRAIN_ID = p.TYPE_TRAIN_ID,
+                         .TYPE_TRAIN_NAME = OT2.NAME_VN,
+                        .CREATED_DATE = p.CREATED_DATE,
+                        .CREATED_LOG = p.CREATED_LOG,
+                        .MODIFIED_BY = p.MODIFIED_BY,
+                        .MODIFIED_DATE = p.MODIFIED_DATE,
+                        .MODIFIED_LOG = p.MODIFIED_LOG,
+                        .REASON_UNAPROVE = p.REASON_UNAPROVE,
+                        .FK_PKEY = p.FK_PKEY,
+                         .UPLOAD_FILE = p.UPLOAD_FILE,
+                         .FILE_NAME = p.FILE_NAME,
+                        .STATUS = p.STATUS,
+                        .STATUS_NAME = If(p.STATUS = 0, "Chưa gửi duyệt",
                                            If(p.STATUS = 1, "Chờ phê duyệt",
                                               If(p.STATUS = 2, "Phê duyệt",
                                                  If(p.STATUS = 3, "Không phê duyệt", ""))))})
+
+            If _filter.EMPLOYEE_ID <> 0 Then
+                query = query.Where(Function(p) p.EMPLOYEE_ID = _filter.EMPLOYEE_ID)
+            End If
+            If _filter.STATUS <> "" Then
+                query = query.Where(Function(p) p.STATUS = _filter.STATUS)
+            End If
+            If _filter.ID <> 0 Then
+                query = query.Where(Function(p) p.ID = _filter.ID)
+            End If
             Return query.ToList
         Catch ex As Exception
 
         End Try
     End Function
-    Public Function InsertCertificateEdit(ByVal objCertificateEdit As CETIFICATE_EDITDTO,
+    Public Function InsertCertificateEdit(ByVal objCertificateEdit As HU_PRO_TRAIN_OUT_COMPANYDTOEDIT,
                                              ByVal log As UserLog,
                                              ByRef gID As Decimal) As Boolean
         Try
 
-            Dim objCertificatetData As New HU_CERTIFICATE_EDIT
-            objCertificatetData.ID = Utilities.GetNextSequence(Context, Context.HU_CERTIFICATE_EDIT.EntitySet.Name)
-            objCertificatetData.EMPLOYEE_ID = objCertificateEdit.EMPLOYEE_ID
-            objCertificatetData.FIELD_TRAIN = objCertificateEdit.FIELD
+            Dim objCertificatetData As New HU_PRO_TRAIN_OUT_COMPANY_EDIT
+            objCertificatetData.ID = Utilities.GetNextSequence(Context, Context.HU_PRO_TRAIN_OUT_COMPANY_EDIT.EntitySet.Name)
             objCertificatetData.FROM_DATE = objCertificateEdit.FROM_DATE
             objCertificatetData.TO_DATE = objCertificateEdit.TO_DATE
-            objCertificatetData.SCHOOL_NAME = objCertificateEdit.SCHOOL_NAME
-            objCertificatetData.MAJOR = objCertificateEdit.MAJOR
-            objCertificatetData.LEVEL_TRAIN = objCertificateEdit.LEVEL
-            objCertificatetData.MARK = objCertificateEdit.MARK
-            objCertificatetData.CONTENT_TRAIN = objCertificateEdit.CONTENT_NAME
-            objCertificatetData.TYPE_TRAIN = objCertificateEdit.TYPE_NAME
-            objCertificatetData.CODE_CETIFICATE = objCertificateEdit.CODE_CERTIFICATE
-            objCertificatetData.EFFECT_FROM = objCertificateEdit.EFFECT_FROM
-            objCertificatetData.STATUS = 0
-            objCertificatetData.EFFECT_TO = objCertificateEdit.EFFECT_TO
+            objCertificatetData.YEAR_GRA = objCertificateEdit.YEAR_GRA
+            objCertificatetData.NAME_SHOOLS = objCertificateEdit.NAME_SHOOLS
+            objCertificatetData.UPLOAD_FILE = objCertificateEdit.UPLOAD_FILE
+            objCertificatetData.FILE_NAME = objCertificateEdit.FILE_NAME
+            objCertificatetData.FORM_TRAIN_ID = objCertificateEdit.FORM_TRAIN_ID
+            objCertificatetData.SPECIALIZED_TRAIN = objCertificateEdit.SPECIALIZED_TRAIN
+            objCertificatetData.RESULT_TRAIN = objCertificateEdit.RESULT_TRAIN
+            objCertificatetData.CERTIFICATE = objCertificateEdit.CERTIFICATE
+            objCertificatetData.EFFECTIVE_DATE_FROM = objCertificateEdit.EFFECTIVE_DATE_FROM
+            objCertificatetData.EFFECTIVE_DATE_TO = objCertificateEdit.EFFECTIVE_DATE_TO
+            objCertificatetData.EMPLOYEE_ID = objCertificateEdit.EMPLOYEE_ID
+            objCertificatetData.TYPE_TRAIN_ID = objCertificateEdit.TYPE_TRAIN_ID
             objCertificatetData.FK_PKEY = objCertificateEdit.FK_PKEY
-            objCertificatetData.CLASSIFICATION = objCertificateEdit.CLASSIFICATION
-            objCertificatetData.YEAR = objCertificateEdit.YEAR
-            objCertificatetData.FILE_NAME = objCertificateEdit.FILENAME
-            objCertificatetData.UPLOAD_FILE = objCertificateEdit.UPLOAD
-            objCertificatetData.RENEW = objCertificateEdit.RENEW
-            objCertificatetData.REMARK = objCertificateEdit.REMARK
-            Context.HU_CERTIFICATE_EDIT.AddObject(objCertificatetData)
+            objCertificatetData.RECEIVE_DEGREE_DATE = objCertificateEdit.RECEIVE_DEGREE_DATE
+            objCertificatetData.IS_RENEW = objCertificateEdit.IS_RENEWED
+            Context.HU_PRO_TRAIN_OUT_COMPANY_EDIT.AddObject(objCertificatetData)
             Context.SaveChanges(log)
             gID = objCertificatetData.ID
             Return True
@@ -87,33 +96,30 @@ Partial Class ProfileRepository
             Throw ex
         End Try
     End Function
-    Public Function ModifyCertificateEdit(ByVal objCertificateEdit As CETIFICATE_EDITDTO,
+    Public Function ModifyCertificateEdit(ByVal objCertificateEdit As HU_PRO_TRAIN_OUT_COMPANYDTOEDIT,
                                              ByVal log As UserLog,
                                              ByRef gID As Decimal) As Boolean
-        Dim objCertificatetData As New HU_CERTIFICATE_EDIT With {.ID = objCertificateEdit.ID}
+        Dim objCertificatetData As New HU_PRO_TRAIN_OUT_COMPANY_EDIT With {.ID = objCertificateEdit.ID}
         Try
-            objCertificatetData = (From p In Context.HU_CERTIFICATE_EDIT Where p.ID = objCertificateEdit.ID).FirstOrDefault
-            objCertificatetData.EMPLOYEE_ID = objCertificateEdit.EMPLOYEE_ID
-            objCertificatetData.FIELD_TRAIN = objCertificateEdit.FIELD
+            objCertificatetData = (From p In Context.HU_PRO_TRAIN_OUT_COMPANY_EDIT Where p.ID = objCertificateEdit.ID).FirstOrDefault
+            objCertificatetData.ID = objCertificateEdit.ID
             objCertificatetData.FROM_DATE = objCertificateEdit.FROM_DATE
             objCertificatetData.TO_DATE = objCertificateEdit.TO_DATE
-            objCertificatetData.SCHOOL_NAME = objCertificateEdit.SCHOOL_NAME
-            objCertificatetData.MAJOR = objCertificateEdit.MAJOR
-            objCertificatetData.LEVEL_TRAIN = objCertificateEdit.LEVEL
-            objCertificatetData.MARK = objCertificateEdit.MARK
-            objCertificatetData.CONTENT_TRAIN = objCertificateEdit.CONTENT_NAME
-            objCertificatetData.TYPE_TRAIN = objCertificateEdit.TYPE_NAME
-            objCertificatetData.CODE_CETIFICATE = objCertificateEdit.CODE_CERTIFICATE
-            objCertificatetData.EFFECT_FROM = objCertificateEdit.EFFECT_FROM
-            objCertificatetData.STATUS = 0
-            objCertificatetData.EFFECT_TO = objCertificateEdit.EFFECT_TO
+            objCertificatetData.UPLOAD_FILE = objCertificateEdit.UPLOAD_FILE
+            objCertificatetData.FILE_NAME = objCertificateEdit.FILE_NAME
+            objCertificatetData.YEAR_GRA = objCertificateEdit.YEAR_GRA
+            objCertificatetData.NAME_SHOOLS = objCertificateEdit.NAME_SHOOLS
+            objCertificatetData.FORM_TRAIN_ID = objCertificateEdit.FORM_TRAIN_ID
+            objCertificatetData.SPECIALIZED_TRAIN = objCertificateEdit.SPECIALIZED_TRAIN
+            objCertificatetData.RESULT_TRAIN = objCertificateEdit.RESULT_TRAIN
+            objCertificatetData.CERTIFICATE = objCertificateEdit.CERTIFICATE
+            objCertificatetData.EFFECTIVE_DATE_FROM = objCertificateEdit.EFFECTIVE_DATE_FROM
+            objCertificatetData.EFFECTIVE_DATE_TO = objCertificateEdit.EFFECTIVE_DATE_TO
+            objCertificatetData.EMPLOYEE_ID = objCertificateEdit.EMPLOYEE_ID
+            objCertificatetData.TYPE_TRAIN_ID = objCertificateEdit.TYPE_TRAIN_ID
             objCertificatetData.FK_PKEY = objCertificateEdit.FK_PKEY
-            objCertificatetData.CLASSIFICATION = objCertificateEdit.CLASSIFICATION
-            objCertificatetData.YEAR = objCertificateEdit.YEAR
-            objCertificatetData.FILE_NAME = objCertificateEdit.FILENAME
-            objCertificatetData.UPLOAD_FILE = objCertificateEdit.UPLOAD
-            objCertificatetData.RENEW = objCertificateEdit.RENEW
-            objCertificatetData.REMARK = objCertificateEdit.REMARK
+            objCertificatetData.RECEIVE_DEGREE_DATE = objCertificateEdit.RECEIVE_DEGREE_DATE
+            objCertificatetData.IS_RENEW = objCertificateEdit.IS_RENEWED
             Context.SaveChanges(log)
             gID = objCertificatetData.ID
             Return True
@@ -122,11 +128,11 @@ Partial Class ProfileRepository
             Throw ex
         End Try
     End Function
-    Public Function CheckExistCertificateEdit(ByVal pk_key As Decimal) As CETIFICATE_EDITDTO
+    Public Function CheckExistCertificateEdit(ByVal pk_key As Decimal) As HU_PRO_TRAIN_OUT_COMPANYDTOEDIT
         Try
-            Dim query = (From p In Context.HU_CERTIFICATE_EDIT
+            Dim query = (From p In Context.HU_PRO_TRAIN_OUT_COMPANY_EDIT
                          Where p.STATUS <> 2 And p.FK_PKEY = pk_key
-                         Select New CETIFICATE_EDITDTO With {
+                         Select New HU_PRO_TRAIN_OUT_COMPANYDTOEDIT With {
                              .ID = p.ID,
                              .STATUS = p.STATUS}).FirstOrDefault
 
@@ -141,7 +147,7 @@ Partial Class ProfileRepository
     Public Function SendCertificateEdit(ByVal lstID As List(Of Decimal),
                                            ByVal log As UserLog) As Boolean
         Try
-            Dim lstObj = (From p In Context.HU_CERTIFICATE_EDIT Where lstID.Contains(p.ID)).ToList
+            Dim lstObj = (From p In Context.HU_PRO_TRAIN_OUT_COMPANY_EDIT Where lstID.Contains(p.ID)).ToList
             For Each item In lstObj
                 item.STATUS = 1
             Next
@@ -151,7 +157,6 @@ Partial Class ProfileRepository
             WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iProfile")
             Throw ex
         End Try
-
     End Function
     'get dl bang hu_certificate
     Public Function GetCertificate(ByVal _filter As CETIFICATEDTO) As List(Of CETIFICATEDTO)

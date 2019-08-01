@@ -14,14 +14,20 @@
     Public Property SPECIALIZED_TRAIN As String
     Public Property RESULT_TRAIN As String
     Public Property CERTIFICATE As String
+    Public Property CERTIFICATE_ID As Decimal?
     Public Property EFFECTIVE_DATE_FROM As Date?
     Public Property EFFECTIVE_DATE_TO As Date?
 
+    Public Property TYPE_TRAIN_ID As Decimal?
+    Public Property TYPE_TRAIN_NAME As String
+    Public Property RECEIVE_DEGREE_DATE As Date?
     Public Property FK_PKEY As Decimal?
     Public Property STATUS As String
     Public Property STATUS_NAME As String
     Public Property REASON_UNAPROVE As String
     Public Property SEND_DATE As Date?
+    Public Property FILE_NAME As String
+    Public Property UPLOAD_FILE As String
 
     Public Property CREATED_DATE As Date?
     Public Property CREATED_BY As String
@@ -29,4 +35,5 @@
     Public Property MODIFIED_DATE As Date?
     Public Property MODIFIED_BY As String
     Public Property MODIFIED_LOG As String
+    Public Property IS_RENEWED As Decimal?
 End Class
