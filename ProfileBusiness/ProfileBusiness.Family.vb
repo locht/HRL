@@ -18,7 +18,7 @@ Namespace ProfileBusiness.ServiceImplementations
 
             End Try
         End Function
-        Public Function GetCertificateEdit(ByVal _filter As CETIFICATE_EDITDTO) As List(Of CETIFICATE_EDITDTO) Implements ServiceContracts.IProfileBusiness.GetCertificateEdit
+        Public Function GetCertificateEdit(ByVal _filter As HU_PRO_TRAIN_OUT_COMPANYDTOEDIT) As List(Of HU_PRO_TRAIN_OUT_COMPANYDTOEDIT) Implements ServiceContracts.IProfileBusiness.GetCertificateEdit
 
             Try
                 Using rep As New ProfileRepository
@@ -28,7 +28,7 @@ Namespace ProfileBusiness.ServiceImplementations
 
             End Try
         End Function
-        Public Function InsertCertificateEdit(ByVal objCertificateEdit As CETIFICATE_EDITDTO,
+        Public Function InsertCertificateEdit(ByVal objCertificateEdit As HU_PRO_TRAIN_OUT_COMPANYDTOEDIT,
                                             ByVal log As UserLog,
                                             ByRef gID As Decimal) As Boolean Implements ServiceContracts.IProfileBusiness.InsertCertificateEdit
             Try
@@ -40,7 +40,7 @@ Namespace ProfileBusiness.ServiceImplementations
                 Throw ex
             End Try
         End Function
-        Public Function ModifyCertificateEdit(ByVal objCertificateEdit As CETIFICATE_EDITDTO,
+        Public Function ModifyCertificateEdit(ByVal objCertificateEdit As HU_PRO_TRAIN_OUT_COMPANYDTOEDIT,
                                              ByVal log As UserLog,
                                              ByRef gID As Decimal) As Boolean Implements ServiceContracts.IProfileBusiness.ModifyCertificateEdit
             Try
@@ -52,7 +52,7 @@ Namespace ProfileBusiness.ServiceImplementations
                 Throw ex
             End Try
         End Function
-        Public Function CheckExistCertificateEdit(ByVal pk_key As Decimal) As CETIFICATE_EDITDTO Implements ServiceContracts.IProfileBusiness.CheckExistCertificateEdit
+        Public Function CheckExistCertificateEdit(ByVal pk_key As Decimal) As HU_PRO_TRAIN_OUT_COMPANYDTOEDIT Implements ServiceContracts.IProfileBusiness.CheckExistCertificateEdit
             Try
                 Using rep As New ProfileRepository
                     Return rep.CheckExistCertificateEdit(pk_key)

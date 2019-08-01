@@ -18,7 +18,7 @@ Imports System.Runtime.Serialization
 Imports System.Xml.Serialization
 
 
-<Assembly: EdmSchemaAttribute("81c64e92-3a16-4c1a-8d06-b39d60d7c6d6")>
+<Assembly: EdmSchemaAttribute("359bdbd6-449f-4536-8e95-85a9c83e4202")>
 #Region "EDM Relationship Metadata"
 <Assembly: EdmRelationshipAttribute("ProfileModel", "FK_HU_NAT_HU_PRO", "HU_NATION", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_NATION), "HU_PROVINCE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_PROVINCE), True)>
 <Assembly: EdmRelationshipAttribute("ProfileModel", "FK_HU_PRO_HU_DIS", "HU_PROVINCE", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_PROVINCE), "HU_DISTRICT", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_DISTRICT), True)>
@@ -44070,21 +44070,21 @@ Public Partial Class HU_PRO_TRAIN_OUT_COMPANY_EDIT
     ''' </summary>
     <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
     <DataMemberAttribute()>
-    Public Property CERTIFICATE() As Global.System.String
+    Public Property CERTIFICATE() As Nullable(Of Global.System.Decimal)
         Get
             Return _CERTIFICATE
         End Get
         Set
             OnCERTIFICATEChanging(value)
             ReportPropertyChanging("CERTIFICATE")
-            _CERTIFICATE = StructuralObject.SetValidValue(value, true)
+            _CERTIFICATE = StructuralObject.SetValidValue(value)
             ReportPropertyChanged("CERTIFICATE")
             OnCERTIFICATEChanged()
         End Set
     End Property
 
-    Private _CERTIFICATE As Global.System.String
-    Private Partial Sub OnCERTIFICATEChanging(value As Global.System.String)
+    Private _CERTIFICATE As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnCERTIFICATEChanging(value As Nullable(Of Global.System.Decimal))
     End Sub
 
     Private Partial Sub OnCERTIFICATEChanged()
@@ -44388,6 +44388,131 @@ Public Partial Class HU_PRO_TRAIN_OUT_COMPANY_EDIT
     End Sub
 
     Private Partial Sub OnSEND_DATEChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property UPLOAD_FILE() As Global.System.String
+        Get
+            Return _UPLOAD_FILE
+        End Get
+        Set
+            OnUPLOAD_FILEChanging(value)
+            ReportPropertyChanging("UPLOAD_FILE")
+            _UPLOAD_FILE = StructuralObject.SetValidValue(value, true)
+            ReportPropertyChanged("UPLOAD_FILE")
+            OnUPLOAD_FILEChanged()
+        End Set
+    End Property
+
+    Private _UPLOAD_FILE As Global.System.String
+    Private Partial Sub OnUPLOAD_FILEChanging(value As Global.System.String)
+    End Sub
+
+    Private Partial Sub OnUPLOAD_FILEChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property FILE_NAME() As Global.System.String
+        Get
+            Return _FILE_NAME
+        End Get
+        Set
+            OnFILE_NAMEChanging(value)
+            ReportPropertyChanging("FILE_NAME")
+            _FILE_NAME = StructuralObject.SetValidValue(value, true)
+            ReportPropertyChanged("FILE_NAME")
+            OnFILE_NAMEChanged()
+        End Set
+    End Property
+
+    Private _FILE_NAME As Global.System.String
+    Private Partial Sub OnFILE_NAMEChanging(value As Global.System.String)
+    End Sub
+
+    Private Partial Sub OnFILE_NAMEChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property IS_RENEW() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _IS_RENEW
+        End Get
+        Set
+            OnIS_RENEWChanging(value)
+            ReportPropertyChanging("IS_RENEW")
+            _IS_RENEW = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("IS_RENEW")
+            OnIS_RENEWChanged()
+        End Set
+    End Property
+
+    Private _IS_RENEW As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnIS_RENEWChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnIS_RENEWChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property TYPE_TRAIN_ID() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _TYPE_TRAIN_ID
+        End Get
+        Set
+            OnTYPE_TRAIN_IDChanging(value)
+            ReportPropertyChanging("TYPE_TRAIN_ID")
+            _TYPE_TRAIN_ID = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("TYPE_TRAIN_ID")
+            OnTYPE_TRAIN_IDChanged()
+        End Set
+    End Property
+
+    Private _TYPE_TRAIN_ID As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnTYPE_TRAIN_IDChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnTYPE_TRAIN_IDChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property RECEIVE_DEGREE_DATE() As Nullable(Of Global.System.DateTime)
+        Get
+            Return _RECEIVE_DEGREE_DATE
+        End Get
+        Set
+            OnRECEIVE_DEGREE_DATEChanging(value)
+            ReportPropertyChanging("RECEIVE_DEGREE_DATE")
+            _RECEIVE_DEGREE_DATE = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("RECEIVE_DEGREE_DATE")
+            OnRECEIVE_DEGREE_DATEChanged()
+        End Set
+    End Property
+
+    Private _RECEIVE_DEGREE_DATE As Nullable(Of Global.System.DateTime)
+    Private Partial Sub OnRECEIVE_DEGREE_DATEChanging(value As Nullable(Of Global.System.DateTime))
+    End Sub
+
+    Private Partial Sub OnRECEIVE_DEGREE_DATEChanged()
     End Sub
 
     #End Region

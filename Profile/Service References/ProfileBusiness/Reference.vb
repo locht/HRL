@@ -20452,6 +20452,9 @@ Namespace ProfileBusiness
         Private CERTIFICATEField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private CERTIFICATE_IDField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private CREATED_BYField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -20476,6 +20479,9 @@ Namespace ProfileBusiness
         Private EMPLOYEE_NAMEField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private FILE_NAMEField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private FK_PKEYField As System.Nullable(Of Decimal)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -20494,6 +20500,9 @@ Namespace ProfileBusiness
         Private IDField As System.Nullable(Of Decimal)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private IS_RENEWEDField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private MODIFIED_BYField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -20507,6 +20516,9 @@ Namespace ProfileBusiness
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private REASON_UNAPROVEField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private RECEIVE_DEGREE_DATEField As System.Nullable(Of Date)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private RESULT_TRAINField As String
@@ -20530,6 +20542,15 @@ Namespace ProfileBusiness
         Private TO_MONTH_YEARField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private TYPE_TRAIN_IDField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private TYPE_TRAIN_NAMEField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private UPLOAD_FILEField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private YEAR_GRAField As System.Nullable(Of Decimal)
         
         <Global.System.ComponentModel.BrowsableAttribute(false)>  _
@@ -20551,6 +20572,19 @@ Namespace ProfileBusiness
                 If (Object.ReferenceEquals(Me.CERTIFICATEField, value) <> true) Then
                     Me.CERTIFICATEField = value
                     Me.RaisePropertyChanged("CERTIFICATE")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property CERTIFICATE_ID() As System.Nullable(Of Decimal)
+            Get
+                Return Me.CERTIFICATE_IDField
+            End Get
+            Set
+                If (Me.CERTIFICATE_IDField.Equals(value) <> true) Then
+                    Me.CERTIFICATE_IDField = value
+                    Me.RaisePropertyChanged("CERTIFICATE_ID")
                 End If
             End Set
         End Property
@@ -20660,6 +20694,19 @@ Namespace ProfileBusiness
         End Property
         
         <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property FILE_NAME() As String
+            Get
+                Return Me.FILE_NAMEField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.FILE_NAMEField, value) <> true) Then
+                    Me.FILE_NAMEField = value
+                    Me.RaisePropertyChanged("FILE_NAME")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
         Public Property FK_PKEY() As System.Nullable(Of Decimal)
             Get
                 Return Me.FK_PKEYField
@@ -20738,6 +20785,19 @@ Namespace ProfileBusiness
         End Property
         
         <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property IS_RENEWED() As System.Nullable(Of Decimal)
+            Get
+                Return Me.IS_RENEWEDField
+            End Get
+            Set
+                If (Me.IS_RENEWEDField.Equals(value) <> true) Then
+                    Me.IS_RENEWEDField = value
+                    Me.RaisePropertyChanged("IS_RENEWED")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
         Public Property MODIFIED_BY() As String
             Get
                 Return Me.MODIFIED_BYField
@@ -20798,6 +20858,19 @@ Namespace ProfileBusiness
                 If (Object.ReferenceEquals(Me.REASON_UNAPROVEField, value) <> true) Then
                     Me.REASON_UNAPROVEField = value
                     Me.RaisePropertyChanged("REASON_UNAPROVE")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property RECEIVE_DEGREE_DATE() As System.Nullable(Of Date)
+            Get
+                Return Me.RECEIVE_DEGREE_DATEField
+            End Get
+            Set
+                If (Me.RECEIVE_DEGREE_DATEField.Equals(value) <> true) Then
+                    Me.RECEIVE_DEGREE_DATEField = value
+                    Me.RaisePropertyChanged("RECEIVE_DEGREE_DATE")
                 End If
             End Set
         End Property
@@ -20889,6 +20962,45 @@ Namespace ProfileBusiness
                 If (Object.ReferenceEquals(Me.TO_MONTH_YEARField, value) <> true) Then
                     Me.TO_MONTH_YEARField = value
                     Me.RaisePropertyChanged("TO_MONTH_YEAR")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property TYPE_TRAIN_ID() As System.Nullable(Of Decimal)
+            Get
+                Return Me.TYPE_TRAIN_IDField
+            End Get
+            Set
+                If (Me.TYPE_TRAIN_IDField.Equals(value) <> true) Then
+                    Me.TYPE_TRAIN_IDField = value
+                    Me.RaisePropertyChanged("TYPE_TRAIN_ID")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property TYPE_TRAIN_NAME() As String
+            Get
+                Return Me.TYPE_TRAIN_NAMEField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.TYPE_TRAIN_NAMEField, value) <> true) Then
+                    Me.TYPE_TRAIN_NAMEField = value
+                    Me.RaisePropertyChanged("TYPE_TRAIN_NAME")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property UPLOAD_FILE() As String
+            Get
+                Return Me.UPLOAD_FILEField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.UPLOAD_FILEField, value) <> true) Then
+                    Me.UPLOAD_FILEField = value
+                    Me.RaisePropertyChanged("UPLOAD_FILE")
                 End If
             End Set
         End Property
@@ -50041,16 +50153,16 @@ Namespace ProfileBusiness
         Function DeleteStaffRank(ByVal lstStaffRank As System.Collections.Generic.List(Of ProfileBusiness.StaffRankDTO), ByVal log As Common.CommonBusiness.UserLog) As Boolean
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetCertificateEdit", ReplyAction:="http://tempuri.org/IProfileBusiness/GetCertificateEditResponse")>  _
-        Function GetCertificateEdit(ByVal _filter As ProfileBusiness.CETIFICATE_EDITDTO) As System.Collections.Generic.List(Of ProfileBusiness.CETIFICATE_EDITDTO)
+        Function GetCertificateEdit(ByVal _filter As ProfileBusiness.HU_PRO_TRAIN_OUT_COMPANYDTOEDIT) As System.Collections.Generic.List(Of ProfileBusiness.HU_PRO_TRAIN_OUT_COMPANYDTOEDIT)
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/InsertCertificateEdit", ReplyAction:="http://tempuri.org/IProfileBusiness/InsertCertificateEditResponse")>  _
-        Function InsertCertificateEdit(ByVal objCertificateEdit As ProfileBusiness.CETIFICATE_EDITDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
+        Function InsertCertificateEdit(ByVal objCertificateEdit As ProfileBusiness.HU_PRO_TRAIN_OUT_COMPANYDTOEDIT, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ModifyCertificateEdit", ReplyAction:="http://tempuri.org/IProfileBusiness/ModifyCertificateEditResponse")>  _
-        Function ModifyCertificateEdit(ByVal objCertificateEdit As ProfileBusiness.CETIFICATE_EDITDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
+        Function ModifyCertificateEdit(ByVal objCertificateEdit As ProfileBusiness.HU_PRO_TRAIN_OUT_COMPANYDTOEDIT, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/CheckExistCertificateEdit", ReplyAction:="http://tempuri.org/IProfileBusiness/CheckExistCertificateEditResponse")>  _
-        Function CheckExistCertificateEdit(ByVal pk_key As Decimal) As ProfileBusiness.CETIFICATE_EDITDTO
+        Function CheckExistCertificateEdit(ByVal pk_key As Decimal) As ProfileBusiness.HU_PRO_TRAIN_OUT_COMPANYDTOEDIT
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/SendCertificateEdit", ReplyAction:="http://tempuri.org/IProfileBusiness/SendCertificateEditResponse")>  _
         Function SendCertificateEdit(ByVal lstID As System.Collections.Generic.List(Of Decimal), ByVal log As Common.CommonBusiness.UserLog) As Boolean
@@ -52127,19 +52239,19 @@ Namespace ProfileBusiness
             Return MyBase.Channel.DeleteStaffRank(lstStaffRank, log)
         End Function
         
-        Public Function GetCertificateEdit(ByVal _filter As ProfileBusiness.CETIFICATE_EDITDTO) As System.Collections.Generic.List(Of ProfileBusiness.CETIFICATE_EDITDTO) Implements ProfileBusiness.IProfileBusiness.GetCertificateEdit
+        Public Function GetCertificateEdit(ByVal _filter As ProfileBusiness.HU_PRO_TRAIN_OUT_COMPANYDTOEDIT) As System.Collections.Generic.List(Of ProfileBusiness.HU_PRO_TRAIN_OUT_COMPANYDTOEDIT) Implements ProfileBusiness.IProfileBusiness.GetCertificateEdit
             Return MyBase.Channel.GetCertificateEdit(_filter)
         End Function
         
-        Public Function InsertCertificateEdit(ByVal objCertificateEdit As ProfileBusiness.CETIFICATE_EDITDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean Implements ProfileBusiness.IProfileBusiness.InsertCertificateEdit
+        Public Function InsertCertificateEdit(ByVal objCertificateEdit As ProfileBusiness.HU_PRO_TRAIN_OUT_COMPANYDTOEDIT, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean Implements ProfileBusiness.IProfileBusiness.InsertCertificateEdit
             Return MyBase.Channel.InsertCertificateEdit(objCertificateEdit, log, gID)
         End Function
         
-        Public Function ModifyCertificateEdit(ByVal objCertificateEdit As ProfileBusiness.CETIFICATE_EDITDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean Implements ProfileBusiness.IProfileBusiness.ModifyCertificateEdit
+        Public Function ModifyCertificateEdit(ByVal objCertificateEdit As ProfileBusiness.HU_PRO_TRAIN_OUT_COMPANYDTOEDIT, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean Implements ProfileBusiness.IProfileBusiness.ModifyCertificateEdit
             Return MyBase.Channel.ModifyCertificateEdit(objCertificateEdit, log, gID)
         End Function
         
-        Public Function CheckExistCertificateEdit(ByVal pk_key As Decimal) As ProfileBusiness.CETIFICATE_EDITDTO Implements ProfileBusiness.IProfileBusiness.CheckExistCertificateEdit
+        Public Function CheckExistCertificateEdit(ByVal pk_key As Decimal) As ProfileBusiness.HU_PRO_TRAIN_OUT_COMPANYDTOEDIT Implements ProfileBusiness.IProfileBusiness.CheckExistCertificateEdit
             Return MyBase.Channel.CheckExistCertificateEdit(pk_key)
         End Function
         

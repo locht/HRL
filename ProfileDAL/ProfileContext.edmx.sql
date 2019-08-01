@@ -1,7 +1,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for Oracle database
 -- --------------------------------------------------
--- Date Created: 07/31/2019 4:11:44 PM
+-- Date Created: 08/01/2019 11:19:42 AM
 -- Generated from EDMX file: D:\MyProject\TNG\TNG\ProfileDAL\ProfileContext.edmx
 -- --------------------------------------------------
 
@@ -1692,7 +1692,7 @@ CREATE TABLE "dbo"."HU_PRO_TRAIN_OUT_COMPANY_EDIT" (
    "FORM_TRAIN_ID" NUMBER(38,0) NULL,
    "SPECIALIZED_TRAIN" NVARCHAR2(255) NULL,
    "RESULT_TRAIN" NVARCHAR2(255) NULL,
-   "CERTIFICATE" NVARCHAR2(255) NULL,
+   "CERTIFICATE" NUMBER(38,0) NULL,
    "EFFECTIVE_DATE_FROM" DATE NULL,
    "EFFECTIVE_DATE_TO" DATE NULL,
    "CREATED_DATE" DATE NULL,
@@ -1704,7 +1704,12 @@ CREATE TABLE "dbo"."HU_PRO_TRAIN_OUT_COMPANY_EDIT" (
    "STATUS" VARCHAR2(1) NULL,
    "REASON_UNAPROVE" NVARCHAR2(250) NULL,
    "FK_PKEY" NUMBER(38,0) NULL,
-   "SEND_DATE" DATE NULL
+   "SEND_DATE" DATE NULL,
+   "UPLOAD_FILE" NCLOB NULL,
+   "FILE_NAME" NCLOB NULL,
+   "IS_RENEW" NUMBER(38,0) NULL,
+   "TYPE_TRAIN_ID" NUMBER(38,0) NULL,
+   "RECEIVE_DEGREE_DATE" DATE NULL
 );
 
 -- Creating table 'HU_WORKING_BEFORE_EDIT'

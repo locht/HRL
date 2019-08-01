@@ -18,7 +18,7 @@ Imports System.Runtime.Serialization
 Imports System.Xml.Serialization
 
 
-<Assembly: EdmSchemaAttribute("b5ab46b4-87e4-41c8-ad4b-c9f539441748")>
+<Assembly: EdmSchemaAttribute("86d787ad-e76e-4537-9d9d-4a1b6766f316")>
 #Region "EDM Relationship Metadata"
 <Assembly: EdmRelationshipAttribute("InsuranceModel", "FK_FE_HEH", "HU_EMPLOYEE", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_EMPLOYEE), "HU_EMPLOYEE_HEALTH", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(HU_EMPLOYEE_HEALTH), True)>
 <Assembly: EdmRelationshipAttribute("InsuranceModel", "FK_HE_HEE", "HU_EMPLOYEE", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_EMPLOYEE), "HU_EMPLOYEE_EDUCATION", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(HU_EMPLOYEE_EDUCATION), True)>
@@ -18860,6 +18860,31 @@ Public Partial Class INS_REGION
     End Sub
 
     Private Partial Sub OnCEILING_AMOUNTChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property MIN_AMOUNT() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _MIN_AMOUNT
+        End Get
+        Set
+            OnMIN_AMOUNTChanging(value)
+            ReportPropertyChanging("MIN_AMOUNT")
+            _MIN_AMOUNT = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("MIN_AMOUNT")
+            OnMIN_AMOUNTChanged()
+        End Set
+    End Property
+
+    Private _MIN_AMOUNT As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnMIN_AMOUNTChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnMIN_AMOUNTChanged()
     End Sub
 
     #End Region

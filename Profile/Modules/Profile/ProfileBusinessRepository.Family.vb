@@ -14,7 +14,7 @@ Partial Public Class ProfileBusinessRepository
             End Try
         End Using
     End Function
-    Public Function CheckExistCertificateEdit(ByVal pk_key As Decimal) As CETIFICATE_EDITDTO
+    Public Function CheckExistCertificateEdit(ByVal pk_key As Decimal) As HU_PRO_TRAIN_OUT_COMPANYDTOEDIT
         Using rep As New ProfileBusinessClient
             Try
                 Return rep.CheckExistCertificateEdit(pk_key)
@@ -25,7 +25,7 @@ Partial Public Class ProfileBusinessRepository
         End Using
 
     End Function
-    Public Function ModifyCertificateEdit(ByVal objCertificateEdit As CETIFICATE_EDITDTO,
+    Public Function ModifyCertificateEdit(ByVal objCertificateEdit As HU_PRO_TRAIN_OUT_COMPANYDTOEDIT,
                                           ByRef gID As Decimal) As Boolean
         Using rep As New ProfileBusinessClient
             Try
@@ -38,7 +38,7 @@ Partial Public Class ProfileBusinessRepository
         End Using
 
     End Function
-    Function InsertCertificateEdit(ByVal objCertificateEdit As CETIFICATE_EDITDTO,
+    Function InsertCertificateEdit(ByVal objCertificateEdit As HU_PRO_TRAIN_OUT_COMPANYDTOEDIT,
                                             ByRef gID As Decimal) As Boolean
         Using rep As New ProfileBusinessClient
             Try
@@ -52,7 +52,7 @@ Partial Public Class ProfileBusinessRepository
 
     End Function
 
-    Public Function GetCertificateEdit(ByVal _filter As CETIFICATE_EDITDTO) As List(Of CETIFICATE_EDITDTO)
+    Public Function GetCertificateEdit(ByVal _filter As HU_PRO_TRAIN_OUT_COMPANYDTOEDIT) As List(Of HU_PRO_TRAIN_OUT_COMPANYDTOEDIT)
         Using rep As New ProfileBusinessClient
             Try
                 Return rep.GetCertificateEdit(_filter)

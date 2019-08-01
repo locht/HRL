@@ -1,7 +1,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for Oracle database
 -- --------------------------------------------------
--- Date Created: 7/30/2019 10:35:59 AM
+-- Date Created: 8/1/2019 8:58:14 AM
 -- Generated from EDMX file: D:\TNG_SOURCE_NEW\InsuranceDAL\InsuranceContext.edmx
 -- --------------------------------------------------
 
@@ -1072,7 +1072,8 @@ CREATE TABLE "dbo"."INS_REGION" (
    "MODIFIED_LOG" NVARCHAR2(255) NULL,
    "EFFECTIVE_DATE" DATE NULL,
    "AREA_ID" NUMBER(38,0) NULL,
-   "CEILING_AMOUNT" NUMBER(38,0) NULL
+   "CEILING_AMOUNT" NUMBER(38,0) NULL,
+   "MIN_AMOUNT" NUMBER(38,0) NULL
 );
 
 -- Creating table 'SE_USER'
