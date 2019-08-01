@@ -1,9 +1,68 @@
 ﻿Imports Aspose.Words
 Imports Aspose.Words.Reporting
 Imports System.IO
+Imports Aspose.Words.Drawing
 
 Public Class WordCommon
     Implements IDisposable
+    Private Function InsertHeaderLogo(ByVal doc As Document, ByVal dt As DataTable, ByVal sourcePath As String) As Document
+        Dim path As String = sourcePath + dt.Rows(0)("FILE_HEADER")
+        Dim path1 As String = sourcePath + dt.Rows(0)("FILE_FOOTER")
+        Dim builder As DocumentBuilder = New DocumentBuilder(doc)
+        Dim firstSection As Section = builder.CurrentSection
+        Dim pageSetup As PageSetup = firstSection.PageSetup
+        pageSetup.DifferentFirstPageHeaderFooter = True
+        'Dim height = pageSetup.PageHeight - pageSetup.TopMargin - pageSetup.BottomMargin
+        Dim width = pageSetup.PageWidth - 2 * pageSetup.LeftMargin
+        'add image to header,footer in first page
+        pageSetup.HeaderDistance = 0
+        builder.MoveToHeaderFooter(HeaderFooterType.HeaderFirst)
+        builder.ParagraphFormat.Alignment = ParagraphAlignment.Distributed
+        If File.Exists(path) Then
+            builder.InsertImage(path, RelativeHorizontalPosition.Page, 0, RelativeVerticalPosition.Page, 0, width, 145, WrapType.Inline)
+        End If
+        builder.MoveToHeaderFooter(HeaderFooterType.FooterFirst)
+        builder.ParagraphFormat.Alignment = ParagraphAlignment.Distributed
+        If File.Exists(path1) Then
+            builder.InsertImage(path1, RelativeHorizontalPosition.Page, 0, RelativeVerticalPosition.Page, 0, width, 110, WrapType.Inline)
+        End If
+        'add image to footer in other pages
+        builder.MoveToHeaderFooter(HeaderFooterType.FooterEven)
+        pageSetup.FooterDistance = 0
+        builder.ParagraphFormat.Alignment = ParagraphAlignment.Distributed
+        If File.Exists(path1) Then
+            builder.InsertImage(path1, RelativeHorizontalPosition.Page, 0, RelativeVerticalPosition.Page, 0, width, 110, WrapType.Inline)
+        End If
+        builder.MoveToHeaderFooter(HeaderFooterType.FooterPrimary)
+        pageSetup.FooterDistance = 0
+        builder.ParagraphFormat.Alignment = ParagraphAlignment.Distributed
+        If File.Exists(path1) Then
+            builder.InsertImage(path1, RelativeHorizontalPosition.Page, 0, RelativeVerticalPosition.Page, 0, width, 110, WrapType.Inline)
+        End If
+        Return doc
+    End Function
+
+    Public Sub ExportMailMerge(ByVal link As String,
+                               ByVal filename As String,
+                               ByVal dtData As DataTable,
+                               ByVal sourcePath As String,
+                               ByVal response As System.Web.HttpResponse)
+        Try
+            ' Open an existing document. 
+            Dim doc As New Document(link)
+            ' Fill the fields in the document with user data.
+            doc.MailMerge.Execute(dtData)
+            ' Send the document in Word format to the client browser with an option to save to disk or open inside the current browser.
+
+            'doc.Save(filename, SaveFormat.Doc, SaveType.OpenInApplication, response)
+            Dim tempDoc As Document = InsertHeaderLogo(doc, dtData, sourcePath)
+            tempDoc.Save(response, filename & ".doc",
+                     Aspose.Words.ContentDisposition.Attachment,
+                     Aspose.Words.Saving.SaveOptions.CreateSaveOptions(SaveFormat.Doc))
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
 
     Public Sub ExportMailMerge(ByVal link As String,
                                ByVal filename As String,
@@ -17,7 +76,7 @@ Public Class WordCommon
             ' Send the document in Word format to the client browser with an option to save to disk or open inside the current browser.
 
             'doc.Save(filename, SaveFormat.Doc, SaveType.OpenInApplication, response)
-
+            'Dim tempDoc As Document = InsertHeaderLogo(doc)
             doc.Save(response, filename & ".doc",
                      Aspose.Words.ContentDisposition.Attachment,
                      Aspose.Words.Saving.SaveOptions.CreateSaveOptions(SaveFormat.Doc))

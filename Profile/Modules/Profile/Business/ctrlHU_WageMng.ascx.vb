@@ -645,7 +645,7 @@ Public Class ctrlHU_WageMng
                 Else
                     Try
                         If IBusiness.ValEffectdateByEmpCode(row("EMPLOYEE_CODE"), ToDate(row("EFFECT_DATE"))) = False Then
-                            sError = "Tồn tại hồ sơ lương trùng hoặc lớn hơn ngày hiệu lực"
+                            sError = "Tồn tại hồ sơ lương trùng ngày hiệu lực"
                             ImportValidate.IsValidTime("EFFECT_DATE", row, rowError, isError, sError)
                         End If
                     Catch ex As Exception

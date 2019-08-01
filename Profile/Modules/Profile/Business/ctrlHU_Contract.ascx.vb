@@ -282,6 +282,7 @@ Public Class ctrlHU_Contract
                 Case CommonMessage.TOOLBARITEM_PRINT
                     Dim dtData As DataTable
                     Dim dtDataCon As DataTable
+                    Dim sourcePath = Server.MapPath("~/AttachFile/Profile/ctrlLocation/")
                     Dim folderName As String = "ContractSupport"
                     Dim filePath As String = ""
                     Dim extension As String = ""
@@ -373,11 +374,12 @@ Public Class ctrlHU_Contract
                         If item.Count = 1 Then
                             'Export file mẫu
                             Using word As New WordCommon
-                                word.ExportMailMerge(filePath,
-                                                     icheck.GetDataKeyValue("EMPLOYEE_CODE") & "_HDLD_" & _
-                                                     Format(Date.Now, "yyyyMMddHHmmss") & extension,
-                                                     dtData,
-                                                     Response)
+                            word.ExportMailMerge(filePath,
+                                                 icheck.GetDataKeyValue("EMPLOYEE_CODE") & "_HDLD_" & _
+                                                 Format(Date.Now, "yyyyMMddHHmmss") & extension,
+                                                 dtData,
+                                                 sourcePath,
+                                                 Response)
                             End Using
                         Else
                         For lst = 0 To rgContract.SelectedItems.Count - 1

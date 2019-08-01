@@ -828,11 +828,11 @@ Public Class ctrlLocation
                         fileName = System.IO.Path.Combine(strPath, file.FileName)
                         file.SaveAs(fileName, True)
                         If IsUpload = 0 Then
-                            txtUpload_LG.Text = file.FileName
+                            txtUpload_LG.Text = hfOrg.Value + file.FileName
                         ElseIf IsUpload = 1 Then
-                            txtUpload_HD.Text = file.FileName
+                            txtUpload_HD.Text = hfOrg.Value + file.FileName
                         Else
-                            txtUpload_FT.Text = file.FileName
+                            txtUpload_FT.Text = hfOrg.Value + file.FileName
                         End If
                     Else
                         ShowMessage(Translate("Vui lòng chọn file đúng định dạng. !!! Hệ thống chỉ nhận file XLS, XLSX, TXT, CTR, DOC, DOCX, XML, PNG, JPG, BITMAP, JPEG, PDF"), NotifyType.Warning)
