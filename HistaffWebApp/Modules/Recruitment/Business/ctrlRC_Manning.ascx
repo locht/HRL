@@ -150,6 +150,10 @@
                                 SortExpression="NAME" UniqueName="NAME" ReadOnly = "true" >
                                 <HeaderStyle HorizontalAlign="Center" />
                             </tlk:GridBoundColumn>
+                             <tlk:GridBoundColumn DataField="ORG_NAME" FilterControlWidth="90%" HeaderText="<%$ Translate: Phòng ban %>"
+                                SortExpression="ORG_NAME" UniqueName="ORG_NAME" ReadOnly = "true" >
+                                <HeaderStyle HorizontalAlign="Center" />
+                            </tlk:GridBoundColumn>
                             <tlk:GridBoundColumn DataField="TITLE_NAME" FilterControlWidth="90%" HeaderText="<%$ Translate: Chức danh %>"
                                 SortExpression="TITLE_NAME" UniqueName="TITLE_NAME" ReadOnly = "true" >
                                 <HeaderStyle HorizontalAlign="Center" />
