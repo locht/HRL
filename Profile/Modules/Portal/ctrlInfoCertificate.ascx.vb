@@ -31,6 +31,14 @@ Public Class ctrlInfoCertificate
             ViewState(Me.ID & "_FileOldName") = value
         End Set
     End Property
+    Property checkFK_Pkey As Decimal
+        Get
+            Return ViewState(Me.ID & "_checkFK_Pkey")
+        End Get
+        Set(ByVal value As Decimal)
+            ViewState(Me.ID & "_checkFK_Pkey") = value
+        End Set
+    End Property
     Private Property tempPathFile As String
         Get
             Return PageViewState(Me.ID & "_tempPathFile")
@@ -256,6 +264,11 @@ Public Class ctrlInfoCertificate
                                     obj.ID = pkey
                                 End If
                             End If
+
+                            'checkFK_Pkey dùng để kiểm  tra nếu chỉnh sửa 'thông tin chỉnh sửa' thì sẽ không phát sinh fk_pkey
+                            If checkFK_Pkey = 1 Then
+                                obj.FK_PKEY = Nothing
+                            End If
                             If hidID.Value <> "" Then
                                 isInsert = False
                             End If
@@ -419,6 +432,7 @@ Public Class ctrlInfoCertificate
                     hidFamilyID.Value = item.GetDataKeyValue("FK_PKEY")
                 End If
                 hidID.Value = item.GetDataKeyValue("ID")
+                checkFK_Pkey = 1
                 UpdateControlState()
             End If
         Catch ex As Exception

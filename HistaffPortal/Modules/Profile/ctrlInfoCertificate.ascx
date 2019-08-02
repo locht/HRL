@@ -4,7 +4,7 @@
 <style type="text/css">
   .rgDataDiv
   {
-      height: 100px !important
+      height: 140px !important
       }
 }
 </style>
@@ -255,7 +255,7 @@
         </MasterTableView>
     </tlk:RadGrid>
     <br />
-    <tlk:RadGrid PageSize="50" ID="rgCetificate" runat="server" Height="250px" Width="99%">
+    <tlk:RadGrid PageSize="50" ID="rgCetificate" runat="server" Height="248px" Width="99%">
         <ClientSettings EnableRowHoverStyle="true" EnablePostBackOnRowClick="true">
             <Selecting AllowRowSelect="true" />
         </ClientSettings>
