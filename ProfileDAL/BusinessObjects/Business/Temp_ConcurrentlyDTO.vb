@@ -33,7 +33,9 @@
     Public Property BASIC5 As String
     Public Property BASIC6 As String
     Public Property ORG_ID As Decimal?
+    Public Property ORG_NAME As String
     Public Property TITLE_ID As Decimal?
+    Public Property TITLE_NAME As String
     Public Property SIGN_ID_2 As Decimal?
     Public Property SIGN_ID_STOP_2 As Decimal?
     Public Property USER_NAME As String

@@ -3041,6 +3041,10 @@ Public Class ProfileRepository
                                                        .CBSTATUS = Nothing,
                                                        .EMPLOYEE_CODE = p.e.EMPLOYEE_CODE,
                                                        .FULLNAME_VN = p.e.FULLNAME_VN,
+                                                       .ORG_ID = p.e.ORG_ID,
+                                                       .ORG_NAME = p.o.NAME_VN,
+                                                       .TITLE_ID = p.e.TITLE_ID,
+                                                       .TITLE_NAME = p.t.NAME_VN,
                                                        .ORG_CON_NAME = p.org_con.NAME_VN,
                                                        .ORG_CON = p.p.ORG_CON,
                                                        .TITLE_CON = p.p.TITLE_CON,
@@ -3057,7 +3061,7 @@ Public Class ProfileRepository
                                                        .SIGN_NAME = p.sign.FULLNAME_VN,
                                                        .SIGN_TITLE_NAME = p.sign_title.NAME_VN,
                                                        .SIGN_NAME2 = p.sign2.FULLNAME_VN,
-                                                       .SIGN_TITLE_NAME2 = p.sign_title2.NAME_VN
+            .SIGN_TITLE_NAME2 = p.sign_title2.NAME_VN
                                                        })
 
             lstEmp = lstEmp.OrderBy(Sorts)
