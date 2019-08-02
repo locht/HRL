@@ -543,7 +543,7 @@ Public Class ctrlRC_Manning
             objMO.CURRENT_MANNING = 0
             objMO.NEW_MANNING = 0
             objMO.MOBILIZE_COUNT_MANNING = 0
-            objMO.YEAR = If(cboYear.SelectedValue = [String].Empty, Int32.Parse(cboYear.Text.Trim), Int32.Parse(cboYear.SelectedValue))
+            'objMO.YEAR = If(cboYear.SelectedValue = [String].Empty, Int32.Parse(cboYear.Text.Trim), Int32.Parse(cboYear.SelectedValue))
             If cbStatus.Checked Then
                 objMO.STATUS = 1
             Else
@@ -862,11 +862,18 @@ Public Class ctrlRC_Manning
         Try
             Dim startTime As DateTime = DateTime.UtcNow
             Dim year As Integer = If(cboYear.SelectedValue = [String].Empty, 0, Int32.Parse(cboYear.SelectedValue))
+            Dim cboList As Decimal
+
+            cboList = If(cboListManning.SelectedValue = "", 0, Decimal.Parse(cboListManning.SelectedValue))
+
             'Dim lstData As DataTable = repStore.GetListManningByName(-1, Int32.Parse(hidOrgID.Value), year)
             'Dim lstData As DataTable = repStore.GetListManningByName(-1, 0, year)
-            tabSource = repStore.GetListManningByName(-1, 0, year)
+            'tabSource = repStore.GetListManningByName(-1, 0, year)
+            tabSource = repStore.GetListManningByName(cboList, If(hidOrgID.Value = "", 0, Int32.Parse(hidOrgID.Value)), year)
 
             rgManning.DataSource = tabSource
+            rgManning.MasterTableView.VirtualItemCount = tabSource.Rows.Count
+            rgManning.CurrentPageIndex = rgManning.MasterTableView.CurrentPageIndex
             _myLog.WriteLog(_myLog._info, _classPath, method,
                          CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception

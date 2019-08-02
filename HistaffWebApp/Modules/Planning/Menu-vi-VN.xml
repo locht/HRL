@@ -2,8 +2,7 @@
 <Menu>
   <Group>
     <Item Text="Nghiệp vụ"  PostBack="False">
-      <Group>
-        <Item  Value="ctrlRC_Manning"  Text="Quản lý định biên" PostBack="True" NavigateUrl="Default.aspx?mid=Planning&amp;fid=ctrlRC_Manning&amp;group=Business" CheckPermission="true"/>
+      <Group>        
         <Item Value="ctrlPA_SalaryPlan" Text="Xây dựng quỹ lương theo định biên" PostBack="True" NavigateUrl="Default.aspx?mid=Planning&amp;fid=ctrlPA_SalaryPlan&amp;group=Business" CheckPermission="true" />
       </Group>
     </Item>
