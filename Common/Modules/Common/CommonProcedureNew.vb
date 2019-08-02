@@ -9,6 +9,16 @@ Imports Common.CommonBusiness
 Public Class CommonProcedureNew
     Private rep As New HistaffFrameworkRepository
 
+    Function GET_MIN_AMOUNT(ByVal empId As Decimal) As Decimal
+        Try
+            Dim obj = rep.ExecuteStoreScalar("PKG_COMMON_LIST.GET_MIN_AMOUNT",
+                                                New List(Of Object)(New Object() {empId, OUT_NUMBER}))
+            Return Decimal.Parse(obj(0).ToString)
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+
     Function GET_VALUE_PA_PAYMENT(ByVal code As String) As Decimal
         Try
             Dim obj = rep.ExecuteStoreScalar("PKG_COMMON_LIST.GET_VALUE_PA_PAYMENT",

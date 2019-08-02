@@ -20,7 +20,7 @@ Public Class ctrlHU_WageNewEdit
     Dim _mylog As New MyLog()
     Dim _pathLog As String = _mylog._pathLog
     Dim _classPath As String = "Profile\Modules\Profile\Business" + Me.GetType().Name.ToString()
-    Dim _lttv1 As Decimal
+    Dim _lttv As Decimal
     Dim _tyLeThuViec As Decimal
     Dim _tyLeChinhThuc As Decimal
 #Region "Property"
@@ -949,7 +949,7 @@ Public Class ctrlHU_WageNewEdit
                 End If
             Next
             'Ngay hieu luc thay doi => load lai thang luong theo ngay hieu luc
-            ClearControlValue(cbSalaryGroup, cbSalaryLevel, cbSalaryRank, SalaryInsurance, rnFactorSalary, rnPercentSalary)
+            ClearControlValue(cbSalaryGroup, cbSalaryLevel, cbSalaryRank, SalaryInsurance, rnFactorSalary)
             Dim dtData As DataTable = New DataTable()
             Using rep As New ProfileRepository
                 dtData = rep.GetSalaryGroupCombo(rdEffectDate.SelectedDate, True)
@@ -1298,7 +1298,7 @@ Public Class ctrlHU_WageNewEdit
                 Dim total As Decimal
                 Dim basicSal As Decimal = 0
                 If IsNumeric(rnFactorSalary.Value) Then
-                    basicSal = rnFactorSalary.Value * _lttv1
+                    basicSal = rnFactorSalary.Value * _lttv
                     basicSalary.Value = basicSal
                 End If
 
@@ -1321,11 +1321,11 @@ Public Class ctrlHU_WageNewEdit
     End Sub
     Private Sub LoadValueConst()
         Try
-            Dim lttv1 = commonStore.GET_VALUE_PA_PAYMENT("LTT_V1")
+            Dim lttv = commonStore.GET_MIN_AMOUNT(hidEmp.Value)
             Dim tyLeThuViec = commonStore.GET_VALUE_PA_PAYMENT("TyLeThuViec")
             Dim tyLeChinhThuc = commonStore.GET_VALUE_PA_PAYMENT("TyLeChinhThuc")
-            If IsNumeric(lttv1) Then
-                _lttv1 = lttv1
+            If IsNumeric(lttv) Then
+                _lttv = lttv
             End If
             If IsNumeric(tyLeThuViec) Then
                 _tyLeThuViec = tyLeThuViec
