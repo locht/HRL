@@ -255,6 +255,7 @@ Partial Class ProfileRepository
                         From k In Context.SE_CHOSEN_ORG.Where(Function(f) p.ORG_ID = f.ORG_ID And f.USERNAME.ToUpper = log.Username.ToUpper)
                         From c In Context.HU_CONTRACT.Where(Function(c) c.ID = p.CONTRACT_ID).DefaultIfEmpty
                         From ct In Context.HU_CONTRACT_TYPE.Where(Function(f) f.ID = c.CONTRACT_TYPE_ID).DefaultIfEmpty
+                        From emp_stt In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.EMP_STATUS).DefaultIfEmpty
                         Order By p.EMPLOYEE_CODE
 
             Dim lst = query.Select(Function(p) New EmployeeDTO With {
@@ -286,7 +287,9 @@ Partial Class ProfileRepository
                              .NHOM_MAU = p.health.NHOM_MAU,
                              .IMAGE = p.pv.IMAGE,
                              .ITIME_ID = p.p.ITIME_ID,
-                             .MODIFIED_DATE = p.p.MODIFIED_DATE})
+                             .MODIFIED_DATE = p.p.MODIFIED_DATE,
+                             .EMP_STATUS = p.p.EMP_STATUS,
+                             .EMP_STATUS_NAME = p.emp_stt.NAME_VN})
 
             If _filter.TITLE_ID IsNot Nothing Then
                 lst = lst.Where(Function(p) p.TITLE_ID = _filter.TITLE_ID)
@@ -354,6 +357,11 @@ Partial Class ProfileRepository
             If _filter.EMPLOYEE_ID IsNot Nothing Then
                 lst = lst.Where(Function(p) p.ID = _filter.EMPLOYEE_ID)
             End If
+
+            If _filter.EMP_STATUS_NAME <> "" Then
+                lst = lst.Where(Function(p) p.EMP_STATUS_NAME.ToUpper().IndexOf(_filter.EMP_STATUS_NAME.ToUpper) >= 0)
+            End If
+
             If _filter.MustHaveContract Then
                 lst = lst.Where(Function(p) p.CONTRACT_ID.HasValue)
             End If
