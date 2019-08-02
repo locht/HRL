@@ -149,14 +149,14 @@
                                 SortExpression="NAME" UniqueName="NAME">
                                 <HeaderStyle HorizontalAlign="Center" />
                             </tlk:GridBoundColumn>
-                            <tlk:GridBoundColumn DataField="TITLE_NAME" FilterControlWidth="90%" HeaderText="<%$ Translate: Chức danh %>"
-                                SortExpression="TITLE_NAME" UniqueName="TITLE_NAME">
-                                <HeaderStyle HorizontalAlign="Center" />
-                            </tlk:GridBoundColumn>
-                              <tlk:GridBoundColumn DataField="ORG_NAME" FilterControlWidth="90%" HeaderText="<%$ Translate: Phòng ban %>"
+                            <tlk:GridBoundColumn DataField="ORG_NAME" FilterControlWidth="90%" HeaderText="<%$ Translate: Phòng ban %>"
                                 SortExpression="ORG_NAME" UniqueName="ORG_NAME">
                                 <HeaderStyle HorizontalAlign="Center" />
                             </tlk:GridBoundColumn>
+                            <tlk:GridBoundColumn DataField="TITLE_NAME" FilterControlWidth="90%" HeaderText="<%$ Translate: Chức danh %>"
+                                SortExpression="TITLE_NAME" UniqueName="TITLE_NAME">
+                                <HeaderStyle HorizontalAlign="Center" />
+                            </tlk:GridBoundColumn>                              
                             <tlk:GridBoundColumn DataField="EFFECT_DATE" EmptyDataText="" FilterControlWidth="90%"
                                 HeaderText="<%$ Translate: Ngày hiệu lực %>" SortExpression="EFFECT_DATE" UniqueName="EFFECT_DATE"
                                 DataFormatString="{0:dd/MM/yyyy}">
