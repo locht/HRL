@@ -70,6 +70,14 @@ Public Class ctrlHU_WageNewEdit
             ViewState(Me.ID & "_Down_File") = value
         End Set
     End Property
+    Property EmployeeID As Decimal
+        Get
+            Return ViewState(Me.ID & "_EmployeeID")
+        End Get
+        Set(ByVal value As Decimal)
+            ViewState(Me.ID & "_EmployeeID") = value
+        End Set
+    End Property
 #End Region
 #Region "Page"
     ''' <summary>
@@ -183,6 +191,7 @@ Public Class ctrlHU_WageNewEdit
                     Working = rep.GetWorkingByID(Working)
                     hidID.Value = Working.ID.ToString
                     hidEmp.Value = Working.EMPLOYEE_ID
+                    EmployeeID = hidEmp.Value
                     txtEmployeeCode.Text = Working.EMPLOYEE_CODE
                     txtEmployeeName.Text = Working.EMPLOYEE_NAME
                     hidTitle.Value = Working.TITLE_ID
@@ -1112,7 +1121,7 @@ Public Class ctrlHU_WageNewEdit
                 rgAllow.Rebind()
                 hidID.Value = obj.ID.ToString
                 hidEmp.Value = obj.EMPLOYEE_ID.ToString()
-
+                EmployeeID = empid
                 If obj.CODE_ATTENDANCE IsNot Nothing Then
                     code_attendent = obj.CODE_ATTENDANCE
                 Else
@@ -1321,7 +1330,7 @@ Public Class ctrlHU_WageNewEdit
     End Sub
     Private Sub LoadValueConst()
         Try
-            Dim lttv = commonStore.GET_MIN_AMOUNT(hidEmp.Value)
+            Dim lttv = If(EmployeeID > 0, commonStore.GET_MIN_AMOUNT(EmployeeID), 0)
             Dim tyLeThuViec = commonStore.GET_VALUE_PA_PAYMENT("TyLeThuViec")
             Dim tyLeChinhThuc = commonStore.GET_VALUE_PA_PAYMENT("TyLeChinhThuc")
             If IsNumeric(lttv) Then
