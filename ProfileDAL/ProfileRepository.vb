@@ -1417,12 +1417,12 @@ Public Class ProfileRepository
         End If
         'Danh mục mối quan hệ
         If _combolistDTO.GET_RELATION Then
-            query = (From p In Context.HU_RELATIONSHIP_LIST
-                     Where p.ACTFLG = "A"
-                     Order By p.NAME
+            query = (From p In Context.OT_OTHER_LIST
+                     Where p.TYPE_ID = 48 And p.ACTFLG = "A"
+                     Order By p.NAME_VN
                     Select New RelationshipListDTO With {
                         .ID = p.ID,
-                        .NAME = p.NAME}).ToList
+                        .NAME = p.NAME_VN}).ToList
             _combolistDTO.LIST_RELATION = query
         End If
         'TransferType = New_Hire -- Dùng khi thêm mới quyết định khi thêm nhân viên trong hồ sơ.
