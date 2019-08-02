@@ -2863,7 +2863,8 @@ Public Class ProfileRepository
     Public Function INSERT_CONCURRENTLY(ByVal concurrently As Temp_ConcurrentlyDTO) As Integer
         Try
             Using cls As New DataAccess.QueryData
-                Dim dtData = cls.ExecuteStore("PKG_HU_IPROFILE_CONCURRENTLY.INSERT_CONCURRENTLY",
+                Dim dtData As DataTable
+                dtData = cls.ExecuteStore("PKG_HU_IPROFILE_CONCURRENTLY.INSERT_CONCURRENTLY",
                                            New With {.P_EMPLOYEE_ID = concurrently.EMPLOYEE_ID,
                                                      .P_ORG_ID = concurrently.ORG_ID,
                                                      .P_TITLE_ID = concurrently.TITLE_ID,
