@@ -487,6 +487,7 @@ Public Class ctrlHU_WageMng
             TableMapping(dsDataPrepare.Tables(0))
             For Each rows As DataRow In dsDataPrepare.Tables(0).Select("EMPLOYEE_CODE<>'""'").CopyToDataTable.Rows
                 If IsDBNull(rows("EMPLOYEE_CODE")) OrElse rows("EMPLOYEE_CODE") = "" Then Continue For
+                Dim repFactor As String = rows("FACTORSALARY").ToString.Trim.Replace(",", ".")
                 Dim newRow As DataRow = dtData.NewRow
                 newRow("EMPLOYEE_CODE") = rows("EMPLOYEE_CODE")
                 newRow("FULLNAME_VN") = rows("FULLNAME_VN")
@@ -496,7 +497,7 @@ Public Class ctrlHU_WageMng
                 newRow("SAL_GROUP_NAME") = rows("SAL_GROUP_NAME")
                 newRow("SAL_LEVEL_NAME") = rows("SAL_LEVEL_NAME")
                 newRow("SAL_RANK_NAME") = rows("SAL_RANK_NAME")
-                newRow("FACTORSALARY") = If(IsNumeric(rows("FACTORSALARY")), Decimal.Parse(rows("FACTORSALARY")), 0)
+                newRow("FACTORSALARY") = If(IsNumeric(rows("FACTORSALARY")), repFactor, 0)
                 newRow("SAL_BASIC") = If(IsNumeric(rows("SAL_BASIC")), Decimal.Parse(rows("SAL_BASIC")), 0)
                 newRow("PERCENTSALARY") = If(IsNumeric(rows("PERCENTSALARY")), Decimal.Parse(rows("PERCENTSALARY")), 0)
                 newRow("OTHERSALARY1") = If(IsNumeric(rows("OTHERSALARY1")), Decimal.Parse(rows("OTHERSALARY1")), 0)
