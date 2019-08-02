@@ -14,13 +14,11 @@ Public Class ctrlRC_Manning
     Public isPhysical As Decimal = Decimal.Parse(ConfigurationManager.AppSettings("PHYSICAL_PATH"))
     Dim repProGram As New RecruitmentRepository
     Dim repStore As New RecruitmentStoreProcedure
-    'author: hongdx
-    'EditDate: 21-06-2017
-    'Content: Write log time and error
-    'asign: hdx
+
     Dim _myLog As New MyLog()
     Dim _pathLog As String = _mylog._pathLog
     Dim _classPath As String = "Recuitment/Modules/Recuitment/Bussiness/" + Me.GetType().Name.ToString()
+
 #Region "Properties"
     Public WithEvents AjaxManager As RadAjaxManager
     Public Property AjaxManagerId As String
@@ -146,67 +144,54 @@ Public Class ctrlRC_Manning
 
 #Region "Page"
     Public Overrides Sub ViewLoad(ByVal e As System.EventArgs)
-        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
         Try
-            Dim startTime As DateTime = DateTime.UtcNow
-            ctrlOrganization.AutoPostBack = True
-            ctrlOrganization.LoadDataAfterLoaded = True
-            ctrlOrganization.OrganizationType = OrganizationType.OrganizationLocation
-            ctrlOrganization.CheckBoxes = TreeNodeTypes.None
-            Refresh()
-            UpdateControlState()
-            _myLog.WriteLog(_myLog._info, _classPath, method,
-                     CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
+            Try
+                ctrlOrganization.AutoPostBack = True
+                ctrlOrganization.LoadDataAfterLoaded = True
+                ctrlOrganization.OrganizationType = OrganizationType.OrganizationLocation
+                ctrlOrganization.CheckBoxes = TreeNodeTypes.None
+                Refresh()
+                UpdateControlState()
+            Catch ex As Exception
+                DisplayException(Me.ViewName, Me.ID, ex)
+            End Try
         Catch ex As Exception
-            _myLog.WriteLog(_myLog._error, _classPath, method, 0, ex, "")
+
         End Try
     End Sub
 
     Public Overrides Sub ViewInit(ByVal e As System.EventArgs)
-        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
         Try
-            Dim startTime As DateTime = DateTime.UtcNow
             AjaxManager = CType(Me.Page, AjaxPage).AjaxManager
             AjaxManagerId = AjaxManager.ClientID
             rgManning.SetFilter()
             rgManning.AllowCustomPaging = True
             rgManning.PageSize = Common.Common.DefaultPageSize
             InitControl()
-            _myLog.WriteLog(_myLog._info, _classPath, method,
-                         CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
-            _myLog.WriteLog(_myLog._error, _classPath, method, 0, ex, "")
+            DisplayException(Me.ViewName, Me.ID, ex)
         End Try
     End Sub
 
     Protected Sub InitControl()
-        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
         Try
-            Dim startTime As DateTime = DateTime.UtcNow
             Me.ctrlMessageBox.Listener = Me
             Me.MainToolBar = rtbMain
             Common.Common.BuildToolbar(Me.MainToolBar, ToolbarItem.Create, ToolbarItem.Edit, ToolbarItem.Seperator,
-                                       ToolbarItem.Save, ToolbarItem.Cancel, ToolbarItem.Delete)
-            ''TODO DAIDM Comment
-            'ToolbarItem.Import, ToolbarItem.Export,
+                                       ToolbarItem.Save, ToolbarItem.Cancel, ToolbarItem.Import, ToolbarItem.Export, ToolbarItem.Delete)
             CType(MainToolBar.Items(3), RadToolBarButton).CausesValidation = True
             'Me.MainToolBar.OnClientButtonClicking = "clientButtonClicking"
             'rgManning.ClientSettings.EnablePostBackOnRowClick = False
             Me.MainToolBar.OnClientButtonClicking = "OnClientButtonClicking"
             CType(Me.Page, AjaxPage).AjaxManager.ClientEvents.OnRequestStart = "onRequestStart"
-            _myLog.WriteLog(_myLog._info, _classPath, method,
-                         CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
-            _myLog.WriteLog(_myLog._error, _classPath, method, 0, ex, "")
             Throw ex
         End Try
     End Sub
 
     Public Overrides Sub UpdateControlState()
         Dim rep As New RecruitmentRepository
-        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
         Try
-            Dim startTime As DateTime = DateTime.UtcNow
             Select Case CurrentState
                 Case CommonMessage.STATE_NORMAL
                     rbtManName.Enabled = False
@@ -215,8 +200,9 @@ Public Class ctrlRC_Manning
                     cbStatus.Enabled = False
                     EnableRadCombo(cboYear, True)
                     EnableRadCombo(cboListManning, True)
-                    EnabledGrid(rgManning, True)
+                    EnabledGrid(rgManning, False)
                     ctrlOrganization.Enabled = True
+                    EnableGridView(False)
                 Case CommonMessage.STATE_NEW, CommonMessage.STATE_EDIT
                     rbtManName.Enabled = True
                     rbtNote.Enabled = True
@@ -224,7 +210,7 @@ Public Class ctrlRC_Manning
                     cbStatus.Enabled = True
                     EnableRadCombo(cboYear, True)
                     EnableRadCombo(cboListManning, True)
-                    EnabledGrid(rgManning, False)
+                    EnabledGrid(rgManning, True)
                     ctrlOrganization.Enabled = False
                 Case CommonMessage.STATE_DELETE
                     If DeleteData() Then
@@ -241,12 +227,18 @@ Public Class ctrlRC_Manning
                         ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), NotifyType.Error)
                         UpdateControlState()
                     End If
+                Case CommonMessage.TOOLBARITEM_IMPORT
+                    rbtManName.Enabled = True
+                    rbtNote.Enabled = True
+                    rdEffectDate.Enabled = True
+                    cbStatus.Enabled = True
+                    EnableRadCombo(cboYear, True)
+                    EnableRadCombo(cboListManning, True)
+                    EnabledGrid(rgManning, True)
+                    ctrlOrganization.Enabled = False
             End Select
             ChangeToolbarState()
-            _myLog.WriteLog(_myLog._info, _classPath, method,
-                         CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
-            _myLog.WriteLog(_myLog._error, _classPath, method, 0, ex, "")
             Throw ex
         End Try
 
@@ -254,9 +246,8 @@ Public Class ctrlRC_Manning
 
     Public Overrides Sub Refresh(Optional ByVal Message As String = "")
         Dim rep As New RecruitmentRepository
-        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+
         Try
-            Dim startTime As DateTime = DateTime.UtcNow
             If Not IsPostBack Then
                 CurrentState = CommonMessage.STATE_NORMAL
             Else
@@ -270,10 +261,9 @@ Public Class ctrlRC_Manning
                         rgManning.MasterTableView.ClearSelectedItems()
                 End Select
             End If
-            _myLog.WriteLog(_myLog._info, _classPath, method,
-                         CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
+
         Catch ex As Exception
-            _myLog.WriteLog(_myLog._error, _classPath, method, 0, ex, "")
+            DisplayException(Me.ViewName, Me.ID, ex)
         End Try
     End Sub
 #End Region
@@ -281,10 +271,8 @@ Public Class ctrlRC_Manning
 #Region "Event"
     Protected Sub OnToolbar_Command(ByVal sender As Object, ByVal e As RadToolBarEventArgs) Handles Me.OnMainToolbarClick
         Dim rep As New RecruitmentRepository
-
-        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+        Dim dtData As DataTable
         Try
-            Dim startTime As DateTime = DateTime.UtcNow
             Select Case CType(e.Item, RadToolBarButton).CommandName
                 Case CommonMessage.TOOLBARITEM_CREATE
                     If ctrlOrganization.CurrentValue = "" Then
@@ -303,7 +291,7 @@ Public Class ctrlRC_Manning
                     rbtManningCountMobilize.Text = "0"
                     rbtManningCurrentCount.Text = "0"
                     rbtManningNew.Text = "0"
-                    'rbtManningOld.Text = "0"
+                    rbtManningOld.Text = "0"
 
                     UpdateControlState()
                 Case CommonMessage.TOOLBARITEM_EDIT
@@ -312,11 +300,19 @@ Public Class ctrlRC_Manning
                         ShowMessage("Vui lòng chọn tên định biên!", NotifyType.Warning)
                         Exit Sub
                     End If
+                    rgManning.MasterTableView.EditMode = GridEditMode.InPlace
+
+                    EnableGridView(True)
+
                     CurrentState = CommonMessage.STATE_EDIT
                     UpdateControlState()
                     rbtManName.Focus()
                 Case CommonMessage.TOOLBARITEM_SAVE
                     If Page.IsValid Then
+                        If rgManning.SelectedItems.Count = 0 AndAlso CurrentState = CommonMessage.STATE_EDIT Then
+                            ShowMessage("Vui lòng chọn 1 dòng trước khi lưu", NotifyType.Error)
+                            Exit Sub
+                        End If
                         If SaveData() = 1 Then
                             Select Case CurrentState
                                 Case CommonMessage.STATE_NEW
@@ -346,14 +342,14 @@ Public Class ctrlRC_Manning
                                     dtListMannName = repStore.LoadComboboxListMannName(Int32.Parse(ctrlOrganization.CurrentValue), year)
                                     FillRadCombobox(cboListManning, dtListMannName, "NAME", "ID")
                                     cboListManning.Text = rbtManName.Text
-
+                                    UpdateInforGridview()
                                     'load mannning org
                                     GetManningOrgInfo()
                             End Select
 
                             ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), Utilities.NotifyType.Success)
                             CurrentState = CommonMessage.STATE_NORMAL
-
+                            EnabledGrid(rgManning, False)
                         Else
                             ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), Utilities.NotifyType.Error)
                         End If
@@ -369,20 +365,39 @@ Public Class ctrlRC_Manning
                     UpdateControlState()
                     GetManningOrgInfo()
                 Case CommonMessage.TOOLBARITEM_IMPORT
-                    If cboListManning.SelectedValue <= 0 Then
+                    If cboListManning.SelectedValue = "" Then
                         ShowMessage(Translate("Chọn tên định biên cần nhập dữ liệu."), Utilities.NotifyType.Warning)
                         Return
                     End If
                     ctrlUpload.isMultiple = True
                     ctrlUpload.Show()
-                    CurrentState = CommonMessage.TOOLBARITEM_IMPORT
-                    UpdateControlState()
+
                 Case CommonMessage.TOOLBARITEM_EXPORT
                     If cboListManning.SelectedValue <> "" Then
                         'ViewReport_Excel(Nothing)
                         Using xls As New ExcelCommon
                             If tabSource IsNot Nothing AndAlso tabSource.Rows.Count > 0 Then
-                                rgManning.ExportExcel(Server, Response, tabSource, "Danh sách đơn vị bảo hiểm")
+                                Dim dsData As New DataSet
+                                Dim dtDatan As New DataTable
+                                dtDatan = tabSource.Copy
+                                Dim _error As String = String.Empty
+                                Dim bCheck As Boolean = False
+                                dsData.Tables.Add(dtDatan)
+                                dsData.Tables(0).TableName = "DATA"
+                                ' rgManning.ExportExcel(Server, Response, tabSource, "Danh sách đơn vị bảo hiểm")
+                                Using cls As New ExcelCommon
+                                    bCheck = cls.ExportExcelTemplate(
+                   Server.MapPath("~/ReportTemplates//Recruitment//Import//Dinhbien_template.xls"), "Danh sách định biên", dtDatan, Response, String.Empty, ExcelCommon.ExportType.Excel)
+                                    If Not bCheck Then
+                                        Select Case _error
+                                            Case 1
+                                                ShowMessage(Translate("File mẫu không tồn tại"), NotifyType.Warning)
+                                            Case 2
+                                                ShowMessage(Translate("Dữ liệu không tồn tại"), NotifyType.Warning)
+                                        End Select
+                                        Exit Sub
+                                    End If
+                                End Using
                             Else
                                 ShowMessage(Translate(CommonMessage.MESSAGE_DATA_EMPTY), NotifyType.Warning)
                                 Exit Sub
@@ -394,13 +409,10 @@ Public Class ctrlRC_Manning
                     CurrentState = CommonMessage.STATE_NORMAL
                     UpdateControlState()
             End Select
-            rep.Dispose()
             'ChangeToolbarState()
             UpdateControlState()
-            _myLog.WriteLog(_myLog._info, _classPath, method,
-                         CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
-            _myLog.WriteLog(_myLog._error, _classPath, method, 0, ex, "")
+            DisplayException(Me.ViewName, Me.ID, ex)
         End Try
     End Sub
 
@@ -415,9 +427,7 @@ Public Class ctrlRC_Manning
     End Sub
 
     Private Sub ctrlOrg_SelectedNodeChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles ctrlOrganization.SelectedNodeChanged
-        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
         Try
-            Dim startTime As DateTime = DateTime.UtcNow
             Using rep As New RecruitmentRepository
                 hidOrgID.Value = ""
                 lblOrgName.Text = ""
@@ -433,77 +443,58 @@ Public Class ctrlRC_Manning
                     Dim dtListMannName As DataTable
                     dtListMannName = repStore.LoadComboboxListMannName(ctrlOrganization.CurrentValue, If(cboYear.SelectedValue = "", 0, Int32.Parse(cboYear.SelectedValue)))
                     FillRadCombobox(cboListManning, dtListMannName, "NAME", "ID")
-                    cboListManning.Text = ""
                 End If
                 rgManning.CurrentPageIndex = 0
                 rgManning.MasterTableView.SortExpressions.Clear()
                 rgManning.Rebind()
             End Using
-            _myLog.WriteLog(_myLog._info, _classPath, method,
-                         CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
-            _myLog.WriteLog(_myLog._error, _classPath, method, 0, ex, "")
+            DisplayException(Me.ViewName, Me.ID, ex)
         End Try
     End Sub
 
     Private Sub cboYear_SelectedIndexChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles cboYear.SelectedIndexChanged
-        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
         Try
-            Dim startTime As DateTime = DateTime.UtcNow
             Dim dtListMannName As DataTable
             If cboYear.SelectedValue Is Nothing Or cboYear.SelectedValue = "" Then
                 FillRadCombobox(cboListManning, Nothing, "NAME", "ID")
             Else
+                cboListManning.ClearSelection()
                 dtListMannName = repStore.LoadComboboxListMannName(ctrlOrganization.CurrentValue, cboYear.SelectedValue)
                 FillRadCombobox(cboListManning, dtListMannName, "NAME", "ID")
+
             End If
-            _myLog.WriteLog(_myLog._info, _classPath, method,
-                         CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
-            _myLog.WriteLog(_myLog._error, _classPath, method, 0, ex, "")
+            DisplayException(Me.ViewName, Me.ID, ex)
         End Try
     End Sub
 
     Private Sub cboListManning_SelectedIndexChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles cboListManning.SelectedIndexChanged
-        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
         Try
-            Dim startTime As DateTime = DateTime.UtcNow
             rgManning.Enabled = True
             hidMannOrgId.Value = cboListManning.SelectedValue
 
             Dim year As Integer = If(cboYear.SelectedValue = [String].Empty, 0, Int32.Parse(cboYear.SelectedValue))
+
             'rgManning.DataSource = repStore.GetListManningByName(Decimal.Parse(cboListManning.SelectedValue), Int32.Parse(hidOrgID.Value), year)
-            tabSource = repStore.GetListManningByName(Decimal.Parse(cboListManning.SelectedValue), Int32.Parse(hidOrgID.Value), year)
+            tabSource = repStore.GetListManningByName(If(cboListManning.SelectedValue <> "", Decimal.Parse(cboListManning.SelectedValue), 0), If(hidOrgID.Value = "", 0, Int32.Parse(hidOrgID.Value)), year)
             rgManning.DataSource = tabSource
             rgManning.Rebind()
 
             'Load thông tin định biên
             GetManningOrgInfo()
-            _myLog.WriteLog(_myLog._info, _classPath, method,
-                         CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
-            _myLog.WriteLog(_myLog._error, _classPath, method, 0, ex, "")
+            DisplayException(Me.ViewName, Me.ID, ex)
         End Try
     End Sub
 
     Private Sub ctrlUpload_OkClicked(ByVal sender As Object, ByVal e As System.EventArgs) Handles ctrlUpload.OkClicked
         'Dim periodId As String = cbxSignPeriod.SelectedValue
-        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
-        Try
-            Dim startTime As DateTime = DateTime.UtcNow
-            ImportManning()
-            _myLog.WriteLog(_myLog._info, _classPath, method,
-                         CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
-        Catch ex As Exception
-            _myLog.WriteLog(_myLog._error, _classPath, method, 0, ex, "")
-        End Try
-
+        ImportManning()
     End Sub
 
     Private Sub ctrlMessageBox_ButtonCommand(ByVal sender As Object, ByVal e As MessageBoxEventArgs) Handles ctrlMessageBox.ButtonCommand
-        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
         Try
-            Dim startTime As DateTime = DateTime.UtcNow
             If e.ActionName = CommonMessage.TOOLBARITEM_DELETE And e.ButtonID = MessageBoxButtonType.ButtonYes Then
                 CurrentState = CommonMessage.STATE_DELETE
                 UpdateControlState()
@@ -516,20 +507,39 @@ Public Class ctrlRC_Manning
                 CurrentState = CommonMessage.STATE_REJECT
                 UpdateControlState()
             End If
+        Catch ex As Exception
+            DisplayException(Me.ViewName, Me.ID, ex)
+        End Try
+    End Sub
+
+    Protected Sub btnSearch_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnSearch.Click
+        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+        Try
+            Dim startTime As DateTime = DateTime.UtcNow
+            rgManning.Enabled = True
+            hidMannOrgId.Value = cboListManning.SelectedValue
+
+            Dim year As Integer = If(cboYear.SelectedValue = [String].Empty, 0, Int32.Parse(cboYear.SelectedValue))
+            Dim manning As Integer = If(cboListManning.SelectedValue = [String].Empty, 0, Decimal.Parse(cboListManning.SelectedValue))
+            tabSource = repStore.GetListManningByName(manning, Int32.Parse(hidOrgID.Value), year)
+            rgManning.DataSource = tabSource
+            rgManning.Rebind()
+
+            'Load thông tin định biên
+            GetManningOrgInfo()
             _myLog.WriteLog(_myLog._info, _classPath, method,
                          CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
             _myLog.WriteLog(_myLog._error, _classPath, method, 0, ex, "")
+            DisplayException(Me.ViewName, Me.ID, ex)
         End Try
-    End Sub
 
+    End Sub
 #End Region
 
 #Region "Function & Sub"
     Private Function SaveData() As Integer
-        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
         Try
-            Dim startTime As DateTime = DateTime.UtcNow
             Dim repStore As New RecruitmentStoreProcedure
             Dim IsCompeted As Integer = 0
             Dim objMO As New ManningOrgDTO
@@ -543,7 +553,6 @@ Public Class ctrlRC_Manning
             objMO.CURRENT_MANNING = 0
             objMO.NEW_MANNING = 0
             objMO.MOBILIZE_COUNT_MANNING = 0
-            'objMO.YEAR = If(cboYear.SelectedValue = [String].Empty, Int32.Parse(cboYear.Text.Trim), Int32.Parse(cboYear.SelectedValue))
             If cbStatus.Checked Then
                 objMO.STATUS = 1
             Else
@@ -559,6 +568,7 @@ Public Class ctrlRC_Manning
             Else
                 objMO.ID = hidMannOrgId.Value
                 IsCompeted = repStore.UpdateManningOrg(objMO)
+                repStore.UpdateNewManningOrg(cboListManning.SelectedValue)
             End If
 
             'If IsCompeted = 1 Then
@@ -586,30 +596,79 @@ Public Class ctrlRC_Manning
             'End If
 
             Return IsCompeted
-            _myLog.WriteLog(_myLog._info, _classPath, method,
-                         CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
+
         Catch ex As Exception
-            _myLog.WriteLog(_myLog._error, _classPath, method, 0, ex, "")
+            Return 0
         End Try
     End Function
-
-    Private Function DeleteData() As Boolean
-        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+    ''' <summary>
+    ''' cập nhật Thông tin thay đổi trên lưới
+    ''' </summary>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
+    Private Function UpdateInforGridview() As Boolean
         Try
-            Dim startTime As DateTime = DateTime.UtcNow
-            Return repStore.DeleteManning(Int32.Parse(cboListManning.SelectedValue))
-            _myLog.WriteLog(_myLog._info, _classPath, method,
-                         CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
+            Dim objMT As New ManningTitleDTO
+            Dim count As Integer = 0
+            Dim complete As Integer = 0
+            'Dim objMO As New ManningOrgDTO
+            'objMO.CURRENT_MANNING = 0
+            'objMO.MOBILIZE_COUNT_MANNING = 0
+            'objMO.NEW_MANNING = 0
+
+            If rgManning.SelectedItems.Count > 0 Then
+                For Each data As GridDataItem In rgManning.SelectedItems
+                    count = count + 1
+                    objMT.ID = data.GetDataKeyValue("ID")
+                    If data.GetDataKeyValue("NEW_MANNING") IsNot Nothing Then
+                        objMT.NEW_MANNING = CType(data.Item("NEW_MANNING").Controls(0), RadNumericTextBox).Value
+                        ' objMO.NEW_MANNING += objMT.NEW_MANNING
+                    Else
+                        objMT.NEW_MANNING = 0
+                    End If
+                    If data.GetDataKeyValue("CURRENT_MANNING") IsNot Nothing Then
+                        objMT.CURRENT_MANNING = Int32.Parse(data.GetDataKeyValue("CURRENT_MANNING"))
+                        'objMO.CURRENT_MANNING += objMT.CURRENT_MANNING
+                    Else
+                        objMT.CURRENT_MANNING = 0
+                    End If
+
+                    objMT.MOBILIZE_COUNT_MANNING = objMT.NEW_MANNING - objMT.CURRENT_MANNING
+                    objMT.NOTE = CType(data.Item("NOTE").Controls(0), TextBox).Text
+                    ' objMT.MOBILIZE_COUNT_MANNING += objMT.MOBILIZE_COUNT_MANNING
+
+                    If (repStore.UpdateNewManningTitle(objMT) = 1) Then
+                        complete = complete + 1
+                    End If
+                Next
+                If count = complete Then
+                    'cap nhat lai so luong định biên
+                    'objMO.ID = hidMannOrgId.Value
+                    'repStore.UpdateInforManningOrg(objMO)
+                    GetManningOrgInfo()
+                    Return True
+                Else
+                    Return False
+                End If
+            Else
+                Return True
+            End If
+
+
         Catch ex As Exception
-            _myLog.WriteLog(_myLog._error, _classPath, method, 0, ex, "")
+            Throw ex
+        End Try
+    End Function
+    Private Function DeleteData() As Boolean
+        Try
+            Return repStore.DeleteManning(Int32.Parse(cboListManning.SelectedValue))
+        Catch ex As Exception
             Return False
         End Try
     End Function
 
     Private Sub ViewReport_Excel(Optional ByVal isExportXML As Boolean = False)
-        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
         Try
-            Dim startTime As DateTime = DateTime.UtcNow
             Dim lstParaValue As New List(Of Object)
             Dim rep As New HistaffFrameworkRepository
             Dim _error As Integer = 0
@@ -692,78 +751,67 @@ Public Class ctrlRC_Manning
             Else
                 ShowMessage((Translate("AT_IMPORTTIMESHEET_NO_EXIST_TEMPLATE")), Framework.UI.Utilities.NotifyType.Warning)
             End If
-            _myLog.WriteLog(_myLog._info, _classPath, method,
-                         CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
-            _myLog.WriteLog(_myLog._error, _classPath, method, 0, ex, "")
+            'DisplayException(Me.ViewName, Me.ID, ex)
         End Try
     End Sub
 
     Private Function GetListParametersValue() As List(Of Object)
         Dim rs As New List(Of Object)
-        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
-        Try
-            Dim startTime As DateTime = DateTime.UtcNow
+        Dim index As Decimal = 0
+        Dim str As String = ""
+        Dim typefield As String = ""
+        Dim selectedSign As New List(Of ManningOrgDTO)
+        hasError = 0
+        ' Kiểm tra chọn phòng ban 
+        If ctrlOrganization.CurrentValue Is Nothing Then
+            'Bạn CHƯA chọn phòng ban!
+            ShowMessage(Translate("AT_IMPORTTIMESHEET_NO_SELECT_ORG."), Utilities.NotifyType.Warning)
+            hasError = -1
+        Else
+            'lstOrg =
+            lstOrgStr = ctrlOrganization.CurrentValue
+            'For i As Integer = 0 To lstOrg.Count - 1
+            '    If i = lstOrg.Count - 1 Then
+            '        lstOrgStr = lstOrgStr & lstOrg(i).ToString
+            '    Else
+            '        lstOrgStr = lstOrgStr & lstOrg(i).ToString & ","
+            '    End If
+            'Next
+            rs.Add(lstOrgStr)
+        End If
+        ' Kiểm tra chọn kỳ công 
+        If cboListManning.SelectedValue Is Nothing Then
+            'Bạn chưa chọn kỳ công
+            ShowMessage(Translate("AT_IMPORTTIMESHEET_NO_SELECT_PERIOD."), Utilities.NotifyType.Warning)
+            hasError = -1
+        Else
+            rs.Add(cboListManning.SelectedValue)
+        End If
 
-            Dim index As Decimal = 0
-            Dim str As String = ""
-            Dim typefield As String = ""
-            Dim selectedSign As New List(Of ManningOrgDTO)
-            hasError = 0
-            ' Kiểm tra chọn phòng ban 
-            If ctrlOrganization.CurrentValue Is Nothing Then
-                'Bạn CHƯA chọn phòng ban!
-                ShowMessage(Translate("AT_IMPORTTIMESHEET_NO_SELECT_ORG."), Utilities.NotifyType.Warning)
-                hasError = -1
-            Else
-                'lstOrg =
-                lstOrgStr = ctrlOrganization.CurrentValue
-                'For i As Integer = 0 To lstOrg.Count - 1
-                '    If i = lstOrg.Count - 1 Then
-                '        lstOrgStr = lstOrgStr & lstOrg(i).ToString
-                '    Else
-                '        lstOrgStr = lstOrgStr & lstOrg(i).ToString & ","
-                '    End If
-                'Next
-                rs.Add(lstOrgStr)
-            End If
-            ' Kiểm tra chọn kỳ công 
-            If cboListManning.SelectedValue Is Nothing Then
-                'Bạn chưa chọn kỳ công
-                ShowMessage(Translate("AT_IMPORTTIMESHEET_NO_SELECT_PERIOD."), Utilities.NotifyType.Warning)
-                hasError = -1
-            Else
-                rs.Add(cboListManning.SelectedValue)
-            End If
-
-            ' Kiểm tra chọn kỳ công 
-            'If cboTitle.SelectedValue Is Nothing Then
-            '    'Bạn chưa chọn loai import
-            '    ShowMessage(Translate("AT_IMPORTTIMESHEET_NO_SELECT_TYPE_IMPORT."), Utilities.NotifyType.Warning)
-            '    hasError = -1
-            'Else
-            '    rs.Add(cboTitle.SelectedValue)
-            'End If
-            _myLog.WriteLog(_myLog._info, _classPath, method,
-                         CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
-        Catch ex As Exception
-            _myLog.WriteLog(_myLog._error, _classPath, method, 0, ex, "")
-        End Try
+        ' Kiểm tra chọn kỳ công 
+        'If cboTitle.SelectedValue Is Nothing Then
+        '    'Bạn chưa chọn loai import
+        '    ShowMessage(Translate("AT_IMPORTTIMESHEET_NO_SELECT_TYPE_IMPORT."), Utilities.NotifyType.Warning)
+        '    hasError = -1
+        'Else
+        '    rs.Add(cboTitle.SelectedValue)
+        'End If
         Return rs
     End Function
 
     Private Sub ImportManning()
         'Cột bắt đầu đọc
-        'Dim colStart As Integer
+        '  Dim colStart As Integer
         'Dòng bắt đầu đọc
-        'Dim rowStart As Integer
+        ' Dim rowStart As Integer
         'Dim countDay As Integer = (endPeriodid - startPeriodid).TotalDays + 1 '=4
         'Dim colDataPeriodBegin As Integer = (colStart + countDay) - 1 'Default Index từ 0
         'Dim drPeriod As DataRow = dtbPeriod.Select(String.Format("ID = {0}", periodId)).FirstOrDefault()
         'Dim startDate As Date = Date.Parse(drPeriod("STARTDATE"))
         'Dim endDate As Date = Date.Parse(drPeriod("ENDDATE"))
         'Dim countDayInPeriod As Long = DateDiff(DateInterval.Day, startDate, endDate) + 1
-        'Dim SumAllColImport As Integer
+        ' Dim SumAllColImport As Integer
         Dim fileName As String
         'isCheckContract = ""
         'isCheckExists = ""
@@ -773,9 +821,7 @@ Public Class ctrlRC_Manning
         'isCheckSign = ""
         'isCheckAnnual = ""
         'DesignGridViewTimeSheet(startPeriodid, endPeriodid)
-        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
         Try
-            Dim startTime As DateTime = DateTime.UtcNow
             'Lấy thông tin nhân viên để kiểm tra khi import
             lstOrg = ctrlOrganization.CheckedValueKeys
             lstOrgStr = ctrlOrganization.CurrentValue
@@ -817,40 +863,37 @@ Public Class ctrlRC_Manning
                     End If
                 End If
             End If
-            _myLog.WriteLog(_myLog._info, _classPath, method,
-                         CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
+            'Cập nhật trạng thái sửa để user sửa và lưu
+            rgManning.MasterTableView.EditMode = GridEditMode.InPlace
+
+            EnableGridView(True)
+
+            CurrentState = CommonMessage.STATE_EDIT
+            UpdateControlState()
+
         Catch ex As Exception
-            _myLog.WriteLog(_myLog._error, _classPath, method, 0, ex, "")
+            'ShowMessage(ex.Message, Utilities.NotifyType.Error)
         End Try
     End Sub
 
     Private Sub GetManningOrgInfo()
-        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
-        Try
-            Dim startTime As DateTime = DateTime.UtcNow
-            'Load thông tin định biên
-            If cboListManning.SelectedValue <> Nothing Then
-                Dim tab As DataTable = repStore.GetManningOrgByID(cboListManning.SelectedValue)
-                If tab IsNot Nothing AndAlso tab.Rows.Count = 1 Then
-                    hidMannOrgId.Value = tab.Rows(0)("ID").ToString()
-                    rbtManName.Text = tab.Rows(0)("NAME").ToString()
-                    rdEffectDate.SelectedDate = tab.Rows(0)("EFFECT_DATE")
-                    rbtNote.Text = tab.Rows(0)("NOTE").ToString
-                    'rbtManningOld.Text = tab.Rows(0)("OLD_MANNING").ToString
-                    rbtManningCurrentCount.Text = tab.Rows(0)("CURRENT_MANNING").ToString
-                    rbtManningCountMobilize.Text = tab.Rows(0)("MOBILIZE_COUNT_MANNING").ToString
-                    rbtManningNew.Text = tab.Rows(0)("NEW_MANNING").ToString
-                    cbStatus.Checked = If(tab.Rows(0)("STATUS").ToString() = "0", False, True)
-                End If
-            Else
-                hidMannOrgId.Value = ""
+        'Load thông tin định biên
+        If cboListManning.SelectedValue <> Nothing Then
+            Dim tab As DataTable = repStore.GetManningOrgByID(cboListManning.SelectedValue)
+            If tab IsNot Nothing AndAlso tab.Rows.Count = 1 Then
+                hidMannOrgId.Value = tab.Rows(0)("ID").ToString()
+                rbtManName.Text = tab.Rows(0)("NAME").ToString()
+                rdEffectDate.SelectedDate = tab.Rows(0)("EFFECT_DATE")
+                rbtNote.Text = tab.Rows(0)("NOTE").ToString
+                rbtManningOld.Text = tab.Rows(0)("OLD_MANNING").ToString
+                rbtManningCurrentCount.Text = tab.Rows(0)("CURRENT_MANNING").ToString
+                rbtManningCountMobilize.Text = tab.Rows(0)("MOBILIZE_COUNT_MANNING").ToString
+                rbtManningNew.Text = tab.Rows(0)("NEW_MANNING").ToString
+                cbStatus.Checked = If(tab.Rows(0)("STATUS").ToString() = "0", False, True)
             End If
-            _myLog.WriteLog(_myLog._info, _classPath, method,
-                         CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
-        Catch ex As Exception
-            _myLog.WriteLog(_myLog._error, _classPath, method, 0, ex, "")
-        End Try
-
+        Else
+            hidMannOrgId.Value = ""
+        End If
     End Sub
 
 #End Region
@@ -858,9 +901,8 @@ Public Class ctrlRC_Manning
 #Region "Custom"
 
     Protected Function CreateDataFilter(Optional ByVal isFull As Boolean = False) As DataTable
-        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
         Try
-            Dim startTime As DateTime = DateTime.UtcNow
+
             Dim year As Integer = If(cboYear.SelectedValue = [String].Empty, 0, Int32.Parse(cboYear.SelectedValue))
             Dim cboList As Decimal
 
@@ -874,18 +916,22 @@ Public Class ctrlRC_Manning
             rgManning.DataSource = tabSource
             rgManning.MasterTableView.VirtualItemCount = tabSource.Rows.Count
             rgManning.CurrentPageIndex = rgManning.MasterTableView.CurrentPageIndex
-            _myLog.WriteLog(_myLog._info, _classPath, method,
-                         CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
+
         Catch ex As Exception
-            _myLog.WriteLog(_myLog._error, _classPath, method, 0, ex, "")
+            Throw ex
         End Try
 
     End Function
+    Private Sub EnableGridView(ByVal value As Boolean)
 
+        For Each item As GridItem In rgManning.MasterTableView.Items
+            item.Edit = value
+        Next
+
+        rgManning.Rebind()
+    End Sub
     Public Sub ExportFileDataXML(ByVal dsReport As DataSet, ByVal requestId As Decimal, ByVal programID As Decimal, ByVal mid As String, ByVal type As Decimal)
-        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
         Try
-            Dim startTime As DateTime = DateTime.UtcNow
             If type = 1 Then 'đường dẫn vật lý được lấy ở web.config
                 dsReport.WriteXml(System.IO.Path.Combine(Framework.UI.Utilities.PathTemplateOutFolder & mid, programID & "_XML_DATA_" & requestId & ".xml"))
                 Dim fileToDownload = System.IO.Path.Combine(Framework.UI.Utilities.PathTemplateOutFolder & mid, programID & "_XML_DATA_" & requestId & ".xml") 'Server.MapPath("~/App_Data/someFile.pdf")
@@ -908,218 +954,155 @@ Public Class ctrlRC_Manning
                 Response.AddHeader("Content-Length", file.Length.ToString())
                 Response.ContentType = "application/octet-stream"
                 Response.WriteFile(file.FullName)
-
             End If
-            _myLog.WriteLog(_myLog._info, _classPath, method,
-                         CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
-            _myLog.WriteLog(_myLog._error, _classPath, method, 0, ex, "")
+            'Throw ex
         End Try
 
     End Sub
 
     Private Function CheckDataImport(ByVal ds As DataSet) As Boolean
-        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
-        Try
-            Dim startTime As DateTime = DateTime.UtcNow
-            Dim msg As String = String.Empty
+        Dim msg As String = String.Empty
+        Dim checkCol As Integer
+        Dim countTableImport As Integer = ds.Tables(0).Columns.Count
+        '1. Check file import có dữ liệu hay không
+        If ds Is Nothing OrElse ds.Tables Is Nothing OrElse ds.Tables(0).Rows Is Nothing OrElse ds.Tables(0).Rows.Count = 0 Then
+            '[File invalid] File không có dữ liệu để import!"
+            msg = "File không có dữ liệu để import!"
+            GoTo BREAKFUNCTION
+        End If
 
-            Dim countTableImport As Integer = ds.Tables(0).Columns.Count
-            '1. Check file import có dữ liệu hay không
-            If ds Is Nothing OrElse ds.Tables Is Nothing OrElse ds.Tables(0).Rows Is Nothing OrElse ds.Tables(0).Rows.Count = 0 Then
-                '[File invalid] File không có dữ liệu để import!"
-                msg = "File không có dữ liệu để import!"
-                GoTo BREAKFUNCTION
-            End If
+        'If SumColImport <> countTableImport Then
+        '    '[File invalid] File import không hợp lệ, số ngày import không bằng với số ngày của kỳ công
+        '    msg = "File import không hợp lệ!"
+        '    GoTo BREAKFUNCTION
+        'End If
 
-            'If SumColImport <> countTableImport Then
-            '    '[File invalid] File import không hợp lệ, số ngày import không bằng với số ngày của kỳ công
-            '    msg = "File import không hợp lệ!"
-            '    GoTo BREAKFUNCTION
-            'End If
-
-            Return True
+        Return True
 BREAKFUNCTION:
-            ShowMessage(msg, Utilities.NotifyType.Warning)
-            Return False
-            _myLog.WriteLog(_myLog._info, _classPath, method,
-                         CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
-        Catch ex As Exception
-            _myLog.WriteLog(_myLog._error, _classPath, method, 0, ex, "")
-        End Try
-
+        ShowMessage(msg, Utilities.NotifyType.Warning)
+        Return False
     End Function
 
     Private Function CreateDataForGridViewImport(ByVal ds As DataSet,
                                                  ByVal rowDataBegin As Integer,
                                                  ByVal countDayInPeriod As Integer) As DataTable
-
         Dim dtb As New DataTable()
-        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
-        Try
-            Dim startTime As DateTime = DateTime.UtcNow
-            Dim dr As DataRow
+        Dim dr As DataRow
+        Dim endColDataAT As Integer
+        Dim endcol As Integer
+        'If cbxType.SelectedValue = ATConstant.IMPORT_MONTH Then
+        '    endColDataAT = (colDataPeriodBegin + countDayInPeriod)
+        'Else
+        '    endColDataAT = (colDataPeriodBegin + countDayInPeriod)
+        'End If
+        Dim stt As Integer = 1
 
+        dtb = CreateDataTableImport()
 
-            'If cbxType.SelectedValue = ATConstant.IMPORT_MONTH Then
-            '    endColDataAT = (colDataPeriodBegin + countDayInPeriod)
-            'Else
-            '    endColDataAT = (colDataPeriodBegin + countDayInPeriod)
-            'End If
-            Dim stt As Integer = 1
+        For i = rowDataBegin To ds.Tables(0).Rows.Count - 1
+            dr = dtb.NewRow
+            If ds.Tables(0).Rows(i)(1).ToString <> "" Then
+                'dr("ID") = stt
+                dr("ID") = ds.Tables(0).Rows(i)(0)
+                ' dr("ORG_NAME") = ds.Tables(0).Rows(i)(1)
 
-            dtb = CreateDataTableImport()
-
-            For i = rowDataBegin To ds.Tables(0).Rows.Count - 1
-                dr = dtb.NewRow
-                If ds.Tables(0).Rows(i)(1).ToString <> "" Then
-                    'dr("ID") = stt
-                    dr("ID") = ds.Tables(0).Rows(i)(0)
-                    dr("ORG_NAME") = ds.Tables(0).Rows(i)(1)
-                    dr("TITLE_NAME") = ds.Tables(0).Rows(i)(2)
-                    dr("NAME") = ds.Tables(0).Rows(i)(3)
-                    dr("EFFECT_DATE") = ds.Tables(0).Rows(i)(4)
-                    dr("OLD_MANNING") = ds.Tables(0).Rows(i)(5)
-                    dr("CURRENT_MANNING") = ds.Tables(0).Rows(i)(6)
-                    dr("NEW_MANNING") = ds.Tables(0).Rows(i)(7)
-                    dr("MOBILIZE_COUNT_MANNING") = ds.Tables(0).Rows(i)(8)
-                    dr("NOTE") = ds.Tables(0).Rows(i)(9)
-                    'For j = colDataPeriodBegin To endColDataAT - 1
-                    '    dr(j) = ds.Tables(0).Rows(i)(j)
-                    'Next
-                    dtb.Rows.Add(dr)
-                    stt = stt + 1
-                Else
-                    Continue For
-                End If
-            Next
-            dtb.AcceptChanges()
-            _myLog.WriteLog(_myLog._info, _classPath, method,
-                         CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
-        Catch ex As Exception
-            _myLog.WriteLog(_myLog._error, _classPath, method, 0, ex, "")
-        End Try
+                dr("NAME") = ds.Tables(0).Rows(i)(1)
+                dr("TITLE_NAME") = ds.Tables(0).Rows(i)(2)
+                dr("EFFECT_DATE") = DateTime.FromOADate(ds.Tables(0).Rows(i)(3))
+                dr("OLD_MANNING") = ds.Tables(0).Rows(i)(4)
+                dr("CURRENT_MANNING") = ds.Tables(0).Rows(i)(5)
+                dr("NEW_MANNING") = ds.Tables(0).Rows(i)(6)
+                dr("MOBILIZE_COUNT_MANNING") = ds.Tables(0).Rows(i)(7)
+                dr("NOTE") = If(ds.Tables(0).Rows(i).Field(Of String)(8) Is Nothing, "", ds.Tables(0).Rows(i).Field(Of String)(8))
+                'For j = colDataPeriodBegin To endColDataAT - 1
+                '    dr(j) = ds.Tables(0).Rows(i)(j)
+                'Next
+                dtb.Rows.Add(dr)
+                stt = stt + 1
+            Else
+                Continue For
+            End If
+        Next
+        dtb.AcceptChanges()
         Return dtb
     End Function
 
     Private Function CreateDataTableImport(Optional ByVal tableName As String = "table", Optional ByVal idRowItems As String = "ImportList_IS_SELECTED") As DataTable
         Dim dtb As New DataTable
-        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
-        Try
-            Dim startTime As DateTime = DateTime.UtcNow
-            Dim i As Integer = 1
-            'Dim dateTemp As Date = startPeriod
-            'Dim dateTemp2 As Date = endPeriod
-            dtb.TableName = tableName
-            dtb.Columns.Add("ID", GetType(Decimal))
-            dtb.Columns.Add("ORG_NAME", GetType(String))
-            dtb.Columns.Add("TITLE_NAME", GetType(String))
-            dtb.Columns.Add("NAME", GetType(String))
-            dtb.Columns.Add("EFFECT_DATE", GetType(Date))
-            dtb.Columns.Add("OLD_MANNING", GetType(Decimal))
-            dtb.Columns.Add("CURRENT_MANNING", GetType(Decimal))
-            dtb.Columns.Add("NEW_MANNING", GetType(Decimal))
-            dtb.Columns.Add("MOBILIZE_COUNT_MANNING", GetType(Decimal))
-            dtb.Columns.Add("NOTE", GetType(Decimal))
-            'If countDay = 28 Then
-            '    dateTemp2 = dateTemp2.AddDays(3)
-            'ElseIf countDay = 29 Then
-            '    dateTemp2 = dateTemp2.AddDays(2)
-            'ElseIf countDay = 30 Then
-            '    dateTemp2 = dateTemp2.AddDays(1)
-            'End If
-            'If startPeriod <> Nothing Then
-            '    Do
-            '        dtb.Columns.Add("DATA" + i.ToString, GetType(String))
-            '        dateTemp = dateTemp.AddDays(1)
-            '        i = i + 1
-            '    Loop Until dateTemp > dateTemp2
-            'End If
-            _myLog.WriteLog(_myLog._info, _classPath, method,
-                         CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
-        Catch ex As Exception
-            _myLog.WriteLog(_myLog._error, _classPath, method, 0, ex, "")
-        End Try
+        Dim i As Integer = 1
+        'Dim dateTemp As Date = startPeriod
+        'Dim dateTemp2 As Date = endPeriod
+        dtb.TableName = tableName
+        dtb.Columns.Add("ID", GetType(Decimal))
+        dtb.Columns.Add("ORG_NAME", GetType(String))
+        dtb.Columns.Add("TITLE_NAME", GetType(String))
+        dtb.Columns.Add("NAME", GetType(String))
+        dtb.Columns.Add("EFFECT_DATE", GetType(Date))
+        dtb.Columns.Add("OLD_MANNING", GetType(Decimal))
+        dtb.Columns.Add("CURRENT_MANNING", GetType(Decimal))
+        dtb.Columns.Add("NEW_MANNING", GetType(Decimal))
+        dtb.Columns.Add("MOBILIZE_COUNT_MANNING", GetType(Decimal))
+        dtb.Columns.Add("NOTE", GetType(String))
+        'If countDay = 28 Then
+        '    dateTemp2 = dateTemp2.AddDays(3)
+        'ElseIf countDay = 29 Then
+        '    dateTemp2 = dateTemp2.AddDays(2)
+        'ElseIf countDay = 30 Then
+        '    dateTemp2 = dateTemp2.AddDays(1)
+        'End If
+        'If startPeriod <> Nothing Then
+        '    Do
+        '        dtb.Columns.Add("DATA" + i.ToString, GetType(String))
+        '        dateTemp = dateTemp.AddDays(1)
+        '        i = i + 1
+        '    Loop Until dateTemp > dateTemp2
+        'End If
+
         Return dtb
     End Function
 
     Protected Sub RadAjaxPanel1_AjaxRequest(ByVal sender As Object, ByVal e As AjaxRequestEventArgs)
-        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
-        Try
-            Dim startTime As DateTime = DateTime.UtcNow
-            'If CurrentState <> CommonMessage.STATE_NORMAL Then
-            Dim str As String
-            Dim arr() As String
-            arr = e.Argument.Split("_")
-            str = arr(arr.Count - 1)
 
-            Dim objMT As New ManningTitleDTO
-            Dim item = TryCast(rgManning.SelectedItems(0), GridDataItem)
-            Select Case str
-                Case "txtNewManning"
-                    objMT.ID = Int32.Parse(item.GetDataKeyValue("ID").ToString())
-                    objMT.CURRENT_MANNING = Int32.Parse(item("CURRENT_MANNING").Text)
-                    objMT.NEW_MANNING = Int32.Parse(TryCast(item.FindControl("txtNewManning"), RadNumericTextBox).Value)
-                    objMT.MOBILIZE_COUNT_MANNING = objMT.NEW_MANNING - objMT.CURRENT_MANNING
-                    repStore.UpdateNewManningTitle(objMT)
+        'If CurrentState <> CommonMessage.STATE_NORMAL Then
+        Dim str As String
+        Dim arr() As String
+        arr = e.Argument.Split("_")
+        str = arr(arr.Count - 1)
 
-                    item("MOBILIZE_COUNT_MANNING").Text = objMT.MOBILIZE_COUNT_MANNING.Value
+        Dim objMT As New ManningTitleDTO
+        Dim item = TryCast(rgManning.SelectedItems(0), GridDataItem)
+        Select Case str
+            Case "txtNewManning"
+                objMT.ID = Int32.Parse(item.GetDataKeyValue("ID").ToString())
+                objMT.CURRENT_MANNING = Int32.Parse(item("CURRENT_MANNING").Text)
+                objMT.NEW_MANNING = Int32.Parse(TryCast(item.FindControl("txtNewManning"), RadNumericTextBox).Value)
+                objMT.MOBILIZE_COUNT_MANNING = objMT.NEW_MANNING - objMT.CURRENT_MANNING
+                repStore.UpdateNewManningTitle(objMT)
 
-                    'updatel/reload summary manning org
-                    repStore.UpdateNewManningOrg(cboListManning.SelectedValue)
-                    GetManningOrgInfo()
-                    rgManning.SelectedIndexes.Clear()
-                Case "txtNOTE"
-                    objMT.NOTE = TryCast(item.FindControl("txtNote"), RadTextBox).Text
-                    repStore.UpdateNewManningTitle(objMT)
-                    rgManning.SelectedIndexes.Clear()
-            End Select
-            _myLog.WriteLog(_myLog._info, _classPath, method,
-                         CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
-        Catch ex As Exception
-            _myLog.WriteLog(_myLog._error, _classPath, method, 0, ex, "")
-        End Try
+                item("MOBILIZE_COUNT_MANNING").Text = objMT.MOBILIZE_COUNT_MANNING.Value
+
+                'updatel/reload summary manning org
+                repStore.UpdateNewManningOrg(cboListManning.SelectedValue)
+                GetManningOrgInfo()
+                rgManning.SelectedIndexes.Clear()
+            Case "txtNOTE"
+                objMT.NOTE = TryCast(item.FindControl("txtNote"), RadTextBox).Text
+                repStore.UpdateNewManningTitle(objMT)
+                rgManning.SelectedIndexes.Clear()
+        End Select
+
 
 
     End Sub
 #End Region
 
     Protected Sub rgManning_ItemDataBound(ByVal sender As Object, ByVal e As Telerik.Web.UI.GridItemEventArgs) Handles rgManning.ItemDataBound
-        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
-        Try
-            Dim startTime As DateTime = DateTime.UtcNow
-            If TypeOf e.Item Is GridDataItem Then
-                Dim txtNewManning As RadNumericTextBox = TryCast(e.Item.FindControl("txtNewManning"), RadNumericTextBox)
-                Dim txtNote As RadTextBox = TryCast(e.Item.FindControl("txtNote"), RadTextBox)
-                txtNewManning.Attributes.Add("OnFocus", "OnFocus('" + e.Item.ItemIndex.ToString() + "')")
-            End If
-            _myLog.WriteLog(_myLog._info, _classPath, method,
-                         CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
-        Catch ex As Exception
-            _myLog.WriteLog(_myLog._error, _classPath, method, 0, ex, "")
-        End Try
 
-    End Sub
-    Protected Sub btnSearch_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnSearch.Click
-        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
-        Try
-            Dim startTime As DateTime = DateTime.UtcNow
-            rgManning.Enabled = True
-            hidMannOrgId.Value = cboListManning.SelectedValue
-
-            Dim year As Integer = If(cboYear.SelectedValue = [String].Empty, 0, Int32.Parse(cboYear.SelectedValue))
-            Dim manning As Integer = If(cboListManning.SelectedValue = [String].Empty, 0, Decimal.Parse(cboListManning.SelectedValue))
-            tabSource = repStore.GetListManningByName(manning, Int32.Parse(hidOrgID.Value), year)
-            rgManning.DataSource = tabSource
-            rgManning.Rebind()
-
-            'Load thông tin định biên
-            GetManningOrgInfo()
-            _myLog.WriteLog(_myLog._info, _classPath, method,
-                         CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
-        Catch ex As Exception
-            _myLog.WriteLog(_myLog._error, _classPath, method, 0, ex, "")
-        End Try
-
+        If TypeOf e.Item Is GridDataItem Then
+            Dim txtNewManning As RadNumericTextBox = TryCast(e.Item.FindControl("txtNewManning"), RadNumericTextBox)
+            Dim txtNote As RadTextBox = TryCast(e.Item.FindControl("txtNote"), RadTextBox)
+            ' txtNewManning.Attributes.Add("OnFocus", "OnFocus('" + e.Item.ItemIndex.ToString() + "')")
+        End If
     End Sub
 End Class

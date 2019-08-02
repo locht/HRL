@@ -212,13 +212,13 @@ Partial Public Class ctrlRC_Manning
     Protected WithEvents cbStatus As Global.System.Web.UI.WebControls.CheckBox
 
     '''<summary>
-    '''rbtManningCurrentCount control.
+    '''rbtManningOld control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents rbtManningCurrentCount As Global.Telerik.Web.UI.RadTextBox
+    Protected WithEvents rbtManningOld As Global.Telerik.Web.UI.RadTextBox
 
     '''<summary>
     '''rbtManningNew control.
@@ -228,6 +228,15 @@ Partial Public Class ctrlRC_Manning
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents rbtManningNew As Global.Telerik.Web.UI.RadTextBox
+
+    '''<summary>
+    '''rbtManningCurrentCount control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents rbtManningCurrentCount As Global.Telerik.Web.UI.RadTextBox
 
     '''<summary>
     '''rbtManningCountMobilize control.
