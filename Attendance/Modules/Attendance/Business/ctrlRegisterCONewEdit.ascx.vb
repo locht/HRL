@@ -395,22 +395,21 @@ Public Class ctrlRegisterCONewEdit
                             ShowMessage(Translate("Số ngày đăng ký nghỉ phải lơn hơn 0"), NotifyType.Warning)
                             Exit Sub
                         End If
-
+                        CreateDataBinDing(0)
                         objValidate.LEAVE_FROM = rdLEAVE_FROM.SelectedDate
                         objValidate.LEAVE_TO = rdLEAVE_TO.SelectedDate
-                        objValidate.ID = rPH("ID")
+                        objValidate.ID = Utilities.ObjToDecima(rPH("ID"))
                         objValidate.EMPLOYEE_ID = CDec(rtEmployee_id.Text)
                         If (New AttendanceBusinessClient).ValidateLeaveSheetDetail(objValidate) = False Then
                             ShowMessage(Translate("Ngày đăng ký nghỉ đã bị trùng"), NotifyType.Warning)
                             Exit Sub
                         End If
-                        CreateDataBinDing(0)
+
                         If SaveDB() Then
                             Response.Redirect("/Default.aspx?mid=Attendance&fid=ctrlRegisterCO&group=Business")
                         Else
                             ShowMessage(Translate("Xảy ra lỗi"), NotifyType.Error)
                         End If
-
                     Else
                         ExcuteScript("Resize", "ResizeSplitter(splitterID, pane1ID, pane2ID, validateID, oldSize, 'rgWorkschedule')")
                     End If
@@ -464,8 +463,6 @@ Public Class ctrlRegisterCONewEdit
             arr = Nothing
         End Try
     End Sub
-
-
 #End Region
 
 #Region "Custom"

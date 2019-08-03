@@ -55,6 +55,14 @@
                                 ToolTip="" Width="150px">
                             </tlk:RadDatePicker>
                         </td>
+                        <td class="lb">
+                            <%# Translate("Trạng thái")%>
+                        </td>
+                        <td>
+                             <tlk:RadComboBox  ID="cbStatus" Width="160px"
+                               runat="server" >
+                            </tlk:RadComboBox>
+                        </td>
                         <td>
                             <tlk:RadButton ID="btnSearch" Text="<%$ Translate: Tìm%>" runat="server" ToolTip="" SkinID="ButtonFind">
                             </tlk:RadButton>

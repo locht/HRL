@@ -253,6 +253,11 @@ Public Class ctrlRegisterCO
             lsData = rep.LOAD_PERIODBylinq(period)
             Me.PERIOD = lsData
             FillRadCombobox(cboPeriod, lsData, "PERIOD_NAME", "PERIOD_ID", True)
+
+            Dim dtData As New DataTable
+            dtData = rep.GetOtherList("LEAVE_STATUS", True)
+            FillRadCombobox(cbStatus, dtData, "NAME", "ID", True)
+
             If lsData.Count > 0 Then
                 Dim periodid = (From d In lsData Where d.START_DATE.Value.ToString("yyyyMM").Equals(Date.Now.ToString("yyyyMM")) Select d).FirstOrDefault
                 If periodid IsNot Nothing Then

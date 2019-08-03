@@ -2399,6 +2399,7 @@
             <Property Name="DAY_NUM" Type="number" Nullable="true" Precision="38" />
             <Property Name="EMP_APPROVES_NAME" Type="nvarchar2" Nullable="true" MaxLength="255" />
             <Property Name="IS_APP" Type="number" Nullable="true" Precision="38" />
+            <Property Name="STATUS" Type="number" Nullable="true" Precision="38" />
         </EntityType>
         <EntityType Name="SE_USER_REPORT">
             <Key>
@@ -5119,6 +5120,7 @@
           <Property Type="Decimal" Name="DAY_NUM" Precision="38" Scale="0" />
           <Property Type="String" Name="EMP_APPROVES_NAME" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Type="Decimal" Name="IS_APP" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="STATUS" />
         </EntityType>
         </Schema>
     </edmx:ConceptualModels>
@@ -7464,6 +7466,7 @@
                     <ScalarProperty Name="DAY_NUM" ColumnName="DAY_NUM" />
                     <ScalarProperty Name="EMP_APPROVES_NAME" ColumnName="EMP_APPROVES_NAME" />
                     <ScalarProperty Name="IS_APP" ColumnName="IS_APP" />
+                    <ScalarProperty Name="STATUS" ColumnName="STATUS" />
                 </MappingFragment>
             </EntityTypeMapping>
         </EntitySetMapping>
@@ -7636,7 +7639,7 @@
         <EntityTypeShape EntityType="AttendanceModel.SE_USER_ORG_ACCESS" Width="1.5" PointX="10.625" PointY="23.125" Height="1.5956835937499818" />
         <EntityTypeShape EntityType="AttendanceModel.AT_SHIFT" Width="1.5" PointX="13.375" PointY="22.75" Height="7.9416308593749818" />
         <EntityTypeShape EntityType="AttendanceModel.AT_LEAVESHEET_DETAIL" Width="1.5" PointX="18.375" PointY="22.75" Height="3.710999348958353" />
-        <EntityTypeShape EntityType="AttendanceModel.AT_LEAVESHEET" Width="1.5" PointX="7.375" PointY="23.75" Height="4.0956022135416674" />
+        <EntityTypeShape EntityType="AttendanceModel.AT_LEAVESHEET" Width="1.5" PointX="7.375" PointY="23.75" Height="4.2879036458333353" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

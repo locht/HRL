@@ -60,6 +60,7 @@ Partial Public Class AttendanceRepository
             dData.Dispose()
         End Try
     End Function
+
     Public Function SaveLeaveSheet(ByVal dsLeaveSheet As DataSet, ByVal log As UserLog) As Boolean
         Dim rPH As DataRow
         Dim CT As DataTable = New DataTable()
@@ -161,12 +162,14 @@ Partial Public Class AttendanceRepository
                                            .P_ISDISSOLVE = _param.IS_DISSOLVE})
             End Using
             Dim lstID = (From p In Context.AT_LEAVESHEET_DETAIL Where (p.LEAVE_DAY >= _filter.FROM_DATE OrElse Not _filter.FROM_DATE.HasValue) And (p.LEAVE_DAY <= _filter.END_DATE OrElse Not _filter.END_DATE.HasValue) Select p.LEAVESHEET_ID).ToList.Distinct.ToList()
+
             Dim query = From p In Context.AT_LEAVESHEET
                         From e In Context.HU_EMPLOYEE.Where(Function(f) f.ID = p.EMPLOYEE_ID)
                         From t In Context.HU_TITLE.Where(Function(f) f.ID = e.TITLE_ID).DefaultIfEmpty
                         From s In Context.HU_STAFF_RANK.Where(Function(F) F.ID = e.STAFF_RANK_ID).DefaultIfEmpty
                         From o In Context.HU_ORGANIZATION.Where(Function(f) f.ID = e.ORG_ID).DefaultIfEmpty
                         From m In Context.AT_TIME_MANUAL.Where(Function(f) f.ID = p.MANUAL_ID).DefaultIfEmpty
+                        From ot In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.STATUS).DefaultIfEmpty
                         From nb In Context.AT_COMPENSATORY.Where(Function(F) F.EMPLOYEE_ID = p.EMPLOYEE_ID And F.YEAR = _filter.FROM_DATE.Value.Year).DefaultIfEmpty
                         From k In Context.SE_CHOSEN_ORG.Where(Function(f) e.ORG_ID = f.ORG_ID And f.USERNAME.ToUpper = log.Username.ToUpper)
                         Where (lstID.Contains(p.ID))
@@ -235,8 +238,9 @@ Partial Public Class AttendanceRepository
                                                                        .CREATED_LOG = p.p.CREATED_LOG,
                                                                        .MODIFIED_BY = p.p.MODIFIED_BY,
                                                                        .MODIFIED_DATE = p.p.MODIFIED_DATE,
+                                                                       .STATUS = p.p.STATUS,
+                                                                       .STATUS_NAME = p.ot.NAME_VN,
                                                                        .MODIFIED_LOG = p.p.MODIFIED_LOG})
-
 
             lst = lst.OrderBy(Sorts)
             Total = lst.Count
@@ -244,6 +248,31 @@ Partial Public Class AttendanceRepository
             Return lst.ToList
         Catch ex As Exception
             WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iTime")
+            Throw ex
+        End Try
+    End Function
+    Public Function DeleteLeaveSheet(ByVal lstID As List(Of AT_LEAVESHEETDTO)) As Boolean
+        Dim lstl As AT_LEAVESHEET
+        Dim id As Decimal = 0
+        Try
+            For index = 0 To lstID.Count - 1
+                id = lstID(index).ID
+                lstl = (From p In Context.AT_LEAVESHEET Where id = p.ID).FirstOrDefault
+                If Not lstl Is Nothing Then
+                    Context.AT_LEAVESHEET.DeleteObject(lstl)
+                    Dim details = (From r In Context.AT_LEAVESHEET_DETAIL Where r.LEAVESHEET_ID = lstl.ID).ToList
+                    If Not details Is Nothing Then
+                        For index1 = 0 To details.Count - 1
+                            Context.AT_LEAVESHEET_DETAIL.DeleteObject(details(index1))
+                        Next
+                    End If
+                End If
+            Next
+            Context.SaveChanges()
+            Return True
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iTime")
+            ' Utility.WriteExceptionLog(ex, Me.ToString() & ".DeleteLeaveOT")
             Throw ex
         End Try
     End Function
