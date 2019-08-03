@@ -387,7 +387,7 @@ Public Class ctrlRC_Manning
                                 ' rgManning.ExportExcel(Server, Response, tabSource, "Danh sách đơn vị bảo hiểm")
                                 Using cls As New ExcelCommon
                                     bCheck = cls.ExportExcelTemplate(
-                   Server.MapPath("~/ReportTemplates//Recruitment//Import//Dinhbien_template.xls"), "Danh sách định biên", dtDatan, Response, String.Empty, ExcelCommon.ExportType.Excel)
+                                 Server.MapPath("~/ReportTemplates//Recruitment//Import//Dinhbien_template.xls"), "Danh sách định biên", dtDatan, Response, String.Empty, ExcelCommon.ExportType.Excel)
                                     If Not bCheck Then
                                         Select Case _error
                                             Case 1
@@ -1008,13 +1008,14 @@ BREAKFUNCTION:
                 ' dr("ORG_NAME") = ds.Tables(0).Rows(i)(1)
 
                 dr("NAME") = ds.Tables(0).Rows(i)(1)
-                dr("TITLE_NAME") = ds.Tables(0).Rows(i)(2)
-                dr("EFFECT_DATE") = DateTime.FromOADate(ds.Tables(0).Rows(i)(3))
-                dr("OLD_MANNING") = ds.Tables(0).Rows(i)(4)
-                dr("CURRENT_MANNING") = ds.Tables(0).Rows(i)(5)
-                dr("NEW_MANNING") = ds.Tables(0).Rows(i)(6)
-                dr("MOBILIZE_COUNT_MANNING") = ds.Tables(0).Rows(i)(7)
-                dr("NOTE") = If(ds.Tables(0).Rows(i).Field(Of String)(8) Is Nothing, "", ds.Tables(0).Rows(i).Field(Of String)(8))
+                dr("ORG_NAME") = ds.Tables(0).Rows(i)(2)
+                dr("TITLE_NAME") = ds.Tables(0).Rows(i)(3)
+                dr("EFFECT_DATE") = DateTime.FromOADate(ds.Tables(0).Rows(i)(4))
+                dr("OLD_MANNING") = ds.Tables(0).Rows(i)(5)
+                dr("CURRENT_MANNING") = ds.Tables(0).Rows(i)(6)
+                dr("NEW_MANNING") = ds.Tables(0).Rows(i)(7)
+                dr("MOBILIZE_COUNT_MANNING") = ds.Tables(0).Rows(i)(8)
+                dr("NOTE") = If(ds.Tables(0).Rows(i).Field(Of String)(9) Is Nothing, "", ds.Tables(0).Rows(i).Field(Of String)(9))
                 'For j = colDataPeriodBegin To endColDataAT - 1
                 '    dr(j) = ds.Tables(0).Rows(i)(j)
                 'Next
