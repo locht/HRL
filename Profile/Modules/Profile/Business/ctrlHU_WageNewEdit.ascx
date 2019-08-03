@@ -172,9 +172,8 @@
                     <asp:Label runat="server" ID="lbFactorSalary" Text="Hệ số/mức tiền"></asp:Label>
                 </td>
                 <td>
-                    <tlk:RadNumericTextBox runat="server" ID="rnFactorSalary" ReadOnly="true" SkinID="Decimal"
-                        NumberFormat-AllowRounding="false" NumberFormat-DecimalDigits="2">
-                    </tlk:RadNumericTextBox>
+                    <tlk:RadTextBox runat="server" ID="rnFactorSalary" AutoPostBack="true" EnabledStyle-HorizontalAlign="Right">
+                    </tlk:RadTextBox>
                 </td>
                 <td class="lb" style="display:none">
                     <asp:Label ID="lbSalaryInsurance" runat="server" Text="Mức lương đóng bảo hiểm"></asp:Label>
@@ -198,10 +197,10 @@
                     <span class="lbReq">*</span>
                 </td>
                 <td>
-                    <tlk:RadNumericTextBox ID="basicSalary" MinValue="0" runat="server" AutoPostBack="true" ClientEvents-OnValueChanged="OnBasicSalaryChanged"
+                    <tlk:RadNumericTextBox ID="basicSalary" MinValue="0" runat="server" AutoPostBack="true"
                         SkinID="Money">
                     </tlk:RadNumericTextBox>
-                   <%-- <asp:RequiredFieldValidator ID="RequiredFieldBasicSalary" runat="server" ControlToValidate="basicSalary"
+                  <%--  <asp:RequiredFieldValidator ID="RequiredFieldBasicSalary" runat="server" ControlToValidate="basicSalary"
                         ErrorMessage="<%#  GetYouMustChoseMsg(UI.Wage_BasicSalary) %>" ToolTip="<%#  GetYouMustChoseMsg(UI.Wage_BasicSalary)%>"> 
                     </asp:RequiredFieldValidator>--%>
                 </td>
@@ -234,14 +233,14 @@
                     <asp:Label runat="server" ID="lbOtherSalary2" Text="Phụ cấp kiêm nhiệm"></asp:Label>
                 </td>
                 <td>
-                    <tlk:RadNumericTextBox runat="server" ID="rnOtherSalary2" SkinID="Money">
+                    <tlk:RadNumericTextBox runat="server" ID="rnOtherSalary2" AutoPostBack="true" SkinID="Money">
                     </tlk:RadNumericTextBox>
                 </td>
                 <td class="lb">
                     <asp:Label runat="server" ID="lbOtherSalary3" Text="Chi phí hỗ trợ khác"></asp:Label>
                 </td>
                 <td>
-                    <tlk:RadNumericTextBox runat="server" ID="rnOtherSalary3"  SkinID="Money">
+                    <tlk:RadNumericTextBox runat="server" ID="rnOtherSalary3" AutoPostBack="true" SkinID="Money">
                     </tlk:RadNumericTextBox>
                 </td>
             </tr>

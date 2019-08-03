@@ -232,7 +232,7 @@ Public Class ctrlHU_WageNewEdit
                         rnPercentSalary.Value = Working.PERCENTSALARY
                     End If
                     If IsNumeric(Working.FACTORSALARY) Then
-                        rnFactorSalary.Value = Working.FACTORSALARY
+                        rnFactorSalary.Text = Working.FACTORSALARY.ToString
                     End If
                     If IsNumeric(Working.OTHERSALARY1) Then
                         rnOtherSalary1.Value = Working.OTHERSALARY1
@@ -388,7 +388,7 @@ Public Class ctrlHU_WageNewEdit
                     dtdata = rep.GetSalaryRankList(cbSalaryLevel.SelectedValue, True)
                     Dim row = dtdata.Select("ID='" + If(cbSalaryRank.SelectedValue = "", 0, cbSalaryRank.SelectedValue) + "'")(0)
                     If row IsNot Nothing Then
-                        rnFactorSalary.Value = row("SALARY_BASIC").ToString
+                        rnFactorSalary.Text = row("SALARY_BASIC").ToString
                     End If
                 End If
             End Using
@@ -454,6 +454,7 @@ Public Class ctrlHU_WageNewEdit
                 Case CommonMessage.TOOLBARITEM_SAVE
 
                     If Page.IsValid Then
+                        Dim factorSal As Decimal = 0
                         If cboSalTYPE.SelectedValue = "" Then
                             ShowMessage(Translate("Bạn phải chọn đối tượng lương"), NotifyType.Warning)
                             Exit Sub
@@ -478,8 +479,11 @@ Public Class ctrlHU_WageNewEdit
                                 Exit Sub
                             End If
                         End If
-
-
+                        factorSal = If(IsNumeric(rnFactorSalary.Text), Decimal.Parse(rnFactorSalary.Text), 0)
+                        If factorSal <= 0 Then
+                            ShowMessage(Translate("Hệ số/Mức thưởng phải lớn hơn 0"), NotifyType.Warning)
+                            Exit Sub
+                        End If
 
                         Dim gID As Decimal
                         With objWorking
@@ -516,9 +520,15 @@ Public Class ctrlHU_WageNewEdit
                             If IsNumeric(rnPercentSalary.Value) Then
                                 .PERCENTSALARY = rnPercentSalary.Value
                             End If
-                            If IsNumeric(rnFactorSalary.Value) Then
-                                .FACTORSALARY = rnFactorSalary.Value
+                            If rnFactorSalary.Text.Contains(".") Then
+                                factorSal = rnFactorSalary.Text.Replace(".", ",").ToString
+                                .FACTORSALARY = If(IsNumeric(factorSal), Decimal.Parse(factorSal), Nothing)
+                            Else
+                                .FACTORSALARY = If(IsNumeric(rnFactorSalary.Text), Decimal.Parse(rnFactorSalary.Text), Nothing)
                             End If
+                            'If IsNumeric(rnFactorSalary.Value) Then
+                            '    .FACTORSALARY = rnFactorSalary.Value
+                            'End If
                             If IsNumeric(rnOtherSalary1.Value) Then
                                 .OTHERSALARY1 = rnOtherSalary1.Value
                             End If
@@ -974,7 +984,7 @@ Public Class ctrlHU_WageNewEdit
             _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
         End Try
     End Sub
-    Private Sub rnOtherSalary1_TextChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles rnOtherSalary1.TextChanged, rnOtherSalary2.TextChanged, SalaryInsurance.TextChanged, rnPercentSalary.TextChanged
+    Private Sub rnOtherSalary1_TextChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles rnOtherSalary1.TextChanged, rnOtherSalary2.TextChanged, rnOtherSalary3.TextChanged, SalaryInsurance.TextChanged, rnPercentSalary.TextChanged, rnFactorSalary.TextChanged
         Try
             Select Case cboSalTYPE.Text
                 Case "Thử việc"
@@ -1234,7 +1244,7 @@ Public Class ctrlHU_WageNewEdit
             If IsNumeric(SalaryInsurance.Value) Then
                 obj.SALARYINSURANCE = SalaryInsurance.Value
             End If
-            If IsNumeric(rnFactorSalary.Value) Then
+            If IsNumeric(rnFactorSalary.Text) Then
                 obj.FACTORSALARY = CDec(Val(rnFactorSalary.Text))
             End If
             obj.MUCLUONGCS = 0
@@ -1303,27 +1313,74 @@ Public Class ctrlHU_WageNewEdit
     End Sub
     Private Sub BidingDataToControls(ByVal dtdata As DataTable)
         Try
-            If cbSalaryGroup.SelectedValue.ToString <> "" Then
-                Dim total As Decimal
-                Dim basicSal As Decimal = 0
-                If IsNumeric(rnFactorSalary.Value) Then
-                    basicSal = rnFactorSalary.Value * _lttv
-                    basicSalary.Value = basicSal
-                End If
+            'If cbSalaryGroup.SelectedValue.ToString <> "" Then
+            '    Dim total As Decimal
+            '    Dim basicSal As Decimal = 0
+            '    Dim factorSal As String = ""
+            '    Dim rnFactorSal As Decimal
+            '    If rnFactorSalary.Text.Contains(".") Then
+            '        factorSal = rnFactorSalary.Text.Replace(".", ",").ToString
+            '        rnFactorSal = If(IsNumeric(factorSal), Decimal.Parse(factorSal), Nothing)
+            '    Else
+            '        rnFactorSal = If(IsNumeric(rnFactorSalary.Text), Decimal.Parse(rnFactorSalary.Text), Nothing)
+            '    End If
+            '    If IsNumeric(rnFactorSal) Then
+            '        basicSal = rnFactorSal * _lttv
+            '        basicSalary.Value = basicSal
+            '    End If
 
 
-                If rnPercentSalary.Value.HasValue Then
-                    total = basicSal * rnPercentSalary.Value / 100 + _
-                            If(rnOtherSalary1.Value.HasValue, rnOtherSalary1.Value, 0) + _
-                            If(rnOtherSalary2.Value.HasValue, rnOtherSalary2.Value, 0) + _
-                            If(rnOtherSalary3.Value.HasValue, rnOtherSalary3.Value, 0) + _
-                            If(rnOtherSalary4.Value.HasValue, rnOtherSalary4.Value, 0) + _
-                            If(rnOtherSalary5.Value.HasValue, rnOtherSalary5.Value, 0) + _
-                            If(cboAllowance_Total.Value.HasValue, cboAllowance_Total.Value, 0)
-                End If
-                Salary_Total.Value = total
-                basicSalary.Enabled = False
+            '    If rnPercentSalary.Value.HasValue Then
+            '        If cboSalTYPE.Text = "Kiêm nhiệm" Then
+            '            total = (basicSal + If(rnOtherSalary1.Value.HasValue, rnOtherSalary1.Value, 0) + _
+            '                If(rnOtherSalary2.Value.HasValue, rnOtherSalary2.Value, 0)) * rnPercentSalary.Value / 100
+            '        Else
+            '            total = basicSal * rnPercentSalary.Value / 100 + _
+            '                If(rnOtherSalary1.Value.HasValue, rnOtherSalary1.Value, 0) + _
+            '                If(rnOtherSalary2.Value.HasValue, rnOtherSalary2.Value, 0) + _
+            '                If(rnOtherSalary3.Value.HasValue, rnOtherSalary3.Value, 0) + _
+            '                If(rnOtherSalary4.Value.HasValue, rnOtherSalary4.Value, 0) + _
+            '                If(rnOtherSalary5.Value.HasValue, rnOtherSalary5.Value, 0) + _
+            '                If(cboAllowance_Total.Value.HasValue, cboAllowance_Total.Value, 0)
+            '        End If
+            '    End If
+            '    Salary_Total.Value = total
+            '    basicSalary.Enabled = False
+            'End If
+            Dim total As Decimal
+            Dim basicSal As Decimal = 0
+            Dim factorSal As String = ""
+            Dim rnFactorSal As Decimal
+            If rnFactorSalary.Text.Contains(".") Then
+                factorSal = rnFactorSalary.Text.Replace(".", ",").ToString
+                rnFactorSal = If(IsNumeric(factorSal), Decimal.Parse(factorSal), Nothing)
+            Else
+                rnFactorSal = If(IsNumeric(rnFactorSalary.Text), Decimal.Parse(rnFactorSalary.Text), Nothing)
             End If
+            If IsNumeric(rnFactorSal) AndAlso rnFactorSal > 0 Then
+                basicSal = rnFactorSal * _lttv
+                basicSalary.Value = basicSal
+            End If
+
+
+            If rnPercentSalary.Value.HasValue Then
+                If cboSalTYPE.Text = "Kiêm nhiệm" Then
+                    total = (If(basicSalary.Value.HasValue, basicSalary.Value, 0) + _
+                             If(rnOtherSalary1.Value.HasValue, rnOtherSalary1.Value, 0) + _
+                             If(rnOtherSalary2.Value.HasValue, rnOtherSalary2.Value, 0)) * rnPercentSalary.Value / 100
+                    basicSalary.Enabled = True
+                Else
+                    total = basicSal * rnPercentSalary.Value / 100 + _
+                        If(rnOtherSalary1.Value.HasValue, rnOtherSalary1.Value, 0) + _
+                        If(rnOtherSalary2.Value.HasValue, rnOtherSalary2.Value, 0) + _
+                        If(rnOtherSalary3.Value.HasValue, rnOtherSalary3.Value, 0) + _
+                        If(rnOtherSalary4.Value.HasValue, rnOtherSalary4.Value, 0) + _
+                        If(rnOtherSalary5.Value.HasValue, rnOtherSalary5.Value, 0) + _
+                        If(cboAllowance_Total.Value.HasValue, cboAllowance_Total.Value, 0)
+                    basicSalary.Enabled = False
+                End If
+            End If
+            Salary_Total.Value = total
         Catch ex As Exception
             Throw ex
         End Try
@@ -1399,15 +1456,15 @@ Public Class ctrlHU_WageNewEdit
                 cbSalaryLevel.Enabled = False
                 cbSalaryRank.Enabled = False
                 rnFactorSalary.Enabled = False
-                basicSalary.Enabled = False
-                rnPercentSalary.Enabled = False
+                basicSalary.Enabled = True
+                rnPercentSalary.Enabled = True
                 Salary_Total.Enabled = False
-                rnOtherSalary1.Enabled = False
-                rnFactorSalary.Text = 0
-                basicSalary.Text = 0
-                rnPercentSalary.Text = 0
-                Salary_Total.Text = 0
-                rnOtherSalary1.Text = 0
+                rnOtherSalary1.Enabled = True
+                rnOtherSalary2.Enabled = True
+                'basicSalary.Text = 0
+                'Salary_Total.Text = 0
+                'rnOtherSalary1.Text = 0
+                'rnOtherSalary2.Text = 0
                 ClearControlValue(cbSalaryGroup, cbSalaryLevel, cbSalaryRank)
         End Select
         'ClearControlValue(cbSalaryGroup, cbSalaryLevel, cbSalaryRank, rnFactorSalary, basicSalary, Salary_Total)
