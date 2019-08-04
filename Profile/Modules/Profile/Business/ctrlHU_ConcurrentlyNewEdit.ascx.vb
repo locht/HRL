@@ -820,7 +820,7 @@ Public Class ctrlHU_ConcurrentlyNewEdit
                 Case 3
                     If Not phFindSign.Controls.Contains(ctrlFindEmployeeSign) Then
                         'Popup người ký
-                        ctrlFindEmployeeSign = Me.Register("ctrlFindEmployeeSign", "Common", "ctrlFindEmployeePopup")
+                        ctrlFindEmployeeSign = Me.Register("ctrlFindSigner", "Common", "ctrlFindEmployeePopup")
                         phFindSign.Controls.Add(ctrlFindEmployeeSign)
                         ctrlFindEmployeeSign.IsHideTerminate = False
                         ctrlFindEmployeeSign.MultiSelect = False
@@ -831,7 +831,7 @@ Public Class ctrlHU_ConcurrentlyNewEdit
                 Case 4
                     If Not phFindSignStop.Controls.Contains(ctrlFindEmployeeSignStop) Then
                         'Popup người ký thôi kiêm nhiệm
-                        ctrlFindEmployeeSignStop = Me.Register("ctrlFindEmployeeSignStop", "Common", "ctrlFindEmployeePopup")
+                        ctrlFindEmployeeSignStop = Me.Register("ctrlFindSigner", "Common", "ctrlFindEmployeePopup")
                         phFindSignStop.Controls.Add(ctrlFindEmployeeSignStop)
                         ctrlFindEmployeeSignStop.IsHideTerminate = False
                         ctrlFindEmployeeSignStop.MultiSelect = False
@@ -845,7 +845,7 @@ Public Class ctrlHU_ConcurrentlyNewEdit
                 Case 6
                     If Not phFindSign2.Controls.Contains(ctrlFindEmployeeSign) Then
                         'Popup người ký 2
-                        ctrlFindEmployeeSign2 = Me.Register("ctrlFindEmployeeSign2", "Common", "ctrlFindEmployeePopup")
+                        ctrlFindEmployeeSign2 = Me.Register("ctrlFindSigner", "Common", "ctrlFindEmployeePopup")
                         phFindSign2.Controls.Add(ctrlFindEmployeeSign2)
                         ctrlFindEmployeeSign2.IsHideTerminate = False
                         ctrlFindEmployeeSign2.MultiSelect = False
@@ -854,7 +854,7 @@ Public Class ctrlHU_ConcurrentlyNewEdit
                 Case 7
                     If Not phFindSignStop2.Controls.Contains(ctrlFindEmployeeSignStop2) Then
                         'Popup người ký thôi kiêm nhiệm
-                        ctrlFindEmployeeSignStop2 = Me.Register("ctrlFindEmployeeSignStop2", "Common", "ctrlFindEmployeePopup")
+                        ctrlFindEmployeeSignStop2 = Me.Register("ctrlFindSigner", "Common", "ctrlFindEmployeePopup")
                         phFindSignStop.Controls.Add(ctrlFindEmployeeSignStop2)
                         ctrlFindEmployeeSignStop2.IsHideTerminate = False
                         ctrlFindEmployeeSignStop2.MultiSelect = False
