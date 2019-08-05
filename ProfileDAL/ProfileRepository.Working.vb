@@ -1849,6 +1849,7 @@ Partial Class ProfileRepository
                 item.MODIFIED_DATE = Date.Now
                 item.OBJECTTIMEKEEPING = objWorking.OBJECT_ATTENDANCE
                 item.OBJECT_LABOR = objWorking.OBJECT_LABOR
+
             End If
 
             Return True
