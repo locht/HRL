@@ -702,7 +702,7 @@ Public Class ctrlHU_ContractTemplete
 
             If CurrentState = CommonMessage.STATE_NEW Then
                 If inforContract IsNot Nothing Then
-                    Dim outNum As Integer = rep.GET_NEXT_APPENDIX_ORDER(cboContract.SelectedValue, contrItem.EMPLOYEE_ID) 'lay so thu tu tiep theo
+                    Dim outNum As Integer = rep.GET_NEXT_APPENDIX_ORDER(0, cboContract.SelectedValue, contrItem.EMPLOYEE_ID) 'lay so thu tu tiep theo
                     Dim order = String.Format("{0}", Format(outNum, "00"))
                     txtContract_NumAppen.Text = inforContract.CONTRACT_NO + "-" + order
                     'lay ngay het han hop dong gán vao ngày het hạn phụ lục
@@ -711,6 +711,14 @@ Public Class ctrlHU_ContractTemplete
                     'Else
                     '    rdExpireDate.SelectedDate = Nothing
                     'End If
+                    STT = outNum
+                End If
+            End If
+            If CurrentState = CommonMessage.STATE_EDIT Then
+                If inforContract IsNot Nothing Then
+                    Dim outNum As Integer = rep.GET_NEXT_APPENDIX_ORDER(IDSelect, cboContract.SelectedValue, contrItem.EMPLOYEE_ID) 'lay so thu tu tiep theo
+                    Dim order = String.Format("{0}", Format(outNum, "00"))
+                    txtContract_NumAppen.Text = inforContract.CONTRACT_NO + "-" + order
                     STT = outNum
                 End If
             End If
