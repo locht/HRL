@@ -2019,16 +2019,16 @@ Public Class ProfileRepository
     Public Function GET_NEXT_APPENDIX_ORDER(ByVal id As Decimal, ByVal contract_id As Decimal, ByVal emp_id As Decimal) As Integer
         Try
             Dim maxSTT As Integer
-            Dim query
+            Dim query As List(Of HU_FILECONTRACT)
             If id > 0 Then 'edit
                 Dim fileContract = Context.HU_FILECONTRACT.Where(Function(f) f.ID = id).FirstOrDefault
                 If fileContract.ID_CONTRACT = contract_id Then
                     Return fileContract.STT
                 Else
-                    query = Context.HU_FILECONTRACT.Where(Function(f) f.ID_CONTRACT = contract_id And f.EMP_ID = emp_id)
+                    query = Context.HU_FILECONTRACT.Where(Function(f) f.ID_CONTRACT = contract_id And f.EMP_ID = emp_id).ToList
                 End If
             Else 'insert
-                query = Context.HU_FILECONTRACT.Where(Function(f) f.ID_CONTRACT = contract_id And f.EMP_ID = emp_id)
+                query = Context.HU_FILECONTRACT.Where(Function(f) f.ID_CONTRACT = contract_id And f.EMP_ID = emp_id).ToList
             End If
             If query.Count > 0 Then
                 maxSTT = query.Max(Function(f) f.STT)
