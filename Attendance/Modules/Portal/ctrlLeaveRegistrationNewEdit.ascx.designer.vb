@@ -12,7 +12,7 @@ Option Explicit On
 
 
 Partial Public Class ctrlLeaveRegistrationNewEdit
-
+    
     '''<summary>
     '''hidID control.
     '''</summary>
@@ -21,7 +21,7 @@ Partial Public Class ctrlLeaveRegistrationNewEdit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents hidID As Global.System.Web.UI.WebControls.HiddenField
-
+    
     '''<summary>
     '''hidValid control.
     '''</summary>
@@ -30,7 +30,7 @@ Partial Public Class ctrlLeaveRegistrationNewEdit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents hidValid As Global.System.Web.UI.WebControls.HiddenField
-
+    
     '''<summary>
     '''hidStatus control.
     '''</summary>
@@ -39,7 +39,7 @@ Partial Public Class ctrlLeaveRegistrationNewEdit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents hidStatus As Global.System.Web.UI.WebControls.HiddenField
-
+    
     '''<summary>
     '''tbarMainToolBar control.
     '''</summary>
@@ -48,7 +48,7 @@ Partial Public Class ctrlLeaveRegistrationNewEdit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents tbarMainToolBar As Global.Telerik.Web.UI.RadToolBar
-
+    
     '''<summary>
     '''valSum control.
     '''</summary>
@@ -57,7 +57,7 @@ Partial Public Class ctrlLeaveRegistrationNewEdit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents valSum As Global.System.Web.UI.WebControls.ValidationSummary
-
+    
     '''<summary>
     '''lbStatus control.
     '''</summary>
@@ -66,7 +66,25 @@ Partial Public Class ctrlLeaveRegistrationNewEdit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lbStatus As Global.System.Web.UI.WebControls.Label
-
+    
+    '''<summary>
+    '''RadSplitter3 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents RadSplitter3 As Global.Telerik.Web.UI.RadSplitter
+    
+    '''<summary>
+    '''RadPane1 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents RadPane1 As Global.Telerik.Web.UI.RadPane
+    
     '''<summary>
     '''lblMessage control.
     '''</summary>
@@ -75,142 +93,205 @@ Partial Public Class ctrlLeaveRegistrationNewEdit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblMessage As Global.System.Web.UI.WebControls.Label
-
+    
     '''<summary>
-    '''txtFullName control.
+    '''rnID control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents txtFullName As Global.Telerik.Web.UI.RadTextBox
-
+    Protected WithEvents rnID As Global.Telerik.Web.UI.RadNumericTextBox
+    
     '''<summary>
-    '''txtDepartment control.
+    '''rtEmployee_Name control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents txtDepartment As Global.Telerik.Web.UI.RadTextBox
-
+    Protected WithEvents rtEmployee_Name As Global.Telerik.Web.UI.RadTextBox
+    
     '''<summary>
-    '''txtEmpCode control.
+    '''btnFindEmployee control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents txtEmpCode As Global.Telerik.Web.UI.RadTextBox
-
+    Protected WithEvents btnFindEmployee As Global.Telerik.Web.UI.RadButton
+    
     '''<summary>
-    '''txtTitle control.
+    '''rtOrg_Name control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents txtTitle As Global.Telerik.Web.UI.RadTextBox
-
+    Protected WithEvents rtOrg_Name As Global.Telerik.Web.UI.RadTextBox
+    
     '''<summary>
-    '''rntEntitlement control.
+    '''rtOrg_id control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents rntEntitlement As Global.Telerik.Web.UI.RadTextBox
-
+    Protected WithEvents rtOrg_id As Global.Telerik.Web.UI.RadTextBox
+    
     '''<summary>
-    '''rntSeniority control.
+    '''rtEmployee_Code control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents rntSeniority As Global.Telerik.Web.UI.RadTextBox
-
+    Protected WithEvents rtEmployee_Code As Global.Telerik.Web.UI.RadTextBox
+    
     '''<summary>
-    '''rntBrought control.
+    '''rtEmployee_id control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents rntBrought As Global.Telerik.Web.UI.RadTextBox
-
+    Protected WithEvents rtEmployee_id As Global.Telerik.Web.UI.RadTextBox
+    
     '''<summary>
-    '''rntTotal control.
+    '''reEMPLOYEE_CODE control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents rntTotal As Global.Telerik.Web.UI.RadTextBox
-
+    Protected WithEvents reEMPLOYEE_CODE As Global.System.Web.UI.WebControls.RequiredFieldValidator
+    
     '''<summary>
-    '''rntTotalTaken control.
+    '''rtTitle_Name control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents rntTotalTaken As Global.Telerik.Web.UI.RadTextBox
-
+    Protected WithEvents rtTitle_Name As Global.Telerik.Web.UI.RadTextBox
+    
     '''<summary>
-    '''rntBalance control.
+    '''rtTitle_Id control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents rntBalance As Global.Telerik.Web.UI.RadTextBox
-
+    Protected WithEvents rtTitle_Id As Global.Telerik.Web.UI.RadTextBox
+    
     '''<summary>
-    '''cboleaveType control.
+    '''rnCUR_HAVE control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents cboleaveType As Global.Telerik.Web.UI.RadComboBox
-
+    Protected WithEvents rnCUR_HAVE As Global.Telerik.Web.UI.RadTextBox
+    
     '''<summary>
-    '''rntxDayRegist control.
+    '''rnSENIORITYHAVE control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents rntxDayRegist As Global.Telerik.Web.UI.RadNumericTextBox
-
+    Protected WithEvents rnSENIORITYHAVE As Global.Telerik.Web.UI.RadTextBox
+    
     '''<summary>
-    '''txtDayRegist control.
+    '''rnPREV_HAVE control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents txtDayRegist As Global.Telerik.Web.UI.RadTextBox
-
+    Protected WithEvents rnPREV_HAVE As Global.Telerik.Web.UI.RadTextBox
+    
     '''<summary>
-    '''rdFromDate control.
+    '''rnCUR_USED control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents rdFromDate As Global.Telerik.Web.UI.RadDatePicker
-
+    Protected WithEvents rnCUR_USED As Global.Telerik.Web.UI.RadTextBox
+    
     '''<summary>
-    '''rdToDate control.
+    '''rnCUR_HAVE_INMONTH control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents rdToDate As Global.Telerik.Web.UI.RadDatePicker
-
+    Protected WithEvents rnCUR_HAVE_INMONTH As Global.Telerik.Web.UI.RadTextBox
+    
+    '''<summary>
+    '''rnPREVTOTAL_HAVE control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents rnPREVTOTAL_HAVE As Global.Telerik.Web.UI.RadTextBox
+    
+    '''<summary>
+    '''rtCUR_USED_INMONTH control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents rtCUR_USED_INMONTH As Global.Telerik.Web.UI.RadTextBox
+    
+    '''<summary>
+    '''rnBALANCE control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents rnBALANCE As Global.Telerik.Web.UI.RadTextBox
+    
+    '''<summary>
+    '''cbMANUAL_ID control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents cbMANUAL_ID As Global.Telerik.Web.UI.RadComboBox
+    
+    '''<summary>
+    '''rnDAY_NUM control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents rnDAY_NUM As Global.Telerik.Web.UI.RadNumericTextBox
+    
+    '''<summary>
+    '''rdLEAVE_FROM control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents rdLEAVE_FROM As Global.Telerik.Web.UI.RadDatePicker
+    
+    '''<summary>
+    '''rdLEAVE_TO control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents rdLEAVE_TO As Global.Telerik.Web.UI.RadDatePicker
+    
     '''<summary>
     '''CompareValidator2 control.
     '''</summary>
@@ -219,43 +300,43 @@ Partial Public Class ctrlLeaveRegistrationNewEdit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents CompareValidator2 As Global.System.Web.UI.WebControls.CompareValidator
-
+    
     '''<summary>
-    '''chkWorkday control.
+    '''rtNote control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents chkWorkday As Global.System.Web.UI.WebControls.CheckBox
-
+    Protected WithEvents rtNote As Global.Telerik.Web.UI.RadTextBox
+    
     '''<summary>
-    '''rtxtdayinkh control.
+    '''reNOTE control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents rtxtdayinkh As Global.Telerik.Web.UI.RadTextBox
-
+    Protected WithEvents reNOTE As Global.System.Web.UI.WebControls.RequiredFieldValidator
+    
     '''<summary>
-    '''rtxtdayoutkh control.
+    '''rnIS_APP control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents rtxtdayoutkh As Global.Telerik.Web.UI.RadTextBox
-
+    Protected WithEvents rnIS_APP As Global.Telerik.Web.UI.RadNumericTextBox
+    
     '''<summary>
-    '''txtNote control.
+    '''rnSTATUS control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents txtNote As Global.Telerik.Web.UI.RadTextBox
-
+    Protected WithEvents rnSTATUS As Global.Telerik.Web.UI.RadNumericTextBox
+    
     '''<summary>
     '''rgData control.
     '''</summary>
@@ -264,7 +345,7 @@ Partial Public Class ctrlLeaveRegistrationNewEdit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents rgData As Global.Telerik.Web.UI.RadGrid
-
+    
     '''<summary>
     '''ctrlMessageBox control.
     '''</summary>
@@ -273,7 +354,7 @@ Partial Public Class ctrlLeaveRegistrationNewEdit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents ctrlMessageBox As Global.Common.ctrlMessageBox
-
+    
     '''<summary>
     '''RadCodeBlock1 control.
     '''</summary>
