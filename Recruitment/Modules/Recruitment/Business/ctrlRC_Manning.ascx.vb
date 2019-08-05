@@ -207,7 +207,7 @@ Public Class ctrlRC_Manning
                     rbtManName.Enabled = True
                     rbtNote.Enabled = True
                     rdEffectDate.Enabled = True
-                    cbStatus.Enabled = True
+                    cbStatus.Enabled = False
                     EnableRadCombo(cboYear, True)
                     EnableRadCombo(cboListManning, True)
                     EnabledGrid(rgManning, True)
@@ -231,7 +231,7 @@ Public Class ctrlRC_Manning
                     rbtManName.Enabled = True
                     rbtNote.Enabled = True
                     rdEffectDate.Enabled = True
-                    cbStatus.Enabled = True
+                    cbStatus.Enabled = False
                     EnableRadCombo(cboYear, True)
                     EnableRadCombo(cboListManning, True)
                     EnabledGrid(rgManning, True)
@@ -287,7 +287,7 @@ Public Class ctrlRC_Manning
                     rbtManName.Focus()
                     rbtNote.Text = String.Empty
                     rdEffectDate.SelectedDate = DateTime.Now
-                    cbStatus.Checked = False
+                    cbStatus.Checked = True
                     rbtManningCountMobilize.Text = "0"
                     rbtManningCurrentCount.Text = "0"
                     rbtManningNew.Text = "0"
