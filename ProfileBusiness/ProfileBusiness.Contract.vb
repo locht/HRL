@@ -287,6 +287,17 @@ Namespace ProfileBusiness.ServiceImplementations
             End Using
         End Function
 #End Region
+#Region "contract appendix"
+        Public Function GET_NEXT_APPENDIX_ORDER(ByVal id As Decimal, ByVal contract_id As Decimal, ByVal emp_id As Decimal) As Integer Implements ServiceContracts.IProfileBusiness.GET_NEXT_APPENDIX_ORDER
+            Using rep As New ProfileRepository
+                Try
+                    Return rep.GET_NEXT_APPENDIX_ORDER(id, contract_id, emp_id)
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
+#End Region
 
         Public Function GetContract(ByVal _filter As ContractDTO, ByVal PageIndex As Integer,
                                 ByVal PageSize As Integer,

@@ -35,6 +35,18 @@ Partial Public Class ProfileRepository
         End Using
     End Function
 #End Region
+#Region "Contract appendix"
+    Public Function GET_NEXT_APPENDIX_ORDER(ByVal id As Decimal, ByVal contract_id As Decimal, ByVal emp_id As Decimal) As Integer
+        Using rep As New ProfileBusinessClient
+            Try
+                Return rep.GET_NEXT_APPENDIX_ORDER(id, contract_id, emp_id)
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+    End Function
+#End Region
 #Region "Common"
 
     Public Function GetOtherList(ByVal sType As String, Optional ByVal isBlank As Boolean = False) As DataTable

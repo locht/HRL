@@ -471,18 +471,18 @@ Public Class ctrlRC_Manning
 
     Private Sub cboListManning_SelectedIndexChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles cboListManning.SelectedIndexChanged
         Try
-            rgManning.Enabled = True
+            'rgManning.Enabled = True
             hidMannOrgId.Value = cboListManning.SelectedValue
 
-            Dim year As Integer = If(cboYear.SelectedValue = [String].Empty, 0, Int32.Parse(cboYear.SelectedValue))
+            'Dim year As Integer = If(cboYear.SelectedValue = [String].Empty, 0, Int32.Parse(cboYear.SelectedValue))
 
             'rgManning.DataSource = repStore.GetListManningByName(Decimal.Parse(cboListManning.SelectedValue), Int32.Parse(hidOrgID.Value), year)
-            tabSource = repStore.GetListManningByName(If(cboListManning.SelectedValue <> "", Decimal.Parse(cboListManning.SelectedValue), 0), If(hidOrgID.Value = "", 0, Int32.Parse(hidOrgID.Value)), year)
-            rgManning.DataSource = tabSource
-            rgManning.Rebind()
+            ' tabSource = repStore.GetListManningByName(If(cboListManning.SelectedValue <> "", Decimal.Parse(cboListManning.SelectedValue), 0), If(hidOrgID.Value = "", 0, Int32.Parse(hidOrgID.Value)), year)
+            ' rgManning.DataSource = tabSource
+            'rgManning.Rebind()
 
             'Load thông tin định biên
-            GetManningOrgInfo()
+            'GetManningOrgInfo()
         Catch ex As Exception
             DisplayException(Me.ViewName, Me.ID, ex)
         End Try

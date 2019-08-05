@@ -187,7 +187,9 @@
                             </tlk:GridTemplateColumn>--%>
                              <tlk:GridNumericColumn HeaderText="<%$ Translate: Định biên mới %>" DataField="NEW_MANNING"
                                 ItemStyle-HorizontalAlign="Right" SortExpression="NEW_MANNING"
-                                UniqueName="NEW_MANNING" />
+                                UniqueName="NEW_MANNING">
+                            <HeaderStyle HorizontalAlign="Center" Width="170px"  />
+                            </tlk:GridNumericColumn>
                             <tlk:GridBoundColumn DataField="MOBILIZE_COUNT_MANNING" EmptyDataText="" HeaderText="<%$ Translate: Số lượng tăng/giảm %>"
                                 SortExpression="MOBILIZE_COUNT_MANNING" UniqueName="MOBILIZE_COUNT_MANNING" ReadOnly = "true" >
                                 <HeaderStyle HorizontalAlign="Center" Width="100px"  />
