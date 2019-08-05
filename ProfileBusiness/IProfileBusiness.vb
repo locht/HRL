@@ -30,7 +30,7 @@ Namespace ProfileBusiness.ServiceContracts
 #End Region
 #Region "Contract appendix"
         <OperationContract()>
-        Function GET_NEXT_APPENDIX_ORDER(ByVal contract_id As Decimal) As Integer
+        Function GET_NEXT_APPENDIX_ORDER(ByVal contract_id As Decimal, ByVal emp_id As Decimal) As Integer
 #End Region
 
         <OperationContract()>

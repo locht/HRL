@@ -49738,7 +49738,7 @@ Namespace ProfileBusiness
         Function GetCertificate(ByVal _filter As ProfileBusiness.CETIFICATEDTO) As System.Collections.Generic.List(Of ProfileBusiness.CETIFICATEDTO)
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GET_NEXT_APPENDIX_ORDER", ReplyAction:="http://tempuri.org/IProfileBusiness/GET_NEXT_APPENDIX_ORDERResponse")>  _
-        Function GET_NEXT_APPENDIX_ORDER(ByVal contract_id As Decimal) As Integer
+        Function GET_NEXT_APPENDIX_ORDER(ByVal contract_id As Decimal, ByVal emp_id As Decimal) As Integer
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetOrgsTree", ReplyAction:="http://tempuri.org/IProfileBusiness/GetOrgsTreeResponse")>  _
         Function GetOrgsTree() As System.Collections.Generic.List(Of ProfileBusiness.OrganizationDTO)
@@ -51838,8 +51838,8 @@ Namespace ProfileBusiness
             Return MyBase.Channel.GetCertificate(_filter)
         End Function
         
-        Public Function GET_NEXT_APPENDIX_ORDER(ByVal contract_id As Decimal) As Integer Implements ProfileBusiness.IProfileBusiness.GET_NEXT_APPENDIX_ORDER
-            Return MyBase.Channel.GET_NEXT_APPENDIX_ORDER(contract_id)
+        Public Function GET_NEXT_APPENDIX_ORDER(ByVal contract_id As Decimal, ByVal emp_id As Decimal) As Integer Implements ProfileBusiness.IProfileBusiness.GET_NEXT_APPENDIX_ORDER
+            Return MyBase.Channel.GET_NEXT_APPENDIX_ORDER(contract_id, emp_id)
         End Function
         
         Public Function GetOrgsTree() As System.Collections.Generic.List(Of ProfileBusiness.OrganizationDTO) Implements ProfileBusiness.IProfileBusiness.GetOrgsTree

@@ -2016,10 +2016,10 @@ Public Class ProfileRepository
 #End Region
 
 #Region "PLHD"
-    Public Function GET_NEXT_APPENDIX_ORDER(ByVal contract_id As Decimal) As Integer
+    Public Function GET_NEXT_APPENDIX_ORDER(ByVal contract_id As Decimal, ByVal emp_id As Decimal) As Integer
         Try
             Dim maxSTT As Integer
-            Dim query = Context.HU_FILECONTRACT.Where(Function(f) f.ID_CONTRACT = contract_id)
+            Dim query = Context.HU_FILECONTRACT.Where(Function(f) f.ID_CONTRACT = contract_id And f.EMP_ID = emp_id)
             If query.Count > 0 Then
                 maxSTT = query.Max(Function(f) f.STT)
                 Return maxSTT + 1
@@ -2494,7 +2494,7 @@ Public Class ProfileRepository
              .FILENAME = FileInfo.FILENAME,
             .UPLOADFILE = FileInfo.UPLOADFILE,
              .WORKING_ID = FileInfo.WORKING_ID,
-            .STT = MaxSTT + 1
+            .STT = FileInfo.STT
             }
             Context.HU_FILECONTRACT.AddObject(attFile)
             If Context.SaveChanges(log) Then

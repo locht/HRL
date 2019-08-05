@@ -36,10 +36,10 @@ Partial Public Class ProfileRepository
     End Function
 #End Region
 #Region "Contract appendix"
-    Public Function GET_NEXT_APPENDIX_ORDER(ByVal contract_id As Decimal) As Integer
+    Public Function GET_NEXT_APPENDIX_ORDER(ByVal contract_id As Decimal, ByVal emp_id As Decimal) As Integer
         Using rep As New ProfileBusinessClient
             Try
-                Return rep.GET_NEXT_APPENDIX_ORDER(contract_id)
+                Return rep.GET_NEXT_APPENDIX_ORDER(contract_id, emp_id)
             Catch ex As Exception
                 rep.Abort()
                 Throw ex

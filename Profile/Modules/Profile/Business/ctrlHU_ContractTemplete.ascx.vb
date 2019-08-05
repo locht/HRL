@@ -316,7 +316,7 @@ Public Class ctrlHU_ContractTemplete
 
                         objContract.SIGNER_NAME = txtSign.Text
                         objContract.SIGNER_TITLE = txtSign_Title.Text
-
+                        objContract.STT = STT
                         'If rdExpireDate.SelectedDate IsNot Nothing Then
                         '    If Not rep.CheckExpireFileContract(rdStartDate.SelectedDate, rdExpireDate.SelectedDate, objContract.ID_CONTRACT) Then
                         '        ShowMessage(Translate("Thời hạn của phụ lục hợp đồng không được lớn hơn thời hạn của hợp đồng"), NotifyType.Warning)
@@ -702,7 +702,7 @@ Public Class ctrlHU_ContractTemplete
 
             If CurrentState = CommonMessage.STATE_NEW Then
                 If inforContract IsNot Nothing Then
-                    Dim outNum As Integer = rep.GET_NEXT_APPENDIX_ORDER(cboContract.SelectedValue) 'lay so thu tu tiep theo
+                    Dim outNum As Integer = rep.GET_NEXT_APPENDIX_ORDER(cboContract.SelectedValue, contrItem.EMPLOYEE_ID) 'lay so thu tu tiep theo
                     Dim order = String.Format("{0}", Format(outNum, "00"))
                     txtContract_NumAppen.Text = inforContract.CONTRACT_NO + "-" + order
                     'lay ngay het han hop dong gán vao ngày het hạn phụ lục
@@ -711,6 +711,7 @@ Public Class ctrlHU_ContractTemplete
                     'Else
                     '    rdExpireDate.SelectedDate = Nothing
                     'End If
+                    STT = outNum
                 End If
             End If
             'hiển thị thông tin PLHĐ đối với trường hợp sửa thông tin
