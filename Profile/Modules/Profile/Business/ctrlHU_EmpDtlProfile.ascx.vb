@@ -203,7 +203,7 @@ Public Class ctrlHU_EmpDtlProfile
                             cboWorkStatus.SelectedValue = EmployeeInfo.WORK_STATUS
                         End If
 
-                        If EmployeeInfo.EMP_STATUS IsNot Nothing Then
+                        If EmployeeInfo.EMP_STATUS_NAME IsNot Nothing Then
                             cboEmpStatus.Text = EmployeeInfo.EMP_STATUS_NAME
                             cboEmpStatus.SelectedValue = EmployeeInfo.EMP_STATUS
                         End If

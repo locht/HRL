@@ -605,7 +605,7 @@ Partial Class ProfileRepository
     Public Function GetEmployeeByEmployeeID(ByVal empID As Decimal) As EmployeeDTO
         Try
             Try
-
+                Dim str As String = "Kiêm nhiệm"
                 If empID = 0 Then Return Nothing
                 Dim query As New EmployeeDTO
                 query =
@@ -656,7 +656,7 @@ Partial Class ProfileRepository
                          .WORK_STATUS = e.WORK_STATUS,
                          .WORK_STATUS_NAME = workstatus.NAME_VN,
                          .EMP_STATUS = e.EMP_STATUS,
-                         .EMP_STATUS_NAME = empstatus.NAME_VN,
+                         .EMP_STATUS_NAME = If(e.IS_KIEM_NHIEM = 1, str, empstatus.NAME_VN),
                          .DIRECT_MANAGER = e.DIRECT_MANAGER,
                          .DIRECT_MANAGER_NAME = direct.FULLNAME_VN,
                          .LEVEL_MANAGER = e.LEVEL_MANAGER,
