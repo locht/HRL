@@ -302,6 +302,15 @@ Partial Public Class ctrlRegisterCONewEdit
     Protected WithEvents rnIS_APP As Global.Telerik.Web.UI.RadNumericTextBox
     
     '''<summary>
+    '''rnSTATUS control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents rnSTATUS As Global.Telerik.Web.UI.RadNumericTextBox
+    
+    '''<summary>
     '''rgData control.
     '''</summary>
     '''<remarks>

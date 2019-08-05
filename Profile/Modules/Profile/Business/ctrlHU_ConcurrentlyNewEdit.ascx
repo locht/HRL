@@ -49,16 +49,16 @@
                             <td>
                                    <tlk:RadToolTip ID="EmpOrgNameToolTip" runat="server" Width="100" Height="10" Position="BottomRight" 
             Text='' TargetControlID="txtEmpOrgName"> </tlk:RadToolTip> 
-                                <tlk:RadTextBox Width="128px" ID="txtEmpOrgName" runat="server">
+                                <tlk:RadTextBox Width="128px" ID="txtEmpOrgName" runat="server" Enabled="false">
                                 </tlk:RadTextBox>
-                                <tlk:RadButton runat="server" ID="btnOrgId" Width="8px" SkinID="ButtonView" CausesValidation="false" />
+                                <tlk:RadButton runat="server" ID="btnOrgId" Width="8px" SkinID="ButtonView" CausesValidation="false" Enabled="false" />
                             </td>
                             <td class="lb" style="text-align: left">
                                 <%# Translate("Chức danh")%>
                             </td>
                             <td>
                                  <tlk:RadComboBox  ID="cboTitleId" runat="server"
-                                    CausesValidation="false">
+                                    CausesValidation="false" Enabled="false">
                                 </tlk:RadComboBox>
                                <%-- <tlk:RadTextBox ID="txtEmpTitle" Width="100%" runat="server" ReadOnly="True">
                                 </tlk:RadTextBox>--%>
@@ -230,14 +230,14 @@
                         </tr>
                         <tr>
                             <td class="lb" style="text-align: left;">
-                                <%# Translate("Người ký 2")%><span class="lbReq">*</span>
+                                <%# Translate("Người ký 2")%><%--<span class="lbReq">*</span>--%>
                             </td>
                             <td>
                                 <tlk:RadTextBox runat="server" ID="txtSIGN2" ReadOnly="true" Width="128px" />
                                 <tlk:RadButton runat="server" ID="btnSIGN2" SkinID="ButtonView" CausesValidation="false" />
-                                <asp:RequiredFieldValidator ID="reqApplyName1" ControlToValidate="txtSIGN2" runat="server"
+                               <%-- <asp:RequiredFieldValidator ID="reqApplyName1" ControlToValidate="txtSIGN2" runat="server"
                                     ErrorMessage="<%$ Translate: Bạn phải nhập người phê duyệt. %>" ToolTip="<%$ Translate: Bạn phải nhập người phê duyệt. %>"> 
-                                </asp:RequiredFieldValidator>
+                                </asp:RequiredFieldValidator>--%>
                                 <asp:HiddenField ID="HiddenField1" runat="server" />
                             </td>
                             <td class="lb" style="text-align: left">

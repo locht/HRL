@@ -3300,31 +3300,7 @@ Partial Public Class AttendanceRepository
 
     End Function
 
-    Public Function DeleteLeaveSheet(ByVal lstID As List(Of AT_LEAVESHEETDTO)) As Boolean
-        Dim lstl As AT_LEAVESHEET
-        Dim id As Decimal = 0
-        Try
 
-            For index = 0 To lstID.Count - 1
-                id = lstID(index).ID
-                lstl = (From p In Context.AT_LEAVESHEET Where id = p.ID).FirstOrDefault
-                If Not lstl Is Nothing Then
-                    Dim details = (From r In Context.AT_LEAVESHEET Where r.LEAVE_FROM = lstl.LEAVE_FROM And r.LEAVE_TO = lstl.LEAVE_TO).ToList
-                    If Not details Is Nothing Then
-                        For index1 = 0 To details.Count - 1
-                            Context.AT_LEAVESHEET.DeleteObject(details(index1))
-                        Next
-                    End If
-                End If
-            Next
-            Context.SaveChanges()
-            Return True
-        Catch ex As Exception
-            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iTime")
-            ' Utility.WriteExceptionLog(ex, Me.ToString() & ".DeleteLeaveOT")
-            Throw ex
-        End Try
-    End Function
 
     Public Function checkLeaveImport(ByVal dtData As DataTable) As DataTable
         Dim dtDataError As DataTable = dtData.Clone

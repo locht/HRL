@@ -225,6 +225,7 @@ Public Class ctrlHU_ConcurrentlyNewEdit
         Try
             CType(Me.Page, AjaxPage).AjaxManager.ClientEvents.OnRequestStart = "onRequestStart"
             InitControl()
+
             If Request.Params("FormType") IsNot Nothing Then
                 FormType = Request.Params("FormType")
             End If
@@ -320,6 +321,7 @@ Public Class ctrlHU_ConcurrentlyNewEdit
                     checkStatus = "0"
                     rgConcurrently.Rebind()
                     EnabledGrid(rgConcurrently, False)
+                    cboTitleId.Enabled = False
                     cboStatus.Text = ""
                     cboStatus.SelectedValue = cons_com.AWAITING_APPROVAL
                     cbSTATUS_STOP.Text = ""
@@ -336,6 +338,7 @@ Public Class ctrlHU_ConcurrentlyNewEdit
                     CurrentState = CommonMessage.STATE_EDIT
                     FormType = 1
                     EnabledGrid(rgConcurrently, False)
+                    cboTitleId.Enabled = False
                 Case CommonMessage.TOOLBARITEM_SAVE
                     If Page.IsValid Then
                         If Save(strID, _err) Then
@@ -347,6 +350,7 @@ Public Class ctrlHU_ConcurrentlyNewEdit
                         End If
                         FormType = 2
                         EnabledGrid(rgConcurrently, True)
+                        cboTitleId.Enabled = False
                         rgConcurrently.Rebind()
                         SelectedItemDataGridByKey(rgConcurrently, Decimal.Parse(IDSelect))
                         FillData()
@@ -356,6 +360,7 @@ Public Class ctrlHU_ConcurrentlyNewEdit
                     FormType = 2
                     FillData()
                     EnabledGrid(rgConcurrently, True)
+                    cboTitleId.Enabled = False
                 Case CommonMessage.TOOLBARITEM_DELETE
                     If rgConcurrently.SelectedItems.Count = 0 Then
                         ShowMessage(Translate(CommonMessage.MESSAGE_NOT_SELECT_ROW), NotifyType.Warning)
@@ -732,6 +737,7 @@ Public Class ctrlHU_ConcurrentlyNewEdit
                 Case CommonMessage.STATE_NORMAL
                     DisableControls(LeftPane, False)
                     EnabledGrid(rgConcurrently, True)
+                    cboTitleId.Enabled = False
                 Case CommonMessage.STATE_NEW
                     DisableControls(LeftPane, True)
                     EnabledGrid(rgConcurrently, False)
@@ -744,6 +750,7 @@ Public Class ctrlHU_ConcurrentlyNewEdit
                     btnSIGN_STOP2.Enabled = False
                     txtREMARK_STOP.ReadOnly = True
                     btnUploadFile1.Enabled = False
+                    cboTitleId.Enabled = False
 
                     If txtCON_NO.Text = "" Then
                         txtCON_NO.Text = "/QĐ-TGĐ." & DateTime.Now.Year.ToString.Substring(2, 2)
@@ -768,6 +775,7 @@ Public Class ctrlHU_ConcurrentlyNewEdit
                         btnUploadFile1.Enabled = False
                         btnDownload1.Enabled = False
                         btnSIGN_STOP2.Enabled = False
+                        cboTitleId.Enabled = False
                     End If
 
                     EnabledGrid(rgConcurrently, False)
@@ -812,7 +820,7 @@ Public Class ctrlHU_ConcurrentlyNewEdit
                 Case 3
                     If Not phFindSign.Controls.Contains(ctrlFindEmployeeSign) Then
                         'Popup người ký
-                        ctrlFindEmployeeSign = Me.Register("ctrlFindEmployeeSign", "Common", "ctrlFindEmployeePopup")
+                        ctrlFindEmployeeSign = Me.Register("ctrlFindSigner", "Common", "ctrlFindEmployeePopup")
                         phFindSign.Controls.Add(ctrlFindEmployeeSign)
                         ctrlFindEmployeeSign.IsHideTerminate = False
                         ctrlFindEmployeeSign.MultiSelect = False
@@ -823,7 +831,7 @@ Public Class ctrlHU_ConcurrentlyNewEdit
                 Case 4
                     If Not phFindSignStop.Controls.Contains(ctrlFindEmployeeSignStop) Then
                         'Popup người ký thôi kiêm nhiệm
-                        ctrlFindEmployeeSignStop = Me.Register("ctrlFindEmployeeSignStop", "Common", "ctrlFindEmployeePopup")
+                        ctrlFindEmployeeSignStop = Me.Register("ctrlFindSigner", "Common", "ctrlFindEmployeePopup")
                         phFindSignStop.Controls.Add(ctrlFindEmployeeSignStop)
                         ctrlFindEmployeeSignStop.IsHideTerminate = False
                         ctrlFindEmployeeSignStop.MultiSelect = False
@@ -837,7 +845,7 @@ Public Class ctrlHU_ConcurrentlyNewEdit
                 Case 6
                     If Not phFindSign2.Controls.Contains(ctrlFindEmployeeSign) Then
                         'Popup người ký 2
-                        ctrlFindEmployeeSign2 = Me.Register("ctrlFindEmployeeSign2", "Common", "ctrlFindEmployeePopup")
+                        ctrlFindEmployeeSign2 = Me.Register("ctrlFindSigner", "Common", "ctrlFindEmployeePopup")
                         phFindSign2.Controls.Add(ctrlFindEmployeeSign2)
                         ctrlFindEmployeeSign2.IsHideTerminate = False
                         ctrlFindEmployeeSign2.MultiSelect = False
@@ -846,7 +854,7 @@ Public Class ctrlHU_ConcurrentlyNewEdit
                 Case 7
                     If Not phFindSignStop2.Controls.Contains(ctrlFindEmployeeSignStop2) Then
                         'Popup người ký thôi kiêm nhiệm
-                        ctrlFindEmployeeSignStop2 = Me.Register("ctrlFindEmployeeSignStop2", "Common", "ctrlFindEmployeePopup")
+                        ctrlFindEmployeeSignStop2 = Me.Register("ctrlFindSigner", "Common", "ctrlFindEmployeePopup")
                         phFindSignStop.Controls.Add(ctrlFindEmployeeSignStop2)
                         ctrlFindEmployeeSignStop2.IsHideTerminate = False
                         ctrlFindEmployeeSignStop2.MultiSelect = False

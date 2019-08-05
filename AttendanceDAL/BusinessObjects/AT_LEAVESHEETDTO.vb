@@ -22,17 +22,16 @@
     Public Property AFTERNOON_ID As Decimal?
     Public Property STAFF_RANK_ID As Decimal?
     Public Property STAFF_RANK_NAME As String
-
     Public Property MORNING_NAME As String
     Public Property AFTERNOON_NAME As String
-
     Public Property NOTE As String
     Public Property IS_WORKING_DAY As Boolean
     Public Property IN_PLAN_DAYS As Decimal?
     Public Property NOT_IN_PLAN_DAYS As Decimal?
     Public Property DAY_NUM As Decimal?
     Public Property EMP_APPROVES_NAME As String
-
+    Public Property STATUS As Decimal?
+    Public Property STATUS_NAME As String
     Public Property CREATED_DATE As Date?
     Public Property CREATED_BY As String
     Public Property CREATED_LOG As String
@@ -40,5 +39,7 @@
     Public Property MODIFIED_BY As String
     Public Property MODIFIED_LOG As String
     Public Property NOTE_APP As String
+
+   
 End Class
 
