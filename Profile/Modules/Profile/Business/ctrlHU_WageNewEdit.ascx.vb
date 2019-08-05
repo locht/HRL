@@ -196,7 +196,7 @@ Public Class ctrlHU_WageNewEdit
                     txtEmployeeName.Text = Working.EMPLOYEE_NAME
                     hidTitle.Value = Working.TITLE_ID
                     txtTitleName.Text = Working.TITLE_NAME
-                    ' txtTitleGroup.Text = Working.TITLE_GROUP_NAME
+                    'txtTitleGroup.Text = Working.TITLE_GROUP_NAME
                     hidOrg.Value = Working.ORG_ID
                     txtOrgName.Text = Working.ORG_NAME
                     If Working.STATUS_ID IsNot Nothing Then
@@ -250,7 +250,7 @@ Public Class ctrlHU_WageNewEdit
                         rnOtherSalary5.Value = Working.OTHERSALARY5
                     End If
                     txtUploadFile.Text = Working.ATTACH_FILE
-                    txtUpload.Text = Working.ATTACH_FILE
+                    txtUpload.Text = Working.FILENAME
                     If Working.STAFF_RANK_ID IsNot Nothing Then
                         hidStaffRank.Value = Working.STAFF_RANK_ID
                     End If
@@ -297,7 +297,7 @@ Public Class ctrlHU_WageNewEdit
                     basicSalary.Enabled = False
                     rnPercentSalary.Enabled = False
                     Salary_Total.Enabled = False
-                    rnOtherSalary1.Enabled = False
+                    'rnOtherSalary1.Enabled = False
                     'GetDATA_IN()
                     'CalculatorSalary()
                 Case "NormalView"
@@ -352,14 +352,14 @@ Public Class ctrlHU_WageNewEdit
                         strPath = strPath + str_Filename
                         fileName = System.IO.Path.Combine(strPath, file.FileName)
                         file.SaveAs(fileName, True)
-                        txtUploadFile.Text = file.FileName
+                        txtUpload.Text = file.FileName
                         Down_File = str_Filename
                     Else
                         ShowMessage(Translate("Vui lòng chọn file đúng định dạng. !!! Hệ thống chỉ nhận file xls,xlsx,txt,ctr,doc,docx,xml,png,jpg,bitmap,jpeg,gif"), NotifyType.Warning)
                         Exit Sub
                     End If
                 Next
-                loadDatasource(txtUploadFile.Text)
+                loadDatasource(txtUpload.Text)
             End If
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
@@ -371,7 +371,7 @@ Public Class ctrlHU_WageNewEdit
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
         Try
             If txtUpload.Text <> "" Then
-                Dim strPath_Down As String = Server.MapPath("~/ReportTemplates/Profile/SalaryInfo/" + txtUpload.Text)
+                Dim strPath_Down As String = Server.MapPath("~/ReportTemplates/Profile/SalaryInfo/" + txtUploadFile.Text + txtUpload.Text)
                 'bCheck = True
                 ZipFiles(strPath_Down, 2)
             End If
@@ -546,7 +546,8 @@ Public Class ctrlHU_WageNewEdit
                             End If
                             .SAL_BASIC = basicSalary.Value
                             .SIGN_DATE = rdSignDate.SelectedDate
-                            .ATTACH_FILE = txtUploadFile.Text
+                            .ATTACH_FILE = txtUploadFile.Text 'Guid directory
+                            .FILENAME = txtUpload.Text 'ten file (a.jpg)
                             If hidSign.Value <> "" Then
                                 .SIGN_ID = hidSign.Value
                             End If
@@ -1053,7 +1054,9 @@ Public Class ctrlHU_WageNewEdit
                     EnableControlAll(True, btnFindEmployee, chkIsInsurrance, SalaryInsurance)
                 Case CommonMessage.STATE_EDIT
                     EnableControlAll(False, btnFindEmployee, chkIsInsurrance)
-                    SalaryInsurance.Enabled = True
+                    If cboStatus.SelectedValue = ProfileCommon.DECISION_STATUS.WAIT_APPROVE_ID Then
+                        EnableControlAll(True, cbSalaryGroup, cbSalaryLevel, cbSalaryRank, rnOtherSalary1, rnOtherSalary2, rnOtherSalary3)
+                    End If
             End Select
             Select Case isLoadPopup
                 Case 1
@@ -1202,7 +1205,7 @@ Public Class ctrlHU_WageNewEdit
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
         Try
             If strUpload <> "" Then
-                txtUploadFile.Text = strUpload
+                txtUploadFile.Text = Down_File
                 txtUpload.Text = strUpload
             Else
                 strUpload = String.Empty
@@ -1217,9 +1220,10 @@ Public Class ctrlHU_WageNewEdit
         Dim startTime As DateTime = DateTime.UtcNow
         Try
             Dim crc As New Crc32()
-            Dim fileNameZip As String
-            fileNameZip = txtUploadFile.Text.Trim
-            Dim file As System.IO.FileInfo = New System.IO.FileInfo(path & fileNameZip)
+            'Dim fileNameZip As String
+            'fileNameZip = txtUploadFile.Text.Trim
+            'Dim file As System.IO.FileInfo = New System.IO.FileInfo(path & fileNameZip)
+            Dim file As System.IO.FileInfo = New System.IO.FileInfo(path)
             Response.Clear()
             Response.AddHeader("Content-Disposition", "attachment; filename=" + file.Name)
             Response.AddHeader("Content-Length", file.Length.ToString())
@@ -1432,25 +1436,11 @@ Public Class ctrlHU_WageNewEdit
         End Using
         Select Case cboSalTYPE.Text
             Case "Thử việc"
+                EnableControlAll(True, cbSalaryGroup, cbSalaryLevel, cbSalaryRank, rnFactorSalary, basicSalary, rnPercentSalary, Salary_Total, rnOtherSalary1)
                 rnPercentSalary.Value = _tyLeThuViec
-                cbSalaryGroup.Enabled = True
-                cbSalaryLevel.Enabled = True
-                cbSalaryRank.Enabled = True
-                rnFactorSalary.Enabled = True
-                basicSalary.Enabled = True
-                rnPercentSalary.Enabled = True
-                Salary_Total.Enabled = True
-                rnOtherSalary1.Enabled = True
             Case "Chính thức"
+                EnableControlAll(True, cbSalaryGroup, cbSalaryLevel, cbSalaryRank, rnFactorSalary, basicSalary, rnPercentSalary, Salary_Total, rnOtherSalary1)
                 rnPercentSalary.Value = _tyLeChinhThuc
-                cbSalaryGroup.Enabled = True
-                cbSalaryLevel.Enabled = True
-                cbSalaryRank.Enabled = True
-                rnFactorSalary.Enabled = True
-                basicSalary.Enabled = True
-                rnPercentSalary.Enabled = True
-                Salary_Total.Enabled = True
-                rnOtherSalary1.Enabled = True
             Case "Kiêm nhiệm"
                 cbSalaryGroup.Enabled = False
                 cbSalaryLevel.Enabled = False

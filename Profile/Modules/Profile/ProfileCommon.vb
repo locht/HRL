@@ -38,27 +38,23 @@
         Public Shared TYPE_ID As Decimal = 180
         Public Shared APPROVE_ID As Decimal = 714
         Public Shared WAIT_APPROVE_ID As Decimal = 715
-
     End Class
     Public Class DEBT_STATUS
         Public Shared Name As String = "DEBT_STATUS"
         Public Shared TYPE_ID As Decimal = 2271
         Public Shared COMPLETE_ID As Decimal = 7064
         Public Shared NOT_COMPLETE_ID As Decimal = 7065
-
     End Class
     Public Class DISCIPLINE_STATUS
         Public Shared Name As String = "DISCIPLINE_STATUS"
         Public Shared TYPE_ID As Decimal = 181
         Public Shared APPROVE_ID As Decimal = 716
         Public Shared WAIT_APPROVE_ID As Decimal = 717
-
     End Class
     Public Class DISCIPLINE_TYPE
         Public Shared Name As String = "DISCIPLINE_TYPE"
         Public Shared TYPE_ID As Decimal = 31
         Public Shared LAYOFF_ID As Decimal = 462
-
     End Class
     Public Class OT_TER_STATUS
         Public Shared Name As String = "TER_STATUS"
@@ -66,7 +62,6 @@
         Public Shared APPROVE_ID As Decimal = 262
         Public Shared WAIT_APPROVE_ID As Decimal = 263
         Public Shared NOT_APPROVE_ID As Decimal = 264
-
     End Class
     Public Class HU_TEMPLATE_TYPE
         Public Shared Name As String = "HU_TEMPLATE_TYPE"
@@ -81,8 +76,6 @@
         Public Shared TERMINATE_SUPPORT_ID As Decimal = 9
         Public Shared PROFILE_SUPPORT_ID As Decimal = 10
         Public Shared APPENDIX_SUPPORT_ID As Decimal = 11
-
-
     End Class
     Public Class TERRMINATE_SUPPORT
         Public Shared Name As String = "TERMINATE_SUPPORT"

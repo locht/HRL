@@ -57,7 +57,7 @@
                                     <%# Eval("MOBILE_PHONE")%>
                                 </td>
                             </tr>
-                          <%--  <tr>
+                            <%--  <tr>
                                 <td align="right" style="color: Gray">
                                     Email:
                                 </td>
@@ -73,7 +73,7 @@
     </tlk:RadPane>
 </tlk:RadSplitter>
 <tlk:RadCodeBlock ID="RadCodeBlock1" runat="server">
-     <script src="../../../Scripts/html2canvas.min.js"></script>
+    <script src="../../../Scripts/html2canvas.min.js" type="text/javascript"></script>
     <script type="text/javascript">
         var scaleParamX;
         var scaleParamY;
@@ -109,14 +109,11 @@
                     org.style.WebkitTransform = "scale(" + scaleParamX + ")";
             }, 100);
         }
-
+        
         function DownloadPNG(canvas, filename) {
             var lnk = document.createElement('a'), e;
-
             lnk.download = filename;
-
             lnk.href = canvas.toDataURL("image/png;base64");
-
             if (document.createEvent) {
                 e = document.createEvent("MouseEvents");
                 e.initMouseEvent("click", true, true, window,
@@ -128,19 +125,18 @@
                 lnk.fireEvent("onclick");
             }
         }
+
         function ExportImage(sender, args) {
-            var ro = document.querySelector("div.rocViewPort")
-            ro.style.visibility = "visible"
-
-            var useWidth = ro.offsetWidth
-            var useHeight = ro.offsetHeight
-
+            var ro = document.querySelector("div.rocViewPort");
+            ro.style.visibility = "visible";
+            var useWidth = ro.offsetWidth;
+            var useHeight = ro.offsetHeight;
             html2canvas(ro, {
                 width: useWidth,
                 height: useHeight
             }).then(canvas => {
                 DownloadPNG(canvas, 'OrgChart.png')
             });
-            }
+          }
     </script>
 </tlk:RadCodeBlock>
