@@ -726,7 +726,7 @@ Public Class ctrlTime_Timesheet_CTT
                     CType(_toolbar.Items(0), RadToolBarButton).Enabled = btnEnable
                     CType(_toolbar.Items(3), RadToolBarButton).Enabled = btnEnable
                 End If
-                rgTimeTimesheet_cct.Rebind()
+                'rgTimeTimesheet_cct.Rebind()
             Else
                 ClearControlValue(rdtungay, rdDenngay)
             End If
@@ -783,7 +783,7 @@ Public Class ctrlTime_Timesheet_CTT
                 CType(_toolbar.Items(3), RadToolBarButton).Enabled = btnEnable
             End If
 
-            rgTimeTimesheet_cct.Rebind()
+            'rgTimeTimesheet_cct.Rebind()
             ctrlOrganization.SetColorPeriod(cboPeriod.SelectedValue, PeriodType.AT)
             _myLog.WriteLog(_myLog._info, _classPath, method,
                                                 CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
