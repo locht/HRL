@@ -702,8 +702,9 @@ Public Class ctrlHU_ContractTemplete
 
             If CurrentState = CommonMessage.STATE_NEW Then
                 If inforContract IsNot Nothing Then
-                    'txtContract_NumAppen.Text = rep.GetFileContract_No(inforContract, STT)
-
+                    Dim outNum As Integer = rep.GET_NEXT_APPENDIX_ORDER(cboContract.SelectedValue) 'lay so thu tu tiep theo
+                    Dim order = String.Format("{0}", Format(outNum, "00"))
+                    txtContract_NumAppen.Text = inforContract.CONTRACT_NO + "-" + order
                     'lay ngay het han hop dong gán vao ngày het hạn phụ lục
                     'If inforContract.EXPIRE_DATE IsNot Nothing Then
                     '    rdExpireDate.SelectedDate = inforContract.EXPIRE_DATE

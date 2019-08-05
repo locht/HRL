@@ -1,4 +1,7 @@
-﻿Public Class ProfileStoreProcedure
+﻿Imports HistaffFrameworkPublic
+Imports HistaffFrameworkPublic.FrameworkUtilities
+
+Public Class ProfileStoreProcedure
 #Region "ChienNV"
     ''' <summary>
     ''' Create by: ChienNV; Create date:11/10/2017; Lấy danh sách đơn vị đóng bảo hiểm.
@@ -16,7 +19,7 @@
         Return dt
     End Function
 
-     Public Function GetInsListRegion(Optional ByVal pStruct As String = "1") As DataTable
+    Public Function GetInsListRegion(Optional ByVal pStruct As String = "1") As DataTable
         Dim dt As New DataTable
         Dim ds As DataSet = hfr.ExecuteToDataSet("PKG_COMMON_LIST.GET_LIST_INS_REGION", New List(Of Object)(New Object() {pStruct}))
         If Not ds Is Nothing Or Not ds.Tables(0) Is Nothing Then
@@ -32,7 +35,7 @@
             If Not ds Is Nothing Or Not ds.Tables(0) Is Nothing Then
                 dt = ds.Tables(0)
             End If
-        Return dt
+            Return dt
         Catch ex As Exception
             Throw ex
         End Try
@@ -64,7 +67,6 @@
         End Try
     End Function
 #End Region
-
     Public Function GetTitle(ByVal titleId As Int32) As DataTable
         Dim dt As New DataTable
         Dim ds As DataSet = hfr.ExecuteToDataSet("PKG_HU_IPROFILE.HU_GET_TITLE_BY_ID", New List(Of Object)(New Object() {titleId}))

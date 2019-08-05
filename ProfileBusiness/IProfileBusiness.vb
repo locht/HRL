@@ -28,7 +28,10 @@ Namespace ProfileBusiness.ServiceContracts
         <OperationContract()>
         Function GetCertificate(ByVal _filter As CETIFICATEDTO) As List(Of CETIFICATEDTO)
 #End Region
-
+#Region "Contract appendix"
+        <OperationContract()>
+        Function GET_NEXT_APPENDIX_ORDER(ByVal contract_id As Decimal) As Integer
+#End Region
 
         <OperationContract()>
         Function GetOrgsTree() As List(Of OrganizationDTO)

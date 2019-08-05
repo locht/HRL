@@ -18,7 +18,7 @@ Public Class Utilities
                     End If
                     Exit While
                 Catch ex As Exception
-
+                    Throw ex
                 End Try
             End While
 

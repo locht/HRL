@@ -2016,6 +2016,19 @@ Public Class ProfileRepository
 #End Region
 
 #Region "PLHD"
+    Public Function GET_NEXT_APPENDIX_ORDER(ByVal contract_id As Decimal) As Integer
+        Try
+            Dim maxSTT As Integer
+            Dim query = Context.HU_FILECONTRACT.Where(Function(f) f.ID_CONTRACT = contract_id)
+            If query.Count > 0 Then
+                maxSTT = query.Max(Function(f) f.STT)
+                Return maxSTT + 1
+            End If
+            Return 1
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
     ''' <summary>
     ''' in phu luc hợp đồng lao động
     ''' </summary>

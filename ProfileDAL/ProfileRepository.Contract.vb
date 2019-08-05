@@ -265,8 +265,6 @@ Partial Class ProfileRepository
 
     End Function
 #End Region
-
-
 #Region "TRANINGMANAGE"
     Public Function GetListTrainingManageByEmpID(ByVal _filter As TrainningManageDTO, ByVal _param As ParamDTO,
                               Optional ByVal Sorts As String = "CREATED_DATE desc") As List(Of TrainningManageDTO)
