@@ -7,7 +7,7 @@ Imports Attendance.AttendanceBusiness
 Imports Telerik.Web.UI
 Imports HistaffFrameworkPublic.HistaffFrameworkEnum
 Imports System.IO
-
+Imports Telerik.Web.UI.Calendar
 
 Public Class ctrlLeaveRegistrationNewEdit
     Inherits CommonView
@@ -25,8 +25,6 @@ Public Class ctrlLeaveRegistrationNewEdit
         End Get
     End Property
 
-    Public Property EmployeeID As Decimal
-    Public Property EmployeeCode As String
     Protected Property EmployeeDto As DataTable
         Get
             Return PageViewState(Me.ID & "_EmployeeDto")
@@ -51,69 +49,13 @@ Public Class ctrlLeaveRegistrationNewEdit
             ViewState(Me.ID & "_ListComboData") = value
         End Set
     End Property
-    Property leaveMaster As AT_PORTAL_REG_DTO
+    'EmployeeID
+    Property EmployeeID As Decimal
         Get
-            Return ViewState(Me.ID & "_leaveMaster")
+            Return ViewState(Me.ID & "_EmployeeID")
         End Get
-        Set(ByVal value As AT_PORTAL_REG_DTO)
-            ViewState(Me.ID & "_leaveMaster") = value
-        End Set
-    End Property
-    Property leaveDetails As List(Of AT_PORTAL_REG_DTO)
-        Get
-            Return ViewState(Me.ID & "_leaveDetails")
-        End Get
-        Set(ByVal value As List(Of AT_PORTAL_REG_DTO))
-            ViewState(Me.ID & "_leaveDetails") = value
-        End Set
-    End Property
-    Property leaveEmpDetails As List(Of LEAVE_DETAIL_EMP_DTO)
-        Get
-            Return ViewState(Me.ID & "_leaveEmpDetails")
-        End Get
-        Set(ByVal value As List(Of LEAVE_DETAIL_EMP_DTO))
-            ViewState(Me.ID & "_leaveEmpDetails") = value
-        End Set
-    End Property
-    Property leaveInOutKH As DataTable
-        Get
-            Return ViewState(Me.ID & "_leaveInOutKH")
-        End Get
-        Set(ByVal value As DataTable)
-            ViewState(Me.ID & "_leaveInOutKH") = value
-        End Set
-    End Property
-    Property checktypebreak As DataTable
-        Get
-            Return ViewState(Me.ID & "_checktypebreak")
-        End Get
-        Set(ByVal value As DataTable)
-            ViewState(Me.ID & "_checktypebreak") = value
-        End Set
-    End Property
-    Property CHECKSHIFT As DataTable
-        Get
-            Return ViewState(Me.ID & "_CHECKSHIFT")
-        End Get
-        Set(ByVal value As DataTable)
-            ViewState(Me.ID & "_CHECKSHIFT") = value
-        End Set
-    End Property
-    Property CHECKCONTRACT As DataTable
-        Get
-            Return ViewState(Me.ID & "_CHECKCONTRACT")
-        End Get
-        Set(ByVal value As DataTable)
-            ViewState(Me.ID & "_CHECKCONTRACT") = value
-        End Set
-    End Property
-
-    Property dayholiday As List(Of AT_HOLIDAYDTO)
-        Get
-            Return ViewState(Me.ID & "_dayholiday")
-        End Get
-        Set(ByVal value As List(Of AT_HOLIDAYDTO))
-            ViewState(Me.ID & "_dayholiday") = value
+        Set(ByVal value As Decimal)
+            ViewState(Me.ID & "_EmployeeID") = value
         End Set
     End Property
 
@@ -125,15 +67,23 @@ Public Class ctrlLeaveRegistrationNewEdit
             ViewState(Me.ID & "_userType") = value
         End Set
     End Property
-    Property check As Integer
+
+    Property dtDetail As DataTable
         Get
-            Return ViewState(Me.ID & "_check")
+            Return ViewState(Me.ID & "_dtDetail")
         End Get
-        Set(ByVal value As Integer)
-            ViewState(Me.ID & "_check") = value
+        Set(ByVal value As DataTable)
+            ViewState(Me.ID & "_dtDetail") = value
         End Set
     End Property
-
+    Property rPH As DataRow
+        Get
+            Return ViewState(Me.ID & "_rPH")
+        End Get
+        Set(ByVal value As DataRow)
+            ViewState(Me.ID & "_rPH") = value
+        End Set
+    End Property
 
 #End Region
 
@@ -153,18 +103,11 @@ Public Class ctrlLeaveRegistrationNewEdit
         InitControl()
     End Sub
     Public Overrides Sub BindData()
-        Dim rep As New AttendanceRepository
+        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
         Try
-            If ListComboData Is Nothing Then
-                ListComboData = New Attendance.AttendanceBusiness.ComboBoxDataDTO
-                ListComboData.GET_LIST_TYPE_MANUAL_LEAVE = True
-                rep.GetComboboxData(ListComboData)
-            End If
-            FillRadCombobox(cboleaveType, ListComboData.LIST_LIST_TYPE_MANUAL_LEAVE, "NAME_VN", "ID", True)
-            ListManual = ListComboData.LIST_LIST_TYPE_MANUAL_LEAVE
-            If ListComboData.LIST_LIST_TYPE_MANUAL_LEAVE.Count > 0 Then
-                cboleaveType.SelectedIndex = 0
-            End If
+            Dim startTime As DateTime = DateTime.UtcNow
+            GetDataCombo()
+            Refresh()
         Catch ex As Exception
             DisplayException(Me.ViewName, Me.ID, ex)
         End Try
@@ -180,218 +123,52 @@ Public Class ctrlLeaveRegistrationNewEdit
     End Sub
 
     Public Overrides Sub Refresh(Optional ByVal Message As String = "")
+        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+        Dim dsLeaveSheet As New DataSet()
         Try
             If Not IsPostBack Then
-                Dim id As Decimal = 0
-                Dim OUTID As Decimal
-                Dim empId As Decimal = 0
-                Decimal.TryParse(Request.QueryString("id"), id)
-                Decimal.TryParse(Request.QueryString("empId"), empId)
-                hidID.Value = id
-                hidValid.Value = 0
-                Dim state = Request.QueryString("id")
-                check = state
-                userType = Request.QueryString("typeUser")
-                CurrentState = CommonMessage.STATE_NORMAL
-                Dim dto As New AT_PORTAL_REG_DTO
+                rtEmployee_id.Text = LogHelper.CurrentUser.EMPLOYEE_ID
                 Using rep As New AttendanceRepository
-                    OUTID = rep.GETIDFROMPROCESS(id)
+                    EmployeeDto = rep.GetEmployeeInfor(EmployeeID, Nothing)
                 End Using
-                dto.ID = hidID.Value
-                If hidID.Value = 0 Then
-                    EmployeeID = LogHelper.CurrentUser.EMPLOYEE_ID
-                    dto.ID_EMPLOYEE = EmployeeID
-                Else
-                    EmployeeID = If(empId = 0, LogHelper.CurrentUser.EMPLOYEE_ID, empId)
-                    dto.ID_EMPLOYEE = OUTID
+            End If
+            Dim startTime As DateTime = DateTime.UtcNow
+            Message = Request.Params("VIEW")
+            Dim Struct As Decimal = 1
+            Dim ID_PH As Decimal = 0
+            If IsNumeric(Request.Params("ID")) Then
+                Struct = 0
+                ID_PH = Decimal.Parse(Request.Params("ID"))
+            End If
+            Using rep As New AttendanceRepository
+                dsLeaveSheet = rep.GetLeaveSheet_ById(ID_PH, Struct)
+            End Using
+            If dsLeaveSheet IsNot Nothing Then
+                If dsLeaveSheet.Tables(0) IsNot Nothing Then
+                    rPH = dsLeaveSheet.Tables(0).NewRow
+                    If dsLeaveSheet.Tables(0).Rows.Count > 0 Then
+                        rPH = dsLeaveSheet.Tables(0).Rows(0)
+                    End If
                 End If
-                leaveMaster = New AT_PORTAL_REG_DTO
-                leaveDetails = New List(Of AT_PORTAL_REG_DTO)
-                EmployeeDto = New DataTable
-
-                Using rep As New AttendanceRepository
-                    If OUTID = 0 Then
-                        EmployeeDto = rep.GetEmployeeInfor(EmployeeID, Nothing, rdFromDate.SelectedDate)
-                    Else
-                        EmployeeDto = rep.GetEmployeeInfor(OUTID, Nothing, rdFromDate.SelectedDate)
-                    End If
-                    If dto.ID > 0 Then
-                        leaveMaster = rep.GetLeaveRegistrationById(dto)
-                        If leaveMaster.ID > 0 Then
-                            leaveDetails = rep.GetLeaveRegistrationDetailById(leaveMaster.ID)
-                        End If
-                    End If
-                    dayholiday = rep.GetDayHoliday()
-                    If OUTID = 0 Then
-                        CHECKSHIFT = rep.PRS_COUNT_SHIFT(EmployeeID)
-                        CHECKCONTRACT = rep.CHECK_CONTRACT(EmployeeID)
-                    Else
-                        CHECKSHIFT = rep.PRS_COUNT_SHIFT(OUTID)
-                        CHECKCONTRACT = rep.CHECK_CONTRACT(OUTID)
-                    End If
-
-
-                End Using
-                If EmployeeDto IsNot Nothing AndAlso EmployeeDto.Rows.Count > 0 Then
-                    txtFullName.Text = EmployeeDto.Rows(0)("FULLNAME_VN")
-                    txtEmpCode.Text = EmployeeDto.Rows(0)("EMPLOYEE_CODE")
-                    txtDepartment.Text = EmployeeDto.Rows(0)("ORG_NAME")
-                    txtTitle.Text = EmployeeDto.Rows(0)("TITLE_NAME_EN")
-                    'rntEntitlement.Value = If(EmployeeDto.Rows(0)("DAY_LEAVE_NUMBER_ADJUST") Is Nothing, Nothing, Decimal.Parse(EmployeeDto.Rows(0)("DAY_LEAVE_NUMBER_ADJUST").ToString()))
-                    'rntSeniority.Value = If(EmployeeDto.Rows(0)("WORKING_TIME_HAVE_ADJUST") Is Nothing, Nothing, Decimal.Parse(EmployeeDto.Rows(0)("WORKING_TIME_HAVE_ADJUST").ToString()))
-                    'rntBrought.Value = If(EmployeeDto.Rows(0)("PREV_HAVE") Is Nothing, Nothing, Decimal.Parse(EmployeeDto.Rows(0)("PREV_HAVE").ToString()))
-                    'rntTotal.Value = If(EmployeeDto.Rows(0)("TOTAL_HAVE") Is Nothing, Nothing, Decimal.Parse(EmployeeDto.Rows(0)("TOTAL_HAVE").ToString()))
-                    'rntTotalTaken.Value = If(EmployeeDto.Rows(0)("CUR_USED") Is Nothing, Nothing, Decimal.Parse(EmployeeDto.Rows(0)("CUR_USED").ToString()))
-                    'rntBalance.Value = If(EmployeeDto.Rows(0)("CUR_HAVE") Is Nothing, Nothing, Decimal.Parse(EmployeeDto.Rows(0)("CUR_HAVE").ToString()))
-                End If
-                Dim _filter As New TotalDayOffDTO
-                _filter.DATE_REGISTER = Date.Now
-                _filter.LEAVE_TYPE = 251
-                '  _filter.EMPLOYEE_ID = EmployeeID
-                If OUTID = 0 Then
-                    _filter.EMPLOYEE_ID = EmployeeID
-                Else
-                    _filter.EMPLOYEE_ID = OUTID
-                End If
-                If check <> 0 Then
-                    _filter.ID_PORTAL_REG = check
-                Else
-                    _filter.ID_PORTAL_REG = 0
-                End If
-                Dim obj As New TotalDayOffDTO
-                Using rep As New AttendanceRepository
-                    obj = rep.GetTotalDayOff(_filter)
-                    If obj IsNot Nothing Then
-                        'PHÉP NGOÀI CÔNG TY
-                        If obj.TIME_OUTSIDE_COMPANY IsNot Nothing Then
-                            Dim a = If(obj.TIME_OUTSIDE_COMPANY = 0, 0, Decimal.Parse(obj.TIME_OUTSIDE_COMPANY)).ToString()
-                            If a.Contains(",") Then
-                                rntTotal.Text = a.Remove(a.LastIndexOf("0"))
-                            Else
-                                rntTotal.Text = a
-                            End If
-                        Else
-                            rntTotal.Text = Decimal.Parse(0).ToString()
-                        End If
-                        'phep chế độ
-                        If obj.TOTAL_HAVE1 IsNot Nothing Then
-
-                            Dim b = If(obj.TOTAL_HAVE1 = 0, 0, Decimal.Parse(obj.TOTAL_HAVE1)).ToString()
-                            If b.Contains(",") Then
-                                rntEntitlement.Text = b.Remove(b.LastIndexOf("0"))
-                            Else
-                                rntEntitlement.Text = b
-                            End If
-                        Else
-                            rntEntitlement.Text = Decimal.Parse(0).ToString()
-                        End If
-                        'phep dã nghĩ
-                        If obj.USED_DAY IsNot Nothing Then
-                            Dim c As String = If(obj.USED_DAY = 0, 0, Decimal.Parse(obj.USED_DAY)).ToString()
-                            If c.Contains(",") Then
-                                rntSeniority.Text = c.Remove(c.LastIndexOf("0"))
-                            Else
-                                rntSeniority.Text = c
-                            End If
-                        Else
-                            rntSeniority.Text = Decimal.Parse(0).ToString()
-                        End If
-                        'phep tham nien
-                        If obj.SENIORITYHAVE IsNot Nothing Then
-                            Dim d = If(obj.SENIORITYHAVE = 0, 0, Decimal.Parse(obj.SENIORITYHAVE)).ToString()
-                            If d.Contains(",") Then
-                                rntBrought.Text = d.Remove(d.LastIndexOf("0"))
-                            Else
-                                rntBrought.Text = d
-                            End If
-                        Else
-                            rntBrought.Text = Decimal.Parse(0).ToString()
-                        End If
-                        'phep nam truoc con lai
-                        If obj.PREVTOTAL_HAVE IsNot Nothing Then
-                            Dim e = If(obj.PREVTOTAL_HAVE = 0, 0, Decimal.Parse(obj.PREVTOTAL_HAVE)).ToString()
-                            If e.Contains(",") Then
-                                rntTotalTaken.Text = e.Remove(e.LastIndexOf("0"))
-                            Else
-                                rntTotalTaken.Text = e
-                            End If
-                        Else
-                            rntTotalTaken.Text = Decimal.Parse(0).ToString()
-                        End If
-                        'phép còn lại
-                        If obj.REST_DAY IsNot Nothing Then
-                            Dim f = If(obj.REST_DAY = 0, 0, Decimal.Parse(obj.REST_DAY)).ToString()
-                            If f.Contains(",") Then
-                                rntBalance.Text = f.Remove(f.LastIndexOf("0"))
-                            Else
-                                rntBalance.Text = f
-                            End If
-                        Else
-                            rntBalance.Text = Decimal.Parse(0).ToString()
-                        End If
-                    Else
-                        rntSeniority.Text = Decimal.Parse(0).ToString()
-                        rntBrought.Text = Decimal.Parse(0).ToString()
-                        rntTotalTaken.Text = Decimal.Parse(0).ToString()
-                        rntBalance.Text = Decimal.Parse(0).ToString()
-                        rntEntitlement.Text = Decimal.Parse(0).ToString()
-                        rntTotal.Text = Decimal.Parse(0).ToString()
-                    End If
-                End Using
-                If leaveMaster IsNot Nothing Then
-                    hidStatus.Value = If(leaveMaster.STATUS.HasValue, leaveMaster.STATUS, 5)
-                    If leaveMaster.ID_SIGN.HasValue Then
-                        cboleaveType.SelectedValue = leaveMaster.ID_SIGN
-                    End If
-                    If leaveMaster.TOTAL_LEAVE.HasValue Then
-                        txtDayRegist.Text = leaveMaster.TOTAL_LEAVE
-                        rntxDayRegist.Value = leaveMaster.TOTAL_LEAVE
-                    End If
-                    If leaveMaster.FROM_DATE.HasValue Then
-                        rdFromDate.SelectedDate = leaveMaster.FROM_DATE
-                    End If
-                    If leaveMaster.TO_DATE.HasValue Then
-                        rdToDate.SelectedDate = leaveMaster.TO_DATE
-                    End If
-                    If leaveMaster.WORK_HARD IsNot Nothing Then
-                        chkWorkday.Checked = leaveMaster.WORK_HARD
-                    End If
-
-                    txtNote.Text = leaveMaster.NOTE
-                    rgData.Rebind()
+                If dsLeaveSheet.Tables(1) IsNot Nothing Then
+                    dtDetail = dsLeaveSheet.Tables(1).Clone()
+                    dtDetail = dsLeaveSheet.Tables(1)
                 End If
             End If
+            Select Case Message
+                Case "TRUE"
+                    CreateDataBinDing(1)
+            End Select
         Catch ex As Exception
-            DisplayException(Me.ViewName, Me.ID, ex)
+            Throw ex
+        Finally
+            dsLeaveSheet.Dispose()
         End Try
     End Sub
 
     Public Overrides Sub UpdateControlState()
         Try
-            If IsPostBack Then
-                Exit Sub
-            End If
-            tbarMainToolBar.Items(1).Enabled = True
-            tbarMainToolBar.Items(0).Enabled = False
 
-            Select Case hidStatus.Value
-                '0 Khai báo thông tin 
-                '16 Da luu
-                '19 Khong duyet qltt
-                '20 Khong xac nhan nhan su
-                '22 Khong duyet GM
-                Case 5, PortalStatus.Saved, PortalStatus.UnApprovedByLM
-                    ', PortalStatus.Saved, PortalStatus.UnApprovedByLM, PortalStatus.UnVerifiedByHr
-                    If userType = "User" Then
-                        tbarMainToolBar.Items(0).Enabled = True
-                        EnableControlAll(True, cboleaveType, rdFromDate, rdToDate, txtNote)
-                    Else
-                        tbarMainToolBar.Items(0).Enabled = False
-                        EnableControlAll(False, cboleaveType, rdFromDate, rdToDate, txtNote)
-                    End If
-                Case Else
-                    EnableControlAll(False, cboleaveType, rdFromDate, rdToDate, txtNote)
-            End Select
         Catch ex As Exception
             Me.DisplayException(Me.ViewName, Me.ID, ex)
         End Try
@@ -400,451 +177,97 @@ Public Class ctrlLeaveRegistrationNewEdit
 #End Region
 
 #Region "Event"
+    Protected Sub cbSTATUS_SHIFT_SelectedIndexChanged(ByVal sender As Object, ByVal e As RadComboBoxSelectedIndexChangedEventArgs)
+        Try
+            Dim edit = CType(sender, RadComboBox)
+            Dim item = CType(edit.NamingContainer, GridEditableItem)
+            ' If Not IsNumeric(edit.SelectedValue) Then Exit Sub
+            Dim EMPLOYEE_ID = item.GetDataKeyValue("EMPLOYEE_ID")
+            Dim LEAVE_DAY = item.GetDataKeyValue("LEAVE_DAY")
+            For Each rows In dtDetail.Rows
+                If rows("LEAVE_DAY") = LEAVE_DAY Then
+                    rows("STATUS_SHIFT") = If(IsNumeric(edit.SelectedValue), edit.SelectedValue, 0)
+                    If edit.SelectedValue <> "" Then
+                        rows("DAY_NUM") = 0.5
+                    Else
+                        rows("DAY_NUM") = 1
+                    End If
+                    Exit For
+                End If
+            Next
+            rgData.Rebind()
+            For Each items As GridDataItem In rgData.MasterTableView.Items
+                items.Edit = True
+            Next
+            rgData.MasterTableView.Rebind()
+            Cal_DayLeaveSheet()
+        Catch ex As Exception
+            DisplayException(Me.ViewName, Me.ID, ex)
+        End Try
+    End Sub
 
     Protected Sub OnToolbar_Command(ByVal sender As Object, ByVal e As RadToolBarEventArgs) Handles Me.OnMainToolbarClick
+        Dim rep As New AttendanceRepository
+        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
         Try
+            Dim objValidate As New AT_LEAVESHEETDTO
+            Dim startTime As DateTime = DateTime.UtcNow
             Select Case CType(e.Item, RadToolBarButton).CommandName
-                Case CommonMessage.TOOLBARITEM_CREATE
-                    CurrentState = CommonMessage.STATE_NEW
-                    ClearControlValue(cboleaveType, rdFromDate, rdToDate, txtNote, hidID)
-
-                    UpdateControlState()
                 Case CommonMessage.TOOLBARITEM_SAVE
                     If Page.IsValid Then
-                        If rntxDayRegist.Value.HasValue AndAlso rntxDayRegist.Value <= 0 Then
-                            ShowMessage(Translate("Số ngày nghỉ phải > 0."), NotifyType.Warning)
-                            UpdateControlState()
+                        'check so ngay dang ky nghi
+                        If Not IsNumeric(rnDAY_NUM.Value) OrElse rnDAY_NUM.Value < 1 Then
+                            ShowMessage(Translate("Số ngày đăng ký nghỉ phải lơn hơn 0"), NotifyType.Warning)
                             Exit Sub
                         End If
-                        If cboleaveType.SelectedValue = "" Then
-                            ShowMessage(Translate("Chọn loại nghỉ."), NotifyType.Warning)
-                            UpdateControlState()
+                        CreateDataBinDing(0)
+                        objValidate.LEAVE_FROM = rdLEAVE_FROM.SelectedDate
+                        objValidate.LEAVE_TO = rdLEAVE_TO.SelectedDate
+                        objValidate.ID = Utilities.ObjToDecima(rPH("ID"))
+                        objValidate.EMPLOYEE_ID = CDec(rtEmployee_id.Text)
+                        If (New AttendanceBusinessClient).ValidateLeaveSheetDetail(objValidate) = False Then
+                            ShowMessage(Translate("Ngày đăng ký nghỉ đã bị trùng"), NotifyType.Warning)
                             Exit Sub
-                        End If
-                        Dim ktra = (From p In ListManual Where p.ID = cboleaveType.SelectedValue And p.CODE = "P").ToList.Count
-                        Dim selectedFromDate1 = rdFromDate.SelectedDate
-                        Dim selectedToDate1 = rdToDate.SelectedDate
-                        If ktra = 1 Then
-                            While selectedFromDate1.Value.Date <= selectedToDate1.Value.Date
-                                Dim checkhopdong = (From P In CHECKCONTRACT.AsEnumerable Where P("STARTDATE") <= selectedFromDate1 And P("ENDDATE") >= selectedFromDate1 Select P).ToList.Count
-                                If checkhopdong > 0 Then
-                                    ShowMessage(Translate("Không được đăng ký phép năm trong thời gian thử việc"), NotifyType.Warning)
-                                    UpdateControlState()
-                                    Exit Sub
-                                End If
-                                selectedFromDate1 = selectedFromDate1.Value.AddDays(1)
-                            End While
                         End If
 
-                        If txtNote.Text = "" Then
-                            ShowMessage(Translate("Nhập lý do nghỉ."), NotifyType.Warning)
-                            UpdateControlState()
-                            Exit Sub
+                        If SaveDB() Then
+                            Response.Redirect("/Default.aspx?mid=Attendance&fid=ctrlLeaveRegistration&group=Business")
+                        Else
+                            ShowMessage(Translate("Xảy ra lỗi"), NotifyType.Error)
                         End If
-                        If rdFromDate.SelectedDate Is Nothing Then
-                            ShowMessage(Translate("Chọn thời gian bắt đầu."), NotifyType.Warning)
-                            UpdateControlState()
-                            Exit Sub
-                        End If
-                        If rdToDate.SelectedDate Is Nothing Then
-                            ShowMessage(Translate("Chọn thời gian kết thúc."), NotifyType.Warning)
-                            UpdateControlState()
-                            Exit Sub
-                        End If
-                        Dim selectedFromDate = rdFromDate.SelectedDate
-                        Dim selectedToDate = rdToDate.SelectedDate
-                        While selectedFromDate.Value.Date <= selectedToDate.Value.Date
-                            'Dim CHECK1 = (From P In CHECKSHIFT.AsEnumerable Where P("WORKINGDAY1") <= selectedFromDate And P("WORKINGDAY1") >= selectedFromDate Select P).ToList.Count
-                            'If CHECK1 = 0 Then
-                            '    ShowMessage(Translate("Thời gian bạn chọn không có trong ca làm việc,bạn chọn lại."), NotifyType.Warning)
-                            '    UpdateControlState()
-                            '    Exit Sub
-                            'End If
-                            Using rep As New AttendanceRepository
-                                Dim periodid = rep.GetperiodID(EmployeeID, rdFromDate.SelectedDate, rdToDate.SelectedDate)
-                                If periodid = 0 Then
-                                    ShowMessage(Translate("Kiểm tra lại kì công"), NotifyType.Warning)
-                                    Exit Sub
-                                End If
-                                Dim checkKicong = rep.CHECK_PERIOD_CLOSE(periodid)
-                                If checkKicong = 0 Then
-                                    ShowMessage(Translate("Kì công đã đóng,Xin kiểm tra lại"), NotifyType.Warning)
-                                    Exit Sub
-                                End If
-                            End Using
-                            selectedFromDate = selectedFromDate.Value.AddDays(1)
-                        End While
-                        If rtxtdayinkh.Text <> "" AndAlso rtxtdayoutkh.Text <> "" Then
-                            ctrlMessageBox.MessageText = Translate("Số ngày trong kế hoạch là " + rtxtdayinkh.Text + " số ngày ngoài kế hoạch là " + rtxtdayoutkh.Text + ". Bạn có muốn tiếp tục ?")
-                            ctrlMessageBox.ActionName = CommonMessage.ACTION_SAVED
-                            ctrlMessageBox.DataBind()
-                            ctrlMessageBox.Show()
-                            Exit Sub
-                        End If
-                        'kiem tra thuoc loại nghỉ nửa ngày hay không nếu có thì gán giá trị lại là 0.5
-                        Dim ganGiatri As Decimal = 1
-                        Dim ktra1 = (From p In ListComboData.LIST_LIST_TYPE_MANUAL_LEAVE Where p.ID = cboleaveType.SelectedValue And (p.CODE.Contains("P"))).ToList.Count
-                        If ktra1 = 1 Then
-                            Dim count1 = (From p In checktypebreak.AsEnumerable Where p("IS_LEAVE") = -1).ToList.Count
-                            If count1 > 0 Then
-                                ganGiatri = 0.5
-                            End If
-                            Dim count2 = (From p In checktypebreak.AsEnumerable Where p("IS_LEAVE1") = -1).ToList.Count
-                            If count2 > 0 Then
-                                ganGiatri = 0.5
-                            End If
-                        End If
-                        Dim ktra2 = (From p In ListManual Where p.ID = cboleaveType.SelectedValue And p.CODE = "P").ToList.Count
-                        If ktra2 = 1 Then
-                            ganGiatri = 1
-                        End If
-
-                        Dim isInsert As Boolean = True
-                        Dim obj As New AT_PORTAL_REG_DTO
-                        Dim itemExist = New AT_PORTAL_REG_DTO
-                        Dim isOverAnnualLeave As Boolean = False
-                        Using rep As New AttendanceRepository
-                            If hidID.Value <> 0 Then
-                                isInsert = False
-                            End If
-                            If isInsert Then
-                                Dim itemInsert As New AttendanceBusiness.AT_PORTAL_REG_DTO With {
-                           .ID_EMPLOYEE = CurrentUser.EMPLOYEE_ID,
-                           .ID_SIGN = Decimal.Parse(cboleaveType.SelectedValue),
-                           .FROM_DATE = rdFromDate.SelectedDate,
-                           .TO_DATE = rdToDate.SelectedDate,
-                           .NVALUE = ganGiatri,
-                           .SVALUE = ApproveProcess,
-                           .NOTE = txtNote.Text,
-                           .NOTE_AT = txtNote.Text,
-                           .STATUS = 3,
-                           .DAYIN_KH = If(rtxtdayinkh.Text = "", Nothing, rtxtdayinkh.Text),
-                           .DAYOUT_KH = If(rtxtdayoutkh.Text = "", Nothing, rtxtdayoutkh.Text),
-                           .MODIFIED_BY = EmployeeID,
-                           .WORK_HARD = chkWorkday.Checked,
-                                .PROCESS = ApproveProcess
-                       }
-                                AttendanceRepositoryStatic.Instance.InsertPortalRegister(itemInsert)
-                                obj.ID = hidID.Value
-                            Else
-                                Dim itemInsert As New AttendanceBusiness.AT_PORTAL_REG_DTO With {
-                           .ID_EMPLOYEE = CurrentUser.EMPLOYEE_ID,
-                           .ID_SIGN = Decimal.Parse(cboleaveType.SelectedValue),
-                           .FROM_DATE = rdFromDate.SelectedDate,
-                           .TO_DATE = rdToDate.SelectedDate,
-                           .NVALUE = 1,
-                           .SVALUE = ApproveProcess,
-                           .NOTE = txtNote.Text,
-                           .NOTE_AT = txtNote.Text,
-                           .STATUS = 3,
-                          .DAYIN_KH = If(rtxtdayinkh.Text = "", Nothing, rtxtdayinkh.Text),
-                           .DAYOUT_KH = If(rtxtdayoutkh.Text = "", Nothing, rtxtdayoutkh.Text),
-                            .MODIFIED_BY = EmployeeID,
-                              .WORK_HARD = chkWorkday.Checked,
-                                .PROCESS = ApproveProcess
-                       }
-                                obj.ID = hidID.Value
-                                rep.ModifyPortalRegList(obj, itemInsert)
-                            End If
-
-                            If isOverAnnualLeave Then
-                                ShowMessage(Translate("Không được đăng ký nghỉ vượt quá số ngày phép con lại trong năm"), NotifyType.Warning)
-                                Return
-                            End If
-
-                            ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), NotifyType.Success)
-                            Response.Redirect("/Default.aspx?mid=Attendance&fid=ctrlLeaveRegistration")
-                            CurrentState = CommonMessage.STATE_NORMAL
-                            UpdateControlState()
-                        End Using
-                    End If
-                Case CommonMessage.TOOLBARITEM_SUBMIT
-                    ctrlMessageBox.MessageText = Translate("Thông tin đã gửi duyệt sẽ không được chỉnh sửa. Bạn chắc chắn muốn gửi duyệt?")
-                    ctrlMessageBox.ActionName = CommonMessage.TOOLBARITEM_APPROVE
-                    ctrlMessageBox.DataBind()
-                    ctrlMessageBox.Show()
-                Case CommonMessage.TOOLBARITEM_CANCEL
-                    If userType = "User" Then
-                        Response.Redirect("/Default.aspx?mid=Attendance&fid=ctrlLeaveRegistration")
-                    ElseIf userType = "LM" Then
-                        Response.Redirect("/Default.aspx?mid=Attendance&fid=ctrlLeaveRegistrationByManager")
-
-                    ElseIf userType = "HR" Then
-                        Response.Redirect("/Default.aspx?mid=Attendance&fid=ctrlLeaveRegistrationByHR")
                     Else
-                        Response.Redirect("/Default.aspx?mid=Attendance&fid=ctrlLeaveRegistration")
+                        ExcuteScript("Resize", "ResizeSplitter(splitterID, pane1ID, pane2ID, validateID, oldSize, 'rgWorkschedule')")
                     End If
-
+                Case CommonMessage.TOOLBARITEM_CANCEL
+                    ''POPUPTOLINK_CANCEL
+                    Response.Redirect("/Default.aspx?mid=Attendance&fid=ctrlLeaveRegistration&group=Business")
             End Select
         Catch ex As Exception
-            Me.DisplayException(Me.ViewName, Me.ID, ex)
+            DisplayException(Me.ViewName, Me.ID, ex)
         End Try
     End Sub
+
+
+    Private Sub rdLEAVE_FROM_SelectedDateChanged(sender As Object, e As SelectedDateChangedEventArgs) Handles rdLEAVE_FROM.SelectedDateChanged, rdLEAVE_TO.SelectedDateChanged
+        If (Not IsDate(rdLEAVE_FROM.SelectedDate) OrElse Not IsDate(rdLEAVE_TO.SelectedDate) OrElse dtDetail Is Nothing OrElse Not IsNumeric(rtEmployee_id.Text)) Then Exit Sub
+        Try
+            GetLeaveSheet_Detail()
+            Cal_DayLeaveSheet()
+        Catch ex As Exception
+            Throw ex
+        Finally
+        End Try
+    End Sub
+
     Private Sub ctrlMessageBox_ButtonCommand(ByVal sender As Object, ByVal e As MessageBoxEventArgs) Handles ctrlMessageBox.ButtonCommand
         Try
-            If e.ActionName = CommonMessage.ACTION_SAVED And e.ButtonID = MessageBoxButtonType.ButtonYes Then
-                'kiem tra thuoc loại nghỉ nửa ngày hay không nếu có thì gán giá trị lại là 0.5
-                If rntxDayRegist.Value.HasValue AndAlso rntxDayRegist.Value <= 0 Then
-                    ShowMessage(Translate("Số ngày nghỉ phải > 0."), NotifyType.Warning)
-                    UpdateControlState()
-                    Exit Sub
-                End If
-                If cboleaveType.SelectedValue = "" Then
-                    ShowMessage(Translate("Chọn loại nghỉ."), NotifyType.Warning)
-                    UpdateControlState()
-                    Exit Sub
-                End If
-                Dim ktra = (From p In ListManual Where p.ID = cboleaveType.SelectedValue And p.CODE = "P").ToList.Count
-                Dim selectedFromDate1 = rdFromDate.SelectedDate
-                Dim selectedToDate1 = rdToDate.SelectedDate
-                If ktra = 1 Then
-                    While selectedFromDate1.Value.Date <= selectedToDate1.Value.Date
-                        Dim checkhopdong = (From P In CHECKCONTRACT.AsEnumerable Where P("STARTDATE") <= selectedFromDate1 And P("ENDDATE") >= selectedFromDate1 Select P).ToList.Count
-                        If checkhopdong > 0 Then
-                            ShowMessage(Translate("Không được đăng ký phép năm trong thời gian thử việc"), NotifyType.Warning)
-                            UpdateControlState()
-                            Exit Sub
-                        End If
-                        selectedFromDate1 = selectedFromDate1.Value.AddDays(1)
-                    End While
-                End If
-                If rntxDayRegist.Value > rntBalance.Text Then
-                    ShowMessage(Translate("Đã vượt quá số lượng phép còn lại."), NotifyType.Warning)
-                    UpdateControlState()
-                    Exit Sub
-                End If
-                If txtNote.Text = "" Then
-                    ShowMessage(Translate("Nhập lý do nghỉ."), NotifyType.Warning)
-                    UpdateControlState()
-                    Exit Sub
-                End If
-                If rdFromDate.SelectedDate Is Nothing Then
-                    ShowMessage(Translate("Chọn thời gian bắt đầu."), NotifyType.Warning)
-                    UpdateControlState()
-                    Exit Sub
-                End If
-                If rdToDate.SelectedDate Is Nothing Then
-                    ShowMessage(Translate("Chọn thời gian kết thúc."), NotifyType.Warning)
-                    UpdateControlState()
-                    Exit Sub
-                End If
-                Dim selectedFromDate = rdFromDate.SelectedDate
-                Dim selectedToDate = rdToDate.SelectedDate
-                While selectedFromDate.Value.Date <= selectedToDate.Value.Date
-                    'Dim CHECK1 = (From P In CHECKSHIFT.AsEnumerable Where P("WORKINGDAY1") <= selectedFromDate And P("WORKINGDAY1") >= selectedFromDate Select P).ToList.Count
-                    'If CHECK1 = 0 Then
-                    '    ShowMessage(Translate("Thời gian bạn chọn không có trong ca làm việc,bạn chọn lại."), NotifyType.Warning)
-                    '    UpdateControlState()
-                    '    Exit Sub
-                    'End If
-                    Using rep As New AttendanceRepository
-                        Dim periodid = rep.GetperiodID(EmployeeID, rdFromDate.SelectedDate, rdToDate.SelectedDate)
-                        If periodid = 0 Then
-                            ShowMessage(Translate("Kiểm tra lại kì công"), NotifyType.Warning)
-                            Exit Sub
-                        End If
-                        Dim checkKicong = rep.CHECK_PERIOD_CLOSE(periodid)
-                        If checkKicong = 0 Then
-                            ShowMessage(Translate("Kì công đã đóng,Xin kiểm tra lại"), NotifyType.Warning)
-                            Exit Sub
-                        End If
-                    End Using
-                    selectedFromDate = selectedFromDate.Value.AddDays(1)
-                End While
-                Dim ganGiatri As Decimal = 1
-                Dim ktra2 = (From p In ListComboData.LIST_LIST_TYPE_MANUAL_LEAVE Where p.ID = cboleaveType.SelectedValue And (p.CODE.Contains("P"))).ToList.Count
-                If ktra2 = 1 Then
-                    Using rep As New AttendanceRepository
-                        checktypebreak = rep.CHECK_TYPE_BREAK(cboleaveType.SelectedValue)
-                    End Using
-                    Dim count1 = (From p In checktypebreak.AsEnumerable Where p("IS_LEAVE") = -1).ToList.Count
-                    If count1 > 0 Then
-                        ganGiatri = 0.5
-                    End If
-                    Dim count2 = (From p In checktypebreak.AsEnumerable Where p("IS_LEAVE1") = -1).ToList.Count
-                    If count2 > 0 Then
-                        ganGiatri = 0.5
-                    End If
-                End If
-                Dim ktra3 = (From p In ListManual Where p.ID = cboleaveType.SelectedValue And p.CODE = "P").ToList.Count
-                If ktra3 = 1 Then
-                    ganGiatri = 1
-                End If
-                Dim isInsert As Boolean = True
-                Dim obj As New AT_PORTAL_REG_DTO
-                Dim itemExist = New AT_PORTAL_REG_DTO
-                Dim isOverAnnualLeave As Boolean = False
-                Using rep As New AttendanceRepository
-                    If hidID.Value <> 0 Then
-                        isInsert = False
-                    End If
-                    If isInsert Then
-                        Dim itemInsert As New AttendanceBusiness.AT_PORTAL_REG_DTO With {
-                   .ID_EMPLOYEE = CurrentUser.EMPLOYEE_ID,
-                   .ID_SIGN = Decimal.Parse(cboleaveType.SelectedValue),
-                   .FROM_DATE = rdFromDate.SelectedDate,
-                   .TO_DATE = rdToDate.SelectedDate,
-                   .NVALUE = ganGiatri,
-                   .SVALUE = ApproveProcess,
-                   .NOTE = txtNote.Text,
-                   .NOTE_AT = txtNote.Text,
-                   .STATUS = 3,
-                   .DAYIN_KH = If(rtxtdayinkh.Text = "", Nothing, rtxtdayinkh.Text),
-                   .DAYOUT_KH = If(rtxtdayoutkh.Text = "", Nothing, rtxtdayoutkh.Text),
-                   .MODIFIED_BY = EmployeeID,
-                      .WORK_HARD = chkWorkday.Checked,
-                        .PROCESS = ApproveProcess
-               }
-                        AttendanceRepositoryStatic.Instance.InsertPortalRegister(itemInsert)
-                        obj.ID = hidID.Value
-                    Else
-                        Dim itemInsert As New AttendanceBusiness.AT_PORTAL_REG_DTO With {
-                   .ID_EMPLOYEE = CurrentUser.EMPLOYEE_ID,
-                   .ID_SIGN = Decimal.Parse(cboleaveType.SelectedValue),
-                   .FROM_DATE = rdFromDate.SelectedDate,
-                   .TO_DATE = rdToDate.SelectedDate,
-                   .NVALUE = ganGiatri,
-                   .SVALUE = ApproveProcess,
-                   .NOTE = txtNote.Text,
-                   .NOTE_AT = txtNote.Text,
-                   .STATUS = 3,
-                 .DAYIN_KH = rtxtdayinkh.Text,
-                   .DAYOUT_KH = rtxtdayoutkh.Text,
-                    .MODIFIED_BY = EmployeeID,
-                      .WORK_HARD = chkWorkday.Checked,
-                        .PROCESS = ApproveProcess
-               }
-                        obj.ID = hidID.Value
-                        rep.ModifyPortalRegList(obj, itemInsert)
-                    End If
-
-                    If isOverAnnualLeave Then
-                        ShowMessage(Translate("Không được đăng ký nghỉ vượt quá số ngày phép con lại trong năm"), NotifyType.Warning)
-                        Return
-                    End If
-
-                    ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), NotifyType.Success)
-                    Response.Redirect("/Default.aspx?mid=Attendance&fid=ctrlLeaveRegistration")
-                    CurrentState = CommonMessage.STATE_NORMAL
-                    UpdateControlState()
-                End Using
-            End If
-
 
         Catch ex As Exception
             DisplayException(Me.ViewName, Me.ID, ex)
         End Try
 
     End Sub
-    'Protected Sub btnDetail_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnDetail.Click
-    '    Try
-    '        'Hien thi thong tin grid
-    '    Catch ex As Exception
-    '        DisplayException(Me.ViewName, Me.ID, ex)
-    '    End Try
-    'End Sub
-    Protected Sub rdFromDate_Select(ByVal sender As Object, ByVal e As Telerik.Web.UI.Calendar.SelectedDateChangedEventArgs) Handles rdFromDate.SelectedDateChanged
-        Try
-            leaveMaster = New AT_PORTAL_REG_DTO
-            Using rep As New AttendanceRepository
-                EmployeeDto = rep.GetEmployeeInfor(EmployeeID, Nothing, rdFromDate.SelectedDate)
-                If EmployeeDto IsNot Nothing AndAlso EmployeeDto.Rows.Count > 0 Then
-                    txtFullName.Text = EmployeeDto.Rows(0)("FULLNAME_VN")
-                    txtEmpCode.Text = EmployeeDto.Rows(0)("EMPLOYEE_CODE")
-                    txtDepartment.Text = EmployeeDto.Rows(0)("ORG_NAME")
-                    txtTitle.Text = EmployeeDto.Rows(0)("TITLE_NAME_EN")
-                    'rntEntitlement.Value = If(EmployeeDto.Rows(0)("DAY_LEAVE_NUMBER_ADJUST") Is Nothing, Nothing, Decimal.Parse(EmployeeDto.Rows(0)("DAY_LEAVE_NUMBER_ADJUST").ToString()))
-                    'rntSeniority.Value = If(EmployeeDto.Rows(0)("WORKING_TIME_HAVE_ADJUST") Is Nothing, Nothing, Decimal.Parse(EmployeeDto.Rows(0)("WORKING_TIME_HAVE_ADJUST").ToString()))
-                    'rntBrought.Value = If(EmployeeDto.Rows(0)("PREV_HAVE") Is Nothing, Nothing, Decimal.Parse(EmployeeDto.Rows(0)("PREV_HAVE").ToString()))
-                    'rntTotal.Value = If(EmployeeDto.Rows(0)("TOTAL_HAVE") Is Nothing, Nothing, Decimal.Parse(EmployeeDto.Rows(0)("TOTAL_HAVE").ToString()))
-                    'rntTotalTaken.Value = If(EmployeeDto.Rows(0)("CUR_USED") Is Nothing, Nothing, Decimal.Parse(EmployeeDto.Rows(0)("CUR_USED").ToString()))
-                    'rntBalance.Value = If(EmployeeDto.Rows(0)("CUR_HAVE") Is Nothing, Nothing, Decimal.Parse(EmployeeDto.Rows(0)("CUR_HAVE").ToString()))
-                End If
-            End Using
-            Dim _filter As New TotalDayOffDTO
-            _filter.DATE_REGISTER = rdFromDate.SelectedDate
-            _filter.LEAVE_TYPE = 251
-            _filter.EMPLOYEE_ID = EmployeeID
-            If check <> 0 Then
-                _filter.ID_PORTAL_REG = check
-            Else
-                _filter.ID_PORTAL_REG = 0
-            End If
 
-            Dim obj As New TotalDayOffDTO
-            Using rep As New AttendanceRepository
-                obj = rep.GetTotalDayOff(_filter)
-                If obj IsNot Nothing Then
-                    'PHÉP NGOÀI CÔNG TY
-                    If obj.TIME_OUTSIDE_COMPANY IsNot Nothing Then
-                        rntTotal.Text = If(obj.TIME_OUTSIDE_COMPANY = 0, 0, Decimal.Parse(obj.TIME_OUTSIDE_COMPANY).ToString())
-                    Else
-                        rntTotal.Text = Decimal.Parse(0).ToString()
-                    End If
-                    'phep chế độ
-                    If obj.TOTAL_HAVE1 IsNot Nothing Then
-                        rntEntitlement.Text = If(obj.TOTAL_HAVE1 = 0, 0, Decimal.Parse(obj.TOTAL_HAVE1).ToString())
-                    Else
-                        rntEntitlement.Text = Decimal.Parse(0).ToString()
-                    End If
-                    'phep dã nghĩ
-                    If obj.USED_DAY IsNot Nothing Then
-                        rntSeniority.Text = If(obj.USED_DAY = 0, 0, Decimal.Parse(obj.USED_DAY).ToString())
-                    Else
-                        rntSeniority.Text = Decimal.Parse(0).ToString()
-                    End If
-                    'phep tham nien
-                    If obj.SENIORITYHAVE IsNot Nothing Then
-                        rntBrought.Text = If(obj.SENIORITYHAVE = 0, 0, Decimal.Parse(obj.SENIORITYHAVE).ToString())
-                    Else
-                        rntBrought.Text = Decimal.Parse(0).ToString()
-                    End If
-                    'phep nam truoc con lai
-                    If obj.PREVTOTAL_HAVE IsNot Nothing Then
-                        rntTotalTaken.Text = If(obj.PREVTOTAL_HAVE = 0, 0, Decimal.Parse(obj.PREVTOTAL_HAVE).ToString())
-                    Else
-                        rntTotalTaken.Text = Decimal.Parse(0).ToString()
-                    End If
-                    'phép còn lại
-                    If obj.REST_DAY IsNot Nothing Then
-                        rntBalance.Text = If(obj.REST_DAY = 0, 0, Decimal.Parse(obj.REST_DAY).ToString())
-                    Else
-                        rntBalance.Text = Decimal.Parse(0).ToString()
-                    End If
-                Else
-                    rntSeniority.Text = Decimal.Parse(0).ToString()
-                    rntBrought.Text = Decimal.Parse(0).ToString()
-                    rntTotalTaken.Text = Decimal.Parse(0).ToString()
-                    rntBalance.Text = Decimal.Parse(0).ToString()
-                    rntEntitlement.Text = Decimal.Parse(0).ToString()
-                    rntTotal.Text = Decimal.Parse(0).ToString()
-                End If
-            End Using
-
-            If rdFromDate.SelectedDate IsNot Nothing And rdToDate.SelectedDate IsNot Nothing Then
-                rgData.Rebind()
-                For Each item As GridDataItem In rgData.MasterTableView.Items
-                    item.Edit = True
-                Next
-                rgData.MasterTableView.Rebind()
-            End If
-        Catch ex As Exception
-            DisplayException(Me.ViewName, Me.ID, ex)
-        End Try
-    End Sub
-    Protected Sub rdToDate_Select(ByVal sender As Object, ByVal e As Telerik.Web.UI.Calendar.SelectedDateChangedEventArgs) Handles rdToDate.SelectedDateChanged
-        Try
-            If rdFromDate.SelectedDate IsNot Nothing And rdToDate.SelectedDate IsNot Nothing Then
-                rgData.Rebind()
-                For Each item As GridDataItem In rgData.MasterTableView.Items
-                    item.Edit = True
-                Next
-                rgData.MasterTableView.Rebind()
-            End If
-        Catch ex As Exception
-            DisplayException(Me.ViewName, Me.ID, ex)
-        End Try
-    End Sub
     Protected Sub rgData_NeedDataSource(ByVal source As Object, ByVal e As GridNeedDataSourceEventArgs) Handles rgData.NeedDataSource
         Try
             CreateDataFilter()
@@ -876,45 +299,38 @@ Public Class ctrlLeaveRegistrationNewEdit
 
     Protected Sub combo_SelectedIndexChanged(ByVal sender As Object, ByVal e As RadComboBoxSelectedIndexChangedEventArgs)
         Try
-            'For Each item As GridDataItem In rgData.EditItems
-            '    Dim edit = CType(item, GridEditableItem)
-            '    Dim effect As Date = item.GetDataKeyValue("EFFECTIVEDATE")
-            '    Dim detail = leaveEmpDetails.First(Function(f) f.EFFECTIVEDATE = effect)
-            '    Dim index = leaveEmpDetails.IndexOf(detail)
-            '    Dim cbo As RadComboBox = CType(edit.FindControl("cboLeaveValue"), RadComboBox)
-            '    If cbo IsNot Nothing Then
-            '        If cbo.SelectedValue = "0.5" Then
-            '            detail.LEAVE_VALUE = 0.5
-            '        ElseIf cbo.SelectedValue = "1" Then
-            '            detail.LEAVE_VALUE = 1
-            '        Else
-            '            detail.LEAVE_VALUE = 0
-            '        End If
-            '        leaveEmpDetails(index) = detail
-            '    End If
-            'Next
-            'txtDayRegist.Text = leaveEmpDetails.Select(Function(f) f.LEAVE_VALUE).Sum
-            'rntxDayRegist.Value = leaveEmpDetails.Select(Function(f) f.LEAVE_VALUE).Sum
+
             ScriptManager.RegisterStartupScript(Page, Page.GetType, "UserPopup", "showDetail('block');", True)
         Catch ex As Exception
 
         End Try
     End Sub
-    Private Sub rgData_ItemDataBound(ByVal sender As Object, ByVal e As Telerik.Web.UI.GridItemEventArgs) Handles rgData.ItemDataBound
-        If e.Item.Edit Then
-            Dim edit = CType(e.Item, GridEditableItem)
-            Dim cbo As RadComboBox
-            cbo = CType(edit.FindControl("cboLeaveValue"), RadComboBox)
-
-            If cbo IsNot Nothing Then
-                FillRadCombobox(cbo, ListComboData.LIST_LIST_TYPE_MANUAL_LEAVE, "NAME_VN", "ID", True)
-                If cboleaveType.SelectedValue <> "" Then
-                    cbo.SelectedValue = cboleaveType.SelectedValue
-                End If
-                cbo.Enabled = False
-                cbo.Width = Unit.Percentage(100)
+    Private Sub rgData_ItemDataBound(sender As Object, e As GridItemEventArgs) Handles rgData.ItemDataBound
+        Dim cbo As New RadComboBox
+        Dim arr As New ArrayList()
+        Try
+            If e.Item.Edit Then
+                Dim edit = CType(e.Item, GridEditableItem)
+                Dim item As GridDataItem = CType(e.Item, GridDataItem)
+                cbo = CType(edit.FindControl("cbSTATUS_SHIFT"), RadComboBox)
+                arr.Add(New DictionaryEntry("", Nothing))
+                arr.Add(New DictionaryEntry("Đầu ca", 1))
+                arr.Add(New DictionaryEntry("Cuối ca", 2))
+                With cbo
+                    .DataSource = arr
+                    .DataValueField = "Value"
+                    .DataTextField = "Key"
+                    cbo.DataBind()
+                    .SelectedIndex = 0
+                End With
+                SetDataToGrid(edit)
             End If
-        End If
+        Catch ex As Exception
+            Throw ex
+        Finally
+            cbo.Dispose()
+            arr = Nothing
+        End Try
     End Sub
 
     Private Sub rgData_ItemCommand(ByVal sender As Object, ByVal e As Telerik.Web.UI.GridCommandEventArgs) Handles rgData.ItemCommand
@@ -923,8 +339,6 @@ Public Class ctrlLeaveRegistrationNewEdit
             Dim startTime As DateTime = DateTime.UtcNow
             Select Case e.CommandName
                 Case "EditDetail"
-                    'rdToDate_Select(sender, Nothing)
-                    'rgData.Rebind()
                     For Each item As GridDataItem In rgData.MasterTableView.Items
                         item.Edit = True
                     Next
@@ -936,250 +350,168 @@ Public Class ctrlLeaveRegistrationNewEdit
             DisplayException(Me.ViewName, Me.ID, ex)
         End Try
     End Sub
-
-    Private Sub cboleaveType_SelectedIndexChanged(ByVal sender As Object, ByVal e As Telerik.Web.UI.RadComboBoxSelectedIndexChangedEventArgs) Handles cboleaveType.SelectedIndexChanged
-        Try
-            'LẤY DỮ LIỆU DUOIS APP LÊN ĐỂ KIỂM TRA CHECK HAY K CHECK CHECKBOX NGÀY LÀM VIÊCJ
-            Using rep As New AttendanceRepository
-                checktypebreak = rep.CHECK_TYPE_BREAK(cboleaveType.SelectedValue)
-            End Using
-            Dim ktra = (From p In checktypebreak.AsEnumerable Where p("CODE1") = -1).ToList.Count
-            If ktra > 0 Then
-                chkWorkday.Checked = True
-            Else
-                chkWorkday.Checked = False
-            End If
-            CreateDataFilter()
-        Catch ex As Exception
-
-        End Try
-    End Sub
-
-    Private Sub chkWorkday_CheckedChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles chkWorkday.CheckedChanged
-        Try
-            CreateDataFilter()
-        Catch ex As Exception
-
-        End Try
-    End Sub
-
 #End Region
 
 #Region "Custom"
-    Private Function Valid() As Boolean
-        Dim value As Double
-        'value = IIf(String.IsNullOrEmpty(txtLeaveReUse.Text), 0, Double.Parse(txtLeaveReUse.Text)
-    End Function
+
     Protected Function CreateDataFilter(Optional ByVal fromDate As Date? = Nothing, Optional ByVal toDate As Date? = Nothing, Optional ByVal isFull As Boolean = False) As DataTable
+        Dim rep As New AttendanceRepository
+        Dim obj As New AT_LEAVESHEETDTO
+        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
         Try
-            Dim calDay As Decimal = 0
-            Dim ktra As Integer
-            Dim calDay1 As Decimal = 0
-            Using rep As New AttendanceRepository
-                If fromDate IsNot Nothing Or toDate IsNot Nothing Then
-                    leaveEmpDetails = rep.GetLeaveEmpDetail(EmployeeID, fromDate.Value, toDate.Value, If(IsNumeric(hidID.Value), hidID.Value, 0) <> 0)
-                ElseIf rdFromDate.SelectedDate IsNot Nothing And rdToDate.SelectedDate IsNot Nothing Then
-                    leaveEmpDetails = rep.GetLeaveEmpDetail(EmployeeID, rdFromDate.SelectedDate, rdToDate.SelectedDate, If(IsNumeric(hidID.Value), hidID.Value, 0) <> 0)
-                    'Truog hop k co phan ca thi generate ca default
-                    If check = 0 Then
-                        If leaveEmpDetails.Count <> 0 Then
-                            ShowMessage(Translate("Ngày nghỉ đã được đăng ký."), NotifyType.Warning)
-                            Exit Function
-                        Else
-                            If leaveEmpDetails IsNot Nothing AndAlso leaveEmpDetails.Count = 0 Then
-                                leaveEmpDetails = New List(Of LEAVE_DETAIL_EMP_DTO)
-                                'Initial default list 
-                                Dim selectedFromDate = rdFromDate.SelectedDate
-                                Dim selectedToDate = rdToDate.SelectedDate
-                                While selectedFromDate.Value.Date <= selectedToDate.Value.Date
-                                    Dim leaveEmpDetail = New LEAVE_DETAIL_EMP_DTO
-                                    leaveEmpDetail.EFFECTIVEDATE = selectedFromDate
-                                    leaveEmpDetail.LEAVE_VALUE = 1
-                                    leaveEmpDetail.IS_UPDATE = 0
-                                    leaveEmpDetails.Add(leaveEmpDetail)
-                                    selectedFromDate = selectedFromDate.Value.AddDays(1)
-                                End While
-                            End If
-                        End If
+            rgData.VirtualItemCount = dtDetail.Rows.Count
+            rgData.DataSource = dtDetail
+            Cal_DayLeaveSheet()
+        Catch ex As Exception
+        End Try
+        Return New DataTable()
+    End Function
+    Private Sub Cal_DayLeaveSheet()
+        Try
+            Dim sumDay As Decimal = dtDetail.Compute("SUM(DAY_NUM)", "1=1")
+            rnDAY_NUM.NumberFormat.AllowRounding = False
+            rnDAY_NUM.NumberFormat.DecimalDigits = 2
+            rnDAY_NUM.Value = sumDay
 
-                    End If
-                    'trường hợp sửa
-                Else
-                    leaveEmpDetails = New List(Of LEAVE_DETAIL_EMP_DTO)
-                End If
-                If leaveDetails IsNot Nothing Then
-                    For Each item In leaveDetails
-                        If leaveEmpDetails IsNot Nothing AndAlso leaveEmpDetails.Count > 0 Then
-                            Dim detail = leaveEmpDetails.FirstOrDefault(Function(f) f.FROM_DATE = item.FROM_DATE)
-                            If detail IsNot Nothing Then
-                                Dim index = leaveEmpDetails.IndexOf(detail)
-                                detail.LEAVE_NAME = item.NVALUE_NAME
-                                detail.EFFECTIVEDATE = item.FROM_DATE
-                                leaveEmpDetails(index) = detail
-                            End If
-                        End If
-                    Next
-                End If
-            End Using
-            If rdFromDate.SelectedDate IsNot Nothing And rdToDate.SelectedDate IsNot Nothing Then
-                Dim selectedFromDate1 = rdFromDate.SelectedDate
-                Dim selectedToDate1 = rdToDate.SelectedDate
-
-                While selectedFromDate1.Value.Date <= selectedToDate1.Value.Date
-                    calDay += 1
-                    Using rep As New AttendanceRepository
-                        leaveInOutKH = rep.PRS_COUNT_INOUTKH(EmployeeID, Year(rdToDate.SelectedDate))
-                        Dim COUNT = (From P In leaveInOutKH.AsEnumerable Where P("START_DATE") <= selectedFromDate1 And P("END_DATE") >= selectedFromDate1 Select P).ToList.Count
-                        If cboleaveType.SelectedValue = "" Then
-                            ShowMessage(Translate("Chọn loại nghỉ"), NotifyType.Warning)
-                        Else
-                            ktra = (From p In ListComboData.LIST_LIST_TYPE_MANUAL_LEAVE Where p.ID = cboleaveType.SelectedValue And (p.CODE.Contains("P"))).ToList.Count
-                            'check là lễ,check1 là ca ,CHƯA CÓ THỜI GIAN CLEAN CODE NÊN TẠM THỜI CHẠY TRƯỚC
-                            Dim check = (From p In dayholiday Where p.WORKINGDAY <= selectedFromDate1 And p.WORKINGDAY >= selectedFromDate1 Select p).ToList.Count
-                            Dim CHECK1 = (From P In CHECKSHIFT.AsEnumerable Where P("WORKINGDAY1") <= selectedFromDate1 And P("WORKINGDAY1") >= selectedFromDate1 Select P).ToList.Count
-                            If Not chkWorkday.Checked Then
-                                If check > 0 Then
-                                    calDay -= 1
-                                End If
-                            End If
-                            'KTRA =1 THÌ LÀ KIẾM TRẢ LOẠI NGHĨ CHỨA KÍ TỰ P
-                            If ktra = 1 Then
-                                Dim ktra2 = (From p In ListManual Where p.ID = cboleaveType.SelectedValue And p.CODE = "P").ToList.Count
-                                'ĐÂY LÀ LOẠI PHÉP NĂM
-                                If ktra2 = 1 Then
-                                    If COUNT > 0 Then
-                                        calDay1 += 1
-                                    End If
-                                    If Not chkWorkday.Checked Then
-                                        If CHECK1 = 0 Then
-                                            If check = 0 Then
-                                                calDay -= 1
-                                            End If
-                                        End If
-                                    End If
-                                Else
-                                    'ĐÂY LÀ LOẠI NGHỈ NỬA NGÀY
-                                    checktypebreak = rep.CHECK_TYPE_BREAK(cboleaveType.SelectedValue)
-                                    Dim count1 = (From p In checktypebreak.AsEnumerable Where p("IS_LEAVE") = -1).ToList.Count
-                                    Dim count2 = (From p In checktypebreak.AsEnumerable Where p("IS_LEAVE1") = -1).ToList.Count
-                                    If count1 > 0 AndAlso count2 > 0 Then
-                                    Else
-                                        If Not chkWorkday.Checked Then
-                                            If CHECK1 > 0 Then
-                                                If check = 0 Then
-                                                    calDay -= 0.5
-                                                End If
-                                            Else
-                                                calDay -= 1
-                                            End If
-                                        Else
-                                            If CHECK1 > 0 Then
-                                                If check = 0 OrElse check > 0 Then
-                                                    calDay -= 0.5
-                                                End If
-                                            Else
-                                                calDay -= 0.5
-                                            End If
-                                        End If
-                                    End If
-                                    If COUNT > 0 Then
-                                        calDay1 += 1
-                                    End If
-                                End If
-                            Else
-                                'TRƯỜNG HỢP KHÁC PHÉP NĂM
-                                checktypebreak = rep.CHECK_TYPE_BREAK(cboleaveType.SelectedValue)
-                                Dim count1 = (From p In checktypebreak.AsEnumerable Where p("IS_LEAVE") = -1).ToList.Count
-                                Dim count2 = (From p In checktypebreak.AsEnumerable Where p("IS_LEAVE1") = -1).ToList.Count
-                                If count1 > 0 AndAlso count2 > 0 Then
-                                    If Not chkWorkday.Checked Then
-                                        If CHECK1 = 0 Then
-                                            If check = 0 Then
-                                                calDay -= 1
-                                            End If
-                                        End If
-                                    End If
-                                Else
-                                    If count1 <> count2 Then
-                                        If Not chkWorkday.Checked Then
-                                            If CHECK1 > 0 Then
-                                                If check = 0 Then
-                                                    calDay -= 0.5
-                                                End If
-                                            Else
-                                                calDay -= 1
-                                            End If
-                                        Else
-                                            If CHECK1 > 0 Then
-                                                If check = 0 OrElse check > 0 Then
-                                                    calDay -= 0.5
-                                                End If
-                                            Else
-                                                calDay -= 0.5
-                                            End If
-                                        End If
-                                    End If
-                                End If
-                                If COUNT > 0 Then
-                                    calDay1 += 1
-                                End If
-                            End If
-                        End If
-                    End Using
-                    selectedFromDate1 = selectedFromDate1.Value.AddDays(1)
-                End While
-            End If
-            If leaveEmpDetails IsNot Nothing Then
-                txtDayRegist.Text = 0
-                rntxDayRegist.Value = 0
-                If leaveEmpDetails IsNot Nothing Then
-                    If calDay >= 0 Then
-                        txtDayRegist.Text = calDay.ToString
-                    End If
-
-                    rntxDayRegist.Value = Decimal.Parse(calDay)
-                    If ktra = 1 Then
-                        rtxtdayinkh.Text = (Decimal.Parse(calDay1)).ToString
-                        If Decimal.Parse(calDay) - Decimal.Parse(calDay1) >= 0 Then
-                            rtxtdayoutkh.Text = (Decimal.Parse(calDay) - Decimal.Parse(calDay1)).ToString
-                        End If
-                    Else
-                        rtxtdayinkh.Text = Nothing
-                        rtxtdayoutkh.Text = Nothing
-                    End If
-                End If
-                rgData.DataSource = leaveEmpDetails.OrderBy(Function(f) f.EFFECTIVEDATE)
-            End If
         Catch ex As Exception
             Throw ex
         End Try
-    End Function
-    Private Function LoadComboLeaveValue() As DataTable
+    End Sub
+    Public Sub CreateDataBinDing(ByVal Mode As Decimal)
+        '1 set data in list control
+        '0 get data to list control
+        Select Case Mode
+            Case 1
+                For Each ctrs As Control In RadPane1.Controls
+                    Try
+                        Select Case ctrs.ID.ToString.ToUpper.Substring(0, 2)
+                            Case "cb".ToUpper
+                                CType(ctrs, RadComboBox).SelectedValue = rPH(ctrs.ID.ToString.ToUpper.Substring(2))
+                            Case "rt".ToUpper
+                                CType(ctrs, RadTextBox).Text = rPH(ctrs.ID.ToString.ToUpper.Substring(2))
+                            Case "rn".ToUpper
+                                CType(ctrs, RadNumericTextBox).Value = rPH(ctrs.ID.ToString.ToUpper.Substring(2))
+                            Case "rd".ToUpper
+                                CType(ctrs, RadDatePicker).SelectedDate = rPH(ctrs.ID.ToString.ToUpper.Substring(2))
+                            Case Else
+                                Continue For
+                        End Select
+                    Catch ex As Exception
+                        Continue For
+                    End Try
+                Next
+            Case 0
+                For Each ctrs As Control In RadPane1.Controls
+                    Try
+                        Select Case ctrs.ID.ToString.ToUpper.Substring(0, 2)
+                            Case "cb".ToUpper
+                                rPH(ctrs.ID.ToString.ToUpper.Substring(2)) = CType(ctrs, RadComboBox).SelectedValue
+                            Case "rt".ToUpper
+                                rPH(ctrs.ID.ToString.ToUpper.Substring(2)) = CType(ctrs, RadTextBox).Text
+                            Case "rn".ToUpper
+                                rPH(ctrs.ID.ToString.ToUpper.Substring(2)) = CType(ctrs, RadNumericTextBox).Value
+                            Case "rd".ToUpper
+                                rPH(ctrs.ID.ToString.ToUpper.Substring(2)) = CType(ctrs, RadDatePicker).SelectedDate
+                            Case Else
+                                Continue For
+                        End Select
+                    Catch ex As Exception
+                        Continue For
+                    End Try
+                Next
+        End Select
+
+    End Sub
+    Private Sub SetDataToGrid(ByVal EditItem As GridEditableItem)
+        Dim cbo As New RadComboBox
+        Dim arr As New ArrayList()
         Try
-            Dim table As New DataTable
-            table.Columns.Add("VALUE", GetType(String))
-            table.Columns.Add("ID", GetType(String))
-            Dim row As DataRow
-            row = table.NewRow
-            row("ID") = "0"
-            row("VALUE") = ""
-            table.Rows.Add(row)
+            Dim LEAVE_DAY = EditItem.GetDataKeyValue("LEAVE_DAY")
+            Dim STATUS_SHIFT
+            Dim MANUAL_ID
+            For Each rows As DataRow In dtDetail.Rows
+                If rows("LEAVE_DAY") = LEAVE_DAY Then
+                    STATUS_SHIFT = rows("STATUS_SHIFT")
+                    MANUAL_ID = rows("MANUAL_ID")
+                    Exit For
+                End If
+            Next
+            cbo = CType(EditItem.FindControl("cbSTATUS_SHIFT"), RadComboBox)
+            arr.Add(New DictionaryEntry("", Nothing))
+            arr.Add(New DictionaryEntry("Đầu ca", 1))
+            arr.Add(New DictionaryEntry("Cuối ca", 2))
+            With cbo
+                .DataSource = arr
+                .DataValueField = "Value"
+                .DataTextField = "Key"
+                cbo.DataBind()
+                .SelectedIndex = 0
+            End With
+            If IsNumeric(STATUS_SHIFT) Then
+                cbo.SelectedValue = STATUS_SHIFT
+                cbo.Enabled = If(Not IsNumeric(MANUAL_ID), False, True)
+            End If
+        Catch ex As Exception
+        End Try
+    End Sub
 
-            row = table.NewRow
-            row("ID") = "0.5"
-            row("VALUE") = "0.5"
-            table.Rows.Add(row)
-
-            row = table.NewRow
-            row("ID") = "1"
-            row("VALUE") = "1"
-            table.Rows.Add(row)
-            Return table
+    Private Function SaveDB() As Boolean
+        Dim rep As New AttendanceRepository
+        Dim PH As DataTable = New DataTable()
+        Dim dr As DataRow() = New DataRow() {rPH}
+        PH = dr.CopyToDataTable()
+        PH.TableName = "PH"
+        Dim dsLeaveSheet As New DataSet("DATA")
+        Dim CT As New DataTable()
+        dsLeaveSheet.Tables.Add(PH)
+        CT = dtDetail
+        CT.TableName = "CT"
+        'dsLeaveSheet.Tables.Remove("CT")
+        dsLeaveSheet.Tables.Add(CT.Copy())
+        Try
+            Return rep.SaveLeaveSheet(dsLeaveSheet)
+        Catch ex As Exception
+            Return False
+        Finally
+            rep.Dispose()
+            CT.Dispose()
+            PH.Dispose()
+        End Try
+    End Function
+    Private Sub GetDataCombo()
+        Dim rep As New AttendanceRepository
+        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+        Try
+            Dim startTime As DateTime = DateTime.UtcNow
+            If ListComboData Is Nothing Then
+                ListComboData = New Attendance.AttendanceBusiness.ComboBoxDataDTO
+                ListComboData.GET_LIST_TYPE_MANUAL_LEAVE = True
+                rep.GetComboboxData(ListComboData)
+                FillRadCombobox(cbMANUAL_ID, ListComboData.LIST_LIST_TYPE_MANUAL_LEAVE, "NAME_VN", "ID", True)
+            End If
         Catch ex As Exception
             DisplayException(Me.ViewName, Me.ID, ex)
         End Try
-    End Function
+    End Sub
+    Private Sub GetLeaveSheet_Detail()
+        Dim dtSource As New DataTable()
+        Try
+            Using rep As New AttendanceRepository
+                Dim employee_id As Decimal = Decimal.Parse(rtEmployee_id.Text.Trim)
+                Dim manualID As Decimal = Decimal.Parse(cbMANUAL_ID.SelectedValue)
+                dtSource = rep.GetLeaveSheet_Detail_ByDate(employee_id, rdLEAVE_FROM.SelectedDate, rdLEAVE_TO.SelectedDate, manualID)
+            End Using
+            dtDetail = dtSource
+            rgData.Rebind()
+            For Each item As GridDataItem In rgData.MasterTableView.Items
+                item.Edit = True
+            Next
+            rgData.MasterTableView.Rebind()
+        Catch ex As Exception
+            Throw ex
+        Finally
+            dtSource.Dispose()
+        End Try
+    End Sub
 #End Region
-
-   
 End Class

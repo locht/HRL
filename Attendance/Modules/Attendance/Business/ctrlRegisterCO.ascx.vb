@@ -565,7 +565,9 @@ Public Class ctrlRegisterCO
                                            .IS_DISSOLVE = ctrlOrganization.IsDissolve,
                                            .IS_FULL = True}
             Dim Sorts As String = rgRegisterLeave.MasterTableView.SortExpressions.GetSortString()
-
+            If IsNumeric(cbStatus.SelectedValue) Then
+                obj.STATUS = cbStatus.SelectedValue
+            End If
             If rdtungay.SelectedDate.HasValue Then
                 obj.FROM_DATE = rdtungay.SelectedDate
             End If
