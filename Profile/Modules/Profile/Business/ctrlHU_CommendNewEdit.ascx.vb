@@ -453,7 +453,7 @@ Public Class ctrlHU_CommendNewEdit
                     If Page.IsValid Then
                         Dim _filter As New CommendDTO
 
-                        If cboStatus.SelectedValue = ProfileCommon.COMMEND_STATUS.APPROVE_ID Then
+                        If cboStatus.SelectedValue = ProfileCommon.DECISION_STATUS.APPROVE_ID Then
                             If txtDecisionNo.Text = "" Then
                                 ShowMessage(Translate("Vui lòng nhập số quyết định"), NotifyType.Warning)
                                 Exit Sub
@@ -1628,16 +1628,18 @@ Public Class ctrlHU_CommendNewEdit
             If CurrentState = CommonMessage.STATE_EDIT Or CurrentState = CommonMessage.STATE_NEW Then
                 validate.ID = cboStatus.SelectedValue
                 validate.ACTFLG = "A"
-                validate.CODE = "COMMEND_STATUS"
+                validate.CODE = "DECISION_STATUS"
                 args.IsValid = rep.ValidateOtherList(validate)
             End If
 
             If Not args.IsValid Then
-                dtData = rep.GetOtherList("COMMEND_STATUS", True)
-                FillRadCombobox(cboStatus, dtData, "NAME", "ID", True)
-
-                cboStatus.ClearSelection()
-                cboStatus.SelectedIndex = 0
+                'dtData = rep.GetOtherList("COMMEND_STATUS", True)
+                'FillRadCombobox(cboStatus, dtData, "NAME", "ID", True)
+                Dim dtData1 As New DataTable
+                dtData1 = rep.GetOtherList(OtherTypes.DecisionStatus, True)
+                FillRadCombobox(cboStatus, dtData1, "NAME", "ID", True)
+                'cboStatus.ClearSelection()
+                'cboStatus.SelectedIndex = 0
             End If
             rep.Dispose()
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
@@ -1965,7 +1967,10 @@ Public Class ctrlHU_CommendNewEdit
                 rep.GetComboList(ListComboData)
             End If
 
-            FillDropDownList(cboStatus, ListComboData.LIST_COMMEND_STATUS, "NAME_VN", "ID", Common.Common.SystemLanguage, False)
+            'FillDropDownList(cboStatus, ListComboData.LIST_COMMEND_STATUS, "NAME_VN", "ID", Common.Common.SystemLanguage, False)
+            Dim dtData As New DataTable
+            dtData = rep.GetOtherList(OtherTypes.DecisionStatus, True)
+            FillRadCombobox(cboStatus, dtData, "NAME", "ID", True)
             FillDropDownList(cboCommendObj, ListComboData.LIST_COMMEND_OBJ, "NAME_VN", "ID", Common.Common.SystemLanguage, False)
             FillDropDownList(cboCommendType, ListComboData.LIST_COMMEND_TYPE, "NAME_VN", "ID", Common.Common.SystemLanguage, False)
 

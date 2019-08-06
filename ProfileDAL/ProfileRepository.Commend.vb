@@ -680,7 +680,7 @@ Partial Class ProfileRepository
             For idx = 0 To listID.Count - 1
                 item = listID(idx)
                 objCommendData = (From p In Context.HU_COMMEND Where item = p.ID).SingleOrDefault
-                objCommendData.STATUS_ID = ProfileCommon.COMMEND_STATUS.APPROVE_ID
+                objCommendData.STATUS_ID = ProfileCommon.DECISION_STATUS.APPROVE_ID
             Next
             Context.SaveChanges(log)
             Return True

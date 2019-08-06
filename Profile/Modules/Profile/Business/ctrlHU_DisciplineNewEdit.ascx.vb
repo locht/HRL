@@ -512,7 +512,7 @@ Public Class ctrlHU_DisciplineNewEdit
                         If objDiscipline.DISCIPLINE_TYPE = ProfileCommon.DISCIPLINE_TYPE.LAYOFF_ID And
                             cboDisciplineObj.SelectedValue = 401 And
                             rgEmployee.Items.Count > 0 And
-                            cboStatus.SelectedValue = ProfileCommon.DISCIPLINE_STATUS.APPROVE_ID Then
+                            cboStatus.SelectedValue = ProfileCommon.DECISION_STATUS.APPROVE_ID Then
                             ctrlMessageBox.MessageText = Translate("Đi tới nghiệp vụ nghỉ việc cho nhân viên?")
                             ctrlMessageBox.ActionName = "CALL_TERMINATE"
                             ctrlMessageBox.DataBind()
@@ -1422,6 +1422,7 @@ Public Class ctrlHU_DisciplineNewEdit
             If CurrentState = CommonMessage.STATE_EDIT Or CurrentState = CommonMessage.STATE_NEW Then
                 validate.ID = cboStatus.SelectedValue
                 validate.ACTFLG = "A"
+                validate.CODE = "DECISION_STATUS"
                 args.IsValid = rep.ValidateOtherList(validate)
             End If
             If Not args.IsValid Then
@@ -1680,7 +1681,10 @@ Public Class ctrlHU_DisciplineNewEdit
                 rep.GetComboList(ListComboData)
             End If
 
-            FillDropDownList(cboStatus, ListComboData.LIST_DISCIPLINE_STATUS, "NAME_VN", "ID", Common.Common.SystemLanguage, True)
+            'FillDropDownList(cboStatus, ListComboData.LIST_DISCIPLINE_STATUS, "NAME_VN", "ID", Common.Common.SystemLanguage, True)
+            Dim dtData As New DataTable
+            dtData = rep.GetOtherList(OtherTypes.DecisionStatus, True)
+            FillRadCombobox(cboStatus, dtData, "NAME", "ID", True)
             FillDropDownList(cboDisciplineObj, ListComboData.LIST_DISCIPLINE_OBJ, "NAME_VN", "ID", Common.Common.SystemLanguage, False, cboDisciplineObj.SelectedValue)
             FillDropDownList(cboDisciplineType, ListComboData.LIST_DISCIPLINE_TYPE, "NAME_VN", "ID", Common.Common.SystemLanguage, False, cboDisciplineType.SelectedValue)
             FillDropDownList(cboDisciplineLevel, ListComboData.LIST_DISCIPLINE_LEVEL, "NAME_VN", "ID", Common.Common.SystemLanguage, False, cboDisciplineLevel.SelectedValue)
