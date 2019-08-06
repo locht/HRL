@@ -80,7 +80,7 @@ Public Class ctrlHU_Terminate
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
             DisplayException(Me.ViewName, Me.ID, ex)
-            _myLog.WriteLog(_myLog._error, _classPath, method, 0, ex, "")
+            _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
         End Try
     End Sub
     ''' <summary>
@@ -101,7 +101,7 @@ Public Class ctrlHU_Terminate
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
             DisplayException(Me.ViewName, Me.ID, ex)
-            _myLog.WriteLog(_myLog._error, _classPath, method, 0, ex, "")
+            _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
         End Try
 
     End Sub
@@ -121,7 +121,7 @@ Public Class ctrlHU_Terminate
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
             Throw ex
-            _myLog.WriteLog(_myLog._error, _classPath, method, 0, ex, "")
+            _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
         End Try
     End Sub
     ''' <summary>
@@ -153,7 +153,7 @@ Public Class ctrlHU_Terminate
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
             Throw ex
-            _myLog.WriteLog(_myLog._error, _classPath, method, 0, ex, "")
+            _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
         End Try
     End Sub
     ''' <summary>
@@ -185,7 +185,7 @@ Public Class ctrlHU_Terminate
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
             Throw ex
-            _myLog.WriteLog(_myLog._error, _classPath, method, 0, ex, "")
+            _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
         End Try
 
     End Sub
@@ -220,7 +220,7 @@ Public Class ctrlHU_Terminate
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
             DisplayException(Me.ViewName, Me.ID, ex)
-            _myLog.WriteLog(_myLog._error, _classPath, method, 0, ex, "")
+            _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
         End Try
     End Sub
 
@@ -412,7 +412,7 @@ Public Class ctrlHU_Terminate
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
             DisplayException(Me.ViewName, Me.ID, ex)
-            _myLog.WriteLog(_myLog._error, _classPath, method, 0, ex, "")
+            _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
         End Try
     End Sub
     ''' <summary>
@@ -432,7 +432,7 @@ Public Class ctrlHU_Terminate
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
             DisplayException(Me.ViewName, Me.ID, ex)
-            _myLog.WriteLog(_myLog._error, _classPath, method, 0, ex, "")
+            _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
         End Try
 
     End Sub
@@ -452,7 +452,7 @@ Public Class ctrlHU_Terminate
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
             DisplayException(Me.ViewName, Me.ID, ex)
-            _myLog.WriteLog(_myLog._error, _classPath, method, 0, ex, "")
+            _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
         End Try
     End Sub
     ''' <summary>
@@ -471,7 +471,7 @@ Public Class ctrlHU_Terminate
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
             DisplayException(Me.ViewName, Me.ID, ex)
-            _myLog.WriteLog(_myLog._error, _classPath, method, 0, ex, "")
+            _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
         End Try
     End Sub
     ''' <summary>
@@ -488,7 +488,7 @@ Public Class ctrlHU_Terminate
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
             DisplayException(Me.ViewName, Me.ID, ex)
-            _myLog.WriteLog(_myLog._error, _classPath, method, 0, ex, "")
+            _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
         End Try
 
     End Sub
@@ -573,7 +573,7 @@ Public Class ctrlHU_Terminate
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
             DisplayException(Me.ViewName, Me.ID, ex)
-            _myLog.WriteLog(_myLog._error, _classPath, method, 0, ex, "")
+            _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
         End Try
     End Sub
 
@@ -600,7 +600,7 @@ Public Class ctrlHU_Terminate
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
             Throw ex
-            _myLog.WriteLog(_myLog._error, _classPath, method, 0, ex, "")
+            _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
         End Try
     End Sub
     ''' <summary>
@@ -661,7 +661,7 @@ Public Class ctrlHU_Terminate
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
             Throw ex
-            _myLog.WriteLog(_myLog._error, _classPath, method, 0, ex, "")
+            _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
         End Try
     End Function
     ''' <lastupdate>11/07/2017</lastupdate>
@@ -685,12 +685,8 @@ Public Class ctrlHU_Terminate
             For Each dr As Telerik.Web.UI.GridDataItem In rgTerminate.SelectedItems
                 Dim ID As New Decimal
                 If Not dr.GetDataKeyValue("STATUS_ID").Equals("262") Then
-                    If dr.GetDataKeyValue("FILENAME").ToString <> "" Then
-                        ID = dr.GetDataKeyValue("ID")
-                        lstID.Add(ID)
-                    Else
-                        ShowMessage(Translate("Vui lòng cập nhật tập tin đính kèm của nhân viên có mã " + dr.GetDataKeyValue("EMPLOYEE_CODE")), NotifyType.Warning)
-                    End If
+                    ID = dr.GetDataKeyValue("ID")
+                    lstID.Add(ID)
                 End If
             Next
 

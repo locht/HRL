@@ -187,6 +187,8 @@ Partial Class ProfileRepository
                 objTerminateData.LAST_DATE = objTerminate.LAST_DATE
                 objTerminateData.SEND_DATE = objTerminate.SEND_DATE
                 objTerminateData.STATUS_ID = objTerminate.STATUS_ID
+                objTerminate.STATUS_ID = 447
+                objTerminateData.STATUS_ID = 447
                 objTerminateData.TER_REASON_DETAIL = objTerminate.TER_REASON_DETAIL
                 objTerminateData.EMPLOYEE_SENIORITY = objTerminate.EMP_SENIORITY
                 objTerminateData.REMARK = objTerminate.REMARK
@@ -253,9 +255,9 @@ Partial Class ProfileRepository
                     Next
                 End If
 
-                If objTerminate.STATUS_ID = ProfileCommon.OT_TER_STATUS.WAIT_APPROVE_ID Then
-                    objTerminateData.STATUS_ID = ProfileCommon.OT_TER_STATUS.APPROVE_ID
-                    objTerminate.STATUS_ID = ProfileCommon.OT_TER_STATUS.APPROVE_ID
+                If objTerminate.STATUS_ID = ProfileCommon.DECISION_STATUS.APPROVE_ID Then
+                    objTerminateData.STATUS_ID = ProfileCommon.DECISION_STATUS.APPROVE_ID
+                    objTerminate.STATUS_ID = ProfileCommon.DECISION_STATUS.APPROVE_ID
                     ApproveTerminate(objTerminateData, log)
                 End If
                 InsertOrUpdateAssetByTerminate(objTerminateData, log)
@@ -576,7 +578,7 @@ Partial Class ProfileRepository
             objTerminateData.MODIFIED_LOG = log.ComputerName
             Dim empID = objTerminate.EMPLOYEE_ID
             Dim query As Decimal = (From p In Context.HU_WORKING Order By p.EFFECT_DATE Descending
-                                    Where p.EMPLOYEE_ID = empID And p.STATUS_ID = ProfileCommon.OT_TER_STATUS.APPROVE_ID Select p.ID).FirstOrDefault
+                                    Where p.EMPLOYEE_ID = empID And p.STATUS_ID = ProfileCommon.DECISION_STATUS.APPROVE_ID Select p.ID).FirstOrDefault
             If query <> 0 Then
                 objTerminateData.LAST_WORKING_ID = query
             End If
@@ -645,7 +647,7 @@ Partial Class ProfileRepository
             End If
 
             Context.SaveChanges(log)
-            If objTerminate.STATUS_ID = ProfileCommon.OT_TER_STATUS.APPROVE_ID Then
+            If objTerminate.STATUS_ID = ProfileCommon.DECISION_STATUS.APPROVE_ID Then
                 ApproveTerminate(objTerminate, log)
             Else
                 ApproveTerminate_Customer(objTerminate, log)
@@ -812,7 +814,7 @@ Partial Class ProfileRepository
             End If
 
             Context.SaveChanges(log)
-            If objTerminate.STATUS_ID = ProfileCommon.OT_TER_STATUS.APPROVE_ID Then
+            If objTerminate.STATUS_ID = ProfileCommon.DECISION_STATUS.APPROVE_ID Then
                 ApproveTerminate(objTerminate, log)
                 'AutoGenInsChangeByTerminate(objTerminate.EMPLOYEE_ID,
                 '                            objTerminate.ORG_ID,
