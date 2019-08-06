@@ -52,19 +52,23 @@
                        <asp:Label runat="server" ID="lbJoinDate" Text="Từ tháng/năm"></asp:Label>
                 </td>
                 <td>
-                    <tlk:RadDatePicker ID="rdJoinDate" runat="server">
-                    </tlk:RadDatePicker>
+                    <tlk:RadMonthYearPicker ID="rdJoinDate" runat="server" Culture="en-US">
+                        <DateInput ID="DateInput1" runat="server" DisplayDateFormat="MM/yyyy">
+                        </DateInput>
+                    </tlk:RadMonthYearPicker>
                 </td>
                 <td class="lb">
                   <%--  <%# Translate("Đến tháng/năm")%>--%>
                     <asp:Label runat="server" ID="lbEndDate" Text="Đến tháng/năm"></asp:Label>
                 </td>
                 <td>
-                    <tlk:RadDatePicker ID="rdEndDate" runat="server">
-                    </tlk:RadDatePicker>
-                    <asp:CompareValidator ID="compare_JoinDate_EndDate" runat="server" ErrorMessage="<%$ Translate: Ngày nghỉ phải sau ngày vào %>"
+                    <tlk:RadMonthYearPicker ID="rdEndDate" runat="server" Culture="en-US">
+                        <DateInput ID="DateInput2" runat="server" DisplayDateFormat="MM/yyyy">
+                        </DateInput>
+                    </tlk:RadMonthYearPicker>
+                    <%--<asp:CompareValidator ID="compare_JoinDate_EndDate" runat="server" ErrorMessage="<%$ Translate: Ngày nghỉ phải sau ngày vào %>"
                         ControlToCompare="rdJoinDate" ControlToValidate="rdEndDate" ToolTip="<%$ Translate: Ngày nghỉ phải sau ngày vào %>"
-                        Type="Date" Operator="GreaterThan"></asp:CompareValidator>
+                        Type="Date" Operator="GreaterThan"></asp:CompareValidator>--%>
                 </td>
             </tr>
             <tr>
