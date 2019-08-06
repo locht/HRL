@@ -94,12 +94,13 @@
             </tr>
             <tr>
                 <td class="lb">
-                    <asp:Label ID="lbContractNo" runat="server" Text="<%$ Translate: Số hợp đồng %>"></asp:Label>
+                    <asp:Label ID="Label1" runat="server" Text="Đơn vị ký hợp đồng"></asp:Label>
                 </td>
-                <td>
-                    <tlk:RadTextBox ID="txtContractNo" runat="server">
-                    </tlk:RadTextBox>
+                <td class="lb">
+                    <tlk:RadComboBox runat="server" ID="cboSignContract">
+                    </tlk:RadComboBox>
                 </td>
+               
                 <td class="lb">
                     <asp:Label ID="lbStartDate" runat="server" Text="<%$ Translate: Ngày bắt đầu %>"></asp:Label>
                 </td>
@@ -138,12 +139,12 @@
                         ToolTip="<%$ Translate: Trạng thái không tồn tại hoặc đã ngừng áp dụng. %>">
                     </asp:CustomValidator>
                 </td>
-                <td class="lb">
-                    <asp:Label ID="lbSignContract" runat="server" Text="Đơn vị ký hợp đồng"></asp:Label>
+               <td class="lb">
+                    <asp:Label ID="lbContractNo" runat="server" Text="<%$ Translate: Số hợp đồng %>"></asp:Label>
                 </td>
-                <td class="lb">
-                    <tlk:RadComboBox runat="server" ID="cboSignContract">
-                    </tlk:RadComboBox>
+                <td>
+                    <tlk:RadTextBox ID="txtContractNo" runat="server" Enabled="false">
+                    </tlk:RadTextBox>
                 </td>
             </tr>
             <tr>

@@ -1388,23 +1388,41 @@ Partial Class ProfileRepository
 
     Public Function CreateContractNo(ByVal objContract As ContractDTO) As String
         Try
-            Dim employeeCode = objContract.EMPLOYEE_CODE.Trim.ToUpper
+            Dim employeeCode As String = objContract.EMPLOYEE_CODE.Trim.ToUpper
             If employeeCode.Length < 2 Or objContract.CONTRACTTYPE_ID < 1 Then
                 Return String.Empty
             End If
-            If Context.HU_CONTRACT_TYPE.Any(Function(f) f.ID = objContract.CONTRACTTYPE_ID And
-                                                f.CODE = ProfileCommon.ContractType.Probation) Then
-                Return String.Empty
+            'If Context.HU_CONTRACT_TYPE.Any(Function(f) f.ID = objContract.CONTRACTTYPE_ID And
+            '                                    f.CODE = ProfileCommon.ContractType.Probation) Then
+            '    Return String.Empty
+            'End If
+            'Dim query = (From c In Context.HU_CONTRACT
+            '             From type In Context.HU_CONTRACT_TYPE.Where(Function(p) p.CODE <> ProfileCommon.ContractType.Probation And
+            '              p.ID = c.CONTRACT_TYPE_ID)
+            '             Where c.EMPLOYEE_ID = objContract.EMPLOYEE_ID And c.STATUS_ID = ProfileCommon.DECISION_STATUS.APPROVE_ID)
+            'Dim no = query.Count
+            'If employeeCode.StartsWith("e") Or employeeCode.StartsWith("E") Then
+            '    employeeCode = employeeCode.Substring(1)
+            'End If
+            'Return String.Format("{0}-{1:0#} / HDLD-TMF", employeeCode, no + 1)
+            Dim str As String
+            Dim nameTypeContract As ContractTypeDTO = (From p In Context.HU_CONTRACT_TYPE Where p.ID = objContract.CONTRACTTYPE_ID
+                                            Select New ContractTypeDTO With {
+                                                .ID = p.ID,
+                                                .CODE = p.CODE}).FirstOrDefault()
+            Dim codeLocation As LocationDTO = (From p In Context.HU_LOCATION Where p.ID = objContract.ID_SIGN_CONTRACT
+                                                 Select New LocationDTO With {
+                                                     .ID = p.ID,
+                                                     .CODE = p.CODE}).FirstOrDefault()
+            If nameTypeContract.CODE = "HDTV60" Or nameTypeContract.CODE = "HDTV30" Then
+                str = employeeCode.ToString + "/".ToString() + Year(objContract.START_DATE).ToString() + "/" + "HDTV".ToString() + If(codeLocation.CODE IsNot Nothing, "/".ToString(), Nothing) + codeLocation.CODE
+            Else
+                str = employeeCode.ToString + "/".ToString() + Year(objContract.START_DATE).ToString() + "/" + "HD".ToString() + If(codeLocation.CODE IsNot Nothing, "/".ToString(), Nothing) + codeLocation.CODE
             End If
-            Dim query = (From c In Context.HU_CONTRACT
-                         From type In Context.HU_CONTRACT_TYPE.Where(Function(p) p.CODE <> ProfileCommon.ContractType.Probation And
-                          p.ID = c.CONTRACT_TYPE_ID)
-                         Where c.EMPLOYEE_ID = objContract.EMPLOYEE_ID And c.STATUS_ID = ProfileCommon.DECISION_STATUS.APPROVE_ID)
+            Dim query = (From ct In Context.HU_CONTRACT
+                       Where ct.EMPLOYEE_ID = objContract.EMPLOYEE_ID And ct.CONTRACT_TYPE_ID = objContract.CONTRACTTYPE_ID)
             Dim no = query.Count
-            If employeeCode.StartsWith("e") Or employeeCode.StartsWith("E") Then
-                employeeCode = employeeCode.Substring(1)
-            End If
-            Return String.Format("{0}-{1:0#} / HDLD-TMF", employeeCode, no + 1)
+            Return String.Format("{0}", str)
         Catch ex As Exception
             WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iProfile")
             Throw ex

@@ -703,28 +703,29 @@ Public Class ctrlHU_ContractNewEdit
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
         Try
             Dim startTime As DateTime = DateTime.UtcNow
-            If cboContractType.SelectedValue = "" Then
-                If rdStartDate.SelectedDate IsNot Nothing Then
-                    'CreateDynamicContractNo()
-                End If
-                Exit Sub
-            End If
+            'If cboContractType.SelectedValue = "" Then
+            '    If rdStartDate.SelectedDate IsNot Nothing Then
+            '        txtContractNo.Text = CreateDynamicContractNo(hidEmployeeID.Value)
+            '    End If
+            '    Exit Sub
+            'End If
             If rdStartDate.SelectedDate IsNot Nothing Then
                 Dim dExpire As Date = rdStartDate.SelectedDate
                 item = (From p In ListComboData.LIST_CONTRACTTYPE Where p.ID = Decimal.Parse(cboContractType.SelectedValue)).SingleOrDefault
-                If item IsNot Nothing Then
-                    hidPeriod.Value = item.PERIOD
+                'If item IsNot Nothing Then
+                '    hidPeriod.Value = item.PERIOD
+                'End If
+                'If CType(hidPeriod.Value, Double) = 0 Then
+                '    rdExpireDate.SelectedDate = Nothing
+                'Else
+                '    dExpire = dExpire.AddMonths(CType(hidPeriod.Value, Double))
+                '    dExpire = dExpire.AddDays(CType(-1, Double))
+                '    rdExpireDate.SelectedDate = dExpire
+                'End If
+                If cboSignContract.SelectedValue <> "" Then
+                    txtContractNo.Text = CreateDynamicContractNo(hidEmployeeID.Value)
                 End If
-                If CType(hidPeriod.Value, Double) = 0 Then
-                    rdExpireDate.SelectedDate = Nothing
-                Else
-                    dExpire = dExpire.AddMonths(CType(hidPeriod.Value, Double))
-                    dExpire = dExpire.AddDays(CType(-1, Double))
-                    rdExpireDate.SelectedDate = dExpire
-                End If
-                ' CreateDynamicContractNo()
             End If
-
             If rdStartDate.SelectedDate < rdSignDate.SelectedDate Then
                 rdSignDate.SelectedDate = rdStartDate.SelectedDate
             End If
@@ -1049,7 +1050,7 @@ Public Class ctrlHU_ContractNewEdit
                 GetWorkingMax()
                 Dim employeeId As Double = 0
                 Double.TryParse(hidEmployeeID.Value, employeeId)
-                'txtContractNo.Text = CreateDynamicContractNo(employeeId)
+                txtContractNo.Text = CreateDynamicContractNo(employeeId)
                 txtContractNo.Enabled = True
                 ClearControlValue(rdStartDate, rdSignDate)
             End Using
@@ -1081,7 +1082,8 @@ Public Class ctrlHU_ContractNewEdit
             Using rep As New ProfileBusinessRepository
                 Return rep.CreateContractNo(New ContractDTO With {
                                                        .START_DATE = rdStartDate.SelectedDate,
-                                                       .ORG_CODE = hidOrgCode.Value,
+                                                       .ORG_NAME = txtOrg_Name.Text,
+                                                       .ID_SIGN_CONTRACT = cboSignContract.SelectedValue,
                                                        .EMPLOYEE_ID = empId,
                                                        .EMPLOYEE_CODE = txtEmployeeCode.Text,
                                                        .CONTRACTTYPE_ID = cboContractType.SelectedValue
@@ -1171,4 +1173,5 @@ Public Class ctrlHU_ContractNewEdit
 #End Region
 
 
+   
 End Class
