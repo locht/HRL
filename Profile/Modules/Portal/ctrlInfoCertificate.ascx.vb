@@ -213,6 +213,8 @@ Public Class ctrlInfoCertificate
                                           cboTrainingType, cboBangCap, is_Renew, txtResultTrain, rdDayGra,
                                           rdEffectFrom, rdEffectTo, txtRemark, txtUploadFile, btnUploadFile,
                                           btnDownload, hidFamilyID, hidID)
+                    rdFromDate.SelectedDate = Nothing
+                    rdToDate.SelectedDate = Nothing
                     UpdateControlState()
                 Case CommonMessage.TOOLBARITEM_SAVE
                     If Page.IsValid Then

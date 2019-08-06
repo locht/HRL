@@ -113,7 +113,7 @@
                             </tlk:GridBoundColumn>
                             <tlk:GridBoundColumn HeaderText="Trạng thái" DataField="FILE_NAME" UniqueName="FILE_NAME"
                                 SortExpression="FILE_NAME" AutoPostBackOnFilter="true" CurrentFilterFunction="Contains"
-                                Visible="TRUE">
+                                Visible="false">
                             </tlk:GridBoundColumn>
                         </Columns>
                         <HeaderStyle Width="120px" />
