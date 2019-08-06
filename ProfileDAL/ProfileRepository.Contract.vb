@@ -996,6 +996,7 @@ Partial Class ProfileRepository
                         From sal_rank In Context.PA_SALARY_RANK.Where(Function(f) w.SAL_RANK_ID = f.ID).DefaultIfEmpty
                         From taxTable In Context.OT_OTHER_LIST.Where(Function(f) f.ID = w.TAX_TABLE_ID).DefaultIfEmpty
                         From sal_type In Context.PA_SALARY_TYPE.Where(Function(f) w.SAL_TYPE_ID = f.ID).DefaultIfEmpty
+                        From lo In Context.HU_LOCATION.Where(Function(f) f.ID = p.ID_SIGN_CONTRACT).DefaultIfEmpty
                         Where p.ID = _filter.ID
                         Select New ContractDTO With {.ID = p.ID,
                                                      .CONTRACTTYPE_ID = c.ID,
@@ -1011,6 +1012,8 @@ Partial Class ProfileRepository
                                                      .ORG_DESC = o.DESCRIPTION_PATH,
                                                      .TITLE_NAME = t.NAME_VN,
                                                      .SIGN_ID = p.SIGN_ID,
+                                                     .NAME_SIGN_CONTRACT = lo.LOCATION_VN_NAME,
+                                                     .ID_SIGN_CONTRACT = p.ID_SIGN_CONTRACT,
                                                      .SIGN_DATE = p.SIGN_DATE,
                                                      .SIGNER_NAME = p.SIGNER_NAME,
                                                      .SIGNER_TITLE = p.SIGNER_TITLE,
@@ -1034,7 +1037,7 @@ Partial Class ProfileRepository
                                                      .MORNING_STOP = p.MORNING_STOP,
                                                      .MORNING_START = p.MORNING_START,
                                                      .AFTERNOON_START = p.AFTERNOON_START,
-                                                     .AFTERNOON_STOP = p.AFTERNOON_STOP
+            .AFTERNOON_STOP = p.AFTERNOON_STOP
                             }
 
             Dim result = query.FirstOrDefault
@@ -1137,6 +1140,7 @@ Partial Class ProfileRepository
             objContractData.SIGNER_NAME = objContract.SIGNER_NAME
             objContractData.SIGNER_TITLE = objContract.SIGNER_TITLE
             objContractData.WORKING_ID = objContract.WORKING_ID
+            objContractData.ID_SIGN_CONTRACT = objContract.ID_SIGN_CONTRACT
             objContractData.STATUS_ID = objContract.STATUS_ID
             objContractData.MORNING_START = objContract.MORNING_START
             objContractData.MORNING_STOP = objContract.MORNING_STOP
@@ -1244,6 +1248,7 @@ Partial Class ProfileRepository
             objContractData.SIGNER_TITLE = objContract.SIGNER_TITLE
             objContractData.START_DATE = objContract.START_DATE
             objContractData.WORKING_ID = objContract.WORKING_ID
+            objContractData.ID_SIGN_CONTRACT = objContract.ID_SIGN_CONTRACT
             objContractData.MORNING_START = objContract.MORNING_START
             objContractData.MORNING_STOP = objContract.MORNING_STOP
             objContractData.AFTERNOON_START = objContract.AFTERNOON_START

@@ -139,7 +139,13 @@
                         ToolTip="<%$ Translate: Trạng thái không tồn tại hoặc đã ngừng áp dụng. %>">
                     </asp:CustomValidator>
                 </td>
-               
+                <td class="lb">
+                    <asp:Label ID="lbSignContract" runat="server" Text="Đơn vị ký hợp đồng"></asp:Label>
+                </td>
+                <td class="lb">
+                    <tlk:RadComboBox runat="server" ID="cboSignContract">
+                    </tlk:RadComboBox>
+                </td>
             </tr>
             <tr>
                 <td class="lb">

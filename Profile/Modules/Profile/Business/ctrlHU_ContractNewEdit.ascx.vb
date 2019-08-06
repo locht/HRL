@@ -248,6 +248,11 @@ Public Class ctrlHU_ContractNewEdit
                         If Contract.STATUS_ID IsNot Nothing Then
                             cboStatus.SelectedValue = Contract.STATUS_ID
                         End If
+                        If Contract.ID_SIGN_CONTRACT IsNot Nothing Then
+                            cboSignContract.SelectedValue = Contract.ID_SIGN_CONTRACT
+                            cboSignContract.Text = Contract.NAME_SIGN_CONTRACT
+                        End If
+
                         If Contract.STATUS_ID = ProfileCommon.OT_CONTRACT_STATUS.APPROVE_ID Or
                             Contract.STATUS_ID = ProfileCommon.OT_CONTRACT_STATUS.NOT_APPROVE_ID Then
                             _flag = False
@@ -309,6 +314,10 @@ Public Class ctrlHU_ContractNewEdit
                             ShowMessage(Translate("Bạn phải chọn Tờ trình/QĐ"), NotifyType.Warning)
                             Exit Sub
                         End If
+                        If cboSignContract.SelectedValue <> "" Then
+                            objContract.ID_SIGN_CONTRACT = cboSignContract.SelectedValue
+                        End If
+
                         objContract.CONTRACTTYPE_ID = Decimal.Parse(cboContractType.SelectedValue)
                         objContract.STATUS_ID = Decimal.Parse(cboStatus.SelectedValue)
                         objContract.EMPLOYEE_ID = Decimal.Parse(hidEmployeeID.Value)
@@ -943,8 +952,10 @@ Public Class ctrlHU_ContractNewEdit
         Dim rep As New ProfileRepository
         ListComboData = New ComboBoxDataDTO
         ListComboData.GET_CONTRACTTYPE = True
+        ListComboData.GET_LOCATION = True
         rep.GetComboList(ListComboData)
         FillDropDownList(cboContractType, ListComboData.LIST_CONTRACTTYPE, "NAME", "ID", Common.Common.SystemLanguage, False)
+        FillDropDownList(cboSignContract, ListComboData.LIST_LOCATION, "LOCATION_VN_NAME", "ID", Common.Common.SystemLanguage, False)
         rep.Dispose()
         Dim dtData As New DataTable
         'TNG-117	
