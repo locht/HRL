@@ -1020,7 +1020,7 @@ Partial Class ProfileRepository
                                                      .DECISION_NO = w.DECISION_NO,
                                                      .REMARK = p.REMARK,
                                                      .SAL_BASIC = w.SAL_BASIC,
-                                                     .PERCENT_SALARY = w.PERCENT_SALARY,
+                                                     .PERCENT_SALARY = w.PERCENTSALARY,
                                                      .SAL_GROUP_ID = w.SAL_GROUP_ID,
                                                      .SAL_GROUP_NAME = sal_group.NAME,
                                                      .SAL_LEVEL_ID = w.SAL_LEVEL_ID,
@@ -1055,10 +1055,12 @@ Partial Class ProfileRepository
                             .ID = w.ID,
                             .TAX_TABLE_Name = taxTable.NAME_VN,
                             .SAL_TYPE_NAME = sal_type.NAME,
-                                .PERCENT_SALARY = w.PERCENT_SALARY,
+                                .PERCENT_SALARY = w.PERCENTSALARY,
                                 .OTHERSALARY1 = w.OTHERSALARY1,
                                 .OTHERSALARY2 = w.OTHERSALARY2,
-                                .OTHERSALARY3 = w.OTHERSALARY3
+                                .OTHERSALARY3 = w.OTHERSALARY3,
+                                .DECISION_NO = w.DECISION_NO,
+                                .EFFECT_DATE = w.EFFECT_DATE
                                 }).FirstOrDefault
                 End If
                 If result.Working IsNot Nothing Then

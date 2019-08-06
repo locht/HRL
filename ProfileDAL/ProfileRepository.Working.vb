@@ -818,8 +818,7 @@ Partial Class ProfileRepository
                         From sal_level In Context.PA_SALARY_LEVEL.Where(Function(f) p.SAL_LEVEL_ID = f.ID).DefaultIfEmpty
                         From sal_rank In Context.PA_SALARY_RANK.Where(Function(f) p.SAL_RANK_ID = f.ID).DefaultIfEmpty
                         From taxTable In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.TAX_TABLE_ID).DefaultIfEmpty
-                        Where p.EMPLOYEE_ID = _filter.EMPLOYEE_ID And
-                        p.STATUS_ID = ProfileCommon.DECISION_STATUS.APPROVE_ID
+                        Where p.EMPLOYEE_ID = _filter.EMPLOYEE_ID 
                         Order By p.EFFECT_DATE Descending
                         Select New WorkingDTO With {
                              .ID = p.ID,
@@ -842,7 +841,7 @@ Partial Class ProfileRepository
                             .TAX_TABLE_Name = taxTable.NAME_VN,
                              .OTHERSALARY1 = p.OTHERSALARY1,
                              .OTHERSALARY2 = p.OTHERSALARY2,
-                             .OTHERSALARY3 = p.OTHERSALARY3
+            .OTHERSALARY3 = p.OTHERSALARY3
                             }
 
             Dim working = query.FirstOrDefault
@@ -928,7 +927,7 @@ Partial Class ProfileRepository
                              .ORG_ID = If(p.ORG_ID Is Nothing, 0, p.ORG_ID),
                              .ORG_NAME = o.NAME_VN,
                              .ORG_DESC = o.DESCRIPTION_PATH,
-                             .PERCENT_SALARY = p.PERCENT_SALARY,
+                             .PERCENT_SALARY = p.PERCENTSALARY,
                              .REMARK = p.REMARK,
                              .SAL_BASIC = p.SAL_BASIC,
                              .SAL_TYPE_ID = p.SAL_TYPE_ID,
@@ -986,9 +985,9 @@ Partial Class ProfileRepository
             Dim query_old = (From p In Context.HU_WORKING
                              Where p.EFFECT_DATE < working.EFFECT_DATE _
                              And p.EMPLOYEE_ID = working.EMPLOYEE_ID _
-                             And p.STATUS_ID = ProfileCommon.DECISION_STATUS.APPROVE_ID _
-                               And p.IS_MISSION = -1
+                             And p.IS_MISSION = -1 _
                              Order By p.EFFECT_DATE Descending).FirstOrDefault
+            'And p.STATUS_ID = ProfileCommon.DECISION_STATUS.APPROVE_ID
 
             If query_old IsNot Nothing Then
                 Dim working_old = (From p In Context.HU_WORKING
@@ -1039,7 +1038,7 @@ Partial Class ProfileRepository
                                        .ATTACH_FILE = p.ATTACH_FILE,
                                        .FILENAME = p.FILENAME,
                                        .COST_SUPPORT = p.COST_SUPPORT,
-                                       .PERCENT_SALARY = p.PERCENT_SALARY,
+                                       .PERCENT_SALARY = p.PERCENTSALARY,
                                        .SAL_GROUP_ID = p.SAL_GROUP_ID,
                                        .SAL_GROUP_NAME = sal_group.NAME,
                                        .SAL_LEVEL_ID = p.SAL_LEVEL_ID,
