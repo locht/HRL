@@ -597,6 +597,16 @@ Public Class ProfileRepository
     Public Function GetComboList(ByRef _combolistDTO As ComboBoxDataDTO) As Boolean
         Dim query
 
+        'DIA DIEM KY HOP DONG HU_LOCATION
+        If _combolistDTO.GET_LOCATION Then
+            query = (From p In Context.HU_LOCATION Where p.ACTFLG="A"
+                     Select New LocationDTO With {
+                         .ID = p.ID,
+                         .LOCATION_VN_NAME = p.LOCATION_VN_NAME,
+                         .LOCATION_EN_NAME = p.LOCATION_EN_NAME
+                           }).ToList
+            _combolistDTO.LIST_LOCATION = query
+        End If
         'NHOM CHUC DANH
         If _combolistDTO.GET_TITLE_GROUP Then
             query = (From p In Context.OT_OTHER_LIST Where p.ACTFLG = "A" Order By p.NAME_VN.ToUpper
@@ -2932,39 +2942,39 @@ Public Class ProfileRepository
         Try
             Using cls As New DataAccess.QueryData
                 Dim dtData As DataTable
-                 dtData = cls.ExecuteStore("PKG_HU_IPROFILE_CONCURRENTLY.UPDATE_CONCURRENTLY",
-                                           New With {.P_ID = concurrently.ID,
-                                                     .P_EMPLOYEE_ID = concurrently.EMPLOYEE_ID,
-                                                     .P_ORG_ID = concurrently.ORG_ID,
-                                                     .P_TITLE_ID = concurrently.TITLE_ID,
-                                                     .P_ORG_CON = concurrently.ORG_CON,
-                                                     .P_TITLE_CON = concurrently.TITLE_CON,
-                                                     .P_EFFECT_DATE_CON = concurrently.EFFECT_DATE_CON,
-                                                     .P_EXPIRE_DATE_CON = concurrently.EXPIRE_DATE_CON,
-                                                     .P_ALLOW_MONEY = concurrently.ALLOW_MONEY,
-                                                     .P_CON_NO = concurrently.CON_NO,
-                                                     .P_STATUS = concurrently.STATUS,
-                                                     .P_SIGN_DATE = concurrently.SIGN_DATE,
-                                                     .P_SIGN_ID = concurrently.SIGN_ID,
-                                                     .P_SIGN_ID_2 = concurrently.SIGN_ID_2,
-                                                     .P_REMARK = concurrently.REMARK,
-                                                     .P_CON_NO_STOP = concurrently.CON_NO_STOP,
-                                                     .P_SIGN_DATE_STOP = concurrently.SIGN_DATE_STOP,
-                                                     .P_EFFECT_DATE_STOP = concurrently.EFFECT_DATE_STOP,
-                                                     .P_STATUS_STOP = concurrently.STATUS_STOP,
-                                                     .P_SIGN_ID_STOP = concurrently.SIGN_ID_STOP,
-                                                     .P_SIGN_ID_STOP_2 = concurrently.SIGN_ID_STOP_2,
-                                                     .P_REMARK_STOP = concurrently.REMARK_STOP,
-                                                     .P_CONCURENTLY_TYPE = concurrently.CONCURENTLY_TYPE,
-                                                     .P_CONCURENTLY_POSITION = concurrently.CONCURENTLY_POSITION,
-                                                     .P_CONCURENTLY_TYPE_CANCEL = concurrently.CONCURENTLY_TYPE_CANCEL,
-                                                     .P_CREATED_BY = concurrently.CREATED_BY,
-                                                     .P_CREATED_LOG = concurrently.CREATED_LOG,
-                                                     .P_IS_ALLOW = concurrently.IS_ALLOW,
-                                                     .P_FILE_BYTE = concurrently.FILE_BYTE,
-                                                     .P_FILE_BYTE1 = concurrently.FILE_BYTE1,
-                                                     .P_IS_CHUYEN = concurrently.IS_CHUYEN,
-                                                     .P_OUT = cls.OUT_CURSOR})
+                dtData = cls.ExecuteStore("PKG_HU_IPROFILE_CONCURRENTLY.UPDATE_CONCURRENTLY",
+                                          New With {.P_ID = concurrently.ID,
+                                                    .P_EMPLOYEE_ID = concurrently.EMPLOYEE_ID,
+                                                    .P_ORG_ID = concurrently.ORG_ID,
+                                                    .P_TITLE_ID = concurrently.TITLE_ID,
+                                                    .P_ORG_CON = concurrently.ORG_CON,
+                                                    .P_TITLE_CON = concurrently.TITLE_CON,
+                                                    .P_EFFECT_DATE_CON = concurrently.EFFECT_DATE_CON,
+                                                    .P_EXPIRE_DATE_CON = concurrently.EXPIRE_DATE_CON,
+                                                    .P_ALLOW_MONEY = concurrently.ALLOW_MONEY,
+                                                    .P_CON_NO = concurrently.CON_NO,
+                                                    .P_STATUS = concurrently.STATUS,
+                                                    .P_SIGN_DATE = concurrently.SIGN_DATE,
+                                                    .P_SIGN_ID = concurrently.SIGN_ID,
+                                                    .P_SIGN_ID_2 = concurrently.SIGN_ID_2,
+                                                    .P_REMARK = concurrently.REMARK,
+                                                    .P_CON_NO_STOP = concurrently.CON_NO_STOP,
+                                                    .P_SIGN_DATE_STOP = concurrently.SIGN_DATE_STOP,
+                                                    .P_EFFECT_DATE_STOP = concurrently.EFFECT_DATE_STOP,
+                                                    .P_STATUS_STOP = concurrently.STATUS_STOP,
+                                                    .P_SIGN_ID_STOP = concurrently.SIGN_ID_STOP,
+                                                    .P_SIGN_ID_STOP_2 = concurrently.SIGN_ID_STOP_2,
+                                                    .P_REMARK_STOP = concurrently.REMARK_STOP,
+                                                    .P_CONCURENTLY_TYPE = concurrently.CONCURENTLY_TYPE,
+                                                    .P_CONCURENTLY_POSITION = concurrently.CONCURENTLY_POSITION,
+                                                    .P_CONCURENTLY_TYPE_CANCEL = concurrently.CONCURENTLY_TYPE_CANCEL,
+                                                    .P_CREATED_BY = concurrently.CREATED_BY,
+                                                    .P_CREATED_LOG = concurrently.CREATED_LOG,
+                                                    .P_IS_ALLOW = concurrently.IS_ALLOW,
+                                                    .P_FILE_BYTE = concurrently.FILE_BYTE,
+                                                    .P_FILE_BYTE1 = concurrently.FILE_BYTE1,
+                                                    .P_IS_CHUYEN = concurrently.IS_CHUYEN,
+                                                    .P_OUT = cls.OUT_CURSOR})
 
                 Return Integer.Parse(dtData(0)("ID"))
             End Using

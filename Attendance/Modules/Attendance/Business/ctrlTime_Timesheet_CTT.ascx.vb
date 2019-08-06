@@ -194,7 +194,9 @@ Public Class ctrlTime_Timesheet_CTT
             Me.ctrlMessageBox.Listener = Me
             Me.MainToolBar = tbarMainToolBar
 
-            Common.Common.BuildToolbar(Me.MainToolBar, ToolbarItem.Edit, ToolbarItem.Export)
+            'Common.Common.BuildToolbar(Me.MainToolBar, ToolbarItem.Edit, ToolbarItem.Export)
+            Common.Common.BuildToolbar(Me.MainToolBar, ToolbarItem.Export)
+
             'MainToolBar.Items(0).Text = Translate("Tổng hợp")
             Me.MainToolBar.OnClientButtonClicking = "OnClientButtonClicking"
             CType(Me.Page, AjaxPage).AjaxManager.ClientEvents.OnRequestStart = "onRequestStart"
@@ -802,7 +804,53 @@ Public Class ctrlTime_Timesheet_CTT
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
         Dim startTime As DateTime = DateTime.UtcNow
         Try
-            CreateDataFilter(False)
+            If IsPostBack Then
+                CreateDataFilter(False)
+            Else
+                Dim dt As DataTable = New DataTable("data")
+                dt.Columns.Add("EMPLOYEE_ID", GetType(Integer))
+                dt.Columns.Add("EMPLOYEE_CODE", GetType(String))
+                dt.Columns.Add("FULLNAME_VN", GetType(String))
+                dt.Columns.Add("TITLE_NAME", GetType(String))
+                dt.Columns.Add("ORG_NAME", GetType(String))
+                dt.Columns.Add("OBJECT_ATTENDANCE_NAME", GetType(String))
+                'dt.Columns.Add("TOTAL_DAY_SAL", GetType(String))
+                'dt.Columns.Add("TOTAL_DAY_NON_SAL", GetType(String))
+                dt.Columns.Add("D1", GetType(String))
+                dt.Columns.Add("D2", GetType(String))
+                dt.Columns.Add("D3", GetType(String))
+                dt.Columns.Add("D4", GetType(String))
+                dt.Columns.Add("D5", GetType(String))
+                dt.Columns.Add("D6", GetType(String))
+                dt.Columns.Add("D7", GetType(String))
+                dt.Columns.Add("D8", GetType(String))
+                dt.Columns.Add("D9", GetType(String))
+                dt.Columns.Add("D10", GetType(String))
+                dt.Columns.Add("D11", GetType(String))
+                dt.Columns.Add("D12", GetType(String))
+                dt.Columns.Add("D13", GetType(String))
+                dt.Columns.Add("D14", GetType(String))
+                dt.Columns.Add("D15", GetType(String))
+                dt.Columns.Add("D16", GetType(String))
+                dt.Columns.Add("D17", GetType(String))
+                dt.Columns.Add("D18", GetType(String))
+                dt.Columns.Add("D19", GetType(String))
+                dt.Columns.Add("D20", GetType(String))
+                dt.Columns.Add("D21", GetType(String))
+                dt.Columns.Add("D22", GetType(String))
+                dt.Columns.Add("D23", GetType(String))
+                dt.Columns.Add("D24", GetType(String))
+                dt.Columns.Add("D26", GetType(String))
+                dt.Columns.Add("D27", GetType(String))
+                dt.Columns.Add("D28", GetType(String))
+                dt.Columns.Add("D29", GetType(String))
+                dt.Columns.Add("D30", GetType(String))
+                dt.Columns.Add("D31", GetType(String))
+
+                rgTimeTimesheet_cct.DataSource = dt
+                rgTimeTimesheet_cct.VirtualItemCount = 0
+            End If
+
         Catch ex As Exception
             DisplayException(Me.ViewName, Me.ID, ex)
         End Try

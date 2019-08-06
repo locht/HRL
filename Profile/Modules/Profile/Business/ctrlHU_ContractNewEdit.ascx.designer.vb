@@ -419,6 +419,24 @@ Partial Public Class ctrlHU_ContractNewEdit
     Protected WithEvents cusvalStatus As Global.System.Web.UI.WebControls.CustomValidator
 
     '''<summary>
+    '''lbSignContract control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbSignContract As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''cboSignContract control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents cboSignContract As Global.Telerik.Web.UI.RadComboBox
+
+    '''<summary>
     '''lbSigner control.
     '''</summary>
     '''<remarks>
