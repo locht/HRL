@@ -837,17 +837,17 @@ Partial Class ProfileRepository
                 objContractData.SIGNER_NAME = objContract.SIGNER_NAME
                 objContractData.SIGNER_TITLE = objContract.SIGNER_TITLE
                 objContractData.WORKING_ID = objContract.WORKING_ID
-                objContractData.STATUS_ID = objContract.STATUS_ID
+                objContract.STATUS_ID = 447
+                objContractData.STATUS_ID = 447
                 objContractData.MORNING_START = objContract.MORNING_START
                 objContractData.MORNING_STOP = objContract.MORNING_STOP
                 objContractData.AFTERNOON_START = objContract.AFTERNOON_START
                 objContractData.AFTERNOON_STOP = objContract.AFTERNOON_STOP
                 objContractData.TITLE_ID = objContract.TITLE_ID
                 objContractData.ORG_ID = objContract.ORG_ID
-                'objContractData.
-                If objContractData.STATUS_ID = ProfileCommon.OT_CONTRACT_STATUS.WAIT_APPROVE_ID Then
-                    objContractData.STATUS_ID = ProfileCommon.OT_CONTRACT_STATUS.APPROVE_ID
-                    objContract.STATUS_ID = ProfileCommon.OT_CONTRACT_STATUS.APPROVE_ID
+                If objContractData.STATUS_ID = ProfileCommon.DECISION_STATUS.APPROVE_ID Then
+                    'objContractData.STATUS_ID = ProfileCommon.DECISION_STATUS.APPROVE_ID
+                    'objContract.STATUS_ID = ProfileCommon.DECISION_STATUS.APPROVE_ID
                     ApproveContract(objContractData)
                     If IsFirstContract(objContractData) Then
                         InsertDecision(objContractData)
@@ -1171,7 +1171,8 @@ Partial Class ProfileRepository
 
     End Function
     Private Function IsFirstContract(ByVal contractDto As ContractDTO) As Boolean
-        Return Context.HU_CONTRACT.Count(Function(p) p.STATUS_ID = ProfileCommon.OT_CONTRACT_STATUS.APPROVE_ID And p.EMPLOYEE_ID = contractDto.EMPLOYEE_ID) = 0
+        'dong nhat loai phe duyet là 447 nen sua lai
+        Return Context.HU_CONTRACT.Count(Function(p) p.STATUS_ID = ProfileCommon.DECISION_STATUS.APPROVE_ID And p.EMPLOYEE_ID = contractDto.EMPLOYEE_ID) = 0
     End Function
     Private Sub InsertDecision(ByVal contractDto As ContractDTO)
         Dim recruitDecision = (From otherList In Context.OT_OTHER_LIST

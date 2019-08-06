@@ -947,7 +947,10 @@ Public Class ctrlHU_ContractNewEdit
         FillDropDownList(cboContractType, ListComboData.LIST_CONTRACTTYPE, "NAME", "ID", Common.Common.SystemLanguage, False)
         rep.Dispose()
         Dim dtData As New DataTable
-        dtData = rep.GetOtherList("CONTRACT_STATUS", True)
+        'TNG-117	
+        'Chuẩn hóa lại bộ trạng thái, sử dụng chung trong hệ thống
+        'chuẩn hóa lại đồng bộ trạng thái là 446 447 nên sửa lại cách load data lên
+        dtData = rep.GetOtherList(OtherTypes.DecisionStatus, True)
         FillRadCombobox(cboStatus, dtData, "NAME", "ID", True)
     End Sub
     ''' <lastupdate>
