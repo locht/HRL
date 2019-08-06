@@ -89,7 +89,7 @@
                                 <%# Translate("Phê duyệt")%>:
                             </td>
                             <td>
-                                <asp:CheckBox ID="cbStatus" runat="server" />
+                                <asp:CheckBox ID="cbStatus" runat="server" Checked =true />
                             </td>
                         </tr>
                         <tr>

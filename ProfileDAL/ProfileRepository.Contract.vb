@@ -1309,7 +1309,21 @@ Partial Class ProfileRepository
             End If
             ' Update trạng thái Đang làm việc
             Employee.WORK_STATUS = ProfileCommon.OT_WORK_STATUS.WORKING_ID
-
+            'If objContract.CONTRACTTYPE_CODE = "HDTV60" Or objContract.CONTRACTTYPE_CODE = "HDTV30" Then
+            '    Employee.EMP_STATUS = 8
+            'Else
+            '    Employee.EMP_STATUS = 9
+            'End If
+            Dim STR As ContractTypeDTO = (From p In Context.HU_CONTRACT_TYPE
+                                 Where p.ID = objContract.CONTRACTTYPE_ID
+                                 Select New ContractTypeDTO With {
+                                     .CODE = p.CODE
+                                     }).FirstOrDefault
+            If STR.CODE = "HDTV60" Or STR.CODE = "HDTV30" Then
+                Employee.EMP_STATUS = 8
+            Else
+                Employee.EMP_STATUS = 9
+            End If
             ' update  bảo hiểm
             'Dim wokingSalary As WorkingDTO = (From w In Context.HU_WORKING
             '                                  Where w.ID = objContract.WORKING_ID

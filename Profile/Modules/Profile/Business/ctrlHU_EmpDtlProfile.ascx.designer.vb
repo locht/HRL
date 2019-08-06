@@ -689,6 +689,15 @@ Partial Public Class ctrlHU_EmpDtlProfile
     Protected WithEvents btnFindDirect As Global.Telerik.Web.UI.RadButton
 
     '''<summary>
+    '''reqDirectManager control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents reqDirectManager As Global.System.Web.UI.WebControls.RequiredFieldValidator
+
+    '''<summary>
     '''lbManager control.
     '''</summary>
     '''<remarks>

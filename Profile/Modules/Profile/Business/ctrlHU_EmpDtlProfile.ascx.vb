@@ -203,7 +203,7 @@ Public Class ctrlHU_EmpDtlProfile
                             cboWorkStatus.SelectedValue = EmployeeInfo.WORK_STATUS
                         End If
 
-                        If EmployeeInfo.EMP_STATUS IsNot Nothing Then
+                        If EmployeeInfo.EMP_STATUS_NAME IsNot Nothing Then
                             cboEmpStatus.Text = EmployeeInfo.EMP_STATUS_NAME
                             cboEmpStatus.SelectedValue = EmployeeInfo.EMP_STATUS
                         End If
@@ -735,7 +735,7 @@ Public Class ctrlHU_EmpDtlProfile
                 End If
 
             End Using
-            
+
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
             _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
@@ -1772,13 +1772,17 @@ Public Class ctrlHU_EmpDtlProfile
             End If
             If cboObject.SelectedValue <> "" Then
                 EmployeeInfo.OBJECTTIMEKEEPING = cboObject.SelectedValue
+                EmployeeInfo.OBJECTTIMEKEEPING_NAME = cboObject.Text
             End If
             If cboObjectLabor.SelectedValue <> "" Then
                 EmployeeInfo.OBJECT_LABOR = cboObjectLabor.SelectedValue
+                EmployeeInfo.OBJECT_LABOR_NAME = cboObjectLabor.Text
             End If
             If hidDirectManager.Value <> "" Then
                 EmployeeInfo.DIRECT_MANAGER = hidDirectManager.Value
+                EmployeeInfo.DIRECT_MANAGER_NAME = txtDirectManager.Text
             End If
+            EmployeeInfo.TITLE_GROUP_NAME = txtTitleGroup.Text
             If hidLevelManager.Value <> "" Then
                 EmployeeInfo.LEVEL_MANAGER = hidLevelManager.Value
             End If
@@ -1800,6 +1804,9 @@ Public Class ctrlHU_EmpDtlProfile
             End If
             'EmployeeInfo.ORG_ID = txtOrgName.ToolTip
             EmployeeInfo.TITLE_ID = If(cboTitle.Text.Equals(""), Nothing, cboTitle.SelectedValue)
+            If cboTitle.SelectedValue <> "" Then
+                EmployeeInfo.TITLE_NAME_VN = cboTitle.Text
+            End If
             EmployeeInfo.ITIME_ID = txtTimeID.Text
             EmployeeInfo.JOIN_DATE = rdJoinDate.SelectedDate
 
@@ -1807,6 +1814,7 @@ Public Class ctrlHU_EmpDtlProfile
 
             If cboStaffRank.SelectedValue <> "" Then
                 EmployeeInfo.STAFF_RANK_ID = cboStaffRank.SelectedValue
+                EmployeeInfo.STAFF_RANK_NAME = cboStaffRank.Text
             End If
             If cboWorkStatus.SelectedValue <> "" Then
                 EmployeeInfo.WORK_STATUS = cboWorkStatus.SelectedValue
@@ -1815,7 +1823,6 @@ Public Class ctrlHU_EmpDtlProfile
                 EmployeeInfo.EMP_STATUS = cboEmpStatus.SelectedValue
             End If
             EmpCV = New EmployeeCVDTO
-
             EmpCV.WORKPLACE_NAME = rtWorkplace.Text
             If cboInsRegion.SelectedValue <> "" Then
                 EmpCV.INS_REGION_ID = Decimal.Parse(cboInsRegion.SelectedValue)
@@ -2122,7 +2129,7 @@ Public Class ctrlHU_EmpDtlProfile
             Refresh()
             rep.Dispose()
             Return result
-            
+
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
             _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
@@ -2198,6 +2205,6 @@ Public Class ctrlHU_EmpDtlProfile
     End Function
 #End Region
 
-    
-    
+
+
 End Class
