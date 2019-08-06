@@ -1097,13 +1097,14 @@ Partial Class ProfileRepository
 
     Public Function ValidateContract(ByVal sType As String, ByVal _validate As ContractDTO) As Boolean
         Try
+            ' note: đồng bộ phê duyệt
             Select Case sType
                 Case "EXIST_EFFECT_DATE"
                     Return (From e In Context.HU_CONTRACT
                             Where e.EMPLOYEE_ID = _validate.EMPLOYEE_ID And
                             e.START_DATE >= _validate.START_DATE And
                             e.ID <> _validate.ID And
-                            e.STATUS_ID = ProfileCommon.OT_CONTRACT_STATUS.APPROVE_ID).Count = 0
+                            e.STATUS_ID = ProfileCommon.DECISION_STATUS.APPROVE_ID).Count = 0
                 Case "EXIST_CONTRACT_NO"
                     Return (From p In Context.HU_CONTRACT
                             Where p.CONTRACT_NO.ToUpper = _validate.CONTRACT_NO.ToUpper _
@@ -1143,7 +1144,7 @@ Partial Class ProfileRepository
             objContractData.ORG_ID = objContract.ORG_ID
             Context.HU_CONTRACT.AddObject(objContractData)
             ' Phê duyệt
-            If objContract.STATUS_ID = ProfileCommon.OT_CONTRACT_STATUS.APPROVE_ID Then
+            If objContract.STATUS_ID = ProfileCommon.DECISION_STATUS.APPROVE_ID Then
                 ApproveContract(objContract)
                 If IsFirstContract(objContract) Then
                     InsertDecision(objContract)
@@ -1248,7 +1249,7 @@ Partial Class ProfileRepository
             objContractData.TITLE_ID = objContract.TITLE_ID
             objContractData.ORG_ID = objContract.ORG_ID
             ' Phê duyệt
-            If objContract.STATUS_ID = ProfileCommon.OT_CONTRACT_STATUS.APPROVE_ID Then
+            If objContract.STATUS_ID = ProfileCommon.DECISION_STATUS.APPROVE_ID Then
                 ApproveContract(objContract)
                 If IsFirstContract(objContract) Then
                     InsertDecision(objContract)
@@ -1310,11 +1311,7 @@ Partial Class ProfileRepository
             End If
             ' Update trạng thái Đang làm việc
             Employee.WORK_STATUS = ProfileCommon.OT_WORK_STATUS.WORKING_ID
-            'If objContract.CONTRACTTYPE_CODE = "HDTV60" Or objContract.CONTRACTTYPE_CODE = "HDTV30" Then
-            '    Employee.EMP_STATUS = 8
-            'Else
-            '    Employee.EMP_STATUS = 9
-            'End If
+           
             Dim STR As ContractTypeDTO = (From p In Context.HU_CONTRACT_TYPE
                                  Where p.ID = objContract.CONTRACTTYPE_ID
                                  Select New ContractTypeDTO With {
@@ -1451,7 +1448,7 @@ Partial Class ProfileRepository
                        .COST_SUPPORT = working.COST_SUPPORT}).FirstOrDefault
 
             Dim ctract = (From p In Context.HU_CONTRACT
-                          Where p.EMPLOYEE_ID = gID And p.STATUS_ID = ProfileCommon.OT_CONTRACT_STATUS.APPROVE_ID
+                          Where p.EMPLOYEE_ID = gID And p.STATUS_ID = ProfileCommon.DECISION_STATUS.APPROVE_ID
                           Order By p.START_DATE Descending).FirstOrDefault
             If ctract IsNot Nothing Then
                 obj.CONTRACT_NO = ctract.CONTRACT_NO

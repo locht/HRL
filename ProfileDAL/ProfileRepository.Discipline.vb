@@ -16,7 +16,7 @@ Partial Class ProfileRepository
             For idx = 0 To listID.Count - 1
                 item = listID(idx)
                 objDisData = (From p In Context.HU_DISCIPLINE Where item = p.ID).SingleOrDefault
-                objDisData.STATUS_ID = ProfileCommon.DISCIPLINE_STATUS.APPROVE_ID
+                objDisData.STATUS_ID = ProfileCommon.DECISION_STATUS.APPROVE_ID
             Next
             Context.SaveChanges(log)
             Return True
