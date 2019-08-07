@@ -29,6 +29,16 @@
                     <asp:RequiredFieldValidator ID="RequiredFieldValidator1" ControlToValidate="txtNameVN"
                         runat="server" Text="*" ErrorMessage="<%$ Translate: Bạn phải nhập tên kiểu công. %>"></asp:RequiredFieldValidator>
                 </td>
+                <td class="lb">
+                    <%# Translate("Loại xử lý")%><span class="lbReq">*</span>
+                </td>
+                <td>
+                    <tlk:RadComboBox ID="cboTypeProcess" runat="server">
+                    </tlk:RadComboBox>
+                    <asp:CustomValidator ID="cvalTypeProcess" runat="server" ErrorMessage="<%$ Translate: Bạn phải chọn loại xử lý. %>"
+                        ToolTip="<%$ Translate: Bạn phải chọn loại xử lý. %>" ClientValidationFunction="cvalTypeProcess">
+                    </asp:CustomValidator>                   
+                </td>
             </tr>
             <tr>
                 <td class="lb">
@@ -97,7 +107,7 @@
                 <ClientEvents OnGridCreated="GridCreated" />
                 <ClientEvents OnCommand="ValidateFilter" />
             </ClientSettings>
-            <MasterTableView DataKeyNames="ID" ClientDataKeyNames="ID,CODE,NAME_VN,MORNING_ID,AFTERNOON_ID,ACTFLG,NOTE">
+            <MasterTableView DataKeyNames="ID" ClientDataKeyNames="ID,CODE,NAME_VN,MORNING_ID,AFTERNOON_ID,TYPE_PROSS_ID,ACTFLG,NOTE">
                 <Columns>
                     <tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderStyle-HorizontalAlign="Center"
                         HeaderStyle-Width="30px" ItemStyle-HorizontalAlign="Center">
@@ -111,6 +121,8 @@
                         UniqueName="MORNING_NAME" SortExpression="MORNING_NAME" />
                     <tlk:GridBoundColumn HeaderText="<%$ Translate: Kiểu công nửa ngày %>" DataField="AFTERNOON_NAME"
                         UniqueName="AFTERNOON_NAME" SortExpression="AFTERNOON_NAME" />
+                    <tlk:GridBoundColumn HeaderText="<%$ Translate: Loại xử lý %>" DataField="TYPE_PROCESS_NAME"
+                        UniqueName="TYPE_PROCESS_NAME" SortExpression="TYPE_PROCESS_NAME" />
                     <tlk:GridBoundColumn HeaderText="<%$ Translate: Trạng thái %>" DataField="ACTFLG"
                         UniqueName="ACTFLG" SortExpression="ACTFLG" />
                          <%--<tlk:GridCheckBoxColumn HeaderText="<%$ Translate: Hưởng công cơm %>" AllowFiltering="false"
@@ -210,6 +222,10 @@
         }
         function cusAfternoon(oSrc, args) {
             var cbo = $find("<%# cboAfternoon.ClientID %>");
+            args.IsValid = (cbo.get_value().length != 0);
+        }
+        function cvalTypeProcess(oSrc, args) {
+            var cbo = $find("<%# cboTypeProcess.ClientID %>");
             args.IsValid = (cbo.get_value().length != 0);
         }
     </script>

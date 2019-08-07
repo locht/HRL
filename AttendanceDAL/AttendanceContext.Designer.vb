@@ -18,7 +18,7 @@ Imports System.Runtime.Serialization
 Imports System.Xml.Serialization
 
 
-<Assembly: EdmSchemaAttribute("19fc3058-87e1-4647-bbcb-4efe4f544369")>
+<Assembly: EdmSchemaAttribute("30052ee8-9f3e-4434-90b1-cfee367329e8")>
 #Region "EDM Relationship Metadata"
 <Assembly: EdmRelationshipAttribute("AttendanceModel", "FK_OOLT_OOL", "OT_OTHER_LIST_TYPE", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(OT_OTHER_LIST_TYPE), "OT_OTHER_LIST", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(OT_OTHER_LIST), True)>
 <Assembly: EdmRelationshipAttribute("AttendanceModel", "FK_OOLG_OOLT", "OT_OTHER_LIST_GROUP", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(OT_OTHER_LIST_GROUP), "OT_OTHER_LIST_TYPE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(OT_OTHER_LIST_TYPE), True)>
@@ -1314,6 +1314,20 @@ Public Partial Class AttendanceContext
 
     Private _AT_TIMESHEET_MACHINET_IMPORT As ObjectSet(Of AT_TIMESHEET_MACHINET_IMPORT)
 
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    Public ReadOnly Property AT_TYPE_PROCESS() As ObjectSet(Of AT_TYPE_PROCESS)
+        Get
+            If (_AT_TYPE_PROCESS Is Nothing) Then
+                _AT_TYPE_PROCESS = MyBase.CreateObjectSet(Of AT_TYPE_PROCESS)("AT_TYPE_PROCESS")
+            End If
+            Return _AT_TYPE_PROCESS
+        End Get
+    End Property
+
+    Private _AT_TYPE_PROCESS As ObjectSet(Of AT_TYPE_PROCESS)
+
     #End Region
 
     #Region "AddTo Methods"
@@ -1932,6 +1946,13 @@ Public Partial Class AttendanceContext
     ''' </summary>
     Public Sub AddToAT_TIMESHEET_MACHINET_IMPORT(ByVal aT_TIMESHEET_MACHINET_IMPORT As AT_TIMESHEET_MACHINET_IMPORT)
         MyBase.AddObject("AT_TIMESHEET_MACHINET_IMPORT", aT_TIMESHEET_MACHINET_IMPORT)
+    End Sub
+
+    ''' <summary>
+    ''' Deprecated Method for adding a new object to the AT_TYPE_PROCESS EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+    ''' </summary>
+    Public Sub AddToAT_TYPE_PROCESS(ByVal aT_TYPE_PROCESS As AT_TYPE_PROCESS)
+        MyBase.AddObject("AT_TYPE_PROCESS", aT_TYPE_PROCESS)
     End Sub
 
     #End Region
@@ -25657,6 +25678,31 @@ Public Partial Class AT_TIME_MANUAL
     Private Partial Sub OnMODIFIED_LOGChanged()
     End Sub
 
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property TYPE_PROSS_ID() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _TYPE_PROSS_ID
+        End Get
+        Set
+            OnTYPE_PROSS_IDChanging(value)
+            ReportPropertyChanging("TYPE_PROSS_ID")
+            _TYPE_PROSS_ID = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("TYPE_PROSS_ID")
+            OnTYPE_PROSS_IDChanged()
+        End Set
+    End Property
+
+    Private _TYPE_PROSS_ID As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnTYPE_PROSS_IDChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnTYPE_PROSS_IDChanged()
+    End Sub
+
     #End Region
 
 End Class
@@ -36205,6 +36251,111 @@ Public Partial Class AT_TIMESHEET_REGISTER
     End Sub
 
     Private Partial Sub OnNVALUE_IDChanged()
+    End Sub
+
+    #End Region
+
+End Class
+
+''' <summary>
+''' No Metadata Documentation available.
+''' </summary>
+<EdmEntityTypeAttribute(NamespaceName:="AttendanceModel", Name:="AT_TYPE_PROCESS")>
+<Serializable()>
+<DataContractAttribute(IsReference:=True)>
+Public Partial Class AT_TYPE_PROCESS
+    Inherits EntityObject
+    #Region "Factory Method"
+
+    ''' <summary>
+    ''' Create a new AT_TYPE_PROCESS object.
+    ''' </summary>
+    ''' <param name="id">Initial value of the ID property.</param>
+    Public Shared Function CreateAT_TYPE_PROCESS(id As Global.System.Decimal) As AT_TYPE_PROCESS
+        Dim aT_TYPE_PROCESS as AT_TYPE_PROCESS = New AT_TYPE_PROCESS
+        aT_TYPE_PROCESS.ID = id
+        Return aT_TYPE_PROCESS
+    End Function
+
+    #End Region
+
+    #Region "Primitive Properties"
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=true, IsNullable:=false)>
+    <DataMemberAttribute()>
+    Public Property ID() As Global.System.Decimal
+        Get
+            Return _ID
+        End Get
+        Set
+            If (_ID <> Value) Then
+                OnIDChanging(value)
+                ReportPropertyChanging("ID")
+                _ID = StructuralObject.SetValidValue(value)
+                ReportPropertyChanged("ID")
+                OnIDChanged()
+            End If
+        End Set
+    End Property
+
+    Private _ID As Global.System.Decimal
+    Private Partial Sub OnIDChanging(value As Global.System.Decimal)
+    End Sub
+
+    Private Partial Sub OnIDChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property NAME_VN() As Global.System.String
+        Get
+            Return _NAME_VN
+        End Get
+        Set
+            OnNAME_VNChanging(value)
+            ReportPropertyChanging("NAME_VN")
+            _NAME_VN = StructuralObject.SetValidValue(value, true)
+            ReportPropertyChanged("NAME_VN")
+            OnNAME_VNChanged()
+        End Set
+    End Property
+
+    Private _NAME_VN As Global.System.String
+    Private Partial Sub OnNAME_VNChanging(value As Global.System.String)
+    End Sub
+
+    Private Partial Sub OnNAME_VNChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property NAME_EN() As Global.System.String
+        Get
+            Return _NAME_EN
+        End Get
+        Set
+            OnNAME_ENChanging(value)
+            ReportPropertyChanging("NAME_EN")
+            _NAME_EN = StructuralObject.SetValidValue(value, true)
+            ReportPropertyChanged("NAME_EN")
+            OnNAME_ENChanged()
+        End Set
+    End Property
+
+    Private _NAME_EN As Global.System.String
+    Private Partial Sub OnNAME_ENChanging(value As Global.System.String)
+    End Sub
+
+    Private Partial Sub OnNAME_ENChanged()
     End Sub
 
     #End Region

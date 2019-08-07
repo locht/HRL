@@ -94,6 +94,7 @@
             <EntitySet Name="AT_LEAVESHEET_DETAIL" EntityType="AttendanceModel.Store.AT_LEAVESHEET_DETAIL" store:Type="Tables"  />
             <EntitySet Name="AT_LEAVESHEET" EntityType="AttendanceModel.Store.AT_LEAVESHEET" store:Type="Tables"  />
             <EntitySet Name="AT_TIMESHEET_MACHINET_IMPORT" EntityType="AttendanceModel.Store.AT_TIMESHEET_MACHINET_IMPORT" store:Type="Tables"  />
+            <EntitySet Name="AT_TYPE_PROCESS" EntityType="AttendanceModel.Store.AT_TYPE_PROCESS" store:Type="Tables"  />
             <EntitySet Name="SE_USER_REPORT" EntityType="AttendanceModel.Store.SE_USER_REPORT" store:Type="Tables"  />
             <AssociationSet Name="FK_OOLT_OOL" Association="AttendanceModel.Store.FK_OOLT_OOL">
                 <End Role="OT_OTHER_LIST_TYPE" EntitySet="OT_OTHER_LIST_TYPE" />
@@ -1077,6 +1078,7 @@
             <Property Name="MODIFIED_DATE" Type="date" Nullable="true" />
             <Property Name="MODIFIED_BY" Type="nvarchar2" Nullable="true" MaxLength="255" />
             <Property Name="MODIFIED_LOG" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="TYPE_PROSS_ID" Type="number" Nullable="true" Precision="38" />
         </EntityType>
         <EntityType Name="AT_TIME_RICE">
             <Key>
@@ -2413,6 +2415,14 @@
             <Property Name="TIMEOUT_REALITY" Type="date" Nullable="true" />
             <Property Name="WORKING_DAY" Type="date" Nullable="true" />
         </EntityType>
+        <EntityType Name="AT_TYPE_PROCESS">
+            <Key>
+                <PropertyRef Name="ID" />
+            </Key>
+            <Property Name="ID" Type="number" Nullable="false" Precision="38" />
+            <Property Name="NAME_VN" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="NAME_EN" Type="nvarchar2" Nullable="true" MaxLength="255" />
+        </EntityType>
         <EntityType Name="SE_USER_REPORT">
             <Key>
                 <PropertyRef Name="SE_REPORT_ID" />
@@ -2726,6 +2736,7 @@
           <EntitySet Name="AT_LEAVESHEET_DETAIL" EntityType="AttendanceModel.AT_LEAVESHEET_DETAIL" />
           <EntitySet Name="AT_LEAVESHEET" EntityType="AttendanceModel.AT_LEAVESHEET" />
           <EntitySet Name="AT_TIMESHEET_MACHINET_IMPORT" EntityType="AttendanceModel.AT_TIMESHEET_MACHINET_IMPORT" />
+          <EntitySet Name="AT_TYPE_PROCESS" EntityType="AttendanceModel.AT_TYPE_PROCESS" />
           </EntityContainer>
         <EntityType Name="OT_OTHER_LIST">
           <Key>
@@ -3804,6 +3815,7 @@
           <Property Type="DateTime" Name="MODIFIED_DATE" />
           <Property Type="String" Name="MODIFIED_BY" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="MODIFIED_LOG" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="Decimal" Name="TYPE_PROSS_ID" Precision="38" Scale="0" />
         </EntityType>
         <EntityType Name="AT_TIME_RICE">
           <Key>
@@ -5146,6 +5158,14 @@
           <Property Type="DateTime" Name="TIMEOUT_REALITY" />
           <Property Type="DateTime" Name="WORKING_DAY" />
         </EntityType>
+        <EntityType Name="AT_TYPE_PROCESS">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Decimal" Name="ID" Nullable="false" Precision="38" Scale="0" />
+          <Property Type="String" Name="NAME_VN" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="NAME_EN" MaxLength="255" FixedLength="false" Unicode="true" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -6123,6 +6143,7 @@
                     <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
                     <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
                     <ScalarProperty Name="MODIFIED_LOG" ColumnName="MODIFIED_LOG" />
+                    <ScalarProperty Name="TYPE_PROSS_ID" ColumnName="TYPE_PROSS_ID" />
                 </MappingFragment>
             </EntityTypeMapping>
         </EntitySetMapping>
@@ -7506,6 +7527,15 @@
                 </MappingFragment>
             </EntityTypeMapping>
         </EntitySetMapping>
+        <EntitySetMapping Name="AT_TYPE_PROCESS">
+            <EntityTypeMapping TypeName="AttendanceModel.AT_TYPE_PROCESS">
+                <MappingFragment StoreEntitySet="AT_TYPE_PROCESS">
+                    <ScalarProperty Name="ID" ColumnName="ID" />
+                    <ScalarProperty Name="NAME_VN" ColumnName="NAME_VN" />
+                    <ScalarProperty Name="NAME_EN" ColumnName="NAME_EN" />
+                </MappingFragment>
+            </EntityTypeMapping>
+        </EntitySetMapping>
         <AssociationSetMapping Name="SE_USER_REPORT" TypeName="AttendanceModel.SE_USER_REPORT" StoreEntitySet="SE_USER_REPORT">
             <EndProperty Name="SE_REPORT">
                 <ScalarProperty Name="ID" ColumnName="SE_REPORT_ID" />
@@ -7599,8 +7629,8 @@
         <EntityTypeShape EntityType="AttendanceModel.HU_ORGANIZATION" Width="3.375" PointX="6.625" PointY="0.5" Height="0.39999999999999858" IsExpanded="false" />
         <AssociationConnector Association="AttendanceModel.FK_HU_ORG_HU_ORG" >
           <ConnectorPoint PointX="7.773769230769231" PointY="0.89999999999999858" />
-          <ConnectorPoint PointX="7.773769230769231" PointY="1.1500000000000021" />
-          <ConnectorPoint PointX="8.8768846153846148" PointY="1.1500000000000021" />
+          <ConnectorPoint PointX="7.773769230769231" PointY="1.1499999999999986" />
+          <ConnectorPoint PointX="8.8768846153846148" PointY="1.1499999999999986" />
           <ConnectorPoint PointX="8.8768846153846148" PointY="0.89999999999999858" />
         </AssociationConnector>
         <EntityTypeShape EntityType="AttendanceModel.HU_WORKING" Width="1.5" PointX="0.625" PointY="11.5" Height="0.39999999999999858" IsExpanded="false" />
@@ -7615,7 +7645,7 @@
         <EntityTypeShape EntityType="AttendanceModel.AT_WORKSIGN" Width="1.5" PointX="11.625" PointY="6.5" Height="0.39999999999999858" IsExpanded="false" />
         <EntityTypeShape EntityType="AttendanceModel.AT_PORTAL_REG" Width="2.625" PointX="18" PointY="6.375" Height="7.5570279947916656" IsExpanded="true" />
         <EntityTypeShape EntityType="AttendanceModel.HU_STAFF_RANK" Width="1.5" PointX="11.625" PointY="10.5" Height="0.39999999999999858" IsExpanded="false" />
-        <EntityTypeShape EntityType="AttendanceModel.AT_TIME_TIMESHEET_RICE" Width="1.5" PointX="12.625" PointY="0.5" Height="0.39999999999999858" IsExpanded="false" />
+        <EntityTypeShape EntityType="AttendanceModel.AT_TIME_TIMESHEET_RICE" Width="1.5" PointX="12.625" PointY="0.5" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="AttendanceModel.AT_TIME_TIMESHEET_OT" Width="1.5" PointX="12.625" PointY="2.5" Height="0.39999999999999858" IsExpanded="false" />
         <EntityTypeShape EntityType="AttendanceModel.AT_DMVS" Width="1.5" PointX="12.625" PointY="4.5" Height="0.39999999999999858" IsExpanded="false" />
         <EntityTypeShape EntityType="AttendanceModel.AT_HOLIDAY" Width="1.875" PointX="6.375" PointY="12" Height="3.9033007812500031" IsExpanded="true" />
@@ -7677,6 +7707,7 @@
         <EntityTypeShape EntityType="AttendanceModel.AT_LEAVESHEET_DETAIL" Width="1.5" PointX="18.375" PointY="22.75" Height="3.710999348958353" />
         <EntityTypeShape EntityType="AttendanceModel.AT_LEAVESHEET" Width="1.5" PointX="7.375" PointY="23.75" Height="4.2879036458333353" />
         <EntityTypeShape EntityType="AttendanceModel.AT_TIMESHEET_MACHINET_IMPORT" Width="1.5" PointX="23.375" PointY="15.75" Height="2.1725878906249818" />
+        <EntityTypeShape EntityType="AttendanceModel.AT_TYPE_PROCESS" Width="1.5" PointX="15.375" PointY="23.75" Height="1.5956835937500031" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

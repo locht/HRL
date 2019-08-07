@@ -310,6 +310,17 @@ Partial Public Class AttendanceRepository
                                                 .NAME_VN = p.NAME_VN,
                                                 .TYPE_ID = p.TYPE_ID}).ToList
             End If
+
+            ' Get list loại xử lý
+            If cbxData.GET_LIST_TYPE_PROCESS Then
+                cbxData.LIST_LIST_TYPE_PROCESS = (From p In Context.AT_TYPE_PROCESS Order By p.NAME_VN Descending
+                                                  Select New AT_TYPE_PROCESSDTO With {
+                                                    .ID = p.ID,
+                                                    .NAME_EN = p.NAME_EN,
+                                                    .NAME_VN = p.NAME_VN}).ToList
+            End If
+
+
             Return True
         Catch ex As Exception
             WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iTime")
