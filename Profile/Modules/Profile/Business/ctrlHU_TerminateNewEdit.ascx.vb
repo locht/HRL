@@ -366,7 +366,7 @@ Public Class ctrlHU_TerminateNewEdit
                         i.Edit = True
                     Next
                     rgHandoverContent.Rebind()
-                    cboStatus.SelectedValue = ProfileCommon.OT_TER_STATUS.WAIT_APPROVE_ID
+                    cboStatus.SelectedValue = ProfileCommon.DECISION_STATUS.WAIT_APPROVE_ID
                     CurrentState = CommonMessage.STATE_NEW
                 Case "NormalView"
 
@@ -462,7 +462,7 @@ Public Class ctrlHU_TerminateNewEdit
                                 Exit Sub
                             End If
                         End If
-                        If cboStatus.SelectedValue = ProfileCommon.OT_TER_STATUS.APPROVE_ID Then
+                        If cboStatus.SelectedValue = ProfileCommon.DECISION_STATUS.APPROVE_ID Then
                             If txtUpload.Text.Trim = "" Then
                                 ShowMessage(Translate("Bạn phải chọn tập tin đính kèm"), NotifyType.Warning)
                                 Exit Sub
@@ -1728,13 +1728,16 @@ Public Class ctrlHU_TerminateNewEdit
                 rep.GetComboList(ListComboData)
             End If
             rep.Dispose()
-            FillDropDownList(cboStatus, ListComboData.LIST_TER_STATUS, "NAME_VN", "ID", Common.Common.SystemLanguage, True)
+            ' FillDropDownList(cboStatus, ListComboData.LIST_TER_STATUS, "NAME_VN", "ID", Common.Common.SystemLanguage, True)
+            Dim dtData As New DataTable
+            dtData = rep.GetOtherList(OtherTypes.DecisionStatus, True)
+            FillRadCombobox(cboStatus, dtData, "NAME", "ID", True)
             FillDropDownList(cboInsStatus, ListComboData.LIST_INS_STATUS, "NAME_VN", "ID", Common.Common.SystemLanguage, True)
             FillDropDownList(cboTerReason, ListComboData.LIST_TER_REASON, "NAME_VN", "ID", Common.Common.SystemLanguage, True)
             FillDropDownList(cboDebtStatus, ListComboData.LIST_DEBT_STATUS, "NAME_VN", "ID", Common.Common.SystemLanguage, True)
             FillDropDownList(cboDebtType, ListComboData.LIST_DEBT_TYPE, "NAME_VN", "ID", Common.Common.SystemLanguage, True)
             FillDropDownList(cboDecisionType, ListComboData.LIST_DECISION_TYPE, "NAME_VN", "ID", Common.Common.SystemLanguage, True)
-            cboStatus.SelectedValue = ProfileCommon.OT_TER_STATUS.WAIT_APPROVE_ID
+            cboStatus.SelectedValue = ProfileCommon.DECISION_STATUS.WAIT_APPROVE_ID
             cboSalMonth.DataSource = rep.GetCurrentPeriod()
             cboSalMonth.DataTextField = "PERIOD_NAME"
             cboSalMonth.DataValueField = "ID"

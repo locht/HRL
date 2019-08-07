@@ -24,9 +24,8 @@
                 </td>
             </tr>
             <tr>
-                <td class="lb"  style="width: 200px">
+                <td class="lb" style="width: 200px">
                     <asp:Label ID="lbEmployeeCode" runat="server" Text="<%$ Translate: Mã nhân viên %>"></asp:Label>
-                    
                 </td>
                 <td>
                     <tlk:RadTextBox ID="txtEmployeeCode" SkinID="ReadOnly" runat="server" Width="130px"
@@ -63,45 +62,47 @@
                 </td>
                 <td class="lb">
                     <asp:Label ID="lbContractType" runat="server" Text="<%$ Translate: Loại hợp đồng %>"></asp:Label>
-                    
                 </td>
                 <td>
                     <tlk:RadComboBox ID="cboContractType" runat="server" AutoPostBack="true" CausesValidation="false">
                     </tlk:RadComboBox>
-                    <asp:RequiredFieldValidator ID="reqContractType" ControlToValidate="cboContractType" runat="server"
-                        ErrorMessage="<%$ Translate: Bạn phải chọn Loại hợp đồng. %>" ToolTip="<%$ Translate: Bạn phải chọn Loại hợp đồng. %>"> </asp:RequiredFieldValidator>
+                    <asp:RequiredFieldValidator ID="reqContractType" ControlToValidate="cboContractType"
+                        runat="server" ErrorMessage="<%$ Translate: Bạn phải chọn Loại hợp đồng. %>"
+                        ToolTip="<%$ Translate: Bạn phải chọn Loại hợp đồng. %>"> </asp:RequiredFieldValidator>
                     <asp:CustomValidator ID="cusContractType" runat="server" ErrorMessage="<%$ Translate: Bạn phải chọn Loại hợp đồng %>"
                         ToolTip="<%$ Translate: Bạn phải chọn Loại hợp đồng %>" ClientValidationFunction="cusContractType">
                     </asp:CustomValidator>
-                    <asp:CustomValidator ID="cusvalContractType" ControlToValidate="cboContractType" runat="server" ErrorMessage="<%$ Translate: Loại hợp đồng không tồn tại hoặc đã ngừng áp dụng. %>"
+                    <asp:CustomValidator ID="cusvalContractType" ControlToValidate="cboContractType"
+                        runat="server" ErrorMessage="<%$ Translate: Loại hợp đồng không tồn tại hoặc đã ngừng áp dụng. %>"
                         ToolTip="<%$ Translate: Loại hợp đồng không tồn tại hoặc đã ngừng áp dụng. %>">
                     </asp:CustomValidator>
                 </td>
                 <td class="lb">
-                    <asp:Label runat ="server" ID="lbUploadFile" Text ="<%$ Translate: Tập tin đính kèm %>" ></asp:Label>
+                    <asp:Label runat="server" ID="lbUploadFile" Text="<%$ Translate: Tập tin đính kèm %>"></asp:Label>
                 </td>
                 <td>
-                   <tlk:radtextbox id="txtUpload" readonly="true" runat="server">
-                    </tlk:radtextbox>
-                    <tlk:radtextbox id="txtUploadFile" runat="server" visible="false">
-                    </tlk:radtextbox>
-                    <tlk:radbutton runat="server" id="btnUpload" skinid="ButtonView" causesvalidation="false"
-                        tabindex="3" />
-                    <tlk:radbutton id="btnDownload" runat="server" text="<%$ Translate: Tải xuống%>"
-                        causesvalidation="false" onclientclicked="rbtClicked" tabindex="3" enableviewstate="false">
-                    </tlk:radbutton>
+                    <tlk:RadTextBox ID="txtUpload" ReadOnly="true" runat="server">
+                    </tlk:RadTextBox>
+                    <tlk:RadTextBox ID="txtUploadFile" runat="server" Visible="false">
+                    </tlk:RadTextBox>
+                    <tlk:RadButton runat="server" ID="btnUpload" SkinID="ButtonView" CausesValidation="false"
+                        TabIndex="3" />
+                    <tlk:RadButton ID="btnDownload" runat="server" Text="<%$ Translate: Tải xuống%>"
+                        CausesValidation="false" OnClientClicked="rbtClicked" TabIndex="3" EnableViewState="false">
+                    </tlk:RadButton>
                 </td>
             </tr>
             <tr>
                 <td class="lb">
-                    <asp:Label ID="lbContractNo" runat="server" Text="<%$ Translate: Số hợp đồng %>"></asp:Label>
-                </td>
-                <td>
-                    <tlk:RadTextBox ID="txtContractNo" runat="server">
-                    </tlk:RadTextBox>
+                    <asp:Label ID="Label1" runat="server" Text="Đơn vị ký hợp đồng"></asp:Label>
                 </td>
                 <td class="lb">
-                    <asp:Label ID="lbStartDate" runat="server" Text="<%$ Translate: Ngày bắt đầu %>"></asp:Label>                   
+                    <tlk:RadComboBox runat="server" ID="cboSignContract">
+                    </tlk:RadComboBox>
+                </td>
+               
+                <td class="lb">
+                    <asp:Label ID="lbStartDate" runat="server" Text="<%$ Translate: Ngày bắt đầu %>"></asp:Label>
                 </td>
                 <td>
                     <tlk:RadDatePicker ID="rdStartDate" runat="server" AutoPostBack="True">
@@ -123,11 +124,9 @@
                         ToolTip="<%$ Translate: Ngày kết thúc phải lớn hơn ngày bắt đầu %>"></asp:CompareValidator>
                 </td>
             </tr>
-           
             <tr>
                 <td class="lb">
                     <asp:Label ID="lbStatus" runat="server" Text="<%$ Translate: Trạng thái %>"></asp:Label>
-                    
                 </td>
                 <td>
                     <tlk:RadComboBox ID="cboStatus" runat="server">
@@ -135,11 +134,18 @@
                     <asp:CustomValidator ID="cusStatus" runat="server" ErrorMessage="<%$ Translate: Bạn phải chọn Trạng thái %>"
                         ToolTip="<%$ Translate: Bạn phải chọn Trạng thái %>" ClientValidationFunction="cusStatus">
                     </asp:CustomValidator>
-                    <asp:CustomValidator ID="cusvalStatus" ControlToValidate="cboStatus" runat="server" ErrorMessage="<%$ Translate: Trạng thái không tồn tại hoặc đã ngừng áp dụng. %>"
+                    <asp:CustomValidator ID="cusvalStatus" ControlToValidate="cboStatus" runat="server"
+                        ErrorMessage="<%$ Translate: Trạng thái không tồn tại hoặc đã ngừng áp dụng. %>"
                         ToolTip="<%$ Translate: Trạng thái không tồn tại hoặc đã ngừng áp dụng. %>">
                     </asp:CustomValidator>
                 </td>
-               
+               <td class="lb">
+                    <asp:Label ID="lbContractNo" runat="server" Text="<%$ Translate: Số hợp đồng %>"></asp:Label>
+                </td>
+                <td>
+                    <tlk:RadTextBox ID="txtContractNo" runat="server" Enabled="false">
+                    </tlk:RadTextBox>
+                </td>
             </tr>
             <tr>
                 <td class="lb">
@@ -186,7 +192,6 @@
             <tr>
                 <td class="lb">
                     <asp:Label ID="lbWorking_ID" runat="server" Text="<%$ Translate: Chọn Hồ Sơ Lương %>"></asp:Label>
-                    
                 </td>
                 <td>
                     <tlk:RadTextBox ID="Working_ID" runat="server" ReadOnly="true" Width="130px" SkinID="ReadOnly">
@@ -198,33 +203,35 @@
                 </td>
                 <td class="lb">
                     <asp:Label ID="lbSalTYPE" runat="server" Text="<%# UI.Wage_WageGRoup %>"></asp:Label>
-                    
                 </td>
                 <td>
-                    <tlk:RadComboBox ID="cboSalTYPE" runat="server" SkinID="LoadDemand" Enabled="False"></tlk:RadComboBox>
+                    <tlk:RadComboBox ID="cboSalTYPE" runat="server" SkinID="LoadDemand" Enabled="False">
+                    </tlk:RadComboBox>
                 </td>
                 <td class="lb">
-                    <asp:Label ID="lbTaxTable" runat="server" Text="<%# UI.Wage_TaxTable %>"></asp:Label>                    
+                    <asp:Label ID="lbTaxTable" runat="server" Text="<%# UI.Wage_TaxTable %>"></asp:Label>
                 </td>
                 <td>
-                    <tlk:RadComboBox ID="cboTaxTable" runat="server" SkinID="LoadDemand" Enabled="False"></tlk:RadComboBox>                  
-                </td>               
+                    <tlk:RadComboBox ID="cboTaxTable" runat="server" SkinID="LoadDemand" Enabled="False">
+                    </tlk:RadComboBox>
+                </td>
             </tr>
             <tr>
                 <td class="lb">
-                    <asp:Label ID="lbBasicSal" runat="server" Text="<%# UI.Wage_BasicSalary %>"></asp:Label>                    
+                    <asp:Label ID="lbBasicSal" runat="server" Text="<%# UI.Wage_BasicSalary %>"></asp:Label>
                 </td>
                 <td>
-                    <tlk:RadNumericTextBox ID="rnBasicSal" runat="server" MinValue="0" SkinID="ReadOnly" ReadOnly="true">
+                    <tlk:RadNumericTextBox ID="rnBasicSal" runat="server" MinValue="0" SkinID="ReadOnly"
+                        ReadOnly="true">
                     </tlk:RadNumericTextBox>
                 </td>
                 <td class="lb">
                     <asp:Label ID="lbPercentSalary" runat="server" Text="% hưởng lương"></asp:Label>
                 </td>
                 <td>
-                    <tlk:RadNumericTextBox ID="PercentSalary"  runat="server" Enabled="False" >
-                    </tlk:RadNumericTextBox>                                     
-                </td>                
+                    <tlk:RadNumericTextBox ID="PercentSalary" runat="server" Enabled="False">
+                    </tlk:RadNumericTextBox>
+                </td>
                 <td class="lb">
                     <asp:Label ID="lbSalary_Total" runat="server" Text="<%# UI.Wage_Salary_Total %>"></asp:Label>
                 </td>
@@ -236,11 +243,11 @@
                     <asp:Label ID="lbAllowance_Total" runat="server" Text="<%# UI.Wage_Allowance_total %>"></asp:Label>
                 </td>
                 <td>
-                    <tlk:RadNumericTextBox ID="Allowance_Total"  runat="server" SkinID="Money" Enabled="False">
-                    </tlk:RadNumericTextBox> 
+                    <tlk:RadNumericTextBox ID="Allowance_Total" runat="server" SkinID="Money" Enabled="False">
+                    </tlk:RadNumericTextBox>
                 </td>
             </tr>
-            <tr >
+            <tr>
                 <td class="lb">
                     <asp:Label runat="server" ID="lbOtherSalary1" Text="Thưởng hiệu quả công việc"></asp:Label>
                 </td>

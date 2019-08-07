@@ -20,6 +20,19 @@ Namespace AttendanceBusiness.ServiceImplementations
                 Return False
             End Try
         End Function
+        Function IMPORT_TIMESHEET_MACHINE(ByVal ListobjImport As List(Of AT_TIME_TIMESHEET_MACHINETDTO)) As Boolean Implements IAttendanceBusiness.IMPORT_TIMESHEET_MACHINE
+            Try
+                Using rep As New AttendanceRepository
+                    Try
+                        Return rep.IMPORT_TIMESHEET_MACHINE(ListobjImport)
+                    Catch ex As Exception
+                        Throw ex
+                    End Try
+                End Using
+            Catch ex As Exception
+                Return False
+            End Try
+        End Function
 #Region "Quan ly vao ra"
         Function GetDataInout(ByVal _filter As AT_DATAINOUTDTO,
                                       ByVal _param As ParamDTO,

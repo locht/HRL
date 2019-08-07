@@ -76,7 +76,35 @@ Partial Public Class AttendanceRepository
         End Try
     End Function
 
-
+    Public Function IMPORT_TIMESHEET_MACHINE(ByVal ListobjImport As List(Of AT_TIME_TIMESHEET_MACHINETDTO)) As Boolean
+        Try
+            For Each obj In ListobjImport
+                Dim count As Integer = 0
+                Dim emp_id = (From e In Context.HU_EMPLOYEE Where e.EMPLOYEE_CODE = obj.EMPLOYEE_CODE Select e.ID).FirstOrDefault
+                count = (From p In Context.AT_TIMESHEET_MACHINET_IMPORT Where p.EMPLOYEE_ID = emp_id And p.WORKING_DAY = obj.WORKINGDAY).ToList.Count()
+                If count > 0 Then
+                    Dim objImport As AT_TIMESHEET_MACHINET_IMPORT
+                    objImport = (From p In Context.AT_TIMESHEET_MACHINET_IMPORT Where p.EMPLOYEE_ID = emp_id And p.WORKING_DAY = obj.WORKINGDAY).FirstOrDefault
+                    objImport.TIMEIN_REALITY = obj.TIMEIN_REALITY
+                    objImport.TIMEOUT_REALITY = obj.TIMEOUT_REALITY
+                    objImport.NOTE = obj.NOTE
+                Else
+                    Dim objImport As New AT_TIMESHEET_MACHINET_IMPORT
+                    objImport.ID = Utilities.GetNextSequence(Context, Context.AT_TIMESHEET_MACHINET_IMPORT.EntitySet.Name)
+                    objImport.EMPLOYEE_ID = emp_id
+                    objImport.WORKING_DAY = obj.WORKINGDAY
+                    objImport.TIMEIN_REALITY = obj.TIMEIN_REALITY
+                    objImport.TIMEOUT_REALITY = obj.TIMEOUT_REALITY
+                    objImport.NOTE = obj.NOTE
+                    Context.AT_TIMESHEET_MACHINET_IMPORT.AddObject(objImport)
+                End If
+            Next
+            Context.SaveChanges()
+            Return True
+        Catch ex As Exception
+            Return False
+        End Try
+    End Function
 
 #Region "Di som ve muon"
     Public Function GetDSVM(ByVal _filter As AT_LATE_COMBACKOUTDTO,
@@ -548,7 +576,7 @@ Partial Public Class AttendanceRepository
                 query = query.Where(Function(f) f.p.NOTE IsNot Nothing)
             End If
             If _filter.IS_NON_WORKING_VALUE Then
-                query = query.Where(Function(f) f.p.WORKING_VALUE IsNot Nothing)
+                query = query.Where(Function(f) f.p.WORKING_VALUE Is Nothing)
             End If
             Dim lst = query.Select(Function(p) New AT_TIME_TIMESHEET_MACHINETDTO With {
                                        .ID = p.p.ID,

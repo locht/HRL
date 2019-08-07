@@ -62,4 +62,6 @@
     Public Property Working As WorkingDTO
     Public Property ListAttachFiles As List(Of AttachFilesDTO)
     Public Property OBJECTTIMEKEEPING As Decimal?
+    Public Property ID_SIGN_CONTRACT As Decimal?
+    Public Property NAME_SIGN_CONTRACT As String
 End Class

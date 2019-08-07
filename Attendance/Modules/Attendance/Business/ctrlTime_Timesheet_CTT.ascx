@@ -154,10 +154,10 @@
                                 SortExpression="ORG_NAME" HeaderStyle-Width="200px" />
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Đối tượng chấm công %>" DataField="OBJECT_ATTENDANCE_NAME" UniqueName="OBJECT_ATTENDANCE_NAME"
                                 SortExpression="OBJECT_ATTENDANCE_NAME" HeaderStyle-Width="200px" />
-                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Số ngày tính lương %>" DataField="TOTAL_DAY_SAL" UniqueName="TOTAL_DAY_SAL"
+                            <%--<tlk:GridBoundColumn HeaderText="<%$ Translate: Số ngày tính lương %>" DataField="TOTAL_DAY_SAL" UniqueName="TOTAL_DAY_SAL"
                                 SortExpression="TOTAL_DAY_SAL" HeaderStyle-Width="200px" />
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Số ngày nghỉ không lương %>" DataField="TOTAL_DAY_NON_SAL" UniqueName="TOTAL_DAY_NON_SAL"
-                                SortExpression="TOTAL_DAY_NON_SAL" HeaderStyle-Width="200px" />
+                                SortExpression="TOTAL_DAY_NON_SAL" HeaderStyle-Width="200px" />--%>
                             <tlk:GridTemplateColumn HeaderText="D1" AllowFiltering="false" Visible="false" UniqueName="D1">
                                 <HeaderStyle Width="80px" />
                                 <ItemStyle HorizontalAlign="Center" />
@@ -487,21 +487,21 @@
         }
         // open khi Double click vào cell
         function OnRowDblClick(sender, eventArgs) {
-            if (document.getElementById("StatusScanColumn").value == "1") {
-                var m = 'Bạn chọn không đúng cột cần sửa';
-                var n = noty({ text: m, dismissQueue: true, type: 'warning' });
-                setTimeout(function () { $.noty.close(n.options.id); }, 5000);
-                return;
-            }
-            debugger;
-            var cboperiod = $find('<%=cboPeriod.ClientID %>');
-            var period_id = cboperiod.get_selectedItem().get_value();
-            var valueEmp = document.getElementById("employeeTemp").value;
-            var valueDay = document.getElementById("rdDay").value;
-            var valueManual = document.getElementById("ManualCode").value;
-            var oWindow = radopen('Dialog.aspx?mid=Attendance&fid=ctrlTime_TimeSheet_CCTEdit&group=Business&VIEW=TRUE&FormType=0&EMPLOYEE_ID=' + valueEmp + '&WORKINGDAY=' + valueDay + '&PERIOD_ID=' + period_id + '&ManualCode=' + valueManual + '&noscroll=1', "rwPopup");
-            oWindow.setSize(550, 350);
-            oWindow.center();
+//            if (document.getElementById("StatusScanColumn").value == "1") {
+//                var m = 'Bạn chọn không đúng cột cần sửa';
+//                var n = noty({ text: m, dismissQueue: true, type: 'warning' });
+//                setTimeout(function () { $.noty.close(n.options.id); }, 5000);
+//                return;
+//            }
+//            debugger;
+//            var cboperiod = $find('<%=cboPeriod.ClientID %>');
+//            var period_id = cboperiod.get_selectedItem().get_value();
+//            var valueEmp = document.getElementById("employeeTemp").value;
+//            var valueDay = document.getElementById("rdDay").value;
+//            var valueManual = document.getElementById("ManualCode").value;
+//            var oWindow = radopen('Dialog.aspx?mid=Attendance&fid=ctrlTime_TimeSheet_CCTEdit&group=Business&VIEW=TRUE&FormType=0&EMPLOYEE_ID=' + valueEmp + '&WORKINGDAY=' + valueDay + '&PERIOD_ID=' + period_id + '&ManualCode=' + valueManual + '&noscroll=1', "rwPopup");
+//            oWindow.setSize(550, 350);
+//            oWindow.center();
         }
 
         function OnClientButtonClicking(sender, args) {

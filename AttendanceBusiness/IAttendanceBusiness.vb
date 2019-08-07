@@ -73,6 +73,8 @@ Namespace AttendanceBusiness.ServiceContracts
         Function CheckValidateMACC(ByVal obj As SetUpCodeAttDTO) As Boolean
         <OperationContract()>
         Function CheckValidateAPPROVE_DATE(ByVal obj As SetUpCodeAttDTO) As Boolean
+        <OperationContract()>
+        Function IMPORT_TIMESHEET_MACHINE(ByVal ListobjImport As List(Of AT_TIME_TIMESHEET_MACHINETDTO)) As Boolean
 #Region "Get Data Combobox"
         <OperationContract()>
         Function PRI_PROCESS(ByVal employee_id_app As Decimal, ByVal employee_id As Decimal, ByVal period_id As Integer, ByVal status As Decimal, ByVal process_type As String, ByVal notes As String, ByVal id_reggroup As Integer, Optional ByVal log As UserLog = Nothing) As Int32

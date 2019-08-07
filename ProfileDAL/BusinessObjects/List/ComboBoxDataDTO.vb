@@ -300,4 +300,8 @@
     Public Property GET_TITLE_GROUP As Boolean
     Public Property LIST_TITLE_GROUP As List(Of OtherListDTO)
 
+    'dia diem ky hop dong hu_location
+    Public Property GET_LOCATION As Boolean
+    Public Property LIST_LOCATION As List(Of LocationDTO)
+
 End Class

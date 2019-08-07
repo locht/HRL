@@ -18,7 +18,7 @@ Imports System.Runtime.Serialization
 Imports System.Xml.Serialization
 
 
-<Assembly: EdmSchemaAttribute("4b7c4799-a1f5-4eff-8e50-18bdaf73b2ad")>
+<Assembly: EdmSchemaAttribute("11536e15-e5c5-445f-9053-a9de67eefb56")>
 #Region "EDM Relationship Metadata"
 <Assembly: EdmRelationshipAttribute("ProfileModel", "FK_HU_NAT_HU_PRO", "HU_NATION", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_NATION), "HU_PROVINCE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_PROVINCE), True)>
 <Assembly: EdmRelationshipAttribute("ProfileModel", "FK_HU_PRO_HU_DIS", "HU_PROVINCE", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_PROVINCE), "HU_DISTRICT", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_DISTRICT), True)>
@@ -18010,6 +18010,31 @@ Public Partial Class HU_CONTRACT
     End Sub
 
     Private Partial Sub OnORG_IDChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property ID_SIGN_CONTRACT() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _ID_SIGN_CONTRACT
+        End Get
+        Set
+            OnID_SIGN_CONTRACTChanging(value)
+            ReportPropertyChanging("ID_SIGN_CONTRACT")
+            _ID_SIGN_CONTRACT = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("ID_SIGN_CONTRACT")
+            OnID_SIGN_CONTRACTChanged()
+        End Set
+    End Property
+
+    Private _ID_SIGN_CONTRACT As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnID_SIGN_CONTRACTChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnID_SIGN_CONTRACTChanged()
     End Sub
 
     #End Region

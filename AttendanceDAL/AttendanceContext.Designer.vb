@@ -18,7 +18,7 @@ Imports System.Runtime.Serialization
 Imports System.Xml.Serialization
 
 
-<Assembly: EdmSchemaAttribute("c91ac38e-fa5c-43b7-8f17-2361e9833de7")>
+<Assembly: EdmSchemaAttribute("19fc3058-87e1-4647-bbcb-4efe4f544369")>
 #Region "EDM Relationship Metadata"
 <Assembly: EdmRelationshipAttribute("AttendanceModel", "FK_OOLT_OOL", "OT_OTHER_LIST_TYPE", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(OT_OTHER_LIST_TYPE), "OT_OTHER_LIST", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(OT_OTHER_LIST), True)>
 <Assembly: EdmRelationshipAttribute("AttendanceModel", "FK_OOLG_OOLT", "OT_OTHER_LIST_GROUP", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(OT_OTHER_LIST_GROUP), "OT_OTHER_LIST_TYPE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(OT_OTHER_LIST_TYPE), True)>
@@ -1300,6 +1300,20 @@ Public Partial Class AttendanceContext
 
     Private _AT_LEAVESHEET As ObjectSet(Of AT_LEAVESHEET)
 
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    Public ReadOnly Property AT_TIMESHEET_MACHINET_IMPORT() As ObjectSet(Of AT_TIMESHEET_MACHINET_IMPORT)
+        Get
+            If (_AT_TIMESHEET_MACHINET_IMPORT Is Nothing) Then
+                _AT_TIMESHEET_MACHINET_IMPORT = MyBase.CreateObjectSet(Of AT_TIMESHEET_MACHINET_IMPORT)("AT_TIMESHEET_MACHINET_IMPORT")
+            End If
+            Return _AT_TIMESHEET_MACHINET_IMPORT
+        End Get
+    End Property
+
+    Private _AT_TIMESHEET_MACHINET_IMPORT As ObjectSet(Of AT_TIMESHEET_MACHINET_IMPORT)
+
     #End Region
 
     #Region "AddTo Methods"
@@ -1911,6 +1925,13 @@ Public Partial Class AttendanceContext
     ''' </summary>
     Public Sub AddToAT_LEAVESHEET(ByVal aT_LEAVESHEET As AT_LEAVESHEET)
         MyBase.AddObject("AT_LEAVESHEET", aT_LEAVESHEET)
+    End Sub
+
+    ''' <summary>
+    ''' Deprecated Method for adding a new object to the AT_TIMESHEET_MACHINET_IMPORT EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+    ''' </summary>
+    Public Sub AddToAT_TIMESHEET_MACHINET_IMPORT(ByVal aT_TIMESHEET_MACHINET_IMPORT As AT_TIMESHEET_MACHINET_IMPORT)
+        MyBase.AddObject("AT_TIMESHEET_MACHINET_IMPORT", aT_TIMESHEET_MACHINET_IMPORT)
     End Sub
 
     #End Region
@@ -34194,6 +34215,186 @@ Public Partial Class AT_TIMESHEET
     End Sub
 
     Private Partial Sub OnTOTAL_390Changed()
+    End Sub
+
+    #End Region
+
+End Class
+
+''' <summary>
+''' No Metadata Documentation available.
+''' </summary>
+<EdmEntityTypeAttribute(NamespaceName:="AttendanceModel", Name:="AT_TIMESHEET_MACHINET_IMPORT")>
+<Serializable()>
+<DataContractAttribute(IsReference:=True)>
+Public Partial Class AT_TIMESHEET_MACHINET_IMPORT
+    Inherits EntityObject
+    #Region "Factory Method"
+
+    ''' <summary>
+    ''' Create a new AT_TIMESHEET_MACHINET_IMPORT object.
+    ''' </summary>
+    ''' <param name="id">Initial value of the ID property.</param>
+    Public Shared Function CreateAT_TIMESHEET_MACHINET_IMPORT(id As Global.System.Decimal) As AT_TIMESHEET_MACHINET_IMPORT
+        Dim aT_TIMESHEET_MACHINET_IMPORT as AT_TIMESHEET_MACHINET_IMPORT = New AT_TIMESHEET_MACHINET_IMPORT
+        aT_TIMESHEET_MACHINET_IMPORT.ID = id
+        Return aT_TIMESHEET_MACHINET_IMPORT
+    End Function
+
+    #End Region
+
+    #Region "Primitive Properties"
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=true, IsNullable:=false)>
+    <DataMemberAttribute()>
+    Public Property ID() As Global.System.Decimal
+        Get
+            Return _ID
+        End Get
+        Set
+            If (_ID <> Value) Then
+                OnIDChanging(value)
+                ReportPropertyChanging("ID")
+                _ID = StructuralObject.SetValidValue(value)
+                ReportPropertyChanged("ID")
+                OnIDChanged()
+            End If
+        End Set
+    End Property
+
+    Private _ID As Global.System.Decimal
+    Private Partial Sub OnIDChanging(value As Global.System.Decimal)
+    End Sub
+
+    Private Partial Sub OnIDChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property EMPLOYEE_ID() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _EMPLOYEE_ID
+        End Get
+        Set
+            OnEMPLOYEE_IDChanging(value)
+            ReportPropertyChanging("EMPLOYEE_ID")
+            _EMPLOYEE_ID = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("EMPLOYEE_ID")
+            OnEMPLOYEE_IDChanged()
+        End Set
+    End Property
+
+    Private _EMPLOYEE_ID As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnEMPLOYEE_IDChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnEMPLOYEE_IDChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property NOTE() As Global.System.String
+        Get
+            Return _NOTE
+        End Get
+        Set
+            OnNOTEChanging(value)
+            ReportPropertyChanging("NOTE")
+            _NOTE = StructuralObject.SetValidValue(value, true)
+            ReportPropertyChanged("NOTE")
+            OnNOTEChanged()
+        End Set
+    End Property
+
+    Private _NOTE As Global.System.String
+    Private Partial Sub OnNOTEChanging(value As Global.System.String)
+    End Sub
+
+    Private Partial Sub OnNOTEChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property TIMEIN_REALITY() As Nullable(Of Global.System.DateTime)
+        Get
+            Return _TIMEIN_REALITY
+        End Get
+        Set
+            OnTIMEIN_REALITYChanging(value)
+            ReportPropertyChanging("TIMEIN_REALITY")
+            _TIMEIN_REALITY = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("TIMEIN_REALITY")
+            OnTIMEIN_REALITYChanged()
+        End Set
+    End Property
+
+    Private _TIMEIN_REALITY As Nullable(Of Global.System.DateTime)
+    Private Partial Sub OnTIMEIN_REALITYChanging(value As Nullable(Of Global.System.DateTime))
+    End Sub
+
+    Private Partial Sub OnTIMEIN_REALITYChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property TIMEOUT_REALITY() As Nullable(Of Global.System.DateTime)
+        Get
+            Return _TIMEOUT_REALITY
+        End Get
+        Set
+            OnTIMEOUT_REALITYChanging(value)
+            ReportPropertyChanging("TIMEOUT_REALITY")
+            _TIMEOUT_REALITY = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("TIMEOUT_REALITY")
+            OnTIMEOUT_REALITYChanged()
+        End Set
+    End Property
+
+    Private _TIMEOUT_REALITY As Nullable(Of Global.System.DateTime)
+    Private Partial Sub OnTIMEOUT_REALITYChanging(value As Nullable(Of Global.System.DateTime))
+    End Sub
+
+    Private Partial Sub OnTIMEOUT_REALITYChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property WORKING_DAY() As Nullable(Of Global.System.DateTime)
+        Get
+            Return _WORKING_DAY
+        End Get
+        Set
+            OnWORKING_DAYChanging(value)
+            ReportPropertyChanging("WORKING_DAY")
+            _WORKING_DAY = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("WORKING_DAY")
+            OnWORKING_DAYChanged()
+        End Set
+    End Property
+
+    Private _WORKING_DAY As Nullable(Of Global.System.DateTime)
+    Private Partial Sub OnWORKING_DAYChanging(value As Nullable(Of Global.System.DateTime))
+    End Sub
+
+    Private Partial Sub OnWORKING_DAYChanged()
     End Sub
 
     #End Region
