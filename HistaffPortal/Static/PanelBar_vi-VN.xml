@@ -3,6 +3,7 @@
   <Item Text="Thông tin cá nhân" Expanded="True" Value="Profile">
     <Item Value="Profile;ctrlPortalEmpProfile;NoPer;NoEdit" Text="Hồ sơ nhân sự" ImageUrl="~/Static/Images/RibbonBar/user.png" />
     <Item Value="Profile;ctrlPortalFamily_Edit;NoPer;NoEdit" Text="Quan hệ nhân thân" ImageUrl="~/Static/Images/RibbonBar/family.png" />
+	<Item Value="Profile;ctrlInfoCertificate;NoPer;NoEdit" Text="Quản lý chứng chỉ" ImageUrl="~/Static/Images/RibbonBar/family.png" />
     <Item Value="Profile;ctrlPortalWorking;NoPer;NoEdit" Text="Quá trình công tác hiện tại" ImageUrl="~/Static/Images/RibbonBar/working.png" />
     <Item Value="Profile;ctrlPortalWorkingBefore;NoPer;NoEdit" Text="Quá trình công tác trước đây" ImageUrl="~/Static/Images/RibbonBar/working_before.png" />
     <Item Value="Profile;ctrlPortalTraining;NoPer;NoEdit" Text="Quá trình đào tạo trong công ty" ImageUrl="~/Static/Images/RibbonBar/working_before.png" />
@@ -12,12 +13,13 @@
     <Item Value="Profile;ctrlPortalCommend;NoPer;NoEdit" Text="Quá trình khen thưởng" ImageUrl="~/Static/Images/RibbonBar/commend.png" />
     <Item Value="Profile;ctrlPortalDiscipline;NoPer;NoEdit" Text="Quá trình kỷ luật" ImageUrl="~/Static/Images/RibbonBar/discipline.png" />
     <Item Value="Profile;ctrlPortalConcurrently;NoPer;NoEdit" Text="Quá trình kiêm nhiệm" ImageUrl="~/Static/Images/RibbonBar/discipline.png" />
-    <Item Value="Profile;ctrlPortalEmpDtlTrainingEvaluate;NoPer;NoEdit" Text="Quá trình đánh giá" ImageUrl="~/Static/Images/RibbonBar/discipline.png" />
-    <Item Value="Profile;ctrlInfoCertificate;NoPer;NoEdit" Text="Quản lý chứng chỉ" ImageUrl="~/Static/Images/RibbonBar/family.png" />
+	<Item Value="Profile;ctrlPortalEmpDtlTrainingEvaluate;NoPer;NoEdit" Text="Quá trình đánh giá" ImageUrl="~/Static/Images/RibbonBar/discipline.png" />
+	
   </Item>
   <Item Text="Leave &amp; OT" Expanded="True" Value="Attendance">
     <Item Value="Attendance;ctrlLeaveRegistration;NoPer;NoEdit" Text="Đăng ký nghỉ" ImageUrl="~/Static/Images/RibbonBar/leave.png"/>
     <Item Value="Attendance;ctrlOTRegistration;NoPer;NoEdit" Text="Đăng ký làm thêm" ImageUrl="~/Static/Images/RibbonBar/ot.png"/>
+    <Item Value="Attendance;ctrlOTRegistrationByHR;NoPer;NoEdit" Text="Xác thực làm thêm (HR)" ImageUrl="~/Static/Images/RibbonBar/approve.png" />
     <Item Value="Attendance;ctrlLeaveRegistrationByManager;NoPer;NoEdit" Text="Phê duyệt nghỉ" ImageUrl="~/Static/Images/RibbonBar/approve.png" />
     <Item Value="Attendance;ctrlOTRegistrationByLM;NoPer;NoEdit" Text="Phê duyệt làm thêm" ImageUrl="~/Static/Images/RibbonBar/approve.png" />
   </Item>
