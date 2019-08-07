@@ -8,6 +8,7 @@ Imports Telerik.Web.UI
 Imports HistaffFrameworkPublic.HistaffFrameworkEnum
 Imports System.IO
 Imports Telerik.Web.UI.Calendar
+Imports Profile.ProfileBusiness
 
 Public Class ctrlLeaveRegistrationNewEdit
     Inherits CommonView
@@ -115,7 +116,7 @@ Public Class ctrlLeaveRegistrationNewEdit
     Protected Sub InitControl()
         Try
             Me.MainToolBar = tbarMainToolBar
-            BuildToolbar(Me.MainToolBar, ToolbarItem.Save, ToolbarItem.Cancel)
+            BuildToolbar(Me.MainToolBar, ToolbarItem.Save, ToolbarItem.Submit, ToolbarItem.Cancel)
             CType(Me.MainToolBar.Items(0), RadToolBarButton).CausesValidation = True
         Catch ex As Exception
             DisplayException(Me.ViewName, Me.ID, ex)
@@ -126,12 +127,13 @@ Public Class ctrlLeaveRegistrationNewEdit
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
         Dim dsLeaveSheet As New DataSet()
         Try
-            If Not IsPostBack Then
-                rtEmployee_id.Text = LogHelper.CurrentUser.EMPLOYEE_ID
-                Using rep As New AttendanceRepository
-                    EmployeeDto = rep.GetEmployeeInfor(EmployeeID, Nothing)
-                End Using
-            End If
+            'If IsPostBack Then
+            '    rtEmployee_id.Text = LogHelper.CurrentUser.EMPLOYEE_ID
+            '    Using rep As New AttendanceRepository
+            '        EmployeeDto = rep.GetEmployeeInfor(EmployeeID, Nothing)
+            '    End Using
+            'End If
+            rtEmployee_id.Text = LogHelper.CurrentUser.EMPLOYEE_ID
             Dim startTime As DateTime = DateTime.UtcNow
             Message = Request.Params("VIEW")
             Dim Struct As Decimal = 1
@@ -150,11 +152,12 @@ Public Class ctrlLeaveRegistrationNewEdit
                         rPH = dsLeaveSheet.Tables(0).Rows(0)
                     End If
                 End If
-                If dsLeaveSheet.Tables(1) IsNot Nothing Then
+                If dsLeaveSheet.Tables(1) IsNot Nothing AndAlso dtDetail Is Nothing Then
                     dtDetail = dsLeaveSheet.Tables(1).Clone()
                     dtDetail = dsLeaveSheet.Tables(1)
                 End If
             End If
+            FillData(Decimal.Parse(rtEmployee_id.Text.Trim))
             Select Case Message
                 Case "TRUE"
                     CreateDataBinDing(1)
@@ -214,54 +217,48 @@ Public Class ctrlLeaveRegistrationNewEdit
             Dim startTime As DateTime = DateTime.UtcNow
             Select Case CType(e.Item, RadToolBarButton).CommandName
                 Case CommonMessage.TOOLBARITEM_SAVE
-                    If Page.IsValid Then
-                        'check so ngay dang ky nghi
-                        If Not IsNumeric(rnDAY_NUM.Value) OrElse rnDAY_NUM.Value < 1 Then
-                            ShowMessage(Translate("Số ngày đăng ký nghỉ phải lơn hơn 0"), NotifyType.Warning)
-                            Exit Sub
-                        End If
-                        CreateDataBinDing(0)
-                        objValidate.LEAVE_FROM = rdLEAVE_FROM.SelectedDate
-                        objValidate.LEAVE_TO = rdLEAVE_TO.SelectedDate
-                        objValidate.ID = Utilities.ObjToDecima(rPH("ID"))
-                        objValidate.EMPLOYEE_ID = CDec(rtEmployee_id.Text)
-                        If (New AttendanceBusinessClient).ValidateLeaveSheetDetail(objValidate) = False Then
-                            ShowMessage(Translate("Ngày đăng ký nghỉ đã bị trùng"), NotifyType.Warning)
-                            Exit Sub
-                        End If
-
-                        If SaveDB() Then
-                            Response.Redirect("/Default.aspx?mid=Attendance&fid=ctrlLeaveRegistration&group=Business")
-                        Else
-                            ShowMessage(Translate("Xảy ra lỗi"), NotifyType.Error)
-                        End If
-                    Else
-                        ExcuteScript("Resize", "ResizeSplitter(splitterID, pane1ID, pane2ID, validateID, oldSize, 'rgWorkschedule')")
+                    'If valSum.Page.IsValid Then
+                    If Decimal.Parse(rPH(23)) = 1 Then
+                        ShowMessage(Translate("Đơn đã Phê duyệt. Không thể chỉnh sửa !"), NotifyType.Warning)
+                        Exit Sub
                     End If
+                    SetData_Controls(objValidate, 3)
+                    'Else
+                    'ExcuteScript("Resize", "ResizeSplitter(splitterID, pane1ID, pane2ID, validateID, oldSize, 'rgWorkschedule')")
+                    'End If
+                Case CommonMessage.TOOLBARITEM_SUBMIT
+                    'If valSum.Page.IsValid Then
+                    If Decimal.Parse(rPH(23)) = 0 Or Decimal.Parse(rPH(23)) = 1 Then
+                        Select Case Decimal.Parse(rPH(23))
+                            Case 0
+                                ShowMessage(Translate("Đơn đang Chờ phê duyệt. Vui lòng thử lại !"), NotifyType.Warning)
+                            Case 1
+                                ShowMessage(Translate("Đơn đã Phê duyệt. Vui lòng thử lại !"), NotifyType.Warning)
+                        End Select
+                        Exit Sub
+                    End If
+                    ctrlMessageBox.MessageText = Translate("Bạn có muốn gửi phê duyệt?")
+                    ctrlMessageBox.ActionName = CommonMessage.TOOLBARITEM_SUBMIT
+                    ctrlMessageBox.DataBind()
+                    ctrlMessageBox.Show()
+                    'Else
+                    '    ExcuteScript("Resize", "ResizeSplitter(splitterID, pane1ID, pane2ID, validateID, oldSize, 'rgWorkschedule')")
+                    'End If
                 Case CommonMessage.TOOLBARITEM_CANCEL
                     ''POPUPTOLINK_CANCEL
-                    Response.Redirect("/Default.aspx?mid=Attendance&fid=ctrlLeaveRegistration&group=Business")
+                    Response.Redirect("/Default.aspx?mid=Attendance&fid=ctrlLeaveRegistration")
             End Select
         Catch ex As Exception
             DisplayException(Me.ViewName, Me.ID, ex)
         End Try
     End Sub
-
-
-    Private Sub rdLEAVE_FROM_SelectedDateChanged(sender As Object, e As SelectedDateChangedEventArgs) Handles rdLEAVE_FROM.SelectedDateChanged, rdLEAVE_TO.SelectedDateChanged
-        If (Not IsDate(rdLEAVE_FROM.SelectedDate) OrElse Not IsDate(rdLEAVE_TO.SelectedDate) OrElse dtDetail Is Nothing OrElse Not IsNumeric(rtEmployee_id.Text)) Then Exit Sub
-        Try
-            GetLeaveSheet_Detail()
-            Cal_DayLeaveSheet()
-        Catch ex As Exception
-            Throw ex
-        Finally
-        End Try
-    End Sub
-
+    
     Private Sub ctrlMessageBox_ButtonCommand(ByVal sender As Object, ByVal e As MessageBoxEventArgs) Handles ctrlMessageBox.ButtonCommand
+        Dim objValidate As New AT_LEAVESHEETDTO
         Try
-
+            If e.ActionName = CommonMessage.TOOLBARITEM_SUBMIT And e.ButtonID = MessageBoxButtonType.ButtonYes Then
+                SetData_Controls(objValidate, 0)
+            End If
         Catch ex As Exception
             DisplayException(Me.ViewName, Me.ID, ex)
         End Try
@@ -305,6 +302,7 @@ Public Class ctrlLeaveRegistrationNewEdit
 
         End Try
     End Sub
+
     Private Sub rgData_ItemDataBound(sender As Object, e As GridItemEventArgs) Handles rgData.ItemDataBound
         Dim cbo As New RadComboBox
         Dim arr As New ArrayList()
@@ -350,6 +348,16 @@ Public Class ctrlLeaveRegistrationNewEdit
             DisplayException(Me.ViewName, Me.ID, ex)
         End Try
     End Sub
+
+    Private Sub rdLEAVE_FROM_SelectedDateChanged(sender As Object, e As Telerik.Web.UI.Calendar.SelectedDateChangedEventArgs) Handles rdLEAVE_FROM.SelectedDateChanged, rdLEAVE_TO.SelectedDateChanged
+        Try
+            If (Not IsDate(rdLEAVE_FROM.SelectedDate) OrElse Not IsDate(rdLEAVE_TO.SelectedDate) OrElse dtDetail Is Nothing OrElse Not IsNumeric(rtEmployee_id.Text)) Then Exit Sub
+            GetLeaveSheet_Detail()
+            Cal_DayLeaveSheet()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
 #End Region
 
 #Region "Custom"
@@ -366,6 +374,7 @@ Public Class ctrlLeaveRegistrationNewEdit
         End Try
         Return New DataTable()
     End Function
+
     Private Sub Cal_DayLeaveSheet()
         Try
             Dim sumDay As Decimal = dtDetail.Compute("SUM(DAY_NUM)", "1=1")
@@ -377,6 +386,7 @@ Public Class ctrlLeaveRegistrationNewEdit
             Throw ex
         End Try
     End Sub
+
     Public Sub CreateDataBinDing(ByVal Mode As Decimal)
         '1 set data in list control
         '0 get data to list control
@@ -422,6 +432,7 @@ Public Class ctrlLeaveRegistrationNewEdit
         End Select
 
     End Sub
+
     Private Sub SetDataToGrid(ByVal EditItem As GridEditableItem)
         Dim cbo As New RadComboBox
         Dim arr As New ArrayList()
@@ -478,6 +489,7 @@ Public Class ctrlLeaveRegistrationNewEdit
             PH.Dispose()
         End Try
     End Function
+
     Private Sub GetDataCombo()
         Dim rep As New AttendanceRepository
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
@@ -493,6 +505,7 @@ Public Class ctrlLeaveRegistrationNewEdit
             DisplayException(Me.ViewName, Me.ID, ex)
         End Try
     End Sub
+
     Private Sub GetLeaveSheet_Detail()
         Dim dtSource As New DataTable()
         Try
@@ -513,5 +526,69 @@ Public Class ctrlLeaveRegistrationNewEdit
             dtSource.Dispose()
         End Try
     End Sub
+
+    ''' <summary>
+    ''' Fill data len control theo ID
+    ''' </summary>
+    ''' <param name="empid">Ma nhan vien</param>
+    ''' <remarks></remarks>
+    Private Sub FillData(ByVal empid As Decimal)
+        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+        Dim dtData As New DataTable()
+        Dim dateValue = Date.Now
+        Try
+            Dim startTime As DateTime = DateTime.UtcNow
+            Using rep As New Profile.ProfileBusinessRepository
+                Dim obj = rep.GetEmployeCurrentByID(New WorkingDTO With {.EMPLOYEE_ID = empid})
+                If IsNumeric(obj.ID) Then
+                    rtEmployee_id.Text = obj.EMPLOYEE_ID.ToString()
+                End If
+                rtEmployee_Name.Text = obj.EMPLOYEE_NAME
+                rtEmployee_Code.Text = obj.EMPLOYEE_CODE
+                rtOrg_Name.Text = obj.ORG_NAME
+                If IsNumeric(obj.ORG_ID) Then
+                    rtOrg_id.Text = obj.ORG_ID.ToString()
+                End If
+                rtTitle_Name.Text = obj.TITLE_NAME
+                If IsNumeric(obj.TITLE_ID) Then
+                    rtTitle_Id.Text = obj.TITLE_ID.ToString()
+                End If
+
+            End Using
+
+        Catch ex As Exception
+        End Try
+    End Sub
+
+    Private Sub SetData_Controls(ByVal atLeave As AT_LEAVESHEETDTO, ByVal id_state As Decimal)
+        Try
+
+            'check so ngay dang ky nghi
+            If Not IsNumeric(rnDAY_NUM.Value) OrElse rnDAY_NUM.Value < 1 Then
+                ShowMessage(Translate("Số ngày đăng ký nghỉ phải lơn hơn 0"), NotifyType.Warning)
+                Exit Sub
+            End If
+            rnSTATUS.Text = id_state.ToString
+            CreateDataBinDing(0)
+            atLeave.LEAVE_FROM = rdLEAVE_FROM.SelectedDate
+            atLeave.LEAVE_TO = rdLEAVE_TO.SelectedDate
+            atLeave.ID = Utilities.ObjToDecima(rPH("ID"))
+            atLeave.EMPLOYEE_ID = CDec(rtEmployee_id.Text)
+            If (New AttendanceBusinessClient).ValidateLeaveSheetDetail(atLeave) = False Then
+                ShowMessage(Translate("Ngày đăng ký nghỉ đã bị trùng"), NotifyType.Warning)
+                Exit Sub
+            End If
+
+            If SaveDB() Then
+                Response.Redirect("/Default.aspx?mid=Attendance&fid=ctrlLeaveRegistration")
+            Else
+                ShowMessage(Translate("Xảy ra lỗi"), NotifyType.Error)
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
 #End Region
+
+
 End Class

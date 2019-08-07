@@ -15921,6 +15921,9 @@ Namespace AttendanceBusiness
         Private ISTEMINALField As System.Nullable(Of Boolean)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private IS_APPField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private IS_WORKING_DAYField As Boolean
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -16196,6 +16199,19 @@ Namespace AttendanceBusiness
                 If (Me.ISTEMINALField.Equals(value) <> true) Then
                     Me.ISTEMINALField = value
                     Me.RaisePropertyChanged("ISTEMINAL")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property IS_APP() As System.Nullable(Of Decimal)
+            Get
+                Return Me.IS_APPField
+            End Get
+            Set
+                If (Me.IS_APPField.Equals(value) <> true) Then
+                    Me.IS_APPField = value
+                    Me.RaisePropertyChanged("IS_APP")
                 End If
             End Set
         End Property

@@ -40,6 +40,7 @@
     Public Property MODIFIED_LOG As String
     Public Property NOTE_APP As String
 
+    Public Property IS_APP As Decimal?
    
 End Class
 

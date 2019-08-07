@@ -577,6 +577,7 @@ Public Class ctrlRegisterCO
             If chkChecknghiViec.Checked Then
                 obj.ISTEMINAL = True
             End If
+            obj.IS_APP = -1
             If Not isFull Then
                 If Sorts IsNot Nothing Then
                     Me.LEAVESHEET = rep.GetLeaveSheet(obj, _param, MaximumRows, rgRegisterLeave.CurrentPageIndex, rgRegisterLeave.PageSize, "CREATED_DATE desc")

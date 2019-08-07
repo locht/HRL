@@ -271,9 +271,9 @@ Partial Public Class AttendanceRepository
             Context.SaveChanges()
             Return True
         Catch ex As Exception
-            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iTime")
-            ' Utility.WriteExceptionLog(ex, Me.ToString() & ".DeleteLeaveOT")
-            Throw ex
+        WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iTime")
+        ' Utility.WriteExceptionLog(ex, Me.ToString() & ".DeleteLeaveOT")
+        Throw ex
         End Try
     End Function
 End Class
