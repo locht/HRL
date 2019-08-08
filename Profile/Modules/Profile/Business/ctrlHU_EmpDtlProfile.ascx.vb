@@ -236,11 +236,11 @@ Public Class ctrlHU_EmpDtlProfile
                             txtAppDung.Text = empEdu.COMPUTER_CERTIFICATE
                             rdDayPitcode.SelectedDate = empCV.PIT_CODE_DATE
                             txtPlacePitcode.Text = empCV.PIT_CODE_PLACE
-                            If empEdu.COMPUTER_RANK Then
+                            If empEdu.COMPUTER_RANK IsNot Nothing Then
                                 cboBasic.SelectedValue = empEdu.COMPUTER_RANK
                                 cboBasic.Text = empEdu.COMPUTER_RANK_NAME
                             End If
-                            If empEdu.COMPUTER_MARK Then
+                            If empEdu.COMPUTER_MARK IsNot Nothing Then
                                 cboCertificate.SelectedValue = empEdu.COMPUTER_MARK
                                 cboCertificate.Text = empEdu.COMPUTER_MARK_NAME
                             End If
@@ -857,7 +857,7 @@ Public Class ctrlHU_EmpDtlProfile
                                        txtHomePhone, txtHuyetAp, txtID_NO, chkIs_pay_bank,
                                        cboIDPlace, txtLangMark, txtLangMark2,
                                        txtLastNameVN, txtMatPhai, txtMatTrai,
-                                       txtMobilePhone, txtNavAddress, txtNhomMau,
+                                       txtMobilePhone, txtNavAddress, txtNhomMau, cboCertificate, cboBasic,
                                         txtPassNo, txtPassPlace, txtPerAddress, txtPerEmail, txtPhoiNguc, txtCareer,
                                        txtPitCode, txtRangHamMat, txtTaiMuiHong, txtTim,
                                        txtVienGanB, txtVisa, txtVisaPlace,
@@ -892,7 +892,7 @@ Public Class ctrlHU_EmpDtlProfile
 
                     EnableControlAll(False, txtOrgName2, btnFindOrg,
                                     cboTitle, txtTitleGroup, cboStaffRank, txtDirectManager, btnFindDirect,
-                                    txtManager, cboObject, cboObjectLabor, txtTimeID, cbObjectBook, cboBasic, cboCertificate, txtAppDung, txtPlaceKS, txtVillage, txtPlacePitcode, rdDayPitcode, txtPerson_Inheritance, rdEffect_Bank)
+                                    txtManager, cboObject, cboObjectLabor, txtTimeID, cbObjectBook, txtAppDung, txtPlaceKS, txtVillage, txtPlacePitcode, rdDayPitcode, txtPerson_Inheritance, rdEffect_Bank)
 
                     EnableControlAll(False, cboWorkStatus, txtEmpCODE, cboEmpStatus, rtBookNo)
                     EnableControlAll(True, rtCHUC_VU_DANG, rdNGAY_VAO_DANG_DB, rdNGAY_VAO_DANG)
@@ -911,7 +911,7 @@ Public Class ctrlHU_EmpDtlProfile
                                        txtMobilePhone, txtNavAddress, txtNhomMau,
                                         txtPassNo, txtPassPlace, txtPerAddress, txtPerEmail, txtPhoiNguc, txtCareer,
                                        txtPitCode, txtRangHamMat, txtTaiMuiHong, txtTim,
-                                       txtVienGanB, txtVisa, txtVisaPlace,
+                                       txtVienGanB, txtVisa, txtVisaPlace, cboCertificate, cboBasic,
                                        txtWorkEmail, txtWorkPermit, txtWorkPermitPlace,
                                       txtContactPerson, txtContactPersonPhone, txtContactMobilePhone, txtChucVuDoan,
                                       rdBirthDate, rdContractExpireDate, rdContractEffectDate, rdIDDate,
@@ -949,8 +949,8 @@ Public Class ctrlHU_EmpDtlProfile
                                        txtHomePhone, txtHuyetAp, txtID_NO, chkIs_pay_bank,
                                        cboIDPlace, txtLangMark, txtLangMark2, txtTimeID,
                                        txtLastNameVN, txtMatPhai, txtMatTrai,
-                                       txtMobilePhone, txtNavAddress, txtNhomMau,
-                                        txtPassNo, txtPassPlace, cboObject, cboObjectLabor, cbObjectBook, txtTimeID, cboBasic, cboCertificate, txtAppDung, txtPlaceKS, txtVillage, rdDayPitcode, txtPlacePitcode, txtPerson_Inheritance, rdEffect_Bank,
+                                       txtMobilePhone, txtNavAddress, txtNhomMau, cboCertificate, cboBasic,
+                                        txtPassNo, txtPassPlace, cboObject, cboObjectLabor, cbObjectBook, txtTimeID, cboCertificate, cboBasic, txtAppDung, txtPlaceKS, txtVillage, rdDayPitcode, txtPlacePitcode, txtPerson_Inheritance, rdEffect_Bank,
                                        txtPerAddress, txtPerEmail, txtPhoiNguc, txtCareer,
                                        txtPitCode, txtRangHamMat, txtTaiMuiHong, txtTim,
                                        txtVienGanB, txtVisa, txtVisaPlace,
@@ -1755,7 +1755,7 @@ Public Class ctrlHU_EmpDtlProfile
                           rdVisaDate, rdVisaExpireDate, rdWorkPermitDate, rdWorPermitExpireDate,
                           txtCanNang, txtChieuCao,
                           cboAcademy, cboGraduateSchool, cboBank, cboBankBranch, cboFamilyStatus,
-                          cboGender, cboLangLevel, cboLangLevel2, cboInsRegion, rtWorkplace,
+                          cboGender, cboLangLevel, cboLangLevel2, cboInsRegion, rtWorkplace, cboCertificate, cboBasic,
                           cboLanguage, cboLanguage2, cboLearningLevel, txtLoaiSucKhoe, cboMajor, cboNationlity, cboNative, cboNav_Province, cboPer_Province,
                           cboReligion, cboStaffRank, cboTitle, cboWorkStatus, cboEmpStatus,
                           cboPer_District, cboPer_Ward, cboNav_District, cboNav_Ward,
@@ -2109,10 +2109,10 @@ Public Class ctrlHU_EmpDtlProfile
             EmpEdu.COMPUTER_CERTIFICATE = txtAppDung.Text
 
             If cboCertificate.SelectedValue <> "" Then
-                EmpEdu.COMPUTER_RANK = cboCertificate.SelectedValue
+                EmpEdu.COMPUTER_MARK = cboCertificate.SelectedValue
             End If
             If cboBasic.SelectedValue <> "" Then
-                EmpEdu.COMPUTER_MARK = cboBasic.SelectedValue
+                EmpEdu.COMPUTER_RANK = cboBasic.SelectedValue
             End If
 
             If txtNamTN.Text <> "" Then
