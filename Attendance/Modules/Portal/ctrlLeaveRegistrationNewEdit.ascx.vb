@@ -217,33 +217,47 @@ Public Class ctrlLeaveRegistrationNewEdit
             Dim startTime As DateTime = DateTime.UtcNow
             Select Case CType(e.Item, RadToolBarButton).CommandName
                 Case CommonMessage.TOOLBARITEM_SAVE
-                    'If valSum.Page.IsValid Then
-                    If Decimal.Parse(rPH(23)) = 1 Then
-                        ShowMessage(Translate("Đơn đã Phê duyệt. Không thể chỉnh sửa !"), NotifyType.Warning)
-                        Exit Sub
+                    If Page.IsValid Then
+                        'check so ngay dang ky nghi
+                        If Not IsNumeric(rnDAY_NUM.Value) OrElse rnDAY_NUM.Value < 1 Then
+                            ShowMessage(Translate("Số ngày đăng ký nghỉ phải lơn hơn 0"), NotifyType.Warning)
+                            Exit Sub
+                        End If
+                        CreateDataBinDing(0)
+                        objValidate.LEAVE_FROM = rdLEAVE_FROM.SelectedDate
+                        objValidate.LEAVE_TO = rdLEAVE_TO.SelectedDate
+                        objValidate.ID = Utilities.ObjToDecima(rPH("ID"))
+                        objValidate.EMPLOYEE_ID = CDec(rtEmployee_id.Text)
+                        If (New AttendanceBusinessClient).ValidateLeaveSheetDetail(objValidate) = False Then
+                            ShowMessage(Translate("Ngày đăng ký nghỉ đã bị trùng"), NotifyType.Warning)
+                            Exit Sub
+                        End If
+                        'If valSum.Page.IsValid Then
+                        If Utilities.ObjToString(rPH("S_CODE")) = "A" Then 'TRANG THAI approve
+                            ShowMessage(Translate("Đơn đã Phê duyệt. Không thể chỉnh sửa !"), NotifyType.Warning)
+                            Exit Sub
+                        End If
+                        If SaveDB() Then
+                            Response.Redirect("/Default.aspx?mid=Attendance&fid=ctrlLeaveRegistration")
+                        Else
+                            ShowMessage(Translate("Xảy ra lỗi"), NotifyType.Error)
+                        End If
+                    Else
+                        ExcuteScript("Resize", "ResizeSplitter(splitterID, pane1ID, pane2ID, validateID, oldSize, 'rgWorkschedule')")
                     End If
-                    SetData_Controls(objValidate, 3)
-                    'Else
-                    'ExcuteScript("Resize", "ResizeSplitter(splitterID, pane1ID, pane2ID, validateID, oldSize, 'rgWorkschedule')")
-                    'End If
                 Case CommonMessage.TOOLBARITEM_SUBMIT
-                    'If valSum.Page.IsValid Then
-                    If Decimal.Parse(rPH(23)) = 0 Or Decimal.Parse(rPH(23)) = 1 Then
-                        Select Case Decimal.Parse(rPH(23))
-                            Case 0
-                                ShowMessage(Translate("Đơn đang Chờ phê duyệt. Vui lòng thử lại !"), NotifyType.Warning)
-                            Case 1
-                                ShowMessage(Translate("Đơn đã Phê duyệt. Vui lòng thử lại !"), NotifyType.Warning)
-                        End Select
-                        Exit Sub
-                    End If
+                    Select Case Utilities.ObjToString(rPH("S_CODE"))
+                        Case "W"
+                            ShowMessage(Translate("Đơn đang Chờ phê duyệt. Vui lòng thử lại !"), NotifyType.Warning)
+                            Exit Sub
+                        Case "A"
+                            ShowMessage(Translate("Đơn đã Phê duyệt. Vui lòng thử lại !"), NotifyType.Warning)
+                            Exit Sub
+                    End Select
                     ctrlMessageBox.MessageText = Translate("Bạn có muốn gửi phê duyệt?")
                     ctrlMessageBox.ActionName = CommonMessage.TOOLBARITEM_SUBMIT
                     ctrlMessageBox.DataBind()
                     ctrlMessageBox.Show()
-                    'Else
-                    '    ExcuteScript("Resize", "ResizeSplitter(splitterID, pane1ID, pane2ID, validateID, oldSize, 'rgWorkschedule')")
-                    'End If
                 Case CommonMessage.TOOLBARITEM_CANCEL
                     ''POPUPTOLINK_CANCEL
                     Response.Redirect("/Default.aspx?mid=Attendance&fid=ctrlLeaveRegistration")

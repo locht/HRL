@@ -42,7 +42,7 @@
                         <Selecting AllowRowSelect="true" />
                         <ClientEvents OnRowDblClick="gridRowDblClick" />
                     </ClientSettings>
-                    <MasterTableView DataKeyNames="ID, EMPLOYEE_ID, EMPLOYEE_CODE, VN_FULLNAME, ORG_NAME, JOBTITLE, LEAVE_FROM, LEAVE_TO, MANUAL_NAME,  NOTE, STATUS, STATUS_NAME"
+                    <MasterTableView DataKeyNames="ID, EMPLOYEE_ID, EMPLOYEE_CODE, VN_FULLNAME, ORG_NAME, LEAVE_FROM, LEAVE_TO, MANUAL_NAME,  NOTE, STATUS, STATUS_NAME"
                         ClientDataKeyNames="ID, EMPLOYEE_ID, EMPLOYEE_CODE, VN_FULLNAME,LEAVE_FROM, LEAVE_TO, MANUAL_NAME, NOTE, STATUS, STATUS_NAME">
                         <Columns>
                             <tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderStyle-HorizontalAlign="Center"
@@ -66,20 +66,11 @@
                                 ItemStyle-Width="100px">
                                 <HeaderStyle Width="100px" />
                             </tlk:GridBoundColumn>
-                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Chức danh %>" DataField="JOBTITLE"
-                                UniqueName="JOBTITLE" SortExpression="JOBTITLE" ItemStyle-HorizontalAlign="Center"
-                                ItemStyle-Width="100px">
-                                <HeaderStyle Width="100px" />
-                            </tlk:GridBoundColumn>
+                           
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Loại nghỉ %>" DataField="MANUAL_NAME"
                                 UniqueName="MANUAL_NAME" SortExpression="MANUAL_NAME" ItemStyle-Width="100px">
                                 <HeaderStyle Width="100px" />
                             </tlk:GridBoundColumn>
-                            <%--<tlk:GridCheckBoxColumn HeaderText="<%$ Translate: Ngày làm việc %>" DataField="IS_WORK_DAY" DataType="System.Boolean" FilterControlWidth="30px" 
-                               ItemStyle-Width="30px" ItemStyle-HorizontalAlign="Center"
-                               SortExpression="IS_WORK_DAY" UniqueName="IS_WORK_DAY" >
-                               <HeaderStyle Width="30px" /> 
-                            </tlk:GridCheckBoxColumn>--%>
                             <tlk:GridDateTimeColumn HeaderText="<%$ Translate: Thời gian bắt đầu nghỉ phép %>"
                                 DataField="LEAVE_FROM" UniqueName="LEAVE_FROM" SortExpression="LEAVE_FROM" DataFormatString="{0:dd/MM/yyyy}"
                                 ItemStyle-HorizontalAlign="Center" ItemStyle-Width="100px">

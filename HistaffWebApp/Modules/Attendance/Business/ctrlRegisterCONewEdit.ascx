@@ -193,7 +193,7 @@
                         ToolTip="<%$ Translate: Chưa nhập lý do nghỉ  %>"> </asp:RequiredFieldValidator>
                 </td>
                 <td><tlk:RadNumericTextBox runat ="server" ID ="rnIS_APP" Value ="-1" Visible ="false"  ></tlk:RadNumericTextBox></td>
-                <td><tlk:RadNumericTextBox runat ="server" ID ="rnSTATUS" Value ="7369" Visible ="false"  ></tlk:RadNumericTextBox></td>
+                <td><tlk:RadNumericTextBox runat ="server" ID ="rnSTATUS" Value ="1" Visible ="false"  ></tlk:RadNumericTextBox></td>
             </tr>
         </table>
        <div id="divLeaveDetail" style="display: none">

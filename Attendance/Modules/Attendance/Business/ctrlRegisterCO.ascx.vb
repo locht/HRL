@@ -255,7 +255,7 @@ Public Class ctrlRegisterCO
             FillRadCombobox(cboPeriod, lsData, "PERIOD_NAME", "PERIOD_ID", True)
 
             Dim dtData As New DataTable
-            dtData = rep.GetOtherList("LEAVE_STATUS", True)
+            dtData = rep.GetOtherList("PROCESS_STATUS", True)
             FillRadCombobox(cbStatus, dtData, "NAME", "ID", True)
 
             If lsData.Count > 0 Then

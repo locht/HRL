@@ -374,37 +374,30 @@ Public Class ctrlLeaveRegistration
 
 #Region "Custom"
     Protected Function CreateDataFilter(Optional ByVal isFull As Boolean = False) As DataTable
-        Dim rep As New AttendanceStoreProcedure
+        Dim rep As New AttendanceRepository
         Dim _filter As New AT_LEAVESHEETDTO
+        Dim lstLeaveSheet As New List(Of AT_LEAVESHEETDTO)
         Try
             Dim MaximumRows As Integer
             SetValueObjectByRadGrid(rgMain, _filter)
             Dim Sorts As String = rgMain.MasterTableView.SortExpressions.GetSortString()
             _filter.EMPLOYEE_ID = EmployeeID
-            If txtYear.Value.HasValue Then
-                Dim fDay As New Date
-                Dim lDay As New Date
-                For i As Integer = 1 To 12
-                    If i = 1 Then
-                        fDay = DateSerial(Convert.ToInt32(txtYear.Text.Trim), i, 1) 'Get first 
-                    End If
-                    If i = 12 Then
-                        lDay = DateSerial(Convert.ToInt32(txtYear.Text.Trim), i + 1, 1 - 1) 'Get last
-                    End If
-                Next
-                _filter.FROM_DATE = fDay
-                _filter.END_DATE = lDay
-            End If
+            _filter.IS_APP = 0
             If IsNumeric(cboStatus.SelectedValue) Then
                 _filter.STATUS = cboStatus.SelectedValue
             End If
             If Not isFull Then
-                Me.LEAVESHEET = rep.GET_LEAVE_SHEET_FOR_PORTAL(_filter, MaximumRows, rgMain.CurrentPageIndex, rgMain.PageSize)
+                If Sorts IsNot Nothing Then
+                    lstLeaveSheet = rep.GetLeaveSheet_Portal(_filter, MaximumRows, rgMain.CurrentPageIndex, rgMain.PageSize, "CREATED_DATE desc")
+                Else
+                    lstLeaveSheet = rep.GetLeaveSheet_Portal(_filter, MaximumRows, rgMain.CurrentPageIndex, rgMain.PageSize)
+                End If
             Else
-                Return rep.GET_LEAVE_SHEET_FOR_PORTAL(_filter, MaximumRows, rgMain.CurrentPageIndex, rgMain.PageSize)
+                Return rep.GetLeaveSheet_Portal(_filter).ToTable
             End If
+
             rgMain.VirtualItemCount = MaximumRows
-            rgMain.DataSource = Me.LEAVESHEET
+            rgMain.DataSource = lstLeaveSheet
 
         Catch ex As Exception
             Throw ex

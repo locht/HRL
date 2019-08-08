@@ -58,5 +58,23 @@ Namespace AttendanceBusiness.ServiceImplementations
                 Return False
             End Try
         End Function
+
+        Function GetLeaveSheet_Portal(ByVal _filter As AT_LEAVESHEETDTO,
+                                     Optional ByRef Total As Integer = 0,
+                                     Optional ByVal PageIndex As Integer = 0,
+                                     Optional ByVal PageSize As Integer = Integer.MaxValue,
+                                     Optional ByVal Sorts As String = "CREATED_DATE desc", Optional ByVal log As UserLog = Nothing) As List(Of AT_LEAVESHEETDTO) Implements IAttendanceBusiness.GetLeaveSheet_Portal
+            Try
+                Using rep As New AttendanceRepository
+                    Try
+                        Return rep.GetLeaveSheet_Portal(_filter, Total, PageIndex, PageSize, Sorts, log)
+                    Catch ex As Exception
+                        Throw ex
+                    End Try
+                End Using
+            Catch ex As Exception
+                Throw ex
+            End Try
+        End Function
     End Class
 End Namespace

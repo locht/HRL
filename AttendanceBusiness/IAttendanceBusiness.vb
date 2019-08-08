@@ -16,6 +16,12 @@ Namespace AttendanceBusiness.ServiceContracts
         Function GetLeaveSheet_Detail_ByDate(ByVal employee_id As Decimal, ByVal fromDate As Date, ByVal toDate As Date, manualId As Decimal) As DataTable
         <OperationContract()>
         Function SaveLeaveSheet(ByVal dsLeaveSheet As DataSet, Optional ByVal log As UserLog = Nothing) As Boolean
+        <OperationContract()>
+        Function GetLeaveSheet_Portal(ByVal _filter As AT_LEAVESHEETDTO,
+                                      Optional ByRef Total As Integer = 0,
+                                      Optional ByVal PageIndex As Integer = 0,
+                                      Optional ByVal PageSize As Integer = Integer.MaxValue,
+                                      Optional ByVal Sorts As String = "CREATED_DATE desc", Optional ByVal log As UserLog = Nothing) As List(Of AT_LEAVESHEETDTO)
 #End Region
         <OperationContract()>
         Function GETIDFROMPROCESS(ByVal Id As Decimal) As Decimal
