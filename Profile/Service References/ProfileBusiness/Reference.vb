@@ -8505,6 +8505,12 @@ Namespace ProfileBusiness
         Private OBJECTTIMEKEEPING_NAMEField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private OBJECT_INSField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private OBJECT_INS_NAMEField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private OBJECT_LABORField As System.Nullable(Of Decimal)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -9258,6 +9264,32 @@ Namespace ProfileBusiness
                 If (Object.ReferenceEquals(Me.OBJECTTIMEKEEPING_NAMEField, value) <> true) Then
                     Me.OBJECTTIMEKEEPING_NAMEField = value
                     Me.RaisePropertyChanged("OBJECTTIMEKEEPING_NAME")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property OBJECT_INS() As System.Nullable(Of Decimal)
+            Get
+                Return Me.OBJECT_INSField
+            End Get
+            Set
+                If (Me.OBJECT_INSField.Equals(value) <> true) Then
+                    Me.OBJECT_INSField = value
+                    Me.RaisePropertyChanged("OBJECT_INS")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property OBJECT_INS_NAME() As String
+            Get
+                Return Me.OBJECT_INS_NAMEField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.OBJECT_INS_NAMEField, value) <> true) Then
+                    Me.OBJECT_INS_NAMEField = value
+                    Me.RaisePropertyChanged("OBJECT_INS_NAME")
                 End If
             End Set
         End Property
@@ -37610,6 +37642,9 @@ Namespace ProfileBusiness
         Private CONTACT_PERField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private CONTACT_PER_MBPHONEField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private CONTACT_PER_PHONEField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -37653,6 +37688,9 @@ Namespace ProfileBusiness
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private DV_XUAT_NGU_QDField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private EFFECTDATE_BANKField As System.Nullable(Of Date)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private EMPLOYEE_IDField As Decimal
@@ -37850,6 +37888,9 @@ Namespace ProfileBusiness
         Private PASS_PLACEField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private PERSON_INHERITANCEField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private PER_ADDRESSField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -37875,6 +37916,12 @@ Namespace ProfileBusiness
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private PIT_CODEField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private PIT_CODE_DATEField As System.Nullable(Of Date)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private PIT_CODE_PLACEField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private PLACE_NAMEField As String
@@ -37917,6 +37964,9 @@ Namespace ProfileBusiness
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private THUONG_BINHField As System.Nullable(Of Boolean)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private VILLAGEField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private VISAField As String
@@ -38182,6 +38232,19 @@ Namespace ProfileBusiness
         End Property
         
         <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property CONTACT_PER_MBPHONE() As String
+            Get
+                Return Me.CONTACT_PER_MBPHONEField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.CONTACT_PER_MBPHONEField, value) <> true) Then
+                    Me.CONTACT_PER_MBPHONEField = value
+                    Me.RaisePropertyChanged("CONTACT_PER_MBPHONE")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
         Public Property CONTACT_PER_PHONE() As String
             Get
                 Return Me.CONTACT_PER_PHONEField
@@ -38372,6 +38435,19 @@ Namespace ProfileBusiness
                 If (Object.ReferenceEquals(Me.DV_XUAT_NGU_QDField, value) <> true) Then
                     Me.DV_XUAT_NGU_QDField = value
                     Me.RaisePropertyChanged("DV_XUAT_NGU_QD")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property EFFECTDATE_BANK() As System.Nullable(Of Date)
+            Get
+                Return Me.EFFECTDATE_BANKField
+            End Get
+            Set
+                If (Me.EFFECTDATE_BANKField.Equals(value) <> true) Then
+                    Me.EFFECTDATE_BANKField = value
+                    Me.RaisePropertyChanged("EFFECTDATE_BANK")
                 End If
             End Set
         End Property
@@ -39222,6 +39298,19 @@ Namespace ProfileBusiness
         End Property
         
         <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property PERSON_INHERITANCE() As String
+            Get
+                Return Me.PERSON_INHERITANCEField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.PERSON_INHERITANCEField, value) <> true) Then
+                    Me.PERSON_INHERITANCEField = value
+                    Me.RaisePropertyChanged("PERSON_INHERITANCE")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
         Public Property PER_ADDRESS() As String
             Get
                 Return Me.PER_ADDRESSField
@@ -39334,6 +39423,32 @@ Namespace ProfileBusiness
                 If (Object.ReferenceEquals(Me.PIT_CODEField, value) <> true) Then
                     Me.PIT_CODEField = value
                     Me.RaisePropertyChanged("PIT_CODE")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property PIT_CODE_DATE() As System.Nullable(Of Date)
+            Get
+                Return Me.PIT_CODE_DATEField
+            End Get
+            Set
+                If (Me.PIT_CODE_DATEField.Equals(value) <> true) Then
+                    Me.PIT_CODE_DATEField = value
+                    Me.RaisePropertyChanged("PIT_CODE_DATE")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property PIT_CODE_PLACE() As String
+            Get
+                Return Me.PIT_CODE_PLACEField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.PIT_CODE_PLACEField, value) <> true) Then
+                    Me.PIT_CODE_PLACEField = value
+                    Me.RaisePropertyChanged("PIT_CODE_PLACE")
                 End If
             End Set
         End Property
@@ -39516,6 +39631,19 @@ Namespace ProfileBusiness
                 If (Me.THUONG_BINHField.Equals(value) <> true) Then
                     Me.THUONG_BINHField = value
                     Me.RaisePropertyChanged("THUONG_BINH")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property VILLAGE() As String
+            Get
+                Return Me.VILLAGEField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.VILLAGEField, value) <> true) Then
+                    Me.VILLAGEField = value
+                    Me.RaisePropertyChanged("VILLAGE")
                 End If
             End Set
         End Property
@@ -39743,6 +39871,21 @@ Namespace ProfileBusiness
         Private ACADEMY_NAMEField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private COMPUTER_CERTIFICATEField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private COMPUTER_MARKField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private COMPUTER_MARK_NAMEField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private COMPUTER_RANKField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private COMPUTER_RANK_NAMEField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private CREATED_BYField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -39876,6 +40019,71 @@ Namespace ProfileBusiness
                 If (Object.ReferenceEquals(Me.ACADEMY_NAMEField, value) <> true) Then
                     Me.ACADEMY_NAMEField = value
                     Me.RaisePropertyChanged("ACADEMY_NAME")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property COMPUTER_CERTIFICATE() As String
+            Get
+                Return Me.COMPUTER_CERTIFICATEField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.COMPUTER_CERTIFICATEField, value) <> true) Then
+                    Me.COMPUTER_CERTIFICATEField = value
+                    Me.RaisePropertyChanged("COMPUTER_CERTIFICATE")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property COMPUTER_MARK() As System.Nullable(Of Decimal)
+            Get
+                Return Me.COMPUTER_MARKField
+            End Get
+            Set
+                If (Me.COMPUTER_MARKField.Equals(value) <> true) Then
+                    Me.COMPUTER_MARKField = value
+                    Me.RaisePropertyChanged("COMPUTER_MARK")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property COMPUTER_MARK_NAME() As String
+            Get
+                Return Me.COMPUTER_MARK_NAMEField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.COMPUTER_MARK_NAMEField, value) <> true) Then
+                    Me.COMPUTER_MARK_NAMEField = value
+                    Me.RaisePropertyChanged("COMPUTER_MARK_NAME")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property COMPUTER_RANK() As System.Nullable(Of Decimal)
+            Get
+                Return Me.COMPUTER_RANKField
+            End Get
+            Set
+                If (Me.COMPUTER_RANKField.Equals(value) <> true) Then
+                    Me.COMPUTER_RANKField = value
+                    Me.RaisePropertyChanged("COMPUTER_RANK")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property COMPUTER_RANK_NAME() As String
+            Get
+                Return Me.COMPUTER_RANK_NAMEField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.COMPUTER_RANK_NAMEField, value) <> true) Then
+                    Me.COMPUTER_RANK_NAMEField = value
+                    Me.RaisePropertyChanged("COMPUTER_RANK_NAME")
                 End If
             End Set
         End Property

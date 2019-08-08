@@ -39,5 +39,12 @@
     Public Property TDTH2 As Decimal?
     Public Property DIEM_XLTH2 As String
     Public Property NOTE_TDTH2 As String
-
+    'TRINH DO TIN HỌC ỨNG DUNG
+    Public Property COMPUTER_CERTIFICATE As String
+    'TRINH DO TIN HOC CO BAN
+    Public Property COMPUTER_RANK As Decimal?
+    Public Property COMPUTER_RANK_NAME As String
+    'LOAI CHUNG CHI
+    Public Property COMPUTER_MARK As Decimal?
+    Public Property COMPUTER_MARK_NAME As String
 End Class

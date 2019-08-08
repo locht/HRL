@@ -1,7 +1,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for Oracle database
 -- --------------------------------------------------
--- Date Created: 08/06/2019 2:45:01 PM
+-- Date Created: 08/08/2019 9:48:45 AM
 -- Generated from EDMX file: D:\MyProject\TNG\TNG\ProfileDAL\ProfileContext.edmx
 -- --------------------------------------------------
 
@@ -9,353 +9,353 @@
 -- Dropping existing FOREIGN KEY constraints
 -- --------------------------------------------------
 
--- ALTER TABLE "ProfileModelStoreContainer"."HU_PROVINCE" DROP CONSTRAINT "FK_HU_NAT_HU_PRO" CASCADE;
+-- ALTER TABLE "dbo"."HU_PROVINCE" DROP CONSTRAINT "FK_HU_NAT_HU_PRO" CASCADE;
 
--- ALTER TABLE "ProfileModelStoreContainer"."HU_DISTRICT" DROP CONSTRAINT "FK_HU_PRO_HU_DIS" CASCADE;
+-- ALTER TABLE "dbo"."HU_DISTRICT" DROP CONSTRAINT "FK_HU_PRO_HU_DIS" CASCADE;
 
--- ALTER TABLE "ProfileModelStoreContainer"."HU_BANK_BRANCH" DROP CONSTRAINT "FK_BANKBANK_BRANCH" CASCADE;
+-- ALTER TABLE "dbo"."HU_BANK_BRANCH" DROP CONSTRAINT "FK_BANKBANK_BRANCH" CASCADE;
 
--- ALTER TABLE "ProfileModelStoreContainer"."HU_ASSET" DROP CONSTRAINT "FK_OOL_HA" CASCADE;
+-- ALTER TABLE "dbo"."HU_ASSET" DROP CONSTRAINT "FK_OOL_HA" CASCADE;
 
--- ALTER TABLE "ProfileModelStoreContainer"."OT_OTHER_LIST" DROP CONSTRAINT "FK_OOLT_OOL" CASCADE;
+-- ALTER TABLE "dbo"."OT_OTHER_LIST" DROP CONSTRAINT "FK_OOLT_OOL" CASCADE;
 
--- ALTER TABLE "ProfileModelStoreContainer"."HU_HOSPITAL" DROP CONSTRAINT "FK_HP_HH" CASCADE;
+-- ALTER TABLE "dbo"."HU_HOSPITAL" DROP CONSTRAINT "FK_HP_HH" CASCADE;
 
--- ALTER TABLE "ProfileModelStoreContainer"."HU_EMPLOYEE_CV" DROP CONSTRAINT "FK_HE_HEC" CASCADE;
+-- ALTER TABLE "dbo"."HU_EMPLOYEE_CV" DROP CONSTRAINT "FK_HE_HEC" CASCADE;
 
--- ALTER TABLE "ProfileModelStoreContainer"."HU_EMPLOYEE_HEALTH" DROP CONSTRAINT "FK_FE_HEH" CASCADE;
+-- ALTER TABLE "dbo"."HU_EMPLOYEE_HEALTH" DROP CONSTRAINT "FK_FE_HEH" CASCADE;
 
--- ALTER TABLE "ProfileModelStoreContainer"."HU_EMPLOYEE_EDUCATION" DROP CONSTRAINT "FK_HE_HEE" CASCADE;
+-- ALTER TABLE "dbo"."HU_EMPLOYEE_EDUCATION" DROP CONSTRAINT "FK_HE_HEE" CASCADE;
 
--- ALTER TABLE "ProfileModelStoreContainer"."HU_EMPLOYEE" DROP CONSTRAINT "FK_HC_HE" CASCADE;
+-- ALTER TABLE "dbo"."HU_EMPLOYEE" DROP CONSTRAINT "FK_HC_HE" CASCADE;
 
--- ALTER TABLE "ProfileModelStoreContainer"."HU_CONTRACT" DROP CONSTRAINT "FK_HE_HC" CASCADE;
+-- ALTER TABLE "dbo"."HU_CONTRACT" DROP CONSTRAINT "FK_HE_HC" CASCADE;
 
--- ALTER TABLE "ProfileModelStoreContainer"."HU_WORKING_BEFORE" DROP CONSTRAINT "FK_HE_HWB" CASCADE;
+-- ALTER TABLE "dbo"."HU_WORKING_BEFORE" DROP CONSTRAINT "FK_HE_HWB" CASCADE;
 
--- ALTER TABLE "ProfileModelStoreContainer"."HU_DISCIPLINE" DROP CONSTRAINT "FK_OTDCO_HUDC" CASCADE;
+-- ALTER TABLE "dbo"."HU_DISCIPLINE" DROP CONSTRAINT "FK_OTDCO_HUDC" CASCADE;
 
--- ALTER TABLE "ProfileModelStoreContainer"."HU_DISCIPLINE" DROP CONSTRAINT "FK_OTDCT_HUDC" CASCADE;
+-- ALTER TABLE "dbo"."HU_DISCIPLINE" DROP CONSTRAINT "FK_OTDCT_HUDC" CASCADE;
 
--- ALTER TABLE "ProfileModelStoreContainer"."HU_DISCIPLINE" DROP CONSTRAINT "FK_OTDCL_HUDC" CASCADE;
+-- ALTER TABLE "dbo"."HU_DISCIPLINE" DROP CONSTRAINT "FK_OTDCL_HUDC" CASCADE;
 
--- ALTER TABLE "ProfileModelStoreContainer"."HU_EMPLOYEE" DROP CONSTRAINT "FK_HUEMD_HUEM" CASCADE;
+-- ALTER TABLE "dbo"."HU_EMPLOYEE" DROP CONSTRAINT "FK_HUEMD_HUEM" CASCADE;
 
--- ALTER TABLE "ProfileModelStoreContainer"."HU_CONTRACT" DROP CONSTRAINT "FK_OTST_HUCT" CASCADE;
+-- ALTER TABLE "dbo"."HU_CONTRACT" DROP CONSTRAINT "FK_OTST_HUCT" CASCADE;
 
--- ALTER TABLE "ProfileModelStoreContainer"."OT_OTHER_LIST_TYPE" DROP CONSTRAINT "FK_OOLG_OOLT" CASCADE;
+-- ALTER TABLE "dbo"."OT_OTHER_LIST_TYPE" DROP CONSTRAINT "FK_OOLG_OOLT" CASCADE;
 
--- ALTER TABLE "ProfileModelStoreContainer"."HU_FAMILY" DROP CONSTRAINT "FK_HE_HF" CASCADE;
+-- ALTER TABLE "dbo"."HU_FAMILY" DROP CONSTRAINT "FK_HE_HF" CASCADE;
 
--- ALTER TABLE "ProfileModelStoreContainer"."PA_SALARY_LEVEL" DROP CONSTRAINT "FK_PSG_PSL" CASCADE;
+-- ALTER TABLE "dbo"."PA_SALARY_LEVEL" DROP CONSTRAINT "FK_PSG_PSL" CASCADE;
 
--- ALTER TABLE "ProfileModelStoreContainer"."PA_SALARY_RANK" DROP CONSTRAINT "FK_PSL_PSR" CASCADE;
+-- ALTER TABLE "dbo"."PA_SALARY_RANK" DROP CONSTRAINT "FK_PSL_PSR" CASCADE;
 
--- ALTER TABLE "ProfileModelStoreContainer"."HU_EMPLOYEE" DROP CONSTRAINT "FK_OTW_HUE" CASCADE;
+-- ALTER TABLE "dbo"."HU_EMPLOYEE" DROP CONSTRAINT "FK_OTW_HUE" CASCADE;
 
--- ALTER TABLE "ProfileModelStoreContainer"."HU_DYNAMIC_REPORT_DTL" DROP CONSTRAINT "FK_DR_DRD" CASCADE;
+-- ALTER TABLE "dbo"."HU_DYNAMIC_REPORT_DTL" DROP CONSTRAINT "FK_DR_DRD" CASCADE;
 
--- ALTER TABLE "ProfileModelStoreContainer"."SE_USER_REPORT" DROP CONSTRAINT "FK_SE_USER_REPORT_SE_REPORT" CASCADE;
+-- ALTER TABLE "dbo"."SE_USER_REPORT" DROP CONSTRAINT "FK_SE_USER_REPORT_SE_REPORT" CASCADE;
 
--- ALTER TABLE "ProfileModelStoreContainer"."SE_USER_REPORT" DROP CONSTRAINT "FK_SE_USER_REPORT_SE_USER" CASCADE;
+-- ALTER TABLE "dbo"."SE_USER_REPORT" DROP CONSTRAINT "FK_SE_USER_REPORT_SE_USER" CASCADE;
 
--- ALTER TABLE "ProfileModelStoreContainer"."HU_ORGANIZATION" DROP CONSTRAINT "FK_HU_ORG_HU_ORG" CASCADE;
+-- ALTER TABLE "dbo"."HU_ORGANIZATION" DROP CONSTRAINT "FK_HU_ORG_HU_ORG" CASCADE;
 
--- ALTER TABLE "ProfileModelStoreContainer"."HU_ORGANIZATION1" DROP CONSTRAINT "FK_HU_ORG_HU_ORG1" CASCADE;
+-- ALTER TABLE "dbo"."HU_ORGANIZATION1" DROP CONSTRAINT "FK_HU_ORG_HU_ORG1" CASCADE;
 
 -- --------------------------------------------------
 -- Dropping existing tables
 -- --------------------------------------------------
 
--- DROP TABLE "ProfileModelStoreContainer"."HU_PROVINCE";
+-- DROP TABLE "dbo"."HU_PROVINCE";
 
--- DROP TABLE "ProfileModelStoreContainer"."HU_DISTRICT";
+-- DROP TABLE "dbo"."HU_DISTRICT";
 
--- DROP TABLE "ProfileModelStoreContainer"."HU_NATION";
+-- DROP TABLE "dbo"."HU_NATION";
 
--- DROP TABLE "ProfileModelStoreContainer"."HU_ASSET";
+-- DROP TABLE "dbo"."HU_ASSET";
 
--- DROP TABLE "ProfileModelStoreContainer"."HU_BANK";
+-- DROP TABLE "dbo"."HU_BANK";
 
--- DROP TABLE "ProfileModelStoreContainer"."HU_BANK_BRANCH";
+-- DROP TABLE "dbo"."HU_BANK_BRANCH";
 
--- DROP TABLE "ProfileModelStoreContainer"."OT_OTHER_LIST";
+-- DROP TABLE "dbo"."OT_OTHER_LIST";
 
--- DROP TABLE "ProfileModelStoreContainer"."HU_EMPLOYEE";
+-- DROP TABLE "dbo"."HU_EMPLOYEE";
 
--- DROP TABLE "ProfileModelStoreContainer"."OT_OTHER_LIST_TYPE";
+-- DROP TABLE "dbo"."OT_OTHER_LIST_TYPE";
 
--- DROP TABLE "ProfileModelStoreContainer"."HU_HOSPITAL";
+-- DROP TABLE "dbo"."HU_HOSPITAL";
 
--- DROP TABLE "ProfileModelStoreContainer"."HU_EMPLOYEE_CV";
+-- DROP TABLE "dbo"."HU_EMPLOYEE_CV";
 
--- DROP TABLE "ProfileModelStoreContainer"."HU_EMPLOYEE_HEALTH";
+-- DROP TABLE "dbo"."HU_EMPLOYEE_HEALTH";
 
--- DROP TABLE "ProfileModelStoreContainer"."HU_EMPLOYEE_EDUCATION";
+-- DROP TABLE "dbo"."HU_EMPLOYEE_EDUCATION";
 
--- DROP TABLE "ProfileModelStoreContainer"."HU_CONTRACT";
+-- DROP TABLE "dbo"."HU_CONTRACT";
 
--- DROP TABLE "ProfileModelStoreContainer"."HU_FAMILY";
+-- DROP TABLE "dbo"."HU_FAMILY";
 
--- DROP TABLE "ProfileModelStoreContainer"."HU_DISCIPLINE";
+-- DROP TABLE "dbo"."HU_DISCIPLINE";
 
--- DROP TABLE "ProfileModelStoreContainer"."HU_WORKING_BEFORE";
+-- DROP TABLE "dbo"."HU_WORKING_BEFORE";
 
--- DROP TABLE "ProfileModelStoreContainer"."HU_TERMINATE";
+-- DROP TABLE "dbo"."HU_TERMINATE";
 
--- DROP TABLE "ProfileModelStoreContainer"."HU_WORKING_OLD";
+-- DROP TABLE "dbo"."HU_WORKING_OLD";
 
--- DROP TABLE "ProfileModelStoreContainer"."SE_MAIL";
+-- DROP TABLE "dbo"."SE_MAIL";
 
--- DROP TABLE "ProfileModelStoreContainer"."HU_REMINDER_LOG";
+-- DROP TABLE "dbo"."HU_REMINDER_LOG";
 
--- DROP TABLE "ProfileModelStoreContainer"."OT_OTHER_LIST_GROUP";
+-- DROP TABLE "dbo"."OT_OTHER_LIST_GROUP";
 
--- DROP TABLE "ProfileModelStoreContainer"."HUV_WORKING";
+-- DROP TABLE "dbo"."HUV_WORKING";
 
--- DROP TABLE "ProfileModelStoreContainer"."PA_SALARY_GROUP";
+-- DROP TABLE "dbo"."PA_SALARY_GROUP";
 
--- DROP TABLE "ProfileModelStoreContainer"."PA_SALARY_LEVEL";
+-- DROP TABLE "dbo"."PA_SALARY_LEVEL";
 
--- DROP TABLE "ProfileModelStoreContainer"."PA_SALARY_PAGE";
+-- DROP TABLE "dbo"."PA_SALARY_PAGE";
 
--- DROP TABLE "ProfileModelStoreContainer"."PA_SALARY_RANK";
+-- DROP TABLE "dbo"."PA_SALARY_RANK";
 
--- DROP TABLE "ProfileModelStoreContainer"."HU_EMPLOYEE_TRAIN";
+-- DROP TABLE "dbo"."HU_EMPLOYEE_TRAIN";
 
--- DROP TABLE "ProfileModelStoreContainer"."HU_MISSION";
+-- DROP TABLE "dbo"."HU_MISSION";
 
--- DROP TABLE "ProfileModelStoreContainer"."AT_ALDATA";
+-- DROP TABLE "dbo"."AT_ALDATA";
 
--- DROP TABLE "ProfileModelStoreContainer"."HUV_CURRENT_TERMINATE";
+-- DROP TABLE "dbo"."HUV_CURRENT_TERMINATE";
 
--- DROP TABLE "ProfileModelStoreContainer"."DYNAMIC_REPORT_CONFIG";
+-- DROP TABLE "dbo"."DYNAMIC_REPORT_CONFIG";
 
--- DROP TABLE "ProfileModelStoreContainer"."SE_CHOSEN_ORG";
+-- DROP TABLE "dbo"."SE_CHOSEN_ORG";
 
--- DROP TABLE "ProfileModelStoreContainer"."HU_WORKING_ALLOW";
+-- DROP TABLE "dbo"."HU_WORKING_ALLOW";
 
--- DROP TABLE "ProfileModelStoreContainer"."HU_DYNAMIC_REPORT";
+-- DROP TABLE "dbo"."HU_DYNAMIC_REPORT";
 
--- DROP TABLE "ProfileModelStoreContainer"."HU_DYNAMIC_REPORT_DTL";
+-- DROP TABLE "dbo"."HU_DYNAMIC_REPORT_DTL";
 
--- DROP TABLE "ProfileModelStoreContainer"."PA_OBJECT_SALARY";
+-- DROP TABLE "dbo"."PA_OBJECT_SALARY";
 
--- DROP TABLE "ProfileModelStoreContainer"."HU_EMPLOYEE_FILE";
+-- DROP TABLE "dbo"."HU_EMPLOYEE_FILE";
 
--- DROP TABLE "ProfileModelStoreContainer"."HU_LABOURPROTECTION";
+-- DROP TABLE "dbo"."HU_LABOURPROTECTION";
 
--- DROP TABLE "ProfileModelStoreContainer"."HU_OCCUPATIONAL_SAFETY";
+-- DROP TABLE "dbo"."HU_OCCUPATIONAL_SAFETY";
 
--- DROP TABLE "ProfileModelStoreContainer"."HU_CONTRACT_TYPE";
+-- DROP TABLE "dbo"."HU_CONTRACT_TYPE";
 
--- DROP TABLE "ProfileModelStoreContainer"."INS_ARISING";
+-- DROP TABLE "dbo"."INS_ARISING";
 
--- DROP TABLE "ProfileModelStoreContainer"."AT_PERIOD";
+-- DROP TABLE "dbo"."AT_PERIOD";
 
--- DROP TABLE "ProfileModelStoreContainer"."INS_CHANGE";
+-- DROP TABLE "dbo"."INS_CHANGE";
 
--- DROP TABLE "ProfileModelStoreContainer"."INS_CHANGE_TYPE";
+-- DROP TABLE "dbo"."INS_CHANGE_TYPE";
 
--- DROP TABLE "ProfileModelStoreContainer"."INS_INFORMATION";
+-- DROP TABLE "dbo"."INS_INFORMATION";
 
--- DROP TABLE "ProfileModelStoreContainer"."HU_CONDITION_COL";
+-- DROP TABLE "dbo"."HU_CONDITION_COL";
 
--- DROP TABLE "ProfileModelStoreContainer"."HU_DYNAMIC_CONDITION";
+-- DROP TABLE "dbo"."HU_DYNAMIC_CONDITION";
 
--- DROP TABLE "ProfileModelStoreContainer"."HU_WARD";
+-- DROP TABLE "dbo"."HU_WARD";
 
--- DROP TABLE "ProfileModelStoreContainer"."SE_CHOSEN_EMP_3B";
+-- DROP TABLE "dbo"."SE_CHOSEN_EMP_3B";
 
--- DROP TABLE "ProfileModelStoreContainer"."HU_EMPLOYEE_PAPER";
+-- DROP TABLE "dbo"."HU_EMPLOYEE_PAPER";
 
--- DROP TABLE "ProfileModelStoreContainer"."HU_PRO_TRAIN_OUT_COMPANY";
+-- DROP TABLE "dbo"."HU_PRO_TRAIN_OUT_COMPANY";
 
--- DROP TABLE "ProfileModelStoreContainer"."HU_DISCIPLINE_EMP";
+-- DROP TABLE "dbo"."HU_DISCIPLINE_EMP";
 
--- DROP TABLE "ProfileModelStoreContainer"."HU_STAFF_RANK";
+-- DROP TABLE "dbo"."HU_STAFF_RANK";
 
--- DROP TABLE "ProfileModelStoreContainer"."HU_DISCIPLINE_SALARY";
+-- DROP TABLE "dbo"."HU_DISCIPLINE_SALARY";
 
--- DROP TABLE "ProfileModelStoreContainer"."HU_WELFARE_LIST";
+-- DROP TABLE "dbo"."HU_WELFARE_LIST";
 
--- DROP TABLE "ProfileModelStoreContainer"."HU_WELFARE_LIST_GW";
+-- DROP TABLE "dbo"."HU_WELFARE_LIST_GW";
 
--- DROP TABLE "ProfileModelStoreContainer"."HU_ASSET_MNG";
+-- DROP TABLE "dbo"."HU_ASSET_MNG";
 
--- DROP TABLE "ProfileModelStoreContainer"."HU_FAMILY_EDIT";
+-- DROP TABLE "dbo"."HU_FAMILY_EDIT";
 
--- DROP TABLE "ProfileModelStoreContainer"."HU_EMPLOYEE_EDIT";
+-- DROP TABLE "dbo"."HU_EMPLOYEE_EDIT";
 
--- DROP TABLE "ProfileModelStoreContainer"."HU_PRO_TRAIN_OUT_COMPANY_EDIT";
+-- DROP TABLE "dbo"."HU_PRO_TRAIN_OUT_COMPANY_EDIT";
 
--- DROP TABLE "ProfileModelStoreContainer"."HU_WORKING_BEFORE_EDIT";
+-- DROP TABLE "dbo"."HU_WORKING_BEFORE_EDIT";
 
--- DROP TABLE "ProfileModelStoreContainer"."HU_WELFARE_MNG";
+-- DROP TABLE "dbo"."HU_WELFARE_MNG";
 
--- DROP TABLE "ProfileModelStoreContainer"."HU_TERMINATE_3B";
+-- DROP TABLE "dbo"."HU_TERMINATE_3B";
 
--- DROP TABLE "ProfileModelStoreContainer"."HU_MERGE_FIELD";
+-- DROP TABLE "dbo"."HU_MERGE_FIELD";
 
--- DROP TABLE "ProfileModelStoreContainer"."AT_ORG_PERIOD";
+-- DROP TABLE "dbo"."AT_ORG_PERIOD";
 
--- DROP TABLE "ProfileModelStoreContainer"."HUV_ORGANIZATION";
+-- DROP TABLE "dbo"."HUV_ORGANIZATION";
 
--- DROP TABLE "ProfileModelStoreContainer"."HU_EMPLOYEE_PAPER_FILED";
+-- DROP TABLE "dbo"."HU_EMPLOYEE_PAPER_FILED";
 
--- DROP TABLE "ProfileModelStoreContainer"."HU_TERMINATE_REASON";
+-- DROP TABLE "dbo"."HU_TERMINATE_REASON";
 
--- DROP TABLE "ProfileModelStoreContainer"."INS_SPECIFIED_OBJECTS";
+-- DROP TABLE "dbo"."INS_SPECIFIED_OBJECTS";
 
--- DROP TABLE "ProfileModelStoreContainer"."HUV_ORGANIZATION_EMP_COUNT";
+-- DROP TABLE "dbo"."HUV_ORGANIZATION_EMP_COUNT";
 
--- DROP TABLE "ProfileModelStoreContainer"."AT_DECLARE_ENTITLEMENT";
+-- DROP TABLE "dbo"."AT_DECLARE_ENTITLEMENT";
 
--- DROP TABLE "ProfileModelStoreContainer"."INS_REGION";
+-- DROP TABLE "dbo"."INS_REGION";
 
--- DROP TABLE "ProfileModelStoreContainer"."SE_USER";
+-- DROP TABLE "dbo"."SE_USER";
 
--- DROP TABLE "ProfileModelStoreContainer"."SE_REPORT";
+-- DROP TABLE "dbo"."SE_REPORT";
 
--- DROP TABLE "ProfileModelStoreContainer"."HU_LABOURPROTECTION_MNG";
+-- DROP TABLE "dbo"."HU_LABOURPROTECTION_MNG";
 
--- DROP TABLE "ProfileModelStoreContainer"."HU_COMPETENCY_GROUP";
+-- DROP TABLE "dbo"."HU_COMPETENCY_GROUP";
 
--- DROP TABLE "ProfileModelStoreContainer"."HU_COMPETENCY";
+-- DROP TABLE "dbo"."HU_COMPETENCY";
 
--- DROP TABLE "ProfileModelStoreContainer"."HU_COMPETENCY_BUILD";
+-- DROP TABLE "dbo"."HU_COMPETENCY_BUILD";
 
--- DROP TABLE "ProfileModelStoreContainer"."HU_COMPETENCY_STANDARD";
+-- DROP TABLE "dbo"."HU_COMPETENCY_STANDARD";
 
--- DROP TABLE "ProfileModelStoreContainer"."HU_COMPETENCY_EMP";
+-- DROP TABLE "dbo"."HU_COMPETENCY_EMP";
 
--- DROP TABLE "ProfileModelStoreContainer"."HU_COMPETENCY_APPENDIX";
+-- DROP TABLE "dbo"."HU_COMPETENCY_APPENDIX";
 
--- DROP TABLE "ProfileModelStoreContainer"."HU_COMPETENCY_PERIOD";
+-- DROP TABLE "dbo"."HU_COMPETENCY_PERIOD";
 
--- DROP TABLE "ProfileModelStoreContainer"."HU_COMPETENCY_ASS";
+-- DROP TABLE "dbo"."HU_COMPETENCY_ASS";
 
--- DROP TABLE "ProfileModelStoreContainer"."HU_COMPETENCY_ASSDTL";
+-- DROP TABLE "dbo"."HU_COMPETENCY_ASSDTL";
 
--- DROP TABLE "ProfileModelStoreContainer"."HU_COMMEND_FORMULA";
+-- DROP TABLE "dbo"."HU_COMMEND_FORMULA";
 
--- DROP TABLE "ProfileModelStoreContainer"."HU_COMMEND_ORG";
+-- DROP TABLE "dbo"."HU_COMMEND_ORG";
 
--- DROP TABLE "ProfileModelStoreContainer"."HU_COMMEND_LIST";
+-- DROP TABLE "dbo"."HU_COMMEND_LIST";
 
--- DROP TABLE "ProfileModelStoreContainer"."HU_IMPORT_COMMEND";
+-- DROP TABLE "dbo"."HU_IMPORT_COMMEND";
 
--- DROP TABLE "ProfileModelStoreContainer"."OT_OTHER_LIST1";
+-- DROP TABLE "dbo"."OT_OTHER_LIST1";
 
--- DROP TABLE "ProfileModelStoreContainer"."HU_COMMEND_EMP";
+-- DROP TABLE "dbo"."HU_COMMEND_EMP";
 
--- DROP TABLE "ProfileModelStoreContainer"."HU_TITLE1";
+-- DROP TABLE "dbo"."HU_TITLE1";
 
--- DROP TABLE "ProfileModelStoreContainer"."HU_TITLE";
+-- DROP TABLE "dbo"."HU_TITLE";
 
--- DROP TABLE "ProfileModelStoreContainer"."PA_PAYMENTSOURCES";
+-- DROP TABLE "dbo"."PA_PAYMENTSOURCES";
 
--- DROP TABLE "ProfileModelStoreContainer"."HU_COMMEND_LEVEL";
+-- DROP TABLE "dbo"."HU_COMMEND_LEVEL";
 
--- DROP TABLE "ProfileModelStoreContainer"."HU_COMMEND";
+-- DROP TABLE "dbo"."HU_COMMEND";
 
--- DROP TABLE "ProfileModelStoreContainer"."TR_CERTIFICATE";
+-- DROP TABLE "dbo"."TR_CERTIFICATE";
 
--- DROP TABLE "ProfileModelStoreContainer"."TR_COURSE";
+-- DROP TABLE "dbo"."TR_COURSE";
 
--- DROP TABLE "ProfileModelStoreContainer"."TR_PROGRAM";
+-- DROP TABLE "dbo"."TR_PROGRAM";
 
--- DROP TABLE "ProfileModelStoreContainer"."TR_PROGRAM_COMMIT";
+-- DROP TABLE "dbo"."TR_PROGRAM_COMMIT";
 
--- DROP TABLE "ProfileModelStoreContainer"."TR_PROGRAM_GROUP";
+-- DROP TABLE "dbo"."TR_PROGRAM_GROUP";
 
--- DROP TABLE "ProfileModelStoreContainer"."TR_PROGRAM_RESULT";
+-- DROP TABLE "dbo"."TR_PROGRAM_RESULT";
 
--- DROP TABLE "ProfileModelStoreContainer"."TR_REQUEST";
+-- DROP TABLE "dbo"."TR_REQUEST";
 
--- DROP TABLE "ProfileModelStoreContainer"."TR_REQUEST_EMPLOYEE";
+-- DROP TABLE "dbo"."TR_REQUEST_EMPLOYEE";
 
--- DROP TABLE "ProfileModelStoreContainer"."HU_ALLOWANCE_LIST";
+-- DROP TABLE "dbo"."HU_ALLOWANCE_LIST";
 
--- DROP TABLE "ProfileModelStoreContainer"."HU_COMPETENCY_COURSE";
+-- DROP TABLE "dbo"."HU_COMPETENCY_COURSE";
 
--- DROP TABLE "ProfileModelStoreContainer"."HU_WORKING";
+-- DROP TABLE "dbo"."HU_WORKING";
 
--- DROP TABLE "ProfileModelStoreContainer"."PA_SALARY_TYPE";
+-- DROP TABLE "dbo"."PA_SALARY_TYPE";
 
--- DROP TABLE "ProfileModelStoreContainer"."HU_TITLE_CONCURRENT";
+-- DROP TABLE "dbo"."HU_TITLE_CONCURRENT";
 
--- DROP TABLE "ProfileModelStoreContainer"."HU_ORG_TITLE";
+-- DROP TABLE "dbo"."HU_ORG_TITLE";
 
--- DROP TABLE "ProfileModelStoreContainer"."HU_ORGANIZATION";
+-- DROP TABLE "dbo"."HU_ORGANIZATION";
 
--- DROP TABLE "ProfileModelStoreContainer"."HU_TALENT_POOL";
+-- DROP TABLE "dbo"."HU_TALENT_POOL";
 
--- DROP TABLE "ProfileModelStoreContainer"."HU_EMPLOYEE_CV1";
+-- DROP TABLE "dbo"."HU_EMPLOYEE_CV1";
 
--- DROP TABLE "ProfileModelStoreContainer"."HU_EMPLOYEE_EDUCATION1";
+-- DROP TABLE "dbo"."HU_EMPLOYEE_EDUCATION1";
 
--- DROP TABLE "ProfileModelStoreContainer"."HU_EMPLOYEE_EDUCATION2";
+-- DROP TABLE "dbo"."HU_EMPLOYEE_EDUCATION2";
 
--- DROP TABLE "ProfileModelStoreContainer"."HU_ORGANIZATION1";
+-- DROP TABLE "dbo"."HU_ORGANIZATION1";
 
--- DROP TABLE "ProfileModelStoreContainer"."HU_FILECONTRACT";
+-- DROP TABLE "dbo"."HU_FILECONTRACT";
 
--- DROP TABLE "ProfileModelStoreContainer"."HU_FILECONTRACT_DELETED";
+-- DROP TABLE "dbo"."HU_FILECONTRACT_DELETED";
 
--- DROP TABLE "ProfileModelStoreContainer"."HU_ASSET1";
+-- DROP TABLE "dbo"."HU_ASSET1";
 
--- DROP TABLE "ProfileModelStoreContainer"."HU_ASSET2";
+-- DROP TABLE "dbo"."HU_ASSET2";
 
--- DROP TABLE "ProfileModelStoreContainer"."HU_HOMEBASE";
+-- DROP TABLE "dbo"."HU_HOMEBASE";
 
--- DROP TABLE "ProfileModelStoreContainer"."PA_SALE_COMMISION";
+-- DROP TABLE "dbo"."PA_SALE_COMMISION";
 
--- DROP TABLE "ProfileModelStoreContainer"."HU_ALLOWANCE";
+-- DROP TABLE "dbo"."HU_ALLOWANCE";
 
--- DROP TABLE "ProfileModelStoreContainer"."HU_ATTACHFILES";
+-- DROP TABLE "dbo"."HU_ATTACHFILES";
 
--- DROP TABLE "ProfileModelStoreContainer"."HU_FILE";
+-- DROP TABLE "dbo"."HU_FILE";
 
--- DROP TABLE "ProfileModelStoreContainer"."HU_TRAININGFOREIGN";
+-- DROP TABLE "dbo"."HU_TRAININGFOREIGN";
 
--- DROP TABLE "ProfileModelStoreContainer"."HU_TRAININGMANAGE";
+-- DROP TABLE "dbo"."HU_TRAININGMANAGE";
 
--- DROP TABLE "ProfileModelStoreContainer"."HU_TRAININGEVALUATE";
+-- DROP TABLE "dbo"."HU_TRAININGEVALUATE";
 
--- DROP TABLE "ProfileModelStoreContainer"."PE_PERIOD";
+-- DROP TABLE "dbo"."PE_PERIOD";
 
--- DROP TABLE "ProfileModelStoreContainer"."HU_RELATIONSHIP_LIST";
+-- DROP TABLE "dbo"."HU_RELATIONSHIP_LIST";
 
--- DROP TABLE "ProfileModelStoreContainer"."HU_RELATIONSHIP_GROUP";
+-- DROP TABLE "dbo"."HU_RELATIONSHIP_GROUP";
 
--- DROP TABLE "ProfileModelStoreContainer"."HU_ANNUALLEAVE_PLANS";
+-- DROP TABLE "dbo"."HU_ANNUALLEAVE_PLANS";
 
--- DROP TABLE "ProfileModelStoreContainer"."HUV_CURRENT_CONTRACT";
+-- DROP TABLE "dbo"."HUV_CURRENT_CONTRACT";
 
--- DROP TABLE "ProfileModelStoreContainer"."HUV_CURRENT_WORKING";
+-- DROP TABLE "dbo"."HUV_CURRENT_WORKING";
 
--- DROP TABLE "ProfileModelStoreContainer"."HUV_TERMINATE_CURRENT";
+-- DROP TABLE "dbo"."HUV_TERMINATE_CURRENT";
 
--- DROP TABLE "ProfileModelStoreContainer"."HU_TRANSFER_TERMINATE";
+-- DROP TABLE "dbo"."HU_TRANSFER_TERMINATE";
 
--- DROP TABLE "ProfileModelStoreContainer"."HU_DEBT";
+-- DROP TABLE "dbo"."HU_DEBT";
 
--- DROP TABLE "ProfileModelStoreContainer"."HU_LOCATION";
+-- DROP TABLE "dbo"."HU_LOCATION";
 
--- DROP TABLE "ProfileModelStoreContainer"."HU_CONCURRENTLY";
+-- DROP TABLE "dbo"."HU_CONCURRENTLY";
 
--- DROP TABLE "ProfileModelStoreContainer"."HU_CERTIFICATE";
+-- DROP TABLE "dbo"."HU_CERTIFICATE";
 
--- DROP TABLE "ProfileModelStoreContainer"."HU_CERTIFICATE_EDIT";
+-- DROP TABLE "dbo"."HU_CERTIFICATE_EDIT";
 
--- DROP TABLE "ProfileModelStoreContainer"."HU_SIGNER";
+-- DROP TABLE "dbo"."HU_SIGNER";
 
--- DROP TABLE "ProfileModelStoreContainer"."SE_USER_ORG_ACCESS";
+-- DROP TABLE "dbo"."SE_USER_ORG_ACCESS";
 
--- DROP TABLE "ProfileModelStoreContainer"."HU_WELFARE_MNG_EMP";
+-- DROP TABLE "dbo"."HU_WELFARE_MNG_EMP";
 
--- DROP TABLE "ProfileModelStoreContainer"."SE_USER_REPORT";
+-- DROP TABLE "dbo"."SE_USER_REPORT";
 
 -- --------------------------------------------------
 -- Creating all tables
@@ -516,7 +516,8 @@ CREATE TABLE "dbo"."HU_EMPLOYEE" (
    "EMPLOYEE_NAME_OTHER" NCLOB NULL,
    "OBJECTTIMEKEEPING" NUMBER(38,0) NULL,
    "OBJECT_LABOR" NUMBER(38,0) NULL,
-   "IS_KIEM_NHIEM" NUMBER(38,0) NULL
+   "IS_KIEM_NHIEM" NUMBER(38,0) NULL,
+   "OBJECT_INS" NUMBER(38,0) NULL
 );
 
 -- Creating table 'OT_OTHER_LIST_TYPE'
@@ -659,7 +660,13 @@ CREATE TABLE "dbo"."HU_EMPLOYEE_CV" (
    "NO_HOUSEHOLDS" NCLOB NULL,
    "CODE_HOUSEHOLDS" NCLOB NULL,
    "RELATION_PER_CTR" NUMBER(38,0) NULL,
-   "ADDRESS_PER_CTR" NCLOB NULL
+   "ADDRESS_PER_CTR" NCLOB NULL,
+   "VILLAGE" NCLOB NULL,
+   "CONTACT_PER_MBPHONE" NCLOB NULL,
+   "PIT_CODE_DATE" DATE NULL,
+   "PIT_CODE_PLACE" NCLOB NULL,
+   "PERSON_INHERITANCE" NCLOB NULL,
+   "EFFECTDATE_BANK" DATE NULL
 );
 
 -- Creating table 'HU_EMPLOYEE_HEALTH'
@@ -717,7 +724,10 @@ CREATE TABLE "dbo"."HU_EMPLOYEE_EDUCATION" (
    "NOTE_TDTH1" NCLOB NULL,
    "TDTH2" NUMBER(38,0) NULL,
    "DIEM_XLTH2" NCLOB NULL,
-   "NOTE_TDTH2" NCLOB NULL
+   "NOTE_TDTH2" NCLOB NULL,
+   "COMPUTER_RANK" NUMBER(38,0) NULL,
+   "COMPUTER_MARK" NUMBER(38,0) NULL,
+   "COMPUTER_CERTIFICATE" NCLOB NULL
 );
 
 -- Creating table 'HU_CONTRACT'

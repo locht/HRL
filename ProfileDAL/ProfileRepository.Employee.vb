@@ -628,6 +628,7 @@ Partial Class ProfileRepository
                                                                         f.TYPE_ID = 2235).DefaultIfEmpty
                      From objectLabor In Context.OT_OTHER_LIST.Where(Function(f) f.ID = e.OBJECT_LABOR And
                                                                         f.TYPE_ID = 6963).DefaultIfEmpty
+                    From obj_ins In Context.OT_OTHER_LIST.Where(Function(f) f.ID = e.OBJECT_INS).DefaultIfEmpty
                 Where (e.ID = empID)
                      Select New EmployeeDTO With {
                          .ID = e.ID,
@@ -640,6 +641,8 @@ Partial Class ProfileRepository
                          .OBJECTTIMEKEEPING_NAME = ce.NAME_VN,
                          .FULLNAME_VN = e.FULLNAME_VN,
                          .EMPLOYEE_CODE = e.EMPLOYEE_CODE,
+                         .OBJECT_INS = e.OBJECT_INS,
+                         .OBJECT_INS_NAME = obj_ins.NAME_VN,
                          .EMPLOYEE_CODE_OLD = e.EMPLOYEE_CODE_OLD,
                          .BOOKNO = ins_info.SOCIAL_NUMBER,
                          .EMPLOYEE_NAME_OTHER = e.EMPLOYEE_NAME_OTHER,
@@ -873,6 +876,7 @@ Partial Class ProfileRepository
             objEmpData.OBJECTTIMEKEEPING = objEmp.OBJECTTIMEKEEPING
             objEmpData.PA_OBJECT_SALARY_ID = 1
             objEmpData.OBJECT_LABOR = objEmp.OBJECT_LABOR
+            objEmpData.ITIME_ID = objEmp.ITIME_ID
             Context.HU_EMPLOYEE.AddObject(objEmpData)
             'End Thông tin insert vào bảng HU_EMPLOYEE.
 
@@ -905,7 +909,13 @@ Partial Class ProfileRepository
                 If objEmpCV.IMAGE <> "" Then
                     objEmpCVData.IMAGE = objEmp.EMPLOYEE_CODE & objEmpCV.IMAGE 'Lưu Image thành dạng E10012.jpg.                    
                 End If
+                objEmpCVData.PIT_CODE_DATE = objEmpCV.PIT_CODE_DATE
+                objEmpCVData.PIT_CODE_PLACE = objEmpCV.PIT_CODE_PLACE
+                objEmpCVData.EFFECTDATE_BANK = objEmpCV.EFFECTDATE_BANK
+                objEmpCVData.PERSON_INHERITANCE = objEmpCV.PERSON_INHERITANCE
                 objEmpCVData.BIRTH_DATE = objEmpCV.BIRTH_DATE
+                objEmpCVData.VILLAGE = objEmpCV.VILLAGE
+                objEmpCVData.CONTACT_PER_MBPHONE = objEmpCV.CONTACT_PER_MBPHONE
                 objEmpCVData.BIRTH_PLACE = objEmpCV.BIRTH_PLACE
                 objEmpCVData.MARITAL_STATUS = objEmpCV.MARITAL_STATUS
                 objEmpCVData.RELIGION = objEmpCV.RELIGION
@@ -1046,7 +1056,9 @@ Partial Class ProfileRepository
                 objEmpEduData.TDTH2 = objEmpEdu.TDTH2
                 objEmpEduData.DIEM_XLTH2 = objEmpEdu.DIEM_XLTH2
                 objEmpEduData.NOTE_TDTH2 = objEmpEdu.NOTE_TDTH2
-
+                objEmpEduData.COMPUTER_CERTIFICATE = objEmpEdu.COMPUTER_CERTIFICATE
+                objEmpEduData.COMPUTER_MARK = objEmpEdu.COMPUTER_MARK
+                objEmpEduData.COMPUTER_RANK = objEmpEdu.COMPUTER_RANK
                 Context.HU_EMPLOYEE_EDUCATION.AddObject(objEmpEduData)
             End If
 
@@ -1321,7 +1333,13 @@ Partial Class ProfileRepository
                 If objEmpCV.IMAGE <> "" Then
                     objEmpCVData.IMAGE = objEmp.EMPLOYEE_CODE & objEmpCV.IMAGE 'Lưu Image thành dạng E10012.jpg.                    
                 End If
+                objEmpCVData.EFFECTDATE_BANK = objEmpCV.EFFECTDATE_BANK
+                objEmpCVData.PERSON_INHERITANCE = objEmpCV.PERSON_INHERITANCE
+                objEmpCVData.PIT_CODE_DATE = objEmpCV.PIT_CODE_DATE
+                objEmpCVData.PIT_CODE_PLACE = objEmpCV.PIT_CODE_PLACE
                 objEmpCVData.GENDER = objEmpCV.GENDER
+                objEmpCVData.VILLAGE = objEmpCV.VILLAGE
+                objEmpCVData.CONTACT_PER_MBPHONE = objEmpCV.CONTACT_PER_MBPHONE
                 objEmpCVData.BIRTH_DATE = objEmpCV.BIRTH_DATE
                 objEmpCVData.BIRTH_PLACE = objEmpCV.BIRTH_PLACE
                 objEmpCVData.MARITAL_STATUS = objEmpCV.MARITAL_STATUS
@@ -1449,6 +1467,9 @@ Partial Class ProfileRepository
                 Else 'Update
                     bUpdateEdu = True
                 End If
+                objEmpEduData.COMPUTER_CERTIFICATE = objEmpEdu.COMPUTER_CERTIFICATE
+                objEmpEduData.COMPUTER_MARK = objEmpEdu.COMPUTER_MARK
+                objEmpEduData.COMPUTER_RANK = objEmpEdu.COMPUTER_RANK
                 objEmpEduData.ACADEMY = objEmpEdu.ACADEMY
                 objEmpEduData.MAJOR = objEmpEdu.MAJOR
                 objEmpEduData.MAJOR_REMARK = objEmpEdu.MAJOR_REMARK
@@ -1712,6 +1733,12 @@ Partial Class ProfileRepository
                      Select New EmployeeCVDTO With {
                          .EMPLOYEE_ID = cv.EMPLOYEE_ID,
                          .GENDER = cv.GENDER,
+                         .VILLAGE = cv.VILLAGE,
+                         .PIT_CODE_DATE = cv.PIT_CODE_DATE,
+                         .PIT_CODE_PLACE = cv.PIT_CODE_PLACE,
+                         .PERSON_INHERITANCE = cv.PERSON_INHERITANCE,
+                         .EFFECTDATE_BANK = cv.EFFECTDATE_BANK,
+                         .CONTACT_PER_MBPHONE = cv.CONTACT_PER_MBPHONE,
                          .GENDER_NAME = g.NAME_VN,
                          .BIRTH_DATE = cv.BIRTH_DATE,
                          .BIRTH_PLACE = cv.BIRTH_PLACE,
@@ -1842,12 +1869,19 @@ Partial Class ProfileRepository
                      From ll1 In Context.OT_OTHER_LIST.Where(Function(f) f.ID = edu.LANGUAGE_LEVEL).DefaultIfEmpty
                      From ll2 In Context.OT_OTHER_LIST.Where(Function(f) f.ID = edu.LANGUAGE_LEVEL2).DefaultIfEmpty
                      From school In Context.OT_OTHER_LIST.Where(Function(f) f.ID = edu.GRADUATE_SCHOOL_ID).DefaultIfEmpty
+                     From OT In Context.OT_OTHER_LIST.Where(Function(F) F.ID = edu.COMPUTER_MARK).DefaultIfEmpty
+                      From OT1 In Context.OT_OTHER_LIST.Where(Function(F) F.ID = edu.COMPUTER_RANK).DefaultIfEmpty
                      Where edu.EMPLOYEE_ID = sEmployeeID
                      Select New EmployeeEduDTO With {
                          .EMPLOYEE_ID = edu.EMPLOYEE_ID,
                          .ACADEMY = edu.ACADEMY,
                          .ACADEMY_NAME = a.NAME_VN,
                          .MAJOR = edu.MAJOR,
+                         .COMPUTER_CERTIFICATE = edu.COMPUTER_CERTIFICATE,
+                         .COMPUTER_MARK = edu.COMPUTER_MARK,
+                         .COMPUTER_MARK_NAME = OT.NAME_VN,
+                         .COMPUTER_RANK = edu.COMPUTER_RANK,
+                         .COMPUTER_RANK_NAME = OT1.NAME_VN,
                          .MAJOR_NAME = m.NAME_VN,
                          .MAJOR_REMARK = edu.MAJOR_REMARK,
                          .TRAINING_FORM = edu.TRAINING_FORM,

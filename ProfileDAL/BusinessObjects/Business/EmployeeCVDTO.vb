@@ -138,5 +138,14 @@
     Public Property RELATION_PER_CTR As Decimal?
     Public Property RELATION_PER_CTR_NAME As String
     Public Property ADDRESS_PER_CTR As String
-   
+    'ap thon khu
+    Public Property VILLAGE As String
+    'SO DT DI DONG NG LIEN HE
+    Public Property CONTACT_PER_MBPHONE As String
+    'ngay cap va noi cap ma so thue
+    Public Property PIT_CODE_DATE As Date?
+    Public Property PIT_CODE_PLACE As String
+    'TEN NGUOI THU HUONG VA NGAY HIEU LUC NGAN HAN
+    Public Property EFFECTDATE_BANK As Date?
+    Public Property PERSON_INHERITANCE As String
 End Class

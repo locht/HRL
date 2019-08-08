@@ -87,4 +87,10 @@
 
     Public Property OBJECT_LABOR As Decimal?
     Public Property OBJECT_LABOR_NAME As String
+    'DOI TUONG BAO HIEM
+    Public Property OBJECT_INS As Decimal?
+    Public Property OBJECT_INS_NAME As String
+ 
+
+
 End Class
