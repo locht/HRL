@@ -896,7 +896,7 @@ Public Class ctrlHU_EmpDtlProfile
 
                     EnableControlAll(False, txtOrgName2, btnFindOrg,
                                     cboTitle, txtTitleGroup, cboStaffRank, txtDirectManager, btnFindDirect,
-                                    txtManager, cboObject, cboObjectLabor, txtTimeID, cbObjectBook, txtAppDung, txtPlaceKS, txtVillage, txtPlacePitcode, rdDayPitcode, txtPerson_Inheritance, rdEffect_Bank)
+                                    txtManager, cboObject, cboObjectLabor, txtTimeID, cbObjectBook)
 
                     EnableControlAll(False, cboWorkStatus, txtEmpCODE, cboEmpStatus, rtBookNo)
                     EnableControlAll(True, rtCHUC_VU_DANG, rdNGAY_VAO_DANG_DB, rdNGAY_VAO_DANG)
@@ -907,7 +907,7 @@ Public Class ctrlHU_EmpDtlProfile
                     EnableControlAll(True, cbHang_Thuong_Binh, cbGD_Chinh_Sach)
                     EnableControlAll(True, lstbPaper, lstbPaperFiled, chkSaveHistory,
                                         txtBankNo, ckBanTT_ND, rtDiem_XL_TH, txtDiem_XL_TH2, txtNoteTDTH1, txtNoteTDTH2,
-                                       txtDaHoaLieu, txtNamTN, rdExpireIDNO,
+                                       txtDaHoaLieu, txtNamTN, rdExpireIDNO, txtAppDung, txtPlaceKS, txtVillage, txtPlacePitcode, rdDayPitcode, txtPerson_Inheritance, rdEffect_Bank,
                                        txtFirstNameVN, txtGhiChuSK, chkIs_pay_bank,
                                        txtHomePhone, txtHuyetAp, txtID_NO,
                                        cboIDPlace, txtLangMark, txtLangMark2, txtTimeID,
@@ -2230,15 +2230,19 @@ Public Class ctrlHU_EmpDtlProfile
             Dim org = rep.GetOrganizationByID(orgid)
             If org IsNot Nothing Then
                 SetValueComboBox(cboInsRegion, org.REGION_ID, Nothing)
+                txtOrgName2.Text = org.NAME_VN
+                txtOrgName2.ToolTip = org.NAME_VN
             End If
             orgTree = rep.GetTreeOrgByID(orgid)
         End Using
         Try
+          
             If orgTree IsNot Nothing Then
-                If IsNumeric(orgTree.ORG_ID2) Then
-                    txtOrgName2.Text = orgTree.ORG_NAME2
-                    txtOrgName2.ToolTip = orgTree.ORG_ID2
-                End If
+                'If IsNumeric(orgTree.ORG_ID2) Then
+                '    txtOrgName2.Text = orgTree.ORG_NAME2
+                '    txtOrgName2.ToolTip = orgTree.ORG_ID2
+                'End If
+
                 'If IsNumeric(orgTree.ORG_ID3) Then
                 '    txtOrgName.Text = orgTree.ORG_NAME3
                 '    txtOrgName.ToolTip = orgTree.ORG_ID3
