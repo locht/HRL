@@ -3,19 +3,13 @@ Inherits="Profile.ctrlDashboardHome" %>
 
 <tlk:RadSplitter ID="RadSplitter1" runat="server" Width="100%" Height="100%" Orientation="Horizontal"
     SkinID="Demo">
-     <tlk:RadPane ID="RadPane2" runat="server" Height="35px" Scrolling="None" >
-    <table>
-<tr>
-<td class="lb"><asp:ImageButton runat=server ID="ImageButton1" ImageUrl="../../../Static/Images/ReLoad.jpg" Width="35px" Height="35px" /></td>
-</tr>
-</table>
-    </tlk:RadPane>
+     
     <tlk:RadPane ID="RadPane1" runat="server" Scrolling="None">
         <tlk:RadGrid  ID="rgContract" runat="server" Height="100%" AllowFilteringByColumn="true">
             <MasterTableView CommandItemSettings-ExportToExcelText="Xuất dữ liệu" 
             CommandItemSettings-ExportToCsvText="Chuyển" CommandItemSettings-ExportToPdfText="Báo tăng thai sản đi làm lại" CommandItemDisplay="Top"
              ClientDataKeyNames="ID,ID_TYPE,EMPLOYEE_ID,EMPLOYEE_CODE,LINK_POPUP">
-               <td class="lb"><asp:ImageButton runat=server ID="ibtnReLoad" ImageUrl="../../../Static/Images/ReLoad.jpg" Width="35px" Height="35px" /></td>
+               
                 <CommandItemSettings  ShowAddNewRecordButton="false" ShowExportToCsvButton="false"
                     ShowRefreshButton="false" ShowExportToExcelButton="true"></CommandItemSettings>
                 <Columns>

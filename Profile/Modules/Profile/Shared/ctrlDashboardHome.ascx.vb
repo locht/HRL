@@ -222,7 +222,7 @@ Public Class ctrlDashboardHome
         Using rep As New ProfileDashboardRepository
             Try
                 'dtReminder = psp.GET_INFO_REMINDER(log.Username.ToUpper)
-                'dtReminder = psp.GET_LIST_INFO_REMINDER(log.Username.ToUpper)
+                dtReminder = psp.GET_LIST_INFO_REMINDER(log.Username.ToUpper)
                 'If dtReminder.Rows.Count > 0 Then
                 '    'lbbirthdayRemind.Text = dtReminder.Select("REMIND_TYPE = '" + cons_com.REMINDER12 + "'").Count
                 '    'lbcontractRemind.Text = dtReminder.Select("REMIND_TYPE = '" + cons_com.REMINDER2 + "'").Count
