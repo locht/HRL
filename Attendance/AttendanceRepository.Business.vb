@@ -14,6 +14,15 @@ Partial Class AttendanceRepository
             End Try
         End Using
     End Function
+    Function IMPORT_TIMESHEET_MACHINE(ByVal ListobjImport As List(Of AT_TIME_TIMESHEET_MACHINETDTO)) As Boolean
+        Using rep As New AttendanceBusinessClient
+            Try
+                Return rep.IMPORT_TIMESHEET_MACHINE(ListobjImport)
+            Catch ex As Exception
+                Throw ex
+            End Try
+        End Using
+    End Function
 #Region "quan ly vao ra"
     Function GetDataInout(ByVal _filter As AT_DATAINOUTDTO,
                                       ByVal _param As Attendance.AttendanceBusiness.ParamDTO,

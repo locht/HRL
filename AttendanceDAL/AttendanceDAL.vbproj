@@ -124,7 +124,6 @@
     <Compile Include="BusinessObjects\AT_DMVSDTO.vb" />
     <Compile Include="BusinessObjects\AT_TIME_TIMESHEET_DAILYDTO.vb" />
     <Compile Include="BusinessObjects\AT_TIME_TIMESHEET_MACHINETDTO.vb" />
-    <Compile Include="BusinessObjects\ComboBoxDataDTO.vb" />
     <Compile Include="BusinessObjects\AT_SHIFTDTO.vb" />
     <Compile Include="BusinessObjects\AT_HOLIDAY_OBJECTDTO.vb" />
     <Compile Include="BusinessObjects\AT_SETUP_SPECIALDTO.vb" />
@@ -154,7 +153,9 @@
     <Compile Include="BusinessObjects\AT_PROCESS_DTO.vb" />
     <Compile Include="BusinessObjects\AT_OFFFSETTINGDTO.vb" />
     <Compile Include="BusinessObjects\AT_OFFFSETTING_EMPDTO.vb" />
+    <Compile Include="BusinessObjects\ComboBoxDataDTO.vb" />
     <Compile Include="BusinessObjects\CONTRACT_DTO.vb" />
+    <Compile Include="BusinessObjects\AT_TYPE_PROCESSDTO.vb" />
     <Compile Include="BusinessObjects\EMPLOYEE_SHIFT_DTO.vb" />
     <Compile Include="BusinessObjects\LEAVEINOUTKHDTO.vb" />
     <Compile Include="BusinessObjects\LEAVE_DETAIL_EMP_DTO.vb" />

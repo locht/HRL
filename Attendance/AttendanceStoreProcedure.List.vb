@@ -93,4 +93,91 @@ Partial Class AttendanceStoreProcedure
         End Try
         Return dt
     End Function
+
+    Public Function GET_LEAVE_SHEET_FOR_PORTAL(ByVal _filter As AT_LEAVESHEETDTO, ByRef Total As Integer,
+                                       ByVal PageIndex As Integer,
+                                       ByVal PageSize As Integer) As DataTable
+        Dim dt As New DataTable
+        Try
+            Dim ds As DataSet = rep.ExecuteToDataSet("PKG_AT_LEAVESHEET.GET_LEAVE_SHEET_FOR_PORTAL", New List(Of Object)(New Object() {_filter.EMPLOYEE_ID, _filter.FROM_DATE, _filter.END_DATE, _filter.STATUS}))
+            If ds IsNot Nothing Then
+                dt = ds.Tables(0)
+
+                If _filter.STATUS_NAME <> "" Then
+                    Dim ck = (From p As DataRow In dt.AsEnumerable Where p("STATUS_NAME").ToString.ToLower.Contains(_filter.STATUS_NAME.ToLower)).ToList
+                    If ck.Count > 0 AndAlso ck IsNot Nothing Then
+                        dt = (From p As DataRow In dt.AsEnumerable Where p("STATUS_NAME").ToString.ToLower.Contains(_filter.STATUS_NAME.ToLower)).ToList.CopyToDataTable
+                    Else
+                        dt = New DataTable
+                    End If
+                End If
+
+                If _filter.EMPLOYEE_CODE <> "" Then
+                    Dim ck = (From p As DataRow In dt.AsEnumerable Where p("EMPLOYEE_CODE").ToString.ToLower.Contains(_filter.EMPLOYEE_CODE.ToLower)).ToList
+                    If ck.Count > 0 AndAlso ck IsNot Nothing Then
+                        dt = (From p As DataRow In dt.AsEnumerable Where p("EMPLOYEE_CODE").ToString.ToLower.Contains(_filter.EMPLOYEE_CODE.ToLower)).ToList.CopyToDataTable
+                    Else
+                        dt = New DataTable
+                    End If
+                End If
+
+                If _filter.VN_FULLNAME <> "" Then
+                    Dim ck = (From p As DataRow In dt.AsEnumerable Where p("VN_FULLNAME").ToString.ToLower.Contains(_filter.VN_FULLNAME.ToLower)).ToList
+                    If ck.Count > 0 AndAlso ck IsNot Nothing Then
+                        dt = (From p As DataRow In dt.AsEnumerable Where p("VN_FULLNAME").ToString.ToLower.Contains(_filter.VN_FULLNAME.ToLower)).ToList.CopyToDataTable
+                    Else
+                        dt = New DataTable
+                    End If
+                End If
+
+                If _filter.ORG_NAME <> "" Then
+                    Dim ck = (From p As DataRow In dt.AsEnumerable Where p("ORG_NAME").ToString.ToLower.Contains(_filter.ORG_NAME.ToLower)).ToList
+                    If ck.Count > 0 AndAlso ck IsNot Nothing Then
+                        dt = (From p As DataRow In dt.AsEnumerable Where p("ORG_NAME").ToString.ToLower.Contains(_filter.ORG_NAME.ToLower)).ToList.CopyToDataTable
+                    Else
+                        dt = New DataTable
+                    End If
+                End If
+
+                If _filter.MANUAL_NAME <> "" Then
+                    Dim ck = (From p As DataRow In dt.AsEnumerable Where p("MANUAL_NAME").ToString.ToLower.Contains(_filter.MANUAL_NAME.ToLower)).ToList
+                    If ck.Count > 0 AndAlso ck IsNot Nothing Then
+                        dt = (From p As DataRow In dt.AsEnumerable Where p("MANUAL_NAME").ToString.ToLower.Contains(_filter.MANUAL_NAME.ToLower)).ToList.CopyToDataTable
+                    Else
+                        dt = New DataTable
+                    End If
+                End If
+
+                If _filter.LEAVE_FROM.HasValue Then
+                    Dim ck = (From p As DataRow In dt.AsEnumerable Where p("LEAVE_FROM") = _filter.LEAVE_FROM).ToList
+                    If ck.Count > 0 AndAlso ck IsNot Nothing Then
+                        dt = (From p As DataRow In dt.AsEnumerable Where p("LEAVE_FROM") = _filter.LEAVE_FROM).ToList.CopyToDataTable
+                    Else
+                        dt = New DataTable
+                    End If
+                End If
+
+                If _filter.LEAVE_TO.HasValue Then
+                    Dim ck = (From p As DataRow In dt.AsEnumerable Where p("LEAVE_TO") = _filter.LEAVE_TO).ToList
+                    If ck.Count > 0 AndAlso ck IsNot Nothing Then
+                        dt = (From p As DataRow In dt.AsEnumerable Where p("LEAVE_TO") = _filter.LEAVE_TO).ToList.CopyToDataTable
+                    Else
+                        dt = New DataTable
+                    End If
+                End If
+
+                If dt.Rows.Count > 0 Then
+                    Total = dt.Rows.Count
+                    dt = dt.AsEnumerable.Skip(PageIndex * PageSize).Take(PageSize).CopyToDataTable
+                Else
+                    dt = New DataTable
+                End If
+            Else
+                dt = New DataTable
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+        Return dt
+    End Function
 End Class

@@ -36,6 +36,14 @@ Public Class ctrlATTimeManual
             ViewState(Me.ID & "_ListComboData") = value
         End Set
     End Property
+    Property ListComboDataTypePross As ComboBoxDataDTO
+        Get
+            Return ViewState(Me.ID & "_ListComboDataTypePross")
+        End Get
+        Set(ByVal value As ComboBoxDataDTO)
+            ViewState(Me.ID & "_ListComboDataTypePross") = value
+        End Set
+    End Property
 #End Region
 
 #Region "Page"
@@ -184,6 +192,7 @@ Public Class ctrlATTimeManual
                     rdNote.Enabled = True
                     cboMorning.Enabled = True
                     cboAfternoon.Enabled = True
+                    cboTypeProcess.Enabled = True
                     'rdLimitDay.Enabled = True
                     'rdLimitYear.Enabled = True
                     EnabledGridNotPostback(rgDanhMuc, False)
@@ -194,14 +203,17 @@ Public Class ctrlATTimeManual
                     rdNote.Text = ""
                     cboAfternoon.Text = ""
                     cboMorning.Text = ""
+                    cboTypeProcess.Text = ""
                     'chkIsPrice.Checked = False
                     cboAfternoon.SelectedValue = Nothing
                     cboMorning.SelectedValue = Nothing
+                    cboTypeProcess.SelectedValue = Nothing
                     txtCode.Enabled = False
                     txtNameVN.Enabled = False
                     'chkIsPrice.Enabled = False
                     cboAfternoon.Enabled = False
                     cboMorning.Enabled = False
+                    cboTypeProcess.Enabled = False
                     rdNote.Enabled = False
                     'rdLimitDay.Enabled = False
                     ' rdLimitDay.Value = Nothing
@@ -215,6 +227,7 @@ Public Class ctrlATTimeManual
                     cboAfternoon.Enabled = True
                     'chkIsPrice.Enabled = True
                     cboMorning.Enabled = True
+                    cboTypeProcess.Enabled = True
                     rdNote.Enabled = True
                     'rdLimitDay.Enabled = True
                     'rdLimitYear.Enabled = True
@@ -230,7 +243,7 @@ Public Class ctrlATTimeManual
                         ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), NotifyType.Success)
                         CurrentState = CommonMessage.STATE_NORMAL
                         rgDanhMuc.Rebind()
-                        ClearControlValue(txtCode, txtNameVN, cboAfternoon, cboMorning, rdNote)
+                        ClearControlValue(txtCode, txtNameVN, cboAfternoon, cboMorning, cboTypeProcess, rdNote)
                     Else
                         ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), NotifyType.Warning)
                     End If
@@ -244,7 +257,7 @@ Public Class ctrlATTimeManual
                         ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), NotifyType.Success)
                         CurrentState = CommonMessage.STATE_NORMAL
                         rgDanhMuc.Rebind()
-                        ClearControlValue(txtCode, txtNameVN, cboAfternoon, cboMorning, rdNote)
+                        ClearControlValue(txtCode, txtNameVN, cboAfternoon, cboMorning, cboTypeProcess, rdNote)
                     Else
                         ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), NotifyType.Warning)
                     End If
@@ -288,6 +301,7 @@ Public Class ctrlATTimeManual
             dic.Add("NAME_VN", txtNameVN)
             dic.Add("MORNING_ID", cboMorning)
             dic.Add("AFTERNOON_ID", cboAfternoon)
+            dic.Add("TYPE_PROSS_ID", cboTypeProcess)
             'dic.Add("LIMIT_DAY", rdLimitDay)
             'dic.Add("LIMIT_YEAR", rdLimitYear)
             dic.Add("NOTE", rdNote)
@@ -324,8 +338,10 @@ Public Class ctrlATTimeManual
                     UpdateControlState()
                     cboAfternoon.Text = ""
                     cboMorning.Text = ""
+                    cboTypeProcess.Text = ""
                     cboAfternoon.SelectedValue = Nothing
                     cboMorning.SelectedValue = Nothing
+                    cboTypeProcess.SelectedValue = Nothing
                     'rdLimitDay.Value = Nothing
                     'rdLimitYear.Value = Nothing
                     rgDanhMuc.SelectedIndexes.Clear()
@@ -388,6 +404,7 @@ Public Class ctrlATTimeManual
                         objHoliday_Gen.CODE = txtCode.Text
                         objHoliday_Gen.NAME_VN = txtNameVN.Text
                         objHoliday_Gen.MORNING_ID = cboMorning.SelectedValue
+                        objHoliday_Gen.TYPE_PROSS_ID = cboTypeProcess.SelectedValue
                         objHoliday_Gen.AFTERNOON_ID = cboAfternoon.SelectedValue
                         'objHoliday_Gen.IS_PAID_RICE = chkIsPrice.Checked
                         objHoliday_Gen.NOTE = rdNote.Text
@@ -415,7 +432,7 @@ Public Class ctrlATTimeManual
                                 validate.ID = objHoliday_Gen.ID
                                 If rep.ValidateAT_TIME_MANUAL(validate) Then
                                     ShowMessage(Translate(CommonMessage.MESSAGE_WARNING_EXIST_DATABASE), NotifyType.Error)
-                                    ClearControlValue(txtCode, txtNameVN, cboAfternoon, cboMorning, rdNote)
+                                    ClearControlValue(txtCode, txtNameVN, cboAfternoon, cboMorning, cboTypeProcess, rdNote)
                                     rgDanhMuc.Rebind()
                                     CurrentState = CommonMessage.STATE_NORMAL
                                     UpdateControlState()
@@ -521,6 +538,13 @@ Public Class ctrlATTimeManual
                 ListComboDataAff.GET_LIST_SIGN = True
                 rep.GetComboboxData(ListComboDataAff)
             End If
+
+            If ListComboDataTypePross Is Nothing Then
+                ListComboDataTypePross = New ComboBoxDataDTO
+                ListComboDataTypePross.GET_LIST_TYPE_PROCESS = True
+                rep.GetComboboxData(ListComboDataTypePross)
+            End If
+
             FillRadCombobox(cboMorning, ListComboData.LIST_LIST_SIGN, "NAME_VN", "ID", True)
             'If ListComboData.LIST_LIST_SIGN.Count > 0 Then
             '    cboMorning.SelectedIndex = 0
@@ -529,6 +553,8 @@ Public Class ctrlATTimeManual
             'If ListComboData.LIST_LIST_SIGN.Count > 0 Then
             '    cboMorning.SelectedIndex = 0
             'End If
+
+            FillRadCombobox(cboTypeProcess, ListComboDataTypePross.LIST_LIST_TYPE_PROCESS, "NAME_VN", "ID", True)
 
             _myLog.WriteLog(_myLog._info, _classPath, method,
                                                 CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
@@ -653,7 +679,7 @@ Public Class ctrlATTimeManual
         Try
             Dim startTime As DateTime = DateTime.UtcNow
             If (CurrentState <> CommonMessage.STATE_NEW And (rgDanhMuc.SelectedItems.Count = 0 Or rgDanhMuc.SelectedItems.Count > 1)) Then
-                ClearControlValue(txtCode, txtNameVN, cboAfternoon, cboMorning, rdNote)
+                ClearControlValue(txtCode, txtNameVN, cboAfternoon, cboMorning, cboTypeProcess, rdNote)
             End If
             _myLog.WriteLog(_myLog._info, _classPath, method,
                               CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
@@ -667,7 +693,7 @@ Public Class ctrlATTimeManual
         Try
             Dim startTime As DateTime = DateTime.UtcNow
             If (CurrentState <> CommonMessage.STATE_NEW And (rgDanhMuc.SelectedItems.Count = 0 Or rgDanhMuc.SelectedItems.Count > 1)) Then
-                ClearControlValue(txtCode, txtNameVN, cboAfternoon, cboMorning, rdNote)
+                ClearControlValue(txtCode, txtNameVN, cboAfternoon, cboMorning, cboTypeProcess, rdNote)
             End If
             _myLog.WriteLog(_myLog._info, _classPath, method,
                               CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")

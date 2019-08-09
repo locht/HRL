@@ -8,7 +8,7 @@
 <asp:ValidationSummary ID="valSum" runat="server" DisplayMode="BulletList" CssClass="validationsummary" />
 <asp:Label runat="server" ID="lbStatus" ForeColor="Red"></asp:Label>
 <tlk:RadSplitter ID="RadSplitter3" runat="server" Orientation="Horizontal" Width="100%">
-    <tlk:RadPane ID="RadPane1" runat="server" Height="100%">
+    <tlk:RadPane ID="RadPane1" runat="server" Height="100%" Scrolling="Y">
         <table class="table-form" onkeydown="return (event.keyCode!=13)">
             <tr>
                 <td colspan="4">
@@ -31,8 +31,8 @@
                     </tlk:RadNumericTextBox>
                     <tlk:RadTextBox runat="server" ID="rtEmployee_Name" ReadOnly="true">
                     </tlk:RadTextBox>
-                    <tlk:RadButton ID="btnFindEmployee" runat="server" SkinID="ButtonView" CausesValidation="false">
-                    </tlk:RadButton>
+                    <%--<tlk:RadButton ID="btnFindEmployee" runat="server" SkinID="ButtonView" CausesValidation="false">
+                    </tlk:RadButton>--%>
                 </td>
                 <td class="lb">
                     <%# Translate("Phòng ban")%>
@@ -151,7 +151,7 @@
                 </td>
                 <td>
                     <tlk:RadComboBox runat="server" ID="cbMANUAL_ID" Width="250px" DataTextField="NAME_VN"
-                        DataValueField="ID" AutoPostBack="true">
+                        DataValueField="ID" AutoPostBack="true" CausesValidation="false">
                     </tlk:RadComboBox>
                 </td>
                 <td class="lb">
@@ -167,14 +167,14 @@
                     <%# Translate("Thời gian bắt đầu nghỉ")%><span class="lbReq">*</span>
                 </td>
                 <td>
-                    <tlk:RadDatePicker runat="server" ID="rdLEAVE_FROM" AutoPostBack="true">
+                    <tlk:RadDatePicker runat="server" ID="rdLEAVE_FROM" CausesValidation="false" AutoPostBack="true">
                     </tlk:RadDatePicker>
                 </td>
                 <td class="lb">
                     <%# Translate("Đến ngày")%><span class="lbReq">*</span>
                 </td>
                 <td>
-                    <tlk:RadDatePicker runat="server" ID="rdLEAVE_TO" AutoPostBack="true">
+                    <tlk:RadDatePicker runat="server" ID="rdLEAVE_TO" CausesValidation="false" AutoPostBack="true">
                     </tlk:RadDatePicker>
                     <input id="btnDetail" value="<%# Translate("Chi tiết")%>" type="button" onclick="showDetail('')">
                     <asp:CompareValidator ID="CompareValidator2" runat="server" ControlToValidate="rdLEAVE_TO"
@@ -195,9 +195,9 @@
                         ToolTip="<%$ Translate: Chưa nhập lý do nghỉ  %>"> </asp:RequiredFieldValidator>
                 </td>
                 <td>
-                    <tlk:RadNumericTextBox runat="server" ID="rnIS_APP" Value="-1" Visible="false"></tlk:RadNumericTextBox></td>
+                    <tlk:RadNumericTextBox runat="server" ID="rnIS_APP" Value="0" Visible="false"></tlk:RadNumericTextBox></td>
                 <td>
-                    <tlk:RadNumericTextBox runat="server" ID="rnSTATUS" Value="7369" Visible="false"></tlk:RadNumericTextBox></td>
+                    <tlk:RadNumericTextBox runat="server" ID="rnSTATUS" Value="0" Visible="false"></tlk:RadNumericTextBox></td>
             </tr>
         </table>
 
@@ -283,7 +283,6 @@
             }
         }
         function showDetail(value) {
-            debugger;
             if (value == "")
                 if ($("#divLeaveDetail").css("display") == "block")
                     $("#divLeaveDetail").css("display", "none");

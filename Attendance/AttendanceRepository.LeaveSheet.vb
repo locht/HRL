@@ -29,4 +29,18 @@ Partial Class AttendanceRepository
             End Try
         End Using
     End Function
+
+    Function GetLeaveSheet_Portal(ByVal _filter As AT_LEAVESHEETDTO,
+                                    Optional ByRef Total As Integer = 0,
+                                    Optional ByVal PageIndex As Integer = 0,
+                                    Optional ByVal PageSize As Integer = Integer.MaxValue,
+                                    Optional ByVal Sorts As String = "CREATED_DATE desc", Optional ByVal log As UserLog = Nothing) As List(Of AT_LEAVESHEETDTO)
+        Using rep As New AttendanceBusinessClient
+            Try
+                Return rep.GetLeaveSheet_Portal(_filter, Total, PageIndex, PageSize, Sorts, Me.Log)
+            Catch ex As Exception
+                Throw ex
+            End Try
+        End Using
+    End Function
 End Class

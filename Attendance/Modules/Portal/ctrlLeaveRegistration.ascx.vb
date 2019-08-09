@@ -3,10 +3,10 @@ Imports Framework.UI.Utilities
 Imports Common
 Imports Common.Common
 Imports Attendance.AttendanceBusiness
+Imports Attendance.AttendanceRepository
 Imports Telerik.Web.UI
 Imports System.Web.Configuration
 Imports HistaffFrameworkPublic.HistaffFrameworkEnum
-
 Public Class ctrlLeaveRegistration
     Inherits CommonView
     Protected WithEvents ViewItem As ViewBase
@@ -18,6 +18,22 @@ Public Class ctrlLeaveRegistration
     Public Property EmployeeCode As String
     Public Property unit As String
 
+    ''' <summary>
+    ''' Obj LEAVESHEET
+    ''' </summary>
+    ''' <value></value>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
+    Private Property LEAVESHEET As DataTable
+        Get
+            Return ViewState(Me.ID & "_LEAVESHEET")
+        End Get
+        Set(ByVal value As DataTable)
+            ViewState(Me.ID & "_LEAVESHEET") = value
+        End Set
+    End Property
+
+
     Property LeaveMasters As List(Of AT_PORTAL_REG_DTO)
         Get
             Return ViewState(Me.ID & "_LeaveMasters")
@@ -26,6 +42,7 @@ Public Class ctrlLeaveRegistration
             ViewState(Me.ID & "_LeaveMasters") = value
         End Set
     End Property
+
     Property LeaveMasterTotal As Int32
         Get
             Return ViewState(Me.ID & "_LeaveMasterTotal")
@@ -98,7 +115,6 @@ Public Class ctrlLeaveRegistration
         End Try
     End Sub
 
-
     Public Overrides Sub ViewInit(ByVal e As System.EventArgs)
         'rgMain.SetFilter()
         rgMain.AllowCustomPaging = True
@@ -139,7 +155,11 @@ Public Class ctrlLeaveRegistration
 #Region "Event"
     Protected Sub RadGrid_NeedDataSource(ByVal source As Object, ByVal e As GridNeedDataSourceEventArgs) Handles rgMain.NeedDataSource
         Try
-            CreateDataFilter()
+            If IsPostBack = True Then
+                CreateDataFilter()
+            Else
+                rgMain.DataSource = New DataTable
+            End If
 
         Catch ex As Exception
             DisplayException(Me.ViewName, Me.ID, ex)
@@ -263,10 +283,6 @@ Public Class ctrlLeaveRegistration
                         End If
 
                     Next
-
-
-
-
                     'Dim itemError As New AT_PROCESS_DTO
                     'Using rep As New AttendanceRepository
                     '    Dim checkResult = rep.CheckTimeSheetApproveVerify(listDataCheck, "LEAVE", itemError)
@@ -320,18 +336,6 @@ Public Class ctrlLeaveRegistration
                     ShowMessage(Translate("Không thể gửi phê duyệt các loại nghỉ khác nhau cùng lúc"), NotifyType.Warning)
                     Exit Sub
                 End If
-                If dtCheckSendApprove(0)("SIGN_ID").ToString <> "" Then
-                    sign_id = dtCheckSendApprove(0)("SIGN_ID")
-                End If
-                If dtCheckSendApprove(0)("PERIOD_ID").ToString <> "" Then
-                    period_id = dtCheckSendApprove(0)("PERIOD_ID")
-                End If
-                If dtCheckSendApprove(0)("ID_REGGROUP").ToString <> "" Then
-                    id_group = dtCheckSendApprove(0)("ID_REGGROUP")
-                End If
-                If dtCheckSendApprove(0)("SUMDAY").ToString <> "" Then
-                    sumday = dtCheckSendApprove(0)("SUMDAY")
-                End If
             End If
 
             Using rep As New AttendanceRepository
@@ -371,37 +375,29 @@ Public Class ctrlLeaveRegistration
 #Region "Custom"
     Protected Function CreateDataFilter(Optional ByVal isFull As Boolean = False) As DataTable
         Dim rep As New AttendanceRepository
-        Dim _filter As New AT_PORTAL_REG_DTO
+        Dim _filter As New AT_LEAVESHEETDTO
+        Dim lstLeaveSheet As New List(Of AT_LEAVESHEETDTO)
         Try
-            _filter.ID_EMPLOYEE = EmployeeID
-            '_filter.YEAR = 0
-            If txtYear.Value.HasValue Then
-                _filter.YEAR = txtYear.Value
-            End If
-            If Not String.IsNullOrEmpty(cboStatus.SelectedValue) Then
-                _filter.STATUS = cboStatus.SelectedValue
-            End If
-           
-
+            Dim MaximumRows As Integer
             SetValueObjectByRadGrid(rgMain, _filter)
             Dim Sorts As String = rgMain.MasterTableView.SortExpressions.GetSortString()
-
-            If isFull Then
+            _filter.EMPLOYEE_ID = EmployeeID
+            _filter.IS_APP = 0
+            If IsNumeric(cboStatus.SelectedValue) Then
+                _filter.STATUS = cboStatus.SelectedValue
+            End If
+            If Not isFull Then
                 If Sorts IsNot Nothing Then
-                    Return rep.GetLeaveRegistrationList(_filter, Integer.MaxValue, 0, Integer.MaxValue, Sorts).ToTable()
+                    lstLeaveSheet = rep.GetLeaveSheet_Portal(_filter, MaximumRows, rgMain.CurrentPageIndex, rgMain.PageSize, "CREATED_DATE desc")
                 Else
-                    Return rep.GetLeaveRegistrationList(_filter, Integer.MaxValue, 0, Integer.MaxValue).ToTable
+                    lstLeaveSheet = rep.GetLeaveSheet_Portal(_filter, MaximumRows, rgMain.CurrentPageIndex, rgMain.PageSize)
                 End If
             Else
-                If Sorts IsNot Nothing Then
-                    Me.LeaveMasters = rep.GetLeaveRegistrationList(_filter, Me.LeaveMasterTotal, rgMain.CurrentPageIndex, rgMain.PageSize, Sorts)
-                Else
-                    Me.LeaveMasters = rep.GetLeaveRegistrationList(_filter, Me.LeaveMasterTotal, rgMain.CurrentPageIndex, rgMain.PageSize)
-                End If
+                Return rep.GetLeaveSheet_Portal(_filter).ToTable
             End If
 
-            rgMain.VirtualItemCount = Me.LeaveMasterTotal
-            rgMain.DataSource = Me.LeaveMasters
+            rgMain.VirtualItemCount = MaximumRows
+            rgMain.DataSource = lstLeaveSheet
 
         Catch ex As Exception
             Throw ex

@@ -17,4 +17,6 @@
     Public Property MODIFIED_LOG As String
     Public Property IS_LEAVE As Decimal?
     Public Property IS_LEAVE1 As Decimal?
+    Public Property TYPE_PROSS_ID As Decimal?
+    Public Property TYPE_PROCESS_NAME As String
 End Class

@@ -5153,6 +5153,7 @@ Partial Public Class AttendanceRepository
             Dim query = From p In Context.AT_TIME_MANUAL
                         From f1 In Context.AT_FML.Where(Function(F) F.ID = p.MORNING_ID).DefaultIfEmpty
                         From f2 In Context.AT_FML.Where(Function(F) F.ID = p.AFTERNOON_ID).DefaultIfEmpty
+                        From f3 In Context.AT_TYPE_PROCESS.Where(Function(F) F.ID = p.TYPE_PROSS_ID).DefaultIfEmpty
             Dim lst = query.Select(Function(p) New AT_TIME_MANUALDTO With {
                                        .ID = p.p.ID,
                                        .CODE = p.p.CODE,
@@ -5161,6 +5162,8 @@ Partial Public Class AttendanceRepository
                                        .MORNING_NAME = p.f1.NAME_VN,
                                        .AFTERNOON_ID = p.p.AFTERNOON_ID,
                                        .AFTERNOON_NAME = p.f2.NAME_VN,
+                                       .TYPE_PROSS_ID = p.p.TYPE_PROSS_ID,
+                                       .TYPE_PROCESS_NAME = p.f3.NAME_VN,
                                        .NOTE = p.p.NOTE,
                                        .ACTFLG = If(p.p.ACTFLG = "A", "Áp dụng", "Ngừng Áp dụng"),
                                        .CREATED_BY = p.p.CREATED_BY,
@@ -5182,6 +5185,9 @@ Partial Public Class AttendanceRepository
             End If
             If Not String.IsNullOrEmpty(_filter.AFTERNOON_NAME) Then
                 lst = lst.Where(Function(f) f.AFTERNOON_NAME.ToLower().Contains(_filter.AFTERNOON_NAME.ToLower()))
+            End If
+            If Not String.IsNullOrEmpty(_filter.TYPE_PROCESS_NAME) Then
+                lst = lst.Where(Function(f) f.TYPE_PROCESS_NAME.ToLower().Contains(_filter.TYPE_PROCESS_NAME.ToLower()))
             End If
             If Not String.IsNullOrEmpty(_filter.ACTFLG) Then
                 lst = lst.Where(Function(f) f.ACTFLG.ToLower().Contains(_filter.ACTFLG.ToLower()))
@@ -5227,6 +5233,7 @@ Partial Public Class AttendanceRepository
             objTitleData.NAME = objTitle.NAME_VN.Trim
             objTitleData.MORNING_ID = objTitle.MORNING_ID
             objTitleData.AFTERNOON_ID = objTitle.AFTERNOON_ID
+            objTitleData.TYPE_PROSS_ID = objTitle.TYPE_PROSS_ID
             objTitleData.NOTE = objTitle.NOTE
             objTitleData.ACTFLG = objTitle.ACTFLG
             objTitleData.CREATED_BY = objTitle.CREATED_BY
@@ -5289,6 +5296,7 @@ Partial Public Class AttendanceRepository
             objTitleData.NAME = objTitle.NAME_VN.Trim
             objTitleData.MORNING_ID = objTitle.MORNING_ID
             objTitleData.AFTERNOON_ID = objTitle.AFTERNOON_ID
+            objTitleData.TYPE_PROSS_ID = objTitle.TYPE_PROSS_ID
             objTitleData.NOTE = objTitle.NOTE
             objTitleData.CREATED_BY = objTitle.CREATED_BY
             objTitleData.CREATED_DATE = objTitle.CREATED_DATE

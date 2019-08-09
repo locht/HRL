@@ -595,7 +595,7 @@ Public Class ctrlTimeTimesheet_machine
                     lstobjUdp.Add(objUdp)
                 Next
                 Using rep As New AttendanceRepository
-                    If rep.Upd_TimeTImesheetMachines(lstobjUdp) Then
+                    If rep.IMPORT_TIMESHEET_MACHINE(lstobjUdp) Then
                         Refresh("InsertView")
                         CurrentState = CommonMessage.STATE_NORMAL
                         UpdateControlState()
