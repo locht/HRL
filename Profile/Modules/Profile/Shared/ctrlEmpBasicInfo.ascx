@@ -11,7 +11,7 @@
             </tlk:RadTextBox>
         </td>
         <td class="lb" style="width: 130px">
-            <%# Translate("Họ và tên lót")%>
+            <%# Translate("Họ và tên ")%>
         </td>
         <td>
             <tlk:RadTextBox ID="txtFullName" runat="server" ReadOnly="true">

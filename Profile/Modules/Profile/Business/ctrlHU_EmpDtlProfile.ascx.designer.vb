@@ -1040,6 +1040,24 @@ Partial Public Class ctrlHU_EmpDtlProfile
     Protected WithEvents rdIDDate As Global.Telerik.Web.UI.RadDatePicker
 
     '''<summary>
+    '''lbExpireIDNO control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbExpireIDNO As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''rdExpireIDNO control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents rdExpireIDNO As Global.Telerik.Web.UI.RadDatePicker
+
+    '''<summary>
     '''lbIDPlace control.
     '''</summary>
     '''<remarks>
@@ -2345,24 +2363,6 @@ Partial Public Class ctrlHU_EmpDtlProfile
     Protected WithEvents txtPerson_Inheritance As Global.Telerik.Web.UI.RadTextBox
 
     '''<summary>
-    '''lbEffect_Bank control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lbEffect_Bank As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
-    '''rdEffect_Bank control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents rdEffect_Bank As Global.Telerik.Web.UI.RadDatePicker
-
-    '''<summary>
     '''lbBankNo control.
     '''</summary>
     '''<remarks>
@@ -2379,6 +2379,24 @@ Partial Public Class ctrlHU_EmpDtlProfile
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtBankNo As Global.Telerik.Web.UI.RadTextBox
+
+    '''<summary>
+    '''lbEffect_Bank control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbEffect_Bank As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''rdEffect_Bank control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents rdEffect_Bank As Global.Telerik.Web.UI.RadDatePicker
 
     '''<summary>
     '''lbBank control.

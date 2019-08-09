@@ -1,13 +1,12 @@
 ﻿<%@ Control Language="vb" AutoEventWireup="false" CodeBehind="ctrlHU_EmpDtlWorkingBefore.ascx.vb"
     Inherits="Profile.ctrlHU_EmpDtlWorkingBefore" %>
 <%@ Register Src="../Shared/ctrlEmpBasicInfo.ascx" TagName="ctrlEmpBasicInfo" TagPrefix="Profile" %>
-
 <link href="/Styles/StyleCustom.css" rel="stylesheet" type="text/css" />
 <asp:HiddenField ID="hidEmployeeID" runat="server" />
 <asp:HiddenField ID="hidWorkingID" runat="server" />
 <tlk:RadSplitter ID="RadSplitter2" runat="server" Height="100%" Width="100%" Orientation="Horizontal">
     <tlk:RadPane ID="RadPane3" runat="server" Height="35px" Scrolling="none" SkinID="Demo">
-        <tlk:RadToolBar ID="tbarMainToolBar" runat="server" OnClientButtonClicking="OnClientButtonClicking"/>
+        <tlk:RadToolBar ID="tbarMainToolBar" runat="server" OnClientButtonClicking="OnClientButtonClicking" />
     </tlk:RadPane>
     <tlk:RadPane ID="RadPane2" runat="server" Height="40px" Scrolling="None">
         <Profile:ctrlEmpBasicInfo runat="server" ID="ctrlEmpBasicInfo" />
@@ -17,8 +16,8 @@
         <table class="table-form">
             <tr>
                 <td class="lb" style="width: 130px">
-                  <%--  <%# Translate("Tên công ty") %><span class="lbReq">*</span>--%>
-                  <asp:Label runat="server" ID="lbCompanyName" Text="Tên công ty"></asp:Label>
+                    <%--  <%# Translate("Tên công ty") %><span class="lbReq">*</span>--%>
+                    <asp:Label runat="server" ID="lbCompanyName" Text="Tên công ty"></asp:Label>
                 </td>
                 <td>
                     <tlk:RadTextBox runat="server" ID="txtCompanyName">
@@ -27,9 +26,9 @@
                         runat="server" ErrorMessage="<%$ Translate: Bạn phải nhập tên công ty %>" ToolTip="<%$ Translate: Bạn phải nhập tên công ty  %>">
                     </asp:RequiredFieldValidator>
                 </td>
-                <td class="lb" style="width: 150px" >
-                   <%-- <%# ID="txt" Translate("Số điện thoại")%>--%>
-                        <asp:Label runat="server" ID="lbsdt" Text="Số điện thoại"></asp:Label>
+                <td class="lb" style="width: 150px">
+                    <%-- <%# ID="txt" Translate("Số điện thoại")%>--%>
+                    <asp:Label runat="server" ID="lbsdt" Text="Số điện thoại"></asp:Label>
                 </td>
                 <td>
                     <tlk:RadTextBox runat="server" ID="txtTelephone">
@@ -38,8 +37,8 @@
             </tr>
             <tr>
                 <td class="lb">
-                <%--    <%# Translate("Địa chỉ công ty") %>--%>
-                <asp:Label runat="server" ID="lbCompanyAddress" Text="Địa chỉ công ty"></asp:Label>
+                    <%--    <%# Translate("Địa chỉ công ty") %>--%>
+                    <asp:Label runat="server" ID="lbCompanyAddress" Text="Địa chỉ công ty"></asp:Label>
                 </td>
                 <td colspan="3">
                     <tlk:RadTextBox runat="server" ID="txtCompanyAddress" Width="100%">
@@ -48,8 +47,8 @@
             </tr>
             <tr>
                 <td class="lb">
-                   <%-- <%# Translate("Từ tháng/năm")%>--%>
-                       <asp:Label runat="server" ID="lbJoinDate" Text="Từ tháng/năm"></asp:Label>
+                    <%-- <%# Translate("Từ tháng/năm")%>--%>
+                    <asp:Label runat="server" ID="lbJoinDate" Text="Từ tháng/năm"></asp:Label>
                 </td>
                 <td>
                     <tlk:RadMonthYearPicker ID="rdJoinDate" runat="server" Culture="en-US">
@@ -58,7 +57,7 @@
                     </tlk:RadMonthYearPicker>
                 </td>
                 <td class="lb">
-                  <%--  <%# Translate("Đến tháng/năm")%>--%>
+                    <%--  <%# Translate("Đến tháng/năm")%>--%>
                     <asp:Label runat="server" ID="lbEndDate" Text="Đến tháng/năm"></asp:Label>
                 </td>
                 <td>
@@ -74,7 +73,7 @@
             <tr>
                 <td class="lb">
                     <%--<%# Translate("Mức lương")%>--%>
-                      <asp:Label runat="server" ID="lbSalary" Text="Mức lương"></asp:Label>
+                    <asp:Label runat="server" ID="lbSalary" Text="Mức lương"></asp:Label>
                 </td>
                 <td>
                     <tlk:RadNumericTextBox runat="server" ID="txtSalary" MinValue="0" MaxLength="9" NumberFormat-DecimalDigits="0">
@@ -83,25 +82,25 @@
             </tr>
             <tr>
                 <td class="lb">
-                 <%--   <%# Translate("Chức danh")%>--%>
-                   <asp:Label runat="server" ID="lbTitleName" Text="Chức danh"></asp:Label>
+                    <%--   <%# Translate("Chức danh")%>--%>
+                    <asp:Label runat="server" ID="lbTitleName" Text="Chức danh"></asp:Label>
                 </td>
                 <td>
                     <tlk:RadTextBox runat="server" ID="txtTitleName">
                     </tlk:RadTextBox>
                 </td>
-                <td class="lb">
-                   <%-- <%# Translate("Cấp bậc")%>--%>
-                      <asp:Label runat="server" ID="lbLevelName" Text="Cấp bậc"></asp:Label>
+                <td style="display: none" class="lb">
+                    <%-- <%# Translate("Cấp bậc")%>--%>
+                    <asp:Label runat="server" ID="lbLevelName" Text="Cấp bậc"></asp:Label>
                 </td>
-                <td>
+                <td style="display: none">
                     <tlk:RadTextBox runat="server" ID="txtLevelName">
                     </tlk:RadTextBox>
                 </td>
             </tr>
             <tr>
                 <td class="lb">
-                   <%-- <%# Translate("Lý do nghỉ việc") %>--%>
+                    <%-- <%# Translate("Lý do nghỉ việc") %>--%>
                     <asp:Label runat="server" ID="lbTerReason" Text="Lý do nghỉ việc"></asp:Label>
                 </td>
                 <td colspan="3">
@@ -112,14 +111,14 @@
         </table>
     </tlk:RadPane>
     <tlk:RadPane ID="RadPane4" runat="server" Scrolling="None">
-        <tlk:RadGrid PageSize=50 ID="rgGrid" runat="server" AllowMultiRowSelection="true" Height="100%">
+        <tlk:RadGrid PageSize="50" ID="rgGrid" runat="server" AllowMultiRowSelection="true"
+            Height="100%">
             <MasterTableView DataKeyNames="ID,COMPANY_NAME,JOIN_DATE,END_DATE,COMPANY_ADDRESS,TELEPHONE,SALARY,TITLE_NAME,LEVEL_NAME,TER_REASON"
-             ClientDataKeyNames="ID,COMPANY_NAME,JOIN_DATE,END_DATE,COMPANY_ADDRESS,TELEPHONE,SALARY,TITLE_NAME,LEVEL_NAME,TER_REASON">
+                ClientDataKeyNames="ID,COMPANY_NAME,JOIN_DATE,END_DATE,COMPANY_ADDRESS,TELEPHONE,SALARY,TITLE_NAME,LEVEL_NAME,TER_REASON">
                 <NoRecordsTemplate>
                     Không có bản ghi nào
                 </NoRecordsTemplate>
                 <Columns>
-       
                     <%--<tlk:GridClientSelectColumn>
                         <HeaderStyle Width="40px" />
                         <ItemStyle HorizontalAlign="Center" />

@@ -148,4 +148,6 @@
     'TEN NGUOI THU HUONG VA NGAY HIEU LUC NGAN HAN
     Public Property EFFECTDATE_BANK As Date?
     Public Property PERSON_INHERITANCE As String
+    'NGAY HET HAN CMND
+    Public Property EXPIRE_DATE_IDNO As Date?
 End Class

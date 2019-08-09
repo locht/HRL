@@ -37696,6 +37696,9 @@ Namespace ProfileBusiness
         Private EMPLOYEE_IDField As Decimal
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private EXPIRE_DATE_IDNOField As System.Nullable(Of Date)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private FULL_NAME_VNField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -38461,6 +38464,19 @@ Namespace ProfileBusiness
                 If (Me.EMPLOYEE_IDField.Equals(value) <> true) Then
                     Me.EMPLOYEE_IDField = value
                     Me.RaisePropertyChanged("EMPLOYEE_ID")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property EXPIRE_DATE_IDNO() As System.Nullable(Of Date)
+            Get
+                Return Me.EXPIRE_DATE_IDNOField
+            End Get
+            Set
+                If (Me.EXPIRE_DATE_IDNOField.Equals(value) <> true) Then
+                    Me.EXPIRE_DATE_IDNOField = value
+                    Me.RaisePropertyChanged("EXPIRE_DATE_IDNO")
                 End If
             End Set
         End Property

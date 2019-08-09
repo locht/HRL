@@ -18,7 +18,7 @@ Imports System.Runtime.Serialization
 Imports System.Xml.Serialization
 
 
-<Assembly: EdmSchemaAttribute("1392c8af-b3cb-4f55-8854-7b5ba14f6b07")>
+<Assembly: EdmSchemaAttribute("1f16c579-8aaf-4dfa-ac78-3bbb1ce1fe0e")>
 #Region "EDM Relationship Metadata"
 <Assembly: EdmRelationshipAttribute("ProfileModel", "FK_HU_NAT_HU_PRO", "HU_NATION", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_NATION), "HU_PROVINCE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_PROVINCE), True)>
 <Assembly: EdmRelationshipAttribute("ProfileModel", "FK_HU_PRO_HU_DIS", "HU_PROVINCE", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_PROVINCE), "HU_DISTRICT", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_DISTRICT), True)>
@@ -25717,6 +25717,31 @@ Public Partial Class HU_EMPLOYEE_CV
     End Sub
 
     Private Partial Sub OnEFFECTDATE_BANKChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property EXPIRE_DATE_IDNO() As Nullable(Of Global.System.DateTime)
+        Get
+            Return _EXPIRE_DATE_IDNO
+        End Get
+        Set
+            OnEXPIRE_DATE_IDNOChanging(value)
+            ReportPropertyChanging("EXPIRE_DATE_IDNO")
+            _EXPIRE_DATE_IDNO = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("EXPIRE_DATE_IDNO")
+            OnEXPIRE_DATE_IDNOChanged()
+        End Set
+    End Property
+
+    Private _EXPIRE_DATE_IDNO As Nullable(Of Global.System.DateTime)
+    Private Partial Sub OnEXPIRE_DATE_IDNOChanging(value As Nullable(Of Global.System.DateTime))
+    End Sub
+
+    Private Partial Sub OnEXPIRE_DATE_IDNOChanged()
     End Sub
 
     #End Region

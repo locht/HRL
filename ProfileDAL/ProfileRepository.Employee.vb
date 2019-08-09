@@ -909,6 +909,7 @@ Partial Class ProfileRepository
                 If objEmpCV.IMAGE <> "" Then
                     objEmpCVData.IMAGE = objEmp.EMPLOYEE_CODE & objEmpCV.IMAGE 'Lưu Image thành dạng E10012.jpg.                    
                 End If
+                objEmpCVData.EXPIRE_DATE_IDNO = objEmpCV.EXPIRE_DATE_IDNO
                 objEmpCVData.PIT_CODE_DATE = objEmpCV.PIT_CODE_DATE
                 objEmpCVData.PIT_CODE_PLACE = objEmpCV.PIT_CODE_PLACE
                 objEmpCVData.EFFECTDATE_BANK = objEmpCV.EFFECTDATE_BANK
@@ -1333,6 +1334,7 @@ Partial Class ProfileRepository
                 If objEmpCV.IMAGE <> "" Then
                     objEmpCVData.IMAGE = objEmp.EMPLOYEE_CODE & objEmpCV.IMAGE 'Lưu Image thành dạng E10012.jpg.                    
                 End If
+                objEmpCVData.EXPIRE_DATE_IDNO = objEmpCV.EXPIRE_DATE_IDNO
                 objEmpCVData.EFFECTDATE_BANK = objEmpCV.EFFECTDATE_BANK
                 objEmpCVData.PERSON_INHERITANCE = objEmpCV.PERSON_INHERITANCE
                 objEmpCVData.PIT_CODE_DATE = objEmpCV.PIT_CODE_DATE
@@ -1733,6 +1735,7 @@ Partial Class ProfileRepository
                      Select New EmployeeCVDTO With {
                          .EMPLOYEE_ID = cv.EMPLOYEE_ID,
                          .GENDER = cv.GENDER,
+                         .EXPIRE_DATE_IDNO = cv.EXPIRE_DATE_IDNO,
                          .VILLAGE = cv.VILLAGE,
                          .PIT_CODE_DATE = cv.PIT_CODE_DATE,
                          .PIT_CODE_PLACE = cv.PIT_CODE_PLACE,

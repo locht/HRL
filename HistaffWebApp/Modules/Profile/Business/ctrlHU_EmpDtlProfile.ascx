@@ -40,7 +40,7 @@
     <tlk:RadPane ID="RadPane1" runat="server" Height="13%" Scrolling="X">
         <asp:Panel runat="server" ID="Panel1">
             <table class="table-form" style="width: 99%" onkeydown="return (event.keyCode!=13)">
-                <tr>
+                <tr style="display: none">
                     <td class="lbCom">
                         <asp:Label runat="server" ID="lbChucdanh" Text="Chức danh:"></asp:Label>
                     </td>
@@ -57,7 +57,7 @@
                         </a>
                     </td>
                 </tr>
-                <tr>
+                <tr style="display: none">
                     <td class="lbCom">
                         <%= Translate("Phòng ban:")%>
                     </td>
@@ -218,7 +218,7 @@
                                 <table class="table-form" style="width: 99%" onkeydown="return (event.keyCode!=13)">
                                     <tr>
                                         <td class="lb3">
-                                            <asp:Label runat="server" ID="lbOrgName2" Text="Bộ phận"></asp:Label>
+                                            <asp:Label runat="server" ID="lbOrgName2" Text="Phòng ban"></asp:Label>
                                             <span class="lbReq">*</span>
                                         </td>
                                         <td class="control3">
@@ -317,15 +317,15 @@
                                                 runat="server" ErrorMessage="Bạn phải nhập đối tượng lao động" ToolTip="Bạn phải nhập đối tượng lao động">
                                             </asp:RequiredFieldValidator>
                                         </td>
-                                        <td style="display:none" class="lb3">
+                                        <td style="display: none" class="lb3">
                                             <asp:Label runat="server" ID="lbObject" Text="Đối tượng chấm công"></asp:Label>
                                             <span class="lbReq">*</span>
                                         </td>
-                                        <td  style="display:none" >
+                                        <td style="display: none">
                                             <tlk:RadComboBox runat="server" ID="cboObject" SkinID="LoadDemand" OnClientSelectedIndexChanged="OnClientSelectedIndexChanged"
                                                 OnClientItemsRequesting="OnClientItemsRequesting">
                                             </tlk:RadComboBox>
-                                           <%-- <asp:RequiredFieldValidator ValidationGroup="EmpProfile" ID="reqObject" ControlToValidate="cboObject"
+                                            <%-- <asp:RequiredFieldValidator ValidationGroup="EmpProfile" ID="reqObject" ControlToValidate="cboObject"
                                                 runat="server" ErrorMessage="Bạn phải nhập đối tượng chấm công" ToolTip="Bạn phải nhập đối tượng chấm công">
                                             </asp:RequiredFieldValidator>--%>
                                         </td>
@@ -443,7 +443,7 @@
                                             </tlk:RadDatePicker>
                                         </td>
                                         <td class="lb3">
-                                            <asp:Label runat="server" ID="lbPROVINCENQ_ID" Text="Quê quán"></asp:Label>
+                                            <asp:Label runat="server" ID="lbPROVINCENQ_ID" Text="Nơi sinh"></asp:Label>
                                         </td>
                                         <td colspan="3">
                                             <tlk:RadComboBox runat="server" ID="cbPROVINCENQ_ID" SkinID="LoadDemand" OnClientSelectedIndexChanged="OnClientSelectedIndexChanged"
@@ -506,6 +506,13 @@
                                         </td>
                                         <td>
                                             <tlk:RadDatePicker runat="server" ID="rdIDDate">
+                                            </tlk:RadDatePicker>
+                                        </td>
+                                        <td class="lb3">
+                                            <asp:Label runat="server" ID="lbExpireIDNO" Text="Ngày hết hạn"></asp:Label>
+                                        </td>
+                                        <td>
+                                            <tlk:RadDatePicker runat="server" ID="rdExpireIDNO">
                                             </tlk:RadDatePicker>
                                         </td>
                                         <td class="lb3">
@@ -685,7 +692,7 @@
                                                 OnClientItemsRequesting="OnClientItemsRequesting">
                                             </tlk:RadComboBox>
                                         </td>
-                                         <td class="lb3">
+                                        <td class="lb3">
                                             <asp:Label runat="server" ID="lbSchool" Text="Trường học"></asp:Label>
                                         </td>
                                         <td class="control3">
@@ -1131,20 +1138,20 @@
                                             </tlk:RadTextBox>
                                         </td>
                                         <td class="lb3">
-                                            <asp:Label runat="server" ID="lbEffect_Bank" Text="Ngày hiệu lực"></asp:Label>
-                                        </td>
-                                        <td>
-                                            <tlk:RadDatePicker ID="rdEffect_Bank" runat="server">
-                                            </tlk:RadDatePicker>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="lb3">
                                             <asp:Label runat="server" ID="lbBankNo" Text="Số tài khoản"></asp:Label>
                                         </td>
                                         <td class="control3">
                                             <tlk:RadTextBox ID="txtBankNo" runat="server">
                                             </tlk:RadTextBox>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="lb3">
+                                            <asp:Label runat="server" ID="lbEffect_Bank" Text="Ngày hiệu lực"></asp:Label>
+                                        </td>
+                                        <td>
+                                            <tlk:RadDatePicker ID="rdEffect_Bank" runat="server">
+                                            </tlk:RadDatePicker>
                                         </td>
                                         <td class="lb3">
                                             <asp:Label runat="server" ID="lbBank" Text="Ngân hàng"></asp:Label>

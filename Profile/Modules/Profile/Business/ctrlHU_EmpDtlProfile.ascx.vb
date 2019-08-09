@@ -229,6 +229,7 @@ Public Class ctrlHU_EmpDtlProfile
                             If IsNumeric(empCV.PROVINCENQ_ID) Then
                                 cbPROVINCENQ_ID.SelectedValue = empCV.PROVINCENQ_ID
                             End If
+                            rdExpireIDNO.SelectedDate = empCV.EXPIRE_DATE_IDNO
                             txtPerson_Inheritance.Text = empCV.PERSON_INHERITANCE
                             rdEffect_Bank.SelectedDate = empCV.EFFECTDATE_BANK
                             txtPlaceKS.Text = empCV.BIRTH_PLACE
@@ -757,6 +758,9 @@ Public Class ctrlHU_EmpDtlProfile
                 FillRadCombobox(cboCertificate, dtData, "NAME", "ID")
                 dtData = rep.GetOtherList("HU_GRADUATE_SCHOOL")
                 FillRadCombobox(cboGraduateSchool, dtData, "NAME", "ID")
+                dtData = rep.GetOtherList("OBJECT_INS")
+                FillRadCombobox(cboObjectIns, dtData, "NAME", "ID")
+                cboObjectIns.SelectedIndex = 1
                 If ComboBoxDataDTO Is Nothing Then
                     ComboBoxDataDTO = New ComboBoxDataDTO
                     ComboBoxDataDTO.GET_RELATION = True
@@ -851,7 +855,7 @@ Public Class ctrlHU_EmpDtlProfile
                     EnableControlAll(True, rdNgay_Nhap_Ngu_QD, rdNgay_Xuat_Ngu_QD, rtDV_Xuat_Ngu_QD)
                     EnableControlAll(True, cbHang_Thuong_Binh, cbGD_Chinh_Sach)
                     EnableControlAll(True, lstbPaper, lstbPaperFiled,
-                                        txtBankNo, chkSaveHistory, ckBanTT_ND,
+                                        txtBankNo, chkSaveHistory, ckBanTT_ND, rdExpireIDNO,
                                        txtDaHoaLieu, txtTimeID, rtDiem_XL_TH, txtDiem_XL_TH2, txtNoteTDTH1, txtNoteTDTH2,
                                        txtFirstNameVN, txtGhiChuSK, txtNamTN,
                                        txtHomePhone, txtHuyetAp, txtID_NO, chkIs_pay_bank,
@@ -903,7 +907,7 @@ Public Class ctrlHU_EmpDtlProfile
                     EnableControlAll(True, cbHang_Thuong_Binh, cbGD_Chinh_Sach)
                     EnableControlAll(True, lstbPaper, lstbPaperFiled, chkSaveHistory,
                                         txtBankNo, ckBanTT_ND, rtDiem_XL_TH, txtDiem_XL_TH2, txtNoteTDTH1, txtNoteTDTH2,
-                                       txtDaHoaLieu, txtNamTN,
+                                       txtDaHoaLieu, txtNamTN, rdExpireIDNO,
                                        txtFirstNameVN, txtGhiChuSK, chkIs_pay_bank,
                                        txtHomePhone, txtHuyetAp, txtID_NO,
                                        cboIDPlace, txtLangMark, txtLangMark2, txtTimeID,
@@ -949,7 +953,7 @@ Public Class ctrlHU_EmpDtlProfile
                                        txtHomePhone, txtHuyetAp, txtID_NO, chkIs_pay_bank,
                                        cboIDPlace, txtLangMark, txtLangMark2, txtTimeID,
                                        txtLastNameVN, txtMatPhai, txtMatTrai,
-                                       txtMobilePhone, txtNavAddress, txtNhomMau, cboCertificate, cboBasic,
+                                       txtMobilePhone, txtNavAddress, txtNhomMau, cboCertificate, cboBasic, rdExpireIDNO,
                                         txtPassNo, txtPassPlace, cboObject, cboObjectLabor, cbObjectBook, txtTimeID, cboCertificate, cboBasic, txtAppDung, txtPlaceKS, txtVillage, rdDayPitcode, txtPlacePitcode, txtPerson_Inheritance, rdEffect_Bank,
                                        txtPerAddress, txtPerEmail, txtPhoiNguc, txtCareer,
                                        txtPitCode, txtRangHamMat, txtTaiMuiHong, txtTim,
@@ -1321,7 +1325,7 @@ Public Class ctrlHU_EmpDtlProfile
         cboPer_Province.ItemsRequested, cboReligion.ItemsRequested, cboStaffRank.ItemsRequested, cboTitle.ItemsRequested,
         cboWorkStatus.ItemsRequested, cboEmpStatus.ItemsRequested, cboGraduateSchool.ItemsRequested, cbWARDEMP_ID.ItemsRequested, cbDISTRICTEMP_ID.ItemsRequested, cbPROVINCEEMP_ID.ItemsRequested,
         cboPer_District.ItemsRequested, cboPer_Ward.ItemsRequested, cboNav_District.ItemsRequested, cboNav_Ward.ItemsRequested, cbPROVINCENQ_ID.ItemsRequested, cboObjectLabor.ItemsRequested,
-        cboObjectIns.ItemsRequested, cboPROVINCEEMP_BRITH.ItemsRequested, cboDISTRICTEMP_BRITH.ItemsRequested, cboWARDEMP_BRITH.ItemsRequested, cboRelationNLH.ItemsRequested
+         cboPROVINCEEMP_BRITH.ItemsRequested, cboDISTRICTEMP_BRITH.ItemsRequested, cboWARDEMP_BRITH.ItemsRequested, cboRelationNLH.ItemsRequested
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
         Try
             Dim startTime As DateTime = DateTime.UtcNow
@@ -1337,10 +1341,14 @@ Public Class ctrlHU_EmpDtlProfile
                         dtData = rep.GetOtherList("OBJECT_ATTENDANCE", True)
                     Case cboObjectLabor.ID
                         dtData = rep.GetOtherList("OBJECT_LABOR", True)
-                    Case cboObjectIns.ID
-                        dtData = rep.GetOtherList("OBJECT_INS", True)
+                        'Case cboObjectIns.ID
+                        '    dtData = rep.GetOtherList("OBJECT_INS", True)
+                        '    cboObjectIns.SelectedIndex = 1
                     Case cboAcademy.ID
-                        dtData = rep.GetOtherList("ACADEMY", True)
+                        Dim DT As DataTable
+                        DT = rep.GetOtherList("ACADEMY", True)
+                        DT.DefaultView.Sort = "ID ASC"
+                        dtData = DT.DefaultView.ToTable()
                     Case cboBank.ID
                         dtData = rep.GetBankList(True)
                     Case cboBankBranch.ID
@@ -1871,6 +1879,7 @@ Public Class ctrlHU_EmpDtlProfile
             End If
             EmpCV = New EmployeeCVDTO
             'THEM CHO NAY
+            EmpCV.EXPIRE_DATE_IDNO = rdExpireIDNO.SelectedDate
             EmpCV.PERSON_INHERITANCE = txtPerson_Inheritance.Text
             EmpCV.EFFECTDATE_BANK = rdEffect_Bank.SelectedDate
             EmpCV.BIRTH_PLACE = txtPlaceKS.Text
@@ -2189,11 +2198,10 @@ Public Class ctrlHU_EmpDtlProfile
                                             EmpCV, _
                                             EmpEdu, _
                                             EmpHealth)
-
+                EmployeeInfo.EMPLOYEE_CODE = gEmpCode
             End If
             strEmpID = gID
             EmployeeInfo.ID = strEmpID
-            'EmployeeInfo.EMPLOYEE_CODE = gEmpCode
             isLoad = False
             UpdateControlState()
             Refresh()
