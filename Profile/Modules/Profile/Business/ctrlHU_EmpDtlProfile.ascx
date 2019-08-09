@@ -195,7 +195,7 @@
                             </tlk:RadTextBox>
                         </td>--%>
                         <td class="lbInfo">
-                            <asp:Label runat="server" ID="Label1" Text="Tình trạng nhân viên"></asp:Label>
+                            <asp:Label runat="server" ID="Label1" Text="Loại nhân viên"></asp:Label>
                         </td>
                         <td>
                             <tlk:RadComboBox runat="server" ID="cboEmpStatus" SkinID="LoadDemand" OnClientSelectedIndexChanged="OnClientSelectedIndexChanged"

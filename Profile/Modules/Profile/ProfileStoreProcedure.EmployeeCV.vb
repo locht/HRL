@@ -14,6 +14,31 @@ Partial Class ProfileStoreProcedure
         Return Int32.Parse(objects(0).ToString())
     End Function
 #End Region
+#Region "Lay thong tin thong ke nhanh"
+    Public Function GET_INFO_REMINDER(ByVal username As String) As DataTable
+        Dim dt As New DataTable
+        Dim ds As DataSet = hfr.ExecuteToDataSet("PKG_PROFILE_DASHBOARD.GET_INFO_REMINDER", _
+                                                 New List(Of Object)(New Object() {username.ToUpper}))
+        If ds IsNot Nothing Then
+            If Not ds Is Nothing Or Not ds.Tables(0) Is Nothing Then
+                dt = ds.Tables(0)
+            End If
+        End If
+        Return dt
+    End Function
+
+    Public Function GET_LIST_INFO_REMINDER(ByVal username As String) As DataTable
+        Dim dt As New DataTable
+        Dim ds As DataSet = hfr.ExecuteToDataSet("PKG_PROFILE_DASHBOARD.GET_LIST_INFO_REMINDER", _
+                                                 New List(Of Object)(New Object() {username.ToUpper}))
+        If ds IsNot Nothing Then
+            If Not ds Is Nothing Or Not ds.Tables(0) Is Nothing Then
+                dt = ds.Tables(0)
+            End If
+        End If
+        Return dt
+    End Function
+#End Region
     Public Function Import_HoSoLuong(ByVal P_USER As String, ByVal P_DOCXML As String) As Boolean
         Dim ds As DataSet = hfr.ExecuteToDataSet("PKG_PROFILE.IMPORT_HOSOLUONG", New List(Of Object)(New Object() {P_USER, P_DOCXML}))
         If ds IsNot Nothing AndAlso ds.Tables(0) IsNot Nothing AndAlso ds.Tables(0).Rows.Count > 0 Then
