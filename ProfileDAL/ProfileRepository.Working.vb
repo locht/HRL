@@ -582,9 +582,8 @@ Partial Class ProfileRepository
                 Dim rowQuery = (From p In Context.HU_WORKING
                                 Where p.EFFECT_DATE < effectDate _
                                 And p.EMPLOYEE_ID = empId _
-                                And p.STATUS_ID = ProfileCommon.DECISION_STATUS.APPROVE_ID _
                                 And p.IS_MISSION = -1 _
-                                Order By p.EFFECT_DATE Descending).FirstOrDefault
+                                Order By p.EFFECT_DATE Descending).FirstOrDefault 'And p.STATUS_ID = ProfileCommon.DECISION_STATUS.APPROVE_ID _
 
                 If rowQuery IsNot Nothing Then
                     Dim working_old = (From p In Context.HU_WORKING
