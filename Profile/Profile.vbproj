@@ -288,6 +288,8 @@
     <None Include="My Project\DataSources\System.Data.DataSet.datasource" />
     <None Include="My Project\DataSources\System.Data.DataTable.datasource" />
     <Content Include="Modules\Profile\Setting\ctrlLocation.ascx" />
+    <Content Include="Modules\Profile\Shared\ctrlDashboardHome.ascx" />
+    <Content Include="Modules\Profile\Shared\ctrlHomeDashboard.ascx" />
     <Content Include="packages.config" />
     <None Include="Service References\ProfileBusiness\Arrays.xsd">
       <SubType>Designer</SubType>
@@ -1494,6 +1496,13 @@
       <DependentUpon>ctrlLocation.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="Modules\Profile\Shared\ctrlDashboardHome.ascx.designer.vb">
+      <DependentUpon>ctrlDashboardHome.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Profile\Shared\ctrlDashboardHome.ascx.vb">
+      <DependentUpon>ctrlDashboardHome.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
     <Compile Include="Modules\Profile\Shared\ctrlFindEmployeeImportPopup.ascx.designer.vb">
       <DependentUpon>ctrlFindEmployeeImportPopup.ascx</DependentUpon>
     </Compile>
@@ -1520,6 +1529,13 @@
     </Compile>
     <Compile Include="Modules\Profile\Shared\ctrlFindOrgImportPopupDialog.ascx.vb">
       <DependentUpon>ctrlFindOrgImportPopupDialog.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Modules\Profile\Shared\ctrlHomeDashboard.ascx.designer.vb">
+      <DependentUpon>ctrlHomeDashboard.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Profile\Shared\ctrlHomeDashboard.ascx.vb">
+      <DependentUpon>ctrlHomeDashboard.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Modules\Profile\Util.vb" />

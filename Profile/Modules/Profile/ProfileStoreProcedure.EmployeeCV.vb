@@ -7,6 +7,13 @@ Imports HistaffFrameworkPublic
 Imports HistaffFrameworkPublic.FrameworkUtilities
 
 Partial Class ProfileStoreProcedure
+#Region "Thong tin quyet dinh"
+    Public Function INSERT_WORKING_BY_REMINDER(ByVal P_LSTID As String) As Int32
+        Dim objects = hfr.ExecuteStoreScalar("PKG_HU_IPROFILE_WORKING.INSERT_WORKING_BY_REMINDER", _
+                                             New List(Of Object)(New Object() {P_LSTID, OUT_NUMBER}))
+        Return Int32.Parse(objects(0).ToString())
+    End Function
+#End Region
     Public Function Import_HoSoLuong(ByVal P_USER As String, ByVal P_DOCXML As String) As Boolean
         Dim ds As DataSet = hfr.ExecuteToDataSet("PKG_PROFILE.IMPORT_HOSOLUONG", New List(Of Object)(New Object() {P_USER, P_DOCXML}))
         If ds IsNot Nothing AndAlso ds.Tables(0) IsNot Nothing AndAlso ds.Tables(0).Rows.Count > 0 Then

@@ -254,7 +254,6 @@ Public Class ctrlFindSalaryPopup
                                                 .IS_DISSOLVE = True}
                 If (EmployeeID <> 0) Then
                     rgSalary.DataSource = rep.GetWorking(New WorkingDTO With {.EMPLOYEE_ID = EmployeeID,
-                                                                          .STATUS_ID = ProfileCommon.DECISION_STATUS.APPROVE_ID,
                                                                           .IS_WAGE = -1}, _param, "EFFECT_DATE desc")
                 End If
             End Using

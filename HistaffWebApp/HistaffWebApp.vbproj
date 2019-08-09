@@ -457,6 +457,8 @@
     <Content Include="Modules\Planning\Setting\ctrlPA_SalaryFund.ascx" />
     <Content Include="Modules\Planning\Report\ctrlPA_SalaryTracker.ascx" />
     <Content Include="Modules\Planning\Setting\ctrlPA_TitleCost.ascx" />
+    <Content Include="Modules\Profile\Shared\ctrlDashboardHome.ascx" />
+    <Content Include="Modules\Profile\Shared\ctrlHomeDashboard.ascx" />
     <Content Include="Modules\Recruitment\Business\ctrlRC_Manning.ascx" />
     <Content Include="Modules\Profile\Business\ctrlHU_ALP.ascx" />
     <Content Include="Modules\Profile\Business\ctrlHU_ALPNewEdit.ascx" />

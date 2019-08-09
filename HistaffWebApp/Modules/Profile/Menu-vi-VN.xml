@@ -3,6 +3,7 @@
   <Group>
     <Item Text="Nghiệp vụ"  PostBack="False">
       <Group>
+        <Item Value="ctrlHomeDashboard"  Text="Bảng thông tin" PostBack="True" NavigateUrl="Default.aspx?mid=Profile&amp;fid=ctrlHomeDashboard&amp;group=Shared" CheckPermission="true" CausesValidation="False" />
         <Item Value="ctrlHU_EmployeeMng"  Text="Hồ sơ nhân viên" PostBack="True" NavigateUrl="Default.aspx?mid=Profile&amp;fid=ctrlHU_EmployeeMng&amp;group=Business" CheckPermission="true" CausesValidation="False" />
         <Item Value="ctrlHU_WageMng"  Text="Quản lý hồ sơ lương" PostBack="True" NavigateUrl="Default.aspx?mid=Profile&amp;fid=ctrlHU_WageMng&amp;group=Business" CheckPermission="true" CausesValidation="False" />
         <Item Value="ctrlHU_Contract" Text="Quản lý hợp đồng" PostBack="True" NavigateUrl="Default.aspx?mid=Profile&amp;fid=ctrlHU_Contract&amp;group=Business" CheckPermission="true" CausesValidation="False" />
