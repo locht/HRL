@@ -104,13 +104,31 @@ Partial Public Class ctrlATTimeManual
     Protected WithEvents cboTypeProcess As Global.Telerik.Web.UI.RadComboBox
 
     '''<summary>
-    '''CustomValidator1 control.
+    '''cvalTypeProcess control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents CustomValidator1 As Global.System.Web.UI.WebControls.CustomValidator
+    Protected WithEvents cvalTypeProcess As Global.System.Web.UI.WebControls.CustomValidator
+
+    '''<summary>
+    '''cboMorningRate control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents cboMorningRate As Global.Telerik.Web.UI.RadComboBox
+
+    '''<summary>
+    '''cvalMorningRate control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents cvalMorningRate As Global.System.Web.UI.WebControls.CustomValidator
 
     '''<summary>
     '''cboMorning control.
@@ -138,6 +156,24 @@ Partial Public Class ctrlATTimeManual
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents cvalMorning As Global.System.Web.UI.WebControls.CustomValidator
+
+    '''<summary>
+    '''cboAfternoonRate control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents cboAfternoonRate As Global.Telerik.Web.UI.RadComboBox
+
+    '''<summary>
+    '''cvalAfternoonRate control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents cvalAfternoonRate As Global.System.Web.UI.WebControls.CustomValidator
 
     '''<summary>
     '''cboAfternoon control.

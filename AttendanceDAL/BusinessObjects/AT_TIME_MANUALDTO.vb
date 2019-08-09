@@ -19,4 +19,8 @@
     Public Property IS_LEAVE1 As Decimal?
     Public Property TYPE_PROSS_ID As Decimal?
     Public Property TYPE_PROCESS_NAME As String
+    Public Property MORNING_RATE_ID As Decimal?
+    Public Property MORNING_RATE_VALUE As Decimal?
+    Public Property AFTERNOON_RATE_ID As Decimal?
+    Public Property AFTERNOON_RATE_VALUE As Decimal?
 End Class

@@ -18,7 +18,7 @@ Imports System.Runtime.Serialization
 Imports System.Xml.Serialization
 
 
-<Assembly: EdmSchemaAttribute("30052ee8-9f3e-4434-90b1-cfee367329e8")>
+<Assembly: EdmSchemaAttribute("79b03445-5bbb-4c80-b55d-64671c27e6f5")>
 #Region "EDM Relationship Metadata"
 <Assembly: EdmRelationshipAttribute("AttendanceModel", "FK_OOLT_OOL", "OT_OTHER_LIST_TYPE", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(OT_OTHER_LIST_TYPE), "OT_OTHER_LIST", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(OT_OTHER_LIST), True)>
 <Assembly: EdmRelationshipAttribute("AttendanceModel", "FK_OOLG_OOLT", "OT_OTHER_LIST_GROUP", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(OT_OTHER_LIST_GROUP), "OT_OTHER_LIST_TYPE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(OT_OTHER_LIST_TYPE), True)>
@@ -1328,6 +1328,20 @@ Public Partial Class AttendanceContext
 
     Private _AT_TYPE_PROCESS As ObjectSet(Of AT_TYPE_PROCESS)
 
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    Public ReadOnly Property AT_TIME_MANUAL_RATE() As ObjectSet(Of AT_TIME_MANUAL_RATE)
+        Get
+            If (_AT_TIME_MANUAL_RATE Is Nothing) Then
+                _AT_TIME_MANUAL_RATE = MyBase.CreateObjectSet(Of AT_TIME_MANUAL_RATE)("AT_TIME_MANUAL_RATE")
+            End If
+            Return _AT_TIME_MANUAL_RATE
+        End Get
+    End Property
+
+    Private _AT_TIME_MANUAL_RATE As ObjectSet(Of AT_TIME_MANUAL_RATE)
+
     #End Region
 
     #Region "AddTo Methods"
@@ -1953,6 +1967,13 @@ Public Partial Class AttendanceContext
     ''' </summary>
     Public Sub AddToAT_TYPE_PROCESS(ByVal aT_TYPE_PROCESS As AT_TYPE_PROCESS)
         MyBase.AddObject("AT_TYPE_PROCESS", aT_TYPE_PROCESS)
+    End Sub
+
+    ''' <summary>
+    ''' Deprecated Method for adding a new object to the AT_TIME_MANUAL_RATE EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+    ''' </summary>
+    Public Sub AddToAT_TIME_MANUAL_RATE(ByVal aT_TIME_MANUAL_RATE As AT_TIME_MANUAL_RATE)
+        MyBase.AddObject("AT_TIME_MANUAL_RATE", aT_TIME_MANUAL_RATE)
     End Sub
 
     #End Region
@@ -25701,6 +25722,161 @@ Public Partial Class AT_TIME_MANUAL
     End Sub
 
     Private Partial Sub OnTYPE_PROSS_IDChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property MORNING_RATE_ID() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _MORNING_RATE_ID
+        End Get
+        Set
+            OnMORNING_RATE_IDChanging(value)
+            ReportPropertyChanging("MORNING_RATE_ID")
+            _MORNING_RATE_ID = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("MORNING_RATE_ID")
+            OnMORNING_RATE_IDChanged()
+        End Set
+    End Property
+
+    Private _MORNING_RATE_ID As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnMORNING_RATE_IDChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnMORNING_RATE_IDChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property AFTERNOON_RATE_ID() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _AFTERNOON_RATE_ID
+        End Get
+        Set
+            OnAFTERNOON_RATE_IDChanging(value)
+            ReportPropertyChanging("AFTERNOON_RATE_ID")
+            _AFTERNOON_RATE_ID = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("AFTERNOON_RATE_ID")
+            OnAFTERNOON_RATE_IDChanged()
+        End Set
+    End Property
+
+    Private _AFTERNOON_RATE_ID As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnAFTERNOON_RATE_IDChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnAFTERNOON_RATE_IDChanged()
+    End Sub
+
+    #End Region
+
+End Class
+
+''' <summary>
+''' No Metadata Documentation available.
+''' </summary>
+<EdmEntityTypeAttribute(NamespaceName:="AttendanceModel", Name:="AT_TIME_MANUAL_RATE")>
+<Serializable()>
+<DataContractAttribute(IsReference:=True)>
+Public Partial Class AT_TIME_MANUAL_RATE
+    Inherits EntityObject
+    #Region "Factory Method"
+
+    ''' <summary>
+    ''' Create a new AT_TIME_MANUAL_RATE object.
+    ''' </summary>
+    ''' <param name="id">Initial value of the ID property.</param>
+    Public Shared Function CreateAT_TIME_MANUAL_RATE(id As Global.System.Decimal) As AT_TIME_MANUAL_RATE
+        Dim aT_TIME_MANUAL_RATE as AT_TIME_MANUAL_RATE = New AT_TIME_MANUAL_RATE
+        aT_TIME_MANUAL_RATE.ID = id
+        Return aT_TIME_MANUAL_RATE
+    End Function
+
+    #End Region
+
+    #Region "Primitive Properties"
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=true, IsNullable:=false)>
+    <DataMemberAttribute()>
+    Public Property ID() As Global.System.Decimal
+        Get
+            Return _ID
+        End Get
+        Set
+            If (_ID <> Value) Then
+                OnIDChanging(value)
+                ReportPropertyChanging("ID")
+                _ID = StructuralObject.SetValidValue(value)
+                ReportPropertyChanged("ID")
+                OnIDChanged()
+            End If
+        End Set
+    End Property
+
+    Private _ID As Global.System.Decimal
+    Private Partial Sub OnIDChanging(value As Global.System.Decimal)
+    End Sub
+
+    Private Partial Sub OnIDChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property ACTFLG() As Global.System.String
+        Get
+            Return _ACTFLG
+        End Get
+        Set
+            OnACTFLGChanging(value)
+            ReportPropertyChanging("ACTFLG")
+            _ACTFLG = StructuralObject.SetValidValue(value, true)
+            ReportPropertyChanged("ACTFLG")
+            OnACTFLGChanged()
+        End Set
+    End Property
+
+    Private _ACTFLG As Global.System.String
+    Private Partial Sub OnACTFLGChanging(value As Global.System.String)
+    End Sub
+
+    Private Partial Sub OnACTFLGChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property VALUE_RATE() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _VALUE_RATE
+        End Get
+        Set
+            OnVALUE_RATEChanging(value)
+            ReportPropertyChanging("VALUE_RATE")
+            _VALUE_RATE = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("VALUE_RATE")
+            OnVALUE_RATEChanged()
+        End Set
+    End Property
+
+    Private _VALUE_RATE As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnVALUE_RATEChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnVALUE_RATEChanged()
     End Sub
 
     #End Region

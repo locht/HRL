@@ -2496,6 +2496,12 @@ Namespace AttendanceBusiness
         Private AFTERNOON_NAMEField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private AFTERNOON_RATE_IDField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private AFTERNOON_RATE_VALUEField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private CODEField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -2533,6 +2539,12 @@ Namespace AttendanceBusiness
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private MORNING_NAMEField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private MORNING_RATE_IDField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private MORNING_RATE_VALUEField As System.Nullable(Of Decimal)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private NAME_VNField As String
@@ -2591,6 +2603,32 @@ Namespace AttendanceBusiness
                 If (Object.ReferenceEquals(Me.AFTERNOON_NAMEField, value) <> true) Then
                     Me.AFTERNOON_NAMEField = value
                     Me.RaisePropertyChanged("AFTERNOON_NAME")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property AFTERNOON_RATE_ID() As System.Nullable(Of Decimal)
+            Get
+                Return Me.AFTERNOON_RATE_IDField
+            End Get
+            Set
+                If (Me.AFTERNOON_RATE_IDField.Equals(value) <> true) Then
+                    Me.AFTERNOON_RATE_IDField = value
+                    Me.RaisePropertyChanged("AFTERNOON_RATE_ID")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property AFTERNOON_RATE_VALUE() As System.Nullable(Of Decimal)
+            Get
+                Return Me.AFTERNOON_RATE_VALUEField
+            End Get
+            Set
+                If (Me.AFTERNOON_RATE_VALUEField.Equals(value) <> true) Then
+                    Me.AFTERNOON_RATE_VALUEField = value
+                    Me.RaisePropertyChanged("AFTERNOON_RATE_VALUE")
                 End If
             End Set
         End Property
@@ -2760,6 +2798,32 @@ Namespace AttendanceBusiness
                 If (Object.ReferenceEquals(Me.MORNING_NAMEField, value) <> true) Then
                     Me.MORNING_NAMEField = value
                     Me.RaisePropertyChanged("MORNING_NAME")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property MORNING_RATE_ID() As System.Nullable(Of Decimal)
+            Get
+                Return Me.MORNING_RATE_IDField
+            End Get
+            Set
+                If (Me.MORNING_RATE_IDField.Equals(value) <> true) Then
+                    Me.MORNING_RATE_IDField = value
+                    Me.RaisePropertyChanged("MORNING_RATE_ID")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property MORNING_RATE_VALUE() As System.Nullable(Of Decimal)
+            Get
+                Return Me.MORNING_RATE_VALUEField
+            End Get
+            Set
+                If (Me.MORNING_RATE_VALUEField.Equals(value) <> true) Then
+                    Me.MORNING_RATE_VALUEField = value
+                    Me.RaisePropertyChanged("MORNING_RATE_VALUE")
                 End If
             End Set
         End Property
@@ -9967,10 +10031,16 @@ Namespace AttendanceBusiness
         Private extensionDataField As System.Runtime.Serialization.ExtensionDataObject
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private GET_LIST_AFTERNOON_RATEField As Boolean
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private GET_LIST_APPLY_LAWField As Boolean
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private GET_LIST_HS_OTField As Boolean
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private GET_LIST_MORNING_RATEField As Boolean
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private GET_LIST_OFFTIME_TYPEField As Boolean
@@ -10036,10 +10106,16 @@ Namespace AttendanceBusiness
         Private GET_LIST_TYPE_PROCESSField As Boolean
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private LIST_LIST_AFTERNOON_RATEField As System.Collections.Generic.List(Of AttendanceBusiness.AT_TIME_MANUAL_RATEDTO)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private LIST_LIST_APPLY_LAWField As System.Collections.Generic.List(Of AttendanceBusiness.AT_GSIGNDTO)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private LIST_LIST_HS_OTField As System.Collections.Generic.List(Of AttendanceBusiness.OT_OTHERLIST_DTO)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private LIST_LIST_MORNING_RATEField As System.Collections.Generic.List(Of AttendanceBusiness.AT_TIME_MANUAL_RATEDTO)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private LIST_LIST_OFFTIMEField As System.Collections.Generic.List(Of AttendanceBusiness.OT_OTHERLIST_DTO)
@@ -10118,6 +10194,19 @@ Namespace AttendanceBusiness
         End Property
         
         <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property GET_LIST_AFTERNOON_RATE() As Boolean
+            Get
+                Return Me.GET_LIST_AFTERNOON_RATEField
+            End Get
+            Set
+                If (Me.GET_LIST_AFTERNOON_RATEField.Equals(value) <> true) Then
+                    Me.GET_LIST_AFTERNOON_RATEField = value
+                    Me.RaisePropertyChanged("GET_LIST_AFTERNOON_RATE")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
         Public Property GET_LIST_APPLY_LAW() As Boolean
             Get
                 Return Me.GET_LIST_APPLY_LAWField
@@ -10139,6 +10228,19 @@ Namespace AttendanceBusiness
                 If (Me.GET_LIST_HS_OTField.Equals(value) <> true) Then
                     Me.GET_LIST_HS_OTField = value
                     Me.RaisePropertyChanged("GET_LIST_HS_OT")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property GET_LIST_MORNING_RATE() As Boolean
+            Get
+                Return Me.GET_LIST_MORNING_RATEField
+            End Get
+            Set
+                If (Me.GET_LIST_MORNING_RATEField.Equals(value) <> true) Then
+                    Me.GET_LIST_MORNING_RATEField = value
+                    Me.RaisePropertyChanged("GET_LIST_MORNING_RATE")
                 End If
             End Set
         End Property
@@ -10417,6 +10519,19 @@ Namespace AttendanceBusiness
         End Property
         
         <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property LIST_LIST_AFTERNOON_RATE() As System.Collections.Generic.List(Of AttendanceBusiness.AT_TIME_MANUAL_RATEDTO)
+            Get
+                Return Me.LIST_LIST_AFTERNOON_RATEField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.LIST_LIST_AFTERNOON_RATEField, value) <> true) Then
+                    Me.LIST_LIST_AFTERNOON_RATEField = value
+                    Me.RaisePropertyChanged("LIST_LIST_AFTERNOON_RATE")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
         Public Property LIST_LIST_APPLY_LAW() As System.Collections.Generic.List(Of AttendanceBusiness.AT_GSIGNDTO)
             Get
                 Return Me.LIST_LIST_APPLY_LAWField
@@ -10438,6 +10553,19 @@ Namespace AttendanceBusiness
                 If (Object.ReferenceEquals(Me.LIST_LIST_HS_OTField, value) <> true) Then
                     Me.LIST_LIST_HS_OTField = value
                     Me.RaisePropertyChanged("LIST_LIST_HS_OT")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property LIST_LIST_MORNING_RATE() As System.Collections.Generic.List(Of AttendanceBusiness.AT_TIME_MANUAL_RATEDTO)
+            Get
+                Return Me.LIST_LIST_MORNING_RATEField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.LIST_LIST_MORNING_RATEField, value) <> true) Then
+                    Me.LIST_LIST_MORNING_RATEField = value
+                    Me.RaisePropertyChanged("LIST_LIST_MORNING_RATE")
                 End If
             End Set
         End Property
@@ -10724,6 +10852,85 @@ Namespace AttendanceBusiness
                 If (Object.ReferenceEquals(Me.USERField, value) <> true) Then
                     Me.USERField = value
                     Me.RaisePropertyChanged("USER")
+                End If
+            End Set
+        End Property
+        
+        Public Event PropertyChanged As System.ComponentModel.PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
+        
+        Protected Sub RaisePropertyChanged(ByVal propertyName As String)
+            Dim propertyChanged As System.ComponentModel.PropertyChangedEventHandler = Me.PropertyChangedEvent
+            If (Not (propertyChanged) Is Nothing) Then
+                propertyChanged(Me, New System.ComponentModel.PropertyChangedEventArgs(propertyName))
+            End If
+        End Sub
+    End Class
+    
+    <System.Diagnostics.DebuggerStepThroughAttribute(),  _
+     System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0"),  _
+     System.Runtime.Serialization.DataContractAttribute(Name:="AT_TIME_MANUAL_RATEDTO", [Namespace]:="http://schemas.datacontract.org/2004/07/AttendanceDAL"),  _
+     System.SerializableAttribute()>  _
+    Partial Public Class AT_TIME_MANUAL_RATEDTO
+        Inherits Object
+        Implements System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged
+        
+        <System.NonSerializedAttribute()>  _
+        Private extensionDataField As System.Runtime.Serialization.ExtensionDataObject
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private ACTFLGField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private IDField As Decimal
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private VALUE_RATEField As Decimal
+        
+        <Global.System.ComponentModel.BrowsableAttribute(false)>  _
+        Public Property ExtensionData() As System.Runtime.Serialization.ExtensionDataObject Implements System.Runtime.Serialization.IExtensibleDataObject.ExtensionData
+            Get
+                Return Me.extensionDataField
+            End Get
+            Set
+                Me.extensionDataField = value
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property ACTFLG() As String
+            Get
+                Return Me.ACTFLGField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.ACTFLGField, value) <> true) Then
+                    Me.ACTFLGField = value
+                    Me.RaisePropertyChanged("ACTFLG")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property ID() As Decimal
+            Get
+                Return Me.IDField
+            End Get
+            Set
+                If (Me.IDField.Equals(value) <> true) Then
+                    Me.IDField = value
+                    Me.RaisePropertyChanged("ID")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property VALUE_RATE() As Decimal
+            Get
+                Return Me.VALUE_RATEField
+            End Get
+            Set
+                If (Me.VALUE_RATEField.Equals(value) <> true) Then
+                    Me.VALUE_RATEField = value
+                    Me.RaisePropertyChanged("VALUE_RATE")
                 End If
             End Set
         End Property
@@ -31008,6 +31215,8 @@ Namespace AttendanceBusiness
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(AttendanceBusiness.AT_SHIFTDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of AttendanceBusiness.AT_SHIFTDTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(AttendanceBusiness.ComboBoxDataDTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of AttendanceBusiness.AT_TIME_MANUAL_RATEDTO))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(AttendanceBusiness.AT_TIME_MANUAL_RATEDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of AttendanceBusiness.AT_FMLDTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(AttendanceBusiness.AT_FMLDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of AttendanceBusiness.HU_STAFF_RANKDTO))),  _
@@ -31316,6 +31525,8 @@ Namespace AttendanceBusiness
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(AttendanceBusiness.AT_SHIFTDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of AttendanceBusiness.AT_SHIFTDTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(AttendanceBusiness.ComboBoxDataDTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of AttendanceBusiness.AT_TIME_MANUAL_RATEDTO))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(AttendanceBusiness.AT_TIME_MANUAL_RATEDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of AttendanceBusiness.AT_FMLDTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(AttendanceBusiness.AT_FMLDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of AttendanceBusiness.HU_STAFF_RANKDTO))),  _
@@ -31453,6 +31664,8 @@ Namespace AttendanceBusiness
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(AttendanceBusiness.AT_SHIFTDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of AttendanceBusiness.AT_SHIFTDTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(AttendanceBusiness.ComboBoxDataDTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of AttendanceBusiness.AT_TIME_MANUAL_RATEDTO))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(AttendanceBusiness.AT_TIME_MANUAL_RATEDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of AttendanceBusiness.AT_FMLDTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(AttendanceBusiness.AT_FMLDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of AttendanceBusiness.HU_STAFF_RANKDTO))),  _
@@ -31872,6 +32085,8 @@ Namespace AttendanceBusiness
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(AttendanceBusiness.AT_SHIFTDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of AttendanceBusiness.AT_SHIFTDTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(AttendanceBusiness.ComboBoxDataDTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of AttendanceBusiness.AT_TIME_MANUAL_RATEDTO))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(AttendanceBusiness.AT_TIME_MANUAL_RATEDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of AttendanceBusiness.AT_FMLDTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(AttendanceBusiness.AT_FMLDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of AttendanceBusiness.HU_STAFF_RANKDTO))),  _

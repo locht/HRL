@@ -69,4 +69,10 @@
     Public Property GET_LIST_TYPE_PROCESS As Boolean
     Public Property LIST_LIST_TYPE_PROCESS As List(Of AT_TYPE_PROCESSDTO)
 
+    Public Property GET_LIST_MORNING_RATE As Boolean
+    Public Property LIST_LIST_MORNING_RATE As List(Of AT_TIME_MANUAL_RATEDTO)
+
+    Public Property GET_LIST_AFTERNOON_RATE As Boolean
+    Public Property LIST_LIST_AFTERNOON_RATE As List(Of AT_TIME_MANUAL_RATEDTO)
+
 End Class

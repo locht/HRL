@@ -320,6 +320,19 @@ Partial Public Class AttendanceRepository
                                                     .NAME_VN = p.NAME_VN}).ToList
             End If
 
+            If cbxData.GET_LIST_MORNING_RATE Then
+                cbxData.LIST_LIST_MORNING_RATE = (From p In Context.AT_TIME_MANUAL_RATE Where p.ACTFLG = "A" Order By p.ID Ascending
+                                                  Select New AT_TIME_MANUAL_RATEDTO With {
+                                                    .ID = p.ID,
+                                                    .VALUE_RATE = p.VALUE_RATE}).ToList
+            End If
+
+            If cbxData.GET_LIST_AFTERNOON_RATE Then
+                cbxData.LIST_LIST_AFTERNOON_RATE = (From p In Context.AT_TIME_MANUAL_RATE Where p.ACTFLG = "A" Order By p.ID Ascending
+                                                  Select New AT_TIME_MANUAL_RATEDTO With {
+                                                    .ID = p.ID,
+                                                    .VALUE_RATE = p.VALUE_RATE}).ToList
+            End If
 
             Return True
         Catch ex As Exception

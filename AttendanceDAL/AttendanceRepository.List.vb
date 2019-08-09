@@ -5154,6 +5154,8 @@ Partial Public Class AttendanceRepository
                         From f1 In Context.AT_FML.Where(Function(F) F.ID = p.MORNING_ID).DefaultIfEmpty
                         From f2 In Context.AT_FML.Where(Function(F) F.ID = p.AFTERNOON_ID).DefaultIfEmpty
                         From f3 In Context.AT_TYPE_PROCESS.Where(Function(F) F.ID = p.TYPE_PROSS_ID).DefaultIfEmpty
+                        From f4 In Context.AT_TIME_MANUAL_RATE.Where(Function(F) F.ID = p.MORNING_RATE_ID).DefaultIfEmpty
+                        From f5 In Context.AT_TIME_MANUAL_RATE.Where(Function(F) F.ID = p.AFTERNOON_RATE_ID).DefaultIfEmpty
             Dim lst = query.Select(Function(p) New AT_TIME_MANUALDTO With {
                                        .ID = p.p.ID,
                                        .CODE = p.p.CODE,
@@ -5164,6 +5166,10 @@ Partial Public Class AttendanceRepository
                                        .AFTERNOON_NAME = p.f2.NAME_VN,
                                        .TYPE_PROSS_ID = p.p.TYPE_PROSS_ID,
                                        .TYPE_PROCESS_NAME = p.f3.NAME_VN,
+                                       .MORNING_RATE_ID = p.p.MORNING_RATE_ID,
+                                       .MORNING_RATE_VALUE = p.f4.VALUE_RATE,
+                                       .AFTERNOON_RATE_ID = p.p.AFTERNOON_RATE_ID,
+                                       .AFTERNOON_RATE_VALUE = p.f5.VALUE_RATE,
                                        .NOTE = p.p.NOTE,
                                        .ACTFLG = If(p.p.ACTFLG = "A", "Áp dụng", "Ngừng Áp dụng"),
                                        .CREATED_BY = p.p.CREATED_BY,
@@ -5188,6 +5194,12 @@ Partial Public Class AttendanceRepository
             End If
             If Not String.IsNullOrEmpty(_filter.TYPE_PROCESS_NAME) Then
                 lst = lst.Where(Function(f) f.TYPE_PROCESS_NAME.ToLower().Contains(_filter.TYPE_PROCESS_NAME.ToLower()))
+            End If
+            If _filter.MORNING_RATE_VALUE <> 0 Then
+                lst = lst.Where(Function(f) f.MORNING_RATE_VALUE = _filter.MORNING_RATE_VALUE)
+            End If
+            If _filter.AFTERNOON_RATE_VALUE <> 0 Then
+                lst = lst.Where(Function(f) f.AFTERNOON_RATE_VALUE = _filter.AFTERNOON_RATE_VALUE)
             End If
             If Not String.IsNullOrEmpty(_filter.ACTFLG) Then
                 lst = lst.Where(Function(f) f.ACTFLG.ToLower().Contains(_filter.ACTFLG.ToLower()))
@@ -5234,6 +5246,8 @@ Partial Public Class AttendanceRepository
             objTitleData.MORNING_ID = objTitle.MORNING_ID
             objTitleData.AFTERNOON_ID = objTitle.AFTERNOON_ID
             objTitleData.TYPE_PROSS_ID = objTitle.TYPE_PROSS_ID
+            objTitleData.MORNING_RATE_ID = objTitle.MORNING_RATE_ID
+            objTitleData.AFTERNOON_RATE_ID = objTitle.AFTERNOON_RATE_ID
             objTitleData.NOTE = objTitle.NOTE
             objTitleData.ACTFLG = objTitle.ACTFLG
             objTitleData.CREATED_BY = objTitle.CREATED_BY
@@ -5297,6 +5311,8 @@ Partial Public Class AttendanceRepository
             objTitleData.MORNING_ID = objTitle.MORNING_ID
             objTitleData.AFTERNOON_ID = objTitle.AFTERNOON_ID
             objTitleData.TYPE_PROSS_ID = objTitle.TYPE_PROSS_ID
+            objTitleData.MORNING_RATE_ID = objTitle.MORNING_RATE_ID
+            objTitleData.AFTERNOON_RATE_ID = objTitle.AFTERNOON_RATE_ID
             objTitleData.NOTE = objTitle.NOTE
             objTitleData.CREATED_BY = objTitle.CREATED_BY
             objTitleData.CREATED_DATE = objTitle.CREATED_DATE

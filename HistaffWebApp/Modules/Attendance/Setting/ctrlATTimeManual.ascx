@@ -43,8 +43,14 @@
             <tr>
                 <td class="lb">
                     <%# Translate("Kiểu công nửa ngày")%><span class="lbReq">*</span>
-                </td>
+                </td>               
                 <td>
+                     <tlk:RadComboBox ID="cboMorningRate" runat="server" Width = "50px">
+                    </tlk:RadComboBox>
+                    <asp:CustomValidator ID="cvalMorningRate" runat="server" ErrorMessage="<%$ Translate: Bạn phải chọn tỷ lệ kiểu công nữa ngày đầu. %>"
+                        ToolTip="<%$ Translate: Bạn phải chọn loại xử lý. %>" ClientValidationFunction="cvalMorningRate">
+                    </asp:CustomValidator>     
+
                     <tlk:RadComboBox ID="cboMorning" runat="server">
                     </tlk:RadComboBox>
                     <asp:CustomValidator ID="cusMorning" runat="server" ErrorMessage="<%$ Translate: Bạn phải chọn kiểu công nửa ngày. %>"
@@ -56,8 +62,15 @@
                 </td>
                 <td class="lb">
                     <%# Translate("Kiểu công nửa ngày")%><span class="lbReq">*</span>
-                </td>
+                </td>                
                 <td>
+                    <tlk:RadComboBox ID="cboAfternoonRate" runat="server"  Width = "50px">
+                    </tlk:RadComboBox>
+                    <asp:CustomValidator ID="cvalAfternoonRate" runat="server" ErrorMessage="<%$ Translate: Bạn phải chọn loại xử lý. %>"
+                        ToolTip="<%$ Translate: Bạn phải chọn loại xử lý. %>" ClientValidationFunction="cvalAfternoonRate">
+                    </asp:CustomValidator>   
+
+
                     <tlk:RadComboBox ID="cboAfternoon" runat="server">
                     </tlk:RadComboBox>
                      <asp:CustomValidator ID="cusAfternoon" runat="server" ErrorMessage="<%$ Translate: Bạn phải chọn kiểu công nửa ngày. %>"
@@ -107,7 +120,7 @@
                 <ClientEvents OnGridCreated="GridCreated" />
                 <ClientEvents OnCommand="ValidateFilter" />
             </ClientSettings>
-            <MasterTableView DataKeyNames="ID" ClientDataKeyNames="ID,CODE,NAME_VN,MORNING_ID,AFTERNOON_ID,TYPE_PROSS_ID,ACTFLG,NOTE">
+            <MasterTableView DataKeyNames="ID" ClientDataKeyNames="ID,CODE,NAME_VN,MORNING_ID,AFTERNOON_ID,TYPE_PROSS_ID,MORNING_RATE_ID,AFTERNOON_RATE_ID,ACTFLG,NOTE">
                 <Columns>
                     <tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderStyle-HorizontalAlign="Center"
                         HeaderStyle-Width="30px" ItemStyle-HorizontalAlign="Center">
@@ -117,12 +130,16 @@
                         UniqueName="CODE" SortExpression="CODE" />
                     <tlk:GridBoundColumn HeaderText="<%$ Translate: Tên kiểu công %>" DataField="NAME_VN"
                         UniqueName="NAME_VN" SortExpression="NAME_VN" />
+                    <tlk:GridBoundColumn HeaderText="<%$ Translate: Tỷ lệ công nửa ngày đầu %>" DataField="MORNING_RATE_VALUE"
+                        UniqueName="MORNING_RATE_VALUE" SortExpression="MORNING_RATE_VALUE" />
                     <tlk:GridBoundColumn HeaderText="<%$ Translate: Kiểu công nửa ngày %>" DataField="MORNING_NAME"
                         UniqueName="MORNING_NAME" SortExpression="MORNING_NAME" />
+                    <tlk:GridBoundColumn HeaderText="<%$ Translate: Tỷ lệ công nửa ngày cuối %>" DataField="AFTERNOON_RATE_VALUE"
+                        UniqueName="AFTERNOON_RATE_VALUE" SortExpression="AFTERNOON_RATE_VALUE" />
                     <tlk:GridBoundColumn HeaderText="<%$ Translate: Kiểu công nửa ngày %>" DataField="AFTERNOON_NAME"
                         UniqueName="AFTERNOON_NAME" SortExpression="AFTERNOON_NAME" />
                     <tlk:GridBoundColumn HeaderText="<%$ Translate: Loại xử lý %>" DataField="TYPE_PROCESS_NAME"
-                        UniqueName="TYPE_PROCESS_NAME" SortExpression="TYPE_PROCESS_NAME" />
+                        UniqueName="TYPE_PROCESS_NAME" SortExpression="TYPE_PROCESS_NAME" />                   
                     <tlk:GridBoundColumn HeaderText="<%$ Translate: Trạng thái %>" DataField="ACTFLG"
                         UniqueName="ACTFLG" SortExpression="ACTFLG" />
                          <%--<tlk:GridCheckBoxColumn HeaderText="<%$ Translate: Hưởng công cơm %>" AllowFiltering="false"
@@ -228,5 +245,16 @@
             var cbo = $find("<%# cboTypeProcess.ClientID %>");
             args.IsValid = (cbo.get_value().length != 0);
         }
+
+        function cvalMorningRate(oSrc, args) {
+            var cbo = $find("<%# cboMorningRate.ClientID %>");
+            args.IsValid = (cbo.get_value().length != 0);
+        }
+
+        function cvalAfternoonRate(oSrc, args) {
+            var cbo = $find("<%# cboAfternoonRate.ClientID %>");
+            args.IsValid = (cbo.get_value().length != 0);
+        }
+
     </script>
 </tlk:RadCodeBlock>

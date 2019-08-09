@@ -156,6 +156,7 @@
     <Compile Include="BusinessObjects\ComboBoxDataDTO.vb" />
     <Compile Include="BusinessObjects\CONTRACT_DTO.vb" />
     <Compile Include="BusinessObjects\AT_TYPE_PROCESSDTO.vb" />
+    <Compile Include="BusinessObjects\AT_TIME_MANUAL_RATEDTO.vb" />
     <Compile Include="BusinessObjects\EMPLOYEE_SHIFT_DTO.vb" />
     <Compile Include="BusinessObjects\LEAVEINOUTKHDTO.vb" />
     <Compile Include="BusinessObjects\LEAVE_DETAIL_EMP_DTO.vb" />
