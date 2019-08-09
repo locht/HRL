@@ -376,6 +376,7 @@
     <Compile Include="Contant_Common.vb" />
     <Compile Include="Contant_OtherList_Code_Attendance.vb" />
     <Compile Include="Contant_OtherList_Code_Insurance.vb" />
+    <Compile Include="Contant_OtherList_Code_IProfile.vb" />
     <Compile Include="Modules\Common\ApproveProcess\ctrlApproveProcess.ascx.designer.vb">
       <DependentUpon>ctrlApproveProcess.ascx</DependentUpon>
     </Compile>
