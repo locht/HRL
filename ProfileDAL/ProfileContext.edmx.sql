@@ -1,7 +1,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for Oracle database
 -- --------------------------------------------------
--- Date Created: 8/10/2019 10:48:31 AM
+-- Date Created: 8/10/2019 1:36:20 PM
 -- Generated from EDMX file: D:\TNG_SOURCE_NEW\ProfileDAL\ProfileContext.edmx
 -- --------------------------------------------------
 
@@ -796,7 +796,19 @@ CREATE TABLE "dbo"."HU_FAMILY" (
    "TT_DISTRICT_ID" NUMBER(38,0) NULL,
    "TT_WARD_ID" NUMBER(38,0) NULL,
    "IS_PASS" NUMBER(38,0) NULL,
-   "AD_VILLAGE" NCLOB NOT NULL
+   "AD_VILLAGE" NCLOB NOT NULL,
+   "NATION_ID" NUMBER(38,0) NULL,
+   "ID_NO_DATE" DATE NULL,
+   "ID_NO_PLACE_NAME" NCLOB NULL,
+   "PHONE" NCLOB NULL,
+   "TAXTATION_DATE" DATE NULL,
+   "TAXTATION_PLACE" NCLOB NULL,
+   "BIRTH_CODE" NCLOB NULL,
+   "QUYEN" NCLOB NULL,
+   "BIRTH_NATION_ID" NUMBER(38,0) NULL,
+   "BIRTH_PROVINCE_ID" NUMBER(38,0) NULL,
+   "BIRTH_DISTRICT_ID" NUMBER(38,0) NULL,
+   "BIRTH_WARD_ID" NUMBER(38,0) NULL
 );
 
 -- Creating table 'HU_DISCIPLINE'
@@ -1673,7 +1685,7 @@ CREATE TABLE "dbo"."HU_FAMILY_EDIT" (
    "TAXTATION_PLACE" NCLOB NULL,
    "BIRTH_CODE" NCLOB NULL,
    "QUYEN" NCLOB NULL,
-   "BIRTH_NATION__ID" NUMBER(38,0) NULL,
+   "BIRTH_NATION_ID" NUMBER(38,0) NULL,
    "BIRTH_PROVINCE_ID" NUMBER(38,0) NULL,
    "BIRTH_DISTRICT_ID" NUMBER(38,0) NULL,
    "BIRTH_WARD_ID" NUMBER(38,0) NULL
