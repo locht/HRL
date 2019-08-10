@@ -45,20 +45,21 @@ Partial Class ProfileRepository
             Dim query = From p In Context.HU_WELFARE_MNG
                         From ce In Context.HU_WELFARE_MNG_EMP.Where(Function(f) f.GROUP_ID = p.ID And f.EMPLOYEE_ID = p.EMPLOYEE_ID)
                         From plst In Context.HU_WELFARE_LIST.Where(Function(f) f.ID = p.WELFARE_ID).DefaultIfEmpty
-                        From e In Context.HU_EMPLOYEE.Where(Function(e) p.EMPLOYEE_ID = e.ID)
-                        From o In Context.HU_ORGANIZATION.Where(Function(o) e.ORG_ID = o.ID)
-                        From t In Context.HU_TITLE.Where(Function(t) e.TITLE_ID = t.ID)
+                        From e In Context.HU_EMPLOYEE.Where(Function(e) p.EMPLOYEE_ID = e.ID).DefaultIfEmpty
+                        From o In Context.HU_ORGANIZATION.Where(Function(o) e.ORG_ID = o.ID).DefaultIfEmpty
+                        From t In Context.HU_TITLE.Where(Function(t) e.TITLE_ID = t.ID).DefaultIfEmpty
                         From se In Context.SE_CHOSEN_ORG.Where(Function(se) se.ORG_ID = o.ID And _
                                                                    se.USERNAME = UserLog.Username.ToUpper)
 
 
             Dim dateNow = Date.Now.Date
             Dim terID = ProfileCommon.OT_WORK_STATUS.TERMINATE_ID
-            If Not _filter.IS_TER Then
-                query = query.Where(Function(p) Not p.e.WORK_STATUS.HasValue Or _
-                                        (p.e.WORK_STATUS.HasValue And _
-                                         ((p.e.WORK_STATUS <> terID) Or (p.e.WORK_STATUS = terID And p.e.TER_EFFECT_DATE > dateNow))))
-            End If
+            'bo loc nhan vien nghỉ viec
+            'If Not _filter.IS_TER Then
+            '    query = query.Where(Function(p) Not p.e.WORK_STATUS.HasValue Or _
+            '                            (p.e.WORK_STATUS.HasValue And _
+            '                             ((p.e.WORK_STATUS <> terID) Or (p.e.WORK_STATUS = terID And p.e.TER_EFFECT_DATE > dateNow))))
+            'End If
 
 
             ' lọc điều kiện
@@ -410,6 +411,20 @@ Partial Class ProfileRepository
                                                      .P_DATE = P_DATE,
                                                      .P_CUR = cls.OUT_CURSOR})
 
+                Return dtData
+            End Using
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iProfile")
+            Throw ex
+        End Try
+    End Function
+    Public Function GET_EXPORT_EMP(ByVal P_WELFARE_ID As Decimal, ByVal P_DATE As Date) As DataSet
+        Try
+            Using cls As New DataAccess.QueryData
+                Dim dtData As DataSet = cls.ExecuteStore("PKG_HU_IPROFILE_LIST.GET_EXPORT_EMP",
+                                           New With {.P_WELFARE_ID = P_WELFARE_ID,
+                                                     .P_DATE = P_DATE,
+                                                     .P_CUR = cls.OUT_CURSOR}, False)
                 Return dtData
             End Using
         Catch ex As Exception
