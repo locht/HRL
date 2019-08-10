@@ -135,11 +135,12 @@ Partial Class ProfileRepository
                       From e In Context.HU_EMPLOYEE.Where(Function(e) e.ID = ce.EMPLOYEE_ID).DefaultIfEmpty
                       From t In Context.HU_TITLE.Where(Function(t) t.ID = e.TITLE_ID).DefaultIfEmpty
                       From gender In Context.OT_OTHER_LIST.Where(Function(f) f.ID = ce.GENDER_ID).DefaultIfEmpty
-                      From o In Context.HU_ORGANIZATION.Where(Function(o) o.ID = ce.ORG_ID)
-                      From w In Context.HU_WELFARE_LIST.Where(Function(w) w.ID = p.WELFARE_ID).DefaultIfEmpty
-                      From pe In Context.AT_PERIOD.Where(Function(pe) pe.ID = p.PERIOD_ID).DefaultIfEmpty
-                      Where p.ID = Id
-                   Order By p.EMPLOYEE_ID
+                      From o In Context.HU_ORGANIZATION.Where(Function(o) o.ID = ce.ORG_ID).DefaultIfEmpty
+                      From ov In Context.HU_ORGANIZATION_V.Where(Function(f) f.ID = o.ID).DefaultIfEmpty
+            From w In Context.HU_WELFARE_LIST.Where(Function(w) w.ID = p.WELFARE_ID).DefaultIfEmpty
+            From pe In Context.AT_PERIOD.Where(Function(pe) pe.ID = p.PERIOD_ID).DefaultIfEmpty
+            Where p.ID = Id
+         Order By p.EMPLOYEE_ID()
 
             Dim lst = query.Select(Function(p) New Welfatemng_empDTO With {
                                        .ID = p.ce.ID,
@@ -148,6 +149,7 @@ Partial Class ProfileRepository
                                       .TITLE_NAME = p.t.NAME_VN,
                                       .ORG_NAME = p.o.NAME_VN,
                                       .ORG_ID = p.ce.ORG_ID,
+                                       .ORG_NAME2 = p.ov.NAME_C2,
                                       .TITLE_ID = p.ce.TITLE_ID,
                                       .TOTAL_CHILD = p.ce.TOTAL_CHILD,
                                       .MONEY_TOTAL = p.ce.MONEY_TOTAL,

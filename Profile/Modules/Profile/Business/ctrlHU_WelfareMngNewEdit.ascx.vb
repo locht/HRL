@@ -635,14 +635,13 @@ Public Class ctrlHU_WelfareMngNewEdit
                     End If
                 Next
                 rgEmployee.DataSource = dtbImport
-
                 dem = 0
-                'AssignHeader()
                 rgEmployee.DataBind()
                 For Each i As GridItem In rgEmployee.Items
                     i.Edit = True
                 Next
                 rgEmployee.Rebind()
+                rgEmployee.Enabled = False
             End If
         Catch ex As Exception
         End Try
