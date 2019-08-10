@@ -105,6 +105,9 @@ Namespace ProfileBusiness.ServiceContracts
         Function GetProvinceList(ByVal isBlank As Boolean) As DataTable
 
         <OperationContract()>
+        Function GetProvinceList1(ByVal P_NATIVE As Decimal, ByVal isBlank As Boolean) As DataTable
+
+        <OperationContract()>
         Function GetNationList(ByVal isBlank As Boolean) As DataTable
 
         <OperationContract()>

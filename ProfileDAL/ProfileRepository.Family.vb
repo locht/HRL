@@ -308,6 +308,12 @@ Partial Class ProfileRepository
                      From dT_g In dTGroup.DefaultIfEmpty
                     Group Join wT In Context.HU_WARD On p.TT_WARD_ID Equals wT.ID Into wTGroup = Group
                      From wT_g In wTGroup.DefaultIfEmpty
+                     From n_tt In Context.HU_NATION.Where(Function(F) F.ID = p.NATION_ID).DefaultIfEmpty
+                     From n_ks In Context.HU_NATION.Where(Function(F) F.ID = p.BIRTH_NATION_ID).DefaultIfEmpty
+                     From p_ks In Context.HU_PROVINCE.Where(Function(F) F.ID = p.BIRTH_PROVINCE_ID).DefaultIfEmpty
+                     From d_ks In Context.HU_DISTRICT.Where(Function(F) F.ID = p.BIRTH_DISTRICT_ID).DefaultIfEmpty
+                     From w_ks In Context.HU_WARD.Where(Function(F) F.ID = p.BIRTH_WARD_ID).DefaultIfEmpty
+                     From g In Context.OT_OTHER_LIST.Where(Function(F) F.ID = p.GENDER).DefaultIfEmpty
                    Select New FamilyDTO With {
                     .ID = p.ID,
                     .ADDRESS = p.ADDRESS,
@@ -344,7 +350,26 @@ Partial Class ProfileRepository
                     .IS_OWNER = p.IS_OWNER,
                     .IS_PASS = p.IS_PASS,
                     .CERTIFICATE_CODE = p.CERTIFICATE_CODE,
-                    .CERTIFICATE_NUM = p.CERTIFICATE_NUM})
+                    .CERTIFICATE_NUM = p.CERTIFICATE_NUM,
+                    .NATION_ID = p.NATION_ID,
+                    .NATION_NAME = n_tt.NAME_VN,
+                    .ID_NO_DATE = p.ID_NO_DATE,
+                    .ID_NO_PLACE_NAME = p.ID_NO_PLACE_NAME,
+                    .PHONE = p.PHONE,
+                    .TAXTATION_DATE = p.TAXTATION_DATE,
+                    .TAXTATION_PLACE = p.TAXTATION_PLACE,
+                    .BIRTH_CODE = p.BIRTH_CODE,
+                    .QUYEN = p.QUYEN,
+                    .BIRTH_NATION_ID = p.BIRTH_NATION_ID,
+                    .BIRTH_PROVINCE_ID = p.BIRTH_PROVINCE_ID,
+                    .BIRTH_DISTRICT_ID = p.BIRTH_DISTRICT_ID,
+                    .BIRTH_WARD_ID = p.BIRTH_WARD_ID,
+                    .BIRTH_NATION_NAME = n_ks.NAME_VN,
+                    .BIRTH_PROVINCE_NAME = p_ks.NAME_VN,
+                    .BIRTH_DISTRICT_NAME = d_ks.NAME_VN,
+                    .BIRTH_WARD_NAME = w_ks.NAME_VN,
+                    .GENDER = p.GENDER,
+                    .GENDER_NAME = g.NAME_VN})
             If _filter.EMPLOYEE_ID <> 0 Then
                 query = query.Where(Function(p) p.EMPLOYEE_ID = _filter.EMPLOYEE_ID)
             End If
@@ -492,6 +517,21 @@ Partial Class ProfileRepository
             objFamilyEditData.TT_WARD_ID = objFamilyEdit.TT_WARD_ID
             objFamilyEditData.IS_OWNER = objFamilyEdit.IS_OWNER
             objFamilyEditData.IS_PASS = objFamilyEdit.IS_PASS
+
+            objFamilyEditData.NATION_ID = objFamilyEdit.NATION_ID
+            objFamilyEditData.ID_NO_DATE = objFamilyEdit.ID_NO_DATE
+            objFamilyEditData.ID_NO_PLACE_NAME = objFamilyEdit.ID_NO_PLACE_NAME
+            objFamilyEditData.PHONE = objFamilyEdit.PHONE
+            objFamilyEditData.TAXTATION_DATE = objFamilyEdit.TAXTATION_DATE
+            objFamilyEditData.TAXTATION_PLACE = objFamilyEdit.TAXTATION_PLACE
+            objFamilyEditData.BIRTH_CODE = objFamilyEdit.BIRTH_CODE
+            objFamilyEditData.QUYEN = objFamilyEdit.QUYEN
+            objFamilyEditData.BIRTH_NATION_ID = objFamilyEdit.BIRTH_NATION_ID
+            objFamilyEditData.BIRTH_PROVINCE_ID = objFamilyEdit.BIRTH_PROVINCE_ID
+            objFamilyEditData.BIRTH_DISTRICT_ID = objFamilyEdit.BIRTH_DISTRICT_ID
+            objFamilyEditData.BIRTH_WARD_ID = objFamilyEdit.BIRTH_WARD_ID
+            objFamilyEditData.GENDER = objFamilyEdit.GENDER
+
             Context.HU_FAMILY_EDIT.AddObject(objFamilyEditData)
             Context.SaveChanges(log)
             gID = objFamilyEditData.ID
@@ -537,6 +577,21 @@ Partial Class ProfileRepository
             objFamilyEditData.TT_WARD_ID = objFamilyEdit.TT_WARD_ID
             objFamilyEditData.IS_OWNER = objFamilyEdit.IS_OWNER
             objFamilyEditData.IS_PASS = objFamilyEdit.IS_PASS
+
+            objFamilyEditData.NATION_ID = objFamilyEdit.NATION_ID
+            objFamilyEditData.ID_NO_DATE = objFamilyEdit.ID_NO_DATE
+            objFamilyEditData.ID_NO_PLACE_NAME = objFamilyEdit.ID_NO_PLACE_NAME
+            objFamilyEditData.PHONE = objFamilyEdit.PHONE
+            objFamilyEditData.TAXTATION_DATE = objFamilyEdit.TAXTATION_DATE
+            objFamilyEditData.TAXTATION_PLACE = objFamilyEdit.TAXTATION_PLACE
+            objFamilyEditData.BIRTH_CODE = objFamilyEdit.BIRTH_CODE
+            objFamilyEditData.QUYEN = objFamilyEdit.QUYEN
+            objFamilyEditData.BIRTH_NATION_ID = objFamilyEdit.BIRTH_NATION_ID
+            objFamilyEditData.BIRTH_PROVINCE_ID = objFamilyEdit.BIRTH_PROVINCE_ID
+            objFamilyEditData.BIRTH_DISTRICT_ID = objFamilyEdit.BIRTH_DISTRICT_ID
+            objFamilyEditData.BIRTH_WARD_ID = objFamilyEdit.BIRTH_WARD_ID
+            objFamilyEditData.GENDER = objFamilyEdit.GENDER
+
             Context.SaveChanges(log)
             gID = objFamilyEditData.ID
             Return True
@@ -555,6 +610,12 @@ Partial Class ProfileRepository
                      From p_g In gGroup.DefaultIfEmpty
                      Group Join n In Context.HU_PROVINCE On p.PROVINCE_ID Equals n.ID Into nGroup = Group
                      From n_g In nGroup.DefaultIfEmpty
+                     From n_tt In Context.HU_NATION.Where(Function(F) F.ID = p.NATION_ID).DefaultIfEmpty
+                     From n_ks In Context.HU_NATION.Where(Function(F) F.ID = p.BIRTH_NATION_ID).DefaultIfEmpty
+                     From p_ks In Context.HU_PROVINCE.Where(Function(F) F.ID = p.BIRTH_PROVINCE_ID).DefaultIfEmpty
+                     From d_ks In Context.HU_DISTRICT.Where(Function(F) F.ID = p.BIRTH_DISTRICT_ID).DefaultIfEmpty
+                     From w_ks In Context.HU_WARD.Where(Function(F) F.ID = p.BIRTH_WARD_ID).DefaultIfEmpty
+                     From g In Context.OT_OTHER_LIST.Where(Function(F) F.ID = p.GENDER).DefaultIfEmpty
                      Select New FamilyEditDTO With {
                          .ID = p.ID,
                          .ADDRESS = p.ADDRESS,
@@ -588,6 +649,25 @@ Partial Class ProfileRepository
                          .FK_PKEY = p.FK_PKEY,
                          .TITLE_NAME = p.TITLE_NAME,
                          .CAREER = p.CAREER,
+                        .NATION_ID = p.NATION_ID,
+                        .NATION_NAME = n_tt.NAME_VN,
+                        .ID_NO_DATE = p.ID_NO_DATE,
+                        .ID_NO_PLACE_NAME = p.ID_NO_PLACE_NAME,
+                        .PHONE = p.PHONE,
+                        .TAXTATION_DATE = p.TAXTATION_DATE,
+                        .TAXTATION_PLACE = p.TAXTATION_PLACE,
+                        .BIRTH_CODE = p.BIRTH_CODE,
+                        .QUYEN = p.QUYEN,
+                        .BIRTH_NATION_ID = p.BIRTH_NATION_ID,
+                        .BIRTH_PROVINCE_ID = p.BIRTH_PROVINCE_ID,
+                        .BIRTH_DISTRICT_ID = p.BIRTH_DISTRICT_ID,
+                        .BIRTH_WARD_ID = p.BIRTH_WARD_ID,
+                        .BIRTH_NATION_NAME = n_ks.NAME_VN,
+                        .BIRTH_PROVINCE_NAME = p_ks.NAME_VN,
+                        .BIRTH_DISTRICT_NAME = d_ks.NAME_VN,
+                        .BIRTH_WARD_NAME = w_ks.NAME_VN,
+                         .GENDER = p.GENDER,
+                         .GENDER_NAME = g.NAME_VN,
                          .STATUS = p.STATUS,
                          .STATUS_NAME = If(p.STATUS = 0, "Chưa gửi duyệt",
                                            If(p.STATUS = 1, "Chờ phê duyệt",
