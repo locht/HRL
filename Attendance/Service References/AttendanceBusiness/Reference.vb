@@ -2553,6 +2553,15 @@ Namespace AttendanceBusiness
         Private NOTEField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private ORDERSField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private ORG_IDField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private ORG_NAMEField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private TYPE_PROCESS_NAMEField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -2850,6 +2859,45 @@ Namespace AttendanceBusiness
                 If (Object.ReferenceEquals(Me.NOTEField, value) <> true) Then
                     Me.NOTEField = value
                     Me.RaisePropertyChanged("NOTE")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property ORDERS() As System.Nullable(Of Decimal)
+            Get
+                Return Me.ORDERSField
+            End Get
+            Set
+                If (Me.ORDERSField.Equals(value) <> true) Then
+                    Me.ORDERSField = value
+                    Me.RaisePropertyChanged("ORDERS")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property ORG_ID() As System.Nullable(Of Decimal)
+            Get
+                Return Me.ORG_IDField
+            End Get
+            Set
+                If (Me.ORG_IDField.Equals(value) <> true) Then
+                    Me.ORG_IDField = value
+                    Me.RaisePropertyChanged("ORG_ID")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property ORG_NAME() As String
+            Get
+                Return Me.ORG_NAMEField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.ORG_NAMEField, value) <> true) Then
+                    Me.ORG_NAMEField = value
+                    Me.RaisePropertyChanged("ORG_NAME")
                 End If
             End Set
         End Property

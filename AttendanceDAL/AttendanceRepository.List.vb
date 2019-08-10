@@ -5149,6 +5149,7 @@ Partial Public Class AttendanceRepository
                                        Optional ByRef Total As Integer = 0,
                                        Optional ByVal Sorts As String = "CREATED_DATE desc") As List(Of AT_TIME_MANUALDTO)
         Try
+            Dim check As String = "Dùng chung"
 
             Dim query = From p In Context.AT_TIME_MANUAL
                         From f1 In Context.AT_FML.Where(Function(F) F.ID = p.MORNING_ID).DefaultIfEmpty
@@ -5156,6 +5157,8 @@ Partial Public Class AttendanceRepository
                         From f3 In Context.AT_TYPE_PROCESS.Where(Function(F) F.ID = p.TYPE_PROSS_ID).DefaultIfEmpty
                         From f4 In Context.AT_TIME_MANUAL_RATE.Where(Function(F) F.ID = p.MORNING_RATE_ID).DefaultIfEmpty
                         From f5 In Context.AT_TIME_MANUAL_RATE.Where(Function(F) F.ID = p.AFTERNOON_RATE_ID).DefaultIfEmpty
+                        Group Join g In Context.HU_ORGANIZATION On p.ORG_ID Equals g.ID Into g_olg = Group
+                        From olg In g_olg.DefaultIfEmpty
             Dim lst = query.Select(Function(p) New AT_TIME_MANUALDTO With {
                                        .ID = p.p.ID,
                                        .CODE = p.p.CODE,
@@ -5170,6 +5173,8 @@ Partial Public Class AttendanceRepository
                                        .MORNING_RATE_VALUE = p.f4.VALUE_RATE,
                                        .AFTERNOON_RATE_ID = p.p.AFTERNOON_RATE_ID,
                                        .AFTERNOON_RATE_VALUE = p.f5.VALUE_RATE,
+                                       .ORG_ID = p.p.ORG_ID,
+                                       .ORG_NAME = If(p.p.ORG_ID = -1, check, p.olg.NAME_VN),
                                        .NOTE = p.p.NOTE,
                                        .ACTFLG = If(p.p.ACTFLG = "A", "Áp dụng", "Ngừng Áp dụng"),
                                        .CREATED_BY = p.p.CREATED_BY,
@@ -5177,7 +5182,8 @@ Partial Public Class AttendanceRepository
                                        .CREATED_LOG = p.p.CREATED_LOG,
                                        .MODIFIED_BY = p.p.MODIFIED_BY,
                                        .MODIFIED_DATE = p.p.MODIFIED_DATE,
-                                       .MODIFIED_LOG = p.p.MODIFIED_LOG})
+                                       .MODIFIED_LOG = p.p.MODIFIED_LOG,
+                                       .ORDERS = p.p.ORDERS})
 
 
             If Not String.IsNullOrEmpty(_filter.CODE) Then
@@ -5185,6 +5191,9 @@ Partial Public Class AttendanceRepository
             End If
             If Not String.IsNullOrEmpty(_filter.NAME_VN) Then
                 lst = lst.Where(Function(f) f.NAME_VN.ToLower().Contains(_filter.NAME_VN.ToLower()))
+            End If
+            If Not String.IsNullOrEmpty(_filter.ORG_NAME) Then
+                lst = lst.Where(Function(f) f.ORG_NAME.ToLower().Contains(_filter.ORG_NAME.ToLower()))
             End If
             If Not String.IsNullOrEmpty(_filter.MORNING_NAME) Then
                 lst = lst.Where(Function(f) f.MORNING_NAME.ToLower().Contains(_filter.MORNING_NAME.ToLower()))
@@ -5200,6 +5209,9 @@ Partial Public Class AttendanceRepository
             End If
             If _filter.AFTERNOON_RATE_VALUE <> 0 Then
                 lst = lst.Where(Function(f) f.AFTERNOON_RATE_VALUE = _filter.AFTERNOON_RATE_VALUE)
+            End If
+            If _filter.ORDERS IsNot Nothing Then
+                lst = lst.Where(Function(f) f.ORDERS = _filter.ORDERS)
             End If
             If Not String.IsNullOrEmpty(_filter.ACTFLG) Then
                 lst = lst.Where(Function(f) f.ACTFLG.ToLower().Contains(_filter.ACTFLG.ToLower()))
@@ -5248,6 +5260,8 @@ Partial Public Class AttendanceRepository
             objTitleData.TYPE_PROSS_ID = objTitle.TYPE_PROSS_ID
             objTitleData.MORNING_RATE_ID = objTitle.MORNING_RATE_ID
             objTitleData.AFTERNOON_RATE_ID = objTitle.AFTERNOON_RATE_ID
+            objTitleData.ORG_ID = objTitle.ORG_ID
+            objTitleData.ORDERS = objTitle.ORDERS
             objTitleData.NOTE = objTitle.NOTE
             objTitleData.ACTFLG = objTitle.ACTFLG
             objTitleData.CREATED_BY = objTitle.CREATED_BY
@@ -5313,6 +5327,8 @@ Partial Public Class AttendanceRepository
             objTitleData.TYPE_PROSS_ID = objTitle.TYPE_PROSS_ID
             objTitleData.MORNING_RATE_ID = objTitle.MORNING_RATE_ID
             objTitleData.AFTERNOON_RATE_ID = objTitle.AFTERNOON_RATE_ID
+            objTitleData.ORG_ID = objTitle.ORG_ID
+            objTitleData.ORDERS = objTitle.ORDERS
             objTitleData.NOTE = objTitle.NOTE
             objTitleData.CREATED_BY = objTitle.CREATED_BY
             objTitleData.CREATED_DATE = objTitle.CREATED_DATE
