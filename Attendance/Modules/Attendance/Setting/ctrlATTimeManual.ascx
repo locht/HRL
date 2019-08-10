@@ -66,8 +66,8 @@
                 <td>
                     <tlk:RadComboBox ID="cboAfternoonRate" runat="server"  Width = "50px">
                     </tlk:RadComboBox>
-                    <asp:CustomValidator ID="cvalAfternoonRate" runat="server" ErrorMessage="<%$ Translate: Bạn phải chọn loại xử lý. %>"
-                        ToolTip="<%$ Translate: Bạn phải chọn loại xử lý. %>" ClientValidationFunction="cvalAfternoonRate">
+                    <asp:CustomValidator ID="cvalAfternoonRate" runat="server" ErrorMessage="<%$ Translate: Bạn phải chọn tỷ lệ kiểu công nữa ngày cuối. %>"
+                        ToolTip="<%$ Translate: Bạn phải chọn  . %>" ClientValidationFunction="cvalAfternoonRate">
                     </asp:CustomValidator>
 
                     <tlk:RadComboBox ID="cboAfternoon" runat="server">
