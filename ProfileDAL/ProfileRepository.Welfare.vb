@@ -55,11 +55,11 @@ Partial Class ProfileRepository
             Dim dateNow = Date.Now.Date
             Dim terID = ProfileCommon.OT_WORK_STATUS.TERMINATE_ID
             'bo loc nhan vien nghỉ viec
-            'If Not _filter.IS_TER Then
-            '    query = query.Where(Function(p) Not p.e.WORK_STATUS.HasValue Or _
-            '                            (p.e.WORK_STATUS.HasValue And _
-            '                             ((p.e.WORK_STATUS <> terID) Or (p.e.WORK_STATUS = terID And p.e.TER_EFFECT_DATE > dateNow))))
-            'End If
+            If Not _filter.IS_TER Then
+                query = query.Where(Function(p) Not p.e.WORK_STATUS.HasValue Or _
+                                        (p.e.WORK_STATUS.HasValue And _
+                                         ((p.e.WORK_STATUS <> terID) Or (p.e.WORK_STATUS = terID And p.e.TER_EFFECT_DATE > dateNow))))
+            End If
 
 
             ' lọc điều kiện
