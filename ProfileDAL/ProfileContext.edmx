@@ -724,6 +724,7 @@
             <Property Name="BIRTH_PROVINCE_ID" Type="number" Nullable="true" Precision="38" />
             <Property Name="BIRTH_DISTRICT_ID" Type="number" Nullable="true" Precision="38" />
             <Property Name="BIRTH_WARD_ID" Type="number" Nullable="true" Precision="38" />
+            <Property Name="GENDER" Type="number" Nullable="true" Precision="38" />
         </EntityType>
         <EntityType Name="HU_DISCIPLINE">
             <Key>
@@ -1658,6 +1659,7 @@
             <Property Name="BIRTH_PROVINCE_ID" Type="number" Nullable="true" Precision="38" />
             <Property Name="BIRTH_DISTRICT_ID" Type="number" Nullable="true" Precision="38" />
             <Property Name="BIRTH_WARD_ID" Type="number" Nullable="true" Precision="38" />
+            <Property Name="GENDER" Type="number" Nullable="true" Precision="38" />
         </EntityType>
         <EntityType Name="HU_EMPLOYEE_EDIT">
             <Key>
@@ -4937,6 +4939,7 @@
           <Property Type="Decimal" Name="BIRTH_PROVINCE_ID" />
           <Property Type="Decimal" Name="BIRTH_DISTRICT_ID" />
           <Property Type="Decimal" Name="BIRTH_WARD_ID" />
+          <Property Type="Decimal" Name="GENDER" />
         </EntityType>
         <Association Name="FK_HE_HC">
           <End Type="ProfileModel.HU_EMPLOYEE" Role="HU_EMPLOYEE" Multiplicity="1" />
@@ -6081,6 +6084,7 @@
           <Property Type="Decimal" Name="BIRTH_PROVINCE_ID" />
           <Property Type="Decimal" Name="BIRTH_DISTRICT_ID" />
           <Property Type="Decimal" Name="BIRTH_WARD_ID" />
+          <Property Type="Decimal" Name="GENDER" />
         </EntityType>
         <EntityType Name="HU_EMPLOYEE_EDIT">
           <Key>
@@ -8621,6 +8625,7 @@
                     <ScalarProperty Name="BIRTH_PROVINCE_ID" ColumnName="BIRTH_PROVINCE_ID" />
                     <ScalarProperty Name="BIRTH_DISTRICT_ID" ColumnName="BIRTH_DISTRICT_ID" />
                     <ScalarProperty Name="BIRTH_WARD_ID" ColumnName="BIRTH_WARD_ID" />
+                    <ScalarProperty Name="GENDER" ColumnName="GENDER" />
                 </MappingFragment>
             </EntityTypeMapping>
         </EntitySetMapping>
@@ -9589,6 +9594,7 @@
                     <ScalarProperty Name="BIRTH_PROVINCE_ID" ColumnName="BIRTH_PROVINCE_ID" />
                     <ScalarProperty Name="BIRTH_DISTRICT_ID" ColumnName="BIRTH_DISTRICT_ID" />
                     <ScalarProperty Name="BIRTH_WARD_ID" ColumnName="BIRTH_WARD_ID" />
+                    <ScalarProperty Name="GENDER" ColumnName="GENDER" />
                 </MappingFragment>
             </EntityTypeMapping>
         </EntitySetMapping>
@@ -11731,7 +11737,7 @@
     </Options>
     <!-- Diagram content (shape and connector positions) -->
     <Diagrams>
-      <Diagram Name="ProfileContext" ZoomLevel="63" ShowGrid="false" DisplayType="true" SnapToGrid="true">
+      <Diagram Name="ProfileContext" ZoomLevel="72" ShowGrid="false" DisplayType="true" SnapToGrid="true">
         <EntityTypeShape EntityType="ProfileModel.HU_PROVINCE" Width="1.5" PointX="3" PointY="9.625" Height="0.39999999999999858" IsExpanded="false" />
         <EntityTypeShape EntityType="ProfileModel.HU_DISTRICT" Width="1.75" PointX="5.25" PointY="9" Height="0.39999999999999858" IsExpanded="false" />
         <EntityTypeShape EntityType="ProfileModel.HU_NATION" Width="1.5" PointX="0.75" PointY="9.625" Height="0.40000000000000213" IsExpanded="false" />
@@ -11798,7 +11804,7 @@
           <ConnectorPoint PointX="18.1875" PointY="0.32499999999999996" />
           <ConnectorPoint PointX="18.1875" PointY="0.625" />
         </AssociationConnector>
-        <EntityTypeShape EntityType="ProfileModel.HU_FAMILY" Width="2.875" PointX="8.5" PointY="0.5" Height="10.056946614583332" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProfileModel.HU_FAMILY" Width="2.875" PointX="8.5" PointY="0.5" Height="10.249248046874998" IsExpanded="true" />
         <AssociationConnector Association="ProfileModel.FK_HE_HC" ManuallyRouted="false">
           <ConnectorPoint PointX="17.125" PointY="0.73625000000000007" />
           <ConnectorPoint PointX="7.333333333333333" PointY="0.73624999999999952" />
@@ -11873,8 +11879,8 @@
           <ConnectorPoint PointX="6.3124994999999995" PointY="9.8999999999999986" />
           <ConnectorPoint PointX="6.3124994999999995" PointY="10.075" />
           <ConnectorPoint PointX="8.4375" PointY="10.075" />
-          <ConnectorPoint PointX="8.4375" PointY="10.619446614583332" />
-          <ConnectorPoint PointX="11.65625" PointY="10.619446614583332" />
+          <ConnectorPoint PointX="8.4375" PointY="10.811748046874996" />
+          <ConnectorPoint PointX="11.65625" PointY="10.811748046874996" />
           <ConnectorPoint PointX="11.65625" PointY="10.075" />
           <ConnectorPoint PointX="11.75" PointY="10.075" />
         </AssociationConnector>
@@ -11924,7 +11930,7 @@
         <EntityTypeShape EntityType="ProfileModel.HU_WELFARE_LIST" Width="1.5" PointX="20.625" PointY="9.875" Height="5.634013671875" IsExpanded="true" />
         <EntityTypeShape EntityType="ProfileModel.HU_WELFARE_LIST_GW" Width="1.5" PointX="12.75" PointY="19.875" Height="0.39999999999999147" IsExpanded="false" />
         <EntityTypeShape EntityType="ProfileModel.HU_ASSET_MNG" Width="1.5" PointX="16.25" PointY="25" Height="0.4" IsExpanded="false" />
-        <EntityTypeShape EntityType="ProfileModel.HU_FAMILY_EDIT" Width="2.125" PointX="16.625" PointY="16.375" Height="10.633850911458332" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProfileModel.HU_FAMILY_EDIT" Width="2.125" PointX="16.625" PointY="16.375" Height="10.826152343750003" IsExpanded="true" />
         <EntityTypeShape EntityType="ProfileModel.HU_EMPLOYEE_EDIT" Width="1.5" PointX="18.75" PointY="19.875" Height="0.40000000000000568" IsExpanded="false" />
         <EntityTypeShape EntityType="ProfileModel.HU_PRO_TRAIN_OUT_COMPANY_EDIT" Width="2.875" PointX="2.375" PointY="31.875" Height="6.2109179687500031" IsExpanded="true" />
         <EntityTypeShape EntityType="ProfileModel.HU_WORKING_BEFORE_EDIT" Width="2.125" PointX="23.125" PointY="0.5" Height="0.4" IsExpanded="false" />
@@ -11971,7 +11977,7 @@
         <EntityTypeShape EntityType="ProfileModel.HU_COMMEND_LEVEL" Width="1.5" PointX="11.375" PointY="26.75" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="ProfileModel.HU_COMMEND" Width="4.25" PointX="10.75" PointY="29.375" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="ProfileModel.TR_CERTIFICATE" Width="1.5" PointX="15.375" PointY="29.25" Height="0.4" IsExpanded="false" />
-        <EntityTypeShape EntityType="ProfileModel.TR_COURSE" Width="1.5" PointX="17.375" PointY="26.75" Height="0.4" IsExpanded="false" />
+        <EntityTypeShape EntityType="ProfileModel.TR_COURSE" Width="1.5" PointX="17.625" PointY="28" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="ProfileModel.TR_PROGRAM" Width="1.5" PointX="19.375" PointY="26.75" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="ProfileModel.TR_PROGRAM_COMMIT" Width="1.5" PointX="21.375" PointY="26.75" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="ProfileModel.TR_PROGRAM_GROUP" Width="1.5" PointX="27.375" PointY="0.75" Height="0.4" IsExpanded="false" />

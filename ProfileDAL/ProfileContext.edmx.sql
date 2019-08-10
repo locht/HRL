@@ -1,7 +1,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for Oracle database
 -- --------------------------------------------------
--- Date Created: 8/10/2019 1:36:20 PM
+-- Date Created: 8/10/2019 2:13:46 PM
 -- Generated from EDMX file: D:\TNG_SOURCE_NEW\ProfileDAL\ProfileContext.edmx
 -- --------------------------------------------------
 
@@ -808,7 +808,8 @@ CREATE TABLE "dbo"."HU_FAMILY" (
    "BIRTH_NATION_ID" NUMBER(38,0) NULL,
    "BIRTH_PROVINCE_ID" NUMBER(38,0) NULL,
    "BIRTH_DISTRICT_ID" NUMBER(38,0) NULL,
-   "BIRTH_WARD_ID" NUMBER(38,0) NULL
+   "BIRTH_WARD_ID" NUMBER(38,0) NULL,
+   "GENDER" NUMBER(38,0) NULL
 );
 
 -- Creating table 'HU_DISCIPLINE'
@@ -1688,7 +1689,8 @@ CREATE TABLE "dbo"."HU_FAMILY_EDIT" (
    "BIRTH_NATION_ID" NUMBER(38,0) NULL,
    "BIRTH_PROVINCE_ID" NUMBER(38,0) NULL,
    "BIRTH_DISTRICT_ID" NUMBER(38,0) NULL,
-   "BIRTH_WARD_ID" NUMBER(38,0) NULL
+   "BIRTH_WARD_ID" NUMBER(38,0) NULL,
+   "GENDER" NUMBER(38,0) NULL
 );
 
 -- Creating table 'HU_EMPLOYEE_EDIT'

@@ -18,7 +18,7 @@ Imports System.Runtime.Serialization
 Imports System.Xml.Serialization
 
 
-<Assembly: EdmSchemaAttribute("33b4fe7a-8db9-4ead-b9b3-00ed4b2362b0")>
+<Assembly: EdmSchemaAttribute("edf961bd-425a-4dfc-8978-75ad4179e4fa")>
 #Region "EDM Relationship Metadata"
 <Assembly: EdmRelationshipAttribute("ProfileModel", "FK_HU_NAT_HU_PRO", "HU_NATION", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_NATION), "HU_PROVINCE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_PROVINCE), True)>
 <Assembly: EdmRelationshipAttribute("ProfileModel", "FK_HU_PRO_HU_DIS", "HU_PROVINCE", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_PROVINCE), "HU_DISTRICT", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_DISTRICT), True)>
@@ -33868,6 +33868,31 @@ Public Partial Class HU_FAMILY
     Private Partial Sub OnBIRTH_WARD_IDChanged()
     End Sub
 
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property GENDER() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _GENDER
+        End Get
+        Set
+            OnGENDERChanging(value)
+            ReportPropertyChanging("GENDER")
+            _GENDER = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("GENDER")
+            OnGENDERChanged()
+        End Set
+    End Property
+
+    Private _GENDER As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnGENDERChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnGENDERChanged()
+    End Sub
+
     #End Region
 
     #Region "Navigation Properties"
@@ -35181,6 +35206,31 @@ Public Partial Class HU_FAMILY_EDIT
     End Sub
 
     Private Partial Sub OnBIRTH_WARD_IDChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property GENDER() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _GENDER
+        End Get
+        Set
+            OnGENDERChanging(value)
+            ReportPropertyChanging("GENDER")
+            _GENDER = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("GENDER")
+            OnGENDERChanged()
+        End Set
+    End Property
+
+    Private _GENDER As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnGENDERChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnGENDERChanged()
     End Sub
 
     #End Region
