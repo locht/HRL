@@ -1429,6 +1429,7 @@
     <Content Include="ReportTemplates\Attendance\Import\Template_GiaiTrinhNgayCong_error.xlsx" />
     <Content Include="ReportTemplates\Payroll\Business\TEMP_IMPORT_HOSOLUONG.xlsx" />
     <Content Include="ReportTemplates\Recruitment\Import\Dinhbien_template.xls" />
+    <Content Include="ReportTemplates\Profile\WELFARE\import_phucloi_TNG.xls" />
     <None Include="Styles\ImgConfig.jquery.css" />
     <Content Include="Styles\font-awesome.css" />
     <Content Include="Styles\img\icon-tree.png" />
