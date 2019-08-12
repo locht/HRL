@@ -122,6 +122,24 @@ Partial Public Class ctrlHU_EmpDtlWorkingBefore
     Protected WithEvents reqCompanyName As Global.System.Web.UI.WebControls.RequiredFieldValidator
 
     '''<summary>
+    '''lbTitleName control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbTitleName As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''txtTitleName control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtTitleName As Global.Telerik.Web.UI.RadTextBox
+
+    '''<summary>
     '''lbsdt control.
     '''</summary>
     '''<remarks>
@@ -210,24 +228,6 @@ Partial Public Class ctrlHU_EmpDtlWorkingBefore
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtSalary As Global.Telerik.Web.UI.RadNumericTextBox
-
-    '''<summary>
-    '''lbTitleName control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lbTitleName As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
-    '''txtTitleName control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents txtTitleName As Global.Telerik.Web.UI.RadTextBox
 
     '''<summary>
     '''lbLevelName control.

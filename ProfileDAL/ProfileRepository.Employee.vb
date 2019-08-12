@@ -691,7 +691,7 @@ Partial Class ProfileRepository
                     emp.lstPaperFiled = (From p In Context.HU_EMPLOYEE_PAPER_FILED
                                          Where p.EMPLOYEE_ID = emp.ID
                                          Select p.HU_PAPER_ID.Value).ToList
-                    End If
+                End If
                 Return emp
             Catch ex As Exception
                 WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iProfile")
@@ -2243,7 +2243,7 @@ Partial Class ProfileRepository
                     .SALARY = p.SALARY,
                     .TITLE_NAME = p.TITLE_NAME,
                     .LEVEL_NAME = p.LEVEL_NAME,
-                    .TER_REASON = p.TER_REASON})
+                    .TER_REASON = p.REMARK})
             If _filter.EMPLOYEE_ID <> 0 Then
                 query = query.Where(Function(p) p.EMPLOYEE_ID = _filter.EMPLOYEE_ID)
             End If
@@ -2268,7 +2268,9 @@ Partial Class ProfileRepository
             objWorkingBeforeData.END_DATE = objWorkingBefore.END_DATE
             objWorkingBeforeData.SALARY = objWorkingBefore.SALARY
             objWorkingBeforeData.TELEPHONE = objWorkingBefore.TELEPHONE
+            'đang có sãn trường lý do nên làm nhanh update vao cho remark lun
             objWorkingBeforeData.TER_REASON = objWorkingBefore.TER_REASON
+            objWorkingBeforeData.REMARK = objWorkingBefore.TER_REASON
             objWorkingBeforeData.LEVEL_NAME = objWorkingBefore.LEVEL_NAME
             objWorkingBeforeData.TITLE_NAME = objWorkingBefore.TITLE_NAME
             objWorkingBeforeData.JOIN_DATE = objWorkingBefore.JOIN_DATE
@@ -2301,7 +2303,9 @@ Partial Class ProfileRepository
             objWorkingBeforeData.END_DATE = objWorkingBefore.END_DATE
             objWorkingBeforeData.SALARY = objWorkingBefore.SALARY
             objWorkingBeforeData.TELEPHONE = objWorkingBefore.TELEPHONE
+            'đang có sãn trường lý do nên làm nhanh update vao cho remark lun
             objWorkingBeforeData.TER_REASON = objWorkingBefore.TER_REASON
+            objWorkingBeforeData.REMARK = objWorkingBefore.TER_REASON
             objWorkingBeforeData.LEVEL_NAME = objWorkingBefore.LEVEL_NAME
             objWorkingBeforeData.TITLE_NAME = objWorkingBefore.TITLE_NAME
             objWorkingBeforeData.JOIN_DATE = objWorkingBefore.JOIN_DATE

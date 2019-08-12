@@ -795,6 +795,7 @@
             <Property Name="MODIFIED_LOG" Type="nvarchar2" Nullable="false" MaxLength="255" />
             <Property Name="TITLE_NAME" Type="varchar2" Nullable="true" MaxLength="255" />
             <Property Name="LEVEL_NAME" Type="varchar2" Nullable="true" MaxLength="255" />
+            <Property Name="REMARK" Type="nclob" Nullable="true" />
         </EntityType>
         <EntityType Name="HU_TERMINATE">
             <Key>
@@ -5104,6 +5105,7 @@
           <Property Type="String" Name="MODIFIED_LOG" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="TITLE_NAME" Nullable="true" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="LEVEL_NAME" Nullable="true" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="REMARK" />
         </EntityType>
         <Association Name="FK_HE_HWB">
           <End Type="ProfileModel.HU_EMPLOYEE" Role="HU_EMPLOYEE" Multiplicity="1" />
@@ -8773,6 +8775,7 @@
                     <ScalarProperty Name="MODIFIED_LOG" ColumnName="MODIFIED_LOG" />
                     <ScalarProperty Name="TITLE_NAME" ColumnName="TITLE_NAME" />
                     <ScalarProperty Name="LEVEL_NAME" ColumnName="LEVEL_NAME" />
+                    <ScalarProperty Name="REMARK" ColumnName="REMARK" />
                 </MappingFragment>
             </EntityTypeMapping>
         </EntitySetMapping>
@@ -11927,13 +11930,12 @@
           <ConnectorPoint PointX="6.5937475" PointY="3.125" />
         </AssociationConnector>
         <EntityTypeShape EntityType="ProfileModel.HU_DISCIPLINE" Width="3.5" PointX="1.375" PointY="8.75" Height="9.6723437500000031" IsExpanded="true" />
-        <EntityTypeShape EntityType="ProfileModel.HU_WORKING_BEFORE" Width="1.875" PointX="11.25" PointY="6.125" Height="0.40000000000000568" IsExpanded="false" />
+        <EntityTypeShape EntityType="ProfileModel.HU_WORKING_BEFORE" Width="1.875" PointX="11.25" PointY="1.75" Height="4.6725065104166665" IsExpanded="true" />
         <AssociationConnector Association="ProfileModel.FK_HE_HWB">
-          <ConnectorPoint PointX="17.125" PointY="10.393560761718749" />
-          <ConnectorPoint PointX="16.5" PointY="10.393560761718749" />
-          <ConnectorPoint PointX="16.5" PointY="3.25" />
-          <ConnectorPoint PointX="12.250000499999999" PointY="3.25" />
-          <ConnectorPoint PointX="12.250000499999999" PointY="6.125" />
+          <ConnectorPoint PointX="17.125" PointY="3.0437499999999997" />
+          <ConnectorPoint PointX="16.583333333333332" PointY="3.0437499999999993" />
+          <ConnectorPoint PointX="16.416666666666668" PointY="3.0437499999999997" />
+          <ConnectorPoint PointX="13.125" PointY="3.0437499999999997" />
         </AssociationConnector>
         <AssociationConnector Association="ProfileModel.FK_OTDCO_HUDC">
           <ConnectorPoint PointX="5.7598451538461539" PointY="5.1500000000000057" />
@@ -11979,10 +11981,10 @@
           <ConnectorPoint PointX="3.5" PointY="4.9500000000000028" />
         </AssociationConnector>
         <AssociationConnector Association="ProfileModel.FK_HE_HF">
-          <ConnectorPoint PointX="11.375" PointY="1.6687500000000002" />
-          <ConnectorPoint PointX="14.166666666666666" PointY="1.6687499999999995" />
-          <ConnectorPoint PointX="14.333333333333334" PointY="1.6687500000000002" />
-          <ConnectorPoint PointX="17.125" PointY="1.6687500000000002" />
+          <ConnectorPoint PointX="11.375" PointY="1.5437499999999997" />
+          <ConnectorPoint PointX="14.166666666666666" PointY="1.5437499999999991" />
+          <ConnectorPoint PointX="14.333333333333334" PointY="1.5437499999999997" />
+          <ConnectorPoint PointX="17.125" PointY="1.5437499999999997" />
         </AssociationConnector>
         <EntityTypeShape EntityType="ProfileModel.HUV_WORKING" Width="2.875" PointX="2.75" PointY="15.125" IsExpanded="false" Height="0.4" />
         <EntityTypeShape EntityType="ProfileModel.PA_SALARY_GROUP" Width="1.5" PointX="5.5" PointY="9.5" Height="0.39999999999999858" IsExpanded="false" />
