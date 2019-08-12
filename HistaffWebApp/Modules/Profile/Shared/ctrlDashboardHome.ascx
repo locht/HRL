@@ -6,10 +6,20 @@ Inherits="Profile.ctrlDashboardHome" %>
      
     <tlk:RadPane ID="RadPane1" runat="server" Scrolling="None">
         <tlk:RadGrid  ID="rgContract" runat="server" Height="100%" AllowFilteringByColumn="true">
-            <MasterTableView CommandItemSettings-ExportToExcelText="Xuất dữ liệu" 
+            <MasterTableView CommandItemSettings-ExportToExcelText="Xuất dữ liệu"
             CommandItemSettings-ExportToCsvText="Chuyển" CommandItemSettings-ExportToPdfText="Báo tăng thai sản đi làm lại" CommandItemDisplay="Top"
-             ClientDataKeyNames="ID,ID_TYPE,EMPLOYEE_ID,EMPLOYEE_CODE,LINK_POPUP">
-               
+             ClientDataKeyNames="ID,EMPLOYEE_ID,EMPLOYEE_CODE,FULLNAME,REMIND_DATE,GENDER,REMIND_TYPE,REMIND_NAME,USERNAME,TITLE_NAME,ORG_NAME,JOIN_DATE,VALUE,LINK_POPUP,WORK_EMAIL">
+                <CommandItemTemplate>
+                    <table>
+                        <tr>
+                            <td width="20%">
+                                <tlk:RadButton ID="btnSendMail" Text="<%$ Translate: Gửi mail %>" runat="server" CommandName="SendMail"
+                                CausesValidation="false" OnClientClicking="SelectGridClick">
+                                </tlk:RadButton>
+                            </td>
+                        </tr>
+                    </table>
+                </CommandItemTemplate>
                 <CommandItemSettings  ShowAddNewRecordButton="false" ShowExportToCsvButton="false"
                     ShowRefreshButton="false" ShowExportToExcelButton="true"></CommandItemSettings>
                 <Columns>
@@ -20,7 +30,7 @@ Inherits="Profile.ctrlDashboardHome" %>
                     </tlk:GridClientSelectColumn>
                     <tlk:GridTemplateColumn UniqueName="LINK_POPUP" AllowFiltering="false" HeaderText="<%$ Translate: Liên kết nhanh %>">
                         <ItemTemplate>
-                            <asp:LinkButton ID="lbtnLink" runat="server" Text="View" Style="text-decoration: underline !important;
+                            <asp:LinkButton ID="lbtnLink" runat="server" Text="Xem" Style="text-decoration: underline !important;
                                 color: Blue">
                             </asp:LinkButton>
                         </ItemTemplate>
@@ -46,7 +56,10 @@ Inherits="Profile.ctrlDashboardHome" %>
                         UniqueName="ORG_NAME" SortExpression="ORG_NAME">
                     </tlk:GridBoundColumn>
                     <tlk:GridBoundColumn HeaderText="<%$ Translate: Chức danh %>" DataField="TITILE_NAME"
-                        UniqueName="TITILE_NAME" SortExpression="TITILE_NAME">
+                        UniqueName="TITLE_NAME" SortExpression="TITLE_NAME">
+                    </tlk:GridBoundColumn>
+                    <tlk:GridBoundColumn HeaderText="<%$ Translate: Email %>" DataField="WORK_EMAIL"
+                        UniqueName="WORK_EMAIL" SortExpression="WORK_EMAIL">
                     </tlk:GridBoundColumn>
                 </Columns>
             </MasterTableView>
@@ -101,6 +114,24 @@ Inherits="Profile.ctrlDashboardHome" %>
 
             return oWindow;
         }
-
+        function SelectGridClick(sender, args) {
+            var item = args.get_commandName();
+            if (item == "SendMail") {
+                var bCheck = $find('<%# rgContract.ClientID %>').get_masterTableView().get_selectedItems().length;
+                if (bCheck == 0) {
+                    var notifyMgs = Notify("Vui lòng chọn dữ liệu thao tác", "warning");
+                    args.set_cancel(true);
+                    enableAjax = true;
+                }
+                else {
+                    enableAjax = false;
+                }
+            }
+//            else if (item == "EXPORT") {
+//                enableAjax = false;
+//            }
+            else
+                enableAjax = true;
+        }
     </script>
 </tlk:RadScriptBlock>

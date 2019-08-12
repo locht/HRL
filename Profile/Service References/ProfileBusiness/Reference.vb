@@ -26992,6 +26992,9 @@ Namespace ProfileBusiness
         Private GENDERField As System.Nullable(Of Decimal)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private IDField As Decimal
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private JOIN_DATEField As System.Nullable(Of Date)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -27017,6 +27020,9 @@ Namespace ProfileBusiness
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private VALUEField As Integer
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private WORK_EMAILField As String
         
         <Global.System.ComponentModel.BrowsableAttribute(false)>  _
         Public Property ExtensionData() As System.Runtime.Serialization.ExtensionDataObject Implements System.Runtime.Serialization.IExtensibleDataObject.ExtensionData
@@ -27076,6 +27082,19 @@ Namespace ProfileBusiness
                 If (Me.GENDERField.Equals(value) <> true) Then
                     Me.GENDERField = value
                     Me.RaisePropertyChanged("GENDER")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property ID() As Decimal
+            Get
+                Return Me.IDField
+            End Get
+            Set
+                If (Me.IDField.Equals(value) <> true) Then
+                    Me.IDField = value
+                    Me.RaisePropertyChanged("ID")
                 End If
             End Set
         End Property
@@ -27193,6 +27212,19 @@ Namespace ProfileBusiness
                 If (Me.VALUEField.Equals(value) <> true) Then
                     Me.VALUEField = value
                     Me.RaisePropertyChanged("VALUE")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property WORK_EMAIL() As String
+            Get
+                Return Me.WORK_EMAILField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.WORK_EMAILField, value) <> true) Then
+                    Me.WORK_EMAILField = value
+                    Me.RaisePropertyChanged("WORK_EMAIL")
                 End If
             End Set
         End Property

@@ -3,6 +3,7 @@ Imports Framework.UI
 Imports Common.CommonBusiness
 Imports System.Globalization
 Imports System.Net.Mail
+Imports System.Net
 
 Public Class Common
 
@@ -463,6 +464,44 @@ Public Class Common
         Return False
     End Function
 
+    Public Shared Function sendEmailByServerMail(ByVal strEmailReceiver As String,
+                                                 ByVal strEmailCC As String,
+                                                 ByVal strSubject As String,
+                                                 ByVal strBody As String,
+                                                 ByVal fileAttachments As String) As Boolean
+        Try
+            ' Lấy thông tin config mail từ DB
+            CommonConfig.GetConfigFromDatabase()
+            Dim mail As New MailMessage()
+            'Dim SmtpServer As New SmtpClient(CommonConfig.MailServer)
+            Dim SmtpServer As New SmtpClient(CommonConfig.MailServer, CommonConfig.MailPort)
+            Dim EncryptData As New Framework.UI.EncryptData
+            Dim pass As String = EncryptData.DecryptString(CommonConfig.MailAccountPassword)
+            Dim NetworkCred As New NetworkCredential(CommonConfig.MailAccount, pass)
+            SmtpServer.EnableSsl = True
+            SmtpServer.UseDefaultCredentials = False
+            SmtpServer.Credentials = NetworkCred
+            SmtpServer.DeliveryMethod = SmtpDeliveryMethod.Network
+            mail.From = New MailAddress(CommonConfig.MailFrom)
+            mail.[To].Add(strEmailReceiver)
+            If strEmailCC <> String.Empty Then
+                mail.CC.Add(strEmailCC)
+            End If
+            If fileAttachments <> String.Empty Then
+                mail.Attachments.Add(New Attachment(fileAttachments))
+            End If
+            mail.Subject = strSubject
+            mail.Body = strBody
+            mail.BodyEncoding = System.Text.Encoding.UTF8
+            mail.SubjectEncoding = System.Text.Encoding.UTF8
+            mail.IsBodyHtml = True
+            SmtpServer.Send(mail)
+
+            Return True
+        Catch ex As Exception
+            Return False
+        End Try
+    End Function
 
     Public Shared Function GetUsername() As String
         Try
@@ -498,6 +537,7 @@ End Class
 Public Enum RemindConfigType
     Contract = 1
     Birthday = 2
+    Email = 5
     UpSalaryBefore = 6
     EmployeeAppoint = 7
     UpSalaryAfter = 8

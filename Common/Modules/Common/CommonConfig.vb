@@ -398,6 +398,21 @@ Public Class CommonConfig
 #End Region
 
 #Region "iProfile"
+    Public Shared Property ReminderEmail() As String
+        Get
+            If Not dicReminderConfig.ContainsKey(CType(RemindConfigType.Email, Integer)) Then
+                Return 0
+            End If
+            Return dicReminderConfig(CType(RemindConfigType.Email, Integer))
+        End Get
+        Set(ByVal value As String)
+            If dicReminderConfig.ContainsKey(CType(RemindConfigType.Email, Integer)) Then
+                dicReminderConfig(CType(RemindConfigType.Email, Integer)) = value
+            Else
+                dicReminderConfig.Add(CType(RemindConfigType.Email, Integer), value)
+            End If
+        End Set
+    End Property
 
     Public Shared ReadOnly Property dicReminderConfig As Dictionary(Of Integer, String)
         Get
@@ -1100,6 +1115,7 @@ Public Class CommonConfig
                 rep.SetReminderConfig(CurrentUser, CType(RemindConfigType.BIRTHDAY_LD, Integer), ReminderBIRTHDAY_LD)
                 rep.SetReminderConfig(CurrentUser, CType(RemindConfigType.Concurrently, Integer), ReminderConcurrently)
                 rep.SetReminderConfig(CurrentUser, CType(RemindConfigType.EmpDtlFamily, Integer), ReminderEmpDtlFamily)
+                rep.SetReminderConfig(CurrentUser, RemindConfigType.Email, ReminderEmail)
             End Using
 
             Return True

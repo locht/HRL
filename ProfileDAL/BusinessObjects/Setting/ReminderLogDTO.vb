@@ -12,4 +12,6 @@
     Public Property JOIN_DATE As Date?
     Public Property VALUE As Integer = 1
     Public Property LINK_POPUP As String
+    Public Property ID As Decimal
+    Public Property WORK_EMAIL As String
 End Class

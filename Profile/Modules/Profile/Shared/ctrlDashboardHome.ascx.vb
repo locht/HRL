@@ -6,6 +6,8 @@ Imports Common
 Imports Common.Common
 Imports Common.CommonMessage
 Imports Common.CommonBusiness
+Imports Aspose.Cells
+
 Public Class ctrlDashboardHome
     Inherits Common.CommonView
     Public Overrides Property MustAuthorize As Boolean = False
@@ -55,22 +57,45 @@ Public Class ctrlDashboardHome
         End Set
     End Property
 
-    ' Nhac nho ngay sinh sinh
+    '' Nhac nho ngay sinh sinh
+    'Dim birthdayRemind As Integer
+    '' Nhac nho het han hop dong
+    'Dim contractRemind As Integer
+    '' Nhac nho het han thu viec
+    'Dim probationRemind As Integer
+    '' Nhac nho het han visa
+    'Dim visaRemind As Integer
+    '' Nhac nho het han bo nhiem
+    'Dim appointRemind As Integer
+    '' Nhac nho het han dieu dong bo nhiem
+    'Dim transferRemind As Integer
+    '' Nhac nho het han nghi thai san
+    'Dim maternityRemind As Integer
+    '' Nhac nho  nang luong
+    'Dim heavysalaryRemind As Integer
     Dim birthdayRemind As Integer
-    ' Nhac nho het han hop dong
     Dim contractRemind As Integer
-    ' Nhac nho het han thu viec
     Dim probationRemind As Integer
-    ' Nhac nho het han visa
+    Dim retireRemind As Integer
+
+    Dim approveRemind As Integer
+    Dim approveHDLDRemind As Integer
+    Dim approveTHHDRemind As Integer
+    Dim maternitiRemind As Integer
+    Dim retirementRemind As Integer
+    Dim noneSalaryRemind As Integer
+    Dim noneExpiredCertificateRemind As Integer
+    Dim noneBIRTHDAY_LD As Integer
+    Dim noneConcurrently As Integer
+    Dim noneEmpDtlFamily As Integer
+
+    Dim workingRemind As Integer
+    Dim terminateRemind As Integer
+    Dim terminateDebtRemind As Integer
+    Dim noPaperRemind As Integer
     Dim visaRemind As Integer
-    ' Nhac nho het han bo nhiem
-    Dim appointRemind As Integer
-    ' Nhac nho het han dieu dong bo nhiem
-    Dim transferRemind As Integer
-    ' Nhac nho het han nghi thai san
-    Dim maternityRemind As Integer
-    ' Nhac nho  nang luong
-    Dim heavysalaryRemind As Integer
+    Dim worPermitRemind As Integer
+    Dim certificateRemind As Integer
 
 #End Region
 
@@ -142,61 +167,111 @@ Public Class ctrlDashboardHome
     Private Sub rgContract_ItemCommand(ByVal sender As Object, ByVal e As Telerik.Web.UI.GridCommandEventArgs) Handles rgContract.ItemCommand
         Dim sv_sID As String = String.Empty
         Dim sv_ID As String = String.Empty
-        If e.CommandName = Telerik.Web.UI.RadGrid.ExportToExcelCommandName Then
-            ExportToExcel(rgContract)
-            e.Canceled = True
-        End If
-        If e.CommandName = Telerik.Web.UI.RadGrid.ExportToCsvCommandName Then
-            For Each dr As Telerik.Web.UI.GridDataItem In rgContract.SelectedItems
-                If dr("REMIND_TYPE").Text.ToString = "011" Then
-                    sv_sID &= IIf(sv_sID = vbNullString, dr.GetDataKeyValue("ID_TYPE").ToString, "," & dr.GetDataKeyValue("ID_TYPE").ToString)
-                    sv_ID &= IIf(sv_ID = vbNullString, dr.GetDataKeyValue("ID").ToString, "," & dr.GetDataKeyValue("ID").ToString)
+        If e.CommandName = "btnSendMail" Then
+            Try
+                Dim url As String = Request.Url.ToString().Substring(0, InStr(1, Request.Url.ToString(), "/D", CompareMethod.Text))
+                If rgContract.SelectedItems.Count = 0 Then
+                    ShowMessage(Translate(CommonMessage.MESSAGE_NOT_SELECT_ROW), NotifyType.Warning)
+                    Exit Sub
                 End If
-            Next
-            If sv_sID = "" Then
-                ShowMessage("Vui lòng chọn loại nhắc nhở hết hạn điều động tạm thời, để thực hiện chức năng này", NotifyType.Warning)
-                e.Canceled = True
-            Else
-                If psp.INSERT_WORKING_BY_REMINDER(sv_sID) = 1 Then
-
-                    'psp.DELETE_INFO_REMINDER(sv_ID)
-                    ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), Utilities.NotifyType.Success)
-                    rgContract.Rebind()
-                    e.Canceled = True
-                Else
-                    ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), Utilities.NotifyType.Error)
-                End If
-            End If
-        End If
-
-        If e.CommandName = Telerik.Web.UI.RadGrid.ExportToPdfCommandName Then
-
-            For Each dr As Telerik.Web.UI.GridDataItem In rgContract.SelectedItems
-                If dr("REMIND_TYPE").Text.ToString = "015" Then
-                    sv_sID &= IIf(sv_sID = vbNullString, dr.GetDataKeyValue("ID_TYPE").ToString, "," & dr.GetDataKeyValue("ID_TYPE").ToString)
-                End If
-            Next
-            If sv_sID = "" Then
-                ShowMessage("Vui lòng chọn loại nhắc nhở hết hạn nghỉ thai sản, để thực hiện chức năng này", NotifyType.Warning)
-                e.Canceled = True
-            Else
-                For Each dr As Telerik.Web.UI.GridDataItem In rgContract.SelectedItems
-                    'Dim tab As DataTable = com.GetByID("Ins_Maternity_Mng", String.Empty, Int32.Parse(dr.GetDataKeyValue("ID_TYPE").ToString()))
-                    'If tab IsNot Nothing And tab.Rows.Count > 0 Then
-                    '    For Each row As DataRow In tab.Rows
-                    '        If psp.PRI_INS_ARISING_MATERNITY(Int32.Parse(row("ID").ToString()), Int32.Parse(row("EMPLOYEE_ID").ToString()), DateTime.Parse(row("FROM_DATE").ToString()), 9, log.Username) = 1 Then
-                    '            ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), Utilities.NotifyType.Success)
-                    '        Else
-                    '            ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), Utilities.NotifyType.Error)
-                    '        End If
-                    '    Next
-                    'End If
+                Dim lstDataSelected As New List(Of ReminderLogDTO)
+                Dim EncryptData As New Framework.UI.EncryptData
+                CommonConfig.GetReminderConfigFromDatabase()
+                Dim receiver = CommonConfig.ReminderEmail
+                'Lấy ra những item được chọn ở lưới
+                For index = 0 To rgContract.SelectedItems.Count - 1
+                    Dim item As GridDataItem = rgContract.SelectedItems(index)
+                    lstDataSelected.Add(RemindList.Find(Function(f) f.EMPLOYEE_CODE = item.GetDataKeyValue("EMPLOYEE_CODE") And f.LINK_POPUP = item.GetDataKeyValue("LINK_POPUP")))
                 Next
+                If lstDataSelected.Count = 0 Then
+                    ShowMessage("Không lấy được dữ liệu để gửi email!", NotifyType.Warning)
+                    Return
+                End If
+                Dim dtData = lstDataSelected.ToTable 'đổi thành datatable -> save xls
 
-                rgContract.Rebind()
-                e.Canceled = True
-            End If
+                dtData.TableName = "DATA"
+                For Each row As DataRow In dtData.Rows
+                    row("LINK_POPUP") = row("LINK_POPUP").ToString.Replace("POPUP('Dialog.aspx", url & "Default.aspx").Replace("')", "")
+                Next
+                Dim designer As New WorkbookDesigner
+
+                designer.Open(Server.MapPath("~/ReportTemplates/" & Request.Params("mid") & "/" & Request.Params("fid") & ".xls"))
+                designer.SetDataSource(dtData)
+                designer.Process()
+                designer.Workbook.CalculateFormula()
+                Dim filePath = Server.MapPath("~/ReportTemplates/" & Request.Params("mid")) & "/Attachment/" & "Reminder_" & Format(Date.Now, "yyyyMMddHHmmss")
+                designer.Workbook.Save(filePath & ".xls", New XlsSaveOptions())
+
+
+
+                Dim cc As String = String.Empty
+                Dim body As String = ""
+                Dim fileAttachments As String = filePath & ".xls"
+                Using rep As New HistaffFrameworkPublic.HistaffFrameworkRepository
+                    If Common.Common.sendEmailByServerMail(receiver, "", "[Histaff Nofitication] - Reminder", "Dear Mr/Ms, <br /> Histaff system gửi thông tin danh sách nhắc nhở được đính kèm theo email này. <br /> " & _
+                        "Lưu và mở file để xem thông tin và click vào hyperlink để xem chi tiết.<br /> Histaff system.", "DONG") Then 'tam thoi thay the = DONG
+                        ShowMessage(Translate(CommonMessage.MESSAGE_SENDMAIL_COMPLETED), NotifyType.Success)
+                    Else
+                        'Error
+                        ShowMessage(Translate(CommonMessage.MESSAGE_SENDMAIL_ERROR), NotifyType.Warning)
+                        Exit Sub
+                    End If
+                End Using
+            Catch ex As Exception
+                ShowMessage(Translate(CommonMessage.MESSAGE_SENDMAIL_ERROR), NotifyType.Warning)
+            End Try
         End If
+        'If e.CommandName = Telerik.Web.UI.RadGrid.ExportToCsvCommandName Then
+        '    For Each dr As Telerik.Web.UI.GridDataItem In rgContract.SelectedItems
+        '        If dr("REMIND_TYPE").Text.ToString = "011" Then
+        '            sv_sID &= IIf(sv_sID = vbNullString, dr.GetDataKeyValue("ID_TYPE").ToString, "," & dr.GetDataKeyValue("ID_TYPE").ToString)
+        '            sv_ID &= IIf(sv_ID = vbNullString, dr.GetDataKeyValue("ID").ToString, "," & dr.GetDataKeyValue("ID").ToString)
+        '        End If
+        '    Next
+        '    If sv_sID = "" Then
+        '        ShowMessage("Vui lòng chọn loại nhắc nhở hết hạn điều động tạm thời, để thực hiện chức năng này", NotifyType.Warning)
+        '        e.Canceled = True
+        '    Else
+        '        If psp.INSERT_WORKING_BY_REMINDER(sv_sID) = 1 Then
+
+        '            'psp.DELETE_INFO_REMINDER(sv_ID)
+        '            ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), Utilities.NotifyType.Success)
+        '            rgContract.Rebind()
+        '            e.Canceled = True
+        '        Else
+        '            ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), Utilities.NotifyType.Error)
+        '        End If
+        '    End If
+        'End If
+
+        'If e.CommandName = Telerik.Web.UI.RadGrid.ExportToPdfCommandName Then
+
+        '    For Each dr As Telerik.Web.UI.GridDataItem In rgContract.SelectedItems
+        '        If dr("REMIND_TYPE").Text.ToString = "015" Then
+        '            sv_sID &= IIf(sv_sID = vbNullString, dr.GetDataKeyValue("ID_TYPE").ToString, "," & dr.GetDataKeyValue("ID_TYPE").ToString)
+        '        End If
+        '    Next
+        '    If sv_sID = "" Then
+        '        ShowMessage("Vui lòng chọn loại nhắc nhở hết hạn nghỉ thai sản, để thực hiện chức năng này", NotifyType.Warning)
+        '        e.Canceled = True
+        '    Else
+        '        For Each dr As Telerik.Web.UI.GridDataItem In rgContract.SelectedItems
+        '            'Dim tab As DataTable = com.GetByID("Ins_Maternity_Mng", String.Empty, Int32.Parse(dr.GetDataKeyValue("ID_TYPE").ToString()))
+        '            'If tab IsNot Nothing And tab.Rows.Count > 0 Then
+        '            '    For Each row As DataRow In tab.Rows
+        '            '        If psp.PRI_INS_ARISING_MATERNITY(Int32.Parse(row("ID").ToString()), Int32.Parse(row("EMPLOYEE_ID").ToString()), DateTime.Parse(row("FROM_DATE").ToString()), 9, log.Username) = 1 Then
+        '            '            ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), Utilities.NotifyType.Success)
+        '            '        Else
+        '            '            ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), Utilities.NotifyType.Error)
+        '            '        End If
+        '            '    Next
+        '            'End If
+        '        Next
+
+        '        rgContract.Rebind()
+        '        e.Canceled = True
+        '    End If
+        'End If
     End Sub
 
     Private Sub rgContract_ItemDataBound(ByVal sender As Object, ByVal e As Telerik.Web.UI.GridItemEventArgs) Handles rgContract.ItemDataBound
@@ -222,7 +297,7 @@ Public Class ctrlDashboardHome
         Using rep As New ProfileDashboardRepository
             Try
                 'dtReminder = psp.GET_INFO_REMINDER(log.Username.ToUpper)
-                dtReminder = psp.GET_LIST_INFO_REMINDER(log.Username.ToUpper)
+                'dtReminder = psp.GET_LIST_INFO_REMINDER(log.Username.ToUpper)
                 'If dtReminder.Rows.Count > 0 Then
                 '    'lbbirthdayRemind.Text = dtReminder.Select("REMIND_TYPE = '" + cons_com.REMINDER12 + "'").Count
                 '    'lbcontractRemind.Text = dtReminder.Select("REMIND_TYPE = '" + cons_com.REMINDER2 + "'").Count
@@ -233,9 +308,25 @@ Public Class ctrlDashboardHome
                 '    'lbmaternityRemind.Text = dtReminder.Select("REMIND_TYPE = '" + cons_com.REMINDER15 + "'").Count
                 '    'lbheavysalaryRemind.Text = dtReminder.Select("REMIND_TYPE = '" + cons_com.REMINDER6 + "'").Count
                 '    'lbDenTuoiVeHuu.Text = dtReminder.Select("REMIND_TYPE = '" + cons_com.REMINDER7 + "'").Count
-
                 'End If
-                rgContract.DataSource = dtReminder
+
+                Dim lst As List(Of ReminderLogDTO) = rep.GetRemind(probationRemind.ToString & "," & _
+                                               contractRemind.ToString & "," & _
+                                               birthdayRemind.ToString & "," & _
+                                               terminateRemind.ToString & "," & _
+                                               noPaperRemind.ToString & "," & _
+                                               approveRemind.ToString & "," & _
+                                               approveHDLDRemind.ToString & "," & _
+                                               approveTHHDRemind.ToString & "," & _
+                                               maternitiRemind.ToString & "," & _
+                                               retirementRemind.ToString & "," & _
+                                               noneSalaryRemind.ToString & "," & _
+                                               noneExpiredCertificateRemind.ToString & "," & _
+                                               noneBIRTHDAY_LD.ToString & "," & _
+                                               noneConcurrently.ToString & "," & _
+                                               noneEmpDtlFamily.ToString
+                                               )
+                rgContract.DataSource = lst
             Catch ex As Exception
                 rep.Dispose()
                 DisplayException(Me.ViewName, Me.ID, ex)
@@ -261,6 +352,30 @@ Public Class ctrlDashboardHome
 
     Private Sub LoadConfig()
         Try
+            contractRemind = CommonConfig.ReminderContractDays
+            birthdayRemind = CommonConfig.ReminderBirthdayDays
+            probationRemind = CommonConfig.ReminderProbation
+
+            workingRemind = CommonConfig.ReminderWorking
+            terminateRemind = CommonConfig.ReminderTerminate
+            terminateDebtRemind = CommonConfig.ReminderTerminateDebt
+            noPaperRemind = CommonConfig.ReminderNoPaper
+            visaRemind = CommonConfig.ReminderVisa
+
+            worPermitRemind = CommonConfig.ReminderLabor
+            certificateRemind = CommonConfig.ReminderCertificate
+
+            approveRemind = CommonConfig.ReminderApproveDays
+            approveHDLDRemind = CommonConfig.ReminderApproveHDLDDays
+            approveTHHDRemind = CommonConfig.ReminderApproveTHHDDays
+            maternitiRemind = CommonConfig.ReminderMaternitiDays
+            retirementRemind = CommonConfig.ReminderRetirementDays
+            noneSalaryRemind = CommonConfig.ReminderNoneSalaryDays
+            noneExpiredCertificateRemind = CommonConfig.ReminderExpiredCertificate
+            noneBIRTHDAY_LD = CommonConfig.ReminderBIRTHDAY_LD
+            noneConcurrently = CommonConfig.ReminderConcurrently
+            noneEmpDtlFamily = CommonConfig.ReminderEmpDtlFamily
+
             'Dim dr() As DataRow
             'Dim dt = psp.GET_LIST_REMINDER()
             'If dt.Rows.Count > 0 Then
