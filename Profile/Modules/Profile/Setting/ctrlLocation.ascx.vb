@@ -329,6 +329,9 @@ Public Class ctrlLocation
                         If hfOrg.Value IsNot Nothing And hfOrg.Value <> "" Then
                             objLocationFunction.ORG_ID = hfOrg.Value
                         End If
+                        If txtLocationCODE.Text IsNot Nothing And txtLocationCODE.Text <> "" Then
+                            objLocationFunction.CODE = txtLocationCODE.Text.Trim
+                        End If
                         objLocationFunction.LOCATION_EN_NAME = txtLocationEn.Text
                         objLocationFunction.LOCATION_VN_NAME = txtLocationVN.Text
                         objLocationFunction.ADDRESS = txtAddress.Text
@@ -508,6 +511,7 @@ Public Class ctrlLocation
                 Dim dt = rep.GetLocationID(hfID.Value)
                 If dt IsNot Nothing Then
                     hfOrg.Value = dt.ORG_ID
+                    txtLocationCODE.Text = dt.CODE
                     ' txtLocation.Text = dt.CODE
                     txtLocationEn.Text = dt.LOCATION_EN_NAME
                     txtLocationVN.Text = dt.LOCATION_VN_NAME
@@ -1040,7 +1044,7 @@ Public Class ctrlLocation
             Dim orgItem = ctrlFindOrgPopup.CurrentItemDataObject
             If orgItem IsNot Nothing Then
                 hfOrg.Value = e.CurrentValue
-                ' txtLocation.Text = orgItem.CODE
+                txtLocationCODE.Text = orgItem.CODE
                 txtLocationVN.Text = orgItem.NAME_VN
                 txtLocationEn.Text = orgItem.NAME_EN
 

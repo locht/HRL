@@ -5507,7 +5507,7 @@ Partial Class ProfileRepository
         Dim objLocationData As New HU_LOCATION
         Try
             objLocationData.ID = Utilities.GetNextSequence(Context, Context.HU_LOCATION.EntitySet.Name)
-            ' objLocationData.CODE = objLocation.CODE
+            objLocationData.CODE = objLocation.CODE
             objLocationData.ORG_ID = objLocation.ORG_ID
             objLocationData.ADDRESS = objLocation.ADDRESS
             objLocationData.CONTRACT_PLACE = objLocation.CONTRACT_PLACE
@@ -5555,7 +5555,7 @@ Partial Class ProfileRepository
 
         Try
             Context.HU_LOCATION.Attach(objLocationData)
-            ' objLocationData.CODE = objLocation.CODE
+            objLocationData.CODE = objLocation.CODE
             objLocationData.ORG_ID = objLocation.ORG_ID
             objLocationData.ADDRESS = objLocation.ADDRESS
             objLocationData.CONTRACT_PLACE = objLocation.CONTRACT_PLACE

@@ -15,7 +15,12 @@
         <div style="margin-left: 30px; margin-top: 5px; width: 1270px;">
             <fieldset style="width: auto; height: auto">
                 <legend>
-                    <b><asp:Label runat="server" ID="lbCommonInfo" Text="Thông tin chung"></asp:Label></b>
+                    <b>
+                        <asp:Label runat="server" ID="lbCommonInfo" Text="Thông tin chung">
+
+                       </asp:Label>
+
+                    </b>
                 </legend>
                 <table class="table-form">
                     <tr>
@@ -72,7 +77,6 @@
                                 ID="txtDateIssue" TabIndex="5">
                             </tlk:RadDatePicker>
                         </td>
-                        >
                         <td class="lb">
                             <asp:Label runat="server" ID="Label1" Text="Nơi cấp"></asp:Label>
                         </td>

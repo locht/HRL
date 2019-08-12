@@ -25,6 +25,14 @@
                 </tr>
                 <tr>
                     <td class="lb" style="width: 100px">
+                        <%# Translate("CTRLLOCATION_LBLLOCATIONCODE")%>
+                    </td>
+                    <td>
+                        <tlk:RadTextBox runat="server" SkinID="readonly" ReadOnly="true" ID="txtLocationCODE" />
+                    </td>
+                </tr>
+                <tr>
+                    <td class="lb" style="width: 100px">
                         <%# Translate("CTRLLOCATION_LBLLOCATIONVN")%><span class="lbReq">*</span>
                     </td>
                     <td colspan="3">

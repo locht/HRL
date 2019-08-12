@@ -401,15 +401,6 @@ Partial Public Class ctrlPortalFamily_Edit
     Protected WithEvents cbTempKtWARD_ID As Global.Telerik.Web.UI.RadComboBox
 
     '''<summary>
-    '''rdDeductReg control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents rdDeductReg As Global.Telerik.Web.UI.RadDatePicker
-
-    '''<summary>
     '''chkIsDeduct control.
     '''</summary>
     '''<remarks>
@@ -417,6 +408,15 @@ Partial Public Class ctrlPortalFamily_Edit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents chkIsDeduct As Global.System.Web.UI.WebControls.CheckBox
+
+    '''<summary>
+    '''rdDeductReg control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents rdDeductReg As Global.Telerik.Web.UI.RadDatePicker
 
     '''<summary>
     '''rdDeductFrom control.

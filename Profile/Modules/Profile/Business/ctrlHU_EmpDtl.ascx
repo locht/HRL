@@ -70,6 +70,8 @@
                             NavigateUrl='<%# String.Format("/Default.aspx?mid=Profile&fid=ctrlHU_EmpDtl&group=Business&emp={0}&Place=ctrlHU_EmpDtlCompetency&state=Normal", EmployeeID) %>' />
                         <tlk:RadPanelItem Value="ctrlHU_EmpDtlFile" Text="<%$ Translate:Quản lý tập tin văn bản %>"
                             NavigateUrl='<%# String.Format("/Default.aspx?mid=Profile&fid=ctrlHU_EmpDtl&group=Business&emp={0}&Place=ctrlHU_EmpDtlFile&state=Normal", EmployeeID) %>' />--%>
+                    <tlk:RadPanelItem Value="ctrlHU_EmpDtlDiscipline" Text="<%$ Translate:Quan hệ nhân thân%>"
+                            NavigateUrl='<%# String.Format("/Default.aspx?mid=Profile&fid=ctrlHU_EmpDtl&group=Business&emp={0}&Place=ctrlHU_EmpDtlFamily&state=Normal", EmployeeID)%>' />
                     </Items>
                 </tlk:RadPanelItem>
             </Items>

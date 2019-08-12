@@ -39708,4 +39708,116 @@ Xin cám ơn!
       <string>Gửi mail thất bại</string>
     </Value>
   </Item>
+  <Item>
+    <Key>
+      <string>CTRLLOCATION_LBLLOCATIONCODE</string>
+    </Key>
+    <Value>
+      <string>Mã Công ty/Phòng ban</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>CTRLHU_APPROVECERTIFICATEEMPLOYEE</string>
+    </Key>
+    <Value>
+      <string>Phê duyệt Bằng cấp/Chứng chỉ</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>LOẠI NHÂN VIÊN</string>
+    </Key>
+    <Value>
+      <string>Loại nhân viên</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>QUẢN LÝ BẰNG CẤP/CHỨNG CHỈ</string>
+    </Key>
+    <Value>
+      <string>Quản lý bằng cấp/chứng chỉ</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>QUÁ TRÌNH KIÊM NHIỆM</string>
+    </Key>
+    <Value>
+      <string>Quá trình kiêm nhiệm</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>BẠN PHẢI CHỌN BỘ PHẬN</string>
+    </Key>
+    <Value>
+      <string>Bạn phải chọn bộ phận</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>THÔNG TIN LIÊN HỆ KHẨN CẤP VÀ GIẤY TỜ TÙY THÂN</string>
+    </Key>
+    <Value>
+      <string>Thông tin liên hệ khẩn cấp và giấy tờ tùy thân</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>THÔNG TIN CHÍNH TRỊ XÃ HỘI</string>
+    </Key>
+    <Value>
+      <string>Thông tin chính trị xã hội</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>NƠI ĐĂNG KÝ KHAI SINH:</string>
+    </Key>
+    <Value>
+      <string>Nơi đăng ký khai sinh:</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>QUẢN LÝ KIÊM NHIỆM</string>
+    </Key>
+    <Value>
+      <string>Quản lý kiêm nhiệm</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>CẦN GIA HẠN</string>
+    </Key>
+    <Value>
+      <string>Cần gia hạn</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>NGÀY NHẬN BẰNG</string>
+    </Key>
+    <Value>
+      <string>Ngày nhận bằng</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>BẠN CÓ MUỐN GỬI PHÊ DUYỆT</string>
+    </Key>
+    <Value>
+      <string>Bạn có muốn gửi phê duyệt</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>BẠN PHẢI NHẬP LÝ DO KHÔNG PHÊ DUYỆT.</string>
+    </Key>
+    <Value>
+      <string>Bạn phải nhập lý do không phê duyệt.</string>
+    </Value>
+  </Item>
 </SerializableDictionaryOfStringString>
