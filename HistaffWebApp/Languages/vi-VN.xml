@@ -39708,4 +39708,12 @@ Xin cám ơn!
       <string>Gửi mail thất bại</string>
     </Value>
   </Item>
+  <Item>
+    <Key>
+      <string>CTRLLOCATION_LBLLOCATIONCODE</string>
+    </Key>
+    <Value>
+      <string>Mã Công ty/Phòng ban</string>
+    </Value>
+  </Item>
 </SerializableDictionaryOfStringString>
