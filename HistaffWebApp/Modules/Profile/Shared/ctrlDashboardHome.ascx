@@ -10,15 +10,20 @@ Inherits="Profile.ctrlDashboardHome" %>
             CommandItemSettings-ExportToCsvText="Chuyển" CommandItemSettings-ExportToPdfText="Báo tăng thai sản đi làm lại" CommandItemDisplay="Top"
              ClientDataKeyNames="ID,EMPLOYEE_ID,EMPLOYEE_CODE,FULLNAME,REMIND_DATE,GENDER,REMIND_TYPE,REMIND_NAME,USERNAME,TITLE_NAME,ORG_NAME,JOIN_DATE,VALUE,LINK_POPUP,WORK_EMAIL">
                 <CommandItemTemplate>
-                    <table>
-                        <tr>
-                            <td width="20%">
-                                <tlk:RadButton ID="btnSendMail" Text="<%$ Translate: Gửi mail %>" runat="server" CommandName="SendMail"
-                                CausesValidation="false" OnClientClicking="SelectGridClick">
-                                </tlk:RadButton>
-                            </td>
-                        </tr>
-                    </table>
+                    <div style="padding: 2px 0 0 0">
+                        <div style="float: left">
+                            <tlk:RadButton ID="btnSendMail" runat="server" Icon-PrimaryIconUrl="~/Static/Images/Toolbar/send_email.png"
+                                CausesValidation="false" Width="85px" Text="<%$ Translate: Gửi mail %>" ToolTip="MAIL"
+                                CommandName="SendMail" OnClientClicking="SelectGridClick">
+                            </tlk:RadButton>
+                        </div>
+                        <div style="float: left">
+                            <tlk:RadButton ID="btnExport" runat="server" Icon-PrimaryIconUrl="~/Static/Images/Toolbar/export1.png"
+                                CausesValidation="false" Width="70px" Text="<%$ Translate: Excel %>" ToolTip="Export"
+                                CommandName="EXPORT" OnClientClicking="SelectGridClick">
+                            </tlk:RadButton>
+                        </div>
+                    </div>
                 </CommandItemTemplate>
                 <CommandItemSettings  ShowAddNewRecordButton="false" ShowExportToCsvButton="false"
                     ShowRefreshButton="false" ShowExportToExcelButton="true"></CommandItemSettings>
@@ -127,9 +132,9 @@ Inherits="Profile.ctrlDashboardHome" %>
                     enableAjax = false;
                 }
             }
-//            else if (item == "EXPORT") {
-//                enableAjax = false;
-//            }
+            else if (item == "EXPORT") {
+                enableAjax = false;
+            }
             else
                 enableAjax = true;
         }

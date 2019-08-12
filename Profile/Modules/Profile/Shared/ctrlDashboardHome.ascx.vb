@@ -170,6 +170,10 @@ Public Class ctrlDashboardHome
         If e.CommandName = "SendMail" Then
             SendMail()
         End If
+        If e.CommandName = "EXPORT" Then
+            ExportToExcel(rgContract)
+            e.Canceled = True
+        End If
         'If e.CommandName = Telerik.Web.UI.RadGrid.ExportToCsvCommandName Then
         '    For Each dr As Telerik.Web.UI.GridDataItem In rgContract.SelectedItems
         '        If dr("REMIND_TYPE").Text.ToString = "011" Then
@@ -297,87 +301,55 @@ Public Class ctrlDashboardHome
 
 #Region "Custom"
     Private Sub SendMail()
-        Dim body As String = ""
-        Dim temp As String = ""
-        Dim Email As String = ""
-        Dim lstEmail As New List(Of SendMail)
-        Dim lstCount As New List(Of Integer)
-        Dim count As Integer = 1
-
-        Dim detail As String = ""
-
-        Dim SM As New SendMail
-        Dim indexUl As Decimal
-        Dim year As Decimal
+        Dim url As String = Request.Url.ToString().Substring(0, InStr(1, Request.Url.ToString(), "/D", CompareMethod.Text))
         If rgContract.SelectedItems.Count = 0 Then
             ShowMessage(Translate(CommonMessage.MESSAGE_NOT_SELECT_ROW), NotifyType.Warning)
             Exit Sub
         End If
-
-        'get thong tin template mail
-        Dim dataMail As DataTable
-        dataMail = psp.GET_MAIL_TEMPLATE("TCDT", "Profile")
-
-        If dataMail.Rows.Count = 0 Then
-            ShowMessage("Không tìm thấy mẫu Email phù hợp !", NotifyType.Alert)
-            Exit Sub
-        End If
-
-        'lấy thông tin mail
-        ' body = String.Format(dataMail.Rows(0)("CONTENT").ToString, txtName.Text)
-
-        body = dataMail.Rows(0)("CONTENT").ToString
-        'detail = body.Substring(body.IndexOf("<li>"), (body.IndexOf("</li>") - body.IndexOf("<li>")) + 5)
-
-        'Cắt đoạn danh sách chuẩn bị trong noi dung để làm động theo danh sách trên gridview
-        detail = detail.Replace("{2}", "{0}")
-        detail = detail.Replace("{3}", "{1}")
-
-
-        For Each dr As Telerik.Web.UI.GridDataItem In rgContract.SelectedItems
-            Email = dr.GetDataKeyValue("WORK_EMAIL")
-            If Email <> "" Then
-                If Not lstEmail.Any(Function(x) x.SendTo = Email) Then
-                    SM = New SendMail
-                    SM.SendTo = Email
-                    SM.Name = dr.GetDataKeyValue("EMPLOYEE_CODE") + " - " + dr.GetDataKeyValue("EMPLOYEE_NAME")
-                    lstEmail.Add(SM)
-                End If
-                Dim ND As String = String.Copy(detail)
-                Dim bodyNew = String.Format(ND, dr.GetDataKeyValue("REMIND_NAME"), SM.Name)
-                SM.ListDetail.Add(bodyNew)
-            End If
+        Dim lstDataSelected As New List(Of ReminderLogDTO)
+        Dim EncryptData As New Framework.UI.EncryptData
+        CommonConfig.GetReminderConfigFromDatabase()
+        Dim receiver As String = ""
+        'Lấy ra những item được chọn ở lưới
+        For index = 0 To rgContract.SelectedItems.Count - 1
+            Dim item As GridDataItem = rgContract.SelectedItems(index)
+            lstDataSelected.Add(RemindList.Find(Function(f) f.EMPLOYEE_CODE = item.GetDataKeyValue("EMPLOYEE_CODE") And f.LINK_POPUP = item.GetDataKeyValue("LINK_POPUP")))
+            receiver = item.GetDataKeyValue("WORK_EMAIL")
         Next
+        If lstDataSelected.Count = 0 Then
+            ShowMessage("Không lấy được dữ liệu để gửi email!", NotifyType.Warning)
+            Return
+        End If
+        Dim dtData = lstDataSelected.ToTable 'đổi thành datatable -> save xls
 
-        'Xoa đoạn Danh sách chuẩn bi trong template rồi insert động lại
-        'indexUl = body.IndexOf("</ul>")
-        'body = body.Remove(body.IndexOf("<li>"), (indexUl - body.IndexOf("<li>")) + 5)
+        dtData.TableName = "DATA"
+        For Each row As DataRow In dtData.Rows
+            row("LINK_POPUP") = row("LINK_POPUP").ToString.Replace("POPUP('Dialog.aspx", url & "Default.aspx").Replace("')", "")
+        Next
+        Dim designer As New WorkbookDesigner
 
-        'thay thế nội dung vào {}
-        'body = String.Format(body, txtProgramName.Text, year)
+        designer.Open(Server.MapPath("~/ReportTemplates/" & Request.Params("mid") & "/" & Request.Params("fid") & ".xls"))
+        designer.SetDataSource(dtData)
+        designer.Process()
+        designer.Workbook.CalculateFormula()
+        Dim filePath = Server.MapPath("~/ReportTemplates/" & Request.Params("mid")) & "/Attachment/" & "DanhSachNhacNho_" & Format(Date.Now, "yyyyMMddHHmmss")
+        designer.Workbook.Save(filePath & ".xls", New XlsSaveOptions())
 
-        'Chạy chi tiết từng email
-        For Each dt As SendMail In lstEmail
-            Dim bodyNew As String = String.Copy(body)
-            For Each Str As String In dt.ListDetail
-                bodyNew += Environment.NewLine
-                bodyNew += Str
-            Next
-            bodyNew += Environment.NewLine
-            bodyNew += "</ul>"
 
-            If Common.Common.sendEmailByServerMail(dt.SendTo, dataMail.Rows(0)("MAIL_CC").ToString(), dataMail.Rows(0)("TITLE").ToString(), bodyNew, String.Empty) Then
-                'Update Candidate Statu
-                'psp.UPDATE_CANDIDATE_STATUS(Int32.Parse(item.Item("ID").Text), RCContant.TUCHOI)
+
+        Dim cc As String = String.Empty
+        Dim body As String = ""
+        Dim fileAttachments As String = filePath & ".xls"
+        Using rep As New HistaffFrameworkPublic.HistaffFrameworkRepository
+            If Common.Common.sendEmailByServerMail(receiver, "", "[Histaff Nofitication] - Nhắc nhở", "Dear Mr/Ms, <br /> Histaff system gửi thông tin danh sách nhắc nhở được đính kèm theo email này. <br /> " & _
+                "Lưu và mở file để xem thông tin và click vào hyperlink để xem chi tiết.<br /> Histaff system.", fileAttachments) Then
                 ShowMessage(Translate(CommonMessage.MESSAGE_SENDMAIL_COMPLETED), NotifyType.Success)
-                CurrentState = CommonMessage.STATE_NORMAL
-                UpdateControlState()
             Else
+                'Error
                 ShowMessage(Translate(CommonMessage.MESSAGE_SENDMAIL_ERROR), NotifyType.Warning)
                 Exit Sub
             End If
-        Next
-
+        End Using
     End Sub
 
     Private Sub LoadConfig()
@@ -440,29 +412,47 @@ Public Class ctrlDashboardHome
     End Sub
 
     Public Sub ExportToExcel(ByVal grid As RadGrid)
-        ' Dim lstData As List(Of ReminderLogDTO)
+        Dim lstData As List(Of ReminderLogDTO)
 
         Dim _error As Integer = 0
         Using xls As New ExcelCommon
 
-
-            If dtReminder.Rows.Count > 0 Then
-                Dim bCheck = xls.ExportExcelTemplate(
-                Server.MapPath("~/ReportTemplates/" & Request.Params("mid") & "/" & Request.Params("fid") & ".xls"),
-                "DanhSachNhacNho", dtReminder, Response, _error)
-                If Not bCheck Then
-                    Select Case _error
-                        Case 1
-                            ShowMessage(Translate("Mẫu báo cáo không tồn tại"), NotifyType.Warning)
-                        Case 2
-                            ShowMessage(Translate("Dữ liệu không tồn tại"), NotifyType.Warning)
-                    End Select
-                    Exit Sub
-                End If
-            Else
-                ShowMessage(Translate("Dữ liệu không tồn tại"), NotifyType.Warning)
+            Dim query = From p In RemindList
+            If _filter.EMPLOYEE_CODE <> "" Then
+                query = query.Where(Function(f) f.EMPLOYEE_CODE.ToUpper.Contains(_filter.EMPLOYEE_CODE.ToUpper))
             End If
-
+            If _filter.FULLNAME <> "" Then
+                query = query.Where(Function(f) f.FULLNAME.ToUpper.Contains(_filter.FULLNAME.ToUpper))
+            End If
+            If _filter.REMIND_NAME <> "" Then
+                query = query.Where(Function(f) f.REMIND_NAME.ToUpper.Contains(_filter.REMIND_NAME.ToUpper))
+            End If
+            If _filter.TITLE_NAME <> "" Then
+                query = query.Where(Function(f) f.TITLE_NAME.ToUpper.Contains(_filter.TITLE_NAME.ToUpper))
+            End If
+            If _filter.ORG_NAME <> "" Then
+                query = query.Where(Function(f) f.ORG_NAME.ToUpper.Contains(_filter.ORG_NAME.ToUpper))
+            End If
+            If _filter.JOIN_DATE IsNot Nothing Then
+                query = query.Where(Function(f) f.JOIN_DATE = _filter.JOIN_DATE)
+            End If
+            If _filter.REMIND_DATE IsNot Nothing Then
+                query = query.Where(Function(f) f.REMIND_DATE = _filter.REMIND_DATE)
+            End If
+            lstData = query.ToList
+            Dim dtData = lstData.ToTable
+            Dim bCheck = xls.ExportExcelTemplate(
+                Server.MapPath("~/ReportTemplates/" & Request.Params("mid") & "/" & Request.Params("fid") & ".xls"),
+                "DanhSachNhacNho", dtData, Response, _error)
+            If Not bCheck Then
+                Select Case _error
+                    Case 1
+                        ShowMessage(Translate("Mẫu báo cáo không tồn tại"), NotifyType.Warning)
+                    Case 2
+                        ShowMessage(Translate("Dữ liệu không tồn tại"), NotifyType.Warning)
+                End Select
+                Exit Sub
+            End If
         End Using
     End Sub
 

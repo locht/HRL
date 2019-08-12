@@ -39692,4 +39692,20 @@ Xin cám ơn!
       <string>Gửi mail thành công</string>
     </Value>
   </Item>
+  <Item>
+    <Key>
+      <string>EXCEL</string>
+    </Key>
+    <Value>
+      <string>Excel</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>MESSAGE_SENDMAIL_ERROR</string>
+    </Key>
+    <Value>
+      <string>Gửi mail thất bại</string>
+    </Value>
+  </Item>
 </SerializableDictionaryOfStringString>
