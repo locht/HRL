@@ -23,4 +23,9 @@
     Public Property MORNING_RATE_VALUE As Decimal?
     Public Property AFTERNOON_RATE_ID As Decimal?
     Public Property AFTERNOON_RATE_VALUE As Decimal?
+
+    Public Property ORG_ID As Decimal?
+    Public Property ORG_NAME As String
+    Public Property ORDERS As Decimal?
+
 End Class

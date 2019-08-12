@@ -360,6 +360,17 @@ Partial Public Class ProfileBusinessRepository
             End Try
         End Using
     End Function
+    Public Function GET_EXPORT_EMP(ByVal P_WELFARE_ID As Decimal, ByVal P_DATE As Date) As DataSet
+        Using rep As New ProfileBusinessClient
+            Try
+                Dim dt = rep.GET_EXPORT_EMP(P_WELFARE_ID, P_DATE)
+                Return dt
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+    End Function
     Public Function GET_INFO_EMPLOYEE(ByVal P_EMP_CODE As String) As DataTable
         Using rep As New ProfileBusinessClient
             Try

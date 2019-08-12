@@ -105,6 +105,9 @@ Namespace ProfileBusiness.ServiceContracts
         Function GetProvinceList(ByVal isBlank As Boolean) As DataTable
 
         <OperationContract()>
+        Function GetProvinceList1(ByVal P_NATIVE As Decimal, ByVal isBlank As Boolean) As DataTable
+
+        <OperationContract()>
         Function GetNationList(ByVal isBlank As Boolean) As DataTable
 
         <OperationContract()>
@@ -319,6 +322,8 @@ Namespace ProfileBusiness.ServiceContracts
         Function GetlistWelfareEMP(ByVal Id As Integer) As List(Of Welfatemng_empDTO)
         <OperationContract()>
         Function GET_DETAILS_EMP(ByVal P_ID As Decimal, ByVal P_WELFARE_ID As Decimal, ByVal P_DATE As Date) As DataTable
+        <OperationContract()>
+        Function GET_EXPORT_EMP(ByVal P_WELFARE_ID As Decimal, ByVal P_DATE As Date) As DataSet
         <OperationContract()>
         Function GetWelfareList(ByVal _filter As WelfareListDTO,
                                         ByVal PageIndex As Integer,

@@ -9,6 +9,7 @@
     Public Property TITLE_NAME As String
     Public Property ORG_ID As Decimal?
     Public Property ORG_NAME As String
+    Public Property ORG_NAME2 As String 'cong ty
     Public Property ORG_DESC As String
     Public Property GENDER_ID As Decimal?
     Public Property GENDER_NAME As String
@@ -20,4 +21,5 @@
     Public Property MONEY_TOTAL As Decimal?
     Public Property GROUP_ID As Decimal?
     Public Property REMARK As String
+    Public Property BIRTH_DATE As Date?
 End Class

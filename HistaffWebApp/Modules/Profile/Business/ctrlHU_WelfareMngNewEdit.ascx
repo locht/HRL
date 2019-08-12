@@ -44,8 +44,8 @@
             </tr>
             <tr>
                 <td>
-                    <tlk:RadButton ID="btnExport" runat="server" Text="<%$ Translate: Xuất file %>"
-                        CausesValidation="false" OnClientClicking="btnExportClicking" Width="150px">
+                    <tlk:RadButton ID="btnExport" runat="server" Text="<%$ Translate: Xuất file %>" CausesValidation="false"
+                        OnClientClicking="btnExportClicking" Width="150px">
                     </tlk:RadButton>
                 </td>
                 <td>
@@ -98,10 +98,12 @@
                         ReadOnly="true" SortExpression="ORG_NAME" />
                     <tlk:GridBoundColumn HeaderText="Chức danh" DataField="TITLE_NAME" UniqueName="TITLE_NAME"
                         ReadOnly="true" SortExpression="TITLE_NAME" />
+                    <tlk:GridBoundColumn HeaderText="Công ty" DataField="ORG_NAME2" UniqueName="ORG_NAME2"
+                        ReadOnly="true" SortExpression="ORG_NAME2" />
                     <tlk:GridBoundColumn HeaderText="Giới tính" DataField="GENDER_NAME" UniqueName="GENDER_NAME"
                         ReadOnly="true" SortExpression="GENDER_NAME" />
-                    <tlk:GridBoundColumn HeaderText="Loại hợp đồng gần nhất" DataField="CONTRACT_NAME"
-                        UniqueName="CONTRACT_NAME" ReadOnly="true" SortExpression="CONTRACT_NAME" />
+                    <%--<tlk:GridBoundColumn HeaderText="Loại hợp đồng gần nhất" DataField="CONTRACT_NAME"
+                        UniqueName="CONTRACT_NAME" ReadOnly="true" SortExpression="CONTRACT_NAME" />--%>
                     <tlk:GridBoundColumn HeaderText="Thâm niên" DataField="SENIORITY" UniqueName="SENIORITY"
                         ReadOnly="true" SortExpression="SENIORITY" />
                     <tlk:GridBoundColumn HeaderText="Tổng số con" DataField="TOTAL_CHILD" UniqueName="TOTAL_CHILD"

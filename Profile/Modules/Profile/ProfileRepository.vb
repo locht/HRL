@@ -209,6 +209,24 @@ Partial Public Class ProfileRepository
         Return Nothing
     End Function
 
+    Public Function GetProvinceList1(ByVal P_NATIVE As Decimal, ByVal isBlank As Boolean) As DataTable
+        Dim dtData As DataTable
+
+        Using rep As New ProfileBusinessClient
+            Try
+                'dtData = CacheManager.GetValue("OT_HU_PROVINCE_LIST_" & IIf(isBlank, "Blank", "NoBlank"))
+                    dtData = rep.GetProvinceList1(P_NATIVE, isBlank)
+                'CacheManager.Insert("OT_HU_PROVINCE_LIST_" & IIf(isBlank, "Blank", "NoBlank"), dtData, CacheMinusDataCombo)
+                Return dtData
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+
+        Return Nothing
+    End Function
+
 
     Public Function GetNationList(Optional ByVal isBlank As Boolean = False) As DataTable
         Dim dtData As DataTable

@@ -12,7 +12,7 @@
                     <%# Translate("Mã kiểu công")%><span class="lbReq">*</span>
                 </td>
                 <td>
-                    <tlk:RadTextBox ID="txtCode" SkinID="Textbox50" runat="server">
+                    <tlk:RadTextBox ID="txtCode" SkinID="Textbox50" runat="server" Width = "210px">
                     </tlk:RadTextBox>
                     <asp:CustomValidator ID="cvalCode" ControlToValidate="txtCode" runat="server" ErrorMessage="<%$ Translate: Mã kiểu công đã tồn tại. %>"
                         ToolTip="<%$ Translate: Mã kiểu công đã tồn tại. %>">
@@ -24,7 +24,7 @@
                     <%# Translate("Tên kiểu công")%><span class="lbReq">*</span>
                 </td>
                 <td>
-                    <tlk:RadTextBox ID="txtNameVN" runat="server">
+                    <tlk:RadTextBox ID="txtNameVN" runat="server" Width = "210px">
                     </tlk:RadTextBox>
                     <asp:RequiredFieldValidator ID="RequiredFieldValidator1" ControlToValidate="txtNameVN"
                         runat="server" Text="*" ErrorMessage="<%$ Translate: Bạn phải nhập tên kiểu công. %>"></asp:RequiredFieldValidator>
@@ -39,17 +39,27 @@
                         ToolTip="<%$ Translate: Bạn phải chọn loại xử lý. %>" ClientValidationFunction="cvalTypeProcess">
                     </asp:CustomValidator>                   
                 </td>
+                <td class="lb" id="tdSGlbOrders">
+                    <label id="lbOrders">
+                        <%# Translate("Thứ tự")%>
+                </td>
+                <td>
+                    <tlk:RadNumericTextBox runat="server" ID="rntxtOrders" MinValue="0" Width="60px"
+                        Value="1" ShowSpinButtons="True" CausesValidation="false">
+                        <NumberFormat GroupSeparator="" DecimalDigits="0" />
+                    </tlk:RadNumericTextBox>
+                </td>
             </tr>
             <tr>
                 <td class="lb">
                     <%# Translate("Kiểu công nửa ngày")%><span class="lbReq">*</span>
-                </td>
+                </td>               
                 <td>
-                    <tlk:RadComboBox ID="cboMorningRate" runat="server" Width = "50px">
+                     <tlk:RadComboBox ID="cboMorningRate" runat="server" Width = "50px">
                     </tlk:RadComboBox>
                     <asp:CustomValidator ID="cvalMorningRate" runat="server" ErrorMessage="<%$ Translate: Bạn phải chọn tỷ lệ kiểu công nữa ngày đầu. %>"
                         ToolTip="<%$ Translate: Bạn phải chọn loại xử lý. %>" ClientValidationFunction="cvalMorningRate">
-                    </asp:CustomValidator>  
+                    </asp:CustomValidator>     
 
                     <tlk:RadComboBox ID="cboMorning" runat="server">
                     </tlk:RadComboBox>
@@ -62,13 +72,14 @@
                 </td>
                 <td class="lb">
                     <%# Translate("Kiểu công nửa ngày")%><span class="lbReq">*</span>
-                </td>
+                </td>                
                 <td>
                     <tlk:RadComboBox ID="cboAfternoonRate" runat="server"  Width = "50px">
                     </tlk:RadComboBox>
                     <asp:CustomValidator ID="cvalAfternoonRate" runat="server" ErrorMessage="<%$ Translate: Bạn phải chọn tỷ lệ kiểu công nữa ngày cuối. %>"
-                        ToolTip="<%$ Translate: Bạn phải chọn  . %>" ClientValidationFunction="cvalAfternoonRate">
-                    </asp:CustomValidator>
+                        ToolTip="<%$ Translate: Bạn phải chọn tỷ lệ kiểu công nữa ngày cuối. %>" ClientValidationFunction="cvalAfternoonRate">
+                    </asp:CustomValidator>   
+
 
                     <tlk:RadComboBox ID="cboAfternoon" runat="server">
                     </tlk:RadComboBox>
@@ -78,6 +89,16 @@
                     <asp:CustomValidator ID="cvalAfternoon" ControlToValidate="cboAfternoon" runat="server" ErrorMessage="<%$ Translate: Kiểu công nửa ngày không tồn tại hoặc đã ngừng áp dụng. %>"
                         ToolTip="<%$ Translate: Kiểu công nửa ngày không tồn tại hoặc đã ngừng áp dụng. %>">
                     </asp:CustomValidator>
+                </td>
+                <td class="lb">
+                    <%# Translate("Công ty")%>
+                </td>
+                <td>
+                    <tlk:RadComboBox ID="cboCongTy" runat="server">
+                    </tlk:RadComboBox>
+                    <asp:CustomValidator ID="cvalCongTy" runat="server" ErrorMessage="<%$ Translate: Bạn phải chọn công ty. %>"
+                        ToolTip="<%$ Translate: Bạn phải chọn công ty. %>" ClientValidationFunction="cvalCongTy">
+                    </asp:CustomValidator>   
                 </td>
             </tr>
             <%--<tr>
@@ -119,12 +140,14 @@
                 <ClientEvents OnGridCreated="GridCreated" />
                 <ClientEvents OnCommand="ValidateFilter" />
             </ClientSettings>
-            <MasterTableView DataKeyNames="ID" ClientDataKeyNames="ID,CODE,NAME_VN,MORNING_ID,AFTERNOON_ID,TYPE_PROSS_ID,MORNING_RATE_ID,AFTERNOON_RATE_ID,ACTFLG,NOTE">
+            <MasterTableView DataKeyNames="ID" ClientDataKeyNames="ID,CODE,NAME_VN,MORNING_ID,AFTERNOON_ID,TYPE_PROSS_ID,MORNING_RATE_ID,AFTERNOON_RATE_ID,ORG_ID,ORDERS,ACTFLG,NOTE">
                 <Columns>
                     <tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderStyle-HorizontalAlign="Center"
                         HeaderStyle-Width="30px" ItemStyle-HorizontalAlign="Center">
                     </tlk:GridClientSelectColumn>
                     <tlk:GridBoundColumn DataField="ID" Visible="false" />
+                    <tlk:GridBoundColumn HeaderText="<%$ Translate: Công ty %>" DataField="CODE"
+                        UniqueName="CODE" SortExpression="CODE" />
                     <tlk:GridBoundColumn HeaderText="<%$ Translate: Mã kiểu công %>" DataField="CODE"
                         UniqueName="CODE" SortExpression="CODE" />
                     <tlk:GridBoundColumn HeaderText="<%$ Translate: Tên kiểu công %>" DataField="NAME_VN"
@@ -139,6 +162,8 @@
                         UniqueName="AFTERNOON_NAME" SortExpression="AFTERNOON_NAME" />
                     <tlk:GridBoundColumn HeaderText="<%$ Translate: Loại xử lý %>" DataField="TYPE_PROCESS_NAME"
                         UniqueName="TYPE_PROCESS_NAME" SortExpression="TYPE_PROCESS_NAME" />
+                    <tlk:GridBoundColumn HeaderText="<%$ Translate: Thứ tự sắp xếp %>" DataField="ORDERS"
+                        UniqueName="ORDERS" SortExpression="ORDERS" />  
                     <tlk:GridBoundColumn HeaderText="<%$ Translate: Trạng thái %>" DataField="ACTFLG"
                         UniqueName="ACTFLG" SortExpression="ACTFLG" />
                          <%--<tlk:GridCheckBoxColumn HeaderText="<%$ Translate: Hưởng công cơm %>" AllowFiltering="false"
@@ -254,6 +279,9 @@
             var cbo = $find("<%# cboAfternoonRate.ClientID %>");
             args.IsValid = (cbo.get_value().length != 0);
         }
-
+        function cvalCongTy(oSrc, args) {
+            var cbo = $find("<%# cboCongTy.ClientID %>");
+            args.IsValid = (cbo.get_value().length != 0);
+        }
     </script>
 </tlk:RadCodeBlock>

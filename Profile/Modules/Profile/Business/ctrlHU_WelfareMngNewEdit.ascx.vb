@@ -209,7 +209,7 @@ Public Class ctrlHU_WelfareMngNewEdit
     ''' <param name="e"></param>
     ''' <remarks></remarks>
     Public Overrides Sub ViewInit(ByVal e As System.EventArgs)
-        ColumnImportWelfare = 11
+        ColumnImportWelfare = 12
         SetGridFilter(rgEmployee)
         AjaxManager = CType(Me.Page, AjaxPage).AjaxManager
         AjaxManagerId = AjaxManager.ClientID
@@ -328,9 +328,7 @@ Public Class ctrlHU_WelfareMngNewEdit
                     Using rep As New ProfileBusinessRepository
                         Dim dtdata = rep.GET_DETAILS_EMP(emp.ID, cboWELFARE_ID.SelectedValue, dpEFFECT_DATE.SelectedDate)
                         If dtdata.Rows.Count > 0 Then
-                            'If dtdata(0)("TOTAL_CHILD").ToString() = 0 Then
-                            '    Continue For
-                            'End If
+                            Dim org_name2 = dtdata(0)("ORG_NAME_C2").ToString()
                             Dim total_child = dtdata(0)("TOTAL_CHILD").ToString()
                             Dim money_total = dtdata(0)("MONEY_TOTAL").ToString()
                             Dim money_pl = dtdata(0)("MONEY_PL").ToString()
@@ -345,6 +343,7 @@ Public Class ctrlHU_WelfareMngNewEdit
                             If money_total <> "" Then
                                 employee.MONEY_TOTAL = Decimal.Parse(money_total)
                             End If
+                            employee.ORG_NAME2 = org_name2
                             If money_pl <> "" Then
                                 employee.MONEY_PL = Decimal.Parse(money_pl)
                             End If
@@ -542,17 +541,40 @@ Public Class ctrlHU_WelfareMngNewEdit
     End Sub
     Private Sub btnExport_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnExport.Click
         Try
-            Dim dtData As DataTable
-            Using xls As New ExcelCommon
-                dtData = Employee_PL.ToTable
-                If dtData.Rows.Count = 0 Then
-                    ShowMessage(Translate(CommonMessage.MESSAGE_WARNING_EXPORT_EMPTY), NotifyType.Warning)
-                    Exit Sub
-                ElseIf dtData.Rows.Count > 0 Then
-                    rgEmployee.ExportExcel(Server, Response, dtData, "Welfare")
-                Else
-                    ShowMessage(Translate(CommonMessage.MESSAGE_WARNING_EXPORT_EMPTY), NotifyType.Warning)
-                End If
+            'Dim dtData As DataTable
+            'Using xls As New ExcelCommon
+            '    dtData = Employee_PL.ToTable
+            '    If dtData.Rows.Count = 0 Then
+            '        ShowMessage(Translate(CommonMessage.MESSAGE_WARNING_EXPORT_EMPTY), NotifyType.Warning)
+            '        Exit Sub
+            '    ElseIf dtData.Rows.Count > 0 Then
+            '        rgEmployee.ExportExcel(Server, Response, dtData, "Welfare")
+            '    Else
+            '        ShowMessage(Translate(CommonMessage.MESSAGE_WARNING_EXPORT_EMPTY), NotifyType.Warning)
+            '    End If
+            'End Using
+            Dim dataSet As New DataSet
+            Dim dtVariable As New DataTable
+            Dim tempPath = "~/ReportTemplates//Profile//WELFARE//import_phucloi_TNG.xls"
+            If Not File.Exists(System.IO.Path.Combine(Server.MapPath(tempPath))) Then
+                ' Mẫu báo cáo không tồn tại
+                ShowMessage(Translate("Mẫu báo cáo không tồn tại"), Framework.UI.Utilities.NotifyType.Warning)
+                Exit Sub
+            End If
+            If cboWELFARE_ID.SelectedValue <> "" And dpEFFECT_DATE.SelectedDate IsNot Nothing Then
+            Else
+                ShowMessage(Translate("chọn loại phúc lợi và ngày thanh toán"), NotifyType.Warning)
+                Exit Sub
+            End If
+            Dim dsDanhMuc As DataSet
+            Dim dsDanhMuc1 As DataSet
+            Dim dataTable As DataTable
+            Using rep As New ProfileBusinessRepository
+                dsDanhMuc = rep.GET_EXPORT_EMP(cboWELFARE_ID.SelectedValue, dpEFFECT_DATE.SelectedDate)
+            End Using
+            Using xls As New AsposeExcelCommon
+                Dim bCheck = xls.ExportExcelTemplate(
+                  System.IO.Path.Combine(Server.MapPath(tempPath)), "IMPORT_PhucLoi", dsDanhMuc, Nothing, Response)
             End Using
         Catch ex As Exception
 
@@ -614,12 +636,12 @@ Public Class ctrlHU_WelfareMngNewEdit
                 Next
                 rgEmployee.DataSource = dtbImport
                 dem = 0
-                'AssignHeader()
                 rgEmployee.DataBind()
                 For Each i As GridItem In rgEmployee.Items
                     i.Edit = True
                 Next
                 rgEmployee.Rebind()
+                rgEmployee.Enabled = False
             End If
         Catch ex As Exception
         End Try
@@ -629,15 +651,17 @@ Public Class ctrlHU_WelfareMngNewEdit
             dtbImport = New DataTable
             dtbImport.Columns.Add("EMPLOYEE_CODE", GetType(String))
             dtbImport.Columns.Add("EMPLOYEE_NAME", GetType(String))
-            dtbImport.Columns.Add("ORG_NAME", GetType(String))
             dtbImport.Columns.Add("TITLE_NAME", GetType(String))
+            dtbImport.Columns.Add("ORG_NAME2", GetType(String))
+            dtbImport.Columns.Add("ORG_NAME", GetType(String))
+            dtbImport.Columns.Add("BIRTH_DATE", GetType(String))
             dtbImport.Columns.Add("GENDER_NAME", GetType(String))
-            dtbImport.Columns.Add("CONTRACT_NAME", GetType(String))
             dtbImport.Columns.Add("SENIORITY", GetType(String))
-            dtbImport.Columns.Add("TOTAL_CHILD", GetType(String))
             dtbImport.Columns.Add("MONEY_PL", GetType(Decimal))
+            dtbImport.Columns.Add("TOTAL_CHILD", GetType(String))
             dtbImport.Columns.Add("MONEY_TOTAL", GetType(Decimal))
             dtbImport.Columns.Add("REMARK", GetType(String))
+            dtbImport.Columns.Add("CONTRACT_NAME", GetType(String))
             dtbImport.Columns.Add("EMPLOYEE_ID", GetType(Decimal))
             dtbImport.Columns.Add("GENDER_ID", GetType(Decimal))
             dtbImport.Columns.Add("CONTRACT_TYPE", GetType(Decimal))

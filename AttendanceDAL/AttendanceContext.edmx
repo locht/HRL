@@ -1082,6 +1082,8 @@
             <Property Name="TYPE_PROSS_ID" Type="number" Nullable="true" Precision="38" />
             <Property Name="MORNING_RATE_ID" Type="number" Nullable="true" Precision="38" />
             <Property Name="AFTERNOON_RATE_ID" Type="number" Nullable="true" Precision="38" />
+            <Property Name="ORG_ID" Type="number" Nullable="true" Precision="38" />
+            <Property Name="ORDERS" Type="number" Nullable="true" Precision="38" />
         </EntityType>
         <EntityType Name="AT_TIME_RICE">
             <Key>
@@ -3830,6 +3832,8 @@
           <Property Type="Decimal" Name="TYPE_PROSS_ID" Precision="38" Scale="0" />
           <Property Type="Decimal" Name="MORNING_RATE_ID" Precision="38" Scale="0" />
           <Property Type="Decimal" Name="AFTERNOON_RATE_ID" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="ORG_ID" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="ORDERS" Precision="38" Scale="0" />
         </EntityType>
         <EntityType Name="AT_TIME_RICE">
           <Key>
@@ -6168,6 +6172,8 @@
                     <ScalarProperty Name="TYPE_PROSS_ID" ColumnName="TYPE_PROSS_ID" />
                     <ScalarProperty Name="MORNING_RATE_ID" ColumnName="MORNING_RATE_ID" />
                     <ScalarProperty Name="AFTERNOON_RATE_ID" ColumnName="AFTERNOON_RATE_ID" />
+                    <ScalarProperty Name="ORG_ID" ColumnName="ORG_ID" />
+                    <ScalarProperty Name="ORDERS" ColumnName="ORDERS" />
                 </MappingFragment>
             </EntityTypeMapping>
         </EntitySetMapping>

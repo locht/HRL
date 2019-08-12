@@ -24,28 +24,32 @@
             <td>
                 <tlk:RadComboBox runat="server" ID="cboRelationship" CausesValidation="false">
                 </tlk:RadComboBox>
-                <asp:CustomValidator ID="cvalRelationship" runat="server" ErrorMessage="<%$ Translate: Bạn phải chọn Mối quan hệ %>"
-                    ToolTip="<%$ Translate: Bạn phải chọn Mối quan hệ %>">
-                </asp:CustomValidator>
+                 <asp:RequiredFieldValidator ID="RequiredFieldValidator2" ControlToValidate="cboRelationship" runat="server"
+                    ErrorMessage="<%$ Translate: Bạn phải chọn Mối quan hệ %>" ToolTip="<%$ Translate: Bạn phải chọn Mối quan hệ  %>">
+                </asp:RequiredFieldValidator>
             </td>
-            <td class="lb">
-            </td>
-            <td>
-                <asp:CheckBox runat="server" ID="chkIs_Owner" AutoPostBack="true" Text="<%$ Translate : Là chủ hộ %>" />
-            </td>
-        </tr>
-        <tr>
             <td class="lb">
                 <%# Translate("Ngày sinh")%>
-                <%--<span class="lbReq">*</span>--%>
+                <span class="lbReq">*</span>
             </td>
             <td>
                 <tlk:RadDatePicker runat="server" ID="rdBirthDate">
                 </tlk:RadDatePicker>
-                <%-- <asp:RequiredFieldValidator ID="RequiredFieldValidator1" ControlToValidate="rdBirthDate"
+                 <asp:RequiredFieldValidator ID="RequiredFieldValidator1" ControlToValidate="rdBirthDate"
                     runat="server" ErrorMessage="<%$ Translate: Bạn phải nhập Ngày sinh %>" ToolTip="<%$ Translate: Bạn phải nhập Ngày sinh %>">
-                </asp:RequiredFieldValidator>--%>
+                </asp:RequiredFieldValidator>
             </td>
+
+            <td class="lb">
+                <%# Translate("Giới tính")%>
+            </td>
+            <td>
+                <tlk:RadComboBox runat="server" ID="cboGender" SkinID="LoadDemand" OnClientSelectedIndexChanged="OnClientSelectedIndexChanged"
+                    OnClientItemsRequesting="OnClientItemsRequesting">
+                </tlk:RadComboBox>
+            </td>
+        </tr>
+        <tr>  
             <td class="lb">
                 <%# Translate("Số CMND")%>
             </td>
@@ -56,38 +60,57 @@
                     ToolTip="<%$ Translate: Số CMND không được phép trùng %>">
                 </asp:CustomValidator>
             </td>
+            <td class="lb">
+                 <%# Translate("Ngày cấp CMND")%>
+            </td>
+            <td>
+                <tlk:RadDatePicker runat="server" ID="rdIDDate">
+                </tlk:RadDatePicker>
+            </td>
+            <td class="lb">
+                 <%# Translate("Nơi cấp CMND")%>
+            </td>
+            <td>
+                <tlk:RadTextBox runat="server" ID="txtIDPlace" SkinID="Textbox15">
+                </tlk:RadTextBox>
+            </td>
         </tr>
         <tr>
             <td class="lb">
                 <%# Translate("Số hộ khẩu")%>
             </td>
             <td>
-                <tlk:RadTextBox runat="server" ID="txtHouseCertificate_Num" ReadOnly="true" />
+                <tlk:RadTextBox runat="server" ID="txtHouseCertificate_Num" />
             </td>
             <td class="lb">
                 <%# Translate("Mã hộ gia đình")%>
             </td>
             <td>
-                <tlk:RadTextBox runat="server" ID="txtHouseCertificate_Code" ReadOnly="true" />
+                <tlk:RadTextBox runat="server" ID="txtHouseCertificate_Code" />
+            </td>
+             <td class="lb">
+            </td>
+            <td>
+                <asp:CheckBox runat="server" ID="chkIs_Owner" Text="<%$ Translate : Là chủ hộ %>" />
             </td>
         </tr>
         <tr>
             <td class="lb">
                 <%# Translate("Nghề nghiệp")%>
             </td>
-            <td>
-                <tlk:RadTextBox runat="server" ID="txtCareer" SkinID="Textbox1023">
+            <td colspan="5">
+                <tlk:RadTextBox runat="server" ID="txtCareer" Width="100%">
                 </tlk:RadTextBox>
             </td>
-            <td class="lb">
+            <td style="display:none">
                 <%# Translate("Chức danh")%>
             </td>
-            <td>
+            <td style="display:none">
                 <tlk:RadTextBox runat="server" ID="txtTitle" SkinID="Textbox1023">
                 </tlk:RadTextBox>
             </td>
         </tr>
-        <tr>
+        <tr  style="display:none">
             <td class="lb">
                 <%# Translate("Nguyên quán")%>
             </td>
@@ -100,9 +123,18 @@
             <td class="lb">
                 <%# Translate("Địa chỉ thường trú")%>
             </td>
-            <td>
-                <tlk:RadTextBox runat="server" ID="txtAdress" />
+            <td colspan="5">
+                <tlk:RadTextBox runat="server" ID="txtAdress" Width="100%" />
+            </td> 
+            <td class="lb">
+                <%# Translate("Quốc gia")%>
             </td>
+            <td>
+                <tlk:RadComboBox runat="server" ID="cboNationlity" SkinID="LoadDemand" AutoPostBack="true" >
+                </tlk:RadComboBox>
+            </td>
+        </tr>
+        <tr>
             <td class="lb">
                 <%# Translate("Tỉnh/Thành phố")%>
             </td>
@@ -111,9 +143,7 @@
                             CausesValidation="false" OnClientItemsRequesting="OnClientItemsRequesting" 
                             OnClientSelectedIndexChanged="OnClientSelectedIndexChanged">
                 </tlk:RadComboBox>
-            </td>            
-        </tr>
-        <tr>
+            </td>   
             <td class="lb">
                 <%# Translate("Quận/Huyện")%>
             </td>
@@ -139,12 +169,15 @@
             </td>
         </tr>
         <tr>
-            <td class="lb">
+             <td class="lb">
                 <%# Translate("Địa chỉ tạm trú")%>
             </td>
-            <td>
-                <tlk:RadTextBox runat="server" ID="txtTempAdress" />
+            <td colspan="5">
+                <tlk:RadTextBox runat="server" ID="txtTempAdress" Width="100%" />
             </td>
+        </tr>
+        <tr>
+           
             <td class="lb">
                 <%# Translate("Tỉnh/Thành phố")%>
             </td>
@@ -153,10 +186,8 @@
                             CausesValidation="false" OnClientItemsRequesting="OnClientItemsRequesting" 
                             OnClientSelectedIndexChanged="OnClientSelectedIndexChanged">
                 </tlk:RadComboBox>
-            </td>            
-        </tr>
-        <tr>
-            <td class="lb">
+            </td>  
+             <td class="lb">
                 <%# Translate("Quận/Huyện")%>
             </td>
             <td>
@@ -172,9 +203,104 @@
                 <tlk:RadComboBox runat="server" ID="cbTempWARD_ID" SkinID="LoadDemand" OnClientSelectedIndexChanged="OnClientSelectedIndexChanged"
                     OnClientItemsRequesting="OnClientItemsRequesting">
                 </tlk:RadComboBox>
+            </td>          
+        </tr>
+        <tr>
+            <td class="lb">
+            </td>
+            <td>
+                <asp:CheckBox runat="server" ID="chkIs_Pass" AutoPostBack="true" Text="<%$ Translate : Đã mất  %>" />
+            </td>
+            <td class="lb">
+                <%# Translate("Số điện thoại")%>
+            </td>
+            <td>
+                <tlk:RadTextBox runat="server" ID="txtPhone" />
+            </td>
+            <td class="lb">
+                <%# Translate("Mã số thuế")%>
+            </td>
+            <td>
+                <tlk:RadTextBox runat="server" ID="txtTax" SkinID="Textbox15">
+                </tlk:RadTextBox>
+            </td>
+             <td class="lb">
+                <%# Translate("Ngày cấp MST")%>
+            </td>
+            <td>
+                 <tlk:RadDatePicker runat="server" ID="rdMSTDate">
+                </tlk:RadDatePicker>
             </td>
         </tr>
         <tr>
+            <td class="lb">
+                <%# Translate("Nơi cấp mã số thuế")%>
+            </td>
+            <td colspan="5">
+                 <tlk:RadTextBox runat="server" ID="txt_MSTPLACE"  Width="100%">
+                </tlk:RadTextBox>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="7" style="color:red">
+                 <asp:Label runat="server" ID="lbNKS" Text="Nơi đăng ký khai sinh:"></asp:Label>
+            </td>
+        </tr>
+        <tr>
+            <td class="lb">
+                <%# Translate("Giấy khai sinh")%>
+            </td>
+            <td>
+                 <tlk:RadTextBox runat="server" ID="txtBIRTH_CODE">
+                </tlk:RadTextBox>
+            </td>
+            <td class="lb">
+                <%# Translate("Quyển")%>
+            </td>
+            <td>
+                 <tlk:RadTextBox runat="server" ID="txtQuyen">
+                </tlk:RadTextBox>
+            </td>
+             <td class="lb">
+                <%# Translate("Quốc tịch")%>
+            </td>
+            <td>
+                <tlk:RadComboBox runat="server" ID="cboNATIONALITYFAMILY" SkinID="LoadDemand" OnClientSelectedIndexChanged="OnClientSelectedIndexChanged"
+                    OnClientItemsRequesting="OnClientItemsRequesting" AutoPostBack="true">
+                </tlk:RadComboBox>
+            </td>
+        </tr>
+
+        <tr>
+           
+            <td class="lb">
+                <%# Translate("Tỉnh/Thành phố")%>
+            </td>
+            <td>
+                <tlk:RadComboBox runat="server" ID="cbTempKtPROVINCE_ID" SkinID="LoadDemand" AutoPostBack="true" 
+                            CausesValidation="false" OnClientItemsRequesting="OnClientItemsRequesting" 
+                            OnClientSelectedIndexChanged="OnClientSelectedIndexChanged">
+                </tlk:RadComboBox>
+            </td>  
+             <td class="lb">
+                <%# Translate("Quận/Huyện")%>
+            </td>
+            <td>
+                <tlk:RadComboBox runat="server" ID="cbTempKtDISTRICT_ID" SkinID="LoadDemand" AutoPostBack="true" 
+                            CausesValidation="false" OnClientItemsRequesting="OnClientItemsRequesting" 
+                            OnClientSelectedIndexChanged="OnClientSelectedIndexChanged">
+                </tlk:RadComboBox>
+            </td>
+            <td class="lb">
+                <%# Translate("Xã/Phường")%>
+            </td>
+            <td>
+                <tlk:RadComboBox runat="server" ID="cbTempKtWARD_ID" SkinID="LoadDemand" OnClientSelectedIndexChanged="OnClientSelectedIndexChanged"
+                    OnClientItemsRequesting="OnClientItemsRequesting">
+                </tlk:RadComboBox>
+            </td>          
+        </tr>
+        <tr style="display:none">
             <td class="lb">
                 <%# Translate("Ngày đăng ký giảm trừ")%>
             </td>
@@ -187,15 +313,9 @@
             <td>
                 <asp:CheckBox runat="server" ID="chkIsDeduct" AutoPostBack="true" Text="<%$ Translate : Đối tượng giảm trừ  %>" />
             </td>
-            <td class="lb">
-                <%# Translate("Mã số thuế")%>
-            </td>
-            <td>
-                <tlk:RadTextBox runat="server" ID="txtTax" SkinID="Textbox15">
-                </tlk:RadTextBox>
-            </td>
+            
         </tr>
-        <tr>
+        <tr  style="display:none">
             <td class="lb">
                 <%# Translate("Ngày giảm trừ")%>
             </td>
@@ -215,11 +335,7 @@
                     Type="Date">
                 </asp:CompareValidator>
             </td>
-            <td class="lb">
-            </td>
-            <td>
-                <asp:CheckBox runat="server" ID="chkIs_Pass" AutoPostBack="true" Text="<%$ Translate : Đã mất  %>" />
-            </td>
+            
         </tr>
         <tr>
             <td class="lb">
@@ -235,7 +351,7 @@
                 <Selecting AllowRowSelect="true" />
             </ClientSettings>
         <MasterTableView DataKeyNames="ID,ID_NO,FULLNAME,RELATION_ID,IS_DEDUCT,DEDUCT_FROM,DEDUCT_TO,ADDRESS,BIRTH_DATE,REMARK,DEDUCT_REG,FK_PKEY,STATUS,REASON_UNAPROVE,TAXTATION,CAREER,TITLE_NAME,PROVINCE_NAME,PROVINCE_ID,CERTIFICATE_NUM,CERTIFICATE_CODE,ADDRESS_TT,AD_PROVINCE_ID,AD_DISTRICT_ID,AD_WARD_ID,AD_VILLAGE,TT_PROVINCE_ID,TT_DISTRICT_ID,TT_WARD_ID,IS_OWNER,IS_PASS"
-            ClientDataKeyNames="ID,ID_NO,FULLNAME,RELATION_ID,IS_DEDUCT,DEDUCT_FROM,DEDUCT_TO,ADDRESS,BIRTH_DATE,REMARK,DEDUCT_REG,FK_PKEY,STATUS,REASON_UNAPROVE,TAXTATION,CAREER,TITLE_NAME,PROVINCE_NAME,PROVINCE_ID,CERTIFICATE_NUM,CERTIFICATE_CODE,ADDRESS_TT,AD_PROVINCE_ID,AD_DISTRICT_ID,AD_WARD_ID,AD_VILLAGE,TT_PROVINCE_ID,TT_DISTRICT_ID,TT_WARD_ID,IS_OWNER,IS_PASS"
+            ClientDataKeyNames="ID,ID_NO,FULLNAME,RELATION_ID,IS_DEDUCT,DEDUCT_FROM,DEDUCT_TO,ADDRESS,BIRTH_DATE,REMARK,DEDUCT_REG,FK_PKEY,STATUS,REASON_UNAPROVE,TAXTATION,CAREER,TITLE_NAME,PROVINCE_NAME,PROVINCE_ID,CERTIFICATE_NUM,CERTIFICATE_CODE,ADDRESS_TT,AD_PROVINCE_ID,AD_DISTRICT_ID,AD_WARD_ID,AD_VILLAGE,TT_PROVINCE_ID,TT_DISTRICT_ID,TT_WARD_ID,IS_OWNER,IS_PASS,,NATION_ID,ID_NO_DATE,ID_NO_PLACE_NAME,PHONE,TAXTATION_DATE,TAXTATION_PLACE,BIRTH_CODE,QUYEN,BIRTH_NATION_ID,BIRTH_PROVINCE_ID,BIRTH_DISTRICT_ID,BIRTH_WARD_ID"
             Caption="<%$ Translate: Thông tin chỉnh sửa %>">
             <Columns>
                 <tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderStyle-HorizontalAlign="Center"
@@ -321,7 +437,7 @@
                 <Selecting AllowRowSelect="true" />
             </ClientSettings>
         <MasterTableView DataKeyNames="ID,ID_NO,FULLNAME,RELATION_ID,IS_DEDUCT,DEDUCT_FROM,DEDUCT_TO,ADDRESS,BIRTH_DATE,REMARK,DEDUCT_REG,CAREER,TITLE_NAME,PROVINCE_NAME,PROVINCE_ID,TAXTATION,CERTIFICATE_NUM,CERTIFICATE_CODE,ADDRESS_TT,AD_PROVINCE_ID,AD_DISTRICT_ID,AD_WARD_ID,AD_VILLAGE,TT_PROVINCE_ID,TT_DISTRICT_ID,TT_WARD_ID,IS_OWNER,IS_PASS"
-            ClientDataKeyNames="ID,ID_NO,FULLNAME,RELATION_ID,IS_DEDUCT,DEDUCT_FROM,DEDUCT_TO,ADDRESS,BIRTH_DATE,REMARK,DEDUCT_REG,CAREER,TITLE_NAME,PROVINCE_NAME,PROVINCE_ID,TAXTATION,CERTIFICATE_NUM,CERTIFICATE_CODE,ADDRESS_TT,AD_PROVINCE_ID,AD_DISTRICT_ID,AD_WARD_ID,AD_VILLAGE,TT_PROVINCE_ID,TT_DISTRICT_ID,TT_WARD_ID,IS_OWNER,IS_PASS"
+            ClientDataKeyNames="ID,ID_NO,FULLNAME,RELATION_ID,IS_DEDUCT,DEDUCT_FROM,DEDUCT_TO,ADDRESS,BIRTH_DATE,REMARK,DEDUCT_REG,CAREER,TITLE_NAME,PROVINCE_NAME,PROVINCE_ID,TAXTATION,CERTIFICATE_NUM,CERTIFICATE_CODE,ADDRESS_TT,AD_PROVINCE_ID,AD_DISTRICT_ID,AD_WARD_ID,AD_VILLAGE,TT_PROVINCE_ID,TT_DISTRICT_ID,TT_WARD_ID,IS_OWNER,IS_PASS,NATION_ID,ID_NO_DATE,ID_NO_PLACE_NAME,PHONE,TAXTATION_DATE,TAXTATION_PLACE,BIRTH_CODE,QUYEN,BIRTH_NATION_ID,BIRTH_PROVINCE_ID,BIRTH_DISTRICT_ID,BIRTH_WARD_ID"
             Caption="<%$ Translate: Thông tin hiện tại %>">
             <Columns>
                 <tlk:GridButtonColumn HeaderText="" Text="Sửa" CommandName="EditRow">
@@ -405,30 +521,6 @@
             function OnClientSelectedIndexChanged(sender, eventArgs) {
                 var id = sender.get_id();
                 var cbo;
-                //                switch (id) {
-                //                    case '<%= cbPROVINCE_ID.ClientID %>':
-                //                        cbo = $find('<%= cbDISTRICT_ID.ClientID %>');
-                //                        clearSelectRadcombo(cbo);
-                //                        cbo = $find('<%= cbWARD_ID.ClientID %>');
-                //                        clearSelectRadcombo(cbo);
-                //                        break;
-                //                    case '<%= cbDISTRICT_ID.ClientID %>':
-                //                        cbo = $find('<%= cbWARD_ID.ClientID %>');
-                //                        clearSelectRadcombo(cbo);
-                //                        break;
-                //                    case '<%= cbTempPROVINCE_ID.ClientID %>':
-                //                        cbo = $find('<%= cbTempDISTRICT_ID.ClientID %>');
-                //                        clearSelectRadcombo(cbo);
-                //                        cbo = $find('<%= cbTempWARD_ID.ClientID %>');
-                //                        clearSelectRadcombo(cbo);
-                //                        break;
-                //                    case '<%= cbTempDISTRICT_ID.ClientID %>':
-                //                        cbo = $find('<%= cbTempWARD_ID.ClientID %>');
-                //                        clearSelectRadcombo(cbo);
-                //                        break;
-                //                    default:
-                //                        break;
-                //                }
             }
 
             function clearSelectRadcombo(cbo) {
@@ -445,36 +537,6 @@
             }
 
             function OnClientItemsRequesting(sender, eventArgs) {
-                //                var id = sender.get_id();
-                //                var cbo;
-                //                var value;
-                //                switch (id) {
-                //                    case '<%= cbDISTRICT_ID.ClientID %>':
-                //                        cbo = $find('<%= cbPROVINCE_ID.ClientID %>');
-                //                        value = cbo.get_value();
-                //                        break;
-                //                    case '<%= cbWARD_ID.ClientID %>':
-                //                        cbo = $find('<%= cbDISTRICT_ID.ClientID %>');
-                //                        value = cbo.get_value();
-                //                        break;
-                //                    case '<%= cbTempDISTRICT_ID.ClientID %>':
-                //                        cbo = $find('<%= cbTempPROVINCE_ID.ClientID %>');
-                //                        value = cbo.get_value();
-                //                        break;
-                //                    case '<%= cbTempWARD_ID.ClientID %>':
-                //                        cbo = $find('<%= cbTempDISTRICT_ID.ClientID %>');
-                //                        value = cbo.get_value();
-                //                        break;
-                //                    default:
-                //                        break;
-                //                }
-
-                //                if (!value) {
-                //                    value = 0;
-                //                }
-                //                var context = eventArgs.get_context();
-                //                context["valueCustom"] = value;
-                //                context["value"] = sender.get_value();
 
             }
         </script>

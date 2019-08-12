@@ -1332,7 +1332,9 @@ Partial Class ProfileRepository
                 Employee.JOIN_DATE = objContract.START_DATE
             Else
                 Employee.EMP_STATUS = 9
-                Employee.JOIN_DATE = objContract.START_DATE
+                If Employee.JOIN_DATE Is Nothing Then
+                    Employee.JOIN_DATE = objContract.START_DATE
+                End If
                 Employee.JOIN_DATE_STATE = objContract.START_DATE
                 'If Employee.JOIN_DATE Is Nothing Then
                 '    Employee.JOIN_DATE = objContract.START_DATE

@@ -51,4 +51,25 @@
 
     'Public Property TITLE_NAME As String
     Public Property CAREER As String
+
+    Public Property NATION_ID As Decimal?
+    Public Property NATION_NAME As String
+    Public Property ID_NO_DATE As Date?
+    Public Property ID_NO_PLACE_NAME As String
+    Public Property PHONE As String
+    Public Property TAXTATION_DATE As Date?
+    Public Property TAXTATION_PLACE As String
+    Public Property BIRTH_CODE As String
+    Public Property QUYEN As String
+    Public Property BIRTH_NATION_ID As Decimal?
+    Public Property BIRTH_NATION_NAME As String
+    Public Property BIRTH_PROVINCE_ID As Decimal?
+    Public Property BIRTH_PROVINCE_NAME As String
+    Public Property BIRTH_DISTRICT_ID As Decimal?
+    Public Property BIRTH_DISTRICT_NAME As String
+    Public Property BIRTH_WARD_ID As Decimal?
+    Public Property BIRTH_WARD_NAME As String
+    Public Property GENDER As Decimal?
+    Public Property GENDER_NAME As String
+
 End Class

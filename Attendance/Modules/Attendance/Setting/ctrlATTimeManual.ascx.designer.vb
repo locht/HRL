@@ -113,6 +113,15 @@ Partial Public Class ctrlATTimeManual
     Protected WithEvents cvalTypeProcess As Global.System.Web.UI.WebControls.CustomValidator
 
     '''<summary>
+    '''rntxtOrders control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents rntxtOrders As Global.Telerik.Web.UI.RadNumericTextBox
+
+    '''<summary>
     '''cboMorningRate control.
     '''</summary>
     '''<remarks>
@@ -201,6 +210,15 @@ Partial Public Class ctrlATTimeManual
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents cvalAfternoon As Global.System.Web.UI.WebControls.CustomValidator
+
+    '''<summary>
+    '''cboCongTy control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents cboCongTy As Global.Telerik.Web.UI.RadComboBox
 
     '''<summary>
     '''rdNote control.

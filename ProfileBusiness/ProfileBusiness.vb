@@ -123,6 +123,18 @@ Namespace ProfileBusiness.ServiceImplementations
             End Using
         End Function
 
+        Public Function GetProvinceList1(ByVal P_NATIVE As Decimal, ByVal isBlank As Boolean) As DataTable Implements ServiceContracts.IProfileBusiness.GetProvinceList1
+            Using rep As New ProfileRepository
+                Try
+
+                    Dim lst = rep.GetProvinceList1(P_NATIVE, isBlank)
+                    Return lst
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
+
         Public Function GetNationList(ByVal isBlank As Boolean) As DataTable Implements ServiceContracts.IProfileBusiness.GetNationList
             Using rep As New ProfileRepository
                 Try

@@ -4,6 +4,8 @@ Imports Attendance.AttendanceBusiness
 Imports Common
 Imports Telerik.Web.UI
 Imports WebAppLog
+Imports Profile
+
 Public Class ctrlATTimeManual
     Inherits Common.CommonView
     Dim _myLog As New MyLog()
@@ -201,15 +203,18 @@ Public Class ctrlATTimeManual
                 Case CommonMessage.STATE_NEW
                     txtCode.Text = ""
                     txtNameVN.Text = ""
+                    rntxtOrders.Text = ""
                     rdNote.Text = ""
                     'chkIsPrice.Enabled = True
                     'chkIsPrice.Checked = False
                     txtCode.Enabled = True
                     txtNameVN.Enabled = True
+                    rntxtOrders.Enabled = True
                     rdNote.Enabled = True
                     cboMorning.Enabled = True
                     cboAfternoon.Enabled = True
                     cboTypeProcess.Enabled = True
+                    cboCongTy.Enabled = True
                     cboMorningRate.Enabled = True
                     cboAfternoonRate.Enabled = True
                     'rdLimitDay.Enabled = True
@@ -219,24 +224,29 @@ Public Class ctrlATTimeManual
                 Case CommonMessage.STATE_NORMAL
                     txtCode.Text = ""
                     txtNameVN.Text = ""
+                    rntxtOrders.Text = ""
                     rdNote.Text = ""
                     cboAfternoon.Text = ""
                     cboMorning.Text = ""
                     cboTypeProcess.Text = ""
+                    cboCongTy.Text = ""
                     cboMorningRate.Text = ""
                     cboAfternoonRate.Text = ""
                     'chkIsPrice.Checked = False
                     cboAfternoon.SelectedValue = Nothing
                     cboMorning.SelectedValue = Nothing
                     cboTypeProcess.SelectedValue = Nothing
+                    cboCongTy.SelectedValue = Nothing
                     cboMorningRate.SelectedValue = Nothing
                     cboAfternoonRate.SelectedValue = Nothing
                     txtCode.Enabled = False
                     txtNameVN.Enabled = False
+                    rntxtOrders.Enabled = False
                     'chkIsPrice.Enabled = False
                     cboAfternoon.Enabled = False
                     cboMorning.Enabled = False
                     cboTypeProcess.Enabled = False
+                    cboCongTy.Enabled = False
                     cboAfternoonRate.Enabled = False
                     cboMorningRate.Enabled = False
                     rdNote.Enabled = False
@@ -249,10 +259,12 @@ Public Class ctrlATTimeManual
                 Case CommonMessage.STATE_EDIT
                     txtCode.Enabled = True
                     txtNameVN.Enabled = True
+                    rntxtOrders.Enabled = True
                     cboAfternoon.Enabled = True
                     'chkIsPrice.Enabled = True
                     cboMorning.Enabled = True
                     cboTypeProcess.Enabled = True
+                    cboCongTy.Enabled = True
                     cboAfternoonRate.Enabled = True
                     cboMorningRate.Enabled = True
                     rdNote.Enabled = True
@@ -270,7 +282,7 @@ Public Class ctrlATTimeManual
                         ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), NotifyType.Success)
                         CurrentState = CommonMessage.STATE_NORMAL
                         rgDanhMuc.Rebind()
-                        ClearControlValue(txtCode, txtNameVN, cboAfternoon, cboMorning, cboTypeProcess, cboMorningRate, cboAfternoonRate, rdNote)
+                        ClearControlValue(txtCode, txtNameVN, rntxtOrders, cboAfternoon, cboMorning, cboTypeProcess, cboCongTy, cboMorningRate, cboAfternoonRate, rdNote)
                     Else
                         ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), NotifyType.Warning)
                     End If
@@ -284,7 +296,7 @@ Public Class ctrlATTimeManual
                         ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), NotifyType.Success)
                         CurrentState = CommonMessage.STATE_NORMAL
                         rgDanhMuc.Rebind()
-                        ClearControlValue(txtCode, txtNameVN, cboAfternoon, cboMorning, cboTypeProcess, cboMorningRate, cboAfternoonRate, rdNote)
+                        ClearControlValue(txtCode, txtNameVN, rntxtOrders, cboAfternoon, cboMorning, cboTypeProcess, cboCongTy, cboMorningRate, cboAfternoonRate, rdNote)
                     Else
                         ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), NotifyType.Warning)
                     End If
@@ -326,9 +338,11 @@ Public Class ctrlATTimeManual
             Dim dic As New Dictionary(Of String, Control)
             dic.Add("CODE", txtCode)
             dic.Add("NAME_VN", txtNameVN)
+            dic.Add("ORDERS", rntxtOrders)
             dic.Add("MORNING_ID", cboMorning)
             dic.Add("AFTERNOON_ID", cboAfternoon)
             dic.Add("TYPE_PROSS_ID", cboTypeProcess)
+            dic.Add("ORG_ID", cboCongTy)
             dic.Add("MORNING_RATE_ID", cboMorningRate)
             dic.Add("AFTERNOON_RATE_ID", cboAfternoonRate)
             'dic.Add("LIMIT_DAY", rdLimitDay)
@@ -368,9 +382,11 @@ Public Class ctrlATTimeManual
                     cboAfternoon.Text = ""
                     cboMorning.Text = ""
                     cboTypeProcess.Text = ""
+                    cboCongTy.Text = ""
                     cboAfternoon.SelectedValue = Nothing
                     cboMorning.SelectedValue = Nothing
                     cboTypeProcess.SelectedValue = Nothing
+                    cboCongTy.SelectedValue = Nothing
 
                     cboAfternoonRate.Text = "0.5"
                     cboMorningRate.Text = "0.5"
@@ -440,14 +456,17 @@ Public Class ctrlATTimeManual
                         objHoliday_Gen.NAME_VN = txtNameVN.Text
                         objHoliday_Gen.MORNING_ID = cboMorning.SelectedValue
                         objHoliday_Gen.TYPE_PROSS_ID = cboTypeProcess.SelectedValue
+                        objHoliday_Gen.ORG_ID = cboCongTy.SelectedValue
                         objHoliday_Gen.MORNING_RATE_ID = cboMorningRate.SelectedValue
                         objHoliday_Gen.AFTERNOON_RATE_ID = cboAfternoonRate.SelectedValue
                         objHoliday_Gen.AFTERNOON_ID = cboAfternoon.SelectedValue
                         'objHoliday_Gen.IS_PAID_RICE = chkIsPrice.Checked
                         objHoliday_Gen.NOTE = rdNote.Text
-                        'If rdLimitDay.Value IsNot Nothing Then
-                        '    objHoliday_Gen.LIMIT_DAY = rdLimitDay.Value
-                        'End If
+
+                        If rntxtOrders.Value IsNot Nothing Then
+                            objHoliday_Gen.ORDERS = Decimal.Parse(rntxtOrders.Text)
+                        End If
+
                         'If rdLimitYear.Value IsNot Nothing Then
                         '    objHoliday_Gen.LIMIT_YEAR = rdLimitYear.Value
                         'End If
@@ -469,7 +488,7 @@ Public Class ctrlATTimeManual
                                 validate.ID = objHoliday_Gen.ID
                                 If rep.ValidateAT_TIME_MANUAL(validate) Then
                                     ShowMessage(Translate(CommonMessage.MESSAGE_WARNING_EXIST_DATABASE), NotifyType.Error)
-                                    ClearControlValue(txtCode, txtNameVN, cboAfternoon, cboMorning, cboTypeProcess, cboMorningRate, cboAfternoonRate, rdNote)
+                                    ClearControlValue(txtCode, txtNameVN, rntxtOrders, cboAfternoon, cboMorning, cboTypeProcess, cboCongTy, cboMorningRate, cboAfternoonRate, rdNote)
                                     rgDanhMuc.Rebind()
                                     CurrentState = CommonMessage.STATE_NORMAL
                                     UpdateControlState()
@@ -564,6 +583,7 @@ Public Class ctrlATTimeManual
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
         Dim startTime As DateTime = DateTime.UtcNow
         Dim rep As New AttendanceRepository
+        Dim repS As New ProfileStoreProcedure
         Try
             If ListComboData Is Nothing Then
                 ListComboData = New ComboBoxDataDTO
@@ -604,9 +624,18 @@ Public Class ctrlATTimeManual
             'End If
 
             FillRadCombobox(cboTypeProcess, ListComboDataTypePross.LIST_LIST_TYPE_PROCESS, "NAME_VN", "ID", True)
-
             FillRadCombobox(cboMorningRate, ListComboDataTimeManuaRate_Morning.LIST_LIST_MORNING_RATE, "VALUE_RATE", "ID", True)
             FillRadCombobox(cboAfternoonRate, ListComboDataTimeManuaRate_Afternoon.LIST_LIST_AFTERNOON_RATE, "VALUE_RATE", "ID", True)
+
+            Dim dtOrgLevel As DataTable
+            dtOrgLevel = repS.GET_ORGID_COMPANY_LEVEL()
+            Dim dr As DataRow = dtOrgLevel.NewRow
+            dr("ORG_ID") = "-1"
+            dr("ORG_NAME_VN") = "Dùng  Chung"
+            dtOrgLevel.Rows.Add(dr)
+
+            dtOrgLevel.DefaultView.Sort = "ORG_ID ASC"
+            FillRadCombobox(cboCongTy, dtOrgLevel, "ORG_NAME_VN", "ORG_ID", True)
 
             _myLog.WriteLog(_myLog._info, _classPath, method,
                                                 CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
@@ -731,7 +760,7 @@ Public Class ctrlATTimeManual
         Try
             Dim startTime As DateTime = DateTime.UtcNow
             If (CurrentState <> CommonMessage.STATE_NEW And (rgDanhMuc.SelectedItems.Count = 0 Or rgDanhMuc.SelectedItems.Count > 1)) Then
-                ClearControlValue(txtCode, txtNameVN, cboAfternoon, cboMorning, cboTypeProcess, cboAfternoonRate, cboMorningRate, rdNote)
+                ClearControlValue(txtCode, txtNameVN, rntxtOrders, cboAfternoon, cboMorning, cboTypeProcess, cboCongTy, cboAfternoonRate, cboMorningRate, rdNote)
             End If
             _myLog.WriteLog(_myLog._info, _classPath, method,
                               CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
@@ -745,7 +774,7 @@ Public Class ctrlATTimeManual
         Try
             Dim startTime As DateTime = DateTime.UtcNow
             If (CurrentState <> CommonMessage.STATE_NEW And (rgDanhMuc.SelectedItems.Count = 0 Or rgDanhMuc.SelectedItems.Count > 1)) Then
-                ClearControlValue(txtCode, txtNameVN, cboAfternoon, cboMorning, cboTypeProcess, cboAfternoonRate, cboMorningRate, rdNote)
+                ClearControlValue(txtCode, txtNameVN, rntxtOrders, cboAfternoon, cboMorning, cboTypeProcess, cboCongTy, cboAfternoonRate, cboMorningRate, rdNote)
             End If
             _myLog.WriteLog(_myLog._info, _classPath, method,
                               CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
@@ -756,5 +785,5 @@ Public Class ctrlATTimeManual
     End Sub
 #End Region
 
-   
+
 End Class

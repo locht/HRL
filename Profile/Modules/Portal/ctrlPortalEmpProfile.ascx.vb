@@ -42,38 +42,39 @@ Public Class ctrlPortalEmpProfile
     End Sub
 
     Public Overrides Sub UpdateControlState()
-        EnableControlAll(False, txtWorkStatus, txtEmpCODE,
-                                      txtBankNo,
-                                      txtFirstNameVN, txtGhiChuSK,
-                                      txtHomePhone,
-                                      cboIDPlace,
+        EnableControlAll(False, txtEmpCODE,
+                                      txtBankNo, txtEmpStatus, txtWorkStatus,
+                                      txtFirstNameVN, txtITimeID, txtObjectLabor,
+                                      txtHomePhone, txtObjectIns,
+                                      cboIDPlace, txtManager,
                                       txtLastNameVN, txtID_NO,
-                                      txtMobilePhone, txtNavAddress, txtNhomMau,
+                                      txtMobilePhone, txtNavAddress,
                                        txtPassNo, txtPassPlace,
-                                      txtPerAddress, txtPerEmail, txtCareer,
-                                      txtPitCode, txtTaiMuiHong,
-                                      txtWorkEmail, txtWorkPermit, txtWorkPermitPlace,
-                                      txtContactPerson, txtContactPersonPhone,
-                                      rdBirthDate, rdIDDate,
+                                      txtPerAddress, txtPerEmail,
+                                      txtPitCode, txtInsArea,
+                                      txtBasic, txtLearningLevel, txtGraduateSchool, txtNamTN, txtCertificate, txtAppDung, txtLanguage,
+                                      txtLangLevel, txtLangMark,
+                                      txtWorkEmail, txtContactPerson,
+                                      rdBirthDate, rdIDDate, rdExpireIDNO,
                                       rdPassDate, rdPassExpireDate,
-                                      rdWorkPermitDate, rdWorPermitExpireDate,
-                                      txtCanNang, txtChieuCao,
                                       txtAcademy, txtBank, txtBankBranch, txtFamilyStatus,
-                                      txtGender, txtLoaiSucKhoe, txtMajor, txtNationlity, txtNative, txtNav_Province, txtPer_Province,
+                                      txtGender, txtMajor, txtNationlity, txtNative, txtNav_Province, txtPer_Province,
                                       txtReligion, txtTitle, txtEmpStatus,
                                       txtPer_District, txtPer_Ward, txtNav_District, txtNav_Ward,
                                       txtContractType, rdContractEffectDate, rdContractExpireDate,
-                                      txtEmpOldCODE, txtNoBHXH, txtDifferentName, txtGraduateYear,
-                                      txtProvinceBorn, txtDistrictBorn, txtWardBorn, txtMngLevel, txtWorkPlace, txtMngLevel,
-                                      txtWorkPlace, txtHoiDongBanToNhom, txtDepartment, txtTeamLead, txtInsArea, rdOfficialDate,
-                                      rdProbationDate, rdQuitDate, txtDomicile, txtCareerWhenRecruit, txtForteBussiness, txtSpecialized,
-                                      cboQLNN, cboLLCT, cboLanguage, txtEngLevel1, txtMark1, cboLanguage2, cboTDTH, txtITMark,
-                                      txtEngLevel2, txtMark2, chkPayViaBank, txtTinhTrangSucKhoe, ckDANG, ckCA, ckBanTT_ND,
+                                      txtNoBHXH, txtLearningLevel,
+                                      txtProvinceBorn, txtDistrictBorn, txtWardBorn,
+                                      txtPROVINCEEMP_BRITH, txtDISTRICTEMP_BRITH, txtWARDEMP_BRITH,
+                                      rdProbationDate, rdOfficialDate, rdQuitDate, txtDomicile,
+                                       ckDANG, ckCA, ckBanTT_ND,
                                       ckCONG_DOAN, rtCV_BANTT, rdNgay_TG_BanTT, ckNU_CONG, rtCV_Ban_Nu_Cong,
                                       rdNgay_TG_Ban_Nu_Cong, rdNgay_Nhap_Ngu_CA, rdNgay_Xuat_Ngu_CA, rtDV_Xuat_Ngu_CA,
                                       ckQD, rdNgay_Nhap_Ngu_QD, rdNgay_Xuat_Ngu_QD, rtDV_Xuat_Ngu_QD, ckThuong_Binh,
                                       txtHang_Thuong_Binh, txtGD_Chinh_Sach, rdNGAY_VAO_DANG_DB, rtCHUC_VU_DANG, rdNGAY_VAO_DANG,
-                                      rtCHUC_VU_DOAN, rdNGAY_VAO_DOAN, ckDOAN_PHI)
+                                      rtCHUC_VU_DOAN, rdNGAY_VAO_DOAN, ckDOAN_PHI,
+                                      ckCHUHO, txtNoHouseHolds, txtCodeHouseHolds, txtNoHouseHolds, txtCodeHouseHolds,
+                                      txtVillage, txtAddressPerContract, txtRelationNLH, txtPerHomePhone, txtPerMobilePhone,
+                                      rdDayPitcode, txtPlacePitcode, txtPerson_Inheritance, rdEffect_Bank)
     End Sub
 
     Public Overrides Sub Refresh(Optional ByVal Message As String = "")
@@ -95,25 +96,30 @@ Public Class ctrlPortalEmpProfile
                         txtOrgName.ToolTip = Utilities.DrawTreeByString(EmployeeInfo.ORG_DESC)
                         txtTitle.Text = EmployeeInfo.TITLE_ID
                         txtTitle.Text = EmployeeInfo.TITLE_NAME_VN
-                        txtTitleGroup.Text = EmployeeInfo.TITLE_GROUP_NAME
-                        rdJoinDate.SelectedDate = EmployeeInfo.JOIN_DATE
                         rdQuitDate.SelectedDate = EmployeeInfo.TER_EFFECT_DATE
-                        'rdJoinDateState.SelectedDate = EmployeeInfo.JOIN_DATE_STATE
-                        'txtStaffRank.Text = EmployeeInfo.STAFF_RANK_NAME
+                       
                         txtDirectManager.Text = EmployeeInfo.DIRECT_MANAGER_NAME
-                        'txtLevelManager.Text = EmployeeInfo.LEVEL_MANAGER_NAME
                         txtContractType.Text = EmployeeInfo.CONTRACT_TYPE_NAME
                         rdContractEffectDate.SelectedDate = EmployeeInfo.CONTRACT_EFFECT_DATE
                         rdContractExpireDate.SelectedDate = EmployeeInfo.CONTRACT_EXPIRE_DATE
-                        txtWorkStatus.Text = EmployeeInfo.WORK_STATUS_NAME
-                        txtEmpOldCODE.Text = EmployeeInfo.EMPLOYEE_CODE_OLD
                         txtNoBHXH.Text = EmployeeInfo.BOOKNO
-                        txtDifferentName.Text = EmployeeInfo.EMPLOYEE_NAME_OTHER
                         txtEmpStatus.Text = EmployeeInfo.EMP_STATUS_NAME
-                        txtMngLevel.Text = orgTree.ORG_NAME2
-                        txtHoiDongBanToNhom.Text = orgTree.ORG_NAME3
-                        txtDepartment.Text = orgTree.ORG_NAME5
-                        txtTeamLead.Text = orgTree.REPRESENTATIVE_NAME
+
+                        ' Tình trang nhân viên
+                        If EmployeeInfo.EMP_STATUS_NAME IsNot Nothing Then
+                            txtEmpStatus.Text = EmployeeInfo.EMP_STATUS_NAME
+                        End If
+
+                        If EmployeeInfo.WORK_STATUS IsNot Nothing Then
+                            txtWorkStatus.Text = EmployeeInfo.WORK_STATUS_NAME
+                        End If
+
+                        txtITimeID.Text = EmployeeInfo.ITIME_ID
+                        txtManager.Text = EmployeeInfo.TITLE_NAME_VN
+
+                        If EmployeeInfo.OBJECT_LABOR IsNot Nothing Then
+                            txtObjectLabor.Text = EmployeeInfo.OBJECT_LABOR_NAME
+                        End If
 
                         Dim empCV As EmployeeCVDTO
                         Dim empEdu As EmployeeEduDTO
@@ -146,16 +152,31 @@ Public Class ctrlPortalEmpProfile
                             txtPer_Province.Text = empCV.PER_PROVINCE_NAME
                             txtPer_District.Text = empCV.PER_DISTRICT_NAME
                             txtPer_Ward.Text = empCV.PER_WARD_NAME
+                            txtVillage.Text = empCV.VILLAGE
                             txtProvinceBorn.Text = empCV.PROVINCEEMP_NAME
                             txtDistrictBorn.Text = empCV.DISTRICTEMP_NAME
                             txtWardBorn.Text = empCV.WARDEMP_NAME
-                            txtWorkPlace.Text = empCV.WORKPLACE_NAME
                             txtInsArea.Text = empCV.INS_REGION_NAME
                             rdOfficialDate.SelectedDate = empCV.OPPTION7
                             rdProbationDate.SelectedDate = empCV.OPPTION6
                             txtDomicile.Text = empCV.PROVINCENQ_NAME
-                            txtCareerWhenRecruit.Text = empCV.OPPTION1
-                            txtForteBussiness.Text = empCV.SKILL
+
+                            ' Đối tượng đóng bảo hiểm
+                            If empCV.OBJECT_INS IsNot Nothing Then
+                                txtObjectIns.Text = empCV.OBJECT_INS_NAME
+                            End If
+
+                            If IsNumeric(empCV.PROVINCEEMP_BRITH) Then
+                                txtPROVINCEEMP_BRITH.Text = empCV.PROVINCEEMP_BRITH_NAME
+                            End If
+
+                            If IsNumeric(empCV.DISTRICTEMP_BRITH) Then
+                                txtDISTRICTEMP_BRITH.Text = empCV.DISTRICTEMP_BRITH_NAME
+                            End If
+
+                            If IsNumeric(empCV.WARDEMP_BRITH) Then
+                                txtWARDEMP_BRITH.Text = empCV.WARDEMP_BRITH_NAME
+                            End If
 
                             ' SĐT
                             txtHomePhone.Text = empCV.HOME_PHONE
@@ -163,9 +184,16 @@ Public Class ctrlPortalEmpProfile
                             ' CMND
                             txtID_NO.Text = empCV.ID_NO
                             rdIDDate.SelectedDate = empCV.ID_DATE
+                            rdExpireIDNO.SelectedDate = empCV.EXPIRE_DATE_IDNO
                             If empCV.ID_PLACE IsNot Nothing Then
                                 cboIDPlace.SelectedValue = empCV.ID_PLACE
                             End If
+
+                            If IsNumeric(empCV.IS_CHUHO) Then
+                                ckCHUHO.Checked = CType(empCV.IS_CHUHO, Boolean)
+                            End If
+                            txtNoHouseHolds.Text = empCV.NO_HOUSEHOLDS
+                            txtCodeHouseHolds.Text = empCV.CODE_HOUSEHOLDS
 
                             'Hộ chiếu
                             txtPassNo.Text = empCV.PASS_NO
@@ -173,43 +201,31 @@ Public Class ctrlPortalEmpProfile
                             rdPassExpireDate.SelectedDate = empCV.PASS_EXPIRE
                             txtPassPlace.Text = empCV.PASS_PLACE
                             'Visa
-                            'txtVisa.Text = empCV.VISA
-                            'rdVisaDate.SelectedDate = empCV.VISA_DATE
-                            'rdVisaExpireDate.SelectedDate = empCV.VISA_EXPIRE
-                            'txtVisaPlace.Text = empCV.VISA_PLACE
-                            'Giấy phép lao động
-                            txtWorkPermit.Text = empCV.WORK_PERMIT
-                            rdWorkPermitDate.SelectedDate = empCV.WORK_PERMIT_DATE
-                            rdWorPermitExpireDate.SelectedDate = empCV.WORK_PERMIT_EXPIRE
-                            txtWorkPermitPlace.Text = empCV.WORK_PERMIT_PLACE
+                           
+                            'Giấy phép lao động                           
                             txtPitCode.Text = empCV.PIT_CODE
                             txtPerEmail.Text = empCV.PER_EMAIL
-                            txtCareer.Text = empCV.CAREER
+                            rdDayPitcode.SelectedDate = empCV.PIT_CODE_DATE
+                            txtPlacePitcode.Text = empCV.PIT_CODE_PLACE
+                            txtPerson_Inheritance.Text = empCV.PERSON_INHERITANCE
+                            rdEffect_Bank.SelectedDate = empCV.EFFECTDATE_BANK
+
                             txtWorkEmail.Text = empCV.WORK_EMAIL
                             'Người liên hệ khi cần
                             txtContactPerson.Text = empCV.CONTACT_PER
                             'Điện thoại người liên hệ
-                            txtContactPersonPhone.Text = empCV.CONTACT_PER_PHONE
-                            'chkDangPhi.Checked = False
-                            'If empCV.DANG_PHI IsNot Nothing Then
-                            '    chkDangPhi.Checked = empCV.DANG_PHI
-                            'End If
-                            'chkDoanPhi.Checked = False
-                            'If empCV.DOAN_PHI IsNot Nothing Then
-                            '    chkDoanPhi.Checked = empCV.DOAN_PHI
-                            'End If
+                            If empCV.RELATION_PER_CTR IsNot Nothing Then
+                                txtRelationNLH.Text = empCV.RELATION_PER_CTR_NAME
+                            End If
+                            txtAddressPerContract.Text = empCV.ADDRESS_PER_CTR
+                            txtPerHomePhone.Text = empCV.CONTACT_PER_PHONE
+                            txtPerMobilePhone.Text = empCV.CONTACT_PER_MBPHONE
+
                             txtBank.Text = empCV.BANK_NAME
                             txtBankBranch.Text = empCV.BANK_BRANCH_NAME
-                            'rdNgayVaoDang.SelectedDate = empCV.NGAY_VAO_DANG
-                            'rdNgayVaoDoan.SelectedDate = empCV.NGAY_VAO_DOAN
-                            'txtChucVuDang.Text = empCV.CHUC_VU_DANG
-                            'txtChucVuDoan.Text = empCV.CHUC_VU_DOAN
-                            'txtNoiVaoDang.Text = empCV.NOI_VAO_DANG
-                            'txtNoiVaoDoan.Text = empCV.NOI_VAO_DOAN
                             txtBankNo.Text = empCV.BANK_NO
                             txtHang_Thuong_Binh.Text = empCV.HANG_THUONG_BINH_NAME
                             txtGD_Chinh_Sach.Text = empCV.GD_CHINH_SACH_NAME
-                            chkPayViaBank.Checked = empCV.IS_PAY_BANK
                             '=========================================================
                             If IsNumeric(empCV.DANG) Then
                                 ckDANG.Checked = CType(empCV.DANG, Boolean)
@@ -273,71 +289,51 @@ Public Class ctrlPortalEmpProfile
                             Dim dtData As DataTable
                             Using repEdu As New ProfileRepository
                                 dtLanguage = repEdu.GetOtherList("RC_LANGUAGE_LEVEL", True)
-                                FillRadCombobox(cboLanguage, dtLanguage, "NAME", "ID")
-                                FillRadCombobox(cboLanguage2, dtLanguage, "NAME", "ID")
+                                'FillRadCombobox(cboLanguage2, dtLanguage, "NAME", "ID")
                                 dtData = repEdu.GetOtherList("QLNN")
-                                FillRadCombobox(cboQLNN, dtData, "NAME", "ID")
+                                'FillRadCombobox(cboQLNN, dtData, "NAME", "ID")
                                 dtData = repEdu.GetOtherList("LLCT")
-                                FillRadCombobox(cboLLCT, dtData, "NAME", "ID")
+                                'FillRadCombobox(cboLLCT, dtData, "NAME", "ID")
                                 dtData = repEdu.GetOtherList("RC_COMPUTER_LEVEL")
-                                FillRadCombobox(cboTDTH, dtData, "NAME", "ID")
                             End Using
-                            txtAcademy.Text = empEdu.ACADEMY_NAME
-                            'txtTrainingForm.Text = empEdu.TRAINING_FORM_NAME
-                            'txtLearningLevel.Text = empEdu.LEARNING_LEVEL_NAME
-                            'txtLangLevel.Text = empEdu.LANGUAGE_LEVEL_NAME
-                            'txtLangMark.Text = empEdu.LANGUAGE_MARK
-                            'cboLangLevel.SelectedValue = empEdu.LANGUAGE
-                            txtMajor.Text = empEdu.MAJOR_NAME
-                            'txtMajorRemark.Text = empEdu.MAJOR_REMARK
-                            'txtGraduateSchool.Text = empEdu.GRADUATE_SCHOOL_NAME
-                            'txtSpecialized.Text = empEdu.MAJOR
+
+                            If empEdu.ACADEMY IsNot Nothing Then
+                                txtAcademy.Text = empEdu.ACADEMY_NAME
+                            End If
+
+                            If empEdu.LEARNING_LEVEL IsNot Nothing Then
+                                txtLearningLevel.Text = empEdu.LEARNING_LEVEL_NAME
+                            End If
                             If empEdu.MAJOR IsNot Nothing Then
-                                txtSpecialized.Text = empEdu.MAJOR
+                                txtMajor.Text = empEdu.MAJOR_NAME
                             End If
-                            If IsNumeric(empEdu.QLNN) Then
-                                cboQLNN.SelectedValue = empEdu.QLNN
+                            If empEdu.GRADUATE_SCHOOL_ID IsNot Nothing Then
+                                txtGraduateSchool.Text = empEdu.GRADUATE_SCHOOL_NAME
                             End If
-                            If IsNumeric(empEdu.LLCT) Then
-                                cboLLCT.SelectedValue = empEdu.LLCT
+                            If empEdu.COMPUTER_RANK IsNot Nothing Then
+                                txtBasic.Text = empEdu.COMPUTER_RANK_NAME
                             End If
+                            If empEdu.COMPUTER_MARK IsNot Nothing Then
+                                txtCertificate.Text = empEdu.COMPUTER_MARK_NAME
+                            End If
+                            txtAppDung.Text = empEdu.COMPUTER_CERTIFICATE
+
                             If empEdu.LANGUAGE IsNot Nothing Then
-                                cboLanguage.SelectedValue = empEdu.LANGUAGE
+                                txtLanguage.Text = empEdu.LANGUAGE
                             End If
-                            txtEngLevel1.Text = empEdu.LANGUAGE_LEVEL_NAME
-                            txtMark1.Text = empEdu.LANGUAGE_MARK
-                            If empEdu.LANGUAGE2 IsNot Nothing Then
-                                cboLanguage2.SelectedValue = empEdu.LANGUAGE2
+                            If empEdu.LANGUAGE_LEVEL IsNot Nothing Then
+                                txtLangLevel.Text = empEdu.LANGUAGE_LEVEL_NAME
                             End If
-                            txtEngLevel2.Text = empEdu.LANGUAGE_LEVEL_NAME2
-                            txtMark2.Text = empEdu.LANGUAGE_MARK2
+                            txtLangMark.Text = empEdu.LANGUAGE_MARK
+
                             If empEdu.GRADUATION_YEAR IsNot Nothing Then
-                                txtGraduateYear.Text = empEdu.GRADUATION_YEAR
+                                txtNamTN.Text = empEdu.GRADUATION_YEAR
                             End If
                             If IsNumeric(empEdu.TDTH) Then
-                                cboTDTH.SelectedValue = empEdu.TDTH
+                                'cboTDTH.SelectedValue = empEdu.TDTH
                             End If
-                            txtITMark.Text = empEdu.DIEM_XLTH
+                            'txtITMark.Text = empEdu.DIEM_XLTH
                         End If
-
-                        If empHealth IsNot Nothing Then
-                            txtCanNang.Text = empHealth.CAN_NANG
-                            txtChieuCao.Text = empHealth.CHIEU_CAO
-                            'txtDaHoaLieu.Text = empHealth.DA_HOA_LIEU
-                            txtGhiChuSK.Text = empHealth.GHI_CHU_SUC_KHOE
-                            'txtHuyetAp.Text = empHealth.HUYET_AP
-                            'txtMatPhai.Text = empHealth.MAT_PHAI
-                            'txtMatTrai.Text = empHealth.MAT_TRAI
-                            txtNhomMau.Text = empHealth.NHOM_MAU
-                            'txtPhoiNguc.Text = empHealth.PHOI_NGUC
-                            'txtRangHamMat.Text = empHealth.RANG_HAM_MAT
-                            txtTaiMuiHong.Text = empHealth.TAI_MUI_HONG
-                            'txtTim.Text = empHealth.TIM
-                            'txtVienGanB.Text = empHealth.VIEM_GAN_B
-                            txtLoaiSucKhoe.Text = empHealth.LOAI_SUC_KHOE
-                            txtTinhTrangSucKhoe.Text = empHealth.TTSUCKHOE
-                        End If
-
                     End If
 
                 End Using
