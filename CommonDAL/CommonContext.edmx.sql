@@ -1,8 +1,8 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for Oracle database
 -- --------------------------------------------------
--- Date Created: 24/07/2019 4:01:42 PM
--- Generated from EDMX file: E:\TNG-New\CommonDAL\CommonContext.edmx
+-- Date Created: 08/12/2019 9:27:30 AM
+-- Generated from EDMX file: D:\MyProject\TNG\TNG\CommonDAL\CommonContext.edmx
 -- --------------------------------------------------
 
 -- --------------------------------------------------
@@ -332,7 +332,8 @@ CREATE TABLE "dbo"."HU_EMPLOYEE" (
    "STAFF_RANK_ID" NUMBER(38,0) NULL,
    "ITIME_ID" NCLOB NULL,
    "PA_OBJECT_SALARY_ID" NUMBER(38,0) NULL,
-   "IS_3B" NUMBER(5,0) NULL
+   "IS_3B" NUMBER(5,0) NULL,
+   "EMP_STATUS" NCLOB NULL
 );
 
 -- Creating table 'HU_TERMINATE'

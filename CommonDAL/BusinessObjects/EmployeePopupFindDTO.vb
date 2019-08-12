@@ -41,6 +41,8 @@ Public Class EmployeePopupFindListDTO
     Public Property TITLE_NAME As String ' Chuc danh
     Public Property ORG_ID As Decimal?
     Public Property ORG_NAME As String
+    Public Property EMP_STATUS As String 'LOAI NHAN VIEN
+    Public Property IS_KIEMNHIEM As Decimal? 'LOAI NHAN VIEN
     Public Property ORG_DESC As String
     Public Property JOIN_DATE As Date?
     Public Property GENDER As String

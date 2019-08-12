@@ -152,8 +152,10 @@ Public Class ctrlFindEmployeePopupDialog
             _filter.IsOnlyWorkingWithoutTer = IsOnlyWorkingWithoutTer
             _filter.IS_3B = IS_3B
             _filter.IS_TER = cbTerminate.Checked
+            _filter.IS_KIEMNHIEM = chk_kiemnhiem.Checked
             _filter.LoadAllOrganization = LoadAllOrganization
             _filter.MustHaveContract = MustHaveContract
+
             Sorts = rgEmployeeInfo.MasterTableView.SortExpressions.GetSortString()
             If Sorts IsNot Nothing Then
                 EmployeeList = rep.GetEmployeeToPopupFind(_filter, rgEmployeeInfo.CurrentPageIndex, PageSize,
@@ -214,4 +216,11 @@ Public Class ctrlFindEmployeePopupDialog
 
 #End Region
 
+    Private Sub chk_kiemnhiem_CheckedChanged(sender As Object, e As System.EventArgs) Handles chk_kiemnhiem.CheckedChanged
+        Try
+            rgEmployeeInfo.Rebind()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
 End Class

@@ -2264,6 +2264,7 @@ Partial Public Class CommonRepository
                         From work_status In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.WORK_STATUS And f.TYPE_ID = 59).DefaultIfEmpty
                         From k In Context.SE_CHOSEN_ORG.Where(Function(f) p.ORG_ID = f.ORG_ID And f.USERNAME.ToUpper = userName)
                         From te In Context.HU_TERMINATE.Where(Function(f) p.ID = f.EMPLOYEE_ID).DefaultIfEmpty
+                        From emp_stt In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.EMP_STATUS).DefaultIfEmpty
             'From te_status In Context.OT_OTHER_LIST.Where(Function(f) f.ID = te.STATUS_ID And f.NAME_VN.ToUpper.Trim <> "PHÊ DUYỆT")
 
             If _filter.EMPLOYEE_CODE <> "" Then
@@ -2275,7 +2276,13 @@ Partial Public Class CommonRepository
                 query = query.Where(Function(f) f.p.DIRECT_MANAGER.ToString().Contains(_filter.DIRECT_MANAGER) Or _
                                         f.p.FULLNAME_VN.ToUpper.Contains(_filter.DIRECT_MANAGER))
             End If
-
+            'If _filter.IS_KIEMNHIEM = 0 Then
+            '    query = query.Where(Function(f) f.p.EMP_STATUS <> 0)
+            'End If
+            Dim str As String = "Kiêm nhiệm"
+            If _filter.IS_KIEMNHIEM = 0 Then
+                query = query.Where(Function(f) Not f.emp_stt.NAME_VN.ToUpper().Contains(str.ToUpper()))
+            End If
             If _filter.MustHaveContract Then
                 query = query.Where(Function(f) f.p.CONTRACT_ID.HasValue)
             End If
@@ -2290,6 +2297,7 @@ Partial Public Class CommonRepository
             Else
                 query = query.Where(Function(f) f.p.WORK_STATUS Is Nothing Or (f.p.WORK_STATUS IsNot Nothing And f.p.WORK_STATUS <> 257))
             End If
+
             Select Case _filter.IS_3B
                 Case 1
                     query = query.Where(Function(f) f.p.IS_3B = True)
@@ -2303,6 +2311,7 @@ Partial Public Class CommonRepository
                             .ID = f.p.ID,
                             .EMPLOYEE_ID = f.p.ID,
                             .FULLNAME_VN = f.p.FULLNAME_VN,
+                            .EMP_STATUS = f.emp_stt.NAME_VN,
                             .FULLNAME_EN = f.p.FULLNAME_EN,
                             .JOIN_DATE = f.p.JOIN_DATE,
                             .ORG_NAME = f.o.NAME_VN,
