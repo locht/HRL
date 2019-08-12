@@ -683,6 +683,7 @@
       <DependentUpon>ctrlDBCertificateExpires.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="Modules\Profile\BusinessObjects\SendMail.vb" />
     <Compile Include="Modules\Profile\BusinessObjects\MessageDTO.vb" />
     <Compile Include="Modules\Competency\Business\ctrlHU_CompetencyAssNewEdit.ascx.designer.vb">
       <DependentUpon>ctrlHU_CompetencyAssNewEdit.ascx</DependentUpon>

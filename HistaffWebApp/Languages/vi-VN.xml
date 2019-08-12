@@ -39612,4 +39612,84 @@ Xin cám ơn!
       <string>Chức danh người ký quyết định thôi kiêm nhiệm 2</string>
     </Value>
   </Item>
+  <Item>
+    <Key>
+      <string>SINH NHẬT LÃNH ĐẠO</string>
+    </Key>
+    <Value>
+      <string>Sinh nhật lãnh đạo</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>HẾT HIỆU LỰC KIÊM NHIỆM</string>
+    </Key>
+    <Value>
+      <string>Hết hiệu lực kiêm nhiệm</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>HẾT HẠN GIẢM TRỪ GIA CẢNH</string>
+    </Key>
+    <Value>
+      <string>Hết hạn giảm trừ gia cảnh</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>CTRLHOMEDASHBOARD</string>
+    </Key>
+    <Value>
+      <string>ctrlHomeDashboard</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>SHARED</string>
+    </Key>
+    <Value>
+      <string>Shared</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>BẢNG THÔNG TIN</string>
+    </Key>
+    <Value>
+      <string>Bảng thông tin</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>CTRLDASHBOARDHOME</string>
+    </Key>
+    <Value>
+      <string>ctrlDashboardHome</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>BẢNG THÔNG TIN CHI TIẾT</string>
+    </Key>
+    <Value>
+      <string>Bảng thông tin chi tiết</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>GỬI MAIL</string>
+    </Key>
+    <Value>
+      <string>Gửi mail</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>MESSAGE_SENDMAIL_COMPLETED</string>
+    </Key>
+    <Value>
+      <string>Gửi mail thành công</string>
+    </Value>
+  </Item>
 </SerializableDictionaryOfStringString>
