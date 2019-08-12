@@ -242,6 +242,7 @@ Partial Class ProfileRepository
                                            .P_ISDISSOLVE = _param.IS_DISSOLVE})
             End Using
             Dim fileDirectory = ""
+            Dim str As String = "Kiêm nhiệm"
             fileDirectory = AppDomain.CurrentDomain.BaseDirectory & "\EmployeeImage"
             Dim wstt = ProfileCommon.OT_WORK_STATUS.TERMINATE_ID
 
@@ -289,7 +290,7 @@ Partial Class ProfileRepository
                              .ITIME_ID = p.p.ITIME_ID,
                              .MODIFIED_DATE = p.p.MODIFIED_DATE,
                              .EMP_STATUS = p.p.EMP_STATUS,
-                             .EMP_STATUS_NAME = p.emp_stt.NAME_VN})
+                             .EMP_STATUS_NAME = If(p.p.IS_KIEM_NHIEM IsNot Nothing, str, p.emp_stt.NAME_VN)})
 
             If _filter.TITLE_ID IsNot Nothing Then
                 lst = lst.Where(Function(p) p.TITLE_ID = _filter.TITLE_ID)
@@ -659,7 +660,7 @@ Partial Class ProfileRepository
                          .WORK_STATUS = e.WORK_STATUS,
                          .WORK_STATUS_NAME = workstatus.NAME_VN,
                          .EMP_STATUS = e.EMP_STATUS,
-                         .EMP_STATUS_NAME = If(e.IS_KIEM_NHIEM = 1, str, empstatus.NAME_VN),
+                         .EMP_STATUS_NAME = If(e.IS_KIEM_NHIEM IsNot Nothing, str, empstatus.NAME_VN),
                          .DIRECT_MANAGER = e.DIRECT_MANAGER,
                          .DIRECT_MANAGER_NAME = direct.FULLNAME_VN,
                          .LEVEL_MANAGER = e.LEVEL_MANAGER,
