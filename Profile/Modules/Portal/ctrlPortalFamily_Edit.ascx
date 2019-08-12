@@ -86,12 +86,12 @@
                 <%# Translate("Mã hộ gia đình")%>
             </td>
             <td>
-                <tlk:RadTextBox runat="server" ID="txtHouseCertificate_Code" />
+                <tlk:RadTextBox runat="server" ID="txtHouseCertificate_Code"/>
             </td>
              <td class="lb">
             </td>
             <td>
-                <asp:CheckBox runat="server" ID="chkIs_Owner" Text="<%$ Translate : Là chủ hộ %>" />
+                <asp:CheckBox runat="server" ID="chkIs_Owner" Text="<%$ Translate : Là chủ hộ %>" AutoPostBack="true" />
             </td>
         </tr>
         <tr>
@@ -351,7 +351,7 @@
                 <Selecting AllowRowSelect="true" />
             </ClientSettings>
         <MasterTableView DataKeyNames="ID,ID_NO,FULLNAME,RELATION_ID,IS_DEDUCT,DEDUCT_FROM,DEDUCT_TO,ADDRESS,BIRTH_DATE,REMARK,DEDUCT_REG,FK_PKEY,STATUS,REASON_UNAPROVE,TAXTATION,CAREER,TITLE_NAME,PROVINCE_NAME,PROVINCE_ID,CERTIFICATE_NUM,CERTIFICATE_CODE,ADDRESS_TT,AD_PROVINCE_ID,AD_DISTRICT_ID,AD_WARD_ID,AD_VILLAGE,TT_PROVINCE_ID,TT_DISTRICT_ID,TT_WARD_ID,IS_OWNER,IS_PASS"
-            ClientDataKeyNames="ID,ID_NO,FULLNAME,RELATION_ID,IS_DEDUCT,DEDUCT_FROM,DEDUCT_TO,ADDRESS,BIRTH_DATE,REMARK,DEDUCT_REG,FK_PKEY,STATUS,REASON_UNAPROVE,TAXTATION,CAREER,TITLE_NAME,PROVINCE_NAME,PROVINCE_ID,CERTIFICATE_NUM,CERTIFICATE_CODE,ADDRESS_TT,AD_PROVINCE_ID,AD_DISTRICT_ID,AD_WARD_ID,AD_VILLAGE,TT_PROVINCE_ID,TT_DISTRICT_ID,TT_WARD_ID,IS_OWNER,IS_PASS,,NATION_ID,ID_NO_DATE,ID_NO_PLACE_NAME,PHONE,TAXTATION_DATE,TAXTATION_PLACE,BIRTH_CODE,QUYEN,BIRTH_NATION_ID,BIRTH_PROVINCE_ID,BIRTH_DISTRICT_ID,BIRTH_WARD_ID"
+            ClientDataKeyNames="ID,ID_NO,FULLNAME,RELATION_ID,IS_DEDUCT,DEDUCT_FROM,DEDUCT_TO,ADDRESS,BIRTH_DATE,REMARK,DEDUCT_REG,FK_PKEY,STATUS,REASON_UNAPROVE,TAXTATION,CAREER,TITLE_NAME,PROVINCE_NAME,PROVINCE_ID,CERTIFICATE_NUM,CERTIFICATE_CODE,ADDRESS_TT,AD_PROVINCE_ID,AD_DISTRICT_ID,AD_WARD_ID,AD_VILLAGE,TT_PROVINCE_ID,TT_DISTRICT_ID,TT_WARD_ID,IS_OWNER,IS_PASS,NATION_ID,ID_NO_DATE,ID_NO_PLACE_NAME,PHONE,TAXTATION_DATE,TAXTATION_PLACE,BIRTH_CODE,QUYEN,BIRTH_NATION_ID,BIRTH_PROVINCE_ID,BIRTH_DISTRICT_ID,BIRTH_WARD_ID,GENDER"
             Caption="<%$ Translate: Thông tin chỉnh sửa %>">
             <Columns>
                 <tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderStyle-HorizontalAlign="Center"
@@ -385,14 +385,6 @@
                     Visible="True" EmptyDataText="">
                     <HeaderStyle HorizontalAlign="Center" />
                 </tlk:GridBoundColumn>
-                <tlk:GridBoundColumn DataField="TITLE_NAME" HeaderText="<%$ Translate: Chức danh %>" UniqueName="TITLE_NAME"
-                    Visible="True" EmptyDataText="">
-                    <HeaderStyle HorizontalAlign="Center" />
-                </tlk:GridBoundColumn>
-                <tlk:GridBoundColumn DataField="PROVINCE_NAME" HeaderText="<%$ Translate: Nguyên quán %>" UniqueName="PROVINCE_NAME"
-                    Visible="True" EmptyDataText="">
-                    <HeaderStyle HorizontalAlign="Center" />
-                </tlk:GridBoundColumn>
                 <tlk:GridCheckBoxColumn HeaderText="<%$ Translate: Giảm trừ %>" DataField="IS_DEDUCT"
                     UniqueName="IS_DEDUCT" SortExpression="IS_DEDUCT" HeaderStyle-Width="80px">
                     <HeaderStyle HorizontalAlign="Center" />
@@ -412,6 +404,15 @@
                     UniqueName="DEDUCT_REG" Visible="true" DataFormatString="{0:dd/MM/yyyy}">
                     <HeaderStyle HorizontalAlign="Center" />
                 </tlk:GridDateTimeColumn>
+                <tlk:GridCheckBoxColumn HeaderText="<%$ Translate: Là chủ hộ %>" DataField="IS_OWNER"
+                    UniqueName="IS_OWNER" SortExpression="IS_OWNER" HeaderStyle-Width="80px">
+                    <HeaderStyle HorizontalAlign="Center" />
+                    <ItemStyle HorizontalAlign="Center" />
+                </tlk:GridCheckBoxColumn>
+                 <tlk:GridBoundColumn HeaderText="<%$ Translate: Mã hộ gia đình %>" DataField="CERTIFICATE_CODE"
+                    UniqueName="CERTIFICATE_CODE" SortExpression="CERTIFICATE_CODE">
+                    <HeaderStyle HorizontalAlign="Center" />
+                </tlk:GridBoundColumn>
                 <tlk:GridBoundColumn HeaderText="<%$ Translate: Địa chỉ thường trú %>" DataField="ADDRESS"
                     UniqueName="ADDRESS" SortExpression="ADDRESS">
                     <HeaderStyle HorizontalAlign="Center" />
@@ -437,7 +438,7 @@
                 <Selecting AllowRowSelect="true" />
             </ClientSettings>
         <MasterTableView DataKeyNames="ID,ID_NO,FULLNAME,RELATION_ID,IS_DEDUCT,DEDUCT_FROM,DEDUCT_TO,ADDRESS,BIRTH_DATE,REMARK,DEDUCT_REG,CAREER,TITLE_NAME,PROVINCE_NAME,PROVINCE_ID,TAXTATION,CERTIFICATE_NUM,CERTIFICATE_CODE,ADDRESS_TT,AD_PROVINCE_ID,AD_DISTRICT_ID,AD_WARD_ID,AD_VILLAGE,TT_PROVINCE_ID,TT_DISTRICT_ID,TT_WARD_ID,IS_OWNER,IS_PASS"
-            ClientDataKeyNames="ID,ID_NO,FULLNAME,RELATION_ID,IS_DEDUCT,DEDUCT_FROM,DEDUCT_TO,ADDRESS,BIRTH_DATE,REMARK,DEDUCT_REG,CAREER,TITLE_NAME,PROVINCE_NAME,PROVINCE_ID,TAXTATION,CERTIFICATE_NUM,CERTIFICATE_CODE,ADDRESS_TT,AD_PROVINCE_ID,AD_DISTRICT_ID,AD_WARD_ID,AD_VILLAGE,TT_PROVINCE_ID,TT_DISTRICT_ID,TT_WARD_ID,IS_OWNER,IS_PASS,NATION_ID,ID_NO_DATE,ID_NO_PLACE_NAME,PHONE,TAXTATION_DATE,TAXTATION_PLACE,BIRTH_CODE,QUYEN,BIRTH_NATION_ID,BIRTH_PROVINCE_ID,BIRTH_DISTRICT_ID,BIRTH_WARD_ID"
+            ClientDataKeyNames="ID,ID_NO,FULLNAME,RELATION_ID,IS_DEDUCT,DEDUCT_FROM,DEDUCT_TO,ADDRESS,BIRTH_DATE,REMARK,DEDUCT_REG,CAREER,TITLE_NAME,PROVINCE_NAME,PROVINCE_ID,TAXTATION,CERTIFICATE_NUM,CERTIFICATE_CODE,ADDRESS_TT,AD_PROVINCE_ID,AD_DISTRICT_ID,AD_WARD_ID,AD_VILLAGE,TT_PROVINCE_ID,TT_DISTRICT_ID,TT_WARD_ID,IS_OWNER,IS_PASS,NATION_ID,ID_NO_DATE,ID_NO_PLACE_NAME,PHONE,TAXTATION_DATE,TAXTATION_PLACE,BIRTH_CODE,QUYEN,BIRTH_NATION_ID,BIRTH_PROVINCE_ID,BIRTH_DISTRICT_ID,BIRTH_WARD_ID,GENDER"
             Caption="<%$ Translate: Thông tin hiện tại %>">
             <Columns>
                 <tlk:GridButtonColumn HeaderText="" Text="Sửa" CommandName="EditRow">
@@ -468,14 +469,6 @@
                     Visible="True" EmptyDataText="">
                     <HeaderStyle HorizontalAlign="Center" />
                 </tlk:GridBoundColumn>
-                <tlk:GridBoundColumn DataField="TITLE_NAME" HeaderText="<%$ Translate: Chức danh %>" UniqueName="TITLE_NAME"
-                    Visible="True" EmptyDataText="">
-                    <HeaderStyle HorizontalAlign="Center" />
-                </tlk:GridBoundColumn>
-                <tlk:GridBoundColumn DataField="PROVINCE_NAME" HeaderText="<%$ Translate: Nguyên quán %>" UniqueName="PROVINCE_NAME"
-                    Visible="True" EmptyDataText="">
-                    <HeaderStyle HorizontalAlign="Center" />
-                </tlk:GridBoundColumn>
                 <tlk:GridCheckBoxColumn HeaderText="<%$ Translate: Giảm trừ %>" DataField="IS_DEDUCT"
                     UniqueName="IS_DEDUCT" SortExpression="IS_DEDUCT" HeaderStyle-Width="80px">
                     <HeaderStyle HorizontalAlign="Center" />
@@ -495,6 +488,15 @@
                     UniqueName="DEDUCT_REG" Visible="true" DataFormatString="{0:dd/MM/yyyy}">
                     <HeaderStyle HorizontalAlign="Center" />
                 </tlk:GridDateTimeColumn>
+                 <tlk:GridCheckBoxColumn HeaderText="<%$ Translate: Là chủ hộ %>" DataField="IS_OWNER"
+                    UniqueName="IS_OWNER" SortExpression="IS_OWNER" HeaderStyle-Width="80px">
+                    <HeaderStyle HorizontalAlign="Center" />
+                    <ItemStyle HorizontalAlign="Center" />
+                </tlk:GridCheckBoxColumn>
+                 <tlk:GridBoundColumn HeaderText="<%$ Translate: Mã hộ gia đình %>" DataField="CERTIFICATE_CODE"
+                    UniqueName="CERTIFICATE_CODE" SortExpression="CERTIFICATE_CODE">
+                    <HeaderStyle HorizontalAlign="Center" />
+                </tlk:GridBoundColumn>
                 <tlk:GridBoundColumn HeaderText="<%$ Translate: Địa chỉ thường trú %>" DataField="ADDRESS"
                     UniqueName="ADDRESS" SortExpression="ADDRESS">
                     <HeaderStyle HorizontalAlign="Center" />

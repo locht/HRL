@@ -141,18 +141,18 @@ Public Class ctrlPortalFamily_Edit
             dic1.Add("TITLE_NAME", txtTitle)
             dic1.Add("PROVINCE_ID", cboNguyenQuan)
 
-            dic.Add("NATION_ID", cboNationlity)
-            dic.Add("ID_NO_DATE", rdIDDate)
-            dic.Add("ID_NO_PLACE_NAME", txtIDPlace)
-            dic.Add("PHONE", txtPhone)
-            dic.Add("TAXTATION_DATE", rdMSTDate)
-            dic.Add("TAXTATION_PLACE", txt_MSTPLACE)
-            dic.Add("BIRTH_CODE", txtBIRTH_CODE)
-            dic.Add("QUYEN", txtQuyen)
-            dic.Add("BIRTH_NATION_ID", cboNATIONALITYFAMILY)
-            dic.Add("BIRTH_PROVINCE_ID", cbTempKtPROVINCE_ID)
-            dic.Add("BIRTH_DISTRICT_ID", cbTempDISTRICT_ID)
-            dic.Add("BIRTH_WARD_ID", cbTempKtWARD_ID)
+            dic1.Add("NATION_ID", cboNationlity)
+            dic1.Add("ID_NO_DATE", rdIDDate)
+            dic1.Add("ID_NO_PLACE_NAME", txtIDPlace)
+            dic1.Add("PHONE", txtPhone)
+            dic1.Add("TAXTATION_DATE", rdMSTDate)
+            dic1.Add("TAXTATION_PLACE", txt_MSTPLACE)
+            dic1.Add("BIRTH_CODE", txtBIRTH_CODE)
+            dic1.Add("QUYEN", txtQuyen)
+            dic1.Add("BIRTH_NATION_ID", cboNATIONALITYFAMILY)
+            dic1.Add("BIRTH_PROVINCE_ID", cbTempKtPROVINCE_ID)
+            dic1.Add("BIRTH_DISTRICT_ID", cbTempDISTRICT_ID)
+            dic1.Add("BIRTH_WARD_ID", cbTempKtWARD_ID)
             Utilities.OnClientRowSelectedChanged(rgFamilyEdit, dic1)
 
         Catch ex As Exception
@@ -300,8 +300,8 @@ Public Class ctrlPortalFamily_Edit
                             obj.BIRTH_PROVINCE_ID = cbTempKtPROVINCE_ID.SelectedValue
                         End If
 
-                        If cbTempDISTRICT_ID.SelectedValue <> "" Then
-                            obj.BIRTH_DISTRICT_ID = cbTempDISTRICT_ID.SelectedValue
+                        If cbTempKtDISTRICT_ID.SelectedValue <> "" Then
+                            obj.BIRTH_DISTRICT_ID = cbTempKtDISTRICT_ID.SelectedValue
                         End If
 
                         If cbTempKtWARD_ID.SelectedValue <> "" Then
@@ -380,6 +380,24 @@ Public Class ctrlPortalFamily_Edit
                         End If
                         hidID.Value = item.GetDataKeyValue("ID")
                         chkIsDeduct_CheckedChanged(Nothing, Nothing)
+
+
+
+                        cboNationlity.SelectedValue = item.GetDataKeyValue("NATION_ID")
+                        cboGender.SelectedValue = item.GetDataKeyValue("GENDER")
+                        rdIDDate.SelectedDate = item.GetDataKeyValue("ID_NO_DATE")
+                        txtIDPlace.Text = item.GetDataKeyValue("ID_NO_PLACE_NAME")
+                        txtPhone.Text = item.GetDataKeyValue("PHONE")
+                        rdMSTDate.SelectedDate = item.GetDataKeyValue("TAXTATION_DATE")
+                        txt_MSTPLACE.Text = item.GetDataKeyValue("TAXTATION_PLACE")
+                        txtBIRTH_CODE.Text = item.GetDataKeyValue("BIRTH_CODE")
+                        txtQuyen.Text = item.GetDataKeyValue("QUYEN")
+                        cboNATIONALITYFAMILY.SelectedValue = item.GetDataKeyValue("BIRTH_NATION_ID")
+                        cbTempKtPROVINCE_ID.SelectedValue = item.GetDataKeyValue("BIRTH_PROVINCE_ID")
+                        cbTempDISTRICT_ID.SelectedValue = item.GetDataKeyValue("BIRTH_DISTRICT_ID")
+                        cbTempKtWARD_ID.SelectedValue = item.GetDataKeyValue("BIRTH_WARD_ID")
+
+
                     Else
                         ClearControlValue(txtAdress, txtTempAdress, txtAD_Village, txtHouseCertificate_Code, txtHouseCertificate_Num, cboGender, rdIDDate, txtIDPlace, cboNationlity, txtPhone, rdMSTDate, txtBIRTH_CODE, cboNATIONALITYFAMILY, cbTempKtPROVINCE_ID, cbTempKtDISTRICT_ID, cbTempKtWARD_ID, txtQuyen,
                                       chkIs_Owner, chkIs_Pass, txtFullName, txtIDNO, txtRemark, txtTax, txtQuyen,
@@ -493,7 +511,9 @@ Public Class ctrlPortalFamily_Edit
                 If IsNumeric(item.GetDataKeyValue("TT_PROVINCE_ID")) Then
                     cbTempPROVINCE_ID.SelectedValue = item.GetDataKeyValue("TT_PROVINCE_ID")
                 End If
+               
                 Using rep As New ProfileRepository
+
                     If cbPROVINCE_ID.SelectedValue <> "" Then
                         Dim dt As DataTable = rep.GetDistrictList(cbPROVINCE_ID.SelectedValue, False)
                         FillRadCombobox(cbDISTRICT_ID, dt, "NAME", "ID")
@@ -522,6 +542,44 @@ Public Class ctrlPortalFamily_Edit
                     If IsNumeric(item.GetDataKeyValue("TT_WARD_ID")) Then
                         cbTempWARD_ID.SelectedValue = item.GetDataKeyValue("TT_WARD_ID")
                     End If
+
+                    If IsNumeric(item.GetDataKeyValue("NATION_ID")) Then
+                        cboNationlity.SelectedValue = item.GetDataKeyValue("NATION_ID")
+                    End If
+
+                    If IsNumeric(item.GetDataKeyValue("BIRTH_NATION_ID")) Then
+                        cboNATIONALITYFAMILY.SelectedValue = item.GetDataKeyValue("BIRTH_NATION_ID")
+                    End If
+
+                    If IsNumeric(item.GetDataKeyValue("BIRTH_PROVINCE_ID")) Then
+                        cbTempKtPROVINCE_ID.SelectedValue = item.GetDataKeyValue("BIRTH_PROVINCE_ID")
+                    End If
+
+                    If IsNumeric(item.GetDataKeyValue("BIRTH_PROVINCE_ID")) Then
+                        Dim dt As DataTable = rep.GetDistrictList(cbTempKtPROVINCE_ID.SelectedValue, False)
+                        FillRadCombobox(cbTempKtDISTRICT_ID, dt, "NAME", "ID")
+                    End If
+
+                    If IsNumeric(item.GetDataKeyValue("BIRTH_DISTRICT_ID")) Then
+                        cbTempKtDISTRICT_ID.SelectedValue = item.GetDataKeyValue("BIRTH_DISTRICT_ID")
+                    End If
+
+                    If IsNumeric(item.GetDataKeyValue("BIRTH_WARD_ID")) Then
+                        Dim dt As DataTable = rep.GetWardList(cbTempKtDISTRICT_ID.SelectedValue, False)
+                        FillRadCombobox(cbTempKtWARD_ID, dt, "NAME", "ID")
+                        cbTempKtWARD_ID.SelectedValue = item.GetDataKeyValue("BIRTH_WARD_ID")
+                    End If
+
+                    cboGender.SelectedValue = item.GetDataKeyValue("GENDER")
+
+                    rdIDDate.SelectedDate = item.GetDataKeyValue("ID_NO_DATE")
+                    txtIDPlace.Text = item.GetDataKeyValue("ID_NO_PLACE_NAME")
+                    txtPhone.Text = item.GetDataKeyValue("PHONE")
+                    rdMSTDate.SelectedDate = item.GetDataKeyValue("TAXTATION_DATE")
+                    txt_MSTPLACE.Text = item.GetDataKeyValue("TAXTATION_PLACE")
+                    txtBIRTH_CODE.Text = item.GetDataKeyValue("BIRTH_CODE")
+                    txtQuyen.Text = item.GetDataKeyValue("QUYEN")
+
                 End Using
                 chkIs_Owner.Checked = item.GetDataKeyValue("IS_OWNER")
                 chkIs_Pass.Checked = item.GetDataKeyValue("IS_PASS")
@@ -593,9 +651,48 @@ Public Class ctrlPortalFamily_Edit
                         Dim dt As DataTable = rep.GetWardList(cbTempDISTRICT_ID.SelectedValue, False)
                         FillRadCombobox(cbTempWARD_ID, dt, "NAME", "ID")
                     End If
+
                     If IsNumeric(item.GetDataKeyValue("TT_WARD_ID")) Then
                         cbTempWARD_ID.SelectedValue = item.GetDataKeyValue("TT_WARD_ID")
                     End If
+
+                    If IsNumeric(item.GetDataKeyValue("NATION_ID")) Then
+                        cboNationlity.SelectedValue = item.GetDataKeyValue("NATION_ID")
+                    End If
+
+                    If IsNumeric(item.GetDataKeyValue("BIRTH_NATION_ID")) Then
+                        cboNATIONALITYFAMILY.SelectedValue = item.GetDataKeyValue("BIRTH_NATION_ID")
+                    End If
+
+                    If IsNumeric(item.GetDataKeyValue("BIRTH_PROVINCE_ID")) Then
+                        cbTempKtPROVINCE_ID.SelectedValue = item.GetDataKeyValue("BIRTH_PROVINCE_ID")
+                    End If
+
+                    If IsNumeric(item.GetDataKeyValue("BIRTH_PROVINCE_ID")) Then
+                        Dim dt As DataTable = rep.GetDistrictList(cbTempKtPROVINCE_ID.SelectedValue, False)
+                        FillRadCombobox(cbTempKtDISTRICT_ID, dt, "NAME", "ID")
+                    End If
+
+                    If IsNumeric(item.GetDataKeyValue("BIRTH_DISTRICT_ID")) Then
+                        cbTempKtDISTRICT_ID.SelectedValue = item.GetDataKeyValue("BIRTH_DISTRICT_ID")
+                    End If
+
+                    If IsNumeric(item.GetDataKeyValue("BIRTH_WARD_ID")) Then
+                        Dim dt As DataTable = rep.GetWardList(cbTempKtDISTRICT_ID.SelectedValue, False)
+                        FillRadCombobox(cbTempKtWARD_ID, dt, "NAME", "ID")
+                        cbTempKtWARD_ID.SelectedValue = item.GetDataKeyValue("BIRTH_WARD_ID")
+                    End If
+
+                    cboGender.SelectedValue = item.GetDataKeyValue("GENDER")
+
+                    rdIDDate.SelectedDate = item.GetDataKeyValue("ID_NO_DATE")
+                    txtIDPlace.Text = item.GetDataKeyValue("ID_NO_PLACE_NAME")
+                    txtPhone.Text = item.GetDataKeyValue("PHONE")
+                    rdMSTDate.SelectedDate = item.GetDataKeyValue("TAXTATION_DATE")
+                    txt_MSTPLACE.Text = item.GetDataKeyValue("TAXTATION_PLACE")
+                    txtBIRTH_CODE.Text = item.GetDataKeyValue("BIRTH_CODE")
+                    txtQuyen.Text = item.GetDataKeyValue("QUYEN")
+
                 End Using
                 chkIs_Owner.Checked = item.GetDataKeyValue("IS_OWNER")
                 chkIs_Pass.Checked = item.GetDataKeyValue("IS_PASS")
@@ -828,6 +925,44 @@ Public Class ctrlPortalFamily_Edit
                 If IsNumeric(item.GetDataKeyValue("TT_WARD_ID")) Then
                     cbTempWARD_ID.SelectedValue = item.GetDataKeyValue("TT_WARD_ID")
                 End If
+
+                If IsNumeric(item.GetDataKeyValue("NATION_ID")) Then
+                    cboNationlity.SelectedValue = item.GetDataKeyValue("NATION_ID")
+                End If
+
+                If IsNumeric(item.GetDataKeyValue("BIRTH_NATION_ID")) Then
+                    cboNATIONALITYFAMILY.SelectedValue = item.GetDataKeyValue("BIRTH_NATION_ID")
+                End If
+
+                If IsNumeric(item.GetDataKeyValue("BIRTH_PROVINCE_ID")) Then
+                    cbTempKtPROVINCE_ID.SelectedValue = item.GetDataKeyValue("BIRTH_PROVINCE_ID")
+                End If
+
+                If IsNumeric(item.GetDataKeyValue("BIRTH_PROVINCE_ID")) Then
+                    Dim dt As DataTable = rep.GetDistrictList(cbTempKtPROVINCE_ID.SelectedValue, False)
+                    FillRadCombobox(cbTempKtDISTRICT_ID, dt, "NAME", "ID")
+                End If
+
+                If IsNumeric(item.GetDataKeyValue("BIRTH_DISTRICT_ID")) Then
+                    cbTempKtDISTRICT_ID.SelectedValue = item.GetDataKeyValue("BIRTH_DISTRICT_ID")
+                End If
+
+                If IsNumeric(item.GetDataKeyValue("BIRTH_WARD_ID")) Then
+                    Dim dt As DataTable = rep.GetWardList(cbTempKtDISTRICT_ID.SelectedValue, False)
+                    FillRadCombobox(cbTempKtWARD_ID, dt, "NAME", "ID")
+                    cbTempKtWARD_ID.SelectedValue = item.GetDataKeyValue("BIRTH_WARD_ID")
+                End If
+
+                cboGender.SelectedValue = item.GetDataKeyValue("GENDER")
+
+                rdIDDate.SelectedDate = item.GetDataKeyValue("ID_NO_DATE")
+                txtIDPlace.Text = item.GetDataKeyValue("ID_NO_PLACE_NAME")
+                txtPhone.Text = item.GetDataKeyValue("PHONE")
+                rdMSTDate.SelectedDate = item.GetDataKeyValue("TAXTATION_DATE")
+                txt_MSTPLACE.Text = item.GetDataKeyValue("TAXTATION_PLACE")
+                txtBIRTH_CODE.Text = item.GetDataKeyValue("BIRTH_CODE")
+                txtQuyen.Text = item.GetDataKeyValue("QUYEN")
+
             End Using
             txtAD_Village.Text = item.GetDataKeyValue("AD_VILLAGE")
             chkIs_Owner.Checked = item.GetDataKeyValue("IS_OWNER")
@@ -908,6 +1043,43 @@ Public Class ctrlPortalFamily_Edit
                 If IsNumeric(item.GetDataKeyValue("TT_WARD_ID")) Then
                     cbTempWARD_ID.SelectedValue = item.GetDataKeyValue("TT_WARD_ID")
                 End If
+
+                If IsNumeric(item.GetDataKeyValue("NATION_ID")) Then
+                    cboNationlity.SelectedValue = item.GetDataKeyValue("NATION_ID")
+                End If
+
+                If IsNumeric(item.GetDataKeyValue("BIRTH_NATION_ID")) Then
+                    cboNATIONALITYFAMILY.SelectedValue = item.GetDataKeyValue("BIRTH_NATION_ID")
+                End If
+
+                If IsNumeric(item.GetDataKeyValue("BIRTH_PROVINCE_ID")) Then
+                    cbTempKtPROVINCE_ID.SelectedValue = item.GetDataKeyValue("BIRTH_PROVINCE_ID")
+                End If
+
+                If IsNumeric(item.GetDataKeyValue("BIRTH_PROVINCE_ID")) Then
+                    Dim dt As DataTable = rep.GetDistrictList(cbTempKtPROVINCE_ID.SelectedValue, False)
+                    FillRadCombobox(cbTempKtDISTRICT_ID, dt, "NAME", "ID")
+                End If
+
+                If IsNumeric(item.GetDataKeyValue("BIRTH_DISTRICT_ID")) Then
+                    cbTempKtDISTRICT_ID.SelectedValue = item.GetDataKeyValue("BIRTH_DISTRICT_ID")
+                End If
+
+                If IsNumeric(item.GetDataKeyValue("BIRTH_WARD_ID")) Then
+                    Dim dt As DataTable = rep.GetWardList(cbTempKtDISTRICT_ID.SelectedValue, False)
+                    FillRadCombobox(cbTempKtWARD_ID, dt, "NAME", "ID")
+                    cbTempKtWARD_ID.SelectedValue = item.GetDataKeyValue("BIRTH_WARD_ID")
+                End If
+
+                cboGender.SelectedValue = item.GetDataKeyValue("GENDER")
+
+                rdIDDate.SelectedDate = item.GetDataKeyValue("ID_NO_DATE")
+                txtIDPlace.Text = item.GetDataKeyValue("ID_NO_PLACE_NAME")
+                txtPhone.Text = item.GetDataKeyValue("PHONE")
+                rdMSTDate.SelectedDate = item.GetDataKeyValue("TAXTATION_DATE")
+                txt_MSTPLACE.Text = item.GetDataKeyValue("TAXTATION_PLACE")
+                txtBIRTH_CODE.Text = item.GetDataKeyValue("BIRTH_CODE")
+                txtQuyen.Text = item.GetDataKeyValue("QUYEN")
             End Using
             chkIs_Owner.Checked = item.GetDataKeyValue("IS_OWNER")
             chkIs_Pass.Checked = item.GetDataKeyValue("IS_PASS")
