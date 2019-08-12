@@ -2664,7 +2664,7 @@ Public Class ProfileRepository
         Try
             Dim query = (From p In Context.HU_CONTRACT
                          Where p.EMPLOYEE_ID = empID AndAlso _
-                         p.STATUS_ID = ProfileCommon.OT_CONTRACT_STATUS.APPROVE_ID AndAlso p.CONTRACT_NO IsNot Nothing
+                         p.STATUS_ID = ProfileCommon.DECISION_STATUS.APPROVE_ID AndAlso p.CONTRACT_NO IsNot Nothing
                          Select New ContractDTO With {.ID = p.ID,
                                                       .EMPLOYEE_ID = p.EMPLOYEE_ID,
                                                       .CONTRACT_NO = p.CONTRACT_NO,

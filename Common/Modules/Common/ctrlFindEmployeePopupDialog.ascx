@@ -1,7 +1,6 @@
 ﻿<%@ Control Language="vb" AutoEventWireup="false" CodeBehind="ctrlFindEmployeePopupDialog.ascx.vb"
     Inherits="Common.ctrlFindEmployeePopupDialog" %>
-    <%@ Import Namespace="Framework.UI.Utilities" %>
-    
+<%@ Import Namespace="Framework.UI.Utilities" %>
 <link href="/Styles/StyleCustom.css" rel="stylesheet" type="text/css" />
 <%@ Register Src="ctrlOrganization.ascx" TagName="ctrlOrganization" TagPrefix="Common" %>
 <tlk:RadSplitter ID="RadSplitter1" runat="server" Width="100%" Height="100%">
@@ -21,6 +20,14 @@
                             <tlk:RadButton ID="btnSearch" runat="server" Text="<%$ Translate: Tìm %>" CausesValidation="false"
                                 SkinID="ButtonFind">
                             </tlk:RadButton>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="3">
+                            <asp:CheckBox runat="server" ID="chk_kiemnhiem" AutoPostBack="true" />
+                            <%# Translate("Liệt kê cả nhân viên kiêm nhiệm")%>
+                        </td>
+                        <td>
                         </td>
                     </tr>
                     <tr>
@@ -56,20 +63,22 @@
                                 UniqueName="TITLE_NAME" SortExpression="TITLE_NAME" HeaderStyle-Width="130px" />
                             <%-- <tlk:GridBoundColumn HeaderText="<%$ Translate: Đơn vị %>" DataField="ORG_NAME" UniqueName="ORG_NAME"
                                 SortExpression="ORG_NAME" HeaderStyle-Width="130px" />--%>
-                            <tlk:GridTemplateColumn HeaderText="<%$ Translate: Đơn vị %>" DataField="ORG_NAME"  ReadOnly="true"
-                                UniqueName="ORG_NAME" SortExpression="ORG_NAME">
+                            <tlk:GridTemplateColumn HeaderText="<%$ Translate: Đơn vị %>" DataField="ORG_NAME"
+                                ReadOnly="true" UniqueName="ORG_NAME" SortExpression="ORG_NAME">
                                 <HeaderStyle Width="130px" />
                                 <ItemTemplate>
-                                 <asp:Label ID="Label1" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.ORG_NAME") %>'>
-                                </asp:Label>
-                                <tlk:RadToolTip RenderMode="Lightweight" ID="RadToolTip1" runat="server" TargetControlID="Label1"
-                                                    RelativeTo="Element" Position="BottomCenter">
-                                            <%# DrawTreeByString(DataBinder.Eval(Container, "DataItem.ORG_DESC"))%>
-                                </tlk:RadToolTip>
-                            </ItemTemplate>
+                                    <asp:Label ID="Label1" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.ORG_NAME") %>'>
+                                    </asp:Label>
+                                    <tlk:RadToolTip RenderMode="Lightweight" ID="RadToolTip1" runat="server" TargetControlID="Label1"
+                                        RelativeTo="Element" Position="BottomCenter">
+                                        <%# DrawTreeByString(DataBinder.Eval(Container, "DataItem.ORG_DESC"))%>
+                                    </tlk:RadToolTip>
+                                </ItemTemplate>
                             </tlk:GridTemplateColumn>
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Giới tính %>" DataField="GENDER"
                                 UniqueName="GENDER" SortExpression="GENDER" HeaderStyle-Width="60px" />
+                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Loại nhân viên %>" DataField="EMP_STATUS"
+                                UniqueName="EMP_STATUS" SortExpression="EMP_STATUS" HeaderStyle-Width="60px" />
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Trạng thái nhân viên %>" DataField="WORK_STATUS"
                                 UniqueName="WORK_STATUS" SortExpression="WORK_STATUS" HeaderStyle-Width="130px" />
                         </Columns>

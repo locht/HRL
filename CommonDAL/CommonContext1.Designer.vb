@@ -18,7 +18,7 @@ Imports System.Runtime.Serialization
 Imports System.Xml.Serialization
 
 
-<Assembly: EdmSchemaAttribute("8e9fa6ce-e8b4-4e4e-9438-b2fb709fea71")>
+<Assembly: EdmSchemaAttribute("217dc9dd-2837-49b4-b23a-88e338ad1727")>
 #Region "EDM Relationship Metadata"
 <Assembly: EdmRelationshipAttribute("CommonModel", "SE_GRP_SE_USR", "SE_GROUP", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(SE_GROUP), "SE_USER", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(SE_USER))>
 <Assembly: EdmRelationshipAttribute("CommonModel", "FK_SM_SF", "SE_MODULE", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(SE_MODULE), "SE_FUNCTION", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(SE_FUNCTION), True)>
@@ -1940,6 +1940,31 @@ Public Partial Class HU_EMPLOYEE
     End Sub
 
     Private Partial Sub OnIS_3BChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property EMP_STATUS() As Global.System.String
+        Get
+            Return _EMP_STATUS
+        End Get
+        Set
+            OnEMP_STATUSChanging(value)
+            ReportPropertyChanging("EMP_STATUS")
+            _EMP_STATUS = StructuralObject.SetValidValue(value, true)
+            ReportPropertyChanged("EMP_STATUS")
+            OnEMP_STATUSChanged()
+        End Set
+    End Property
+
+    Private _EMP_STATUS As Global.System.String
+    Private Partial Sub OnEMP_STATUSChanging(value As Global.System.String)
+    End Sub
+
+    Private Partial Sub OnEMP_STATUSChanged()
     End Sub
 
     #End Region

@@ -281,7 +281,7 @@ Public Class Export
         Try
             Dim rep As New Attendance.AttendanceRepository
             Dim obj As New Attendance.AttendanceBusiness.ParamDTO
-            obj.P_EXPORT_TYPE = 4
+            obj.P_EXPORT_TYPE = 10
             If Not String.IsNullOrEmpty(Request.Params("PERIOD_ID")) Then
                 obj.PERIOD_ID = Decimal.Parse(Request.Params("PERIOD_ID"))
             End If

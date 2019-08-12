@@ -5554,6 +5554,9 @@ Namespace CommonBusiness
         Private EMPLOYEE_IDField As System.Nullable(Of Decimal)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private EMP_STATUSField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private FULLNAME_ENField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -5573,6 +5576,9 @@ Namespace CommonBusiness
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private IS_3BField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private IS_KIEMNHIEMField As System.Nullable(Of Decimal)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private IS_TERField As Boolean
@@ -5666,6 +5672,19 @@ Namespace CommonBusiness
         End Property
         
         <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property EMP_STATUS() As String
+            Get
+                Return Me.EMP_STATUSField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.EMP_STATUSField, value) <> true) Then
+                    Me.EMP_STATUSField = value
+                    Me.RaisePropertyChanged("EMP_STATUS")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
         Public Property FULLNAME_EN() As String
             Get
                 Return Me.FULLNAME_ENField
@@ -5752,6 +5771,19 @@ Namespace CommonBusiness
                 If (Object.ReferenceEquals(Me.IS_3BField, value) <> true) Then
                     Me.IS_3BField = value
                     Me.RaisePropertyChanged("IS_3B")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property IS_KIEMNHIEM() As System.Nullable(Of Decimal)
+            Get
+                Return Me.IS_KIEMNHIEMField
+            End Get
+            Set
+                If (Me.IS_KIEMNHIEMField.Equals(value) <> true) Then
+                    Me.IS_KIEMNHIEMField = value
+                    Me.RaisePropertyChanged("IS_KIEMNHIEM")
                 End If
             End Set
         End Property
