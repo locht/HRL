@@ -26,6 +26,14 @@
                         runat="server" ErrorMessage="<%$ Translate: Bạn phải nhập tên công ty %>" ToolTip="<%$ Translate: Bạn phải nhập tên công ty  %>">
                     </asp:RequiredFieldValidator>
                 </td>
+                <td class="lb">
+                    <%--   <%# Translate("Chức danh")%>--%>
+                    <asp:Label runat="server" ID="lbTitleName" Text="Chức danh"></asp:Label>
+                </td>
+                <td>
+                    <tlk:RadTextBox runat="server" ID="txtTitleName">
+                    </tlk:RadTextBox>
+                </td>
                 <td class="lb" style="width: 150px">
                     <%-- <%# ID="txt" Translate("Số điện thoại")%>--%>
                     <asp:Label runat="server" ID="lbsdt" Text="Số điện thoại"></asp:Label>
@@ -51,7 +59,7 @@
                     <asp:Label runat="server" ID="lbJoinDate" Text="Từ tháng/năm"></asp:Label>
                 </td>
                 <td>
-                    <tlk:RadMonthYearPicker ID="rdJoinDate" runat="server" Culture="en-US">
+                    <tlk:RadMonthYearPicker ID="rdJoinDate" runat="server" >
                         <DateInput ID="DateInput1" runat="server" DisplayDateFormat="MM/yyyy">
                         </DateInput>
                     </tlk:RadMonthYearPicker>
@@ -61,7 +69,7 @@
                     <asp:Label runat="server" ID="lbEndDate" Text="Đến tháng/năm"></asp:Label>
                 </td>
                 <td>
-                    <tlk:RadMonthYearPicker ID="rdEndDate" runat="server" Culture="en-US">
+                    <tlk:RadMonthYearPicker ID="rdEndDate" runat="server" >
                         <DateInput ID="DateInput2" runat="server" DisplayDateFormat="MM/yyyy">
                         </DateInput>
                     </tlk:RadMonthYearPicker>
@@ -81,14 +89,6 @@
                 </td>
             </tr>
             <tr>
-                <td class="lb">
-                    <%--   <%# Translate("Chức danh")%>--%>
-                    <asp:Label runat="server" ID="lbTitleName" Text="Chức danh"></asp:Label>
-                </td>
-                <td>
-                    <tlk:RadTextBox runat="server" ID="txtTitleName">
-                    </tlk:RadTextBox>
-                </td>
                 <td style="display: none" class="lb">
                     <%-- <%# Translate("Cấp bậc")%>--%>
                     <asp:Label runat="server" ID="lbLevelName" Text="Cấp bậc"></asp:Label>
