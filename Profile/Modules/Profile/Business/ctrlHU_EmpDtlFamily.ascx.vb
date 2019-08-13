@@ -91,10 +91,10 @@ Public Class ctrlHU_EmpDtlFamily
     Public Overrides Sub ViewInit(ByVal e As System.EventArgs)
         rgFamily.SetFilter()
         InitControl()
-        If Not IsPostBack Then
-            ViewConfig(RightPane)
-            GirdConfig(rgFamily)
-        End If
+        'If Not IsPostBack Then
+        '    ViewConfig(RightPane)
+        '    GirdConfig(rgFamily)
+        'End If
     End Sub
 
     Protected Sub InitControl()
@@ -131,7 +131,7 @@ Public Class ctrlHU_EmpDtlFamily
                     ComboBoxDataDTO.GET_RELATION = True
                     ComboBoxDataDTO.GET_PROVINCE = True
                     ComboBoxDataDTO.GET_DISTRICT = True
-                    'ComboBoxDataDTO.GET_W
+                    ComboBoxDataDTO.GET_NATION = True
                     rep.GetComboList(ComboBoxDataDTO)
                 End If
 
@@ -144,7 +144,22 @@ Public Class ctrlHU_EmpDtlFamily
                     FillDropDownList(cboProvince_City2, ComboBoxDataDTO.LIST_PROVINCE, "NAME_VN", "ID", Common.Common.SystemLanguage, True, cboProvince_City2.SelectedValue)
                     'FillDropDownList(cboDistrict2, ComboBoxDataDTO.LIST_DISTRICT, "NAME_VN", "ID", Common.Common.SystemLanguage, True, cboDistrict2.SelectedValue)
                     'FillDropDownList(cboCommune1, ComboBoxDataDTO.LIST_NATION, "NAME_VN", "ID", Common.Common.SystemLanguage, True, cboCommune1.SelectedValue)
+
+                    FillDropDownList(cbTempKtPROVINCE_ID, ComboBoxDataDTO.LIST_PROVINCE, "NAME_VN", "ID", Common.Common.SystemLanguage, True, cbTempKtPROVINCE_ID.SelectedValue)
+                    FillDropDownList(cboNationlity, ComboBoxDataDTO.LIST_NATION, "NAME_VN", "ID", Common.Common.SystemLanguage, True, cboNationlity.SelectedValue)
+                    FillDropDownList(cboNATIONALITYFAMILY, ComboBoxDataDTO.LIST_NATION, "NAME_VN", "ID", Common.Common.SystemLanguage, True, cboNATIONALITYFAMILY.SelectedValue)
+
+                    cboNationlity.SelectedValue = 244
+                    cboNATIONALITYFAMILY.SelectedValue = 244
                 End If
+
+                If Not IsPostBack Then
+                    cboGender.DataSource = rep.GetOtherList("GENDER", True)
+                    cboGender.DataTextField = "NAME"
+                    cboGender.DataValueField = "ID"
+                    cboGender.DataBind()
+                End If
+
                 'Dim dtPlace
                 'dtPlace = rep.GetProvinceList(True)
                 ''FillRadCombobox(cboProvince_City1, dtPlace, "NAME", "ID")
@@ -177,15 +192,12 @@ Public Class ctrlHU_EmpDtlFamily
                     End If
                 Case TOOLBARITEM_EDIT
 
-                    If SelectedItem Is Nothing Then
+
+                    If rgFamily.SelectedItems.Count = 0 Then
                         ShowMessage(Translate(CommonMessage.MESSAGE_NOT_SELECT_ROW), NotifyType.Warning)
                         Exit Sub
                     End If
-                    If SelectedItem.Count = 0 Then
-                        ShowMessage(Translate(CommonMessage.MESSAGE_NOT_SELECT_ROW), NotifyType.Warning)
-                        Exit Sub
-                    End If
-                    If SelectedItem.Count > 1 Then
+                    If rgFamily.SelectedItems.Count > 1 Then
                         ShowMessage(Translate(CommonMessage.MESSAGE_NOT_SELECT_MULTI_ROW), NotifyType.Warning)
                         Exit Sub
                     End If
@@ -398,6 +410,43 @@ Public Class ctrlHU_EmpDtlFamily
                     cboCommune2.SelectedValue = item.GetDataKeyValue("TT_WARD_ID")
                     cboCommune2.Text = item.GetDataKeyValue("TT_WARD_NAME")
                 End If
+
+                If IsNumeric(item.GetDataKeyValue("NATION_ID")) Then
+                    cboNationlity.SelectedValue = item.GetDataKeyValue("NATION_ID")
+                End If
+
+                If IsNumeric(item.GetDataKeyValue("BIRTH_NATION_ID")) Then
+                    cboNATIONALITYFAMILY.SelectedValue = item.GetDataKeyValue("BIRTH_NATION_ID")
+                End If
+
+                If IsNumeric(item.GetDataKeyValue("BIRTH_PROVINCE_ID")) Then
+                    cbTempKtPROVINCE_ID.SelectedValue = item.GetDataKeyValue("BIRTH_PROVINCE_ID")
+                End If
+
+                If IsNumeric(item.GetDataKeyValue("BIRTH_PROVINCE_ID")) Then
+                    Dim dt As DataTable = rep.GetDistrictList(cbTempKtPROVINCE_ID.SelectedValue, False)
+                    FillRadCombobox(cbTempKtDISTRICT_ID, dt, "NAME", "ID")
+                End If
+
+                If IsNumeric(item.GetDataKeyValue("BIRTH_DISTRICT_ID")) Then
+                    cbTempKtDISTRICT_ID.SelectedValue = item.GetDataKeyValue("BIRTH_DISTRICT_ID")
+                End If
+
+                If IsNumeric(item.GetDataKeyValue("BIRTH_WARD_ID")) Then
+                    Dim dt As DataTable = rep.GetWardList(cbTempKtDISTRICT_ID.SelectedValue, False)
+                    FillRadCombobox(cbTempKtWARD_ID, dt, "NAME", "ID")
+                    cbTempKtWARD_ID.SelectedValue = item.GetDataKeyValue("BIRTH_WARD_ID")
+                End If
+
+                cboGender.SelectedValue = item.GetDataKeyValue("GENDER")
+
+                rdIDDate.SelectedDate = item.GetDataKeyValue("ID_NO_DATE")
+                txtIDPlace.Text = item.GetDataKeyValue("ID_NO_PLACE_NAME")
+                txtPhone.Text = item.GetDataKeyValue("PHONE")
+                rdMSTDate.SelectedDate = item.GetDataKeyValue("TAXTATION_DATE")
+                txt_MSTPLACE.Text = item.GetDataKeyValue("TAXTATION_PLACE")
+                txtBIRTH_CODE.Text = item.GetDataKeyValue("BIRTH_CODE")
+                txtQuyen.Text = item.GetDataKeyValue("QUYEN")
             End Using
         Catch ex As Exception
             DisplayException(Me.ViewName, Me.ID, ex)
@@ -438,7 +487,7 @@ Public Class ctrlHU_EmpDtlFamily
                     UpdateControlState()
                     ExcuteScript("Clear", "clRadDatePicker()")
                     ClearControlValue(txtFullName, cboNguyenQuan, cboRelationship, rdBirthDate, txtIDNO, txtAdress1, txtAdress_TT,
-                                        chkIsDeduct, rdDeductReg, rdDeductFrom, rdDeductTo, txtRemark, txtTax, txtCareer, txtTitle,
+                                        chkIsDeduct, rdDeductReg, rdDeductFrom, rdDeductTo, txtRemark, txtTax, txtCareer, txtTitle, cboGender, rdIDDate, txtIDPlace, cboNationlity, txtPhone, rdMSTDate, txtBIRTH_CODE, cboNATIONALITYFAMILY, cbTempKtPROVINCE_ID, cbTempKtDISTRICT_ID, cbTempKtWARD_ID, txtQuyen, txt_MSTPLACE,
                                            txtSoHoKhau, txtMaHoGiaDinh, cboProvince_City1, cboDistrict1, cboCommune1,
                                                           cboProvince_City2, cboDistrict2, cboCommune2, txtHamlet1, chkHousehold, chkDaMat)
                 Else
@@ -455,7 +504,8 @@ Public Class ctrlHU_EmpDtlFamily
 
     Protected Sub cboCommon_ItemsRequested(ByVal sender As Object, ByVal e As RadComboBoxItemsRequestedEventArgs) _
  Handles cboProvince_City1.ItemsRequested, cboDistrict1.ItemsRequested, cboCommune1.ItemsRequested,
-        cboProvince_City2.ItemsRequested, cboDistrict2.ItemsRequested, cboCommune2.ItemsRequested
+        cboProvince_City2.ItemsRequested, cboDistrict2.ItemsRequested, cboCommune2.ItemsRequested,
+        cbTempKtPROVINCE_ID.ItemsRequested, cbTempKtDISTRICT_ID.ItemsRequested, cbTempKtWARD_ID.ItemsRequested
 
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
         Try
@@ -466,12 +516,12 @@ Public Class ctrlHU_EmpDtlFamily
                 Dim dValue As Decimal
                 Dim sSelectValue As String = IIf(e.Context("value") IsNot Nothing, e.Context("value"), "")
                 Select Case sender.ID
-                    Case cboProvince_City1.ID, cboProvince_City2.ID
+                    Case cboProvince_City1.ID, cboProvince_City2.ID, cbTempKtPROVINCE_ID.ID
                         dtData = rep.GetProvinceList(True)
-                    Case cboDistrict1.ID, cboDistrict2.ID
+                    Case cboDistrict1.ID, cboDistrict2.ID, cbTempKtDISTRICT_ID.ID
                         dValue = IIf(e.Context("valueCustom") IsNot Nothing, e.Context("valueCustom"), 0)
                         dtData = rep.GetDistrictList(dValue, True)
-                    Case cboCommune1.ID, cboCommune2.ID
+                    Case cboCommune1.ID, cboCommune2.ID, cbTempKtWARD_ID.ID
                         dValue = IIf(e.Context("valueCustom") IsNot Nothing, e.Context("valueCustom"), 0)
                         dtData = rep.GetWardList(dValue, True)
                 End Select
@@ -631,6 +681,42 @@ Public Class ctrlHU_EmpDtlFamily
             If cboCommune2.SelectedValue <> "" Then
                 objFamily.TT_WARD_ID = Decimal.Parse(cboCommune2.SelectedValue)
             End If
+
+
+            If cboGender.SelectedValue <> "" Then
+                objFamily.GENDER = cboGender.SelectedValue
+            End If
+
+            If cboNationlity.SelectedValue <> "" Then
+                objFamily.NATION_ID = cboNationlity.SelectedValue
+            End If
+
+            objFamily.ID_NO_DATE = rdIDDate.SelectedDate
+            objFamily.ID_NO_PLACE_NAME = txtIDPlace.Text
+            objFamily.PHONE = txtPhone.Text
+            objFamily.TAXTATION_DATE = rdMSTDate.SelectedDate
+            objFamily.TAXTATION_PLACE = txt_MSTPLACE.Text
+            objFamily.BIRTH_CODE = txtBIRTH_CODE.Text
+            objFamily.QUYEN = txtQuyen.Text
+
+            If cboNATIONALITYFAMILY.SelectedValue <> "" Then
+                objFamily.BIRTH_NATION_ID = cboNATIONALITYFAMILY.SelectedValue
+            End If
+
+            If cbTempKtPROVINCE_ID.SelectedValue <> "" Then
+                objFamily.BIRTH_PROVINCE_ID = cbTempKtPROVINCE_ID.SelectedValue
+            End If
+
+            If cbTempKtDISTRICT_ID.SelectedValue <> "" Then
+                objFamily.BIRTH_DISTRICT_ID = cbTempKtDISTRICT_ID.SelectedValue
+            End If
+
+            If cbTempKtWARD_ID.SelectedValue <> "" Then
+                objFamily.BIRTH_WARD_ID = cbTempKtWARD_ID.SelectedValue
+            End If
+
+
+
             Dim gID As Decimal
             If hidFamilyID.Value = "" Then
                 rep.InsertEmployeeFamily(objFamily, gID)
@@ -696,7 +782,7 @@ Public Class ctrlHU_EmpDtlFamily
         txtAdress1.ReadOnly = Not sTrangThai
         txtAdress_TT.ReadOnly = Not sTrangThai
         txtRemark.ReadOnly = Not sTrangThai
-        'txtTax.ReadOnly = Not sTrangThai
+        txtTax.ReadOnly = Not sTrangThai
         txtIDNO.ReadOnly = Not sTrangThai
         txtFullName.ReadOnly = Not sTrangThai
         chkIsDeduct.Enabled = sTrangThai
@@ -715,6 +801,19 @@ Public Class ctrlHU_EmpDtlFamily
         Utilities.ReadOnlyRadComBo(cboDistrict2, Not sTrangThai)
         Utilities.ReadOnlyRadComBo(cboCommune2, Not sTrangThai)
 
+        Utilities.ReadOnlyRadComBo(cboGender, Not sTrangThai)
+        Utilities.ReadOnlyRadComBo(cboNationlity, Not sTrangThai)
+        Utilities.EnableRadDatePicker(rdIDDate, sTrangThai)
+        Utilities.EnableRadDatePicker(rdMSTDate, sTrangThai)
+        txtIDPlace.ReadOnly = Not sTrangThai
+        txtPhone.ReadOnly = Not sTrangThai
+        txt_MSTPLACE.ReadOnly = Not sTrangThai
+        txtBIRTH_CODE.ReadOnly = Not sTrangThai
+        txtQuyen.ReadOnly = Not sTrangThai
+        Utilities.ReadOnlyRadComBo(cboNATIONALITYFAMILY, Not sTrangThai)
+        Utilities.ReadOnlyRadComBo(cbTempKtPROVINCE_ID, Not sTrangThai)
+        Utilities.ReadOnlyRadComBo(cbTempKtDISTRICT_ID, Not sTrangThai)
+        Utilities.ReadOnlyRadComBo(cbTempKtWARD_ID, Not sTrangThai)
 
         txtHamlet1.ReadOnly = Not sTrangThai
         SetStatusToolBar()
@@ -722,7 +821,7 @@ Public Class ctrlHU_EmpDtlFamily
 
     Private Sub ResetControlValue()
         ClearControlValue(txtFullName, txtAdress1, txtAdress_TT, txtIDNO, txtRemark, txtTax, txtCareer, txtTitle,
-                          hidFamilyID, chkIsDeduct, cboNguyenQuan, cboRelationship,
+                          hidFamilyID, chkIsDeduct, cboNguyenQuan, cboRelationship, cboGender, rdIDDate, txtIDPlace, cboNationlity, txtPhone, rdMSTDate, txtBIRTH_CODE, cboNATIONALITYFAMILY, cbTempKtPROVINCE_ID, cbTempKtDISTRICT_ID, cbTempKtWARD_ID, txtQuyen, txt_MSTPLACE,
                           rdBirthDate, rdDeductFrom, rdDeductReg, rdDeductTo,
                                                          txtSoHoKhau, txtMaHoGiaDinh, cboProvince_City1, cboDistrict1, cboCommune1,
                                                           cboProvince_City2, cboDistrict2, cboCommune2, txtHamlet1, chkHousehold, chkDaMat)

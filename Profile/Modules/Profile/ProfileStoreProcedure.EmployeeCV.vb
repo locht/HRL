@@ -7,7 +7,7 @@ Imports HistaffFrameworkPublic
 Imports HistaffFrameworkPublic.FrameworkUtilities
 
 Partial Class ProfileStoreProcedure
-#Region "Thong tin quyet dinh"
+#Region "EMAIL"
     Public Function GET_MAIL_TEMPLATE(ByVal code As String, ByVal group As String) As DataTable
         Dim dt As New DataTable
         Dim ds As DataSet = hfr.ExecuteToDataSet("PKG_RECRUITMENT_EXPORT.GET_TEMPLATE_MAIL", New List(Of Object)(New Object() {code, group}))
@@ -16,6 +16,17 @@ Partial Class ProfileStoreProcedure
         End If
         Return dt
     End Function
+    Public Function GET_MAILCC_DIRECT_HR(ByVal emp_id As Integer) As String
+        Dim lstObj As New List(Of Object)()
+        lstObj = hfr.ExecuteStoreScalar("PKG_RECRUITMENT_EXPORT.GET_MAILCC_DIRECT_HR", New List(Of Object)(New Object() {emp_id, LogHelper.CurrentUser.EMPLOYEE_ID, OUT_STRING}))
+        If lstObj IsNot Nothing Then
+            Return lstObj(0)
+        Else
+            Return String.Empty
+        End If
+    End Function
+#End Region
+#Region "Thong tin quyet dinh"
     Public Function INSERT_WORKING_BY_REMINDER(ByVal P_LSTID As String) As Int32
         Dim objects = hfr.ExecuteStoreScalar("PKG_HU_IPROFILE_WORKING.INSERT_WORKING_BY_REMINDER", _
                                              New List(Of Object)(New Object() {P_LSTID, OUT_NUMBER}))

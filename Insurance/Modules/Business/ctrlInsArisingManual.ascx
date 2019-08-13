@@ -72,7 +72,6 @@
                                 ID="txtDateIssue" TabIndex="5">
                             </tlk:RadDatePicker>
                         </td>
-                        >
                         <td class="lb">
                             <asp:Label runat="server" ID="Label1" Text="Nơi cấp"></asp:Label>
                         </td>

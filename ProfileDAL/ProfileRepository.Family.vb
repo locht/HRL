@@ -234,6 +234,21 @@ Partial Class ProfileRepository
             objFamilyData.IS_PASS = objFamily.IS_PASS
             objFamilyData.CERTIFICATE_CODE = objFamily.CERTIFICATE_CODE
             objFamilyData.CERTIFICATE_NUM = objFamily.CERTIFICATE_NUM
+
+            objFamilyData.NATION_ID = objFamily.NATION_ID
+            objFamilyData.ID_NO_DATE = objFamily.ID_NO_DATE
+            objFamilyData.ID_NO_PLACE_NAME = objFamily.ID_NO_PLACE_NAME
+            objFamilyData.PHONE = objFamily.PHONE
+            objFamilyData.TAXTATION_DATE = objFamily.TAXTATION_DATE
+            objFamilyData.TAXTATION_PLACE = objFamily.TAXTATION_PLACE
+            objFamilyData.BIRTH_CODE = objFamily.BIRTH_CODE
+            objFamilyData.QUYEN = objFamily.QUYEN
+            objFamilyData.BIRTH_NATION_ID = objFamily.BIRTH_NATION_ID
+            objFamilyData.BIRTH_PROVINCE_ID = objFamily.BIRTH_PROVINCE_ID
+            objFamilyData.BIRTH_DISTRICT_ID = objFamily.BIRTH_DISTRICT_ID
+            objFamilyData.BIRTH_WARD_ID = objFamily.BIRTH_WARD_ID
+            objFamilyData.GENDER = objFamily.GENDER
+
             Context.HU_FAMILY.AddObject(objFamilyData)
             Context.SaveChanges(log)
             gID = objFamilyData.ID
@@ -277,6 +292,21 @@ Partial Class ProfileRepository
             objFamilyData.IS_PASS = objFamily.IS_PASS
             objFamilyData.CERTIFICATE_CODE = objFamily.CERTIFICATE_CODE
             objFamilyData.CERTIFICATE_NUM = objFamily.CERTIFICATE_NUM
+
+            objFamilyData.NATION_ID = objFamily.NATION_ID
+            objFamilyData.ID_NO_DATE = objFamily.ID_NO_DATE
+            objFamilyData.ID_NO_PLACE_NAME = objFamily.ID_NO_PLACE_NAME
+            objFamilyData.PHONE = objFamily.PHONE
+            objFamilyData.TAXTATION_DATE = objFamily.TAXTATION_DATE
+            objFamilyData.TAXTATION_PLACE = objFamily.TAXTATION_PLACE
+            objFamilyData.BIRTH_CODE = objFamily.BIRTH_CODE
+            objFamilyData.QUYEN = objFamily.QUYEN
+            objFamilyData.BIRTH_NATION_ID = objFamily.BIRTH_NATION_ID
+            objFamilyData.BIRTH_PROVINCE_ID = objFamily.BIRTH_PROVINCE_ID
+            objFamilyData.BIRTH_DISTRICT_ID = objFamily.BIRTH_DISTRICT_ID
+            objFamilyData.BIRTH_WARD_ID = objFamily.BIRTH_WARD_ID
+            objFamilyData.GENDER = objFamily.GENDER
+
             Context.SaveChanges(log)
             gID = objFamilyData.ID
             Return True
@@ -292,7 +322,7 @@ Partial Class ProfileRepository
         Dim query As ObjectQuery(Of FamilyDTO)
         Try
             query = (From p In Context.HU_FAMILY
-                     Group Join m In Context.HU_RELATIONSHIP_LIST On p.RELATION_ID Equals m.ID Into gGroup = Group
+                     Group Join m In Context.OT_OTHER_LIST On p.RELATION_ID Equals m.ID Into gGroup = Group
                      From p_g In gGroup.DefaultIfEmpty
                      Group Join n In Context.HU_PROVINCE On p.PROVINCE_ID Equals n.ID Into nGroup = Group
                      From n_g In nGroup.DefaultIfEmpty
@@ -321,7 +351,7 @@ Partial Class ProfileRepository
                     .EMPLOYEE_ID = p.EMPLOYEE_ID,
                     .FULLNAME = p.FULLNAME,
                     .RELATION_ID = p.RELATION_ID,
-                    .RELATION_NAME = p_g.NAME,
+                    .RELATION_NAME = p_g.NAME_VN,
                     .PROVINCE_ID = p.PROVINCE_ID,
                     .PROVINCE_NAME = n_g.NAME_VN,
                     .CAREER = p.CAREER,

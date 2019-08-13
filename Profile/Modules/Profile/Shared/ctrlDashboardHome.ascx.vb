@@ -365,7 +365,7 @@ Public Class ctrlDashboardHome
         Dim lstEmail As New List(Of SendMail)
         Dim lstCount As New List(Of Integer)
         Dim count As Integer = 1
-
+        Dim mailCC As String = ""
         Dim detail As String = ""
 
         Dim SM As New SendMail
@@ -376,8 +376,10 @@ Public Class ctrlDashboardHome
         Select Case remind_type
             Case "1" 'Hop dong chinh thuc
                 dataMail = psp.GET_MAIL_TEMPLATE("HDCT", "Profile")
+                mailCC = If(psp.GET_MAILCC_DIRECT_HR(dr.GetDataKeyValue("EMPLOYEE_ID")) <> "", psp.GET_MAILCC_DIRECT_HR(dr.GetDataKeyValue("EMPLOYEE_ID")), Nothing)
             Case "20" 'Hop dong thu viec
                 dataMail = psp.GET_MAIL_TEMPLATE("HDTV", "Profile")
+                mailCC = If(psp.GET_MAILCC_DIRECT_HR(dr.GetDataKeyValue("EMPLOYEE_ID")) <> "", psp.GET_MAILCC_DIRECT_HR(dr.GetDataKeyValue("EMPLOYEE_ID")), Nothing)
         End Select
 
         If dataMail.Rows.Count = 0 Then
@@ -426,8 +428,9 @@ Public Class ctrlDashboardHome
             Next
             bodyNew += Environment.NewLine
             bodyNew += "</ul>"
-
-            If Not Common.Common.sendEmailByServerMail(dt.SendTo, dataMail.Rows(0)("MAIL_CC").ToString(), dataMail.Rows(0)("TITLE").ToString() + "TEST", bodyNew, String.Empty) Then
+            If Not Common.Common.sendEmailByServerMail(dt.SendTo, _
+                                                       If(mailCC <> "", mailCC, dataMail.Rows(0)("MAIL_CC").ToString()), _
+                                                       dataMail.Rows(0)("TITLE").ToString(), bodyNew, String.Empty) Then
                 ShowMessage(Translate(CommonMessage.MESSAGE_SENDMAIL_ERROR), NotifyType.Warning)
                 Exit Sub
             End If

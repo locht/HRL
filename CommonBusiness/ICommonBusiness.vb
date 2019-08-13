@@ -986,6 +986,29 @@ Namespace CommonBusiness.ServiceContracts
         Function ValidateComboboxActive(ByVal tableName As String, ByVal colName As String, ByVal ID As Decimal) As Boolean
 #End Region
 
+#Region "MailTemplate"
+        <OperationContract()>
+        Function GetMailTemplate(ByVal _filter As MailTemplateDTO, ByVal PageIndex As Integer,
+                                        ByVal PageSize As Integer,
+                                        ByRef Total As Integer,
+                                        Optional ByVal Sorts As String = "CREATED_DATE desc") As List(Of MailTemplateDTO)
+
+        <OperationContract()>
+        Function GetMailTemplateBaseCode(ByVal code As String, ByVal group As String) As MailTemplateDTO
+
+        <OperationContract()>
+        Function InsertMailTemplate(ByVal mailTemplate As MailTemplateDTO, ByVal log As UserLog) As Boolean
+
+        <OperationContract()>
+        Function ModifyMailTemplate(ByVal mailTemplate As MailTemplateDTO, ByVal log As UserLog) As Boolean
+
+        <OperationContract()>
+        Function DeleteMailTemplate(ByVal lstID As List(Of Decimal)) As Boolean
+
+        <OperationContract()>
+        Function CheckValidEmailTemplate(ByVal code As String, ByVal group As String) As Boolean
+#End Region
+
 #Region "DynamicControl"
         <OperationContract()>
         Function GetListControl(ByVal KeyView As String) As DataTable

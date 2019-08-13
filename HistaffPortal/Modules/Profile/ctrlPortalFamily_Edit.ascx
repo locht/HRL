@@ -242,6 +242,39 @@
             </td>
         </tr>
         <tr>
+            <td class="lb">
+            </td>
+            <td>
+                <asp:CheckBox runat="server" ID="chkIsDeduct" AutoPostBack="true" Text="<%$ Translate : Đối tượng giảm trừ  %>" />
+            </td>
+             <td class="lb">
+                <%# Translate("Ngày đăng ký giảm trừ")%>
+            </td>
+            <td>
+                <tlk:RadDatePicker runat="server" ID="rdDeductReg">
+                </tlk:RadDatePicker>
+            </td>
+            <td class="lb">
+                <%# Translate("Ngày giảm trừ")%>
+            </td>
+            <td>
+                <tlk:RadDatePicker runat="server" ID="rdDeductFrom">
+                </tlk:RadDatePicker>
+            </td>
+            <td class="lb">
+                <%# Translate("Ngày kết thúc")%>
+            </td>
+            <td>
+                <tlk:RadDatePicker runat="server" ID="rdDeductTo">
+                </tlk:RadDatePicker>
+                <asp:CompareValidator ID="compareDeductTo_DeductFrom" runat="server" ErrorMessage="<%$ Translate: Ngày kết thúc giảm trừ phải lớn hơn ngày bắt đầu %>"
+                    ToolTip="<%$ Translate: Ngày kết thúc giảm trừ phải lớn hơn ngày bắt đầu %>"
+                    ControlToValidate="rdDeductTo" ControlToCompare="rdDeductFrom" Operator="GreaterThanEqual"
+                    Type="Date">
+                </asp:CompareValidator>
+            </td> 
+        </tr>
+        <tr>
             <td colspan="7" style="color:red">
                  <asp:Label runat="server" ID="lbNKS" Text="Nơi đăng ký khai sinh:"></asp:Label>
             </td>
@@ -299,43 +332,6 @@
                     OnClientItemsRequesting="OnClientItemsRequesting">
                 </tlk:RadComboBox>
             </td>          
-        </tr>
-        <tr style="display:none">
-            <td class="lb">
-                <%# Translate("Ngày đăng ký giảm trừ")%>
-            </td>
-            <td>
-                <tlk:RadDatePicker runat="server" ID="rdDeductReg">
-                </tlk:RadDatePicker>
-            </td>
-            <td class="lb">
-            </td>
-            <td>
-                <asp:CheckBox runat="server" ID="chkIsDeduct" AutoPostBack="true" Text="<%$ Translate : Đối tượng giảm trừ  %>" />
-            </td>
-            
-        </tr>
-        <tr  style="display:none">
-            <td class="lb">
-                <%# Translate("Ngày giảm trừ")%>
-            </td>
-            <td>
-                <tlk:RadDatePicker runat="server" ID="rdDeductFrom">
-                </tlk:RadDatePicker>
-            </td>
-            <td class="lb">
-                <%# Translate("Ngày kết thúc")%>
-            </td>
-            <td>
-                <tlk:RadDatePicker runat="server" ID="rdDeductTo">
-                </tlk:RadDatePicker>
-                <asp:CompareValidator ID="compareDeductTo_DeductFrom" runat="server" ErrorMessage="<%$ Translate: Ngày kết thúc giảm trừ phải lớn hơn ngày bắt đầu %>"
-                    ToolTip="<%$ Translate: Ngày kết thúc giảm trừ phải lớn hơn ngày bắt đầu %>"
-                    ControlToValidate="rdDeductTo" ControlToCompare="rdDeductFrom" Operator="GreaterThanEqual"
-                    Type="Date">
-                </asp:CompareValidator>
-            </td>
-            
         </tr>
         <tr>
             <td class="lb">

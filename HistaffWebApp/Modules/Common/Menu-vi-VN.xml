@@ -16,6 +16,7 @@
         <Item Value="ctrlSE_Configuration" Text="Quản lý cấu hình chung" PostBack="True" NavigateUrl="Default.aspx?mid=Common&amp;fid=ctrlSE_Configuration&amp;group=Secure" CheckPermission="true"/>
         <Item Value="ctrlLanguageManagement" Text="Quản lý ngôn ngữ" PostBack="True" NavigateUrl="Default.aspx?mid=Common&amp;fid=ctrlLanguageManagement" CheckPermission="true"/>
         <Item Value="ctrlControlsManage" Text="Quản lý config" PostBack="True" NavigateUrl="Default.aspx?mid=Common&amp;fid=ctrlControlsManage&amp;group=Secure" CheckPermission="true"/>
+        <Item Value="ctrlMailTemplate" Text="Quản lý mẫu Email" PostBack="True" NavigateUrl="Default.aspx?mid=Common&amp;fid=ctrlMailTemplate&amp;group=Secure" CheckPermission="true"/>
       </Group>
     </Item>
     <Item Text="Định nghĩa" PostBack="True">
