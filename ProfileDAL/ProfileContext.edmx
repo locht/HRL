@@ -3438,6 +3438,7 @@
             <Property Name="EFFECT_DATE" Type="date" Nullable="true" />
             <Property Name="DIRECT_MANAGER" Type="number" Nullable="true" Precision="38" />
             <Property Name="OBJECT_ATTENDANCE" Type="number" Nullable="true" Precision="38" />
+            <Property Name="OBJECT_LABOR" Type="number" Nullable="true" Precision="38" />
         </EntityType>
         <EntityType Name="HUV_TERMINATE_CURRENT">
             <Key>
@@ -7932,6 +7933,7 @@
           <Property Type="DateTime" Name="EFFECT_DATE" />
           <Property Type="Decimal" Name="DIRECT_MANAGER" Precision="38" Scale="0" />
           <Property Type="Decimal" Name="OBJECT_ATTENDANCE" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="OBJECT_LABOR" />
         </EntityType>
         <EntityType Name="HUV_TERMINATE_CURRENT">
           <Key>
@@ -11514,6 +11516,7 @@
                     <ScalarProperty Name="EFFECT_DATE" ColumnName="EFFECT_DATE" />
                     <ScalarProperty Name="DIRECT_MANAGER" ColumnName="DIRECT_MANAGER" />
                     <ScalarProperty Name="OBJECT_ATTENDANCE" ColumnName="OBJECT_ATTENDANCE" />
+                    <ScalarProperty Name="OBJECT_LABOR" ColumnName="OBJECT_LABOR" />
                 </MappingFragment>
             </EntityTypeMapping>
         </EntitySetMapping>
@@ -12141,7 +12144,7 @@
         <EntityTypeShape EntityType="ProfileModel.HU_RELATIONSHIP_GROUP" Width="2.375" PointX="34.375" PointY="11.75" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="ProfileModel.HU_ANNUALLEAVE_PLANS" Width="1.5" PointX="34.375" PointY="15.75" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="ProfileModel.HUV_CURRENT_CONTRACT" Width="1.5" PointX="7.375" PointY="36.25" Height="0.4" IsExpanded="false" />
-        <EntityTypeShape EntityType="ProfileModel.HUV_CURRENT_WORKING" Width="1.5" PointX="34.375" PointY="21.25" Height="0.4" IsExpanded="false" />
+        <EntityTypeShape EntityType="ProfileModel.HUV_CURRENT_WORKING" Width="1.5" PointX="34.375" PointY="21.25" Height="2.9417936197916674" IsExpanded="true" />
         <EntityTypeShape EntityType="ProfileModel.HUV_TERMINATE_CURRENT" Width="1.5" PointX="35.375" PointY="25.25" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="ProfileModel.HU_TRANSFER_TERMINATE" Width="1.5" PointX="38.25" PointY="28.625" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="ProfileModel.HU_DEBT" Width="1.5" PointX="41.5" PointY="28.75" Height="0.4" IsExpanded="false" />

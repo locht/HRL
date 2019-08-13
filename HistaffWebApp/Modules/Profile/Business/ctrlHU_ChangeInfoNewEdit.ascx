@@ -42,7 +42,8 @@
             </tr>
             <tr>
                 <td class="lb" style="width: 130px">
-                    <asp:Label ID="lbEmployeeCode" runat="server" Text="Mã nhân viên"></asp:Label><span class="lbReq">*</span>
+                    <asp:Label ID="lbEmployeeCode" runat="server" Text="Mã nhân viên"></asp:Label><span
+                        class="lbReq">*</span>
                 </td>
                 <td>
                     <tlk:RadTextBox ID="txtEmployeeCode" runat="server" SkinID="Readonly" ReadOnly="true"
@@ -82,105 +83,44 @@
             </tr>
             <tr>
                 <td class="lb">
-                     <asp:Label ID="lbOrgNameOld" runat="server" Text="Đơn vị"></asp:Label>
-                </td>
-                <td class="">
-                    <tlk:RadTextBox ID="txtOrgNameOld" runat="server" SkinID="Readonly" ReadOnly="true">
-                    </tlk:RadTextBox>
-                </td>
-                <td class="lb">
-                    <asp:Label ID="lbTitleNameOld" runat="server" Text="Chức danh"></asp:Label>
-                </td>
-                <td class="borderRight">
-                    <tlk:RadTextBox ID="txtTitleNameOld" runat="server" SkinID="Readonly" ReadOnly="true">
-                    </tlk:RadTextBox>
-                </td>
-                <td class="lb">
-                    <asp:Label ID="lbOrgName" runat="server" Text="Đơn vị"></asp:Label><span class="lbReq">*</span>
                 </td>
                 <td>
-                    <tlk:RadTextBox runat="server" ID="txtOrgName" Width="130px" SkinID="Readonly" ReadOnly="true" />
-                    <tlk:RadButton runat="server" ID="btnFindOrg" SkinID="ButtonView" CausesValidation="false" />
-                    <asp:RequiredFieldValidator ID="RequiredFieldValidator1" ControlToValidate="txtOrgName"
-                        runat="server" ErrorMessage="<%$ Translate: Bạn phải chọn đơn vị %>" ToolTip="<%$ Translate: Bạn phải chọn đơn vị %>"> </asp:RequiredFieldValidator>
-                </td>
-                <td class="lb">
-                    <asp:Label ID="lbTitle" runat="server" Text="Chức danh"></asp:Label><span class="lbReq">*</span>
-                </td>
-                <td>
-                    <tlk:RadComboBox runat="server" ID="cboTitle" SkinID="LoadDemand" OnClientSelectedIndexChanged="OnClientSelectedIndexChanged"
-                        OnClientItemsRequesting="OnClientItemsRequesting">
-                    </tlk:RadComboBox>
-                    <asp:CustomValidator ID="cusTitle" runat="server" ErrorMessage="<%$ Translate: Bạn phải chọn Chức danh %>"
-                        ToolTip="<%$ Translate: Bạn phải chọn Chức danh %>" ClientValidationFunction="cusTitle">
-                    </asp:CustomValidator>
                 </td>
             </tr>
             <tr>
-                <td class="lb">
-                    <asp:Label  runat ="server" ID="lbOBJECT_ATTENDANCE_OLD" Text ="Đối tượng chấm công"></asp:Label>
-                </td>
-                <td>
-                    <tlk:RadTextBox  runat ="server" ID="rtOBJECT_ATTENDANCE_OLD" SkinID="Readonly" ReadOnly="true"></tlk:RadTextBox>
-                </td>
-                <td class="lb">
-                    <asp:Label  runat ="server" ID="lbFILING_DATE_OLD" Text ="Ngày nộp đơn"></asp:Label>
-                </td>
-                <td class="borderRight">
-                    <tlk:RadDatePicker runat ="server" ID ="rdFILING_DATE_OLD" SkinID="Readonly" ReadOnly="true"></tlk:RadDatePicker>
-                </td>
-                <td class="lb">
-                    <asp:Label  runat ="server" ID="lbOBJECT_ATTENDANCE" Text ="Đối tượng chấm công"></asp:Label>
-                </td>
-                <td>
-                    <tlk:RadComboBox  runat ="server" ID="cbOBJECT_ATTENDANCE"></tlk:RadComboBox>
-                </td>
-                <td class="lb">
-                    <asp:Label  runat ="server" ID="lbFILING_DATE" Text ="Ngày nộp đơn"></asp:Label>
-                </td>
-                <td>
-                    <tlk:RadDatePicker runat ="server" ID ="rdFILING_DATE" ></tlk:RadDatePicker>
-                </td>
-            </tr>
-            <tr>
-                <td class="lb">
-                    <asp:Label ID="lbStaffRankOld" runat="server" Text="Bậc nhân sự"></asp:Label>
-                </td>
-                <td >
-                    <tlk:RadTextBox ID="txtStaffRankOld" runat="server" SkinID="Readonly" ReadOnly="true">
-                    </tlk:RadTextBox>
-                </td>
                 <td class="lb">
                     <asp:Label ID="lbDecisionTypeOld" runat="server" Text="Loại quyết định"></asp:Label>
                 </td>
-                <td class="borderRight">
+                <td class="lb">
                     <tlk:RadTextBox ID="txtDecisionTypeOld" runat="server" SkinID="Readonly" ReadOnly="true">
                     </tlk:RadTextBox>
                 </td>
-                
                 <td class="lb">
-                    <asp:Label ID="lbStaffRank" runat="server" Text="Bậc nhân sự"></asp:Label>
+                    <asp:Label ID="lbDecisionold" runat="server" Text="Số quyết định"></asp:Label>
                 </td>
-                <td>
-                    <tlk:RadComboBox runat="server" ID="cboStaffRank" SkinID="LoadDemand" OnClientSelectedIndexChanged="OnClientSelectedIndexChanged"
-                        OnClientItemsRequesting="OnClientItemsRequesting">
-                    </tlk:RadComboBox>
-                   
+                <td class="borderRight">
+                    <tlk:RadTextBox ID="txtDecisionold" ReadOnly="true" runat="server">
+                    </tlk:RadTextBox>
                 </td>
                 <td class="lb">
-                    <asp:Label ID="lbDecisionType" runat="server" Text="Loại quyết định"></asp:Label><span class="lbReq">*</span>
+                    <asp:Label ID="lbDecisionType" runat="server" Text="Loại quyết định"></asp:Label><span
+                        class="lbReq">*</span>
                 </td>
                 <td>
-                    <tlk:RadComboBox ID="cboDecisionType" runat="server"
-                        AutoPostBack="true" CausesValidation="false">
+                    <tlk:RadComboBox ID="cboDecisionType" runat="server" AutoPostBack="true" CausesValidation="false">
                     </tlk:RadComboBox>
                     <asp:CustomValidator ID="cusDecisionType" runat="server" ErrorMessage="<%# GetYouMustChoseMsg(UI.DecisionType) %>"
                         ToolTip="<%# GetYouMustChoseMsg(UI.DecisionType) %>" ClientValidationFunction="cusDecisionType"> 
                     </asp:CustomValidator>
                 </td>
-                    
+                <td class="lb">
+                    <asp:Label ID="lbDecision" runat="server" Text="Số quyết định"></asp:Label>
+                </td>
+                <td>
+                    <tlk:RadTextBox ID="txtDecision" runat="server">
+                    </tlk:RadTextBox>
+                </td>
             </tr>
-           
             <tr>
                 <td class="lb">
                     <asp:Label ID="lbEffectDateOld" runat="server" Text="Ngày hiệu lực"></asp:Label>
@@ -191,7 +131,7 @@
                         </DateInput>
                     </tlk:RadDatePicker>
                 </td>
-                <td class="lb>
+                <td class="lb">
                     <asp:Label ID="lbExpireDateOld" runat="server" Text="Ngày hết hiệu lực"></asp:Label>
                 </td>
                 <td class="borderRight">
@@ -201,7 +141,8 @@
                     </tlk:RadDatePicker>
                 </td>
                 <td class="lb">
-                     <asp:Label ID="lbEffectDate" runat="server" Text="Ngày hiệu lực"></asp:Label><span class="lbReq">*</span>
+                    <asp:Label ID="lbEffectDate" runat="server" Text="Ngày hiệu lực"></asp:Label><span
+                        class="lbReq">*</span>
                 </td>
                 <td>
                     <tlk:RadDatePicker ID="rdEffectDate" runat="server">
@@ -226,59 +167,118 @@
             </tr>
             <tr>
                 <td class="lb">
-                    <asp:Label ID="lbDecisionold" runat="server" Text="Số quyết định"></asp:Label>
+                    <asp:Label ID="lbOrgNameOld" runat="server" Text="Đơn vị"></asp:Label>
                 </td>
                 <td>
-                    <tlk:RadTextBox ID="txtDecisionold" readonly="true" runat="server">
+                    <tlk:RadTextBox ID="txtOrgNameOld" runat="server" SkinID="Readonly" ReadOnly="true">
                     </tlk:RadTextBox>
                 </td>
                 <td class="lb">
-                     <asp:Label ID="lbFileAttach_Link" runat="server" Text="Tập tin đính kèm"></asp:Label>
+                    <asp:Label ID="lbTitleNameOld" runat="server" Text="Chức danh"></asp:Label>
                 </td>
                 <td class="borderRight">
-                    <asp:Label ID="lbFileAttach" runat="server" />
-                    <tlk:radtextbox id="txtFileAttach_Link" runat="server" readonly="true" visible="false">
-                    </tlk:radtextbox>
-                    <tlk:radbutton id="btnDownloadOld"  runat="server" width="160px" text="<%$ Translate: Tải xuống%>"
-                        causesvalidation="false" onclientclicked="rbtOldClicked" tabindex="3" enableviewstate="false">
-                    </tlk:radbutton>
+                    <tlk:RadTextBox ID="txtTitleNameOld" runat="server" SkinID="Readonly" ReadOnly="true">
+                    </tlk:RadTextBox>
                 </td>
-               
-                 <td class="lb">
-                     <asp:Label ID="lbDecision" runat="server" Text="Số quyết định"></asp:Label>
+                <%-- <td class="lb">
+                    <asp:Label runat="server" ID="lbOBJECT_ATTENDANCE_OLD" Text="Đối tượng chấm công"></asp:Label>
                 </td>
                 <td>
-                    <tlk:RadTextBox ID="txtDecision" runat="server">
+                    <tlk:RadTextBox runat="server" ID="rtOBJECT_ATTENDANCE_OLD" SkinID="Readonly" ReadOnly="true">
+                    </tlk:RadTextBox>
+                </td>--%>
+                <%--<td class="lb">
+                    <asp:Label runat="server" ID="lbFILING_DATE_OLD" Text="Ngày nộp đơn"></asp:Label>
+                </td>
+                <td class="borderRight">
+                    <tlk:RadDatePicker runat="server" ID="rdFILING_DATE_OLD" SkinID="Readonly" ReadOnly="true">
+                    </tlk:RadDatePicker>
+                </td>--%>
+                <%-- <td class="lb">
+                    <asp:Label runat="server" ID="lbOBJECT_ATTENDANCE" Text="Đối tượng chấm công"></asp:Label>
+                </td>
+                <td>
+                    <tlk:RadComboBox runat="server" ID="cbOBJECT_ATTENDANCE">
+                    </tlk:RadComboBox>
+                </td>--%>
+                <td class="lb">
+                    <asp:Label ID="lbOrgName" runat="server" Text="Đơn vị"></asp:Label><span class="lbReq">*</span>
+                </td>
+                <td>
+                    <tlk:RadTextBox runat="server" ID="txtOrgName" Width="130px" SkinID="Readonly" ReadOnly="true" />
+                    <tlk:RadButton runat="server" ID="btnFindOrg" SkinID="ButtonView" CausesValidation="false" />
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator1" ControlToValidate="txtOrgName"
+                        runat="server" ErrorMessage="<%$ Translate: Bạn phải chọn đơn vị %>" ToolTip="<%$ Translate: Bạn phải chọn đơn vị %>"> </asp:RequiredFieldValidator>
+                </td>
+                <td class="lb">
+                    <asp:Label ID="lbTitle" runat="server" Text="Chức danh"></asp:Label><span class="lbReq">*</span>
+                </td>
+                <td>
+                    <tlk:RadComboBox runat="server" ID="cboTitle" SkinID="LoadDemand" OnClientSelectedIndexChanged="OnClientSelectedIndexChanged"
+                        OnClientItemsRequesting="OnClientItemsRequesting">
+                    </tlk:RadComboBox>
+                    <asp:CustomValidator ID="cusTitle" runat="server" ErrorMessage="<%$ Translate: Bạn phải chọn Chức danh %>"
+                        ToolTip="<%$ Translate: Bạn phải chọn Chức danh %>" ClientValidationFunction="cusTitle">
+                    </asp:CustomValidator>
+                </td>
+                <%--  <td class="lb">
+                    <asp:Label  runat ="server" ID="lbFILING_DATE" Text ="Ngày nộp đơn"></asp:Label>
+                </td>--%>
+                <%-- <td>
+                    <tlk:RadDatePicker runat="server" ID="rdFILING_DATE">
+                    </tlk:RadDatePicker>
+                </td>--%>
+            </tr>
+            <tr>
+                <td class="lb">
+                    <asp:Label ID="lbStaffRankOld" runat="server" Text="Bậc nhân sự"></asp:Label>
+                </td>
+                <td>
+                    <tlk:RadTextBox ID="txtStaffRankOld" runat="server" SkinID="Readonly" ReadOnly="true">
                     </tlk:RadTextBox>
                 </td>
                 <td class="lb">
-                    <asp:Label ID="lbUpload" runat="server" Text="Tập tin đính kèm"></asp:Label>
-                </td>
-                <td>
-                   <tlk:radtextbox id="txtUpload" readonly="true" runat="server">
-                    </tlk:radtextbox>
-                    <tlk:radtextbox id="txtUploadFile" runat="server" visible="false">
-                    </tlk:radtextbox>
-                    <tlk:radbutton runat="server" id="btnUploadFile" skinid="ButtonView" causesvalidation="false"
-                        tabindex="3" />
-                    <tlk:radbutton id="btnDownload" runat="server" text="<%$ Translate: Tải xuống%>"
-                        causesvalidation="false" onclientclicked="rbtClicked" tabindex="3" enableviewstate="false">
-                    </tlk:radbutton>
-                </td>
-            </tr>
-            <tr>
-               <td class="lb">
-                    <asp:Label ID="lbManagerOld" runat="server" Text="Quản lý trực tiếp"></asp:Label>
-                </td>
-                <td>
-                    <tlk:RadTextBox id="txtManagerOld" readonly="true" runat="server"></tlk:RadTextBox>
-                </td>               
-                <td class="lbInfo">
                     <asp:Label runat="server" ID="lbObjectLaborOld" Text="Đối tượng lao động"></asp:Label>
                 </td>
                 <td class="borderRight">
                     <tlk:RadTextBox ID="txtObjectLaborOld" runat="server" SkinID="Readonly" ReadOnly="true">
-                    </tlk:RadTextBox>                 
+                    </tlk:RadTextBox>
+                </td>
+                <td class="lb">
+                    <asp:Label ID="lbStaffRank" runat="server" Text="Bậc nhân sự"></asp:Label>
+                </td>
+                <td>
+                    <tlk:RadComboBox runat="server" ID="cboStaffRank" SkinID="LoadDemand" OnClientSelectedIndexChanged="OnClientSelectedIndexChanged"
+                        OnClientItemsRequesting="OnClientItemsRequesting">
+                    </tlk:RadComboBox>
+                </td>
+                <td class="lb">
+                    <asp:Label runat="server" ID="lbObjectLaborNew" Text="Đối tượng lao động"></asp:Label>
+                </td>
+                <td>
+                    <tlk:RadComboBox runat="server" ID="cboObjectLaborNew" SkinID="LoadDemand" OnClientSelectedIndexChanged="OnClientSelectedIndexChanged"
+                        OnClientItemsRequesting="OnClientItemsRequesting">
+                    </tlk:RadComboBox>
+                </td>
+            </tr>
+            <tr>
+                <td class="lb">
+                    <asp:Label ID="lbManagerOld" runat="server" Text="Quản lý trực tiếp"></asp:Label>
+                </td>
+                <td>
+                    <tlk:RadTextBox ID="txtManagerOld" ReadOnly="true" runat="server">
+                    </tlk:RadTextBox>
+                </td>
+                <td class="lb">
+                    <asp:Label ID="lbFileAttach_Link" runat="server" Text="Tập tin đính kèm"></asp:Label>
+                </td>
+                <td class="borderRight">
+                    <asp:Label ID="lbFileAttach" runat="server" />
+                    <tlk:RadTextBox ID="txtFileAttach_Link" runat="server" ReadOnly="true" Visible="false">
+                    </tlk:RadTextBox>
+                    <tlk:RadButton ID="btnDownloadOld" runat="server" Width="160px" Text="<%$ Translate: Tải xuống%>"
+                        CausesValidation="false" OnClientClicked="rbtOldClicked" TabIndex="3" EnableViewState="false">
+                    </tlk:RadButton>
                 </td>
                 <td class="lb">
                     <asp:Label ID="lbManagerNew" runat="server" Text="Quản lý trực tiếp"></asp:Label>
@@ -288,13 +288,19 @@
                     <tlk:RadButton runat="server" ID="btnFindDirect" SkinID="ButtonView" CausesValidation="false">
                     </tlk:RadButton>
                 </td>
-                <td class="lbInfo">
-                    <asp:Label runat="server" ID="lbObjectLaborNew" Text="Đối tượng lao động"></asp:Label>
+                <td class="lb">
+                    <asp:Label ID="lbUpload" runat="server" Text="Tập tin đính kèm"></asp:Label>
                 </td>
                 <td>
-                    <tlk:RadComboBox runat="server" ID="cboObjectLaborNew" SkinID="LoadDemand" OnClientSelectedIndexChanged="OnClientSelectedIndexChanged"
-                        OnClientItemsRequesting="OnClientItemsRequesting">
-                    </tlk:RadComboBox>
+                    <tlk:RadTextBox ID="txtUpload" ReadOnly="true" runat="server">
+                    </tlk:RadTextBox>
+                    <tlk:RadTextBox ID="txtUploadFile" runat="server" Visible="false">
+                    </tlk:RadTextBox>
+                    <tlk:RadButton runat="server" ID="btnUploadFile" SkinID="ButtonView" CausesValidation="false"
+                        TabIndex="3" />
+                    <tlk:RadButton ID="btnDownload" runat="server" Text="<%$ Translate: Tải xuống%>"
+                        CausesValidation="false" OnClientClicked="rbtClicked" TabIndex="3" EnableViewState="false">
+                    </tlk:RadButton>
                 </td>
             </tr>
             <tr>
@@ -314,7 +320,7 @@
             </tr>
             <tr>
                 <td class="lb">
-                     <asp:Label ID="lbStatus" runat="server" Text="Trạng thái"></asp:Label><span class="lbReq">*</span>
+                    <asp:Label ID="lbStatus" runat="server" Text="Trạng thái"></asp:Label><span class="lbReq">*</span>
                 </td>
                 <td>
                     <tlk:RadComboBox ID="cboStatus" runat="server" SkinID="LoadDemand" OnClientSelectedIndexChanged="OnClientSelectedIndexChanged">
@@ -353,7 +359,7 @@
             </tr>
             <tr>
                 <td class="lb">
-                     <asp:Label ID="lbRemark" runat="server" Text="Ghi chú"></asp:Label>
+                    <asp:Label ID="lbRemark" runat="server" Text="Ghi chú"></asp:Label>
                 </td>
                 <td colspan="7" style="padding-bottom: 8px">
                     <tlk:RadTextBox ID="txtRemark" SkinID="Textbox1023" Width="100%" runat="server">
@@ -361,11 +367,11 @@
                 </td>
             </tr>
             <tr style="visibility: hidden">
-                    <td class="lb">
-                        <tlk:radtextbox id="txtRemindLink" runat="server">
-                        </tlk:radtextbox>
-                    </td>
-                </tr>
+                <td class="lb">
+                    <tlk:RadTextBox ID="txtRemindLink" runat="server">
+                    </tlk:RadTextBox>
+                </td>
+            </tr>
         </table>
     </tlk:RadPane>
 </tlk:RadSplitter>

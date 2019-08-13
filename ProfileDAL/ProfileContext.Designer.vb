@@ -18,7 +18,7 @@ Imports System.Runtime.Serialization
 Imports System.Xml.Serialization
 
 
-<Assembly: EdmSchemaAttribute("aeea8f78-6ee6-4202-9399-dcac533b38a1")>
+<Assembly: EdmSchemaAttribute("cc8b5183-9aef-4f71-9fe1-a035e2950466")>
 #Region "EDM Relationship Metadata"
 <Assembly: EdmRelationshipAttribute("ProfileModel", "FK_HU_NAT_HU_PRO", "HU_NATION", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_NATION), "HU_PROVINCE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_PROVINCE), True)>
 <Assembly: EdmRelationshipAttribute("ProfileModel", "FK_HU_PRO_HU_DIS", "HU_PROVINCE", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_PROVINCE), "HU_DISTRICT", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_DISTRICT), True)>
@@ -61482,6 +61482,31 @@ Public Partial Class HUV_CURRENT_WORKING
     End Sub
 
     Private Partial Sub OnOBJECT_ATTENDANCEChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property OBJECT_LABOR() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _OBJECT_LABOR
+        End Get
+        Set
+            OnOBJECT_LABORChanging(value)
+            ReportPropertyChanging("OBJECT_LABOR")
+            _OBJECT_LABOR = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("OBJECT_LABOR")
+            OnOBJECT_LABORChanged()
+        End Set
+    End Property
+
+    Private _OBJECT_LABOR As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnOBJECT_LABORChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnOBJECT_LABORChanged()
     End Sub
 
     #End Region
