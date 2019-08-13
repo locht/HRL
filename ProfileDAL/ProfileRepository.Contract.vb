@@ -1324,18 +1324,24 @@ Partial Class ProfileRepository
                                      }).FirstOrDefault
             'neu hop dong phe duyet la thu viec thi up date vao join_date_state con neu chinh thuc thi 
             'update vào join_date_state và join_date cua hu_employee
-            If STR.CODE = "HDTV60" Or STR.CODE = "HDTV30" Then
+            If STR.CODE = "HDTV" Then
                 Employee.EMP_STATUS = 8
                 'If Employee.JOIN_DATE Is Nothing Then
                 '    Employee.JOIN_DATE_STATE = objContract.START_DATE
                 'End If
-                Employee.JOIN_DATE = objContract.START_DATE
+                If Employee.JOIN_DATE_STATE Is Nothing Then
+                    Employee.JOIN_DATE_STATE = objContract.START_DATE
+                End If
             Else
                 Employee.EMP_STATUS = 9
                 If Employee.JOIN_DATE Is Nothing Then
                     Employee.JOIN_DATE = objContract.START_DATE
                 End If
-                Employee.JOIN_DATE_STATE = objContract.START_DATE
+                If Employee.JOIN_DATE_STATE Is Nothing Then
+                    Employee.JOIN_DATE_STATE = objContract.START_DATE
+                End If
+
+
                 'If Employee.JOIN_DATE Is Nothing Then
                 '    Employee.JOIN_DATE = objContract.START_DATE
                 '    Employee.JOIN_DATE_STATE = objContract.START_DATE

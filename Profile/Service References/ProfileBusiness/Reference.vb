@@ -1665,7 +1665,7 @@ Namespace ProfileBusiness
         Private NAMEField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private PERIODField As Integer
+        Private PERIODField As System.Nullable(Of Decimal)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private REMARKField As String
@@ -1856,7 +1856,7 @@ Namespace ProfileBusiness
         End Property
         
         <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property PERIOD() As Integer
+        Public Property PERIOD() As System.Nullable(Of Decimal)
             Get
                 Return Me.PERIODField
             End Get

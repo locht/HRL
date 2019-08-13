@@ -1,8 +1,8 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for Oracle database
 -- --------------------------------------------------
--- Date Created: 8/13/2019 1:59:51 PM
--- Generated from EDMX file: D:\TNG_SOURCE_NEW\ProfileDAL\ProfileContext.edmx
+-- Date Created: 08/13/2019 3:05:12 PM
+-- Generated from EDMX file: D:\MyProject\TNG\TNG\ProfileDAL\ProfileContext.edmx
 -- --------------------------------------------------
 
 -- --------------------------------------------------
@@ -1314,7 +1314,7 @@ CREATE TABLE "dbo"."HU_CONTRACT_TYPE" (
    "ID" NUMBER(38,0) NOT NULL,
    "NAME" NVARCHAR2(255) NULL,
    "CODE" NVARCHAR2(255) NULL,
-   "PERIOD" NUMBER(10,0) NULL,
+   "PERIOD" NUMBER(38,0) NULL,
    "REMARK" NVARCHAR2(1023) NULL,
    "ACTFLG" NVARCHAR2(1) NULL,
    "CREATED_DATE" DATE NULL,
