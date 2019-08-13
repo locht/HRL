@@ -100,6 +100,8 @@
                         ReadOnly="true" SortExpression="TITLE_NAME" />
                     <tlk:GridBoundColumn HeaderText="Công ty" DataField="ORG_NAME2" UniqueName="ORG_NAME2"
                         ReadOnly="true" SortExpression="ORG_NAME2" />
+                         <tlk:GridBoundColumn HeaderText="Ngày sinh" DataField="BIRTH_DATE" UniqueName="BIRTH_DATE"
+                        ReadOnly="true" SortExpression="BIRTH_DATE" DataFormatString="{0:dd/MM/yyyy}" />
                     <tlk:GridBoundColumn HeaderText="Giới tính" DataField="GENDER_NAME" UniqueName="GENDER_NAME"
                         ReadOnly="true" SortExpression="GENDER_NAME" />
                     <%--<tlk:GridBoundColumn HeaderText="Loại hợp đồng gần nhất" DataField="CONTRACT_NAME"
