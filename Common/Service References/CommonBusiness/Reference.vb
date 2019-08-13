@@ -2750,6 +2750,277 @@ Namespace CommonBusiness
     
     <System.Diagnostics.DebuggerStepThroughAttribute(),  _
      System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0"),  _
+     System.Runtime.Serialization.DataContractAttribute(Name:="MailTemplateDTO", [Namespace]:="http://schemas.datacontract.org/2004/07/CommonDAL"),  _
+     System.SerializableAttribute()>  _
+    Partial Public Class MailTemplateDTO
+        Inherits Object
+        Implements System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged
+        
+        <System.NonSerializedAttribute()>  _
+        Private extensionDataField As System.Runtime.Serialization.ExtensionDataObject
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private CODEField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private CONTENTField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private CREATED_BYField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private CREATED_DATEField As Date
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private CREATED_LOGField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private GROUP_MAILField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private GROUP_MAIL_NAMEField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private IDField As Decimal
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private MAIL_CCField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private MODIFIED_BYField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private MODIFIED_DATEField As Date
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private MODIFIED_LOGField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private NAMEField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private REMARKField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private TITLEField As String
+        
+        <Global.System.ComponentModel.BrowsableAttribute(false)>  _
+        Public Property ExtensionData() As System.Runtime.Serialization.ExtensionDataObject Implements System.Runtime.Serialization.IExtensibleDataObject.ExtensionData
+            Get
+                Return Me.extensionDataField
+            End Get
+            Set
+                Me.extensionDataField = value
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property CODE() As String
+            Get
+                Return Me.CODEField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.CODEField, value) <> true) Then
+                    Me.CODEField = value
+                    Me.RaisePropertyChanged("CODE")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property CONTENT() As String
+            Get
+                Return Me.CONTENTField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.CONTENTField, value) <> true) Then
+                    Me.CONTENTField = value
+                    Me.RaisePropertyChanged("CONTENT")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property CREATED_BY() As String
+            Get
+                Return Me.CREATED_BYField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.CREATED_BYField, value) <> true) Then
+                    Me.CREATED_BYField = value
+                    Me.RaisePropertyChanged("CREATED_BY")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property CREATED_DATE() As Date
+            Get
+                Return Me.CREATED_DATEField
+            End Get
+            Set
+                If (Me.CREATED_DATEField.Equals(value) <> true) Then
+                    Me.CREATED_DATEField = value
+                    Me.RaisePropertyChanged("CREATED_DATE")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property CREATED_LOG() As String
+            Get
+                Return Me.CREATED_LOGField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.CREATED_LOGField, value) <> true) Then
+                    Me.CREATED_LOGField = value
+                    Me.RaisePropertyChanged("CREATED_LOG")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property GROUP_MAIL() As String
+            Get
+                Return Me.GROUP_MAILField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.GROUP_MAILField, value) <> true) Then
+                    Me.GROUP_MAILField = value
+                    Me.RaisePropertyChanged("GROUP_MAIL")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property GROUP_MAIL_NAME() As String
+            Get
+                Return Me.GROUP_MAIL_NAMEField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.GROUP_MAIL_NAMEField, value) <> true) Then
+                    Me.GROUP_MAIL_NAMEField = value
+                    Me.RaisePropertyChanged("GROUP_MAIL_NAME")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property ID() As Decimal
+            Get
+                Return Me.IDField
+            End Get
+            Set
+                If (Me.IDField.Equals(value) <> true) Then
+                    Me.IDField = value
+                    Me.RaisePropertyChanged("ID")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property MAIL_CC() As String
+            Get
+                Return Me.MAIL_CCField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.MAIL_CCField, value) <> true) Then
+                    Me.MAIL_CCField = value
+                    Me.RaisePropertyChanged("MAIL_CC")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property MODIFIED_BY() As String
+            Get
+                Return Me.MODIFIED_BYField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.MODIFIED_BYField, value) <> true) Then
+                    Me.MODIFIED_BYField = value
+                    Me.RaisePropertyChanged("MODIFIED_BY")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property MODIFIED_DATE() As Date
+            Get
+                Return Me.MODIFIED_DATEField
+            End Get
+            Set
+                If (Me.MODIFIED_DATEField.Equals(value) <> true) Then
+                    Me.MODIFIED_DATEField = value
+                    Me.RaisePropertyChanged("MODIFIED_DATE")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property MODIFIED_LOG() As String
+            Get
+                Return Me.MODIFIED_LOGField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.MODIFIED_LOGField, value) <> true) Then
+                    Me.MODIFIED_LOGField = value
+                    Me.RaisePropertyChanged("MODIFIED_LOG")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property NAME() As String
+            Get
+                Return Me.NAMEField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.NAMEField, value) <> true) Then
+                    Me.NAMEField = value
+                    Me.RaisePropertyChanged("NAME")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property REMARK() As String
+            Get
+                Return Me.REMARKField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.REMARKField, value) <> true) Then
+                    Me.REMARKField = value
+                    Me.RaisePropertyChanged("REMARK")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property TITLE() As String
+            Get
+                Return Me.TITLEField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.TITLEField, value) <> true) Then
+                    Me.TITLEField = value
+                    Me.RaisePropertyChanged("TITLE")
+                End If
+            End Set
+        End Property
+        
+        Public Event PropertyChanged As System.ComponentModel.PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
+        
+        Protected Sub RaisePropertyChanged(ByVal propertyName As String)
+            Dim propertyChanged As System.ComponentModel.PropertyChangedEventHandler = Me.PropertyChangedEvent
+            If (Not (propertyChanged) Is Nothing) Then
+                propertyChanged(Me, New System.ComponentModel.PropertyChangedEventArgs(propertyName))
+            End If
+        End Sub
+    End Class
+    
+    <System.Diagnostics.DebuggerStepThroughAttribute(),  _
+     System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0"),  _
      System.Runtime.Serialization.DataContractAttribute(Name:="se_view_config_control_DTO", [Namespace]:="http://schemas.datacontract.org/2004/07/CommonDAL"),  _
      System.SerializableAttribute()>  _
     Partial Public Class se_view_config_control_DTO
@@ -8289,6 +8560,8 @@ Namespace CommonBusiness
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(CommonBusiness.EmployeeDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(CommonBusiness.LdapDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of CommonBusiness.LdapDTO))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(CommonBusiness.MailTemplateDTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of CommonBusiness.MailTemplateDTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(CommonBusiness.se_view_config_control_DTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(CommonBusiness.se_view_config_girdColumm_DTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of CommonBusiness.ATTimeManualDTO))),  _
@@ -8541,6 +8814,24 @@ Namespace CommonBusiness
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ICommonBusiness/ValidateComboboxActive", ReplyAction:="http://tempuri.org/ICommonBusiness/ValidateComboboxActiveResponse")>  _
         Function ValidateComboboxActive(ByVal tableName As String, ByVal colName As String, ByVal ID As Decimal) As Boolean
         
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ICommonBusiness/GetMailTemplate", ReplyAction:="http://tempuri.org/ICommonBusiness/GetMailTemplateResponse")>  _
+        Function GetMailTemplate(ByVal _filter As CommonBusiness.MailTemplateDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal Sorts As String) As System.Collections.Generic.List(Of CommonBusiness.MailTemplateDTO)
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ICommonBusiness/GetMailTemplateBaseCode", ReplyAction:="http://tempuri.org/ICommonBusiness/GetMailTemplateBaseCodeResponse")>  _
+        Function GetMailTemplateBaseCode(ByVal code As String, ByVal group As String) As CommonBusiness.MailTemplateDTO
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ICommonBusiness/InsertMailTemplate", ReplyAction:="http://tempuri.org/ICommonBusiness/InsertMailTemplateResponse")>  _
+        Function InsertMailTemplate(ByVal mailTemplate As CommonBusiness.MailTemplateDTO, ByVal log As CommonBusiness.UserLog) As Boolean
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ICommonBusiness/ModifyMailTemplate", ReplyAction:="http://tempuri.org/ICommonBusiness/ModifyMailTemplateResponse")>  _
+        Function ModifyMailTemplate(ByVal mailTemplate As CommonBusiness.MailTemplateDTO, ByVal log As CommonBusiness.UserLog) As Boolean
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ICommonBusiness/DeleteMailTemplate", ReplyAction:="http://tempuri.org/ICommonBusiness/DeleteMailTemplateResponse")>  _
+        Function DeleteMailTemplate(ByVal lstID As System.Collections.Generic.List(Of Decimal)) As Boolean
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ICommonBusiness/CheckValidEmailTemplate", ReplyAction:="http://tempuri.org/ICommonBusiness/CheckValidEmailTemplateResponse")>  _
+        Function CheckValidEmailTemplate(ByVal code As String, ByVal group As String) As Boolean
+        
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ICommonBusiness/GetListControl", ReplyAction:="http://tempuri.org/ICommonBusiness/GetListControlResponse")>  _
         Function GetListControl(ByVal KeyView As String) As System.Data.DataTable
         
@@ -8573,6 +8864,8 @@ Namespace CommonBusiness
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(CommonBusiness.EmployeeDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(CommonBusiness.LdapDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of CommonBusiness.LdapDTO))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(CommonBusiness.MailTemplateDTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of CommonBusiness.MailTemplateDTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(CommonBusiness.se_view_config_control_DTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(CommonBusiness.se_view_config_girdColumm_DTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of CommonBusiness.ATTimeManualDTO))),  _
@@ -8839,6 +9132,8 @@ Namespace CommonBusiness
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(CommonBusiness.EmployeeDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(CommonBusiness.LdapDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of CommonBusiness.LdapDTO))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(CommonBusiness.MailTemplateDTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of CommonBusiness.MailTemplateDTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(CommonBusiness.se_view_config_control_DTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(CommonBusiness.se_view_config_girdColumm_DTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of CommonBusiness.ATTimeManualDTO))),  _
@@ -9282,6 +9577,30 @@ Namespace CommonBusiness
         
         Public Function ValidateComboboxActive(ByVal tableName As String, ByVal colName As String, ByVal ID As Decimal) As Boolean Implements CommonBusiness.ICommonBusiness.ValidateComboboxActive
             Return MyBase.Channel.ValidateComboboxActive(tableName, colName, ID)
+        End Function
+        
+        Public Function GetMailTemplate(ByVal _filter As CommonBusiness.MailTemplateDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal Sorts As String) As System.Collections.Generic.List(Of CommonBusiness.MailTemplateDTO) Implements CommonBusiness.ICommonBusiness.GetMailTemplate
+            Return MyBase.Channel.GetMailTemplate(_filter, PageIndex, PageSize, Total, Sorts)
+        End Function
+        
+        Public Function GetMailTemplateBaseCode(ByVal code As String, ByVal group As String) As CommonBusiness.MailTemplateDTO Implements CommonBusiness.ICommonBusiness.GetMailTemplateBaseCode
+            Return MyBase.Channel.GetMailTemplateBaseCode(code, group)
+        End Function
+        
+        Public Function InsertMailTemplate(ByVal mailTemplate As CommonBusiness.MailTemplateDTO, ByVal log As CommonBusiness.UserLog) As Boolean Implements CommonBusiness.ICommonBusiness.InsertMailTemplate
+            Return MyBase.Channel.InsertMailTemplate(mailTemplate, log)
+        End Function
+        
+        Public Function ModifyMailTemplate(ByVal mailTemplate As CommonBusiness.MailTemplateDTO, ByVal log As CommonBusiness.UserLog) As Boolean Implements CommonBusiness.ICommonBusiness.ModifyMailTemplate
+            Return MyBase.Channel.ModifyMailTemplate(mailTemplate, log)
+        End Function
+        
+        Public Function DeleteMailTemplate(ByVal lstID As System.Collections.Generic.List(Of Decimal)) As Boolean Implements CommonBusiness.ICommonBusiness.DeleteMailTemplate
+            Return MyBase.Channel.DeleteMailTemplate(lstID)
+        End Function
+        
+        Public Function CheckValidEmailTemplate(ByVal code As String, ByVal group As String) As Boolean Implements CommonBusiness.ICommonBusiness.CheckValidEmailTemplate
+            Return MyBase.Channel.CheckValidEmailTemplate(code, group)
         End Function
         
         Public Function GetListControl(ByVal KeyView As String) As System.Data.DataTable Implements CommonBusiness.ICommonBusiness.GetListControl

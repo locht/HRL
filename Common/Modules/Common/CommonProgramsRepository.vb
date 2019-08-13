@@ -488,4 +488,16 @@ Public Class CommonProgramsRepository
     End Function
 #End Region
 
+    Public Function FillComboboxModules_Mid() As DataTable
+        Dim ds As DataSet = rep.ExecuteToDataSet("PKG_HCM_SYSTEM.READ_ALL_MODULES_MID", _
+                                                   New List(Of Object)(New Object() {}))
+        If ds Is Nothing Or ds.Tables Is Nothing Then
+            Dim dtb As New DataTable
+            dtb.Columns.Add("NAME", GetType(String))
+            dtb.Columns.Add("CODE", GetType(String))
+            Return dtb
+        Else
+            Return ds.Tables(0)
+        End If
+    End Function
 End Class

@@ -2578,5 +2578,137 @@ Partial Public Class CommonRepository
 
 #End Region
 
+#Region "Mail_Content"
+    Public Function GetMailTemplate(ByVal _filter As MailTemplateDTO, ByVal PageIndex As Integer,
+                                        ByVal PageSize As Integer,
+                                        ByRef Total As Integer,
+                                        Optional ByVal Sorts As String = "CREATED_DATE desc") As List(Of MailTemplateDTO)
+
+        Try
+            Dim query = From p In Context.SE_MAIL_TEMPLATE
+                        From g In Context.SE_MODULE.Where(Function(x) x.MID = p.GROUP_MAIL).DefaultIfEmpty
+                        Select New MailTemplateDTO With {.ID = p.ID,
+                                                         .CODE = p.CODE,
+                                                         .NAME = p.NAME,
+                                                         .CONTENT = p.CONTENT,
+                                                         .MAIL_CC = p.MAIL_CC,
+                                                         .GROUP_MAIL = p.GROUP_MAIL,
+                                                         .GROUP_MAIL_NAME = g.NAME_DESC,
+                                                         .CREATED_DATE = p.CREATED_DATE,
+                                                         .TITLE = p.TITLE,
+                                                         .REMARK = p.REMARK}
+            Dim lst = query
+
+            If _filter.CODE <> "" Then
+                lst = lst.Where(Function(p) p.CODE.ToUpper.Contains(_filter.CODE.ToUpper))
+            End If
+            If _filter.NAME <> "" Then
+                lst = lst.Where(Function(p) p.NAME.ToUpper.Contains(_filter.NAME.ToUpper))
+            End If
+            If _filter.MAIL_CC <> "" Then
+                lst = lst.Where(Function(p) p.MAIL_CC.ToUpper.Contains(_filter.MAIL_CC.ToUpper))
+            End If
+            If _filter.REMARK <> "" Then
+                lst = lst.Where(Function(p) p.REMARK.ToUpper.Contains(_filter.REMARK.ToUpper))
+            End If
+            If _filter.GROUP_MAIL_NAME <> "" Then
+                lst = lst.Where(Function(p) p.GROUP_MAIL_NAME.ToUpper.Contains(_filter.GROUP_MAIL_NAME.ToUpper))
+            End If
+
+            lst = lst.OrderBy(Sorts)
+            Total = lst.Count
+            lst = lst.Skip(PageIndex * PageSize).Take(PageSize)
+
+            Return lst.ToList
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+    Public Function GetMailTemplateBaseCode(ByVal code As String, ByVal group As String) As MailTemplateDTO
+        Try
+            Dim query = (From p In Context.SE_MAIL_TEMPLATE Where p.CODE.ToUpper() = code.ToUpper() AndAlso p.GROUP_MAIL.ToUpper() = group.ToUpper()
+                         Select New MailTemplateDTO With {.ID = p.ID,
+                                                          .CODE = p.CODE,
+                                                          .TITLE = p.TITLE,
+                                                          .CONTENT = p.CONTENT,
+                                                          .NAME = p.NAME,
+                                                          .MAIL_CC = p.MAIL_CC,
+                                                          .GROUP_MAIL = p.GROUP_MAIL}).FirstOrDefault
+
+            Return query
+
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+
+    Public Function InsertMailTemplate(ByVal mailTemplate As MailTemplateDTO, ByVal log As UserLog) As Boolean
+        Dim objMailTemplate As New SE_MAIL_TEMPLATE
+        Try
+            objMailTemplate.ID = Utilities.GetNextSequence(Context, Context.SE_MAIL_TEMPLATE.EntitySet.Name)
+            objMailTemplate.CODE = mailTemplate.CODE
+            objMailTemplate.NAME = mailTemplate.NAME
+            objMailTemplate.TITLE = mailTemplate.TITLE
+            objMailTemplate.CONTENT = mailTemplate.CONTENT
+            objMailTemplate.MAIL_CC = mailTemplate.MAIL_CC
+            objMailTemplate.REMARK = mailTemplate.REMARK
+            objMailTemplate.GROUP_MAIL = mailTemplate.GROUP_MAIL
+
+            Context.SE_MAIL_TEMPLATE.AddObject(objMailTemplate)
+            Context.SaveChanges(log)
+            Return True
+        Catch ex As Exception
+            Throw ex
+        End Try
+
+    End Function
+    Public Function ModifyMailTemplate(ByVal mailTemplate As MailTemplateDTO, ByVal log As UserLog) As Boolean
+        Try
+            Dim objMailTemplate As SE_MAIL_TEMPLATE = (From p In Context.SE_MAIL_TEMPLATE Where p.ID = mailTemplate.ID).FirstOrDefault
+            If objMailTemplate IsNot Nothing Then
+                objMailTemplate.CODE = mailTemplate.CODE
+                objMailTemplate.NAME = mailTemplate.NAME
+                objMailTemplate.TITLE = mailTemplate.TITLE
+                objMailTemplate.CONTENT = mailTemplate.CONTENT
+                objMailTemplate.MAIL_CC = mailTemplate.MAIL_CC
+                objMailTemplate.REMARK = mailTemplate.REMARK
+                objMailTemplate.GROUP_MAIL = mailTemplate.GROUP_MAIL
+                Context.SaveChanges(log)
+            Else
+                Return False
+            End If
+            Return True
+        Catch ex As Exception
+            Throw ex
+        End Try
+
+    End Function
+
+    Public Function DeleteMailTemplate(ByVal lstID As List(Of Decimal)) As Boolean
+        Dim lstMailTemplate As List(Of SE_MAIL_TEMPLATE)
+        Try
+
+            lstMailTemplate = (From p In Context.SE_MAIL_TEMPLATE Where lstID.Contains(p.ID)).ToList
+            For index = 0 To lstMailTemplate.Count - 1
+                Context.SE_MAIL_TEMPLATE.DeleteObject(lstMailTemplate(index))
+            Next
+
+            Context.SaveChanges()
+            Return True
+
+        Catch ex As Exception
+            Throw ex
+        End Try
+
+    End Function
+
+    Public Function CheckValidEmailTemplate(ByVal code As String, ByVal group As String) As Boolean
+        Dim db = Context.SE_MAIL_TEMPLATE.SingleOrDefault(Function(x) x.CODE.ToUpper() = code.ToUpper() AndAlso x.GROUP_MAIL.ToUpper() = group.ToUpper())
+        If db IsNot Nothing Then
+            Return False
+        End If
+        Return True
+    End Function
+#End Region
 
 End Class

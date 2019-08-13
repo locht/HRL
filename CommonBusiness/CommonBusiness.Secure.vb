@@ -929,5 +929,83 @@ Namespace CommonBusiness.ServiceImplementations
             End Using
         End Function
 #End Region
+
+#Region "MailTemplate"
+        Public Function GetMailTemplate(ByVal _filter As MailTemplateDTO, ByVal PageIndex As Integer,
+                                        ByVal PageSize As Integer,
+                                        ByRef Total As Integer,
+                                        Optional ByVal Sorts As String = "CREATED_DATE desc") As List(Of MailTemplateDTO) Implements ServiceContracts.ICommonBusiness.GetMailTemplate
+            Using rep As New CommonRepository
+                Try
+
+                    Dim lst = rep.GetMailTemplate(_filter, PageIndex, PageSize, Total, Sorts)
+                    Return lst
+                Catch ex As Exception
+
+                    Throw ex
+                End Try
+            End Using
+        End Function
+        Public Function GetMailTemplateBaseCode(ByVal code As String, ByVal group As String) As MailTemplateDTO Implements ServiceContracts.ICommonBusiness.GetMailTemplateBaseCode
+            Using rep As New CommonRepository
+                Try
+
+                    Dim lst = rep.GetMailTemplateBaseCode(code, group)
+                    Return lst
+                Catch ex As Exception
+
+                    Throw ex
+                End Try
+            End Using
+        End Function
+        Public Function InsertMailTemplate(ByVal mailTemplate As MailTemplateDTO, ByVal log As UserLog) As Boolean Implements ServiceContracts.ICommonBusiness.InsertMailTemplate
+            Using rep As New CommonRepository
+                Try
+
+                    Dim lst = rep.InsertMailTemplate(mailTemplate, log)
+                    Return lst
+                Catch ex As Exception
+
+                    Throw ex
+                End Try
+            End Using
+        End Function
+        Public Function ModifyMailTemplate(ByVal mailTemplate As MailTemplateDTO, ByVal log As UserLog) As Boolean Implements ServiceContracts.ICommonBusiness.ModifyMailTemplate
+            Using rep As New CommonRepository
+                Try
+
+                    Dim lst = rep.ModifyMailTemplate(mailTemplate, log)
+                    Return lst
+                Catch ex As Exception
+
+                    Throw ex
+                End Try
+            End Using
+        End Function
+        Public Function DeleteMailTemplate(ByVal lstID As List(Of Decimal)) As Boolean Implements ServiceContracts.ICommonBusiness.DeleteMailTemplate
+            Using rep As New CommonRepository
+                Try
+
+                    Dim lst = rep.DeleteMailTemplate(lstID)
+                    Return lst
+                Catch ex As Exception
+
+                    Throw ex
+                End Try
+            End Using
+        End Function
+        Public Function CheckValidEmailTemplate(ByVal code As String, ByVal group As String) As Boolean Implements ServiceContracts.ICommonBusiness.CheckValidEmailTemplate
+            Using rep As New CommonRepository
+                Try
+
+                    Dim lst = rep.CheckValidEmailTemplate(code, group)
+                    Return lst
+                Catch ex As Exception
+
+                    Throw ex
+                End Try
+            End Using
+        End Function
+#End Region
     End Class
 End Namespace

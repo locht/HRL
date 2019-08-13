@@ -1,8 +1,8 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for Oracle database
 -- --------------------------------------------------
--- Date Created: 08/12/2019 9:27:30 AM
--- Generated from EDMX file: D:\MyProject\TNG\TNG\CommonDAL\CommonContext.edmx
+-- Date Created: 13/08/2019 8:46:49 AM
+-- Generated from EDMX file: E:\TNG\CommonDAL\CommonContext.edmx
 -- --------------------------------------------------
 
 -- --------------------------------------------------
@@ -111,6 +111,8 @@
 
 -- DROP TABLE "CommonModelStoreContainer"."HU_SIGNER";
 
+-- DROP TABLE "CommonModelStoreContainer"."SE_MAIL_TEMPLATE";
+
 -- DROP TABLE "CommonModelStoreContainer"."SE_GRP_SE_USR";
 
 -- DROP TABLE "CommonModelStoreContainer"."SE_GROUP_REPORT";
@@ -183,7 +185,8 @@ CREATE TABLE "dbo"."SE_USER" (
 CREATE TABLE "dbo"."SE_MODULE" (
    "ID" NUMBER(38,0) NOT NULL,
    "NAME" NVARCHAR2(255) NOT NULL,
-   "MID" NVARCHAR2(255) NOT NULL
+   "MID" NVARCHAR2(255) NOT NULL,
+   "NAME_DESC" NCLOB NULL
 );
 
 -- Creating table 'SE_GROUP_PERMISSION'
@@ -722,6 +725,24 @@ CREATE TABLE "dbo"."HU_SIGNER" (
    "ORG_ID" NUMBER(38,0) NULL
 );
 
+-- Creating table 'SE_MAIL_TEMPLATE'
+CREATE TABLE "dbo"."SE_MAIL_TEMPLATE" (
+   "ID" NUMBER(38,0) NOT NULL,
+   "CODE" NVARCHAR2(255) NULL,
+   "TITLE" NCLOB NULL,
+   "CONTENT" NCLOB NULL,
+   "NAME" NCLOB NULL,
+   "MAIL_CC" NCLOB NULL,
+   "REMARK" NCLOB NULL,
+   "CREATED_DATE" DATE NULL,
+   "CREATED_BY" NVARCHAR2(255) NULL,
+   "CREATED_LOG" NVARCHAR2(255) NULL,
+   "MODIFIED_DATE" DATE NULL,
+   "MODIFIED_BY" NVARCHAR2(255) NULL,
+   "MODIFIED_LOG" NVARCHAR2(255) NULL,
+   "GROUP_MAIL" NCLOB NULL
+);
+
 -- Creating table 'SE_GRP_SE_USR'
 CREATE TABLE "dbo"."SE_GRP_SE_USR" (
    "SE_GROUPS_ID" NUMBER(38,0) NOT NULL,
@@ -1004,6 +1025,14 @@ ADD CONSTRAINT "PK_SE_CASE_CONFIG"
 -- Creating primary key on "ID"in table 'HU_SIGNER'
 ALTER TABLE "dbo"."HU_SIGNER"
 ADD CONSTRAINT "PK_HU_SIGNER"
+   PRIMARY KEY ("ID" )
+   ENABLE
+   VALIDATE;
+
+
+-- Creating primary key on "ID"in table 'SE_MAIL_TEMPLATE'
+ALTER TABLE "dbo"."SE_MAIL_TEMPLATE"
+ADD CONSTRAINT "PK_SE_MAIL_TEMPLATE"
    PRIMARY KEY ("ID" )
    ENABLE
    VALIDATE;

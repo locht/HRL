@@ -166,6 +166,7 @@
     <Content Include="Modules\Common\List\ctrlOtherListType.ascx" />
     <Content Include="Modules\Common\Secure\ctrlControlsManage.ascx" />
     <Content Include="Modules\Common\Secure\ctrlControlsNewEdit.ascx" />
+    <Content Include="Modules\Common\Secure\ctrlMailTemplate.ascx" />
     <Content Include="Modules\Common\Secure\ctrlProGramParameters.ascx" />
     <Content Include="Modules\Common\Secure\ctrlPrograms.ascx" />
     <Content Include="Modules\Common\Secure\ctrlSkinAppConfig.ascx" />
@@ -258,6 +259,9 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\CommonBusiness\Common.CommonBusiness.LdapDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\CommonBusiness\Common.CommonBusiness.MailTemplateDTO.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\CommonBusiness\Common.CommonBusiness.ModuleDTO.datasource">
@@ -634,6 +638,13 @@
     </Compile>
     <Compile Include="Modules\Common\Secure\ctrlControlsNewEdit.ascx.vb">
       <DependentUpon>ctrlControlsNewEdit.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Modules\Common\Secure\ctrlMailTemplate.ascx.designer.vb">
+      <DependentUpon>ctrlMailTemplate.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Common\Secure\ctrlMailTemplate.ascx.vb">
+      <DependentUpon>ctrlMailTemplate.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Modules\Common\Secure\ctrlProGramParameters.ascx.designer.vb">

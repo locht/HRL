@@ -1006,4 +1006,81 @@ Partial Public Class CommonRepository
 
 #End Region
 
+#Region "MailTemplate"
+    Public Function GetMailTemplate(ByVal _filter As MailTemplateDTO, ByVal PageIndex As Integer,
+                                        ByVal PageSize As Integer,
+                                        ByRef Total As Integer,
+                                        Optional ByVal Sorts As String = "CREATED_DATE desc") As List(Of MailTemplateDTO)
+        Using rep As New CommonBusinessClient
+            Try
+                Return rep.GetMailTemplate(_filter, PageIndex, PageSize, Total, Sorts)
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+    End Function
+    Public Function GetMailTemplate(ByVal _filter As MailTemplateDTO,
+                                       Optional ByVal Sorts As String = "CREATED_DATE desc") As List(Of MailTemplateDTO)
+        Using rep As New CommonBusinessClient
+            Try
+                Return rep.GetMailTemplate(_filter, 0, Integer.MaxValue, 0, Sorts)
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+    End Function
+    Public Function GetMailTemplateBaseCode(ByVal code As String, ByVal group As String) As MailTemplateDTO
+        Using rep As New CommonBusinessClient
+            Try
+                Return rep.GetMailTemplateBaseCode(code, group)
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+    End Function
+    Public Function InsertMailTemplate(ByVal mailTemplate As MailTemplateDTO) As Boolean
+        Using rep As New CommonBusinessClient
+            Try
+                Return rep.InsertMailTemplate(mailTemplate, Me.Log)
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+    End Function
+    Public Function ModifyMailTemplate(ByVal mailTemplate As MailTemplateDTO) As Boolean
+        Using rep As New CommonBusinessClient
+            Try
+                Return rep.ModifyMailTemplate(mailTemplate, Me.Log)
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+    End Function
+    Public Function DeleteMailTemplate(ByVal lstID As List(Of Decimal)) As Boolean
+        Using rep As New CommonBusinessClient
+            Try
+                Return rep.DeleteMailTemplate(lstID)
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+    End Function
+    Public Function CheckValidEmailTemplate(ByVal code As String, ByVal group As String) As Boolean
+        Using rep As New CommonBusinessClient
+            Try
+                Return rep.CheckValidEmailTemplate(code, group)
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+    End Function
+#End Region
+
 End Class

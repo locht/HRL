@@ -39820,4 +39820,52 @@ Xin cám ơn!
       <string>Bạn phải nhập lý do không phê duyệt.</string>
     </Value>
   </Item>
+  <Item>
+    <Key>
+      <string>CTRLMAILTEMPLATE</string>
+    </Key>
+    <Value>
+      <string>Quản lý mẫu Email</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>BẠN PHẢI NHẬP MÃ MẪU EMAIL.</string>
+    </Key>
+    <Value>
+      <string>Bạn phải nhập mã mẫu Email.</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>BẠN PHẢI CHỌN NHÓM CHỨC NĂNG</string>
+    </Key>
+    <Value>
+      <string>Bạn phải chọn Nhóm chức năng</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>TIÊU ĐỀ</string>
+    </Key>
+    <Value>
+      <string>Tiêu đề</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>CC</string>
+    </Key>
+    <Value>
+      <string>Cc</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>QUẢN LÝ MẪU EMAIL</string>
+    </Key>
+    <Value>
+      <string>Quản lý mẫu Email</string>
+    </Value>
+  </Item>
 </SerializableDictionaryOfStringString>
