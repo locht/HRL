@@ -21972,6 +21972,9 @@ Namespace AttendanceBusiness
         Private CREATED_LOGField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private DAY_NUMField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private EMPLOYEE_CODEField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -22138,6 +22141,12 @@ Namespace AttendanceBusiness
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private START_MID_HOURSField As System.Nullable(Of Date)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private STATUS_SHIFTField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private STATUS_SHIFT_NAMEField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private TIMEIN_REALITYField As System.Nullable(Of Date)
@@ -22316,6 +22325,19 @@ Namespace AttendanceBusiness
                 If (Object.ReferenceEquals(Me.CREATED_LOGField, value) <> true) Then
                     Me.CREATED_LOGField = value
                     Me.RaisePropertyChanged("CREATED_LOG")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property DAY_NUM() As System.Nullable(Of Decimal)
+            Get
+                Return Me.DAY_NUMField
+            End Get
+            Set
+                If (Me.DAY_NUMField.Equals(value) <> true) Then
+                    Me.DAY_NUMField = value
+                    Me.RaisePropertyChanged("DAY_NUM")
                 End If
             End Set
         End Property
@@ -23044,6 +23066,32 @@ Namespace AttendanceBusiness
                 If (Me.START_MID_HOURSField.Equals(value) <> true) Then
                     Me.START_MID_HOURSField = value
                     Me.RaisePropertyChanged("START_MID_HOURS")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property STATUS_SHIFT() As System.Nullable(Of Decimal)
+            Get
+                Return Me.STATUS_SHIFTField
+            End Get
+            Set
+                If (Me.STATUS_SHIFTField.Equals(value) <> true) Then
+                    Me.STATUS_SHIFTField = value
+                    Me.RaisePropertyChanged("STATUS_SHIFT")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property STATUS_SHIFT_NAME() As String
+            Get
+                Return Me.STATUS_SHIFT_NAMEField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.STATUS_SHIFT_NAMEField, value) <> true) Then
+                    Me.STATUS_SHIFT_NAMEField = value
+                    Me.RaisePropertyChanged("STATUS_SHIFT_NAME")
                 End If
             End Set
         End Property

@@ -82,4 +82,7 @@
     Public Property IS_EARLY As Boolean?
     Public Property IS_REALITY As Boolean?
     Public Property IS_NON_WORKING_VALUE As Boolean?
+    Public Property STATUS_SHIFT As Decimal?
+    Public Property STATUS_SHIFT_NAME As String
+    Public Property DAY_NUM As Decimal?
 End Class

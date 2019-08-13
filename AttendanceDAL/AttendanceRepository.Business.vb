@@ -619,6 +619,11 @@ Partial Public Class AttendanceRepository
                                        .WORKING_VALUE = p.p.WORKING_VALUE,
                                        .SHIFT_TYPE_CODE = p.p.SHIFT_TYPE_CODE,
                                        .NOTE = p.p.NOTE,
+                                       .START_MID_HOURS = p.p.START_MID_HOURS,
+                                       .END_MID_HOURS = p.p.END_MID_HOURS,
+                                       .STATUS_SHIFT = p.p.STATUS_SHIFT,
+                                       .STATUS_SHIFT_NAME = p.p.STATUS_SHIFT_NAME,
+                                       .DAY_NUM = p.p.DAY_NUM,
                                        .MIN_OUT_WORK_DEDUCT = p.p.MIN_OUT_WORK_DEDUCT})
             lst = lst.OrderBy(Sorts)
             Total = lst.Count

@@ -18,7 +18,7 @@ Imports System.Runtime.Serialization
 Imports System.Xml.Serialization
 
 
-<Assembly: EdmSchemaAttribute("0579c11b-1fc9-4bfd-a40e-cceb2f10131f")>
+<Assembly: EdmSchemaAttribute("985b6b7e-12b0-48f8-89c9-37df297a7dca")>
 #Region "EDM Relationship Metadata"
 <Assembly: EdmRelationshipAttribute("AttendanceModel", "FK_OOLT_OOL", "OT_OTHER_LIST_TYPE", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(OT_OTHER_LIST_TYPE), "OT_OTHER_LIST", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(OT_OTHER_LIST), True)>
 <Assembly: EdmRelationshipAttribute("AttendanceModel", "FK_OOLG_OOLT", "OT_OTHER_LIST_GROUP", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(OT_OTHER_LIST_GROUP), "OT_OTHER_LIST_TYPE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(OT_OTHER_LIST_TYPE), True)>
@@ -29392,6 +29392,106 @@ Public Partial Class AT_TIME_TIMESHEET_MACHINET
     End Sub
 
     Private Partial Sub OnSHIFT_TYPE_CODEChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property END_MID_HOURS() As Nullable(Of Global.System.DateTime)
+        Get
+            Return _END_MID_HOURS
+        End Get
+        Set
+            OnEND_MID_HOURSChanging(value)
+            ReportPropertyChanging("END_MID_HOURS")
+            _END_MID_HOURS = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("END_MID_HOURS")
+            OnEND_MID_HOURSChanged()
+        End Set
+    End Property
+
+    Private _END_MID_HOURS As Nullable(Of Global.System.DateTime)
+    Private Partial Sub OnEND_MID_HOURSChanging(value As Nullable(Of Global.System.DateTime))
+    End Sub
+
+    Private Partial Sub OnEND_MID_HOURSChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property DAY_NUM() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _DAY_NUM
+        End Get
+        Set
+            OnDAY_NUMChanging(value)
+            ReportPropertyChanging("DAY_NUM")
+            _DAY_NUM = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("DAY_NUM")
+            OnDAY_NUMChanged()
+        End Set
+    End Property
+
+    Private _DAY_NUM As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnDAY_NUMChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnDAY_NUMChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property STATUS_SHIFT() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _STATUS_SHIFT
+        End Get
+        Set
+            OnSTATUS_SHIFTChanging(value)
+            ReportPropertyChanging("STATUS_SHIFT")
+            _STATUS_SHIFT = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("STATUS_SHIFT")
+            OnSTATUS_SHIFTChanged()
+        End Set
+    End Property
+
+    Private _STATUS_SHIFT As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnSTATUS_SHIFTChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnSTATUS_SHIFTChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property STATUS_SHIFT_NAME() As Global.System.String
+        Get
+            Return _STATUS_SHIFT_NAME
+        End Get
+        Set
+            OnSTATUS_SHIFT_NAMEChanging(value)
+            ReportPropertyChanging("STATUS_SHIFT_NAME")
+            _STATUS_SHIFT_NAME = StructuralObject.SetValidValue(value, true)
+            ReportPropertyChanged("STATUS_SHIFT_NAME")
+            OnSTATUS_SHIFT_NAMEChanged()
+        End Set
+    End Property
+
+    Private _STATUS_SHIFT_NAME As Global.System.String
+    Private Partial Sub OnSTATUS_SHIFT_NAMEChanging(value As Global.System.String)
+    End Sub
+
+    Private Partial Sub OnSTATUS_SHIFT_NAMEChanged()
     End Sub
 
     #End Region

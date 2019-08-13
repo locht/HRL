@@ -155,12 +155,7 @@ Public Class ctrlLeaveRegistration
 #Region "Event"
     Protected Sub RadGrid_NeedDataSource(ByVal source As Object, ByVal e As GridNeedDataSourceEventArgs) Handles rgMain.NeedDataSource
         Try
-            If IsPostBack = True Then
-                CreateDataFilter()
-            Else
-                rgMain.DataSource = New DataTable
-            End If
-
+            CreateDataFilter()
         Catch ex As Exception
             DisplayException(Me.ViewName, Me.ID, ex)
         End Try
@@ -337,7 +332,10 @@ Public Class ctrlLeaveRegistration
                     Exit Sub
                 End If
             End If
-
+            period_id = Utilities.ObjToDecima(dtCheckSendApprove.Rows(0)("PERIOD_ID"))
+            sign_id = Utilities.ObjToDecima(dtCheckSendApprove.Rows(0)("SIGN_ID"))
+            id_group = Utilities.ObjToDecima(dtCheckSendApprove.Rows(0)("ID_REGGROUP"))
+            sumday = Utilities.ObjToDecima(dtCheckSendApprove.Rows(0)("SUMDAY"))
             Using rep As New AttendanceRepository
                 Dim check = rep.CHECK_PERIOD_CLOSE(period_id)
 
@@ -373,6 +371,7 @@ Public Class ctrlLeaveRegistration
 #End Region
 
 #Region "Custom"
+
     Protected Function CreateDataFilter(Optional ByVal isFull As Boolean = False) As DataTable
         Dim rep As New AttendanceRepository
         Dim _filter As New AT_LEAVESHEETDTO
