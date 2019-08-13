@@ -21,6 +21,7 @@ Public Class ctrlSignWork
     Dim _myLog As New MyLog()
     Dim _pathLog As String = _myLog._pathLog
     Dim _classPath As String = "Attendance/Module/Attendance/Business/" + Me.GetType().Name.ToString()
+    Dim log As New Common.CommonBusiness.UserLog
 
 #Region "Properties"
     ''' <lastupdate>
@@ -156,6 +157,7 @@ Public Class ctrlSignWork
     Public Overrides Sub ViewInit(ByVal e As System.EventArgs)
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
         Try
+            log = LogHelper.GetUserLog
             Dim startTime As DateTime = DateTime.UtcNow
             SetGridFilter(rgSignWork)
             AjaxManager = CType(Me.Page, AjaxPage).AjaxManager
@@ -767,7 +769,9 @@ Public Class ctrlSignWork
             dtError.Columns.Add("STT")
             period.PERIOD_ID = Decimal.Parse(cboPeriodId.SelectedValue)
             dtDatas = rep.LOAD_PERIODByID(period)
-            Dim dtShift = rep.GetAT_SHIFT(New AT_SHIFTDTO)
+            Dim user = LogHelper.CurrentUser
+
+            Dim dtShift = rep.GetAT_SHIFT(New AT_SHIFTDTO With {.SHIFT_DAY = user.ID})
             Dim dtHoliday = rep.GetHoliday(New AT_HOLIDAYDTO)
             For Each row As DataRow In dtData.Rows
                 Dim isRow = ImportValidate.TrimRow(row)
