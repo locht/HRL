@@ -139,6 +139,7 @@ Partial Class ProfileRepository
                       From ov In Context.HU_ORGANIZATION_V.Where(Function(f) f.ID = o.ID).DefaultIfEmpty
             From w In Context.HU_WELFARE_LIST.Where(Function(w) w.ID = p.WELFARE_ID).DefaultIfEmpty
             From pe In Context.AT_PERIOD.Where(Function(pe) pe.ID = p.PERIOD_ID).DefaultIfEmpty
+            From e_cv In Context.HU_EMPLOYEE_CV.Where(Function(e_cv) e_cv.EMPLOYEE_ID = e.ID).DefaultIfEmpty
             Where p.ID = Id
          Order By p.EMPLOYEE_ID()
 
@@ -161,7 +162,8 @@ Partial Class ProfileRepository
                                       .SENIORITY = p.ce.SENIORITY,
                                       .EMPLOYEE_ID = p.ce.EMPLOYEE_ID,
                                       .GROUP_ID = p.ce.GROUP_ID,
-                                      .REMARK = p.ce.REMARK
+                                      .REMARK = p.ce.REMARK,
+                                       .BIRTH_DATE = p.e_cv.BIRTH_DATE
                                       })
             Return lst.ToList
         Catch ex As Exception

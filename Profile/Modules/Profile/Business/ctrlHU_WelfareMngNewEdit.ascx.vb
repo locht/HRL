@@ -328,6 +328,7 @@ Public Class ctrlHU_WelfareMngNewEdit
                     Using rep As New ProfileBusinessRepository
                         Dim dtdata = rep.GET_DETAILS_EMP(emp.ID, cboWELFARE_ID.SelectedValue, dpEFFECT_DATE.SelectedDate)
                         If dtdata.Rows.Count > 0 Then
+                            Dim birth_date = dtdata(0)("BIRTH_DATE").ToString()
                             Dim org_name2 = dtdata(0)("ORG_NAME_C2").ToString()
                             Dim total_child = dtdata(0)("TOTAL_CHILD").ToString()
                             Dim money_total = dtdata(0)("MONEY_TOTAL").ToString()
@@ -668,6 +669,7 @@ Public Class ctrlHU_WelfareMngNewEdit
             dtbImport.Columns.Add("TITLE_ID", GetType(Decimal))
             dtbImport.Columns.Add("ORG_ID", GetType(Decimal))
             dtbImport.Columns.Add("ID", GetType(Decimal))
+            dtbImport.Columns.Add("BIRTH_DATE", GetType(Date))
             Return dtbImport
         Catch ex As Exception
 

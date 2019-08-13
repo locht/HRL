@@ -1,7 +1,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for Oracle database
 -- --------------------------------------------------
--- Date Created: 08/12/2019 2:05:18 PM
+-- Date Created: 08/13/2019 3:05:12 PM
 -- Generated from EDMX file: D:\MyProject\TNG\TNG\ProfileDAL\ProfileContext.edmx
 -- --------------------------------------------------
 
@@ -1314,7 +1314,7 @@ CREATE TABLE "dbo"."HU_CONTRACT_TYPE" (
    "ID" NUMBER(38,0) NOT NULL,
    "NAME" NVARCHAR2(255) NULL,
    "CODE" NVARCHAR2(255) NULL,
-   "PERIOD" NUMBER(10,0) NULL,
+   "PERIOD" NUMBER(38,0) NULL,
    "REMARK" NVARCHAR2(1023) NULL,
    "ACTFLG" NVARCHAR2(1) NULL,
    "CREATED_DATE" DATE NULL,
@@ -1531,7 +1531,13 @@ CREATE TABLE "dbo"."HU_PRO_TRAIN_OUT_COMPANY" (
    "FILE_NAME" NCLOB NULL,
    "TYPE_TRAIN_ID" NUMBER(38,0) NULL,
    "RECEIVE_DEGREE_DATE" DATE NULL,
-   "IS_RENEWED" NUMBER(38,0) NULL
+   "IS_RENEWED" NUMBER(38,0) NULL,
+   "LEVEL_ID" NUMBER(38,0) NULL,
+   "POINT_LEVEL" NUMBER(38,0) NULL,
+   "CONTENT_LEVEL" NCLOB NULL,
+   "NOTE" NCLOB NULL,
+   "CERTIFICATE_CODE" NCLOB NULL,
+   "TYPE_TRAIN_NAME" NCLOB NULL
 );
 
 -- Creating table 'HU_DISCIPLINE_EMP'
@@ -3384,7 +3390,8 @@ CREATE TABLE "dbo"."HUV_CURRENT_WORKING" (
    "IS_3B" NUMBER(5,0) NULL,
    "EFFECT_DATE" DATE NULL,
    "DIRECT_MANAGER" NUMBER(38,0) NULL,
-   "OBJECT_ATTENDANCE" NUMBER(38,0) NULL
+   "OBJECT_ATTENDANCE" NUMBER(38,0) NULL,
+   "OBJECT_LABOR" NUMBER(38,0) NULL
 );
 
 -- Creating table 'HUV_TERMINATE_CURRENT'

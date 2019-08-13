@@ -1492,6 +1492,7 @@ Partial Class ProfileRepository
             objWorkingData.SAL_INS = objWorking.SAL_INS
             objWorkingData.TAX_TABLE_ID = objWorking.TAX_TABLE_ID
             objWorkingData.ATTACH_FILE = objWorking.ATTACH_FILE
+            objWorkingData.FILENAME = objWorking.FILENAME
             objWorkingData.PERCENTSALARY = objWorking.PERCENTSALARY
             objWorkingData.FACTORSALARY = objWorking.FACTORSALARY
             objWorkingData.OTHERSALARY1 = objWorking.OTHERSALARY1

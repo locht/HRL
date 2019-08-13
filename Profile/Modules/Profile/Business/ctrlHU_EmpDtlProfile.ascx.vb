@@ -187,6 +187,7 @@ Public Class ctrlHU_EmpDtlProfile
                         cboTitle.Text = EmployeeInfo.TITLE_NAME_VN
                         txtTitleGroup.Text = EmployeeInfo.TITLE_GROUP_NAME
                         rdJoinDate.SelectedDate = EmployeeInfo.JOIN_DATE
+                        rdJoinDateState.SelectedDate = EmployeeInfo.JOIN_DATE_STATE
                         rdter_effect_date.SelectedDate = EmployeeInfo.TER_EFFECT_DATE
                         '--------------------------------------------------------------
                         txtContractNo.Text = EmployeeInfo.CONTRACT_NO
@@ -1863,7 +1864,7 @@ Public Class ctrlHU_EmpDtlProfile
                 EmployeeInfo.TITLE_NAME_VN = cboTitle.Text
             End If
 
-            EmployeeInfo.JOIN_DATE = rdJoinDate.SelectedDate
+            ' EmployeeInfo.JOIN_DATE = rdJoinDate.SelectedDate
 
             'EmployeeInfo.JOIN_DATE_STATE = rdJoinDateState.SelectedDate
 
