@@ -153,9 +153,9 @@
                                         CausesValidation="false" OnClientClicked="rbtClicked">
                                     </tlk:RadButton>
                             </td>
-                             <td>
+                             <td style="display:none">
                             <asp:CheckBox ID="chkIsChuyen" runat="server" Text="<%$ Translate: Tạo nhân viên mới %>"
-                                AutoPostBack="false"/>
+                                AutoPostBack="false" />
                              </td>
                         </tr>
                     </table>

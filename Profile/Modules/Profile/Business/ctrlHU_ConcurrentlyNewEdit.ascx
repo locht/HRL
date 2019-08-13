@@ -156,7 +156,7 @@
                             </td>
                              <td>
                             <asp:CheckBox ID="chkIsChuyen" runat="server" Text="<%$ Translate: Tạo nhân viên mới %>"
-                                AutoPostBack="false"/>
+                                AutoPostBack="false" style="display:none"/>
                              </td>
                         </tr>
                     </table>
