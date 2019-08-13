@@ -1,8 +1,8 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for Oracle database
 -- --------------------------------------------------
--- Date Created: 08/13/2019 10:58:22 AM
--- Generated from EDMX file: D:\MyProject\TNG\TNG\ProfileDAL\ProfileContext.edmx
+-- Date Created: 8/13/2019 1:59:51 PM
+-- Generated from EDMX file: D:\TNG_SOURCE_NEW\ProfileDAL\ProfileContext.edmx
 -- --------------------------------------------------
 
 -- --------------------------------------------------
@@ -1531,7 +1531,13 @@ CREATE TABLE "dbo"."HU_PRO_TRAIN_OUT_COMPANY" (
    "FILE_NAME" NCLOB NULL,
    "TYPE_TRAIN_ID" NUMBER(38,0) NULL,
    "RECEIVE_DEGREE_DATE" DATE NULL,
-   "IS_RENEWED" NUMBER(38,0) NULL
+   "IS_RENEWED" NUMBER(38,0) NULL,
+   "LEVEL_ID" NUMBER(38,0) NULL,
+   "POINT_LEVEL" NUMBER(38,0) NULL,
+   "CONTENT_LEVEL" NCLOB NULL,
+   "NOTE" NCLOB NULL,
+   "CERTIFICATE_CODE" NCLOB NULL,
+   "TYPE_TRAIN_NAME" NCLOB NULL
 );
 
 -- Creating table 'HU_DISCIPLINE_EMP'
