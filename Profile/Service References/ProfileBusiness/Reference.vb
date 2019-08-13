@@ -32333,7 +32333,13 @@ Namespace ProfileBusiness
         Private CERTIFICATEField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private CERTIFICATE_CODEField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private CERTIFICATE_IDField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private CONTENT_LEVELField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private CREATED_BYField As String
@@ -32381,6 +32387,12 @@ Namespace ProfileBusiness
         Private IS_RENEWEDField As Boolean
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private LEVEL_IDField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private LEVEL_NAMEField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private MODIFIED_BYField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -32393,7 +32405,16 @@ Namespace ProfileBusiness
         Private NAME_SHOOLSField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private NOTEField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private POINT_LEVELField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private RECEIVE_DEGREE_DATEField As System.Nullable(Of Date)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private RENEWED_NAMEField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private RESULT_TRAINField As String
@@ -32443,6 +32464,19 @@ Namespace ProfileBusiness
         End Property
         
         <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property CERTIFICATE_CODE() As String
+            Get
+                Return Me.CERTIFICATE_CODEField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.CERTIFICATE_CODEField, value) <> true) Then
+                    Me.CERTIFICATE_CODEField = value
+                    Me.RaisePropertyChanged("CERTIFICATE_CODE")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
         Public Property CERTIFICATE_ID() As String
             Get
                 Return Me.CERTIFICATE_IDField
@@ -32451,6 +32485,19 @@ Namespace ProfileBusiness
                 If (Object.ReferenceEquals(Me.CERTIFICATE_IDField, value) <> true) Then
                     Me.CERTIFICATE_IDField = value
                     Me.RaisePropertyChanged("CERTIFICATE_ID")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property CONTENT_LEVEL() As String
+            Get
+                Return Me.CONTENT_LEVELField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.CONTENT_LEVELField, value) <> true) Then
+                    Me.CONTENT_LEVELField = value
+                    Me.RaisePropertyChanged("CONTENT_LEVEL")
                 End If
             End Set
         End Property
@@ -32651,6 +32698,32 @@ Namespace ProfileBusiness
         End Property
         
         <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property LEVEL_ID() As System.Nullable(Of Decimal)
+            Get
+                Return Me.LEVEL_IDField
+            End Get
+            Set
+                If (Me.LEVEL_IDField.Equals(value) <> true) Then
+                    Me.LEVEL_IDField = value
+                    Me.RaisePropertyChanged("LEVEL_ID")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property LEVEL_NAME() As String
+            Get
+                Return Me.LEVEL_NAMEField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.LEVEL_NAMEField, value) <> true) Then
+                    Me.LEVEL_NAMEField = value
+                    Me.RaisePropertyChanged("LEVEL_NAME")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
         Public Property MODIFIED_BY() As String
             Get
                 Return Me.MODIFIED_BYField
@@ -32703,6 +32776,32 @@ Namespace ProfileBusiness
         End Property
         
         <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property NOTE() As String
+            Get
+                Return Me.NOTEField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.NOTEField, value) <> true) Then
+                    Me.NOTEField = value
+                    Me.RaisePropertyChanged("NOTE")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property POINT_LEVEL() As System.Nullable(Of Decimal)
+            Get
+                Return Me.POINT_LEVELField
+            End Get
+            Set
+                If (Me.POINT_LEVELField.Equals(value) <> true) Then
+                    Me.POINT_LEVELField = value
+                    Me.RaisePropertyChanged("POINT_LEVEL")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
         Public Property RECEIVE_DEGREE_DATE() As System.Nullable(Of Date)
             Get
                 Return Me.RECEIVE_DEGREE_DATEField
@@ -32711,6 +32810,19 @@ Namespace ProfileBusiness
                 If (Me.RECEIVE_DEGREE_DATEField.Equals(value) <> true) Then
                     Me.RECEIVE_DEGREE_DATEField = value
                     Me.RaisePropertyChanged("RECEIVE_DEGREE_DATE")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property RENEWED_NAME() As String
+            Get
+                Return Me.RENEWED_NAMEField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.RENEWED_NAMEField, value) <> true) Then
+                    Me.RENEWED_NAMEField = value
+                    Me.RaisePropertyChanged("RENEWED_NAME")
                 End If
             End Set
         End Property

@@ -2931,6 +2931,7 @@ Partial Class ProfileRepository
                          From ot1 In Context.OT_OTHER_LIST.Where(Function(F) F.ID = p.CERTIFICATE).DefaultIfEmpty
                         From ot_train In Context.OT_OTHER_LIST_TYPE.Where(Function(f) f.ID = ot.TYPE_ID And f.CODE = "TRAINING_FORM").DefaultIfEmpty
                         From ot_type In Context.OT_OTHER_LIST_TYPE.Where(Function(f) f.ID = ott.TYPE_ID And f.CODE = "TRAINING_TYPE").DefaultIfEmpty
+                        From ot_level In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.LEVEL_ID And f.TYPE_CODE = "LEARNING_LEVEL").DefaultIfEmpty
             If Not String.IsNullOrEmpty(_filter.EMPLOYEE_ID) Then
                 query = query.Where(Function(f) f.p.EMPLOYEE_ID = _filter.EMPLOYEE_ID)
             End If
@@ -2952,8 +2953,6 @@ Partial Class ProfileRepository
                                        .CERTIFICATE_ID = p.p.CERTIFICATE,
                                        .EFFECTIVE_DATE_FROM = p.p.EFFECTIVE_DATE_FROM,
                                        .EFFECTIVE_DATE_TO = p.p.EFFECTIVE_DATE_TO,
-                                       .TYPE_TRAIN_ID = p.p.TYPE_TRAIN_ID,
-                                       .TYPE_TRAIN_NAME = p.ott.NAME_VN,
                                        .RECEIVE_DEGREE_DATE = p.p.RECEIVE_DEGREE_DATE,
                                        .CREATED_BY = p.p.CREATED_BY,
                                        .CREATED_DATE = p.p.CREATED_DATE,
@@ -2961,7 +2960,15 @@ Partial Class ProfileRepository
                                        .MODIFIED_BY = p.p.MODIFIED_BY,
                                        .MODIFIED_DATE = p.p.MODIFIED_DATE,
                                        .MODIFIED_LOG = p.p.MODIFIED_LOG,
-                                       .IS_RENEWED = p.p.IS_RENEWED})
+                                       .IS_RENEWED = p.p.IS_RENEWED,
+                                       .RENEWED_NAME = If(p.p.IS_RENEWED = 0, "Không", "Có"),
+                                       .LEVEL_ID = p.p.LEVEL_ID,
+                                       .LEVEL_NAME = p.ot_level.NAME_VN,
+                                       .POINT_LEVEL = p.p.POINT_LEVEL,
+                                       .CONTENT_LEVEL = p.p.CONTENT_LEVEL,
+                                       .NOTE = p.p.NOTE,
+                                       .CERTIFICATE_CODE = p.p.CERTIFICATE_CODE,
+                                       .TYPE_TRAIN_NAME = p.p.TYPE_TRAIN_NAME})
             lst = lst.OrderBy(Sorts)
             Total = lst.Count
             lst = lst.Skip(PageIndex * PageSize).Take(PageSize)
@@ -2992,9 +2999,15 @@ Partial Class ProfileRepository
             objTitleData.EFFECTIVE_DATE_FROM = objTitle.EFFECTIVE_DATE_FROM
             objTitleData.EFFECTIVE_DATE_TO = objTitle.EFFECTIVE_DATE_TO
             objTitleData.EMPLOYEE_ID = objTitle.EMPLOYEE_ID
-            objTitleData.TYPE_TRAIN_ID = objTitle.TYPE_TRAIN_ID
             objTitleData.RECEIVE_DEGREE_DATE = objTitle.RECEIVE_DEGREE_DATE
             objTitleData.IS_RENEWED = objTitle.IS_RENEWED
+            objTitleData.LEVEL_ID = objTitle.LEVEL_ID
+            objTitleData.POINT_LEVEL = objTitle.POINT_LEVEL
+            objTitleData.CONTENT_LEVEL = objTitle.CONTENT_LEVEL
+            objTitleData.NOTE = objTitle.NOTE
+            objTitleData.CERTIFICATE_CODE = objTitle.CERTIFICATE_CODE
+            objTitleData.TYPE_TRAIN_NAME = objTitle.TYPE_TRAIN_NAME
+
             Context.HU_PRO_TRAIN_OUT_COMPANY.AddObject(objTitleData)
             Context.SaveChanges(log)
             gID = objTitleData.ID
@@ -3028,6 +3041,12 @@ Partial Class ProfileRepository
             objTitleData.TYPE_TRAIN_ID = objTitle.TYPE_TRAIN_ID
             objTitleData.RECEIVE_DEGREE_DATE = objTitle.RECEIVE_DEGREE_DATE
             objTitleData.IS_RENEWED = objTitle.IS_RENEWED
+            objTitleData.LEVEL_ID = objTitle.LEVEL_ID
+            objTitleData.POINT_LEVEL = objTitle.POINT_LEVEL
+            objTitleData.CONTENT_LEVEL = objTitle.CONTENT_LEVEL
+            objTitleData.NOTE = objTitle.NOTE
+            objTitleData.CERTIFICATE_CODE = objTitle.CERTIFICATE_CODE
+            objTitleData.TYPE_TRAIN_NAME = objTitle.TYPE_TRAIN_NAME
             Context.SaveChanges(log)
             gID = objTitleData.ID
             Return True

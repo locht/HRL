@@ -106,10 +106,10 @@ Public Class ctrlHU_EmpDtlTrainingOutCompany
             rgEmployeeTrain.AllowCustomPaging = True
             rgEmployeeTrain.ClientSettings.EnablePostBackOnRowClick = True
             InitControl()
-            If Not IsPostBack Then
-                ViewConfig(RadPane1)
-                GirdConfig(rgEmployeeTrain)
-            End If
+            'If Not IsPostBack Then
+            '    ViewConfig(RadPane1)
+            '    GirdConfig(rgEmployeeTrain)
+            'End If
         Catch ex As Exception
             DisplayException(Me.ViewName, Me.ID, ex)
         End Try
@@ -205,15 +205,15 @@ Public Class ctrlHU_EmpDtlTrainingOutCompany
                 Case CommonMessage.STATE_NEW
 
                     EnabledGridNotPostback(rgEmployeeTrain, False)
-                    EnableControlAll(True, rdToiThang, cboRemark, rdTuThang, rntGraduateYear, txtRemark, cboTrainingForm, txtChuyenNganh, txtKetQua, txtTrainingSchool, cboTrainingType, rdReceiveDegree, chkTerminate)
+                    EnableControlAll(True, rdToiThang, cboRemark, rdTuThang, rntGraduateYear, txtRemark, cboTrainingForm, txtChuyenNganh, txtKetQua, txtTrainingSchool, txtTrainingType, rdReceiveDegree, chkTerminate, cboLevelId, txtPointLevel, rtxtContentLevel, txtCertificateCode, txtNote)
                     EnabledGrid(rgEmployeeTrain, False)
                 Case CommonMessage.STATE_NORMAL
                     EnabledGridNotPostback(rgEmployeeTrain, True)
-                    EnableControlAll(False, rdTuThang, cboRemark, rdToiThang, rntGraduateYear, rdFrom, rdTo, txtRemark, cboTrainingForm, txtChuyenNganh, txtKetQua, txtTrainingSchool, cboTrainingType, rdReceiveDegree, chkTerminate)
+                    EnableControlAll(False, rdTuThang, cboRemark, rdToiThang, rntGraduateYear, rdFrom, rdTo, txtRemark, cboTrainingForm, txtChuyenNganh, txtKetQua, txtTrainingSchool, txtTrainingType, rdReceiveDegree, chkTerminate, cboLevelId, txtPointLevel, rtxtContentLevel, txtCertificateCode, txtNote)
                     EnabledGrid(rgEmployeeTrain, True)
                 Case CommonMessage.STATE_EDIT
                     EnabledGridNotPostback(rgEmployeeTrain, False)
-                    EnableControlAll(True, rdTuThang, rdToiThang, rntGraduateYear, txtRemark, cboTrainingForm, cboRemark, txtChuyenNganh, txtKetQua, txtTrainingSchool, cboTrainingType, rdReceiveDegree, chkTerminate)
+                    EnableControlAll(True, rdTuThang, rdToiThang, rntGraduateYear, txtRemark, cboTrainingForm, cboRemark, txtChuyenNganh, txtKetQua, txtTrainingSchool, txtTrainingType, rdReceiveDegree, chkTerminate, cboLevelId, txtPointLevel, rtxtContentLevel, txtCertificateCode, txtNote)
                     EnabledGrid(rgEmployeeTrain, False)
                     If cboRemark.SelectedValue = 7086 Then
                         EnableControlAll(True, rdFrom, rdTo)
@@ -260,10 +260,16 @@ Public Class ctrlHU_EmpDtlTrainingOutCompany
         dic.Add("EFFECTIVE_DATE_TO", rdTo)
         dic.Add("UPLOAD_FILE", txtUploadFile)
         dic.Add("FILE_NAME", txtRemark)
-        dic.Add("TYPE_TRAIN_ID", cboTrainingType)
-        dic.Add("TYPE_TRAIN_NAME", cboTrainingType)
+        dic.Add("TYPE_TRAIN_NAME", txtTrainingType)
         dic.Add("RECEIVE_DEGREE_DATE", rdReceiveDegree)
         dic.Add("IS_RENEWED", chkTerminate)
+        dic.Add("POINT_LEVEL", txtPointLevel)
+        dic.Add("CONTENT_LEVEL", rtxtContentLevel)
+        'dic.Add("RECEIVE_DEGREE_DATE", rdReceiveDegree)
+        dic.Add("NOTE", txtNote)
+        dic.Add("CERTIFICATE_CODE", txtCertificateCode)
+        dic.Add("LEVEL_ID", cboLevelId)
+
         Utilities.OnClientRowSelectedChanged(rgEmployeeTrain, dic)
         Try
             Dim rep As New ProfileRepository
@@ -272,15 +278,15 @@ Public Class ctrlHU_EmpDtlTrainingOutCompany
                 comboBoxDataDTO = New ComboBoxDataDTO
             End If
             comboBoxDataDTO.GET_TRAINING_FORM = True
-            comboBoxDataDTO.GET_TRAINING_TYPE = True
+            comboBoxDataDTO.GET_LEVEL_TRAIN = True
             comboBoxDataDTO.GET_MAJOR = True
             comboBoxDataDTO.GET_MARK_EDU = True
             comboBoxDataDTO.GET_CERTIFICATE_TYPE = True
             rep.GetComboList(comboBoxDataDTO)
             If comboBoxDataDTO IsNot Nothing Then
                 FillDropDownList(cboTrainingForm, comboBoxDataDTO.LIST_TRAINING_FORM, "NAME_VN", "ID", Common.Common.SystemLanguage, True, cboTrainingForm.SelectedValue)
-                FillDropDownList(cboTrainingType, comboBoxDataDTO.LIST_TRAINING_TYPE, "NAME_VN", "ID", Common.Common.SystemLanguage, True, cboTrainingType.SelectedValue)
                 FillDropDownList(cboRemark, comboBoxDataDTO.LIST_CERTIFICATE_TYPE, "NAME_VN", "ID", Common.Common.SystemLanguage, True, cboRemark.SelectedValue)
+                FillDropDownList(cboLevelId, comboBoxDataDTO.LIST_LEVEL_TRAIN, "NAME_VN", "ID", Common.Common.SystemLanguage, True, cboLevelId.SelectedValue)
             End If
             rep.Dispose()
         Catch ex As Exception
@@ -298,8 +304,8 @@ Public Class ctrlHU_EmpDtlTrainingOutCompany
         Try
             Select Case CType(e.Item, RadToolBarButton).CommandName
                 Case CommonMessage.TOOLBARITEM_CREATE
-                    ClearControlValue(rdToiThang, rdTuThang, cboTrainingForm, cboTrainingType, rntGraduateYear, txtRemark, txtTrainingSchool,
-                                    cboRemark, txtChuyenNganh, txtKetQua, rdFrom, rdTo, rdReceiveDegree)
+                    ClearControlValue(rdToiThang, rdTuThang, cboTrainingForm, txtTrainingType, rntGraduateYear, txtRemark, txtTrainingSchool,
+                                    cboRemark, txtChuyenNganh, txtKetQua, rdFrom, rdTo, rdReceiveDegree, cboLevelId, txtPointLevel, rtxtContentLevel, txtCertificateCode, txtNote)
                     chkTerminate.Checked = False
                     checkCRUD = 1
                     If EmployeeInfo.WORK_STATUS Is Nothing Or
@@ -372,11 +378,7 @@ Public Class ctrlHU_EmpDtlTrainingOutCompany
                         Else
                             objTrain.FORM_TRAIN_ID = cboTrainingForm.SelectedValue
                         End If
-                        If cboTrainingType.SelectedValue = "" Then
-                            objTrain.TYPE_TRAIN_ID = Nothing
-                        Else
-                            objTrain.TYPE_TRAIN_ID = cboTrainingType.SelectedValue
-                        End If
+                       
                         If cboRemark.SelectedValue = "" Then
                             objTrain.CERTIFICATE = Nothing
                         Else
@@ -390,6 +392,15 @@ Public Class ctrlHU_EmpDtlTrainingOutCompany
                         objTrain.EFFECTIVE_DATE_TO = rdTo.SelectedDate
                         objTrain.FILE_NAME = txtRemark.Text.Trim
                         objTrain.IS_RENEWED = chkTerminate.Checked
+
+
+                        objTrain.LEVEL_ID = cboLevelId.SelectedValue
+                        objTrain.POINT_LEVEL = txtPointLevel.Value
+                        objTrain.CONTENT_LEVEL = rtxtContentLevel.Text
+                        objTrain.NOTE = txtNote.Text
+                        objTrain.CERTIFICATE_CODE = txtCertificateCode.Text
+                        objTrain.TYPE_TRAIN_NAME = txtTrainingType.Text
+
                         If Down_File = Nothing Then
                             objTrain.UPLOAD_FILE = If(txtRemindLink.Text Is Nothing, "", txtRemindLink.Text)
                         Else
@@ -442,6 +453,8 @@ Public Class ctrlHU_EmpDtlTrainingOutCompany
 
                 Case CommonMessage.TOOLBARITEM_CANCEL
                     CurrentState = CommonMessage.STATE_NORMAL
+                    ClearControlValue(rdToiThang, rdTuThang, cboTrainingForm, txtTrainingType, rntGraduateYear, txtRemark, txtTrainingSchool,
+                                    cboRemark, txtChuyenNganh, txtKetQua, rdFrom, rdTo, rdReceiveDegree, cboLevelId, txtPointLevel, rtxtContentLevel, txtCertificateCode, txtNote)
                     Refresh("Cancel")
             End Select
 
@@ -607,8 +620,7 @@ Public Class ctrlHU_EmpDtlTrainingOutCompany
             txtTrainingSchool.Text = dataItem.GetDataKeyValue("NAME_SHOOLS")
             cboTrainingForm.SelectedValue = dataItem.GetDataKeyValue("FORM_TRAIN_ID")
             txtChuyenNganh.Text = dataItem.GetDataKeyValue("SPECIALIZED_TRAIN")
-            cboTrainingType.SelectedValue = dataItem.GetDataKeyValue("TYPE_TRAIN_ID")
-            cboTrainingType.Text = dataItem.GetDataKeyValue("TYPE_TRAIN_NAME")
+            txtTrainingType.Text = dataItem.GetDataKeyValue("TYPE_TRAIN_NAME")
             txtKetQua.Text = dataItem.GetDataKeyValue("RESULT_TRAIN")
             cboRemark.SelectedValue = dataItem.GetDataKeyValue("CERTIFICATE_ID")
             cboRemark.Text = dataItem.GetDataKeyValue("CERTIFICATE")
@@ -618,6 +630,11 @@ Public Class ctrlHU_EmpDtlTrainingOutCompany
             txtRemindLink.Text = dataItem.GetDataKeyValue("UPLOAD_FILE")
             txtRemark.Text = dataItem.GetDataKeyValue("FILE_NAME")
             chkTerminate.Checked = dataItem.GetDataKeyValue("IS_RENEWED")
+            cboLevelId.SelectedValue = dataItem.GetDataKeyValue("LEVEL_ID")
+            txtPointLevel.Value = Double.Parse(dataItem.GetDataKeyValue("POINT_LEVEL"))
+            rtxtContentLevel.Text = dataItem.GetDataKeyValue("CONTENT_LEVEL")
+            txtNote.Text = dataItem.GetDataKeyValue("NOTE")
+            txtCertificateCode.Text = dataItem.GetDataKeyValue("CERTIFICATE_CODE")
             EnableControlAll(False, rdFrom, rdTo)
         End If
     End Sub

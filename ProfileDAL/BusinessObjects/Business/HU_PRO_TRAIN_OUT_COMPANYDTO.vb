@@ -29,4 +29,11 @@
     Public Property FORM_TRAIN_NAME As String
     Public Property RECEIVE_DEGREE_DATE As Date?
     Public Property IS_RENEWED As Boolean
+    Public Property LEVEL_ID As Decimal?
+    Public Property LEVEL_NAME As String
+    Public Property POINT_LEVEL As Decimal?
+    Public Property CONTENT_LEVEL As String
+    Public Property NOTE As String
+    Public Property CERTIFICATE_CODE As String
+    Public Property RENEWED_NAME As String
 End Class
