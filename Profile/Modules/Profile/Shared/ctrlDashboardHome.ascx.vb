@@ -7,6 +7,7 @@ Imports Common.Common
 Imports Common.CommonMessage
 Imports Common.CommonBusiness
 Imports Aspose.Cells
+Imports System.Net
 
 Public Class ctrlDashboardHome
     Inherits Common.CommonView
@@ -362,79 +363,98 @@ Public Class ctrlDashboardHome
         Dim body As String = ""
         Dim temp As String = ""
         Dim Email As String = ""
-        Dim lstEmail As New List(Of SendMail)
+        'Dim lstEmail As New List(Of SendMail)
         Dim lstCount As New List(Of Integer)
         Dim count As Integer = 1
         Dim mailCC As String = ""
         Dim detail As String = ""
-
+        Dim bodyNew As String = ""
         Dim SM As New SendMail
         Dim indexUl As Decimal
-        Dim year As Decimal
+        'Dim year As Decimal
         'get thong tin template mail
         Dim dataMail As DataTable
-        Select Case remind_type
-            Case "1" 'Hop dong chinh thuc
-                dataMail = psp.GET_MAIL_TEMPLATE("HDCT", "Profile")
-                mailCC = If(psp.GET_MAILCC_DIRECT_HR(dr.GetDataKeyValue("EMPLOYEE_ID")) <> "", psp.GET_MAILCC_DIRECT_HR(dr.GetDataKeyValue("EMPLOYEE_ID")), Nothing)
-            Case "20" 'Hop dong thu viec
-                dataMail = psp.GET_MAIL_TEMPLATE("HDTV", "Profile")
-                mailCC = If(psp.GET_MAILCC_DIRECT_HR(dr.GetDataKeyValue("EMPLOYEE_ID")) <> "", psp.GET_MAILCC_DIRECT_HR(dr.GetDataKeyValue("EMPLOYEE_ID")), Nothing)
-        End Select
+        Try
+            Select Case remind_type
+                Case "1" 'Hop dong chinh thuc
+                    dataMail = psp.GET_MAIL_TEMPLATE("HDCT", "Profile")
+                    mailCC = If(psp.GET_MAILCC_DIRECT_HR(dr.GetDataKeyValue("EMPLOYEE_ID")) <> "", psp.GET_MAILCC_DIRECT_HR(dr.GetDataKeyValue("EMPLOYEE_ID")), Nothing)
+                Case "20" 'Hop dong thu viec
+                    dataMail = psp.GET_MAIL_TEMPLATE("HDTV", "Profile")
+                    mailCC = If(psp.GET_MAILCC_DIRECT_HR(dr.GetDataKeyValue("EMPLOYEE_ID")) <> "", psp.GET_MAILCC_DIRECT_HR(dr.GetDataKeyValue("EMPLOYEE_ID")), Nothing)
+            End Select
 
-        If dataMail.Rows.Count = 0 Then
-            ShowMessage("Không tìm thấy mẫu Email phù hợp !", NotifyType.Alert)
-            Exit Sub
-        End If
+            If dataMail.Rows.Count = 0 Then
+                ShowMessage("Không tìm thấy mẫu Email phù hợp !", NotifyType.Alert)
+                Exit Sub
+            End If
 
-        'lấy thông tin mail
-        ' body = String.Format(dataMail.Rows(0)("CONTENT").ToString, txtName.Text)
+            'lấy thông tin mail
+            ' body = String.Format(dataMail.Rows(0)("CONTENT").ToString, txtName.Text)
 
-        body = dataMail.Rows(0)("CONTENT").ToString
-        'detail = body.Substring(body.IndexOf("<li>"), (body.IndexOf("</li>") - body.IndexOf("<li>")) + 5)
+            body = dataMail.Rows(0)("CONTENT").ToString
+            'detail = body.Substring(body.IndexOf("<li>"), (body.IndexOf("</li>") - body.IndexOf("<li>")) + 5)
 
-        'Cắt đoạn danh sách chuẩn bị trong noi dung để làm động theo danh sách trên gridview
-        detail = detail.Replace("{2}", "{0}")
-        detail = detail.Replace("{3}", "{1}")
+            'Cắt đoạn danh sách chuẩn bị trong noi dung để làm động theo danh sách trên gridview
+            'detail = detail.Replace("{2}", "{0}")
+            'detail = detail.Replace("{3}", "{1}")
 
 
-        Email = dr.GetDataKeyValue("WORK_EMAIL")
-        'year = dr.GetDataKeyValue("REMIND_DATE")
-        If Email <> "" Then
-            If Not lstEmail.Any(Function(x) x.SendTo = Email) Then
+            Email = dr.GetDataKeyValue("WORK_EMAIL")
+            'year = dr.GetDataKeyValue("REMIND_DATE")
+            'If Email <> "" Then
+            '    If Not lstEmail.Any(Function(x) x.SendTo = Email) Then
+            '        SM = New SendMail
+            '        SM.SendTo = Email
+            '        SM.Name = dr.GetDataKeyValue("EMPLOYEE_CODE") + " - " + dr.GetDataKeyValue("FULLNAME")
+            '        lstEmail.Add(SM)
+            '    End If
+            '    'Dim ND As String = String.Copy(detail)
+            '    Dim bodyNew = String.Format(body, dr.GetDataKeyValue("REMIND_NAME"), SM.Name)
+            '    'SM.ListDetail.Add(bodyNew)
+            'End If
+            Dim values() As String = {"values1", "values2"}
+
+            If Email <> "" Then
                 SM = New SendMail
                 SM.SendTo = Email
+                'body = "<p style=" + "margin: 6pt 0in; line-height: 16pt; background: white;" + "><span style=" + "font-size: 12pt; font-family: 'Myriad Pro', sans-serif; color: #002060;" + ">Hi {0} {1}!</span> </p>"
                 SM.Name = dr.GetDataKeyValue("EMPLOYEE_CODE") + " - " + dr.GetDataKeyValue("FULLNAME")
-                lstEmail.Add(SM)
+                'bodyNew = String.Format(body, dr.GetDataKeyValue("REMIND_NAME"), SM.Name)
+                bodyNew = String.Format(body, values.Select(Function(f) f).ToArray())
             End If
-            Dim ND As String = String.Copy(detail)
-            Dim bodyNew = String.Format(ND, dr.GetDataKeyValue("REMIND_NAME"), SM.Name)
-            SM.ListDetail.Add(bodyNew)
-        End If
+            'Xoa đoạn Danh sách chuẩn bi trong template rồi insert động lại
+            'indexUl = body.IndexOf("</ul>")
+            'body = body.Remove(body.IndexOf("<li>"), (indexUl - body.IndexOf("<li>")) + 5)
 
-        'Xoa đoạn Danh sách chuẩn bi trong template rồi insert động lại
-        'indexUl = body.IndexOf("</ul>")
-        'body = body.Remove(body.IndexOf("<li>"), (indexUl - body.IndexOf("<li>")) + 5)
+            'thay thế nội dung vào {}
+            'body = String.Format(body, "TEST", year)
 
-        'thay thế nội dung vào {}
-        body = String.Format(body, "TEST", year)
-
-        'Chạy chi tiết từng email
-        For Each dt As SendMail In lstEmail
-            Dim bodyNew As String = String.Copy(body)
-            For Each Str As String In dt.ListDetail
-                bodyNew += Environment.NewLine
-                bodyNew += Str
-            Next
-            bodyNew += Environment.NewLine
-            bodyNew += "</ul>"
-            If Not Common.Common.sendEmailByServerMail(dt.SendTo, _
-                                                       If(mailCC <> "", mailCC, dataMail.Rows(0)("MAIL_CC").ToString()), _
+            'Chạy chi tiết từng email
+            'For Each dto As SendMail In lstEmail
+            '    Dim bodyNew As String = String.Copy(body)
+            '    For Each Str As String In dto.ListDetail
+            '        bodyNew += Environment.NewLine
+            '        bodyNew += Str
+            '    Next
+            '    bodyNew += Environment.NewLine
+            '    bodyNew += "</ul>"
+            '    If Not Common.Common.sendEmailByServerMail(dto.SendTo, _
+            '                                               If(mailCC <> "", mailCC, dataMail.Rows(0)("MAIL_CC").ToString()), _
+            '                                               dataMail.Rows(0)("TITLE").ToString(), bodyNew, String.Empty) Then
+            '        ShowMessage(Translate(CommonMessage.MESSAGE_SENDMAIL_ERROR), NotifyType.Warning)
+            '        Exit Sub
+            '    End If
+            'Next
+            If Not Common.Common.sendEmailByServerMail(SM.SendTo,
+                                                       If(mailCC <> "", mailCC, dataMail.Rows(0)("MAIL_CC").ToString()),
                                                        dataMail.Rows(0)("TITLE").ToString(), bodyNew, String.Empty) Then
                 ShowMessage(Translate(CommonMessage.MESSAGE_SENDMAIL_ERROR), NotifyType.Warning)
                 Exit Sub
             End If
-        Next
+        Catch ex As Exception
+            Throw ex
+        End Try
     End Sub
 
     Private Sub LoadConfig()
