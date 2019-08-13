@@ -455,15 +455,6 @@ Partial Public Class ctrlHU_ConcurrentlyNewEdit
     Protected WithEvents btnSIGN2 As Global.Telerik.Web.UI.RadButton
 
     '''<summary>
-    '''reqApplyName1 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents reqApplyName1 As Global.System.Web.UI.WebControls.RequiredFieldValidator
-
-    '''<summary>
     '''HiddenField1 control.
     '''</summary>
     '''<remarks>
