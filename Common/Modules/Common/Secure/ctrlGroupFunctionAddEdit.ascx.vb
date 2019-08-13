@@ -159,15 +159,23 @@ Public Class ctrlGroupFunctionAddEdit
             filter.NAME = rgGrid.MasterTableView.GetColumn("NAME").CurrentFilterValue
             filter.FUNCTION_GROUP_NAME = rgGrid.MasterTableView.GetColumn("FUNCTION_GROUP_NAME").CurrentFilterValue
             filter.MODULE_NAME = rgGrid.MasterTableView.GetColumn("MODULE_NAME").CurrentFilterValue
-            If GroupID_Old = Nothing Or GroupID_Old <> GroupID _
-                Or GroupFunction Is Nothing Or Message = CommonMessage.ACTION_SAVED _
-                 Or Message = CommonMessage.ACTION_UPDATED Then
-                Dim rep As New CommonRepository
-                If Sorts IsNot Nothing Then
-                    GroupFunction = rep.GetGroupFunctionNotPermision(GroupID, filter, rgGrid.CurrentPageIndex, PageSize, MaximumRows, Sorts)
-                Else
-                    GroupFunction = rep.GetGroupFunctionNotPermision(GroupID, filter, rgGrid.CurrentPageIndex, PageSize, MaximumRows)
-                End If
+
+            'If GroupID_Old = Nothing Or GroupID_Old <> GroupID _
+            '    Or GroupFunction Is Nothing Or Message = CommonMessage.ACTION_SAVED _
+            '     Or Message = CommonMessage.ACTION_UPDATED Then
+            '    Dim rep As New CommonRepository
+            '    If Sorts IsNot Nothing Then
+            '        GroupFunction = rep.GetGroupFunctionNotPermision(GroupID, filter, rgGrid.CurrentPageIndex, PageSize, MaximumRows, Sorts)
+            '    Else
+            '        GroupFunction = rep.GetGroupFunctionNotPermision(GroupID, filter, rgGrid.CurrentPageIndex, PageSize, MaximumRows)
+            '    End If
+            'End If
+
+            Dim rep As New CommonRepository
+            If Sorts IsNot Nothing Then
+                GroupFunction = rep.GetGroupFunctionNotPermision(GroupID, filter, rgGrid.CurrentPageIndex, PageSize, MaximumRows, Sorts)
+            Else
+                GroupFunction = rep.GetGroupFunctionNotPermision(GroupID, filter, rgGrid.CurrentPageIndex, PageSize, MaximumRows)
             End If
 
             'Đưa dữ liệu vào Grid

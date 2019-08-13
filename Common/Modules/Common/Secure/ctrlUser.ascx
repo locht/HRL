@@ -26,8 +26,8 @@
                         </tlk:RadTab>
                         <tlk:RadTab Text="<%$ Translate: Phân quyền sơ đồ tổ chức %>">
                         </tlk:RadTab>
-                        <tlk:RadTab Text="<%$ Translate: Phân quyền báo cáo %>">
-                        </tlk:RadTab>
+                        <%--<tlk:RadTab Text="<%$ Translate: Phân quyền báo cáo %>">
+                        </tlk:RadTab>--%>
                     </Tabs>
                 </tlk:RadTabStrip>
             </tlk:RadPane>

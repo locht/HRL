@@ -178,15 +178,22 @@ Public Class ctrlUserFunctionAddEdit
             filter.NAME = rgGrid.MasterTableView.GetColumn("NAME").CurrentFilterValue
             filter.FUNCTION_GROUP_NAME = rgGrid.MasterTableView.GetColumn("FUNCTION_GROUP_NAME").CurrentFilterValue
             filter.MODULE_NAME = rgGrid.MasterTableView.GetColumn("MODULE_NAME").CurrentFilterValue
-            If UserID_Old = Nothing Or UserID_Old <> UserID _
-                Or UserFunction Is Nothing Or Message = CommonMessage.ACTION_SAVED _
-                 Or Message = CommonMessage.ACTION_UPDATED Then
-                Dim rep As New CommonRepository
-                If Sorts IsNot Nothing Then
-                    UserFunction = rep.GetUserFunctionNotPermision(UserID, filter, rgGrid.CurrentPageIndex, PageSize, MaximumRows, Sorts)
-                Else
-                    UserFunction = rep.GetUserFunctionNotPermision(UserID, filter, rgGrid.CurrentPageIndex, PageSize, MaximumRows)
-                End If
+            'If UserID_Old = Nothing Or UserID_Old <> UserID _
+            '    Or UserFunction Is Nothing Or Message = CommonMessage.ACTION_SAVED _
+            '     Or Message = CommonMessage.ACTION_UPDATED Then
+            '    Dim rep As New CommonRepository
+            '    If Sorts IsNot Nothing Then
+            '        UserFunction = rep.GetUserFunctionNotPermision(UserID, filter, rgGrid.CurrentPageIndex, PageSize, MaximumRows, Sorts)
+            '    Else
+            '        UserFunction = rep.GetUserFunctionNotPermision(UserID, filter, rgGrid.CurrentPageIndex, PageSize, MaximumRows)
+            '    End If
+            'End If
+
+            Dim rep As New CommonRepository
+            If Sorts IsNot Nothing Then
+                UserFunction = rep.GetUserFunctionNotPermision(UserID, filter, rgGrid.CurrentPageIndex, PageSize, MaximumRows, Sorts)
+            Else
+                UserFunction = rep.GetUserFunctionNotPermision(UserID, filter, rgGrid.CurrentPageIndex, PageSize, MaximumRows)
             End If
 
             'Đưa dữ liệu vào Grid

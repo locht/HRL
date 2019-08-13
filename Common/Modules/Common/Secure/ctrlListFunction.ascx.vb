@@ -258,7 +258,7 @@ Public Class ctrlListFunction
                                 rgListFunctions.MasterTableView.SortExpressions.Clear()
                                 rgListFunctions.Rebind()
                                 'SelectedItemDataGridByKey(rgListFunctions, IDSelect, )
-                                CurrentState = CommonMessage.STATE_NEW
+                                CurrentState = CommonMessage.STATE_NORMAL
                                 UpdateControlState()
                             Else
                                 ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), Utilities.NotifyType.Error)
@@ -287,6 +287,7 @@ Public Class ctrlListFunction
                 Case CommonMessage.TOOLBARITEM_CANCEL
                     CurrentState = CommonMessage.STATE_NORMAL
                     UpdateControlState()
+                    ExcuteScript("Resize", "ResizeSplitter()")
             End Select
             _myLog.WriteLog(_myLog._info, _classPath, method,
                                     CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
