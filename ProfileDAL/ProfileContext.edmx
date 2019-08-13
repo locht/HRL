@@ -1728,6 +1728,12 @@
             <Property Name="IS_RENEW" Type="number" Nullable="true" Precision="38" />
             <Property Name="TYPE_TRAIN_ID" Type="number" Nullable="true" Precision="38" />
             <Property Name="RECEIVE_DEGREE_DATE" Type="date" Nullable="true" />
+            <Property Name="LEVEL_ID" Type="number" Nullable="true" Precision="38" />
+            <Property Name="SCORE" Type="number" Nullable="true" Precision="38" />
+            <Property Name="CONTENT_TRAIN" Type="nclob" Nullable="true" />
+            <Property Name="CODE_CERTIFICATE" Type="nclob" Nullable="true" />
+            <Property Name="REMARK" Type="nclob" Nullable="true" />
+            <Property Name="TYPE_TRAIN_NAME" Type="nclob" Nullable="true" />
         </EntityType>
         <EntityType Name="HU_WORKING_BEFORE_EDIT">
             <Key>
@@ -6199,6 +6205,12 @@
           <Property Type="Decimal" Name="IS_RENEW" />
           <Property Type="Decimal" Name="TYPE_TRAIN_ID" />
           <Property Type="DateTime" Name="RECEIVE_DEGREE_DATE" />
+          <Property Type="Decimal" Name="LEVEL_ID" />
+          <Property Type="Decimal" Name="SCORE" />
+          <Property Type="String" Name="CONTENT_TRAIN" />
+          <Property Type="String" Name="CODE_CERTIFICATE" />
+          <Property Type="String" Name="REMARK" />
+          <Property Type="String" Name="TYPE_TRAIN_NAME" />
         </EntityType>
         <EntityType Name="HU_WORKING_BEFORE_EDIT">
           <Key>
@@ -9756,6 +9768,12 @@
                     <ScalarProperty Name="IS_RENEW" ColumnName="IS_RENEW" />
                     <ScalarProperty Name="TYPE_TRAIN_ID" ColumnName="TYPE_TRAIN_ID" />
                     <ScalarProperty Name="RECEIVE_DEGREE_DATE" ColumnName="RECEIVE_DEGREE_DATE" />
+                    <ScalarProperty Name="LEVEL_ID" ColumnName="LEVEL_ID" />
+                    <ScalarProperty Name="SCORE" ColumnName="SCORE" />
+                    <ScalarProperty Name="CONTENT_TRAIN" ColumnName="CONTENT_TRAIN" />
+                    <ScalarProperty Name="CODE_CERTIFICATE" ColumnName="CODE_CERTIFICATE" />
+                    <ScalarProperty Name="REMARK" ColumnName="REMARK" />
+                    <ScalarProperty Name="TYPE_TRAIN_NAME" ColumnName="TYPE_TRAIN_NAME" />
                 </MappingFragment>
             </EntityTypeMapping>
         </EntitySetMapping>
@@ -11875,7 +11893,7 @@
     </Options>
     <!-- Diagram content (shape and connector positions) -->
     <Diagrams>
-      <Diagram Name="ProfileContext" ZoomLevel="85" ShowGrid="false" DisplayType="true" SnapToGrid="true">
+      <Diagram Name="ProfileContext" ZoomLevel="67" ShowGrid="false" DisplayType="true" SnapToGrid="true">
         <EntityTypeShape EntityType="ProfileModel.HU_PROVINCE" Width="1.5" PointX="3" PointY="9.625" Height="0.39999999999999858" IsExpanded="false" />
         <EntityTypeShape EntityType="ProfileModel.HU_DISTRICT" Width="1.75" PointX="5.25" PointY="9" Height="0.39999999999999858" IsExpanded="false" />
         <EntityTypeShape EntityType="ProfileModel.HU_NATION" Width="1.5" PointX="0.75" PointY="9.625" Height="0.40000000000000213" IsExpanded="false" />
@@ -12074,7 +12092,7 @@
         <EntityTypeShape EntityType="ProfileModel.HU_ASSET_MNG" Width="1.5" PointX="16.25" PointY="25" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="ProfileModel.HU_FAMILY_EDIT" Width="2.125" PointX="16.625" PointY="16.375" Height="10.826152343750003" IsExpanded="true" />
         <EntityTypeShape EntityType="ProfileModel.HU_EMPLOYEE_EDIT" Width="1.5" PointX="18.75" PointY="19.875" Height="0.40000000000000568" IsExpanded="false" />
-        <EntityTypeShape EntityType="ProfileModel.HU_PRO_TRAIN_OUT_COMPANY_EDIT" Width="2.875" PointX="2.375" PointY="31.875" Height="6.2109179687500031" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProfileModel.HU_PRO_TRAIN_OUT_COMPANY_EDIT" Width="2.875" PointX="2.375" PointY="31.875" Height="7.3647265625000031" IsExpanded="true" />
         <EntityTypeShape EntityType="ProfileModel.HU_WORKING_BEFORE_EDIT" Width="2.125" PointX="23.125" PointY="0.5" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="ProfileModel.HU_WELFARE_MNG" Width="1.5" PointX="2.75" PointY="20.875" Height="0.39999999999999147" IsExpanded="false" />
         <EntityTypeShape EntityType="ProfileModel.HU_TERMINATE_3B" Width="1.5" PointX="20.75" PointY="4.875" Height="0.39999999999999147" IsExpanded="false" />

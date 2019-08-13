@@ -19,7 +19,6 @@
     Public Property EFFECTIVE_DATE_TO As Date?
 
     Public Property TYPE_TRAIN_ID As Decimal?
-    Public Property TYPE_TRAIN_NAME As String
     Public Property RECEIVE_DEGREE_DATE As Date?
     Public Property FK_PKEY As Decimal?
     Public Property STATUS As String
@@ -36,4 +35,11 @@
     Public Property MODIFIED_BY As String
     Public Property MODIFIED_LOG As String
     Public Property IS_RENEWED As Decimal?
+    Public Property LEVEL_ID As Decimal?
+    Public Property LEVEL_NAME As String
+    Public Property SCORE As Decimal?
+    Public Property CONTENT_TRAIN As String
+    Public Property CODE_CERTIFICATE As String
+    Public Property TYPE_TRAIN_NAME As String
+    Public Property REMARK As String
 End Class

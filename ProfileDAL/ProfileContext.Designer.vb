@@ -18,7 +18,7 @@ Imports System.Runtime.Serialization
 Imports System.Xml.Serialization
 
 
-<Assembly: EdmSchemaAttribute("cc254164-4a90-434f-8687-97ded64b2365")>
+<Assembly: EdmSchemaAttribute("6970578d-c866-405b-a1d4-51ceb88676db")>
 #Region "EDM Relationship Metadata"
 <Assembly: EdmRelationshipAttribute("ProfileModel", "FK_HU_NAT_HU_PRO", "HU_NATION", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_NATION), "HU_PROVINCE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_PROVINCE), True)>
 <Assembly: EdmRelationshipAttribute("ProfileModel", "FK_HU_PRO_HU_DIS", "HU_PROVINCE", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_PROVINCE), "HU_DISTRICT", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_DISTRICT), True)>
@@ -46489,6 +46489,156 @@ Public Partial Class HU_PRO_TRAIN_OUT_COMPANY_EDIT
     End Sub
 
     Private Partial Sub OnRECEIVE_DEGREE_DATEChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property LEVEL_ID() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _LEVEL_ID
+        End Get
+        Set
+            OnLEVEL_IDChanging(value)
+            ReportPropertyChanging("LEVEL_ID")
+            _LEVEL_ID = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("LEVEL_ID")
+            OnLEVEL_IDChanged()
+        End Set
+    End Property
+
+    Private _LEVEL_ID As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnLEVEL_IDChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnLEVEL_IDChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property SCORE() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _SCORE
+        End Get
+        Set
+            OnSCOREChanging(value)
+            ReportPropertyChanging("SCORE")
+            _SCORE = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("SCORE")
+            OnSCOREChanged()
+        End Set
+    End Property
+
+    Private _SCORE As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnSCOREChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnSCOREChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property CONTENT_TRAIN() As Global.System.String
+        Get
+            Return _CONTENT_TRAIN
+        End Get
+        Set
+            OnCONTENT_TRAINChanging(value)
+            ReportPropertyChanging("CONTENT_TRAIN")
+            _CONTENT_TRAIN = StructuralObject.SetValidValue(value, true)
+            ReportPropertyChanged("CONTENT_TRAIN")
+            OnCONTENT_TRAINChanged()
+        End Set
+    End Property
+
+    Private _CONTENT_TRAIN As Global.System.String
+    Private Partial Sub OnCONTENT_TRAINChanging(value As Global.System.String)
+    End Sub
+
+    Private Partial Sub OnCONTENT_TRAINChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property CODE_CERTIFICATE() As Global.System.String
+        Get
+            Return _CODE_CERTIFICATE
+        End Get
+        Set
+            OnCODE_CERTIFICATEChanging(value)
+            ReportPropertyChanging("CODE_CERTIFICATE")
+            _CODE_CERTIFICATE = StructuralObject.SetValidValue(value, true)
+            ReportPropertyChanged("CODE_CERTIFICATE")
+            OnCODE_CERTIFICATEChanged()
+        End Set
+    End Property
+
+    Private _CODE_CERTIFICATE As Global.System.String
+    Private Partial Sub OnCODE_CERTIFICATEChanging(value As Global.System.String)
+    End Sub
+
+    Private Partial Sub OnCODE_CERTIFICATEChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property REMARK() As Global.System.String
+        Get
+            Return _REMARK
+        End Get
+        Set
+            OnREMARKChanging(value)
+            ReportPropertyChanging("REMARK")
+            _REMARK = StructuralObject.SetValidValue(value, true)
+            ReportPropertyChanged("REMARK")
+            OnREMARKChanged()
+        End Set
+    End Property
+
+    Private _REMARK As Global.System.String
+    Private Partial Sub OnREMARKChanging(value As Global.System.String)
+    End Sub
+
+    Private Partial Sub OnREMARKChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property TYPE_TRAIN_NAME() As Global.System.String
+        Get
+            Return _TYPE_TRAIN_NAME
+        End Get
+        Set
+            OnTYPE_TRAIN_NAMEChanging(value)
+            ReportPropertyChanging("TYPE_TRAIN_NAME")
+            _TYPE_TRAIN_NAME = StructuralObject.SetValidValue(value, true)
+            ReportPropertyChanged("TYPE_TRAIN_NAME")
+            OnTYPE_TRAIN_NAMEChanged()
+        End Set
+    End Property
+
+    Private _TYPE_TRAIN_NAME As Global.System.String
+    Private Partial Sub OnTYPE_TRAIN_NAMEChanging(value As Global.System.String)
+    End Sub
+
+    Private Partial Sub OnTYPE_TRAIN_NAMEChanged()
     End Sub
 
     #End Region

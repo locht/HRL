@@ -14,7 +14,7 @@ Partial Class ProfileRepository
             query = (From p In Context.HU_PRO_TRAIN_OUT_COMPANY_EDIT
                     From ot In Context.OT_OTHER_LIST.Where(Function(F) F.ID = p.FORM_TRAIN_ID).DefaultIfEmpty
                     From OT1 In Context.OT_OTHER_LIST.Where(Function(F) F.ID = p.CERTIFICATE).DefaultIfEmpty
-                    From OT2 In Context.OT_OTHER_LIST.Where(Function(F) F.ID = p.TYPE_TRAIN_ID).DefaultIfEmpty
+                    From OT2 In Context.OT_OTHER_LIST.Where(Function(F) F.ID = p.LEVEL_ID).DefaultIfEmpty
                      Select New HU_PRO_TRAIN_OUT_COMPANYDTOEDIT With {
                          .ID = p.ID,
                         .EMPLOYEE_ID = p.EMPLOYEE_ID,
@@ -25,6 +25,12 @@ Partial Class ProfileRepository
                         .NAME_SHOOLS = p.NAME_SHOOLS,
                         .FORM_TRAIN_ID = p.FORM_TRAIN_ID,
                         .FORM_TRAIN_NAME = ot.NAME_VN,
+                         .LEVEL_ID = p.LEVEL_ID,
+                         .LEVEL_NAME = OT2.NAME_VN,
+                         .SCORE = p.SCORE,
+                         .CONTENT_TRAIN = p.CONTENT_TRAIN,
+                         .REMARK = p.REMARK,
+                         .CODE_CERTIFICATE = p.CODE_CERTIFICATE,
                         .SPECIALIZED_TRAIN = p.SPECIALIZED_TRAIN,
                         .RESULT_TRAIN = p.RESULT_TRAIN,
                         .CERTIFICATE = OT1.NAME_VN,
@@ -34,7 +40,7 @@ Partial Class ProfileRepository
                         .CREATED_BY = p.CREATED_BY,
                          .IS_RENEWED = p.IS_RENEW,
                          .TYPE_TRAIN_ID = p.TYPE_TRAIN_ID,
-                         .TYPE_TRAIN_NAME = OT2.NAME_VN,
+                         .TYPE_TRAIN_NAME = p.TYPE_TRAIN_NAME,
                         .CREATED_DATE = p.CREATED_DATE,
                         .CREATED_LOG = p.CREATED_LOG,
                         .MODIFIED_BY = p.MODIFIED_BY,
@@ -84,6 +90,12 @@ Partial Class ProfileRepository
             objCertificatetData.EFFECTIVE_DATE_FROM = objCertificateEdit.EFFECTIVE_DATE_FROM
             objCertificatetData.EFFECTIVE_DATE_TO = objCertificateEdit.EFFECTIVE_DATE_TO
             objCertificatetData.EMPLOYEE_ID = objCertificateEdit.EMPLOYEE_ID
+            objCertificatetData.SCORE = objCertificateEdit.SCORE
+            objCertificatetData.CONTENT_TRAIN = objCertificateEdit.CONTENT_TRAIN
+            objCertificatetData.TYPE_TRAIN_NAME = objCertificateEdit.TYPE_TRAIN_NAME
+            objCertificatetData.CODE_CERTIFICATE = objCertificateEdit.CODE_CERTIFICATE
+            objCertificatetData.REMARK = objCertificateEdit.REMARK
+            objCertificatetData.LEVEL_ID = objCertificateEdit.LEVEL_ID
             objCertificatetData.TYPE_TRAIN_ID = objCertificateEdit.TYPE_TRAIN_ID
             objCertificatetData.FK_PKEY = objCertificateEdit.FK_PKEY
             objCertificatetData.STATUS = 0
@@ -118,6 +130,12 @@ Partial Class ProfileRepository
             objCertificatetData.EFFECTIVE_DATE_FROM = objCertificateEdit.EFFECTIVE_DATE_FROM
             objCertificatetData.EFFECTIVE_DATE_TO = objCertificateEdit.EFFECTIVE_DATE_TO
             objCertificatetData.EMPLOYEE_ID = objCertificateEdit.EMPLOYEE_ID
+            objCertificatetData.SCORE = objCertificateEdit.SCORE
+            objCertificatetData.CONTENT_TRAIN = objCertificateEdit.CONTENT_TRAIN
+            objCertificatetData.TYPE_TRAIN_NAME = objCertificateEdit.TYPE_TRAIN_NAME
+            objCertificatetData.CODE_CERTIFICATE = objCertificateEdit.CODE_CERTIFICATE
+            objCertificatetData.LEVEL_ID = objCertificateEdit.LEVEL_ID
+            objCertificatetData.REMARK = objCertificateEdit.REMARK
             objCertificatetData.TYPE_TRAIN_ID = objCertificateEdit.TYPE_TRAIN_ID
             objCertificatetData.FK_PKEY = objCertificateEdit.FK_PKEY
             objCertificatetData.STATUS = 0
