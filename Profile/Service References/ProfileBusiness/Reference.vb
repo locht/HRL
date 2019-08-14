@@ -20551,6 +20551,12 @@ Namespace ProfileBusiness
         Private CERTIFICATE_IDField As System.Nullable(Of Decimal)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private CODE_CERTIFICATEField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private CONTENT_TRAINField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private CREATED_BYField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -20599,6 +20605,12 @@ Namespace ProfileBusiness
         Private IS_RENEWEDField As System.Nullable(Of Decimal)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private LEVEL_IDField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private LEVEL_NAMEField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private MODIFIED_BYField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -20617,7 +20629,13 @@ Namespace ProfileBusiness
         Private RECEIVE_DEGREE_DATEField As System.Nullable(Of Date)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private REMARKField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private RESULT_TRAINField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private SCOREField As System.Nullable(Of Decimal)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private SEND_DATEField As System.Nullable(Of Date)
@@ -20681,6 +20699,32 @@ Namespace ProfileBusiness
                 If (Me.CERTIFICATE_IDField.Equals(value) <> true) Then
                     Me.CERTIFICATE_IDField = value
                     Me.RaisePropertyChanged("CERTIFICATE_ID")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property CODE_CERTIFICATE() As String
+            Get
+                Return Me.CODE_CERTIFICATEField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.CODE_CERTIFICATEField, value) <> true) Then
+                    Me.CODE_CERTIFICATEField = value
+                    Me.RaisePropertyChanged("CODE_CERTIFICATE")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property CONTENT_TRAIN() As String
+            Get
+                Return Me.CONTENT_TRAINField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.CONTENT_TRAINField, value) <> true) Then
+                    Me.CONTENT_TRAINField = value
+                    Me.RaisePropertyChanged("CONTENT_TRAIN")
                 End If
             End Set
         End Property
@@ -20894,6 +20938,32 @@ Namespace ProfileBusiness
         End Property
         
         <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property LEVEL_ID() As System.Nullable(Of Decimal)
+            Get
+                Return Me.LEVEL_IDField
+            End Get
+            Set
+                If (Me.LEVEL_IDField.Equals(value) <> true) Then
+                    Me.LEVEL_IDField = value
+                    Me.RaisePropertyChanged("LEVEL_ID")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property LEVEL_NAME() As String
+            Get
+                Return Me.LEVEL_NAMEField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.LEVEL_NAMEField, value) <> true) Then
+                    Me.LEVEL_NAMEField = value
+                    Me.RaisePropertyChanged("LEVEL_NAME")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
         Public Property MODIFIED_BY() As String
             Get
                 Return Me.MODIFIED_BYField
@@ -20972,6 +21042,19 @@ Namespace ProfileBusiness
         End Property
         
         <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property REMARK() As String
+            Get
+                Return Me.REMARKField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.REMARKField, value) <> true) Then
+                    Me.REMARKField = value
+                    Me.RaisePropertyChanged("REMARK")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
         Public Property RESULT_TRAIN() As String
             Get
                 Return Me.RESULT_TRAINField
@@ -20980,6 +21063,19 @@ Namespace ProfileBusiness
                 If (Object.ReferenceEquals(Me.RESULT_TRAINField, value) <> true) Then
                     Me.RESULT_TRAINField = value
                     Me.RaisePropertyChanged("RESULT_TRAIN")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property SCORE() As System.Nullable(Of Decimal)
+            Get
+                Return Me.SCOREField
+            End Get
+            Set
+                If (Me.SCOREField.Equals(value) <> true) Then
+                    Me.SCOREField = value
+                    Me.RaisePropertyChanged("SCORE")
                 End If
             End Set
         End Property

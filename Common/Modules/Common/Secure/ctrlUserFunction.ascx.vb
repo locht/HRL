@@ -197,10 +197,10 @@ Public Class ctrlUserFunction
                                                 ToolbarItem.Cancel, _
                                                 ToolbarItem.Delete)
 
-            Me.MainToolBar.Items.Add(Common.CreateToolbarItem(CommonMessage.TOOLBARITEM_SYNC,
-                                                          ToolbarIcons.Sync,
-                                                          ToolbarAuthorize.None,
-                                                        Translate("Sao chép")))
+            'Me.MainToolBar.Items.Add(Common.CreateToolbarItem(CommonMessage.TOOLBARITEM_SYNC,
+            '                                              ToolbarIcons.Sync,
+            '                                              ToolbarAuthorize.None,
+            '                                            Translate("Sao chép")))
 
             ViewItem = Me.Register("ctrlUserFunctionAddEdit", "Common", "ctrlUserFunctionAddEdit", "Secure")
 

@@ -99,11 +99,12 @@ Public Class ctrlInfoCertificate
                 ComboBoxDataDTO.GET_TRAINING_FORM = True
                 ComboBoxDataDTO.GET_TRAINING_TYPE = True
                 ComboBoxDataDTO.GET_CERTIFICATE_TYPE = True
+                ComboBoxDataDTO.GET_LEARNING_LEVEL = True
                 rep.GetComboList(ComboBoxDataDTO)
                 If ComboBoxDataDTO IsNot Nothing Then
                     FillDropDownList(cboTrainingForm, ComboBoxDataDTO.LIST_TRAINING_FORM, "NAME_VN", "ID", Common.Common.SystemLanguage, True, cboTrainingForm.SelectedValue)
-                    FillDropDownList(cboTrainingType, ComboBoxDataDTO.LIST_TRAINING_TYPE, "NAME_VN", "ID", Common.Common.SystemLanguage, True, cboTrainingType.SelectedValue)
                     FillDropDownList(cboBangCap, ComboBoxDataDTO.LIST_CERTIFICATE_TYPE, "NAME_VN", "ID", Common.Common.SystemLanguage, True, cboBangCap.SelectedValue)
+                    FillDropDownList(cbLevel, ComboBoxDataDTO.LIST_LEARNING_LEVEL, "NAME_VN", "ID", Common.Common.SystemLanguage, True, cbLevel.SelectedValue)
                 End If
             End Using
             Dim dic As New Dictionary(Of String, Control)
@@ -113,7 +114,7 @@ Public Class ctrlInfoCertificate
             dic.Add("NAME_SCHOOLS", txtSchool)
             dic.Add("FORM_TRAIN_ID", cboTrainingForm)
             dic.Add("SPECIALIZED_TRAIN", txtChuyenNganh)
-            dic.Add("TYPE_TRAIN_ID", cboTrainingType)
+            dic.Add("TYPE_TRAIN_ID", txtTraining_Name)
             dic.Add("CERTIFICATE", cboBangCap)
             dic.Add("IS_RENEW", is_Renew)
             dic.Add("RESULT_TRAIN", txtResultTrain)
@@ -131,7 +132,7 @@ Public Class ctrlInfoCertificate
             dic1.Add("NAME_SCHOOLS", txtSchool)
             dic1.Add("FORM_TRAIN_ID", cboTrainingForm)
             dic1.Add("SPECIALIZED_TRAIN", txtChuyenNganh)
-            dic1.Add("TYPE_TRAIN_ID", cboTrainingType)
+            dic1.Add("TYPE_TRAIN_ID", txtTraining_Name)
             dic1.Add("CERTIFICATE", cboBangCap)
             dic1.Add("IS_RENEW", is_Renew)
             dic1.Add("RESULT_TRAIN", txtResultTrain)
@@ -154,9 +155,9 @@ Public Class ctrlInfoCertificate
                 Case CommonMessage.STATE_NORMAL
                     'dung
                     EnableControlAll(False, rdFromDate, rdToDate, txtYear, txtSchool, cboTrainingForm, txtChuyenNganh,
-                                          cboTrainingType, cboBangCap, is_Renew, txtResultTrain, rdDayGra,
+                                          txtTraining_Name, cboBangCap, is_Renew, txtResultTrain, rdDayGra,
                                           rdEffectFrom, rdEffectTo, txtRemark, txtUploadFile, btnUploadFile,
-                                          btnDownload)
+                                          btnDownload, txtGhichu, cbLevel, txtCode_certificate, txtContent, rtxtScore)
                     'If Not chkIsDeduct.Checked Then
                     '    chkIsDeduct_CheckedChanged(Nothing, Nothing)
                     'End If
@@ -166,9 +167,9 @@ Public Class ctrlInfoCertificate
                 Case CommonMessage.STATE_NEW
                     'dung
                     EnableControlAll(True, rdFromDate, rdToDate, txtYear, txtSchool, cboTrainingForm, txtChuyenNganh,
-                                          cboTrainingType, cboBangCap, is_Renew, txtResultTrain, rdDayGra,
+                                          txtTraining_Name, cboBangCap, is_Renew, txtResultTrain, rdDayGra,
                                           rdEffectFrom, rdEffectTo, txtRemark, txtUploadFile, btnUploadFile,
-                                          btnDownload)
+                                          btnDownload, txtGhichu, cbLevel, txtCode_certificate, txtContent, rtxtScore)
 
                     'If Not chkIsDeduct.Checked Then
                     '    chkIsDeduct_CheckedChanged(Nothing, Nothing)
@@ -179,9 +180,9 @@ Public Class ctrlInfoCertificate
                 Case CommonMessage.STATE_EDIT
                     'dung
                     EnableControlAll(True, rdFromDate, rdToDate, txtYear, txtSchool, cboTrainingForm, txtChuyenNganh,
-                                          cboTrainingType, cboBangCap, is_Renew, txtResultTrain, rdDayGra,
+                                          txtTraining_Name, cboBangCap, is_Renew, txtResultTrain, rdDayGra,
                                           rdEffectFrom, rdEffectTo, txtRemark, txtUploadFile, btnUploadFile,
-                                          btnDownload)
+                                          btnDownload, txtGhichu, cbLevel, txtCode_certificate, txtContent, rtxtScore)
 
                     'If Not chkIsDeduct.Checked Then
                     '    chkIsDeduct_CheckedChanged(Nothing, Nothing)
@@ -210,9 +211,9 @@ Public Class ctrlInfoCertificate
                     CurrentState = CommonMessage.STATE_NEW
                     'dung
                     ClearControlValue(rdFromDate, rdToDate, txtYear, txtSchool, cboTrainingForm, txtChuyenNganh,
-                                          cboTrainingType, cboBangCap, is_Renew, txtResultTrain, rdDayGra,
+                                          txtTraining_Name, cboBangCap, is_Renew, txtResultTrain, rdDayGra,
                                           rdEffectFrom, rdEffectTo, txtRemark, txtUploadFile, btnUploadFile,
-                                          btnDownload, hidFamilyID, hidID)
+                                          btnDownload, hidFamilyID, hidID, txtGhichu, cbLevel, txtCode_certificate, txtContent, rtxtScore)
                     rdFromDate.SelectedDate = Nothing
                     rdToDate.SelectedDate = Nothing
                     UpdateControlState()
@@ -233,8 +234,17 @@ Public Class ctrlInfoCertificate
                             obj.FORM_TRAIN_ID = cboTrainingForm.SelectedValue
                         End If
                         obj.SPECIALIZED_TRAIN = txtChuyenNganh.Text
-                        If cboTrainingType.SelectedValue <> "" Then
-                            obj.TYPE_TRAIN_ID = cboTrainingType.SelectedValue
+                        'If cboTrainingType.SelectedValue <> "" Then
+                        '    obj.TYPE_TRAIN_ID = cboTrainingType.SelectedValue
+                        'End If
+                        If rtxtScore.Text <> "" Then
+                            obj.SCORE = rtxtScore.Text
+                        End If
+                        obj.CONTENT_TRAIN = txtContent.Text
+                        obj.CODE_CERTIFICATE = txtCode_certificate.Text
+                        obj.TYPE_TRAIN_NAME = txtTraining_Name.Text
+                        If cbLevel.SelectedValue <> "" Then
+                            obj.LEVEL_ID = cbLevel.SelectedValue
                         End If
                         If cboBangCap.SelectedValue <> "" Then
                             obj.CERTIFICATE = cboBangCap.SelectedValue
@@ -326,9 +336,9 @@ Public Class ctrlInfoCertificate
                     Else
                         'dung
                         ClearControlValue(rdFromDate, rdToDate, txtYear, txtSchool, cboTrainingForm, txtChuyenNganh,
-                                          cboTrainingType, cboBangCap, is_Renew, txtResultTrain, rdDayGra,
+                                          txtTraining_Name, cboBangCap, is_Renew, txtResultTrain, rdDayGra,
                                           rdEffectFrom, rdEffectTo, txtRemark, txtUploadFile, btnUploadFile,
-                                          btnDownload)
+                                          btnDownload, txtGhichu, cbLevel, txtCode_certificate, txtContent, rtxtScore)
                     End If
 
 
@@ -419,8 +429,8 @@ Public Class ctrlInfoCertificate
                 cboTrainingForm.Text = item.GetDataKeyValue("FORM_TRAIN_NAME")
                 cboTrainingForm.SelectedValue = item.GetDataKeyValue("FORM_TRAIN_ID")
                 txtChuyenNganh.Text = item.GetDataKeyValue("SPECIALIZED_TRAIN")
-                cboTrainingType.Text = item.GetDataKeyValue("TYPE_TRAIN_NAME")
-                cboTrainingType.SelectedValue = item.GetDataKeyValue("TYPE_TRAIN_ID")
+                txtTraining_Name.Text = item.GetDataKeyValue("TYPE_TRAIN_NAME")
+                'cboTrainingType.SelectedValue = item.GetDataKeyValue("TYPE_TRAIN_ID")
                 txtResultTrain.Text = item.GetDataKeyValue("RESULT_TRAIN")
                 cboBangCap.Text = item.GetDataKeyValue("CERTIFICATE")
                 is_Renew.Checked = item.GetDataKeyValue("IS_RENEWED")
@@ -455,8 +465,8 @@ Public Class ctrlInfoCertificate
                 cboTrainingForm.Text = item.GetDataKeyValue("FORM_TRAIN_NAME")
                 cboTrainingForm.SelectedValue = item.GetDataKeyValue("FORM_TRAIN_ID")
                 txtChuyenNganh.Text = item.GetDataKeyValue("SPECIALIZED_TRAIN")
-                cboTrainingType.Text = item.GetDataKeyValue("TYPE_TRAIN_NAME")
-                cboTrainingType.SelectedValue = item.GetDataKeyValue("TYPE_TRAIN_ID")
+                txtTraining_Name.Text = item.GetDataKeyValue("TYPE_TRAIN_NAME")
+                ' cboTrainingType.SelectedValue = item.GetDataKeyValue("TYPE_TRAIN_ID")
                 txtResultTrain.Text = item.GetDataKeyValue("RESULT_TRAIN")
                 cboBangCap.Text = item.GetDataKeyValue("CERTIFICATE")
                 is_Renew.Checked = item.GetDataKeyValue("IS_RENEWED")
@@ -625,9 +635,9 @@ Public Class ctrlInfoCertificate
         Try
             'dung
             ClearControlValue(rdFromDate, rdToDate, txtYear, txtSchool, cboTrainingForm, txtChuyenNganh,
-                                          cboTrainingType, cboBangCap, is_Renew, txtResultTrain, rdDayGra,
+                                          txtTraining_Name, cboBangCap, is_Renew, txtResultTrain, rdDayGra,
                                           rdEffectFrom, rdEffectTo, txtRemark, txtUploadFile, btnUploadFile,
-                                          btnDownload)
+                                          btnDownload, txtGhichu, cbLevel, txtCode_certificate, txtContent, rtxtScore)
 
             Dim item = CType(rgCetificateEdit.SelectedItems(rgCetificateEdit.SelectedItems.Count - 1), GridDataItem)
             CurrentState = CommonMessage.STATE_NORMAL
@@ -640,8 +650,8 @@ Public Class ctrlInfoCertificate
             cboTrainingForm.Text = item.GetDataKeyValue("FORM_TRAIN_NAME")
             cboTrainingForm.SelectedValue = item.GetDataKeyValue("FORM_TRAIN_ID")
             txtChuyenNganh.Text = item.GetDataKeyValue("SPECIALIZED_TRAIN")
-            cboTrainingType.Text = item.GetDataKeyValue("TYPE_TRAIN_NAME")
-            cboTrainingType.SelectedValue = item.GetDataKeyValue("TYPE_TRAIN_ID")
+            txtTraining_Name.Text = item.GetDataKeyValue("TYPE_TRAIN_NAME")
+            'cboTrainingType.SelectedValue = item.GetDataKeyValue("TYPE_TRAIN_ID")
             txtResultTrain.Text = item.GetDataKeyValue("RESULT_TRAIN")
             cboBangCap.Text = item.GetDataKeyValue("CERTIFICATE")
             cboBangCap.SelectedValue = item.GetDataKeyValue("CERTIFICATE_ID")
@@ -664,15 +674,15 @@ Public Class ctrlInfoCertificate
         Try
             If rgCetificate.SelectedItems.Count = 0 Then
                 ClearControlValue(rdFromDate, rdToDate, txtYear, txtSchool, cboTrainingForm, txtChuyenNganh,
-                                          cboTrainingType, cboBangCap, is_Renew, txtResultTrain, rdDayGra,
+                                          txtTraining_Name, cboBangCap, is_Renew, txtResultTrain, rdDayGra,
                                           rdEffectFrom, rdEffectTo, txtRemark, txtUploadFile, btnUploadFile,
-                                          btnDownload)
+                                          btnDownload, txtGhichu, cbLevel, txtCode_certificate, txtContent, rtxtScore)
                 Exit Sub
             End If
             ClearControlValue(rdFromDate, rdToDate, txtYear, txtSchool, cboTrainingForm, txtChuyenNganh,
-                                          cboTrainingType, cboBangCap, is_Renew, txtResultTrain, rdDayGra,
+                                          txtTraining_Name, cboBangCap, is_Renew, txtResultTrain, rdDayGra,
                                           rdEffectFrom, rdEffectTo, txtRemark, txtUploadFile, btnUploadFile,
-                                          btnDownload)
+                                          btnDownload, txtGhichu, cbLevel, txtCode_certificate, txtContent, rtxtScore)
             CurrentState = CommonMessage.STATE_NORMAL
             Dim item = CType(rgCetificate.SelectedItems(rgCetificate.SelectedItems.Count - 1), GridDataItem)
             hidFamilyID.Value = item.GetDataKeyValue("ID")
@@ -683,8 +693,8 @@ Public Class ctrlInfoCertificate
             cboTrainingForm.Text = item.GetDataKeyValue("FORM_TRAIN_NAME")
             cboTrainingForm.SelectedValue = item.GetDataKeyValue("FORM_TRAIN_ID")
             txtChuyenNganh.Text = item.GetDataKeyValue("SPECIALIZED_TRAIN")
-            cboTrainingType.Text = item.GetDataKeyValue("TYPE_TRAIN_NAME")
-            cboTrainingType.SelectedValue = item.GetDataKeyValue("TYPE_TRAIN_ID")
+            txtTraining_Name.Text = item.GetDataKeyValue("TYPE_TRAIN_NAME")
+            'cboTrainingType.SelectedValue = item.GetDataKeyValue("TYPE_TRAIN_ID")
             txtResultTrain.Text = item.GetDataKeyValue("RESULT_TRAIN")
             cboBangCap.Text = item.GetDataKeyValue("CERTIFICATE")
             is_Renew.Checked = item.GetDataKeyValue("IS_RENEWED")

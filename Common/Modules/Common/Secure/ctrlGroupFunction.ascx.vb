@@ -265,14 +265,14 @@ Public Class ctrlGroupFunction
                 ComboBoxData.GET_MODULE = True
                 rep.GetComboList(ComboBoxData)
             End If
-            Dim dtbModule = (New CommonProgramsRepository).FillComboboxModules()
-            ComboBoxData.LIST_MODULE.Clear()
-            For Each item As DataRow In dtbModule.Rows
-                Dim mo As New ModuleDTO
-                mo.ID = item("ID")
-                mo.NAME = item("NAME")
-                ComboBoxData.LIST_MODULE.Add(mo)
-            Next
+            'Dim dtbModule = (New CommonProgramsRepository).FillComboboxModules()
+            'ComboBoxData.LIST_MODULE.Clear()
+            'For Each item As DataRow In dtbModule.Rows
+            '    Dim mo As New ModuleDTO
+            '    mo.ID = item("ID")
+            '    mo.NAME = item("NAME")
+            '    ComboBoxData.LIST_MODULE.Add(mo)
+            'Next
             FillDropDownList(cboMODULE, ComboBoxData.LIST_MODULE, "NAME", "ID", Common.SystemLanguage, True, cboMODULE.SelectedValue)
             _myLog.WriteLog(_myLog._info, _classPath, method,
                                     CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
