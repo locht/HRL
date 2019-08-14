@@ -1012,6 +1012,9 @@ Partial Class ProfileRepository
                                                      .ORG_DESC = o.DESCRIPTION_PATH,
                                                      .TITLE_NAME = t.NAME_VN,
                                                      .SIGN_ID = p.SIGN_ID,
+                                                     .SIGN_ID2 = p.SIGN_ID2,
+                                                     .SIGNER_NAME2 = p.SIGNER_NAME2,
+                                                     .SIGNER_TITLE2 = p.SIGNER_TITLE2,
                                                      .NAME_SIGN_CONTRACT = lo.LOCATION_VN_NAME,
                                                      .ID_SIGN_CONTRACT = p.ID_SIGN_CONTRACT,
                                                      .SIGN_DATE = p.SIGN_DATE,
@@ -1137,6 +1140,9 @@ Partial Class ProfileRepository
             objContractData.REMARK = objContract.REMARK
             objContractData.SIGN_DATE = objContract.SIGN_DATE
             objContractData.SIGN_ID = objContract.SIGN_ID
+            objContractData.SIGN_ID2 = objContract.SIGN_ID2
+            objContractData.SIGNER_NAME2 = objContract.SIGNER_NAME2
+            objContractData.SIGNER_TITLE2 = objContract.SIGNER_TITLE2
             objContractData.SIGNER_NAME = objContract.SIGNER_NAME
             objContractData.SIGNER_TITLE = objContract.SIGNER_TITLE
             objContractData.WORKING_ID = objContract.WORKING_ID
@@ -1244,6 +1250,9 @@ Partial Class ProfileRepository
             objContractData.REMARK = objContract.REMARK
             objContractData.SIGN_DATE = objContract.SIGN_DATE
             objContractData.SIGN_ID = objContract.SIGN_ID
+            objContractData.SIGN_ID2 = objContract.SIGN_ID2
+            objContractData.SIGNER_NAME2 = objContract.SIGNER_NAME2
+            objContractData.SIGNER_TITLE2 = objContract.SIGNER_TITLE2
             objContractData.SIGNER_NAME = objContract.SIGNER_NAME
             objContractData.SIGNER_TITLE = objContract.SIGNER_TITLE
             objContractData.START_DATE = objContract.START_DATE

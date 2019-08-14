@@ -18,7 +18,7 @@ Imports System.Runtime.Serialization
 Imports System.Xml.Serialization
 
 
-<Assembly: EdmSchemaAttribute("0fff206e-f997-492b-b2db-aee329952a28")>
+<Assembly: EdmSchemaAttribute("3a8be978-77de-4fdd-b37d-aa1f5f869219")>
 #Region "EDM Relationship Metadata"
 <Assembly: EdmRelationshipAttribute("ProfileModel", "FK_HU_NAT_HU_PRO", "HU_NATION", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_NATION), "HU_PROVINCE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_PROVINCE), True)>
 <Assembly: EdmRelationshipAttribute("ProfileModel", "FK_HU_PRO_HU_DIS", "HU_PROVINCE", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_PROVINCE), "HU_DISTRICT", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_DISTRICT), True)>
@@ -18056,6 +18056,81 @@ Public Partial Class HU_CONTRACT
     End Sub
 
     Private Partial Sub OnID_SIGN_CONTRACTChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property SIGN_ID2() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _SIGN_ID2
+        End Get
+        Set
+            OnSIGN_ID2Changing(value)
+            ReportPropertyChanging("SIGN_ID2")
+            _SIGN_ID2 = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("SIGN_ID2")
+            OnSIGN_ID2Changed()
+        End Set
+    End Property
+
+    Private _SIGN_ID2 As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnSIGN_ID2Changing(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnSIGN_ID2Changed()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property SIGNER_NAME2() As Global.System.String
+        Get
+            Return _SIGNER_NAME2
+        End Get
+        Set
+            OnSIGNER_NAME2Changing(value)
+            ReportPropertyChanging("SIGNER_NAME2")
+            _SIGNER_NAME2 = StructuralObject.SetValidValue(value, true)
+            ReportPropertyChanged("SIGNER_NAME2")
+            OnSIGNER_NAME2Changed()
+        End Set
+    End Property
+
+    Private _SIGNER_NAME2 As Global.System.String
+    Private Partial Sub OnSIGNER_NAME2Changing(value As Global.System.String)
+    End Sub
+
+    Private Partial Sub OnSIGNER_NAME2Changed()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property SIGNER_TITLE2() As Global.System.String
+        Get
+            Return _SIGNER_TITLE2
+        End Get
+        Set
+            OnSIGNER_TITLE2Changing(value)
+            ReportPropertyChanging("SIGNER_TITLE2")
+            _SIGNER_TITLE2 = StructuralObject.SetValidValue(value, true)
+            ReportPropertyChanged("SIGNER_TITLE2")
+            OnSIGNER_TITLE2Changed()
+        End Set
+    End Property
+
+    Private _SIGNER_TITLE2 As Global.System.String
+    Private Partial Sub OnSIGNER_TITLE2Changing(value As Global.System.String)
+    End Sub
+
+    Private Partial Sub OnSIGNER_TITLE2Changed()
     End Sub
 
     #End Region
