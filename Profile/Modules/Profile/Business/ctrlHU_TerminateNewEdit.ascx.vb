@@ -567,7 +567,9 @@ Public Class ctrlHU_TerminateNewEdit
                         objTerminate.SUM_COLLECT_DEBT = rntxtDebtTotalCollect.Value
                         objTerminate.AMOUNT_PAYMENT_CASH = rntxtCash.Value
                         objTerminate.AMOUNT_DEDUCT_FROM_SAL = rntxtMoneyDeductFromSal.Value
-                        objTerminate.PERIOD_ID = cboSalMonth.SelectedValue
+                        If cboSalMonth.Text <> "" Then
+                            objTerminate.PERIOD_ID = cboSalMonth.SelectedValue
+                        End If
                         objTerminate.IS_ALLOW = cbIsAllowForTer.Checked
                         objTerminate.IS_REPLACE_POS = cbIsReplacePos.Checked
                         objTerminate.REVERSE_SENIORITY = rntxtReserveSeniority.Value

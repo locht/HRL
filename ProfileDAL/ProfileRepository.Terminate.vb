@@ -863,6 +863,9 @@ Partial Class ProfileRepository
     Public Function ApproveTerminate(ByVal objTerminate As TerminateDTO, ByVal log As UserLog) As Boolean
         Dim objEmployeeData As HU_EMPLOYEE
         Try
+            If Not objTerminate.STATUS_ID = ProfileCommon.DECISION_STATUS.APPROVE_ID Then
+                Return False
+            End If
             objEmployeeData = (From p In Context.HU_EMPLOYEE Where objTerminate.EMPLOYEE_ID = p.ID).FirstOrDefault
             If objTerminate.EFFECT_DATE <= DateTime.Now Then
                 objEmployeeData.WORK_STATUS = ProfileCommon.OT_WORK_STATUS.TERMINATE_ID
@@ -886,6 +889,9 @@ Partial Class ProfileRepository
     Public Function ApproveTerminate_Customer(ByVal objTerminate As TerminateDTO, ByVal log As UserLog) As Boolean
         Dim objEmployeeData As HU_EMPLOYEE
         Try
+            If Not objTerminate.STATUS_ID = ProfileCommon.DECISION_STATUS.APPROVE_ID Then
+                Return False
+            End If
             objEmployeeData = (From p In Context.HU_EMPLOYEE Where objTerminate.EMPLOYEE_ID = p.ID).FirstOrDefault
             objEmployeeData.EMP_STATUS = ProfileCommon.OT_WORK_STATUS.EMP_STATUS
             If objTerminate.EFFECT_DATE <= DateTime.Now Then
