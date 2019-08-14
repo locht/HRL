@@ -512,7 +512,7 @@ Partial Public Class AttendanceRepository
                         From o In Context.HU_ORGANIZATION.Where(Function(f) f.ID = e.ORG_ID).DefaultIfEmpty
                         From m In Context.AT_TIME_MANUAL.Where(Function(f) f.ID = p.MANUAL_ID).DefaultIfEmpty
                         From s In Context.HU_STAFF_RANK.Where(Function(f) f.ID = e.STAFF_RANK_ID).DefaultIfEmpty
-                        From SH In Context.AT_SHIFT.Where(Function(F) F.ID = p.SHIFT_ID)
+                        From SH In Context.AT_SHIFT.Where(Function(F) F.ID = p.SHIFT_ID).DefaultIfEmpty
                         From obj_att In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.OBJECT_ATTENDANCE).DefaultIfEmpty
                         From k In Context.SE_CHOSEN_ORG.Where(Function(f) p.ORG_ID = f.ORG_ID And
                                                                   f.USERNAME.ToUpper = log.Username.ToUpper.ToUpper)
