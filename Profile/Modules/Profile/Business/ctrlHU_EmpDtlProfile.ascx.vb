@@ -230,6 +230,11 @@ Public Class ctrlHU_EmpDtlProfile
                             If IsNumeric(empCV.PROVINCENQ_ID) Then
                                 cbPROVINCENQ_ID.SelectedValue = empCV.PROVINCENQ_ID
                             End If
+                            If IsNumeric(empCV.BIRTH_PLACEID) Then
+                                cbBirth_PlaceId.SelectedValue = empCV.BIRTH_PLACEID
+                                cbBirth_PlaceId.Text = empCV.BIRTH_PLACENAME
+                            End If
+
                             rdExpireIDNO.SelectedDate = empCV.EXPIRE_DATE_IDNO
                             txtPerson_Inheritance.Text = empCV.PERSON_INHERITANCE
                             rdEffect_Bank.SelectedDate = empCV.EFFECTDATE_BANK
@@ -734,6 +739,7 @@ Public Class ctrlHU_EmpDtlProfile
                 dtLanguage = rep.GetOtherList("RC_LANGUAGE_LEVEL", True)
                 FillRadCombobox(cboIDPlace, dtPlace, "NAME", "ID")
                 FillRadCombobox(cbPROVINCENQ_ID, dtPlace, "NAME", "ID")
+                FillRadCombobox(cbBirth_PlaceId, dtPlace, "NAME", "ID")
                 FillRadCombobox(cboLangLevel, dtLanguageleve, "NAME", "ID")
                 FillRadCombobox(cboLangLevel2, dtLanguageleve, "NAME", "ID")
                 FillRadCombobox(cboLanguage, dtLanguage, "NAME", "ID")
@@ -876,7 +882,7 @@ Public Class ctrlHU_EmpDtlProfile
                                        cboGender, cboLangLevel, cboLangLevel2, cboLanguage, cboLanguage2, cboLearningLevel, txtLoaiSucKhoe,
                                        cboMajor, cboNationlity, cboNative, cboNav_Province, cboPer_Province,
                                        cboReligion,
-                                       cboPer_District, cboPer_Ward, cboNav_District, cboNav_Ward, cbPROVINCEEMP_ID, cbDISTRICTEMP_ID, cbWARDEMP_ID, cbPROVINCENQ_ID,
+                                       cboPer_District, cboPer_Ward, cboNav_District, cboNav_Ward, cbPROVINCEEMP_ID, cbDISTRICTEMP_ID, cbWARDEMP_ID, cbPROVINCENQ_ID, cbBirth_PlaceId,
                                        hidID, hidOrgID, hidDirectManager, hidLevelManager,
                                        chkDoanPhi, rtOpption1, rtOpption2, rtOpption3, rtOpption4, rtOpption5,
                                        rdOpption6, rdOpption7, rdOpption8, rdOpption9, rdOpption10,
@@ -930,7 +936,7 @@ Public Class ctrlHU_EmpDtlProfile
                                        cboReligion,
                                        cboPer_District, cboPer_Ward, cboNav_District, cboNav_Ward,
                                        hidID, hidOrgID, hidDirectManager, hidLevelManager,
-                                        chkDoanPhi, cbPROVINCEEMP_ID, cbDISTRICTEMP_ID, cbWARDEMP_ID, cbPROVINCENQ_ID,
+                                        chkDoanPhi, cbPROVINCEEMP_ID, cbDISTRICTEMP_ID, cbWARDEMP_ID, cbPROVINCENQ_ID, cbBirth_PlaceId,
                                        rtOpption1, rtOpption2, rtOpption3, rtOpption4, rtOpption5,
                                        rdOpption6, rdOpption7, rdOpption8, rdOpption9, rdOpption10,
                                         ckThuong_Binh,
@@ -972,7 +978,7 @@ Public Class ctrlHU_EmpDtlProfile
                                        cboReligion, cboStaffRank, cboTitle,
                                        cboPer_District, cboPer_Ward, cboNav_District, cboNav_Ward,
                                        hidID, hidOrgID, hidDirectManager, hidLevelManager,
-                                       chkDoanPhi, cbPROVINCEEMP_ID, cbDISTRICTEMP_ID, cbWARDEMP_ID, cbPROVINCENQ_ID,
+                                       chkDoanPhi, cbPROVINCEEMP_ID, cbDISTRICTEMP_ID, cbWARDEMP_ID, cbPROVINCENQ_ID, cbBirth_PlaceId,
                                        btnFindDirect, btnFindOrg,
                                        rtOpption1, rtOpption2, rtOpption3, rtOpption4, rtOpption5,
                                        rdOpption6, rdOpption7, rdOpption8, rdOpption9, rdOpption10,
@@ -1325,7 +1331,7 @@ Public Class ctrlHU_EmpDtlProfile
          cboNationlity.ItemsRequested, cboNative.ItemsRequested, cboNav_Province.ItemsRequested, cboObject.ItemsRequested,
         cboPer_Province.ItemsRequested, cboReligion.ItemsRequested, cboStaffRank.ItemsRequested, cboTitle.ItemsRequested,
         cboWorkStatus.ItemsRequested, cboEmpStatus.ItemsRequested, cboGraduateSchool.ItemsRequested, cbWARDEMP_ID.ItemsRequested, cbDISTRICTEMP_ID.ItemsRequested, cbPROVINCEEMP_ID.ItemsRequested,
-        cboPer_District.ItemsRequested, cboPer_Ward.ItemsRequested, cboNav_District.ItemsRequested, cboNav_Ward.ItemsRequested, cbPROVINCENQ_ID.ItemsRequested, cboObjectLabor.ItemsRequested,
+        cboPer_District.ItemsRequested, cboPer_Ward.ItemsRequested, cboNav_District.ItemsRequested, cboNav_Ward.ItemsRequested, cbPROVINCENQ_ID.ItemsRequested, cbBirth_PlaceId.ItemsRequested, cboObjectLabor.ItemsRequested,
          cboPROVINCEEMP_BRITH.ItemsRequested, cboDISTRICTEMP_BRITH.ItemsRequested, cboWARDEMP_BRITH.ItemsRequested, cboRelationNLH.ItemsRequested
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
         Try
@@ -1367,7 +1373,7 @@ Public Class ctrlHU_EmpDtlProfile
                         dtData = rep.GetNationList(True)
                     Case cboNative.ID
                         dtData = rep.GetOtherList("NATIVE", True)
-                    Case cboNav_Province.ID, cboPer_Province.ID, cboIDPlace.ID, cbPROVINCEEMP_ID.ID, cbPROVINCENQ_ID.ID, cboPROVINCEEMP_BRITH.ID
+                    Case cboNav_Province.ID, cboPer_Province.ID, cboIDPlace.ID, cbPROVINCEEMP_ID.ID, cbPROVINCENQ_ID.ID, cboPROVINCEEMP_BRITH.ID, cbBirth_PlaceId.ID
                         dtData = rep.GetProvinceList(True)
                     Case cboNav_District.ID, cboPer_District.ID, cbDISTRICTEMP_ID.ID, cboDISTRICTEMP_BRITH.ID
                         dValue = IIf(e.Context("valueCustom") IsNot Nothing, e.Context("valueCustom"), 0)
@@ -2007,6 +2013,10 @@ Public Class ctrlHU_EmpDtlProfile
             If IsNumeric(cbPROVINCENQ_ID.SelectedValue) Then
                 EmpCV.PROVINCENQ_ID = cbPROVINCENQ_ID.SelectedValue
             End If
+            If IsNumeric(cbBirth_PlaceId.SelectedValue) Then
+                EmpCV.BIRTH_PLACEID = cbBirth_PlaceId.SelectedValue
+            End If
+
             EmpCV.OPPTION1 = rtOpption1.Text
             EmpCV.OPPTION2 = rtOpption2.Text
             EmpCV.OPPTION3 = rtOpption3.Text

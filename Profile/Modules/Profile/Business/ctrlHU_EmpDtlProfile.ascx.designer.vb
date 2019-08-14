@@ -923,6 +923,24 @@ Partial Public Class ctrlHU_EmpDtlProfile
     Protected WithEvents cbPROVINCENQ_ID As Global.Telerik.Web.UI.RadComboBox
 
     '''<summary>
+    '''lbBirth_PlaceId control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbBirth_PlaceId As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''cbBirth_PlaceId control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents cbBirth_PlaceId As Global.Telerik.Web.UI.RadComboBox
+
+    '''<summary>
     '''lbNationlity control.
     '''</summary>
     '''<remarks>

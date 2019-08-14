@@ -910,6 +910,7 @@ Partial Class ProfileRepository
                 If objEmpCV.IMAGE <> "" Then
                     objEmpCVData.IMAGE = objEmp.EMPLOYEE_CODE & objEmpCV.IMAGE 'Lưu Image thành dạng E10012.jpg.                    
                 End If
+                objEmpCVData.BIRTH_PLACE_ID = objEmpCV.BIRTH_PLACEID
                 objEmpCVData.EXPIRE_DATE_IDNO = objEmpCV.EXPIRE_DATE_IDNO
                 objEmpCVData.PIT_CODE_DATE = objEmpCV.PIT_CODE_DATE
                 objEmpCVData.PIT_CODE_PLACE = objEmpCV.PIT_CODE_PLACE
@@ -1335,6 +1336,7 @@ Partial Class ProfileRepository
                 If objEmpCV.IMAGE <> "" Then
                     objEmpCVData.IMAGE = objEmp.EMPLOYEE_CODE & objEmpCV.IMAGE 'Lưu Image thành dạng E10012.jpg.                    
                 End If
+                objEmpCVData.BIRTH_PLACE_ID = objEmpCV.BIRTH_PLACEID
                 objEmpCVData.EXPIRE_DATE_IDNO = objEmpCV.EXPIRE_DATE_IDNO
                 objEmpCVData.EFFECTDATE_BANK = objEmpCV.EFFECTDATE_BANK
                 objEmpCVData.PERSON_INHERITANCE = objEmpCV.PERSON_INHERITANCE
@@ -1719,6 +1721,7 @@ Partial Class ProfileRepository
                      From org In Context.HU_ORGANIZATION.Where(Function(f) f.ID = emp.ORG_ID).DefaultIfEmpty
                     From region In Context.OT_OTHER_LIST.Where(Function(f) f.ID = org.REGION_ID).DefaultIfEmpty
                     From emp_pro In Context.HU_PROVINCE.Where(Function(f) cv.PER_PROVINCE = f.ID).DefaultIfEmpty
+                      From emp_birthplace In Context.HU_PROVINCE.Where(Function(f) cv.BIRTH_PLACE_ID = f.ID).DefaultIfEmpty
                      From emp_dis In Context.HU_DISTRICT.Where(Function(f) cv.PER_DISTRICT = f.ID).DefaultIfEmpty
                      From emp_ward In Context.HU_WARD.Where(Function(f) cv.PER_WARD = f.ID).DefaultIfEmpty
                      From nguyenquan In Context.HU_PROVINCE.Where(Function(f) f.ID = cv.PROVINCENQ_ID).DefaultIfEmpty
@@ -1745,6 +1748,8 @@ Partial Class ProfileRepository
                          .CONTACT_PER_MBPHONE = cv.CONTACT_PER_MBPHONE,
                          .GENDER_NAME = g.NAME_VN,
                          .BIRTH_DATE = cv.BIRTH_DATE,
+                         .BIRTH_PLACEID = cv.BIRTH_PLACE_ID,
+                         .BIRTH_PLACENAME = emp_birthplace.NAME_VN,
                          .BIRTH_PLACE = cv.BIRTH_PLACE,
                          .MARITAL_STATUS = cv.MARITAL_STATUS,
                          .MARITAL_STATUS_NAME = ft.NAME_VN,

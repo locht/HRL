@@ -150,4 +150,7 @@
     Public Property PERSON_INHERITANCE As String
     'NGAY HET HAN CMND
     Public Property EXPIRE_DATE_IDNO As Date?
+    'noi sinh
+    Public Property BIRTH_PLACEID As Decimal?
+    Public Property BIRTH_PLACENAME As Decimal?
 End Class

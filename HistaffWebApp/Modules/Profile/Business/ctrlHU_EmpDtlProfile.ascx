@@ -443,10 +443,18 @@
                                             </tlk:RadDatePicker>
                                         </td>
                                         <td class="lb3">
-                                            <asp:Label runat="server" ID="lbPROVINCENQ_ID" Text="Nơi sinh"></asp:Label>
+                                            <asp:Label runat="server" ID="lbPROVINCENQ_ID" Text="Nguyên quán"></asp:Label>
                                         </td>
                                         <td colspan="3">
                                             <tlk:RadComboBox runat="server" ID="cbPROVINCENQ_ID" SkinID="LoadDemand" OnClientSelectedIndexChanged="OnClientSelectedIndexChanged"
+                                                OnClientItemsRequesting="OnClientItemsRequesting" EnabledLoadOnDemand="True">
+                                            </tlk:RadComboBox>
+                                        </td>
+                                        <td class="lb3">
+                                            <asp:Label runat="server" ID="lbBirth_PlaceId" Text="Nơi sinh"></asp:Label>
+                                        </td>
+                                        <td colspan="3">
+                                            <tlk:RadComboBox runat="server" ID="cbBirth_PlaceId" SkinID="LoadDemand" OnClientSelectedIndexChanged="OnClientSelectedIndexChanged"
                                                 OnClientItemsRequesting="OnClientItemsRequesting" EnabledLoadOnDemand="True">
                                             </tlk:RadComboBox>
                                         </td>

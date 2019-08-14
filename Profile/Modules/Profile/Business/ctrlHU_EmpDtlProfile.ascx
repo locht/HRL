@@ -321,7 +321,7 @@
                                             <asp:Label runat="server" ID="lbObject" Text="Đối tượng chấm công"></asp:Label>
                                             <span class="lbReq">*</span>
                                         </td>
-                                        <td >
+                                        <td>
                                             <tlk:RadComboBox runat="server" ID="cboObject" SkinID="LoadDemand" OnClientSelectedIndexChanged="OnClientSelectedIndexChanged"
                                                 OnClientItemsRequesting="OnClientItemsRequesting">
                                             </tlk:RadComboBox>
@@ -443,10 +443,18 @@
                                             </tlk:RadDatePicker>
                                         </td>
                                         <td class="lb3">
-                                            <asp:Label runat="server" ID="lbPROVINCENQ_ID" Text="Nơi sinh"></asp:Label>
+                                            <asp:Label runat="server" ID="lbPROVINCENQ_ID" Text="Nguyên quán"></asp:Label>
                                         </td>
                                         <td colspan="3">
                                             <tlk:RadComboBox runat="server" ID="cbPROVINCENQ_ID" SkinID="LoadDemand" OnClientSelectedIndexChanged="OnClientSelectedIndexChanged"
+                                                OnClientItemsRequesting="OnClientItemsRequesting" EnabledLoadOnDemand="True">
+                                            </tlk:RadComboBox>
+                                        </td>
+                                        <td class="lb3">
+                                            <asp:Label runat="server" ID="lbBirth_PlaceId" Text="Nơi sinh"></asp:Label>
+                                        </td>
+                                        <td colspan="3">
+                                            <tlk:RadComboBox runat="server" ID="cbBirth_PlaceId" SkinID="LoadDemand" OnClientSelectedIndexChanged="OnClientSelectedIndexChanged"
                                                 OnClientItemsRequesting="OnClientItemsRequesting" EnabledLoadOnDemand="True">
                                             </tlk:RadComboBox>
                                         </td>
@@ -522,7 +530,6 @@
                                             <tlk:RadComboBox runat="server" ID="cboIDPlace">
                                             </tlk:RadComboBox>
                                         </td>
-                                        
                                     </tr>
                                     <tr style="display: none">
                                         <td class="lb3">
@@ -1147,14 +1154,13 @@
                                         </td>
                                     </tr>
                                     <tr>
-                                    <td class="lb3">
+                                        <td class="lb3">
                                             <asp:Label runat="server" ID="lbEffect_Bank" Text="Ngày hiệu lực"></asp:Label>
                                         </td>
                                         <td>
                                             <tlk:RadDatePicker ID="rdEffect_Bank" runat="server">
                                             </tlk:RadDatePicker>
                                         </td>
-                                        
                                         <td class="lb3">
                                             <asp:Label runat="server" ID="lbBank" Text="Ngân hàng"></asp:Label>
                                         </td>

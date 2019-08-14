@@ -18,7 +18,7 @@ Imports System.Runtime.Serialization
 Imports System.Xml.Serialization
 
 
-<Assembly: EdmSchemaAttribute("ed96ae46-e836-4c37-869a-b75616fd41a7")>
+<Assembly: EdmSchemaAttribute("8969a002-4fe4-46ad-8bdd-c21dd6c08894")>
 #Region "EDM Relationship Metadata"
 <Assembly: EdmRelationshipAttribute("ProfileModel", "FK_HU_NAT_HU_PRO", "HU_NATION", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_NATION), "HU_PROVINCE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_PROVINCE), True)>
 <Assembly: EdmRelationshipAttribute("ProfileModel", "FK_HU_PRO_HU_DIS", "HU_PROVINCE", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_PROVINCE), "HU_DISTRICT", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_DISTRICT), True)>
@@ -25763,6 +25763,31 @@ Public Partial Class HU_EMPLOYEE_CV
     End Sub
 
     Private Partial Sub OnEXPIRE_DATE_IDNOChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property BIRTH_PLACE_ID() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _BIRTH_PLACE_ID
+        End Get
+        Set
+            OnBIRTH_PLACE_IDChanging(value)
+            ReportPropertyChanging("BIRTH_PLACE_ID")
+            _BIRTH_PLACE_ID = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("BIRTH_PLACE_ID")
+            OnBIRTH_PLACE_IDChanged()
+        End Set
+    End Property
+
+    Private _BIRTH_PLACE_ID As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnBIRTH_PLACE_IDChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnBIRTH_PLACE_IDChanged()
     End Sub
 
     #End Region
