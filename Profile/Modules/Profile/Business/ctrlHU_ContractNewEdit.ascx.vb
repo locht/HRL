@@ -253,8 +253,8 @@ Public Class ctrlHU_ContractNewEdit
                             cboSignContract.Text = Contract.NAME_SIGN_CONTRACT
                         End If
 
-                        If Contract.STATUS_ID = ProfileCommon.OT_CONTRACT_STATUS.APPROVE_ID Or
-                            Contract.STATUS_ID = ProfileCommon.OT_CONTRACT_STATUS.NOT_APPROVE_ID Then
+                        If Contract.STATUS_ID = ProfileCommon.DECISION_STATUS.APPROVE_ID Or
+                            Contract.STATUS_ID = ProfileCommon.DECISION_STATUS.NOT_APPROVE_ID Then
                             _flag = False
                             EnableControlAll_Cus(False, LeftPane)
                             btnDownload.Enabled = True
@@ -380,7 +380,7 @@ Public Class ctrlHU_ContractNewEdit
                     End If
                 Case "UNLOCK"
                     objContract.ID = Decimal.Parse(hidID.Value)
-                    objContract.STATUS_ID = ProfileCommon.OT_CONTRACT_STATUS.WAIT_APPROVE_ID
+                    objContract.STATUS_ID = ProfileCommon.DECISION_STATUS.WAIT_APPROVE_ID
                     If rep.UnApproveContract(objContract, gID) Then
                         Dim str As String = "getRadWindow().close('1');"
                         ScriptManager.RegisterStartupScript(Me.Page, Me.Page.GetType, "clientButtonClicking", str, True)
@@ -664,13 +664,15 @@ Public Class ctrlHU_ContractNewEdit
         Try
             Dim startTime As DateTime = DateTime.UtcNow
             If rdStartDate.SelectedDate IsNot Nothing Then
-
                 Dim dExpire As Date = rdStartDate.SelectedDate
                 item = (From p In ListComboData.LIST_CONTRACTTYPE Where p.ID = Decimal.Parse(cboContractType.SelectedValue)).SingleOrDefault
                 If item IsNot Nothing Then
-                    hidPeriod.Value = item.PERIOD
+                    If item.PERIOD IsNot Nothing Then
+                        hidPeriod.Value = item.PERIOD
+                    Else
+                        hidPeriod.Value = 0
+                    End If
                 End If
-
                 If CType(hidPeriod.Value, Double) = 0 Then
                     rdExpireDate.SelectedDate = Nothing
                 Else
@@ -682,7 +684,10 @@ Public Class ctrlHU_ContractNewEdit
 
             Dim employeeId As Double = 0
             Double.TryParse(hidEmployeeID.Value, employeeId)
-            'txtContractNo.Text = CreateDynamicContractNo(employeeId)
+            If cboSignContract.SelectedValue <> "" And rdStartDate IsNot Nothing Then
+                txtContractNo.Text = CreateDynamicContractNo(employeeId)
+            End If
+
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
             DisplayException(Me.ViewName, Me.ID, ex)
@@ -712,16 +717,20 @@ Public Class ctrlHU_ContractNewEdit
             If rdStartDate.SelectedDate IsNot Nothing Then
                 Dim dExpire As Date = rdStartDate.SelectedDate
                 item = (From p In ListComboData.LIST_CONTRACTTYPE Where p.ID = Decimal.Parse(cboContractType.SelectedValue)).SingleOrDefault
-                'If item IsNot Nothing Then
-                '    hidPeriod.Value = item.PERIOD
-                'End If
-                'If CType(hidPeriod.Value, Double) = 0 Then
-                '    rdExpireDate.SelectedDate = Nothing
-                'Else
-                '    dExpire = dExpire.AddMonths(CType(hidPeriod.Value, Double))
-                '    dExpire = dExpire.AddDays(CType(-1, Double))
-                '    rdExpireDate.SelectedDate = dExpire
-                'End If
+                If item IsNot Nothing Then
+                    If item.PERIOD IsNot Nothing Then
+                        hidPeriod.Value = item.PERIOD
+                    Else
+                        hidPeriod.Value = 0
+                    End If
+                End If
+                If CType(hidPeriod.Value, Double) = 0 Then
+                    rdExpireDate.SelectedDate = Nothing
+                Else
+                    dExpire = dExpire.AddMonths(CType(hidPeriod.Value, Double))
+                    dExpire = dExpire.AddDays(CType(-1, Double))
+                    rdExpireDate.SelectedDate = dExpire
+                End If
                 If cboSignContract.SelectedValue <> "" Then
                     txtContractNo.Text = CreateDynamicContractNo(hidEmployeeID.Value)
                 End If
@@ -884,7 +893,7 @@ Public Class ctrlHU_ContractNewEdit
             Else
                 fileNameZip = txtUpload.Text.Trim
             End If
-            Dim file As System.IO.FileInfo = New System.IO.FileInfo(path & fileNameZip)
+            Dim file As System.IO.FileInfo = New System.IO.FileInfo(path)
             Response.Clear()
             Response.AddHeader("Content-Disposition", "attachment; filename=" + file.Name)
             Response.AddHeader("Content-Length", file.Length.ToString())
