@@ -2709,6 +2709,10 @@ Namespace ProfileBusiness.ServiceContracts
         Function UPDATE_EMPLOYEE_KN(ByVal P_ID_KN As Decimal,
                                        ByVal P_DATE As Date) As Boolean
 #End Region
+
+
+        <OperationContract()>
+        Function GET_PROCESS_PLCONTRACT(ByVal P_EMP_CODE As String) As DataTable
     End Interface
 
 End Namespace

@@ -445,5 +445,17 @@ Namespace ProfileBusiness.ServiceImplementations
                 End Try
             End Using
         End Function
+
+        Public Function GET_PROCESS_PLCONTRACT(ByVal P_EMP_CODE As String) As DataTable _
+          Implements ServiceContracts.IProfileBusiness.GET_PROCESS_PLCONTRACT
+            Using rep As New ProfileRepository
+                Try
+                    Return rep.GET_PROCESS_PLCONTRACT(P_EMP_CODE)
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
+
     End Class
 End Namespace

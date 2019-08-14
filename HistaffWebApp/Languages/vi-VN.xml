@@ -39868,4 +39868,284 @@ Xin cám ơn!
       <string>Quản lý mẫu Email</string>
     </Value>
   </Item>
+  <Item>
+    <Key>
+      <string>KHAI BÁO PLHĐ</string>
+    </Key>
+    <Value>
+      <string>Khai báo PLHĐ</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>IN</string>
+    </Key>
+    <Value>
+      <string>In</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>XUẤT DỮ LIỆU</string>
+    </Key>
+    <Value>
+      <string>Xuất dữ liệu</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>SỐ PHỤ LỤC HỢP ĐỒNG</string>
+    </Key>
+    <Value>
+      <string>Số phụ lục hợp đồng</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>LOẠI PHỤ LỤC HỢP ĐỒNG</string>
+    </Key>
+    <Value>
+      <string>Loại phụ lục hợp đồng</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>NỘI DUNG THAY ĐỔI</string>
+    </Key>
+    <Value>
+      <string>Nội dung thay đổi</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>QUẢN LÝ PHỤ LỤC HỢP ĐỒNG</string>
+    </Key>
+    <Value>
+      <string>Quản lý phụ lục hợp đồng</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>QUÁ TRÌNH KÝ PHỤ LỤC HỢP ĐỒNG</string>
+    </Key>
+    <Value>
+      <string>Quá trình ký phụ lục hợp đồng</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>QUAN HỆ NHÂN THÂN</string>
+    </Key>
+    <Value>
+      <string>Quan hệ nhân thân</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>NGÀY THÔI VIỆC</string>
+    </Key>
+    <Value>
+      <string>Ngày thôi việc</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>TỈNH/THÀNH PHỐ NƠI SINH</string>
+    </Key>
+    <Value>
+      <string>Tỉnh/Thành phố nơi sinh</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>QUẬN/HUYỆN NƠI SINH</string>
+    </Key>
+    <Value>
+      <string>Quận/Huyện nơi sinh</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>XÃ/PHƯỜNG NƠI SINH</string>
+    </Key>
+    <Value>
+      <string>Xã/Phường nơi sinh</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>THÔNG TIN 1</string>
+    </Key>
+    <Value>
+      <string>Thông tin 1</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>NGÀY THÁNG 1</string>
+    </Key>
+    <Value>
+      <string>Ngày tháng 1</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>THÔNG TIN 2</string>
+    </Key>
+    <Value>
+      <string>Thông tin 2</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>NGÀY THÁNG 2</string>
+    </Key>
+    <Value>
+      <string>Ngày tháng 2</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>THÔNG TIN 3</string>
+    </Key>
+    <Value>
+      <string>Thông tin 3</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>NGÀY THÁNG 3</string>
+    </Key>
+    <Value>
+      <string>Ngày tháng 3</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>THÔNG TIN 4</string>
+    </Key>
+    <Value>
+      <string>Thông tin 4</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>NGÀY THÁNG 4</string>
+    </Key>
+    <Value>
+      <string>Ngày tháng 4</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>THÔNG TIN 5</string>
+    </Key>
+    <Value>
+      <string>Thông tin 5</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>NGÀY THÁNG 5</string>
+    </Key>
+    <Value>
+      <string>Ngày tháng 5</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>NGÀY CHÍNH THỨC</string>
+    </Key>
+    <Value>
+      <string>Ngày chính thức</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>NGÀY THAM GIA</string>
+    </Key>
+    <Value>
+      <string>Ngày tham gia</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>ĐƠN VỊ XUẤT NGŨ</string>
+    </Key>
+    <Value>
+      <string>Đơn vị xuất ngũ</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>CTRLHU_EMPDTLAPPENDIX</string>
+    </Key>
+    <Value>
+      <string>ctrlHU_EmpDtlAppendix</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>CONTRACTTYPE_NAME</string>
+    </Key>
+    <Value>
+      <string>Loại hợp đồng</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>APPEND_NUMBER</string>
+    </Key>
+    <Value>
+      <string>Số phụ lục hợp đồng</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>APPEND_TYPE_NAME</string>
+    </Key>
+    <Value>
+      <string>Loại phụ lục hợp đồng</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>START_DATE</string>
+    </Key>
+    <Value>
+      <string>Ngày bắt đầu</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>EXPIRE_DATE</string>
+    </Key>
+    <Value>
+      <string>Ngày kết thúc</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>SIGN_DATE</string>
+    </Key>
+    <Value>
+      <string>Ngày ký</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>SIGN_TITLE_NAME</string>
+    </Key>
+    <Value>
+      <string>Chức vụ người ký</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>ORG_NAME1</string>
+    </Key>
+    <Value>
+      <string>Phòng ban</string>
+    </Value>
+  </Item>
 </SerializableDictionaryOfStringString>

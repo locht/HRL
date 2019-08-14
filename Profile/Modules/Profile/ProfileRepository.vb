@@ -1398,6 +1398,18 @@ Partial Public Class ProfileRepository
 
         Return Nothing
     End Function
+
+    Public Function GET_PROCESS_PLCONTRACT(ByVal P_EMP_CODE As String) As DataTable
+        Using rep As New ProfileBusinessClient
+            Try
+                Return rep.GET_PROCESS_PLCONTRACT(P_EMP_CODE)
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+
+    End Function
 #End Region
 
 End Class

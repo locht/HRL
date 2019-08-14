@@ -49232,6 +49232,9 @@ Namespace ProfileBusiness
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/UPDATE_EMPLOYEE_KN", ReplyAction:="http://tempuri.org/IProfileBusiness/UPDATE_EMPLOYEE_KNResponse")>  _
         Function UPDATE_EMPLOYEE_KN(ByVal P_ID_KN As Decimal, ByVal P_DATE As Date) As Boolean
         
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GET_PROCESS_PLCONTRACT", ReplyAction:="http://tempuri.org/IProfileBusiness/GET_PROCESS_PLCONTRACTResponse")>  _
+        Function GET_PROCESS_PLCONTRACT(ByVal P_EMP_CODE As String) As System.Data.DataTable
+        
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/InsertALP", ReplyAction:="http://tempuri.org/IProfileBusiness/InsertALPResponse")>  _
         Function InsertALP(ByVal objContract As ProfileBusiness.TrainningManageDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
         
@@ -51294,6 +51297,10 @@ Namespace ProfileBusiness
         
         Public Function UPDATE_EMPLOYEE_KN(ByVal P_ID_KN As Decimal, ByVal P_DATE As Date) As Boolean Implements ProfileBusiness.IProfileBusiness.UPDATE_EMPLOYEE_KN
             Return MyBase.Channel.UPDATE_EMPLOYEE_KN(P_ID_KN, P_DATE)
+        End Function
+        
+        Public Function GET_PROCESS_PLCONTRACT(ByVal P_EMP_CODE As String) As System.Data.DataTable Implements ProfileBusiness.IProfileBusiness.GET_PROCESS_PLCONTRACT
+            Return MyBase.Channel.GET_PROCESS_PLCONTRACT(P_EMP_CODE)
         End Function
         
         Public Function InsertALP(ByVal objContract As ProfileBusiness.TrainningManageDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean Implements ProfileBusiness.IProfileBusiness.InsertALP
