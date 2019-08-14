@@ -67,8 +67,8 @@
                     <asp:Label runat="server" ID="Label2" Text="Điểm số"></asp:Label>
                 </td>
                 <td>
-                    <tlk:RadNumericTextBox ID="txtPointLevel" runat="server" SkinID="Decimal">
-                    </tlk:RadNumericTextBox>
+                    <tlk:RadTextBox ID="rtxtPointLevel" runat="server">
+                    </tlk:RadTextBox>
                 </td>
             </tr>
             <tr>

@@ -131,6 +131,78 @@ Partial Public Class ctrlPortalEmpProfile_Edit
     Protected WithEvents RequiredFieldValidator4 As Global.System.Web.UI.WebControls.RequiredFieldValidator
 
     '''<summary>
+    '''rdIDDateEnd control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents rdIDDateEnd As Global.Telerik.Web.UI.RadDatePicker
+
+    '''<summary>
+    '''RequiredFieldValidator1 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents RequiredFieldValidator1 As Global.System.Web.UI.WebControls.RequiredFieldValidator
+
+    '''<summary>
+    '''cboFamilyStatus control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents cboFamilyStatus As Global.Telerik.Web.UI.RadComboBox
+
+    '''<summary>
+    '''txtContactPerson control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtContactPerson As Global.Telerik.Web.UI.RadTextBox
+
+    '''<summary>
+    '''Label3 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents Label3 As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''cboRelationNLH control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents cboRelationNLH As Global.Telerik.Web.UI.RadComboBox
+
+    '''<summary>
+    '''Label2 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents Label2 As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''txtPerMobilePhone control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtPerMobilePhone As Global.Telerik.Web.UI.RadTextBox
+
+    '''<summary>
     '''txtPerAddress control.
     '''</summary>
     '''<remarks>
@@ -194,6 +266,24 @@ Partial Public Class ctrlPortalEmpProfile_Edit
     Protected WithEvents cboPer_Ward As Global.Telerik.Web.UI.RadComboBox
 
     '''<summary>
+    '''txtPerThonAp control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtPerThonAp As Global.Telerik.Web.UI.RadTextBox
+
+    '''<summary>
+    '''RequiredFieldValidator6 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents RequiredFieldValidator6 As Global.System.Web.UI.WebControls.RequiredFieldValidator
+
+    '''<summary>
     '''txtNavAddress control.
     '''</summary>
     '''<remarks>
@@ -230,13 +320,76 @@ Partial Public Class ctrlPortalEmpProfile_Edit
     Protected WithEvents cboNav_Ward As Global.Telerik.Web.UI.RadComboBox
 
     '''<summary>
-    '''cboFamilyStatus control.
+    '''txtMobilePhone control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents cboFamilyStatus As Global.Telerik.Web.UI.RadComboBox
+    Protected WithEvents txtMobilePhone As Global.Telerik.Web.UI.RadTextBox
+
+    '''<summary>
+    '''txtHomePhone control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtHomePhone As Global.Telerik.Web.UI.RadTextBox
+
+    '''<summary>
+    '''txtWorkEmail control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtWorkEmail As Global.Telerik.Web.UI.RadTextBox
+
+    '''<summary>
+    '''txtPerEmail control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtPerEmail As Global.Telerik.Web.UI.RadTextBox
+
+    '''<summary>
+    '''txtFirstNameVN control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtFirstNameVN As Global.Telerik.Web.UI.RadTextBox
+
+    '''<summary>
+    '''txtBankNo control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtBankNo As Global.Telerik.Web.UI.RadTextBox
+
+    '''<summary>
+    '''cboBank control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents cboBank As Global.Telerik.Web.UI.RadComboBox
+
+    '''<summary>
+    '''cboBankBranch control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents cboBankBranch As Global.Telerik.Web.UI.RadComboBox
 
     '''<summary>
     '''txtReason control.

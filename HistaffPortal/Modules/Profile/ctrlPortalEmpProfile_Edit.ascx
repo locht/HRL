@@ -10,6 +10,13 @@
     <asp:Label runat="server" ID="lbStatus" ForeColor="Red"></asp:Label></b>
 <table class="table-form">
     <tr>
+        <td colspan="6">
+            <b>
+                <%# Translate("Sơ yếu lý lịch")%></b> 
+            <hr />
+        </td>
+    </tr>
+    <tr>
         <td class="lb" style="width: 130px">
             <%# Translate("Số CMND")%><span class="lbReq">*</span>
         </td>
@@ -44,6 +51,57 @@
             <asp:RequiredFieldValidator ID="RequiredFieldValidator4" ControlToValidate="cboIDPlace"
                 runat="server" ErrorMessage="<%$ Translate: Bạn phải nhập Nơi cấp %>" ToolTip="<%$ Translate:  Bạn phải nhập Nơi cấp %>">
             </asp:RequiredFieldValidator>
+        </td>
+    </tr>
+    <tr>
+        <td class="lb" style="width: 130px">
+            <%# Translate("Ngày hết hiệu lực")%><span class="lbReq">*</span>
+        </td>
+        <td>
+            <tlk:RadDatePicker runat="server" ID="rdIDDateEnd">
+            </tlk:RadDatePicker>
+            <asp:RequiredFieldValidator ID="RequiredFieldValidator1" ControlToValidate="rdIDDateEnd"
+                runat="server" ErrorMessage="<%$ Translate: Bạn phải nhập Ngày hết hiệu lực %>" ToolTip="<%$ Translate:  Bạn phải nhập Ngày hết hiệu lực %>">
+            </asp:RequiredFieldValidator>
+        </td>
+         <td class="lb">
+            <%# Translate("Tình trạng hôn nhân")%>
+        </td>
+        <td>
+            <tlk:RadComboBox runat="server" ID="cboFamilyStatus" SkinID="LoadDemand" OnClientSelectedIndexChanged="OnClientSelectedIndexChanged"
+                OnClientItemsRequesting="OnClientItemsRequesting">
+            </tlk:RadComboBox>
+        </td>
+    </tr>    
+    <tr>
+        <td class="lb">
+            <%# Translate("Người liên hệ")%>
+        </td>
+        <td>
+            <tlk:RadTextBox ID="txtContactPerson" runat="server">
+            </tlk:RadTextBox>
+        </td>
+        <td class="lb">
+            <asp:Label runat="server" ID="Label3" Text="Mối quan hệ"></asp:Label>
+        </td>
+        <td>
+            <tlk:RadComboBox runat="server" ID="cboRelationNLH" SkinID="LoadDemand" OnClientSelectedIndexChanged="OnClientSelectedIndexChanged"
+                OnClientItemsRequesting="OnClientItemsRequesting">
+            </tlk:RadComboBox>
+        </td>
+         <td class="lb">
+            <asp:Label runat="server" ID="Label2" Text="Điện thoại di động"></asp:Label>
+        </td>
+        <td>
+            <tlk:RadTextBox ID="txtPerMobilePhone" runat="server">
+            </tlk:RadTextBox>
+        </td>
+    </tr>
+    <tr>
+        <td colspan="6">
+            <b>
+                <%# Translate("Thông tin liên hệ")%></b>
+            <hr />
         </td>
     </tr>
     <tr>
@@ -93,6 +151,19 @@
     </tr>
     <tr>
         <td class="lb">
+            <%# Translate("Thôn/Ấp/ Khu phố")%><span class="lbReq">*</span>
+        </td>
+        <td colspan="5">
+            <tlk:RadTextBox ID="txtPerThonAp" runat="server" Width="100%">
+            </tlk:RadTextBox>
+            <asp:RequiredFieldValidator ID="RequiredFieldValidator6" ControlToValidate="txtPerAddress"
+                runat="server" ErrorMessage="<%$ Translate: Bạn phải nhập Địa chỉ Thôn/Ấp/Khu phố %>"
+                ToolTip="<%$ Translate:  Bạn phải nhập Địa chỉ thôn/Ấp/Khu phố%>">
+            </asp:RequiredFieldValidator>
+        </td>
+    </tr>
+    <tr>
+        <td class="lb">
             <%# Translate("Địa chỉ tạm trú")%>
         </td>
         <td colspan="5">
@@ -125,15 +196,88 @@
                 OnClientItemsRequesting="OnClientItemsRequesting">
             </tlk:RadComboBox>
         </td>
+    </tr> 
+    <tr>
+         <td class="lb">
+            <%# Translate("Điện thoại di động")%>
+        </td>
+        <td>
+            <tlk:RadTextBox runat="server" ID="txtMobilePhone">
+            </tlk:RadTextBox>
+        </td>
+        <td class="lb">
+            <%# Translate("Điện thoại cố định")%>
+        </td>
+        <td>
+            <tlk:RadTextBox runat="server" ID="txtHomePhone">
+            </tlk:RadTextBox>
+        </td>
     </tr>
     <tr>
         <td class="lb">
-            <%# Translate("Tình trạng hôn nhân")%>
+            <%# Translate("Email công ty")%>
         </td>
         <td>
-            <tlk:RadComboBox runat="server" ID="cboFamilyStatus" SkinID="LoadDemand" OnClientSelectedIndexChanged="OnClientSelectedIndexChanged"
+            <tlk:RadTextBox runat="server" ID="txtWorkEmail">
+            </tlk:RadTextBox>
+        </td>
+        <td class="lb">
+            <%# Translate("Email cá nhân")%>
+        </td>
+        <td>
+            <tlk:RadTextBox runat="server" ID="txtPerEmail">
+            </tlk:RadTextBox>
+        </td>
+      
+    </tr> 
+
+    <tr>
+        <td colspan="6">
+            <b>
+                <%# Translate("Thông tin tài khoản")%></b>
+            <hr />
+        </td>
+    </tr>
+    <tr>
+        <td class="lb" style="width: 130px">
+            <%# Translate("Tên người thụ hưởng")%>
+        </td>
+        <td>
+            <tlk:RadTextBox ID="txtFirstNameVN" runat="server">
+            </tlk:RadTextBox>
+        </td>
+        <td class="lb">
+            <%# Translate("Số tài khoản")%>
+        </td>
+        <td>
+            <tlk:RadTextBox ID="txtBankNo" runat="server">
+            </tlk:RadTextBox>
+        </td>
+        <td class="lb">
+            <%# Translate("Ngân hàng")%>
+        </td>
+        <td>            
+             <tlk:RadComboBox runat="server" ID="cboBank" SkinID="LoadDemand" OnClientSelectedIndexChanged="OnClientSelectedIndexChanged"
                 OnClientItemsRequesting="OnClientItemsRequesting">
             </tlk:RadComboBox>
+        </td>
+    </tr>
+    <tr>
+         <td class="lb">
+            <%# Translate("Chi nhánh")%>
+        </td>
+        <td colspan="5">
+            <tlk:RadComboBox runat="server" ID="cboBankBranch" SkinID="LoadDemand" OnClientSelectedIndexChanged="OnClientSelectedIndexChanged"
+                OnClientItemsRequesting="OnClientItemsRequesting">
+            </tlk:RadComboBox>
+        </td>
+    </tr>
+
+     <tr>
+        <td colspan="6">
+            <b>
+                <%# Translate("Thông tin không phê duyệt ")%></b>
+            <hr />
         </td>
     </tr>
      <tr>
@@ -162,7 +306,8 @@
         }
 
         function clientButtonClicking(sender, args) {
-           
+
+
             if (args.get_item().get_commandName() == "CANCEL") {
                 OpenInNewTab('Default.aspx?mid=Profile&fid=ctrlPortalEmpProfile');
                 args.set_cancel(true);
@@ -174,7 +319,6 @@
             window.location.href = url;
         }
 
-       
 
         function OnClientSelectedIndexChanged(sender, eventArgs) {
             var id = sender.get_id();
@@ -190,6 +334,10 @@
                     cbo = $find('<%= cboNav_District.ClientID %>');
                     clearSelectRadcombo(cbo);
                     cbo = $find('<%= cboNav_Ward.ClientID %>');
+                    clearSelectRadcombo(cbo);
+                    break;
+                case '<%= cboBank.ClientID %>':
+                    cbo = $find('<%= cboBankBranch.ClientID %>');
                     clearSelectRadcombo(cbo);
                     break;
                 default:
@@ -229,6 +377,14 @@
                     break;
                 case '<%= cboNav_Ward.ClientID %>':
                     cbo = $find('<%= cboNav_District.ClientID %>');
+                    value = cbo.get_value();
+                    break;
+                case '<%= cboRelationNLH.ClientID %>':
+                    cbo = $find('<%= cboRelationNLH.ClientID %>');
+                    value = cbo.get_value();
+                    break;
+                case '<%= cboBankBranch.ClientID %>':
+                    cbo = $find('<%= cboBank.ClientID %>');
                     value = cbo.get_value();
                     break;
                 default:
