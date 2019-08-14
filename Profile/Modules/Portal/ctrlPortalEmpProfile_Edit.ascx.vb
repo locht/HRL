@@ -11,6 +11,15 @@ Public Class ctrlPortalEmpProfile_Edit
 
 #Region "Property"
 
+    Property ComboBoxDataDTO As ComboBoxDataDTO
+        Get
+            Return ViewState(Me.ID & "_ComboBoxDataDTO")
+        End Get
+        Set(ByVal value As ComboBoxDataDTO)
+            ViewState(Me.ID & "_ComboBoxDataDTO") = value
+        End Set
+    End Property
+
     Public Property EmployeeID As Decimal
     Public Property EmployeeCode As String
 
@@ -91,6 +100,42 @@ Public Class ctrlPortalEmpProfile_Edit
                         FillRadCombobox(cboIDPlace, dtPlace, "NAME", "ID")
                     End Using
                     cboIDPlace.SelectedValue = empCV.ID_PLACE
+
+                    rdIDDateEnd.SelectedDate = empCV.EXPIRE_DATE_IDNO
+                    txtContactPerson.Text = empCV.CONTACT_PER
+                    Using rep As New ProfileRepository
+                        If ComboBoxDataDTO Is Nothing Then
+                            ComboBoxDataDTO = New ComboBoxDataDTO
+                            ComboBoxDataDTO.GET_RELATION = True
+                            rep.GetComboList(ComboBoxDataDTO)
+                        End If
+                        If ComboBoxDataDTO IsNot Nothing Then
+                            FillDropDownList(cboRelationNLH, ComboBoxDataDTO.LIST_RELATION, "NAME", "ID", Common.Common.SystemLanguage, True, cboRelationNLH.SelectedValue)
+                        End If
+                    End Using
+                    If empCV.RELATION_PER_CTR IsNot Nothing Then
+                        cboRelationNLH.SelectedValue = empCV.RELATION_PER_CTR
+                        cboRelationNLH.Text = empCV.RELATION_PER_CTR_NAME
+                    End If
+
+                    txtPerMobilePhone.Text = empCV.CONTACT_PER_MBPHONE
+                    txtPerThonAp.Text = empCV.VILLAGE
+                    txtHomePhone.Text = empCV.HOME_PHONE
+                    txtMobilePhone.Text = empCV.MOBILE_PHONE
+                    txtWorkEmail.Text = empCV.WORK_EMAIL
+                    txtPerEmail.Text = empCV.PER_ADDRESS
+                    txtFirstNameVN.Text = empCV.PERSON_INHERITANCE
+                    txtBankNo.Text = empCV.BANK_NO
+
+                    If empCV.BANK_ID IsNot Nothing Then
+                        cboBank.SelectedValue = empCV.BANK_ID
+                        cboBank.Text = empCV.BANK_NAME
+                    End If
+                    If empCV.BANK_BRANCH_ID IsNot Nothing Then
+                        cboBankBranch.SelectedValue = empCV.BANK_BRANCH_ID
+                        cboBankBranch.Text = empCV.BANK_BRANCH_NAME
+                    End If
+
                     hidStatus.Value = empCV.STATUS
 
                     txtReason.Text = empCV.REASON_UNAPROVE
@@ -117,11 +162,15 @@ Public Class ctrlPortalEmpProfile_Edit
                     tbarMainToolBar.Items(3).Enabled = True
                     EnableControlAll(True, cboFamilyStatus, cboNav_District, cboNav_Province, cboNav_Ward,
                                      cboPer_District, cboPer_Province, cboPer_Ward, txtID_NO,
-                                     cboIDPlace, txtNavAddress, txtPerAddress, rdIDDate)
+                                     cboIDPlace, txtNavAddress, txtPerAddress, rdIDDate,
+                                     rdIDDateEnd, txtContactPerson, cboRelationNLH, txtPerMobilePhone, txtPerThonAp, txtHomePhone, txtMobilePhone,
+                                     txtWorkEmail, txtPerEmail, txtFirstNameVN, txtBankNo, cboBank, cboBankBranch)
                 Case 1 ' Chờ phê duyệt
                     EnableControlAll(False, cboFamilyStatus, cboNav_District, cboNav_Province, cboNav_Ward,
                                      cboPer_District, cboPer_Province, cboPer_Ward, txtID_NO,
-                                     cboIDPlace, txtNavAddress, txtPerAddress, rdIDDate)
+                                     cboIDPlace, txtNavAddress, txtPerAddress, rdIDDate,
+                                     rdIDDateEnd, txtContactPerson, cboRelationNLH, txtPerMobilePhone, txtPerThonAp, txtHomePhone, txtMobilePhone,
+                                     txtWorkEmail, txtPerEmail, txtFirstNameVN, txtBankNo, cboBank, cboBankBranch)
                     lbStatus.Text = "Thông tin chỉnh sửa đang ở trạng thái [ Chờ phê duyệt ], Bạn không thể chỉnh sửa"
                     tbarMainToolBar.Items(0).Enabled = False
                     tbarMainToolBar.Items(3).Enabled = False
@@ -132,21 +181,27 @@ Public Class ctrlPortalEmpProfile_Edit
                     tbarMainToolBar.Items(3).Enabled = False
                     EnableControlAll(True, cboFamilyStatus, cboNav_District, cboNav_Province, cboNav_Ward,
                                      cboPer_District, cboPer_Province, cboPer_Ward, txtID_NO,
-                                     cboIDPlace, txtNavAddress, txtPerAddress, rdIDDate)
+                                     cboIDPlace, txtNavAddress, txtPerAddress, rdIDDate,
+                                     rdIDDateEnd, txtContactPerson, cboRelationNLH, txtPerMobilePhone, txtPerThonAp, txtHomePhone, txtMobilePhone,
+                                     txtWorkEmail, txtPerEmail, txtFirstNameVN, txtBankNo, cboBank, cboBankBranch)
                 Case 3 ' Không duyệt
                     lbStatus.Text = "Thông tin chỉnh sửa [ không được phê duyệt ], Bạn có thể khai báo lại thông tin chỉnh sửa"
                     tbarMainToolBar.Items(0).Enabled = True
                     tbarMainToolBar.Items(3).Enabled = False
                     EnableControlAll(True, cboFamilyStatus, cboNav_District, cboNav_Province, cboNav_Ward,
                                      cboPer_District, cboPer_Province, cboPer_Ward, txtID_NO,
-                                     cboIDPlace, txtNavAddress, txtPerAddress, rdIDDate)
+                                     cboIDPlace, txtNavAddress, txtPerAddress, rdIDDate,
+                                     rdIDDateEnd, txtContactPerson, cboRelationNLH, txtPerMobilePhone, txtPerThonAp, txtHomePhone, txtMobilePhone,
+                                     txtWorkEmail, txtPerEmail, txtFirstNameVN, txtBankNo, cboBank, cboBankBranch)
                 Case Else
                     lbStatus.Text = "Thông tin mới nhất được [ phê duyệt ], Bạn có thể khai báo tiếp thông tin chỉnh sửa"
                     tbarMainToolBar.Items(0).Enabled = True
                     tbarMainToolBar.Items(3).Enabled = False
                     EnableControlAll(True, cboFamilyStatus, cboNav_District, cboNav_Province, cboNav_Ward,
                                      cboPer_District, cboPer_Province, cboPer_Ward, txtID_NO,
-                                     cboIDPlace, txtNavAddress, txtPerAddress, rdIDDate)
+                                     cboIDPlace, txtNavAddress, txtPerAddress, rdIDDate,
+                                     rdIDDateEnd, txtContactPerson, cboRelationNLH, txtPerMobilePhone, txtPerThonAp, txtHomePhone, txtMobilePhone,
+                                     txtWorkEmail, txtPerEmail, txtFirstNameVN, txtBankNo, cboBank, cboBankBranch)
             End Select
         Catch ex As Exception
             Me.DisplayException(Me.ViewName, Me.ID, ex)
@@ -165,7 +220,9 @@ Public Class ctrlPortalEmpProfile_Edit
                     CurrentState = CommonMessage.STATE_NEW
                     ClearControlValue(cboFamilyStatus, cboNav_District, cboNav_Province, cboNav_Ward,
                                      cboPer_District, cboPer_Province, cboPer_Ward, txtID_NO,
-                                     cboIDPlace, txtNavAddress, txtPerAddress, hidFamilyID)
+                                     cboIDPlace, txtNavAddress, txtPerAddress, hidFamilyID,
+                                     rdIDDateEnd, txtContactPerson, cboRelationNLH, txtPerMobilePhone, txtPerThonAp, txtHomePhone, txtMobilePhone,
+                                     txtWorkEmail, txtPerEmail, txtFirstNameVN, txtBankNo, cboBank, cboBankBranch)
                     UpdateControlState()
                 Case CommonMessage.TOOLBARITEM_SAVE
                     If Page.IsValid Then
@@ -200,6 +257,27 @@ Public Class ctrlPortalEmpProfile_Edit
                         obj.ID_NO = txtID_NO.Text.Trim()
                         obj.ID_DATE = rdIDDate.SelectedDate
                         obj.ID_PLACE = cboIDPlace.SelectedValue
+
+                        obj.EXPIRE_DATE_IDNO = rdIDDateEnd.SelectedDate
+                        obj.CONTACT_PER = txtContactPerson.Text
+                        If cboRelationNLH.SelectedValue <> "" Then
+                            obj.RELATION_PER_CTR = Decimal.Parse(cboRelationNLH.SelectedValue)
+                        End If
+                        obj.CONTACT_PER_MBPHONE = txtPerMobilePhone.Text
+                        obj.VILLAGE = txtPerThonAp.Text
+                        obj.HOME_PHONE = txtHomePhone.Text
+                        obj.MOBILE_PHONE = txtMobilePhone.Text
+                        obj.WORK_EMAIL = txtWorkEmail.Text
+                        obj.PER_ADDRESS = txtPerEmail.Text
+                        obj.PERSON_INHERITANCE = txtFirstNameVN.Text
+                        obj.BANK_NO = txtBankNo.Text
+                        If cboBank.SelectedValue <> "" Then
+                            obj.BANK_ID = Decimal.Parse(cboBank.SelectedValue)
+                        End If
+                        If cboBankBranch.SelectedValue <> "" Then
+                            obj.BANK_BRANCH_ID = Decimal.Parse(cboBankBranch.SelectedValue)
+                        End If
+
                         Using rep As New ProfileBusinessRepository
 
                             If hidID.Value.ToString <> "0" Then
@@ -236,7 +314,8 @@ Public Class ctrlPortalEmpProfile_Edit
 
     Protected Sub cboCommon_ItemsRequested(ByVal sender As Object, ByVal e As RadComboBoxItemsRequestedEventArgs) _
     Handles cboFamilyStatus.ItemsRequested, cboNav_Province.ItemsRequested, cboPer_Province.ItemsRequested,
-    cboPer_District.ItemsRequested, cboPer_Ward.ItemsRequested, cboNav_District.ItemsRequested, cboNav_Ward.ItemsRequested
+    cboPer_District.ItemsRequested, cboPer_Ward.ItemsRequested, cboNav_District.ItemsRequested, cboNav_Ward.ItemsRequested,
+    cboBank.ItemsRequested, cboBankBranch.ItemsRequested
         Using rep As New ProfileRepository
             Dim dtData As DataTable
             Dim sText As String = e.Text
@@ -253,6 +332,11 @@ Public Class ctrlPortalEmpProfile_Edit
                 Case cboNav_Ward.ID, cboPer_Ward.ID
                     dValue = IIf(e.Context("valueCustom") IsNot Nothing, e.Context("valueCustom"), 0)
                     dtData = rep.GetWardList(dValue, True)
+                Case cboBank.ID
+                    dtData = rep.GetBankList(True)
+                Case cboBankBranch.ID
+                    dValue = IIf(e.Context("valueCustom") IsNot Nothing, e.Context("valueCustom"), 0)
+                    dtData = rep.GetBankBranchList(dValue, True)
             End Select
 
             If sText <> "" Then
@@ -333,7 +417,9 @@ Public Class ctrlPortalEmpProfile_Edit
                         tbarMainToolBar.Items(3).Enabled = False
                         EnableControlAll(False, cboFamilyStatus, cboNav_District, cboNav_Province, cboNav_Ward,
                                     cboPer_District, cboPer_Province, cboPer_Ward, txtID_NO,
-                                    cboIDPlace, txtNavAddress, txtPerAddress, rdIDDate)
+                                    cboIDPlace, txtNavAddress, txtPerAddress, rdIDDate,
+                                    rdIDDateEnd, txtContactPerson, cboRelationNLH, txtPerMobilePhone, txtPerThonAp, txtHomePhone, txtMobilePhone,
+                                    txtWorkEmail, txtPerEmail, txtFirstNameVN, txtBankNo, cboBank, cboBankBranch)
 
                     End If
                     ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), NotifyType.Success)

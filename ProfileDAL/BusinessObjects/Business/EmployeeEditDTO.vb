@@ -34,5 +34,28 @@
     Public Property MODIFIED_BY As String
     Public Property MODIFIED_LOG As String
 
+    'NGAY HET HAN CMND
+    Public Property EXPIRE_DATE_IDNO As Date?
 
+    ' Người liên hệ 
+    Public Property CONTACT_PER As String
+    Public Property RELATION_PER_CTR As Decimal?
+    Public Property RELATION_PER_CTR_NAME As String
+    Public Property CONTACT_PER_MBPHONE As String
+
+    ' Ấp thôn xã
+    Public Property VILLAGE As String
+
+    Public Property HOME_PHONE As String
+    Public Property MOBILE_PHONE As String
+    Public Property WORK_EMAIL As String
+    Public Property PER_EMAIL As String
+
+    Public Property PERSON_INHERITANCE As String
+
+    Public Property BANK_NO As String
+    Public Property BANK_ID As Decimal?
+    Public Property BANK_NAME As String
+    Public Property BANK_BRANCH_ID As Decimal?
+    Public Property BANK_BRANCH_NAME As String
 End Class

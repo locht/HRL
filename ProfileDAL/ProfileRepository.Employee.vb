@@ -3226,6 +3226,9 @@ Partial Class ProfileRepository
                               From per_dis In Context.HU_DISTRICT.Where(Function(f) f.ID = p.PER_DISTRICT).DefaultIfEmpty
                               From per_ward In Context.HU_WARD.Where(Function(f) f.ID = p.PER_WARD).DefaultIfEmpty
                               From marital In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.MARITAL_STATUS).DefaultIfEmpty
+                              From relation_per In Context.OT_OTHER_LIST.Where(Function(f) p.RELATION_PER_CTR = f.ID And f.TYPE_ID = 48 And f.ACTFLG = "A").DefaultIfEmpty
+                              From bank In Context.HU_BANK.Where(Function(f) p.BANK_ID = f.ID).DefaultIfEmpty
+                              From bankbranch In Context.HU_BANK_BRANCH.Where(Function(f) p.BANK_BRANCH_ID = f.ID).DefaultIfEmpty
                               Where p.EMPLOYEE_ID = _filter.EMPLOYEE_ID And p.STATUS <> 2
                              Select New EmployeeEditDTO With {
                                  .ID = p.ID,
@@ -3251,6 +3254,22 @@ Partial Class ProfileRepository
                                  .PER_WARD_NAME = per_ward.NAME_VN,
                                  .REASON_UNAPROVE = p.REASON_UNAPROVE,
                                  .STATUS = p.STATUS,
+                                 .EXPIRE_DATE_IDNO = p.EXPIRE_DATE_IDNO,
+                                 .CONTACT_PER = p.CONTACT_PER,
+                                 .RELATION_PER_CTR = p.RELATION_PER_CTR,
+                                 .RELATION_PER_CTR_NAME = relation_per.NAME_VN,
+                                 .CONTACT_PER_MBPHONE = p.CONTACT_PER_MBPHONE,
+                                 .VILLAGE = p.VILLAGE,
+                                 .HOME_PHONE = p.HOME_PHONE,
+                                 .MOBILE_PHONE = p.MOBILE_PHONE,
+                                 .WORK_EMAIL = p.WORK_EMAIL,
+                                 .PER_EMAIL = p.PER_EMAIL,
+                                 .PERSON_INHERITANCE = p.PERSON_INHERITANCE,
+                                 .BANK_NO = p.BANK_NO,
+                                 .BANK_ID = p.BANK_ID,
+                                 .BANK_NAME = bank.NAME,
+                                 .BANK_BRANCH_ID = p.BANK_BRANCH_ID,
+                                 .BANK_BRANCH_NAME = bankbranch.NAME,
                                  .STATUS_NAME = If(p.STATUS = 0, "Chưa gửi duyệt",
                                                    If(p.STATUS = 1, "Chờ phê duyệt",
                                                       If(p.STATUS = 2, "Phê duyệt",
@@ -3264,6 +3283,9 @@ Partial Class ProfileRepository
                               From per_dis In Context.HU_DISTRICT.Where(Function(f) f.ID = p.PER_DISTRICT).DefaultIfEmpty
                               From per_ward In Context.HU_WARD.Where(Function(f) f.ID = p.PER_WARD).DefaultIfEmpty
                               From marital In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.MARITAL_STATUS).DefaultIfEmpty
+                              From relation_per In Context.OT_OTHER_LIST.Where(Function(f) p.RELATION_PER_CTR = f.ID And f.TYPE_ID = 48 And f.ACTFLG = "A").DefaultIfEmpty
+                              From bank In Context.HU_BANK.Where(Function(f) p.BANK_ID = f.ID).DefaultIfEmpty
+                              From bankbranch In Context.HU_BANK_BRANCH.Where(Function(f) p.BANK_BRANCH_ID = f.ID).DefaultIfEmpty
                               Where p.EMPLOYEE_ID = _filter.EMPLOYEE_ID
                               Select New EmployeeEditDTO With {
                                   .EMPLOYEE_ID = p.EMPLOYEE_ID,
@@ -3285,7 +3307,23 @@ Partial Class ProfileRepository
                                  .PER_PROVINCE = p.PER_PROVINCE,
                                  .PER_PROVINCE_NAME = per_pro.NAME_VN,
                                  .PER_WARD = p.PER_WARD,
-                                 .PER_WARD_NAME = per_ward.NAME_VN}).FirstOrDefault
+                                 .PER_WARD_NAME = per_ward.NAME_VN,
+                                 .EXPIRE_DATE_IDNO = p.EXPIRE_DATE_IDNO,
+                                 .CONTACT_PER = p.CONTACT_PER,
+                                 .RELATION_PER_CTR = p.RELATION_PER_CTR,
+                                 .RELATION_PER_CTR_NAME = relation_per.NAME_VN,
+                                 .CONTACT_PER_MBPHONE = p.CONTACT_PER_MBPHONE,
+                                 .VILLAGE = p.VILLAGE,
+                                 .HOME_PHONE = p.HOME_PHONE,
+                                 .MOBILE_PHONE = p.MOBILE_PHONE,
+                                 .WORK_EMAIL = p.WORK_EMAIL,
+                                 .PER_EMAIL = p.PER_EMAIL,
+                                 .PERSON_INHERITANCE = p.PERSON_INHERITANCE,
+                                 .BANK_NO = p.BANK_NO,
+                                 .BANK_ID = p.BANK_ID,
+                                 .BANK_NAME = bank.NAME,
+                                 .BANK_BRANCH_ID = p.BANK_BRANCH_ID,
+                                 .BANK_BRANCH_NAME = bankbranch.NAME}).FirstOrDefault
             End If
 
             Return objEmpEdit
