@@ -237,7 +237,8 @@ Partial Public Class AttendanceRepository
                 cbxData.LIST_LIST_TYPE_MANUAL_LEAVE = (From p In Context.AT_TIME_MANUAL
                                                        From F In Context.AT_FML.Where(Function(f) f.ID = p.MORNING_ID).DefaultIfEmpty
                                                        From F2 In Context.AT_FML.Where(Function(f2) f2.ID = p.AFTERNOON_ID).DefaultIfEmpty
-                                                       Where p.ACTFLG = "A" And (F.IS_LEAVE = -1 Or F2.IS_LEAVE = -1) Order By p.ORDERS Ascending
+                                                       From F3 In Context.AT_TYPE_PROCESS.Where(Function(f3) f3.ID = p.TYPE_PROSS_ID)
+                                                       Where p.ACTFLG = "A" And (F.IS_LEAVE = -1 Or F2.IS_LEAVE = -1) And F3.ID = 1 Order By p.ORDERS Ascending
                                                        Select New AT_TIME_MANUALDTO With {
                                                    .ID = p.ID,
                                                    .CODE = p.CODE,
