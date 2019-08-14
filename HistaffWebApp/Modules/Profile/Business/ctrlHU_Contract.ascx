@@ -18,7 +18,7 @@
                 <table class="table-form">
                     <tr>
                         <td class="lb">
-                            < <asp:Label ID="lbFromDate" runat="server" Text="Ngày bắt đầu từ"></asp:Label>
+                            <asp:Label ID="lbFromDate" runat="server" Text="Ngày bắt đầu từ"></asp:Label>
                         </td>
                         <td>
                             <tlk:RadDatePicker ID="rdFromDate" runat="server">
