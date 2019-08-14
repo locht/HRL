@@ -32504,7 +32504,7 @@ Namespace ProfileBusiness
         Private NOTEField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private POINT_LEVELField As System.Nullable(Of Decimal)
+        Private POINT_LEVELField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private RECEIVE_DEGREE_DATEField As System.Nullable(Of Date)
@@ -32885,12 +32885,12 @@ Namespace ProfileBusiness
         End Property
         
         <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property POINT_LEVEL() As System.Nullable(Of Decimal)
+        Public Property POINT_LEVEL() As String
             Get
                 Return Me.POINT_LEVELField
             End Get
             Set
-                If (Me.POINT_LEVELField.Equals(value) <> true) Then
+                If (Object.ReferenceEquals(Me.POINT_LEVELField, value) <> true) Then
                     Me.POINT_LEVELField = value
                     Me.RaisePropertyChanged("POINT_LEVEL")
                 End If

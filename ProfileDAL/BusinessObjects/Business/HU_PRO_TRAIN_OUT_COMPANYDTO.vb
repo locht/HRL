@@ -31,7 +31,7 @@
     Public Property IS_RENEWED As Boolean
     Public Property LEVEL_ID As Decimal?
     Public Property LEVEL_NAME As String
-    Public Property POINT_LEVEL As Decimal?
+    Public Property POINT_LEVEL As String
     Public Property CONTENT_LEVEL As String
     Public Property NOTE As String
     Public Property CERTIFICATE_CODE As String
