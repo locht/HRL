@@ -8,6 +8,7 @@ Imports Common.CommonMessage
 Imports Common.CommonBusiness
 Imports Aspose.Cells
 Imports System.Net
+Imports System.IO
 
 Public Class ctrlDashboardHome
     Inherits Common.CommonView
@@ -264,22 +265,21 @@ Public Class ctrlDashboardHome
                 '    'lbDenTuoiVeHuu.Text = dtReminder.Select("REMIND_TYPE = '" + cons_com.REMINDER7 + "'").Count
                 'End If
 
-                RemindList = rep.GetRemind(probationRemind.ToString & "," & _
-                                               contractRemind.ToString & "," & _
-                                               birthdayRemind.ToString & "," & _
-                                               terminateRemind.ToString & "," & _
-                                               noPaperRemind.ToString & "," & _
-                                               approveRemind.ToString & "," & _
-                                               approveHDLDRemind.ToString & "," & _
-                                               approveTHHDRemind.ToString & "," & _
-                                               maternitiRemind.ToString & "," & _
-                                               retirementRemind.ToString & "," & _
-                                               noneSalaryRemind.ToString & "," & _
-                                               noneExpiredCertificateRemind.ToString & "," & _
-                                               noneBIRTHDAY_LD.ToString & "," & _
-                                               noneConcurrently.ToString & "," & _
-                                               noneEmpDtlFamily.ToString
-                                               )
+                RemindList = rep.GetRemind(probationRemind.ToString & "," &
+                                               contractRemind.ToString & "," &
+                                               birthdayRemind.ToString & "," &
+                                               terminateRemind.ToString & "," &
+                                               noPaperRemind.ToString & "," &
+                                               approveRemind.ToString & "," &
+                                               approveHDLDRemind.ToString & "," &
+                                               approveTHHDRemind.ToString & "," &
+                                               maternitiRemind.ToString & "," &
+                                               retirementRemind.ToString & "," &
+                                               noneSalaryRemind.ToString & "," &
+                                               noneExpiredCertificateRemind.ToString & "," &
+                                               noneBIRTHDAY_LD.ToString & "," &
+                                               noneConcurrently.ToString & "," &
+                                               noneEmpDtlFamily.ToString)
                 rgContract.DataSource = RemindList
             Catch ex As Exception
                 rep.Dispose()
@@ -345,7 +345,7 @@ Public Class ctrlDashboardHome
                     Dim body As String = ""
                     Dim fileAttachments As String = filePath & ".xls"
                     Using rep As New HistaffFrameworkPublic.HistaffFrameworkRepository
-                        If Not Common.Common.sendEmailByServerMail(receiver, "", "[Histaff Nofitication] - Nhắc nhở", "Dear Mr/Ms, <br /> Histaff system gửi thông tin danh sách nhắc nhở được đính kèm theo email này. <br /> " & _
+                        If Not Common.Common.sendEmailByServerMail(receiver, "", "[Histaff Nofitication] - Nhắc nhở", "Dear Mr/Ms, <br /> Histaff system gửi thông tin danh sách nhắc nhở được đính kèm theo email này. <br /> " &
                             "Lưu và mở file để xem thông tin và click vào hyperlink để xem chi tiết.<br /> Histaff system.", fileAttachments) Then
                             ShowMessage(Translate(CommonMessage.MESSAGE_SENDMAIL_ERROR), NotifyType.Warning)
                             Exit Sub
@@ -367,20 +367,24 @@ Public Class ctrlDashboardHome
         Dim lstCount As New List(Of Integer)
         Dim count As Integer = 1
         Dim mailCC As String = ""
+        Dim titleMail As String = ""
         Dim detail As String = ""
         Dim bodyNew As String = ""
         Dim SM As New SendMail
-        Dim indexUl As Decimal
-        'Dim year As Decimal
         'get thong tin template mail
+        Dim dtValues As DataTable
         Dim dataMail As DataTable
         Try
             Select Case remind_type
                 Case "1" 'Hop dong chinh thuc
                     dataMail = psp.GET_MAIL_TEMPLATE("HDCT", "Profile")
+                    dtValues = psp.GET_DATA_CONTRACT_FOR_EMAIL(dr.GetDataKeyValue("ID"))
+                    titleMail = If(dtValues.Rows(0)("ORG_NAME") <> "", "BAN HCNS - ĐÁNH GIÁ NHÂN VIÊN " + dtValues.Rows(0)("ORG_NAME") + " HẾT THỜI GIAN KÝ HĐLĐ", Nothing)
                     mailCC = If(psp.GET_MAILCC_DIRECT_HR(dr.GetDataKeyValue("EMPLOYEE_ID")) <> "", psp.GET_MAILCC_DIRECT_HR(dr.GetDataKeyValue("EMPLOYEE_ID")), Nothing)
                 Case "20" 'Hop dong thu viec
                     dataMail = psp.GET_MAIL_TEMPLATE("HDTV", "Profile")
+                    dtValues = psp.GET_DATA_CONTRACT_FOR_EMAIL(dr.GetDataKeyValue("ID"))
+                    titleMail = If(dtValues.Rows(0)("ORG_NAME") <> "", "BAN HCNS - ĐÁNH GIÁ NHÂN VIÊN " + dtValues.Rows(0)("ORG_NAME") + " HẾT THỜI GIAN THỬ VIỆC", Nothing)
                     mailCC = If(psp.GET_MAILCC_DIRECT_HR(dr.GetDataKeyValue("EMPLOYEE_ID")) <> "", psp.GET_MAILCC_DIRECT_HR(dr.GetDataKeyValue("EMPLOYEE_ID")), Nothing)
             End Select
 
@@ -389,66 +393,25 @@ Public Class ctrlDashboardHome
                 Exit Sub
             End If
 
-            'lấy thông tin mail
-            ' body = String.Format(dataMail.Rows(0)("CONTENT").ToString, txtName.Text)
-
             body = dataMail.Rows(0)("CONTENT").ToString
-            'detail = body.Substring(body.IndexOf("<li>"), (body.IndexOf("</li>") - body.IndexOf("<li>")) + 5)
-
-            'Cắt đoạn danh sách chuẩn bị trong noi dung để làm động theo danh sách trên gridview
-            'detail = detail.Replace("{2}", "{0}")
-            'detail = detail.Replace("{3}", "{1}")
-
-
             Email = dr.GetDataKeyValue("WORK_EMAIL")
-            'year = dr.GetDataKeyValue("REMIND_DATE")
-            'If Email <> "" Then
-            '    If Not lstEmail.Any(Function(x) x.SendTo = Email) Then
-            '        SM = New SendMail
-            '        SM.SendTo = Email
-            '        SM.Name = dr.GetDataKeyValue("EMPLOYEE_CODE") + " - " + dr.GetDataKeyValue("FULLNAME")
-            '        lstEmail.Add(SM)
-            '    End If
-            '    'Dim ND As String = String.Copy(detail)
-            '    Dim bodyNew = String.Format(body, dr.GetDataKeyValue("REMIND_NAME"), SM.Name)
-            '    'SM.ListDetail.Add(bodyNew)
-            'End If
-            Dim values() As String = {"values1", "values2"}
 
+            Dim values(dtValues.Columns.Count) As String
+            If dtValues.Rows.Count > 0 Then
+                For i As Integer = 0 To dtValues.Columns.Count - 1
+                    values(i) = dtValues.Rows(0)(i)
+                Next
+            End If
             If Email <> "" Then
                 SM = New SendMail
                 SM.SendTo = Email
-                'body = "<p style=" + "margin: 6pt 0in; line-height: 16pt; background: white;" + "><span style=" + "font-size: 12pt; font-family: 'Myriad Pro', sans-serif; color: #002060;" + ">Hi {0} {1}!</span> </p>"
                 SM.Name = dr.GetDataKeyValue("EMPLOYEE_CODE") + " - " + dr.GetDataKeyValue("FULLNAME")
-                'bodyNew = String.Format(body, dr.GetDataKeyValue("REMIND_NAME"), SM.Name)
-                bodyNew = String.Format(body, values.Select(Function(f) f).ToArray())
+                bodyNew = String.Format(body, values)
             End If
-            'Xoa đoạn Danh sách chuẩn bi trong template rồi insert động lại
-            'indexUl = body.IndexOf("</ul>")
-            'body = body.Remove(body.IndexOf("<li>"), (indexUl - body.IndexOf("<li>")) + 5)
 
-            'thay thế nội dung vào {}
-            'body = String.Format(body, "TEST", year)
-
-            'Chạy chi tiết từng email
-            'For Each dto As SendMail In lstEmail
-            '    Dim bodyNew As String = String.Copy(body)
-            '    For Each Str As String In dto.ListDetail
-            '        bodyNew += Environment.NewLine
-            '        bodyNew += Str
-            '    Next
-            '    bodyNew += Environment.NewLine
-            '    bodyNew += "</ul>"
-            '    If Not Common.Common.sendEmailByServerMail(dto.SendTo, _
-            '                                               If(mailCC <> "", mailCC, dataMail.Rows(0)("MAIL_CC").ToString()), _
-            '                                               dataMail.Rows(0)("TITLE").ToString(), bodyNew, String.Empty) Then
-            '        ShowMessage(Translate(CommonMessage.MESSAGE_SENDMAIL_ERROR), NotifyType.Warning)
-            '        Exit Sub
-            '    End If
-            'Next
             If Not Common.Common.sendEmailByServerMail(SM.SendTo,
                                                        If(mailCC <> "", mailCC, dataMail.Rows(0)("MAIL_CC").ToString()),
-                                                       dataMail.Rows(0)("TITLE").ToString(), bodyNew, String.Empty) Then
+                                                       If(titleMail <> "", titleMail, dataMail.Rows(0)("TITLE").ToString()), bodyNew, String.Empty) Then
                 ShowMessage(Translate(CommonMessage.MESSAGE_SENDMAIL_ERROR), NotifyType.Warning)
                 Exit Sub
             End If

@@ -8,6 +8,14 @@ Imports HistaffFrameworkPublic.FrameworkUtilities
 
 Partial Class ProfileStoreProcedure
 #Region "EMAIL"
+    Public Function GET_DATA_CONTRACT_FOR_EMAIL(ByVal contract_id As Decimal) As DataTable
+        Dim dt As New DataTable
+        Dim ds As DataSet = hfr.ExecuteToDataSet("PKG_PROFILE_DASHBOARD.GET_DATA_CONTRACT_FOR_EMAIL", New List(Of Object)(New Object() {contract_id}))
+        If Not ds Is Nothing Or Not ds.Tables(0) Is Nothing Then
+            dt = ds.Tables(0)
+        End If
+        Return dt
+    End Function
     Public Function GET_MAIL_TEMPLATE(ByVal code As String, ByVal group As String) As DataTable
         Dim dt As New DataTable
         Dim ds As DataSet = hfr.ExecuteToDataSet("PKG_RECRUITMENT_EXPORT.GET_TEMPLATE_MAIL", New List(Of Object)(New Object() {code, group}))
