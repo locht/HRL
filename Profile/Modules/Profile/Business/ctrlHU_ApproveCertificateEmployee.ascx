@@ -63,15 +63,7 @@
                                 <HeaderStyle Width="120px" />
                                 <ItemStyle Width="120px" />
                             </tlk:GridDateTimeColumn>
-                            <tlk:GridBoundColumn DataField="YEAR_GRA" HeaderText="Năm tốt nghiệp" UniqueName="YEAR_GRA"
-                                ShowFilterIcon="false" AutoPostBackOnFilter="true" CurrentFilterFunction="Contains"
-                                Visible="true">
-                            </tlk:GridBoundColumn>
                             <tlk:GridBoundColumn DataField="NAME_SHOOLS" HeaderText="Tên trường" UniqueName="NAME_SHOOLS"
-                                ShowFilterIcon="false" AutoPostBackOnFilter="true" CurrentFilterFunction="Contains"
-                                Visible="true">
-                            </tlk:GridBoundColumn>
-                            <tlk:GridBoundColumn DataField="FORM_TRAIN_NAME" HeaderText="Hình thức đào tạo" UniqueName="FORM_TRAIN_NAME"
                                 ShowFilterIcon="false" AutoPostBackOnFilter="true" CurrentFilterFunction="Contains"
                                 Visible="true">
                             </tlk:GridBoundColumn>
@@ -79,21 +71,32 @@
                                 ShowFilterIcon="false" AutoPostBackOnFilter="true" CurrentFilterFunction="Contains"
                                 Visible="true">
                             </tlk:GridBoundColumn>
+                            <tlk:GridBoundColumn DataField="LEVEL_NAME" HeaderText="Trình độ" UniqueName="LEVEL_NAME"
+                                ShowFilterIcon="false" AutoPostBackOnFilter="true" CurrentFilterFunction="Contains"
+                                Visible="true">
+                            </tlk:GridBoundColumn>
+                            <tlk:GridBoundColumn DataField="SCORE" HeaderText="Điểm số" UniqueName="SCORE" ShowFilterIcon="false"
+                                AutoPostBackOnFilter="true" CurrentFilterFunction="Contains" Visible="true">
+                            </tlk:GridBoundColumn>
+                            <tlk:GridBoundColumn DataField="CONTENT_TRAIN" HeaderText="Nội dung đào tạo" UniqueName="CONTENT_TRAIN"
+                                ShowFilterIcon="false" AutoPostBackOnFilter="true" CurrentFilterFunction="Contains"
+                                Visible="true">
+                            </tlk:GridBoundColumn>
                             <tlk:GridBoundColumn DataField="TYPE_TRAIN_NAME" HeaderText="Loại hình đào tạo" UniqueName="TYPE_TRAIN_NAME"
                                 ShowFilterIcon="false" AutoPostBackOnFilter="true" CurrentFilterFunction="Contains"
                                 Visible="true">
                             </tlk:GridBoundColumn>
-                            <tlk:GridBoundColumn DataField="RESULT_TRAIN" HeaderText="Kết quả" UniqueName="RESULT_TRAIN"
+                            <tlk:GridBoundColumn DataField="FORM_TRAIN_NAME" HeaderText="Hình thức đào tạo" UniqueName="FORM_TRAIN_NAME"
                                 ShowFilterIcon="false" AutoPostBackOnFilter="true" CurrentFilterFunction="Contains"
                                 Visible="true">
                             </tlk:GridBoundColumn>
-                            <tlk:GridBoundColumn DataField="CERTIFICATE" HeaderText="Bằng cấp" UniqueName="CERTIFICATE"
+                            <tlk:GridBoundColumn DataField="CERTIFICATE" HeaderText="Loại chứng chỉ" UniqueName="CERTIFICATE"
                                 ShowFilterIcon="false" AutoPostBackOnFilter="true" CurrentFilterFunction="Contains"
                                 Visible="true">
                             </tlk:GridBoundColumn>
-                            <tlk:GridBoundColumn DataField="RECEIVE_DEGREE_DATE" HeaderText="Ngày nhận bằng"
-                                ItemStyle-HorizontalAlign="Center" DataFormatString="{0:dd/MM/yyyy}" SortExpression="EFFECTIVE_DATE_FROM"
-                                UniqueName="RECEIVE_DEGREE_DATE">
+                            <tlk:GridBoundColumn DataField="CODE_CERTIFICATE" HeaderText="Mã số chứng chỉ" UniqueName="CODE_CERTIFICATE"
+                                ShowFilterIcon="false" AutoPostBackOnFilter="true" CurrentFilterFunction="Contains"
+                                Visible="true">
                             </tlk:GridBoundColumn>
                             <tlk:GridDateTimeColumn HeaderText="Ngày hiệu lực" DataField="EFFECTIVE_DATE_FROM"
                                 ItemStyle-HorizontalAlign="Center" DataFormatString="{0:dd/MM/yyyy}" SortExpression="EFFECTIVE_DATE_FROM"
@@ -103,6 +106,18 @@
                                 ItemStyle-HorizontalAlign="Center" DataFormatString="{0:dd/MM/yyyy}" SortExpression="EFFECTIVE_DATE_TO"
                                 UniqueName="EFFECTIVE_DATE_TO">
                             </tlk:GridDateTimeColumn>
+                            <tlk:GridBoundColumn DataField="RESULT_TRAIN" HeaderText="Xếp loại tốt nghiệp" UniqueName="RESULT_TRAIN"
+                                ShowFilterIcon="false" AutoPostBackOnFilter="true" CurrentFilterFunction="Contains"
+                                Visible="true">
+                            </tlk:GridBoundColumn>
+                            <tlk:GridBoundColumn DataField="YEAR_GRA" HeaderText="Năm tốt nghiệp" UniqueName="YEAR_GRA"
+                                ShowFilterIcon="false" AutoPostBackOnFilter="true" CurrentFilterFunction="Contains"
+                                Visible="true">
+                            </tlk:GridBoundColumn>
+                            <tlk:GridBoundColumn DataField="REMARK" HeaderText="Ghi chú" UniqueName="REMARK"
+                                ShowFilterIcon="false" AutoPostBackOnFilter="true" CurrentFilterFunction="Contains"
+                                Visible="true">
+                            </tlk:GridBoundColumn>
                             <tlk:GridBoundColumn HeaderText="Trạng thái" DataField="STATUS_NAME" UniqueName="STATUS_NAME"
                                 SortExpression="STATUS_NAME" AutoPostBackOnFilter="true" CurrentFilterFunction="Contains"
                                 Visible="TRUE">

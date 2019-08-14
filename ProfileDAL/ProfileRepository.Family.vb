@@ -755,7 +755,7 @@ Partial Class ProfileRepository
                          From e In Context.HU_EMPLOYEE.Where(Function(f) f.ID = p.EMPLOYEE_ID).DefaultIfEmpty
                     From ot In Context.OT_OTHER_LIST.Where(Function(F) F.ID = p.FORM_TRAIN_ID).DefaultIfEmpty
                     From OT1 In Context.OT_OTHER_LIST.Where(Function(F) F.ID = p.CERTIFICATE).DefaultIfEmpty
-                    From OT2 In Context.OT_OTHER_LIST.Where(Function(F) F.ID = p.TYPE_TRAIN_ID).DefaultIfEmpty
+                    From OT2 In Context.OT_OTHER_LIST.Where(Function(F) F.ID = p.LEVEL_ID).DefaultIfEmpty
                         From chosen In Context.SE_CHOSEN_ORG.Where(Function(f) f.ORG_ID = e.ORG_ID And f.USERNAME = log.Username.ToUpper)
                        Where p.STATUS = 1
                        Select New HU_PRO_TRAIN_OUT_COMPANYDTOEDIT With {
@@ -778,8 +778,14 @@ Partial Class ProfileRepository
                         .EFFECTIVE_DATE_TO = p.EFFECTIVE_DATE_TO,
                         .CREATED_BY = p.CREATED_BY,
                          .IS_RENEWED = p.IS_RENEW,
+                               .CONTENT_TRAIN = p.CONTENT_TRAIN,
+                               .LEVEL_ID = p.LEVEL_ID,
+                               .LEVEL_NAME = OT2.NAME_VN,
+                               .SCORE = p.SCORE,
+                               .CODE_CERTIFICATE = p.CODE_CERTIFICATE,
+                               .REMARK = p.REMARK,
                          .TYPE_TRAIN_ID = p.TYPE_TRAIN_ID,
-                         .TYPE_TRAIN_NAME = OT2.NAME_VN,
+                         .TYPE_TRAIN_NAME = p.TYPE_TRAIN_NAME,
                         .CREATED_DATE = p.CREATED_DATE,
                         .CREATED_LOG = p.CREATED_LOG,
                         .MODIFIED_BY = p.MODIFIED_BY,
@@ -1053,13 +1059,19 @@ Partial Class ProfileRepository
                         objFamilyData.TO_DATE = item.TO_DATE
                         objFamilyData.UPLOAD_FILE = item.UPLOAD_FILE
                         objFamilyData.FILE_NAME = item.FILE_NAME
-                        objFamilyData.TYPE_TRAIN_ID = item.TYPE_TRAIN_ID
+                        'objFamilyData.TYPE_TRAIN_ID = item.TYPE_TRAIN_ID
+                        objFamilyData.TYPE_TRAIN_NAME = item.TYPE_TRAIN_NAME
+                        objFamilyData.CONTENT_LEVEL = item.CONTENT_TRAIN
+                        objFamilyData.CERTIFICATE_CODE = item.CODE_CERTIFICATE
+                        objFamilyData.LEVEL_ID = item.LEVEL_ID
+                        objFamilyData.NOTE = item.REMARK
+                        objFamilyData.POINT_LEVEL = item.SCORE
                         objFamilyData.RECEIVE_DEGREE_DATE = item.RECEIVE_DEGREE_DATE
                         objFamilyData.IS_RENEWED = item.IS_RENEW
                     Else
                         Dim objFamilyData As New HU_PRO_TRAIN_OUT_COMPANY
                         objFamilyData.ID = Utilities.GetNextSequence(Context, Context.HU_PRO_TRAIN_OUT_COMPANY.EntitySet.Name)
-                         objFamilyData.EMPLOYEE_ID = item.EMPLOYEE_ID
+                        objFamilyData.EMPLOYEE_ID = item.EMPLOYEE_ID
                         objFamilyData.YEAR_GRA = item.YEAR_GRA
                         objFamilyData.NAME_SHOOLS = item.NAME_SHOOLS
                         objFamilyData.FORM_TRAIN_ID = item.FORM_TRAIN_ID
@@ -1072,7 +1084,13 @@ Partial Class ProfileRepository
                         objFamilyData.TO_DATE = item.TO_DATE
                         objFamilyData.UPLOAD_FILE = item.UPLOAD_FILE
                         objFamilyData.FILE_NAME = item.FILE_NAME
-                        objFamilyData.TYPE_TRAIN_ID = item.TYPE_TRAIN_ID
+                        'objFamilyData.TYPE_TRAIN_ID = item.TYPE_TRAIN_ID
+                        objFamilyData.TYPE_TRAIN_NAME = item.TYPE_TRAIN_NAME
+                        objFamilyData.CONTENT_LEVEL = item.CONTENT_TRAIN
+                        objFamilyData.CERTIFICATE_CODE = item.CODE_CERTIFICATE
+                        objFamilyData.LEVEL_ID = item.LEVEL_ID
+                        objFamilyData.NOTE = item.REMARK
+                        objFamilyData.POINT_LEVEL = item.SCORE
                         objFamilyData.RECEIVE_DEGREE_DATE = item.RECEIVE_DEGREE_DATE
                         objFamilyData.IS_RENEWED = item.IS_RENEW
                         Context.HU_PRO_TRAIN_OUT_COMPANY.AddObject(objFamilyData)
