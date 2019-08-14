@@ -38200,7 +38200,7 @@ Namespace ProfileBusiness
         Private BIRTH_PLACEIDField As System.Nullable(Of Decimal)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private BIRTH_PLACENAMEField As System.Nullable(Of Decimal)
+        Private BIRTH_PLACENAMEField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private CAField As System.Nullable(Of Boolean)
@@ -38739,12 +38739,12 @@ Namespace ProfileBusiness
         End Property
         
         <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property BIRTH_PLACENAME() As System.Nullable(Of Decimal)
+        Public Property BIRTH_PLACENAME() As String
             Get
                 Return Me.BIRTH_PLACENAMEField
             End Get
             Set
-                If (Me.BIRTH_PLACENAMEField.Equals(value) <> true) Then
+                If (Object.ReferenceEquals(Me.BIRTH_PLACENAMEField, value) <> true) Then
                     Me.BIRTH_PLACENAMEField = value
                     Me.RaisePropertyChanged("BIRTH_PLACENAME")
                 End If

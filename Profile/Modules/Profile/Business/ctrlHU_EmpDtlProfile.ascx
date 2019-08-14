@@ -445,7 +445,7 @@
                                         <td class="lb3">
                                             <asp:Label runat="server" ID="lbPROVINCENQ_ID" Text="Nguyên quán"></asp:Label>
                                         </td>
-                                        <td colspan="3">
+                                        <td>
                                             <tlk:RadComboBox runat="server" ID="cbPROVINCENQ_ID" SkinID="LoadDemand" OnClientSelectedIndexChanged="OnClientSelectedIndexChanged"
                                                 OnClientItemsRequesting="OnClientItemsRequesting" EnabledLoadOnDemand="True">
                                             </tlk:RadComboBox>

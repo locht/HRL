@@ -152,5 +152,5 @@
     Public Property EXPIRE_DATE_IDNO As Date?
     'noi sinh
     Public Property BIRTH_PLACEID As Decimal?
-    Public Property BIRTH_PLACENAME As Decimal?
+    Public Property BIRTH_PLACENAME As String
 End Class
