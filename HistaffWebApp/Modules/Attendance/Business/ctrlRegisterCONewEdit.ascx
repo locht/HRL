@@ -174,7 +174,7 @@
                 <td>
                     <tlk:RadDatePicker runat="server" ID="rdLEAVE_TO" AutoPostBack="true" CausesValidation="false">
                     </tlk:RadDatePicker>
-                    <input id="btnDetail" value="<%# Translate("Chi tiết")%>" type="button" onclick="showDetail('')">
+                    <input id="btnDetail" value="<%# Translate("Chi tiết")%>" type="button" onclick="showDetail('')" CausesValidation="false">
                     <asp:CompareValidator ID="CompareValidator2" runat="server" ControlToValidate="rdLEAVE_TO"
                         Type="Date" ControlToCompare="rdLEAVE_FROM" Operator="GreaterThanEqual" ErrorMessage="<%$ Translate: Ngày kết thúc nghỉ phải lớn hơn ngày bắt đầu nghỉ %>"
                         ToolTip="<%$ Translate: Ngày kết thúc nghỉ phải lớn hơn ngày bắt đầu nghỉ %>"></asp:CompareValidator>
@@ -229,7 +229,7 @@
                             </ItemTemplate>
                             <EditItemTemplate>
                                 <tlk:RadComboBox Width ="125px" runat="server" ID="cbSTATUS_SHIFT"
-                                ReadOnly ="true" AutoPostBack ="true" OnSelectedIndexChanged="cbSTATUS_SHIFT_SelectedIndexChanged" ></tlk:RadComboBox>                                       
+                                ReadOnly ="true" AutoPostBack ="true" CausesValidation="false" OnSelectedIndexChanged="cbSTATUS_SHIFT_SelectedIndexChanged" ></tlk:RadComboBox>                                       
                             </EditItemTemplate>
                         </tlk:GridTemplateColumn>
                         
@@ -323,7 +323,6 @@
         }
        
         function showDetail(value) {
-            debugger;
             if (value == "")
                 if ($("#divLeaveDetail").css("display") == "block")
                     $("#divLeaveDetail").css("display", "none");
@@ -332,6 +331,11 @@
             else
                 $("#divLeaveDetail").css("display", value);
         }
+
+        function IsBlock() {
+            $("#divLeaveDetail").css("display", "block");
+        }
+
         function onRequestStart(sender, eventArgs) {
             eventArgs.set_enableAjax(enableAjax);
             enableAjax = true;

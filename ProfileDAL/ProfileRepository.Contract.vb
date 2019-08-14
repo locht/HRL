@@ -1012,6 +1012,9 @@ Partial Class ProfileRepository
                                                      .ORG_DESC = o.DESCRIPTION_PATH,
                                                      .TITLE_NAME = t.NAME_VN,
                                                      .SIGN_ID = p.SIGN_ID,
+                                                     .SIGN_ID2 = p.SIGN_ID2,
+                                                     .SIGNER_NAME2 = p.SIGNER_NAME2,
+                                                     .SIGNER_TITLE2 = p.SIGNER_TITLE2,
                                                      .NAME_SIGN_CONTRACT = lo.LOCATION_VN_NAME,
                                                      .ID_SIGN_CONTRACT = p.ID_SIGN_CONTRACT,
                                                      .SIGN_DATE = p.SIGN_DATE,
@@ -1137,6 +1140,9 @@ Partial Class ProfileRepository
             objContractData.REMARK = objContract.REMARK
             objContractData.SIGN_DATE = objContract.SIGN_DATE
             objContractData.SIGN_ID = objContract.SIGN_ID
+            objContractData.SIGN_ID2 = objContract.SIGN_ID2
+            objContractData.SIGNER_NAME2 = objContract.SIGNER_NAME2
+            objContractData.SIGNER_TITLE2 = objContract.SIGNER_TITLE2
             objContractData.SIGNER_NAME = objContract.SIGNER_NAME
             objContractData.SIGNER_TITLE = objContract.SIGNER_TITLE
             objContractData.WORKING_ID = objContract.WORKING_ID
@@ -1244,6 +1250,9 @@ Partial Class ProfileRepository
             objContractData.REMARK = objContract.REMARK
             objContractData.SIGN_DATE = objContract.SIGN_DATE
             objContractData.SIGN_ID = objContract.SIGN_ID
+            objContractData.SIGN_ID2 = objContract.SIGN_ID2
+            objContractData.SIGNER_NAME2 = objContract.SIGNER_NAME2
+            objContractData.SIGNER_TITLE2 = objContract.SIGNER_TITLE2
             objContractData.SIGNER_NAME = objContract.SIGNER_NAME
             objContractData.SIGNER_TITLE = objContract.SIGNER_TITLE
             objContractData.START_DATE = objContract.START_DATE
@@ -1426,15 +1435,17 @@ Partial Class ProfileRepository
             'End If
             'Return String.Format("{0}-{1:0#} / HDLD-TMF", employeeCode, no + 1)
             Dim str As String
-            Dim nameTypeContract As ContractTypeDTO = (From p In Context.HU_CONTRACT_TYPE Where p.ID = objContract.CONTRACTTYPE_ID
+            Dim nameTypeContract As ContractTypeDTO = (From p In Context.HU_CONTRACT_TYPE
+                                                       From ot In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.TYPE_ID)
+                                                       Where p.ID = objContract.CONTRACTTYPE_ID
                                             Select New ContractTypeDTO With {
                                                 .ID = p.ID,
-                                                .CODE = p.CODE}).FirstOrDefault()
+                                                .CODE = ot.CODE}).FirstOrDefault()
             Dim codeLocation As LocationDTO = (From p In Context.HU_LOCATION Where p.ID = objContract.ID_SIGN_CONTRACT
                                                  Select New LocationDTO With {
                                                      .ID = p.ID,
                                                      .CODE = p.CODE}).FirstOrDefault()
-            If nameTypeContract.CODE = "HDTV60" Or nameTypeContract.CODE = "HDTV30" Then
+            If nameTypeContract.CODE = "HDTV" Then
                 str = employeeCode.ToString + "/".ToString() + Year(objContract.START_DATE).ToString() + "/" + "HDTV".ToString() + If(codeLocation.CODE IsNot Nothing, "/".ToString(), Nothing) + codeLocation.CODE
             Else
                 str = employeeCode.ToString + "/".ToString() + Year(objContract.START_DATE).ToString() + "/" + "HD".ToString() + If(codeLocation.CODE IsNot Nothing, "/".ToString(), Nothing) + codeLocation.CODE

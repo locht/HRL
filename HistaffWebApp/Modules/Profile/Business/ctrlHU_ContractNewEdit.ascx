@@ -8,6 +8,7 @@
 <asp:HiddenField ID="hidWorkStatus" runat="server" />
 <asp:HiddenField ID="hidEmployeeID" runat="server" />
 <asp:HiddenField ID="hidSign" runat="server" />
+<asp:HiddenField ID="hidSign2" runat="server" />
 <asp:HiddenField ID="hidPeriod" runat="server" />
 <tlk:RadSplitter ID="RadSplitter1" runat="server" Width="100%" Height="100%" Orientation="Horizontal">
     <tlk:RadPane ID="RadPane1" runat="server" Height="35px" Scrolling="None">
@@ -170,6 +171,25 @@
                 <td>
                     <tlk:RadDatePicker ID="rdSignDate" runat="server">
                     </tlk:RadDatePicker>
+                </td>
+            </tr>
+            <tr>
+                <td class="lb">
+                    <asp:Label ID="lbSignName2" runat="server" Text="<%$ Translate: Người ký 2 %>"></asp:Label>
+                </td>
+                <td>
+                    <tlk:RadTextBox ID="txtSignName2" runat="server" Width="130px" ReadOnly="true" SkinID="ReadOnly">
+                    </tlk:RadTextBox>
+                    <tlk:RadButton ID="btnSiger2" SkinID="ButtonView" runat="server" CausesValidation="false"
+                        Width="40px">
+                    </tlk:RadButton>
+                </td>
+                <td class="lb">
+                    <asp:Label ID="lbSignTitle2" runat="server" Text="<%$ Translate: Chức danh ký 2 %>"></asp:Label>
+                </td>
+                <td>
+                    <tlk:RadTextBox ID="txtSignTitle2" runat="server">
+                    </tlk:RadTextBox>
                 </td>
             </tr>
             <tr>

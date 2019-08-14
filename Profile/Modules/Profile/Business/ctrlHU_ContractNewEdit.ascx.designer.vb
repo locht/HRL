@@ -68,6 +68,15 @@ Partial Public Class ctrlHU_ContractNewEdit
     Protected WithEvents hidSign As Global.System.Web.UI.WebControls.HiddenField
 
     '''<summary>
+    '''hidSign2 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents hidSign2 As Global.System.Web.UI.WebControls.HiddenField
+
+    '''<summary>
     '''hidPeriod control.
     '''</summary>
     '''<remarks>
@@ -498,6 +507,51 @@ Partial Public Class ctrlHU_ContractNewEdit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents rdSignDate As Global.Telerik.Web.UI.RadDatePicker
+
+    '''<summary>
+    '''lbSignName2 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbSignName2 As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''txtSignName2 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtSignName2 As Global.Telerik.Web.UI.RadTextBox
+
+    '''<summary>
+    '''btnSiger2 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btnSiger2 As Global.Telerik.Web.UI.RadButton
+
+    '''<summary>
+    '''lbSignTitle2 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbSignTitle2 As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''txtSignTitle2 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtSignTitle2 As Global.Telerik.Web.UI.RadTextBox
 
     '''<summary>
     '''lbRemark control.

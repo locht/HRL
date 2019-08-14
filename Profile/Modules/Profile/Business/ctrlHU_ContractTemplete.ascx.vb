@@ -818,7 +818,8 @@ Public Class ctrlHU_ContractTemplete
         If rdStartDate.SelectedDate IsNot Nothing And cboAppend_TypeID.SelectedValue <> 0 Then
             Dim objContractType = rep.GetContractTypeID(cboAppend_TypeID.SelectedValue)
             If objContractType IsNot Nothing Then
-                rdExpireDate.SelectedDate = rdStartDate.SelectedDate.Value.AddMonths(objContractType.PERIOD)
+                'khóa sự kiên này lại vì dl period trong hu_contract_type k có
+                'rdExpireDate.SelectedDate = rdStartDate.SelectedDate.Value.AddMonths(objContractType.PERIOD)
             End If
         End If
         rep.Dispose()
@@ -1143,7 +1144,7 @@ Public Class ctrlHU_ContractTemplete
         Dim rep As New ProfileRepository
         Try
             Dim appendData As New List(Of ContractTypeDTO)
-            appendData = rep.GetListContractType("PL")
+            appendData = rep.GetListContractType("PLHD")
 
             appendData.Insert(0, New ContractTypeDTO With {.NAME = "", .ID = 0})
 

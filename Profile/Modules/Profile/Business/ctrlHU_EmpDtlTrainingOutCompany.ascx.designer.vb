@@ -212,13 +212,13 @@ Partial Public Class ctrlHU_EmpDtlTrainingOutCompany
     Protected WithEvents Label2 As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
-    '''txtPointLevel control.
+    '''rtxtPointLevel control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents txtPointLevel As Global.Telerik.Web.UI.RadNumericTextBox
+    Protected WithEvents rtxtPointLevel As Global.Telerik.Web.UI.RadTextBox
 
     '''<summary>
     '''Label4 control.

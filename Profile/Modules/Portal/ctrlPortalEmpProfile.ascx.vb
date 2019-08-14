@@ -278,7 +278,10 @@ Public Class ctrlPortalEmpProfile
                                 rdNGAY_VAO_DANG.SelectedDate = empCV.NGAY_VAO_DANG
                             End If
                             rtCHUC_VU_DOAN.Text = empCV.CHUC_VU_DOAN
-                            ckDOAN_PHI.Checked = empCV.DOAN_PHI
+                            If IsNumeric(empCV.DOAN_PHI) Then
+                                ckDOAN_PHI.Checked = CType(empCV.DOAN_PHI, Boolean)
+                            End If
+
                             If IsDate(empCV.NGAY_VAO_DOAN) Then
                                 rdNGAY_VAO_DOAN.SelectedDate = empCV.NGAY_VAO_DOAN
                             End If

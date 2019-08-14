@@ -417,8 +417,8 @@
                     <asp:Label runat ="server" ID ="lbyearforallow_loss" Text ="Số năm tính trợ cấp thôi việc" ></asp:Label>
                 </td>
                 <td>
-                    <tlk:RadNumericTextBox ID="rntxtyearforallow_loss" MinValue="0" runat="server" SkinID="Money">
-                        <NumberFormat AllowRounding="false" KeepNotRoundedValue="true" DecimalDigits="1" />
+                    <tlk:RadNumericTextBox ID="rntxtyearforallow_loss" MinValue="0" runat="server" SkinID="Decimal" AutoPostBack="true">
+                       <%-- <NumberFormat AllowRounding="false" KeepNotRoundedValue="true" DecimalDigits="1" />--%>
                         <%--<ClientEvents OnBlur="displayDecimalFormat" OnLoad="displayDecimalFormat" OnValueChanged="displayDecimalFormat" />--%>
                     </tlk:RadNumericTextBox>                    
                 </td>
@@ -593,7 +593,7 @@
                     <tlk:RadTextBox ID="txtDecisionNo" runat="server">
                     </tlk:RadTextBox>
                     <asp:RequiredFieldValidator ID="reqDecisionNo" ControlToValidate="txtDecisionNo" runat="server"
-                        ErrorMessage="Bạn phải nhập ngày hiệu lực." ToolTip="Bạn phải nhập số quyết định."> </asp:RequiredFieldValidator>
+                        ErrorMessage="Bạn phải nhập số quyết định." ToolTip="Bạn phải nhập số quyết định."> </asp:RequiredFieldValidator>
                 </td>
                 <td class="lb">
                     <%# Translate("Ngày hiệu lực")%>

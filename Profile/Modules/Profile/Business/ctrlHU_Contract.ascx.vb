@@ -523,11 +523,11 @@ Public Class ctrlHU_Contract
                             Exit Sub
                         End If
                         Dim item As GridDataItem = rgContract.SelectedItems(0)
-                    If item.GetDataKeyValue("STATUS_ID") = ProfileCommon.OT_CONTRACT_STATUS.APPROVE_ID Then
+                    If item.GetDataKeyValue("STATUS_ID") = ProfileCommon.DECISION_STATUS.APPROVE_ID Then
                         ShowMessage(Translate("Bản ghi đã phê duyệt. Thao tác thực hiện không thành công"), NotifyType.Warning)
                         Exit Sub
                     End If
-                    If item.GetDataKeyValue("STATUS_ID") = ProfileCommon.OT_CONTRACT_STATUS.NOT_APPROVE_ID Then
+                    If item.GetDataKeyValue("STATUS_ID") = ProfileCommon.DECISION_STATUS.NOT_APPROVE_ID Then
                         ShowMessage(Translate("Bản ghi không phê duyệt. Thao tác thực hiện không thành công"), NotifyType.Warning)
                         Exit Sub
                     End If

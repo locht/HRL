@@ -10,6 +10,7 @@ Public Class ctrlHU_ContractNewEdit
     Inherits CommonView
     Protected WithEvents ctrlFindEmployeePopup As ctrlFindEmployeePopup
     Protected WithEvents ctrlFindSigner As ctrlFindEmployeePopup
+    Protected WithEvents ctrlFindSigner2 As ctrlFindEmployeePopup
     Protected WithEvents ctrlFindSalaryPopup As ctrlFindSalaryPopup
     Public Overrides Property MustAuthorize As Boolean = False
 
@@ -217,6 +218,9 @@ Public Class ctrlHU_ContractNewEdit
                         txtRemark.Text = Contract.REMARK
                         txtSigner.Text = Contract.SIGNER_NAME
                         hidSign.Value = Contract.SIGN_ID.ToString
+                        hidSign2.Value = Contract.SIGN_ID2.ToString
+                        txtSignName2.Text = Contract.SIGNER_NAME2
+                        txtSignTitle2.Text = Contract.SIGNER_TITLE2
                         txtSignTitle.Text = Contract.SIGNER_TITLE
                         cboContractType.SelectedValue = Contract.CONTRACTTYPE_ID
                         If Contract.WORK_STATUS IsNot Nothing Then
@@ -253,8 +257,8 @@ Public Class ctrlHU_ContractNewEdit
                             cboSignContract.Text = Contract.NAME_SIGN_CONTRACT
                         End If
 
-                        If Contract.STATUS_ID = ProfileCommon.OT_CONTRACT_STATUS.APPROVE_ID Or
-                            Contract.STATUS_ID = ProfileCommon.OT_CONTRACT_STATUS.NOT_APPROVE_ID Then
+                        If Contract.STATUS_ID = ProfileCommon.DECISION_STATUS.APPROVE_ID Or
+                            Contract.STATUS_ID = ProfileCommon.DECISION_STATUS.NOT_APPROVE_ID Then
                             _flag = False
                             EnableControlAll_Cus(False, LeftPane)
                             btnDownload.Enabled = True
@@ -328,7 +332,11 @@ Public Class ctrlHU_ContractNewEdit
                         If direct_manager <> 0 Then
                             objContract.DIRECT_MANAGER = direct_manager
                         End If
-
+                        If hidSign2.Value <> "" Then
+                            objContract.SIGN_ID2 = Decimal.Parse(hidSign2.Value)
+                        End If
+                        objContract.SIGNER_NAME2 = txtSignName2.Text
+                        objContract.SIGNER_TITLE2 = txtSignTitle2.Text
                         If hidSign.Value <> "" Then
                             objContract.SIGN_ID = Decimal.Parse(hidSign.Value)
                         End If
@@ -380,7 +388,7 @@ Public Class ctrlHU_ContractNewEdit
                     End If
                 Case "UNLOCK"
                     objContract.ID = Decimal.Parse(hidID.Value)
-                    objContract.STATUS_ID = ProfileCommon.OT_CONTRACT_STATUS.WAIT_APPROVE_ID
+                    objContract.STATUS_ID = ProfileCommon.DECISION_STATUS.WAIT_APPROVE_ID
                     If rep.UnApproveContract(objContract, gID) Then
                         Dim str As String = "getRadWindow().close('1');"
                         ScriptManager.RegisterStartupScript(Me.Page, Me.Page.GetType, "clientButtonClicking", str, True)
@@ -453,6 +461,21 @@ Public Class ctrlHU_ContractNewEdit
             _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
         End Try
     End Sub
+    Protected Sub btnSiger2_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnSiger2.Click
+        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+        Try
+            Dim startTime As DateTime = DateTime.UtcNow
+            isLoadPopup = 4
+            UpdateControlState()
+            'LoadPopup(2)
+            ctrlFindSigner2.MustHaveContract = True
+            ctrlFindSigner2.Show()
+            _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
+        Catch ex As Exception
+            DisplayException(Me.ViewName, Me.ID, ex)
+            _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
+        End Try
+    End Sub
     '' <lastupdate>
     '' 06/07/2017 17:44
     '' </lastupdate>
@@ -492,7 +515,7 @@ Public Class ctrlHU_ContractNewEdit
     ''' <param name="e"></param>
     ''' <remarks></remarks>
     Private Sub ctrlFind_CancelClick(ByVal sender As Object, ByVal e As System.EventArgs) _
-        Handles ctrlFindSigner.CancelClicked,
+        Handles ctrlFindSigner.CancelClicked, ctrlFindSigner2.CancelClicked,
         ctrlFindEmployeePopup.CancelClicked,
         ctrlFindSalaryPopup.CancelClicked
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
@@ -526,6 +549,26 @@ Public Class ctrlHU_ContractNewEdit
                 hidSign.Value = item.ID.ToString
                 txtSignTitle.Text = item.TITLE_NAME
                 txtSigner.Text = item.FULLNAME_VN
+            End If
+            isLoadPopup = 0
+            _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
+        Catch ex As Exception
+            DisplayException(Me.ViewName, Me.ID, ex)
+            _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
+        End Try
+    End Sub
+    Private Sub ctrlFindSignPopup2_EmployeeSelected(ByVal sender As Object, ByVal e As System.EventArgs) Handles ctrlFindSigner2.EmployeeSelected
+        Dim lstCommonEmployee As New List(Of CommonBusiness.EmployeePopupFindDTO)
+        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+        'Dim rep As New ProfileBusinessRepository
+        Dim startTime As DateTime = DateTime.UtcNow
+        Try
+            lstCommonEmployee = CType(ctrlFindSigner2.SelectedEmployee, List(Of CommonBusiness.EmployeePopupFindDTO))
+            If lstCommonEmployee.Count <> 0 Then
+                Dim item = lstCommonEmployee(0)
+                hidSign2.Value = item.ID.ToString
+                txtSignTitle2.Text = item.TITLE_NAME
+                txtSignName2.Text = item.FULLNAME_VN
             End If
             isLoadPopup = 0
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
@@ -664,13 +707,15 @@ Public Class ctrlHU_ContractNewEdit
         Try
             Dim startTime As DateTime = DateTime.UtcNow
             If rdStartDate.SelectedDate IsNot Nothing Then
-
                 Dim dExpire As Date = rdStartDate.SelectedDate
                 item = (From p In ListComboData.LIST_CONTRACTTYPE Where p.ID = Decimal.Parse(cboContractType.SelectedValue)).SingleOrDefault
                 If item IsNot Nothing Then
-                    hidPeriod.Value = item.PERIOD
+                    If item.PERIOD IsNot Nothing Then
+                        hidPeriod.Value = item.PERIOD
+                    Else
+                        hidPeriod.Value = 0
+                    End If
                 End If
-
                 If CType(hidPeriod.Value, Double) = 0 Then
                     rdExpireDate.SelectedDate = Nothing
                 Else
@@ -682,7 +727,10 @@ Public Class ctrlHU_ContractNewEdit
 
             Dim employeeId As Double = 0
             Double.TryParse(hidEmployeeID.Value, employeeId)
-            'txtContractNo.Text = CreateDynamicContractNo(employeeId)
+            If cboSignContract.SelectedValue <> "" And rdStartDate IsNot Nothing Then
+                txtContractNo.Text = CreateDynamicContractNo(employeeId)
+            End If
+
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
             DisplayException(Me.ViewName, Me.ID, ex)
@@ -712,16 +760,20 @@ Public Class ctrlHU_ContractNewEdit
             If rdStartDate.SelectedDate IsNot Nothing Then
                 Dim dExpire As Date = rdStartDate.SelectedDate
                 item = (From p In ListComboData.LIST_CONTRACTTYPE Where p.ID = Decimal.Parse(cboContractType.SelectedValue)).SingleOrDefault
-                'If item IsNot Nothing Then
-                '    hidPeriod.Value = item.PERIOD
-                'End If
-                'If CType(hidPeriod.Value, Double) = 0 Then
-                '    rdExpireDate.SelectedDate = Nothing
-                'Else
-                '    dExpire = dExpire.AddMonths(CType(hidPeriod.Value, Double))
-                '    dExpire = dExpire.AddDays(CType(-1, Double))
-                '    rdExpireDate.SelectedDate = dExpire
-                'End If
+                If item IsNot Nothing Then
+                    If item.PERIOD IsNot Nothing Then
+                        hidPeriod.Value = item.PERIOD
+                    Else
+                        hidPeriod.Value = 0
+                    End If
+                End If
+                If CType(hidPeriod.Value, Double) = 0 Then
+                    rdExpireDate.SelectedDate = Nothing
+                Else
+                    dExpire = dExpire.AddMonths(CType(hidPeriod.Value, Double))
+                    dExpire = dExpire.AddDays(CType(-1, Double))
+                    rdExpireDate.SelectedDate = dExpire
+                End If
                 If cboSignContract.SelectedValue <> "" Then
                     txtContractNo.Text = CreateDynamicContractNo(hidEmployeeID.Value)
                 End If
@@ -884,7 +936,7 @@ Public Class ctrlHU_ContractNewEdit
             Else
                 fileNameZip = txtUpload.Text.Trim
             End If
-            Dim file As System.IO.FileInfo = New System.IO.FileInfo(path & fileNameZip)
+            Dim file As System.IO.FileInfo = New System.IO.FileInfo(path)
             Response.Clear()
             Response.AddHeader("Content-Disposition", "attachment; filename=" + file.Name)
             Response.AddHeader("Content-Length", file.Length.ToString())
@@ -1168,6 +1220,15 @@ Public Class ctrlHU_ContractNewEdit
                     FindSalary.Controls.Add(ctrlFindSalaryPopup)
                     ctrlFindSalaryPopup.Show()
                 End If
+            Case 4
+                If Not FindSigner.Controls.Contains(ctrlFindSigner2) Then
+                    ctrlFindSigner2 = Me.Register("ctrlFindSigner2", "Common", "ctrlFindEmployeePopup")
+                    FindSigner.Controls.Add(ctrlFindSigner2)
+                    ctrlFindSigner2.MultiSelect = False
+                    ctrlFindSigner2.MustHaveContract = True
+                    ctrlFindSigner2.LoadAllOrganization = True
+                End If
+
         End Select
     End Sub
 #End Region

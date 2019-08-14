@@ -205,15 +205,15 @@ Public Class ctrlHU_EmpDtlTrainingOutCompany
                 Case CommonMessage.STATE_NEW
 
                     EnabledGridNotPostback(rgEmployeeTrain, False)
-                    EnableControlAll(True, rdToiThang, cboRemark, rdTuThang, rntGraduateYear, txtRemark, cboTrainingForm, txtChuyenNganh, txtKetQua, txtTrainingSchool, txtTrainingType, rdReceiveDegree, chkTerminate, cboLevelId, txtPointLevel, rtxtContentLevel, txtCertificateCode, txtNote)
+                    EnableControlAll(True, rdToiThang, cboRemark, rdTuThang, rntGraduateYear, txtRemark, cboTrainingForm, txtChuyenNganh, txtKetQua, txtTrainingSchool, txtTrainingType, rdReceiveDegree, chkTerminate, cboLevelId, rtxtPointLevel, rtxtContentLevel, txtCertificateCode, txtNote)
                     EnabledGrid(rgEmployeeTrain, False)
                 Case CommonMessage.STATE_NORMAL
                     EnabledGridNotPostback(rgEmployeeTrain, True)
-                    EnableControlAll(False, rdTuThang, cboRemark, rdToiThang, rntGraduateYear, rdFrom, rdTo, txtRemark, cboTrainingForm, txtChuyenNganh, txtKetQua, txtTrainingSchool, txtTrainingType, rdReceiveDegree, chkTerminate, cboLevelId, txtPointLevel, rtxtContentLevel, txtCertificateCode, txtNote)
+                    EnableControlAll(False, rdTuThang, cboRemark, rdToiThang, rntGraduateYear, rdFrom, rdTo, txtRemark, cboTrainingForm, txtChuyenNganh, txtKetQua, txtTrainingSchool, txtTrainingType, rdReceiveDegree, chkTerminate, cboLevelId, rtxtPointLevel, rtxtContentLevel, txtCertificateCode, txtNote)
                     EnabledGrid(rgEmployeeTrain, True)
                 Case CommonMessage.STATE_EDIT
                     EnabledGridNotPostback(rgEmployeeTrain, False)
-                    EnableControlAll(True, rdTuThang, rdToiThang, rntGraduateYear, txtRemark, cboTrainingForm, cboRemark, txtChuyenNganh, txtKetQua, txtTrainingSchool, txtTrainingType, rdReceiveDegree, chkTerminate, cboLevelId, txtPointLevel, rtxtContentLevel, txtCertificateCode, txtNote)
+                    EnableControlAll(True, rdTuThang, rdToiThang, rntGraduateYear, txtRemark, cboTrainingForm, cboRemark, txtChuyenNganh, txtKetQua, txtTrainingSchool, txtTrainingType, rdReceiveDegree, chkTerminate, cboLevelId, rtxtPointLevel, rtxtContentLevel, txtCertificateCode, txtNote)
                     EnabledGrid(rgEmployeeTrain, False)
                     If cboRemark.SelectedValue = 7086 Then
                         EnableControlAll(True, rdFrom, rdTo)
@@ -263,7 +263,7 @@ Public Class ctrlHU_EmpDtlTrainingOutCompany
         dic.Add("TYPE_TRAIN_NAME", txtTrainingType)
         dic.Add("RECEIVE_DEGREE_DATE", rdReceiveDegree)
         dic.Add("IS_RENEWED", chkTerminate)
-        dic.Add("POINT_LEVEL", txtPointLevel)
+        dic.Add("POINT_LEVEL", rtxtPointLevel)
         dic.Add("CONTENT_LEVEL", rtxtContentLevel)
         'dic.Add("RECEIVE_DEGREE_DATE", rdReceiveDegree)
         dic.Add("NOTE", txtNote)
@@ -305,7 +305,7 @@ Public Class ctrlHU_EmpDtlTrainingOutCompany
             Select Case CType(e.Item, RadToolBarButton).CommandName
                 Case CommonMessage.TOOLBARITEM_CREATE
                     ClearControlValue(rdToiThang, rdTuThang, cboTrainingForm, txtTrainingType, rntGraduateYear, txtRemark, txtTrainingSchool,
-                                    cboRemark, txtChuyenNganh, txtKetQua, rdFrom, rdTo, rdReceiveDegree, cboLevelId, txtPointLevel, rtxtContentLevel, txtCertificateCode, txtNote)
+                                    cboRemark, txtChuyenNganh, txtKetQua, rdFrom, rdTo, rdReceiveDegree, cboLevelId, rtxtPointLevel, rtxtContentLevel, txtCertificateCode, txtNote)
                     chkTerminate.Checked = False
                     checkCRUD = 1
                     If EmployeeInfo.WORK_STATUS Is Nothing Or
@@ -395,7 +395,7 @@ Public Class ctrlHU_EmpDtlTrainingOutCompany
 
 
                         objTrain.LEVEL_ID = cboLevelId.SelectedValue
-                        objTrain.POINT_LEVEL = txtPointLevel.Value
+                        objTrain.POINT_LEVEL = rtxtPointLevel.Text
                         objTrain.CONTENT_LEVEL = rtxtContentLevel.Text
                         objTrain.NOTE = txtNote.Text
                         objTrain.CERTIFICATE_CODE = txtCertificateCode.Text
@@ -454,7 +454,7 @@ Public Class ctrlHU_EmpDtlTrainingOutCompany
                 Case CommonMessage.TOOLBARITEM_CANCEL
                     CurrentState = CommonMessage.STATE_NORMAL
                     ClearControlValue(rdToiThang, rdTuThang, cboTrainingForm, txtTrainingType, rntGraduateYear, txtRemark, txtTrainingSchool,
-                                    cboRemark, txtChuyenNganh, txtKetQua, rdFrom, rdTo, rdReceiveDegree, cboLevelId, txtPointLevel, rtxtContentLevel, txtCertificateCode, txtNote)
+                                    cboRemark, txtChuyenNganh, txtKetQua, rdFrom, rdTo, rdReceiveDegree, cboLevelId, rtxtPointLevel, rtxtContentLevel, txtCertificateCode, txtNote)
                     Refresh("Cancel")
             End Select
 
@@ -631,7 +631,7 @@ Public Class ctrlHU_EmpDtlTrainingOutCompany
             txtRemark.Text = dataItem.GetDataKeyValue("FILE_NAME")
             chkTerminate.Checked = dataItem.GetDataKeyValue("IS_RENEWED")
             cboLevelId.SelectedValue = dataItem.GetDataKeyValue("LEVEL_ID")
-            txtPointLevel.Value = Double.Parse(dataItem.GetDataKeyValue("POINT_LEVEL"))
+            rtxtPointLevel.Text = dataItem.GetDataKeyValue("POINT_LEVEL")
             rtxtContentLevel.Text = dataItem.GetDataKeyValue("CONTENT_LEVEL")
             txtNote.Text = dataItem.GetDataKeyValue("NOTE")
             txtCertificateCode.Text = dataItem.GetDataKeyValue("CERTIFICATE_CODE")

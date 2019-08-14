@@ -3107,38 +3107,77 @@ Partial Class ProfileRepository
                 If empEdit.ID_NO <> empCV.ID_NO Then
                     colNames = "ID_NO"
                 End If
-                If empEdit.ID_DATE <> empCV.ID_DATE Then
+                If (If(empEdit.ID_DATE Is Nothing, "", empEdit.ID_DATE.ToString()) <> If(empCV.ID_DATE Is Nothing, "", empCV.ID_DATE.ToString())) Then
                     colNames = If(colNames <> String.Empty, colNames + "," + "ID_DATE", "ID_DATE")
                 End If
-                If empEdit.ID_PLACE <> empCV.ID_PLACE Then
+                If (If(empEdit.ID_PLACE.ToString() Is Nothing, "", empEdit.ID_PLACE.ToString()) <> If(empCV.ID_PLACE.ToString() Is Nothing, "", empCV.ID_PLACE.ToString())) Then
                     colNames = If(colNames <> String.Empty, colNames + "," + "ID_PLACE_NAME", "ID_PLACE_NAME")
                 End If
-                If empEdit.MARITAL_STATUS <> empCV.MARITAL_STATUS Then
+                If (If(empEdit.MARITAL_STATUS.ToString() Is Nothing, "", empEdit.MARITAL_STATUS.ToString()) <> If(empCV.MARITAL_STATUS.ToString() Is Nothing, "", empCV.MARITAL_STATUS.ToString())) Then
                     colNames = If(colNames <> String.Empty, colNames + "," + "MARITAL_STATUS", "MARITAL_STATUS")
                 End If
-                If empEdit.PER_ADDRESS <> empCV.PER_ADDRESS Then
+                If (If(empEdit.PER_ADDRESS Is Nothing, "", empEdit.PER_ADDRESS) <> If(empCV.PER_ADDRESS Is Nothing, "", empCV.PER_ADDRESS)) Then
                     colNames = If(colNames <> String.Empty, colNames + "," + "PER_ADDRESS", "PER_ADDRESS")
                 End If
-                If empEdit.PER_PROVINCE <> empCV.PER_PROVINCE Then
+                If (If(empEdit.PER_PROVINCE.ToString() Is Nothing, "", empEdit.PER_PROVINCE.ToString()) <> If(empCV.PER_PROVINCE.ToString() Is Nothing, "", empCV.PER_PROVINCE.ToString())) Then
                     colNames = If(colNames <> String.Empty, colNames + "," + "PER_PROVINCE_NAME", "PER_PROVINCE_NAME")
                 End If
-                If empEdit.PER_DISTRICT <> empCV.PER_DISTRICT Then
+                If (If(empEdit.PER_DISTRICT.ToString() Is Nothing, "", empEdit.PER_DISTRICT.ToString()) <> If(empCV.PER_DISTRICT.ToString() Is Nothing, Nothing, empCV.PER_DISTRICT.ToString())) Then
                     colNames = If(colNames <> String.Empty, colNames + "," + "PER_DISTRICT_NAME", "PER_DISTRICT_NAME")
                 End If
-                If empEdit.PER_WARD <> empCV.PER_WARD Then
+                If (If(empEdit.PER_WARD.ToString() Is Nothing, "", empEdit.PER_WARD.ToString()) <> If(empCV.PER_WARD.ToString() Is Nothing, "", empCV.PER_WARD.ToString())) Then
                     colNames = If(colNames <> String.Empty, colNames + "," + "PER_WARD_NAME", "PER_WARD_NAME")
                 End If
-                If empEdit.NAV_ADDRESS <> empCV.NAV_ADDRESS Then
+                If (If(empEdit.NAV_ADDRESS Is Nothing, "", empEdit.NAV_ADDRESS) <> If(empCV.NAV_ADDRESS Is Nothing, "", empCV.NAV_ADDRESS)) Then
                     colNames = If(colNames <> String.Empty, colNames + "," + "NAV_ADDRESS", "NAV_ADDRESS")
                 End If
-                If empEdit.NAV_PROVINCE <> empCV.NAV_PROVINCE Then
+                If (If(empEdit.NAV_PROVINCE.ToString() Is Nothing, "", empEdit.NAV_PROVINCE.ToString()) <> If(empCV.NAV_PROVINCE.ToString() Is Nothing, "", empCV.NAV_PROVINCE.ToString())) Then
                     colNames = If(colNames <> String.Empty, colNames + "," + "NAV_PROVINCE_NAME", "NAV_PROVINCE_NAME")
                 End If
-                If empEdit.NAV_DISTRICT <> empCV.NAV_DISTRICT Then
+                If (If(empEdit.NAV_DISTRICT.ToString() Is Nothing, "", empEdit.NAV_DISTRICT.ToString()) <> If(empCV.NAV_DISTRICT.ToString() Is Nothing, "", empCV.NAV_DISTRICT.ToString())) Then
                     colNames = If(colNames <> String.Empty, colNames + "," + "NAV_DISTRICT_NAME", "NAV_DISTRICT_NAME")
                 End If
-                If empEdit.NAV_WARD <> empCV.NAV_WARD Then
+                If (If(empEdit.NAV_WARD.ToString() Is Nothing, "", empEdit.NAV_WARD.ToString()) <> If(empCV.NAV_WARD.ToString() Is Nothing, "", empCV.NAV_WARD.ToString())) Then
                     colNames = If(colNames <> String.Empty, colNames + "," + "NAV_WARD_NAME", "NAV_WARD_NAME")
+                End If
+                If (If(empEdit.EXPIRE_DATE_IDNO Is Nothing, "", empEdit.EXPIRE_DATE_IDNO.ToString()) <> If(empCV.EXPIRE_DATE_IDNO Is Nothing, "", empCV.EXPIRE_DATE_IDNO.ToString())) Then
+                    colNames = If(colNames <> String.Empty, colNames + "," + "EXPIRE_DATE_IDNO", "EXPIRE_DATE_IDNO")
+                End If
+                If (If(empEdit.CONTACT_PER Is Nothing, "", empEdit.CONTACT_PER) <> If(empCV.CONTACT_PER Is Nothing, "", empCV.CONTACT_PER)) Then
+                    colNames = If(colNames <> String.Empty, colNames + "," + "CONTACT_PER", "CONTACT_PER")
+                End If
+                If (If(empEdit.RELATION_PER_CTR.ToString() Is Nothing, "", empEdit.RELATION_PER_CTR.ToString()) <> If(empCV.RELATION_PER_CTR.ToString() Is Nothing, "", empCV.RELATION_PER_CTR.ToString())) Then
+                    colNames = If(colNames <> String.Empty, colNames + "," + "RELATION_PER_CTR", "RELATION_PER_CTR")
+                End If
+                If (If(empEdit.CONTACT_PER_MBPHONE Is Nothing, "", empEdit.CONTACT_PER_MBPHONE) <> If(empCV.CONTACT_PER_MBPHONE Is Nothing, "", empCV.CONTACT_PER_MBPHONE)) Then
+                    colNames = If(colNames <> String.Empty, colNames + "," + "CONTACT_PER_MBPHONE", "CONTACT_PER_MBPHONE")
+                End If
+                If (If(empEdit.VILLAGE Is Nothing, "", empEdit.VILLAGE) <> If(empCV.VILLAGE Is Nothing, "", empCV.VILLAGE)) Then
+                    colNames = If(colNames <> String.Empty, colNames + "," + "VILLAGE", "VILLAGE")
+                End If
+                If (If(empEdit.HOME_PHONE Is Nothing, "", empEdit.HOME_PHONE) <> If(empCV.HOME_PHONE Is Nothing, "", empCV.HOME_PHONE)) Then
+                    colNames = If(colNames <> String.Empty, colNames + "," + "HOME_PHONE", "HOME_PHONE")
+                End If
+                If (If(empEdit.MOBILE_PHONE Is Nothing, "", empEdit.MOBILE_PHONE) <> If(empCV.MOBILE_PHONE Is Nothing, "", empCV.MOBILE_PHONE)) Then
+                    colNames = If(colNames <> String.Empty, colNames + "," + "MOBILE_PHONE", "MOBILE_PHONE")
+                End If
+                If (If(empEdit.WORK_EMAIL Is Nothing, "", empEdit.WORK_EMAIL) <> If(empCV.WORK_EMAIL Is Nothing, "", empCV.WORK_EMAIL)) Then
+                    colNames = If(colNames <> String.Empty, colNames + "," + "WORK_EMAIL", "WORK_EMAIL")
+                End If
+                If (If(empEdit.PER_EMAIL Is Nothing, "", empEdit.PER_EMAIL) <> If(empCV.PER_EMAIL Is Nothing, "", empCV.PER_EMAIL)) Then
+                    colNames = If(colNames <> String.Empty, colNames + "," + "PER_EMAIL", "PER_EMAIL")
+                End If
+                If (If(empEdit.PERSON_INHERITANCE Is Nothing, "", empEdit.PERSON_INHERITANCE) <> If(empCV.PERSON_INHERITANCE Is Nothing, "", empCV.PERSON_INHERITANCE)) Then
+                    colNames = If(colNames <> String.Empty, colNames + "," + "PERSON_INHERITANCE", "PERSON_INHERITANCE")
+                End If
+                If (If(empEdit.BANK_NO Is Nothing, "", empEdit.BANK_NO) <> If(empCV.BANK_NO Is Nothing, "", empCV.BANK_NO)) Then
+                    colNames = If(colNames <> String.Empty, colNames + "," + "BANK_NO", "BANK_NO")
+                End If
+                If (If(empEdit.BANK_ID.ToString() Is Nothing, "", empEdit.BANK_ID.ToString()) <> If(empCV.BANK_ID.ToString() Is Nothing, "", empCV.BANK_ID.ToString())) Then
+                    colNames = If(colNames <> String.Empty, colNames + "," + "BANK_ID", "BANK_ID")
+                End If
+                If (If(empEdit.BANK_BRANCH_ID.ToString() Is Nothing, "", empEdit.BANK_BRANCH_ID.ToString()) <> If(empCV.BANK_BRANCH_ID.ToString() Is Nothing, "", empCV.BANK_BRANCH_ID.ToString())) Then
+                    colNames = If(colNames <> String.Empty, colNames + "," + "BANK_BRANCH_ID", "BANK_BRANCH_ID")
                 End If
                 dic.Add(empEdit.ID.ToString, colNames)
             Next
@@ -3168,6 +3207,21 @@ Partial Class ProfileRepository
             objEmployeeEditData.PER_DISTRICT = objEmployeeEdit.PER_DISTRICT
             objEmployeeEditData.PER_PROVINCE = objEmployeeEdit.PER_PROVINCE
             objEmployeeEditData.PER_WARD = objEmployeeEdit.PER_WARD
+
+            objEmployeeEditData.EXPIRE_DATE_IDNO = objEmployeeEdit.EXPIRE_DATE_IDNO
+            objEmployeeEditData.CONTACT_PER = objEmployeeEdit.CONTACT_PER
+            objEmployeeEditData.CONTACT_PER_MBPHONE = objEmployeeEdit.CONTACT_PER_MBPHONE
+            objEmployeeEditData.RELATION_PER_CTR = objEmployeeEdit.RELATION_PER_CTR
+            objEmployeeEditData.VILLAGE = objEmployeeEdit.VILLAGE
+            objEmployeeEditData.HOME_PHONE = objEmployeeEdit.HOME_PHONE
+            objEmployeeEditData.MOBILE_PHONE = objEmployeeEdit.MOBILE_PHONE
+            objEmployeeEditData.WORK_EMAIL = objEmployeeEdit.WORK_EMAIL
+            objEmployeeEditData.PER_EMAIL = objEmployeeEdit.PER_EMAIL
+            objEmployeeEditData.PERSON_INHERITANCE = objEmployeeEdit.PERSON_INHERITANCE
+            objEmployeeEditData.BANK_NO = objEmployeeEdit.BANK_NO
+            objEmployeeEditData.BANK_ID = objEmployeeEdit.BANK_ID
+            objEmployeeEditData.BANK_BRANCH_ID = objEmployeeEdit.BANK_BRANCH_ID
+
             objEmployeeEditData.STATUS = 0
             Context.HU_EMPLOYEE_EDIT.AddObject(objEmployeeEditData)
             Context.SaveChanges(log)
@@ -3198,6 +3252,21 @@ Partial Class ProfileRepository
             objEmployeeEditData.PER_DISTRICT = objEmployeeEdit.PER_DISTRICT
             objEmployeeEditData.PER_PROVINCE = objEmployeeEdit.PER_PROVINCE
             objEmployeeEditData.PER_WARD = objEmployeeEdit.PER_WARD
+
+            objEmployeeEditData.EXPIRE_DATE_IDNO = objEmployeeEdit.EXPIRE_DATE_IDNO
+            objEmployeeEditData.CONTACT_PER = objEmployeeEdit.CONTACT_PER
+            objEmployeeEditData.CONTACT_PER_MBPHONE = objEmployeeEdit.CONTACT_PER_MBPHONE
+            objEmployeeEditData.RELATION_PER_CTR = objEmployeeEdit.RELATION_PER_CTR
+            objEmployeeEditData.VILLAGE = objEmployeeEdit.VILLAGE
+            objEmployeeEditData.HOME_PHONE = objEmployeeEdit.HOME_PHONE
+            objEmployeeEditData.MOBILE_PHONE = objEmployeeEdit.MOBILE_PHONE
+            objEmployeeEditData.WORK_EMAIL = objEmployeeEdit.WORK_EMAIL
+            objEmployeeEditData.PER_EMAIL = objEmployeeEdit.PER_EMAIL
+            objEmployeeEditData.PERSON_INHERITANCE = objEmployeeEdit.PERSON_INHERITANCE
+            objEmployeeEditData.BANK_NO = objEmployeeEdit.BANK_NO
+            objEmployeeEditData.BANK_ID = objEmployeeEdit.BANK_ID
+            objEmployeeEditData.BANK_BRANCH_ID = objEmployeeEdit.BANK_BRANCH_ID
+
             objEmployeeEditData.STATUS = 0
 
             Context.SaveChanges(log)
@@ -3226,6 +3295,9 @@ Partial Class ProfileRepository
                               From per_dis In Context.HU_DISTRICT.Where(Function(f) f.ID = p.PER_DISTRICT).DefaultIfEmpty
                               From per_ward In Context.HU_WARD.Where(Function(f) f.ID = p.PER_WARD).DefaultIfEmpty
                               From marital In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.MARITAL_STATUS).DefaultIfEmpty
+                              From relation_per In Context.OT_OTHER_LIST.Where(Function(f) p.RELATION_PER_CTR = f.ID And f.TYPE_ID = 48 And f.ACTFLG = "A").DefaultIfEmpty
+                              From bank In Context.HU_BANK.Where(Function(f) p.BANK_ID = f.ID).DefaultIfEmpty
+                              From bankbranch In Context.HU_BANK_BRANCH.Where(Function(f) p.BANK_BRANCH_ID = f.ID).DefaultIfEmpty
                               Where p.EMPLOYEE_ID = _filter.EMPLOYEE_ID And p.STATUS <> 2
                              Select New EmployeeEditDTO With {
                                  .ID = p.ID,
@@ -3251,6 +3323,22 @@ Partial Class ProfileRepository
                                  .PER_WARD_NAME = per_ward.NAME_VN,
                                  .REASON_UNAPROVE = p.REASON_UNAPROVE,
                                  .STATUS = p.STATUS,
+                                 .EXPIRE_DATE_IDNO = p.EXPIRE_DATE_IDNO,
+                                 .CONTACT_PER = p.CONTACT_PER,
+                                 .RELATION_PER_CTR = p.RELATION_PER_CTR,
+                                 .RELATION_PER_CTR_NAME = relation_per.NAME_VN,
+                                 .CONTACT_PER_MBPHONE = p.CONTACT_PER_MBPHONE,
+                                 .VILLAGE = p.VILLAGE,
+                                 .HOME_PHONE = p.HOME_PHONE,
+                                 .MOBILE_PHONE = p.MOBILE_PHONE,
+                                 .WORK_EMAIL = p.WORK_EMAIL,
+                                 .PER_EMAIL = p.PER_EMAIL,
+                                 .PERSON_INHERITANCE = p.PERSON_INHERITANCE,
+                                 .BANK_NO = p.BANK_NO,
+                                 .BANK_ID = p.BANK_ID,
+                                 .BANK_NAME = bank.NAME,
+                                 .BANK_BRANCH_ID = p.BANK_BRANCH_ID,
+                                 .BANK_BRANCH_NAME = bankbranch.NAME,
                                  .STATUS_NAME = If(p.STATUS = 0, "Chưa gửi duyệt",
                                                    If(p.STATUS = 1, "Chờ phê duyệt",
                                                       If(p.STATUS = 2, "Phê duyệt",
@@ -3264,6 +3352,9 @@ Partial Class ProfileRepository
                               From per_dis In Context.HU_DISTRICT.Where(Function(f) f.ID = p.PER_DISTRICT).DefaultIfEmpty
                               From per_ward In Context.HU_WARD.Where(Function(f) f.ID = p.PER_WARD).DefaultIfEmpty
                               From marital In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.MARITAL_STATUS).DefaultIfEmpty
+                              From relation_per In Context.OT_OTHER_LIST.Where(Function(f) p.RELATION_PER_CTR = f.ID And f.TYPE_ID = 48 And f.ACTFLG = "A").DefaultIfEmpty
+                              From bank In Context.HU_BANK.Where(Function(f) p.BANK_ID = f.ID).DefaultIfEmpty
+                              From bankbranch In Context.HU_BANK_BRANCH.Where(Function(f) p.BANK_BRANCH_ID = f.ID).DefaultIfEmpty
                               Where p.EMPLOYEE_ID = _filter.EMPLOYEE_ID
                               Select New EmployeeEditDTO With {
                                   .EMPLOYEE_ID = p.EMPLOYEE_ID,
@@ -3285,7 +3376,23 @@ Partial Class ProfileRepository
                                  .PER_PROVINCE = p.PER_PROVINCE,
                                  .PER_PROVINCE_NAME = per_pro.NAME_VN,
                                  .PER_WARD = p.PER_WARD,
-                                 .PER_WARD_NAME = per_ward.NAME_VN}).FirstOrDefault
+                                 .PER_WARD_NAME = per_ward.NAME_VN,
+                                 .EXPIRE_DATE_IDNO = p.EXPIRE_DATE_IDNO,
+                                 .CONTACT_PER = p.CONTACT_PER,
+                                 .RELATION_PER_CTR = p.RELATION_PER_CTR,
+                                 .RELATION_PER_CTR_NAME = relation_per.NAME_VN,
+                                 .CONTACT_PER_MBPHONE = p.CONTACT_PER_MBPHONE,
+                                 .VILLAGE = p.VILLAGE,
+                                 .HOME_PHONE = p.HOME_PHONE,
+                                 .MOBILE_PHONE = p.MOBILE_PHONE,
+                                 .WORK_EMAIL = p.WORK_EMAIL,
+                                 .PER_EMAIL = p.PER_EMAIL,
+                                 .PERSON_INHERITANCE = p.PERSON_INHERITANCE,
+                                 .BANK_NO = p.BANK_NO,
+                                 .BANK_ID = p.BANK_ID,
+                                 .BANK_NAME = bank.NAME,
+                                 .BANK_BRANCH_ID = p.BANK_BRANCH_ID,
+                                 .BANK_BRANCH_NAME = bankbranch.NAME}).FirstOrDefault
             End If
 
             Return objEmpEdit
@@ -3322,6 +3429,9 @@ Partial Class ProfileRepository
                               From per_dis In Context.HU_DISTRICT.Where(Function(f) f.ID = p.PER_DISTRICT).DefaultIfEmpty
                               From per_ward In Context.HU_WARD.Where(Function(f) f.ID = p.PER_WARD).DefaultIfEmpty
                               From marital In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.MARITAL_STATUS).DefaultIfEmpty
+                              From relation_per In Context.OT_OTHER_LIST.Where(Function(f) p.RELATION_PER_CTR = f.ID And f.TYPE_ID = 48 And f.ACTFLG = "A").DefaultIfEmpty
+                              From bank In Context.HU_BANK.Where(Function(f) p.BANK_ID = f.ID).DefaultIfEmpty
+                              From bankbranch In Context.HU_BANK_BRANCH.Where(Function(f) p.BANK_BRANCH_ID = f.ID).DefaultIfEmpty
                               From chosen In Context.SE_CHOSEN_ORG.Where(Function(f) f.ORG_ID = e.ORG_ID _
                                                                              And f.USERNAME = log.Username.ToUpper)
                         Where p.STATUS = 1
@@ -3351,6 +3461,22 @@ Partial Class ProfileRepository
                             .PER_WARD = p.PER_WARD,
                             .PER_WARD_NAME = per_ward.NAME_VN,
                             .STATUS = p.STATUS,
+                            .EXPIRE_DATE_IDNO = p.EXPIRE_DATE_IDNO,
+                            .CONTACT_PER = p.CONTACT_PER,
+                            .RELATION_PER_CTR = p.RELATION_PER_CTR,
+                            .RELATION_PER_CTR_NAME = relation_per.NAME_VN,
+                            .CONTACT_PER_MBPHONE = p.CONTACT_PER_MBPHONE,
+                            .VILLAGE = p.VILLAGE,
+                            .HOME_PHONE = p.HOME_PHONE,
+                            .MOBILE_PHONE = p.MOBILE_PHONE,
+                            .WORK_EMAIL = p.WORK_EMAIL,
+                            .PER_EMAIL = p.PER_EMAIL,
+                            .PERSON_INHERITANCE = p.PERSON_INHERITANCE,
+                            .BANK_NO = p.BANK_NO,
+                            .BANK_ID = p.BANK_ID,
+                            .BANK_NAME = bank.NAME,
+                            .BANK_BRANCH_ID = p.BANK_BRANCH_ID,
+                            .BANK_BRANCH_NAME = bankbranch.NAME,
                             .STATUS_NAME = If(p.STATUS = 0, "Chưa gửi duyệt",
                                               If(p.STATUS = 1, "Chờ phê duyệt",
                                                  If(p.STATUS = 2, "Phê duyệt",
@@ -3434,6 +3560,21 @@ Partial Class ProfileRepository
                     objEmployeeData.PER_DISTRICT = item.PER_DISTRICT
                     objEmployeeData.PER_PROVINCE = item.PER_PROVINCE
                     objEmployeeData.PER_WARD = item.PER_WARD
+
+                    objEmployeeData.EXPIRE_DATE_IDNO = item.EXPIRE_DATE_IDNO
+                    objEmployeeData.CONTACT_PER = item.CONTACT_PER
+                    objEmployeeData.CONTACT_PER_MBPHONE = item.CONTACT_PER_MBPHONE
+                    objEmployeeData.RELATION_PER_CTR = item.RELATION_PER_CTR
+                    objEmployeeData.VILLAGE = item.VILLAGE
+                    objEmployeeData.HOME_PHONE = item.HOME_PHONE
+                    objEmployeeData.MOBILE_PHONE = item.MOBILE_PHONE
+                    objEmployeeData.WORK_EMAIL = item.WORK_EMAIL
+                    objEmployeeData.PER_EMAIL = item.PER_EMAIL
+                    objEmployeeData.PERSON_INHERITANCE = item.PERSON_INHERITANCE
+                    objEmployeeData.BANK_NO = item.BANK_NO
+                    objEmployeeData.BANK_ID = item.BANK_ID
+                    objEmployeeData.BANK_BRANCH_ID = item.BANK_BRANCH_ID
+
                 End If
             Next
             Context.SaveChanges(log)
