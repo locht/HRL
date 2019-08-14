@@ -240,6 +240,7 @@ Public Class ctrlInfoCertificate
                         If rtxtScore.Text <> "" Then
                             obj.SCORE = rtxtScore.Text
                         End If
+                        obj.REMARK = txtGhichu.Text
                         obj.CONTENT_TRAIN = txtContent.Text
                         obj.CODE_CERTIFICATE = txtCode_certificate.Text
                         obj.TYPE_TRAIN_NAME = txtTraining_Name.Text
@@ -430,6 +431,12 @@ Public Class ctrlInfoCertificate
                 cboTrainingForm.SelectedValue = item.GetDataKeyValue("FORM_TRAIN_ID")
                 txtChuyenNganh.Text = item.GetDataKeyValue("SPECIALIZED_TRAIN")
                 txtTraining_Name.Text = item.GetDataKeyValue("TYPE_TRAIN_NAME")
+                cbLevel.Text = item.GetDataKeyValue("LEVEL_NAME")
+                txtGhichu.Text = item.GetDataKeyValue("REMARK")
+                rtxtScore.Text = item.GetDataKeyValue("SCORE")
+                txtContent.Text = item.GetDataKeyValue("CONTENT_TRAIN")
+                txtCode_certificate.Text = item.GetDataKeyValue("CODE_CERTIFICATE")
+                cbLevel.SelectedValue = item.GetDataKeyValue("LEVEL_ID")
                 'cboTrainingType.SelectedValue = item.GetDataKeyValue("TYPE_TRAIN_ID")
                 txtResultTrain.Text = item.GetDataKeyValue("RESULT_TRAIN")
                 cboBangCap.Text = item.GetDataKeyValue("CERTIFICATE")
@@ -466,6 +473,12 @@ Public Class ctrlInfoCertificate
                 cboTrainingForm.SelectedValue = item.GetDataKeyValue("FORM_TRAIN_ID")
                 txtChuyenNganh.Text = item.GetDataKeyValue("SPECIALIZED_TRAIN")
                 txtTraining_Name.Text = item.GetDataKeyValue("TYPE_TRAIN_NAME")
+                cbLevel.Text = item.GetDataKeyValue("LEVEL_NAME")
+                txtGhichu.Text = item.GetDataKeyValue("NOTE")
+                rtxtScore.Text = item.GetDataKeyValue("POINT_LEVEL")
+                txtContent.Text = item.GetDataKeyValue("CONTENT_LEVEL")
+                txtCode_certificate.Text = item.GetDataKeyValue("CERTIFICATE_CODE")
+                cbLevel.SelectedValue = item.GetDataKeyValue("LEVEL_ID")
                 ' cboTrainingType.SelectedValue = item.GetDataKeyValue("TYPE_TRAIN_ID")
                 txtResultTrain.Text = item.GetDataKeyValue("RESULT_TRAIN")
                 cboBangCap.Text = item.GetDataKeyValue("CERTIFICATE")
@@ -651,6 +664,12 @@ Public Class ctrlInfoCertificate
             cboTrainingForm.SelectedValue = item.GetDataKeyValue("FORM_TRAIN_ID")
             txtChuyenNganh.Text = item.GetDataKeyValue("SPECIALIZED_TRAIN")
             txtTraining_Name.Text = item.GetDataKeyValue("TYPE_TRAIN_NAME")
+            cbLevel.Text = item.GetDataKeyValue("LEVEL_NAME")
+            txtGhichu.Text = item.GetDataKeyValue("REMARK")
+            rtxtScore.Text = item.GetDataKeyValue("SCORE")
+            txtContent.Text = item.GetDataKeyValue("CONTENT_TRAIN")
+            txtCode_certificate.Text = item.GetDataKeyValue("CODE_CERTIFICATE")
+            cbLevel.SelectedValue = item.GetDataKeyValue("LEVEL_ID")
             'cboTrainingType.SelectedValue = item.GetDataKeyValue("TYPE_TRAIN_ID")
             txtResultTrain.Text = item.GetDataKeyValue("RESULT_TRAIN")
             cboBangCap.Text = item.GetDataKeyValue("CERTIFICATE")
@@ -694,6 +713,12 @@ Public Class ctrlInfoCertificate
             cboTrainingForm.SelectedValue = item.GetDataKeyValue("FORM_TRAIN_ID")
             txtChuyenNganh.Text = item.GetDataKeyValue("SPECIALIZED_TRAIN")
             txtTraining_Name.Text = item.GetDataKeyValue("TYPE_TRAIN_NAME")
+            cbLevel.Text = item.GetDataKeyValue("LEVEL_NAME")
+            txtGhichu.Text = item.GetDataKeyValue("NOTE")
+            rtxtScore.Text = item.GetDataKeyValue("POINT_LEVEL")
+            txtContent.Text = item.GetDataKeyValue("CONTENT_LEVEL")
+            txtCode_certificate.Text = item.GetDataKeyValue("CERTIFICATE_CODE")
+            cbLevel.SelectedValue = item.GetDataKeyValue("LEVEL_ID")
             'cboTrainingType.SelectedValue = item.GetDataKeyValue("TYPE_TRAIN_ID")
             txtResultTrain.Text = item.GetDataKeyValue("RESULT_TRAIN")
             cboBangCap.Text = item.GetDataKeyValue("CERTIFICATE")
