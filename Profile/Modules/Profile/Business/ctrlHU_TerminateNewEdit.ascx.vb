@@ -567,7 +567,12 @@ Public Class ctrlHU_TerminateNewEdit
                         objTerminate.SUM_COLLECT_DEBT = rntxtDebtTotalCollect.Value
                         objTerminate.AMOUNT_PAYMENT_CASH = rntxtCash.Value
                         objTerminate.AMOUNT_DEDUCT_FROM_SAL = rntxtMoneyDeductFromSal.Value
-                        If cboSalMonth.Text <> "" Then
+                        'If cboSalMonth.Text <> "" Then
+                        '    objTerminate.PERIOD_ID = cboSalMonth.SelectedValue
+                        'End If
+                        If (cboSalMonth.Text = "") Then
+                            objTerminate.PERIOD_ID = 0
+                        Else
                             objTerminate.PERIOD_ID = cboSalMonth.SelectedValue
                         End If
                         objTerminate.IS_ALLOW = cbIsAllowForTer.Checked
@@ -626,12 +631,12 @@ Public Class ctrlHU_TerminateNewEdit
                         End Select
 
 
-                    End If
+                        End If
                 Case CommonMessage.TOOLBARITEM_CANCEL
-                    ''POPUPTOLINK_CANCEL
-                    txtRemindLink.Text = ""
-                    FileOldName = ""
-                    Response.Redirect("/Default.aspx?mid=Profile&fid=ctrlHU_Terminate&group=Business")
+                        ''POPUPTOLINK_CANCEL
+                        txtRemindLink.Text = ""
+                        FileOldName = ""
+                        Response.Redirect("/Default.aspx?mid=Profile&fid=ctrlHU_Terminate&group=Business")
             End Select
             rep.Dispose()
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
@@ -1740,9 +1745,10 @@ Public Class ctrlHU_TerminateNewEdit
             FillDropDownList(cboDebtType, ListComboData.LIST_DEBT_TYPE, "NAME_VN", "ID", Common.Common.SystemLanguage, True)
             FillDropDownList(cboDecisionType, ListComboData.LIST_DECISION_TYPE, "NAME_VN", "ID", Common.Common.SystemLanguage, True)
             cboStatus.SelectedValue = ProfileCommon.DECISION_STATUS.WAIT_APPROVE_ID
-            cboSalMonth.DataSource = rep.GetCurrentPeriod()
-            cboSalMonth.DataTextField = "PERIOD_NAME"
-            cboSalMonth.DataValueField = "ID"
+            FillRadCombobox(cboSalMonth, rep.GetCurrentPeriod(), "PERIOD_NAME", "ID", True)
+            'cboSalMonth.DataSource = rep.GetCurrentPeriod()
+            'cboSalMonth.DataTextField = "PERIOD_NAME"
+            'cboSalMonth.DataValueField = "ID"
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
             Throw ex
@@ -1828,6 +1834,13 @@ Public Class ctrlHU_TerminateNewEdit
     End Sub
 #End Region
 
+    Private Sub rntxtyearforallow_loss_TextChanged(sender As Object, e As System.EventArgs) Handles rntxtyearforallow_loss.TextChanged
+        Tinh_Tien_Tro_Cap_Thoi_Viec()
+    End Sub
+    Private Sub Tinh_Tien_Tro_Cap_Thoi_Viec()
+        Dim tempValue = If(rntxtSalaryMedium_loss.Value Is Nothing, 0, rntxtSalaryMedium_loss.Value) * If(rntxtyearforallow_loss.Value Is Nothing, 0, rntxtyearforallow_loss.Value) * 0.5
+        rntxtAllowanceTerminate.Text = If(tempValue > 0, tempValue, Nothing)
+    End Sub
 End Class
 ''' <summary>
 ''' Class tinh so nam cong tac cua nhan vien
