@@ -337,9 +337,9 @@ Public Class ctrlHU_CommendNewEdit
                         cboCommendPay.SelectedValue = Commend.COMMEND_PAY
                     End If
 
-                    If Commend.COMMEND_LIST_ID IsNot Nothing Then
-                        cboCommendList.SelectedValue = Commend.COMMEND_LIST_ID
-                    End If
+                    'If Commend.COMMEND_LIST_ID IsNot Nothing Then
+                    '    cboCommendList.SelectedValue = Commend.COMMEND_LIST_ID
+                    'End If
 
                     'If Commend.POWER_PAY_ID Then
                     '    cboPowerPay.SelectedValue = Commend.POWER_PAY_ID
@@ -352,9 +352,9 @@ Public Class ctrlHU_CommendNewEdit
                     rdEffectDate.SelectedDate = Commend.EFFECT_DATE
                     rdEffectDate_SelectedDateChanged(Nothing, Nothing)
 
-                    If Commend.EXPIRE_DATE IsNot Nothing Then
-                        rdExpireDate.SelectedDate = Commend.EXPIRE_DATE
-                    End If
+                    'If Commend.EXPIRE_DATE IsNot Nothing Then
+                    '    rdExpireDate.SelectedDate = Commend.EXPIRE_DATE
+                    'End If
 
                     If Commend.PERIOD_ID IsNot Nothing Then
                         cboPeriod.SelectedValue = Commend.PERIOD_ID
@@ -366,9 +366,9 @@ Public Class ctrlHU_CommendNewEdit
 
                     txtCommend_Detail.Text = Commend.REMARK
 
-                    If Commend.FORM_ID IsNot Nothing Then
-                        cboForm.SelectedValue = Commend.FORM_ID
-                    End If
+                    'If Commend.FORM_ID IsNot Nothing Then
+                    '    cboForm.SelectedValue = Commend.FORM_ID
+                    'End If
                     txtYear.Text = Commend.YEAR.ToString()
                     txtUploadFile.Text = Commend.FILENAME
                     txtRemindLink.Text = If(Commend.UPLOADFILE Is Nothing, "", Commend.UPLOADFILE)
@@ -509,7 +509,7 @@ Public Class ctrlHU_CommendNewEdit
                         objCommend.NOTE = txtRemark.Text
                         objCommend.STATUS_ID = Decimal.Parse(cboStatus.SelectedValue)
                         objCommend.EFFECT_DATE = rdEffectDate.SelectedDate
-                        objCommend.EXPIRE_DATE = rdExpireDate.SelectedDate
+                        'objCommend.EXPIRE_DATE = rdExpireDate.SelectedDate
                         objCommend.SIGNER_NAME = txtSignerName.Text
                         objCommend.SIGN_DATE = rdSignDate.SelectedDate
 
@@ -540,9 +540,9 @@ Public Class ctrlHU_CommendNewEdit
                         End If
 
                         ''thong tin ben sasco
-                        If cboCommendList.SelectedValue <> "" Then
-                            objCommend.COMMEND_LIST_ID = cboCommendList.SelectedValue
-                        End If
+                        'If cboCommendList.SelectedValue <> "" Then
+                        '    objCommend.COMMEND_LIST_ID = cboCommendList.SelectedValue
+                        'End If
 
                         'If cboPowerPay.SelectedValue <> "" Then
                         '    objCommend.POWER_PAY_ID = cboPowerPay.SelectedValue
@@ -561,9 +561,9 @@ Public Class ctrlHU_CommendNewEdit
                         objCommend.REMARK = txtCommend_Detail.Text
                         'objCommend.UPLOADFILE = txtUploadFile.Text
 
-                        If cboForm.SelectedValue <> "" Then
-                            objCommend.FORM_ID = cboForm.SelectedValue
-                        End If
+                        'If cboForm.SelectedValue <> "" Then
+                        '    objCommend.FORM_ID = cboForm.SelectedValue
+                        'End If
 
                         'kiem tra neu doi tuong cá nhan hay tap the
                         If cboCommendObj.SelectedIndex = 0 Then
@@ -1656,35 +1656,35 @@ Public Class ctrlHU_CommendNewEdit
     ''' <param name="source"></param>
     ''' <param name="args"></param>
     ''' <remarks></remarks>
-    Private Sub cusCommendList_ServerValidate(ByVal source As Object, ByVal args As System.Web.UI.WebControls.ServerValidateEventArgs) Handles cusCommendList.ServerValidate
-        Dim rep As New ProfileRepository
-        Dim validate As New OtherListDTO
-        Dim dtData As DataTable = Nothing
-        Dim startTime As DateTime = DateTime.UtcNow
-        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+    'Private Sub cusCommendList_ServerValidate(ByVal source As Object, ByVal args As System.Web.UI.WebControls.ServerValidateEventArgs) Handles cusCommendList.ServerValidate
+    '    Dim rep As New ProfileRepository
+    '    Dim validate As New OtherListDTO
+    '    Dim dtData As DataTable = Nothing
+    '    Dim startTime As DateTime = DateTime.UtcNow
+    '    Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
 
-        Try
-            If CurrentState = CommonMessage.STATE_EDIT Or CurrentState = CommonMessage.STATE_NEW Then
-                validate.ID = cboCommendList.SelectedValue
-                validate.ACTFLG = "A"
-                validate.CODE = "COMMEND_CATEGORY"
-                args.IsValid = rep.ValidateOtherList(validate)
-            End If
+    '    Try
+    '        If CurrentState = CommonMessage.STATE_EDIT Or CurrentState = CommonMessage.STATE_NEW Then
+    '            validate.ID = cboCommendList.SelectedValue
+    '            validate.ACTFLG = "A"
+    '            validate.CODE = "COMMEND_CATEGORY"
+    '            args.IsValid = rep.ValidateOtherList(validate)
+    '        End If
 
-            If Not args.IsValid Then
-                dtData = rep.GetOtherList("COMMEND_CATEGORY", True)
-                FillRadCombobox(cboCommendList, dtData, "NAME", "ID", True)
+    '        If Not args.IsValid Then
+    '            dtData = rep.GetOtherList("COMMEND_CATEGORY", True)
+    '            FillRadCombobox(cboCommendList, dtData, "NAME", "ID", True)
 
-                cboCommendList.ClearSelection()
-                cboCommendList.SelectedIndex = 0
-            End If
-            rep.Dispose()
-            _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
-        Catch ex As Exception
-            _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
-            'DisplayException(Me.ViewName, Me.ID, ex)
-        End Try
-    End Sub
+    '            cboCommendList.ClearSelection()
+    '            cboCommendList.SelectedIndex = 0
+    '        End If
+    '        rep.Dispose()
+    '        _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
+    '    Catch ex As Exception
+    '        _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
+    '        'DisplayException(Me.ViewName, Me.ID, ex)
+    '    End Try
+    'End Sub
 
     ''' <lastupdate>07/07/2017</lastupdate>
     ''' <summary>
@@ -1693,35 +1693,35 @@ Public Class ctrlHU_CommendNewEdit
     ''' <param name="source"></param>
     ''' <param name="args"></param>
     ''' <remarks></remarks>
-    Private Sub cusForm_ServerValidate(ByVal source As Object, ByVal args As System.Web.UI.WebControls.ServerValidateEventArgs) Handles cusForm.ServerValidate
-        Dim rep As New ProfileRepository
-        Dim validate As New OtherListDTO
-        Dim dtData As DataTable = Nothing
-        Dim startTime As DateTime = DateTime.UtcNow
-        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+    'Private Sub cusForm_ServerValidate(ByVal source As Object, ByVal args As System.Web.UI.WebControls.ServerValidateEventArgs) Handles cusForm.ServerValidate
+    '    Dim rep As New ProfileRepository
+    '    Dim validate As New OtherListDTO
+    '    Dim dtData As DataTable = Nothing
+    '    Dim startTime As DateTime = DateTime.UtcNow
+    '    Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
 
-        Try
-            If CurrentState = CommonMessage.STATE_EDIT Or CurrentState = CommonMessage.STATE_NEW Then
-                validate.ID = cboForm.SelectedValue
-                validate.ACTFLG = "A"
-                validate.CODE = "FORM_COMMEND"
-                args.IsValid = rep.ValidateOtherList(validate)
-            End If
+    '    Try
+    '        If CurrentState = CommonMessage.STATE_EDIT Or CurrentState = CommonMessage.STATE_NEW Then
+    '            validate.ID = cboForm.SelectedValue
+    '            validate.ACTFLG = "A"
+    '            validate.CODE = "FORM_COMMEND"
+    '            args.IsValid = rep.ValidateOtherList(validate)
+    '        End If
 
-            If Not args.IsValid Then
-                dtData = rep.GetOtherList("FORM_COMMEND", True)
-                FillRadCombobox(cboForm, dtData, "NAME", "ID", True)
+    '        If Not args.IsValid Then
+    '            dtData = rep.GetOtherList("FORM_COMMEND", True)
+    '            FillRadCombobox(cboForm, dtData, "NAME", "ID", True)
 
-                cboForm.ClearSelection()
-                cboForm.SelectedIndex = 0
-            End If
-            rep.Dispose()
-            _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
-        Catch ex As Exception
-            _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
-            'DisplayException(Me.ViewName, Me.ID, ex)
-        End Try
-    End Sub
+    '            cboForm.ClearSelection()
+    '            cboForm.SelectedIndex = 0
+    '        End If
+    '        rep.Dispose()
+    '        _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
+    '    Catch ex As Exception
+    '        _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
+    '        'DisplayException(Me.ViewName, Me.ID, ex)
+    '    End Try
+    'End Sub
 
     ''' <lastupdate>07/07/2017</lastupdate>
     ''' <summary>
@@ -1990,9 +1990,9 @@ Public Class ctrlHU_CommendNewEdit
             FillRadCombobox(cboCommend_Title, titleCommend, "NAME", "ID", False)
 
             'get loai khen thuong
-            Dim categoryData As DataTable
-            categoryData = rep.GetOtherList("COMMEND_CATEGORY", True)
-            FillRadCombobox(cboCommendList, categoryData, "NAME", "ID", False)
+            'Dim categoryData As DataTable
+            'categoryData = rep.GetOtherList("COMMEND_CATEGORY", True)
+            'FillRadCombobox(cboCommendList, categoryData, "NAME", "ID", False)
 
             'thong NGUON CHI
             Dim powerpayData As DataTable
@@ -2012,12 +2012,12 @@ Public Class ctrlHU_CommendNewEdit
             'cap khen thưởng
             Dim levelCommend As DataTable
             levelCommend = psp.Get_Commend_Level(True)
-            ' FillRadCombobox(cboCommendLevel, levelCommend, "NAME", "ID", False)
+            FillRadCombobox(cboCommendLevel, levelCommend, "NAME", "ID", False)
 
             'load bieu mau
-            Dim formData As DataTable
-            formData = rep.GetOtherList("FORM_COMMEND", True)
-            FillRadCombobox(cboForm, formData, "NAME", "ID", False)
+            'Dim formData As DataTable
+            'formData = rep.GetOtherList("FORM_COMMEND", True)
+            'FillRadCombobox(cboForm, formData, "NAME", "ID", False)
             rep.Dispose()
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
@@ -2052,9 +2052,9 @@ Public Class ctrlHU_CommendNewEdit
                     If Convert.ToDecimal(Request.Params("Status")) = ProfileCommon.HU_COMMEND_STATUS.APPROVE Then
                         EnableControlAll(False, rdEffectDate, txtDecisionNo, cboStatus, rdSignDate, txtSignerName,
                                          btnFindSinger, txtSignerTitle, cboCommendObj, cboCommend_Title,
-                                         cboCommendType, cboCommendPay, rntxtMoney, cboCommendList,
+                                         cboCommendType, cboCommendPay, rntxtMoney,
                                          cboPeriod, chkTAX, cboPeriodTax, txtCommend_Detail, txtRemark, txtUpload,
-                                         btnUploadFile, cboForm, txtYear)
+                                         btnUploadFile, txtYear)
                         Utilities.EnabledGrid(rgEmployee, False, False)
                         Utilities.EnabledGrid(rgOrg, False, False)
                     End If
