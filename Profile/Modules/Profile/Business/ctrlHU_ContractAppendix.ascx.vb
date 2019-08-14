@@ -170,6 +170,18 @@ Public Class ctrlHU_ContractAppendix
                                                   ToolbarIcons.Export,
                                                   ToolbarAuthorize.Export,
                                                   Translate("Xuất dữ liệu")))
+
+
+            Me.MainToolBar.Items.Add(Common.Common.CreateToolbarItem(CommonMessage.TOOLBARITEM_NEXT,
+                                                 ToolbarIcons.Export,
+                                                 ToolbarAuthorize.Export,
+                                                 Translate("Xuất file mẫu")))
+
+            Me.MainToolBar.Items.Add(Common.Common.CreateToolbarItem(CommonMessage.TOOLBARITEM_IMPORT,
+                                                 ToolbarIcons.Import,
+                                                 ToolbarAuthorize.Import,
+                                                 Translate("Nhập file mẫu")))
+
             Me.MainToolBar.Items.Add(Common.Common.CreateToolbarItem(CommonMessage.TOOLBARITEM_CREATE_BATCH,
                                                               ToolbarIcons.Add,
                                                               ToolbarAuthorize.None,

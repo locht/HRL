@@ -18,7 +18,7 @@ Imports System.Runtime.Serialization
 Imports System.Xml.Serialization
 
 
-<Assembly: EdmSchemaAttribute("8969a002-4fe4-46ad-8bdd-c21dd6c08894")>
+<Assembly: EdmSchemaAttribute("0fff206e-f997-492b-b2db-aee329952a28")>
 #Region "EDM Relationship Metadata"
 <Assembly: EdmRelationshipAttribute("ProfileModel", "FK_HU_NAT_HU_PRO", "HU_NATION", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_NATION), "HU_PROVINCE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_PROVINCE), True)>
 <Assembly: EdmRelationshipAttribute("ProfileModel", "FK_HU_PRO_HU_DIS", "HU_PROVINCE", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_PROVINCE), "HU_DISTRICT", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_DISTRICT), True)>
@@ -46016,21 +46016,21 @@ Public Partial Class HU_PRO_TRAIN_OUT_COMPANY
     ''' </summary>
     <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
     <DataMemberAttribute()>
-    Public Property POINT_LEVEL() As Nullable(Of Global.System.Decimal)
+    Public Property POINT_LEVEL() As Global.System.String
         Get
             Return _POINT_LEVEL
         End Get
         Set
             OnPOINT_LEVELChanging(value)
             ReportPropertyChanging("POINT_LEVEL")
-            _POINT_LEVEL = StructuralObject.SetValidValue(value)
+            _POINT_LEVEL = StructuralObject.SetValidValue(value, true)
             ReportPropertyChanged("POINT_LEVEL")
             OnPOINT_LEVELChanged()
         End Set
     End Property
 
-    Private _POINT_LEVEL As Nullable(Of Global.System.Decimal)
-    Private Partial Sub OnPOINT_LEVELChanging(value As Nullable(Of Global.System.Decimal))
+    Private _POINT_LEVEL As Global.System.String
+    Private Partial Sub OnPOINT_LEVELChanging(value As Global.System.String)
     End Sub
 
     Private Partial Sub OnPOINT_LEVELChanged()
