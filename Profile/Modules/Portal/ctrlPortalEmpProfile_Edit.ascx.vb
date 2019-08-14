@@ -123,7 +123,7 @@ Public Class ctrlPortalEmpProfile_Edit
                     txtHomePhone.Text = empCV.HOME_PHONE
                     txtMobilePhone.Text = empCV.MOBILE_PHONE
                     txtWorkEmail.Text = empCV.WORK_EMAIL
-                    txtPerEmail.Text = empCV.PER_ADDRESS
+                    txtPerEmail.Text = empCV.PER_EMAIL
                     txtFirstNameVN.Text = empCV.PERSON_INHERITANCE
                     txtBankNo.Text = empCV.BANK_NO
 
@@ -268,7 +268,7 @@ Public Class ctrlPortalEmpProfile_Edit
                         obj.HOME_PHONE = txtHomePhone.Text
                         obj.MOBILE_PHONE = txtMobilePhone.Text
                         obj.WORK_EMAIL = txtWorkEmail.Text
-                        obj.PER_ADDRESS = txtPerEmail.Text
+                        obj.PER_EMAIL = txtPerEmail.Text
                         obj.PERSON_INHERITANCE = txtFirstNameVN.Text
                         obj.BANK_NO = txtBankNo.Text
                         If cboBank.SelectedValue <> "" Then
