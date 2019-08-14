@@ -1696,6 +1696,19 @@
             <Property Name="STATUS" Type="varchar2" Nullable="true" MaxLength="1" />
             <Property Name="REASON_UNAPROVE" Type="nvarchar2" Nullable="true" MaxLength="250" />
             <Property Name="SEND_DATE" Type="date" Nullable="true" />
+            <Property Name="EXPIRE_DATE_IDNO" Type="date" Nullable="true" />
+            <Property Name="CONTACT_PER" Type="nvarchar2" Nullable="true" MaxLength="250" />
+            <Property Name="RELATION_PER_CTR" Type="number" Nullable="true" Precision="38" />
+            <Property Name="CONTACT_PER_MBPHONE" Type="nvarchar2" Nullable="true" MaxLength="250" />
+            <Property Name="VILLAGE" Type="nvarchar2" Nullable="true" MaxLength="250" />
+            <Property Name="HOME_PHONE" Type="nvarchar2" Nullable="true" MaxLength="250" />
+            <Property Name="MOBILE_PHONE" Type="nvarchar2" Nullable="true" MaxLength="250" />
+            <Property Name="WORK_EMAIL" Type="nvarchar2" Nullable="true" MaxLength="250" />
+            <Property Name="PER_EMAIL" Type="nvarchar2" Nullable="true" MaxLength="250" />
+            <Property Name="PERSON_INHERITANCE" Type="nvarchar2" Nullable="true" MaxLength="250" />
+            <Property Name="BANK_NO" Type="nvarchar2" Nullable="true" MaxLength="250" />
+            <Property Name="BANK_ID" Type="number" Nullable="true" Precision="38" />
+            <Property Name="BANK_BRANCH_ID" Type="number" Nullable="true" Precision="38" />
         </EntityType>
         <EntityType Name="HU_PRO_TRAIN_OUT_COMPANY_EDIT">
             <Key>
@@ -6173,6 +6186,19 @@
           <Property Type="String" Name="STATUS" MaxLength="1" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="REASON_UNAPROVE" MaxLength="250" FixedLength="false" Unicode="true" />
           <Property Type="DateTime" Name="SEND_DATE" />
+          <Property Type="DateTime" Name="EXPIRE_DATE_IDNO" />
+          <Property Type="String" Name="CONTACT_PER" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Type="Decimal" Name="RELATION_PER_CTR" Precision="38" Scale="0" />
+          <Property Type="String" Name="CONTACT_PER_MBPHONE" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="VILLAGE" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="HOME_PHONE" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="MOBILE_PHONE" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="WORK_EMAIL" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="PER_EMAIL" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="PERSON_INHERITANCE" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="BANK_NO" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Type="Decimal" Name="BANK_ID" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="BANK_BRANCH_ID" Precision="38" Scale="0" />
         </EntityType>
         <EntityType Name="HU_PRO_TRAIN_OUT_COMPANY_EDIT">
           <Key>
@@ -9735,6 +9761,19 @@
                     <ScalarProperty Name="STATUS" ColumnName="STATUS" />
                     <ScalarProperty Name="REASON_UNAPROVE" ColumnName="REASON_UNAPROVE" />
                     <ScalarProperty Name="SEND_DATE" ColumnName="SEND_DATE" />
+                    <ScalarProperty Name="EXPIRE_DATE_IDNO" ColumnName="EXPIRE_DATE_IDNO" />
+                    <ScalarProperty Name="CONTACT_PER" ColumnName="CONTACT_PER" />
+                    <ScalarProperty Name="RELATION_PER_CTR" ColumnName="RELATION_PER_CTR" />
+                    <ScalarProperty Name="CONTACT_PER_MBPHONE" ColumnName="CONTACT_PER_MBPHONE" />
+                    <ScalarProperty Name="VILLAGE" ColumnName="VILLAGE" />
+                    <ScalarProperty Name="HOME_PHONE" ColumnName="HOME_PHONE" />
+                    <ScalarProperty Name="MOBILE_PHONE" ColumnName="MOBILE_PHONE" />
+                    <ScalarProperty Name="WORK_EMAIL" ColumnName="WORK_EMAIL" />
+                    <ScalarProperty Name="PER_EMAIL" ColumnName="PER_EMAIL" />
+                    <ScalarProperty Name="PERSON_INHERITANCE" ColumnName="PERSON_INHERITANCE" />
+                    <ScalarProperty Name="BANK_NO" ColumnName="BANK_NO" />
+                    <ScalarProperty Name="BANK_ID" ColumnName="BANK_ID" />
+                    <ScalarProperty Name="BANK_BRANCH_ID" ColumnName="BANK_BRANCH_ID" />
                 </MappingFragment>
             </EntityTypeMapping>
         </EntitySetMapping>
@@ -11893,7 +11932,7 @@
     </Options>
     <!-- Diagram content (shape and connector positions) -->
     <Diagrams>
-      <Diagram Name="ProfileContext" ZoomLevel="67" ShowGrid="false" DisplayType="true" SnapToGrid="true">
+      <Diagram Name="ProfileContext" ZoomLevel="88" ShowGrid="false" DisplayType="true" SnapToGrid="true">
         <EntityTypeShape EntityType="ProfileModel.HU_PROVINCE" Width="1.5" PointX="3" PointY="9.625" Height="0.39999999999999858" IsExpanded="false" />
         <EntityTypeShape EntityType="ProfileModel.HU_DISTRICT" Width="1.75" PointX="5.25" PointY="9" Height="0.39999999999999858" IsExpanded="false" />
         <EntityTypeShape EntityType="ProfileModel.HU_NATION" Width="1.5" PointX="0.75" PointY="9.625" Height="0.40000000000000213" IsExpanded="false" />
@@ -12091,7 +12130,7 @@
         <EntityTypeShape EntityType="ProfileModel.HU_WELFARE_LIST_GW" Width="1.5" PointX="12.75" PointY="19.875" Height="0.39999999999999147" IsExpanded="false" />
         <EntityTypeShape EntityType="ProfileModel.HU_ASSET_MNG" Width="1.5" PointX="16.25" PointY="25" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="ProfileModel.HU_FAMILY_EDIT" Width="2.125" PointX="16.625" PointY="16.375" Height="10.826152343750003" IsExpanded="true" />
-        <EntityTypeShape EntityType="ProfileModel.HU_EMPLOYEE_EDIT" Width="1.5" PointX="18.75" PointY="19.875" Height="0.40000000000000568" IsExpanded="false" />
+        <EntityTypeShape EntityType="ProfileModel.HU_EMPLOYEE_EDIT" Width="2.125" PointX="22.875" PointY="16" Height="5.4417122395833353" IsExpanded="true" />
         <EntityTypeShape EntityType="ProfileModel.HU_PRO_TRAIN_OUT_COMPANY_EDIT" Width="2.875" PointX="2.375" PointY="31.875" Height="7.3647265625000031" IsExpanded="true" />
         <EntityTypeShape EntityType="ProfileModel.HU_WORKING_BEFORE_EDIT" Width="2.125" PointX="23.125" PointY="0.5" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="ProfileModel.HU_WELFARE_MNG" Width="1.5" PointX="2.75" PointY="20.875" Height="0.39999999999999147" IsExpanded="false" />
