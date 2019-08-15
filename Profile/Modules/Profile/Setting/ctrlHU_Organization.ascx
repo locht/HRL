@@ -135,7 +135,7 @@
             </tr>
             <tr>
                 <td class="lb">
-                   <asp:Label ID="lbRegion" runat="server" Text="Vùng"></asp:Label>
+                   <asp:Label ID="lbRegion" runat="server" Text="Vùng lương"></asp:Label>
                   <span class="lbReq"></span>
                 </td>
                 <td>
@@ -185,7 +185,7 @@
                     </tlk:radtextbox>
                 </td>
             </tr>
-            <tr>
+            <tr style = "display : none">
                 <td class="lb">
                     <asp:Label ID="lbLocationWork" runat="server" Text="Địa điểm làm việc"></asp:Label>
                   <span class="lbReq"></span>
@@ -195,7 +195,7 @@
                     </tlk:RadTextBox>
                 </td>
             </tr>
-            <tr>
+            <tr  style = "display : none">
                 <td class="lb">
                   <asp:Label ID="lbTypeDecision" runat="server" Text="Loại quyết định"></asp:Label>
                     <span class="lbReq"></span>
@@ -205,7 +205,7 @@
                     </tlk:RadTextBox>
                 </td>
             </tr>
-            <tr>
+            <tr  style = "display : none">
                 <td class="lb">
                  <asp:Label ID="lbNumberDecision" runat="server" Text="Số quyết định"></asp:Label>
                  <span class="lbReq"></span>
@@ -232,10 +232,10 @@
                     <tlk:RadDatePicker ID="rdFOUNDATION_DATE" runat="server">
                     </tlk:RadDatePicker>
                 </td>
-                <td class="lb">
-                <asp:Label ID="lbDicision_Date" runat="server" Text="Ngày giải thể"></asp:Label>
+                <td class="lb"  style = "display : none">
+                    <asp:Label ID="lbDicision_Date" runat="server" Text="Ngày giải thể"></asp:Label>
                 </td>
-                <td>
+                <td  style = "display : none">
                     <tlk:RadDatePicker ID="rdDicision_Date" runat="server">
                     </tlk:RadDatePicker>
                 </td>
@@ -261,16 +261,16 @@
                         runat="server" ID="chkOrgChart" ButtonType="ToggleButton">
                     </tlk:RadButton>--%>
                 </td>
-                <td>
-                  <asp:Label ID="lbFile" runat="server" Text="Tập tin đính kèm"></asp:Label>
-                <span class="lbReq"></span>
+                <td  style = "display : none">
+                    <asp:Label ID="lbFile" runat="server" Text="Tập tin đính kèm"></asp:Label>
+                    <span class="lbReq"></span>
                 </td>
                
-                <td colspan="2">
+                <td colspan="2"  style = "display : none">
                     <tlk:RadListBox ID="lstFile" runat="server" CheckBoxes="true" Height="100px" OnClientSelectedIndexChanging="OnClientItemSelectedIndexChanging"
                         Width="80%" />
                 </td>
-                 <td>
+                 <td  style = "display : none">
                     <tlk:RadButton ID="btnUploadFile" runat="server" Text="<%$ Translate: Upload %>"
                         CausesValidation="false">
                     </tlk:RadButton>
