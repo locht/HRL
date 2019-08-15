@@ -666,10 +666,14 @@ Public Class ctrlRegisterCONewEdit
             If IS_DEDUCT_SHIFT = 0 Then
                 cbo.Enabled = False
             Else
-                If SHIFT_DAY <= 0.5 Then
+                If IsDBNull(SHIFT_DAY) = True Then
                     cbo.Enabled = False
                 Else
-                    cbo.Enabled = True
+                    If SHIFT_DAY <= 0.5 Then
+                        cbo.Enabled = False
+                    Else
+                        cbo.Enabled = True
+                    End If
                 End If
             End If
         Catch ex As Exception

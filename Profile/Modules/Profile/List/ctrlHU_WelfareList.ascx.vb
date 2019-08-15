@@ -259,13 +259,14 @@ Public Class ctrlHU_WelfareList
                                      nmCHILD_OLD_TO, nmMONEY, lstbGender, lstCONTRACT_TYPE,
                                      dpSTART_DATE, dpEND_DATE, chkIS_AUTO)
                     txtCode.ReadOnly = True
-                    'txtCode.Text = rep.AutoGenCode("PL", "HU_WELFARE_LIST", "CODE")
+                   
                 Case CommonMessage.STATE_NORMAL
                     EnabledGridNotPostback(rgWelfareList, True)
                     EnableControlAll(False, txtCode, cboName, nmSENIORITY, nmCHILD_OLD_FROM, cbGroupTitle,
                                      nmCHILD_OLD_TO, nmMONEY, lstbGender, lstCONTRACT_TYPE,
                                      dpSTART_DATE, dpEND_DATE, chkIS_AUTO)
                     txtCode.ReadOnly = True
+                   
                 Case CommonMessage.STATE_EDIT
 
                     EnabledGridNotPostback(rgWelfareList, False)
@@ -485,7 +486,7 @@ Public Class ctrlHU_WelfareList
                     ClearControlValue(txtCode, cboName, nmSENIORITY, cbGroupTitle,
                                       nmMONEY, lstbGender, lstCONTRACT_TYPE,
                                       dpSTART_DATE, dpEND_DATE, chkIS_AUTO)
-                    chkIS_AUTO.Checked = Nothing
+					chkIS_AUTO.Checked = Nothing
                     rgWelfareList.Rebind()
                     If ctrlOrg.CurrentValue IsNot Nothing Then
                         orgid = Decimal.Parse(ctrlOrg.CurrentValue)
@@ -563,6 +564,12 @@ Public Class ctrlHU_WelfareList
                         Dim strGenderName As New List(Of String)
                         Dim strWorkStatusID As New List(Of String)
                         Dim strWorkStatusName As New List(Of String)
+
+                        If (ctrlOrg.CurrentValue = 1) Then
+                            ShowMessage("Vui lòng chỉ thiết lập phúc lợi theo công ty", NotifyType.Error)
+                            Exit Sub
+                        End If
+
                         For Each i As RadListBoxItem In lstbGender.CheckedItems
                             strGenderID.Add(i.Value.ToString())
                             strGenderName.Add(i.Text.ToString())
@@ -906,7 +913,8 @@ Public Class ctrlHU_WelfareList
             rep.Dispose()
             FillCheckBoxList(lstbGender, ListComboData.LIST_GENDER, "NAME_VN", "ID")
             FillCheckBoxList(lstCONTRACT_TYPE, ListComboData.LIST_CONTRACTTYPE, "NAME", "ID")
-            FillRadCombobox(cbGroupTitle, ListComboData.LIST_TITLE_GROUP, "NAME_VN", "ID", True)
+            FillRadCombobox(cbGroupTitle, ListComboData.LIST_TITLE_GROUP, "NAME_VN", "ID")
+
             Dim dtData = rep.GetOtherList("WELFARE", False)
             FillRadCombobox(cboName, dtData, "NAME", "ID", True)
             

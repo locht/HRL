@@ -74,7 +74,7 @@ Partial Public Class ctrlFindEmployeePopupDialog
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents chk_kiemnhiem As Global.System.Web.UI.WebControls.CheckBox
+    Protected WithEvents chk_kiemnhiem As Global.Telerik.Web.UI.RadButton
 
     '''<summary>
     '''cbTerminate control.

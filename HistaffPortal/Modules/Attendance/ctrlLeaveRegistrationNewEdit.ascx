@@ -234,7 +234,7 @@
                             </ItemTemplate>
                             <EditItemTemplate>
                                 <tlk:RadComboBox Width="125px" runat="server" ID="cbSTATUS_SHIFT"
-                                    ReadOnly="true" AutoPostBack="true" OnSelectedIndexChanged="cbSTATUS_SHIFT_SelectedIndexChanged">
+                                    ReadOnly="true" AutoPostBack="true" CausesValidation="false" OnSelectedIndexChanged="cbSTATUS_SHIFT_SelectedIndexChanged">
                                 </tlk:RadComboBox>
                             </EditItemTemplate>
                         </tlk:GridTemplateColumn>
