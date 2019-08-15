@@ -104,24 +104,6 @@ Partial Public Class ctrlDMCaLamViec
     Protected WithEvents cboMaCong As Global.Telerik.Web.UI.RadComboBox
 
     '''<summary>
-    '''cusMaCong control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents cusMaCong As Global.System.Web.UI.WebControls.CustomValidator
-
-    '''<summary>
-    '''cvalMaCong control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents cvalMaCong As Global.System.Web.UI.WebControls.CustomValidator
-
-    '''<summary>
     '''cboCongTy control.
     '''</summary>
     '''<remarks>
@@ -140,6 +122,15 @@ Partial Public Class ctrlDMCaLamViec
     Protected WithEvents rdHours_Start As Global.Telerik.Web.UI.RadTimePicker
 
     '''<summary>
+    '''RequiredFieldValidator5 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents RequiredFieldValidator5 As Global.System.Web.UI.WebControls.RequiredFieldValidator
+
+    '''<summary>
     '''rdHours_Stop control.
     '''</summary>
     '''<remarks>
@@ -147,6 +138,15 @@ Partial Public Class ctrlDMCaLamViec
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents rdHours_Stop As Global.Telerik.Web.UI.RadTimePicker
+
+    '''<summary>
+    '''RequiredFieldValidator6 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents RequiredFieldValidator6 As Global.System.Web.UI.WebControls.RequiredFieldValidator
 
     '''<summary>
     '''CompareValidator1 control.
@@ -185,6 +185,15 @@ Partial Public Class ctrlDMCaLamViec
     Protected WithEvents rdSTART_MID_HOURS As Global.Telerik.Web.UI.RadTimePicker
 
     '''<summary>
+    '''RequiredFieldValidator3 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents RequiredFieldValidator3 As Global.System.Web.UI.WebControls.RequiredFieldValidator
+
+    '''<summary>
     '''rdEND_MID_HOURS control.
     '''</summary>
     '''<remarks>
@@ -192,6 +201,15 @@ Partial Public Class ctrlDMCaLamViec
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents rdEND_MID_HOURS As Global.Telerik.Web.UI.RadTimePicker
+
+    '''<summary>
+    '''RequiredFieldValidator4 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents RequiredFieldValidator4 As Global.System.Web.UI.WebControls.RequiredFieldValidator
 
     '''<summary>
     '''CompareValidator2 control.
@@ -221,6 +239,15 @@ Partial Public Class ctrlDMCaLamViec
     Protected WithEvents rdHOURS_STAR_CHECKIN As Global.Telerik.Web.UI.RadTimePicker
 
     '''<summary>
+    '''RequiredFieldValidator7 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents RequiredFieldValidator7 As Global.System.Web.UI.WebControls.RequiredFieldValidator
+
+    '''<summary>
     '''rdHOURS_STAR_CHECKOUT control.
     '''</summary>
     '''<remarks>
@@ -228,6 +255,15 @@ Partial Public Class ctrlDMCaLamViec
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents rdHOURS_STAR_CHECKOUT As Global.Telerik.Web.UI.RadTimePicker
+
+    '''<summary>
+    '''RequiredFieldValidator8 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents RequiredFieldValidator8 As Global.System.Web.UI.WebControls.RequiredFieldValidator
 
     '''<summary>
     '''CompareValidator3 control.
