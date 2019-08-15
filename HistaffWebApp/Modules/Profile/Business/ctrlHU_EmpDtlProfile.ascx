@@ -305,7 +305,7 @@
                                             <tlk:RadComboBox runat="server" ID="cbObjectBook">
                                             </tlk:RadComboBox>
                                         </td>
-                                        <td class="lbInfo">
+                                        <td class="lbInfo" style = "display : none">
                                             <asp:Label runat="server" ID="lbObjectLabor" Text="Đối tượng lao động"></asp:Label>
                                             <span class="lbReq">*</span>
                                         </td>
@@ -317,17 +317,17 @@
                                                 runat="server" ErrorMessage="Bạn phải nhập đối tượng lao động" ToolTip="Bạn phải nhập đối tượng lao động">
                                             </asp:RequiredFieldValidator>
                                         </td>
-                                        <td class="lb3">
+                                        <td class="lb3" style = "display : none">
                                             <asp:Label runat="server" ID="lbObject" Text="Đối tượng chấm công"></asp:Label>
                                             <span class="lbReq">*</span>
                                         </td>
-                                        <td>
+                                        <td style = "display : none">
                                             <tlk:RadComboBox runat="server" ID="cboObject" SkinID="LoadDemand" OnClientSelectedIndexChanged="OnClientSelectedIndexChanged"
                                                 OnClientItemsRequesting="OnClientItemsRequesting">
                                             </tlk:RadComboBox>
-                                            <asp:RequiredFieldValidator ValidationGroup="EmpProfile" ID="reqObject" ControlToValidate="cboObject"
+                                           <%-- <asp:RequiredFieldValidator ValidationGroup="EmpProfile" ID="reqObject" ControlToValidate="cboObject"
                                                 runat="server" ErrorMessage="Bạn phải nhập đối tượng chấm công" ToolTip="Bạn phải nhập đối tượng chấm công">
-                                            </asp:RequiredFieldValidator>
+                                            </asp:RequiredFieldValidator>--%>
                                         </td>
                                     </tr>
                                     <tr>
