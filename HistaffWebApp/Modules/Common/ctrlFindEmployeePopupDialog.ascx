@@ -6,7 +6,7 @@
 <tlk:RadSplitter ID="RadSplitter1" runat="server" Width="100%" Height="100%">
     <tlk:RadPane ID="LeftPane" runat="server" MinWidth="280" Width="280px" Scrolling="None">
         <tlk:RadSplitter ID="RadSplitter2" runat="server" Width="100%" Height="100%" Orientation="Horizontal">
-            <tlk:RadPane ID="TopPanel" runat="server" Height="80px" Scrolling="None">
+            <tlk:RadPane ID="TopPanel" runat="server" Height="90px" Scrolling="None">
                 <table class="table-form">
                     <tr>
                         <td>
@@ -23,11 +23,14 @@
                         </td>
                     </tr>
                     <tr>
-                        <td colspan="3">
-                            <asp:CheckBox runat="server" ID="chk_kiemnhiem" AutoPostBack="true" />
-                            <%# Translate("Liệt kê cả nhân viên kiêm nhiệm")%>
+                        <td >
+                            <%--<asp:CheckBox runat="server" ID="chk_kiemnhiem" AutoPostBack="true" />
+                            <%# Translate("Liệt kê cả nhân viên kiêm nhiệm")%>--%>
                         </td>
-                        <td>
+                         <td colspan="2">
+                            <tlk:RadButton ID="chk_kiemnhiem" runat="server" ButtonType="ToggleButton" ToggleType="CheckBox"
+                                Text="<%$ Translate: Liệt kê cả nhân viên kiêm nhiệm%>">
+                            </tlk:RadButton>
                         </td>
                     </tr>
                     <tr>

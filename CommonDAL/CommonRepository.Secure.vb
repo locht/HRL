@@ -2281,7 +2281,7 @@ Partial Public Class CommonRepository
             'End If
             Dim str As String = "Kiêm nhiệm"
             If _filter.IS_KIEMNHIEM = 0 Then
-                query = query.Where(Function(f) Not f.emp_stt.NAME_VN.ToUpper().Contains(str.ToUpper()))
+                query = query.Where(Function(f) Not f.p.IS_KIEM_NHIEM IsNot Nothing)
             End If
             If _filter.MustHaveContract Then
                 query = query.Where(Function(f) f.p.CONTRACT_ID.HasValue)
@@ -2305,13 +2305,12 @@ Partial Public Class CommonRepository
                     query = query.Where(Function(f) f.p.IS_3B = False)
 
             End Select
-
             Dim lst = query.Select(Function(f) New EmployeePopupFindListDTO With {
                             .EMPLOYEE_CODE = f.p.EMPLOYEE_CODE,
                             .ID = f.p.ID,
                             .EMPLOYEE_ID = f.p.ID,
                             .FULLNAME_VN = f.p.FULLNAME_VN,
-                            .EMP_STATUS = f.emp_stt.NAME_VN,
+                            .EMP_STATUS = If(f.p.IS_KIEM_NHIEM IsNot Nothing, str, f.emp_stt.NAME_VN),
                             .FULLNAME_EN = f.p.FULLNAME_EN,
                             .JOIN_DATE = f.p.JOIN_DATE,
                             .ORG_NAME = f.o.NAME_VN,
