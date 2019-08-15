@@ -183,6 +183,9 @@ Public Class ctrlLeaveRegistrationNewEdit
     Protected Sub cbSTATUS_SHIFT_SelectedIndexChanged(ByVal sender As Object, ByVal e As RadComboBoxSelectedIndexChangedEventArgs)
         Try
             Dim edit = CType(sender, RadComboBox)
+            If edit.Enabled = False Then
+                Exit Sub
+            End If
             Dim item = CType(edit.NamingContainer, GridEditableItem)
             ' If Not IsNumeric(edit.SelectedValue) Then Exit Sub
             Dim EMPLOYEE_ID = item.GetDataKeyValue("EMPLOYEE_ID")
@@ -190,10 +193,12 @@ Public Class ctrlLeaveRegistrationNewEdit
             For Each rows In dtDetail.Rows
                 If rows("LEAVE_DAY") = LEAVE_DAY Then
                     rows("STATUS_SHIFT") = If(IsNumeric(edit.SelectedValue), edit.SelectedValue, 0)
-                    If edit.SelectedValue <> "" Then
-                        rows("DAY_NUM") = 0.5
+                    If edit.SelectedValue IsNot Nothing AndAlso edit.SelectedValue <> "" Then
+                        'rows("DAY_NUM") = 0.5
+                        rows("DAY_NUM") = Decimal.Parse(rows("SHIFT_DAY")) / 2
                     Else
-                        rows("DAY_NUM") = 1
+                        'rows("DAY_NUM") = 1
+                        rows("DAY_NUM") = Decimal.Parse(rows("SHIFT_DAY"))
                     End If
                     Exit For
                 End If
@@ -372,6 +377,16 @@ Public Class ctrlLeaveRegistrationNewEdit
             Throw ex
         End Try
     End Sub
+
+    Private Sub cbMANUAL_ID_SelectedIndexChanged(sender As Object, e As Telerik.Web.UI.RadComboBoxSelectedIndexChangedEventArgs) Handles cbMANUAL_ID.SelectedIndexChanged
+        Try
+            If (Not IsDate(rdLEAVE_FROM.SelectedDate) OrElse Not IsDate(rdLEAVE_TO.SelectedDate) OrElse dtDetail Is Nothing OrElse Not IsNumeric(rtEmployee_id.Text)) Then Exit Sub
+            GetLeaveSheet_Detail()
+            Cal_DayLeaveSheet()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
 #End Region
 
 #Region "Custom"
@@ -452,12 +467,16 @@ Public Class ctrlLeaveRegistrationNewEdit
         Dim arr As New ArrayList()
         Try
             Dim LEAVE_DAY = EditItem.GetDataKeyValue("LEAVE_DAY")
-            Dim STATUS_SHIFT
-            Dim MANUAL_ID
+            Dim STATUS_SHIFT As New Object
+            Dim MANUAL_ID As New Object
+            Dim IS_DEDUCT_SHIFT As New Object
+            Dim SHIFT_DAY As New Object
             For Each rows As DataRow In dtDetail.Rows
                 If rows("LEAVE_DAY") = LEAVE_DAY Then
                     STATUS_SHIFT = rows("STATUS_SHIFT")
                     MANUAL_ID = rows("MANUAL_ID")
+                    IS_DEDUCT_SHIFT = rows("IS_DEDUCT_SHIFT")
+                    SHIFT_DAY = rows("SHIFT_DAY")
                     Exit For
                 End If
             Next
@@ -475,6 +494,19 @@ Public Class ctrlLeaveRegistrationNewEdit
             If IsNumeric(STATUS_SHIFT) Then
                 cbo.SelectedValue = STATUS_SHIFT
                 cbo.Enabled = If(Not IsNumeric(MANUAL_ID), False, True)
+            End If
+            If IS_DEDUCT_SHIFT = 0 Then
+                cbo.Enabled = False
+            Else
+                If IsDBNull(SHIFT_DAY) = True Then
+                    cbo.Enabled = False
+                Else
+                    If SHIFT_DAY <= 0.5 Then
+                        cbo.Enabled = False
+                    Else
+                        cbo.Enabled = True
+                    End If
+                End If
             End If
         Catch ex As Exception
         End Try
@@ -511,6 +543,8 @@ Public Class ctrlLeaveRegistrationNewEdit
             Dim startTime As DateTime = DateTime.UtcNow
             If ListComboData Is Nothing Then
                 ListComboData = New Attendance.AttendanceBusiness.ComboBoxDataDTO
+
+                'Điều chỉnh Loại nghỉ (thêm điều kiện Loại xử lý Kiểu công: Đăng ký)
                 ListComboData.GET_LIST_TYPE_MANUAL_LEAVE = True
                 rep.GetComboboxData(ListComboData)
                 FillRadCombobox(cbMANUAL_ID, ListComboData.LIST_LIST_TYPE_MANUAL_LEAVE, "NAME_VN", "ID", True)
@@ -603,6 +637,5 @@ Public Class ctrlLeaveRegistrationNewEdit
         End Try
     End Sub
 #End Region
-
 
 End Class
