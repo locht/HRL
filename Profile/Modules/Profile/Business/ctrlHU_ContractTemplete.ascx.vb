@@ -710,7 +710,9 @@ Public Class ctrlHU_ContractTemplete
             If rdStartDate.SelectedDate IsNot Nothing And cboAppend_TypeID.SelectedValue <> 0 Then
                 Dim objContractType = rep.GetContractTypeID(cboAppend_TypeID.SelectedValue)
                 If objContractType IsNot Nothing Then
-                    rdExpireDate.SelectedDate = rdStartDate.SelectedDate.Value.AddMonths(objContractType.PERIOD)
+                    If objContractType.PERIOD IsNot Nothing And objContractType.PERIOD <> 0 Then
+                        rdExpireDate.SelectedDate = rdStartDate.SelectedDate.Value.AddMonths(objContractType.PERIOD)
+                    End If
                 End If
             End If
             rep.Dispose()
