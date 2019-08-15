@@ -399,7 +399,7 @@ Public Class ctrlDashboardHome
             Dim values(dtValues.Columns.Count) As String
             If dtValues.Rows.Count > 0 Then
                 For i As Integer = 0 To dtValues.Columns.Count - 1
-                    values(i) = dtValues.Rows(0)(i)
+                    values(i) = If(dtValues.Rows(0)(i).ToString() <> "", dtValues.Rows(0)(i), String.Empty)
                 Next
             End If
             If Email <> "" Then

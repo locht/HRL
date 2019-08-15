@@ -1200,7 +1200,7 @@ Partial Class ProfileRepository
                            Where wk.DECISION_TYPE_ID = recruitDecision.ID And wk.EMPLOYEE_ID = contractDto.EMPLOYEE_ID
                            Select wk).FirstOrDefault
         Dim updateWorking = (From wk In Context.HU_WORKING
-                             Where wk.STATUS_ID = 447 And wk.IS_WAGE = -1 And wk.IS_MISSION = 0 And wk.EMPLOYEE_ID = contractDto.EMPLOYEE_ID Order By wk.EFFECT_DATE Descending Select wk).FirstOrDefault
+                             Where (wk.STATUS_ID = 447 Or wk.STATUS_ID = 446) And wk.IS_WAGE = -1 And wk.IS_MISSION = 0 And wk.EMPLOYEE_ID = contractDto.EMPLOYEE_ID Order By wk.EFFECT_DATE Descending Select wk).FirstOrDefault
         Dim result = (From p In Context.HU_WORKING_ALLOW
                                                    From allow In Context.HU_ALLOWANCE_LIST.Where(Function(f) f.ID = p.ALLOWANCE_LIST_ID)
                                                    Where p.HU_WORKING_ID = contractDto.WORKING_ID
