@@ -1700,13 +1700,20 @@
                     cbo = $find('<%= cboPer_Ward.ClientID %>');
                     clearSelectRadcombo(cbo);
                     break;
+                case '<%= cboPer_District.ClientID %>':
+                    cbo = $find('<%= cboPer_Ward.ClientID %>');
+                    clearSelectRadcombo(cbo);
+                    break;
                 case '<%= cboNav_Province.ClientID %>':
                     cbo = $find('<%= cboNav_District.ClientID %>');
                     clearSelectRadcombo(cbo);
                     cbo = $find('<%= cboNav_Ward.ClientID %>');
                     clearSelectRadcombo(cbo);
                     break;
-
+                case '<%= cboNav_District.ClientID %>':
+                    cbo = $find('<%= cboNav_Ward.ClientID %>');
+                    clearSelectRadcombo(cbo);
+                    break;
                 case '<%= cbPROVINCEEMP_ID.ClientID %>':
                     cbo = $find('<%= cbDISTRICTEMP_ID.ClientID %>');
                     clearSelectRadcombo(cbo);
