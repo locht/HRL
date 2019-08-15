@@ -125,7 +125,7 @@
                             <asp:Label ID="lbGroupTitle" runat="server" Text="Nhóm chức danh"></asp:Label>
                         </td>
                         <td>
-                            <tlk:RadComboBox runat="server" ID="cbGroupTitle"  SkinID="LoadDemand" OnClientSelectedIndexChanged="OnClientSelectedIndexChanged"
+                            <tlk:RadComboBox runat="server" ID="cbGroupTitle"  OnClientSelectedIndexChanged="OnClientSelectedIndexChanged"
                                 OnClientItemsRequesting="OnClientItemsRequesting">
                             </tlk:RadComboBox>
                         </td>

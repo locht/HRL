@@ -3,7 +3,7 @@
 <%@ Import Namespace="Framework.UI" %>
 <link href="/Styles/StyleCustom.css" rel="stylesheet" type="text/css" />
 <tlk:RadSplitter ID="RadSplitter3" runat="server" Width="100%" Height="100%" Orientation="Horizontal">
-    <tlk:RadPane ID="RadPane1" runat="server" Height="245px" Scrolling="None">
+    <tlk:RadPane ID="RadPane1" runat="server" Height="200px" Scrolling="None">
         <tlk:RadToolBar ID="tbarMain" runat="server" />
         <asp:ValidationSummary ID="valSum" runat="server" />
         <asp:HiddenField ID="hfID" runat="server" />
@@ -78,6 +78,19 @@
                         runat="server" ErrorMessage="Bạn phải nhập thứ tự." ToolTip="Bạn phải nhập thứ tự.">
                     </asp:RequiredFieldValidator>
                 </td>
+                 <td class="lb">
+                    <asp:Label runat="server" ID="lbObject" Text="Đối tượng khen thưởng"></asp:Label>
+                </td>
+                <td>
+                    <tlk:RadComboBox ID="cbObject" runat="server">
+                    </tlk:RadComboBox>
+                     <asp:RequiredFieldValidator ID="RequiredFieldValidator2" ControlToValidate="cbLevel"
+                        runat="server" ErrorMessage="Bạn phải chọn đối tượng khen thưởng" ToolTip="Bạn phải chọn đối tượng khen thưởng"> 
+                    </asp:RequiredFieldValidator>
+                    <asp:CustomValidator ID="cusObject" ControlToValidate="cbObject" runat="server" ErrorMessage="Đối tượng khen thưởng không tồn tại hoặc đã ngừng áp dụng."
+                        ToolTip="Đối tượng khen thưởng không tồn tại hoặc đã ngừng áp dụng.">
+                    </asp:CustomValidator>
+                </td>
                 <td class="lb">
                     <asp:Label runat="server" ID="lbLevel" Text="Cấp khen thưởng"></asp:Label>
                 </td>
@@ -92,21 +105,9 @@
                     </asp:CustomValidator>
                 </td>
             </tr>
-            <tr>
-                <td class="lb">
-                    <asp:Label runat="server" ID="lbObject" Text="Đối tượng khen thưởng"></asp:Label>
-                </td>
-                <td>
-                    <tlk:RadComboBox ID="cbObject" runat="server">
-                    </tlk:RadComboBox>
-                     <asp:RequiredFieldValidator ID="RequiredFieldValidator2" ControlToValidate="cbLevel"
-                        runat="server" ErrorMessage="Bạn phải chọn đối tượng khen thưởng" ToolTip="Bạn phải chọn đối tượng khen thưởng"> 
-                    </asp:RequiredFieldValidator>
-                    <asp:CustomValidator ID="cusObject" ControlToValidate="cbObject" runat="server" ErrorMessage="Đối tượng khen thưởng không tồn tại hoặc đã ngừng áp dụng."
-                        ToolTip="Đối tượng khen thưởng không tồn tại hoặc đã ngừng áp dụng.">
-                    </asp:CustomValidator>
-                </td>
-            </tr>
+           <%-- <tr>
+               
+            </tr>--%>
             <tr>
                 <td class="lb">
                     <asp:Label runat="server" ID="lbRemark" Text="Ghi chú"></asp:Label>
