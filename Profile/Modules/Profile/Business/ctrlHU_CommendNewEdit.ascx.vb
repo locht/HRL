@@ -204,6 +204,11 @@ Public Class ctrlHU_CommendNewEdit
             GetParams()
             Refresh()
             UpdateControlState()
+            If (cboStatus.Text = "") Then
+                cboStatus.Enabled = True
+            Else
+                cboStatus.Enabled = False
+            End If
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
             'DisplayException(Me.ViewName, Me.ID, ex)
@@ -638,7 +643,6 @@ Public Class ctrlHU_CommendNewEdit
                                 '    Exit Sub
                                 'End If
                                 objCommend.ID = Decimal.Parse(hidID.Value)
-
                                 If rep.ModifyCommend(objCommend, gID) Then
                                     'Dim str As String = "getRadWindow().close('1');"
                                     'ScriptManager.RegisterStartupScript(Me.Page, Me.Page.GetType, "clientButtonClicking", str, True)
