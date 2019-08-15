@@ -6,6 +6,8 @@ Imports Telerik.Web.UI
 Imports HistaffFrameworkPublic
 Imports Ionic.Zip
 Imports System.IO
+Imports System.Globalization
+
 Public Class ctrlHU_ContractAppendix
     Inherits Common.CommonView
 
@@ -19,6 +21,15 @@ Public Class ctrlHU_ContractAppendix
             ViewState(Me.ID & "_Contract") = value
         End Set
     End Property
+    Private Property dtLogs As DataTable
+        Get
+            Return PageViewState(Me.ID & "_dtLogs")
+        End Get
+        Set(ByVal value As DataTable)
+            PageViewState(Me.ID & "_dtLogs") = value
+        End Set
+    End Property
+
 
     Property Contracts As List(Of FileContractDTO)
         Get
@@ -299,7 +310,7 @@ Public Class ctrlHU_ContractAppendix
                                 file.Delete()
                             End If
                         Next
-                    End If                   
+                    End If
 
                     'Dim inforForm = prp.GetContractForm(sv_FormID)
 
@@ -344,6 +355,27 @@ Public Class ctrlHU_ContractAppendix
                     ctrlMessageBox.ActionName = CommonMessage.TOOLBARITEM_DELETE
                     ctrlMessageBox.DataBind()
                     ctrlMessageBox.Show()
+                Case Common.CommonMessage.TOOLBARITEM_NEXT
+                    Dim dataSet As New DataSet
+                    Dim dtVariable As New DataTable
+                    Dim tempPath = "~/ReportTemplates//Profile//Import//import_phuluchopdong.xls"
+                    If Not File.Exists(System.IO.Path.Combine(Server.MapPath(tempPath))) Then
+                        ' Mẫu báo cáo không tồn tại
+                        ShowMessage(Translate("AT_IMPORTTIMESHEET_NO_EXIST_TEMPLATE"), Framework.UI.Utilities.NotifyType.Warning)
+                        Exit Sub
+                    End If
+                    Dim dsDanhMuc As DataSet
+                    Dim _param = New ParamDTO With {.ORG_ID = Decimal.Parse(ctrlOrg.CurrentValue),
+                                         .IS_DISSOLVE = ctrlOrg.IsDissolve}
+                    dsDanhMuc = rep.EXPORT_PLHD(_param)
+
+                    Using xls As New AsposeExcelCommon
+                        Dim bCheck = xls.ExportExcelTemplate(
+                          System.IO.Path.Combine(Server.MapPath(tempPath)), "IMPORT_PLHĐ", dsDanhMuc, Nothing, Response)
+                    End Using
+                Case Common.CommonMessage.TOOLBARITEM_IMPORT
+                    ctrlUpload1.isMultiple = False
+                    ctrlUpload1.Show()
             End Select
             rep.Dispose()
             'UpdateControlState()
@@ -469,39 +501,39 @@ Public Class ctrlHU_ContractAppendix
         End If
     End Sub
 
-    Private Sub ctrlUpload1_OkClicked(sender As Object, e As System.EventArgs) Handles ctrlUpload1.OkClicked
-        txtUploadFile.Text = ""
-        Dim fileName As String
-        If ctrlUpload1.UploadedFiles.Count >= 1 Then
-            For i = 0 To ctrlUpload1.UploadedFiles.Count - 1
-                Dim file As UploadedFile = ctrlUpload1.UploadedFiles(i)
-                If file.GetExtension = ".xls" Or file.GetExtension = ".xlsx" Then
-                    fileName = System.IO.Path.Combine(Server.MapPath("~/ReportTemplates/Profile/Title/"), file.FileName)
-                    file.SaveAs(fileName, True)
-                    If Contract IsNot Nothing Then
-                        If ctrlUpload1.UploadedFiles.Count >= 2 Then
-                            If Contract.FILEUPLOAD IsNot Nothing Then
-                                Contract.FILEUPLOAD = Contract.FILEUPLOAD + ";" + file.FileName + ";"
-                            Else
-                                Contract.FILEUPLOAD = file.FileName + ";"
-                            End If
-                        Else
-                            If Contract.FILEUPLOAD IsNot Nothing Then
-                                Contract.FILEUPLOAD = Contract.FILEUPLOAD + ";" + file.FileName
-                            Else
-                                Contract.FILEUPLOAD = file.FileName
-                            End If
+    'Private Sub ctrlUpload1_OkClicked(sender As Object, e As System.EventArgs) Handles ctrlUpload1.OkClicked
+    '    txtUploadFile.Text = ""
+    '    Dim fileName As String
+    '    If ctrlUpload1.UploadedFiles.Count >= 1 Then
+    '        For i = 0 To ctrlUpload1.UploadedFiles.Count - 1
+    '            Dim file As UploadedFile = ctrlUpload1.UploadedFiles(i)
+    '            If file.GetExtension = ".xls" Or file.GetExtension = ".xlsx" Then
+    '                fileName = System.IO.Path.Combine(Server.MapPath("~/ReportTemplates/Profile/Title/"), file.FileName)
+    '                file.SaveAs(fileName, True)
+    '                If Contract IsNot Nothing Then
+    '                    If ctrlUpload1.UploadedFiles.Count >= 2 Then
+    '                        If Contract.FILEUPLOAD IsNot Nothing Then
+    '                            Contract.FILEUPLOAD = Contract.FILEUPLOAD + ";" + file.FileName + ";"
+    '                        Else
+    '                            Contract.FILEUPLOAD = file.FileName + ";"
+    '                        End If
+    '                    Else
+    '                        If Contract.FILEUPLOAD IsNot Nothing Then
+    '                            Contract.FILEUPLOAD = Contract.FILEUPLOAD + ";" + file.FileName
+    '                        Else
+    '                            Contract.FILEUPLOAD = file.FileName
+    '                        End If
 
-                        End If
-                        txtUploadFile.Text = Contract.FILEUPLOAD
-                    End If
-                Else
-                    ShowMessage(Translate("Vui lòng chọn file excel !!! Hệ thống chỉ nhận file .xls hoặc .xlsx"), NotifyType.Error)
-                    Exit Sub
-                End If
-            Next
-        End If
-    End Sub
+    '                    End If
+    '                    txtUploadFile.Text = Contract.FILEUPLOAD
+    '                End If
+    '            Else
+    '                ShowMessage(Translate("Vui lòng chọn file excel !!! Hệ thống chỉ nhận file .xls hoặc .xlsx"), NotifyType.Error)
+    '                Exit Sub
+    '            End If
+    '        Next
+    '    End If
+    'End Sub
 
     Private Sub btnDownload_Click(sender As Object, e As System.EventArgs) Handles btnDownload.Click
         Try
@@ -740,7 +772,238 @@ Public Class ctrlHU_ContractAppendix
         'rep.Dispose()
     End Sub
 
+    ''' <lastupdate>
+    ''' 06/09/2017 14:00
+    ''' </lastupdate>
+    ''' <summary>
+    ''' Xu ly su kien click cho button ctrUpload
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
+    ''' <remarks></remarks>
+    Private Sub ctrlUpload_OkClicked(ByVal sender As Object, ByVal e As System.EventArgs) Handles ctrlUpload1.OkClicked
+        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+        Try
+            Import_Data()
+        Catch ex As Exception
+            ShowMessage(Translate("Import bị lỗi. Kiểm tra lại biểu mẫu Import"), NotifyType.Error)
+        End Try
+    End Sub
+
+    Private Sub Import_Data()
+        Try
+            Dim rep As New ProfileRepository
+            Dim tempPath As String = ConfigurationManager.AppSettings("ExcelFileFolder")
+            Dim countFile As Integer = ctrlUpload1.UploadedFiles.Count
+            Dim fileName As String
+            Dim savepath = Context.Server.MapPath(tempPath)
+            Dim ds As New DataSet
+            If countFile > 0 Then
+                Dim file As UploadedFile = ctrlUpload1.UploadedFiles(countFile - 1)
+                fileName = System.IO.Path.Combine(savepath, file.FileName)
+                file.SaveAs(fileName, True)
+                Using ep As New ExcelPackage
+                    ds = ep.ReadExcelToDataSet(fileName, False)
+                End Using
+            End If
+            If ds Is Nothing Then
+                Exit Sub
+            End If
+            TableMapping(ds.Tables(0))
+
+            If dtLogs Is Nothing Or dtLogs.Rows.Count <= 0 Then
+                'Dim count As Integer = ds.Tables(0).Columns.Count - 6
+                'For i = 0 To count
+                '    If ds.Tables(0).Columns(i).ColumnName.Contains("Column") Then
+                '        ds.Tables(0).Columns.RemoveAt(i)
+                '        i = i - 1
+                '    End If
+                'Next
+
+                Dim DocXml As String = String.Empty
+                Dim sw As New StringWriter()
+                If ds.Tables(0) IsNot Nothing AndAlso ds.Tables(0).Rows.Count > 0 Then
+                    ds.Tables(0).WriteXml(sw, False)
+                    DocXml = sw.ToString
+                    If rep.INPORT_PLHD(DocXml) Then
+                        ShowMessage(Translate(Common.CommonMessage.MESSAGE_TRANSACTION_SUCCESS), Framework.UI.Utilities.NotifyType.Success)
+                        rgContract.Rebind()
+                    Else
+                        ShowMessage(Translate(Common.CommonMessage.MESSAGE_TRANSACTION_FAIL), Framework.UI.Utilities.NotifyType.Warning)
+                    End If
+                End If
+            Else
+                Session("EXPORTREPORT") = dtLogs
+                ScriptManager.RegisterStartupScript(Me.Page, Me.Page.GetType(), "javascriptfunction", "ExportReport('HU_ANNUALLEAVE_PLANS_ERROR')", True)
+                ShowMessage(Translate("Có lỗi trong quá trình import. Lưu file lỗi chi tiết"), Utilities.NotifyType.Error)
+            End If
+        Catch ex As Exception
+
+        End Try
+    End Sub
+
+    Private Sub TableMapping(ByVal dtTemp As System.Data.DataTable)
+        Dim rep As New ProfileBusinessClient
+        ' lấy dữ liệu thô từ excel vào và tinh chỉnh dữ liệu
+        dtTemp.Columns(0).ColumnName = "EMPLOYEE_CODE"
+        dtTemp.Columns(6).ColumnName = "ID_CONTRACT"
+        dtTemp.Columns(7).ColumnName = "STT"
+        dtTemp.Columns(8).ColumnName = "CONTRACT_NO"
+        dtTemp.Columns(9).ColumnName = "CONTENT"
+        dtTemp.Columns(11).ColumnName = "SALARY"
+        dtTemp.Columns(13).ColumnName = "START_DATE"
+        dtTemp.Columns(14).ColumnName = "EXPIRE_DATE"
+        dtTemp.Columns(15).ColumnName = "SIGN_DATE"
+        dtTemp.Columns(16).ColumnName = "SIGN_ID"
+        dtTemp.Columns(17).ColumnName = "SIGN_ID2"
+        dtTemp.Columns(19).ColumnName = "STATUS_ID"
+        dtTemp.Columns(20).ColumnName = "REMARK"
+        'XOA DONG TIEU DE VA HEADER
+        dtTemp.Rows(0).Delete()
+        dtTemp.Rows(1).Delete()
+        ' add Log
+        Dim _error As Boolean = True
+        Dim count As Integer
+        Dim newRow As DataRow
+        If dtLogs Is Nothing Then
+            dtLogs = New DataTable("data")
+            dtLogs.Columns.Add("ID", GetType(Integer))
+            dtLogs.Columns.Add("EMPLOYEE_CODE", GetType(String))
+            dtLogs.Columns.Add("DISCIPTION", GetType(String))
+        End If
+        dtLogs.Clear()
+
+        'XOA NHUNG DONG DU LIEU NULL EMPLOYYE CODE
+        Dim rowDel As DataRow
+        For i As Integer = 0 To dtTemp.Rows.Count - 1
+            If dtTemp.Rows(i).RowState = DataRowState.Deleted OrElse dtTemp.Rows(i).RowState = DataRowState.Detached Then Continue For
+            rowDel = dtTemp.Rows(i)
+            If rowDel("EMPLOYEE_CODE").ToString.Trim = "" Then
+                dtTemp.Rows(i).Delete()
+            End If
+        Next
+
+        For Each rows As DataRow In dtTemp.Rows
+            If rows.RowState = DataRowState.Deleted OrElse rows.RowState = DataRowState.Detached Then Continue For
+
+            newRow = dtLogs.NewRow
+            newRow("ID") = count + 1
+            newRow("EMPLOYEE_CODE") = rows("EMPLOYEE_CODE")
+
+            'Nhân viên k có trong hệ thống
+            If rep.CHECK_EMPLOYEE(rows("EMPLOYEE_CODE")) = 0 Then
+                newRow("DISCIPTION") = "Mã nhân viên - Không tồn tại,"
+                _error = False
+            End If
+
+            'NGUOI KY k có trong hệ thống
+            If Not IsDBNull(rows("SIGN_ID")) Then
+                If rep.CHECK_SIGN(rows("SIGN_ID")) = 0 Then
+                    newRow("DISCIPTION") = newRow("DISCIPTION") + "Người ký 1 - Không tồn tại,"
+                    _error = False
+                End If
+            End If
+
+            'NGUOI KY k có trong hệ thống
+            If Not IsDBNull(rows("SIGN_ID2")) Then
+                If rep.CHECK_SIGN(rows("SIGN_ID2")) = 0 Then
+                    newRow("DISCIPTION") = newRow("DISCIPTION") + "Người ký 2 - Không tồn tại,"
+                    _error = False
+                End If
+            End If
+
+            'Hop dong k có trong hệ thống
+            If IsNumeric(rows("ID_CONTRACT")) Then
+                If rep.CHECK_CONTRACT(rows("ID_CONTRACT")) = 0 Then
+                    newRow("DISCIPTION") = newRow("DISCIPTION") + "Hợp đồng - Không tồn tại,"
+                    _error = False
+                End If
+            Else
+                newRow("DISCIPTION") = newRow("DISCIPTION") + "Hợp đồng - Không đúng định dạng,"
+                _error = False
+            End If
+
+            'Ho so luong k có trong hệ thống
+            If IsNumeric(rows("SALARY")) Then
+                If rep.CHECK_SALARY(rows("SALARY")) = 0 Then
+                    newRow("DISCIPTION") = newRow("DISCIPTION") + "Lương ký PLHĐ - Không tồn tại,"
+                    _error = False
+                End If
+            Else
+                newRow("DISCIPTION") = newRow("DISCIPTION") + "Lương ký PLHĐ - Không đúng định dạng,"
+                _error = False
+            End If
+
+            If IsDBNull(rows("START_DATE")) OrElse rows("START_DATE") = "" OrElse CheckDate(rows("START_DATE")) = False Then
+                rows("START_DATE") = "NULL"
+                newRow("DISCIPTION") = newRow("DISCIPTION") + "Ngày hiệu lực - Không đúng định dạng,"
+                _error = False
+            End If
+
+            If IsNumeric(rows("ID_CONTRACT")) AndAlso CheckDate(rows("START_DATE")) Then
+                Dim result As Date
+                DateTime.TryParseExact(rows("START_DATE"), "dd/MM/yyyy", New CultureInfo("en-US"), DateTimeStyles.None, result)
+                If rep.CHECK_CONTRACT_EXITS(rows("ID_CONTRACT"), rows("EMPLOYEE_CODE"), result) = 1 Then
+                    newRow("DISCIPTION") = newRow("DISCIPTION") + "PLHĐ - Tồn tại,"
+                    _error = False
+                End If
+            End If
+
+            If IsDBNull(rows("CONTRACT_NO")) Then
+                rows("CONTRACT_NO") = "NULL"
+                newRow("DISCIPTION") = newRow("DISCIPTION") + "Số PLHĐ - Không đúng định dạng,"
+                _error = False
+            End If
+
+            If Not IsDBNull(rows("EXPIRE_DATE")) OrElse rows("EXPIRE_DATE") <> "" Then
+                If CheckDate(rows("EXPIRE_DATE")) = False Then
+                    rows("EXPIRE_DATE") = "NULL"
+                    newRow("DISCIPTION") = newRow("DISCIPTION") + "Ngày kết thúc - Không đúng định dạng,"
+                    _error = False
+                End If
+            End If
+
+            If Not IsDBNull(rows("SIGN_DATE")) Then
+                If CheckDate(rows("SIGN_DATE")) = False Then
+                    rows("SIGN_DATE") = "NULL"
+                    newRow("DISCIPTION") = newRow("DISCIPTION") + "Ngày ký - Không đúng định dạng,"
+                    _error = False
+                End If
+            End If
+
+            If Not (IsNumeric(rows("STATUS_ID"))) Then
+                rows("STATUS_ID") = 0
+                newRow("DISCIPTION") = newRow("DISCIPTION") + "Trạng thái - Không đúng định dạng,"
+                _error = False
+            End If
+
+            If _error = False Then
+                dtLogs.Rows.Add(newRow)
+                count = count + 1
+                _error = True
+            End If
+        Next
+        dtTemp.AcceptChanges()
+    End Sub
+
+    Private Function CheckDate(ByVal value As String) As Boolean
+        Dim dateCheck As Boolean
+        Dim result As Date
+
+        If value = "" Or value = "&nbsp;" Then
+            value = ""
+            Return True
+        End If
+
+        Try
+            dateCheck = DateTime.TryParseExact(value, "dd/MM/yyyy", New CultureInfo("en-US"), DateTimeStyles.None, result)
+            Return dateCheck
+        Catch ex As Exception
+            Return False
+        End Try
+    End Function
+
 #End Region
 
-    
+
 End Class

@@ -1410,6 +1410,83 @@ Partial Public Class ProfileRepository
         End Using
 
     End Function
+
+    Public Function EXPORT_PLHD(ByVal _param As ParamDTO) As DataSet
+        Using rep As New ProfileBusinessClient
+            Try
+                Return rep.EXPORT_PLHD(_param, Me.Log)
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+    End Function
+
+    Public Function CHECK_EMPLOYEE(ByVal P_EMP_CODE As String) As Integer
+        Using rep As New ProfileBusinessClient
+            Try
+                Return rep.CHECK_EMPLOYEE(P_EMP_CODE)
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+    End Function
+
+    Public Function CHECK_CONTRACT(ByVal P_ID As Decimal) As Integer
+        Using rep As New ProfileBusinessClient
+            Try
+                Return rep.CHECK_CONTRACT(P_ID)
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+    End Function
+
+    Public Function CHECK_SALARY(ByVal P_ID As Decimal) As Integer
+        Using rep As New ProfileBusinessClient
+            Try
+                Return rep.CHECK_SALARY(P_ID)
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+    End Function
+
+    Public Function CHECK_CONTRACT_EXITS(ByVal P_CONTRACT As Decimal, ByVal P_EMP_CODE As String, ByVal P_DATE As Date) As Integer
+        Using rep As New ProfileBusinessClient
+            Try
+                Return rep.CHECK_CONTRACT_EXITS(P_CONTRACT, P_EMP_CODE, P_DATE)
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+    End Function
+
+    Public Function CHECK_SIGN(ByVal P_EMP_CODE As String) As Integer
+        Using rep As New ProfileBusinessClient
+            Try
+                Return rep.CHECK_SIGN(P_EMP_CODE)
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+    End Function
+
+    Public Function INPORT_PLHD(ByVal P_DOCXML As String) As Boolean
+        Using rep As New ProfileBusinessClient
+            Try
+                Return rep.INPORT_PLHD(P_DOCXML, Me.Log)
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+    End Function
 #End Region
 
 End Class

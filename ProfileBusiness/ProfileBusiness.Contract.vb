@@ -457,5 +457,83 @@ Namespace ProfileBusiness.ServiceImplementations
             End Using
         End Function
 
+        Public Function EXPORT_PLHD(ByVal _param As ParamDTO, ByVal log As UserLog) As DataSet _
+         Implements ServiceContracts.IProfileBusiness.EXPORT_PLHD
+            Using rep As New ProfileRepository
+                Try
+                    Return rep.EXPORT_PLHD(_param, log)
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
+
+        Public Function CHECK_EMPLOYEE(ByVal P_EMP_CODE As String) As Integer Implements ServiceContracts.IProfileBusiness.CHECK_EMPLOYEE
+            Using rep As New ProfileRepository
+                Try
+
+                    Return rep.CHECK_EMPLOYEE(P_EMP_CODE)
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
+
+        Public Function CHECK_CONTRACT(ByVal P_ID As Decimal) As Integer Implements ServiceContracts.IProfileBusiness.CHECK_CONTRACT
+            Using rep As New ProfileRepository
+                Try
+
+                    Return rep.CHECK_CONTRACT(P_ID)
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
+
+        Public Function CHECK_SALARY(ByVal P_ID As Decimal) As Integer Implements ServiceContracts.IProfileBusiness.CHECK_SALARY
+            Using rep As New ProfileRepository
+                Try
+
+                    Return rep.CHECK_SALARY(P_ID)
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
+
+        Public Function CHECK_CONTRACT_EXITS(ByVal P_CONTRACT As Decimal, ByVal P_EMP_CODE As String, ByVal P_DATE As Date) As Integer Implements ServiceContracts.IProfileBusiness.CHECK_CONTRACT_EXITS
+            Using rep As New ProfileRepository
+                Try
+
+                    Return rep.CHECK_CONTRACT_EXITS(P_CONTRACT, P_EMP_CODE, P_DATE)
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
+
+
+        Public Function CHECK_SIGN(ByVal P_EMP_CODE As String) As Integer Implements ServiceContracts.IProfileBusiness.CHECK_SIGN
+            Using rep As New ProfileRepository
+                Try
+
+                    Return rep.CHECK_SIGN(P_EMP_CODE)
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
+
+        Public Function INPORT_PLHD(ByVal P_DOCXML As String, ByVal log As UserLog) As Boolean Implements ServiceContracts.IProfileBusiness.INPORT_PLHD
+            Using rep As New ProfileRepository
+                Try
+
+                    Return rep.INPORT_PLHD(P_DOCXML, log)
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
+
     End Class
 End Namespace
