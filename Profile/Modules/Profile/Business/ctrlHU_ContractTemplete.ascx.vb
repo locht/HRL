@@ -26,6 +26,7 @@ Public Class ctrlHU_ContractTemplete
     Dim dtFile As New DataTable
     Protected WithEvents ctrlFindEmployeePopup As ctrlFindEmployeePopup
     Protected WithEvents ctrlFindSigner As ctrlFindEmployeePopup
+    Protected WithEvents ctrlFindSigner2 As ctrlFindEmployeePopup
     Protected WithEvents ctrlFindSalaryPopup As ctrlFindSalaryPopup
     Private Property EmpCode As EmployeeDTO
     ' Protected WithEvents ctrlLiquidate As ctrlContract_Liquidate
@@ -308,6 +309,9 @@ Public Class ctrlHU_ContractTemplete
                         If hidSign.Value <> "" Then
                             objContract.SIGN_ID = hidSign.Value
                         End If
+                        If hidSign2.Value <> "" Then
+                            objContract.SIGN_ID2 = hidSign2.Value
+                        End If
                         If hidWorkingID.Value <> "" Then
                             objContract.WORKING_ID = hidWorkingID.Value
                         End If
@@ -315,7 +319,9 @@ Public Class ctrlHU_ContractTemplete
                         objContract.SIGN_DATE = rdSignDate.SelectedDate
 
                         objContract.SIGNER_NAME = txtSign.Text
+                        objContract.SIGNER_NAME2 = txtSign2.Text
                         objContract.SIGNER_TITLE = txtSign_Title.Text
+                        objContract.SIGNER_TITLE2 = txtSign_Title2.Text
                         objContract.STT = STT
                         'If rdExpireDate.SelectedDate IsNot Nothing Then
                         '    If Not rep.CheckExpireFileContract(rdStartDate.SelectedDate, rdExpireDate.SelectedDate, objContract.ID_CONTRACT) Then
@@ -506,6 +512,15 @@ Public Class ctrlHU_ContractTemplete
             DisplayException(Me.ViewName, Me.ID, ex)
         End Try
     End Sub
+    Private Sub btnSign2_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnSign2.Click
+        Try
+            isLoadPopup = 4
+            UpdateControlState()
+            ctrlFindSigner2.Show()
+        Catch ex As Exception
+            DisplayException(Me.ViewName, Me.ID, ex)
+        End Try
+    End Sub
 
     Private Sub ctrlFindSignPopup_EmployeeSelected(ByVal sender As Object, ByVal e As System.EventArgs) Handles ctrlFindSigner.EmployeeSelected
         Dim lstCommonEmployee As New List(Of CommonBusiness.EmployeePopupFindDTO)
@@ -519,6 +534,23 @@ Public Class ctrlHU_ContractTemplete
                 hidSign.Value = item.ID
                 txtSign.Text = item.FULLNAME_VN
                 txtSign_Title.Text = item.TITLE_NAME
+            End If
+        Catch ex As Exception
+
+        End Try
+    End Sub
+    Private Sub ctrlFindSignPopup2_EmployeeSelected(ByVal sender As Object, ByVal e As System.EventArgs) Handles ctrlFindSigner2.EmployeeSelected
+        Dim lstCommonEmployee As New List(Of CommonBusiness.EmployeePopupFindDTO)
+        'Dim rep As New ProfileRepository
+        'Dim repOrg As New ProfileRepository
+        'Dim title As TitleDTO
+        Try
+            lstCommonEmployee = CType(ctrlFindSigner2.SelectedEmployee, List(Of CommonBusiness.EmployeePopupFindDTO))
+            If lstCommonEmployee.Count <> 0 Then
+                Dim item = lstCommonEmployee(0)
+                hidSign2.Value = item.ID
+                txtSign2.Text = item.FULLNAME_VN
+                txtSign_Title2.Text = item.TITLE_NAME
             End If
         Catch ex As Exception
 
@@ -539,7 +571,7 @@ Public Class ctrlHU_ContractTemplete
     End Sub
 
     Private Sub ctrlFind_CancelClick(ByVal sender As Object, ByVal e As System.EventArgs) _
-      Handles ctrlFindSigner.CancelClicked,
+      Handles ctrlFindSigner.CancelClicked, ctrlFindSigner2.CancelClicked,
       ctrlFindEmployeePopup.CancelClicked,
       ctrlFindSalaryPopup.CancelClicked
         isLoadPopup = 0
@@ -793,9 +825,14 @@ Public Class ctrlHU_ContractTemplete
                     If Contract.SIGN_ID IsNot Nothing Then
                         hidSign.Value = Contract.SIGN_ID
                     End If
+                    If Contract.SIGN_ID2 IsNot Nothing Then
+                        hidSign2.Value = Contract.SIGN_ID2
+                    End If
 
                     txtSign.Text = Contract.SIGNER_NAME
+                    txtSign2.Text = Contract.SIGNER_NAME2
                     txtSign_Title.Text = Contract.SIGNER_TITLE
+                    txtSign_Title2.Text = Contract.SIGNER_TITLE2
 
                     rdSignDate.SelectedDate = Contract.SIGN_DATE
 
@@ -929,10 +966,10 @@ Public Class ctrlHU_ContractTemplete
 
         Try
             Dim crc As New Crc32()
-            
+
             Dim fileNameZip As String = txtUploadFile.Text.Trim
 
-          
+
             Dim file As System.IO.FileInfo = New System.IO.FileInfo(path & fileNameZip)
             Response.Clear()
             Response.AddHeader("Content-Disposition", "attachment; filename=" + file.Name)
@@ -1041,6 +1078,14 @@ Public Class ctrlHU_ContractTemplete
                         ctrlFindSigner.MustHaveContract = False
                         ctrlFindSigner.LoadAllOrganization = True
                     End If
+                Case 4
+                    If Not FindSigner2.Controls.Contains(ctrlFindSigner2) Then
+                        ctrlFindSigner2 = Me.Register("ctrlFindSigner2", "Common", "ctrlFindEmployeePopup")
+                        FindSigner2.Controls.Add(ctrlFindSigner2)
+                        ctrlFindSigner2.MultiSelect = False
+                        ctrlFindSigner2.MustHaveContract = False
+                        ctrlFindSigner2.LoadAllOrganization = True
+                    End If
                 Case 3
                     If Not FindSalary.Controls.Contains(ctrlFindSalaryPopup) Then
                         ctrlFindSalaryPopup = Me.Register("ctrlFindSalaryPopup", "Profile", "ctrlFindSalaryPopup", "Shared")
@@ -1083,7 +1128,9 @@ Public Class ctrlHU_ContractTemplete
         ReadOnlyRadComBo(cboAppend_TypeID, Not bCheck)
         ReadOnlyRadComBo(cboStatus_ID, Not bCheck)
         btnSign.ReadOnly = Not bCheck
+        btnSign2.ReadOnly = Not bCheck
         txtSign_Title.Enabled = bCheck
+        txtSign_Title2.Enabled = bCheck
         txtRemark.Enabled = bCheck
         rntxtBasicSal.Enabled = bCheck
     End Sub
@@ -1105,11 +1152,13 @@ Public Class ctrlHU_ContractTemplete
         cboContract.SelectedIndex = 0
         cboStatus_ID.SelectedIndex = 0
         txtSign_Title.Text = String.Empty
+        txtSign_Title2.Text = String.Empty
         txtRemark.Text = String.Empty
         rgContract.MasterTableView.ClearSelectedItems()
         rgContract.DataSource = New List(Of FileContractDTO)
         rgContract.Rebind()
         txtSign.Text = String.Empty
+        txtSign2.Text = String.Empty
         rntxtBasicSal.ClearValue()
         rgAllow.MasterTableView.ClearSelectedItems()
         rgAllow.DataSource = New List(Of WorkingAllowanceDTO)
@@ -1345,7 +1394,7 @@ Public Class ctrlHU_ContractTemplete
             'Dim repOrg As New ProfileRepository
             Dim repEmp As New ProfileBusinessRepository
             Dim obj = repEmp.GetEmployeCurrentByID(New WorkingDTO With {.EMPLOYEE_ID = empID, .IS_WAGE = False, .EFFECT_DATE = If(rdStartDate.SelectedDate Is Nothing, Date.Now.Date, rdStartDate.SelectedDate)})
-            
+
 
             hidEmployeeID.Value = empID
             txtEmployeeCode.Text = obj.EMPLOYEE_CODE

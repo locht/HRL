@@ -226,13 +226,22 @@ Namespace ProfileBusiness
         Private SIGNER_NAMEField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private SIGNER_NAME2Field As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private SIGNER_TITLEField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private SIGNER_TITLE2Field As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private SIGN_DATEField As System.Nullable(Of Date)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private SIGN_IDField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private SIGN_ID2Field As System.Nullable(Of Decimal)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private SIGN_ORG_IDField As System.Nullable(Of Decimal)
@@ -1151,6 +1160,19 @@ Namespace ProfileBusiness
         End Property
         
         <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property SIGNER_NAME2() As String
+            Get
+                Return Me.SIGNER_NAME2Field
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.SIGNER_NAME2Field, value) <> true) Then
+                    Me.SIGNER_NAME2Field = value
+                    Me.RaisePropertyChanged("SIGNER_NAME2")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
         Public Property SIGNER_TITLE() As String
             Get
                 Return Me.SIGNER_TITLEField
@@ -1159,6 +1181,19 @@ Namespace ProfileBusiness
                 If (Object.ReferenceEquals(Me.SIGNER_TITLEField, value) <> true) Then
                     Me.SIGNER_TITLEField = value
                     Me.RaisePropertyChanged("SIGNER_TITLE")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property SIGNER_TITLE2() As String
+            Get
+                Return Me.SIGNER_TITLE2Field
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.SIGNER_TITLE2Field, value) <> true) Then
+                    Me.SIGNER_TITLE2Field = value
+                    Me.RaisePropertyChanged("SIGNER_TITLE2")
                 End If
             End Set
         End Property
@@ -1185,6 +1220,19 @@ Namespace ProfileBusiness
                 If (Me.SIGN_IDField.Equals(value) <> true) Then
                     Me.SIGN_IDField = value
                     Me.RaisePropertyChanged("SIGN_ID")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property SIGN_ID2() As System.Nullable(Of Decimal)
+            Get
+                Return Me.SIGN_ID2Field
+            End Get
+            Set
+                If (Me.SIGN_ID2Field.Equals(value) <> true) Then
+                    Me.SIGN_ID2Field = value
+                    Me.RaisePropertyChanged("SIGN_ID2")
                 End If
             End Set
         End Property

@@ -90,4 +90,10 @@
     Public Property IS_TER As Boolean
     Public Property FILENAME As String
     Public Property UPLOADFILE As String
+
+    ' Thêm người ký 2
+    Public Property SIGN_ID2 As Decimal?
+    Public Property SIGNER_TITLE2 As String
+    Public Property SIGNER_NAME2 As String
+
 End Class

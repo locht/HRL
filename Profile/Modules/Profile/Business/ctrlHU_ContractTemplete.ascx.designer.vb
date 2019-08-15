@@ -50,6 +50,15 @@ Partial Public Class ctrlHU_ContractTemplete
     Protected WithEvents hidSign As Global.System.Web.UI.WebControls.HiddenField
 
     '''<summary>
+    '''hidSign2 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents hidSign2 As Global.System.Web.UI.WebControls.HiddenField
+
+    '''<summary>
     '''hidOrgID control.
     '''</summary>
     '''<remarks>
@@ -491,6 +500,51 @@ Partial Public Class ctrlHU_ContractTemplete
     Protected WithEvents txtSign_Title As Global.Telerik.Web.UI.RadTextBox
 
     '''<summary>
+    '''lbSign2 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbSign2 As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''txtSign2 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtSign2 As Global.Telerik.Web.UI.RadTextBox
+
+    '''<summary>
+    '''btnSign2 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btnSign2 As Global.Telerik.Web.UI.RadButton
+
+    '''<summary>
+    '''lbSign_Title2 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbSign_Title2 As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''txtSign_Title2 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtSign_Title2 As Global.Telerik.Web.UI.RadTextBox
+
+    '''<summary>
     '''lbAppend_Content control.
     '''</summary>
     '''<remarks>
@@ -786,6 +840,15 @@ Partial Public Class ctrlHU_ContractTemplete
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents FindSigner As Global.System.Web.UI.WebControls.PlaceHolder
+
+    '''<summary>
+    '''FindSigner2 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents FindSigner2 As Global.System.Web.UI.WebControls.PlaceHolder
 
     '''<summary>
     '''FindSalary control.
