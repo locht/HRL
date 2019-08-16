@@ -130,8 +130,17 @@
                     <%# Translate("Ngày hưởng chế độ thai sản")%>
                 </td>
                 <td>
+                     <tlk:RadAjaxPanel ID="RadAjaxPanel3" runat="server" OnAjaxRequest="RadAjaxPanel1_AjaxRequest">
+                    </tlk:RadAjaxPanel>
+                    <tlk:RadCodeBlock ID="RadCodeBlock4" runat="server">
+                        <script type="text/javascript">
+                            function OnClientSelectedIndexChanged(sender, eventArgs) {
+                                $find("<%= RadAjaxPanel1.ClientID%>").ajaxRequestWithTarget("<%= RadAjaxPanel1.UniqueID %>", sender.get_id());
+                            }
+                        </script>
+                    </tlk:RadCodeBlock>
                     <tlk:RadDatePicker runat="server" DateInput-DateFormat="dd/MM/yyyy" ID="dataFromEnjoy"
-                        TabIndex="5">
+                        TabIndex="5" ClientEvents-OnDateSelected="OnClientSelectedIndexChanged">
                     </tlk:RadDatePicker>
                 </td>
                 <td class="lb">

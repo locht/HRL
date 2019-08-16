@@ -392,7 +392,10 @@ Public Class ctrlInsMaternityDetail
                     InsCommon.SetString(txtDEP, lstSource.Rows(0)("ORG_NAME"))
                     InsCommon.SetString(txtPOSITION, lstSource.Rows(0)("POSITION_NAME"))
                     txtEMPID.Text = lstSource.Rows(0)("EMPID")
-
+                Else
+                    ResetForm()
+                    ShowMessage(Translate("Nhân viên chưa có thông tin bảo hiểm. Vui lòng kiểm tra lại"), Utilities.NotifyType.Warning)
+                    Exit Sub
                 End If
 
             End If
@@ -468,6 +471,12 @@ Public Class ctrlInsMaternityDetail
                         dateTo.SelectedDate = dateFrom.SelectedDate.Value.AddMonths(6)
                     Else
                         dateTo.SelectedDate = Nothing
+                    End If
+                Case "dataFromEnjoy"
+                    If dataFromEnjoy.SelectedDate IsNot Nothing Then
+                        dataToEnjoy.SelectedDate = dataFromEnjoy.SelectedDate.Value.AddMonths(12)
+                    Else
+                        dataToEnjoy.SelectedDate = Nothing
                     End If
             End Select
         End If

@@ -130,7 +130,7 @@
                 </td>
                 <td>
                     <tlk:RadDatePicker runat="server" DateInput-DateFormat="dd/MM/yyyy" ID="dataFromEnjoy"
-                        TabIndex="5">
+                        TabIndex="5" ClientEvents-OnDateSelected="OnClientSelectedIndexChanged">
                     </tlk:RadDatePicker>
                 </td>
                 <td class="lb">
