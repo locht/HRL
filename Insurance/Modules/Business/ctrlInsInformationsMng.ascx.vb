@@ -84,12 +84,10 @@ Public Class ctrlInsInformationsMng
                                        ToolbarItem.Create,
                                        ToolbarItem.Edit,
                                        ToolbarItem.Delete,
-                                       ToolbarItem.Export,
-                                       ToolbarItem.HIExt,
-                                       ToolbarItem.HIUpdateInfo)
+                                       ToolbarItem.Export)
 
-            CType(Me.MainToolBar.Items(4), RadToolBarButton).Text = "Gia hạn thẻ BHYT"
-            CType(Me.MainToolBar.Items(5), RadToolBarButton).Text = "Import thông tin BH"            
+            'CType(Me.MainToolBar.Items(4), RadToolBarButton).Text = "Gia hạn thẻ BHYT"
+            'CType(Me.MainToolBar.Items(5), RadToolBarButton).Text = "Import thông tin BH"            
             ctrlOrg.LoadDataAfterLoaded = True
             ctrlOrg.OrganizationType = OrganizationType.OrganizationLocation
 

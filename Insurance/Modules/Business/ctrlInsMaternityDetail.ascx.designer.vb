@@ -212,6 +212,24 @@ Partial Public Class ctrlInsMaternityDetail
     Protected WithEvents RequiredFieldValidator2 As Global.System.Web.UI.WebControls.RequiredFieldValidator
 
     '''<summary>
+    '''RadAjaxPanel3 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents RadAjaxPanel3 As Global.Telerik.Web.UI.RadAjaxPanel
+
+    '''<summary>
+    '''RadCodeBlock4 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents RadCodeBlock4 As Global.Telerik.Web.UI.RadCodeBlock
+
+    '''<summary>
     '''dataFromEnjoy control.
     '''</summary>
     '''<remarks>
