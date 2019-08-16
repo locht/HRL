@@ -503,9 +503,9 @@ Public Class ctrlHU_WageMng
                 newRow("OTHERSALARY1") = If(IsNumeric(rows("OTHERSALARY1")), Decimal.Parse(rows("OTHERSALARY1")), 0)
                 newRow("OTHERSALARY2") = If(IsNumeric(rows("OTHERSALARY2")), Decimal.Parse(rows("OTHERSALARY2")), 0)
                 newRow("OTHERSALARY3") = If(IsNumeric(rows("OTHERSALARY3")), Decimal.Parse(rows("OTHERSALARY3")), 0)
-                newRow("OTHERSALARY4") = If(IsNumeric(rows("OTHERSALARY4")), Decimal.Parse(rows("OTHERSALARY4")), 0)
-                newRow("OTHERSALARY5") = If(IsNumeric(rows("OTHERSALARY5")), Decimal.Parse(rows("OTHERSALARY5")), 0)
-                newRow("LTT_V1") = If(IsNumeric(rows("LTT_V1")), Decimal.Parse(rows("LTT_V1")), 0)
+                'newRow("OTHERSALARY4") = If(IsNumeric(rows("OTHERSALARY4")), Decimal.Parse(rows("OTHERSALARY4")), 0)
+                'newRow("OTHERSALARY5") = If(IsNumeric(rows("OTHERSALARY5")), Decimal.Parse(rows("OTHERSALARY5")), 0)
+                'newRow("LTT_V1") = If(IsNumeric(rows("LTT_V1")), Decimal.Parse(rows("LTT_V1")), 0)
                 newRow("SAL_TYPE_ID") = If(IsNumeric(rows("SAL_TYPE_ID")), rows("SAL_TYPE_ID"), 0)
                 newRow("TAX_ID") = If(IsNumeric(rows("TAX_ID")), rows("TAX_ID"), 0)
                 newRow("SAL_GROUP_ID") = If(IsNumeric(rows("SAL_GROUP_ID")), rows("SAL_GROUP_ID"), 0)
@@ -540,12 +540,7 @@ Public Class ctrlHU_WageMng
 #Region "Custom"
     Private Sub Template_ImportHoSoLuong()
         Dim rep As New Profile.ProfileBusinessRepository
-        'Dim param As New Profile.ProfileBusiness.ParamDTO
         Try
-            'Dim is_disolve = Request.Params("IS_DISSOLVE")
-            'Dim org_id = Decimal.Parse(Request.Params("ORG_ID"))
-            'param.ORG_ID = org_id
-            'param.IS_DISSOLVE = is_disolve
             Dim configPath As String = ConfigurationManager.AppSettings("PathImportFolder")
             Dim dsData As DataSet = rep.GetHoSoLuongImport()
             dsData.Tables(0).TableName = "Table"
