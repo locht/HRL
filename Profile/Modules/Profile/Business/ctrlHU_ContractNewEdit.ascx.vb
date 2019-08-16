@@ -62,6 +62,22 @@ Public Class ctrlHU_ContractNewEdit
             ViewState(Me.ID & "_code_timekeeping") = value
         End Set
     End Property
+    Property start_rankid As Integer
+        Get
+            Return ViewState(Me.ID & "_start_rankid")
+        End Get
+        Set(ByVal value As Integer)
+            ViewState(Me.ID & "_start_rankid") = value
+        End Set
+    End Property
+    Property object_labour As Integer
+        Get
+            Return ViewState(Me.ID & "_object_labour")
+        End Get
+        Set(ByVal value As Integer)
+            ViewState(Me.ID & "_object_labour") = value
+        End Set
+    End Property
     Property direct_manager As Integer
         Get
             Return ViewState(Me.ID & "_direct_manager")
@@ -331,6 +347,12 @@ Public Class ctrlHU_ContractNewEdit
                         objContract.OBJECTTIMEKEEPING = code_timekeeping
                         If direct_manager <> 0 Then
                             objContract.DIRECT_MANAGER = direct_manager
+                        End If
+                        If start_rankid <> 0 Then
+                            objContract.STAFF_RANK_ID = start_rankid
+                        End If
+                        If object_labour <> 0 Then
+                            objContract.OBJECT_LABOUR = object_labour
                         End If
                         If hidSign2.Value <> "" Then
                             objContract.SIGN_ID2 = Decimal.Parse(hidSign2.Value)
@@ -1093,6 +1115,12 @@ Public Class ctrlHU_ContractNewEdit
                 If item.DIRECT_MANAGER IsNot Nothing Then
                     direct_manager = item.DIRECT_MANAGER
                 End If
+                If item.STAFF_RANK_ID IsNot Nothing Then
+                    start_rankid = item.STAFF_RANK_ID
+                End If
+                If item.OBJECT_LABOR IsNot Nothing Then
+                    object_labour = item.OBJECT_LABOR
+                End If
 
                 txtEmployeeCode.Text = item.EMPLOYEE_CODE
                 txtEmployeeName.Text = item.FULLNAME_VN
@@ -1234,5 +1262,5 @@ Public Class ctrlHU_ContractNewEdit
 #End Region
 
 
-   
+
 End Class

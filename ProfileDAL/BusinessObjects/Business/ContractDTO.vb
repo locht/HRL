@@ -64,6 +64,7 @@
     Public Property OBJECTTIMEKEEPING As Decimal?
     Public Property ID_SIGN_CONTRACT As Decimal?
     Public Property NAME_SIGN_CONTRACT As String
+    Public Property OBJECT_LABOUR As Decimal?
     'id ten va chuc danh tai thoi diem ky hop dong cua ng ky 2
     Public Property SIGN_ID2 As Decimal?
     Public Property SIGNER_TITLE2 As String

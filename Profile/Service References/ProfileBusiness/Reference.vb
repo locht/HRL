@@ -2058,6 +2058,9 @@ Namespace ProfileBusiness
         Private OBJECTTIMEKEEPINGField As System.Nullable(Of Decimal)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private OBJECT_LABOURField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private ORG_CODEField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -2516,6 +2519,19 @@ Namespace ProfileBusiness
                 If (Me.OBJECTTIMEKEEPINGField.Equals(value) <> true) Then
                     Me.OBJECTTIMEKEEPINGField = value
                     Me.RaisePropertyChanged("OBJECTTIMEKEEPING")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property OBJECT_LABOUR() As System.Nullable(Of Decimal)
+            Get
+                Return Me.OBJECT_LABOURField
+            End Get
+            Set
+                If (Me.OBJECT_LABOURField.Equals(value) <> true) Then
+                    Me.OBJECT_LABOURField = value
+                    Me.RaisePropertyChanged("OBJECT_LABOUR")
                 End If
             End Set
         End Property
