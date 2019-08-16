@@ -42,19 +42,19 @@
                     <asp:RequiredFieldValidator ID="RequiredFieldValidator1" ControlToValidate="txtNameVN"
                         runat="server" Text="*" ErrorMessage="<%$ Translate: Bạn phải nhập tên ca làm việc. %>"></asp:RequiredFieldValidator>
                 </td>
-                <td class="lb">
+                <td class="lb" style = "display:none">
                     <%# Translate("Mã công")%><span class="lbReq">*</span>
                 </td>
-                <td>
+                <td style = "display:none">
                     <tlk:RadComboBox ID="cboMaCong" runat="server" Width="180px">
                     </tlk:RadComboBox>
-                    <asp:CustomValidator ID="cusMaCong" runat="server" ErrorMessage="<%$ Translate: Bạn phải chọn mã công. %>"
+                    <%--<asp:CustomValidator ID="cusMaCong" runat="server" ErrorMessage="<%$ Translate: Bạn phải chọn mã công. %>"
                         ToolTip="<%$ Translate: Bạn phải chọn mã công. %>" ClientValidationFunction="cusMaCong">
                     </asp:CustomValidator>
                     <asp:CustomValidator ID="cvalMaCong" ControlToValidate="cboMaCong" runat="server"
                         ErrorMessage="<%$ Translate: Mã công không tồn tại hoặc đã ngừng áp dụng. %>"
                         ToolTip="<%$ Translate: Mã công không tồn tại hoặc đã ngừng áp dụng. %>">
-                    </asp:CustomValidator>
+                    </asp:CustomValidator>--%>
                 </td>
                  <td class="lb">
                     <%# Translate("Công ty")%>

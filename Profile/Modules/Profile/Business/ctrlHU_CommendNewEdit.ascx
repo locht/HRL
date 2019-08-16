@@ -82,23 +82,28 @@
                     <asp:Label runat="server" ID="lbDecisionNo" Text="Số quyết định"></asp:Label>
                 </td>
                 <td>
-                    <tlk:RadTextBox ID="txtDecisionNo" runat="server" TabIndex="3">
+                    <tlk:RadTextBox ID="txtDecisionNo" runat="server" TabIndex="3" AutoPostBack="true">
                     </tlk:RadTextBox>
-                    <asp:CustomValidator ID="cusDecisionNo" runat="server" ErrorMessage="Số quyết định đã tồn tại"
+                    <%--<asp:CustomValidator ID="cusDecisionNo" runat="server" ErrorMessage="Số quyết định đã tồn tại"
                         ToolTip="Số quyết định đã tồn tại">
-                    </asp:CustomValidator>
+                    </asp:CustomValidator>--%>
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator5" ControlToValidate="cboCommendType"
+                        runat="server" ErrorMessage="<%$ Translate: Số quyết định đã tồn tại %>" ToolTip="<%$ Translate: Số quyết định đã tồn tại %>"> </asp:RequiredFieldValidator>
                 </td>
                 <td class="lb">
                     <asp:Label runat="server" ID="lbStatus" Text="Trạng thái"></asp:Label>
                 </td>
                 <td>
-                    <tlk:RadComboBox ID="cboStatus" runat="server" TabIndex="3">
+                    <tlk:RadComboBox ID="cboStatus" runat="server" TabIndex="3" >
                     </tlk:RadComboBox>
-                    <asp:CustomValidator ID="cvalStatus" runat="server" ErrorMessage="Bạn phải nhập trạng thái."
+                   <%-- <asp:CustomValidator ID="cvalStatus" runat="server" ErrorMessage="Bạn phải nhập trạng thái."
                         ToolTip="Bạn phải nhập trạng thái."> </asp:CustomValidator>
                     <asp:CustomValidator ID="cusStatus" ControlToValidate="cboStatus" runat="server"
                         ErrorMessage="Trạng thái không tồn tại hoặc đã ngừng áp dụng." ToolTip="Trạng thái không tồn tại hoặc đã ngừng áp dụng.">
-                    </asp:CustomValidator>
+                    </asp:CustomValidator>--%>
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator6" ControlToValidate="cboCommendType"
+                        runat="server" ErrorMessage="<%$ Translate: Bạn phải chọn trạng thái %>" ToolTip="<%$ Translate: Bạn phải chọn trạng thái %>"> </asp:RequiredFieldValidator>
+              
                 </td>
             </tr>
             <tr>
@@ -106,14 +111,18 @@
                     <asp:Label runat="server" ID="lbSignDate" Text="Ngày ký"></asp:Label>
                 </td>
                 <td>
-                    <tlk:RadDatePicker ID="rdSignDate" runat="server" TabIndex="3">
+                    <tlk:RadDatePicker ID="rdSignDate" runat="server" TabIndex="3" AutoPostBack="true">
                     </tlk:RadDatePicker>
                     <%--   <asp:RequiredFieldValidator ID="reqsigndate" ControlToValidate="rdSignDate" runat="server"
                         ErrorMessage="Bạn phải nhập ngày ký." ToolTip="Bạn phải nhập ngày ký."> 
                     </asp:RequiredFieldValidator>--%>
-                    <asp:CompareValidator ID="CompareValidator1" runat="server" ControlToValidate="rdEffectDate"
+                  <%--  <asp:CompareValidator ID="CompareValidator1" runat="server" ControlToValidate="rdEffectDate"
                         Type="Date" ControlToCompare="rdSignDate" Operator="GreaterThanEqual" ErrorMessage="Ngày hiệu lực phải lớn hơn Ngày ký"
-                        ToolTip="Ngày hiệu lực phải lớn hơn Ngày ký"></asp:CompareValidator>
+                        ToolTip="Ngày hiệu lực phải lớn hơn Ngày ký"></asp:CompareValidator>--%>
+                          <asp:RequiredFieldValidator ID="RequiredFieldValidator3" ControlToValidate="rdEffectDate" runat="server"
+                       Type="Date" ControlToCompare="rdSignDate" Operator="GreaterThanEqual" ErrorMessage="Ngày hiệu lực phải lớn hơn Ngày ký"
+                        ToolTip="Ngày hiệu lực phải lớn hơn Ngày ký"> 
+                    </asp:RequiredFieldValidator>
                 </td>
                 <td class="lb">
                     <asp:Label runat="server" ID="lbSignerName" Text="Người phê duyệt"></asp:Label>
@@ -184,13 +193,13 @@
                     <asp:Label runat="server" ID="lbCommendType" Text="Hình thức khen thưởng"></asp:Label>
                 </td>
                 <td>
-                    <tlk:RadComboBox ID="cboCommendType" runat="server" CausesValidation="False" TabIndex="3">
+                    <tlk:RadComboBox ID="cboCommendType" runat="server" CausesValidation="true" TabIndex="3" AutoPostBack="true">
                     </tlk:RadComboBox>
-                    <%-- <asp:RequiredFieldValidator ID="RequiredFieldValidator3" ControlToValidate="cboCommendType"
-                        runat="server" ErrorMessage="<%$ Translate: Bạn phải chọn Hình thức khen thưởng %>" ToolTip="<%$ Translate: Bạn phải chọn Hình thức khen thưởng %>"> </asp:RequiredFieldValidator>--%>
-                    <asp:CustomValidator ID="cusCommendType" ControlToValidate="cboCommendType" runat="server"
+                     <asp:RequiredFieldValidator ID="RequiredFieldValidator_cboCommendType" ControlToValidate="cboCommendType"
+                        runat="server" ErrorMessage="<%$ Translate: Bạn phải chọn Hình thức khen thưởng %>" ToolTip="<%$ Translate: Bạn phải chọn Hình thức khen thưởng %>"> </asp:RequiredFieldValidator>
+                 <%--   <asp:CustomValidator ID="cusCommendType" ControlToValidate="cboCommendType" runat="server"
                         ErrorMessage="Hình thức khen thưởng không tồn tại hoặc đã ngừng áp dụng." ToolTip="Hình thức khen thưởng không tồn tại hoặc đã ngừng áp dụng.">
-                    </asp:CustomValidator>
+                    </asp:CustomValidator>--%>
                 </td>
                 <td class="lb">
                     <asp:Label runat="server" ID="lbCommend_Title" Text="Danh hiệu khen thưởng"></asp:Label>

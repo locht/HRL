@@ -474,16 +474,16 @@ Public Class ctrlHU_WageNewEdit
                                 Exit Sub
                             End If
                         Else
-                            If basicSalary.Text <> "" And basicSalary.Text = 0 Then
-                                ShowMessage(Translate("Bạn phải nhập lương cơ bản"), NotifyType.Warning)
-                                Exit Sub
-                            End If
+                            'If basicSalary.Text <> "" Then
+                            '    ShowMessage(Translate("Bạn phải nhập lương cơ bản"), NotifyType.Warning)
+                            '    Exit Sub
+                            'End If
                         End If
-                        factorSal = If(IsNumeric(rnFactorSalary.Text), Decimal.Parse(rnFactorSalary.Text), 0)
-                        If factorSal <= 0 Then
-                            ShowMessage(Translate("Hệ số/Mức thưởng phải lớn hơn 0"), NotifyType.Warning)
-                            Exit Sub
-                        End If
+                        'factorSal = If(IsNumeric(rnFactorSalary.Text), Decimal.Parse(rnFactorSalary.Text), 0)
+                        'If factorSal <= 0 Then
+                        '    ShowMessage(Translate("Hệ số/Mức thưởng phải lớn hơn 0"), NotifyType.Warning)
+                        '    Exit Sub
+                        'End If
 
                         Dim gID As Decimal
                         With objWorking
@@ -978,8 +978,8 @@ Public Class ctrlHU_WageNewEdit
                 End If
             End Using
             dtSalaryGroup = dtData
-
-            CalculatorSalary()
+            'tam thoi khoa ham nay lai,,chua hieu tai s goi o cho nay,khi nao co bug thi xem lai sau
+            'CalculatorSalary()
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
             _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
@@ -1364,6 +1364,8 @@ Public Class ctrlHU_WageNewEdit
             If IsNumeric(rnFactorSal) AndAlso rnFactorSal > 0 Then
                 basicSal = rnFactorSal * _lttv
                 basicSalary.Value = basicSal
+            Else
+                    basicSalary.Value = 0
             End If
 
 

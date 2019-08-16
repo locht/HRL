@@ -2713,6 +2713,21 @@ Namespace ProfileBusiness.ServiceContracts
 
         <OperationContract()>
         Function GET_PROCESS_PLCONTRACT(ByVal P_EMP_CODE As String) As DataTable
+        <OperationContract()>
+        Function EXPORT_PLHD(ByVal _param As ParamDTO, ByVal log As UserLog) As DataSet
+
+        <OperationContract()>
+        Function CHECK_EMPLOYEE(ByVal P_EMP_CODE As String) As Integer
+        <OperationContract()>
+        Function CHECK_CONTRACT(ByVal P_ID As Decimal) As Integer
+        <OperationContract()>
+        Function CHECK_SALARY(ByVal P_ID As Decimal) As Integer
+        <OperationContract()>
+        Function CHECK_CONTRACT_EXITS(ByVal P_CONTRACT As Decimal, ByVal P_EMP_CODE As String, ByVal P_DATE As Date) As Integer
+        <OperationContract()>
+        Function CHECK_SIGN(ByVal P_EMP_CODE As String) As Integer
+        <OperationContract()>
+        Function INPORT_PLHD(ByVal P_DOCXML As String, ByVal log As UserLog) As Boolean
     End Interface
 
 End Namespace

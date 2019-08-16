@@ -132,6 +132,15 @@ Public Class ctrlHU_DisciplineNewEdit
             ViewState(Me.ID & "_DesciplineID") = value
         End Set
     End Property
+
+    Property State_Id As Decimal
+        Get
+            Return ViewState(Me.ID & "_State_Id")
+        End Get
+        Set(value As Decimal)
+            ViewState(Me.ID & "_State_Id") = value
+        End Set
+    End Property
 #End Region
 
 #Region "Page"
@@ -302,6 +311,8 @@ Public Class ctrlHU_DisciplineNewEdit
                     rnAmountInMonth.Value = Discipline.AMOUNT_IN_MONTH
                     rnAmountDeductedMonth.Value = Discipline.AMOUNT_DEDUCT_AMOUNT
                     txtDecisionNo_Discipline.Text = Discipline.NO_DISCIPLINE
+
+                    State_Id = Discipline.STATUS_ID
 
                     rntxtMoney.Value = Discipline.MONEY
                     hidID.Value = Discipline.ID.ToString
@@ -1105,6 +1116,34 @@ Public Class ctrlHU_DisciplineNewEdit
                     Next
 
                     rgEmployee.Rebind()
+                Case "CreateQD"
+                    Dim EmpID As Decimal
+                    If State_Id = ProfileCommon.DECISION_STATUS.APPROVE_ID Then
+                        If cboDisciplineObj.SelectedValue = 401 Then
+                            'Ca nhan
+                            For Each dr As GridDataItem In rgEmployee.Items
+                                EmpID = dr.GetDataKeyValue("HU_EMPLOYEE_ID")
+                            Next
+                        End If
+                        ScriptManager.RegisterStartupScript(Me.Page, Page.GetType(), "text", "openQDtab('" & EmpID & "')", True)
+                    Else
+                        ShowMessage("Quyết định Kỷ luật chưa được phê duyệt. Vui lòng kiểm tra lại !", NotifyType.Warning)
+                        Exit Sub
+                    End If
+                Case "CreateHSL"
+                    Dim EmpID As Decimal
+                    If State_Id = ProfileCommon.DECISION_STATUS.APPROVE_ID Then
+                        If cboDisciplineObj.SelectedValue = 401 Then
+                            'Ca nhan
+                            For Each dr As GridDataItem In rgEmployee.Items
+                                EmpID = dr.GetDataKeyValue("HU_EMPLOYEE_ID")
+                            Next
+                        End If
+                        ScriptManager.RegisterStartupScript(Me.Page, Page.GetType(), "text", "openHSLtab('" & EmpID & "')", True)
+                    Else
+                        ShowMessage("Quyết định Kỷ luật chưa được phê duyệt. Vui lòng kiểm tra lại !", NotifyType.Warning)
+                        Exit Sub
+                    End If
             End Select
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception

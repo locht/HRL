@@ -1883,6 +1883,122 @@ Partial Class ProfileRepository
         End Try
     End Function
 
+    Public Function EXPORT_PLHD(ByVal _param As ParamDTO, ByVal log As UserLog) As DataSet
+        Try
+            Using cls As New DataAccess.QueryData
+                Dim dtData As DataSet = cls.ExecuteStore("PKG_HU_IPROFILE_EMPLOYEE.EXPORT_PLHD",
+                                           New With {.P_USERNAME = log.Username.ToUpper,
+                                                     .P_ORGID = _param.ORG_ID,
+                                                     .P_ISDISSOLVE = _param.IS_DISSOLVE,
+                                                     .P_CUR = cls.OUT_CURSOR,
+                                                     .P_CUR1 = cls.OUT_CURSOR}, False) ' FALSE : no datatable
+
+                Return dtData
+            End Using
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iProfile")
+            Throw ex
+        End Try
+    End Function
+
+    Public Function CHECK_EMPLOYEE(ByVal P_EMP_CODE As String) As Integer
+        Try
+            Dim result As Integer
+            If (From p In Context.HU_EMPLOYEE Where p.EMPLOYEE_CODE = P_EMP_CODE AndAlso p.IS_KIEM_NHIEM Is Nothing).Count > 0 Then
+                result = 1
+            Else
+                result = 0
+            End If
+
+            Return result
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iProfile")
+            Throw ex
+        End Try
+    End Function
+
+    Public Function CHECK_CONTRACT(ByVal P_ID As Decimal) As Integer
+        Try
+            Dim result As Integer
+            If (From p In Context.HU_CONTRACT Where p.ID = P_ID).Count > 0 Then
+                result = 1
+            Else
+                result = 0
+            End If
+
+            Return result
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iProfile")
+            Throw ex
+        End Try
+    End Function
+
+    Public Function CHECK_SALARY(ByVal P_ID As Decimal) As Integer
+        Try
+            Dim result As Integer
+            If (From p In Context.HU_WORKING Where p.ID = P_ID).Count > 0 Then
+                result = 1
+            Else
+                result = 0
+            End If
+
+            Return result
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iProfile")
+            Throw ex
+        End Try
+    End Function
+
+    Public Function CHECK_CONTRACT_EXITS(ByVal P_CONTRACT As Decimal, ByVal P_EMP_CODE As String, ByVal P_DATE As Date) As Integer
+        Try
+            Dim result As Integer
+            If (From p In Context.HU_FILECONTRACT
+                From c In Context.HU_CONTRACT.Where(Function(f) f.ID = p.ID_CONTRACT)
+                From e In Context.HU_EMPLOYEE.Where(Function(f) f.ID = c.EMPLOYEE_ID)
+                Where p.ID_CONTRACT = P_CONTRACT And p.START_DATE = P_DATE And e.EMPLOYEE_CODE = P_EMP_CODE).Count > 0 Then
+                result = 1
+            Else
+                result = 0
+            End If
+
+            Return result
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iProfile")
+            Throw ex
+        End Try
+    End Function
+
+    Public Function CHECK_SIGN(ByVal P_EMP_CODE As String) As Integer
+        Try
+            Dim result As Integer
+            If (From p In Context.HU_SIGNER Where p.SIGNER_CODE = P_EMP_CODE).Count > 0 Then
+                result = 1
+            Else
+                result = 0
+            End If
+
+            Return result
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iProfile")
+            Throw ex
+        End Try
+    End Function
+
+    Public Function INPORT_PLHD(ByVal P_DOCXML As String, ByVal log As UserLog) As Boolean
+        Try
+            Using cls As New DataAccess.QueryData
+                cls.ExecuteStore("PKG_HU_IPROFILE_EMPLOYEE.INPORT_PLHD",
+                                 New With {.P_DOCXML = P_DOCXML,
+                                           .P_USERNAME = log.Username})
+            End Using
+            Return True
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iProfile")
+            Throw ex
+            Return False
+        End Try
+    End Function
+
 
 #End Region
 End Class

@@ -7,6 +7,8 @@ Imports Common.CommonMessage
 Imports Attendance.AttendanceRepository
 Imports Attendance.AttendanceBusiness
 Imports WebAppLog
+Imports System.IO
+Imports Aspose.Cells
 Public Class ctrlTimeTimesheet_machine
     Inherits Common.CommonView
     Private store As New CommonProcedureNew
@@ -308,7 +310,8 @@ Public Class ctrlTimeTimesheet_machine
                 Case "IMPORT_TEMP"
                     ctrlUpload1.Show()
                 Case "EXPORT_TEMP"
-                    ScriptManager.RegisterStartupScript(Me.Page, Me.Page.GetType(), "javascriptfunction", "ExportReport('Timesheet_machineExport&PERIOD_ID=" & "1" & "&orgid=" & "1" & "&IS_DISSOLVE=" & IIf(1, "1", "0") & "');", True)
+                    Timesheet_machineExport()
+                    ' ScriptManager.RegisterStartupScript(Me.Page, Me.Page.GetType(), "javascriptfunction", "ExportReport('Timesheet_machine&PERIOD_ID=" & "1" & "&orgid=" & "1" & "&IS_DISSOLVE=" & IIf("1", "1", "0") & "');", True)
                     Refresh("UpdateView")
             End Select
             ' 
@@ -317,6 +320,15 @@ Public Class ctrlTimeTimesheet_machine
         Catch ex As Exception
             _myLog.WriteLog(_myLog._error, _classPath, method, 0, ex, "")
             DisplayException(Me.ViewName, Me.ID, ex)
+        End Try
+    End Sub
+    Private Sub Timesheet_machineExport()
+        Try
+            ExportTemplate("Attendance\Import\Template_GiaiTrinhNgayCong.xlsx",
+                                      New DataSet(), Nothing,
+                                      "Template_GiaiTrinhNgayCong" & Format(Date.Now, "yyyyMMdd"))
+        Catch ex As Exception
+            Throw ex
         End Try
     End Sub
     ''' <summary>
@@ -614,6 +626,44 @@ Public Class ctrlTimeTimesheet_machine
             dtDataHeader.Dispose()
         End Try
     End Sub
+    Public Function ExportTemplate(ByVal sReportFileName As String,
+                                                    ByVal dsData As DataSet,
+                                                    ByVal dtVariable As DataTable,
+                                                    ByVal filename As String) As Boolean
+
+        Dim filePath As String
+        Dim templatefolder As String
+
+        Dim designer As WorkbookDesigner
+        Try
+
+            templatefolder = ConfigurationManager.AppSettings("ReportTemplatesFolder")
+            filePath = AppDomain.CurrentDomain.BaseDirectory & templatefolder & "\" & sReportFileName
+
+            If Not File.Exists(filePath) Then
+                ScriptManager.RegisterStartupScript(Page, Page.GetType(), "javascriptfunction", "goBack()", True)
+                Return False
+            End If
+
+            designer = New WorkbookDesigner
+            designer.Open(filePath)
+            designer.SetDataSource(dsData)
+
+            If dtVariable IsNot Nothing Then
+                Dim intCols As Integer = dtVariable.Columns.Count
+                For i As Integer = 0 To intCols - 1
+                    designer.SetDataSource(dtVariable.Columns(i).ColumnName.ToString(), dtVariable.Rows(0).ItemArray(i).ToString())
+                Next
+            End If
+            designer.Process()
+            designer.Workbook.CalculateFormula()
+            designer.Workbook.Save(HttpContext.Current.Response, filename & ".xls", ContentDisposition.Attachment, New XlsSaveOptions())
+
+        Catch ex As Exception
+            Return False
+        End Try
+        Return True
+    End Function
 #End Region
 #Region "FUNCTION/PROCEDURE"
     Function loadToGrid(dtDataHeader As DataTable) As Boolean

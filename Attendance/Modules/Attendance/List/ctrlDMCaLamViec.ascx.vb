@@ -15,6 +15,7 @@ Public Class ctrlDMCaLamViec
     ''' <remarks>_mylog, _pathLog, _classPath</remarks>
     Dim _myLog As New MyLog()
     Dim _pathLog As String = _myLog._pathLog
+    Dim _shift_Day_ID As Decimal = 0
     Dim _classPath As String = "Attendance/Module/Attendance/List/" + Me.GetType().Name.ToString()
 
 #Region "Property"
@@ -280,9 +281,9 @@ Public Class ctrlDMCaLamViec
                     txtCode.Text = ""
                     txtNameVN.Text = ""
                     txtNote.Text = ""
-                    cboMaCong.SelectedIndex = 0
+                    cboMaCong.SelectedValue = 25
                     cboCongTy.SelectedIndex = Nothing
-                    cboNgayCongCa.SelectedIndex = 1
+                    cboNgayCongCa.SelectedIndex = 2
                     'cboSunDay.SelectedIndex = 0
                     'cboSaturday.SelectedIndex = 0
                     'cbkISNOON.Checked = False
@@ -316,12 +317,11 @@ Public Class ctrlDMCaLamViec
                     'rntxtMinHours.Enabled = True
                     rgDanhMuc.Rebind()
                     EnabledGridNotPostback(rgDanhMuc, False)
-
                 Case CommonMessage.STATE_NORMAL
                     txtNameVN.Text = ""
-                    cboMaCong.SelectedIndex = 0
+                    cboMaCong.SelectedValue = 25
                     cboCongTy.SelectedIndex = Nothing
-                    cboNgayCongCa.SelectedIndex = 1
+                    cboNgayCongCa.SelectedIndex = 2
                     rdHours_Start.SelectedDate = Nothing
                     rdHours_Stop.SelectedDate = Nothing
                     rdEND_MID_HOURS.SelectedDate = Nothing
@@ -356,7 +356,6 @@ Public Class ctrlDMCaLamViec
                     'rntxtMinHours.Enabled = False
                     'cboSunDay.SelectedIndex = 0
                     EnabledGridNotPostback(rgDanhMuc, True)
-
                 Case CommonMessage.STATE_EDIT
                     txtCode.Enabled = True
                     txtNameVN.Enabled = True
@@ -378,7 +377,6 @@ Public Class ctrlDMCaLamViec
                     txtNote.Enabled = True
                     'rntxtMinHours.Enabled = True
                     EnabledGridNotPostback(rgDanhMuc, False)
-
                 Case CommonMessage.STATE_DEACTIVE
                     Dim lstDeletes As New List(Of Decimal)
                     For idx = 0 To rgDanhMuc.SelectedItems.Count - 1
@@ -892,35 +890,35 @@ Public Class ctrlDMCaLamViec
     ''' <param name="source"></param>
     ''' <param name="args"></param>
     ''' <remarks></remarks>
-    Private Sub cvalMaCong_ServerValidate(ByVal source As Object, ByVal args As System.Web.UI.WebControls.ServerValidateEventArgs) Handles cvalMaCong.ServerValidate
-        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
-        Dim startTime As DateTime = DateTime.UtcNow
-        Dim rep As New AttendanceRepository
+    'Private Sub cvalMaCong_ServerValidate(ByVal source As Object, ByVal args As System.Web.UI.WebControls.ServerValidateEventArgs) Handles cvalMaCong.ServerValidate
+    '    Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+    '    Dim startTime As DateTime = DateTime.UtcNow
+    '    Dim rep As New AttendanceRepository
 
-        Try
-            If String.IsNullOrEmpty(cboMaCong.SelectedValue) Then
-                Return
-            End If
+    '    Try
+    '        If String.IsNullOrEmpty(cboMaCong.SelectedValue) Then
+    '            Return
+    '        End If
 
-            ValueMaCong = cboMaCong.SelectedValue
-            Dim result() As DataRow = rep.GetAT_TIME_MANUALBINCOMBO().Select("ID = " & cboMaCong.SelectedValue)
-            If result.Length = 0 Then
-                args.IsValid = False
+    '        ValueMaCong = cboMaCong.SelectedValue
+    '        Dim result() As DataRow = rep.GetAT_TIME_MANUALBINCOMBO().Select("ID = " & cboMaCong.SelectedValue)
+    '        If result.Length = 0 Then
+    '            args.IsValid = False
 
-                cboMaCong.ClearSelection()
-                Dim dtData As DataTable
-                dtData = rep.GetAT_TIME_MANUALBINCOMBO()
-                FillRadCombobox(cboMaCong, dtData, "NAME", "ID")
-                cboMaCong.SelectedIndex = 0
-            Else
-                args.IsValid = True
-            End If
+    '            cboMaCong.ClearSelection()
+    '            Dim dtData As DataTable
+    '            dtData = rep.GetAT_TIME_MANUALBINCOMBO()
+    '            FillRadCombobox(cboMaCong, dtData, "NAME", "ID")
+    '            cboMaCong.SelectedIndex = 0
+    '        Else
+    '            args.IsValid = True
+    '        End If
 
-            _myLog.WriteLog(_myLog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
-        Catch ex As Exception
-            _myLog.WriteLog(_myLog._error, _classPath, method, 0, ex, "")
-        End Try
-    End Sub
+    '        _myLog.WriteLog(_myLog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
+    '    Catch ex As Exception
+    '        _myLog.WriteLog(_myLog._error, _classPath, method, 0, ex, "")
+    '    End Try
+    'End Sub
 
     ''' <lastupdate>14/08/2017</lastupdate>
     ''' <summary>
@@ -945,6 +943,15 @@ Public Class ctrlDMCaLamViec
             rdEND_MID_HOURS.SelectedDate = AT_SHIFT1.END_MID_HOURS
             rdHOURS_STAR_CHECKIN.SelectedDate = AT_SHIFT1.HOURS_STAR_CHECKIN
             rdHOURS_STAR_CHECKOUT.SelectedDate = AT_SHIFT1.HOURS_STAR_CHECKOUT
+
+            If (IDSelect = 1 Or IDSelect = 2) Then
+                Me.MainToolBar = tbarCostCenters
+                MainToolBar.Items(1).Enabled = False
+                MainToolBar.Items(4).Enabled = False
+            Else
+                MainToolBar.Items(1).Enabled = True
+                MainToolBar.Items(4).Enabled = True
+            End If
 
         Catch ex As Exception
             DisplayException(Me.ViewName, Me.ID, ex)

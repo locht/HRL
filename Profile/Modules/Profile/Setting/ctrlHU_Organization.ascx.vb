@@ -117,9 +117,9 @@ Public Class ctrlHU_Organization
 
     Public Overrides Sub ViewInit(ByVal e As System.EventArgs)
         InitControl()
-        If Not IsPostBack Then
-            ViewConfig(MainPane)
-        End If
+        'If Not IsPostBack Then
+        '    ViewConfig(MainPane)
+        'End If
     End Sub
 
     Public Overrides Sub BindData()

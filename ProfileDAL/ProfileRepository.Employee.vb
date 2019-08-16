@@ -3147,7 +3147,7 @@ Partial Class ProfileRepository
                     colNames = If(colNames <> String.Empty, colNames + "," + "CONTACT_PER", "CONTACT_PER")
                 End If
                 If (If(empEdit.RELATION_PER_CTR.ToString() Is Nothing, "", empEdit.RELATION_PER_CTR.ToString()) <> If(empCV.RELATION_PER_CTR.ToString() Is Nothing, "", empCV.RELATION_PER_CTR.ToString())) Then
-                    colNames = If(colNames <> String.Empty, colNames + "," + "RELATION_PER_CTR", "RELATION_PER_CTR")
+                    colNames = If(colNames <> String.Empty, colNames + "," + "RELATION_PER_CTR_NAME", "RELATION_PER_CTR_NAME")
                 End If
                 If (If(empEdit.CONTACT_PER_MBPHONE Is Nothing, "", empEdit.CONTACT_PER_MBPHONE) <> If(empCV.CONTACT_PER_MBPHONE Is Nothing, "", empCV.CONTACT_PER_MBPHONE)) Then
                     colNames = If(colNames <> String.Empty, colNames + "," + "CONTACT_PER_MBPHONE", "CONTACT_PER_MBPHONE")
@@ -3174,10 +3174,10 @@ Partial Class ProfileRepository
                     colNames = If(colNames <> String.Empty, colNames + "," + "BANK_NO", "BANK_NO")
                 End If
                 If (If(empEdit.BANK_ID.ToString() Is Nothing, "", empEdit.BANK_ID.ToString()) <> If(empCV.BANK_ID.ToString() Is Nothing, "", empCV.BANK_ID.ToString())) Then
-                    colNames = If(colNames <> String.Empty, colNames + "," + "BANK_ID", "BANK_ID")
+                    colNames = If(colNames <> String.Empty, colNames + "," + "BANK_NAME", "BANK_NAME")
                 End If
                 If (If(empEdit.BANK_BRANCH_ID.ToString() Is Nothing, "", empEdit.BANK_BRANCH_ID.ToString()) <> If(empCV.BANK_BRANCH_ID.ToString() Is Nothing, "", empCV.BANK_BRANCH_ID.ToString())) Then
-                    colNames = If(colNames <> String.Empty, colNames + "," + "BANK_BRANCH_ID", "BANK_BRANCH_ID")
+                    colNames = If(colNames <> String.Empty, colNames + "," + "BANK_BRANCH_NAME", "BANK_BRANCH_NAME")
                 End If
                 dic.Add(empEdit.ID.ToString, colNames)
             Next

@@ -93,7 +93,7 @@
                  <td class="lb">
                     <asp:Label runat="server" ID="Label1" Text="Tập tin đính kèm"></asp:Label>
                 </td>
-                <td>
+                <td colspan="2">
                     <tlk:RadTextBox ID="txtUpload" TabIndex="3" ReadOnly="true" runat="server">
                     </tlk:RadTextBox>
                     <tlk:RadTextBox ID="txtUploadFile" runat="server" Visible="false">
@@ -413,12 +413,12 @@
                             <tlk:RadButton Width="100px" ID="btnEmployee" runat="server" Text="Chọn nhân viên"
                                 CausesValidation="false" CommandName="FindEmployee">
                             </tlk:RadButton>
-                            <%--<tlk:RadButton Width="100px" ID="btnShare" runat="server" Text="Chia đều"
-                                CausesValidation="false" CommandName="ShareEmployee">
+                            <tlk:RadButton Width="100px" ID="btnQD" runat="server" Text="Tạo Quyết định"
+                                CausesValidation="false" CommandName="CreateQD">
                             </tlk:RadButton>
-                            <tlk:RadButton Width="100px" ID="btnCalc" runat="server" Text="Tính toán"
-                                CausesValidation="false" CommandName="CalcEmployee">
-                            </tlk:RadButton>--%>
+                            <tlk:RadButton Width="100px" ID="btnHSL" runat="server" Text="Tạo Hồ sơ lương"
+                                CausesValidation="false" CommandName="CreateHSL">
+                            </tlk:RadButton>
                         </div>
                         <div style="float: right;">
                             <tlk:RadButton Width="100px" ID="btnDeleteEmp" runat="server" Text="Xóa"
@@ -505,6 +505,26 @@
         }
         function rbtClicked(sender, eventArgs) {
             enableAjax = false;
+        }
+
+        //Tạo Quyết định
+        function openQDtab(value) {
+            if (value == 0) {
+                window.open('/Default.aspx?mid=Profile&fid=ctrlHU_ChangeInfoNewEdit&group=Business', "_blank");
+            }
+            else {
+                window.open('/Default.aspx?mid=Profile&fid=ctrlHU_ChangeInfoNewEdit&group=Business&empid=' + value, "_blank");
+            }
+        }
+
+        //Tạo Hồ sơ lương
+        function openHSLtab(value) {
+            if (value == 0) {
+                window.open('/Default.aspx?mid=Profile&fid=ctrlHU_WageNewEdit&group=Business', "_blank");
+            }
+            else {
+                window.open('/Default.aspx?mid=Profile&fid=ctrlHU_WageNewEdit&group=Business&empid=' + value, "_blank");
+            }
         }
     </script>
 </tlk:RadCodeBlock>

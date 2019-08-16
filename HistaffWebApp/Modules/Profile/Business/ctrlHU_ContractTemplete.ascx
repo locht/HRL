@@ -7,6 +7,7 @@
 <asp:HiddenField ID="hidWorkingID" runat="server" />
 <asp:HiddenField ID="hidEmployeeCode" runat="server" />
 <asp:HiddenField ID="hidSign" runat="server" />
+<asp:HiddenField ID="hidSign2" runat="server" />
 <asp:HiddenField ID="hidOrgID" runat="server" />
 <asp:HiddenField ID="hiOrgIDEmp" runat="server" />
 <asp:HiddenField ID="hidSalary" runat="server" />
@@ -152,6 +153,25 @@
                     </td>
                     <td>
                         <tlk:RadTextBox ID="txtSign_Title" runat="server" ReadOnly="true">
+                        </tlk:RadTextBox>
+                    </td>
+                </tr>
+                <tr>
+                     <td class="lb">
+                      <asp:Label ID="lbSign2" runat="server" Text="Người ký 2"></asp:Label>
+                    </td>
+                    <td>
+                        <tlk:RadTextBox ID="txtSign2" SkinID="Textbox15" runat="server" Width="130px">
+                        </tlk:RadTextBox>
+                        <tlk:RadButton EnableEmbeddedSkins="false" ID="btnSign2" SkinID="ButtonView" runat="server"
+                            CausesValidation="false" Width="40px">
+                        </tlk:RadButton>                       
+                    </td>
+                    <td class="lb">
+                     <asp:Label ID="lbSign_Title2" runat="server" Text="Chức vụ người ký 2"></asp:Label>
+                    </td>
+                    <td>
+                        <tlk:RadTextBox ID="txtSign_Title2" runat="server" >
                         </tlk:RadTextBox>
                     </td>
                 </tr>
@@ -454,4 +474,5 @@
 </tlk:RadCodeBlock>
 <asp:PlaceHolder ID="FindEmployee" runat="server"></asp:PlaceHolder>
 <asp:PlaceHolder ID="FindSigner" runat="server"></asp:PlaceHolder>
+<asp:PlaceHolder ID="FindSigner2" runat="server"></asp:PlaceHolder>
 <asp:PlaceHolder ID="FindSalary" runat="server"></asp:PlaceHolder>

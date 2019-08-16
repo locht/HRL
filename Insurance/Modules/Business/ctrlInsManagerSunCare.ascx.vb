@@ -440,6 +440,7 @@ Public Class ctrlInsManagerSunCare
 
             If _error = False Then
                 dtLogs.Rows.Add(newRow)
+                count = count + 1
                 _error = True
             End If
         Next

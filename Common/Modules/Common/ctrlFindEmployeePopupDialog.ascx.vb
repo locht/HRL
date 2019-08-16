@@ -223,4 +223,12 @@ Public Class ctrlFindEmployeePopupDialog
             Throw ex
         End Try
     End Sub
+
+    Private Sub cbTerminate_CheckedChanged(sender As Object, e As System.EventArgs) Handles cbTerminate.CheckedChanged
+        Try
+            rgEmployeeInfo.Rebind()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
 End Class
