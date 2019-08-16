@@ -476,7 +476,7 @@ Public Class ctrlHU_WageMng
             Dim savepath = Context.Server.MapPath(tempPath)
 
             For Each file As UploadedFile In ctrlUpload1.UploadedFiles
-                fileName = System.IO.Path.Combine(savepath, Guid.NewGuid().ToString() & ".xlsx")
+                fileName = System.IO.Path.Combine(savepath, Guid.NewGuid().ToString() & ".xls")
                 file.SaveAs(fileName, True)
                 workbook = New Aspose.Cells.Workbook(fileName)
                 worksheet = workbook.Worksheets(0)
@@ -555,8 +555,8 @@ Public Class ctrlHU_WageMng
             dsData.Tables(4).TableName = "Table4"
             dsData.Tables(5).TableName = "Table5"
             rep.Dispose()
-            If File.Exists(configPath + "Payroll\TEMP_IMPORT_HOSOLUONG.xlsx") Then
-                ExportTemplate(configPath + "Payroll\TEMP_IMPORT_HOSOLUONG.xlsx",
+            If File.Exists(configPath + "Payroll\TEMP_IMPORT_HOSOLUONG.xls") Then
+                ExportTemplate(configPath + "Payroll\TEMP_IMPORT_HOSOLUONG.xls",
                                       dsData, Nothing, "Template_HoSoLuong_" & Format(Date.Now, "yyyyMMdd"))
             Else
                 ShowMessage(Translate("Template không tồn tại"), Utilities.NotifyType.Error)
