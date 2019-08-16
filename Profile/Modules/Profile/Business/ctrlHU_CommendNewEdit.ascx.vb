@@ -1697,37 +1697,37 @@ Public Class ctrlHU_CommendNewEdit
     ''' <param name="source"></param>
     ''' <param name="args"></param>
     ''' <remarks></remarks>
-    Private Sub cusStatus_ServerValidate(ByVal source As Object, ByVal args As System.Web.UI.WebControls.ServerValidateEventArgs) Handles cusStatus.ServerValidate
-        Dim rep As New ProfileRepository
-        Dim validate As New OtherListDTO
-        Dim dtData As DataTable = Nothing
-        Dim startTime As DateTime = DateTime.UtcNow
-        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+    'Private Sub cusStatus_ServerValidate(ByVal source As Object, ByVal args As System.Web.UI.WebControls.ServerValidateEventArgs) Handles cusStatus.ServerValidate
+    '    Dim rep As New ProfileRepository
+    '    Dim validate As New OtherListDTO
+    '    Dim dtData As DataTable = Nothing
+    '    Dim startTime As DateTime = DateTime.UtcNow
+    '    Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
 
-        Try
-            If CurrentState = CommonMessage.STATE_EDIT Or CurrentState = CommonMessage.STATE_NEW Then
-                validate.ID = cboStatus.SelectedValue
-                validate.ACTFLG = "A"
-                validate.CODE = "DECISION_STATUS"
-                args.IsValid = rep.ValidateOtherList(validate)
-            End If
+    '    Try
+    '        If CurrentState = CommonMessage.STATE_EDIT Or CurrentState = CommonMessage.STATE_NEW Then
+    '            validate.ID = cboStatus.SelectedValue
+    '            validate.ACTFLG = "A"
+    '            validate.CODE = "DECISION_STATUS"
+    '            args.IsValid = rep.ValidateOtherList(validate)
+    '        End If
 
-            If Not args.IsValid Then
-                'dtData = rep.GetOtherList("COMMEND_STATUS", True)
-                'FillRadCombobox(cboStatus, dtData, "NAME", "ID", True)
-                Dim dtData1 As New DataTable
-                dtData1 = rep.GetOtherList(OtherTypes.DecisionStatus, True)
-                FillRadCombobox(cboStatus, dtData1, "NAME", "ID", True)
-                'cboStatus.ClearSelection()
-                'cboStatus.SelectedIndex = 0
-            End If
-            rep.Dispose()
-            _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
-        Catch ex As Exception
-            _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
-            'DisplayException(Me.ViewName, Me.ID, ex)
-        End Try
-    End Sub
+    '        If Not args.IsValid Then
+    '            'dtData = rep.GetOtherList("COMMEND_STATUS", True)
+    '            'FillRadCombobox(cboStatus, dtData, "NAME", "ID", True)
+    '            Dim dtData1 As New DataTable
+    '            dtData1 = rep.GetOtherList(OtherTypes.DecisionStatus, True)
+    '            FillRadCombobox(cboStatus, dtData1, "NAME", "ID", True)
+    '            'cboStatus.ClearSelection()
+    '            'cboStatus.SelectedIndex = 0
+    '        End If
+    '        rep.Dispose()
+    '        _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
+    '    Catch ex As Exception
+    '        _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
+    '        'DisplayException(Me.ViewName, Me.ID, ex)
+    '    End Try
+    'End Sub
 
     ''' <lastupdate>07/07/2017</lastupdate>
     ''' <summary>
@@ -1884,33 +1884,33 @@ Public Class ctrlHU_CommendNewEdit
     ''' <param name="source"></param>
     ''' <param name="args"></param>
     ''' <remarks></remarks>
-    Private Sub cusCommendType_ServerValidate(ByVal source As Object, ByVal args As System.Web.UI.WebControls.ServerValidateEventArgs) Handles cusCommendType.ServerValidate
-        Dim rep As New ProfileRepository
-        Dim validate As New CommendListDTO
-        Dim dtData As DataTable = Nothing
-        Dim startTime As DateTime = DateTime.UtcNow
-        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+    'Private Sub cusCommendType_ServerValidate(ByVal source As Object, ByVal args As System.Web.UI.WebControls.ServerValidateEventArgs) Handles cusCommendType.ServerValidate
+    '    Dim rep As New ProfileRepository
+    '    Dim validate As New CommendListDTO
+    '    Dim dtData As DataTable = Nothing
+    '    Dim startTime As DateTime = DateTime.UtcNow
+    '    Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
 
-        Try
-            If CurrentState = CommonMessage.STATE_EDIT Or CurrentState = CommonMessage.STATE_NEW Then
-                validate.ID = cboCommendType.SelectedValue
-                validate.ACTFLG = "A"
-                args.IsValid = rep.ValidateCommendList(validate)
-            End If
+    '    Try
+    '        If CurrentState = CommonMessage.STATE_EDIT Or CurrentState = CommonMessage.STATE_NEW Then
+    '            validate.ID = cboCommendType.SelectedValue
+    '            validate.ACTFLG = "A"
+    '            args.IsValid = rep.ValidateCommendList(validate)
+    '        End If
 
-            If Not args.IsValid Then
-                VisibleGridview(cboCommendObj.SelectedIndex)
+    '        If Not args.IsValid Then
+    '            VisibleGridview(cboCommendObj.SelectedIndex)
 
-                cboCommendType.ClearSelection()
-                cboCommendType.SelectedIndex = 0
-            End If
-            rep.Dispose()
-            _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
-        Catch ex As Exception
-            _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
-            'DisplayException(Me.ViewName, Me.ID, ex)
-        End Try
-    End Sub
+    '            cboCommendType.ClearSelection()
+    '            cboCommendType.SelectedIndex = 0
+    '        End If
+    '        rep.Dispose()
+    '        _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
+    '    Catch ex As Exception
+    '        _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
+    '        'DisplayException(Me.ViewName, Me.ID, ex)
+    '    End Try
+    'End Sub
 
     ''' <lastupdate>07/07/2017</lastupdate>
     ''' <summary>
