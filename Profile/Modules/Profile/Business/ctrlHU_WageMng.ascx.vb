@@ -502,7 +502,7 @@ Public Class ctrlHU_WageMng
                 newRow("PERCENTSALARY") = If(IsNumeric(rows("PERCENTSALARY")), Decimal.Parse(rows("PERCENTSALARY")), 0)
                 newRow("OTHERSALARY1") = If(IsNumeric(rows("OTHERSALARY1")), Decimal.Parse(rows("OTHERSALARY1")), 0)
                 newRow("OTHERSALARY2") = If(IsNumeric(rows("OTHERSALARY2")), Decimal.Parse(rows("OTHERSALARY2")), 0)
-                newRow("OTHERSALARY3") = If(IsNumeric(rows("OTHERSALARY3")), Decimal.Parse(rows("OTHERSALARY3")), 0)
+                newRow("COST_SUPPORT") = If(IsNumeric(rows("COST_SUPPORT")), Decimal.Parse(rows("COST_SUPPORT")), 0)
                 'newRow("OTHERSALARY4") = If(IsNumeric(rows("OTHERSALARY4")), Decimal.Parse(rows("OTHERSALARY4")), 0)
                 'newRow("OTHERSALARY5") = If(IsNumeric(rows("OTHERSALARY5")), Decimal.Parse(rows("OTHERSALARY5")), 0)
                 'newRow("LTT_V1") = If(IsNumeric(rows("LTT_V1")), Decimal.Parse(rows("LTT_V1")), 0)
