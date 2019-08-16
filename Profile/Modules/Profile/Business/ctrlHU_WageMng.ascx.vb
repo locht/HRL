@@ -739,6 +739,7 @@ VALIDATE:
             End Try
         Next
         dtdata.Rows(0).Delete()
+        dtdata.Rows(0).Delete()
         dtdata.AcceptChanges()
     End Sub
     ''' <summary>

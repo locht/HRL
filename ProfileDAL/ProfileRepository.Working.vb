@@ -449,7 +449,8 @@ Partial Class ProfileRepository
                                         .REMARK = p.REMARK,
                                         .DIRECT_MANAGER_NAME = direct.FULLNAME_VN,
                                         .OTHERSALARY2 = p.OTHERSALARY2,
-                                        .OTHERSALARY1 = p.OTHERSALARY1
+                                        .OTHERSALARY1 = p.OTHERSALARY1,
+                                        .FACTORSALARY = p.FACTORSALARY
                                         }
             Dim dateNow = Date.Now.Date
             If Not _filter.IS_TER Then
@@ -544,7 +545,9 @@ Partial Class ProfileRepository
             If _filter.SAL_TOTAL IsNot Nothing Then
                 query = query.Where(Function(p) p.COST_SUPPORT = _filter.SAL_TOTAL)
             End If
-
+            If _filter.FACTORSALARY IsNot Nothing Then
+                query = query.Where(Function(p) p.FACTORSALARY = _filter.FACTORSALARY)
+            End If
             If _filter.STAFF_RANK_NAME IsNot Nothing Then
                 query = query.Where(Function(p) p.STAFF_RANK_NAME.ToUpper.Contains(_filter.STAFF_RANK_NAME.ToUpper))
             End If
@@ -553,6 +556,12 @@ Partial Class ProfileRepository
             End If
             If _filter.DIRECT_MANAGER_NAME IsNot Nothing Then
                 query = query.Where(Function(p) p.DIRECT_MANAGER_NAME.ToUpper.Contains(_filter.DIRECT_MANAGER_NAME.ToUpper))
+            End If
+            If _filter.OTHERSALARY1 IsNot Nothing Then
+                query = query.Where(Function(p) p.OTHERSALARY1 = _filter.OTHERSALARY1)
+            End If
+            If _filter.OTHERSALARY2 IsNot Nothing Then
+                query = query.Where(Function(p) p.OTHERSALARY2 = _filter.OTHERSALARY2)
             End If
             If _filter.Ids IsNot Nothing Then
                 If _filter.Ids.Any() Then
