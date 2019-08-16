@@ -6,6 +6,7 @@ Imports Framework.UI.Utilities
 
 Public Class ctrlListUserNewEdit
     Inherits CommonView
+    Protected WithEvents ctrlFindEmployeePopup As ctrlFindEmployeePopup
     Public Overrides Property MustAuthorize As Boolean = False
     Protected WithEvents UserViewList As ViewBase
     Dim _myLog As New MyLog()
@@ -21,6 +22,18 @@ Public Class ctrlListUserNewEdit
             PageViewState(Me.ID & "_User") = value
         End Set
     End Property
+    'Kieu man hinh tim kiem
+    '0 - normal
+    '1 - Employee
+    '2 - Sign
+    Property isLoadPopup As Integer
+        Get
+            Return ViewState(Me.ID & "_isLoadPopup")
+        End Get
+        Set(ByVal value As Integer)
+            ViewState(Me.ID & "_isLoadPopup") = value
+        End Set
+    End Property
 #End Region
 
 #Region "Page"
@@ -30,9 +43,9 @@ Public Class ctrlListUserNewEdit
     ''' <param name="e"></param>
     ''' <remarks></remarks>
     Public Overrides Sub ViewLoad(ByVal e As System.EventArgs)
-        If Page.IsPostBack Then
-            Exit Sub
-        End If
+        'If Page.IsPostBack Then
+        '    Exit Sub
+        'End If
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
         Try
             Dim startTime As DateTime = DateTime.UtcNow
@@ -61,7 +74,7 @@ Public Class ctrlListUserNewEdit
                     txtUSERNAME.ReadOnly = True
                     txtPASSWORD.ReadOnly = True
                     txtPASSWORD_AGAIN.ReadOnly = True
-                    txtEMPLOYEE_CODE.ReadOnly = True
+                    'txtEMPLOYEE_CODE.ReadOnly = True
                     cbIS_AD.Enabled = False
                     cbIS_APP.Enabled = False
                     cbIS_PORTAL.Enabled = False
@@ -78,6 +91,8 @@ Public Class ctrlListUserNewEdit
                     rdEFFECT_DATE.SelectedDate = Nothing
                     rdEXPIRE_DATE.SelectedDate = Nothing
 
+                    btnEmployee.Enabled = False
+
                 Case CommonMessage.STATE_NEW
                     txtUSERNAME.ReadOnly = False
                     txtEMAIL.ReadOnly = False
@@ -85,12 +100,14 @@ Public Class ctrlListUserNewEdit
                     txtTELEPHONE.ReadOnly = False
                     txtPASSWORD.ReadOnly = False
                     txtPASSWORD_AGAIN.ReadOnly = False
-                    txtEMPLOYEE_CODE.ReadOnly = False
+                    'txtEMPLOYEE_CODE.ReadOnly = False
                     cbIS_AD.Enabled = True
                     cbIS_APP.Enabled = True
                     cbIS_PORTAL.Enabled = True
                     Utilities.EnableRadDatePicker(rdEFFECT_DATE, True)
                     Utilities.EnableRadDatePicker(rdEXPIRE_DATE, True)
+
+                    btnEmployee.Enabled = True
 
                 Case CommonMessage.STATE_EDIT
                     txtUSERNAME.ReadOnly = True
@@ -99,12 +116,23 @@ Public Class ctrlListUserNewEdit
                     txtTELEPHONE.ReadOnly = False
                     txtPASSWORD.ReadOnly = False
                     txtPASSWORD_AGAIN.ReadOnly = False
-                    txtEMPLOYEE_CODE.ReadOnly = False
+                    'txtEMPLOYEE_CODE.ReadOnly = False
                     cbIS_AD.Enabled = True
                     cbIS_APP.Enabled = True
                     cbIS_PORTAL.Enabled = True
                     Utilities.EnableRadDatePicker(rdEFFECT_DATE, True)
                     Utilities.EnableRadDatePicker(rdEXPIRE_DATE, True)
+
+                    btnEmployee.Enabled = True
+            End Select
+            Select Case isLoadPopup
+                Case 1
+                    If Not phFindEmp.Controls.Contains(ctrlFindEmployeePopup) Then
+                        ctrlFindEmployeePopup = Me.Register("ctrlFindEmployeePopup", "Common", "ctrlFindEmployeePopup")
+                        ctrlFindEmployeePopup.MustHaveContract = True
+                        phFindEmp.Controls.Add(ctrlFindEmployeePopup)
+                        ctrlFindEmployeePopup.MultiSelect = False
+                    End If
             End Select
             _myLog.WriteLog(_myLog._info, _classPath, method,
                                     CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
@@ -143,6 +171,10 @@ Public Class ctrlListUserNewEdit
                         End If
 
                         hidID.Value = User.ID.ToString
+
+                        If User.EMPLOYEE_ID IsNot Nothing Then
+                            hidEmployeeID.Value = User.EMPLOYEE_ID
+                        End If
                     Else
                         txtEMAIL.Text = ""
                         txtFULLNAME.Text = ""
@@ -203,6 +235,9 @@ Public Class ctrlListUserNewEdit
                         objUser.IS_APP = cbIS_APP.Checked
                         objUser.IS_PORTAL = cbIS_PORTAL.Checked
 
+                        If hidEmployeeID.Value <> "" Then
+                            objUser.EMPLOYEE_ID = hidEmployeeID.Value
+                        End If
 
                         If rdEFFECT_DATE.SelectedDate IsNot Nothing Then
                             objUser.EFFECT_DATE = rdEFFECT_DATE.SelectedDate
@@ -442,6 +477,57 @@ Public Class ctrlListUserNewEdit
 #End Region
 
 #Region "Custom"
+    ''' <summary>
+    ''' Event click button search ma nhan vien
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
+    ''' <remarks></remarks>
+    Private Sub btnEmployee_Click(sender As Object, e As System.EventArgs) Handles btnEmployee.Click
+        Try
+            isLoadPopup = 1
+            UpdateControlState()
+            ctrlFindEmployeePopup.Show()
+        Catch ex As Exception
+            DisplayException(Me.ViewName, Me.ID, ex)
+        End Try
+
+    End Sub
+    ''' <summary>
+    ''' Event click huy tren form popup list Nhan vien
+    ''' close popup
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
+    ''' <remarks></remarks>
+    Private Sub ctrlFind_CancelClick(ByVal sender As Object, ByVal e As System.EventArgs) _
+      Handles ctrlFindEmployeePopup.CancelClicked
+        isLoadPopup = 0
+    End Sub
+    ''' <summary>
+    ''' event click Chon ma nhan vien tu popup list nhan vien
+    ''' close popup
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
+    ''' <remarks></remarks>
+    Private Sub ctrlFindEmployeePopup_EmployeeSelected(sender As Object, e As System.EventArgs) Handles ctrlFindEmployeePopup.EmployeeSelected
+        Dim lstCommonEmployee As New List(Of CommonBusiness.EmployeePopupFindDTO)
+        Try
+            lstCommonEmployee = CType(ctrlFindEmployeePopup.SelectedEmployee, List(Of CommonBusiness.EmployeePopupFindDTO))
+            If lstCommonEmployee.Count <> 0 Then
+                Dim item = lstCommonEmployee(0)
+
+                hidEmployeeID.Value = item.ID.ToString
+                txtEMPLOYEE_CODE.Text = item.EMPLOYEE_CODE
+                txtFULLNAME.Text = item.FULLNAME_VN
+            End If
+            isLoadPopup = 0
+        Catch ex As Exception
+            DisplayException(Me.ViewName, Me.ID, ex)
+        End Try
+    End Sub
+
 #End Region
 
 End Class

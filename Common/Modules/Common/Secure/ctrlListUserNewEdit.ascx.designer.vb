@@ -23,6 +23,15 @@ Partial Public Class ctrlListUserNewEdit
     Protected WithEvents hidID As Global.System.Web.UI.WebControls.HiddenField
 
     '''<summary>
+    '''hidEmployeeID control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents hidEmployeeID As Global.System.Web.UI.WebControls.HiddenField
+
+    '''<summary>
     '''valSum control.
     '''</summary>
     '''<remarks>
@@ -30,6 +39,15 @@ Partial Public Class ctrlListUserNewEdit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents valSum As Global.System.Web.UI.WebControls.ValidationSummary
+
+    '''<summary>
+    '''phFindEmp control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents phFindEmp As Global.System.Web.UI.WebControls.PlaceHolder
 
     '''<summary>
     '''txtUSERNAME control.
@@ -201,6 +219,15 @@ Partial Public Class ctrlListUserNewEdit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtEMPLOYEE_CODE As Global.Telerik.Web.UI.RadTextBox
+
+    '''<summary>
+    '''btnEmployee control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btnEmployee As Global.Telerik.Web.UI.RadButton
 
     '''<summary>
     '''RequiredFieldValidator1 control.

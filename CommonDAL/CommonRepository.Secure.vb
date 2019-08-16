@@ -180,6 +180,7 @@ Partial Public Class CommonRepository
                         .IS_AD = p.IS_AD,
                         .ACTFLG = If(p.ACTFLG = "A", "Áp dụng", "Ngừng áp dụng"),
                         .EMPLOYEE_CODE = p.EMPLOYEE_CODE,
+                        .EMPLOYEE_ID = p.EMPLOYEE_ID,
                         .EFFECT_DATE = p.EFFECT_DATE,
                         .EXPIRE_DATE = p.EXPIRE_DATE,
                         .CREATED_DATE = p.CREATED_DATE})
@@ -261,6 +262,7 @@ Partial Public Class CommonRepository
             objUserData.ACTFLG = "A"
             objUserData.IS_CHANGE_PASS = "0"
             objUserData.EMPLOYEE_CODE = _user.EMPLOYEE_CODE
+            objUserData.EMPLOYEE_ID = _user.EMPLOYEE_ID
 
             If _user.EFFECT_DATE IsNot Nothing Then
                 objUserData.EFFECT_DATE = _user.EFFECT_DATE
@@ -292,6 +294,7 @@ Partial Public Class CommonRepository
                 objUserData.IS_PORTAL = _user.IS_PORTAL
                 objUserData.IS_AD = _user.IS_AD
                 objUserData.EMPLOYEE_CODE = _user.EMPLOYEE_CODE
+                objUserData.EMPLOYEE_ID = _user.EMPLOYEE_ID
                 objUserData.EFFECT_DATE = _user.EFFECT_DATE
                 objUserData.EXPIRE_DATE = _user.EXPIRE_DATE
                 objUserData.MODIFIED_DATE = DateTime.Now

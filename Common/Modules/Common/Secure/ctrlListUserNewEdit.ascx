@@ -1,7 +1,9 @@
 ﻿<%@ Control Language="vb" AutoEventWireup="false" CodeBehind="ctrlListUserNewEdit.ascx.vb"
     Inherits="Common.ctrlListUserNewEdit" %>
 <asp:HiddenField ID="hidID" runat="server" />
+<asp:HiddenField ID="hidEmployeeID" runat="server" />
 <asp:ValidationSummary ID="valSum" runat="server" />
+<asp:PlaceHolder ID="phFindEmp" runat="server"></asp:PlaceHolder>
 <table class="table-form">
     <tr>
         <td class="lb" style="width: 100px">
@@ -104,8 +106,12 @@
             <%# Translate("Mã nhân viên")%>: <span class="lbReq">*</span>  
         </td>
         <td>
-            <tlk:RadTextBox ID="txtEMPLOYEE_CODE" SkinID="Textbox15" runat="server">
+            <tlk:RadTextBox ID="txtEMPLOYEE_CODE" SkinID="Readonly"
+                        ReadOnly="true" runat="server">
             </tlk:RadTextBox>
+            <tlk:RadButton EnableEmbeddedSkins="false" ID="btnEmployee" SkinID="ButtonView" runat="server"
+                            CausesValidation="false" Width="40px">
+            </tlk:RadButton>
              <asp:RequiredFieldValidator ID="RequiredFieldValidator1" ControlToValidate="txtEMPLOYEE_CODE" runat="server"
                 ErrorMessage="<%$ Translate: Bạn phải nhập mã nhân viên. %>" ToolTip="<%$ Translate: Bạn phải nhập mã nhân viên. %>"></asp:RequiredFieldValidator>
 
