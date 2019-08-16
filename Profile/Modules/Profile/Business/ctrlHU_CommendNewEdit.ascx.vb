@@ -725,6 +725,7 @@ Public Class ctrlHU_CommendNewEdit
                 'End If
                 For Each emp As CommonBusiness.EmployeePopupFindDTO In lstCommonEmployee
                     Dim employee As New CommendEmpDTO
+                    employee.GUID_ID = Guid.NewGuid.ToString()
                     employee.EMPLOYEE_CODE = emp.EMPLOYEE_CODE
                     employee.HU_EMPLOYEE_ID = emp.ID
                     employee.FULLNAME = emp.FULLNAME_VN
@@ -1015,6 +1016,82 @@ Public Class ctrlHU_CommendNewEdit
         End Try
     End Sub
 
+    Protected Sub cbCommend_Pay_SelectedIndexChanged(ByVal sender As Object, ByVal e As RadComboBoxSelectedIndexChangedEventArgs)
+        Try
+            Dim edit = CType(sender, RadComboBox)
+            Dim item = CType(edit.NamingContainer, GridEditableItem)
+            ' If Not IsNumeric(edit.SelectedValue) Then Exit Sub
+            Dim COMMEND_PAY = item.GetDataKeyValue("COMMEND_PAY")
+            Dim guidId = item.GetDataKeyValue("GUID_ID")
+            For Each rows As CommendEmpDTO In Employee_Commend
+                If rows.GUID_ID = guidId Then
+                    If edit.SelectedValue <> "" Then
+                        rows.COMMEND_PAY = edit.SelectedValue
+                        Exit For
+                    End If
+                End If
+            Next
+            rgEmployee.Rebind()
+            For Each items As GridDataItem In rgEmployee.MasterTableView.Items
+                items.Edit = True
+            Next
+            rgEmployee.MasterTableView.Rebind()
+        Catch ex As Exception
+            DisplayException(Me.ViewName, Me.ID, ex)
+        End Try
+    End Sub
+
+    Protected Sub rnMONEY_TextChanged(ByVal sender As Object, ByVal e As EventArgs)
+        Try
+            Dim edit = CType(sender, RadNumericTextBox)
+            Dim item = CType(edit.NamingContainer, GridEditableItem)
+            'Dim rnMoney As RadNumericTextBox = CType(item.FindControl("rnMONEY"), RadNumericTextBox)
+            Dim MONEY = edit.Value
+            Dim guidId = item.GetDataKeyValue("GUID_ID")
+            For Each row As CommendEmpDTO In Employee_Commend
+                If row.GUID_ID = guidId Then
+                    row.MONEY = MONEY
+                    Exit For
+                End If
+            Next
+            rgEmployee.Rebind()
+            For Each items As GridDataItem In rgEmployee.MasterTableView.Items
+                items.Edit = True
+            Next
+            rgEmployee.MasterTableView.Rebind()
+        Catch ex As Exception
+            DisplayException(Me.ViewName, Me.ID, ex)
+        End Try
+    End Sub
+
+    Protected Sub cbCommend_PayORG_SelectedIndexChanged(ByVal sender As Object, ByVal e As RadComboBoxSelectedIndexChangedEventArgs)
+        Try
+            Dim edit = CType(sender, RadComboBox)
+            Dim item = CType(edit.NamingContainer, GridEditableItem)
+            ' If Not IsNumeric(edit.SelectedValue) Then Exit Sub
+            Dim COMMEND_PAY = item.GetDataKeyValue("COMMEND_PAY")
+            Dim MONEY = item.GetDataKeyValue("MONEY")
+            'For Each rows As CommendEmpDTO In EmpSource
+            '    If rows.COMMEND_PAY = LEAVE_DAY Then
+            '        rows("STATUS_SHIFT") = If(IsNumeric(edit.SelectedValue), edit.SelectedValue, 0)
+            '        If edit.SelectedValue <> "" Then
+            '            rows("DAY_NUM") = 0.5
+            '        Else
+            '            rows("DAY_NUM") = 1
+            '        End If
+            '        Exit For
+            '    End If
+            'Next
+            rgEmployee.Rebind()
+            For Each items As GridDataItem In rgEmployee.MasterTableView.Items
+                items.Edit = True
+            Next
+            rgEmployee.MasterTableView.Rebind()
+        Catch ex As Exception
+            DisplayException(Me.ViewName, Me.ID, ex)
+        End Try
+    End Sub
+
     ''' <lastupdate>11/07/2017</lastupdate>
     ''' <summary>Load data cho grid Employee</summary>
     ''' <param name="sender"></param>
@@ -1026,7 +1103,6 @@ Public Class ctrlHU_CommendNewEdit
 
         Try
             rgEmployee.DataSource = Employee_Commend
-
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
             _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
@@ -1073,7 +1149,7 @@ Public Class ctrlHU_CommendNewEdit
                 Case "DeleteEmployee"
                     For Each i As GridDataItem In rgEmployee.SelectedItems
                         Dim s = (From q In Employee_Commend Where
-                                 q.HU_EMPLOYEE_ID = i.GetDataKeyValue("HU_EMPLOYEE_ID")).FirstOrDefault
+                                 q.GUID_ID = i.GetDataKeyValue("GUID_ID")).FirstOrDefault
                         Employee_Commend.Remove(s)
                     Next
                     rgEmployee.Rebind()
@@ -1174,6 +1250,7 @@ Public Class ctrlHU_CommendNewEdit
 
                 For Each emp As CommonBusiness.EmployeePopupFindDTO In lstCommonEmployee
                     Dim employee As New CommendEmpDTO
+                    employee.GUID_ID = Guid.NewGuid.ToString()
                     employee.EMPLOYEE_CODE = emp.EMPLOYEE_CODE
                     employee.HU_EMPLOYEE_ID = emp.ID
                     employee.FULLNAME = emp.FULLNAME_VN
@@ -1197,7 +1274,6 @@ Public Class ctrlHU_CommendNewEdit
                 For Each i As GridItem In rgEmployee.Items
                     i.Edit = True
                 Next
-
                 rgEmployee.Rebind()
             End If
             repNew.Dispose()
@@ -2519,7 +2595,7 @@ Public Class ctrlHU_CommendNewEdit
         'Ngạch lương
         Dim cbCommend_Pay As New RadComboBox
         cbCommend_Pay = CType(EditItem.FindControl("cbCommend_Pay"), RadComboBox)
-       
+
         Try
             For Each col As GridColumn In rgEmployee.Columns
 

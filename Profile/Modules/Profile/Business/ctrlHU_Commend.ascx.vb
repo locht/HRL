@@ -679,11 +679,11 @@ Public Class ctrlHU_Commend
                 ListComboData.GET_COMMEND_STATUS = True
                 rep.GetComboList(ListComboData)
             End If
-
+            
             FillDropDownList(cboStatus, ListComboData.LIST_COMMEND_STATUS, "NAME_VN", "ID", Common.Common.SystemLanguage, False)
-            FillDropDownList(cboCommendObj, ListComboData.LIST_COMMEND_OBJ, "NAME_VN", "ID", Common.Common.SystemLanguage, False)
+            FillDropDownList(cboCommendObj, ListComboData.LIST_COMMEND_OBJ, "NAME_VN", "ID", Common.Common.SystemLanguage, True)
 
-            cboCommendObj.SelectedIndex = 0
+            cboCommendObj.SelectedIndex = 1 'default: khen thuong ca nhan 
             rep.Dispose()
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception

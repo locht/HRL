@@ -335,8 +335,8 @@
             Height="200px">
             <GroupingSettings CaseSensitive="false" />
             <MasterTableView EditMode="InPlace" AllowPaging="false" AllowCustomPaging="false"
-                DataKeyNames="HU_COMMEND_ID,HU_EMPLOYEE_ID,EMPLOYEE_CODE,MONEY,ORG_ID,TITLE_ID,COMMEND_PAY"
-                ClientDataKeyNames="HU_COMMEND_ID,HU_EMPLOYEE_ID,EMPLOYEE_CODE,FULLNAME,TITLE_NAME,ORG_NAME,MONEY,MONEY,COMMEND_PAY"
+                DataKeyNames="HU_COMMEND_ID,HU_EMPLOYEE_ID,EMPLOYEE_CODE,MONEY,ORG_ID,TITLE_ID,COMMEND_PAY,MONEY,GUID_ID"
+                ClientDataKeyNames="HU_COMMEND_ID,HU_EMPLOYEE_ID,EMPLOYEE_CODE,FULLNAME,TITLE_NAME,ORG_NAME,MONEY,COMMEND_PAY,GUID_ID"
                 CommandItemDisplay="Top">
                 <CommandItemStyle Height="25px" />
                 <CommandItemTemplate>
@@ -360,6 +360,8 @@
                     <tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderStyle-HorizontalAlign="Center"
                         HeaderStyle-Width="40px" ItemStyle-HorizontalAlign="Center">
                     </tlk:GridClientSelectColumn>
+                    <tlk:GridBoundColumn DataField="GUID_ID" UniqueName="GUID_ID" SortExpression="GUID_ID"
+                        Visible="false" ReadOnly="true" ColumnGroupName="WorkingOLD" />
                     <tlk:GridBoundColumn DataField="HU_EMPLOYEE_ID" UniqueName="HU_EMPLOYEE_ID" SortExpression="HU_EMPLOYEE_ID"
                         Visible="false" ReadOnly="true" ColumnGroupName="WorkingOLD" />
                     <tlk:GridBoundColumn DataField="HU_COMMEND_ID" UniqueName="HU_COMMEND_ID" SortExpression="HU_COMMEND_ID"
@@ -376,16 +378,20 @@
                         HeaderStyle-Width="200px" ReadOnly="true" SortExpression="ORG_NAME" />
                     <tlk:GridTemplateColumn HeaderText="Hình thức trả thưởng" HeaderStyle-Width="200px"
                         UniqueName="COMMEND_PAY">
+                        <ItemTemplate>
+                            <%# DataBinder.Eval(Container.DataItem, "COMMEND_PAY_NAME")%>
+                        </ItemTemplate>
                         <EditItemTemplate>
-                            <tlk:RadComboBox Width="160px" runat="server" ID="cbCommend_Pay">
+                            <tlk:RadComboBox Width="160px" runat="server" ID="cbCommend_Pay" AutoPostBack="true"
+                            OnSelectedIndexChanged="cbCommend_Pay_SelectedIndexChanged">
                             </tlk:RadComboBox>
                         </EditItemTemplate>
                     </tlk:GridTemplateColumn>
-                    <tlk:GridTemplateColumn HeaderText="Mức thưởng" HeaderStyle-Width="100px" UniqueName="MONEY"
+                    <tlk:GridTemplateColumn HeaderText="Mức thưởng" HeaderStyle-Width="100px" UniqueName="MONEY" DataField="MONEY"
                         ColumnGroupName="WorkingNEW">
                         <EditItemTemplate>
                             <tlk:RadNumericTextBox SkinID="Money" DataFormatString="{0:N2}" Width="100px" runat="server"
-                                ID="rnMONEY">
+                                ID="rnMONEY" AutoPostBack="true" OnTextChanged="rnMONEY_TextChanged">
                             </tlk:RadNumericTextBox>
                         </EditItemTemplate>
                     </tlk:GridTemplateColumn>
@@ -431,7 +437,8 @@
                     <tlk:GridTemplateColumn HeaderText="Hình thức trả thưởng" HeaderStyle-Width="200px"
                         UniqueName="COMMEND_PAY" ColumnGroupName="WorkingNEW">
                         <EditItemTemplate>
-                            <tlk:RadComboBox runat="server" ID="cbCommend_PayORG">
+                            <tlk:RadComboBox runat="server" ID="cbCommend_PayORG" AutoPostBack="true"
+                            OnSelectedIndexChanged="cbCommend_PayORG_SelectedIndexChanged">
                             </tlk:RadComboBox>
                         </EditItemTemplate>
                     </tlk:GridTemplateColumn>
@@ -439,7 +446,7 @@
                         ColumnGroupName="WorkingNEW">
                         <EditItemTemplate>
                             <tlk:RadNumericTextBox SkinID="Money" DataFormatString="{0:N2}" Width="150px" runat="server"
-                                ID="rnMONEY_ORG">
+                                ID="rnMONEY_ORG" AutoPostBack="true">
                             </tlk:RadNumericTextBox>
                         </EditItemTemplate>
                     </tlk:GridTemplateColumn>
@@ -452,7 +459,7 @@
         </tlk:RadGrid>
     </tlk:RadPane>
 </tlk:RadSplitter>
-<Common:ctrlUpload ID="ctrlUpload1" runat="server" />
+<common:ctrlupload id="ctrlUpload1" runat="server" />
 <asp:PlaceHolder ID="FindEmployee" runat="server"></asp:PlaceHolder>
 <asp:PlaceHolder ID="FindEmployeeImport" runat="server"></asp:PlaceHolder>
 <asp:PlaceHolder ID="FindSign" runat="server"></asp:PlaceHolder>

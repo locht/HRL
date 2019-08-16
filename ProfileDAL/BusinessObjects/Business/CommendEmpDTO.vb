@@ -1,4 +1,5 @@
 ﻿Public Class CommendEmpDTO
+    Public Property GUID_ID As String
     Public Property HU_COMMEND_ID As Decimal
     Public Property HU_EMPLOYEE_ID As Decimal
     Public Property EMPLOYEE_CODE As String

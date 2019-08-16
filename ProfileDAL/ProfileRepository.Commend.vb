@@ -304,18 +304,26 @@ Partial Class ProfileRepository
             Dim q = (From d In Context.HU_COMMEND_EMP Where d.HU_COMMEND_ID = ComId
                     From e In Context.HU_EMPLOYEE.Where(Function(e) e.ID = d.HU_EMPLOYEE_ID)
                     From o In Context.HU_ORGANIZATION.Where(Function(o) o.ID = e.ORG_ID)
-                    From t In Context.HU_TITLE.Where(Function(t) t.ID = e.TITLE_ID)
-                    Select New CommendEmpDTO With {.HU_EMPLOYEE_ID = d.HU_EMPLOYEE_ID,
-                                                  .HU_COMMEND_ID = d.HU_COMMEND_ID,
-                                                  .EMPLOYEE_CODE = e.EMPLOYEE_CODE,
-                                                  .FULLNAME = e.FULLNAME_VN,
-                                                  .ORG_ID = d.ORG_ID,
-                                                  .ORG_NAME = o.NAME_VN,
-                                                  .TITLE_ID = d.TITLE_ID,
-                                                  .TITLE_NAME = t.NAME_VN,
-                                                  .MONEY = d.MONEY,
-                                                  .COMMEND_PAY = d.COMMEND_PAY}).ToList
-            Return q
+                    From t In Context.HU_TITLE.Where(Function(t) t.ID = e.TITLE_ID))
+
+            Dim lst As New List(Of CommendEmpDTO)
+            For Each row In q
+                Dim guidId As String = Guid.NewGuid.ToString()
+                Dim obj As New CommendEmpDTO
+                obj.GUID_ID = guidId
+                obj.HU_EMPLOYEE_ID = row.d.HU_EMPLOYEE_ID
+                obj.HU_COMMEND_ID = row.d.HU_COMMEND_ID
+                obj.EMPLOYEE_CODE = row.e.EMPLOYEE_CODE
+                obj.FULLNAME = row.e.FULLNAME_VN
+                obj.ORG_ID = row.d.ORG_ID
+                obj.ORG_NAME = row.o.NAME_VN
+                obj.TITLE_ID = row.d.TITLE_ID
+                obj.TITLE_NAME = row.t.NAME_VN
+                obj.MONEY = row.d.MONEY
+                obj.COMMEND_PAY = row.d.COMMEND_PAY
+                lst.Add(obj)
+            Next
+            Return lst
         Catch ex As Exception
             WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iProfile")
             Throw ex
