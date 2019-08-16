@@ -1378,11 +1378,7 @@ Public Class ctrlHU_WageNewEdit
                 Else
                     total = basicSal * rnPercentSalary.Value / 100 + _
                         If(rnOtherSalary1.Value.HasValue, rnOtherSalary1.Value, 0) + _
-                        If(rnOtherSalary2.Value.HasValue, rnOtherSalary2.Value, 0) + _
-                        If(rnOtherSalary3.Value.HasValue, rnOtherSalary3.Value, 0) + _
-                        If(rnOtherSalary4.Value.HasValue, rnOtherSalary4.Value, 0) + _
-                        If(rnOtherSalary5.Value.HasValue, rnOtherSalary5.Value, 0) + _
-                        If(cboAllowance_Total.Value.HasValue, cboAllowance_Total.Value, 0)
+                        If(rnOtherSalary2.Value.HasValue, rnOtherSalary2.Value, 0)
                     basicSalary.Enabled = False
                 End If
             End If
