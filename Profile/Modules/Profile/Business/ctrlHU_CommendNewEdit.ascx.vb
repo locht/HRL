@@ -1171,43 +1171,43 @@ Public Class ctrlHU_CommendNewEdit
     ''' <param name="source"></param>
     ''' <param name="args"></param>
     ''' <remarks></remarks>
-    Private Sub cusDecisionNo_ServerValidate(source As Object, args As System.Web.UI.WebControls.ServerValidateEventArgs) Handles cusDecisionNo.ServerValidate
-        Dim startTime As DateTime = DateTime.UtcNow
-        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+    'Private Sub cusDecisionNo_ServerValidate(source As Object, args As System.Web.UI.WebControls.ServerValidateEventArgs) Handles cusDecisionNo.ServerValidate
+    '    Dim startTime As DateTime = DateTime.UtcNow
+    '    Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
 
-        Try
-            If hidEmpID.Value = "" Then
-                args.IsValid = True
-                Exit Sub
-            End If
+    '    Try
+    '        If hidEmpID.Value = "" Then
+    '            args.IsValid = True
+    '            Exit Sub
+    '        End If
 
-            Select Case CurrentState
-                Case CommonMessage.STATE_NEW
-                    Using rep As New ProfileBusinessRepository
-                        args.IsValid = rep.ValidateCommend("EXIST_DECISION_NO",
-                                                            New CommendDTO With {
-                                                                .EMPLOYEE_ID = hidEmpID.Value,
-                                                                .NO = txtDecisionNo.Text})
-                    End Using
+    '        Select Case CurrentState
+    '            Case CommonMessage.STATE_NEW
+    '                Using rep As New ProfileBusinessRepository
+    '                    args.IsValid = rep.ValidateCommend("EXIST_DECISION_NO",
+    '                                                        New CommendDTO With {
+    '                                                            .EMPLOYEE_ID = hidEmpID.Value,
+    '                                                            .NO = txtDecisionNo.Text})
+    '                End Using
 
-                Case CommonMessage.STATE_EDIT
-                    Using rep As New ProfileBusinessRepository
-                        args.IsValid = rep.ValidateCommend("EXIST_DECISION_NO",
-                                                            New CommendDTO With {
-                                                                .ID = hidID.Value,
-                                                                .EMPLOYEE_ID = hidEmpID.Value,
-                                                                .NO = txtDecisionNo.Text})
-                    End Using
+    '            Case CommonMessage.STATE_EDIT
+    '                Using rep As New ProfileBusinessRepository
+    '                    args.IsValid = rep.ValidateCommend("EXIST_DECISION_NO",
+    '                                                        New CommendDTO With {
+    '                                                            .ID = hidID.Value,
+    '                                                            .EMPLOYEE_ID = hidEmpID.Value,
+    '                                                            .NO = txtDecisionNo.Text})
+    '                End Using
 
-                Case Else
-                    args.IsValid = True
-            End Select
+    '            Case Else
+    '                args.IsValid = True
+    '        End Select
 
-            _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
-        Catch ex As Exception
-            _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
-        End Try
-    End Sub
+    '        _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
+    '    Catch ex As Exception
+    '        _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
+    '    End Try
+    'End Sub
 
     ''' <lastupdate>11/07/2017</lastupdate>
     ''' <summary>Xử lý sự kiện cho nút hủy cua popup</summary>

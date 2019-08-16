@@ -157,14 +157,14 @@ Partial Public Class ctrlHU_CommendNewEdit
     '''</remarks>
     Protected WithEvents txtDecisionNo As Global.Telerik.Web.UI.RadTextBox
 
-    '''<summary>
-    '''cusDecisionNo control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents cusDecisionNo As Global.System.Web.UI.WebControls.CustomValidator
+    ' '''<summary>
+    ' '''cusDecisionNo control.
+    ' '''</summary>
+    ' '''<remarks>
+    ' '''Auto-generated field.
+    ' '''To modify move field declaration from designer file to code-behind file.
+    ' '''</remarks>
+    'Protected WithEvents cusDecisionNo As Global.System.Web.UI.WebControls.CustomValidator
 
     '''<summary>
     '''lbStatus control.
