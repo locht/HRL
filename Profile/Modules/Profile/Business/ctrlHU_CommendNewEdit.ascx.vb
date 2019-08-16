@@ -924,24 +924,24 @@ Public Class ctrlHU_CommendNewEdit
     ''' <param name="source"></param>
     ''' <param name="args"></param>
     ''' <remarks></remarks>
-    Private Sub cvalStatus_ServerValidate(source As Object, args As System.Web.UI.WebControls.ServerValidateEventArgs) Handles cvalStatus.ServerValidate
-        Dim startTime As DateTime = DateTime.UtcNow
-        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+    'Private Sub cvalStatus_ServerValidate(source As Object, args As System.Web.UI.WebControls.ServerValidateEventArgs) Handles cvalStatus.ServerValidate
+    '    Dim startTime As DateTime = DateTime.UtcNow
+    '    Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
 
-        Try
-            If cboStatus.SelectedValue > 0 Then
-                args.IsValid = True
-                Exit Sub
-            Else
-                args.IsValid = False
-                Exit Sub
-            End If
+    '    Try
+    '        If cboStatus.SelectedValue > 0 Then
+    '            args.IsValid = True
+    '            Exit Sub
+    '        Else
+    '            args.IsValid = False
+    '            Exit Sub
+    '        End If
 
-            _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
-        Catch ex As Exception
-            _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
-        End Try
-    End Sub
+    '        _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
+    '    Catch ex As Exception
+    '        _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
+    '    End Try
+    'End Sub
 
     'Private Sub cvalTotal_ServerValidate(source As Object, args As System.Web.UI.WebControls.ServerValidateEventArgs) Handles cvalTotal.ServerValidate
     '    Try

@@ -157,14 +157,14 @@ Partial Public Class ctrlHU_CommendNewEdit
     '''</remarks>
     Protected WithEvents txtDecisionNo As Global.Telerik.Web.UI.RadTextBox
 
-    ' '''<summary>
-    ' '''cusDecisionNo control.
-    ' '''</summary>
-    ' '''<remarks>
-    ' '''Auto-generated field.
-    ' '''To modify move field declaration from designer file to code-behind file.
-    ' '''</remarks>
-    'Protected WithEvents cusDecisionNo As Global.System.Web.UI.WebControls.CustomValidator
+    '''<summary>
+    '''RequiredFieldValidator5 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents RequiredFieldValidator5 As Global.System.Web.UI.WebControls.RequiredFieldValidator
 
     '''<summary>
     '''lbStatus control.
@@ -185,22 +185,13 @@ Partial Public Class ctrlHU_CommendNewEdit
     Protected WithEvents cboStatus As Global.Telerik.Web.UI.RadComboBox
 
     '''<summary>
-    '''cvalStatus control.
+    '''RequiredFieldValidator6 control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents cvalStatus As Global.System.Web.UI.WebControls.CustomValidator
-
-    ' '''<summary>
-    ' '''cusStatus control.
-    ' '''</summary>
-    ' '''<remarks>
-    ' '''Auto-generated field.
-    ' '''To modify move field declaration from designer file to code-behind file.
-    ' '''</remarks>
-    'Protected WithEvents cusStatus As Global.System.Web.UI.WebControls.CustomValidator
+    Protected WithEvents RequiredFieldValidator6 As Global.System.Web.UI.WebControls.RequiredFieldValidator
 
     '''<summary>
     '''lbSignDate control.
@@ -221,13 +212,13 @@ Partial Public Class ctrlHU_CommendNewEdit
     Protected WithEvents rdSignDate As Global.Telerik.Web.UI.RadDatePicker
 
     '''<summary>
-    '''CompareValidator1 control.
+    '''RequiredFieldValidator3 control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents CompareValidator1 As Global.System.Web.UI.WebControls.CompareValidator
+    Protected WithEvents RequiredFieldValidator3 As Global.System.Web.UI.WebControls.RequiredFieldValidator
 
     '''<summary>
     '''lbSignerName control.
@@ -373,14 +364,14 @@ Partial Public Class ctrlHU_CommendNewEdit
     '''</remarks>
     Protected WithEvents cboCommendType As Global.Telerik.Web.UI.RadComboBox
 
-    ' '''<summary>
-    ' '''cusCommendType control.
-    ' '''</summary>
-    ' '''<remarks>
-    ' '''Auto-generated field.
-    ' '''To modify move field declaration from designer file to code-behind file.
-    ' '''</remarks>
-    'Protected WithEvents cusCommendType As Global.System.Web.UI.WebControls.CustomValidator
+    '''<summary>
+    '''RequiredFieldValidator_cboCommendType control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents RequiredFieldValidator_cboCommendType As Global.System.Web.UI.WebControls.RequiredFieldValidator
 
     '''<summary>
     '''lbCommend_Title control.
