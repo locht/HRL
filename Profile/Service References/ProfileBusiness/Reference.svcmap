@@ -57,8 +57,8 @@
     <MetadataFile FileName="service4.xsd" MetadataType="Schema" ID="9ebc1847-2d25-41ce-bf9c-bcbe006aa0fa" SourceId="1" SourceUrl="http://localhost:9999/ProfileBusiness.svc/mex/mex/mex/mex" />
     <MetadataFile FileName="ProfileDAL1.xsd" MetadataType="Schema" ID="23e3f7b5-d3ea-4be3-979e-859bca358ee5" SourceId="1" SourceUrl="http://localhost:9999/ProfileBusiness.svc/mex/mex/mex/mex" />
     <MetadataFile FileName="Framework.Data1.xsd" MetadataType="Schema" ID="37c018a3-8be3-43ec-ab14-4852490f56ef" SourceId="1" SourceUrl="http://localhost:9999/ProfileBusiness.svc/mex/mex/mex/mex" />
-    <MetadataFile FileName="System.Data1.xsd" MetadataType="Schema" ID="089bdbdc-94f6-4833-82d3-fe7b33f3d2a6" SourceId="1" SourceUrl="http://localhost:9999/ProfileBusiness.svc/mex/mex/mex/mex" />
     <MetadataFile FileName="Arrays1.xsd" MetadataType="Schema" ID="c4fc765d-30d7-4401-a93a-564aaab53b41" SourceId="1" SourceUrl="http://localhost:9999/ProfileBusiness.svc/mex/mex/mex/mex" />
+    <MetadataFile FileName="System.Data1.xsd" MetadataType="Schema" ID="089bdbdc-94f6-4833-82d3-fe7b33f3d2a6" SourceId="1" SourceUrl="http://localhost:9999/ProfileBusiness.svc/mex/mex/mex/mex" />
     <MetadataFile FileName="service5.xsd" MetadataType="Schema" ID="13df2f81-55a2-4e90-9685-09c8acde5797" SourceId="1" SourceUrl="http://localhost:9999/ProfileBusiness.svc/mex/mex/mex/mex" />
     <MetadataFile FileName="System1.xsd" MetadataType="Schema" ID="b6b84b29-3217-47b9-a33c-43f98e4a5648" SourceId="1" SourceUrl="http://localhost:9999/ProfileBusiness.svc/mex/mex/mex/mex" />
   </Metadata>

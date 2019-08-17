@@ -1,8 +1,8 @@
 ﻿<%@ Control Language="vb" AutoEventWireup="false" CodeBehind="ctrlHU_TerminateNewEdit.ascx.vb"
     Inherits="Profile.ctrlHU_TerminateNewEdit" %>
-<Common:ctrlMessageBox ID="ctrlMessageBox" runat="server" />
+<common:ctrlmessagebox id="ctrlMessageBox" runat="server" />
 <link href="/Styles/StyleCustom.css" rel="stylesheet" type="text/css" />
-<tlk:RadSplitter ID="RadSplitter3" runat="server" Width="100%" Height="100%" Orientation="Horizontal">
+<tlk:radsplitter id="RadSplitter3" runat="server" width="100%" height="100%" orientation="Horizontal">
     <tlk:RadPane ID="RadPane1" runat="server" Height="35px" Scrolling="None">
         <tlk:RadToolBar ID="tbarTerminate" runat="server" OnClientButtonClicking="clientButtonClicking" />
     </tlk:RadPane>
@@ -428,7 +428,7 @@
                     <asp:Label runat ="server" ID ="lbReserveSeniority" Text ="Thâm niên bảo lưu (Tháng)" ></asp:Label>
                 </td>
                 <td>
-                    <tlk:RadNumericTextBox ID="rntxtReserveSeniority" runat="server" SkinID="Decimal">
+                    <tlk:RadNumericTextBox ID="rntxtReserveSeniority" ReadOnly="true" runat="server" SkinID="Decimal">
                     </tlk:RadNumericTextBox>
                 </td>
                 <td class="lb">
@@ -444,7 +444,9 @@
                     <asp:Label runat ="server" ID ="lbAllowanceTerminate" Text ="Tiền trợ cấp thôi việc" ></asp:Label>
                 </td>
                 <td>
-                    <tlk:RadNumericTextBox ID="rntxtAllowanceTerminate" runat="server" SkinID="Money">
+                    <tlk:RadNumericTextBox ID="rntxtAllowanceTerminate" runat="server">
+                    <NumberFormat AllowRounding="false" DecimalDigits="0" DecimalSeparator="." GroupSeparator=","
+                            GroupSizes="3" />
                     </tlk:RadNumericTextBox>
                 </td>
             </tr>
@@ -581,13 +583,13 @@
                     <asp:Label runat ="server" ID ="lbDecisionType" Text ="Loại quyết định" ></asp:Label>
                 </td>
                 <td>
-                    <tlk:RadComboBox ID="cboDecisionType" runat="server">
+                    <tlk:RadComboBox ID="cboDecisionType" AutoPostBack="true" CausesValidation="false" runat="server">
                     </tlk:RadComboBox>
                     <asp:RequiredFieldValidator ID="reqDecisionType" ControlToValidate="cboDecisionType" runat="server"
                         ErrorMessage="Bạn phải chọn loại quyết định." ToolTip="Bạn phải chọn loại quyết định."> </asp:RequiredFieldValidator>
                 </td>
                 <td class="lb">
-                    <asp:Label runat ="server" ID ="lbDecisionNo" Text ="Số quyết định" ></asp:Label>
+                    <asp:Label runat ="server" ID ="lbDecisionNo" Text ="Số quyết định" ></asp:Label><span style="color:red"> *</span>
                 </td>
                 <td>
                     <tlk:RadTextBox ID="txtDecisionNo" runat="server">
@@ -599,7 +601,7 @@
                     <%# Translate("Ngày hiệu lực")%>
                 </td>
                 <td>
-                    <tlk:RadDatePicker ID="rdEffectDate" runat="server">
+                    <tlk:RadDatePicker ID="rdEffectDate" runat="server" AutoPostBack="true" CausesValidation="false">
                     </tlk:RadDatePicker>
                     <asp:RequiredFieldValidator ID="reqEffectDate" ControlToValidate="rdEffectDate" runat="server"
                         ErrorMessage="Bạn phải nhập ngày hiệu lực." ToolTip="Bạn phải nhập ngày hiệu lực."> </asp:RequiredFieldValidator>
@@ -657,11 +659,11 @@
             </tr>            
         </table>
     </tlk:RadPane>
-</tlk:RadSplitter>
-<Common:ctrlUpload ID="ctrlUpload1" runat="server" />
+</tlk:radsplitter>
+<common:ctrlupload id="ctrlUpload1" runat="server" />
 <asp:PlaceHolder ID="phFindEmployee" runat="server"></asp:PlaceHolder>
 <asp:PlaceHolder ID="phFindSign" runat="server"></asp:PlaceHolder>
-<tlk:RadCodeBlock ID="RadCodeBlock1" runat="server">
+<tlk:radcodeblock id="RadCodeBlock1" runat="server">
     <script type="text/javascript">
 
         function cusStatus(oSrc, args) {
@@ -714,4 +716,4 @@
             enableAjax = true;
         }
     </script>
-</tlk:RadCodeBlock>
+</tlk:radcodeblock>

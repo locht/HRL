@@ -1549,6 +1549,20 @@ Public Class ProfileRepository
                         .CODE = p.CODE}).ToList
             _combolistDTO.LIST_DECISION_STATUS = query
         End If
+
+        'Loại quyết định của Nghỉ việc
+        If _combolistDTO.GET_TER_DECISION_TYPE Then
+            query = (From p In Context.OT_OTHER_LIST
+                     Join q In Context.OT_OTHER_LIST_TYPE On p.TYPE_ID Equals q.ID
+                     Where q.CODE = "DECISION_TYPE" And p.ATTRIBUTE1 = "NV" And p.ACTFLG = "A"
+                     Order By p.NAME_VN
+                    Select New OtherListDTO With {
+                        .ID = p.ID,
+                        .NAME_VN = p.NAME_VN,
+                        .NAME_EN = p.NAME_EN,
+                        .CODE = p.CODE}).ToList
+            _combolistDTO.LIST_TER_DECISION_TYPE = query
+        End If
         Return True
     End Function
 

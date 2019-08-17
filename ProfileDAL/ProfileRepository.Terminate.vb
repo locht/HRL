@@ -560,6 +560,9 @@ Partial Class ProfileRepository
         Try
             ' thêm nghỉ việc
             objTerminateData.ID = Utilities.GetNextSequence(Context, Context.HU_TERMINATE.EntitySet.Name)
+            If objTerminate.ID = 0 Then
+                objTerminate.ID = objTerminateData.ID
+            End If
             objTerminateData.EMPLOYEE_ID = objTerminate.EMPLOYEE_ID
             objTerminateData.IS_NOHIRE = objTerminate.IS_NOHIRE
             objTerminateData.LAST_DATE = objTerminate.LAST_DATE

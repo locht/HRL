@@ -304,4 +304,7 @@
     Public Property GET_LOCATION As Boolean
     Public Property LIST_LOCATION As List(Of LocationDTO)
 
+    'OtherList - Loai quyet dinh cua Nghi viec
+    Public Property GET_TER_DECISION_TYPE As Boolean
+    Public Property LIST_TER_DECISION_TYPE As List(Of OtherListDTO)
 End Class

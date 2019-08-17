@@ -1606,6 +1606,23 @@ Public Class ctrlHU_TerminateNewEdit
         Tinh_Tien_Con_lai()
     End Sub
 
+    ''' <summary>
+    ''' cboDecisionType Event
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
+    ''' <remarks></remarks>
+    Private Sub cboDecisionType_SelectedIndexChanged(sender As Object, e As Telerik.Web.UI.RadComboBoxSelectedIndexChangedEventArgs) Handles cboDecisionType.SelectedIndexChanged
+        Try
+            If cboDecisionType.SelectedValue IsNot Nothing AndAlso cboDecisionType.SelectedValue = 7402 Then
+                rntxtReserveSeniority.ReadOnly = False
+            Else
+                rntxtReserveSeniority.ReadOnly = True
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
 #End Region
 
 #Region "Custom"
@@ -1617,6 +1634,7 @@ Public Class ctrlHU_TerminateNewEdit
         Dim dt As DataTable
         Dim startTime As DateTime = DateTime.UtcNow
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+        Dim iYearAllow As Decimal, iSalaryMedium As Decimal = 0
         Try
             If hidEmpID.Value Is Nothing Or rdLastDate.SelectedDate Is Nothing Then
                 'rntxtRemainingLeave.ClearValue()
@@ -1641,31 +1659,19 @@ Public Class ctrlHU_TerminateNewEdit
                 'rntxtCompensatoryPayment.Value = Utilities.ObjToDecima(dt.Rows(0)("MONEY_COMP_LEAVE"))
 
                 'trợ cấp thôi việc
-                rntxtAllowanceTerminate.Value = Utilities.ObjToDecima(dt.Rows(0)("SUPPORT_TERMINATE"))
+                'rntxtAllowanceTerminate.Value = Utilities.ObjToDecima(dt.Rows(0)("SUPPORT_TERMINATE"))
+
+
                 'Bổ xung lương trùng bình 6 tháng
-                If getSE_CASE_CONFIG("ctrlHU_TerminateNewEdit_SalaryMedium_loss") > 0 Then 'Active
-
-                Else 'Unactive
-                    rntxtSalaryMedium_loss.Value = Utilities.ObjToDecima(dt.Rows(0)("SALBASIC_6TH"))
-                End If
-                'Thoi gian tham gia BH
-                If getSE_CASE_CONFIG("ctrlHU_TerminateNewEdit_TimeAccidentIns_loss") > 0 Then
-
-                Else
-                    Get_InforWorkLoss()
-                End If
-                hiSalbasic.Value = Utilities.ObjToDecima(dt.Rows(0)("SAL_BASIC"))
+                Dim dTemp = If(rdEffectDate.SelectedDate Is Nothing, 0, psp.SALARY_LAST_SIX_MONTH(hidEmpID.Value, rdEffectDate.SelectedDate))
+                iYearAllow = If(dTemp <> 0, dTemp, 0)
+                rntxtSalaryMedium_loss.Value = iYearAllow
                 'số năm tính trợ cấp mất việc
-                If getSE_CASE_CONFIG("ctrlHU_TerminateNewEdit_yearforallow_loss") > 0 Then
+                rntxtyearforallow_loss.Value = Utilities.ObjToDecima(dt.Rows(0)("SO_NAM_TRO_CAP"))
 
-                Else
-                    rntxtyearforallow_loss.Value = Utilities.ObjToDecima(dt.Rows(0)("SO_NAM_TRO_CAP"))
-                End If
-                If getSE_CASE_CONFIG("ctrlHU_TerminateNewEdit_MoneyReturn") > 0 Then
+                Tinh_Tien_Tro_Cap_Thoi_Viec()
 
-                Else
-                    Tinh_Tien_Con_lai()
-                End If
+                Get_InforWorkLoss()
             End If
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
@@ -1730,7 +1736,8 @@ Public Class ctrlHU_TerminateNewEdit
                 ListComboData.GET_TYPE_INS_STATUS = True
                 ListComboData.GET_DEBT_STATUS = True
                 ListComboData.GET_DEBT_TYPE = True
-                ListComboData.GET_DECISION_TYPE = True
+                'ListComboData.GET_DECISION_TYPE = True
+                ListComboData.GET_TER_DECISION_TYPE = True
                 ListComboData.GET_HANDOVER_CONTENT = True
                 rep.GetComboList(ListComboData)
             End If
@@ -1743,7 +1750,8 @@ Public Class ctrlHU_TerminateNewEdit
             FillDropDownList(cboTerReason, ListComboData.LIST_TER_REASON, "NAME_VN", "ID", Common.Common.SystemLanguage, True)
             FillDropDownList(cboDebtStatus, ListComboData.LIST_DEBT_STATUS, "NAME_VN", "ID", Common.Common.SystemLanguage, True)
             FillDropDownList(cboDebtType, ListComboData.LIST_DEBT_TYPE, "NAME_VN", "ID", Common.Common.SystemLanguage, True)
-            FillDropDownList(cboDecisionType, ListComboData.LIST_DECISION_TYPE, "NAME_VN", "ID", Common.Common.SystemLanguage, True)
+            'FillDropDownList(cboDecisionType, ListComboData.LIST_DECISION_TYPE, "NAME_VN", "ID", Common.Common.SystemLanguage, True)
+            FillDropDownList(cboDecisionType, ListComboData.LIST_TER_DECISION_TYPE, "NAME_VN", "ID", Common.Common.SystemLanguage, True)
             cboStatus.SelectedValue = ProfileCommon.DECISION_STATUS.WAIT_APPROVE_ID
             FillRadCombobox(cboSalMonth, rep.GetCurrentPeriod(), "PERIOD_NAME", "ID", True)
             'cboSalMonth.DataSource = rep.GetCurrentPeriod()
@@ -1834,13 +1842,14 @@ Public Class ctrlHU_TerminateNewEdit
     End Sub
 #End Region
 
-    Private Sub rntxtyearforallow_loss_TextChanged(sender As Object, e As System.EventArgs) Handles rntxtyearforallow_loss.TextChanged
+    Private Sub rntxtyearforallow_loss_TextChanged(sender As Object, e As System.EventArgs) Handles rntxtyearforallow_loss.TextChanged, rdEffectDate.SelectedDateChanged
         Tinh_Tien_Tro_Cap_Thoi_Viec()
     End Sub
     Private Sub Tinh_Tien_Tro_Cap_Thoi_Viec()
         Dim tempValue = If(rntxtSalaryMedium_loss.Value Is Nothing, 0, rntxtSalaryMedium_loss.Value) * If(rntxtyearforallow_loss.Value Is Nothing, 0, rntxtyearforallow_loss.Value) * 0.5
-        rntxtAllowanceTerminate.Text = If(tempValue > 0, tempValue, Nothing)
+        rntxtAllowanceTerminate.Text = If(tempValue > 0, Math.Round(CType(tempValue, Decimal), 0), Nothing)
     End Sub
+
 End Class
 ''' <summary>
 ''' Class tinh so nam cong tac cua nhan vien
