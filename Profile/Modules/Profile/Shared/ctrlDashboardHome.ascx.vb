@@ -378,12 +378,12 @@ Public Class ctrlDashboardHome
             Select Case remind_type
                 Case "1" 'Hop dong chinh thuc
                     dataMail = psp.GET_MAIL_TEMPLATE("HDCT", "Profile")
-                    dtValues = psp.GET_DATA_CONTRACT_FOR_EMAIL(dr.GetDataKeyValue("ID"))
+                    dtValues = psp.GET_DATA_CONTRACT_FOR_EMAIL(dr.GetDataKeyValue("VALUE"))
                     titleMail = If(dtValues.Rows(0)("ORG_NAME") <> "", "BAN HCNS - ĐÁNH GIÁ NHÂN VIÊN " + dtValues.Rows(0)("ORG_NAME") + " HẾT THỜI GIAN KÝ HĐLĐ", Nothing)
                     mailCC = If(psp.GET_MAILCC_DIRECT_HR(dr.GetDataKeyValue("EMPLOYEE_ID")) <> "", psp.GET_MAILCC_DIRECT_HR(dr.GetDataKeyValue("EMPLOYEE_ID")), Nothing)
                 Case "20" 'Hop dong thu viec
                     dataMail = psp.GET_MAIL_TEMPLATE("HDTV", "Profile")
-                    dtValues = psp.GET_DATA_CONTRACT_FOR_EMAIL(dr.GetDataKeyValue("ID"))
+                    dtValues = psp.GET_DATA_CONTRACT_FOR_EMAIL(dr.GetDataKeyValue("VALUE"))
                     titleMail = If(dtValues.Rows(0)("ORG_NAME") <> "", "BAN HCNS - ĐÁNH GIÁ NHÂN VIÊN " + dtValues.Rows(0)("ORG_NAME") + " HẾT THỜI GIAN THỬ VIỆC", Nothing)
                     mailCC = If(psp.GET_MAILCC_DIRECT_HR(dr.GetDataKeyValue("EMPLOYEE_ID")) <> "", psp.GET_MAILCC_DIRECT_HR(dr.GetDataKeyValue("EMPLOYEE_ID")), Nothing)
             End Select
