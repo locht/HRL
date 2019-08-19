@@ -474,7 +474,7 @@
             <Property Name="ID_NO" Type="nvarchar2" Nullable="true" MaxLength="15" />
             <Property Name="ID_DATE" Type="date" Nullable="true" />
             <Property Name="ID_PLACE" Type="number" Nullable="true" Precision="38" />
-            <Property Name="BIRTH_PLACE" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="BIRTH_PLACE" Type="number" Nullable="true" Precision="38" />
             <Property Name="RELIGION" Type="number" Nullable="true" Precision="38" />
             <Property Name="NATIVE" Type="number" Nullable="true" Precision="38" />
             <Property Name="PER_ADDRESS" Type="nvarchar2" Nullable="true" MaxLength="255" />
@@ -580,7 +580,6 @@
             <Property Name="PERSON_INHERITANCE" Type="nclob" Nullable="true" />
             <Property Name="EFFECTDATE_BANK" Type="date" Nullable="true" />
             <Property Name="EXPIRE_DATE_IDNO" Type="date" Nullable="true" />
-            <Property Name="BIRTH_PLACE_ID" Type="number" Nullable="true" Precision="38" />
         </EntityType>
         <EntityType Name="HU_EMPLOYEE_HEALTH">
             <Key>
@@ -4706,7 +4705,7 @@
           <Property Type="String" Name="ID_NO" Nullable="true" MaxLength="15" FixedLength="false" />
           <Property Type="DateTime" Name="ID_DATE" Nullable="true" />
           <Property Type="Decimal" Name="ID_PLACE" Nullable="true" />
-          <Property Type="String" Name="BIRTH_PLACE" Nullable="true" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="Decimal" Name="BIRTH_PLACE" />
           <Property Type="Decimal" Name="RELIGION" Nullable="true" />
           <Property Type="Decimal" Name="NATIVE" Nullable="true" />
           <Property Type="String" Name="PER_ADDRESS" Nullable="true" MaxLength="255" FixedLength="false" Unicode="true" />
@@ -4812,7 +4811,6 @@
           <Property Type="String" Name="PERSON_INHERITANCE" />
           <Property Type="DateTime" Name="EFFECTDATE_BANK" />
           <Property Type="DateTime" Name="EXPIRE_DATE_IDNO" />
-          <Property Type="Decimal" Name="BIRTH_PLACE_ID" />
         </EntityType>
         <EntityType Name="HU_EMPLOYEE_HEALTH">
           <Key>
@@ -8624,7 +8622,6 @@
                     <ScalarProperty Name="PERSON_INHERITANCE" ColumnName="PERSON_INHERITANCE" />
                     <ScalarProperty Name="EFFECTDATE_BANK" ColumnName="EFFECTDATE_BANK" />
                     <ScalarProperty Name="EXPIRE_DATE_IDNO" ColumnName="EXPIRE_DATE_IDNO" />
-                    <ScalarProperty Name="BIRTH_PLACE_ID" ColumnName="BIRTH_PLACE_ID" />
                 </MappingFragment>
             </EntityTypeMapping>
         </EntitySetMapping>
@@ -11959,7 +11956,7 @@
     </Options>
     <!-- Diagram content (shape and connector positions) -->
     <Diagrams>
-      <Diagram Name="ProfileContext" ZoomLevel="74" ShowGrid="false" DisplayType="true" SnapToGrid="true">
+      <Diagram Name="ProfileContext" ZoomLevel="82" ShowGrid="false" DisplayType="true" SnapToGrid="true">
         <EntityTypeShape EntityType="ProfileModel.HU_PROVINCE" Width="1.5" PointX="3" PointY="9.625" Height="0.39999999999999858" IsExpanded="false" />
         <EntityTypeShape EntityType="ProfileModel.HU_DISTRICT" Width="1.75" PointX="5.25" PointY="9" Height="0.39999999999999858" IsExpanded="false" />
         <EntityTypeShape EntityType="ProfileModel.HU_NATION" Width="1.5" PointX="0.75" PointY="9.625" Height="0.40000000000000213" IsExpanded="false" />
@@ -12000,7 +11997,7 @@
           <ConnectorPoint PointX="4.5" PointY="10.024999999999999" />
           <ConnectorPoint PointX="5.25" PointY="10.125" />
         </AssociationConnector>
-        <EntityTypeShape EntityType="ProfileModel.HU_EMPLOYEE_CV" Width="1.875" PointX="14.375" PointY="3.375" Height="23.133444010416671" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProfileModel.HU_EMPLOYEE_CV" Width="1.875" PointX="14.375" PointY="3.375" Height="22.941142578125003" IsExpanded="true" />
         <EntityTypeShape EntityType="ProfileModel.HU_EMPLOYEE_HEALTH" Width="1.875" PointX="14.5" PointY="2" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="ProfileModel.HU_EMPLOYEE_EDUCATION" Width="4" PointX="13.125" PointY="0.5" Height="0.4" IsExpanded="false" />
         <AssociationConnector Association="ProfileModel.FK_HE_HEC">

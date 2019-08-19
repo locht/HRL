@@ -1,8 +1,8 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for Oracle database
 -- --------------------------------------------------
--- Date Created: 19/08/2019 4:32:35 PM
--- Generated from EDMX file: E:\TNG1\ProfileDAL\ProfileContext.edmx
+-- Date Created: 08/19/2019 5:19:30 PM
+-- Generated from EDMX file: D:\MyProject\TNG\TNG\ProfileDAL\ProfileContext.edmx
 -- --------------------------------------------------
 
 -- --------------------------------------------------
@@ -564,7 +564,7 @@ CREATE TABLE "dbo"."HU_EMPLOYEE_CV" (
    "ID_NO" NVARCHAR2(15) NULL,
    "ID_DATE" DATE NULL,
    "ID_PLACE" NUMBER(38,0) NULL,
-   "BIRTH_PLACE" NVARCHAR2(255) NULL,
+   "BIRTH_PLACE" NUMBER(38,0) NULL,
    "RELIGION" NUMBER(38,0) NULL,
    "NATIVE" NUMBER(38,0) NULL,
    "PER_ADDRESS" NVARCHAR2(255) NULL,
@@ -669,8 +669,7 @@ CREATE TABLE "dbo"."HU_EMPLOYEE_CV" (
    "PIT_CODE_PLACE" NCLOB NULL,
    "PERSON_INHERITANCE" NCLOB NULL,
    "EFFECTDATE_BANK" DATE NULL,
-   "EXPIRE_DATE_IDNO" DATE NULL,
-   "BIRTH_PLACE_ID" NUMBER(38,0) NULL
+   "EXPIRE_DATE_IDNO" DATE NULL
 );
 
 -- Creating table 'HU_EMPLOYEE_HEALTH'
