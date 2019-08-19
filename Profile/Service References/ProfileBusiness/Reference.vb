@@ -21905,6 +21905,9 @@ Namespace ProfileBusiness
         Private GET_SIZE_LABOURPROTECTIONField As Boolean
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private GET_TER_DECISION_TYPEField As Boolean
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private GET_TER_REASONField As Boolean
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -22134,6 +22137,9 @@ Namespace ProfileBusiness
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private LIST_SIZE_LABOURPROTECTIONField As System.Collections.Generic.List(Of ProfileBusiness.OtherListDTO)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private LIST_TER_DECISION_TYPEField As System.Collections.Generic.List(Of ProfileBusiness.OtherListDTO)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private LIST_TER_REASONField As System.Collections.Generic.List(Of ProfileBusiness.OtherListDTO)
@@ -22906,6 +22912,19 @@ Namespace ProfileBusiness
                 If (Me.GET_SIZE_LABOURPROTECTIONField.Equals(value) <> true) Then
                     Me.GET_SIZE_LABOURPROTECTIONField = value
                     Me.RaisePropertyChanged("GET_SIZE_LABOURPROTECTION")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property GET_TER_DECISION_TYPE() As Boolean
+            Get
+                Return Me.GET_TER_DECISION_TYPEField
+            End Get
+            Set
+                If (Me.GET_TER_DECISION_TYPEField.Equals(value) <> true) Then
+                    Me.GET_TER_DECISION_TYPEField = value
+                    Me.RaisePropertyChanged("GET_TER_DECISION_TYPE")
                 End If
             End Set
         End Property
@@ -23907,6 +23926,19 @@ Namespace ProfileBusiness
                 If (Object.ReferenceEquals(Me.LIST_SIZE_LABOURPROTECTIONField, value) <> true) Then
                     Me.LIST_SIZE_LABOURPROTECTIONField = value
                     Me.RaisePropertyChanged("LIST_SIZE_LABOURPROTECTION")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property LIST_TER_DECISION_TYPE() As System.Collections.Generic.List(Of ProfileBusiness.OtherListDTO)
+            Get
+                Return Me.LIST_TER_DECISION_TYPEField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.LIST_TER_DECISION_TYPEField, value) <> true) Then
+                    Me.LIST_TER_DECISION_TYPEField = value
+                    Me.RaisePropertyChanged("LIST_TER_DECISION_TYPE")
                 End If
             End Set
         End Property

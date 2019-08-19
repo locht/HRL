@@ -25857,7 +25857,7 @@ Xin cám ơn!
       <string>NGÀY NGHỈ THỰC TẾ</string>
     </Key>
     <Value>
-      <string>Ngày nghỉ thực tế</string>
+      <string>Ngày làm việc cuối cùng</string>
     </Value>
   </Item>
   <Item>
@@ -40146,6 +40146,102 @@ Xin cám ơn!
     </Key>
     <Value>
       <string>Phòng ban</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>IS_NOHIRE</string>
+    </Key>
+    <Value>
+      <string>IS_NOHIRE</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>LƯƠNG TRUNG BÌNH 6 THÁNG</string>
+    </Key>
+    <Value>
+      <string>Lương trung bình 6 tháng</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>THỜI GIAN THAM GIA BHTN</string>
+    </Key>
+    <Value>
+      <string>Thời gian tham gia BHTN</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>SỐ NĂM TÍNH TRỢ CẤP MẤT VIỆC</string>
+    </Key>
+    <Value>
+      <string>Số năm tính trợ cấp mất việc</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>SỐ TIỀN CÒN LẠI</string>
+    </Key>
+    <Value>
+      <string>Số tiền còn lại</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>NỘI DUNG BÀN GIAO</string>
+    </Key>
+    <Value>
+      <string>Nội dung bàn giao</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>HOÀN THÀNH</string>
+    </Key>
+    <Value>
+      <string>Hoàn thành</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>TÊN LOẠI CÔNG NỢ</string>
+    </Key>
+    <Value>
+      <string>Tên loại công nợ</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>TẢI TẬP TIN</string>
+    </Key>
+    <Value>
+      <string>Tải tập tin</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>THÔNG TIN BÀN GIAO</string>
+    </Key>
+    <Value>
+      <string>Thông tin bàn giao</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>DANH SÁCH CÔNG NỢ</string>
+    </Key>
+    <Value>
+      <string>Danh sách công nợ</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>THÔNG TIN TRỢ CẤP THÔI VIỆC</string>
+    </Key>
+    <Value>
+      <string>Thông tin trợ cấp thôi việc</string>
     </Value>
   </Item>
 </SerializableDictionaryOfStringString>
