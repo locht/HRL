@@ -65,7 +65,9 @@
                                 HeaderStyle-Width="30px" ItemStyle-HorizontalAlign="Center">
                             </tlk:GridClientSelectColumn>
                             <tlk:GridBoundColumn DataField="ID" Visible="false" />
-                            
+                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Đối tượng %>" DataField="DISCIPLINE_OBJ_NAME"
+                                SortExpression="DISCIPLINE_OBJ_NAME" UniqueName="DISCIPLINE_OBJ_NAME" />
+
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Mã nhân viên %>" DataField="EMPLOYEE_CODE"
                                 SortExpression="EMPLOYEE_CODE" UniqueName="EMPLOYEE_CODE" />
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Tên nhân viên %>" DataField="EMPLOYEE_NAME"
@@ -73,10 +75,7 @@
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Đơn vị %>" DataField="ORG_NAME" SortExpression="ORG_NAME"
                                 UniqueName="ORG_NAME" />
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Chức danh %>" DataField="TITLE_NAME"
-                                SortExpression="TITLE_NAME" UniqueName="TITLE_NAME" />
-
-                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Đối tượng %>" DataField="DISCIPLINE_OBJ_NAME"
-                                SortExpression="DISCIPLINE_OBJ_NAME" UniqueName="DISCIPLINE_OBJ_NAME" />
+                                SortExpression="TITLE_NAME" UniqueName="TITLE_NAME" />                            
                             
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Lý do kỷ luật %>" DataField="DISCIPLINE_REASON_NAME"
                                 SortExpression="DISCIPLINE_REASON_NAME" UniqueName="DISCIPLINE_REASON_NAME" />
@@ -98,6 +97,12 @@
                                 DataFormatString="{0:N0}" SortExpression="MONEY" UniqueName="MONEY" />
                             <tlk:GridNumericColumn HeaderText="<%$ Translate: Tổng giá trị thiệt hại %>" DataField="INDEMNIFY_MONEY" ItemStyle-HorizontalAlign="Right"
                                 DataFormatString="{0:N0}" SortExpression="INDEMNIFY_MONEY" UniqueName="INDEMNIFY_MONEY" />
+                            <tlk:GridNumericColumn HeaderText="<%$ Translate: Tổng số tiền phải nộp %>" DataField="PAIDMONEY" ItemStyle-HorizontalAlign="Right"
+                                DataFormatString="{0:N0}" SortExpression="PAIDMONEY" UniqueName="PAIDMONEY" />
+                            <tlk:GridNumericColumn HeaderText="<%$ Translate: Số tiền đã nộp %>" DataField="AMOUNT_PAID_CASH" ItemStyle-HorizontalAlign="Right"
+                                DataFormatString="{0:N0}" SortExpression="AMOUNT_PAID_CASH" UniqueName="AMOUNT_PAID_CASH" />
+                            <tlk:GridNumericColumn HeaderText="<%$ Translate: Số tiền còn phải nộp %>" DataField="AMOUNT_TO_PAID" ItemStyle-HorizontalAlign="Right"
+                                DataFormatString="{0:N0}" SortExpression="AMOUNT_TO_PAID" UniqueName="AMOUNT_TO_PAID" />
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Thời gian thi hành kỷ luật %>" DataField="PERFORM_TIME"
                                 ItemStyle-HorizontalAlign="Center" SortExpression="PERFORM_TIME" UniqueName="PERFORM_TIME" />
                             <tlk:GridBoundColumn HeaderText="ORG_DESC" DataField="ORG_DESC" UniqueName="ORG_DESC"

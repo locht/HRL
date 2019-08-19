@@ -164,7 +164,7 @@ Public Class ctrlHU_DisciplineNewEdit
             Refresh()
             UpdateControlState()
             rgEmployee.AllowSorting = False
-            rntxtMoney.Enabled = False
+            'rntxtMoney.Enabled = False
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
             DisplayException(Me.ViewName, Me.ID, ex)
@@ -194,8 +194,8 @@ Public Class ctrlHU_DisciplineNewEdit
                 End Select
             End If
             If Not IsPostBack Then
-                ViewConfig(RadPane2)
-                GirdConfig(rgEmployee)
+                'ViewConfig(RadPane2)
+                'GirdConfig(rgEmployee)
             End If
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
@@ -279,11 +279,42 @@ Public Class ctrlHU_DisciplineNewEdit
                         Else
                             cboPeriod.SelectedValue = Discipline.PERIOD_ID
                         End If
+
+                        rnAmountSalaryMonth.Enabled = True
+                        If Discipline.PERIOD_ID Is Nothing Then
+                            rnAmountSalaryMonth.Value = Nothing
+                        Else
+                            rnAmountSalaryMonth.Value = Discipline.AMOUNT_SAL_MONTH
+                        End If
+
+                        rnAmountInMonth.Enabled = True
+                        If Discipline.AMOUNT_IN_MONTH Is Nothing Then
+                            rnAmountInMonth.Value = Nothing
+                        Else
+                            rnAmountInMonth.Value = Discipline.AMOUNT_IN_MONTH
+                        End If
+
+                        rnAmountDeductedMonth.Enabled = True
+                        If Discipline.AMOUNT_DEDUCT_AMOUNT Is Nothing Then
+                            rnAmountDeductedMonth.Value = Nothing
+                        Else
+                            rnAmountDeductedMonth.Value = Discipline.AMOUNT_DEDUCT_AMOUNT
+                        End If
+
                     Else
                         nmYear.Enabled = False
                         cboPeriod.Enabled = False
                         nmYear.ClearValue()
                         cboPeriod.ClearValue()
+
+                        rnAmountSalaryMonth.Enabled = False
+                        rnAmountSalaryMonth.Value = Nothing
+
+                        rnAmountInMonth.Enabled = False
+                        rnAmountInMonth.Value = Nothing
+
+                        rnAmountDeductedMonth.Enabled = False
+                        rnAmountDeductedMonth.Value = Nothing
                     End If
                     rntxtIndemnifyMoney.Value = Discipline.INDEMNIFY_MONEY
                     rdEffectDate.SelectedDate = Discipline.EFFECT_DATE
@@ -307,9 +338,6 @@ Public Class ctrlHU_DisciplineNewEdit
                     rnPaidIMoeny.Value = Discipline.PAIDMONEY
                     rdAmountPaidCash.Value = Discipline.AMOUNT_PAID_CASH
                     rnAmountToPaid.Value = Discipline.AMOUNT_TO_PAID
-                    rnAmountSalaryMonth.Value = Discipline.AMOUNT_SAL_MONTH
-                    rnAmountInMonth.Value = Discipline.AMOUNT_IN_MONTH
-                    rnAmountDeductedMonth.Value = Discipline.AMOUNT_DEDUCT_AMOUNT
                     txtDecisionNo_Discipline.Text = Discipline.NO_DISCIPLINE
 
                     State_Id = Discipline.STATUS_ID
@@ -329,13 +357,19 @@ Public Class ctrlHU_DisciplineNewEdit
                     If Discipline.STATUS_ID = ProfileCommon.DISCIPLINE_STATUS.APPROVE_ID Then
                         PanelEmployee.Enabled = False
                         EnableControlAll_Cus(False, RadPane2)
-                        EnableControlAll(True, rnAmountToPaid, rnAmountSalaryMonth, rnAmountInMonth, rnAmountDeductedMonth)
+                        EnableControlAll(True, rnAmountToPaid, rnAmountSalaryMonth)
+
+                        If cboDisciplineObj.SelectedValue = 401 Then
+                            EnableControlAll(True, rnAmountInMonth, rnAmountDeductedMonth)
+                        End If
+
                         btnDownload.Enabled = True
                         CurrentState = CommonMessage.STATE_NORMAL
                         'CType(MainToolBar.Items(0), RadToolBarButton).Enabled = False
                     End If
                 Case "InsertView"
                     CurrentState = CommonMessage.STATE_NEW
+                    rntxtMoney.Enabled = False
                     Employee_Discipline = New List(Of DisciplineEmpDTO)
             End Select
             rep.Dispose()
@@ -422,6 +456,9 @@ Public Class ctrlHU_DisciplineNewEdit
                         objDiscipline.DEDUCT_FROM_SALARY = chkDeductFromSalary.Checked
                         If chkDeductFromSalary.Checked Then
                             objDiscipline.PERIOD_ID = cboPeriod.SelectedValue
+                            objDiscipline.AMOUNT_SAL_MONTH = rnAmountSalaryMonth.Value
+                            objDiscipline.AMOUNT_IN_MONTH = rnAmountInMonth.Value
+                            objDiscipline.AMOUNT_DEDUCT_AMOUNT = rnAmountDeductedMonth.Value
                         End If
                         If (rdEffectDate.SelectedDate.HasValue And rdExpireDate.SelectedDate.HasValue) Then
                             If (CLng(rdExpireDate.SelectedDate.Value.Subtract(rdEffectDate.SelectedDate.Value).TotalSeconds()) < 0) Then
@@ -487,9 +524,6 @@ Public Class ctrlHU_DisciplineNewEdit
                         objDiscipline.PAIDMONEY = rnPaidIMoeny.Value
                         objDiscipline.AMOUNT_PAID_CASH = rdAmountPaidCash.Value
                         objDiscipline.AMOUNT_TO_PAID = rnAmountToPaid.Value
-                        objDiscipline.AMOUNT_SAL_MONTH = rnAmountSalaryMonth.Value
-                        objDiscipline.AMOUNT_IN_MONTH = rnAmountInMonth.Value
-                        objDiscipline.AMOUNT_DEDUCT_AMOUNT = rnAmountDeductedMonth.Value
                         objDiscipline.NO_DISCIPLINE = txtDecisionNo_Discipline.Text
 
                         objDiscipline.SIGNER_TITLE = txtSignerTitle.Text
@@ -720,7 +754,9 @@ Public Class ctrlHU_DisciplineNewEdit
                 End If
                 If cboDisciplineObj.SelectedValue = 401 Then ' Ca nhan
                     Employee_Discipline.Clear()
+                    chkDeductFromSalary.Enabled = False
                 End If
+
                 For Each emp As CommonBusiness.EmployeePopupFindDTO In lstCommonEmployee
                     Dim employee As New DisciplineEmpDTO
                     employee.EMPLOYEE_CODE = emp.EMPLOYEE_CODE
@@ -956,32 +992,32 @@ Public Class ctrlHU_DisciplineNewEdit
             Dim startTime As DateTime = DateTime.UtcNow
             Select Case e.CommandName
                 Case "CalcEmployee"
-                    Dim totalSumMoney As Decimal = 0
+                    'Dim totalSumMoney As Decimal = 0
                     Dim totalSumIndemMoney As Decimal = 0
 
                     For Each item As GridDataItem In rgEmployee.Items
-                        Employee_Discipline(item.ItemIndex).MONEY = CType(item("MONEY").Controls(0), RadNumericTextBox).Value
-                        If Employee_Discipline(item.ItemIndex).MONEY IsNot Nothing Then
-                            totalSumMoney += Employee_Discipline(item.ItemIndex).MONEY
-                        End If
+                        'Employee_Discipline(item.ItemIndex).MONEY = CType(item("MONEY").Controls(0), RadNumericTextBox).Value
+                        'If Employee_Discipline(item.ItemIndex).MONEY IsNot Nothing Then
+                        '    totalSumMoney += Employee_Discipline(item.ItemIndex).MONEY
+                        'End If
                         Employee_Discipline(item.ItemIndex).INDEMNIFY_MONEY = CType(item("INDEMNIFY_MONEY").Controls(0), RadNumericTextBox).Value
                         If Employee_Discipline(item.ItemIndex).INDEMNIFY_MONEY IsNot Nothing Then
                             totalSumIndemMoney += Employee_Discipline(item.ItemIndex).INDEMNIFY_MONEY
                         End If
                     Next
                     If Employee_Discipline.Count > 0 Then
-                        Dim totalMoneyEmp As Decimal = 0
+                        'Dim totalMoneyEmp As Decimal = 0
                         Dim totalMoneyIndemEmp As Decimal = 0
-                        If rntxtMoney.Value IsNot Nothing Then
-                            Try
-                                totalMoneyEmp += rntxtMoney.Value
-                            Catch ex As Exception
-                                ShowMessage("Tổng tiền vượt giới hạn cho phép", NotifyType.Error)
-                                Exit Sub
-                                Throw ex
-                            End Try
+                        'If rntxtMoney.Value IsNot Nothing Then
+                        '    Try
+                        '        totalMoneyEmp += rntxtMoney.Value
+                        '    Catch ex As Exception
+                        '        ShowMessage("Tổng tiền vượt giới hạn cho phép", NotifyType.Error)
+                        '        Exit Sub
+                        '        Throw ex
+                        '    End Try
 
-                        End If
+                        'End If
                         If rntxtIndemnifyMoney.Value IsNot Nothing Then
                             Try
                                 totalMoneyIndemEmp += rntxtIndemnifyMoney.Value
@@ -991,16 +1027,16 @@ Public Class ctrlHU_DisciplineNewEdit
                             End Try
 
                         End If
-                        Dim colMoney = CType(rgEmployee.Columns.FindByUniqueName("MONEY"), GridNumericColumn)
+                        'Dim colMoney = CType(rgEmployee.Columns.FindByUniqueName("MONEY"), GridNumericColumn)
                         Dim colMoneyIndem = CType(rgEmployee.Columns.FindByUniqueName("INDEMNIFY_MONEY"), GridNumericColumn)
-                        colMoney.FooterText = ""
+                        'colMoney.FooterText = ""
                         colMoneyIndem.FooterText = ""
-                        If totalSumMoney <> totalMoneyEmp Then
-                            colMoney.Aggregate = GridAggregateFunction.None
-                            rgEmployee.Columns.FindByUniqueName("MONEY").FooterText = "Lệch: " & Format((totalSumMoney - totalMoneyEmp), "n0")
-                        Else
-                            colMoney.Aggregate = GridAggregateFunction.Sum
-                        End If
+                        'If totalSumMoney <> totalMoneyEmp Then
+                        '    colMoney.Aggregate = GridAggregateFunction.None
+                        '    rgEmployee.Columns.FindByUniqueName("MONEY").FooterText = "Lệch: " & Format((totalSumMoney - totalMoneyEmp), "n0")
+                        'Else
+                        '    colMoney.Aggregate = GridAggregateFunction.Sum
+                        'End If
                         If totalSumIndemMoney <> totalMoneyIndemEmp Then
                             colMoneyIndem.Aggregate = GridAggregateFunction.None
                             colMoneyIndem.FooterText = "Lệch: " & Format((totalSumIndemMoney - totalMoneyIndemEmp), "n0")
@@ -1124,6 +1160,7 @@ Public Class ctrlHU_DisciplineNewEdit
                             For Each dr As GridDataItem In rgEmployee.Items
                                 EmpID = dr.GetDataKeyValue("HU_EMPLOYEE_ID")
                             Next
+                            chkDeductFromSalary.Enabled = False
                         End If
                         ScriptManager.RegisterStartupScript(Me.Page, Page.GetType(), "text", "openQDtab('" & EmpID & "')", True)
                     Else
@@ -1138,6 +1175,7 @@ Public Class ctrlHU_DisciplineNewEdit
                             For Each dr As GridDataItem In rgEmployee.Items
                                 EmpID = dr.GetDataKeyValue("HU_EMPLOYEE_ID")
                             Next
+                            chkDeductFromSalary.Enabled = False
                         End If
                         ScriptManager.RegisterStartupScript(Me.Page, Page.GetType(), "text", "openHSLtab('" & EmpID & "')", True)
                     Else
@@ -1212,9 +1250,12 @@ Public Class ctrlHU_DisciplineNewEdit
         Try
             Dim startTime As DateTime = DateTime.UtcNow
             If chkDeductFromSalary.Checked Then
-                nmYear.Enabled = True
-                nmYear.Value = Date.Now.Year
+                'nmYear.Enabled = True
+                'nmYear.Value = Date.Now.Year
                 cboPeriod.Enabled = True
+                rnAmountSalaryMonth.Enabled = True
+                rnAmountInMonth.Enabled = True
+                rnAmountDeductedMonth.Enabled = True
 
                 Using rep As New ProfileRepository
                     FillDropDownList(cboPeriod, rep.GetPeriodbyYear(nmYear.Value), "PERIOD_NAME", "ID", Common.Common.SystemLanguage, False, cboPeriod.SelectedValue)
@@ -1225,6 +1266,16 @@ Public Class ctrlHU_DisciplineNewEdit
                 nmYear.ClearValue()
                 cboPeriod.Enabled = False
                 cboPeriod.ClearValue()
+
+                rnAmountSalaryMonth.Enabled = False
+                rnAmountSalaryMonth.Value = Nothing
+
+                rnAmountInMonth.Enabled = False
+                rnAmountInMonth.Value = Nothing
+
+                rnAmountDeductedMonth.Enabled = False
+                rnAmountDeductedMonth.Value = Nothing
+
             End If
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
@@ -1337,24 +1388,27 @@ Public Class ctrlHU_DisciplineNewEdit
     ''' <param name="source"></param>
     ''' <param name="args"></param>
     ''' <remarks></remarks>
-    Private Sub cvalIndemnifyTotal_ServerValidate(ByVal source As Object, ByVal args As System.Web.UI.WebControls.ServerValidateEventArgs) Handles cvalIndemnifyTotal.ServerValidate
-        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
-        Try
-            Dim startTime As DateTime = DateTime.UtcNow
-            Dim totalMoney = 0
-            If rntxtIndemnifyMoney.Value IsNot Nothing Then
-                totalMoney += rnAmountToPaid.Value
-            End If
-            Dim TotalMoneyEmp As Decimal = 0
-            For Each i As GridDataItem In rgEmployee.Items
-                TotalMoneyEmp += Utilities.ObjToDecima(CType(i("INDEMNIFY_MONEY").Controls(0), RadNumericTextBox).Value)
-            Next
-            args.IsValid = totalMoney = TotalMoneyEmp
-            _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
-        Catch ex As Exception
-            _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
-        End Try
-    End Sub
+    'Private Sub cvalIndemnifyTotal_ServerValidate(ByVal source As Object, ByVal args As System.Web.UI.WebControls.ServerValidateEventArgs) Handles cvalIndemnifyTotal.ServerValidate
+    '    Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+    '    Try
+    '        Dim startTime As DateTime = DateTime.UtcNow
+    '        Dim totalMoney = 0
+    '        If rntxtIndemnifyMoney.Value IsNot Nothing Then
+    '            totalMoney += rnAmountToPaid.Value
+    '        End If
+
+
+
+    '        Dim TotalMoneyEmp As Decimal = 0
+    '        For Each i As GridDataItem In rgEmployee.Items
+    '            TotalMoneyEmp += Utilities.ObjToDecima(CType(i("INDEMNIFY_MONEY").Controls(0), RadNumericTextBox).Value)
+    '        Next
+    '        args.IsValid = totalMoney = TotalMoneyEmp
+    '        _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
+    '    Catch ex As Exception
+    '        _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
+    '    End Try
+    'End Sub
     ''' <lastupdate>
     ''' 11/07/2017 13:40
     ''' </lastupdate>
@@ -1483,23 +1537,32 @@ Public Class ctrlHU_DisciplineNewEdit
         End If
     End Sub
 
-    Private Sub rntxtMoney_TextChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles rntxtMoney.TextChanged, rdAmountPaidCash.TextChanged
+    Private Sub rntxtMoney_TextChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles rntxtMoney.TextChanged, rntxtIndemnifyMoney.TextChanged
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
         Try
             Dim startTime As DateTime = DateTime.UtcNow
 
             Dim intMoney As Decimal = 0
+            Dim intIndemnifyMoney As Decimal = 0
             Dim intAmountPaidCash As Decimal = 0
-            Dim totalMoney = 0
+            Dim totalPaidIMoeny = 0
+            Dim totalAmountToPaid = 0
             If rntxtMoney.Value IsNot Nothing Then
                 intMoney += rntxtMoney.Value
             End If
             If rdAmountPaidCash.Value IsNot Nothing Then
+                intIndemnifyMoney += rntxtIndemnifyMoney.Value
+            End If
+
+            If rdAmountPaidCash.Value IsNot Nothing Then
                 intAmountPaidCash += rdAmountPaidCash.Value
             End If
 
-            totalMoney = Utilities.ObjToDecima(intMoney - intAmountPaidCash)
-            rnAmountToPaid.Value = totalMoney
+            totalPaidIMoeny = Utilities.ObjToDecima(intMoney + intIndemnifyMoney)
+            rnPaidIMoeny.Value = totalPaidIMoeny
+
+            totalAmountToPaid = Utilities.ObjToDecima(totalPaidIMoeny - intAmountPaidCash)
+            rnAmountToPaid.Value = totalAmountToPaid
 
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
@@ -1676,6 +1739,7 @@ Public Class ctrlHU_DisciplineNewEdit
                     phFindEmployee.Controls.Add(ctrlFindEmployeePopup)
                     If cboDisciplineObj.SelectedValue = 401 Then ' Ca nhan
                         ctrlFindEmployeePopup.MultiSelect = False
+                        chkDeductFromSalary.Enabled = False
                     ElseIf cboDisciplineObj.SelectedValue = 400 Then ' tap the
                         ctrlFindEmployeePopup.MultiSelect = True
                     End If
@@ -1784,4 +1848,14 @@ Public Class ctrlHU_DisciplineNewEdit
     End Sub
 
 #End Region
+
+    Private Sub cboDisciplineObj_SelectedIndexChanged(sender As Object, e As Telerik.Web.UI.RadComboBoxSelectedIndexChangedEventArgs) Handles cboDisciplineObj.SelectedIndexChanged
+        If cboDisciplineObj.SelectedValue = 401 Then
+            chkDeductFromSalary.Enabled = True
+            EnableControlAll(True, rnAmountSalaryMonth, cboPeriod, rnAmountDeductedMonth, rnAmountInMonth)
+        Else
+            chkDeductFromSalary.Enabled = False
+            EnableControlAll(False, rnAmountSalaryMonth, cboPeriod, rnAmountDeductedMonth, rnAmountInMonth)
+        End If
+    End Sub
 End Class

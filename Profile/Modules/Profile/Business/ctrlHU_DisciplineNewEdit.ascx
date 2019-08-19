@@ -19,7 +19,21 @@
                 </td>
             </tr>
             <tr>
-                <td class="lb">
+                  <td class="lb">
+                    <asp:Label runat="server" ID="lbDecisionNo" Text="Số quyết định"></asp:Label>                    
+                </td>
+                <td>
+                    <tlk:RadTextBox ID="txtDecisionNo" runat="server" TabIndex="4">
+                    </tlk:RadTextBox>
+                    <asp:RequiredFieldValidator ID="reqDecisionNo" ControlToValidate="txtDecisionNo"
+                        runat="server" ErrorMessage="Bạn phải nhập số quyết định."
+                        ToolTip="Bạn phải nhập số quyết định."> 
+                    </asp:RequiredFieldValidator>
+                    <asp:CustomValidator ID="cusDecisionNo" runat="server" ErrorMessage="Số quyết định đã tồn tại"
+                        ToolTip="Số quyết định đã tồn tại">
+                    </asp:CustomValidator>
+                </td>
+                 <td class="lb">
                     <asp:Label runat="server" ID="lbEffectDate" Text="Ngày hiệu lực"></asp:Label>
                     
                 </td>
@@ -40,55 +54,15 @@
                         ToolTip="Ngày hết hiệu lực phải lớn hơn ngày hiệu lực.">
                     </asp:CustomValidator>
                 </td>
-                <td class="lb">
-                    <asp:Label runat="server" ID="lbStatus" Text="Trạng thái"></asp:Label>
-                    
-                </td>
-                <td>
-                    <tlk:RadComboBox ID="cboStatus" runat="server" TabIndex="3">
-                    </tlk:RadComboBox>
-                    <asp:RequiredFieldValidator ID="reqStatus" runat="server" ErrorMessage="Bạn phải chọn trạng thái"
-                        ToolTip="Bạn phải chọn trạng thái" ControlToValidate="cboStatus">
-                    </asp:RequiredFieldValidator>
-                     <asp:CustomValidator ID="cusStatus" ControlToValidate="cboStatus" runat="server" ErrorMessage="Trạng thái không tồn tại hoặc đã ngừng áp dụng."
-                        ToolTip="Trạng thái không tồn tại hoặc đã ngừng áp dụng.">
-                    </asp:CustomValidator>
-                </td>
             </tr>
             <tr>
                 <td class="lb">
-                    <asp:Label runat="server" ID="lbDecisionNo" Text="Số quyết định"></asp:Label>
+                    <asp:Label runat="server" ID="lbNoteDiscipline" Text="Căn cứ biên bản kỷ luật"></asp:Label>
                     
                 </td>
                 <td>
-                    <tlk:RadTextBox ID="txtDecisionNo" runat="server" TabIndex="4">
-                    </tlk:RadTextBox>
-                    <asp:RequiredFieldValidator ID="reqDecisionNo" ControlToValidate="txtDecisionNo"
-                        runat="server" ErrorMessage="Bạn phải nhập số quyết định."
-                        ToolTip="Bạn phải nhập số quyết định."> 
-                    </asp:RequiredFieldValidator>
-                    <asp:CustomValidator ID="cusDecisionNo" runat="server" ErrorMessage="Số quyết định đã tồn tại"
-                        ToolTip="Số quyết định đã tồn tại">
-                    </asp:CustomValidator>
-                </td>
-                <%--<td class="lb">
-                    <asp:Label runat="server" ID="lbIssueDate" Text="Ngày ban hành"></asp:Label>
-                    
-                </td>
-                <td>
-                    <tlk:RadDatePicker ID="rdIssueDate" runat="server" TabIndex="5">
-                    </tlk:RadDatePicker>
-                    <asp:RequiredFieldValidator ID="reqIssueDate" ControlToValidate="rdIssueDate" runat="server"
-                        ErrorMessage="Bạn phải nhập ngày ban hành." ToolTip="Bạn phải nhập ngày ban hành."> 
-                    </asp:RequiredFieldValidator>
-                </td>--%>
-
-                 <td class="lb">
-                    <asp:Label runat="server" ID="lbSignDate" Text="Ngày ký"></asp:Label>
-                </td>
-                <td>
-                    <tlk:RadDatePicker ID="rdSignDate" runat="server" TabIndex="6">
-                    </tlk:RadDatePicker>
+                    <tlk:RadTextBox ID="txtNoteDiscipline" runat="server" TabIndex="12">
+                    </tlk:RadTextBox>               
                 </td>
                  <td class="lb">
                     <asp:Label runat="server" ID="Label1" Text="Tập tin đính kèm"></asp:Label>
@@ -106,6 +80,13 @@
                 </td>
             </tr>
             <tr>
+                 <td class="lb">
+                    <asp:Label runat="server" ID="lbSignDate" Text="Ngày ký"></asp:Label>
+                </td>
+                <td>
+                    <tlk:RadDatePicker ID="rdSignDate" runat="server" TabIndex="6">
+                    </tlk:RadDatePicker>
+                </td> 
                 <td class="lb">
                     <asp:Label runat="server" ID="lbSignerName" Text="Người ký"></asp:Label>
                     <%----%>
@@ -127,16 +108,8 @@
                     <tlk:RadTextBox ID="txtSignerTitle" runat="server" TabIndex="9" ReadOnly="true" SkinID="ReadOnly">
                     </tlk:RadTextBox>
                 </td>
-                <td class="lb">                   
-                </td>
-                <td>
-                              
-                </td>
-                <td>
-                    <tlk:RadTextBox ID="txtDecisionName" runat="server" TabIndex="10" Visible="false">
-                    </tlk:RadTextBox>
-                </td>
             </tr>
+                        
             <tr>
                 <td class="lb">
                     <asp:Label runat="server" ID="lbDelDiscipline" Text=" Ngày xóa kỷ luật"></asp:Label>                    
@@ -144,25 +117,23 @@
                 <td>
                     <tlk:RadDatePicker ID="rdDelDisciplineDate" runat="server" TabIndex="11">
                     </tlk:RadDatePicker>
-                </td>
+                </td>          
                 <td class="lb">
-                    <asp:Label runat="server" ID="lbNoteDiscipline" Text="Căn cứ biên bản kỷ luật"></asp:Label>
+                    <asp:Label runat="server" ID="lbStatus" Text="Trạng thái"></asp:Label>
                     
                 </td>
                 <td>
-                    <tlk:RadTextBox ID="txtNoteDiscipline" runat="server" TabIndex="12">
-                    </tlk:RadTextBox>               
-                </td>
-                <td></td>
-                <td></td>
+                    <tlk:RadComboBox ID="cboStatus" runat="server" TabIndex="3">
+                    </tlk:RadComboBox>
+                    <asp:RequiredFieldValidator ID="reqStatus" runat="server" ErrorMessage="Bạn phải chọn trạng thái"
+                        ToolTip="Bạn phải chọn trạng thái" ControlToValidate="cboStatus">
+                    </asp:RequiredFieldValidator>
+                     <asp:CustomValidator ID="cusStatus" ControlToValidate="cboStatus" runat="server" ErrorMessage="Trạng thái không tồn tại hoặc đã ngừng áp dụng."
+                        ToolTip="Trạng thái không tồn tại hoặc đã ngừng áp dụng.">
+                    </asp:CustomValidator>
+                </td>                
             </tr>
-            <tr style="visibility:hidden">
-                <td class="lb">
-                    <tlk:RadTextBox ID="txtRemindLink" runat="server">
-                    </tlk:RadTextBox>
-                </td>
-            </tr>           
-
+            
             <tr>
                 <td colspan="6">
                     <b>
@@ -172,8 +143,8 @@
                 </td>
             </tr>
             <tr>
-                <td class="lb">
-                    <asp:Label runat="server" ID="lbDisciplineObj" Text="Đối tượng"></asp:Label>
+                 <td class="lb">
+                    <asp:Label runat="server" ID="lbDisciplineObj" Text="Đối tượng"></asp:Label>                   
                     <%----%>
                 </td>
                 <td>
@@ -187,26 +158,7 @@
                         ToolTip="Đối tượng không tồn tại hoặc đã ngừng áp dụng.">
                     </asp:CustomValidator>
                 </td>
-                <td class="lb">
-                    <asp:Label runat="server" ID="lbDisciplineLevel" Text="Cấp kỷ luật"></asp:Label>
-                    <asp:Label runat="server" ID="lbDecisionNo_Discipline" Text="Số quyết định"></asp:Label>
-                    <%----%>
-                </td>
-                <td>
-                    <tlk:RadTextBox ID="txtDecisionNo_Discipline" runat="server" TabIndex="4">
-                    </tlk:RadTextBox>
-
-
-                    <tlk:RadComboBox ID="cboDisciplineLevel" runat="server" TabIndex="12" CausesValidation="False">
-                    </tlk:RadComboBox>
-                    <asp:RequiredFieldValidator ID="reqDisciplineLevel" runat="server" ErrorMessage="Bạn phải nhập cấp kỷ luật"
-                        ToolTip="Bạn phải nhập cấp kỷ luật" ControlToValidate="cboDisciplineLevel">
-                    </asp:RequiredFieldValidator>
-                     <asp:CustomValidator ID="cvalDisciplineLevel" ControlToValidate="cboDisciplineLevel" runat="server" ErrorMessage="Cấp kỷ luật không tồn tại hoặc đã ngừng áp dụng."
-                        ToolTip="Cấp kỷ luật không tồn tại hoặc đã ngừng áp dụng.">
-                    </asp:CustomValidator>
-                </td>
-                <td class="lb">
+                 <td class="lb">
                     <asp:Label runat="server" ID="lbDisciplineType" Text="Hình thức"></asp:Label>
                     
                 </td>
@@ -220,6 +172,8 @@
                         ToolTip="Hình thức kỷ luật không tồn tại hoặc đã ngừng áp dụng.">
                     </asp:CustomValidator>
                 </td>
+            </tr>
+            <tr>
                 <td class="lb">
                     <asp:Label runat="server" ID="lbDisciplineReason" Text="Lý do kỷ luật"></asp:Label>
                 </td>
@@ -233,9 +187,6 @@
                         ToolTip="Lý do kỷ luật không tồn tại hoặc đã ngừng áp dụng.">
                     </asp:CustomValidator>
                 </td>
-            </tr>
-
-            <tr>               
                 <td class="lb">
                     <asp:Label runat="server" ID="lbDisciplineReasonDetail" Text="Lý do kỷ luật chi tiết"></asp:Label>
                 </td>
@@ -243,6 +194,8 @@
                      <tlk:RadTextBox ID="txtDisciplineReasonDetail" runat="server" TabIndex="4">
                     </tlk:RadTextBox>
                 </td>
+            </tr>
+            <tr>
                 <td class="lb">
                     <asp:Label runat="server" ID="lbViolationDate" Text=" Ngày vi pham"></asp:Label>                    
                 </td>
@@ -257,15 +210,16 @@
                     <tlk:RadDatePicker ID="rdDetectViolationDate" runat="server" TabIndex="11">
                     </tlk:RadDatePicker>
                 </td>
+            </tr>
+            <tr>
                 <td class="lb">
                     <asp:Label runat="server" ID="lbExplain" Text="Giải thích sự việc"></asp:Label>
                 </td>
-                <td>
-                     <tlk:RadTextBox ID="txtExplain" runat="server" TabIndex="4">
+                <td colspan="5">
+                     <tlk:RadTextBox ID="txtExplain" runat="server" TextMode="MultiLine" Width="100%">
                     </tlk:RadTextBox>
-                </td>
+                </td>           
             </tr>
-
             <tr>
                 <td class="lb">
                     <asp:Label runat="server" ID="lbRemarkDiscipline" Text="Ghi chú"></asp:Label>
@@ -274,10 +228,9 @@
                     <tlk:RadTextBox ID="txtRemarkDiscipline" runat="server" TextMode="MultiLine" TabIndex="17"
                         Width="100%">
                     </tlk:RadTextBox>
-                </td>
+                </td>            
             </tr>
-                     
-            <tr>
+           <tr>
                 <td colspan="6">
                     <b>
                         <asp:Label runat="server" ID="lbCompensationInfo" Text="Thông tin bồi thường"></asp:Label>
@@ -291,7 +244,7 @@
                     <asp:Label runat="server" ID="lbMoney" Text="Số tiền"></asp:Label>
                 </td>
                 <td>
-                    <tlk:RadNumericTextBox ID="rntxtMoney" runat="server" SkinID="Money" TabIndex="14">
+                    <tlk:RadNumericTextBox ID="rntxtMoney" runat="server" SkinID="Money" TabIndex="14" AutoPostBack="true">
                     </tlk:RadNumericTextBox>
                     <asp:CustomValidator ID="cvalMoney" runat="server" ErrorMessage="Bạn phải nhập số tiền phải >= 0."
                         ToolTip="Bạn phải nhập số tiền phải >= 0.">
@@ -303,10 +256,10 @@
                     <asp:Label runat="server" ID="lbIndemnifyMoney" Text="Tổng giá trị thiệt hại"></asp:Label>
                 </td>
                 <td>
-                    <tlk:RadNumericTextBox ID="rntxtIndemnifyMoney" runat="server" SkinID="Money" TabIndex="15">
+                    <tlk:RadNumericTextBox ID="rntxtIndemnifyMoney" runat="server" SkinID="Money" TabIndex="15" Enabled ="false">
                     </tlk:RadNumericTextBox>
-                    <asp:CustomValidator ID="cvalIndemnifyTotal" runat="server" ErrorMessage="Tổng số tiền bồi thường của nhân viên phải bằng số tiền bồi thường">
-                    </asp:CustomValidator>
+                  <%--  <asp:CustomValidator ID="cvalIndemnifyTotal" runat="server" ErrorMessage="Tổng số tiền thiệt hại của nhân viên phải bằng số tiền bồi thường">
+                    </asp:CustomValidator>--%>
                 </td>
                 <td class="lb">
                     <%--<asp:Label runat="server" ID="lbPaidInMoeny" Text="Thanh toán tiền" Visible = "false"></asp:Label>--%>
@@ -333,27 +286,7 @@
                 <td>
                     <tlk:RadNumericTextBox ID="rnAmountToPaid" runat="server" SkinID="Money" TabIndex="15">
                     </tlk:RadNumericTextBox>                   
-                </td>
-                <td class="lb">
-                    <asp:Label runat="server" ID="lbAmountSalaryMonth" Text="Số tiền trừ trực tiếp vào tháng lương"></asp:Label>
-                </td>
-                <td>
-                     <tlk:RadNumericTextBox ID="rnAmountSalaryMonth" runat="server" SkinID="Money" TabIndex="15">
-                    </tlk:RadNumericTextBox>
-                     <asp:CustomValidator ID="cvalAmountSalaryMonth" runat="server" ErrorMessage="Số tiền trừ trực tiếp vào lương phải nhỏ hơn số tiền còn phải nộp">
-                    </asp:CustomValidator>
-                </td>                 
-            </tr>
-            
-            <tr>
-                <td class="lb">
-                    <asp:Label runat="server" ID="lbRemark" Text="Hành vi vi phạm"></asp:Label>
-                </td>
-                <td colspan="5">
-                    <tlk:RadTextBox ID="txtRemark" runat="server" TextMode="MultiLine" TabIndex="17"
-                        Width="100%">
-                    </tlk:RadTextBox>
-                </td>
+                </td>                                
             </tr>
             <tr>
                 <td colspan="6">
@@ -366,6 +299,15 @@
             </tr>
             <tr>
                 <td class="lb">
+                    <asp:Label runat="server" ID="lbAmountSalaryMonth" Text="Số tiền trừ trực tiếp vào tháng lương"></asp:Label>
+                </td>
+                <td>
+                     <tlk:RadNumericTextBox ID="rnAmountSalaryMonth" runat="server" SkinID="Money" TabIndex="15" Enabled="false">
+                    </tlk:RadNumericTextBox>
+                     <asp:CustomValidator ID="cvalAmountSalaryMonth" runat="server" ErrorMessage="Số tiền trừ trực tiếp vào lương phải nhỏ hơn số tiền còn phải nộp">
+                    </asp:CustomValidator>
+                </td> 
+                 <td class="lb">
                     <asp:Label runat="server" ID="lbPeriod" Text="Kỳ lương"></asp:Label>
                 </td>
                 <td>
@@ -374,29 +316,87 @@
                     <asp:CustomValidator ID="cvalPeriod" runat="server" ErrorMessage="Bạn chưa chọn kỳ lương thanh toán."
                         ToolTip="Bạn chưa chọn kỳ lương thanh toán.">
                     </asp:CustomValidator>
-                </td>
+                </td>            
+            </tr>
+            <tr>               
                 <td class="lb">
-                    <asp:Label runat="server" ID="lbYear" Text="Năm"></asp:Label>
+                    <%--<asp:Label runat="server" ID="lbYear" Text="Năm"></asp:Label>--%>
                     <asp:Label runat="server" ID="lbAmountInMonth" Text="Số tiền trừ theo tỷ lệ/mỗi tháng lương"></asp:Label>
                 </td>
-                <td>
-                    <tlk:RadNumericTextBox ID="nmYear" runat="server" AutoPostBack="true" Enabled="false" TabIndex="18"
-                        MaxLength="4" MinValue="1900" SkinID="Number">
+                <td style = "display:none">
+                   <tlk:RadNumericTextBox ID="nmYear" runat="server" AutoPostBack="true" Enabled="false" TabIndex="18"
+                        MaxLength="4" MinValue="1900" SkinID="Number" >
                     </tlk:RadNumericTextBox>
-                    <tlk:RadNumericTextBox ID="rnAmountInMonth" runat="server" SkinID="Money" TabIndex="14">
+                </td>
+                <td>                    
+                    <tlk:RadNumericTextBox ID="rnAmountInMonth" runat="server" SkinID="Money" TabIndex="14" Enabled="false">
                     </tlk:RadNumericTextBox>
                 </td>               
                 <td class="lb">
-                    <asp:Label runat="server" ID="lbPerformDiscipline" Text="Thời gian thi hành kỷ luật"></asp:Label>
+                    <%--<asp:Label runat="server" ID="lbPerformDiscipline" Text="Thời gian thi hành kỷ luật"></asp:Label>--%>
                     <asp:Label runat="server" ID="lbAmountDeductedMonth" Text="Số tiền trừ mỗi tháng"></asp:Label>
                 </td>
-                <td>
-                    <tlk:RadTextBox ID="txtPerformDiscipline" runat="server" TabIndex="20">
+                <td style = "display:none">
+                   <tlk:RadTextBox ID="txtPerformDiscipline" runat="server" TabIndex="20">
                     </tlk:RadTextBox>
-                     <tlk:RadNumericTextBox ID="rnAmountDeductedMonth" runat="server" SkinID="Money" TabIndex="14">
+                </td>
+                <td>                    
+                     <tlk:RadNumericTextBox ID="rnAmountDeductedMonth" runat="server" SkinID="Money" TabIndex="14" Enabled="false">
                     </tlk:RadNumericTextBox>
                 </td>
             </tr>
+
+
+            <tr style = "display:none">                
+                <td class="lb">                   
+                </td>
+                <td>
+                              
+                </td>
+                <td>
+                    <tlk:RadTextBox ID="txtDecisionName" runat="server" TabIndex="10" Visible="false">
+                    </tlk:RadTextBox>
+                </td>
+            </tr>          
+            <tr style="visibility:hidden">
+                <td class="lb">
+                    <tlk:RadTextBox ID="txtRemindLink" runat="server">
+                    </tlk:RadTextBox>
+                </td>
+            </tr>             
+            <tr style = "display:none">
+               
+            <td class="lb">
+                <asp:Label runat="server" ID="lbDisciplineLevel" Text="Cấp kỷ luật"></asp:Label>
+                <asp:Label runat="server" ID="lbDecisionNo_Discipline" Text="Số quyết định"></asp:Label>                
+            </td>
+            <td>
+                <tlk:RadTextBox ID="txtDecisionNo_Discipline" runat="server" TabIndex="4">
+                </tlk:RadTextBox>
+
+
+                <tlk:RadComboBox ID="cboDisciplineLevel" runat="server" TabIndex="12" CausesValidation="False">
+                </tlk:RadComboBox>
+                <asp:RequiredFieldValidator ID="reqDisciplineLevel" runat="server" ErrorMessage="Bạn phải nhập cấp kỷ luật"
+                    ToolTip="Bạn phải nhập cấp kỷ luật" ControlToValidate="cboDisciplineLevel">
+                </asp:RequiredFieldValidator>
+                    <asp:CustomValidator ID="cvalDisciplineLevel" ControlToValidate="cboDisciplineLevel" runat="server" ErrorMessage="Cấp kỷ luật không tồn tại hoặc đã ngừng áp dụng."
+                    ToolTip="Cấp kỷ luật không tồn tại hoặc đã ngừng áp dụng.">
+                </asp:CustomValidator>
+            </td>              
+                
+            </tr>
+            <tr style = "display:none">
+                <td class="lb">
+                    <asp:Label runat="server" ID="lbRemark" Text="Hành vi vi phạm"></asp:Label>
+                </td>
+                <td colspan="5">
+                    <tlk:RadTextBox ID="txtRemark" runat="server" TextMode="MultiLine" TabIndex="17"
+                        Width="100%">
+                    </tlk:RadTextBox>
+                </td>
+            </tr>           
+            
         </table>
     </tlk:RadPane>
     <tlk:RadPane runat="server" Scrolling="none" ID="PanelEmployee" Height="100%">
@@ -419,6 +419,12 @@
                             <tlk:RadButton Width="100px" ID="btnHSL" runat="server" Text="Tạo Hồ sơ lương"
                                 CausesValidation="false" CommandName="CreateHSL">
                             </tlk:RadButton>
+                            <%--<tlk:RadButton Width="100px" ID="btnShare" runat="server" Text="Chia đều"
+                                CausesValidation="false" CommandName="ShareEmployee">
+                            </tlk:RadButton>
+                            <tlk:RadButton Width="100px" ID="btnCalc" runat="server" Text="Tính toán"
+                                CausesValidation="false" CommandName="CalcEmployee">
+                            </tlk:RadButton>--%>
                         </div>
                         <div style="float: right;">
                             <tlk:RadButton Width="100px" ID="btnDeleteEmp" runat="server" Text="Xóa"
@@ -431,7 +437,7 @@
                     <tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderStyle-HorizontalAlign="Center"
                         HeaderStyle-Width="40px" ItemStyle-HorizontalAlign="Center">
                     </tlk:GridClientSelectColumn>
-                    <%--<tlk:GridBoundColumn HeaderText="Mã nhân viên" DataField="EMPLOYEE_CODE"
+                    <tlk:GridBoundColumn HeaderText="Mã nhân viên" DataField="EMPLOYEE_CODE"
                         ReadOnly="true" UniqueName="EMPLOYEE_CODE" SortExpression="EMPLOYEE_CODE" Aggregate="Count"
                         FooterText="Tổng: ">
                         <HeaderStyle Width="100px" />
@@ -447,15 +453,19 @@
                         ReadOnly="true" SortExpression="ORG_NAME">
                         <HeaderStyle Width="200px" />
                     </tlk:GridBoundColumn>
-                    <tlk:GridNumericColumn HeaderText="Số tiền phạt" DataField="MONEY"
+                   <%-- <tlk:GridNumericColumn HeaderText="Số tiền phạt" DataField="MONEY"
                         UniqueName="MONEY" DataFormatString="{0:n0}" SortExpression="MONEY" Aggregate="Sum">
                         <FooterStyle HorizontalAlign="Right" VerticalAlign="Middle" />
-                    </tlk:GridNumericColumn>
-                    <tlk:GridNumericColumn HeaderText="Số tiền bồi thường" DataField="INDEMNIFY_MONEY"
+                    </tlk:GridNumericColumn>--%>
+                    <tlk:GridNumericColumn HeaderText="Số tiền phải nộp" DataField="INDEMNIFY_MONEY"
                         UniqueName="INDEMNIFY_MONEY" DataFormatString="{0:n0}" SortExpression="INDEMNIFY_MONEY"
                         Aggregate="Sum">
                         <FooterStyle HorizontalAlign="Right" VerticalAlign="Middle" />
-                    </tlk:GridNumericColumn>--%>
+                    </tlk:GridNumericColumn>
+                    <tlk:GridCheckBoxColumn HeaderText="Chưa xử lý" DataField="NO_PROCESS" DataType="System.Boolean" FilterControlWidth="20px"   
+                        SortExpression="NO_PROCESS" UniqueName="NO_PROCESS" >
+                        <HeaderStyle HorizontalAlign="Center" Width="50px"/>
+                    </tlk:GridCheckBoxColumn>
                 </Columns>
             </MasterTableView>
             <HeaderStyle HorizontalAlign="Center" Width="120px" />
