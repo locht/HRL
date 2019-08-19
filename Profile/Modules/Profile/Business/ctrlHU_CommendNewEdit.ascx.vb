@@ -595,6 +595,7 @@ Public Class ctrlHU_CommendNewEdit
                             For Each row As DataRow In dtrgEmployee.Rows
                                 If row("cbStatus") = 1 Then
                                     Dim o As New CommendEmpDTO
+                                    o.GUID_ID = row("GUID_ID")
                                     o.HU_EMPLOYEE_ID = row("HU_EMPLOYEE_ID")
                                     o.MONEY = If(row("MONEY") <> "", Decimal.Parse(row("MONEY")), Nothing)
                                     o.COMMEND_PAY = If(row("COMMEND_PAY") <> "", Decimal.Parse(row("COMMEND_PAY")), Nothing)
@@ -621,6 +622,7 @@ Public Class ctrlHU_CommendNewEdit
                             For Each row As DataRow In dtrgOrg.Rows
                                 If row("cbStatus") = 1 Then
                                     Dim o As New CommendOrgDTO
+                                    o.GUID_ID = row("GUID_ID")
                                     o.MONEY = If(row("MONEY") <> "", Decimal.Parse(row("MONEY")), Nothing)
                                     o.COMMEND_PAY = If(row("COMMEND_PAY") <> "", Decimal.Parse(row("COMMEND_PAY")), Nothing)
                                     o.ORG_ID = row("ORG_ID")
@@ -1085,7 +1087,7 @@ Public Class ctrlHU_CommendNewEdit
             ' If Not IsNumeric(edit.SelectedValue) Then Exit Sub
             Dim COMMEND_PAY = item.GetDataKeyValue("COMMEND_PAY")
             Dim guidId = item.GetDataKeyValue("GUID_ID")
-            For Each rows As CommendEmpDTO In Employee_Commend
+            For Each rows As CommendOrgDTO In List_Org
                 If rows.GUID_ID = guidId Then
                     If edit.SelectedValue <> "" Then
                         rows.COMMEND_PAY = edit.SelectedValue
@@ -1442,6 +1444,7 @@ Public Class ctrlHU_CommendNewEdit
             Dim org As New CommendOrgDTO
             For Each org_Check As Common.CommonBusiness.OrganizationDTO In lstOrg
                 org = New CommendOrgDTO
+                org.GUID_ID = Guid.NewGuid.ToString
                 org.ID = org_Check.ID
                 org.ORG_ID = org_Check.ID
                 org.ORG_NAME = org_Check.NAME_VN
