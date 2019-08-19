@@ -1020,7 +1020,7 @@ Public Class ctrlHU_CommendNewEdit
         End Try
     End Sub
 
-    Protected Sub cbCommend_Pay_SelectedIndexChanged(ByVal sender As Object, ByVal e As RadComboBoxSelectedIndexChangedEventArgs)
+    Protected Sub cbCommend_Pay_TextChanged(ByVal sender As Object, ByVal e As EventArgs)
         Try
             Dim edit = CType(sender, RadComboBox)
             Dim item = CType(edit.NamingContainer, GridEditableItem)
