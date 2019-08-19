@@ -334,9 +334,11 @@
     <None Include="Service References\ProfileBusiness\Profile.ProfileBusiness.ComboBoxDataDTO.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+	<!--
     <Content Include="Service References\ProfileBusiness\Profile.ProfileBusiness.CommandResult.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
+	-->
     <None Include="Service References\ProfileBusiness\Profile.ProfileBusiness.CommendDTO.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
@@ -394,9 +396,11 @@
     <None Include="Service References\ProfileBusiness\Profile.ProfileBusiness.ContractTypeDTO.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+	<!--
     <Content Include="Service References\ProfileBusiness\Profile.ProfileBusiness.DebtDTO.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
+	-->
     <None Include="Service References\ProfileBusiness\Profile.ProfileBusiness.DisciplineDTO.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
@@ -452,9 +456,11 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\ProfileBusiness\Profile.ProfileBusiness.HospitalDTO.datasource" />
-    <Content Include="Service References\ProfileBusiness\Profile.ProfileBusiness.HUAllowanceDTO.datasource">
+    <!--
+	<Content Include="Service References\ProfileBusiness\Profile.ProfileBusiness.HUAllowanceDTO.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
+	-->
     <None Include="Service References\ProfileBusiness\Profile.ProfileBusiness.HuDynamicConditionDTO.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
@@ -476,9 +482,11 @@
     <None Include="Service References\ProfileBusiness\Profile.ProfileBusiness.LabourProtectionMngDTO.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+	<!--
     <Content Include="Service References\ProfileBusiness\Profile.ProfileBusiness.LocationDTO.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
+	-->
     <None Include="Service References\ProfileBusiness\Profile.ProfileBusiness.MissionPrintDTO.datasource" />
     <None Include="Service References\ProfileBusiness\Profile.ProfileBusiness.NationDTO.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
@@ -489,9 +497,11 @@
     <None Include="Service References\ProfileBusiness\Profile.ProfileBusiness.OrganizationDTO.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <Content Include="Service References\ProfileBusiness\Profile.ProfileBusiness.OrganizationTreeDTO.datasource">
+    <!--
+	<Content Include="Service References\ProfileBusiness\Profile.ProfileBusiness.OrganizationTreeDTO.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
+	-->
     <None Include="Service References\ProfileBusiness\Profile.ProfileBusiness.OrgChartDTO.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
@@ -504,9 +514,11 @@
     <None Include="Service References\ProfileBusiness\Profile.ProfileBusiness.ProvinceDTO.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+	<!--
     <Content Include="Service References\ProfileBusiness\Profile.ProfileBusiness.RelationshipListDTO.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
+	-->
     <None Include="Service References\ProfileBusiness\Profile.ProfileBusiness.ReminderLogDTO.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
@@ -534,9 +546,11 @@
     <None Include="Service References\ProfileBusiness\Profile.ProfileBusiness.TalentPoolDTO2.datasource" />
     <None Include="Service References\ProfileBusiness\Profile.ProfileBusiness.TalentPoolDTO3.datasource" />
     <None Include="Service References\ProfileBusiness\Profile.ProfileBusiness.TalentPoolDTO4.datasource" />
-    <Content Include="Service References\ProfileBusiness\Profile.ProfileBusiness.Temp_ConcurrentlyDTO.datasource">
+    <!--
+	<Content Include="Service References\ProfileBusiness\Profile.ProfileBusiness.Temp_ConcurrentlyDTO.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
+	-->
     <None Include="Service References\ProfileBusiness\Profile.ProfileBusiness.Terminate3BDTO.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
@@ -557,7 +571,8 @@
     <None Include="Service References\ProfileBusiness\Profile.ProfileBusiness.TotalDayOffDTO3.datasource" />
     <None Include="Service References\ProfileBusiness\Profile.ProfileBusiness.TotalDayOffDTO4.datasource" />
     <None Include="Service References\ProfileBusiness\Profile.ProfileBusiness.TotalDayOffDTO5.datasource" />
-    <Content Include="Service References\ProfileBusiness\Profile.ProfileBusiness.TrainningEvaluateDTO.datasource">
+    <!--
+	<Content Include="Service References\ProfileBusiness\Profile.ProfileBusiness.TrainningEvaluateDTO.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
     <Content Include="Service References\ProfileBusiness\Profile.ProfileBusiness.TrainningForeignDTO.datasource">
@@ -566,6 +581,7 @@
     <Content Include="Service References\ProfileBusiness\Profile.ProfileBusiness.TrainningManageDTO.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
+	-->
     <None Include="Service References\ProfileBusiness\Profile.ProfileBusiness.Ward_DTO.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
