@@ -326,9 +326,11 @@
     <None Include="Service References\ProfileBusiness\Profile.ProfileBusiness.BankDTO.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+	<!--
     <Content Include="Service References\ProfileBusiness\Profile.ProfileBusiness.CETIFICATEDTO.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
+	-->
     <None Include="Service References\ProfileBusiness\Profile.ProfileBusiness.ComboBoxDataDTO.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
