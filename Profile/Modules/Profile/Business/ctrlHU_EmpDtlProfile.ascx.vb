@@ -238,7 +238,7 @@ Public Class ctrlHU_EmpDtlProfile
                             rdExpireIDNO.SelectedDate = empCV.EXPIRE_DATE_IDNO
                             txtPerson_Inheritance.Text = empCV.PERSON_INHERITANCE
                             rdEffect_Bank.SelectedDate = empCV.EFFECTDATE_BANK
-                            txtPlaceKS.Text = empCV.BIRTH_PLACE
+                            'txtPlaceKS.Text = empCV.BIRTH_PLACE
                             txtVillage.Text = empCV.VILLAGE
                             txtAppDung.Text = empEdu.COMPUTER_CERTIFICATE
                             rdDayPitcode.SelectedDate = empCV.PIT_CODE_DATE
@@ -1889,7 +1889,7 @@ Public Class ctrlHU_EmpDtlProfile
             EmpCV.EXPIRE_DATE_IDNO = rdExpireIDNO.SelectedDate
             EmpCV.PERSON_INHERITANCE = txtPerson_Inheritance.Text
             EmpCV.EFFECTDATE_BANK = rdEffect_Bank.SelectedDate
-            EmpCV.BIRTH_PLACE = txtPlaceKS.Text
+            'EmpCV.BIRTH_PLACE = txtPlaceKS.Text
             EmpCV.VILLAGE = txtVillage.Text
             EmpCV.PIT_CODE_DATE = rdDayPitcode.SelectedDate
             EmpCV.PIT_CODE_PLACE = txtPlacePitcode.Text
