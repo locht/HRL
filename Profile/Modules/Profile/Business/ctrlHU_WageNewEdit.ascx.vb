@@ -94,7 +94,7 @@ Public Class ctrlHU_WageNewEdit
             Refresh()
             UpdateControlState()
             'lay gia tri cac variable mac dinh
-            LoadValueConst()
+            LoadPercentDefault()
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
             DisplayException(Me.ViewName, Me.ID, ex)
@@ -1355,6 +1355,10 @@ Public Class ctrlHU_WageNewEdit
             Dim basicSal As Decimal = 0
             Dim factorSal As String = ""
             Dim rnFactorSal As Decimal
+            'Get luong toi thieu vung
+            If rdEffectDate.SelectedDate IsNot Nothing Then
+                LoadMinAreaSalary()
+            End If
             If rnFactorSalary.Text.Contains(".") Then
                 factorSal = rnFactorSalary.Text.Replace(".", ",").ToString
                 rnFactorSal = If(IsNumeric(factorSal), Decimal.Parse(factorSal), Nothing)
@@ -1367,7 +1371,6 @@ Public Class ctrlHU_WageNewEdit
             Else
                     basicSalary.Value = 0
             End If
-
 
             If rnPercentSalary.Value.HasValue Then
                 If cboSalTYPE.Text = "Kiêm nhiệm" Then
@@ -1387,14 +1390,20 @@ Public Class ctrlHU_WageNewEdit
             Throw ex
         End Try
     End Sub
-    Private Sub LoadValueConst()
+    Private Sub LoadMinAreaSalary()
         Try
-            Dim lttv = If(EmployeeID > 0, commonStore.GET_MIN_AMOUNT(EmployeeID), 0)
-            Dim tyLeThuViec = commonStore.GET_VALUE_PA_PAYMENT("TyLeThuViec")
-            Dim tyLeChinhThuc = commonStore.GET_VALUE_PA_PAYMENT("TyLeChinhThuc")
+            Dim lttv = If(EmployeeID > 0, commonStore.GET_MIN_AMOUNT(EmployeeID, rdEffectDate.SelectedDate), 0)
             If IsNumeric(lttv) Then
                 _lttv = lttv
             End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+    Private Sub LoadPercentDefault()
+        Try
+            Dim tyLeThuViec = commonStore.GET_VALUE_PA_PAYMENT("TyLeThuViec")
+            Dim tyLeChinhThuc = commonStore.GET_VALUE_PA_PAYMENT("TyLeChinhThuc")
             If IsNumeric(tyLeThuViec) Then
                 _tyLeThuViec = tyLeThuViec
             End If
