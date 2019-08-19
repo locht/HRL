@@ -2732,6 +2732,8 @@ Namespace ProfileBusiness.ServiceContracts
         Function EXPORT_QLKT() As DataSet
         <OperationContract()>
         Function GET_EMPLOYEE(ByVal P_EMP_CODE As String) As DataTable
+        <OperationContract()>
+        Function GET_PROCESS_PLCONTRACT_PORTAL(ByVal P_EMP_ID As Decimal) As DataTable
     End Interface
 
 End Namespace

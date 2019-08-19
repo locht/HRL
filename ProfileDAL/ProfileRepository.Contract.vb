@@ -2002,6 +2002,21 @@ Partial Class ProfileRepository
         End Try
     End Function
 
+    Public Function GET_PROCESS_PLCONTRACT_PORTAL(ByVal P_EMP_ID As Decimal) As DataTable
+        Try
+            Using cls As New DataAccess.QueryData
+                Dim dtData As DataTable = cls.ExecuteStore("PKG_HU_IPROFILE_EMPLOYEE.GET_PROCESS_PLCONTRACT_PORTAL",
+                                           New With {.P_EMPID = P_EMP_ID,
+                                                     .P_CUR = cls.OUT_CURSOR})
+
+                Return dtData
+            End Using
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iProfile")
+            Throw ex
+        End Try
+    End Function
+
 
 #End Region
 End Class

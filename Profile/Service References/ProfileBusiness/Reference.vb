@@ -100,9 +100,6 @@ Namespace ProfileBusiness
         Private EFFECT_DATEField As System.Nullable(Of Date)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private EFFECT_DATE1Field As System.Nullable(Of Date)
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private EMPLOYEE_CODEField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -612,19 +609,6 @@ Namespace ProfileBusiness
                 If (Me.EFFECT_DATEField.Equals(value) <> true) Then
                     Me.EFFECT_DATEField = value
                     Me.RaisePropertyChanged("EFFECT_DATE")
-                End If
-            End Set
-        End Property
-        
-        <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property EFFECT_DATE1() As System.Nullable(Of Date)
-            Get
-                Return Me.EFFECT_DATE1Field
-            End Get
-            Set
-                If (Me.EFFECT_DATE1Field.Equals(value) <> true) Then
-                    Me.EFFECT_DATE1Field = value
-                    Me.RaisePropertyChanged("EFFECT_DATE1")
                 End If
             End Set
         End Property
@@ -49726,6 +49710,9 @@ Namespace ProfileBusiness
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GET_EMPLOYEE", ReplyAction:="http://tempuri.org/IProfileBusiness/GET_EMPLOYEEResponse")>  _
         Function GET_EMPLOYEE(ByVal P_EMP_CODE As String) As System.Data.DataTable
         
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GET_PROCESS_PLCONTRACT_PORTAL", ReplyAction:="http://tempuri.org/IProfileBusiness/GET_PROCESS_PLCONTRACT_PORTALResponse")>  _
+        Function GET_PROCESS_PLCONTRACT_PORTAL(ByVal P_EMP_ID As Decimal) As System.Data.DataTable
+        
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/InsertALP", ReplyAction:="http://tempuri.org/IProfileBusiness/InsertALPResponse")>  _
         Function InsertALP(ByVal objContract As ProfileBusiness.TrainningManageDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
         
@@ -51828,6 +51815,10 @@ Namespace ProfileBusiness
         
         Public Function GET_EMPLOYEE(ByVal P_EMP_CODE As String) As System.Data.DataTable Implements ProfileBusiness.IProfileBusiness.GET_EMPLOYEE
             Return MyBase.Channel.GET_EMPLOYEE(P_EMP_CODE)
+        End Function
+        
+        Public Function GET_PROCESS_PLCONTRACT_PORTAL(ByVal P_EMP_ID As Decimal) As System.Data.DataTable Implements ProfileBusiness.IProfileBusiness.GET_PROCESS_PLCONTRACT_PORTAL
+            Return MyBase.Channel.GET_PROCESS_PLCONTRACT_PORTAL(P_EMP_ID)
         End Function
         
         Public Function InsertALP(ByVal objContract As ProfileBusiness.TrainningManageDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean Implements ProfileBusiness.IProfileBusiness.InsertALP

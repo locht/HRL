@@ -151,6 +151,7 @@
     <Content Include="Modules\Competency\Report\ctrlHU_Competency_RadarReport.ascx" />
     <Content Include="Modules\Competency\Report\ctrlHU_Competency_RadarReportGaps.ascx" />
     <Content Include="Modules\Competency\Setting\ctrlHU_CompetencyCourse.ascx" />
+    <Content Include="Modules\Portal\ctrlPortalContractAppendix.ascx" />
     <Content Include="Modules\Portal\ctrlInfoCertificate.ascx" />
     <Content Include="Modules\Portal\ctrlPortalEmpDtlTrainingEvaluate.ascx" />
     <Content Include="Modules\Portal\ctrlPortalConcurrently.ascx" />
@@ -306,99 +307,287 @@
     <None Include="Service References\ProfileBusiness\Framework.Data1.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\ProfileBusiness\Profile.ProfileBusiness.AllowanceListDTO.datasource" />
-    <None Include="Service References\ProfileBusiness\Profile.ProfileBusiness.AssetDTO.datasource" />
-    <None Include="Service References\ProfileBusiness\Profile.ProfileBusiness.AssetMngDTO.datasource" />
-    <None Include="Service References\ProfileBusiness\Profile.ProfileBusiness.ATPeriodDTO.datasource" />
+    <None Include="Service References\ProfileBusiness\Profile.ProfileBusiness.AllowanceListDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ProfileBusiness\Profile.ProfileBusiness.AssetDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ProfileBusiness\Profile.ProfileBusiness.AssetMngDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ProfileBusiness\Profile.ProfileBusiness.ATPeriodDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Service References\ProfileBusiness\Profile.ProfileBusiness.BankAccountLogDTO1.datasource" />
-    <None Include="Service References\ProfileBusiness\Profile.ProfileBusiness.BankBranchDTO.datasource" />
-    <None Include="Service References\ProfileBusiness\Profile.ProfileBusiness.BankDTO.datasource" />
-    <None Include="Service References\ProfileBusiness\Profile.ProfileBusiness.ComboBoxDataDTO.datasource" />
-    <None Include="Service References\ProfileBusiness\Profile.ProfileBusiness.CommendDTO.datasource" />
-    <None Include="Service References\ProfileBusiness\Profile.ProfileBusiness.CommendEmpDTO.datasource" />
-    <None Include="Service References\ProfileBusiness\Profile.ProfileBusiness.CommendFormulaDTO.datasource" />
-    <None Include="Service References\ProfileBusiness\Profile.ProfileBusiness.CommendLevelDTO.datasource" />
-    <None Include="Service References\ProfileBusiness\Profile.ProfileBusiness.CommendListDTO.datasource" />
-    <None Include="Service References\ProfileBusiness\Profile.ProfileBusiness.CommendOrgDTO.datasource" />
-    <None Include="Service References\ProfileBusiness\Profile.ProfileBusiness.CompetencyAppendixDTO.datasource" />
-    <None Include="Service References\ProfileBusiness\Profile.ProfileBusiness.CompetencyAssDtlDTO.datasource" />
-    <None Include="Service References\ProfileBusiness\Profile.ProfileBusiness.CompetencyAssDTO.datasource" />
-    <None Include="Service References\ProfileBusiness\Profile.ProfileBusiness.CompetencyAvgEmplDTO.datasource" />
-    <None Include="Service References\ProfileBusiness\Profile.ProfileBusiness.CompetencyBuildDTO.datasource" />
-    <None Include="Service References\ProfileBusiness\Profile.ProfileBusiness.CompetencyCourseDTO.datasource" />
-    <None Include="Service References\ProfileBusiness\Profile.ProfileBusiness.CompetencyDTO.datasource" />
-    <None Include="Service References\ProfileBusiness\Profile.ProfileBusiness.CompetencyEmpDTO.datasource" />
-    <None Include="Service References\ProfileBusiness\Profile.ProfileBusiness.CompetencyGroupDTO.datasource" />
-    <None Include="Service References\ProfileBusiness\Profile.ProfileBusiness.CompetencyPeriodDTO.datasource" />
-    <None Include="Service References\ProfileBusiness\Profile.ProfileBusiness.CompetencyStandardDTO.datasource" />
-    <None Include="Service References\ProfileBusiness\Profile.ProfileBusiness.ContractDTO.datasource" />
-    <None Include="Service References\ProfileBusiness\Profile.ProfileBusiness.ContractTypeDTO.datasource" />
-    <None Include="Service References\ProfileBusiness\Profile.ProfileBusiness.DisciplineDTO.datasource" />
-    <None Include="Service References\ProfileBusiness\Profile.ProfileBusiness.DisciplineEmpDTO.datasource" />
-    <None Include="Service References\ProfileBusiness\Profile.ProfileBusiness.DisciplineSalaryDTO.datasource" />
-    <None Include="Service References\ProfileBusiness\Profile.ProfileBusiness.DistrictDTO.datasource" />
-    <None Include="Service References\ProfileBusiness\Profile.ProfileBusiness.EmployeeAssessmentDTO.datasource" />
-    <None Include="Service References\ProfileBusiness\Profile.ProfileBusiness.EmployeeCompetencyDTO.datasource" />
-    <None Include="Service References\ProfileBusiness\Profile.ProfileBusiness.EmployeeCriteriaRecordDTO.datasource" />
-    <None Include="Service References\ProfileBusiness\Profile.ProfileBusiness.EmployeeCVDTO.datasource" />
-    <None Include="Service References\ProfileBusiness\Profile.ProfileBusiness.EmployeeDTO.datasource" />
-    <None Include="Service References\ProfileBusiness\Profile.ProfileBusiness.EmployeeEditDTO.datasource" />
-    <None Include="Service References\ProfileBusiness\Profile.ProfileBusiness.EmployeeEduDTO.datasource" />
-    <None Include="Service References\ProfileBusiness\Profile.ProfileBusiness.EmployeeFileDTO.datasource" />
-    <None Include="Service References\ProfileBusiness\Profile.ProfileBusiness.EmployeeHealthDTO.datasource" />
-    <None Include="Service References\ProfileBusiness\Profile.ProfileBusiness.EmployeeTrainDTO.datasource" />
-    <None Include="Service References\ProfileBusiness\Profile.ProfileBusiness.EmployeeTrainForCompanyDTO.datasource" />
-    <None Include="Service References\ProfileBusiness\Profile.ProfileBusiness.FamilyDTO.datasource" />
-    <None Include="Service References\ProfileBusiness\Profile.ProfileBusiness.FamilyEditDTO.datasource" />
-    <None Include="Service References\ProfileBusiness\Profile.ProfileBusiness.FileContractDTO.datasource" />
+    <None Include="Service References\ProfileBusiness\Profile.ProfileBusiness.BankBranchDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ProfileBusiness\Profile.ProfileBusiness.BankDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <Content Include="Service References\ProfileBusiness\Profile.ProfileBusiness.CETIFICATEDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <None Include="Service References\ProfileBusiness\Profile.ProfileBusiness.ComboBoxDataDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <Content Include="Service References\ProfileBusiness\Profile.ProfileBusiness.CommandResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <None Include="Service References\ProfileBusiness\Profile.ProfileBusiness.CommendDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ProfileBusiness\Profile.ProfileBusiness.CommendEmpDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ProfileBusiness\Profile.ProfileBusiness.CommendFormulaDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ProfileBusiness\Profile.ProfileBusiness.CommendLevelDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ProfileBusiness\Profile.ProfileBusiness.CommendListDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ProfileBusiness\Profile.ProfileBusiness.CommendOrgDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ProfileBusiness\Profile.ProfileBusiness.CompetencyAppendixDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ProfileBusiness\Profile.ProfileBusiness.CompetencyAssDtlDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ProfileBusiness\Profile.ProfileBusiness.CompetencyAssDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ProfileBusiness\Profile.ProfileBusiness.CompetencyAvgEmplDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ProfileBusiness\Profile.ProfileBusiness.CompetencyBuildDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ProfileBusiness\Profile.ProfileBusiness.CompetencyCourseDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ProfileBusiness\Profile.ProfileBusiness.CompetencyDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ProfileBusiness\Profile.ProfileBusiness.CompetencyEmpDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ProfileBusiness\Profile.ProfileBusiness.CompetencyGroupDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ProfileBusiness\Profile.ProfileBusiness.CompetencyPeriodDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ProfileBusiness\Profile.ProfileBusiness.CompetencyStandardDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ProfileBusiness\Profile.ProfileBusiness.ContractDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ProfileBusiness\Profile.ProfileBusiness.ContractTypeDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <Content Include="Service References\ProfileBusiness\Profile.ProfileBusiness.DebtDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <None Include="Service References\ProfileBusiness\Profile.ProfileBusiness.DisciplineDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ProfileBusiness\Profile.ProfileBusiness.DisciplineEmpDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ProfileBusiness\Profile.ProfileBusiness.DisciplineSalaryDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ProfileBusiness\Profile.ProfileBusiness.DistrictDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ProfileBusiness\Profile.ProfileBusiness.EmployeeAssessmentDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ProfileBusiness\Profile.ProfileBusiness.EmployeeCompetencyDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ProfileBusiness\Profile.ProfileBusiness.EmployeeCriteriaRecordDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ProfileBusiness\Profile.ProfileBusiness.EmployeeCVDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ProfileBusiness\Profile.ProfileBusiness.EmployeeDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ProfileBusiness\Profile.ProfileBusiness.EmployeeEditDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ProfileBusiness\Profile.ProfileBusiness.EmployeeEduDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ProfileBusiness\Profile.ProfileBusiness.EmployeeFileDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ProfileBusiness\Profile.ProfileBusiness.EmployeeHealthDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ProfileBusiness\Profile.ProfileBusiness.EmployeeTrainDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ProfileBusiness\Profile.ProfileBusiness.EmployeeTrainForCompanyDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ProfileBusiness\Profile.ProfileBusiness.FamilyDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ProfileBusiness\Profile.ProfileBusiness.FamilyEditDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ProfileBusiness\Profile.ProfileBusiness.FileContractDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Service References\ProfileBusiness\Profile.ProfileBusiness.HospitalDTO.datasource" />
-    <None Include="Service References\ProfileBusiness\Profile.ProfileBusiness.HuDynamicConditionDTO.datasource" />
-    <None Include="Service References\ProfileBusiness\Profile.ProfileBusiness.HuFileDTO.datasource" />
-    <None Include="Service References\ProfileBusiness\Profile.ProfileBusiness.HU_PRO_TRAIN_OUT_COMPANYDTO.datasource" />
-    <None Include="Service References\ProfileBusiness\Profile.ProfileBusiness.HU_PRO_TRAIN_OUT_COMPANYDTOEDIT.datasource" />
-    <None Include="Service References\ProfileBusiness\Profile.ProfileBusiness.ImportCommendDTO.datasource" />
-    <None Include="Service References\ProfileBusiness\Profile.ProfileBusiness.LabourProtectionDTO.datasource" />
-    <None Include="Service References\ProfileBusiness\Profile.ProfileBusiness.LabourProtectionMngDTO.datasource" />
+    <Content Include="Service References\ProfileBusiness\Profile.ProfileBusiness.HUAllowanceDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <None Include="Service References\ProfileBusiness\Profile.ProfileBusiness.HuDynamicConditionDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ProfileBusiness\Profile.ProfileBusiness.HuFileDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ProfileBusiness\Profile.ProfileBusiness.HU_PRO_TRAIN_OUT_COMPANYDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ProfileBusiness\Profile.ProfileBusiness.HU_PRO_TRAIN_OUT_COMPANYDTOEDIT.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ProfileBusiness\Profile.ProfileBusiness.ImportCommendDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ProfileBusiness\Profile.ProfileBusiness.LabourProtectionDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ProfileBusiness\Profile.ProfileBusiness.LabourProtectionMngDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <Content Include="Service References\ProfileBusiness\Profile.ProfileBusiness.LocationDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
     <None Include="Service References\ProfileBusiness\Profile.ProfileBusiness.MissionPrintDTO.datasource" />
-    <None Include="Service References\ProfileBusiness\Profile.ProfileBusiness.NationDTO.datasource" />
-    <None Include="Service References\ProfileBusiness\Profile.ProfileBusiness.OccupationalSafetyDTO.datasource" />
-    <None Include="Service References\ProfileBusiness\Profile.ProfileBusiness.OrganizationDTO.datasource" />
-    <None Include="Service References\ProfileBusiness\Profile.ProfileBusiness.OrgChartDTO.datasource" />
-    <None Include="Service References\ProfileBusiness\Profile.ProfileBusiness.OrgTitleDTO.datasource" />
-    <None Include="Service References\ProfileBusiness\Profile.ProfileBusiness.OtherListDTO.datasource" />
-    <None Include="Service References\ProfileBusiness\Profile.ProfileBusiness.ProvinceDTO.datasource" />
-    <None Include="Service References\ProfileBusiness\Profile.ProfileBusiness.ReminderLogDTO.datasource" />
-    <None Include="Service References\ProfileBusiness\Profile.ProfileBusiness.RptDynamicColumnDTO.datasource" />
+    <None Include="Service References\ProfileBusiness\Profile.ProfileBusiness.NationDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ProfileBusiness\Profile.ProfileBusiness.OccupationalSafetyDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ProfileBusiness\Profile.ProfileBusiness.OrganizationDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <Content Include="Service References\ProfileBusiness\Profile.ProfileBusiness.OrganizationTreeDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <None Include="Service References\ProfileBusiness\Profile.ProfileBusiness.OrgChartDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ProfileBusiness\Profile.ProfileBusiness.OrgTitleDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ProfileBusiness\Profile.ProfileBusiness.OtherListDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ProfileBusiness\Profile.ProfileBusiness.ProvinceDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <Content Include="Service References\ProfileBusiness\Profile.ProfileBusiness.RelationshipListDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <None Include="Service References\ProfileBusiness\Profile.ProfileBusiness.ReminderLogDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ProfileBusiness\Profile.ProfileBusiness.RptDynamicColumnDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Service References\ProfileBusiness\Profile.ProfileBusiness.RptDynamicColumnDTO1.datasource" />
     <None Include="Service References\ProfileBusiness\Profile.ProfileBusiness.RptManPowerDTO1.datasource" />
     <None Include="Service References\ProfileBusiness\Profile.ProfileBusiness.RptManPowerReferalDTO1.datasource" />
     <None Include="Service References\ProfileBusiness\Profile.ProfileBusiness.RptPPRDTO1.datasource" />
-    <None Include="Service References\ProfileBusiness\Profile.ProfileBusiness.Se_ReportDTO.datasource" />
+    <None Include="Service References\ProfileBusiness\Profile.ProfileBusiness.Se_ReportDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Service References\ProfileBusiness\Profile.ProfileBusiness.Se_ReportDTO1.datasource" />
-    <None Include="Service References\ProfileBusiness\Profile.ProfileBusiness.StaffRankDTO.datasource" />
-    <None Include="Service References\ProfileBusiness\Profile.ProfileBusiness.StatisticDTO.datasource" />
-    <None Include="Service References\ProfileBusiness\Profile.ProfileBusiness.TalentPoolDTO.datasource" />
+    <None Include="Service References\ProfileBusiness\Profile.ProfileBusiness.StaffRankDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ProfileBusiness\Profile.ProfileBusiness.StatisticDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ProfileBusiness\Profile.ProfileBusiness.TalentPoolDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Service References\ProfileBusiness\Profile.ProfileBusiness.TalentPoolDTO1.datasource" />
     <None Include="Service References\ProfileBusiness\Profile.ProfileBusiness.TalentPoolDTO2.datasource" />
     <None Include="Service References\ProfileBusiness\Profile.ProfileBusiness.TalentPoolDTO3.datasource" />
     <None Include="Service References\ProfileBusiness\Profile.ProfileBusiness.TalentPoolDTO4.datasource" />
-    <None Include="Service References\ProfileBusiness\Profile.ProfileBusiness.Terminate3BDTO.datasource" />
-    <None Include="Service References\ProfileBusiness\Profile.ProfileBusiness.TerminateDTO.datasource" />
-    <None Include="Service References\ProfileBusiness\Profile.ProfileBusiness.TitleConcurrentDTO.datasource" />
-    <None Include="Service References\ProfileBusiness\Profile.ProfileBusiness.TitleDTO.datasource" />
-    <None Include="Service References\ProfileBusiness\Profile.ProfileBusiness.TotalDayOffDTO.datasource" />
+    <Content Include="Service References\ProfileBusiness\Profile.ProfileBusiness.Temp_ConcurrentlyDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <None Include="Service References\ProfileBusiness\Profile.ProfileBusiness.Terminate3BDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ProfileBusiness\Profile.ProfileBusiness.TerminateDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ProfileBusiness\Profile.ProfileBusiness.TitleConcurrentDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ProfileBusiness\Profile.ProfileBusiness.TitleDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ProfileBusiness\Profile.ProfileBusiness.TotalDayOffDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Service References\ProfileBusiness\Profile.ProfileBusiness.TotalDayOffDTO1.datasource" />
     <None Include="Service References\ProfileBusiness\Profile.ProfileBusiness.TotalDayOffDTO2.datasource" />
     <None Include="Service References\ProfileBusiness\Profile.ProfileBusiness.TotalDayOffDTO3.datasource" />
     <None Include="Service References\ProfileBusiness\Profile.ProfileBusiness.TotalDayOffDTO4.datasource" />
     <None Include="Service References\ProfileBusiness\Profile.ProfileBusiness.TotalDayOffDTO5.datasource" />
-    <None Include="Service References\ProfileBusiness\Profile.ProfileBusiness.Ward_DTO.datasource" />
-    <None Include="Service References\ProfileBusiness\Profile.ProfileBusiness.WelfareListDTO.datasource" />
-    <None Include="Service References\ProfileBusiness\Profile.ProfileBusiness.WelfareMngDTO.datasource" />
-    <None Include="Service References\ProfileBusiness\Profile.ProfileBusiness.WorkingAllowanceDTO.datasource" />
-    <None Include="Service References\ProfileBusiness\Profile.ProfileBusiness.WorkingBeforeDTO.datasource" />
-    <None Include="Service References\ProfileBusiness\Profile.ProfileBusiness.WorkingBeforeDTOEdit.datasource" />
-    <None Include="Service References\ProfileBusiness\Profile.ProfileBusiness.WorkingDTO.datasource" />
+    <Content Include="Service References\ProfileBusiness\Profile.ProfileBusiness.TrainningEvaluateDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\ProfileBusiness\Profile.ProfileBusiness.TrainningForeignDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\ProfileBusiness\Profile.ProfileBusiness.TrainningManageDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <None Include="Service References\ProfileBusiness\Profile.ProfileBusiness.Ward_DTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ProfileBusiness\Profile.ProfileBusiness.WelfareListDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ProfileBusiness\Profile.ProfileBusiness.WelfareMngDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <Content Include="Service References\ProfileBusiness\Profile.ProfileBusiness.Welfatemng_empDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <None Include="Service References\ProfileBusiness\Profile.ProfileBusiness.WorkingAllowanceDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ProfileBusiness\Profile.ProfileBusiness.WorkingBeforeDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ProfileBusiness\Profile.ProfileBusiness.WorkingBeforeDTOEdit.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ProfileBusiness\Profile.ProfileBusiness.WorkingDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Service References\ProfileBusiness\ProfileDAL.xsd">
       <SubType>Designer</SubType>
     </None>
@@ -535,6 +724,13 @@
     </Compile>
     <Compile Include="Modules\Competency\Setting\ctrlHU_CompetencyCourse.ascx.vb">
       <DependentUpon>ctrlHU_CompetencyCourse.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Modules\Portal\ctrlPortalContractAppendix.ascx.designer.vb">
+      <DependentUpon>ctrlPortalContractAppendix.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Portal\ctrlPortalContractAppendix.ascx.vb">
+      <DependentUpon>ctrlPortalContractAppendix.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Modules\Portal\ctrlInfoCertificate.ascx.designer.vb">

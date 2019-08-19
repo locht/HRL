@@ -4896,4 +4896,108 @@
       <string>Nhận xét đánh giá</string>
     </Value>
   </Item>
+  <Item>
+    <Key>
+      <string>CTRLPORTALCONTRACTAPPENDIX</string>
+    </Key>
+    <Value>
+      <string>Quá trình ký phụ lục hợp đồng</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>QUÁ TRÌNH KÝ PHỤ LỤC HỢP ĐỒNG</string>
+    </Key>
+    <Value>
+      <string>Quá trình ký phụ lục hợp đồng</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>ORG_NAME1</string>
+    </Key>
+    <Value>
+      <string>Phòng ban</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>TITLE_NAME</string>
+    </Key>
+    <Value>
+      <string>Chức danh</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>CONTRACT_NO</string>
+    </Key>
+    <Value>
+      <string>Số HĐLĐ</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>CONTRACTTYPE_NAME</string>
+    </Key>
+    <Value>
+      <string>Loại hợp đồng</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>APPEND_NUMBER</string>
+    </Key>
+    <Value>
+      <string>Số phụ lục hợp đồng</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>APPEND_TYPE_NAME</string>
+    </Key>
+    <Value>
+      <string>Loại phụ lục hợp đồng</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>START_DATE</string>
+    </Key>
+    <Value>
+      <string>Ngày bắt đầu</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>EXPIRE_DATE</string>
+    </Key>
+    <Value>
+      <string>Ngày kết thúc</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>SIGN_DATE</string>
+    </Key>
+    <Value>
+      <string>Ngày ký</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>SIGN_TITLE_NAME</string>
+    </Key>
+    <Value>
+      <string>Chức danh người ký</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>SIGN_NAME</string>
+    </Key>
+    <Value>
+      <string>Người ký</string>
+    </Value>
+  </Item>
 </SerializableDictionaryOfStringString>
