@@ -11,7 +11,7 @@
             <tr>
                 <td class="lb">
                     <asp:Label runat="server" ID="lbCode" Text="Mã khen thưởng"></asp:Label>
-                    
+                    <span class="lbReq">*</span>
                 </td>
                 <td>
                     <tlk:RadTextBox ID="txtCode" runat="server" SkinID="Textbox50">
@@ -27,7 +27,7 @@
                 </td>
                 <td class="lb">
                     <asp:Label runat="server" ID="lbNameVN" Text="Tên khen thưởng"></asp:Label>
-                    
+                    <span class="lbReq">*</span>
                 </td>
                 <td>
                     <tlk:RadTextBox ID="txtNameVN" runat="server">
@@ -42,6 +42,7 @@
             <tr>
                 <td class="lb">
                     <asp:Label runat="server" ID="lbDatatype" Text="Kiểu dữ liệu"></asp:Label>
+                       <span class="lbReq">*</span>
                 </td>
                 <td>
                     <tlk:RadComboBox ID="cbDatatype" runat="server">
@@ -55,6 +56,7 @@
                 </td>
                 <td class="lb">
                     <asp:Label runat="server" ID="lbTYPE" Text="Loại danh mục"></asp:Label>
+                    <span class="lbReq">*</span>
                 </td>
                 <td>
                     <tlk:RadComboBox ID="cbTYPE" runat="server">
@@ -70,6 +72,7 @@
             <tr>
                 <td class="lb">
                     <asp:Label runat="server" ID="lbNumberOrder" Text="Thứ tự"></asp:Label>
+                    <span class="lbReq">*</span>
                 </td>
                 <td>
                     <tlk:RadNumericTextBox ID="nmNumberOrder" MinValue="0" MaxLength="38" runat="server">
@@ -80,30 +83,19 @@
                 </td>
                  <td class="lb">
                     <asp:Label runat="server" ID="lbObject" Text="Đối tượng khen thưởng"></asp:Label>
+                    <span class="lbReq">*</span>
                 </td>
                 <td>
                     <tlk:RadComboBox ID="cbObject" runat="server">
                     </tlk:RadComboBox>
-                     <asp:RequiredFieldValidator ID="RequiredFieldValidator2" ControlToValidate="cbLevel"
+                     <asp:RequiredFieldValidator ID="RequiredFieldValidator2" ControlToValidate="cbObject"
                         runat="server" ErrorMessage="Bạn phải chọn đối tượng khen thưởng" ToolTip="Bạn phải chọn đối tượng khen thưởng"> 
                     </asp:RequiredFieldValidator>
                     <asp:CustomValidator ID="cusObject" ControlToValidate="cbObject" runat="server" ErrorMessage="Đối tượng khen thưởng không tồn tại hoặc đã ngừng áp dụng."
                         ToolTip="Đối tượng khen thưởng không tồn tại hoặc đã ngừng áp dụng.">
                     </asp:CustomValidator>
                 </td>
-                <td class="lb">
-                    <asp:Label runat="server" ID="lbLevel" Text="Cấp khen thưởng"></asp:Label>
-                </td>
-                <td>
-                    <tlk:RadComboBox ID="cbLevel" runat="server">
-                    </tlk:RadComboBox>
-                      <asp:RequiredFieldValidator ID="RequiredFieldValidator3" ControlToValidate="cbLevel"
-                        runat="server" ErrorMessage="Bạn phải chọn cấp khen thưởng" ToolTip="Bạn phải chọn cấp khen thưởng"> 
-                    </asp:RequiredFieldValidator>
-                    <asp:CustomValidator ID="cusLevel" ControlToValidate="cbLevel" runat="server" ErrorMessage="Cấp khen thưởng không tồn tại hoặc đã ngừng áp dụng."
-                        ToolTip="Cấp khen thưởng không tồn tại hoặc đã ngừng áp dụng.">
-                    </asp:CustomValidator>
-                </td>
+              
             </tr>
            <%-- <tr>
                
@@ -119,7 +111,7 @@
                         ControlToValidate="txtRemark" ValidationExpression="^(?!.*<[^>]+>).*"></asp:RegularExpressionValidator>
                 </td>
             </tr>
-            <tr>
+            <tr style="display:none">
                 <td class="lb">
                 </td>
                 <td>
@@ -140,7 +132,7 @@
             </ClientSettings>
             <MasterTableView DataKeyNames="ID" ClientDataKeyNames="CODE,NAME,DATATYPE_ID,DATATYPE_NAME,TYPE_ID,TYPE_NAME,NUMBER_ORDER,LEVEL_ID,LEVEL_NAME,OBJECT_ID,OBJECT_NAME,REMARK,EXCEL,EXCEL_BOOL">
                 <Columns>
-                    <%--<tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderStyle-HorizontalAlign="Center"
+                    <tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderStyle-HorizontalAlign="Center"
                         HeaderStyle-Width="30px" ItemStyle-HorizontalAlign="Center">
                     </tlk:GridClientSelectColumn>
                     <tlk:GridBoundColumn DataField="ID" Visible="false" />
@@ -154,16 +146,16 @@
                         UniqueName="TYPE_NAME" SortExpression="TYPE_NAME" />
                     <tlk:GridBoundColumn HeaderText="Thứ tự" DataField="NUMBER_ORDER"
                         UniqueName="NUMBER_ORDER" SortExpression="NUMBER_ORDER" />
-                    <tlk:GridBoundColumn HeaderText="Cấp khen thưởng" DataField="LEVEL_NAME"
-                        UniqueName="LEVEL_NAME" SortExpression="LEVEL_NAME" />
+                  <%--  <tlk:GridBoundColumn HeaderText="Cấp khen thưởng" DataField="LEVEL_NAME"
+                        UniqueName="LEVEL_NAME" SortExpression="LEVEL_NAME" />--%>
                     <tlk:GridBoundColumn HeaderText="Đối tượng khen thưởng" DataField="OBJECT_NAME"
                          UniqueName="OBJECT_NAME" SortExpression="OBJECT_NAME" />
-                    <tlk:GridCheckBoxColumn HeaderText="Import từ excel" DataField="EXCEL_BOOL" AllowFiltering ="false"
-                         SortExpression="EXCEL" UniqueName="EXCEL" />
+                   <%-- <tlk:GridCheckBoxColumn HeaderText="Import từ excel" DataField="EXCEL_BOOL" AllowFiltering ="false"
+                         SortExpression="EXCEL" UniqueName="EXCEL" />--%>
                     <tlk:GridBoundColumn HeaderText="Ghi chú" DataField="REMARK" UniqueName="REMARK"
                         SortExpression="REMARK" />
                     <tlk:GridBoundColumn HeaderText="Trạng thái" DataField="ACTFLG"
-                        UniqueName="ACTFLG" SortExpression="ACTFLG" />--%>
+                        UniqueName="ACTFLG" SortExpression="ACTFLG" />
                 </Columns>
             </MasterTableView>
         </tlk:RadGrid>
@@ -197,12 +189,14 @@
             var item = args.get_item();
             if (item.get_commandName() == "EXPORT") {
                 enableAjax = false;
-            } else if (item.get_commandName() == "SAVE") {
-                // Nếu nhấn nút SAVE thì resize
-                ResizeSplitter();
-            } else {
+            }
+//             else if (item.get_commandName() == "SAVE") {
+//                // Nếu nhấn nút SAVE thì resize
+//                ResizeSplitter();
+//            }
+             else {
                 // Nếu nhấn các nút khác thì resize default
-                ResizeSplitterDefault();
+              //  ResizeSplitterDefault();
             }
         }
 

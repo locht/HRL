@@ -535,5 +535,16 @@ Namespace ProfileBusiness.ServiceImplementations
             End Using
         End Function
 
+        Public Function GET_PROCESS_PLCONTRACT_PORTAL(ByVal P_EMP_ID As Decimal) As DataTable _
+          Implements ServiceContracts.IProfileBusiness.GET_PROCESS_PLCONTRACT_PORTAL
+            Using rep As New ProfileRepository
+                Try
+                    Return rep.GET_PROCESS_PLCONTRACT_PORTAL(P_EMP_ID)
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
+
     End Class
 End Namespace

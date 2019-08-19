@@ -230,8 +230,8 @@ Public Class ctrlHU_EmpDtlProfile
                             If IsNumeric(empCV.PROVINCENQ_ID) Then
                                 cbPROVINCENQ_ID.SelectedValue = empCV.PROVINCENQ_ID
                             End If
-                            If IsNumeric(empCV.BIRTH_PLACEID) Then
-                                cbBirth_PlaceId.SelectedValue = empCV.BIRTH_PLACEID
+                            If IsNumeric(empCV.BIRTH_PLACE) Then
+                                cbBirth_PlaceId.SelectedValue = empCV.BIRTH_PLACE
                                 cbBirth_PlaceId.Text = empCV.BIRTH_PLACENAME
                             End If
 
@@ -2014,7 +2014,7 @@ Public Class ctrlHU_EmpDtlProfile
                 EmpCV.PROVINCENQ_ID = cbPROVINCENQ_ID.SelectedValue
             End If
             If IsNumeric(cbBirth_PlaceId.SelectedValue) Then
-                EmpCV.BIRTH_PLACEID = cbBirth_PlaceId.SelectedValue
+                EmpCV.BIRTH_PLACE = cbBirth_PlaceId.SelectedValue
             End If
 
             EmpCV.OPPTION1 = rtOpption1.Text

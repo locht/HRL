@@ -275,42 +275,6 @@ Partial Public Class ctrlHU_Commend_List
     Protected WithEvents cusObject As Global.System.Web.UI.WebControls.CustomValidator
 
     '''<summary>
-    '''lbLevel control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lbLevel As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
-    '''cbLevel control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents cbLevel As Global.Telerik.Web.UI.RadComboBox
-
-    '''<summary>
-    '''RequiredFieldValidator3 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents RequiredFieldValidator3 As Global.System.Web.UI.WebControls.RequiredFieldValidator
-
-    '''<summary>
-    '''cusLevel control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents cusLevel As Global.System.Web.UI.WebControls.CustomValidator
-
-    '''<summary>
     '''lbRemark control.
     '''</summary>
     '''<remarks>
@@ -336,15 +300,6 @@ Partial Public Class ctrlHU_Commend_List
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents RegularExpressionValidator3 As Global.System.Web.UI.WebControls.RegularExpressionValidator
-
-    '''<summary>
-    '''chkExcel control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents chkExcel As Global.Telerik.Web.UI.RadButton
 
     '''<summary>
     '''RadPane2 control.

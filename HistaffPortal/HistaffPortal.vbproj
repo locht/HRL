@@ -124,6 +124,7 @@
     <Content Include="Modules\Common\ctrlCommon_Reject.ascx" />
     <Content Include="Modules\Common\ctrlUpload.ascx" />
     <Content Include="Modules\Performance\ctrlPE_AssessHistory.ascx" />
+    <Content Include="Modules\Profile\ctrlPortalContractAppendix.ascx" />
     <Content Include="Modules\Profile\ctrlInfoCertificate.ascx" />
     <Content Include="Modules\Profile\ctrlPortalEmpDtlTrainingEvaluate.ascx" />
     <Content Include="Modules\Profile\ctrlPortalConcurrently.ascx" />

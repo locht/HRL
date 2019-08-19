@@ -1487,6 +1487,18 @@ Partial Public Class ProfileRepository
             End Try
         End Using
     End Function
+
+    Public Function GET_PROCESS_PLCONTRACT_PORTAL(ByVal P_EMP_ID As Decimal) As DataTable
+        Using rep As New ProfileBusinessClient
+            Try
+                Return rep.GET_PROCESS_PLCONTRACT_PORTAL(P_EMP_ID)
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+
+    End Function
 #End Region
 
 End Class

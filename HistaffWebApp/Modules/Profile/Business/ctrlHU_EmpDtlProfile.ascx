@@ -387,10 +387,12 @@
                             <ContentTemplate>
                                 <table class="table-form" style="width: 99%" onkeydown="return (event.keyCode!=13)">
                                     <tr>
+                                    <td></td>
                                         <td>
                                             <%# Translate("Nơi đăng ký khai sinh:")%>
                                         </td>
-                                        <td>
+                                         
+                                        <td style="display:none">
                                             <tlk:RadTextBox runat="server" ID="txtPlaceKS" Width="100%">
                                             </tlk:RadTextBox>
                                         </td>
