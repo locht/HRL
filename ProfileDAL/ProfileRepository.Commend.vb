@@ -577,6 +577,7 @@ Partial Class ProfileRepository
             'insert nhan vien mới
             For Each obj As CommendEmpDTO In objCommend.COMMEND_EMP
                 objDataEmp = New HU_COMMEND_EMP
+                objDataEmp.GUID_ID = obj.GUID_ID
                 objDataEmp.HU_COMMEND_ID = objCommend.ID
                 objDataEmp.HU_EMPLOYEE_ID = obj.HU_EMPLOYEE_ID
                 objDataEmp.MONEY = obj.MONEY
@@ -599,6 +600,7 @@ Partial Class ProfileRepository
                 objDataOrg = New HU_COMMEND_ORG
                 objDataOrg.ID = Utilities.GetNextSequence(Context, Context.HU_COMMEND_ORG.EntitySet.Name)
                 'objDataOrg.ID = rep.AutoGenID("HU_COMMEND_ORG")
+                objDataOrg.GUID_ID = obj.GUID_ID
                 objDataOrg.HU_COMMEND_ID = objCommend.ID
                 objDataOrg.MONEY = obj.MONEY
                 objDataOrg.COMMEND_PAY = obj.COMMEND_PAY

@@ -1,8 +1,8 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for Oracle database
 -- --------------------------------------------------
--- Date Created: 08/14/2019 3:29:25 PM
--- Generated from EDMX file: D:\MyProject\TNG\TNG\ProfileDAL\ProfileContext.edmx
+-- Date Created: 19/08/2019 4:32:35 PM
+-- Generated from EDMX file: E:\TNG1\ProfileDAL\ProfileContext.edmx
 -- --------------------------------------------------
 
 -- --------------------------------------------------
@@ -2262,7 +2262,8 @@ CREATE TABLE "dbo"."HU_COMMEND_ORG" (
    "MODIFIED_DATE" DATE NULL,
    "MODIFIED_BY" NVARCHAR2(255) NULL,
    "MODIFIED_LOG" NVARCHAR2(255) NULL,
-   "COMMEND_PAY" NUMBER(38,0) NULL
+   "COMMEND_PAY" NUMBER(38,0) NULL,
+   "GUID_ID" NCLOB NULL
 );
 
 -- Creating table 'HU_COMMEND_LIST'
@@ -2342,7 +2343,8 @@ CREATE TABLE "dbo"."HU_COMMEND_EMP" (
    "MODIFIED_DATE" DATE NULL,
    "MODIFIED_BY" NVARCHAR2(255) NULL,
    "MODIFIED_LOG" NVARCHAR2(255) NULL,
-   "COMMEND_PAY" NUMBER(38,0) NULL
+   "COMMEND_PAY" NUMBER(38,0) NULL,
+   "GUID_ID" NCLOB NULL
 );
 
 -- Creating table 'HU_TITLE1'
@@ -3093,7 +3095,10 @@ CREATE TABLE "dbo"."HU_FILECONTRACT" (
    "SIGNER_TITLE" NVARCHAR2(255) NULL,
    "WORKING_ID" NUMBER(38,0) NULL,
    "FILENAME" NCLOB NULL,
-   "UPLOADFILE" NCLOB NULL
+   "UPLOADFILE" NCLOB NULL,
+   "SIGN_ID2" NUMBER(38,0) NULL,
+   "SIGNER_NAME2" NVARCHAR2(255) NULL,
+   "SIGNER_TITLE2" NVARCHAR2(255) NULL
 );
 
 -- Creating table 'HU_FILECONTRACT_DELETED'

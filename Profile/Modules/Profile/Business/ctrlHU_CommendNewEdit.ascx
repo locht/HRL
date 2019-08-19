@@ -426,7 +426,7 @@
             Visible="false" Height="200px">
             <GroupingSettings CaseSensitive="false" />
             <MasterTableView EditMode="InPlace" AllowPaging="false" AllowCustomPaging="false"
-                DataKeyNames="ID,ORG_NAME,ORG_ID,COMMEND_PAY,MONEY" ClientDataKeyNames="ORG_NAME"
+                DataKeyNames="ID,ORG_NAME,ORG_ID,COMMEND_PAY,MONEY,COMMEND_PAY_NAME" ClientDataKeyNames="ID,ORG_NAME,ORG_ID,COMMEND_PAY,MONEY,COMMEND_PAY_NAME"
                 CommandItemDisplay="Top">
                 <CommandItemStyle Height="25px" />
                 <CommandItemTemplate>
@@ -455,7 +455,7 @@
                     <tlk:GridBoundColumn HeaderText="Phòng ban" DataField="ORG_NAME" HeaderStyle-Width="200px"
                         ReadOnly="true" UniqueName="ORG_NAME" SortExpression="ORG_NAME" />
                     <tlk:GridTemplateColumn HeaderText="Hình thức trả thưởng" HeaderStyle-Width="200px"
-                        UniqueName="COMMEND_PAY" ColumnGroupName="WorkingNEW">
+                        UniqueName="COMMEND_PAY">                        
                         <EditItemTemplate>
                             <tlk:RadComboBox runat="server" ID="cbCommend_PayORG" AutoPostBack="true"
                                 OnSelectedIndexChanged="cbCommend_PayORG_SelectedIndexChanged">

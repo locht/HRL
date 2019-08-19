@@ -1,4 +1,5 @@
 ﻿Public Class CommendOrgDTO
+    Public Property GUID_ID As String
     Public Property ID As Decimal
     Public Property HU_COMMEND_ID As Decimal
     Public Property ORG_ID As Decimal

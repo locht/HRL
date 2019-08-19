@@ -18,7 +18,7 @@ Imports System.Runtime.Serialization
 Imports System.Xml.Serialization
 
 
-<Assembly: EdmSchemaAttribute("544e3745-1334-48a7-9fd9-b3e36b3db479")>
+<Assembly: EdmSchemaAttribute("f5e53e96-eb9d-4e4e-a836-f74f4a7dd77c")>
 #Region "EDM Relationship Metadata"
 <Assembly: EdmRelationshipAttribute("ProfileModel", "FK_HU_NAT_HU_PRO", "HU_NATION", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_NATION), "HU_PROVINCE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_PROVINCE), True)>
 <Assembly: EdmRelationshipAttribute("ProfileModel", "FK_HU_PRO_HU_DIS", "HU_PROVINCE", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_PROVINCE), "HU_DISTRICT", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_DISTRICT), True)>
@@ -11614,6 +11614,31 @@ Public Partial Class HU_COMMEND_EMP
     Private Partial Sub OnCOMMEND_PAYChanged()
     End Sub
 
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property GUID_ID() As Global.System.String
+        Get
+            Return _GUID_ID
+        End Get
+        Set
+            OnGUID_IDChanging(value)
+            ReportPropertyChanging("GUID_ID")
+            _GUID_ID = StructuralObject.SetValidValue(value, true)
+            ReportPropertyChanged("GUID_ID")
+            OnGUID_IDChanged()
+        End Set
+    End Property
+
+    Private _GUID_ID As Global.System.String
+    Private Partial Sub OnGUID_IDChanging(value As Global.System.String)
+    End Sub
+
+    Private Partial Sub OnGUID_IDChanged()
+    End Sub
+
     #End Region
 
 End Class
@@ -13086,6 +13111,31 @@ Public Partial Class HU_COMMEND_ORG
     End Sub
 
     Private Partial Sub OnCOMMEND_PAYChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property GUID_ID() As Global.System.String
+        Get
+            Return _GUID_ID
+        End Get
+        Set
+            OnGUID_IDChanging(value)
+            ReportPropertyChanging("GUID_ID")
+            _GUID_ID = StructuralObject.SetValidValue(value, true)
+            ReportPropertyChanged("GUID_ID")
+            OnGUID_IDChanged()
+        End Set
+    End Property
+
+    Private _GUID_ID As Global.System.String
+    Private Partial Sub OnGUID_IDChanging(value As Global.System.String)
+    End Sub
+
+    Private Partial Sub OnGUID_IDChanged()
     End Sub
 
     #End Region

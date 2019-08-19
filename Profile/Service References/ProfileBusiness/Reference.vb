@@ -14778,6 +14778,9 @@ Namespace ProfileBusiness
         Private CREATED_LOGField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private GUID_IDField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private HU_COMMEND_IDField As Decimal
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -14872,6 +14875,19 @@ Namespace ProfileBusiness
                 If (Object.ReferenceEquals(Me.CREATED_LOGField, value) <> true) Then
                     Me.CREATED_LOGField = value
                     Me.RaisePropertyChanged("CREATED_LOG")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property GUID_ID() As String
+            Get
+                Return Me.GUID_IDField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.GUID_IDField, value) <> true) Then
+                    Me.GUID_IDField = value
+                    Me.RaisePropertyChanged("GUID_ID")
                 End If
             End Set
         End Property
