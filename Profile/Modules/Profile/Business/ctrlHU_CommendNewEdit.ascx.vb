@@ -1015,7 +1015,7 @@ Public Class ctrlHU_CommendNewEdit
                     End If
 
                     SetDataToGrid(edit)
-                    cbCommend_Pay.Dispose()
+                    'cbCommend_Pay.Dispose()
                     rep.Dispose()
                     edit.Dispose()
                     item.Dispose()
@@ -1030,7 +1030,7 @@ Public Class ctrlHU_CommendNewEdit
         End Try
     End Sub
 
-    Protected Sub cbCommend_Pay_TextChanged(ByVal sender As Object, ByVal e As EventArgs)
+    Protected Sub cbCommend_Pay_SelectedIndexChanged(ByVal sender As Object, ByVal e As RadComboBoxSelectedIndexChangedEventArgs)
         Try
             Dim edit = CType(sender, RadComboBox)
             Dim item = CType(edit.NamingContainer, GridEditableItem)
@@ -1084,23 +1084,43 @@ Public Class ctrlHU_CommendNewEdit
             Dim item = CType(edit.NamingContainer, GridEditableItem)
             ' If Not IsNumeric(edit.SelectedValue) Then Exit Sub
             Dim COMMEND_PAY = item.GetDataKeyValue("COMMEND_PAY")
-            Dim MONEY = item.GetDataKeyValue("MONEY")
-            'For Each rows As CommendEmpDTO In EmpSource
-            '    If rows.COMMEND_PAY = LEAVE_DAY Then
-            '        rows("STATUS_SHIFT") = If(IsNumeric(edit.SelectedValue), edit.SelectedValue, 0)
-            '        If edit.SelectedValue <> "" Then
-            '            rows("DAY_NUM") = 0.5
-            '        Else
-            '            rows("DAY_NUM") = 1
-            '        End If
-            '        Exit For
-            '    End If
-            'Next
-            rgEmployee.Rebind()
-            For Each items As GridDataItem In rgEmployee.MasterTableView.Items
+            Dim guidId = item.GetDataKeyValue("GUID_ID")
+            For Each rows As CommendEmpDTO In Employee_Commend
+                If rows.GUID_ID = guidId Then
+                    If edit.SelectedValue <> "" Then
+                        rows.COMMEND_PAY = edit.SelectedValue
+                        Exit For
+                    End If
+                End If
+            Next
+            rgOrg.Rebind()
+            For Each items As GridDataItem In rgOrg.MasterTableView.Items
                 items.Edit = True
             Next
-            rgEmployee.MasterTableView.Rebind()
+            rgOrg.MasterTableView.Rebind()
+        Catch ex As Exception
+            DisplayException(Me.ViewName, Me.ID, ex)
+        End Try
+    End Sub
+
+    Protected Sub rnMONEY_ORG_TextChanged(ByVal sender As Object, ByVal e As EventArgs)
+        Try
+            Dim edit = CType(sender, RadNumericTextBox)
+            Dim item = CType(edit.NamingContainer, GridEditableItem)
+            'Dim rnMoney As RadNumericTextBox = CType(item.FindControl("rnMONEY"), RadNumericTextBox)
+            Dim MONEY = edit.Value
+            Dim guidId = item.GetDataKeyValue("GUID_ID")
+            For Each row As CommendEmpDTO In Employee_Commend
+                If row.GUID_ID = guidId Then
+                    row.MONEY = MONEY
+                    Exit For
+                End If
+            Next
+            rgOrg.Rebind()
+            For Each items As GridDataItem In rgOrg.MasterTableView.Items
+                items.Edit = True
+            Next
+            rgOrg.MasterTableView.Rebind()
         Catch ex As Exception
             DisplayException(Me.ViewName, Me.ID, ex)
         End Try
@@ -1364,7 +1384,7 @@ Public Class ctrlHU_CommendNewEdit
                     End If
 
                     SetDataToGrid_Org(edit)
-                    cbCommend_Pay.Dispose()
+                    'cbCommend_Pay.Dispose()
                     rep.Dispose()
                     edit.Dispose()
                     item.Dispose()
@@ -2825,7 +2845,7 @@ Public Class ctrlHU_CommendNewEdit
                     Continue For
                 End Try
             Next
-            cbCommend_Pay.Dispose()
+            ' cbCommend_Pay.Dispose()
 
         Catch ex As Exception
         End Try
@@ -2875,7 +2895,7 @@ Public Class ctrlHU_CommendNewEdit
                     Continue For
                 End Try
             Next
-            cbCommend_Pay.Dispose()
+            'cbCommend_Pay.Dispose()
 
         Catch ex As Exception
         End Try

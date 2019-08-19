@@ -67,6 +67,14 @@ Public Class ProfileStoreProcedure
         End Try
     End Function
 #End Region
+    Public Function GET_DECISION_TYPE_EXCEPT_NV(Optional ByVal isBlank As Boolean = False) As DataTable
+        Dim dt As New DataTable
+        Dim ds As DataSet = hfr.ExecuteToDataSet("PKG_HU_IPROFILE.GET_DECISION_TYPE_EXCEPT_NV", New List(Of Object)(New Object() {isBlank, Common.Common.SystemLanguage.Name}))
+        If Not ds Is Nothing Or Not ds.Tables(0) Is Nothing Then
+            dt = ds.Tables(0)
+        End If
+        Return dt
+    End Function
     Public Function GetTitle(ByVal titleId As Int32) As DataTable
         Dim dt As New DataTable
         Dim ds As DataSet = hfr.ExecuteToDataSet("PKG_HU_IPROFILE.HU_GET_TITLE_BY_ID", New List(Of Object)(New Object() {titleId}))

@@ -177,11 +177,9 @@ Public Class ctrlHU_ChangeInfoNewEdit
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
         Dim startTime As DateTime = DateTime.UtcNow
         Dim dtData As DataTable
-
+        Dim store As New ProfileStoreProcedure
         Try
-            Using rep As New ProfileRepository
-                dtData = rep.GetOtherList(ProfileCommon.DECISION_TYPE.Name)
-            End Using
+            dtData = store.GET_DECISION_TYPE_EXCEPT_NV()
             FillRadCombobox(cboDecisionType, dtData, "NAME", "ID")
             If dtData IsNot Nothing AndAlso dtData.Rows.Count > 0 Then
                 cboDecisionType.SelectedValue = dtData.Rows(0)("ID")
@@ -199,7 +197,6 @@ Public Class ctrlHU_ChangeInfoNewEdit
                 dtData = rep.GetOtherList("OBJECT_LABOR")
             End Using
             FillRadCombobox(cboObjectLaborNew, dtData, "NAME", "ID")
-
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
             'DisplayException(Me.ViewName, Me.ID, ex)

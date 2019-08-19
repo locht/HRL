@@ -6,14 +6,12 @@
 	<Item Value="Profile;ctrlInfoCertificate;NoPer;NoEdit" Text="Quản lý chứng chỉ" ImageUrl="~/Static/Images/RibbonBar/family.png" />
     <Item Value="Profile;ctrlPortalWorking;NoPer;NoEdit" Text="Quá trình công tác hiện tại" ImageUrl="~/Static/Images/RibbonBar/working.png" />
     <Item Value="Profile;ctrlPortalWorkingBefore;NoPer;NoEdit" Text="Quá trình công tác trước đây" ImageUrl="~/Static/Images/RibbonBar/working_before.png" />
-    <Item Value="Profile;ctrlPortalTraining;NoPer;NoEdit" Text="Quá trình đào tạo trong công ty" ImageUrl="~/Static/Images/RibbonBar/working_before.png" />
     <Item Value="Profile;ctrlPortalTrainingOutCompany;NoPer;NoEdit" Text="Quá trình đào tạo ngoài công ty" ImageUrl="~/Static/Images/RibbonBar/working.png" />
     <Item Value="Profile;ctrlPortalContract;NoPer;NoEdit" Text="Quá trình hợp đồng lao động" ImageUrl="~/Static/Images/RibbonBar/contract.png" />
     <Item Value="Profile;ctrlPortalSalary;NoPer;NoEdit" Text="Quá trình thay đổi lương - phụ cấp" ImageUrl="~/Static/Images/RibbonBar/salary.png" />
     <Item Value="Profile;ctrlPortalCommend;NoPer;NoEdit" Text="Quá trình khen thưởng" ImageUrl="~/Static/Images/RibbonBar/commend.png" />
     <Item Value="Profile;ctrlPortalDiscipline;NoPer;NoEdit" Text="Quá trình kỷ luật" ImageUrl="~/Static/Images/RibbonBar/discipline.png" />
     <Item Value="Profile;ctrlPortalConcurrently;NoPer;NoEdit" Text="Quá trình kiêm nhiệm" ImageUrl="~/Static/Images/RibbonBar/discipline.png" />
-	<Item Value="Profile;ctrlPortalEmpDtlTrainingEvaluate;NoPer;NoEdit" Text="Quá trình đánh giá" ImageUrl="~/Static/Images/RibbonBar/discipline.png" />
 	
   </Item>
   <Item Text="Leave &amp; OT" Expanded="True" Value="Attendance">
@@ -24,13 +22,6 @@
     <Item Value="Attendance;ctrlOTRegistrationByLM;NoPer;NoEdit" Text="Phê duyệt làm thêm" ImageUrl="~/Static/Images/RibbonBar/approve.png" />
   </Item>
   <Item Text="Phiếu lương" Expanded="True" Value="Payroll;ctrlPA_PortalSalary;NoPer;NoEdit" />
-  <Item Text="Đánh giá" Expanded="True" Value="Performance">
-    <Item Value="Performance;ctrlPE_Assess;NoPer;NoEdit" Text="Cá nhân tự đánh giá" ImageUrl="~/Static/Images/RibbonBar/user.png" />
-    <Item Value="Performance;ctrlPortalAssessmentDirect;NoPer;NoEdit" Text="Quản lý đánh giá nhân viên" ImageUrl="~/Static/Images/RibbonBar/user.png" />
-    <Item Value="Performance;ctrlPortalViewAssessEmp;NoPer;NoEdit" Text="KPI cá nhân" ImageUrl="~/Static/Images/RibbonBar/user.png" />    
-  </Item>
-  <Item Value="Common;ctrlGuide;NoPer" Text="Hướng dẫn sử dụng" />
-  <Item Value="SUPPORT;NoPer" Text="Support" />
   <Item Text="Quản trị hệ thống" Expanded="True" Value="Common">
     <Item Value="Common;ctrlLanguageManagement;NoPer;Edit" Text="Quản lý ngôn ngữ" ImageUrl="~/Static/Images/RibbonBar/user.png" />
   </Item>
