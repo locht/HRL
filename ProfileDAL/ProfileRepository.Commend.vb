@@ -953,5 +953,37 @@ Partial Class ProfileRepository
             Throw ex
         End Try
     End Function
+
+    Public Function EXPORT_QLKT() As DataSet
+        Try
+            Using cls As New DataAccess.QueryData
+                Dim dtData As DataSet = cls.ExecuteStore("PKG_HU_IPROFILE_EMPLOYEE.EXPORT_QLKT",
+                                           New With { .P_CUR = cls.OUT_CURSOR}, False) ' FALSE : no datatable
+
+                Return dtData
+            End Using
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iProfile")
+            Throw ex
+        End Try
+    End Function
+
+    Public Function GET_EMPLOYEE(ByVal P_EMP_CODE As String) As DataTable
+        Try
+            Dim dtData As DataTable
+            Using cls As New DataAccess.QueryData
+                Dim dsData As DataSet = cls.ExecuteStore("PKG_HU_IPROFILE_EMPLOYEE.GET_EMPLOYEE",
+                                           New With {.P_EMP_CODE = P_EMP_CODE,
+                                                     .P_CUR = cls.OUT_CURSOR}, False) ' FALSE : no datatable
+                If dsData IsNot Nothing Then
+                    dtData = dsData.Tables(0)
+                End If
+                Return dtData
+            End Using
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iProfile")
+            Throw ex
+        End Try
+    End Function
 #End Region
 End Class

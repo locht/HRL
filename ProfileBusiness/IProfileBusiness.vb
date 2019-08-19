@@ -2728,6 +2728,10 @@ Namespace ProfileBusiness.ServiceContracts
         Function CHECK_SIGN(ByVal P_EMP_CODE As String) As Integer
         <OperationContract()>
         Function INPORT_PLHD(ByVal P_DOCXML As String, ByVal log As UserLog) As Boolean
+        <OperationContract()>
+        Function EXPORT_QLKT() As DataSet
+        <OperationContract()>
+        Function GET_EMPLOYEE(ByVal P_EMP_CODE As String) As DataTable
     End Interface
 
 End Namespace

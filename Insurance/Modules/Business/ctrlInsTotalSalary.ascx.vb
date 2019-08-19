@@ -79,8 +79,9 @@ Public Class ctrlInsTotalSalary
             Common.Common.BuildToolbar(Me.MainToolBar,
                                         ToolbarItem.Calculate,
                                         ToolbarItem.Export,
-                                        ToolbarItem.Seperator)
-            'tbarOtherLists.Items(3).Text = Translate("Tổng hợp hàng loạt")
+                                        ToolbarItem.Seperator,
+                                        ToolbarItem.Create)
+            tbarOtherLists.Items(3).Text = Translate("Tổng hợp hàng loạt")
             Me.MainToolBar.OnClientButtonClicking = "OnClientButtonClicking"
             CType(Me.Page, AjaxPage).AjaxManager.ClientEvents.OnRequestStart = "onRequestStart"
 

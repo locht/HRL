@@ -644,6 +644,24 @@ Partial Public Class ctrlHU_CommendNewEdit
     Protected WithEvents txtRemindLink As Global.Telerik.Web.UI.RadTextBox
 
     '''<summary>
+    '''btnExport control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btnExport As Global.Telerik.Web.UI.RadButton
+
+    '''<summary>
+    '''btnImportFile control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btnImportFile As Global.Telerik.Web.UI.RadButton
+
+    '''<summary>
     '''rgEmployee control.
     '''</summary>
     '''<remarks>

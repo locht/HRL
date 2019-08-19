@@ -274,4 +274,30 @@ Partial Public Class ProfileBusinessRepository
         Throw New NotImplementedException
     End Function
 
+    Public Function EXPORT_QLKT() As DataSet
+        Using rep As New ProfileBusinessClient
+            Try
+                Return rep.EXPORT_QLKT()
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+
+        Return Nothing
+    End Function
+
+    Public Function GET_EMPLOYEE(ByVal P_EMP_CODE As String) As DataTable
+        Using rep As New ProfileBusinessClient
+            Try
+                Return rep.GET_EMPLOYEE(P_EMP_CODE)
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+
+        Return Nothing
+    End Function
+
 End Class
