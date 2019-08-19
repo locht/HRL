@@ -1432,6 +1432,7 @@
     <Content Include="ReportTemplates\Recruitment\Import\Dinhbien_template.xls" />
     <Content Include="ReportTemplates\Profile\WELFARE\import_phucloi_TNG.xls" />
     <Content Include="ReportTemplates\Payroll\Business\TEMP_IMPORT_HOSOLUONG.xls" />
+    <Content Include="ReportTemplates\Profile\ctrlDashboardHome.xls" />
     <None Include="Styles\ImgConfig.jquery.css" />
     <Content Include="Styles\font-awesome.css" />
     <Content Include="Styles\img\icon-tree.png" />
