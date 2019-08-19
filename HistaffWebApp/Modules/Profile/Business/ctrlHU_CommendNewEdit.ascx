@@ -339,6 +339,18 @@
                     </tlk:RadTextBox>
                 </td>
             </tr>
+            <tr>
+                <td>
+                    <tlk:RadButton ID="btnExport" runat="server" Text="<%$ Translate: Xuất file %>" CausesValidation="false"
+                        OnClientClicking="btnExportClicking" Width="150px">
+                    </tlk:RadButton>
+                </td>
+                <td>
+                    <tlk:RadButton ID="btnImportFile" runat="server" Text="<%$ Translate: Nhập file  %>"
+                        CausesValidation="false" OnClientClicking="btnExportClicking" Width="150px">
+                    </tlk:RadButton>
+                </td>
+            </tr>
         </table>
         <tlk:RadGrid ID="rgEmployee" AllowPaging="false" AllowMultiRowEdit="true" runat="server" Height="200px">
             <GroupingSettings CaseSensitive="false" />
@@ -384,11 +396,25 @@
                         HeaderStyle-Width="200px" ReadOnly="true" SortExpression="FULLNAME" />
                     <tlk:GridBoundColumn HeaderText="Phòng ban" DataField="ORG_NAME" UniqueName="ORG_NAME"
                         HeaderStyle-Width="200px" ReadOnly="true" SortExpression="ORG_NAME" />
+                    <%--<tlk:GridTemplateColumn HeaderText="Hình thức trả thưởng" HeaderStyle-Width="200px" DataField="COMMEND_PAY"
+                        UniqueName="COMMEND_PAY" ColumnGroupName="WorkingNEW">
+                        <ItemTemplate>
+                                <%# DataBinder.Eval(Container.DataItem, "COMMEND_PAY_NAME")%>
+                        </ItemTemplate>
+                        <EditItemTemplate>
+                            <tlk:RadComboBox Width="160px" runat="server" ID="cbCommend_Pay" AutoPostBack="true"
+                                OnSelectedIndexChanged="cbCommend_Pay_SelectedIndexChanged">
+                            </tlk:RadComboBox>
+                        </EditItemTemplate>
+                    </tlk:GridTemplateColumn>--%>
                     <tlk:GridTemplateColumn HeaderText="Hình thức trả thưởng" HeaderStyle-Width="200px" UniqueName="COMMEND_PAY">
+                            <ItemTemplate>
+                                <%# DataBinder.Eval(Container.DataItem, "COMMEND_PAY_NAME")%>
+                            </ItemTemplate>
                             <EditItemTemplate>
-                                <tlk:RadTextBox Width="160px" runat="server" ID="cbCommend_Pay"
-                                    ReadOnly="true" AutoPostBack="true" CausesValidation="false" OnSelectedIndexChanged="cbCommend_Pay_TextChanged">
-                                </tlk:RadTextBox>
+                                <tlk:RadComboBox Width="160px" runat="server" ID="cbCommend_Pay"
+                                    ReadOnly="true" AutoPostBack="true" CausesValidation="false" OnSelectedIndexChanged="cbCommend_Pay_SelectedIndexChanged">
+                                </tlk:RadComboBox>
                             </EditItemTemplate>
                         </tlk:GridTemplateColumn>
                     <tlk:GridTemplateColumn HeaderText="Mức thưởng" HeaderStyle-Width="100px" UniqueName="MONEY" DataField="MONEY"
@@ -496,6 +522,9 @@
             //                getRadWindow().close(null);
             //                args.set_cancel(true);
             //            }
+        }
+        function btnExportClicking(sender, args) {
+            enableAjax = false;
         }
 
         var enableAjax = true;
