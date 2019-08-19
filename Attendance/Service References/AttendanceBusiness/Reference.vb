@@ -22134,6 +22134,9 @@ Namespace AttendanceBusiness
         Private SHIFT_TYPE_CODEField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private SHIFT_TYPE_CODE0Field As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private SHIFT_TYPE_IDField As System.Nullable(Of Decimal)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -23027,6 +23030,19 @@ Namespace AttendanceBusiness
                 If (Object.ReferenceEquals(Me.SHIFT_TYPE_CODEField, value) <> true) Then
                     Me.SHIFT_TYPE_CODEField = value
                     Me.RaisePropertyChanged("SHIFT_TYPE_CODE")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property SHIFT_TYPE_CODE0() As String
+            Get
+                Return Me.SHIFT_TYPE_CODE0Field
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.SHIFT_TYPE_CODE0Field, value) <> true) Then
+                    Me.SHIFT_TYPE_CODE0Field = value
+                    Me.RaisePropertyChanged("SHIFT_TYPE_CODE0")
                 End If
             End Set
         End Property

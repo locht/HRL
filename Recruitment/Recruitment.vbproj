@@ -51,7 +51,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\ref\Aspose.Cells.dll</HintPath>
     </Reference>
-    <Reference Include="Common, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL" />
+    <Reference Include="Common, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Common\bin\Common.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -704,10 +707,6 @@
     <WCFMetadataStorage Include="Service References\RecruitmentBusiness\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Common\Common.vbproj">
-      <Project>{4B2EF214-7880-45F2-BB79-B394E552B4BE}</Project>
-      <Name>Common %28Common\Common%29</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Framework\Framework.UI.vbproj">
       <Project>{514CC57F-03AA-4D18-9BF2-3F7B66F6AD9B}</Project>
       <Name>Framework.UI</Name>

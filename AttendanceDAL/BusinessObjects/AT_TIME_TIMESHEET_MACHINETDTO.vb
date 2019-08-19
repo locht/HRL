@@ -74,6 +74,7 @@
     Public Property WORKING_VALUE As Decimal?
     Public Property SHIFT_DAY As Decimal?
     Public Property SHIFT_TYPE_CODE As String
+    Public Property SHIFT_TYPE_CODE0 As String
     Public Property SHIFT_TYPE_ID As Decimal?
     Public Property NOTE As String
     Public Property TIMEVALIN As Date?
