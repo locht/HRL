@@ -586,15 +586,20 @@ Public Class ctrlHU_ContractTemplete
                 Dim item = lstCommon(0)
                 hidWorkingID.Value = item.ID
                 Dim working = rep.GetWorkingByID(New WorkingDTO() With {.ID = item.ID})
-                Working_ID.Text = working.ID
+                'Working_ID.Text = working.ID
+                Working_ID.Text = If(working.DECISION_NO <> "", working.DECISION_NO, working.EFFECT_DATE.Value.Date)
                 rntxtBasicSal.Value = working.SAL_BASIC
                 Salary_Total.Value = working.SAL_TOTAL
                 SalaryInsurance.Value = working.SAL_INS
+                PercentSalary.Value = working.PERCENT_SALARY
+                rnOtherSalary1.Value = working.OTHERSALARY1
+                rnOtherSalary2.Value = working.OTHERSALARY2
+                rnOtherSalary3.Value = working.OTHERSALARY3
                 Allowance_Total.Value = working.ALLOWANCE_TOTAL
                 SetValueComboBox(cboSalTYPE, working.SAL_TYPE_ID, working.SAL_TYPE_NAME)
                 SetValueComboBox(cboTaxTable, working.TAX_TABLE_ID, working.TAX_TABLE_Name)
-                rgAllow.DataSource = working.lstAllowance
-                rgAllow.Rebind()
+                'rgAllow.DataSource = working.lstAllowance
+                'rgAllow.Rebind()
             End If
             rep.Dispose()
             isLoadPopup = 0
@@ -604,10 +609,10 @@ Public Class ctrlHU_ContractTemplete
 
     End Sub
 
-    Private Sub rgAllow_NeedDataSource(ByVal sender As Object, ByVal e As Telerik.Web.UI.GridNeedDataSourceEventArgs) Handles rgAllow.NeedDataSource
-        Dim lstAllow As New List(Of WorkingAllowanceDTO)
-        rgAllow.DataSource = lstAllow
-    End Sub
+    'Private Sub rgAllow_NeedDataSource(ByVal sender As Object, ByVal e As Telerik.Web.UI.GridNeedDataSourceEventArgs) Handles rgAllow.NeedDataSource
+    '    Dim lstAllow As New List(Of WorkingAllowanceDTO)
+    '    'rgAllow.DataSource = lstAllow
+    'End Sub
     Private Sub ctrlFindEmployeePopup_EmployeeSelected(sender As Object, e As System.EventArgs) Handles ctrlFindEmployeePopup.EmployeeSelected
         Dim lstCommonEmployee As New List(Of CommonBusiness.EmployeePopupFindDTO)
         Dim rep As New ProfileRepository
@@ -842,7 +847,9 @@ Public Class ctrlHU_ContractTemplete
                         hidWorkingID.Value = Contract.WORKING_ID
                     End If
 
-                    Working_ID.Text = Contract.ID
+
+                    'Working_ID.Text = Contract.ID
+                    'Working_ID.Text = If(Contract.DECISION_NO <> "", Contract.DECISION_NO, Contract.EFFECT_DATE1.Value.Date)
                     rep.Dispose()
                     'lay thong tin luong
                     GetSalary(Contract)
@@ -1162,9 +1169,9 @@ Public Class ctrlHU_ContractTemplete
         txtSign.Text = String.Empty
         txtSign2.Text = String.Empty
         rntxtBasicSal.ClearValue()
-        rgAllow.MasterTableView.ClearSelectedItems()
-        rgAllow.DataSource = New List(Of WorkingAllowanceDTO)
-        rgAllow.DataBind()
+        'rgAllow.MasterTableView.ClearSelectedItems()
+        'rgAllow.DataSource = New List(Of WorkingAllowanceDTO)
+        'rgAllow.DataBind()
     End Sub
     ''' <summary>
     ''' lay thông tin lương
@@ -1176,12 +1183,17 @@ Public Class ctrlHU_ContractTemplete
             hidWorkingID.Value = fileContract.WORKING_ID
             Dim wkm As WorkingDTO = rep.GetWorkingByID(New WorkingDTO With {.ID = fileContract.WORKING_ID})
             If wkm IsNot Nothing Then
-                Working_ID.Text = wkm.ID
+                ' Working_ID.Text = wkm.ID
+                Working_ID.Text = If(wkm.DECISION_NO <> "", wkm.DECISION_NO, wkm.EFFECT_DATE.Value.Date)
                 rntxtBasicSal.Value = wkm.SAL_BASIC
-                If wkm.lstAllowance IsNot Nothing Then
-                    rgAllow.DataSource = wkm.lstAllowance
-                    rgAllow.DataBind()
-                End If
+                'If wkm.lstAllowance IsNot Nothing Then
+                '    rgAllow.DataSource = wkm.lstAllowance
+                '    rgAllow.DataBind()
+                'End If
+                PercentSalary.Value = wkm.PERCENT_SALARY
+                rnOtherSalary1.Value = wkm.OTHERSALARY1
+                rnOtherSalary2.Value = wkm.OTHERSALARY2
+                rnOtherSalary3.Value = wkm.OTHERSALARY3
                 Salary_Total.Value = wkm.SAL_TOTAL
                 SetValueComboBox(cboSalTYPE, wkm.SAL_TYPE_ID, wkm.SAL_TYPE_NAME)
                 SetValueComboBox(cboTaxTable, wkm.TAX_TABLE_ID, wkm.TAX_TABLE_Name)
@@ -1246,12 +1258,17 @@ Public Class ctrlHU_ContractTemplete
                 SalaryInsurance.Value = working.SAL_INS
                 Allowance_Total.Value = working.ALLOWANCE_TOTAL
                 Salary_Total.Value = working.SAL_TOTAL
-                Working_ID.Text = working.ID
+                ' Working_ID.Text = working.ID
+                PercentSalary.Value = working.PERCENT_SALARY
+                rnOtherSalary1.Value = working.OTHERSALARY1
+                rnOtherSalary2.Value = working.OTHERSALARY2
+                rnOtherSalary3.Value = working.OTHERSALARY3
+                Working_ID.Text = If(working.DECISION_NO <> "", working.DECISION_NO, working.EFFECT_DATE.Value.Date)
                 'If rdStartDate.SelectedDate Is Nothing Then
                 '    rdStartDate.SelectedDate = working.EFFECT_DATE
                 'End If
-                rgAllow.DataSource = working.lstAllowance
-                rgAllow.Rebind()
+                'rgAllow.DataSource = working.lstAllowance
+                'rgAllow.Rebind()
             Else
                 ClearControlValue(cboSalTYPE, cboTaxTable, rntxtBasicSal, SalaryInsurance, Allowance_Total, Salary_Total, rdSignDate)
             End If

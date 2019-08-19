@@ -100,6 +100,9 @@ Namespace ProfileBusiness
         Private EFFECT_DATEField As System.Nullable(Of Date)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private EFFECT_DATE1Field As System.Nullable(Of Date)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private EMPLOYEE_CODEField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -609,6 +612,19 @@ Namespace ProfileBusiness
                 If (Me.EFFECT_DATEField.Equals(value) <> true) Then
                     Me.EFFECT_DATEField = value
                     Me.RaisePropertyChanged("EFFECT_DATE")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property EFFECT_DATE1() As System.Nullable(Of Date)
+            Get
+                Return Me.EFFECT_DATE1Field
+            End Get
+            Set
+                If (Me.EFFECT_DATE1Field.Equals(value) <> true) Then
+                    Me.EFFECT_DATE1Field = value
+                    Me.RaisePropertyChanged("EFFECT_DATE1")
                 End If
             End Set
         End Property
@@ -38354,7 +38370,7 @@ Namespace ProfileBusiness
         Private BIRTH_DATEField As System.Nullable(Of Date)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private BIRTH_PLACEField As String
+        Private BIRTH_PLACEField As System.Nullable(Of Decimal)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private BIRTH_PLACEIDField As System.Nullable(Of Decimal)
@@ -38873,12 +38889,12 @@ Namespace ProfileBusiness
         End Property
         
         <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property BIRTH_PLACE() As String
+        Public Property BIRTH_PLACE() As System.Nullable(Of Decimal)
             Get
                 Return Me.BIRTH_PLACEField
             End Get
             Set
-                If (Object.ReferenceEquals(Me.BIRTH_PLACEField, value) <> true) Then
+                If (Me.BIRTH_PLACEField.Equals(value) <> true) Then
                     Me.BIRTH_PLACEField = value
                     Me.RaisePropertyChanged("BIRTH_PLACE")
                 End If

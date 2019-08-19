@@ -2116,7 +2116,7 @@ Public Class ProfileRepository
                             From w In Context.HU_WORKING.Where(Function(x) p.WORKING_ID = f.ID).DefaultIfEmpty
                             From sal_group In Context.PA_SALARY_GROUP.Where(Function(x) w.SAL_GROUP_ID = f.ID).DefaultIfEmpty
                             From sal_level In Context.PA_SALARY_LEVEL.Where(Function(x) w.SAL_LEVEL_ID = f.ID).DefaultIfEmpty
-                             Where (p.ID = ID)
+                             Where p.ID = ID
                             Select New FileContractDTO With {.ID = p.ID,
                                                             .EMPLOYEE_ID = p.EMP_ID,
                                                             .REMARK = p.REMARK,
@@ -2134,6 +2134,8 @@ Public Class ProfileRepository
                                                             .EXPIRE_DATE = p.EXPIRE_DATE,
                                                             .FILEUPLOAD = p.FILEUPLOAD,
                                                             .STATUS_ID = p.STATUS_ID,
+                                                             .DECISION_NO = w.DECISION_NO,
+                                                             .EFFECT_DATE = w.EFFECT_DATE,
                                                             .APPEND_TYPEID = p.APPEND_TYPEID,
                                                             .FORM_ID = p.FORM_ID,
                                                             .LOCATION_ID = p.LOCATION_ID,
