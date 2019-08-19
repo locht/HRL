@@ -49704,6 +49704,12 @@ Namespace ProfileBusiness
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/INPORT_PLHD", ReplyAction:="http://tempuri.org/IProfileBusiness/INPORT_PLHDResponse")>  _
         Function INPORT_PLHD(ByVal P_DOCXML As String, ByVal log As Common.CommonBusiness.UserLog) As Boolean
         
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/EXPORT_QLKT", ReplyAction:="http://tempuri.org/IProfileBusiness/EXPORT_QLKTResponse")>  _
+        Function EXPORT_QLKT() As System.Data.DataSet
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GET_EMPLOYEE", ReplyAction:="http://tempuri.org/IProfileBusiness/GET_EMPLOYEEResponse")>  _
+        Function GET_EMPLOYEE(ByVal P_EMP_CODE As String) As System.Data.DataTable
+        
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/InsertALP", ReplyAction:="http://tempuri.org/IProfileBusiness/InsertALPResponse")>  _
         Function InsertALP(ByVal objContract As ProfileBusiness.TrainningManageDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
         
@@ -51798,6 +51804,14 @@ Namespace ProfileBusiness
         
         Public Function INPORT_PLHD(ByVal P_DOCXML As String, ByVal log As Common.CommonBusiness.UserLog) As Boolean Implements ProfileBusiness.IProfileBusiness.INPORT_PLHD
             Return MyBase.Channel.INPORT_PLHD(P_DOCXML, log)
+        End Function
+        
+        Public Function EXPORT_QLKT() As System.Data.DataSet Implements ProfileBusiness.IProfileBusiness.EXPORT_QLKT
+            Return MyBase.Channel.EXPORT_QLKT
+        End Function
+        
+        Public Function GET_EMPLOYEE(ByVal P_EMP_CODE As String) As System.Data.DataTable Implements ProfileBusiness.IProfileBusiness.GET_EMPLOYEE
+            Return MyBase.Channel.GET_EMPLOYEE(P_EMP_CODE)
         End Function
         
         Public Function InsertALP(ByVal objContract As ProfileBusiness.TrainningManageDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean Implements ProfileBusiness.IProfileBusiness.InsertALP

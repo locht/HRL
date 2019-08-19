@@ -10,6 +10,7 @@ Imports Aspose.Words.Reporting
 Imports ICSharpCode.SharpZipLib.Zip
 Imports ICSharpCode.SharpZipLib.Checksums
 Imports System.IO
+Imports HistaffFrameworkPublic
 
 Public Class ctrlHU_CommendNewEdit
     Inherits CommonView
@@ -51,6 +52,15 @@ Public Class ctrlHU_CommendNewEdit
     ''' <returns></returns>
     ''' <remarks></remarks>
     Public Overrides Property MustAuthorize As Boolean = False
+
+    Private Property dtLogs As DataTable
+        Get
+            Return PageViewState(Me.ID & "_dtLogs")
+        End Get
+        Set(ByVal value As DataTable)
+            PageViewState(Me.ID & "_dtLogs") = value
+        End Set
+    End Property
 
     ''' <summary>
     ''' Profile StoreProcedure
@@ -1503,19 +1513,19 @@ Public Class ctrlHU_CommendNewEdit
     ''' <param name="sender"></param>
     ''' <param name="e"></param>
     ''' <remarks></remarks>
-    Private Sub btnUploadFile_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnUploadFile.Click
-        Dim startTime As DateTime = DateTime.UtcNow
-        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+    'Private Sub btnUploadFile_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnUploadFile.Click
+    '    Dim startTime As DateTime = DateTime.UtcNow
+    '    Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
 
-        Try
-            ctrlUpload1.AllowedExtensions = "xls,xlsx,txt,ctr,doc,docx,xml,png,jpg,bitmap,jpeg,gif"
-            ctrlUpload1.Show()
+    '    Try
+    '        ctrlUpload1.AllowedExtensions = "xls,xlsx,txt,ctr,doc,docx,xml,png,jpg,bitmap,jpeg,gif"
+    '        ctrlUpload1.Show()
 
-            _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
-        Catch ex As Exception
-            _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
-        End Try
-    End Sub
+    '        _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
+    '    Catch ex As Exception
+    '        _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
+    '    End Try
+    'End Sub
 
     ''' <lastupdate>11/07/2017</lastupdate>
     ''' <summary>Xử lý sự kiện khi click [OK] xác nhận sẽ Upload file</summary>
@@ -1948,6 +1958,186 @@ Public Class ctrlHU_CommendNewEdit
     '        'DisplayException(Me.ViewName, Me.ID, ex)
     '    End Try
     'End Sub
+
+    Private Sub btnExport_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnExport.Click
+        Try
+            Dim dsDanhMuc As DataSet
+            Dim tempPath = "~/ReportTemplates//Profile//Import//import_khenthuong.xls"
+            If Not File.Exists(System.IO.Path.Combine(Server.MapPath(tempPath))) Then
+                ' Mẫu báo cáo không tồn tại
+                ShowMessage(Translate("Mẫu báo cáo không tồn tại"), Framework.UI.Utilities.NotifyType.Warning)
+                Exit Sub
+            End If
+
+            Using rep As New ProfileBusinessRepository
+                dsDanhMuc = rep.EXPORT_QLKT()
+            End Using
+            Using xls As New AsposeExcelCommon
+                Dim bCheck = xls.ExportExcelTemplate(
+                  System.IO.Path.Combine(Server.MapPath(tempPath)), "IMPORT_KhenThuong", dsDanhMuc, Nothing, Response)
+            End Using
+        Catch ex As Exception
+
+        End Try
+    End Sub
+    Private Sub btnImportFile_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnImportFile.Click
+        Try
+            ctrlUpload1.isMultiple = False
+            ctrlUpload1.Show()
+            'CurrentState = CommonMessage.TOOLBARITEM_IMPORT
+        Catch ex As Exception
+
+        End Try
+    End Sub
+    Private Sub ctrlUpload_OkClicked(ByVal sender As Object, ByVal e As System.EventArgs) Handles ctrlUpload1.OkClicked
+        Import_Commend()
+    End Sub
+    Private Sub Import_Commend()
+        Dim fileName As String
+        Try
+            '1. Đọc dữ liệu từ file Excel
+            Dim tempPath As String = ConfigurationManager.AppSettings("ExcelFileFolder")
+            Dim savepath = Context.Server.MapPath(tempPath)
+            Dim countFile As Integer = ctrlUpload1.UploadedFiles.Count
+            Dim ds As New DataSet
+            Dim dt As New DataTable
+            Dim newRow1 As DataRow
+            Dim newRow2 As DataRow
+
+            If countFile > 0 Then
+                Dim file As UploadedFile = ctrlUpload1.UploadedFiles(countFile - 1)
+                fileName = System.IO.Path.Combine(savepath, file.FileName)
+                '1.1 Lưu file lên server
+                file.SaveAs(fileName, True)
+                '2.1 Đọc dữ liệu trong file Excel
+                Using ep As New ExcelPackage
+                    ds = ep.ReadExcelToDataSet(fileName, False)
+                End Using
+
+                TableMapping(ds.Tables(0))
+
+                If dtLogs Is Nothing Or dtLogs.Rows.Count <= 0 Then
+                    If ds.Tables(0) IsNot Nothing AndAlso ds.Tables(0).Rows.Count > 0 Then
+                        Employee_Commend.Clear()
+                        Dim dtData As DataTable
+                        For Each rows As DataRow In ds.Tables(0).Rows
+                            Dim employee As New CommendEmpDTO
+                            employee.GUID_ID = Guid.NewGuid.ToString()
+                            employee.EMPLOYEE_CODE = rows("EMPLOYEE_CODE")
+                            employee.COMMEND_PAY = Decimal.Parse(rows("COMMEND_PAY"))
+                            employee.MONEY = Decimal.Parse(rows("MONEY"))
+                            Using rep As New ProfileBusinessRepository
+                                dtData = rep.GET_EMPLOYEE(rows("EMPLOYEE_CODE"))
+                                employee.ORG_ID = dtData(0)("ORG_ID")
+                                employee.ORG_NAME = dtData(0)("ORG_NAME")
+                                employee.TITLE_ID = dtData(0)("TITLE_ID")
+                                employee.TITLE_NAME = dtData(0)("TITLE_NAME")
+                                employee.HU_EMPLOYEE_ID = dtData(0)("ID")
+                                employee.FULLNAME = dtData(0)("FULLNAME_VN")
+                            End Using
+                            Using repNew As New ProfileRepository
+                                If employee.TITLE_ID IsNot Nothing Then
+                                    Dim title = repNew.GetTitleID(employee.TITLE_ID)
+                                    If title IsNot Nothing Then
+                                        employee.LEVEL_NAME = title.LEVEL_TITLE_NAME
+                                    End If
+                                End If
+                            End Using
+                            Employee_Commend.Add(employee)
+                        Next
+                        rgEmployee.Rebind()
+
+                        For Each i As GridItem In rgEmployee.Items
+                            i.Edit = True
+                        Next
+                        rgEmployee.Rebind()
+                    End If
+                Else
+                    Session("EXPORTREPORT") = dtLogs
+                    ScriptManager.RegisterStartupScript(Me.Page, Me.Page.GetType(), "javascriptfunction", "ExportReport('HU_ANNUALLEAVE_PLANS_ERROR')", True)
+                    ShowMessage(Translate("Có lỗi trong quá trình import. Lưu file lỗi chi tiết"), Utilities.NotifyType.Error)
+                End If
+            End If
+        Catch ex As Exception
+        End Try
+    End Sub
+
+    Private Sub TableMapping(ByVal dtTemp As System.Data.DataTable)
+        Dim rep As New ProfileBusinessClient
+        ' lấy dữ liệu thô từ excel vào và tinh chỉnh dữ liệu
+        dtTemp.Columns(0).ColumnName = "EMPLOYEE_CODE"
+        dtTemp.Columns(4).ColumnName = "COMMEND_PAY"
+        dtTemp.Columns(5).ColumnName = "MONEY"
+
+        'XOA DONG TIEU DE VA HEADER
+        dtTemp.Rows(0).Delete()
+        dtTemp.Rows(1).Delete()
+        ' add Log
+        Dim _error As Boolean = True
+        Dim count As Integer
+        Dim newRow As DataRow
+        Dim dsEMP As DataTable
+        If dtLogs Is Nothing Then
+            dtLogs = New DataTable("data")
+            dtLogs.Columns.Add("ID", GetType(Integer))
+            dtLogs.Columns.Add("EMPLOYEE_CODE", GetType(String))
+            dtLogs.Columns.Add("DISCIPTION", GetType(String))
+        End If
+        dtLogs.Clear()
+        Dim strEmpCode As String
+
+
+        'XOA NHUNG DONG DU LIEU NULL EMPLOYYE CODE
+        Dim rowDel As DataRow
+        For i As Integer = 0 To dtTemp.Rows.Count - 1
+            If dtTemp.Rows(i).RowState = DataRowState.Deleted OrElse dtTemp.Rows(i).RowState = DataRowState.Detached Then Continue For
+            rowDel = dtTemp.Rows(i)
+            If rowDel("EMPLOYEE_CODE").ToString.Trim = "" Then
+                dtTemp.Rows(i).Delete()
+            End If
+        Next
+
+        For Each rows As DataRow In dtTemp.Rows
+            If rows.RowState = DataRowState.Deleted OrElse rows.RowState = DataRowState.Detached Then Continue For
+
+            newRow = dtLogs.NewRow
+            newRow("ID") = count + 1
+            newRow("EMPLOYEE_CODE") = rows("EMPLOYEE_CODE")
+
+            ' Nhân viên k có trong hệ thống
+            If rep.CHECK_EMPLOYEE(rows("EMPLOYEE_CODE")) = 0 Then
+                newRow("DISCIPTION") = "Mã nhân viên - Không tồn tại,"
+                _error = False
+            Else
+                If strEmpCode <> "" Then
+                    If strEmpCode.Contains(rows("EMPLOYEE_CODE")) Then
+                        newRow("DISCIPTION") = "Mã nhân viên - nhiều hơn 2 dòng trong file,"
+                        _error = False
+                    End If
+                    strEmpCode = strEmpCode + rows("EMPLOYEE_CODE") + ","
+                End If
+            End If
+
+            If Not (IsNumeric(rows("COMMEND_PAY"))) Then
+                rows("COMMEND_PAY") = 0
+                newRow("DISCIPTION") = newRow("DISCIPTION") + "Hình thức trả thưởng - Không đúng định dạng,"
+                _error = False
+            End If
+
+            If Not (IsNumeric(rows("MONEY"))) Then
+                rows("MONEY") = 0
+                newRow("DISCIPTION") = newRow("DISCIPTION") + "Mức thưởng - Không đúng định dạng,"
+                _error = False
+            End If
+
+            If _error = False Then
+                dtLogs.Rows.Add(newRow)
+                count = count + 1
+                _error = True
+            End If
+        Next
+        dtTemp.AcceptChanges()
+    End Sub
 
 #End Region
 

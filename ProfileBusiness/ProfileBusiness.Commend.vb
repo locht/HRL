@@ -209,6 +209,28 @@ Namespace ProfileBusiness.ServiceImplementations
                 End Try
             End Using
         End Function
+
+        Public Function EXPORT_QLKT() As DataSet _
+         Implements ServiceContracts.IProfileBusiness.EXPORT_QLKT
+            Using rep As New ProfileRepository
+                Try
+                    Return rep.EXPORT_QLKT()
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
+
+        Public Function GET_EMPLOYEE(ByVal P_EMP_CODE As String) As DataTable _
+         Implements ServiceContracts.IProfileBusiness.GET_EMPLOYEE
+            Using rep As New ProfileRepository
+                Try
+                    Return rep.GET_EMPLOYEE(P_EMP_CODE)
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
 #End Region
 
     End Class

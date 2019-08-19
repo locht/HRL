@@ -339,6 +339,18 @@
                     </tlk:RadTextBox>
                 </td>
             </tr>
+            <tr>
+                <td>
+                    <tlk:RadButton ID="btnExport" runat="server" Text="<%$ Translate: Xuất file %>" CausesValidation="false"
+                        OnClientClicking="btnExportClicking" Width="150px">
+                    </tlk:RadButton>
+                </td>
+                <td>
+                    <tlk:RadButton ID="btnImportFile" runat="server" Text="<%$ Translate: Nhập file  %>"
+                        CausesValidation="false" OnClientClicking="btnExportClicking" Width="150px">
+                    </tlk:RadButton>
+                </td>
+            </tr>
         </table>
         <tlk:RadGrid ID="rgEmployee" AllowPaging="false" AllowMultiRowEdit="true" runat="server"
             Height="200px">
@@ -501,6 +513,9 @@
             //                getRadWindow().close(null);
             //                args.set_cancel(true);
             //            }
+        }
+        function btnExportClicking(sender, args) {
+            enableAjax = false;
         }
 
         var enableAjax = true;
