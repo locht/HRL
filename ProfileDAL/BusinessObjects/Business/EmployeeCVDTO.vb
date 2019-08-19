@@ -5,7 +5,7 @@
     Public Property GENDER_NAME As String
     Public Property IMAGE As String
     Public Property BIRTH_DATE As Date?
-    Public Property BIRTH_PLACE As String
+    Public Property BIRTH_PLACE As Decimal?
     Public Property MARITAL_STATUS As Decimal?
     Public Property MARITAL_STATUS_NAME As String
     Public Property RELIGION As Decimal?

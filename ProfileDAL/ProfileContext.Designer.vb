@@ -18,7 +18,7 @@ Imports System.Runtime.Serialization
 Imports System.Xml.Serialization
 
 
-<Assembly: EdmSchemaAttribute("544e3745-1334-48a7-9fd9-b3e36b3db479")>
+<Assembly: EdmSchemaAttribute("f1e4c9d2-a00d-4dc2-8cfd-b6825f0431b5")>
 #Region "EDM Relationship Metadata"
 <Assembly: EdmRelationshipAttribute("ProfileModel", "FK_HU_NAT_HU_PRO", "HU_NATION", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_NATION), "HU_PROVINCE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_PROVINCE), True)>
 <Assembly: EdmRelationshipAttribute("ProfileModel", "FK_HU_PRO_HU_DIS", "HU_PROVINCE", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_PROVINCE), "HU_DISTRICT", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_DISTRICT), True)>
@@ -23195,21 +23195,21 @@ Public Partial Class HU_EMPLOYEE_CV
     ''' </summary>
     <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
     <DataMemberAttribute()>
-    Public Property BIRTH_PLACE() As Global.System.String
+    Public Property BIRTH_PLACE() As Nullable(Of Global.System.Decimal)
         Get
             Return _BIRTH_PLACE
         End Get
         Set
             OnBIRTH_PLACEChanging(value)
             ReportPropertyChanging("BIRTH_PLACE")
-            _BIRTH_PLACE = StructuralObject.SetValidValue(value, true)
+            _BIRTH_PLACE = StructuralObject.SetValidValue(value)
             ReportPropertyChanged("BIRTH_PLACE")
             OnBIRTH_PLACEChanged()
         End Set
     End Property
 
-    Private _BIRTH_PLACE As Global.System.String
-    Private Partial Sub OnBIRTH_PLACEChanging(value As Global.System.String)
+    Private _BIRTH_PLACE As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnBIRTH_PLACEChanging(value As Nullable(Of Global.System.Decimal))
     End Sub
 
     Private Partial Sub OnBIRTH_PLACEChanged()
@@ -25838,31 +25838,6 @@ Public Partial Class HU_EMPLOYEE_CV
     End Sub
 
     Private Partial Sub OnEXPIRE_DATE_IDNOChanged()
-    End Sub
-
-    ''' <summary>
-    ''' No Metadata Documentation available.
-    ''' </summary>
-    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
-    <DataMemberAttribute()>
-    Public Property BIRTH_PLACE_ID() As Nullable(Of Global.System.Decimal)
-        Get
-            Return _BIRTH_PLACE_ID
-        End Get
-        Set
-            OnBIRTH_PLACE_IDChanging(value)
-            ReportPropertyChanging("BIRTH_PLACE_ID")
-            _BIRTH_PLACE_ID = StructuralObject.SetValidValue(value)
-            ReportPropertyChanged("BIRTH_PLACE_ID")
-            OnBIRTH_PLACE_IDChanged()
-        End Set
-    End Property
-
-    Private _BIRTH_PLACE_ID As Nullable(Of Global.System.Decimal)
-    Private Partial Sub OnBIRTH_PLACE_IDChanging(value As Nullable(Of Global.System.Decimal))
-    End Sub
-
-    Private Partial Sub OnBIRTH_PLACE_IDChanged()
     End Sub
 
     #End Region

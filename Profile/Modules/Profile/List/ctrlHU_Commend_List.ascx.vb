@@ -71,10 +71,10 @@ Public Class ctrlHU_Commend_List
         Try
             Dim startTime As DateTime = DateTime.UtcNow
             InitControl()
-            If Not IsPostBack Then
-                ViewConfig(RadPane1)
-                GirdConfig(rgMain)
-            End If
+            'If Not IsPostBack Then
+            '    ViewConfig(RadPane1)
+            '    GirdConfig(rgMain)
+            'End If
             _myLog.WriteLog(_myLog._info, _classPath, method,
                                  CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
@@ -129,12 +129,12 @@ Public Class ctrlHU_Commend_List
             If Not IsPostBack Then
                 CurrentState = CommonMessage.STATE_NORMAL
             Else
-                BindData()
+                'BindData()
                 Select Case Message
                     Case "UpdateView"
                         ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), NotifyType.Success)
                         rgMain.Rebind()
-                        ClearControlValue(txtCode, txtNameVN, txtRemark, chkExcel, cbDatatype, cbLevel, cbObject, cbTYPE, nmNumberOrder)
+                        ClearControlValue(txtCode, txtNameVN, txtRemark, cbDatatype, cbObject, cbTYPE, nmNumberOrder)
                         CurrentState = CommonMessage.STATE_NORMAL
                     Case "InsertView"
                         ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), NotifyType.Success)
@@ -142,7 +142,7 @@ Public Class ctrlHU_Commend_List
                         rgMain.MasterTableView.SortExpressions.Clear()
                         rgMain.Rebind()
                         CurrentState = CommonMessage.STATE_NORMAL
-                        ClearControlValue(txtCode, txtNameVN, txtRemark, chkExcel, cbDatatype, cbLevel, cbObject, cbTYPE, nmNumberOrder)
+                        ClearControlValue(txtCode, txtNameVN, txtRemark, cbDatatype, cbObject, cbTYPE, nmNumberOrder)
                     Case "Cancel"
                         rgMain.MasterTableView.ClearSelectedItems()
                 End Select
@@ -177,9 +177,9 @@ Public Class ctrlHU_Commend_List
                 FillRadCombobox(cbTYPE, commendType, "NAME", "ID", False)
 
                 'load cấp khen thưởng
-                Dim commendLevel As New DataTable
-                commendLevel = psp.Get_Commend_Level(True)
-                FillRadCombobox(cbLevel, commendLevel, "NAME", "ID", False)
+                'Dim commendLevel As New DataTable
+                'commendLevel = psp.Get_Commend_Level(True)
+                'FillRadCombobox(cbLevel, commendLevel, "NAME", "ID", False)
 
                 'Load doi tuong khen thuong
                 Dim commendObject As New DataTable
@@ -193,10 +193,10 @@ Public Class ctrlHU_Commend_List
             dic.Add("DATATYPE_ID", cbDatatype)
             dic.Add("OBJECT_ID", cbObject)
             dic.Add("TYPE_ID", cbTYPE)
-            dic.Add("LEVEL_ID", cbLevel)
+            'dic.Add("LEVEL_ID", cbLevel)
             dic.Add("NUMBER_ORDER", nmNumberOrder)
             dic.Add("REMARK", txtRemark)
-            dic.Add("EXCEL_BOOL", chkExcel)
+            ' dic.Add("EXCEL_BOOL", chkExcel)
             Utilities.OnClientRowSelectedChanged(rgMain, dic)
             _myLog.WriteLog(_myLog._info, _classPath, method,
                                 CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
@@ -231,7 +231,7 @@ Public Class ctrlHU_Commend_List
             Select Case CType(e.Item, RadToolBarButton).CommandName
                 Case CommonMessage.TOOLBARITEM_CREATE
                     CurrentState = CommonMessage.STATE_NEW
-                    ClearControlValue(txtCode, txtNameVN, txtRemark, cbDatatype, cbLevel, cbObject, cbTYPE, nmNumberOrder)
+                    ClearControlValue(txtCode, txtNameVN, txtRemark, cbDatatype, cbObject, cbTYPE, nmNumberOrder)
                     rgMain.Rebind()
                     UpdateControlState()
                 Case CommonMessage.TOOLBARITEM_EDIT
@@ -298,6 +298,7 @@ Public Class ctrlHU_Commend_List
                     ctrlMessageBox.DataBind()
                     ctrlMessageBox.Show()
                 Case CommonMessage.TOOLBARITEM_SAVE
+                    Page.Validate()
                     If Page.IsValid Then
                         objCommendList.CODE = txtCode.Text.Trim
                         objCommendList.NAME = txtNameVN.Text.Trim
@@ -305,9 +306,7 @@ Public Class ctrlHU_Commend_List
                         If cbDatatype.SelectedValue <> "" Then
                             objCommendList.DATATYPE_ID = cbDatatype.SelectedValue
                         End If
-                        If cbLevel.SelectedValue <> "" Then
-                            objCommendList.LEVEL_ID = cbLevel.SelectedValue
-                        End If
+                       
 
                         If cbObject.SelectedValue <> "" Then
                             objCommendList.OBJECT_ID = cbObject.SelectedValue
@@ -317,7 +316,7 @@ Public Class ctrlHU_Commend_List
                             objCommendList.TYPE_ID = cbTYPE.SelectedValue
                         End If
 
-                        objCommendList.EXCEL = chkExcel.Checked
+
 
                         objCommendList.NUMBER_ORDER = nmNumberOrder.Value
                         Select Case CurrentState
@@ -338,7 +337,7 @@ Public Class ctrlHU_Commend_List
                                 _validate.ID = rgMain.SelectedValue
                                 If rep.ValidateCommendList(_validate) Then
                                     ShowMessage(Translate(CommonMessage.MESSAGE_WARNING_EXIST_DATABASE), NotifyType.Error)
-                                    ClearControlValue(txtCode, txtNameVN, txtRemark, cbDatatype, cbLevel, cbObject, cbTYPE, chkExcel)
+                                    ClearControlValue(txtCode, txtNameVN, txtRemark, cbDatatype, cbObject, cbTYPE)
                                     rgMain.Rebind()
                                     CurrentState = CommonMessage.STATE_NORMAL
                                     UpdateControlState()
@@ -357,7 +356,7 @@ Public Class ctrlHU_Commend_List
                         ExcuteScript("Resize", "ResizeSplitter(splitterID, pane1ID, pane2ID, validateID, oldSize, 'rgMain')")
                     End If
                 Case CommonMessage.TOOLBARITEM_CANCEL
-                    ClearControlValue(txtCode, txtNameVN, txtRemark, cbDatatype, cbLevel, cbObject, cbTYPE, nmNumberOrder)
+                    ClearControlValue(txtCode, txtNameVN, txtRemark, cbDatatype, cbObject, cbTYPE, nmNumberOrder)
                     CurrentState = CommonMessage.STATE_NORMAL
                     Refresh("Cancel")
                     UpdateControlState()
@@ -399,7 +398,7 @@ Public Class ctrlHU_Commend_List
                 CurrentState = CommonMessage.STATE_DELETE
                 UpdateControlState()
             End If
-            ClearControlValue(txtCode, txtNameVN, txtRemark, cbDatatype, cbLevel, cbObject, cbTYPE, nmNumberOrder, chkExcel)
+            ClearControlValue(txtCode, txtNameVN, txtRemark, cbDatatype, cbObject, cbTYPE, nmNumberOrder)
             _myLog.WriteLog(_myLog._info, _classPath, method,
                                 CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
@@ -507,52 +506,52 @@ Public Class ctrlHU_Commend_List
     ''' <param name="source"></param>
     ''' <param name="args"></param>
     ''' <remarks></remarks>
-    Private Sub cusLevel_ServerValidate(ByVal source As Object, ByVal args As System.Web.UI.WebControls.ServerValidateEventArgs) Handles cusLevel.ServerValidate
-        Dim rep As New ProfileRepository
-        Dim _validate As New OtherListDTO
-        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
-        Try
-            Dim startTime As DateTime = DateTime.UtcNow
-            Dim commendLevel As New DataTable
-            commendLevel = psp.Get_Commend_Level(True)
-            If (commendLevel IsNot Nothing) Then
-                If (commendLevel.Rows.Count > 0) Then
-                    If CurrentState = CommonMessage.STATE_EDIT Then
-                        _validate.ID = cbLevel.SelectedValue
-                        If (cbLevel.Text <> "") Then
-                            _validate.NAME_VN = cbLevel.Text
-                        End If
-                        'check tồn tại cấp khen thưởng - commendLevel.AsEnumerable()(1).Field(Of String)("NAME")- commendLevel.AsEnumerable()(1).Field(Of Decimal)("ID")
-                        Dim item = (From u In commendLevel.AsEnumerable()
-                                    Where u.Field(Of Decimal?)("ID") = _validate.ID _
-                                             And u.Field(Of String)("NAME") = _validate.NAME_VN
-                                    Select u).FirstOrDefault()
-                        args.IsValid = (Not item Is Nothing)
-                    Else
-                        If (cbLevel.Text <> "") Then
-                            _validate.NAME_VN = cbLevel.Text
-                        Else
-                            _validate.NAME_VN = ""
-                        End If
-                        Dim item = (From u In commendLevel.AsEnumerable()
-                                    Where u.Field(Of String)("NAME") = _validate.NAME_VN
-                                    Select u).FirstOrDefault()
-                        args.IsValid = (Not item Is Nothing)
-                    End If
-                Else
-                    args.IsValid = True
-                End If
-            Else
-                args.IsValid = True
-            End If
-            rep.Dispose()
-            _myLog.WriteLog(_myLog._info, _classPath, method,
-                                  CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
-        Catch ex As Exception
-            _myLog.WriteLog(_myLog._error, _classPath, method, 0, ex, "")
-            DisplayException(Me.ViewName, Me.ID, ex)
-        End Try
-    End Sub
+    'Private Sub cusLevel_ServerValidate(ByVal source As Object, ByVal args As System.Web.UI.WebControls.ServerValidateEventArgs) Handles cusLevel.ServerValidate
+    '    Dim rep As New ProfileRepository
+    '    Dim _validate As New OtherListDTO
+    '    Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+    '    Try
+    '        Dim startTime As DateTime = DateTime.UtcNow
+    '        Dim commendLevel As New DataTable
+    '        commendLevel = psp.Get_Commend_Level(True)
+    '        If (commendLevel IsNot Nothing) Then
+    '            If (commendLevel.Rows.Count > 0) Then
+    '                If CurrentState = CommonMessage.STATE_EDIT Then
+    '                    _validate.ID = cbLevel.SelectedValue
+    '                    If (cbLevel.Text <> "") Then
+    '                        _validate.NAME_VN = cbLevel.Text
+    '                    End If
+    '                    'check tồn tại cấp khen thưởng - commendLevel.AsEnumerable()(1).Field(Of String)("NAME")- commendLevel.AsEnumerable()(1).Field(Of Decimal)("ID")
+    '                    Dim item = (From u In commendLevel.AsEnumerable()
+    '                                Where u.Field(Of Decimal?)("ID") = _validate.ID _
+    '                                         And u.Field(Of String)("NAME") = _validate.NAME_VN
+    '                                Select u).FirstOrDefault()
+    '                    args.IsValid = (Not item Is Nothing)
+    '                Else
+    '                    If (cbLevel.Text <> "") Then
+    '                        _validate.NAME_VN = cbLevel.Text
+    '                    Else
+    '                        _validate.NAME_VN = ""
+    '                    End If
+    '                    Dim item = (From u In commendLevel.AsEnumerable()
+    '                                Where u.Field(Of String)("NAME") = _validate.NAME_VN
+    '                                Select u).FirstOrDefault()
+    '                    args.IsValid = (Not item Is Nothing)
+    '                End If
+    '            Else
+    '                args.IsValid = True
+    '            End If
+    '        Else
+    '            args.IsValid = True
+    '        End If
+    '        rep.Dispose()
+    '        _myLog.WriteLog(_myLog._info, _classPath, method,
+    '                              CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
+    '    Catch ex As Exception
+    '        _myLog.WriteLog(_myLog._error, _classPath, method, 0, ex, "")
+    '        DisplayException(Me.ViewName, Me.ID, ex)
+    '    End Try
+    'End Sub
 
     ''' <lastupdate>
     ''' 30/06/2017 15:46
@@ -685,7 +684,7 @@ Public Class ctrlHU_Commend_List
 
                     EnabledGridNotPostback(rgMain, False)
                     Utilities.EnableRadCombo(cbDatatype, True)
-                    Utilities.EnableRadCombo(cbLevel, True)
+
                     Utilities.EnableRadCombo(cbObject, True)
                     Utilities.EnableRadCombo(cbTYPE, True)
                     txtNameVN.ReadOnly = False
@@ -700,7 +699,7 @@ Public Class ctrlHU_Commend_List
                     txtRemark.ReadOnly = True
                     nmNumberOrder.ReadOnly = True
                     Utilities.EnableRadCombo(cbDatatype, False)
-                    Utilities.EnableRadCombo(cbLevel, False)
+
                     Utilities.EnableRadCombo(cbObject, False)
                     Utilities.EnableRadCombo(cbTYPE, False)
 
@@ -713,7 +712,7 @@ Public Class ctrlHU_Commend_List
                     txtRemark.ReadOnly = False
                     nmNumberOrder.ReadOnly = False
                     Utilities.EnableRadCombo(cbDatatype, True)
-                    Utilities.EnableRadCombo(cbLevel, True)
+
                     Utilities.EnableRadCombo(cbObject, True)
                     Utilities.EnableRadCombo(cbTYPE, True)
 
