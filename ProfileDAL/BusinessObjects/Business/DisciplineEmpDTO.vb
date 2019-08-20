@@ -11,4 +11,7 @@
     Public Property INDEMNIFY_MONEY_REMAIN As Decimal?
     Public Property MONEY_PAY As Decimal?
     Public Property INDEMNIFY_MONEY_PAY As Decimal?
+    Public Property IS_STOP As Boolean?
+    Public Property NO_PROCESS As Boolean?
+
 End Class
