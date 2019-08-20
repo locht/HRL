@@ -1,8 +1,8 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for Oracle database
 -- --------------------------------------------------
--- Date Created: 08/19/2019 5:19:30 PM
--- Generated from EDMX file: D:\MyProject\TNG\TNG\ProfileDAL\ProfileContext.edmx
+-- Date Created: 8/20/2019 8:37:22 AM
+-- Generated from EDMX file: D:\TNG_SOURCE_NEW\ProfileDAL\ProfileContext.edmx
 -- --------------------------------------------------
 
 -- --------------------------------------------------
@@ -2020,7 +2020,9 @@ CREATE TABLE "dbo"."AT_DECLARE_ENTITLEMENT" (
    "ADJUST_NB" NUMBER(38,0) NULL,
    "YEAR" NUMBER(38,0) NULL,
    "YEAR_NB" NUMBER(38,0) NULL,
-   "YEAR_ENTITLEMENT" NUMBER(38,0) NULL
+   "YEAR_ENTITLEMENT" NUMBER(38,0) NULL,
+   "START_DATE" DATE NULL,
+   "END_DATE" DATE NULL
 );
 
 -- Creating table 'INS_REGION'
