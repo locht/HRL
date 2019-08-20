@@ -1633,7 +1633,7 @@ Partial Class ProfileRepository
             objWorkingData.PERCENT_SALARY = objWorking.PERCENT_SALARY
             objWorkingData.IS_WAGE = objWorking.IS_WAGE
             objWorkingData.IS_3B = False
-            objWorkingData.SAL_TOTAL = objWorking.SAL_TOTAL
+            'objWorkingData.SAL_TOTAL = objWorking.SAL_TOTAL
             objWorkingData.SAL_INS = objWorking.SAL_BASIC
             objWorkingData.TAX_TABLE_ID = objWorking.TAX_TABLE_ID
             objWorkingData.ATTACH_FILE = objWorking.ATTACH_FILE
@@ -1688,7 +1688,7 @@ Partial Class ProfileRepository
             If objWorkingData.ALLOWANCE_TOTAL.HasValue Then
                 allowanceTotal = objWorkingData.ALLOWANCE_TOTAL.Value
             End If
-            objWorkingData.SAL_TOTAL = objWorkingData.SAL_BASIC + allowanceTotal
+            objWorkingData.SAL_TOTAL = objWorking.SAL_TOTAL + allowanceTotal
 
             Dim insurranceAllow = Context.HU_WORKING_ALLOW.Where(Function(f) f.HU_WORKING_ID = objWorking.ID And f.IS_INSURRANCE = True).Sum(Function(f) f.AMOUNT)
             If insurranceAllow.HasValue = False Then
