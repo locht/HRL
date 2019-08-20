@@ -3188,7 +3188,7 @@ Public Class ProfileRepository
                            From sign_title2 In Context.HU_TITLE.Where(Function(sign_title2) sign_title2.ID = sign2.TITLE_ID).DefaultIfEmpty
                            From sign_stop2 In Context.HU_EMPLOYEE.Where(Function(sign_stop2) sign_stop2.ID = p.SIGN_ID_STOP_2).DefaultIfEmpty
                            From sign_stop_title2 In Context.HU_TITLE.Where(Function(sign_stop_title2) sign_stop_title2.ID = sign_stop2.TITLE_ID).DefaultIfEmpty
-                           Where p.EMPLOYEE_ID = EMPLOYEE_ID
+                           Where p.EMPLOYEE_ID = EMPLOYEE_ID And p.STATUS = 1
 
             If Not _filter.IS_TERMINATE Then
                 queryEmp = queryEmp.Where(Function(p) p.e.WORK_STATUS <> 257 Or (p.e.WORK_STATUS = 257 And p.e.TER_LAST_DATE >= Date.Now) Or p.e.WORK_STATUS Is Nothing)
