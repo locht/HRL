@@ -170,14 +170,14 @@ Partial Public Class CommonRepository
         End Using
     End Function
 
-    Public Function GetOrganizationLocationTreeView() As List(Of OrganizationDTO)
+    Public Shared Function GetOrganizationLocationTreeView() As List(Of OrganizationDTO)
         Dim lstOrgPermission As New List(Of OrganizationDTO)
         Using rep As New CommonBusinessClient
             Try
                 lstOrgPermission = Common.OrganizationLocationDataSession
                 If lstOrgPermission Is Nothing Then lstOrgPermission = New List(Of OrganizationDTO)
                 If lstOrgPermission.Count = 0 Then
-                    lstOrgPermission = rep.GetOrganizationLocationTreeView(Common.GetUserName)
+                    lstOrgPermission = rep.GetOrganizationLocationTreeView(Common.GetUsername)
                     Common.OrganizationLocationDataSession = lstOrgPermission
                 End If
                 Return lstOrgPermission

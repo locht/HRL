@@ -163,8 +163,11 @@ Public Class ctrlHU_Organization
             Try
                 Dim startTime As DateTime = DateTime.UtcNow
                 If Not IsPostBack Then
+                    Dim callFunction = Common.CommonRepository.GetOrganizationLocationTreeView()
                     lstOrganization = rep.GetOrganization()
-                    Me.Organizations = lstOrganization
+                    Dim lstorgper = (From p In Common.Common.OrganizationLocationDataSession Select p.ID).ToList()
+                    Dim lst = (From p In lstOrganization Where lstorgper.Contains(p.ID)).ToList()
+                    Me.Organizations = lst
                     CurrentState = CommonMessage.STATE_NORMAL
                     org_id = Request.QueryString("id")
                     If org_id IsNot String.Empty Then
