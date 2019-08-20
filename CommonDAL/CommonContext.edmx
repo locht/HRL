@@ -335,7 +335,7 @@
             <Property Name="ITIME_ID" Type="nclob" Nullable="true" />
             <Property Name="PA_OBJECT_SALARY_ID" Type="number" Nullable="true" Precision="38" />
             <Property Name="IS_3B" Type="number" Nullable="true" Precision="5" />
-            <Property Name="EMP_STATUS" Type="nclob" Nullable="true" />
+            <Property Name="EMP_STATUS" Type="number" Nullable="true" Precision="38" />
             <Property Name="IS_KIEM_NHIEM" Type="number" Nullable="true" Precision="38" />
         </EntityType>
         <EntityType Name="HU_TERMINATE">
@@ -575,7 +575,7 @@
             <Property Name="GENDER" Type="number" Nullable="true" Precision="38" />
             <Property Name="IMAGE" Type="nvarchar2" Nullable="true" MaxLength="255" />
             <Property Name="BIRTH_DATE" Type="date" Nullable="true" />
-            <Property Name="BIRTH_PLACE" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="BIRTH_PLACE" Type="number" Nullable="true" Precision="38" />
             <Property Name="MARITAL_STATUS" Type="number" Nullable="true" Precision="38" />
             <Property Name="RELIGION" Type="number" Nullable="true" Precision="38" />
             <Property Name="NATIVE" Type="number" Nullable="true" Precision="38" />
@@ -1454,7 +1454,7 @@
           <Property Type="String" Name="ITIME_ID" />
           <Property Type="Decimal" Name="PA_OBJECT_SALARY_ID" Nullable="true" />
           <Property Type="Int16" Name="IS_3B" Nullable="true" />
-          <Property Type="String" Name="EMP_STATUS" />
+          <Property Type="Decimal" Name="EMP_STATUS" />
           <Property Type="Decimal" Name="IS_KIEM_NHIEM" />
           </EntityType>
 	    <EntityType Name="HU_TERMINATE">
@@ -1719,7 +1719,7 @@
           <Property Type="Decimal" Name="GENDER" Precision="38" Scale="0" />
           <Property Type="String" Name="IMAGE" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Type="DateTime" Name="BIRTH_DATE" />
-          <Property Type="String" Name="BIRTH_PLACE" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="Decimal" Name="BIRTH_PLACE" />
           <Property Type="Decimal" Name="MARITAL_STATUS" Precision="38" Scale="0" />
           <Property Type="Decimal" Name="RELIGION" Precision="38" Scale="0" />
           <Property Type="Decimal" Name="NATIVE" Precision="38" Scale="0" />
@@ -2657,7 +2657,7 @@
     </Options>
     <!-- Diagram content (shape and connector positions) -->
     <Diagrams>
-      <Diagram Name="CommonContext" DisplayType="true" ZoomLevel="71" >
+      <Diagram Name="CommonContext" DisplayType="true" ZoomLevel="72" >
         <EntityTypeShape EntityType="CommonModel.SE_GROUP" Width="2.375" PointX="0.75" PointY="4.375" Height="0.39999999999999858" IsExpanded="false" />
         <EntityTypeShape EntityType="CommonModel.SE_FUNCTION" Width="2.125" PointX="2.25" PointY="1.625" Height="3.3263964843749996" IsExpanded="true" />
         <EntityTypeShape EntityType="CommonModel.SE_USER" Width="2.125" PointX="18.75" PointY="6.25" Height="6.0186165364583335" IsExpanded="true" />
@@ -2795,7 +2795,7 @@
           <ConnectorPoint PointX="19.410153625" PointY="6.25" />
         </AssociationConnector>
         <EntityTypeShape EntityType="CommonModel.SE_USER_ORG_ACCESS" Width="1.5" PointX="2.875" PointY="12.125" Height="0.4" IsExpanded="false" />
-        <EntityTypeShape EntityType="CommonModel.SE_USER_PERMISSION" Width="2.5" PointX="9.75" PointY="12" Height="0.4" IsExpanded="false" />
+        <EntityTypeShape EntityType="CommonModel.SE_USER_PERMISSION" Width="2.5" PointX="15" PointY="10" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="CommonModel.HUV_SE_GRP_SE_USR" Width="1.5" PointX="0.75" PointY="7.75" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="CommonModel.SE_VIEW_CONFIG" Width="1.75" PointX="6.75" PointY="14.125" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="CommonModel.AT_TIME_MANUAL" Width="1.5" PointX="2.1209831322175372" PointY="27.635870275849417" />

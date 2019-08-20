@@ -434,7 +434,7 @@ Public Class ctrlHU_EmpDtlProfile
                                 cboPer_Ward.SelectedValue = empCV.PER_WARD
                                 cboPer_Ward.Text = empCV.PER_WARD_NAME
                             End If
-                            ckDOAN_PHI.Checked = empCV.DOAN_PHI
+                            'ckDOAN_PHI.Checked = empCV.DOAN_PHI
                             If IsDate(empCV.NGAY_VAO_DOAN) Then
                                 rdNGAY_VAO_DOAN.SelectedDate = empCV.NGAY_VAO_DOAN
                             End If
@@ -1994,7 +1994,7 @@ Public Class ctrlHU_EmpDtlProfile
             EmpCV.ADDRESS_PER_CTR = txtAddressPerContract.Text.Trim()
 
             ' EmpCV.DANG_PHI = chkDangPhi.Checked
-            EmpCV.DOAN_PHI = CType(chkDoanPhi.Checked, Decimal)
+            'EmpCV.DOAN_PHI = CType(chkDoanPhi.Checked, Decimal)
             EmpCV.IS_PAY_BANK = chkIs_pay_bank.Checked
             If cboBank.SelectedValue <> "" Then
                 EmpCV.BANK_ID = Decimal.Parse(cboBank.SelectedValue)

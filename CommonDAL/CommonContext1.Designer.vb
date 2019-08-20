@@ -18,7 +18,7 @@ Imports System.Runtime.Serialization
 Imports System.Xml.Serialization
 
 
-<Assembly: EdmSchemaAttribute("c057f366-0011-4022-bdb5-0575dd6c72bd")>
+<Assembly: EdmSchemaAttribute("d41088ec-de9e-43e1-9491-475b7030211d")>
 #Region "EDM Relationship Metadata"
 <Assembly: EdmRelationshipAttribute("CommonModel", "SE_GRP_SE_USR", "SE_GROUP", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(SE_GROUP), "SE_USER", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(SE_USER))>
 <Assembly: EdmRelationshipAttribute("CommonModel", "FK_SM_SF", "SE_MODULE", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(SE_MODULE), "SE_FUNCTION", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(SE_FUNCTION), True)>
@@ -1968,21 +1968,21 @@ Public Partial Class HU_EMPLOYEE
     ''' </summary>
     <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
     <DataMemberAttribute()>
-    Public Property EMP_STATUS() As Global.System.String
+    Public Property EMP_STATUS() As Nullable(Of Global.System.Decimal)
         Get
             Return _EMP_STATUS
         End Get
         Set
             OnEMP_STATUSChanging(value)
             ReportPropertyChanging("EMP_STATUS")
-            _EMP_STATUS = StructuralObject.SetValidValue(value, true)
+            _EMP_STATUS = StructuralObject.SetValidValue(value)
             ReportPropertyChanged("EMP_STATUS")
             OnEMP_STATUSChanged()
         End Set
     End Property
 
-    Private _EMP_STATUS As Global.System.String
-    Private Partial Sub OnEMP_STATUSChanging(value As Global.System.String)
+    Private _EMP_STATUS As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnEMP_STATUSChanging(value As Nullable(Of Global.System.Decimal))
     End Sub
 
     Private Partial Sub OnEMP_STATUSChanged()
@@ -2214,21 +2214,21 @@ Public Partial Class HU_EMPLOYEE_CV
     ''' </summary>
     <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
     <DataMemberAttribute()>
-    Public Property BIRTH_PLACE() As Global.System.String
+    Public Property BIRTH_PLACE() As Nullable(Of Global.System.Decimal)
         Get
             Return _BIRTH_PLACE
         End Get
         Set
             OnBIRTH_PLACEChanging(value)
             ReportPropertyChanging("BIRTH_PLACE")
-            _BIRTH_PLACE = StructuralObject.SetValidValue(value, true)
+            _BIRTH_PLACE = StructuralObject.SetValidValue(value)
             ReportPropertyChanged("BIRTH_PLACE")
             OnBIRTH_PLACEChanged()
         End Set
     End Property
 
-    Private _BIRTH_PLACE As Global.System.String
-    Private Partial Sub OnBIRTH_PLACEChanging(value As Global.System.String)
+    Private _BIRTH_PLACE As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnBIRTH_PLACEChanging(value As Nullable(Of Global.System.Decimal))
     End Sub
 
     Private Partial Sub OnBIRTH_PLACEChanged()
