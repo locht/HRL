@@ -1,8 +1,6 @@
 ﻿<%@ Control Language="vb" AutoEventWireup="false" CodeBehind="ctrlDeclareEntitlementNB.ascx.vb"
     Inherits="Attendance.ctrlDeclareEntitlementNB" %>
 <%@ Import Namespace="Common" %>
-<%@ Import Namespace="Framework.UI.Utilities" %>
-<link type  = "text/css" href = "/Styles/StyleCustom.css" rel = "Stylesheet"/>
 <Common:ctrlMessageBox ID="ctrlMessageBox" runat="server" />
 <tlk:RadSplitter ID="RadSplitter1" runat="server" Width="100%" Height="100%">
     <tlk:RadPane ID="LeftPane" runat="server" MinWidth="260" Width="260px" Scrolling="None">
@@ -21,54 +19,45 @@
                     <ClientSettings EnableRowHoverStyle="true">
                         <Selecting AllowRowSelect="true" />
                         <ClientEvents OnRowDblClick="gridRowDblClick" />
-                        <ClientEvents OnGridCreated="GridCreated" />
-                        <ClientEvents OnCommand="ValidateFilter" />
                     </ClientSettings>
                     <MasterTableView DataKeyNames="ID,ORG_DESC" ClientDataKeyNames="ID">
                         <Columns>
-                           <%-- <tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderStyle-HorizontalAlign="Center"
+                            <tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderStyle-HorizontalAlign="Center"
                                 HeaderStyle-Width="30px" ItemStyle-HorizontalAlign="Center">
                             </tlk:GridClientSelectColumn>
-                            <tlk:GridBoundColumn HeaderText="Mã nhân viên" DataField="EMPLOYEE_CODE"
-                                SortExpression="EMPLOYEE_CODE" UniqueName="EMPLOYEE_CODE" HeaderStyle-Width="100px" />
+                            <tlk:GridBoundColumn HeaderText="Mã nhân viên"
+                                DataField="EMPLOYEE_CODE" SortExpression="EMPLOYEE_CODE" UniqueName="EMPLOYEE_CODE" />
                             <tlk:GridBoundColumn HeaderText="Tên nhân viên" DataField="VN_FULLNAME"
                                 SortExpression="VN_FULLNAME" UniqueName="VN_FULLNAME" HeaderStyle-Width="120px" />
-                                 <tlk:GridTemplateColumn HeaderText="Đơn vị" DataField="ORG_NAME" SortExpression="ORG_NAME"
-                                UniqueName="ORG_NAME">
-                                <HeaderStyle Width="200px" />
-                                <ItemTemplate>
-                                 <asp:Label ID="Label1" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.ORG_NAME") %>'>
-                                </asp:Label>
-                                <tlk:RadToolTip RenderMode="Lightweight" ID="RadToolTip1" runat="server" TargetControlID="Label1"
-                                                    RelativeTo="Element" Position="BottomCenter">
-                                <%# DrawTreeByString(DataBinder.Eval(Container, "DataItem.ORG_DESC"))%>
-                                </tlk:RadToolTip>
-                            </ItemTemplate>
-                         </tlk:GridTemplateColumn>
                             <tlk:GridBoundColumn HeaderText="Chức danh" DataField="TITLE_NAME"
                                 SortExpression="TITLE_NAME" HeaderStyle-Width="150px" UniqueName="TITLE_NAME" />
-                           
-                            <tlk:GridDateTimeColumn HeaderText="Ngày vào công ty" DataField="JOIN_DATE"
+                                 <tlk:GridBoundColumn HeaderText="Đơn vị" DataField="ORG_NAME" SortExpression="ORG_NAME"
+                                UniqueName="ORG_NAME" HeaderStyle-Width="200px" />
+                            <tlk:GridBoundColumn HeaderText="Đối tượng độc hại" DataField="HURT_TYPE_NAME"
+                                SortExpression="HURT_TYPE_NAME" HeaderStyle-Width="150px" UniqueName="HURT_TYPE_NAME" />
+                             <tlk:GridDateTimeColumn HeaderText="Ngày vào công ty" DataField="JOIN_DATE"
                                 ItemStyle-HorizontalAlign="Center" SortExpression="JOIN_DATE" UniqueName="JOIN_DATE"
                                 DataFormatString="{0:dd/MM/yyyy}">
                             </tlk:GridDateTimeColumn>
-                            <tlk:GridBoundColumn HeaderText="Năm" DataField="YEAR" ItemStyle-HorizontalAlign="Center"
-                                HeaderStyle-Width="100px" SortExpression="YEAR" UniqueName="YEAR" ItemStyle-VerticalAlign="Middle">
-                            </tlk:GridBoundColumn>
-                            <tlk:GridNumericColumn HeaderText="Tháng điều chỉnh thâm niên" DataField="START_MONTH_TN"
-                                ItemStyle-HorizontalAlign="Center" HeaderStyle-Width="100px" DataFormatString="{0:n0}"
-                                SortExpression="START_MONTH_TN" UniqueName="START_MONTH_TN">
-                            </tlk:GridNumericColumn>
-                            <tlk:GridNumericColumn HeaderText="Số tháng điều chỉnh thâm niên"
-                                DataField="ADJUST_MONTH_TN" ItemStyle-HorizontalAlign="Center" DataFormatString="{0:n0}"
+                            <tlk:GridBoundColumn HeaderText="Loại điều chỉnh" DataField="MODIFY_TYPE_NAME"
+                                SortExpression="MODIFY_TYPE_NAME" HeaderStyle-Width="150px" UniqueName="MODIFY_TYPE_NAME" />
+                            <tlk:GridDateTimeColumn HeaderText="Hiệu lực" DataField="START_DATE"
+                                ItemStyle-HorizontalAlign="Center" SortExpression="START_DATE" UniqueName="START_DATE"
+                                DataFormatString="{0:MM/yyyy}">
+                            </tlk:GridDateTimeColumn>
+                            <tlk:GridDateTimeColumn HeaderText="Hết hiệu lực" DataField="END_DATE"
+                                ItemStyle-HorizontalAlign="Center" SortExpression="END_DATE" UniqueName="END_DATE"
+                                DataFormatString="{0:MM/yyyy}">
+                            </tlk:GridDateTimeColumn>
+                            <tlk:GridNumericColumn HeaderText="Giá trị điều chỉnh"
+                                DataField="ADJUST_MONTH_TN" ItemStyle-HorizontalAlign="Center" DataFormatString="{0:n2}"
                                 SortExpression="ADJUST_MONTH_TN" UniqueName="ADJUST_MONTH_TN">
                             </tlk:GridNumericColumn>
                             <tlk:GridBoundColumn HeaderText="Lý do điều chỉnh" DataField="REMARK_TN"
                                 ItemStyle-HorizontalAlign="Left" SortExpression="REMARK_TN" HeaderStyle-Width="150px"
                                 UniqueName="REMARK_TN">
                                 <HeaderStyle Width="300px" />
-                            </tlk:GridBoundColumn>--%>
-                          
+                            </tlk:GridBoundColumn>
                         </Columns>
                         <HeaderStyle Width="100px" />
                     </MasterTableView>
@@ -91,36 +80,19 @@
     <script type="text/javascript">
         var enableAjax = true;
         var oldSize = 0;
-        var splitterID = 'ctl00_MainContent_ctrlDeclareEntitlementNB_RadSplitter3';
-        function ValidateFilter(sender, eventArgs) {
-            var params = eventArgs.get_commandArgument() + '';
-            if (params.indexOf("|") > 0) {
-                var s = eventArgs.get_commandArgument().split("|");
-                if (s.length > 1) {
-                    var val = s[1];
-                    if (validateHTMLText(val) || validateSQLText(val)) {
-                        eventArgs.set_cancel(true);
-                    }
-                }
-            }
-        }
-
-        function GridCreated(sender, eventArgs) {
-            registerOnfocusOut(splitterID);
-        }
         function gridRowDblClick(sender, eventArgs) {
             OpenEditWindow("Normal");
         }
 
         function OpenInsertWindow() {
-            window.open('/Default.aspx?mid=Attendance&fid=ctrlDeclareEntitlementNBNewEdit&group=Business&FormType=0', "_self"); /*
+            var oWindow = radopen('Dialog.aspx?mid=Attendance&fid=ctrlDeclareEntitlementNBNewEdit&group=Business&FormType=0&noscroll=1', "rwPopup");
             oWindow.setSize(900, 500);
-            oWindow.center(); */
+            oWindow.center();
         }
         function OpenInsertMultipleWindow() {
-            window.open('/Default.aspx?mid=Attendance&fid=ctrlDeclareEntitlementNBNewEditMultiple&group=Business&FormType=0', "_self"); /*
+            var oWindow = radopen('Dialog.aspx?mid=Attendance&fid=ctrlDeclareEntitlementNBNewEditMultiple&group=Business&FormType=0&noscroll=1', "rwPopup");
             oWindow.setSize(900, 500);
-            oWindow.center(); */
+            oWindow.center();
         }
         function OpenEditWindow() {
             var grid = $find('<%# rgDeclareEntitlementNB.ClientID %>');
@@ -131,9 +103,9 @@
                 id = grid.get_masterTableView().get_selectedItems()[0].getDataKeyValue('ID');
             }
             if (id > 0) {
-                window.open('/Default.aspx?mid=Attendance&fid=ctrlDeclareEntitlementNBNewEdit&group=Business&VIEW=TRUE&FormType=0&ID=' + id + '', "_self"); /*
+                var oWindow = radopen('Dialog.aspx?mid=Attendance&fid=ctrlDeclareEntitlementNBNewEdit&group=Business&VIEW=TRUE&FormType=0&ID=' + id + '&noscroll=1', "rwPopup");
                 oWindow.setSize(900, 500);
-                oWindow.center(); */
+                oWindow.center();
             }
         }
         function onRequestStart(sender, eventArgs) {
@@ -172,6 +144,6 @@
             } else if (args.get_item().get_commandName() == 'EXPORT') {
                 enableAjax = false;
             }
-        }
+}
     </script>
 </tlk:RadScriptBlock>

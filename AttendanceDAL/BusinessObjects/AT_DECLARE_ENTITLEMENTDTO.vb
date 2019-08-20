@@ -54,4 +54,7 @@
     Public Property MODIFY_TYPE_NAME As String
     Public Property END_MONTH_TN As Decimal?
     Public Property EXPIRE_YEAR As Decimal?
+
+    Public Property START_DATE As Date?
+    Public Property END_DATE As Date?
 End Class

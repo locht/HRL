@@ -22,37 +22,42 @@
                     </ClientSettings>
                     <MasterTableView DataKeyNames="ID,ORG_DESC" ClientDataKeyNames="ID">
                         <Columns>
-                            <%--<tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderStyle-HorizontalAlign="Center"
+                            <tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderStyle-HorizontalAlign="Center"
                                 HeaderStyle-Width="30px" ItemStyle-HorizontalAlign="Center">
                             </tlk:GridClientSelectColumn>
-                            <tlk:GridBoundColumn HeaderText="Mã nhân viên" HeaderStyle-Font-Bold="true"
+                            <tlk:GridBoundColumn HeaderText="Mã nhân viên"
                                 DataField="EMPLOYEE_CODE" SortExpression="EMPLOYEE_CODE" UniqueName="EMPLOYEE_CODE" />
                             <tlk:GridBoundColumn HeaderText="Tên nhân viên" DataField="VN_FULLNAME"
                                 SortExpression="VN_FULLNAME" UniqueName="VN_FULLNAME" HeaderStyle-Width="120px" />
-                                 <tlk:GridBoundColumn HeaderText="Đơn vị" DataField="ORG_NAME" SortExpression="ORG_NAME"
-                                UniqueName="ORG_NAME" HeaderStyle-Width="200px" />
                             <tlk:GridBoundColumn HeaderText="Chức danh" DataField="TITLE_NAME"
                                 SortExpression="TITLE_NAME" HeaderStyle-Width="150px" UniqueName="TITLE_NAME" />
-                                  <tlk:GridDateTimeColumn HeaderText="Ngày vào công ty" DataField="JOIN_DATE"
+                                 <tlk:GridBoundColumn HeaderText="Đơn vị" DataField="ORG_NAME" SortExpression="ORG_NAME"
+                                UniqueName="ORG_NAME" HeaderStyle-Width="200px" />
+                            <tlk:GridBoundColumn HeaderText="Đối tượng độc hại" DataField="HURT_TYPE_NAME"
+                                SortExpression="HURT_TYPE_NAME" HeaderStyle-Width="150px" UniqueName="HURT_TYPE_NAME" />
+                             <tlk:GridDateTimeColumn HeaderText="Ngày vào công ty" DataField="JOIN_DATE"
                                 ItemStyle-HorizontalAlign="Center" SortExpression="JOIN_DATE" UniqueName="JOIN_DATE"
                                 DataFormatString="{0:dd/MM/yyyy}">
                             </tlk:GridDateTimeColumn>
-                            <tlk:GridNumericColumn HeaderText="Năm" DataField="YEAR" ItemStyle-HorizontalAlign="Center"
-                                HeaderStyle-Width="100px" SortExpression="YEAR" UniqueName="YEAR">
-                            </tlk:GridNumericColumn>
-                            <tlk:GridNumericColumn HeaderText="Tháng điều chỉnh thâm niên" DataField="START_MONTH_TN"
-                                ItemStyle-HorizontalAlign="Center" HeaderStyle-Width="100px" DataFormatString="{0:n0}"
-                                SortExpression="START_MONTH_TN" UniqueName="START_MONTH_TN">
-                            </tlk:GridNumericColumn>
-                            <tlk:GridNumericColumn HeaderText="Số tháng điều chỉnh thâm niên"
-                                DataField="ADJUST_MONTH_TN" ItemStyle-HorizontalAlign="Center" DataFormatString="{0:n0}"
+                            <tlk:GridBoundColumn HeaderText="Loại điều chỉnh" DataField="MODIFY_TYPE_NAME"
+                                SortExpression="MODIFY_TYPE_NAME" HeaderStyle-Width="150px" UniqueName="MODIFY_TYPE_NAME" />
+                            <tlk:GridDateTimeColumn HeaderText="Hiệu lực" DataField="START_DATE"
+                                ItemStyle-HorizontalAlign="Center" SortExpression="START_DATE" UniqueName="START_DATE"
+                                DataFormatString="{0:MM/yyyy}">
+                            </tlk:GridDateTimeColumn>
+                            <tlk:GridDateTimeColumn HeaderText="Hết hiệu lực" DataField="END_DATE"
+                                ItemStyle-HorizontalAlign="Center" SortExpression="END_DATE" UniqueName="END_DATE"
+                                DataFormatString="{0:MM/yyyy}">
+                            </tlk:GridDateTimeColumn>
+                            <tlk:GridNumericColumn HeaderText="Giá trị điều chỉnh"
+                                DataField="ADJUST_MONTH_TN" ItemStyle-HorizontalAlign="Center" DataFormatString="{0:n2}"
                                 SortExpression="ADJUST_MONTH_TN" UniqueName="ADJUST_MONTH_TN">
                             </tlk:GridNumericColumn>
                             <tlk:GridBoundColumn HeaderText="Lý do điều chỉnh" DataField="REMARK_TN"
                                 ItemStyle-HorizontalAlign="Left" SortExpression="REMARK_TN" HeaderStyle-Width="150px"
                                 UniqueName="REMARK_TN">
                                 <HeaderStyle Width="300px" />
-                            </tlk:GridBoundColumn>--%>
+                            </tlk:GridBoundColumn>
                         </Columns>
                         <HeaderStyle Width="100px" />
                     </MasterTableView>

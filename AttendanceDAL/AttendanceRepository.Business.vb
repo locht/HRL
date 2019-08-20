@@ -2417,7 +2417,9 @@ Partial Public Class AttendanceRepository
                                        .CREATED_LOG = p.p.CREATED_LOG,
                                        .MODIFIED_BY = p.p.MODIFIED_BY,
                                        .MODIFIED_DATE = p.p.MODIFIED_DATE,
-                                       .MODIFIED_LOG = p.p.MODIFIED_LOG})
+                                       .MODIFIED_LOG = p.p.MODIFIED_LOG,
+                                       .START_DATE = p.p.START_DATE,
+                                       .END_DATE = p.p.END_DATE})
 
             'If _filter.IS_TERMINATE Then
             '    query = query.Where(Function(f) f.e.WORK_STATUS = 257 And f.e.TER_LAST_DATE <= Date.Now)
@@ -2552,7 +2554,9 @@ Partial Public Class AttendanceRepository
                                        .CREATED_LOG = p.p.CREATED_LOG,
                                        .MODIFIED_BY = p.p.MODIFIED_BY,
                                        .MODIFIED_DATE = p.p.MODIFIED_DATE,
-                                       .MODIFIED_LOG = p.p.MODIFIED_LOG}).FirstOrDefault
+                                       .MODIFIED_LOG = p.p.MODIFIED_LOG,
+                                       .START_DATE = p.p.START_DATE,
+                                       .END_DATE = p.p.END_DATE}).FirstOrDefault
             Return lst
         Catch ex As Exception
             WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iTime")
@@ -2688,6 +2692,8 @@ Partial Public Class AttendanceRepository
                     obj.MODIFY_TYPE_ID = objDelareEntitlementNB.MODIFY_TYPE_ID
                     obj.END_MONTH_TN = objDelareEntitlementNB.END_MONTH_TN
                     obj.EXPIRE_YEAR = objDelareEntitlementNB.EXPIRE_YEAR
+                    obj.START_DATE = objDelareEntitlementNB.START_DATE
+                    obj.END_DATE = objDelareEntitlementNB.END_DATE
                 Else
                     Dim objDelareEntitlementNBData As New AT_DECLARE_ENTITLEMENT
                     objDelareEntitlementNBData.ID = Utilities.GetNextSequence(Context, Context.AT_DECLARE_ENTITLEMENT.EntitySet.Name)
@@ -2712,6 +2718,8 @@ Partial Public Class AttendanceRepository
                     objDelareEntitlementNBData.MODIFY_TYPE_ID = objDelareEntitlementNB.MODIFY_TYPE_ID
                     objDelareEntitlementNBData.END_MONTH_TN = objDelareEntitlementNB.END_MONTH_TN
                     objDelareEntitlementNBData.EXPIRE_YEAR = objDelareEntitlementNB.EXPIRE_YEAR
+                    objDelareEntitlementNBData.START_DATE = objDelareEntitlementNB.START_DATE
+                    objDelareEntitlementNBData.END_DATE = objDelareEntitlementNB.END_DATE
                     Context.AT_DECLARE_ENTITLEMENT.AddObject(objDelareEntitlementNBData)
                 End If
                 Context.SaveChanges(log)
