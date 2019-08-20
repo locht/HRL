@@ -230,58 +230,49 @@ Partial Public Class ctrlDeclareEntitlementNBNewEdit
     Protected WithEvents txtHurtType As Global.Telerik.Web.UI.RadTextBox
 
     '''<summary>
-    '''lbYear control.
+    '''Label1 control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents lbYear As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents Label1 As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
-    '''txtYear control.
+    '''rmStartDate control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents txtYear As Global.Telerik.Web.UI.RadNumericTextBox
+    Protected WithEvents rmStartDate As Global.Telerik.Web.UI.RadMonthYearPicker
 
     '''<summary>
-    '''RequiredFieldValidator1 control.
+    '''RequiredFieldValidator2 control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents RequiredFieldValidator1 As Global.System.Web.UI.WebControls.RequiredFieldValidator
+    Protected WithEvents RequiredFieldValidator2 As Global.System.Web.UI.WebControls.RequiredFieldValidator
 
     '''<summary>
-    '''rvyear control.
+    '''Label2 control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents rvyear As Global.System.Web.UI.WebControls.RangeValidator
+    Protected WithEvents Label2 As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
-    '''lbStartMonth control.
+    '''rmEndDate control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents lbStartMonth As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
-    '''cboStartMonth control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents cboStartMonth As Global.Telerik.Web.UI.RadComboBox
+    Protected WithEvents rmEndDate As Global.Telerik.Web.UI.RadMonthYearPicker
 
     '''<summary>
     '''lbModifyType control.
@@ -300,6 +291,69 @@ Partial Public Class ctrlDeclareEntitlementNBNewEdit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents cboModifyType As Global.Telerik.Web.UI.RadComboBox
+
+    '''<summary>
+    '''lbADJUST_MONTH_TN2 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbADJUST_MONTH_TN2 As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''txtADJUST_MONTH_TN2 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtADJUST_MONTH_TN2 As Global.Telerik.Web.UI.RadNumericTextBox
+
+    '''<summary>
+    '''RequiredFieldValidator1 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents RequiredFieldValidator1 As Global.System.Web.UI.WebControls.RequiredFieldValidator
+
+    '''<summary>
+    '''lbYear control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbYear As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''txtYear control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtYear As Global.Telerik.Web.UI.RadNumericTextBox
+
+    '''<summary>
+    '''lbStartMonth control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbStartMonth As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''cboStartMonth control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents cboStartMonth As Global.Telerik.Web.UI.RadComboBox
 
     '''<summary>
     '''lbExpireYear control.

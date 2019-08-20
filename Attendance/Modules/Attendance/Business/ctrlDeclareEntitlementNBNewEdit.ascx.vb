@@ -95,9 +95,9 @@ Public Class ctrlDeclareEntitlementNBNewEdit
         Dim startTime As DateTime = DateTime.UtcNow
         Try
             InitControl()
-            If Not IsPostBack Then
-                ViewConfig(RadPane2)
-            End If
+            'If Not IsPostBack Then
+            '    ViewConfig(RadPane2)
+            'End If
             _myLog.WriteLog(_myLog._info, _classPath, method,
                                                 CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
@@ -166,7 +166,7 @@ Public Class ctrlDeclareEntitlementNBNewEdit
                         txtChucDanh.Text = obj.TITLE_NAME
                         Employee_id = obj.EMPLOYEE_ID
                         txtDonVi.Text = obj.ORG_NAME
-                        'txtADJUST_MONTH_TN2.Text = obj.ADJUST_MONTH_TN.ToString
+                        txtADJUST_MONTH_TN2.Value = obj.ADJUST_MONTH_TN
                         txtREMARK_TN.Text = obj.REMARK_TN
                         If obj.START_MONTH_TN IsNot Nothing Then
                             cboStartMonth.SelectedValue = obj.START_MONTH_TN
@@ -183,6 +183,9 @@ Public Class ctrlDeclareEntitlementNBNewEdit
                         End If
                         txtExpireYear.Value = obj.EXPIRE_YEAR
                         _Value = obj.ID
+
+                        rmStartDate.SelectedDate = obj.START_DATE
+                        rmEndDate.SelectedDate = obj.END_DATE
                     Else
                         isEdit = False
                     End If
@@ -261,12 +264,8 @@ Public Class ctrlDeclareEntitlementNBNewEdit
                         Dim adjustMonthTn2 As String = ""
                         obj = New AT_DECLARE_ENTITLEMENTDTO
                         obj.EMPLOYEE_ID = Employee_id
-                        'If txtADJUST_MONTH_TN2.Text.Contains(".") Then
-                        '    adjustMonthTn2 = txtADJUST_MONTH_TN2.Text.Replace(".", ",").ToString
-                        '    obj.ADJUST_MONTH_TN = If(IsNumeric(adjustMonthTn2), Decimal.Parse(adjustMonthTn2), Nothing)
-                        'Else
-                        '    obj.ADJUST_MONTH_TN = If(IsNumeric(txtADJUST_MONTH_TN2.Text), Decimal.Parse(txtADJUST_MONTH_TN2.Text), Nothing)
-                        'End If
+                        obj.ADJUST_MONTH_TN = txtADJUST_MONTH_TN2.Value
+                        
                         If cboModifyType.SelectedValue <> "" Then
                             obj.MODIFY_TYPE_ID = cboModifyType.SelectedValue
                         End If
@@ -286,6 +285,9 @@ Public Class ctrlDeclareEntitlementNBNewEdit
                         If _Value.HasValue Then
                             obj.ID = _Value
                         End If
+
+                        obj.START_DATE = rmStartDate.SelectedDate
+                        obj.END_DATE = rmEndDate.SelectedDate
 
                         rep.InsertDelareEntitlementNB(obj, gstatus, checkMonthNB, checkMonthNP)
                         If checkMonthNB Then

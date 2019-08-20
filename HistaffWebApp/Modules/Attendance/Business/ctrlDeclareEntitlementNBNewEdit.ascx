@@ -63,7 +63,47 @@
                     </tlk:RadTextBox>
                 </td>
             </tr>
+            <tr>    
+                <td class="lb">
+                    <asp:Label ID="Label1" runat="server" Text="Hiệu lực"></asp:Label>
+                    <span class="lbReq">*</span>
+                </td>
+                <td>
+                    <tlk:RadMonthYearPicker DateInput-DisplayDateFormat="MM/yyyy" runat="server" ID="rmStartDate"
+                       TabIndex="17" Culture="en-US">
+                    </tlk:RadMonthYearPicker>
+                     <asp:RequiredFieldValidator ID="RequiredFieldValidator2" ControlToValidate="rmStartDate"
+                        runat="server" ErrorMessage="<%$ Translate: Bạn phải nhập Hiệu lực %>" ToolTip="<%$ Translate: Bạn phải nhập Hiệu lực %>"> </asp:RequiredFieldValidator>
+                </td>
+                <td class="lb">
+                    <asp:Label ID="Label2" runat="server" Text="Hết hiệu lực"></asp:Label>
+                </td>
+                <td>
+                    <tlk:RadMonthYearPicker DateInput-DisplayDateFormat="MM/yyyy" runat="server" ID="rmEndDate"
+                         TabIndex="17" Culture="en-US">
+                    </tlk:RadMonthYearPicker>
+                </td>
+            </tr>
             <tr>
+                <td class="lb">
+                    <asp:Label ID="lbModifyType" runat="server" Text="Loại điều chỉnh"></asp:Label>
+                </td>
+                <td>
+                    <tlk:RadComboBox ID="cboModifyType" runat="server" SkinID="dDropdownList">
+                    </tlk:RadComboBox>
+                </td>
+                <td class="lb">
+                    <asp:Label ID="lbADJUST_MONTH_TN2" runat="server" Text="Giá trị điều chỉnh"></asp:Label><span class="lbReq">*</span>
+                </td>
+                <td>
+                    <tlk:RadNumericTextBox ID="txtADJUST_MONTH_TN2" runat="server" SkinID="Decimal">
+                    </tlk:RadNumericTextBox> 
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator1" ControlToValidate="txtADJUST_MONTH_TN2"
+                        runat="server" ErrorMessage="<%$ Translate: Bạn phải nhập Giá trị điều chỉnh %>" ToolTip="<%$ Translate: Bạn phải nhập Giá trị điều chỉnh %>"> </asp:RequiredFieldValidator>  
+                 </td>             
+            </tr>
+
+            <tr style="display:none">
                 <td class="lb">
                     <asp:Label ID="lbYear" runat="server" Text="Hiệu lực"></asp:Label>
                     <span class="lbReq">*</span>
@@ -71,11 +111,11 @@
                 <td>
                     <tlk:RadNumericTextBox ID="txtYear" MaxLength="4" SkinID="Number" runat="server">
                     </tlk:RadNumericTextBox>
-                    <asp:RequiredFieldValidator ID="RequiredFieldValidator1" ControlToValidate="txtYear"
+                   <%-- <asp:RequiredFieldValidator ID="RequiredFieldValidator1" ControlToValidate="txtYear"
                         runat="server" ErrorMessage="<%$ Translate: Bạn phải nhập Năm khai báo %>" ToolTip="<%$ Translate: Bạn phải nhập Năm khai báo %>"> </asp:RequiredFieldValidator>
                     <asp:RangeValidator ID="rvyear" MinimumValue="1901" MaximumValue="2999" ControlToValidate="txtYear"
                         runat="server" ErrorMessage="<%$ Translate: Năm khai báo phải nằm trong khoảng từ 1901 đến 2999 %>"
-                        ToolTip="<%$ Translate: Năm khai báo phải nằm trong khoảng từ 1901 đến 2999 %>"></asp:RangeValidator>
+                        ToolTip="<%$ Translate: Năm khai báo phải nằm trong khoảng từ 1901 đến 2999 %>"></asp:RangeValidator>--%>
                 </td>
                 <td class="lb">
                     <asp:Label ID="lbStartMonth" runat="server" Text="Tháng"></asp:Label>
@@ -99,15 +139,8 @@
                         </Items>
                     </tlk:RadComboBox>
                 </td>
-                <td class="lb">
-                    <asp:Label ID="lbModifyType" runat="server" Text="Loại điều chỉnh"></asp:Label>
-                </td>
-                <td>
-                    <tlk:RadComboBox ID="cboModifyType" runat="server" SkinID="dDropdownList">
-                    </tlk:RadComboBox>
-                </td>                
             </tr>
-            <tr>
+            <tr style="display:none">
                 <td class="lb">
                     <asp:Label ID="lbExpireYear" runat="server" Text="Hết hiệu lực"></asp:Label>
                 </td>
@@ -183,6 +216,6 @@
             //                args.set_cancel(true);
             //            }
         }
-        
+
     </script>
 </tlk:RadCodeBlock>

@@ -14552,6 +14552,9 @@ Namespace AttendanceBusiness
         Private EMPLOYEE_IDField As System.Nullable(Of Decimal)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private END_DATEField As System.Nullable(Of Date)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private END_MONTH_TNField As System.Nullable(Of Decimal)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -14628,6 +14631,9 @@ Namespace AttendanceBusiness
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private STAFF_RANK_NAMEField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private START_DATEField As System.Nullable(Of Date)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private START_MONTH_EXTENDField As System.Nullable(Of Decimal)
@@ -14824,6 +14830,19 @@ Namespace AttendanceBusiness
                 If (Me.EMPLOYEE_IDField.Equals(value) <> true) Then
                     Me.EMPLOYEE_IDField = value
                     Me.RaisePropertyChanged("EMPLOYEE_ID")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property END_DATE() As System.Nullable(Of Date)
+            Get
+                Return Me.END_DATEField
+            End Get
+            Set
+                If (Me.END_DATEField.Equals(value) <> true) Then
+                    Me.END_DATEField = value
+                    Me.RaisePropertyChanged("END_DATE")
                 End If
             End Set
         End Property
@@ -15162,6 +15181,19 @@ Namespace AttendanceBusiness
                 If (Object.ReferenceEquals(Me.STAFF_RANK_NAMEField, value) <> true) Then
                     Me.STAFF_RANK_NAMEField = value
                     Me.RaisePropertyChanged("STAFF_RANK_NAME")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property START_DATE() As System.Nullable(Of Date)
+            Get
+                Return Me.START_DATEField
+            End Get
+            Set
+                If (Me.START_DATEField.Equals(value) <> true) Then
+                    Me.START_DATEField = value
+                    Me.RaisePropertyChanged("START_DATE")
                 End If
             End Set
         End Property
