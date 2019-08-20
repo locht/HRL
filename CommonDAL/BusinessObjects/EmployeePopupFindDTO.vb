@@ -13,7 +13,8 @@
     Public Property JOIN_DATE As Date?
     Public Property EFFECT_DATE As Date?
     Public Property BIRTH_DATE As Date?
-    Public Property BIRTH_PLACE As String
+    Public Property BIRTH_PLACE As Decimal?
+    Public Property BIRTH_PLACE_NAME As String
     Public Property GENDER As String
     Public Property WORK_STATUS As String
     Public Property DECISION_ID As Decimal?
