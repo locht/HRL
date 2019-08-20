@@ -2408,6 +2408,7 @@ Partial Public Class CommonRepository
                       From cv In Context.HU_EMPLOYEE_CV.Where(Function(cv) cv.EMPLOYEE_ID = p.ID).DefaultIfEmpty
                       From s In Context.HU_STAFF_RANK.Where(Function(s) s.ID = p.STAFF_RANK_ID).DefaultIfEmpty
                       From t In Context.HU_TITLE.Where(Function(f) f.ID = p.TITLE_ID).DefaultIfEmpty
+                      From birth In Context.HU_NATION.Where(Function(f) f.ID = cv.BIRTH_PLACE).DefaultIfEmpty
                       From ot In Context.OT_OTHER_LIST.Where(Function(f) f.ID = t.HURT_TYPE_ID).DefaultIfEmpty
                       Order By p.EMPLOYEE_CODE
                       Where (_empId.Contains(p.ID))
@@ -2424,6 +2425,7 @@ Partial Public Class CommonRepository
                           .TITLE_NAME = p.HU_TITLE.NAME_VN,
                           .BIRTH_DATE = cv.BIRTH_DATE,
                           .BIRTH_PLACE = cv.BIRTH_PLACE,
+                          .BIRTH_PLACE_NAME = birth.NAME_VN,
                           .STAFF_RANK_ID = p.STAFF_RANK_ID,
                           .STAFF_RANK_NAME = s.NAME,
                           .IMAGE = cv.IMAGE,

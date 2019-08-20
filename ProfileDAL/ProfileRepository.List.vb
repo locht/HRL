@@ -3697,7 +3697,7 @@ Partial Class ProfileRepository
 #Region "Danh mục thông tin lương "
     Public Function GetPeriodbyYear(ByVal year As Decimal) As List(Of ATPeriodDTO)
         Try
-            Dim query = From p In Context.AT_PERIOD Where p.YEAR = year Order By p.MONTH Ascending, p.START_DATE Ascending
+            Dim query = From p In Context.AT_PERIOD Where p.YEAR = year And p.ACTFLG = "A" Order By p.MONTH Ascending, p.START_DATE Ascending
             Dim Period = query.Select(Function(p) New ATPeriodDTO With {
                                        .ID = p.ID,
                                        .YEAR = p.YEAR,
