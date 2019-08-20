@@ -321,7 +321,7 @@ Public Class ctrlDashboardHome
                 '1: het han HD chinh thuc , 20: het han HD thu viec
                 If remindType = "1" Or remindType = "20" Then
                     SendMailWithTemplate(remindType, item)
-                    'Else
+                Else
                     'lstDataSelected.Add(RemindList.Find(Function(f) f.EMPLOYEE_CODE = item.GetDataKeyValue("EMPLOYEE_CODE") And f.LINK_POPUP = item.GetDataKeyValue("LINK_POPUP")))
                     'receiver = item.GetDataKeyValue("WORK_EMAIL")
                     'If lstDataSelected.Count = 0 Then
@@ -353,8 +353,8 @@ Public Class ctrlDashboardHome
                     '        Exit Sub
                     '    End If
                     'End Using
-                    'ShowMessage(Translate("Không thể gửi mail nhắc nhở " + remindName), NotifyType.Warning)
-                    'Exit Sub
+                    ShowMessage(Translate("Không thể gửi mail nhắc nhở " + remindName), NotifyType.Warning)
+                    Exit Sub
                 End If
             Next
             ShowMessage(Translate(CommonMessage.MESSAGE_SENDMAIL_COMPLETED), NotifyType.Success)
