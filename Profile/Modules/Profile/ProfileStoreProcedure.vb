@@ -67,6 +67,17 @@ Public Class ProfileStoreProcedure
         End Try
     End Function
 #End Region
+    Public Function INSERT_INFO_REMINDER_DETAIL(ByVal username As String) As Int32
+        Dim objects = hfr.ExecuteStoreScalar("PKG_PROFILE_DASHBOARD.INSERT_INFO_REMINDER_DETAIL",
+                                             New List(Of Object)(New Object() {username, OUT_NUMBER}))
+        Return Int32.Parse(objects(0).ToString())
+    End Function
+
+    Public Function DELETE_INFO_REMINDER(ByVal P_ID As String) As Int32
+        Dim objects = hfr.ExecuteStoreScalar("PKG_PROFILE_DASHBOARD.DELETE_INFO_REMINDER",
+                                             New List(Of Object)(New Object() {P_ID, OUT_NUMBER}))
+        Return Int32.Parse(objects(0).ToString())
+    End Function
     Public Function GET_DECISION_TYPE_EXCEPT_NV(Optional ByVal isBlank As Boolean = False) As DataTable
         Dim dt As New DataTable
         Dim ds As DataSet = hfr.ExecuteToDataSet("PKG_HU_IPROFILE.GET_DECISION_TYPE_EXCEPT_NV", New List(Of Object)(New Object() {isBlank, Common.Common.SystemLanguage.Name}))

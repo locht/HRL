@@ -131,6 +131,7 @@ Public Class ctrlDashboardHome
             If InfoList Is Nothing Or Message = CommonMessage.ACTION_UPDATED Then
                 'dt = psp.GET_COMPANY_NEW_INFO(log.Username.ToUpper)
             End If
+
             'If dt.Rows.Count > 0 Then
             '    dr = dt.Select("NAME = '" + cons_com.EMP_COUNT + "'")
             '    lbtnEmpCount.Text = Decimal.Parse(dr(0)("VALUE").ToString)
@@ -288,15 +289,15 @@ Public Class ctrlDashboardHome
         End Using
     End Sub
 
-    Protected Sub ibtnReLoad_Click(ByVal sender As Object, ByVal e As EventArgs) Handles ibtnReLoad.Click
-        Try
-            log = LogHelper.GetUserLog
-            'psp.INSERT_INFO_REMINDER_DETAIL(log.Username.ToUpper)
-            rgContract.Rebind()
-        Catch ex As Exception
-            DisplayException(Me.ViewName, Me.ID, ex)
-        End Try
-    End Sub
+    'Protected Sub ibtnReLoad_Click(ByVal sender As Object, ByVal e As EventArgs) Handles ibtnReLoad.Click
+    '    Try
+    '        log = LogHelper.GetUserLog
+    '        psp.INSERT_INFO_REMINDER_DETAIL(log.Username.ToUpper)
+    '        rgContract.Rebind()
+    '    Catch ex As Exception
+    '        DisplayException(Me.ViewName, Me.ID, ex)
+    '    End Try
+    'End Sub
 
 #End Region
 

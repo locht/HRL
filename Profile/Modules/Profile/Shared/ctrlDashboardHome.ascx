@@ -3,19 +3,28 @@ Inherits="Profile.ctrlDashboardHome" %>
 
 <tlk:RadSplitter ID="RadSplitter1" runat="server" Width="100%" Height="100%" Orientation="Horizontal"
     SkinID="Demo">
-     <tlk:RadPane ID="RadPane2" runat="server" Height="35px" Scrolling="None" >
-    <table>
-<tr>
-<td class="lb"><asp:ImageButton runat=server ID="ImageButton1" ImageUrl="../../../Static/Images/ReLoad.jpg" Width="35px" Height="35px" /></td>
-</tr>
-</table>
-    </tlk:RadPane>
+     
     <tlk:RadPane ID="RadPane1" runat="server" Scrolling="None">
         <tlk:RadGrid  ID="rgContract" runat="server" Height="100%" AllowFilteringByColumn="true">
-            <MasterTableView CommandItemSettings-ExportToExcelText="Xuất dữ liệu" 
+            <MasterTableView CommandItemSettings-ExportToExcelText="Xuất dữ liệu"
             CommandItemSettings-ExportToCsvText="Chuyển" CommandItemSettings-ExportToPdfText="Báo tăng thai sản đi làm lại" CommandItemDisplay="Top"
-             ClientDataKeyNames="ID,ID_TYPE,EMPLOYEE_ID,EMPLOYEE_CODE,LINK_POPUP">
-               <td class="lb"><asp:ImageButton runat=server ID="ibtnReLoad" ImageUrl="../../../Static/Images/ReLoad.jpg" Width="35px" Height="35px" /></td>
+             ClientDataKeyNames="ID,EMPLOYEE_ID,EMPLOYEE_CODE,FULLNAME,REMIND_DATE,GENDER,REMIND_TYPE,REMIND_NAME,USERNAME,TITLE_NAME,ORG_NAME,JOIN_DATE,VALUE,LINK_POPUP,WORK_EMAIL">
+                <CommandItemTemplate>
+                    <div style="padding: 2px 0 0 0">
+                        <div style="float: left">
+                            <tlk:RadButton ID="btnSendMail" runat="server" Icon-PrimaryIconUrl="~/Static/Images/Toolbar/send_email.png"
+                                CausesValidation="false" Width="85px" Text="<%$ Translate: Gửi mail %>" ToolTip="MAIL"
+                                CommandName="SendMail" OnClientClicking="SelectGridClick">
+                            </tlk:RadButton>
+                        </div>
+                        <div style="float: left">
+                            <tlk:RadButton ID="btnExport" runat="server" Icon-PrimaryIconUrl="~/Static/Images/Toolbar/export1.png"
+                                CausesValidation="false" Width="70px" Text="<%$ Translate: Excel %>" ToolTip="Export"
+                                CommandName="EXPORT" OnClientClicking="SelectGridClick">
+                            </tlk:RadButton>
+                        </div>
+                    </div>
+                </CommandItemTemplate>
                 <CommandItemSettings  ShowAddNewRecordButton="false" ShowExportToCsvButton="false"
                     ShowRefreshButton="false" ShowExportToExcelButton="true"></CommandItemSettings>
                 <Columns>
@@ -26,7 +35,7 @@ Inherits="Profile.ctrlDashboardHome" %>
                     </tlk:GridClientSelectColumn>
                     <tlk:GridTemplateColumn UniqueName="LINK_POPUP" AllowFiltering="false" HeaderText="<%$ Translate: Liên kết nhanh %>">
                         <ItemTemplate>
-                            <asp:LinkButton ID="lbtnLink" runat="server" Text="View" Style="text-decoration: underline !important;
+                            <asp:LinkButton ID="lbtnLink" runat="server" Text="Xem" Style="text-decoration: underline !important;
                                 color: Blue">
                             </asp:LinkButton>
                         </ItemTemplate>
@@ -52,7 +61,10 @@ Inherits="Profile.ctrlDashboardHome" %>
                         UniqueName="ORG_NAME" SortExpression="ORG_NAME">
                     </tlk:GridBoundColumn>
                     <tlk:GridBoundColumn HeaderText="<%$ Translate: Chức danh %>" DataField="TITILE_NAME"
-                        UniqueName="TITILE_NAME" SortExpression="TITILE_NAME">
+                        UniqueName="TITLE_NAME" SortExpression="TITLE_NAME">
+                    </tlk:GridBoundColumn>
+                    <tlk:GridBoundColumn HeaderText="<%$ Translate: Email %>" DataField="WORK_EMAIL"
+                        UniqueName="WORK_EMAIL" SortExpression="WORK_EMAIL">
                     </tlk:GridBoundColumn>
                 </Columns>
             </MasterTableView>
@@ -107,6 +119,24 @@ Inherits="Profile.ctrlDashboardHome" %>
 
             return oWindow;
         }
-
+        function SelectGridClick(sender, args) {
+            var item = args.get_commandName();
+            if (item == "SendMail") {
+                var bCheck = $find('<%# rgContract.ClientID %>').get_masterTableView().get_selectedItems().length;
+                if (bCheck == 0) {
+                    var notifyMgs = Notify("Vui lòng chọn dữ liệu thao tác", "warning");
+                    args.set_cancel(true);
+                    enableAjax = true;
+                }
+                else {
+                    enableAjax = false;
+                }
+            }
+            else if (item == "EXPORT") {
+                enableAjax = false;
+            }
+            else
+                enableAjax = true;
+        }
     </script>
 </tlk:RadScriptBlock>

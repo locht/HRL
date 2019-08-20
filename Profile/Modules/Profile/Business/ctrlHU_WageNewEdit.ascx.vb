@@ -183,7 +183,9 @@ Public Class ctrlHU_WageNewEdit
     Public Overrides Sub Refresh(Optional ByVal Message As String = "")
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
         Dim rep As New ProfileBusinessRepository
+        Dim profileRep As New ProfileRepository
         Dim startTime As DateTime = DateTime.UtcNow
+        Dim dtData As DataTable
         Try
             Select Case Message
                 Case "UpdateView"
@@ -219,10 +221,14 @@ Public Class ctrlHU_WageNewEdit
                     If Working.SAL_GROUP_ID IsNot Nothing Then
                         cbSalaryGroup.SelectedValue = Working.SAL_GROUP_ID
                         cbSalaryGroup.Text = Working.SAL_GROUP_NAME
+                        dtData = profileRep.GetSalaryLevelCombo(Working.SAL_GROUP_ID, True)
+                        FillRadCombobox(cbSalaryLevel, dtData, "NAME", "ID", True)
                     End If
                     If Working.SAL_LEVEL_ID IsNot Nothing Then
                         cbSalaryLevel.SelectedValue = Working.SAL_LEVEL_ID
                         cbSalaryLevel.Text = Working.SAL_LEVEL_NAME
+                        dtData = profileRep.GetSalaryRankCombo(Working.SAL_LEVEL_ID, True)
+                        FillRadCombobox(cbSalaryRank, dtData, "NAME", "ID", True)
                     End If
                     If Working.SAL_RANK_ID IsNot Nothing Then
                         cbSalaryRank.SelectedValue = Working.SAL_RANK_ID

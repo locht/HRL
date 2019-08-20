@@ -23,24 +23,6 @@ Partial Public Class ctrlDashboardHome
     Protected WithEvents RadSplitter1 As Global.Telerik.Web.UI.RadSplitter
 
     '''<summary>
-    '''RadPane2 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents RadPane2 As Global.Telerik.Web.UI.RadPane
-
-    '''<summary>
-    '''ImageButton1 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents ImageButton1 As Global.System.Web.UI.WebControls.ImageButton
-
-    '''<summary>
     '''RadPane1 control.
     '''</summary>
     '''<remarks>
@@ -57,15 +39,6 @@ Partial Public Class ctrlDashboardHome
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents rgContract As Global.Telerik.Web.UI.RadGrid
-
-    '''<summary>
-    '''ibtnReLoad control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents ibtnReLoad As Global.System.Web.UI.WebControls.ImageButton
 
     '''<summary>
     '''RadScriptBlock1 control.
