@@ -31474,6 +31474,9 @@ Namespace ProfileBusiness
         Private INDEMNIFY_MONEY_REMAINField As System.Nullable(Of Decimal)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private IS_STOPField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private MONEYField As System.Nullable(Of Decimal)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -31481,6 +31484,9 @@ Namespace ProfileBusiness
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private MONEY_REMAINField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private NO_PROCESSField As System.Nullable(Of Decimal)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private ORG_NAMEField As String
@@ -31590,6 +31596,19 @@ Namespace ProfileBusiness
         End Property
         
         <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property IS_STOP() As System.Nullable(Of Decimal)
+            Get
+                Return Me.IS_STOPField
+            End Get
+            Set
+                If (Me.IS_STOPField.Equals(value) <> true) Then
+                    Me.IS_STOPField = value
+                    Me.RaisePropertyChanged("IS_STOP")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
         Public Property MONEY() As System.Nullable(Of Decimal)
             Get
                 Return Me.MONEYField
@@ -31624,6 +31643,19 @@ Namespace ProfileBusiness
                 If (Me.MONEY_REMAINField.Equals(value) <> true) Then
                     Me.MONEY_REMAINField = value
                     Me.RaisePropertyChanged("MONEY_REMAIN")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property NO_PROCESS() As System.Nullable(Of Decimal)
+            Get
+                Return Me.NO_PROCESSField
+            End Get
+            Set
+                If (Me.NO_PROCESSField.Equals(value) <> true) Then
+                    Me.NO_PROCESSField = value
+                    Me.RaisePropertyChanged("NO_PROCESS")
                 End If
             End Set
         End Property

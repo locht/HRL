@@ -18,7 +18,7 @@ Imports System.Runtime.Serialization
 Imports System.Xml.Serialization
 
 
-<Assembly: EdmSchemaAttribute("c7bb1c99-6b86-4f67-9798-8c737f1d326f")>
+<Assembly: EdmSchemaAttribute("e8022e2b-95c7-4284-8392-68bd45c0eba3")>
 #Region "EDM Relationship Metadata"
 <Assembly: EdmRelationshipAttribute("ProfileModel", "FK_HU_NAT_HU_PRO", "HU_NATION", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_NATION), "HU_PROVINCE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_PROVINCE), True)>
 <Assembly: EdmRelationshipAttribute("ProfileModel", "FK_HU_PRO_HU_DIS", "HU_PROVINCE", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_PROVINCE), "HU_DISTRICT", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_DISTRICT), True)>
@@ -20642,6 +20642,31 @@ Public Partial Class HU_DISCIPLINE_EMP
     End Sub
 
     Private Partial Sub OnIS_STOPChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property NO_PROCESS() As Nullable(Of Global.System.Int16)
+        Get
+            Return _NO_PROCESS
+        End Get
+        Set
+            OnNO_PROCESSChanging(value)
+            ReportPropertyChanging("NO_PROCESS")
+            _NO_PROCESS = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("NO_PROCESS")
+            OnNO_PROCESSChanged()
+        End Set
+    End Property
+
+    Private _NO_PROCESS As Nullable(Of Global.System.Int16)
+    Private Partial Sub OnNO_PROCESSChanging(value As Nullable(Of Global.System.Int16))
+    End Sub
+
+    Private Partial Sub OnNO_PROCESSChanged()
     End Sub
 
     #End Region
