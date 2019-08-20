@@ -299,7 +299,11 @@ Public Class ctrlHU_WageNewEdit
                     cbSalaryGroup.Enabled = False
                     cbSalaryLevel.Enabled = False
                     cbSalaryRank.Enabled = False
-                    rnFactorSalary.Enabled = False
+                    If Working.SAL_GROUP_ID Is Nothing Or Working.SAL_LEVEL_ID Is Nothing Or Working.SAL_RANK_ID Is Nothing Then
+                        rnFactorSalary.Enabled = True
+                    Else
+                        rnFactorSalary.Enabled = False
+                    End If
                     basicSalary.Enabled = False
                     rnPercentSalary.Enabled = False
                     Salary_Total.Enabled = False
