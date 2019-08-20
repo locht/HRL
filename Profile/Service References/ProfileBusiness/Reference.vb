@@ -31474,7 +31474,7 @@ Namespace ProfileBusiness
         Private INDEMNIFY_MONEY_REMAINField As System.Nullable(Of Decimal)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private IS_STOPField As System.Nullable(Of Decimal)
+        Private IS_STOPField As Boolean
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private MONEYField As System.Nullable(Of Decimal)
@@ -31486,7 +31486,7 @@ Namespace ProfileBusiness
         Private MONEY_REMAINField As System.Nullable(Of Decimal)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private NO_PROCESSField As System.Nullable(Of Decimal)
+        Private NO_PROCESSField As Boolean
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private ORG_NAMEField As String
@@ -31596,7 +31596,7 @@ Namespace ProfileBusiness
         End Property
         
         <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property IS_STOP() As System.Nullable(Of Decimal)
+        Public Property IS_STOP() As Boolean
             Get
                 Return Me.IS_STOPField
             End Get
@@ -31648,7 +31648,7 @@ Namespace ProfileBusiness
         End Property
         
         <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property NO_PROCESS() As System.Nullable(Of Decimal)
+        Public Property NO_PROCESS() As Boolean
             Get
                 Return Me.NO_PROCESSField
             End Get

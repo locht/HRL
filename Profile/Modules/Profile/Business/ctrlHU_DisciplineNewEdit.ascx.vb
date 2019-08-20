@@ -536,6 +536,11 @@ Public Class ctrlHU_DisciplineNewEdit
                             'o.MONEY = If(money <> "", Decimal.Parse(money), Nothing)
                             Dim iden_money As String = CType(i("INDEMNIFY_MONEY").Controls(0), RadNumericTextBox).Value
                             o.INDEMNIFY_MONEY = If(iden_money <> "", Decimal.Parse(iden_money), Nothing)
+
+
+                            Dim is_NoPro As Boolean = CType(i("NO_PROCESS").Controls(0), CheckBox).Checked
+                            o.NO_PROCESS = If(is_NoPro = False, 0, 1)
+
                             lstDisciplineEmp.Add(o)
                         Next
                         objDiscipline.DISCIPLINE_EMP = lstDisciplineEmp
@@ -1282,38 +1287,6 @@ Public Class ctrlHU_DisciplineNewEdit
             _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
         End Try
 
-    End Sub
-    ''' <lastupdate>
-    ''' 11/07/2017 13:40
-    ''' </lastupdate>
-    ''' <summary>
-    ''' Xu ly su kien Server Validate cho control cvalPeriod
-    ''' </summary>
-    ''' <param name="source"></param>
-    ''' <param name="args"></param>
-    ''' <remarks></remarks>
-    Private Sub cvalPeriod_ServerValidate(ByVal source As Object, ByVal args As System.Web.UI.WebControls.ServerValidateEventArgs) Handles cvalPeriod.ServerValidate
-        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
-        Try
-            Dim startTime As DateTime = DateTime.UtcNow
-            If rgEmployee.Items.Count = 0 Then
-                args.IsValid = True
-                Exit Sub
-            End If
-            If chkDeductFromSalary.Checked = True Then
-                If cboPeriod.SelectedValue = "" Then
-                    args.IsValid = False
-                Else
-                    args.IsValid = True
-                End If
-            Else
-                args.IsValid = True
-            End If
-            _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
-        Catch ex As Exception
-            DisplayException(Me.ViewName, Me.ID, ex)
-            _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
-        End Try
     End Sub
     ''' <lastupdate>
     ''' 11/07/2017 13:40

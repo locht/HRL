@@ -770,15 +770,6 @@ Partial Public Class ctrlHU_DisciplineNewEdit
     Protected WithEvents cboPeriod As Global.Telerik.Web.UI.RadComboBox
 
     '''<summary>
-    '''cvalPeriod control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents cvalPeriod As Global.System.Web.UI.WebControls.CustomValidator
-
-    '''<summary>
     '''lbAmountInMonth control.
     '''</summary>
     '''<remarks>

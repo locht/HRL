@@ -177,7 +177,8 @@ Partial Class ProfileRepository
                                                       .EMPLOYEE_CODE = e.EMPLOYEE_CODE,
                                                       .FULLNAME = e.FULLNAME_VN,
                                                       .ORG_NAME = o.NAME_VN,
-                                                      .TITLE_NAME = t.NAME_VN}).ToList
+                                                      .TITLE_NAME = t.NAME_VN,
+                                                      .NO_PROCESS = d.NO_PROCESS}).ToList
             Return q
         Catch ex As Exception
             WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iProfile")
@@ -305,6 +306,7 @@ Partial Class ProfileRepository
                 objDISCIPLINE_EMPData.MONEY = obj.MONEY
                 objDISCIPLINE_EMPData.INDEMNIFY_MONEY = obj.INDEMNIFY_MONEY
                 objDISCIPLINE_EMPData.IS_STOP = 0
+                objDISCIPLINE_EMPData.NO_PROCESS = obj.NO_PROCESS
                 Context.HU_DISCIPLINE_EMP.AddObject(objDISCIPLINE_EMPData)
 
                 'If objDiscipline.STATUS_ID = ProfileCommon.OT_DISCIPLINE_STATUS.APPROVE_ID And
@@ -516,6 +518,7 @@ Partial Class ProfileRepository
                 objDISCIPLINE_EMPData.MONEY = obj.MONEY
                 objDISCIPLINE_EMPData.INDEMNIFY_MONEY = obj.INDEMNIFY_MONEY
                 objDISCIPLINE_EMPData.IS_STOP = 0
+                objDISCIPLINE_EMPData.NO_PROCESS = obj.NO_PROCESS
                 Context.HU_DISCIPLINE_EMP.AddObject(objDISCIPLINE_EMPData)
                 'If objDiscipline.STATUS_ID = ProfileCommon.OT_DISCIPLINE_STATUS.APPROVE_ID And
                 '    objDiscipline.PERIOD_ID IsNot Nothing Then
