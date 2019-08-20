@@ -16,7 +16,7 @@
                     <MasterTableView DataKeyNames="ID,DECISION_NO,EFFECT_DATE,EXPIRE_DATE,SAL_GROUP_NAME,SAL_LEVEL_NAME,SAL_RANK_NAME,SAL_BASIC,PERCENT_SALARY">
                         <Columns>
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: ID %>" DataField="ID"
-                                                 SortExpression="ID" UniqueName="ID" />
+                                                 SortExpression="ID" UniqueName="ID"  Visible="false"/>
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Số quyết định %>" DataField="DECISION_NO"
                                 SortExpression="DECISION_NO" UniqueName="DECISION_NO" />
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Ngày hiệu lực %>" DataField="EFFECT_DATE"
@@ -29,7 +29,7 @@
                             <tlk:GridBoundColumn HeaderText="" DataField="SAL_TYPE_NAME" SortExpression="SAL_TYPE_NAME" UniqueName="SAL_TYPE_NAME" />
                             <tlk:GridNumericColumn HeaderText="" DataField="TAX_TABLE_Name" SortExpression="TAX_TABLE_Name" UniqueName="TAX_TABLE_Name"/>
                             <tlk:GridNumericColumn HeaderText="" DataField="SAL_BASIC" SortExpression="SAL_BASIC" UniqueName="SAL_BASIC" DataFormatString="{0:n0}" />
-                            <tlk:GridNumericColumn HeaderText="" DataField="SAL_INS" SortExpression="SAL_INS" UniqueName="SAL_INS" DataFormatString="{0:n0}" />
+                            <tlk:GridNumericColumn HeaderText="" DataField="SAL_INS" SortExpression="SAL_INS" UniqueName="SAL_INS" DataFormatString="{0:n0}"  Visible="false"/>
                             <tlk:GridNumericColumn HeaderText="" DataField="SAL_TOTAL" SortExpression="SAL_TOTAL" UniqueName="SAL_TOTAL" DataFormatString="{0:n0}" />
 
                         </Columns>
