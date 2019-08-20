@@ -238,7 +238,7 @@
                     </tlk:RadTextBox>
                 </td>
                 <td class="lb">
-                    <asp:Label runat="server" ID="lbObjectLaborOld" Text="Đối tượng lao động"></asp:Label>
+                      <asp:Label ID="lbObjectLaborOld" runat="server" Text="Đối tượng lao động"></asp:Label><span class="lbReq">*</span>
                 </td>
                 <td class="borderRight">
                     <tlk:RadTextBox ID="txtObjectLaborOld" runat="server" SkinID="Readonly" ReadOnly="true">
@@ -253,12 +253,15 @@
                     </tlk:RadComboBox>
                 </td>
                 <td class="lb">
-                    <asp:Label runat="server" ID="lbObjectLaborNew" Text="Đối tượng lao động"></asp:Label>
+                       <asp:Label ID="lbObjectLaborNew" runat="server" Text="Đối tượng lao động"></asp:Label><span class="lbReq">*</span>
                 </td>
                 <td>
                     <tlk:RadComboBox runat="server" ID="cboObjectLaborNew" SkinID="LoadDemand" OnClientSelectedIndexChanged="OnClientSelectedIndexChanged"
                         OnClientItemsRequesting="OnClientItemsRequesting">
                     </tlk:RadComboBox>
+                       <asp:CustomValidator ID="cusObjectLaborNew" runat="server" ErrorMessage="<%$ Translate: Bạn phải chọn Đối tượng lao động %>"
+                        ToolTip="<%$ Translate: Bạn phải chọn Đối tượng lao động %>" ClientValidationFunction="cusObjectLaborNew">
+                    </asp:CustomValidator>
                 </td>
             </tr>
             <tr>
@@ -273,9 +276,10 @@
                     <asp:Label ID="lbFileAttach_Link" runat="server" Text="Tập tin đính kèm"></asp:Label>
                 </td>
                 <td class="borderRight">
-                    <asp:Label ID="lbFileAttach" runat="server" />
+                    <asp:Label ID="lbFileAttach" runat="server" Visible="false" />
                     <tlk:RadTextBox ID="txtFileAttach_Link" runat="server" ReadOnly="true" Visible="false">
                     </tlk:RadTextBox>
+                    <tlk:RadTextBox ID="txtFileAttach_Link1" runat="server" ReadOnly="true" Visible="false"></tlk:RadTextBox>
                     <tlk:RadButton ID="btnDownloadOld" runat="server" Width="160px" Text="<%$ Translate: Tải xuống%>"
                         CausesValidation="false" OnClientClicked="rbtOldClicked" TabIndex="3" EnableViewState="false">
                     </tlk:RadButton>
@@ -402,7 +406,10 @@
             var cbo = $find("<%# cboTitle.ClientID %>");
             args.IsValid = (cbo.get_value().length != 0);
         }
-
+          function cusObjectLaborNew(oSrc, args) {
+            var cbo = $find("<%# cboObjectLaborNew.ClientID %>");
+            args.IsValid = (cbo.get_value().length != 0);
+        }
         function cusStatus(oSrc, args) {
             var cbo = $find("<%# cboStatus.ClientID %>");
             args.IsValid = (cbo.get_value().length != 0);
