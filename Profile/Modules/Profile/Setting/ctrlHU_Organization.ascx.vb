@@ -1139,7 +1139,7 @@ Public Class ctrlHU_Organization
             orgItem = (From p In Organizations Where p.ID = Decimal.Parse(treeOrgFunction.SelectedNode.Value)).SingleOrDefault
             If orgItem IsNot Nothing Then
                 hidParentID.Value = orgItem.PARENT_ID.ToString
-                'txtParent_Name.Text = orgItem.PARENT_NAME
+                txtParent_Name.Text = orgItem.PARENT_NAME
                 txtCode.Text = orgItem.CODE
                 txtLocationWork.Text = orgItem.LOCATION_WORK
                 txtNumberDecision.Text = orgItem.NUMBER_DECISION
