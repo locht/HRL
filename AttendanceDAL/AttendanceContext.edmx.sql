@@ -1,8 +1,8 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for Oracle database
 -- --------------------------------------------------
--- Date Created: 8/13/2019 8:54:48 AM
--- Generated from EDMX file: C:\workspaces\TNG\AttendanceDAL\AttendanceContext.edmx
+-- Date Created: 8/20/2019 8:43:21 AM
+-- Generated from EDMX file: D:\TNG_SOURCE_NEW\AttendanceDAL\AttendanceContext.edmx
 -- --------------------------------------------------
 
 -- --------------------------------------------------
@@ -1790,7 +1790,9 @@ CREATE TABLE "dbo"."AT_DECLARE_ENTITLEMENT" (
    "JOIN_DATE" DATE NULL,
    "MODIFY_TYPE_ID" NUMBER(38,0) NULL,
    "END_MONTH_TN" NUMBER(38,0) NULL,
-   "EXPIRE_YEAR" NUMBER(38,0) NULL
+   "EXPIRE_YEAR" NUMBER(38,0) NULL,
+   "START_DATE" DATE NULL,
+   "END_DATE" DATE NULL
 );
 
 -- Creating table 'AT_PROJECT'

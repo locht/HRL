@@ -18,7 +18,7 @@ Imports System.Runtime.Serialization
 Imports System.Xml.Serialization
 
 
-<Assembly: EdmSchemaAttribute("985b6b7e-12b0-48f8-89c9-37df297a7dca")>
+<Assembly: EdmSchemaAttribute("3d1186dd-a853-48e8-9c9c-4952cdaa494b")>
 #Region "EDM Relationship Metadata"
 <Assembly: EdmRelationshipAttribute("AttendanceModel", "FK_OOLT_OOL", "OT_OTHER_LIST_TYPE", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(OT_OTHER_LIST_TYPE), "OT_OTHER_LIST", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(OT_OTHER_LIST), True)>
 <Assembly: EdmRelationshipAttribute("AttendanceModel", "FK_OOLG_OOLT", "OT_OTHER_LIST_GROUP", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(OT_OTHER_LIST_GROUP), "OT_OTHER_LIST_TYPE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(OT_OTHER_LIST_TYPE), True)>
@@ -6285,6 +6285,56 @@ Public Partial Class AT_DECLARE_ENTITLEMENT
     End Sub
 
     Private Partial Sub OnEXPIRE_YEARChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property START_DATE() As Nullable(Of Global.System.DateTime)
+        Get
+            Return _START_DATE
+        End Get
+        Set
+            OnSTART_DATEChanging(value)
+            ReportPropertyChanging("START_DATE")
+            _START_DATE = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("START_DATE")
+            OnSTART_DATEChanged()
+        End Set
+    End Property
+
+    Private _START_DATE As Nullable(Of Global.System.DateTime)
+    Private Partial Sub OnSTART_DATEChanging(value As Nullable(Of Global.System.DateTime))
+    End Sub
+
+    Private Partial Sub OnSTART_DATEChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property END_DATE() As Nullable(Of Global.System.DateTime)
+        Get
+            Return _END_DATE
+        End Get
+        Set
+            OnEND_DATEChanging(value)
+            ReportPropertyChanging("END_DATE")
+            _END_DATE = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("END_DATE")
+            OnEND_DATEChanged()
+        End Set
+    End Property
+
+    Private _END_DATE As Nullable(Of Global.System.DateTime)
+    Private Partial Sub OnEND_DATEChanging(value As Nullable(Of Global.System.DateTime))
+    End Sub
+
+    Private Partial Sub OnEND_DATEChanged()
     End Sub
 
     #End Region
