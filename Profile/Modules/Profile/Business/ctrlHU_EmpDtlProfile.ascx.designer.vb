@@ -581,22 +581,22 @@ Partial Public Class ctrlHU_EmpDtlProfile
     Protected WithEvents reqDirectManager As Global.System.Web.UI.WebControls.RequiredFieldValidator
 
     '''<summary>
-    '''lbManager control.
+    '''lbmanager control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents lbManager As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents lbmanager As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
-    '''txtManager control.
+    '''txtmanager control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents txtManager As Global.Telerik.Web.UI.RadTextBox
+    Protected WithEvents txtmanager As Global.Telerik.Web.UI.RadTextBox
 
     '''<summary>
     '''lbObjectBook control.
@@ -1895,13 +1895,13 @@ Partial Public Class ctrlHU_EmpDtlProfile
     Protected WithEvents cboPer_Province As Global.Telerik.Web.UI.RadComboBox
 
     '''<summary>
-    '''cusPer_Province control.
+    '''RequiredFieldValidator2 control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents cusPer_Province As Global.System.Web.UI.WebControls.CustomValidator
+    Protected WithEvents RequiredFieldValidator2 As Global.System.Web.UI.WebControls.RequiredFieldValidator
 
     '''<summary>
     '''lbPer_District control.
@@ -1922,13 +1922,13 @@ Partial Public Class ctrlHU_EmpDtlProfile
     Protected WithEvents cboPer_District As Global.Telerik.Web.UI.RadComboBox
 
     '''<summary>
-    '''cusPer_District control.
+    '''RequiredFieldValidator4 control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents cusPer_District As Global.System.Web.UI.WebControls.CustomValidator
+    Protected WithEvents RequiredFieldValidator4 As Global.System.Web.UI.WebControls.RequiredFieldValidator
 
     '''<summary>
     '''lbPer_Ward control.
@@ -2003,6 +2003,15 @@ Partial Public Class ctrlHU_EmpDtlProfile
     Protected WithEvents cboNav_Province As Global.Telerik.Web.UI.RadComboBox
 
     '''<summary>
+    '''cusNav_Province control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents cusNav_Province As Global.System.Web.UI.WebControls.CustomValidator
+
+    '''<summary>
     '''lbNav_District control.
     '''</summary>
     '''<remarks>
@@ -2019,6 +2028,15 @@ Partial Public Class ctrlHU_EmpDtlProfile
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents cboNav_District As Global.Telerik.Web.UI.RadComboBox
+
+    '''<summary>
+    '''cusNav_District control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents cusNav_District As Global.System.Web.UI.WebControls.CustomValidator
 
     '''<summary>
     '''lbNav_Ward control.
