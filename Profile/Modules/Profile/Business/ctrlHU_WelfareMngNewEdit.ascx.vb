@@ -344,6 +344,7 @@ Public Class ctrlHU_WelfareMngNewEdit
                             If money_total <> "" Then
                                 employee.MONEY_TOTAL = Decimal.Parse(money_total)
                             End If
+                            employee.BIRTH_DATE = birth_date
                             employee.ORG_NAME2 = org_name2
                             If money_pl <> "" Then
                                 employee.MONEY_PL = Decimal.Parse(money_pl)

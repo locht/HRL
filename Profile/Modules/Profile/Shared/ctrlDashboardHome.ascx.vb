@@ -317,41 +317,44 @@ Public Class ctrlDashboardHome
             For index = 0 To rgContract.SelectedItems.Count - 1
                 Dim item As GridDataItem = rgContract.SelectedItems(index)
                 Dim remindType As String = item.GetDataKeyValue("REMIND_TYPE")
+                Dim remindName As String = item.GetDataKeyValue("REMIND_NAME")
                 '1: het han HD chinh thuc , 20: het han HD thu viec
                 If remindType = "1" Or remindType = "20" Then
                     SendMailWithTemplate(remindType, item)
-                Else
-                    lstDataSelected.Add(RemindList.Find(Function(f) f.EMPLOYEE_CODE = item.GetDataKeyValue("EMPLOYEE_CODE") And f.LINK_POPUP = item.GetDataKeyValue("LINK_POPUP")))
-                    receiver = item.GetDataKeyValue("WORK_EMAIL")
-                    If lstDataSelected.Count = 0 Then
-                        ShowMessage("Không lấy được dữ liệu để gửi email!", NotifyType.Warning)
-                        Return
-                    End If
-                    Dim dtData = lstDataSelected.ToTable 'đổi thành datatable -> save xls
+                    'Else
+                    'lstDataSelected.Add(RemindList.Find(Function(f) f.EMPLOYEE_CODE = item.GetDataKeyValue("EMPLOYEE_CODE") And f.LINK_POPUP = item.GetDataKeyValue("LINK_POPUP")))
+                    'receiver = item.GetDataKeyValue("WORK_EMAIL")
+                    'If lstDataSelected.Count = 0 Then
+                    '    ShowMessage("Không lấy được dữ liệu để gửi email!", NotifyType.Warning)
+                    '    Return
+                    'End If
+                    'Dim dtData = lstDataSelected.ToTable 'đổi thành datatable -> save xls
 
-                    dtData.TableName = "DATA"
-                    For Each row As DataRow In dtData.Rows
-                        row("LINK_POPUP") = row("LINK_POPUP").ToString.Replace("POPUP('Dialog.aspx", url & "Default.aspx").Replace("')", "")
-                    Next
-                    Dim designer As New WorkbookDesigner
+                    'dtData.TableName = "DATA"
+                    'For Each row As DataRow In dtData.Rows
+                    '    row("LINK_POPUP") = row("LINK_POPUP").ToString.Replace("POPUP('Dialog.aspx", url & "Default.aspx").Replace("')", "")
+                    'Next
+                    'Dim designer As New WorkbookDesigner
 
-                    designer.Open(Server.MapPath("~/ReportTemplates/" & Request.Params("mid") & "/" & Request.Params("fid") & ".xls"))
-                    designer.SetDataSource(dtData)
-                    designer.Process()
-                    designer.Workbook.CalculateFormula()
-                    Dim filePath = Server.MapPath("~/ReportTemplates/" & Request.Params("mid")) & "/Attachment/" & "DanhSachNhacNho_" & Format(Date.Now, "yyyyMMddHHmmss")
-                    designer.Workbook.Save(filePath & ".xls", New XlsSaveOptions())
+                    'designer.Open(Server.MapPath("~/ReportTemplates/" & Request.Params("mid") & "/" & Request.Params("fid") & ".xls"))
+                    'designer.SetDataSource(dtData)
+                    'designer.Process()
+                    'designer.Workbook.CalculateFormula()
+                    'Dim filePath = Server.MapPath("~/ReportTemplates/" & Request.Params("mid")) & "/Attachment/" & "DanhSachNhacNho_" & Format(Date.Now, "yyyyMMddHHmmss")
+                    'designer.Workbook.Save(filePath & ".xls", New XlsSaveOptions())
 
-                    Dim cc As String = String.Empty
-                    Dim body As String = ""
-                    Dim fileAttachments As String = filePath & ".xls"
-                    Using rep As New HistaffFrameworkPublic.HistaffFrameworkRepository
-                        If Not Common.Common.sendEmailByServerMail(receiver, "", "[Histaff Nofitication] - Nhắc nhở", "Dear Mr/Ms, <br /> Histaff system gửi thông tin danh sách nhắc nhở được đính kèm theo email này. <br /> " &
-                            "Lưu và mở file để xem thông tin và click vào hyperlink để xem chi tiết.<br /> Histaff system.", fileAttachments) Then
-                            ShowMessage(Translate(CommonMessage.MESSAGE_SENDMAIL_ERROR), NotifyType.Warning)
-                            Exit Sub
-                        End If
-                    End Using
+                    'Dim cc As String = String.Empty
+                    'Dim body As String = ""
+                    'Dim fileAttachments As String = filePath & ".xls"
+                    'Using rep As New HistaffFrameworkPublic.HistaffFrameworkRepository
+                    '    If Not Common.Common.sendEmailByServerMail(receiver, "", "[Histaff Nofitication] - Nhắc nhở", "Dear Mr/Ms, <br /> Histaff system gửi thông tin danh sách nhắc nhở được đính kèm theo email này. <br /> " &
+                    '        "Lưu và mở file để xem thông tin và click vào hyperlink để xem chi tiết.<br /> Histaff system.", fileAttachments) Then
+                    '        ShowMessage(Translate(CommonMessage.MESSAGE_SENDMAIL_ERROR), NotifyType.Warning)
+                    '        Exit Sub
+                    '    End If
+                    'End Using
+                    'ShowMessage(Translate("Không thể gửi mail nhắc nhở " + remindName), NotifyType.Warning)
+                    'Exit Sub
                 End If
             Next
             ShowMessage(Translate(CommonMessage.MESSAGE_SENDMAIL_COMPLETED), NotifyType.Success)
