@@ -326,7 +326,7 @@
     <None Include="Service References\ProfileBusiness\Profile.ProfileBusiness.BankDTO.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-	<!--
+    <!--
     <Content Include="Service References\ProfileBusiness\Profile.ProfileBusiness.CETIFICATEDTO.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
@@ -334,7 +334,7 @@
     <None Include="Service References\ProfileBusiness\Profile.ProfileBusiness.ComboBoxDataDTO.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-	<!--
+    <!--
     <Content Include="Service References\ProfileBusiness\Profile.ProfileBusiness.CommandResult.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
@@ -396,7 +396,7 @@
     <None Include="Service References\ProfileBusiness\Profile.ProfileBusiness.ContractTypeDTO.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-	<!--
+    <!--
     <Content Include="Service References\ProfileBusiness\Profile.ProfileBusiness.DebtDTO.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
@@ -482,7 +482,7 @@
     <None Include="Service References\ProfileBusiness\Profile.ProfileBusiness.LabourProtectionMngDTO.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-	<!--
+    <!--
     <Content Include="Service References\ProfileBusiness\Profile.ProfileBusiness.LocationDTO.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
@@ -514,7 +514,7 @@
     <None Include="Service References\ProfileBusiness\Profile.ProfileBusiness.ProvinceDTO.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-	<!--
+    <!--
     <Content Include="Service References\ProfileBusiness\Profile.ProfileBusiness.RelationshipListDTO.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
@@ -591,7 +591,7 @@
     <None Include="Service References\ProfileBusiness\Profile.ProfileBusiness.WelfareMngDTO.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-	<!--
+    <!--
     <Content Include="Service References\ProfileBusiness\Profile.ProfileBusiness.Welfatemng_empDTO.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>

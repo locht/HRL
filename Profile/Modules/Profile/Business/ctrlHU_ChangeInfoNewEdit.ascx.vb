@@ -184,7 +184,7 @@ Public Class ctrlHU_ChangeInfoNewEdit
             If dtData IsNot Nothing AndAlso dtData.Rows.Count > 0 Then
                 cboDecisionType.SelectedValue = dtData.Rows(0)("ID")
             End If
-            
+
             Using rep As New ProfileRepository
                 dtData = rep.GetOtherList(ProfileCommon.OBJECT_ATTENDANCE.Code)
             End Using
@@ -276,7 +276,8 @@ Public Class ctrlHU_ChangeInfoNewEdit
                             End If
                             If .FILENAME IsNot Nothing Then
                                 lbFileAttach.Text = Working.WORKING_OLD.FILENAME
-                                txtFileAttach_Link.Text = Working.WORKING_OLD.ATTACH_FILE
+                                txtFileAttach_Link.Text = Working.WORKING_OLD.FILENAME
+                                txtFileAttach_Link1.Text = Working.WORKING_OLD.ATTACH_FILE
                             End If
                             'If .SAL_GROUP_ID IsNot Nothing Then
                             '    cboSalGroupOld.SelectedValue = .SAL_GROUP_ID
@@ -348,7 +349,7 @@ Public Class ctrlHU_ChangeInfoNewEdit
                         chkIsProcess.Checked = Working.IS_PROCESS
                     End If
                     ' txtDecisionNo.Text = Working.DECISION_NO
-                  
+
                     'If Working.SAL_GROUP_ID IsNot Nothing Then
                     '    cboSalGroup.SelectedValue = Working.SAL_GROUP_ID
                     '    cboSalGroup.Text = Working.SAL_GROUP_NAME
@@ -541,7 +542,7 @@ Public Class ctrlHU_ChangeInfoNewEdit
 
                             ' .DECISION_NO = txtDecisionNo.Text
                             .DECISION_NO = txtDecision.Text
-                           
+
                             'If cboSalGroup.SelectedValue <> "" Then
                             '    .SAL_GROUP_ID = cboSalGroup.SelectedValue
                             'End If
@@ -634,7 +635,7 @@ Public Class ctrlHU_ChangeInfoNewEdit
                                     ctrlMessageBox.DataBind()
                                     ctrlMessageBox.Show()
                                 End If
-                                
+
                             Case CommonMessage.STATE_EDIT
                                 If hidManager.Value <> "" Then
                                     objWorking.ID = Decimal.Parse(hidID.Value)
@@ -941,7 +942,7 @@ Public Class ctrlHU_ChangeInfoNewEdit
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
         Try
             If lbFileAttach.Text <> "" Then
-                Dim strPath_Down As String = Server.MapPath("~/ReportTemplates/Profile/SalaryInfo/" + txtFileAttach_Link.Text)
+                Dim strPath_Down As String = Server.MapPath("~/ReportTemplates/Profile/SalaryInfo/" + txtFileAttach_Link1.Text)
                 'bCheck = True
                 ZipFiles(strPath_Down, 2)
             End If
@@ -956,13 +957,13 @@ Public Class ctrlHU_ChangeInfoNewEdit
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
 
         Try
-            
+
             If strUpload <> "" Then
                 txtUploadFile.Text = strUpload
                 FileOldName = txtUpload.Text
                 txtUpload.Text = strUpload
             Else
-                
+
                 strUpload = String.Empty
             End If
 
@@ -1076,7 +1077,7 @@ Public Class ctrlHU_ChangeInfoNewEdit
 
                     Case cboStaffRank.ID
                         dtData = rep.GetStaffRankList(True)
-                    
+
                 End Select
 
                 If sText <> String.Empty Then
@@ -1153,7 +1154,7 @@ Public Class ctrlHU_ChangeInfoNewEdit
             _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
         End Try
     End Sub
-    
+
     ''' <lastupdate>06/07/2017</lastupdate>
     ''' <summary> Event Ok popup List don vi </summary>
     ''' <param name="sender"></param>
@@ -1465,7 +1466,8 @@ Public Class ctrlHU_ChangeInfoNewEdit
                 End If
                 If obj.FILENAME IsNot Nothing Then
                     lbFileAttach.Text = obj.FILENAME
-                    txtFileAttach_Link.Text = obj.ATTACH_FILE
+                    txtFileAttach_Link.Text = obj.FILENAME
+                    txtFileAttach_Link1.Text = obj.ATTACH_FILE
                 End If
                 Dim dtdata As DataTable = Nothing
                 If obj.ORG_ID IsNot Nothing Then
@@ -1512,6 +1514,6 @@ Public Class ctrlHU_ChangeInfoNewEdit
     Public Function GetNullMsg(ByVal input) As String
         Return String.Format("{0} {1}", Errors.NullOrInActive, input)
     End Function
-    
+
 #End Region
 End Class
