@@ -32,6 +32,14 @@ Public Class ctrlRegisterCONewEdit
         End Set
     End Property
 
+    Property isFlag As Boolean
+        Get
+            Return ViewState(Me.ID & "_isFlag")
+        End Get
+        Set(ByVal value As Boolean)
+            ViewState(Me.ID & "_isFlag") = value
+        End Set
+    End Property
     Property isEdit As Boolean
         Get
             Return ViewState(Me.ID & "_isEdit")
@@ -322,6 +330,7 @@ Public Class ctrlRegisterCONewEdit
         Try
             GetLeaveSheet_Detail()
             Cal_DayLeaveSheet()
+            Cal_DayEntitlement()
         Catch ex As Exception
             Throw ex
         Finally
@@ -332,6 +341,7 @@ Public Class ctrlRegisterCONewEdit
         Try
             GetLeaveSheet_Detail()
             Cal_DayLeaveSheet()
+            Cal_DayEntitlement()
         Catch ex As Exception
 
         End Try
@@ -406,6 +416,15 @@ Public Class ctrlRegisterCONewEdit
                             ShowMessage(Translate("Số ngày đăng ký nghỉ phải lơn hơn 0"), NotifyType.Warning)
                             Exit Sub
                         End If
+
+                        If (isFlag = True) Then
+                            Dim intBalance As Double = If(rnBALANCE.Text.Trim = "", 0, Double.Parse(rnBALANCE.Text.Trim))
+                            If (rnDAY_NUM.Value > intBalance) Then
+                                ShowMessage(Translate("Đã vượt quá số phép qui định, vui lòng điều chỉnh lại dữ liệu"), NotifyType.Warning)
+                                Exit Sub
+                            End If
+                        End If
+
                         CreateDataBinDing(0)
                         objValidate.LEAVE_FROM = rdLEAVE_FROM.SelectedDate
                         objValidate.LEAVE_TO = rdLEAVE_TO.SelectedDate
@@ -425,8 +444,8 @@ Public Class ctrlRegisterCONewEdit
                         ExcuteScript("Resize", "ResizeSplitter(splitterID, pane1ID, pane2ID, validateID, oldSize, 'rgWorkschedule')")
                     End If
                 Case CommonMessage.TOOLBARITEM_CANCEL
-                    ''POPUPTOLINK_CANCEL
-                    Response.Redirect("/Default.aspx?mid=Attendance&fid=ctrlRegisterCO&group=Business")
+                        ''POPUPTOLINK_CANCEL
+                        Response.Redirect("/Default.aspx?mid=Attendance&fid=ctrlRegisterCO&group=Business")
             End Select
             _myLog.WriteLog(_myLog._info, _classPath, method,
                                     CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
@@ -510,6 +529,71 @@ Public Class ctrlRegisterCONewEdit
         Catch ex As Exception
             Throw ex
         End Try
+    End Sub
+    Private Sub Cal_DayEntitlement()
+        Try
+            If rtEmployee_id.Text = "" Or rdLEAVE_FROM.SelectedDate Is Nothing Then
+                Exit Sub
+            End If
+
+            Dim dtSourceEntitlement As New DataTable()
+            Dim dtManual As New DataTable()
+            Dim employee_id As Decimal = Decimal.Parse(rtEmployee_id.Text.Trim)
+
+            Try
+                Using rep As New AttendanceRepository
+                    Dim manualID As Decimal = Decimal.Parse(cbMANUAL_ID.SelectedValue)
+                    dtManual = rep.GET_MANUAL_BY_ID(manualID)
+                End Using
+
+                If dtManual.Rows.Count > 0 Then
+                    Dim strCode As String = dtManual.Rows(0)("CODE").ToString()
+                    Dim strMorning As String = If(dtManual.Rows(0)("MORNING_ID") IsNot Nothing, dtManual.Rows(0)("MORNING_ID").ToString(), Nothing)
+                    Dim strAfternoon As String = If(dtManual.Rows(0)("AFTERNOON_ID") IsNot Nothing, dtManual.Rows(0)("AFTERNOON_ID").ToString(), Nothing)
+
+                    If (strCode.ToUpper() = "P" And (strMorning = "251" Or strAfternoon = "251")) Then
+                        Using rep As New AttendanceRepository
+                            dtSourceEntitlement = rep.GET_INFO_PHEPNAM(employee_id, rdLEAVE_FROM.SelectedDate)
+                            If dtSourceEntitlement.Rows.Count > 0 Then
+                                isFlag = True
+                                rnCUR_HAVE.Text = If(dtSourceEntitlement.Rows(0)("PHEP_CHE_DO") Is Nothing, "0", dtSourceEntitlement.Rows(0)("PHEP_CHE_DO").ToString())
+                                rnSENIORITYHAVE.Text = If(dtSourceEntitlement.Rows(0)("PHEP_THAM_NIEN") Is Nothing, "0", dtSourceEntitlement.Rows(0)("PHEP_THAM_NIEN").ToString())
+                                rnPREV_HAVE.Text = If(dtSourceEntitlement.Rows(0)("PHEP_CU_CHUYEN_QUA") Is Nothing, "0", dtSourceEntitlement.Rows(0)("PHEP_CU_CHUYEN_QUA").ToString())
+                                rnCUR_USED.Text = If(dtSourceEntitlement.Rows(0)("PHEP_CU_DA_NGHI") Is Nothing, "0", dtSourceEntitlement.Rows(0)("PHEP_CU_DA_NGHI").ToString())
+                                rnCUR_HAVE_INMONTH.Text = If(dtSourceEntitlement.Rows(0)("PHEP_THANG_LVIEC") Is Nothing, "0", dtSourceEntitlement.Rows(0)("PHEP_THANG_LVIEC").ToString())
+                                rnPREVTOTAL_HAVE.Text = If(dtSourceEntitlement.Rows(0)("PHEP_CU_CON_HLUC") Is Nothing, "0", dtSourceEntitlement.Rows(0)("PHEP_CU_CON_HLUC").ToString())
+                                rtCUR_USED_INMONTH.Text = If(dtSourceEntitlement.Rows(0)("PHEP_DA_NGHI") Is Nothing, "0", dtSourceEntitlement.Rows(0)("PHEP_DA_NGHI").ToString())
+                                rnBALANCE.Text = If(dtSourceEntitlement.Rows(0)("PHEP_CONLAI") Is Nothing, "0", dtSourceEntitlement.Rows(0)("PHEP_CONLAI").ToString())
+                            Else
+                                Clearn__DayEntitlement()
+                            End If
+                        End Using
+                    Else
+                        Clearn__DayEntitlement()
+                    End If
+                Else
+                    Clearn__DayEntitlement()
+                End If
+            Catch ex As Exception
+                Throw ex
+            Finally
+                dtSourceEntitlement.Dispose()
+                dtManual.Dispose()
+            End Try
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+    Private Sub Clearn__DayEntitlement()
+        isFlag = False
+        rnCUR_HAVE.Text = ""
+        rnSENIORITYHAVE.Text = ""
+        rnPREV_HAVE.Text = ""
+        rnCUR_USED.Text = ""
+        rnCUR_HAVE_INMONTH.Text = ""
+        rnPREVTOTAL_HAVE.Text = ""
+        rtCUR_USED_INMONTH.Text = ""
+        rnBALANCE.Text = ""
     End Sub
 
     ''' <lastupdate>
