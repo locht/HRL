@@ -4,7 +4,7 @@ Imports Profile.ProfileBusiness
 Imports Telerik.Web.UI
 Imports Common.CommonBusiness
 Imports Common
-
+Imports Common.Common
 Public Class ctrlHU_Signer
     Inherits Common.CommonView
     Dim log As New UserLog
@@ -30,16 +30,27 @@ Public Class ctrlHU_Signer
             ViewState(Me.ID & "_isLoadPopup") = value
         End Set
     End Property
-    Private Property dtData As DataTable
+    Property dtData As DataTable
         Get
-            Return PageViewState(Me.ID & "_dtData")
+            If ViewState(Me.ID & "_dtData") Is Nothing Then
+                Dim dt As New DataTable("DATA")
+                dt.Columns.Add("ID", GetType(String))
+                dt.Columns.Add("SIGNER_CODE", GetType(String))
+                dt.Columns.Add("NAME", GetType(String))
+                dt.Columns.Add("TITLE_NAME", GetType(String))
+                dt.Columns.Add("ORG_NAME", GetType(String))
+                dt.Columns.Add("REMARK", GetType(String))
+                dt.Columns.Add("ORG_ID", GetType(String))
+                dt.Columns.Add("ACTFLG", GetType(String))
+                ViewState(Me.ID & "_dtData") = dt
+            End If
+            Return ViewState(Me.ID & "_dtData")
         End Get
         Set(ByVal value As DataTable)
-            PageViewState(Me.ID & "_dtData") = value
+            ViewState(Me.ID & "_dtData") = value
         End Set
-
-
     End Property
+
     Public Property dtExport As DataTable
         Get
             Return PageViewState(Me.ID & "_dtExport")
@@ -117,6 +128,8 @@ Public Class ctrlHU_Signer
         InitControl()
         If Not IsPostBack Then
             GetDataComboBox()
+            ViewConfig(RadPane2)
+            GirdConfig(rgData)
         End If
     End Sub
 
@@ -265,17 +278,9 @@ Public Class ctrlHU_Signer
         dic.Add("SIGNER_CODE", txtCode)
         dic.Add("NAME", txtTYPE_NAME)
         dic.Add("TITLE_NAME", txtNAME_EN)
-        dic.Add("ORG_ID", cboCompany)
-        'dic.Add("TYPE1_ID", cbTYPE1)
-        'dic.Add("TYPE2_ID", cbTYPE2)
-        'dic.Add("TYPE3_ID", cbTYPE3)
-        'dic.Add("TYPE4_ID", cbTYPE4)
-        'dic.Add("TYPE5_ID", cbTYPE5)
+        dic.Add("ORG_ID", rtORG_ID)
+        dic.Add("ORG_NAME", rtOrg_Name)
         dic.Add("REMARK", txtRemark)
-        'dic.Add("IS_BRANCH", cbIsBranch)
-        'dic.Add("STATUS_ID", cbStatus)
-        'dic.Add("GROUP_ID", cboDecisionGroup)
-        'dic.Add("CONCURENTLY_TYPE_VIEW", cboConcurrentlyType)
         Utilities.OnClientRowSelectedChanged(rgData, dic)
     End Sub
 #End Region
@@ -301,6 +306,9 @@ Public Class ctrlHU_Signer
                         txtCode.Text = item.EMPLOYEE_CODE
                         txtTYPE_NAME.Text = item.FULLNAME_VN
                         txtNAME_EN.Text = item.TITLE_NAME
+                        rtOrg_Name.Text = item.ORG_NAME
+                        rtORG_ID.ToolTip = item.ORG_DESC
+                        rtORG_ID.Text = item.ORG_ID
                     Next
             End Select
             isLoadPopup = 0
@@ -347,7 +355,9 @@ Public Class ctrlHU_Signer
                     filter.USER_ID = LogHelper.CurrentUser.ID
                     Dim dtData As DataTable
                     Using xls As New ExcelCommon
-                        dtData = rep.GET_HU_SIGNER(filter)
+                        Dim _param = New ProfileBusiness.ParamDTO With {.ORG_ID = Decimal.Parse(ctrlOrg.CurrentValue),
+                                         .IS_DISSOLVE = ctrlOrg.IsDissolve}
+                        dtData = rep.GET_HU_SIGNER(filter, _param)
                         If dtData.Rows.Count > 0 Then
                             rgData.ExportExcel(Server, Response, dtData, "danh sach")
                         Else
@@ -387,7 +397,7 @@ Public Class ctrlHU_Signer
 
                 Case CommonMessage.TOOLBARITEM_CANCEL
                     CurrentState = CommonMessage.STATE_NORMAL
-                    ClearControlValue(cboCompany, txtCode, txtTYPE_NAME, txtNAME_EN, txtRemark)
+                    ClearControlValue(rtOrg_Name, txtCode, txtTYPE_NAME, txtNAME_EN, txtRemark)
                     rgData.Rebind()
             End Select
             UpdateControlState()
@@ -411,7 +421,7 @@ Public Class ctrlHU_Signer
                 Next
                 If lst.ToString <> "" Then
                     rep.DeleteSigner(lst)
-                    ClearControlValue(cboCompany, txtCode, txtNAME_EN, txtRemark, txtTYPE_NAME)
+                    ClearControlValue(rtOrg_Name, txtCode, txtNAME_EN, txtRemark, txtTYPE_NAME)
                     CurrentState = CommonMessage.STATE_NORMAL
                     ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), Utilities.NotifyType.Success)
                 Else
@@ -434,24 +444,38 @@ Public Class ctrlHU_Signer
     End Sub
 
     Protected Sub RadGrid_NeedDataSource(ByVal source As Object, ByVal e As GridNeedDataSourceEventArgs) Handles rgData.NeedDataSource
+        Dim filter As New SignerDTO
+        Dim rep As New ProfileRepository
         Try
-            Dim filter As New SignerDTO
-
+            SetValueObjectByRadGrid(rgData, filter)
+            Dim _param = New ProfileBusiness.ParamDTO With {.ORG_ID = Decimal.Parse(ctrlOrg.CurrentValue),
+                                            .IS_DISSOLVE = ctrlOrg.IsDissolve}
             filter.USER_ID = LogHelper.CurrentUser.ID
-            Dim rep As New ProfileRepository
-            dtData = rep.GET_HU_SIGNER(filter)
-            If Not IsPostBack Then
-                DesignGrid(dtData)
+            Dim Sorts As String = rgData.MasterTableView.SortExpressions.GetSortString()
+            Dim dt = rep.GET_HU_SIGNER(filter, _param)
+            If dt IsNot Nothing Then
+                dtData = dt
             End If
+            'If Not IsPostBack Then
+            '    DesignGrid(dtData)
+            'End If
             rgData.DataSource = dtData
             rgData.VirtualItemCount = dtData.Rows.Count
-
+        Catch ex As Exception
+            DisplayException(Me.ViewName, Me.ID, ex)
+        Finally
+            filter = Nothing
+            rep.Dispose()
+        End Try
+    End Sub
+    Private Sub ctrlOrg_SelectedNodeChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles ctrlOrg.SelectedNodeChanged
+        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+        Try
+            rgData.Rebind()
         Catch ex As Exception
             DisplayException(Me.ViewName, Me.ID, ex)
         End Try
-
     End Sub
-
     '' Kiểm tra trùng 
     'Protected Sub validateCode_ServerValidate(ByVal source As Object, ByVal args As System.Web.UI.WebControls.ServerValidateEventArgs) Handles validateCode.ServerValidate
     '    Try
@@ -556,8 +580,12 @@ Public Class ctrlHU_Signer
         log = LogHelper.GetUserLog
         PA.ID = IDSelect
         PA.SIGNER_CODE = txtCode.Text
-        PA.ORG_ID = cboCompany.SelectedValue
-
+        If IsNumeric(rtORG_ID.Text) Then
+            PA.ORG_ID = Decimal.Parse(rtORG_ID.Text)
+        Else
+            ShowMessage(Translate("Bạn vui lòng chọn phòng ban bên cây sơ đồ tổ chức"), Utilities.NotifyType.Warning)
+            Exit Function
+        End If
         PA.TITLE_NAME = txtNAME_EN.Text
         PA.NAME = txtTYPE_NAME.Text
 
@@ -600,15 +628,7 @@ Public Class ctrlHU_Signer
     Private Sub GetDataComboBox()
         Dim repS As New ProfileStoreProcedure
         Try
-            Dim dtOrgLevel As DataTable
-            dtOrgLevel = repS.GET_ORGID_COMPANY_LEVEL()
-            Dim dr As DataRow = dtOrgLevel.NewRow
-            dr("ORG_ID") = "-1"
-            dr("ORG_NAME_VN") = "Dùng chung"
-            dtOrgLevel.Rows.Add(dr)
 
-            dtOrgLevel.DefaultView.Sort = "ORG_ID ASC"
-            FillRadCombobox(cboCompany, dtOrgLevel, "ORG_NAME_VN", "ORG_ID", True)
         Catch ex As Exception
             Throw ex
         End Try

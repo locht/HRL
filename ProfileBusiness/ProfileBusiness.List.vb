@@ -2487,10 +2487,10 @@ Namespace ProfileBusiness.ServiceImplementations
         End Function
 #End Region
 #Region "danh mục người ký"
-        Public Function GET_HU_SIGNER(ByVal _filter As SignerDTO) As DataTable Implements ServiceContracts.IProfileBusiness.GET_HU_SIGNER
+        Public Function GET_HU_SIGNER(ByVal _filter As SignerDTO, ByVal _param As ParamDTO, ByVal log As UserLog) As DataTable Implements ServiceContracts.IProfileBusiness.GET_HU_SIGNER
             Try
                 Dim rep As New ProfileRepository
-                Return rep.GET_HU_SIGNER(_filter)
+                Return rep.GET_HU_SIGNER(_filter, _param, log)
             Catch ex As Exception
                 Throw ex
             End Try

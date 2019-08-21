@@ -49381,7 +49381,7 @@ Namespace ProfileBusiness
         Function ApproveListContract(ByVal listID As System.Collections.Generic.List(Of Decimal), ByVal log As Common.CommonBusiness.UserLog) As Boolean
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GET_HU_SIGNER", ReplyAction:="http://tempuri.org/IProfileBusiness/GET_HU_SIGNERResponse")>  _
-        Function GET_HU_SIGNER(ByVal _filter As ProfileBusiness.SignerDTO) As System.Data.DataTable
+        Function GET_HU_SIGNER(ByVal _filter As ProfileBusiness.SignerDTO, ByVal _param As ProfileBusiness.ParamDTO, ByVal log As Common.CommonBusiness.UserLog) As System.Data.DataTable
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/INSERT_HU_SIGNER", ReplyAction:="http://tempuri.org/IProfileBusiness/INSERT_HU_SIGNERResponse")>  _
         Function INSERT_HU_SIGNER(ByVal PA As ProfileBusiness.SignerDTO) As Boolean
@@ -51852,8 +51852,8 @@ Namespace ProfileBusiness
             Return MyBase.Channel.ApproveListContract(listID, log)
         End Function
         
-        Public Function GET_HU_SIGNER(ByVal _filter As ProfileBusiness.SignerDTO) As System.Data.DataTable Implements ProfileBusiness.IProfileBusiness.GET_HU_SIGNER
-            Return MyBase.Channel.GET_HU_SIGNER(_filter)
+        Public Function GET_HU_SIGNER(ByVal _filter As ProfileBusiness.SignerDTO, ByVal _param As ProfileBusiness.ParamDTO, ByVal log As Common.CommonBusiness.UserLog) As System.Data.DataTable Implements ProfileBusiness.IProfileBusiness.GET_HU_SIGNER
+            Return MyBase.Channel.GET_HU_SIGNER(_filter, _param, log)
         End Function
         
         Public Function INSERT_HU_SIGNER(ByVal PA As ProfileBusiness.SignerDTO) As Boolean Implements ProfileBusiness.IProfileBusiness.INSERT_HU_SIGNER
