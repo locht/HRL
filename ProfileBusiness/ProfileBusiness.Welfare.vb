@@ -43,10 +43,11 @@ Namespace ProfileBusiness.ServiceImplementations
 
             End Try
         End Function
-        Public Function GET_EXPORT_EMP(ByVal P_WELFARE_ID As Decimal, ByVal P_DATE As Date) As DataSet Implements ServiceContracts.IProfileBusiness.GET_EXPORT_EMP
+        Public Function GET_EXPORT_EMP(ByVal P_WELFARE_ID As Decimal, ByVal P_DATE As Date,
+                                        ByVal UserLog As UserLog) As DataSet Implements ServiceContracts.IProfileBusiness.GET_EXPORT_EMP
             Try
                 Using rep As New ProfileRepository
-                    Dim dt = rep.GET_EXPORT_EMP(P_WELFARE_ID, P_DATE)
+                    Dim dt = rep.GET_EXPORT_EMP(P_WELFARE_ID, P_DATE, UserLog)
                     Return dt
                 End Using
             Catch ex As Exception

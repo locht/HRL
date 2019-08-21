@@ -51758,7 +51758,7 @@ Namespace ProfileBusiness
         Function GET_DETAILS_EMP(ByVal P_ID As Decimal, ByVal P_WELFARE_ID As Decimal, ByVal P_DATE As Date) As System.Data.DataTable
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GET_EXPORT_EMP", ReplyAction:="http://tempuri.org/IProfileBusiness/GET_EXPORT_EMPResponse")>  _
-        Function GET_EXPORT_EMP(ByVal P_WELFARE_ID As Decimal, ByVal P_DATE As Date) As System.Data.DataSet
+        Function GET_EXPORT_EMP(ByVal P_WELFARE_ID As Decimal, ByVal P_DATE As Date, ByVal log As Common.CommonBusiness.UserLog) As System.Data.DataSet
     End Interface
     
     <System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")>  _
@@ -53992,8 +53992,8 @@ Namespace ProfileBusiness
             Return MyBase.Channel.GET_DETAILS_EMP(P_ID, P_WELFARE_ID, P_DATE)
         End Function
         
-        Public Function GET_EXPORT_EMP(ByVal P_WELFARE_ID As Decimal, ByVal P_DATE As Date) As System.Data.DataSet Implements ProfileBusiness.IProfileBusiness.GET_EXPORT_EMP
-            Return MyBase.Channel.GET_EXPORT_EMP(P_WELFARE_ID, P_DATE)
+        Public Function GET_EXPORT_EMP(ByVal P_WELFARE_ID As Decimal, ByVal P_DATE As Date, ByVal log As Common.CommonBusiness.UserLog) As System.Data.DataSet Implements ProfileBusiness.IProfileBusiness.GET_EXPORT_EMP
+            Return MyBase.Channel.GET_EXPORT_EMP(P_WELFARE_ID, P_DATE, log)
         End Function
     End Class
 End Namespace
