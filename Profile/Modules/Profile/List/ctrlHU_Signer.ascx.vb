@@ -307,8 +307,8 @@ Public Class ctrlHU_Signer
                         txtTYPE_NAME.Text = item.FULLNAME_VN
                         txtNAME_EN.Text = item.TITLE_NAME
                         rtOrg_Name.Text = item.ORG_NAME
-                        rtORG_ID.ToolTip = item.ORG_DESC
-                        rtORG_ID.Text = item.ORG_ID
+                        rtOrg_Name.ToolTip = item.ORG_DESC
+                        'rtORG_ID.Text = item.ORG_ID
                     Next
             End Select
             isLoadPopup = 0
@@ -472,6 +472,9 @@ Public Class ctrlHU_Signer
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
         Try
             rgData.Rebind()
+            If IsNumeric(ctrlOrg.CurrentValue) Then
+                rtORG_ID.Text = ctrlOrg.CurrentValue
+            End If
         Catch ex As Exception
             DisplayException(Me.ViewName, Me.ID, ex)
         End Try
