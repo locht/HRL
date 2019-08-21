@@ -169,9 +169,10 @@ Partial Public Class CommonRepository
             End Try
         End Using
     End Function
-
+    'edit function shared vi dung phan quyen trong thiet lap so do to chuc
     Public Shared Function GetOrganizationLocationTreeView() As List(Of OrganizationDTO)
         Dim lstOrgPermission As New List(Of OrganizationDTO)
+        Dim lstAllOrg As New List(Of OrganizationDTO)
         Using rep As New CommonBusinessClient
             Try
                 lstOrgPermission = Common.OrganizationLocationDataSession
@@ -179,6 +180,10 @@ Partial Public Class CommonRepository
                 If lstOrgPermission.Count = 0 Then
                     lstOrgPermission = rep.GetOrganizationLocationTreeView(Common.GetUsername)
                     Common.OrganizationLocationDataSession = lstOrgPermission
+                End If
+                If HttpContext.Current.Session("CallAllOrg") = "LoadAllOrg" Then
+                    lstAllOrg = rep.GetOrganizationLocationTreeView("ADMIN")
+                    Return lstAllOrg
                 End If
                 Return lstOrgPermission
             Catch ex As Exception

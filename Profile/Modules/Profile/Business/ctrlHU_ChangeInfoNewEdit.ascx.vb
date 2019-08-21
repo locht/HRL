@@ -107,6 +107,15 @@ Public Class ctrlHU_ChangeInfoNewEdit
             ViewState(Me.ID & "_isLoadPopup") = value
         End Set
     End Property
+    'là khi chinh sua
+    Property isEdit As Integer
+        Get
+            Return ViewState(Me.ID & "_isEdit")
+        End Get
+        Set(ByVal value As Integer)
+            ViewState(Me.ID & "_isEdit") = value
+        End Set
+    End Property
 
     Property Down_File As String
         Get
@@ -1180,6 +1189,7 @@ Public Class ctrlHU_ChangeInfoNewEdit
                 End Using
             End If
             isLoadPopup = 0
+            Session.Remove("CallAllOrg")
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
             'DisplayException(Me.ViewName, Me.ID, ex)
@@ -1375,6 +1385,11 @@ Public Class ctrlHU_ChangeInfoNewEdit
                     End If
 
                 Case 3
+                    If cboDecisionType.Text = "Quyết định điều động khác pháp nhân" Then
+                        HttpContext.Current.Session("CallAllOrg") = "LoadAllOrg"
+                    Else
+                        Session.Remove("CallAllOrg")
+                    End If
                     ctrlFindOrgPopup = Me.Register("ctrlFindOrgPopup", "Common", "ctrlFindOrgPopup")
                     phFindOrg.Controls.Add(ctrlFindOrgPopup)
 
@@ -1409,6 +1424,7 @@ Public Class ctrlHU_ChangeInfoNewEdit
                         Working = New WorkingDTO With {.ID = Decimal.Parse(ID)}
                     End If
                     Refresh("UpdateView")
+                    isEdit = 1
                     Exit Sub
                 End If
 
@@ -1516,4 +1532,16 @@ Public Class ctrlHU_ChangeInfoNewEdit
     End Function
 
 #End Region
+
+    Private Sub cboDecisionType_SelectedIndexChanged(sender As Object, e As Telerik.Web.UI.RadComboBoxSelectedIndexChangedEventArgs) Handles cboDecisionType.SelectedIndexChanged
+        Try
+            If isEdit <> 1 Then
+                txtOrgName.Text = ""
+                hidOrg.ClearValue()
+                cboTitle.ClearValue()
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
 End Class

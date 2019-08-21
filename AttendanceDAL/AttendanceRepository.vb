@@ -631,4 +631,36 @@ Partial Public Class AttendanceRepository
     End Sub
 #End Region
 
+#Region "STORE PROCEDURE"
+    Public Function GET_MANUAL_BY_ID(ByVal id As Decimal) As DataTable
+        Try
+            Using cls As New DataAccess.QueryData
+                Dim dtData As DataTable = cls.ExecuteStore("PKG_AT_LIST.GET_MANUAL_BY_ID",
+                                           New With {.P_ID = id,
+                                                     .P_CUR = cls.OUT_CURSOR})
+
+                Return dtData
+            End Using
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iTime")
+            Throw ex
+        End Try
+    End Function
+    Public Function GET_INFO_PHEPNAM(ByVal id As Decimal, ByVal fromDate As Date) As DataTable
+        Try
+            Using cls As New DataAccess.QueryData
+                Dim dtData As DataTable = cls.ExecuteStore("PKG_AT_LIST.GET_INFO_PHEPNAM",
+                                           New With {.P_EMPLOYEE_ID = id,
+                                                     .P_FROM_DATE_TIME = fromDate,
+                                                     .P_CUR = cls.OUT_CURSOR})
+
+                Return dtData
+            End Using
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iTime")
+            Throw ex
+        End Try
+    End Function
+#End Region
+
 End Class
