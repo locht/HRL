@@ -323,7 +323,7 @@ Namespace ProfileBusiness.ServiceContracts
         <OperationContract()>
         Function GET_DETAILS_EMP(ByVal P_ID As Decimal, ByVal P_WELFARE_ID As Decimal, ByVal P_DATE As Date) As DataTable
         <OperationContract()>
-        Function GET_EXPORT_EMP(ByVal P_WELFARE_ID As Decimal, ByVal P_DATE As Date) As DataSet
+        Function GET_EXPORT_EMP(ByVal P_WELFARE_ID As Decimal, ByVal P_DATE As Date, ByVal log As UserLog) As DataSet
         <OperationContract()>
         Function GetWelfareList(ByVal _filter As WelfareListDTO,
                                         ByVal PageIndex As Integer,
