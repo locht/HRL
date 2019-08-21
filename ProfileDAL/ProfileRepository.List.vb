@@ -5729,13 +5729,14 @@ Partial Class ProfileRepository
         End Try
     End Function
     'CHECK DL DA TON TAI HAY CHUA
-    Public Function CHECK_EXIT(ByVal P_ID As String, ByVal idemp As Decimal) As Boolean
+    Public Function CHECK_EXIT(ByVal P_ID As String, ByVal idemp As Decimal, ByVal ORG_ID As Decimal) As Boolean
         Try
 
             Using cls As New DataAccess.QueryData
                 Dim dtData As DataTable = cls.ExecuteStore("PKG_HU_IPROFILE_LIST.CHECK_EXIT", New With {
                                                                                     P_ID,
                                                                                     idemp,
+                                                                                    ORG_ID,
                                                                                   .P_OUT = cls.OUT_CURSOR})
                 If Decimal.Parse(dtData(0)("CHECK1").ToString) > 0 Then
                     Return True

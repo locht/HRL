@@ -49422,7 +49422,7 @@ Namespace ProfileBusiness
         Function UPDATE_HU_SIGNER(ByVal PA As ProfileBusiness.SignerDTO) As Boolean
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/CHECK_EXIT", ReplyAction:="http://tempuri.org/IProfileBusiness/CHECK_EXITResponse")>  _
-        Function CHECK_EXIT(ByVal P_ID As String, ByVal idemp As Decimal) As Decimal
+        Function CHECK_EXIT(ByVal P_ID As String, ByVal idemp As Decimal, ByVal ORG_ID As Decimal) As Decimal
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/DeactiveAndActiveSigner", ReplyAction:="http://tempuri.org/IProfileBusiness/DeactiveAndActiveSignerResponse"),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.FileContractDTO)),  _
@@ -51896,8 +51896,8 @@ Namespace ProfileBusiness
             Return MyBase.Channel.UPDATE_HU_SIGNER(PA)
         End Function
         
-        Public Function CHECK_EXIT(ByVal P_ID As String, ByVal idemp As Decimal) As Decimal Implements ProfileBusiness.IProfileBusiness.CHECK_EXIT
-            Return MyBase.Channel.CHECK_EXIT(P_ID, idemp)
+        Public Function CHECK_EXIT(ByVal P_ID As String, ByVal idemp As Decimal, ByVal ORG_ID As Decimal) As Decimal Implements ProfileBusiness.IProfileBusiness.CHECK_EXIT
+            Return MyBase.Channel.CHECK_EXIT(P_ID, idemp, ORG_ID)
         End Function
         
         Public Function DeactiveAndActiveSigner(ByVal lstID As String, ByVal sActive As Decimal) As Object Implements ProfileBusiness.IProfileBusiness.DeactiveAndActiveSigner

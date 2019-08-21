@@ -2505,10 +2505,10 @@ Namespace ProfileBusiness.ServiceImplementations
             End Try
         End Function
         'CHECK TON TAI HAY CHUA 
-        Public Function CHECK_EXIT(ByVal P_ID As String, ByVal idemp As Decimal) As Decimal Implements ServiceContracts.IProfileBusiness.CHECK_EXIT
+        Public Function CHECK_EXIT(ByVal P_ID As String, ByVal idemp As Decimal, ByVal ORG_ID As Decimal) As Decimal Implements ServiceContracts.IProfileBusiness.CHECK_EXIT
             Try
                 Dim rep As New ProfileRepository
-                Return rep.CHECK_EXIT(P_ID, idemp)
+                Return rep.CHECK_EXIT(P_ID, idemp, ORG_ID)
             Catch ex As Exception
 
             End Try
