@@ -53,6 +53,10 @@ Namespace AttendanceBusiness.ServiceContracts
                                      Optional ByVal Sorts As String = "CREATED_DATE desc", Optional ByVal log As UserLog = Nothing) As List(Of AT_PORTAL_REG_DTO)
         <OperationContract()>
         Function Upd_TimeTImesheetMachines(ByVal LstObj As List(Of AT_TIME_TIMESHEET_MACHINETDTO), Optional ByVal log As UserLog = Nothing) As Boolean
+        <OperationContract()>
+        Function GET_MANUAL_BY_ID(ByVal id As Decimal) As DataTable
+        <OperationContract()>
+        Function GET_INFO_PHEPNAM(ByVal id As Decimal, ByVal fromDate As Date) As DataTable
 #Region "CONFIG TEMPLATE"
         <OperationContract()>
         Function GET_CONFIG_TEMPLATE(ByVal MACHINE_TYPE As Decimal?) As DataSet
