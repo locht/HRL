@@ -238,6 +238,8 @@ Public Class ctrlHU_ContractNewEdit
                         txtSignName2.Text = Contract.SIGNER_NAME2
                         txtSignTitle2.Text = Contract.SIGNER_TITLE2
                         txtSignTitle.Text = Contract.SIGNER_TITLE
+                        txtUploadFile.Text = Contract.ATTACH_FILE
+                        txtUpload.Text = Contract.FILENAME
                         cboContractType.SelectedValue = Contract.CONTRACTTYPE_ID
                         If Contract.WORK_STATUS IsNot Nothing Then
                             hidWorkStatus.Value = Contract.WORK_STATUS
@@ -369,6 +371,8 @@ Public Class ctrlHU_ContractNewEdit
                         objContract.WORKING_ID = hidWorkingID.Value
                         objContract.ORG_ID = employee.ORG_ID
                         objContract.TITLE_ID = employee.TITLE_ID
+                        objContract.ATTACH_FILE = txtUploadFile.Text 'Save folder name
+                        objContract.FILENAME = txtUpload.Text 'Save attachment file name
                         If ListAttachFile IsNot Nothing Then
                             objContract.ListAttachFiles = ListAttachFile
                         End If
@@ -880,6 +884,7 @@ Public Class ctrlHU_ContractNewEdit
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
         Dim startTime As DateTime = DateTime.UtcNow
         Try
+            ctrlUpload1.AllowedExtensions = "xls,xlsx,txt,ctr,doc,docx,xml,png,jpg,bitmap,jpeg,gif,pdf,rar,zip,ppt,pptx"
             ctrlUpload1.Show()
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
@@ -896,14 +901,24 @@ Public Class ctrlHU_ContractNewEdit
             Dim listExtension = New List(Of String)
             listExtension.Add(".xls")
             listExtension.Add(".xlsx")
+            listExtension.Add(".txt")
+            listExtension.Add(".ctr")
             listExtension.Add(".doc")
             listExtension.Add(".docx")
-            listExtension.Add(".pdf")
-            listExtension.Add(".jpg")
+            listExtension.Add(".xml")
             listExtension.Add(".png")
+            listExtension.Add(".jpg")
+            listExtension.Add(".bitmap")
+            listExtension.Add(".jpeg")
+            listExtension.Add(".gif")
+            listExtension.Add(".pdf")
+            listExtension.Add(".rar")
+            listExtension.Add(".zip")
+            listExtension.Add(".ppt")
+            listExtension.Add(".pptx")
             Dim fileName As String
 
-            Dim strPath As String = Server.MapPath("~/ReportTemplates/Profile/ContractAttachFile/")
+            Dim strPath As String = Server.MapPath("~/ReportTemplates/Profile/ContractInfo/")
             If ctrlUpload1.UploadedFiles.Count >= 1 Then
                 Dim finfo As New AttachFilesDTO
                 ListAttachFile = New List(Of AttachFilesDTO)
@@ -920,7 +935,7 @@ Public Class ctrlHU_ContractNewEdit
                     finfo.FILE_TYPE = file.GetExtension
                     ListAttachFile.Add(finfo)
                 Else
-                    ShowMessage(Translate("Vui lòng chọn file đúng định dạng. !!! Hệ thống chỉ nhận file xls,xlsx,txt,ctr,doc,docx,xml,png,jpg,bitmap,jpeg,gif"), NotifyType.Warning)
+                    ShowMessage(Translate("Vui lòng chọn file đúng định dạng. !!! Hệ thống chỉ nhận file xls,xlsx,txt,ctr,doc,docx,xml,png,jpg,bitmap,jpeg,gif,pdf,rar,zip,ppt,pptx"), NotifyType.Warning)
                     Exit Sub
                 End If
             End If
@@ -935,7 +950,7 @@ Public Class ctrlHU_ContractNewEdit
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
         Try
             If txtUpload.Text <> "" Then
-                Dim strPath_Down As String = Server.MapPath("~/ReportTemplates/Profile/ContractAttachFile/" + txtUpload.Text)
+                Dim strPath_Down As String = Server.MapPath("~/ReportTemplates/Profile/ContractInfo/" + txtUploadFile.Text + txtUpload.Text)
                 ZipFiles(strPath_Down, 2)
             End If
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")

@@ -69,4 +69,8 @@
     Public Property SIGN_ID2 As Decimal?
     Public Property SIGNER_TITLE2 As String
     Public Property SIGNER_NAME2 As String
+
+    'Dinh kem file
+    Public Property ATTACH_FILE As String
+    Public Property FILENAME As String
 End Class

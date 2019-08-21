@@ -688,7 +688,7 @@ Public Class ctrlHU_Title
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
 
         Try
-            ctrlUpload1.AllowedExtensions = "xls,xlsx,txt,ctr,doc,docx,xml,png,jpg,bitmap,jpeg,pdf"
+            ctrlUpload1.AllowedExtensions = "xls,xlsx,txt,ctr,doc,docx,xml,png,jpg,bitmap,jpeg,gif,pdf,rar,zip,ppt,pptx"
             ctrlUpload1.Show()
 
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
@@ -719,10 +719,15 @@ Public Class ctrlHU_Title
             listExtension.Add(".jpg")
             listExtension.Add(".bitmap")
             listExtension.Add(".jpeg")
+            listExtension.Add(".gif")
             listExtension.Add(".pdf")
+            listExtension.Add(".rar")
+            listExtension.Add(".zip")
+            listExtension.Add(".ppt")
+            listExtension.Add(".pptx")
             Dim fileName As String
 
-            Dim strPath As String = Server.MapPath("~/AttachFile/Profile/ctrlHU_Title/")
+            Dim strPath As String = Server.MapPath("~/ReportTemplates/Profile/TitleInfo/")
             If ctrlUpload1.UploadedFiles.Count >= 1 Then
                 For i = 0 To ctrlUpload1.UploadedFiles.Count - 1
                     Dim file As UploadedFile = ctrlUpload1.UploadedFiles(i)
@@ -763,13 +768,13 @@ Public Class ctrlHU_Title
                 If FileOldName = txtUpload.Text.Trim Or FileOldName Is Nothing Then
                     If txtRemindLink.Text IsNot Nothing Then
                         If txtRemindLink.Text <> "" Then
-                            strPath_Down = Server.MapPath("~/AttachFile/Profile/ctrlHU_Title/" + txtRemindLink.Text)
+                            strPath_Down = Server.MapPath("~/ReportTemplates/Profile/TitleInfo/" + txtRemindLink.Text)
                             ZipFiles(strPath_Down)
                         End If
                     End If
                 Else
                     If Down_File <> "" Then
-                        strPath_Down = Server.MapPath("~/AttachFile/Profile/ctrlHU_Title/" + Down_File)
+                        strPath_Down = Server.MapPath("~/ReportTemplates/Profile/TitleInfo/" + Down_File)
                         ZipFiles(strPath_Down)
                     End If
                 End If
@@ -809,53 +814,6 @@ Public Class ctrlHU_Title
             'Dim pathZip As String = AppDomain.CurrentDomain.BaseDirectory & "Zip\"
             'Dim fileNameZip As String = "ThongTinKhenThuong.zip"
             Dim fileNameZip As String = txtUpload.Text.Trim
-
-            'If Not Directory.Exists(pathZip) Then
-            '    Directory.CreateDirectory(pathZip)
-            'Else
-            '    For Each deleteFile In Directory.GetFiles(pathZip, "*.*", SearchOption.TopDirectoryOnly)
-            '        File.Delete(deleteFile)
-            '    Next
-            'End If
-
-            'Dim s As New ZipOutputStream(File.Create(pathZip & fileNameZip))
-            's.SetLevel(0)
-            '' 0 - store only to 9 - means best compression
-            'For i As Integer = 0 To Directory.GetFiles(path).Length - 1
-            '    ' Must use a relative path here so that files show up in the Windows Zip File Viewer
-            '    ' .. hence the use of Path.GetFileName(...)
-            '    Dim fileName As String = System.IO.Path.GetFileName(Directory.GetFiles(path)(i))
-
-            '    Dim entry As New ZipEntry(fileName)
-            '    entry.DateTime = DateTime.Now
-
-            '    ' Read in the 
-            '    Using fs As FileStream = File.Open(Directory.GetFiles(path)(i), FileMode.Open)
-            '        Dim buffer As Byte() = New Byte(fs.Length - 1) {}
-            '        fs.Read(buffer, 0, buffer.Length)
-            '        entry.Size = fs.Length
-            '        fs.Close()
-            '        crc.Reset()
-            '        crc.Update(buffer)
-            '        entry.Crc = crc.Value
-            '        s.PutNextEntry(entry)
-            '        s.Write(buffer, 0, buffer.Length)
-            '    End Using
-            'Next
-            's.Finish()
-            's.Close()
-
-            'Using FileStream = File.Open(path & fileNameZip, FileMode.Open)
-            '    Dim buffer As Byte() = New Byte(FileStream.Length - 1) {}
-            '    FileStream.Read(buffer, 0, buffer.Length)
-            '    Dim rEx As New System.Text.RegularExpressions.Regex("[^a-zA-Z0-9_\-\.]+")
-            '    Response.Clear()
-            '    Response.AddHeader("Content-Disposition", "attachment; filename=" + rEx.Replace(fileNameZip, "_"))
-            '    Response.AddHeader("Content-Length", FileStream.Length.ToString())
-            '    Response.ContentType = "application/octet-stream"
-            '    Response.BinaryWrite(buffer)
-            '    FileStream.Close()
-            'End Using
 
             Dim file As System.IO.FileInfo = New System.IO.FileInfo(path & fileNameZip)
             Response.Clear()

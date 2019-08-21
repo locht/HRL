@@ -1040,8 +1040,10 @@ Partial Class ProfileRepository
                                                      .MORNING_STOP = p.MORNING_STOP,
                                                      .MORNING_START = p.MORNING_START,
                                                      .AFTERNOON_START = p.AFTERNOON_START,
-            .AFTERNOON_STOP = p.AFTERNOON_STOP
-                            }
+                                                     .AFTERNOON_STOP = p.AFTERNOON_STOP,
+                                                     .ATTACH_FILE = p.ATTACH_FILE,
+                                                     .FILENAME = p.FILENAME
+                                                   }
 
             Dim result = query.FirstOrDefault
             If result IsNot Nothing Then
@@ -1154,6 +1156,8 @@ Partial Class ProfileRepository
             objContractData.AFTERNOON_STOP = objContract.AFTERNOON_STOP
             objContractData.TITLE_ID = objContract.TITLE_ID
             objContractData.ORG_ID = objContract.ORG_ID
+            objContractData.ATTACH_FILE = objContract.ATTACH_FILE
+            objContractData.FILENAME = objContract.FILENAME
             Context.HU_CONTRACT.AddObject(objContractData)
             ' Phê duyệt
             If objContract.STATUS_ID = ProfileCommon.DECISION_STATUS.APPROVE_ID Then
@@ -1266,6 +1270,8 @@ Partial Class ProfileRepository
             objContractData.AFTERNOON_STOP = objContract.AFTERNOON_STOP
             objContractData.TITLE_ID = objContract.TITLE_ID
             objContractData.ORG_ID = objContract.ORG_ID
+            objContractData.ATTACH_FILE = objContract.ATTACH_FILE
+            objContractData.FILENAME = objContract.FILENAME
             ' Phê duyệt
             If objContract.STATUS_ID = ProfileCommon.DECISION_STATUS.APPROVE_ID Then
                 ApproveContract(objContract)

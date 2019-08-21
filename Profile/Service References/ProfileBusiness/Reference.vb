@@ -2158,6 +2158,9 @@ Namespace ProfileBusiness
         Private AFTERNOON_STOPField As System.Nullable(Of Date)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private ATTACH_FILEField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private CONTRACTTYPE_CODEField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -2195,6 +2198,9 @@ Namespace ProfileBusiness
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private EXPIRE_DATEField As System.Nullable(Of Date)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private FILENAMEField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private FROM_DATEField As System.Nullable(Of Date)
@@ -2374,6 +2380,19 @@ Namespace ProfileBusiness
         End Property
         
         <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property ATTACH_FILE() As String
+            Get
+                Return Me.ATTACH_FILEField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.ATTACH_FILEField, value) <> true) Then
+                    Me.ATTACH_FILEField = value
+                    Me.RaisePropertyChanged("ATTACH_FILE")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
         Public Property CONTRACTTYPE_CODE() As String
             Get
                 Return Me.CONTRACTTYPE_CODEField
@@ -2538,6 +2557,19 @@ Namespace ProfileBusiness
                 If (Me.EXPIRE_DATEField.Equals(value) <> true) Then
                     Me.EXPIRE_DATEField = value
                     Me.RaisePropertyChanged("EXPIRE_DATE")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property FILENAME() As String
+            Get
+                Return Me.FILENAMEField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.FILENAMEField, value) <> true) Then
+                    Me.FILENAMEField = value
+                    Me.RaisePropertyChanged("FILENAME")
                 End If
             End Set
         End Property
