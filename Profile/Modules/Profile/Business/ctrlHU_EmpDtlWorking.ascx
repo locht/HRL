@@ -42,6 +42,9 @@
                     <tlk:GridBoundColumn HeaderText="Chức danh người ký" DataField="SIGN_TITLE"
                         UniqueName="SIGN_TITLE" SortExpression="SIGN_TITLE">
                     </tlk:GridBoundColumn>
+                     <tlk:GridBoundColumn HeaderText="Ghi chú" DataField="NOTE"
+                        UniqueName="NOTE" SortExpression="NOTE">
+                    </tlk:GridBoundColumn>
                 </Columns>
                 <HeaderStyle Width="120px" />
             </MasterTableView>
