@@ -246,7 +246,8 @@ Public Class ctrlHU_Organization
             UNIT_LEVEL.GET_UNIT_LEVEL = True
             Dim isUnitlevel = rep.GetComboList(UNIT_LEVEL)
             If isUnitlevel AndAlso cbUNIT_LEVEL.Items.Count < 1 Then
-                FillRadCombobox(cbUNIT_LEVEL, UNIT_LEVEL.LIST_UNIT_LEVEL, "NAME_VN", "ID")
+                'FillRadCombobox(cbUNIT_LEVEL, UNIT_LEVEL.LIST_UNIT_LEVEL, "NAME_VN", "ID")
+                FillDropDownList(cbUNIT_LEVEL, UNIT_LEVEL.LIST_UNIT_LEVEL, "NAME_VN", "ID")
             End If
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception

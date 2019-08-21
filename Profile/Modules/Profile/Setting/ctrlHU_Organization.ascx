@@ -92,6 +92,8 @@
                 <td>
                     <tlk:radtextbox id="txtRepresentativeName" runat="server" width="130px" readonly="True">
                     </tlk:radtextbox>
+                      <asp:RequiredFieldValidator ID="RequiredFieldValidator2" ControlToValidate="txtRepresentativeName" runat="server"
+                        ErrorMessage="Bạn phải chọn Quản lý đơn vị" ToolTip="Bạn phải chọn Quản lý đơn vị"></asp:RequiredFieldValidator>
                     <tlk:radbutton id="btnFindRepresentative" skinid="ButtonView" runat="server" causesvalidation="false"
                         width="40px">
                     </tlk:radbutton>
@@ -160,18 +162,18 @@
             </tr>
             <tr>
                 <td class="lb">
-                   <asp:Label ID="lbNUMBER_BUSINESS" runat="server" Text="Giấy phép ĐKKD (Mã số thuế)"></asp:Label>
+                   <asp:Label ID="lbNUMBER_BUSINESS" runat="server" Text="Giấy phép ĐKKD (Mã số thuế)" Visible="false"></asp:Label>
                 </td>
                 <td>
-                    <tlk:radtextbox id="rtNUMBER_BUSINESS" runat="server" skinid="Textbox50">
+                    <tlk:radtextbox id="rtNUMBER_BUSINESS" runat="server" skinid="Textbox50" Visible="false">
                     </tlk:radtextbox>
                 </td>
                 <td class="lb">
-                  <asp:Label ID="lbDATE_BUSINESS" runat="server" Text="Ngày cấp giấy phép ĐKKD"></asp:Label>
+                  <asp:Label ID="lbDATE_BUSINESS" runat="server" Text="Ngày cấp giấy phép ĐKKD" Visible="false"></asp:Label>
                    
                 </td>
                 <td>
-                    <tlk:RadDatePicker ID="rdDATE_BUSINESS" runat="server">
+                    <tlk:RadDatePicker ID="rdDATE_BUSINESS" runat="server" Visible="false">
                     </tlk:RadDatePicker>
                 </td>
             </tr>
