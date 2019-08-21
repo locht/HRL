@@ -127,9 +127,7 @@ Public Class ctrlHU_Signer
         'rgData.ClientSettings.EnablePostBackOnRowClick = True
         InitControl()
         If Not IsPostBack Then
-            If IsNumeric(ctrlOrg.CurrentValue) Then
-                rtORG_ID.Text = ctrlOrg.CurrentValue
-            End If
+            
             GetDataComboBox()
             ViewConfig(RadPane2)
             GirdConfig(rgData)
@@ -453,6 +451,9 @@ Public Class ctrlHU_Signer
             SetValueObjectByRadGrid(rgData, filter)
             Dim _param = New ProfileBusiness.ParamDTO With {.ORG_ID = Decimal.Parse(ctrlOrg.CurrentValue),
                                             .IS_DISSOLVE = ctrlOrg.IsDissolve}
+            If IsNumeric(ctrlOrg.CurrentValue) Then
+                rtORG_ID.Text = ctrlOrg.CurrentValue
+            End If
             filter.USER_ID = LogHelper.CurrentUser.ID
             Dim Sorts As String = rgData.MasterTableView.SortExpressions.GetSortString()
             Dim dt = rep.GET_HU_SIGNER(filter, _param)
@@ -601,7 +602,7 @@ Public Class ctrlHU_Signer
         PA.CREATED_LOG = log.Ip + "/" + log.ComputerName
         ' Cập nhât thông tin 
         If IDSelect <> 0 Then
-            Dim check1 As Integer = rep.CHECK_EXIT(txtCode.Text, IDSelect)
+            Dim check1 As Integer = rep.CHECK_EXIT(txtCode.Text, IDSelect, PA.ORG_ID)
             If check1 <> 0 Then
                 ShowMessage(Translate("Dữ liệu đã tồn tại"), Utilities.NotifyType.Warning)
                 Exit Function
@@ -609,7 +610,7 @@ Public Class ctrlHU_Signer
             result = rep.UPDATE_HU_SIGNER(PA)
             ' Thêm mới thông tin
         Else
-            Dim check As Integer = rep.CHECK_EXIT(txtCode.Text, 0)
+            Dim check As Integer = rep.CHECK_EXIT(txtCode.Text, 0, PA.ORG_ID)
             If check <> 0 Then
                 ShowMessage(Translate("Dữ liệu đã tồn tại"), Utilities.NotifyType.Warning)
                 Exit Function

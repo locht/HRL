@@ -2152,10 +2152,10 @@ Partial Public Class ProfileRepository
         End Try
     End Function
 
-    Public Function CHECK_EXIT(ByVal P_ID As String, ByVal idemp As Decimal) As Decimal
+    Public Function CHECK_EXIT(ByVal P_ID As String, ByVal idemp As Decimal, ByVal ORG_ID As Decimal) As Decimal
         Try
             Using rep As New ProfileBusinessClient
-                Return rep.CHECK_EXIT(P_ID, idemp)
+                Return rep.CHECK_EXIT(P_ID, idemp, ORG_ID)
             End Using
         Catch ex As Exception
 

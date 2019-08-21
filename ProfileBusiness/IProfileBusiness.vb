@@ -2671,7 +2671,7 @@ Namespace ProfileBusiness.ServiceContracts
         <OperationContract()>
         Function UPDATE_HU_SIGNER(ByVal PA As SignerDTO) As Boolean
         <OperationContract()>
-        Function CHECK_EXIT(ByVal P_ID As String, ByVal idemp As Decimal) As Decimal
+        Function CHECK_EXIT(ByVal P_ID As String, ByVal idemp As Decimal, ByVal ORG_ID As Decimal) As Decimal
         <OperationContract()>
         Function DeactiveAndActiveSigner(ByVal lstID As String, ByVal sActive As Decimal)
         <OperationContract()>
