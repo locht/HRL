@@ -127,6 +127,9 @@ Public Class ctrlHU_Signer
         'rgData.ClientSettings.EnablePostBackOnRowClick = True
         InitControl()
         If Not IsPostBack Then
+            If IsNumeric(ctrlOrg.CurrentValue) Then
+                rtORG_ID.Text = ctrlOrg.CurrentValue
+            End If
             GetDataComboBox()
             ViewConfig(RadPane2)
             GirdConfig(rgData)
