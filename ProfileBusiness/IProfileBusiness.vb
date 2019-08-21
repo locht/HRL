@@ -1397,6 +1397,14 @@ Namespace ProfileBusiness.ServiceContracts
 
 #Region "EmployeeFamilyEdit"
         ''' <summary>
+        ''' Lay danh sach than nhan thay doi de to mau
+        ''' </summary>
+        ''' <param name="lstFamilyEdit"></param>
+        ''' <returns></returns>
+        ''' <remarks></remarks>
+        <OperationContract()>
+        Function GetChangedFamilyList(ByVal lstFamilyEdit As List(Of FamilyEditDTO)) As Dictionary(Of String, String)
+        ''' <summary>
         ''' Lay danh sach than nhan
         ''' </summary>
         ''' <param name="_filter"></param>

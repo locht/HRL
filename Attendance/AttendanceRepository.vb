@@ -91,4 +91,25 @@ Public Class AttendanceRepository
             End Try
         End Using
     End Function
+#Region "STORE PROCEDURE"
+    Public Function GET_MANUAL_BY_ID(ByVal id As Decimal) As DataTable
+        Using rep As New AttendanceBusinessClient
+            Try
+                Return rep.GET_MANUAL_BY_ID(id)
+            Catch ex As Exception
+                Throw ex
+            End Try
+        End Using
+    End Function
+    Public Function GET_INFO_PHEPNAM(ByVal id As Decimal, ByVal fromDate As Date) As DataTable
+        Using rep As New AttendanceBusinessClient
+            Try
+                Return rep.GET_INFO_PHEPNAM(id, fromDate)
+            Catch ex As Exception
+                Throw ex
+            End Try
+        End Using
+    End Function
+#End Region
+    
 End Class

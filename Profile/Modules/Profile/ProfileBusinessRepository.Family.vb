@@ -134,6 +134,16 @@ Partial Public Class ProfileBusinessRepository
 #End Region
 
 #Region "FamilyEdit -Quan hệ nhân thân"
+    Public Function GetChangedFamilyList(ByVal lstFamilyEdit As List(Of FamilyEditDTO)) As Dictionary(Of String, String)
+        Using rep As New ProfileBusinessClient
+            Try
+                Return rep.GetChangedFamilyList(lstFamilyEdit)
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+    End Function
 
     Public Function InsertEmployeeFamilyEdit(ByVal objFamilyEdit As FamilyEditDTO, ByRef gID As Decimal) As Boolean
         Using rep As New ProfileBusinessClient

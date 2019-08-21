@@ -95,5 +95,25 @@ Namespace AttendanceBusiness.ServiceImplementations
                 End Try
             End Using
         End Function
+#Region "STORE PROCEDURE"
+        Public Function GET_MANUAL_BY_ID(ByVal id As Decimal) As DataTable Implements IAttendanceBusiness.GET_MANUAL_BY_ID
+            Using rep As New AttendanceRepository
+                Try
+                    Return rep.GET_MANUAL_BY_ID(id)
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
+        Public Function GET_INFO_PHEPNAM(ByVal id As Decimal, ByVal fromDate As Date) As DataTable Implements IAttendanceBusiness.GET_INFO_PHEPNAM
+            Using rep As New AttendanceRepository
+                Try
+                    Return rep.GET_INFO_PHEPNAM(id, fromDate)
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
+#End Region
     End Class
 End Namespace

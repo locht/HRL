@@ -450,7 +450,11 @@ Public Class ctrlLocation
                     Case CommonMessage.ACTION_DEACTIVE
                         result = rep.ActiveLocation(ActiveLocations, "I")
                     Case CommonMessage.TOOLBARITEM_DELETE
-                        result = rep.DeleteLocationID(Location.ID)
+                        For Each i As GridDataItem In rgLocation.SelectedItems
+                            Dim _idLocation = i.GetDataKeyValue("ID")
+                            'result = rep.DeleteLocationID(Location.ID)
+                            result = rep.DeleteLocationID(_idLocation)
+                        Next
                         'Case CommonMessage.TOOLBARITEM_DELETE
                         '    result = psp.Location_Delete(idList)
                 End Select
@@ -562,7 +566,7 @@ Public Class ctrlLocation
                     cboWard.ClearSelection()
                     cboWard.Text = ""
                     If dt.WARD_ID IsNot Nothing Then
-                        cboDistrict.SelectedValue = dt.WARD_ID
+                        cboWard.SelectedValue = dt.WARD_ID
                     End If
 
                     If dt.IS_SIGN_CONTRACT Is Nothing Or dt.IS_SIGN_CONTRACT = 0 Then
@@ -915,6 +919,89 @@ Public Class ctrlLocation
             _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
         End Try
     End Sub
+
+    ''' <summary>
+    ''' Xử lý sự kiện chọn Chi nhánh Ngân hàng
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
+    ''' <remarks></remarks>
+    Private Sub cboRank_Banch_SelectedIndexChanged(sender As Object, e As Telerik.Web.UI.RadComboBoxSelectedIndexChangedEventArgs) Handles cboRank_Banch.SelectedIndexChanged
+        If cboRank_Banch.SelectedValue <> "" Then
+            hfBank_Branch.Value = Double.Parse(cboRank_Banch.SelectedValue)
+        Else
+            hfBank_Branch.Value = 0
+        End If
+    End Sub
+
+    ''' <summary>
+    ''' Xử lý sự kiện chọn Ngân hàng
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
+    ''' <remarks></remarks>
+    Private Sub cbBank_SelectedIndexChanged(sender As Object, e As Telerik.Web.UI.RadComboBoxSelectedIndexChangedEventArgs) Handles cbBank.SelectedIndexChanged
+        Dim rep As New ProfileRepository
+        Try
+            If cbBank.SelectedValue <> "" Then
+                hfBank.Value = Double.Parse(cbBank.SelectedValue)
+                Dim bankData = rep.GetBankBranchByBankID(hfBank.Value)
+                cboRank_Banch.ClearSelection()
+                cboRank_Banch.Text = ""
+                FillRadCombobox(cboRank_Banch, bankData, "NAME", "ID", True)
+            Else
+                hfBank.Value = 0
+                cboRank_Banch.ClearSelection()
+                cboRank_Banch.Text = ""
+                cboRank_Banch.DataSource = New DataTable
+                cboRank_Banch.DataBind()
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    ''' <summary>
+    ''' Xử lý sự kiện chọn Tỉnh/Thành phố
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
+    ''' <remarks></remarks>
+    Private Sub cboProvince_SelectedIndexChanged(sender As Object, e As Telerik.Web.UI.RadComboBoxSelectedIndexChangedEventArgs) Handles cboProvince.SelectedIndexChanged
+        Try
+            If cboProvince.SelectedValue <> "" Then
+                Using rep As New ProfileRepository
+                    cboDistrict.Text = ""
+                    cboDistrict.ClearSelection()
+                    Dim dtData As DataTable = rep.GetDistrictList(cboProvince.SelectedValue, True)
+                    FillRadCombobox(cboDistrict, dtData, "NAME", "ID")
+                End Using
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    ''' <summary>
+    ''' Xử lý sự kiện chọn Quận/Huyện
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
+    ''' <remarks></remarks>
+    Private Sub cboDistrict_SelectedIndexChanged(sender As Object, e As Telerik.Web.UI.RadComboBoxSelectedIndexChangedEventArgs) Handles cboDistrict.SelectedIndexChanged
+        Try
+            If cboDistrict.SelectedValue <> "" Then
+                Using rep As New ProfileRepository
+                    cboWard.Text = ""
+                    cboWard.ClearSelection()
+                    Dim dtData As DataTable = rep.GetWardList(cboDistrict.SelectedValue, True)
+                    FillRadCombobox(cboWard, dtData, "NAME", "ID")
+                End Using
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
 #End Region
 
 #Region "Custom"
@@ -1058,31 +1145,6 @@ Public Class ctrlLocation
         End Try
     End Sub
 
-    ''' <summary>
-    ''' Load datasource cho cbo bank branch
-    ''' </summary>
-    ''' <param name="sender"></param>
-    ''' <param name="e"></param>
-    ''' <remarks></remarks>
-    Private Sub cbBank_SelectedIndexChanged(sender As Object, e As Telerik.Web.UI.RadComboBoxSelectedIndexChangedEventArgs) Handles cbBank.SelectedIndexChanged
-        Dim rep As New ProfileRepository
-        Try
-            If cbBank.SelectedValue <> "" Then
-                hfBank.Value = Double.Parse(cbBank.SelectedValue)
-                Dim bankData = rep.GetBankBranchByBankID(hfBank.Value)
-                FillRadCombobox(cboRank_Banch, bankData, "NAME", "ID", True)
-            End If
-        Catch ex As Exception
-            Throw ex
-        End Try
-    End Sub
-
-    Private Sub cboRank_Banch_SelectedIndexChanged(sender As Object, e As Telerik.Web.UI.RadComboBoxSelectedIndexChangedEventArgs) Handles cboRank_Banch.SelectedIndexChanged
-        If cboRank_Banch.SelectedValue <> "" Then
-            hfBank_Branch.Value = Double.Parse(cboRank_Banch.SelectedValue)
-        End If
-    End Sub
-
     Public Overrides Sub Refresh(Optional ByVal Message As String = "")
         Dim rep As New ProfileRepository
         Try
@@ -1187,5 +1249,6 @@ Public Class ctrlLocation
         End Try
     End Sub
 #End Region
+
 
 End Class
