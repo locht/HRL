@@ -18,7 +18,7 @@ Imports System.Runtime.Serialization
 Imports System.Xml.Serialization
 
 
-<Assembly: EdmSchemaAttribute("6ddfd9c3-d3e1-41ae-94c5-92886df3f4d9")>
+<Assembly: EdmSchemaAttribute("1c7856bc-15e4-4cd6-8d1f-12e51f36e6b7")>
 #Region "EDM Relationship Metadata"
 <Assembly: EdmRelationshipAttribute("ProfileModel", "FK_HU_NAT_HU_PRO", "HU_NATION", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_NATION), "HU_PROVINCE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_PROVINCE), True)>
 <Assembly: EdmRelationshipAttribute("ProfileModel", "FK_HU_PRO_HU_DIS", "HU_PROVINCE", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_PROVINCE), "HU_DISTRICT", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_DISTRICT), True)>
@@ -18356,6 +18356,56 @@ Public Partial Class HU_CONTRACT
     End Sub
 
     Private Partial Sub OnSIGNER_TITLE2Changed()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property ATTACH_FILE() As Global.System.String
+        Get
+            Return _ATTACH_FILE
+        End Get
+        Set
+            OnATTACH_FILEChanging(value)
+            ReportPropertyChanging("ATTACH_FILE")
+            _ATTACH_FILE = StructuralObject.SetValidValue(value, true)
+            ReportPropertyChanged("ATTACH_FILE")
+            OnATTACH_FILEChanged()
+        End Set
+    End Property
+
+    Private _ATTACH_FILE As Global.System.String
+    Private Partial Sub OnATTACH_FILEChanging(value As Global.System.String)
+    End Sub
+
+    Private Partial Sub OnATTACH_FILEChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property FILENAME() As Global.System.String
+        Get
+            Return _FILENAME
+        End Get
+        Set
+            OnFILENAMEChanging(value)
+            ReportPropertyChanging("FILENAME")
+            _FILENAME = StructuralObject.SetValidValue(value, true)
+            ReportPropertyChanged("FILENAME")
+            OnFILENAMEChanged()
+        End Set
+    End Property
+
+    Private _FILENAME As Global.System.String
+    Private Partial Sub OnFILENAMEChanging(value As Global.System.String)
+    End Sub
+
+    Private Partial Sub OnFILENAMEChanged()
     End Sub
 
     #End Region
