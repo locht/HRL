@@ -38617,7 +38617,7 @@ Xin cám ơn!
       <string>CTRLLOCATION_LBLADDRESS</string>
     </Key>
     <Value>
-      <string>Địa chỉ</string>
+      <string>Địa chỉ theo GPKD</string>
     </Value>
   </Item>
   <Item>
@@ -38665,7 +38665,7 @@ Xin cám ơn!
       <string>CTRLLOCATION_LBLOFFICEPLACE</string>
     </Key>
     <Value>
-      <string>Nơi làm Hợp đồng/Quyết định</string>
+      <string>Địa danh ban hành văn bản</string>
     </Value>
   </Item>
   <Item>
@@ -42316,6 +42316,22 @@ Xin cám ơn!
     </Key>
     <Value>
       <string>Danh sách đơn vị- phòng ban</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>BẠN PHẢI NHẬP ĐỊA CHỈ THEO GPKD.</string>
+    </Key>
+    <Value>
+      <string>Bạn phải nhập Địa chỉ theo GPKD.</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>THÔNG TIN ĐƠN VỊ</string>
+    </Key>
+    <Value>
+      <string>Thông tin đơn vị</string>
     </Value>
   </Item>
 </SerializableDictionaryOfStringString>

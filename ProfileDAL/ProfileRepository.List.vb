@@ -2951,7 +2951,8 @@ Partial Class ProfileRepository
     Public Function GetBankBranchByBankID(ByVal sBank_ID As Decimal) As List(Of BankBranchDTO)
         Try
             Dim query = (From p In Context.HU_BANK_BRANCH
-                         From bank In Context.HU_BANK.Where(Function(f) f.ID = p.BANK_ID).DefaultIfEmpty
+                         From bank In Context.HU_BANK.Where(Function(f) f.ID = p.BANK_ID)
+                         Where p.BANK_ID = sBank_ID AndAlso p.ACTFLG = "A"
                          Select New BankBranchDTO With {.ID = p.ID,
                                                         .CODE = p.CODE,
                                                         .NAME = p.NAME,
@@ -5633,13 +5634,18 @@ Partial Class ProfileRepository
                                   ByVal log As UserLog) As Boolean
         Dim location As HU_LOCATION
         Try
-            location = (From p In Context.HU_LOCATION Where p.ID = lstlocation).SingleOrDefault()
-            If location IsNot Nothing Then
-                Context.HU_LOCATION.DeleteObject(location)
-                Context.SaveChanges(log)
-                Return True
+            Dim _count = (From p In Context.HU_CONTRACT Where p.ID_SIGN_CONTRACT = lstlocation).ToList
+            If _count.Count <= 0 Then
+                location = (From p In Context.HU_LOCATION Where p.ID = lstlocation).SingleOrDefault()
+                If location IsNot Nothing Then
+                    Context.HU_LOCATION.DeleteObject(location)
+                    Context.SaveChanges(log)
+                    Return True
+                End If
+                Return False
+            Else
+                Return False
             End If
-            Return False
         Catch ex As Exception
             WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iProfile")
             Throw ex
