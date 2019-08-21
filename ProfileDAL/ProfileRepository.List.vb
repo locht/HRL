@@ -5656,36 +5656,34 @@ Partial Class ProfileRepository
 
 #Region " danh mục người ký"
     'load dữ liệu
-    Public Function GET_HU_SIGNER(ByVal _filter As SignerDTO) As DataTable
+   Public Function GET_HU_SIGNER(ByVal _filter As SignerDTO,
+                                   ByVal _param As ParamDTO,
+                                   Optional ByVal log As UserLog = Nothing) As DataTable
         Try
-            Dim userNameID = _filter.USER_ID
-            Dim check As String = "Dùng chung"
-            Dim active As String = "Áp dụng"
-            Dim inactive As String = "Không áp dụng"
-            Dim lstOrgID = New List(Of Decimal?)
-            lstOrgID = (From p In Context.SE_USER_ORG_ACCESS
-                From o In Context.HU_ORGANIZATION.Where(Function(f) p.ORG_ID = f.ID)
-                Where p.USER_ID = userNameID
-                Select p.ORG_ID).ToList
+            Using cls As New DataAccess.QueryData
+                cls.ExecuteStore("PKG_COMMON_LIST.INSERT_CHOSEN_ORG",
+                                 New With {.P_USERNAME = log.Username,
+                                           .P_ORGID = _param.ORG_ID,
+                                           .P_ISDISSOLVE = _param.IS_DISSOLVE})
+            End Using
+
             Dim query = From p In Context.HU_SIGNER
-                        Group Join g In Context.HU_ORGANIZATION On p.ORG_ID Equals g.ID Into g_olg = Group
-                        From olg In g_olg.DefaultIfEmpty
+                        From g In Context.HU_ORGANIZATION.Where(Function(f) p.ORG_ID = f.ID)
+                        From k In Context.SE_CHOSEN_ORG.Where(Function(f) f.ORG_ID = p.ORG_ID And f.USERNAME = log.Username)
+
             Dim lst = query.Select(Function(f) New SignerDTO With {
-                                    .ID = f.p.ID,
-                                    .SIGNER_CODE = f.p.SIGNER_CODE,
-                                    .NAME = f.p.NAME,
-                                    .TITLE_NAME = f.p.TITLE_NAME,
-                                    .ORG_NAME = If(f.p.ORG_ID = -1, check, f.olg.NAME_VN),
-                                    .REMARK = f.p.REMARK,
-                                    .ORG_ID = f.p.ORG_ID,
-                                    .ACTFLG = If(f.p.ACTFLG <> 0, active, inactive)
-                                    }).AsQueryable
-            If lstOrgID.Count > 0 And userNameID <> 1 Then
-                lst = lst.Where(Function(f) (lstOrgID.Contains(f.ORG_ID) Or f.ORG_ID = -1))
-            End If
-            Dim view As DataView = New DataView(lst.ToList.ToTable())
-            Dim dt As DataTable = view.ToTable(True, "ID", "SIGNER_CODE", "NAME", "TITLE_NAME", "ORG_NAME", "ACTFLG", "REMARK", "ORG_ID")
-            Return dt
+                                        .ID = f.p.ID,
+                                        .SIGNER_CODE = f.p.SIGNER_CODE,
+                                        .NAME = f.p.NAME,
+                                        .TITLE_NAME = f.p.TITLE_NAME,
+                                        .ORG_NAME = f.g.NAME_VN,
+                                        .REMARK = f.p.REMARK,
+                                        .ORG_ID = f.p.ORG_ID,
+                                        .ACTFLG = If(f.p.ACTFLG = 1, "A", "I")
+                                       })
+
+            Return lst.ToList.ToTable()
+
         Catch ex As Exception
             Throw ex
         End Try
