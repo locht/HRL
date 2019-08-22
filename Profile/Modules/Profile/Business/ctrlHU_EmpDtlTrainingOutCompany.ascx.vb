@@ -393,8 +393,12 @@ Public Class ctrlHU_EmpDtlTrainingOutCompany
                         objTrain.FILE_NAME = txtRemark.Text.Trim
                         objTrain.IS_RENEWED = chkTerminate.Checked
 
+                        If cboLevelId.SelectedValue = "" Then
+                            objTrain.LEVEL_ID = Nothing
+                        Else
+                            objTrain.LEVEL_ID = cboLevelId.SelectedValue
+                        End If
 
-                        objTrain.LEVEL_ID = cboLevelId.SelectedValue
                         objTrain.POINT_LEVEL = rtxtPointLevel.Text
                         objTrain.CONTENT_LEVEL = rtxtContentLevel.Text
                         objTrain.NOTE = txtNote.Text
