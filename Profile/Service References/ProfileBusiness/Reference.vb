@@ -38634,6 +38634,9 @@ Namespace ProfileBusiness
         Private ID_PLACEField As System.Nullable(Of Decimal)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private ID_REMARKField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private IMAGEField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -39548,6 +39551,19 @@ Namespace ProfileBusiness
                 If (Me.ID_PLACEField.Equals(value) <> true) Then
                     Me.ID_PLACEField = value
                     Me.RaisePropertyChanged("ID_PLACE")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property ID_REMARK() As String
+            Get
+                Return Me.ID_REMARKField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.ID_REMARKField, value) <> true) Then
+                    Me.ID_REMARKField = value
+                    Me.RaisePropertyChanged("ID_REMARK")
                 End If
             End Set
         End Property
