@@ -140,6 +140,15 @@ Partial Public Class ctrlTimeTimesheet_machine
     Protected WithEvents cbFilter As Global.Telerik.Web.UI.RadComboBox
     
     '''<summary>
+    '''btnSearch control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btnSearch As Global.Telerik.Web.UI.RadButton
+    
+    '''<summary>
     '''rdtungay control.
     '''</summary>
     '''<remarks>
@@ -158,13 +167,13 @@ Partial Public Class ctrlTimeTimesheet_machine
     Protected WithEvents rdDenngay As Global.Telerik.Web.UI.RadDatePicker
     
     '''<summary>
-    '''btnSearch control.
+    '''ckReset control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents btnSearch As Global.Telerik.Web.UI.RadButton
+    Protected WithEvents ckReset As Global.System.Web.UI.WebControls.CheckBox
     
     '''<summary>
     '''RadPane1 control.
