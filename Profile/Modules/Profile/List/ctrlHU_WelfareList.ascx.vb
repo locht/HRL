@@ -7,7 +7,7 @@ Imports WebAppLog
 
 Public Class ctrlHU_WelfareList
     Inherits Common.CommonView
-    Dim orgid As Integer
+
     Dim lstOrganization As List(Of OrganizationDTO)
     Dim orgItem As OrganizationDTO
     Dim Code As String
@@ -41,6 +41,22 @@ Public Class ctrlHU_WelfareList
         End Get
         Set(ByVal value As String)
             ViewState(Me.ID & "_SelectOrgFunction") = value
+        End Set
+    End Property
+    Property orgid As Integer
+        Get
+            Return ViewState(Me.ID & "_orgid")
+        End Get
+        Set(ByVal value As Integer)
+            ViewState(Me.ID & "_orgid") = value
+        End Set
+    End Property
+    Property isEdit As Decimal?
+        Get
+            Return ViewState(Me.ID & "_isEdit")
+        End Get
+        Set(ByVal value As Decimal?)
+            ViewState(Me.ID & "_isEdit") = value
         End Set
     End Property
 
@@ -259,14 +275,14 @@ Public Class ctrlHU_WelfareList
                                      nmCHILD_OLD_TO, nmMONEY, lstbGender, lstCONTRACT_TYPE,
                                      dpSTART_DATE, dpEND_DATE, chkIS_AUTO)
                     txtCode.ReadOnly = True
-                   
+
                 Case CommonMessage.STATE_NORMAL
                     EnabledGridNotPostback(rgWelfareList, True)
                     EnableControlAll(False, txtCode, cboName, nmSENIORITY, nmCHILD_OLD_FROM, cbGroupTitle,
                                      nmCHILD_OLD_TO, nmMONEY, lstbGender, lstCONTRACT_TYPE,
                                      dpSTART_DATE, dpEND_DATE, chkIS_AUTO)
                     txtCode.ReadOnly = True
-                   
+
                 Case CommonMessage.STATE_EDIT
 
                     EnabledGridNotPostback(rgWelfareList, False)
@@ -399,7 +415,22 @@ Public Class ctrlHU_WelfareList
                         dpSTART_DATE.SelectedDate = item.START_DATE
                         dpEND_DATE.SelectedDate = item.END_DATE
                     End If
-                  
+
+                    'If item.GENDER = "565" Then
+                    '    Dim gan As New RadListBoxItem("565", "565")
+                    '    lstbGender.Items.Add(gan)
+                    'Else
+                    '    Dim gan As New RadListBoxItem("566", "566")
+                    '    lstbGender.Items.Add(gan)
+                    'End If
+                    'If item.GENDER = "565,566" Then
+                    '    Dim gan As New RadListBoxItem("565,566", "565,566")
+                    '    lstbGender.Items.Add(gan)
+                    'End If
+                    'For Each line In lstbGender.
+                    '    line.Checked = True
+                    'Next
+                    isEdit = item.ID
                     Dim item2 = (From p In WelfareLists Where p.ID = Decimal.Parse(slItem.GetDataKeyValue("ID").ToString) Select p).FirstOrDefault
                     If item2 IsNot Nothing Then
                         If item2.ID_NAME IsNot Nothing Then
@@ -409,6 +440,7 @@ Public Class ctrlHU_WelfareList
                             cboName.Text = " "
                         End If
                     End If
+                    orgid = Decimal.Parse(ctrlOrg.CurrentValue)
                 End If
             End If
             Dim startTime As DateTime = DateTime.UtcNow
@@ -429,9 +461,9 @@ Public Class ctrlHU_WelfareList
                         ShowMessage("Chưa chọn phòng ban?", NotifyType.Warning)
                         Exit Sub
                     End If
-                    orgItem = (From p In Organizations Where p.ID = orgid).SingleOrDefault
-                    Code = orgItem.CODE & "_" & Year & "_"
-                    txtCode.Text = rep.AutoGenCode(Code, "HU_WELFARE_LIST", "CODE")
+                    'orgItem = (From p In Organizations Where p.ID = orgid).SingleOrDefault
+                    'Code = orgItem.CODE & "_" & Year & "_"
+                    'txtCode.Text = rep.AutoGenCode(Code, "HU_WELFARE_LIST", "CODE")
             End Select
             CreateDataFilter(False)
             Dim startTime As DateTime = DateTime.UtcNow
@@ -454,9 +486,9 @@ Public Class ctrlHU_WelfareList
                 ShowMessage("Chưa chọn phòng ban?", NotifyType.Warning)
                 Exit Sub
             End If
-            orgItem = (From p In Organizations Where p.ID = orgid).SingleOrDefault
-            Code = orgItem.CODE & "_" & Year & "_"
-            txtCode.Text = rep.AutoGenCode(Code, "HU_WELFARE_LIST", "CODE")
+            'orgItem = (From p In Organizations Where p.ID = orgid).SingleOrDefault
+            'Code = orgItem.CODE & "_" & Year & "_"
+            'txtCode.Text = rep.AutoGenCode(Code, "HU_WELFARE_LIST", "CODE")
         Catch ex As Exception
             _myLog.WriteLog(_myLog._error, _classPath, method, 0, ex, "")
         End Try
@@ -486,7 +518,7 @@ Public Class ctrlHU_WelfareList
                     ClearControlValue(txtCode, cboName, nmSENIORITY, cbGroupTitle,
                                       nmMONEY, lstbGender, lstCONTRACT_TYPE,
                                       dpSTART_DATE, dpEND_DATE, chkIS_AUTO)
-					chkIS_AUTO.Checked = Nothing
+                    chkIS_AUTO.Checked = Nothing
                     rgWelfareList.Rebind()
                     If ctrlOrg.CurrentValue IsNot Nothing Then
                         orgid = Decimal.Parse(ctrlOrg.CurrentValue)
@@ -494,9 +526,7 @@ Public Class ctrlHU_WelfareList
                         ShowMessage("Chưa chọn phòng ban?", NotifyType.Warning)
                         Exit Sub
                     End If
-                    orgItem = (From p In Organizations Where p.ID = orgid).SingleOrDefault
-                    Code = orgItem.CODE & "_" & Year & "_"
-                    txtCode.Text = rep.AutoGenCode(Code, "HU_WELFARE_LIST", "CODE")
+
                 Case CommonMessage.TOOLBARITEM_EDIT
                     If rgWelfareList.SelectedItems.Count = 0 Then
                         ShowMessage(Translate(CommonMessage.MESSAGE_NOT_SELECT_ROW), NotifyType.Warning)
@@ -560,6 +590,7 @@ Public Class ctrlHU_WelfareList
                     End Using
                 Case CommonMessage.TOOLBARITEM_SAVE
                     If Page.IsValid Then
+                      
                         Dim strGenderID As New List(Of String)
                         Dim strGenderName As New List(Of String)
                         Dim strWorkStatusID As New List(Of String)
@@ -582,7 +613,9 @@ Public Class ctrlHU_WelfareList
                         Catch ex As Exception
                             Throw ex
                         End Try
-
+                        orgItem = (From p In Organizations Where p.ID = orgid).SingleOrDefault
+                        Code = orgItem.CODE & "_" & Year & "_"
+                        txtCode.Text = rep.AutoGenCode(Code, "HU_WELFARE_LIST", "CODE")
                         objWelfareList.CODE = txtCode.Text
                         objWelfareList.NAME = cboName.Text
                         If cboName.SelectedValue <> "" Then
@@ -612,7 +645,10 @@ Public Class ctrlHU_WelfareList
                         objWelfareList.END_DATE = dpEND_DATE.SelectedDate
                         objWelfareList.IS_AUTO = chkIS_AUTO.Checked
                         objWelfareList.ORG_ID = ctrlOrg.CurrentValue
-                        dt = procedure.CHECK_WELFARE(cboName.Text, ctrlOrg.CurrentValue, dpSTART_DATE.SelectedDate)
+                        If isEdit Is Nothing Then
+                            isEdit = 0
+                        End If
+                        dt = procedure.CHECK_WELFARE(txtCode.Text, isEdit, ctrlOrg.CurrentValue, dpSTART_DATE.SelectedDate)
                         If Not dt Is Nothing AndAlso dt.Rows.Count > 0 Then
                             ShowMessage("Phúc lợi của phòng ban này đang trùng ngày hiệu lực", NotifyType.Error)
                             Exit Sub
@@ -917,7 +953,7 @@ Public Class ctrlHU_WelfareList
 
             Dim dtData = rep.GetOtherList("WELFARE", False)
             FillRadCombobox(cboName, dtData, "NAME", "ID", True)
-            
+
             _myLog.WriteLog(_myLog._info, _classPath, method,
                                     CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception

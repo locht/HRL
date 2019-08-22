@@ -365,6 +365,9 @@ Public Class ctrlHU_WelfareMngNewEdit
                                 employee.CONTRACT_TYPE = Decimal.Parse(contract_type)
                             End If
                             employee.CONTRACT_NAME = contract_name
+                        Else
+                            ShowMessage(Translate("Chính sách phúc lợi chưa được thiết lập. Vui lòng kiểm tra lại."), NotifyType.Warning)
+                            Exit Sub
                         End If
                     End Using
                     Employee_PL.Add(employee)
@@ -411,7 +414,7 @@ Public Class ctrlHU_WelfareMngNewEdit
         isLoadPopup = 0
     End Sub
 
-   
+
 
     ''' <lastupdate>
     ''' 10/07/2017 10:10
@@ -741,7 +744,7 @@ Public Class ctrlHU_WelfareMngNewEdit
         Catch ex As Exception
         End Try
     End Function
-    
+
     Private Sub rgEmployee_ItemDataBound(sender As Object, e As Telerik.Web.UI.GridItemEventArgs) Handles rgEmployee.ItemDataBound
         Try
             If e.Item.Edit Then
