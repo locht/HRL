@@ -394,4 +394,21 @@ Public Class ProfileStoreProcedure
     End Function
 #End Region
 
+#Region "Terminate-Nghỉ việc"
+    Public Function CHECK_TER_EMPEXIST(ByVal TerId As Decimal, ByVal EmpId As Decimal) As Boolean
+        Dim _rs As Boolean
+        Dim ds As DataSet = hfr.ExecuteToDataSet("PKG_PROFILE.CHECK_TER_EMPEXIST", New List(Of Object)(New Object() {TerId, EmpId}))
+        If Not ds Is Nothing Or Not ds.Tables(0) Is Nothing Then
+            If ds.Tables(0).Rows.Count > 0 Then
+                _rs = True
+            Else
+                _rs = False
+            End If
+        Else
+            _rs = False
+        End If
+        Return _rs
+    End Function
+#End Region
+
 End Class
