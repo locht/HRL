@@ -563,6 +563,7 @@ Public Class ctrlRegisterCONewEdit
                                 rnCUR_HAVE_INMONTH.Text = If(dtSourceEntitlement.Rows(0)("PHEP_THANG_LVIEC") Is Nothing, "0", dtSourceEntitlement.Rows(0)("PHEP_THANG_LVIEC").ToString())
                                 rnPREVTOTAL_HAVE.Text = If(dtSourceEntitlement.Rows(0)("PHEP_CU_CON_HLUC") Is Nothing, "0", dtSourceEntitlement.Rows(0)("PHEP_CU_CON_HLUC").ToString())
                                 rtCUR_USED_INMONTH.Text = If(dtSourceEntitlement.Rows(0)("PHEP_DA_NGHI") Is Nothing, "0", dtSourceEntitlement.Rows(0)("PHEP_DA_NGHI").ToString())
+                                rnCUR_DANGKY.Text = If(dtSourceEntitlement.Rows(0)("PHEP_DA_DANGKY") Is Nothing, "0", dtSourceEntitlement.Rows(0)("PHEP_DA_DANGKY").ToString())
                                 rnBALANCE.Text = If(dtSourceEntitlement.Rows(0)("PHEP_CONLAI") Is Nothing, "0", dtSourceEntitlement.Rows(0)("PHEP_CONLAI").ToString())
                             Else
                                 Clearn__DayEntitlement()
@@ -593,6 +594,7 @@ Public Class ctrlRegisterCONewEdit
         rnCUR_HAVE_INMONTH.Text = ""
         rnPREVTOTAL_HAVE.Text = ""
         rtCUR_USED_INMONTH.Text = ""
+        rnCUR_DANGKY.Text = ""
         rnBALANCE.Text = ""
     End Sub
 
