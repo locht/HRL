@@ -2951,7 +2951,8 @@ Partial Class ProfileRepository
     Public Function GetBankBranchByBankID(ByVal sBank_ID As Decimal) As List(Of BankBranchDTO)
         Try
             Dim query = (From p In Context.HU_BANK_BRANCH
-                         From bank In Context.HU_BANK.Where(Function(f) f.ID = p.BANK_ID).DefaultIfEmpty
+                         From bank In Context.HU_BANK.Where(Function(f) f.ID = p.BANK_ID)
+                         Where p.BANK_ID = sBank_ID AndAlso p.ACTFLG = "A"
                          Select New BankBranchDTO With {.ID = p.ID,
                                                         .CODE = p.CODE,
                                                         .NAME = p.NAME,
@@ -5633,13 +5634,18 @@ Partial Class ProfileRepository
                                   ByVal log As UserLog) As Boolean
         Dim location As HU_LOCATION
         Try
-            location = (From p In Context.HU_LOCATION Where p.ID = lstlocation).SingleOrDefault()
-            If location IsNot Nothing Then
-                Context.HU_LOCATION.DeleteObject(location)
-                Context.SaveChanges(log)
-                Return True
+            Dim _count = (From p In Context.HU_CONTRACT Where p.ID_SIGN_CONTRACT = lstlocation).ToList
+            If _count.Count <= 0 Then
+                location = (From p In Context.HU_LOCATION Where p.ID = lstlocation).SingleOrDefault()
+                If location IsNot Nothing Then
+                    Context.HU_LOCATION.DeleteObject(location)
+                    Context.SaveChanges(log)
+                    Return True
+                End If
+                Return False
+            Else
+                Return False
             End If
-            Return False
         Catch ex As Exception
             WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iProfile")
             Throw ex
@@ -5650,36 +5656,34 @@ Partial Class ProfileRepository
 
 #Region " danh mục người ký"
     'load dữ liệu
-    Public Function GET_HU_SIGNER(ByVal _filter As SignerDTO) As DataTable
+   Public Function GET_HU_SIGNER(ByVal _filter As SignerDTO,
+                                   ByVal _param As ParamDTO,
+                                   Optional ByVal log As UserLog = Nothing) As DataTable
         Try
-            Dim userNameID = _filter.USER_ID
-            Dim check As String = "Dùng chung"
-            Dim active As String = "Áp dụng"
-            Dim inactive As String = "Không áp dụng"
-            Dim lstOrgID = New List(Of Decimal?)
-            lstOrgID = (From p In Context.SE_USER_ORG_ACCESS
-                From o In Context.HU_ORGANIZATION.Where(Function(f) p.ORG_ID = f.ID)
-                Where p.USER_ID = userNameID
-                Select p.ORG_ID).ToList
+            Using cls As New DataAccess.QueryData
+                cls.ExecuteStore("PKG_COMMON_LIST.INSERT_CHOSEN_ORG",
+                                 New With {.P_USERNAME = log.Username,
+                                           .P_ORGID = _param.ORG_ID,
+                                           .P_ISDISSOLVE = _param.IS_DISSOLVE})
+            End Using
+
             Dim query = From p In Context.HU_SIGNER
-                        Group Join g In Context.HU_ORGANIZATION On p.ORG_ID Equals g.ID Into g_olg = Group
-                        From olg In g_olg.DefaultIfEmpty
+                        From g In Context.HU_ORGANIZATION.Where(Function(f) p.ORG_ID = f.ID)
+                        From k In Context.SE_CHOSEN_ORG.Where(Function(f) f.ORG_ID = p.ORG_ID And f.USERNAME = log.Username)
+
             Dim lst = query.Select(Function(f) New SignerDTO With {
-                                    .ID = f.p.ID,
-                                    .SIGNER_CODE = f.p.SIGNER_CODE,
-                                    .NAME = f.p.NAME,
-                                    .TITLE_NAME = f.p.TITLE_NAME,
-                                    .ORG_NAME = If(f.p.ORG_ID = -1, check, f.olg.NAME_VN),
-                                    .REMARK = f.p.REMARK,
-                                    .ORG_ID = f.p.ORG_ID,
-                                    .ACTFLG = If(f.p.ACTFLG <> 0, active, inactive)
-                                    }).AsQueryable
-            If lstOrgID.Count > 0 And userNameID <> 1 Then
-                lst = lst.Where(Function(f) (lstOrgID.Contains(f.ORG_ID) Or f.ORG_ID = -1))
-            End If
-            Dim view As DataView = New DataView(lst.ToList.ToTable())
-            Dim dt As DataTable = view.ToTable(True, "ID", "SIGNER_CODE", "NAME", "TITLE_NAME", "ORG_NAME", "ACTFLG", "REMARK", "ORG_ID")
-            Return dt
+                                        .ID = f.p.ID,
+                                        .SIGNER_CODE = f.p.SIGNER_CODE,
+                                        .NAME = f.p.NAME,
+                                        .TITLE_NAME = f.p.TITLE_NAME,
+                                        .ORG_NAME = f.g.NAME_VN,
+                                        .REMARK = f.p.REMARK,
+                                        .ORG_ID = f.p.ORG_ID,
+                                        .ACTFLG = If(f.p.ACTFLG = 1, "A", "I")
+                                       })
+
+            Return lst.ToList.ToTable()
+
         Catch ex As Exception
             Throw ex
         End Try
@@ -5725,13 +5729,14 @@ Partial Class ProfileRepository
         End Try
     End Function
     'CHECK DL DA TON TAI HAY CHUA
-    Public Function CHECK_EXIT(ByVal P_ID As String, ByVal idemp As Decimal) As Boolean
+    Public Function CHECK_EXIT(ByVal P_ID As String, ByVal idemp As Decimal, ByVal ORG_ID As Decimal) As Boolean
         Try
 
             Using cls As New DataAccess.QueryData
                 Dim dtData As DataTable = cls.ExecuteStore("PKG_HU_IPROFILE_LIST.CHECK_EXIT", New With {
                                                                                     P_ID,
                                                                                     idemp,
+                                                                                    ORG_ID,
                                                                                   .P_OUT = cls.OUT_CURSOR})
                 If Decimal.Parse(dtData(0)("CHECK1").ToString) > 0 Then
                     Return True

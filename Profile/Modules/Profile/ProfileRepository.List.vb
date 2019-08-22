@@ -2121,10 +2121,10 @@ Partial Public Class ProfileRepository
 
 #End Region
 #Region "danh mục người ký"
-    Public Function GET_HU_SIGNER(ByVal _filter As SignerDTO) As DataTable
+    Public Function GET_HU_SIGNER(ByVal _filter As SignerDTO, ByVal _param As ParamDTO) As DataTable
         Using rep As New ProfileBusinessClient
             Try
-                Return rep.GET_HU_SIGNER(_filter)
+                Return rep.GET_HU_SIGNER(_filter, _param, Log)
             Catch ex As Exception
                 Throw ex
             End Try
@@ -2152,10 +2152,10 @@ Partial Public Class ProfileRepository
         End Try
     End Function
 
-    Public Function CHECK_EXIT(ByVal P_ID As String, ByVal idemp As Decimal) As Decimal
+    Public Function CHECK_EXIT(ByVal P_ID As String, ByVal idemp As Decimal, ByVal ORG_ID As Decimal) As Decimal
         Try
             Using rep As New ProfileBusinessClient
-                Return rep.CHECK_EXIT(P_ID, idemp)
+                Return rep.CHECK_EXIT(P_ID, idemp, ORG_ID)
             End Using
         Catch ex As Exception
 

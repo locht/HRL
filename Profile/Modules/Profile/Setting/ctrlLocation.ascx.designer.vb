@@ -203,6 +203,15 @@ Partial Public Class ctrlLocation
     Protected WithEvents txtAddress As Global.Telerik.Web.UI.RadTextBox
 
     '''<summary>
+    '''reqAddress control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents reqAddress As Global.System.Web.UI.WebControls.RequiredFieldValidator
+
+    '''<summary>
     '''txtPhone control.
     '''</summary>
     '''<remarks>
@@ -536,15 +545,6 @@ Partial Public Class ctrlLocation
     Protected WithEvents txtNumberBusiness As Global.Telerik.Web.UI.RadTextBox
 
     '''<summary>
-    '''txtNameBusiness control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents txtNameBusiness As Global.Telerik.Web.UI.RadTextBox
-
-    '''<summary>
     '''rdRegisterDate control.
     '''</summary>
     '''<remarks>
@@ -552,6 +552,15 @@ Partial Public Class ctrlLocation
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents rdRegisterDate As Global.Telerik.Web.UI.RadDatePicker
+
+    '''<summary>
+    '''txtNameBusiness control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtNameBusiness As Global.Telerik.Web.UI.RadTextBox
 
     '''<summary>
     '''txtNote control.

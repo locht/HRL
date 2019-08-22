@@ -209,7 +209,7 @@ Public Class ctrlHU_WelfareMngNewEdit
     ''' <param name="e"></param>
     ''' <remarks></remarks>
     Public Overrides Sub ViewInit(ByVal e As System.EventArgs)
-        ColumnImportWelfare = 12
+        ColumnImportWelfare = 13
         SetGridFilter(rgEmployee)
         AjaxManager = CType(Me.Page, AjaxPage).AjaxManager
         AjaxManagerId = AjaxManager.ClientID
@@ -338,6 +338,7 @@ Public Class ctrlHU_WelfareMngNewEdit
                             Dim contract_name = dtdata(0)("CONTRACT_TYPE").ToString()
                             Dim seniority = dtdata(0)("SENIORITY").ToString()
                             Dim gender_name = dtdata(0)("GENDER_NAME").ToString()
+                            Dim wel_id = dtdata(0)("WELFARE_ID").ToString()
                             If total_child <> "" Then
                                 employee.TOTAL_CHILD = Decimal.Parse(total_child)
                             End If
@@ -354,6 +355,10 @@ Public Class ctrlHU_WelfareMngNewEdit
                             If gender_id <> "" Then
                                 employee.GENDER_ID = Decimal.Parse(gender_id)
                             End If
+                            If wel_id <> 0 Then
+                                employee.WELFARE_ID = Decimal.Parse(wel_id)
+                            End If
+
                             If contract_type <> "" Then
                                 employee.CONTRACT_TYPE = Decimal.Parse(contract_type)
                             End If
@@ -469,6 +474,7 @@ Public Class ctrlHU_WelfareMngNewEdit
                         Dim contract_type
                         Dim contract_name
                         Dim gender_name
+                        Dim welfare_id
                         Using rep As New ProfileBusinessRepository
                             Dim infoEmp = rep.GET_INFO_EMPLOYEE(row("EMPLOYEE_CODE").ToString)
                             If infoEmp.Rows.Count > 0 Then
@@ -493,7 +499,7 @@ Public Class ctrlHU_WelfareMngNewEdit
                         o.MONEY_PL = If(row("MONEY_PL") <> "", Decimal.Parse(row("MONEY_PL")), Nothing)
                         o.CONTRACT_TYPE = If(contract_type IsNot Nothing, contract_type, Nothing)
                         o.CONTRACT_NAME = contract_name
-                        o.WELFARE_ID = cboWELFARE_ID.SelectedValue
+                        o.WELFARE_ID = If(row("WELFARE_ID") <> "", Decimal.Parse(row("WELFARE_ID")), Nothing)
                         o.SENIORITY = row("SENIORITY").ToString
                         o.REMARK = row("REMARK").ToString
                         objdata.EMPLOYEE_ID = If(employee_id IsNot Nothing, employee_id, Nothing)
@@ -573,6 +579,10 @@ Public Class ctrlHU_WelfareMngNewEdit
             Dim dataTable As DataTable
             Using rep As New ProfileBusinessRepository
                 dsDanhMuc = rep.GET_EXPORT_EMP(cboWELFARE_ID.SelectedValue, dpEFFECT_DATE.SelectedDate)
+                If dsDanhMuc.Tables(0).Rows.Count = 0 Then
+                    ShowMessage(Translate("Chính sách phúc lợi chưa được thiết lập. Vui lòng kiểm tra lại."), NotifyType.Warning)
+                    Exit Sub
+                End If
             End Using
             Using xls As New AsposeExcelCommon
                 Dim bCheck = xls.ExportExcelTemplate(
@@ -663,6 +673,7 @@ Public Class ctrlHU_WelfareMngNewEdit
             dtbImport.Columns.Add("TOTAL_CHILD", GetType(String))
             dtbImport.Columns.Add("MONEY_TOTAL", GetType(Decimal))
             dtbImport.Columns.Add("REMARK", GetType(String))
+            dtbImport.Columns.Add("WELFARE_ID", GetType(Decimal))
             dtbImport.Columns.Add("CONTRACT_NAME", GetType(String))
             dtbImport.Columns.Add("EMPLOYEE_ID", GetType(Decimal))
             dtbImport.Columns.Add("GENDER_ID", GetType(Decimal))
@@ -670,7 +681,6 @@ Public Class ctrlHU_WelfareMngNewEdit
             dtbImport.Columns.Add("TITLE_ID", GetType(Decimal))
             dtbImport.Columns.Add("ORG_ID", GetType(Decimal))
             dtbImport.Columns.Add("ID", GetType(Decimal))
-            dtbImport.Columns.Add("BIRTH_DATE", GetType(Date))
             Return dtbImport
         Catch ex As Exception
 
@@ -867,10 +877,13 @@ Public Class ctrlHU_WelfareMngNewEdit
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
         Dim rep As New ProfileRepository
         Try
-            ListComboData = New ComboBoxDataDTO
-            ListComboData.GET_WELFARE = True
-            rep.GetComboList(ListComboData)
-            FillRadCombobox(cboWELFARE_ID, ListComboData.LIST_WELFARE, "NAME", "ID")
+            'ListComboData = New ComboBoxDataDTO
+            'ListComboData.GET_WELFARE = True
+            'rep.GetComboList(ListComboData)
+            'Dim dtData = rep.GetOtherList("WELFARE", True)
+            'FillRadCombobox(cboWELFARE_ID, ListComboData.LIST_WELFARE, "NAME", "ID")
+            Dim dtData = rep.GetOtherList("WELFARE", False)
+            FillRadCombobox(cboWELFARE_ID, dtData, "NAME", "ID", True)
             rep.Dispose()
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception

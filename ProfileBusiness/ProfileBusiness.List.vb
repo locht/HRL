@@ -2487,10 +2487,10 @@ Namespace ProfileBusiness.ServiceImplementations
         End Function
 #End Region
 #Region "danh mục người ký"
-        Public Function GET_HU_SIGNER(ByVal _filter As SignerDTO) As DataTable Implements ServiceContracts.IProfileBusiness.GET_HU_SIGNER
+        Public Function GET_HU_SIGNER(ByVal _filter As SignerDTO, ByVal _param As ParamDTO, ByVal log As UserLog) As DataTable Implements ServiceContracts.IProfileBusiness.GET_HU_SIGNER
             Try
                 Dim rep As New ProfileRepository
-                Return rep.GET_HU_SIGNER(_filter)
+                Return rep.GET_HU_SIGNER(_filter, _param, log)
             Catch ex As Exception
                 Throw ex
             End Try
@@ -2505,10 +2505,10 @@ Namespace ProfileBusiness.ServiceImplementations
             End Try
         End Function
         'CHECK TON TAI HAY CHUA 
-        Public Function CHECK_EXIT(ByVal P_ID As String, ByVal idemp As Decimal) As Decimal Implements ServiceContracts.IProfileBusiness.CHECK_EXIT
+        Public Function CHECK_EXIT(ByVal P_ID As String, ByVal idemp As Decimal, ByVal ORG_ID As Decimal) As Decimal Implements ServiceContracts.IProfileBusiness.CHECK_EXIT
             Try
                 Dim rep As New ProfileRepository
-                Return rep.CHECK_EXIT(P_ID, idemp)
+                Return rep.CHECK_EXIT(P_ID, idemp, ORG_ID)
             Catch ex As Exception
 
             End Try

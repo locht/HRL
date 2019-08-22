@@ -16,7 +16,14 @@ Public Class ctrlHU_ApproveFamily_Edit
     Dim _pathLog As String = _mylog._pathLog
     Dim _classPath As String = "Profile\Modules\Profile\Business" + Me.GetType().Name.ToString()
 #Region "Property"
-
+    Property lstFamilyEdit As List(Of FamilyEditDTO)
+        Get
+            Return ViewState(Me.ID & "_lstFamilyEdit")
+        End Get
+        Set(value As List(Of FamilyEditDTO))
+            ViewState(Me.ID & "_lstFamilyEdit") = value
+        End Set
+    End Property
 #End Region
 
 #Region "Page"
@@ -132,7 +139,29 @@ Public Class ctrlHU_ApproveFamily_Edit
 
     End Sub
 
-
+    Private Sub rgData_ItemDataBound(sender As Object, e As Telerik.Web.UI.GridItemEventArgs) Handles rgData.ItemDataBound
+        Try
+            Using rep As New ProfileBusinessRepository
+                Dim dic As Dictionary(Of String, String) = rep.GetChangedFamilyList(lstFamilyEdit)
+                For Each i As GridDataItem In rgData.Items
+                    If dic.Keys.Contains(i.GetDataKeyValue("ID")) Then
+                        Dim colNames As String = dic(i.GetDataKeyValue("ID"))
+                        If colNames <> "" Then
+                            If colNames.Contains(",") Then
+                                For Each colName As String In colNames.Split(",")
+                                    i(colName).ForeColor = Drawing.Color.Red
+                                Next
+                            Else
+                                i(colNames).ForeColor = Drawing.Color.Red
+                            End If
+                        End If
+                    End If
+                Next
+            End Using
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
 #End Region
 
 #Region "Event"
@@ -320,11 +349,11 @@ Public Class ctrlHU_ApproveFamily_Edit
                 End If
             Else
                 If Sorts IsNot Nothing Then
-                    rgData.DataSource = rep.GetApproveFamilyEdit(_filter, rgData.CurrentPageIndex, rgData.PageSize, MaximumRows, _param, Sorts)
+                    Me.lstFamilyEdit = rep.GetApproveFamilyEdit(_filter, rgData.CurrentPageIndex, rgData.PageSize, MaximumRows, _param, Sorts)
                 Else
-                    rgData.DataSource = rep.GetApproveFamilyEdit(_filter, rgData.CurrentPageIndex, rgData.PageSize, MaximumRows, _param)
+                    Me.lstFamilyEdit = rep.GetApproveFamilyEdit(_filter, rgData.CurrentPageIndex, rgData.PageSize, MaximumRows, _param)
                 End If
-
+                rgData.DataSource = lstFamilyEdit
                 rgData.VirtualItemCount = MaximumRows
             End If
             rep.Dispose()

@@ -363,7 +363,7 @@ Partial Public Class ProfileBusinessRepository
     Public Function GET_EXPORT_EMP(ByVal P_WELFARE_ID As Decimal, ByVal P_DATE As Date) As DataSet
         Using rep As New ProfileBusinessClient
             Try
-                Dim dt = rep.GET_EXPORT_EMP(P_WELFARE_ID, P_DATE)
+                Dim dt = rep.GET_EXPORT_EMP(P_WELFARE_ID, P_DATE, Me.Log)
                 Return dt
             Catch ex As Exception
                 rep.Abort()

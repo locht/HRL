@@ -56,10 +56,12 @@
                 </tr>
                 <tr>
                     <td class="lb">
-                        <%# Translate("CTRLLOCATION_LBLADDRESS")%>
+                        <%# Translate("CTRLLOCATION_LBLADDRESS")%><span class="lbReq">*</span>
                     </td>
                     <td colspan="3">
                         <tlk:RadTextBox runat="server" ID="txtAddress" Width="98%" />
+                        <asp:RequiredFieldValidator ID="reqAddress" ControlToValidate="txtAddress" runat="server"
+                            ErrorMessage="<%$ Translate: Bạn phải nhập Địa chỉ theo GPKD. %>" ToolTip="<%$ Translate: Bạn phải nhập Địa chỉ theo GPKD. %>"> </asp:RequiredFieldValidator>
                     </td>
                     <td class="lb" style="width: 100px">
                         <%# Translate("CTRLLOCATION_LBLPHONE")%>
@@ -107,7 +109,7 @@
                     </td>
                     <td>
                         <tlk:RadComboBox runat="server" SkinID="LoadDemand" ID="cboProvince" OnClientSelectedIndexChanged="OnClientSelectedIndexChanged"
-                            OnClientItemsRequesting="OnClientItemsRequesting">
+                            OnClientItemsRequesting="OnClientItemsRequesting" AutoPostBack="true" CausesValidation="false">
                         </tlk:RadComboBox>
                     </td>
                     <td class="lb">
@@ -115,7 +117,7 @@
                     </td>
                     <td>
                         <tlk:RadComboBox runat="server" SkinID="LoadDemand" ID="cboDistrict" OnClientSelectedIndexChanged="OnClientSelectedIndexChanged"
-                            OnClientItemsRequesting="OnClientItemsRequesting">
+                            OnClientItemsRequesting="OnClientItemsRequesting" AutoPostBack="true" CausesValidation="false">
                         </tlk:RadComboBox>
                     </td>
                     <td class="lb">
@@ -123,7 +125,7 @@
                     </td>
                     <td>
                         <tlk:RadComboBox runat="server" SkinID="LoadDemand" ID="cboWard" OnClientSelectedIndexChanged="OnClientSelectedIndexChanged"
-                            OnClientItemsRequesting="OnClientItemsRequesting">
+                            OnClientItemsRequesting="OnClientItemsRequesting" CausesValidation="false">
                         </tlk:RadComboBox>
                     </td>
                     <td class="lb">
@@ -259,17 +261,17 @@
                         <tlk:RadTextBox runat="server" ID="txtNumberBusiness" />
                     </td>
                     <td class="lb">
-                        <%# Translate("CTRLLOCATION_LBLNAMEBUSINESS")%>
-                    </td>
-                    <td>
-                        <tlk:RadTextBox runat="server" ID="txtNameBusiness" />
-                    </td>
-                    <td class="lb">
                         <%# Translate("CTRLLOCATION_LBLREGISTERDATE")%>
                     </td>
                     <td>
                         <tlk:RadDatePicker ID="rdRegisterDate" runat="server">
                         </tlk:RadDatePicker>
+                    </td>
+                    <td class="lb" style="visibility:hidden">
+                        <%# Translate("CTRLLOCATION_LBLNAMEBUSINESS")%>
+                    </td>
+                    <td style="visibility:hidden">
+                        <tlk:RadTextBox runat="server" ID="txtNameBusiness" />
                     </td>
                 </tr>
                 <tr>

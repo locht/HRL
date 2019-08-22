@@ -132,6 +132,17 @@ Namespace ProfileBusiness.ServiceImplementations
 #End Region
 
 #Region "EmployeeFamilyEdit"
+        Public Function GetChangedFamilyList(ByVal lstFamilyEdit As List(Of FamilyEditDTO)) As Dictionary(Of String, String) _
+            Implements ServiceContracts.IProfileBusiness.GetChangedFamilyList
+            Using rep As New ProfileRepository
+                Try
+                    Return rep.GetChangedFamilyList(lstFamilyEdit)
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
+
         Public Function GetEmployeeFamilyEdit(ByVal _filter As FamilyEditDTO) As List(Of FamilyEditDTO) _
             Implements ServiceContracts.IProfileBusiness.GetEmployeeFamilyEdit
             Using rep As New ProfileRepository

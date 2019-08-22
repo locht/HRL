@@ -527,6 +527,138 @@ Partial Class ProfileRepository
 #End Region
 
 #Region "FamilyEdit"
+    Public Function GetChangedFamilyList(ByVal lstFamilyEdit As List(Of FamilyEditDTO)) As Dictionary(Of String, String)
+        Try
+            Dim dic As New Dictionary(Of String, String)
+            For Each familyEdit As FamilyEditDTO In lstFamilyEdit
+                Dim colNames As String = String.Empty
+                Dim family = Context.HU_FAMILY.Where(Function(f) f.ID = familyEdit.FK_PKEY).FirstOrDefault
+                If family IsNot Nothing Then
+                    Dim ownerEdit As Decimal? = familyEdit.IS_OWNER
+                    Dim owner As Decimal? = family.IS_OWNER
+                    Dim passEdit As Decimal? = familyEdit.IS_PASS
+                    Dim pass As Decimal? = family.IS_PASS
+                    Dim deductEdit As Decimal? = familyEdit.IS_DEDUCT
+                    Dim deduct As Decimal? = family.IS_DEDUCT
+                    If (If(familyEdit.FULLNAME Is Nothing, "", familyEdit.FULLNAME) <> If(family.FULLNAME Is Nothing, "", family.FULLNAME)) Then
+                        colNames = "FULLNAME"
+                    End If
+                    If (If(familyEdit.RELATION_ID.ToString() Is Nothing, "", familyEdit.RELATION_ID.ToString()) <> If(family.RELATION_ID.ToString() Is Nothing, "", family.RELATION_ID.ToString())) Then
+                        colNames = If(colNames <> String.Empty, colNames + "," + "RELATION_NAME", "RELATION_NAME")
+                    End If
+                    If (If(familyEdit.GENDER.ToString() Is Nothing, "", familyEdit.GENDER.ToString()) <> If(family.GENDER.ToString() Is Nothing, "", family.GENDER.ToString())) Then
+                        colNames = If(colNames <> String.Empty, colNames + "," + "GENDER_NAME", "GENDER_NAME")
+                    End If
+                    If (If(familyEdit.BIRTH_DATE Is Nothing, "", familyEdit.BIRTH_DATE.ToString()) <> If(family.BIRTH_DATE Is Nothing, "", family.BIRTH_DATE.ToString())) Then
+                        colNames = If(colNames <> String.Empty, colNames + "," + "BIRTH_DATE", "BIRTH_DATE")
+                    End If
+                    If (If(familyEdit.ID_NO Is Nothing, "", familyEdit.ID_NO) <> If(family.ID_NO Is Nothing, "", family.ID_NO)) Then
+                        colNames = If(colNames <> String.Empty, colNames + "," + "ID_NO", "ID_NO")
+                    End If
+                    If (If(familyEdit.ID_NO_DATE Is Nothing, "", familyEdit.ID_NO_DATE.ToString) <> If(family.ID_NO_DATE Is Nothing, "", family.ID_NO_DATE.ToString)) Then
+                        colNames = If(colNames <> String.Empty, colNames + "," + "ID_NO_DATE", "ID_NO_DATE")
+                    End If
+                    If (If(familyEdit.ID_NO_PLACE_NAME Is Nothing, "", familyEdit.ID_NO_PLACE_NAME) <> If(family.ID_NO_PLACE_NAME Is Nothing, "", family.ID_NO_PLACE_NAME)) Then
+                        colNames = If(colNames <> String.Empty, colNames + "," + "ID_NO_PLACE_NAME", "ID_NO_PLACE_NAME")
+                    End If
+                    If (If(familyEdit.CAREER Is Nothing, "", familyEdit.CAREER) <> If(family.CAREER Is Nothing, "", family.CAREER)) Then
+                        colNames = If(colNames <> String.Empty, colNames + "," + "CAREER", "CAREER")
+                    End If
+                    If (If(ownerEdit.ToString Is Nothing, "", ownerEdit.ToString) <> If(owner.ToString Is Nothing, "", owner.ToString)) Then
+                        colNames = If(colNames <> String.Empty, colNames + "," + "IS_OWNER", "IS_OWNER")
+                    End If
+                    If (If(familyEdit.CERTIFICATE_NUM Is Nothing, "", familyEdit.CERTIFICATE_NUM) <> If(family.CERTIFICATE_NUM Is Nothing, "", family.CERTIFICATE_NUM)) Then
+                        colNames = If(colNames <> String.Empty, colNames + "," + "CERTIFICATE_NUM", "CERTIFICATE_NUM")
+                    End If
+                    If (If(familyEdit.CERTIFICATE_CODE Is Nothing, "", familyEdit.CERTIFICATE_CODE) <> If(family.CERTIFICATE_CODE Is Nothing, "", family.CERTIFICATE_CODE)) Then
+                        colNames = If(colNames <> String.Empty, colNames + "," + "CERTIFICATE_CODE", "CERTIFICATE_CODE")
+                    End If
+                    If (If(familyEdit.ADDRESS Is Nothing, "", familyEdit.ADDRESS) <> If(family.ADDRESS Is Nothing, "", family.ADDRESS)) Then
+                        colNames = If(colNames <> String.Empty, colNames + "," + "ADDRESS", "ADDRESS")
+                    End If
+                    If (If(familyEdit.NATION_ID.ToString Is Nothing, "", familyEdit.NATION_ID.ToString) <> If(family.NATION_ID.ToString Is Nothing, "", family.NATION_ID.ToString)) Then
+                        colNames = If(colNames <> String.Empty, colNames + "," + "NATION_NAME", "NATION_NAME")
+                    End If
+                    If (If(familyEdit.AD_PROVINCE_ID.ToString Is Nothing, "", familyEdit.AD_PROVINCE_ID.ToString) <> If(family.AD_PROVINCE_ID.ToString Is Nothing, "", family.AD_PROVINCE_ID.ToString)) Then
+                        colNames = If(colNames <> String.Empty, colNames + "," + "AD_PROVINCE_NAME", "AD_PROVINCE_NAME")
+                    End If
+                    If (If(familyEdit.AD_DISTRICT_ID.ToString Is Nothing, "", familyEdit.AD_DISTRICT_ID.ToString) <> If(family.AD_DISTRICT_ID.ToString Is Nothing, "", family.AD_DISTRICT_ID.ToString)) Then
+                        colNames = If(colNames <> String.Empty, colNames + "," + "AD_DISTRICT_NAME", "AD_DISTRICT_NAME")
+                    End If
+                    If (If(familyEdit.AD_WARD_ID.ToString Is Nothing, "", familyEdit.AD_WARD_ID.ToString) <> If(family.AD_WARD_ID.ToString Is Nothing, "", family.AD_WARD_ID.ToString)) Then
+                        colNames = If(colNames <> String.Empty, colNames + "," + "AD_WARD_NAME", "AD_WARD_NAME")
+                    End If
+                    If (If(familyEdit.AD_VILLAGE Is Nothing, "", familyEdit.AD_VILLAGE) <> If(family.AD_VILLAGE Is Nothing, "", family.AD_VILLAGE)) Then
+                        colNames = If(colNames <> String.Empty, colNames + "," + "AD_VILLAGE", "AD_VILLAGE")
+                    End If
+                    If (If(familyEdit.ADDRESS_TT Is Nothing, "", familyEdit.ADDRESS_TT) <> If(family.ADDRESS_TT Is Nothing, "", family.ADDRESS_TT)) Then
+                        colNames = If(colNames <> String.Empty, colNames + "," + "ADDRESS_TT", "ADDRESS_TT")
+                    End If
+                    If (If(familyEdit.TT_PROVINCE_ID.ToString Is Nothing, "", familyEdit.TT_PROVINCE_ID.ToString) <> If(family.TT_PROVINCE_ID.ToString Is Nothing, "", family.TT_PROVINCE_ID.ToString)) Then
+                        colNames = If(colNames <> String.Empty, colNames + "," + "TT_PROVINCE_NAME", "TT_PROVINCE_NAME")
+                    End If
+                    If (If(familyEdit.TT_DISTRICT_ID.ToString Is Nothing, "", familyEdit.TT_DISTRICT_ID.ToString) <> If(family.TT_DISTRICT_ID.ToString Is Nothing, "", family.TT_DISTRICT_ID.ToString)) Then
+                        colNames = If(colNames <> String.Empty, colNames + "," + "TT_DISTRICT_NAME", "TT_DISTRICT_NAME")
+                    End If
+                    If (If(familyEdit.TT_WARD_ID.ToString Is Nothing, "", familyEdit.TT_WARD_ID.ToString) <> If(family.TT_WARD_ID.ToString Is Nothing, "", family.TT_WARD_ID.ToString)) Then
+                        colNames = If(colNames <> String.Empty, colNames + "," + "TT_WARD_NAME", "TT_WARD_NAME")
+                    End If
+                    If (If(familyEdit.PHONE Is Nothing, "", familyEdit.PHONE) <> If(family.PHONE Is Nothing, "", family.PHONE)) Then
+                        colNames = If(colNames <> String.Empty, colNames + "," + "PHONE", "PHONE")
+                    End If
+                    If (If(familyEdit.TAXTATION Is Nothing, "", familyEdit.TAXTATION) <> If(family.TAXTATION Is Nothing, "", family.TAXTATION)) Then
+                        colNames = If(colNames <> String.Empty, colNames + "," + "TAXTATION", "TAXTATION")
+                    End If
+                    If (If(familyEdit.TAXTATION_DATE Is Nothing, "", familyEdit.TAXTATION_DATE.ToString) <> If(family.TAXTATION_DATE Is Nothing, "", family.TAXTATION_DATE.ToString)) Then
+                        colNames = If(colNames <> String.Empty, colNames + "," + "TAXTATION_DATE", "TAXTATION_DATE")
+                    End If
+                    If (If(familyEdit.TAXTATION_PLACE Is Nothing, "", familyEdit.TAXTATION_PLACE) <> If(family.TAXTATION_PLACE Is Nothing, "", family.TAXTATION_PLACE)) Then
+                        colNames = If(colNames <> String.Empty, colNames + "," + "TAXTATION_PLACE", "TAXTATION_PLACE")
+                    End If
+                    If (If(familyEdit.BIRTH_CODE Is Nothing, "", familyEdit.BIRTH_CODE) <> If(family.BIRTH_CODE Is Nothing, "", family.BIRTH_CODE)) Then
+                        colNames = If(colNames <> String.Empty, colNames + "," + "BIRTH_CODE", "BIRTH_CODE")
+                    End If
+                    If (If(familyEdit.QUYEN Is Nothing, "", familyEdit.QUYEN) <> If(family.QUYEN Is Nothing, "", family.QUYEN)) Then
+                        colNames = If(colNames <> String.Empty, colNames + "," + "QUYEN", "QUYEN")
+                    End If
+                    If (If(familyEdit.BIRTH_NATION_ID.ToString Is Nothing, "", familyEdit.BIRTH_NATION_ID.ToString) <> If(family.BIRTH_NATION_ID.ToString Is Nothing, "", family.BIRTH_NATION_ID.ToString)) Then
+                        colNames = If(colNames <> String.Empty, colNames + "," + "BIRTH_NATION_NAME", "BIRTH_NATION_NAME")
+                    End If
+                    If (If(familyEdit.BIRTH_PROVINCE_ID.ToString Is Nothing, "", familyEdit.BIRTH_PROVINCE_ID.ToString) <> If(family.BIRTH_PROVINCE_ID.ToString Is Nothing, "", family.BIRTH_PROVINCE_ID.ToString)) Then
+                        colNames = If(colNames <> String.Empty, colNames + "," + "BIRTH_PROVINCE_NAME", "BIRTH_PROVINCE_NAME")
+                    End If
+                    If (If(familyEdit.BIRTH_DISTRICT_ID.ToString Is Nothing, "", familyEdit.BIRTH_DISTRICT_ID.ToString) <> If(family.BIRTH_DISTRICT_ID.ToString Is Nothing, "", family.BIRTH_DISTRICT_ID.ToString)) Then
+                        colNames = If(colNames <> String.Empty, colNames + "," + "BIRTH_DISTRICT_NAME", "BIRTH_DISTRICT_NAME")
+                    End If
+                    If (If(familyEdit.BIRTH_WARD_ID.ToString Is Nothing, "", familyEdit.BIRTH_WARD_ID.ToString) <> If(family.BIRTH_WARD_ID.ToString Is Nothing, "", family.BIRTH_WARD_ID.ToString)) Then
+                        colNames = If(colNames <> String.Empty, colNames + "," + "BIRTH_WARD_NAME", "BIRTH_WARD_NAME")
+                    End If
+                    If (If(passEdit.ToString Is Nothing, "", passEdit.ToString) <> If(pass.ToString Is Nothing, "", pass.ToString)) Then
+                        colNames = If(colNames <> String.Empty, colNames + "," + "IS_PASS", "IS_PASS")
+                    End If
+                    If (If(deductEdit.ToString Is Nothing, "", deductEdit.ToString) <> If(deduct.ToString Is Nothing, "", deduct.ToString)) Then
+                        colNames = If(colNames <> String.Empty, colNames + "," + "IS_DEDUCT", "IS_DEDUCT")
+                    End If
+                    If (If(familyEdit.DEDUCT_REG Is Nothing, "", familyEdit.DEDUCT_REG.ToString()) <> If(family.DEDUCT_REG Is Nothing, "", family.DEDUCT_REG.ToString())) Then
+                        colNames = If(colNames <> String.Empty, colNames + "," + "DEDUCT_REG", "DEDUCT_REG")
+                    End If
+                    If (If(familyEdit.DEDUCT_FROM Is Nothing, "", familyEdit.DEDUCT_FROM.ToString()) <> If(family.DEDUCT_FROM Is Nothing, "", family.DEDUCT_FROM.ToString())) Then
+                        colNames = If(colNames <> String.Empty, colNames + "," + "DEDUCT_FROM", "DEDUCT_FROM")
+                    End If
+                    If (If(familyEdit.DEDUCT_TO Is Nothing, "", familyEdit.DEDUCT_TO.ToString()) <> If(family.DEDUCT_TO Is Nothing, "", family.DEDUCT_TO.ToString())) Then
+                        colNames = If(colNames <> String.Empty, colNames + "," + "DEDUCT_TO", "DEDUCT_TO")
+                    End If
+                    If (If(familyEdit.REMARK Is Nothing, "", familyEdit.REMARK) <> If(family.REMARK Is Nothing, "", family.REMARK)) Then
+                        colNames = If(colNames <> String.Empty, colNames + "," + "REMARK", "REMARK")
+                    End If
+                    dic.Add(familyEdit.ID.ToString, colNames)
+                End If
+            Next
+            Return dic
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
 
     Public Function InsertEmployeeFamilyEdit(ByVal objFamilyEdit As FamilyEditDTO,
                                              ByVal log As UserLog,
@@ -654,7 +786,7 @@ Partial Class ProfileRepository
         Dim query As ObjectQuery(Of FamilyEditDTO)
         Try
             query = (From p In Context.HU_FAMILY_EDIT
-                     Group Join m In Context.HU_RELATIONSHIP_LIST On p.RELATION_ID Equals m.ID Into gGroup = Group
+                     Group Join m In Context.OT_OTHER_LIST On p.RELATION_ID Equals m.ID Into gGroup = Group
                      From p_g In gGroup.DefaultIfEmpty
                      Group Join n In Context.HU_PROVINCE On p.PROVINCE_ID Equals n.ID Into nGroup = Group
                      From n_g In nGroup.DefaultIfEmpty
@@ -670,7 +802,7 @@ Partial Class ProfileRepository
                          .EMPLOYEE_ID = p.EMPLOYEE_ID,
                          .FULLNAME = p.FULLNAME,
                          .RELATION_ID = p.RELATION_ID,
-                         .RELATION_NAME = p_g.NAME,
+                         .RELATION_NAME = p_g.NAME_VN,
                          .PROVINCE_ID = p.PROVINCE_ID,
                          .PROVINCE_NAME = n_g.NAME_VN,
                          .BIRTH_DATE = p.BIRTH_DATE,

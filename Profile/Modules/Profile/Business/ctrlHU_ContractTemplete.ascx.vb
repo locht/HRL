@@ -875,7 +875,7 @@ Public Class ctrlHU_ContractTemplete
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
 
         Try
-            ctrlUpload1.AllowedExtensions = "xls,xlsx,txt,ctr,doc,docx,xml,png,jpg,bitmap,jpeg,gif"
+            ctrlUpload1.AllowedExtensions = "xls,xlsx,txt,ctr,doc,docx,xml,png,jpg,bitmap,jpeg,gif,pdf,rar,zip,ppt,pptx"
             ctrlUpload1.Show()
 
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
@@ -892,40 +892,37 @@ Public Class ctrlHU_ContractTemplete
             Dim listExtension = New List(Of String)
             listExtension.Add(".xls")
             listExtension.Add(".xlsx")
+            listExtension.Add(".txt")
+            listExtension.Add(".ctr")
             listExtension.Add(".doc")
             listExtension.Add(".docx")
-            listExtension.Add(".pdf")
-            listExtension.Add(".jpg")
+            listExtension.Add(".xml")
             listExtension.Add(".png")
+            listExtension.Add(".jpg")
+            listExtension.Add(".bitmap")
+            listExtension.Add(".jpeg")
+            listExtension.Add(".gif")
+            listExtension.Add(".pdf")
+            listExtension.Add(".rar")
+            listExtension.Add(".zip")
+            listExtension.Add(".ppt")
+            listExtension.Add(".pptx")
             Dim fileName As String
 
-            Dim strPath As String = Server.MapPath("~/ReportTemplates/Profile/ContractAppendix/")
+            Dim strPath As String = Server.MapPath("~/ReportTemplates/Profile/FileContractInfo/")
             If ctrlUpload1.UploadedFiles.Count >= 1 Then
                 For i = 0 To ctrlUpload1.UploadedFiles.Count - 1
                     Dim file As UploadedFile = ctrlUpload1.UploadedFiles(i)
                     Dim str_Filename = Guid.NewGuid.ToString() + "\"
                     If listExtension.Any(Function(x) x.ToUpper().Trim() = file.GetExtension.ToUpper().Trim()) Then
-                        'If Commend IsNot Nothing Then
-                        '    If Commend.UPLOADFILE IsNot Nothing Then
-                        '        strPath += Commend.UPLOADFILE
-                        '    Else
-                        '        System.IO.Directory.CreateDirectory(strPath + str_Filename)
-                        '        strPath = strPath + str_Filename
-                        '    End If
-                        '    fileName = System.IO.Path.Combine(strPath, file.FileName)
-                        '    file.SaveAs(fileName, True)
-                        '    Commend.UPLOADFILE = str_Filename
-                        '    txtUploadFile.Text = file.FileName
-                        'Else
                         System.IO.Directory.CreateDirectory(strPath + str_Filename)
                         strPath = strPath + str_Filename
                         fileName = System.IO.Path.Combine(strPath, file.FileName)
                         file.SaveAs(fileName, True)
                         txtUploadFile.Text = file.FileName
-                        'End If
                         Down_File = str_Filename
                     Else
-                        ShowMessage(Translate("Vui lòng chọn file đúng định dạng. !!! Hệ thống chỉ nhận file xls,xlsx,txt,ctr,doc,docx,xml,png,jpg,bitmap,jpeg,gif"), NotifyType.Warning)
+                        ShowMessage(Translate("Vui lòng chọn file đúng định dạng. !!! Hệ thống chỉ nhận file xls,xlsx,txt,ctr,doc,docx,xml,png,jpg,bitmap,jpeg,gif,pdf,rar,zip,ppt,pptx"), NotifyType.Warning)
                         Exit Sub
                     End If
                 Next
@@ -947,14 +944,14 @@ Public Class ctrlHU_ContractTemplete
                 If FileOldName = txtUpload.Text.Trim Or FileOldName Is Nothing Then
                     If txtRemindLink.Text IsNot Nothing Then
                         If txtRemindLink.Text <> "" Then
-                            strPath_Down = Server.MapPath("~/ReportTemplates/Profile/ContractAppendix/" + txtRemindLink.Text)
+                            strPath_Down = Server.MapPath("~/ReportTemplates/Profile/FileContractInfo/" + txtRemindLink.Text)
                             'bCheck = True
                             ZipFiles(strPath_Down)
                         End If
                     End If
                 Else
                     If Down_File <> "" Then
-                        strPath_Down = Server.MapPath("~/ReportTemplates/Profile/ContractAppendix/" + Down_File)
+                        strPath_Down = Server.MapPath("~/ReportTemplates/Profile/FileContractInfo/" + Down_File)
                         'bCheck = True
                         ZipFiles(strPath_Down)
                     End If

@@ -18,7 +18,7 @@ Imports System.Runtime.Serialization
 Imports System.Xml.Serialization
 
 
-<Assembly: EdmSchemaAttribute("e8022e2b-95c7-4284-8392-68bd45c0eba3")>
+<Assembly: EdmSchemaAttribute("1c7856bc-15e4-4cd6-8d1f-12e51f36e6b7")>
 #Region "EDM Relationship Metadata"
 <Assembly: EdmRelationshipAttribute("ProfileModel", "FK_HU_NAT_HU_PRO", "HU_NATION", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_NATION), "HU_PROVINCE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_PROVINCE), True)>
 <Assembly: EdmRelationshipAttribute("ProfileModel", "FK_HU_PRO_HU_DIS", "HU_PROVINCE", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_PROVINCE), "HU_DISTRICT", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_DISTRICT), True)>
@@ -18358,6 +18358,56 @@ Public Partial Class HU_CONTRACT
     Private Partial Sub OnSIGNER_TITLE2Changed()
     End Sub
 
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property ATTACH_FILE() As Global.System.String
+        Get
+            Return _ATTACH_FILE
+        End Get
+        Set
+            OnATTACH_FILEChanging(value)
+            ReportPropertyChanging("ATTACH_FILE")
+            _ATTACH_FILE = StructuralObject.SetValidValue(value, true)
+            ReportPropertyChanged("ATTACH_FILE")
+            OnATTACH_FILEChanged()
+        End Set
+    End Property
+
+    Private _ATTACH_FILE As Global.System.String
+    Private Partial Sub OnATTACH_FILEChanging(value As Global.System.String)
+    End Sub
+
+    Private Partial Sub OnATTACH_FILEChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property FILENAME() As Global.System.String
+        Get
+            Return _FILENAME
+        End Get
+        Set
+            OnFILENAMEChanging(value)
+            ReportPropertyChanging("FILENAME")
+            _FILENAME = StructuralObject.SetValidValue(value, true)
+            ReportPropertyChanged("FILENAME")
+            OnFILENAMEChanged()
+        End Set
+    End Property
+
+    Private _FILENAME As Global.System.String
+    Private Partial Sub OnFILENAMEChanging(value As Global.System.String)
+    End Sub
+
+    Private Partial Sub OnFILENAMEChanged()
+    End Sub
+
     #End Region
 
     #Region "Navigation Properties"
@@ -33361,11 +33411,7 @@ Public Partial Class HU_FAMILY
     ''' <param name="cREATED_DATE">Initial value of the CREATED_DATE property.</param>
     ''' <param name="mODIFIED_BY">Initial value of the MODIFIED_BY property.</param>
     ''' <param name="mODIFIED_LOG">Initial value of the MODIFIED_LOG property.</param>
-    ''' <param name="aDDRESS_TT">Initial value of the ADDRESS_TT property.</param>
-    ''' <param name="cERTIFICATE_CODE">Initial value of the CERTIFICATE_CODE property.</param>
-    ''' <param name="cERTIFICATE_NUM">Initial value of the CERTIFICATE_NUM property.</param>
-    ''' <param name="aD_VILLAGE">Initial value of the AD_VILLAGE property.</param>
-    Public Shared Function CreateHU_FAMILY(id As Global.System.Decimal, eMPLOYEE_ID As Global.System.Decimal, rELATION_ID As Global.System.Decimal, mODIFIED_DATE As Global.System.DateTime, cREATED_BY As Global.System.String, cREATED_LOG As Global.System.String, cREATED_DATE As Global.System.DateTime, mODIFIED_BY As Global.System.String, mODIFIED_LOG As Global.System.String, aDDRESS_TT As Global.System.String, cERTIFICATE_CODE As Global.System.String, cERTIFICATE_NUM As Global.System.String, aD_VILLAGE As Global.System.String) As HU_FAMILY
+    Public Shared Function CreateHU_FAMILY(id As Global.System.Decimal, eMPLOYEE_ID As Global.System.Decimal, rELATION_ID As Global.System.Decimal, mODIFIED_DATE As Global.System.DateTime, cREATED_BY As Global.System.String, cREATED_LOG As Global.System.String, cREATED_DATE As Global.System.DateTime, mODIFIED_BY As Global.System.String, mODIFIED_LOG As Global.System.String) As HU_FAMILY
         Dim hU_FAMILY as HU_FAMILY = New HU_FAMILY
         hU_FAMILY.ID = id
         hU_FAMILY.EMPLOYEE_ID = eMPLOYEE_ID
@@ -33376,10 +33422,6 @@ Public Partial Class HU_FAMILY
         hU_FAMILY.CREATED_DATE = cREATED_DATE
         hU_FAMILY.MODIFIED_BY = mODIFIED_BY
         hU_FAMILY.MODIFIED_LOG = mODIFIED_LOG
-        hU_FAMILY.ADDRESS_TT = aDDRESS_TT
-        hU_FAMILY.CERTIFICATE_CODE = cERTIFICATE_CODE
-        hU_FAMILY.CERTIFICATE_NUM = cERTIFICATE_NUM
-        hU_FAMILY.AD_VILLAGE = aD_VILLAGE
         Return hU_FAMILY
     End Function
 
@@ -33942,7 +33984,7 @@ Public Partial Class HU_FAMILY
     ''' <summary>
     ''' No Metadata Documentation available.
     ''' </summary>
-    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=false)>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
     <DataMemberAttribute()>
     Public Property ADDRESS_TT() As Global.System.String
         Get
@@ -33951,7 +33993,7 @@ Public Partial Class HU_FAMILY
         Set
             OnADDRESS_TTChanging(value)
             ReportPropertyChanging("ADDRESS_TT")
-            _ADDRESS_TT = StructuralObject.SetValidValue(value, false)
+            _ADDRESS_TT = StructuralObject.SetValidValue(value, true)
             ReportPropertyChanged("ADDRESS_TT")
             OnADDRESS_TTChanged()
         End Set
@@ -33967,7 +34009,7 @@ Public Partial Class HU_FAMILY
     ''' <summary>
     ''' No Metadata Documentation available.
     ''' </summary>
-    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=false)>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
     <DataMemberAttribute()>
     Public Property CERTIFICATE_CODE() As Global.System.String
         Get
@@ -33976,7 +34018,7 @@ Public Partial Class HU_FAMILY
         Set
             OnCERTIFICATE_CODEChanging(value)
             ReportPropertyChanging("CERTIFICATE_CODE")
-            _CERTIFICATE_CODE = StructuralObject.SetValidValue(value, false)
+            _CERTIFICATE_CODE = StructuralObject.SetValidValue(value, true)
             ReportPropertyChanged("CERTIFICATE_CODE")
             OnCERTIFICATE_CODEChanged()
         End Set
@@ -33992,7 +34034,7 @@ Public Partial Class HU_FAMILY
     ''' <summary>
     ''' No Metadata Documentation available.
     ''' </summary>
-    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=false)>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
     <DataMemberAttribute()>
     Public Property CERTIFICATE_NUM() As Global.System.String
         Get
@@ -34001,7 +34043,7 @@ Public Partial Class HU_FAMILY
         Set
             OnCERTIFICATE_NUMChanging(value)
             ReportPropertyChanging("CERTIFICATE_NUM")
-            _CERTIFICATE_NUM = StructuralObject.SetValidValue(value, false)
+            _CERTIFICATE_NUM = StructuralObject.SetValidValue(value, true)
             ReportPropertyChanged("CERTIFICATE_NUM")
             OnCERTIFICATE_NUMChanged()
         End Set
@@ -34217,7 +34259,7 @@ Public Partial Class HU_FAMILY
     ''' <summary>
     ''' No Metadata Documentation available.
     ''' </summary>
-    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=false)>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
     <DataMemberAttribute()>
     Public Property AD_VILLAGE() As Global.System.String
         Get
@@ -34226,7 +34268,7 @@ Public Partial Class HU_FAMILY
         Set
             OnAD_VILLAGEChanging(value)
             ReportPropertyChanging("AD_VILLAGE")
-            _AD_VILLAGE = StructuralObject.SetValidValue(value, false)
+            _AD_VILLAGE = StructuralObject.SetValidValue(value, true)
             ReportPropertyChanged("AD_VILLAGE")
             OnAD_VILLAGEChanged()
         End Set

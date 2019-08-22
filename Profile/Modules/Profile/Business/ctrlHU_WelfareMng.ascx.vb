@@ -114,10 +114,12 @@ Public Class ctrlHU_WelfareMng
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
         Dim rep As New ProfileRepository
         Try
-            ListComboData = New ComboBoxDataDTO
-            ListComboData.GET_WELFARE = True
-            rep.GetComboList(ListComboData)
-            FillRadCombobox(cbTyleWelfare, ListComboData.LIST_WELFARE, "NAME", "ID")
+            'ListComboData = New ComboBoxDataDTO
+            'ListComboData.GET_WELFARE = True
+            'rep.GetComboList(ListComboData)
+            'FillRadCombobox(cbTyleWelfare, ListComboData.LIST_WELFARE, "NAME", "ID")
+            Dim dtData = rep.GetOtherList("WELFARE", False)
+            FillRadCombobox(cbTyleWelfare, dtData, "NAME", "ID", True)
             rep.Dispose()
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception

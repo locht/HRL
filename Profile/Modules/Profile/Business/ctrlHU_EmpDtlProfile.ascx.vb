@@ -1558,6 +1558,7 @@ Public Class ctrlHU_EmpDtlProfile
                 FillDataInControls(e.CurrentValue)
             End If
             cboTitle.ClearValue()
+            ' cboInsRegion.ClearValue()
             isLoadPopup = 0
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
@@ -2240,6 +2241,7 @@ Public Class ctrlHU_EmpDtlProfile
         Using rep As New ProfileRepository
             Dim org = rep.GetOrganizationByID(orgid)
             If org IsNot Nothing Then
+                cboInsRegion.ClearValue()
                 SetValueComboBox(cboInsRegion, org.REGION_ID, Nothing)
                 txtOrgName2.Text = org.NAME_VN
                 txtOrgName2.ToolTip = org.NAME_VN
