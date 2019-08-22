@@ -1404,14 +1404,16 @@ Public Class ctrlHU_EmpDtlProfile
                 End Select
 
                 If sText <> "" Then
-                    Dim dtExist = (From p In dtData
-                                   Where p("NAME") IsNot DBNull.Value AndAlso
-                                  p("NAME").ToString.ToUpper = sText.ToUpper)
+                    'Dim dtExist = (From p In dtData
+                    '               Where p("NAME") IsNot DBNull.Value AndAlso
+                    '              p("NAME").ToString.ToUpper = sText.ToUpper)
 
                     'If dtExist.Count = 0 Then
+                    'Dim dtFilter = (From p In dtData
+                    '                Where p("NAME") IsNot DBNull.Value AndAlso
+                    '          p("NAME").ToString.ToUpper.Contains(sText.ToUpper))
                     Dim dtFilter = (From p In dtData
-                                    Where p("NAME") IsNot DBNull.Value AndAlso
-                              p("NAME").ToString.ToUpper.Contains(sText.ToUpper))
+                                    Where p("NAME") IsNot DBNull.Value)
 
                     If dtFilter.Count > 0 Then
                         dtData = dtFilter.CopyToDataTable
@@ -2199,14 +2201,12 @@ Public Class ctrlHU_EmpDtlProfile
             EmployeeInfo.lstPaper = lstbPaper.CheckedItems.Select(Function(f) Decimal.Parse(f.Value)).ToList
             EmployeeInfo.lstPaperFiled = lstbPaperFiled.CheckedItems.Select(Function(f) Decimal.Parse(f.Value)).ToList
             If hidID.Value <> "" Then
-
                 EmployeeInfo.ID = Decimal.Parse(hidID.Value)
                 EmployeeInfo.IS_HISTORY = chkSaveHistory.Checked
                 result = rep.ModifyEmployee(EmployeeInfo, gID, _binaryImage,
                                             EmpCV, _
                                             EmpEdu, _
                                             EmpHealth)
-
             Else
                 result = rep.InsertEmployee(EmployeeInfo, gID, gEmpCode, _binaryImage,
                                             EmpCV, _
