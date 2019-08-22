@@ -266,11 +266,10 @@ Public Class ctrlHU_WelfareMngNewEdit
                     Next
                     '_result = False
                     checkDelete = 1
-                    rgEmployee.DataSource = Employee_PL
+                    dtbImport = Employee_PL.ToTable()
+                    rgEmployee.DataSource = dtbImport
+                    rgEmployee_NeedDataSource(Nothing, Nothing)
                     rgEmployee.Rebind()
-
-
-
             End Select
         Catch ex As Exception
 
@@ -961,6 +960,7 @@ Public Class ctrlHU_WelfareMngNewEdit
             End If
             rgEmployee.VirtualItemCount = Employee_PL.Count
             rgEmployee.DataSource = dtbImport
+
         Catch ex As Exception
 
         End Try

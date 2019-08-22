@@ -44,7 +44,7 @@ Partial Class ProfileRepository
 
             Dim query = From p In Context.HU_WELFARE_MNG
                         From ce In Context.HU_WELFARE_MNG_EMP.Where(Function(f) f.GROUP_ID = p.ID).DefaultIfEmpty
-                        From e In Context.HU_EMPLOYEE.Where(Function(e) p.EMPLOYEE_ID = e.ID).DefaultIfEmpty
+                        From e In Context.HU_EMPLOYEE.Where(Function(e) e.ID = ce.EMPLOYEE_ID).DefaultIfEmpty
                         From o In Context.HU_ORGANIZATION.Where(Function(o) e.ORG_ID = o.ID).DefaultIfEmpty
                         From ot In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.WELFARE_ID).DefaultIfEmpty
                         From t In Context.HU_TITLE.Where(Function(t) e.TITLE_ID = t.ID).DefaultIfEmpty
