@@ -49,16 +49,16 @@
                             <td>
                                    <tlk:RadToolTip ID="EmpOrgNameToolTip" runat="server" Width="100" Height="10" Position="BottomRight" 
             Text='' TargetControlID="txtEmpOrgName"> </tlk:RadToolTip> 
-                                <tlk:RadTextBox Width="128px" ID="txtEmpOrgName" runat="server" ReadOnly="true">
+                                <tlk:RadTextBox Width="128px" ID="txtEmpOrgName" runat="server" Enabled="false">
                                 </tlk:RadTextBox>
-                                <tlk:RadButton runat="server" ID="btnOrgId" Width="8px" SkinID="ButtonView" CausesValidation="false" ReadOnly="true"/>
+                                <tlk:RadButton runat="server" ID="btnOrgId" Width="8px" SkinID="ButtonView" CausesValidation="false" Enabled="false" />
                             </td>
                             <td class="lb" style="text-align: left">
                                 <%# Translate("Chức danh")%>
                             </td>
                             <td>
-                                 <tlk:RadComboBox  ID="cboTitleId" runat="server" ReadOnly="true" Enabled="false"
-                                    CausesValidation="false">
+                                 <tlk:RadComboBox  ID="cboTitleId" runat="server"
+                                    CausesValidation="false" Enabled="false">
                                 </tlk:RadComboBox>
                                <%-- <tlk:RadTextBox ID="txtEmpTitle" Width="100%" runat="server" ReadOnly="True">
                                 </tlk:RadTextBox>--%>
@@ -103,8 +103,9 @@
                                 <tlk:RadNumericTextBox ID="rntxtALLOW_MONEY" MinValue="0" runat="server">
                                     <NumberFormat DecimalDigits="0" ZeroPattern="n" />
                                 </tlk:RadNumericTextBox>
-                            </td> 
-                            <td></td>
+                            </td>
+                             <td>
+                        </td>
                         <td style="display:none">
                             <asp:CheckBox ID="chkALLOW" runat="server" Text="<%$ Translate: Đơn vị kiêm nhiệm trả phụ cấp? %>"
                                 AutoPostBack="false"/>
@@ -153,9 +154,9 @@
                                         CausesValidation="false" OnClientClicked="rbtClicked">
                                     </tlk:RadButton>
                             </td>
-                             <td style="display:none">
+                             <td>
                             <asp:CheckBox ID="chkIsChuyen" runat="server" Text="<%$ Translate: Tạo nhân viên mới %>"
-                                AutoPostBack="false" />
+                                AutoPostBack="false" style="display:none"/>
                              </td>
                         </tr>
                     </table>
@@ -190,14 +191,17 @@
                         </tr>
                         <tr>
                             <td style="text-align: left" class="lb">
-                                <%# Translate("Ngày ký")%>
+                                <%# Translate("Ngày ký")%><span class="lbReq">*</span>
                             </td>
                             <td>
                                 <tlk:RadDatePicker ID="rdSIGN_DATE" runat="server">
                                 </tlk:RadDatePicker>
-                                <asp:CustomValidator ID="curStartDate" runat="server" ErrorMessage="<%$ Translate: Bạn phải chọn Ngày ký %>"
+                                <asp:RequiredFieldValidator ID="RequiredFieldValidator3" ControlToValidate="rdSIGN_DATE" runat="server"
+                                    ErrorMessage="<%$ Translate: Bạn phải chọn Ngày ký. %>" ToolTip="<%$ Translate: Bạn phải chọn Ngày ký. %>"> 
+                                </asp:RequiredFieldValidator>
+                               <%-- <asp:CustomValidator ID="curStartDate" runat="server" ErrorMessage="<%$ Translate: Bạn phải chọn Ngày ký %>"
                                     ToolTip="<%$ Translate: Bạn phải chọn Ngày ký %>">
-                                </asp:CustomValidator>
+                                </asp:CustomValidator>--%>
                             </td>
                             <td class="lb" style="text-align: left">
                                 <%# Translate("Trạng thái của quyết định")%>

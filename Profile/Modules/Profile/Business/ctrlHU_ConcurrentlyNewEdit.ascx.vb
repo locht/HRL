@@ -674,20 +674,20 @@ Public Class ctrlHU_ConcurrentlyNewEdit
     End Sub
 
     ' Cảnh báo nếu trạng thái phê quyệt thì bắt buộc nhập ngày hiệu lực
-    Private Sub curStartDate_ServerValidate(ByVal source As Object, ByVal args As System.Web.UI.WebControls.ServerValidateEventArgs) Handles curStartDate.ServerValidate
-        Try
+    'Private Sub curStartDate_ServerValidate(ByVal source As Object, ByVal args As System.Web.UI.WebControls.ServerValidateEventArgs) Handles curStartDate.ServerValidate
+    '    Try
 
-            If cboStatus.SelectedValue <> "" Then
-                If cboStatus.SelectedValue = 1 AndAlso rdSIGN_DATE.SelectedDate Is Nothing Then
-                    args.IsValid = False
-                Else
-                    args.IsValid = True
-                End If
-            End If
-        Catch ex As Exception
-            DisplayException(Me.ViewName, Me.ID, ex)
-        End Try
-    End Sub
+    '        If cboStatus.SelectedValue <> "" Then
+    '            If cboStatus.SelectedValue = 1 AndAlso rdSIGN_DATE.SelectedDate Is Nothing Then
+    '                args.IsValid = False
+    '            Else
+    '                args.IsValid = True
+    '            End If
+    '        End If
+    '    Catch ex As Exception
+    '        DisplayException(Me.ViewName, Me.ID, ex)
+    '    End Try
+    'End Sub
     Private Sub CusToDate_ServerValidate(ByVal source As Object, ByVal args As System.Web.UI.WebControls.ServerValidateEventArgs) Handles cval_EffectDate_ExpireDate.ServerValidate
         Try
             'Nếu ngày nghỉ bé hơn ngày vào thì cảnh báo

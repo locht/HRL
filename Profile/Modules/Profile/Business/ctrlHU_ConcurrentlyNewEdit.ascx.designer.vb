@@ -374,13 +374,13 @@ Partial Public Class ctrlHU_ConcurrentlyNewEdit
     Protected WithEvents rdSIGN_DATE As Global.Telerik.Web.UI.RadDatePicker
 
     '''<summary>
-    '''curStartDate control.
+    '''RequiredFieldValidator3 control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents curStartDate As Global.System.Web.UI.WebControls.CustomValidator
+    Protected WithEvents RequiredFieldValidator3 As Global.System.Web.UI.WebControls.RequiredFieldValidator
 
     '''<summary>
     '''cboStatus control.
