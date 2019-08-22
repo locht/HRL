@@ -285,6 +285,9 @@ Public Class ctrlHU_Organization
                         txtCode.Focus()
                         'tr01.Visible = False
                         'tr02.Visible = False
+                        cbUNIT_LEVEL.ClearValue()
+                        objOrgFunction.REPRESENTATIVE_ID = Nothing
+                        hidRepresentative.Value = Nothing
                         If treeOrgFunction.SelectedNode.Level = 0 Then
                             'tr01.Visible = True
                             'tr02.Visible = True
@@ -399,7 +402,9 @@ Public Class ctrlHU_Organization
                         Else
                             objOrgFunction.ORG_LEVEL = ORG_LEVEL
                         End If
-                        If hidRepresentative.Value <> "" Then
+                        If hidRepresentative.Value = "" Then
+                            objOrgFunction.REPRESENTATIVE_ID = Nothing
+                        Else
                             objOrgFunction.REPRESENTATIVE_ID = hidRepresentative.Value
                         End If
                         Dim objPath As OrganizationPathDTO

@@ -427,9 +427,11 @@ Public Class ctrlHU_WelfareList
                     '    Dim gan As New RadListBoxItem("565,566", "565,566")
                     '    lstbGender.Items.Add(gan)
                     'End If
-                    'For Each line In lstbGender.
+                    'For Each line As RadListBoxItem In lstbGender.Items
                     '    line.Checked = True
                     'Next
+
+
                     isEdit = item.ID
                     Dim item2 = (From p In WelfareLists Where p.ID = Decimal.Parse(slItem.GetDataKeyValue("ID").ToString) Select p).FirstOrDefault
                     If item2 IsNot Nothing Then

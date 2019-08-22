@@ -92,8 +92,8 @@
                 <td>
                     <tlk:radtextbox id="txtRepresentativeName" runat="server" width="130px" readonly="True">
                     </tlk:radtextbox>
-                      <asp:RequiredFieldValidator ID="RequiredFieldValidator2" ControlToValidate="txtRepresentativeName" runat="server"
-                        ErrorMessage="Bạn phải chọn Quản lý đơn vị" ToolTip="Bạn phải chọn Quản lý đơn vị"></asp:RequiredFieldValidator>
+                     <%-- <asp:RequiredFieldValidator ID="RequiredFieldValidator2" ControlToValidate="txtRepresentativeName" runat="server"
+                        ErrorMessage="Bạn phải chọn Quản lý đơn vị" ToolTip="Bạn phải chọn Quản lý đơn vị"></asp:RequiredFieldValidator>--%>
                     <tlk:radbutton id="btnFindRepresentative" skinid="ButtonView" runat="server" causesvalidation="false"
                         width="40px">
                     </tlk:radbutton>
