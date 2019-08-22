@@ -51787,7 +51787,7 @@ Namespace ProfileBusiness
         Function GetlistWelfareEMP(ByVal Id As Integer) As System.Collections.Generic.List(Of ProfileBusiness.Welfatemng_empDTO)
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GET_DETAILS_EMP", ReplyAction:="http://tempuri.org/IProfileBusiness/GET_DETAILS_EMPResponse")>  _
-        Function GET_DETAILS_EMP(ByVal P_ID As Decimal, ByVal P_WELFARE_ID As Decimal, ByVal P_DATE As Date) As System.Data.DataTable
+        Function GET_DETAILS_EMP(ByVal P_ID As Decimal, ByVal P_WELFARE_ID As Decimal, ByVal P_DATE As Date, ByVal log As Common.CommonBusiness.UserLog) As System.Data.DataTable
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GET_EXPORT_EMP", ReplyAction:="http://tempuri.org/IProfileBusiness/GET_EXPORT_EMPResponse")>  _
         Function GET_EXPORT_EMP(ByVal P_WELFARE_ID As Decimal, ByVal P_DATE As Date, ByVal log As Common.CommonBusiness.UserLog) As System.Data.DataSet
@@ -54020,8 +54020,8 @@ Namespace ProfileBusiness
             Return MyBase.Channel.GetlistWelfareEMP(Id)
         End Function
         
-        Public Function GET_DETAILS_EMP(ByVal P_ID As Decimal, ByVal P_WELFARE_ID As Decimal, ByVal P_DATE As Date) As System.Data.DataTable Implements ProfileBusiness.IProfileBusiness.GET_DETAILS_EMP
-            Return MyBase.Channel.GET_DETAILS_EMP(P_ID, P_WELFARE_ID, P_DATE)
+        Public Function GET_DETAILS_EMP(ByVal P_ID As Decimal, ByVal P_WELFARE_ID As Decimal, ByVal P_DATE As Date, ByVal log As Common.CommonBusiness.UserLog) As System.Data.DataTable Implements ProfileBusiness.IProfileBusiness.GET_DETAILS_EMP
+            Return MyBase.Channel.GET_DETAILS_EMP(P_ID, P_WELFARE_ID, P_DATE, log)
         End Function
         
         Public Function GET_EXPORT_EMP(ByVal P_WELFARE_ID As Decimal, ByVal P_DATE As Date, ByVal log As Common.CommonBusiness.UserLog) As System.Data.DataSet Implements ProfileBusiness.IProfileBusiness.GET_EXPORT_EMP
