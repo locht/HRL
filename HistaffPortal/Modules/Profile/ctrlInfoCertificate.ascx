@@ -166,7 +166,7 @@
                     ErrorMessage="<%$ Translate: Bạn phải chọn tên trường %>" ToolTip="<%$ Translate: Bạn phải chọn tên trường %>">
                 </asp:RequiredFieldValidator>
             </td>
-            <td class="lb">
+           <%-- <td class="lb">
                 <%# Translate("Tập tin đính kèm")%>
             </td>
             <td>
@@ -178,7 +178,7 @@
                 <tlk:RadButton runat="server" ID="btnDownload" Text="<%$ Translate: Tải xuống%>"
                     CausesValidation="false" OnClientClicked="rbtClicked" EnableViewState="false">
                 </tlk:RadButton>
-            </td>
+            </td>--%>
             <td style="display: none" class="lb">
                 <%# Translate("Ngày nhận bằng")%>
             </td>
@@ -191,11 +191,12 @@
             <td class="lb">
                 <%# Translate("Ghi chú")%>
             </td>
-            <td>
-                <tlk:RadTextBox runat="server" ID="txtGhichu" SkinID="Textbox1023">
+            <td style= "width : 300px">
+                <tlk:RadTextBox runat="server" ID="txtGhichu" SkinID="Textbox1023" Width="99%"> 
                 </tlk:RadTextBox>
             </td>
         </tr>
+
         <tr style="display: none">
             <td class="lb" style="display: none">
                 <%# Translate("Ghi chú")%>
@@ -211,7 +212,9 @@
                 </tlk:RadTextBox>
             </td>
         </tr>
+         
     </table>
+     
     <tlk:RadGrid PageSize="50" ID="rgCetificateEdit" runat="server" Height="250px" Width="99%">
         <ClientSettings EnableRowHoverStyle="true" EnablePostBackOnRowClick="true">
             <Selecting AllowRowSelect="true" />

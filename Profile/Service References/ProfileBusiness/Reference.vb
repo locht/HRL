@@ -38634,6 +38634,9 @@ Namespace ProfileBusiness
         Private ID_PLACEField As System.Nullable(Of Decimal)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private ID_REMARKField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private IMAGEField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -39548,6 +39551,19 @@ Namespace ProfileBusiness
                 If (Me.ID_PLACEField.Equals(value) <> true) Then
                     Me.ID_PLACEField = value
                     Me.RaisePropertyChanged("ID_PLACE")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property ID_REMARK() As String
+            Get
+                Return Me.ID_REMARKField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.ID_REMARKField, value) <> true) Then
+                    Me.ID_REMARKField = value
+                    Me.RaisePropertyChanged("ID_REMARK")
                 End If
             End Set
         End Property
@@ -51787,7 +51803,7 @@ Namespace ProfileBusiness
         Function GetlistWelfareEMP(ByVal Id As Integer) As System.Collections.Generic.List(Of ProfileBusiness.Welfatemng_empDTO)
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GET_DETAILS_EMP", ReplyAction:="http://tempuri.org/IProfileBusiness/GET_DETAILS_EMPResponse")>  _
-        Function GET_DETAILS_EMP(ByVal P_ID As Decimal, ByVal P_WELFARE_ID As Decimal, ByVal P_DATE As Date) As System.Data.DataTable
+        Function GET_DETAILS_EMP(ByVal P_ID As Decimal, ByVal P_WELFARE_ID As Decimal, ByVal P_DATE As Date, ByVal log As Common.CommonBusiness.UserLog) As System.Data.DataTable
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GET_EXPORT_EMP", ReplyAction:="http://tempuri.org/IProfileBusiness/GET_EXPORT_EMPResponse")>  _
         Function GET_EXPORT_EMP(ByVal P_WELFARE_ID As Decimal, ByVal P_DATE As Date, ByVal log As Common.CommonBusiness.UserLog) As System.Data.DataSet
@@ -54020,8 +54036,8 @@ Namespace ProfileBusiness
             Return MyBase.Channel.GetlistWelfareEMP(Id)
         End Function
         
-        Public Function GET_DETAILS_EMP(ByVal P_ID As Decimal, ByVal P_WELFARE_ID As Decimal, ByVal P_DATE As Date) As System.Data.DataTable Implements ProfileBusiness.IProfileBusiness.GET_DETAILS_EMP
-            Return MyBase.Channel.GET_DETAILS_EMP(P_ID, P_WELFARE_ID, P_DATE)
+        Public Function GET_DETAILS_EMP(ByVal P_ID As Decimal, ByVal P_WELFARE_ID As Decimal, ByVal P_DATE As Date, ByVal log As Common.CommonBusiness.UserLog) As System.Data.DataTable Implements ProfileBusiness.IProfileBusiness.GET_DETAILS_EMP
+            Return MyBase.Channel.GET_DETAILS_EMP(P_ID, P_WELFARE_ID, P_DATE, log)
         End Function
         
         Public Function GET_EXPORT_EMP(ByVal P_WELFARE_ID As Decimal, ByVal P_DATE As Date, ByVal log As Common.CommonBusiness.UserLog) As System.Data.DataSet Implements ProfileBusiness.IProfileBusiness.GET_EXPORT_EMP

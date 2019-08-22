@@ -167,7 +167,7 @@
                     <tr>
                         <td class="lbInfo">
                             <asp:Label runat="server" ID="lbFirstNameVN" Text="Họ và tên lót"></asp:Label>
-                            <span class="lbReq">*</span>
+                            
                         </td>
                         <td>
                             <tlk:RadTextBox ID="txtFirstNameVN" runat="server" Width="120px">
@@ -178,7 +178,7 @@
                         </td>
                         <td class="lb">
                             <asp:Label runat="server" ID="lbLastNameVN" Text="Tên"></asp:Label>
-                            <span class="lbReq">*</span>
+                            
                         </td>
                         <td>
                             <tlk:RadTextBox ID="txtLastNameVN" runat="server" Width="100px">
@@ -219,7 +219,7 @@
                                     <tr>
                                         <td class="lb3">
                                             <asp:Label runat="server" ID="lbOrgName2" Text="Phòng ban"></asp:Label>
-                                            <span class="lbReq">*</span>
+                                            
                                         </td>
                                         <td class="control3">
                                             <tlk:RadTextBox runat="server" ID="txtOrgName2" ReadOnly="true" Width="130px" />
@@ -231,7 +231,7 @@
                                         </td>
                                         <td class="lb3">
                                             <asp:Label runat="server" ID="lbTitle" Text="Chức danh"></asp:Label>
-                                            <span class="lbReq">*</span>
+                                            
                                         </td>
                                         <td class="control3">
                                             <tlk:RadComboBox runat="server" ID="cboTitle" SkinID="LoadDemand" OnClientSelectedIndexChanged="OnClientSelectedIndexChanged"
@@ -282,7 +282,7 @@
                                     <tr>
                                         <td class="lb3">
                                             <asp:Label runat="server" ID="lbDirectManager" Text="Quản lý trực tiếp"></asp:Label>
-                                            <span class="lbReq">*</span>
+                                            
                                         </td>
                                         <td>
                                             <tlk:RadTextBox runat="server" ID="txtDirectManager" ReadOnly="true" Width="130px" />
@@ -307,7 +307,7 @@
                                         </td>
                                         <td class="lbInfo">
                                             <asp:Label runat="server" ID="lbObjectLabor" Text="Đối tượng lao động"></asp:Label>
-                                            <span class="lbReq">*</span>
+                                            
                                         </td>
                                         <td >
                                             <tlk:RadComboBox runat="server" ID="cboObjectLabor" SkinID="LoadDemand" OnClientSelectedIndexChanged="OnClientSelectedIndexChanged"
@@ -319,7 +319,7 @@
                                         </td>
                                         <td class="lb3" style = "display : none">
                                             <asp:Label runat="server" ID="lbObject" Text="Đối tượng chấm công"></asp:Label>
-                                            <span class="lbReq">*</span>
+                                            
                                         </td>
                                         <td style = "display : none">
                                             <tlk:RadComboBox runat="server" ID="cboObject" SkinID="LoadDemand" OnClientSelectedIndexChanged="OnClientSelectedIndexChanged"
@@ -423,8 +423,7 @@
                                     </tr>
                                     <tr>
                                         <td class="lb3">
-                                            <asp:Label runat="server" ID="lbGender" Text="Giới tính"></asp:Label>
-                                            <span class="lbReq">*</span>
+                                            <asp:Label runat="server" ID="lbGender" Text="Giới tính"></asp:Label>                                            
                                         </td>
                                         <td>
                                             <tlk:RadComboBox runat="server" ID="cboGender" SkinID="LoadDemand" OnClientSelectedIndexChanged="OnClientSelectedIndexChanged"
@@ -494,8 +493,7 @@
                                     </tr>
                                     <tr>
                                         <td class="lb3">
-                                            <asp:Label runat="server" ID="lbID_NO" Text="Số CMND"></asp:Label>
-                                            <span class="lbReq">*</span>
+                                            <asp:Label runat="server" ID="lbID_NO" Text="Số CMND"></asp:Label>                                            
                                         </td>
                                         <td>
                                             <tlk:RadTextBox runat="server" ID="txtID_NO">
@@ -530,6 +528,15 @@
                                             </tlk:RadComboBox>
                                         </td>
                                     </tr>
+                                    <tr>
+                                        <td class="lb3">
+                                            <asp:Label runat="server" ID="lbIDRemark" Text="Ghi chú thay đổi CMND"></asp:Label>                                            
+                                        </td>
+                                        <td colspan="5">
+                                            <tlk:RadTextBox ID="txtIDRemark" runat="server" Width="100%">
+                                            </tlk:RadTextBox>
+                                        </td>
+                                    </tr>
                                     <tr style="display: none">
                                         <td class="lb3">
                                             <asp:Label runat="server" ID="lbPROVINCEEMP_BRITH" Text="Tỉnh/Thành khai sinh"></asp:Label>
@@ -558,8 +565,7 @@
                                     </tr>
                                     <tr>
                                         <td class="lb3">
-                                            <asp:Label runat="server" ID="lbInsRegion" Text="Vùng bảo hiểm"></asp:Label>
-                                            <span class="lbReq">*</span>
+                                            <asp:Label runat="server" ID="lbInsRegion" Text="Vùng bảo hiểm"></asp:Label>                                            
                                         </td>
                                         <td>
                                             <tlk:RadComboBox runat="server" ID="cboInsRegion" SkinID="LoadDemand" OnClientSelectedIndexChanged="OnClientSelectedIndexChanged">
@@ -582,6 +588,32 @@
                                         </td>
                                         <td>
                                             <tlk:RadTextBox runat="server" ID="rtBookNo">
+                                            </tlk:RadTextBox>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="lb3">
+                                            <asp:Label runat="server" ID="lbPitCode" Text="Mã số Thuế"></asp:Label>
+                                        </td>
+                                        <td>
+                                            <tlk:RadTextBox ID="txtPitCode" runat="server">
+                                            </tlk:RadTextBox>
+                                        </td>
+                                        <td style="display: none" colspan="3">
+                                            <asp:CheckBox ID="chkIs_pay_bank" runat="server" Text="Thanh toán qua ngân hàng" />
+                                        </td>
+                                        <td class="lb3">
+                                            <asp:Label runat="server" ID="lbDayPitcode" Text="Ngày cấp"></asp:Label>
+                                        </td>
+                                        <td>
+                                            <tlk:RadDatePicker ID="rdDayPitcode" runat="server">
+                                            </tlk:RadDatePicker>
+                                        </td>
+                                        <td class="lb3">
+                                            <asp:Label runat="server" ID="lbPlacePitcode" Text="Nơi cấp"></asp:Label>
+                                        </td>
+                                        <td>
+                                            <tlk:RadTextBox runat="server" ID="txtPlacePitcode">
                                             </tlk:RadTextBox>
                                         </td>
                                     </tr>
@@ -684,13 +716,23 @@
                                 <table class="table-form" style="width: 99%" onkeydown="return (event.keyCode!=13)">
                                     <tr>
                                         <td class="lb3">
+                                            <asp:Label runat="server" ID="lbAcademy" Text="Trình độ văn hóa"></asp:Label>
+                                        </td>
+                                        <td>
+                                            <tlk:RadComboBox ID="cboAcademy" runat="server" SkinID="LoadDemand" OnClientSelectedIndexChanged="OnClientSelectedIndexChanged"
+                                                OnClientItemsRequesting="OnClientItemsRequesting">
+                                            </tlk:RadComboBox>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="lb3">
                                             <asp:Label runat="server" ID="lbLearningLevel" Text="Trình độ học vấn"></asp:Label>
                                         </td>
                                         <td>
                                             <tlk:RadComboBox ID="cboLearningLevel" runat="server" SkinID="LoadDemand" OnClientSelectedIndexChanged="OnClientSelectedIndexChanged"
                                                 OnClientItemsRequesting="OnClientItemsRequesting">
                                             </tlk:RadComboBox>
-                                        </td>
+                                        </td>                                       
                                         <td class="lb3">
                                             <asp:Label runat="server" ID="lbMajor" Text="Trình độ chuyên môn"></asp:Label>
                                         </td>
@@ -698,22 +740,14 @@
                                             <tlk:RadComboBox ID="cboMajor" runat="server" SkinID="LoadDemand" OnClientSelectedIndexChanged="OnClientSelectedIndexChanged"
                                                 OnClientItemsRequesting="OnClientItemsRequesting">
                                             </tlk:RadComboBox>
-                                        </td>
+                                        </td>                                        
+                                    </tr>
+                                    <tr>
                                         <td class="lb3">
                                             <asp:Label runat="server" ID="lbSchool" Text="Trường học"></asp:Label>
                                         </td>
                                         <td class="control3">
                                             <tlk:RadComboBox ID="cboGraduateSchool" runat="server">
-                                            </tlk:RadComboBox>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="lb3">
-                                            <asp:Label runat="server" ID="lbAcademy" Text="Trình độ văn hóa"></asp:Label>
-                                        </td>
-                                        <td>
-                                            <tlk:RadComboBox ID="cboAcademy" runat="server" SkinID="LoadDemand" OnClientSelectedIndexChanged="OnClientSelectedIndexChanged"
-                                                OnClientItemsRequesting="OnClientItemsRequesting">
                                             </tlk:RadComboBox>
                                         </td>
                                         <td class="lb3">
@@ -888,8 +922,7 @@
                                     </tr>
                                     <tr>
                                         <td class="lb3">
-                                            <asp:Label runat="server" ID="lbPerAddress" Text="Địa chỉ thường trú"></asp:Label>
-                                            <span class="lbReq">*</span>
+                                            <asp:Label runat="server" ID="lbPerAddress" Text="Địa chỉ thường trú"></asp:Label>                                            
                                         </td>
                                         <td colspan="5">
                                             <tlk:RadTextBox ID="txtPerAddress" runat="server" Width="100%">
@@ -903,7 +936,7 @@
                                     <tr>
                                         <td class="lb3">
                                             <asp:Label runat="server" ID="lbPer_Province" Text="Thành phố"></asp:Label>
-                                            <span class="lbReq">*</span>
+                                            
                                         </td>
                                         <td>
                                             <tlk:RadComboBox runat="server" ID="cboPer_Province" SkinID="LoadDemand" OnClientSelectedIndexChanged="OnClientSelectedIndexChanged"
@@ -920,7 +953,7 @@
                                         </td>
                                         <td class="lb3">
                                             <asp:Label runat="server" ID="lbPer_District" Text="Quận huyện"></asp:Label>
-                                            <span class="lbReq">*</span>
+                                            
                                         </td>
                                         <td>
                                             <tlk:RadComboBox runat="server" ID="cboPer_District" SkinID="LoadDemand" OnClientSelectedIndexChanged="OnClientSelectedIndexChanged"
@@ -955,7 +988,7 @@
                                     <tr>
                                         <td class="lb3">
                                             <asp:Label runat="server" ID="lbNavAddress" Text="Địa chỉ tạm trú"></asp:Label>
-                                            <span class="lbReq">*</span>
+                                            
                                         </td>
                                         <td colspan="5">
                                             <tlk:RadTextBox ID="txtNavAddress" runat="server" Width="100%">
@@ -1122,36 +1155,10 @@
                         </tlk:RadPanelItem>
                         <tlk:RadPanelItem Expanded="false" Text="<%$ Translate: Thông tin tài khoản %>">
                             <ContentTemplate>
-                                <table class="table-form" style="width: 99%" onkeydown="return (event.keyCode!=13)">
+                                <table class="table-form" style="width: 99%" onkeydown="return (event.keyCode!=13)">                                    
                                     <tr>
                                         <td class="lb3">
-                                            <asp:Label runat="server" ID="lbPitCode" Text="Mã số Thuế"></asp:Label>
-                                        </td>
-                                        <td>
-                                            <tlk:RadTextBox ID="txtPitCode" runat="server">
-                                            </tlk:RadTextBox>
-                                        </td>
-                                        <td style="display: none" colspan="3">
-                                            <asp:CheckBox ID="chkIs_pay_bank" runat="server" Text="<%$ Translate: Thanh toán qua ngân hàng %>" />
-                                        </td>
-                                        <td class="lb3">
-                                            <asp:Label runat="server" ID="lbDayPitcode" Text="Ngày cấp"></asp:Label>
-                                        </td>
-                                        <td>
-                                            <tlk:RadDatePicker ID="rdDayPitcode" runat="server">
-                                            </tlk:RadDatePicker>
-                                        </td>
-                                        <td class="lb3">
-                                            <asp:Label runat="server" ID="lbPlacePitcode" Text="Nơi cấp"></asp:Label>
-                                        </td>
-                                        <td>
-                                            <tlk:RadTextBox runat="server" ID="txtPlacePitcode">
-                                            </tlk:RadTextBox>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="lb3">
-                                            <asp:Label runat="server" ID="Label8" Text="Tên người hưởng thụ"></asp:Label>
+                                            <asp:Label runat="server" ID="lbPerson_Inheritance" Text="Tên người hưởng thụ"></asp:Label>
                                         </td>
                                         <td>
                                             <tlk:RadTextBox runat="server" ID="txtPerson_Inheritance">

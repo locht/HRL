@@ -214,11 +214,6 @@ Public Class ctrlHU_CommendNewEdit
             GetParams()
             Refresh()
             UpdateControlState()
-            If (cboStatus.Text = "") Then
-                cboStatus.Enabled = True
-            Else
-                cboStatus.Enabled = False
-            End If
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
             'DisplayException(Me.ViewName, Me.ID, ex)
@@ -317,6 +312,7 @@ Public Class ctrlHU_CommendNewEdit
                     txtSignerTitle.Text = Commend.SIGNER_TITLE
                     rdSignDate.SelectedDate = Commend.SIGN_DATE
                     cboStatus.SelectedValue = Commend.STATUS_ID.ToString
+                    cboCommendLevel.SelectedValue = Commend.COMMEND_LEVEL
                     'txtDecisionName.Text = Commend.NAME
                     'rdExpireDate.SelectedDate = Commend.EXPIRE_DATE
                     'rdIssueDate.SelectedDate = Commend.ISSUE_DATE
@@ -528,6 +524,7 @@ Public Class ctrlHU_CommendNewEdit
                         objCommend.SIGNER_NAME = txtSignerName.Text
                         objCommend.SIGN_DATE = rdSignDate.SelectedDate
 
+
                         If hidSignID.Value <> "" Then
                             objCommend.SIGN_ID = hidSignID.Value
                         End If
@@ -571,6 +568,9 @@ Public Class ctrlHU_CommendNewEdit
 
                         If cboPeriod.SelectedValue <> "" Then
                             objCommend.PERIOD_ID = cboPeriod.SelectedValue
+                        End If
+                        If cboCommendLevel.SelectedValue <> "" Then
+                            objCommend.COMMEND_LEVEL = cboCommendLevel.SelectedValue
                         End If
 
                         objCommend.REMARK = txtCommend_Detail.Text

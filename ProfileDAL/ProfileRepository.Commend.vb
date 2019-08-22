@@ -34,7 +34,7 @@ Partial Class ProfileRepository
                                     From t In Context.HU_TITLE.Where(Function(t) t.ID = e.TITLE_ID).DefaultIfEmpty
                                     From title In Context.OT_OTHER_LIST.Where(Function(x) x.ID = t.LEVEL_ID).DefaultIfEmpty
                                     From ct In Context.HU_COMMEND_LIST.Where(Function(x) x.ID = p.TITLE_ID).DefaultIfEmpty
-                                     From pay In Context.OT_OTHER_LIST.Where(Function(x) x.ID = p.COMMEND_PAY).DefaultIfEmpty
+                                     From pay In Context.OT_OTHER_LIST.Where(Function(x) x.ID = ce.COMMEND_PAY).DefaultIfEmpty
                                      From lkt In Context.HU_COMMEND_LIST.Where(Function(x) x.ID = p.COMMEND_LIST).DefaultIfEmpty
                                      Join ot In Context.OT_OTHER_LIST On ot.ID Equals p.STATUS_ID()
                                      From nc In Context.PA_PAYMENTSOURCES.Where(Function(x) x.ID = p.POWER_PAY_ID).DefaultIfEmpty
@@ -116,7 +116,7 @@ Partial Class ProfileRepository
                                                        .EFFECT_DATE = p.p.EFFECT_DATE,
                                                        .EXPIRE_DATE = p.p.EXPIRE_DATE,
                                                        .TITLE_NAME = p.t.NAME_VN,
-                                                       .MONEY = p.p.MONEY,
+                                                       .MONEY = p.ce.MONEY,
                                                        .REMARK = p.p.REMARK,
                                                        .STATUS_NAME = p.ot.NAME_VN,
                                                        .STATUS_CODE = p.ot.CODE,
@@ -145,7 +145,7 @@ Partial Class ProfileRepository
                                                        .PERIOD_TAX = p.p.PERIOD_TAX,
                                                        .PERIOD_TAX_NAME = p.klt.PERIOD_NAME,
                                                        .PERIOD_NAME = p.kl.PERIOD_NAME,
-                                                       .COMMEND_TYPE = p.p.COMMEND_TYPE,
+                                                       .COMMEND_TYPE = p.ce.COMMEND_PAY,
                                                        .COMMEND_TYPE_NAME = p.htkt.NAME,
                                                        .COMMEND_LEVEL_NAME = p.ckt.NAME,
                                                        .COMMEND_LEVEL = p.p.COMMEND_LEVEL,
