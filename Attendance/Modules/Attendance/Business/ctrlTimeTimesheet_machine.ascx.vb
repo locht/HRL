@@ -282,23 +282,17 @@ Public Class ctrlTimeTimesheet_machine
                         employee_id = Decimal.Parse(item)
                         lsEmployee.Add(employee_id)
                     Next
+                    Dim p_delAll As Decimal = IIf(ckReset.Checked, 1, 0)
+
                     If getSE_CASE_CONFIG("ctrlTimeTimesheet_machine_case1") > 0 Then
                         rep.Init_TimeTImesheetMachines(_param, rdtungay.SelectedDate, rdDenngay.SelectedDate,
-                                                   Decimal.Parse(ctrlOrganization.CurrentValue), lsEmployee, 0, "ctrlTimeTimesheet_machine_case1")
+                                                   Decimal.Parse(ctrlOrganization.CurrentValue), lsEmployee, p_delAll, "ctrlTimeTimesheet_machine_case1")
                         Refresh("UpdateView")
                     Else
                         rep.Init_TimeTImesheetMachines(_param, rdtungay.SelectedDate, rdDenngay.SelectedDate,
-                                                   Decimal.Parse(ctrlOrganization.CurrentValue), lsEmployee, 0, "")
+                                                   Decimal.Parse(ctrlOrganization.CurrentValue), lsEmployee, p_delAll, "")
                         Refresh("UpdateView")
                     End If
-                    
-                    'If rep.Init_TimeTImesheetMachines(_param, rdtungay.SelectedDate, rdDenngay.SelectedDate,
-                    '                               Decimal.Parse(ctrlOrganization.CurrentValue), lsEmployee) Then
-                    '    Refresh("UpdateView")
-                    'Else
-                    '    ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), NotifyType.Success)
-                    '    Exit Sub
-                    'End If
                 Case TOOLBARITEM_EXPORT
                     Using xls As New ExcelCommon
                         Dim dtDatas As DataTable

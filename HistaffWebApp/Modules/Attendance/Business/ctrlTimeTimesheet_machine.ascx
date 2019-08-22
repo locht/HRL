@@ -38,15 +38,20 @@
                             <asp:Label  runat ="server" ID="lbFilter" Text ="Dữ liệu phát sinh"></asp:Label>
                         </td>
                         <td>
-                            <tlk:RadComboBox  ID="cbFilter" SkinID="dDropdownList" Width="160px" 
-                                RenderMode="Lightweight" runat="server" CheckBoxes="true" EnableCheckAllItemsCheckBox="true" >
-                                <Items>
+                            <tlk:RadComboBox  ID="cbFilter" SkinID="dDropdownList" Width="160px"
+                               RenderMode="Lightweight" runat="server" CheckBoxes="true" EnableCheckAllItemsCheckBox="true" >
+                               <Items>
                                     <tlk:RadComboBoxItem Text="Đi trễ" Value ="1" />
                                     <tlk:RadComboBoxItem Text="Về sớm" Value ="2" />
                                     <tlk:RadComboBoxItem Text="Dữ liệu có giải trình" Value ="3" />
-                                    <tlk:RadComboBoxItem Text="Ngày làm không công" Value ="4" />
+                                   <tlk:RadComboBoxItem Text="Ngày làm không công" Value ="4" />
                                 </Items>
                             </tlk:RadComboBox>
+                        </td>
+                        <td>
+                            <tlk:RadButton ID="btnSearch" Text="<%$ Translate: Tìm%>" runat="server" ToolTip=""
+                                SkinID="ButtonFind">
+                            </tlk:RadButton>
                         </td>
                     </tr>
                     <tr>
@@ -67,9 +72,7 @@
                             </tlk:RadDatePicker>
                         </td>
                         <td>
-                            <tlk:RadButton ID="btnSearch" Text="<%$ Translate: Tìm%>" runat="server" ToolTip=""
-                                SkinID="ButtonFind">
-                            </tlk:RadButton>
+                            <asp:CheckBox ID ="ckReset" runat="server"  Text ="Cập nhật mới lại toàn bộ dữ liệu" />
                         </td>
                     </tr>
                 </table>
