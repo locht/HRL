@@ -65,7 +65,14 @@ Public Class ctrlHU_Title
             ViewState(Me.ID & "_FileOldName") = value
         End Set
     End Property
-
+    Property dataTable As DataTable
+        Get
+            Return ViewState(Me.ID & "_dataTable")
+        End Get
+        Set(ByVal value As DataTable)
+            ViewState(Me.ID & "_dataTable") = value
+        End Set
+    End Property
 #End Region
 
 #Region "Page"
@@ -240,7 +247,7 @@ Public Class ctrlHU_Title
                     EnabledGridNotPostback(rgMain, False)
                     EnableControlAll(True, cboTitleGroup, txtNameVN, txtRemark, cboOrgLevel, cboOrgType, cboHurtType, ckOVT, btnDownload, btnUploadFile)
                     Refresh("Cancel")
-
+                    btnDownload.Enabled = False
                 Case CommonMessage.STATE_NORMAL
                     EnabledGridNotPostback(rgMain, True)
                     EnableControlAll(False, cboTitleGroup, txtNameVN, txtRemark, cboOrgLevel, cboOrgType, cboHurtType, ckOVT, btnDownload, btnUploadFile)
@@ -249,6 +256,11 @@ Public Class ctrlHU_Title
                     EnabledGridNotPostback(rgMain, False)
                     Utilities.EnableRadCombo(cboTitleGroup, True)
                     EnableControlAll(True, cboTitleGroup, txtNameVN, txtRemark, cboOrgLevel, cboOrgType, cboHurtType, ckOVT, btnDownload, btnUploadFile)
+                    If txtUpload.Text <> "" Then
+                        btnDownload.Enabled = True
+                    Else
+                        btnDownload.Enabled = False
+                    End If
 
                 Case CommonMessage.STATE_DELETE
                     Dim lstDeletes As New List(Of Decimal)
@@ -320,8 +332,8 @@ Public Class ctrlHU_Title
         Try
             Dim dtData As DataTable
             Using rep As New ProfileRepository
-                dtData = rep.GetOtherList("HU_TITLE_GROUP", True)
-                FillRadCombobox(cboTitleGroup, dtData, "NAME", "ID")
+                dataTable = rep.GetOtherList("HU_TITLE_GROUP", True)
+                FillRadCombobox(cboTitleGroup, dataTable, "NAME", "ID")
                 dtData = rep.GetOtherList("HURT_TYPE", True)
                 FillRadCombobox(cboHurtType, dtData, "NAME", "ID")
             End Using
@@ -372,7 +384,9 @@ Public Class ctrlHU_Title
                 dtData = rep.GetOtherList("HU_TITLE_GROUP", True)
                 TITLE_GROUP = dtData.Select("ID='" + cboTitleGroup.SelectedValue + "'")(0)("CODE").ToString
             End If
-            txtCode.Text = rep.AutoGenCode(ORG_CODE + TITLE_GROUP, "HU_TITLE", "CODE")
+            If rgMain.SelectedValue Is Nothing Then
+                txtCode.Text = rep.AutoGenCode(ORG_CODE + TITLE_GROUP, "HU_TITLE", "CODE")
+            End If
         Catch ex As Exception
             Throw ex
         Finally
@@ -402,8 +416,9 @@ Public Class ctrlHU_Title
             Select Case CType(e.Item, RadToolBarButton).CommandName
                 Case CommonMessage.TOOLBARITEM_CREATE
                     CurrentState = CommonMessage.STATE_NEW
-                    ClearControlValue(txtCode, txtNameVN, txtRemark, cboTitleGroup)
-                    txtCode.Text = rep.AutoGenCode("CD", "HU_TITLE", "CODE")
+                    ClearControlValue(txtCode, txtNameVN, cboOrgType, txtRemark, cboTitleGroup, cboOrgLevel, ckOVT, cboHurtType, txtUpload)
+                    ' txtCode.Text = rep.AutoGenCode("CD", "HU_TITLE", "CODE")
+
                     UpdateControlState()
 
                 Case CommonMessage.TOOLBARITEM_EDIT
@@ -480,6 +495,8 @@ Public Class ctrlHU_Title
 
                 Case CommonMessage.TOOLBARITEM_SAVE
                     If Page.IsValid Then
+                        ' Dim code = (From a In dataTable.AsEnumerable Where a("ID") = cboTitleGroup.SelectedValue Select a("CODE"))
+                        'txtCode.Text = rep.AutoGenCode("CD", "HU_TITLE", "CODE")
                         objTitle.CODE = txtCode.Text.Trim
                         objTitle.NAME_VN = txtNameVN.Text.Trim
                         objTitle.NAME_EN = txtNameVN.Text.Trim
@@ -632,7 +649,7 @@ Public Class ctrlHU_Title
             End If
 
             If Not args.IsValid Then
-                txtCode.Text = rep.AutoGenCode("CD", "HU_TITLE", "CODE")
+                ' txtCode.Text = rep.AutoGenCode("CD", "HU_TITLE", "CODE")
             End If
             rep.Dispose()
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
@@ -745,6 +762,7 @@ Public Class ctrlHU_Title
                     End If
                 Next
                 loadDatasource(txtUploadFile.Text)
+                btnDownload.Enabled = True
             End If
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
@@ -778,6 +796,9 @@ Public Class ctrlHU_Title
                         ZipFiles(strPath_Down)
                     End If
                 End If
+                'Else
+                '    ShowMessage(Translate("Không có gì để  tải xuôgns"), NotifyType.Warning)
+                '    Exit Sub
             End If
 
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")

@@ -131,6 +131,15 @@ Partial Public Class ctrlHU_Title
     Protected WithEvents cboOrgType As Global.Telerik.Web.UI.RadComboBox
 
     '''<summary>
+    '''rqOrgType control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents rqOrgType As Global.System.Web.UI.WebControls.RequiredFieldValidator
+
+    '''<summary>
     '''lbCode control.
     '''</summary>
     '''<remarks>

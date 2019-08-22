@@ -9,43 +9,47 @@
         <table class="table-form">
             <tr>
                 <td class="lb">
-                    <asp:Label runat ="server" ID ="lbTitleGroup" Text ="Nhóm chức danh" ></asp:Label><span class="lbReq">*</span>
+                    <asp:Label runat="server" ID="lbTitleGroup" Text="Nhóm chức danh"></asp:Label><span
+                        class="lbReq">*</span>
                 </td>
                 <td>
-                    <tlk:RadComboBox ID="cboTitleGroup" runat="server" AutoPostBack ="true" CausesValidation="false">
+                    <tlk:RadComboBox ID="cboTitleGroup" runat="server" AutoPostBack="true" CausesValidation="false">
                     </tlk:RadComboBox>
                     <asp:CustomValidator ID="cusTitleGroup" runat="server" ErrorMessage="Bạn phải chọn Nhóm chức danh"
                         ToolTip="Bạn phải chọn Nhóm chức danh" ClientValidationFunction="cusTitleGroup">
                     </asp:CustomValidator>
                     <asp:CustomValidator ID="cvalTitleGroup" ControlToValidate="cboTitleGroup" runat="server"
-                        ErrorMessage="Nhóm chức danh không tồn tại hoặc đã ngừng áp dụng."
-                        ToolTip="Nhóm chức danh không tồn tại hoặc đã ngừng áp dụng.">
+                        ErrorMessage="Nhóm chức danh không tồn tại hoặc đã ngừng áp dụng." ToolTip="Nhóm chức danh không tồn tại hoặc đã ngừng áp dụng.">
                     </asp:CustomValidator>
                 </td>
                 <td class="lb">
-                    <asp:Label runat ="server" ID ="lbOrgLevel" Text ="Tên công ty" ></asp:Label><span class="lbReq">*</span>
+                    <asp:Label runat="server" ID="lbOrgLevel" Text="Tên công ty"></asp:Label><span class="lbReq">*</span>
                 </td>
                 <td>
-                    <tlk:RadComboBox ID="cboOrgLevel" runat="server" AutoPostBack ="true" >
+                    <tlk:RadComboBox ID="cboOrgLevel" runat="server" AutoPostBack="true">
                     </tlk:RadComboBox>
                     <asp:CustomValidator ID="cusOrgLevel" runat="server" ErrorMessage="Bạn phải chọn Tên công ty"
                         ToolTip="Bạn phải chọn Tên công ty" ClientValidationFunction="cusOrgLevel">
                     </asp:CustomValidator>
                 </td>
                 <td class="lb">
-                    <asp:Label runat ="server" ID ="lbOrgType" Text ="Loại tổ chức" ></asp:Label>
+                    <asp:Label runat="server" ID="lbOrgType" Text="Loại tổ chức"></asp:Label>
+                    <span class="lbReq">*</span>
                 </td>
                 <td>
                     <tlk:RadComboBox ID="cboOrgType" runat="server">
                     </tlk:RadComboBox>
+                    <asp:RequiredFieldValidator ID="rqOrgType" ControlToValidate="cboOrgType" runat="server"
+                        ErrorMessage="Bạn phải nhập loại tổ chức" ToolTip="Bạn phải nhập loại tổ chức">
+                    </asp:RequiredFieldValidator>
                 </td>
             </tr>
             <tr>
                 <td class="lb">
-                    <asp:Label runat ="server" ID ="lbCode" Text ="Mã chức danh" ></asp:Label>
+                    <asp:Label runat="server" ID="lbCode" Text="Mã chức danh"></asp:Label>
                 </td>
                 <td>
-                    <tlk:RadTextBox ID="txtCode" runat="server" SkinID="Readonly" ReadOnly="true" >
+                    <tlk:RadTextBox ID="txtCode" runat="server" SkinID="Readonly" ReadOnly="true">
                     </tlk:RadTextBox>
                     <asp:RequiredFieldValidator ID="reqCode" ControlToValidate="txtCode" runat="server"
                         ErrorMessage="Bạn phải nhập Mã chức danh" ToolTip="Bạn phải nhập Mã chức danh">
@@ -57,7 +61,7 @@
                         ControlToValidate="txtCode" ValidationExpression="^[a-zA-Z0-9_]*$"></asp:RegularExpressionValidator>
                 </td>
                 <td class="lb">
-                    <asp:Label runat ="server" ID ="lbNameVN" Text ="Tên chức danh" ></asp:Label>
+                    <asp:Label runat="server" ID="lbNameVN" Text="Tên chức danh"></asp:Label>
                 </td>
                 <td>
                     <tlk:RadTextBox ID="txtNameVN" runat="server">
@@ -70,10 +74,11 @@
                 </td>
                 <td class="lb">
                     <%--<asp:CheckBox ID="ckDH" runat="server" Text="Độc hại" />--%>
-                    <asp:Label runat="server" ID="lbHurtType" Text = "Đối tượng độc hại"></asp:Label>
+                    <asp:Label runat="server" ID="lbHurtType" Text="Đối tượng độc hại"></asp:Label>
                 </td>
                 <td>
-                    <tlk:RadComboBox runat="server" ID="cboHurtType"></tlk:RadComboBox>
+                    <tlk:RadComboBox runat="server" ID="cboHurtType">
+                    </tlk:RadComboBox>
                 </td>
                 <td>
                     <%--<asp:CheckBox ID="ckSpecDH" runat="server" Text="Đặc biệt độc hại" />--%>
@@ -153,7 +158,7 @@
             </MasterTableView>
             <ClientSettings EnableRowHoverStyle="true">
                 <ClientEvents OnGridCreated="GridCreated" />
-                <ClientEvents OnCommand="ValidateFilter" />                
+                <ClientEvents OnCommand="ValidateFilter" />
             </ClientSettings>
         </tlk:RadGrid>
     </tlk:RadPane>
