@@ -670,6 +670,7 @@ Public Class ctrlHU_TerminateNewEdit
             _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
         End Try
     End Sub
+
     ''' <summary>
     ''' Event Yes/No trên Message popup hỏi áp dụng, ngừng áp dụng
     ''' </summary>
@@ -743,6 +744,7 @@ Public Class ctrlHU_TerminateNewEdit
             _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
         End Try
     End Sub
+
     Private Sub ZipFiles(ByVal path As String)
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
         Dim startTime As DateTime = DateTime.UtcNow
@@ -815,6 +817,7 @@ Public Class ctrlHU_TerminateNewEdit
             _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
         End Try
     End Sub
+
     Private Sub ctrlUpload1_OkClicked(ByVal sender As Object, ByVal e As System.EventArgs) Handles ctrlUpload1.OkClicked
         Dim startTime As DateTime = DateTime.UtcNow
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
@@ -877,6 +880,7 @@ Public Class ctrlHU_TerminateNewEdit
             _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
         End Try
     End Sub
+
     Private Sub loadDatasource(ByVal strUpload As String)
         Dim startTime As DateTime = DateTime.UtcNow
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
@@ -932,6 +936,7 @@ Public Class ctrlHU_TerminateNewEdit
             _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
         End Try
     End Sub
+
     ''' <summary>
     ''' Event click button tìm mã nhân viên
     ''' </summary>
@@ -952,6 +957,7 @@ Public Class ctrlHU_TerminateNewEdit
             _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
         End Try
     End Sub
+
     ''' <summary>
     ''' Event button tìm mã nhân viên
     ''' </summary>
@@ -972,6 +978,7 @@ Public Class ctrlHU_TerminateNewEdit
         End Try
 
     End Sub
+
     ''' <summary>
     ''' Event OK chọn mã nhân viên (giao diện 1)
     ''' </summary>
@@ -1010,6 +1017,7 @@ Public Class ctrlHU_TerminateNewEdit
         End Try
 
     End Sub
+
     ''' <summary>
     ''' Fill data lên các control theo ID truyền đến
     ''' </summary>
@@ -1688,6 +1696,7 @@ Public Class ctrlHU_TerminateNewEdit
             _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
         End Try
     End Sub
+
     ''' <summary>
     ''' Khoi tao, load popup list ma Nhan vien
     ''' </summary>
@@ -1728,6 +1737,7 @@ Public Class ctrlHU_TerminateNewEdit
         End Try
 
     End Sub
+
     ''' <summary>
     ''' Get data cho combobox
     ''' </summary>
@@ -1773,6 +1783,7 @@ Public Class ctrlHU_TerminateNewEdit
             _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
         End Try
     End Sub
+
     ''' <summary>
     ''' Get data theo ID Ma nhan vien
     ''' </summary>
@@ -1818,6 +1829,7 @@ Public Class ctrlHU_TerminateNewEdit
             _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
         End Try
     End Sub
+
     ''' <summary>
     ''' Load dataSource cho grid Ly Do Nghi Viec
     ''' </summary>
@@ -1837,12 +1849,15 @@ Public Class ctrlHU_TerminateNewEdit
         End Try
 
     End Sub
+
     Private Sub Get_InforWorkLoss()
         Dim ins_date = psp.GET_INFOR_INS_FROMMONTH(hidEmpID.Value)
         'If ins_date <> New Date AndAlso rdLastDate.SelectedDate IsNot Nothing Then
-        If rdLastDate.SelectedDate IsNot Nothing Then
+        If rdLastDate.SelectedDate IsNot Nothing AndAlso ins_date.Date.ToShortDateString <> "01/01/0001" Then
             Dim ins_thai_san = psp.GET_INS_THAI_SAN(hidEmpID.Value, rdLastDate.SelectedDate)
             txtTimeAccidentIns_loss.Text = CalculateSeniority(ins_date, rdLastDate.SelectedDate)
+        Else
+            txtTimeAccidentIns_loss.Text = "0 năm 0 tháng"
         End If
     End Sub
 
