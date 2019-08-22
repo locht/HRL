@@ -427,7 +427,7 @@ Public Class ctrlHU_WelfareList
                     '    Dim gan As New RadListBoxItem("565,566", "565,566")
                     '    lstbGender.Items.Add(gan)
                     'End If
-                    'For Each line As RadListBoxItem In lstbGender.Items
+                    'For Each line As RadListBoxItem In lstbGender.CheckedItems
                     '    line.Checked = True
                     'Next
 
