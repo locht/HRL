@@ -801,7 +801,7 @@ Partial Class ProfileRepository
             Context.SaveChanges(log)
             gID = objWelfareListData.ID
             If objWelfareList.GENDER IsNot Nothing Then
-                Dim lstT = objWelfareList.CONTRACT_TYPE.Split(",")
+                Dim lstT = objWelfareList.GENDER.Split(",")
                 If lstT IsNot Nothing Then
                     For Each s As String In lstT
                         Dim obj As New HU_WELFARE_LIST_GW

@@ -191,14 +191,17 @@
                         </tr>
                         <tr>
                             <td style="text-align: left" class="lb">
-                                <%# Translate("Ngày ký")%>
+                                <%# Translate("Ngày ký")%><span class="lbReq">*</span>
                             </td>
                             <td>
                                 <tlk:RadDatePicker ID="rdSIGN_DATE" runat="server">
                                 </tlk:RadDatePicker>
-                                <asp:CustomValidator ID="curStartDate" runat="server" ErrorMessage="<%$ Translate: Bạn phải chọn Ngày ký %>"
+                                <asp:RequiredFieldValidator ID="RequiredFieldValidator3" ControlToValidate="rdSIGN_DATE" runat="server"
+                                    ErrorMessage="<%$ Translate: Bạn phải chọn Ngày ký. %>" ToolTip="<%$ Translate: Bạn phải chọn Ngày ký. %>"> 
+                                </asp:RequiredFieldValidator>
+                               <%-- <asp:CustomValidator ID="curStartDate" runat="server" ErrorMessage="<%$ Translate: Bạn phải chọn Ngày ký %>"
                                     ToolTip="<%$ Translate: Bạn phải chọn Ngày ký %>">
-                                </asp:CustomValidator>
+                                </asp:CustomValidator>--%>
                             </td>
                             <td class="lb" style="text-align: left">
                                 <%# Translate("Trạng thái của quyết định")%>

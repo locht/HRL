@@ -48,6 +48,11 @@
                                 </Items>
                             </tlk:RadComboBox>
                         </td>
+                        <td>
+                            <tlk:RadButton ID="btnSearch" Text="<%$ Translate: Tìm%>" runat="server" ToolTip=""
+                                SkinID="ButtonFind">
+                            </tlk:RadButton>
+                        </td>
                     </tr>
                     <tr>
                         <td class="lb">
@@ -67,9 +72,7 @@
                             </tlk:RadDatePicker>
                         </td>
                         <td>
-                            <tlk:RadButton ID="btnSearch" Text="<%$ Translate: Tìm%>" runat="server" ToolTip=""
-                                SkinID="ButtonFind">
-                            </tlk:RadButton>
+                            <asp:CheckBox ID ="ckReset" runat="server"  Text ="Cập nhật mới lại toàn bộ dữ liệu" />
                         </td>
                     </tr>
                 </table>

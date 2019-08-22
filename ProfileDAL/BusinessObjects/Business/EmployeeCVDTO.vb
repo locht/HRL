@@ -31,6 +31,7 @@
     Public Property ID_DATE As Date?
     Public Property ID_PLACE As Decimal?
     Public Property PLACE_NAME As String
+    Public Property ID_REMARK As String
     Public Property PASS_NO As String
     Public Property PASS_DATE As Date?
     Public Property PASS_EXPIRE As Date?
