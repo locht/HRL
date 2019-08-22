@@ -1073,11 +1073,12 @@ Partial Public Class CommonRepository
 
         Dim lstTemp As New List(Of SE_FUNCTION)
         If log.Username = "ADMIN" Then
-            lstTemp = (From p In Context.SE_FUNCTION Select p).ToList
+            lstTemp = (From p In Context.SE_FUNCTION.Where(Function(f) f.ACTFLG = "A") Select p).ToList
         Else
             lstTemp = (From p In Context.SE_FUNCTION
                        From q In Context.SE_USER_PERMISSION.Where(Function(f) f.FUNCTION_ID = p.ID)
                        From u In Context.SE_USER.Where(Function(f) f.ID = q.USER_ID And f.USERNAME = log.Username)
+                       Where p.ACTFLG = "A"
                        Select p).ToList
         End If
 
@@ -1442,14 +1443,14 @@ Partial Public Class CommonRepository
         Try
             Dim lstTemp As New List(Of SE_FUNCTION)
             If log.Username = "ADMIN" Then
-                lstTemp = (From p In Context.SE_FUNCTION Select p).ToList
+                lstTemp = (From p In Context.SE_FUNCTION.Where(Function(f) f.ACTFLG = "A") Select p).ToList
             Else
                 lstTemp = (From p In Context.SE_FUNCTION
                            From q In Context.SE_USER_PERMISSION.Where(Function(f) f.FUNCTION_ID = p.ID)
                            From u In Context.SE_USER.Where(Function(f) f.ID = q.USER_ID And f.USERNAME = log.Username)
+                           Where p.ACTFLG = "A"
                            Select p).ToList
             End If
-
 
             If _filter.MODULE_NAME <> "" Then
                 lstTemp = lstTemp.Where(Function(p) p.SE_MODULE.NAME.ToUpper.Contains(_filter.MODULE_NAME.ToUpper)).ToList
