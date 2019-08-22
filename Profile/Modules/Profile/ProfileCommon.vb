@@ -102,8 +102,8 @@
     End Class
     Public Class HU_COMMEND_STATUS
         Public Shared Name As String = "HU_COMMEND_STATUS"
-        Public Shared APPROVE As Decimal = 714
-        Public Shared WAIT_APPROVE As Decimal = 715
+        Public Shared APPROVE As Decimal = 447
+        Public Shared WAIT_APPROVE As Decimal = 446
     End Class
     Public Class CONTRACT_SUPPORT
         Public Shared Code As String = "CONTRACT_SUPPORT"
