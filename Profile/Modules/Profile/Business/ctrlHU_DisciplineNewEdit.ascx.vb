@@ -594,7 +594,7 @@ Public Class ctrlHU_DisciplineNewEdit
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
 
         Try
-            ctrlUpload1.AllowedExtensions = "xls,xlsx,txt,ctr,doc,docx,xml,png,jpg,bitmap,jpeg,gif,pdf"
+            ctrlUpload1.AllowedExtensions = "xls,xlsx,txt,ctr,doc,docx,xml,png,jpg,bitmap,jpeg,gif,pdf,rar,zip,ppt,pptx"
             ctrlUpload1.Show()
 
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
@@ -611,14 +611,24 @@ Public Class ctrlHU_DisciplineNewEdit
             Dim listExtension = New List(Of String)
             listExtension.Add(".xls")
             listExtension.Add(".xlsx")
+            listExtension.Add(".txt")
+            listExtension.Add(".ctr")
             listExtension.Add(".doc")
             listExtension.Add(".docx")
-            listExtension.Add(".pdf")
-            listExtension.Add(".jpg")
+            listExtension.Add(".xml")
             listExtension.Add(".png")
+            listExtension.Add(".jpg")
+            listExtension.Add(".bitmap")
+            listExtension.Add(".jpeg")
+            listExtension.Add(".gif")
+            listExtension.Add(".pdf")
+            listExtension.Add(".rar")
+            listExtension.Add(".zip")
+            listExtension.Add(".ppt")
+            listExtension.Add(".pptx")
             Dim fileName As String
 
-            Dim strPath As String = Server.MapPath("~/ReportTemplates/Profile/Discipline/")
+            Dim strPath As String = Server.MapPath("~/ReportTemplates/Profile/DisciplineInfo/")
             If ctrlUpload1.UploadedFiles.Count >= 1 Then
                 For i = 0 To ctrlUpload1.UploadedFiles.Count - 1
                     Dim file As UploadedFile = ctrlUpload1.UploadedFiles(i)
@@ -644,7 +654,7 @@ Public Class ctrlHU_DisciplineNewEdit
                         'End If
                         Down_File = str_Filename
                     Else
-                        ShowMessage(Translate("Vui lòng chọn file đúng định dạng. !!! Hệ thống chỉ nhận file xls,xlsx,txt,ctr,doc,docx,xml,png,jpg,bitmap,jpeg,gif"), NotifyType.Warning)
+                        ShowMessage(Translate("Vui lòng chọn file đúng định dạng. !!! Hệ thống chỉ nhận file xls,xlsx,txt,ctr,doc,docx,xml,png,jpg,bitmap,jpeg,gif,pdf,rar,zip,ppt,pptx"), NotifyType.Warning)
                         Exit Sub
                     End If
                 Next
@@ -665,14 +675,14 @@ Public Class ctrlHU_DisciplineNewEdit
                 If FileOldName = txtUpload.Text.Trim Or FileOldName Is Nothing Then
                     If txtRemindLink.Text IsNot Nothing Then
                         If txtRemindLink.Text <> "" Then
-                            strPath_Down = Server.MapPath("~/ReportTemplates/Profile/Discipline/" + txtRemindLink.Text)
+                            strPath_Down = Server.MapPath("~/ReportTemplates/Profile/DisciplineInfo/" + txtRemindLink.Text)
                             'bCheck = True
                             ZipFiles(strPath_Down)
                         End If
                     End If
                 Else
                     If Down_File <> "" Then
-                        strPath_Down = Server.MapPath("~/ReportTemplates/Profile/Discipline/" + Down_File)
+                        strPath_Down = Server.MapPath("~/ReportTemplates/Profile/DisciplineInfo/" + Down_File)
                         'bCheck = True
                         ZipFiles(strPath_Down)
                     End If
@@ -1255,8 +1265,8 @@ Public Class ctrlHU_DisciplineNewEdit
         Try
             Dim startTime As DateTime = DateTime.UtcNow
             If chkDeductFromSalary.Checked Then
-                'nmYear.Enabled = True
-                'nmYear.Value = Date.Now.Year
+                nmYear.Enabled = True
+                nmYear.Value = Date.Now.Year
                 cboPeriod.Enabled = True
                 rnAmountSalaryMonth.Enabled = True
                 rnAmountInMonth.Enabled = True
@@ -1347,6 +1357,31 @@ Public Class ctrlHU_DisciplineNewEdit
                 Next
                 args.IsValid = totalMoney = TotalMoneyEmp
             End If
+            _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
+        Catch ex As Exception
+            _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
+        End Try
+    End Sub
+    Private Sub cvalAmountToPaid_ServerValidate(ByVal source As Object, ByVal args As System.Web.UI.WebControls.ServerValidateEventArgs) Handles cvalAmountToPaid.ServerValidate
+        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+        Try
+            Dim startTime As DateTime = DateTime.UtcNow
+            Dim totalMoney = 0
+            If rnAmountToPaid.Value IsNot Nothing Then
+                totalMoney += rnAmountToPaid.Value
+            End If
+
+            Dim TotalMoneyEmp As Decimal = 0
+            If rnAmountToPaid.Value IsNot Nothing Then
+                TotalMoneyEmp += rnPaidIMoeny.Value
+            End If
+
+            If totalMoney > TotalMoneyEmp Then
+                args.IsValid = False
+            Else
+                args.IsValid = True
+            End If
+
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
             _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")

@@ -321,9 +321,9 @@ Namespace ProfileBusiness.ServiceContracts
         <OperationContract()>
         Function GetlistWelfareEMP(ByVal Id As Integer) As List(Of Welfatemng_empDTO)
         <OperationContract()>
-        Function GET_DETAILS_EMP(ByVal P_ID As Decimal, ByVal P_WELFARE_ID As Decimal, ByVal P_DATE As Date) As DataTable
+        Function GET_DETAILS_EMP(ByVal P_ID As Decimal, ByVal P_WELFARE_ID As Decimal, ByVal P_DATE As Date, ByVal log As UserLog) As DataTable
         <OperationContract()>
-        Function GET_EXPORT_EMP(ByVal P_WELFARE_ID As Decimal, ByVal P_DATE As Date) As DataSet
+        Function GET_EXPORT_EMP(ByVal P_WELFARE_ID As Decimal, ByVal P_DATE As Date, ByVal log As UserLog) As DataSet
         <OperationContract()>
         Function GetWelfareList(ByVal _filter As WelfareListDTO,
                                         ByVal PageIndex As Integer,
@@ -2663,13 +2663,15 @@ Namespace ProfileBusiness.ServiceContracts
 #End Region
 #Region "Danh mục người ký"
         <OperationContract()>
-        Function GET_HU_SIGNER(ByVal _filter As SignerDTO) As DataTable
+        Function GET_HU_SIGNER(ByVal _filter As SignerDTO,
+                                  ByVal _param As ParamDTO,
+                                   ByVal log As UserLog) As DataTable
         <OperationContract()>
         Function INSERT_HU_SIGNER(ByVal PA As SignerDTO) As Boolean
         <OperationContract()>
         Function UPDATE_HU_SIGNER(ByVal PA As SignerDTO) As Boolean
         <OperationContract()>
-        Function CHECK_EXIT(ByVal P_ID As String, ByVal idemp As Decimal) As Decimal
+        Function CHECK_EXIT(ByVal P_ID As String, ByVal idemp As Decimal, ByVal ORG_ID As Decimal) As Decimal
         <OperationContract()>
         Function DeactiveAndActiveSigner(ByVal lstID As String, ByVal sActive As Decimal)
         <OperationContract()>

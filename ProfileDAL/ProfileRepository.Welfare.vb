@@ -43,14 +43,13 @@ Partial Class ProfileRepository
             End Using
 
             Dim query = From p In Context.HU_WELFARE_MNG
-                        From ce In Context.HU_WELFARE_MNG_EMP.Where(Function(f) f.GROUP_ID = p.ID And f.EMPLOYEE_ID = p.EMPLOYEE_ID)
-                        From plst In Context.HU_WELFARE_LIST.Where(Function(f) f.ID = p.WELFARE_ID).DefaultIfEmpty
+                        From ce In Context.HU_WELFARE_MNG_EMP.Where(Function(f) f.GROUP_ID = p.ID And f.EMPLOYEE_ID = p.EMPLOYEE_ID).DefaultIfEmpty
                         From e In Context.HU_EMPLOYEE.Where(Function(e) p.EMPLOYEE_ID = e.ID).DefaultIfEmpty
                         From o In Context.HU_ORGANIZATION.Where(Function(o) e.ORG_ID = o.ID).DefaultIfEmpty
+                        From ot In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.WELFARE_ID).DefaultIfEmpty
                         From t In Context.HU_TITLE.Where(Function(t) e.TITLE_ID = t.ID).DefaultIfEmpty
                         From se In Context.SE_CHOSEN_ORG.Where(Function(se) se.ORG_ID = o.ID And _
                                                                    se.USERNAME = UserLog.Username.ToUpper)
-
 
             Dim dateNow = Date.Now.Date
             Dim terID = ProfileCommon.OT_WORK_STATUS.TERMINATE_ID
@@ -77,7 +76,7 @@ Partial Class ProfileRepository
                 query = query.Where(Function(p) p.t.NAME_VN.ToUpper.Contains(_filter.TITLE_NAME.ToUpper))
             End If
             If _filter.WELFARE_NAME IsNot Nothing Then
-                query = query.Where(Function(p) p.plst.NAME.ToUpper.Contains(_filter.WELFARE_NAME.ToUpper))
+                query = query.Where(Function(p) p.ot.NAME_VN.ToUpper.Contains(_filter.WELFARE_NAME.ToUpper))
             End If
             If _filter.MONEY IsNot Nothing Then
                 query = query.Where(Function(p) p.p.MONEY = _filter.MONEY)
@@ -103,7 +102,7 @@ Partial Class ProfileRepository
                                        .EMPLOYEE_NAME = p.e.FULLNAME_VN,
                                        .EXPIRE_DATE = p.p.EXPIRE_DATE,
                                        .MONEY = p.ce.MONEY_TOTAL,
-                                       .MONEY_PL = p.plst.MONEY,
+                                       .MONEY_PL = p.ce.MONEY_PL,
                                        .TOTAL_CHILD = p.ce.TOTAL_CHILD,
                                        .GENDER_NAME = p.ce.GENDER_NAME,
                                        .CONTRACT_NAME = p.ce.CONTRACT_NAME,
@@ -114,7 +113,7 @@ Partial Class ProfileRepository
                                        .SDESC = p.p.SDESC,
                                        .TITLE_NAME = p.t.NAME_VN,
                                        .WELFARE_ID = p.p.WELFARE_ID,
-                                       .WELFARE_NAME = p.plst.NAME,
+                                       .WELFARE_NAME = p.ot.NAME_VN,
                                        .WORK_STATUS = p.e.WORK_STATUS,
                                        .TER_LAST_DATE = p.e.TER_EFFECT_DATE,
                                        .CREATED_DATE = p.p.CREATED_DATE})
@@ -163,7 +162,8 @@ Partial Class ProfileRepository
                                       .EMPLOYEE_ID = p.ce.EMPLOYEE_ID,
                                       .GROUP_ID = p.ce.GROUP_ID,
                                       .REMARK = p.ce.REMARK,
-                                       .BIRTH_DATE = p.e_cv.BIRTH_DATE
+                                       .BIRTH_DATE = p.e_cv.BIRTH_DATE,
+                                       .WELFARE_ID = p.ce.WELFARE_ID
                                       })
             Return lst.ToList
         Catch ex As Exception
@@ -343,7 +343,7 @@ Partial Class ProfileRepository
                     objDataEmp.GENDER_NAME = obj.GENDER_NAME
                     objDataEmp.CONTRACT_NAME = obj.CONTRACT_NAME
                     objDataEmp.SENIORITY = obj.SENIORITY
-                    objDataEmp.WELFARE_ID = lstWelfareMng.WELFARE_ID
+                    objDataEmp.WELFARE_ID = obj.WELFARE_ID
                     objDataEmp.REMARK = obj.REMARK
                     Context.HU_WELFARE_MNG_EMP.AddObject(objDataEmp)
                 Next
@@ -406,13 +406,14 @@ Partial Class ProfileRepository
         Return True
     End Function
 
-    Public Function GET_DETAILS_EMP(ByVal P_ID As Decimal, ByVal P_WELFARE_ID As Decimal, ByVal P_DATE As Date) As DataTable
+    Public Function GET_DETAILS_EMP(ByVal P_ID As Decimal, ByVal P_WELFARE_ID As Decimal, ByVal P_DATE As Date, ByVal log As UserLog) As DataTable
         Try
             Using cls As New DataAccess.QueryData
                 Dim dtData As DataTable = cls.ExecuteStore("PKG_HU_IPROFILE_LIST.GET_DETAILS_EMP",
                                            New With {.P_EMP_ID = P_ID,
                                                      .P_WELFARE_ID = P_WELFARE_ID,
                                                      .P_DATE = P_DATE,
+                                                     .P_USER_NAME = log.Username,
                                                      .P_CUR = cls.OUT_CURSOR})
 
                 Return dtData
@@ -422,12 +423,13 @@ Partial Class ProfileRepository
             Throw ex
         End Try
     End Function
-    Public Function GET_EXPORT_EMP(ByVal P_WELFARE_ID As Decimal, ByVal P_DATE As Date) As DataSet
+    Public Function GET_EXPORT_EMP(ByVal P_WELFARE_ID As Decimal, ByVal P_DATE As Date, ByVal log As UserLog) As DataSet
         Try
             Using cls As New DataAccess.QueryData
                 Dim dtData As DataSet = cls.ExecuteStore("PKG_HU_IPROFILE_LIST.GET_EXPORT_EMP",
                                            New With {.P_WELFARE_ID = P_WELFARE_ID,
                                                      .P_DATE = P_DATE,
+                                                     .P_USER_NAME = log.Username,
                                                      .P_CUR = cls.OUT_CURSOR}, False)
                 Return dtData
             End Using

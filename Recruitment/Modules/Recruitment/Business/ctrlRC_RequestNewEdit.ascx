@@ -71,7 +71,7 @@
                 </td>
                 <td>
                     <tlk:RadComboBox ID="cboContractType" runat="server">
-                    </tlk:RadComboBox>                    
+                    </tlk:RadComboBox>
                 </td>
                 <td class="lb" style="width: 150px">
                     <%# Translate("Tính chất tuyển dụng")%>
@@ -79,9 +79,9 @@
                 <td>
                     <tlk:RadComboBox ID="cboRecruitProperty" runat="server">
                     </tlk:RadComboBox>
-                </td>                
+                </td>
             </tr>
-            <tr>                
+            <tr>
                 <td class="lb">
                     <%# Translate("Lý do tuyển dụng")%><span class="lbReq">*</span>
                 </td>
@@ -92,7 +92,8 @@
                         ToolTip="<%$ Translate: Bạn phải chọn Lý do tuyển dụng %>" ClientValidationFunction="cusRecruitReason">
                     </asp:CustomValidator>
                 </td>
-                <td></td>
+                <td>
+                </td>
                 <td style="width: 150px">
                     <asp:CheckBox ID="chkIsSupport" runat="server" Text="<%$ Translate: TNG hỗ trợ triển khai %>" />
                 </td>
@@ -169,8 +170,7 @@
                         <NumberFormat AllowRounding="false" KeepNotRoundedValue="true" DecimalDigits="1" />
                     </tlk:RadNumericTextBox>
                     <asp:RequiredFieldValidator ID="RequiredFieldValidator7" ControlToValidate="rntxtAgeFrom"
-                        runat="server" ErrorMessage="<%$ Translate: Bạn phải nhập Độ tuổi từ %>"
-                        ToolTip="<%$ Translate: Bạn phải nhập Độ tuổi từ %>"> 
+                        runat="server" ErrorMessage="<%$ Translate: Bạn phải nhập Độ tuổi từ %>" ToolTip="<%$ Translate: Bạn phải nhập Độ tuổi từ %>"> 
                     </asp:RequiredFieldValidator>
                 </td>
                 <td class="lb">
@@ -183,8 +183,7 @@
                         <NumberFormat AllowRounding="false" KeepNotRoundedValue="true" DecimalDigits="1" />
                     </tlk:RadNumericTextBox>
                     <asp:RequiredFieldValidator ID="RequiredFieldValidator8" ControlToValidate="rntxtAgeTo"
-                        runat="server" ErrorMessage="<%$ Translate: Bạn phải nhập Độ tuổi đến %>"
-                        ToolTip="<%$ Translate: Bạn phải nhập Độ tuổi đến %>"> 
+                        runat="server" ErrorMessage="<%$ Translate: Bạn phải nhập Độ tuổi đến %>" ToolTip="<%$ Translate: Bạn phải nhập Độ tuổi đến %>"> 
                     </asp:RequiredFieldValidator>
                     <asp:CompareValidator ID="CompareValidator2" runat="server" ControlToValidate="rntxtAgeTo"
                         ControlToCompare="rntxtAgeFrom" Operator="GreaterThanEqual" ErrorMessage="<%$ Translate: Độ tuổi đến phải lớn hơn Độ tuổi từ %>"
@@ -285,7 +284,7 @@
                 <td>
                     <tlk:RadComboBox ID="cboComputerLevel" runat="server">
                     </tlk:RadComboBox>
-                </td>                
+                </td>
             </tr>
             <tr>
                 <td class="lb">
@@ -296,7 +295,7 @@
                     </tlk:RadTextBox>
                 </td>
             </tr>
-            <tr>                
+            <tr>
                 <td class="lb">
                     <%# Translate("Số lượng cần tuyển")%><span class="lbReq">*</span>
                 </td>
@@ -311,9 +310,11 @@
                         ToolTip="<%$ Translate: Bạn phải nhập Số lượng cần tuyển %>"> 
                     </asp:RequiredFieldValidator>
                 </td>
-                <td></td>
+                <td>
+                </td>
                 <td style="width: 150px">
-                    <asp:CheckBox ID="chkIsOver" runat="server" Text="<%$ Translate: Vượt định biên %>" Checked="false" />
+                    <asp:CheckBox ID="chkIsOver" runat="server" Text="<%$ Translate: Vượt định biên %>"
+                        Checked="false" />
                 </td>
                 <td class="lb">
                     <%# Translate("Ưu tiên giới tính")%>
@@ -357,12 +358,15 @@
                     <%# Translate("Đính kèm tập tin")%>
                 </td>
                 <td>
-                   <tlk:radtextbox id="txtUpload" readonly="true" runat="server">
-                    </tlk:radtextbox>
-<%--                    <tlk:radtextbox id="txtUploadFile" runat="server" visible="false">
-                    </tlk:radtextbox>--%>
-                    <tlk:radbutton runat="server" id="btnUpload" skinid="ButtonView" causesvalidation="false"
-                        tabindex="3" />
+                    <tlk:RadTextBox ID="txtUpload" ReadOnly="true" runat="server">
+                    </tlk:RadTextBox>
+                    <tlk:RadTextBox ID="txtUploadFile" runat="server" Visible="false">
+                    </tlk:RadTextBox>
+                    <tlk:RadButton runat="server" ID="btnUpload" SkinID="ButtonView" CausesValidation="false"
+                        TabIndex="3" />
+                    <tlk:RadButton ID="btnDownload" runat="server" Text="<%$ Translate: Tải xuống%>"
+                        CausesValidation="false" OnClientClicked="rbtClicked" TabIndex="3" EnableViewState="false">
+                    </tlk:RadButton>
                 </td>
             </tr>
             <tr>
@@ -425,6 +429,10 @@
 
         function OnValueChanged(sender, args) {
 
+        }
+
+        function rbtClicked(sender, eventArgs) {
+            enableAjax = false;
         }
     </script>
 </tlk:RadCodeBlock>

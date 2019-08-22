@@ -33,20 +33,22 @@ Namespace ProfileBusiness.ServiceImplementations
                 Throw ex
             End Try
         End Function
-        Public Function GET_DETAILS_EMP(ByVal P_ID As Decimal, ByVal P_WELFARE_ID As Decimal, ByVal P_DATE As Date) As DataTable Implements ServiceContracts.IProfileBusiness.GET_DETAILS_EMP
+        Public Function GET_DETAILS_EMP(ByVal P_ID As Decimal, ByVal P_WELFARE_ID As Decimal, ByVal P_DATE As Date,
+                                       ByVal UserLog As UserLog) As DataTable Implements ServiceContracts.IProfileBusiness.GET_DETAILS_EMP
             Try
                 Using rep As New ProfileRepository
-                    Dim dt = rep.GET_DETAILS_EMP(P_ID, P_WELFARE_ID, P_DATE)
+                    Dim dt = rep.GET_DETAILS_EMP(P_ID, P_WELFARE_ID, P_DATE, UserLog)
                     Return dt
                 End Using
             Catch ex As Exception
 
             End Try
         End Function
-        Public Function GET_EXPORT_EMP(ByVal P_WELFARE_ID As Decimal, ByVal P_DATE As Date) As DataSet Implements ServiceContracts.IProfileBusiness.GET_EXPORT_EMP
+        Public Function GET_EXPORT_EMP(ByVal P_WELFARE_ID As Decimal, ByVal P_DATE As Date,
+                                        ByVal UserLog As UserLog) As DataSet Implements ServiceContracts.IProfileBusiness.GET_EXPORT_EMP
             Try
                 Using rep As New ProfileRepository
-                    Dim dt = rep.GET_EXPORT_EMP(P_WELFARE_ID, P_DATE)
+                    Dim dt = rep.GET_EXPORT_EMP(P_WELFARE_ID, P_DATE, UserLog)
                     Return dt
                 End Using
             Catch ex As Exception

@@ -2158,6 +2158,9 @@ Namespace ProfileBusiness
         Private AFTERNOON_STOPField As System.Nullable(Of Date)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private ATTACH_FILEField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private CONTRACTTYPE_CODEField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -2195,6 +2198,9 @@ Namespace ProfileBusiness
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private EXPIRE_DATEField As System.Nullable(Of Date)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private FILENAMEField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private FROM_DATEField As System.Nullable(Of Date)
@@ -2374,6 +2380,19 @@ Namespace ProfileBusiness
         End Property
         
         <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property ATTACH_FILE() As String
+            Get
+                Return Me.ATTACH_FILEField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.ATTACH_FILEField, value) <> true) Then
+                    Me.ATTACH_FILEField = value
+                    Me.RaisePropertyChanged("ATTACH_FILE")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
         Public Property CONTRACTTYPE_CODE() As String
             Get
                 Return Me.CONTRACTTYPE_CODEField
@@ -2538,6 +2557,19 @@ Namespace ProfileBusiness
                 If (Me.EXPIRE_DATEField.Equals(value) <> true) Then
                     Me.EXPIRE_DATEField = value
                     Me.RaisePropertyChanged("EXPIRE_DATE")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property FILENAME() As String
+            Get
+                Return Me.FILENAMEField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.FILENAMEField, value) <> true) Then
+                    Me.FILENAMEField = value
+                    Me.RaisePropertyChanged("FILENAME")
                 End If
             End Set
         End Property
@@ -49381,7 +49413,7 @@ Namespace ProfileBusiness
         Function ApproveListContract(ByVal listID As System.Collections.Generic.List(Of Decimal), ByVal log As Common.CommonBusiness.UserLog) As Boolean
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GET_HU_SIGNER", ReplyAction:="http://tempuri.org/IProfileBusiness/GET_HU_SIGNERResponse")>  _
-        Function GET_HU_SIGNER(ByVal _filter As ProfileBusiness.SignerDTO) As System.Data.DataTable
+        Function GET_HU_SIGNER(ByVal _filter As ProfileBusiness.SignerDTO, ByVal _param As ProfileBusiness.ParamDTO, ByVal log As Common.CommonBusiness.UserLog) As System.Data.DataTable
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/INSERT_HU_SIGNER", ReplyAction:="http://tempuri.org/IProfileBusiness/INSERT_HU_SIGNERResponse")>  _
         Function INSERT_HU_SIGNER(ByVal PA As ProfileBusiness.SignerDTO) As Boolean
@@ -49390,7 +49422,7 @@ Namespace ProfileBusiness
         Function UPDATE_HU_SIGNER(ByVal PA As ProfileBusiness.SignerDTO) As Boolean
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/CHECK_EXIT", ReplyAction:="http://tempuri.org/IProfileBusiness/CHECK_EXITResponse")>  _
-        Function CHECK_EXIT(ByVal P_ID As String, ByVal idemp As Decimal) As Decimal
+        Function CHECK_EXIT(ByVal P_ID As String, ByVal idemp As Decimal, ByVal ORG_ID As Decimal) As Decimal
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/DeactiveAndActiveSigner", ReplyAction:="http://tempuri.org/IProfileBusiness/DeactiveAndActiveSignerResponse"),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.FileContractDTO)),  _
@@ -51755,10 +51787,10 @@ Namespace ProfileBusiness
         Function GetlistWelfareEMP(ByVal Id As Integer) As System.Collections.Generic.List(Of ProfileBusiness.Welfatemng_empDTO)
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GET_DETAILS_EMP", ReplyAction:="http://tempuri.org/IProfileBusiness/GET_DETAILS_EMPResponse")>  _
-        Function GET_DETAILS_EMP(ByVal P_ID As Decimal, ByVal P_WELFARE_ID As Decimal, ByVal P_DATE As Date) As System.Data.DataTable
+        Function GET_DETAILS_EMP(ByVal P_ID As Decimal, ByVal P_WELFARE_ID As Decimal, ByVal P_DATE As Date, ByVal log As Common.CommonBusiness.UserLog) As System.Data.DataTable
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GET_EXPORT_EMP", ReplyAction:="http://tempuri.org/IProfileBusiness/GET_EXPORT_EMPResponse")>  _
-        Function GET_EXPORT_EMP(ByVal P_WELFARE_ID As Decimal, ByVal P_DATE As Date) As System.Data.DataSet
+        Function GET_EXPORT_EMP(ByVal P_WELFARE_ID As Decimal, ByVal P_DATE As Date, ByVal log As Common.CommonBusiness.UserLog) As System.Data.DataSet
     End Interface
     
     <System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")>  _
@@ -51852,8 +51884,8 @@ Namespace ProfileBusiness
             Return MyBase.Channel.ApproveListContract(listID, log)
         End Function
         
-        Public Function GET_HU_SIGNER(ByVal _filter As ProfileBusiness.SignerDTO) As System.Data.DataTable Implements ProfileBusiness.IProfileBusiness.GET_HU_SIGNER
-            Return MyBase.Channel.GET_HU_SIGNER(_filter)
+        Public Function GET_HU_SIGNER(ByVal _filter As ProfileBusiness.SignerDTO, ByVal _param As ProfileBusiness.ParamDTO, ByVal log As Common.CommonBusiness.UserLog) As System.Data.DataTable Implements ProfileBusiness.IProfileBusiness.GET_HU_SIGNER
+            Return MyBase.Channel.GET_HU_SIGNER(_filter, _param, log)
         End Function
         
         Public Function INSERT_HU_SIGNER(ByVal PA As ProfileBusiness.SignerDTO) As Boolean Implements ProfileBusiness.IProfileBusiness.INSERT_HU_SIGNER
@@ -51864,8 +51896,8 @@ Namespace ProfileBusiness
             Return MyBase.Channel.UPDATE_HU_SIGNER(PA)
         End Function
         
-        Public Function CHECK_EXIT(ByVal P_ID As String, ByVal idemp As Decimal) As Decimal Implements ProfileBusiness.IProfileBusiness.CHECK_EXIT
-            Return MyBase.Channel.CHECK_EXIT(P_ID, idemp)
+        Public Function CHECK_EXIT(ByVal P_ID As String, ByVal idemp As Decimal, ByVal ORG_ID As Decimal) As Decimal Implements ProfileBusiness.IProfileBusiness.CHECK_EXIT
+            Return MyBase.Channel.CHECK_EXIT(P_ID, idemp, ORG_ID)
         End Function
         
         Public Function DeactiveAndActiveSigner(ByVal lstID As String, ByVal sActive As Decimal) As Object Implements ProfileBusiness.IProfileBusiness.DeactiveAndActiveSigner
@@ -53988,12 +54020,12 @@ Namespace ProfileBusiness
             Return MyBase.Channel.GetlistWelfareEMP(Id)
         End Function
         
-        Public Function GET_DETAILS_EMP(ByVal P_ID As Decimal, ByVal P_WELFARE_ID As Decimal, ByVal P_DATE As Date) As System.Data.DataTable Implements ProfileBusiness.IProfileBusiness.GET_DETAILS_EMP
-            Return MyBase.Channel.GET_DETAILS_EMP(P_ID, P_WELFARE_ID, P_DATE)
+        Public Function GET_DETAILS_EMP(ByVal P_ID As Decimal, ByVal P_WELFARE_ID As Decimal, ByVal P_DATE As Date, ByVal log As Common.CommonBusiness.UserLog) As System.Data.DataTable Implements ProfileBusiness.IProfileBusiness.GET_DETAILS_EMP
+            Return MyBase.Channel.GET_DETAILS_EMP(P_ID, P_WELFARE_ID, P_DATE, log)
         End Function
         
-        Public Function GET_EXPORT_EMP(ByVal P_WELFARE_ID As Decimal, ByVal P_DATE As Date) As System.Data.DataSet Implements ProfileBusiness.IProfileBusiness.GET_EXPORT_EMP
-            Return MyBase.Channel.GET_EXPORT_EMP(P_WELFARE_ID, P_DATE)
+        Public Function GET_EXPORT_EMP(ByVal P_WELFARE_ID As Decimal, ByVal P_DATE As Date, ByVal log As Common.CommonBusiness.UserLog) As System.Data.DataSet Implements ProfileBusiness.IProfileBusiness.GET_EXPORT_EMP
+            Return MyBase.Channel.GET_EXPORT_EMP(P_WELFARE_ID, P_DATE, log)
         End Function
     End Class
 End Namespace
