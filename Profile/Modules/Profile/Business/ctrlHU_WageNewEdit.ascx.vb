@@ -299,11 +299,7 @@ Public Class ctrlHU_WageNewEdit
                     cbSalaryGroup.Enabled = False
                     cbSalaryLevel.Enabled = False
                     cbSalaryRank.Enabled = False
-                    If Working.SAL_GROUP_ID Is Nothing Or Working.SAL_LEVEL_ID Is Nothing Or Working.SAL_RANK_ID Is Nothing Then
-                        rnFactorSalary.Enabled = True
-                    Else
-                        rnFactorSalary.Enabled = False
-                    End If
+                    rnFactorSalary.Enabled = True
                     basicSalary.Enabled = False
                     rnPercentSalary.Enabled = False
                     Salary_Total.Enabled = False
@@ -1469,20 +1465,9 @@ Public Class ctrlHU_WageNewEdit
                 EnableControlAll(True, cbSalaryGroup, cbSalaryLevel, cbSalaryRank, rnFactorSalary, basicSalary, rnPercentSalary, Salary_Total, rnOtherSalary1)
                 rnPercentSalary.Value = _tyLeChinhThuc
             Case "Kiêm nhiệm"
-                cbSalaryGroup.Enabled = False
-                cbSalaryLevel.Enabled = False
-                cbSalaryRank.Enabled = False
-                rnFactorSalary.Enabled = False
-                basicSalary.Enabled = True
-                rnPercentSalary.Enabled = True
-                Salary_Total.Enabled = False
-                rnOtherSalary1.Enabled = True
-                rnOtherSalary2.Enabled = True
-                'basicSalary.Text = 0
-                'Salary_Total.Text = 0
-                'rnOtherSalary1.Text = 0
-                'rnOtherSalary2.Text = 0
-                ClearControlValue(cbSalaryGroup, cbSalaryLevel, cbSalaryRank)
+                EnableControlAll(True, basicSalary, rnPercentSalary, rnFactorSalary, rnOtherSalary1, rnOtherSalary2)
+                EnableControlAll(False, cbSalaryGroup, cbSalaryLevel, cbSalaryRank, Salary_Total)
+                ClearControlValue(cbSalaryGroup, cbSalaryLevel, cbSalaryRank, rnFactorSalary, basicSalary, Salary_Total)
         End Select
         'ClearControlValue(cbSalaryGroup, cbSalaryLevel, cbSalaryRank, rnFactorSalary, basicSalary, Salary_Total)
     End Sub
