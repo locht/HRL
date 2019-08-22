@@ -336,8 +336,8 @@ Public Class ctrlHU_TerminateNewEdit
                     loadDatasource(txtUploadFile.Text)
                     FileOldName = If(FileOldName = "", txtUpload.Text, FileOldName)
                     ' phê duyệt và ko phê duyêt
-                    If Terminate.STATUS_ID = ProfileCommon.OT_TER_STATUS.APPROVE_ID Or
-                        Terminate.STATUS_ID = ProfileCommon.OT_TER_STATUS.NOT_APPROVE_ID Then
+                    If Terminate.STATUS_ID = ProfileCommon.DECISION_STATUS.APPROVE_ID Or
+                        Terminate.STATUS_ID = ProfileCommon.DECISION_STATUS.NOT_APPROVE_ID Then
                         EnableControlAll_Cus(False, RadPane2)
                         btnDownload.Enabled = True
                         rgHandoverContent.Enabled = True
@@ -346,6 +346,8 @@ Public Class ctrlHU_TerminateNewEdit
                         rgHandoverContent.Enabled = True
                         EnableRadCombo(cboDebtStatus, True)
                         MainToolBar.Items(0).Enabled = True
+                        EnableControlAll(True, cboDebtType, rntxtDebtMoney, cboDebtStatus, txtDebtNote, rgDebt, rntxtDebtTotal, _
+                                         rntxtDebtTotalCollect, rntxtCash, rntxtAmountWrongful, rntxtMoneyDeductFromSal, rntxtAmountViolations, cboInsStatus)
                     End If
 
                 Case "InsertView"
@@ -448,6 +450,7 @@ Public Class ctrlHU_TerminateNewEdit
         Dim startTime As DateTime = DateTime.UtcNow
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
         Dim rep As New ProfileBusinessRepository
+        Dim rep_Store As New ProfileStoreProcedure
         Dim _filter As New TerminateDTO
         Dim dtData As New DataTable
         Dim _objfilter As New TerminateDTO
@@ -456,6 +459,10 @@ Public Class ctrlHU_TerminateNewEdit
             Select Case CType(e.Item, RadToolBarButton).CommandName
                 Case CommonMessage.TOOLBARITEM_SAVE
                     If Page.IsValid Then
+                        If rep_Store.CHECK_TER_EMPEXIST(Decimal.Parse(If(hidID.Value = "", 0, hidID.Value)), Decimal.Parse(hidEmpID.Value)) = True Then
+                            ShowMessage(Translate("Nhân viên có mã số {0} đã có đơn được phê duyệt. Vui lòng kiểm tra lại !", txtEmployeeCode.Text), NotifyType.Warning)
+                            Exit Sub
+                        End If
                         If cbIsNoHire.Checked Then
                             If txtRemark.Text.Trim = "" Then
                                 ShowMessage(Translate("Bạn phải nhập ghi chú"), NotifyType.Warning)
@@ -631,12 +638,12 @@ Public Class ctrlHU_TerminateNewEdit
                         End Select
 
 
-                        End If
+                    End If
                 Case CommonMessage.TOOLBARITEM_CANCEL
-                        ''POPUPTOLINK_CANCEL
-                        txtRemindLink.Text = ""
-                        FileOldName = ""
-                        Response.Redirect("/Default.aspx?mid=Profile&fid=ctrlHU_Terminate&group=Business")
+                    ''POPUPTOLINK_CANCEL
+                    txtRemindLink.Text = ""
+                    FileOldName = ""
+                    Response.Redirect("/Default.aspx?mid=Profile&fid=ctrlHU_Terminate&group=Business")
             End Select
             rep.Dispose()
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
