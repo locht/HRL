@@ -445,6 +445,7 @@ Public Class ctrlHU_EmpDtlProfile
                             txtID_NO.Text = empCV.ID_NO
                             rdIDDate.SelectedDate = empCV.ID_DATE
                             SetValueComboBox(cboIDPlace, empCV.ID_PLACE, empCV.PLACE_NAME)
+                            txtIDRemark.Text = empCV.ID_REMARK
                             ' cboIDPlace.SelectedValue = empCV.ID_PLACE
                             'Hộ chiếu
                             txtPassNo.Text = empCV.PASS_NO
@@ -865,7 +866,7 @@ Public Class ctrlHU_EmpDtlProfile
                                         txtBankNo, chkSaveHistory, ckBanTT_ND, rdExpireIDNO,
                                        txtDaHoaLieu, txtTimeID, rtDiem_XL_TH, txtDiem_XL_TH2, txtNoteTDTH1, txtNoteTDTH2,
                                        txtFirstNameVN, txtGhiChuSK, txtNamTN,
-                                       txtHomePhone, txtHuyetAp, txtID_NO, chkIs_pay_bank,
+                                       txtHomePhone, txtHuyetAp, txtID_NO, txtIDRemark, chkIs_pay_bank,
                                        cboIDPlace, txtLangMark, txtLangMark2,
                                        txtLastNameVN, txtMatPhai, txtMatTrai,
                                        txtMobilePhone, txtNavAddress, txtNhomMau, cboCertificate, cboBasic,
@@ -916,7 +917,7 @@ Public Class ctrlHU_EmpDtlProfile
                                         txtBankNo, ckBanTT_ND, rtDiem_XL_TH, txtDiem_XL_TH2, txtNoteTDTH1, txtNoteTDTH2,
                                        txtDaHoaLieu, txtNamTN, rdExpireIDNO, txtAppDung, txtPlaceKS, txtVillage, txtPlacePitcode, rdDayPitcode, txtPerson_Inheritance, rdEffect_Bank,
                                        txtFirstNameVN, txtGhiChuSK, chkIs_pay_bank,
-                                       txtHomePhone, txtHuyetAp, txtID_NO,
+                                       txtHomePhone, txtHuyetAp, txtID_NO, txtIDRemark,
                                        cboIDPlace, txtLangMark, txtLangMark2, txtTimeID,
                                        txtLastNameVN, txtMatPhai, txtMatTrai,
                                        txtMobilePhone, txtNavAddress, txtNhomMau,
@@ -957,7 +958,7 @@ Public Class ctrlHU_EmpDtlProfile
                                        txtBankNo, chkSaveHistory, ckDOAN_PHI, rtCHUC_VU_DANG, rdNGAY_VAO_DOAN,
                                        txtDaHoaLieu, rdNGAY_VAO_DANG_DB, rdNGAY_VAO_DANG, ckBanTT_ND, txtNamTN,
                                        txtFirstNameVN, txtGhiChuSK, rtCHUC_VU_DOAN, rtDiem_XL_TH, txtDiem_XL_TH2, txtNoteTDTH1, txtNoteTDTH2,
-                                       txtHomePhone, txtHuyetAp, txtID_NO, chkIs_pay_bank,
+                                       txtHomePhone, txtHuyetAp, txtID_NO, txtIDRemark, chkIs_pay_bank,
                                        cboIDPlace, txtLangMark, txtLangMark2, txtTimeID,
                                        txtLastNameVN, txtMatPhai, txtMatTrai,
                                        txtMobilePhone, txtNavAddress, txtNhomMau, cboCertificate, cboBasic, rdExpireIDNO,
@@ -1754,9 +1755,9 @@ Public Class ctrlHU_EmpDtlProfile
         Try
             Dim startTime As DateTime = DateTime.UtcNow
             ClearControlValue(txtBankNo,
-                          txtDaHoaLieu, txtDirectManager, txtManager,
+                          txtDaHoaLieu, txtDirectManager, txtmanager,
                           txtFirstNameVN, txtGhiChuSK,
-                          txtHomePhone, txtHuyetAp, txtID_NO,
+                          txtHomePhone, txtHuyetAp, txtID_NO, txtIDRemark,
                           cboIDPlace, txtLangMark, txtLangMark2, txtTimeID,
                           txtLastNameVN, txtMatPhai, txtMatTrai,
                           txtMobilePhone, txtNavAddress, txtNhomMau,
@@ -1965,6 +1966,7 @@ Public Class ctrlHU_EmpDtlProfile
             EmpCV.ID_NO = txtID_NO.Text.Trim()
             EmpCV.ID_DATE = rdIDDate.SelectedDate
             EmpCV.ID_PLACE = GetValueFromComboBox(cboIDPlace)
+            EmpCV.ID_REMARK = txtIDRemark.Text.Trim()
             'Hộ chiếu
             EmpCV.PASS_NO = txtPassNo.Text.Trim()
             EmpCV.PASS_DATE = rdPassDate.SelectedDate

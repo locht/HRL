@@ -536,6 +536,15 @@ Partial Public Class ctrlRC_RequestNewEdit
     Protected WithEvents txtUpload As Global.Telerik.Web.UI.RadTextBox
 
     '''<summary>
+    '''txtUploadFile control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtUploadFile As Global.Telerik.Web.UI.RadTextBox
+
+    '''<summary>
     '''btnUpload control.
     '''</summary>
     '''<remarks>
@@ -543,6 +552,15 @@ Partial Public Class ctrlRC_RequestNewEdit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents btnUpload As Global.Telerik.Web.UI.RadButton
+
+    '''<summary>
+    '''btnDownload control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btnDownload As Global.Telerik.Web.UI.RadButton
 
     '''<summary>
     '''txtRequestOther control.

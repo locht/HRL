@@ -336,8 +336,8 @@ Public Class ctrlHU_TerminateNewEdit
                     loadDatasource(txtUploadFile.Text)
                     FileOldName = If(FileOldName = "", txtUpload.Text, FileOldName)
                     ' phê duyệt và ko phê duyêt
-                    If Terminate.STATUS_ID = ProfileCommon.OT_TER_STATUS.APPROVE_ID Or
-                        Terminate.STATUS_ID = ProfileCommon.OT_TER_STATUS.NOT_APPROVE_ID Then
+                    If Terminate.STATUS_ID = ProfileCommon.DECISION_STATUS.APPROVE_ID Or
+                        Terminate.STATUS_ID = ProfileCommon.DECISION_STATUS.NOT_APPROVE_ID Then
                         EnableControlAll_Cus(False, RadPane2)
                         btnDownload.Enabled = True
                         rgHandoverContent.Enabled = True
@@ -346,6 +346,8 @@ Public Class ctrlHU_TerminateNewEdit
                         rgHandoverContent.Enabled = True
                         EnableRadCombo(cboDebtStatus, True)
                         MainToolBar.Items(0).Enabled = True
+                        EnableControlAll(True, cboDebtType, rntxtDebtMoney, cboDebtStatus, txtDebtNote, rgDebt, rntxtDebtTotal, _
+                                         rntxtDebtTotalCollect, rntxtCash, rntxtAmountWrongful, rntxtMoneyDeductFromSal, rntxtAmountViolations, cboInsStatus)
                     End If
 
                 Case "InsertView"
@@ -448,6 +450,7 @@ Public Class ctrlHU_TerminateNewEdit
         Dim startTime As DateTime = DateTime.UtcNow
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
         Dim rep As New ProfileBusinessRepository
+        Dim rep_Store As New ProfileStoreProcedure
         Dim _filter As New TerminateDTO
         Dim dtData As New DataTable
         Dim _objfilter As New TerminateDTO
@@ -456,6 +459,10 @@ Public Class ctrlHU_TerminateNewEdit
             Select Case CType(e.Item, RadToolBarButton).CommandName
                 Case CommonMessage.TOOLBARITEM_SAVE
                     If Page.IsValid Then
+                        If rep_Store.CHECK_TER_EMPEXIST(Decimal.Parse(If(hidID.Value = "", 0, hidID.Value)), Decimal.Parse(hidEmpID.Value)) = True Then
+                            ShowMessage(Translate("Nhân viên có mã số {0} đã có đơn được phê duyệt. Vui lòng kiểm tra lại !", txtEmployeeCode.Text), NotifyType.Warning)
+                            Exit Sub
+                        End If
                         If cbIsNoHire.Checked Then
                             If txtRemark.Text.Trim = "" Then
                                 ShowMessage(Translate("Bạn phải nhập ghi chú"), NotifyType.Warning)
@@ -631,12 +638,12 @@ Public Class ctrlHU_TerminateNewEdit
                         End Select
 
 
-                        End If
+                    End If
                 Case CommonMessage.TOOLBARITEM_CANCEL
-                        ''POPUPTOLINK_CANCEL
-                        txtRemindLink.Text = ""
-                        FileOldName = ""
-                        Response.Redirect("/Default.aspx?mid=Profile&fid=ctrlHU_Terminate&group=Business")
+                    ''POPUPTOLINK_CANCEL
+                    txtRemindLink.Text = ""
+                    FileOldName = ""
+                    Response.Redirect("/Default.aspx?mid=Profile&fid=ctrlHU_Terminate&group=Business")
             End Select
             rep.Dispose()
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
@@ -670,6 +677,7 @@ Public Class ctrlHU_TerminateNewEdit
             _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
         End Try
     End Sub
+
     ''' <summary>
     ''' Event Yes/No trên Message popup hỏi áp dụng, ngừng áp dụng
     ''' </summary>
@@ -721,14 +729,14 @@ Public Class ctrlHU_TerminateNewEdit
                 If FileOldName = txtUpload.Text.Trim Or FileOldName Is Nothing Then
                     If txtRemindLink.Text IsNot Nothing Then
                         If txtRemindLink.Text <> "" Then
-                            strPath_Down = Server.MapPath("~/ReportTemplates/Profile/Terminate/Template/" + txtRemindLink.Text)
+                            strPath_Down = Server.MapPath("~/ReportTemplates/Profile/TerminateInfo/" + txtRemindLink.Text)
                             'bCheck = True
                             ZipFiles(strPath_Down)
                         End If
                     End If
                 Else
                     If Down_File <> "" Then
-                        strPath_Down = Server.MapPath("~/ReportTemplates/Profile/Terminate/Template/" + Down_File)
+                        strPath_Down = Server.MapPath("~/ReportTemplates/Profile/TerminateInfo/" + Down_File)
                         'bCheck = True
                         ZipFiles(strPath_Down)
                     End If
@@ -743,6 +751,7 @@ Public Class ctrlHU_TerminateNewEdit
             _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
         End Try
     End Sub
+
     Private Sub ZipFiles(ByVal path As String)
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
         Dim startTime As DateTime = DateTime.UtcNow
@@ -815,6 +824,7 @@ Public Class ctrlHU_TerminateNewEdit
             _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
         End Try
     End Sub
+
     Private Sub ctrlUpload1_OkClicked(ByVal sender As Object, ByVal e As System.EventArgs) Handles ctrlUpload1.OkClicked
         Dim startTime As DateTime = DateTime.UtcNow
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
@@ -823,14 +833,24 @@ Public Class ctrlHU_TerminateNewEdit
             Dim listExtension = New List(Of String)
             listExtension.Add(".xls")
             listExtension.Add(".xlsx")
+            listExtension.Add(".txt")
+            listExtension.Add(".ctr")
             listExtension.Add(".doc")
             listExtension.Add(".docx")
-            listExtension.Add(".pdf")
-            listExtension.Add(".jpg")
+            listExtension.Add(".xml")
             listExtension.Add(".png")
+            listExtension.Add(".jpg")
+            listExtension.Add(".bitmap")
+            listExtension.Add(".jpeg")
+            listExtension.Add(".gif")
+            listExtension.Add(".pdf")
+            listExtension.Add(".rar")
+            listExtension.Add(".zip")
+            listExtension.Add(".ppt")
+            listExtension.Add(".pptx")
 
             Dim fileName As String
-            Dim strPath As String = Server.MapPath("~/ReportTemplates/Profile/Terminate/Template/")
+            Dim strPath As String = Server.MapPath("~/ReportTemplates/Profile/TerminateInfo/")
             If ctrlUpload1.UploadedFiles.Count >= 1 Then
                 For i = 0 To ctrlUpload1.UploadedFiles.Count - 1
                     Dim file As UploadedFile = ctrlUpload1.UploadedFiles(i)
@@ -856,7 +876,7 @@ Public Class ctrlHU_TerminateNewEdit
                         'End If
                         Down_File = str_Filename
                     Else
-                        ShowMessage(Translate("Vui lòng chọn file đúng định dạng. !!! Hệ thống chỉ nhận file xls,xlsx,txt,ctr,doc,docx,xml,png,jpg,bitmap,jpeg,gif"), NotifyType.Warning)
+                        ShowMessage(Translate("Vui lòng chọn file đúng định dạng. !!! Hệ thống chỉ nhận file xls,xlsx,txt,ctr,doc,docx,xml,png,jpg,bitmap,jpeg,gif,pdf,rar,zip,ppt,pptx"), NotifyType.Warning)
                         Exit Sub
                     End If
                 Next
@@ -867,6 +887,7 @@ Public Class ctrlHU_TerminateNewEdit
             _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
         End Try
     End Sub
+
     Private Sub loadDatasource(ByVal strUpload As String)
         Dim startTime As DateTime = DateTime.UtcNow
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
@@ -914,7 +935,7 @@ Public Class ctrlHU_TerminateNewEdit
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
 
         Try
-            ctrlUpload1.AllowedExtensions = "xls,xlsx,txt,ctr,doc,docx,xml,png,jpg,bitmap,jpeg,gif,pdf"
+            ctrlUpload1.AllowedExtensions = "xls,xlsx,txt,ctr,doc,docx,xml,png,jpg,bitmap,jpeg,gif,pdf,rar,zip,ppt,pptx"
             ctrlUpload1.Show()
 
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
@@ -922,6 +943,7 @@ Public Class ctrlHU_TerminateNewEdit
             _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
         End Try
     End Sub
+
     ''' <summary>
     ''' Event click button tìm mã nhân viên
     ''' </summary>
@@ -942,6 +964,7 @@ Public Class ctrlHU_TerminateNewEdit
             _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
         End Try
     End Sub
+
     ''' <summary>
     ''' Event button tìm mã nhân viên
     ''' </summary>
@@ -962,6 +985,7 @@ Public Class ctrlHU_TerminateNewEdit
         End Try
 
     End Sub
+
     ''' <summary>
     ''' Event OK chọn mã nhân viên (giao diện 1)
     ''' </summary>
@@ -1000,6 +1024,7 @@ Public Class ctrlHU_TerminateNewEdit
         End Try
 
     End Sub
+
     ''' <summary>
     ''' Fill data lên các control theo ID truyền đến
     ''' </summary>
@@ -1678,6 +1703,7 @@ Public Class ctrlHU_TerminateNewEdit
             _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
         End Try
     End Sub
+
     ''' <summary>
     ''' Khoi tao, load popup list ma Nhan vien
     ''' </summary>
@@ -1718,6 +1744,7 @@ Public Class ctrlHU_TerminateNewEdit
         End Try
 
     End Sub
+
     ''' <summary>
     ''' Get data cho combobox
     ''' </summary>
@@ -1763,6 +1790,7 @@ Public Class ctrlHU_TerminateNewEdit
             _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
         End Try
     End Sub
+
     ''' <summary>
     ''' Get data theo ID Ma nhan vien
     ''' </summary>
@@ -1808,6 +1836,7 @@ Public Class ctrlHU_TerminateNewEdit
             _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
         End Try
     End Sub
+
     ''' <summary>
     ''' Load dataSource cho grid Ly Do Nghi Viec
     ''' </summary>
@@ -1827,12 +1856,15 @@ Public Class ctrlHU_TerminateNewEdit
         End Try
 
     End Sub
+
     Private Sub Get_InforWorkLoss()
         Dim ins_date = psp.GET_INFOR_INS_FROMMONTH(hidEmpID.Value)
         'If ins_date <> New Date AndAlso rdLastDate.SelectedDate IsNot Nothing Then
-        If rdLastDate.SelectedDate IsNot Nothing Then
+        If rdLastDate.SelectedDate IsNot Nothing AndAlso ins_date.Date.ToShortDateString <> "01/01/0001" Then
             Dim ins_thai_san = psp.GET_INS_THAI_SAN(hidEmpID.Value, rdLastDate.SelectedDate)
             txtTimeAccidentIns_loss.Text = CalculateSeniority(ins_date, rdLastDate.SelectedDate)
+        Else
+            txtTimeAccidentIns_loss.Text = "0 năm 0 tháng"
         End If
     End Sub
 

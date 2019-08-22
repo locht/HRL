@@ -43,7 +43,7 @@ Partial Class ProfileRepository
             End Using
 
             Dim query = From p In Context.HU_WELFARE_MNG
-                        From ce In Context.HU_WELFARE_MNG_EMP.Where(Function(f) f.GROUP_ID = p.ID And f.EMPLOYEE_ID = p.EMPLOYEE_ID).DefaultIfEmpty
+                        From ce In Context.HU_WELFARE_MNG_EMP.Where(Function(f) f.GROUP_ID = p.ID).DefaultIfEmpty
                         From e In Context.HU_EMPLOYEE.Where(Function(e) p.EMPLOYEE_ID = e.ID).DefaultIfEmpty
                         From o In Context.HU_ORGANIZATION.Where(Function(o) e.ORG_ID = o.ID).DefaultIfEmpty
                         From ot In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.WELFARE_ID).DefaultIfEmpty
@@ -406,13 +406,14 @@ Partial Class ProfileRepository
         Return True
     End Function
 
-    Public Function GET_DETAILS_EMP(ByVal P_ID As Decimal, ByVal P_WELFARE_ID As Decimal, ByVal P_DATE As Date) As DataTable
+    Public Function GET_DETAILS_EMP(ByVal P_ID As Decimal, ByVal P_WELFARE_ID As Decimal, ByVal P_DATE As Date, ByVal log As UserLog) As DataTable
         Try
             Using cls As New DataAccess.QueryData
                 Dim dtData As DataTable = cls.ExecuteStore("PKG_HU_IPROFILE_LIST.GET_DETAILS_EMP",
                                            New With {.P_EMP_ID = P_ID,
                                                      .P_WELFARE_ID = P_WELFARE_ID,
                                                      .P_DATE = P_DATE,
+                                                     .P_USER_NAME = log.Username,
                                                      .P_CUR = cls.OUT_CURSOR})
 
                 Return dtData

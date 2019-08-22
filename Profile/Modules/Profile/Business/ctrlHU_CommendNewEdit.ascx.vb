@@ -214,11 +214,6 @@ Public Class ctrlHU_CommendNewEdit
             GetParams()
             Refresh()
             UpdateControlState()
-            If (cboStatus.Text = "") Then
-                cboStatus.Enabled = True
-            Else
-                cboStatus.Enabled = False
-            End If
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
             'DisplayException(Me.ViewName, Me.ID, ex)
@@ -317,6 +312,7 @@ Public Class ctrlHU_CommendNewEdit
                     txtSignerTitle.Text = Commend.SIGNER_TITLE
                     rdSignDate.SelectedDate = Commend.SIGN_DATE
                     cboStatus.SelectedValue = Commend.STATUS_ID.ToString
+                    cboCommendLevel.SelectedValue = Commend.COMMEND_LEVEL
                     'txtDecisionName.Text = Commend.NAME
                     'rdExpireDate.SelectedDate = Commend.EXPIRE_DATE
                     'rdIssueDate.SelectedDate = Commend.ISSUE_DATE
@@ -528,6 +524,7 @@ Public Class ctrlHU_CommendNewEdit
                         objCommend.SIGNER_NAME = txtSignerName.Text
                         objCommend.SIGN_DATE = rdSignDate.SelectedDate
 
+
                         If hidSignID.Value <> "" Then
                             objCommend.SIGN_ID = hidSignID.Value
                         End If
@@ -571,6 +568,9 @@ Public Class ctrlHU_CommendNewEdit
 
                         If cboPeriod.SelectedValue <> "" Then
                             objCommend.PERIOD_ID = cboPeriod.SelectedValue
+                        End If
+                        If cboCommendLevel.SelectedValue <> "" Then
+                            objCommend.COMMEND_LEVEL = cboCommendLevel.SelectedValue
                         End If
 
                         objCommend.REMARK = txtCommend_Detail.Text
@@ -1536,87 +1536,25 @@ Public Class ctrlHU_CommendNewEdit
     ''' <param name="sender"></param>
     ''' <param name="e"></param>
     ''' <remarks></remarks>
-    'Private Sub btnUploadFile_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnUploadFile.Click
-    '    Dim startTime As DateTime = DateTime.UtcNow
-    '    Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+    Private Sub btnUploadFile_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnUploadFile.Click
+        Dim startTime As DateTime = DateTime.UtcNow
+        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
 
-    '    Try
-    '        ctrlUpload1.AllowedExtensions = "xls,xlsx,txt,ctr,doc,docx,xml,png,jpg,bitmap,jpeg,gif"
-    '        ctrlUpload1.Show()
+        Try
+            ctrlUpload1.AllowedExtensions = "xls,xlsx,txt,ctr,doc,docx,xml,png,jpg,bitmap,jpeg,gif,pdf,rar,zip,ppt,pptx"
+            ctrlUpload1.Show()
 
-    '        _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
-    '    Catch ex As Exception
-    '        _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
-    '    End Try
-    'End Sub
+            _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
+        Catch ex As Exception
+            _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
+        End Try
+    End Sub
 
     ''' <lastupdate>11/07/2017</lastupdate>
     ''' <summary>Xử lý sự kiện khi click [OK] xác nhận sẽ Upload file</summary>
     ''' <param name="sender"></param>
     ''' <param name="e"></param>
     ''' <remarks></remarks>
-    'Private Sub ctrlUpload1_OkClicked(ByVal sender As Object, ByVal e As System.EventArgs) Handles ctrlUpload1.OkClicked
-    '    Dim startTime As DateTime = DateTime.UtcNow
-    '    Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
-
-    '    Try
-    '        txtUploadFile.Text = ""
-    '        Dim listExtension = New List(Of String)
-    '        listExtension.Add(".xls")
-    '        listExtension.Add(".xlsx")
-    '        listExtension.Add(".doc")
-    '        listExtension.Add(".docx")
-    '        listExtension.Add(".pdf")
-    '        listExtension.Add(".jpg")
-    '        listExtension.Add(".png")
-    '        Dim fileName As String
-
-    '        Dim strPath As String = Server.MapPath("~/ReportTemplates/Profile/Commend/")
-
-    '        If ctrlUpload1.UploadedFiles.Count >= 1 Then
-    '            For i = 0 To ctrlUpload1.UploadedFiles.Count - 1
-    '                Dim file As UploadedFile = ctrlUpload1.UploadedFiles(i)
-
-    '                If listExtension.Any(Function(x) x.ToUpper().Trim() = file.GetExtension.ToUpper().Trim()) Then
-    '                    fileName = System.IO.Path.Combine(strPath, file.FileName)
-    '                    file.SaveAs(fileName, True)
-
-    '                    If Commend IsNot Nothing Then
-    '                        If ctrlUpload1.UploadedFiles.Count >= 2 Then
-    '                            If Commend.UPLOADFILE IsNot Nothing Then
-    '                                Commend.UPLOADFILE = Commend.UPLOADFILE + ";" + file.FileName + ";"
-    '                            Else
-    '                                Commend.UPLOADFILE = file.FileName + ";"
-    '                            End If
-    '                        Else
-    '                            If Commend.UPLOADFILE IsNot Nothing Then
-    '                                Commend.UPLOADFILE = Commend.UPLOADFILE + ";" + file.FileName
-    '                            Else
-    '                                Commend.UPLOADFILE = file.FileName
-    '                            End If
-    '                        End If
-    '                        txtUploadFile.Text = Commend.UPLOADFILE
-    '                    Else
-    '                        If String.IsNullOrEmpty(txtUploadFile.Text) Then
-    '                            txtUploadFile.Text = file.FileName + ";"
-    '                        Else
-    '                            txtUploadFile.Text = txtUploadFile.Text + ";" + file.FileName + ";"
-    '                        End If
-    '                    End If
-    '                Else
-    '                    ShowMessage(Translate("Vui lòng chọn file excel !!! Hệ thống chỉ nhận file xls,xlsx,txt,ctr,doc,docx,xml,png,jpg,bitmap,jpeg,gif"), NotifyType.Warning)
-    '                    Exit Sub
-    '                End If
-    '            Next
-
-    '            loadDatasource(txtUploadFile.Text)
-    '        End If
-
-    '        _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
-    '    Catch ex As Exception
-    '        _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
-    '    End Try
-    'End Sub
     Private Sub ctrlUpload1_OkClicked(ByVal sender As Object, ByVal e As System.EventArgs) Handles ctrlUpload1.OkClicked
         Dim startTime As DateTime = DateTime.UtcNow
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
@@ -1626,14 +1564,24 @@ Public Class ctrlHU_CommendNewEdit
             Dim listExtension = New List(Of String)
             listExtension.Add(".xls")
             listExtension.Add(".xlsx")
+            listExtension.Add(".txt")
+            listExtension.Add(".ctr")
             listExtension.Add(".doc")
             listExtension.Add(".docx")
-            listExtension.Add(".pdf")
-            listExtension.Add(".jpg")
+            listExtension.Add(".xml")
             listExtension.Add(".png")
+            listExtension.Add(".jpg")
+            listExtension.Add(".bitmap")
+            listExtension.Add(".jpeg")
+            listExtension.Add(".gif")
+            listExtension.Add(".pdf")
+            listExtension.Add(".rar")
+            listExtension.Add(".zip")
+            listExtension.Add(".ppt")
+            listExtension.Add(".pptx")
             Dim fileName As String
 
-            Dim strPath As String = Server.MapPath("~/ReportTemplates/Profile/Commend/")
+            Dim strPath As String = Server.MapPath("~/ReportTemplates/Profile/CommendInfo/")
             If ctrlUpload1.UploadedFiles.Count >= 1 Then
                 For i = 0 To ctrlUpload1.UploadedFiles.Count - 1
                     Dim file As UploadedFile = ctrlUpload1.UploadedFiles(i)
@@ -1659,7 +1607,7 @@ Public Class ctrlHU_CommendNewEdit
                         'End If
                         Down_File = str_Filename
                     Else
-                        ShowMessage(Translate("Vui lòng chọn file đúng định dạng. !!! Hệ thống chỉ nhận file xls,xlsx,txt,ctr,doc,docx,xml,png,jpg,bitmap,jpeg,gif"), NotifyType.Warning)
+                        ShowMessage(Translate("Vui lòng chọn file đúng định dạng. !!! Hệ thống chỉ nhận file xls,xlsx,txt,ctr,doc,docx,xml,png,jpg,bitmap,jpeg,gif,pdf,rar,zip,ppt,pptx"), NotifyType.Warning)
                         Exit Sub
                     End If
                 Next
@@ -2643,14 +2591,14 @@ Public Class ctrlHU_CommendNewEdit
                 If FileOldName = txtUpload.Text.Trim Or FileOldName Is Nothing Then
                     If txtRemindLink.Text IsNot Nothing Then
                         If txtRemindLink.Text <> "" Then
-                            strPath_Down = Server.MapPath("~/ReportTemplates/Profile/Commend/" + txtRemindLink.Text)
+                            strPath_Down = Server.MapPath("~/ReportTemplates/Profile/CommendInfo/" + txtRemindLink.Text)
                             'bCheck = True
                             ZipFiles(strPath_Down)
                         End If
                     End If
                 Else
                     If Down_File <> "" Then
-                        strPath_Down = Server.MapPath("~/ReportTemplates/Profile/Commend/" + Down_File)
+                        strPath_Down = Server.MapPath("~/ReportTemplates/Profile/CommendInfo/" + Down_File)
                         'bCheck = True
                         ZipFiles(strPath_Down)
                     End If

@@ -936,6 +936,7 @@ Partial Class ProfileRepository
 
                 objEmpCVData.ID_DATE = objEmpCV.ID_DATE
                 objEmpCVData.ID_PLACE = objEmpCV.ID_PLACE
+                objEmpCVData.ID_REMARK = objEmpCV.ID_REMARK
                 objEmpCVData.PASS_NO = objEmpCV.PASS_NO
                 objEmpCVData.PASS_DATE = objEmpCV.PASS_DATE
                 objEmpCVData.PASS_EXPIRE = objEmpCV.PASS_EXPIRE
@@ -1363,6 +1364,7 @@ Partial Class ProfileRepository
 
                 objEmpCVData.ID_DATE = objEmpCV.ID_DATE
                 objEmpCVData.ID_PLACE = objEmpCV.ID_PLACE
+                objEmpCVData.ID_REMARK = objEmpCV.ID_REMARK
                 objEmpCVData.PASS_NO = objEmpCV.PASS_NO
                 objEmpCVData.PASS_DATE = objEmpCV.PASS_DATE
                 objEmpCVData.PASS_EXPIRE = objEmpCV.PASS_EXPIRE
@@ -1772,6 +1774,7 @@ Partial Class ProfileRepository
                          .ID_NO = cv.ID_NO,
                          .ID_DATE = cv.ID_DATE,
                          .ID_PLACE = cv.ID_PLACE,
+                         .ID_REMARK = cv.ID_REMARK,
                          .PASS_NO = cv.PASS_NO,
                          .PASS_DATE = cv.PASS_DATE,
                          .PASS_EXPIRE = cv.PASS_EXPIRE,

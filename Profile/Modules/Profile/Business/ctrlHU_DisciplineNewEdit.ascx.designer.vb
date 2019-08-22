@@ -716,6 +716,15 @@ Partial Public Class ctrlHU_DisciplineNewEdit
     Protected WithEvents rnAmountToPaid As Global.Telerik.Web.UI.RadNumericTextBox
 
     '''<summary>
+    '''cvalAmountToPaid control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents cvalAmountToPaid As Global.System.Web.UI.WebControls.CustomValidator
+
+    '''<summary>
     '''chkDeductFromSalary control.
     '''</summary>
     '''<remarks>
@@ -761,6 +770,15 @@ Partial Public Class ctrlHU_DisciplineNewEdit
     Protected WithEvents lbPeriod As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
+    '''nmYear control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents nmYear As Global.Telerik.Web.UI.RadNumericTextBox
+
+    '''<summary>
     '''cboPeriod control.
     '''</summary>
     '''<remarks>
@@ -777,15 +795,6 @@ Partial Public Class ctrlHU_DisciplineNewEdit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lbAmountInMonth As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
-    '''nmYear control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents nmYear As Global.Telerik.Web.UI.RadNumericTextBox
 
     '''<summary>
     '''rnAmountInMonth control.
