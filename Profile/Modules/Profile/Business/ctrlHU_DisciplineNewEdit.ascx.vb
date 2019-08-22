@@ -1255,8 +1255,8 @@ Public Class ctrlHU_DisciplineNewEdit
         Try
             Dim startTime As DateTime = DateTime.UtcNow
             If chkDeductFromSalary.Checked Then
-                'nmYear.Enabled = True
-                'nmYear.Value = Date.Now.Year
+                nmYear.Enabled = True
+                nmYear.Value = Date.Now.Year
                 cboPeriod.Enabled = True
                 rnAmountSalaryMonth.Enabled = True
                 rnAmountInMonth.Enabled = True
@@ -1347,6 +1347,31 @@ Public Class ctrlHU_DisciplineNewEdit
                 Next
                 args.IsValid = totalMoney = TotalMoneyEmp
             End If
+            _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
+        Catch ex As Exception
+            _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
+        End Try
+    End Sub
+    Private Sub cvalAmountToPaid_ServerValidate(ByVal source As Object, ByVal args As System.Web.UI.WebControls.ServerValidateEventArgs) Handles cvalAmountToPaid.ServerValidate
+        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+        Try
+            Dim startTime As DateTime = DateTime.UtcNow
+            Dim totalMoney = 0
+            If rnAmountToPaid.Value IsNot Nothing Then
+                totalMoney += rnAmountToPaid.Value
+            End If
+
+            Dim TotalMoneyEmp As Decimal = 0
+            If rnAmountToPaid.Value IsNot Nothing Then
+                TotalMoneyEmp += rnPaidIMoeny.Value
+            End If
+
+            If totalMoney > TotalMoneyEmp Then
+                args.IsValid = False
+            Else
+                args.IsValid = True
+            End If
+
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
             _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
