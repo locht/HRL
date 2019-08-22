@@ -149,10 +149,18 @@ Public Class ctrlHU_ApproveFamily_Edit
                         If colNames <> "" Then
                             If colNames.Contains(",") Then
                                 For Each colName As String In colNames.Split(",")
-                                    i(colName).ForeColor = Drawing.Color.Red
+                                    If colName = "IS_OWNER" Or colName = "IS_PASS" Or colName = "IS_DEDUCT" Then
+                                        i(colName).BackColor = Drawing.Color.Red
+                                    Else
+                                        i(colName).ForeColor = Drawing.Color.Red
+                                    End If
                                 Next
                             Else
-                                i(colNames).ForeColor = Drawing.Color.Red
+                                If colNames = "IS_OWNER" Or colNames = "IS_PASS" Or colNames = "IS_DEDUCT" Then
+                                    i(colNames).BackColor = Drawing.Color.Red
+                                Else
+                                    i(colNames).ForeColor = Drawing.Color.Red
+                                End If
                             End If
                         End If
                     End If
