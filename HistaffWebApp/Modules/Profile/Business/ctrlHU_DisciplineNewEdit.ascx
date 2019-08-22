@@ -20,7 +20,8 @@
             </tr>
             <tr>
                   <td class="lb">
-                    <asp:Label runat="server" ID="lbDecisionNo" Text="Số quyết định"></asp:Label>                    
+                    <asp:Label runat="server" ID="lbDecisionNo" Text="Số quyết định"></asp:Label>   
+                     <span class="lbReq">*</span>                 
                 </td>
                 <td>
                     <tlk:RadTextBox ID="txtDecisionNo" runat="server" TabIndex="1">
@@ -35,6 +36,7 @@
                 </td>
                  <td class="lb">
                     <asp:Label runat="server" ID="lbEffectDate" Text="Ngày hiệu lực"></asp:Label>
+                     <span class="lbReq">*</span>
                     
                 </td>
                 <td>
@@ -82,14 +84,14 @@
             <tr>
                  <td class="lb">
                     <asp:Label runat="server" ID="lbSignDate" Text="Ngày ký"></asp:Label>
+                     <span class="lbReq">*</span>
                 </td>
                 <td>
                     <tlk:RadDatePicker ID="rdSignDate" runat="server" TabIndex="6">
                     </tlk:RadDatePicker>
                 </td> 
                 <td class="lb">
-                    <asp:Label runat="server" ID="lbSignerName" Text="Người ký"></asp:Label>
-                    <%----%>
+                    <asp:Label runat="server" ID="lbSignerName" Text="Người ký"></asp:Label>                    
                 </td>
                 <td>
                    <%--<tlk:RadTextBox ID = "txtIDEmp" runat = "server" Visible="false"></tlk:RadTextBox>--%>
@@ -108,8 +110,7 @@
                     <tlk:RadTextBox ID="txtSignerTitle" runat="server" TabIndex="9" ReadOnly="true" SkinID="ReadOnly">
                     </tlk:RadTextBox>
                 </td>
-            </tr>
-                        
+            </tr>                        
             <tr>
                 <td class="lb">
                     <asp:Label runat="server" ID="lbDelDiscipline" Text=" Ngày xóa kỷ luật"></asp:Label>                    
@@ -120,7 +121,7 @@
                 </td>          
                 <td class="lb">
                     <asp:Label runat="server" ID="lbStatus" Text="Trạng thái"></asp:Label>
-                    
+                     <span class="lbReq">*</span>                    
                 </td>
                 <td>
                     <tlk:RadComboBox ID="cboStatus" runat="server" TabIndex="11">
@@ -132,8 +133,7 @@
                         ToolTip="Trạng thái không tồn tại hoặc đã ngừng áp dụng.">
                     </asp:CustomValidator>
                 </td>                
-            </tr>
-            
+            </tr>            
             <tr>
                 <td colspan="6">
                     <b>
@@ -144,8 +144,7 @@
             </tr>
             <tr>
                  <td class="lb">
-                    <asp:Label runat="server" ID="lbDisciplineObj" Text="Đối tượng"></asp:Label>                   
-                    <%----%>
+                    <asp:Label runat="server" ID="lbDisciplineObj" Text="Đối tượng"></asp:Label>
                 </td>
                 <td>
                     <tlk:RadComboBox ID="cboDisciplineObj" runat="server" AutoPostBack="True" TabIndex="12"
@@ -159,8 +158,7 @@
                     </asp:CustomValidator>
                 </td>
                  <td class="lb">
-                    <asp:Label runat="server" ID="lbDisciplineType" Text="Hình thức"></asp:Label>
-                    
+                    <asp:Label runat="server" ID="lbDisciplineType" Text="Hình thức"></asp:Label>                    
                 </td>
                 <td>
                     <tlk:RadComboBox ID="cboDisciplineType" runat="server" TabIndex="13" CausesValidation="False">
@@ -285,7 +283,10 @@
                 </td>
                 <td>
                     <tlk:RadNumericTextBox ID="rnAmountToPaid" runat="server" SkinID="Money" TabIndex="23">
-                    </tlk:RadNumericTextBox>                   
+                    </tlk:RadNumericTextBox>   
+                    <asp:CustomValidator ID="cvalAmountToPaid" runat="server" ErrorMessage="Số tiền còn phải nộp phải nhỏ hơn tổng số tiền phải nộp."
+                        ToolTip="Số tiền còn phải nộp phải nhỏ hơn tổng số tiền phải nộp.">
+                    </asp:CustomValidator>                
                 </td>                                
             </tr>
             <tr>
@@ -311,6 +312,9 @@
                     <asp:Label runat="server" ID="lbPeriod" Text="Kỳ lương"></asp:Label>
                 </td>
                 <td>
+                     <tlk:RadNumericTextBox ID="nmYear" runat="server" AutoPostBack="true" Enabled="false" TabIndex="26"
+                        MaxLength="4" MinValue="1900" SkinID="Number" >
+                    </tlk:RadNumericTextBox>
                     <tlk:RadComboBox ID="cboPeriod" runat="server" Enabled="false" TabIndex="25">
                     </tlk:RadComboBox>                  
                 </td>            
@@ -319,12 +323,7 @@
                 <td class="lb">
                     <%--<asp:Label runat="server" ID="lbYear" Text="Năm"></asp:Label>--%>
                     <asp:Label runat="server" ID="lbAmountInMonth" Text="Số tiền trừ theo tỷ lệ/mỗi tháng lương"></asp:Label>
-                </td>
-                <td style = "display:none">
-                   <tlk:RadNumericTextBox ID="nmYear" runat="server" AutoPostBack="true" Enabled="false" TabIndex="26"
-                        MaxLength="4" MinValue="1900" SkinID="Number" >
-                    </tlk:RadNumericTextBox>
-                </td>
+                </td>               
                 <td>                    
                     <tlk:RadNumericTextBox ID="rnAmountInMonth" runat="server" SkinID="Money" TabIndex="27" Enabled="false">
                     </tlk:RadNumericTextBox>
