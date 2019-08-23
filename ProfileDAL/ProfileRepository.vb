@@ -615,12 +615,12 @@ Public Class ProfileRepository
 
         'DIA DIEM KY HOP DONG HU_LOCATION
         If _combolistDTO.GET_LOCATION Then
-            query = (From p In Context.HU_LOCATION Where p.ACTFLG="A"
+            query = (From p In Context.HU_LOCATION Where p.ACTFLG = "A"
                      Select New LocationDTO With {
                          .ID = p.ID,
                          .LOCATION_VN_NAME = p.LOCATION_VN_NAME,
-                         .LOCATION_EN_NAME = p.LOCATION_EN_NAME
-                           }).ToList
+                         .LOCATION_EN_NAME = p.LOCATION_EN_NAME,
+                         .CODE = p.CODE}).ToList
             _combolistDTO.LIST_LOCATION = query
         End If
         'NHOM CHUC DANH

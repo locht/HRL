@@ -1066,7 +1066,7 @@ Public Class ctrlHU_ContractNewEdit
         ListComboData.GET_LOCATION = True
         rep.GetComboList(ListComboData)
         FillDropDownList(cboContractType, ListComboData.LIST_CONTRACTTYPE, "NAME", "ID", Common.Common.SystemLanguage, False)
-        FillDropDownList(cboSignContract, ListComboData.LIST_LOCATION, "LOCATION_VN_NAME", "ID", Common.Common.SystemLanguage, False)
+        FillDropDownList(cboSignContract, ListComboData.LIST_LOCATION, "CODE", "ID", Common.Common.SystemLanguage, False)
         rep.Dispose()
         Dim dtData As New DataTable
         'TNG-117	
@@ -1167,7 +1167,7 @@ Public Class ctrlHU_ContractNewEdit
                 Dim employeeId As Double = 0
                 Double.TryParse(hidEmployeeID.Value, employeeId)
                 txtContractNo.Text = CreateDynamicContractNo(employeeId)
-                txtContractNo.Enabled = True
+                'txtContractNo.Enabled = True
                 ClearControlValue(rdStartDate, rdSignDate)
             End Using
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
