@@ -49,6 +49,7 @@ Partial Class ProfileRepository
                         From org In Context.SE_CHOSEN_ORG.Where(Function(org) org.ORG_ID = o.ID And
                                                                     org.USERNAME = log.Username.ToUpper)
                         From ot In Context.OT_OTHER_LIST.Where(Function(ot) ot.ID = d.STATUS_ID)
+                        From at_per In Context.AT_PERIOD.Where(Function(f) f.ID = d.PERIOD_ID)
                         From otReason In Context.OT_OTHER_LIST.Where(Function(ots) ots.ID = d.DISCIPLINE_REASON).DefaultIfEmpty
 
             If Not _filter.IS_TERMINATE Then
@@ -119,6 +120,7 @@ Partial Class ProfileRepository
                                                                        .DISCIPLINE_REASON = d.otReason.ID,
                                                                        .EFFECT_DATE = d.d.EFFECT_DATE,
                                                                        .PERIOD_ID = d.d.PERIOD_ID,
+                                                                       .PERIOD_NAME = d.at_per.PERIOD_NAME,
                                                                        .DEDUCT_FROM_SALARY = d.d.DEDUCT_FROM_SALARY,
                                                                        .MONEY = d.d.MONEY,
                                                                        .INDEMNIFY_MONEY = d.d.INDEMNIFY_MONEY,
@@ -725,6 +727,22 @@ Partial Class ProfileRepository
         End Try
     End Function
 
+    Public Function Open_ApproveDiscipline(ByVal listID As List(Of Decimal), ByVal log As UserLog) As Boolean
+        Dim objDisData As HU_DISCIPLINE
+        Try
+            Dim item As Decimal = 0
+            For idx = 0 To listID.Count - 1
+                item = listID(idx)
+                objDisData = (From p In Context.HU_DISCIPLINE Where item = p.ID).SingleOrDefault
+                objDisData.STATUS_ID = ProfileCommon.DECISION_STATUS.WAIT_APPROVE_ID
+            Next
+            Context.SaveChanges(log)
+            Return True
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iProfile")
+            Throw ex
+        End Try
+    End Function
 #End Region
 
 #Region "Discipline Salary"

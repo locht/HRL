@@ -132,6 +132,17 @@ Partial Public Class ProfileBusinessRepository
         End Using
 
     End Function
+    Public Function Open_ApproveDiscipline(ByVal listID As List(Of Decimal)) As Boolean
+        Using rep As New ProfileBusinessClient
+            Try
+                Return rep.Open_ApproveDiscipline(listID, Me.Log)
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+
+    End Function
 
     Public Function ApproveDisciplineSalary(ByVal lstID As List(Of Decimal)) As Boolean
         Using rep As New ProfileBusinessClient

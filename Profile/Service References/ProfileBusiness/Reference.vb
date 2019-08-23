@@ -30480,6 +30480,9 @@ Namespace ProfileBusiness
         Private PERIOD_IDField As System.Nullable(Of Decimal)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private PERIOD_NAMEField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private REMARKField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -31238,6 +31241,19 @@ Namespace ProfileBusiness
                 If (Me.PERIOD_IDField.Equals(value) <> true) Then
                     Me.PERIOD_IDField = value
                     Me.RaisePropertyChanged("PERIOD_ID")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property PERIOD_NAME() As String
+            Get
+                Return Me.PERIOD_NAMEField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.PERIOD_NAMEField, value) <> true) Then
+                    Me.PERIOD_NAMEField = value
+                    Me.RaisePropertyChanged("PERIOD_NAME")
                 End If
             End Set
         End Property
@@ -49383,6 +49399,9 @@ Namespace ProfileBusiness
      System.ServiceModel.ServiceContractAttribute(ConfigurationName:="ProfileBusiness.IProfileBusiness")>  _
     Public Interface IProfileBusiness
         
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetFileConTractID", ReplyAction:="http://tempuri.org/IProfileBusiness/GetFileConTractIDResponse")>  _
+        Function GetFileConTractID(ByVal ID As Decimal) As ProfileBusiness.FileContractDTO
+        
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetContractAppendixPaging", ReplyAction:="http://tempuri.org/IProfileBusiness/GetContractAppendixPagingResponse")>  _
         Function GetContractAppendixPaging(ByVal _filter As ProfileBusiness.FileContractDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal _param As ProfileBusiness.ParamDTO, ByVal Sorts As String, ByVal log As Common.CommonBusiness.UserLog) As System.Collections.Generic.List(Of ProfileBusiness.FileContractDTO)
         
@@ -49891,6 +49910,9 @@ Namespace ProfileBusiness
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GET_PROCESS_PLCONTRACT_PORTAL", ReplyAction:="http://tempuri.org/IProfileBusiness/GET_PROCESS_PLCONTRACT_PORTALResponse")>  _
         Function GET_PROCESS_PLCONTRACT_PORTAL(ByVal P_EMP_ID As Decimal) As System.Data.DataTable
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetListALPByEmpID", ReplyAction:="http://tempuri.org/IProfileBusiness/GetListALPByEmpIDResponse")>  _
+        Function GetListALPByEmpID(ByVal _filter As ProfileBusiness.TrainningManageDTO, ByVal _param As ProfileBusiness.ParamDTO, ByVal Sorts As String) As System.Collections.Generic.List(Of ProfileBusiness.TrainningManageDTO)
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetALP", ReplyAction:="http://tempuri.org/IProfileBusiness/GetALPResponse")>  _
         Function GetALP(ByVal _filter As ProfileBusiness.TrainningManageDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal _param As ProfileBusiness.ParamDTO, ByVal Sorts As String, ByVal log As Common.CommonBusiness.UserLog) As System.Collections.Generic.List(Of ProfileBusiness.TrainningManageDTO)
@@ -50530,8 +50552,8 @@ Namespace ProfileBusiness
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetContractForm", ReplyAction:="http://tempuri.org/IProfileBusiness/GetContractFormResponse")>  _
         Function GetContractForm(ByVal formID As Decimal) As ProfileBusiness.OtherListDTO
         
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetFileConTractID", ReplyAction:="http://tempuri.org/IProfileBusiness/GetFileConTractIDResponse")>  _
-        Function GetFileConTractID(ByVal ID As Decimal) As ProfileBusiness.FileContractDTO
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/StopDisciplineSalary", ReplyAction:="http://tempuri.org/IProfileBusiness/StopDisciplineSalaryResponse")>  _
+        Function StopDisciplineSalary(ByVal lstID As System.Collections.Generic.List(Of Decimal)) As Boolean
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetCommend", ReplyAction:="http://tempuri.org/IProfileBusiness/GetCommendResponse")>  _
         Function GetCommend(ByVal _filter As ProfileBusiness.CommendDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal log As Common.CommonBusiness.UserLog, ByVal Sorts As String) As System.Collections.Generic.List(Of ProfileBusiness.CommendDTO)
@@ -50785,9 +50807,6 @@ Namespace ProfileBusiness
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/CheckAndSendMailReminder", ReplyAction:="http://tempuri.org/IProfileBusiness/CheckAndSendMailReminderResponse")>  _
         Function CheckAndSendMailReminder() As Boolean
         
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetListALPByEmpID", ReplyAction:="http://tempuri.org/IProfileBusiness/GetListALPByEmpIDResponse")>  _
-        Function GetListALPByEmpID(ByVal _filter As ProfileBusiness.TrainningManageDTO, ByVal _param As ProfileBusiness.ParamDTO, ByVal Sorts As String) As System.Collections.Generic.List(Of ProfileBusiness.TrainningManageDTO)
-        
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/DeleteWorkingBefore", ReplyAction:="http://tempuri.org/IProfileBusiness/DeleteWorkingBeforeResponse")>  _
         Function DeleteWorkingBefore(ByVal lstDecimals As System.Collections.Generic.List(Of Decimal), ByVal log As Common.CommonBusiness.UserLog) As Boolean
         
@@ -51025,6 +51044,9 @@ Namespace ProfileBusiness
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ApproveDiscipline", ReplyAction:="http://tempuri.org/IProfileBusiness/ApproveDisciplineResponse")>  _
         Function ApproveDiscipline(ByVal objDiscipline As ProfileBusiness.DisciplineDTO) As Boolean
         
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/Open_ApproveDiscipline", ReplyAction:="http://tempuri.org/IProfileBusiness/Open_ApproveDisciplineResponse")>  _
+        Function Open_ApproveDiscipline(ByVal listID As System.Collections.Generic.List(Of Decimal), ByVal log As Common.CommonBusiness.UserLog) As Boolean
+        
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetDisciplineSalary", ReplyAction:="http://tempuri.org/IProfileBusiness/GetDisciplineSalaryResponse")>  _
         Function GetDisciplineSalary(ByVal _filter As ProfileBusiness.DisciplineSalaryDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal log As Common.CommonBusiness.UserLog, ByVal Sorts As String) As System.Collections.Generic.List(Of ProfileBusiness.DisciplineSalaryDTO)
         
@@ -51039,9 +51061,6 @@ Namespace ProfileBusiness
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ApproveDisciplineSalary", ReplyAction:="http://tempuri.org/IProfileBusiness/ApproveDisciplineSalaryResponse")>  _
         Function ApproveDisciplineSalary(ByVal lstID As System.Collections.Generic.List(Of Decimal)) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/StopDisciplineSalary", ReplyAction:="http://tempuri.org/IProfileBusiness/StopDisciplineSalaryResponse")>  _
-        Function StopDisciplineSalary(ByVal lstID As System.Collections.Generic.List(Of Decimal)) As Boolean
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ModifyStaffRank", ReplyAction:="http://tempuri.org/IProfileBusiness/ModifyStaffRankResponse")>  _
         Function ModifyStaffRank(ByVal objStaffRank As ProfileBusiness.StaffRankDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
@@ -51840,6 +51859,10 @@ Namespace ProfileBusiness
             MyBase.New(binding, remoteAddress)
         End Sub
         
+        Public Function GetFileConTractID(ByVal ID As Decimal) As ProfileBusiness.FileContractDTO Implements ProfileBusiness.IProfileBusiness.GetFileConTractID
+            Return MyBase.Channel.GetFileConTractID(ID)
+        End Function
+        
         Public Function GetContractAppendixPaging(ByVal _filter As ProfileBusiness.FileContractDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal _param As ProfileBusiness.ParamDTO, ByVal Sorts As String, ByVal log As Common.CommonBusiness.UserLog) As System.Collections.Generic.List(Of ProfileBusiness.FileContractDTO) Implements ProfileBusiness.IProfileBusiness.GetContractAppendixPaging
             Return MyBase.Channel.GetContractAppendixPaging(_filter, PageIndex, PageSize, Total, _param, Sorts, log)
         End Function
@@ -52002,6 +52025,10 @@ Namespace ProfileBusiness
         
         Public Function GET_PROCESS_PLCONTRACT_PORTAL(ByVal P_EMP_ID As Decimal) As System.Data.DataTable Implements ProfileBusiness.IProfileBusiness.GET_PROCESS_PLCONTRACT_PORTAL
             Return MyBase.Channel.GET_PROCESS_PLCONTRACT_PORTAL(P_EMP_ID)
+        End Function
+        
+        Public Function GetListALPByEmpID(ByVal _filter As ProfileBusiness.TrainningManageDTO, ByVal _param As ProfileBusiness.ParamDTO, ByVal Sorts As String) As System.Collections.Generic.List(Of ProfileBusiness.TrainningManageDTO) Implements ProfileBusiness.IProfileBusiness.GetListALPByEmpID
+            Return MyBase.Channel.GetListALPByEmpID(_filter, _param, Sorts)
         End Function
         
         Public Function GetALP(ByVal _filter As ProfileBusiness.TrainningManageDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal _param As ProfileBusiness.ParamDTO, ByVal Sorts As String, ByVal log As Common.CommonBusiness.UserLog) As System.Collections.Generic.List(Of ProfileBusiness.TrainningManageDTO) Implements ProfileBusiness.IProfileBusiness.GetALP
@@ -52340,8 +52367,8 @@ Namespace ProfileBusiness
             Return MyBase.Channel.GetContractForm(formID)
         End Function
         
-        Public Function GetFileConTractID(ByVal ID As Decimal) As ProfileBusiness.FileContractDTO Implements ProfileBusiness.IProfileBusiness.GetFileConTractID
-            Return MyBase.Channel.GetFileConTractID(ID)
+        Public Function StopDisciplineSalary(ByVal lstID As System.Collections.Generic.List(Of Decimal)) As Boolean Implements ProfileBusiness.IProfileBusiness.StopDisciplineSalary
+            Return MyBase.Channel.StopDisciplineSalary(lstID)
         End Function
         
         Public Function GetCommend(ByVal _filter As ProfileBusiness.CommendDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal log As Common.CommonBusiness.UserLog, ByVal Sorts As String) As System.Collections.Generic.List(Of ProfileBusiness.CommendDTO) Implements ProfileBusiness.IProfileBusiness.GetCommend
@@ -52680,10 +52707,6 @@ Namespace ProfileBusiness
             Return MyBase.Channel.CheckAndSendMailReminder
         End Function
         
-        Public Function GetListALPByEmpID(ByVal _filter As ProfileBusiness.TrainningManageDTO, ByVal _param As ProfileBusiness.ParamDTO, ByVal Sorts As String) As System.Collections.Generic.List(Of ProfileBusiness.TrainningManageDTO) Implements ProfileBusiness.IProfileBusiness.GetListALPByEmpID
-            Return MyBase.Channel.GetListALPByEmpID(_filter, _param, Sorts)
-        End Function
-        
         Public Function DeleteWorkingBefore(ByVal lstDecimals As System.Collections.Generic.List(Of Decimal), ByVal log As Common.CommonBusiness.UserLog) As Boolean Implements ProfileBusiness.IProfileBusiness.DeleteWorkingBefore
             Return MyBase.Channel.DeleteWorkingBefore(lstDecimals, log)
         End Function
@@ -53000,6 +53023,10 @@ Namespace ProfileBusiness
             Return MyBase.Channel.ApproveDiscipline(objDiscipline)
         End Function
         
+        Public Function Open_ApproveDiscipline(ByVal listID As System.Collections.Generic.List(Of Decimal), ByVal log As Common.CommonBusiness.UserLog) As Boolean Implements ProfileBusiness.IProfileBusiness.Open_ApproveDiscipline
+            Return MyBase.Channel.Open_ApproveDiscipline(listID, log)
+        End Function
+        
         Public Function GetDisciplineSalary(ByVal _filter As ProfileBusiness.DisciplineSalaryDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal log As Common.CommonBusiness.UserLog, ByVal Sorts As String) As System.Collections.Generic.List(Of ProfileBusiness.DisciplineSalaryDTO) Implements ProfileBusiness.IProfileBusiness.GetDisciplineSalary
             Return MyBase.Channel.GetDisciplineSalary(_filter, PageIndex, PageSize, Total, log, Sorts)
         End Function
@@ -53018,10 +53045,6 @@ Namespace ProfileBusiness
         
         Public Function ApproveDisciplineSalary(ByVal lstID As System.Collections.Generic.List(Of Decimal)) As Boolean Implements ProfileBusiness.IProfileBusiness.ApproveDisciplineSalary
             Return MyBase.Channel.ApproveDisciplineSalary(lstID)
-        End Function
-        
-        Public Function StopDisciplineSalary(ByVal lstID As System.Collections.Generic.List(Of Decimal)) As Boolean Implements ProfileBusiness.IProfileBusiness.StopDisciplineSalary
-            Return MyBase.Channel.StopDisciplineSalary(lstID)
         End Function
         
         Public Function ModifyStaffRank(ByVal objStaffRank As ProfileBusiness.StaffRankDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean Implements ProfileBusiness.IProfileBusiness.ModifyStaffRank

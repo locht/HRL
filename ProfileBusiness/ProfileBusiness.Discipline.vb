@@ -107,6 +107,15 @@ Namespace ProfileBusiness.ServiceImplementations
                 Throw ex
             End Try
         End Function
+        Public Function Open_ApproveDiscipline(ByVal listID As List(Of Decimal), ByVal log As UserLog) As Boolean Implements ServiceContracts.IProfileBusiness.Open_ApproveDiscipline
+            Try
+                Dim rep As New ProfileRepository
+                Return rep.Open_ApproveDiscipline(listID, log)
+            Catch ex As Exception
+
+                Throw ex
+            End Try
+        End Function
 #End Region
 
 #Region "DisciplineSalary"

@@ -1805,6 +1805,9 @@ Namespace ProfileBusiness.ServiceContracts
         <OperationContract()>
         Function ApproveDiscipline(ByVal objDiscipline As DisciplineDTO) As Boolean
 
+        <OperationContract()>
+        Function Open_ApproveDiscipline(ByVal listID As List(Of Decimal), ByVal log As UserLog) As Boolean
+
 #End Region
 
 #Region "DisciplineSalary"
