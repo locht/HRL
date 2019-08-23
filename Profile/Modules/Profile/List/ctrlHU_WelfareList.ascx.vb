@@ -412,6 +412,22 @@ Public Class ctrlHU_WelfareList
                         dpEND_DATE.SelectedDate = item.END_DATE
                     End If
 
+                    lstbGender.ClearChecked()
+                    For Each chk As RadListBoxItem In lstbGender.Items
+                        
+                        If item.GENDER.Contains(chk.Value) Then
+                            chk.Checked = True
+                        End If
+                    Next
+
+                    lstCONTRACT_TYPE.ClearChecked()
+                    For Each chk As RadListBoxItem In lstCONTRACT_TYPE.Items
+
+                        If item.CONTRACT_TYPE.Contains(chk.Value) Then
+                            chk.Checked = True
+                        End If
+                    Next
+
                     'If item.GENDER = "565" Then
                     '    Dim gan As New RadListBoxItem("565", "565")
                     '    lstbGender.Items.Add(gan)
