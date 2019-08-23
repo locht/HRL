@@ -57,7 +57,6 @@
             <EntitySet Name="HU_EMPLOYEE_CV" EntityType="AttendanceModel.Store.HU_EMPLOYEE_CV" store:Type="Tables" />
             <EntitySet Name="SE_MAIL" EntityType="AttendanceModel.Store.SE_MAIL" store:Type="Tables" />
             <EntitySet Name="AT_SETUP_TIME_EMP" EntityType="AttendanceModel.Store.AT_SETUP_TIME_EMP" store:Type="Tables" />
-            <EntitySet Name="AT_ENTITLEMENT" EntityType="AttendanceModel.Store.AT_ENTITLEMENT" store:Type="Tables" />
             <EntitySet Name="SE_EMPLOYEE_CHOSEN" EntityType="AttendanceModel.Store.SE_EMPLOYEE_CHOSEN" store:Type="Tables" />
             <EntitySet Name="AT_LIST_PARAM_SYSTEM" EntityType="AttendanceModel.Store.AT_LIST_PARAM_SYSTEM" store:Type="Tables" />
             <EntitySet Name="AT_REGISTER_OT" EntityType="AttendanceModel.Store.AT_REGISTER_OT" store:Type="Tables" />
@@ -96,6 +95,7 @@
             <EntitySet Name="AT_TIMESHEET_MACHINET_IMPORT" EntityType="AttendanceModel.Store.AT_TIMESHEET_MACHINET_IMPORT" store:Type="Tables" />
             <EntitySet Name="AT_TYPE_PROCESS" EntityType="AttendanceModel.Store.AT_TYPE_PROCESS" store:Type="Tables" />
             <EntitySet Name="AT_TIME_MANUAL_RATE" EntityType="AttendanceModel.Store.AT_TIME_MANUAL_RATE" store:Type="Tables" />
+            <EntitySet Name="AT_ENTITLEMENT" EntityType="AttendanceModel.Store.AT_ENTITLEMENT" store:Type="Tables" />
             <EntitySet Name="SE_USER_REPORT" EntityType="AttendanceModel.Store.SE_USER_REPORT" store:Type="Tables" />
             <AssociationSet Name="FK_OOLT_OOL" Association="AttendanceModel.Store.FK_OOLT_OOL">
                 <End Role="OT_OTHER_LIST_TYPE" EntitySet="OT_OTHER_LIST_TYPE" />
@@ -1438,105 +1438,6 @@
             <Property Name="MODIFIED_BY" Type="nvarchar2" Nullable="true" MaxLength="255" />
             <Property Name="MODIFIED_LOG" Type="nvarchar2" Nullable="true" MaxLength="255" />
         </EntityType>
-        <EntityType Name="AT_ENTITLEMENT">
-            <Key>
-                <PropertyRef Name="ID" />
-            </Key>
-            <Property Name="YEAR" Type="number" Nullable="false" Precision="38" />
-            <Property Name="EMPLOYEE_ID" Type="number" Nullable="false" Precision="38" />
-            <Property Name="WORKING_TIME_HAVE" Type="number" Nullable="true" Precision="38" />
-            <Property Name="BALANCE_WORKING_TIME" Type="number" Nullable="true" Precision="38" />
-            <Property Name="CAL_DATE" Type="date" Nullable="true" />
-            <Property Name="CREATED_DATE" Type="date" Nullable="true" />
-            <Property Name="CREATED_BY" Type="nvarchar2" Nullable="true" MaxLength="255" />
-            <Property Name="CREATED_LOG" Type="nvarchar2" Nullable="true" MaxLength="255" />
-            <Property Name="MODIFIED_DATE" Type="date" Nullable="true" />
-            <Property Name="MODIFIED_BY" Type="nvarchar2" Nullable="true" MaxLength="255" />
-            <Property Name="MODIFIED_LOG" Type="nvarchar2" Nullable="true" MaxLength="255" />
-            <Property Name="ID" Type="number" Nullable="false" Precision="38" />
-            <Property Name="PREV_HAVE" Type="number" Nullable="true" Precision="38" />
-            <Property Name="PREV_USED" Type="number" Nullable="true" Precision="38" />
-            <Property Name="EXPIREDATE" Type="date" Nullable="true" />
-            <Property Name="CUR_HAVE" Type="number" Nullable="true" Precision="38" />
-            <Property Name="CUR_USED" Type="number" Nullable="true" Precision="38" />
-            <Property Name="CUR_HAVE1" Type="number" Nullable="true" Precision="38" />
-            <Property Name="CUR_HAVE2" Type="number" Nullable="true" Precision="38" />
-            <Property Name="CUR_HAVE3" Type="number" Nullable="true" Precision="38" />
-            <Property Name="CUR_HAVE4" Type="number" Nullable="true" Precision="38" />
-            <Property Name="CUR_HAVE5" Type="number" Nullable="true" Precision="38" />
-            <Property Name="CUR_HAVE6" Type="number" Nullable="true" Precision="38" />
-            <Property Name="CUR_HAVE7" Type="number" Nullable="true" Precision="38" />
-            <Property Name="CUR_HAVE8" Type="number" Nullable="true" Precision="38" />
-            <Property Name="CUR_HAVE9" Type="number" Nullable="true" Precision="38" />
-            <Property Name="CUR_HAVE10" Type="number" Nullable="true" Precision="38" />
-            <Property Name="CUR_HAVE11" Type="number" Nullable="true" Precision="38" />
-            <Property Name="CUR_HAVE12" Type="number" Nullable="true" Precision="38" />
-            <Property Name="CUR_USED1" Type="number" Nullable="true" Precision="38" />
-            <Property Name="CUR_USED2" Type="number" Nullable="true" Precision="38" />
-            <Property Name="CUR_USED3" Type="number" Nullable="true" Precision="38" />
-            <Property Name="CUR_USED4" Type="number" Nullable="true" Precision="38" />
-            <Property Name="CUR_USED5" Type="number" Nullable="true" Precision="38" />
-            <Property Name="CUR_USED6" Type="number" Nullable="true" Precision="38" />
-            <Property Name="CUR_USED7" Type="number" Nullable="true" Precision="38" />
-            <Property Name="CUR_USED8" Type="number" Nullable="true" Precision="38" />
-            <Property Name="CUR_USED9" Type="number" Nullable="true" Precision="38" />
-            <Property Name="CUR_USED10" Type="number" Nullable="true" Precision="38" />
-            <Property Name="CUR_USED11" Type="number" Nullable="true" Precision="38" />
-            <Property Name="CUR_USED12" Type="number" Nullable="true" Precision="38" />
-            <Property Name="AL_TO_CASH" Type="number" Nullable="true" Precision="38" />
-            <Property Name="REASON" Type="nvarchar2" Nullable="true" MaxLength="1023" />
-            <Property Name="EXPIREDATE_NB" Type="date" Nullable="true" />
-            <Property Name="FIXADD" Type="number" Nullable="true" Precision="38" />
-            <Property Name="PAY_PREV_ENT" Type="number" Nullable="true" Precision="38" />
-            <Property Name="AL_T1" Type="number" Nullable="true" Precision="38" />
-            <Property Name="AL_T2" Type="number" Nullable="true" Precision="38" />
-            <Property Name="AL_T3" Type="number" Nullable="true" Precision="38" />
-            <Property Name="AL_T4" Type="number" Nullable="true" Precision="38" />
-            <Property Name="AL_T5" Type="number" Nullable="true" Precision="38" />
-            <Property Name="AL_T6" Type="number" Nullable="true" Precision="38" />
-            <Property Name="AL_T7" Type="number" Nullable="true" Precision="38" />
-            <Property Name="AL_T8" Type="number" Nullable="true" Precision="38" />
-            <Property Name="AL_T9" Type="number" Nullable="true" Precision="38" />
-            <Property Name="AL_T10" Type="number" Nullable="true" Precision="38" />
-            <Property Name="AL_T11" Type="number" Nullable="true" Precision="38" />
-            <Property Name="AL_T12" Type="number" Nullable="true" Precision="38" />
-            <Property Name="AL_ADD_T1" Type="number" Nullable="true" Precision="38" />
-            <Property Name="AL_ADD_T2" Type="number" Nullable="true" Precision="38" />
-            <Property Name="AL_ADD_T3" Type="number" Nullable="true" Precision="38" />
-            <Property Name="AL_ADD_T4" Type="number" Nullable="true" Precision="38" />
-            <Property Name="AL_ADD_T5" Type="number" Nullable="true" Precision="38" />
-            <Property Name="AL_ADD_T6" Type="number" Nullable="true" Precision="38" />
-            <Property Name="AL_ADD_T7" Type="number" Nullable="true" Precision="38" />
-            <Property Name="AL_ADD_T8" Type="number" Nullable="true" Precision="38" />
-            <Property Name="AL_ADD_T9" Type="number" Nullable="true" Precision="38" />
-            <Property Name="AL_ADD_T10" Type="number" Nullable="true" Precision="38" />
-            <Property Name="AL_ADD_T11" Type="number" Nullable="true" Precision="38" />
-            <Property Name="AL_ADD_T12" Type="number" Nullable="true" Precision="38" />
-            <Property Name="PREV_USED1" Type="number" Nullable="true" Precision="38" />
-            <Property Name="PREV_USED2" Type="number" Nullable="true" Precision="38" />
-            <Property Name="PREV_USED3" Type="number" Nullable="true" Precision="38" />
-            <Property Name="PREV_USED4" Type="number" Nullable="true" Precision="38" />
-            <Property Name="PREV_USED5" Type="number" Nullable="true" Precision="38" />
-            <Property Name="PREV_USED6" Type="number" Nullable="true" Precision="38" />
-            <Property Name="PREV_USED7" Type="number" Nullable="true" Precision="38" />
-            <Property Name="PREV_USED8" Type="number" Nullable="true" Precision="38" />
-            <Property Name="PREV_USED9" Type="number" Nullable="true" Precision="38" />
-            <Property Name="PREV_USED10" Type="number" Nullable="true" Precision="38" />
-            <Property Name="PREV_USED11" Type="number" Nullable="true" Precision="38" />
-            <Property Name="PREV_USED12" Type="number" Nullable="true" Precision="38" />
-            <Property Name="TOTAL_PAY_PREV_ENT" Type="number" Nullable="true" Precision="38" />
-            <Property Name="PERIOD_ID" Type="number" Nullable="true" Precision="38" />
-            <Property Name="TOTAL_HAVE" Type="number" Nullable="true" Precision="38" />
-            <Property Name="SENIORITYHAVE" Type="number" Nullable="true" Precision="38" />
-            <Property Name="TOTAL_HAVE1" Type="number" Nullable="true" Precision="38" />
-            <Property Name="PREVTOTAL_HAVE" Type="number" Nullable="true" Precision="38" />
-            <Property Name="TIME_OUTSIDE_COMPANY" Type="number" Nullable="true" Precision="38" />
-            <Property Name="TIME_SENIORITY" Type="number" Nullable="true" Precision="38" />
-            <Property Name="MONTH_SENIORITY_CHANGE" Type="number" Nullable="true" Precision="38" />
-            <Property Name="TIME_SENIORITY_AFTER_CHANGE" Type="number" Nullable="true" Precision="38" />
-            <Property Name="SENIORITY" Type="nclob" Nullable="true" />
-            <Property Name="SENIORITY_EDIT" Type="nclob" Nullable="true" />
-        </EntityType>
         <EntityType Name="SE_EMPLOYEE_CHOSEN">
             <Key>
                 <PropertyRef Name="EMPLOYEE_ID" />
@@ -2442,6 +2343,117 @@
             <Property Name="ACTFLG" Type="nvarchar2" Nullable="true" MaxLength="255" />
             <Property Name="VALUE_RATE" Type="number" Nullable="true" Precision="38" />
         </EntityType>
+        <EntityType Name="AT_ENTITLEMENT">
+            <Key>
+                <PropertyRef Name="ID" />
+            </Key>
+            <Property Name="YEAR" Type="number" Nullable="false" Precision="38" />
+            <Property Name="EMPLOYEE_ID" Type="number" Nullable="false" Precision="38" />
+            <Property Name="WORKING_TIME_HAVE" Type="number" Nullable="true" Precision="38" />
+            <Property Name="BALANCE_WORKING_TIME" Type="number" Nullable="true" Precision="38" />
+            <Property Name="CAL_DATE" Type="date" Nullable="true" />
+            <Property Name="CREATED_DATE" Type="date" Nullable="true" />
+            <Property Name="CREATED_BY" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="CREATED_LOG" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="MODIFIED_DATE" Type="date" Nullable="true" />
+            <Property Name="MODIFIED_BY" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="MODIFIED_LOG" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="ID" Type="number" Nullable="false" Precision="38" />
+            <Property Name="PREV_HAVE" Type="number" Nullable="true" Precision="38" />
+            <Property Name="PREV_USED" Type="number" Nullable="true" Precision="38" />
+            <Property Name="EXPIREDATE" Type="date" Nullable="true" />
+            <Property Name="CUR_HAVE" Type="number" Nullable="true" Precision="38" />
+            <Property Name="CUR_USED" Type="number" Nullable="true" Precision="38" />
+            <Property Name="FUND" Type="number" Nullable="true" Precision="38" />
+            <Property Name="SPECIAL" Type="number" Nullable="true" Precision="38" />
+            <Property Name="CUR_HAVE1" Type="number" Nullable="true" Precision="38" />
+            <Property Name="CUR_HAVE2" Type="number" Nullable="true" Precision="38" />
+            <Property Name="CUR_HAVE3" Type="number" Nullable="true" Precision="38" />
+            <Property Name="CUR_HAVE4" Type="number" Nullable="true" Precision="38" />
+            <Property Name="CUR_HAVE5" Type="number" Nullable="true" Precision="38" />
+            <Property Name="CUR_HAVE6" Type="number" Nullable="true" Precision="38" />
+            <Property Name="CUR_HAVE7" Type="number" Nullable="true" Precision="38" />
+            <Property Name="CUR_HAVE8" Type="number" Nullable="true" Precision="38" />
+            <Property Name="CUR_HAVE9" Type="number" Nullable="true" Precision="38" />
+            <Property Name="CUR_HAVE10" Type="number" Nullable="true" Precision="38" />
+            <Property Name="CUR_HAVE11" Type="number" Nullable="true" Precision="38" />
+            <Property Name="CUR_HAVE12" Type="number" Nullable="true" Precision="38" />
+            <Property Name="CUR_USED1" Type="number" Nullable="true" Precision="38" />
+            <Property Name="CUR_USED2" Type="number" Nullable="true" Precision="38" />
+            <Property Name="CUR_USED3" Type="number" Nullable="true" Precision="38" />
+            <Property Name="CUR_USED4" Type="number" Nullable="true" Precision="38" />
+            <Property Name="CUR_USED5" Type="number" Nullable="true" Precision="38" />
+            <Property Name="CUR_USED6" Type="number" Nullable="true" Precision="38" />
+            <Property Name="CUR_USED7" Type="number" Nullable="true" Precision="38" />
+            <Property Name="CUR_USED8" Type="number" Nullable="true" Precision="38" />
+            <Property Name="CUR_USED9" Type="number" Nullable="true" Precision="38" />
+            <Property Name="CUR_USED10" Type="number" Nullable="true" Precision="38" />
+            <Property Name="CUR_USED11" Type="number" Nullable="true" Precision="38" />
+            <Property Name="CUR_USED12" Type="number" Nullable="true" Precision="38" />
+            <Property Name="AL_TO_CASH" Type="number" Nullable="true" Precision="38" />
+            <Property Name="REASON" Type="nvarchar2" Nullable="true" MaxLength="1023" />
+            <Property Name="EXPIREDATE_NB" Type="date" Nullable="true" />
+            <Property Name="FIXADD" Type="number" Nullable="true" Precision="38" />
+            <Property Name="PAY_PREV_ENT" Type="number" Nullable="true" Precision="38" />
+            <Property Name="AL_T1" Type="number" Nullable="true" Precision="38" />
+            <Property Name="AL_T2" Type="number" Nullable="true" Precision="38" />
+            <Property Name="AL_T3" Type="number" Nullable="true" Precision="38" />
+            <Property Name="AL_T4" Type="number" Nullable="true" Precision="38" />
+            <Property Name="AL_T5" Type="number" Nullable="true" Precision="38" />
+            <Property Name="AL_T6" Type="number" Nullable="true" Precision="38" />
+            <Property Name="AL_T7" Type="number" Nullable="true" Precision="38" />
+            <Property Name="AL_T8" Type="number" Nullable="true" Precision="38" />
+            <Property Name="AL_T9" Type="number" Nullable="true" Precision="38" />
+            <Property Name="AL_T10" Type="number" Nullable="true" Precision="38" />
+            <Property Name="AL_T11" Type="number" Nullable="true" Precision="38" />
+            <Property Name="AL_T12" Type="number" Nullable="true" Precision="38" />
+            <Property Name="AL_ADD_T1" Type="number" Nullable="true" Precision="38" />
+            <Property Name="AL_ADD_T2" Type="number" Nullable="true" Precision="38" />
+            <Property Name="AL_ADD_T3" Type="number" Nullable="true" Precision="38" />
+            <Property Name="AL_ADD_T4" Type="number" Nullable="true" Precision="38" />
+            <Property Name="AL_ADD_T5" Type="number" Nullable="true" Precision="38" />
+            <Property Name="AL_ADD_T6" Type="number" Nullable="true" Precision="38" />
+            <Property Name="AL_ADD_T7" Type="number" Nullable="true" Precision="38" />
+            <Property Name="AL_ADD_T8" Type="number" Nullable="true" Precision="38" />
+            <Property Name="AL_ADD_T9" Type="number" Nullable="true" Precision="38" />
+            <Property Name="AL_ADD_T10" Type="number" Nullable="true" Precision="38" />
+            <Property Name="AL_ADD_T11" Type="number" Nullable="true" Precision="38" />
+            <Property Name="AL_ADD_T12" Type="number" Nullable="true" Precision="38" />
+            <Property Name="PREV_USED1" Type="number" Nullable="true" Precision="38" />
+            <Property Name="PREV_USED2" Type="number" Nullable="true" Precision="38" />
+            <Property Name="PREV_USED3" Type="number" Nullable="true" Precision="38" />
+            <Property Name="PREV_USED4" Type="number" Nullable="true" Precision="38" />
+            <Property Name="PREV_USED5" Type="number" Nullable="true" Precision="38" />
+            <Property Name="PREV_USED6" Type="number" Nullable="true" Precision="38" />
+            <Property Name="PREV_USED7" Type="number" Nullable="true" Precision="38" />
+            <Property Name="PREV_USED8" Type="number" Nullable="true" Precision="38" />
+            <Property Name="PREV_USED9" Type="number" Nullable="true" Precision="38" />
+            <Property Name="PREV_USED10" Type="number" Nullable="true" Precision="38" />
+            <Property Name="PREV_USED11" Type="number" Nullable="true" Precision="38" />
+            <Property Name="PREV_USED12" Type="number" Nullable="true" Precision="38" />
+            <Property Name="TOTAL_PAY_PREV_ENT" Type="number" Nullable="true" Precision="38" />
+            <Property Name="PERIOD_ID" Type="number" Nullable="true" Precision="38" />
+            <Property Name="TOTAL_HAVE" Type="number" Nullable="true" Precision="38" />
+            <Property Name="SUB_PREV_ENT" Type="number" Nullable="true" Precision="38" />
+            <Property Name="BALANCE_WORKING_TIME_3B" Type="number" Nullable="true" Precision="38" />
+            <Property Name="MONTH" Type="number" Nullable="true" Precision="38" />
+            <Property Name="SENIORITYHAVE" Type="number" Nullable="true" Precision="38" />
+            <Property Name="TOTAL_HAVE1" Type="number" Nullable="true" Precision="38" />
+            <Property Name="PREVTOTAL_HAVE" Type="number" Nullable="true" Precision="38" />
+            <Property Name="TIME_OUTSIDE_COMPANY" Type="number" Nullable="true" Precision="38" />
+            <Property Name="TIME_SENIORITY" Type="number" Nullable="true" Precision="38" />
+            <Property Name="MONTH_SENIORITY_CHANGE" Type="number" Nullable="true" Precision="38" />
+            <Property Name="TIME_SENIORITY_AFTER_CHANGE" Type="number" Nullable="true" Precision="38" />
+            <Property Name="SENIORITY" Type="number" Nullable="true" Precision="38" />
+            <Property Name="SENIORITY_EDIT" Type="nvarchar2" Nullable="true" MaxLength="100" />
+            <Property Name="TOTAL_HAVE2" Type="number" Nullable="true" Precision="38" />
+            <Property Name="QP_YEAR" Type="number" Nullable="true" Precision="38" />
+            <Property Name="TN_YEAR" Type="number" Nullable="true" Precision="38" />
+            <Property Name="TN_DAY" Type="number" Nullable="true" Precision="38" />
+            <Property Name="QP_MONTH" Type="number" Nullable="true" Precision="38" />
+            <Property Name="TO_LEAVE_YEAR" Type="number" Nullable="true" Precision="38" />
+            <Property Name="ADJUST_MONTH_TN" Type="number" Nullable="true" Precision="38" />
+        </EntityType>
         <EntityType Name="SE_USER_REPORT">
             <Key>
                 <PropertyRef Name="SE_REPORT_ID" />
@@ -2714,7 +2726,6 @@
           <EntitySet Name="HU_EMPLOYEE_CV" EntityType="AttendanceModel.HU_EMPLOYEE_CV" />
           <EntitySet Name="SE_MAIL" EntityType="AttendanceModel.SE_MAIL" />
           <EntitySet Name="AT_SETUP_TIME_EMP" EntityType="AttendanceModel.AT_SETUP_TIME_EMP" />
-          <EntitySet Name="AT_ENTITLEMENT" EntityType="AttendanceModel.AT_ENTITLEMENT" />
           <EntitySet Name="SE_EMPLOYEE_CHOSEN" EntityType="AttendanceModel.SE_EMPLOYEE_CHOSEN" />
           <EntitySet Name="AT_LIST_PARAM_SYSTEM" EntityType="AttendanceModel.AT_LIST_PARAM_SYSTEM" />
           <EntitySet Name="AT_REGISTER_OT" EntityType="AttendanceModel.AT_REGISTER_OT" />
@@ -2757,6 +2768,7 @@
           <EntitySet Name="AT_TIMESHEET_MACHINET_IMPORT" EntityType="AttendanceModel.AT_TIMESHEET_MACHINET_IMPORT" />
           <EntitySet Name="AT_TYPE_PROCESS" EntityType="AttendanceModel.AT_TYPE_PROCESS" />
           <EntitySet Name="AT_TIME_MANUAL_RATE" EntityType="AttendanceModel.AT_TIME_MANUAL_RATE" />
+          <EntitySet Name="AT_ENTITLEMENT" EntityType="AttendanceModel.AT_ENTITLEMENT" />
           </EntityContainer>
         <EntityType Name="OT_OTHER_LIST">
           <Key>
@@ -4194,105 +4206,6 @@
           <Property Type="String" Name="MODIFIED_BY" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="MODIFIED_LOG" MaxLength="255" FixedLength="false" Unicode="true" />
         </EntityType>
-        <EntityType Name="AT_ENTITLEMENT">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Type="Decimal" Name="YEAR" Nullable="false" Precision="38" Scale="0" />
-          <Property Type="Decimal" Name="EMPLOYEE_ID" Nullable="false" Precision="38" Scale="0" />
-          <Property Type="Decimal" Name="WORKING_TIME_HAVE" Precision="38" Scale="0" />
-          <Property Type="Decimal" Name="BALANCE_WORKING_TIME" Precision="38" Scale="0" />
-          <Property Type="DateTime" Name="CAL_DATE" />
-          <Property Type="DateTime" Name="CREATED_DATE" />
-          <Property Type="String" Name="CREATED_BY" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="CREATED_LOG" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Type="DateTime" Name="MODIFIED_DATE" />
-          <Property Type="String" Name="MODIFIED_BY" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="MODIFIED_LOG" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Type="Decimal" Name="ID" Nullable="false" Precision="38" Scale="0" />
-          <Property Type="Decimal" Name="PREV_HAVE" Precision="38" Scale="0" />
-          <Property Type="Decimal" Name="PREV_USED" Precision="38" Scale="0" />
-          <Property Type="DateTime" Name="EXPIREDATE" />
-          <Property Type="Decimal" Name="CUR_HAVE" Precision="38" Scale="0" />
-          <Property Type="Decimal" Name="CUR_USED" Precision="38" Scale="0" />
-          <Property Type="Decimal" Name="CUR_HAVE1" Precision="38" Scale="0" />
-          <Property Type="Decimal" Name="CUR_HAVE2" Precision="38" Scale="0" />
-          <Property Type="Decimal" Name="CUR_HAVE3" Precision="38" Scale="0" />
-          <Property Type="Decimal" Name="CUR_HAVE4" Precision="38" Scale="0" />
-          <Property Type="Decimal" Name="CUR_HAVE5" Precision="38" Scale="0" />
-          <Property Type="Decimal" Name="CUR_HAVE6" Precision="38" Scale="0" />
-          <Property Type="Decimal" Name="CUR_HAVE7" Precision="38" Scale="0" />
-          <Property Type="Decimal" Name="CUR_HAVE8" Precision="38" Scale="0" />
-          <Property Type="Decimal" Name="CUR_HAVE9" Precision="38" Scale="0" />
-          <Property Type="Decimal" Name="CUR_HAVE10" Precision="38" Scale="0" />
-          <Property Type="Decimal" Name="CUR_HAVE11" Precision="38" Scale="0" />
-          <Property Type="Decimal" Name="CUR_HAVE12" Precision="38" Scale="0" />
-          <Property Type="Decimal" Name="CUR_USED1" Precision="38" Scale="0" />
-          <Property Type="Decimal" Name="CUR_USED2" Precision="38" Scale="0" />
-          <Property Type="Decimal" Name="CUR_USED3" Precision="38" Scale="0" />
-          <Property Type="Decimal" Name="CUR_USED4" Precision="38" Scale="0" />
-          <Property Type="Decimal" Name="CUR_USED5" Precision="38" Scale="0" />
-          <Property Type="Decimal" Name="CUR_USED6" Precision="38" Scale="0" />
-          <Property Type="Decimal" Name="CUR_USED7" Precision="38" Scale="0" />
-          <Property Type="Decimal" Name="CUR_USED8" Precision="38" Scale="0" />
-          <Property Type="Decimal" Name="CUR_USED9" Precision="38" Scale="0" />
-          <Property Type="Decimal" Name="CUR_USED10" Precision="38" Scale="0" />
-          <Property Type="Decimal" Name="CUR_USED11" Precision="38" Scale="0" />
-          <Property Type="Decimal" Name="CUR_USED12" Precision="38" Scale="0" />
-          <Property Type="Decimal" Name="AL_TO_CASH" Precision="38" Scale="0" />
-          <Property Type="String" Name="REASON" MaxLength="1023" FixedLength="false" Unicode="true" />
-          <Property Type="DateTime" Name="EXPIREDATE_NB" />
-          <Property Type="Decimal" Name="FIXADD" Precision="38" Scale="0" />
-          <Property Type="Decimal" Name="PAY_PREV_ENT" Precision="38" Scale="0" />
-          <Property Type="Decimal" Name="AL_T1" Precision="38" Scale="0" />
-          <Property Type="Decimal" Name="AL_T2" Precision="38" Scale="0" />
-          <Property Type="Decimal" Name="AL_T3" Precision="38" Scale="0" />
-          <Property Type="Decimal" Name="AL_T4" Precision="38" Scale="0" />
-          <Property Type="Decimal" Name="AL_T5" Precision="38" Scale="0" />
-          <Property Type="Decimal" Name="AL_T6" Precision="38" Scale="0" />
-          <Property Type="Decimal" Name="AL_T7" Precision="38" Scale="0" />
-          <Property Type="Decimal" Name="AL_T8" Precision="38" Scale="0" />
-          <Property Type="Decimal" Name="AL_T9" Precision="38" Scale="0" />
-          <Property Type="Decimal" Name="AL_T10" Precision="38" Scale="0" />
-          <Property Type="Decimal" Name="AL_T11" Precision="38" Scale="0" />
-          <Property Type="Decimal" Name="AL_T12" Precision="38" Scale="0" />
-          <Property Type="Decimal" Name="AL_ADD_T1" Precision="38" Scale="0" />
-          <Property Type="Decimal" Name="AL_ADD_T2" Precision="38" Scale="0" />
-          <Property Type="Decimal" Name="AL_ADD_T3" Precision="38" Scale="0" />
-          <Property Type="Decimal" Name="AL_ADD_T4" Precision="38" Scale="0" />
-          <Property Type="Decimal" Name="AL_ADD_T5" Precision="38" Scale="0" />
-          <Property Type="Decimal" Name="AL_ADD_T6" Precision="38" Scale="0" />
-          <Property Type="Decimal" Name="AL_ADD_T7" Precision="38" Scale="0" />
-          <Property Type="Decimal" Name="AL_ADD_T8" Precision="38" Scale="0" />
-          <Property Type="Decimal" Name="AL_ADD_T9" Precision="38" Scale="0" />
-          <Property Type="Decimal" Name="AL_ADD_T10" Precision="38" Scale="0" />
-          <Property Type="Decimal" Name="AL_ADD_T11" Precision="38" Scale="0" />
-          <Property Type="Decimal" Name="AL_ADD_T12" Precision="38" Scale="0" />
-          <Property Type="Decimal" Name="PREV_USED1" Precision="38" Scale="0" />
-          <Property Type="Decimal" Name="PREV_USED2" Precision="38" Scale="0" />
-          <Property Type="Decimal" Name="PREV_USED3" Precision="38" Scale="0" />
-          <Property Type="Decimal" Name="PREV_USED4" Precision="38" Scale="0" />
-          <Property Type="Decimal" Name="PREV_USED5" Precision="38" Scale="0" />
-          <Property Type="Decimal" Name="PREV_USED6" Precision="38" Scale="0" />
-          <Property Type="Decimal" Name="PREV_USED7" Precision="38" Scale="0" />
-          <Property Type="Decimal" Name="PREV_USED8" Precision="38" Scale="0" />
-          <Property Type="Decimal" Name="PREV_USED9" Precision="38" Scale="0" />
-          <Property Type="Decimal" Name="PREV_USED10" Precision="38" Scale="0" />
-          <Property Type="Decimal" Name="PREV_USED11" Precision="38" Scale="0" />
-          <Property Type="Decimal" Name="PREV_USED12" Precision="38" Scale="0" />
-          <Property Type="Decimal" Name="TOTAL_PAY_PREV_ENT" Precision="38" Scale="0" />
-          <Property Type="Decimal" Name="PERIOD_ID" Precision="38" Scale="0" />
-          <Property Type="Decimal" Name="TOTAL_HAVE" Precision="38" Scale="0" />
-          <Property Type="Decimal" Name="SENIORITYHAVE" />
-          <Property Type="Decimal" Name="TOTAL_HAVE1" />
-          <Property Type="Decimal" Name="PREVTOTAL_HAVE" />
-          <Property Type="Decimal" Name="TIME_OUTSIDE_COMPANY" />
-          <Property Type="Decimal" Name="TIME_SENIORITY" />
-          <Property Type="Decimal" Name="MONTH_SENIORITY_CHANGE" />
-          <Property Type="Decimal" Name="TIME_SENIORITY_AFTER_CHANGE" />
-          <Property Type="String" Name="SENIORITY" />
-          <Property Type="String" Name="SENIORITY_EDIT" />
-        </EntityType>
         <EntityType Name="SE_EMPLOYEE_CHOSEN">
           <Key>
             <PropertyRef Name="EMPLOYEE_ID" />
@@ -5203,6 +5116,117 @@
           <Property Type="Decimal" Name="ID" Nullable="false" Precision="38" Scale="0" />
           <Property Type="String" Name="ACTFLG" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Type="Decimal" Name="VALUE_RATE" Precision="38" Scale="0" />
+        </EntityType>
+        <EntityType Name="AT_ENTITLEMENT">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Decimal" Name="YEAR" Nullable="false" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="EMPLOYEE_ID" Nullable="false" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="WORKING_TIME_HAVE" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="BALANCE_WORKING_TIME" Precision="38" Scale="0" />
+          <Property Type="DateTime" Name="CAL_DATE" />
+          <Property Type="DateTime" Name="CREATED_DATE" />
+          <Property Type="String" Name="CREATED_BY" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="CREATED_LOG" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="MODIFIED_DATE" />
+          <Property Type="String" Name="MODIFIED_BY" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="MODIFIED_LOG" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="Decimal" Name="ID" Nullable="false" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="PREV_HAVE" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="PREV_USED" Precision="38" Scale="0" />
+          <Property Type="DateTime" Name="EXPIREDATE" />
+          <Property Type="Decimal" Name="CUR_HAVE" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="CUR_USED" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="FUND" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="SPECIAL" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="CUR_HAVE1" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="CUR_HAVE2" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="CUR_HAVE3" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="CUR_HAVE4" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="CUR_HAVE5" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="CUR_HAVE6" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="CUR_HAVE7" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="CUR_HAVE8" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="CUR_HAVE9" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="CUR_HAVE10" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="CUR_HAVE11" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="CUR_HAVE12" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="CUR_USED1" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="CUR_USED2" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="CUR_USED3" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="CUR_USED4" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="CUR_USED5" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="CUR_USED6" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="CUR_USED7" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="CUR_USED8" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="CUR_USED9" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="CUR_USED10" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="CUR_USED11" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="CUR_USED12" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="AL_TO_CASH" Precision="38" Scale="0" />
+          <Property Type="String" Name="REASON" MaxLength="1023" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="EXPIREDATE_NB" />
+          <Property Type="Decimal" Name="FIXADD" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="PAY_PREV_ENT" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="AL_T1" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="AL_T2" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="AL_T3" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="AL_T4" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="AL_T5" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="AL_T6" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="AL_T7" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="AL_T8" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="AL_T9" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="AL_T10" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="AL_T11" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="AL_T12" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="AL_ADD_T1" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="AL_ADD_T2" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="AL_ADD_T3" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="AL_ADD_T4" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="AL_ADD_T5" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="AL_ADD_T6" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="AL_ADD_T7" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="AL_ADD_T8" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="AL_ADD_T9" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="AL_ADD_T10" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="AL_ADD_T11" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="AL_ADD_T12" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="PREV_USED1" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="PREV_USED2" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="PREV_USED3" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="PREV_USED4" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="PREV_USED5" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="PREV_USED6" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="PREV_USED7" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="PREV_USED8" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="PREV_USED9" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="PREV_USED10" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="PREV_USED11" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="PREV_USED12" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="TOTAL_PAY_PREV_ENT" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="PERIOD_ID" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="TOTAL_HAVE" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="SUB_PREV_ENT" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="BALANCE_WORKING_TIME_3B" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="MONTH" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="SENIORITYHAVE" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="TOTAL_HAVE1" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="PREVTOTAL_HAVE" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="TIME_OUTSIDE_COMPANY" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="TIME_SENIORITY" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="MONTH_SENIORITY_CHANGE" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="TIME_SENIORITY_AFTER_CHANGE" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="SENIORITY" Precision="38" Scale="0" />
+          <Property Type="String" Name="SENIORITY_EDIT" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="Decimal" Name="TOTAL_HAVE2" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="QP_YEAR" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="TN_YEAR" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="TN_DAY" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="QP_MONTH" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="TO_LEAVE_YEAR" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="ADJUST_MONTH_TN" Precision="38" Scale="0" />
         </EntityType>
         </Schema>
     </edmx:ConceptualModels>
@@ -6552,106 +6576,6 @@
                 </MappingFragment>
             </EntityTypeMapping>
         </EntitySetMapping>
-        <EntitySetMapping Name="AT_ENTITLEMENT">
-            <EntityTypeMapping TypeName="AttendanceModel.AT_ENTITLEMENT">
-                <MappingFragment StoreEntitySet="AT_ENTITLEMENT">
-                    <ScalarProperty Name="ID" ColumnName="ID" />
-                    <ScalarProperty Name="YEAR" ColumnName="YEAR" />
-                    <ScalarProperty Name="EMPLOYEE_ID" ColumnName="EMPLOYEE_ID" />
-                    <ScalarProperty Name="WORKING_TIME_HAVE" ColumnName="WORKING_TIME_HAVE" />
-                    <ScalarProperty Name="BALANCE_WORKING_TIME" ColumnName="BALANCE_WORKING_TIME" />
-                    <ScalarProperty Name="CAL_DATE" ColumnName="CAL_DATE" />
-                    <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
-                    <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
-                    <ScalarProperty Name="CREATED_LOG" ColumnName="CREATED_LOG" />
-                    <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
-                    <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
-                    <ScalarProperty Name="MODIFIED_LOG" ColumnName="MODIFIED_LOG" />
-                    <ScalarProperty Name="PREV_HAVE" ColumnName="PREV_HAVE" />
-                    <ScalarProperty Name="PREV_USED" ColumnName="PREV_USED" />
-                    <ScalarProperty Name="EXPIREDATE" ColumnName="EXPIREDATE" />
-                    <ScalarProperty Name="CUR_HAVE" ColumnName="CUR_HAVE" />
-                    <ScalarProperty Name="CUR_USED" ColumnName="CUR_USED" />
-                    <ScalarProperty Name="CUR_HAVE1" ColumnName="CUR_HAVE1" />
-                    <ScalarProperty Name="CUR_HAVE2" ColumnName="CUR_HAVE2" />
-                    <ScalarProperty Name="CUR_HAVE3" ColumnName="CUR_HAVE3" />
-                    <ScalarProperty Name="CUR_HAVE4" ColumnName="CUR_HAVE4" />
-                    <ScalarProperty Name="CUR_HAVE5" ColumnName="CUR_HAVE5" />
-                    <ScalarProperty Name="CUR_HAVE6" ColumnName="CUR_HAVE6" />
-                    <ScalarProperty Name="CUR_HAVE7" ColumnName="CUR_HAVE7" />
-                    <ScalarProperty Name="CUR_HAVE8" ColumnName="CUR_HAVE8" />
-                    <ScalarProperty Name="CUR_HAVE9" ColumnName="CUR_HAVE9" />
-                    <ScalarProperty Name="CUR_HAVE10" ColumnName="CUR_HAVE10" />
-                    <ScalarProperty Name="CUR_HAVE11" ColumnName="CUR_HAVE11" />
-                    <ScalarProperty Name="CUR_HAVE12" ColumnName="CUR_HAVE12" />
-                    <ScalarProperty Name="CUR_USED1" ColumnName="CUR_USED1" />
-                    <ScalarProperty Name="CUR_USED2" ColumnName="CUR_USED2" />
-                    <ScalarProperty Name="CUR_USED3" ColumnName="CUR_USED3" />
-                    <ScalarProperty Name="CUR_USED4" ColumnName="CUR_USED4" />
-                    <ScalarProperty Name="CUR_USED5" ColumnName="CUR_USED5" />
-                    <ScalarProperty Name="CUR_USED6" ColumnName="CUR_USED6" />
-                    <ScalarProperty Name="CUR_USED7" ColumnName="CUR_USED7" />
-                    <ScalarProperty Name="CUR_USED8" ColumnName="CUR_USED8" />
-                    <ScalarProperty Name="CUR_USED9" ColumnName="CUR_USED9" />
-                    <ScalarProperty Name="CUR_USED10" ColumnName="CUR_USED10" />
-                    <ScalarProperty Name="CUR_USED11" ColumnName="CUR_USED11" />
-                    <ScalarProperty Name="CUR_USED12" ColumnName="CUR_USED12" />
-                    <ScalarProperty Name="AL_TO_CASH" ColumnName="AL_TO_CASH" />
-                    <ScalarProperty Name="REASON" ColumnName="REASON" />
-                    <ScalarProperty Name="EXPIREDATE_NB" ColumnName="EXPIREDATE_NB" />
-                    <ScalarProperty Name="FIXADD" ColumnName="FIXADD" />
-                    <ScalarProperty Name="PAY_PREV_ENT" ColumnName="PAY_PREV_ENT" />
-                    <ScalarProperty Name="AL_T1" ColumnName="AL_T1" />
-                    <ScalarProperty Name="AL_T2" ColumnName="AL_T2" />
-                    <ScalarProperty Name="AL_T3" ColumnName="AL_T3" />
-                    <ScalarProperty Name="AL_T4" ColumnName="AL_T4" />
-                    <ScalarProperty Name="AL_T5" ColumnName="AL_T5" />
-                    <ScalarProperty Name="AL_T6" ColumnName="AL_T6" />
-                    <ScalarProperty Name="AL_T7" ColumnName="AL_T7" />
-                    <ScalarProperty Name="AL_T8" ColumnName="AL_T8" />
-                    <ScalarProperty Name="AL_T9" ColumnName="AL_T9" />
-                    <ScalarProperty Name="AL_T10" ColumnName="AL_T10" />
-                    <ScalarProperty Name="AL_T11" ColumnName="AL_T11" />
-                    <ScalarProperty Name="AL_T12" ColumnName="AL_T12" />
-                    <ScalarProperty Name="AL_ADD_T1" ColumnName="AL_ADD_T1" />
-                    <ScalarProperty Name="AL_ADD_T2" ColumnName="AL_ADD_T2" />
-                    <ScalarProperty Name="AL_ADD_T3" ColumnName="AL_ADD_T3" />
-                    <ScalarProperty Name="AL_ADD_T4" ColumnName="AL_ADD_T4" />
-                    <ScalarProperty Name="AL_ADD_T5" ColumnName="AL_ADD_T5" />
-                    <ScalarProperty Name="AL_ADD_T6" ColumnName="AL_ADD_T6" />
-                    <ScalarProperty Name="AL_ADD_T7" ColumnName="AL_ADD_T7" />
-                    <ScalarProperty Name="AL_ADD_T8" ColumnName="AL_ADD_T8" />
-                    <ScalarProperty Name="AL_ADD_T9" ColumnName="AL_ADD_T9" />
-                    <ScalarProperty Name="AL_ADD_T10" ColumnName="AL_ADD_T10" />
-                    <ScalarProperty Name="AL_ADD_T11" ColumnName="AL_ADD_T11" />
-                    <ScalarProperty Name="AL_ADD_T12" ColumnName="AL_ADD_T12" />
-                    <ScalarProperty Name="PREV_USED1" ColumnName="PREV_USED1" />
-                    <ScalarProperty Name="PREV_USED2" ColumnName="PREV_USED2" />
-                    <ScalarProperty Name="PREV_USED3" ColumnName="PREV_USED3" />
-                    <ScalarProperty Name="PREV_USED4" ColumnName="PREV_USED4" />
-                    <ScalarProperty Name="PREV_USED5" ColumnName="PREV_USED5" />
-                    <ScalarProperty Name="PREV_USED6" ColumnName="PREV_USED6" />
-                    <ScalarProperty Name="PREV_USED7" ColumnName="PREV_USED7" />
-                    <ScalarProperty Name="PREV_USED8" ColumnName="PREV_USED8" />
-                    <ScalarProperty Name="PREV_USED9" ColumnName="PREV_USED9" />
-                    <ScalarProperty Name="PREV_USED10" ColumnName="PREV_USED10" />
-                    <ScalarProperty Name="PREV_USED11" ColumnName="PREV_USED11" />
-                    <ScalarProperty Name="PREV_USED12" ColumnName="PREV_USED12" />
-                    <ScalarProperty Name="TOTAL_PAY_PREV_ENT" ColumnName="TOTAL_PAY_PREV_ENT" />
-                    <ScalarProperty Name="PERIOD_ID" ColumnName="PERIOD_ID" />
-                    <ScalarProperty Name="TOTAL_HAVE" ColumnName="TOTAL_HAVE" />
-                    <ScalarProperty Name="SENIORITYHAVE" ColumnName="SENIORITYHAVE" />
-                    <ScalarProperty Name="TOTAL_HAVE1" ColumnName="TOTAL_HAVE1" />
-                    <ScalarProperty Name="PREVTOTAL_HAVE" ColumnName="PREVTOTAL_HAVE" />
-                    <ScalarProperty Name="TIME_OUTSIDE_COMPANY" ColumnName="TIME_OUTSIDE_COMPANY" />
-                    <ScalarProperty Name="TIME_SENIORITY" ColumnName="TIME_SENIORITY" />
-                    <ScalarProperty Name="MONTH_SENIORITY_CHANGE" ColumnName="MONTH_SENIORITY_CHANGE" />
-                    <ScalarProperty Name="TIME_SENIORITY_AFTER_CHANGE" ColumnName="TIME_SENIORITY_AFTER_CHANGE" />
-                    <ScalarProperty Name="SENIORITY" ColumnName="SENIORITY" />
-                    <ScalarProperty Name="SENIORITY_EDIT" ColumnName="SENIORITY_EDIT" />
-                </MappingFragment>
-            </EntityTypeMapping>
-        </EntitySetMapping>
         <EntitySetMapping Name="SE_EMPLOYEE_CHOSEN">
             <EntityTypeMapping TypeName="AttendanceModel.SE_EMPLOYEE_CHOSEN">
                 <MappingFragment StoreEntitySet="SE_EMPLOYEE_CHOSEN">
@@ -7593,6 +7517,118 @@
                 </MappingFragment>
             </EntityTypeMapping>
         </EntitySetMapping>
+        <EntitySetMapping Name="AT_ENTITLEMENT">
+            <EntityTypeMapping TypeName="AttendanceModel.AT_ENTITLEMENT">
+                <MappingFragment StoreEntitySet="AT_ENTITLEMENT">
+                    <ScalarProperty Name="ID" ColumnName="ID" />
+                    <ScalarProperty Name="YEAR" ColumnName="YEAR" />
+                    <ScalarProperty Name="EMPLOYEE_ID" ColumnName="EMPLOYEE_ID" />
+                    <ScalarProperty Name="WORKING_TIME_HAVE" ColumnName="WORKING_TIME_HAVE" />
+                    <ScalarProperty Name="BALANCE_WORKING_TIME" ColumnName="BALANCE_WORKING_TIME" />
+                    <ScalarProperty Name="CAL_DATE" ColumnName="CAL_DATE" />
+                    <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+                    <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+                    <ScalarProperty Name="CREATED_LOG" ColumnName="CREATED_LOG" />
+                    <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+                    <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+                    <ScalarProperty Name="MODIFIED_LOG" ColumnName="MODIFIED_LOG" />
+                    <ScalarProperty Name="PREV_HAVE" ColumnName="PREV_HAVE" />
+                    <ScalarProperty Name="PREV_USED" ColumnName="PREV_USED" />
+                    <ScalarProperty Name="EXPIREDATE" ColumnName="EXPIREDATE" />
+                    <ScalarProperty Name="CUR_HAVE" ColumnName="CUR_HAVE" />
+                    <ScalarProperty Name="CUR_USED" ColumnName="CUR_USED" />
+                    <ScalarProperty Name="FUND" ColumnName="FUND" />
+                    <ScalarProperty Name="SPECIAL" ColumnName="SPECIAL" />
+                    <ScalarProperty Name="CUR_HAVE1" ColumnName="CUR_HAVE1" />
+                    <ScalarProperty Name="CUR_HAVE2" ColumnName="CUR_HAVE2" />
+                    <ScalarProperty Name="CUR_HAVE3" ColumnName="CUR_HAVE3" />
+                    <ScalarProperty Name="CUR_HAVE4" ColumnName="CUR_HAVE4" />
+                    <ScalarProperty Name="CUR_HAVE5" ColumnName="CUR_HAVE5" />
+                    <ScalarProperty Name="CUR_HAVE6" ColumnName="CUR_HAVE6" />
+                    <ScalarProperty Name="CUR_HAVE7" ColumnName="CUR_HAVE7" />
+                    <ScalarProperty Name="CUR_HAVE8" ColumnName="CUR_HAVE8" />
+                    <ScalarProperty Name="CUR_HAVE9" ColumnName="CUR_HAVE9" />
+                    <ScalarProperty Name="CUR_HAVE10" ColumnName="CUR_HAVE10" />
+                    <ScalarProperty Name="CUR_HAVE11" ColumnName="CUR_HAVE11" />
+                    <ScalarProperty Name="CUR_HAVE12" ColumnName="CUR_HAVE12" />
+                    <ScalarProperty Name="CUR_USED1" ColumnName="CUR_USED1" />
+                    <ScalarProperty Name="CUR_USED2" ColumnName="CUR_USED2" />
+                    <ScalarProperty Name="CUR_USED3" ColumnName="CUR_USED3" />
+                    <ScalarProperty Name="CUR_USED4" ColumnName="CUR_USED4" />
+                    <ScalarProperty Name="CUR_USED5" ColumnName="CUR_USED5" />
+                    <ScalarProperty Name="CUR_USED6" ColumnName="CUR_USED6" />
+                    <ScalarProperty Name="CUR_USED7" ColumnName="CUR_USED7" />
+                    <ScalarProperty Name="CUR_USED8" ColumnName="CUR_USED8" />
+                    <ScalarProperty Name="CUR_USED9" ColumnName="CUR_USED9" />
+                    <ScalarProperty Name="CUR_USED10" ColumnName="CUR_USED10" />
+                    <ScalarProperty Name="CUR_USED11" ColumnName="CUR_USED11" />
+                    <ScalarProperty Name="CUR_USED12" ColumnName="CUR_USED12" />
+                    <ScalarProperty Name="AL_TO_CASH" ColumnName="AL_TO_CASH" />
+                    <ScalarProperty Name="REASON" ColumnName="REASON" />
+                    <ScalarProperty Name="EXPIREDATE_NB" ColumnName="EXPIREDATE_NB" />
+                    <ScalarProperty Name="FIXADD" ColumnName="FIXADD" />
+                    <ScalarProperty Name="PAY_PREV_ENT" ColumnName="PAY_PREV_ENT" />
+                    <ScalarProperty Name="AL_T1" ColumnName="AL_T1" />
+                    <ScalarProperty Name="AL_T2" ColumnName="AL_T2" />
+                    <ScalarProperty Name="AL_T3" ColumnName="AL_T3" />
+                    <ScalarProperty Name="AL_T4" ColumnName="AL_T4" />
+                    <ScalarProperty Name="AL_T5" ColumnName="AL_T5" />
+                    <ScalarProperty Name="AL_T6" ColumnName="AL_T6" />
+                    <ScalarProperty Name="AL_T7" ColumnName="AL_T7" />
+                    <ScalarProperty Name="AL_T8" ColumnName="AL_T8" />
+                    <ScalarProperty Name="AL_T9" ColumnName="AL_T9" />
+                    <ScalarProperty Name="AL_T10" ColumnName="AL_T10" />
+                    <ScalarProperty Name="AL_T11" ColumnName="AL_T11" />
+                    <ScalarProperty Name="AL_T12" ColumnName="AL_T12" />
+                    <ScalarProperty Name="AL_ADD_T1" ColumnName="AL_ADD_T1" />
+                    <ScalarProperty Name="AL_ADD_T2" ColumnName="AL_ADD_T2" />
+                    <ScalarProperty Name="AL_ADD_T3" ColumnName="AL_ADD_T3" />
+                    <ScalarProperty Name="AL_ADD_T4" ColumnName="AL_ADD_T4" />
+                    <ScalarProperty Name="AL_ADD_T5" ColumnName="AL_ADD_T5" />
+                    <ScalarProperty Name="AL_ADD_T6" ColumnName="AL_ADD_T6" />
+                    <ScalarProperty Name="AL_ADD_T7" ColumnName="AL_ADD_T7" />
+                    <ScalarProperty Name="AL_ADD_T8" ColumnName="AL_ADD_T8" />
+                    <ScalarProperty Name="AL_ADD_T9" ColumnName="AL_ADD_T9" />
+                    <ScalarProperty Name="AL_ADD_T10" ColumnName="AL_ADD_T10" />
+                    <ScalarProperty Name="AL_ADD_T11" ColumnName="AL_ADD_T11" />
+                    <ScalarProperty Name="AL_ADD_T12" ColumnName="AL_ADD_T12" />
+                    <ScalarProperty Name="PREV_USED1" ColumnName="PREV_USED1" />
+                    <ScalarProperty Name="PREV_USED2" ColumnName="PREV_USED2" />
+                    <ScalarProperty Name="PREV_USED3" ColumnName="PREV_USED3" />
+                    <ScalarProperty Name="PREV_USED4" ColumnName="PREV_USED4" />
+                    <ScalarProperty Name="PREV_USED5" ColumnName="PREV_USED5" />
+                    <ScalarProperty Name="PREV_USED6" ColumnName="PREV_USED6" />
+                    <ScalarProperty Name="PREV_USED7" ColumnName="PREV_USED7" />
+                    <ScalarProperty Name="PREV_USED8" ColumnName="PREV_USED8" />
+                    <ScalarProperty Name="PREV_USED9" ColumnName="PREV_USED9" />
+                    <ScalarProperty Name="PREV_USED10" ColumnName="PREV_USED10" />
+                    <ScalarProperty Name="PREV_USED11" ColumnName="PREV_USED11" />
+                    <ScalarProperty Name="PREV_USED12" ColumnName="PREV_USED12" />
+                    <ScalarProperty Name="TOTAL_PAY_PREV_ENT" ColumnName="TOTAL_PAY_PREV_ENT" />
+                    <ScalarProperty Name="PERIOD_ID" ColumnName="PERIOD_ID" />
+                    <ScalarProperty Name="TOTAL_HAVE" ColumnName="TOTAL_HAVE" />
+                    <ScalarProperty Name="SUB_PREV_ENT" ColumnName="SUB_PREV_ENT" />
+                    <ScalarProperty Name="BALANCE_WORKING_TIME_3B" ColumnName="BALANCE_WORKING_TIME_3B" />
+                    <ScalarProperty Name="MONTH" ColumnName="MONTH" />
+                    <ScalarProperty Name="SENIORITYHAVE" ColumnName="SENIORITYHAVE" />
+                    <ScalarProperty Name="TOTAL_HAVE1" ColumnName="TOTAL_HAVE1" />
+                    <ScalarProperty Name="PREVTOTAL_HAVE" ColumnName="PREVTOTAL_HAVE" />
+                    <ScalarProperty Name="TIME_OUTSIDE_COMPANY" ColumnName="TIME_OUTSIDE_COMPANY" />
+                    <ScalarProperty Name="TIME_SENIORITY" ColumnName="TIME_SENIORITY" />
+                    <ScalarProperty Name="MONTH_SENIORITY_CHANGE" ColumnName="MONTH_SENIORITY_CHANGE" />
+                    <ScalarProperty Name="TIME_SENIORITY_AFTER_CHANGE" ColumnName="TIME_SENIORITY_AFTER_CHANGE" />
+                    <ScalarProperty Name="SENIORITY" ColumnName="SENIORITY" />
+                    <ScalarProperty Name="SENIORITY_EDIT" ColumnName="SENIORITY_EDIT" />
+                    <ScalarProperty Name="TOTAL_HAVE2" ColumnName="TOTAL_HAVE2" />
+                    <ScalarProperty Name="QP_YEAR" ColumnName="QP_YEAR" />
+                    <ScalarProperty Name="TN_YEAR" ColumnName="TN_YEAR" />
+                    <ScalarProperty Name="TN_DAY" ColumnName="TN_DAY" />
+                    <ScalarProperty Name="QP_MONTH" ColumnName="QP_MONTH" />
+                    <ScalarProperty Name="TO_LEAVE_YEAR" ColumnName="TO_LEAVE_YEAR" />
+                    <ScalarProperty Name="ADJUST_MONTH_TN" ColumnName="ADJUST_MONTH_TN" />
+                </MappingFragment>
+            </EntityTypeMapping>
+        </EntitySetMapping>
         <AssociationSetMapping Name="SE_USER_REPORT" TypeName="AttendanceModel.SE_USER_REPORT" StoreEntitySet="SE_USER_REPORT">
             <EndProperty Name="SE_REPORT">
                 <ScalarProperty Name="ID" ColumnName="SE_REPORT_ID" />
@@ -7623,7 +7659,7 @@
     </edmx:Options>
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram Name="AttendanceContext" ShowGrid="false" DisplayType="true" ZoomLevel="63" >
+      <Diagram Name="AttendanceContext" ShowGrid="false" DisplayType="true" ZoomLevel="55" >
         <EntityTypeShape EntityType="AttendanceModel.OT_OTHER_LIST" Width="1.5" PointX="5.125" PointY="7.625" Height="0.40000000037252903" IsExpanded="false" />
         <EntityTypeShape EntityType="AttendanceModel.OT_OTHER_LIST_GROUP" Width="1.5" PointX="0.625" PointY="7.625" Height="0.40000000037252903" IsExpanded="false" />
         <EntityTypeShape EntityType="AttendanceModel.OT_OTHER_LIST_TYPE" Width="1.5" PointX="2.875" PointY="7.625" Height="0.40000000037252903" IsExpanded="false" />
@@ -7723,7 +7759,6 @@
         <EntityTypeShape EntityType="AttendanceModel.HU_EMPLOYEE_CV" Width="2.625" PointX="15.25" PointY="12.25" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="AttendanceModel.SE_MAIL" Width="1.5" PointX="12.625" PointY="14.5" Height="0.39999999999999147" IsExpanded="false" />
         <EntityTypeShape EntityType="AttendanceModel.AT_SETUP_TIME_EMP" Width="1.5" PointX="13" PointY="15.25" Height="0.40000000000000568" IsExpanded="false" />
-        <EntityTypeShape EntityType="AttendanceModel.AT_ENTITLEMENT" Width="3" PointX="0.5" PointY="15" Height="19.095113932291667" IsExpanded="true" />
         <EntityTypeShape EntityType="AttendanceModel.SE_EMPLOYEE_CHOSEN" Width="1.5" PointX="15.625" PointY="6.5" Height="0.40000000000000568" IsExpanded="false" />
         <EntityTypeShape EntityType="AttendanceModel.AT_LIST_PARAM_SYSTEM" Width="1.875" PointX="16.625" PointY="0.5" Height="6.0186165364583326" IsExpanded="true" />
         <EntityTypeShape EntityType="AttendanceModel.AT_REGISTER_OT" Width="1.5" PointX="4" PointY="18.375" Height="0.4" IsExpanded="false" />
@@ -7766,6 +7801,7 @@
         <EntityTypeShape EntityType="AttendanceModel.AT_TIMESHEET_MACHINET_IMPORT" Width="1.5" PointX="23.375" PointY="15.75" Height="2.1725878906249818" />
         <EntityTypeShape EntityType="AttendanceModel.AT_TYPE_PROCESS" Width="1.5" PointX="15.375" PointY="23.75" Height="1.5956835937500031" />
         <EntityTypeShape EntityType="AttendanceModel.AT_TIME_MANUAL_RATE" Width="1.5" PointX="24.25" PointY="21.5" Height="1.5956835937500031" />
+        <EntityTypeShape EntityType="AttendanceModel.AT_ENTITLEMENT" Width="1.5" PointX="0.75" PointY="21.75" Height="21.402731119791667" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

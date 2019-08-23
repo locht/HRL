@@ -393,13 +393,9 @@ Public Class ctrlHU_WelfareList
     ''' <remarks></remarks>
     Private Sub rgWelfareList_SelectedIndexChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles rgWelfareList.SelectedIndexChanged
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
-
+        Dim rep As New ProfileRepository
+        Dim ListComboData As New ComboBoxDataDTO
         Try
-            'Dim dic As New Dictionary(Of String, Control)
-            'GetDataCombo()
-            'dic.Add("ID_NAME", cboName)
-            'dic.Add("TITLE_GROUP_ID", cbGroupTitle)
-            'Utilities.OnClientRowSelectedChanged(rgWelfareList, dic)
             If rgWelfareList.SelectedItems.Count Then
                 Dim slItem As GridDataItem
                 slItem = rgWelfareList.SelectedItems(0)
@@ -431,7 +427,6 @@ Public Class ctrlHU_WelfareList
                     '    line.Checked = True
                     'Next
 
-
                     isEdit = item.ID
                     Dim item2 = (From p In WelfareLists Where p.ID = Decimal.Parse(slItem.GetDataKeyValue("ID").ToString) Select p).FirstOrDefault
                     If item2 IsNot Nothing Then
@@ -443,6 +438,23 @@ Public Class ctrlHU_WelfareList
                         End If
                     End If
                     orgid = Decimal.Parse(ctrlOrg.CurrentValue)
+                    'Dim table As New DataTable
+                    'table.Columns.Add("NAME_VN", GetType(String))
+                    'table.Columns.Add("ID", GetType(Decimal))
+                    'If item.GENDER IsNot Nothing Then
+                    '    Dim lst = item.GENDER.Split(",")
+                    '    For Each line As String In lst
+                    '        If line = "565" Then
+                    '            table.Rows.Add("Nam", line)
+                    '        Else
+                    '            table.Rows.Add("Nữ", line)
+                    '        End If
+                    '    Next
+                    '    For Each line As RadListBoxItem In lstbGender.Items
+                    '        line.Checked = True
+                    '    Next
+
+                    'End If
                 End If
             End If
             Dim startTime As DateTime = DateTime.UtcNow
@@ -593,7 +605,7 @@ Public Class ctrlHU_WelfareList
                     End Using
                 Case CommonMessage.TOOLBARITEM_SAVE
                     If Page.IsValid Then
-                      
+
                         Dim strGenderID As New List(Of String)
                         Dim strGenderName As New List(Of String)
                         Dim strWorkStatusID As New List(Of String)
