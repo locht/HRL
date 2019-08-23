@@ -74,12 +74,14 @@
                                 <HeaderStyle HorizontalAlign="Center" Width="120px" />
                                 <ItemStyle HorizontalAlign="Center" />
                             </tlk:GridDateTimeColumn>
-                            <tlk:GridBoundColumn HeaderText="Số tháng thâm niên" DataField="SENIORITY" ItemStyle-HorizontalAlign="Center"
-                                SortExpression="SENIORITY" UniqueName="SENIORITY" HeaderStyle-Width="120px">
-                            </tlk:GridBoundColumn>
-                             <tlk:GridBoundColumn HeaderText="Phép thâm niên có hiệu lực" DataField="SENIORITYHAVE" ItemStyle-HorizontalAlign="Center"
-                                SortExpression="SENIORITYHAVE" UniqueName="SENIORITYHAVE" HeaderStyle-Width="120px">
-                            </tlk:GridBoundColumn>
+                            <tlk:GridNumericColumn HeaderText="Số tháng thâm niên" DataField="SENIORITY"
+                                ItemStyle-HorizontalAlign="Center" DataFormatString="{0:n2}" SortExpression="SENIORITY"
+                                UniqueName="SENIORITY" HeaderStyle-Width="100px">
+                            </tlk:GridNumericColumn>
+                             <tlk:GridNumericColumn HeaderText="Phép thâm niên có hiệu lực" DataField="SENIORITYHAVE"
+                                ItemStyle-HorizontalAlign="Center" DataFormatString="{0:n2}" SortExpression="SENIORITYHAVE"
+                                UniqueName="SENIORITYHAVE" HeaderStyle-Width="100px">
+                            </tlk:GridNumericColumn>
                             <tlk:GridNumericColumn HeaderText="Phép năm cũ chuyển sang" DataField="PREV_HAVE"
                                 ItemStyle-HorizontalAlign="Center" DataFormatString="{0:n2}" SortExpression="PREV_HAVE"
                                 UniqueName="PREV_HAVE" HeaderStyle-Width="100px">

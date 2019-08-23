@@ -48,9 +48,11 @@
                     <ClientSettings EnableRowHoverStyle="true">
                         <Selecting AllowRowSelect="true" />
                         <ClientEvents OnRowDblClick="gridRowDblClick" />
+                         <Scrolling AllowScroll="true" UseStaticHeaders="true" FrozenColumnsCount="3"/>
                     </ClientSettings>
                     <MasterTableView DataKeyNames="ID,ORG_ID,EMPLOYEE_ID,EMPLOYEE_CODE,STATUS_CODE,STATUS_ID,CONTRACTTYPE_ID"
-                        ClientDataKeyNames="ID,ORG_ID,EMPLOYEE_ID,STATUS_CODE,CONTRACTTYPE_CODE,STATUS_ID,CONTRACTTYPE_ID,EMPLOYEE_CODE">
+                        ClientDataKeyNames="ID,ORG_ID,EMPLOYEE_ID,STATUS_CODE,CONTRACTTYPE_CODE,STATUS_ID,CONTRACTTYPE_ID,EMPLOYEE_CODE" >
+                        
                         <Columns>
                             <%--<tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderStyle-HorizontalAlign="Center"
                                 HeaderStyle-Width="30px" ItemStyle-HorizontalAlign="Center">

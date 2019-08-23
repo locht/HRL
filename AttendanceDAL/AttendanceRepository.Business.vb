@@ -4293,7 +4293,7 @@ Partial Public Class AttendanceRepository
                                        .EXPIREDATE = p.en.EXPIREDATE,
                                        .BALANCE_WORKING_TIME = p.en.BALANCE_WORKING_TIME,
                                        .TOTAL_HAVE = p.en.TOTAL_HAVE,
-                                       .CUR_USED1 = p.en.CUR_USED1,
+                                       .CUR_USED1 = If(p.en.CUR_USED1 Is Nothing, 0, p.en.CUR_USED1),
                                        .CUR_USED2 = If(thang >= 2, p.en.CUR_USED2, 0),
                                        .CUR_USED3 = If(thang >= 3, p.en.CUR_USED3, 0),
                                        .CUR_USED4 = If(thang >= 4, p.en.CUR_USED4, 0),
@@ -4307,7 +4307,7 @@ Partial Public Class AttendanceRepository
                                        .CUR_USED12 = If(thang >= 12, p.en.CUR_USED12, 0),
                                        .CUR_USED = p.en.CUR_USED,
                                        .PREV_USED = p.en.PREV_USED,
-                                       .PREV_USED1 = p.en.CUR_HAVE1,
+                                       .PREV_USED1 = If(p.en.PREV_USED1 Is Nothing, 0, p.en.PREV_USED1),
                                        .PREV_USED2 = If(thang >= 2, p.en.PREV_USED2, 0),
                                        .PREV_USED3 = If(thang >= 3, p.en.PREV_USED3, 0),
                                        .PREV_USED4 = If(thang >= 4, p.en.PREV_USED4, 0),
@@ -4330,7 +4330,8 @@ Partial Public Class AttendanceRepository
                                        .SENIORITY = p.en.SENIORITY,
                                        .PREVTOTAL_HAVE = p.en.PREVTOTAL_HAVE,
                                        .QP_YEAR = p.en.QP_YEAR,
-                                       .CUR_HAVE = p.en.CUR_HAVE})
+                                       .CUR_HAVE = p.en.CUR_HAVE,
+                                       .ADJUST_MONTH_TN = p.en.ADJUST_MONTH_TN})
             lst = lst.OrderBy(Sorts)
             Total = lst.Count
             lst = lst.Skip(PageIndex * PageSize).Take(PageSize)
