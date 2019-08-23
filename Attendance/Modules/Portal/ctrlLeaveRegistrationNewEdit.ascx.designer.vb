@@ -185,15 +185,6 @@ Partial Public Class ctrlLeaveRegistrationNewEdit
     Protected WithEvents rnCUR_HAVE As Global.Telerik.Web.UI.RadTextBox
 
     '''<summary>
-    '''rnSENIORITYHAVE control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents rnSENIORITYHAVE As Global.Telerik.Web.UI.RadTextBox
-
-    '''<summary>
     '''rnPREV_HAVE control.
     '''</summary>
     '''<remarks>
@@ -201,15 +192,6 @@ Partial Public Class ctrlLeaveRegistrationNewEdit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents rnPREV_HAVE As Global.Telerik.Web.UI.RadTextBox
-
-    '''<summary>
-    '''rnCUR_USED control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents rnCUR_USED As Global.Telerik.Web.UI.RadTextBox
 
     '''<summary>
     '''rnCUR_HAVE_INMONTH control.
@@ -221,13 +203,13 @@ Partial Public Class ctrlLeaveRegistrationNewEdit
     Protected WithEvents rnCUR_HAVE_INMONTH As Global.Telerik.Web.UI.RadTextBox
 
     '''<summary>
-    '''rnPREVTOTAL_HAVE control.
+    '''rnCUR_USED control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents rnPREVTOTAL_HAVE As Global.Telerik.Web.UI.RadTextBox
+    Protected WithEvents rnCUR_USED As Global.Telerik.Web.UI.RadTextBox
 
     '''<summary>
     '''rtCUR_USED_INMONTH control.
@@ -237,6 +219,33 @@ Partial Public Class ctrlLeaveRegistrationNewEdit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents rtCUR_USED_INMONTH As Global.Telerik.Web.UI.RadTextBox
+
+    '''<summary>
+    '''rnPREVTOTAL_HAVE control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents rnPREVTOTAL_HAVE As Global.Telerik.Web.UI.RadTextBox
+
+    '''<summary>
+    '''rnCUR_DANGKY control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents rnCUR_DANGKY As Global.Telerik.Web.UI.RadTextBox
+
+    '''<summary>
+    '''rnSENIORITYHAVE control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents rnSENIORITYHAVE As Global.Telerik.Web.UI.RadTextBox
 
     '''<summary>
     '''rnBALANCE control.
