@@ -580,7 +580,7 @@
             <Property Name="PERSON_INHERITANCE" Type="nclob" Nullable="true" />
             <Property Name="EFFECTDATE_BANK" Type="date" Nullable="true" />
             <Property Name="EXPIRE_DATE_IDNO" Type="date" Nullable="true" />
-            <Property Name="ID_REMARK" Type="nclob" Nullable="false" />
+            <Property Name="ID_REMARK" Type="nclob" Nullable="true" />
         </EntityType>
         <EntityType Name="HU_EMPLOYEE_HEALTH">
             <Key>
@@ -4822,7 +4822,7 @@
           <Property Type="String" Name="PERSON_INHERITANCE" />
           <Property Type="DateTime" Name="EFFECTDATE_BANK" />
           <Property Type="DateTime" Name="EXPIRE_DATE_IDNO" />
-          <Property Type="String" Name="ID_REMARK" Nullable="false" />
+          <Property Type="String" Name="ID_REMARK" />
         </EntityType>
         <EntityType Name="HU_EMPLOYEE_HEALTH">
           <Key>
@@ -11989,7 +11989,7 @@
     </Options>
     <!-- Diagram content (shape and connector positions) -->
     <Diagrams>
-      <Diagram Name="ProfileContext" ZoomLevel="82" ShowGrid="false" DisplayType="true" SnapToGrid="true">
+      <Diagram Name="ProfileContext" ZoomLevel="72" ShowGrid="false" DisplayType="true" SnapToGrid="true">
         <EntityTypeShape EntityType="ProfileModel.HU_PROVINCE" Width="1.5" PointX="3" PointY="9.625" Height="0.39999999999999858" IsExpanded="false" />
         <EntityTypeShape EntityType="ProfileModel.HU_DISTRICT" Width="1.75" PointX="5.25" PointY="9" Height="0.39999999999999858" IsExpanded="false" />
         <EntityTypeShape EntityType="ProfileModel.HU_NATION" Width="1.5" PointX="0.75" PointY="9.625" Height="0.40000000000000213" IsExpanded="false" />

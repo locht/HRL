@@ -753,7 +753,26 @@ Public Class ctrlHU_ContractNewEdit
 
             Dim employeeId As Double = 0
             Double.TryParse(hidEmployeeID.Value, employeeId)
-            If cboSignContract.SelectedValue <> "" And rdStartDate IsNot Nothing Then
+            If cboSignContract.SelectedValue <> "" And rdStartDate.SelectedDate IsNot Nothing Then
+                txtContractNo.Text = CreateDynamicContractNo(employeeId)
+            End If
+
+            _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
+        Catch ex As Exception
+            DisplayException(Me.ViewName, Me.ID, ex)
+            _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
+        End Try
+    End Sub
+
+    Protected Sub cboSignContract_SelectedIndexChanged(ByVal sender As Object, ByVal e As Telerik.Web.UI.RadComboBoxSelectedIndexChangedEventArgs) Handles cboSignContract.SelectedIndexChanged
+        Dim item As New ContractTypeDTO
+        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+        Try
+            Dim startTime As DateTime = DateTime.UtcNow
+
+            Dim employeeId As Double = 0
+            Double.TryParse(hidEmployeeID.Value, employeeId)
+            If cboSignContract.SelectedValue <> "" And rdStartDate.SelectedDate IsNot Nothing Then
                 txtContractNo.Text = CreateDynamicContractNo(employeeId)
             End If
 
@@ -785,13 +804,13 @@ Public Class ctrlHU_ContractNewEdit
             'End If
             If rdStartDate.SelectedDate IsNot Nothing Then
                 Dim dExpire As Date = rdStartDate.SelectedDate
-                item = (From p In ListComboData.LIST_CONTRACTTYPE Where p.ID = Decimal.Parse(cboContractType.SelectedValue)).SingleOrDefault
-                If item IsNot Nothing Then
-                    If item.PERIOD IsNot Nothing Then
-                        hidPeriod.Value = item.PERIOD
-                    Else
-                        hidPeriod.Value = 0
-                    End If
+                If cboContractType.SelectedValue <> "" Then
+                    item = (From p In ListComboData.LIST_CONTRACTTYPE Where p.ID = Decimal.Parse(cboContractType.SelectedValue)).SingleOrDefault
+                End If
+                If item.ID > 0 AndAlso item.PERIOD IsNot Nothing Then
+                    hidPeriod.Value = item.PERIOD
+                Else
+                    hidPeriod.Value = 0
                 End If
                 If CType(hidPeriod.Value, Double) = 0 Then
                     rdExpireDate.SelectedDate = Nothing
@@ -800,8 +819,10 @@ Public Class ctrlHU_ContractNewEdit
                     dExpire = dExpire.AddDays(CType(-1, Double))
                     rdExpireDate.SelectedDate = dExpire
                 End If
+                Dim employeeId As Double = 0
+                Double.TryParse(hidEmployeeID.Value, employeeId)
                 If cboSignContract.SelectedValue <> "" Then
-                    txtContractNo.Text = CreateDynamicContractNo(hidEmployeeID.Value)
+                    txtContractNo.Text = CreateDynamicContractNo(employeeId)
                 End If
             End If
             If rdStartDate.SelectedDate < rdSignDate.SelectedDate Then

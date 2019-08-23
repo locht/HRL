@@ -18,7 +18,7 @@ Imports System.Runtime.Serialization
 Imports System.Xml.Serialization
 
 
-<Assembly: EdmSchemaAttribute("34292f5d-33f8-4429-83c2-e00702c5e1c8")>
+<Assembly: EdmSchemaAttribute("75954799-304f-4ba3-a654-5920523a5d47")>
 #Region "EDM Relationship Metadata"
 <Assembly: EdmRelationshipAttribute("ProfileModel", "FK_HU_NAT_HU_PRO", "HU_NATION", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_NATION), "HU_PROVINCE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_PROVINCE), True)>
 <Assembly: EdmRelationshipAttribute("ProfileModel", "FK_HU_PRO_HU_DIS", "HU_PROVINCE", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_PROVINCE), "HU_DISTRICT", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_DISTRICT), True)>
@@ -23303,11 +23303,9 @@ Public Partial Class HU_EMPLOYEE_CV
     ''' Create a new HU_EMPLOYEE_CV object.
     ''' </summary>
     ''' <param name="eMPLOYEE_ID">Initial value of the EMPLOYEE_ID property.</param>
-    ''' <param name="iD_REMARK">Initial value of the ID_REMARK property.</param>
-    Public Shared Function CreateHU_EMPLOYEE_CV(eMPLOYEE_ID As Global.System.Decimal, iD_REMARK As Global.System.String) As HU_EMPLOYEE_CV
+    Public Shared Function CreateHU_EMPLOYEE_CV(eMPLOYEE_ID As Global.System.Decimal) As HU_EMPLOYEE_CV
         Dim hU_EMPLOYEE_CV as HU_EMPLOYEE_CV = New HU_EMPLOYEE_CV
         hU_EMPLOYEE_CV.EMPLOYEE_ID = eMPLOYEE_ID
-        hU_EMPLOYEE_CV.ID_REMARK = iD_REMARK
         Return hU_EMPLOYEE_CV
     End Function
 
@@ -26145,7 +26143,7 @@ Public Partial Class HU_EMPLOYEE_CV
     ''' <summary>
     ''' No Metadata Documentation available.
     ''' </summary>
-    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=false)>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
     <DataMemberAttribute()>
     Public Property ID_REMARK() As Global.System.String
         Get
@@ -26154,7 +26152,7 @@ Public Partial Class HU_EMPLOYEE_CV
         Set
             OnID_REMARKChanging(value)
             ReportPropertyChanging("ID_REMARK")
-            _ID_REMARK = StructuralObject.SetValidValue(value, false)
+            _ID_REMARK = StructuralObject.SetValidValue(value, true)
             ReportPropertyChanged("ID_REMARK")
             OnID_REMARKChanged()
         End Set

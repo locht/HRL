@@ -98,8 +98,11 @@
                     <asp:Label ID="lbSignContract" runat="server" Text="Đơn vị ký hợp đồng"></asp:Label>
                 </td>
                 <td class="lb">
-                    <tlk:RadComboBox runat="server" ID="cboSignContract">
+                    <tlk:RadComboBox runat="server" ID="cboSignContract" AutoPostBack="true" CausesValidation="false">
                     </tlk:RadComboBox>
+                    <asp:RequiredFieldValidator ID="reqSignContract" ControlToValidate="cboContractType"
+                        runat="server" ErrorMessage="Bạn phải chọn Đơn vị ký hợp đồng."
+                        ToolTip="Bạn phải chọn Đơn vị ký hợp đồng."> </asp:RequiredFieldValidator>
                 </td>
                 <td class="lb">
                     <asp:Label ID="lbStartDate" runat="server" Text="<%$ Translate: Ngày bắt đầu %>"></asp:Label>
