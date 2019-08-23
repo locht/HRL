@@ -951,7 +951,7 @@
                                                 ClientValidationFunction="cusPer_Province">
                                             </asp:CustomValidator>--%>
                                              <asp:RequiredFieldValidator ValidationGroup="EmpProfile" ID="RequiredFieldValidator2" ControlToValidate="cboPer_Province"
-                                                runat="server" ErrorMessage="Bạn phải chọn Thành phố" ToolTip="Bạn phải chọn Thành phố">
+                                                runat="server" ErrorMessage="Bạn phải chọn Thành phố địa chỉ thường trú" ToolTip="Bạn phải chọn Thành phố địa chỉ thường trú">
                                             </asp:RequiredFieldValidator>
                                              
                                         </td>
@@ -968,7 +968,7 @@
                                                 ClientValidationFunction="cusPer_District">
                                             </asp:CustomValidator>--%>
                                                 <asp:RequiredFieldValidator ValidationGroup="EmpProfile" ID="RequiredFieldValidator4" ControlToValidate="cboPer_District"
-                                                runat="server" ErrorMessage="Bạn phải chọn Quận huyện" ToolTip="Bạn phải chọn Quận huyện">
+                                                runat="server" ErrorMessage="Bạn phải chọn Quận huyện địa chỉ thường trú" ToolTip="Bạn phải chọn Quận huyện địa chỉ thường trú">
                                             </asp:RequiredFieldValidator>
                                         </td>
                                         <td class="lb3">
@@ -1006,8 +1006,8 @@
                                             <tlk:RadComboBox runat="server" ID="cboNav_Province" SkinID="LoadDemand" OnClientSelectedIndexChanged="OnClientSelectedIndexChanged"
                                                 OnClientItemsRequesting="OnClientItemsRequesting">
                                             </tlk:RadComboBox>
-                                            <asp:CustomValidator ID="cusNav_Province" runat="server" ErrorMessage="<%$ Translate: Bạn phải chọn Thành phố %>"
-                                                 ToolTip="<%$ Translate: Bạn phải chọn Thành phố %>" ClientValidationFunction="cusNav_Province">
+                                            <asp:CustomValidator ID="cusNav_Province" runat="server" ErrorMessage="<%$ Translate: Bạn phải chọn Thành phố địa chỉ tạm trú %>"
+                                                 ToolTip="<%$ Translate: Bạn phải chọn Thành phố địa chỉ tạm trú %>" ClientValidationFunction="cusNav_Province">
                                             </asp:CustomValidator>
                                         </td>
                                         <td class="lb3">
@@ -1017,8 +1017,8 @@
                                             <tlk:RadComboBox runat="server" ID="cboNav_District" SkinID="LoadDemand" OnClientSelectedIndexChanged="OnClientSelectedIndexChanged"
                                                 OnClientItemsRequesting="OnClientItemsRequesting">
                                             </tlk:RadComboBox>
-                                             <asp:CustomValidator ID="cusNav_District" runat="server" ErrorMessage="<%$ Translate: Bạn phải chọn Quận huyện %>"
-                                                        ToolTip="<%$ Translate: Bạn phải chọn Quận huyện %>" ClientValidationFunction="cusNav_District">
+                                             <asp:CustomValidator ID="cusNav_District" runat="server" ErrorMessage="<%$ Translate: Bạn phải chọn Quận huyện địa chỉ tạm trú %>"
+                                                        ToolTip="<%$ Translate: Bạn phải chọn Quận huyện địa chỉ tạm trú %>" ClientValidationFunction="cusNav_District">
                                                     </asp:CustomValidator>
                                         </td>
                                         <td class="lb3">
@@ -1653,10 +1653,10 @@
             </tlk:RadPageView>
         </tlk:RadMultiPage>
     </tlk:RadPane>
-    <tlk:RadPane ID="RadPane4" runat="server" Scrolling="None">
+    <%--<tlk:RadPane ID="RadPane4" runat="server" Scrolling="None">
         <table class="table-form" onkeydown="return (event.keyCode!=13)">
         </table>
-    </tlk:RadPane>
+    </tlk:RadPane>--%>
 </tlk:RadSplitter>
 <tlk:RadWindowManager ID="RadWindowManager1" runat="server">
     <Windows>
