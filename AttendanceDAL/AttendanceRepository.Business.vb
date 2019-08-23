@@ -4330,7 +4330,8 @@ Partial Public Class AttendanceRepository
                                        .SENIORITY = p.en.SENIORITY,
                                        .PREVTOTAL_HAVE = p.en.PREVTOTAL_HAVE,
                                        .QP_YEAR = p.en.QP_YEAR,
-                                       .CUR_HAVE = p.en.CUR_HAVE})
+                                       .CUR_HAVE = p.en.CUR_HAVE,
+                                       .ADJUST_MONTH_TN = p.en.ADJUST_MONTH_TN})
             lst = lst.OrderBy(Sorts)
             Total = lst.Count
             lst = lst.Skip(PageIndex * PageSize).Take(PageSize)
