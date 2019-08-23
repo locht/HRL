@@ -3461,6 +3461,15 @@ Partial Public Class ctrlHU_EmpDtlProfile
     Protected WithEvents ctrlHU_TitleConcurrent As Global.Profile.ctrlHU_TitleConcurrent
 
     '''<summary>
+    '''RadPane4 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents RadPane4 As Global.Telerik.Web.UI.RadPane
+
+    '''<summary>
     '''RadWindowManager1 control.
     '''</summary>
     '''<remarks>

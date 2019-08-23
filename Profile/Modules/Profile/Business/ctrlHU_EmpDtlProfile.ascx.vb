@@ -900,7 +900,7 @@ Public Class ctrlHU_EmpDtlProfile
 
                 Case CommonMessage.STATE_EDIT
                     rtIdTitleConcurrent.Visible = True
-                    RadPane4.Visible = True
+                    RadPane4.Visible = False
 
                     EnableControlAll(False, txtOrgName2, btnFindOrg,
                                     cboTitle, txtTitleGroup, cboStaffRank, txtDirectManager, btnFindDirect,
