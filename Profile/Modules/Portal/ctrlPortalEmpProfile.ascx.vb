@@ -104,6 +104,8 @@ Public Class ctrlPortalEmpProfile
                         rdContractExpireDate.SelectedDate = EmployeeInfo.CONTRACT_EXPIRE_DATE
                         txtNoBHXH.Text = EmployeeInfo.BOOKNO
                         txtEmpStatus.Text = EmployeeInfo.EMP_STATUS_NAME
+                        rdProbationDate.SelectedDate = EmployeeInfo.JOIN_DATE_STATE
+                        rdOfficialDate.SelectedDate = EmployeeInfo.JOIN_DATE
 
                         ' Tình trang nhân viên
                         If EmployeeInfo.EMP_STATUS_NAME IsNot Nothing Then
@@ -153,12 +155,10 @@ Public Class ctrlPortalEmpProfile
                             txtPer_District.Text = empCV.PER_DISTRICT_NAME
                             txtPer_Ward.Text = empCV.PER_WARD_NAME
                             txtVillage.Text = empCV.VILLAGE
-                            txtProvinceBorn.Text = empCV.PROVINCEEMP_NAME
+                            txtProvinceBorn.Text = empCV.BIRTH_PLACENAME
                             txtDistrictBorn.Text = empCV.DISTRICTEMP_NAME
                             txtWardBorn.Text = empCV.WARDEMP_NAME
                             txtInsArea.Text = empCV.INS_REGION_NAME
-                            rdOfficialDate.SelectedDate = empCV.OPPTION7
-                            rdProbationDate.SelectedDate = empCV.OPPTION6
                             txtDomicile.Text = empCV.PROVINCENQ_NAME
 
                             ' Đối tượng đóng bảo hiểm
@@ -322,7 +322,7 @@ Public Class ctrlPortalEmpProfile
                             txtAppDung.Text = empEdu.COMPUTER_CERTIFICATE
 
                             If empEdu.LANGUAGE IsNot Nothing Then
-                                txtLanguage.Text = empEdu.LANGUAGE
+                                txtLanguage.Text = empEdu.LANGUAGE_NAME
                             End If
                             If empEdu.LANGUAGE_LEVEL IsNot Nothing Then
                                 txtLangLevel.Text = empEdu.LANGUAGE_LEVEL_NAME

@@ -86,15 +86,6 @@ Partial Public Class ctrlPortalEmpProfile
     Protected WithEvents txtLastNameVN As Global.Telerik.Web.UI.RadTextBox
 
     '''<summary>
-    '''txtObjectIns control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents txtObjectIns As Global.Telerik.Web.UI.RadTextBox
-
-    '''<summary>
     '''txtOrgName control.
     '''</summary>
     '''<remarks>
@@ -354,6 +345,15 @@ Partial Public Class ctrlPortalEmpProfile
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtNoBHXH As Global.Telerik.Web.UI.RadTextBox
+
+    '''<summary>
+    '''txtObjectIns control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtObjectIns As Global.Telerik.Web.UI.RadTextBox
 
     '''<summary>
     '''txtFamilyStatus control.

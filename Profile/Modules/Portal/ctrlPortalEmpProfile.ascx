@@ -81,14 +81,7 @@
             </tlk:RadTextBox>
         </td>
     </tr>
-    <tr> 
-        <td class="lb" style="width: 130px">
-            <%# Translate("Đối tượng đóng bảo hiểm")%>
-        </td>
-        <td>           
-             <tlk:RadTextBox ID="txtObjectIns" runat="server" ReadOnly="true">
-            </tlk:RadTextBox>
-        </td>
+    <tr>         
         <td class="lb" style="width: 130px">
             <%# Translate("Phòng ban")%>
         </td>
@@ -180,15 +173,15 @@
             <tlk:RadDatePicker runat="server" ID="rdBirthDate">
             </tlk:RadDatePicker>
         </td>
-    </tr>
-    <tr>
-        <td class="lb" style="width: 130px">
-            <%# Translate("Tỉnh/Thành phố nơi sinh")%>
+         <td class="lb" style="width: 130px">
+            <%# Translate("Nơi sinh")%>
         </td>
         <td>
             <tlk:RadTextBox ID="txtProvinceBorn" runat="server">
             </tlk:RadTextBox>
-        </td>
+        </td>     
+    </tr>
+    <tr style = "display:none">       
         <td class="lb" style="width: 130px">
             <%# Translate("Huyện nơi sinh")%>
         </td>
@@ -204,14 +197,14 @@
             </tlk:RadTextBox>
         </td>
     </tr>
-    <tr>
+    <tr>    
         <td class="lb" style="width: 130px">
             <asp:Label runat="server" ID="lbPROVINCEEMP_BRITH" Text="Tỉnh/Thành khai sinh"></asp:Label>
         </td>
         <td>
             <tlk:RadTextBox runat="server" ID="txtPROVINCEEMP_BRITH" >
             </tlk:RadTextBox>
-        </td>
+        </td>   
         <td class="lb" style="width: 130px">
             <asp:Label runat="server" ID="lbDISTRICTEMP_BRITH" Text="Quận/Huyện khai sinh"></asp:Label>
         </td>
@@ -279,6 +272,13 @@
         </td>
         <td>
             <tlk:RadTextBox ID="txtNoBHXH" runat="server">
+            </tlk:RadTextBox>
+        </td>
+        <td class="lb" style="width: 130px">
+            <%# Translate("Đối tượng đóng bảo hiểm")%>
+        </td>
+        <td>           
+             <tlk:RadTextBox ID="txtObjectIns" runat="server" ReadOnly="true">
             </tlk:RadTextBox>
         </td>
         <td class="lb">

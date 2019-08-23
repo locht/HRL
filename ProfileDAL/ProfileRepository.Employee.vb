@@ -1732,7 +1732,7 @@ Partial Class ProfileRepository
                      From bir_pro In Context.HU_PROVINCE.Where(Function(f) cv.PROVINCEEMP_ID = f.ID).DefaultIfEmpty
                      From bir_dis In Context.HU_DISTRICT.Where(Function(f) cv.DISTRICTEMP_ID = f.ID).DefaultIfEmpty
                      From bir_ward In Context.HU_WARD.Where(Function(f) cv.WARDEMP_ID = f.ID).DefaultIfEmpty
-                     From relation_per In Context.HU_RELATIONSHIP_LIST.Where(Function(f) cv.RELATION_PER_CTR = f.ID).DefaultIfEmpty
+                     From relation_per In Context.OT_OTHER_LIST.Where(Function(f) cv.RELATION_PER_CTR = f.ID).DefaultIfEmpty
                      From objectIns In Context.OT_OTHER_LIST.Where(Function(f) f.ID = cv.OBJECT_INS And f.TYPE_ID = 6894).DefaultIfEmpty
                       From ks_pro In Context.HU_PROVINCE.Where(Function(f) cv.PROVINCEEMP_BRITH = f.ID).DefaultIfEmpty
                      From ks_dis In Context.HU_DISTRICT.Where(Function(f) cv.DISTRICTEMP_BRITH = f.ID).DefaultIfEmpty
@@ -1869,7 +1869,7 @@ Partial Class ProfileRepository
                          .NO_HOUSEHOLDS = cv.NO_HOUSEHOLDS,
                          .CODE_HOUSEHOLDS = cv.CODE_HOUSEHOLDS,
                          .RELATION_PER_CTR = cv.RELATION_PER_CTR,
-                         .RELATION_PER_CTR_NAME = relation_per.NAME,
+                         .RELATION_PER_CTR_NAME = relation_per.NAME_VN,
                          .ADDRESS_PER_CTR = cv.ADDRESS_PER_CTR
                          }).FirstOrDefault
             empEdu = (From edu In Context.HU_EMPLOYEE_EDUCATION
@@ -1877,6 +1877,7 @@ Partial Class ProfileRepository
                      From m In Context.OT_OTHER_LIST.Where(Function(f) f.ID = edu.MAJOR).DefaultIfEmpty
                      From train In Context.OT_OTHER_LIST.Where(Function(f) f.ID = edu.TRAINING_FORM).DefaultIfEmpty
                      From learn In Context.OT_OTHER_LIST.Where(Function(f) f.ID = edu.LEARNING_LEVEL).DefaultIfEmpty
+                     From ll In Context.OT_OTHER_LIST.Where(Function(f) f.ID = edu.LANGUAGE).DefaultIfEmpty
                      From ll1 In Context.OT_OTHER_LIST.Where(Function(f) f.ID = edu.LANGUAGE_LEVEL).DefaultIfEmpty
                      From ll2 In Context.OT_OTHER_LIST.Where(Function(f) f.ID = edu.LANGUAGE_LEVEL2).DefaultIfEmpty
                      From school In Context.OT_OTHER_LIST.Where(Function(f) f.ID = edu.GRADUATE_SCHOOL_ID).DefaultIfEmpty
@@ -1900,6 +1901,7 @@ Partial Class ProfileRepository
                          .LEARNING_LEVEL = edu.LEARNING_LEVEL,
                          .LEARNING_LEVEL_NAME = learn.NAME_VN,
                          .LANGUAGE = edu.LANGUAGE,
+                         .LANGUAGE_NAME = ll.NAME_VN,
                          .LANGUAGE2 = edu.LANGUAGE2,
                          .LANGUAGE_LEVEL = edu.LANGUAGE_LEVEL,
                          .LANGUAGE_LEVEL2 = edu.LANGUAGE_LEVEL2,
