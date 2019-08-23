@@ -4982,7 +4982,7 @@ Namespace InsuranceBusiness
         Private NAMEField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private PERIODField As Integer
+        Private PERIODField As System.Nullable(Of Integer)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private REMARKField As String
@@ -5167,7 +5167,7 @@ Namespace InsuranceBusiness
         End Property
         
         <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property PERIOD() As Integer
+        Public Property PERIOD() As System.Nullable(Of Integer)
             Get
                 Return Me.PERIODField
             End Get
