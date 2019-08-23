@@ -414,7 +414,7 @@ Public Class ctrlHU_WelfareList
 
                     lstbGender.ClearChecked()
                     For Each chk As RadListBoxItem In lstbGender.Items
-                        
+
                         If item.GENDER.Contains(chk.Value) Then
                             chk.Checked = True
                         End If
@@ -722,7 +722,7 @@ Public Class ctrlHU_WelfareList
                     CurrentState = CommonMessage.STATE_NORMAL
                     ClearControlValue(txtCode, cboName, nmSENIORITY, nmMONEY, cbGroupTitle,
                                       lstbGender, lstCONTRACT_TYPE, dpSTART_DATE,
-                                      dpEND_DATE, chkIS_AUTO)
+                                      dpEND_DATE, chkIS_AUTO, nmCHILD_OLD_FROM, nmCHILD_OLD_TO, cboName)
                     chkIS_AUTO.Checked = Nothing
                     Refresh("Cancel")
                     rgWelfareList.Rebind()
