@@ -148,6 +148,7 @@ Public Class ctrlHU_ContractTemplete
             'If Request.Params("IDSelect") IsNot Nothing Then
             '    MainToolBar.Items(3).Enabled = True
             'End If
+            txtContract_NumAppen.Enabled = False
             If (_flag = False) Then
                 EnableControlAll_Cus(False, NORMAL)
                 btnDownload.Enabled = True
@@ -1121,10 +1122,11 @@ Public Class ctrlHU_ContractTemplete
         End Select
         txtEmployeeCode.Enabled = False
         txtEmployeeName.Enabled = False
+        txtContract_NumAppen.Enabled = False
         txtOrg.Enabled = False
         txtTitle.Enabled = False
         'txtContract_NumAppen.Enabled = bCheck
-        txtContract_NumAppen.Enabled = True
+        'txtContract_NumAppen.Enabled = True
         txtAppend_Content.Enabled = bCheck
         '  ReadOnlyRadComBo(cboContractType, Not bCheck)
         EnableRadDatePicker(rdStartDate, bCheck)

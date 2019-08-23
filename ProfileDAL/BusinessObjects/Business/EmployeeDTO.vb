@@ -90,7 +90,7 @@
     'DOI TUONG BAO HIEM
     Public Property OBJECT_INS As Decimal?
     Public Property OBJECT_INS_NAME As String
- 
-
+    'NGAY TINH THAM NIEN
+    Public Property SENIORITY_DATE As Date?
 
 End Class

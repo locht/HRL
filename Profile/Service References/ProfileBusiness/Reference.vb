@@ -8892,6 +8892,9 @@ Namespace ProfileBusiness
         Private SAL_BASICField As System.Nullable(Of Decimal)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private SENIORITY_DATEField As System.Nullable(Of Date)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private STAFF_RANK_IDField As System.Nullable(Of Decimal)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -9771,6 +9774,19 @@ Namespace ProfileBusiness
                 If (Me.SAL_BASICField.Equals(value) <> true) Then
                     Me.SAL_BASICField = value
                     Me.RaisePropertyChanged("SAL_BASIC")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property SENIORITY_DATE() As System.Nullable(Of Date)
+            Get
+                Return Me.SENIORITY_DATEField
+            End Get
+            Set
+                If (Me.SENIORITY_DATEField.Equals(value) <> true) Then
+                    Me.SENIORITY_DATEField = value
+                    Me.RaisePropertyChanged("SENIORITY_DATE")
                 End If
             End Set
         End Property

@@ -662,6 +662,24 @@ Partial Public Class ctrlHU_EmpDtlProfile
     Protected WithEvents cboObject As Global.Telerik.Web.UI.RadComboBox
 
     '''<summary>
+    '''Label8 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents Label8 As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''rdSeniorityDate control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents rdSeniorityDate As Global.Telerik.Web.UI.RadDatePicker
+
+    '''<summary>
     '''Label4 control.
     '''</summary>
     '''<remarks>

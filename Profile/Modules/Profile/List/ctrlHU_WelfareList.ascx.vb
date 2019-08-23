@@ -412,6 +412,22 @@ Public Class ctrlHU_WelfareList
                         dpEND_DATE.SelectedDate = item.END_DATE
                     End If
 
+                    lstbGender.ClearChecked()
+                    For Each chk As RadListBoxItem In lstbGender.Items
+
+                        If item.GENDER.Contains(chk.Value) Then
+                            chk.Checked = True
+                        End If
+                    Next
+
+                    lstCONTRACT_TYPE.ClearChecked()
+                    For Each chk As RadListBoxItem In lstCONTRACT_TYPE.Items
+
+                        If item.CONTRACT_TYPE.Contains(chk.Value) Then
+                            chk.Checked = True
+                        End If
+                    Next
+
                     'If item.GENDER = "565" Then
                     '    Dim gan As New RadListBoxItem("565", "565")
                     '    lstbGender.Items.Add(gan)
@@ -706,7 +722,7 @@ Public Class ctrlHU_WelfareList
                     CurrentState = CommonMessage.STATE_NORMAL
                     ClearControlValue(txtCode, cboName, nmSENIORITY, nmMONEY, cbGroupTitle,
                                       lstbGender, lstCONTRACT_TYPE, dpSTART_DATE,
-                                      dpEND_DATE, chkIS_AUTO)
+                                      dpEND_DATE, chkIS_AUTO, nmCHILD_OLD_FROM, nmCHILD_OLD_TO, cboName)
                     chkIS_AUTO.Checked = Nothing
                     Refresh("Cancel")
                     rgWelfareList.Rebind()
