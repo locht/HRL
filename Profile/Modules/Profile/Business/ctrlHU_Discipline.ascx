@@ -103,8 +103,8 @@
                                 DataFormatString="{0:N0}" SortExpression="AMOUNT_PAID_CASH" UniqueName="AMOUNT_PAID_CASH" />
                             <tlk:GridNumericColumn HeaderText="<%$ Translate: Số tiền còn phải nộp %>" DataField="AMOUNT_TO_PAID" ItemStyle-HorizontalAlign="Right"
                                 DataFormatString="{0:N0}" SortExpression="AMOUNT_TO_PAID" UniqueName="AMOUNT_TO_PAID" />
-                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Thời gian thi hành kỷ luật %>" DataField="PERFORM_TIME"
-                                ItemStyle-HorizontalAlign="Center" SortExpression="PERFORM_TIME" UniqueName="PERFORM_TIME" />
+                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Kỳ lương bắt đầu trừ %>" DataField="PERIOD_NAME"
+                                ItemStyle-HorizontalAlign="Center" SortExpression="PERIOD_NAME" UniqueName="PERIOD_NAME" />
                             <tlk:GridBoundColumn HeaderText="ORG_DESC" DataField="ORG_DESC" UniqueName="ORG_DESC"
                                 SortExpression="ORG_DESC" Visible="false" />
                         </Columns>

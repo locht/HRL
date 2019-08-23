@@ -190,6 +190,10 @@ Public Class ctrlHU_Discipline
                                                                   ToolbarIcons.Add,
                                                                   ToolbarAuthorize.None,
                                                                   "Phê duyệt hàng loạt"))
+            Me.MainToolBar.Items.Add(Common.Common.CreateToolbarItem(CommonMessage.TOOLBARITEM_APPROVE_OPEN,
+                                                                  ToolbarIcons.Add,
+                                                                  ToolbarAuthorize.None,
+                                                                  "Mở phê duyệt"))
             'Me.MainToolBar.Items.Add(Common.Common.CreateToolbarItem("PRINT_VPCT", ToolbarIcons.Print,
             '                                             ToolbarAuthorize.Print, Translate("In CV VPCT")))
             'Me.MainToolBar.Items.Add(Common.Common.CreateToolbarItem("PRINT_BKS", ToolbarIcons.Print,
@@ -548,6 +552,8 @@ Public Class ctrlHU_Discipline
                     End Using
                 Case CommonMessage.TOOLBARITEM_CREATE_BATCH
                     BatchApproveDiscipline()
+                Case CommonMessage.TOOLBARITEM_APPROVE_OPEN
+                    Open_ApproveDiscipline()
             End Select
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
@@ -764,7 +770,7 @@ Public Class ctrlHU_Discipline
 
             For Each dr As Telerik.Web.UI.GridDataItem In rgDiscipline.SelectedItems
                 Dim ID As New Decimal
-                If Not dr.GetDataKeyValue("STATUS_ID").Equals("716") Then
+                If Not dr.GetDataKeyValue("STATUS_ID").Equals("447") Then
                     ID = dr.GetDataKeyValue("ID")
                     lstID.Add(ID)
                 End If
@@ -772,6 +778,46 @@ Public Class ctrlHU_Discipline
 
             If lstID.Count > 0 Then
                 If rep.ApproveListDiscipline(lstID) Then
+                    ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), NotifyType.Success)
+                    rgDiscipline.Rebind()
+                Else
+                    ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), NotifyType.Error)
+                End If
+            Else
+                ShowMessage("Các kỷ luật được chọn đã ở trạng thái chờ phê duyệt", NotifyType.Information)
+            End If
+            rep.Dispose()
+            _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
+        Catch ex As Exception
+            _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
+        End Try
+    End Sub
+    Private Sub Open_ApproveDiscipline()
+        Dim rep As New ProfileBusinessRepository
+        Dim startTime As DateTime = DateTime.UtcNow
+        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+        Dim lstID As New List(Of Decimal)
+
+        Try
+            '1. Check có rows nào được select hay không
+            If rgDiscipline Is Nothing OrElse rgDiscipline.SelectedItems.Count <= 0 Then
+                ShowMessage(Translate(CommonMessage.MESSAGE_NOT_SELECT_ROW), NotifyType.Warning)
+                Exit Sub
+            End If
+
+            For idx = 0 To rgDiscipline.SelectedItems.Count - 1
+                Dim item As GridDataItem = rgDiscipline.SelectedItems(idx)
+                Dim objDiscipline As DisciplineDTO
+                Dim ID As New Decimal
+                objDiscipline = (From p In Disciplines Where p.ID = item.GetDataKeyValue("ID")).FirstOrDefault
+                If objDiscipline.STATUS_ID = ProfileCommon.DISCIPLINE_STATUS.APPROVE_ID Then
+                    ID = objDiscipline.ID
+                    lstID.Add(ID)
+                End If
+            Next
+
+            If lstID.Count > 0 Then
+                If rep.Open_ApproveDiscipline(lstID) Then
                     ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), NotifyType.Success)
                     rgDiscipline.Rebind()
                 Else

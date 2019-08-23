@@ -37,6 +37,7 @@
     Public Property STATUS_CODE As String
     Public Property DEDUCT_FROM_SALARY As Boolean
     Public Property PERIOD_ID As Decimal?
+    Public Property PERIOD_NAME As String
     Public Property YEAR_PERIOD As Decimal?
     Public Property INDEMNIFY_MONEY As Decimal?
     Public Property PERFORM_TIME As String

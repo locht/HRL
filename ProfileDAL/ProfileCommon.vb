@@ -71,8 +71,8 @@
         Public Shared Name As String = "DISCIPLINE_STATUS"
         Public Shared APPROVE As String = "1"
         Public Shared WAIT_APPROVE As String = "0"
-        Public Shared APPROVE_ID As Decimal = 716
-        Public Shared WAIT_APPROVE_ID As Decimal = 717
+        Public Shared APPROVE_ID As Decimal = 447
+        Public Shared WAIT_APPROVE_ID As Decimal = 446
     End Class
 
     Public Class OT_ORG_LEVEL

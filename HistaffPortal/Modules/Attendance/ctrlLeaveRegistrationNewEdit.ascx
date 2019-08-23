@@ -74,7 +74,7 @@
                     <hr />
                 </td>
             </tr>
-            <tr>
+           <tr>
                 <td class="lb">
                     <%# Translate("Phép chế độ")%>
                 </td>
@@ -83,28 +83,12 @@
                     </tlk:RadTextBox>
                 </td>
                 <td class="lb">
-                    <%# Translate("Phép thâm niên")%>
-                </td>
-                <td>
-                    <tlk:RadTextBox runat="server" ID="rnSENIORITYHAVE" ReadOnly="true">
-                    </tlk:RadTextBox>
-                </td>
-            </tr>
-            <tr>
-                <td class="lb">
                     <%# Translate("Phép cũ chuyển qua")%>
                 </td>
                 <td>
                     <tlk:RadTextBox runat="server" ID="rnPREV_HAVE" ReadOnly="true">
                     </tlk:RadTextBox>
-                </td>
-                <td class="lb">
-                    <%# Translate("Phép đã nghỉ")%>
-                </td>
-                <td>
-                    <tlk:RadTextBox runat="server" ID="rnCUR_USED" ReadOnly="true">
-                    </tlk:RadTextBox>
-                </td>
+                </td>                
             </tr>
             <tr>
                 <td class="lb">
@@ -112,6 +96,22 @@
                 </td>
                 <td>
                     <tlk:RadTextBox runat="server" ID="rnCUR_HAVE_INMONTH" ReadOnly="true">
+                    </tlk:RadTextBox>
+                </td>
+                <td class="lb">
+                    <%# Translate("Phép cũ đã nghỉ")%>
+                </td>
+                <td>
+                    <tlk:RadTextBox runat="server" ID="rnCUR_USED" ReadOnly="true">
+                    </tlk:RadTextBox>
+                </td>                
+            </tr>
+            <tr>
+                <td class="lb">
+                    <%# Translate("Phép đã nghỉ")%>
+                </td>
+                <td>
+                    <tlk:RadTextBox runat="server" ID="rtCUR_USED_INMONTH" ReadOnly="true">
                     </tlk:RadTextBox>
                 </td>
                 <td class="lb">
@@ -124,12 +124,23 @@
             </tr>
             <tr>
                 <td class="lb">
-                    <%# Translate("Phép đã nghỉ")%>
+                    <%# Translate("Phép đã đăng ký")%>
                 </td>
                 <td>
-                    <tlk:RadTextBox runat="server" ID="rtCUR_USED_INMONTH" ReadOnly="true">
+                    <tlk:RadTextBox runat="server" ID="rnCUR_DANGKY" ReadOnly="true">
                     </tlk:RadTextBox>
                 </td>
+                <td class="lb">
+                    <%# Translate("Phép thâm niên")%>
+                </td>
+                <td>
+                    <tlk:RadTextBox runat="server" ID="rnSENIORITYHAVE" ReadOnly="true">
+                    </tlk:RadTextBox>
+                </td>
+            </tr>
+            <tr> 
+                <td></td>
+                <td></td>             
                 <td class="lb">
                     <%# Translate("Quỹ phép còn lại")%>
                 </td>

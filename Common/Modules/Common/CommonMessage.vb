@@ -31,6 +31,7 @@
     Public Shared TOOLBARITEM_HIEXT As String = "HIEXT"
     Public Shared TOOLBARITEM_HIUPDATEINFO As String = "HIUPDATEINFO"
     Public Shared TOOLBARITEM_CREATE_BATCH As String = "CREATE_BATCH"
+    Public Shared TOOLBARITEM_APPROVE_OPEN As String = "APPROVE_OPEN" '  Mở phê duyệt
     Public Shared TOOLBARITEM_EXPORT_TEMPLATE As String = "EXPORT_TEMPLATE" 'ThanhNT added 04072016
     Public Shared TOOLBARITEM_APPROVE_BATCH As String = "APPROVE_BATCH" 'ThanhNT added 04072016
     Public Shared TOOLBARITEM_VIEW As String = "VIEW" 'ThanhNT added 04072016
