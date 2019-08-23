@@ -97,6 +97,15 @@ Public Class ctrlRemindConfig
             If Not IsPostBack Then
                 CommonConfig.GetReminderConfigFromDatabase()
             End If
+            If CommonConfig.ReminderProbation = 0 Then
+                chkProbation.Checked = False
+                rntxtProbation.Enabled = False
+                rntxtProbation.Value = Nothing
+            Else
+                chkProbation.Checked = True
+                rntxtProbation.Enabled = True
+                rntxtProbation.Value = CommonConfig.ReminderProbation
+            End If
             If CommonConfig.ReminderContractDays = 0 Then
                 chkCONTRACT.Checked = False
                 rntxtCONTRACT.Enabled = False
@@ -309,6 +318,13 @@ Public Class ctrlRemindConfig
             Select Case CType(e.Item, RadToolBarButton).CommandName
                 Case CommonMessage.TOOLBARITEM_SAVE
                     If Page.IsValid Then
+                        If chkProbation.Checked Then
+                            CommonConfig.ReminderProbation = rntxtProbation.Value
+                            rntxtProbation.Enabled = True
+                        Else
+                            CommonConfig.ReminderProbation = 0
+                            rntxtProbation.Enabled = False
+                        End If
                         If chkCONTRACT.Checked Then
                             CommonConfig.ReminderContractDays = rntxtCONTRACT.Value
                             rntxtCONTRACT.Enabled = True
