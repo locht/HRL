@@ -187,6 +187,7 @@ Public Class ctrlHU_EmpDtlProfile
                         cboTitle.Text = EmployeeInfo.TITLE_NAME_VN
                         txtTitleGroup.Text = EmployeeInfo.TITLE_GROUP_NAME
                         rdJoinDate.SelectedDate = EmployeeInfo.JOIN_DATE
+                        rdSeniorityDate.SelectedDate = EmployeeInfo.SENIORITY_DATE
                         rdJoinDateState.SelectedDate = EmployeeInfo.JOIN_DATE_STATE
                         rdter_effect_date.SelectedDate = EmployeeInfo.TER_EFFECT_DATE
                         '--------------------------------------------------------------
@@ -875,7 +876,7 @@ Public Class ctrlHU_EmpDtlProfile
                                        txtVienGanB, txtVisa, txtVisaPlace,
                                        txtWorkEmail, txtWorkPermit, txtWorkPermitPlace,
                                        txtContactPerson, txtContactPersonPhone, txtContactMobilePhone, txtChucVuDoan,
-                                       rdBirthDate, rdIDDate,
+                                       rdBirthDate, rdIDDate, rdSeniorityDate,
                                        rdNgayVaoDoan, rdPassDate, rdPassExpireDate,
                                        rdVisaDate, rdVisaExpireDate, rdWorkPermitDate, rdWorPermitExpireDate,
                                        txtCanNang, txtChieuCao,
@@ -926,7 +927,7 @@ Public Class ctrlHU_EmpDtlProfile
                                        txtVienGanB, txtVisa, txtVisaPlace, cboCertificate, cboBasic,
                                        txtWorkEmail, txtWorkPermit, txtWorkPermitPlace,
                                       txtContactPerson, txtContactPersonPhone, txtContactMobilePhone, txtChucVuDoan,
-                                      rdBirthDate, rdIDDate,
+                                      rdBirthDate, rdIDDate, rdSeniorityDate,
                                        rdNgayVaoDoan, rdPassDate, rdPassExpireDate,
                                       rdVisaDate, rdVisaExpireDate, rdWorkPermitDate, rdWorPermitExpireDate,
                                        txtCanNang, txtChieuCao,
@@ -968,7 +969,7 @@ Public Class ctrlHU_EmpDtlProfile
                                        txtVienGanB, txtVisa, txtVisaPlace,
                                        txtWorkEmail, txtWorkPermit, txtWorkPermitPlace,
                                        txtContactPerson, txtContactPersonPhone, txtContactMobilePhone, txtChucVuDoan,
-                                       rdBirthDate, rdContractExpireDate, rdContractEffectDate, rdIDDate,
+                                       rdBirthDate, rdContractExpireDate, rdContractEffectDate, rdIDDate, rdSeniorityDate,
                                        rdNgayVaoDoan, rdPassDate, rdPassExpireDate,
                                        rdVisaDate, rdVisaExpireDate, rdWorkPermitDate, rdWorPermitExpireDate,
                                        txtCanNang, txtChieuCao,
@@ -1769,7 +1770,7 @@ Public Class ctrlHU_EmpDtlProfile
                           txtVienGanB, txtVisa, txtVisaPlace,
                           txtWorkEmail, txtWorkPermit, txtWorkPermitPlace,
                           txtContactPerson, txtContactPersonPhone, txtContactMobilePhone, txtChucVuDoan,
-                          rdBirthDate, rdContractExpireDate, rdContractEffectDate, rdIDDate,
+                          rdBirthDate, rdContractExpireDate, rdContractEffectDate, rdIDDate, rdSeniorityDate,
                           rdJoinDate, rdNgayVaoDoan, rdPassDate, rdPassExpireDate,
                           rdVisaDate, rdVisaExpireDate, rdWorkPermitDate, rdWorPermitExpireDate,
                           txtCanNang, txtChieuCao,
@@ -1868,7 +1869,7 @@ Public Class ctrlHU_EmpDtlProfile
             '    EmployeeInfo.ORG_ID = txtOrgName.ToolTip
             'End If
             'EmployeeInfo.ORG_ID = txtOrgName.ToolTip
-
+            EmployeeInfo.SENIORITY_DATE = rdSeniorityDate.SelectedDate
             EmployeeInfo.TITLE_ID = If(cboTitle.Text.Equals(""), Nothing, cboTitle.SelectedValue)
             If cboTitle.SelectedValue <> "" Then
                 EmployeeInfo.TITLE_NAME_VN = cboTitle.Text
@@ -2251,7 +2252,7 @@ Public Class ctrlHU_EmpDtlProfile
             orgTree = rep.GetTreeOrgByID(orgid)
         End Using
         Try
-          
+
             If orgTree IsNot Nothing Then
                 'If IsNumeric(orgTree.ORG_ID2) Then
                 '    txtOrgName2.Text = orgTree.ORG_NAME2

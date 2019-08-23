@@ -642,6 +642,7 @@ Partial Class ProfileRepository
                          .OBJECTTIMEKEEPING_NAME = ce.NAME_VN,
                          .FULLNAME_VN = e.FULLNAME_VN,
                          .EMPLOYEE_CODE = e.EMPLOYEE_CODE,
+                         .SENIORITY_DATE = e.SENIORITY_DATE,
                          .OBJECT_INS = e.OBJECT_INS,
                          .OBJECT_INS_NAME = obj_ins.NAME_VN,
                          .EMPLOYEE_CODE_OLD = e.EMPLOYEE_CODE_OLD,
@@ -877,6 +878,7 @@ Partial Class ProfileRepository
             objEmpData.OBJECTTIMEKEEPING = objEmp.OBJECTTIMEKEEPING
             objEmpData.PA_OBJECT_SALARY_ID = 1
             objEmpData.OBJECT_LABOR = objEmp.OBJECT_LABOR
+            objEmpData.SENIORITY_DATE = objEmp.SENIORITY_DATE
             objEmpData.ITIME_ID = objEmp.ITIME_ID
             Context.HU_EMPLOYEE.AddObject(objEmpData)
             'End Thông tin insert vào bảng HU_EMPLOYEE.
@@ -1275,6 +1277,7 @@ Partial Class ProfileRepository
             objEmpData.EMPLOYEE_NAME_OTHER = objEmp.EMPLOYEE_NAME_OTHER
             objEmpData.EMPLOYEE_CODE_OLD = objEmp.EMPLOYEE_CODE_OLD
             objEmpData.BOOK_NO = objEmp.BOOKNO
+            objEmpData.SENIORITY_DATE = objEmp.SENIORITY_DATE
             objEmpData.OBJECTTIMEKEEPING = objEmp.OBJECTTIMEKEEPING
             '==============================================
             objEmpData.EMPLOYEE_CODE = objEmp.EMPLOYEE_CODE

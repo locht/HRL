@@ -18,7 +18,7 @@ Imports System.Runtime.Serialization
 Imports System.Xml.Serialization
 
 
-<Assembly: EdmSchemaAttribute("75954799-304f-4ba3-a654-5920523a5d47")>
+<Assembly: EdmSchemaAttribute("29796e7d-1386-4f58-8928-35ebeccf01d9")>
 #Region "EDM Relationship Metadata"
 <Assembly: EdmRelationshipAttribute("ProfileModel", "FK_HU_NAT_HU_PRO", "HU_NATION", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_NATION), "HU_PROVINCE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_PROVINCE), True)>
 <Assembly: EdmRelationshipAttribute("ProfileModel", "FK_HU_PRO_HU_DIS", "HU_PROVINCE", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_PROVINCE), "HU_DISTRICT", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_DISTRICT), True)>
@@ -23039,6 +23039,31 @@ Public Partial Class HU_EMPLOYEE
     End Sub
 
     Private Partial Sub OnOBJECT_INSChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property SENIORITY_DATE() As Nullable(Of Global.System.DateTime)
+        Get
+            Return _SENIORITY_DATE
+        End Get
+        Set
+            OnSENIORITY_DATEChanging(value)
+            ReportPropertyChanging("SENIORITY_DATE")
+            _SENIORITY_DATE = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("SENIORITY_DATE")
+            OnSENIORITY_DATEChanged()
+        End Set
+    End Property
+
+    Private _SENIORITY_DATE As Nullable(Of Global.System.DateTime)
+    Private Partial Sub OnSENIORITY_DATEChanging(value As Nullable(Of Global.System.DateTime))
+    End Sub
+
+    Private Partial Sub OnSENIORITY_DATEChanged()
     End Sub
 
     #End Region
