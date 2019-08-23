@@ -519,8 +519,9 @@ Public Class ctrlHU_WelfareList
                     CurrentState = CommonMessage.STATE_NEW
                     ClearControlValue(txtCode, cboName, nmSENIORITY, cbGroupTitle,
                                       nmMONEY, lstbGender, lstCONTRACT_TYPE,
-                                      dpSTART_DATE, dpEND_DATE, chkIS_AUTO)
+                                      dpSTART_DATE, dpEND_DATE, chkIS_AUTO, isEdit, nmCHILD_OLD_FROM, nmCHILD_OLD_TO)
                     chkIS_AUTO.Checked = Nothing
+                    isEdit = Nothing
                     rgWelfareList.Rebind()
                     If ctrlOrg.CurrentValue IsNot Nothing Then
                         orgid = Decimal.Parse(ctrlOrg.CurrentValue)
@@ -615,9 +616,11 @@ Public Class ctrlHU_WelfareList
                         Catch ex As Exception
                             Throw ex
                         End Try
-                        orgItem = (From p In Organizations Where p.ID = orgid).SingleOrDefault
-                        Code = orgItem.CODE & "_" & Year & "_"
-                        txtCode.Text = rep.AutoGenCode(Code, "HU_WELFARE_LIST", "CODE")
+                        If isEdit Is Nothing Then
+                            orgItem = (From p In Organizations Where p.ID = orgid).SingleOrDefault
+                            Code = orgItem.CODE & "_" & Year & "_"
+                            txtCode.Text = rep.AutoGenCode(Code, "HU_WELFARE_LIST", "CODE")
+                        End If
                         objWelfareList.CODE = txtCode.Text
                         objWelfareList.NAME = cboName.Text
                         If cboName.SelectedValue <> "" Then
@@ -851,7 +854,7 @@ Public Class ctrlHU_WelfareList
             End If
 
             If Not args.IsValid Then
-                txtCode.Text = rep.AutoGenCode("PL", "HU_WELFARE_LIST", "CODE")
+                ' txtCode.Text = rep.AutoGenCode("PL", "HU_WELFARE_LIST", "CODE")
             End If
             rep.Dispose()
             _myLog.WriteLog(_myLog._info, _classPath, method,
