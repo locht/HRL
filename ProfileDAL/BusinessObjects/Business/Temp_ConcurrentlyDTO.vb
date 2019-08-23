@@ -34,6 +34,7 @@
     Public Property BASIC6 As String
     Public Property ORG_ID As Decimal?
     Public Property ORG_NAME As String
+    Public Property COM_ORG_NAME As String
     Public Property TITLE_ID As Decimal?
     Public Property TITLE_NAME As String
     Public Property SIGN_ID_2 As Decimal?
@@ -50,6 +51,7 @@
     Public Property IS_CHUYEN As Decimal?
     Public Property FULLNAME_VN As String
     Public Property ORG_CON_NAME As String
+    Public Property COM_ORG_CON_NAME As String
     Public Property TITLE_CON_NAME As String
     Public Property ALLOW_MONEY_NUMBER As Decimal?
     Public Property STATUS_CON_NAME As String
