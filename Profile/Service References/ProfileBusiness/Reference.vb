@@ -8752,6 +8752,12 @@ Namespace ProfileBusiness
         Private FULLNAME_VNField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private GENDERField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private GENDER_NAMEField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private GHI_CHU_SUC_KHOEField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -9274,6 +9280,32 @@ Namespace ProfileBusiness
                 If (Object.ReferenceEquals(Me.FULLNAME_VNField, value) <> true) Then
                     Me.FULLNAME_VNField = value
                     Me.RaisePropertyChanged("FULLNAME_VN")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property GENDER() As System.Nullable(Of Decimal)
+            Get
+                Return Me.GENDERField
+            End Get
+            Set
+                If (Me.GENDERField.Equals(value) <> true) Then
+                    Me.GENDERField = value
+                    Me.RaisePropertyChanged("GENDER")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property GENDER_NAME() As String
+            Get
+                Return Me.GENDER_NAMEField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.GENDER_NAMEField, value) <> true) Then
+                    Me.GENDER_NAMEField = value
+                    Me.RaisePropertyChanged("GENDER_NAME")
                 End If
             End Set
         End Property

@@ -20,14 +20,14 @@
                 <table class="table-form padding-10">
                     <tr>
                         <td class="lb">
-                            <asp:Label ID="lbFromDate" runat="server" Text="Ngày vào công ty từ"></asp:Label>
+                             <asp:Label ID="lbFromDate" runat="server" Text="Ngày vào công ty từ"/>
                         </td>
                         <td>
                             <tlk:RadDatePicker ID="rdFromDate" runat="server">
                             </tlk:RadDatePicker>
                         </td>
                         <td class="lb">
-                            <asp:Label ID="lbToDate" runat="server" Text="Đến"></asp:Label>
+                             <asp:Label ID="lbToDate" runat="server" Text="Đến"></asp:Label>
                         </td>
                         <td>
                             <tlk:RadDatePicker ID="rdToDate" runat="server">
@@ -47,7 +47,7 @@
                     </tr>
                     <tr style="visibility: hidden;">
                         <td class="lb">
-                            <asp:Label ID="lbGhiChu" runat="server" Text="Ghi chú"></asp:Label>
+                           <asp:Label ID="lbGhiChu" runat="server" Text="Ghi chú"></asp:Label>
                         </td>
                         <td colspan="4">
                             <tlk:RadTextBox ID="txtGhiChu" runat="server" Width="100%">
@@ -58,43 +58,50 @@
             </tlk:RadPane>
             <tlk:RadPane ID="RadPane2" runat="server" Scrolling="None">
                 <tlk:RadGrid PageSize="50" ID="rgEmployeeList" runat="server" Height="100%" EnableHeaderContextMenu="true">
+                    <ClientSettings >
+                        <Selecting AllowRowSelect="True" />
+                        <ClientEvents OnRowDblClick="gridRowDblClick" />
+                        <%--<ClientEvents OnGridCreated="GridCreated" />--%>
+                        <ClientEvents OnCommand="ValidateFilter" />
+                        <Scrolling AllowScroll="true" UseStaticHeaders="true" FrozenColumnsCount="3" />
+                    </ClientSettings>
                     <MasterTableView DataKeyNames="ID,EMPLOYEE_CODE,ORG_DESC,IMAGE" ClientDataKeyNames="ID,EMPLOYEE_CODE,IMAGE">
                         <Columns>
-                            <%--<tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderStyle-HorizontalAlign="Center"
+                           <%-- <tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderStyle-HorizontalAlign="Center"
                                 HeaderStyle-Width="40px" ItemStyle-HorizontalAlign="Center">
                             </tlk:GridClientSelectColumn>
                             <tlk:GridBoundColumn DataField="ID" Visible="false" />
                             <tlk:GridBoundColumn DataField="TITLE_ID" Visible="false" />
                             <tlk:GridBoundColumn DataField="ORG_ID" Visible="false" />
                             <tlk:GridBoundColumn DataField="ORG_ABBR" Visible="false" />
-                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Mã nhân viên %>" DataField="EMPLOYEE_CODE"
+                            <tlk:GridBoundColumn HeaderText="Mã nhân viên" DataField="EMPLOYEE_CODE"
                                 UniqueName="EMPLOYEE_CODE" SortExpression="EMPLOYEE_CODE" HeaderStyle-Width="100px" />
-                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Tên nhân viên %>" DataField="FULLNAME_VN"
+                            <tlk:GridBoundColumn HeaderText="Tên nhân viên" DataField="FULLNAME_VN"
                                 UniqueName="FULLNAME_VN" SortExpression="FULLNAME_VN" />
-                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Phòng ban %>" DataField="ORG_NAME"
+                            <tlk:GridBoundColumn HeaderText="Phòng ban" DataField="ORG_NAME"
                                 UniqueName="ORG_NAME" SortExpression="ORG_NAME" />
-                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Chức danh %>" DataField="TITLE_NAME_VN"
+                            <tlk:GridBoundColumn HeaderText="<Chức danh" DataField="TITLE_NAME_VN"
                                 UniqueName="TITLE_NAME_VN" SortExpression="TITLE_NAME_VN" />
                             
-                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Cấp nhân sự %>" DataField="STAFF_RANK_NAME"
+                            <tlk:GridBoundColumn HeaderText="Cấp nhân sự" DataField="STAFF_RANK_NAME"
                                 UniqueName="STAFF_RANK_NAME" SortExpression="STAFF_RANK_NAME">
                                 <HeaderStyle HorizontalAlign="Center" Width="100px" />
                                 <ItemStyle HorizontalAlign="Center" Width="100px" />
                             </tlk:GridBoundColumn>
-                            <tlk:GridDateTimeColumn HeaderText="<%$ Translate: Ngày vào công ty %>" DataField="JOIN_DATE"
+                            <tlk:GridDateTimeColumn HeaderText="Ngày vào công ty" DataField="JOIN_DATE"
                                 UniqueName="JOIN_DATE" DataFormatString="{0:dd/MM/yyyy}" SortExpression="JOIN_DATE">
                                 <HeaderStyle HorizontalAlign="Center" />
                                 <ItemStyle HorizontalAlign="Center" />
-                            </tlk:GridDateTimeColumn>--%>
-                            <%--<tlk:GridDateTimeColumn HeaderText="<%$ Translate: Ngày vào tập đoàn %>" DataField="JOIN_DATE_STATE"
+                            </tlk:GridDateTimeColumn>
+                            <tlk:GridDateTimeColumn HeaderText="Ngày vào tập đoàn" DataField="JOIN_DATE_STATE"
                                 UniqueName="JOIN_DATE_STATE" DataFormatString="{0:dd/MM/yyyy}" SortExpression="JOIN_DATE_STATE">
                                 <HeaderStyle HorizontalAlign="Center" />
                                 <ItemStyle HorizontalAlign="Center" />
-                            </tlk:GridDateTimeColumn>--%>
-                            <%--<tlk:GridBoundColumn HeaderText="<%$ Translate: Trạng thái %>" DataField="WORK_STATUS_NAME"
+                            </tlk:GridDateTimeColumn>
+                            <tlk:GridBoundColumn HeaderText="Trạng thái" DataField="WORK_STATUS_NAME"
                                 UniqueName="WORK_STATUS_NAME" SortExpression="WORK_STATUS_NAME" HeaderStyle-Width="130px"
-                                Visible="true" />--%>
-                           <%-- <tlk:GridBoundColumn HeaderText="<%$ Translate: Nhóm máu %>" DataField="NHOM_MAU"
+                                Visible="true" />
+                            <tlk:GridBoundColumn HeaderText="Nhóm máu" DataField="NHOM_MAU"
                                 UniqueName="NHOM_MAU" SortExpression="NHOM_MAU">
                                 <HeaderStyle HorizontalAlign="Center" Width="100px" />
                                 <ItemStyle HorizontalAlign="Center" Width="100px" />
@@ -102,13 +109,7 @@
                         </Columns>
                     </MasterTableView>
                     <HeaderStyle HorizontalAlign="Center" />
-                    <%--<HeaderStyle Width="120px" />--%>
-                    <ClientSettings>
-                        <Selecting AllowRowSelect="True" />
-                        <ClientEvents OnRowDblClick="gridRowDblClick" />
-                        <%--<ClientEvents OnGridCreated="GridCreated" />--%>
-                        <ClientEvents OnCommand="ValidateFilter" />
-                    </ClientSettings>
+                    <%--<HeaderStyle Width="120px" />--%>                    
                 </tlk:RadGrid>
             </tlk:RadPane>
             <tlk:RadPane ID="RadPane4" runat="server" Scrolling="None" Height="45px">
@@ -156,9 +157,9 @@
             }
         }
 
-//        function GridCreated(sender, eventArgs) {
-//            registerOnfocusOut('RAD_SPLITTER_ctl00_MainContent_ctrlHU_EmployeeMng_RadSplitter3');
-//        }
+        //        function GridCreated(sender, eventArgs) {
+        //            registerOnfocusOut('RAD_SPLITTER_ctl00_MainContent_ctrlHU_EmployeeMng_RadSplitter3');
+        //        }
 
         var enableAjax = true;
         function onRequestStart(sender, eventArgs) {
@@ -241,13 +242,13 @@
                 args.set_cancel(true);
                 return;
             }
-//            if (bCheck > 1) {
-//                var m = '<%= Translate(CommonMessage.MESSAGE_NOT_SELECT_MULTI_ROW) %>';
-//                var n = noty({ text: m, dismissQueue: true, type: 'warning' });
-//                setTimeout(function () { $.noty.close(n.options.id); }, 5000);
-//                args.set_cancel(true);
-//                return;
-//            }
+            //            if (bCheck > 1) {
+            //                var m = '<%= Translate(CommonMessage.MESSAGE_NOT_SELECT_MULTI_ROW) %>';
+            //                var n = noty({ text: m, dismissQueue: true, type: 'warning' });
+            //                setTimeout(function () { $.noty.close(n.options.id); }, 5000);
+            //                args.set_cancel(true);
+            //                return;
+            //            }
             enableAjax = false;
         }
 

@@ -23,7 +23,8 @@
     Public Property IMAGE As String                 'Ảnh đại diện ( Tên ảnh thôi ghi trong database)
     Public Property IMAGE_BINARY As Byte()          'Binary của Ảnh đại diện (Dùng service đọc ảnh ra binary)
     Public Property IMAGE_URL As String
-
+    Public Property GENDER As Decimal?
+    Public Property GENDER_NAME As String
     'Contract
     Public Property CONTRACT_ID As Decimal?             'Hop dong dang hieu luc
     Public Property CONTRACT_TYPE_ID As Decimal?        'Loại hợp đồng.

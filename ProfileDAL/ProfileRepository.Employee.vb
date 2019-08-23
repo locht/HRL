@@ -257,6 +257,8 @@ Partial Class ProfileRepository
                         From c In Context.HU_CONTRACT.Where(Function(c) c.ID = p.CONTRACT_ID).DefaultIfEmpty
                         From ct In Context.HU_CONTRACT_TYPE.Where(Function(f) f.ID = c.CONTRACT_TYPE_ID).DefaultIfEmpty
                         From emp_stt In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.EMP_STATUS).DefaultIfEmpty
+                        From labor In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.OBJECT_LABOR).DefaultIfEmpty
+                        From gender In Context.OT_OTHER_LIST.Where(Function(f) f.ID = pv.GENDER).DefaultIfEmpty
                         Order By p.EMPLOYEE_CODE
 
             Dim lst = query.Select(Function(p) New EmployeeDTO With {
@@ -288,6 +290,10 @@ Partial Class ProfileRepository
                              .NHOM_MAU = p.health.NHOM_MAU,
                              .IMAGE = p.pv.IMAGE,
                              .ITIME_ID = p.p.ITIME_ID,
+                             .OBJECT_LABOR = p.p.OBJECT_LABOR,
+                             .OBJECT_LABOR_NAME = p.labor.NAME_VN,
+                             .GENDER = p.pv.GENDER,
+                             .GENDER_NAME = p.gender.NAME_VN,
                              .MODIFIED_DATE = p.p.MODIFIED_DATE,
                              .EMP_STATUS = p.p.EMP_STATUS,
                              .EMP_STATUS_NAME = If(p.p.IS_KIEM_NHIEM IsNot Nothing, str, p.emp_stt.NAME_VN)})
@@ -357,6 +363,14 @@ Partial Class ProfileRepository
 
             If _filter.EMPLOYEE_ID IsNot Nothing Then
                 lst = lst.Where(Function(p) p.ID = _filter.EMPLOYEE_ID)
+            End If
+
+            If _filter.OBJECT_LABOR_NAME <> "" Then
+                lst = lst.Where(Function(p) p.OBJECT_LABOR_NAME.ToUpper().IndexOf(_filter.OBJECT_LABOR_NAME.ToUpper) >= 0)
+            End If
+
+            If _filter.GENDER_NAME <> "" Then
+                lst = lst.Where(Function(p) p.GENDER_NAME.ToUpper().IndexOf(_filter.GENDER_NAME.ToUpper) >= 0)
             End If
 
             If _filter.EMP_STATUS_NAME <> "" Then
