@@ -6190,6 +6190,12 @@ Namespace ProfileBusiness
         Private CBSTATUSField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private COM_ORG_CON_NAMEField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private COM_ORG_NAMEField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private CONCURENTLY_POSITIONField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -6483,6 +6489,32 @@ Namespace ProfileBusiness
                 If (Object.ReferenceEquals(Me.CBSTATUSField, value) <> true) Then
                     Me.CBSTATUSField = value
                     Me.RaisePropertyChanged("CBSTATUS")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property COM_ORG_CON_NAME() As String
+            Get
+                Return Me.COM_ORG_CON_NAMEField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.COM_ORG_CON_NAMEField, value) <> true) Then
+                    Me.COM_ORG_CON_NAMEField = value
+                    Me.RaisePropertyChanged("COM_ORG_CON_NAME")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property COM_ORG_NAME() As String
+            Get
+                Return Me.COM_ORG_NAMEField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.COM_ORG_NAMEField, value) <> true) Then
+                    Me.COM_ORG_NAMEField = value
+                    Me.RaisePropertyChanged("COM_ORG_NAME")
                 End If
             End Set
         End Property
