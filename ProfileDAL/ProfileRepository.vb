@@ -3079,10 +3079,14 @@ Public Class ProfileRepository
                            From e In Context.HU_EMPLOYEE.Where(Function(e) e.ID = p.EMPLOYEE_ID)
                            From cv In Context.HU_EMPLOYEE_CV.Where(Function(cv) e.ID = cv.EMPLOYEE_ID)
                            From org In Context.SE_CHOSEN_ORG.Where(Function(f) e.ORG_ID = f.ORG_ID And f.USERNAME.ToUpper = log.Username.ToUpper)
+                           From huv_org_id In Context.HU_ORGANIZATION_V.Where(Function(f) f.ID = e.ORG_ID).DefaultIfEmpty
+                           From cty In Context.HU_ORGANIZATION.Where(Function(f) f.ID = huv_org_id.ID2).DefaultIfEmpty
                            From o In Context.HU_ORGANIZATION.Where(Function(o) o.ID = e.ORG_ID).DefaultIfEmpty
                            From t In Context.HU_TITLE.Where(Function(t) t.ID = e.TITLE_ID).DefaultIfEmpty
                            From tc In Context.HU_TITLE.Where(Function(tc) tc.ID = p.TITLE_CON).DefaultIfEmpty
                            From org_con In Context.HU_ORGANIZATION.Where(Function(org_con) org_con.ID = p.ORG_CON).DefaultIfEmpty
+                           From huv_con_org_id In Context.HU_ORGANIZATION_V.Where(Function(f) f.ID = p.ORG_CON).DefaultIfEmpty
+                           From cty_con In Context.HU_ORGANIZATION.Where(Function(f) f.ID = huv_con_org_id.ID2).DefaultIfEmpty
                            From sign In Context.HU_EMPLOYEE.Where(Function(sign) sign.ID = p.SIGN_ID).DefaultIfEmpty
                            From sign_title In Context.HU_TITLE.Where(Function(sign_title) sign_title.ID = sign.TITLE_ID).DefaultIfEmpty
                            From sign_stop In Context.HU_EMPLOYEE.Where(Function(sign_stop) sign_stop.ID = p.SIGN_ID_STOP).DefaultIfEmpty
@@ -3118,10 +3122,12 @@ Public Class ProfileRepository
                                                        .FULLNAME_VN = p.e.FULLNAME_VN,
                                                        .ORG_ID = p.e.ORG_ID,
                                                        .ORG_NAME = p.o.NAME_VN,
+                                                       .COM_ORG_NAME = p.cty.NAME_VN,
                                                        .TITLE_ID = p.e.TITLE_ID,
                                                        .TITLE_NAME = p.t.NAME_VN,
                                                        .ORG_CON_NAME = p.org_con.NAME_VN,
                                                        .ORG_CON = p.p.ORG_CON,
+                                                       .COM_ORG_CON_NAME = p.cty_con.NAME_VN,
                                                        .TITLE_CON = p.p.TITLE_CON,
                                                        .TITLE_CON_NAME = p.tc.NAME_VN,
                                                        .ALLOW_MONEY_NUMBER = p.p.ALLOW_MONEY,
@@ -3136,7 +3142,7 @@ Public Class ProfileRepository
                                                        .SIGN_NAME = p.sign.FULLNAME_VN,
                                                        .SIGN_TITLE_NAME = p.sign_title.NAME_VN,
                                                        .SIGN_NAME2 = p.sign2.FULLNAME_VN,
-            .SIGN_TITLE_NAME2 = p.sign_title2.NAME_VN
+                                                       .SIGN_TITLE_NAME2 = p.sign_title2.NAME_VN
                                                        })
 
             lstEmp = lstEmp.OrderBy(Sorts)
