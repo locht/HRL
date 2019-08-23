@@ -1164,9 +1164,24 @@ Public Class ctrlHU_Organization
                         lstFile.Items.Add(i)
                     Next
                 End If
-                cboU_insurance.SelectedValue = orgItem.U_INSURANCE
-                cboOrg_level.SelectedValue = orgItem.ORG_LEVEL
-                cboRegion.SelectedValue = orgItem.REGION_ID
+                If IsNumeric(orgItem.U_INSURANCE) AndAlso orgItem.U_INSURANCE > 0 Then
+                    cboU_insurance.SelectedValue = orgItem.U_INSURANCE
+                Else
+                    ClearControlValue(cboU_insurance)
+                End If
+                'cboU_insurance.SelectedValue = orgItem.U_INSURANCE
+                If IsNumeric(orgItem.ORG_LEVEL) AndAlso orgItem.ORG_LEVEL > 0 Then
+                    cboOrg_level.SelectedValue = orgItem.ORG_LEVEL
+                Else
+                    ClearControlValue(cboOrg_level)
+                End If
+                'cboOrg_level.SelectedValue = orgItem.ORG_LEVEL
+                If orgItem.REGION_ID > 0 Then
+                    cboRegion.SelectedValue = orgItem.REGION_ID
+                Else
+                    ClearControlValue(cboRegion)
+                End If
+                'cboRegion.SelectedValue = If(orgItem.REGION_ID > 0, orgItem.REGION_ID, -1)
                 txtRepresentativeName.Text = orgItem.REPRESENTATIVE_NAME
                 rtNUMBER_BUSINESS.Text = orgItem.NUMBER_BUSINESS
                 rdDATE_BUSINESS.SelectedDate = Nothing
@@ -1181,6 +1196,8 @@ Public Class ctrlHU_Organization
                 End If
                 If IsDate(orgItem.FOUNDATION_DATE) Then
                     rdFOUNDATION_DATE.SelectedDate = orgItem.FOUNDATION_DATE
+                Else
+                    ClearControlValue(rdFOUNDATION_DATE)
                 End If
                 rdDicision_Date.SelectedDate = Nothing
                 If IsDate(orgItem.DISSOLVE_DATE) Then
@@ -1196,8 +1213,10 @@ Public Class ctrlHU_Organization
                 If orgItem.REPRESENTATIVE_ID IsNot Nothing Then
                     hidRepresentative.Value = orgItem.REPRESENTATIVE_ID
                 End If
-                If IsNumeric(orgItem.UNIT_LEVEL) Then
+                If IsNumeric(orgItem.UNIT_LEVEL) AndAlso orgItem.UNIT_LEVEL > 0 Then
                     cbUNIT_LEVEL.SelectedValue = orgItem.UNIT_LEVEL
+                Else
+                    ClearControlValue(cbUNIT_LEVEL)
                 End If
                 DisplayImage(Utilities.ObjToDecima(orgItem.REPRESENTATIVE_ID), Utilities.ObjToString(orgItem.IMAGE))
                 If treeOrgFunction.SelectedNode.Level = 1 Then

@@ -1653,10 +1653,10 @@
             </tlk:RadPageView>
         </tlk:RadMultiPage>
     </tlk:RadPane>
-    <tlk:RadPane ID="RadPane4" runat="server" Scrolling="None">
+    <%--<tlk:RadPane ID="RadPane4" runat="server" Scrolling="None">
         <table class="table-form" onkeydown="return (event.keyCode!=13)">
         </table>
-    </tlk:RadPane>
+    </tlk:RadPane>--%>
 </tlk:RadSplitter>
 <tlk:RadWindowManager ID="RadWindowManager1" runat="server">
     <Windows>

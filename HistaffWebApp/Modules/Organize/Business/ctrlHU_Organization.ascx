@@ -63,7 +63,8 @@
             </tr>
             <tr>
                 <td class="lb">
-                   <asp:Label ID="lbNameVN" runat="server" Text="Tên đơn vị (VN)"></asp:Label>                   
+                   <asp:Label ID="lbNameVN" runat="server" Text="Tên đơn vị (VN)"></asp:Label>
+                   <span class="lbReq">*</span>
                 </td>
                 <td colspan="3">
                     <tlk:radtextbox id="txtNameVN" runat="server" width="100%">
@@ -124,32 +125,35 @@
                     </asp:RequiredFieldValidator>--%>
                 </td>
                 <td class="lb">
-                     <asp:Label ID="lbOrg_level" runat="server" Text="Cấp phòng ban"></asp:Label>
-                    <span class="lbReq"></span>
+                    <asp:Label ID="lbOrg_level" runat="server" Text="Cấp phòng ban"></asp:Label>
+                    <span class="lbReq">*</span>
                 </td>
                 <td colspan="3">
                     <tlk:radcombobox id="cboOrg_level" runat="server">
                     </tlk:radcombobox>
                     <asp:RequiredFieldValidator ID="RequiredFieldValidator1" ControlToValidate="cboOrg_level"
-                        runat="server" ErrorMessage="Bạn phải nhập cấp đơn vị" ToolTip="Bạn phải nhập cấp đơn vị">
+                        runat="server" ErrorMessage="Bạn phải nhập cấp phòng ban" ToolTip="Bạn phải nhập cấp phòng ban">
                     </asp:RequiredFieldValidator>
                 </td>
             </tr>
             <tr>
                 <td class="lb">
-                   <asp:Label ID="lbRegion" runat="server" Text="Vùng lương"></asp:Label>
-                  <span class="lbReq"></span>
+                    <asp:Label ID="lbRegion" runat="server" Text="Vùng lương"></asp:Label>
+                    <span class="lbReq">*</span>
                 </td>
                 <td>
                     <tlk:radcombobox id="cboRegion" runat="server">
                     </tlk:radcombobox>
+                    <asp:RequiredFieldValidator ID="reqRegion" ControlToValidate="cboRegion"
+                        runat="server" ErrorMessage="Vui lòng chọn vùng lương" ToolTip="Vui lòng chọn vùng lương">
+                    </asp:RequiredFieldValidator>
                     <asp:CustomValidator ID="CustomValidator1" runat="server" ErrorMessage="Mã chi phí không được trùng"
                         ToolTip="Mã chi phí không được trùng">
                     </asp:CustomValidator>
                 </td>
                 <td class="lb">
                     <asp:Label ID="lbU_insurance" runat="server" Text="Đơn vị đóng bảo hiểm"></asp:Label>
-                 <span class="lbReq"></span>
+                    <span class="lbReq">*</span>
                 </td>
                 <td colspan="3">
                     <tlk:radcombobox id="cboU_insurance" runat="server">
