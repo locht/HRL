@@ -102,10 +102,10 @@ Public Class ctrlEntitlement
 
             rgEntitlement.ClientSettings.EnablePostBackOnRowClick = False
             InitControl()
-            If Not IsPostBack Then
-                ViewConfig(RadPane2)
-                GirdConfig(rgEntitlement)
-            End If
+            'If Not IsPostBack Then
+            '    ViewConfig(RadPane2)
+            '    GirdConfig(rgEntitlement)
+            'End If
             _myLog.WriteLog(_myLog._info, _classPath, method,
                                                    CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
@@ -126,11 +126,9 @@ Public Class ctrlEntitlement
             Me.MainToolBar = tbarMainToolBar
             Common.Common.BuildToolbar(Me.MainToolBar, ToolbarItem.Calculate,
                                        ToolbarItem.Export,
-                                       ToolbarItem.Import,
                                        ToolbarItem.Submit)
             MainToolBar.Items(0).Text = Translate("Tổng hợp")
-            MainToolBar.Items(2).Text = Translate("Import số ngày ngoài cơ quan")
-            MainToolBar.Items(3).Text = Translate("Kết phép")
+            MainToolBar.Items(2).Text = Translate("Kết phép")
             Me.MainToolBar.OnClientButtonClicking = "OnClientButtonClicking"
             CType(Me.Page, AjaxPage).AjaxManager.ClientEvents.OnRequestStart = "onRequestStart"
             _myLog.WriteLog(_myLog._info, _classPath, method,
@@ -285,24 +283,24 @@ Public Class ctrlEntitlement
                         employee_id = Decimal.Parse(item)
                         lsEmployee.Add(employee_id)
                     Next
-                    If getSE_CASE_CONFIG("ctrlEntitlement_case1") > 0 Then
-                        If rep.CALCULATE_ENTITLEMENT_HOSE(_param, lsEmployee) Then
-                            ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), NotifyType.Success)
-                            Refresh("UpdateView")
-                        Else
-                            ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), NotifyType.Error)
-                            Exit Sub
-                        End If
+                    'If getSE_CASE_CONFIG("ctrlEntitlement_case1") > 0 Then
+                    If rep.CALCULATE_ENTITLEMENT_HOSE(_param, lsEmployee) Then
+                        ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), NotifyType.Success)
+                        Refresh("UpdateView")
                     Else
-                        If rep.CALCULATE_ENTITLEMENT(_param, lsEmployee) Then
-                            ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), NotifyType.Success)
-                            Refresh("UpdateView")
-                        Else
-                            ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), NotifyType.Error)
-                            Exit Sub
-                        End If
+                        ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), NotifyType.Error)
+                        Exit Sub
                     End If
-                    
+                    'Else
+                    '    If rep.CALCULATE_ENTITLEMENT(_param, lsEmployee) Then
+                    '        ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), NotifyType.Success)
+                    '        Refresh("UpdateView")
+                    '    Else
+                    '        ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), NotifyType.Error)
+                    '        Exit Sub
+                    '    End If
+                    'End If
+
 
                 Case TOOLBARITEM_EXPORT
                     Using xls As New ExcelCommon

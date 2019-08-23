@@ -16993,6 +16993,9 @@ Namespace AttendanceBusiness
         Private extensionDataField As System.Runtime.Serialization.ExtensionDataObject
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private ADJUST_MONTH_TNField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private AL_T1Field As System.Nullable(Of Decimal)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -17182,7 +17185,49 @@ Namespace AttendanceBusiness
         Private PREV_USEDField As System.Nullable(Of Decimal)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private SENIORITYField As String
+        Private PREV_USED1Field As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private PREV_USED10Field As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private PREV_USED11Field As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private PREV_USED12Field As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private PREV_USED2Field As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private PREV_USED3Field As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private PREV_USED4Field As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private PREV_USED5Field As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private PREV_USED6Field As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private PREV_USED7Field As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private PREV_USED8Field As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private PREV_USED9Field As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private QP_MONTHField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private QP_YEARField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private SENIORITYField As System.Nullable(Of Decimal)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private SENIORITYHAVEField As System.Nullable(Of Decimal)
@@ -17227,6 +17272,19 @@ Namespace AttendanceBusiness
             End Get
             Set
                 Me.extensionDataField = value
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property ADJUST_MONTH_TN() As System.Nullable(Of Decimal)
+            Get
+                Return Me.ADJUST_MONTH_TNField
+            End Get
+            Set
+                If (Me.ADJUST_MONTH_TNField.Equals(value) <> true) Then
+                    Me.ADJUST_MONTH_TNField = value
+                    Me.RaisePropertyChanged("ADJUST_MONTH_TN")
+                End If
             End Set
         End Property
         
@@ -18050,12 +18108,194 @@ Namespace AttendanceBusiness
         End Property
         
         <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property SENIORITY() As String
+        Public Property PREV_USED1() As System.Nullable(Of Decimal)
+            Get
+                Return Me.PREV_USED1Field
+            End Get
+            Set
+                If (Me.PREV_USED1Field.Equals(value) <> true) Then
+                    Me.PREV_USED1Field = value
+                    Me.RaisePropertyChanged("PREV_USED1")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property PREV_USED10() As System.Nullable(Of Decimal)
+            Get
+                Return Me.PREV_USED10Field
+            End Get
+            Set
+                If (Me.PREV_USED10Field.Equals(value) <> true) Then
+                    Me.PREV_USED10Field = value
+                    Me.RaisePropertyChanged("PREV_USED10")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property PREV_USED11() As System.Nullable(Of Decimal)
+            Get
+                Return Me.PREV_USED11Field
+            End Get
+            Set
+                If (Me.PREV_USED11Field.Equals(value) <> true) Then
+                    Me.PREV_USED11Field = value
+                    Me.RaisePropertyChanged("PREV_USED11")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property PREV_USED12() As System.Nullable(Of Decimal)
+            Get
+                Return Me.PREV_USED12Field
+            End Get
+            Set
+                If (Me.PREV_USED12Field.Equals(value) <> true) Then
+                    Me.PREV_USED12Field = value
+                    Me.RaisePropertyChanged("PREV_USED12")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property PREV_USED2() As System.Nullable(Of Decimal)
+            Get
+                Return Me.PREV_USED2Field
+            End Get
+            Set
+                If (Me.PREV_USED2Field.Equals(value) <> true) Then
+                    Me.PREV_USED2Field = value
+                    Me.RaisePropertyChanged("PREV_USED2")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property PREV_USED3() As System.Nullable(Of Decimal)
+            Get
+                Return Me.PREV_USED3Field
+            End Get
+            Set
+                If (Me.PREV_USED3Field.Equals(value) <> true) Then
+                    Me.PREV_USED3Field = value
+                    Me.RaisePropertyChanged("PREV_USED3")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property PREV_USED4() As System.Nullable(Of Decimal)
+            Get
+                Return Me.PREV_USED4Field
+            End Get
+            Set
+                If (Me.PREV_USED4Field.Equals(value) <> true) Then
+                    Me.PREV_USED4Field = value
+                    Me.RaisePropertyChanged("PREV_USED4")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property PREV_USED5() As System.Nullable(Of Decimal)
+            Get
+                Return Me.PREV_USED5Field
+            End Get
+            Set
+                If (Me.PREV_USED5Field.Equals(value) <> true) Then
+                    Me.PREV_USED5Field = value
+                    Me.RaisePropertyChanged("PREV_USED5")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property PREV_USED6() As System.Nullable(Of Decimal)
+            Get
+                Return Me.PREV_USED6Field
+            End Get
+            Set
+                If (Me.PREV_USED6Field.Equals(value) <> true) Then
+                    Me.PREV_USED6Field = value
+                    Me.RaisePropertyChanged("PREV_USED6")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property PREV_USED7() As System.Nullable(Of Decimal)
+            Get
+                Return Me.PREV_USED7Field
+            End Get
+            Set
+                If (Me.PREV_USED7Field.Equals(value) <> true) Then
+                    Me.PREV_USED7Field = value
+                    Me.RaisePropertyChanged("PREV_USED7")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property PREV_USED8() As System.Nullable(Of Decimal)
+            Get
+                Return Me.PREV_USED8Field
+            End Get
+            Set
+                If (Me.PREV_USED8Field.Equals(value) <> true) Then
+                    Me.PREV_USED8Field = value
+                    Me.RaisePropertyChanged("PREV_USED8")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property PREV_USED9() As System.Nullable(Of Decimal)
+            Get
+                Return Me.PREV_USED9Field
+            End Get
+            Set
+                If (Me.PREV_USED9Field.Equals(value) <> true) Then
+                    Me.PREV_USED9Field = value
+                    Me.RaisePropertyChanged("PREV_USED9")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property QP_MONTH() As System.Nullable(Of Decimal)
+            Get
+                Return Me.QP_MONTHField
+            End Get
+            Set
+                If (Me.QP_MONTHField.Equals(value) <> true) Then
+                    Me.QP_MONTHField = value
+                    Me.RaisePropertyChanged("QP_MONTH")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property QP_YEAR() As System.Nullable(Of Decimal)
+            Get
+                Return Me.QP_YEARField
+            End Get
+            Set
+                If (Me.QP_YEARField.Equals(value) <> true) Then
+                    Me.QP_YEARField = value
+                    Me.RaisePropertyChanged("QP_YEAR")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property SENIORITY() As System.Nullable(Of Decimal)
             Get
                 Return Me.SENIORITYField
             End Get
             Set
-                If (Object.ReferenceEquals(Me.SENIORITYField, value) <> true) Then
+                If (Me.SENIORITYField.Equals(value) <> true) Then
                     Me.SENIORITYField = value
                     Me.RaisePropertyChanged("SENIORITY")
                 End If

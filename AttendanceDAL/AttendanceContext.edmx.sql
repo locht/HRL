@@ -1,7 +1,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for Oracle database
 -- --------------------------------------------------
--- Date Created: 8/20/2019 8:43:21 AM
+-- Date Created: 8/23/2019 11:03:44 AM
 -- Generated from EDMX file: D:\TNG_SOURCE_NEW\AttendanceDAL\AttendanceContext.edmx
 -- --------------------------------------------------
 
@@ -9,215 +9,11 @@
 -- Dropping existing FOREIGN KEY constraints
 -- --------------------------------------------------
 
--- ALTER TABLE "AttendanceModelStoreContainer"."OT_OTHER_LIST" DROP CONSTRAINT "FK_OOLT_OOL" CASCADE;
-
--- ALTER TABLE "AttendanceModelStoreContainer"."OT_OTHER_LIST_TYPE" DROP CONSTRAINT "FK_OOLG_OOLT" CASCADE;
-
--- ALTER TABLE "AttendanceModelStoreContainer"."HU_EMPLOYEE_HEALTH" DROP CONSTRAINT "FK_FE_HEH" CASCADE;
-
--- ALTER TABLE "AttendanceModelStoreContainer"."HU_EMPLOYEE_EDUCATION" DROP CONSTRAINT "FK_HE_HEE" CASCADE;
-
--- ALTER TABLE "AttendanceModelStoreContainer"."HU_EMPLOYEE_FILES" DROP CONSTRAINT "FK_HE_HEF" CASCADE;
-
--- ALTER TABLE "AttendanceModelStoreContainer"."HU_EMPLOYEE_OTHER_INFO" DROP CONSTRAINT "FK_HE_HEO" CASCADE;
-
--- ALTER TABLE "AttendanceModelStoreContainer"."HU_EMPLOYEE_SALARY" DROP CONSTRAINT "FK_HE_HES" CASCADE;
-
--- ALTER TABLE "AttendanceModelStoreContainer"."HU_EMPLOYEE" DROP CONSTRAINT "FK_HUEMD_HUEM" CASCADE;
-
--- ALTER TABLE "AttendanceModelStoreContainer"."HU_ORGANIZATION" DROP CONSTRAINT "FK_HU_ORG_HU_ORG" CASCADE;
-
--- ALTER TABLE "AttendanceModelStoreContainer"."HU_ORG_TITLE" DROP CONSTRAINT "FK_HUTL_HUOT" CASCADE;
-
--- ALTER TABLE "AttendanceModelStoreContainer"."SE_USER_REPORT" DROP CONSTRAINT "FK_SE_USER_REPORT_SE_REPORT" CASCADE;
-
--- ALTER TABLE "AttendanceModelStoreContainer"."SE_USER_REPORT" DROP CONSTRAINT "FK_SE_USER_REPORT_SE_USER" CASCADE;
-
 -- --------------------------------------------------
 -- Dropping existing tables
 -- --------------------------------------------------
 
--- DROP TABLE "AttendanceModelStoreContainer"."OT_OTHER_LIST";
-
--- DROP TABLE "AttendanceModelStoreContainer"."OT_OTHER_LIST_GROUP";
-
--- DROP TABLE "AttendanceModelStoreContainer"."OT_OTHER_LIST_TYPE";
-
--- DROP TABLE "AttendanceModelStoreContainer"."SE_CHOSEN_ORG";
-
--- DROP TABLE "AttendanceModelStoreContainer"."AT_GSIGN";
-
--- DROP TABLE "AttendanceModelStoreContainer"."AT_SWIPE_DATA";
-
--- DROP TABLE "AttendanceModelStoreContainer"."AT_ORG_PERIOD";
-
--- DROP TABLE "AttendanceModelStoreContainer"."HU_EMPLOYEE";
-
--- DROP TABLE "AttendanceModelStoreContainer"."HU_CONTRACT";
-
--- DROP TABLE "AttendanceModelStoreContainer"."HU_EMPLOYEE_EDUCATION";
-
--- DROP TABLE "AttendanceModelStoreContainer"."HU_EMPLOYEE_FILES";
-
--- DROP TABLE "AttendanceModelStoreContainer"."HU_EMPLOYEE_HEALTH";
-
--- DROP TABLE "AttendanceModelStoreContainer"."HU_EMPLOYEE_OTHER_INFO";
-
--- DROP TABLE "AttendanceModelStoreContainer"."HU_EMPLOYEE_SALARY";
-
--- DROP TABLE "AttendanceModelStoreContainer"."HU_EMPLOYEE_TRAIN";
-
--- DROP TABLE "AttendanceModelStoreContainer"."AT_TIMESHEET_REGISTER";
-
--- DROP TABLE "AttendanceModelStoreContainer"."SE_APP_PROCESS";
-
--- DROP TABLE "AttendanceModelStoreContainer"."SE_APP_SETUP";
-
--- DROP TABLE "AttendanceModelStoreContainer"."SE_APP_SETUPEXT";
-
--- DROP TABLE "AttendanceModelStoreContainer"."SE_APP_TEMPLATE_DTL";
-
--- DROP TABLE "AttendanceModelStoreContainer"."SE_APP_TEMPLATE";
-
--- DROP TABLE "AttendanceModelStoreContainer"."HU_ORGANIZATION";
-
--- DROP TABLE "AttendanceModelStoreContainer"."HU_WORKING";
-
--- DROP TABLE "AttendanceModelStoreContainer"."AT_PORTAL_APP";
-
--- DROP TABLE "AttendanceModelStoreContainer"."AT_RGT";
-
--- DROP TABLE "AttendanceModelStoreContainer"."HU_ORG_TITLE";
-
--- DROP TABLE "AttendanceModelStoreContainer"."HU_TITLE";
-
--- DROP TABLE "AttendanceModelStoreContainer"."AT_WORKSIGN";
-
--- DROP TABLE "AttendanceModelStoreContainer"."AT_PORTAL_REG";
-
--- DROP TABLE "AttendanceModelStoreContainer"."HU_STAFF_RANK";
-
--- DROP TABLE "AttendanceModelStoreContainer"."AT_TIME_TIMESHEET_RICE";
-
--- DROP TABLE "AttendanceModelStoreContainer"."AT_TIME_TIMESHEET_OT";
-
--- DROP TABLE "AttendanceModelStoreContainer"."AT_DMVS";
-
--- DROP TABLE "AttendanceModelStoreContainer"."AT_HOLIDAY";
-
--- DROP TABLE "AttendanceModelStoreContainer"."AT_HOLIDAY_GENERAL";
-
--- DROP TABLE "AttendanceModelStoreContainer"."AT_HOLIDAY_OBJECT";
-
--- DROP TABLE "AttendanceModelStoreContainer"."AT_LATE_COMBACKOUT";
-
--- DROP TABLE "AttendanceModelStoreContainer"."AT_PERIOD";
-
--- DROP TABLE "AttendanceModelStoreContainer"."AT_SETUP_SPECIAL";
-
--- DROP TABLE "AttendanceModelStoreContainer"."AT_SIGNDEFAULT";
-
--- DROP TABLE "AttendanceModelStoreContainer"."AT_TIME_MANUAL";
-
--- DROP TABLE "AttendanceModelStoreContainer"."AT_TIME_RICE";
-
--- DROP TABLE "AttendanceModelStoreContainer"."AT_TIME_TIMESHEET_DAILY";
-
--- DROP TABLE "AttendanceModelStoreContainer"."AT_TIME_TIMESHEET_MACHINET";
-
--- DROP TABLE "AttendanceModelStoreContainer"."AT_DATA_INOUT";
-
--- DROP TABLE "AttendanceModelStoreContainer"."AT_FML";
-
--- DROP TABLE "AttendanceModelStoreContainer"."AT_TERMINALS";
-
--- DROP TABLE "AttendanceModelStoreContainer"."AT_ACTION_ORG_LOG";
-
--- DROP TABLE "AttendanceModelStoreContainer"."HU_EMPLOYEE_CV";
-
--- DROP TABLE "AttendanceModelStoreContainer"."SE_MAIL";
-
--- DROP TABLE "AttendanceModelStoreContainer"."AT_SETUP_TIME_EMP";
-
--- DROP TABLE "AttendanceModelStoreContainer"."AT_ENTITLEMENT";
-
--- DROP TABLE "AttendanceModelStoreContainer"."SE_EMPLOYEE_CHOSEN";
-
--- DROP TABLE "AttendanceModelStoreContainer"."AT_LIST_PARAM_SYSTEM";
-
--- DROP TABLE "AttendanceModelStoreContainer"."AT_REGISTER_OT";
-
--- DROP TABLE "AttendanceModelStoreContainer"."SE_USER";
-
--- DROP TABLE "AttendanceModelStoreContainer"."SE_REPORT";
-
--- DROP TABLE "AttendanceModelStoreContainer"."AT_COMPENSATORY";
-
--- DROP TABLE "AttendanceModelStoreContainer"."AT_ACTION_LOG";
-
--- DROP TABLE "AttendanceModelStoreContainer"."AT_DECLARE_ENTITLEMENT";
-
--- DROP TABLE "AttendanceModelStoreContainer"."AT_PROJECT";
-
--- DROP TABLE "AttendanceModelStoreContainer"."AT_PROJECT_TITLE";
-
--- DROP TABLE "AttendanceModelStoreContainer"."AT_PROJECT_EMP";
-
--- DROP TABLE "AttendanceModelStoreContainer"."AT_PROJECT_WORK";
-
--- DROP TABLE "AttendanceModelStoreContainer"."AT_PROJECT_ASSIGN";
-
--- DROP TABLE "AttendanceModelStoreContainer"."AT_TIMESHEET_OT_DTL";
-
--- DROP TABLE "AttendanceModelStoreContainer"."AT_TIME_TIMESHEET_MONTHLY";
-
--- DROP TABLE "AttendanceModelStoreContainer"."AT_PORTAL_REG_LIST";
-
--- DROP TABLE "AttendanceModelStoreContainer"."AT_TIMESHEET";
-
--- DROP TABLE "AttendanceModelStoreContainer"."AT_SHIFTCYCLE_EMP_DETAIL";
-
--- DROP TABLE "AttendanceModelStoreContainer"."AT_SETUP_ATT_EMP";
-
--- DROP TABLE "AttendanceModelStoreContainer"."AT_OT_REGISTRATION";
-
--- DROP TABLE "AttendanceModelStoreContainer"."AT_OFFSETTING_TIMEKEEPING";
-
--- DROP TABLE "AttendanceModelStoreContainer"."AT_OFFSETTING_TIMEKEEPING_EMP";
-
--- DROP TABLE "AttendanceModelStoreContainer"."HUV_AT_PORTAL";
-
--- DROP TABLE "AttendanceModelStoreContainer"."AT_SHIFTCYCLE";
-
--- DROP TABLE "AttendanceModelStoreContainer"."AT_SHIFTCYCLE_EMP";
-
--- DROP TABLE "AttendanceModelStoreContainer"."AT_SHIFTCYCLE_DETAIL";
-
--- DROP TABLE "AttendanceModelStoreContainer"."ATV_HOLIDAY_HOSE";
-
--- DROP TABLE "AttendanceModelStoreContainer"."HU_ANNUALLEAVE_PLANS";
-
--- DROP TABLE "AttendanceModelStoreContainer"."HU_CONTRACT_TYPE";
-
--- DROP TABLE "AttendanceModelStoreContainer"."PROCESS_APPROVED_STATUS";
-
--- DROP TABLE "AttendanceModelStoreContainer"."ATV_OFFSETTING";
-
--- DROP TABLE "AttendanceModelStoreContainer"."SE_USER_ORG_ACCESS";
-
--- DROP TABLE "AttendanceModelStoreContainer"."AT_SHIFT";
-
--- DROP TABLE "AttendanceModelStoreContainer"."AT_LEAVESHEET_DETAIL";
-
--- DROP TABLE "AttendanceModelStoreContainer"."AT_LEAVESHEET";
-
--- DROP TABLE "AttendanceModelStoreContainer"."AT_TIMESHEET_MACHINET_IMPORT";
-
--- DROP TABLE "AttendanceModelStoreContainer"."AT_TYPE_PROCESS";
-
--- DROP TABLE "AttendanceModelStoreContainer"."AT_TIME_MANUAL_RATE";
-
--- DROP TABLE "AttendanceModelStoreContainer"."SE_USER_REPORT";
+-- DROP TABLE "TNG_DEV"."AT_ENTITLEMENT";
 
 -- --------------------------------------------------
 -- Creating all tables
@@ -1463,104 +1259,6 @@ CREATE TABLE "dbo"."AT_SETUP_TIME_EMP" (
    "MODIFIED_LOG" NVARCHAR2(255) NULL
 );
 
--- Creating table 'AT_ENTITLEMENT'
-CREATE TABLE "dbo"."AT_ENTITLEMENT" (
-   "YEAR" NUMBER(38,0) NOT NULL,
-   "EMPLOYEE_ID" NUMBER(38,0) NOT NULL,
-   "WORKING_TIME_HAVE" NUMBER(38,0) NULL,
-   "BALANCE_WORKING_TIME" NUMBER(38,0) NULL,
-   "CAL_DATE" DATE NULL,
-   "CREATED_DATE" DATE NULL,
-   "CREATED_BY" NVARCHAR2(255) NULL,
-   "CREATED_LOG" NVARCHAR2(255) NULL,
-   "MODIFIED_DATE" DATE NULL,
-   "MODIFIED_BY" NVARCHAR2(255) NULL,
-   "MODIFIED_LOG" NVARCHAR2(255) NULL,
-   "ID" NUMBER(38,0) NOT NULL,
-   "PREV_HAVE" NUMBER(38,0) NULL,
-   "PREV_USED" NUMBER(38,0) NULL,
-   "EXPIREDATE" DATE NULL,
-   "CUR_HAVE" NUMBER(38,0) NULL,
-   "CUR_USED" NUMBER(38,0) NULL,
-   "CUR_HAVE1" NUMBER(38,0) NULL,
-   "CUR_HAVE2" NUMBER(38,0) NULL,
-   "CUR_HAVE3" NUMBER(38,0) NULL,
-   "CUR_HAVE4" NUMBER(38,0) NULL,
-   "CUR_HAVE5" NUMBER(38,0) NULL,
-   "CUR_HAVE6" NUMBER(38,0) NULL,
-   "CUR_HAVE7" NUMBER(38,0) NULL,
-   "CUR_HAVE8" NUMBER(38,0) NULL,
-   "CUR_HAVE9" NUMBER(38,0) NULL,
-   "CUR_HAVE10" NUMBER(38,0) NULL,
-   "CUR_HAVE11" NUMBER(38,0) NULL,
-   "CUR_HAVE12" NUMBER(38,0) NULL,
-   "CUR_USED1" NUMBER(38,0) NULL,
-   "CUR_USED2" NUMBER(38,0) NULL,
-   "CUR_USED3" NUMBER(38,0) NULL,
-   "CUR_USED4" NUMBER(38,0) NULL,
-   "CUR_USED5" NUMBER(38,0) NULL,
-   "CUR_USED6" NUMBER(38,0) NULL,
-   "CUR_USED7" NUMBER(38,0) NULL,
-   "CUR_USED8" NUMBER(38,0) NULL,
-   "CUR_USED9" NUMBER(38,0) NULL,
-   "CUR_USED10" NUMBER(38,0) NULL,
-   "CUR_USED11" NUMBER(38,0) NULL,
-   "CUR_USED12" NUMBER(38,0) NULL,
-   "AL_TO_CASH" NUMBER(38,0) NULL,
-   "REASON" NVARCHAR2(1023) NULL,
-   "EXPIREDATE_NB" DATE NULL,
-   "FIXADD" NUMBER(38,0) NULL,
-   "PAY_PREV_ENT" NUMBER(38,0) NULL,
-   "AL_T1" NUMBER(38,0) NULL,
-   "AL_T2" NUMBER(38,0) NULL,
-   "AL_T3" NUMBER(38,0) NULL,
-   "AL_T4" NUMBER(38,0) NULL,
-   "AL_T5" NUMBER(38,0) NULL,
-   "AL_T6" NUMBER(38,0) NULL,
-   "AL_T7" NUMBER(38,0) NULL,
-   "AL_T8" NUMBER(38,0) NULL,
-   "AL_T9" NUMBER(38,0) NULL,
-   "AL_T10" NUMBER(38,0) NULL,
-   "AL_T11" NUMBER(38,0) NULL,
-   "AL_T12" NUMBER(38,0) NULL,
-   "AL_ADD_T1" NUMBER(38,0) NULL,
-   "AL_ADD_T2" NUMBER(38,0) NULL,
-   "AL_ADD_T3" NUMBER(38,0) NULL,
-   "AL_ADD_T4" NUMBER(38,0) NULL,
-   "AL_ADD_T5" NUMBER(38,0) NULL,
-   "AL_ADD_T6" NUMBER(38,0) NULL,
-   "AL_ADD_T7" NUMBER(38,0) NULL,
-   "AL_ADD_T8" NUMBER(38,0) NULL,
-   "AL_ADD_T9" NUMBER(38,0) NULL,
-   "AL_ADD_T10" NUMBER(38,0) NULL,
-   "AL_ADD_T11" NUMBER(38,0) NULL,
-   "AL_ADD_T12" NUMBER(38,0) NULL,
-   "PREV_USED1" NUMBER(38,0) NULL,
-   "PREV_USED2" NUMBER(38,0) NULL,
-   "PREV_USED3" NUMBER(38,0) NULL,
-   "PREV_USED4" NUMBER(38,0) NULL,
-   "PREV_USED5" NUMBER(38,0) NULL,
-   "PREV_USED6" NUMBER(38,0) NULL,
-   "PREV_USED7" NUMBER(38,0) NULL,
-   "PREV_USED8" NUMBER(38,0) NULL,
-   "PREV_USED9" NUMBER(38,0) NULL,
-   "PREV_USED10" NUMBER(38,0) NULL,
-   "PREV_USED11" NUMBER(38,0) NULL,
-   "PREV_USED12" NUMBER(38,0) NULL,
-   "TOTAL_PAY_PREV_ENT" NUMBER(38,0) NULL,
-   "PERIOD_ID" NUMBER(38,0) NULL,
-   "TOTAL_HAVE" NUMBER(38,0) NULL,
-   "SENIORITYHAVE" NUMBER(38,0) NULL,
-   "TOTAL_HAVE1" NUMBER(38,0) NULL,
-   "PREVTOTAL_HAVE" NUMBER(38,0) NULL,
-   "TIME_OUTSIDE_COMPANY" NUMBER(38,0) NULL,
-   "TIME_SENIORITY" NUMBER(38,0) NULL,
-   "MONTH_SENIORITY_CHANGE" NUMBER(38,0) NULL,
-   "TIME_SENIORITY_AFTER_CHANGE" NUMBER(38,0) NULL,
-   "SENIORITY" NCLOB NULL,
-   "SENIORITY_EDIT" NCLOB NULL
-);
-
 -- Creating table 'SE_EMPLOYEE_CHOSEN'
 CREATE TABLE "dbo"."SE_EMPLOYEE_CHOSEN" (
    "EMPLOYEE_ID" NUMBER(38,0) NOT NULL,
@@ -2426,6 +2124,116 @@ CREATE TABLE "dbo"."AT_TIME_MANUAL_RATE" (
    "VALUE_RATE" NUMBER(38,0) NULL
 );
 
+-- Creating table 'AT_ENTITLEMENT'
+CREATE TABLE "dbo"."AT_ENTITLEMENT" (
+   "YEAR" NUMBER(38,0) NOT NULL,
+   "EMPLOYEE_ID" NUMBER(38,0) NOT NULL,
+   "WORKING_TIME_HAVE" NUMBER(38,0) NULL,
+   "BALANCE_WORKING_TIME" NUMBER(38,0) NULL,
+   "CAL_DATE" DATE NULL,
+   "CREATED_DATE" DATE NULL,
+   "CREATED_BY" NVARCHAR2(255) NULL,
+   "CREATED_LOG" NVARCHAR2(255) NULL,
+   "MODIFIED_DATE" DATE NULL,
+   "MODIFIED_BY" NVARCHAR2(255) NULL,
+   "MODIFIED_LOG" NVARCHAR2(255) NULL,
+   "ID" NUMBER(38,0) NOT NULL,
+   "PREV_HAVE" NUMBER(38,0) NULL,
+   "PREV_USED" NUMBER(38,0) NULL,
+   "EXPIREDATE" DATE NULL,
+   "CUR_HAVE" NUMBER(38,0) NULL,
+   "CUR_USED" NUMBER(38,0) NULL,
+   "FUND" NUMBER(38,0) NULL,
+   "SPECIAL" NUMBER(38,0) NULL,
+   "CUR_HAVE1" NUMBER(38,0) NULL,
+   "CUR_HAVE2" NUMBER(38,0) NULL,
+   "CUR_HAVE3" NUMBER(38,0) NULL,
+   "CUR_HAVE4" NUMBER(38,0) NULL,
+   "CUR_HAVE5" NUMBER(38,0) NULL,
+   "CUR_HAVE6" NUMBER(38,0) NULL,
+   "CUR_HAVE7" NUMBER(38,0) NULL,
+   "CUR_HAVE8" NUMBER(38,0) NULL,
+   "CUR_HAVE9" NUMBER(38,0) NULL,
+   "CUR_HAVE10" NUMBER(38,0) NULL,
+   "CUR_HAVE11" NUMBER(38,0) NULL,
+   "CUR_HAVE12" NUMBER(38,0) NULL,
+   "CUR_USED1" NUMBER(38,0) NULL,
+   "CUR_USED2" NUMBER(38,0) NULL,
+   "CUR_USED3" NUMBER(38,0) NULL,
+   "CUR_USED4" NUMBER(38,0) NULL,
+   "CUR_USED5" NUMBER(38,0) NULL,
+   "CUR_USED6" NUMBER(38,0) NULL,
+   "CUR_USED7" NUMBER(38,0) NULL,
+   "CUR_USED8" NUMBER(38,0) NULL,
+   "CUR_USED9" NUMBER(38,0) NULL,
+   "CUR_USED10" NUMBER(38,0) NULL,
+   "CUR_USED11" NUMBER(38,0) NULL,
+   "CUR_USED12" NUMBER(38,0) NULL,
+   "AL_TO_CASH" NUMBER(38,0) NULL,
+   "REASON" NVARCHAR2(1023) NULL,
+   "EXPIREDATE_NB" DATE NULL,
+   "FIXADD" NUMBER(38,0) NULL,
+   "PAY_PREV_ENT" NUMBER(38,0) NULL,
+   "AL_T1" NUMBER(38,0) NULL,
+   "AL_T2" NUMBER(38,0) NULL,
+   "AL_T3" NUMBER(38,0) NULL,
+   "AL_T4" NUMBER(38,0) NULL,
+   "AL_T5" NUMBER(38,0) NULL,
+   "AL_T6" NUMBER(38,0) NULL,
+   "AL_T7" NUMBER(38,0) NULL,
+   "AL_T8" NUMBER(38,0) NULL,
+   "AL_T9" NUMBER(38,0) NULL,
+   "AL_T10" NUMBER(38,0) NULL,
+   "AL_T11" NUMBER(38,0) NULL,
+   "AL_T12" NUMBER(38,0) NULL,
+   "AL_ADD_T1" NUMBER(38,0) NULL,
+   "AL_ADD_T2" NUMBER(38,0) NULL,
+   "AL_ADD_T3" NUMBER(38,0) NULL,
+   "AL_ADD_T4" NUMBER(38,0) NULL,
+   "AL_ADD_T5" NUMBER(38,0) NULL,
+   "AL_ADD_T6" NUMBER(38,0) NULL,
+   "AL_ADD_T7" NUMBER(38,0) NULL,
+   "AL_ADD_T8" NUMBER(38,0) NULL,
+   "AL_ADD_T9" NUMBER(38,0) NULL,
+   "AL_ADD_T10" NUMBER(38,0) NULL,
+   "AL_ADD_T11" NUMBER(38,0) NULL,
+   "AL_ADD_T12" NUMBER(38,0) NULL,
+   "PREV_USED1" NUMBER(38,0) NULL,
+   "PREV_USED2" NUMBER(38,0) NULL,
+   "PREV_USED3" NUMBER(38,0) NULL,
+   "PREV_USED4" NUMBER(38,0) NULL,
+   "PREV_USED5" NUMBER(38,0) NULL,
+   "PREV_USED6" NUMBER(38,0) NULL,
+   "PREV_USED7" NUMBER(38,0) NULL,
+   "PREV_USED8" NUMBER(38,0) NULL,
+   "PREV_USED9" NUMBER(38,0) NULL,
+   "PREV_USED10" NUMBER(38,0) NULL,
+   "PREV_USED11" NUMBER(38,0) NULL,
+   "PREV_USED12" NUMBER(38,0) NULL,
+   "TOTAL_PAY_PREV_ENT" NUMBER(38,0) NULL,
+   "PERIOD_ID" NUMBER(38,0) NULL,
+   "TOTAL_HAVE" NUMBER(38,0) NULL,
+   "SUB_PREV_ENT" NUMBER(38,0) NULL,
+   "BALANCE_WORKING_TIME_3B" NUMBER(38,0) NULL,
+   "MONTH" NUMBER(38,0) NULL,
+   "SENIORITYHAVE" NUMBER(38,0) NULL,
+   "TOTAL_HAVE1" NUMBER(38,0) NULL,
+   "PREVTOTAL_HAVE" NUMBER(38,0) NULL,
+   "TIME_OUTSIDE_COMPANY" NUMBER(38,0) NULL,
+   "TIME_SENIORITY" NUMBER(38,0) NULL,
+   "MONTH_SENIORITY_CHANGE" NUMBER(38,0) NULL,
+   "TIME_SENIORITY_AFTER_CHANGE" NUMBER(38,0) NULL,
+   "SENIORITY" NUMBER(38,0) NULL,
+   "SENIORITY_EDIT" NVARCHAR2(100) NULL,
+   "TOTAL_HAVE2" NUMBER(38,0) NULL,
+   "QP_YEAR" NUMBER(38,0) NULL,
+   "TN_YEAR" NUMBER(38,0) NULL,
+   "TN_DAY" NUMBER(38,0) NULL,
+   "QP_MONTH" NUMBER(38,0) NULL,
+   "TO_LEAVE_YEAR" NUMBER(38,0) NULL,
+   "ADJUST_MONTH_TN" NUMBER(38,0) NULL
+);
+
 -- Creating table 'SE_USER_REPORT'
 CREATE TABLE "dbo"."SE_USER_REPORT" (
    "SE_REPORT_ID" NUMBER(38,0) NOT NULL,
@@ -2845,14 +2653,6 @@ ADD CONSTRAINT "PK_AT_SETUP_TIME_EMP"
    VALIDATE;
 
 
--- Creating primary key on "ID"in table 'AT_ENTITLEMENT'
-ALTER TABLE "dbo"."AT_ENTITLEMENT"
-ADD CONSTRAINT "PK_AT_ENTITLEMENT"
-   PRIMARY KEY ("ID" )
-   ENABLE
-   VALIDATE;
-
-
 -- Creating primary key on "EMPLOYEE_ID", "USING_USER", "WORKINGDAY"in table 'SE_EMPLOYEE_CHOSEN'
 ALTER TABLE "dbo"."SE_EMPLOYEE_CHOSEN"
 ADD CONSTRAINT "PK_SE_EMPLOYEE_CHOSEN"
@@ -3152,6 +2952,14 @@ ADD CONSTRAINT "PK_AT_TYPE_PROCESS"
 -- Creating primary key on "ID"in table 'AT_TIME_MANUAL_RATE'
 ALTER TABLE "dbo"."AT_TIME_MANUAL_RATE"
 ADD CONSTRAINT "PK_AT_TIME_MANUAL_RATE"
+   PRIMARY KEY ("ID" )
+   ENABLE
+   VALIDATE;
+
+
+-- Creating primary key on "ID"in table 'AT_ENTITLEMENT'
+ALTER TABLE "dbo"."AT_ENTITLEMENT"
+ADD CONSTRAINT "PK_AT_ENTITLEMENT"
    PRIMARY KEY ("ID" )
    ENABLE
    VALIDATE;

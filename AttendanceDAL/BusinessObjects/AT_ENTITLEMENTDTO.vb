@@ -76,7 +76,24 @@
     Public Property AL_T10 As Decimal?
     Public Property AL_T11 As Decimal?
     Public Property AL_T12 As Decimal?
-    Public Property SENIORITY As String
+    Public Property SENIORITY As Decimal?
     Public Property SENIORITY_EDIT As String
     Public Property PREV_USED As Decimal?
+    Public Property QP_YEAR As Decimal?
+    Public Property QP_MONTH As Decimal?
+    Public Property ADJUST_MONTH_TN As Decimal?
+
+    Public Property PREV_USED1 As Decimal?
+    Public Property PREV_USED2 As Decimal?
+    Public Property PREV_USED3 As Decimal?
+    Public Property PREV_USED4 As Decimal?
+    Public Property PREV_USED5 As Decimal?
+    Public Property PREV_USED6 As Decimal?
+    Public Property PREV_USED7 As Decimal?
+    Public Property PREV_USED8 As Decimal?
+    Public Property PREV_USED9 As Decimal?
+    Public Property PREV_USED10 As Decimal?
+    Public Property PREV_USED11 As Decimal?
+    Public Property PREV_USED12 As Decimal?
+
 End Class
