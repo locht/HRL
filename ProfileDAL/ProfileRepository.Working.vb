@@ -393,6 +393,8 @@ Partial Class ProfileRepository
                         From direct In Context.HU_EMPLOYEE.Where(Function(f) f.ID = p.DIRECT_MANAGER).DefaultIfEmpty
                         From chosen In Context.SE_CHOSEN_ORG.Where(Function(f) f.ORG_ID = e.ORG_ID And
                                                            f.USERNAME = log.Username.ToUpper)
+                        From objectLabor In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.OBJECT_LABOR And
+                                                                        f.TYPE_ID = 6963).DefaultIfEmpty
             Select New WorkingDTO With {.ID = p.ID,
                                         .DECISION_NO = p.DECISION_NO,
                                         .DECISION_TYPE_ID = p.DECISION_TYPE_ID,
@@ -450,7 +452,9 @@ Partial Class ProfileRepository
                                         .DIRECT_MANAGER_NAME = direct.FULLNAME_VN,
                                         .OTHERSALARY2 = p.OTHERSALARY2,
                                         .OTHERSALARY1 = p.OTHERSALARY1,
-                                        .FACTORSALARY = p.FACTORSALARY
+                                        .FACTORSALARY = p.FACTORSALARY,
+                                        .OBJECT_LABOR = p.OBJECT_LABOR,
+                                        .OBJECT_LABORNAME = objectLabor.NAME_VN
                                         }
             Dim dateNow = Date.Now.Date
             If Not _filter.IS_TER Then
