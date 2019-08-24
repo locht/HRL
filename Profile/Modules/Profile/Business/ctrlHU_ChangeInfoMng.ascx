@@ -55,6 +55,7 @@
                     <ClientSettings EnableRowHoverStyle="true">
                         <Selecting AllowRowSelect="true" />
                         <ClientEvents OnRowDblClick="gridRowDblClick" />
+                        <Scrolling AllowScroll="true" UseStaticHeaders="true" FrozenColumnsCount="3" />
                     </ClientSettings>
                     <MasterTableView DataKeyNames="ID,STATUS_ID,DECISION_TYPE_ID,EMPLOYEE_CODE,DECISION_TYPE_NAME,CODE" ClientDataKeyNames="ID,EMPLOYEE_ID">
                         <Columns>
