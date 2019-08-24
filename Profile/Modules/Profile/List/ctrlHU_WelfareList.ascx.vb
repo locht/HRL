@@ -359,16 +359,17 @@ Public Class ctrlHU_WelfareList
             GetDataCombo()
             Dim dic As New Dictionary(Of String, Control)
             dic.Add("CODE", txtCode)
+            'dic.Add("ID_NAME", cboName)
             dic.Add("GENDER", lstbGender)
             dic.Add("CONTRACT_TYPE", lstCONTRACT_TYPE)
             dic.Add("SENIORITY", nmSENIORITY)
             dic.Add("MONEY", nmMONEY)
             dic.Add("CHILD_OLD_FROM", nmCHILD_OLD_FROM)
             dic.Add("CHILD_OLD_TO", nmCHILD_OLD_TO)
+            dic.Add("ID_NAME", cboName)
             dic.Add("IS_AUTO", chkIS_AUTO)
             dic.Add("START_DATE", dpSTART_DATE)
             dic.Add("END_DATE", dpEND_DATE)
-            'dic.Add("ID_NAME", cboName)
             'dic.Add("TITLE_GROUP_ID", cbGroupTitle)
             'dic.Add("IS_AUTO", chkIS_AUTO)
             'dic.Add("CHILD_OLD_FROM", nmCHILD_OLD_FROM)
@@ -414,19 +415,23 @@ Public Class ctrlHU_WelfareList
 
                     lstbGender.ClearChecked()
                     For Each chk As RadListBoxItem In lstbGender.Items
-
-                        If item.GENDER.Contains(chk.Value) Then
-                            chk.Checked = True
+                        If item.GENDER IsNot Nothing Then
+                            If item.GENDER.Contains(chk.Value) Then
+                                chk.Checked = True
+                            End If
                         End If
                     Next
 
                     lstCONTRACT_TYPE.ClearChecked()
                     For Each chk As RadListBoxItem In lstCONTRACT_TYPE.Items
-
-                        If item.CONTRACT_TYPE.Contains(chk.Value) Then
-                            chk.Checked = True
+                        If item.GENDER IsNot Nothing Then
+                            If item.CONTRACT_TYPE.Contains(chk.Value) Then
+                                chk.Checked = True
+                            End If
                         End If
                     Next
+                    orgid = item.ORG_ID
+                    isEdit = item.ID
 
                     'If item.GENDER = "565" Then
                     '    Dim gan As New RadListBoxItem("565", "565")
@@ -443,7 +448,6 @@ Public Class ctrlHU_WelfareList
                     '    line.Checked = True
                     'Next
 
-                    isEdit = item.ID
                     Dim item2 = (From p In WelfareLists Where p.ID = Decimal.Parse(slItem.GetDataKeyValue("ID").ToString) Select p).FirstOrDefault
                     If item2 IsNot Nothing Then
                         If item2.ID_NAME IsNot Nothing Then
@@ -453,7 +457,7 @@ Public Class ctrlHU_WelfareList
                             cboName.Text = " "
                         End If
                     End If
-                    orgid = Decimal.Parse(ctrlOrg.CurrentValue)
+
                     'Dim table As New DataTable
                     'table.Columns.Add("NAME_VN", GetType(String))
                     'table.Columns.Add("ID", GetType(Decimal))
@@ -626,10 +630,12 @@ Public Class ctrlHU_WelfareList
                         Dim strGenderName As New List(Of String)
                         Dim strWorkStatusID As New List(Of String)
                         Dim strWorkStatusName As New List(Of String)
-
-                        If (ctrlOrg.CurrentValue = 1) Then
-                            ShowMessage("Vui lòng chỉ thiết lập phúc lợi theo công ty", NotifyType.Error)
-                            Exit Sub
+                       
+                        If isEdit Is Nothing Then
+                            If (ctrlOrg.CurrentValue = 1) Then
+                                ShowMessage("Vui lòng chỉ thiết lập phúc lợi theo công ty", NotifyType.Error)
+                                Exit Sub
+                            End If
                         End If
 
                         For Each i As RadListBoxItem In lstbGender.CheckedItems

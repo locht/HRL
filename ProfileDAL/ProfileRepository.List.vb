@@ -709,6 +709,7 @@ Partial Class ProfileRepository
                                        .CONTRACT_TYPE = p.p.CONTRACT_TYPE,
                                        .CONTRACT_TYPE_NAME = p.p.CONTRACT_TYPE_NAME,
                                        .GENDER = p.p.GENDER,
+                                       .ORG_ID = p.p.ORG_ID,
                                        .TITLE_GROUP_ID = p.p.TITLE_GROUP_ID,
                                        .TITLE_GROUP_NAME = p.ot.NAME_VN,
                                        .GENDER_NAME = p.p.GENDER_NAME,
