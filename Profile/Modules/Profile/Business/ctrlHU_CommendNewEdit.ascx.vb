@@ -1085,7 +1085,7 @@ Public Class ctrlHU_CommendNewEdit
             Dim edit = CType(sender, RadComboBox)
             Dim item = CType(edit.NamingContainer, GridEditableItem)
             ' If Not IsNumeric(edit.SelectedValue) Then Exit Sub
-            Dim COMMEND_PAY = item.GetDataKeyValue("COMMEND_PAY")
+            'Dim COMMEND_PAY = item.GetDataKeyValue("COMMEND_PAY")
             Dim guidId = item.GetDataKeyValue("GUID_ID")
             For Each rows As CommendOrgDTO In List_Org
                 If rows.GUID_ID = guidId Then
@@ -1112,7 +1112,7 @@ Public Class ctrlHU_CommendNewEdit
             'Dim rnMoney As RadNumericTextBox = CType(item.FindControl("rnMONEY"), RadNumericTextBox)
             Dim MONEY = edit.Value
             Dim guidId = item.GetDataKeyValue("GUID_ID")
-            For Each row As CommendEmpDTO In Employee_Commend
+            For Each row As CommendOrgDTO In List_Org
                 If row.GUID_ID = guidId Then
                     row.MONEY = MONEY
                     Exit For
@@ -1346,7 +1346,7 @@ Public Class ctrlHU_CommendNewEdit
                 Case "DeleteOrg"
                     For Each i As GridDataItem In rgOrg.SelectedItems
                         Dim s = (From q In List_Org Where
-                                 q.ID = i.GetDataKeyValue("ID")).FirstOrDefault
+                                 q.GUID_ID = i.GetDataKeyValue("GUID_ID")).FirstOrDefault
                         List_Org.Remove(s)
                     Next
                     rgOrg.Rebind()
@@ -1441,9 +1441,9 @@ Public Class ctrlHU_CommendNewEdit
                 List_Org = New List(Of CommendOrgDTO)
             End If
 
-            Dim org As New CommendOrgDTO
+
             For Each org_Check As Common.CommonBusiness.OrganizationDTO In lstOrg
-                org = New CommendOrgDTO
+                Dim org As New CommendOrgDTO
                 org.GUID_ID = Guid.NewGuid.ToString
                 org.ID = org_Check.ID
                 org.ORG_ID = org_Check.ID
@@ -2816,7 +2816,7 @@ Public Class ctrlHU_CommendNewEdit
 
                 Dim dtData As DataTable = New DataTable()
                 Dim org_id = EditItem.GetDataKeyValue("ORG_ID")
-                Dim comment_id = IDSelect
+                Dim comment_id = EditItem.GetDataKeyValue("HU_COMMEND_ID")
                 Dim rowData As CommendOrgDTO = List_Org.Find(Function(p) p.HU_COMMEND_ID = comment_id And p.ORG_ID = org_id)
                 Try
                     If IsNumeric(rowData.COMMEND_PAY) Then

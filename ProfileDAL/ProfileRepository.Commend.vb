@@ -291,7 +291,7 @@ Partial Class ProfileRepository
                                                                .FORM_NAME = p.form.NAME_VN})
 
             lstEmp = lstEmp.OrderBy(Sorts)
-            Total = lstEmp.Count
+            Total += lstEmp.Count
             lstEmp = lstEmp.Skip(PageIndex * PageSize).Take(PageSize)
             Return lstEmp.ToList
         Catch ex As Exception
