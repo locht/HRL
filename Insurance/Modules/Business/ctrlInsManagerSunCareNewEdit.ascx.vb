@@ -153,6 +153,9 @@ Public Class ctrlInsManagerSunCareNewEdit
                                        ToolbarItem.Save,
                                        ToolbarItem.Cancel)
             CType(MainToolBar.Items(0), RadToolBarButton).CausesValidation = True
+
+            Me.MainToolBar.OnClientButtonClicking = "OnClientButtonClicking"
+            CType(Me.Page, AjaxPage).AjaxManager.ClientEvents.OnRequestStart = "onRequestStart"
             _mylog.WriteLog(_mylog._info, _classPath, method,
                                               CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
@@ -302,6 +305,12 @@ Public Class ctrlInsManagerSunCareNewEdit
             Select Case CType(e.Item, RadToolBarButton).CommandName
                 Case CommonMessage.TOOLBARITEM_SAVE
                     If Page.IsValid Then
+
+                        If dpEND_DATE.SelectedDate < rdThoiDiem.SelectedDate Then
+                            ShowMessage(Translate("Ngày cấp phải nhỏ hơn ngày hết hiệu lực"), Utilities.NotifyType.Warning)
+                            Exit Sub
+                        End If
+
                         If _Value.HasValue Then
                             objData = New INS_SUN_CARE_DTO
                             objData.ID = hidID.Value
@@ -351,11 +360,13 @@ Public Class ctrlInsManagerSunCareNewEdit
                         cboLEVEL.Enabled = False
                         nmCOST.Enabled = False
 
-
                         'Dim str As String = "getRadWindow().close('1');"
                         'ScriptManager.RegisterStartupScript(Me.Page, Me.Page.GetType, "clientButtonClicking", str, True)
-                        'POPUPTOLINK
-                        '' Response.Redirect("/Default.aspx?mid=Insurance&fid=ctrlInsManagerSunCare&group=Business")
+                        ''POPUPTOLINK()
+                        'Response.Redirect("/Default.aspx?mid=Insurance&fid=ctrlInsManagerSunCare&group=Business")
+
+                        CType(Me.MainToolBar.Items(0), RadToolBarButton).Enabled = False
+                        CType(Me.MainToolBar.Items(1), RadToolBarButton).Enabled = False
                     End If
                 Case CommonMessage.TOOLBARITEM_CANCEL
                     ''POPUPTOLINK_CANCEL
