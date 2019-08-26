@@ -126,6 +126,13 @@
 <asp:PlaceHolder ID="phFindSign" runat="server"></asp:PlaceHolder>
 <tlk:RadCodeBlock ID="RadCodeBlock1" runat="server">
     <script type="text/javascript">
+        var enableAjax = true;
+        function OnClientButtonClicking(sender, args) {
+            var item = args.get_item();
+            if (item.get_commandName() == "EXPORT") {
+                enableAjax = false;
+            }
+        }
 
         //mandatory for the RadWindow dialogs functionality
         function getRadWindow() {
@@ -142,6 +149,11 @@
                             getRadWindow().close(null);
                             args.set_cancel(true);
                         }
+        }
+
+        function onRequestStart(sender, eventArgs) {
+            eventArgs.set_enableAjax(enableAjax);
+            enableAjax = true;
         }
 
     </script>

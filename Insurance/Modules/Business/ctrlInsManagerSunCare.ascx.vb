@@ -406,7 +406,7 @@ Public Class ctrlInsManagerSunCare
                 _error = False
             End If
 
-            If Not IsDBNull(rows("THOIDIEMHUONG")) And rows("THOIDIEMHUONG") <> "" Then
+            If Not IsDBNull(rows("THOIDIEMHUONG")) AndAlso rows("THOIDIEMHUONG") <> "" Then
                 If CheckDate(rows("THOIDIEMHUONG")) = False Then
                     rows("THOIDIEMHUONG") = "NULL"
                     newRow("DISCIPTION") = newRow("DISCIPTION") + "Ngày cấp - Không đúng định dạng,"

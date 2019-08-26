@@ -1514,7 +1514,7 @@ Partial Public Class InsuranceRepository
                         From ot In Context.OT_OTHER_LIST.Where(Function(f) f.ID = s.LEVEL_ID).DefaultIfEmpty
                         From k In Context.SE_CHOSEN_ORG.Where(Function(f) e.ORG_ID = f.ORG_ID And f.USERNAME.ToUpper = log.Username.ToUpper)
                         Where e.FULLNAME_VN.EndsWith(Fillter) Or e.FULLNAME_VN.StartsWith(Fillter) Or e.FULLNAME_VN.Contains(Fillter) Or e.FULLNAME_VN = Fillter Or Fillter = ""
-                        Order By e.EMPLOYEE_CODE Ascending, s.START_DATE Ascending
+                        Order By e.EMPLOYEE_CODE Ascending, s.START_DATE Descending
             Dim lst = query.Select(Function(f) New INS_SUN_CARE_DTO With {
                                        .ID = f.s.ID,
                                        .EMPLOYEE_ID = f.s.EMPLOYEE_ID,
@@ -1586,7 +1586,7 @@ Partial Public Class InsuranceRepository
                 lst = lst.Where(Function(f) f.NOTE.ToLower().Contains(_filter.NOTE.ToLower()))
             End If
 
-            lst = lst.OrderBy(Sorts)
+            'lst = lst.OrderBy(Sorts)
             Total = lst.Count
             lst = lst.Skip(PageIndex * PageSize).Take(PageSize)
             Return lst.ToList

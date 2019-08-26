@@ -84,7 +84,6 @@
             <tr>
                  <td class="lb">
                     <asp:Label runat="server" ID="lbSignDate" Text="Ngày ký"></asp:Label>
-                     <span class="lbReq">*</span>
                 </td>
                 <td>
                     <tlk:RadDatePicker ID="rdSignDate" runat="server" TabIndex="6">
@@ -239,7 +238,7 @@
             <tr>
                 <td class="lb">
                     <asp:CheckBox ID="chkPhatTien" runat="server" Checked="false" CausesValidation="false" TextAlign="Right" AutoPostBack="true" />
-                    <asp:Label runat="server" ID="lbMoney" Text="Số tiền"></asp:Label>
+                    <asp:Label runat="server" ID="lbMoney" Text="Số tiền phạt"></asp:Label>
                 </td>
                 <td>
                     <tlk:RadNumericTextBox ID="rntxtMoney" runat="server" SkinID="Money" TabIndex="19" AutoPostBack="true">
@@ -254,7 +253,7 @@
                     <asp:Label runat="server" ID="lbIndemnifyMoney" Text="Tổng giá trị thiệt hại"></asp:Label>
                 </td>
                 <td>
-                    <tlk:RadNumericTextBox ID="rntxtIndemnifyMoney" runat="server" SkinID="Money" TabIndex="20">
+                    <tlk:RadNumericTextBox ID="rntxtIndemnifyMoney" runat="server" SkinID="Money" TabIndex="20" AutoPostBack="true">
                     </tlk:RadNumericTextBox>
                   <%--  <asp:CustomValidator ID="cvalIndemnifyTotal" runat="server" ErrorMessage="Tổng số tiền thiệt hại của nhân viên phải bằng số tiền bồi thường">
                     </asp:CustomValidator>--%>

@@ -420,6 +420,30 @@ Public Class ctrlHU_DisciplineNewEdit
                             ShowMessage(Translate("Bạn chưa chọn nhân viên"), NotifyType.Warning)
                             Exit Sub
                         End If
+
+                        Try
+                            Dim totalSumIndemMoney As Decimal = 0
+                            Dim totalAmountToPaid As Decimal = 0
+                            For Each item As GridDataItem In rgEmployee.Items
+                                Employee_Discipline(item.ItemIndex).INDEMNIFY_MONEY = CType(item("INDEMNIFY_MONEY").Controls(0), RadNumericTextBox).Value
+                                If Employee_Discipline(item.ItemIndex).INDEMNIFY_MONEY IsNot Nothing Then
+                                    totalSumIndemMoney += Employee_Discipline(item.ItemIndex).INDEMNIFY_MONEY
+                                End If
+                            Next
+                            If rnAmountToPaid.Value IsNot Nothing Then
+                                totalAmountToPaid += rnAmountToPaid.Value
+                            End If
+
+                            If (totalSumIndemMoney <> totalAmountToPaid) Then
+                                ShowMessage(Translate("Tổng số tiền bồi thường đang bị chênh lệch"), NotifyType.Warning)
+                                Exit Sub
+                            End If
+
+                        Catch ex As Exception
+                            _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
+                            Throw ex
+                        End Try
+
                         Try
                             objDiscipline.DISCIPLINE_LEVEL = Decimal.Parse(cboDisciplineLevel.SelectedValue)
                         Catch ex As Exception
@@ -1479,34 +1503,34 @@ Public Class ctrlHU_DisciplineNewEdit
     ''' <param name="source"></param>
     ''' <param name="args"></param>
     ''' <remarks></remarks>
-    Private Sub cusDecisionNo_ServerValidate(ByVal source As Object, ByVal args As System.Web.UI.WebControls.ServerValidateEventArgs) Handles cusDecisionNo.ServerValidate
+    'Private Sub cusDecisionNo_ServerValidate(ByVal source As Object, ByVal args As System.Web.UI.WebControls.ServerValidateEventArgs) Handles cusDecisionNo.ServerValidate
 
-        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
-        Try
-            Dim startTime As DateTime = DateTime.UtcNow
-            Select Case CurrentState
-                Case CommonMessage.STATE_NEW
-                    Using rep As New ProfileBusinessRepository
-                        args.IsValid = rep.ValidateDiscipline("EXIST_DECISION_NO",
-                                                            New DisciplineDTO With {
-                                                                .NO = txtDecisionNo.Text.Trim})
-                    End Using
-                Case CommonMessage.STATE_EDIT
-                    Using rep As New ProfileBusinessRepository
-                        args.IsValid = rep.ValidateDiscipline("EXIST_DECISION_NO",
-                                                            New DisciplineDTO With {
-                                                                .ID = hidID.Value,
-                                                                .NO = txtDecisionNo.Text.Trim})
-                    End Using
-                Case Else
-                    args.IsValid = True
-            End Select
-            _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
-        Catch ex As Exception
-            _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
-        End Try
+    '    Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+    '    Try
+    '        Dim startTime As DateTime = DateTime.UtcNow
+    '        Select Case CurrentState
+    '            Case CommonMessage.STATE_NEW
+    '                Using rep As New ProfileBusinessRepository
+    '                    args.IsValid = rep.ValidateDiscipline("EXIST_DECISION_NO",
+    '                                                        New DisciplineDTO With {
+    '                                                            .NO = txtDecisionNo.Text.Trim})
+    '                End Using
+    '            Case CommonMessage.STATE_EDIT
+    '                Using rep As New ProfileBusinessRepository
+    '                    args.IsValid = rep.ValidateDiscipline("EXIST_DECISION_NO",
+    '                                                        New DisciplineDTO With {
+    '                                                            .ID = hidID.Value,
+    '                                                            .NO = txtDecisionNo.Text.Trim})
+    '                End Using
+    '            Case Else
+    '                args.IsValid = True
+    '        End Select
+    '        _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
+    '    Catch ex As Exception
+    '        _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
+    '    End Try
 
-    End Sub
+    'End Sub
 
     ''' <summary>
     ''' cusStatus server validate
@@ -1545,7 +1569,7 @@ Public Class ctrlHU_DisciplineNewEdit
         End If
     End Sub
 
-    Private Sub rntxtMoney_TextChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles rntxtMoney.TextChanged, rntxtIndemnifyMoney.TextChanged
+    Private Sub rntxtMoney_TextChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles rntxtMoney.TextChanged, rntxtIndemnifyMoney.TextChanged, rdAmountPaidCash.TextChanged
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
         Try
             Dim startTime As DateTime = DateTime.UtcNow
@@ -1553,12 +1577,13 @@ Public Class ctrlHU_DisciplineNewEdit
             Dim intMoney As Decimal = 0
             Dim intIndemnifyMoney As Decimal = 0
             Dim intAmountPaidCash As Decimal = 0
-            Dim totalPaidIMoeny = 0
-            Dim totalAmountToPaid = 0
+            Dim totalPaidIMoeny As Decimal = 0
+            Dim totalAmountToPaid As Decimal = 0
+
             If rntxtMoney.Value IsNot Nothing Then
                 intMoney += rntxtMoney.Value
             End If
-            If rdAmountPaidCash.Value IsNot Nothing Then
+            If rntxtIndemnifyMoney.Value IsNot Nothing Then
                 intIndemnifyMoney += rntxtIndemnifyMoney.Value
             End If
 
@@ -1862,8 +1887,14 @@ Public Class ctrlHU_DisciplineNewEdit
             chkDeductFromSalary.Enabled = True
             EnableControlAll(True, rnAmountSalaryMonth, cboPeriod, rnAmountDeductedMonth, rnAmountInMonth)
         Else
+            chkDeductFromSalary.Checked = False
             chkDeductFromSalary.Enabled = False
-            EnableControlAll(False, rnAmountSalaryMonth, cboPeriod, rnAmountDeductedMonth, rnAmountInMonth)
+
+            rgEmployee.DataSource = Nothing
+            rgEmployee.Rebind()
+
+            EnableControlAll(False, rnAmountSalaryMonth, cboPeriod, rnAmountDeductedMonth, rnAmountInMonth, nmYear)
+            ClearControlValue(rnAmountSalaryMonth, nmYear, cboPeriod, rnAmountInMonth, rnAmountDeductedMonth)
         End If
     End Sub
 End Class
