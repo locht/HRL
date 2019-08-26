@@ -51,7 +51,7 @@
                         <asp:CheckBox ID="chkSummary" runat="server" />
                         </td>
                         <td class="lb">
-                            <%# Translate("Tổng hợp cả nhân viên được nhập dữ liệu từ Excel")%>
+                            <%# Translate("Tổng hợp mới lại toàn bộ dữ liệu")%>
                         </td>
                     </tr>
                     <tr>
