@@ -57,10 +57,13 @@ Partial Class ProfileRepository
                 Dim empId = query(i).EMPLOYEE_ID
                 Dim item = (From p In Context.HU_EMPLOYEE Where p.ID = empId).FirstOrDefault
                 If item IsNot Nothing Then
-                    item.WORK_STATUS = ProfileCommon.OT_WORK_STATUS.TERMINATE_ID
-                    item.TER_EFFECT_DATE = query(i).EFFECT_DATE
-                    item.TER_LAST_DATE = query(i).LAST_DATE
-                    item.EMP_STATUS = 6
+                    Dim Employeelist = (From p In Context.HU_EMPLOYEE Where item.EMPLOYEE_CODE = p.EMPLOYEE_CODE Select p).ToList
+                    For Each objEmployeeData As HU_EMPLOYEE In Employeelist
+                        objEmployeeData.WORK_STATUS = ProfileCommon.OT_WORK_STATUS.TERMINATE_ID
+                        objEmployeeData.TER_EFFECT_DATE = query(i).EFFECT_DATE
+                        objEmployeeData.TER_LAST_DATE = query(i).LAST_DATE
+                        objEmployeeData.EMP_STATUS = 6
+                    Next
                 End If
             Next
 

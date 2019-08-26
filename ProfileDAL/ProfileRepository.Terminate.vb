@@ -864,19 +864,24 @@ Partial Class ProfileRepository
     End Function
 
     Public Function ApproveTerminate(ByVal objTerminate As TerminateDTO, ByVal log As UserLog) As Boolean
-        Dim objEmployeeData As HU_EMPLOYEE
+        Dim objEmployeeData1 As HU_EMPLOYEE
         Try
             If Not objTerminate.STATUS_ID = ProfileCommon.DECISION_STATUS.APPROVE_ID Then
                 Return False
             End If
-            objEmployeeData = (From p In Context.HU_EMPLOYEE Where objTerminate.EMPLOYEE_ID = p.ID).FirstOrDefault
-            If objTerminate.EFFECT_DATE <= DateTime.Now Then
-                objEmployeeData.WORK_STATUS = ProfileCommon.OT_WORK_STATUS.TERMINATE_ID
-            Else
-                objEmployeeData.WORK_STATUS = ProfileCommon.OT_WORK_STATUS.WAIT_TERMINATE_ID
-            End If
-            objEmployeeData.TER_EFFECT_DATE = objTerminate.EFFECT_DATE
-            objEmployeeData.TER_LAST_DATE = objTerminate.LAST_DATE
+
+            objEmployeeData1 = (From p In Context.HU_EMPLOYEE Where objTerminate.EMPLOYEE_ID = p.ID).FirstOrDefault
+            Dim Employeelist = (From p In Context.HU_EMPLOYEE Where objEmployeeData1.EMPLOYEE_CODE = p.EMPLOYEE_CODE Select p).ToList
+
+            For Each objEmployeeData As HU_EMPLOYEE In Employeelist
+                If objTerminate.EFFECT_DATE <= DateTime.Now Then
+                    objEmployeeData.WORK_STATUS = ProfileCommon.OT_WORK_STATUS.TERMINATE_ID
+                Else
+                    objEmployeeData.WORK_STATUS = ProfileCommon.OT_WORK_STATUS.WAIT_TERMINATE_ID
+                End If
+                objEmployeeData.TER_EFFECT_DATE = objTerminate.EFFECT_DATE
+                objEmployeeData.TER_LAST_DATE = objTerminate.LAST_DATE
+            Next
             If log IsNot Nothing Then
                 Context.SaveChanges(log)
             Else
