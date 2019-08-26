@@ -311,6 +311,35 @@ Public Class ctrlTime_Timesheet_CTT
 #End Region
 
 #Region "Event"
+
+    ''' <lastupdate>16/08/2017</lastupdate>
+    ''' <summary>
+    ''' Event Yes, No tren popup message khi click nut: xoa, ap dung, ngung ap dung
+    ''' va Set trang thai cho form va update trang thai control 
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
+    ''' <remarks></remarks>
+    Private Sub ctrlMessageBox_ButtonCommand(ByVal sender As Object, ByVal e As MessageBoxEventArgs) Handles ctrlMessageBox.ButtonCommand
+        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+        Dim startTime As DateTime = DateTime.UtcNow
+
+        Try
+            If e.ActionName = CommonMessage.TOOLBARITEM_DELETE And e.ButtonID = MessageBoxButtonType.ButtonYes Then
+                CurrentState = CommonMessage.STATE_DELETE
+                UpdateControlState()
+            ElseIf e.ActionName = CommonMessage.TOOLBARTIEM_CALCULATE And e.ButtonID = MessageBoxButtonType.ButtonYes Then
+                CurrentState = CommonMessage.STATE_APPROVE
+                UpdateControlState()
+            End If
+
+            _myLog.WriteLog(_myLog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
+        Catch ex As Exception
+            _myLog.WriteLog(_myLog._error, _classPath, method, 0, ex, "")
+            'DisplayException(Me.ViewName, Me.ID, ex)
+        End Try
+    End Sub
+
     ''' <summary>
     ''' Event selectedNodeChange Sơ đồ tổ chức
     ''' </summary>
@@ -459,16 +488,22 @@ Public Class ctrlTime_Timesheet_CTT
                     Else
                         is_delete = 0
                     End If
-                    If getSE_CASE_CONFIG("ctrlTimeTimesheet_machine_case1") > 0 Then '  ctrlTime_Timesheet_CTT_case1
-                        rep.Init_TimeTImesheetMachines(_param, rdtungay.SelectedDate, rdDenngay.SelectedDate,
-                                                   Decimal.Parse(ctrlOrganization.CurrentValue), lsEmployee, is_delete, "ctrlTimeTimesheet_machine_case1") 'ctrlTime_Timesheet_CTT_case1
-                        Refresh("UpdateView")
+                    If is_delete = 1 Then
+                        ctrlMessageBox.MessageText = Translate("Tất cả dữ liệu sẽ được tạo mới lại bao gồm cả dữ liệu được nhập từ excel, Bạn có tiếp tục?")
+                        ctrlMessageBox.ActionName = CommonMessage.TOOLBARTIEM_CALCULATE
+                        ctrlMessageBox.DataBind()
+                        ctrlMessageBox.Show()
                     Else
-                        rep.Init_TimeTImesheetMachines(_param, rdtungay.SelectedDate, rdDenngay.SelectedDate,
-                                                   Decimal.Parse(ctrlOrganization.CurrentValue), lsEmployee, 0, "")
-                        Refresh("UpdateView")
+                        If getSE_CASE_CONFIG("ctrlTime_Timesheet_CTT") > 0 Then
+                            rep.Init_TimeTImesheetMachines(_param, rdtungay.SelectedDate, rdDenngay.SelectedDate,
+                                                       Decimal.Parse(ctrlOrganization.CurrentValue), lsEmployee, is_delete, "ctrlTime_Timesheet_CTT")
+                            Refresh("UpdateView")
+                        Else
+                            rep.Init_TimeTImesheetMachines(_param, rdtungay.SelectedDate, rdDenngay.SelectedDate,
+                                                       Decimal.Parse(ctrlOrganization.CurrentValue), lsEmployee, is_delete, "ctrlTime_Timesheet_CTT")
+                            Refresh("UpdateView")
+                        End If
                     End If
-
                 Case TOOLBARITEM_DELETE
                     If rep.IS_PERIODSTATUS(_param) = False Then
                         ShowMessage(Translate("Kỳ công đã đóng, bạn không thể thực hiện thao tác này"), NotifyType.Error)
@@ -1073,6 +1108,42 @@ Public Class ctrlTime_Timesheet_CTT
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
         Dim startTime As DateTime = DateTime.UtcNow
         Try
+            Select Case CurrentState
+                Case CommonMessage.STATE_APPROVE
+                    Dim lsEmployee As New List(Of Decimal?)
+                    Dim employee_id As Decimal?
+                    For Each items As GridDataItem In rgTimeTimesheet_cct.MasterTableView.GetSelectedItems()
+                        Dim item = Decimal.Parse(items.GetDataKeyValue("EMPLOYEE_ID"))
+                        employee_id = Decimal.Parse(item)
+                        lsEmployee.Add(employee_id)
+                    Next
+                    Dim _param = New ParamDTO With {.ORG_ID = Decimal.Parse(ctrlOrganization.CurrentValue),
+                                                    .PERIOD_ID = Decimal.Parse(IIf(cboPeriod.SelectedValue = "", -1, cboPeriod.SelectedValue)),
+                                                    .IS_DISSOLVE = ctrlOrganization.IsDissolve}
+                    Dim is_delete As Decimal = 0
+
+                    If chkSummary.Checked Then
+                        is_delete = 1
+                    Else
+                        is_delete = 0
+                    End If
+                    If is_delete = 1 Then
+                        ctrlMessageBox.MessageText = Translate(CommonMessage.CM_CTRLPA_FORMULA_MESSAGE_BOX_CONFIRM)
+                        ctrlMessageBox.ActionName = CommonMessage.TOOLBARTIEM_CALCULATE
+                        ctrlMessageBox.DataBind()
+                        ctrlMessageBox.Show()
+                    End If
+                    If getSE_CASE_CONFIG("ctrlTimeTimesheet_machine_case1") > 0 Then
+                        rep.Init_TimeTImesheetMachines(_param, rdtungay.SelectedDate, rdDenngay.SelectedDate,
+                                                   Decimal.Parse(ctrlOrganization.CurrentValue), lsEmployee, is_delete, "ctrlTimeTimesheet_machine_case1")
+                        Refresh("UpdateView")
+                    Else
+                        rep.Init_TimeTImesheetMachines(_param, rdtungay.SelectedDate, rdDenngay.SelectedDate,
+                                                   Decimal.Parse(ctrlOrganization.CurrentValue), lsEmployee, 0, "")
+                        Refresh("UpdateView")
+                    End If
+                    Return
+            End Select
             phPopup.Controls.Clear()
             Select Case isLoadPopup
                 Case 1

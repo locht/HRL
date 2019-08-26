@@ -469,23 +469,46 @@ Partial Public Class AttendanceRepository
                 Dim Period = (From w In Context.AT_PERIOD Where w.START_DATE.Value.Year = p_fromdate.Year And w.START_DATE.Value.Month = p_fromdate.Month).FirstOrDefault
                 obj.PERIOD_ID = Period.ID
                 LOG_AT(_param, log, lstEmployee, "TỔNG HỢP BẢNG CÔNG GỐC", obj, P_ORG_ID)
-                If codecase = "ctrlTimeTimesheet_machine_case1" Then
-                    cls.ExecuteStore("PKG_ATTENDANCE_BUSINESS.CAL_TIME_TIMESHEET_HOSE",
+                Select Case codecase
+                    Case "ctrlTime_Timesheet_CTT"
+                        cls.ExecuteStore("PKG_ATTENDANCE_BUSINESS.CAL_TIMESHEET_DAILY",
+                                             New With {.P_USERNAME = log.Username.ToUpper,
+                                                       .P_ORG_ID = P_ORG_ID,
+                                                       .P_PERIOD_ID = Period.ID,
+                                                       .P_ISDISSOLVE = _param.IS_DISSOLVE,
+                                                       .P_DELETE_ALL = p_delAll})
+                    Case "ctrlTimeTimesheet_machine_case1"
+                        cls.ExecuteStore("PKG_ATTENDANCE_BUSINESS.CAL_TIME_TIMESHEET_HOSE",
                                                New With {.P_USERNAME = log.Username.ToUpper,
                                                          .P_ORG_ID = P_ORG_ID,
                                                          .P_PERIOD_ID = Period.ID,
                                                          .P_ISDISSOLVE = _param.IS_DISSOLVE,
                                                          .P_DELETE_ALL = p_delAll})
-                Else
-                    cls.ExecuteStore("PKG_ATTENDANCE_BUSINESS.CAL_TIME_TIMESHEET_ALL",
-                                               New With {.P_USERNAME = log.Username.ToUpper,
-                                                         .P_ORG_ID = P_ORG_ID,
-                                                         .P_PERIOD_ID = Period.ID,
-                                                         .P_ISDISSOLVE = _param.IS_DISSOLVE,
-                                                         .P_DELETE_ALL = p_delAll})
-                End If
-                Return True
+                    Case "ctrlTimeTimesheet_machine_caseALL"
+                        cls.ExecuteStore("PKG_ATTENDANCE_BUSINESS.CAL_TIME_TIMESHEET_ALL",
+                                              New With {.P_USERNAME = log.Username.ToUpper,
+                                                        .P_ORG_ID = P_ORG_ID,
+                                                        .P_PERIOD_ID = Period.ID,
+                                                        .P_ISDISSOLVE = _param.IS_DISSOLVE,
+                                                        .P_DELETE_ALL = p_delAll})
 
+                End Select
+                'If codecase = "ctrlTimeTimesheet_machine_case1" Then
+                '    cls.ExecuteStore("PKG_ATTENDANCE_BUSINESS.CAL_TIME_TIMESHEET_HOSE",
+                '                               New With {.P_USERNAME = log.Username.ToUpper,
+                '                                         .P_ORG_ID = P_ORG_ID,
+                '                                         .P_PERIOD_ID = Period.ID,
+                '                                         .P_ISDISSOLVE = _param.IS_DISSOLVE,
+                '                                         .P_DELETE_ALL = p_delAll})
+                'Else
+                '    cls.ExecuteStore("PKG_ATTENDANCE_BUSINESS.CAL_TIME_TIMESHEET_ALL",
+                '                               New With {.P_USERNAME = log.Username.ToUpper,
+                '                                         .P_ORG_ID = P_ORG_ID,
+                '                                         .P_PERIOD_ID = Period.ID,
+                '                                         .P_ISDISSOLVE = _param.IS_DISSOLVE,
+                '                                         .P_DELETE_ALL = p_delAll})
+                'End If
+                Return True
             End Using
         Catch ex As Exception
             WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iTime")
