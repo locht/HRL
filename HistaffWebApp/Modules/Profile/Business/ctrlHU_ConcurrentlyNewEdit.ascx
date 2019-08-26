@@ -139,12 +139,9 @@
                             </td>
                             <td>
                                 <div>
-                                    <tlk:RadComboBox ID="cboUpload" runat="server" SkinID="LoadDemand" EnableCheckAllItemsCheckBox="true"
-                                        CheckBoxes="true" DropDownAutoWidth="Enabled">
-                                    </tlk:RadComboBox>
-                                    <tlk:RadTextBox ID="txtUploadFile" runat="server" Visible="false">
+                                    <tlk:RadTextBox ID="txtUploadFile" runat="server" ReadOnly="true">
                                     </tlk:RadTextBox>
-                                    
+                                    <tlk:RadTextBox ID="txtUploadFile_Link" runat="server" Visible="false"></tlk:RadTextBox>
                                 </div>
                             </td>
                             <td>
@@ -348,12 +345,10 @@
                             </td>
                             <td>
                                 <div>
-                                    <tlk:RadComboBox ID="cboUpload1" runat="server" SkinID="LoadDemand" EnableCheckAllItemsCheckBox="true"
-                                        CheckBoxes="true" DropDownAutoWidth="Enabled">
-                                    </tlk:RadComboBox>
-                                    <tlk:RadTextBox ID="txtUploadFile1" runat="server" Visible="false">
+                                    <tlk:RadTextBox ID="txtUploadFile1" runat="server" ReadOnly="true">
                                     </tlk:RadTextBox>
-                                   
+                                   <tlk:RadTextBox ID="txtUploadFile1_Link" runat="server" Visible="false" >
+                                    </tlk:RadTextBox>
                                 </div>
                             </td>
                             <td> <tlk:RadButton Width="35px" runat="server" ID="btnUploadFile1" Text="<%$ Translate: Đăng %>"
@@ -392,7 +387,6 @@
 <asp:PlaceHolder ID="phFindSignStop2" runat="server"></asp:PlaceHolder>
 <asp:PlaceHolder ID="phFindEmployeeGoc" runat="server"></asp:PlaceHolder>
 <Common:ctrlUpload ID="ctrlUpload1" runat="server" />
-<Common:ctrlUpload ID="ctrlUpload2" runat="server" />
 <Common:ctrlMessageBox ID="ctrlMessageBox" runat="server" />
 <tlk:RadCodeBlock ID="RadCodeBlock1" runat="server">
     <script type="text/javascript">

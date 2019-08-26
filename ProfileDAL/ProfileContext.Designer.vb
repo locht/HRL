@@ -18,7 +18,7 @@ Imports System.Runtime.Serialization
 Imports System.Xml.Serialization
 
 
-<Assembly: EdmSchemaAttribute("a0f96929-4071-40d7-8121-0701923baa9a")>
+<Assembly: EdmSchemaAttribute("d0eafe17-da19-4c33-b187-a405c89f674c")>
 #Region "EDM Relationship Metadata"
 <Assembly: EdmRelationshipAttribute("ProfileModel", "FK_HU_NAT_HU_PRO", "HU_NATION", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_NATION), "HU_PROVINCE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_PROVINCE), True)>
 <Assembly: EdmRelationshipAttribute("ProfileModel", "FK_HU_PRO_HU_DIS", "HU_PROVINCE", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_PROVINCE), "HU_DISTRICT", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_DISTRICT), True)>
@@ -17341,6 +17341,56 @@ Public Partial Class HU_CONCURRENTLY
     End Sub
 
     Private Partial Sub OnIS_CHUYENChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property ATTACH_FOLDER_BYTE() As Global.System.String
+        Get
+            Return _ATTACH_FOLDER_BYTE
+        End Get
+        Set
+            OnATTACH_FOLDER_BYTEChanging(value)
+            ReportPropertyChanging("ATTACH_FOLDER_BYTE")
+            _ATTACH_FOLDER_BYTE = StructuralObject.SetValidValue(value, true)
+            ReportPropertyChanged("ATTACH_FOLDER_BYTE")
+            OnATTACH_FOLDER_BYTEChanged()
+        End Set
+    End Property
+
+    Private _ATTACH_FOLDER_BYTE As Global.System.String
+    Private Partial Sub OnATTACH_FOLDER_BYTEChanging(value As Global.System.String)
+    End Sub
+
+    Private Partial Sub OnATTACH_FOLDER_BYTEChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property ATTACH_FOLDER_BYTE1() As Global.System.String
+        Get
+            Return _ATTACH_FOLDER_BYTE1
+        End Get
+        Set
+            OnATTACH_FOLDER_BYTE1Changing(value)
+            ReportPropertyChanging("ATTACH_FOLDER_BYTE1")
+            _ATTACH_FOLDER_BYTE1 = StructuralObject.SetValidValue(value, true)
+            ReportPropertyChanged("ATTACH_FOLDER_BYTE1")
+            OnATTACH_FOLDER_BYTE1Changed()
+        End Set
+    End Property
+
+    Private _ATTACH_FOLDER_BYTE1 As Global.System.String
+    Private Partial Sub OnATTACH_FOLDER_BYTE1Changing(value As Global.System.String)
+    End Sub
+
+    Private Partial Sub OnATTACH_FOLDER_BYTE1Changed()
     End Sub
 
     #End Region

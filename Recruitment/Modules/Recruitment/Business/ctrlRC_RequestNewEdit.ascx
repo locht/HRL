@@ -431,6 +431,11 @@
 
         }
 
+        function onRequestStart(sender, eventArgs) {
+            eventArgs.set_enableAjax(enableAjax);
+            enableAjax = true;
+        }
+
         function rbtClicked(sender, eventArgs) {
             enableAjax = false;
         }

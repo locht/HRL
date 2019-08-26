@@ -2969,6 +2969,8 @@ Public Class ProfileRepository
                                                      .P_IS_ALLOW = concurrently.IS_ALLOW,
                                                      .P_FILE_BYTE = concurrently.FILE_BYTE,
                                                      .P_FILE_BYTE1 = concurrently.FILE_BYTE1,
+                                                     .P_ATTACH_FOLDER_BYTE = concurrently.ATTACH_FOLDER_BYTE,
+                                                     .P_ATTACH_FOLDER_BYTE1 = concurrently.ATTACH_FOLDER_BYTE1,
                                                      .P_IS_CHUYEN = concurrently.IS_CHUYEN,
                                                      .P_OUT = cls.OUT_CURSOR})
 
@@ -3015,6 +3017,8 @@ Public Class ProfileRepository
                                                     .P_IS_ALLOW = concurrently.IS_ALLOW,
                                                     .P_FILE_BYTE = concurrently.FILE_BYTE,
                                                     .P_FILE_BYTE1 = concurrently.FILE_BYTE1,
+                                                    .P_ATTACH_FOLDER_BYTE = concurrently.ATTACH_FOLDER_BYTE,
+                                                    .P_ATTACH_FOLDER_BYTE1 = concurrently.ATTACH_FOLDER_BYTE1,
                                                     .P_IS_CHUYEN = concurrently.IS_CHUYEN,
                                                     .P_OUT = cls.OUT_CURSOR})
 

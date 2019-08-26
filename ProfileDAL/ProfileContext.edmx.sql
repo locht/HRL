@@ -1,7 +1,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for Oracle database
 -- --------------------------------------------------
--- Date Created: 26-Aug-19 9:10:44 AM
+-- Date Created: 26-Aug-19 10:52:16 AM
 -- Generated from EDMX file: E:\PROJECT\MyTNG\ProfileDAL\ProfileContext.edmx
 -- --------------------------------------------------
 
@@ -3560,7 +3560,9 @@ CREATE TABLE "dbo"."HU_CONCURRENTLY" (
    "IS_ALLOW" NUMBER(5,0) NULL,
    "FILE_BYTE" NVARCHAR2(1000) NULL,
    "FILE_BYTE1" NVARCHAR2(1000) NULL,
-   "IS_CHUYEN" NUMBER(5,0) NULL
+   "IS_CHUYEN" NUMBER(5,0) NULL,
+   "ATTACH_FOLDER_BYTE" NVARCHAR2(1023) NULL,
+   "ATTACH_FOLDER_BYTE1" NCLOB NULL
 );
 
 -- Creating table 'HU_CERTIFICATE'

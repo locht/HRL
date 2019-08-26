@@ -3619,6 +3619,8 @@
             <Property Name="FILE_BYTE" Type="nvarchar2" Nullable="true" MaxLength="1000" />
             <Property Name="FILE_BYTE1" Type="nvarchar2" Nullable="true" MaxLength="1000" />
             <Property Name="IS_CHUYEN" Type="number" Nullable="true" Precision="5" />
+            <Property Name="ATTACH_FOLDER_BYTE" Type="nvarchar2" Nullable="true" MaxLength="1023" />
+            <Property Name="ATTACH_FOLDER_BYTE1" Type="nclob" Nullable="true" />
         </EntityType>
         <EntityType Name="HU_CERTIFICATE">
             <Key>
@@ -8162,6 +8164,8 @@
           <Property Type="String" Name="FILE_BYTE" MaxLength="1000" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="FILE_BYTE1" MaxLength="1000" FixedLength="false" Unicode="true" />
           <Property Type="Int16" Name="IS_CHUYEN" />
+          <Property Type="String" Name="ATTACH_FOLDER_BYTE" MaxLength="1023" />
+          <Property Type="String" Name="ATTACH_FOLDER_BYTE1" MaxLength="2013" />
         </EntityType>
         <EntityType Name="HU_CERTIFICATE">
           <Key>
@@ -11798,6 +11802,8 @@
                     <ScalarProperty Name="FILE_BYTE" ColumnName="FILE_BYTE" />
                     <ScalarProperty Name="FILE_BYTE1" ColumnName="FILE_BYTE1" />
                     <ScalarProperty Name="IS_CHUYEN" ColumnName="IS_CHUYEN" />
+                    <ScalarProperty Name="ATTACH_FOLDER_BYTE" ColumnName="ATTACH_FOLDER_BYTE" />
+                    <ScalarProperty Name="ATTACH_FOLDER_BYTE1" ColumnName="ATTACH_FOLDER_BYTE1" />
                 </MappingFragment>
             </EntityTypeMapping>
         </EntitySetMapping>
@@ -12239,8 +12245,8 @@
         <EntityTypeShape EntityType="ProfileModel.HU_COMMEND" Width="4.25" PointX="10.75" PointY="29.375" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="ProfileModel.TR_CERTIFICATE" Width="1.5" PointX="15.375" PointY="29.25" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="ProfileModel.TR_COURSE" Width="1.5" PointX="17.625" PointY="28" Height="0.4" IsExpanded="false" />
-        <EntityTypeShape EntityType="ProfileModel.TR_PROGRAM" Width="1.5" PointX="19.375" PointY="26.75" Height="0.4" IsExpanded="false" />
-        <EntityTypeShape EntityType="ProfileModel.TR_PROGRAM_COMMIT" Width="1.5" PointX="21.375" PointY="26.75" Height="0.4" IsExpanded="false" />
+        <EntityTypeShape EntityType="ProfileModel.TR_PROGRAM" Width="1.5" PointX="19.5" PointY="25.75" Height="0.4" IsExpanded="false" />
+        <EntityTypeShape EntityType="ProfileModel.TR_PROGRAM_COMMIT" Width="1.5" PointX="21.375" PointY="25.75" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="ProfileModel.TR_PROGRAM_GROUP" Width="1.5" PointX="27.375" PointY="0.75" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="ProfileModel.TR_PROGRAM_RESULT" Width="1.5" PointX="5.375" PointY="27.75" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="ProfileModel.TR_REQUEST" Width="1.5" PointX="27.375" PointY="10.75" Height="0.4" IsExpanded="false" />
@@ -12290,8 +12296,8 @@
         <EntityTypeShape EntityType="ProfileModel.HUV_TERMINATE_CURRENT" Width="1.5" PointX="35.375" PointY="25.25" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="ProfileModel.HU_TRANSFER_TERMINATE" Width="1.5" PointX="38.25" PointY="28.625" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="ProfileModel.HU_DEBT" Width="1.5" PointX="41.5" PointY="28.75" Height="0.4" IsExpanded="false" />
-        <EntityTypeShape EntityType="ProfileModel.HU_LOCATION" Width="1.75" PointX="23.5" PointY="26.75" Height="8.9031380208333317" IsExpanded="true" />
-        <EntityTypeShape EntityType="ProfileModel.HU_CONCURRENTLY" Width="1.5" PointX="17.375" PointY="29.75" Height="0.4" IsExpanded="false" />
+        <EntityTypeShape EntityType="ProfileModel.HU_LOCATION" Width="1.75" PointX="23.5" PointY="26.75" Height="0.4" IsExpanded="false" />
+        <EntityTypeShape EntityType="ProfileModel.HU_CONCURRENTLY" Width="1.875" PointX="21.25" PointY="30.375" Height="9.4800423177083317" IsExpanded="true" />
         <EntityTypeShape EntityType="ProfileModel.HU_CERTIFICATE" Width="1.5" PointX="19.375" PointY="30.375" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="ProfileModel.HU_CERTIFICATE_EDIT" Width="3.125" PointX="9.375" PointY="31.375" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="ProfileModel.HU_SIGNER" Width="1.5" PointX="30" PointY="7.25" Height="0.4" IsExpanded="false" />

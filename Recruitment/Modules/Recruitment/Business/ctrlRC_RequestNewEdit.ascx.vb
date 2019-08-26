@@ -5,6 +5,7 @@ Imports Telerik.Web.UI
 Imports Framework.UI.Utilities
 Imports HistaffFrameworkPublic
 Imports Profile.ProfileBusiness
+Imports Ionic.Crc
 
 Public Class ctrlRC_RequestNewEdit
     Inherits CommonView
@@ -50,6 +51,15 @@ Public Class ctrlRC_RequestNewEdit
         End Set
     End Property
 
+    Property Down_File As String
+        Get
+            Return ViewState(Me.ID & "_Down_File")
+        End Get
+        Set(ByVal value As String)
+            ViewState(Me.ID & "_Down_File") = value
+        End Set
+    End Property
+
 #End Region
 
 #Region "Page"
@@ -86,6 +96,8 @@ Public Class ctrlRC_RequestNewEdit
             CType(MainToolBar.Items(0), RadToolBarButton).CausesValidation = True
             CType(MainToolBar.Items(3), RadToolBarButton).Enabled = True
             CType(MainToolBar.Items(3), RadToolBarButton).Text = "Xuất tờ trình"
+            Me.MainToolBar.OnClientButtonClicking = "clientButtonClicking"
+            CType(Me.Page, AjaxPage).AjaxManager.ClientEvents.OnRequestStart = "onRequestStart"
         Catch ex As Exception
             DisplayException(Me.ViewName, Me.ID, ex)
         End Try
@@ -235,11 +247,13 @@ Public Class ctrlRC_RequestNewEdit
                     If obj.GENDER_PRIORITY IsNot Nothing Then
                         cboGenderPriority.SelectedValue = obj.GENDER_PRIORITY
                     End If
-                    chkIsOver.Checked = obj.IS_OVER_LIMIT
-                    chkIsSupport.Checked = obj.IS_SUPPORT
+                    chkIsOver.Checked = If(obj.IS_OVER_LIMIT Is Nothing, False, obj.IS_OVER_LIMIT)
+                    chkIsSupport.Checked = If(obj.IS_SUPPORT Is Nothing, False, obj.IS_SUPPORT)
                     txtForeignAbility.Text = obj.FOREIGN_ABILITY
                     txtComputerAppLevel.Text = obj.COMPUTER_APP_LEVEL
-                    txtUpload.Text = obj.UPLOAD_FILE
+
+                    txtUpload.Text = obj.FILE_NAME
+                    txtUploadFile.Text = obj.UPLOAD_FILE
 
                     txtDescription.Text = obj.DESCRIPTION
                     txtRemark.Text = obj.REMARK
@@ -328,7 +342,9 @@ Public Class ctrlRC_RequestNewEdit
                             obj.GENDER_PRIORITY = cboGenderPriority.SelectedValue
                         End If
                         obj.RECRUIT_NUMBER = rntxtRecruitNumber.Value
-                        obj.UPLOAD_FILE = txtUpload.Text
+
+                        obj.FILE_NAME = txtUpload.Text.Trim
+                        obj.UPLOAD_FILE = txtUploadFile.Text.Trim
 
                         obj.DESCRIPTION = txtDescription.Text
                         obj.EXPERIENCE_NUMBER = rntxtExperienceNumber.Value
@@ -421,7 +437,6 @@ Public Class ctrlRC_RequestNewEdit
 
     End Sub
 
-
     Private Sub ctrlFindEmployeePopup_EmployeeSelected(ByVal sender As Object, ByVal e As System.EventArgs) Handles ctrlFindEmployeePopup.EmployeeSelected
         Dim lstCommonEmployee As New List(Of CommonBusiness.EmployeePopupFindDTO)
         Dim rep As New RecruitmentRepository
@@ -440,7 +455,6 @@ Public Class ctrlRC_RequestNewEdit
         End Try
 
     End Sub
-
 
     Private Sub ctrlFindOrgPopup_OrganizationSelected(ByVal sender As Object, ByVal e As Common.OrganizationSelectedEventArgs) Handles ctrlFindOrgPopup.OrganizationSelected
         Try
@@ -463,6 +477,128 @@ Public Class ctrlRC_RequestNewEdit
 
     Private Sub ctrlFindPopup_CancelClicked(ByVal sender As Object, ByVal e As System.EventArgs) Handles ctrlFindEmployeePopup.CancelClicked, ctrlFindOrgPopup.CancelClicked
         isLoadPopup = 0
+    End Sub
+
+    Private Sub btnUploadFileDescription_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnUploadFileDescription.Click
+        ctrlUpload1.Show()
+    End Sub
+
+    Private Sub btnDeleteFile_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnDeleteFile.Click
+        Dim sPath As String = "~/ReportTemplates//" & "Recruitment" & "/" & "Upload/" & hddFile.Value
+        If System.IO.File.Exists(MapPath(sPath)) Then
+            System.IO.File.Delete(MapPath(sPath))
+            hddFile.Value = ""
+            hypFile.Text = ""
+            hypFile.NavigateUrl = ""
+            SetVisibleFileAttach()
+        Else
+            ShowMessage(Translate("Không tìm thấy đường dẫn"), NotifyType.Error)
+        End If
+    End Sub
+
+    Private Sub ctrlUpload1_OkClicked(ByVal sender As Object, ByVal e As System.EventArgs) Handles ctrlUpload1.OkClicked
+        'Dim fileName As String
+        Try
+            Dim file As UploadedFile = ctrlUpload1.UploadedFiles(0)
+            Dim sPath As String = "~/ReportTemplates//" & "Recruitment" & "/" & "Upload/"
+
+            If file.GetExtension = ".pdf" Or file.GetExtension = ".doc" Or file.GetExtension = ".docx" Or file.GetExtension = ".jpg" Or file.GetExtension = ".png" Then
+                Dim fileName As String = hidOrgID.Value & "_" & "_" & cboTitle.SelectedValue & Date.Now.ToString("HHmmssffff") & "_" & file.FileName
+                If System.IO.Directory.Exists(MapPath(sPath)) Then
+                    file.SaveAs(MapPath(sPath) & fileName, True)
+                    hddFile.Value = fileName
+                    hypFile.Text = file.FileName
+                    hypFile.NavigateUrl = "http://" & Request.Url.Host & ":" & Request.Url.Port & "/ReportTemplates/Recruitment/Upload/" + fileName
+                    SetVisibleFileAttach()
+                Else
+                    ShowMessage(Translate("Không tìm thấy đường dẫn"), NotifyType.Error)
+                End If
+
+            Else
+                ShowMessage(Translate("Vui lòng upload file có đuôi mở rộng: .pdf,.doc, .docx, .jpg, .png"), NotifyType.Error)
+                Exit Sub
+            End If
+        Catch ex As Exception
+            ShowMessage(Translate("Import bị lỗi"), NotifyType.Error)
+        End Try
+    End Sub
+
+    Protected Sub btnUpload_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnUpload.Click
+        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+        Dim startTime As DateTime = DateTime.UtcNow
+        Try
+            ctrlUpload2.AllowedExtensions = "xls,xlsx,txt,ctr,doc,docx,xml,png,jpg,bitmap,jpeg,gif,pdf,rar,zip,ppt,pptx"
+            ctrlUpload2.Show()
+            '_mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
+        Catch ex As Exception
+            '_mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub ctrlUpload2_OkClicked(ByVal sender As Object, ByVal e As System.EventArgs) Handles ctrlUpload2.OkClicked
+        Dim startTime As DateTime = DateTime.UtcNow
+        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+        Try
+            txtUpload.Text = ""
+            Dim listExtension = New List(Of String)
+            listExtension.Add(".xls")
+            listExtension.Add(".xlsx")
+            listExtension.Add(".txt")
+            listExtension.Add(".ctr")
+            listExtension.Add(".doc")
+            listExtension.Add(".docx")
+            listExtension.Add(".xml")
+            listExtension.Add(".png")
+            listExtension.Add(".jpg")
+            listExtension.Add(".bitmap")
+            listExtension.Add(".jpeg")
+            listExtension.Add(".gif")
+            listExtension.Add(".pdf")
+            listExtension.Add(".rar")
+            listExtension.Add(".zip")
+            listExtension.Add(".ppt")
+            listExtension.Add(".pptx")
+            Dim fileName As String
+
+            Dim strPath As String = Server.MapPath("~/ReportTemplates/Recruitment/RequestRCInfo/")
+            If ctrlUpload2.UploadedFiles.Count >= 1 Then
+                For i = 0 To ctrlUpload2.UploadedFiles.Count - 1
+                    Dim file As UploadedFile = ctrlUpload2.UploadedFiles(i)
+                    Dim str_Filename = Guid.NewGuid.ToString() + "\"
+                    If listExtension.Any(Function(x) x.ToUpper().Trim() = file.GetExtension.ToUpper().Trim()) Then
+                        System.IO.Directory.CreateDirectory(strPath + str_Filename)
+                        strPath = strPath + str_Filename
+                        fileName = System.IO.Path.Combine(strPath, file.FileName)
+                        file.SaveAs(fileName, True)
+                        txtUpload.Text = file.FileName
+                        Down_File = str_Filename
+                    Else
+                        ShowMessage(Translate("Vui lòng chọn file đúng định dạng. !!! Hệ thống chỉ nhận file XLS,XLSX,TXT,CTR,DOC,DOCX,XML,PNG,JPG,BITMAP,JPEG,GIF,PDF,RAR,ZIP,PPT,PPTX"), NotifyType.Warning)
+                        Exit Sub
+                    End If
+                Next
+                loadDatasource(txtUpload.Text)
+            End If
+            '_mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
+        Catch ex As Exception
+            '_mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub btnDownload_Click(sender As Object, e As System.EventArgs) Handles btnDownload.Click
+        Dim startTime As DateTime = DateTime.UtcNow
+        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+        Dim strPath_Down As String
+        Try
+            If txtUpload.Text <> "" Then
+                strPath_Down = Server.MapPath("~/ReportTemplates/Recruitment/RequestRCInfo/" + txtUploadFile.Text + txtUpload.Text)
+                ZipFiles(strPath_Down, 2)
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
     End Sub
 #End Region
 
@@ -557,106 +693,6 @@ Public Class ctrlRC_RequestNewEdit
         End Try
     End Sub
 
-    Private Sub btnUploadFileDescription_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnUploadFileDescription.Click
-        ctrlUpload1.Show()
-    End Sub
-
-    Private Sub btnDeleteFile_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnDeleteFile.Click
-        Dim sPath As String = "~/ReportTemplates//" & "Recruitment" & "/" & "Upload/" & hddFile.Value
-        If System.IO.File.Exists(MapPath(sPath)) Then
-            System.IO.File.Delete(MapPath(sPath))
-            hddFile.Value = ""
-            hypFile.Text = ""
-            hypFile.NavigateUrl = ""
-            SetVisibleFileAttach()
-        Else
-            ShowMessage(Translate("Không tìm thấy đường dẫn"), NotifyType.Error)
-        End If
-    End Sub
-
-    Private Sub ctrlUpload1_OkClicked(ByVal sender As Object, ByVal e As System.EventArgs) Handles ctrlUpload1.OkClicked
-        'Dim fileName As String
-        Try
-            Dim file As UploadedFile = ctrlUpload1.UploadedFiles(0)
-            Dim sPath As String = "~/ReportTemplates//" & "Recruitment" & "/" & "Upload/"
-
-            If file.GetExtension = ".pdf" Or file.GetExtension = ".doc" Or file.GetExtension = ".docx" Or file.GetExtension = ".jpg" Or file.GetExtension = ".png" Then
-                Dim fileName As String = hidOrgID.Value & "_" & "_" & cboTitle.SelectedValue & Date.Now.ToString("HHmmssffff") & "_" & file.FileName
-                If System.IO.Directory.Exists(MapPath(sPath)) Then
-                    file.SaveAs(MapPath(sPath) & fileName, True)
-                    hddFile.Value = fileName
-                    hypFile.Text = file.FileName
-                    hypFile.NavigateUrl = "http://" & Request.Url.Host & ":" & Request.Url.Port & "/ReportTemplates/Recruitment/Upload/" + fileName
-                    SetVisibleFileAttach()
-                Else
-                    ShowMessage(Translate("Không tìm thấy đường dẫn"), NotifyType.Error)
-                End If
-
-            Else
-                ShowMessage(Translate("Vui lòng upload file có đuôi mở rộng: .pdf,.doc, .docx, .jpg, .png"), NotifyType.Error)
-                Exit Sub
-            End If
-        Catch ex As Exception
-            ShowMessage(Translate("Import bị lỗi"), NotifyType.Error)
-        End Try
-    End Sub
-
-    Protected Sub btnUpload_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnUpload.Click
-        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
-        Dim startTime As DateTime = DateTime.UtcNow
-        Try
-            ctrlUpload2.Show()
-            '_mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
-        Catch ex As Exception
-            '_mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
-            Throw ex
-        End Try
-    End Sub
-
-    Private Sub ctrlUpload2_OkClicked(ByVal sender As Object, ByVal e As System.EventArgs) Handles ctrlUpload2.OkClicked
-        Dim startTime As DateTime = DateTime.UtcNow
-        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
-
-        Try
-            txtUpload.Text = ""
-            Dim listExtension = New List(Of String)
-            listExtension.Add(".xls")
-            listExtension.Add(".xlsx")
-            listExtension.Add(".doc")
-            listExtension.Add(".docx")
-            listExtension.Add(".pdf")
-            listExtension.Add(".jpg")
-            listExtension.Add(".png")
-            Dim fileName As String
-
-            Dim strPath As String = Server.MapPath("~/ReportTemplates/Recruitment/RecruitmentAttachFile/")
-            If ctrlUpload2.UploadedFiles.Count >= 1 Then
-                Dim finfo As New AttachFilesDTO
-                ListAttachFile = New List(Of AttachFilesDTO)
-                Dim file As UploadedFile = ctrlUpload2.UploadedFiles(ctrlUpload2.UploadedFiles.Count - 1)
-                If listExtension.Any(Function(x) x.ToUpper().Trim() = file.GetExtension.ToUpper().Trim()) Then
-                    System.IO.Directory.CreateDirectory(strPath)
-                    strPath = strPath
-                    fileName = System.IO.Path.Combine(strPath, file.FileName)
-                    file.SaveAs(fileName, True)
-                    txtUpload.Text = file.FileName
-                    finfo.FILE_PATH = strPath + file.FileName
-                    finfo.ATTACHFILE_NAME = file.FileName
-                    finfo.CONTROL_NAME = "ctrlRC_RequestNewEdit"
-                    finfo.FILE_TYPE = file.GetExtension
-                    ListAttachFile.Add(finfo)
-                Else
-                    ShowMessage(Translate("Vui lòng chọn file đúng định dạng. !!! Hệ thống chỉ nhận file xls,xlsx,txt,ctr,doc,docx,xml,png,jpg,bitmap,jpeg,gif"), NotifyType.Warning)
-                    Exit Sub
-                End If
-            End If
-            '_mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
-        Catch ex As Exception
-            '_mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
-            Throw ex
-        End Try
-    End Sub
-
     Private Sub SetVisibleFileAttach()
         If hddFile.Value <> "" Then
             btnDeleteFile.Visible = True
@@ -668,6 +704,34 @@ Public Class ctrlRC_RequestNewEdit
             btnUploadFileDescription.Visible = True
         End If
 
+    End Sub
+
+    Private Sub ZipFiles(ByVal path As String, ByVal order As Decimal?)
+        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+        Dim startTime As DateTime = DateTime.UtcNow
+
+        Try
+            Dim crc As New CRC32()
+            'Dim fileNameZip As String
+
+            'If order = 0 Then
+            '    fileNameZip = txtUpload_LG.Text.Trim
+            'ElseIf order = 1 Then
+            '    fileNameZip = txtUpload_HD.Text.Trim
+            'Else
+            '    fileNameZip = txtUpload_FT.Text.Trim
+            'End If
+
+            Dim file As System.IO.FileInfo = New System.IO.FileInfo(path)
+            Response.Clear()
+            Response.AddHeader("Content-Disposition", "attachment; filename=" + file.Name)
+            Response.AddHeader("Content-Length", file.Length.ToString())
+            Response.ContentType = "application/vnd.openxmlformats-officedocument.wordprocessingml.document "
+            Response.WriteFile(file.FullName)
+            Response.End()
+        Catch ex As Exception
+            HttpContext.Current.Trace.Warn(ex.ToString())
+        End Try
     End Sub
 #End Region
 
@@ -927,4 +991,21 @@ Public Class ctrlRC_RequestNewEdit
             DisplayException(Me.ViewName, Me.ID, ex)
         End Try
     End Sub
+
+    Private Sub loadDatasource(ByVal strUpload As String)
+        Dim startTime As DateTime = DateTime.UtcNow
+        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+        Try
+            If strUpload <> "" Then
+                txtUpload.Text = strUpload
+                txtUploadFile.Text = Down_File
+            Else
+                strUpload = String.Empty
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+
 End Class

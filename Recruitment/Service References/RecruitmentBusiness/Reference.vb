@@ -6726,6 +6726,9 @@ Namespace RecruitmentBusiness
         Private FEMALE_NUMBERField As System.Nullable(Of Decimal)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private FILE_NAMEField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private FOREIGN_ABILITYField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -7045,6 +7048,19 @@ Namespace RecruitmentBusiness
                 If (Me.FEMALE_NUMBERField.Equals(value) <> true) Then
                     Me.FEMALE_NUMBERField = value
                     Me.RaisePropertyChanged("FEMALE_NUMBER")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property FILE_NAME() As String
+            Get
+                Return Me.FILE_NAMEField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.FILE_NAMEField, value) <> true) Then
+                    Me.FILE_NAMEField = value
+                    Me.RaisePropertyChanged("FILE_NAME")
                 End If
             End Set
         End Property

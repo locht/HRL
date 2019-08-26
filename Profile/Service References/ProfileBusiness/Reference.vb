@@ -6169,6 +6169,12 @@ Namespace ProfileBusiness
         Private ALLOW_MONEY_NUMBERField As System.Nullable(Of Decimal)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private ATTACH_FOLDER_BYTEField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private ATTACH_FOLDER_BYTE1Field As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private BASIC1Field As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -6398,6 +6404,32 @@ Namespace ProfileBusiness
                 If (Me.ALLOW_MONEY_NUMBERField.Equals(value) <> true) Then
                     Me.ALLOW_MONEY_NUMBERField = value
                     Me.RaisePropertyChanged("ALLOW_MONEY_NUMBER")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property ATTACH_FOLDER_BYTE() As String
+            Get
+                Return Me.ATTACH_FOLDER_BYTEField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.ATTACH_FOLDER_BYTEField, value) <> true) Then
+                    Me.ATTACH_FOLDER_BYTEField = value
+                    Me.RaisePropertyChanged("ATTACH_FOLDER_BYTE")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property ATTACH_FOLDER_BYTE1() As String
+            Get
+                Return Me.ATTACH_FOLDER_BYTE1Field
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.ATTACH_FOLDER_BYTE1Field, value) <> true) Then
+                    Me.ATTACH_FOLDER_BYTE1Field = value
+                    Me.RaisePropertyChanged("ATTACH_FOLDER_BYTE1")
                 End If
             End Set
         End Property
