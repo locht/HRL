@@ -25395,6 +25395,15 @@ Namespace ProfileBusiness
         Private ADDRESSField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private ATTACH_FILE_FOOTERField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private ATTACH_FILE_HEADERField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private ATTACH_FILE_LOGOField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private BANK_BRANCH_IDField As System.Nullable(Of Decimal)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -25544,6 +25553,45 @@ Namespace ProfileBusiness
                 If (Object.ReferenceEquals(Me.ADDRESSField, value) <> true) Then
                     Me.ADDRESSField = value
                     Me.RaisePropertyChanged("ADDRESS")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property ATTACH_FILE_FOOTER() As String
+            Get
+                Return Me.ATTACH_FILE_FOOTERField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.ATTACH_FILE_FOOTERField, value) <> true) Then
+                    Me.ATTACH_FILE_FOOTERField = value
+                    Me.RaisePropertyChanged("ATTACH_FILE_FOOTER")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property ATTACH_FILE_HEADER() As String
+            Get
+                Return Me.ATTACH_FILE_HEADERField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.ATTACH_FILE_HEADERField, value) <> true) Then
+                    Me.ATTACH_FILE_HEADERField = value
+                    Me.RaisePropertyChanged("ATTACH_FILE_HEADER")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property ATTACH_FILE_LOGO() As String
+            Get
+                Return Me.ATTACH_FILE_LOGOField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.ATTACH_FILE_LOGOField, value) <> true) Then
+                    Me.ATTACH_FILE_LOGOField = value
+                    Me.RaisePropertyChanged("ATTACH_FILE_LOGO")
                 End If
             End Set
         End Property

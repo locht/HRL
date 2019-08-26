@@ -134,6 +134,8 @@
                     <td>
                         <tlk:RadTextBox ID="txtUpload_LG" ReadOnly="true" runat="server">
                         </tlk:RadTextBox>
+                        <tlk:RadTextBox ID="txtUploadFile_LG" runat="server" Visible="false">
+                        </tlk:RadTextBox>
                         <tlk:RadButton runat="server" ID="btnUploadFile_LG" SkinID="ButtonView" CausesValidation="false"
                             TabIndex="3" />
                         <tlk:RadButton ID="btnDownload_LG" runat="server" Text="Tải xuống" CausesValidation="false"
@@ -170,6 +172,8 @@
                     <td>
                         <tlk:RadTextBox ID="txtUpload_HD" ReadOnly="true" runat="server">
                         </tlk:RadTextBox>
+                        <tlk:RadTextBox ID="txtUploadFile_HD" runat="server" Visible="false">
+                        </tlk:RadTextBox>
                         <tlk:RadButton runat="server" ID="btnUploadFile_HD" SkinID="ButtonView" CausesValidation="false"
                             TabIndex="3" />
                         <tlk:RadButton ID="btnDownload_HD" runat="server" Text="Tải xuống" CausesValidation="false"
@@ -203,6 +207,8 @@
                     </td>
                     <td>
                         <tlk:RadTextBox ID="txtUpload_FT" ReadOnly="true" runat="server">
+                        </tlk:RadTextBox>
+                        <tlk:RadTextBox ID="txtUploadFile_FT" runat="server" Visible="false">
                         </tlk:RadTextBox>
                         <tlk:RadButton runat="server" ID="btnUploadFile_FT" SkinID="ButtonView" CausesValidation="false"
                             TabIndex="3" />

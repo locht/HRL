@@ -127,6 +127,15 @@ Public Class ctrlLocation
             ViewState(Me.ID & "_ActiveLocations") = value
         End Set
     End Property
+
+    Property Down_File As String
+        Get
+            Return ViewState(Me.ID & "_Down_File")
+        End Get
+        Set(ByVal value As String)
+            ViewState(Me.ID & "_Down_File") = value
+        End Set
+    End Property
 #End Region
 
 #Region "Page"
@@ -373,8 +382,13 @@ Public Class ctrlLocation
                         objLocationFunction.WARD_ID = If(cboWard.SelectedValue <> "", Decimal.Parse(cboWard.SelectedValue), 0)
 
                         objLocationFunction.FILE_LOGO = txtUpload_LG.Text.Trim
+                        objLocationFunction.ATTACH_FILE_LOGO = txtUploadFile_LG.Text.Trim
+
                         objLocationFunction.FILE_HEADER = txtUpload_HD.Text.Trim
+                        objLocationFunction.ATTACH_FILE_HEADER = txtUploadFile_HD.Text.Trim
+
                         objLocationFunction.FILE_FOOTER = txtUpload_FT.Text.Trim
+                        objLocationFunction.ATTACH_FILE_FOOTER = txtUploadFile_FT.Text.Trim
 
                         Select Case CurrentState
                             Case CommonMessage.STATE_NEW
@@ -576,8 +590,13 @@ Public Class ctrlLocation
                     End If
 
                     txtUpload_LG.Text = dt.FILE_LOGO
+                    txtUploadFile_LG.Text = dt.ATTACH_FILE_LOGO
+
                     txtUpload_HD.Text = dt.FILE_HEADER
+                    txtUploadFile_HD.Text = dt.ATTACH_FILE_HEADER
+
                     txtUpload_FT.Text = dt.FILE_FOOTER
+                    txtUploadFile_FT.Text = dt.ATTACH_FILE_FOOTER
 
                     If dt.EMP_SIGNCONTRACT_ID IsNot Nothing Then
                         LoadEmpInfor(2, dt.EMP_SIGNCONTRACT_ID, dt)
@@ -760,7 +779,7 @@ Public Class ctrlLocation
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
         Try
             IsUpload = 0
-            ctrlUpload1.AllowedExtensions = "xls,xlsx,txt,ctr,doc,docx,xml,png,jpg,bitmap,jpeg,pdf"
+            ctrlUpload1.AllowedExtensions = "xls,xlsx,txt,ctr,doc,docx,xml,png,jpg,bitmap,jpeg,gif,pdf,rar,zip,ppt,pptx"
             ctrlUpload1.Show()
         Catch ex As Exception
             _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
@@ -778,7 +797,7 @@ Public Class ctrlLocation
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
         Try
             IsUpload = 1
-            ctrlUpload1.AllowedExtensions = "xls,xlsx,txt,ctr,doc,docx,xml,png,jpg,bitmap,jpeg,pdf"
+            ctrlUpload1.AllowedExtensions = "xls,xlsx,txt,ctr,doc,docx,xml,png,jpg,bitmap,jpeg,gif,pdf,rar,zip,ppt,pptx"
             ctrlUpload1.Show()
         Catch ex As Exception
             _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
@@ -796,7 +815,7 @@ Public Class ctrlLocation
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
         Try
             IsUpload = 2
-            ctrlUpload1.AllowedExtensions = "xls,xlsx,txt,ctr,doc,docx,xml,png,jpg,bitmap,jpeg,pdf"
+            ctrlUpload1.AllowedExtensions = "xls,xlsx,txt,ctr,doc,docx,xml,png,jpg,bitmap,jpeg,gif,pdf,rar,zip,ppt,pptx"
             ctrlUpload1.Show()
         Catch ex As Exception
             _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
@@ -810,8 +829,15 @@ Public Class ctrlLocation
     Private Sub ctrlUpload1_OkClicked(ByVal sender As Object, ByVal e As System.EventArgs) Handles ctrlUpload1.OkClicked
         Dim startTime As DateTime = DateTime.UtcNow
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
-
         Try
+            If IsUpload = 0 Then
+                txtUploadFile_LG.Text = ""
+            ElseIf IsUpload = 1 Then
+                txtUploadFile_HD.Text = ""
+            Else
+                txtUploadFile_FT.Text = ""
+            End If
+
             Dim listExtension = New List(Of String)
             listExtension.Add(".xls")
             listExtension.Add(".xlsx")
@@ -824,29 +850,44 @@ Public Class ctrlLocation
             listExtension.Add(".jpg")
             listExtension.Add(".bitmap")
             listExtension.Add(".jpeg")
+            listExtension.Add(".gif")
             listExtension.Add(".pdf")
+            listExtension.Add(".rar")
+            listExtension.Add(".zip")
+            listExtension.Add(".ppt")
+            listExtension.Add(".pptx")
             Dim fileName As String
 
-            Dim strPath As String = Server.MapPath("~/AttachFile/Profile/ctrlLocation/")
+            Dim strPath As String = Server.MapPath("~/ReportTemplates/Profile/LocationInfo/")
             If ctrlUpload1.UploadedFiles.Count >= 1 Then
                 For i = 0 To ctrlUpload1.UploadedFiles.Count - 1
                     Dim file As UploadedFile = ctrlUpload1.UploadedFiles(i)
+                    Dim str_Filename = Guid.NewGuid.ToString() + "\"
                     If listExtension.Any(Function(x) x.ToUpper().Trim() = file.GetExtension.ToUpper().Trim()) Then
-                        System.IO.Directory.CreateDirectory(strPath)
+                        System.IO.Directory.CreateDirectory(strPath + str_Filename)
+                        strPath = strPath + str_Filename
                         fileName = System.IO.Path.Combine(strPath, file.FileName)
                         file.SaveAs(fileName, True)
                         If IsUpload = 0 Then
-                            txtUpload_LG.Text = hfOrg.Value + file.FileName
+                            txtUpload_LG.Text = file.FileName
                         ElseIf IsUpload = 1 Then
-                            txtUpload_HD.Text = hfOrg.Value + file.FileName
+                            txtUpload_HD.Text = file.FileName
                         Else
-                            txtUpload_FT.Text = hfOrg.Value + file.FileName
+                            txtUpload_FT.Text = file.FileName
                         End If
+                        Down_File = str_Filename
                     Else
-                        ShowMessage(Translate("Vui lòng chọn file đúng định dạng. !!! Hệ thống chỉ nhận file XLS, XLSX, TXT, CTR, DOC, DOCX, XML, PNG, JPG, BITMAP, JPEG, PDF"), NotifyType.Warning)
+                        ShowMessage(Translate("Vui lòng chọn file đúng định dạng. !!! Hệ thống chỉ nhận file XLS,XLSX,TXT,CTR,DOC,DOCX,XML,PNG,JPG,BITMAP,JPEG,GIF,PDF,RAR,ZIP,PPT,PPTX"), NotifyType.Warning)
                         Exit Sub
                     End If
                 Next
+                If IsUpload = 0 Then
+                    loadDatasource(IsUpload, txtUpload_LG.Text)
+                ElseIf IsUpload = 1 Then
+                    loadDatasource(IsUpload, txtUpload_HD.Text)
+                Else
+                    loadDatasource(IsUpload, txtUpload_FT.Text)
+                End If
             End If
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
@@ -866,7 +907,7 @@ Public Class ctrlLocation
         Dim strPath_Down As String
         Try
             If txtUpload_LG.Text <> "" Then
-                strPath_Down = Server.MapPath("~/AttachFile/Profile/ctrlLocation/" + txtUpload_LG.Text.Trim)
+                strPath_Down = Server.MapPath("~/ReportTemplates/Profile/LocationInfo/" + txtUploadFile_LG.Text + txtUpload_LG.Text)
                 ZipFiles(strPath_Down, 0)
             End If
 
@@ -888,7 +929,7 @@ Public Class ctrlLocation
         Dim strPath_Down As String
         Try
             If txtUpload_HD.Text <> "" Then
-                strPath_Down = Server.MapPath("~/AttachFile/Profile/ctrlLocation/" + txtUpload_HD.Text.Trim)
+                strPath_Down = Server.MapPath("~/ReportTemplates/Profile/LocationInfo/" + txtUploadFile_HD.Text + txtUpload_HD.Text)
                 ZipFiles(strPath_Down, 1)
             End If
 
@@ -910,7 +951,7 @@ Public Class ctrlLocation
         Dim strPath_Down As String
         Try
             If txtUpload_FT.Text <> "" Then
-                strPath_Down = Server.MapPath("~/AttachFile/Profile/ctrlLocation/" + txtUpload_FT.Text.Trim)
+                strPath_Down = Server.MapPath("~/ReportTemplates/Profile/LocationInfo/" + txtUploadFile_FT.Text + txtUpload_FT.Text)
                 ZipFiles(strPath_Down, 2)
             End If
 
@@ -1223,21 +1264,20 @@ Public Class ctrlLocation
 
         Try
             Dim crc As New CRC32()
-            Dim fileNameZip As String
+            'Dim fileNameZip As String
 
-            If order = 0 Then
-                fileNameZip = txtUpload_LG.Text.Trim
-            ElseIf order = 1 Then
-                fileNameZip = txtUpload_HD.Text.Trim
-            Else
-                fileNameZip = txtUpload_FT.Text.Trim
-            End If
+            'If order = 0 Then
+            '    fileNameZip = txtUpload_LG.Text.Trim
+            'ElseIf order = 1 Then
+            '    fileNameZip = txtUpload_HD.Text.Trim
+            'Else
+            '    fileNameZip = txtUpload_FT.Text.Trim
+            'End If
 
-            Dim file As System.IO.FileInfo = New System.IO.FileInfo(path & fileNameZip)
+            Dim file As System.IO.FileInfo = New System.IO.FileInfo(path)
             Response.Clear()
             Response.AddHeader("Content-Disposition", "attachment; filename=" + file.Name)
             Response.AddHeader("Content-Length", file.Length.ToString())
-            'Response.ContentType = "application/octet-stream"
             Response.ContentType = "application/vnd.openxmlformats-officedocument.wordprocessingml.document "
             Response.WriteFile(file.FullName)
             Response.End()
@@ -1248,7 +1288,30 @@ Public Class ctrlLocation
             _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
         End Try
     End Sub
+
+    Private Sub loadDatasource(ByVal AttachID As Decimal, ByVal strUpload As String)
+        Dim startTime As DateTime = DateTime.UtcNow
+        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+        Try
+            If strUpload <> "" Then
+                If AttachID = 0 Then
+                    txtUploadFile_LG.Text = Down_File
+                    txtUpload_LG.Text = strUpload
+                ElseIf AttachID = 1 Then
+                    txtUploadFile_HD.Text = Down_File
+                    txtUpload_HD.Text = strUpload
+                Else
+                    txtUploadFile_FT.Text = Down_File
+                    txtUpload_FT.Text = strUpload
+                End If
+            Else
+                strUpload = String.Empty
+            End If
+            _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
+        Catch ex As Exception
+            _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
+        End Try
+    End Sub
+
 #End Region
-
-
 End Class
