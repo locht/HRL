@@ -122,15 +122,6 @@ Partial Public Class ctrlHU_DisciplineNewEdit
     Protected WithEvents reqDecisionNo As Global.System.Web.UI.WebControls.RequiredFieldValidator
 
     '''<summary>
-    '''cusDecisionNo control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents cusDecisionNo As Global.System.Web.UI.WebControls.CustomValidator
-
-    '''<summary>
     '''lbEffectDate control.
     '''</summary>
     '''<remarks>

@@ -18,7 +18,7 @@ Imports System.Runtime.Serialization
 Imports System.Xml.Serialization
 
 
-<Assembly: EdmSchemaAttribute("29796e7d-1386-4f58-8928-35ebeccf01d9")>
+<Assembly: EdmSchemaAttribute("a0f96929-4071-40d7-8121-0701923baa9a")>
 #Region "EDM Relationship Metadata"
 <Assembly: EdmRelationshipAttribute("ProfileModel", "FK_HU_NAT_HU_PRO", "HU_NATION", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_NATION), "HU_PROVINCE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_PROVINCE), True)>
 <Assembly: EdmRelationshipAttribute("ProfileModel", "FK_HU_PRO_HU_DIS", "HU_PROVINCE", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_PROVINCE), "HU_DISTRICT", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_DISTRICT), True)>
@@ -41367,6 +41367,81 @@ Public Partial Class HU_LOCATION
     End Sub
 
     Private Partial Sub OnFILE_FOOTERChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property ATTACH_FILE_LOGO() As Global.System.String
+        Get
+            Return _ATTACH_FILE_LOGO
+        End Get
+        Set
+            OnATTACH_FILE_LOGOChanging(value)
+            ReportPropertyChanging("ATTACH_FILE_LOGO")
+            _ATTACH_FILE_LOGO = StructuralObject.SetValidValue(value, true)
+            ReportPropertyChanged("ATTACH_FILE_LOGO")
+            OnATTACH_FILE_LOGOChanged()
+        End Set
+    End Property
+
+    Private _ATTACH_FILE_LOGO As Global.System.String
+    Private Partial Sub OnATTACH_FILE_LOGOChanging(value As Global.System.String)
+    End Sub
+
+    Private Partial Sub OnATTACH_FILE_LOGOChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property ATTACH_FILE_HEADER() As Global.System.String
+        Get
+            Return _ATTACH_FILE_HEADER
+        End Get
+        Set
+            OnATTACH_FILE_HEADERChanging(value)
+            ReportPropertyChanging("ATTACH_FILE_HEADER")
+            _ATTACH_FILE_HEADER = StructuralObject.SetValidValue(value, true)
+            ReportPropertyChanged("ATTACH_FILE_HEADER")
+            OnATTACH_FILE_HEADERChanged()
+        End Set
+    End Property
+
+    Private _ATTACH_FILE_HEADER As Global.System.String
+    Private Partial Sub OnATTACH_FILE_HEADERChanging(value As Global.System.String)
+    End Sub
+
+    Private Partial Sub OnATTACH_FILE_HEADERChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property ATTACH_FILE_FOOTER() As Global.System.String
+        Get
+            Return _ATTACH_FILE_FOOTER
+        End Get
+        Set
+            OnATTACH_FILE_FOOTERChanging(value)
+            ReportPropertyChanging("ATTACH_FILE_FOOTER")
+            _ATTACH_FILE_FOOTER = StructuralObject.SetValidValue(value, true)
+            ReportPropertyChanged("ATTACH_FILE_FOOTER")
+            OnATTACH_FILE_FOOTERChanged()
+        End Set
+    End Property
+
+    Private _ATTACH_FILE_FOOTER As Global.System.String
+    Private Partial Sub OnATTACH_FILE_FOOTERChanging(value As Global.System.String)
+    End Sub
+
+    Private Partial Sub OnATTACH_FILE_FOOTERChanged()
     End Sub
 
     #End Region

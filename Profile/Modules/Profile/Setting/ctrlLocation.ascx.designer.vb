@@ -311,6 +311,15 @@ Partial Public Class ctrlLocation
     Protected WithEvents txtUpload_LG As Global.Telerik.Web.UI.RadTextBox
 
     '''<summary>
+    '''txtUploadFile_LG control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtUploadFile_LG As Global.Telerik.Web.UI.RadTextBox
+
+    '''<summary>
     '''btnUploadFile_LG control.
     '''</summary>
     '''<remarks>
@@ -383,6 +392,15 @@ Partial Public Class ctrlLocation
     Protected WithEvents txtUpload_HD As Global.Telerik.Web.UI.RadTextBox
 
     '''<summary>
+    '''txtUploadFile_HD control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtUploadFile_HD As Global.Telerik.Web.UI.RadTextBox
+
+    '''<summary>
     '''btnUploadFile_HD control.
     '''</summary>
     '''<remarks>
@@ -444,6 +462,15 @@ Partial Public Class ctrlLocation
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtUpload_FT As Global.Telerik.Web.UI.RadTextBox
+
+    '''<summary>
+    '''txtUploadFile_FT control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtUploadFile_FT As Global.Telerik.Web.UI.RadTextBox
 
     '''<summary>
     '''btnUploadFile_FT control.
