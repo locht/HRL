@@ -424,7 +424,7 @@ Public Class ctrlHU_WelfareList
 
                     lstCONTRACT_TYPE.ClearChecked()
                     For Each chk As RadListBoxItem In lstCONTRACT_TYPE.Items
-                        If item.GENDER IsNot Nothing Then
+                        If item.CONTRACT_TYPE IsNot Nothing Then
                             If item.CONTRACT_TYPE.Contains(chk.Value) Then
                                 chk.Checked = True
                             End If
@@ -556,7 +556,10 @@ Public Class ctrlHU_WelfareList
                     isEdit = Nothing
                     rgWelfareList.Rebind()
                     If ctrlOrg.CurrentValue IsNot Nothing Then
-                        orgid = Decimal.Parse(ctrlOrg.CurrentValue)
+                        If (ctrlOrg.CurrentValue = 1) Then
+                            ShowMessage("Vui lòng chỉ thiết lập phúc lợi theo công ty", NotifyType.Error)
+                            Exit Sub
+                        End If
                     Else
                         ShowMessage("Chưa chọn phòng ban?", NotifyType.Warning)
                         Exit Sub
@@ -684,14 +687,14 @@ Public Class ctrlHU_WelfareList
                         objWelfareList.END_DATE = dpEND_DATE.SelectedDate
                         objWelfareList.IS_AUTO = chkIS_AUTO.Checked
                         objWelfareList.ORG_ID = ctrlOrg.CurrentValue
-                        If isEdit Is Nothing Then
-                            isEdit = 0
-                        End If
-                        dt = procedure.CHECK_WELFARE(txtCode.Text, isEdit, ctrlOrg.CurrentValue, dpSTART_DATE.SelectedDate)
-                        If Not dt Is Nothing AndAlso dt.Rows.Count > 0 Then
-                            ShowMessage("Phúc lợi của phòng ban này đang trùng ngày hiệu lực", NotifyType.Error)
-                            Exit Sub
-                        End If
+                        'If isEdit Is Nothing Then
+                        '    isEdit = 0
+                        'End If
+                        'dt = procedure.CHECK_WELFARE(txtCode.Text, isEdit, ctrlOrg.CurrentValue, dpSTART_DATE.SelectedDate)
+                        'If Not dt Is Nothing AndAlso dt.Rows.Count > 0 Then
+                        '    ShowMessage("Phúc lợi của phòng ban này đang trùng ngày hiệu lực", NotifyType.Error)
+                        '    Exit Sub
+                        'End If
                         Select Case CurrentState
                             Case CommonMessage.STATE_NEW
                                 objWelfareList.ACTFLG = "A"
