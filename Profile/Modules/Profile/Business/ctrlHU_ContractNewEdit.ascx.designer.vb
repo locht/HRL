@@ -248,15 +248,6 @@ Partial Public Class ctrlHU_ContractNewEdit
     Protected WithEvents reqContractType As Global.System.Web.UI.WebControls.RequiredFieldValidator
 
     '''<summary>
-    '''cusContractType control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents cusContractType As Global.System.Web.UI.WebControls.CustomValidator
-
-    '''<summary>
     '''cusvalContractType control.
     '''</summary>
     '''<remarks>
