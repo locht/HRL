@@ -486,6 +486,7 @@
     </tlk:RadPane>
 </tlk:RadSplitter>
 <common:ctrlupload id="ctrlUpload1" runat="server" />
+<common:ctrlupload id="ctrlUpload" runat="server" />
 <asp:PlaceHolder ID="FindEmployee" runat="server"></asp:PlaceHolder>
 <asp:PlaceHolder ID="FindEmployeeImport" runat="server"></asp:PlaceHolder>
 <asp:PlaceHolder ID="FindSign" runat="server"></asp:PlaceHolder>

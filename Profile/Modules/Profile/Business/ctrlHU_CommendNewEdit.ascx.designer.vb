@@ -689,6 +689,15 @@ Partial Public Class ctrlHU_CommendNewEdit
     Protected WithEvents ctrlUpload1 As Global.Common.ctrlUpload
 
     '''<summary>
+    '''ctrlUpload control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents ctrlUpload As Global.Common.ctrlUpload
+
+    '''<summary>
     '''FindEmployee control.
     '''</summary>
     '''<remarks>
