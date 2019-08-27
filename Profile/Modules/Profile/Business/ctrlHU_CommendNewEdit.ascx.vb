@@ -1953,14 +1953,14 @@ Public Class ctrlHU_CommendNewEdit
     End Sub
     Private Sub btnImportFile_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnImportFile.Click
         Try
-            ctrlUpload1.isMultiple = False
-            ctrlUpload1.Show()
+            ctrlUpload.isMultiple = False
+            ctrlUpload.Show()
             'CurrentState = CommonMessage.TOOLBARITEM_IMPORT
         Catch ex As Exception
 
         End Try
     End Sub
-    Private Sub ctrlUpload_OkClicked(ByVal sender As Object, ByVal e As System.EventArgs) Handles ctrlUpload1.OkClicked
+    Private Sub ctrlUpload_OkClicked(ByVal sender As Object, ByVal e As System.EventArgs) Handles ctrlUpload.OkClicked
         Import_Commend()
     End Sub
     Private Sub Import_Commend()
@@ -1969,14 +1969,14 @@ Public Class ctrlHU_CommendNewEdit
             '1. Đọc dữ liệu từ file Excel
             Dim tempPath As String = ConfigurationManager.AppSettings("ExcelFileFolder")
             Dim savepath = Context.Server.MapPath(tempPath)
-            Dim countFile As Integer = ctrlUpload1.UploadedFiles.Count
+            Dim countFile As Integer = ctrlUpload.UploadedFiles.Count
             Dim ds As New DataSet
             Dim dt As New DataTable
             Dim newRow1 As DataRow
             Dim newRow2 As DataRow
 
             If countFile > 0 Then
-                Dim file As UploadedFile = ctrlUpload1.UploadedFiles(countFile - 1)
+                Dim file As UploadedFile = ctrlUpload.UploadedFiles(countFile - 1)
                 fileName = System.IO.Path.Combine(savepath, file.FileName)
                 '1.1 Lưu file lên server
                 file.SaveAs(fileName, True)
@@ -2030,6 +2030,7 @@ Public Class ctrlHU_CommendNewEdit
                 End If
             End If
         Catch ex As Exception
+            DisplayException(Me.ViewName, Me.ID, ex)
         End Try
     End Sub
 
