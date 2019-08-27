@@ -2235,7 +2235,7 @@ Public Class ProfileRepository
                         From ot In Context.OT_OTHER_LIST.Where(Function(x) x.ID = p.STATUS_ID).DefaultIfEmpty
                         From c In Context.HU_CONTRACT.Where(Function(x) x.ID = p.ID_CONTRACT).DefaultIfEmpty
                         From type In Context.HU_CONTRACT_TYPE.Where(Function(x) x.ID = c.CONTRACT_TYPE_ID).DefaultIfEmpty
-                        From other_ctr In Context.OT_OTHER_LIST.Where(Function(x) x.ID = type.TYPE_ID And x.CODE.ToUpper() = "HD")
+                        From other_ctr In Context.OT_OTHER_LIST.Where(Function(x) x.ID = type.TYPE_ID)
                         From form In Context.OT_OTHER_LIST.Where(Function(x) x.ID = p.FORM_ID).DefaultIfEmpty
                         From appendtype In Context.HU_CONTRACT_TYPE.Where(Function(x) x.ID = p.APPEND_TYPEID).DefaultIfEmpty
                         From t In Context.HU_TITLE.Where(Function(x) x.ID = u.TITLE_ID).DefaultIfEmpty()
