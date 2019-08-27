@@ -734,7 +734,9 @@ Public Class ctrlHU_ContractNewEdit
             Dim startTime As DateTime = DateTime.UtcNow
             If rdStartDate.SelectedDate IsNot Nothing Then
                 Dim dExpire As Date = rdStartDate.SelectedDate
-                item = (From p In ListComboData.LIST_CONTRACTTYPE Where p.ID = Decimal.Parse(cboContractType.SelectedValue)).SingleOrDefault
+                If cboContractType.SelectedValue <> "" Then
+                    item = (From p In ListComboData.LIST_CONTRACTTYPE Where p.ID = Decimal.Parse(cboContractType.SelectedValue)).SingleOrDefault
+                End If
                 If item IsNot Nothing Then
                     If item.PERIOD IsNot Nothing Then
                         hidPeriod.Value = item.PERIOD

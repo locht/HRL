@@ -281,6 +281,7 @@ Public Class ctrlHU_ChangeInfoMng
                     Dim folderName As String = ""
                     Dim filePath As String = ""
                     Dim extension As String = ""
+                    Dim sourcePath = Server.MapPath("~/AttachFile/Profile/ctrlLocation/")
                     Dim iError As Integer = 0
                     Dim item As GridDataItem = rgWorking.SelectedItems(0)
 
@@ -318,6 +319,7 @@ Public Class ctrlHU_ChangeInfoMng
                                              item.GetDataKeyValue("EMPLOYEE_CODE") & "_TDTTNS_" & _
                                              Format(Date.Now, "yyyyMMddHHmmss"),
                                              dtData,
+                                             sourcePath,
                                              Response)
                     End Using
                 Case CommonMessage.TOOLBARITEM_CREATE_BATCH

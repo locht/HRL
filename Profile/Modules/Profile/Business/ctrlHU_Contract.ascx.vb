@@ -316,15 +316,23 @@ Public Class ctrlHU_Contract
                     Dim item = rgContract.SelectedItems
 
                     Dim lstIDs As String = ""
-                    For idx = 0 To rgContract.SelectedItems.Count - 1
-                        If idx <> rgContract.SelectedItems.Count - 1 Then
-                            Dim value As GridDataItem = rgContract.SelectedItems(idx)
-                            lstIDs = lstIDs & value.GetDataKeyValue("ID") & ","
-                        Else
-                            Dim value As GridDataItem = rgContract.SelectedItems(idx)
-                            lstIDs = lstIDs & value.GetDataKeyValue("ID")
-                        End If
-                    Next
+                    'For idx = 0 To rgContract.SelectedItems.Count - 1
+                    '    If idx <> rgContract.SelectedItems.Count - 1 Then
+                    '        Dim value As GridDataItem = rgContract.SelectedItems(idx)
+                    '        lstIDs = lstIDs & value.GetDataKeyValue("ID") & ","
+                    '    Else
+                    '        Dim value As GridDataItem = rgContract.SelectedItems(idx)
+                    '        lstIDs = lstIDs & value.GetDataKeyValue("ID")
+                    '    End If
+                    'Next
+                    If item.Count > 1 Then
+                        ShowMessage(Translate("Vui lòng chọn chỉ một bản ghi"), NotifyType.Warning)
+                        Exit Sub
+                    End If
+                    If item.Count > 0 Then
+                        Dim value As GridDataItem = item(0)
+                        lstIDs = lstIDs & value.GetDataKeyValue("ID")
+                    End If
                     'check loại hợp đồng cùng loại
                     Using rep As New ProfileRepository
                         dtDataCon = rep.GetCheckContractTypeID(lstIDs)
@@ -357,19 +365,21 @@ Public Class ctrlHU_Contract
                         lstID &= "|" & i.GetDataKeyValue("ID").ToString() & "|"
                     Next
 
-                        Using rep As New ProfileRepository
-                        dtData = rep.GetHU_DataDynamicContract(lstID,
-                                                       ProfileCommon.HU_TEMPLATE_TYPE.CONTRACT_ID,
-                                                       folderName)
-                            If dtData.Rows.Count = 0 Then
-                                ShowMessage("Dữ liệu không tồn tại", NotifyType.Warning)
-                                Exit Sub
-                            End If
-                            If folderName = "" Then
-                                ShowMessage("Thư mục không tồn tại", NotifyType.Warning)
-                                Exit Sub
-                            End If
-                        End Using
+                    Using rep As New ProfileRepository
+                        dtData = rep.GetHU_DataDynamicContract(lstID, ProfileCommon.HU_TEMPLATE_TYPE.CONTRACT_ID, folderName)
+                        If dtData.Rows.Count = 0 Then
+                            ShowMessage("Dữ liệu không tồn tại", NotifyType.Warning)
+                            Exit Sub
+                        End If
+                        If folderName = "" Then
+                            ShowMessage("Thư mục không tồn tại", NotifyType.Warning)
+                            Exit Sub
+                        End If
+                        If dtData.Rows(0)("ORG_CODE2") = "TNE&C SG" Then
+                            ShowMessage("Không thể in hợp đồng có đơn vị TNE&C SG", NotifyType.Warning)
+                            Exit Sub
+                        End If
+                    End Using
 
                         If item.Count = 1 Then
                             'Export file mẫu
@@ -382,19 +392,30 @@ Public Class ctrlHU_Contract
                                                  Response)
                             End Using
                         Else
-                        For lst = 0 To rgContract.SelectedItems.Count - 1
-                            Dim item1 As GridDataItem = rgContract.SelectedItems(lst)
-                            Dim fileName As String = item1.GetDataKeyValue("EMPLOYEE_CODE") & "_HDLD_" & _
-                                                     Format(Date.Now, "yyyyMMddHHmmss") & lst & extension
-                            Dim doc As New Document(filePath)
-                            doc.MailMerge.Execute(dtData.Rows(lst))
-                            path = AppDomain.CurrentDomain.BaseDirectory & "Files\"
-                            'path = "Files\"
-                            If Not Directory.Exists(path) Then
-                                Directory.CreateDirectory(path)
-                            End If
-                            doc.Save(path & fileName)
-                        Next
+                        'For lst = 0 To rgContract.SelectedItems.Count - 1
+                        '    Dim item1 As GridDataItem = rgContract.SelectedItems(lst)
+                        '    Dim fileName As String = item1.GetDataKeyValue("EMPLOYEE_CODE") & "_HDLD_" & _
+                        '                             Format(Date.Now, "yyyyMMddHHmmss") & lst & extension
+                        '    Dim doc As New Document(filePath)
+                        '    doc.MailMerge.Execute(dtData.Rows(lst))
+                        '    path = AppDomain.CurrentDomain.BaseDirectory & "Files\"
+                        '    'path = "Files\"
+                        '    If Not Directory.Exists(path) Then
+                        '        Directory.CreateDirectory(path)
+                        '    End If
+                        '    doc.Save(path & fileName)
+                        'Next
+                        Dim item1 As GridDataItem = rgContract.SelectedItems(0)
+                        Dim fileName As String = item1.GetDataKeyValue("EMPLOYEE_CODE") & "_HDLD_" & _
+                                                 Format(Date.Now, "yyyyMMddHHmmss") & 0 & extension
+                        Dim doc As New Document(filePath)
+                        doc.MailMerge.Execute(dtData.Rows(0))
+                        path = AppDomain.CurrentDomain.BaseDirectory & "Files\"
+                        'path = "Files\"
+                        If Not Directory.Exists(path) Then
+                            Directory.CreateDirectory(path)
+                        End If
+                        doc.Save(path & fileName)
                             ZipFiles(path)
                     End If
 

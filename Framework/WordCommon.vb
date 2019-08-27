@@ -6,40 +6,45 @@ Imports Aspose.Words.Drawing
 Public Class WordCommon
     Implements IDisposable
     Private Function InsertHeaderLogo(ByVal doc As Document, ByVal dt As DataTable, ByVal sourcePath As String) As Document
-        Dim path As String = sourcePath + dt.Rows(0)("FILE_HEADER")
-        Dim path1 As String = sourcePath + dt.Rows(0)("FILE_FOOTER")
-        Dim builder As DocumentBuilder = New DocumentBuilder(doc)
-        Dim firstSection As Section = builder.CurrentSection
-        Dim pageSetup As PageSetup = firstSection.PageSetup
-        pageSetup.DifferentFirstPageHeaderFooter = True
-        'Dim height = pageSetup.PageHeight - pageSetup.TopMargin - pageSetup.BottomMargin
-        Dim width = pageSetup.PageWidth - 2 * pageSetup.LeftMargin
-        'add image to header,footer in first page
-        pageSetup.HeaderDistance = 0
-        builder.MoveToHeaderFooter(HeaderFooterType.HeaderFirst)
-        builder.ParagraphFormat.Alignment = ParagraphAlignment.Distributed
-        If File.Exists(path) Then
-            builder.InsertImage(path, RelativeHorizontalPosition.Page, 0, RelativeVerticalPosition.Page, 0, width, 145, WrapType.Inline)
-        End If
-        builder.MoveToHeaderFooter(HeaderFooterType.FooterFirst)
-        builder.ParagraphFormat.Alignment = ParagraphAlignment.Distributed
-        If File.Exists(path1) Then
-            builder.InsertImage(path1, RelativeHorizontalPosition.Page, 0, RelativeVerticalPosition.Page, 0, width, 110, WrapType.Inline)
-        End If
-        'add image to footer in other pages
-        builder.MoveToHeaderFooter(HeaderFooterType.FooterEven)
-        pageSetup.FooterDistance = 0
-        builder.ParagraphFormat.Alignment = ParagraphAlignment.Distributed
-        If File.Exists(path1) Then
-            builder.InsertImage(path1, RelativeHorizontalPosition.Page, 0, RelativeVerticalPosition.Page, 0, width, 110, WrapType.Inline)
-        End If
-        builder.MoveToHeaderFooter(HeaderFooterType.FooterPrimary)
-        pageSetup.FooterDistance = 0
-        builder.ParagraphFormat.Alignment = ParagraphAlignment.Distributed
-        If File.Exists(path1) Then
-            builder.InsertImage(path1, RelativeHorizontalPosition.Page, 0, RelativeVerticalPosition.Page, 0, width, 110, WrapType.Inline)
-        End If
-        Return doc
+        Try
+            Dim path As String = sourcePath + dt.Rows(0)("FILE_HEADER")
+            Dim path1 As String = sourcePath + dt.Rows(0)("FILE_FOOTER")
+            Dim builder As DocumentBuilder = New DocumentBuilder(doc)
+            Dim firstSection As Section = builder.CurrentSection
+            Dim pageSetup As PageSetup = firstSection.PageSetup
+            pageSetup.DifferentFirstPageHeaderFooter = True
+            'Dim height = pageSetup.PageHeight - pageSetup.TopMargin - pageSetup.BottomMargin
+            Dim width = Decimal.Parse(pageSetup.PageWidth - 2 * pageSetup.LeftMargin)
+            'add image to header,footer in first page
+            pageSetup.HeaderDistance = 0
+            builder.MoveToHeaderFooter(HeaderFooterType.HeaderFirst)
+            builder.ParagraphFormat.Alignment = ParagraphAlignment.Distributed
+            If File.Exists(path) Then
+                builder.InsertImage(path, RelativeHorizontalPosition.Page, 0, RelativeVerticalPosition.Page, 0, width, 145, WrapType.Inline)
+            End If
+            builder.MoveToHeaderFooter(HeaderFooterType.FooterFirst)
+            builder.ParagraphFormat.Alignment = ParagraphAlignment.Distributed
+            If File.Exists(path1) Then
+                builder.InsertImage(path1, RelativeHorizontalPosition.Page, 0, RelativeVerticalPosition.Page, 0, width, 110, WrapType.Inline)
+            End If
+            'add image to footer in other pages
+            builder.MoveToHeaderFooter(HeaderFooterType.FooterEven)
+            pageSetup.FooterDistance = 0
+            builder.ParagraphFormat.Alignment = ParagraphAlignment.Distributed
+            If File.Exists(path1) Then
+                builder.InsertImage(path1, RelativeHorizontalPosition.Page, 0, RelativeVerticalPosition.Page, 0, width, 110, WrapType.Inline)
+            End If
+            builder.MoveToHeaderFooter(HeaderFooterType.FooterPrimary)
+            pageSetup.FooterDistance = 0
+            builder.ParagraphFormat.Alignment = ParagraphAlignment.Distributed
+            If File.Exists(path1) Then
+                builder.InsertImage(path1, RelativeHorizontalPosition.Page, 0, RelativeVerticalPosition.Page, 0, width, 110, WrapType.Inline)
+            End If
+            'pageSetup.DifferentFirstPageHeaderFooter = False
+            Return doc
+        Catch ex As Exception
+            Throw ex
+        End Try
     End Function
 
     Public Sub ExportMailMerge(ByVal link As String,
