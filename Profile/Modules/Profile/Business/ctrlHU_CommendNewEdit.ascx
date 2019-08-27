@@ -84,11 +84,8 @@
                 <td>
                     <tlk:RadTextBox ID="txtDecisionNo" runat="server" TabIndex="3" AutoPostBack="true">
                     </tlk:RadTextBox>
-                    <%--<asp:CustomValidator ID="cusDecisionNo" runat="server" ErrorMessage="Số quyết định đã tồn tại"
-                        ToolTip="Số quyết định đã tồn tại">
-                    </asp:CustomValidator>--%>
-                    <asp:RequiredFieldValidator ID="RequiredFieldValidator5" ControlToValidate="cboCommendType"
-                        runat="server" ErrorMessage="<%$ Translate: Số quyết định đã tồn tại %>" ToolTip="<%$ Translate: Số quyết định đã tồn tại %>"> </asp:RequiredFieldValidator>
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator5" ControlToValidate="txtDecisionNo"
+                        runat="server" ErrorMessage="<%$ Translate: Bạn phải nhập số quyết định. %>" ToolTip="<%$ Translate: Bạn phải nhập số quyết định. %>"> </asp:RequiredFieldValidator>
                 </td>
                 <td class="lb">
                     <asp:Label runat="server" ID="lbStatus" Text="Trạng thái"></asp:Label>
@@ -101,7 +98,7 @@
                     <asp:CustomValidator ID="cusStatus" ControlToValidate="cboStatus" runat="server"
                         ErrorMessage="Trạng thái không tồn tại hoặc đã ngừng áp dụng." ToolTip="Trạng thái không tồn tại hoặc đã ngừng áp dụng.">
                     </asp:CustomValidator>--%>
-                    <asp:RequiredFieldValidator ID="RequiredFieldValidator6" ControlToValidate="cboCommendType"
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator6" ControlToValidate="cboStatus"
                         runat="server" ErrorMessage="<%$ Translate: Bạn phải chọn trạng thái %>" ToolTip="<%$ Translate: Bạn phải chọn trạng thái %>"> </asp:RequiredFieldValidator>
               
                 </td>
