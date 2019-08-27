@@ -2014,7 +2014,7 @@ Public Class ProfileRepository
     Public Function AutoGenCode(ByVal firstChar As String, ByVal tableName As String, ByVal colName As String) As String
         Try
             Dim str As String
-            Dim Sql = "SELECT NVL(MAX(" & colName & "), '" & firstChar & "000') FROM " & tableName & " WHERE " & colName & " LIKE '" & firstChar & "%'"
+            Dim Sql = "SELECT NVL(MAX(" & colName & "), '" & firstChar & "000') FROM " & tableName & " WHERE " & colName & " LIKE '" & firstChar & "0%'"
             str = Context.ExecuteStoreQuery(Of String)(Sql).FirstOrDefault
             If str = "" Then
                 Return firstChar & "001"
