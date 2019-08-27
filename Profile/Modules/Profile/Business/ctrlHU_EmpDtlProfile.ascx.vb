@@ -902,50 +902,97 @@ Public Class ctrlHU_EmpDtlProfile
                 Case CommonMessage.STATE_EDIT
                     rtIdTitleConcurrent.Visible = True
                     'RadPane4.Visible = False
+                    If EmployeeInfo.WORK_STATUS IsNot Nothing Then
+                        EnableControlAll(False, txtOrgName2, btnFindOrg,
+                                   cboTitle, txtTitleGroup, cboStaffRank, txtDirectManager, btnFindDirect,
+                                   txtmanager, cboObject, cboObjectLabor, txtTimeID, cbObjectBook)
 
-                    EnableControlAll(False, txtOrgName2, btnFindOrg,
-                                    cboTitle, txtTitleGroup, cboStaffRank, txtDirectManager, btnFindDirect,
-                                    txtManager, cboObject, cboObjectLabor, txtTimeID, cbObjectBook)
+                        EnableControlAll(False, cboWorkStatus, txtEmpCODE, cboEmpStatus, rtBookNo)
+                        EnableControlAll(True, rtCHUC_VU_DANG, rdNGAY_VAO_DANG_DB, rdNGAY_VAO_DANG)
+                        EnableControlAll(True, ckDOAN_PHI, rtCHUC_VU_DOAN, rdNGAY_VAO_DOAN)
+                        EnableControlAll(True, rtCV_BANTT, rdNgay_TG_BanTT)
+                        EnableControlAll(True, rtCV_Ban_Nu_Cong, rdNgay_TG_Ban_Nu_Cong)
+                        EnableControlAll(True, rdNgay_Nhap_Ngu_QD, rdNgay_Xuat_Ngu_QD, rtDV_Xuat_Ngu_QD)
+                        EnableControlAll(True, cbHang_Thuong_Binh, cbGD_Chinh_Sach)
+                        EnableControlAll(True, lstbPaper, lstbPaperFiled, chkSaveHistory,
+                                            txtBankNo, ckBanTT_ND, rtDiem_XL_TH, txtDiem_XL_TH2, txtNoteTDTH1, txtNoteTDTH2,
+                                           txtDaHoaLieu, txtNamTN, rdExpireIDNO, txtAppDung, txtPlaceKS, txtVillage, txtPlacePitcode, rdDayPitcode, txtPerson_Inheritance, rdEffect_Bank,
+                                           txtFirstNameVN, txtGhiChuSK, chkIs_pay_bank,
+                                           txtHomePhone, txtHuyetAp, txtID_NO, txtIDRemark,
+                                           cboIDPlace, txtLangMark, txtLangMark2, txtTimeID,
+                                           txtLastNameVN, txtMatPhai, txtMatTrai,
+                                           txtMobilePhone, txtNavAddress, txtNhomMau,
+                                            txtPassNo, txtPassPlace, txtPerAddress, txtPerEmail, txtPhoiNguc, txtCareer,
+                                           txtPitCode, txtRangHamMat, txtTaiMuiHong, txtTim,
+                                           txtVienGanB, txtVisa, txtVisaPlace, cboCertificate, cboBasic,
+                                           txtWorkEmail, txtWorkPermit, txtWorkPermitPlace,
+                                          txtContactPerson, txtContactPersonPhone, txtContactMobilePhone, txtChucVuDoan,
+                                          rdBirthDate, rdIDDate, rdSeniorityDate,
+                                           rdNgayVaoDoan, rdPassDate, rdPassExpireDate,
+                                          rdVisaDate, rdVisaExpireDate, rdWorkPermitDate, rdWorPermitExpireDate,
+                                           txtCanNang, txtChieuCao,
+                                           cboAcademy, cboGraduateSchool, cboBank, cboBankBranch, cboFamilyStatus,
+                                           cboGender, cboLangLevel, cboLangLevel2, rtWorkplace, cboInsRegion,
+                                           cboLanguage, cboLanguage2, cboLearningLevel, txtLoaiSucKhoe,
+                                           cboMajor, cboNationlity, cboNative, cboNav_Province, cboPer_Province,
+                                           cboReligion,
+                                           cboPer_District, cboPer_Ward, cboNav_District, cboNav_Ward,
+                                           hidID, hidOrgID, hidDirectManager, hidLevelManager,
+                                            chkDoanPhi, cbPROVINCEEMP_ID, cbDISTRICTEMP_ID, cbWARDEMP_ID, cbPROVINCENQ_ID, cbBirth_PlaceId,
+                                           rtOpption1, rtOpption2, rtOpption3, rtOpption4, rtOpption5,
+                                           rdOpption6, rdOpption7, rdOpption8, rdOpption9, rdOpption10,
+                                            ckThuong_Binh,
+                                            ckQD, rtDV_Xuat_Ngu_CA, rdNgay_Xuat_Ngu_CA, rdNgay_Nhap_Ngu_CA,
+                                           ckNU_CONG, ckCONG_DOAN, ckCA, ckDANG, rtSkill,
+                                           cbQLNN, cbLLCT, cbTDTH, cboTDTH2, rtTTSucKhoe,
+                                           cboPROVINCEEMP_BRITH, cboDISTRICTEMP_BRITH, cboWARDEMP_BRITH, ckCHUHO, txtNoHouseHolds, txtCodeHouseHolds, cboObjectIns)
+                    Else
+                        EnableControlAll(False, txtOrgName2,
+                               txtTitleGroup, cboStaffRank, txtDirectManager,
+                               cboObject, txtTimeID, cbObjectBook, txtmanager)
+                        EnableControlAll(True, btnFindOrg, cboTitle, cboObjectLabor, btnFindDirect)
+                        EnableControlAll(False, cboWorkStatus, txtEmpCODE, cboEmpStatus, rtBookNo)
+                        EnableControlAll(True, rtCHUC_VU_DANG, rdNGAY_VAO_DANG_DB, rdNGAY_VAO_DANG)
+                        EnableControlAll(True, ckDOAN_PHI, rtCHUC_VU_DOAN, rdNGAY_VAO_DOAN)
+                        EnableControlAll(True, rtCV_BANTT, rdNgay_TG_BanTT)
+                        EnableControlAll(True, rtCV_Ban_Nu_Cong, rdNgay_TG_Ban_Nu_Cong)
+                        EnableControlAll(True, rdNgay_Nhap_Ngu_QD, rdNgay_Xuat_Ngu_QD, rtDV_Xuat_Ngu_QD)
+                        EnableControlAll(True, cbHang_Thuong_Binh, cbGD_Chinh_Sach)
+                        EnableControlAll(True, lstbPaper, lstbPaperFiled, chkSaveHistory,
+                                            txtBankNo, ckBanTT_ND, rtDiem_XL_TH, txtDiem_XL_TH2, txtNoteTDTH1, txtNoteTDTH2,
+                                           txtDaHoaLieu, txtNamTN, rdExpireIDNO, txtAppDung, txtPlaceKS, txtVillage, txtPlacePitcode, rdDayPitcode, txtPerson_Inheritance, rdEffect_Bank,
+                                           txtFirstNameVN, txtGhiChuSK, chkIs_pay_bank,
+                                           txtHomePhone, txtHuyetAp, txtID_NO, txtIDRemark,
+                                           cboIDPlace, txtLangMark, txtLangMark2, txtTimeID,
+                                           txtLastNameVN, txtMatPhai, txtMatTrai,
+                                           txtMobilePhone, txtNavAddress, txtNhomMau,
+                                            txtPassNo, txtPassPlace, txtPerAddress, txtPerEmail, txtPhoiNguc, txtCareer,
+                                           txtPitCode, txtRangHamMat, txtTaiMuiHong, txtTim,
+                                           txtVienGanB, txtVisa, txtVisaPlace, cboCertificate, cboBasic,
+                                           txtWorkEmail, txtWorkPermit, txtWorkPermitPlace,
+                                          txtContactPerson, txtContactPersonPhone, txtContactMobilePhone, txtChucVuDoan,
+                                          rdBirthDate, rdIDDate, rdSeniorityDate,
+                                           rdNgayVaoDoan, rdPassDate, rdPassExpireDate,
+                                          rdVisaDate, rdVisaExpireDate, rdWorkPermitDate, rdWorPermitExpireDate,
+                                           txtCanNang, txtChieuCao,
+                                           cboAcademy, cboGraduateSchool, cboBank, cboBankBranch, cboFamilyStatus,
+                                           cboGender, cboLangLevel, cboLangLevel2, rtWorkplace, cboInsRegion,
+                                           cboLanguage, cboLanguage2, cboLearningLevel, txtLoaiSucKhoe,
+                                           cboMajor, cboNationlity, cboNative, cboNav_Province, cboPer_Province,
+                                           cboReligion,
+                                           cboPer_District, cboPer_Ward, cboNav_District, cboNav_Ward,
+                                           hidID, hidOrgID, hidDirectManager, hidLevelManager,
+                                            chkDoanPhi, cbPROVINCEEMP_ID, cbDISTRICTEMP_ID, cbWARDEMP_ID, cbPROVINCENQ_ID, cbBirth_PlaceId,
+                                           rtOpption1, rtOpption2, rtOpption3, rtOpption4, rtOpption5,
+                                           rdOpption6, rdOpption7, rdOpption8, rdOpption9, rdOpption10,
+                                            ckThuong_Binh,
+                                            ckQD, rtDV_Xuat_Ngu_CA, rdNgay_Xuat_Ngu_CA, rdNgay_Nhap_Ngu_CA,
+                                           ckNU_CONG, ckCONG_DOAN, ckCA, ckDANG, rtSkill,
+                                           cbQLNN, cbLLCT, cbTDTH, cboTDTH2, rtTTSucKhoe,
+                                           cboPROVINCEEMP_BRITH, cboDISTRICTEMP_BRITH, cboWARDEMP_BRITH, ckCHUHO, txtNoHouseHolds, txtCodeHouseHolds, cboObjectIns)
 
-                    EnableControlAll(False, cboWorkStatus, txtEmpCODE, cboEmpStatus, rtBookNo)
-                    EnableControlAll(True, rtCHUC_VU_DANG, rdNGAY_VAO_DANG_DB, rdNGAY_VAO_DANG)
-                    EnableControlAll(True, ckDOAN_PHI, rtCHUC_VU_DOAN, rdNGAY_VAO_DOAN)
-                    EnableControlAll(True, rtCV_BANTT, rdNgay_TG_BanTT)
-                    EnableControlAll(True, rtCV_Ban_Nu_Cong, rdNgay_TG_Ban_Nu_Cong)
-                    EnableControlAll(True, rdNgay_Nhap_Ngu_QD, rdNgay_Xuat_Ngu_QD, rtDV_Xuat_Ngu_QD)
-                    EnableControlAll(True, cbHang_Thuong_Binh, cbGD_Chinh_Sach)
-                    EnableControlAll(True, lstbPaper, lstbPaperFiled, chkSaveHistory,
-                                        txtBankNo, ckBanTT_ND, rtDiem_XL_TH, txtDiem_XL_TH2, txtNoteTDTH1, txtNoteTDTH2,
-                                       txtDaHoaLieu, txtNamTN, rdExpireIDNO, txtAppDung, txtPlaceKS, txtVillage, txtPlacePitcode, rdDayPitcode, txtPerson_Inheritance, rdEffect_Bank,
-                                       txtFirstNameVN, txtGhiChuSK, chkIs_pay_bank,
-                                       txtHomePhone, txtHuyetAp, txtID_NO, txtIDRemark,
-                                       cboIDPlace, txtLangMark, txtLangMark2, txtTimeID,
-                                       txtLastNameVN, txtMatPhai, txtMatTrai,
-                                       txtMobilePhone, txtNavAddress, txtNhomMau,
-                                        txtPassNo, txtPassPlace, txtPerAddress, txtPerEmail, txtPhoiNguc, txtCareer,
-                                       txtPitCode, txtRangHamMat, txtTaiMuiHong, txtTim,
-                                       txtVienGanB, txtVisa, txtVisaPlace, cboCertificate, cboBasic,
-                                       txtWorkEmail, txtWorkPermit, txtWorkPermitPlace,
-                                      txtContactPerson, txtContactPersonPhone, txtContactMobilePhone, txtChucVuDoan,
-                                      rdBirthDate, rdIDDate, rdSeniorityDate,
-                                       rdNgayVaoDoan, rdPassDate, rdPassExpireDate,
-                                      rdVisaDate, rdVisaExpireDate, rdWorkPermitDate, rdWorPermitExpireDate,
-                                       txtCanNang, txtChieuCao,
-                                       cboAcademy, cboGraduateSchool, cboBank, cboBankBranch, cboFamilyStatus,
-                                       cboGender, cboLangLevel, cboLangLevel2, rtWorkplace, cboInsRegion,
-                                       cboLanguage, cboLanguage2, cboLearningLevel, txtLoaiSucKhoe,
-                                       cboMajor, cboNationlity, cboNative, cboNav_Province, cboPer_Province,
-                                       cboReligion,
-                                       cboPer_District, cboPer_Ward, cboNav_District, cboNav_Ward,
-                                       hidID, hidOrgID, hidDirectManager, hidLevelManager,
-                                        chkDoanPhi, cbPROVINCEEMP_ID, cbDISTRICTEMP_ID, cbWARDEMP_ID, cbPROVINCENQ_ID, cbBirth_PlaceId,
-                                       rtOpption1, rtOpption2, rtOpption3, rtOpption4, rtOpption5,
-                                       rdOpption6, rdOpption7, rdOpption8, rdOpption9, rdOpption10,
-                                        ckThuong_Binh,
-                                        ckQD, rtDV_Xuat_Ngu_CA, rdNgay_Xuat_Ngu_CA, rdNgay_Nhap_Ngu_CA,
-                                       ckNU_CONG, ckCONG_DOAN, ckCA, ckDANG, rtSkill,
-                                       cbQLNN, cbLLCT, cbTDTH, cboTDTH2, rtTTSucKhoe,
-                                       cboPROVINCEEMP_BRITH, cboDISTRICTEMP_BRITH, cboWARDEMP_BRITH, ckCHUHO, txtNoHouseHolds, txtCodeHouseHolds, cboObjectIns)
+                    End If
+                   
                     If Not Me.AllowModify Then
                         txtFirstNameVN.ReadOnly = True
                         txtLastNameVN.ReadOnly = True
@@ -955,41 +1002,79 @@ Public Class ctrlHU_EmpDtlProfile
                         EnableControlAll(False, cboTitle, cboStaffRank, cboObject, btnFindOrg)
                     End If
                 Case Else
-                    EnableControlAll(False, lstbPaper, lstbPaperFiled, cboWorkStatus, cboEmpStatus, txtEmpCODE,
-                                       txtBankNo, chkSaveHistory, ckDOAN_PHI, rtCHUC_VU_DANG, rdNGAY_VAO_DOAN,
-                                       txtDaHoaLieu, rdNGAY_VAO_DANG_DB, rdNGAY_VAO_DANG, ckBanTT_ND, txtNamTN,
-                                       txtFirstNameVN, txtGhiChuSK, rtCHUC_VU_DOAN, rtDiem_XL_TH, txtDiem_XL_TH2, txtNoteTDTH1, txtNoteTDTH2,
-                                       txtHomePhone, txtHuyetAp, txtID_NO, txtIDRemark, chkIs_pay_bank,
-                                       cboIDPlace, txtLangMark, txtLangMark2, txtTimeID,
-                                       txtLastNameVN, txtMatPhai, txtMatTrai,
-                                       txtMobilePhone, txtNavAddress, txtNhomMau, cboCertificate, cboBasic, rdExpireIDNO,
-                                        txtPassNo, txtPassPlace, cboObject, cboObjectLabor, cbObjectBook, txtTimeID, cboCertificate, cboBasic, txtAppDung, txtPlaceKS, txtVillage, rdDayPitcode, txtPlacePitcode, txtPerson_Inheritance, rdEffect_Bank,
-                                       txtPerAddress, txtPerEmail, txtPhoiNguc, txtCareer,
-                                       txtPitCode, txtRangHamMat, txtTaiMuiHong, txtTim,
-                                       txtVienGanB, txtVisa, txtVisaPlace,
-                                       txtWorkEmail, txtWorkPermit, txtWorkPermitPlace,
-                                       txtContactPerson, txtContactPersonPhone, txtContactMobilePhone, txtChucVuDoan,
-                                       rdBirthDate, rdContractExpireDate, rdContractEffectDate, rdIDDate, rdSeniorityDate,
-                                       rdNgayVaoDoan, rdPassDate, rdPassExpireDate,
-                                       rdVisaDate, rdVisaExpireDate, rdWorkPermitDate, rdWorPermitExpireDate,
-                                       txtCanNang, txtChieuCao,
-                                       cboAcademy, cboGraduateSchool, cboBank, cboBankBranch, cboFamilyStatus,
-                                       cboGender, cboLangLevel, cboLangLevel2, rtWorkplace, cboInsRegion,
-                                       cboLanguage, cboLanguage2, cboLearningLevel, txtLoaiSucKhoe,
-                                       cboMajor, cboNationlity, cboNative, cboNav_Province, cboPer_Province,
-                                       cboReligion, cboStaffRank, cboTitle,
-                                       cboPer_District, cboPer_Ward, cboNav_District, cboNav_Ward,
-                                       hidID, hidOrgID, hidDirectManager, hidLevelManager,
-                                       chkDoanPhi, cbPROVINCEEMP_ID, cbDISTRICTEMP_ID, cbWARDEMP_ID, cbPROVINCENQ_ID, cbBirth_PlaceId,
-                                       btnFindDirect, btnFindOrg,
-                                       rtOpption1, rtOpption2, rtOpption3, rtOpption4, rtOpption5,
-                                       rdOpption6, rdOpption7, rdOpption8, rdOpption9, rdOpption10,
-                                        rtBookNo, cbGD_Chinh_Sach, cbHang_Thuong_Binh, ckThuong_Binh,
-                                       rtDV_Xuat_Ngu_QD, rdNgay_Xuat_Ngu_QD, rdNgay_Nhap_Ngu_QD, ckQD, rtDV_Xuat_Ngu_CA, rdNgay_Xuat_Ngu_CA, rdNgay_Nhap_Ngu_CA,
-                                       rdNgay_TG_Ban_Nu_Cong, rtCV_Ban_Nu_Cong, ckNU_CONG, rdNgay_TG_BanTT, rtCV_BANTT, ckCONG_DOAN, ckCA, ckDANG, rtSkill,
-                                       cbQLNN, cbLLCT, cbTDTH, cboTDTH2, rtTTSucKhoe,
-                                       cboPROVINCEEMP_BRITH, cboDISTRICTEMP_BRITH, cboWARDEMP_BRITH, ckCHUHO, txtNoHouseHolds, txtCodeHouseHolds, cboObjectIns)
+                    If EmployeeInfo.WORK_STATUS IsNot Nothing Then
+                        EnableControlAll(False, lstbPaper, lstbPaperFiled, cboWorkStatus, cboEmpStatus, txtEmpCODE,
+                                      txtBankNo, chkSaveHistory, ckDOAN_PHI, rtCHUC_VU_DANG, rdNGAY_VAO_DOAN,
+                                      txtDaHoaLieu, rdNGAY_VAO_DANG_DB, rdNGAY_VAO_DANG, ckBanTT_ND, txtNamTN,
+                                      txtFirstNameVN, txtGhiChuSK, rtCHUC_VU_DOAN, rtDiem_XL_TH, txtDiem_XL_TH2, txtNoteTDTH1, txtNoteTDTH2,
+                                      txtHomePhone, txtHuyetAp, txtID_NO, txtIDRemark, chkIs_pay_bank,
+                                      cboIDPlace, txtLangMark, txtLangMark2, txtTimeID,
+                                      txtLastNameVN, txtMatPhai, txtMatTrai,
+                                      txtMobilePhone, txtNavAddress, txtNhomMau, cboCertificate, cboBasic, rdExpireIDNO,
+                                       txtPassNo, txtPassPlace, cboObject, cboObjectLabor, cbObjectBook, txtTimeID, cboCertificate, cboBasic, txtAppDung, txtPlaceKS, txtVillage, rdDayPitcode, txtPlacePitcode, txtPerson_Inheritance, rdEffect_Bank,
+                                      txtPerAddress, txtPerEmail, txtPhoiNguc, txtCareer,
+                                      txtPitCode, txtRangHamMat, txtTaiMuiHong, txtTim,
+                                      txtVienGanB, txtVisa, txtVisaPlace,
+                                      txtWorkEmail, txtWorkPermit, txtWorkPermitPlace,
+                                      txtContactPerson, txtContactPersonPhone, txtContactMobilePhone, txtChucVuDoan,
+                                      rdBirthDate, rdContractExpireDate, rdContractEffectDate, rdIDDate, rdSeniorityDate,
+                                      rdNgayVaoDoan, rdPassDate, rdPassExpireDate,
+                                      rdVisaDate, rdVisaExpireDate, rdWorkPermitDate, rdWorPermitExpireDate,
+                                      txtCanNang, txtChieuCao,
+                                      cboAcademy, cboGraduateSchool, cboBank, cboBankBranch, cboFamilyStatus,
+                                      cboGender, cboLangLevel, cboLangLevel2, rtWorkplace, cboInsRegion,
+                                      cboLanguage, cboLanguage2, cboLearningLevel, txtLoaiSucKhoe,
+                                      cboMajor, cboNationlity, cboNative, cboNav_Province, cboPer_Province,
+                                      cboReligion, cboStaffRank, cboTitle,
+                                      cboPer_District, cboPer_Ward, cboNav_District, cboNav_Ward,
+                                      hidID, hidOrgID, hidDirectManager, hidLevelManager,
+                                      chkDoanPhi, cbPROVINCEEMP_ID, cbDISTRICTEMP_ID, cbWARDEMP_ID, cbPROVINCENQ_ID, cbBirth_PlaceId,
+                                      btnFindDirect, btnFindOrg,
+                                      rtOpption1, rtOpption2, rtOpption3, rtOpption4, rtOpption5,
+                                      rdOpption6, rdOpption7, rdOpption8, rdOpption9, rdOpption10,
+                                       rtBookNo, cbGD_Chinh_Sach, cbHang_Thuong_Binh, ckThuong_Binh,
+                                      rtDV_Xuat_Ngu_QD, rdNgay_Xuat_Ngu_QD, rdNgay_Nhap_Ngu_QD, ckQD, rtDV_Xuat_Ngu_CA, rdNgay_Xuat_Ngu_CA, rdNgay_Nhap_Ngu_CA,
+                                      rdNgay_TG_Ban_Nu_Cong, rtCV_Ban_Nu_Cong, ckNU_CONG, rdNgay_TG_BanTT, rtCV_BANTT, ckCONG_DOAN, ckCA, ckDANG, rtSkill,
+                                      cbQLNN, cbLLCT, cbTDTH, cboTDTH2, rtTTSucKhoe,
+                                      cboPROVINCEEMP_BRITH, cboDISTRICTEMP_BRITH, cboWARDEMP_BRITH, ckCHUHO, txtNoHouseHolds, txtCodeHouseHolds, cboObjectIns)
+                    Else
+                        EnableControlAll(True, btnFindOrg, cboTitle, cboObjectLabor, btnFindDirect)
+                        EnableControlAll(False, lstbPaper, lstbPaperFiled, cboWorkStatus, cboEmpStatus, txtEmpCODE,
+                                      txtBankNo, chkSaveHistory, ckDOAN_PHI, rtCHUC_VU_DANG, rdNGAY_VAO_DOAN,
+                                      txtDaHoaLieu, rdNGAY_VAO_DANG_DB, rdNGAY_VAO_DANG, ckBanTT_ND, txtNamTN,
+                                      txtFirstNameVN, txtGhiChuSK, rtCHUC_VU_DOAN, rtDiem_XL_TH, txtDiem_XL_TH2, txtNoteTDTH1, txtNoteTDTH2,
+                                      txtHomePhone, txtHuyetAp, txtID_NO, txtIDRemark, chkIs_pay_bank,
+                                      cboIDPlace, txtLangMark, txtLangMark2, txtTimeID,
+                                      txtLastNameVN, txtMatPhai, txtMatTrai,
+                                      txtMobilePhone, txtNavAddress, txtNhomMau, cboCertificate, cboBasic, rdExpireIDNO,
+                                       txtPassNo, txtPassPlace, cboObject, cbObjectBook, txtTimeID, cboCertificate, cboBasic, txtAppDung, txtPlaceKS, txtVillage, rdDayPitcode, txtPlacePitcode, txtPerson_Inheritance, rdEffect_Bank,
+                                      txtPerAddress, txtPerEmail, txtPhoiNguc, txtCareer,
+                                      txtPitCode, txtRangHamMat, txtTaiMuiHong, txtTim,
+                                      txtVienGanB, txtVisa, txtVisaPlace,
+                                      txtWorkEmail, txtWorkPermit, txtWorkPermitPlace,
+                                      txtContactPerson, txtContactPersonPhone, txtContactMobilePhone, txtChucVuDoan,
+                                      rdBirthDate, rdContractExpireDate, rdContractEffectDate, rdIDDate, rdSeniorityDate,
+                                      rdNgayVaoDoan, rdPassDate, rdPassExpireDate,
+                                      rdVisaDate, rdVisaExpireDate, rdWorkPermitDate, rdWorPermitExpireDate,
+                                      txtCanNang, txtChieuCao,
+                                      cboAcademy, cboGraduateSchool, cboBank, cboBankBranch, cboFamilyStatus,
+                                      cboGender, cboLangLevel, cboLangLevel2, rtWorkplace, cboInsRegion,
+                                      cboLanguage, cboLanguage2, cboLearningLevel, txtLoaiSucKhoe,
+                                      cboMajor, cboNationlity, cboNative, cboNav_Province, cboPer_Province,
+                                      cboReligion, cboStaffRank,
+                                      cboPer_District, cboPer_Ward, cboNav_District, cboNav_Ward,
+                                      hidID, hidOrgID, hidDirectManager, hidLevelManager,
+                                      chkDoanPhi, cbPROVINCEEMP_ID, cbDISTRICTEMP_ID, cbWARDEMP_ID, cbPROVINCENQ_ID, cbBirth_PlaceId,
+                                      rtOpption1, rtOpption2, rtOpption3, rtOpption4, rtOpption5,
+                                      rdOpption6, rdOpption7, rdOpption8, rdOpption9, rdOpption10,
+                                       rtBookNo, cbGD_Chinh_Sach, cbHang_Thuong_Binh, ckThuong_Binh,
+                                      rtDV_Xuat_Ngu_QD, rdNgay_Xuat_Ngu_QD, rdNgay_Nhap_Ngu_QD, ckQD, rtDV_Xuat_Ngu_CA, rdNgay_Xuat_Ngu_CA, rdNgay_Nhap_Ngu_CA,
+                                      rdNgay_TG_Ban_Nu_Cong, rtCV_Ban_Nu_Cong, ckNU_CONG, rdNgay_TG_BanTT, rtCV_BANTT, ckCONG_DOAN, ckCA, ckDANG, rtSkill,
+                                      cbQLNN, cbLLCT, cbTDTH, cboTDTH2, rtTTSucKhoe,
+                                      cboPROVINCEEMP_BRITH, cboDISTRICTEMP_BRITH, cboWARDEMP_BRITH, ckCHUHO, txtNoHouseHolds, txtCodeHouseHolds, cboObjectIns)
+                    End If
 
+                   
             End Select
             rep.Dispose()
             ChangeToolbarState()
