@@ -1547,6 +1547,8 @@
     <None Include="TemplateDynamic\ProfileSupport\6550.doc" />
     <None Include="TemplateDynamic\Terminate3B\38.doc" />
     <None Include="TemplateDynamic\Terminate3B\39.doc" />
+    <Content Include="TemplateDynamic\TerminateSupport\LNV09.doc" />
+    <Content Include="TemplateDynamic\TerminateSupport\QDNV.doc" />
     <None Include="TemplateDynamic\Terminate\2.doc" />
     <None Include="TemplateDynamic\Terminate\2.docx" />
     <None Include="TemplateDynamic\Terminate\5.doc" />
@@ -1726,7 +1728,6 @@
     <Folder Include="Static\Images\mainToolbar\" />
     <Folder Include="Static\Images\Menu\Business\" />
     <Folder Include="Static\Resources\" />
-    <Folder Include="TemplateDynamic\TerminateSupport\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\HistaffFrameworkPublic\HistaffFrameworkPublic.vbproj">
