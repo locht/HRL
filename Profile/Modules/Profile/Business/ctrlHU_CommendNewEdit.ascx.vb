@@ -595,7 +595,7 @@ Public Class ctrlHU_CommendNewEdit
                             For Each row As DataRow In dtrgEmployee.Rows
                                 If row("cbStatus") = 1 Then
                                     Dim o As New CommendEmpDTO
-                                    o.GUID_ID = row("GUID_ID")
+                                    o.GUID_ID = If(Not IsDBNull(row("GUID_ID")), row("GUID_ID"), "")
                                     o.HU_EMPLOYEE_ID = row("HU_EMPLOYEE_ID")
                                     o.MONEY = If(row("MONEY") <> "", Decimal.Parse(row("MONEY")), Nothing)
                                     o.COMMEND_PAY = If(row("COMMEND_PAY") <> "", Decimal.Parse(row("COMMEND_PAY")), Nothing)
@@ -622,7 +622,7 @@ Public Class ctrlHU_CommendNewEdit
                             For Each row As DataRow In dtrgOrg.Rows
                                 If row("cbStatus") = 1 Then
                                     Dim o As New CommendOrgDTO
-                                    o.GUID_ID = row("GUID_ID")
+                                    o.GUID_ID = If(Not IsDBNull(row("GUID_ID")), row("GUID_ID"), "")
                                     o.MONEY = If(row("MONEY") <> "", Decimal.Parse(row("MONEY")), Nothing)
                                     o.COMMEND_PAY = If(row("COMMEND_PAY") <> "", Decimal.Parse(row("COMMEND_PAY")), Nothing)
                                     o.ORG_ID = row("ORG_ID")
