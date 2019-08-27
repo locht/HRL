@@ -6,152 +6,152 @@
     <edmx:StorageModels>
     <Schema Namespace="ProfileModel.Store" Alias="Self" Provider="Oracle.DataAccess.Client" ProviderManifestToken="12.2" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator">
         <EntityContainer Name="ProfileModelStoreContainer">
-            <EntitySet Name="HU_PROVINCE" EntityType="ProfileModel.Store.HU_PROVINCE" store:Type="Tables"  />
-            <EntitySet Name="HU_DISTRICT" EntityType="ProfileModel.Store.HU_DISTRICT" store:Type="Tables"  />
-            <EntitySet Name="HU_NATION" EntityType="ProfileModel.Store.HU_NATION" store:Type="Tables"  />
-            <EntitySet Name="HU_ASSET" EntityType="ProfileModel.Store.HU_ASSET" store:Type="Tables"  />
-            <EntitySet Name="HU_BANK" EntityType="ProfileModel.Store.HU_BANK" store:Type="Tables"  />
-            <EntitySet Name="HU_BANK_BRANCH" EntityType="ProfileModel.Store.HU_BANK_BRANCH" store:Type="Tables"  />
-            <EntitySet Name="OT_OTHER_LIST" EntityType="ProfileModel.Store.OT_OTHER_LIST" store:Type="Tables"  />
-            <EntitySet Name="HU_EMPLOYEE" EntityType="ProfileModel.Store.HU_EMPLOYEE" store:Type="Tables"  />
-            <EntitySet Name="OT_OTHER_LIST_TYPE" EntityType="ProfileModel.Store.OT_OTHER_LIST_TYPE" store:Type="Tables"  />
-            <EntitySet Name="HU_HOSPITAL" EntityType="ProfileModel.Store.HU_HOSPITAL" store:Type="Tables"  />
-            <EntitySet Name="HU_EMPLOYEE_CV" EntityType="ProfileModel.Store.HU_EMPLOYEE_CV" store:Type="Tables"  />
-            <EntitySet Name="HU_EMPLOYEE_HEALTH" EntityType="ProfileModel.Store.HU_EMPLOYEE_HEALTH" store:Type="Tables"  />
-            <EntitySet Name="HU_EMPLOYEE_EDUCATION" EntityType="ProfileModel.Store.HU_EMPLOYEE_EDUCATION" store:Type="Tables"  />
-            <EntitySet Name="HU_CONTRACT" EntityType="ProfileModel.Store.HU_CONTRACT" store:Type="Tables"  />
-            <EntitySet Name="HU_FAMILY" EntityType="ProfileModel.Store.HU_FAMILY" store:Type="Tables"  />
-            <EntitySet Name="HU_DISCIPLINE" EntityType="ProfileModel.Store.HU_DISCIPLINE" store:Type="Tables"  />
-            <EntitySet Name="HU_WORKING_BEFORE" EntityType="ProfileModel.Store.HU_WORKING_BEFORE" store:Type="Tables"  />
-            <EntitySet Name="HU_TERMINATE" EntityType="ProfileModel.Store.HU_TERMINATE" store:Type="Tables"  />
-            <EntitySet Name="HU_WORKING_OLD" EntityType="ProfileModel.Store.HU_WORKING_OLD" store:Type="Tables"  />
-            <EntitySet Name="SE_MAIL" EntityType="ProfileModel.Store.SE_MAIL" store:Type="Tables"  />
-            <EntitySet Name="HU_REMINDER_LOG" EntityType="ProfileModel.Store.HU_REMINDER_LOG" store:Type="Tables"  />
-            <EntitySet Name="OT_OTHER_LIST_GROUP" EntityType="ProfileModel.Store.OT_OTHER_LIST_GROUP" store:Type="Tables"  />
-            <EntitySet Name="HUV_WORKING" EntityType="ProfileModel.Store.HUV_WORKING" store:Type="Tables"  />
-            <EntitySet Name="PA_SALARY_GROUP" EntityType="ProfileModel.Store.PA_SALARY_GROUP" store:Type="Tables"  />
-            <EntitySet Name="PA_SALARY_LEVEL" EntityType="ProfileModel.Store.PA_SALARY_LEVEL" store:Type="Tables"  />
-            <EntitySet Name="PA_SALARY_PAGE" EntityType="ProfileModel.Store.PA_SALARY_PAGE" store:Type="Tables"  />
-            <EntitySet Name="PA_SALARY_RANK" EntityType="ProfileModel.Store.PA_SALARY_RANK" store:Type="Tables"  />
-            <EntitySet Name="HU_EMPLOYEE_TRAIN" EntityType="ProfileModel.Store.HU_EMPLOYEE_TRAIN" store:Type="Tables"  />
-            <EntitySet Name="HU_MISSION" EntityType="ProfileModel.Store.HU_MISSION" store:Type="Tables"  />
-            <EntitySet Name="AT_ALDATA" EntityType="ProfileModel.Store.AT_ALDATA" store:Type="Tables"  />
-            <EntitySet Name="HUV_CURRENT_TERMINATE" EntityType="ProfileModel.Store.HUV_CURRENT_TERMINATE" store:Type="Tables"  />
-            <EntitySet Name="DYNAMIC_REPORT_CONFIG" EntityType="ProfileModel.Store.DYNAMIC_REPORT_CONFIG" store:Type="Tables"  />
-            <EntitySet Name="SE_CHOSEN_ORG" EntityType="ProfileModel.Store.SE_CHOSEN_ORG" store:Type="Tables"  />
-            <EntitySet Name="HU_WORKING_ALLOW" EntityType="ProfileModel.Store.HU_WORKING_ALLOW" store:Type="Tables"  />
-            <EntitySet Name="HU_DYNAMIC_REPORT" EntityType="ProfileModel.Store.HU_DYNAMIC_REPORT" store:Type="Tables"  />
-            <EntitySet Name="HU_DYNAMIC_REPORT_DTL" EntityType="ProfileModel.Store.HU_DYNAMIC_REPORT_DTL" store:Type="Tables"  />
-            <EntitySet Name="PA_OBJECT_SALARY" EntityType="ProfileModel.Store.PA_OBJECT_SALARY" store:Type="Tables"  />
-            <EntitySet Name="HU_EMPLOYEE_FILE" EntityType="ProfileModel.Store.HU_EMPLOYEE_FILE" store:Type="Tables"  />
-            <EntitySet Name="HU_LABOURPROTECTION" EntityType="ProfileModel.Store.HU_LABOURPROTECTION" store:Type="Tables"  />
-            <EntitySet Name="HU_OCCUPATIONAL_SAFETY" EntityType="ProfileModel.Store.HU_OCCUPATIONAL_SAFETY" store:Type="Tables"  />
-            <EntitySet Name="HU_CONTRACT_TYPE" EntityType="ProfileModel.Store.HU_CONTRACT_TYPE" store:Type="Tables"  />
-            <EntitySet Name="INS_ARISING" EntityType="ProfileModel.Store.INS_ARISING" store:Type="Tables"  />
-            <EntitySet Name="AT_PERIOD" EntityType="ProfileModel.Store.AT_PERIOD" store:Type="Tables"  />
-            <EntitySet Name="INS_CHANGE" EntityType="ProfileModel.Store.INS_CHANGE" store:Type="Tables"  />
-            <EntitySet Name="INS_CHANGE_TYPE" EntityType="ProfileModel.Store.INS_CHANGE_TYPE" store:Type="Tables"  />
-            <EntitySet Name="INS_INFORMATION" EntityType="ProfileModel.Store.INS_INFORMATION" store:Type="Tables"  />
-            <EntitySet Name="HU_CONDITION_COL" EntityType="ProfileModel.Store.HU_CONDITION_COL" store:Type="Tables"  />
-            <EntitySet Name="HU_DYNAMIC_CONDITION" EntityType="ProfileModel.Store.HU_DYNAMIC_CONDITION" store:Type="Tables"  />
-            <EntitySet Name="HU_WARD" EntityType="ProfileModel.Store.HU_WARD" store:Type="Tables"  />
-            <EntitySet Name="SE_CHOSEN_EMP_3B" EntityType="ProfileModel.Store.SE_CHOSEN_EMP_3B" store:Type="Tables"  />
-            <EntitySet Name="HU_EMPLOYEE_PAPER" EntityType="ProfileModel.Store.HU_EMPLOYEE_PAPER" store:Type="Tables"  />
-            <EntitySet Name="HU_PRO_TRAIN_OUT_COMPANY" EntityType="ProfileModel.Store.HU_PRO_TRAIN_OUT_COMPANY" store:Type="Tables"  />
-            <EntitySet Name="HU_DISCIPLINE_EMP" EntityType="ProfileModel.Store.HU_DISCIPLINE_EMP" store:Type="Tables"  />
-            <EntitySet Name="HU_STAFF_RANK" EntityType="ProfileModel.Store.HU_STAFF_RANK" store:Type="Tables"  />
-            <EntitySet Name="HU_DISCIPLINE_SALARY" EntityType="ProfileModel.Store.HU_DISCIPLINE_SALARY" store:Type="Tables"  />
-            <EntitySet Name="HU_WELFARE_LIST" EntityType="ProfileModel.Store.HU_WELFARE_LIST" store:Type="Tables"  />
-            <EntitySet Name="HU_WELFARE_LIST_GW" EntityType="ProfileModel.Store.HU_WELFARE_LIST_GW" store:Type="Tables"  />
-            <EntitySet Name="HU_ASSET_MNG" EntityType="ProfileModel.Store.HU_ASSET_MNG" store:Type="Tables"  />
-            <EntitySet Name="HU_FAMILY_EDIT" EntityType="ProfileModel.Store.HU_FAMILY_EDIT" store:Type="Tables"  />
-            <EntitySet Name="HU_EMPLOYEE_EDIT" EntityType="ProfileModel.Store.HU_EMPLOYEE_EDIT" store:Type="Tables"  />
-            <EntitySet Name="HU_PRO_TRAIN_OUT_COMPANY_EDIT" EntityType="ProfileModel.Store.HU_PRO_TRAIN_OUT_COMPANY_EDIT" store:Type="Tables"  />
-            <EntitySet Name="HU_WORKING_BEFORE_EDIT" EntityType="ProfileModel.Store.HU_WORKING_BEFORE_EDIT" store:Type="Tables"  />
-            <EntitySet Name="HU_WELFARE_MNG" EntityType="ProfileModel.Store.HU_WELFARE_MNG" store:Type="Tables"  />
-            <EntitySet Name="HU_TERMINATE_3B" EntityType="ProfileModel.Store.HU_TERMINATE_3B" store:Type="Tables"  />
-            <EntitySet Name="HU_MERGE_FIELD" EntityType="ProfileModel.Store.HU_MERGE_FIELD" store:Type="Tables"  />
-            <EntitySet Name="AT_ORG_PERIOD" EntityType="ProfileModel.Store.AT_ORG_PERIOD" store:Type="Tables"  />
-            <EntitySet Name="HUV_ORGANIZATION" EntityType="ProfileModel.Store.HUV_ORGANIZATION" store:Type="Tables"  />
-            <EntitySet Name="HU_EMPLOYEE_PAPER_FILED" EntityType="ProfileModel.Store.HU_EMPLOYEE_PAPER_FILED" store:Type="Tables"  />
-            <EntitySet Name="HU_TERMINATE_REASON" EntityType="ProfileModel.Store.HU_TERMINATE_REASON" store:Type="Tables"  />
-            <EntitySet Name="INS_SPECIFIED_OBJECTS" EntityType="ProfileModel.Store.INS_SPECIFIED_OBJECTS" store:Type="Tables"  />
-            <EntitySet Name="HUV_ORGANIZATION_EMP_COUNT" EntityType="ProfileModel.Store.HUV_ORGANIZATION_EMP_COUNT" store:Type="Tables"  />
-            <EntitySet Name="AT_DECLARE_ENTITLEMENT" EntityType="ProfileModel.Store.AT_DECLARE_ENTITLEMENT" store:Type="Tables"  />
-            <EntitySet Name="INS_REGION" EntityType="ProfileModel.Store.INS_REGION" store:Type="Tables"  />
-            <EntitySet Name="SE_USER" EntityType="ProfileModel.Store.SE_USER" store:Type="Tables"  />
-            <EntitySet Name="SE_REPORT" EntityType="ProfileModel.Store.SE_REPORT" store:Type="Tables"  />
-            <EntitySet Name="HU_LABOURPROTECTION_MNG" EntityType="ProfileModel.Store.HU_LABOURPROTECTION_MNG" store:Type="Tables"  />
-            <EntitySet Name="HU_COMPETENCY_GROUP" EntityType="ProfileModel.Store.HU_COMPETENCY_GROUP" store:Type="Tables"  />
-            <EntitySet Name="HU_COMPETENCY" EntityType="ProfileModel.Store.HU_COMPETENCY" store:Type="Tables"  />
-            <EntitySet Name="HU_COMPETENCY_BUILD" EntityType="ProfileModel.Store.HU_COMPETENCY_BUILD" store:Type="Tables"  />
-            <EntitySet Name="HU_COMPETENCY_STANDARD" EntityType="ProfileModel.Store.HU_COMPETENCY_STANDARD" store:Type="Tables"  />
-            <EntitySet Name="HU_COMPETENCY_EMP" EntityType="ProfileModel.Store.HU_COMPETENCY_EMP" store:Type="Tables"  />
-            <EntitySet Name="HU_COMPETENCY_APPENDIX" EntityType="ProfileModel.Store.HU_COMPETENCY_APPENDIX" store:Type="Tables"  />
-            <EntitySet Name="HU_COMPETENCY_PERIOD" EntityType="ProfileModel.Store.HU_COMPETENCY_PERIOD" store:Type="Tables"  />
-            <EntitySet Name="HU_COMPETENCY_ASS" EntityType="ProfileModel.Store.HU_COMPETENCY_ASS" store:Type="Tables"  />
-            <EntitySet Name="HU_COMPETENCY_ASSDTL" EntityType="ProfileModel.Store.HU_COMPETENCY_ASSDTL" store:Type="Tables"  />
-            <EntitySet Name="HU_COMMEND_FORMULA" EntityType="ProfileModel.Store.HU_COMMEND_FORMULA" store:Type="Tables"  />
-            <EntitySet Name="HU_COMMEND_ORG" EntityType="ProfileModel.Store.HU_COMMEND_ORG" store:Type="Tables"  />
-            <EntitySet Name="HU_COMMEND_LIST" EntityType="ProfileModel.Store.HU_COMMEND_LIST" store:Type="Tables"  />
-            <EntitySet Name="HU_IMPORT_COMMEND" EntityType="ProfileModel.Store.HU_IMPORT_COMMEND" store:Type="Tables"  />
-            <EntitySet Name="OT_OTHER_LIST1" EntityType="ProfileModel.Store.OT_OTHER_LIST1" store:Type="Tables"  />
-            <EntitySet Name="HU_COMMEND_EMP" EntityType="ProfileModel.Store.HU_COMMEND_EMP" store:Type="Tables"  />
-            <EntitySet Name="HU_TITLE1" EntityType="ProfileModel.Store.HU_TITLE1" store:Type="Tables"  />
-            <EntitySet Name="HU_TITLE" EntityType="ProfileModel.Store.HU_TITLE" store:Type="Tables"  />
-            <EntitySet Name="PA_PAYMENTSOURCES" EntityType="ProfileModel.Store.PA_PAYMENTSOURCES" store:Type="Tables"  />
-            <EntitySet Name="HU_COMMEND_LEVEL" EntityType="ProfileModel.Store.HU_COMMEND_LEVEL" store:Type="Tables"  />
-            <EntitySet Name="HU_COMMEND" EntityType="ProfileModel.Store.HU_COMMEND" store:Type="Tables"  />
-            <EntitySet Name="TR_CERTIFICATE" EntityType="ProfileModel.Store.TR_CERTIFICATE" store:Type="Tables"  />
-            <EntitySet Name="TR_COURSE" EntityType="ProfileModel.Store.TR_COURSE" store:Type="Tables"  />
-            <EntitySet Name="TR_PROGRAM" EntityType="ProfileModel.Store.TR_PROGRAM" store:Type="Tables"  />
-            <EntitySet Name="TR_PROGRAM_COMMIT" EntityType="ProfileModel.Store.TR_PROGRAM_COMMIT" store:Type="Tables"  />
-            <EntitySet Name="TR_PROGRAM_GROUP" EntityType="ProfileModel.Store.TR_PROGRAM_GROUP" store:Type="Tables"  />
-            <EntitySet Name="TR_PROGRAM_RESULT" EntityType="ProfileModel.Store.TR_PROGRAM_RESULT" store:Type="Tables"  />
-            <EntitySet Name="TR_REQUEST" EntityType="ProfileModel.Store.TR_REQUEST" store:Type="Tables"  />
-            <EntitySet Name="TR_REQUEST_EMPLOYEE" EntityType="ProfileModel.Store.TR_REQUEST_EMPLOYEE" store:Type="Tables"  />
-            <EntitySet Name="HU_ALLOWANCE_LIST" EntityType="ProfileModel.Store.HU_ALLOWANCE_LIST" store:Type="Tables"  />
-            <EntitySet Name="HU_COMPETENCY_COURSE" EntityType="ProfileModel.Store.HU_COMPETENCY_COURSE" store:Type="Tables"  />
-            <EntitySet Name="HU_WORKING" EntityType="ProfileModel.Store.HU_WORKING" store:Type="Tables"  />
-            <EntitySet Name="PA_SALARY_TYPE" EntityType="ProfileModel.Store.PA_SALARY_TYPE" store:Type="Tables"  />
-            <EntitySet Name="HU_TITLE_CONCURRENT" EntityType="ProfileModel.Store.HU_TITLE_CONCURRENT" store:Type="Tables"  />
-            <EntitySet Name="HU_ORG_TITLE" EntityType="ProfileModel.Store.HU_ORG_TITLE" store:Type="Tables"  />
-            <EntitySet Name="HU_ORGANIZATION" EntityType="ProfileModel.Store.HU_ORGANIZATION" store:Type="Tables"  />
-            <EntitySet Name="HU_TALENT_POOL" EntityType="ProfileModel.Store.HU_TALENT_POOL" store:Type="Tables"  />
-            <EntitySet Name="HU_EMPLOYEE_CV1" EntityType="ProfileModel.Store.HU_EMPLOYEE_CV1" store:Type="Tables"  />
-            <EntitySet Name="HU_EMPLOYEE_EDUCATION1" EntityType="ProfileModel.Store.HU_EMPLOYEE_EDUCATION1" store:Type="Tables"  />
-            <EntitySet Name="HU_EMPLOYEE_EDUCATION2" EntityType="ProfileModel.Store.HU_EMPLOYEE_EDUCATION2" store:Type="Tables"  />
-            <EntitySet Name="HU_ORGANIZATION1" EntityType="ProfileModel.Store.HU_ORGANIZATION1" store:Type="Tables"  />
-            <EntitySet Name="HU_FILECONTRACT" EntityType="ProfileModel.Store.HU_FILECONTRACT" store:Type="Tables"  />
-            <EntitySet Name="HU_FILECONTRACT_DELETED" EntityType="ProfileModel.Store.HU_FILECONTRACT_DELETED" store:Type="Tables"  />
-            <EntitySet Name="HU_ASSET1" EntityType="ProfileModel.Store.HU_ASSET1" store:Type="Tables"  />
-            <EntitySet Name="HU_ASSET2" EntityType="ProfileModel.Store.HU_ASSET2" store:Type="Tables"  />
-            <EntitySet Name="HU_HOMEBASE" EntityType="ProfileModel.Store.HU_HOMEBASE" store:Type="Tables"  />
-            <EntitySet Name="PA_SALE_COMMISION" EntityType="ProfileModel.Store.PA_SALE_COMMISION" store:Type="Tables"  />
-            <EntitySet Name="HU_ALLOWANCE" EntityType="ProfileModel.Store.HU_ALLOWANCE" store:Type="Tables"  />
-            <EntitySet Name="HU_ATTACHFILES" EntityType="ProfileModel.Store.HU_ATTACHFILES" store:Type="Tables"  />
-            <EntitySet Name="HU_FILE" EntityType="ProfileModel.Store.HU_FILE" store:Type="Tables"  />
-            <EntitySet Name="HU_TRAININGFOREIGN" EntityType="ProfileModel.Store.HU_TRAININGFOREIGN" store:Type="Tables"  />
-            <EntitySet Name="HU_TRAININGMANAGE" EntityType="ProfileModel.Store.HU_TRAININGMANAGE" store:Type="Tables"  />
-            <EntitySet Name="HU_TRAININGEVALUATE" EntityType="ProfileModel.Store.HU_TRAININGEVALUATE" store:Type="Tables"  />
-            <EntitySet Name="PE_PERIOD" EntityType="ProfileModel.Store.PE_PERIOD" store:Type="Tables"  />
-            <EntitySet Name="HU_RELATIONSHIP_LIST" EntityType="ProfileModel.Store.HU_RELATIONSHIP_LIST" store:Type="Tables"  />
-            <EntitySet Name="HU_RELATIONSHIP_GROUP" EntityType="ProfileModel.Store.HU_RELATIONSHIP_GROUP" store:Type="Tables"  />
-            <EntitySet Name="HU_ANNUALLEAVE_PLANS" EntityType="ProfileModel.Store.HU_ANNUALLEAVE_PLANS" store:Type="Tables"  />
-            <EntitySet Name="HUV_CURRENT_CONTRACT" EntityType="ProfileModel.Store.HUV_CURRENT_CONTRACT" store:Type="Tables"  />
-            <EntitySet Name="HUV_CURRENT_WORKING" EntityType="ProfileModel.Store.HUV_CURRENT_WORKING" store:Type="Tables"  />
-            <EntitySet Name="HUV_TERMINATE_CURRENT" EntityType="ProfileModel.Store.HUV_TERMINATE_CURRENT" store:Type="Tables"  />
-            <EntitySet Name="HU_TRANSFER_TERMINATE" EntityType="ProfileModel.Store.HU_TRANSFER_TERMINATE" store:Type="Tables"  />
-            <EntitySet Name="HU_DEBT" EntityType="ProfileModel.Store.HU_DEBT" store:Type="Tables"  />
-            <EntitySet Name="HU_LOCATION" EntityType="ProfileModel.Store.HU_LOCATION" store:Type="Tables"  />
-            <EntitySet Name="HU_CONCURRENTLY" EntityType="ProfileModel.Store.HU_CONCURRENTLY" store:Type="Tables"  />
-            <EntitySet Name="HU_CERTIFICATE" EntityType="ProfileModel.Store.HU_CERTIFICATE" store:Type="Tables"  />
-            <EntitySet Name="HU_CERTIFICATE_EDIT" EntityType="ProfileModel.Store.HU_CERTIFICATE_EDIT" store:Type="Tables"  />
-            <EntitySet Name="HU_SIGNER" EntityType="ProfileModel.Store.HU_SIGNER" store:Type="Tables"  />
-            <EntitySet Name="SE_USER_ORG_ACCESS" EntityType="ProfileModel.Store.SE_USER_ORG_ACCESS" store:Type="Tables"  />
-            <EntitySet Name="HU_WELFARE_MNG_EMP" EntityType="ProfileModel.Store.HU_WELFARE_MNG_EMP" store:Type="Tables"  />
-            <EntitySet Name="HU_ORGANIZATION_V" EntityType="ProfileModel.Store.HU_ORGANIZATION_V" store:Type="Tables"  />
-            <EntitySet Name="SE_USER_REPORT" EntityType="ProfileModel.Store.SE_USER_REPORT" store:Type="Tables"  />
+            <EntitySet Name="HU_PROVINCE" EntityType="ProfileModel.Store.HU_PROVINCE" store:Type="Tables" />
+            <EntitySet Name="HU_DISTRICT" EntityType="ProfileModel.Store.HU_DISTRICT" store:Type="Tables" />
+            <EntitySet Name="HU_NATION" EntityType="ProfileModel.Store.HU_NATION" store:Type="Tables" />
+            <EntitySet Name="HU_ASSET" EntityType="ProfileModel.Store.HU_ASSET" store:Type="Tables" />
+            <EntitySet Name="HU_BANK" EntityType="ProfileModel.Store.HU_BANK" store:Type="Tables" />
+            <EntitySet Name="HU_BANK_BRANCH" EntityType="ProfileModel.Store.HU_BANK_BRANCH" store:Type="Tables" />
+            <EntitySet Name="OT_OTHER_LIST" EntityType="ProfileModel.Store.OT_OTHER_LIST" store:Type="Tables" />
+            <EntitySet Name="HU_EMPLOYEE" EntityType="ProfileModel.Store.HU_EMPLOYEE" store:Type="Tables" />
+            <EntitySet Name="OT_OTHER_LIST_TYPE" EntityType="ProfileModel.Store.OT_OTHER_LIST_TYPE" store:Type="Tables" />
+            <EntitySet Name="HU_HOSPITAL" EntityType="ProfileModel.Store.HU_HOSPITAL" store:Type="Tables" />
+            <EntitySet Name="HU_EMPLOYEE_CV" EntityType="ProfileModel.Store.HU_EMPLOYEE_CV" store:Type="Tables" />
+            <EntitySet Name="HU_EMPLOYEE_HEALTH" EntityType="ProfileModel.Store.HU_EMPLOYEE_HEALTH" store:Type="Tables" />
+            <EntitySet Name="HU_EMPLOYEE_EDUCATION" EntityType="ProfileModel.Store.HU_EMPLOYEE_EDUCATION" store:Type="Tables" />
+            <EntitySet Name="HU_CONTRACT" EntityType="ProfileModel.Store.HU_CONTRACT" store:Type="Tables" />
+            <EntitySet Name="HU_FAMILY" EntityType="ProfileModel.Store.HU_FAMILY" store:Type="Tables" />
+            <EntitySet Name="HU_DISCIPLINE" EntityType="ProfileModel.Store.HU_DISCIPLINE" store:Type="Tables" />
+            <EntitySet Name="HU_WORKING_BEFORE" EntityType="ProfileModel.Store.HU_WORKING_BEFORE" store:Type="Tables" />
+            <EntitySet Name="HU_TERMINATE" EntityType="ProfileModel.Store.HU_TERMINATE" store:Type="Tables" />
+            <EntitySet Name="HU_WORKING_OLD" EntityType="ProfileModel.Store.HU_WORKING_OLD" store:Type="Tables" />
+            <EntitySet Name="SE_MAIL" EntityType="ProfileModel.Store.SE_MAIL" store:Type="Tables" />
+            <EntitySet Name="HU_REMINDER_LOG" EntityType="ProfileModel.Store.HU_REMINDER_LOG" store:Type="Tables" />
+            <EntitySet Name="OT_OTHER_LIST_GROUP" EntityType="ProfileModel.Store.OT_OTHER_LIST_GROUP" store:Type="Tables" />
+            <EntitySet Name="HUV_WORKING" EntityType="ProfileModel.Store.HUV_WORKING" store:Type="Tables" />
+            <EntitySet Name="PA_SALARY_GROUP" EntityType="ProfileModel.Store.PA_SALARY_GROUP" store:Type="Tables" />
+            <EntitySet Name="PA_SALARY_LEVEL" EntityType="ProfileModel.Store.PA_SALARY_LEVEL" store:Type="Tables" />
+            <EntitySet Name="PA_SALARY_PAGE" EntityType="ProfileModel.Store.PA_SALARY_PAGE" store:Type="Tables" />
+            <EntitySet Name="PA_SALARY_RANK" EntityType="ProfileModel.Store.PA_SALARY_RANK" store:Type="Tables" />
+            <EntitySet Name="HU_EMPLOYEE_TRAIN" EntityType="ProfileModel.Store.HU_EMPLOYEE_TRAIN" store:Type="Tables" />
+            <EntitySet Name="HU_MISSION" EntityType="ProfileModel.Store.HU_MISSION" store:Type="Tables" />
+            <EntitySet Name="AT_ALDATA" EntityType="ProfileModel.Store.AT_ALDATA" store:Type="Tables" />
+            <EntitySet Name="HUV_CURRENT_TERMINATE" EntityType="ProfileModel.Store.HUV_CURRENT_TERMINATE" store:Type="Tables" />
+            <EntitySet Name="DYNAMIC_REPORT_CONFIG" EntityType="ProfileModel.Store.DYNAMIC_REPORT_CONFIG" store:Type="Tables" />
+            <EntitySet Name="SE_CHOSEN_ORG" EntityType="ProfileModel.Store.SE_CHOSEN_ORG" store:Type="Tables" />
+            <EntitySet Name="HU_WORKING_ALLOW" EntityType="ProfileModel.Store.HU_WORKING_ALLOW" store:Type="Tables" />
+            <EntitySet Name="HU_DYNAMIC_REPORT" EntityType="ProfileModel.Store.HU_DYNAMIC_REPORT" store:Type="Tables" />
+            <EntitySet Name="HU_DYNAMIC_REPORT_DTL" EntityType="ProfileModel.Store.HU_DYNAMIC_REPORT_DTL" store:Type="Tables" />
+            <EntitySet Name="PA_OBJECT_SALARY" EntityType="ProfileModel.Store.PA_OBJECT_SALARY" store:Type="Tables" />
+            <EntitySet Name="HU_EMPLOYEE_FILE" EntityType="ProfileModel.Store.HU_EMPLOYEE_FILE" store:Type="Tables" />
+            <EntitySet Name="HU_LABOURPROTECTION" EntityType="ProfileModel.Store.HU_LABOURPROTECTION" store:Type="Tables" />
+            <EntitySet Name="HU_OCCUPATIONAL_SAFETY" EntityType="ProfileModel.Store.HU_OCCUPATIONAL_SAFETY" store:Type="Tables" />
+            <EntitySet Name="HU_CONTRACT_TYPE" EntityType="ProfileModel.Store.HU_CONTRACT_TYPE" store:Type="Tables" />
+            <EntitySet Name="INS_ARISING" EntityType="ProfileModel.Store.INS_ARISING" store:Type="Tables" />
+            <EntitySet Name="AT_PERIOD" EntityType="ProfileModel.Store.AT_PERIOD" store:Type="Tables" />
+            <EntitySet Name="INS_CHANGE" EntityType="ProfileModel.Store.INS_CHANGE" store:Type="Tables" />
+            <EntitySet Name="INS_CHANGE_TYPE" EntityType="ProfileModel.Store.INS_CHANGE_TYPE" store:Type="Tables" />
+            <EntitySet Name="INS_INFORMATION" EntityType="ProfileModel.Store.INS_INFORMATION" store:Type="Tables" />
+            <EntitySet Name="HU_CONDITION_COL" EntityType="ProfileModel.Store.HU_CONDITION_COL" store:Type="Tables" />
+            <EntitySet Name="HU_DYNAMIC_CONDITION" EntityType="ProfileModel.Store.HU_DYNAMIC_CONDITION" store:Type="Tables" />
+            <EntitySet Name="HU_WARD" EntityType="ProfileModel.Store.HU_WARD" store:Type="Tables" />
+            <EntitySet Name="SE_CHOSEN_EMP_3B" EntityType="ProfileModel.Store.SE_CHOSEN_EMP_3B" store:Type="Tables" />
+            <EntitySet Name="HU_EMPLOYEE_PAPER" EntityType="ProfileModel.Store.HU_EMPLOYEE_PAPER" store:Type="Tables" />
+            <EntitySet Name="HU_PRO_TRAIN_OUT_COMPANY" EntityType="ProfileModel.Store.HU_PRO_TRAIN_OUT_COMPANY" store:Type="Tables" />
+            <EntitySet Name="HU_DISCIPLINE_EMP" EntityType="ProfileModel.Store.HU_DISCIPLINE_EMP" store:Type="Tables" />
+            <EntitySet Name="HU_STAFF_RANK" EntityType="ProfileModel.Store.HU_STAFF_RANK" store:Type="Tables" />
+            <EntitySet Name="HU_DISCIPLINE_SALARY" EntityType="ProfileModel.Store.HU_DISCIPLINE_SALARY" store:Type="Tables" />
+            <EntitySet Name="HU_WELFARE_LIST" EntityType="ProfileModel.Store.HU_WELFARE_LIST" store:Type="Tables" />
+            <EntitySet Name="HU_WELFARE_LIST_GW" EntityType="ProfileModel.Store.HU_WELFARE_LIST_GW" store:Type="Tables" />
+            <EntitySet Name="HU_ASSET_MNG" EntityType="ProfileModel.Store.HU_ASSET_MNG" store:Type="Tables" />
+            <EntitySet Name="HU_FAMILY_EDIT" EntityType="ProfileModel.Store.HU_FAMILY_EDIT" store:Type="Tables" />
+            <EntitySet Name="HU_EMPLOYEE_EDIT" EntityType="ProfileModel.Store.HU_EMPLOYEE_EDIT" store:Type="Tables" />
+            <EntitySet Name="HU_PRO_TRAIN_OUT_COMPANY_EDIT" EntityType="ProfileModel.Store.HU_PRO_TRAIN_OUT_COMPANY_EDIT" store:Type="Tables" />
+            <EntitySet Name="HU_WORKING_BEFORE_EDIT" EntityType="ProfileModel.Store.HU_WORKING_BEFORE_EDIT" store:Type="Tables" />
+            <EntitySet Name="HU_WELFARE_MNG" EntityType="ProfileModel.Store.HU_WELFARE_MNG" store:Type="Tables" />
+            <EntitySet Name="HU_TERMINATE_3B" EntityType="ProfileModel.Store.HU_TERMINATE_3B" store:Type="Tables" />
+            <EntitySet Name="HU_MERGE_FIELD" EntityType="ProfileModel.Store.HU_MERGE_FIELD" store:Type="Tables" />
+            <EntitySet Name="AT_ORG_PERIOD" EntityType="ProfileModel.Store.AT_ORG_PERIOD" store:Type="Tables" />
+            <EntitySet Name="HUV_ORGANIZATION" EntityType="ProfileModel.Store.HUV_ORGANIZATION" store:Type="Tables" />
+            <EntitySet Name="HU_EMPLOYEE_PAPER_FILED" EntityType="ProfileModel.Store.HU_EMPLOYEE_PAPER_FILED" store:Type="Tables" />
+            <EntitySet Name="HU_TERMINATE_REASON" EntityType="ProfileModel.Store.HU_TERMINATE_REASON" store:Type="Tables" />
+            <EntitySet Name="INS_SPECIFIED_OBJECTS" EntityType="ProfileModel.Store.INS_SPECIFIED_OBJECTS" store:Type="Tables" />
+            <EntitySet Name="HUV_ORGANIZATION_EMP_COUNT" EntityType="ProfileModel.Store.HUV_ORGANIZATION_EMP_COUNT" store:Type="Tables" />
+            <EntitySet Name="AT_DECLARE_ENTITLEMENT" EntityType="ProfileModel.Store.AT_DECLARE_ENTITLEMENT" store:Type="Tables" />
+            <EntitySet Name="INS_REGION" EntityType="ProfileModel.Store.INS_REGION" store:Type="Tables" />
+            <EntitySet Name="SE_USER" EntityType="ProfileModel.Store.SE_USER" store:Type="Tables" />
+            <EntitySet Name="SE_REPORT" EntityType="ProfileModel.Store.SE_REPORT" store:Type="Tables" />
+            <EntitySet Name="HU_LABOURPROTECTION_MNG" EntityType="ProfileModel.Store.HU_LABOURPROTECTION_MNG" store:Type="Tables" />
+            <EntitySet Name="HU_COMPETENCY_GROUP" EntityType="ProfileModel.Store.HU_COMPETENCY_GROUP" store:Type="Tables" />
+            <EntitySet Name="HU_COMPETENCY" EntityType="ProfileModel.Store.HU_COMPETENCY" store:Type="Tables" />
+            <EntitySet Name="HU_COMPETENCY_BUILD" EntityType="ProfileModel.Store.HU_COMPETENCY_BUILD" store:Type="Tables" />
+            <EntitySet Name="HU_COMPETENCY_STANDARD" EntityType="ProfileModel.Store.HU_COMPETENCY_STANDARD" store:Type="Tables" />
+            <EntitySet Name="HU_COMPETENCY_EMP" EntityType="ProfileModel.Store.HU_COMPETENCY_EMP" store:Type="Tables" />
+            <EntitySet Name="HU_COMPETENCY_APPENDIX" EntityType="ProfileModel.Store.HU_COMPETENCY_APPENDIX" store:Type="Tables" />
+            <EntitySet Name="HU_COMPETENCY_PERIOD" EntityType="ProfileModel.Store.HU_COMPETENCY_PERIOD" store:Type="Tables" />
+            <EntitySet Name="HU_COMPETENCY_ASS" EntityType="ProfileModel.Store.HU_COMPETENCY_ASS" store:Type="Tables" />
+            <EntitySet Name="HU_COMPETENCY_ASSDTL" EntityType="ProfileModel.Store.HU_COMPETENCY_ASSDTL" store:Type="Tables" />
+            <EntitySet Name="HU_COMMEND_FORMULA" EntityType="ProfileModel.Store.HU_COMMEND_FORMULA" store:Type="Tables" />
+            <EntitySet Name="HU_COMMEND_ORG" EntityType="ProfileModel.Store.HU_COMMEND_ORG" store:Type="Tables" />
+            <EntitySet Name="HU_COMMEND_LIST" EntityType="ProfileModel.Store.HU_COMMEND_LIST" store:Type="Tables" />
+            <EntitySet Name="HU_IMPORT_COMMEND" EntityType="ProfileModel.Store.HU_IMPORT_COMMEND" store:Type="Tables" />
+            <EntitySet Name="OT_OTHER_LIST1" EntityType="ProfileModel.Store.OT_OTHER_LIST1" store:Type="Tables" />
+            <EntitySet Name="HU_COMMEND_EMP" EntityType="ProfileModel.Store.HU_COMMEND_EMP" store:Type="Tables" />
+            <EntitySet Name="HU_TITLE1" EntityType="ProfileModel.Store.HU_TITLE1" store:Type="Tables" />
+            <EntitySet Name="HU_TITLE" EntityType="ProfileModel.Store.HU_TITLE" store:Type="Tables" />
+            <EntitySet Name="PA_PAYMENTSOURCES" EntityType="ProfileModel.Store.PA_PAYMENTSOURCES" store:Type="Tables" />
+            <EntitySet Name="HU_COMMEND_LEVEL" EntityType="ProfileModel.Store.HU_COMMEND_LEVEL" store:Type="Tables" />
+            <EntitySet Name="HU_COMMEND" EntityType="ProfileModel.Store.HU_COMMEND" store:Type="Tables" />
+            <EntitySet Name="TR_CERTIFICATE" EntityType="ProfileModel.Store.TR_CERTIFICATE" store:Type="Tables" />
+            <EntitySet Name="TR_COURSE" EntityType="ProfileModel.Store.TR_COURSE" store:Type="Tables" />
+            <EntitySet Name="TR_PROGRAM" EntityType="ProfileModel.Store.TR_PROGRAM" store:Type="Tables" />
+            <EntitySet Name="TR_PROGRAM_COMMIT" EntityType="ProfileModel.Store.TR_PROGRAM_COMMIT" store:Type="Tables" />
+            <EntitySet Name="TR_PROGRAM_GROUP" EntityType="ProfileModel.Store.TR_PROGRAM_GROUP" store:Type="Tables" />
+            <EntitySet Name="TR_PROGRAM_RESULT" EntityType="ProfileModel.Store.TR_PROGRAM_RESULT" store:Type="Tables" />
+            <EntitySet Name="TR_REQUEST" EntityType="ProfileModel.Store.TR_REQUEST" store:Type="Tables" />
+            <EntitySet Name="TR_REQUEST_EMPLOYEE" EntityType="ProfileModel.Store.TR_REQUEST_EMPLOYEE" store:Type="Tables" />
+            <EntitySet Name="HU_ALLOWANCE_LIST" EntityType="ProfileModel.Store.HU_ALLOWANCE_LIST" store:Type="Tables" />
+            <EntitySet Name="HU_COMPETENCY_COURSE" EntityType="ProfileModel.Store.HU_COMPETENCY_COURSE" store:Type="Tables" />
+            <EntitySet Name="HU_WORKING" EntityType="ProfileModel.Store.HU_WORKING" store:Type="Tables" />
+            <EntitySet Name="PA_SALARY_TYPE" EntityType="ProfileModel.Store.PA_SALARY_TYPE" store:Type="Tables" />
+            <EntitySet Name="HU_TITLE_CONCURRENT" EntityType="ProfileModel.Store.HU_TITLE_CONCURRENT" store:Type="Tables" />
+            <EntitySet Name="HU_ORG_TITLE" EntityType="ProfileModel.Store.HU_ORG_TITLE" store:Type="Tables" />
+            <EntitySet Name="HU_ORGANIZATION" EntityType="ProfileModel.Store.HU_ORGANIZATION" store:Type="Tables" />
+            <EntitySet Name="HU_TALENT_POOL" EntityType="ProfileModel.Store.HU_TALENT_POOL" store:Type="Tables" />
+            <EntitySet Name="HU_EMPLOYEE_CV1" EntityType="ProfileModel.Store.HU_EMPLOYEE_CV1" store:Type="Tables" />
+            <EntitySet Name="HU_EMPLOYEE_EDUCATION1" EntityType="ProfileModel.Store.HU_EMPLOYEE_EDUCATION1" store:Type="Tables" />
+            <EntitySet Name="HU_EMPLOYEE_EDUCATION2" EntityType="ProfileModel.Store.HU_EMPLOYEE_EDUCATION2" store:Type="Tables" />
+            <EntitySet Name="HU_ORGANIZATION1" EntityType="ProfileModel.Store.HU_ORGANIZATION1" store:Type="Tables" />
+            <EntitySet Name="HU_FILECONTRACT" EntityType="ProfileModel.Store.HU_FILECONTRACT" store:Type="Tables" />
+            <EntitySet Name="HU_FILECONTRACT_DELETED" EntityType="ProfileModel.Store.HU_FILECONTRACT_DELETED" store:Type="Tables" />
+            <EntitySet Name="HU_ASSET1" EntityType="ProfileModel.Store.HU_ASSET1" store:Type="Tables" />
+            <EntitySet Name="HU_ASSET2" EntityType="ProfileModel.Store.HU_ASSET2" store:Type="Tables" />
+            <EntitySet Name="HU_HOMEBASE" EntityType="ProfileModel.Store.HU_HOMEBASE" store:Type="Tables" />
+            <EntitySet Name="PA_SALE_COMMISION" EntityType="ProfileModel.Store.PA_SALE_COMMISION" store:Type="Tables" />
+            <EntitySet Name="HU_ALLOWANCE" EntityType="ProfileModel.Store.HU_ALLOWANCE" store:Type="Tables" />
+            <EntitySet Name="HU_ATTACHFILES" EntityType="ProfileModel.Store.HU_ATTACHFILES" store:Type="Tables" />
+            <EntitySet Name="HU_FILE" EntityType="ProfileModel.Store.HU_FILE" store:Type="Tables" />
+            <EntitySet Name="HU_TRAININGFOREIGN" EntityType="ProfileModel.Store.HU_TRAININGFOREIGN" store:Type="Tables" />
+            <EntitySet Name="HU_TRAININGMANAGE" EntityType="ProfileModel.Store.HU_TRAININGMANAGE" store:Type="Tables" />
+            <EntitySet Name="HU_TRAININGEVALUATE" EntityType="ProfileModel.Store.HU_TRAININGEVALUATE" store:Type="Tables" />
+            <EntitySet Name="PE_PERIOD" EntityType="ProfileModel.Store.PE_PERIOD" store:Type="Tables" />
+            <EntitySet Name="HU_RELATIONSHIP_LIST" EntityType="ProfileModel.Store.HU_RELATIONSHIP_LIST" store:Type="Tables" />
+            <EntitySet Name="HU_RELATIONSHIP_GROUP" EntityType="ProfileModel.Store.HU_RELATIONSHIP_GROUP" store:Type="Tables" />
+            <EntitySet Name="HU_ANNUALLEAVE_PLANS" EntityType="ProfileModel.Store.HU_ANNUALLEAVE_PLANS" store:Type="Tables" />
+            <EntitySet Name="HUV_CURRENT_CONTRACT" EntityType="ProfileModel.Store.HUV_CURRENT_CONTRACT" store:Type="Tables" />
+            <EntitySet Name="HUV_CURRENT_WORKING" EntityType="ProfileModel.Store.HUV_CURRENT_WORKING" store:Type="Tables" />
+            <EntitySet Name="HUV_TERMINATE_CURRENT" EntityType="ProfileModel.Store.HUV_TERMINATE_CURRENT" store:Type="Tables" />
+            <EntitySet Name="HU_TRANSFER_TERMINATE" EntityType="ProfileModel.Store.HU_TRANSFER_TERMINATE" store:Type="Tables" />
+            <EntitySet Name="HU_DEBT" EntityType="ProfileModel.Store.HU_DEBT" store:Type="Tables" />
+            <EntitySet Name="HU_LOCATION" EntityType="ProfileModel.Store.HU_LOCATION" store:Type="Tables" />
+            <EntitySet Name="HU_CONCURRENTLY" EntityType="ProfileModel.Store.HU_CONCURRENTLY" store:Type="Tables" />
+            <EntitySet Name="HU_CERTIFICATE" EntityType="ProfileModel.Store.HU_CERTIFICATE" store:Type="Tables" />
+            <EntitySet Name="HU_CERTIFICATE_EDIT" EntityType="ProfileModel.Store.HU_CERTIFICATE_EDIT" store:Type="Tables" />
+            <EntitySet Name="HU_SIGNER" EntityType="ProfileModel.Store.HU_SIGNER" store:Type="Tables" />
+            <EntitySet Name="SE_USER_ORG_ACCESS" EntityType="ProfileModel.Store.SE_USER_ORG_ACCESS" store:Type="Tables" />
+            <EntitySet Name="HU_WELFARE_MNG_EMP" EntityType="ProfileModel.Store.HU_WELFARE_MNG_EMP" store:Type="Tables" />
+            <EntitySet Name="HU_ORGANIZATION_V" EntityType="ProfileModel.Store.HU_ORGANIZATION_V" store:Type="Tables" />
+            <EntitySet Name="SE_USER_REPORT" EntityType="ProfileModel.Store.SE_USER_REPORT" store:Type="Tables" />
             <AssociationSet Name="FK_HUN_HUP" Association="ProfileModel.Store.FK_HU_NAT_HU_PRO">
                 <End Role="HU_NATION" EntitySet="HU_NATION" />
                 <End Role="HU_PROVINCE" EntitySet="HU_PROVINCE" />
@@ -3569,6 +3569,9 @@
             <Property Name="FILE_LOGO" Type="nvarchar2" Nullable="true" MaxLength="500" />
             <Property Name="FILE_HEADER" Type="nvarchar2" Nullable="true" MaxLength="500" />
             <Property Name="FILE_FOOTER" Type="nvarchar2" Nullable="true" MaxLength="500" />
+            <Property Name="ATTACH_FILE_LOGO" Type="nvarchar2" Nullable="true" MaxLength="1023" />
+            <Property Name="ATTACH_FILE_HEADER" Type="nvarchar2" Nullable="true" MaxLength="1023" />
+            <Property Name="ATTACH_FILE_FOOTER" Type="nvarchar2" Nullable="true" MaxLength="1023" />
         </EntityType>
         <EntityType Name="HU_CONCURRENTLY">
             <Key>
@@ -3616,6 +3619,8 @@
             <Property Name="FILE_BYTE" Type="nvarchar2" Nullable="true" MaxLength="1000" />
             <Property Name="FILE_BYTE1" Type="nvarchar2" Nullable="true" MaxLength="1000" />
             <Property Name="IS_CHUYEN" Type="number" Nullable="true" Precision="5" />
+            <Property Name="ATTACH_FOLDER_BYTE" Type="nvarchar2" Nullable="true" MaxLength="1023" />
+            <Property Name="ATTACH_FOLDER_BYTE1" Type="nclob" Nullable="true" />
         </EntityType>
         <EntityType Name="HU_CERTIFICATE">
             <Key>
@@ -8109,6 +8114,9 @@
           <Property Type="String" Name="FILE_LOGO" MaxLength="500" />
           <Property Type="String" Name="FILE_HEADER" MaxLength="500" />
           <Property Type="String" Name="FILE_FOOTER" MaxLength="500" />
+          <Property Type="String" Name="ATTACH_FILE_LOGO" MaxLength="1023" />
+          <Property Type="String" Name="ATTACH_FILE_HEADER" MaxLength="1023" />
+          <Property Type="String" Name="ATTACH_FILE_FOOTER" MaxLength="1023" />
         </EntityType>
         <EntityType Name="HU_CONCURRENTLY">
           <Key>
@@ -8156,6 +8164,8 @@
           <Property Type="String" Name="FILE_BYTE" MaxLength="1000" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="FILE_BYTE1" MaxLength="1000" FixedLength="false" Unicode="true" />
           <Property Type="Int16" Name="IS_CHUYEN" />
+          <Property Type="String" Name="ATTACH_FOLDER_BYTE" MaxLength="1023" />
+          <Property Type="String" Name="ATTACH_FOLDER_BYTE1" MaxLength="2013" />
         </EntityType>
         <EntityType Name="HU_CERTIFICATE">
           <Key>
@@ -11741,6 +11751,9 @@
                     <ScalarProperty Name="FILE_LOGO" ColumnName="FILE_LOGO" />
                     <ScalarProperty Name="FILE_HEADER" ColumnName="FILE_HEADER" />
                     <ScalarProperty Name="FILE_FOOTER" ColumnName="FILE_FOOTER" />
+                    <ScalarProperty Name="ATTACH_FILE_LOGO" ColumnName="ATTACH_FILE_LOGO" />
+                    <ScalarProperty Name="ATTACH_FILE_HEADER" ColumnName="ATTACH_FILE_HEADER" />
+                    <ScalarProperty Name="ATTACH_FILE_FOOTER" ColumnName="ATTACH_FILE_FOOTER" />
                 </MappingFragment>
             </EntityTypeMapping>
         </EntitySetMapping>
@@ -11789,6 +11802,8 @@
                     <ScalarProperty Name="FILE_BYTE" ColumnName="FILE_BYTE" />
                     <ScalarProperty Name="FILE_BYTE1" ColumnName="FILE_BYTE1" />
                     <ScalarProperty Name="IS_CHUYEN" ColumnName="IS_CHUYEN" />
+                    <ScalarProperty Name="ATTACH_FOLDER_BYTE" ColumnName="ATTACH_FOLDER_BYTE" />
+                    <ScalarProperty Name="ATTACH_FOLDER_BYTE1" ColumnName="ATTACH_FOLDER_BYTE1" />
                 </MappingFragment>
             </EntityTypeMapping>
         </EntitySetMapping>
@@ -12013,18 +12028,14 @@
         </AssociationConnector>
         <EntityTypeShape EntityType="ProfileModel.OT_OTHER_LIST" Width="1.75" PointX="5.75" PointY="4.75" Height="0.40000000000000568" IsExpanded="false" />
         <AssociationConnector Association="ProfileModel.FK_OOL_HA">
-          <ConnectorPoint PointX="5.75" PointY="4.9500000000000028" />
-          <ConnectorPoint PointX="5.375" PointY="4.9500000000000028" />
-          <ConnectorPoint PointX="5.375" PointY="3.2850000000000006" />
-          <ConnectorPoint PointX="9.1250004999999987" PointY="3.2850000000000006" />
-          <ConnectorPoint PointX="9.1250004999999987" PointY="7" />
+          <ConnectorPoint PointX="6.3340637788461542" PointY="5.1500000000000057" />
+          <ConnectorPoint PointX="6.3340637788461542" PointY="7.2" />
+          <ConnectorPoint PointX="8.25" PointY="7.2" />
         </AssociationConnector>
-        <EntityTypeShape EntityType="ProfileModel.HU_EMPLOYEE" Width="2.125" PointX="17.125" PointY="0.625" Height="10.441549479166666" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProfileModel.HU_EMPLOYEE" Width="2.125" PointX="17.125" PointY="0.625" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="ProfileModel.OT_OTHER_LIST_TYPE" Width="1.5" PointX="3.5" PointY="4.75" Height="0.40000000000000568" IsExpanded="false" />
         <AssociationConnector Association="ProfileModel.FK_OOLT_OOL">
           <ConnectorPoint PointX="5" PointY="4.7875000000000014" />
-          <ConnectorPoint PointX="5.229166666666667" PointY="4.7875000000000005" />
-          <ConnectorPoint PointX="5.458333333333333" PointY="4.7875000000000014" />
           <ConnectorPoint PointX="5.75" PointY="4.7875000000000014" />
         </AssociationConnector>
         <EntityTypeShape EntityType="ProfileModel.HU_HOSPITAL" Width="1.5" PointX="5.25" PointY="10.125" Height="0.40000000000000568" IsExpanded="false" />
@@ -12034,54 +12045,50 @@
           <ConnectorPoint PointX="5.2076023250568859" PointY="10.119346976674251" />
           <ConnectorPoint PointX="5.25" PointY="10.125" />
         </AssociationConnector>
-        <EntityTypeShape EntityType="ProfileModel.HU_EMPLOYEE_CV" Width="1.875" PointX="14.375" PointY="3.375" Height="23.133444010416671" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProfileModel.HU_EMPLOYEE_CV" Width="1.875" PointX="14.375" PointY="3.375" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="ProfileModel.HU_EMPLOYEE_HEALTH" Width="1.875" PointX="14.5" PointY="2" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="ProfileModel.HU_EMPLOYEE_EDUCATION" Width="4" PointX="13.125" PointY="0.5" Height="0.4" IsExpanded="false" />
         <AssociationConnector Association="ProfileModel.FK_HE_HEC">
-          <ConnectorPoint PointX="17.125" PointY="6.59375" />
-          <ConnectorPoint PointX="16.583333333333332" PointY="6.5937499999999991" />
-          <ConnectorPoint PointX="16.416666666666668" PointY="6.59375" />
-          <ConnectorPoint PointX="16.25" PointY="6.59375" />
+          <ConnectorPoint PointX="18.1875" PointY="1.025" />
+          <ConnectorPoint PointX="18.1875" PointY="3.575" />
+          <ConnectorPoint PointX="16.25" PointY="3.575" />
         </AssociationConnector>
         <AssociationConnector Association="ProfileModel.FK_FE_HEH">
-          <ConnectorPoint PointX="17.125" PointY="2.2" />
+          <ConnectorPoint PointX="17.6249975" PointY="1.025" />
+          <ConnectorPoint PointX="17.6249975" PointY="2.2" />
           <ConnectorPoint PointX="16.375" PointY="2.2" />
         </AssociationConnector>
         <AssociationConnector Association="ProfileModel.FK_HE_HEE">
-          <ConnectorPoint PointX="17.125" PointY="10.804873032895937" />
-          <ConnectorPoint PointX="16.5" PointY="10.804873032895937" />
-          <ConnectorPoint PointX="16.5" PointY="2.6499999999999995" />
-          <ConnectorPoint PointX="14.25" PointY="2.6499999999999995" />
-          <ConnectorPoint PointX="14.25" PointY="1.2749999999999993" />
-          <ConnectorPoint PointX="15.187499999999998" PointY="1.2749999999999993" />
-          <ConnectorPoint PointX="15.187499999999998" PointY="0.9" />
+          <ConnectorPoint PointX="17.125" PointY="1.025" />
+          <ConnectorPoint PointX="16.75" PointY="1.4000000000000001" />
+          <ConnectorPoint PointX="15.2187495" PointY="1.4000000000000001" />
+          <ConnectorPoint PointX="15.2187495" PointY="0.9" />
         </AssociationConnector>
-        <EntityTypeShape EntityType="ProfileModel.HU_CONTRACT" Width="2.5" PointX="6" PointY="3.125" Height="7.3647265624999978" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProfileModel.HU_CONTRACT" Width="2.5" PointX="6" PointY="3.125" Height="0.4" IsExpanded="false" />
         <AssociationConnector Association="ProfileModel.FK_HC_HE">
-          <ConnectorPoint PointX="6.89843625" PointY="3.125" />
-          <ConnectorPoint PointX="6.89843625" PointY="1.5124999999999997" />
-          <ConnectorPoint PointX="9.7916666666666661" PointY="1.5124999999999991" />
-          <ConnectorPoint PointX="9.9583333333333339" PointY="1.5124999999999997" />
-          <ConnectorPoint PointX="14.166666666666666" PointY="1.5124999999999991" />
-          <ConnectorPoint PointX="14.333333333333334" PointY="1.5124999999999997" />
-          <ConnectorPoint PointX="17.125" PointY="1.5124999999999997" />
+          <ConnectorPoint PointX="8.5" PointY="3.21875" />
+          <ConnectorPoint PointX="18.104166666666668" PointY="3.2187499999999996" />
+          <ConnectorPoint PointX="18.270833333333332" PointY="3.21875" />
+          <ConnectorPoint PointX="18.7500025" PointY="3.21875" />
+          <ConnectorPoint PointX="18.7500025" PointY="1.025" />
         </AssociationConnector>
         <EntityTypeShape EntityType="ProfileModel.HU_FAMILY" Width="2.875" PointX="8.5" PointY="0.5" Height="0.4" IsExpanded="false" />
         <AssociationConnector Association="ProfileModel.FK_HE_HC" ManuallyRouted="false">
-          <ConnectorPoint PointX="17.125" PointY="2.5562499999999995" />
-          <ConnectorPoint PointX="14.333333333333334" PointY="2.556249999999999" />
-          <ConnectorPoint PointX="14.166666666666666" PointY="2.5562499999999995" />
-          <ConnectorPoint PointX="9.9583333333333339" PointY="2.556249999999999" />
-          <ConnectorPoint PointX="9.7916666666666661" PointY="2.5562499999999995" />
-          <ConnectorPoint PointX="7.699220625" PointY="2.5562499999999995" />
-          <ConnectorPoint PointX="7.699220625" PointY="3.125" />
+          <ConnectorPoint PointX="17.90624875" PointY="1.025" />
+          <ConnectorPoint PointX="17.90624875" PointY="3.1874975000000063" />
+          <ConnectorPoint PointX="8.5" PointY="3.1874975000000063" />
         </AssociationConnector>
         <EntityTypeShape EntityType="ProfileModel.HU_DISCIPLINE" Width="3.5" PointX="1.375" PointY="8.75" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="ProfileModel.HU_WORKING_BEFORE" Width="1.875" PointX="11.25" PointY="1.75" Height="0.4" IsExpanded="false" />
         <AssociationConnector Association="ProfileModel.FK_HE_HWB">
-          <ConnectorPoint PointX="17.125" PointY="1.8437500000000009" />
-          <ConnectorPoint PointX="14.333333333333334" PointY="1.8437500000000002" />
-          <ConnectorPoint PointX="14.166666666666666" PointY="1.8437500000000009" />
+          <ConnectorPoint PointX="18.46875125" PointY="1.025" />
+          <ConnectorPoint PointX="18.46875125" PointY="1.8437500000000009" />
+          <ConnectorPoint PointX="18.270833333333332" PointY="1.8437500000000002" />
+          <ConnectorPoint PointX="18.104166666666668" PointY="1.8437500000000009" />
+          <ConnectorPoint PointX="17.989582083333332" PointY="1.8437500000000002" />
+          <ConnectorPoint PointX="17.822915416666667" PointY="1.8437500000000009" />
+          <ConnectorPoint PointX="17.708330833333331" PointY="1.8437500000000002" />
+          <ConnectorPoint PointX="17.541664166666667" PointY="1.8437500000000009" />
           <ConnectorPoint PointX="13.125" PointY="1.8437500000000009" />
         </AssociationConnector>
         <AssociationConnector Association="ProfileModel.FK_OTDCO_HUDC">
@@ -12111,16 +12118,14 @@
         </AssociationConnector>
         <EntityTypeShape EntityType="ProfileModel.HU_TERMINATE" Width="1.875" PointX="8.125" PointY="22.625" Height="0.4" IsExpanded="false" />
         <AssociationConnector Association="ProfileModel.FK_HUEMD_HUEM">
-          <ConnectorPoint PointX="17.878557692307691" PointY="11.066549479166666" />
-          <ConnectorPoint PointX="17.878557692307691" PointY="11.316549479166664" />
-          <ConnectorPoint PointX="18.511153846153846" PointY="11.316549479166664" />
-          <ConnectorPoint PointX="18.511153846153846" PointY="11.066549479166666" />
+          <ConnectorPoint PointX="18.1875" PointY="0.625" />
+          <ConnectorPoint PointX="18.1875" PointY="0.37499999999999978" />
+          <ConnectorPoint PointX="18.70073076923077" PointY="0.37499999999999978" />
+          <ConnectorPoint PointX="18.70073076923077" PointY="0.625" />
         </AssociationConnector>
         <AssociationConnector Association="ProfileModel.FK_OTST_HUCT">
-          <ConnectorPoint PointX="7.5" PointY="4.9500000000000028" />
-          <ConnectorPoint PointX="8.75" PointY="4.9500000000000028" />
-          <ConnectorPoint PointX="8.75" PointY="6.8073632812499989" />
-          <ConnectorPoint PointX="8.5" PointY="6.8073632812499989" />
+          <ConnectorPoint PointX="6.75" PointY="4.75" />
+          <ConnectorPoint PointX="6.75" PointY="3.525" />
         </AssociationConnector>
         <EntityTypeShape EntityType="ProfileModel.HU_WORKING_OLD" Width="2" PointX="12.75" PointY="10.875" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="ProfileModel.SE_MAIL" Width="1.5" PointX="11.75" PointY="0.875" Height="0.39999999999999858" IsExpanded="false" />
@@ -12131,11 +12136,11 @@
           <ConnectorPoint PointX="3.5" PointY="4.9500000000000028" />
         </AssociationConnector>
         <AssociationConnector Association="ProfileModel.FK_HE_HF">
-          <ConnectorPoint PointX="9.875" PointY="0.9" />
-          <ConnectorPoint PointX="9.875" PointY="2.8874999999999997" />
-          <ConnectorPoint PointX="16.416666666666668" PointY="2.8874999999999993" />
-          <ConnectorPoint PointX="16.583333333333332" PointY="2.8874999999999997" />
-          <ConnectorPoint PointX="17.125" PointY="2.8874999999999997" />
+          <ConnectorPoint PointX="11.375" PointY="0.7" />
+          <ConnectorPoint PointX="12.875" PointY="0.7" />
+          <ConnectorPoint PointX="12.875" PointY="0.24999999999999978" />
+          <ConnectorPoint PointX="18.1875" PointY="0.24999999999999978" />
+          <ConnectorPoint PointX="18.1875" PointY="0.625" />
         </AssociationConnector>
         <EntityTypeShape EntityType="ProfileModel.HUV_WORKING" Width="2.875" PointX="2.75" PointY="15.125" IsExpanded="false" Height="0.4" />
         <EntityTypeShape EntityType="ProfileModel.PA_SALARY_GROUP" Width="1.5" PointX="5.5" PointY="9.5" Height="0.39999999999999858" IsExpanded="false" />
@@ -12157,12 +12162,9 @@
         <EntityTypeShape EntityType="ProfileModel.HU_EMPLOYEE_TRAIN" Width="2.25" PointX="6.75" PointY="14.875" Height="0.39999999999999147" IsExpanded="false" />
         <EntityTypeShape EntityType="ProfileModel.HU_MISSION" Width="2.5" PointX="12.25" PointY="7.875" Height="0.40000000000000657" IsExpanded="false" />
         <AssociationConnector Association="ProfileModel.FK_OTW_HUE">
-          <ConnectorPoint PointX="17.125" PointY="10.50868501644797" />
-          <ConnectorPoint PointX="16.5" PointY="10.50868501644797" />
-          <ConnectorPoint PointX="16.5" PointY="3.125" />
-          <ConnectorPoint PointX="5.3125" PointY="3.125" />
-          <ConnectorPoint PointX="5.3125" PointY="4.9500000000000028" />
-          <ConnectorPoint PointX="5.75" PointY="4.9500000000000028" />
+          <ConnectorPoint PointX="19.03125375" PointY="1.025" />
+          <ConnectorPoint PointX="19.03125375" PointY="4.9500000000000028" />
+          <ConnectorPoint PointX="7.5" PointY="4.9500000000000028" />
         </AssociationConnector>
         <EntityTypeShape EntityType="ProfileModel.AT_ALDATA" Width="2.625" PointX="9.75" PointY="14.875" Height="0.40000000000000568" IsExpanded="false" />
         <EntityTypeShape EntityType="ProfileModel.HUV_CURRENT_TERMINATE" Width="1.5" PointX="13.75" PointY="14.875" Height="0.40000000000000568" IsExpanded="false" />
@@ -12243,8 +12245,8 @@
         <EntityTypeShape EntityType="ProfileModel.HU_COMMEND" Width="4.25" PointX="10.75" PointY="29.375" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="ProfileModel.TR_CERTIFICATE" Width="1.5" PointX="15.375" PointY="29.25" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="ProfileModel.TR_COURSE" Width="1.5" PointX="17.625" PointY="28" Height="0.4" IsExpanded="false" />
-        <EntityTypeShape EntityType="ProfileModel.TR_PROGRAM" Width="1.5" PointX="19.375" PointY="26.75" Height="0.4" IsExpanded="false" />
-        <EntityTypeShape EntityType="ProfileModel.TR_PROGRAM_COMMIT" Width="1.5" PointX="21.375" PointY="26.75" Height="0.4" IsExpanded="false" />
+        <EntityTypeShape EntityType="ProfileModel.TR_PROGRAM" Width="1.5" PointX="19.5" PointY="25.75" Height="0.4" IsExpanded="false" />
+        <EntityTypeShape EntityType="ProfileModel.TR_PROGRAM_COMMIT" Width="1.5" PointX="21.375" PointY="25.75" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="ProfileModel.TR_PROGRAM_GROUP" Width="1.5" PointX="27.375" PointY="0.75" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="ProfileModel.TR_PROGRAM_RESULT" Width="1.5" PointX="5.375" PointY="27.75" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="ProfileModel.TR_REQUEST" Width="1.5" PointX="27.375" PointY="10.75" Height="0.4" IsExpanded="false" />
@@ -12275,7 +12277,7 @@
         </AssociationConnector>
         <EntityTypeShape EntityType="ProfileModel.HU_FILECONTRACT" Width="2.625" PointX="36.375" PointY="4.5" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="ProfileModel.HU_FILECONTRACT_DELETED" Width="1.5" PointX="15.375" PointY="31.75" Height="0.4" IsExpanded="false" />
-        <EntityTypeShape EntityType="ProfileModel.HU_ASSET1" Width="1.5" PointX="23.375" PointY="31.75" Height="0.4" IsExpanded="false" />
+        <EntityTypeShape EntityType="ProfileModel.HU_ASSET1" Width="1.5" PointX="19.5" PointY="31.25" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="ProfileModel.HU_ASSET2" Width="1.5" PointX="31.375" PointY="31.75" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="ProfileModel.HU_HOMEBASE" Width="1.5" PointX="7" PointY="32" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="ProfileModel.PA_SALE_COMMISION" Width="1.5" PointX="32.375" PointY="0.75" Height="0.4" IsExpanded="false" />
@@ -12294,8 +12296,8 @@
         <EntityTypeShape EntityType="ProfileModel.HUV_TERMINATE_CURRENT" Width="1.5" PointX="35.375" PointY="25.25" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="ProfileModel.HU_TRANSFER_TERMINATE" Width="1.5" PointX="38.25" PointY="28.625" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="ProfileModel.HU_DEBT" Width="1.5" PointX="41.5" PointY="28.75" Height="0.4" IsExpanded="false" />
-        <EntityTypeShape EntityType="ProfileModel.HU_LOCATION" Width="1.75" PointX="19.375" PointY="28" Height="0.4" IsExpanded="false" />
-        <EntityTypeShape EntityType="ProfileModel.HU_CONCURRENTLY" Width="1.5" PointX="17.375" PointY="29.75" Height="0.4" IsExpanded="false" />
+        <EntityTypeShape EntityType="ProfileModel.HU_LOCATION" Width="1.75" PointX="23.5" PointY="26.75" Height="0.4" IsExpanded="false" />
+        <EntityTypeShape EntityType="ProfileModel.HU_CONCURRENTLY" Width="1.875" PointX="21.25" PointY="30.375" Height="9.4800423177083317" IsExpanded="true" />
         <EntityTypeShape EntityType="ProfileModel.HU_CERTIFICATE" Width="1.5" PointX="19.375" PointY="30.375" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="ProfileModel.HU_CERTIFICATE_EDIT" Width="3.125" PointX="9.375" PointY="31.375" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="ProfileModel.HU_SIGNER" Width="1.5" PointX="30" PointY="7.25" Height="0.4" IsExpanded="false" />

@@ -30,9 +30,9 @@
                         runat="server" ErrorMessage="Bạn phải nhập số quyết định."
                         ToolTip="Bạn phải nhập số quyết định."> 
                     </asp:RequiredFieldValidator>
-                    <asp:CustomValidator ID="cusDecisionNo" runat="server" ErrorMessage="Số quyết định đã tồn tại"
+                  <%--  <asp:CustomValidator ID="cusDecisionNo" runat="server" ErrorMessage="Số quyết định đã tồn tại"
                         ToolTip="Số quyết định đã tồn tại">
-                    </asp:CustomValidator>
+                    </asp:CustomValidator>--%>
                 </td>
                  <td class="lb">
                     <asp:Label runat="server" ID="lbEffectDate" Text="Ngày hiệu lực"></asp:Label>
@@ -91,7 +91,8 @@
                     </tlk:RadDatePicker>
                 </td> 
                 <td class="lb">
-                    <asp:Label runat="server" ID="lbSignerName" Text="Người ký"></asp:Label>                    
+                    <asp:Label runat="server" ID="lbSignerName" Text="Người ký"></asp:Label>   
+                     <span class="lbReq">*</span>                 
                 </td>
                 <td>
                    <%--<tlk:RadTextBox ID = "txtIDEmp" runat = "server" Visible="false"></tlk:RadTextBox>--%>
@@ -239,7 +240,7 @@
             <tr>
                 <td class="lb">
                     <asp:CheckBox ID="chkPhatTien" runat="server" Checked="false" CausesValidation="false" TextAlign="Right" AutoPostBack="true" />
-                    <asp:Label runat="server" ID="lbMoney" Text="Số tiền"></asp:Label>
+                    <asp:Label runat="server" ID="lbMoney" Text="Số tiền phạt"></asp:Label>
                 </td>
                 <td>
                     <tlk:RadNumericTextBox ID="rntxtMoney" runat="server" SkinID="Money" TabIndex="19" AutoPostBack="true">
@@ -254,7 +255,7 @@
                     <asp:Label runat="server" ID="lbIndemnifyMoney" Text="Tổng giá trị thiệt hại"></asp:Label>
                 </td>
                 <td>
-                    <tlk:RadNumericTextBox ID="rntxtIndemnifyMoney" runat="server" SkinID="Money" TabIndex="20">
+                    <tlk:RadNumericTextBox ID="rntxtIndemnifyMoney" runat="server" SkinID="Money" TabIndex="20" AutoPostBack="true">
                     </tlk:RadNumericTextBox>
                   <%--  <asp:CustomValidator ID="cvalIndemnifyTotal" runat="server" ErrorMessage="Tổng số tiền thiệt hại của nhân viên phải bằng số tiền bồi thường">
                     </asp:CustomValidator>--%>

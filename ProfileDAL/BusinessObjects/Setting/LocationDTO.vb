@@ -40,4 +40,7 @@
     Public Property FILE_HEADER As String
     Public Property FILE_FOOTER As String
 
+    Public Property ATTACH_FILE_LOGO As String
+    Public Property ATTACH_FILE_HEADER As String
+    Public Property ATTACH_FILE_FOOTER As String
 End Class

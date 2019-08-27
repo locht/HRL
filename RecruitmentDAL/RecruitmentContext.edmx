@@ -6,70 +6,70 @@
     <edmx:StorageModels>
     <Schema Namespace="RecruitmentModel.Store" Alias="Self" Provider="Oracle.DataAccess.Client" ProviderManifestToken="11.2" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator">
         <EntityContainer Name="RecruitmentModelStoreContainer">
-            <EntitySet Name="RC_COST_CENTER" EntityType="RecruitmentModel.Store.RC_COST_CENTER" store:Type="Tables"  />
-            <EntitySet Name="SE_CHOSEN_ORG" EntityType="RecruitmentModel.Store.SE_CHOSEN_ORG" store:Type="Tables"  />
-            <EntitySet Name="HU_FAMILY" EntityType="RecruitmentModel.Store.HU_FAMILY" store:Type="Tables"  />
-            <EntitySet Name="HU_TERMINATE" EntityType="RecruitmentModel.Store.HU_TERMINATE" store:Type="Tables"  />
-            <EntitySet Name="RC_EXAMS" EntityType="RecruitmentModel.Store.RC_EXAMS" store:Type="Tables"  />
-            <EntitySet Name="RC_EXAMS_DTL" EntityType="RecruitmentModel.Store.RC_EXAMS_DTL" store:Type="Tables"  />
-            <EntitySet Name="RC_PLAN_REG_EMP" EntityType="RecruitmentModel.Store.RC_PLAN_REG_EMP" store:Type="Tables"  />
-            <EntitySet Name="RC_PROGRAM_CHARACTER" EntityType="RecruitmentModel.Store.RC_PROGRAM_CHARACTER" store:Type="Tables"  />
-            <EntitySet Name="RC_PROGRAM_EMP" EntityType="RecruitmentModel.Store.RC_PROGRAM_EMP" store:Type="Tables"  />
-            <EntitySet Name="RC_PROGRAM_EXAMS" EntityType="RecruitmentModel.Store.RC_PROGRAM_EXAMS" store:Type="Tables"  />
-            <EntitySet Name="RC_PROGRAM_SCOPE" EntityType="RecruitmentModel.Store.RC_PROGRAM_SCOPE" store:Type="Tables"  />
-            <EntitySet Name="RC_PROGRAM_SOFT_SKILL" EntityType="RecruitmentModel.Store.RC_PROGRAM_SOFT_SKILL" store:Type="Tables"  />
-            <EntitySet Name="RC_REQUEST" EntityType="RecruitmentModel.Store.RC_REQUEST" store:Type="Tables"  />
-            <EntitySet Name="RC_REQUEST_EMP" EntityType="RecruitmentModel.Store.RC_REQUEST_EMP" store:Type="Tables"  />
-            <EntitySet Name="OT_OTHER_LIST" EntityType="RecruitmentModel.Store.OT_OTHER_LIST" store:Type="Tables"  />
-            <EntitySet Name="OT_OTHER_LIST_GROUP" EntityType="RecruitmentModel.Store.OT_OTHER_LIST_GROUP" store:Type="Tables"  />
-            <EntitySet Name="OT_OTHER_LIST_TYPE" EntityType="RecruitmentModel.Store.OT_OTHER_LIST_TYPE" store:Type="Tables"  />
-            <EntitySet Name="RC_PLAN_REG" EntityType="RecruitmentModel.Store.RC_PLAN_REG" store:Type="Tables"  />
-            <EntitySet Name="HU_CONTRACT_TYPE" EntityType="RecruitmentModel.Store.HU_CONTRACT_TYPE" store:Type="Tables"  />
-            <EntitySet Name="RC_CANDIDATE" EntityType="RecruitmentModel.Store.RC_CANDIDATE" store:Type="Tables"  />
-            <EntitySet Name="RC_CANDIDATE_EDUCATION" EntityType="RecruitmentModel.Store.RC_CANDIDATE_EDUCATION" store:Type="Tables"  />
-            <EntitySet Name="RC_CANDIDATE_HISTORY" EntityType="RecruitmentModel.Store.RC_CANDIDATE_HISTORY" store:Type="Tables"  />
-            <EntitySet Name="RC_CANDIDATE_OTHER_INFO" EntityType="RecruitmentModel.Store.RC_CANDIDATE_OTHER_INFO" store:Type="Tables"  />
-            <EntitySet Name="RC_CANDIDATE_CV" EntityType="RecruitmentModel.Store.RC_CANDIDATE_CV" store:Type="Tables"  />
-            <EntitySet Name="RC_PROGRAM_SCHEDULE" EntityType="RecruitmentModel.Store.RC_PROGRAM_SCHEDULE" store:Type="Tables"  />
-            <EntitySet Name="RC_PROGRAM_SCHEDULE_CAN" EntityType="RecruitmentModel.Store.RC_PROGRAM_SCHEDULE_CAN" store:Type="Tables"  />
-            <EntitySet Name="RC_PROGRAM_SCHEDULE_USHER" EntityType="RecruitmentModel.Store.RC_PROGRAM_SCHEDULE_USHER" store:Type="Tables"  />
-            <EntitySet Name="RC_CANDIDATE_FAMILY" EntityType="RecruitmentModel.Store.RC_CANDIDATE_FAMILY" store:Type="Tables"  />
-            <EntitySet Name="RC_CANDIDATE_TRAINSINGER" EntityType="RecruitmentModel.Store.RC_CANDIDATE_TRAINSINGER" store:Type="Tables"  />
-            <EntitySet Name="RC_CANDIDATE_BEFOREWT" EntityType="RecruitmentModel.Store.RC_CANDIDATE_BEFOREWT" store:Type="Tables"  />
-            <EntitySet Name="RC_COST" EntityType="RecruitmentModel.Store.RC_COST" store:Type="Tables"  />
-            <EntitySet Name="RC_COST_FORM" EntityType="RecruitmentModel.Store.RC_COST_FORM" store:Type="Tables"  />
-            <EntitySet Name="HU_EMPLOYEE_BANK" EntityType="RecruitmentModel.Store.HU_EMPLOYEE_BANK" store:Type="Tables"  />
-            <EntitySet Name="HU_EMPLOYEE_BEFOREWT" EntityType="RecruitmentModel.Store.HU_EMPLOYEE_BEFOREWT" store:Type="Tables"  />
-            <EntitySet Name="HU_EMPLOYEE_EDUCATION" EntityType="RecruitmentModel.Store.HU_EMPLOYEE_EDUCATION" store:Type="Tables"  />
-            <EntitySet Name="HU_EMPLOYEE_HEALTH" EntityType="RecruitmentModel.Store.HU_EMPLOYEE_HEALTH" store:Type="Tables"  />
-            <EntitySet Name="HU_EMPLOYEE_OTHER_INFO" EntityType="RecruitmentModel.Store.HU_EMPLOYEE_OTHER_INFO" store:Type="Tables"  />
-            <EntitySet Name="HU_EMPLOYEE_TRAIN" EntityType="RecruitmentModel.Store.HU_EMPLOYEE_TRAIN" store:Type="Tables"  />
-            <EntitySet Name="HU_EMPLOYEE_TRAINSINGER" EntityType="RecruitmentModel.Store.HU_EMPLOYEE_TRAINSINGER" store:Type="Tables"  />
-            <EntitySet Name="HU_EMPLOYEE" EntityType="RecruitmentModel.Store.HU_EMPLOYEE" store:Type="Tables"  />
-            <EntitySet Name="HU_EMPLOYEE_CV" EntityType="RecruitmentModel.Store.HU_EMPLOYEE_CV" store:Type="Tables"  />
-            <EntitySet Name="HU_EMPLOYEE_EDUCATION1" EntityType="RecruitmentModel.Store.HU_EMPLOYEE_EDUCATION1" store:Type="Tables"  />
-            <EntitySet Name="HU_EMPLOYEE_HEALTH1" EntityType="RecruitmentModel.Store.HU_EMPLOYEE_HEALTH1" store:Type="Tables"  />
-            <EntitySet Name="HU_EMPLOYEE_OTHER_INFO1" EntityType="RecruitmentModel.Store.HU_EMPLOYEE_OTHER_INFO1" store:Type="Tables"  />
-            <EntitySet Name="HU_ORG_TITLE" EntityType="RecruitmentModel.Store.HU_ORG_TITLE" store:Type="Tables"  />
-            <EntitySet Name="HU_ORGANIZATION" EntityType="RecruitmentModel.Store.HU_ORGANIZATION" store:Type="Tables"  />
-            <EntitySet Name="HU_TITLE" EntityType="RecruitmentModel.Store.HU_TITLE" store:Type="Tables"  />
-            <EntitySet Name="HU_BANK" EntityType="RecruitmentModel.Store.HU_BANK" store:Type="Tables"  />
-            <EntitySet Name="HU_BANK_BRANCH" EntityType="RecruitmentModel.Store.HU_BANK_BRANCH" store:Type="Tables"  />
-            <EntitySet Name="HU_DISTRICT" EntityType="RecruitmentModel.Store.HU_DISTRICT" store:Type="Tables"  />
-            <EntitySet Name="HU_NATION" EntityType="RecruitmentModel.Store.HU_NATION" store:Type="Tables"  />
-            <EntitySet Name="HU_PROVINCE" EntityType="RecruitmentModel.Store.HU_PROVINCE" store:Type="Tables"  />
-            <EntitySet Name="RC_STAGE" EntityType="RecruitmentModel.Store.RC_STAGE" store:Type="Tables"  />
-            <EntitySet Name="RC_COSTALLOCATE" EntityType="RecruitmentModel.Store.RC_COSTALLOCATE" store:Type="Tables"  />
-            <EntitySet Name="RC_COST_COSTALLOCATE" EntityType="RecruitmentModel.Store.RC_COST_COSTALLOCATE" store:Type="Tables"  />
-            <EntitySet Name="RC_MANNING_ORG" EntityType="RecruitmentModel.Store.RC_MANNING_ORG" store:Type="Tables"  />
-            <EntitySet Name="RC_MANNING_TITLE" EntityType="RecruitmentModel.Store.RC_MANNING_TITLE" store:Type="Tables"  />
-            <EntitySet Name="RC_CANDIDATE_EXPECT" EntityType="RecruitmentModel.Store.RC_CANDIDATE_EXPECT" store:Type="Tables"  />
-            <EntitySet Name="RC_CANDIDATE_HEALTH" EntityType="RecruitmentModel.Store.RC_CANDIDATE_HEALTH" store:Type="Tables"  />
-            <EntitySet Name="RC_CANDIDATE_REFERENCE" EntityType="RecruitmentModel.Store.RC_CANDIDATE_REFERENCE" store:Type="Tables"  />
-            <EntitySet Name="RC_PROGRAM" EntityType="RecruitmentModel.Store.RC_PROGRAM" store:Type="Tables"  />
-            <EntitySet Name="SE_USER" EntityType="RecruitmentModel.Store.SE_USER" store:Type="Tables"  />
-            <EntitySet Name="SE_REPORT" EntityType="RecruitmentModel.Store.SE_REPORT" store:Type="Tables"  />
-            <EntitySet Name="SE_USER_REPORT" EntityType="RecruitmentModel.Store.SE_USER_REPORT" store:Type="Tables"  />
+            <EntitySet Name="RC_COST_CENTER" EntityType="RecruitmentModel.Store.RC_COST_CENTER" store:Type="Tables" />
+            <EntitySet Name="SE_CHOSEN_ORG" EntityType="RecruitmentModel.Store.SE_CHOSEN_ORG" store:Type="Tables" />
+            <EntitySet Name="HU_FAMILY" EntityType="RecruitmentModel.Store.HU_FAMILY" store:Type="Tables" />
+            <EntitySet Name="HU_TERMINATE" EntityType="RecruitmentModel.Store.HU_TERMINATE" store:Type="Tables" />
+            <EntitySet Name="RC_EXAMS" EntityType="RecruitmentModel.Store.RC_EXAMS" store:Type="Tables" />
+            <EntitySet Name="RC_EXAMS_DTL" EntityType="RecruitmentModel.Store.RC_EXAMS_DTL" store:Type="Tables" />
+            <EntitySet Name="RC_PLAN_REG_EMP" EntityType="RecruitmentModel.Store.RC_PLAN_REG_EMP" store:Type="Tables" />
+            <EntitySet Name="RC_PROGRAM_CHARACTER" EntityType="RecruitmentModel.Store.RC_PROGRAM_CHARACTER" store:Type="Tables" />
+            <EntitySet Name="RC_PROGRAM_EMP" EntityType="RecruitmentModel.Store.RC_PROGRAM_EMP" store:Type="Tables" />
+            <EntitySet Name="RC_PROGRAM_EXAMS" EntityType="RecruitmentModel.Store.RC_PROGRAM_EXAMS" store:Type="Tables" />
+            <EntitySet Name="RC_PROGRAM_SCOPE" EntityType="RecruitmentModel.Store.RC_PROGRAM_SCOPE" store:Type="Tables" />
+            <EntitySet Name="RC_PROGRAM_SOFT_SKILL" EntityType="RecruitmentModel.Store.RC_PROGRAM_SOFT_SKILL" store:Type="Tables" />
+            <EntitySet Name="RC_REQUEST" EntityType="RecruitmentModel.Store.RC_REQUEST" store:Type="Tables" />
+            <EntitySet Name="RC_REQUEST_EMP" EntityType="RecruitmentModel.Store.RC_REQUEST_EMP" store:Type="Tables" />
+            <EntitySet Name="OT_OTHER_LIST" EntityType="RecruitmentModel.Store.OT_OTHER_LIST" store:Type="Tables" />
+            <EntitySet Name="OT_OTHER_LIST_GROUP" EntityType="RecruitmentModel.Store.OT_OTHER_LIST_GROUP" store:Type="Tables" />
+            <EntitySet Name="OT_OTHER_LIST_TYPE" EntityType="RecruitmentModel.Store.OT_OTHER_LIST_TYPE" store:Type="Tables" />
+            <EntitySet Name="RC_PLAN_REG" EntityType="RecruitmentModel.Store.RC_PLAN_REG" store:Type="Tables" />
+            <EntitySet Name="HU_CONTRACT_TYPE" EntityType="RecruitmentModel.Store.HU_CONTRACT_TYPE" store:Type="Tables" />
+            <EntitySet Name="RC_CANDIDATE" EntityType="RecruitmentModel.Store.RC_CANDIDATE" store:Type="Tables" />
+            <EntitySet Name="RC_CANDIDATE_EDUCATION" EntityType="RecruitmentModel.Store.RC_CANDIDATE_EDUCATION" store:Type="Tables" />
+            <EntitySet Name="RC_CANDIDATE_HISTORY" EntityType="RecruitmentModel.Store.RC_CANDIDATE_HISTORY" store:Type="Tables" />
+            <EntitySet Name="RC_CANDIDATE_OTHER_INFO" EntityType="RecruitmentModel.Store.RC_CANDIDATE_OTHER_INFO" store:Type="Tables" />
+            <EntitySet Name="RC_CANDIDATE_CV" EntityType="RecruitmentModel.Store.RC_CANDIDATE_CV" store:Type="Tables" />
+            <EntitySet Name="RC_PROGRAM_SCHEDULE" EntityType="RecruitmentModel.Store.RC_PROGRAM_SCHEDULE" store:Type="Tables" />
+            <EntitySet Name="RC_PROGRAM_SCHEDULE_CAN" EntityType="RecruitmentModel.Store.RC_PROGRAM_SCHEDULE_CAN" store:Type="Tables" />
+            <EntitySet Name="RC_PROGRAM_SCHEDULE_USHER" EntityType="RecruitmentModel.Store.RC_PROGRAM_SCHEDULE_USHER" store:Type="Tables" />
+            <EntitySet Name="RC_CANDIDATE_FAMILY" EntityType="RecruitmentModel.Store.RC_CANDIDATE_FAMILY" store:Type="Tables" />
+            <EntitySet Name="RC_CANDIDATE_TRAINSINGER" EntityType="RecruitmentModel.Store.RC_CANDIDATE_TRAINSINGER" store:Type="Tables" />
+            <EntitySet Name="RC_CANDIDATE_BEFOREWT" EntityType="RecruitmentModel.Store.RC_CANDIDATE_BEFOREWT" store:Type="Tables" />
+            <EntitySet Name="RC_COST" EntityType="RecruitmentModel.Store.RC_COST" store:Type="Tables" />
+            <EntitySet Name="RC_COST_FORM" EntityType="RecruitmentModel.Store.RC_COST_FORM" store:Type="Tables" />
+            <EntitySet Name="HU_EMPLOYEE_BANK" EntityType="RecruitmentModel.Store.HU_EMPLOYEE_BANK" store:Type="Tables" />
+            <EntitySet Name="HU_EMPLOYEE_BEFOREWT" EntityType="RecruitmentModel.Store.HU_EMPLOYEE_BEFOREWT" store:Type="Tables" />
+            <EntitySet Name="HU_EMPLOYEE_EDUCATION" EntityType="RecruitmentModel.Store.HU_EMPLOYEE_EDUCATION" store:Type="Tables" />
+            <EntitySet Name="HU_EMPLOYEE_HEALTH" EntityType="RecruitmentModel.Store.HU_EMPLOYEE_HEALTH" store:Type="Tables" />
+            <EntitySet Name="HU_EMPLOYEE_OTHER_INFO" EntityType="RecruitmentModel.Store.HU_EMPLOYEE_OTHER_INFO" store:Type="Tables" />
+            <EntitySet Name="HU_EMPLOYEE_TRAIN" EntityType="RecruitmentModel.Store.HU_EMPLOYEE_TRAIN" store:Type="Tables" />
+            <EntitySet Name="HU_EMPLOYEE_TRAINSINGER" EntityType="RecruitmentModel.Store.HU_EMPLOYEE_TRAINSINGER" store:Type="Tables" />
+            <EntitySet Name="HU_EMPLOYEE" EntityType="RecruitmentModel.Store.HU_EMPLOYEE" store:Type="Tables" />
+            <EntitySet Name="HU_EMPLOYEE_CV" EntityType="RecruitmentModel.Store.HU_EMPLOYEE_CV" store:Type="Tables" />
+            <EntitySet Name="HU_EMPLOYEE_EDUCATION1" EntityType="RecruitmentModel.Store.HU_EMPLOYEE_EDUCATION1" store:Type="Tables" />
+            <EntitySet Name="HU_EMPLOYEE_HEALTH1" EntityType="RecruitmentModel.Store.HU_EMPLOYEE_HEALTH1" store:Type="Tables" />
+            <EntitySet Name="HU_EMPLOYEE_OTHER_INFO1" EntityType="RecruitmentModel.Store.HU_EMPLOYEE_OTHER_INFO1" store:Type="Tables" />
+            <EntitySet Name="HU_ORG_TITLE" EntityType="RecruitmentModel.Store.HU_ORG_TITLE" store:Type="Tables" />
+            <EntitySet Name="HU_ORGANIZATION" EntityType="RecruitmentModel.Store.HU_ORGANIZATION" store:Type="Tables" />
+            <EntitySet Name="HU_TITLE" EntityType="RecruitmentModel.Store.HU_TITLE" store:Type="Tables" />
+            <EntitySet Name="HU_BANK" EntityType="RecruitmentModel.Store.HU_BANK" store:Type="Tables" />
+            <EntitySet Name="HU_BANK_BRANCH" EntityType="RecruitmentModel.Store.HU_BANK_BRANCH" store:Type="Tables" />
+            <EntitySet Name="HU_DISTRICT" EntityType="RecruitmentModel.Store.HU_DISTRICT" store:Type="Tables" />
+            <EntitySet Name="HU_NATION" EntityType="RecruitmentModel.Store.HU_NATION" store:Type="Tables" />
+            <EntitySet Name="HU_PROVINCE" EntityType="RecruitmentModel.Store.HU_PROVINCE" store:Type="Tables" />
+            <EntitySet Name="RC_STAGE" EntityType="RecruitmentModel.Store.RC_STAGE" store:Type="Tables" />
+            <EntitySet Name="RC_COSTALLOCATE" EntityType="RecruitmentModel.Store.RC_COSTALLOCATE" store:Type="Tables" />
+            <EntitySet Name="RC_COST_COSTALLOCATE" EntityType="RecruitmentModel.Store.RC_COST_COSTALLOCATE" store:Type="Tables" />
+            <EntitySet Name="RC_MANNING_ORG" EntityType="RecruitmentModel.Store.RC_MANNING_ORG" store:Type="Tables" />
+            <EntitySet Name="RC_MANNING_TITLE" EntityType="RecruitmentModel.Store.RC_MANNING_TITLE" store:Type="Tables" />
+            <EntitySet Name="RC_CANDIDATE_EXPECT" EntityType="RecruitmentModel.Store.RC_CANDIDATE_EXPECT" store:Type="Tables" />
+            <EntitySet Name="RC_CANDIDATE_HEALTH" EntityType="RecruitmentModel.Store.RC_CANDIDATE_HEALTH" store:Type="Tables" />
+            <EntitySet Name="RC_CANDIDATE_REFERENCE" EntityType="RecruitmentModel.Store.RC_CANDIDATE_REFERENCE" store:Type="Tables" />
+            <EntitySet Name="RC_PROGRAM" EntityType="RecruitmentModel.Store.RC_PROGRAM" store:Type="Tables" />
+            <EntitySet Name="SE_USER" EntityType="RecruitmentModel.Store.SE_USER" store:Type="Tables" />
+            <EntitySet Name="SE_REPORT" EntityType="RecruitmentModel.Store.SE_REPORT" store:Type="Tables" />
+            <EntitySet Name="SE_USER_REPORT" EntityType="RecruitmentModel.Store.SE_USER_REPORT" store:Type="Tables" />
             <AssociationSet Name="FK_FE_HEH" Association="RecruitmentModel.Store.FK_FE_HEH">
                 <End Role="HU_EMPLOYEE" EntitySet="HU_EMPLOYEE" />
                 <End Role="HU_EMPLOYEE_HEALTH1" EntitySet="HU_EMPLOYEE_HEALTH1" />
@@ -350,6 +350,7 @@
             <Property Name="GENDER_PRIORITY" Type="number" Nullable="true" Precision="38" />
             <Property Name="UPLOAD_FILE" Type="nclob" Nullable="true" />
             <Property Name="RECRUIT_NUMBER" Type="number" Nullable="true" Precision="38" />
+            <Property Name="FILE_NAME" Type="nvarchar2" Nullable="true" MaxLength="1023" />
         </EntityType>
         <EntityType Name="RC_REQUEST_EMP">
             <Key>
@@ -2156,6 +2157,7 @@
           <Property Type="Decimal" Name="GENDER_PRIORITY" Nullable="true" />
           <Property Type="String" Name="UPLOAD_FILE" />
           <Property Type="Decimal" Name="RECRUIT_NUMBER" Nullable="true" />
+          <Property Type="String" Name="FILE_NAME" MaxLength="1023" />
         </EntityType>
         <EntityType Name="RC_REQUEST_EMP">
           <Key>
@@ -3856,6 +3858,7 @@
                     <ScalarProperty Name="GENDER_PRIORITY" ColumnName="GENDER_PRIORITY" />
                     <ScalarProperty Name="UPLOAD_FILE" ColumnName="UPLOAD_FILE" />
                     <ScalarProperty Name="RECRUIT_NUMBER" ColumnName="RECRUIT_NUMBER" />
+                    <ScalarProperty Name="FILE_NAME" ColumnName="FILE_NAME" />
                 </MappingFragment>
             </EntityTypeMapping>
         </EntitySetMapping>
@@ -5205,150 +5208,152 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram Name="RecruitmentContext" ZoomLevel="58" >
-        <EntityTypeShape EntityType="RecruitmentModel.RC_COST_CENTER" Width="1.5" PointX="1.0267800153357816" PointY="25.482005682532677" />
-        <EntityTypeShape EntityType="RecruitmentModel.SE_CHOSEN_ORG" Width="1.5" PointX="2.75" PointY="0.75" Height="1.4033821614583246" />
+        <EntityTypeShape EntityType="RecruitmentModel.RC_COST_CENTER" Width="1.5" PointX="1" PointY="25.5" IsExpanded="false" Height="0.4" />
+        <EntityTypeShape EntityType="RecruitmentModel.SE_CHOSEN_ORG" Width="1.5" PointX="2.75" PointY="0.75" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="RecruitmentModel.HU_FAMILY" Width="1.5" PointX="3.875" PointY="32.625" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="RecruitmentModel.HU_TERMINATE" Width="1.5" PointX="1.375" PointY="32.75" Height="0.4" IsExpanded="false" />
-        <EntityTypeShape EntityType="RecruitmentModel.RC_EXAMS" Width="1.5" PointX="0.75" PointY="9.75" Height="2.7494921874999996" />
-        <EntityTypeShape EntityType="RecruitmentModel.RC_EXAMS_DTL" Width="1.5" PointX="6.375" PointY="6.625" Height="2.7494921874999996" />
-        <EntityTypeShape EntityType="RecruitmentModel.RC_PLAN_REG_EMP" Width="1.5" PointX="11.75" PointY="0.75" Height="1.5956835937499818" />
-        <EntityTypeShape EntityType="RecruitmentModel.RC_PROGRAM_CHARACTER" Width="2" PointX="13.75" PointY="0.75" Height="1.5956835937499818" />
+        <EntityTypeShape EntityType="RecruitmentModel.RC_EXAMS" Width="1.5" PointX="0.75" PointY="9.75" Height="0.4" IsExpanded="false" />
+        <EntityTypeShape EntityType="RecruitmentModel.RC_EXAMS_DTL" Width="1.5" PointX="6.375" PointY="6.625" Height="0.4" IsExpanded="false" />
+        <EntityTypeShape EntityType="RecruitmentModel.RC_PLAN_REG_EMP" Width="1.5" PointX="11.75" PointY="0.75" Height="0.4" IsExpanded="false" />
+        <EntityTypeShape EntityType="RecruitmentModel.RC_PROGRAM_CHARACTER" Width="2" PointX="13.75" PointY="0.75" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="RecruitmentModel.RC_PROGRAM_EMP" Width="2.875" PointX="13.75" PointY="3.75" Height="0.4" IsExpanded="false" />
-        <EntityTypeShape EntityType="RecruitmentModel.RC_PROGRAM_EXAMS" Width="1.75" PointX="13.75" PointY="6.75" Height="2.7494921874999996" />
-        <EntityTypeShape EntityType="RecruitmentModel.RC_PROGRAM_SCOPE" Width="2" PointX="13.75" PointY="9.75" Height="1.5956835937499818" />
-        <EntityTypeShape EntityType="RecruitmentModel.RC_PROGRAM_SOFT_SKILL" Width="2.375" PointX="13.75" PointY="12.75" Height="1.5956835937499818" />
-        <EntityTypeShape EntityType="RecruitmentModel.RC_REQUEST" Width="1.5" PointX="17.5" PointY="0.5" Height="9.67234375" />
-        <EntityTypeShape EntityType="RecruitmentModel.RC_REQUEST_EMP" Width="1.5" PointX="15.75" PointY="7.75" Height="1.5956835937499818" />
-        <EntityTypeShape EntityType="RecruitmentModel.OT_OTHER_LIST" Width="1.5" PointX="14" PointY="15.5" Height="4.48020507812501" />
-        <EntityTypeShape EntityType="RecruitmentModel.OT_OTHER_LIST_GROUP" Width="1.5" PointX="16.375" PointY="10.75" Height="2.7494921875000102" />
-        <EntityTypeShape EntityType="RecruitmentModel.OT_OTHER_LIST_TYPE" Width="1.5" PointX="9.125" PointY="16.625" Height="3.5186979166666674" />
-        <EntityTypeShape EntityType="RecruitmentModel.RC_PLAN_REG" Width="1.5" PointX="16.375" PointY="14.75" Height="4.0956022135416674" />
-        <EntityTypeShape EntityType="RecruitmentModel.HU_CONTRACT_TYPE" Width="2" PointX="20" PointY="0.875" Height="3.5186979166666674" />
-        <EntityTypeShape EntityType="RecruitmentModel.RC_CANDIDATE" Width="1.5" PointX="18.375" PointY="5.75" Height="5.8263151041666656" />
+        <EntityTypeShape EntityType="RecruitmentModel.RC_PROGRAM_EXAMS" Width="1.75" PointX="13.75" PointY="6.75" Height="0.4" IsExpanded="false" />
+        <EntityTypeShape EntityType="RecruitmentModel.RC_PROGRAM_SCOPE" Width="2" PointX="13.75" PointY="9.75" Height="0.4" IsExpanded="false" />
+        <EntityTypeShape EntityType="RecruitmentModel.RC_PROGRAM_SOFT_SKILL" Width="2.375" PointX="13.75" PointY="12.75" Height="0.4" IsExpanded="false" />
+        <EntityTypeShape EntityType="RecruitmentModel.RC_REQUEST" Width="1.5" PointX="17.5" PointY="0.5" Height="9.8646451822916656" IsExpanded="true" />
+        <EntityTypeShape EntityType="RecruitmentModel.RC_REQUEST_EMP" Width="1.5" PointX="15.75" PointY="7.75" Height="0.4" IsExpanded="false" />
+        <EntityTypeShape EntityType="RecruitmentModel.OT_OTHER_LIST" Width="1.5" PointX="14" PointY="15.5" Height="0.4" IsExpanded="false" />
+        <EntityTypeShape EntityType="RecruitmentModel.OT_OTHER_LIST_GROUP" Width="1.5" PointX="16.375" PointY="10.75" Height="0.4" IsExpanded="false" />
+        <EntityTypeShape EntityType="RecruitmentModel.OT_OTHER_LIST_TYPE" Width="1.5" PointX="9.125" PointY="16.625" Height="0.4" IsExpanded="false" />
+        <EntityTypeShape EntityType="RecruitmentModel.RC_PLAN_REG" Width="1.5" PointX="16.375" PointY="14.75" Height="0.4" IsExpanded="false" />
+        <EntityTypeShape EntityType="RecruitmentModel.HU_CONTRACT_TYPE" Width="2" PointX="20" PointY="0.875" Height="0.4" IsExpanded="false" />
+        <EntityTypeShape EntityType="RecruitmentModel.RC_CANDIDATE" Width="1.5" PointX="18.375" PointY="5.75" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="RecruitmentModel.RC_CANDIDATE_EDUCATION" Width="1.5" PointX="18.375" PointY="14.75" Height="0.4" IsExpanded="false" />
-        <EntityTypeShape EntityType="RecruitmentModel.RC_CANDIDATE_HISTORY" Width="1.5" PointX="20.375" PointY="5.75" Height="4.4802050781249818" />
+        <EntityTypeShape EntityType="RecruitmentModel.RC_CANDIDATE_HISTORY" Width="1.5" PointX="20.375" PointY="5.75" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="RecruitmentModel.RC_CANDIDATE_OTHER_INFO" Width="1.5" PointX="23.25" PointY="11.5" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="RecruitmentModel.RC_CANDIDATE_CV" Width="1.5" PointX="20.375" PointY="17.75" Height="0.4" IsExpanded="false" />
-        <EntityTypeShape EntityType="RecruitmentModel.RC_PROGRAM_SCHEDULE" Width="2.625" PointX="7" PointY="22.75" Height="3.3263964843750031" />
-        <EntityTypeShape EntityType="RecruitmentModel.RC_PROGRAM_SCHEDULE_CAN" Width="2.5" PointX="12.375" PointY="21.75" Height="2.7494921875000031" />
-        <EntityTypeShape EntityType="RecruitmentModel.RC_PROGRAM_SCHEDULE_USHER" Width="3.625" PointX="15.125" PointY="21.75" Height="1.5956835937499818" />
+        <EntityTypeShape EntityType="RecruitmentModel.RC_PROGRAM_SCHEDULE" Width="2.625" PointX="7" PointY="22.75" Height="0.4" IsExpanded="false" />
+        <EntityTypeShape EntityType="RecruitmentModel.RC_PROGRAM_SCHEDULE_CAN" Width="2.5" PointX="12.375" PointY="21.75" Height="0.4" IsExpanded="false" />
+        <EntityTypeShape EntityType="RecruitmentModel.RC_PROGRAM_SCHEDULE_USHER" Width="3.625" PointX="15.125" PointY="21.75" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="RecruitmentModel.RC_CANDIDATE_FAMILY" Width="1.5" PointX="8.75" PointY="29" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="RecruitmentModel.RC_CANDIDATE_TRAINSINGER" Width="1.5" PointX="2.875" PointY="6.5" Height="0.4" IsExpanded="false" />
-        <EntityTypeShape EntityType="RecruitmentModel.RC_CANDIDATE_BEFOREWT" Width="1.5" PointX="3.375" PointY="26.375" Height="4.8648079427083317" />
-        <EntityTypeShape EntityType="RecruitmentModel.RC_COST" Width="2" PointX="22.25" PointY="6.75" Height="4.2879036458333335" />
-        <EntityTypeShape EntityType="RecruitmentModel.RC_COST_FORM" Width="1.5" PointX="0.75" PointY="0.5" Height="1.5956835937499818" />
+        <EntityTypeShape EntityType="RecruitmentModel.RC_CANDIDATE_BEFOREWT" Width="1.5" PointX="3.375" PointY="26.375" Height="0.4" IsExpanded="false" />
+        <EntityTypeShape EntityType="RecruitmentModel.RC_COST" Width="2" PointX="22.25" PointY="6.75" Height="0.4" IsExpanded="false" />
+        <EntityTypeShape EntityType="RecruitmentModel.RC_COST_FORM" Width="1.5" PointX="0.75" PointY="0.5" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="RecruitmentModel.HU_EMPLOYEE_BANK" Width="1.5" PointX="5.375" PointY="0.75" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="RecruitmentModel.HU_EMPLOYEE_BEFOREWT" Width="1.5" PointX="5.375" PointY="5.75" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="RecruitmentModel.HU_EMPLOYEE_EDUCATION" Width="1.5" PointX="21" PointY="20.25" Height="0.4" IsExpanded="false" />
-        <EntityTypeShape EntityType="RecruitmentModel.HU_EMPLOYEE_HEALTH" Width="1.5" PointX="3.375" PointY="12.75" Height="5.6340136718749818" />
+        <EntityTypeShape EntityType="RecruitmentModel.HU_EMPLOYEE_HEALTH" Width="1.5" PointX="3.375" PointY="12.75" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="RecruitmentModel.HU_EMPLOYEE_OTHER_INFO" Width="1.5" PointX="7.375" PointY="0.75" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="RecruitmentModel.HU_EMPLOYEE_TRAIN" Width="1.5" PointX="23.875" PointY="22.375" Height="0.4" IsExpanded="false" />
-        <EntityTypeShape EntityType="RecruitmentModel.HU_EMPLOYEE_TRAINSINGER" Width="1.5" PointX="11.375" PointY="25.75" Height="4.8648079427083246" />
-        <EntityTypeShape EntityType="RecruitmentModel.HU_EMPLOYEE" Width="1.5" PointX="27.625" PointY="9.5" Height="7.3647265624999818" />
-        <EntityTypeShape EntityType="RecruitmentModel.HU_EMPLOYEE_CV" Width="1.5" PointX="30.875" PointY="29.75" Height="11.979960937499982" />
-        <EntityTypeShape EntityType="RecruitmentModel.HU_EMPLOYEE_EDUCATION1" Width="1.5" PointX="34.125" PointY="10.25" Height="7.172425130208353" />
-        <EntityTypeShape EntityType="RecruitmentModel.HU_EMPLOYEE_HEALTH1" Width="1.5" PointX="29.875" PointY="5.25" Height="5.441712239583353" />
-        <EntityTypeShape EntityType="RecruitmentModel.HU_EMPLOYEE_OTHER_INFO1" Width="1.5" PointX="30.875" PointY="42.5" Height="5.0571093749999818" />
-        <EntityTypeShape EntityType="RecruitmentModel.HU_ORG_TITLE" Width="1.5" PointX="30.625" PointY="11.625" Height="3.3263964843749818" />
-        <EntityTypeShape EntityType="RecruitmentModel.HU_ORGANIZATION" Width="1.5" PointX="25.375" PointY="16.375" Height="5.8263151041666674" />
-        <EntityTypeShape EntityType="RecruitmentModel.HU_TITLE" Width="1.5" PointX="25.375" PointY="11.25" Height="3.9033007812499818" />
+        <EntityTypeShape EntityType="RecruitmentModel.HU_EMPLOYEE_TRAINSINGER" Width="1.5" PointX="11.375" PointY="25.75" Height="0.4" IsExpanded="false" />
+        <EntityTypeShape EntityType="RecruitmentModel.HU_EMPLOYEE" Width="1.5" PointX="27.625" PointY="9.5" Height="0.4" IsExpanded="false" />
+        <EntityTypeShape EntityType="RecruitmentModel.HU_EMPLOYEE_CV" Width="1.5" PointX="30.875" PointY="29.75" Height="0.4" IsExpanded="false" />
+        <EntityTypeShape EntityType="RecruitmentModel.HU_EMPLOYEE_EDUCATION1" Width="1.5" PointX="34.125" PointY="10.25" Height="0.4" IsExpanded="false" />
+        <EntityTypeShape EntityType="RecruitmentModel.HU_EMPLOYEE_HEALTH1" Width="1.5" PointX="29.875" PointY="5.25" Height="0.4" IsExpanded="false" />
+        <EntityTypeShape EntityType="RecruitmentModel.HU_EMPLOYEE_OTHER_INFO1" Width="1.5" PointX="30.875" PointY="42.5" Height="0.4" IsExpanded="false" />
+        <EntityTypeShape EntityType="RecruitmentModel.HU_ORG_TITLE" Width="1.5" PointX="30.625" PointY="11.625" Height="0.4" IsExpanded="false" />
+        <EntityTypeShape EntityType="RecruitmentModel.HU_ORGANIZATION" Width="1.5" PointX="25.375" PointY="16.375" Height="0.4" IsExpanded="false" />
+        <EntityTypeShape EntityType="RecruitmentModel.HU_TITLE" Width="1.5" PointX="25.375" PointY="11.25" Height="0.4" IsExpanded="false" />
         <AssociationConnector Association="RecruitmentModel.FK_FE_HEH" >
-          <ConnectorPoint PointX="29.125" PointY="10.095856119791677" />
-          <ConnectorPoint PointX="29.875" PointY="10.095856119791677" />
+          <ConnectorPoint PointX="28.96875" PointY="9.5" />
+          <ConnectorPoint PointX="28.96875" PointY="5.45" />
+          <ConnectorPoint PointX="29.875" PointY="5.45" />
         </AssociationConnector>
         <AssociationConnector Association="RecruitmentModel.FK_HE_HEC" >
-          <ConnectorPoint PointX="28.375" PointY="16.864726562499982" />
-          <ConnectorPoint PointX="28.375" PointY="35.739980468749991" />
-          <ConnectorPoint PointX="28.697919166666669" PointY="35.739980468749991" />
-          <ConnectorPoint PointX="28.864585833333333" PointY="35.739980468749991" />
-          <ConnectorPoint PointX="30.875" PointY="35.739980468749991" />
+          <ConnectorPoint PointX="27.890961538461539" PointY="9.9" />
+          <ConnectorPoint PointX="27.890961538461539" PointY="29.95" />
+          <ConnectorPoint PointX="28.812149935897438" PointY="29.95" />
+          <ConnectorPoint PointX="28.978816602564102" PointY="29.95" />
+          <ConnectorPoint PointX="30.875" PointY="29.95" />
         </AssociationConnector>
         <AssociationConnector Association="RecruitmentModel.FK_HE_HEE" >
-          <ConnectorPoint PointX="29.125" PointY="15.939311523437482" />
-          <ConnectorPoint PointX="30.166666666666668" PointY="15.939311523437482" />
-          <ConnectorPoint PointX="30.333333333333332" PointY="15.939311523437482" />
-          <ConnectorPoint PointX="31.291666666666668" PointY="15.939311523437482" />
-          <ConnectorPoint PointX="31.458333333333332" PointY="15.939311523437482" />
-          <ConnectorPoint PointX="34.125" PointY="15.939311523437482" />
+          <ConnectorPoint PointX="29.125" PointY="9.7" />
+          <ConnectorPoint PointX="34.875" PointY="9.7" />
+          <ConnectorPoint PointX="34.875" PointY="10.25" />
         </AssociationConnector>
         <AssociationConnector Association="RecruitmentModel.FK_HE_HEO" >
-          <ConnectorPoint PointX="28.7812525" PointY="16.864726562499982" />
-          <ConnectorPoint PointX="28.7812525" PointY="45.028554687499991" />
-          <ConnectorPoint PointX="30.875" PointY="45.028554687499991" />
+          <ConnectorPoint PointX="28.89548326923077" PointY="9.9" />
+          <ConnectorPoint PointX="28.89548326923077" PointY="42.7" />
+          <ConnectorPoint PointX="30.875" PointY="42.7" />
         </AssociationConnector>
         <AssociationConnector Association="RecruitmentModel.FK_HE_HT" >
-          <ConnectorPoint PointX="26.875" PointY="13.201650390624991" />
-          <ConnectorPoint PointX="27.625" PointY="13.201650390624991" />
+          <ConnectorPoint PointX="26.125" PointY="11.25" />
+          <ConnectorPoint PointX="26.125" PointY="9.7" />
+          <ConnectorPoint PointX="27.625" PointY="9.7" />
         </AssociationConnector>
         <AssociationConnector Association="RecruitmentModel.FK_HU_ORG_HU_EMP" >
-          <ConnectorPoint PointX="26.875" PointY="16.619863281249991" />
-          <ConnectorPoint PointX="27.291666666666668" PointY="16.619863281249991" />
-          <ConnectorPoint PointX="27.458333333333332" PointY="16.619863281249991" />
-          <ConnectorPoint PointX="27.625" PointY="16.619863281249991" />
+          <ConnectorPoint PointX="26.875" PointY="16.575" />
+          <ConnectorPoint PointX="27.807628205128207" PointY="16.575" />
+          <ConnectorPoint PointX="27.974294871794871" PointY="16.575" />
+          <ConnectorPoint PointX="28.380192307692305" PointY="16.575" />
+          <ConnectorPoint PointX="28.380192307692305" PointY="9.9" />
         </AssociationConnector>
         <AssociationConnector Association="RecruitmentModel.FK_HUEMD_HUEM" >
-          <ConnectorPoint PointX="28.156923076923075" PointY="9.5" />
-          <ConnectorPoint PointX="28.156923076923075" PointY="9.25" />
-          <ConnectorPoint PointX="28.603461538461538" PointY="9.25" />
-          <ConnectorPoint PointX="28.603461538461538" PointY="9.5" />
+          <ConnectorPoint PointX="28.139153846153846" PointY="9.5" />
+          <ConnectorPoint PointX="28.139153846153846" PointY="9.25" />
+          <ConnectorPoint PointX="28.622076923076925" PointY="9.25" />
+          <ConnectorPoint PointX="28.622076923076925" PointY="9.5" />
         </AssociationConnector>
         <AssociationConnector Association="RecruitmentModel.FK_HUOG_HUOT" >
-          <ConnectorPoint PointX="26.875" PointY="19.564270833333325" />
-          <ConnectorPoint PointX="28.291666666666668" PointY="19.564270833333325" />
-          <ConnectorPoint PointX="28.458333333333332" PointY="19.564270833333325" />
-          <ConnectorPoint PointX="28.697919166666669" PointY="19.564270833333325" />
-          <ConnectorPoint PointX="28.864585833333333" PointY="19.564270833333325" />
-          <ConnectorPoint PointX="31.375" PointY="19.564270833333325" />
-          <ConnectorPoint PointX="31.375" PointY="14.951396484374982" />
+          <ConnectorPoint PointX="26.875" PointY="16.443747500000008" />
+          <ConnectorPoint PointX="27.807628205128207" PointY="16.443747500000008" />
+          <ConnectorPoint PointX="27.974294871794871" PointY="16.443747500000008" />
+          <ConnectorPoint PointX="28.296858974358972" PointY="16.443747500000008" />
+          <ConnectorPoint PointX="28.463525641025637" PointY="16.443747500000008" />
+          <ConnectorPoint PointX="28.812149935897438" PointY="16.443747500000008" />
+          <ConnectorPoint PointX="28.978816602564102" PointY="16.443747500000008" />
+          <ConnectorPoint PointX="31.4062525" PointY="16.443747500000008" />
+          <ConnectorPoint PointX="31.4062525" PointY="12.025" />
         </AssociationConnector>
         <AssociationConnector Association="RecruitmentModel.FK_HUTL_HUOT" >
-          <ConnectorPoint PointX="26.125" PointY="15.153300781249982" />
-          <ConnectorPoint PointX="26.125" PointY="15.403300781249982" />
-          <ConnectorPoint PointX="27.375" PointY="15.403300781249982" />
-          <ConnectorPoint PointX="27.375" PointY="17.114726562499982" />
-          <ConnectorPoint PointX="28.291666666666668" PointY="17.114726562499982" />
-          <ConnectorPoint PointX="28.458333333333332" PointY="17.114726562499982" />
-          <ConnectorPoint PointX="28.697919166666669" PointY="17.114726562499982" />
-          <ConnectorPoint PointX="28.864585833333333" PointY="17.114726562499982" />
-          <ConnectorPoint PointX="30.25" PointY="17.114726562499982" />
-          <ConnectorPoint PointX="30.25" PointY="13.288198242187491" />
-          <ConnectorPoint PointX="30.625" PointY="13.288198242187491" />
+          <ConnectorPoint PointX="26.875" PointY="11.65" />
+          <ConnectorPoint PointX="27.25" PointY="12.024999999999999" />
+          <ConnectorPoint PointX="27.25" PointY="11.25" />
+          <ConnectorPoint PointX="27.807628205128207" PointY="11.25" />
+          <ConnectorPoint PointX="27.974294871794871" PointY="11.25" />
+          <ConnectorPoint PointX="28.296858974358972" PointY="11.25" />
+          <ConnectorPoint PointX="28.463525641025637" PointY="11.25" />
+          <ConnectorPoint PointX="28.812149935897438" PointY="11.25" />
+          <ConnectorPoint PointX="28.978816602564102" PointY="11.25" />
+          <ConnectorPoint PointX="30.25" PointY="11.25" />
+          <ConnectorPoint PointX="30.625" PointY="11.625" />
         </AssociationConnector>
         <AssociationConnector Association="RecruitmentModel.FK_HU_ORG_HU_ORG" >
-          <ConnectorPoint PointX="25.906923076923075" PointY="22.201315104166667" />
-          <ConnectorPoint PointX="25.906923076923075" PointY="22.451315104166667" />
-          <ConnectorPoint PointX="26.353461538461538" PointY="22.451315104166667" />
-          <ConnectorPoint PointX="26.353461538461538" PointY="22.201315104166667" />
+          <ConnectorPoint PointX="25.889153846153846" PointY="16.775" />
+          <ConnectorPoint PointX="25.889153846153846" PointY="17.025" />
+          <ConnectorPoint PointX="26.372076923076925" PointY="17.025" />
+          <ConnectorPoint PointX="26.372076923076925" PointY="16.775" />
         </AssociationConnector>
-        <EntityTypeShape EntityType="RecruitmentModel.HU_BANK" Width="1.5" PointX="5.75" PointY="12.125" Height="3.3263964843749818" />
-        <EntityTypeShape EntityType="RecruitmentModel.HU_BANK_BRANCH" Width="1.5" PointX="8" PointY="12" Height="3.5186979166666674" />
-        <EntityTypeShape EntityType="RecruitmentModel.HU_DISTRICT" Width="1.5" PointX="5.25" PointY="20.25" Height="3.3263964843749818" />
-        <EntityTypeShape EntityType="RecruitmentModel.HU_NATION" Width="1.5" PointX="0.75" PointY="20.25" Height="3.3263964843749818" />
-        <EntityTypeShape EntityType="RecruitmentModel.HU_PROVINCE" Width="1.5" PointX="3" PointY="20" Height="3.7109993489583246" />
+        <EntityTypeShape EntityType="RecruitmentModel.HU_BANK" Width="1.5" PointX="5.75" PointY="12.125" Height="0.4" IsExpanded="false" />
+        <EntityTypeShape EntityType="RecruitmentModel.HU_BANK_BRANCH" Width="1.5" PointX="8" PointY="12" Height="0.4" IsExpanded="false" />
+        <EntityTypeShape EntityType="RecruitmentModel.HU_DISTRICT" Width="1.5" PointX="5.25" PointY="20.25" Height="0.4" IsExpanded="false" />
+        <EntityTypeShape EntityType="RecruitmentModel.HU_NATION" Width="1.5" PointX="0.75" PointY="20.25" Height="0.4" IsExpanded="false" />
+        <EntityTypeShape EntityType="RecruitmentModel.HU_PROVINCE" Width="1.5" PointX="3" PointY="20" Height="0.4" IsExpanded="false" />
         <AssociationConnector Association="RecruitmentModel.FK_BANKBANK_BRANCH" >
-          <ConnectorPoint PointX="7.25" PointY="13.788198242187491" />
-          <ConnectorPoint PointX="8" PointY="13.788198242187491" />
+          <ConnectorPoint PointX="7.25" PointY="12.2625" />
+          <ConnectorPoint PointX="8" PointY="12.2625" />
         </AssociationConnector>
         <AssociationConnector Association="RecruitmentModel.FK_HU_PRO_HU_DIS" >
-          <ConnectorPoint PointX="4.5" PointY="21.913198242187491" />
-          <ConnectorPoint PointX="5.25" PointY="21.913198242187491" />
+          <ConnectorPoint PointX="4.5" PointY="20.325" />
+          <ConnectorPoint PointX="5.25" PointY="20.325" />
         </AssociationConnector>
         <AssociationConnector Association="RecruitmentModel.FK_HU_NAT_HU_PRO" >
-          <ConnectorPoint PointX="2.25" PointY="21.913198242187491" />
-          <ConnectorPoint PointX="3" PointY="21.913198242187491" />
+          <ConnectorPoint PointX="2.25" PointY="20.325" />
+          <ConnectorPoint PointX="3" PointY="20.325" />
         </AssociationConnector>
         <EntityTypeShape EntityType="RecruitmentModel.RC_STAGE" Width="2" PointX="2.75" PointY="2.375" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="RecruitmentModel.RC_COSTALLOCATE" Width="2" PointX="0.5" PointY="2.5" Height="0.4" IsExpanded="false" />
-        <EntityTypeShape EntityType="RecruitmentModel.RC_COST_COSTALLOCATE" Width="2.125" PointX="22.375" PointY="3.5" Height="3.1340950520833246" />
-        <EntityTypeShape EntityType="RecruitmentModel.RC_MANNING_ORG" Width="2" PointX="14.875" PointY="25.125" Height="2.9417936197916674" />
-        <EntityTypeShape EntityType="RecruitmentModel.RC_MANNING_TITLE" Width="2.375" PointX="14.875" PointY="28.375" Height="2.5571907552083353" />
-        <EntityTypeShape EntityType="RecruitmentModel.RC_CANDIDATE_EXPECT" Width="2.125" PointX="26.625" PointY="6.625" Height="2.1725878906250031" />
-        <EntityTypeShape EntityType="RecruitmentModel.RC_CANDIDATE_HEALTH" Width="2" PointX="0.75" PointY="13.75" Height="4.8648079427083353" />
+        <EntityTypeShape EntityType="RecruitmentModel.RC_COST_COSTALLOCATE" Width="2.125" PointX="22.375" PointY="3.5" Height="0.4" IsExpanded="false" />
+        <EntityTypeShape EntityType="RecruitmentModel.RC_MANNING_ORG" Width="2" PointX="14.875" PointY="25.125" Height="0.4" IsExpanded="false" />
+        <EntityTypeShape EntityType="RecruitmentModel.RC_MANNING_TITLE" Width="2.375" PointX="14.875" PointY="28.375" Height="0.4" IsExpanded="false" />
+        <EntityTypeShape EntityType="RecruitmentModel.RC_CANDIDATE_EXPECT" Width="2.125" PointX="26.625" PointY="6.625" Height="0.4" IsExpanded="false" />
+        <EntityTypeShape EntityType="RecruitmentModel.RC_CANDIDATE_HEALTH" Width="2" PointX="0.75" PointY="13.75" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="RecruitmentModel.RC_CANDIDATE_REFERENCE" Width="1.5" PointX="0.625" PointY="6.875" Height="0.4" IsExpanded="false" />
-        <EntityTypeShape EntityType="RecruitmentModel.RC_PROGRAM" Width="1.5" PointX="19.375" PointY="21.75" Height="14.095276692708325" />
-        <EntityTypeShape EntityType="RecruitmentModel.SE_USER" Width="1.5" PointX="8.375" PointY="2.75" Height="5.6340136718749818" />
-        <EntityTypeShape EntityType="RecruitmentModel.SE_REPORT" Width="1.5" PointX="3.375" PointY="7.75" Height="2.3648893229166674" />
-        <EntityTypeShape EntityType="RecruitmentModel.SE_USER_REPORT" Width="1.5" PointX="0.75" PointY="3.75" Height="1.4033821614583246" />
+        <EntityTypeShape EntityType="RecruitmentModel.RC_PROGRAM" Width="1.5" PointX="19.375" PointY="21.75" Height="0.4" IsExpanded="false" />
+        <EntityTypeShape EntityType="RecruitmentModel.SE_USER" Width="1.5" PointX="8.375" PointY="2.75" Height="0.4" IsExpanded="false" />
+        <EntityTypeShape EntityType="RecruitmentModel.SE_REPORT" Width="1.5" PointX="3.375" PointY="7.75" Height="0.4" IsExpanded="false" />
+        <EntityTypeShape EntityType="RecruitmentModel.SE_USER_REPORT" Width="1.5" PointX="0.75" PointY="3.75" Height="0.4" IsExpanded="false" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -1,8 +1,8 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for Oracle database
 -- --------------------------------------------------
--- Date Created: 08/23/2019 1:45:36 PM
--- Generated from EDMX file: D:\MyProject\TNG\TNG\ProfileDAL\ProfileContext.edmx
+-- Date Created: 26-Aug-19 10:52:16 AM
+-- Generated from EDMX file: E:\PROJECT\MyTNG\ProfileDAL\ProfileContext.edmx
 -- --------------------------------------------------
 
 -- --------------------------------------------------
@@ -3511,7 +3511,10 @@ CREATE TABLE "dbo"."HU_LOCATION" (
    "IS_SIGN_CONTRACT" NUMBER(38,0) NULL,
    "FILE_LOGO" NVARCHAR2(500) NULL,
    "FILE_HEADER" NVARCHAR2(500) NULL,
-   "FILE_FOOTER" NVARCHAR2(500) NULL
+   "FILE_FOOTER" NVARCHAR2(500) NULL,
+   "ATTACH_FILE_LOGO" NVARCHAR2(1023) NULL,
+   "ATTACH_FILE_HEADER" NVARCHAR2(1023) NULL,
+   "ATTACH_FILE_FOOTER" NVARCHAR2(1023) NULL
 );
 
 -- Creating table 'HU_CONCURRENTLY'
@@ -3557,7 +3560,9 @@ CREATE TABLE "dbo"."HU_CONCURRENTLY" (
    "IS_ALLOW" NUMBER(5,0) NULL,
    "FILE_BYTE" NVARCHAR2(1000) NULL,
    "FILE_BYTE1" NVARCHAR2(1000) NULL,
-   "IS_CHUYEN" NUMBER(5,0) NULL
+   "IS_CHUYEN" NUMBER(5,0) NULL,
+   "ATTACH_FOLDER_BYTE" NVARCHAR2(1023) NULL,
+   "ATTACH_FOLDER_BYTE1" NCLOB NULL
 );
 
 -- Creating table 'HU_CERTIFICATE'

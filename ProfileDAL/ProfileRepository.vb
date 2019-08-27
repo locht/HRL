@@ -2236,6 +2236,7 @@ Public Class ProfileRepository
                         From ot In Context.OT_OTHER_LIST.Where(Function(x) x.ID = p.STATUS_ID).DefaultIfEmpty
                         From c In Context.HU_CONTRACT.Where(Function(x) x.ID = p.ID_CONTRACT).DefaultIfEmpty
                         From type In Context.HU_CONTRACT_TYPE.Where(Function(x) x.ID = c.CONTRACT_TYPE_ID).DefaultIfEmpty
+                        From other_ctr In Context.OT_OTHER_LIST.Where(Function(x) x.ID = type.TYPE_ID And x.CODE.ToUpper() = "HD")
                         From form In Context.OT_OTHER_LIST.Where(Function(x) x.ID = p.FORM_ID).DefaultIfEmpty
                         From appendtype In Context.HU_CONTRACT_TYPE.Where(Function(x) x.ID = p.APPEND_TYPEID).DefaultIfEmpty
                         From t In Context.HU_TITLE.Where(Function(x) x.ID = u.TITLE_ID).DefaultIfEmpty()
@@ -2968,6 +2969,8 @@ Public Class ProfileRepository
                                                      .P_IS_ALLOW = concurrently.IS_ALLOW,
                                                      .P_FILE_BYTE = concurrently.FILE_BYTE,
                                                      .P_FILE_BYTE1 = concurrently.FILE_BYTE1,
+                                                     .P_ATTACH_FOLDER_BYTE = concurrently.ATTACH_FOLDER_BYTE,
+                                                     .P_ATTACH_FOLDER_BYTE1 = concurrently.ATTACH_FOLDER_BYTE1,
                                                      .P_IS_CHUYEN = concurrently.IS_CHUYEN,
                                                      .P_OUT = cls.OUT_CURSOR})
 
@@ -3014,6 +3017,8 @@ Public Class ProfileRepository
                                                     .P_IS_ALLOW = concurrently.IS_ALLOW,
                                                     .P_FILE_BYTE = concurrently.FILE_BYTE,
                                                     .P_FILE_BYTE1 = concurrently.FILE_BYTE1,
+                                                    .P_ATTACH_FOLDER_BYTE = concurrently.ATTACH_FOLDER_BYTE,
+                                                    .P_ATTACH_FOLDER_BYTE1 = concurrently.ATTACH_FOLDER_BYTE1,
                                                     .P_IS_CHUYEN = concurrently.IS_CHUYEN,
                                                     .P_OUT = cls.OUT_CURSOR})
 

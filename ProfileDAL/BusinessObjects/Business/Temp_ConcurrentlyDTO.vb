@@ -68,4 +68,7 @@
     Public Property SIGN_TITLE_NAME_STOP As String
     Public Property SIGN_NAME_STOP2 As String
     Public Property SIGN_TITLE_NAME_STOP2 As String
+
+    Public Property ATTACH_FOLDER_BYTE As String
+    Public Property ATTACH_FOLDER_BYTE1 As String
 End Class

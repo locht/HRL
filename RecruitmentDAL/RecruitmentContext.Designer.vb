@@ -18,7 +18,7 @@ Imports System.Runtime.Serialization
 Imports System.Xml.Serialization
 
 
-<Assembly: EdmSchemaAttribute("29ef5842-bc38-4a83-8ef7-1d7e77341637")>
+<Assembly: EdmSchemaAttribute("3494c02b-c1a9-471d-bdc6-3d3966ec6d12")>
 #Region "EDM Relationship Metadata"
 <Assembly: EdmRelationshipAttribute("RecruitmentModel", "FK_FE_HEH", "HU_EMPLOYEE", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_EMPLOYEE), "HU_EMPLOYEE_HEALTH1", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(HU_EMPLOYEE_HEALTH1), True)>
 <Assembly: EdmRelationshipAttribute("RecruitmentModel", "FK_HE_HEC", "HU_EMPLOYEE", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_EMPLOYEE), "HU_EMPLOYEE_CV", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(HU_EMPLOYEE_CV), True)>
@@ -32151,6 +32151,31 @@ Public Partial Class RC_REQUEST
     End Sub
 
     Private Partial Sub OnRECRUIT_NUMBERChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property FILE_NAME() As Global.System.String
+        Get
+            Return _FILE_NAME
+        End Get
+        Set
+            OnFILE_NAMEChanging(value)
+            ReportPropertyChanging("FILE_NAME")
+            _FILE_NAME = StructuralObject.SetValidValue(value, true)
+            ReportPropertyChanged("FILE_NAME")
+            OnFILE_NAMEChanged()
+        End Set
+    End Property
+
+    Private _FILE_NAME As Global.System.String
+    Private Partial Sub OnFILE_NAMEChanging(value As Global.System.String)
+    End Sub
+
+    Private Partial Sub OnFILE_NAMEChanged()
     End Sub
 
     #End Region

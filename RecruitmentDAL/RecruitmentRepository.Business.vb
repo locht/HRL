@@ -372,7 +372,8 @@ Partial Class RecruitmentRepository
                                        .GENDER_PRIORITY = p.GENDER_PRIORITY,
                                        .GENDER_PRIORITY_NAME = gender.NAME_VN,
                                        .RECRUIT_NUMBER = p.RECRUIT_NUMBER,
-                                       .UPLOAD_FILE = p.UPLOAD_FILE}
+                                       .UPLOAD_FILE = p.UPLOAD_FILE,
+                                       .FILE_NAME = p.FILE_NAME}
 
             Dim lst = query
             If _filter.FROM_DATE IsNot Nothing Then
@@ -501,6 +502,7 @@ Partial Class RecruitmentRepository
                                        .COMPUTER_APP_LEVEL = p.COMPUTER_APP_LEVEL,
                                        .GENDER_PRIORITY = p.GENDER_PRIORITY,
                                        .RECRUIT_NUMBER = p.RECRUIT_NUMBER,
+                                       .FILE_NAME = p.FILE_NAME,
                                        .UPLOAD_FILE = p.UPLOAD_FILE}
 
             Dim obj = query.FirstOrDefault
@@ -631,6 +633,7 @@ Partial Class RecruitmentRepository
             objRequestData.COMPUTER_APP_LEVEL = objRequest.COMPUTER_APP_LEVEL
             objRequestData.GENDER_PRIORITY = objRequest.GENDER_PRIORITY
             objRequestData.RECRUIT_NUMBER = objRequest.RECRUIT_NUMBER
+            objRequestData.FILE_NAME = objRequest.FILE_NAME
             objRequestData.UPLOAD_FILE = objRequest.UPLOAD_FILE
             Context.RC_REQUEST.AddObject(objRequestData)
             If objRequest.lstEmp IsNot Nothing Then
@@ -692,6 +695,7 @@ Partial Class RecruitmentRepository
             objRequestData.COMPUTER_APP_LEVEL = objRequest.COMPUTER_APP_LEVEL
             objRequestData.GENDER_PRIORITY = objRequest.GENDER_PRIORITY
             objRequestData.RECRUIT_NUMBER = objRequest.RECRUIT_NUMBER
+            objRequestData.FILE_NAME = objRequest.FILE_NAME
             objRequestData.UPLOAD_FILE = objRequest.UPLOAD_FILE
             Dim lstRegEmp = (From p In Context.RC_REQUEST_EMP Where p.RC_REQUEST_ID = objRequestData.ID).ToList
             For Each item In lstRegEmp

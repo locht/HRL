@@ -251,7 +251,6 @@ Public Class ctrlHU_Title
                 Case CommonMessage.STATE_NORMAL
                     EnabledGridNotPostback(rgMain, True)
                     EnableControlAll(False, cboTitleGroup, txtNameVN, txtRemark, cboOrgLevel, cboOrgType, cboHurtType, ckOVT, btnDownload, btnUploadFile)
-
                 Case CommonMessage.STATE_EDIT
                     EnabledGridNotPostback(rgMain, False)
                     Utilities.EnableRadCombo(cboTitleGroup, True)
@@ -385,7 +384,7 @@ Public Class ctrlHU_Title
                 TITLE_GROUP = dtData.Select("ID='" + cboTitleGroup.SelectedValue + "'")(0)("CODE").ToString
             End If
             If rgMain.SelectedValue Is Nothing Then
-                txtCode.Text = rep.AutoGenCode(ORG_CODE + TITLE_GROUP, "HU_TITLE", "CODE")
+                txtCode.Text = rep.AutoGenCode(TITLE_GROUP, "HU_TITLE", "CODE")
             End If
         Catch ex As Exception
             Throw ex

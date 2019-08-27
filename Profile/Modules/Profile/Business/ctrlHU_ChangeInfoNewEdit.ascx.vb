@@ -960,8 +960,8 @@ Public Class ctrlHU_ChangeInfoNewEdit
         Dim startTime As DateTime = DateTime.UtcNow
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
         Try
-            If lbFileAttach.Text <> "" Then
-                Dim strPath_Down As String = Server.MapPath("~/ReportTemplates/Profile/SalaryInfo/" + txtFileAttach_Link1.Text)
+            If txtFileAttach_Link.Text <> "" Then
+                Dim strPath_Down As String = Server.MapPath("~/ReportTemplates/Profile/WorkingInfo/" + txtFileAttach_Link1.Text)
                 'bCheck = True
                 ZipFiles(strPath_Down, 2)
             End If
@@ -1003,7 +1003,7 @@ Public Class ctrlHU_ChangeInfoNewEdit
             If _ID = 1 Then
                 fileNameZip = txtUploadFile.Text.Trim
             Else
-                fileNameZip = lbFileAttach.Text.Trim
+                fileNameZip = txtFileAttach_Link.Text.Trim
             End If
             'If Not Directory.Exists(pathZip) Then
             '    Directory.CreateDirectory(pathZip)

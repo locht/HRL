@@ -293,15 +293,6 @@ Partial Public Class ctrlHU_ConcurrentlyNewEdit
     Protected WithEvents cval_EffectDate_ExpireDate As Global.System.Web.UI.WebControls.CustomValidator
 
     '''<summary>
-    '''cboUpload control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents cboUpload As Global.Telerik.Web.UI.RadComboBox
-
-    '''<summary>
     '''txtUploadFile control.
     '''</summary>
     '''<remarks>
@@ -309,6 +300,15 @@ Partial Public Class ctrlHU_ConcurrentlyNewEdit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtUploadFile As Global.Telerik.Web.UI.RadTextBox
+
+    '''<summary>
+    '''txtUploadFile_Link control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtUploadFile_Link As Global.Telerik.Web.UI.RadTextBox
 
     '''<summary>
     '''btnUploadFile control.
@@ -581,15 +581,6 @@ Partial Public Class ctrlHU_ConcurrentlyNewEdit
     Protected WithEvents txtREMARK_STOP As Global.Telerik.Web.UI.RadTextBox
 
     '''<summary>
-    '''cboUpload1 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents cboUpload1 As Global.Telerik.Web.UI.RadComboBox
-
-    '''<summary>
     '''txtUploadFile1 control.
     '''</summary>
     '''<remarks>
@@ -597,6 +588,15 @@ Partial Public Class ctrlHU_ConcurrentlyNewEdit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtUploadFile1 As Global.Telerik.Web.UI.RadTextBox
+
+    '''<summary>
+    '''txtUploadFile1_Link control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtUploadFile1_Link As Global.Telerik.Web.UI.RadTextBox
 
     '''<summary>
     '''btnUploadFile1 control.
@@ -696,15 +696,6 @@ Partial Public Class ctrlHU_ConcurrentlyNewEdit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents ctrlUpload1 As Global.Common.ctrlUpload
-
-    '''<summary>
-    '''ctrlUpload2 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents ctrlUpload2 As Global.Common.ctrlUpload
 
     '''<summary>
     '''ctrlMessageBox control.

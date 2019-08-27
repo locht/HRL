@@ -10,6 +10,7 @@ Imports System.IO
 Imports Common.CommonBusiness
 Imports Ionic.Zip
 Imports System.Reflection
+Imports Ionic.Crc
 
 Public Class ctrlHU_ConcurrentlyNewEdit
     Inherits CommonView
@@ -79,16 +80,6 @@ Public Class ctrlHU_ConcurrentlyNewEdit
         Set(ByVal value As String)
             PageViewState(Me.ID & "_tempPathFile") = value
         End Set
-    End Property
-
-    Private Property lstFile As String
-        Get
-            Return PageViewState(Me.ID & "_lstFile")
-        End Get
-        Set(ByVal value As String)
-            PageViewState(Me.ID & "_lstFile") = value
-        End Set
-
     End Property
 
     Private Property strID As String
@@ -195,14 +186,22 @@ Public Class ctrlHU_ConcurrentlyNewEdit
         End Set
     End Property
 
-    Private Property lstFile1 As String
+    Property IsUpload As Decimal
         Get
-            Return PageViewState(Me.ID & "_lstFile1")
+            Return ViewState(Me.ID & "_IsUpload")
+        End Get
+        Set(value As Decimal)
+            ViewState(Me.ID & "_IsUpload") = value
+        End Set
+    End Property
+
+    Property Down_File As String
+        Get
+            Return ViewState(Me.ID & "_Down_File")
         End Get
         Set(ByVal value As String)
-            PageViewState(Me.ID & "_lstFile1") = value
+            ViewState(Me.ID & "_Down_File") = value
         End Set
-
     End Property
 #End Region
 
@@ -250,7 +249,6 @@ Public Class ctrlHU_ConcurrentlyNewEdit
             dtData = com.GET_COMBOBOX("OT_OTHER_LIST", "CODE", "NAME_VN", " TYPE_CODE='" + "APPROVE_STATUS2" + "' ", "NAME_VN", True)
             If dtData.Rows.Count > 0 Then
                 FillRadCombobox(cboStatus, dtData, "NAME_VN", "CODE", False)
-
                 FillRadCombobox(cbSTATUS_STOP, dtData, "NAME_VN", "CODE", False)
             End If
         Catch ex As Exception
@@ -879,7 +877,6 @@ Public Class ctrlHU_ConcurrentlyNewEdit
                 txtRemark.ReadOnly = True
                 chkALLOW.Enabled = False
                 chkIsChuyen.Enabled = False
-                cboUpload.Enabled = False
                 btnUploadFile.Enabled = False
             End If
             ChangeToolbarState()
@@ -954,10 +951,15 @@ Public Class ctrlHU_ConcurrentlyNewEdit
 
                     txtREMARK_STOP.Text = dr(0)("REMARK_STOP").ToString
 
-                    lstFile = dr(0)("FILE_BYTE").ToString
-                    LoadListFileUpload(dr(0)("FILE_BYTE").ToString)
-                    lstFile1 = dr(0)("FILE_BYTE1").ToString
-                    LoadListFileUpload1(dr(0)("FILE_BYTE1").ToString)
+                    txtUploadFile.Text = dr(0)("FILE_BYTE").ToString
+                    txtUploadFile_Link.Text = dr(0)("ATTACH_FOLDER_BYTE").ToString
+                    txtUploadFile1.Text = dr(0)("FILE_BYTE1").ToString
+                    txtUploadFile1_Link.Text = dr(0)("ATTACH_FOLDER_BYTE1").ToString
+                    'lstFile = dr(0)("FILE_BYTE").ToString
+                    'LoadListFileUpload(dr(0)("FILE_BYTE").ToString)
+                    'lstFile1 = dr(0)("FILE_BYTE1").ToString
+                    'LoadListFileUpload1(dr(0)("FILE_BYTE1").ToString)
+
                     If dr(0)("IS_ALLOW").ToString <> "0" Then
                         chkALLOW.Checked = True
                     Else
@@ -1005,6 +1007,25 @@ Public Class ctrlHU_ConcurrentlyNewEdit
 
     End Sub
 
+    Private Sub loadDatasource(ByVal AttachID As Decimal, ByVal strUpload As String)
+        Dim startTime As DateTime = DateTime.UtcNow
+        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+        Try
+            If strUpload <> "" Then
+                If AttachID = 0 Then
+                    txtUploadFile_Link.Text = Down_File
+                    txtUploadFile.Text = strUpload
+                Else
+                    txtUploadFile1_Link.Text = Down_File
+                    txtUploadFile1.Text = strUpload
+                End If
+            Else
+                strUpload = String.Empty
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
 
     Private Sub GetParams()
         Dim ID As String = ""
@@ -1155,8 +1176,13 @@ Public Class ctrlHU_ConcurrentlyNewEdit
             CON.IS_CHUYEN = 0
         End If
 
-        CON.FILE_BYTE = lstFile
-        CON.FILE_BYTE1 = lstFile1
+        'CON.FILE_BYTE = lstFile
+        'CON.FILE_BYTE1 = lstFile1
+
+        CON.FILE_BYTE = txtUploadFile.Text.Trim
+        CON.ATTACH_FOLDER_BYTE = txtUploadFile_Link.Text.Trim
+        CON.FILE_BYTE1 = txtUploadFile1.Text.Trim
+        CON.ATTACH_FOLDER_BYTE1 = txtUploadFile1_Link.Text.Trim
 
         If IDSelect <> 0 Then
             CON.ID = IDSelect
@@ -1270,233 +1296,127 @@ Public Class ctrlHU_ConcurrentlyNewEdit
 
     End Sub
 
+    Private Sub ZipFiles(ByVal path As String, ByVal order As Decimal?)
+        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+        Dim startTime As DateTime = DateTime.UtcNow
+
+        Try
+            Dim crc As New CRC32()
+            'Dim fileNameZip As String
+
+            'If order = 0 Then
+            '    fileNameZip = txtUpload_LG.Text.Trim
+            'ElseIf order = 1 Then
+            '    fileNameZip = txtUpload_HD.Text.Trim
+            'Else
+            '    fileNameZip = txtUpload_FT.Text.Trim
+            'End If
+
+            Dim file As System.IO.FileInfo = New System.IO.FileInfo(path)
+            Response.Clear()
+            Response.AddHeader("Content-Disposition", "attachment; filename=" + file.Name)
+            Response.AddHeader("Content-Length", file.Length.ToString())
+            Response.ContentType = "application/vnd.openxmlformats-officedocument.wordprocessingml.document "
+            Response.WriteFile(file.FullName)
+            Response.End()
+
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+#Region "Xử lý file đính kèm"
+
     Private Sub btnUploadFile_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnUploadFile.Click
-        ctrlUpload1.AllowedExtensions = "xls,xlsx,txt,ctr,doc,docx,xml,png,jpg,bitmap,jpeg,gif,pdf"
+        IsUpload = 0
+        ctrlUpload1.AllowedExtensions = "xls,xlsx,txt,ctr,doc,docx,xml,png,jpg,bitmap,jpeg,gif,pdf,rar,zip,ppt,pptx"
         ctrlUpload1.Show()
     End Sub
 
     Private Sub btnDownload_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnDownload.Click
-        If cboUpload.CheckedItems.Count >= 1 Then
-            Using zip As New ZipFile
-                zip.AlternateEncodingUsage = ZipOption.AsNecessary
-                zip.AddDirectoryByName("Files")
-                For Each item As RadComboBoxItem In cboUpload.CheckedItems
-                    Dim file As System.IO.FileInfo = New System.IO.FileInfo(System.IO.Path.Combine(tempPathFile + "\" + txtEmpCode.Text, item.Text))
-                    If file.Exists Then
-                        zip.AddFile(file.FullName, "Files")
-                    End If
-                Next
-
-                Response.Clear()
-                Response.BufferOutput = False
-                Dim zipName As String = [String].Format("Zip_{0}.zip", DateTime.Now.ToString("yyyy-MMM-dd-HHmmss"))
-                Response.ContentType = "application/zip"
-                Response.AddHeader("content-disposition", "attachment; filename=" + zipName)
-                zip.Save(Response.OutputStream)
-                Response.[End]()
-
-            End Using
-        Else
-            ShowMessage("File không tồn tại.", NotifyType.Warning)
+        Dim strPath_Down As String
+        If txtUploadFile.Text <> "" Then
+            strPath_Down = Server.MapPath("~/ReportTemplates/Profile/ConcurrentlyInfo/" + txtUploadFile_Link.Text + txtUploadFile.Text)
+            ZipFiles(strPath_Down, 0)
         End If
-
     End Sub
 
     Private Sub ctrlUpload1_OkClicked(ByVal sender As Object, ByVal e As System.EventArgs) Handles ctrlUpload1.OkClicked
-        Dim pathTemp As String
-        Dim fileName As String
+        Dim startTime As DateTime = DateTime.UtcNow
+        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
         Try
+            If IsUpload = 0 Then
+                txtUploadFile.Text = ""
+            Else
+                txtUploadFile1.Text = ""
+            End If
 
-            ' Tạo đường dẫn để lưu file được định nghĩa trong webconfig app
-            pathTemp = tempPathFile + "\" + txtEmpCode.Text
-            txtUploadFile.Text = ""
+            Dim listExtension = New List(Of String)
+            listExtension.Add(".xls")
+            listExtension.Add(".xlsx")
+            listExtension.Add(".txt")
+            listExtension.Add(".ctr")
+            listExtension.Add(".doc")
+            listExtension.Add(".docx")
+            listExtension.Add(".xml")
+            listExtension.Add(".png")
+            listExtension.Add(".jpg")
+            listExtension.Add(".bitmap")
+            listExtension.Add(".jpeg")
+            listExtension.Add(".gif")
+            listExtension.Add(".pdf")
+            listExtension.Add(".rar")
+            listExtension.Add(".zip")
+            listExtension.Add(".ppt")
+            listExtension.Add(".pptx")
+            Dim fileName As String
+
+            Dim strPath As String = Server.MapPath("~/ReportTemplates/Profile/ConcurrentlyInfo/")
             If ctrlUpload1.UploadedFiles.Count >= 1 Then
                 For i = 0 To ctrlUpload1.UploadedFiles.Count - 1
                     Dim file As UploadedFile = ctrlUpload1.UploadedFiles(i)
-                    ' Nếu thư mục lưu trữ file không tồn tại thì tạo mới
-                    If Not Directory.Exists(pathTemp) Then
-                        Directory.CreateDirectory(pathTemp)
-                    End If
-                    ' Lưu file xuống 
-                    fileName = System.IO.Path.Combine(pathTemp, file.FileName)
-                    file.SaveAs(fileName, True)
-                    ' Gán list tên file vào chuỗi sau để lưu vào database
-                    If ctrlUpload1.UploadedFiles.Count >= 2 Then
-                        If lstFile IsNot Nothing AndAlso lstFile.ToUpper.Contains(file.FileName.ToUpper) Then
-                            ShowMessage("File bị trùng, vui lòng kiểm tra lại.", NotifyType.Warning)
-                            Exit Sub
-                        End If
-                        If lstFile <> "" Then
-                            lstFile = lstFile + ";" + file.FileName + ";"
+                    Dim str_Filename = Guid.NewGuid.ToString() + "\"
+                    If listExtension.Any(Function(x) x.ToUpper().Trim() = file.GetExtension.ToUpper().Trim()) Then
+                        System.IO.Directory.CreateDirectory(strPath + str_Filename)
+                        strPath = strPath + str_Filename
+                        fileName = System.IO.Path.Combine(strPath, file.FileName)
+                        file.SaveAs(fileName, True)
+                        If IsUpload = 0 Then
+                            txtUploadFile.Text = file.FileName
                         Else
-                            lstFile = file.FileName + ";"
+                            txtUploadFile1.Text = file.FileName
                         End If
+                        Down_File = str_Filename
                     Else
-                        If lstFile IsNot Nothing AndAlso lstFile.ToUpper.Contains(file.FileName.ToUpper) Then
-                            ShowMessage("File bị trùng, vui lòng kiểm tra lại.", NotifyType.Warning)
-                            Exit Sub
-                        End If
-                        If lstFile <> "" Then
-                            lstFile = lstFile + ";" + file.FileName
-                        Else
-                            lstFile = file.FileName
-                        End If
+                        ShowMessage(Translate("Vui lòng chọn file đúng định dạng. !!! Hệ thống chỉ nhận file XLS,XLSX,TXT,CTR,DOC,DOCX,XML,PNG,JPG,BITMAP,JPEG,GIF,PDF,RAR,ZIP,PPT,PPTX"), NotifyType.Warning)
+                        Exit Sub
                     End If
                 Next
-                LoadListFileUpload(lstFile)
-                ShowMessage("Lưu file thành công.", NotifyType.Success)
+                If IsUpload = 0 Then
+                    loadDatasource(IsUpload, txtUploadFile.Text)
+                Else
+                    loadDatasource(IsUpload, txtUploadFile1.Text)
+                End If
             End If
         Catch ex As Exception
-
+            Throw ex
         End Try
-
     End Sub
-
-    Private Sub LoadListFileUpload(ByVal lstfile As String)
-        Dim data As New DataTable
-        data.Columns.Add("FileName")
-        Dim row As DataRow
-        Dim str() As String
-        If lstfile <> "" Then
-            ClearCboUpload()
-            str = lstfile.Split(";")
-            For Each s As String In str
-                If s <> "" Then
-                    row = data.NewRow
-                    row("FileName") = s
-                    data.Rows.Add(row)
-                End If
-            Next
-            cboUpload.DataSource = data
-            cboUpload.DataTextField = "FileName"
-            cboUpload.DataValueField = "FileName"
-            cboUpload.DataBind()
-
-        Else
-            ClearCboUpload()
-        End If
-    End Sub
-
-    Private Sub ClearCboUpload()
-        cboUpload.DataSource = Nothing
-        cboUpload.ClearSelection()
-        cboUpload.ClearCheckedItems()
-        cboUpload.Items.Clear()
-    End Sub
-
 
     Private Sub btnUploadFile1_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnUploadFile1.Click
-        ctrlUpload2.AllowedExtensions = "xls,xlsx,txt,ctr,doc,docx,xml,png,jpg,bitmap,jpeg,gif,pdf"
-        ctrlUpload2.Show()
+        IsUpload = 1
+        ctrlUpload1.AllowedExtensions = "xls,xlsx,txt,ctr,doc,docx,xml,png,jpg,bitmap,jpeg,gif,pdf,rar,zip,ppt,pptx"
+        ctrlUpload1.Show()
     End Sub
 
     Private Sub btnDownload1_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnDownload1.Click
-        If cboUpload.CheckedItems.Count >= 1 Then
-            Using zip As New ZipFile
-                zip.AlternateEncodingUsage = ZipOption.AsNecessary
-                zip.AddDirectoryByName("Files")
-                For Each item As RadComboBoxItem In cboUpload.CheckedItems
-                    Dim file As System.IO.FileInfo = New System.IO.FileInfo(System.IO.Path.Combine(tempPathFile + "\" + txtEmpCode.Text, item.Text))
-                    If file.Exists Then
-                        zip.AddFile(file.FullName, "Files")
-                    End If
-                Next
-
-                Response.Clear()
-                Response.BufferOutput = False
-                Dim zipName As String = [String].Format("Zip_{0}.zip", DateTime.Now.ToString("yyyy-MMM-dd-HHmmss"))
-                Response.ContentType = "application/zip"
-                Response.AddHeader("content-disposition", "attachment; filename=" + zipName)
-                zip.Save(Response.OutputStream)
-                Response.[End]()
-
-            End Using
-        Else
-            ShowMessage("File không tồn tại.", NotifyType.Warning)
-        End If
-
-    End Sub
-
-    Private Sub ctrlUpload2_OkClicked(ByVal sender As Object, ByVal e As System.EventArgs) Handles ctrlUpload2.OkClicked
-        Dim pathTemp As String
-        Dim fileName As String
-        Try
-            ' Tạo đường dẫn để lưu file được định nghĩa trong webconfig app
-            pathTemp = tempPathFile + "\" + txtEmpCode.Text
-            txtUploadFile.Text = ""
-            If ctrlUpload2.UploadedFiles.Count >= 1 Then
-                For i = 0 To ctrlUpload2.UploadedFiles.Count - 1
-                    Dim file As UploadedFile = ctrlUpload2.UploadedFiles(i)
-                    ' Nếu thư mục lưu trữ file không tồn tại thì tạo mới
-                    If Not Directory.Exists(pathTemp) Then
-                        Directory.CreateDirectory(pathTemp)
-                    End If
-                    ' Lưu file xuống 
-                    fileName = System.IO.Path.Combine(pathTemp, file.FileName)
-                    file.SaveAs(fileName, True)
-                    ' Gán list tên file vào chuỗi sau để lưu vào database
-                    If ctrlUpload2.UploadedFiles.Count >= 2 Then
-                        If lstFile1 IsNot Nothing AndAlso lstFile1.ToUpper.Contains(file.FileName.ToUpper) Then
-                            ShowMessage("File bị trùng, vui lòng kiểm tra lại.", NotifyType.Warning)
-                            Exit Sub
-                        End If
-                        If lstFile1 <> "" Then
-                            lstFile1 = lstFile1 + ";" + file.FileName + ";"
-                        Else
-                            lstFile1 = file.FileName + ";"
-                        End If
-                    Else
-                        If lstFile IsNot Nothing AndAlso lstFile.ToUpper.Contains(file.FileName.ToUpper) Then
-                            ShowMessage("File bị trùng, vui lòng kiểm tra lại.", NotifyType.Warning)
-                            Exit Sub
-                        End If
-                        If lstFile1 <> "" Then
-                            lstFile1 = lstFile1 + ";" + file.FileName
-                        Else
-                            lstFile1 = file.FileName
-                        End If
-                    End If
-                Next
-                LoadListFileUpload1(lstFile1)
-                ShowMessage("Lưu file thành công.", NotifyType.Success)
-            End If
-        Catch ex As Exception
-
-        End Try
-
-    End Sub
-
-    Private Sub LoadListFileUpload1(ByVal lstfile As String)
-        Dim data As New DataTable
-        data.Columns.Add("FileName")
-        Dim row As DataRow
-        Dim str() As String
-        If lstfile <> "" Then
-            ClearCboUpload()
-            str = lstfile.Split(";")
-            For Each s As String In str
-                If s <> "" Then
-                    row = data.NewRow
-                    row("FileName") = s
-                    data.Rows.Add(row)
-                End If
-            Next
-            cboUpload1.DataSource = data
-            cboUpload1.DataTextField = "FileName"
-            cboUpload1.DataValueField = "FileName"
-            cboUpload1.DataBind()
-
-        Else
-            ClearCboUpload1()
+        Dim strPath_Down As String
+        If txtUploadFile1.Text <> "" Then
+            strPath_Down = Server.MapPath("~/ReportTemplates/Profile/ConcurrentlyInfo/" + txtUploadFile1_Link.Text + txtUploadFile1.Text)
+            ZipFiles(strPath_Down, 1)
         End If
     End Sub
-
-    Private Sub ClearCboUpload1()
-        cboUpload1.DataSource = Nothing
-        cboUpload1.ClearSelection()
-        cboUpload1.ClearCheckedItems()
-        cboUpload1.Items.Clear()
-    End Sub
+#End Region
 
 #End Region
 

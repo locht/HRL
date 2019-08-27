@@ -290,7 +290,7 @@ Public Class ctrlTimeTimesheet_machine
                         Refresh("UpdateView")
                     Else
                         rep.Init_TimeTImesheetMachines(_param, rdtungay.SelectedDate, rdDenngay.SelectedDate,
-                                                   Decimal.Parse(ctrlOrganization.CurrentValue), lsEmployee, p_delAll, "")
+                                                   Decimal.Parse(ctrlOrganization.CurrentValue), lsEmployee, p_delAll, "ctrlTimeTimesheet_machine_caseALL")
                         Refresh("UpdateView")
                     End If
                 Case TOOLBARITEM_EXPORT

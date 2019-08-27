@@ -5409,8 +5409,11 @@ Partial Class ProfileRepository
                                                   .WARD_ID = p.WARD_ID,
                                                   .IS_SIGN_CONTRACT = p.IS_SIGN_CONTRACT,
                                                   .FILE_LOGO = p.FILE_LOGO,
+                                                  .ATTACH_FILE_LOGO = p.ATTACH_FILE_LOGO,
                                                   .FILE_HEADER = p.FILE_HEADER,
-                                                  .FILE_FOOTER = p.FILE_FOOTER
+                                                  .ATTACH_FILE_HEADER = p.ATTACH_FILE_HEADER,
+                                                  .FILE_FOOTER = p.FILE_FOOTER,
+                                                  .ATTACH_FILE_FOOTER = p.ATTACH_FILE_FOOTER
                                                   }).SingleOrDefault
             Return query
         Catch ex As Exception
@@ -5455,9 +5458,11 @@ Partial Class ProfileRepository
                                                       .DISTRICT_ID = p.DISTRICT_ID,
                                                       .WARD_ID = p.WARD_ID,
                                                       .IS_SIGN_CONTRACT = p.IS_SIGN_CONTRACT,
-                                                      .FILE_LOGO = p.FILE_LOGO,
+                                                      .ATTACH_FILE_LOGO = p.ATTACH_FILE_LOGO,
                                                       .FILE_HEADER = p.FILE_HEADER,
-                                                      .FILE_FOOTER = p.FILE_FOOTER})
+                                                      .ATTACH_FILE_HEADER = p.ATTACH_FILE_HEADER,
+                                                      .FILE_FOOTER = p.FILE_FOOTER,
+                                                      .ATTACH_FILE_FOOTER = p.ATTACH_FILE_FOOTER})
             Else
                 query = (From p In Context.HU_LOCATION.Where(Function(x) lstOrgID.Contains(x.ORG_ID))
                          Where p.ACTFLG = sACT AndAlso p.LOCATION_VN_NAME IsNot Nothing
@@ -5490,9 +5495,11 @@ Partial Class ProfileRepository
                                                       .DISTRICT_ID = p.DISTRICT_ID,
                                                       .WARD_ID = p.WARD_ID,
                                                       .IS_SIGN_CONTRACT = p.IS_SIGN_CONTRACT,
-                                                      .FILE_LOGO = p.FILE_LOGO,
+                                                      .ATTACH_FILE_LOGO = p.ATTACH_FILE_LOGO,
                                                       .FILE_HEADER = p.FILE_HEADER,
-                                                      .FILE_FOOTER = p.FILE_FOOTER})
+                                                      .ATTACH_FILE_HEADER = p.ATTACH_FILE_HEADER,
+                                                      .FILE_FOOTER = p.FILE_FOOTER,
+                                                      .ATTACH_FILE_FOOTER = p.ATTACH_FILE_FOOTER})
             End If
 
             Return query.ToList
@@ -5538,8 +5545,11 @@ Partial Class ProfileRepository
             objLocationData.WARD_ID = objLocation.WARD_ID
             objLocationData.IS_SIGN_CONTRACT = objLocation.IS_SIGN_CONTRACT
             objLocationData.FILE_LOGO = objLocation.FILE_LOGO
+            objLocationData.ATTACH_FILE_LOGO = objLocation.ATTACH_FILE_LOGO
             objLocationData.FILE_HEADER = objLocation.FILE_HEADER
+            objLocationData.ATTACH_FILE_HEADER = objLocation.ATTACH_FILE_HEADER
             objLocationData.FILE_FOOTER = objLocation.FILE_FOOTER
+            objLocationData.ATTACH_FILE_FOOTER = objLocation.ATTACH_FILE_FOOTER
             Context.HU_LOCATION.AddObject(objLocationData)
             Context.SaveChanges(log)
             gID = objLocationData.ID
@@ -5585,8 +5595,11 @@ Partial Class ProfileRepository
             objLocationData.WARD_ID = objLocation.WARD_ID
             objLocationData.IS_SIGN_CONTRACT = objLocation.IS_SIGN_CONTRACT
             objLocationData.FILE_LOGO = objLocation.FILE_LOGO
+            objLocationData.ATTACH_FILE_LOGO = objLocation.ATTACH_FILE_LOGO
             objLocationData.FILE_HEADER = objLocation.FILE_HEADER
+            objLocationData.ATTACH_FILE_HEADER = objLocation.ATTACH_FILE_HEADER
             objLocationData.FILE_FOOTER = objLocation.FILE_FOOTER
+            objLocationData.ATTACH_FILE_FOOTER = objLocation.ATTACH_FILE_FOOTER
             Context.SaveChanges(log)
             gID = objLocationData.ID
             Return True
