@@ -1493,7 +1493,7 @@
     <Content Include="TemplateDynamic\ContractSupport\HDTV.doc" />
     <None Include="TemplateDynamic\ContractSupport\HDTV30.doc" />
     <None Include="TemplateDynamic\ContractSupport\HDTV60.doc" />
-    <None Include="TemplateDynamic\ContractSupport\HDXDTH_12.doc" />
+    <Content Include="TemplateDynamic\ContractSupport\HDXDTH_12.doc" />
     <None Include="TemplateDynamic\ContractSupport\HDXDTH_36.doc" />
     <None Include="TemplateDynamic\ContractSupport\LHD012_1.doc" />
     <None Include="TemplateDynamic\ContractSupport\TMF_Offer_Letter_Revised.doc" />
@@ -1521,7 +1521,7 @@
     <None Include="TemplateDynamic\DecisionSupport\6316.doc" />
     <None Include="TemplateDynamic\DecisionSupport\6335.doc" />
     <None Include="TemplateDynamic\DecisionSupport\6335.docx" />
-    <None Include="TemplateDynamic\DecisionSupport\QDBN.doc" />
+    <Content Include="TemplateDynamic\DecisionSupport\QDBN.doc" />
     <None Include="TemplateDynamic\DecisionSupport\~%245977.docx" />
     <None Include="TemplateDynamic\Decision\448.doc" />
     <None Include="TemplateDynamic\Decision\449.doc" />

@@ -375,7 +375,7 @@ Public Class ctrlHU_Terminate
                     End Using
 
                     ' Kiểm tra file theo thông tin trong database
-                    If Not Utilities.GetTemplateLinkFile(item.GetDataKeyValue("CODE"),
+                    If Not Utilities.GetTemplateLinkFile("QDNV",
                                                          folderName,
                                                          filePath,
                                                          extension,
