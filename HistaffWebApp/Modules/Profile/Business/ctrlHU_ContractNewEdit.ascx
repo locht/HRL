@@ -70,9 +70,6 @@
                     <asp:RequiredFieldValidator ID="reqContractType" ControlToValidate="cboContractType"
                         runat="server" ErrorMessage="<%$ Translate: Bạn phải chọn Loại hợp đồng. %>"
                         ToolTip="<%$ Translate: Bạn phải chọn Loại hợp đồng. %>"> </asp:RequiredFieldValidator>
-                    <asp:CustomValidator ID="cusContractType" runat="server" ErrorMessage="<%$ Translate: Bạn phải chọn Loại hợp đồng %>"
-                        ToolTip="<%$ Translate: Bạn phải chọn Loại hợp đồng %>" ClientValidationFunction="cusContractType">
-                    </asp:CustomValidator>
                     <asp:CustomValidator ID="cusvalContractType" ControlToValidate="cboContractType"
                         runat="server" ErrorMessage="<%$ Translate: Loại hợp đồng không tồn tại hoặc đã ngừng áp dụng. %>"
                         ToolTip="<%$ Translate: Loại hợp đồng không tồn tại hoặc đã ngừng áp dụng. %>">
@@ -100,7 +97,7 @@
                 <td class="lb">
                     <tlk:RadComboBox runat="server" ID="cboSignContract" AutoPostBack="true" CausesValidation="false">
                     </tlk:RadComboBox>
-                    <asp:RequiredFieldValidator ID="reqSignContract" ControlToValidate="cboContractType"
+                    <asp:RequiredFieldValidator ID="reqSignContract" ControlToValidate="cboSignContract"
                         runat="server" ErrorMessage="Bạn phải chọn Đơn vị ký hợp đồng."
                         ToolTip="Bạn phải chọn Đơn vị ký hợp đồng."> </asp:RequiredFieldValidator>
                 </td>

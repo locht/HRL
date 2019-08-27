@@ -18,7 +18,7 @@ Imports System.Runtime.Serialization
 Imports System.Xml.Serialization
 
 
-<Assembly: EdmSchemaAttribute("d0eafe17-da19-4c33-b187-a405c89f674c")>
+<Assembly: EdmSchemaAttribute("cc458794-c5d1-4c18-a4cc-44f0fc9c4380")>
 #Region "EDM Relationship Metadata"
 <Assembly: EdmRelationshipAttribute("ProfileModel", "FK_HU_NAT_HU_PRO", "HU_NATION", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_NATION), "HU_PROVINCE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_PROVINCE), True)>
 <Assembly: EdmRelationshipAttribute("ProfileModel", "FK_HU_PRO_HU_DIS", "HU_PROVINCE", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_PROVINCE), "HU_DISTRICT", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_DISTRICT), True)>
@@ -18972,11 +18972,9 @@ Public Partial Class HU_DEBT
     ''' Create a new HU_DEBT object.
     ''' </summary>
     ''' <param name="id">Initial value of the ID property.</param>
-    ''' <param name="rEMARK">Initial value of the REMARK property.</param>
-    Public Shared Function CreateHU_DEBT(id As Global.System.Decimal, rEMARK As Global.System.String) As HU_DEBT
+    Public Shared Function CreateHU_DEBT(id As Global.System.Decimal) As HU_DEBT
         Dim hU_DEBT as HU_DEBT = New HU_DEBT
         hU_DEBT.ID = id
-        hU_DEBT.REMARK = rEMARK
         Return hU_DEBT
     End Function
 
@@ -19239,7 +19237,7 @@ Public Partial Class HU_DEBT
     ''' <summary>
     ''' No Metadata Documentation available.
     ''' </summary>
-    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=false)>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
     <DataMemberAttribute()>
     Public Property REMARK() As Global.System.String
         Get
@@ -19248,7 +19246,7 @@ Public Partial Class HU_DEBT
         Set
             OnREMARKChanging(value)
             ReportPropertyChanging("REMARK")
-            _REMARK = StructuralObject.SetValidValue(value, false)
+            _REMARK = StructuralObject.SetValidValue(value, true)
             ReportPropertyChanged("REMARK")
             OnREMARKChanged()
         End Set

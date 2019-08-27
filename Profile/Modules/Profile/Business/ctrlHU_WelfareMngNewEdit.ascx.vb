@@ -369,6 +369,11 @@ Public Class ctrlHU_WelfareMngNewEdit
                             Exit Sub
                         End If
                     End Using
+
+                    Dim checkEmployeeCode As Welfatemng_empDTO = Employee_PL.Find(Function(p) p.EMPLOYEE_CODE = emp.EMPLOYEE_CODE)
+                    If (Not checkEmployeeCode Is Nothing) Then
+                        Continue For
+                    End If
                     Employee_PL.Add(employee)
                 Next
                 '_result = False
