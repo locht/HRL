@@ -1,8 +1,8 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for Oracle database
 -- --------------------------------------------------
--- Date Created: 26-Aug-19 10:52:16 AM
--- Generated from EDMX file: E:\PROJECT\MyTNG\ProfileDAL\ProfileContext.edmx
+-- Date Created: 08/27/2019 4:40:20 PM
+-- Generated from EDMX file: D:\MyProject\TNG\TNG\ProfileDAL\ProfileContext.edmx
 -- --------------------------------------------------
 
 -- --------------------------------------------------
@@ -3468,7 +3468,7 @@ CREATE TABLE "dbo"."HU_DEBT" (
    "MODIFIED_DATE" DATE NULL,
    "MODIFIED_BY" NVARCHAR2(255) NULL,
    "MODIFIED_LOG" NVARCHAR2(255) NULL,
-   "REMARK" NCLOB NOT NULL,
+   "REMARK" NCLOB NULL,
    "EMPLOYEE_ID" NUMBER(38,0) NULL
 );
 
