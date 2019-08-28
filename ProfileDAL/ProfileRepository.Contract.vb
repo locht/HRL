@@ -883,7 +883,7 @@ Partial Class ProfileRepository
                         From o In Context.HU_ORGANIZATION.Where(Function(f) f.ID = p.ORG_ID).DefaultIfEmpty
                         From c In Context.HU_CONTRACT_TYPE.Where(Function(f) p.CONTRACT_TYPE_ID = f.ID)
                         From t In Context.HU_TITLE.Where(Function(f) p.TITLE_ID = f.ID).DefaultIfEmpty
-                          From l In Context.HU_LOCATION.Where(Function(f) o.PARENT_ID = f.ORG_ID).DefaultIfEmpty
+                          From l In Context.HU_LOCATION.Where(Function(f) f.ID = p.ID_SIGN_CONTRACT).DefaultIfEmpty
                         From status In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.STATUS_ID).DefaultIfEmpty
                         From chosen In Context.SE_CHOSEN_ORG.Where(Function(f) f.ORG_ID = e.ORG_ID And
                                                                        f.USERNAME = log.Username.ToUpper)
@@ -959,7 +959,7 @@ Partial Class ProfileRepository
                                             .TITLE_NAME = p.t.NAME_VN,
                                             .SIGN_DATE = p.p.SIGN_DATE,
                                             .SIGNER_NAME = p.p.SIGNER_NAME,
-                                            .SIGNER_TITLE = p.l.LOCATION_VN_NAME,
+                                            .SIGNER_TITLE = p.l.CODE,
                                             .CREATED_DATE = p.p.CREATED_DATE,
                                             .STATUS_ID = p.p.STATUS_ID,
                                             .STATUS_NAME = p.status.NAME_VN,
