@@ -250,7 +250,7 @@ Public Class ctrlHU_Title
                     btnDownload.Enabled = False
                 Case CommonMessage.STATE_NORMAL
                     EnabledGridNotPostback(rgMain, True)
-                    EnableControlAll(False, cboTitleGroup, txtNameVN, txtRemark, cboOrgLevel, cboOrgType, cboHurtType, ckOVT, btnDownload, btnUploadFile)
+                    EnableControlAll(False, cboTitleGroup, txtNameVN, txtRemark, cboOrgLevel, cboOrgType, cboHurtType, ckOVT, btnUploadFile)
                 Case CommonMessage.STATE_EDIT
                     EnabledGridNotPostback(rgMain, False)
                     Utilities.EnableRadCombo(cboTitleGroup, True)
@@ -798,6 +798,19 @@ Public Class ctrlHU_Title
                 'Else
                 '    ShowMessage(Translate("Không có gì để  tải xuôgns"), NotifyType.Warning)
                 '    Exit Sub
+            Else
+                Dim dic As New Dictionary(Of String, Control)
+                dic.Add("CODE", txtCode)
+                dic.Add("NAME_VN", txtNameVN)
+                dic.Add("REMARK", txtRemark)
+                dic.Add("TITLE_GROUP_ID", cboTitleGroup)
+                dic.Add("ORG_ID", cboOrgLevel)
+                dic.Add("ORG_TYPE", cboOrgType)
+                dic.Add("HURT_TYPE_ID", cboHurtType)
+                dic.Add("OVT_CHECK", ckOVT)
+                dic.Add("FILENAME", txtUpload)
+                dic.Add("UPLOAD_FILE", txtRemindLink)
+                Utilities.OnClientRowSelectedChanged(rgMain, dic)
             End If
 
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
