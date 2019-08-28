@@ -94,9 +94,9 @@
                                 DataFormatString="{0:N0}" SortExpression="AMOUNT_TO_PAID" UniqueName="AMOUNT_TO_PAID" />
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Kỳ lương bắt đầu trừ %>" DataField="PERIOD_NAME"
                                 ItemStyle-HorizontalAlign="Center" SortExpression="PERIOD_NAME" UniqueName="PERIOD_NAME" />
-                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Tỷ lệ % trừ mỗi tháng %>" DataField="AMOUNT_IN_MONTH" ItemStyle-HorizontalAlign="Right"
+                            <tlk:GridNumericColumn HeaderText="<%$ Translate: Tỷ lệ % trừ mỗi tháng %>" DataField="AMOUNT_IN_MONTH" ItemStyle-HorizontalAlign="Right"
                                 SortExpression="AMOUNT_IN_MONTH" UniqueName="AMOUNT_IN_MONTH" DataFormatString="{0:n0}"/>  
-                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Số tiền trừ mỗi tháng %>" DataField="AMOUNT_DEDUCT_AMOUNT" ItemStyle-HorizontalAlign="Right"
+                            <tlk:GridNumericColumn HeaderText="<%$ Translate: Số tiền trừ mỗi tháng %>" DataField="AMOUNT_DEDUCT_AMOUNT" ItemStyle-HorizontalAlign="Right"
                                SortExpression="AMOUNT_DEDUCT_AMOUNT" UniqueName="AMOUNT_DEDUCT_AMOUNT" DataFormatString="{0:n0}"/>  
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Số quyết định %>" DataField="DECISION_NO"
                                 SortExpression="DECISION_NO" UniqueName="DECISION_NO" />
