@@ -265,7 +265,7 @@
                 </td>
                 <td>
                     <tlk:RadButton ID="PaidInMoeny" ButtonType="ToggleButton" runat="server" Visible = "false"></tlk:RadButton>
-                     <tlk:RadNumericTextBox ID="rnPaidIMoeny" runat="server" SkinID="Money" TabIndex="21">
+                     <tlk:RadNumericTextBox ID="rnPaidIMoeny" runat="server" SkinID="Money" TabIndex="21" AutoPostBack="true">
                     </tlk:RadNumericTextBox>
                 </td>                 
             </tr>
@@ -281,7 +281,7 @@
                     <asp:Label runat="server" ID="lbAmountToPaid" Text="Số tiền còn phải nộp"></asp:Label>
                 </td>
                 <td>
-                    <tlk:RadNumericTextBox ID="rnAmountToPaid" runat="server" SkinID="Money" TabIndex="23">
+                    <tlk:RadNumericTextBox ID="rnAmountToPaid" runat="server" SkinID="Money" TabIndex="23" ReadOnly="true">
                     </tlk:RadNumericTextBox>   
                     <asp:CustomValidator ID="cvalAmountToPaid" runat="server" ErrorMessage="Số tiền còn phải nộp phải nhỏ hơn tổng số tiền phải nộp."
                         ToolTip="Số tiền còn phải nộp phải nhỏ hơn tổng số tiền phải nộp.">
@@ -320,7 +320,7 @@
             </tr>
             <tr>               
                 <td class="lb">
-                    <%--<asp:Label runat="server" ID="lbYear" Text="Năm"></asp:Label>--%>
+                    <asp:CheckBox ID="chkAmountInMonth" runat="server"  Checked="false" CausesValidation="false" AutoPostBack="true"  Enabled="false"/>
                     <asp:Label runat="server" ID="lbAmountInMonth" Text="Số tiền trừ theo tỷ lệ/mỗi tháng lương"></asp:Label>
                 </td>               
                 <td>                    

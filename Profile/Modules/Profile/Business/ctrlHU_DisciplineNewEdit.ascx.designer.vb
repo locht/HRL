@@ -779,6 +779,15 @@ Partial Public Class ctrlHU_DisciplineNewEdit
     Protected WithEvents cboPeriod As Global.Telerik.Web.UI.RadComboBox
 
     '''<summary>
+    '''chkAmountInMonth control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents chkAmountInMonth As Global.System.Web.UI.WebControls.CheckBox
+
+    '''<summary>
     '''lbAmountInMonth control.
     '''</summary>
     '''<remarks>

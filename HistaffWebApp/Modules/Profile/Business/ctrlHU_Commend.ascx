@@ -72,50 +72,43 @@
                     <ClientSettings EnableRowHoverStyle="true">
                         <Selecting AllowRowSelect="true" />
                         <ClientEvents OnRowDblClick="gridRowDblClick" />
+                        <Scrolling AllowScroll="True" UseStaticHeaders="True" FrozenColumnsCount="3" />
                     </ClientSettings>
                     <MasterTableView DataKeyNames="ID" ClientDataKeyNames="ID, STATUS_ID">
                         <Columns>
-                            <%--<tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderStyle-HorizontalAlign="Center"
+                            <tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderStyle-HorizontalAlign="Center"
                                 HeaderStyle-Width="30px" ItemStyle-HorizontalAlign="Center">
                             </tlk:GridClientSelectColumn>
                             <tlk:GridBoundColumn DataField="ID" Visible="false" HeaderText = "ID"/>
                             <tlk:GridBoundColumn DataField="STATUS_ID" Visible="false" HeaderText = "STATUS_ID"/>
-                            <tlk:GridBoundColumn HeaderText="Loại khen thưởng" DataField="Commend_OBJ_NAME"
-                                SortExpression="Commend_OBJ_NAME" UniqueName="Commend_OBJ_NAME" />
-                            <tlk:GridBoundColumn HeaderText="Phòng ban" DataField="OBJ_ORG_NAME"
-                                SortExpression="OBJ_ORG_NAME" UniqueName="OBJ_ORG_NAME" Visible="false" />
                             <tlk:GridBoundColumn HeaderText="Mã nhân viên" DataField="EMPLOYEE_CODE"
-                                SortExpression="EMPLOYEE_CODE" UniqueName="EMPLOYEE_CODE" />
+                                SortExpression="EMPLOYEE_CODE" UniqueName="EMPLOYEE_CODE" HeaderStyle-Width="60px" />
                             <tlk:GridBoundColumn HeaderText="Họ tên nhân viên" DataField="EMPLOYEE_NAME"
-                                SortExpression="EMPLOYEE_NAME" UniqueName="EMPLOYEE_NAME" />                   
-                            <tlk:GridBoundColumn HeaderText="Đơn vị" DataField="ORG_NAME"
-                                SortExpression="ORG_NAME" UniqueName="ORG_NAME" />
-                            <tlk:GridBoundColumn HeaderText="Chức danh nhân viên" DataField="TITLE_NAME"
-                                SortExpression="TITLE_NAME" UniqueName="TITLE_NAME" />
-                            <tlk:GridBoundColumn HeaderText="Năm" DataField="YEAR"
-                                SortExpression="YEAR" UniqueName="YEAR" />
+                                SortExpression="EMPLOYEE_NAME" UniqueName="EMPLOYEE_NAME" HeaderStyle-Width="150px" /> 
+                            <tlk:GridBoundColumn HeaderText="Phòng ban" DataField="ORG_NAME"
+                                SortExpression="ORG_NAME" UniqueName="ORG_NAME" HeaderStyle-Width="150px" />
+                            <tlk:GridBoundColumn HeaderText="Chức danh" DataField="TITLE_NAME"
+                                SortExpression="TITLE_NAME" UniqueName="TITLE_NAME" HeaderStyle-Width="150px" />
+                            <tlk:GridBoundColumn HeaderText="Trạng thái" DataField="STATUS_NAME"
+                                ItemStyle-HorizontalAlign="Center" SortExpression="STATUS_NAME" UniqueName="STATUS_NAME" />
                             <tlk:GridBoundColumn HeaderText="Danh hiệu khen thưởng" DataField="COMMEND_TITLE_NAME"
-                                SortExpression="COMMEND_TITLE_NAME" UniqueName="COMMEND_TITLE_NAME" />
-                            <tlk:GridBoundColumn HeaderText="Lý do" DataField="REMARK" SortExpression="REMARK"
-                                UniqueName="REMARK" />
-                            <tlk:GridBoundColumn HeaderText="Hình thức khen thưởng" DataField="Commend_TYPE_NAME"
-                                SortExpression="Commend_TYPE_NAME" UniqueName="Commend_TYPE_NAME" />
-                            <tlk:GridDateTimeColumn HeaderText="Ngày hiệu lực" DataField="EFFECT_DATE"
-                                ItemStyle-HorizontalAlign="Center" SortExpression="EFFECT_DATE" UniqueName="EFFECT_DATE"
-                                DataFormatString="{0:dd/MM/yyyy}" />
+                                SortExpression="COMMEND_TITLE_NAME" UniqueName="COMMEND_TITLE_NAME" HeaderStyle-Width="150px" />
                             <tlk:GridNumericColumn HeaderText="Mức thưởng" DataField="MONEY"
                                 ItemStyle-HorizontalAlign="Right" DataFormatString="{0:N0}" SortExpression="MONEY"
                                 UniqueName="MONEY" />
-
+                             <tlk:GridBoundColumn HeaderText="Hình thức khen thưởng" DataField="Commend_TYPE_NAME"
+                                SortExpression="Commend_TYPE_NAME" UniqueName="Commend_TYPE_NAME" HeaderStyle-Width="150px" />
+                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Hình thức trả thưởng %>" DataField="COMMEND_PAY_NAME"
+                                SortExpression="COMMEND_PAY_NAME" UniqueName="COMMEND_PAY_NAME" HeaderStyle-Width="150px" />
+                            <tlk:GridBoundColumn HeaderText="Loại khen thưởng" DataField="Commend_OBJ_NAME"
+                                SortExpression="Commend_OBJ_NAME" UniqueName="Commend_OBJ_NAME" HeaderStyle-Width="150px" />
                             <tlk:GridBoundColumn HeaderText="Số quyết định" DataField="DECISION_NO"
                                 SortExpression="DECISION_NO" UniqueName="DECISION_NO" />
-
-                            <tlk:GridBoundColumn HeaderText="ORG_DESC" DataField="ORG_DESC" UniqueName="ORG_DESC"
-                                SortExpression="ORG_DESC" Visible="false" />
-                            <tlk:GridBoundColumn HeaderText="Hình thức trả thưởng" DataField="COMMEND_PAY_NAME"
-                                SortExpression="COMMEND_PAY_NAME" UniqueName="COMMEND_PAY_NAME" />
-                            <tlk:GridBoundColumn HeaderText="Trạng thái" DataField="STATUS_NAME"
-                                ItemStyle-HorizontalAlign="Center" SortExpression="STATUS_NAME" UniqueName="STATUS_NAME" />--%>
+                            <tlk:GridDateTimeColumn HeaderText="Ngày hiệu lực" DataField="EFFECT_DATE"
+                                ItemStyle-HorizontalAlign="Center" SortExpression="EFFECT_DATE" UniqueName="EFFECT_DATE"
+                                DataFormatString="{0:dd/MM/yyyy}" />
+                            <tlk:GridBoundColumn HeaderText="Ghi chú" DataField="REMARK" SortExpression="REMARK"
+                                UniqueName="REMARK" />
                         </Columns>
                     </MasterTableView>
                     <ClientSettings EnableRowHoverStyle="true">

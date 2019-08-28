@@ -830,7 +830,7 @@ Partial Class ProfileRepository
                         From sal_level In Context.PA_SALARY_LEVEL.Where(Function(f) p.SAL_LEVEL_ID = f.ID).DefaultIfEmpty
                         From sal_rank In Context.PA_SALARY_RANK.Where(Function(f) p.SAL_RANK_ID = f.ID).DefaultIfEmpty
                         From taxTable In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.TAX_TABLE_ID).DefaultIfEmpty
-                        Where p.EMPLOYEE_ID = _filter.EMPLOYEE_ID
+                        Where p.EMPLOYEE_ID = _filter.EMPLOYEE_ID And p.IS_WAGE = -1
                         Order By p.EFFECT_DATE Descending
                         Select New WorkingDTO With {
                              .ID = p.ID,

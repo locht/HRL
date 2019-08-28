@@ -18,7 +18,7 @@ Imports System.Runtime.Serialization
 Imports System.Xml.Serialization
 
 
-<Assembly: EdmSchemaAttribute("cc458794-c5d1-4c18-a4cc-44f0fc9c4380")>
+<Assembly: EdmSchemaAttribute("9d50bbb5-2e40-4039-86fb-3107b047ffbd")>
 #Region "EDM Relationship Metadata"
 <Assembly: EdmRelationshipAttribute("ProfileModel", "FK_HU_NAT_HU_PRO", "HU_NATION", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_NATION), "HU_PROVINCE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_PROVINCE), True)>
 <Assembly: EdmRelationshipAttribute("ProfileModel", "FK_HU_PRO_HU_DIS", "HU_PROVINCE", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_PROVINCE), "HU_DISTRICT", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_DISTRICT), True)>
@@ -20384,6 +20384,31 @@ Public Partial Class HU_DISCIPLINE
     End Sub
 
     Private Partial Sub OnNO_DISCIPLINEChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property IS_AMOUNT_IN_MONTH() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _IS_AMOUNT_IN_MONTH
+        End Get
+        Set
+            OnIS_AMOUNT_IN_MONTHChanging(value)
+            ReportPropertyChanging("IS_AMOUNT_IN_MONTH")
+            _IS_AMOUNT_IN_MONTH = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("IS_AMOUNT_IN_MONTH")
+            OnIS_AMOUNT_IN_MONTHChanged()
+        End Set
+    End Property
+
+    Private _IS_AMOUNT_IN_MONTH As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnIS_AMOUNT_IN_MONTHChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnIS_AMOUNT_IN_MONTHChanged()
     End Sub
 
     #End Region

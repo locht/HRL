@@ -16,7 +16,7 @@
                 <table class="table-form">
                     <tr>
                         <td class="lb">
-                           <asp:Label ID="lbEmployee" runat="server" Text="MSNV/Tên NV"></asp:Label>
+                            <asp:Label ID="lbEmployee" runat="server" Text="MSNV/Tên NV"></asp:Label>
                         </td>
                         <td>
                             <tlk:RadTextBox ID="txtEmployee" runat="server" CausesValidation="false">
@@ -49,7 +49,7 @@
                             <asp:Label ID="lbCommendObj" runat="server" Text="Đối tượng khen thưởng"></asp:Label>
                         </td>
                         <td>
-                            <tlk:RadComboBox ID="cboCommendObj" AutoPostBack="false" runat="server" CausesValidation="False">
+                            <tlk:RadComboBox ID="cboCommendObj" runat="server" AutoPostBack="false" CausesValidation="False">
                             </tlk:RadComboBox>
                         </td>
                     </tr>
@@ -72,62 +72,43 @@
                     <ClientSettings EnableRowHoverStyle="true">
                         <Selecting AllowRowSelect="true" />
                         <ClientEvents OnRowDblClick="gridRowDblClick" />
+                        <Scrolling AllowScroll="True" UseStaticHeaders="True" FrozenColumnsCount="3" />
                     </ClientSettings>
                     <MasterTableView DataKeyNames="ID" ClientDataKeyNames="ID, STATUS_ID">
                         <Columns>
-                            <%--<tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderStyle-HorizontalAlign="Center"
+                            <tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderStyle-HorizontalAlign="Center"
                                 HeaderStyle-Width="30px" ItemStyle-HorizontalAlign="Center">
                             </tlk:GridClientSelectColumn>
-                            <tlk:GridBoundColumn DataField="ID" Visible="false" />
-                            <tlk:GridBoundColumn DataField="STATUS_ID" Visible="false" />
-                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Loại khen thưởng %>" DataField="Commend_OBJ_NAME"
-                                SortExpression="Commend_OBJ_NAME" UniqueName="Commend_OBJ_NAME" />
-                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Phòng ban %>" DataField="OBJ_ORG_NAME"
-                                SortExpression="OBJ_ORG_NAME" UniqueName="OBJ_ORG_NAME" Visible="false" />
-                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Mã nhân viên %>" DataField="EMPLOYEE_CODE"
-                                SortExpression="EMPLOYEE_CODE" UniqueName="EMPLOYEE_CODE" />
-                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Họ tên nhân viên %>" DataField="EMPLOYEE_NAME"
-                                SortExpression="EMPLOYEE_NAME" UniqueName="EMPLOYEE_NAME" />
-                            <tlk:GridTemplateColumn HeaderText="<%$ Translate: Đơn vị %>" DataField="ORG_NAME" SortExpression="ORG_NAME"
-                                UniqueName="ORG_NAME">
-                                <HeaderStyle Width="200px" />
-                                <ItemTemplate>
-                                 <asp:Label ID="Label1" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.ORG_NAME") %>'>
-                                </asp:Label>
-                                <tlk:RadToolTip RenderMode="Lightweight" ID="RadToolTip1" runat="server" TargetControlID="Label1"
-                                                    RelativeTo="Element" Position="BottomCenter">
-                                <%# DrawTreeByString(DataBinder.Eval(Container, "DataItem.ORG_DESC"))%>
-                                </tlk:RadToolTip>
-                            </ItemTemplate>
-                            </tlk:GridTemplateColumn>
-                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Đơn vị nhân viên %>" DataField="ORG_NAME"
-                                SortExpression="ORG_NAME" UniqueName="ORG_NAME" />
-                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Chức danh nhân viên %>" DataField="TITLE_NAME"
-                                SortExpression="TITLE_NAME" UniqueName="TITLE_NAME" />
-                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Năm %>" DataField="YEAR"
-                                SortExpression="YEAR" UniqueName="YEAR" />
-                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Danh hiệu khen thưởng %>" DataField="COMMEND_TITLE_NAME"
-                                SortExpression="COMMEND_TITLE_NAME" UniqueName="COMMEND_TITLE_NAME" />
-                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Lý do %>" DataField="REMARK" SortExpression="REMARK"
-                                UniqueName="REMARK" />
-                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Hình thức khen thưởng %>" DataField="Commend_TYPE_NAME"
-                                SortExpression="Commend_TYPE_NAME" UniqueName="Commend_TYPE_NAME" />
-                            <tlk:GridDateTimeColumn HeaderText="<%$ Translate: Ngày hiệu lực %>" DataField="EFFECT_DATE"
-                                ItemStyle-HorizontalAlign="Center" SortExpression="EFFECT_DATE" UniqueName="EFFECT_DATE"
-                                DataFormatString="{0:dd/MM/yyyy}" />
-                            <tlk:GridNumericColumn HeaderText="<%$ Translate: Mức thưởng %>" DataField="MONEY"
+                            <tlk:GridBoundColumn DataField="ID" Visible="false" HeaderText = "ID"/>
+                            <tlk:GridBoundColumn DataField="STATUS_ID" Visible="false" HeaderText = "STATUS_ID"/>
+                            <tlk:GridBoundColumn HeaderText="Mã nhân viên" DataField="EMPLOYEE_CODE"
+                                SortExpression="EMPLOYEE_CODE" UniqueName="EMPLOYEE_CODE" HeaderStyle-Width="60px" />
+                            <tlk:GridBoundColumn HeaderText="Họ tên nhân viên" DataField="EMPLOYEE_NAME"
+                                SortExpression="EMPLOYEE_NAME" UniqueName="EMPLOYEE_NAME" HeaderStyle-Width="150px" /> 
+                            <tlk:GridBoundColumn HeaderText="Phòng ban" DataField="ORG_NAME"
+                                SortExpression="ORG_NAME" UniqueName="ORG_NAME" HeaderStyle-Width="150px" />
+                            <tlk:GridBoundColumn HeaderText="Chức danh" DataField="TITLE_NAME"
+                                SortExpression="TITLE_NAME" UniqueName="TITLE_NAME" HeaderStyle-Width="150px" />
+                            <tlk:GridBoundColumn HeaderText="Trạng thái" DataField="STATUS_NAME"
+                                ItemStyle-HorizontalAlign="Center" SortExpression="STATUS_NAME" UniqueName="STATUS_NAME" />
+                            <tlk:GridBoundColumn HeaderText="Danh hiệu khen thưởng" DataField="COMMEND_TITLE_NAME"
+                                SortExpression="COMMEND_TITLE_NAME" UniqueName="COMMEND_TITLE_NAME" HeaderStyle-Width="150px" />
+                            <tlk:GridNumericColumn HeaderText="Mức thưởng" DataField="MONEY"
                                 ItemStyle-HorizontalAlign="Right" DataFormatString="{0:N0}" SortExpression="MONEY"
                                 UniqueName="MONEY" />
-
-                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Số quyết định %>" DataField="DECISION_NO"
-                                SortExpression="DECISION_NO" UniqueName="DECISION_NO" />
-
-                            <tlk:GridBoundColumn HeaderText="ORG_DESC" DataField="ORG_DESC" UniqueName="ORG_DESC"
-                                SortExpression="ORG_DESC" Visible="false" />
+                             <tlk:GridBoundColumn HeaderText="Hình thức khen thưởng" DataField="Commend_TYPE_NAME"
+                                SortExpression="Commend_TYPE_NAME" UniqueName="Commend_TYPE_NAME" HeaderStyle-Width="150px" />
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Hình thức trả thưởng %>" DataField="COMMEND_PAY_NAME"
-                                SortExpression="COMMEND_PAY_NAME" UniqueName="COMMEND_PAY_NAME" />
-                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Trạng thái %>" DataField="STATUS_NAME"
-                                ItemStyle-HorizontalAlign="Center" SortExpression="STATUS_NAME" UniqueName="STATUS_NAME" />--%>
+                                SortExpression="COMMEND_PAY_NAME" UniqueName="COMMEND_PAY_NAME" HeaderStyle-Width="150px" />
+                            <tlk:GridBoundColumn HeaderText="Loại khen thưởng" DataField="Commend_OBJ_NAME"
+                                SortExpression="Commend_OBJ_NAME" UniqueName="Commend_OBJ_NAME" HeaderStyle-Width="150px" />
+                            <tlk:GridBoundColumn HeaderText="Số quyết định" DataField="DECISION_NO"
+                                SortExpression="DECISION_NO" UniqueName="DECISION_NO" />
+                            <tlk:GridDateTimeColumn HeaderText="Ngày hiệu lực" DataField="EFFECT_DATE"
+                                ItemStyle-HorizontalAlign="Center" SortExpression="EFFECT_DATE" UniqueName="EFFECT_DATE"
+                                DataFormatString="{0:dd/MM/yyyy}" />
+                            <tlk:GridBoundColumn HeaderText="Ghi chú" DataField="REMARK" SortExpression="REMARK"
+                                UniqueName="REMARK" />
                         </Columns>
                     </MasterTableView>
                     <ClientSettings EnableRowHoverStyle="true">
@@ -165,9 +146,9 @@
             }
         }
 
-//        function GridCreated(sender, eventArgs) {
-//            registerOnfocusOut('RAD_SPLITTER_ctl00_MainContent_ctrlHU_Commend_RadSplitter3');
-//        }
+        //        function GridCreated(sender, eventArgs) {
+        //            registerOnfocusOut('RAD_SPLITTER_ctl00_MainContent_ctrlHU_Commend_RadSplitter3');
+        //        }
 
         function OpenNew() {
             window.open('/Default.aspx?mid=Profile&fid=ctrlHU_CommendNewEdit&group=Business&FormType=0', "_self"); /*

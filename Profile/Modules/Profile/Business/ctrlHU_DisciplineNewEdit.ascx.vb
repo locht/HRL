@@ -269,6 +269,7 @@ Public Class ctrlHU_DisciplineNewEdit
                     txtSignerName.Text = Discipline.SIGNER_NAME
                     txtSignerTitle.Text = Discipline.SIGNER_TITLE
                     chkDeductFromSalary.Checked = Discipline.DEDUCT_FROM_SALARY
+
                     If Discipline.DEDUCT_FROM_SALARY = True Then
                         nmYear.Enabled = True
                         cboPeriod.Enabled = True
@@ -301,6 +302,17 @@ Public Class ctrlHU_DisciplineNewEdit
                             rnAmountDeductedMonth.Value = Discipline.AMOUNT_DEDUCT_AMOUNT
                         End If
 
+                        chkAmountInMonth.Enabled = True
+                        chkAmountInMonth.Checked = Discipline.IS_AMOUNT_IN_MONTH
+
+                        If chkAmountInMonth.Checked Then
+                            rnAmountInMonth.Enabled = False
+                            rnAmountDeductedMonth.Enabled = True
+                        Else
+                            rnAmountInMonth.Enabled = True
+                            rnAmountDeductedMonth.Enabled = False
+                        End If
+
                     Else
                         nmYear.Enabled = False
                         cboPeriod.Enabled = False
@@ -315,6 +327,16 @@ Public Class ctrlHU_DisciplineNewEdit
 
                         rnAmountDeductedMonth.Enabled = False
                         rnAmountDeductedMonth.Value = Nothing
+
+                        chkAmountInMonth.Enabled = False
+                        chkAmountInMonth.Checked = False
+
+                        rnAmountInMonth.Enabled = False
+                        rnAmountInMonth.Value = Nothing
+
+                        rnAmountDeductedMonth.Enabled = False
+                        rnAmountDeductedMonth.Value = Nothing
+
                     End If
                     rntxtIndemnifyMoney.Value = Discipline.INDEMNIFY_MONEY
                     rdEffectDate.SelectedDate = Discipline.EFFECT_DATE
@@ -355,17 +377,65 @@ Public Class ctrlHU_DisciplineNewEdit
                     Next
                     rgEmployee.Rebind()
                     If Discipline.STATUS_ID = ProfileCommon.DISCIPLINE_STATUS.APPROVE_ID Then
-                        PanelEmployee.Enabled = False
+                        'PanelEmployee.Enabled = False
                         EnableControlAll_Cus(False, RadPane2)
-                        EnableControlAll(True, rnAmountToPaid, rnAmountSalaryMonth)
+                        EnableControlAll(True, rnAmountSalaryMonth)
 
                         If cboDisciplineObj.SelectedValue = 401 Then
                             EnableControlAll(True, rnAmountInMonth, rnAmountDeductedMonth)
                         End If
 
                         btnDownload.Enabled = True
+
+                        Dim btnEmployee As RadButton = rgEmployee.MasterTableView.GetItems(GridItemType.CommandItem)(0).FindControl("btnEmployee")
+                        btnEmployee.Enabled = False
+
+                        Dim btnQD As RadButton = rgEmployee.MasterTableView.GetItems(GridItemType.CommandItem)(0).FindControl("btnQD")
+                        btnQD.Enabled = True
+                        Dim btnHSL As RadButton = rgEmployee.MasterTableView.GetItems(GridItemType.CommandItem)(0).FindControl("btnHSL")
+                        btnHSL.Enabled = True
+                        Dim btnDeleteEmp As RadButton = rgEmployee.MasterTableView.GetItems(GridItemType.CommandItem)(0).FindControl("btnDeleteEmp")
+                        btnDeleteEmp.Enabled = False
+                      
+                        rgEmployee.Items(0).Enabled = False
+                        For Each item As GridDataItem In rgEmployee.Items
+
+                            Dim cbStatus = CType(item("cbStatus").Controls(0), CheckBox)
+                            cbStatus.Enabled = False
+
+                            Dim txtINDEMNIFY_MONEY = CType(item("INDEMNIFY_MONEY").Controls(0), RadNumericTextBox)
+                            txtINDEMNIFY_MONEY.Enabled = False
+
+                            Dim chkNO_PROCESS = CType(item("NO_PROCESS").Controls(0), CheckBox)
+                            chkNO_PROCESS.Enabled = False
+
+                        Next
+
                         CurrentState = CommonMessage.STATE_NORMAL
-                        'CType(MainToolBar.Items(0), RadToolBarButton).Enabled = False
+                    Else
+                        For Each item As GridDataItem In rgEmployee.Items
+                            Dim cbStatus = CType(item("cbStatus").Controls(0), CheckBox)
+                            cbStatus.Enabled = True
+
+                            Dim txtINDEMNIFY_MONEY = CType(item("INDEMNIFY_MONEY").Controls(0), RadNumericTextBox)
+                            txtINDEMNIFY_MONEY.Enabled = True
+
+                            Dim chkNO_PROCESS = CType(item("NO_PROCESS").Controls(0), CheckBox)
+                            chkNO_PROCESS.Enabled = True
+                        Next
+
+                        Dim btnEmployee As RadButton = rgEmployee.MasterTableView.GetItems(GridItemType.CommandItem)(0).FindControl("btnEmployee")
+                        btnEmployee.Enabled = True
+
+                        Dim btnQD As RadButton = rgEmployee.MasterTableView.GetItems(GridItemType.CommandItem)(0).FindControl("btnQD")
+                        btnQD.Enabled = False
+
+                        Dim btnHSL As RadButton = rgEmployee.MasterTableView.GetItems(GridItemType.CommandItem)(0).FindControl("btnHSL")
+                        btnHSL.Enabled = False
+
+                        Dim btnDeleteEmp As RadButton = rgEmployee.MasterTableView.GetItems(GridItemType.CommandItem)(0).FindControl("btnDeleteEmp")
+                        btnDeleteEmp.Enabled = True
+
                     End If
                 Case "InsertView"
                     CurrentState = CommonMessage.STATE_NEW
@@ -479,6 +549,7 @@ Public Class ctrlHU_DisciplineNewEdit
                         End Try
                         objDiscipline.DEDUCT_FROM_SALARY = chkDeductFromSalary.Checked
                         If chkDeductFromSalary.Checked Then
+                            objDiscipline.IS_AMOUNT_IN_MONTH = chkAmountInMonth.Checked
                             objDiscipline.PERIOD_ID = cboPeriod.SelectedValue
                             objDiscipline.AMOUNT_SAL_MONTH = rnAmountSalaryMonth.Value
                             objDiscipline.AMOUNT_IN_MONTH = rnAmountInMonth.Value
@@ -793,7 +864,7 @@ Public Class ctrlHU_DisciplineNewEdit
                 End If
                 If cboDisciplineObj.SelectedValue = 401 Then ' Ca nhan
                     Employee_Discipline.Clear()
-                    chkDeductFromSalary.Enabled = False
+                    chkDeductFromSalary.Enabled = True
                 End If
 
                 For Each emp As CommonBusiness.EmployeePopupFindDTO In lstCommonEmployee
@@ -809,7 +880,12 @@ Public Class ctrlHU_DisciplineNewEdit
                         Continue For
                     End If
 
-                    Employee_Discipline.Add(employee)
+                    If cboDisciplineObj.SelectedValue = 401 Then ' Ca nhan
+                        Employee_Discipline.Clear()
+                        Employee_Discipline.Add(employee)
+                    Else
+                        Employee_Discipline.Add(employee)
+                    End If
                 Next
 
                 Dim intMoney As Decimal = 0
@@ -1295,6 +1371,15 @@ Public Class ctrlHU_DisciplineNewEdit
                 rnAmountSalaryMonth.Enabled = True
                 rnAmountInMonth.Enabled = True
                 rnAmountDeductedMonth.Enabled = True
+                chkAmountInMonth.Enabled = True
+
+                If chkAmountInMonth.Checked Then
+                    rnAmountInMonth.Enabled = False
+                    rnAmountDeductedMonth.Enabled = True
+                Else
+                    rnAmountInMonth.Enabled = True
+                    rnAmountDeductedMonth.Enabled = False
+                End If
 
                 Using rep As New ProfileRepository
                     FillDropDownList(cboPeriod, rep.GetPeriodbyYear(nmYear.Value), "PERIOD_NAME", "ID", Common.Common.SystemLanguage, False, cboPeriod.SelectedValue)
@@ -1315,6 +1400,35 @@ Public Class ctrlHU_DisciplineNewEdit
                 rnAmountDeductedMonth.Enabled = False
                 rnAmountDeductedMonth.Value = Nothing
 
+                chkAmountInMonth.Enabled = False
+                chkAmountInMonth.Checked = False
+
+                rnAmountInMonth.Enabled = False
+                rnAmountInMonth.Value = Nothing
+
+                rnAmountDeductedMonth.Enabled = False
+                rnAmountDeductedMonth.Value = Nothing
+            End If
+            _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
+        Catch ex As Exception
+            _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
+        End Try
+
+    End Sub
+    Private Sub chkAmountInMonth_CheckedChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles chkAmountInMonth.CheckedChanged
+        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+        Try
+            Dim startTime As DateTime = DateTime.UtcNow
+            If chkAmountInMonth.Checked Then
+                rnAmountInMonth.Enabled = False
+                rnAmountInMonth.Value = 0
+
+                rnAmountDeductedMonth.Enabled = True
+            Else
+                rnAmountInMonth.Enabled = True
+
+                rnAmountDeductedMonth.Enabled = False
+                rnAmountDeductedMonth.Value = 0
             End If
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
@@ -1597,6 +1711,20 @@ Public Class ctrlHU_DisciplineNewEdit
             totalAmountToPaid = Utilities.ObjToDecima(totalPaidIMoeny - intAmountPaidCash)
             rnAmountToPaid.Value = totalAmountToPaid
 
+            Dim intMoneyDetail As Decimal = 0
+            Dim intAmountToPaid As Decimal = 0
+            If (Employee_Discipline.Count > 0) Then
+                If rnAmountToPaid.Value IsNot Nothing Then
+                    intAmountToPaid += rnAmountToPaid.Value
+                End If
+                intMoneyDetail = Utilities.ObjToDecima(intAmountToPaid / Employee_Discipline.Count)
+            End If
+
+            For index = 0 To Employee_Discipline.Count - 1
+                Employee_Discipline.Item(index).INDEMNIFY_MONEY = intMoneyDetail
+            Next
+            rgEmployee.Rebind()
+
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
             _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
@@ -1624,6 +1752,35 @@ Public Class ctrlHU_DisciplineNewEdit
             Else
                 args.IsValid = True
             End If
+
+            _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
+        Catch ex As Exception
+            _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
+        End Try
+    End Sub
+
+
+    Private Sub rnPaidIMoeny_TextChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles rnPaidIMoeny.TextChanged
+        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+        Try
+            Dim startTime As DateTime = DateTime.UtcNow
+
+            rdAmountPaidCash.Value = 0
+            rnAmountToPaid.Value = 0
+
+            Dim intMoneyDetail As Decimal = 0
+            Dim intAmountToPaid As Decimal = 0
+            If (Employee_Discipline.Count > 0) Then
+                If rnAmountToPaid.Value IsNot Nothing Then
+                    intAmountToPaid += rnAmountToPaid.Value
+                End If
+                intMoneyDetail = Utilities.ObjToDecima(intAmountToPaid / Employee_Discipline.Count)
+            End If
+
+            For index = 0 To Employee_Discipline.Count - 1
+                Employee_Discipline.Item(index).INDEMNIFY_MONEY = intMoneyDetail
+            Next
+            rgEmployee.Rebind()
 
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
@@ -1886,11 +2043,17 @@ Public Class ctrlHU_DisciplineNewEdit
         If cboDisciplineObj.SelectedValue = 401 Then
             chkDeductFromSalary.Enabled = True
             EnableControlAll(True, rnAmountSalaryMonth, cboPeriod, rnAmountDeductedMonth, rnAmountInMonth)
+            Employee_Discipline.Clear()
+            rgEmployee.Rebind()
         Else
             chkDeductFromSalary.Checked = False
             chkDeductFromSalary.Enabled = False
 
-            rgEmployee.DataSource = Nothing
+            chkAmountInMonth.Checked = False
+            chkAmountInMonth.Enabled = False
+
+
+            Employee_Discipline.Clear()
             rgEmployee.Rebind()
 
             EnableControlAll(False, rnAmountSalaryMonth, cboPeriod, rnAmountDeductedMonth, rnAmountInMonth, nmYear)
