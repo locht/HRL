@@ -74,4 +74,6 @@
     Public Property IS_TERMINATE As Boolean
     Public Property EFFECT_FROM As Date?
     Public Property EFFECT_TO As Date?
+
+    Public Property IS_AMOUNT_IN_MONTH As Boolean
 End Class

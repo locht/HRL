@@ -30589,6 +30589,9 @@ Namespace ProfileBusiness
         Private ISSUE_DATEField As System.Nullable(Of Date)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private IS_AMOUNT_IN_MONTHField As Boolean
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private IS_TERMINATEField As Boolean
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -31180,6 +31183,19 @@ Namespace ProfileBusiness
                 If (Me.ISSUE_DATEField.Equals(value) <> true) Then
                     Me.ISSUE_DATEField = value
                     Me.RaisePropertyChanged("ISSUE_DATE")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property IS_AMOUNT_IN_MONTH() As Boolean
+            Get
+                Return Me.IS_AMOUNT_IN_MONTHField
+            End Get
+            Set
+                If (Me.IS_AMOUNT_IN_MONTHField.Equals(value) <> true) Then
+                    Me.IS_AMOUNT_IN_MONTHField = value
+                    Me.RaisePropertyChanged("IS_AMOUNT_IN_MONTH")
                 End If
             End Set
         End Property

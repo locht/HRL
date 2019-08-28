@@ -49,7 +49,7 @@ Partial Class ProfileRepository
                         From org In Context.SE_CHOSEN_ORG.Where(Function(org) org.ORG_ID = o.ID And
                                                                     org.USERNAME = log.Username.ToUpper)
                         From ot In Context.OT_OTHER_LIST.Where(Function(ot) ot.ID = d.STATUS_ID)
-                        From at_per In Context.AT_PERIOD.Where(Function(f) f.ID = d.PERIOD_ID)
+                        From at_per In Context.AT_PERIOD.Where(Function(f) f.ID = d.PERIOD_ID).DefaultIfEmpty
                         From otReason In Context.OT_OTHER_LIST.Where(Function(ots) ots.ID = d.DISCIPLINE_REASON).DefaultIfEmpty
 
             If Not _filter.IS_TERMINATE Then
@@ -122,6 +122,7 @@ Partial Class ProfileRepository
                                                                        .PERIOD_ID = d.d.PERIOD_ID,
                                                                        .PERIOD_NAME = d.at_per.PERIOD_NAME,
                                                                        .DEDUCT_FROM_SALARY = d.d.DEDUCT_FROM_SALARY,
+                                                                       .IS_AMOUNT_IN_MONTH = d.d.IS_AMOUNT_IN_MONTH,
                                                                        .MONEY = d.d.MONEY,
                                                                        .INDEMNIFY_MONEY = d.d.INDEMNIFY_MONEY,
                                                                        .TITLE_NAME = d.t.NAME_VN,
@@ -146,7 +147,7 @@ Partial Class ProfileRepository
                                                                        .AMOUNT_SAL_MONTH = d.d.AMOUNT_SAL_MONTH,
                                                                        .AMOUNT_IN_MONTH = d.d.AMOUNT_IN_MONTH,
                                                                        .AMOUNT_DEDUCT_AMOUNT = d.d.AMOUNT_DEDUCT_AMOUNT,
-                                                                       .NO_DISCIPLINE = d.d.NO_DISCIPLINE
+            .NO_DISCIPLINE = d.d.NO_DISCIPLINE
                                                                    })
 
 
@@ -215,6 +216,7 @@ Partial Class ProfileRepository
                                                                        .STATUS_CODE = p.ot.CODE,
                                                                        .STATUS_ID = p.p.STATUS_ID,
                                                                        .DEDUCT_FROM_SALARY = p.p.DEDUCT_FROM_SALARY,
+                                                                       .IS_AMOUNT_IN_MONTH = p.p.IS_AMOUNT_IN_MONTH,
                                                                        .PERIOD_ID = p.p.PERIOD_ID,
                                                                        .YEAR_PERIOD = p.pe.YEAR,
                                                                        .EFFECT_DATE = p.p.EFFECT_DATE,
@@ -265,6 +267,7 @@ Partial Class ProfileRepository
             objDisciplineData.DISCIPLINE_REASON = objDiscipline.DISCIPLINE_REASON
             objDisciplineData.MONEY = objDiscipline.MONEY
             objDisciplineData.DEDUCT_FROM_SALARY = objDiscipline.DEDUCT_FROM_SALARY
+            objDisciplineData.IS_AMOUNT_IN_MONTH = objDiscipline.IS_AMOUNT_IN_MONTH
             objDisciplineData.INDEMNIFY_MONEY = objDiscipline.INDEMNIFY_MONEY
             objDisciplineData.PERIOD_ID = objDiscipline.PERIOD_ID
             objDisciplineData.REMARK = objDiscipline.REMARK
@@ -475,6 +478,7 @@ Partial Class ProfileRepository
             objDisciplineData.STATUS_ID = objDiscipline.STATUS_ID
             objDisciplineData.REMARK = objDiscipline.REMARK
             objDisciplineData.DEDUCT_FROM_SALARY = objDiscipline.DEDUCT_FROM_SALARY
+            objDisciplineData.IS_AMOUNT_IN_MONTH = objDiscipline.IS_AMOUNT_IN_MONTH
             objDisciplineData.PERIOD_ID = objDiscipline.PERIOD_ID
             objDisciplineData.INDEMNIFY_MONEY = objDiscipline.INDEMNIFY_MONEY
             objDisciplineData.UPLOADFILE = objDiscipline.UPLOADFILE
