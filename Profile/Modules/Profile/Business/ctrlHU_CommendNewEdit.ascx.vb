@@ -593,16 +593,16 @@ Public Class ctrlHU_CommendNewEdit
                             Dim TotalMoney As Decimal = 0
                             Dim dtrgEmployee As DataTable = GetDataFromGrid(rgEmployee)
                             For Each row As DataRow In dtrgEmployee.Rows
-                                If row("cbStatus") = 1 Then
-                                    Dim o As New CommendEmpDTO
-                                    o.GUID_ID = If(Not IsDBNull(row("GUID_ID")), row("GUID_ID"), "")
-                                    o.HU_EMPLOYEE_ID = row("HU_EMPLOYEE_ID")
-                                    o.MONEY = If(row("MONEY") <> "", Decimal.Parse(row("MONEY")), Nothing)
-                                    o.COMMEND_PAY = If(row("COMMEND_PAY") <> "", Decimal.Parse(row("COMMEND_PAY")), Nothing)
-                                    o.ORG_ID = If(row("ORG_ID") <> "", Decimal.Parse(row("ORG_ID")), Nothing)
-                                    o.TITLE_ID = If(row("TITLE_ID") <> "", Decimal.Parse(row("TITLE_ID")), Nothing)
-                                    lstCommendEmp.Add(o)
-                                End If
+                                'If row("cbStatus") = 1 Then
+                                Dim o As New CommendEmpDTO
+                                o.GUID_ID = If(Not IsDBNull(row("GUID_ID")), row("GUID_ID"), "")
+                                o.HU_EMPLOYEE_ID = row("HU_EMPLOYEE_ID")
+                                o.MONEY = If(row("MONEY") <> "", Decimal.Parse(row("MONEY")), Nothing)
+                                o.COMMEND_PAY = If(row("COMMEND_PAY") <> "", Decimal.Parse(row("COMMEND_PAY")), Nothing)
+                                o.ORG_ID = If(row("ORG_ID") <> "", Decimal.Parse(row("ORG_ID")), Nothing)
+                                o.TITLE_ID = If(row("TITLE_ID") <> "", Decimal.Parse(row("TITLE_ID")), Nothing)
+                                lstCommendEmp.Add(o)
+                                'End If
                             Next
                             If lstCommendEmp.Count = 0 Then
                                 ShowMessage(Translate("Vui lòng chọn nhân viên trước khi lưu"), NotifyType.Warning)
