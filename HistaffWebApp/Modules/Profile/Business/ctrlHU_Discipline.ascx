@@ -67,7 +67,7 @@
                             </tlk:GridClientSelectColumn>
                             <tlk:GridBoundColumn DataField="ID" Visible="false" />
                              <tlk:GridBoundColumn HeaderText="<%$ Translate: Mã nhân viên %>" DataField="EMPLOYEE_CODE"
-                                SortExpression="EMPLOYEE_CODE" UniqueName="EMPLOYEE_CODE" />
+                                SortExpression="EMPLOYEE_CODE" UniqueName="EMPLOYEE_CODE" HeaderStyle-Width="60px"/>
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Tên nhân viên %>" DataField="EMPLOYEE_NAME"
                                 SortExpression="EMPLOYEE_NAME" UniqueName="EMPLOYEE_NAME" />
                              <tlk:GridBoundColumn HeaderText="<%$ Translate: Đơn vị %>" DataField="ORG_NAME" SortExpression="ORG_NAME"
@@ -94,8 +94,10 @@
                                 DataFormatString="{0:N0}" SortExpression="AMOUNT_TO_PAID" UniqueName="AMOUNT_TO_PAID" />
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Kỳ lương bắt đầu trừ %>" DataField="PERIOD_NAME"
                                 ItemStyle-HorizontalAlign="Center" SortExpression="PERIOD_NAME" UniqueName="PERIOD_NAME" />
-                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Tỷ lệ % trừ mỗi tháng %>" DataField="AMOUNT_IN_MONTH"
-                                ItemStyle-HorizontalAlign="Center" SortExpression="AMOUNT_IN_MONTH" UniqueName="AMOUNT_IN_MONTH" />  
+                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Tỷ lệ % trừ mỗi tháng %>" DataField="AMOUNT_IN_MONTH" ItemStyle-HorizontalAlign="Right"
+                               SortExpression="AMOUNT_IN_MONTH" UniqueName="AMOUNT_IN_MONTH" DataFormatString="{0:n0}"/>  
+                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Số tiền trừ mỗi tháng %>" DataField="AMOUNT_DEDUCT_AMOUNT" ItemStyle-HorizontalAlign="Right"
+                              SortExpression="AMOUNT_DEDUCT_AMOUNT" UniqueName="AMOUNT_DEDUCT_AMOUNT" DataFormatString="{0:n0}"/>  
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Số quyết định %>" DataField="DECISION_NO"
                                 SortExpression="DECISION_NO" UniqueName="DECISION_NO" />
                             <tlk:GridDateTimeColumn HeaderText="<%$ Translate: Ngày hiệu lực %>" DataField="EFFECT_DATE"
