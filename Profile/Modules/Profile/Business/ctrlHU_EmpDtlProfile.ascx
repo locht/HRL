@@ -578,7 +578,7 @@
                                             <span class="lbReq">*</span>
                                         </td>
                                         <td>
-                                            <tlk:RadComboBox runat="server" ID="cboInsRegion" SkinID="LoadDemand" OnClientSelectedIndexChanged="OnClientSelectedIndexChanged">
+                                            <tlk:RadComboBox runat="server" ID="cboInsRegion" SkinID="LoadDemand" OnClientSelectedIndexChanged="OnClientSelectedIndexChanged" Enabled="false">
                                             </tlk:RadComboBox>
                                             <asp:CustomValidator ValidationGroup="EmpProfile" ID="cusInsRegion" runat="server"
                                                 ErrorMessage="<%$ Translate: Bạn phải chọn Vùng bảo hiểm %>" ToolTip="<%$ Translate: Bạn phải chọn Vùng bảo hiểm  %>"

@@ -991,7 +991,7 @@ Public Class ctrlHU_WelfareList
             rep.Dispose()
             FillCheckBoxList(lstbGender, ListComboData.LIST_GENDER, "NAME_VN", "ID")
             FillCheckBoxList(lstCONTRACT_TYPE, ListComboData.LIST_CONTRACTTYPE, "NAME", "ID")
-            FillRadCombobox(cbGroupTitle, ListComboData.LIST_TITLE_GROUP, "NAME_VN", "ID")
+            FillDropDownList(cbGroupTitle, ListComboData.LIST_TITLE_GROUP, "NAME_VN", "ID")
 
             Dim dtData = rep.GetOtherList("WELFARE", False)
             FillRadCombobox(cboName, dtData, "NAME", "ID", True)

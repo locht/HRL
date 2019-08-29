@@ -907,7 +907,8 @@ Public Class ctrlHU_EmpDtlProfile
                                    cboTitle, txtTitleGroup, cboStaffRank, txtDirectManager, btnFindDirect,
                                    txtmanager, cboObject, cboObjectLabor, txtTimeID, cbObjectBook)
 
-                        EnableControlAll(False, cboWorkStatus, txtEmpCODE, cboEmpStatus, rtBookNo)
+
+                        EnableControlAll(False, cboWorkStatus, txtEmpCODE, cboEmpStatus, rtBookNo, cboInsRegion)
                         EnableControlAll(True, rtCHUC_VU_DANG, rdNGAY_VAO_DANG_DB, rdNGAY_VAO_DANG)
                         EnableControlAll(True, ckDOAN_PHI, rtCHUC_VU_DOAN, rdNGAY_VAO_DOAN)
                         EnableControlAll(True, rtCV_BANTT, rdNgay_TG_BanTT)
@@ -932,7 +933,7 @@ Public Class ctrlHU_EmpDtlProfile
                                           rdVisaDate, rdVisaExpireDate, rdWorkPermitDate, rdWorPermitExpireDate,
                                            txtCanNang, txtChieuCao,
                                            cboAcademy, cboGraduateSchool, cboBank, cboBankBranch, cboFamilyStatus,
-                                           cboGender, cboLangLevel, cboLangLevel2, rtWorkplace, cboInsRegion,
+                                           cboGender, cboLangLevel, cboLangLevel2, rtWorkplace,
                                            cboLanguage, cboLanguage2, cboLearningLevel, txtLoaiSucKhoe,
                                            cboMajor, cboNationlity, cboNative, cboNav_Province, cboPer_Province,
                                            cboReligion,
@@ -951,7 +952,7 @@ Public Class ctrlHU_EmpDtlProfile
                                txtTitleGroup, cboStaffRank, txtDirectManager,
                                cboObject, txtTimeID, cbObjectBook, txtmanager)
                         EnableControlAll(True, btnFindOrg, cboTitle, cboObjectLabor, btnFindDirect)
-                        EnableControlAll(False, cboWorkStatus, txtEmpCODE, cboEmpStatus, rtBookNo)
+                        EnableControlAll(False, cboWorkStatus, txtEmpCODE, cboEmpStatus, rtBookNo, cboInsRegion)
                         EnableControlAll(True, rtCHUC_VU_DANG, rdNGAY_VAO_DANG_DB, rdNGAY_VAO_DANG)
                         EnableControlAll(True, ckDOAN_PHI, rtCHUC_VU_DOAN, rdNGAY_VAO_DOAN)
                         EnableControlAll(True, rtCV_BANTT, rdNgay_TG_BanTT)
@@ -976,7 +977,7 @@ Public Class ctrlHU_EmpDtlProfile
                                           rdVisaDate, rdVisaExpireDate, rdWorkPermitDate, rdWorPermitExpireDate,
                                            txtCanNang, txtChieuCao,
                                            cboAcademy, cboGraduateSchool, cboBank, cboBankBranch, cboFamilyStatus,
-                                           cboGender, cboLangLevel, cboLangLevel2, rtWorkplace, cboInsRegion,
+                                           cboGender, cboLangLevel, cboLangLevel2, rtWorkplace,
                                            cboLanguage, cboLanguage2, cboLearningLevel, txtLoaiSucKhoe,
                                            cboMajor, cboNationlity, cboNative, cboNav_Province, cboPer_Province,
                                            cboReligion,
