@@ -557,7 +557,7 @@ Public Class ctrlHU_DisciplineNewEdit
                         End If
                         If (rdEffectDate.SelectedDate.HasValue And rdExpireDate.SelectedDate.HasValue) Then
                             If (CLng(rdExpireDate.SelectedDate.Value.Subtract(rdEffectDate.SelectedDate.Value).TotalSeconds()) < 0) Then
-                                ShowMessage(Translate("ngày hết hiệu lực phải sau ngày có hiệu lực"), NotifyType.Error)
+                                ShowMessage(Translate("Ngày hết hiệu lực phải sau ngày có hiệu lực"), NotifyType.Error)
                                 Exit Sub
                             End If
                         End If
@@ -567,12 +567,12 @@ Public Class ctrlHU_DisciplineNewEdit
                         '        Exit Sub
                         '    End If
                         'End If
-                        If (rdSignDate.SelectedDate.HasValue And cboStatus.SelectedValue = ProfileCommon.DISCIPLINE_STATUS.APPROVE_ID) Then
-                            If (CLng(rdSignDate.SelectedDate.Value.Subtract(DateTime.Now).TotalSeconds()) > 0) Then
-                                ShowMessage(Translate("Chưa ký không được duyệt bản ghi"), NotifyType.Error)
-                                Exit Sub
-                            End If
-                        End If
+                        'If (rdSignDate.SelectedDate.HasValue And cboStatus.SelectedValue = ProfileCommon.DISCIPLINE_STATUS.APPROVE_ID) Then
+                        '    If (CLng(rdSignDate.SelectedDate.Value.Subtract(DateTime.Now).TotalSeconds()) > 0) Then
+                        '        ShowMessage(Translate("Chưa ký không được duyệt bản ghi"), NotifyType.Error)
+                        '        Exit Sub
+                        '    End If
+                        'End If
                         If (rdSignDate.SelectedDate.HasValue And rdEffectDate.SelectedDate.HasValue) Then
                             If (CLng(rdSignDate.SelectedDate.Value.Subtract(rdEffectDate.SelectedDate.Value).TotalSeconds()) > 0) Then
                                 ShowMessage(Translate("Ngày có hiệu lực phải sau ngày ký"), NotifyType.Error)
@@ -1471,35 +1471,8 @@ Public Class ctrlHU_DisciplineNewEdit
             _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
         End Try
     End Sub
-    ''' <lastupdate>
-    ''' 11/07/2017 13:40
-    ''' </lastupdate>
-    ''' <summary>
-    ''' Xu ly su kien server validate cho control cvalTotal
-    ''' </summary>
-    ''' <param name="source"></param>
-    ''' <param name="args"></param>
-    ''' <remarks></remarks>
-    Private Sub cvalTotal_ServerValidate(ByVal source As Object, ByVal args As System.Web.UI.WebControls.ServerValidateEventArgs) Handles cvalTotal.ServerValidate
-        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
-        Try
-            Dim startTime As DateTime = DateTime.UtcNow
-            Dim totalMoney = 0
-            If Utilities.ObjToDecima(cboDisciplineType.SelectedValue) <> 462 Then
-                If rntxtMoney.Value IsNot Nothing Then
-                    totalMoney += rntxtMoney.Value
-                End If
-                Dim TotalMoneyEmp As Decimal = 0
-                For Each i As GridDataItem In rgEmployee.Items
-                    TotalMoneyEmp += Utilities.ObjToDecima(CType(i("MONEY").Controls(0), RadNumericTextBox).Value)
-                Next
-                args.IsValid = totalMoney = TotalMoneyEmp
-            End If
-            _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
-        Catch ex As Exception
-            _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
-        End Try
-    End Sub
+
+   
     Private Sub cvalAmountToPaid_ServerValidate(ByVal source As Object, ByVal args As System.Web.UI.WebControls.ServerValidateEventArgs) Handles cvalAmountToPaid.ServerValidate
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
         Try
@@ -1683,7 +1656,7 @@ Public Class ctrlHU_DisciplineNewEdit
         End If
     End Sub
 
-    Private Sub rntxtMoney_TextChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles rntxtMoney.TextChanged, rntxtIndemnifyMoney.TextChanged
+    Protected Sub RadAjaxPanel1_AjaxRequest(ByVal sender As Object, ByVal e As AjaxRequestEventArgs)
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
         Try
             Dim startTime As DateTime = DateTime.UtcNow
@@ -1730,6 +1703,53 @@ Public Class ctrlHU_DisciplineNewEdit
             _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
         End Try
     End Sub
+    'Private Sub rntxtMoney_TextChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles rntxtMoney.TextChanged, rntxtIndemnifyMoney.TextChanged
+    '    Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+    '    Try
+    '        Dim startTime As DateTime = DateTime.UtcNow
+
+    '        Dim intMoney As Decimal = 0
+    '        Dim intIndemnifyMoney As Decimal = 0
+    '        Dim intAmountPaidCash As Decimal = 0
+    '        Dim totalPaidIMoeny As Decimal = 0
+    '        Dim totalAmountToPaid As Decimal = 0
+
+    '        If rntxtMoney.Value IsNot Nothing Then
+    '            intMoney += rntxtMoney.Value
+    '        End If
+    '        If rntxtIndemnifyMoney.Value IsNot Nothing Then
+    '            intIndemnifyMoney += rntxtIndemnifyMoney.Value
+    '        End If
+
+    '        If rdAmountPaidCash.Value IsNot Nothing Then
+    '            intAmountPaidCash += rdAmountPaidCash.Value
+    '        End If
+
+    '        totalPaidIMoeny = Utilities.ObjToDecima(intMoney + intIndemnifyMoney)
+    '        rnPaidIMoeny.Value = totalPaidIMoeny
+
+    '        totalAmountToPaid = Utilities.ObjToDecima(totalPaidIMoeny - intAmountPaidCash)
+    '        rnAmountToPaid.Value = totalAmountToPaid
+
+    '        Dim intMoneyDetail As Decimal = 0
+    '        Dim intAmountToPaid As Decimal = 0
+    '        If (Employee_Discipline.Count > 0) Then
+    '            If rnAmountToPaid.Value IsNot Nothing Then
+    '                intAmountToPaid += rnAmountToPaid.Value
+    '            End If
+    '            intMoneyDetail = Utilities.ObjToDecima(intAmountToPaid / Employee_Discipline.Count)
+    '        End If
+
+    '        For index = 0 To Employee_Discipline.Count - 1
+    '            Employee_Discipline.Item(index).INDEMNIFY_MONEY = intMoneyDetail
+    '        Next
+    '        rgEmployee.Rebind()
+
+    '        _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
+    '    Catch ex As Exception
+    '        _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
+    '    End Try
+    'End Sub
 
     Private Sub cvalAmountSalaryMonth_ServerValidate(ByVal source As Object, ByVal args As System.Web.UI.WebControls.ServerValidateEventArgs) Handles cvalAmountSalaryMonth.ServerValidate
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()

@@ -3,12 +3,12 @@
 <asp:HiddenField ID="hidID" runat="server" /> 
 <asp:HiddenField ID="hidDecisionID" runat="server" /> 
 <asp:HiddenField ID="hidOrgID" runat="server" />
-<tlk:RadSplitter ID="RadSplitter3" runat="server" Width="100%" Height="100%" Orientation="Horizontal">
+<tlk:RadSplitter ID="RadSplitter3" runat="server" Width="100%" Height="100%" Orientation="Horizontal">   
     <tlk:RadPane ID="RadPane1" runat="server" Height="35px" Scrolling="None">
         <tlk:RadToolBar ID="tbarDiscipline" runat="server" OnClientButtonClicking="clientButtonClicking" />
     </tlk:RadPane>
     <tlk:RadPane ID="RadPane2" runat="server" Height="350px">
-        <asp:ValidationSummary ID="valSum" runat="server" DisplayMode="BulletList" CssClass="validationsummary" />
+        <asp:ValidationSummary ID="valSum" runat="server" DisplayMode="BulletList" CssClass="validationsummary" />        
         <table class="table-form"  onkeydown="return (event.keyCode!=13)">
            <tr>
                 <td colspan="6">
@@ -243,22 +243,18 @@
                     <asp:Label runat="server" ID="lbMoney" Text="Số tiền phạt"></asp:Label>
                 </td>
                 <td>
-                    <tlk:RadNumericTextBox ID="rntxtMoney" runat="server" SkinID="Money" TabIndex="19" AutoPostBack="true">
+                    <tlk:RadNumericTextBox ID="rntxtMoney" runat="server" SkinID="Money" TabIndex="19" ClientEvents-OnBlur="OnClientChanged1" >
                     </tlk:RadNumericTextBox>
                     <asp:CustomValidator ID="cvalMoney" runat="server" ErrorMessage="Bạn phải nhập số tiền phải >= 0."
                         ToolTip="Bạn phải nhập số tiền phải >= 0.">
-                    </asp:CustomValidator>
-                    <asp:CustomValidator ID="cvalTotal" runat="server" ErrorMessage="Tổng số tiền của nhân viên phải bằng số tiền phạt">
                     </asp:CustomValidator>
                 </td>
                 <td class="lb">
                     <asp:Label runat="server" ID="lbIndemnifyMoney" Text="Tổng giá trị thiệt hại"></asp:Label>
                 </td>
                 <td>
-                    <tlk:RadNumericTextBox ID="rntxtIndemnifyMoney" runat="server" SkinID="Money" TabIndex="20" AutoPostBack="true">
+                    <tlk:RadNumericTextBox ID="rntxtIndemnifyMoney" runat="server" SkinID="Money" TabIndex="20" ClientEvents-OnBlur="OnClientChanged1">
                     </tlk:RadNumericTextBox>
-                  <%--  <asp:CustomValidator ID="cvalIndemnifyTotal" runat="server" ErrorMessage="Tổng số tiền thiệt hại của nhân viên phải bằng số tiền bồi thường">
-                    </asp:CustomValidator>--%>
                 </td>
                 <td class="lb">
                     <%--<asp:Label runat="server" ID="lbPaidInMoeny" Text="Thanh toán tiền" Visible = "false"></asp:Label>--%>
@@ -475,6 +471,8 @@
 <asp:PlaceHolder ID="phFindEmployee" runat="server"></asp:PlaceHolder>
 <asp:PlaceHolder ID="phFindSign" runat="server"></asp:PlaceHolder>
 <asp:PlaceHolder ID="phFindOrg" runat="server"></asp:PlaceHolder>
+<tlk:RadAjaxPanel ID="RadAjaxPanel1" runat="server" OnAjaxRequest="RadAjaxPanel1_AjaxRequest">
+</tlk:RadAjaxPanel>
 <tlk:RadCodeBlock ID="RadCodeBlock1" runat="server">
 <Common:ctrlUpload ID="ctrlUpload1" runat="server" />
     <script type="text/javascript">
@@ -532,5 +530,10 @@
                 window.open('/Default.aspx?mid=Profile&fid=ctrlHU_WageNewEdit&group=Business&empid=' + value, "_blank");
             }
         }
+
+        function OnClientChanged1(sender, eventArgs) {
+            $find("<%= RadAjaxPanel1.ClientID%>").ajaxRequestWithTarget("<%= RadAjaxPanel1.UniqueID %>", sender.get_id());
+        }
+
     </script>
 </tlk:RadCodeBlock>

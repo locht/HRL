@@ -617,15 +617,6 @@ Partial Public Class ctrlHU_DisciplineNewEdit
     Protected WithEvents cvalMoney As Global.System.Web.UI.WebControls.CustomValidator
 
     '''<summary>
-    '''cvalTotal control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents cvalTotal As Global.System.Web.UI.WebControls.CustomValidator
-
-    '''<summary>
     '''lbIndemnifyMoney control.
     '''</summary>
     '''<remarks>
@@ -975,6 +966,15 @@ Partial Public Class ctrlHU_DisciplineNewEdit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents phFindOrg As Global.System.Web.UI.WebControls.PlaceHolder
+
+    '''<summary>
+    '''RadAjaxPanel1 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents RadAjaxPanel1 As Global.Telerik.Web.UI.RadAjaxPanel
 
     '''<summary>
     '''RadCodeBlock1 control.
