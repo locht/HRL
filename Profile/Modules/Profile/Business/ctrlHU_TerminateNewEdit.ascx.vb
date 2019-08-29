@@ -1904,6 +1904,8 @@ Public Class ctrlHU_TerminateNewEdit
     ''' Class tinh so nam cong tac cua nhan vien
     ''' </summary>
     ''' <remarks></remarks>
+
+#End Region
 #Region "DateDifference"
 
     Public Class DateDifference
@@ -2012,6 +2014,4 @@ Public Class ctrlHU_TerminateNewEdit
 
     End Class
 #End Region
-#End Region
-
 End Class
