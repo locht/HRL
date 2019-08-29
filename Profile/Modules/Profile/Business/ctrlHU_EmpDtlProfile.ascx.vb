@@ -1168,8 +1168,8 @@ Public Class ctrlHU_EmpDtlProfile
                                     ctrlMessageBox.Show()
                                 Else
                                     If Save(strEmpID, _err) Then
-                                        CurrentState = CommonMessage.STATE_NORMAL
-                                        ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), Utilities.NotifyType.Success)
+                                        Dim purl = String.Format("~/Default.aspx?mid=Profile&fid=ctrlHU_EmpDtl&group=Business&emp={0}&state=Normal&message=SUCCESS", strEmpID)
+                                        Response.Redirect(purl, False)
                                     Else
                                         ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL) & vbNewLine & Translate(_err), Utilities.NotifyType.Error)
                                     End If
@@ -1247,6 +1247,7 @@ Public Class ctrlHU_EmpDtlProfile
                                     ctrlMessageBox.Show()
                                 Else
                                     If Save(strEmpID, _err) Then
+
                                         CurrentState = CommonMessage.STATE_NORMAL
                                         ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), Utilities.NotifyType.Success)
                                     Else

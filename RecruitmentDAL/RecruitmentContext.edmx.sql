@@ -1,8 +1,8 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for Oracle database
 -- --------------------------------------------------
--- Date Created: 26-Aug-19 2:54:37 PM
--- Generated from EDMX file: E:\PROJECT\MyTNG\RecruitmentDAL\RecruitmentContext.edmx
+-- Date Created: 08/28/2019 6:10:48 PM
+-- Generated from EDMX file: D:\MyProject\TNG\TNG\RecruitmentDAL\RecruitmentContext.edmx
 -- --------------------------------------------------
 
 -- --------------------------------------------------
@@ -166,6 +166,8 @@
 -- DROP TABLE "RecruitmentModelStoreContainer"."SE_REPORT";
 
 -- DROP TABLE "RecruitmentModelStoreContainer"."SE_USER_REPORT";
+
+-- DROP TABLE "RecruitmentModelStoreContainer"."HU_WARD";
 
 -- --------------------------------------------------
 -- Creating all tables
@@ -571,7 +573,10 @@ CREATE TABLE "dbo"."RC_CANDIDATE_EDUCATION" (
    "ENGLISH_MARK2" NVARCHAR2(50) NULL,
    "DATE_START" DATE NULL,
    "DATE_END" DATE NULL,
-   "ENGLISH_SKILL" NCLOB NULL
+   "ENGLISH_SKILL" NCLOB NULL,
+   "CERTIFICATE_ID" NUMBER(38,0) NULL,
+   "LANGUAGE_ID" NUMBER(38,0) NULL,
+   "YEAR_GRADUATE" NUMBER(38,0) NULL
 );
 
 -- Creating table 'RC_CANDIDATE_HISTORY'
@@ -723,7 +728,8 @@ CREATE TABLE "dbo"."RC_CANDIDATE_CV" (
    "CON_PROVINCE" NUMBER(38,0) NULL,
    "CON_DISTRICT" NUMBER(38,0) NULL,
    "CON_WARD" NUMBER(38,0) NULL,
-   "CON_ADDRESS" NVARCHAR2(255) NULL
+   "CON_ADDRESS" NVARCHAR2(255) NULL,
+   "PER_WARD" NUMBER(38,0) NULL
 );
 
 -- Creating table 'RC_PROGRAM_SCHEDULE'
@@ -1608,6 +1614,23 @@ CREATE TABLE "dbo"."SE_USER_REPORT" (
    "SE_USER_ID" NUMBER(38,0) NOT NULL
 );
 
+-- Creating table 'HU_WARD'
+CREATE TABLE "dbo"."HU_WARD" (
+   "ID" NUMBER(38,0) NOT NULL,
+   "NAME_EN" NVARCHAR2(255) NULL,
+   "NAME_VN" NVARCHAR2(255) NULL,
+   "ACTFLG" NVARCHAR2(1) NULL,
+   "CODE" NVARCHAR2(255) NULL,
+   "DISTRICT_ID" NUMBER(38,0) NULL,
+   "CREATED_DATE" DATE NULL,
+   "CREATED_BY" NVARCHAR2(255) NULL,
+   "CREATED_LOG" NVARCHAR2(255) NULL,
+   "MODIFIED_DATE" DATE NULL,
+   "MODIFIED_BY" NVARCHAR2(255) NULL,
+   "MODIFIED_LOG" NVARCHAR2(255) NULL,
+   "NOTE" NVARCHAR2(1023) NULL
+);
+
 
 -- --------------------------------------------------
 -- Creating all PRIMARY KEY constraints
@@ -2121,6 +2144,14 @@ ADD CONSTRAINT "PK_SE_REPORT"
 ALTER TABLE "dbo"."SE_USER_REPORT"
 ADD CONSTRAINT "PK_SE_USER_REPORT"
    PRIMARY KEY ("SE_REPORT_ID", "SE_USER_ID" )
+   ENABLE
+   VALIDATE;
+
+
+-- Creating primary key on "ID"in table 'HU_WARD'
+ALTER TABLE "dbo"."HU_WARD"
+ADD CONSTRAINT "PK_HU_WARD"
+   PRIMARY KEY ("ID" )
    ENABLE
    VALIDATE;
 

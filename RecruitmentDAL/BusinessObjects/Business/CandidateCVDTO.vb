@@ -121,4 +121,7 @@
     Public Property CON_DISTRICT_NAME As String
     Public Property CON_WARD As Decimal?
     Public Property CON_WARD_NAME As String
+    'THEM TRUONG PHUONG XA THUONG TRU PER_WARD
+    Public Property PER_WARD As Decimal?
+    Public Property PER_WARD_NAME As String
 End Class

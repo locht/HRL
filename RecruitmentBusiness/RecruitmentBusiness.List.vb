@@ -8,7 +8,18 @@ Imports RecruitmentBusiness.ServiceContracts
 Namespace RecruitmentBusiness.ServiceImplementations
     Partial Class RecruitmentBusiness
 
-
+#Region "danh muc phuong xa"
+        Public Function GetWardList(ByVal districtID As Decimal, ByVal isBlank As Boolean) As DataTable _
+           Implements ServiceContracts.IRecruitmentBusiness.GetWardList
+                Try
+                Dim dtdata As DataTable
+                dtdata = RecruitmentRepositoryStatic.Instance.GetWardList(districtID, isBlank)
+                Return dtdata
+                Catch ex As Exception
+                    Throw ex
+                End Try
+        End Function
+#End Region
 #Region "CostCenter"
 
         Public Function GetCostCenter(ByVal _filter As CostCenterDTO,
