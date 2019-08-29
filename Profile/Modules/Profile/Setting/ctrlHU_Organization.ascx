@@ -238,6 +238,12 @@
                     <tlk:RadDatePicker ID="rdFOUNDATION_DATE" runat="server">
                     </tlk:RadDatePicker>
                 </td>
+                <td class="lb">
+                   <asp:Label ID="Label1" runat="server" Text="Số thứ tự"></asp:Label>
+                </td>
+                <td>
+                    <tlk:RadNumericTextBox ID="rdOrdNo" runat="server" SkinID="NUMBER"></tlk:RadNumericTextBox>
+                </td>
                 <td class="lb"  style = "display : none">
                     <asp:Label ID="lbDicision_Date" runat="server" Text="Ngày giải thể"></asp:Label>
                 </td>

@@ -30,7 +30,9 @@
     Public Property GPA As Decimal?
     Public Property IT_CERTIFICATE As String
     Public Property IT_LEVEL As String
+    'TRUONG NAY SUA LAI LA TRINH DO TIN HOC UNG DUNG
     Public Property IT_MARK As String
+
     Public Property IT_CERTIFICATE1 As String
     Public Property IT_LEVEL1 As String
     Public Property IT_MARK1 As String
@@ -49,5 +51,10 @@
     Public Property DATE_START As Date?
     Public Property DATE_END As Date?
     Public Property ENGLISH_SKILL As String
-
+    'NGOAI NGU ,CHUNG CHI ,NAM TOT NGHIEP
+    Public Property CERTIFICATE_ID As Decimal?
+    Public Property CERTIFICATE_NAME As String
+    Public Property LANGUAGE_ID As Decimal?
+    Public Property LANGUAGE_NAME As String
+    Public Property YEAR_GRADUATE As Decimal?
 End Class

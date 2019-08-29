@@ -294,6 +294,7 @@ Partial Class ProfileRepository
                         From t In Context.HU_TITLE.Where(Function(f) e.TITLE_ID = f.ID)
                         From deci_type In Context.OT_OTHER_LIST.Where(Function(f) p.TYPE_TERMINATE = f.ID).DefaultIfEmpty
                         From status In Context.OT_OTHER_LIST.Where(Function(f) p.STATUS_ID = f.ID)
+                         From status_BH In Context.OT_OTHER_LIST.Where(Function(f) p.INSURANCE_STATUS = f.ID).DefaultIfEmpty
                         From chosen In Context.SE_CHOSEN_ORG.Where(Function(f) f.ORG_ID = e.ORG_ID And
                                                                        f.USERNAME = log.Username.ToUpper)
             Dim terminate = query.Select(Function(p) New TerminateDTO With {
@@ -327,7 +328,8 @@ Partial Class ProfileRepository
                                             .SUN_MONEY = p.p.SUN_MONEY,
                                             .INSURANCE_CARD = p.p.INSURANCE_CARD,
                                             .INSURANCE_RDATE = p.p.INSURANCE_RDATE,
-                                            .INSURANCE_STATUS = p.p.INSURANCE_STATUS,
+                                            .INSURANCE_STATUS = p.status_BH.NAME_VN,
+                                             .INSURANCE_STATUS_NAME = p.status_BH.NAME_EN,
                                             .INSURANCE_MONEY = p.p.INSURANCE_MONEY,
                                             .REMAINING_LEAVE = p.p.REMAINING_LEAVE,
                                             .PAYMENT_LEAVE = p.p.PAYMENT_LEAVE,
@@ -353,6 +355,7 @@ Partial Class ProfileRepository
                                              .SIGN_TITLE = p.p.SIGN_TITLE,
                                              .SALARYMEDIUM_LOSS = p.p.SALARYMEDIUM_LOSS,
                                              .FILENAME = p.p.FILENAME,
+                                             .SUM_DEBT = p.p.SUM_DEBT,
                                              .UPLOADFILE = p.p.UPLOADFILE})
 
             If _filter.EMPLOYEE_CODE IsNot Nothing Then

@@ -48,6 +48,7 @@
     Public Property INSURANCE_CARD As Decimal? 'check chon the bao hiem y te
     Public Property INSURANCE_RDATE As Date? 'ngay tra the bao hiem y te
     Public Property INSURANCE_STATUS As String 'tinh trang the bao hiem y te
+    Public Property INSURANCE_STATUS_NAME As String 'tinh trang the bao hiem y te
     Public Property REMAINING_LEAVE As Decimal? 'so phep con lai
     Public Property PAYMENT_LEAVE As Decimal? 'tien thanh toan phep
     Public Property AMOUNT_VIOLATIONS As Decimal? 'so tien vi pham thoi han bao truoc

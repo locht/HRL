@@ -1391,7 +1391,7 @@ Partial Class ProfileRepository
                          From e In Context.HU_EMPLOYEE.Where(Function(f) f.ID = p.REPRESENTATIVE_ID).DefaultIfEmpty()
                          From v In Context.HU_EMPLOYEE_CV.Where(Function(b) b.EMPLOYEE_ID = e.ID).DefaultIfEmpty()
                          From t In Context.HU_TITLE.Where(Function(a) a.ID = e.TITLE_ID).DefaultIfEmpty()
-                         Order By p.DESCRIPTION_PATH
+                         Order By p.ORD_NO, p.NAME_VN
                          Select New OrganizationDTO With {.ID = p.ID,
                                                           .CODE = p.CODE,
                                                           .NAME_VN = p.NAME_VN,
@@ -1433,7 +1433,7 @@ Partial Class ProfileRepository
                          From parent In Context.HU_ORGANIZATION.Where(Function(f) f.ID = p.PARENT_ID).DefaultIfEmpty
                          From e In Context.HU_EMPLOYEE.Where(Function(f) f.ID = p.REPRESENTATIVE_ID).DefaultIfEmpty
                          Where p.ACTFLG = sACT
-                         Order By p.DESCRIPTION_PATH
+                         Order By p.ORD_NO, p.NAME_VN
                          Select New OrganizationDTO With {.ID = p.ID,
                                                           .CODE = p.CODE,
                                                           .NAME_VN = p.NAME_VN,
