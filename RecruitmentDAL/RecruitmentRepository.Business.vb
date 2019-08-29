@@ -1829,6 +1829,8 @@ Partial Class RecruitmentRepository
             '---------- 2.0 Thêm vào bảng RC_Candidate_CV ----------
             Dim objEmpCVData As New RC_CANDIDATE_CV
             objEmpCVData.CANDIDATE_ID = objEmpData.ID
+            objEmpCVData.CON_WARD = objEmpCV.CON_WARD
+            objEmpCVData.PER_WARD = objEmpCV.PER_WARD
             objEmpCVData.BIRTH_DATE = objEmpCV.BIRTH_DATE
             objEmpCVData.GENDER = objEmpCV.GENDER
             objEmpCVData.MARITAL_STATUS = objEmpCV.MARITAL_STATUS
@@ -1894,6 +1896,9 @@ Partial Class RecruitmentRepository
 
             '---------- 3.0 Thêm vào bảng RC_EDUCATION ----------
             Dim objEmpEduData As New RC_CANDIDATE_EDUCATION
+            objEmpEduData.YEAR_GRADUATE = objEmpEdu.YEAR_GRADUATE
+            objEmpEduData.LANGUAGE_ID = objEmpEdu.LANGUAGE_ID
+            objEmpEduData.CERTIFICATE_ID = objEmpEdu.CERTIFICATE_ID
             objEmpEduData.CANDIDATE_ID = objEmpData.ID
             objEmpEduData.ACADEMY = objEmpEdu.ACADEMY
             objEmpEduData.LEARNING_LEVEL = objEmpEdu.LEARNING_LEVEL
@@ -2021,6 +2026,8 @@ Partial Class RecruitmentRepository
                     objEmpCVData.IMAGE = objEmp.CANDIDATE_CODE & objEmpCV.IMAGE 'Lưu Image thành dạng E10012.jpg.
                 End If
                 objEmpCVData.CANDIDATE_ID = objEmpData.ID
+                objEmpCVData.CON_WARD = objEmpCV.CON_WARD
+                objEmpCVData.PER_WARD = objEmpCV.PER_WARD
                 objEmpCVData.BIRTH_DATE = objEmpCV.BIRTH_DATE
                 objEmpCVData.GENDER = objEmpCV.GENDER
                 objEmpCVData.MARITAL_STATUS = objEmpCV.MARITAL_STATUS
@@ -2094,7 +2101,9 @@ Partial Class RecruitmentRepository
                     objEmpEduData = New RC_CANDIDATE_EDUCATION
                     isInsert = True
                 End If
-
+                objEmpEduData.YEAR_GRADUATE = objEmpEdu.YEAR_GRADUATE
+                objEmpEduData.LANGUAGE_ID = objEmpEdu.LANGUAGE_ID
+                objEmpEduData.CERTIFICATE_ID = objEmpEdu.CERTIFICATE_ID
                 objEmpEduData.CANDIDATE_ID = objEmpData.ID
                 objEmpEduData.ACADEMY = objEmpEdu.ACADEMY
                 objEmpEduData.LEARNING_LEVEL = objEmpEdu.LEARNING_LEVEL
@@ -2457,10 +2466,16 @@ Partial Class RecruitmentRepository
     Public Function GetCandidateCV(ByVal sCandidateID As Decimal) As CandidateCVDTO
         Try
             Dim query = (From e In Context.RC_CANDIDATE_CV
+                         From ot1 In Context.HU_WARD.Where(Function(f) f.ID = e.CON_WARD).DefaultIfEmpty
+                         From ot2 In Context.HU_WARD.Where(Function(f) f.ID = e.PER_WARD).DefaultIfEmpty
                      Where (e.CANDIDATE_ID = sCandidateID)
                      Select New CandidateCVDTO With {
                  .CANDIDATE_ID = e.CANDIDATE_ID,
                  .GENDER = e.GENDER,
+                 .CON_WARD = e.CON_WARD,
+                 .CON_WARD_NAME = ot1.NAME_VN,
+                 .PER_WARD = e.PER_WARD,
+                 .PER_WARD_NAME = ot2.NAME_VN,
                  .MARITAL_STATUS = e.MARITAL_STATUS,
                  .NATIVE = e.NATIVE,
                  .RELIGION = e.RELIGION,
@@ -2517,7 +2532,7 @@ Partial Class RecruitmentRepository
                  .TEMP_RESIDENCE_CARD = e.TEMP_RESIDENCE_CARD,
                  .TEMP_RESIDENCE_CARD_END = e.TEMP_RESIDENCE_CARD_END,
                  .TEMP_RESIDENCE_CARD_START = e.TEMP_RESIDENCE_CARD_START,
-                 .WORK_EMAIl = e.WORK_EMAIL
+            .WORK_EMAIl = e.WORK_EMAIL
                  }).FirstOrDefault
             Return query
         Catch ex As Exception
@@ -2529,11 +2544,18 @@ Partial Class RecruitmentRepository
     Public Function GetCandidateEdu(ByVal sCandidateID As Decimal) As CandidateEduDTO
         Try
             Dim query = (From e In Context.RC_CANDIDATE_EDUCATION
+                         From OT In Context.OT_OTHER_LIST.Where(Function(F) F.ID = e.LANGUAGE_ID).DefaultIfEmpty
+                         From OT1 In Context.OT_OTHER_LIST.Where(Function(F) F.ID = e.CERTIFICATE_ID).DefaultIfEmpty
             Where e.CANDIDATE_ID = sCandidateID
             Select New CandidateEduDTO With {
                .CANDIDATE_ID = e.CANDIDATE_ID,
                .ACADEMY = e.ACADEMY,
                .HE_DAO_TAO = e.HE_DAO_TAO,
+               .YEAR_GRADUATE = e.YEAR_GRADUATE,
+               .LANGUAGE_ID = e.LANGUAGE_ID,
+               .CERTIFICATE_ID = e.CERTIFICATE_ID,
+               .LANGUAGE_NAME = OT.NAME_VN,
+               .CERTIFICATE_NAME = OT1.NAME_VN,
                .HIGHEST_EDU = e.HIGHEST_EDU,
                .HIGHEST_LEVEL = e.HIGHEST_LEVEL,
                .TRAIN_FORM = e.TRAIN_FORM,

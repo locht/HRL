@@ -148,6 +148,7 @@ Public Class ctrlHU_TerminateNewEdit
             GetParams()
             Refresh()
             UpdateControlState()
+
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
             DisplayException(Me.ViewName, Me.ID, ex)
@@ -314,7 +315,7 @@ Public Class ctrlHU_TerminateNewEdit
                         cboInsStatus.SelectedValue = Terminate.INSURANCE_STATUS
                     End If
                     If Terminate.DECISION_TYPE.HasValue Then
-                        cboDecisionType.SelectedValue = Terminate.DECISION_TYPE
+                        cboDecisionType.SelectedValue = Terminate.DECISION_TYPE.ToString
                     End If
                     cbIsAllowForTer.Checked = Terminate.IS_ALLOW
                     cbIsReplacePos.Checked = Terminate.IS_REPLACE_POS
@@ -340,6 +341,7 @@ Public Class ctrlHU_TerminateNewEdit
                         Terminate.STATUS_ID = ProfileCommon.DECISION_STATUS.NOT_APPROVE_ID Then
                         EnableControlAll_Cus(False, RadPane2)
                         btnDownload.Enabled = True
+                        btnUploadFile.Enabled = True
                         rgHandoverContent.Enabled = True
                         rntxtCash.ReadOnly = False
                         rgDebt.Enabled = True
@@ -369,6 +371,7 @@ Public Class ctrlHU_TerminateNewEdit
                     Next
                     rgHandoverContent.Rebind()
                     cboStatus.SelectedValue = ProfileCommon.DECISION_STATUS.WAIT_APPROVE_ID
+                    cboDecisionType.SelectedIndex = 0
                     CurrentState = CommonMessage.STATE_NEW
                 Case "NormalView"
 
@@ -569,7 +572,7 @@ Public Class ctrlHU_TerminateNewEdit
                             objTerminate.TER_REASON = cboTerReason.SelectedValue
                         End If
                         objTerminate.INSURANCE_STATUS = cboInsStatus.SelectedValue.ToString
-                        objTerminate.DECISION_TYPE = cboDecisionType.SelectedValue
+                        objTerminate.DECISION_TYPE = cboDecisionType.SelectedValue.ToString
                         objTerminate.SUM_DEBT = rntxtDebtTotal.Value
                         objTerminate.SUM_COLLECT_DEBT = rntxtDebtTotalCollect.Value
                         objTerminate.AMOUNT_PAYMENT_CASH = rntxtCash.Value
@@ -1778,7 +1781,8 @@ Public Class ctrlHU_TerminateNewEdit
             FillDropDownList(cboDebtStatus, ListComboData.LIST_DEBT_STATUS, "NAME_VN", "ID", Common.Common.SystemLanguage, True)
             FillDropDownList(cboDebtType, ListComboData.LIST_DEBT_TYPE, "NAME_VN", "ID", Common.Common.SystemLanguage, True)
             'FillDropDownList(cboDecisionType, ListComboData.LIST_DECISION_TYPE, "NAME_VN", "ID", Common.Common.SystemLanguage, True)
-            FillDropDownList(cboDecisionType, ListComboData.LIST_TER_DECISION_TYPE, "NAME_VN", "ID", Common.Common.SystemLanguage, True)
+            FillRadCombobox(cboDecisionType, ListComboData.LIST_TER_DECISION_TYPE, "NAME_VN", "ID", True)
+
             cboStatus.SelectedValue = ProfileCommon.DECISION_STATUS.WAIT_APPROVE_ID
             FillRadCombobox(cboSalMonth, rep.GetCurrentPeriod(), "PERIOD_NAME", "ID", True)
             'cboSalMonth.DataSource = rep.GetCurrentPeriod()

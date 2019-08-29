@@ -202,9 +202,19 @@ Public Class ctrlRC_CanDtlProfile
                     'Phần sơ yếu lý lịch
                     Dim empCV = rep.GetCandidateCV(CandidateInfo.ID)
                     If empCV IsNot Nothing Then
+                        If empCV.CON_WARD IsNot Nothing Then
+                            cboContractWard.SelectedValue = empCV.CON_WARD
+                            cboContractWard.Text = empCV.CON_WARD_NAME
+                        End If
+                        If empCV.PER_WARD IsNot Nothing Then
+                            cbPerward.SelectedValue = empCV.PER_WARD
+                            cbPerward.Text = empCV.PER_WARD_NAME
+                        End If
+
                         If empCV.GENDER IsNot Nothing Then
                             cboGender.SelectedValue = empCV.GENDER
                         End If
+
                         cboTinhTrangHN.SelectedValue = empCV.MARITAL_STATUS
                         If empCV.NATIVE IsNot Nothing Then
                             cboNative.SelectedValue = empCV.NATIVE
@@ -248,7 +258,7 @@ Public Class ctrlRC_CanDtlProfile
                         If empCV.PER_PROVINCE IsNot Nothing Then
                             cboPerProvince.SelectedValue = empCV.PER_PROVINCE
                         End If
-                        txtContactAddress.Text = empCV.CONTACT_ADDRESS
+                        txtContactAdd.Text = empCV.CONTACT_ADDRESS
                         If empCV.CONTACT_NATION_ID IsNot Nothing Then
                             cboContactNation.SelectedValue = empCV.CONTACT_NATION_ID
                         End If
@@ -351,6 +361,17 @@ Public Class ctrlRC_CanDtlProfile
                     If EmpEducation IsNot Nothing Then
                         If EmpEducation.ACADEMY IsNot Nothing Then
                             cboTrinhDoVanHoa.SelectedValue = EmpEducation.ACADEMY
+                        End If
+                        If EmpEducation.LANGUAGE_ID IsNot Nothing Then
+                            cboNgoaNgu1.SelectedValue = EmpEducation.LANGUAGE_ID
+                            cboNgoaNgu1.Text = EmpEducation.LANGUAGE_NAME
+                        End If
+                        If EmpEducation.CERTIFICATE_ID IsNot Nothing Then
+                            cboChungchi.SelectedValue = EmpEducation.CERTIFICATE_ID
+                            cboChungchi.Text = EmpEducation.CERTIFICATE_NAME
+                        End If
+                        If EmpEducation.YEAR_GRADUATE IsNot Nothing Then
+                            txtYearGra.Text = EmpEducation.YEAR_GRADUATE
                         End If
 
                         If EmpEducation.LEARNING_LEVEL IsNot Nothing Then
@@ -477,9 +498,13 @@ Public Class ctrlRC_CanDtlProfile
                         txtExpectNgayBatDau.SelectedDate = EmpExpectInfo.DATE_START
                         txtExpectDeNghiKhac.Text = EmpExpectInfo.OTHER_REQUEST
                     End If
+                Else
+                    'mac dinh load lên 12/12 nên set cứng ở đây,sau này thay đổi id thi set lại chỗ này,trình độ văn hóa
+                    cboTrinhDoVanHoa.SelectedValue = 503
                 End If
             End Using
             isLoad = True
+        Else
         End If
     End Sub
 
@@ -564,10 +589,10 @@ Public Class ctrlRC_CanDtlProfile
                 ListComboData.GET_DISTRICT = True
                 ListComboData.GET_NATION = True
                 ListComboData.GET_PROVINCE = True
+                'ListComboData.GET_PROVINC()
                 rep.GetComboList(ListComboData)
             End If
             Dim dtData
-
             '################### Sơ yếu lý lịch ####################
             ' Giới tính
             dtData = rep.GetOtherList("GENDER", True)
@@ -605,6 +630,8 @@ Public Class ctrlRC_CanDtlProfile
             FillDropDownList(cboPerDictrict, ListComboData.LIST_DISTRICT, "NAME_VN", "ID", Common.Common.SystemLanguage, True, cboPerDictrict.SelectedValue)
             FillDropDownList(cboContractDictrict, ListComboData.LIST_DISTRICT, "NAME_VN", "ID", Common.Common.SystemLanguage, True, cboContractDictrict.SelectedValue)
             FillDropDownList(cboContractAddDictrict, ListComboData.LIST_DISTRICT, "NAME_VN", "ID", Common.Common.SystemLanguage, True, cboContractAddDictrict.SelectedValue)
+            'phường xã
+           
 
             ' Nguyen quán
             FillDropDownList(cboNavNation, ListComboData.LIST_NATION, "NAME_VN", "ID", Common.Common.SystemLanguage, True, cboNavNation.SelectedValue)
@@ -614,8 +641,13 @@ Public Class ctrlRC_CanDtlProfile
 
             '################### Thông tin trình độ ################
             'Trình độ văn hóa
-            dtData = rep.GetOtherList("ACADEMY", True)
+            Dim DT As DataTable
+            DT = rep.GetOtherList("ACADEMY", True)
+            DT.DefaultView.Sort = "ID ASC"
+            dtData = DT.DefaultView.ToTable()
             FillRadCombobox(cboTrinhDoVanHoa, dtData, "NAME", "ID")
+            cboTrinhDoVanHoa.ClearSelection()
+            'cboTrinhDoVanHoa.SelectedValue = 503
             'Trình độ học vấn
             dtData = rep.GetOtherList("LEARNING_LEVEL", True)
             FillRadCombobox(cboTrinhDoHocVan, dtData, "NAME", "ID")
@@ -623,7 +655,7 @@ Public Class ctrlRC_CanDtlProfile
             dtData = rep.GetOtherList("MAJOR", True)
             FillRadCombobox(cboTrinhDoChuyenMon, dtData, "NAME", "ID", True)
             'Trường học
-            dtData = rep.GetOtherList("SCHOOL", True)
+            dtData = rep.GetOtherList("HU_GRADUATE_SCHOOL", True)
             FillRadCombobox(cboTruongHoc, dtData, "NAME", "ID")
             'Chuyên ngành
             dtData = rep.GetOtherList("MAJOR", True)
@@ -636,7 +668,7 @@ Public Class ctrlRC_CanDtlProfile
             FillRadCombobox(cboXepLoai, dtData, "NAME", "ID")
 
             'Trình độ tin học
-            dtData = rep.GetOtherList("COMPUTER_LEVEL", True)
+            dtData = rep.GetOtherList("RC_COMPUTER_LEVEL", True)
             FillRadCombobox(cboDegreeTrinhDo1, dtData, "NAME", "ID")
             FillRadCombobox(cboDegreeTrinhDo2, dtData, "NAME", "ID")
             FillRadCombobox(cboDegreeTrinhDo3, dtData, "NAME", "ID")
@@ -646,15 +678,22 @@ Public Class ctrlRC_CanDtlProfile
             FillRadCombobox(cboTDNNTrinhDo1, dtData, "NAME", "ID")
             FillRadCombobox(cboTDNNTrinhDo2, dtData, "NAME", "ID")
             FillRadCombobox(cboTDNNTrinhDo3, dtData, "NAME", "ID")
-
+            'ngoai ngu
+            Dim dtLanguage As DataTable
+            dtLanguage = rep.GetOtherList("RC_LANGUAGE_LEVEL", True)
+            FillRadCombobox(cboNgoaNgu1, dtLanguage, "NAME", "ID")
+            'loai chung chi
+            dtData = rep.GetOtherList("MARK_EDU")
+            FillRadCombobox(cboChungchi, dtData, "NAME", "ID")
             'Ngân hàng
             FillDropDownList(cboTKNganHang, ListComboData.LIST_BANK, "BANK_NAME", "ID", Common.Common.SystemLanguage, True, cboTKNganHang.SelectedValue)
 
             'Chi nhánh ngân hàng
             FillDropDownList(cboTKChiNhanhNganHang, ListComboData.LIST_BANK_BRACH, "BRANCH_NAME", "ID", Common.Common.SystemLanguage, True, cboTKChiNhanhNganHang.SelectedValue)
             ' CMND
-            dtData = rep.GetOtherList("ID_PLACE", True)
-            FillRadCombobox(cboCMNDPlace, dtData, "NAME", "ID")
+            FillDropDownList(cboCMNDPlace, ListComboData.LIST_PROVINCE, "NAME_VN", "ID", Common.Common.SystemLanguage, True, cboCMNDPlace.SelectedValue)
+            'dtData = rep.GetOtherList("ID_PLACE", True)
+            'FillRadCombobox(cboCMNDPlace, dtData, "NAME", "ID")
             ' Nguyện vọng thời gian làm việc
             dtData = rep.GetOtherList("WORK_TIME", True)
             FillRadCombobox(cboExpectThoiGianLamViec, dtData, "NAME", "ID")
@@ -1064,6 +1103,13 @@ Public Class ctrlRC_CanDtlProfile
 
             'Candidate CV
             EmpCV = New CandidateCVDTO
+            If cbPerward.SelectedValue <> "" Then
+                EmpCV.PER_WARD = cbPerward.SelectedValue
+            End If
+            If cboContractWard.SelectedValue <> "" Then
+                EmpCV.CON_WARD = cboContractWard.SelectedValue
+            End If
+
             EmpCV.GENDER = cboGender.SelectedValue
             EmpCV.NATIVE = cboNative.SelectedValue
             EmpCV.MARITAL_STATUS = cboTinhTrangHN.SelectedValue
@@ -1105,10 +1151,11 @@ Public Class ctrlRC_CanDtlProfile
             If cboPerNation.SelectedValue <> "" Then
                 EmpCV.PER_NATION_ID = Decimal.Parse(cboPerNation.SelectedValue)
             End If
+
             If cboPerProvince.SelectedValue <> "" Then
                 EmpCV.PER_PROVINCE = Decimal.Parse(cboPerProvince.SelectedValue)
             End If
-            EmpCV.CONTACT_ADDRESS = txtContactAddress.Text
+            EmpCV.CONTACT_ADDRESS = txtContactAdd.Text
             If cboContactNation.SelectedValue <> "" Then
                 EmpCV.CONTACT_NATION_ID = Decimal.Parse(cboContactNation.SelectedValue)
             End If
@@ -1175,6 +1222,16 @@ Public Class ctrlRC_CanDtlProfile
             EmpCV.TEMP_RESIDENCE_CARD_END = rdTheTamTruDenNgay.SelectedDate
 
             'EmpEducation
+            If cboNgoaNgu1.SelectedValue <> "" Then
+                EmpEducation.LANGUAGE_ID = cboNgoaNgu1.SelectedValue
+            End If
+            If cboChungchi.SelectedValue <> "" Then
+                EmpEducation.CERTIFICATE_ID = cboChungchi.SelectedValue
+            End If
+
+            If txtYearGra.Text <> "" Then
+                EmpEducation.YEAR_GRADUATE = txtYearGra.Value
+            End If
 
             EmpEducation.MARK_EDU = cboXepLoai.SelectedValue
             EmpEducation.ACADEMY = cboTrinhDoVanHoa.SelectedValue
@@ -1373,12 +1430,19 @@ Public Class ctrlRC_CanDtlProfile
 
     Private Sub cboPerDictrict_SelectedIndexChanged(ByVal sender As Object, ByVal e As Telerik.Web.UI.RadComboBoxSelectedIndexChangedEventArgs) Handles cboPerDictrict.SelectedIndexChanged
         Try
+            Dim dtData As DataTable
             If cboPerDictrict.SelectedValue <> "" Then
-                If cboContractDictrict.Text.Trim() <> String.Empty Then
-
-                Else
-                    cboContractDictrict.SelectedIndex = cboPerDictrict.SelectedIndex
-                End If
+                Using rep As New RecruitmentRepository
+                    dtData = rep.GetWardList(cboPerDictrict.SelectedValue, True)
+                    'FillDropDownList(cbPerward, dtData.AsEnumerable(), "NAME_VN", "ID", Common.Common.SystemLanguage, True, cbPerward.SelectedValue)
+                    FillRadCombobox(cbPerward, dtData, "NAME", "ID")
+                End Using
+            Else
+                cbPerward.Text = ""
+                'If cboContractDictrict.Text.Trim() <> String.Empty Then
+                'Else
+                '    cboContractDictrict.SelectedIndex = cboPerDictrict.SelectedIndex
+                'End If
             End If
         Catch ex As Exception
             DisplayException(Me.ViewName, Me.ID, ex)
@@ -1436,4 +1500,20 @@ Public Class ctrlRC_CanDtlProfile
         End Try
     End Sub
 
+    Private Sub cboContractDictrict_SelectedIndexChanged(sender As Object, e As Telerik.Web.UI.RadComboBoxSelectedIndexChangedEventArgs) Handles cboContractDictrict.SelectedIndexChanged
+        Try
+            Dim dtData As DataTable
+            If cboContractDictrict.SelectedValue <> "" Then
+                Using rep As New RecruitmentRepository
+                    dtData = rep.GetWardList(cboContractDictrict.SelectedValue, True)
+                    'FillDropDownList(cboContractWard, dtData, "NAME_VN", "ID", Common.Common.SystemLanguage, True, cboContractWard.SelectedValue)
+                    FillRadCombobox(cboContractWard, dtData, "NAME", "ID")
+                End Using
+            Else
+                cboContractWard.Text = ""
+            End If
+        Catch ex As Exception
+
+        End Try
+    End Sub
 End Class

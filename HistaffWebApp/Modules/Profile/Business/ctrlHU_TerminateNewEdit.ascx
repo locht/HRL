@@ -120,14 +120,14 @@
                     <asp:Label runat ="server" ID ="lbContractEffectDate" Text ="Từ ngày" ></asp:Label>
                 </td>
                 <td>
-                    <tlk:RadDatePicker ID="rdContractEffectDate" runat="server" DateInput-Enabled="False">
+                    <tlk:RadDatePicker ID="rdContractEffectDate" runat="server" Enabled="False">
                     </tlk:RadDatePicker> 
                 </td>
                 <td class="lb">
                     <asp:Label runat ="server" ID ="lbContractExpireDate" Text ="Đến ngày" ></asp:Label>
                 </td>
                 <td>
-                    <tlk:RadDatePicker ID="rdContractExpireDate" runat="server" DateInput-Enabled="False">
+                    <tlk:RadDatePicker ID="rdContractExpireDate" runat="server" Enabled="False">
                     </tlk:RadDatePicker>
                 </td>                
             </tr>
@@ -580,7 +580,7 @@
             </tr>
             <tr>                
                 <td class="lb">
-                    <asp:Label runat ="server" ID ="lbDecisionType" Text ="Loại quyết định" ></asp:Label>
+                    <asp:Label runat ="server" ID ="lbDecisionType" Text ="Loại quyết định" ></asp:Label> <span style="color: red"> *</span>
                 </td>
                 <td>
                     <tlk:RadComboBox ID="cboDecisionType" AutoPostBack="true" CausesValidation="false" runat="server">
@@ -598,8 +598,9 @@
                         ErrorMessage="Bạn phải nhập số quyết định." ToolTip="Bạn phải nhập số quyết định."> </asp:RequiredFieldValidator>
                 </td>
                 <td class="lb">
-                    <%# Translate("Ngày hiệu lực")%>
-                </td>
+                  <asp:Label runat ="server" ID ="lbEffectDate" Text ="Ngày hiệu lực" > </asp:Label><span style="color: red"> *</span>
+             
+                </td> 
                 <td>
                     <tlk:RadDatePicker ID="rdEffectDate" runat="server" AutoPostBack="true" CausesValidation="false">
                     </tlk:RadDatePicker>
@@ -617,7 +618,7 @@
                     <tlk:RadTextBox ID="txtUploadFile" runat="server" Visible="false">
                     </tlk:RadTextBox>
                     <tlk:RadButton runat="server" ID="btnUploadFile" SkinID="ButtonView" CausesValidation="false"
-                        TabIndex="3" />
+                        TabIndex="3"  Enabled="true"/>
                     <tlk:RadButton ID="btnDownload" runat="server" Text="<%$ Translate: Tải tập tin%>"
                         CausesValidation="false" OnClientClicked="rbtClicked" TabIndex="3" EnableViewState="false">
                     </tlk:RadButton>

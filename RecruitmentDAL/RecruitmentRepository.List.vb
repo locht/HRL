@@ -10,6 +10,22 @@ Imports System.Text.RegularExpressions
 
 Partial Class RecruitmentRepository
 
+#Region "lay phuong xa"
+    Public Function GetWardList(districtID As Decimal, ByVal isBlank As Boolean) As DataTable
+        Try
+            Using cls As New DataAccess.QueryData
+                Dim dtData As DataTable = cls.ExecuteStore("PKG_COMMON_LIST.GET_HU_WARD",
+                                           New With {.P_ISBLANK = isBlank,
+                                                     .P_DISTRICT_ID = districtID,
+                                                     .P_CUR = cls.OUT_CURSOR})
+
+                Return dtData
+            End Using
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+#End Region
 #Region "CostCenter"
 
     Public Function GetCostCenter(ByVal _filter As CostCenterDTO, ByVal PageIndex As Integer,
