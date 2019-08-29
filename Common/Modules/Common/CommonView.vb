@@ -534,6 +534,7 @@ Public Class CommonView
                     If row.Field(Of String)("DataType").Trim().ToUpper = "DateTime".ToUpper Then
                         rCol.DataFormatString = ConfigurationManager.AppSettings("FDATEGRID")
                     ElseIf row.Field(Of String)("DataType").Trim() = "Numeric" Then
+                        rCol.ItemStyle.HorizontalAlign = HorizontalAlign.Right
                         rCol.DataFormatString = "{0:#,##0.##}"
                     End If
                 Else
