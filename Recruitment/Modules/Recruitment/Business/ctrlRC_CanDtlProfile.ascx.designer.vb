@@ -365,6 +365,15 @@ Partial Public Class ctrlRC_CanDtlProfile
     Protected WithEvents rntxtCMND As Global.Telerik.Web.UI.RadNumericTextBox
 
     '''<summary>
+    '''reqID_NO control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents reqID_NO As Global.System.Web.UI.WebControls.RequiredFieldValidator
+
+    '''<summary>
     '''cusNO_ID control.
     '''</summary>
     '''<remarks>
