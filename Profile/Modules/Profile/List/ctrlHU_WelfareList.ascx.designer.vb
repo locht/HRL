@@ -104,6 +104,33 @@ Partial Public Class ctrlHU_WelfareList
     Protected WithEvents lbContractType As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
+    '''lbName control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbName As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''cboName control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents cboName As Global.Telerik.Web.UI.RadComboBox
+
+    '''<summary>
+    '''cusName control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents cusName As Global.System.Web.UI.WebControls.CustomValidator
+
+    '''<summary>
     '''lbCode control.
     '''</summary>
     '''<remarks>
@@ -147,33 +174,6 @@ Partial Public Class ctrlHU_WelfareList
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents RegularExpressionValidator1 As Global.System.Web.UI.WebControls.RegularExpressionValidator
-
-    '''<summary>
-    '''lbName control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lbName As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
-    '''cboName control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents cboName As Global.Telerik.Web.UI.RadComboBox
-
-    '''<summary>
-    '''cusName control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents cusName As Global.System.Web.UI.WebControls.CustomValidator
 
     '''<summary>
     '''lstbGender control.
@@ -246,6 +246,33 @@ Partial Public Class ctrlHU_WelfareList
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents nmSENIORITY As Global.Telerik.Web.UI.RadNumericTextBox
+
+    '''<summary>
+    '''lbDenSoThang control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbDenSoThang As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''nmDenSoThang control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents nmDenSoThang As Global.Telerik.Web.UI.RadNumericTextBox
+
+    '''<summary>
+    '''CompareValidator2 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents CompareValidator2 As Global.System.Web.UI.WebControls.CompareValidator
 
     '''<summary>
     '''lbCHILD_OLD_FROM control.

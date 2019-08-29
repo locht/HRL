@@ -722,7 +722,8 @@ Partial Class ProfileRepository
                                        .IS_AUTO = p.p.IS_AUTO,
                                        .ACTFLG = If(p.p.ACTFLG = "A", "Áp dụng", "Ngừng áp dụng"),
                                        .CREATED_DATE = p.p.CREATED_DATE,
-                                       .ID_NAME = p.p.ID_NAME})
+                                       .ID_NAME = p.p.ID_NAME,
+                                       .SENIORITY_FROM = p.p.SENIORITY_FROM})
 
             If _filter.CODE <> "" Then
                 lst = lst.Where(Function(p) p.CODE.ToUpper.Contains(_filter.CODE.ToUpper))
@@ -789,6 +790,7 @@ Partial Class ProfileRepository
             objWelfareListData.TITLE_GROUP_ID = objWelfareList.TITLE_GROUP_ID
             objWelfareListData.GENDER_NAME = objWelfareList.GENDER_NAME
             objWelfareListData.SENIORITY = objWelfareList.SENIORITY
+            objWelfareListData.SENIORITY_FROM = objWelfareList.SENIORITY_FROM
             objWelfareListData.CHILD_OLD_FROM = objWelfareList.CHILD_OLD_FROM
             objWelfareListData.CHILD_OLD_TO = objWelfareList.CHILD_OLD_TO
             objWelfareListData.MONEY = objWelfareList.MONEY
@@ -870,6 +872,7 @@ Partial Class ProfileRepository
             objWelfareListData.GENDER = objWelfareList.GENDER
             objWelfareListData.GENDER_NAME = objWelfareList.GENDER_NAME
             objWelfareListData.SENIORITY = objWelfareList.SENIORITY
+            objWelfareListData.SENIORITY_FROM = objWelfareList.SENIORITY_FROM
             objWelfareListData.CHILD_OLD_FROM = objWelfareList.CHILD_OLD_FROM
             objWelfareListData.CHILD_OLD_TO = objWelfareList.CHILD_OLD_TO
             objWelfareListData.MONEY = objWelfareList.MONEY

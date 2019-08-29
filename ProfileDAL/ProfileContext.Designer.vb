@@ -18,7 +18,7 @@ Imports System.Runtime.Serialization
 Imports System.Xml.Serialization
 
 
-<Assembly: EdmSchemaAttribute("9d50bbb5-2e40-4039-86fb-3107b047ffbd")>
+<Assembly: EdmSchemaAttribute("719325b0-35b0-43e8-99a9-e62362b3a716")>
 #Region "EDM Relationship Metadata"
 <Assembly: EdmRelationshipAttribute("ProfileModel", "FK_HU_NAT_HU_PRO", "HU_NATION", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_NATION), "HU_PROVINCE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_PROVINCE), True)>
 <Assembly: EdmRelationshipAttribute("ProfileModel", "FK_HU_PRO_HU_DIS", "HU_PROVINCE", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_PROVINCE), "HU_DISTRICT", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_DISTRICT), True)>
@@ -56644,9 +56644,11 @@ Public Partial Class HU_WELFARE_LIST
     ''' Create a new HU_WELFARE_LIST object.
     ''' </summary>
     ''' <param name="id">Initial value of the ID property.</param>
-    Public Shared Function CreateHU_WELFARE_LIST(id As Global.System.Decimal) As HU_WELFARE_LIST
+    ''' <param name="sENIORITY_FROM">Initial value of the SENIORITY_FROM property.</param>
+    Public Shared Function CreateHU_WELFARE_LIST(id As Global.System.Decimal, sENIORITY_FROM As Global.System.Decimal) As HU_WELFARE_LIST
         Dim hU_WELFARE_LIST as HU_WELFARE_LIST = New HU_WELFARE_LIST
         hU_WELFARE_LIST.ID = id
+        hU_WELFARE_LIST.SENIORITY_FROM = sENIORITY_FROM
         Return hU_WELFARE_LIST
     End Function
 
@@ -57254,6 +57256,31 @@ Public Partial Class HU_WELFARE_LIST
     End Sub
 
     Private Partial Sub OnTITLE_GROUP_IDChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=false)>
+    <DataMemberAttribute()>
+    Public Property SENIORITY_FROM() As Global.System.Decimal
+        Get
+            Return _SENIORITY_FROM
+        End Get
+        Set
+            OnSENIORITY_FROMChanging(value)
+            ReportPropertyChanging("SENIORITY_FROM")
+            _SENIORITY_FROM = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("SENIORITY_FROM")
+            OnSENIORITY_FROMChanged()
+        End Set
+    End Property
+
+    Private _SENIORITY_FROM As Global.System.Decimal
+    Private Partial Sub OnSENIORITY_FROMChanging(value As Global.System.Decimal)
+    End Sub
+
+    Private Partial Sub OnSENIORITY_FROMChanged()
     End Sub
 
     #End Region

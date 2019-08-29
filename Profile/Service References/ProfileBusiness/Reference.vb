@@ -17606,6 +17606,9 @@ Namespace ProfileBusiness
         Private INSURANCE_STATUSField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private INSURANCE_STATUS_NAMEField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private IS_ALLOWField As Boolean
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -18254,6 +18257,19 @@ Namespace ProfileBusiness
                 If (Object.ReferenceEquals(Me.INSURANCE_STATUSField, value) <> true) Then
                     Me.INSURANCE_STATUSField = value
                     Me.RaisePropertyChanged("INSURANCE_STATUS")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property INSURANCE_STATUS_NAME() As String
+            Get
+                Return Me.INSURANCE_STATUS_NAMEField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.INSURANCE_STATUS_NAMEField, value) <> true) Then
+                    Me.INSURANCE_STATUS_NAMEField = value
+                    Me.RaisePropertyChanged("INSURANCE_STATUS_NAME")
                 End If
             End Set
         End Property
@@ -26856,6 +26872,9 @@ Namespace ProfileBusiness
         Private SENIORITYField As System.Nullable(Of Decimal)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private SENIORITY_FROMField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private START_DATEField As System.Nullable(Of Date)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -27159,6 +27178,19 @@ Namespace ProfileBusiness
                 If (Me.SENIORITYField.Equals(value) <> true) Then
                     Me.SENIORITYField = value
                     Me.RaisePropertyChanged("SENIORITY")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property SENIORITY_FROM() As System.Nullable(Of Decimal)
+            Get
+                Return Me.SENIORITY_FROMField
+            End Get
+            Set
+                If (Me.SENIORITY_FROMField.Equals(value) <> true) Then
+                    Me.SENIORITY_FROMField = value
+                    Me.RaisePropertyChanged("SENIORITY_FROM")
                 End If
             End Set
         End Property

@@ -271,14 +271,14 @@ Public Class ctrlHU_WelfareList
             Select Case CurrentState
                 Case CommonMessage.STATE_NEW
                     EnabledGridNotPostback(rgWelfareList, False)
-                    EnableControlAll(True, txtCode, cboName, nmSENIORITY, nmCHILD_OLD_FROM, cbGroupTitle,
+                    EnableControlAll(True, txtCode, cboName, nmSENIORITY, nmDenSoThang, nmCHILD_OLD_FROM, cbGroupTitle,
                                      nmCHILD_OLD_TO, nmMONEY, lstbGender, lstCONTRACT_TYPE,
                                      dpSTART_DATE, dpEND_DATE, chkIS_AUTO)
                     txtCode.ReadOnly = True
 
                 Case CommonMessage.STATE_NORMAL
                     EnabledGridNotPostback(rgWelfareList, True)
-                    EnableControlAll(False, txtCode, cboName, nmSENIORITY, nmCHILD_OLD_FROM, cbGroupTitle,
+                    EnableControlAll(False, txtCode, cboName, nmSENIORITY, nmDenSoThang, nmCHILD_OLD_FROM, cbGroupTitle,
                                      nmCHILD_OLD_TO, nmMONEY, lstbGender, lstCONTRACT_TYPE,
                                      dpSTART_DATE, dpEND_DATE, chkIS_AUTO)
                     txtCode.ReadOnly = True
@@ -286,7 +286,7 @@ Public Class ctrlHU_WelfareList
                 Case CommonMessage.STATE_EDIT
 
                     EnabledGridNotPostback(rgWelfareList, False)
-                    EnableControlAll(True, txtCode, cboName, nmSENIORITY, nmCHILD_OLD_FROM, cbGroupTitle,
+                    EnableControlAll(True, txtCode, cboName, nmSENIORITY, nmDenSoThang, nmCHILD_OLD_FROM, cbGroupTitle,
                                      nmCHILD_OLD_TO, nmMONEY, lstbGender, lstCONTRACT_TYPE,
                                      dpSTART_DATE, dpEND_DATE, chkIS_AUTO)
 
@@ -363,6 +363,7 @@ Public Class ctrlHU_WelfareList
             dic.Add("GENDER", lstbGender)
             dic.Add("CONTRACT_TYPE", lstCONTRACT_TYPE)
             dic.Add("SENIORITY", nmSENIORITY)
+            dic.Add("SENIORITY_FROM", nmDenSoThang)
             dic.Add("MONEY", nmMONEY)
             dic.Add("CHILD_OLD_FROM", nmCHILD_OLD_FROM)
             dic.Add("CHILD_OLD_TO", nmCHILD_OLD_TO)
@@ -549,7 +550,7 @@ Public Class ctrlHU_WelfareList
             Select Case CType(e.Item, RadToolBarButton).CommandName
                 Case CommonMessage.TOOLBARITEM_CREATE
                     CurrentState = CommonMessage.STATE_NEW
-                    ClearControlValue(txtCode, cboName, nmSENIORITY, cbGroupTitle,
+                    ClearControlValue(txtCode, cboName, nmSENIORITY, nmDenSoThang, cbGroupTitle,
                                       nmMONEY, lstbGender, lstCONTRACT_TYPE,
                                       dpSTART_DATE, dpEND_DATE, chkIS_AUTO, isEdit, nmCHILD_OLD_FROM, nmCHILD_OLD_TO)
                     chkIS_AUTO.Checked = Nothing
@@ -682,6 +683,7 @@ Public Class ctrlHU_WelfareList
                             Exit Sub
                         End If
                         objWelfareList.SENIORITY = nmSENIORITY.Value
+                        objWelfareList.SENIORITY_FROM = nmDenSoThang.Value
                         objWelfareList.MONEY = nmMONEY.Value
                         objWelfareList.START_DATE = dpSTART_DATE.SelectedDate
                         objWelfareList.END_DATE = dpEND_DATE.SelectedDate
@@ -702,7 +704,7 @@ Public Class ctrlHU_WelfareList
                                     CurrentState = CommonMessage.STATE_NORMAL
                                     Refresh("InsertView")
                                     'SelectedItemDataGridByKey(rgWelfareList, gID)
-                                    ClearControlValue(txtCode, cboName, nmSENIORITY, cbGroupTitle,
+                                    ClearControlValue(txtCode, cboName, nmSENIORITY, nmDenSoThang, cbGroupTitle,
                                        nmMONEY, lstbGender, lstCONTRACT_TYPE,
                                        dpSTART_DATE, dpEND_DATE, chkIS_AUTO)
                                 Else
@@ -714,7 +716,7 @@ Public Class ctrlHU_WelfareList
                                     CurrentState = CommonMessage.STATE_NORMAL
                                     Refresh("UpdateView")
                                     'SelectedItemDataGridByKey(rgWelfareList, gID, , rgWelfareList.CurrentPageIndex)
-                                    ClearControlValue(txtCode, cboName, nmSENIORITY, cbGroupTitle,
+                                    ClearControlValue(txtCode, cboName, nmSENIORITY, nmDenSoThang, cbGroupTitle,
                                       nmMONEY, lstbGender, lstCONTRACT_TYPE,
                                       dpSTART_DATE, dpEND_DATE, chkIS_AUTO)
                                 Else
@@ -729,7 +731,7 @@ Public Class ctrlHU_WelfareList
                     rgWelfareList.Rebind()
                 Case CommonMessage.TOOLBARITEM_CANCEL
                     CurrentState = CommonMessage.STATE_NORMAL
-                    ClearControlValue(txtCode, cboName, nmSENIORITY, nmMONEY, cbGroupTitle,
+                    ClearControlValue(txtCode, cboName, nmSENIORITY, nmDenSoThang, nmMONEY, cbGroupTitle,
                                       lstbGender, lstCONTRACT_TYPE, dpSTART_DATE,
                                       dpEND_DATE, chkIS_AUTO, nmCHILD_OLD_FROM, nmCHILD_OLD_TO, cboName)
                     chkIS_AUTO.Checked = Nothing
@@ -829,7 +831,7 @@ Public Class ctrlHU_WelfareList
                 UpdateControlState()
             End If
             rgWelfareList.Rebind()
-            ClearControlValue(txtCode, cboName, nmSENIORITY, cbGroupTitle,
+            ClearControlValue(txtCode, cboName, nmSENIORITY, nmDenSoThang, cbGroupTitle,
                                       nmMONEY, lstbGender, lstCONTRACT_TYPE,
                                       dpSTART_DATE, dpEND_DATE, chkIS_AUTO)
             chkIS_AUTO.Checked = Nothing
