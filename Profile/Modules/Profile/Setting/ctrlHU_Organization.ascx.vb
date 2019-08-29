@@ -379,6 +379,13 @@ Public Class ctrlHU_Organization
                         If IsDate(rdFOUNDATION_DATE.SelectedDate) Then
                             objOrgFunction.FOUNDATION_DATE = rdFOUNDATION_DATE.SelectedDate
                         End If
+
+                        If IsNumeric(rdOrdNo.Value) Then
+                            objOrgFunction.ORD_NO = rdOrdNo.Value
+                        Else
+                            objOrgFunction.ORD_NO = 0
+                        End If
+
                         If IsDate(rdDicision_Date.SelectedDate) Then
                             objOrgFunction.DISSOLVE_DATE = rdDicision_Date.SelectedDate
                         End If
@@ -619,9 +626,11 @@ Public Class ctrlHU_Organization
                     txtNumberDecision.Text = ""
                     rdEffectDate.SelectedDate = Nothing
                     rdFOUNDATION_DATE.SelectedDate = Nothing
+                    rdOrdNo.Value = Nothing
                     rdDATE_BUSINESS.SelectedDate = Nothing
                     rdDicision_Date.SelectedDate = Nothing
                     txtREMARK.Text = ""
+                    rdOrdNo.Value = Nothing
                     GetDataCombo()
                 End If
                 _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
@@ -852,6 +861,7 @@ Public Class ctrlHU_Organization
                     rdFOUNDATION_DATE.Enabled = False
                     rdEffectDate.Enabled = False
                     rdDicision_Date.Enabled = False
+                    rdOrdNo.Enabled = False
                     'txtFax.ReadOnly = True
                     'txtMobile.ReadOnly = True
                     'txtProvinceName.ReadOnly = True
@@ -901,6 +911,7 @@ Public Class ctrlHU_Organization
                     rdEffectDate.SelectedDate = Nothing
                     rdDicision_Date.SelectedDate = Nothing
                     rdFOUNDATION_DATE.SelectedDate = Nothing
+                    rdOrdNo.Value = Nothing
                     'AutoGenTimeSheet.Enabled = True
                 Case (CommonMessage.STATE_EDIT)
                     cbDissolve.Enabled = False
@@ -931,6 +942,7 @@ Public Class ctrlHU_Organization
                     'AutoGenTimeSheet.Enabled = False
                     EnableRadDatePicker(rdDicision_Date, True)
                     EnableRadDatePicker(rdFOUNDATION_DATE, True)
+                    rdOrdNo.Enabled = True
                     EnableRadDatePicker(rdEffectDate, True)
                     '_radAsynceUpload.Enabled = True
                     '_radAsynceUpload1.Enabled = True
@@ -1198,6 +1210,11 @@ Public Class ctrlHU_Organization
                     rdFOUNDATION_DATE.SelectedDate = orgItem.FOUNDATION_DATE
                 Else
                     ClearControlValue(rdFOUNDATION_DATE)
+                End If
+                If IsNumeric(orgItem.ORD_NO) Then
+                    rdOrdNo.Value = orgItem.ORD_NO
+                Else
+                    rdOrdNo.Value = 0
                 End If
                 rdDicision_Date.SelectedDate = Nothing
                 If IsDate(orgItem.DISSOLVE_DATE) Then

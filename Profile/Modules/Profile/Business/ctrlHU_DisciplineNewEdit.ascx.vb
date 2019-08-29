@@ -377,7 +377,7 @@ Public Class ctrlHU_DisciplineNewEdit
                     Next
                     rgEmployee.Rebind()
                     If Discipline.STATUS_ID = ProfileCommon.DISCIPLINE_STATUS.APPROVE_ID Then
-                        'PanelEmployee.Enabled = False
+
                         EnableControlAll_Cus(False, RadPane2)
                         EnableControlAll(True, rnAmountSalaryMonth)
 
@@ -396,7 +396,7 @@ Public Class ctrlHU_DisciplineNewEdit
                         btnHSL.Enabled = True
                         Dim btnDeleteEmp As RadButton = rgEmployee.MasterTableView.GetItems(GridItemType.CommandItem)(0).FindControl("btnDeleteEmp")
                         btnDeleteEmp.Enabled = False
-                      
+
                         rgEmployee.Items(0).Enabled = False
                         For Each item As GridDataItem In rgEmployee.Items
 
@@ -1683,7 +1683,7 @@ Public Class ctrlHU_DisciplineNewEdit
         End If
     End Sub
 
-    Private Sub rntxtMoney_TextChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles rntxtMoney.TextChanged, rntxtIndemnifyMoney.TextChanged, rdAmountPaidCash.TextChanged
+    Private Sub rntxtMoney_TextChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles rntxtMoney.TextChanged, rntxtIndemnifyMoney.TextChanged
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
         Try
             Dim startTime As DateTime = DateTime.UtcNow
@@ -1759,6 +1759,46 @@ Public Class ctrlHU_DisciplineNewEdit
         End Try
     End Sub
 
+    Private Sub rdAmountPaidCash_TextChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles rdAmountPaidCash.TextChanged
+        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+        Try
+            Dim startTime As DateTime = DateTime.UtcNow
+
+            Dim totalPaidIMoeny As Decimal = 0
+            Dim totalrdAmountPaidCash As Decimal = 0
+
+            Dim totalAmountToPaid As Decimal = 0
+
+            If rnPaidIMoeny.Value IsNot Nothing Then
+                totalPaidIMoeny += rnPaidIMoeny.Value
+            End If
+
+            If rdAmountPaidCash.Value IsNot Nothing Then
+                totalrdAmountPaidCash += rdAmountPaidCash.Value
+            End If
+
+            totalAmountToPaid = Utilities.ObjToDecima(totalPaidIMoeny - totalrdAmountPaidCash)
+            rnAmountToPaid.Value = totalAmountToPaid
+
+            Dim intMoneyDetail As Decimal = 0
+            Dim intAmountToPaid As Decimal = 0
+            If (Employee_Discipline.Count > 0) Then
+                If rnAmountToPaid.Value IsNot Nothing Then
+                    intAmountToPaid += rnAmountToPaid.Value
+                End If
+                intMoneyDetail = Utilities.ObjToDecima(intAmountToPaid / Employee_Discipline.Count)
+            End If
+
+            For index = 0 To Employee_Discipline.Count - 1
+                Employee_Discipline.Item(index).INDEMNIFY_MONEY = intMoneyDetail
+            Next
+            rgEmployee.Rebind()
+
+            _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
+        Catch ex As Exception
+            _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
+        End Try
+    End Sub
 
     Private Sub rnPaidIMoeny_TextChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles rnPaidIMoeny.TextChanged
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
