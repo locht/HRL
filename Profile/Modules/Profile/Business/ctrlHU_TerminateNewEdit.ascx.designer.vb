@@ -869,6 +869,15 @@ Partial Public Class ctrlHU_TerminateNewEdit
     Protected WithEvents reqDecisionNo As Global.System.Web.UI.WebControls.RequiredFieldValidator
 
     '''<summary>
+    '''lbEffectDate control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbEffectDate As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
     '''rdEffectDate control.
     '''</summary>
     '''<remarks>
