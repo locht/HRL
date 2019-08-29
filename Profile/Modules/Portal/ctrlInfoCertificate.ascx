@@ -166,14 +166,14 @@
                     ErrorMessage="<%$ Translate: Bạn phải chọn tên trường %>" ToolTip="<%$ Translate: Bạn phải chọn tên trường %>">
                 </asp:RequiredFieldValidator>
             </td>
-            <td class="lb">
+            <td style="display:none" class="lb">
                 <%# Translate("Tập tin đính kèm")%>
             </td>
-            <td>
+            <td style="display:none">
                 <tlk:RadTextBox ID="txtUploadFile" runat="server">
                 </tlk:RadTextBox>
             </td>
-            <td>
+            <td style="display:none">
                 <tlk:RadButton runat="server" ID="btnUploadFile" SkinID="ButtonView" CausesValidation="false" />
                 <tlk:RadButton runat="server" ID="btnDownload" Text="<%$ Translate: Tải xuống%>"
                     CausesValidation="false" OnClientClicked="rbtClicked" EnableViewState="false">
