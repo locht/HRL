@@ -10,7 +10,10 @@ Namespace RecruitmentBusiness.ServiceContracts
 
         <OperationContract()>
         Function TestService(ByVal str As String) As String
-
+#Region "danh muc phuong xa"
+        <OperationContract()>
+        Function GetWardList(ByVal districtID As Decimal, ByVal isBlank As Boolean) As DataTable
+#End Region
 #Region "Hoadm - List"
 
 #Region "CostCenter"

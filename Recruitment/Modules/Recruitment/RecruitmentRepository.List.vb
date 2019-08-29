@@ -2,7 +2,20 @@
 Imports Framework.UI
 
 Partial Class RecruitmentRepository
+#Region "danh muc phuong xa"
+    Public Function GetWardList(ByVal districtID As Decimal, ByVal isBlank As Boolean) As DataTable
+        Dim dtData As DataTable
+        Using rep As New RecruitmentBusinessClient
+            Try
+                dtData = rep.GetWardList(districtID, isBlank)
+                Return dtData
+            Catch ex As Exception
+                Throw ex
+            End Try
+        End Using
 
+    End Function
+#End Region
 #Region "Hoadm - List"
 
 #Region "CostCenter"
