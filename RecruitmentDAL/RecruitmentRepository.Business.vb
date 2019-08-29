@@ -1867,6 +1867,7 @@ Partial Class RecruitmentRepository
             objEmpCVData.CONTACT_MOBILE = objEmpCV.CONTACT_MOBILE
             objEmpCVData.CONTACT_PHONE = objEmpCV.CONTACT_PHONE
             objEmpCVData.PER_EMAIL = objEmpCV.PER_EMAIL
+            objEmpCVData.WORK_EMAIL = objEmpCV.WORK_EMAIl
             objEmpCVData.PER_TAX_DATE = objEmpCV.PER_TAX_DATE
             objEmpCVData.PER_TAX_PLACE = objEmpCV.PER_TAX_PLACE
             objEmpCVData.PASSPORT_DATE_EXPIRATION = objEmpCV.PASSPORT_DATE_EXPIRATION

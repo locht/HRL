@@ -4,6 +4,8 @@ Imports Profile.ProfileBusiness
 Imports Telerik.Web.UI
 Imports Framework.UI.Utilities
 Imports WebAppLog
+Imports Profile.ctrlHU_TerminateNewEdit
+
 Public Class ctrlHU_Terminate3BNewEdit
     Inherits CommonView
     Protected WithEvents ctrlFindEmployeePopup As ctrlFindEmployeePopup
@@ -142,7 +144,7 @@ Public Class ctrlHU_Terminate3BNewEdit
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
             DisplayException(Me.ViewName, Me.ID, ex)
-            _myLog.WriteLog(_myLog._error, _classPath, method, 0, ex, "")
+            _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
         End Try
 
     End Sub
@@ -162,7 +164,7 @@ Public Class ctrlHU_Terminate3BNewEdit
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
             DisplayException(Me.ViewName, Me.ID, ex)
-            _myLog.WriteLog(_myLog._error, _classPath, method, 0, ex, "")
+            _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
         End Try
     End Sub
 
@@ -186,7 +188,7 @@ Public Class ctrlHU_Terminate3BNewEdit
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
             DisplayException(Me.ViewName, Me.ID, ex)
-            _myLog.WriteLog(_myLog._error, _classPath, method, 0, ex, "")
+            _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
         End Try
     End Sub
 
@@ -344,9 +346,9 @@ Public Class ctrlHU_Terminate3BNewEdit
                         objTerminate3B.INSURANCE_RDATE = rdInsuranceDate.SelectedDate
                         objTerminate3B.INSURANCE_STATUS = txtInsuranceStatus.Text
 
-                        objTerminate3B.IDENTIFI_MONEY = rntxtIdentifiMoney.value
-                        objTerminate3B.SUN_MONEY = rntxtSunMoney.value
-                        objTerminate3B.INSURANCE_MONEY = rntxtInsuranceMoney.value
+                        objTerminate3B.IDENTIFI_MONEY = rntxtIdentifiMoney.Value
+                        objTerminate3B.SUN_MONEY = rntxtSunMoney.Value
+                        objTerminate3B.INSURANCE_MONEY = rntxtInsuranceMoney.Value
                         objTerminate3B.IS_REMAINING_LEAVE = chkIsRemainingLeave.Checked
                         objTerminate3B.IS_COMPENSATORY_LEAVE = chkIsCompensatoryLeave.Checked
                         objTerminate3B.REMAINING_LEAVE = rntxtRemainingLeave.Value
@@ -396,7 +398,7 @@ Public Class ctrlHU_Terminate3BNewEdit
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
             DisplayException(Me.ViewName, Me.ID, ex)
-            _myLog.WriteLog(_myLog._error, _classPath, method, 0, ex, "")
+            _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
         End Try
 
     End Sub
@@ -440,7 +442,7 @@ Public Class ctrlHU_Terminate3BNewEdit
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
             DisplayException(Me.ViewName, Me.ID, ex)
-            _myLog.WriteLog(_myLog._error, _classPath, method, 0, ex, "")
+            _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
         End Try
 
     End Sub
@@ -467,7 +469,7 @@ Public Class ctrlHU_Terminate3BNewEdit
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
             DisplayException(Me.ViewName, Me.ID, ex)
-            _myLog.WriteLog(_myLog._error, _classPath, method, 0, ex, "")
+            _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
         End Try
     End Sub
 
@@ -492,7 +494,7 @@ Public Class ctrlHU_Terminate3BNewEdit
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
             DisplayException(Me.ViewName, Me.ID, ex)
-            _myLog.WriteLog(_myLog._error, _classPath, method, 0, ex, "")
+            _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
         End Try
 
     End Sub
@@ -533,7 +535,7 @@ Public Class ctrlHU_Terminate3BNewEdit
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
             DisplayException(Me.ViewName, Me.ID, ex)
-            _myLog.WriteLog(_myLog._error, _classPath, method, 0, ex, "")
+            _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
         End Try
 
     End Sub
@@ -574,7 +576,7 @@ Public Class ctrlHU_Terminate3BNewEdit
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
             Throw ex
-            _myLog.WriteLog(_myLog._error, _classPath, method, 0, ex, "")
+            _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
         End Try
 
     End Sub
@@ -634,7 +636,7 @@ Public Class ctrlHU_Terminate3BNewEdit
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
             Throw ex
-            _myLog.WriteLog(_myLog._error, _classPath, method, 0, ex, "")
+            _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
         End Try
         Return str
     End Function
@@ -665,7 +667,7 @@ Public Class ctrlHU_Terminate3BNewEdit
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
             DisplayException(Me.ViewName, Me.ID, ex)
-            _myLog.WriteLog(_myLog._error, _classPath, method, 0, ex, "")
+            _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
         End Try
 
     End Sub
@@ -709,7 +711,7 @@ Public Class ctrlHU_Terminate3BNewEdit
             End Using
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
-            _myLog.WriteLog(_myLog._error, _classPath, method, 0, ex, "")
+            _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
         End Try
 
     End Sub
@@ -739,7 +741,7 @@ Public Class ctrlHU_Terminate3BNewEdit
             End Using
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
-            _myLog.WriteLog(_myLog._error, _classPath, method, 0, ex, "")
+            _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
         End Try
     End Sub
 

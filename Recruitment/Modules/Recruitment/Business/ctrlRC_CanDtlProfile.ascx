@@ -237,14 +237,15 @@
                             </td>
                             <td class="lb">
                                 <%# Translate("Số CMND/thẻ căn cước")%>
+                                <span class="lbReq">*</span>
                             </td>
                             <td>
-                                <tlk:RadNumericTextBox ID="rntxtCMND" runat="server" MinValue="0">
+                                <tlk:RadNumericTextBox ID="rntxtCMND" runat="server">
                                     <NumberFormat AllowRounding="false" GroupSeparator="" />
                                 </tlk:RadNumericTextBox>
-                                <%--<asp:RequiredFieldValidator ID="reqID_NO" runat="server" ErrorMessage="<%$ Translate: Bạn phải chọn Số CMND %>"
+                                <asp:RequiredFieldValidator ID="reqID_NO" runat="server" ErrorMessage="<%$ Translate: Bạn phải chọn Số CMND %>"
                                     ToolTip="<%$ Translate: Bạn phải chọn Số CMND %>" ControlToValidate="rntxtCMND">
-                                </asp:RequiredFieldValidator>--%>
+                                </asp:RequiredFieldValidator>
                                 <asp:CustomValidator ID="cusNO_ID" runat="server" ErrorMessage="<%$ Translate: CMND này đã tồn tại %>"
                                     ToolTip="<%$ Translate: CMND này đã tồn tại %>">
                                 </asp:CustomValidator>
@@ -828,6 +829,9 @@
                             </td>
                             <td>
                                 <tlk:RadNumericTextBox runat="server" ID="txtYearGra">
+                                    <NumberFormat AllowRounding="false" KeepNotRoundedValue="true" DecimalDigits="1"
+                                        DecimalSeparator="." />
+                                    <ClientEvents OnBlur="displayDecimalFormat" OnLoad="displayDecimalFormat" OnValueChanged="displayDecimalFormat" />
                                 </tlk:RadNumericTextBox>
                             </td>
                             <td style="display: none" class="lb">

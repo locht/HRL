@@ -22,6 +22,7 @@ Public Class ctrlHU_TerminateNewEdit
     Dim _mylog As New MyLog()
     Dim _pathLog As String = _mylog._pathLog
     Dim _classPath As String = "Profile\Modules\Profile\Business" + Me.GetType().Name.ToString()
+
 #Region "Property"
     ''' <summary>
     ''' IDDetailSelecting
@@ -662,18 +663,12 @@ Public Class ctrlHU_TerminateNewEdit
         Dim startTime As DateTime = DateTime.UtcNow
 
         Try
-            IDDebtSelecting = Decimal.Parse(CType(rgDebt.SelectedItems(0), GridDataItem).GetDataKeyValue("ID").ToString)
-            Dim datasource = GetDebtsSource()
-            Dim itemSelected = datasource.Find(Function(f) f.ID = IDDebtSelecting)
-            If itemSelected IsNot Nothing Then
-                cboDebtType.SelectedValue = itemSelected.DEBT_TYPE_ID
-                rntxtDebtMoney.Value = itemSelected.MONEY
-                cboDebtStatus.SelectedValue = itemSelected.DEBT_STATUS
-                txtDebtNote.Text = itemSelected.REMARK
-            End If
-            lstDebtForEdit = datasource
-
-            'rgDebt.DataBind()
+            For Each _item As GridDataItem In rgDebt.SelectedItems
+                cboDebtType.SelectedValue = _item.GetDataKeyValue("DEBT_TYPE_ID")
+                rntxtDebtMoney.Value = Decimal.Parse(_item.GetDataKeyValue("MONEY"))
+                cboDebtStatus.SelectedValue = _item.GetDataKeyValue("DEBT_STATUS")
+                txtDebtNote.Text = _item.GetDataKeyValue("REMARK")
+            Next
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
             'DisplayException(Me.ViewName, Me.ID, ex)
@@ -1436,14 +1431,26 @@ Public Class ctrlHU_TerminateNewEdit
         Dim dataSource = GetDebtsSource()
         Select Case e.CommandName
             Case "btnAddDebt"
+                If cboDebtType.SelectedValue = "" Then
+                    ShowMessage(Translate("Loại công nợ chưa được chọn. Vui lòng kiểm tra lại !"), NotifyType.Warning)
+                    Exit Sub
+                End If
+                If rntxtDebtMoney.Value.HasValue = False Then
+                    ShowMessage(Translate("Số tiền không để trống. Vui lòng kiểm tra lại !"), NotifyType.Warning)
+                    Exit Sub
+                End If
+                If cboDebtStatus.SelectedValue = "" Then
+                    ShowMessage(Translate("Trạng thái công nợ chưa được chọn. Vui lòng kiểm tra lại !"), NotifyType.Warning)
+                    Exit Sub
+                End If
                 AddDebt(dataSource)
                 ClearControlValue(cboDebtType, rntxtDebtMoney, txtDebtNote, cboDebtStatus)
                 rgDebt.DataSource = dataSource
-            Case "btnEditDebt"
-                EditDebt(lstDebtForEdit, IDDebtSelecting)
-                rgDebt.DataSource = lstDebtForEdit
+                'Case "btnEditDebt"
+                '    EditDebt(lstDebtForEdit, IDDebtSelecting)
+                '    rgDebt.DataSource = lstDebtForEdit
             Case "btnDeleteDebts"
-                DeleteDebts(dataSource, rgDebt.SelectedItems)
+                DeleteDebts(dataSource)
                 ClearControlValue(cboDebtType, rntxtDebtMoney, txtDebtNote, cboDebtStatus)
                 rgDebt.DataSource = dataSource
         End Select
@@ -1497,6 +1504,12 @@ Public Class ctrlHU_TerminateNewEdit
     End Function
     Private Function AddDebt(ByVal dataSource As List(Of DebtDTO)) As List(Of DebtDTO)
         Try
+            'Kiểm tra (hoặc xóa) loại công nợ đã tồn tại hay chưa
+            Dim item_Ck = (From p In dataSource.AsEnumerable Where p.DEBT_TYPE_ID = cboDebtType.SelectedValue).FirstOrDefault
+            If item_Ck IsNot Nothing Then
+                dataSource.Remove(item_Ck)
+            End If
+
             Dim rowId = dataSource.Count + 1 'dung de delete row
 
             dataSource.Add(New DebtDTO With {.ID = Nothing,
@@ -1511,16 +1524,14 @@ Public Class ctrlHU_TerminateNewEdit
             Throw ex
         End Try
     End Function
-    Private Function DeleteDebts(ByVal dataSource As List(Of DebtDTO), ByVal selectedItems As GridItemCollection) As List(Of DebtDTO)
+    Private Function DeleteDebts(ByVal dataSource As List(Of DebtDTO)) As List(Of DebtDTO)
         Try
-            Dim rowIDs As New List(Of String)
-            For Each item As GridDataItem In selectedItems
-                rowIDs.Add(item.GetDataKeyValue("ID"))
+            For Each item As GridDataItem In rgDebt.SelectedItems
+                Dim item_Ck = (From p In dataSource.AsEnumerable Where p.DEBT_TYPE_ID = item.GetDataKeyValue("DEBT_TYPE_ID")).FirstOrDefault
+                If item_Ck IsNot Nothing Then
+                    dataSource.Remove(item_Ck)
+                End If
             Next
-            rowIDs.RemoveAll(Function(f) String.IsNullOrEmpty(f))
-            If rowIDs.Count > 0 Then
-                dataSource.RemoveAll(Function(f) rowIDs.Contains(f.ID))
-            End If
             Return dataSource
         Catch ex As Exception
             Throw ex
@@ -1878,124 +1889,129 @@ Public Class ctrlHU_TerminateNewEdit
     End Sub
 #End Region
 
+#Region "Caculate"
+
     Private Sub rntxtyearforallow_loss_TextChanged(sender As Object, e As System.EventArgs) Handles rntxtyearforallow_loss.TextChanged, rdEffectDate.SelectedDateChanged
         Tinh_Tien_Tro_Cap_Thoi_Viec()
     End Sub
+
     Private Sub Tinh_Tien_Tro_Cap_Thoi_Viec()
         Dim tempValue = If(rntxtSalaryMedium_loss.Value Is Nothing, 0, rntxtSalaryMedium_loss.Value) * If(rntxtyearforallow_loss.Value Is Nothing, 0, rntxtyearforallow_loss.Value) * 0.5
         rntxtAllowanceTerminate.Text = If(tempValue > 0, Math.Round(CType(tempValue, Decimal), 0), Nothing)
     End Sub
 
-End Class
-''' <summary>
-''' Class tinh so nam cong tac cua nhan vien
-''' </summary>
-''' <remarks></remarks>
+    ''' <summary>
+    ''' Class tinh so nam cong tac cua nhan vien
+    ''' </summary>
+    ''' <remarks></remarks>
+
+#End Region
 #Region "DateDifference"
 
-Public Class DateDifference
-    ''' <summary>
-    ''' defining Number of days in month; index 0=> january and 11=> December
-    ''' february contain either 28 or 29 days, that's why here value is -1
-    ''' which wil be calculate later.
-    ''' </summary>
-    Private monthDay() As Integer = {31, -1, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31}
+    Public Class DateDifference
+        ''' <summary>
+        ''' defining Number of days in month; index 0=> january and 11=> December
+        ''' february contain either 28 or 29 days, that's why here value is -1
+        ''' which wil be calculate later.
+        ''' </summary>
+        Private monthDay() As Integer = {31, -1, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31}
 
-    ''' <summary>
-    ''' từ ngày
-    ''' </summary>
-    Private fromDate As Date
+        ''' <summary>
+        ''' từ ngày
+        ''' </summary>
+        Private fromDate As Date
 
-    ''' <summary>
-    ''' đến ngày
-    ''' </summary>
-    Private toDate As Date
+        ''' <summary>
+        ''' đến ngày
+        ''' </summary>
+        Private toDate As Date
 
-    ''' <summary>
-    ''' 3 tham số trả về
-    ''' </summary>
-    Private year As Integer
-    Private month As Integer
-    Private day As Integer
-    Dim _mylog As New MyLog()
-    Dim _pathLog As String = _mylog._pathLog
-    Dim _classPath As String = "Profile\Modules\Profile\Business" + Me.GetType().Name.ToString()
+        ''' <summary>
+        ''' 3 tham số trả về
+        ''' </summary>
+        Private year As Integer
+        Private month As Integer
+        Private day As Integer
+        Dim _mylog As New MyLog()
+        Dim _pathLog As String = _mylog._pathLog
+        Dim _classPath As String = "Profile\Modules\Profile\Business" + Me.GetType().Name.ToString()
 
-    Public Sub New(ByVal d1 As Date, ByVal d2 As Date)
-        Dim startTime As DateTime = DateTime.UtcNow
-        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
-        Try
-            Dim increment As Integer
+        Public Sub New(ByVal d1 As Date, ByVal d2 As Date)
+            Dim startTime As DateTime = DateTime.UtcNow
+            Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+            Try
+                Dim increment As Integer
 
-            If d1 > d2 Then
-                Me.fromDate = d2
-                Me.toDate = d1
-            Else
-                Me.fromDate = d1
-                Me.toDate = d2
-            End If
-
-            ' Tính toán ngày
-            increment = 0
-
-            If Me.fromDate.Day > Me.toDate.Day Then
-                increment = Me.monthDay(Me.fromDate.Month - 1)
-            End If
-
-            ' Nếu là tháng 2
-            If increment = -1 Then
-                ' kiểm tra năm nhuận
-                If Date.IsLeapYear(Me.fromDate.Year) Then
-                    ' nếu là năm nhuận tháng 2 có 29 ngày
-                    increment = 29
+                If d1 > d2 Then
+                    Me.fromDate = d2
+                    Me.toDate = d1
                 Else
-                    increment = 28
+                    Me.fromDate = d1
+                    Me.toDate = d2
                 End If
-            End If
-            ' Nếu không phải tháng 2
-            If increment <> 0 Then
-                day = (Me.toDate.Day + increment) - Me.fromDate.Day
-                increment = 1
-            Else
-                day = Me.toDate.Day - Me.fromDate.Day
-            End If
 
-            ' tính ra số tháng
-            If (Me.fromDate.Month + increment) > Me.toDate.Month Then
-                Me.month = (Me.toDate.Month + 12) - (Me.fromDate.Month + increment)
-                increment = 1
-            Else
-                Me.month = (Me.toDate.Month) - (Me.fromDate.Month + increment)
+                ' Tính toán ngày
                 increment = 0
-            End If
 
-            ' tính ra số năm
-            Me.year = Me.toDate.Year - (Me.fromDate.Year + increment)
-            _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
-        Catch ex As Exception
-            _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
-        End Try
+                If Me.fromDate.Day > Me.toDate.Day Then
+                    increment = Me.monthDay(Me.fromDate.Month - 1)
+                End If
+
+                ' Nếu là tháng 2
+                If increment = -1 Then
+                    ' kiểm tra năm nhuận
+                    If Date.IsLeapYear(Me.fromDate.Year) Then
+                        ' nếu là năm nhuận tháng 2 có 29 ngày
+                        increment = 29
+                    Else
+                        increment = 28
+                    End If
+                End If
+                ' Nếu không phải tháng 2
+                If increment <> 0 Then
+                    day = (Me.toDate.Day + increment) - Me.fromDate.Day
+                    increment = 1
+                Else
+                    day = Me.toDate.Day - Me.fromDate.Day
+                End If
+
+                ' tính ra số tháng
+                If (Me.fromDate.Month + increment) > Me.toDate.Month Then
+                    Me.month = (Me.toDate.Month + 12) - (Me.fromDate.Month + increment)
+                    increment = 1
+                Else
+                    Me.month = (Me.toDate.Month) - (Me.fromDate.Month + increment)
+                    increment = 0
+                End If
+
+                ' tính ra số năm
+                Me.year = Me.toDate.Year - (Me.fromDate.Year + increment)
+                _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
+            Catch ex As Exception
+                _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
+            End Try
 
 
-    End Sub
+        End Sub
 
-    Public ReadOnly Property Years() As Integer
-        Get
-            Return Me.year
-        End Get
-    End Property
+        Public ReadOnly Property Years() As Integer
+            Get
+                Return Me.year
+            End Get
+        End Property
 
-    Public ReadOnly Property Months() As Integer
-        Get
-            Return Me.month
-        End Get
-    End Property
+        Public ReadOnly Property Months() As Integer
+            Get
+                Return Me.month
+            End Get
+        End Property
 
-    Public ReadOnly Property Days() As Integer
-        Get
-            Return Me.day
-        End Get
-    End Property
+        Public ReadOnly Property Days() As Integer
+            Get
+                Return Me.day
+            End Get
+        End Property
 
-End Class
+    End Class
 #End Region
+End Class
