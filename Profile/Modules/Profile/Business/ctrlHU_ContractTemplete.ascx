@@ -105,6 +105,9 @@
                             ErrorMessage="<%$ Translate: Bạn phải nhập ngày bắt đầu. %>" ToolTip="<%$ Translate: Bạn phải nhập ngày bắt đầu. %>"> </asp:RequiredFieldValidator>
                         <asp:CustomValidator ID="CompareStartDate" runat="server" ErrorMessage="<%$ Translate: Ngày hiệu lực phải thuộc khoảng thời gian hiệu lực của hợp đồng. %>"
                             ToolTip="<%$ Translate: Ngày hiệu lực phải lớn hơn thời gian hiệu lực của hợp đồng. %>"></asp:CustomValidator>
+                                <asp:CustomValidator ID="CustomValidator1" runat="server" ErrorMessage="<%$ Translate: Không thể tạo phụ lục có hiệu lực nhỏ hơn ngày hiệu lực của hợp đồng. Vui lòng kiểm tra và thử lại. %>"
+                            ToolTip="<%$ Translate: Không thể tạo phụ lục có hiệu lực nhỏ hơn ngày hiệu lực của hợp đồng. Vui lòng kiểm tra và thử lại. %>">
+                        </asp:CustomValidator>
                     </td>
                     <td class="lb">
                         <asp:Label ID="lbExpireDate" runat="server" Text="Ngày kết thúc"></asp:Label>
@@ -394,6 +397,12 @@
                     <td>
                         <tlk:RadNumericTextBox runat="server" ID="rnOtherSalary3" SkinID="Money" Enabled="False">
                         </tlk:RadNumericTextBox>
+                    </td>
+                </tr>
+                <tr>
+                  <td class="lb">
+                          <tlk:RadDatePicker ID="radDate" runat="server" Visible="false">
+                        </tlk:RadDatePicker>
                     </td>
                 </tr>
                 <%--<tr>

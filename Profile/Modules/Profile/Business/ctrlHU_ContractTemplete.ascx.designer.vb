@@ -383,6 +383,15 @@ Partial Public Class ctrlHU_ContractTemplete
     Protected WithEvents CompareStartDate As Global.System.Web.UI.WebControls.CustomValidator
 
     '''<summary>
+    '''CustomValidator1 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents CustomValidator1 As Global.System.Web.UI.WebControls.CustomValidator
+
+    '''<summary>
     '''lbExpireDate control.
     '''</summary>
     '''<remarks>
@@ -840,6 +849,15 @@ Partial Public Class ctrlHU_ContractTemplete
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents rnOtherSalary3 As Global.Telerik.Web.UI.RadNumericTextBox
+
+    '''<summary>
+    '''radDate control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents radDate As Global.Telerik.Web.UI.RadDatePicker
 
     '''<summary>
     '''txtRemindLink control.

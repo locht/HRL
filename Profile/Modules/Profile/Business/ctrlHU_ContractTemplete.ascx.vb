@@ -721,6 +721,13 @@ Public Class ctrlHU_ContractTemplete
                     End If
                 End If
             End If
+
+            If cboContract.SelectedValue <> "" Then
+                Dim inforContract = listContract.Find(Function(x) x.ID = cboContract.SelectedValue)
+                If inforContract IsNot Nothing Then
+                    radDate.SelectedDate = inforContract.START_DATE
+                End If
+            End If
             rep.Dispose()
         End If
         'rdSignDate.SelectedDate = rdStartDate.SelectedDate
@@ -752,6 +759,7 @@ Public Class ctrlHU_ContractTemplete
                     '    rdExpireDate.SelectedDate = Nothing
                     'End If
                     STT = outNum
+                    radDate.SelectedDate = inforContract.START_DATE
                 End If
             End If
             If CurrentState = CommonMessage.STATE_EDIT Then
@@ -760,6 +768,7 @@ Public Class ctrlHU_ContractTemplete
                     Dim order = String.Format("{0}", Format(outNum, "00"))
                     txtContract_NumAppen.Text = inforContract.CONTRACT_NO + "-" + order
                     STT = outNum
+                    radDate.SelectedDate = inforContract.START_DATE
                 End If
             End If
             'hiển thị thông tin PLHĐ đối với trường hợp sửa thông tin
@@ -768,7 +777,7 @@ Public Class ctrlHU_ContractTemplete
             contrItem.CONTRACT_NO = cboContract.Text
 
             hidContract_ID.Value = cboContract.SelectedValue
-
+            radDate.SelectedDate = inforContract.START_DATE
 
             'If inforContract IsNot Nothing AndAlso inforContract.UNIT_SIGN IsNot Nothing Then
             '    cboLocation.SelectedValue = inforContract.UNIT_SIGN
@@ -1157,6 +1166,7 @@ Public Class ctrlHU_ContractTemplete
         rdExpireDate.SelectedDate = Nothing
         rdStartDate.SelectedDate = Nothing
         rdSignDate.SelectedDate = Nothing
+        radDate.SelectedDate = Nothing
         cboContract.SelectedIndex = 0
         cboStatus_ID.SelectedIndex = 0
         txtSign_Title.Text = String.Empty
@@ -1463,4 +1473,20 @@ Public Class ctrlHU_ContractTemplete
 
 #End Region
 
+    Private Sub CustomValidator1_ServerValidate(source As Object, args As System.Web.UI.WebControls.ServerValidateEventArgs) Handles CustomValidator1.ServerValidate
+        Try
+            If rdStartDate.SelectedDate IsNot Nothing Then
+                If rdStartDate.SelectedDate < radDate.SelectedDate Then
+                    args.IsValid = False
+                    Exit Sub
+                Else
+                    args.IsValid = True
+                End If
+            Else
+                args.IsValid = True
+            End If
+        Catch ex As Exception
+            DisplayException(Me.ViewName, Me.ID, ex)
+        End Try
+    End Sub
 End Class
