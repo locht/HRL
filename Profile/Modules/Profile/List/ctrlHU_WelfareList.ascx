@@ -24,6 +24,17 @@
                     </tr>
                     <tr>
                         <td class="lb">
+                            <asp:Label ID="lbName" runat="server" Text="Tên chế độ phúc lợi"></asp:Label>
+                        </td>
+                        <td>
+                            <tlk:RadComboBox ID="cboName" runat="server" SkinID="LoadDemand" OnClientSelectedIndexChanged="OnClientSelectedIndexChanged"
+                                OnClientItemsRequesting="OnClientItemsRequesting">
+                            </tlk:RadComboBox>
+                            <asp:CustomValidator ID="cusName" runat="server" ErrorMessage="<%$ Translate: Bạn phải chọn tên chế độ phúc lợi. %>"
+                                ToolTip="<%$ Translate: Bạn phải chọn tên chế độ phúc lợi.%>" ClientValidationFunction="cusName">
+                            </asp:CustomValidator>
+                        </td>
+                        <td class="lb">
                             <asp:Label ID="lbCode" runat="server" Text="Mã chế độ phúc lợi"></asp:Label>
                         </td>
                         <td>
@@ -37,17 +48,6 @@
                             </asp:CustomValidator>
                             <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ErrorMessage="Mã không được chứa ký tự đặc biệt và khoảng trắng"
                                 ControlToValidate="txtCode" ValidationExpression="^[a-zA-Z0-9_]*$"></asp:RegularExpressionValidator>
-                        </td>
-                        <td class="lb">
-                            <asp:Label ID="lbName" runat="server" Text="Tên chế độ phúc lợi"></asp:Label>
-                        </td>
-                        <td>
-                            <tlk:RadComboBox ID="cboName" runat="server" SkinID="LoadDemand" OnClientSelectedIndexChanged="OnClientSelectedIndexChanged"
-                                OnClientItemsRequesting="OnClientItemsRequesting">
-                            </tlk:RadComboBox>
-                            <asp:CustomValidator ID="cusName" runat="server" ErrorMessage="<%$ Translate: Bạn phải chọn tên chế độ phúc lợi. %>"
-                                ToolTip="<%$ Translate: Bạn phải chọn tên chế độ phúc lợi.%>" ClientValidationFunction="cusName">
-                            </asp:CustomValidator>
                         </td>
                         <td rowspan="5" style="vertical-align: top;">
                             <tlk:RadListBox ID="lstbGender" CheckBoxes="true" runat="server" Height="60px" Width="100px"
@@ -80,6 +80,16 @@
                         <td>
                             <tlk:RadNumericTextBox ID="nmSENIORITY" SkinID="Number" MaxLength="38" runat="server">
                             </tlk:RadNumericTextBox>
+                        </td>
+                        <td class="lb">
+                            <asp:Label ID="lbDenSoThang" runat="server" Text="Đến số tháng "></asp:Label>
+                        </td>
+                        <td>
+                            <tlk:RadNumericTextBox ID="nmDenSoThang" SkinID="Number" MaxLength="38" runat="server">
+                            </tlk:RadNumericTextBox>
+                            <asp:CompareValidator ID="CompareValidator2" runat="server" ToolTip="<%$ Translate: Nhập đến số tháng lớn hơn từ số tháng  %>"
+                                ErrorMessage="<%$ Translate: Nhập đến số tháng lớn hơn từ số tháng  %>" Type="Integer"
+                                Operator="GreaterThan" ControlToCompare="nmSENIORITY" ControlToValidate="nmDenSoThang"></asp:CompareValidator>
                         </td>
                     </tr>
                     <tr>
@@ -125,7 +135,7 @@
                             <asp:Label ID="lbGroupTitle" runat="server" Text="Nhóm chức danh"></asp:Label>
                         </td>
                         <td>
-                            <tlk:RadComboBox runat="server" ID="cbGroupTitle"  OnClientSelectedIndexChanged="OnClientSelectedIndexChanged"
+                            <tlk:RadComboBox runat="server" ID="cbGroupTitle" OnClientSelectedIndexChanged="OnClientSelectedIndexChanged"
                                 OnClientItemsRequesting="OnClientItemsRequesting">
                             </tlk:RadComboBox>
                         </td>
@@ -139,6 +149,7 @@
                                 Visible="false">
                             </tlk:RadButton>
                         </td>
+                       
                     </tr>
                 </table>
             </tlk:RadPane>

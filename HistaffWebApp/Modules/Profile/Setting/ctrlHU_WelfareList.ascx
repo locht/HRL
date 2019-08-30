@@ -23,7 +23,6 @@
                         </td>
                     </tr>
                     <tr>
-                      
                         <td class="lb">
                             <asp:Label ID="lbName" runat="server" Text="Tên chế độ phúc lợi"></asp:Label>
                         </td>
@@ -35,7 +34,7 @@
                                 ToolTip="<%$ Translate: Bạn phải chọn tên chế độ phúc lợi.%>" ClientValidationFunction="cusName">
                             </asp:CustomValidator>
                         </td>
-                         <td class="lb">
+                        <td class="lb">
                             <asp:Label ID="lbMoney" runat="server" Text="Số tiền"></asp:Label>
                         </td>
                         <td>
@@ -45,7 +44,6 @@
                                 ErrorMessage="Bạn phải nhập số tiền." ToolTip="Bạn phải nhập số tiền.">
                             </asp:RequiredFieldValidator>
                         </td>
-                         
                         <td rowspan="5" style="vertical-align: top;">
                             <tlk:RadListBox ID="lstbGender" CheckBoxes="true" runat="server" Height="60px" Width="100px"
                                 OnClientSelectedIndexChanging="OnClientItemSelectedIndexChanging">
@@ -61,7 +59,6 @@
                         </td>
                     </tr>
                     <tr>
-                       
                         <td class="lb">
                             <asp:Label ID="lbSENIORITY" runat="server" Text="Thâm niên (tháng)"></asp:Label>
                         </td>
@@ -69,19 +66,16 @@
                             <tlk:RadNumericTextBox ID="nmSENIORITY" SkinID="Number" MaxLength="38" runat="server">
                             </tlk:RadNumericTextBox>
                         </td>
-                         <td class="lb">
+                        <td class="lb">
                             <asp:Label ID="lbDenSoThang" runat="server" Text="Đến số tháng "></asp:Label>
                         </td>
                         <td>
                             <tlk:RadNumericTextBox ID="nmDenSoThang" SkinID="Number" MaxLength="38" runat="server">
                             </tlk:RadNumericTextBox>
                             <asp:CompareValidator ID="CompareValidator2" runat="server" ToolTip="<%$ Translate: Nhập đến số tháng lớn hơn từ số tháng  %>"
-                        ErrorMessage="<%$ Translate: Nhập đến số tháng lớn hơn từ số tháng  %>"
-                        Type="Integer" Operator="GreaterThan" ControlToCompare="nmSENIORITY" ControlToValidate="nmDenSoThang"></asp:CompareValidator>
-
- 
+                                ErrorMessage="<%$ Translate: Nhập đến số tháng lớn hơn từ số tháng  %>" Type="Integer"
+                                Operator="GreaterThan" ControlToCompare="nmSENIORITY" ControlToValidate="nmDenSoThang"></asp:CompareValidator>
                         </td>
-
                     </tr>
                     <tr>
                         <td class="lb">
@@ -140,7 +134,7 @@
                                 Visible="false">
                             </tlk:RadButton>
                         </td>
-                         <td class="lb">
+                        <td class="lb">
                             <asp:Label ID="lbCode" runat="server" Text="Mã chế độ phúc lợi"></asp:Label>
                         </td>
                         <td>
