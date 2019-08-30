@@ -1564,7 +1564,7 @@ Partial Public Class InsuranceRepository
             If cbxData.GET_LIST_PROVINCE Then
                 Dim ID As Decimal = cbxData.LIST_LIST_PROVINCE(0).id
                 Dim list As List(Of HU_PROVINCEDTO) = (From p In Context.HU_PROVINCE
-                                             Where p.ACTFLG = "A" And p.NATION_ID = 1 And p.ID = ID
+                                             Where p.ACTFLG = "A" And p.ID = ID
                                              Order By p.CREATED_DATE Descending
                          Select New HU_PROVINCEDTO With {
                              .id = p.ID,
