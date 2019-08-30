@@ -730,10 +730,13 @@ Public Class ctrlInsArisingManual
                 InsCommon.SetString(txtFULLNAME, lstSource.Rows(0)("FULL_NAME"))
                 InsCommon.SetString(txtDEP, lstSource.Rows(0)("DEP_NAME"))
                 InsCommon.SetDate(txtDoB, lstSource.Rows(0)("BIRTH_DATE"))
-                InsCommon.SetString(txtBirthPlace, lstSource.Rows(0)("PLACE_OF_BIRTH_NAME"))
+                InsCommon.SetString(txtBirthPlace, lstSource.Rows(0)("ID_PLACE_NAME"))
+                InsCommon.SetString(BIRTH_PLACE, lstSource.Rows(0)("PLACE_OF_BIRTH_NAME"))
                 InsCommon.SetString(txtCMND, lstSource.Rows(0)("ID_NO"))
                 InsCommon.SetDate(txtDateIssue, lstSource.Rows(0)("ID_DATE"))
                 InsCommon.SetString(txtPOSITION, lstSource.Rows(0)("POSITION_NAME"))
+
+                InsCommon.SetString(SOCIAL_NUMBER, lstSource.Rows(0)("SOCIAL_NUMBER"))
 
                 InsCommon.SetNumber(chkSI, lstSource.Rows(0)("SI"))
                 InsCommon.SetNumber(chkHI, lstSource.Rows(0)("HI"))
@@ -998,7 +1001,7 @@ Public Class ctrlInsArisingManual
                     InsCommon.SetString(txtDEP, lstSource.Rows(0)("ORG_NAME"))
                     InsCommon.SetDate(txtDoB, lstSource.Rows(0)("BIRTH_DATE"))
 
-                    InsCommon.SetString(txtBirthPlace, lstSource.Rows(0)("PLACE_OF_BIRTH_NAME"))
+                    InsCommon.SetString(txtBirthPlace, lstSource.Rows(0)("ID_PLACE_NAME"))
                     InsCommon.SetString(txtCMND, lstSource.Rows(0)("ID_NO"))
 
                     InsCommon.SetDate(txtDateIssue, lstSource.Rows(0)("ID_DATE"))
@@ -1006,6 +1009,8 @@ Public Class ctrlInsArisingManual
                     'txtINSORG.Text = lstSource.Rows(0)("INS_ORG_NAME")
 
                     txtEMPID.Text = lstSource.Rows(0)("EMPID")
+                    InsCommon.SetString(SOCIAL_NUMBER, lstSource.Rows(0)("SOCIAL_NUMBER"))
+                    InsCommon.SetString(BIRTH_PLACE, lstSource.Rows(0)("PLACE_OF_BIRTH_NAME"))
 
                     InsCommon.SetNumber(ddlINS_ORG_ID, lstSource.Rows(0)("INS_ORG_ID"))
 
@@ -1069,8 +1074,10 @@ Public Class ctrlInsArisingManual
             InsCommon.SetString(txtDEP, lstSource.Rows(0)("ORG_NAME"))
             InsCommon.SetDate(txtDoB, lstSource.Rows(0)("BIRTH_DATE"))
 
-            InsCommon.SetString(txtBirthPlace, lstSource.Rows(0)("PLACE_OF_BIRTH_NAME"))
+            InsCommon.SetString(txtBirthPlace, lstSource.Rows(0)("ID_PLACE_NAME"))
             InsCommon.SetString(txtCMND, lstSource.Rows(0)("ID_NO"))
+
+            InsCommon.SetString(BIRTH_PLACE, lstSource.Rows(0)("PLACE_OF_BIRTH_NAME"))
 
             InsCommon.SetDate(txtDateIssue, lstSource.Rows(0)("ID_DATE"))
             InsCommon.SetString(txtPOSITION, lstSource.Rows(0)("POSITION_NAME"))
