@@ -993,11 +993,36 @@ Public Class ctrlTime_Timesheet_CTT
         Dim rep As New AttendanceRepository
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
         Dim startTime As DateTime = DateTime.UtcNow
+        Dim startdate As Date '= CType("01/01/2016", Date)
+        Dim enddate As Date '= CType("31/01/2016", Date)
         Try
+            Dim year As String = cboYear.SelectedValue.ToString
+            If (rdtungay.SelectedDate IsNot Nothing) Then
+                startdate = rdtungay.SelectedDate
+            Else
+                If (year IsNot Nothing) Then
+                    startdate = CType("01/01/" & year, Date)
+                    rdtungay.SelectedDate = startdate
+                End If
+            End If
+            If (rdDenngay.SelectedDate IsNot Nothing) Then
+                enddate = rdDenngay.SelectedDate
+            Else
+                If (year IsNot Nothing) Then
+                    If (Common.Common.GetShortDatePattern().Trim.ToUpper.Contains("DD/MM/YYYY")) Then
+                        enddate = CType("31/01/" & year, Date)
+                    Else
+                        enddate = CType("01/31/" & year, Date)
+                    End If
+                    rdDenngay.SelectedDate = enddate
+                End If
+            End If
             dtData.TableName = "Data"
             Dim dtImport = CreateDataImport()
-            For Each row As DataRow In dtData.Rows
+            For i As Integer = 0 To dtData.Rows.Count - 1
+                Dim row As DataRow = dtData.Rows(i)
                 dtImport.ImportRow(row)
+                AssignDateToTable(dtImport, i, startdate, enddate)
             Next
             dtImport.TableName = "DATA"
             rep.InsertLeaveSheetDaily(dtImport, cboPeriod.SelectedValue)
@@ -1209,9 +1234,55 @@ Public Class ctrlTime_Timesheet_CTT
         dt.Columns.Add("D29", GetType(String))
         dt.Columns.Add("D30", GetType(String))
         dt.Columns.Add("D31", GetType(String))
-
+        dt.Columns.Add("DA1", GetType(String))
+        dt.Columns.Add("DA2", GetType(String))
+        dt.Columns.Add("DA3", GetType(String))
+        dt.Columns.Add("DA4", GetType(String))
+        dt.Columns.Add("DA5", GetType(String))
+        dt.Columns.Add("DA6", GetType(String))
+        dt.Columns.Add("DA7", GetType(String))
+        dt.Columns.Add("DA8", GetType(String))
+        dt.Columns.Add("DA9", GetType(String))
+        dt.Columns.Add("DA10", GetType(String))
+        dt.Columns.Add("DA11", GetType(String))
+        dt.Columns.Add("DA12", GetType(String))
+        dt.Columns.Add("DA13", GetType(String))
+        dt.Columns.Add("DA14", GetType(String))
+        dt.Columns.Add("DA15", GetType(String))
+        dt.Columns.Add("DA16", GetType(String))
+        dt.Columns.Add("DA17", GetType(String))
+        dt.Columns.Add("DA18", GetType(String))
+        dt.Columns.Add("DA19", GetType(String))
+        dt.Columns.Add("DA20", GetType(String))
+        dt.Columns.Add("DA21", GetType(String))
+        dt.Columns.Add("DA22", GetType(String))
+        dt.Columns.Add("DA23", GetType(String))
+        dt.Columns.Add("DA24", GetType(String))
+        dt.Columns.Add("DA25", GetType(String))
+        dt.Columns.Add("DA26", GetType(String))
+        dt.Columns.Add("DA27", GetType(String))
+        dt.Columns.Add("DA28", GetType(String))
+        dt.Columns.Add("DA29", GetType(String))
+        dt.Columns.Add("DA30", GetType(String))
+        dt.Columns.Add("DA31", GetType(String))
         Return dt
     End Function
+
+    Private Sub AssignDateToTable(ByVal dt As DataTable, ByVal row_num As Integer, ByVal startdate As Date, ByVal enddate As Date)
+        Try
+            dt.Rows(row_num)("DA1") = String.Format("{0:dd/MM/yyyy}", startdate)
+            For i = 2 To 31
+                startdate = startdate.AddDays(1)
+                If startdate <= enddate Then
+                    dt.Rows(row_num)("DA" + i.ToString() + "") = String.Format("{0:dd/MM/yyyy}", startdate)
+                Else
+                    dt.Rows(row_num)("DA" + i.ToString() + "") = String.Empty
+                End If
+            Next
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
 #End Region
 
 End Class
