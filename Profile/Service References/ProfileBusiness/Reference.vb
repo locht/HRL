@@ -21016,6 +21016,9 @@ Namespace ProfileBusiness
         Private REMARKField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private RENEWED_NAMEField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private RESULT_TRAINField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -21434,6 +21437,19 @@ Namespace ProfileBusiness
                 If (Object.ReferenceEquals(Me.REMARKField, value) <> true) Then
                     Me.REMARKField = value
                     Me.RaisePropertyChanged("REMARK")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property RENEWED_NAME() As String
+            Get
+                Return Me.RENEWED_NAMEField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.RENEWED_NAMEField, value) <> true) Then
+                    Me.RENEWED_NAMEField = value
+                    Me.RaisePropertyChanged("RENEWED_NAME")
                 End If
             End Set
         End Property

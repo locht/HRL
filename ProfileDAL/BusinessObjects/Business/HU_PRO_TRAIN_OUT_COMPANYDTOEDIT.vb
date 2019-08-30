@@ -35,6 +35,7 @@
     Public Property MODIFIED_BY As String
     Public Property MODIFIED_LOG As String
     Public Property IS_RENEWED As Decimal?
+    Public Property RENEWED_NAME As String
     Public Property LEVEL_ID As Decimal?
     Public Property LEVEL_NAME As String
     Public Property SCORE As Decimal?

@@ -7,6 +7,7 @@ Imports Oracle.DataAccess.Client
 Imports System.Reflection
 
 Partial Class ProfileRepository
+
 #Region "HU_CERTIFICATE_edit"
     Public Function GetCertificateEdit(ByVal _filter As HU_PRO_TRAIN_OUT_COMPANYDTOEDIT) As List(Of HU_PRO_TRAIN_OUT_COMPANYDTOEDIT)
         Dim query As ObjectQuery(Of HU_PRO_TRAIN_OUT_COMPANYDTOEDIT)
@@ -47,6 +48,7 @@ Partial Class ProfileRepository
                         .MODIFIED_DATE = p.MODIFIED_DATE,
                         .MODIFIED_LOG = p.MODIFIED_LOG,
                         .REASON_UNAPROVE = p.REASON_UNAPROVE,
+                          .RENEWED_NAME = If(p.IS_RENEW = 0, "Không", "Có"),
                         .FK_PKEY = p.FK_PKEY,
                          .UPLOAD_FILE = p.UPLOAD_FILE,
                          .FILE_NAME = p.FILE_NAME,
