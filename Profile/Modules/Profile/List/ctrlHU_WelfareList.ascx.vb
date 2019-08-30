@@ -363,7 +363,7 @@ Public Class ctrlHU_WelfareList
             dic.Add("GENDER", lstbGender)
             dic.Add("CONTRACT_TYPE", lstCONTRACT_TYPE)
             dic.Add("SENIORITY", nmSENIORITY)
-            dic.Add("SENIORITY_FROM", nmDenSoThang)
+            'dic.Add("SENIORITY_FROM", nmDenSoThang)
             dic.Add("MONEY", nmMONEY)
             dic.Add("CHILD_OLD_FROM", nmCHILD_OLD_FROM)
             dic.Add("CHILD_OLD_TO", nmCHILD_OLD_TO)
@@ -412,8 +412,22 @@ Public Class ctrlHU_WelfareList
                         End If
                         dpSTART_DATE.SelectedDate = item.START_DATE
                         dpEND_DATE.SelectedDate = item.END_DATE
+                        If item.MONEY IsNot Nothing Then
+                            nmMONEY.Text = item.MONEY
+                        End If
+                        If item.SENIORITY IsNot Nothing Then
+                            nmSENIORITY.Text = item.SENIORITY
+                        End If
+                        If item.SENIORITY_FROM IsNot Nothing Then
+                            nmDenSoThang.Text = item.SENIORITY_FROM
+                        End If
+                        If item.CHILD_OLD_FROM IsNot Nothing Then
+                            nmCHILD_OLD_FROM.Text = item.CHILD_OLD_FROM
+                        End If
+                        If item.CHILD_OLD_TO IsNot Nothing Then
+                            nmCHILD_OLD_TO.Text = item.CHILD_OLD_TO
+                        End If
                     End If
-
                     lstbGender.ClearChecked()
                     For Each chk As RadListBoxItem In lstbGender.Items
                         If item.GENDER IsNot Nothing Then
@@ -634,7 +648,7 @@ Public Class ctrlHU_WelfareList
                         Dim strGenderName As New List(Of String)
                         Dim strWorkStatusID As New List(Of String)
                         Dim strWorkStatusName As New List(Of String)
-                       
+
                         If isEdit Is Nothing Then
                             If (ctrlOrg.CurrentValue = 1) Then
                                 ShowMessage("Vui lòng chỉ thiết lập phúc lợi theo công ty", NotifyType.Error)
@@ -706,7 +720,7 @@ Public Class ctrlHU_WelfareList
                                     'SelectedItemDataGridByKey(rgWelfareList, gID)
                                     ClearControlValue(txtCode, cboName, nmSENIORITY, nmDenSoThang, cbGroupTitle,
                                        nmMONEY, lstbGender, lstCONTRACT_TYPE,
-                                       dpSTART_DATE, dpEND_DATE, chkIS_AUTO)
+                                       dpSTART_DATE, dpEND_DATE, chkIS_AUTO, nmCHILD_OLD_FROM, nmCHILD_OLD_TO)
                                 Else
                                     ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), Utilities.NotifyType.Error)
                                 End If
@@ -718,7 +732,7 @@ Public Class ctrlHU_WelfareList
                                     'SelectedItemDataGridByKey(rgWelfareList, gID, , rgWelfareList.CurrentPageIndex)
                                     ClearControlValue(txtCode, cboName, nmSENIORITY, nmDenSoThang, cbGroupTitle,
                                       nmMONEY, lstbGender, lstCONTRACT_TYPE,
-                                      dpSTART_DATE, dpEND_DATE, chkIS_AUTO)
+                                      dpSTART_DATE, dpEND_DATE, chkIS_AUTO, nmCHILD_OLD_FROM, nmCHILD_OLD_TO)
                                 Else
                                     ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), Utilities.NotifyType.Error)
                                 End If

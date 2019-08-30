@@ -23,16 +23,16 @@
                     <span class="lbReq">*</span>
                 </td>
                 <td>
-                 <td class="lb">
-                    <%# Translate("Tên chế độ phúc lợi")%><span class="lbReq">*</span>
-                </td>
-                <td>
-                    <tlk:RadTextBox ID="txtName" MaxLength="255" runat="server">
-                    </tlk:RadTextBox>
-                    <asp:RequiredFieldValidator ID="reqName" ControlToValidate="txtName" runat="server"
-                        CausesValidation="false" ErrorMessage="<%$ Translate: Bạn phải nhập tên chế độ phúc lợi. %>"
-                        ToolTip="<%$ Translate: Bạn phải nhập tên chế độ phúc lợi. %>"></asp:RequiredFieldValidator>
-                </td>
+                    <td class="lb">
+                        <%# Translate("Tên chế độ phúc lợi")%><span class="lbReq">*</span>
+                    </td>
+                    <td>
+                        <tlk:RadTextBox ID="txtName" MaxLength="255" runat="server">
+                        </tlk:RadTextBox>
+                        <asp:RequiredFieldValidator ID="reqName" ControlToValidate="txtName" runat="server"
+                            CausesValidation="false" ErrorMessage="<%$ Translate: Bạn phải nhập tên chế độ phúc lợi. %>"
+                            ToolTip="<%$ Translate: Bạn phải nhập tên chế độ phúc lợi. %>"></asp:RequiredFieldValidator>
+                    </td>
                     <tlk:RadTextBox ID="txtCode" SkinID="ReadOnly" runat="server">
                     </tlk:RadTextBox>
                     <asp:RequiredFieldValidator ID="reqCode" ControlToValidate="txtCode" runat="server"
@@ -45,7 +45,6 @@
                     <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ErrorMessage="<%$ Translate: Mã không được chứa ký tự đặc biệt và khoảng trắng %>"
                         ControlToValidate="txtCode" ValidationExpression="^[a-zA-Z0-9_]*$"></asp:RegularExpressionValidator>
                 </td>
-               
                 <td rowspan="5" style="vertical-align: top;">
                     <tlk:RadListBox ID="lstbGender" CheckBoxes="true" runat="server" Height="60px" Width="100px"
                         OnClientSelectedIndexChanging="OnClientItemSelectedIndexChanging">
@@ -68,26 +67,23 @@
                         ErrorMessage="<%$ Translate: Bạn phải nhập số tiền. %>" ToolTip="<%$ Translate: Bạn phải nhập số tiền. %>">
                     </asp:RequiredFieldValidator>
                 </td>
-
-                 <td class="lb">
-                            <asp:Label ID="lbSENIORITY" runat="server" Text="Thâm niên (tháng)"></asp:Label>
-                        </td>
+                <td class="lb">
+                    <asp:Label ID="lbSENIORITY" runat="server" Text="Thâm niên (tháng)"></asp:Label>
+                </td>
                 <td>
                     <tlk:RadNumericTextBox ID="nmSENIORITY" SkinID="Number" MaxLength="38" runat="server">
                     </tlk:RadNumericTextBox>
                 </td>
-
-
-                 <td class="lb">
-                            <asp:Label ID="lbDenSoThang" runat="server" Text="Đến số tháng "></asp:Label>
-                        </td>
-                        <td>
-                            <tlk:RadNumericTextBox ID="nmDenSoThang" SkinID="Number" MaxLength="38" runat="server">
-                            </tlk:RadNumericTextBox>
-                            <asp:CompareValidator ID="CompareValidator2" runat="server" ToolTip="<%$ Translate: Nhập đến số tháng lớn hơn từ số tháng  %>"
-                        ErrorMessage="<%$ Translate: Nhập đến số tháng lớn hơn từ số tháng  %>"
-                        Type="Integer" Operator="GreaterThan" ControlToCompare="nmSENIORITY" ControlToValidate="nmDenSoThang"></asp:CompareValidator>
-                        </td>
+                <td class="lb">
+                    <asp:Label ID="lbDenSoThang" runat="server" Text="Đến số tháng "></asp:Label>
+                </td>
+                <td>
+                    <tlk:RadNumericTextBox ID="nmDenSoThang" SkinID="Number" MaxLength="38" runat="server">
+                    </tlk:RadNumericTextBox>
+                    <asp:CompareValidator ID="CompareValidator2" runat="server" ToolTip="<%$ Translate: Nhập đến số tháng lớn hơn từ số tháng  %>"
+                        ErrorMessage="<%$ Translate: Nhập đến số tháng lớn hơn từ số tháng  %>" Type="Integer"
+                        Operator="GreaterThan" ControlToCompare="nmSENIORITY" ControlToValidate="nmDenSoThang"></asp:CompareValidator>
+                </td>
             </tr>
             <tr>
                 <td class="lb">
@@ -139,8 +135,8 @@
         </table>
     </tlk:RadPane>
     <tlk:RadPane ID="RadPane2" runat="server" Scrolling="None" Height="100%">
-        <tlk:RadGrid PageSize=50 ID="rgWelfareList" runat="server" AutoGenerateColumns="False" AllowPaging="True"
-            Height="100%" AllowSorting="True" AllowMultiRowSelection="true">
+        <tlk:RadGrid PageSize="50" ID="rgWelfareList" runat="server" AutoGenerateColumns="False"
+            AllowPaging="True" Height="100%" AllowSorting="True" AllowMultiRowSelection="true">
             <ClientSettings EnableRowHoverStyle="true">
                 <Selecting AllowRowSelect="true" />
             </ClientSettings>
