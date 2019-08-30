@@ -244,10 +244,10 @@ Public Class ctrlInsArising
                     End If
                     'Check data trước khi chuyển
                     For Each dr As Telerik.Web.UI.GridDataItem In rgGridData.SelectedItems
-                        If dr.GetDataKeyValue("EFFECT_DATE") > txtMONTH.SelectedDate Then
-                            ShowMessage("Ngày khai báo phải lớn hơn ngày hiệu lực. Mã nhân viên: " & dr.GetDataKeyValue("EMPLOYEE_CODE").ToString() & " - " & dr.GetDataKeyValue("EFFECT_DATE") & ")", NotifyType.Warning, 13)
-                            Exit Sub
-                        End If
+                        'If dr.GetDataKeyValue("EFFECT_DATE") > txtMONTH.SelectedDate Then
+                        '    ShowMessage("Ngày khai báo phải lớn hơn ngày hiệu lực. Mã nhân viên: " & dr.GetDataKeyValue("EMPLOYEE_CODE").ToString() & " - " & dr.GetDataKeyValue("EFFECT_DATE") & ")", NotifyType.Warning, 13)
+                        '    Exit Sub
+                        'End If
                         If DirectCast(dr.GetDataKeyValue("EFFECT_DATE"), Date).Day > 15 Then
                             If Format(DirectCast(dr.GetDataKeyValue("EFFECT_DATE"), Date), "yyyyMM") >= Format(txtMONTH.SelectedDate.Value, "yyyyMM") Then
                                 ShowMessage("Tháng khai báo phải lớn hơn tháng của ngày hiệu lực. Lỗi: Mã nhân viên (" & dr.GetDataKeyValue("EMPLOYEE_CODE").ToString() & " - " & dr.GetDataKeyValue("EFFECT_DATE") & ")", NotifyType.Warning, 13)
