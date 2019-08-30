@@ -155,7 +155,7 @@
             <tlk:RadPane ID="RadPane2" runat="server" Scrolling="None">
                 <tlk:RadGrid PageSize="50" ID="rgWelfareList" runat="server" AllowPaging="True" Height="100%"
                     AllowSorting="True" AllowMultiRowSelection="true">
-                    <ClientSettings EnableRowHoverStyle="true">
+                    <ClientSettings EnableRowHoverStyle="true"  EnablePostBackOnRowClick="true">
                         <Selecting AllowRowSelect="true" />
                         <ClientEvents OnGridCreated="GridCreated" />
                         <ClientEvents OnCommand="ValidateFilter" />
@@ -309,6 +309,7 @@
             var cbo = $find("<%# cboName.ClientID%>");
             args.IsValid = (cbo.get_value().length != 0);
         }
-
+     
+         
     </script>
 </tlk:RadCodeBlock>
