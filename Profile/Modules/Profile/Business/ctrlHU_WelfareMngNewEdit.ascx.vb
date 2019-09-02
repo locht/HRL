@@ -937,8 +937,10 @@ Public Class ctrlHU_WelfareMngNewEdit
                     LeftPane.Enabled = False
                 End If
                 If checkDelete <> 1 Then
-                    Employee_PL = rep.GetlistWelfareEMP(_Id)
-                    dtbImport = Employee_PL.ToTable()
+                    Dim repst = New ProfileStoreProcedure
+                    dtbImport = repst.Get_list_Welfare_EMP(_Id)
+                    'Employee_PL = rep.GetlistWelfareEMP(_Id)
+                    'dtbImport = Employee_PL.ToTable()
                 End If
 
             End If
@@ -963,7 +965,7 @@ Public Class ctrlHU_WelfareMngNewEdit
                     dtbImport = Employee_PL.ToTable()
                 End If
             End If
-            rgEmployee.VirtualItemCount = Employee_PL.Count
+            rgEmployee.VirtualItemCount = dtbImport.Rows.Count'Employee_PL.Count
             rgEmployee.DataSource = dtbImport
 
         Catch ex As Exception

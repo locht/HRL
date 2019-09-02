@@ -454,7 +454,14 @@ Public Class ctrlHU_WelfareMng
                     Me.WelfareMngs = rep.GetWelfareMng(_filter, ctrlOrg.IsDissolve, rgWelfareMng.CurrentPageIndex, rgWelfareMng.PageSize, MaximumRows)
                 End If
                 rgWelfareMng.VirtualItemCount = MaximumRows
-                rgWelfareMng.DataSource = Me.WelfareMngs
+                Dim dt = Me.WelfareMngs.ToTable
+                dt.Columns.Add("ORG_NAME_C2")
+                For Each item As DataRow In dt.Rows
+                    Dim repst = New ProfileStoreProcedure
+                    Dim temp = repst.get_org_name_c2(item("EMPLOYEE_ID")).Rows(0)("ORG_NAME_C2")
+                    item("ORG_NAME_C2") = temp
+                Next
+                rgWelfareMng.DataSource = dt
 
             End If
             rep.Dispose()

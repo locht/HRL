@@ -86,6 +86,22 @@ Public Class ProfileStoreProcedure
         End If
         Return dt
     End Function
+    Public Function get_org_name_c2(ByVal p_emp_id As Decimal) As DataTable
+        Dim dt As New DataTable
+        Dim ds As DataSet = hfr.ExecuteToDataSet("PKG_HU_IPROFILE_LIST.get_org_name_c2", New List(Of Object)(New Object() {p_emp_id}))
+        If Not ds Is Nothing Or Not ds.Tables(0) Is Nothing Then
+            dt = ds.Tables(0)
+        End If
+        Return dt
+    End Function
+    Public Function Get_list_Welfare_EMP(ByVal p_welfare_id As Decimal) As DataTable
+        Dim dt As New DataTable
+        Dim ds As DataSet = hfr.ExecuteToDataSet("PKG_HU_IPROFILE_LIST.GetlistWelfareEMP", New List(Of Object)(New Object() {p_welfare_id}))
+        If Not ds Is Nothing Or Not ds.Tables(0) Is Nothing Then
+            dt = ds.Tables(0)
+        End If
+        Return dt
+    End Function
     Public Function GetTitle(ByVal titleId As Int32) As DataTable
         Dim dt As New DataTable
         Dim ds As DataSet = hfr.ExecuteToDataSet("PKG_HU_IPROFILE.HU_GET_TITLE_BY_ID", New List(Of Object)(New Object() {titleId}))
