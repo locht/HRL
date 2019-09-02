@@ -37,7 +37,7 @@
                          <span class="lbReq">*</span>
                 </td>
                 <td>
-                    <tlk:RadComboBox ID="cboOrgType" runat="server">
+                    <tlk:RadComboBox ID="cboOrgType" AutoPostBack="true" runat="server">
                     </tlk:RadComboBox>
                     <asp:RequiredFieldValidator ID="rqOrgType" ControlToValidate="cboOrgType" runat="server"
                         ErrorMessage="Bạn phải nhập loại tổ chức" ToolTip="Bạn phải nhập loại tổ chức">
@@ -77,7 +77,7 @@
                     <asp:Label runat="server" ID="lbHurtType" Text="Đối tượng độc hại"></asp:Label>
                 </td>
                 <td>
-                    <tlk:RadComboBox runat="server" ID="cboHurtType">
+                    <tlk:RadComboBox runat="server" AutoPostBack="true" ID="cboHurtType">
                     </tlk:RadComboBox>
                 </td>
                 <td>
