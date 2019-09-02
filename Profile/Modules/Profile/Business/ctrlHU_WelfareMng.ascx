@@ -77,8 +77,8 @@
                                 ReadOnly="true" UniqueName="CONTRACT_NAME" HeaderStyle-Width="200px" />
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Tổng số con %>" DataField="TOTAL_CHILD"
                                 ReadOnly="true" UniqueName="TOTAL_CHILD" HeaderStyle-Width="65px" />
-                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Mã công ty %>" DataField="ORG_NAME_C2"
-                                ReadOnly="true" UniqueName="ORG_NAME_C2" HeaderStyle-Width="200px" />
+                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Mã công ty %>" DataField="org_code2"
+                                ReadOnly="true" UniqueName="org_code2" HeaderStyle-Width="100px" />
                             <%--<tlk:GridBoundColumn HeaderText="<%$ Translate: Loại phúc lợi %>" DataField="WELFARE_NAME"
                                 ReadOnly="true" UniqueName="WELFARE_NAME" HeaderStyle-Width="100px" />--%>
                             <%--<tlk:GridNumericColumn HeaderText="<%$ Translate: Số tiền phúc lợi %>" DataField="MONEY_PL"
