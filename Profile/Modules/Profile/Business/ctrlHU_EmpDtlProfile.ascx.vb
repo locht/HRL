@@ -742,7 +742,7 @@ Public Class ctrlHU_EmpDtlProfile
                 FillRadCombobox(cboIDPlace, dtPlace, "NAME", "ID")
                 FillRadCombobox(cbPROVINCENQ_ID, dtPlace, "NAME", "ID")
                 FillRadCombobox(cbBirth_PlaceId, dtPlace, "NAME", "ID")
-                FillRadCombobox(cboLangLevel, dtLanguageleve, "NAME", "ID")
+                ' FillRadCombobox(cboLangLevel, dtLanguageleve, "NAME", "ID")
                 FillRadCombobox(cboLangLevel2, dtLanguageleve, "NAME", "ID")
                 FillRadCombobox(cboLanguage, dtLanguage, "NAME", "ID")
                 FillRadCombobox(cboLanguage2, dtLanguage, "NAME", "ID")
@@ -1493,6 +1493,7 @@ Public Class ctrlHU_EmpDtlProfile
 
     End Sub
 
+
     Protected Sub cboCommon_ItemsRequested(ByVal sender As Object, ByVal e As RadComboBoxItemsRequestedEventArgs) _
     Handles cboAcademy.ItemsRequested, cboBank.ItemsRequested, cboBankBranch.ItemsRequested,
         cboFamilyStatus.ItemsRequested, cboGender.ItemsRequested, cboLangLevel.ItemsRequested, cboLangLevel2.ItemsRequested, cboLearningLevel.ItemsRequested, cboMajor.ItemsRequested,
@@ -1563,7 +1564,7 @@ Public Class ctrlHU_EmpDtlProfile
                     Case cboWorkStatus.ID
                         dtData = rep.GetOtherList("WORK_STATUS", True)
                     Case cboLangLevel.ID
-                        dtData = rep.GetOtherList("LEARNING_LEVEL", True)
+                        dtData = rep.GetOtherList("LANGUAGE_LEVEL", True)
                     Case cboLangLevel2.ID
                         dtData = rep.GetOtherList("LEARNING_LEVEL", True)
                     Case cboInsRegion.ID
@@ -1571,16 +1572,16 @@ Public Class ctrlHU_EmpDtlProfile
                 End Select
 
                 If sText <> "" Then
-                    'Dim dtExist = (From p In dtData
-                    '               Where p("NAME") IsNot DBNull.Value AndAlso
-                    '              p("NAME").ToString.ToUpper = sText.ToUpper)
+                    Dim dtExist = (From p In dtData
+                                   Where p("NAME") IsNot DBNull.Value AndAlso
+                                  p("NAME").ToString.ToUpper = sText.ToUpper)
 
                     'If dtExist.Count = 0 Then
-                    'Dim dtFilter = (From p In dtData
-                    '                Where p("NAME") IsNot DBNull.Value AndAlso
-                    '          p("NAME").ToString.ToUpper.Contains(sText.ToUpper))
                     Dim dtFilter = (From p In dtData
-                                    Where p("NAME") IsNot DBNull.Value)
+                                    Where p("NAME") IsNot DBNull.Value AndAlso
+                              p("NAME").ToString.ToUpper.Contains(sText.ToUpper))
+                    'Dim dtFilter = (From p In dtData
+                    '                Where p("NAME") IsNot DBNull.Value)
 
                     If dtFilter.Count > 0 Then
                         dtData = dtFilter.CopyToDataTable
