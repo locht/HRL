@@ -297,14 +297,14 @@ Public Class ctrlDeclareEntitlementNBNewEdit
                             ShowMessage(Translate("Nhân viên này đã được gia hạn nghỉ phép"), NotifyType.Error)
                             Exit Sub
                         End If
-                        'Dim str As String = "getRadWindow().close('1');"
-                        'ScriptManager.RegisterStartupScript(Me.Page, Me.Page.GetType, "clientButtonClicking", str, True)
+                        Dim str As String = "getRadWindow().close('1');"
+                        ScriptManager.RegisterStartupScript(Me.Page, Me.Page.GetType, "clientButtonClicking", str, True)
                         ''POPUPTOLINK
-                        Response.Redirect("/Default.aspx?mid=Attendance&fid=ctrlDeclareEntitlementNB&group=Business")
+                        'Response.Redirect("/Default.aspx?mid=Attendance&fid=ctrlDeclareEntitlementNB&group=Business")
                     End If
                 Case CommonMessage.TOOLBARITEM_CANCEL
                     ''POPUPTOLINK_CANCEL
-                    Response.Redirect("/Default.aspx?mid=Attendance&fid=ctrlDeclareEntitlementNB&group=Business")
+                    'Response.Redirect("/Default.aspx?mid=Attendance&fid=ctrlDeclareEntitlementNB&group=Business")
             End Select
             _myLog.WriteLog(_myLog._info, _classPath, method,
                                                 CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
