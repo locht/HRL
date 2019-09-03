@@ -1751,9 +1751,9 @@ Partial Class ProfileRepository
                      From bir_ward In Context.HU_WARD.Where(Function(f) cv.WARDEMP_ID = f.ID).DefaultIfEmpty
                      From relation_per In Context.OT_OTHER_LIST.Where(Function(f) cv.RELATION_PER_CTR = f.ID).DefaultIfEmpty
                      From objectIns In Context.OT_OTHER_LIST.Where(Function(f) f.ID = cv.OBJECT_INS And f.TYPE_ID = 6894).DefaultIfEmpty
-                      From ks_pro In Context.HU_PROVINCE.Where(Function(f) cv.PROVINCEEMP_BRITH = f.ID).DefaultIfEmpty
-                     From ks_dis In Context.HU_DISTRICT.Where(Function(f) cv.DISTRICTEMP_BRITH = f.ID).DefaultIfEmpty
-                     From ks_ward In Context.HU_WARD.Where(Function(f) cv.WARDEMP_BRITH = f.ID).DefaultIfEmpty
+                      From ks_pro In Context.HU_PROVINCE.Where(Function(f) cv.PROVINCEEMP_ID = f.ID).DefaultIfEmpty
+                     From ks_dis In Context.HU_DISTRICT.Where(Function(f) cv.DISTRICTEMP_ID = f.ID).DefaultIfEmpty
+                     From ks_ward In Context.HU_WARD.Where(Function(f) cv.WARDEMP_ID = f.ID).DefaultIfEmpty
             Where (cv.EMPLOYEE_ID = sEmployeeID)
                      Select New EmployeeCVDTO With {
                          .EMPLOYEE_ID = cv.EMPLOYEE_ID,
