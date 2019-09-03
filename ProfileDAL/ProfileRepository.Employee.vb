@@ -1620,7 +1620,20 @@ Partial Class ProfileRepository
             Throw ex
         End Try
     End Sub
-
+    Public Function DeleteNVBlackList(ByVal id_no As String, ByVal log As UserLog) As Boolean
+        Dim lstID As List(Of Decimal)
+        Dim dsBlacklist As List(Of HU_TERMINATE)
+        Try
+            lstID = (From p In Context.HU_EMPLOYEE_CV Where p.ID_NO = id_no Select p.EMPLOYEE_ID).ToList
+            dsBlacklist = (From p In Context.HU_TERMINATE Where lstID.Contains(p.EMPLOYEE_ID)).ToList
+            For i = 0 To dsBlacklist.Count - 1
+                Context.HU_TERMINATE.DeleteObject(dsBlacklist(i))
+            Next
+            Context.SaveChanges(log)
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
     ''' <summary>
     ''' Hàm xóa nhân viên
     ''' </summary>
@@ -1751,9 +1764,9 @@ Partial Class ProfileRepository
                      From bir_ward In Context.HU_WARD.Where(Function(f) cv.WARDEMP_ID = f.ID).DefaultIfEmpty
                      From relation_per In Context.OT_OTHER_LIST.Where(Function(f) cv.RELATION_PER_CTR = f.ID).DefaultIfEmpty
                      From objectIns In Context.OT_OTHER_LIST.Where(Function(f) f.ID = cv.OBJECT_INS And f.TYPE_ID = 6894).DefaultIfEmpty
-                      From ks_pro In Context.HU_PROVINCE.Where(Function(f) cv.PROVINCEEMP_BRITH = f.ID).DefaultIfEmpty
-                     From ks_dis In Context.HU_DISTRICT.Where(Function(f) cv.DISTRICTEMP_BRITH = f.ID).DefaultIfEmpty
-                     From ks_ward In Context.HU_WARD.Where(Function(f) cv.WARDEMP_BRITH = f.ID).DefaultIfEmpty
+                      From ks_pro In Context.HU_PROVINCE.Where(Function(f) cv.PROVINCEEMP_ID = f.ID).DefaultIfEmpty
+                     From ks_dis In Context.HU_DISTRICT.Where(Function(f) cv.DISTRICTEMP_ID = f.ID).DefaultIfEmpty
+                     From ks_ward In Context.HU_WARD.Where(Function(f) cv.WARDEMP_ID = f.ID).DefaultIfEmpty
             Where (cv.EMPLOYEE_ID = sEmployeeID)
                      Select New EmployeeCVDTO With {
                          .EMPLOYEE_ID = cv.EMPLOYEE_ID,
@@ -1970,10 +1983,19 @@ Partial Class ProfileRepository
         Try
             Select Case sType
                 Case "EXIST_ID_NO_TERMINATE"
-                    Return (From p In Context.HU_TERMINATE
-                            From e In Context.HU_EMPLOYEE.Where(Function(f) f.ID = p.EMPLOYEE_ID)
-                            From cv In Context.HU_EMPLOYEE_CV.Where(Function(f) f.EMPLOYEE_ID = e.ID).DefaultIfEmpty
-                            Where cv.ID_NO = value And p.IS_NOHIRE = True And p.STATUS_ID = ProfileCommon.DECISION_STATUS.APPROVE_ID).Count = 0
+                    If sEmpCode <> "" Then
+                        Return (From p In Context.HU_TERMINATE
+                           From e In Context.HU_EMPLOYEE.Where(Function(f) f.ID = p.EMPLOYEE_ID)
+                           From cv In Context.HU_EMPLOYEE_CV.Where(Function(f) f.EMPLOYEE_ID = e.ID).DefaultIfEmpty
+                           Where cv.ID_NO = value And p.IS_NOHIRE = True And p.STATUS_ID = ProfileCommon.DECISION_STATUS.APPROVE_ID And e.EMPLOYEE_CODE <> sEmpCode).Count = 0
+                    Else
+                        Return (From p In Context.HU_TERMINATE
+                           From e In Context.HU_EMPLOYEE.Where(Function(f) f.ID = p.EMPLOYEE_ID)
+                           From cv In Context.HU_EMPLOYEE_CV.Where(Function(f) f.EMPLOYEE_ID = e.ID).DefaultIfEmpty
+                           Where cv.ID_NO = value And p.IS_NOHIRE = True And p.STATUS_ID = ProfileCommon.DECISION_STATUS.APPROVE_ID).Count = 0
+                    End If
+
+
 
                 Case "EXIST_ID_NO"
                     If sEmpCode <> "" Then
