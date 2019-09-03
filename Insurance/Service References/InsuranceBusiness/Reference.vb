@@ -798,6 +798,9 @@ Namespace InsuranceBusiness
         Private COSTField As System.Nullable(Of Decimal)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private COST_SALField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private CREATED_BYField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -897,6 +900,19 @@ Namespace InsuranceBusiness
                 If (Me.COSTField.Equals(value) <> true) Then
                     Me.COSTField = value
                     Me.RaisePropertyChanged("COST")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property COST_SAL() As System.Nullable(Of Decimal)
+            Get
+                Return Me.COST_SALField
+            End Get
+            Set
+                If (Me.COST_SALField.Equals(value) <> true) Then
+                    Me.COST_SALField = value
+                    Me.RaisePropertyChanged("COST_SAL")
                 End If
             End Set
         End Property

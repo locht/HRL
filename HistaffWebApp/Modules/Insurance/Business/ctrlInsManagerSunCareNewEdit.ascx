@@ -103,10 +103,19 @@
                     </asp:CustomValidator>--%>
                 </td>
                 <td class="lb">
-                    <%# Translate("Chi phí")%>
+                    <%# Translate("Chi phí mua")%>
                 </td>
                 <td>
                     <tlk:RadNumericTextBox ID="nmCOST" runat="server">
+                    </tlk:RadNumericTextBox>
+                </td>
+            </tr>
+            <tr>
+                 <td class="lb">
+                    <%# Translate("Mức bồi thường")%>
+                </td>
+                <td>
+                    <tlk:RadNumericTextBox ID="nmCOSTSAL" runat="server">
                     </tlk:RadNumericTextBox>
                 </td>
             </tr>
