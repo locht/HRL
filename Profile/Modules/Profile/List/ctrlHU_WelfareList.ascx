@@ -6,8 +6,8 @@
     <tlk:RadPane ID="LeftPane" runat="server" MinWidth="200" Width="260px" Scrolling="None">
         <Common:ctrlOrganization ID="ctrlOrg" runat="server" />
     </tlk:RadPane>
-    <tlk:RadPane runat="server" ID="RadPane3">
-        <tlk:RadSplitter ID="RadSplitter1" runat="server" Width="100%" Height="100%" Orientation="Horizontal">
+    <tlk:RadPane runat="server" ID="RadPane3" Width="100%" Height="100%" Scrolling="None">
+        <tlk:RadSplitter ID="RadSplitter1" runat="server" Width="95%" Height="95%" Orientation="Horizontal">
             <tlk:RadPane ID="RadPane1" runat="server" Height="215px" Scrolling="None">
                 <tlk:RadToolBar ID="tbarWelfareLists" runat="server" />
                 <asp:ValidationSummary ID="valSum" runat="server" />
@@ -35,19 +35,14 @@
                             </asp:CustomValidator>
                         </td>
                         <td class="lb">
-                            <asp:Label ID="lbCode" runat="server" Text="Mã chế độ phúc lợi"></asp:Label>
+                            <asp:Label ID="lbMoney" runat="server" Text="Số tiền"></asp:Label>
                         </td>
                         <td>
-                            <tlk:RadTextBox ID="txtCode" SkinID="ReadOnly" runat="server">
-                            </tlk:RadTextBox>
-                            <asp:RequiredFieldValidator ID="reqCode" ControlToValidate="txtCode" runat="server"
-                                CausesValidation="false" ErrorMessage="Bạn phải nhập mã chế độ phúc lợi." ToolTip="Bạn phải nhập mã chế độ phúc lợi.">
+                            <tlk:RadNumericTextBox ID="nmMONEY" MinValue="1" MaxLength="38" runat="server">
+                            </tlk:RadNumericTextBox>
+                            <asp:RequiredFieldValidator Enable="false" ID="cvalMONEY" ControlToValidate="nmMONEY" runat="server"
+                                ErrorMessage="Bạn phải nhập số tiền." ToolTip="Bạn phải nhập số tiền.">
                             </asp:RequiredFieldValidator>
-                            <asp:CustomValidator ID="cvalCode" ControlToValidate="txtCode" runat="server" ErrorMessage="Mã chế độ phúc lợi đã tồn tại."
-                                ToolTip="Mã chế độ phúc lợi đã tồn tại.">
-                            </asp:CustomValidator>
-                            <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ErrorMessage="Mã không được chứa ký tự đặc biệt và khoảng trắng"
-                                ControlToValidate="txtCode" ValidationExpression="^[a-zA-Z0-9_]*$"></asp:RegularExpressionValidator>
                         </td>
                         <td rowspan="5" style="vertical-align: top;">
                             <tlk:RadListBox ID="lstbGender" CheckBoxes="true" runat="server" Height="60px" Width="100px"
@@ -64,16 +59,6 @@
                         </td>
                     </tr>
                     <tr>
-                        <td class="lb">
-                            <asp:Label ID="lbMoney" runat="server" Text="Số tiền"></asp:Label>
-                        </td>
-                        <td>
-                            <tlk:RadNumericTextBox ID="nmMONEY" MinValue="1" MaxLength="38" runat="server">
-                            </tlk:RadNumericTextBox>
-                            <asp:RequiredFieldValidator ID="cvalMONEY" ControlToValidate="nmMONEY" runat="server"
-                                ErrorMessage="Bạn phải nhập số tiền." ToolTip="Bạn phải nhập số tiền.">
-                            </asp:RequiredFieldValidator>
-                        </td>
                         <td class="lb">
                             <asp:Label ID="lbSENIORITY" runat="server" Text="Thâm niên (tháng)"></asp:Label>
                         </td>
@@ -115,9 +100,12 @@
                         <td>
                             <tlk:RadDatePicker runat="server" ID="dpSTART_DATE">
                             </tlk:RadDatePicker>
-                            <asp:RequiredFieldValidator ID="RequiredFieldValidator1" ControlToValidate="dpSTART_DATE"
-                                runat="server" ErrorMessage="Bạn phải nhập ngày hiệu lực." ToolTip="Bạn phải nhập ngày hiệu lực.">
-                            </asp:RequiredFieldValidator>
+                            <asp:CustomValidator ID="dpSTART_DATE_custom" runat="server" ErrorMessage="Bạn phải nhập ngày hiệu lực."
+                                ToolTip="Bạn phải nhập ngày hiệu lực.">
+                            </asp:CustomValidator>
+                            <%--<asp:RequiredFieldValidator ID="RequiredFieldValidator1" ControlToValidate="dpSTART_DATE"
+                                runat="server" ErrorMessage="" ToolTip="Bạn phải nhập ngày hiệu lực.">
+                            </asp:RequiredFieldValidator>--%>
                         </td>
                         <td class="lb">
                             <asp:Label ID="lbEND_DATE" runat="server" Text="Ngày hết hiệu lực"></asp:Label>
@@ -125,7 +113,7 @@
                         <td>
                             <tlk:RadDatePicker runat="server" ID="dpEND_DATE">
                             </tlk:RadDatePicker>
-                            <asp:CompareValidator ID="CompareValidator1" runat="server" ToolTip="Ngày hết hiệu lực phải lớn hơn ngày hiệu lực."
+                            <asp:CompareValidator Enable="false" ID="CompareValidator1" runat="server" ToolTip="Ngày hết hiệu lực phải lớn hơn ngày hiệu lực."
                                 ErrorMessage="Ngày hết hiệu lực phải lớn hơn ngày hiệu lực." Type="Date" Operator="GreaterThan"
                                 ControlToCompare="dpSTART_DATE" ControlToValidate="dpEND_DATE"></asp:CompareValidator>
                         </td>
@@ -149,7 +137,21 @@
                                 Visible="false">
                             </tlk:RadButton>
                         </td>
-                       
+                        <td class="lb" style="display:none">
+                            <asp:Label ID="lbCode" runat="server" Text="Mã chế độ phúc lợi"></asp:Label>
+                        </td>
+                        <td style="display:none">
+                            <tlk:RadTextBox Enabled="false" ID="txtCode" SkinID="ReadOnly" runat="server">
+                            </tlk:RadTextBox>
+                            <asp:RequiredFieldValidator Enabled="false" ID="reqCode" ControlToValidate="txtCode" runat="server"
+                                CausesValidation="false" ErrorMessage="Bạn phải nhập mã chế độ phúc lợi." ToolTip="Bạn phải nhập mã chế độ phúc lợi.">
+                            </asp:RequiredFieldValidator>
+                            <asp:CustomValidator Enabled="false" ID="cvalCode" ControlToValidate="txtCode" runat="server" ErrorMessage="Mã chế độ phúc lợi đã tồn tại."
+                                ToolTip="Mã chế độ phúc lợi đã tồn tại.">
+                            </asp:CustomValidator>
+                            <asp:RegularExpressionValidator Enabled="false" ID="RegularExpressionValidator1" runat="server" ErrorMessage="Mã không được chứa ký tự đặc biệt và khoảng trắng"
+                                ControlToValidate="txtCode" ValidationExpression="^[a-zA-Z0-9_]*$"></asp:RegularExpressionValidator>
+                        </td>
                     </tr>
                 </table>
             </tlk:RadPane>
@@ -245,7 +247,7 @@
             } else if (args.get_item().get_commandName() == "SAVE") {
                 // Nếu nhấn nút SAVE thì resize
                 if (!Page_ClientValidate(""))
-                    ResizeSplitter(splitterID, pane1ID, pane2ID, validateID, oldSize, 'rgWelfareList');
+                    ResizeSplitter('ctl00_MainContent_ctrlHU_WelfareList_RadSplitter1', pane1ID, pane2ID, validateID, oldSize + 20, 'rgWelfareList');
                 else
                     ResizeSplitterDefault(splitterID, pane1ID, pane2ID, oldSize);
             } else if (args.get_item().get_commandName() == "EDIT") {
@@ -310,6 +312,7 @@
             var cbo = $find("<%# cboName.ClientID%>");
             args.IsValid = (cbo.get_value().length != 0);
         }
-       
+
+
     </script>
 </tlk:RadCodeBlock>

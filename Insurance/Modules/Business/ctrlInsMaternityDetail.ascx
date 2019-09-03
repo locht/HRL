@@ -11,7 +11,7 @@
     <asp:HiddenField ID="hdORG_ID" runat="server" />
     <asp:HiddenField ID="hdTITLE_ID" runat="server" />
 </div>
-<div style="margin-left: 30px; margin-right: 30px;">
+<div style="margin-left: 10px; margin-right: 10px;">
     <fieldset style="width: auto; height: auto">
         <legend>
             <%# Translate("Thông tin chung")%>
@@ -96,8 +96,7 @@
                 <td class="lb">
                     <%# Translate("Từ ngày")%><span class="lbReq">*</span>
                 </td>
-                <td>
-                     <tlk:RadAjaxPanel ID="RadAjaxPanel2" runat="server" OnAjaxRequest="RadAjaxPanel1_AjaxRequest">
+                <td  <tlk:RadAjaxPanel ID="RadAjaxPanel2" runat="server" OnAjaxRequest="RadAjaxPanel1_AjaxRequest">
                     </tlk:RadAjaxPanel>
                     <tlk:RadCodeBlock ID="RadCodeBlock3" runat="server">
                         <script type="text/javascript">
@@ -130,15 +129,6 @@
                     <%# Translate("Ngày hưởng chế độ thai sản")%>
                 </td>
                 <td>
-                     <tlk:RadAjaxPanel ID="RadAjaxPanel3" runat="server" OnAjaxRequest="RadAjaxPanel1_AjaxRequest">
-                    </tlk:RadAjaxPanel>
-                    <tlk:RadCodeBlock ID="RadCodeBlock4" runat="server">
-                        <script type="text/javascript">
-                            function OnClientSelectedIndexChanged(sender, eventArgs) {
-                                $find("<%= RadAjaxPanel1.ClientID%>").ajaxRequestWithTarget("<%= RadAjaxPanel1.UniqueID %>", sender.get_id());
-                            }
-                        </script>
-                    </tlk:RadCodeBlock>
                     <tlk:RadDatePicker runat="server" DateInput-DateFormat="dd/MM/yyyy" ID="dataFromEnjoy"
                         TabIndex="5" ClientEvents-OnDateSelected="OnClientSelectedIndexChanged">
                     </tlk:RadDatePicker>
@@ -226,7 +216,7 @@
             oWindow.set_height(heigth);
             oWindow.center();
         }
-        
+
     </script>
 </tlk:RadCodeBlock>
 <asp:PlaceHolder ID="FindEmployee" runat="server"></asp:PlaceHolder>

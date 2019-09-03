@@ -11,7 +11,7 @@
     <asp:HiddenField ID="hdORG_ID" runat="server" />
     <asp:HiddenField ID="hdTITLE_ID" runat="server" />
 </div>
-<div style="margin-left: 30px; margin-right: 30px;">
+<div style="margin-left: 10px; margin-right: 10px;">
     <fieldset style="width: auto; height: auto">
         <legend>
             <%# Translate("Thông tin chung")%>

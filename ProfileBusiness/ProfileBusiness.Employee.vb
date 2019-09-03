@@ -284,7 +284,16 @@ Namespace ProfileBusiness.ServiceImplementations
                 End Try
             End Using
         End Function
-
+        Public Function DeleteNVBlackList(ByVal id_no As String, ByVal log As UserLog) As Boolean _
+             Implements ServiceContracts.IProfileBusiness.DeleteNVBlackList
+            Using rep As New ProfileRepository
+                Try
+                    Return rep.DeleteNVBlackList(id_no, log)
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
         Public Function DeleteEmployeeTrain(ByVal lstDecimals As List(Of Decimal), ByVal log As UserLog) As Boolean _
             Implements ServiceContracts.IProfileBusiness.DeleteEmployeeTrain
             Using rep As New ProfileRepository

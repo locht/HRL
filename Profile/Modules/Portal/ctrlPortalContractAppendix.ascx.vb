@@ -102,11 +102,10 @@ Public Class ctrlPortalContractAppendix
     Private Sub rgGrid_NeedDataSource(ByVal sender As Object, ByVal e As Telerik.Web.UI.GridNeedDataSourceEventArgs) Handles rgGrid.NeedDataSource
         Try
             Dim rep As New ProfileRepository
-            dt = rep.GET_PROCESS_PLCONTRACT_PORTAL(EmployeeID)
-                If Not IsPostBack Then
-                    DesignGrid(dt)
-                End If
-                rgGrid.DataSource = dt
+            Dim rep2 As New ProfileBusinessRepository
+            Dim emp_info = rep2.GetEmployeeByEmployeeID(EmployeeID)
+            dt = rep.GET_PROCESS_PLCONTRACT(emp_info.EMPLOYEE_CODE) 'rep.GET_PROCESS_PLCONTRACT_PORTAL(EmployeeID)
+            rgGrid.DataSource = dt
         Catch ex As Exception
             Me.DisplayException(Me.ViewName, Me.ID, ex)
         End Try
@@ -119,7 +118,7 @@ Public Class ctrlPortalContractAppendix
         Dim rCol As GridBoundColumn
         Dim rColCheck As GridClientSelectColumn
         Dim rColDate As GridDateTimeColumn
-        rgGrid.MasterTableView.Columns.Clear()
+        'rgGrid.MasterTableView.Columns.Clear()
         For Each column As DataColumn In dt.Columns
             If column.ColumnName = "CBSTATUS" Then
                 rColCheck = New GridClientSelectColumn()

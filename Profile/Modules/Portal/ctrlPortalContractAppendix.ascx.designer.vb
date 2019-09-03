@@ -12,25 +12,7 @@ Option Explicit On
 
 
 Partial Public Class ctrlPortalContractAppendix
-
-    '''<summary>
-    '''RadSplitter2 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents RadSplitter2 As Global.Telerik.Web.UI.RadSplitter
-
-    '''<summary>
-    '''RadPane1 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents RadPane1 As Global.Telerik.Web.UI.RadPane
-
+    
     '''<summary>
     '''rgGrid control.
     '''</summary>
@@ -39,13 +21,4 @@ Partial Public Class ctrlPortalContractAppendix
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents rgGrid As Global.Telerik.Web.UI.RadGrid
-
-    '''<summary>
-    '''RadCodeBlock1 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents RadCodeBlock1 As Global.Telerik.Web.UI.RadCodeBlock
 End Class

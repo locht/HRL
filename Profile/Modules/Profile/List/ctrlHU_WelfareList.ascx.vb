@@ -89,7 +89,7 @@ Public Class ctrlHU_WelfareList
             rgWelfareList.AllowCustomPaging = True
             InitControl()
             If Not IsPostBack Then
-                ViewConfig(RadPane1)
+                'ViewConfig(RadPane1)
                 GirdConfig(rgWelfareList)
             End If
             _myLog.WriteLog(_myLog._info, _classPath, method,
@@ -916,6 +916,16 @@ Public Class ctrlHU_WelfareList
             _myLog.WriteLog(_myLog._error, _classPath, method, 0, ex, "")
             DisplayException(Me.ViewName, Me.ID, ex)
         End Try
+    End Sub
+
+    Private Sub dpSTART_DATE_custom_ServerValidate(ByVal source As Object, ByVal args As System.Web.UI.WebControls.ServerValidateEventArgs) Handles dpSTART_DATE_custom.ServerValidate
+        If dpSTART_DATE.SelectedDate Is Nothing Then
+            args.IsValid = False
+            ShowMessage(Translate("Bạn phải nhập ngày hiệu lực."), Utilities.NotifyType.Error)
+            Exit Sub
+        Else
+            args.IsValid = True
+        End If
     End Sub
 
     ''' <lastupdate>
