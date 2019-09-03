@@ -379,17 +379,17 @@ Public Class ctrlHU_DisciplineNewEdit
                     If Discipline.STATUS_ID = ProfileCommon.DISCIPLINE_STATUS.APPROVE_ID Then
 
                         EnableControlAll_Cus(False, RadPane2)
-                        EnableControlAll(True, rnAmountSalaryMonth)
+                        EnableControlAll(True, chkPhatTien, rntxtMoney, rntxtIndemnifyMoney, rnPaidIMoeny, rdAmountPaidCash, rnAmountToPaid)
+                        EnableControlAll(True, chkDeductFromSalary, rnAmountSalaryMonth, nmYear, cboPeriod, chkAmountInMonth, rnAmountInMonth, rnAmountDeductedMonth)
 
-                        If cboDisciplineObj.SelectedValue = 401 Then
-                            EnableControlAll(True, rnAmountInMonth, rnAmountDeductedMonth)
+                        If cboDisciplineObj.SelectedValue <> 401 Then
+                            EnableControlAll(False, chkDeductFromSalary, rnAmountSalaryMonth, nmYear, cboPeriod, chkAmountInMonth, rnAmountInMonth, rnAmountDeductedMonth)
                         End If
 
                         btnDownload.Enabled = True
 
                         Dim btnEmployee As RadButton = rgEmployee.MasterTableView.GetItems(GridItemType.CommandItem)(0).FindControl("btnEmployee")
                         btnEmployee.Enabled = False
-
                         Dim btnQD As RadButton = rgEmployee.MasterTableView.GetItems(GridItemType.CommandItem)(0).FindControl("btnQD")
                         btnQD.Enabled = True
                         Dim btnHSL As RadButton = rgEmployee.MasterTableView.GetItems(GridItemType.CommandItem)(0).FindControl("btnHSL")
