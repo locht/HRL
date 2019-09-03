@@ -511,9 +511,9 @@
                                                 ControlToValidate="txtID_NO" runat="server" ErrorMessage="<%$ Translate: Bạn phải nhập số CMND %>"
                                                 ToolTip="<%$ Translate:  Bạn phải nhập số CMND %>">
                                             </asp:RequiredFieldValidator>
-                                            <asp:CustomValidator ValidationGroup="EmpProfile" ID="cusNO_ID" runat="server" ErrorMessage="<%$ Translate: Mã CMND đã tồn tại trong danh sách đen, không được phép thêm mới %>"
+                                            <%--<asp:CustomValidator ValidationGroup="EmpProfile" ID="cusNO_ID" runat="server" ErrorMessage="<%$ Translate: Mã CMND đã tồn tại trong danh sách đen, không được phép thêm mới %>"
                                                 ToolTip="<%$ Translate: Mã CMND đã tồn tại trong danh sách đen, không được phép thêm mới %>">
-                                            </asp:CustomValidator>
+                                            </asp:CustomValidator>--%>
                                         </td>
                                         <td class="lb3">
                                             <asp:Label runat="server" ID="lbIDDate" Text="Ngày cấp"></asp:Label>

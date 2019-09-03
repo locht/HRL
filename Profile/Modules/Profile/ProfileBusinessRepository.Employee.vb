@@ -498,6 +498,18 @@ Partial Public Class ProfileBusinessRepository
 
     End Function
 
+    Public Function DeleteNVBlackList(ByVal id_no As String) As Boolean
+        Using rep As New ProfileBusinessClient
+            Try
+                Return rep.DeleteNVBlackList(id_no, Me.Log)
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+
+    End Function
+
     Public Function DeleteEmployeeEdit(ByVal lstDecimal As List(Of Decimal)) As Boolean
         Using rep As New ProfileBusinessClient
             Try

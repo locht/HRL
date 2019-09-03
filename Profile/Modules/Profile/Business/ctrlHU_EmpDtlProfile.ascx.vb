@@ -169,7 +169,7 @@ Public Class ctrlHU_EmpDtlProfile
                         lblChucDanh.Text = EmployeeInfo.TITLE_NAME_VN
                         lblPhongBan.Text = EmployeeInfo.ORG_NAME
                         lblQLTT.Text = EmployeeInfo.DIRECT_MANAGER_NAME
-                        txtManager.Text = EmployeeInfo.TITLE_NAME_VN
+                        txtmanager.Text = EmployeeInfo.TITLE_NAME_VN
                         'lblQLTMC.Text = EmployeeInfo.LEVEL_MANAGER_NAME
                         _DIRECT_MANAGER = Utilities.ObjToString(EmployeeInfo.DIRECT_MANAGER)
                         _LEVEL_MANAGER = Utilities.ObjToString(EmployeeInfo.LEVEL_MANAGER)
@@ -854,7 +854,7 @@ Public Class ctrlHU_EmpDtlProfile
 
                     EnableControlAll(True, txtOrgName2, btnFindOrg,
                                      cboTitle, txtTitleGroup, cboStaffRank, txtDirectManager, btnFindDirect,
-                                     txtManager, cboObject, cboObjectLabor, txtTimeID, cbObjectBook, cboBasic, cboCertificate, txtAppDung, txtPlaceKS, txtVillage, rdDayPitcode, txtPlacePitcode, txtPerson_Inheritance, rdEffect_Bank)
+                                     txtmanager, cboObject, cboObjectLabor, txtTimeID, cbObjectBook, cboBasic, cboCertificate, txtAppDung, txtPlaceKS, txtVillage, rdDayPitcode, txtPlacePitcode, txtPerson_Inheritance, rdEffect_Bank)
 
                     EnableControlAll(False, cboWorkStatus, txtEmpCODE, cboEmpStatus, rtBookNo, cboInsRegion)
                     EnableControlAll(True, rtCHUC_VU_DANG, rdNGAY_VAO_DANG_DB, rdNGAY_VAO_DANG)
@@ -993,7 +993,7 @@ Public Class ctrlHU_EmpDtlProfile
                                            cboPROVINCEEMP_BRITH, cboDISTRICTEMP_BRITH, cboWARDEMP_BRITH, ckCHUHO, txtNoHouseHolds, txtCodeHouseHolds, cboObjectIns)
 
                     End If
-                   
+
                     If Not Me.AllowModify Then
                         txtFirstNameVN.ReadOnly = True
                         txtLastNameVN.ReadOnly = True
@@ -1075,7 +1075,7 @@ Public Class ctrlHU_EmpDtlProfile
                                       cboPROVINCEEMP_BRITH, cboDISTRICTEMP_BRITH, cboWARDEMP_BRITH, ckCHUHO, txtNoHouseHolds, txtCodeHouseHolds, cboObjectIns)
                     End If
 
-                   
+
             End Select
             rep.Dispose()
             ChangeToolbarState()
@@ -1105,6 +1105,7 @@ Public Class ctrlHU_EmpDtlProfile
             End If
             Dim checkID_NO As Boolean = False
             Dim checkBank_No As Boolean = False
+            Dim checkBlackList As Boolean = False
             Dim dtData As DataTable
             Dim lstEmpID As String = ""
 
@@ -1136,8 +1137,10 @@ Public Class ctrlHU_EmpDtlProfile
                         Select Case CurrentState
                             Case STATE_NEW
                                 Dim message As String = String.Empty
+                                Dim blacklist As String = String.Empty
                                 checkID_NO = rep.ValidateEmployee("EXIST_ID_NO", "", txtID_NO.Text)
                                 checkBank_No = rep.ValidateEmployee("EXIST_BANK_NO", "", txtBankNo.Text)
+                                checkBlackList = rep.ValidateEmployee("EXIST_ID_NO_TERMINATE", "", txtID_NO.Text)
 
                                 If Not checkID_NO Then
                                     _filter.ID_NO = txtID_NO.Text
@@ -1160,18 +1163,31 @@ Public Class ctrlHU_EmpDtlProfile
                                 If hidDirectManager.Value = "" Then
                                     message = If(message <> "", message + " Nhân viên này không có Quản lý trực tiếp.", "Nhân viên này không có Quản lý trực tiếp.")
                                 End If
-                                If message <> "" Then
-                                    message += " Bạn có muốn lưu không?"
-                                    ctrlMessageBox.MessageText = Translate(message)
-                                    ctrlMessageBox.ActionName = "WARNING"
+
+                                'check danh sach nv trong cmnd,nếu có thì xóa đi
+                                If Not checkBlackList Then
+                                    blacklist = "Thông tin nhân viên có CMND vừa nhập đã tồn tại trong danh sách đen không tái tuyển dụng."
+                                End If
+                                If blacklist <> "" Then
+                                    blacklist += "Bạn có muốn tuyển dụng lại nhân viên này không?"
+                                    ctrlMessageBox.MessageText = Translate(blacklist)
+                                    ctrlMessageBox.ActionName = "BLACKLIST"
                                     ctrlMessageBox.DataBind()
                                     ctrlMessageBox.Show()
                                 Else
-                                    If Save(strEmpID, _err) Then
-                                        Dim purl = String.Format("~/Default.aspx?mid=Profile&fid=ctrlHU_EmpDtl&group=Business&emp={0}&state=Normal&message=SUCCESS", strEmpID)
-                                        Response.Redirect(purl, False)
+                                    If message <> "" Then
+                                        message += " Bạn có muốn lưu không?"
+                                        ctrlMessageBox.MessageText = Translate(message)
+                                        ctrlMessageBox.ActionName = "WARNING"
+                                        ctrlMessageBox.DataBind()
+                                        ctrlMessageBox.Show()
                                     Else
-                                        ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL) & vbNewLine & Translate(_err), Utilities.NotifyType.Error)
+                                        If Save(strEmpID, _err) Then
+                                            Dim purl = String.Format("~/Default.aspx?mid=Profile&fid=ctrlHU_EmpDtl&group=Business&emp={0}&state=Normal&message=SUCCESS", strEmpID)
+                                            Response.Redirect(purl, False)
+                                        Else
+                                            ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL) & vbNewLine & Translate(_err), Utilities.NotifyType.Error)
+                                        End If
                                     End If
                                 End If
                                 'If Not checkID_NO Then
@@ -1218,7 +1234,9 @@ Public Class ctrlHU_EmpDtlProfile
                                 'End If
                             Case STATE_EDIT
                                 Dim message As String = String.Empty
+                                Dim blacklist As String = String.Empty
                                 checkID_NO = rep.ValidateEmployee("EXIST_ID_NO", EmployeeInfo.EMPLOYEE_CODE, txtID_NO.Text)
+                                checkBlackList = rep.ValidateEmployee("EXIST_ID_NO_TERMINATE", EmployeeInfo.EMPLOYEE_CODE, txtID_NO.Text)
                                 If Not checkID_NO Then
                                     _filter.ID_NO = txtID_NO.Text
 
@@ -1236,24 +1254,38 @@ Public Class ctrlHU_EmpDtlProfile
                                     End If
                                     message = "Số CMND đã tồn tại."
                                 End If
+                                'check danh sach nv trong cmnd,nếu có thì xóa đi
+                                If Not checkBlackList Then
+                                    blacklist = "Thông tin nhân viên có CMND vừa nhập đã tồn tại trong danh sách đen không tái tuyển dụng."
+                                End If
                                 If hidDirectManager.Value = "" Then
                                     message = If(message <> "", message + " Nhân viên này không có Quản lý trực tiếp.", "Nhân viên này không có Quản lý trực tiếp.")
                                 End If
-                                If message <> "" Then
-                                    message += " Bạn có muốn lưu không?"
-                                    ctrlMessageBox.MessageText = Translate(message)
-                                    ctrlMessageBox.ActionName = "WARNING"
+                                If blacklist <> "" Then
+                                    blacklist += "Bạn có muốn tuyển dụng lại nhân viên này không?"
+                                    ctrlMessageBox.MessageText = Translate(blacklist)
+                                    ctrlMessageBox.ActionName = "BLACKLIST"
                                     ctrlMessageBox.DataBind()
                                     ctrlMessageBox.Show()
                                 Else
-                                    If Save(strEmpID, _err) Then
-
-                                        CurrentState = CommonMessage.STATE_NORMAL
-                                        ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), Utilities.NotifyType.Success)
+                                    If message <> "" Then
+                                        message += " Bạn có muốn lưu không?"
+                                        ctrlMessageBox.MessageText = Translate(message)
+                                        ctrlMessageBox.ActionName = "WARNING"
+                                        ctrlMessageBox.DataBind()
+                                        ctrlMessageBox.Show()
                                     Else
-                                        ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL) & vbNewLine & Translate(_err), Utilities.NotifyType.Error)
+                                        If Save(strEmpID, _err) Then
+                                            CurrentState = CommonMessage.STATE_NORMAL
+                                            ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), Utilities.NotifyType.Success)
+                                        Else
+                                            ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL) & vbNewLine & Translate(_err), Utilities.NotifyType.Error)
+                                        End If
                                     End If
                                 End If
+
+
+
                                 'If Not checkID_NO Then
                                 '    _filter.ID_NO = txtID_NO.Text
 
@@ -1341,7 +1373,39 @@ Public Class ctrlHU_EmpDtlProfile
                 UpdateControlState()
                 rep.Dispose()
             End If
-
+            'KIỂM TRA NHÂN VIÊN CÓ NẰM TRONG BLACKLIST NẾU CÓ THÌ DELETE NV KHỎI BLACKLIST VÀ TẠO MỚI ĐC NV
+            If e.ActionName = "BLACKLIST" And e.ButtonID = MessageBoxButtonType.ButtonYes Then
+                Dim _err As String = ""
+                Dim strEmpID As Decimal
+                Dim rep As New ProfileBusinessRepository
+                If EmployeeInfo IsNot Nothing Then
+                    strEmpID = EmployeeInfo.ID
+                End If
+                Select Case CurrentState
+                    Case CommonMessage.STATE_NEW
+                        If Save(strEmpID, _err) Then
+                            rep.DeleteNVBlackList(txtID_NO.Text)
+                            CurrentState = CommonMessage.STATE_NORMAL
+                            ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), Utilities.NotifyType.Success)
+                        Else
+                            ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL) & vbNewLine & Translate(_err), Utilities.NotifyType.Error)
+                            Exit Sub
+                        End If
+                    Case CommonMessage.STATE_EDIT
+                        If Save(strEmpID, _err) Then
+                            rep.DeleteNVBlackList(txtID_NO.Text)
+                            CurrentState = CommonMessage.STATE_NORMAL
+                            ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), Utilities.NotifyType.Success)
+                            Dim purl = String.Format("~/Default.aspx?mid=Profile&fid=ctrlHU_EmpDtl&group=Business&emp={0}&state=Normal&message=SUCCESS", strEmpID)
+                            Response.Redirect(purl, False)
+                        Else
+                            ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL) & vbNewLine & Translate(_err), Utilities.NotifyType.Error)
+                        End If
+                End Select
+                UpdateControlState()
+            Else
+                Exit Sub
+            End If
             ' kiểm tra xem trùng CMND có muốn lưu hay không
             If e.ActionName = CommonMessage.ACTION_ID_NO And e.ButtonID = MessageBoxButtonType.ButtonYes Then
                 Dim _err As String = ""
@@ -1349,7 +1413,6 @@ Public Class ctrlHU_EmpDtlProfile
                 If EmployeeInfo IsNot Nothing Then
                     strEmpID = EmployeeInfo.ID
                 End If
-
                 Select Case CurrentState
                     Case CommonMessage.STATE_NEW
 
@@ -1395,17 +1458,33 @@ Public Class ctrlHU_EmpDtlProfile
 
             If e.ActionName = "WARNING" And e.ButtonID = MessageBoxButtonType.ButtonYes Then
                 Dim _err As String = ""
-                If Save(EmployeeID, _err) Then
-                    CurrentState = CommonMessage.STATE_NORMAL
-                    ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), Utilities.NotifyType.Success)
-                Else
-                    ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL) & vbNewLine & Translate(_err), Utilities.NotifyType.Error)
+                Dim strEmpID As Decimal
+                Dim rep As New ProfileBusinessRepository
+                If EmployeeInfo IsNot Nothing Then
+                    strEmpID = EmployeeInfo.ID
                 End If
-                'UpdateControlState()
+                Select Case CurrentState
+                    Case CommonMessage.STATE_NEW
+                        If Save(EmployeeID, _err) Then
+                            CurrentState = CommonMessage.STATE_NORMAL
+                            ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), Utilities.NotifyType.Success)
+                        Else
+                            ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL) & vbNewLine & Translate(_err), Utilities.NotifyType.Error)
+                        End If
+                    Case CommonMessage.STATE_EDIT
+                        If Save(EmployeeID, _err) Then
+                            CurrentState = CommonMessage.STATE_NORMAL
+                            ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), Utilities.NotifyType.Success)
+                            Dim purl = String.Format("~/Default.aspx?mid=Profile&fid=ctrlHU_EmpDtl&group=Business&emp={0}&state=Normal&message=SUCCESS", strEmpID)
+                            Response.Redirect(purl, False)
+                        Else
+                            ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL) & vbNewLine & Translate(_err), Utilities.NotifyType.Error)
+                        End If
+                End Select
+                UpdateControlState()
             Else
                 Exit Sub
             End If
-
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
             _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
@@ -1589,7 +1668,7 @@ Public Class ctrlHU_EmpDtlProfile
                     Case 2
                         txtDirectManager.Text = lstCommonEmployee(0).FULLNAME_VN
                         hidDirectManager.Value = lstCommonEmployee(0).ID.ToString()
-                        txtManager.Text = lstCommonEmployee(0).TITLE_NAME
+                        txtmanager.Text = lstCommonEmployee(0).TITLE_NAME
                         'If lstCommonEmployee(0).DIRECT_MANAGER IsNot Nothing Then
                         '    _filter.DIRECT_MANAGER = lstCommonEmployee(0).DIRECT_MANAGER
                         '    list = rep.GetListEmployeePaging(_filter, _param)
@@ -1658,32 +1737,33 @@ Public Class ctrlHU_EmpDtlProfile
         End Try
     End Sub
     '' check CMND có nằm trong danh sách đen hay không
-    Private Sub cusNO_ID_ServerValidate(ByVal source As Object, ByVal args As System.Web.UI.WebControls.ServerValidateEventArgs) Handles cusNO_ID.ServerValidate
-        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
-        Try
-            Dim startTime As DateTime = DateTime.UtcNow
-            If txtID_NO.Text = "" Then
-                args.IsValid = True
-                Exit Sub
-            End If
-            Select Case CurrentState
-                Case STATE_NEW
-                    Using rep As New ProfileBusinessRepository
-                        args.IsValid = rep.ValidateEmployee("EXIST_ID_NO_TERMINATE", "", txtID_NO.Text)
-                    End Using
-                Case STATE_EDIT
-                    Using rep As New ProfileBusinessRepository
-                        args.IsValid = rep.ValidateEmployee("EXIST_ID_NO_TERMINATE", EmployeeInfo.EMPLOYEE_CODE, txtID_NO.Text)
-                    End Using
-                Case Else
-                    args.IsValid = True
-            End Select
-            _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
-        Catch ex As Exception
-            _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
-            'DisplayException(Me.ViewName, Me.ID, ex)
-        End Try
-    End Sub
+    'thay doi nghiep vu nên khóa đoạn code này lại
+    'Private Sub cusNO_ID_ServerValidate(ByVal source As Object, ByVal args As System.Web.UI.WebControls.ServerValidateEventArgs) Handles cusNO_ID.ServerValidate
+    '    Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+    '    Try
+    '        Dim startTime As DateTime = DateTime.UtcNow
+    '        If txtID_NO.Text = "" Then
+    '            args.IsValid = True
+    '            Exit Sub
+    '        End If
+    '        Select Case CurrentState
+    '            Case STATE_NEW
+    '                Using rep As New ProfileBusinessRepository
+    '                    args.IsValid = rep.ValidateEmployee("EXIST_ID_NO_TERMINATE", "", txtID_NO.Text)
+    '                End Using
+    '            Case STATE_EDIT
+    '                Using rep As New ProfileBusinessRepository
+    '                    args.IsValid = rep.ValidateEmployee("EXIST_ID_NO_TERMINATE", EmployeeInfo.EMPLOYEE_CODE, txtID_NO.Text)
+    '                End Using
+    '            Case Else
+    '                args.IsValid = True
+    '        End Select
+    '        _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
+    '    Catch ex As Exception
+    '        _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
+    '        'DisplayException(Me.ViewName, Me.ID, ex)
+    '    End Try
+    'End Sub
 
     Private Sub cusTitle_ServerValidate(ByVal source As Object, ByVal args As System.Web.UI.WebControls.ServerValidateEventArgs) Handles cusTitle.ServerValidate
         If cboTitle.Text = "" Then
@@ -1937,7 +2017,7 @@ Public Class ctrlHU_EmpDtlProfile
                 EmployeeInfo.OBJECT_INS = cboObjectIns.SelectedValue
                 EmployeeInfo.OBJECT_INS_NAME = cboObjectIns.Text
             End If
-            EmployeeInfo.TITLE_NAME_VN = txtManager.Text
+            EmployeeInfo.TITLE_NAME_VN = txtmanager.Text
 
 
             'EmployeeInfo.EMPLOYEE_NAME_OTHER = rtOtherName.Text

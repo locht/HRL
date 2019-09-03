@@ -1049,15 +1049,6 @@ Partial Public Class ctrlHU_EmpDtlProfile
     Protected WithEvents RequiredFieldValidator3 As Global.System.Web.UI.WebControls.RequiredFieldValidator
 
     '''<summary>
-    '''cusNO_ID control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents cusNO_ID As Global.System.Web.UI.WebControls.CustomValidator
-
-    '''<summary>
     '''lbIDDate control.
     '''</summary>
     '''<remarks>
