@@ -2448,7 +2448,7 @@ Partial Class ProfileRepository
                          .TITLE_NAME = p.TITLE_NAME,
                          .LEVEL_NAME = p.LEVEL_NAME,
                          .TER_REASON = p.TER_REASON}).ToList()
-            Return query
+            Return query.ToList
         Catch ex As Exception
             WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iProfile")
             Throw ex

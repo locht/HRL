@@ -103,10 +103,19 @@
                     </asp:CustomValidator>--%>
                 </td>
                 <td class="lb">
-                    <%# Translate("Chi phí")%>
+                    <%# Translate("Chi phí mua")%>
                 </td>
                 <td>
                     <tlk:RadNumericTextBox ID="nmCOST" runat="server">
+                    </tlk:RadNumericTextBox>
+                </td>
+            </tr>
+            <tr>
+                 <td class="lb">
+                    <%# Translate("Mức bồi thường")%>
+                </td>
+                <td>
+                    <tlk:RadNumericTextBox ID="nmCOSTSAL" runat="server">
                     </tlk:RadNumericTextBox>
                 </td>
             </tr>
@@ -126,6 +135,7 @@
 <asp:PlaceHolder ID="phFindSign" runat="server"></asp:PlaceHolder>
 <tlk:RadCodeBlock ID="RadCodeBlock1" runat="server">
     <script type="text/javascript">
+
         var enableAjax = true;
         function OnClientButtonClicking(sender, args) {
             var item = args.get_item();
@@ -146,9 +156,9 @@
         }
         function clientButtonClicking(sender, args) {
             if (args.get_item().get_commandName() == 'CANCEL') {
-                            getRadWindow().close(null);
-                            args.set_cancel(true);
-                        }
+                getRadWindow().close(null);
+                args.set_cancel(true);
+            }
         }
 
         function onRequestStart(sender, eventArgs) {

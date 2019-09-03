@@ -42,6 +42,7 @@ Public Class ctrlHU_WageMng
                 dt.Columns.Add("OTHERSALARY1", GetType(String))
                 dt.Columns.Add("OTHERSALARY2", GetType(String))
                 dt.Columns.Add("COST_SUPPORT", GetType(String))
+                dt.Columns.Add("STATUS_NAME", GetType(String))
                 'dt.Columns.Add("OTHERSALARY4", GetType(String))
                 'dt.Columns.Add("OTHERSALARY5", GetType(String))
                 dt.Columns.Add("LTT_V1", GetType(String))
@@ -50,6 +51,7 @@ Public Class ctrlHU_WageMng
                 dt.Columns.Add("SAL_GROUP_ID", GetType(String))
                 dt.Columns.Add("SAL_LEVEL_ID", GetType(String))
                 dt.Columns.Add("SAL_RANK_ID", GetType(String))
+                dt.Columns.Add("STATUS_ID", GetType(String))
                 ViewState(Me.ID & "_dtData") = dt
             End If
             Return ViewState(Me.ID & "_dtData")
@@ -503,14 +505,13 @@ Public Class ctrlHU_WageMng
                 newRow("OTHERSALARY1") = If(IsNumeric(rows("OTHERSALARY1")), Decimal.Parse(rows("OTHERSALARY1")), 0)
                 newRow("OTHERSALARY2") = If(IsNumeric(rows("OTHERSALARY2")), Decimal.Parse(rows("OTHERSALARY2")), 0)
                 newRow("COST_SUPPORT") = If(IsNumeric(rows("COST_SUPPORT")), Decimal.Parse(rows("COST_SUPPORT")), 0)
-                'newRow("OTHERSALARY4") = If(IsNumeric(rows("OTHERSALARY4")), Decimal.Parse(rows("OTHERSALARY4")), 0)
-                'newRow("OTHERSALARY5") = If(IsNumeric(rows("OTHERSALARY5")), Decimal.Parse(rows("OTHERSALARY5")), 0)
-                'newRow("LTT_V1") = If(IsNumeric(rows("LTT_V1")), Decimal.Parse(rows("LTT_V1")), 0)
+                newRow("STATUS_NAME") = rows("STATUS_NAME")
                 newRow("SAL_TYPE_ID") = If(IsNumeric(rows("SAL_TYPE_ID")), rows("SAL_TYPE_ID"), 0)
                 newRow("TAX_ID") = If(IsNumeric(rows("TAX_ID")), rows("TAX_ID"), 0)
                 newRow("SAL_GROUP_ID") = If(IsNumeric(rows("SAL_GROUP_ID")), rows("SAL_GROUP_ID"), 0)
                 newRow("SAL_LEVEL_ID") = If(IsNumeric(rows("SAL_LEVEL_ID")), rows("SAL_LEVEL_ID"), 0)
                 newRow("SAL_RANK_ID") = If(IsNumeric(rows("SAL_RANK_ID")), rows("SAL_RANK_ID"), 0)
+                newRow("STATUS_ID") = If(IsNumeric(rows("STATUS_ID")), rows("STATUS_ID"), 0)
                 dtData.Rows.Add(newRow)
             Next
             dtData.TableName = "DATA"
@@ -656,6 +657,10 @@ VALIDATE:
                 If row("PERCENTSALARY") Is DBNull.Value OrElse row("PERCENTSALARY") = "" Then
                     sError = "Chưa nhập % hưởng lương"
                     ImportValidate.IsValidTime("PERCENTSALARY", row, rowError, isError, sError)
+                End If
+                If row("STATUS_ID") Is DBNull.Value OrElse row("STATUS_NAME") = "" Then
+                    sError = "Chưa chọn trạng thái"
+                    ImportValidate.IsValidTime("STATUS_ID", row, rowError, isError, sError)
                 End If
                 If row("SAL_TYPE_ID") Is DBNull.Value OrElse row("SAL_TYPE_ID") = "" Then
                     sError = "Chưa nhập nhóm lương"
