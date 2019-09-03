@@ -741,7 +741,7 @@ Public Class ctrlHU_CommendNewEdit
                 'End If
                 For Each emp As CommonBusiness.EmployeePopupFindDTO In lstCommonEmployee
                     If Employee_Commend.Any(Function(f) f.EMPLOYEE_CODE = emp.EMPLOYEE_CODE) Then
-                        ShowMessage(Translate("Nhân viên đã tồn tại."), NotifyType.Alert)
+                        ShowMessage(Translate("Nhân viên đã tồn tại."), NotifyType.Warning)
                         Exit Sub
                     End If
                     Dim employee As New CommendEmpDTO
@@ -1447,7 +1447,7 @@ Public Class ctrlHU_CommendNewEdit
 
             For Each org_Check As Common.CommonBusiness.OrganizationDTO In lstOrg
                 If List_Org.Any(Function(f) f.ORG_ID = org_Check.ID) Then
-                    ShowMessage(Translate("Phòng ban đã tồn tại"), NotifyType.Alert)
+                    ShowMessage(Translate("Phòng ban đã tồn tại"), NotifyType.Warning)
                     Exit Sub
                 End If
                 Dim org As New CommendOrgDTO
