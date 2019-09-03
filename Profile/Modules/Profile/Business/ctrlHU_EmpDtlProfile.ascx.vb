@@ -2186,7 +2186,7 @@ Public Class ctrlHU_EmpDtlProfile
                 EmpCV.NGAY_VAO_DANG = rdNGAY_VAO_DANG.SelectedDate
             End If
             If IsDate(rdNGAY_VAO_DANG_DB.SelectedDate) Then
-                EmpCV.NGAY_VAO_DANG_DB = rdNGAY_VAO_DANG.SelectedDate
+                EmpCV.NGAY_VAO_DANG_DB = rdNGAY_VAO_DANG_DB.SelectedDate
             End If
             EmpCV.CHUC_VU_DANG = rtCHUC_VU_DANG.Text
             EmpCV.NO_HOUSEHOLDS = txtNoHouseHolds.Text
