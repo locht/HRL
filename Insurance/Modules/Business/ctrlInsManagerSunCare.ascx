@@ -45,6 +45,7 @@
                 <tlk:RadGrid PageSize=50 ID="rgData" runat="server" Height="100%" AllowSorting="True" AllowMultiRowSelection="true"
                     AllowPaging="True" AutoGenerateColumns="False">
                     <ClientSettings EnableRowHoverStyle="true">
+                         <Scrolling AllowScroll="True" UseStaticHeaders="True" FrozenColumnsCount="3" />
                         <Selecting AllowRowSelect="true" />
                         <ClientEvents OnRowDblClick="gridRowDblClick" />
                     </ClientSettings>
@@ -54,7 +55,7 @@
                                 HeaderStyle-Width="30px" ItemStyle-HorizontalAlign="Center">
                             </tlk:GridClientSelectColumn>
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Mã nhân viên %>" DataField="EMPLOYEE_CODE"
-                                SortExpression="EMPLOYEE_CODE" UniqueName="EMPLOYEE_CODE" HeaderStyle-Width="100px">
+                                SortExpression="EMPLOYEE_CODE" UniqueName="EMPLOYEE_CODE" HeaderStyle-Width="60px">
                                 <HeaderStyle HorizontalAlign="Center" />
                                 <ItemStyle HorizontalAlign="Center" />
                             </tlk:GridBoundColumn>
@@ -86,8 +87,10 @@
                             </tlk:GridDateTimeColumn>
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Đơn vị cung cấp BH %>" DataField="LEVEL_NAME"
                                 SortExpression="LEVEL_NAME" UniqueName="LEVEL_NAME" />
-                            <tlk:GridNumericColumn HeaderText="<%$ Translate: Chi phí %>" DataField="COST"
+                            <tlk:GridNumericColumn HeaderText="<%$ Translate: Chi phí mua %>" DataField="COST"
                                 SortExpression="COST" DataFormatString="{0:n0}" UniqueName="COST" />
+                            <tlk:GridNumericColumn HeaderText="<%$ Translate: Mức bồi thường %>" DataField="COST_SAL"
+                                SortExpression="COST_SAL" DataFormatString="{0:n0}" UniqueName="COST_SAL" />
                            <%-- <tlk:GridBoundColumn HeaderText="<%$ Translate: Ghi chú %>" DataField="NOTE" SortExpression="NOTE"
                                 UniqueName="NOTE" />--%>
                         </Columns>
@@ -169,10 +172,10 @@
             } if (args.get_item().get_commandName() == 'EXPORT') {
                 enableAjax = false;
             }
-        }
-        function OpenInNewTab(url) {
-            var win = window.open(url, '_blank');
-            win.focus();
-        }
+    }
+    function OpenInNewTab(url) {
+        var win = window.open(url, '_blank');
+        win.focus();
+    }
     </script>
 </tlk:RadScriptBlock>
