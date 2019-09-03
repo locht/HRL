@@ -8,6 +8,7 @@
     <Item Value="Profile;ctrlPortalWorkingBefore;NoPer;NoEdit" Text="Quá trình công tác trước đây" ImageUrl="~/Static/Images/RibbonBar/working_before.png" />
     <Item Value="Profile;ctrlPortalTrainingOutCompany;NoPer;NoEdit" Text="Quá trình đào tạo ngoài công ty" ImageUrl="~/Static/Images/RibbonBar/working.png" />
     <Item Value="Profile;ctrlPortalContract;NoPer;NoEdit" Text="Quá trình hợp đồng lao động" ImageUrl="~/Static/Images/RibbonBar/contract.png" />
+    <Item Value="Profile;ctrlPortalContractAppendix;NoPer;NoEdit" Text="Quá trình ký phụ lục hợp đồng" ImageUrl="~/Static/Images/RibbonBar/contract.png" />
     <Item Value="Profile;ctrlPortalSalary;NoPer;NoEdit" Text="Quá trình thay đổi lương - phụ cấp" ImageUrl="~/Static/Images/RibbonBar/salary.png" />
     <Item Value="Profile;ctrlPortalCommend;NoPer;NoEdit" Text="Quá trình khen thưởng" ImageUrl="~/Static/Images/RibbonBar/commend.png" />
     <Item Value="Profile;ctrlPortalDiscipline;NoPer;NoEdit" Text="Quá trình kỷ luật" ImageUrl="~/Static/Images/RibbonBar/discipline.png" />

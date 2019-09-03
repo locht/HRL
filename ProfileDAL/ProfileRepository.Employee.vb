@@ -1620,7 +1620,20 @@ Partial Class ProfileRepository
             Throw ex
         End Try
     End Sub
-
+    Public Function DeleteNVBlackList(ByVal id_no As String, ByVal log As UserLog) As Boolean
+        Dim lstID As List(Of Decimal)
+        Dim dsBlacklist As List(Of HU_TERMINATE)
+        Try
+            lstID = (From p In Context.HU_EMPLOYEE_CV Where p.ID_NO = id_no Select p.EMPLOYEE_ID).ToList
+            dsBlacklist = (From p In Context.HU_TERMINATE Where lstID.Contains(p.EMPLOYEE_ID)).ToList
+            For i = 0 To dsBlacklist.Count - 1
+                Context.HU_TERMINATE.DeleteObject(dsBlacklist(i))
+            Next
+            Context.SaveChanges(log)
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
     ''' <summary>
     ''' Hàm xóa nhân viên
     ''' </summary>
@@ -1970,10 +1983,19 @@ Partial Class ProfileRepository
         Try
             Select Case sType
                 Case "EXIST_ID_NO_TERMINATE"
-                    Return (From p In Context.HU_TERMINATE
-                            From e In Context.HU_EMPLOYEE.Where(Function(f) f.ID = p.EMPLOYEE_ID)
-                            From cv In Context.HU_EMPLOYEE_CV.Where(Function(f) f.EMPLOYEE_ID = e.ID).DefaultIfEmpty
-                            Where cv.ID_NO = value And p.IS_NOHIRE = True And p.STATUS_ID = ProfileCommon.DECISION_STATUS.APPROVE_ID).Count = 0
+                    If sEmpCode <> "" Then
+                        Return (From p In Context.HU_TERMINATE
+                           From e In Context.HU_EMPLOYEE.Where(Function(f) f.ID = p.EMPLOYEE_ID)
+                           From cv In Context.HU_EMPLOYEE_CV.Where(Function(f) f.EMPLOYEE_ID = e.ID).DefaultIfEmpty
+                           Where cv.ID_NO = value And p.IS_NOHIRE = True And p.STATUS_ID = ProfileCommon.DECISION_STATUS.APPROVE_ID And e.EMPLOYEE_CODE <> sEmpCode).Count = 0
+                    Else
+                        Return (From p In Context.HU_TERMINATE
+                           From e In Context.HU_EMPLOYEE.Where(Function(f) f.ID = p.EMPLOYEE_ID)
+                           From cv In Context.HU_EMPLOYEE_CV.Where(Function(f) f.EMPLOYEE_ID = e.ID).DefaultIfEmpty
+                           Where cv.ID_NO = value And p.IS_NOHIRE = True And p.STATUS_ID = ProfileCommon.DECISION_STATUS.APPROVE_ID).Count = 0
+                    End If
+
+
 
                 Case "EXIST_ID_NO"
                     If sEmpCode <> "" Then

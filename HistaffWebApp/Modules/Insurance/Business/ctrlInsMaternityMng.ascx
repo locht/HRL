@@ -200,8 +200,9 @@
 
         function OpenNew() {
             var oWindow = radopen('Dialog.aspx?mid=Insurance&fid=ctrlInsMaternityDetail&group=Business&Status=0', "rwPopup");
-            oWindow.setSize(1024, 500);
-            oWindow.center();
+            //oWindow.setSize(1024, 500);
+            oWindow.maximize(true);
+            oWindow.center();   
         }
 
         function OpenEdit() {
@@ -213,7 +214,8 @@
             var id = $find('<%= rgGridData.ClientID%>').get_masterTableView().get_selectedItems()[0].getDataKeyValue('ID');
             var emp_id = $find('<%= rgGridData.ClientID%>').get_masterTableView().get_selectedItems()[0].getDataKeyValue('EMPLOYEE_ID');
             var oWindow = radopen('Dialog.aspx?mid=Insurance&fid=ctrlInsMaternityDetail&group=Business&Status=1&IDSelect=' + id + '&EmployeeID=' + emp_id, "rwPopup");
-            oWindow.setSize(1024, 500);
+            //oWindow.setSize(1024, 500);
+            oWindow.maximize(true);
             oWindow.center();
             return 0;
         }

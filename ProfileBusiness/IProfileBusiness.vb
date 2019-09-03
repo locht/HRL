@@ -71,6 +71,9 @@ Namespace ProfileBusiness.ServiceContracts
 
         <OperationContract()>
         Function DeleteLocationID(ByVal lstlocation As Decimal, ByVal log As UserLog) As Boolean
+        'xóa nv trong black list
+        <OperationContract()>
+        Function DeleteNVBlackList(ByVal id_no As String, ByVal log As UserLog) As Boolean
 #End Region
 
 #Region "Hoadm - Common"
