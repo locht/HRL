@@ -42318,4 +42318,52 @@ Xin cám ơn!
       <string>Danh sách đơn vị- phòng ban</string>
     </Value>
   </Item>
+  <Item>
+    <Key>
+      <string>CTRLDASHBOARDPORTALSIXCELL</string>
+    </Key>
+    <Value>
+      <string>Bảng thông tin</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>CTRLDBEMPLOYEEPAPER</string>
+    </Key>
+    <Value>
+      <string>ctrlDBEmployeePaper</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>CTRLDBREGAPP</string>
+    </Key>
+    <Value>
+      <string>ctrlDBRegApp</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>CTRLDBEMPLOYEEREG</string>
+    </Key>
+    <Value>
+      <string>ctrlDBEmployeeReg</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>CTRLDBINFOLEAVE</string>
+    </Key>
+    <Value>
+      <string>ctrlDBInfoLeave</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>CTRLPORTALWORKING</string>
+    </Key>
+    <Value>
+      <string>ctrlPortalWorking</string>
+    </Value>
+  </Item>
 </SerializableDictionaryOfStringString>
