@@ -90,7 +90,8 @@
                     </tlk:RadDatePicker>
                 </td> 
                 <td class="lb">
-                    <asp:Label runat="server" ID="lbSignerName" Text="Người ký"></asp:Label>                    
+                    <asp:Label runat="server" ID="lbSignerName" Text="Người ký"></asp:Label> 
+                     <span class="lbReq">*</span>                       
                 </td>
                 <td>
                    <%--<tlk:RadTextBox ID = "txtIDEmp" runat = "server" Visible="false"></tlk:RadTextBox>--%>
