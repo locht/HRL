@@ -838,7 +838,7 @@ Public Class ctrlHU_EmpDtlProfile
                 Case 2
                     ctrlFindEmployeePopup = Me.Register("ctrlFindEmployeeDirectPopup", "Common", "ctrlFindEmployeePopup")
                     ctrlFindEmployeePopup.MultiSelect = False
-                    ctrlFindEmployeePopup.LoadAllOrganization = True
+                    ctrlFindEmployeePopup.LoadAllOrganization = False
                     phPopupDirect.Controls.Add(ctrlFindEmployeePopup)
                 Case 3
                     ctrlFindEmployeePopup = Me.Register("ctrlFindEmployeeLevelPopup", "Common", "ctrlFindEmployeePopup")

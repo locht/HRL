@@ -98,8 +98,8 @@
                         ReadOnly="true" SortExpression="ORG_NAME" />
                     <tlk:GridBoundColumn HeaderText="Chức danh" DataField="TITLE_NAME" UniqueName="TITLE_NAME"
                         ReadOnly="true" SortExpression="TITLE_NAME" />
-                    <tlk:GridBoundColumn HeaderText="Công ty" DataField="ORG_NAME2" UniqueName="ORG_NAME2"
-                        ReadOnly="true" SortExpression="ORG_NAME2" />
+                    <tlk:GridBoundColumn HeaderText="Công ty" DataField="org_code2" UniqueName="org_code2"
+                        ReadOnly="true" SortExpression="org_code2" />
                            <tlk:GridBoundColumn HeaderText="Ngày sinh" DataField="BIRTH_DATE" UniqueName="BIRTH_DATE"
                         ReadOnly="true" SortExpression="BIRTH_DATE" DataFormatString="{0:dd/MM/yyyy}" />
                     <tlk:GridBoundColumn HeaderText="Giới tính" DataField="GENDER_NAME" UniqueName="GENDER_NAME"
@@ -108,12 +108,13 @@
                         UniqueName="CONTRACT_NAME" ReadOnly="true" SortExpression="CONTRACT_NAME" />--%>
                     <tlk:GridBoundColumn HeaderText="Thâm niên" DataField="SENIORITY" UniqueName="SENIORITY"
                         ReadOnly="true" SortExpression="SENIORITY" />
-                    <tlk:GridBoundColumn HeaderText="Tổng số con" DataField="TOTAL_CHILD" UniqueName="TOTAL_CHILD"
-                        ReadOnly="true" SortExpression="TOTAL_CHILD" />
-                    <tlk:GridBoundColumn HeaderText="Số tiền phúc lợi" DataField="MONEY_PL" UniqueName="MONEY_PL"
-                        ReadOnly="true" SortExpression="MONEY_PL" />
-                    <%-- <tlk:GridBoundColumn HeaderText="Tổng số tiền" DataField="MONEY_TOTAL" UniqueName="MONEY_TOTAL"
-                        ReadOnly="true" SortExpression="MONEY_TOTAL" />--%>
+                    <tlk:GridBoundColumn HeaderText="Tổng số con" DataField="total_child_display" UniqueName="total_child_display"
+                        ReadOnly="true" SortExpression="total_child_display" />
+                    <tlk:GridNumericColumn HeaderText="<%$ Translate: Số tiền phúc lợi %>" DataField="MONEY_PL"
+                                ItemStyle-HorizontalAlign="Right" DataFormatString="{0:N0}" UniqueName="MONEY_PL"
+                                DataType="System.UInt64" HeaderStyle-Width="100px" ReadOnly="true"/>
+                    <%--<tlk:GridBoundColumn HeaderText="Số tiền phúc lợi" DataField="MONEY_PL" UniqueName="MONEY_PL"
+                        ReadOnly="true" SortExpression="MONEY_PL" />--%>
                     <tlk:GridTemplateColumn HeaderText="Tổng số tiền" HeaderStyle-Width="100px" DataField="MONEY_TOTAL"
                         UniqueName="MONEY_TOTAL">
                         <EditItemTemplate>

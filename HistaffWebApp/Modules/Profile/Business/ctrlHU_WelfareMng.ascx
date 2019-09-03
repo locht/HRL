@@ -56,36 +56,38 @@
                                 HeaderStyle-Width="30px" ItemStyle-HorizontalAlign="Center">
                             </tlk:GridClientSelectColumn>
                             <tlk:GridBoundColumn DataField="ID" Visible="false" ReadOnly="true" />
-                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Loại phúc lợi %>" DataField="WELFARE_NAME"
-                                ReadOnly="true" UniqueName="WELFARE_NAME" HeaderStyle-Width="100px" />
-                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Ngày thanh toán %>" DataField="EFFECT_DATE"
-                                ReadOnly="true" UniqueName="EFFECT_DATE" HeaderStyle-Width="150px" DataFormatString="{0:dd/MM/yyyy}" />
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Mã nhân viên %>" DataField="EMPLOYEE_CODE"
-                                ReadOnly="true" UniqueName="EMPLOYEE_CODE" HeaderStyle-Width="100px" />
+                                ReadOnly="true" UniqueName="EMPLOYEE_CODE" HeaderStyle-Width="60px" />
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Họ tên nhân viên %>" DataField="EMPLOYEE_NAME"
                                 ReadOnly="true" UniqueName="EMPLOYEE_NAME" HeaderStyle-Width="150px" />
+                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Bộ phận %>" DataField="ORG_NAME"
+                                ReadOnly="true" UniqueName="ORG_NAME" HeaderStyle-Width="200px" />
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Chức danh %>" DataField="TITLE_NAME"
                                 ReadOnly="true" UniqueName="TITLE_NAME" HeaderStyle-Width="200px" />
-                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Phòng ban %>" DataField="ORG_NAME"
-                                ReadOnly="true" UniqueName="ORG_NAME" HeaderStyle-Width="200px" />
-                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Giới tính %>" DataField="GENDER_NAME"
-                                ReadOnly="true" UniqueName="GENDER_NAME" HeaderStyle-Width="200px" />
-                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Loại hợp đồng gần nhất %>" DataField="CONTRACT_NAME"
-                                ReadOnly="true" UniqueName="CONTRACT_NAME" HeaderStyle-Width="200px" />
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Thâm niên %>" DataField="SENIORITY"
                                 ReadOnly="true" UniqueName="SENIORITY" HeaderStyle-Width="200px" />
-                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Tổng số con %>" DataField="TOTAL_CHILD"
-                                ReadOnly="true" UniqueName="TOTAL_CHILD" HeaderStyle-Width="200px" />
-                            <tlk:GridNumericColumn HeaderText="<%$ Translate: Số tiền phúc lợi %>" DataField="MONEY_PL"
-                                ItemStyle-HorizontalAlign="Right" DataFormatString="{0:N0}" UniqueName="MONEY_PL"
-                                DataType="System.UInt64" HeaderStyle-Width="100px" />
                             <tlk:GridNumericColumn HeaderText="<%$ Translate: Số tiền được hưởng %>" DataField="MONEY"
                                 ItemStyle-HorizontalAlign="Right" DataFormatString="{0:N0}" UniqueName="MONEY"
                                 DataType="System.UInt64" HeaderStyle-Width="100px" />
+                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Ngày hiệu lực %>" DataField="EFFECT_DATE"
+                                ReadOnly="true" UniqueName="EFFECT_DATE" HeaderStyle-Width="150px" DataFormatString="{0:dd/MM/yyyy}" />
+                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Giới tính %>" DataField="GENDER_NAME"
+                                ReadOnly="true" UniqueName="GENDER_NAME" HeaderStyle-Width="55px" />
+                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Loại hợp đồng gần nhất %>" DataField="CONTRACT_NAME"
+                                ReadOnly="true" UniqueName="CONTRACT_NAME" HeaderStyle-Width="200px" />
+                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Tổng số con %>" DataField="TOTAL_CHILD"
+                                ReadOnly="true" UniqueName="TOTAL_CHILD" HeaderStyle-Width="65px" />
+                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Mã công ty %>" DataField="org_code2"
+                                ReadOnly="true" UniqueName="org_code2" HeaderStyle-Width="100px" />
+                            <%--<tlk:GridBoundColumn HeaderText="<%$ Translate: Loại phúc lợi %>" DataField="WELFARE_NAME"
+                                ReadOnly="true" UniqueName="WELFARE_NAME" HeaderStyle-Width="100px" />--%>
+                            <%--<tlk:GridNumericColumn HeaderText="<%$ Translate: Số tiền phúc lợi %>" DataField="MONEY_PL"
+                                ItemStyle-HorizontalAlign="Right" DataFormatString="{0:N0}" UniqueName="MONEY_PL"
+                                DataType="System.UInt64" HeaderStyle-Width="100px" />--%>
                             <%--<tlk:GridBoundColumn HeaderText="<%$ Translate: Ghi chú %>" DataField="SDESC" ReadOnly="true"
                                 UniqueName="SDESC" SortExpression="SDESC" HeaderStyle-Width="250px" />--%>
-                            <tlk:GridBoundColumn HeaderText="ORG_DESC" DataField="ORG_DESC" UniqueName="ORG_DESC"
-                                SortExpression="ORG_DESC" Visible="false" />
+                            <%--<tlk:GridBoundColumn HeaderText="ORG_DESC" DataField="ORG_DESC" UniqueName="ORG_DESC"
+                                SortExpression="ORG_DESC" Visible="false" />--%>
                         </Columns>
                     </MasterTableView>
                     <ClientSettings EnableRowHoverStyle="true">
@@ -93,6 +95,7 @@
                         <ClientEvents OnRowDblClick="gridRowDblClick" />
                         <ClientEvents OnGridCreated="GridCreated" />
                         <ClientEvents OnCommand="ValidateFilter" />
+                        <Scrolling AllowScroll="true" UseStaticHeaders="true" FrozenColumnsCount="3" />
                     </ClientSettings>
                 </tlk:RadGrid>
             </tlk:RadPane>

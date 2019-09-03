@@ -11,14 +11,14 @@
             ValidationGroup="" />
         <table class="table-form">
             <tr>
-                <td class="lb" style="width: 130px">
+                <td class="lb" style="width: 150px">
                     <%# Translate("Tên loại phúc lợi")%><span class="lbReq">*</span></b>
                 </td>
                 <td>
                     <tlk:RadComboBox ID="cboWELFARE_ID" runat="server" OnClientSelectedIndexChanged="OnClientSelectedIndexChanged">
                     </tlk:RadComboBox>
-                    <asp:CustomValidator ID="cusWELFARE_ID" runat="server" ErrorMessage="<%$ Translate: Bạn phải chọn Tên loại phúc lợi %>"
-                        ToolTip="<%$ Translate: Bạn phải chọn Tên loại phúc lợi  %>" ClientValidationFunction="cusWELFARE_ID">
+                    <asp:CustomValidator ID="cusWELFARE_ID" runat="server" ErrorMessage="<%$ Translate: Bạn phải chọn tên loại phúc lợi %>"
+                        ToolTip="<%$ Translate: Bạn phải chọn tên loại phúc lợi  %>" ClientValidationFunction="cusWELFARE_ID">
                     </asp:CustomValidator>
                     <asp:CustomValidator ID="cusValWELFARE_ID" ControlToValidate="cboWELFARE_ID" runat="server"
                         ErrorMessage="<%$ Translate: Loại phúc lợi không tồn tại hoặc đã ngừng áp dụng. %>"
@@ -49,7 +49,7 @@
                     </tlk:RadButton>
                 </td>
                 <td>
-                    <tlk:RadButton ID="btnImportFile" runat="server" Text="<%$ Translate: Nhập file %>"
+                    <tlk:RadButton ID="btnImportFile" runat="server" Text="<%$ Translate: Nhập file  %>"
                         CausesValidation="false" OnClientClicking="btnExportClicking" Width="150px">
                     </tlk:RadButton>
                 </td>
@@ -61,7 +61,7 @@
             PageSize="50" Height="100%">
             <GroupingSettings CaseSensitive="false" />
             <MasterTableView EditMode="InPlace" AllowPaging="true" AllowCustomPaging="true" DataKeyNames="EMPLOYEE_ID,EMPLOYEE_NAME,TITLE_ID,ORG_ID,TITLE_NAME,ORG_NAME,GENDER_ID,CONTRACT_TYPE,EMPLOYEE_CODE,GENDER_NAME,CONTRACT_NAME,SENIORITY,TOTAL_CHILD,MONEY_PL,MONEY_TOTAL,REMARK,WELFARE_ID,BIRTH_DATE"
-                ClientDataKeyNames="ID,EMPLOYEE_ID,EMPLOYEE_NAME,TITLE_ID,ORG_ID,TITLE_NAME,ORG_NAME,GENDER_ID,CONTRACT_TYPE,EMPLOYEE_CODE,GENDER_NAME,CONTRACT_NAME,SENIORITY,TOTAL_CHILD,MONEY_PL,MONEY_TOTAL,REMARK,WELFARE_ID,BIRTH_DATE"
+                ClientDataKeyNames="ID,EMPLOYEE_ID,EMPLOYEE_NAME,TITLE_ID,ORG_ID,GENDER_ID,CONTRACT_TYPE,TITLE_NAME,ORG_NAME,EMPLOYEE_CODE,GENDER_NAME,CONTRACT_NAME,SENIORITY,TOTAL_CHILD,MONEY_PL,MONEY_TOTAL,REMARK,WELFARE_ID,BIRTH_DATE"
                 CommandItemDisplay="Top">
                 <CommandItemStyle Height="25px" />
                 <CommandItemTemplate>
@@ -74,8 +74,8 @@
                                 CausesValidation="false" CommandName="FindEmployeeImport" TabIndex="3">
                             </tlk:RadButton>--%>
                         </div>
-                        <%--                       <div style="float: left">
-                            <tlk:RadButton Width="150px" ID="btnExport" runat="server" Text="Xuất Excel" 
+                        <%-- <div style="float: left">
+                            <tlk:RadButton Width="150px" ID="btnExport" runat="server" Text="Xuất Excel"   
                                 CausesValidation="false" CommandName="Export" TabIndex="3">
                             </tlk:RadButton>
                         </div>--%>
@@ -98,9 +98,9 @@
                         ReadOnly="true" SortExpression="ORG_NAME" />
                     <tlk:GridBoundColumn HeaderText="Chức danh" DataField="TITLE_NAME" UniqueName="TITLE_NAME"
                         ReadOnly="true" SortExpression="TITLE_NAME" />
-                    <tlk:GridBoundColumn HeaderText="Công ty" DataField="ORG_NAME2" UniqueName="ORG_NAME2"
-                        ReadOnly="true" SortExpression="ORG_NAME2" />
-                    <tlk:GridBoundColumn HeaderText="Ngày sinh" DataField="BIRTH_DATE" UniqueName="BIRTH_DATE"
+                    <tlk:GridBoundColumn HeaderText="Công ty" DataField="org_code2" UniqueName="org_code2"
+                        ReadOnly="true" SortExpression="org_code2" />
+                           <tlk:GridBoundColumn HeaderText="Ngày sinh" DataField="BIRTH_DATE" UniqueName="BIRTH_DATE"
                         ReadOnly="true" SortExpression="BIRTH_DATE" DataFormatString="{0:dd/MM/yyyy}" />
                     <tlk:GridBoundColumn HeaderText="Giới tính" DataField="GENDER_NAME" UniqueName="GENDER_NAME"
                         ReadOnly="true" SortExpression="GENDER_NAME" />
@@ -108,12 +108,13 @@
                         UniqueName="CONTRACT_NAME" ReadOnly="true" SortExpression="CONTRACT_NAME" />--%>
                     <tlk:GridBoundColumn HeaderText="Thâm niên" DataField="SENIORITY" UniqueName="SENIORITY"
                         ReadOnly="true" SortExpression="SENIORITY" />
-                    <tlk:GridBoundColumn HeaderText="Tổng số con" DataField="TOTAL_CHILD" UniqueName="TOTAL_CHILD"
-                        ReadOnly="true" SortExpression="TOTAL_CHILD" />
-                    <tlk:GridBoundColumn HeaderText="Số tiền phúc lợi" DataField="MONEY_PL" UniqueName="MONEY_PL"
-                        ReadOnly="true" SortExpression="MONEY_PL" />
-                    <%-- <tlk:GridBoundColumn HeaderText="Tổng số tiền" DataField="MONEY_TOTAL" UniqueName="MONEY_TOTAL"
-                        ReadOnly="true" SortExpression="MONEY_TOTAL" />--%>
+                    <tlk:GridBoundColumn HeaderText="Tổng số con" DataField="total_child_display" UniqueName="total_child_display"
+                        ReadOnly="true" SortExpression="total_child_display" />
+                    <tlk:GridNumericColumn HeaderText="<%$ Translate: Số tiền phúc lợi %>" DataField="MONEY_PL"
+                                ItemStyle-HorizontalAlign="Right" DataFormatString="{0:N0}" UniqueName="MONEY_PL"
+                                DataType="System.UInt64" HeaderStyle-Width="100px" ReadOnly="true"/>
+                    <%--<tlk:GridBoundColumn HeaderText="Số tiền phúc lợi" DataField="MONEY_PL" UniqueName="MONEY_PL"
+                        ReadOnly="true" SortExpression="MONEY_PL" />--%>
                     <tlk:GridTemplateColumn HeaderText="Tổng số tiền" HeaderStyle-Width="100px" DataField="MONEY_TOTAL"
                         UniqueName="MONEY_TOTAL">
                         <EditItemTemplate>
@@ -139,7 +140,7 @@
                         ReadOnly="true" SortExpression="TITLE_ID" Visible="false" />
                     <tlk:GridBoundColumn HeaderText="TÊN PHÒNG BAN" DataField="ORG_ID" UniqueName="ORG_ID"
                         ReadOnly="true" SortExpression="ORG_ID" Visible="false" />
-                    <tlk:GridBoundColumn HeaderText="ID THIẾT LẬP" DataField="WELFARE_ID" UniqueName="WELFARE_ID"
+                          <tlk:GridBoundColumn HeaderText="ID THIẾT LẬP" DataField="WELFARE_ID" UniqueName="WELFARE_ID"
                         ReadOnly="true" SortExpression="WELFARE_ID"  Visible="false" />
                 </Columns>
             </MasterTableView>
@@ -148,6 +149,7 @@
                 <Selecting AllowRowSelect="True" />
             </ClientSettings>
         </tlk:RadGrid>
+    </tlk:RadPane>
     </tlk:RadPane>
 </tlk:RadSplitter>
 <Common:ctrlMessageBox ID="ctrlMessageBox" runat="server" />
@@ -182,9 +184,6 @@
             }
             return null;
         }
-        function btnExportClicking(sender, args) {
-            enableAjax = false;
-        }
 
         function clientButtonClicking(sender, args) {
             //            if (args.get_item().get_commandName() == 'CANCEL') {
@@ -198,7 +197,9 @@
                 enableAjax = false;
             }
         }
-
+        function btnExportClicking(sender, args) {
+            enableAjax = false;
+        }
         function OnClientSelectedIndexChanged(sender, eventArgs) {
             var id = sender.get_id();
             var cbo;

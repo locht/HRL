@@ -178,6 +178,8 @@ Public Class ctrlHU_Title
                     Case ""
                         cboTitleGroup.AutoPostBack = False
                         cboOrgLevel.AutoPostBack = False
+                        cboOrgType.AutoPostBack = False
+                        cboHurtType.AutoPostBack=False
                 End Select
             End If
             rep.Dispose()
@@ -246,8 +248,12 @@ Public Class ctrlHU_Title
                 Case CommonMessage.STATE_NEW
                     EnabledGridNotPostback(rgMain, False)
                     EnableControlAll(True, cboTitleGroup, txtNameVN, txtRemark, cboOrgLevel, cboOrgType, cboHurtType, ckOVT, btnDownload, btnUploadFile)
+                    If cboOrgLevel.SelectedItem IsNot Nothing Or cboHurtType.SelectedItem IsNot Nothing Or txtRemark.Text IsNot Nothing Then
+                        GoTo dontrefresh
+                    End If
                     Refresh("Cancel")
                     btnDownload.Enabled = False
+dontrefresh:
                 Case CommonMessage.STATE_NORMAL
                     EnabledGridNotPostback(rgMain, True)
                     EnableControlAll(False, cboTitleGroup, txtNameVN, txtRemark, cboOrgLevel, cboOrgType, cboHurtType, ckOVT, btnUploadFile)
