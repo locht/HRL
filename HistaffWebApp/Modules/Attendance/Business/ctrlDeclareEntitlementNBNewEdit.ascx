@@ -211,10 +211,10 @@
             return null;
         }
         function clientButtonClicking(sender, args) {
-            //            if (args.get_item().get_commandName() == 'CANCEL') {
-            //                getRadWindow().close(null);
-            //                args.set_cancel(true);
-            //            }
+            if (args.get_item().get_commandName() == 'CANCEL') {
+                            getRadWindow().close(null);
+                            args.set_cancel(true);
+                        }
         }
 
     </script>
