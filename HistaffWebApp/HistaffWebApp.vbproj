@@ -1497,6 +1497,7 @@
     <None Include="TemplateDynamic\ContractSupport\HDXDTH_36.doc" />
     <None Include="TemplateDynamic\ContractSupport\LHD012_1.doc" />
     <None Include="TemplateDynamic\ContractSupport\TMF_Offer_Letter_Revised.doc" />
+    <Content Include="TemplateDynamic\ContractSupport\TNECSG_BDH_HD.docx" />
     <None Include="TemplateDynamic\Contract\1.doc" />
     <None Include="TemplateDynamic\Contract\12.doc" />
     <None Include="TemplateDynamic\Contract\13.doc" />
