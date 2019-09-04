@@ -109,22 +109,11 @@
                                 UniqueName="POSITION_NAME" HeaderStyle-Width="160px" SortExpression="POSITION_NAME"
                                 FilterControlWidth="99%" ShowFilterIcon="false" CurrentFilterFunction="Contains"
                                 AutoPostBackOnFilter="true" />
-                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Số sổ bảo hiểm %>" DataField="social_number"
-                                UniqueName="social_number" HeaderStyle-Width="160px" SortExpression="social_number"
-                                FilterControlWidth="99%" ShowFilterIcon="false" CurrentFilterFunction="Contains"
-                                AutoPostBackOnFilter="true" />
-                            <tlk:GridDateTimeColumn  HeaderText="<%$ Translate: Ngày dự sinh %>" DataField="NGAY_SINH"
-                                DataFormatString="{0:dd/MM/yyyy}" FilterControlWidth="99%" ShowFilterIcon="false"
-                                CurrentFilterFunction="EqualTo" AutoPostBackOnFilter="true" UniqueName="NGAY_SINH"
-                                SortExpression="NGAY_SINH" HeaderStyle-Width="100px" />
-                            <tlk:GridNumericColumn HeaderText="<%$ Translate: Số con%>" DataField="So_Con" UniqueName="So_Con" DataFormatString="{0:N0}"
-                                SortExpression="So_Con" HeaderStyle-Width="80px" FilterControlWidth="99%" ShowFilterIcon="false"
-                                CurrentFilterFunction="Contains" AutoPostBackOnFilter="true" />
-                            <tlk:GridDateTimeColumn HeaderText="<%$ Translate: Từ ngày %>" DataField="From_Date"
+                            <tlk:GridDateTimeColumn HeaderText="<%$ Translate: Nghỉ sinh từ ngày %>" DataField="From_Date"
                                 DataFormatString="{0:dd/MM/yyyy}" FilterControlWidth="99%" ShowFilterIcon="false"
                                 CurrentFilterFunction="EqualTo" AutoPostBackOnFilter="true" UniqueName="From_Date"
                                 SortExpression="From_Date" HeaderStyle-Width="100px" />
-                            <tlk:GridDateTimeColumn HeaderText="<%$ Translate: Đến ngày %>" DataField="To_Date"
+                            <tlk:GridDateTimeColumn HeaderText="<%$ Translate: Nghỉ sinh đến ngày %>" DataField="To_Date"
                                 DataFormatString="{0:dd/MM/yyyy}" FilterControlWidth="99%" ShowFilterIcon="false"
                                 CurrentFilterFunction="EqualTo" AutoPostBackOnFilter="true" UniqueName="To_Date"
                                 SortExpression="To_Date" HeaderStyle-Width="100px" />
@@ -143,11 +132,22 @@
                             <tlk:GridCheckBoxColumn HeaderText="<%$ Translate: Nghỉ thai sản %>" DataField="nghi_thai_san"  
                                 SortExpression="nghi_thai_san" UniqueName="nghi_thai_san" HeaderStyle-Width="100px" AllowSorting="false" ShowFilterIcon="false" AllowFiltering="false">
                                 <HeaderStyle HorizontalAlign="Center"/>
-                            </tlk:GridCheckBoxColumn>
+                                </tlk:GridCheckBoxColumn>
                             <tlk:GridDateTimeColumn HeaderText="<%$ Translate: Ngày đi làm sớm %>" DataField="NGAY_DI_LAM_SOM"
                                 DataFormatString="{0:dd/MM/yyyy}" FilterControlWidth="99%" ShowFilterIcon="false"
                                 CurrentFilterFunction="EqualTo" AutoPostBackOnFilter="true" UniqueName="NGAY_DI_LAM_SOM"
                                 SortExpression="NGAY_DI_LAM_SOM" HeaderStyle-Width="100px" />
+                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Số sổ bảo hiểm %>" DataField="social_number"
+                                UniqueName="social_number" HeaderStyle-Width="160px" SortExpression="social_number"
+                                FilterControlWidth="99%" ShowFilterIcon="false" CurrentFilterFunction="Contains"
+                                AutoPostBackOnFilter="true" />
+                            <tlk:GridDateTimeColumn  HeaderText="<%$ Translate: Ngày dự sinh %>" DataField="NGAY_SINH"
+                                DataFormatString="{0:dd/MM/yyyy}" FilterControlWidth="99%" ShowFilterIcon="false"
+                                CurrentFilterFunction="EqualTo" AutoPostBackOnFilter="true" UniqueName="NGAY_SINH"
+                                SortExpression="NGAY_SINH" HeaderStyle-Width="100px" />
+                            <tlk:GridNumericColumn HeaderText="<%$ Translate: Số con%>" DataField="So_Con" UniqueName="So_Con" DataFormatString="{0:N0}"
+                                SortExpression="So_Con" HeaderStyle-Width="80px" FilterControlWidth="99%" ShowFilterIcon="false"
+                                CurrentFilterFunction="Contains" AutoPostBackOnFilter="true" />
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Ghi chú %>" DataField="REMARK"
                                 UniqueName="REMARK" SortExpression="REMARK" HeaderStyle-Width="150px" FilterControlWidth="99%"
                                 ShowFilterIcon="false" CurrentFilterFunction="Contains" AutoPostBackOnFilter="true" />

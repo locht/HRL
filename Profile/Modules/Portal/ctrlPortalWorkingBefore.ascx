@@ -3,34 +3,35 @@
 <tlk:RadGrid PageSize="50" ID="rgWorkingBefore" runat="server" Height="350px" AllowFilteringByColumn="true">
     <MasterTableView DataKeyNames="ID" ClientDataKeyNames="ID,COMPANY_NAME,COMPANY_ADDRESS,JOIN_DATE,END_DATE,TITLE_NAME,LEVEL_NAME">
         <Columns>
-            <%--<tlk:GridBoundColumn HeaderText="Tên công ty" DataField="COMPANY_NAME"
-                UniqueName="COMPANY_NAME" SortExpression="COMPANY_NAME" ShowFilterIcon="false"
-                AutoPostBackOnFilter="true" CurrentFilterFunction="Contains" FilterControlWidth="100%">
+            <tlk:GridBoundColumn HeaderText="Tên công ty" DataField="COMPANY_NAME" UniqueName="COMPANY_NAME"
+                SortExpression="COMPANY_NAME" ShowFilterIcon="false" AutoPostBackOnFilter="true"
+                CurrentFilterFunction="Contains" FilterControlWidth="100%">
                 <HeaderStyle Width="20%" HorizontalAlign="Center" />
             </tlk:GridBoundColumn>
-            <tlk:GridBoundColumn HeaderText="Địa chỉ công ty" DataField="COMPANY_ADDRESS"
+            <%--  <tlk:GridBoundColumn HeaderText="Địa chỉ công ty" DataField="COMPANY_ADDRESS"
                 UniqueName="COMPANY_ADDRESS" SortExpression="COMPANY_ADDRESS" ShowFilterIcon="false"
                 AutoPostBackOnFilter="true" CurrentFilterFunction="Contains" FilterControlWidth="100%">
                 <HeaderStyle Width="20%" HorizontalAlign="Center" />
-            </tlk:GridBoundColumn>
-            <tlk:GridDateTimeColumn HeaderText="Ngày vào" DataField="JOIN_DATE"
-                UniqueName="JOIN_DATE" DataFormatString="{0:dd/MM/yyyy}" SortExpression="JOIN_DATE"
-                ShowFilterIcon="true">
+            </tlk:GridBoundColumn>--%>
+            <tlk:GridDateTimeColumn HeaderText="Từ tháng/năm" DataField="JOIN_DATE" UniqueName="JOIN_DATE"
+                DataFormatString="{0:MM/yyyy}" SortExpression="JOIN_DATE" ShowFilterIcon="true">
                 <HeaderStyle Width="10%" HorizontalAlign="Center" />
                 <ItemStyle HorizontalAlign="Center" />
             </tlk:GridDateTimeColumn>
-            <tlk:GridDateTimeColumn HeaderText="Ngày nghỉ" DataField="END_DATE"
-                UniqueName="END_DATE" DataFormatString="{0:dd/MM/yyyy}" SortExpression="END_DATE"
-                ShowFilterIcon="true">
+            <tlk:GridDateTimeColumn HeaderText="Đến tháng/năm" DataField="END_DATE" UniqueName="END_DATE"
+                DataFormatString="{0:MM/yyyy}" SortExpression="END_DATE" ShowFilterIcon="true">
                 <HeaderStyle Width="10%" HorizontalAlign="Center" />
                 <ItemStyle HorizontalAlign="Center" />
             </tlk:GridDateTimeColumn>
-            <tlk:GridBoundColumn HeaderText="Chức danh" DataField="TITLE_NAME"
-                UniqueName="TITLE_NAME" SortExpression="TITLE_NAME" ShowFilterIcon="false"
-                AutoPostBackOnFilter="true" CurrentFilterFunction="Contains" FilterControlWidth="100%">
+            <tlk:GridBoundColumn HeaderText="Chức danh" DataField="TITLE_NAME" UniqueName="TITLE_NAME"
+                SortExpression="TITLE_NAME" ShowFilterIcon="false" AutoPostBackOnFilter="true"
+                CurrentFilterFunction="Contains" FilterControlWidth="100%">
                 <HeaderStyle Width="20%" HorizontalAlign="Center" />
             </tlk:GridBoundColumn>
-            <tlk:GridBoundColumn HeaderText="Cấp bậc" DataField="LEVEL_NAME"
+            <tlk:GridBoundColumn HeaderText="Ghi chú" DataField="TER_REASON" UniqueName="TER_REASON">
+             <HeaderStyle Width="20%" HorizontalAlign="Center" />
+            </tlk:GridBoundColumn>
+            <%-- <tlk:GridBoundColumn HeaderText="Cấp bậc" DataField="LEVEL_NAME"
                 UniqueName="LEVEL_NAME" SortExpression="LEVEL_NAME"
                 ShowFilterIcon="false" AutoPostBackOnFilter="true" CurrentFilterFunction="Contains"
                 FilterControlWidth="100%">

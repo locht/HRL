@@ -1536,7 +1536,8 @@ Partial Public Class InsuranceRepository
                                        .TER_LAST_DATE = f.e.TER_EFFECT_DATE,
                                        .CREATED_BY = f.s.CREATED_BY,
                                        .CREATED_DATE = f.s.CREATED_DATE,
-                                       .CREATED_LOG = f.s.CREATED_LOG})
+                                       .CREATED_LOG = f.s.CREATED_LOG,
+                                       .COST_SAL = f.s.COST_SAL})
 
             Dim dateNow = Date.Now.Date
             'If _filter.IS_TERMINATE Then
@@ -1626,7 +1627,8 @@ Partial Public Class InsuranceRepository
                                         .NOTE = f.s.NOTE,
                                         .CREATED_BY = f.s.CREATED_BY,
                                         .CREATED_DATE = f.s.CREATED_DATE,
-                                        .CREATED_LOG = f.s.CREATED_LOG}).FirstOrDefault
+                                        .CREATED_LOG = f.s.CREATED_LOG,
+                                        .COST_SAL = f.s.COST_SAL}).FirstOrDefault
             Return lst
         Catch ex As Exception
             WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iInsurance")
@@ -1661,6 +1663,7 @@ Partial Public Class InsuranceRepository
             objTitleData.COST = objTitle.COST
             objTitleData.THOIDIEMHUONG = objTitle.THOIDIEMHUONG
             objTitleData.NOTE = objTitle.NOTE
+            objTitleData.COST_SAL = objTitle.COST_SAL
             Context.INS_SUN_CARE.AddObject(objTitleData)
             Context.SaveChanges(log)
             gID = objTitleData.ID
@@ -1715,6 +1718,7 @@ Partial Public Class InsuranceRepository
             objTitleData.COST = objTitle.COST
             objTitleData.THOIDIEMHUONG = objTitle.THOIDIEMHUONG
             objTitleData.NOTE = objTitle.NOTE
+            objTitleData.COST_SAL = objTitle.COST_SAL
             Context.SaveChanges(log)
             gID = objTitleData.ID
             Return True
