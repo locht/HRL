@@ -189,11 +189,11 @@ Public Class ctrlSignWork
             Dim startTime As DateTime = DateTime.UtcNow
             Me.ctrlMessageBox.Listener = Me
             Me.MainToolBar = tbarMainToolBar
-            Common.Common.BuildToolbar(Me.MainToolBar, ToolbarItem.Create,
+            Common.Common.BuildToolbar(Me.MainToolBar,
                                        -99,
                                        ToolbarItem.Export,
                                        ToolbarItem.Delete)
-            MainToolBar.Items(0).Text = Translate("Cập nhật")
+            ' MainToolBar.Items(0).Text = Translate("Cập nhật")
             MainToolBar.Items(1).Text = Translate("Lấy ca mặc định")
 
             Me.MainToolBar.Items.Add(Common.Common.CreateToolbarItem("EXPORT_TEMP",
