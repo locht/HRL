@@ -24,8 +24,8 @@
             <td>
                 <tlk:RadComboBox runat="server" ID="cboRelationship" CausesValidation="false">
                 </tlk:RadComboBox>
-                 <asp:RequiredFieldValidator ID="RequiredFieldValidator2" ControlToValidate="cboRelationship" runat="server"
-                    ErrorMessage="<%$ Translate: Bạn phải chọn Mối quan hệ %>" ToolTip="<%$ Translate: Bạn phải chọn Mối quan hệ  %>">
+                <asp:RequiredFieldValidator ID="RequiredFieldValidator2" ControlToValidate="cboRelationship"
+                    runat="server" ErrorMessage="<%$ Translate: Bạn phải chọn Mối quan hệ %>" ToolTip="<%$ Translate: Bạn phải chọn Mối quan hệ  %>">
                 </asp:RequiredFieldValidator>
             </td>
             <td class="lb">
@@ -35,11 +35,10 @@
             <td>
                 <tlk:RadDatePicker runat="server" ID="rdBirthDate">
                 </tlk:RadDatePicker>
-                 <asp:RequiredFieldValidator ID="RequiredFieldValidator1" ControlToValidate="rdBirthDate"
+                <asp:RequiredFieldValidator ID="RequiredFieldValidator1" ControlToValidate="rdBirthDate"
                     runat="server" ErrorMessage="<%$ Translate: Bạn phải nhập Ngày sinh %>" ToolTip="<%$ Translate: Bạn phải nhập Ngày sinh %>">
                 </asp:RequiredFieldValidator>
             </td>
-
             <td class="lb">
                 <%# Translate("Giới tính")%>
             </td>
@@ -49,7 +48,7 @@
                 </tlk:RadComboBox>
             </td>
         </tr>
-        <tr>  
+        <tr>
             <td class="lb">
                 <%# Translate("Số CMND")%>
             </td>
@@ -61,14 +60,14 @@
                 </asp:CustomValidator>
             </td>
             <td class="lb">
-                 <%# Translate("Ngày cấp CMND")%>
+                <%# Translate("Ngày cấp CMND")%>
             </td>
             <td>
                 <tlk:RadDatePicker runat="server" ID="rdIDDate">
                 </tlk:RadDatePicker>
             </td>
             <td class="lb">
-                 <%# Translate("Nơi cấp CMND")%>
+                <%# Translate("Nơi cấp CMND")%>
             </td>
             <td>
                 <tlk:RadTextBox runat="server" ID="txtIDPlace" SkinID="Textbox15">
@@ -86,12 +85,13 @@
                 <%# Translate("Mã hộ gia đình")%>
             </td>
             <td>
-                <tlk:RadTextBox runat="server" ID="txtHouseCertificate_Code"/>
+                <tlk:RadTextBox runat="server" ID="txtHouseCertificate_Code" />
             </td>
-             <td class="lb">
+            <td class="lb">
             </td>
             <td>
-                <asp:CheckBox runat="server" ID="chkIs_Owner" Text="<%$ Translate : Là chủ hộ %>" AutoPostBack="true" />
+                <asp:CheckBox runat="server" ID="chkIs_Owner" Text="<%$ Translate : Là chủ hộ %>"
+                    AutoPostBack="true" />
             </td>
         </tr>
         <tr>
@@ -102,15 +102,15 @@
                 <tlk:RadTextBox runat="server" ID="txtCareer" Width="100%">
                 </tlk:RadTextBox>
             </td>
-            <td style="display:none">
+            <td style="display: none">
                 <%# Translate("Chức danh")%>
             </td>
-            <td style="display:none">
+            <td style="display: none">
                 <tlk:RadTextBox runat="server" ID="txtTitle" SkinID="Textbox1023">
                 </tlk:RadTextBox>
             </td>
         </tr>
-        <tr  style="display:none">
+        <tr style="display: none">
             <td class="lb">
                 <%# Translate("Nguyên quán")%>
             </td>
@@ -125,12 +125,12 @@
             </td>
             <td colspan="5">
                 <tlk:RadTextBox runat="server" ID="txtAdress" Width="100%" />
-            </td> 
+            </td>
             <td class="lb">
                 <%# Translate("Quốc gia")%>
             </td>
             <td>
-                <tlk:RadComboBox runat="server" ID="cboNationlity" SkinID="LoadDemand" AutoPostBack="true" >
+                <tlk:RadComboBox runat="server" ID="cboNationlity" SkinID="LoadDemand" AutoPostBack="true">
                 </tlk:RadComboBox>
             </td>
         </tr>
@@ -139,18 +139,16 @@
                 <%# Translate("Tỉnh/Thành phố")%>
             </td>
             <td>
-                <tlk:RadComboBox runat="server" ID="cbPROVINCE_ID" SkinID="LoadDemand" AutoPostBack="true" 
-                            CausesValidation="false" OnClientItemsRequesting="OnClientItemsRequesting" 
-                            OnClientSelectedIndexChanged="OnClientSelectedIndexChanged">
+                <tlk:RadComboBox runat="server" ID="cbPROVINCE_ID" SkinID="LoadDemand" AutoPostBack="true"
+                    CausesValidation="false" OnClientItemsRequesting="OnClientItemsRequesting" OnClientSelectedIndexChanged="OnClientSelectedIndexChanged">
                 </tlk:RadComboBox>
-            </td>   
+            </td>
             <td class="lb">
                 <%# Translate("Quận/Huyện")%>
             </td>
             <td>
-                <tlk:RadComboBox runat="server" ID="cbDISTRICT_ID" SkinID="LoadDemand" AutoPostBack="true" 
-                            CausesValidation="false" OnClientItemsRequesting="OnClientItemsRequesting" 
-                            OnClientSelectedIndexChanged="OnClientSelectedIndexChanged">
+                <tlk:RadComboBox runat="server" ID="cbDISTRICT_ID" SkinID="LoadDemand" AutoPostBack="true"
+                    CausesValidation="false" OnClientItemsRequesting="OnClientItemsRequesting" OnClientSelectedIndexChanged="OnClientSelectedIndexChanged">
                 </tlk:RadComboBox>
             </td>
             <td class="lb">
@@ -169,7 +167,7 @@
             </td>
         </tr>
         <tr>
-             <td class="lb">
+            <td class="lb">
                 <%# Translate("Địa chỉ tạm trú")%>
             </td>
             <td colspan="5">
@@ -177,23 +175,20 @@
             </td>
         </tr>
         <tr>
-           
             <td class="lb">
                 <%# Translate("Tỉnh/Thành phố")%>
             </td>
             <td>
-                <tlk:RadComboBox runat="server" ID="cbTempPROVINCE_ID" SkinID="LoadDemand" AutoPostBack="true" 
-                            CausesValidation="false" OnClientItemsRequesting="OnClientItemsRequesting" 
-                            OnClientSelectedIndexChanged="OnClientSelectedIndexChanged">
+                <tlk:RadComboBox runat="server" ID="cbTempPROVINCE_ID" SkinID="LoadDemand" AutoPostBack="true"
+                    CausesValidation="false" OnClientItemsRequesting="OnClientItemsRequesting" OnClientSelectedIndexChanged="OnClientSelectedIndexChanged">
                 </tlk:RadComboBox>
-            </td>  
-             <td class="lb">
+            </td>
+            <td class="lb">
                 <%# Translate("Quận/Huyện")%>
             </td>
             <td>
-                <tlk:RadComboBox runat="server" ID="cbTempDISTRICT_ID" SkinID="LoadDemand" AutoPostBack="true" 
-                            CausesValidation="false" OnClientItemsRequesting="OnClientItemsRequesting" 
-                            OnClientSelectedIndexChanged="OnClientSelectedIndexChanged">
+                <tlk:RadComboBox runat="server" ID="cbTempDISTRICT_ID" SkinID="LoadDemand" AutoPostBack="true"
+                    CausesValidation="false" OnClientItemsRequesting="OnClientItemsRequesting" OnClientSelectedIndexChanged="OnClientSelectedIndexChanged">
                 </tlk:RadComboBox>
             </td>
             <td class="lb">
@@ -203,7 +198,7 @@
                 <tlk:RadComboBox runat="server" ID="cbTempWARD_ID" SkinID="LoadDemand" OnClientSelectedIndexChanged="OnClientSelectedIndexChanged"
                     OnClientItemsRequesting="OnClientItemsRequesting">
                 </tlk:RadComboBox>
-            </td>          
+            </td>
         </tr>
         <tr>
             <td class="lb">
@@ -224,11 +219,11 @@
                 <tlk:RadTextBox runat="server" ID="txtTax" SkinID="Textbox15">
                 </tlk:RadTextBox>
             </td>
-             <td class="lb">
+            <td class="lb">
                 <%# Translate("Ngày cấp MST")%>
             </td>
             <td>
-                 <tlk:RadDatePicker runat="server" ID="rdMSTDate">
+                <tlk:RadDatePicker runat="server" ID="rdMSTDate">
                 </tlk:RadDatePicker>
             </td>
         </tr>
@@ -237,7 +232,7 @@
                 <%# Translate("Nơi cấp mã số thuế")%>
             </td>
             <td colspan="5">
-                 <tlk:RadTextBox runat="server" ID="txt_MSTPLACE"  Width="100%">
+                <tlk:RadTextBox runat="server" ID="txt_MSTPLACE" Width="100%">
                 </tlk:RadTextBox>
             </td>
         </tr>
@@ -247,7 +242,7 @@
             <td>
                 <asp:CheckBox runat="server" ID="chkIsDeduct" AutoPostBack="true" Text="<%$ Translate : Đối tượng giảm trừ  %>" />
             </td>
-             <td class="lb">
+            <td class="lb">
                 <%# Translate("Ngày đăng ký giảm trừ")%>
             </td>
             <td>
@@ -272,11 +267,11 @@
                     ControlToValidate="rdDeductTo" ControlToCompare="rdDeductFrom" Operator="GreaterThanEqual"
                     Type="Date">
                 </asp:CompareValidator>
-            </td> 
+            </td>
         </tr>
         <tr>
-            <td colspan="7" style="color:red">
-                 <asp:Label runat="server" ID="lbNKS" Text="Nơi đăng ký khai sinh:"></asp:Label>
+            <td colspan="7" style="color: red">
+                <asp:Label runat="server" ID="lbNKS" Text="Nơi đăng ký khai sinh:"></asp:Label>
             </td>
         </tr>
         <tr>
@@ -284,17 +279,17 @@
                 <%# Translate("Giấy khai sinh")%>
             </td>
             <td>
-                 <tlk:RadTextBox runat="server" ID="txtBIRTH_CODE">
+                <tlk:RadTextBox runat="server" ID="txtBIRTH_CODE">
                 </tlk:RadTextBox>
             </td>
             <td class="lb">
                 <%# Translate("Quyển")%>
             </td>
             <td>
-                 <tlk:RadTextBox runat="server" ID="txtQuyen">
+                <tlk:RadTextBox runat="server" ID="txtQuyen">
                 </tlk:RadTextBox>
             </td>
-             <td class="lb">
+            <td class="lb">
                 <%# Translate("Quốc tịch")%>
             </td>
             <td>
@@ -303,25 +298,21 @@
                 </tlk:RadComboBox>
             </td>
         </tr>
-
         <tr>
-           
             <td class="lb">
                 <%# Translate("Tỉnh/Thành phố")%>
             </td>
             <td>
-                <tlk:RadComboBox runat="server" ID="cbTempKtPROVINCE_ID" SkinID="LoadDemand" AutoPostBack="true" 
-                            CausesValidation="false" OnClientItemsRequesting="OnClientItemsRequesting" 
-                            OnClientSelectedIndexChanged="OnClientSelectedIndexChanged">
+                <tlk:RadComboBox runat="server" ID="cbTempKtPROVINCE_ID" SkinID="LoadDemand" AutoPostBack="true"
+                    CausesValidation="false" OnClientItemsRequesting="OnClientItemsRequesting" OnClientSelectedIndexChanged="OnClientSelectedIndexChanged">
                 </tlk:RadComboBox>
-            </td>  
-             <td class="lb">
+            </td>
+            <td class="lb">
                 <%# Translate("Quận/Huyện")%>
             </td>
             <td>
-                <tlk:RadComboBox runat="server" ID="cbTempKtDISTRICT_ID" SkinID="LoadDemand" AutoPostBack="true" 
-                            CausesValidation="false" OnClientItemsRequesting="OnClientItemsRequesting" 
-                            OnClientSelectedIndexChanged="OnClientSelectedIndexChanged">
+                <tlk:RadComboBox runat="server" ID="cbTempKtDISTRICT_ID" SkinID="LoadDemand" AutoPostBack="true"
+                    CausesValidation="false" OnClientItemsRequesting="OnClientItemsRequesting" OnClientSelectedIndexChanged="OnClientSelectedIndexChanged">
                 </tlk:RadComboBox>
             </td>
             <td class="lb">
@@ -331,7 +322,7 @@
                 <tlk:RadComboBox runat="server" ID="cbTempKtWARD_ID" SkinID="LoadDemand" OnClientSelectedIndexChanged="OnClientSelectedIndexChanged"
                     OnClientItemsRequesting="OnClientItemsRequesting">
                 </tlk:RadComboBox>
-            </td>          
+            </td>
         </tr>
         <tr>
             <td class="lb">
@@ -343,9 +334,9 @@
         </tr>
     </table>
     <tlk:RadGrid PageSize="50" ID="rgFamilyEdit" runat="server" Height="250px" Width="99%">
-          <ClientSettings EnableRowHoverStyle="true" EnablePostBackOnRowClick="true">
-                <Selecting AllowRowSelect="true" />
-            </ClientSettings>
+        <ClientSettings EnableRowHoverStyle="true" EnablePostBackOnRowClick="true">
+            <Selecting AllowRowSelect="true" />
+        </ClientSettings>
         <MasterTableView DataKeyNames="ID,ID_NO,FULLNAME,RELATION_ID,IS_DEDUCT,DEDUCT_FROM,DEDUCT_TO,ADDRESS,BIRTH_DATE,REMARK,DEDUCT_REG,FK_PKEY,STATUS,REASON_UNAPROVE,TAXTATION,CAREER,TITLE_NAME,PROVINCE_NAME,PROVINCE_ID,CERTIFICATE_NUM,CERTIFICATE_CODE,ADDRESS_TT,AD_PROVINCE_ID,AD_DISTRICT_ID,AD_WARD_ID,AD_VILLAGE,TT_PROVINCE_ID,TT_DISTRICT_ID,TT_WARD_ID,IS_OWNER,IS_PASS"
             ClientDataKeyNames="ID,ID_NO,FULLNAME,RELATION_ID,IS_DEDUCT,DEDUCT_FROM,DEDUCT_TO,ADDRESS,BIRTH_DATE,REMARK,DEDUCT_REG,FK_PKEY,STATUS,REASON_UNAPROVE,TAXTATION,CAREER,TITLE_NAME,PROVINCE_NAME,PROVINCE_ID,CERTIFICATE_NUM,CERTIFICATE_CODE,ADDRESS_TT,AD_PROVINCE_ID,AD_DISTRICT_ID,AD_WARD_ID,AD_VILLAGE,TT_PROVINCE_ID,TT_DISTRICT_ID,TT_WARD_ID,IS_OWNER,IS_PASS,NATION_ID,ID_NO_DATE,ID_NO_PLACE_NAME,PHONE,TAXTATION_DATE,TAXTATION_PLACE,BIRTH_CODE,QUYEN,BIRTH_NATION_ID,BIRTH_PROVINCE_ID,BIRTH_DISTRICT_ID,BIRTH_WARD_ID,GENDER"
             Caption="<%$ Translate: Thông tin chỉnh sửa %>">
@@ -365,10 +356,6 @@
                     UniqueName="FULLNAME" SortExpression="FULLNAME">
                     <HeaderStyle HorizontalAlign="Center" />
                 </tlk:GridBoundColumn>
-                 <tlk:GridBoundColumn HeaderText="<%$ Translate: Mã thuế %>" DataField="TAXTATION"
-                    UniqueName="TAXTATION" SortExpression="TAXTATION">
-                    <HeaderStyle HorizontalAlign="Center" />
-                </tlk:GridBoundColumn>
                 <tlk:GridDateTimeColumn UniqueName="BIRTH_DATE" HeaderText="<%$ Translate: Ngày sinh%>"
                     ReadOnly="True" DataFormatString="{0:dd/MM/yyyy}" DataField="BIRTH_DATE">
                     <HeaderStyle HorizontalAlign="Center" />
@@ -377,10 +364,14 @@
                     Visible="True" EmptyDataText="">
                     <HeaderStyle HorizontalAlign="Center" />
                 </tlk:GridBoundColumn>
-                <tlk:GridBoundColumn DataField="CAREER" HeaderText="<%$ Translate: Nghề nghiệp %>" UniqueName="CAREER"
-                    Visible="True" EmptyDataText="">
+                <tlk:GridBoundColumn HeaderText="<%$ Translate: Mã thuế %>" DataField="TAXTATION"
+                    UniqueName="TAXTATION" SortExpression="TAXTATION">
                     <HeaderStyle HorizontalAlign="Center" />
                 </tlk:GridBoundColumn>
+                <tlk:GridDateTimeColumn DataField="DEDUCT_REG" HeaderText="<%$ Translate: Ngày đăng ký giảm trừ%>"
+                    UniqueName="DEDUCT_REG" Visible="true" DataFormatString="{0:dd/MM/yyyy}">
+                    <HeaderStyle HorizontalAlign="Center" />
+                </tlk:GridDateTimeColumn>
                 <tlk:GridCheckBoxColumn HeaderText="<%$ Translate: Giảm trừ %>" DataField="IS_DEDUCT"
                     UniqueName="IS_DEDUCT" SortExpression="IS_DEDUCT" HeaderStyle-Width="80px">
                     <HeaderStyle HorizontalAlign="Center" />
@@ -396,16 +387,16 @@
                     <HeaderStyle HorizontalAlign="Center" />
                     <ItemStyle HorizontalAlign="Center" />
                 </tlk:GridDateTimeColumn>
-                <tlk:GridDateTimeColumn DataField="DEDUCT_REG" HeaderText="<%$ Translate: Ngày đăng ký giảm trừ%>"
-                    UniqueName="DEDUCT_REG" Visible="true" DataFormatString="{0:dd/MM/yyyy}">
+                <%--  <tlk:GridBoundColumn DataField="CAREER" HeaderText="<%$ Translate: Nghề nghiệp %>"
+                    UniqueName="CAREER" Visible="True" EmptyDataText="">
                     <HeaderStyle HorizontalAlign="Center" />
-                </tlk:GridDateTimeColumn>
+                </tlk:GridBoundColumn>
                 <tlk:GridCheckBoxColumn HeaderText="<%$ Translate: Là chủ hộ %>" DataField="IS_OWNER"
                     UniqueName="IS_OWNER" SortExpression="IS_OWNER" HeaderStyle-Width="80px">
                     <HeaderStyle HorizontalAlign="Center" />
                     <ItemStyle HorizontalAlign="Center" />
                 </tlk:GridCheckBoxColumn>
-                 <tlk:GridBoundColumn HeaderText="<%$ Translate: Mã hộ gia đình %>" DataField="CERTIFICATE_CODE"
+                <tlk:GridBoundColumn HeaderText="<%$ Translate: Mã hộ gia đình %>" DataField="CERTIFICATE_CODE"
                     UniqueName="CERTIFICATE_CODE" SortExpression="CERTIFICATE_CODE">
                     <HeaderStyle HorizontalAlign="Center" />
                 </tlk:GridBoundColumn>
@@ -416,7 +407,7 @@
                 <tlk:GridBoundColumn HeaderText="<%$ Translate: Ghi chú %>" DataField="REMARK" UniqueName="REMARK"
                     SortExpression="REMARK">
                     <HeaderStyle HorizontalAlign="Center" />
-                </tlk:GridBoundColumn>
+                </tlk:GridBoundColumn>--%>
                 <tlk:GridBoundColumn HeaderText="<%$ Translate: Trạng thái %>" DataField="STATUS_NAME"
                     UniqueName="STATUS_NAME" SortExpression="STATUS_NAME">
                     <HeaderStyle HorizontalAlign="Center" />
@@ -430,9 +421,9 @@
     </tlk:RadGrid>
     <br />
     <tlk:RadGrid PageSize="50" ID="rgFamily" runat="server" Height="250px" Width="99%">
-          <ClientSettings EnableRowHoverStyle="true" EnablePostBackOnRowClick="true">
-                <Selecting AllowRowSelect="true" />
-            </ClientSettings>
+        <ClientSettings EnableRowHoverStyle="true" EnablePostBackOnRowClick="true">
+            <Selecting AllowRowSelect="true" />
+        </ClientSettings>
         <MasterTableView DataKeyNames="ID,ID_NO,FULLNAME,RELATION_ID,IS_DEDUCT,DEDUCT_FROM,DEDUCT_TO,ADDRESS,BIRTH_DATE,REMARK,DEDUCT_REG,CAREER,TITLE_NAME,PROVINCE_NAME,PROVINCE_ID,TAXTATION,CERTIFICATE_NUM,CERTIFICATE_CODE,ADDRESS_TT,AD_PROVINCE_ID,AD_DISTRICT_ID,AD_WARD_ID,AD_VILLAGE,TT_PROVINCE_ID,TT_DISTRICT_ID,TT_WARD_ID,IS_OWNER,IS_PASS"
             ClientDataKeyNames="ID,ID_NO,FULLNAME,RELATION_ID,IS_DEDUCT,DEDUCT_FROM,DEDUCT_TO,ADDRESS,BIRTH_DATE,REMARK,DEDUCT_REG,CAREER,TITLE_NAME,PROVINCE_NAME,PROVINCE_ID,TAXTATION,CERTIFICATE_NUM,CERTIFICATE_CODE,ADDRESS_TT,AD_PROVINCE_ID,AD_DISTRICT_ID,AD_WARD_ID,AD_VILLAGE,TT_PROVINCE_ID,TT_DISTRICT_ID,TT_WARD_ID,IS_OWNER,IS_PASS,NATION_ID,ID_NO_DATE,ID_NO_PLACE_NAME,PHONE,TAXTATION_DATE,TAXTATION_PLACE,BIRTH_CODE,QUYEN,BIRTH_NATION_ID,BIRTH_PROVINCE_ID,BIRTH_DISTRICT_ID,BIRTH_WARD_ID,GENDER"
             Caption="<%$ Translate: Thông tin hiện tại %>">
@@ -449,10 +440,6 @@
                     UniqueName="FULLNAME" SortExpression="FULLNAME">
                     <HeaderStyle HorizontalAlign="Center" />
                 </tlk:GridBoundColumn>
-                <tlk:GridBoundColumn HeaderText="<%$ Translate: Mã thuế %>" DataField="TAXTATION"
-                    UniqueName="TAXTATION" SortExpression="TAXTATION">
-                    <HeaderStyle HorizontalAlign="Center" />
-                </tlk:GridBoundColumn>
                 <tlk:GridDateTimeColumn UniqueName="BIRTH_DATE" HeaderText="<%$ Translate: Ngày sinh%>"
                     ReadOnly="True" DataFormatString="{0:dd/MM/yyyy}" DataField="BIRTH_DATE">
                     <HeaderStyle HorizontalAlign="Center" />
@@ -461,10 +448,14 @@
                     Visible="True" EmptyDataText="">
                     <HeaderStyle HorizontalAlign="Center" />
                 </tlk:GridBoundColumn>
-                <tlk:GridBoundColumn DataField="CAREER" HeaderText="<%$ Translate: Nghề nghiệp %>" UniqueName="CAREER"
-                    Visible="True" EmptyDataText="">
+                <tlk:GridBoundColumn HeaderText="<%$ Translate: Mã thuế %>" DataField="TAXTATION"
+                    UniqueName="TAXTATION" SortExpression="TAXTATION">
                     <HeaderStyle HorizontalAlign="Center" />
                 </tlk:GridBoundColumn>
+                <tlk:GridDateTimeColumn DataField="DEDUCT_REG" HeaderText="<%$ Translate: Ngày đăng ký giảm trừ%>"
+                    UniqueName="DEDUCT_REG" Visible="true" DataFormatString="{0:dd/MM/yyyy}">
+                    <HeaderStyle HorizontalAlign="Center" />
+                </tlk:GridDateTimeColumn>
                 <tlk:GridCheckBoxColumn HeaderText="<%$ Translate: Giảm trừ %>" DataField="IS_DEDUCT"
                     UniqueName="IS_DEDUCT" SortExpression="IS_DEDUCT" HeaderStyle-Width="80px">
                     <HeaderStyle HorizontalAlign="Center" />
@@ -480,16 +471,16 @@
                     <HeaderStyle HorizontalAlign="Center" />
                     <ItemStyle HorizontalAlign="Center" />
                 </tlk:GridDateTimeColumn>
-                <tlk:GridDateTimeColumn DataField="DEDUCT_REG" HeaderText="<%$ Translate: Ngày đăng ký giảm trừ%>"
-                    UniqueName="DEDUCT_REG" Visible="true" DataFormatString="{0:dd/MM/yyyy}">
+               <%-- <tlk:GridBoundColumn DataField="CAREER" HeaderText="<%$ Translate: Nghề nghiệp %>"
+                    UniqueName="CAREER" Visible="True" EmptyDataText="">
                     <HeaderStyle HorizontalAlign="Center" />
-                </tlk:GridDateTimeColumn>
-                 <tlk:GridCheckBoxColumn HeaderText="<%$ Translate: Là chủ hộ %>" DataField="IS_OWNER"
+                </tlk:GridBoundColumn>
+                <tlk:GridCheckBoxColumn HeaderText="<%$ Translate: Là chủ hộ %>" DataField="IS_OWNER"
                     UniqueName="IS_OWNER" SortExpression="IS_OWNER" HeaderStyle-Width="80px">
                     <HeaderStyle HorizontalAlign="Center" />
                     <ItemStyle HorizontalAlign="Center" />
                 </tlk:GridCheckBoxColumn>
-                 <tlk:GridBoundColumn HeaderText="<%$ Translate: Mã hộ gia đình %>" DataField="CERTIFICATE_CODE"
+                <tlk:GridBoundColumn HeaderText="<%$ Translate: Mã hộ gia đình %>" DataField="CERTIFICATE_CODE"
                     UniqueName="CERTIFICATE_CODE" SortExpression="CERTIFICATE_CODE">
                     <HeaderStyle HorizontalAlign="Center" />
                 </tlk:GridBoundColumn>
@@ -500,7 +491,7 @@
                 <tlk:GridBoundColumn HeaderText="<%$ Translate: Ghi chú %>" DataField="REMARK" UniqueName="REMARK"
                     SortExpression="REMARK">
                     <HeaderStyle HorizontalAlign="Center" />
-                </tlk:GridBoundColumn>
+                </tlk:GridBoundColumn>--%>
             </Columns>
         </MasterTableView>
     </tlk:RadGrid>

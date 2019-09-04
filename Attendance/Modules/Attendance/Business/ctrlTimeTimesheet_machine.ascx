@@ -72,7 +72,7 @@
                             </tlk:RadDatePicker>
                         </td>
                         <td>
-                            <asp:CheckBox ID ="ckReset" runat="server"  Text ="Cập nhật mới lại toàn bộ dữ liệu" />
+                            <asp:CheckBox ID ="ckReset" runat="server"  Text ="Cập nhật mới lại toàn bộ dữ liệu" Visible ="false"  />
                         </td>
                     </tr>
                 </table>

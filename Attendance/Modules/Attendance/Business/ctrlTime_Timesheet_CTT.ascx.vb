@@ -1164,11 +1164,11 @@ Public Class ctrlTime_Timesheet_CTT
                     End If
                     If getSE_CASE_CONFIG("ctrlTimeTimesheet_machine_case1") > 0 Then
                         rep.Init_TimeTImesheetMachines(_param, rdtungay.SelectedDate, rdDenngay.SelectedDate,
-                                                   Decimal.Parse(ctrlOrganization.CurrentValue), lsEmployee, is_delete, "ctrlTimeTimesheet_machine_case1")
+                                                   Decimal.Parse(ctrlOrganization.CurrentValue), lsEmployee, is_delete, "ctrlTime_Timesheet_CTT")
                         Refresh("UpdateView")
                     Else
                         rep.Init_TimeTImesheetMachines(_param, rdtungay.SelectedDate, rdDenngay.SelectedDate,
-                                                   Decimal.Parse(ctrlOrganization.CurrentValue), lsEmployee, 0, "")
+                                                   Decimal.Parse(ctrlOrganization.CurrentValue), lsEmployee, is_delete, "ctrlTime_Timesheet_CTT")
                         Refresh("UpdateView")
                     End If
                     Return
