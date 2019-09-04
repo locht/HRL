@@ -43,4 +43,6 @@
     Public Property ATTACH_FILE_LOGO As String
     Public Property ATTACH_FILE_HEADER As String
     Public Property ATTACH_FILE_FOOTER As String
+
+    Public Property CHANGE_TAX_CODE As String
 End Class

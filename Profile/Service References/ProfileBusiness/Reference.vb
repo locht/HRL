@@ -25483,6 +25483,9 @@ Namespace ProfileBusiness
         Private BUSINESS_REG_DATEField As System.Nullable(Of Date)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private CHANGE_TAX_CODEField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private CODEField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -25721,6 +25724,19 @@ Namespace ProfileBusiness
                 If (Me.BUSINESS_REG_DATEField.Equals(value) <> true) Then
                     Me.BUSINESS_REG_DATEField = value
                     Me.RaisePropertyChanged("BUSINESS_REG_DATE")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property CHANGE_TAX_CODE() As String
+            Get
+                Return Me.CHANGE_TAX_CODEField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.CHANGE_TAX_CODEField, value) <> true) Then
+                    Me.CHANGE_TAX_CODEField = value
+                    Me.RaisePropertyChanged("CHANGE_TAX_CODE")
                 End If
             End Set
         End Property

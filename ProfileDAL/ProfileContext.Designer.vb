@@ -18,7 +18,7 @@ Imports System.Runtime.Serialization
 Imports System.Xml.Serialization
 
 
-<Assembly: EdmSchemaAttribute("ac789d70-4578-42fb-a0fd-6dca551b7675")>
+<Assembly: EdmSchemaAttribute("805e3a22-35dd-4436-b93d-1bcf9f9435de")>
 #Region "EDM Relationship Metadata"
 <Assembly: EdmRelationshipAttribute("ProfileModel", "FK_HU_NAT_HU_PRO", "HU_NATION", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_NATION), "HU_PROVINCE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_PROVINCE), True)>
 <Assembly: EdmRelationshipAttribute("ProfileModel", "FK_HU_PRO_HU_DIS", "HU_PROVINCE", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_PROVINCE), "HU_DISTRICT", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_DISTRICT), True)>
@@ -41515,6 +41515,31 @@ Public Partial Class HU_LOCATION
     End Sub
 
     Private Partial Sub OnATTACH_FILE_FOOTERChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property CHANGE_TAX_CODE() As Global.System.String
+        Get
+            Return _CHANGE_TAX_CODE
+        End Get
+        Set
+            OnCHANGE_TAX_CODEChanging(value)
+            ReportPropertyChanging("CHANGE_TAX_CODE")
+            _CHANGE_TAX_CODE = StructuralObject.SetValidValue(value, true)
+            ReportPropertyChanged("CHANGE_TAX_CODE")
+            OnCHANGE_TAX_CODEChanged()
+        End Set
+    End Property
+
+    Private _CHANGE_TAX_CODE As Global.System.String
+    Private Partial Sub OnCHANGE_TAX_CODEChanging(value As Global.System.String)
+    End Sub
+
+    Private Partial Sub OnCHANGE_TAX_CODEChanged()
     End Sub
 
     #End Region

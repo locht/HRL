@@ -3574,6 +3574,7 @@
             <Property Name="ATTACH_FILE_LOGO" Type="nvarchar2" Nullable="true" MaxLength="1023" />
             <Property Name="ATTACH_FILE_HEADER" Type="nvarchar2" Nullable="true" MaxLength="1023" />
             <Property Name="ATTACH_FILE_FOOTER" Type="nvarchar2" Nullable="true" MaxLength="1023" />
+            <Property Name="CHANGE_TAX_CODE" Type="nvarchar2" Nullable="true" MaxLength="50" />
         </EntityType>
         <EntityType Name="HU_CONCURRENTLY">
             <Key>
@@ -8121,6 +8122,7 @@
           <Property Type="String" Name="ATTACH_FILE_LOGO" MaxLength="1023" />
           <Property Type="String" Name="ATTACH_FILE_HEADER" MaxLength="1023" />
           <Property Type="String" Name="ATTACH_FILE_FOOTER" MaxLength="1023" />
+          <Property Type="String" Name="CHANGE_TAX_CODE" MaxLength="50" />
         </EntityType>
         <EntityType Name="HU_CONCURRENTLY">
           <Key>
@@ -11760,6 +11762,7 @@
                     <ScalarProperty Name="ATTACH_FILE_LOGO" ColumnName="ATTACH_FILE_LOGO" />
                     <ScalarProperty Name="ATTACH_FILE_HEADER" ColumnName="ATTACH_FILE_HEADER" />
                     <ScalarProperty Name="ATTACH_FILE_FOOTER" ColumnName="ATTACH_FILE_FOOTER" />
+                    <ScalarProperty Name="CHANGE_TAX_CODE" ColumnName="CHANGE_TAX_CODE" />
                 </MappingFragment>
             </EntityTypeMapping>
         </EntitySetMapping>
@@ -12013,7 +12016,7 @@
     </Options>
     <!-- Diagram content (shape and connector positions) -->
     <Diagrams>
-      <Diagram Name="ProfileContext" ZoomLevel="86" ShowGrid="false" DisplayType="true" SnapToGrid="true">
+      <Diagram Name="ProfileContext" ZoomLevel="80" ShowGrid="false" DisplayType="true" SnapToGrid="true">
         <EntityTypeShape EntityType="ProfileModel.HU_PROVINCE" Width="1.5" PointX="3" PointY="9.625" Height="0.39999999999999858" IsExpanded="false" />
         <EntityTypeShape EntityType="ProfileModel.HU_DISTRICT" Width="1.75" PointX="5.25" PointY="9" Height="0.39999999999999858" IsExpanded="false" />
         <EntityTypeShape EntityType="ProfileModel.HU_NATION" Width="1.5" PointX="0.75" PointY="9.625" Height="0.40000000000000213" IsExpanded="false" />
@@ -12309,7 +12312,7 @@
         <EntityTypeShape EntityType="ProfileModel.HUV_TERMINATE_CURRENT" Width="1.5" PointX="35.375" PointY="25.25" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="ProfileModel.HU_TRANSFER_TERMINATE" Width="1.5" PointX="38.25" PointY="28.625" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="ProfileModel.HU_DEBT" Width="2.625" PointX="41.5" PointY="28.75" Height="3.3263964843750031" IsExpanded="true" />
-        <EntityTypeShape EntityType="ProfileModel.HU_LOCATION" Width="1.75" PointX="23.5" PointY="26.75" Height="0.4" IsExpanded="false" />
+        <EntityTypeShape EntityType="ProfileModel.HU_LOCATION" Width="1.75" PointX="23.5" PointY="26.75" Height="9.0954394531250031" IsExpanded="true" />
         <EntityTypeShape EntityType="ProfileModel.HU_CONCURRENTLY" Width="1.875" PointX="21.25" PointY="30.375" Height="9.4800423177083317" IsExpanded="true" />
         <EntityTypeShape EntityType="ProfileModel.HU_CERTIFICATE" Width="1.5" PointX="19.375" PointY="30.375" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="ProfileModel.HU_CERTIFICATE_EDIT" Width="3.125" PointX="9.375" PointY="31.375" Height="0.4" IsExpanded="false" />
