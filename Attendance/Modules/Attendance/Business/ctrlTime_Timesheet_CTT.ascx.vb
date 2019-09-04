@@ -427,12 +427,16 @@ Public Class ctrlTime_Timesheet_CTT
             Next
             If loadToGrid(dtDataHeader) = False Then
             Else
-                If saveGrid() Then
+                Dim dtError = saveGrid()
+                If dtError.Rows.Count <= 0 Then
                     Refresh("InsertView")
                     CurrentState = CommonMessage.STATE_NORMAL
                     UpdateControlState()
                 Else
-                    ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), Utilities.NotifyType.Error)
+                    Dim dsData As New DataSet
+                    dsData.Tables.Add(dtError)
+                    Session("EXPORTREPORT") = dsData
+                    ScriptManager.RegisterStartupScript(Me.Page, Me.Page.GetType(), "javascriptfunction", "ExportReport('Template_importTimesheet_CTT_Error&PERIOD_ID=" & cboPeriod.SelectedValue & "&orgid=" & ctrlOrganization.CurrentValue & "&IS_DISSOLVE=" & IIf(ctrlOrganization.IsDissolve, "1", "0") & "')", True)
                 End If
 
             End If
@@ -989,7 +993,7 @@ Public Class ctrlTime_Timesheet_CTT
     ''' </summary>
     ''' <returns></returns>
     ''' <remarks></remarks>
-    Function saveGrid() As Boolean
+    Function saveGrid() As DataTable
         Dim rep As New AttendanceRepository
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
         Dim startTime As DateTime = DateTime.UtcNow
@@ -1025,8 +1029,8 @@ Public Class ctrlTime_Timesheet_CTT
                 AssignDateToTable(dtImport, i, startdate, enddate)
             Next
             dtImport.TableName = "DATA"
-            rep.InsertLeaveSheetDaily(dtImport, cboPeriod.SelectedValue)
-            Return True
+            Dim dt = rep.InsertLeaveSheetDaily(dtImport, cboPeriod.SelectedValue)
+            Return dt
             _myLog.WriteLog(_myLog._info, _classPath, method,
                                                 CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception

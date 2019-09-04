@@ -32390,7 +32390,7 @@ Namespace AttendanceBusiness
         Function ModifyLeaveSheetDaily(ByVal objLeave As AttendanceBusiness.AT_TIME_TIMESHEET_DAILYDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IAttendanceBusiness/InsertLeaveSheetDaily", ReplyAction:="http://tempuri.org/IAttendanceBusiness/InsertLeaveSheetDailyResponse")>  _
-        Function InsertLeaveSheetDaily(ByVal dtData As System.Data.DataTable, ByVal log As Common.CommonBusiness.UserLog, ByVal PeriodID As Decimal) As Boolean
+        Function InsertLeaveSheetDaily(ByVal dtData As System.Data.DataTable, ByVal log As Common.CommonBusiness.UserLog, ByVal PeriodID As Decimal) As System.Data.DataTable
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IAttendanceBusiness/GetTimeSheetDailyById", ReplyAction:="http://tempuri.org/IAttendanceBusiness/GetTimeSheetDailyByIdResponse")>  _
         Function GetTimeSheetDailyById(ByVal obj As AttendanceBusiness.AT_TIME_TIMESHEET_DAILYDTO) As AttendanceBusiness.AT_TIME_TIMESHEET_DAILYDTO
@@ -33935,7 +33935,7 @@ Namespace AttendanceBusiness
             Return MyBase.Channel.ModifyLeaveSheetDaily(objLeave, log, gID)
         End Function
         
-        Public Function InsertLeaveSheetDaily(ByVal dtData As System.Data.DataTable, ByVal log As Common.CommonBusiness.UserLog, ByVal PeriodID As Decimal) As Boolean Implements AttendanceBusiness.IAttendanceBusiness.InsertLeaveSheetDaily
+        Public Function InsertLeaveSheetDaily(ByVal dtData As System.Data.DataTable, ByVal log As Common.CommonBusiness.UserLog, ByVal PeriodID As Decimal) As System.Data.DataTable Implements AttendanceBusiness.IAttendanceBusiness.InsertLeaveSheetDaily
             Return MyBase.Channel.InsertLeaveSheetDaily(dtData, log, PeriodID)
         End Function
         
