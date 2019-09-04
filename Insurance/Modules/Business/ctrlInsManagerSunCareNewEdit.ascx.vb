@@ -217,6 +217,10 @@ Public Class ctrlInsManagerSunCareNewEdit
                         If obj.COST IsNot Nothing Then
                             nmCOST.Value = obj.COST
                         End If
+
+                        If obj.COST_SAL IsNot Nothing Then
+                            nmCOSTSAL.Value = obj.COST_SAL
+                        End If
                         _Value = obj.ID
                     End If
             End Select
@@ -329,6 +333,7 @@ Public Class ctrlInsManagerSunCareNewEdit
                                 objData.LEVEL_ID = cboLEVEL.SelectedValue
                             End If
                             objData.COST = nmCOST.Value
+                            objData.COST_SAL = nmCOSTSAL.Value
                             objData.NOTE = txtNote.Text
                             gID = Utilities.ObjToDecima(hidID.Value)
                             rep.ModifySunCare(objData, gID)
@@ -349,6 +354,7 @@ Public Class ctrlInsManagerSunCareNewEdit
                                 objData.LEVEL_ID = cboLEVEL.SelectedValue
                             End If
                             objData.COST = nmCOST.Value
+                            objData.COST_SAL = nmCOSTSAL.Value
                             objData.NOTE = txtNote.Text
                             gID = Utilities.ObjToDecima(hidID.Value)
                             rep.InsertSunCare(objData, gID)
@@ -359,7 +365,7 @@ Public Class ctrlInsManagerSunCareNewEdit
                         dpEND_DATE.Enabled = False
                         cboLEVEL.Enabled = False
                         nmCOST.Enabled = False
-
+                        nmCOSTSAL.Enabled = False
                         'Dim str As String = "getRadWindow().close('1');"
                         'ScriptManager.RegisterStartupScript(Me.Page, Me.Page.GetType, "clientButtonClicking", str, True)
                         ''POPUPTOLINK()

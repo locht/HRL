@@ -103,6 +103,7 @@
             CellSpacing="0" ShowStatusBar="true" GridLines="None"
             PageSize="500" AutoGenerateColumns="false" AllowFilteringByColumn="true">
             <ClientSettings>
+               <Scrolling AllowScroll="true" UseStaticHeaders="true" FrozenColumnsCount="3" />
             </ClientSettings>
             <PagerStyle AlwaysVisible="true" Mode="NextPrevAndNumeric" />
             <MasterTableView CommandItemDisplay="None" DataKeyNames="ID" ClientDataKeyNames="ID,EMPLOYEE_CODE,FULL_NAME,TITLE,SI_EMP,SI_COM,HI_EMP,HI_COM,UI_EMP,UI_COM,OLD_SAL,NEW_SAL,PERIOD,SI_ADJUST,HI_ADJUST,UI_ADJUST,HI_ADD,UI_ADD,RATE_SI_COM,RATE_SI_EMP,RATE_HI_COM,RATE_HI_EMP,RATE_UI_COM,RATE_UI_EMP">
@@ -124,6 +125,9 @@
                     <tlk:GridBoundColumn HeaderText="<%$ Translate: Tên nhân viên %>" DataField="FULL_NAME"
                         CurrentFilterFunction="Contains" HeaderStyle-Width="150px" FilterControlWidth="60%"
                         UniqueName="FULL_NAME" SortExpression="FULL_NAME" />
+                        <tlk:GridBoundColumn HeaderText="<%$ Translate: Phòng ban %>" DataField="name_organization" UniqueName="name_organization"
+                        CurrentFilterFunction="Contains" HeaderStyle-Width="170px" FilterControlWidth="60%"
+                        SortExpression="name_organization" />
                     <tlk:GridBoundColumn HeaderText="<%$ Translate: Chức danh %>" DataField="TITLE" UniqueName="TITLE"
                         CurrentFilterFunction="Contains" HeaderStyle-Width="170px" FilterControlWidth="60%"
                         SortExpression="TITLE" />
@@ -150,18 +154,18 @@
                         HeaderStyle-Width="110px" DataField="SI_SAL_OLD" UniqueName="SI_SAL_OLD" SortExpression="SI_SAL_OLD" />
                     <tlk:GridBoundColumn HeaderText="<%$ Translate: Mức đóng BHXH mới %>" DataFormatString="{0:N0}"
                         HeaderStyle-Width="110px" DataField="SI_SAL" UniqueName="SI_SAL" SortExpression="SI_SAL" />
-                    <tlk:GridBoundColumn HeaderText="<%$ Translate: Mức đóng BHYT cũ %>" DataFormatString="{0:N0}"
+                  <%--  <tlk:GridBoundColumn HeaderText="<%$ Translate: Mức đóng BHYT cũ %>" DataFormatString="{0:N0}"
                         HeaderStyle-Width="110px" DataField="HI_SAL_OLD" UniqueName="HI_SAL_OLD" SortExpression="HI_SAL_OLD" />
                     <tlk:GridBoundColumn HeaderText="<%$ Translate: Mức đóng BHYT mới %>" DataFormatString="{0:N0}"
-                        HeaderStyle-Width="110px" DataField="HI_SAL" UniqueName="HI_SAL" SortExpression="HI_SAL" />
-                    <tlk:GridBoundColumn HeaderText="<%$ Translate: Mức đóng BHTN cũ %>" DataFormatString="{0:N0}"
+                        HeaderStyle-Width="110px" DataField="HI_SAL" UniqueName="HI_SAL" SortExpression="HI_SAL" />--%>
+                   <%-- <tlk:GridBoundColumn HeaderText="<%$ Translate: Mức đóng BHTN cũ %>" DataFormatString="{0:N0}"
                         HeaderStyle-Width="110px" DataField="UI_SAL_OLD" UniqueName="UI_SAL_OLD" SortExpression="UI_SAL_OLD" />
                     <tlk:GridBoundColumn HeaderText="<%$ Translate: Mức đóng BHTN mới %>" DataFormatString="{0:N0}"
-                        HeaderStyle-Width="110px" DataField="UI_SAL" UniqueName="UI_SAL" SortExpression="UI_SAL" />
-                   <tlk:GridBoundColumn HeaderText="<%$ Translate: Mức đóng BHTNLD-BNN cũ %>" DataFormatString="{0:N0}"
+                        HeaderStyle-Width="110px" DataField="UI_SAL" UniqueName="UI_SAL" SortExpression="UI_SAL" />--%>
+                <%--   <tlk:GridBoundColumn HeaderText="<%$ Translate: Mức đóng BHTNLD-BNN cũ %>" DataFormatString="{0:N0}"
                         HeaderStyle-Width="110px" DataField="BHTNLD_SAL_OLD" UniqueName="BHTNLD_SAL_OLD" SortExpression="BHTNLD_SAL_OLD" />
                     <tlk:GridBoundColumn HeaderText="<%$ Translate: Mức đóng BHTNLD-BNN mới %>" DataFormatString="{0:N0}"
-                        HeaderStyle-Width="110px" DataField="BHTNLD_SAL" UniqueName="BHTNLD_SAL" SortExpression="BHTNLD_SAL" />
+                        HeaderStyle-Width="110px" DataField="BHTNLD_SAL" UniqueName="BHTNLD_SAL" SortExpression="BHTNLD_SAL" />--%>
                     <tlk:GridBoundColumn HeaderText="<%$ Translate: Đợt khai báo %>" DataFormatString="{0:dd/MM/yyyy}"
                         HeaderStyle-Width="110px" DataField="PERIOD" UniqueName="PERIOD" SortExpression="PERIOD" />
                     <tlk:GridBoundColumn HeaderText="<%$ Translate: Điều chỉnh BHXH(NV)  %>" DataFormatString="{0:N0}"

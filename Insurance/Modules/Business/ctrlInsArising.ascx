@@ -159,7 +159,9 @@
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Phòng ban %>" DataField="DEP_NAME"
                                 UniqueName="DEP_NAME" HeaderStyle-Width="150px" SortExpression="DEP_NAME" FilterControlWidth="99%"
                                 ShowFilterIcon="false" CurrentFilterFunction="Contains" AutoPostBackOnFilter="true" />
-
+                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Đơn vị BH %>" DataField="U_INSURANCE_NAME"
+                                UniqueName="U_INSURANCE_NAME" HeaderStyle-Width="100px" SortExpression="U_INSURANCE_NAME" FilterControlWidth="99%"
+                                ShowFilterIcon="false" CurrentFilterFunction="Contains" AutoPostBackOnFilter="true" />
 
                              <%--<tlk:GridTemplateColumn HeaderText="Đơn vị" DataField="DEP_NAME" SortExpression="ORG_NAME"
                                 UniqueName="DEP_NAME">
@@ -173,14 +175,6 @@
                                 </tlk:RadToolTip>
                             </ItemTemplate>
                             </tlk:GridTemplateColumn>--%>
-
-
-
-                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Số sổ bảo hiểm %>" DataField="SOCIAL_NUMBER"
-                                UniqueName="SOCIAL_NUMBER" HeaderStyle-Width="150px" SortExpression="SOCIAL_NUMBER"
-                                FilterControlWidth="99%" ShowFilterIcon="false" CurrentFilterFunction="Contains"
-                                AutoPostBackOnFilter="true" />
-
                              <tlk:GridBoundColumn HeaderText="<%$ Translate: Chức danh %>" DataField="TITLE_NAME"
                                 UniqueName="TITLE_NAME" HeaderStyle-Width="150px" SortExpression="TITLE_NAME"
                                 FilterControlWidth="99%" ShowFilterIcon="false" CurrentFilterFunction="Contains"
@@ -218,6 +212,13 @@
                                 AutoPostBackOnFilter="true" />
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Sử dụng %>" DataField="ARISING_TYPE_ID"
                                 UniqueName="ARISING_TYPE_ID" SortExpression="ARISING_TYPE_ID" Visible="false" />
+
+                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Số sổ bảo hiểm %>" DataField="SOCIAL_NUMBER"
+                                UniqueName="SOCIAL_NUMBER" HeaderStyle-Width="150px" SortExpression="SOCIAL_NUMBER"
+                                FilterControlWidth="99%" ShowFilterIcon="false" CurrentFilterFunction="Contains"
+                                AutoPostBackOnFilter="true" />
+
+
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Lý do %>" DataField="REASONS" UniqueName="REASONS"
                                 SortExpression="REASONS" HeaderStyle-Width="100px" FilterControlWidth="99%" ShowFilterIcon="false"
                                 CurrentFilterFunction="Contains" AutoPostBackOnFilter="true" />

@@ -29,5 +29,6 @@ Public Property ID as Decimal?
     Public Property TER_LAST_DATE As Date?
     Public Property FROM_DATE_SEARCH As Date?
     Public Property TO_DATE_SEARCH As Date?
+    Public Property COST_SAL As Decimal?
 
 End Class

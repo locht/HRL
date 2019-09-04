@@ -33,7 +33,7 @@ Public Class ctrlPortalWorkingBefore
     Public Overrides Sub ViewInit(ByVal e As System.EventArgs)
         Try
             If Not IsPostBack Then
-                GirdConfig(rgWorkingBefore)
+                ' GirdConfig(rgWorkingBefore)
             End If
         Catch ex As Exception
             DisplayException(Me.ViewName, Me.ID, ex)

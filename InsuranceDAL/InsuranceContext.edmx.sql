@@ -1,7 +1,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for Oracle database
 -- --------------------------------------------------
--- Date Created: 8/1/2019 8:58:14 AM
+-- Date Created: 9/3/2019 4:45:19 PM
 -- Generated from EDMX file: D:\TNG_SOURCE_NEW\InsuranceDAL\InsuranceContext.edmx
 -- --------------------------------------------------
 
@@ -748,7 +748,8 @@ CREATE TABLE "dbo"."INS_SUN_CARE" (
    "MODIFIED_DATE" DATE NULL,
    "MODIFIED_LOG" NVARCHAR2(255) NULL,
    "THOIDIEMHUONG" DATE NULL,
-   "NOTE" NVARCHAR2(1023) NULL
+   "NOTE" NVARCHAR2(1023) NULL,
+   "COST_SAL" NUMBER(38,0) NULL
 );
 
 -- Creating table 'INS_WHEREHEALTH'
