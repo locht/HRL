@@ -70,9 +70,9 @@
                             <tlk:RadDatePicker ID="rdDenngay" MaxLength="12" SkinID="Readonly" runat="server"
                                 ToolTip="">
                             </tlk:RadDatePicker>
-                        </td>
+                        </td> 
                         <td>
-                            <asp:CheckBox ID ="ckReset" runat="server"  Text ="Cập nhật mới lại toàn bộ dữ liệu" />
+                            <asp:CheckBox ID ="ckReset" runat="server"  Text ="Cập nhật mới lại toàn bộ dữ liệu" Visible="false" />
                         </td>
                     </tr>
                 </table>
