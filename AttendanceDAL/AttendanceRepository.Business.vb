@@ -4921,7 +4921,7 @@ Partial Public Class AttendanceRepository
             From e In Context.HU_EMPLOYEE.Where(Function(f) f.ID = p.EMPLOYEE_ID).DefaultIfEmpty()
             Dim lst = query.Select(Function(p) New AT_SWIPE_DATADTO With {
                                        .ID = p.p.ID,
-                                       .ITIME_ID = p.p.ITIME_ID,
+                                       .ITIME_ID = p.e.ITIME_ID,
                                        .ITIME_ID_S = p.p.ITIME_ID,
                                        .TERMINAL_ID = p.p.TERMINAL_ID,
                                        .TERMINAL_CODE = If(p.p.TERMINAL_ID = 1, "Máy vào", If(p.p.TERMINAL_ID = 2, "Máy ra", "")),
