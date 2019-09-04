@@ -1,4 +1,5 @@
-﻿<%@ Control Language="vb" AutoEventWireup="false" CodeBehind="ctrlTime_Timesheet_CTT.ascx.vb"
+﻿
+<%@ Control Language="vb" AutoEventWireup="false" CodeBehind="ctrlTime_Timesheet_CTT.ascx.vb"
     Inherits="Attendance.ctrlTime_Timesheet_CTT" %>
 <%@ Import Namespace="Common" %>
 <%@ Import Namespace="Framework.UI.Utilities" %>
@@ -51,7 +52,7 @@
                         <asp:CheckBox ID="chkSummary" runat="server" />
                         </td>
                         <td class="lb">
-                            <%# Translate("Tổng hợp mới lại toàn bộ dữ liệu")%>
+                             <%# Translate("Tổng hợp cả nhân viên được nhập dữ liệu từ Excel")%>
                         </td>
                     </tr>
                     <tr>

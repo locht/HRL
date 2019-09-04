@@ -63,6 +63,7 @@
                     CellSpacing="0" ShowStatusBar="true" GridLines="None"
                     PageSize="500" AutoGenerateColumns="false" AllowFilteringByColumn="true">
                     <ClientSettings>
+                        <Scrolling AllowScroll="True" UseStaticHeaders="True" FrozenColumnsCount="3" />
                         <ClientEvents OnRowDblClick="gridRowDblClick" />
                     </ClientSettings>
                     <PagerStyle AlwaysVisible="true" Mode="NextPrevAndNumeric" />
@@ -82,7 +83,7 @@
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: INS_ORG_ID %>" DataField="INS_ORG_ID"
                                 UniqueName="INS_ORG_ID" SortExpression="INS_ORG_ID" Visible="false" />
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Đơn vị bảo hiểm %>" DataField="INS_NAME" UniqueName="INS_NAME" SortExpression="INS_NAME" 
-                                FilterControlWidth="99%" ShowFilterIcon="false" CurrentFilterFunction="Contains" AutoPostBackOnFilter="true" HeaderStyle-Width="330px"/>
+                                FilterControlWidth="99%" ShowFilterIcon="false" CurrentFilterFunction="Contains" AutoPostBackOnFilter="true" HeaderStyle-Width="100px"/>
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Ngày sinh%>" DataField="BIRTH_DATE" DataFormatString="{0:dd/MM/yyyy}" UniqueName="BIRTH_DATE" SortExpression="BIRTH_DATE" 
                                 FilterControlWidth="99%" ShowFilterIcon="false" CurrentFilterFunction="EqualTo" AutoPostBackOnFilter="true"  HeaderStyle-Width="80px"/>
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Nơi sinh%>" DataField="PLACE_OF_BIRTH_NAME" UniqueName="PLACE_OF_BIRTH_NAME" SortExpression="PLACE_OF_BIRTH_NAME" 

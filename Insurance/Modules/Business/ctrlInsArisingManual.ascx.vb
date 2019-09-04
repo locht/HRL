@@ -476,7 +476,7 @@ Public Class ctrlInsArisingManual
             FillRadCombobox(ddlINS_ARISING_TYPE_ID, dtData, "ARISING_NAME", "ID", False)
 
             dtData = rep.GetInsListInsurance(False) 'Don vi bao hiem
-            FillRadCombobox(ddlINS_ORG_ID, dtData, "NAME", "ID", False)
+            FillRadCombobox(ddlINS_ORG_ID, dtData, "CODE", "ID", False)
         Catch ex As Exception
             Throw ex
         End Try
