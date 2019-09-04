@@ -338,6 +338,51 @@ Partial Public Class ctrlPortalFamily_Edit
     Protected WithEvents txt_MSTPLACE As Global.Telerik.Web.UI.RadTextBox
 
     '''<summary>
+    '''chkIsDeduct control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents chkIsDeduct As Global.System.Web.UI.WebControls.CheckBox
+
+    '''<summary>
+    '''rdDeductReg control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents rdDeductReg As Global.Telerik.Web.UI.RadDatePicker
+
+    '''<summary>
+    '''rdDeductFrom control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents rdDeductFrom As Global.Telerik.Web.UI.RadDatePicker
+
+    '''<summary>
+    '''rdDeductTo control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents rdDeductTo As Global.Telerik.Web.UI.RadDatePicker
+
+    '''<summary>
+    '''compareDeductTo_DeductFrom control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents compareDeductTo_DeductFrom As Global.System.Web.UI.WebControls.CompareValidator
+
+    '''<summary>
     '''lbNKS control.
     '''</summary>
     '''<remarks>
@@ -399,51 +444,6 @@ Partial Public Class ctrlPortalFamily_Edit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents cbTempKtWARD_ID As Global.Telerik.Web.UI.RadComboBox
-
-    '''<summary>
-    '''chkIsDeduct control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents chkIsDeduct As Global.System.Web.UI.WebControls.CheckBox
-
-    '''<summary>
-    '''rdDeductReg control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents rdDeductReg As Global.Telerik.Web.UI.RadDatePicker
-
-    '''<summary>
-    '''rdDeductFrom control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents rdDeductFrom As Global.Telerik.Web.UI.RadDatePicker
-
-    '''<summary>
-    '''rdDeductTo control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents rdDeductTo As Global.Telerik.Web.UI.RadDatePicker
-
-    '''<summary>
-    '''compareDeductTo_DeductFrom control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents compareDeductTo_DeductFrom As Global.System.Web.UI.WebControls.CompareValidator
 
     '''<summary>
     '''txtRemark control.

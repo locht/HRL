@@ -958,7 +958,7 @@ Partial Class ProfileRepository
 
 
             Dim query = (From p In Context.HU_FAMILY_EDIT
-                         From p_g In Context.HU_RELATIONSHIP_LIST.Where(Function(f) p.RELATION_ID = f.ID).DefaultIfEmpty
+                         From p_g In Context.OT_OTHER_LIST.Where(Function(f) p.RELATION_ID = f.ID).DefaultIfEmpty
                          From e In Context.HU_EMPLOYEE.Where(Function(f) f.ID = p.EMPLOYEE_ID).DefaultIfEmpty
                          From gender In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.GENDER).DefaultIfEmpty
                          From nation In Context.HU_NATION.Where(Function(f) f.ID = p.NATION_ID).DefaultIfEmpty
@@ -985,7 +985,7 @@ Partial Class ProfileRepository
                             .EMPLOYEE_NAME = e.FULLNAME_VN,
                             .FULLNAME = p.FULLNAME,
                             .RELATION_ID = p.RELATION_ID,
-                            .RELATION_NAME = p_g.NAME,
+                            .RELATION_NAME = p_g.NAME_VN,
                             .BIRTH_DATE = p.BIRTH_DATE,
                             .BIRTH_CODE = p.BIRTH_CODE,
                             .GENDER = p.GENDER,
@@ -1176,7 +1176,32 @@ Partial Class ProfileRepository
                         objFamilyData.DEDUCT_TO = item.DEDUCT_TO
                         objFamilyData.REMARK = item.REMARK
                         objFamilyData.ADDRESS = item.ADDRESS
-
+                        'cap nhat them day du cac truong issue 297 TNG
+                        objFamilyData.ADDRESS_TT = item.ADDRESS_TT
+                        objFamilyData.CERTIFICATE_CODE = item.CERTIFICATE_CODE
+                        objFamilyData.CERTIFICATE_NUM = item.CERTIFICATE_NUM
+                        objFamilyData.IS_OWNER = item.IS_OWNER
+                        objFamilyData.AD_PROVINCE_ID = item.AD_PROVINCE_ID
+                        objFamilyData.AD_DISTRICT_ID = item.AD_DISTRICT_ID
+                        objFamilyData.AD_WARD_ID = item.AD_WARD_ID
+                        objFamilyData.TT_PROVINCE_ID = item.TT_PROVINCE_ID
+                        objFamilyData.TT_DISTRICT_ID = item.TT_DISTRICT_ID
+                        objFamilyData.TT_WARD_ID = item.TT_WARD_ID
+                        objFamilyData.IS_PASS = item.IS_PASS
+                        objFamilyData.AD_VILLAGE = item.AD_VILLAGE
+                        objFamilyData.NATION_ID = item.NATION_ID
+                        objFamilyData.ID_NO_DATE = item.ID_NO_DATE
+                        objFamilyData.ID_NO_PLACE_NAME = item.ID_NO_PLACE_NAME
+                        objFamilyData.PHONE = item.PHONE
+                        objFamilyData.TAXTATION_DATE = item.TAXTATION_DATE
+                        objFamilyData.TAXTATION_PLACE = item.TAXTATION_PLACE
+                        objFamilyData.BIRTH_CODE = item.BIRTH_CODE
+                        objFamilyData.QUYEN = item.QUYEN
+                        objFamilyData.BIRTH_NATION_ID = item.BIRTH_NATION_ID
+                        objFamilyData.BIRTH_PROVINCE_ID = item.BIRTH_PROVINCE_ID
+                        objFamilyData.BIRTH_DISTRICT_ID = item.BIRTH_DISTRICT_ID
+                        objFamilyData.BIRTH_WARD_ID = item.BIRTH_WARD_ID
+                        objFamilyData.GENDER = item.GENDER
                         ' 20190520 CanhNX: Edit cho lưu Nguyên quán, Nghề nghiệp, Chức danh
                         objFamilyData.CAREER = item.CAREER
                         objFamilyData.TITLE_NAME = item.TITLE_NAME
@@ -1197,6 +1222,32 @@ Partial Class ProfileRepository
                         objFamilyData.DEDUCT_TO = item.DEDUCT_TO
                         objFamilyData.REMARK = item.REMARK
                         objFamilyData.ADDRESS = item.ADDRESS
+                        'cap nhat them day du cac truong issue 297 TNG
+                        objFamilyData.ADDRESS_TT = item.ADDRESS_TT
+                        objFamilyData.CERTIFICATE_CODE = item.CERTIFICATE_CODE
+                        objFamilyData.CERTIFICATE_NUM = item.CERTIFICATE_NUM
+                        objFamilyData.IS_OWNER = item.IS_OWNER
+                        objFamilyData.AD_PROVINCE_ID = item.AD_PROVINCE_ID
+                        objFamilyData.AD_DISTRICT_ID = item.AD_DISTRICT_ID
+                        objFamilyData.AD_WARD_ID = item.AD_WARD_ID
+                        objFamilyData.TT_PROVINCE_ID = item.TT_PROVINCE_ID
+                        objFamilyData.TT_DISTRICT_ID = item.TT_DISTRICT_ID
+                        objFamilyData.TT_WARD_ID = item.TT_WARD_ID
+                        objFamilyData.IS_PASS = item.IS_PASS
+                        objFamilyData.AD_VILLAGE = item.AD_VILLAGE
+                        objFamilyData.NATION_ID = item.NATION_ID
+                        objFamilyData.ID_NO_DATE = item.ID_NO_DATE
+                        objFamilyData.ID_NO_PLACE_NAME = item.ID_NO_PLACE_NAME
+                        objFamilyData.PHONE = item.PHONE
+                        objFamilyData.TAXTATION_DATE = item.TAXTATION_DATE
+                        objFamilyData.TAXTATION_PLACE = item.TAXTATION_PLACE
+                        objFamilyData.BIRTH_CODE = item.BIRTH_CODE
+                        objFamilyData.QUYEN = item.QUYEN
+                        objFamilyData.BIRTH_NATION_ID = item.BIRTH_NATION_ID
+                        objFamilyData.BIRTH_PROVINCE_ID = item.BIRTH_PROVINCE_ID
+                        objFamilyData.BIRTH_DISTRICT_ID = item.BIRTH_DISTRICT_ID
+                        objFamilyData.BIRTH_WARD_ID = item.BIRTH_WARD_ID
+                        objFamilyData.GENDER = item.GENDER
 
                         ' 20190520 CanhNX: Edit cho lưu Nguyên quán, Nghề nghiệp, Chức danh
                         objFamilyData.CAREER = item.CAREER
