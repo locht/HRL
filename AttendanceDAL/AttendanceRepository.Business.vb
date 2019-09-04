@@ -800,7 +800,7 @@ Partial Public Class AttendanceRepository
         End Try
     End Function
 
-    Public Function InsertLeaveSheetDaily(ByVal dtData As DataTable, ByVal log As UserLog, ByVal PeriodID As Decimal) As Boolean
+    Public Function InsertLeaveSheetDaily(ByVal dtData As DataTable, ByVal log As UserLog, ByVal PeriodID As Decimal) As DataTable
         Try
             dtData.Columns(0).ColumnName = "E_ID"
             Dim dsData As New DataSet
@@ -813,10 +813,12 @@ Partial Public Class AttendanceRepository
             strXML = strXML.Replace(Chr(13), String.Empty).Replace(Chr(10), String.Empty)
             strXML = strXML.Replace(" ", String.Empty)
             Using cls As New DataAccess.QueryData
-                cls.ExecuteStore("PKG_ATTENDANCE_BUSINESS.IMPORT_TIMESHEET_CTT",
+                Dim cur = cls.ExecuteStore("PKG_ATTENDANCE_BUSINESS.IMPORT_TIMESHEET_CTT",
                                  New With {.P_XML = strXML,
                                            .P_USERNAME = log.Username.ToUpper,
-                                           .P_PERIOD_ID = PeriodID})
+                                           .P_PERIOD_ID = PeriodID,
+                                           .P_CUR = cls.OUT_CURSOR})
+                Return cur
             End Using
 
             'Dim startDate As Date
@@ -918,11 +920,9 @@ Partial Public Class AttendanceRepository
             '    End Using
             'End Using
             'Context.SaveChanges(log)
-            Return True
         Catch ex As Exception
             WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iTime")
             Throw ex
-            Return False
         End Try
     End Function
 

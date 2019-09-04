@@ -706,7 +706,7 @@ Namespace AttendanceBusiness.ServiceImplementations
                 End Try
             End Using
         End Function
-        Function InsertLeaveSheetDaily(ByVal dtData As DataTable, ByVal log As UserLog, ByVal PeriodID As Decimal) As Boolean Implements IAttendanceBusiness.InsertLeaveSheetDaily
+        Function InsertLeaveSheetDaily(ByVal dtData As DataTable, ByVal log As UserLog, ByVal PeriodID As Decimal) As DataTable Implements IAttendanceBusiness.InsertLeaveSheetDaily
 
             Using rep As New AttendanceRepository
                 Try

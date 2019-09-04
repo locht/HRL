@@ -630,7 +630,7 @@ Partial Class AttendanceRepository
         End Using
     End Function
 
-    Public Function InsertLeaveSheetDaily(ByVal dtData As DataTable, ByVal PeriodID As Decimal) As Boolean
+    Public Function InsertLeaveSheetDaily(ByVal dtData As DataTable, ByVal PeriodID As Decimal) As DataTable
         Using rep As New AttendanceBusinessClient
             Try
                 Return rep.InsertLeaveSheetDaily(dtData, Me.Log, PeriodID)
