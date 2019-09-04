@@ -375,10 +375,10 @@ Public Class ctrlHU_Contract
                             ShowMessage("Thư mục không tồn tại", NotifyType.Warning)
                             Exit Sub
                         End If
-                        If dtData.Rows(0)("ORG_CODE2") = "TNE&C SG" Then
-                            ShowMessage("Không thể in hợp đồng có đơn vị TNE&C SG", NotifyType.Warning)
-                            Exit Sub
-                        End If
+                        'If dtData.Rows(0)("ORG_CODE2") = "TNE&C SG" Then
+                        '    ShowMessage("Không thể in hợp đồng có đơn vị TNE&C SG", NotifyType.Warning)
+                        '    Exit Sub
+                        'End If
                     End Using
 
                         If item.Count = 1 Then
@@ -416,7 +416,7 @@ Public Class ctrlHU_Contract
                             Directory.CreateDirectory(path)
                         End If
                         doc.Save(path & fileName)
-                            ZipFiles(path)
+                        ZipFiles(path)
                     End If
 
                 Case CommonMessage.TOOLBARITEM_NEXT

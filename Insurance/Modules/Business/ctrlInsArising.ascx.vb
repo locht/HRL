@@ -425,7 +425,7 @@ Public Class ctrlInsArising
             FillRadCombobox(ddlINS_ARISING_TYPE_ID, dtData, "ARISING_NAME", "ID", False)
 
             dtData = rep.GetInsListInsurance(False) 'Don vi bao hiem
-            FillRadCombobox(ddlINSORG, dtData, "NAME", "ID", False)
+            FillRadCombobox(ddlINSORG, dtData, "CODE", "ID", False)
         Catch ex As Exception
             Throw ex
         End Try
@@ -479,6 +479,7 @@ Public Class ctrlInsArising
             dtb.Columns.Add("BHTNLD_BNN", GetType(Boolean))
             dtb.Columns.Add("ORG_DESC", GetType(String))
             dtb.Columns.Add("SOCIAL_NUMBER", GetType(String))
+            dtb.Columns.Add("U_INSURANCE_NAME", GetType(String))
 
             If lstSource.Rows.Count > 0 Then
                 Dim filterExp = rgGridData.MasterTableView.FilterExpression
@@ -519,6 +520,7 @@ Public Class ctrlInsArising
                     drI("BHTNLD_BNN") = IIf(dr("BHTNLD_BNN") = "0", False, True)
                     drI("ORG_DESC") = dr("ORG_DESC")
                     drI("SOCIAL_NUMBER") = dr("SOCIAL_NUMBER")
+                    drI("U_INSURANCE_NAME") = dr("U_INSURANCE_NAME")
                     dtb.Rows.Add(drI)
                 Next
             End If
