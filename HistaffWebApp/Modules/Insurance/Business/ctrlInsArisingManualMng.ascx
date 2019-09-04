@@ -82,6 +82,7 @@
                     PageSize="500" AutoGenerateColumns="false" AllowFilteringByColumn="true">
                     <ClientSettings>
                         <ClientEvents OnRowDblClick="gridRowDblClick" />
+                           <Scrolling AllowScroll="true" UseStaticHeaders="true" FrozenColumnsCount="3" />
                     </ClientSettings>
                     <PagerStyle AlwaysVisible="true" Mode="NextPrevAndNumeric" />
                     <MasterTableView CommandItemDisplay="None" DataKeyNames="ID" ClientDataKeyNames="ID,EMPLOYEE_ID,SI,HI,UI,BIRTH_DATE,PLACE_OF_BIRTH_NAME,ID_NO,ID_DATE,POSITION_NAME,INS_ORG_NAME,EMPLOYEE_CODE,EMPID,FULL_NAME,DEP_NAME,INS_ORG_ID,INS_ARISING_TYPE_ID,SALARY_PRE_PERIOD,SALARY_NOW_PERIOD,FROM_HEALTH_INS_CARD,EFFECTIVE_DATE,DECLARE_DATE,ARISING_FROM_MONTH,ARISING_TO_MONTH,NOTE,SOCIAL_NOTE,HEALTH_NUMBER,HEALTH_STATUS,HEALTH_EFFECT_FROM_DATE,HEALTH_EFFECT_TO_DATE,HEALTH_AREA_INS_ID,HEALTH_RECEIVE_DATE,HEALTH_RECEIVER,HEALTH_RETURN_DATE,UNEMP_FROM_MOTH,UNEMP_TO_MONTH,UNEMP_REGISTER_MONTH,R_FROM,O_FROM,R_TO,O_TO,R_SI,O_SI,R_HI,O_HI,R_UI,O_UI,A_FROM,A_TO,A_SI,A_HI">
