@@ -376,67 +376,67 @@ Public Class ctrlHU_DisciplineNewEdit
                         i.Edit = True
                     Next
                     rgEmployee.Rebind()
-                    If Discipline.STATUS_ID = ProfileCommon.DISCIPLINE_STATUS.APPROVE_ID Then
+                    ' If Discipline.STATUS_ID = ProfileCommon.DISCIPLINE_STATUS.APPROVE_ID Then
 
-                        EnableControlAll_Cus(False, RadPane2)
-                        EnableControlAll(True, chkPhatTien, rntxtMoney, rntxtIndemnifyMoney, rnPaidIMoeny, rdAmountPaidCash, rnAmountToPaid)
-                        EnableControlAll(True, chkDeductFromSalary, rnAmountSalaryMonth, nmYear, cboPeriod, chkAmountInMonth, rnAmountInMonth, rnAmountDeductedMonth)
+                    EnableControlAll_Cus(False, RadPane2)
+                    EnableControlAll(True, chkPhatTien, rntxtMoney, rntxtIndemnifyMoney, rnPaidIMoeny, rdAmountPaidCash, rnAmountToPaid)
+                    EnableControlAll(True, chkDeductFromSalary, rnAmountSalaryMonth, nmYear, cboPeriod, chkAmountInMonth, rnAmountInMonth, rnAmountDeductedMonth)
 
-                        If cboDisciplineObj.SelectedValue <> 401 Then
-                            EnableControlAll(False, chkDeductFromSalary, rnAmountSalaryMonth, nmYear, cboPeriod, chkAmountInMonth, rnAmountInMonth, rnAmountDeductedMonth)
-                        End If
-
-                        btnDownload.Enabled = True
-
-                        Dim btnEmployee As RadButton = rgEmployee.MasterTableView.GetItems(GridItemType.CommandItem)(0).FindControl("btnEmployee")
-                        btnEmployee.Enabled = False
-                        Dim btnQD As RadButton = rgEmployee.MasterTableView.GetItems(GridItemType.CommandItem)(0).FindControl("btnQD")
-                        btnQD.Enabled = True
-                        Dim btnHSL As RadButton = rgEmployee.MasterTableView.GetItems(GridItemType.CommandItem)(0).FindControl("btnHSL")
-                        btnHSL.Enabled = True
-                        Dim btnDeleteEmp As RadButton = rgEmployee.MasterTableView.GetItems(GridItemType.CommandItem)(0).FindControl("btnDeleteEmp")
-                        btnDeleteEmp.Enabled = False
-
-                        rgEmployee.Items(0).Enabled = False
-                        For Each item As GridDataItem In rgEmployee.Items
-
-                            Dim cbStatus = CType(item("cbStatus").Controls(0), CheckBox)
-                            cbStatus.Enabled = False
-
-                            Dim txtINDEMNIFY_MONEY = CType(item("INDEMNIFY_MONEY").Controls(0), RadNumericTextBox)
-                            txtINDEMNIFY_MONEY.Enabled = False
-
-                            Dim chkNO_PROCESS = CType(item("NO_PROCESS").Controls(0), CheckBox)
-                            chkNO_PROCESS.Enabled = False
-
-                        Next
-
-                        CurrentState = CommonMessage.STATE_NORMAL
-                    Else
-                        For Each item As GridDataItem In rgEmployee.Items
-                            Dim cbStatus = CType(item("cbStatus").Controls(0), CheckBox)
-                            cbStatus.Enabled = True
-
-                            Dim txtINDEMNIFY_MONEY = CType(item("INDEMNIFY_MONEY").Controls(0), RadNumericTextBox)
-                            txtINDEMNIFY_MONEY.Enabled = True
-
-                            Dim chkNO_PROCESS = CType(item("NO_PROCESS").Controls(0), CheckBox)
-                            chkNO_PROCESS.Enabled = True
-                        Next
-
-                        Dim btnEmployee As RadButton = rgEmployee.MasterTableView.GetItems(GridItemType.CommandItem)(0).FindControl("btnEmployee")
-                        btnEmployee.Enabled = True
-
-                        Dim btnQD As RadButton = rgEmployee.MasterTableView.GetItems(GridItemType.CommandItem)(0).FindControl("btnQD")
-                        btnQD.Enabled = False
-
-                        Dim btnHSL As RadButton = rgEmployee.MasterTableView.GetItems(GridItemType.CommandItem)(0).FindControl("btnHSL")
-                        btnHSL.Enabled = False
-
-                        Dim btnDeleteEmp As RadButton = rgEmployee.MasterTableView.GetItems(GridItemType.CommandItem)(0).FindControl("btnDeleteEmp")
-                        btnDeleteEmp.Enabled = True
-
+                    If cboDisciplineObj.SelectedValue <> 401 Then
+                        EnableControlAll(False, chkDeductFromSalary, rnAmountSalaryMonth, nmYear, cboPeriod, chkAmountInMonth, rnAmountInMonth, rnAmountDeductedMonth)
                     End If
+
+                    btnDownload.Enabled = True
+
+                    Dim btnEmployee As RadButton = rgEmployee.MasterTableView.GetItems(GridItemType.CommandItem)(0).FindControl("btnEmployee")
+                    btnEmployee.Enabled = False
+                    Dim btnQD As RadButton = rgEmployee.MasterTableView.GetItems(GridItemType.CommandItem)(0).FindControl("btnQD")
+                    btnQD.Enabled = True
+                    Dim btnHSL As RadButton = rgEmployee.MasterTableView.GetItems(GridItemType.CommandItem)(0).FindControl("btnHSL")
+                    btnHSL.Enabled = True
+                    Dim btnDeleteEmp As RadButton = rgEmployee.MasterTableView.GetItems(GridItemType.CommandItem)(0).FindControl("btnDeleteEmp")
+                    btnDeleteEmp.Enabled = False
+
+                    rgEmployee.Items(0).Enabled = False
+                    For Each item As GridDataItem In rgEmployee.Items
+
+                        Dim cbStatus = CType(item("cbStatus").Controls(0), CheckBox)
+                        cbStatus.Enabled = False
+
+                        Dim txtINDEMNIFY_MONEY = CType(item("INDEMNIFY_MONEY").Controls(0), RadNumericTextBox)
+                        txtINDEMNIFY_MONEY.Enabled = False
+
+                        Dim chkNO_PROCESS = CType(item("NO_PROCESS").Controls(0), CheckBox)
+                        chkNO_PROCESS.Enabled = False
+
+                    Next
+
+                    'CurrentState = CommonMessage.STATE_NORMAL
+                    'Else
+                    'For Each item As GridDataItem In rgEmployee.Items
+                    '    Dim cbStatus = CType(item("cbStatus").Controls(0), CheckBox)
+                    '    cbStatus.Enabled = True
+
+                    '    Dim txtINDEMNIFY_MONEY = CType(item("INDEMNIFY_MONEY").Controls(0), RadNumericTextBox)
+                    '    txtINDEMNIFY_MONEY.Enabled = True
+
+                    '    Dim chkNO_PROCESS = CType(item("NO_PROCESS").Controls(0), CheckBox)
+                    '    chkNO_PROCESS.Enabled = True
+                    'Next
+
+                    'Dim btnEmployee As RadButton = rgEmployee.MasterTableView.GetItems(GridItemType.CommandItem)(0).FindControl("btnEmployee")
+                    'btnEmployee.Enabled = True
+
+                    'Dim btnQD As RadButton = rgEmployee.MasterTableView.GetItems(GridItemType.CommandItem)(0).FindControl("btnQD")
+                    'btnQD.Enabled = False
+
+                    'Dim btnHSL As RadButton = rgEmployee.MasterTableView.GetItems(GridItemType.CommandItem)(0).FindControl("btnHSL")
+                    'btnHSL.Enabled = False
+
+                    'Dim btnDeleteEmp As RadButton = rgEmployee.MasterTableView.GetItems(GridItemType.CommandItem)(0).FindControl("btnDeleteEmp")
+                    'btnDeleteEmp.Enabled = True
+
+                    ' End If
                 Case "InsertView"
                     CurrentState = CommonMessage.STATE_NEW
                     rntxtMoney.Enabled = False
