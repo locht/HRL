@@ -292,6 +292,11 @@ Partial Public Class AttendanceRepository
                         From ot In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.STATUS).DefaultIfEmpty
                         From nb In Context.AT_COMPENSATORY.Where(Function(F) F.EMPLOYEE_ID = p.EMPLOYEE_ID And F.YEAR = _filter.FROM_DATE.Value.Year).DefaultIfEmpty
 
+            'GET LEAVE_SHEET BY EMPLOYEE ID
+            If _filter.EMPLOYEE_ID.HasValue Then
+                query = query.Where(Function(f) f.p.EMPLOYEE_ID = _filter.EMPLOYEE_ID)
+            End If
+
             If Not String.IsNullOrEmpty(_filter.EMPLOYEE_CODE) Then
                 query = query.Where(Function(f) f.e.EMPLOYEE_CODE.ToLower().Contains(_filter.EMPLOYEE_CODE.ToLower()) Or f.e.FULLNAME_VN.ToLower().Contains(_filter.EMPLOYEE_CODE.ToLower()))
             End If
