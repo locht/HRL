@@ -428,6 +428,15 @@ Partial Public Class ctrlLocation
     Protected WithEvents txtTaxCode As Global.Telerik.Web.UI.RadTextBox
 
     '''<summary>
+    '''txtChange_tax_code control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtChange_tax_code As Global.Telerik.Web.UI.RadTextBox
+
+    '''<summary>
     '''rdpTaxDate control.
     '''</summary>
     '''<remarks>
