@@ -339,6 +339,8 @@ Public Class ctrlHU_Discipline
                     CurrentState = CommonMessage.STATE_NEW
                     UpdateControlState()
                 Case CommonMessage.TOOLBARITEM_EDIT
+                    CurrentState = CommonMessage.STATE_EDIT
+                    UpdateControlState()
                 Case CommonMessage.TOOLBARITEM_DELETE
                     DeleteDisciplines = New List(Of DisciplineDTO)
                     Dim lstID As New List(Of Decimal)
