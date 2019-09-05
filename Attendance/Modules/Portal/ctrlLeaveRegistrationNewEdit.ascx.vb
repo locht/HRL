@@ -178,7 +178,15 @@ Public Class ctrlLeaveRegistrationNewEdit
 
     Public Overrides Sub UpdateControlState()
         Try
-
+            If Utilities.ObjToString(rPH("S_CODE")) = "U" Or Utilities.ObjToString(rPH("S_CODE")) = "R" Or Utilities.ObjToString(rPH("S_CODE")) = "" Then
+                RadPane1.Enabled = True
+                CType(Me.MainToolBar.Items(0), RadToolBarButton).Enabled = True
+                CType(Me.MainToolBar.Items(1), RadToolBarButton).Enabled = True
+            Else
+                RadPane1.Enabled = False
+                CType(Me.MainToolBar.Items(0), RadToolBarButton).Enabled = False
+                CType(Me.MainToolBar.Items(1), RadToolBarButton).Enabled = False
+            End If
         Catch ex As Exception
             Me.DisplayException(Me.ViewName, Me.ID, ex)
         End Try
@@ -267,18 +275,23 @@ Public Class ctrlLeaveRegistrationNewEdit
                         ExcuteScript("Resize", "ResizeSplitter(splitterID, pane1ID, pane2ID, validateID, oldSize, 'rgWorkschedule')")
                     End If
                 Case CommonMessage.TOOLBARITEM_SUBMIT
-                    Select Case Utilities.ObjToString(rPH("S_CODE"))
-                        Case "W"
-                            ShowMessage(Translate("Đơn đang Chờ phê duyệt. Vui lòng thử lại !"), NotifyType.Warning)
-                            Exit Sub
-                        Case "A"
-                            ShowMessage(Translate("Đơn đã Phê duyệt. Vui lòng thử lại !"), NotifyType.Warning)
-                            Exit Sub
-                    End Select
-                    ctrlMessageBox.MessageText = Translate("Bạn có muốn gửi phê duyệt?")
-                    ctrlMessageBox.ActionName = CommonMessage.TOOLBARITEM_SUBMIT
-                    ctrlMessageBox.DataBind()
-                    ctrlMessageBox.Show()
+                    'Select Case Utilities.ObjToString(rPH("S_CODE"))
+                    '    Case "W"
+                    '        ShowMessage(Translate("Đơn đang Chờ phê duyệt. Vui lòng thử lại !"), NotifyType.Warning)
+                    '        Exit Sub
+                    '    Case "A"
+                    '        ShowMessage(Translate("Đơn đã Phê duyệt. Vui lòng thử lại !"), NotifyType.Warning)
+                    '        Exit Sub
+                    'End Select
+                    If Utilities.ObjToString(rPH("S_CODE")) = "R" Then
+                        ctrlMessageBox.MessageText = Translate("Bạn có muốn gửi phê duyệt?")
+                        ctrlMessageBox.ActionName = CommonMessage.TOOLBARITEM_SUBMIT
+                        ctrlMessageBox.DataBind()
+                        ctrlMessageBox.Show()
+                    Else
+                        ShowMessage(Translate("Chỉ gửi đơn ở trạng thái Chưa gửi duyệt. Vui lòng thử lại !"), NotifyType.Warning)
+                        Exit Sub
+                    End If
                 Case CommonMessage.TOOLBARITEM_CANCEL
                     ''POPUPTOLINK_CANCEL
                     Response.Redirect("/Default.aspx?mid=Attendance&fid=ctrlLeaveRegistration")

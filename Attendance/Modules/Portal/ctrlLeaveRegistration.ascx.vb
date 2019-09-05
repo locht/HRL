@@ -127,8 +127,9 @@ Public Class ctrlLeaveRegistration
     Protected Sub InitControl()
         Try
             Me.MainToolBar = tbarMainToolBar
-            BuildToolbar(Me.MainToolBar, ToolbarItem.Create, ToolbarItem.Edit, ToolbarItem.Seperator, ToolbarItem.Submit, ToolbarItem.Export, ToolbarItem.Print, ToolbarItem.Seperator, ToolbarItem.Delete)
-            CType(MainToolBar.Items(5), RadToolBarButton).Text = "In đơn phép"
+            BuildToolbar(Me.MainToolBar, ToolbarItem.Create, ToolbarItem.Edit, ToolbarItem.Seperator, ToolbarItem.Submit, ToolbarItem.Export, ToolbarItem.Seperator, ToolbarItem.Delete)
+            'BuildToolbar(Me.MainToolBar, ToolbarItem.Create, ToolbarItem.Edit, ToolbarItem.Seperator, ToolbarItem.Submit, ToolbarItem.Export, ToolbarItem.Print, ToolbarItem.Seperator, ToolbarItem.Delete)
+            'CType(MainToolBar.Items(5), RadToolBarButton).Text = "In đơn phép"
         Catch ex As Exception
             DisplayException(Me.ViewName, Me.ID, ex)
         End Try
@@ -175,8 +176,8 @@ Public Class ctrlLeaveRegistration
                     Dim lstDeletes As New List(Of Decimal)
                     For idx = 0 To rgMain.SelectedItems.Count - 1
                         Dim item As GridDataItem = rgMain.SelectedItems(idx)
-                        If item.GetDataKeyValue("STATUS") <> PortalStatus.Saved And item.GetDataKeyValue("STATUS") <> PortalStatus.UnApprovedByLM Then
-                            ShowMessage(Translate("Chỉ được xóa ở trạng thái chưa gửi duyệt và không phê duyệt"), NotifyType.Error)
+                        If item.GetDataKeyValue("STATUS") <> PortalStatus.Saved Then
+                            ShowMessage(Translate("Chỉ được xóa ở trạng thái chưa gửi duyệt. Vui lòng kiểm tra lại !"), NotifyType.Error)
                             Exit Sub
                         End If
                     Next
@@ -267,17 +268,15 @@ Public Class ctrlLeaveRegistration
                     'End If
 
                 Case CommonMessage.TOOLBARITEM_SUBMIT
-                    Dim listDataCheck As New List(Of AT_PROCESS_DTO)
-
-                    Dim datacheck As AT_PROCESS_DTO
-                    For idx = 0 To rgMain.SelectedItems.Count - 1
-                        Dim item As GridDataItem = rgMain.SelectedItems(idx)
-                        If item.GetDataKeyValue("STATUS") = PortalStatus.ApprovedByLM OrElse item.GetDataKeyValue("STATUS") = PortalStatus.WaitingForApproval OrElse item.GetDataKeyValue("STATUS") = PortalStatus.UnApprovedByLM Then
-                            ShowMessage(Translate("Đang ở trạng thái chờ phê duyệt hoặc đã phê duyệt,không thể chỉnh sửa"), NotifyType.Error)
-                            Exit Sub
-                        End If
-
-                    Next
+                    'Dim listDataCheck As New List(Of AT_PROCESS_DTO)
+                    'Dim datacheck As AT_PROCESS_DTO
+                    'For idx = 0 To rgMain.SelectedItems.Count - 1
+                    '    Dim item As GridDataItem = rgMain.SelectedItems(idx)
+                    '    If item.GetDataKeyValue("STATUS") = PortalStatus.ApprovedByLM OrElse item.GetDataKeyValue("STATUS") = PortalStatus.WaitingForApproval OrElse item.GetDataKeyValue("STATUS") = PortalStatus.UnApprovedByLM Then
+                    '        ShowMessage(Translate("Đang ở trạng thái chờ phê duyệt hoặc đã phê duyệt,không thể chỉnh sửa"), NotifyType.Error)
+                    '        Exit Sub
+                    '    End If
+                    'Next
                     'Dim itemError As New AT_PROCESS_DTO
                     'Using rep As New AttendanceRepository
                     '    Dim checkResult = rep.CheckTimeSheetApproveVerify(listDataCheck, "LEAVE", itemError)
@@ -291,21 +290,34 @@ Public Class ctrlLeaveRegistration
                     '        End If
                     '    End If
                     'End Using
-                    Dim strId As String
-                    For Each dr As GridDataItem In rgMain.SelectedItems
-                        strId += dr.GetDataKeyValue("ID").ToString + ","
+                    'Dim strId As String
+                    'For Each dr As GridDataItem In rgMain.SelectedItems
+                    '    strId += dr.GetDataKeyValue("ID").ToString + ","
+                    'Next
+                    'strId = strId.Remove(strId.LastIndexOf(",")).ToString
+                    'If strId.Contains(",") Then
+                    '    ShowMessage(Translate("Chỉ gửi được từng đơn một"), NotifyType.Warning)
+                    '    Exit Sub
+                    'End If
+                    Dim _count As Integer = 0
+                    Dim _item As GridDataItem
+                    For idx = 0 To rgMain.SelectedItems.Count - 1
+                        _item = rgMain.SelectedItems(idx)
+                        _count += 1
                     Next
-                    strId = strId.Remove(strId.LastIndexOf(",")).ToString
-                    If strId.Contains(",") Then
-                        ShowMessage(Translate("Chỉ gửi được từng đơn một"), NotifyType.Warning)
+
+                    If _count > 1 Then 'KIỂM TRA SỐ LƯỢNG ĐƠN GỬI
+                        ShowMessage(Translate("Chỉ gửi được từng đơn một. Vui lòng thử lại !"), NotifyType.Warning)
                         Exit Sub
+                    ElseIf _item.GetDataKeyValue("STATUS") <> PortalStatus.Saved Then 'KIỂM TRA TRẠNG THÁI ĐƠN
+                        ShowMessage(Translate("Chỉ gửi đơn ở trạng thái Chưa gửi duyệt. Vui lòng thử lại !"), NotifyType.Warning)
+                        Exit Sub
+                    Else
+                        ctrlMessageBox.MessageText = Translate("Bạn có muốn gửi phê duyệt?")
+                        ctrlMessageBox.ActionName = CommonMessage.TOOLBARITEM_SUBMIT
+                        ctrlMessageBox.DataBind()
+                        ctrlMessageBox.Show()
                     End If
-
-
-                    ctrlMessageBox.MessageText = Translate("Bạn có muốn gửi phê duyệt?")
-                    ctrlMessageBox.ActionName = CommonMessage.TOOLBARITEM_SUBMIT
-                    ctrlMessageBox.DataBind()
-                    ctrlMessageBox.Show()
 
             End Select
         Catch ex As Exception
