@@ -172,10 +172,10 @@ Public Class ctrlSwipeDataDownload
                                                                      ToolbarAuthorize.Import,
                                                                      Translate("Nhập file mẫu")))
 
-            Me.MainToolBar.Items.Add(Common.Common.CreateToolbarItem("IMPORT",
-                                                                    ToolbarIcons.Import,
-                                                                    ToolbarAuthorize.Import,
-                                                                    Translate("Nhập file")))
+            'Me.MainToolBar.Items.Add(Common.Common.CreateToolbarItem("IMPORT",
+            '                                                        ToolbarIcons.Import,
+            '                                                        ToolbarAuthorize.Import,
+            '                                                        Translate("Nhập file")))
 
             Me.MainToolBar.OnClientButtonClicking = "OnClientButtonClicking"
             CType(Me.Page, AjaxPage).AjaxManager.ClientEvents.OnRequestStart = "onRequestStart"

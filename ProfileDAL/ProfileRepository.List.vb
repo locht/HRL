@@ -1394,7 +1394,7 @@ Partial Class ProfileRepository
                          From e In Context.HU_EMPLOYEE.Where(Function(f) f.ID = p.REPRESENTATIVE_ID).DefaultIfEmpty()
                          From v In Context.HU_EMPLOYEE_CV.Where(Function(b) b.EMPLOYEE_ID = e.ID).DefaultIfEmpty()
                          From t In Context.HU_TITLE.Where(Function(a) a.ID = e.TITLE_ID).DefaultIfEmpty()
-                         Order By p.ORD_NO, p.NAME_VN
+                         Order By p.ORD_NO, p.NAME_VN.ToUpper
                          Select New OrganizationDTO With {.ID = p.ID,
                                                           .CODE = p.CODE,
                                                           .NAME_VN = p.NAME_VN,
@@ -1436,7 +1436,7 @@ Partial Class ProfileRepository
                          From parent In Context.HU_ORGANIZATION.Where(Function(f) f.ID = p.PARENT_ID).DefaultIfEmpty
                          From e In Context.HU_EMPLOYEE.Where(Function(f) f.ID = p.REPRESENTATIVE_ID).DefaultIfEmpty
                          Where p.ACTFLG = sACT
-                         Order By p.ORD_NO, p.NAME_VN
+                         Order By p.ORD_NO, p.NAME_VN.ToUpper
                          Select New OrganizationDTO With {.ID = p.ID,
                                                           .CODE = p.CODE,
                                                           .NAME_VN = p.NAME_VN,
@@ -5416,7 +5416,8 @@ Partial Class ProfileRepository
                                                   .FILE_HEADER = p.FILE_HEADER,
                                                   .ATTACH_FILE_HEADER = p.ATTACH_FILE_HEADER,
                                                   .FILE_FOOTER = p.FILE_FOOTER,
-                                                  .ATTACH_FILE_FOOTER = p.ATTACH_FILE_FOOTER
+                                                  .ATTACH_FILE_FOOTER = p.ATTACH_FILE_FOOTER,
+                                                  .CHANGE_TAX_CODE = p.CHANGE_TAX_CODE
                                                   }).SingleOrDefault
             Return query
         Catch ex As Exception
@@ -5465,7 +5466,8 @@ Partial Class ProfileRepository
                                                       .FILE_HEADER = p.FILE_HEADER,
                                                       .ATTACH_FILE_HEADER = p.ATTACH_FILE_HEADER,
                                                       .FILE_FOOTER = p.FILE_FOOTER,
-                                                      .ATTACH_FILE_FOOTER = p.ATTACH_FILE_FOOTER})
+                                                      .ATTACH_FILE_FOOTER = p.ATTACH_FILE_FOOTER,
+                                                      .CHANGE_TAX_CODE = p.CHANGE_TAX_CODE})
             Else
                 query = (From p In Context.HU_LOCATION.Where(Function(x) lstOrgID.Contains(x.ORG_ID))
                          Where p.ACTFLG = sACT AndAlso p.LOCATION_VN_NAME IsNot Nothing
@@ -5502,7 +5504,8 @@ Partial Class ProfileRepository
                                                       .FILE_HEADER = p.FILE_HEADER,
                                                       .ATTACH_FILE_HEADER = p.ATTACH_FILE_HEADER,
                                                       .FILE_FOOTER = p.FILE_FOOTER,
-                                                      .ATTACH_FILE_FOOTER = p.ATTACH_FILE_FOOTER})
+                                                      .ATTACH_FILE_FOOTER = p.ATTACH_FILE_FOOTER,
+                                                      .CHANGE_TAX_CODE = p.CHANGE_TAX_CODE})
             End If
 
             Return query.ToList
@@ -5553,6 +5556,7 @@ Partial Class ProfileRepository
             objLocationData.ATTACH_FILE_HEADER = objLocation.ATTACH_FILE_HEADER
             objLocationData.FILE_FOOTER = objLocation.FILE_FOOTER
             objLocationData.ATTACH_FILE_FOOTER = objLocation.ATTACH_FILE_FOOTER
+            objLocationData.CHANGE_TAX_CODE = objLocation.CHANGE_TAX_CODE
             Context.HU_LOCATION.AddObject(objLocationData)
             Context.SaveChanges(log)
             gID = objLocationData.ID
@@ -5603,6 +5607,7 @@ Partial Class ProfileRepository
             objLocationData.ATTACH_FILE_HEADER = objLocation.ATTACH_FILE_HEADER
             objLocationData.FILE_FOOTER = objLocation.FILE_FOOTER
             objLocationData.ATTACH_FILE_FOOTER = objLocation.ATTACH_FILE_FOOTER
+            objLocationData.CHANGE_TAX_CODE = objLocation.CHANGE_TAX_CODE
             Context.SaveChanges(log)
             gID = objLocationData.ID
             Return True

@@ -188,6 +188,12 @@
                     <td>
                         <tlk:RadTextBox runat="server" ID="txtTaxCode" />
                     </td>
+                     <td class="lb">
+                        <%# Translate("Lần thay đổi MST thứ ")%>
+                    </td>
+                    <td>
+                        <tlk:RadTextBox runat="server" ID="txtChange_tax_code" />
+                    </td>
                     <td class="lb">
                         <%# Translate("CTRLLOCATION_LBLTAXDATE")%>
                     </td>
