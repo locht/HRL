@@ -813,12 +813,12 @@ Partial Public Class AttendanceRepository
             strXML = strXML.Replace(Chr(13), String.Empty).Replace(Chr(10), String.Empty)
             strXML = strXML.Replace(" ", String.Empty)
             Using cls As New DataAccess.QueryData
-                Dim cur = cls.ExecuteStore("PKG_ATTENDANCE_BUSINESS.IMPORT_TIMESHEET_CTT",
-                                 New With {.P_XML = strXML,
+                Dim obj = New With {.P_XML = strXML,
                                            .P_USERNAME = log.Username.ToUpper,
                                            .P_PERIOD_ID = PeriodID,
-                                           .P_CUR = cls.OUT_CURSOR})
-                Return cur
+                                           .P_CUR = cls.OUT_CURSOR}
+                Dim dt As DataTable = cls.ExecuteStore("PKG_ATTENDANCE_BUSINESS.IMPORT_TIMESHEET_CTT", obj)
+                Return dt
             End Using
 
             'Dim startDate As Date
