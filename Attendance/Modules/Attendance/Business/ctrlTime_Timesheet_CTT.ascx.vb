@@ -7,6 +7,7 @@ Imports Common.CommonMessage
 Imports Attendance.AttendanceRepository
 Imports Attendance.AttendanceBusiness
 Imports WebAppLog
+Imports Aspose.Cells
 Public Class ctrlTime_Timesheet_CTT
     Inherits Common.CommonView
     Protected WithEvents ctrlOrgPopup As ctrlFindOrgPopup
@@ -98,6 +99,15 @@ Public Class ctrlTime_Timesheet_CTT
         End Get
         Set(ByVal value As DataTable)
             ViewState(Me.ID & "_dtData") = value
+        End Set
+    End Property
+
+    Property dtError As DataTable
+        Get
+            Return ViewState(Me.ID & "_dtError")
+        End Get
+        Set(value As DataTable)
+            ViewState(Me.ID & "_dtError") = value
         End Set
     End Property
 
@@ -387,9 +397,11 @@ Public Class ctrlTime_Timesheet_CTT
     Private Sub ctrlUpload1_OkClicked(ByVal sender As Object, ByVal e As System.EventArgs) Handles ctrlUpload1.OkClicked
         Dim fileName As String
         Dim dsDataPrepare As New DataSet
+        Dim xls As New ExcelCommon
         Dim workbook As Aspose.Cells.Workbook
         Dim worksheet As Aspose.Cells.Worksheet
         Dim dtDataHeader As DataTable
+        Dim dtError As DataTable
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
         Dim startTime As DateTime = DateTime.UtcNow
         Try
@@ -427,18 +439,17 @@ Public Class ctrlTime_Timesheet_CTT
             Next
             If loadToGrid(dtDataHeader) = False Then
             Else
-                Dim dtError = saveGrid()
-                If dtError.Rows.Count <= 0 Then
+                dtError = saveGrid()
+                If dtError.Rows.Count > 0 Then
+                    dtError.TableName = "DATA"
+                    Session("EXPORTREPORT") = dtError
+                    ScriptManager.RegisterStartupScript(Me.Page, Me.Page.GetType(), "javascriptfunction", "ExportReport('Template_importTimesheet_CTT_Error1')", True)
+                    ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), Utilities.NotifyType.Error)
+                Else
                     Refresh("InsertView")
                     CurrentState = CommonMessage.STATE_NORMAL
                     UpdateControlState()
-                Else
-                    Dim dsData As New DataSet
-                    dsData.Tables.Add(dtError)
-                    Session("EXPORTREPORT") = dsData
-                    ScriptManager.RegisterStartupScript(Me.Page, Me.Page.GetType(), "javascriptfunction", "ExportReport('Template_importTimesheet_CTT_Error&PERIOD_ID=" & cboPeriod.SelectedValue & "&orgid=" & ctrlOrganization.CurrentValue & "&IS_DISSOLVE=" & IIf(ctrlOrganization.IsDissolve, "1", "0") & "')", True)
                 End If
-
             End If
             _myLog.WriteLog(_myLog._info, _classPath, method,
                                                 CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
@@ -1133,6 +1144,7 @@ Public Class ctrlTime_Timesheet_CTT
     ''' </summary>
     ''' <remarks></remarks>
     Public Overrides Sub UpdateControlState()
+        Dim xls As New ExcelCommon
         Dim rep As New AttendanceRepository
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
         Dim startTime As DateTime = DateTime.UtcNow
