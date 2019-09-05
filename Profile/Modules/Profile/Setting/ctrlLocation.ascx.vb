@@ -360,6 +360,7 @@ Public Class ctrlLocation
                             objLocationFunction.BANK_BRANCH_ID = hfBank_Branch.Value
                         End If
                         objLocationFunction.TAX_CODE = txtTaxCode.Text
+                        objLocationFunction.CHANGE_TAX_CODE = txtChange_tax_code.Text
 
                         objLocationFunction.TAX_DATE = rdpTaxDate.SelectedDate
 
@@ -557,6 +558,7 @@ Public Class ctrlLocation
                         hfBank_Branch.Value = dt.BANK_BRANCH_ID
                     End If
                     txtTaxCode.Text = dt.TAX_CODE
+                    txtChange_tax_code.Text = dt.CHANGE_TAX_CODE
                     rdpTaxDate.SelectedDate = dt.TAX_DATE
                     If dt.EMP_LAW_ID IsNot Nothing Then
                         LoadEmpInfor(1, dt.EMP_LAW_ID, dt)
