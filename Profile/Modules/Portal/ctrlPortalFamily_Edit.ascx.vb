@@ -12,6 +12,14 @@ Public Class ctrlPortalFamily_Edit
 #Region "Property"
 
     Public Property EmployeeID As Decimal
+    Property checkFK_Pkey As Decimal
+        Get
+            Return ViewState(Me.ID & "_checkFK_Pkey")
+        End Get
+        Set(ByVal value As Decimal)
+            ViewState(Me.ID & "_checkFK_Pkey") = value
+        End Set
+    End Property
 #End Region
 
 #Region "Page"
@@ -51,9 +59,11 @@ Public Class ctrlPortalFamily_Edit
 
     Public Overrides Sub Refresh(Optional ByVal Message As String = "")
         Try
+
             If Not IsPostBack Then
                 CurrentState = CommonMessage.STATE_NORMAL
             End If
+
         Catch ex As Exception
             DisplayException(Me.ViewName, Me.ID, ex)
         End Try
@@ -91,69 +101,69 @@ Public Class ctrlPortalFamily_Edit
 
             End Using
 
-            Dim dic As New Dictionary(Of String, Control)
-            dic.Add("ADDRESS", txtAdress)
-            dic.Add("ID_NO", txtIDNO)
-            dic.Add("FULLNAME", txtFullName)
-            dic.Add("TAXTATION", txtTax)
-            dic.Add("REMARK", txtRemark)
-            dic.Add("BIRTH_DATE", rdBirthDate)
-            dic.Add("IS_DEDUCT", chkIsDeduct)
-            dic.Add("DEDUCT_REG", rdDeductReg)
-            dic.Add("DEDUCT_FROM", rdDeductFrom)
-            dic.Add("DEDUCT_TO", rdDeductTo)
-            dic.Add("RELATION_ID", cboRelationship)
-            dic.Add("ID", hidFamilyID)
-            dic.Add("CAREER", txtCareer)
-            dic.Add("TITLE_NAME", txtTitle)
-            dic.Add("PROVINCE_ID", cboNguyenQuan)
+            'Dim dic As New Dictionary(Of String, Control)
+            'dic.Add("ADDRESS", txtAdress)
+            'dic.Add("ID_NO", txtIDNO)
+            'dic.Add("FULLNAME", txtFullName)
+            'dic.Add("TAXTATION", txtTax)
+            'dic.Add("REMARK", txtRemark)
+            'dic.Add("BIRTH_DATE", rdBirthDate)
+            'dic.Add("IS_DEDUCT", chkIsDeduct)
+            'dic.Add("DEDUCT_REG", rdDeductReg)
+            'dic.Add("DEDUCT_FROM", rdDeductFrom)
+            'dic.Add("DEDUCT_TO", rdDeductTo)
+            'dic.Add("RELATION_ID", cboRelationship)
+            'dic.Add("ID", hidFamilyID)
+            'dic.Add("CAREER", txtCareer)
+            'dic.Add("TITLE_NAME", txtTitle)
+            'dic.Add("PROVINCE_ID", cboNguyenQuan)
 
-            dic.Add("NATION_ID", cboNationlity)
-            dic.Add("ID_NO_DATE", rdIDDate)
-            dic.Add("ID_NO_PLACE_NAME", txtIDPlace)
-            dic.Add("PHONE", txtPhone)
-            dic.Add("TAXTATION_DATE", rdMSTDate)
-            dic.Add("TAXTATION_PLACE", txt_MSTPLACE)
-            dic.Add("BIRTH_CODE", txtBIRTH_CODE)
-            dic.Add("QUYEN", txtQuyen)
-            dic.Add("BIRTH_NATION_ID", cboNATIONALITYFAMILY)
-            dic.Add("BIRTH_PROVINCE_ID", cbTempKtPROVINCE_ID)
-            dic.Add("BIRTH_DISTRICT_ID", cbTempDISTRICT_ID)
-            dic.Add("BIRTH_WARD_ID", cbTempKtWARD_ID)
+            'dic.Add("NATION_ID", cboNationlity)
+            'dic.Add("ID_NO_DATE", rdIDDate)
+            'dic.Add("ID_NO_PLACE_NAME", txtIDPlace)
+            'dic.Add("PHONE", txtPhone)
+            'dic.Add("TAXTATION_DATE", rdMSTDate)
+            'dic.Add("TAXTATION_PLACE", txt_MSTPLACE)
+            'dic.Add("BIRTH_CODE", txtBIRTH_CODE)
+            'dic.Add("QUYEN", txtQuyen)
+            'dic.Add("BIRTH_NATION_ID", cboNATIONALITYFAMILY)
+            'dic.Add("BIRTH_PROVINCE_ID", cbTempKtPROVINCE_ID)
+            'dic.Add("BIRTH_DISTRICT_ID", cbTempDISTRICT_ID)
+            'dic.Add("BIRTH_WARD_ID", cbTempKtWARD_ID)
 
-            Utilities.OnClientRowSelectedChanged(rgFamily, dic)
+            'Utilities.OnClientRowSelectedChanged(rgFamily, dic)
 
-            Dim dic1 As New Dictionary(Of String, Control)
-            dic1.Add("ADDRESS", txtAdress)
-            dic1.Add("ID_NO", txtIDNO)
-            dic1.Add("FULLNAME", txtFullName)
-            dic1.Add("TAXTATION", txtTax)
-            dic1.Add("REMARK", txtRemark)
-            dic1.Add("BIRTH_DATE", rdBirthDate)
-            dic1.Add("IS_DEDUCT", chkIsDeduct)
-            dic1.Add("DEDUCT_REG", rdDeductReg)
-            dic1.Add("DEDUCT_FROM", rdDeductFrom)
-            dic1.Add("DEDUCT_TO", rdDeductTo)
-            dic1.Add("RELATION_ID", cboRelationship)
-            dic1.Add("ID", hidID)
-            dic1.Add("FK_PKEY", hidFamilyID)
-            dic1.Add("CAREER", txtCareer)
-            dic1.Add("TITLE_NAME", txtTitle)
-            dic1.Add("PROVINCE_ID", cboNguyenQuan)
+            'Dim dic1 As New Dictionary(Of String, Control)
+            'dic1.Add("ADDRESS", txtAdress)
+            'dic1.Add("ID_NO", txtIDNO)
+            'dic1.Add("FULLNAME", txtFullName)
+            'dic1.Add("TAXTATION", txtTax)
+            'dic1.Add("REMARK", txtRemark)
+            'dic1.Add("BIRTH_DATE", rdBirthDate)
+            'dic1.Add("IS_DEDUCT", chkIsDeduct)
+            'dic1.Add("DEDUCT_REG", rdDeductReg)
+            'dic1.Add("DEDUCT_FROM", rdDeductFrom)
+            'dic1.Add("DEDUCT_TO", rdDeductTo)
+            'dic1.Add("RELATION_ID", cboRelationship)
+            'dic1.Add("ID", hidID)
+            'dic1.Add("FK_PKEY", hidFamilyID)
+            'dic1.Add("CAREER", txtCareer)
+            'dic1.Add("TITLE_NAME", txtTitle)
+            'dic1.Add("PROVINCE_ID", cboNguyenQuan)
 
-            dic1.Add("NATION_ID", cboNationlity)
-            dic1.Add("ID_NO_DATE", rdIDDate)
-            dic1.Add("ID_NO_PLACE_NAME", txtIDPlace)
-            dic1.Add("PHONE", txtPhone)
-            dic1.Add("TAXTATION_DATE", rdMSTDate)
-            dic1.Add("TAXTATION_PLACE", txt_MSTPLACE)
-            dic1.Add("BIRTH_CODE", txtBIRTH_CODE)
-            dic1.Add("QUYEN", txtQuyen)
-            dic1.Add("BIRTH_NATION_ID", cboNATIONALITYFAMILY)
-            dic1.Add("BIRTH_PROVINCE_ID", cbTempKtPROVINCE_ID)
-            dic1.Add("BIRTH_DISTRICT_ID", cbTempDISTRICT_ID)
-            dic1.Add("BIRTH_WARD_ID", cbTempKtWARD_ID)
-            Utilities.OnClientRowSelectedChanged(rgFamilyEdit, dic1)
+            'dic1.Add("NATION_ID", cboNationlity)
+            'dic1.Add("ID_NO_DATE", rdIDDate)
+            'dic1.Add("ID_NO_PLACE_NAME", txtIDPlace)
+            'dic1.Add("PHONE", txtPhone)
+            'dic1.Add("TAXTATION_DATE", rdMSTDate)
+            'dic1.Add("TAXTATION_PLACE", txt_MSTPLACE)
+            'dic1.Add("BIRTH_CODE", txtBIRTH_CODE)
+            'dic1.Add("QUYEN", txtQuyen)
+            'dic1.Add("BIRTH_NATION_ID", cboNATIONALITYFAMILY)
+            'dic1.Add("BIRTH_PROVINCE_ID", cbTempKtPROVINCE_ID)
+            'dic1.Add("BIRTH_DISTRICT_ID", cbTempDISTRICT_ID)
+            'dic1.Add("BIRTH_WARD_ID", cbTempKtWARD_ID)
+            'Utilities.OnClientRowSelectedChanged(rgFamilyEdit, dic1)
 
         Catch ex As Exception
             DisplayException(Me.ViewName, Me.ID, ex)
@@ -324,7 +334,10 @@ Public Class ctrlPortalFamily_Edit
                                     obj.ID = pkey
                                 End If
                             End If
-
+                            'checkFK_Pkey dùng để kiểm  tra nếu chỉnh sửa 'thông tin chỉnh sửa' thì sẽ không phát sinh fk_pkey
+                            If checkFK_Pkey = 1 Then
+                                obj.FK_PKEY = Nothing
+                            End If
 
                             If hidID.Value <> "" Then
                                 isInsert = False
@@ -486,6 +499,11 @@ Public Class ctrlPortalFamily_Edit
                     Case Else
                         CurrentState = CommonMessage.STATE_EDIT
                 End Select
+                ClearControlValue(txtAdress, txtTempAdress, txtAD_Village, txtHouseCertificate_Code, txtHouseCertificate_Num, cboGender, rdIDDate, txtIDPlace, cboNationlity, txtPhone, rdMSTDate, txtBIRTH_CODE, cboNATIONALITYFAMILY, cbTempKtPROVINCE_ID, cbTempKtDISTRICT_ID, cbTempKtWARD_ID, txtQuyen,
+                                                    chkIs_Owner, chkIs_Pass, txtFullName, txtIDNO, txtRemark, txtTax, txtQuyen,
+                                                    rdBirthDate, rdDeductFrom, rdDeductReg, rdDeductTo, txtCareer, txtTitle,
+                                                    chkIsDeduct, hidFamilyID, hidID, cboRelationship, cboNguyenQuan, txt_MSTPLACE,
+                                                    cbPROVINCE_ID, cbDISTRICT_ID, cbWARD_ID, cbTempPROVINCE_ID, cbTempDISTRICT_ID, cbTempWARD_ID)
                 hidFamilyID.Value = item.GetDataKeyValue("ID")
                 txtAdress.Text = item.GetDataKeyValue("ADDRESS")
                 txtIDNO.Text = item.GetDataKeyValue("ID_NO")
@@ -587,6 +605,7 @@ Public Class ctrlPortalFamily_Edit
                     hidFamilyID.Value = item.GetDataKeyValue("FK_PKEY")
                 End If
                 hidID.Value = item.GetDataKeyValue("ID")
+                checkFK_Pkey = 1
                 chkIsDeduct_CheckedChanged(Nothing, Nothing)
                 UpdateControlState()
             End If
@@ -599,6 +618,11 @@ Public Class ctrlPortalFamily_Edit
         Try
             If e.CommandName = "EditRow" Then
                 CurrentState = CommonMessage.STATE_EDIT
+                ClearControlValue(txtAdress, txtTempAdress, txtAD_Village, txtHouseCertificate_Code, txtHouseCertificate_Num, cboGender, rdIDDate, txtIDPlace, cboNationlity, txtPhone, rdMSTDate, txtBIRTH_CODE, cboNATIONALITYFAMILY, cbTempKtPROVINCE_ID, cbTempKtDISTRICT_ID, cbTempKtWARD_ID, txtQuyen,
+                                    chkIs_Owner, chkIs_Pass, txtFullName, txtIDNO, txtRemark, txtTax, txtQuyen,
+                                    rdBirthDate, rdDeductFrom, rdDeductReg, rdDeductTo, txtCareer, txtTitle,
+                                    chkIsDeduct, hidFamilyID, hidID, cboRelationship, cboNguyenQuan, txt_MSTPLACE,
+                                    cbPROVINCE_ID, cbDISTRICT_ID, cbWARD_ID, cbTempPROVINCE_ID, cbTempDISTRICT_ID, cbTempWARD_ID)
                 Dim item = CType(e.Item, GridDataItem)
                 hidFamilyID.Value = item.GetDataKeyValue("ID")
                 txtAdress.Text = item.GetDataKeyValue("ADDRESS")
@@ -699,6 +723,7 @@ Public Class ctrlPortalFamily_Edit
                 hidFamilyID.Value = item.GetDataKeyValue("ID")
                 hidID.Value = ""
                 chkIsDeduct_CheckedChanged(Nothing, Nothing)
+                checkFK_Pkey = 0
                 UpdateControlState()
             End If
         Catch ex As Exception
@@ -864,6 +889,14 @@ Public Class ctrlPortalFamily_Edit
 
     Protected Sub rgFamilyEdit_SelectedIndexChanged(sender As Object, e As EventArgs) Handles rgFamilyEdit.SelectedIndexChanged
         Try
+            If rgFamilyEdit.SelectedItems.Count = 0 Then
+                ClearControlValue(txtAdress, txtTempAdress, txtAD_Village, txtHouseCertificate_Code, txtHouseCertificate_Num,
+                                        chkIs_Owner, chkIs_Pass, txtFullName, txtIDNO, txtRemark, txtTax, txt_MSTPLACE,
+                                        rdBirthDate, rdDeductFrom, rdDeductReg, rdDeductTo, txtCareer, txtTitle,
+                                        chkIsDeduct, hidFamilyID, hidID, cboRelationship, cboNguyenQuan, cboGender, rdIDDate, txtIDPlace, cboNationlity, txtPhone, rdMSTDate, txtBIRTH_CODE, cboNATIONALITYFAMILY, cbTempKtPROVINCE_ID, cbTempKtDISTRICT_ID, cbTempKtWARD_ID, txtQuyen,
+                                        cbPROVINCE_ID, cbDISTRICT_ID, cbWARD_ID, cbTempPROVINCE_ID, cbTempDISTRICT_ID, cbTempWARD_ID)
+                Exit Sub
+            End If
             ClearControlValue(txtAdress, txtTempAdress, txtAD_Village, txtHouseCertificate_Code, txtHouseCertificate_Num,
                                       chkIs_Owner, chkIs_Pass, txtFullName, txtIDNO, txtRemark, txtTax, txt_MSTPLACE,
                                       rdBirthDate, rdDeductFrom, rdDeductReg, rdDeductTo, txtCareer, txtTitle,
@@ -973,6 +1006,7 @@ Public Class ctrlPortalFamily_Edit
             hidID.Value = item.GetDataKeyValue("ID")
             chkIsDeduct_CheckedChanged(Nothing, Nothing)
             UpdateControlState()
+
         Catch ex As Exception
             Throw ex
         End Try
@@ -1014,6 +1048,12 @@ Public Class ctrlPortalFamily_Edit
             txtHouseCertificate_Num.Text = item.GetDataKeyValue("CERTIFICATE_NUM")
             txtTempAdress.Text = item.GetDataKeyValue("ADDRESS_TT")
             txtAD_Village.Text = item.GetDataKeyValue("AD_VILLAGE")
+            If IsNumeric(item.GetDataKeyValue("AD_PROVINCE_ID")) Then
+                cbPROVINCE_ID.SelectedValue = item.GetDataKeyValue("AD_PROVINCE_ID")
+            End If
+            If IsNumeric(item.GetDataKeyValue("TT_PROVINCE_ID")) Then
+                cbTempPROVINCE_ID.SelectedValue = item.GetDataKeyValue("TT_PROVINCE_ID")
+            End If
             Using rep As New ProfileRepository
                 If cbPROVINCE_ID.SelectedValue <> "" Then
                     Dim dt As DataTable = rep.GetDistrictList(cbPROVINCE_ID.SelectedValue, False)
@@ -1087,6 +1127,7 @@ Public Class ctrlPortalFamily_Edit
             hidID.Value = ""
             chkIsDeduct_CheckedChanged(Nothing, Nothing)
             UpdateControlState()
+
         Catch ex As Exception
             Throw ex
         End Try
