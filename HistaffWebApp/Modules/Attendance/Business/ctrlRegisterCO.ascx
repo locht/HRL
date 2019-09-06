@@ -18,22 +18,6 @@
             <tlk:RadPane ID="RadPane2" runat="server" Scrolling="None" Height="80px">
                 <table class="table-form" onkeydown="return (event.keyCode!=13)">
                     <tr>
-                        <td class="lb">
-                            <%# Translate("Năm")%>
-                        </td>
-                        <td>
-                            <tlk:RadComboBox ID="cboYear" SkinID="dDropdownList" runat="server" AutoPostBack="true"
-                                TabIndex="12" Width="80px">
-                            </tlk:RadComboBox>
-                        </td>
-                        <td class="lb">
-                            <%# Translate("Kỳ công")%>
-                        </td>
-                        <td>
-                            <tlk:RadComboBox ID="cboPeriod" SkinID="dDropdownList" AutoPostBack="true" Width="150px"
-                                MaxLength="80" runat="server" ToolTip="">
-                            </tlk:RadComboBox>
-                        </td>
                         <td colspan="2">
                             <asp:CheckBox ID="chkChecknghiViec" runat="server" Text="<%$ Translate: Nhân viên nghỉ việc %>" />
                         </td>
@@ -59,7 +43,7 @@
                             <%# Translate("Trạng thái")%>
                         </td>
                         <td>
-                             <tlk:RadComboBox  ID="cbStatus" Width="160px"
+                            <tlk:RadComboBox  ID="cbStatus" Width="160px"
                                runat="server" >
                             </tlk:RadComboBox>
                         </td>
@@ -217,18 +201,7 @@
         }
 
         function OpenInsertWindow() {
-            var m;
-            var cbo = $find("<%# cboPeriod.ClientID %>");
-            var periodID = cbo.get_value();
-            if (periodID.length = 0) {
-                m = '<%# Translate("Bạn phải chọn kỳ công.") %>';
-                var n = noty({ text: m, dismissQueue: true, type: 'warning' });
-                setTimeout(function () { $.noty.close(n.options.id); }, 5000);
-                return;
-            }
-            window.open('/Default.aspx?mid=Attendance&fid=ctrlRegisterCONewEdit&group=Business&FormType=0&periodid=' + periodID, "_self"); /*
-            oWindow.setSize(800, 480);
-            oWindow.center(); */
+            window.open('/Default.aspx?mid=Attendance&fid=ctrlRegisterCONewEdit&group=Business&FormType=0', "_self");
         }
 
         function OpenEditWindow() {
@@ -240,18 +213,7 @@
                 id = grid.get_masterTableView().get_selectedItems()[0].getDataKeyValue('ID');
             }
             if (id > 0) {
-                var m;
-                var cbo = $find("<%# cboPeriod.ClientID %>");
-                var periodID = cbo.get_value();
-                if (periodID.length = 0) {
-                    m = '<%# Translate("Bạn phải chọn kỳ công.") %>';
-                    var n = noty({ text: m, dismissQueue: true, type: 'warning' });
-                    setTimeout(function () { $.noty.close(n.options.id); }, 5000);
-                    return;
-                }
                 window.open('/Default.aspx?mid=Attendance&fid=ctrlRegisterCONewEdit&group=Business&VIEW=TRUE&FormType=0&ID=' + id + '&periodid=' + periodID, "_self"); /*
-                oWindow.setSize(800, 480);
-                oWindow.center(); */
             }
         }
 

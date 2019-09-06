@@ -233,55 +233,56 @@ Public Class ctrlRegisterCO
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
         Try
             Dim startTime As DateTime = DateTime.UtcNow
-            Dim lsData As List(Of AT_PERIODDTO)
+            'Dim lsData As List(Of AT_PERIODDTO)
             Dim rep As New AttendanceRepository
-            Dim table As New DataTable
-            table.Columns.Add("YEAR", GetType(Integer))
-            table.Columns.Add("ID", GetType(Integer))
-            Dim row As DataRow
-            For index = 2015 To Date.Now.Year + 1
-                row = table.NewRow
-                row("ID") = index
-                row("YEAR") = index
-                table.Rows.Add(row)
-            Next
-            FillRadCombobox(cboYear, table, "YEAR", "ID")
-            cboYear.SelectedValue = Date.Now.Year
-            Dim period As New AT_PERIODDTO
-            period.ORG_ID = 1
-            period.YEAR = Date.Now.Year
-            lsData = rep.LOAD_PERIODBylinq(period)
-            Me.PERIOD = lsData
-            FillRadCombobox(cboPeriod, lsData, "PERIOD_NAME", "PERIOD_ID", True)
+            'Dim table As New DataTable
+            'table.Columns.Add("YEAR", GetType(Integer))
+            'table.Columns.Add("ID", GetType(Integer))
+            'Dim row As DataRow
+            'For index = 2015 To Date.Now.Year + 1
+            '    row = table.NewRow
+            '    row("ID") = index
+            '    row("YEAR") = index
+            '    table.Rows.Add(row)
+            'Next
+            'FillRadCombobox(cboYear, table, "YEAR", "ID")
+            'cboYear.SelectedValue = Date.Now.Year
+            'Dim period As New AT_PERIODDTO
+            'period.ORG_ID = 1
+            'period.YEAR = Date.Now.Year
+            'lsData = rep.LOAD_PERIODBylinq(period)
+            'Me.PERIOD = lsData
+            'FillRadCombobox(cboPeriod, lsData, "PERIOD_NAME", "PERIOD_ID", True)
 
             Dim dtData As New DataTable
             dtData = rep.GetOtherList("PROCESS_STATUS", True)
             FillRadCombobox(cbStatus, dtData, "NAME", "ID", True)
+            rdtungay.SelectedDate = New DateTime(DateTime.Now.Year, 1, 1)
+            rdDenngay.SelectedDate = New DateTime(DateTime.Now.Year, 12, 31)
+            'If lsData.Count > 0 Then
+            '    'Dim periodid = (From d In lsData Where d.START_DATE.Value.ToString("yyyyMM").Equals(Date.Now.ToString("yyyyMM")) Select d).FirstOrDefault
+            '    If periodid IsNot Nothing Then
+            '        'cboPeriod.SelectedValue = periodid.PERIOD_ID.ToString()
+            '        rdtungay.SelectedDate = periodid.START_DATE
+            '        rdDenngay.SelectedDate = periodid.END_DATE
+            '    Else
+            '        'cboPeriod.SelectedIndex = 0
+            '        'Dim periodid1 = (From d In lsData Where d.PERIOD_ID.ToString.Contains(cboPeriod.SelectedValue.ToString) Select d).FirstOrDefault
 
-            If lsData.Count > 0 Then
-                Dim periodid = (From d In lsData Where d.START_DATE.Value.ToString("yyyyMM").Equals(Date.Now.ToString("yyyyMM")) Select d).FirstOrDefault
-                If periodid IsNot Nothing Then
-                    cboPeriod.SelectedValue = periodid.PERIOD_ID.ToString()
-                    rdtungay.SelectedDate = periodid.START_DATE
-                    rdDenngay.SelectedDate = periodid.END_DATE
-                Else
-                    cboPeriod.SelectedIndex = 0
-                    Dim periodid1 = (From d In lsData Where d.PERIOD_ID.ToString.Contains(cboPeriod.SelectedValue.ToString) Select d).FirstOrDefault
+            '        If periodid1 IsNot Nothing Then
+            '            rdtungay.SelectedDate = periodid1.START_DATE
+            '            rdDenngay.SelectedDate = periodid1.END_DATE
+            '        End If
+            '        'If (Common.Common.GetShortDatePattern().Trim.ToUpper.Contains("DD/MM/YYYY")) Then
+            '        '    rdtungay.SelectedDate = CType("01/01/" & cboYear.SelectedValue.Trim.ToString, Date)
+            '        '    rdDenngay.SelectedDate = CType("31/01/" & cboYear.SelectedValue.Trim.ToString, Date)
+            '        'Else
+            '        '    rdtungay.SelectedDate = CType("01/01/" & cboYear.SelectedValue.Trim.ToString, Date)
+            '        '    rdDenngay.SelectedDate = CType("01/31/" & cboYear.SelectedValue.Trim.ToString, Date)
+            '        'End If
 
-                    If periodid1 IsNot Nothing Then
-                        rdtungay.SelectedDate = periodid1.START_DATE
-                        rdDenngay.SelectedDate = periodid1.END_DATE
-                    End If
-                    'If (Common.Common.GetShortDatePattern().Trim.ToUpper.Contains("DD/MM/YYYY")) Then
-                    '    rdtungay.SelectedDate = CType("01/01/" & cboYear.SelectedValue.Trim.ToString, Date)
-                    '    rdDenngay.SelectedDate = CType("31/01/" & cboYear.SelectedValue.Trim.ToString, Date)
-                    'Else
-                    '    rdtungay.SelectedDate = CType("01/01/" & cboYear.SelectedValue.Trim.ToString, Date)
-                    '    rdDenngay.SelectedDate = CType("01/31/" & cboYear.SelectedValue.Trim.ToString, Date)
-                    'End If
-
-                    End If
-            End If
+            '        End If
+            'End If
             _myLog.WriteLog(_myLog._info, _classPath, method,
                                     CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
@@ -342,40 +343,40 @@ Public Class ctrlRegisterCO
     ''' Phương thức selectedindexchange của control cboYear
     ''' </summary>
     ''' <remarks></remarks>
-    Private Sub ctrlYear_SelectedNodeChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles cboYear.SelectedIndexChanged
-        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
-        Try
-            Dim startTime As DateTime = DateTime.UtcNow
-            Dim dtData As List(Of AT_PERIODDTO)
-            Dim rep As New AttendanceRepository
-            Dim period As New AT_PERIODDTO
-            If String.IsNullOrEmpty(cboYear.SelectedValue) Then
-                Exit Sub
-            End If
-            period.ORG_ID = Decimal.Parse(ctrlOrganization.CurrentValue)
-            period.YEAR = Decimal.Parse(cboYear.SelectedValue)
-            dtData = rep.LOAD_PERIODBylinq(period)
-            cboPeriod.ClearSelection()
-            FillRadCombobox(cboPeriod, dtData, "PERIOD_NAME", "PERIOD_ID", True)
-            If dtData.Count > 0 Then
-                Dim periodid = (From d In dtData Where d.START_DATE.Value.ToString("yyyyMM").Equals(Date.Now.ToString("yyyyMM")) Select d).FirstOrDefault
-                If periodid IsNot Nothing Then
-                    cboPeriod.SelectedValue = periodid.PERIOD_ID.ToString()
-                    rdtungay.SelectedDate = periodid.START_DATE
-                    rdDenngay.SelectedDate = periodid.END_DATE
-                Else
-                    cboPeriod.SelectedIndex = 0
-                    Dim per = (From c In dtData Where c.PERIOD_ID = cboPeriod.SelectedValue).FirstOrDefault
-                    rdtungay.SelectedDate = per.START_DATE
-                    rdDenngay.SelectedDate = per.END_DATE
-                End If
-            End If
-            _myLog.WriteLog(_myLog._info, _classPath, method,
-                                    CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
-        Catch ex As Exception
-            _myLog.WriteLog(_myLog._error, _classPath, method, 0, ex, "")
-        End Try
-    End Sub
+    'Private Sub ctrlYear_SelectedNodeChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles cboYear.SelectedIndexChanged
+    '    Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+    '    Try
+    '        Dim startTime As DateTime = DateTime.UtcNow
+    '        Dim dtData As List(Of AT_PERIODDTO)
+    '        Dim rep As New AttendanceRepository
+    '        Dim period As New AT_PERIODDTO
+    '        If String.IsNullOrEmpty(cboYear.SelectedValue) Then
+    '            Exit Sub
+    '        End If
+    '        period.ORG_ID = Decimal.Parse(ctrlOrganization.CurrentValue)
+    '        period.YEAR = Decimal.Parse(cboYear.SelectedValue)
+    '        dtData = rep.LOAD_PERIODBylinq(period)
+    '        cboPeriod.ClearSelection()
+    '        FillRadCombobox(cboPeriod, dtData, "PERIOD_NAME", "PERIOD_ID", True)
+    '        If dtData.Count > 0 Then
+    '            Dim periodid = (From d In dtData Where d.START_DATE.Value.ToString("yyyyMM").Equals(Date.Now.ToString("yyyyMM")) Select d).FirstOrDefault
+    '            If periodid IsNot Nothing Then
+    '                cboPeriod.SelectedValue = periodid.PERIOD_ID.ToString()
+    '                rdtungay.SelectedDate = periodid.START_DATE
+    '                rdDenngay.SelectedDate = periodid.END_DATE
+    '            Else
+    '                cboPeriod.SelectedIndex = 0
+    '                Dim per = (From c In dtData Where c.PERIOD_ID = cboPeriod.SelectedValue).FirstOrDefault
+    '                rdtungay.SelectedDate = per.START_DATE
+    '                rdDenngay.SelectedDate = per.END_DATE
+    '            End If
+    '        End If
+    '        _myLog.WriteLog(_myLog._info, _classPath, method,
+    '                                CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
+    '    Catch ex As Exception
+    '        _myLog.WriteLog(_myLog._error, _classPath, method, 0, ex, "")
+    '    End Try
+    'End Sub
 
     ''' <lastupdate>
     ''' 15/08/2017 10:00
@@ -438,7 +439,7 @@ Public Class ctrlRegisterCO
         Try
             Dim startTime As DateTime = DateTime.UtcNow
             If Not IsPostBack Then
-                ctrlOrganization.SetColorPeriod(cboPeriod.SelectedValue, PeriodType.AT)
+                'ctrlOrganization.SetColorPeriod(cboPeriod.SelectedValue, PeriodType.AT)
             End If
             rgRegisterLeave.CurrentPageIndex = 0
             rgRegisterLeave.Rebind()
@@ -465,7 +466,6 @@ Public Class ctrlRegisterCO
             Dim startTime As DateTime = DateTime.UtcNow
             Dim rep As New AttendanceRepository
             Dim _param = New ParamDTO With {.ORG_ID = Decimal.Parse(ctrlOrganization.CurrentValue), _
-                                            .PERIOD_ID = Decimal.Parse(cboPeriod.SelectedValue),
                                             .IS_DISSOLVE = ctrlOrganization.IsDissolve}
 
             Select Case CType(e.Item, RadToolBarButton).CommandName
@@ -681,15 +681,14 @@ Public Class ctrlRegisterCO
         Try
             Dim startTime As DateTime = DateTime.UtcNow
             Dim rep As New AttendanceRepository
-            Dim _param = New ParamDTO With {.ORG_ID = Decimal.Parse(e.CurrentValue), _
-                                           .PERIOD_ID = Decimal.Parse(cboPeriod.SelectedValue),
+            Dim _param = New ParamDTO With {.ORG_ID = Decimal.Parse(e.CurrentValue),
                                            .IS_DISSOLVE = ctrlOrgPopup.IsDissolve}
             If rep.IS_PERIODSTATUS(_param) = False Then
                 ShowMessage(Translate("Kỳ công đã đóng, bạn không thể thực hiện thao tác này"), NotifyType.Error)
                 Exit Sub
             End If
 
-            ScriptManager.RegisterStartupScript(Me.Page, Me.Page.GetType(), "javascriptfunction", "ExportReport('Template_Register&PERIOD_ID=" & cboPeriod.SelectedValue & "&orgid=" & e.CurrentValue & "&IS_DISSOLVE=" & IIf(ctrlOrgPopup.IsDissolve, "1", "0") & "')", True)
+            ScriptManager.RegisterStartupScript(Me.Page, Me.Page.GetType(), "javascriptfunction", "ExportReport('Template_Register&&orgid=" & e.CurrentValue & "&IS_DISSOLVE=" & IIf(ctrlOrgPopup.IsDissolve, "1", "0") & "')", True)
             isLoadPopup = 0
             _myLog.WriteLog(_myLog._info, _classPath, method,
                                     CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
@@ -866,7 +865,7 @@ Public Class ctrlRegisterCO
                 For j As Integer = 0 To dsDataComper.Rows.Count - 1
                     If dsDataComper(j)("EMPLOYEE_ID") = "" Then
                         dtEmpID = New DataTable
-                        dtEmpID = rep.GetEmployeeID(dsDataComper(j)("EMPLOYEE_CODE"), cboPeriod.SelectedValue)
+                        dtEmpID = rep.GetEmployeeID(dsDataComper(j)("EMPLOYEE_CODE"), rdDenngay.SelectedDate)
                         rowError = dtError.NewRow
                         If dtEmpID Is Nothing Or dtEmpID.Rows.Count <= 0 Then
                             rowError("EMPLOYEE_CODE") = "Mã nhân viên " & dsDataComper(j)("EMPLOYEE_CODE") & " không tồn tại trên hệ thống."
@@ -941,30 +940,30 @@ Public Class ctrlRegisterCO
     ''' <param name="sender"></param>
     ''' <param name="e"></param>
     ''' <remarks></remarks>
-    Private Sub cboPeriod_SelectedNodeChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles cboPeriod.SelectedIndexChanged
-        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
-        Try
-            Dim startTime As DateTime = DateTime.UtcNow
-            Dim rep As New AttendanceRepository
-            Dim period As New AT_PERIODDTO
-            period.YEAR = Decimal.Parse(cboYear.SelectedValue)
-            period.ORG_ID = 46
-            If cboPeriod.SelectedValue <> "" Then
-                Dim Lstperiod = rep.LOAD_PERIODBylinq(period)
-                Dim p = (From o In Lstperiod Where o.PERIOD_ID = Decimal.Parse(cboPeriod.SelectedValue)).FirstOrDefault
-                If p IsNot Nothing Then
-                    rdtungay.SelectedDate = p.START_DATE
-                    rdDenngay.SelectedDate = p.END_DATE
-                End If
-            End If
-            rgRegisterLeave.Rebind()
-            ctrlOrganization.SetColorPeriod(cboPeriod.SelectedValue, PeriodType.AT)
-            _myLog.WriteLog(_myLog._info, _classPath, method,
-                                    CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
-        Catch ex As Exception
-            _myLog.WriteLog(_myLog._error, _classPath, method, 0, ex, "")
-        End Try
-    End Sub
+    'Private Sub cboPeriod_SelectedNodeChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles cboPeriod.SelectedIndexChanged
+    '    Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+    '    Try
+    '        Dim startTime As DateTime = DateTime.UtcNow
+    '        Dim rep As New AttendanceRepository
+    '        Dim period As New AT_PERIODDTO
+    '        period.YEAR = Decimal.Parse(cboYear.SelectedValue)
+    '        period.ORG_ID = 46
+    '        If cboPeriod.SelectedValue <> "" Then
+    '            Dim Lstperiod = rep.LOAD_PERIODBylinq(period)
+    '            Dim p = (From o In Lstperiod Where o.PERIOD_ID = Decimal.Parse(cboPeriod.SelectedValue)).FirstOrDefault
+    '            If p IsNot Nothing Then
+    '                rdtungay.SelectedDate = p.START_DATE
+    '                rdDenngay.SelectedDate = p.END_DATE
+    '            End If
+    '        End If
+    '        rgRegisterLeave.Rebind()
+    '        ctrlOrganization.SetColorPeriod(cboPeriod.SelectedValue, PeriodType.AT)
+    '        _myLog.WriteLog(_myLog._info, _classPath, method,
+    '                                CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
+    '    Catch ex As Exception
+    '        _myLog.WriteLog(_myLog._error, _classPath, method, 0, ex, "")
+    '    End Try
+    'End Sub
 
 #End Region
 

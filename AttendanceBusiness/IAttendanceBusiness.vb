@@ -806,7 +806,7 @@ Namespace AttendanceBusiness.ServiceContracts
         Function GetAT_PERIOD() As DataTable
 
         <OperationContract()>
-        Function GetEmployeeID(ByVal employee_code As String, ByVal period_id As Decimal) As DataTable
+        Function GetEmployeeID(ByVal employee_code As String, ByVal end_date As Date) As DataTable
 
         <OperationContract()>
         Function GetEmployeeIDInSign(ByVal employee_code As String) As DataTable

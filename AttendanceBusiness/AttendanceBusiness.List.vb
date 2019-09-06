@@ -1088,11 +1088,11 @@ Namespace AttendanceBusiness.ServiceImplementations
             End Using
         End Function
 
-        Public Function GetEmployeeID(ByVal employee_code As String, ByVal period_id As Decimal) As DataTable Implements ServiceContracts.IAttendanceBusiness.GetEmployeeID
+        Public Function GetEmployeeID(ByVal employee_code As String, ByVal end_date As Date) As DataTable Implements ServiceContracts.IAttendanceBusiness.GetEmployeeID
             Using rep As New AttendanceRepository
                 Try
 
-                    Return rep.GetEmployeeID(employee_code, period_id)
+                    Return rep.GetEmployeeID(employee_code, end_date)
                 Catch ex As Exception
 
                     Throw ex

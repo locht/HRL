@@ -1195,12 +1195,12 @@ Partial Class AttendanceRepository
         Return Nothing
     End Function
 
-    Public Function GetEmployeeID(ByVal employee_code As String, ByVal period_id As Decimal) As DataTable
+    Public Function GetEmployeeID(ByVal employee_code As String, ByVal end_date As Date) As DataTable
         Dim lstSign As DataTable
 
         Using rep As New AttendanceBusinessClient
             Try
-                lstSign = rep.GetEmployeeID(employee_code, period_id)
+                lstSign = rep.GetEmployeeID(employee_code, end_date)
                 Return lstSign
             Catch ex As Exception
                 rep.Abort()

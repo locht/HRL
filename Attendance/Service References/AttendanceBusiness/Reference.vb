@@ -31533,7 +31533,7 @@ Namespace AttendanceBusiness
         Function GetAT_PERIOD() As System.Data.DataTable
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IAttendanceBusiness/GetEmployeeID", ReplyAction:="http://tempuri.org/IAttendanceBusiness/GetEmployeeIDResponse")>  _
-        Function GetEmployeeID(ByVal employee_code As String, ByVal period_id As Decimal) As System.Data.DataTable
+        Function GetEmployeeID(ByVal employee_code As String, ByVal end_date As Date) As System.Data.DataTable
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IAttendanceBusiness/GetEmployeeIDInSign", ReplyAction:="http://tempuri.org/IAttendanceBusiness/GetEmployeeIDInSignResponse")>  _
         Function GetEmployeeIDInSign(ByVal employee_code As String) As System.Data.DataTable
@@ -33259,8 +33259,8 @@ Namespace AttendanceBusiness
             Return MyBase.Channel.GetAT_PERIOD
         End Function
         
-        Public Function GetEmployeeID(ByVal employee_code As String, ByVal period_id As Decimal) As System.Data.DataTable Implements AttendanceBusiness.IAttendanceBusiness.GetEmployeeID
-            Return MyBase.Channel.GetEmployeeID(employee_code, period_id)
+        Public Function GetEmployeeID(ByVal employee_code As String, ByVal end_date As Date) As System.Data.DataTable Implements AttendanceBusiness.IAttendanceBusiness.GetEmployeeID
+            Return MyBase.Channel.GetEmployeeID(employee_code, end_date)
         End Function
         
         Public Function GetEmployeeIDInSign(ByVal employee_code As String) As System.Data.DataTable Implements AttendanceBusiness.IAttendanceBusiness.GetEmployeeIDInSign

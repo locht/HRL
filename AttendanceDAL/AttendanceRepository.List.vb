@@ -3136,12 +3136,12 @@ Partial Public Class AttendanceRepository
         End Try
     End Function
 
-    Public Function GetEmployeeID(ByVal employee_code As String, ByVal period_ID As Decimal) As DataTable
+    Public Function GetEmployeeID(ByVal employee_code As String, ByVal end_date As Date) As DataTable
         Try
-            Dim Period = (From w In Context.AT_PERIOD Where w.ID = period_ID).FirstOrDefault
+            'Dim Period = (From w In Context.AT_PERIOD Where w.ID = period_ID).FirstOrDefault
 
             Dim query = From p In Context.HU_EMPLOYEE
-                        Where p.EMPLOYEE_CODE = employee_code And p.WORK_STATUS <> 257 Or (p.WORK_STATUS = 257 And p.TER_LAST_DATE >= Period.END_DATE)
+                        Where p.EMPLOYEE_CODE = employee_code And p.WORK_STATUS <> 257 Or (p.WORK_STATUS = 257 And p.TER_LAST_DATE >= end_date)
             Dim lst = query.Select(Function(p) New EmployeeDTO With {
                                        .ID = p.ID,
                                        .EMPLOYEE_CODE = p.EMPLOYEE_CODE}).ToList
@@ -6604,6 +6604,11 @@ Partial Public Class AttendanceRepository
     Public Function DeletePortalReg(ByVal lstId As List(Of Decimal)) As Boolean
         Try
             'Dim lst = (From p In Context.AT_PORTAL_REG Where lstId.Contains(p.ID_REGGROUP)).ToList()
+            Dim lstDetail = (From p In Context.AT_LEAVESHEET_DETAIL Where lstId.Contains(p.LEAVESHEET_ID)).ToList
+            For indexD = 0 To lstDetail.Count - 1
+                Context.AT_LEAVESHEET_DETAIL.DeleteObject(lstDetail(indexD))
+            Next
+
             Dim lst = (From p In Context.AT_LEAVESHEET Where lstId.Contains(p.ID)).ToList()
             For index = 0 To lst.Count - 1
                 Context.AT_LEAVESHEET.DeleteObject(lst(index))

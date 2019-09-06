@@ -1069,9 +1069,9 @@ Public Class Export
             obj.ORG_ID = org_id
             obj.IS_DISSOLVE = True
             obj.P_EXPORT_TYPE = 7
-            If Not String.IsNullOrEmpty(Request.Params("PERIOD_ID")) Then
-                obj.PERIOD_ID = Decimal.Parse(Request.Params("PERIOD_ID"))
-            End If
+            'If Not String.IsNullOrEmpty(Request.Params("PERIOD_ID")) Then
+            '    obj.PERIOD_ID = Decimal.Parse(Request.Params("PERIOD_ID"))
+            'End If
             dtDataTimeManual = rep.GetDataImportCO()
             dtDataTimeManual.TableName = "TableData"
 
