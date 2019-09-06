@@ -73,7 +73,7 @@
                             <tlk:GridBoundColumn DataField="ID" Visible="false" />
                             <tlk:GridBoundColumn DataField="EMPLOYEE_ID" Visible="false" />
                             <tlk:GridBoundColumn HeaderText="Mã nhân viên" DataField="EMPLOYEE_CODE"
-                                SortExpression="EMPLOYEE_CODE" UniqueName="EMPLOYEE_CODE" HeaderStyle-Width="100px" />
+                                SortExpression="EMPLOYEE_CODE" UniqueName="EMPLOYEE_CODE" HeaderStyle-Width="60px" />
                             <tlk:GridBoundColumn HeaderText="Họ và tên" DataField="FULLNAME_VN"
                                 SortExpression="FULLNAME_VN" UniqueName="FULLNAME_VN" HeaderStyle-Width="150px" />
                              <tlk:GridBoundColumn HeaderText="Trạng thái kiêm nhiệm" DataField="STATUS_NAME"
@@ -108,6 +108,8 @@
                                 ItemStyle-HorizontalAlign="Center" SortExpression="EFFECT_DATE_STOP" UniqueName="EFFECT_DATE_STOP"
                                 DataFormatString="{0:dd/MM/yyyy}">
                             </tlk:GridDateTimeColumn>--%>
+                             <tlk:GridBoundColumn HeaderText="Số quyết định" DataField="CON_NO"
+                                SortExpression="CON_NO" UniqueName="CON_NO"  HeaderStyle-Width="150px" />
                              <tlk:GridBoundColumn HeaderText="Người ký" DataField="SIGN_NAME"
                                 SortExpression="SIGN_NAME" UniqueName="SIGN_NAME" HeaderStyle-Width="120px" />
                             <%--<tlk:GridBoundColumn HeaderText="Chức danh người ký 1" DataField="SIGN_NAME"

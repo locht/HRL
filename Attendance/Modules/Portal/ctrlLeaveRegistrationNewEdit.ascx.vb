@@ -266,7 +266,7 @@ Public Class ctrlLeaveRegistrationNewEdit
                             ShowMessage(Translate("Đơn đã Phê duyệt. Không thể chỉnh sửa !"), NotifyType.Warning)
                             Exit Sub
                         End If
-                        If SaveDB() Then
+                        If SaveDB("SAVE") Then
                             Response.Redirect("/Default.aspx?mid=Attendance&fid=ctrlLeaveRegistration")
                         Else
                             ShowMessage(Translate("Xảy ra lỗi"), NotifyType.Error)
@@ -610,10 +610,15 @@ Public Class ctrlLeaveRegistrationNewEdit
         End Try
     End Sub
 
-    Private Function SaveDB() As Boolean
+    Private Function SaveDB(ByVal _action As String) As Boolean
         Dim rep As New AttendanceRepository
         Dim PH As DataTable = New DataTable()
         Dim dr As DataRow() = New DataRow() {rPH}
+        If _action = "SAVE" Then
+            dr(0)("STATUS") = 3 'Chưa gửi duyệt
+        Else
+            dr(0)("STATUS") = 0 'Chờ phê duyệt
+        End If
         PH = dr.CopyToDataTable()
         PH.TableName = "PH"
         Dim dsLeaveSheet As New DataSet("DATA")
@@ -725,7 +730,7 @@ Public Class ctrlLeaveRegistrationNewEdit
                 Exit Sub
             End If
 
-            If SaveDB() Then
+            If SaveDB("SUBMIT") Then
                 Response.Redirect("/Default.aspx?mid=Attendance&fid=ctrlLeaveRegistration")
             Else
                 ShowMessage(Translate("Xảy ra lỗi"), NotifyType.Error)
