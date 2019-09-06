@@ -72,9 +72,9 @@
                         <td>
                             <tlk:RadNumericTextBox ID="nmDenSoThang" SkinID="Number" MaxLength="38" runat="server">
                             </tlk:RadNumericTextBox>
-                            <asp:CompareValidator ID="CompareValidator2" runat="server" ToolTip="<%$ Translate: Nhập đến số tháng lớn hơn từ số tháng  %>"
+                            <%--<asp:CompareValidator ID="CompareValidator2" runat="server" ToolTip="<%$ Translate: Nhập đến số tháng lớn hơn từ số tháng  %>"
                                 ErrorMessage="<%$ Translate: Nhập đến số tháng lớn hơn từ số tháng  %>" Type="Integer"
-                                Operator="GreaterThan" ControlToCompare="nmSENIORITY" ControlToValidate="nmDenSoThang"></asp:CompareValidator>
+                                Operator="GreaterThan" ControlToCompare="nmSENIORITY" ControlToValidate="nmDenSoThang"></asp:CompareValidator>--%>
                         </td>
                     </tr>
                     <tr>

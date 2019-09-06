@@ -606,7 +606,7 @@
                             runat="server" ErrorMessage="Bạn phải nhập số quyết định." ToolTip="Bạn phải nhập số quyết định."> </asp:RequiredFieldValidator>
                     </td>
                     <td class="lb">
-                                        <asp:Label runat ="server" ID ="lbEffectDate" Text ="Ngày hiệu lực" > </asp:Label><span style="color: red"> *</span>
+                                        <asp:Label runat ="server" ID ="lbEffectDate" Text ="Ngày hiệu lực" > </asp:Label><span style="color: red"></span>
                     </td><span
                             style="color: red"> *</span>s
                     <td>

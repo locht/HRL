@@ -698,6 +698,10 @@ Public Class ctrlHU_WelfareList
                         End If
                         objWelfareList.SENIORITY = nmSENIORITY.Value
                         objWelfareList.SENIORITY_FROM = nmDenSoThang.Value
+                        If (objWelfareList.SENIORITY > objWelfareList.SENIORITY_FROM) Then
+                            ShowMessage("Thâm niên (tháng)  phải nhỏ hơn đến số tháng", NotifyType.Error)
+                            Exit Sub
+                        End If
                         objWelfareList.MONEY = nmMONEY.Value
                         objWelfareList.START_DATE = dpSTART_DATE.SelectedDate
                         objWelfareList.END_DATE = dpEND_DATE.SelectedDate
