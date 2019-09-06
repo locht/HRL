@@ -16345,6 +16345,9 @@ Namespace AttendanceBusiness
         Private IDField As System.Nullable(Of Decimal)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private IMPORTField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private IN_PLAN_DAYSField As System.Nullable(Of Decimal)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -16603,6 +16606,19 @@ Namespace AttendanceBusiness
                 If (Me.IDField.Equals(value) <> true) Then
                     Me.IDField = value
                     Me.RaisePropertyChanged("ID")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property IMPORT() As String
+            Get
+                Return Me.IMPORTField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.IMPORTField, value) <> true) Then
+                    Me.IMPORTField = value
+                    Me.RaisePropertyChanged("IMPORT")
                 End If
             End Set
         End Property

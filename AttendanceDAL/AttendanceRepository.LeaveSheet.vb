@@ -213,6 +213,9 @@ Partial Public Class AttendanceRepository
             If Not String.IsNullOrEmpty(_filter.NOTE) Then
                 query = query.Where(Function(f) f.p.NOTE.ToLower().Contains(_filter.NOTE.ToLower()))
             End If
+            If Not String.IsNullOrEmpty(_filter.IMPORT) Then
+                query = query.Where(Function(f) f.p.IMPORT = -1)
+            End If
             Dim lst = query.Select(Function(p) New AT_LEAVESHEETDTO With {
                                                                        .ID = p.p.ID,
                                                                        .EMPLOYEE_CODE = p.e.EMPLOYEE_CODE,
@@ -240,7 +243,8 @@ Partial Public Class AttendanceRepository
                                                                        .MODIFIED_DATE = p.p.MODIFIED_DATE,
                                                                        .STATUS = p.p.STATUS,
                                                                        .STATUS_NAME = p.ot.NAME_VN,
-                                                                       .MODIFIED_LOG = p.p.MODIFIED_LOG})
+                                                                       .MODIFIED_LOG = p.p.MODIFIED_LOG,
+                                                                       .IMPORT = If(p.p.IMPORT = -1, "x", "")})
 
             lst = lst.OrderBy(Sorts)
             Total = lst.Count
@@ -330,6 +334,9 @@ Partial Public Class AttendanceRepository
             If Not String.IsNullOrEmpty(_filter.NOTE) Then
                 query = query.Where(Function(f) f.p.NOTE.ToLower().Contains(_filter.NOTE.ToLower()))
             End If
+            If Not String.IsNullOrEmpty(_filter.IMPORT) Then
+                query = query.Where(Function(f) f.p.IMPORT = -1)
+            End If
             Dim lst = query.Select(Function(p) New AT_LEAVESHEETDTO With {
                                                                        .ID = p.p.ID,
                                                                        .EMPLOYEE_CODE = p.e.EMPLOYEE_CODE,
@@ -357,7 +364,8 @@ Partial Public Class AttendanceRepository
                                                                        .MODIFIED_DATE = p.p.MODIFIED_DATE,
                                                                        .STATUS = p.p.STATUS,
                                                                        .STATUS_NAME = p.ot.NAME_VN,
-                                                                       .MODIFIED_LOG = p.p.MODIFIED_LOG})
+                                                                       .MODIFIED_LOG = p.p.MODIFIED_LOG,
+                                                                       .IMPORT = If(p.p.IMPORT = -1, "x", "")})
 
             lst = lst.OrderBy(Sorts)
             Total = lst.Count

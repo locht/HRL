@@ -18,7 +18,7 @@ Imports System.Runtime.Serialization
 Imports System.Xml.Serialization
 
 
-<Assembly: EdmSchemaAttribute("2cd1b2e2-9398-4669-8221-a2e462852160")>
+<Assembly: EdmSchemaAttribute("40f69a4d-ff42-4548-b919-45f2eeb59099")>
 #Region "EDM Relationship Metadata"
 <Assembly: EdmRelationshipAttribute("AttendanceModel", "FK_OOLT_OOL", "OT_OTHER_LIST_TYPE", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(OT_OTHER_LIST_TYPE), "OT_OTHER_LIST", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(OT_OTHER_LIST), True)>
 <Assembly: EdmRelationshipAttribute("AttendanceModel", "FK_OOLG_OOLT", "OT_OTHER_LIST_GROUP", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(OT_OTHER_LIST_GROUP), "OT_OTHER_LIST_TYPE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(OT_OTHER_LIST_TYPE), True)>
@@ -12742,6 +12742,31 @@ Public Partial Class AT_LEAVESHEET
     End Sub
 
     Private Partial Sub OnSTATUSChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property IMPORT() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _IMPORT
+        End Get
+        Set
+            OnIMPORTChanging(value)
+            ReportPropertyChanging("IMPORT")
+            _IMPORT = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("IMPORT")
+            OnIMPORTChanged()
+        End Set
+    End Property
+
+    Private _IMPORT As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnIMPORTChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnIMPORTChanged()
     End Sub
 
     #End Region

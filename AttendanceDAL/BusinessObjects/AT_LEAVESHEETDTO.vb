@@ -39,7 +39,7 @@
     Public Property MODIFIED_BY As String
     Public Property MODIFIED_LOG As String
     Public Property NOTE_APP As String
-
+    Public Property IMPORT As String 'Tự sinh do import bảng công
     Public Property IS_APP As Decimal?
    
 End Class

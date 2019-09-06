@@ -42,8 +42,8 @@
                         <Selecting AllowRowSelect="true" />
                         <ClientEvents OnRowDblClick="gridRowDblClick" />
                     </ClientSettings>
-                    <MasterTableView DataKeyNames="ID, EMPLOYEE_ID, EMPLOYEE_CODE, VN_FULLNAME, ORG_NAME, LEAVE_FROM, LEAVE_TO, MANUAL_NAME,  NOTE, STATUS, STATUS_NAME"
-                        ClientDataKeyNames="ID, EMPLOYEE_ID, EMPLOYEE_CODE, VN_FULLNAME,LEAVE_FROM, LEAVE_TO, MANUAL_NAME, NOTE, STATUS, STATUS_NAME">
+                    <MasterTableView DataKeyNames="ID, EMPLOYEE_ID, EMPLOYEE_CODE, VN_FULLNAME, ORG_NAME, LEAVE_FROM, LEAVE_TO, MANUAL_NAME,  NOTE, STATUS, STATUS_NAME, IMPORT"
+                        ClientDataKeyNames="ID, EMPLOYEE_ID, EMPLOYEE_CODE, VN_FULLNAME,LEAVE_FROM, LEAVE_TO, MANUAL_NAME, NOTE, STATUS, STATUS_NAME, IMPORT">
                         <Columns>
                             <tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderStyle-HorizontalAlign="Center"
                                 HeaderStyle-Width="30px" ItemStyle-HorizontalAlign="Center">
@@ -111,6 +111,10 @@
                             </tlk:GridDateTimeColumn>--%>
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Lý do không duyệt %>" DataField="REASON"
                                 UniqueName="REASON" SortExpression="REASON" ItemStyle-Width="100px">
+                                <HeaderStyle Width="100px" />
+                            </tlk:GridBoundColumn>
+                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Tự sinh do import bảng công %>" DataField="IMPORT"
+                                UniqueName="IMPORT" SortExpression="IMPORT" ItemStyle-Width="100px">
                                 <HeaderStyle Width="100px" />
                             </tlk:GridBoundColumn>
                         </Columns>
