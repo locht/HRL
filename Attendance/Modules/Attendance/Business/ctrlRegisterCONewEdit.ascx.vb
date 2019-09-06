@@ -289,23 +289,23 @@ Public Class ctrlRegisterCONewEdit
 
 #Region "Event"
 
-    Protected Sub ckNON_LEAVE_OnCheckedChanged(ByVal sender As Object, ByVal e As EventArgs)
-        Try
-            Dim edit = CType(sender, CheckBox)
-            If edit.Enabled = False Then
-                Exit Sub
-            End If
-            Dim item = CType(edit.NamingContainer, GridEditableItem)
-            Dim LEAVE_DAY = item.GetDataKeyValue("LEAVE_DAY")
-            For Each rows In dtDetail.Rows
-                If rows("LEAVE_DAY") = LEAVE_DAY Then
+    'Protected Sub ckNON_LEAVE_OnCheckedChanged(ByVal sender As Object, ByVal e As EventArgs)
+    '    Try
+    '        Dim edit = CType(sender, CheckBox)
+    '        If edit.Enabled = False Then
+    '            Exit Sub
+    '        End If
+    '        Dim item = CType(edit.NamingContainer, GridEditableItem)
+    '        Dim LEAVE_DAY = item.GetDataKeyValue("LEAVE_DAY")
+    '        For Each rows In dtDetail.Rows
+    '            If rows("LEAVE_DAY") = LEAVE_DAY Then
 
-                End If
-            Next
-        Catch ex As Exception
-            Throw ex
-        End Try
-    End Sub
+    '            End If
+    '        Next
+    '    Catch ex As Exception
+    '        Throw ex
+    '    End Try
+    'End Sub
 
     Protected Sub cbSTATUS_SHIFT_SelectedIndexChanged(ByVal sender As Object, ByVal e As RadComboBoxSelectedIndexChangedEventArgs)
         Try
