@@ -1433,6 +1433,7 @@
     <Content Include="ReportTemplates\Profile\WELFARE\import_phucloi_TNG.xls" />
     <Content Include="ReportTemplates\Payroll\Business\TEMP_IMPORT_HOSOLUONG.xls" />
     <Content Include="ReportTemplates\Profile\ctrlDashboardHome.xls" />
+    <Content Include="ReportTemplates\Attendance\Import\Template_ImportCTT_error.xls" />
     <None Include="Styles\ImgConfig.jquery.css" />
     <Content Include="Styles\font-awesome.css" />
     <Content Include="Styles\img\icon-tree.png" />
