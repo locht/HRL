@@ -29,6 +29,8 @@ Public Class Export
                         Time_TimeSheetCCT()
                     Case "Template_importTimesheet_CTT_Error"
                         Time_TimeSheetCCT_Error()
+                    Case "Template_importTimesheet_CTT_Error1"
+                        Time_TimeSheetCCT_Error1()
                     Case "WorkShiftImport"
                         WorkShiftImport()
                     Case "Template_ImportDMVS"
@@ -725,6 +727,17 @@ Public Class Export
             ExportTemplate("Attendance\Import\Template_importTimesheet_CTT_error.xls", _
                                       dsData, Nothing, _
                                       "Template_importTimesheet_CTT_error" & Format(Date.Now, "yyyyMMdd"))
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub Time_TimeSheetCCT_Error1()
+        Try
+            Dim dtData = Session("EXPORTREPORT")
+            ExportTemplate("Attendance\Import\Template_ImportCTT_error.xls", _
+                                      dtData, Nothing, _
+                                      "Template_ImportCTT_error" & Format(Date.Now, "yyyyMMdd"))
         Catch ex As Exception
             Throw ex
         End Try
