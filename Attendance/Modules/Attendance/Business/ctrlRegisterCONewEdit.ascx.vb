@@ -288,6 +288,25 @@ Public Class ctrlRegisterCONewEdit
 #End Region
 
 #Region "Event"
+
+    Protected Sub ckNON_LEAVE_OnCheckedChanged(ByVal sender As Object, ByVal e As EventArgs)
+        Try
+            Dim edit = CType(sender, CheckBox)
+            If edit.Enabled = False Then
+                Exit Sub
+            End If
+            Dim item = CType(edit.NamingContainer, GridEditableItem)
+            Dim LEAVE_DAY = item.GetDataKeyValue("LEAVE_DAY")
+            For Each rows In dtDetail.Rows
+                If rows("LEAVE_DAY") = LEAVE_DAY Then
+
+                End If
+            Next
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
     Protected Sub cbSTATUS_SHIFT_SelectedIndexChanged(ByVal sender As Object, ByVal e As RadComboBoxSelectedIndexChangedEventArgs)
         Try
             Dim edit = CType(sender, RadComboBox)
@@ -325,7 +344,7 @@ Public Class ctrlRegisterCONewEdit
         End Try
     End Sub
 
-    Private Sub rdFROM_LEAVE_SelectedDateChanged(sender As Object, e As SelectedDateChangedEventArgs) Handles rdLEAVE_FROM.SelectedDateChanged, rdLEAVE_TO.SelectedDateChanged
+    Private Sub rdFROM_LEAVE_SelectedDateChanged(ByVal sender As Object, ByVal e As SelectedDateChangedEventArgs) Handles rdLEAVE_FROM.SelectedDateChanged, rdLEAVE_TO.SelectedDateChanged
         If (Not IsDate(rdLEAVE_FROM.SelectedDate) OrElse Not IsDate(rdLEAVE_TO.SelectedDate) OrElse dtDetail Is Nothing OrElse Not IsNumeric(rtEmployee_id.Text)) Then Exit Sub
         Try
             GetLeaveSheet_Detail()
@@ -337,7 +356,7 @@ Public Class ctrlRegisterCONewEdit
         End Try
     End Sub
 
-    Private Sub cbMANUAL_ID_SelectedIndexChanged(sender As Object, e As RadComboBoxSelectedIndexChangedEventArgs) Handles cbMANUAL_ID.SelectedIndexChanged
+    Private Sub cbMANUAL_ID_SelectedIndexChanged(ByVal sender As Object, ByVal e As RadComboBoxSelectedIndexChangedEventArgs) Handles cbMANUAL_ID.SelectedIndexChanged
         Try
             GetLeaveSheet_Detail()
             Cal_DayLeaveSheet()
@@ -444,8 +463,8 @@ Public Class ctrlRegisterCONewEdit
                         ExcuteScript("Resize", "ResizeSplitter(splitterID, pane1ID, pane2ID, validateID, oldSize, 'rgWorkschedule')")
                     End If
                 Case CommonMessage.TOOLBARITEM_CANCEL
-                        ''POPUPTOLINK_CANCEL
-                        Response.Redirect("/Default.aspx?mid=Attendance&fid=ctrlRegisterCO&group=Business")
+                    ''POPUPTOLINK_CANCEL
+                    Response.Redirect("/Default.aspx?mid=Attendance&fid=ctrlRegisterCO&group=Business")
             End Select
             _myLog.WriteLog(_myLog._info, _classPath, method,
                                     CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
@@ -468,7 +487,7 @@ Public Class ctrlRegisterCONewEdit
         End Try
     End Sub
 
-    Private Sub rgData_ItemDataBound(sender As Object, e As GridItemEventArgs) Handles rgData.ItemDataBound
+    Private Sub rgData_ItemDataBound(ByVal sender As Object, ByVal e As GridItemEventArgs) Handles rgData.ItemDataBound
         Dim cbo As New RadComboBox
         Dim arr As New ArrayList()
         Try

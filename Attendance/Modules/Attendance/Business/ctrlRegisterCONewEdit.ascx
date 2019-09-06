@@ -233,6 +233,13 @@
 
                         <tlk:GridBoundColumn HeaderText="<%$ Translate: Loại nghỉ%>" DataField="MANUAL_NAME" AllowSorting ="false" 
                                     ColumnGroupName ="MANUAL_NAME" UniqueName="MANUAL_NAME" SortExpression="MANUAL_NAME" ReadOnly="true"/>  
+                        
+                        <tlk:GridTemplateColumn HeaderText="Không nghỉ" HeaderStyle-Width="150px" UniqueName ="NON_LEAVE" >
+                            <EditItemTemplate>
+                                <asp:CheckBox Width ="25px" runat="server" ID="ckNON_LEAVE"
+                                ReadOnly ="true" AutoPostBack ="true" CausesValidation="false" OnCheckedChanged ="ckNON_LEAVE_OnCheckedChanged" ></asp:CheckBox>                                       
+                            </EditItemTemplate>
+                        </tlk:GridTemplateColumn>
 
                         <tlk:GridTemplateColumn HeaderText="Đầu ca/cuối ca" HeaderStyle-Width="150px" UniqueName ="STATUS_SHIFT" >
                              <ItemTemplate>

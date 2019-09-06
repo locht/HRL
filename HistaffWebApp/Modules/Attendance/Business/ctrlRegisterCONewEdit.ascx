@@ -72,7 +72,7 @@
                     <hr />
                 </td>
             </tr>
-             <tr>
+            <tr>
                 <td class="lb">
                     <%# Translate("Phép chế độ")%>
                 </td>
@@ -160,7 +160,7 @@
                 </td>
                 <td>
                     <tlk:RadComboBox runat="server" ID="cbMANUAL_ID" Width="250px" DataTextField="NAME_VN"
-                        DataValueField="ID" AutoPostBack ="true" CausesValidation="false">
+                        DataValueField="ID" AutoPostBack ="true" >
                     </tlk:RadComboBox>
                 </td>
                 <td class="lb">
@@ -176,16 +176,16 @@
                     <%# Translate("Thời gian bắt đầu nghỉ")%><span class="lbReq">*</span>
                 </td>
                 <td>
-                    <tlk:RadDatePicker runat="server" ID="rdLEAVE_FROM" AutoPostBack="true" CausesValidation="false">
+                    <tlk:RadDatePicker runat="server" ID="rdLEAVE_FROM" AutoPostBack="true">
                     </tlk:RadDatePicker>
                 </td>
                 <td class="lb">
                     <%# Translate("Đến ngày")%><span class="lbReq">*</span>
                 </td>
                 <td>
-                    <tlk:RadDatePicker runat="server" ID="rdLEAVE_TO" AutoPostBack="true" CausesValidation="false">
+                    <tlk:RadDatePicker runat="server" ID="rdLEAVE_TO" AutoPostBack="true">
                     </tlk:RadDatePicker>
-                    <input id="btnDetail" value="<%# Translate("Chi tiết")%>" type="button" onclick="showDetail('')" CausesValidation="false">
+                    <input id="btnDetail" value="<%# Translate("Chi tiết")%>" type="button" onclick="showDetail('')">
                     <asp:CompareValidator ID="CompareValidator2" runat="server" ControlToValidate="rdLEAVE_TO"
                         Type="Date" ControlToCompare="rdLEAVE_FROM" Operator="GreaterThanEqual" ErrorMessage="<%$ Translate: Ngày kết thúc nghỉ phải lớn hơn ngày bắt đầu nghỉ %>"
                         ToolTip="<%$ Translate: Ngày kết thúc nghỉ phải lớn hơn ngày bắt đầu nghỉ %>"></asp:CompareValidator>
@@ -233,6 +233,13 @@
 
                         <tlk:GridBoundColumn HeaderText="<%$ Translate: Loại nghỉ%>" DataField="MANUAL_NAME" AllowSorting ="false" 
                                     ColumnGroupName ="MANUAL_NAME" UniqueName="MANUAL_NAME" SortExpression="MANUAL_NAME" ReadOnly="true"/>  
+                        
+                        <tlk:GridTemplateColumn HeaderText="Không nghỉ" HeaderStyle-Width="150px" UniqueName ="NON_LEAVE" >
+                            <EditItemTemplate>
+                                <asp:CheckBox Width ="25px" runat="server" ID="ckNON_LEAVE"
+                                ReadOnly ="true" AutoPostBack ="true" CausesValidation="false" OnCheckedChanged ="ckNON_LEAVE_OnCheckedChanged" ></asp:CheckBox>                                       
+                            </EditItemTemplate>
+                        </tlk:GridTemplateColumn>
 
                         <tlk:GridTemplateColumn HeaderText="Đầu ca/cuối ca" HeaderStyle-Width="150px" UniqueName ="STATUS_SHIFT" >
                              <ItemTemplate>
@@ -332,7 +339,7 @@
                 ResizeSplitterDefault(splitterID, pane1ID, pane2ID, oldSize);
             }
         }
-       
+
         function showDetail(value) {
             if (value == "")
                 if ($("#divLeaveDetail").css("display") == "block")
