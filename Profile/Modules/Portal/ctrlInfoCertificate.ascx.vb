@@ -491,6 +491,7 @@ Public Class ctrlInfoCertificate
                 txtRemindLink.Text = item.GetDataKeyValue("UPLOAD_FILE")
                 hidFamilyID.Value = item.GetDataKeyValue("ID")
                 hidID.Value = ""
+                checkFK_Pkey = 0
                 UpdateControlState()
             End If
         Catch ex As Exception

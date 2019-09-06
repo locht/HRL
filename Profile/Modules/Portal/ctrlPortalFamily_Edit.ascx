@@ -508,8 +508,7 @@
             }
 
             function OnClientSelectedIndexChanged(sender, eventArgs) {
-                var id = sender.get_id();
-                var cbo;
+                
             }
 
             function clearSelectRadcombo(cbo) {
@@ -527,7 +526,28 @@
 
             function OnClientItemsRequesting(sender, eventArgs) {
 
-            }
+            };
+            function rgFamilyEditRadGridDeSelecting(sender, eventArgs) {
+
+            };
+            function rgFamilyEditOnClientRowSelected(sender, eventArgs) {
+
+            };
+            function rgFamilyEditRadGridSelecting(sender, eventArgs) {
+
+            };
+            function rgFamilyRadGridDeSelecting(sender, eventArgs) {
+
+            };
+            function rgFamilyOnClientRowSelected(sender, eventArgs) {
+
+            };
+            function rgFamilyRadGridSelecting(sender, eventArgs) {
+
+            };
+             
+             
+             
         </script>
     </tlk:RadCodeBlock>
 </div>
