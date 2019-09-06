@@ -213,7 +213,7 @@
                 id = grid.get_masterTableView().get_selectedItems()[0].getDataKeyValue('ID');
             }
             if (id > 0) {
-                window.open('/Default.aspx?mid=Attendance&fid=ctrlRegisterCONewEdit&group=Business&VIEW=TRUE&FormType=0&ID=' + id + '&periodid=' + periodID, "_self");
+                window.open('/Default.aspx?mid=Attendance&fid=ctrlRegisterCONewEdit&group=Business&VIEW=TRUE&FormType=0&ID=' + id, "_self");
             }
         }
 
