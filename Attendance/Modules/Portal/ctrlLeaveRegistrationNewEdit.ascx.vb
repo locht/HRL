@@ -13,6 +13,7 @@ Imports Profile.ProfileBusiness
 Public Class ctrlLeaveRegistrationNewEdit
     Inherits CommonView
     Public Overrides Property MustAuthorize As Boolean = False
+    Dim psp As New AttendanceStoreProcedure
 
 #Region "Property"
     Public ReadOnly Property CurrentUser As UserDTO
@@ -283,6 +284,19 @@ Public Class ctrlLeaveRegistrationNewEdit
                     '        ShowMessage(Translate("Đơn đã Phê duyệt. Vui lòng thử lại !"), NotifyType.Warning)
                     '        Exit Sub
                     'End Select
+                    If rdLEAVE_FROM.SelectedDate IsNot Nothing Then
+                        If IS_PERIOD_CLOSE(rdLEAVE_FROM.SelectedDate) = False Then
+                            ShowMessage(Translate("Kì công đã đóng, xin kiểm tra lại !"), NotifyType.Warning)
+                            Exit Sub
+                        End If
+                    End If
+                    If rdLEAVE_TO.SelectedDate IsNot Nothing Then
+                        If IS_PERIOD_CLOSE(rdLEAVE_TO.SelectedDate) = False Then
+                            ShowMessage(Translate("Kì công đã đóng, xin kiểm tra lại !"), NotifyType.Warning)
+                            Exit Sub
+                        End If
+                    End If
+
                     If Utilities.ObjToString(rPH("S_CODE")) = "R" Then
                         ctrlMessageBox.MessageText = Translate("Bạn có muốn gửi phê duyệt?")
                         ctrlMessageBox.ActionName = CommonMessage.TOOLBARITEM_SUBMIT
@@ -739,6 +753,35 @@ Public Class ctrlLeaveRegistrationNewEdit
             Throw ex
         End Try
     End Sub
+
+    ''' <summary>
+    ''' Xử lý và kiểm tra Kỳ công đóng mở theo ngày đăng ký nghỉ
+    ''' </summary>
+    ''' <param name="_date"></param>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
+    Private Function IS_PERIOD_CLOSE(ByVal _date As Date?) As Boolean
+        Dim dtData As DataTable
+        Dim period_id As Integer
+        Dim rs As Boolean = False
+        Try
+            dtData = psp.GET_PERIOD_BYDATE(_date)
+            If dtData.Rows.Count > 0 Then
+                period_id = Utilities.ObjToDecima(dtData.Rows(0)("PERIOD_ID"))
+                Using rep As New AttendanceRepository
+                    Dim check = rep.CHECK_PERIOD_CLOSE(period_id)
+                    If check = 0 Then
+                        rs = False
+                    Else
+                        rs = True
+                    End If
+                End Using
+            End If
+            Return rs
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
 #End Region
 
 End Class

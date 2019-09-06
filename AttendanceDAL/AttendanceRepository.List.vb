@@ -7104,8 +7104,12 @@ Partial Public Class AttendanceRepository
 
             Dim query = (From p In Context.AT_PERIOD.Where(Function(f) f.ID = periodid)
                          From o In Context.AT_ORG_PERIOD.Where(Function(f) f.PERIOD_ID = p.ID)).Select(Function(f) f.o.STATUSCOLEX).FirstOrDefault
-
-            Return query
+            If query.HasValue Then
+                Return query
+            Else
+                query = 1
+                Return query
+            End If
         Catch ex As Exception
 
         End Try

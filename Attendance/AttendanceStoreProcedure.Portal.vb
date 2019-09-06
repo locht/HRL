@@ -63,4 +63,10 @@ Partial Class AttendanceStoreProcedure
         Dim obj As Object = rep.ExecuteStoreScalar("PKG_AT_PROCESS.PRI_PROCESS", New List(Of Object)(New Object() {employee, employee_app, period_id, status_id, P_PROCESS_CODE, P_NOTES, P_ID_REGGROUP, OUT_NUMBER}))
         Return Int32.Parse(obj(0).ToString())
     End Function
+    Public Function GET_PERIOD_BYDATE(ByVal P_DATE As Date?) As DataTable
+        Dim ds As DataSet = rep.ExecuteToDataSet("PKG_AT_ATTENDANCE_PORTAL.GET_PERIOD_BYDATE", New List(Of Object)(New Object() {P_DATE}))
+        If ds IsNot Nothing Then
+            Return ds.Tables(0)
+        End If
+    End Function
 End Class
