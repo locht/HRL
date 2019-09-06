@@ -389,9 +389,9 @@ dontrefresh:
                 dtData = rep.GetOtherList("HU_TITLE_GROUP", True)
                 TITLE_GROUP = dtData.Select("ID='" + cboTitleGroup.SelectedValue + "'")(0)("CODE").ToString
             End If
-            If rgMain.SelectedValue Is Nothing Then
-                txtCode.Text = rep.AutoGenCode(TITLE_GROUP, "HU_TITLE", "CODE")
-            End If
+            'If rgMain.SelectedValue Is Nothing Then
+            txtCode.Text = rep.AutoGenCode(TITLE_GROUP, "HU_TITLE", "CODE")
+            'End If
         Catch ex As Exception
             Throw ex
         Finally
