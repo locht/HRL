@@ -6603,9 +6603,10 @@ Partial Public Class AttendanceRepository
 
     Public Function DeletePortalReg(ByVal lstId As List(Of Decimal)) As Boolean
         Try
-            Dim lst = (From p In Context.AT_PORTAL_REG Where lstId.Contains(p.ID_REGGROUP)).ToList()
+            'Dim lst = (From p In Context.AT_PORTAL_REG Where lstId.Contains(p.ID_REGGROUP)).ToList()
+            Dim lst = (From p In Context.AT_LEAVESHEET Where lstId.Contains(p.ID)).ToList()
             For index = 0 To lst.Count - 1
-                Context.AT_PORTAL_REG.DeleteObject(lst(index))
+                Context.AT_LEAVESHEET.DeleteObject(lst(index))
             Next
             Context.SaveChanges()
             Return True
