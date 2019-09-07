@@ -18,26 +18,31 @@
             <tlk:RadPane ID="RadPane2" runat="server" Scrolling="None" Height="80px">
                 <table class="table-form" onkeydown="return (event.keyCode!=13)">
                     <tr>
-                        <td colspan="2">
-                            <asp:CheckBox ID="chkChecknghiViec" runat="server" Text="<%$ Translate: Nhân viên nghỉ việc %>" />
-                        </td>
-                    </tr>
-                    <tr>
                         <td class="lb">
-                            <%# Translate("Từ ngày")%>
+                            <%# Translate("Từ ngày")%><span class="lbReq">*</span>
                         </td>
                         <td>
-                            <tlk:RadDatePicker ID="rdtungay" MaxLength="12" SkinID="Readonly" runat="server"
+                            <tlk:RadDatePicker ID="rdtungay" MaxLength="12" runat="server"
                                 ToolTip="">
                             </tlk:RadDatePicker>
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator2" ControlToValidate="rdtungay"
+                                runat="server" ErrorMessage="<%$ Translate: Bạn phải chọn Từ ngày %>" ToolTip="<%$ Translate: Bạn phải chọn Từ ngày %>"> </asp:RequiredFieldValidator>
                         </td>
                         <td class="lb">
-                            <%# Translate("Đến ngày")%>
+                            <%# Translate("Đến ngày")%><span class="lbReq">*</span>
                         </td>
                         <td>
-                            <tlk:RadDatePicker ID="rdDenngay" MaxLength="12" SkinID="Readonly" runat="server"
+                            <tlk:RadDatePicker ID="rdDenngay" MaxLength="12" runat="server"
                                 ToolTip="" Width="150px">
                             </tlk:RadDatePicker>
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator1" ControlToValidate="rdDenngay"
+                                runat="server" ErrorMessage="<%$ Translate: Bạn phải chọn Đến ngày %>" ToolTip="<%$ Translate: Bạn phải chọn Đến ngày %>"> </asp:RequiredFieldValidator>
+                        </td>
+                        
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <asp:CheckBox ID="chkChecknghiViec" runat="server" Text="<%$ Translate: Nhân viên nghỉ việc %>" />
                         </td>
                         <td class="lb">
                             <%# Translate("Trạng thái")%>

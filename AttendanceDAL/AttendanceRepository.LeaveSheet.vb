@@ -179,7 +179,12 @@ Partial Public Class AttendanceRepository
                     query = query.Where(Function(f) f.e.TER_LAST_DATE <= _filter.WORKINGDAY)
                 End If
             End If
-
+            If _filter.FROM_DATE.HasValue Then
+                query = query.Where(Function(f) f.p.LEAVE_FROM >= _filter.FROM_DATE)
+            End If
+            If _filter.END_DATE.HasValue Then
+                query = query.Where(Function(f) f.p.LEAVE_TO <= _filter.END_DATE)
+            End If
             If Not String.IsNullOrEmpty(_filter.EMPLOYEE_CODE) Then
                 query = query.Where(Function(f) f.e.EMPLOYEE_CODE.ToLower().Contains(_filter.EMPLOYEE_CODE.ToLower()) Or f.e.FULLNAME_VN.ToLower().Contains(_filter.EMPLOYEE_CODE.ToLower()))
             End If
@@ -300,7 +305,12 @@ Partial Public Class AttendanceRepository
             If _filter.EMPLOYEE_ID.HasValue Then
                 query = query.Where(Function(f) f.p.EMPLOYEE_ID = _filter.EMPLOYEE_ID)
             End If
-
+            If _filter.FROM_DATE.HasValue Then
+                query = query.Where(Function(f) f.p.LEAVE_FROM >= _filter.FROM_DATE)
+            End If
+            If _filter.END_DATE.HasValue Then
+                query = query.Where(Function(f) f.p.LEAVE_TO <= _filter.END_DATE)
+            End If
             If Not String.IsNullOrEmpty(_filter.EMPLOYEE_CODE) Then
                 query = query.Where(Function(f) f.e.EMPLOYEE_CODE.ToLower().Contains(_filter.EMPLOYEE_CODE.ToLower()) Or f.e.FULLNAME_VN.ToLower().Contains(_filter.EMPLOYEE_CODE.ToLower()))
             End If

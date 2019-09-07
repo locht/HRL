@@ -104,15 +104,6 @@ Partial Public Class ctrlRegisterCO
     Protected WithEvents RadPane2 As Global.Telerik.Web.UI.RadPane
 
     '''<summary>
-    '''chkChecknghiViec control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents chkChecknghiViec As Global.System.Web.UI.WebControls.CheckBox
-
-    '''<summary>
     '''rdtungay control.
     '''</summary>
     '''<remarks>
@@ -122,6 +113,15 @@ Partial Public Class ctrlRegisterCO
     Protected WithEvents rdtungay As Global.Telerik.Web.UI.RadDatePicker
 
     '''<summary>
+    '''RequiredFieldValidator2 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents RequiredFieldValidator2 As Global.System.Web.UI.WebControls.RequiredFieldValidator
+
+    '''<summary>
     '''rdDenngay control.
     '''</summary>
     '''<remarks>
@@ -129,6 +129,24 @@ Partial Public Class ctrlRegisterCO
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents rdDenngay As Global.Telerik.Web.UI.RadDatePicker
+
+    '''<summary>
+    '''RequiredFieldValidator1 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents RequiredFieldValidator1 As Global.System.Web.UI.WebControls.RequiredFieldValidator
+
+    '''<summary>
+    '''chkChecknghiViec control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents chkChecknghiViec As Global.System.Web.UI.WebControls.CheckBox
 
     '''<summary>
     '''cbStatus control.

@@ -146,9 +146,11 @@ Public Class ctrlLeaveRegistration
                                                            Or f.Field(Of Decimal?)("ID") = Int16.Parse(PortalStatus.UnApprovedByLM).ToString() _
                                                            Or f.Field(Of Decimal?)("ID") = Int16.Parse(PortalStatus.Saved).ToString()).CopyToDataTable()
                 FillRadCombobox(cboStatus, data, "NAME", "ID")
+                rdtungay.SelectedDate = New DateTime(DateTime.Now.Year, 1, 1)
+                rdDenngay.SelectedDate = New DateTime(DateTime.Now.Year, 12, 31)
             End If
         End Using
-        txtYear.Value = Date.Now.Year
+        'txtYear.Value = Date.Now.Year
     End Sub
 
 #End Region
@@ -396,6 +398,12 @@ Public Class ctrlLeaveRegistration
             _filter.IS_APP = 0
             If IsNumeric(cboStatus.SelectedValue) Then
                 _filter.STATUS = cboStatus.SelectedValue
+            End If
+            If rdtungay.SelectedDate.HasValue Then
+                _filter.FROM_DATE = rdtungay.SelectedDate
+            End If
+            If rdDenngay.SelectedDate.HasValue Then
+                _filter.END_DATE = rdDenngay.SelectedDate
             End If
             If Not isFull Then
                 If Sorts IsNot Nothing Then

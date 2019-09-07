@@ -13,13 +13,24 @@
                 <table class="table-form">
                     <tr>
                         <td class="lb">
-                            <%# Translate("Năm")%>
+                            <%# Translate("Từ ngày")%><span class="lbReq">*</span>
                         </td>
                         <td>
-                            <tlk:RadNumericTextBox ID="txtYear" runat="server" SkinID="Number" NumberFormat-GroupSeparator=""
-                                ShowSpinButtons="true" MaxLength="4" MinValue="2000" NumberFormat-DecimalDigits="0"
-                                Width="60px">
-                            </tlk:RadNumericTextBox>
+                            <tlk:RadDatePicker ID="rdtungay" MaxLength="12" runat="server"
+                                ToolTip="">
+                            </tlk:RadDatePicker>
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator2" ControlToValidate="rdtungay"
+                                runat="server" ErrorMessage="<%$ Translate: Bạn phải chọn Từ ngày %>" ToolTip="<%$ Translate: Bạn phải chọn Từ ngày %>"> </asp:RequiredFieldValidator>
+                        </td>
+                        <td class="lb">
+                            <%# Translate("Đến ngày")%><span class="lbReq">*</span>
+                        </td>
+                        <td>
+                            <tlk:RadDatePicker ID="rdDenngay" MaxLength="12" runat="server"
+                                ToolTip="" Width="150px">
+                            </tlk:RadDatePicker>
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator1" ControlToValidate="rdDenngay"
+                                runat="server" ErrorMessage="<%$ Translate: Bạn phải chọn Đến ngày %>" ToolTip="<%$ Translate: Bạn phải chọn Đến ngày %>"> </asp:RequiredFieldValidator>
                         </td>
                         <td class="lb">
                             <%# Translate("Trạng thái")%>
