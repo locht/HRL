@@ -4,22 +4,16 @@
     <Item Text="Nghiệp vụ"  PostBack="False">
       <Group>
         <Item Value="ctrlGetSignDefault" Text="Đăng ký ca mặc định" PostBack="True" NavigateUrl="Default.aspx?mid=Attendance&amp;fid=ctrlGetSignDefault&amp;group=Setting" CheckPermission="true" />
-        <Item Value="ctrlSwipeDataDownload" Text="Tải dữ liệu máy chấm công" NavigateUrl="Default.aspx?mid=Attendance&amp;fid=ctrlSwipeDataDownload&amp;group=Business" CheckPermission="true" />
-        <Item Value="ctrlMngIO" Text="Quản lý dữ liệu quẹt thẻ, vân tay" NavigateUrl="Default.aspx?mid=Attendance&amp;fid=ctrlMngIO&amp;group=Business" CheckPermission="true"/>
+        <Item Value="ctrlSignWork" Text="Xếp ca làm việc" NavigateUrl="Default.aspx?mid=Attendance&amp;fid=ctrlSignWork&amp;group=Business" CheckPermission="true"/>
+		<Item Value="ctrlSwipeDataDownload" Text="Tải dữ liệu máy chấm công" NavigateUrl="Default.aspx?mid=Attendance&amp;fid=ctrlSwipeDataDownload&amp;group=Business" CheckPermission="true" />
         <Item Value="ctrlTimeTimesheet_machine" Text="Bảng chấm công gốc" NavigateUrl="Default.aspx?mid=Attendance&amp;fid=ctrlTimeTimesheet_machine&amp;group=Business" CheckPermission="true"/>
         <Item Value="ctrlDeclaresOT" Text="Cập nhật giờ làm thêm thực tế" NavigateUrl="Default.aspx?mid=Attendance&amp;fid=ctrlDeclaresOT&amp;group=Business" CheckPermission="true"/>
         <Item Value="ctrlTime_Timesheet_ot" Text="Tổng hợp công làm thêm giờ" NavigateUrl="Default.aspx?mid=Attendance&amp;fid=ctrlTime_Timesheet_ot&amp;group=Business" CheckPermission="true"/>
-        <Item Value="ctrlTime_Timesheet_CTT" Text="Xử lý dữ liệu chấm công" NavigateUrl="Default.aspx?mid=Attendance&amp;fid=ctrlTime_Timesheet_CTT&amp;group=Business" CheckPermission="true"/>
-        <Item Value="ctrlTimesheetSummary" Text="Bảng công tổng hợp" NavigateUrl="Default.aspx?mid=Attendance&amp;fid=ctrlTimesheetSummary&amp;group=Business" CheckPermission="true"/>
-        <Item Value="ctrlEntitlement" Text="Quản lý phép năm" NavigateUrl="Default.aspx?mid=Attendance&amp;fid=ctrlEntitlement&amp;group=Business" CheckPermission="true"/>
-        <Item Value="ctrlManagementNB" Text="Quản lý nghỉ bù" NavigateUrl="Default.aspx?mid=Attendance&amp;fid=ctrlManagementNB&amp;group=Business" CheckPermission="true"/>
-        <Item Value="ctrlSignWork" Text="Xếp ca làm việc" NavigateUrl="Default.aspx?mid=Attendance&amp;fid=ctrlSignWork&amp;group=Business" CheckPermission="true"/>
         <Item Value="ctrlRegisterCO" Text="Đăng ký nghỉ" NavigateUrl="Default.aspx?mid=Attendance&amp;fid=ctrlRegisterCO&amp;group=Business" CheckPermission="true"/>
-        <Item Value="ctrlRegisterDSVM" Text="Quản lý đi muộn về sớm" NavigateUrl="Default.aspx?mid=Attendance&amp;fid=ctrlRegisterDSVM&amp;group=Business" CheckPermission="true"/>
-        <Item Value="ctrlDeclareEntitlementNB" Text="Khai báo điều chỉnh phép chế độ" NavigateUrl="Default.aspx?mid=Attendance&amp;fid=ctrlDeclareEntitlementNB&amp;group=Business" CheckPermission="true"/>
-        <Item Value="ctrlOffSettingTimeKeeping" Text="Quản lý thông tin bù trừ chấm công" NavigateUrl="Default.aspx?mid=Attendance&amp;fid=ctrlOffSettingTimeKeeping&amp;group=Business" CheckPermission="true"/>
-		<Item Value="ctrlHU_ALP" Text="Quản lý kế hoạch nghỉ phép năm" NavigateUrl="Default.aspx?mid=Profile&amp;fid=ctrlHU_ALP&amp;group=Business" CheckPermission="true"/>
-      
+		<Item Value="ctrlTime_Timesheet_CTT" Text="Xử lý dữ liệu chấm công" NavigateUrl="Default.aspx?mid=Attendance&amp;fid=ctrlTime_Timesheet_CTT&amp;group=Business" CheckPermission="true"/>
+        <Item Value="ctrlTimesheetSummary" Text="Bảng công tổng hợp" NavigateUrl="Default.aspx?mid=Attendance&amp;fid=ctrlTimesheetSummary&amp;group=Business" CheckPermission="true"/>
+	    <Item Value="ctrlEntitlement" Text="Quản lý phép năm" NavigateUrl="Default.aspx?mid=Attendance&amp;fid=ctrlEntitlement&amp;group=Business" CheckPermission="true"/>
+        <Item Value="ctrlManagementNB" Text="Quản lý nghỉ bù" NavigateUrl="Default.aspx?mid=Attendance&amp;fid=ctrlManagementNB&amp;group=Business" CheckPermission="true"/>
 	  </Group>
     </Item>
     
@@ -37,7 +31,6 @@
         <Item Value="ctrlDMKieuCong" Text="Ký hiệu chấm công" NavigateUrl="Default.aspx?mid=Attendance&amp;fid=ctrlDMKieuCong&amp;group=List" CheckPermission="true" />
         <Item Value="ctrlDMCaLamViec" Text="Ca làm việc" NavigateUrl="Default.aspx?mid=Attendance&amp;fid=ctrlDMCaLamViec&amp;group=List" CheckPermission="true" />
         <Item Value="ctrlRitual" Text="Ngày nghỉ lễ" NavigateUrl="Default.aspx?mid=Attendance&amp;fid=ctrlRitual&amp;group=List" CheckPermission="true"/>
-        <Item Value="ctrlRitual_Hose" Text="Ngày nghỉ lễ Hose" NavigateUrl="Default.aspx?mid=Attendance&amp;fid=ctrlRitual_Hose&amp;group=List" CheckPermission="true"/>
         <Item Value="ctrlListParamSystem" Text="Tham số hệ thống" NavigateUrl="Default.aspx?mid=Attendance&amp;fid=ctrlListParamSystem&amp;group=List" CheckPermission="true"/>
       </Group>
     </Item>
