@@ -286,11 +286,11 @@ Public Class ctrlTimeTimesheet_machine
 
                     If getSE_CASE_CONFIG("ctrlTimeTimesheet_machine_case1") > 0 Then
                         rep.Init_TimeTImesheetMachines(_param, rdtungay.SelectedDate, rdDenngay.SelectedDate,
-                                                   Decimal.Parse(ctrlOrganization.CurrentValue), lsEmployee, p_delAll, "ctrlTimeTimesheet_machine_case1")
+                                                   Decimal.Parse(ctrlOrganization.CurrentValue), lsEmployee, 1, "ctrlTimeTimesheet_machine_case1")
                         Refresh("UpdateView")
                     Else
                         rep.Init_TimeTImesheetMachines(_param, rdtungay.SelectedDate, rdDenngay.SelectedDate,
-                                                   Decimal.Parse(ctrlOrganization.CurrentValue), lsEmployee, p_delAll, "ctrlTimeTimesheet_machine_caseALL")
+                                                   Decimal.Parse(ctrlOrganization.CurrentValue), lsEmployee, 1, "ctrlTimeTimesheet_machine_caseALL")
                         Refresh("UpdateView")
                     End If
                 Case TOOLBARITEM_EXPORT
