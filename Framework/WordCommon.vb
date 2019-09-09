@@ -5,7 +5,7 @@ Imports Aspose.Words.Drawing
 
 Public Class WordCommon
     Implements IDisposable
-    Private Function InsertHeaderLogo(ByVal doc As Document, ByVal dt As DataTable, ByVal sourcePath As String) As Document
+    Public Shared Function InsertHeaderLogo(ByVal doc As Document, ByVal dt As DataTable, ByVal sourcePath As String) As Document
         Try
             Dim path As String = sourcePath + dt.Rows(0)("FILE_HEADER")
             Dim path1 As String = sourcePath + dt.Rows(0)("FILE_FOOTER")

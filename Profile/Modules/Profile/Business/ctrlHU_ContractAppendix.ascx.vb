@@ -243,6 +243,7 @@ Public Class ctrlHU_ContractAppendix
         Dim sv_sdateliqui As String = String.Empty
         Dim sv_emp As String = ""
         Dim sv_FormID As Decimal = 0
+        Dim sourcePath = Server.MapPath("~/AttachFile/Profile/ctrlLocation/")
         Dim dtData As DataTable
         Dim reportName As String = String.Empty
         Dim reportNameOut As String = "String.Empty"
@@ -281,7 +282,8 @@ Public Class ctrlHU_ContractAppendix
                         ExportWordMailMerge(System.IO.Path.Combine(Server.MapPath(tempPath), "ContractAppendixSupport\PLHD.doc"),
                                   (CType(rgContract.SelectedItems(0), GridDataItem)).GetDataKeyValue("EMPLOYEE_CODE") + "_PLHD.doc",
                                   dtData,
-                                  Response)
+                                  Response,
+                                  sourcePath)
                     Else
                         Dim lstFile As List(Of String) = Utilities.SaveMultyFile(dtData, System.IO.Path.Combine(Server.MapPath(tempPath), "ContractAppendixSupport\PLHD.doc"), "PLHD")
                         Using zip As New ZipFile
