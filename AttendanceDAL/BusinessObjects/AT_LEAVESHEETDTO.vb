@@ -41,6 +41,6 @@
     Public Property NOTE_APP As String
     Public Property IMPORT As String 'Tự sinh do import bảng công
     Public Property IS_APP As Decimal?
-   
+    Public Property REASON As String
 End Class
 

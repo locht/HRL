@@ -44,9 +44,9 @@
                     </ClientSettings>
                     <MasterTableView DataKeyNames="ID, ID_EMPLOYEE, EMPLOYEE_CODE, EMPLOYEE_NAME, DEPARTMENT, JOBTITLE, 
                  YEAR,FROM_DATE, TO_DATE, ID_SIGN, SIGN_CODE,SIGN_NAME, TOTAL_LEAVE, NOTE, ID_REGGROUP,
-                 STATUS, STATUS_NAME" ClientDataKeyNames="ID, ID_EMPLOYEE, EMPLOYEE_CODE, EMPLOYEE_NAME, DEPARTMENT, JOBTITLE, 
+                 STATUS, STATUS_NAME, IMPORT" ClientDataKeyNames="ID, ID_EMPLOYEE, EMPLOYEE_CODE, EMPLOYEE_NAME, DEPARTMENT, JOBTITLE, 
                  YEAR,FROM_DATE, TO_DATE, ID_SIGN, SIGN_CODE,SIGN_NAME, TOTAL_LEAVE, NOTE, ID_REGGROUP,
-                 STATUS, STATUS_NAME">
+                 STATUS, STATUS_NAME, IMPORT">
                         <Columns>
                             <tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderStyle-HorizontalAlign="Center"
                                 HeaderStyle-Width="30px" ItemStyle-HorizontalAlign="Center">
@@ -84,15 +84,15 @@
                                 ItemStyle-Width="100px">
                                 <HeaderStyle Width="100px" />
                             </tlk:GridNumericColumn>
-                            <tlk:GridNumericColumn HeaderText="<%$ Translate: Số ngày trong kế hoạch %>" DataField="DAYIN_KH"
+                            <%--<tlk:GridNumericColumn HeaderText="<%$ Translate: Số ngày trong kế hoạch %>" DataField="DAYIN_KH"
                                 UniqueName="DAYIN_KH" SortExpression="DAYIN_KH" ItemStyle-HorizontalAlign="Right" ItemStyle-Width="100px">
                                 <HeaderStyle Width="100px" />
                             </tlk:GridNumericColumn>
                             <tlk:GridNumericColumn HeaderText="<%$ Translate: Số ngày ngoài kế hoạch %>" DataField="DAYOUT_KH"
                                 UniqueName="DAYOUT_KH" SortExpression="DAYOUT_KH" ItemStyle-HorizontalAlign="Right" ItemStyle-Width="100px">
                                 <HeaderStyle Width="100px" />
-                            </tlk:GridNumericColumn>
-                               <tlk:GridBoundColumn HeaderText="<%$ Translate: Lí do nghỉ phép %>" DataField="NOTE"
+                            </tlk:GridNumericColumn>--%>
+                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Lí do nghỉ phép %>" DataField="NOTE"
                                 UniqueName="NOTE" SortExpression="NOTE" ItemStyle-Width="200px">
                                 <HeaderStyle Width="200px" />
                             </tlk:GridBoundColumn>
@@ -107,6 +107,10 @@
                             </tlk:GridDateTimeColumn>
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Lý do không duyệt %>" DataField="REASON"
                                 UniqueName="REASON" SortExpression="REASON" HeaderStyle-Width="200px" ItemStyle-Width="200px" />
+                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Tự sinh do import bảng công %>" DataField="IMPORT"
+                                UniqueName="IMPORT" SortExpression="IMPORT" ItemStyle-Width="100px">
+                                <HeaderStyle Width="100px" />
+                            </tlk:GridBoundColumn>
                         </Columns>
                     </MasterTableView>
                 </tlk:RadGrid>
@@ -179,7 +183,7 @@
 
                 var id = $find('<%= rgMain.ClientID %>').get_masterTableView().get_selectedItems()[0].getDataKeyValue('ID');
                 var empId = $find('<%= rgMain.ClientID %>').get_masterTableView().get_selectedItems()[0].getDataKeyValue('EMPLOYEE_ID');
-                OpenInNewTab('Default.aspx?mid=Attendance&fid=ctrlLeaveRegistrationNewEdit&id=' + id + '&typeUser=LM&empId=' + empId);
+                OpenInNewTab('Default.aspx?mid=Attendance&fid=ctrlLeaveRegistrationNewEdit&id=' + id + '&typeUser=LM&empId=' + empId + '&idCtrl=' + idCtrl);
                 //args.set_cancel(true);
             }
         }

@@ -702,9 +702,18 @@ Public Class ctrlHU_WelfareList
                             ShowMessage("Thâm niên (tháng)  phải nhỏ hơn đến số tháng", NotifyType.Error)
                             Exit Sub
                         End If
+                      
                         objWelfareList.MONEY = nmMONEY.Value
+                        If (dpSTART_DATE.SelectedDate Is Nothing) Then
+                            ShowMessage("Bạn phải nhập ngày hiệu lực", NotifyType.Error)
+                            Exit Sub
+                        End If
                         objWelfareList.START_DATE = dpSTART_DATE.SelectedDate
                         objWelfareList.END_DATE = dpEND_DATE.SelectedDate
+                        If (objWelfareList.START_DATE > objWelfareList.END_DATE) Then
+                            ShowMessage("Nhập ngày hết hiệu lực lớn hơn ngày hiệu lực", NotifyType.Error)
+                            Exit Sub
+                        End If
                         objWelfareList.IS_AUTO = chkIS_AUTO.Checked
                         objWelfareList.ORG_ID = ctrlOrg.CurrentValue
                         'If isEdit Is Nothing Then
@@ -922,15 +931,15 @@ Public Class ctrlHU_WelfareList
         End Try
     End Sub
 
-    Private Sub dpSTART_DATE_custom_ServerValidate(ByVal source As Object, ByVal args As System.Web.UI.WebControls.ServerValidateEventArgs) Handles dpSTART_DATE_custom.ServerValidate
-        If dpSTART_DATE.SelectedDate Is Nothing Then
-            args.IsValid = False
-            ShowMessage(Translate("Bạn phải nhập ngày hiệu lực."), Utilities.NotifyType.Error)
-            Exit Sub
-        Else
-            args.IsValid = True
-        End If
-    End Sub
+    'Private Sub dpSTART_DATE_custom_ServerValidate(ByVal source As Object, ByVal args As System.Web.UI.WebControls.ServerValidateEventArgs) Handles dpSTART_DATE_custom.ServerValidate
+    '    If dpSTART_DATE.SelectedDate Is Nothing Then
+    '        args.IsValid = False
+    '        ShowMessage(Translate("Bạn phải nhập ngày hiệu lực."), Utilities.NotifyType.Error)
+    '        Exit Sub
+    '    Else
+    '        args.IsValid = True
+    '    End If
+    'End Sub
 
     ''' <lastupdate>
     ''' 11/07/2017 13:40

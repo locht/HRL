@@ -16,6 +16,14 @@ Public Class ctrlLeaveRegistrationNewEdit
     Dim psp As New AttendanceStoreProcedure
 
 #Region "Property"
+    Public Property IDCtrl As String
+        Get
+            Return ViewState(Me.ID & "_IDCtrl")
+        End Get
+        Set(value As String)
+            ViewState(Me.ID & "_IDCtrl") = value
+        End Set
+    End Property
     Public ReadOnly Property CurrentUser As UserDTO
         Get
             Return LogHelper.CurrentUser
@@ -143,6 +151,7 @@ Public Class ctrlLeaveRegistrationNewEdit
             'End If
             rtEmployee_id.Text = LogHelper.CurrentUser.EMPLOYEE_ID
             Dim startTime As DateTime = DateTime.UtcNow
+            IDCtrl = Request.Params("idCtrl")
             Message = Request.Params("VIEW")
             Dim Struct As Decimal = 1
             Dim ID_PH As Decimal = 0
@@ -179,7 +188,7 @@ Public Class ctrlLeaveRegistrationNewEdit
 
     Public Overrides Sub UpdateControlState()
         Try
-            If Utilities.ObjToString(rPH("S_CODE")) = "U" Or Utilities.ObjToString(rPH("S_CODE")) = "R" Or Utilities.ObjToString(rPH("S_CODE")) = "" Then
+            If Utilities.ObjToString(rPH("S_CODE")) = "R" Or Utilities.ObjToString(rPH("S_CODE")) = "" Then
                 RadPane1.Enabled = True
                 CType(Me.MainToolBar.Items(0), RadToolBarButton).Enabled = True
                 CType(Me.MainToolBar.Items(1), RadToolBarButton).Enabled = True
@@ -308,7 +317,7 @@ Public Class ctrlLeaveRegistrationNewEdit
                     End If
                 Case CommonMessage.TOOLBARITEM_CANCEL
                     ''POPUPTOLINK_CANCEL
-                    Response.Redirect("/Default.aspx?mid=Attendance&fid=ctrlLeaveRegistration")
+                    Response.Redirect("/Default.aspx?mid=Attendance&fid=" + IDCtrl)
             End Select
         Catch ex As Exception
             DisplayException(Me.ViewName, Me.ID, ex)

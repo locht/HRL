@@ -1,7 +1,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for Oracle database
 -- --------------------------------------------------
--- Date Created: 06/09/2019 11:37:14 AM
+-- Date Created: 09/09/2019 3:35:51 PM
 -- Generated from EDMX file: E:\TNG2\AttendanceDAL\AttendanceContext.edmx
 -- --------------------------------------------------
 
@@ -2302,7 +2302,8 @@ CREATE TABLE "dbo"."AT_LEAVESHEET" (
    "EMP_APPROVES_NAME" NVARCHAR2(255) NULL,
    "IS_APP" NUMBER(38,0) NULL,
    "STATUS" NUMBER(38,0) NULL,
-   "IMPORT" NUMBER(38,0) NULL
+   "IMPORT" NUMBER(38,0) NULL,
+   "REASON" NCLOB NULL
 );
 
 -- Creating table 'AT_TIMESHEET_MACHINET_IMPORT'

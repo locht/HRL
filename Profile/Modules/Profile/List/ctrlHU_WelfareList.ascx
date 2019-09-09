@@ -100,9 +100,9 @@
                         <td>
                             <tlk:RadDatePicker runat="server" ID="dpSTART_DATE">
                             </tlk:RadDatePicker>
-                            <asp:CustomValidator ID="dpSTART_DATE_custom" runat="server" ErrorMessage="Bạn phải nhập ngày hiệu lực."
+                           <%-- <asp:CustomValidator ID="dpSTART_DATE_custom" runat="server" ErrorMessage="Bạn phải nhập ngày hiệu lực."
                                 ToolTip="Bạn phải nhập ngày hiệu lực.">
-                            </asp:CustomValidator>
+                            </asp:CustomValidator>--%>
                             <%--<asp:RequiredFieldValidator ID="RequiredFieldValidator1" ControlToValidate="dpSTART_DATE"
                                 runat="server" ErrorMessage="" ToolTip="Bạn phải nhập ngày hiệu lực.">
                             </asp:RequiredFieldValidator>--%>
@@ -113,9 +113,9 @@
                         <td>
                             <tlk:RadDatePicker runat="server" ID="dpEND_DATE">
                             </tlk:RadDatePicker>
-                            <asp:CompareValidator Enable="false" ID="CompareValidator1" runat="server" ToolTip="Ngày hết hiệu lực phải lớn hơn ngày hiệu lực."
+                            <%--<asp:CompareValidator Enable="false" ID="CompareValidator1" runat="server" ToolTip="Ngày hết hiệu lực phải lớn hơn ngày hiệu lực."
                                 ErrorMessage="Ngày hết hiệu lực phải lớn hơn ngày hiệu lực." Type="Date" Operator="GreaterThan"
-                                ControlToCompare="dpSTART_DATE" ControlToValidate="dpEND_DATE"></asp:CompareValidator>
+                                ControlToCompare="dpSTART_DATE" ControlToValidate="dpEND_DATE"></asp:CompareValidator>--%>
                         </td>
                     </tr>
                     <tr>

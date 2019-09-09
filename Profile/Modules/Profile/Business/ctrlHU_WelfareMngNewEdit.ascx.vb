@@ -679,7 +679,7 @@ Public Class ctrlHU_WelfareMngNewEdit
             dtbImport.Columns.Add("GENDER_NAME", GetType(String))
             dtbImport.Columns.Add("SENIORITY", GetType(String))
             dtbImport.Columns.Add("MONEY_PL", GetType(Decimal))
-            dtbImport.Columns.Add("TOTAL_CHILD", GetType(String))
+            dtbImport.Columns.Add("TOTAL_CHILD", GetType(Decimal))
             dtbImport.Columns.Add("MONEY_TOTAL", GetType(Decimal))
             dtbImport.Columns.Add("REMARK", GetType(String))
             dtbImport.Columns.Add("WELFARE_ID", GetType(Decimal))
