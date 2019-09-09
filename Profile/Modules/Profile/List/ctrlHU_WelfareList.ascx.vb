@@ -702,9 +702,14 @@ Public Class ctrlHU_WelfareList
                             ShowMessage("Thâm niên (tháng)  phải nhỏ hơn đến số tháng", NotifyType.Error)
                             Exit Sub
                         End If
+                      
                         objWelfareList.MONEY = nmMONEY.Value
                         objWelfareList.START_DATE = dpSTART_DATE.SelectedDate
                         objWelfareList.END_DATE = dpEND_DATE.SelectedDate
+                        If (objWelfareList.START_DATE > objWelfareList.END_DATE) Then
+                            ShowMessage("Nhập ngày hết hiệu lực lớn hơn ngày hiệu lực", NotifyType.Error)
+                            Exit Sub
+                        End If
                         objWelfareList.IS_AUTO = chkIS_AUTO.Checked
                         objWelfareList.ORG_ID = ctrlOrg.CurrentValue
                         'If isEdit Is Nothing Then
