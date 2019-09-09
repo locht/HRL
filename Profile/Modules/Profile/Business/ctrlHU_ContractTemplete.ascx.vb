@@ -273,7 +273,10 @@ Public Class ctrlHU_ContractTemplete
                         If hidEmployeeID.Value IsNot Nothing Then
                             objContract.EMPLOYEE_ID = hidEmployeeID.Value
                         End If
-
+                        If cboContract.Text <> "" AndAlso cboContract.Text.Contains("KXD") Then
+                            ShowMessage(Translate("Loại phụ lục này không áp dụng cho loại hợp đồng có mã chứa chuỗi KXD"), NotifyType.Error)
+                            Exit Sub
+                        End If
                         objContract.START_DATE = rdStartDate.SelectedDate
                         If rdExpireDate.SelectedDate IsNot Nothing Then
                             objContract.EXPIRE_DATE = rdExpireDate.SelectedDate
