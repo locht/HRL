@@ -55,6 +55,8 @@
                             <tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderStyle-HorizontalAlign="Center"
                                 HeaderStyle-Width="30px" ItemStyle-HorizontalAlign="Center">
                             </tlk:GridClientSelectColumn>
+                                <tlk:GridBoundColumn HeaderText="<%$ Translate: Loại phúc lợi %>" DataField="WELFARE_NAME"
+                                ReadOnly="true" UniqueName="WELFARE_NAME" HeaderStyle-Width="100px" />
                             <tlk:GridBoundColumn DataField="ID" Visible="false" ReadOnly="true" />
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Mã nhân viên %>" DataField="EMPLOYEE_CODE"
                                 ReadOnly="true" UniqueName="EMPLOYEE_CODE" HeaderStyle-Width="60px" />
@@ -79,8 +81,7 @@
                                 ReadOnly="true" UniqueName="TOTAL_CHILD" HeaderStyle-Width="65px" />
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Mã công ty %>" DataField="org_code2"
                                 ReadOnly="true" UniqueName="org_code2" HeaderStyle-Width="100px" />
-                            <%--<tlk:GridBoundColumn HeaderText="<%$ Translate: Loại phúc lợi %>" DataField="WELFARE_NAME"
-                                ReadOnly="true" UniqueName="WELFARE_NAME" HeaderStyle-Width="100px" />--%>
+                        
                             <%--<tlk:GridNumericColumn HeaderText="<%$ Translate: Số tiền phúc lợi %>" DataField="MONEY_PL"
                                 ItemStyle-HorizontalAlign="Right" DataFormatString="{0:N0}" UniqueName="MONEY_PL"
                                 DataType="System.UInt64" HeaderStyle-Width="100px" />--%>
@@ -95,7 +96,7 @@
                         <ClientEvents OnRowDblClick="gridRowDblClick" />
                         <ClientEvents OnGridCreated="GridCreated" />
                         <ClientEvents OnCommand="ValidateFilter" />
-                        <Scrolling AllowScroll="true" UseStaticHeaders="true" FrozenColumnsCount="3" />
+                        <Scrolling AllowScroll="true" UseStaticHeaders="true" FrozenColumnsCount="4" />
                     </ClientSettings>
                 </tlk:RadGrid>
             </tlk:RadPane>

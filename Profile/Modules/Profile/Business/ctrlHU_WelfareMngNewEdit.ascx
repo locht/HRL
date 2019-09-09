@@ -108,8 +108,8 @@
                         UniqueName="CONTRACT_NAME" ReadOnly="true" SortExpression="CONTRACT_NAME" />--%>
                     <tlk:GridBoundColumn HeaderText="Thâm niên" DataField="SENIORITY" UniqueName="SENIORITY"
                         ReadOnly="true" SortExpression="SENIORITY" />
-                    <tlk:GridBoundColumn HeaderText="Tổng số con" DataField="total_child_display" UniqueName="total_child_display"
-                        ReadOnly="true" SortExpression="total_child_display" />
+                    <tlk:GridBoundColumn HeaderText="Tổng số con" DataField="TOTAL_CHILD" UniqueName="TOTAL_CHILD"
+                        ReadOnly="true" SortExpression="TOTAL_CHILD" />
                     <tlk:GridNumericColumn HeaderText="<%$ Translate: Số tiền phúc lợi %>" DataField="MONEY_PL"
                                 ItemStyle-HorizontalAlign="Right" DataFormatString="{0:N0}" UniqueName="MONEY_PL"
                                 DataType="System.UInt64" HeaderStyle-Width="100px" ReadOnly="true"/>
