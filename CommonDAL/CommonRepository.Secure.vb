@@ -1886,41 +1886,40 @@ Partial Public Class CommonRepository
         Try
             If Username = "" Then Return New UserDTO
             Dim query = (From p In Context.SE_USER
-                         From hu_e In Context.HU_EMPLOYEE.Where(Function(f) f.ID = p.EMPLOYEE_ID)
-                         Where p.USERNAME.ToUpper = Username.ToUpper And hu_e.IS_KIEM_NHIEM Is Nothing).ToList
+                         Where p.USERNAME.ToUpper = Username.ToUpper)
             Dim objUser = query.FirstOrDefault
             If objUser IsNot Nothing Then
                 Dim isUserPermission As Boolean = True
-                If objUser.p.MODULE_ADMIN Is Nothing Then
+                If objUser.MODULE_ADMIN Is Nothing Then
                     If (From p In Context.SE_USER_ORG_ACCESS
-                        Where p.USER_ID = objUser.p.ID).Count = 0 Then
+                        Where p.USER_ID = objUser.ID).Count = 0 Then
                         isUserPermission = False
                     End If
 
                     If (From p In Context.SE_USER_PERMISSION
-                        Where p.USER_ID = objUser.p.ID).Count = 0 Then
+                        Where p.USER_ID = objUser.ID).Count = 0 Then
                         isUserPermission = False
                     Else
                         isUserPermission = True
                     End If
                 End If
 
-                Return New UserDTO With {.ID = objUser.p.ID,
-                                         .EMAIL = objUser.p.EMAIL,
-                                         .TELEPHONE = objUser.p.TELEPHONE,
-                                         .USERNAME = objUser.p.USERNAME,
-                                         .FULLNAME = objUser.p.FULLNAME,
-                                         .PASSWORD = objUser.p.PASSWORD,
-                                         .IS_APP = objUser.p.IS_APP,
-                                         .IS_PORTAL = objUser.p.IS_PORTAL,
-                                         .IS_AD = objUser.p.IS_AD,
-                                         .EMPLOYEE_CODE = objUser.p.EMPLOYEE_CODE,
-                                         .ACTFLG = objUser.p.ACTFLG,
-                                         .IS_CHANGE_PASS = objUser.p.IS_CHANGE_PASS,
-                                         .MODULE_ADMIN = objUser.p.MODULE_ADMIN,
-                                         .EMPLOYEE_ID = objUser.p.EMPLOYEE_ID,
-                                         .EFFECT_DATE = objUser.p.EFFECT_DATE,
-                                         .EXPIRE_DATE = objUser.p.EXPIRE_DATE,
+                Return New UserDTO With {.ID = objUser.ID,
+                                         .EMAIL = objUser.EMAIL,
+                                         .TELEPHONE = objUser.TELEPHONE,
+                                         .USERNAME = objUser.USERNAME,
+                                         .FULLNAME = objUser.FULLNAME,
+                                         .PASSWORD = objUser.PASSWORD,
+                                         .IS_APP = objUser.IS_APP,
+                                         .IS_PORTAL = objUser.IS_PORTAL,
+                                         .IS_AD = objUser.IS_AD,
+                                         .EMPLOYEE_CODE = objUser.EMPLOYEE_CODE,
+                                         .ACTFLG = objUser.ACTFLG,
+                                         .IS_CHANGE_PASS = objUser.IS_CHANGE_PASS,
+                                         .MODULE_ADMIN = objUser.MODULE_ADMIN,
+                                         .EMPLOYEE_ID = objUser.EMPLOYEE_ID,
+                                         .EFFECT_DATE = objUser.EFFECT_DATE,
+                                         .EXPIRE_DATE = objUser.EXPIRE_DATE,
                                          .IS_USER_PERMISSION = isUserPermission}
             End If
             Return Nothing
