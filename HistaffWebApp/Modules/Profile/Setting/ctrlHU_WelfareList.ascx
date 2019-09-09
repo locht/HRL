@@ -100,9 +100,9 @@
                         <td>
                             <tlk:RadDatePicker runat="server" ID="dpSTART_DATE">
                             </tlk:RadDatePicker>
-                            <asp:CustomValidator ID="dpSTART_DATE_custom" runat="server" ErrorMessage="Bạn phải nhập ngày hiệu lực."
+                          <%--  <asp:CustomValidator ID="dpSTART_DATE_custom" runat="server" ErrorMessage="Bạn phải nhập ngày hiệu lực."
                                 ToolTip="Bạn phải nhập ngày hiệu lực.">
-                            </asp:CustomValidator>
+                            </asp:CustomValidator>--%>
                             <%--<asp:RequiredFieldValidator ID="RequiredFieldValidator1" ControlToValidate="dpSTART_DATE"
                                 runat="server" ErrorMessage="" ToolTip="Bạn phải nhập ngày hiệu lực.">
                             </asp:RequiredFieldValidator>--%>
