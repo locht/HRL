@@ -347,6 +347,7 @@ Public Class ctrlHU_Contract
                     End Using
 
                     Dim icheck As GridDataItem = item.Item(0)
+
                     ' Kiểm tra file theo thông tin trong database
                     If Not Utilities.GetTemplateLinkFile(icheck.GetDataKeyValue("CONTRACTTYPE_CODE"),
                                                          folderName,
@@ -380,44 +381,57 @@ Public Class ctrlHU_Contract
                         '    Exit Sub
                         'End If
                     End Using
-
+                    If icheck.GetDataKeyValue("CONTRACTTYPE_CODE") = "TNECSG_BDH_HDTV" Then
+                        If item.Count = 1 Then
+                            Using word As New WordCommon
+                                word.ExportMailMerge(filePath,
+                                                     icheck.GetDataKeyValue("EMPLOYEE_CODE") & "_HDTV_" & _
+                                                     Format(Date.Now, "yyyyMMddHHmmss") & extension,
+                                                     dtData,
+                                                     sourcePath,
+                                                     Response)
+                            End Using
+                        Else
+                            Dim item1 As GridDataItem = rgContract.SelectedItems(0)
+                            Dim fileName As String = item1.GetDataKeyValue("EMPLOYEE_CODE") & "_HDTV_" & _
+                                                     Format(Date.Now, "yyyyMMddHHmmss") & 0 & extension
+                            Dim doc As New Document(filePath)
+                            doc.MailMerge.Execute(dtData.Rows(0))
+                            path = AppDomain.CurrentDomain.BaseDirectory & "Files\"
+                            'path = "Files\"
+                            If Not Directory.Exists(path) Then
+                                Directory.CreateDirectory(path)
+                            End If
+                            doc.Save(path & fileName)
+                            ZipFiles(path)
+                        End If
+                    Else
                         If item.Count = 1 Then
                             'Export file mẫu
                             Using word As New WordCommon
-                            word.ExportMailMerge(filePath,
-                                                 icheck.GetDataKeyValue("EMPLOYEE_CODE") & "_HDLD_" & _
-                                                 Format(Date.Now, "yyyyMMddHHmmss") & extension,
-                                                 dtData,
-                                                 sourcePath,
-                                                 Response)
+                                word.ExportMailMerge(filePath,
+                                                     icheck.GetDataKeyValue("EMPLOYEE_CODE") & "_HDLD_" & _
+                                                     Format(Date.Now, "yyyyMMddHHmmss") & extension,
+                                                     dtData,
+                                                     sourcePath,
+                                                     Response)
                             End Using
                         Else
-                        'For lst = 0 To rgContract.SelectedItems.Count - 1
-                        '    Dim item1 As GridDataItem = rgContract.SelectedItems(lst)
-                        '    Dim fileName As String = item1.GetDataKeyValue("EMPLOYEE_CODE") & "_HDLD_" & _
-                        '                             Format(Date.Now, "yyyyMMddHHmmss") & lst & extension
-                        '    Dim doc As New Document(filePath)
-                        '    doc.MailMerge.Execute(dtData.Rows(lst))
-                        '    path = AppDomain.CurrentDomain.BaseDirectory & "Files\"
-                        '    'path = "Files\"
-                        '    If Not Directory.Exists(path) Then
-                        '        Directory.CreateDirectory(path)
-                        '    End If
-                        '    doc.Save(path & fileName)
-                        'Next
-                        Dim item1 As GridDataItem = rgContract.SelectedItems(0)
-                        Dim fileName As String = item1.GetDataKeyValue("EMPLOYEE_CODE") & "_HDLD_" & _
-                                                 Format(Date.Now, "yyyyMMddHHmmss") & 0 & extension
-                        Dim doc As New Document(filePath)
-                        doc.MailMerge.Execute(dtData.Rows(0))
-                        path = AppDomain.CurrentDomain.BaseDirectory & "Files\"
-                        'path = "Files\"
-                        If Not Directory.Exists(path) Then
-                            Directory.CreateDirectory(path)
+                            Dim item1 As GridDataItem = rgContract.SelectedItems(0)
+                            Dim fileName As String = item1.GetDataKeyValue("EMPLOYEE_CODE") & "_HDLD_" & _
+                                                     Format(Date.Now, "yyyyMMddHHmmss") & 0 & extension
+                            Dim doc As New Document(filePath)
+                            doc.MailMerge.Execute(dtData.Rows(0))
+                            path = AppDomain.CurrentDomain.BaseDirectory & "Files\"
+                            'path = "Files\"
+                            If Not Directory.Exists(path) Then
+                                Directory.CreateDirectory(path)
+                            End If
+                            doc.Save(path & fileName)
+                            ZipFiles(path)
                         End If
-                        doc.Save(path & fileName)
-                        ZipFiles(path)
                     End If
+
 
                 Case CommonMessage.TOOLBARITEM_NEXT
                     Dim dtData As DataTable
@@ -536,14 +550,14 @@ Public Class ctrlHU_Contract
                         ZipFiles(path)
                     End If
                 Case CommonMessage.TOOLBARITEM_DELETE
-                        If rgContract.SelectedItems.Count = 0 Then
-                            ShowMessage(Translate(CommonMessage.MESSAGE_NOT_SELECT_ROW), NotifyType.Warning)
-                            Exit Sub
-                        ElseIf rgContract.SelectedItems.Count > 1 Then
-                            ShowMessage(Translate(CommonMessage.MESSAGE_NOT_SELECT_MULTI_ROW), NotifyType.Warning)
-                            Exit Sub
-                        End If
-                        Dim item As GridDataItem = rgContract.SelectedItems(0)
+                    If rgContract.SelectedItems.Count = 0 Then
+                        ShowMessage(Translate(CommonMessage.MESSAGE_NOT_SELECT_ROW), NotifyType.Warning)
+                        Exit Sub
+                    ElseIf rgContract.SelectedItems.Count > 1 Then
+                        ShowMessage(Translate(CommonMessage.MESSAGE_NOT_SELECT_MULTI_ROW), NotifyType.Warning)
+                        Exit Sub
+                    End If
+                    Dim item As GridDataItem = rgContract.SelectedItems(0)
                     If item.GetDataKeyValue("STATUS_ID") = ProfileCommon.DECISION_STATUS.APPROVE_ID Then
                         ShowMessage(Translate("Bản ghi đã phê duyệt. Thao tác thực hiện không thành công"), NotifyType.Warning)
                         Exit Sub
