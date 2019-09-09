@@ -890,6 +890,23 @@ Public Class Utilities
 
 #Region "Export Word - MailMerge"
     Public Shared Sub ExportWordMailMerge(ByVal link As String, ByVal filename As String, ByVal dtData As DataTable,
+                                          ByVal response As System.Web.HttpResponse, ByVal sourcePath As String, Optional ByVal format As Integer = 0)
+        Try
+            'THanhNT added variable "format" (0 = doc, 1 = pdf)
+            ' Open an existing document. 
+            Dim doc As New Document(link)
+            ' Fill the fields in the document with user data.
+            doc.MailMerge.Execute(dtData)
+            ' Send the document in Word format to the client browser with an option to save to disk or open inside the current browser.
+
+            'doc.Save(filename, SaveFormat.Doc, SaveType.OpenInApplication, response)
+            Dim tempDoc As Document = WordCommon.InsertHeaderLogo(doc, dtData, sourcePath)
+            tempDoc.Save(response, filename, Aspose.Words.ContentDisposition.Attachment, If(format = 0, Aspose.Words.Saving.SaveOptions.CreateSaveOptions(SaveFormat.Doc), Aspose.Words.Saving.SaveOptions.CreateSaveOptions(SaveFormat.Pdf)))
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+    Public Shared Sub ExportWordMailMerge(ByVal link As String, ByVal filename As String, ByVal dtData As DataTable,
                                           ByVal response As System.Web.HttpResponse, Optional ByVal format As Integer = 0)
         Try
             'THanhNT added variable "format" (0 = doc, 1 = pdf)
