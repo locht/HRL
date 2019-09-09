@@ -113,9 +113,9 @@
                         <td>
                             <tlk:RadDatePicker runat="server" ID="dpEND_DATE">
                             </tlk:RadDatePicker>
-                            <asp:CompareValidator Enable="false" ID="CompareValidator1" runat="server" ToolTip="Ngày hết hiệu lực phải lớn hơn ngày hiệu lực."
+                            <%--<asp:CompareValidator Enable="false" ID="CompareValidator1" runat="server" ToolTip="Ngày hết hiệu lực phải lớn hơn ngày hiệu lực."
                                 ErrorMessage="Ngày hết hiệu lực phải lớn hơn ngày hiệu lực." Type="Date" Operator="GreaterThan"
-                                ControlToCompare="dpSTART_DATE" ControlToValidate="dpEND_DATE"></asp:CompareValidator>
+                                ControlToCompare="dpSTART_DATE" ControlToValidate="dpEND_DATE"></asp:CompareValidator>--%>
                         </td>
                     </tr>
                     <tr>
