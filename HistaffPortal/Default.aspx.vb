@@ -83,7 +83,7 @@ Public Class _Default
                 view.SetProperty("EmployeeCode", LogHelper.CurrentUser.EMPLOYEE_CODE)
                 PagePlaceHolder.Controls.Clear()
                 PagePlaceHolder.Controls.Add(view)
-                liTitle.Text = view.ViewDescription
+                'liTitle.Text = view.ViewDescription
                 Me.Title = Me.Translate(view.ViewDescription)
             Else
                 Utilities.Redirect("Dashboard", "ctrlDashboardPortalSixCell")
