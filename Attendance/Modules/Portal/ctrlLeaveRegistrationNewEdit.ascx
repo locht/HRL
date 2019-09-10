@@ -199,7 +199,7 @@
                     <span class="lbReq">*</span>
                 </td>
                 <td colspan="3">
-                    <tlk:RadTextBox runat="server" ID="rtNote" rtNOTE="MultiLine" Width="100%">
+                    <tlk:RadTextBox runat="server" ID="rtNote" CausesValidation="false" rtNOTE="MultiLine" Width="100%">
                     </tlk:RadTextBox>
                     <asp:RequiredFieldValidator ID="reNOTE" ControlToValidate="rtNote"
                         runat="server" ErrorMessage="<%$ Translate: Chưa nhập lý do nghỉ %>"

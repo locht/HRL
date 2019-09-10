@@ -160,7 +160,7 @@
                 </td>
                 <td>
                     <tlk:RadComboBox runat="server" ID="cbMANUAL_ID" Width="250px" DataTextField="NAME_VN"
-                        DataValueField="ID" AutoPostBack ="true" >
+                        DataValueField="ID" CausesValidation="false" AutoPostBack ="true" >
                     </tlk:RadComboBox>
                 </td>
                 <td class="lb">
@@ -176,14 +176,14 @@
                     <%# Translate("Thời gian bắt đầu nghỉ")%><span class="lbReq">*</span>
                 </td>
                 <td>
-                    <tlk:RadDatePicker runat="server" ID="rdLEAVE_FROM" AutoPostBack="true">
+                    <tlk:RadDatePicker runat="server" ID="rdLEAVE_FROM" CausesValidation="false" AutoPostBack="true">
                     </tlk:RadDatePicker>
                 </td>
                 <td class="lb">
                     <%# Translate("Đến ngày")%><span class="lbReq">*</span>
                 </td>
                 <td>
-                    <tlk:RadDatePicker runat="server" ID="rdLEAVE_TO" AutoPostBack="true">
+                    <tlk:RadDatePicker runat="server" ID="rdLEAVE_TO" CausesValidation="false" AutoPostBack="true">
                     </tlk:RadDatePicker>
                     <input id="btnDetail" value="<%# Translate("Chi tiết")%>" type="button" onclick="showDetail('')">
                     <asp:CompareValidator ID="CompareValidator2" runat="server" ControlToValidate="rdLEAVE_TO"
@@ -197,7 +197,7 @@
                     <span class="lbReq">*</span>
                 </td>
                 <td colspan="3">
-                    <tlk:RadTextBox runat="server" ID="rtNote" rtNOTE="MultiLine" Width="100%">
+                    <tlk:RadTextBox runat="server" ID="rtNote" CausesValidation="false" rtNOTE="MultiLine" Width="100%">
                     </tlk:RadTextBox>
                     <asp:RequiredFieldValidator ID="reNOTE" ControlToValidate="rtNote"
                         runat="server" ErrorMessage="<%$ Translate: Chưa nhập lý do nghỉ %>"

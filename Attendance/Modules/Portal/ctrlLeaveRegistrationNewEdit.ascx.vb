@@ -249,7 +249,7 @@ Public Class ctrlLeaveRegistrationNewEdit
                 Case CommonMessage.TOOLBARITEM_SAVE
                     If Page.IsValid Then
                         'check so ngay dang ky nghi
-                        If Not IsNumeric(rnDAY_NUM.Value) OrElse rnDAY_NUM.Value < 1 Then
+                        If Not IsNumeric(rnDAY_NUM.Value) OrElse rnDAY_NUM.Value <= 0 Then
                             ShowMessage(Translate("Số ngày đăng ký nghỉ phải lơn hơn 0"), NotifyType.Warning)
                             Exit Sub
                         End If
