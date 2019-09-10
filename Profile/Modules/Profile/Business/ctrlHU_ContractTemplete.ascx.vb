@@ -1301,7 +1301,7 @@ Public Class ctrlHU_ContractTemplete
                 If Request.Params("add") IsNot Nothing AndAlso Request.Params("add").ToString = "1" Then
                     If Request.Params("EmpID") IsNot Nothing Then
                         CurrentState = CommonMessage.STATE_NEW
-                        btnEmployee.ReadOnly = True
+                        'btnEmployee.ReadOnly = True
                         FillData(Request.Params("EmpID"))
                     Else
                         CurrentState = CommonMessage.STATE_NEW
