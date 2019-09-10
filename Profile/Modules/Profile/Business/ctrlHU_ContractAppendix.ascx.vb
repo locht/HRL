@@ -279,13 +279,14 @@ Public Class ctrlHU_ContractAppendix
                     ' dtData = rep.PrintFileContract(sv_emp, sv_sID)
 
                     If dtData.Rows.Count = 1 Then
-                        ExportWordMailMerge(System.IO.Path.Combine(Server.MapPath(tempPath), "ContractAppendixSupport\PLHD.doc"),
-                                  (CType(rgContract.SelectedItems(0), GridDataItem)).GetDataKeyValue("EMPLOYEE_CODE") + "_PLHD.doc",
+                        ExportWordMailMerge(System.IO.Path.Combine(Server.MapPath(tempPath), "ContractAppendixSupport\" + (CType(rgContract.SelectedItems(0), GridDataItem)).GetDataKeyValue("CONTRACTTYPE_CODE") + ".doc"),
+                                  (CType(rgContract.SelectedItems(0), GridDataItem)).GetDataKeyValue("EMPLOYEE_CODE") + (CType(rgContract.SelectedItems(0), GridDataItem)).GetDataKeyValue("CONTRACTTYPE_CODE") + ".doc",
                                   dtData,
                                   Response,
                                   sourcePath)
                     Else
-                        Dim lstFile As List(Of String) = Utilities.SaveMultyFile(dtData, System.IO.Path.Combine(Server.MapPath(tempPath), "ContractAppendixSupport\PLHD.doc"), "PLHD")
+                        Dim lstFile As List(Of String) = Utilities.SaveMultyFile(dtData, System.IO.Path.Combine(Server.MapPath(tempPath), "ContractAppendixSupport\" + (CType(rgContract.SelectedItems(0), GridDataItem)).GetDataKeyValue("CONTRACTTYPE_CODE") + ".doc"),
+                                                                                 (CType(rgContract.SelectedItems(0), GridDataItem)).GetDataKeyValue("CONTRACTTYPE_CODE"))
                         Using zip As New ZipFile
                             zip.AlternateEncodingUsage = ZipOption.AsNecessary
                             zip.AddDirectoryByName("Files")
