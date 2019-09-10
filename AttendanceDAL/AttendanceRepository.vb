@@ -184,7 +184,7 @@ Partial Public Class AttendanceRepository
                 Dim UserID = (From u In Context.SE_USER Where u.USERNAME = strUSER Select u.ID).FirstOrDefault
                 Dim lstOrg = (From p In Context.SE_USER_ORG_ACCESS Where p.USER_ID = UserID Select p.ORG_ID).ToList().Distinct.ToList()
                 cbxData.LIST_LIST_SHIFT = (From p In Context.AT_SHIFT
-                                           Where p.ACTFLG = "A" And (lstOrg.Contains(p.ORG_ID) Or strUSER = "ADMIN") Order By p.NAME_VN Descending
+                                           Where p.ACTFLG = "A" And (lstOrg.Contains(p.ORG_ID) Or strUSER = "ADMIN" Or p.ORG_ID = -1) Order By p.NAME_VN Descending
                                            Select New AT_SHIFTDTO With {
                                                .ID = p.ID,
                                                .CODE = p.CODE,

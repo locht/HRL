@@ -156,9 +156,23 @@
         }
 
         function OpenTemplete() {
-            window.open('/Default.aspx?mid=Profile&fid=ctrlHU_ContractTemplete&group=Business&noscroll=1&add=1', "_self");
-            var pos = $("html").offset();
-            oWindow.maximize(true);
+            var bCheck = $find('<%# rgContract.ClientID %>').get_masterTableView().get_selectedItems().length;
+            if (bCheck == 0) {
+                window.open('/Default.aspx?mid=Profile&fid=ctrlHU_ContractTemplete&group=Business&noscroll=1&add=1', "_self");
+                var pos = $("html").offset();
+                oWindow.maximize(true);
+            }
+            else if (bCheck == 1) {
+                var emp_id = $find('<%# rgContract.ClientID%>').get_masterTableView().get_selectedItems()[0].getDataKeyValue('EMPLOYEE_ID');
+                    console.log(emp_id);
+                    window.open('/Default.aspx?mid=Profile&fid=ctrlHU_ContractTemplete&group=Business&noscroll=1&add=1&EmpID=' + emp_id, "_self");
+                    var pos = $("html").offset();
+                    oWindow.maximize(true);
+                }
+                else {
+                    var n = noty({ text: 'Không thể chọn nhiều dòng để thực hiện khai báo PLHĐ', dismissQueue: true, type: 'warning' });
+                    setTimeout(function () { $.noty.close(n.options.id); }, 5000);
+                }
         }
 
         function OpenExtend() {
