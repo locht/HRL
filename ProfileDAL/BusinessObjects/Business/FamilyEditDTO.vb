@@ -7,6 +7,7 @@
     Public Property EMPLOYEE_ID As Decimal
     Public Property EMPLOYEE_CODE As String
     Public Property EMPLOYEE_NAME As String
+    Public Property EMPLOYEE_ORG As String
     Public Property TAXTATION As String
     Public Property FULLNAME As String
     Public Property RELATION_ID As Decimal
