@@ -1504,6 +1504,7 @@
     <None Include="TemplateDynamic\ContractSupport\TMF_Offer_Letter_Revised.doc" />
     <Content Include="TemplateDynamic\ContractSupport\TNECSG_BDH_HD.docx" />
     <Content Include="TemplateDynamic\ContractSupport\TNECSG_BDH_HDTV.doc" />
+    <Content Include="TemplateDynamic\ContractSupport\TNECSG_X30_HDTV.docx" />
     <None Include="TemplateDynamic\Contract\1.doc" />
     <None Include="TemplateDynamic\Contract\12.doc" />
     <None Include="TemplateDynamic\Contract\13.doc" />
