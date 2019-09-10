@@ -15,7 +15,9 @@
     </Windows>
 </tlk:RadWindowManager>
 <tlk:RadCodeBlock ID="RadCodeBlock1" runat="server">
-    <script type="text/javascript">
+
+    <img src="http://localhost:7777/Static/Images/IMAGE_PANEL.png" style="width:100%;height:100%"/>
+  <%--  <script type="text/javascript">
         var winW, winH, pos;
         var oWnd1, oWnd2, oWnd4, oWnd5;
 
@@ -70,5 +72,5 @@
         $(window).resize(function () {
             SizeToFit(1);
         });
-    </script>
+    </script>--%>
 </tlk:RadCodeBlock>

@@ -43298,6 +43298,9 @@ Namespace ProfileBusiness
         Private EMPLOYEE_NAMEField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private EMPLOYEE_ORGField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private FK_PKEYField As System.Nullable(Of Decimal)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -43817,6 +43820,19 @@ Namespace ProfileBusiness
                 If (Object.ReferenceEquals(Me.EMPLOYEE_NAMEField, value) <> true) Then
                     Me.EMPLOYEE_NAMEField = value
                     Me.RaisePropertyChanged("EMPLOYEE_NAME")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property EMPLOYEE_ORG() As String
+            Get
+                Return Me.EMPLOYEE_ORGField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.EMPLOYEE_ORGField, value) <> true) Then
+                    Me.EMPLOYEE_ORGField = value
+                    Me.RaisePropertyChanged("EMPLOYEE_ORG")
                 End If
             End Set
         End Property

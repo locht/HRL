@@ -217,6 +217,7 @@
     <Content Include="Static\Images\fav-icon.ico" />
     <Content Include="Static\Images\fav-icon.png" />
     <Content Include="Static\Images\header.jpg" />
+    <Content Include="Static\Images\IMAGE_PANEL.png" />
     <Content Include="Static\Images\loginbackground.jpg" />
     <Content Include="Static\Images\logo_company.png" />
     <Content Include="ReportTemplates\Payroll\Report\PhieuLuong.docx" />

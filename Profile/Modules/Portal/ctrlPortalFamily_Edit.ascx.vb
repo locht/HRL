@@ -20,6 +20,14 @@ Public Class ctrlPortalFamily_Edit
             ViewState(Me.ID & "_checkFK_Pkey") = value
         End Set
     End Property
+    Property FAMILY_DS As List(Of FamilyEditDTO)
+        Get
+            Return ViewState(Me.ID & "_FAMILY_DS")
+        End Get
+        Set(ByVal value As List(Of FamilyEditDTO))
+            ViewState(Me.ID & "_FAMILY_DS") = value
+        End Set
+    End Property
 #End Region
 
 #Region "Page"
@@ -617,6 +625,16 @@ Public Class ctrlPortalFamily_Edit
     Private Sub rgFamily_ItemCommand(ByVal source As Object, ByVal e As Telerik.Web.UI.GridCommandEventArgs) Handles rgFamily.ItemCommand
         Try
             If e.CommandName = "EditRow" Then
+                Using rep As New ProfileBusinessRepository
+                    FAMILY_DS = rep.GetEmployeeFamilyEdit(New FamilyEditDTO With {.EMPLOYEE_ID = EmployeeID})
+                End Using
+                Dim item1 = CType(e.Item, GridDataItem)
+                For Each LINE In FAMILY_DS
+                    If LINE.FK_PKEY = item1.GetDataKeyValue("ID") Then
+                        ShowMessage(Translate("Đã có thông tin ở mục chỉnh sửa."), NotifyType.Warning)
+                        Exit Sub
+                    End If
+                Next
                 CurrentState = CommonMessage.STATE_EDIT
                 ClearControlValue(txtAdress, txtTempAdress, txtAD_Village, txtHouseCertificate_Code, txtHouseCertificate_Num, cboGender, rdIDDate, txtIDPlace, cboNationlity, txtPhone, rdMSTDate, txtBIRTH_CODE, cboNATIONALITYFAMILY, cbTempKtPROVINCE_ID, cbTempKtDISTRICT_ID, cbTempKtWARD_ID, txtQuyen,
                                     chkIs_Owner, chkIs_Pass, txtFullName, txtIDNO, txtRemark, txtTax, txtQuyen,
@@ -734,6 +752,7 @@ Public Class ctrlPortalFamily_Edit
     Protected Sub chkIsDeduct_CheckedChanged(ByVal sender As Object, ByVal e As EventArgs) Handles chkIsDeduct.CheckedChanged
         rdDeductFrom.Enabled = chkIsDeduct.Checked
         rdDeductTo.Enabled = chkIsDeduct.Checked
+        rdDeductReg.Enabled = chkIsDeduct.Checked
     End Sub
 
     Protected Sub chkIsOwner_CheckedChanged(ByVal sender As Object, ByVal e As EventArgs) Handles chkIs_Owner.CheckedChanged
@@ -876,8 +895,8 @@ Public Class ctrlPortalFamily_Edit
     Private Sub cbTempKtDISTRICT_ID_SelectedIndexChanged(ByVal sender As Object, ByVal e As Telerik.Web.UI.RadComboBoxSelectedIndexChangedEventArgs) Handles cbTempKtDISTRICT_ID.SelectedIndexChanged
         Dim dt As New DataTable
         Using repNS As New ProfileRepository
-            If IsNumeric(cbDISTRICT_ID.SelectedValue) Then
-                dt = repNS.GetWardList(cbDISTRICT_ID.SelectedValue, False)
+            If IsNumeric(cbTempKtDISTRICT_ID.SelectedValue) Then
+                dt = repNS.GetWardList(cbTempKtDISTRICT_ID.SelectedValue, False)
             End If
             If dt IsNot Nothing AndAlso dt.Rows.Count > 0 Then
                 FillRadCombobox(cbTempKtWARD_ID, dt, "NAME", "ID")

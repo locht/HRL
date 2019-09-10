@@ -972,6 +972,7 @@ Partial Class ProfileRepository
                          From b_pro In Context.HU_PROVINCE.Where(Function(f) f.ID = p.BIRTH_PROVINCE_ID).DefaultIfEmpty
                          From b_dis In Context.HU_DISTRICT.Where(Function(f) f.ID = p.BIRTH_DISTRICT_ID).DefaultIfEmpty
                          From b_ward In Context.HU_WARD.Where(Function(f) f.ID = p.BIRTH_WARD_ID).DefaultIfEmpty
+                         From org In Context.HU_ORGANIZATION.Where(Function(f) f.ID = e.ORG_ID).DefaultIfEmpty
                         From chosen In Context.SE_CHOSEN_ORG.Where(Function(f) f.ORG_ID = e.ORG_ID And f.USERNAME = log.Username.ToUpper)
                         Where (p.STATUS = 1)
                         Select New FamilyEditDTO With {
@@ -983,6 +984,7 @@ Partial Class ProfileRepository
                             .EMPLOYEE_ID = p.EMPLOYEE_ID,
                             .EMPLOYEE_CODE = e.EMPLOYEE_CODE,
                             .EMPLOYEE_NAME = e.FULLNAME_VN,
+                            .EMPLOYEE_ORG = org.NAME_VN,
                             .FULLNAME = p.FULLNAME,
                             .RELATION_ID = p.RELATION_ID,
                             .RELATION_NAME = p_g.NAME_VN,
