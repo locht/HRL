@@ -381,57 +381,55 @@ Public Class ctrlHU_Contract
                         '    Exit Sub
                         'End If
                     End Using
-                    If icheck.GetDataKeyValue("CONTRACTTYPE_CODE") = "TNECSG_BDH_HDTV" Then
-                        If item.Count = 1 Then
-                            Using word As New WordCommon
-                                word.ExportMailMerge(filePath,
-                                                     icheck.GetDataKeyValue("EMPLOYEE_CODE") & "_HDTV_" & _
-                                                     Format(Date.Now, "yyyyMMddHHmmss") & extension,
-                                                     dtData,
-                                                     sourcePath,
-                                                     Response)
-                            End Using
-                        Else
-                            Dim item1 As GridDataItem = rgContract.SelectedItems(0)
-                            Dim fileName As String = item1.GetDataKeyValue("EMPLOYEE_CODE") & "_HDTV_" & _
-                                                     Format(Date.Now, "yyyyMMddHHmmss") & 0 & extension
-                            Dim doc As New Document(filePath)
-                            doc.MailMerge.Execute(dtData.Rows(0))
-                            path = AppDomain.CurrentDomain.BaseDirectory & "Files\"
-                            'path = "Files\"
-                            If Not Directory.Exists(path) Then
-                                Directory.CreateDirectory(path)
-                            End If
-                            doc.Save(path & fileName)
-                            ZipFiles(path)
-                        End If
+                    'If icheck.GetDataKeyValue("CONTRACTTYPE_CODE") = "TNECSG_BDH_HDTV" Then
+                    '    If item.Count = 1 Then
+                    '        Using word As New WordCommon
+                    '            word.ExportMailMerge(filePath,
+                    '                                 icheck.GetDataKeyValue("EMPLOYEE_CODE") & "_HDTV_" & _
+                    '                                 Format(Date.Now, "yyyyMMddHHmmss") & extension,
+                    '                                 dtData,
+                    '                                 sourcePath,
+                    '                                 Response)
+                    '        End Using
+                    '    Else
+                    '        Dim item1 As GridDataItem = rgContract.SelectedItems(0)
+                    '        Dim fileName As String = item1.GetDataKeyValue("EMPLOYEE_CODE") & "_HDTV_" & _
+                    '                                 Format(Date.Now, "yyyyMMddHHmmss") & 0 & extension
+                    '        Dim doc As New Document(filePath)
+                    '        doc.MailMerge.Execute(dtData.Rows(0))
+                    '        path = AppDomain.CurrentDomain.BaseDirectory & "Files\"
+                    '        'path = "Files\"
+                    '        If Not Directory.Exists(path) Then
+                    '            Directory.CreateDirectory(path)
+                    '        End If
+                    '        doc.Save(path & fileName)
+                    '        ZipFiles(path)
+                    '    End If
+                    'Else
+                    If item.Count = 1 Then
+                        'Export file mẫu
+                        Using word As New WordCommon
+                            word.ExportMailMerge(filePath,
+                                                 icheck.GetDataKeyValue("EMPLOYEE_CODE") & icheck.GetDataKeyValue("CONTRACTTYPE_CODE") & _
+                                                 Format(Date.Now, "yyyyMMddHHmmss") & extension,
+                                                 dtData,
+                                                 sourcePath,
+                                                 Response)
+                        End Using
                     Else
-                        If item.Count = 1 Then
-                            'Export file mẫu
-                            Using word As New WordCommon
-                                word.ExportMailMerge(filePath,
-                                                     icheck.GetDataKeyValue("EMPLOYEE_CODE") & "_HDLD_" & _
-                                                     Format(Date.Now, "yyyyMMddHHmmss") & extension,
-                                                     dtData,
-                                                     sourcePath,
-                                                     Response)
-                            End Using
-                        Else
-                            Dim item1 As GridDataItem = rgContract.SelectedItems(0)
-                            Dim fileName As String = item1.GetDataKeyValue("EMPLOYEE_CODE") & "_HDLD_" & _
-                                                     Format(Date.Now, "yyyyMMddHHmmss") & 0 & extension
-                            Dim doc As New Document(filePath)
-                            doc.MailMerge.Execute(dtData.Rows(0))
-                            path = AppDomain.CurrentDomain.BaseDirectory & "Files\"
-                            'path = "Files\"
-                            If Not Directory.Exists(path) Then
-                                Directory.CreateDirectory(path)
-                            End If
-                            doc.Save(path & fileName)
-                            ZipFiles(path)
+                        Dim item1 As GridDataItem = rgContract.SelectedItems(0)
+                        Dim fileName As String = item1.GetDataKeyValue("EMPLOYEE_CODE") & icheck.GetDataKeyValue("CONTRACTTYPE_CODE") & _
+                                                 Format(Date.Now, "yyyyMMddHHmmss") & 0 & extension
+                        Dim doc As New Document(filePath)
+                        doc.MailMerge.Execute(dtData.Rows(0))
+                        path = AppDomain.CurrentDomain.BaseDirectory & "Files\"
+                        'path = "Files\"
+                        If Not Directory.Exists(path) Then
+                            Directory.CreateDirectory(path)
                         End If
+                        doc.Save(path & fileName)
+                        ZipFiles(path)
                     End If
-
 
                 Case CommonMessage.TOOLBARITEM_NEXT
                     Dim dtData As DataTable
