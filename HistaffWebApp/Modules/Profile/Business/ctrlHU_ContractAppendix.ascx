@@ -87,7 +87,7 @@
                         <ClientEvents OnRowDblClick="gridRowDblClick" />
                         <Scrolling AllowScroll="true" UseStaticHeaders="true" FrozenColumnsCount="3" />
                     </ClientSettings>
-                    <MasterTableView DataKeyNames="ID,STATUS_ID,ORG_DESC" ClientDataKeyNames="ID,ORG_ID,FORM_ID,EMPLOYEE_ID,STATUS_ID,STATUS_NAME,EMPLOYEE_CODE,START_DATE">
+                    <MasterTableView DataKeyNames="ID,STATUS_ID,ORG_DESC" ClientDataKeyNames="ID,ORG_ID,FORM_ID,EMPLOYEE_ID,STATUS_ID,STATUS_NAME,EMPLOYEE_CODE,START_DATE,CONTRACTTYPE_CODE">
                         <Columns>
                          <%--   <tlk:GridClientSelectColumn HeaderStyle-HorizontalAlign="Center" HeaderStyle-Width="30px"
                                 ItemStyle-HorizontalAlign="Center" UniqueName="cbStatus">
