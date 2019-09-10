@@ -2316,6 +2316,7 @@
             <Property Name="IS_APP" Type="number" Nullable="true" Precision="38" />
             <Property Name="STATUS" Type="number" Nullable="true" Precision="38" />
             <Property Name="IMPORT" Type="number" Nullable="true" Precision="38" />
+            <Property Name="REASON" Type="nclob" Nullable="true" />
         </EntityType>
         <EntityType Name="AT_TIMESHEET_MACHINET_IMPORT">
             <Key>
@@ -5091,6 +5092,7 @@
           <Property Type="Decimal" Name="IS_APP" Precision="38" Scale="0" />
           <Property Type="Decimal" Name="STATUS" />
           <Property Type="Decimal" Name="IMPORT" Nullable="true" />
+          <Property Type="String" Name="REASON" Nullable="true" />
         </EntityType>
         <EntityType Name="AT_TIMESHEET_MACHINET_IMPORT">
           <Key>
@@ -7487,6 +7489,7 @@
                     <ScalarProperty Name="IS_APP" ColumnName="IS_APP" />
                     <ScalarProperty Name="STATUS" ColumnName="STATUS" />
                     <ScalarProperty Name="IMPORT" ColumnName="IMPORT" />
+                    <ScalarProperty Name="REASON" ColumnName="REASON" />
                 </MappingFragment>
             </EntityTypeMapping>
         </EntitySetMapping>
@@ -7800,7 +7803,7 @@
         <EntityTypeShape EntityType="AttendanceModel.SE_USER_ORG_ACCESS" Width="1.5" PointX="10.625" PointY="23.125" Height="1.5956835937499818" />
         <EntityTypeShape EntityType="AttendanceModel.AT_SHIFT" Width="1.5" PointX="13.375" PointY="22.75" Height="7.9416308593749818" />
         <EntityTypeShape EntityType="AttendanceModel.AT_LEAVESHEET_DETAIL" Width="1.5" PointX="18.375" PointY="22.75" Height="3.710999348958353" />
-        <EntityTypeShape EntityType="AttendanceModel.AT_LEAVESHEET" Width="1.5" PointX="7.375" PointY="23.75" Height="4.4802050781250031" />
+        <EntityTypeShape EntityType="AttendanceModel.AT_LEAVESHEET" Width="1.5" PointX="7.375" PointY="23.75" Height="4.6725065104166674" />
         <EntityTypeShape EntityType="AttendanceModel.AT_TIMESHEET_MACHINET_IMPORT" Width="1.5" PointX="23.375" PointY="15.75" Height="2.1725878906249818" />
         <EntityTypeShape EntityType="AttendanceModel.AT_TYPE_PROCESS" Width="1.5" PointX="15.375" PointY="23.75" Height="1.5956835937500031" />
         <EntityTypeShape EntityType="AttendanceModel.AT_TIME_MANUAL_RATE" Width="1.5" PointX="24.25" PointY="21.5" Height="1.5956835937500031" />

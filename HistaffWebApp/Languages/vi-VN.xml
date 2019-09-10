@@ -365,7 +365,7 @@
       <string>RESET_PASSWORD</string>
     </Key>
     <Value>
-      <string>Reset mật khẩu</string>
+      <string>Lấy ca mặc định</string>
     </Value>
   </Item>
   <Item>
@@ -1587,7 +1587,7 @@
       <string>EMPLOYEE_CODE</string>
     </Key>
     <Value>
-      <string>Mã nhân viên</string>
+      <string>Mã NV</string>
     </Value>
   </Item>
   <Item>
@@ -3275,7 +3275,7 @@
       <string>MÃ NHÂN VIÊN</string>
     </Key>
     <Value>
-      <string>Mã nhân viên</string>
+      <string>Mã NV</string>
     </Value>
   </Item>
   <Item>
@@ -6419,7 +6419,7 @@
       <string>PHÒNG BAN</string>
     </Key>
     <Value>
-      <string>Phòng ban</string>
+      <string>Ban/Phòng</string>
     </Value>
   </Item>
   <Item>
@@ -9219,7 +9219,7 @@
       <string>KHAI BÁO HĐLD</string>
     </Key>
     <Value>
-      <string>Khai báo HĐLD</string>
+      <string>Thêm</string>
     </Value>
   </Item>
   <Item>
@@ -20537,7 +20537,7 @@ Xin cám ơn!
       <string>LẤY CA MẶC ĐỊNH</string>
     </Key>
     <Value>
-      <string>Lấy ca mặc định</string>
+      <string>Xuất Excel</string>
     </Value>
   </Item>
   <Item>
@@ -41603,7 +41603,7 @@ Xin cám ơn!
       <string>ORG_NAME1</string>
     </Key>
     <Value>
-      <string>Phòng ban</string>
+      <string>Ban/Phòng</string>
     </Value>
   </Item>
   <Item>
@@ -42332,6 +42332,486 @@ Xin cám ơn!
     </Key>
     <Value>
       <string>Thông tin đơn vị</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>BAN/PHÒNG</string>
+    </Key>
+    <Value>
+      <string>Ban/Phòng</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>BẠN PHẢI CHỌN TỪ NGÀY</string>
+    </Key>
+    <Value>
+      <string>Bạn phải chọn Từ ngày</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>BẠN PHẢI CHỌN ĐẾN NGÀY</string>
+    </Key>
+    <Value>
+      <string>Bạn phải chọn Đến ngày</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>CHỨC DANH QUẢN LÝ</string>
+    </Key>
+    <Value>
+      <string>Chức danh quản lý</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>LẦN THAY ĐỔI MST THỨ</string>
+    </Key>
+    <Value>
+      <string>Lần thay đổi MST thứ</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>BẠN PHẢI CHỌN TÊN CHẾ ĐỘ PHÚC LỢI.</string>
+    </Key>
+    <Value>
+      <string>Bạn phải chọn tên chế độ phúc lợi.</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>TỪ SỐ NGÀY</string>
+    </Key>
+    <Value>
+      <string>Từ số ngày</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>ĐẾN SỐ NGÀY</string>
+    </Key>
+    <Value>
+      <string>Đến số ngày</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>LOẠI NV</string>
+    </Key>
+    <Value>
+      <string>Loại NV</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>TRẠNG THÁI NV</string>
+    </Key>
+    <Value>
+      <string>Trạng thái NV</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>LOẠI HÌNH LAO ĐỘNG</string>
+    </Key>
+    <Value>
+      <string>Loại hình lao động</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>NGÀY NHẬN VIỆC</string>
+    </Key>
+    <Value>
+      <string>Ngày nhận việc</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>NGÀY KÝ HĐ CHÍNH THỨC</string>
+    </Key>
+    <Value>
+      <string>Ngày ký HĐ chính thức</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>BẠN PHẢI CHỌN THÀNH PHỐ ĐỊA CHỈ TẠM TRÚ</string>
+    </Key>
+    <Value>
+      <string>Bạn phải chọn Thành phố địa chỉ tạm trú</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>BẠN PHẢI CHỌN QUẬN HUYỆN ĐỊA CHỈ TẠM TRÚ</string>
+    </Key>
+    <Value>
+      <string>Bạn phải chọn Quận huyện địa chỉ tạm trú</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>MÃ CHẤM CÔNG</string>
+    </Key>
+    <Value>
+      <string>Mã chấm công</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>NGÀY VÀO LÀM/THỬ VIỆC</string>
+    </Key>
+    <Value>
+      <string>Ngày vào làm/thử việc</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>GHI CHÚ THAY ĐỔI CMND</string>
+    </Key>
+    <Value>
+      <string>Ghi chú thay đổi CMND</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>TỰ SINH DO IMPORT BẢNG CÔNG</string>
+    </Key>
+    <Value>
+      <string>Tự sinh do import bảng công</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>ĐƠN VỊ KÝ HỢP ĐỒNG</string>
+    </Key>
+    <Value>
+      <string>Đơn vị ký hợp đồng</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>BẠN PHẢI CHỌN LOẠI XỬ LÝ.</string>
+    </Key>
+    <Value>
+      <string>Bạn phải chọn loại xử lý.</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>BẠN PHẢI CHỌN TỶ LỆ KIỂU CÔNG NỮA NGÀY ĐẦU.</string>
+    </Key>
+    <Value>
+      <string>Bạn phải chọn tỷ lệ kiểu công nữa ngày đầu.</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>KIỂU CÔNG NỬA NGÀY KHÔNG TỒN TẠI HOẶC ĐÃ NGỪNG ÁP DỤNG.</string>
+    </Key>
+    <Value>
+      <string>Kiểu công nửa ngày không tồn tại hoặc đã ngừng áp dụng.</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>BẠN PHẢI CHỌN TỶ LỆ KIỂU CÔNG NỮA NGÀY CUỐI.</string>
+    </Key>
+    <Value>
+      <string>Bạn phải chọn tỷ lệ kiểu công nữa ngày cuối.</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>BẠN PHẢI CHỌN CÔNG TY.</string>
+    </Key>
+    <Value>
+      <string>Bạn phải chọn công ty.</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>TỶ LỆ CÔNG NỬA NGÀY ĐẦU</string>
+    </Key>
+    <Value>
+      <string>Tỷ lệ công nửa ngày đầu</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>TỶ LỆ CÔNG NỬA NGÀY CUỐI</string>
+    </Key>
+    <Value>
+      <string>Tỷ lệ công nửa ngày cuối</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>LOẠI XỬ LÝ</string>
+    </Key>
+    <Value>
+      <string>Loại xử lý</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>TẤT CẢ DỮ LIỆU SẼ ĐƯỢC TẠO MỚI LẠI BAO GỒM CẢ DỮ LIỆU ĐƯỢC NHẬP TỪ EXCEL, BẠN CÓ TIẾP TỤC?</string>
+    </Key>
+    <Value>
+      <string>Tất cả dữ liệu sẽ được tạo mới lại bao gồm cả dữ liệu được nhập từ excel, Bạn có tiếp tục?</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>IMPORT THÀNH CÔNG</string>
+    </Key>
+    <Value>
+      <string>Import thành công</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>ĐỐI TƯỢNG LAO ĐỘNG</string>
+    </Key>
+    <Value>
+      <string>Đối tượng lao động</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>BẠN PHẢI NHẬP NGÀY CÔNG CHUẨN</string>
+    </Key>
+    <Value>
+      <string>Bạn phải nhập ngày công chuẩn</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>NGÀY CÔNG CHUẨN</string>
+    </Key>
+    <Value>
+      <string>Ngày công chuẩn</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>THÔNG TIN PHÉP NĂM</string>
+    </Key>
+    <Value>
+      <string>Thông tin phép năm</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>PHÉP CHẾ ĐỘ</string>
+    </Key>
+    <Value>
+      <string>Phép chế độ</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>PHÉP CŨ CHUYỂN QUA</string>
+    </Key>
+    <Value>
+      <string>Phép cũ chuyển qua</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>PHÉP THEO THÁNG LÀM VIỆC</string>
+    </Key>
+    <Value>
+      <string>Phép theo tháng làm việc</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>PHÉP CŨ ĐÃ NGHỈ</string>
+    </Key>
+    <Value>
+      <string>Phép cũ đã nghỉ</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>PHÉP ĐÃ NGHỈ</string>
+    </Key>
+    <Value>
+      <string>Phép đã nghỉ</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>PHÉP CŨ CÒN HIỆU LỰC</string>
+    </Key>
+    <Value>
+      <string>Phép cũ còn hiệu lực</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>PHÉP ĐÃ ĐĂNG KÝ</string>
+    </Key>
+    <Value>
+      <string>Phép đã đăng ký</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>QUỸ PHÉP CÒN LẠI</string>
+    </Key>
+    <Value>
+      <string>Quỹ phép còn lại</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>THÔNG TIN ĐĂNG KÝ NGHỈ PHÉP</string>
+    </Key>
+    <Value>
+      <string>Thông tin đăng ký nghỉ phép</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>SỐ NGÀY ĐĂNG KÝ NGHỈ</string>
+    </Key>
+    <Value>
+      <string>Số ngày đăng ký nghỉ</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>THỜI GIAN BẮT ĐẦU NGHỈ</string>
+    </Key>
+    <Value>
+      <string>Thời gian bắt đầu nghỉ</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>LÝ DO NGHỈ PHÉP</string>
+    </Key>
+    <Value>
+      <string>Lý do nghỉ phép</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>CÔNG ĐI LÀM (X)</string>
+    </Key>
+    <Value>
+      <string>Công đi làm (X)</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>NGHỈ ĐẦU/NGHỈ CUỐI</string>
+    </Key>
+    <Value>
+      <string>Nghỉ Đầu/Nghỉ Cuối</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>KIỂU CÔNG TRONG NGÀY</string>
+    </Key>
+    <Value>
+      <string>Kiểu công trong ngày</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>GIẢI TRÌNH GIỜ VÀO/RA</string>
+    </Key>
+    <Value>
+      <string>Giải trình giờ Vào/Ra</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>BẠN CÓ CHẮC CHẮN CẬP NHẬT LẠI CA MẶC ĐỊNH?</string>
+    </Key>
+    <Value>
+      <string>Bạn có chắc chắn cập nhật lại ca mặc định?</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>HỆ THỐNG CHẤM CÔNG</string>
+    </Key>
+    <Value>
+      <string>Hệ thống chấm công</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>LOẠI MÁY</string>
+    </Key>
+    <Value>
+      <string>Loại máy</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>TỔNG GIÁ TRỊ THIỆT HẠI</string>
+    </Key>
+    <Value>
+      <string>Tổng giá trị thiệt hại</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>TỔNG SỐ TIỀN PHẢI NỘP</string>
+    </Key>
+    <Value>
+      <string>Tổng số tiền phải nộp</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>SỐ TIỀN ĐÃ NỘP</string>
+    </Key>
+    <Value>
+      <string>Số tiền đã nộp</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>SỐ TIỀN CÒN PHẢI NỘP</string>
+    </Key>
+    <Value>
+      <string>Số tiền còn phải nộp</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>KỲ LƯƠNG BẮT ĐẦU TRỪ</string>
+    </Key>
+    <Value>
+      <string>Kỳ lương bắt đầu trừ</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>TỶ LỆ % TRỪ MỖI THÁNG</string>
+    </Key>
+    <Value>
+      <string>Tỷ lệ % trừ mỗi tháng</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>SỐ TIỀN TRỪ MỖI THÁNG</string>
+    </Key>
+    <Value>
+      <string>Số tiền trừ mỗi tháng</string>
     </Value>
   </Item>
 </SerializableDictionaryOfStringString>

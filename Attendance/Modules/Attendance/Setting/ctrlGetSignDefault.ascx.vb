@@ -956,10 +956,11 @@ Public Class ctrlGetSignDefault
             Else
                 ' check nv them vao file import có nằm trong hệ thống không.
                 For j As Integer = 0 To dsDataComper.Rows.Count - 1
+                    rowError = dtError.NewRow
                     If dsDataComper(j)("EMPLOYEE_ID") = "" Then
                         dtEmpID = New DataTable
                         dtEmpID = rep.GetEmployeeIDInSign(dsDataComper(j)("EMPLOYEE_CODE"))
-                        rowError = dtError.NewRow
+
                         If dtEmpID Is Nothing Or dtEmpID.Rows.Count <= 0 Then
                             rowError("EMPLOYEE_CODE") = "Mã nhân viên " & dsDataComper(j)("EMPLOYEE_CODE") & " không tồn tại trên hệ thống."
                             isError = True

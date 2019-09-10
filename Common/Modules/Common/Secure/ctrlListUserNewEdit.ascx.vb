@@ -263,7 +263,7 @@ Public Class ctrlListUserNewEdit
                                     ShowMessage(Translate("Mã nhân viên đã được sử dụng"), NotifyType.Warning)
                                     Exit Sub
                                 End If
-                                If rep.CheckWorkStatus("EMPLOYEE_CODE", "'" & txtEMPLOYEE_CODE.Text.Trim & "'") Then
+                                If rep.CheckWorkStatus("ID", "'" & hidEmployeeID.Value & "'") Then
                                     ShowMessage(Translate("Mã nhân viên đã nghỉ việc"), NotifyType.Warning)
                                     Exit Sub
                                 End If
