@@ -3,7 +3,7 @@
 <%@ Register Src="~/Modules/Common/ctrlMessageBox.ascx" TagName="ctrlMessageBox"
     TagPrefix="Common" %>
 <tlk:RadSplitter ID="RadSplitter1" runat="server" Scrolling="None">
-    <tlk:RadPane ID="RadPane1" runat="server" Scrolling="None">
+    <tlk:RadPane ID="RadPane1" runat="server" Scrolling="Both" Width="100%">
         <tlk:RadToolBar ID="rtbMain" runat="server" />
         <asp:ValidationSummary ID="valSum" runat="server" DisplayMode="BulletList" CssClass="validationsummary" />
         <div style="display: none;">
@@ -12,7 +12,8 @@
             <tlk:RadTextBox ID="txtEMPID" Text="0" runat="server">
             </tlk:RadTextBox>
         </div>
-        <div style="margin-left: 30px; width: 1240px;">
+        <div style="width:100%;">
+            <div style="margin-left: 30px; width: 100%;">
             <fieldset style="width: auto; height: auto">
                 <legend>
                     <%# Translate("Thông tin chung")%>
@@ -150,8 +151,10 @@
                 </table>
             </fieldset>
         </div>
-        <div style="float: left; margin-left: 30px">
-            <fieldset style="width: auto; height: auto">
+        </div>
+        <div style="width:100%;">
+            <div style="width:50%; float: left;">
+                <fieldset style="width: auto; height: auto">
                 <legend>
                     <%# Translate("BẢO HIỂM XÃ HỘI")%>
                 </legend>
@@ -251,9 +254,9 @@
                     </tr>
                 </table>
             </fieldset>
-        </div>
-        <div style="float: right; margin-right: 60px">
-            <fieldset style="width: auto; height: auto">
+            </div>
+            <div style="width:50%; float: left;">
+                <fieldset style="width: auto; height: auto">
                 <legend>
                     <%# Translate("BẢO HIỂM Y TẾ")%>
                 </legend>
@@ -355,9 +358,11 @@
                     </tr>
                 </table>
             </fieldset>
+            </div>
         </div>
-        <div style="float: left; margin-left: 30px">
-            <fieldset style="width: auto; height: auto">
+        <div style="width:100%;">
+            <div style="float: left; width:50%;">
+                <fieldset style="width: auto; height: auto">
                 <legend>
                     <%# Translate("BẢO HIỂM THẤT NGHIỆP")%>
                 </legend>
@@ -382,9 +387,9 @@
                     </tr>
                 </table>
             </fieldset>
-        </div>
-        <div style="float: right; margin-right:207px">
-            <fieldset style="width: auto; height: auto">
+            </div>
+            <div style="float: left; width:50%;">
+                <fieldset style="width: auto; height: auto">
                 <legend>
                     <%# Translate("BHTNLD-BNN")%>
                 </legend>
@@ -409,6 +414,7 @@
                     </tr>
                 </table>
             </fieldset>
+            </div>
         </div>
     </tlk:RadPane>
 </tlk:RadSplitter>
