@@ -686,6 +686,10 @@ Public Class ctrlDMCaLamViec
                         objShift.HOURS_STOP = rdHours_Stop.SelectedDate
                         objShift.START_MID_HOURS = rdSTART_MID_HOURS.SelectedDate
                         objShift.END_MID_HOURS = rdEND_MID_HOURS.SelectedDate
+                        'If (objShift.START_MID_HOURS > objShift.END_MID_HOURS) Then
+                        '    ShowMessage("Thiết lập giờ nghỉ giữa ca không hợp lệ", NotifyType.Warning)
+                        '    Exit Sub
+                        'End If
                         objShift.HOURS_STAR_CHECKIN = rdHOURS_STAR_CHECKIN.SelectedDate
                         objShift.HOURS_STAR_CHECKOUT = rdHOURS_STAR_CHECKOUT.SelectedDate
                         objShift.IS_HOURS_STOP = chkIS_HOURS_STOP.Checked

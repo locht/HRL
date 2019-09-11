@@ -128,7 +128,7 @@
                         runat="server" Text="*" ErrorMessage="<%$ Translate: Bạn phải nhập giờ kết thúc nghỉ giữa ca. %>"></asp:RequiredFieldValidator>
 
                     <asp:CompareValidator ID="CompareValidator2" runat="server" ControlToCompare="rdSTART_MID_HOURS"
-                        ControlToValidate="rdEND_MID_HOURS" Operator="GreaterThan"
+                        ControlToValidate="rdEND_MID_HOURS" Operator="GreaterThanEqual" 
                         ErrorMessage="<%$ Translate: Thiết lập giờ nghỉ giữa ca không hợp lệ %>"
                         ToolTip="<%$ Translate: Thiết lập giờ nghỉ giữa ca không hợp lệ %>">
                     </asp:CompareValidator>
