@@ -1490,6 +1490,7 @@
     <Content Include="TemplateDynamic\ContractAppendixSupport\TNECSG_TDLUONG.doc" />
     <Content Include="TemplateDynamic\ContractAppendixSupport\TNG_TDLUONG.doc" />
     <Content Include="TemplateDynamic\ContractAppendixSupport\TNECSG_X30_GHHD.doc" />
+    <Content Include="TemplateDynamic\ContractAppendixSupport\TNECSG_BDH_GHHD.doc" />
     <None Include="TemplateDynamic\ContractSupport\5116.doc" />
     <None Include="TemplateDynamic\ContractSupport\5982.doc" />
     <None Include="TemplateDynamic\ContractSupport\6314.doc" />
