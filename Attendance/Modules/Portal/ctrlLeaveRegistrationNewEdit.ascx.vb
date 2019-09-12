@@ -234,6 +234,8 @@ Public Class ctrlLeaveRegistrationNewEdit
             Next
             rgData.MasterTableView.Rebind()
             Cal_DayLeaveSheet()
+
+            ScriptManager.RegisterStartupScript(Me.Page, Page.GetType(), "text", "IsBlock()", True)
         Catch ex As Exception
             DisplayException(Me.ViewName, Me.ID, ex)
         End Try

@@ -304,5 +304,9 @@
         }
         function valueChange(sender, args) {
         }
+
+        function IsBlock() {
+            $("#divLeaveDetail").css("display", "block");
+        }
     </script>
 </tlk:RadCodeBlock>
