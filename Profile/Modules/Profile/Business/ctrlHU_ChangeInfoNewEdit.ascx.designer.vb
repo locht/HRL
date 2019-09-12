@@ -248,6 +248,42 @@ Partial Public Class ctrlHU_ChangeInfoNewEdit
     Protected WithEvents txtDecision As Global.Telerik.Web.UI.RadTextBox
 
     '''<summary>
+    '''lbOBJECT_ATTENDANCE_OLD control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbOBJECT_ATTENDANCE_OLD As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''rtOBJECT_ATTENDANCE_OLD control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents rtOBJECT_ATTENDANCE_OLD As Global.Telerik.Web.UI.RadTextBox
+
+    '''<summary>
+    '''lbOBJECT_ATTENDANCE control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbOBJECT_ATTENDANCE As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''cbOBJECT_ATTENDANCE control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents cbOBJECT_ATTENDANCE As Global.Telerik.Web.UI.RadComboBox
+
+    '''<summary>
     '''lbEffectDateOld control.
     '''</summary>
     '''<remarks>
