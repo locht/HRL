@@ -499,9 +499,10 @@ Public Class ctrlRegisterCO
                         ShowMessage(Translate("Kỳ công đã đóng, bạn không thể thực hiện thao tác này"), NotifyType.Error)
                         Exit Sub
                     End If
-                    isLoadPopup = 1 'Chọn Org
-                    UpdateControlState()
-                    ctrlOrgPopup.Show()
+                    isLoadPopup = 0 'Chọn Org
+                    ScriptManager.RegisterStartupScript(Me.Page, Me.Page.GetType(), "javascriptfunction", "ExportReport('Template_Register')", True)
+                    'UpdateControlState()
+                    'ctrlOrgPopup.Show()
                 Case "IMPORT_TEMP"
                     ' kiem tra ky cong da dong chua?
                     If rep.IS_PERIODSTATUS(_param) = False Then

@@ -1062,24 +1062,25 @@ Public Class Export
     Private Sub Template_Register()
         Try
             'Dim is_disolve = Boolean.Parse(Request.Params("IS_DISSOLVE"))
-            Dim rep As New Attendance.AttendanceRepository
-            Dim org_id = Decimal.Parse(Request.Params("orgid"))
-            Dim obj As New Attendance.AttendanceBusiness.ParamDTO
-            Dim dtDataTimeManual As New DataTable
-            obj.ORG_ID = org_id
-            obj.IS_DISSOLVE = True
-            obj.P_EXPORT_TYPE = 7
-            'If Not String.IsNullOrEmpty(Request.Params("PERIOD_ID")) Then
-            '    obj.PERIOD_ID = Decimal.Parse(Request.Params("PERIOD_ID"))
-            'End If
-            dtDataTimeManual = rep.GetDataImportCO()
-            dtDataTimeManual.TableName = "TableData"
+            'Dim rep As New Attendance.AttendanceRepository
+            'Dim org_id = Decimal.Parse(Request.Params("orgid"))
+            'Dim obj As New Attendance.AttendanceBusiness.ParamDTO
+            'Dim dtDataTimeManual As New DataTable
+            'obj.ORG_ID = org_id
+            'obj.IS_DISSOLVE = True
+            'obj.P_EXPORT_TYPE = 7
+            ''If Not String.IsNullOrEmpty(Request.Params("PERIOD_ID")) Then
+            ''    obj.PERIOD_ID = Decimal.Parse(Request.Params("PERIOD_ID"))
+            ''End If
+            'dtDataTimeManual = rep.GetDataImportCO()
+            'dtDataTimeManual.TableName = "TableData"
 
-            Dim dsData As DataSet = rep.GetDataFromOrg(obj)
-            dsData.Tables(0).TableName = "Table"
-            If dtDataTimeManual IsNot Nothing Then
-                dsData.Tables.Add(dtDataTimeManual)
-            End If
+            'Dim dsData As DataSet = rep.GetDataFromOrg(obj)
+            'dsData.Tables(0).TableName = "Table"
+            'If dtDataTimeManual IsNot Nothing Then
+            '    dsData.Tables.Add(dtDataTimeManual)
+            'End If
+            Dim dsData As New DataSet
             ExportTemplate("Attendance\Import\AT_IMPOERT_REGISTER_CO.xlsx", _
                                       dsData, Nothing, _
                                       "AT_IMPOERT_REGISTER_CO" & Format(Date.Now, "yyyyMMdd"))
