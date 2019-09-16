@@ -7,7 +7,20 @@ Imports System.Reflection
 Partial Class ProfileRepository
 
 #Region "Commend"
-
+    'khi phe duyet thi bat buoc nhap file dinh kem
+    Public Function CheckHasFileComend(ByVal id As List(Of Decimal)) As Decimal
+        Try
+            Dim comends = Context.HU_COMMEND.Where(Function(p) p.STATUS_ID = ProfileCommon.DECISION_STATUS.WAIT_APPROVE_ID And id.Contains(p.ID)).ToList()
+            For Each commend As HU_COMMEND In comends
+                If commend.FILENAME Is Nothing Or commend.FILENAME = "" Then
+                    Return 1
+                End If
+            Next
+            Return 2
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
     Public Function GetCommend(ByVal _filter As CommendDTO, ByVal PageIndex As Integer,
                                         ByVal PageSize As Integer,
                                         ByRef Total As Integer,

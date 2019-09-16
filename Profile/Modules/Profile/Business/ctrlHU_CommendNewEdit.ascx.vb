@@ -469,7 +469,10 @@ Public Class ctrlHU_CommendNewEdit
                                 ShowMessage(Translate("Vui lòng nhập số quyết định"), NotifyType.Warning)
                                 Exit Sub
                             End If
-
+                            If txtUpload.Text = "" Then
+                                ShowMessage(Translate("Bạn phải đính kèm tập tin khi phê duyệt"), NotifyType.Warning)
+                                Exit Sub
+                            End If
                             If txtSignerName.Text = "" Then
                                 ShowMessage("Vui lòng chọn Người phê duyệt", Utilities.NotifyType.Warning)
                                 Exit Sub

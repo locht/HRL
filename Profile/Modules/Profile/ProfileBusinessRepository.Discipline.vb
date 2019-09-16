@@ -2,6 +2,16 @@
 
 Partial Public Class ProfileBusinessRepository
     Inherits ProfileRepositoryBase
+    Public Function CheckHasFileDiscipline(ByVal id As List(Of Decimal)) As Decimal
+        Using rep As New ProfileBusinessClient
+            Try
+                Return rep.CheckHasFileDiscipline(id)
+            Catch ex As Exception
+                Throw ex
+            End Try
+        End Using
+    End Function
+
     Public Function ApproveListDiscipline(ByVal listID As List(Of Decimal)) As Boolean
         Using rep As New ProfileBusinessClient
             Try

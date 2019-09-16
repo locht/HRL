@@ -482,10 +482,10 @@ Partial Public Class InsuranceRepository
                 lst = lst.Where(Function(f) f.ADDRESS.ToLower().Contains(_filter.ADDRESS.ToLower()))
             End If
             If Not String.IsNullOrEmpty(_filter.PROVINCE_NAME) Then
-                lst = lst.Where(Function(f) f.NAME_VN.ToLower().Contains(_filter.PROVINCE_NAME.ToLower()))
+                lst = lst.Where(Function(f) f.PROVINCE_NAME.ToLower().Contains(_filter.PROVINCE_NAME.ToLower()))
             End If
             If Not String.IsNullOrEmpty(_filter.DISTRICT_NAME) Then
-                lst = lst.Where(Function(f) f.NAME_VN.ToLower().Contains(_filter.DISTRICT_NAME.ToLower()))
+                lst = lst.Where(Function(f) f.DISTRICT_NAME.ToLower().Contains(_filter.DISTRICT_NAME.ToLower()))
             End If
 
             'lst = lst.OrderBy(Sorts)

@@ -9,6 +9,21 @@ Imports Oracle.DataAccess.Client
 Partial Class ProfileRepository
 
 #Region "Discipline"
+    'khi phe duyet thi bat buoc nhap file dinh kem
+    Public Function CheckHasFileDiscipline(ByVal id As List(Of Decimal)) As Decimal
+        Try
+            Dim disciplines = Context.HU_DISCIPLINE.Where(Function(p) p.STATUS_ID = ProfileCommon.DECISION_STATUS.WAIT_APPROVE_ID And id.Contains(p.ID)).ToList()
+            For Each discipline As HU_DISCIPLINE In disciplines
+                If discipline.FILENAME Is Nothing Or discipline.FILENAME = "" Then
+                    Return 1
+                End If
+            Next
+            Return 2
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+
     Public Function ApproveListDiscipline(ByVal listID As List(Of Decimal), ByVal log As UserLog) As Boolean
         Dim objDisData As HU_DISCIPLINE
         Try
