@@ -234,6 +234,8 @@ Public Class ctrlLeaveRegistrationNewEdit
             Next
             rgData.MasterTableView.Rebind()
             Cal_DayLeaveSheet()
+
+            ScriptManager.RegisterStartupScript(Me.Page, Page.GetType(), "text", "IsBlock()", True)
         Catch ex As Exception
             DisplayException(Me.ViewName, Me.ID, ex)
         End Try
@@ -276,7 +278,7 @@ Public Class ctrlLeaveRegistrationNewEdit
                             ShowMessage(Translate("Đơn đã Phê duyệt. Không thể chỉnh sửa !"), NotifyType.Warning)
                             Exit Sub
                         End If
-                        If SaveDB("SAVE") Then
+                        If SaveDB() Then
                             Response.Redirect("/Default.aspx?mid=Attendance&fid=ctrlLeaveRegistration")
                         Else
                             ShowMessage(Translate("Xảy ra lỗi"), NotifyType.Error)
@@ -633,15 +635,11 @@ Public Class ctrlLeaveRegistrationNewEdit
         End Try
     End Sub
 
-    Private Function SaveDB(ByVal _action As String) As Boolean
+    Private Function SaveDB() As Boolean
         Dim rep As New AttendanceRepository
         Dim PH As DataTable = New DataTable()
         Dim dr As DataRow() = New DataRow() {rPH}
-        If _action = "SAVE" Then
-            dr(0)("STATUS") = 3 'Chưa gửi duyệt
-        Else
-            dr(0)("STATUS") = 0 'Chờ phê duyệt
-        End If
+        dr(0)("STATUS") = 0 'Chờ phê duyệt
         PH = dr.CopyToDataTable()
         PH.TableName = "PH"
         Dim dsLeaveSheet As New DataSet("DATA")
@@ -753,11 +751,35 @@ Public Class ctrlLeaveRegistrationNewEdit
                 Exit Sub
             End If
 
-            If SaveDB("SUBMIT") Then
+            Dim dtCheckSendApprove As DataTable = psp.CHECK_APPROVAL(atLeave.ID)
+            Dim period_id As Integer = Utilities.ObjToDecima(dtCheckSendApprove.Rows(0)("PERIOD_ID"))
+            Dim sign_id As Integer = Utilities.ObjToDecima(dtCheckSendApprove.Rows(0)("SIGN_ID"))
+            Dim id_group As Integer = Utilities.ObjToDecima(dtCheckSendApprove.Rows(0)("ID_REGGROUP"))
+            Dim sumday As Integer = Utilities.ObjToDecima(dtCheckSendApprove.Rows(0)("SUMDAY"))
+
+            Dim outNumber As Decimal
+            Try
+                Dim IAttendance As IAttendanceBusiness = New AttendanceBusinessClient()
+                outNumber = IAttendance.PRI_PROCESS_APP(EmployeeID, period_id, "LEAVE", 0, sumday, sign_id, id_group)
+            Catch ex As Exception
+                ShowMessage(ex.ToString, NotifyType.Error)
+            End Try
+
+            If outNumber = 0 Then
                 Response.Redirect("/Default.aspx?mid=Attendance&fid=ctrlLeaveRegistration")
-            Else
-                ShowMessage(Translate("Xảy ra lỗi"), NotifyType.Error)
+            ElseIf outNumber = 1 Then
+                ShowMessage(Translate("Quy trình phê duyệt chưa được thiết lập"), NotifyType.Success)
+            ElseIf outNumber = 2 Then
+                ShowMessage(Translate("Thao tác xảy ra lỗi,bạn kiểm tra lại quy trình"), NotifyType.Error)
+            ElseIf outNumber = 3 Then
+                ShowMessage(Translate("Nhân viên chưa có thiết lập nhóm chức danh"), NotifyType.Error)
             End If
+
+            'If SaveDB("SUBMIT") Then
+            '    Response.Redirect("/Default.aspx?mid=Attendance&fid=ctrlLeaveRegistration")
+            'Else
+            '    ShowMessage(Translate("Xảy ra lỗi"), NotifyType.Error)
+            'End If
         Catch ex As Exception
             Throw ex
         End Try

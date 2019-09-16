@@ -322,6 +322,38 @@
         </td>
     </tr>
     <tr>
+         <td class="lb">
+            <%# Translate("Ghi chú thay đổi CMND")%>
+        </td>
+        <td colspan="5">
+            <tlk:RadTextBox runat="server" ID="txtID_REMARK" Width="100%">
+            </tlk:RadTextBox>
+        </td>
+    </tr>
+    <tr>
+        <td class="lb">
+            <%# Translate("Mã số Thuế")%>
+        </td>
+        <td>
+            <tlk:RadTextBox ID="txtPitCode" runat="server">
+            </tlk:RadTextBox>
+        </td>
+         <td class="lb3">
+            <asp:Label runat="server" ID="lbDayPitcode" Text="Ngày cấp"></asp:Label>
+        </td>
+        <td>
+            <tlk:RadDatePicker ID="rdDayPitcode" runat="server">
+            </tlk:RadDatePicker>
+        </td>
+        <td class="lb3">
+            <asp:Label runat="server" ID="lbPlacePitcode" Text="Nơi cấp"></asp:Label>
+        </td>
+        <td>
+            <tlk:RadTextBox runat="server" ID="txtPlacePitcode">
+            </tlk:RadTextBox>
+        </td>
+    </tr>
+    <tr>
         <td colspan="6">
             <b>
                 <%# Translate("Trình độ văn hóa")%></b>
@@ -643,30 +675,7 @@
                 <%# Translate("Thông tin thuế và tài khoản ngân hàng")%></b>
             <hr />
         </td>
-    </tr> 
-    <tr>
-        <td class="lb">
-            <%# Translate("Mã số Thuế")%>
-        </td>
-        <td>
-            <tlk:RadTextBox ID="txtPitCode" runat="server">
-            </tlk:RadTextBox>
-        </td>
-         <td class="lb3">
-            <asp:Label runat="server" ID="lbDayPitcode" Text="Ngày cấp"></asp:Label>
-        </td>
-        <td>
-            <tlk:RadDatePicker ID="rdDayPitcode" runat="server">
-            </tlk:RadDatePicker>
-        </td>
-        <td class="lb3">
-            <asp:Label runat="server" ID="lbPlacePitcode" Text="Nơi cấp"></asp:Label>
-        </td>
-        <td>
-            <tlk:RadTextBox runat="server" ID="txtPlacePitcode">
-            </tlk:RadTextBox>
-        </td>
-    </tr>
+    </tr>    
     <tr>
         <td class="lb3">
             <asp:Label runat="server" ID="Label8" Text="Tên người hưởng thụ"></asp:Label>
@@ -723,12 +732,12 @@
         <td class="control3" >
             <asp:CheckBox ID="ckDOAN_PHI" Text ="Công đoàn phí" runat ="server" />
         </td>
-        <td class="lb3">
+<%--        <td class="lb3">
             <asp:Label runat="server" ID ="lbCHUC_VU_DOAN" Text ="Chức vụ"></asp:Label>
         </td>
         <td class="control3">
             <tlk:RadTextBox runat ="server" ID="rtCHUC_VU_DOAN"></tlk:RadTextBox>
-        </td>
+        </td>--%>
         <td class="lb3">
             <asp:Label runat="server" ID ="lbNGAY_VAO_DOAN" Text ="Ngày tham gia"></asp:Label>
         </td>
@@ -757,6 +766,12 @@
         </td>
         <td class="control3">
             <tlk:RadDatePicker  runat ="server" ID="rdNGAY_VAO_DANG"></tlk:RadDatePicker>
+        </td>
+        <td class="lb3">
+            <asp:Label runat="server" ID ="lbNOI_VAO_DANG" Text ="Nơi vào Đảng"></asp:Label>
+        </td>
+        <td class="control3">
+            <tlk:RadTextBox runat ="server" ID="txtNOI_VAO_DANG"></tlk:RadTextBox>
         </td>
     </tr>
 

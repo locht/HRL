@@ -71,7 +71,7 @@ Public Class ctrlPortalEmpProfile
                                       rdNgay_TG_Ban_Nu_Cong, rdNgay_Nhap_Ngu_CA, rdNgay_Xuat_Ngu_CA, rtDV_Xuat_Ngu_CA,
                                       ckQD, rdNgay_Nhap_Ngu_QD, rdNgay_Xuat_Ngu_QD, rtDV_Xuat_Ngu_QD, ckThuong_Binh,
                                       txtHang_Thuong_Binh, txtGD_Chinh_Sach, rdNGAY_VAO_DANG_DB, rtCHUC_VU_DANG, rdNGAY_VAO_DANG,
-                                      rtCHUC_VU_DOAN, rdNGAY_VAO_DOAN, ckDOAN_PHI,
+                                      rdNGAY_VAO_DOAN, ckDOAN_PHI, txtID_REMARK, txtNOI_VAO_DANG,
                                       ckCHUHO, txtNoHouseHolds, txtCodeHouseHolds, txtNoHouseHolds, txtCodeHouseHolds,
                                       txtVillage, txtAddressPerContract, txtRelationNLH, txtPerHomePhone, txtPerMobilePhone,
                                       rdDayPitcode, txtPlacePitcode, txtPerson_Inheritance, rdEffect_Bank)
@@ -160,7 +160,8 @@ Public Class ctrlPortalEmpProfile
                             txtWardBorn.Text = empCV.WARDEMP_NAME
                             txtInsArea.Text = empCV.INS_REGION_NAME
                             txtDomicile.Text = empCV.PROVINCENQ_NAME
-
+                            txtID_REMARK.Text = empCV.ID_REMARK
+                            txtNOI_VAO_DANG.Text = empCV.NOI_VAO_DANG
                             ' Đối tượng đóng bảo hiểm
                             If empCV.OBJECT_INS IsNot Nothing Then
                                 txtObjectIns.Text = empCV.OBJECT_INS_NAME
@@ -277,7 +278,7 @@ Public Class ctrlPortalEmpProfile
                             If IsDate(empCV.NGAY_VAO_DANG) Then
                                 rdNGAY_VAO_DANG.SelectedDate = empCV.NGAY_VAO_DANG
                             End If
-                            rtCHUC_VU_DOAN.Text = empCV.CHUC_VU_DOAN
+                            'rtCHUC_VU_DOAN.Text = empCV.CHUC_VU_DOAN
                             If IsNumeric(empCV.DOAN_PHI) Then
                                 ckDOAN_PHI.Checked = CType(empCV.DOAN_PHI, Boolean)
                             End If

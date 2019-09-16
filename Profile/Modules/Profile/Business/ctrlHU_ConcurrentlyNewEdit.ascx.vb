@@ -339,6 +339,22 @@ Public Class ctrlHU_ConcurrentlyNewEdit
                     cboTitleId.Enabled = False
                 Case CommonMessage.TOOLBARITEM_SAVE
                     If Page.IsValid Then
+                        If cbSTATUS_STOP.SelectedValue <> "" Then
+                            If cbSTATUS_STOP.SelectedValue = 1 Then
+                                If txtUploadFile1.Text = "" Then
+                                    ShowMessage(Translate("Bạn phải đính kèm tập tin khi phê duyệt"), NotifyType.Warning)
+                                    Exit Sub
+                                End If
+                            End If
+                        End If
+                        If cboStatus.SelectedValue <> "" Then
+                            If cboStatus.SelectedValue = 1 Then
+                                If txtUploadFile.Text = "" Then
+                                    ShowMessage(Translate("bạn phải đính kèm tập tin khi phê duyệt"), NotifyType.Warning)
+                                    Exit Sub
+                                End If
+                            End If
+                        End If
                         If Save(strID, _err) Then
                             FillData()
                             CurrentState = CommonMessage.STATE_NORMAL

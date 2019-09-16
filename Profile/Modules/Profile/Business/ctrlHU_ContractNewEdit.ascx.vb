@@ -336,6 +336,12 @@ Public Class ctrlHU_ContractNewEdit
                             ShowMessage(Translate("Bạn phải chọn Tờ trình/QĐ"), NotifyType.Warning)
                             Exit Sub
                         End If
+                        If cboStatus.SelectedValue = 447 Then
+                            If txtUpload.Text = "" Then
+                                ShowMessage(Translate("Bạn phải đính kèm tập tin khi phê duyệt"), NotifyType.Warning)
+                                Exit Sub
+                            End If
+                        End If
                         If cboSignContract.SelectedValue <> "" Then
                             objContract.ID_SIGN_CONTRACT = cboSignContract.SelectedValue
                         End If

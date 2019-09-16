@@ -816,7 +816,36 @@ Partial Class ProfileRepository
 #End Region
 
 #Region "Contract"
-
+    'check phê duyệt và đã có đính kèm file hay chưa
+    'yêu cầu nếu phê duyệt thì phải có phải đính kèm
+    Public Function CheckHasFileFileContract(ByVal id As List(Of Decimal)) As Decimal
+        Try
+            Dim filecontracts = Context.HU_FILECONTRACT.Where(Function(p) p.STATUS_ID = ProfileCommon.DECISION_STATUS.WAIT_APPROVE_ID And id.Contains(p.ID)).ToList()
+            For Each filecontract As HU_FILECONTRACT In filecontracts
+                If filecontract.FILENAME Is Nothing Or filecontract.FILENAME = "" Then
+                    Return 1
+                End If
+            Next
+            Return 2
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+    'check phê duyệt và đã có đính kèm file hay chưa
+    'yêu cầu nếu phê duyệt thì phải có phải đính kèm
+    Public Function CheckHasFileContract(ByVal id As List(Of Decimal)) As Decimal
+        Try
+            Dim contracts = Context.HU_CONTRACT.Where(Function(p) p.STATUS_ID = ProfileCommon.DECISION_STATUS.WAIT_APPROVE_ID And id.Contains(p.ID)).ToList()
+            For Each contract As HU_CONTRACT In contracts
+                If contract.FILENAME Is Nothing Or contract.FILENAME = "" Then
+                    Return 1
+                End If
+            Next
+            Return 2
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
     Public Function ApproveListContract(ByVal listID As List(Of Decimal), ByVal log As UserLog) As Boolean
 
         Try

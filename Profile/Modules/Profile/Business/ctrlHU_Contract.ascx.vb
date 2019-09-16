@@ -982,8 +982,12 @@ Public Class ctrlHU_Contract
                     lstID.Add(ID)
                 End If
             Next
-
             If lstID.Count > 0 Then
+                Dim bCheckHasfile = rep.CheckHasFileContract(lstID)
+                If bCheckHasfile = 1 Then
+                    ShowMessage(Translate("Duyệt khi tất cả các record đã có tập tin đính kèm,bạn kiểm tra lại"), NotifyType.Warning)
+                    Exit Sub
+                End If
                 If rep.ApproveListContract(lstID) Then
                     ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), NotifyType.Success)
                     rgContract.Rebind()

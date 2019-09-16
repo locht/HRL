@@ -782,6 +782,11 @@ VALIDATE:
                         For Each selectedItem As GridDataItem In rgWorking.SelectedItems
                             workingIds.Add(selectedItem.GetDataKeyValue("ID"))
                         Next
+                        Dim bCheckHasfile = rep.CheckHasFile(workingIds)
+                        If bCheckHasfile = 1 Then
+                            ShowMessage(Translate("Duyệt khi tất cả các record đã có tập tin đính kèm,bạn kiểm tra lại"), NotifyType.Warning)
+                            Exit Sub
+                        End If
                         If rep.ApproveWorkings(workingIds).Status = 1 Then
                             ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), NotifyType.Success)
                             CurrentState = CommonMessage.STATE_NORMAL

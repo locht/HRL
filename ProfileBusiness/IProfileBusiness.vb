@@ -1614,7 +1614,10 @@ Namespace ProfileBusiness.ServiceContracts
 
         <OperationContract()>
         Function InsertContract(ByVal objContract As ContractDTO, ByVal log As UserLog, ByRef gID As Decimal) As Boolean
-
+        <OperationContract()>
+        Function CheckHasFileContract(ByVal id As List(Of Decimal)) As Decimal
+        <OperationContract()>
+        Function CheckHasFileFileContract(ByVal id As List(Of Decimal)) As Decimal
         <OperationContract()>
         Function ModifyContract(ByVal objContract As ContractDTO, ByVal log As UserLog, ByRef gID As Decimal) As Boolean
 
@@ -1774,7 +1777,8 @@ Namespace ProfileBusiness.ServiceContracts
         Function UnApproveWorking(ByVal objWorking As WorkingDTO, ByVal log As UserLog, ByRef gID As Decimal) As Boolean
         <OperationContract()>
         Function ApproveWorkings(ByVal ids As List(Of Decimal), Optional ByVal log As UserLog = Nothing) As CommandResult
-
+        <OperationContract()>
+        Function CheckHasFile(ByVal id As List(Of Decimal)) As Decimal
 #End Region
 
 #Region "Discipline"

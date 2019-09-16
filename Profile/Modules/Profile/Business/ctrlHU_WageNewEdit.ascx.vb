@@ -480,6 +480,13 @@ Public Class ctrlHU_WageNewEdit
                             rdEffectDate.Focus()
                             Exit Sub
                         End If
+                        If cboStatus.SelectedValue = 447 Then
+                            If txtUpload.Text = "" Then
+                                ShowMessage(Translate("Bạn phải đính kèm tập tin khi phê duyệt"), NotifyType.Warning)
+                                Exit Sub
+                            End If
+                        End If
+
                         If rnPercentSalary.Text = "" Then
                             ShowMessage(Translate("Bạn phải chọn % hưởng lương"), NotifyType.Warning)
                             Exit Sub

@@ -197,9 +197,10 @@ Public Class ctrlHU_ChangeInfoNewEdit
             Using rep As New ProfileRepository
                 dtData = rep.GetOtherList(ProfileCommon.OBJECT_ATTENDANCE.Code)
             End Using
-            ' FillRadCombobox(cbOBJECT_ATTENDANCE, dtData, "NAME", "ID")
+            FillRadCombobox(cbOBJECT_ATTENDANCE, dtData, "NAME", "ID", True)
             'If dtData IsNot Nothing AndAlso dtData.Rows.Count > 0 Then
             '    cbOBJECT_ATTENDANCE.SelectedValue = dtData.Rows(0)("ID")
+            '    cbOBJECT_ATTENDANCE.SelectedIndex = 0
             'End If
 
             Using rep As New ProfileRepository
@@ -267,7 +268,7 @@ Public Class ctrlHU_ChangeInfoNewEdit
                             txtTitleNameOld.Text = .TITLE_NAME
                             ' txtTitleGroupOld.Text = .TITLE_GROUP_NAME
                             'txtDecisionNoOld.Text = .DECISION_NO
-                            ' rtOBJECT_ATTENDANCE_OLD.Text = If(.OBJECT_ATTENDANCE_NAME Is Nothing, Working.OBJECT_ATTENDANCE_NAME, .OBJECT_ATTENDANCE_NAME)
+                            rtOBJECT_ATTENDANCE_OLD.Text = If(Working.WORKING_OLD.OBJECT_ATTENDANCE = 0 Or Working.OBJECT_ATTENDANCE Is Nothing, Working.WORKING_OLD.OBJECT_ATTENDANCE_NAME_OLD, Working.WORKING_OLD.OBJECT_ATTENDANCE_NAME)
                             'If IsDate(.FILING_DATE) Then
                             '    rdFILING_DATE_OLD.SelectedDate = .FILING_DATE
                             'Else
@@ -318,9 +319,9 @@ Public Class ctrlHU_ChangeInfoNewEdit
 
                     txtEmployeeCode.Text = Working.EMPLOYEE_CODE
                     txtEmployeeName.Text = Working.EMPLOYEE_NAME
-                    'If IsNumeric(Working.OBJECT_ATTENDANCE) Then
-                    '    cbOBJECT_ATTENDANCE.SelectedValue = Working.OBJECT_ATTENDANCE
-                    'End If
+                    If IsNumeric(Working.OBJECT_ATTENDANCE) And Working.OBJECT_ATTENDANCE <> 0 Then
+                        cbOBJECT_ATTENDANCE.SelectedValue = Working.OBJECT_ATTENDANCE
+                    End If
                     'If IsDate(Working.FILING_DATE) Then
                     '    rdFILING_DATE.SelectedDate = Working.FILING_DATE
                     'End If
@@ -484,7 +485,12 @@ Public Class ctrlHU_ChangeInfoNewEdit
                         '    cboSalRank.Focus()
                         '    Exit Sub
                         'End If
-
+                        If cboStatus.SelectedValue = 447 Then
+                            If txtUpload.Text = "" Then
+                                ShowMessage(Translate("Bạn phải đính kèm tập tin khi phê duyệt"), NotifyType.Warning)
+                                Exit Sub
+                            End If
+                        End If
                         If cboTitle.SelectedValue = "" Then
                             ShowMessage(Translate("Bạn phải chọn chức danh"), NotifyType.Warning)
                             cboTitle.Focus()
@@ -607,9 +613,9 @@ Public Class ctrlHU_ChangeInfoNewEdit
                             'If IsDate(rdFILING_DATE.SelectedDate) Then
                             '    .FILING_DATE = rdFILING_DATE.SelectedDate
                             'End If
-                            'If IsNumeric(cbOBJECT_ATTENDANCE.SelectedValue) Then
-                            '    .OBJECT_ATTENDANCE = cbOBJECT_ATTENDANCE.SelectedValue
-                            'End If
+                            If IsNumeric(cbOBJECT_ATTENDANCE.SelectedValue) Then
+                                .OBJECT_ATTENDANCE = cbOBJECT_ATTENDANCE.SelectedValue
+                            End If
                         End With
 
                         Select Case CurrentState
@@ -1517,14 +1523,14 @@ Public Class ctrlHU_ChangeInfoNewEdit
                     cboObjectLaborNew.SelectedValue = obj.OBJECT_LABOR
                     cboObjectLaborNew.Text = obj.OBJECT_LABORNAME
                 End If
-                'If IsNumeric(obj.OBJECT_ATTENDANCE) Then
-                '    cbOBJECT_ATTENDANCE.SelectedValue = obj.OBJECT_ATTENDANCE
-                'End If
+                If IsNumeric(obj.OBJECT_ATTENDANCE) Then
+                    cbOBJECT_ATTENDANCE.SelectedValue = obj.OBJECT_ATTENDANCE
+                End If
                 'If IsDate(obj.FILING_DATE) Then
                 '    rdFILING_DATE.SelectedDate = obj.FILING_DATE
                 '    rdFILING_DATE_OLD.SelectedDate = obj.FILING_DATE
                 'End If
-                ' rtOBJECT_ATTENDANCE_OLD.Text = obj.OBJECT_ATTENDANCE_NAME
+                rtOBJECT_ATTENDANCE_OLD.Text = obj.OBJECT_ATTENDANCE_NAME
             End Using
 
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
