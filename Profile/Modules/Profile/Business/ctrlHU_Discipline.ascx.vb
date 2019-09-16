@@ -779,6 +779,11 @@ Public Class ctrlHU_Discipline
             Next
 
             If lstID.Count > 0 Then
+                Dim bCheckHasfile = rep.CheckHasFileDiscipline(lstID)
+                If bCheckHasfile = 1 Then
+                    ShowMessage(Translate("Duyệt khi tất cả các record đã có tập tin đính kèm,bạn kiểm tra lại"), NotifyType.Warning)
+                    Exit Sub
+                End If
                 If rep.ApproveListDiscipline(lstID) Then
                     ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), NotifyType.Success)
                     rgDiscipline.Rebind()

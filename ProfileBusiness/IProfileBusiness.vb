@@ -1783,6 +1783,8 @@ Namespace ProfileBusiness.ServiceContracts
 
 #Region "Discipline"
         <OperationContract()>
+        Function CheckHasFileDiscipline(ByVal id As List(Of Decimal)) As Decimal
+        <OperationContract()>
         Function ApproveListDiscipline(ByVal listID As List(Of Decimal), ByVal log As UserLog) As Boolean
         <OperationContract()>
         Function GetEmployeeDesciplineID(ByVal DesId As Decimal) As List(Of DisciplineEmpDTO)
@@ -1845,7 +1847,8 @@ Namespace ProfileBusiness.ServiceContracts
 #End Region
 
 #Region "Commend"
-
+        <OperationContract()>
+        Function CheckHasFileComend(ByVal id As List(Of Decimal)) As Decimal
         <OperationContract()>
         Function GetCommend(ByVal _filter As CommendDTO, ByVal PageIndex As Integer,
                                         ByVal PageSize As Integer,

@@ -9,6 +9,17 @@ Namespace ProfileBusiness.ServiceImplementations
     Partial Class ProfileBusiness
 
 #Region "Discipline"
+        Public Function CheckHasFileDiscipline(ByVal id As List(Of Decimal)) As Decimal Implements ServiceContracts.IProfileBusiness.CheckHasFileDiscipline
+            Using rep As New ProfileRepository
+                Try
+                    Return rep.CheckHasFileDiscipline(id)
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+
+        End Function
+
         Public Function ApproveListDiscipline(ByVal listID As List(Of Decimal), ByVal log As UserLog) As Boolean Implements ServiceContracts.IProfileBusiness.ApproveListDiscipline
             Using rep As New ProfileRepository
                 Try

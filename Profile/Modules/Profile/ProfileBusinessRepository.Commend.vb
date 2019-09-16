@@ -2,7 +2,15 @@
 
 Partial Public Class ProfileBusinessRepository
     Inherits ProfileRepositoryBase
-
+    Public Function CheckHasFileComend(ByVal id As List(Of Decimal)) As Decimal
+        Using rep As New ProfileBusinessClient
+            Try
+                Return rep.CheckHasFileComend(id)
+            Catch ex As Exception
+                Throw ex
+            End Try
+        End Using
+    End Function
     Public Function GetCommend(ByVal _filter As CommendDTO, ByVal PageIndex As Integer,
                                         ByVal PageSize As Integer,
                                         ByRef Total As Integer,

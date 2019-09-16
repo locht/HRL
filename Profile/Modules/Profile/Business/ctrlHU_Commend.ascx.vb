@@ -641,13 +641,18 @@ Public Class ctrlHU_Commend
 
             For Each dr As Telerik.Web.UI.GridDataItem In rgCommend.SelectedItems
                 Dim ID As New Decimal
-                If Not dr("STATUS_ID").Text.Equals("714") Then
+                If Not dr("STATUS_ID").Text.Equals("447") Then
                     ID = dr.GetDataKeyValue("ID")
                     lstID.Add(ID)
                 End If
             Next
 
             If lstID.Count > 0 Then
+                Dim bCheckHasfile = rep.CheckHasFileComend(lstID)
+                If bCheckHasfile = 1 Then
+                    ShowMessage(Translate("Duyệt khi tất cả các record đã có tập tin đính kèm,bạn kiểm tra lại"), NotifyType.Warning)
+                    Exit Sub
+                End If
                 If rep.ApproveListCommend(lstID) Then
                     ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), NotifyType.Success)
                     rgCommend.Rebind()
