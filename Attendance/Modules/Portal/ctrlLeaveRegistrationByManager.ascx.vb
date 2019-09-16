@@ -115,8 +115,7 @@ Public Class ctrlLeaveRegistrationByManager
                 Dim data = dtData.AsEnumerable().Where(Function(f) Not f.Field(Of Decimal?)("ID").HasValue _
                                                         Or f.Field(Of Decimal?)("ID") = Int16.Parse(PortalStatus.WaitingForApproval).ToString() _
                                                         Or f.Field(Of Decimal?)("ID") = Int16.Parse(PortalStatus.ApprovedByLM).ToString() _
-                                                        Or f.Field(Of Decimal?)("ID") = Int16.Parse(PortalStatus.UnApprovedByLM).ToString() _
-                                                        Or f.Field(Of Decimal?)("ID") = Int16.Parse(PortalStatus.Saved).ToString()).CopyToDataTable()
+                                                        Or f.Field(Of Decimal?)("ID") = Int16.Parse(PortalStatus.UnApprovedByLM).ToString()).CopyToDataTable()
                 FillRadCombobox(cboStatus, data, "NAME", "ID")
                 cboStatus.SelectedValue = 0
             End If
@@ -158,6 +157,10 @@ Public Class ctrlLeaveRegistrationByManager
                         End If
                     End Using
                 Case CommonMessage.TOOLBARITEM_APPROVE
+                    If rgMain.SelectedItems.Count = 0 Then
+                        ShowMessage(Translate(CommonMessage.MESSAGE_NOT_SELECT_ROW), NotifyType.Warning)
+                        Exit Sub
+                    End If
                     Dim listDataCheck As New List(Of AT_PROCESS_DTO)
                     For Each dr As Telerik.Web.UI.GridDataItem In rgMain.SelectedItems
                         If dr.GetDataKeyValue("STATUS") <> PortalStatus.WaitingForApproval Then
