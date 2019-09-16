@@ -5854,23 +5854,32 @@ Partial Public Class AttendanceRepository
                 Dim userIdOrMngId As Decimal
                 Dim dt As DataTable
                 Dim obj
-                If _filter.P_MANAGER_ID.ToString <> "" Then
-                    userIdOrMngId = _filter.P_MANAGER_ID
-                    obj = New With {.P_EMPLOYEE_APP_ID = userIdOrMngId,
-                                    .P_STATUS = _filter.STATUS,
-                                    .P_FROM_DATE = _filter.REGIST_DATE_FROM,
-                                    .P_TO_DATE = _filter.REGIST_DATE_TO,
+                If _filter.P_MANAGER = "APP" Then
+                    obj = New With {.P_ID = _filter.ID,
                                     .P_RESULT = cls.OUT_CURSOR}
-                    dt = cls.ExecuteStore("PKG_AT_PROCESS.PRS_GETOT_BY_APPROVE", obj)
+                    dt = cls.ExecuteStore("PKG_AT_PROCESS.GET_OT_BY_EMPLOYEE", obj)
                 Else
-                    userIdOrMngId = Decimal.Parse(_filter.P_USER)
-                    obj = New With {.P_EMPLOYEE_APP_ID = userIdOrMngId,
-                                    .P_STATUS = _filter.STATUS,
-                                    .P_FROM_DATE = _filter.REGIST_DATE_FROM,
-                                    .P_TO_DATE = _filter.REGIST_DATE_TO,
-                                    .P_REG_DATE = _filter.REGIST_DATE,
-                                    .P_RESULT = cls.OUT_CURSOR}
-                    dt = cls.ExecuteStore("PKG_AT_PROCESS.PRS_GETOT_BY_EMPLOYEE", obj)
+
+                    If _filter.P_MANAGER_ID.ToString <> "" Then
+
+                        userIdOrMngId = _filter.P_MANAGER_ID
+                        obj = New With {.P_EMPLOYEE_APP_ID = userIdOrMngId,
+                                        .P_STATUS = _filter.STATUS,
+                                        .P_FROM_DATE = _filter.REGIST_DATE_FROM,
+                                        .P_TO_DATE = _filter.REGIST_DATE_TO,
+                                        .P_RESULT = cls.OUT_CURSOR}
+                        dt = cls.ExecuteStore("PKG_AT_PROCESS.PRS_GETOT_BY_APPROVE", obj)
+
+                    Else
+                        userIdOrMngId = Decimal.Parse(_filter.P_USER)
+                        obj = New With {.P_EMPLOYEE_APP_ID = userIdOrMngId,
+                                        .P_STATUS = _filter.STATUS,
+                                        .P_FROM_DATE = _filter.REGIST_DATE_FROM,
+                                        .P_TO_DATE = _filter.REGIST_DATE_TO,
+                                        .P_REG_DATE = _filter.REGIST_DATE,
+                                        .P_RESULT = cls.OUT_CURSOR}
+                        dt = cls.ExecuteStore("PKG_AT_PROCESS.PRS_GETOT_BY_EMPLOYEE", obj)
+                    End If
                 End If
                 Dim lst As New List(Of AT_OT_REGISTRATIONDTO)
                 For Each row As DataRow In dt.Rows

@@ -1,184 +1,213 @@
 ﻿<%@ Control Language="vb" AutoEventWireup="false" CodeBehind="ctrlDeclaresOTNewEdit.ascx.vb"
     Inherits="Attendance.ctrlDeclaresOTNewEdit" %>
+    <%@ Import Namespace="Common" %>
+<asp:HiddenField ID="hidID" runat="server" />
+<asp:HiddenField ID="hidEmpId" runat="server" />
+<asp:HiddenField ID="hidValid" runat="server" />
+<asp:HiddenField ID="hidStatus" runat="server" />
+<asp:HiddenField ID="hid100" runat="server" />
+<asp:HiddenField ID="hid150" runat="server" />
+<asp:HiddenField ID="hid200" runat="server" />
+<asp:HiddenField ID="hid210" runat="server" />
+<asp:HiddenField ID="hid270" runat="server" />
+<asp:HiddenField ID="hid300" runat="server" />
+<asp:HiddenField ID="hid390" runat="server" />
+<asp:HiddenField ID="hidTotal" runat="server" />
+<asp:HiddenField ID="hidSignId" runat="server" />
+<asp:HiddenField ID="hidSignName" runat="server" />
+<tlk:RadToolBar ID="tbarMainToolBar" runat="server" Width="100%" OnClientButtonClicking="clientButtonClicking" />
+<asp:ValidationSummary ID="valSum" runat="server" DisplayMode="BulletList" CssClass="validationsummary" />
+<asp:Label runat="server" ID="lbStatus" ForeColor="Red"></asp:Label>
+<table class="table-form">
+    <tr>
+        <td colspan="4">
+            <asp:Label runat="server" ID="lblMessage" ForeColor="Red"></asp:Label>
+        </td>
+    </tr>
+    <tr>
+        <td colspan="4">
+            <b style="color: red"><%# Translate("Thông tin nhân viên")%></b>
+            <hr />
+        </td>
+    </tr>
+    <tr>
+        <td class="lb">
+            <%# Translate("Họ tên")%><span class="lbReq">*</span>
+        </td>
+        <td>
+            <tlk:RadTextBox runat="server" ID="txtFullName" ReadOnly="true"></tlk:RadTextBox>
+            <tlk:RadButton ID="btnEmployee" SkinID="ButtonView" runat="server" CausesValidation="false" Width="40px">
+            </tlk:RadButton>
+            <asp:RequiredFieldValidator ID="reqEmployeeCode" ControlToValidate="txtFullName"
+                runat="server" ErrorMessage="<%$ Translate: Bạn phải nhập nhân viên. %>" ToolTip="<%$ Translate: Bạn phải nhập nhân viên. %>"> </asp:RequiredFieldValidator>
+        </td>
+        <td class="lb">
+            <%# Translate("Phòng ban")%>
+        </td>
+        <td>
+            <tlk:RadTextBox runat="server" ID="txtDepartment" ReadOnly="true"></tlk:RadTextBox>
+        </td>
+    </tr>
+    <tr>
+        <td class="lb">
+            <%# Translate("Mã nhân viên")%>
+        </td>
+        <td>
+            <tlk:RadTextBox runat="server" ID="txtEmpCode" ReadOnly="true"></tlk:RadTextBox>
+        </td>
+        <td class="lb">
+            <%# Translate("Chức danh")%>
+        </td>
+        <td>
+            <tlk:RadTextBox runat="server" ID="txtTitle" ReadOnly="true"></tlk:RadTextBox>
+        </td>
+    </tr>
+    <tr>
+        <td colspan="4">
+            <b style="color: red"><%# Translate("Thông tin giờ làm thêm thực tế")%></b>
+            <hr />
+        </td>
+    </tr>
+    <tr>
+        <td class="lb">
+            <%# Translate("Ngày làm thêm")%><span class="lbReq">*</span>
+        </td>
+        <td>
+            <tlk:RadDatePicker runat="server" ID="rdRegDate" AutoPostBack="true"></tlk:RadDatePicker>
+            <asp:RequiredFieldValidator ID="RequiredFieldValidator2" ControlToValidate="rdRegDate"
+                runat="server" ErrorMessage="<%$ Translate: Chưa chọn ngày làm thêm. %>"
+                ToolTip="<%$ Translate: Chưa chọn ngày làm thêm. %>"></asp:RequiredFieldValidator>
+        </td>
+        <td class="lb">
+            <%# Translate("Loại làm thêm")%>
+        </td>
+        <td>
+            <tlk:RadComboBox ID="cboTypeOT" runat="server">
+            </tlk:RadComboBox>
+        </td>
+    </tr>
+    <tr>
+        <td class="lb">
+              <%# Translate("Hệ số")%><span class="lbReq">*</span>
+        </td>
+        <td>
+            <tlk:RadComboBox ID="cbohs_ot" runat="server">
+            </tlk:RadComboBox>
+            <asp:RequiredFieldValidator ID="RequiredFieldValidator4" ControlToValidate="cbohs_ot"
+                runat="server" ErrorMessage="<%$ Translate: Chưa chọn chọn hệ số làm thêm. %>"
+                ToolTip="<%$ Translate: Chưa chọn chọn hệ số làm thêm. %>"> </asp:RequiredFieldValidator>
+        </td>
+    </tr>
+    <tr>
+        <td class="lb">
+            <%# Translate("Giờ làm thêm:")%><span class="lbReq">*</span>
+        </td>
+        <td colspan="3"></td>
+    </tr>
+    <tr>
+        <td class="lb">
+            <%# Translate("AM:")%><span class="lbReq">*</span>
+        </td>
+        <td>
+            <%# Translate("Từ:")%>
+            <tlk:RadNumericTextBox runat="server" ID="rntbFromAM" SkinID="Number" Width="50px"
+                NumberFormat-GroupSeparator="" ShowSpinButtons="true" MaxLength="2" MinValue="0" MaxValue="12">
+            </tlk:RadNumericTextBox>
+            <%# Translate(" giờ:")%>
+            <tlk:RadComboBox runat="server" ID="cboFromAM" Width="55px"></tlk:RadComboBox>
+            <%# Translate(" phút:")%>
+        </td>
+        <td colspan="2" style="padding-left: 65px;">
+            <%# Translate("Đến:")%>
+            <tlk:RadNumericTextBox runat="server" ID="rntbToAM" SkinID="Number"  Width="50px"
+                NumberFormat-GroupSeparator="" ShowSpinButtons="true" MaxLength="2" MinValue="0" MaxValue="12">
+            </tlk:RadNumericTextBox>
+            <%# Translate(" giờ:")%>
+            <tlk:RadComboBox runat="server" ID="cboToAM"  Width="55px"></tlk:RadComboBox>
+            <%# Translate(" phút:")%>
+        </td>
+    </tr>
+    <tr>
+        <td class="lb">
+            <%# Translate("PM:")%><span class="lbReq">*</span>
+        </td>
+        <td>
+            <%# Translate("Từ:")%>
+            <tlk:RadNumericTextBox runat="server" ID="rntbFromPM" SkinID="Number"  Width="50px"
+                NumberFormat-GroupSeparator="" ShowSpinButtons="true" MaxLength="2" MinValue="0" MaxValue="12">
+            </tlk:RadNumericTextBox>
+            <%# Translate(" giờ:")%>
+            <tlk:RadComboBox runat="server" ID="cboFromPM"  Width="55px"></tlk:RadComboBox>
+            <%# Translate(" phút:")%>
+        </td>
+        <td colspan="2" style="padding-left: 65px;">
+            <%# Translate("Đến:")%>
+            <tlk:RadNumericTextBox runat="server" ID="rntbToPM" SkinID="Number"  Width="50px"
+                NumberFormat-GroupSeparator="" ShowSpinButtons="true" MaxLength="2" MinValue="0" MaxValue="12">
+            </tlk:RadNumericTextBox>
+            <%# Translate(" giờ:")%>
+            <tlk:RadComboBox runat="server" ID="cboToPM"  Width="55px"></tlk:RadComboBox>
+            <%# Translate(" phút:")%>
+        </td>
+    </tr>
+    <%--<tr>
+        <td class="lb">
+            <%# Translate("Loại làm thêm")%><span class="lbReq">*</span>
+        </td>
+        <td colspan="3">
+            <tlk:RadComboBox runat="server" ID="cboTypeOT"></tlk:RadComboBox>
+        </td>
+    </tr>--%>
+    <tr>
+        <td class="lb">
+            <%# Translate("Lý do làm thêm:")%><span class="lbReq">*</span>
+        </td>
+        <td colspan="3">
+            <tlk:RadTextBox runat="server" ID="txtNote" Rows="3" Width="100%"></tlk:RadTextBox>
+            <asp:RequiredFieldValidator ID="RequiredFieldValidator1" ControlToValidate="txtNote"
+                runat="server" ErrorMessage="<%$ Translate: Overtime reason is require. %>"
+                ToolTip="<%$ Translate: Overtime reason is require. %>"></asp:RequiredFieldValidator>
+        </td>
+    </tr>
+    <tr>
+        <td class="lb">
+            <%# Translate("Tổng số giờ làm thêm trong năm:")%>
+        </td>
+        <td>
+            <%--<tlk:RadNumericTextBox runat="server" ID="rntTotalAccumulativeOTHours" SkinID="Number"
+                NumberFormat-GroupSeparator="" ShowSpinButtons="true" ReadOnly="true">
+            </tlk:RadNumericTextBox>--%>
+            <tlk:RadTextBox runat="server" ID="rntTotalAccumulativeOTHours" SkinID="Number" ReadOnly="true">
+            </tlk:RadTextBox>
+        </td>
+    </tr>
+</table>
 <Common:ctrlMessageBox ID="ctrlMessageBox" runat="server" />
-<tlk:RadSplitter ID="RadSplitter3" runat="server" Width="600px" Height="100%" Orientation="Horizontal">
-    <tlk:RadPane ID="RadPane1" runat="server" Height="35px" Scrolling="None">
-        <tlk:RadToolBar ID="tbarOT" runat="server" OnClientButtonClicking="clientButtonClicking" />
-    </tlk:RadPane>
-    <tlk:RadPane ID="RadPane2" runat="server" Height="160px">
-        <asp:HiddenField ID="hidID" runat="server" />
-        <asp:HiddenField ID="hidDecisionID" runat="server" />
-        <asp:HiddenField ID="hidEmpID" runat="server" />
-        <asp:HiddenField ID="hidOrgAbbr" runat="server" />
-        <asp:ValidationSummary ID="valSum" runat="server" DisplayMode="BulletList" CssClass="validationsummary" />
-        <table class="table-form" onkeydown="return (event.keyCode!=13)">
-            <tr>
-                <td class="lb">
-                    <%# Translate("Ngày đăng ký")%><span class="lbReq">*</span>
-                </td>
-                <td>
-                    <tlk:RadDatePicker ID="rdregisterDate" runat="server">
-                    </tlk:RadDatePicker>
-                    <asp:RequiredFieldValidator ID="RequiredFieldValidator2" ControlToValidate="rdregisterDate"
-                        runat="server" ErrorMessage="<%$ Translate: Chưa chọn ngày đăng ký làm thêm. %>"
-                        ToolTip="<%$ Translate: Chưa chọn ngày đăng ký làm thêm. %>"> </asp:RequiredFieldValidator>
-                </td>
-                <td class="lb">
-                    <%# Translate("Hệ số làm thêm")%><span class="lbReq">*</span>
-                </td>
-                <td>
-                    <tlk:RadComboBox ID="cbohs_ot" Width="150px" MaxLength="80" runat="server" ToolTip="">
-                    </tlk:RadComboBox>
-                    <asp:RequiredFieldValidator ID="RequiredFieldValidator4" ControlToValidate="cbohs_ot"
-                        runat="server" ErrorMessage="<%$ Translate: Chưa chọn chọn hệ số làm thêm. %>"
-                        ToolTip="<%$ Translate: Chưa chọn chọn hệ số làm thêm. %>"> </asp:RequiredFieldValidator>
-                </td>
-            </tr>
-            <tr>
-                <td class="lb">
-                    <%# Translate("Từ giờ")%><span class="lbReq">*</span>
-                </td>
-                <td>
-                    <tlk:RadTimePicker ID="txtTuGio" runat="server">
-                    </tlk:RadTimePicker>
-                    <asp:RequiredFieldValidator ID="RequiredFieldValidator1" ControlToValidate="txtTuGio"
-                        runat="server" ErrorMessage="<%$ Translate: Chưa chọn làm thêm từ giờ. %>" ToolTip="<%$ Translate: Chưa chọn làm thêm từ giờ. %>"> </asp:RequiredFieldValidator>
-                </td>
-                <td class="lb">
-                    <%# Translate("Đến giờ")%><span class="lbReq">*</span>
-                </td>
-                <td>
-                    <tlk:RadTimePicker ID="txtDenGio" runat="server">
-                    </tlk:RadTimePicker>
-                    <asp:RequiredFieldValidator ID="RequiredFieldValidator3" ControlToValidate="txtDenGio"
-                        runat="server" ErrorMessage="<%$ Translate: Chưa chọn làm thêm đến giờ. %>" ToolTip="<%$ Translate: Chưa chọn làm thêm đến giờ. %>"> </asp:RequiredFieldValidator>
-                </td>
-            </tr>
-            <tr>
-                <td class="lb">
-                    <%# Translate("Số giờ nghỉ trưa")%>
-                </td>
-                <td>
-                    <tlk:RadNumericTextBox ID="txtBreak_Hour" runat="server" SkinID="Decimal">
-                    </tlk:RadNumericTextBox>
-                </td>
-                <td class="lb">
-                    <%# Translate("Nghỉ bù")%>
-                </td>
-                <td>
-                    <asp:CheckBox ID="cboIs_nb" runat="server" />
-                </td>
-            </tr>
-            <tr>
-                <td class="lb">
-                    <%# Translate("Lý do làm thêm")%>
-                </td>
-                <td colspan="3">
-                    <tlk:RadTextBox ID="txtGhiChu" SkinID="Textbox1023" runat="server" Width="100%">
-                    </tlk:RadTextBox>
-                </td>
-            </tr>
-        </table>
-    </tlk:RadPane>
-    <tlk:RadPane ID="MainPane" runat="server" Scrolling="None">
-        <tlk:RadGrid PageSize=50 ID="rgWorkschedule" AllowPaging="false" runat="server" Height="100%">
-            <MasterTableView AllowPaging="false" AllowCustomPaging="false" DataKeyNames="ID,EMPLOYEE_CODE,EMPLOYEE_ID"
-                ClientDataKeyNames="ID,EMPLOYEE_CODE,EMPLOYEE_ID" CommandItemDisplay="Top">
-                <CommandItemStyle Height="28px" />
-                <CommandItemTemplate>
-                    <div style="padding: 2px 0 0 0">
-                        <div style="float: left">
-                            <tlk:RadButton Width="100px" ID="btnEmployee" runat="server" Text="<%$ Translate: Chọn nhân viên %>"
-                                CausesValidation="false" CommandName="FindEmployee">
-                            </tlk:RadButton>
-                        </div>
-                        <div style="float: right;">
-                            <tlk:RadButton Width="100px" ID="btnDeleteEmp" runat="server" Text="<%$ Translate: Xóa %>"
-                                CausesValidation="false" CommandName="DeleteEmployee">
-                            </tlk:RadButton>
-                        </div>
-                    </div>
-                </CommandItemTemplate>
-                <Columns>
-                    <tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderStyle-HorizontalAlign="Center"
-                        HeaderStyle-Width="40px" ItemStyle-HorizontalAlign="Center">
-                    </tlk:GridClientSelectColumn>
-                    
-                    <tlk:GridBoundColumn HeaderText="<%$ Translate: Mã nhân viên %>" DataField="EMPLOYEE_CODE"
-                        UniqueName="EMPLOYEE_CODE" SortExpression="EMPLOYEE_CODE" />
-                    <tlk:GridBoundColumn HeaderText="<%$ Translate: Họ tên %>" DataField="VN_FULLNAME"
-                        UniqueName="VN_FULLNAME" SortExpression="VN_FULLNAME" />
-                    <tlk:GridBoundColumn HeaderText="<%$ Translate: Chức danh %>" DataField="TITLE_NAME"
-                        UniqueName="TITLE_NAME" SortExpression="TITLE_NAME" />
-                    <tlk:GridBoundColumn HeaderText="<%$ Translate: Đơn vị %>" DataField="ORG_NAME" UniqueName="ORG_NAME"
-                        SortExpression="ORG_NAME" />
-                </Columns>
-            </MasterTableView>
-            <HeaderStyle HorizontalAlign="Center" />
-            <ClientSettings>
-                <Selecting AllowRowSelect="True" />
-            </ClientSettings>
-        </tlk:RadGrid>
-    </tlk:RadPane>
-</tlk:RadSplitter>
-<asp:PlaceHolder ID="phFindEmployee" runat="server"></asp:PlaceHolder>
-<asp:PlaceHolder ID="phFindSign" runat="server"></asp:PlaceHolder>
 <tlk:RadCodeBlock ID="RadCodeBlock1" runat="server">
     <script type="text/javascript">
-        //mandatory for the RadWindow dialogs functionality
-        function getRadWindow() {
-            if (window.radWindow) {
-                return window.radWindow;
-            }
-            if (window.frameElement && window.frameElement.radWindow) {
-                return window.frameElement.radWindow;
-            }
-            return null;
+
+        function clientButtonClicking(sender, args) {
+            //if (args.get_item().get_commandName() == "CANCEL") {
+            //    OpenInNewTab('Default.aspx?mid=Attendance&fid=ctrlOTRegistration');
+            //    args.set_cancel(true);
+            //}
         }
-        var enableAjax = true;
-        var oldSize = 0;
-        function OnClientButtonClicking(sender, args) {
-            var item = args.get_item();
-            if (args.get_item().get_commandName() == "EXPORT") {
-                enableAjax = false;
-            } else if (args.get_item().get_commandName() == "SAVE") {
-                // Nếu nhấn nút SAVE thì resize
-                ResizeSplitter();
-            } else if (args.get_item().get_commandName() == 'CANCEL') {
-                getRadWindow().close(null);
-                args.set_cancel(true);
-            } else {
-                // Nếu nhấn các nút khác thì resize default
-                ResizeSplitterDefault();
-            }
+        function OpenInNewTab(url) {
+            window.location.href = url;
         }
-        function onRequestStart(sender, eventArgs) {
-            eventArgs.set_enableAjax(enableAjax);
-            enableAjax = true;
-        }
-        // Hàm Resize lại Splitter khi nhấn nút SAVE có validate
-        function ResizeSplitter() {
-            setTimeout(function () {
-                var splitter = $find("<%= RadSplitter3.ClientID%>");
-                var pane = splitter.getPaneById('<%= RadPane1.ClientID %>');
-                var height = pane.getContentElement().scrollHeight;
-                splitter.set_height(splitter.get_height() + pane.get_height() - height);
-                pane.set_height(height);
-            }, 200);
-        }
-        // Hàm khôi phục lại Size ban đầu cho Splitter
-        function ResizeSplitterDefault() {
-            var splitter = $find("<%= RadSplitter3.ClientID%>");
-            var pane = splitter.getPaneById('<%= RadPane1.ClientID %>');
-            if (oldSize == 0) {
-                oldSize = pane.getContentElement().scrollHeight;
-            } else {
-                var pane2 = splitter.getPaneById('<%= RadPane2.ClientID %>');
-                splitter.set_height(splitter.get_height() + pane.get_height() - oldSize);
-                pane.set_height(oldSize);
-                pane2.set_height(splitter.get_height() - oldSize - 1);
-            }
-        }
-           
+        //function clearSelectRadcombo(cbo) {
+        //    if (cbo) {
+        //        cbo.clearItems();
+        //        cbo.clearSelection();
+        //        cbo.set_text('');
+        //    }
+        //}
+        //function clearSelectRadtextbox(cbo) {
+        //    if (cbo) {
+        //        cbo.clear();
+        //    }
+        //}
     </script>
 </tlk:RadCodeBlock>
+<asp:PlaceHolder ID="FindEmployee" runat="server"></asp:PlaceHolder>
+

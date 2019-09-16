@@ -69,14 +69,14 @@
                         <ClientEvents OnGridCreated="GridCreated" />
                         <ClientEvents OnCommand="ValidateFilter" />
                     </ClientSettings>
-                    <MasterTableView DataKeyNames="ID" ClientDataKeyNames="ID">
+                    <MasterTableView DataKeyNames="ID,EMPLOYEE_ID" ClientDataKeyNames="ID,EMPLOYEE_ID">
                         <Columns>
                             <tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderStyle-HorizontalAlign="Center"
                                         HeaderStyle-Width="30px" ItemStyle-HorizontalAlign="Center">
                                     </tlk:GridClientSelectColumn>
-                                    <tlk:GridBoundColumn DataField="ID" Visible="false" />
-                                    <tlk:GridBoundColumn HeaderText="<%$ Translate: Trạng thái %>" DataField="STATUS_NAME"
-                                        UniqueName="STATUS_NAME" SortExpression="STATUS_NAME" HeaderStyle-Width="130px" ItemStyle-Width="130px" />
+                                    <tlk:GridBoundColumn DataField="ID,EMPLOYEE_ID" Visible="false" />
+                                    <%--<tlk:GridBoundColumn HeaderText="<%$ Translate: Trạng thái %>" DataField="STATUS_NAME"
+                                        UniqueName="STATUS_NAME" SortExpression="STATUS_NAME" HeaderStyle-Width="130px" ItemStyle-Width="130px" />--%>
                                     <tlk:GridBoundColumn HeaderText="<%$ Translate: Mã nhân viên %>" DataField="EMPLOYEE_CODE"
                                          HeaderStyle-Width="80px" ItemStyle-Width="80px" UniqueName="EMPLOYEE_CODE" SortExpression="EMPLOYEE_CODE" />
                                     <tlk:GridBoundColumn HeaderText="<%$ Translate: Họ tên %>" DataField="FULLNAME" UniqueName="FULLNAME"
@@ -102,6 +102,8 @@
                                          HeaderStyle-Width="100px" ItemStyle-Width="100px" SortExpression="TO_HOUR_PM" ItemStyle-HorizontalAlign="Center" />
                                     <tlk:GridNumericColumn HeaderText="<%$ Translate: Tổng số giờ làm thêm %>" DataField="TOTAL_OT"
                                          HeaderStyle-Width="100px" ItemStyle-Width="100px" UniqueName="TOTAL_OT" SortExpression="TOTAL_OT" ItemStyle-HorizontalAlign="Center" />
+                                    <tlk:GridNumericColumn HeaderText="<%$ Translate: 100% %>" DataField="OT_100" UniqueName="OT_100"
+                                         HeaderStyle-Width="100px" ItemStyle-Width="100px" SortExpression="OT_100" ItemStyle-HorizontalAlign="Center" />
                                     <tlk:GridNumericColumn HeaderText="<%$ Translate: 150% %>" DataField="OT_150" UniqueName="OT_150"
                                          HeaderStyle-Width="100px" ItemStyle-Width="100px" SortExpression="OT_150" ItemStyle-HorizontalAlign="Center" />
                                     <tlk:GridNumericColumn HeaderText="<%$ Translate: 200% %>" DataField="OT_200" UniqueName="OT_200"
@@ -121,8 +123,8 @@
                                     <tlk:GridDateTimeColumn HeaderText="<%$ Translate: Ngày cập nhật %>" DataField="MODIFIED_DATE"
                                          HeaderStyle-Width="100px" ItemStyle-Width="100px" UniqueName="MODIFIED_DATE" SortExpression="MODIFIED_DATE"
                                         DataFormatString="{0:dd/MM/yyyy}" ItemStyle-HorizontalAlign="Center" />
-                                    <tlk:GridBoundColumn HeaderText="<%$ Translate: Lý do không duyệt %>" DataField="REASON"
-                                         HeaderStyle-Width="200px" ItemStyle-Width="200px" UniqueName="REASON" SortExpression="REASON" />
+                                    <%--<tlk:GridBoundColumn HeaderText="<%$ Translate: Lý do không duyệt %>" DataField="REASON"
+                                         HeaderStyle-Width="200px" ItemStyle-Width="200px" UniqueName="REASON" SortExpression="REASON" />--%>
                         </Columns>
                     </MasterTableView>
                 </tlk:RadGrid>
@@ -184,9 +186,11 @@
             var grid = $find('<%# rgDeclaresOT.ClientID %>');
             var gridSelected = grid.get_masterTableView().get_selectedItems();
             var id = 0
+            var empID = 0
             var gridSelected = grid.get_masterTableView().get_selectedItems();
             if (gridSelected != "") {
                 id = grid.get_masterTableView().get_selectedItems()[0].getDataKeyValue('ID');
+                empID = grid.get_masterTableView().get_selectedItems()[0].getDataKeyValue('EMPLOYEE_ID');
             }
             if (id > 0) {
                 var m;
@@ -198,7 +202,7 @@
                     setTimeout(function () { $.noty.close(n.options.id); }, 5000);
                     return;
                 }
-                window.open('/Default.aspx?mid=Attendance&fid=ctrlDeclaresOTNewEdit&group=Business&VIEW=TRUE&FormType=0&ID=' + id + '&periodid=' + periodID, "_self"); /*
+                window.open('/Default.aspx?mid=Attendance&fid=ctrlDeclaresOTNewEdit&group=Business&VIEW=TRUE&FormType=0&ID=' + id + '&periodid=' + periodID + '&employeeID=' + empID, "_self"); /*
                 oWindow.setSize(900, 600);
                 oWindow.center(); */
             }
@@ -231,13 +235,13 @@
                 }
                 else if (bCheck > 1) {
                     var m = '<%= Translate(CommonMessage.MESSAGE_NOT_SELECT_MULTI_ROW) %>';
-                    var n = noty({ text: m, dismissQueue: true, type: 'warning' });
-                    setTimeout(function () { $.noty.close(n.options.id); }, 5000);
-                    args.set_cancel(true);
-                } else {
-                    OpenEditWindow();
-                    args.set_cancel(true);
-                }
+                        var n = noty({ text: m, dismissQueue: true, type: 'warning' });
+                        setTimeout(function () { $.noty.close(n.options.id); }, 5000);
+                        args.set_cancel(true);
+                    } else {
+                        OpenEditWindow();
+                        args.set_cancel(true);
+                    }
             } else if (args.get_item().get_commandName() == 'EXPORT') {
                 var grid = $find("<%=rgDeclaresOT.ClientID %>");
                 var masterTable = grid.get_masterTableView();
@@ -251,6 +255,6 @@
                 }
                 enableAjax = false;
             }
-        }
+}
     </script>
 </tlk:RadCodeBlock>
