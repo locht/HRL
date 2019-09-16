@@ -346,6 +346,19 @@ Namespace ProfileBusiness.ServiceImplementations
                 End Try
             End Using
         End Function
+        Public Function CheckHasFileFileContract(ByVal id As List(Of Decimal)) As Decimal Implements ServiceContracts.IProfileBusiness.CheckHasFileFileContract
+            Try
+                Using rep As New ProfileRepository
+                    Try
+                        Return rep.CheckHasFileFileContract(id)
+                    Catch ex As Exception
+                        Throw ex
+                    End Try
+                End Using
+            Catch ex As Exception
+                Throw ex
+            End Try
+        End Function
         Public Function CheckHasFileContract(ByVal id As List(Of Decimal)) As Decimal Implements ServiceContracts.IProfileBusiness.CheckHasFileContract
             Try
                 Using rep As New ProfileRepository

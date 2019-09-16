@@ -382,6 +382,19 @@ Partial Public Class ProfileBusinessRepository
 
         Return Nothing
     End Function
+    Public Function CheckHasFileFileContract(ByVal id As List(Of Decimal)) As Decimal
+        Try
+            Using rep As New ProfileBusinessClient
+                Try
+                    Return rep.CheckHasFileFileContract(id)
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
     Public Function CheckHasFileContract(ByVal id As List(Of Decimal)) As Decimal
         Try
             Using rep As New ProfileBusinessClient

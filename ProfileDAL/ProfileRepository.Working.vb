@@ -9,6 +9,7 @@ Partial Class ProfileRepository
 #Region "Working"
     'check phê duyệt và đã có đính kèm file hay chưa
     'yêu cầu nếu phê duyệt thì phải có phải đính kèm
+    'màn hinh luong va hop dong
     Public Function CheckHasFile(ByVal id As List(Of Decimal)) As Decimal
         Try
             Dim workings = Context.HU_WORKING.Where(Function(p) p.STATUS_ID = ProfileCommon.DECISION_STATUS.WAIT_APPROVE_ID And id.Contains(p.ID)).ToList()

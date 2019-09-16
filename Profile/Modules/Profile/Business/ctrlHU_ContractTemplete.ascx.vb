@@ -277,6 +277,14 @@ Public Class ctrlHU_ContractTemplete
                             ShowMessage(Translate("Loại phụ lục này không áp dụng cho loại hợp đồng có mã chứa chuỗi KXD"), NotifyType.Error)
                             Exit Sub
                         End If
+
+                        If cboStatus_ID.SelectedValue = 447 Then
+                            If txtUpload.Text = "" Then
+                                ShowMessage(Translate("Bạn phải đính kèm tập tin khi phê duyệt"), NotifyType.Warning)
+                                Exit Sub
+                            End If
+                        End If
+
                         objContract.START_DATE = rdStartDate.SelectedDate
                         If rdExpireDate.SelectedDate IsNot Nothing Then
                             objContract.EXPIRE_DATE = rdExpireDate.SelectedDate

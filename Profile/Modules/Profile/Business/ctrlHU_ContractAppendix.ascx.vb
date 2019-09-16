@@ -741,6 +741,7 @@ Public Class ctrlHU_ContractAppendix
         Dim dtb As New DataTable("DATA")
         Dim data As DataRow
         Dim log As New CurrentUserLog
+        Dim lstID As New List(Of Decimal)
         log = UserLogHelper.GetCurrentLogUser()
 
         dtb.Columns.Add("P_ID_CONTRACT", GetType(Integer))
@@ -752,15 +753,23 @@ Public Class ctrlHU_ContractAppendix
         dtb.Columns("P_STATUS").DefaultValue = p_Status_ID
 
         For Each dr As Telerik.Web.UI.GridDataItem In rgContract.SelectedItems
+            Dim ID As New Decimal
             If dr("STATUS_ID").Text <> ProfileCommon.DECISION_STATUS.APPROVE_ID Then
                 data = dtb.NewRow()
                 data("P_ID_CONTRACT") = dr("ID").Text
                 dtb.Rows.Add(data)
+                ID = dr("ID").Text
+                lstID.Add(ID)
             End If
         Next
         dtb.AcceptChanges()
 
         If dtb.Rows.Count > 0 Then
+            Dim bCheckHasfile = rep.CheckHasFileFileContract(lstID)
+            If bCheckHasfile = 1 Then
+                ShowMessage(Translate("Duyệt khi tất cả các record đã có tập tin đính kèm,bạn kiểm tra lại"), NotifyType.Warning)
+                Exit Sub
+            End If
             If psp.BatchApprovedListContract(dtb) = dtb.Rows.Count Then
 
                 ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), NotifyType.Success)

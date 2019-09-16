@@ -485,7 +485,12 @@ Public Class ctrlHU_ChangeInfoNewEdit
                         '    cboSalRank.Focus()
                         '    Exit Sub
                         'End If
-
+                        If cboStatus.SelectedValue = 447 Then
+                            If txtUpload.Text = "" Then
+                                ShowMessage(Translate("Bạn phải đính kèm tập tin khi phê duyệt"), NotifyType.Warning)
+                                Exit Sub
+                            End If
+                        End If
                         If cboTitle.SelectedValue = "" Then
                             ShowMessage(Translate("Bạn phải chọn chức danh"), NotifyType.Warning)
                             cboTitle.Focus()

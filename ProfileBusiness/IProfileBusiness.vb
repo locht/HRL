@@ -1617,6 +1617,8 @@ Namespace ProfileBusiness.ServiceContracts
         <OperationContract()>
         Function CheckHasFileContract(ByVal id As List(Of Decimal)) As Decimal
         <OperationContract()>
+        Function CheckHasFileFileContract(ByVal id As List(Of Decimal)) As Decimal
+        <OperationContract()>
         Function ModifyContract(ByVal objContract As ContractDTO, ByVal log As UserLog, ByRef gID As Decimal) As Boolean
 
         <OperationContract()>
