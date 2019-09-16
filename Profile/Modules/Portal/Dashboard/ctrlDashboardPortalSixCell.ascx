@@ -1,6 +1,6 @@
 ﻿<%@ Control Language="vb" AutoEventWireup="false" CodeBehind="ctrlDashboardPortalSixCell.ascx.vb"
     Inherits="Profile.ctrlDashboardPortalSixCell" %>
-<tlk:RadWindowManager ID="RadWindowManager1" Behaviors="None" runat="server" Width="200px"
+<%--<tlk:RadWindowManager ID="RadWindowManager1" Behaviors="None" runat="server" Width="200px"
     VisibleTitlebar="false" VisibleStatusbar="false" EnableShadow="false" ShowContentDuringLoad="false"
     VisibleOnPageLoad="true" Style="z-index: 2000 !important;">
     <Windows>
@@ -16,8 +16,10 @@
 </tlk:RadWindowManager>
 <tlk:RadCodeBlock ID="RadCodeBlock1" runat="server">
 
-    <img src="http://localhost:7777/Static/Images/IMAGE_PANEL.png" style="width:100%;height:100%"/>
-  <%--  <script type="text/javascript">
+   <img src="../../Static/Images/IMAGE_PANEL.png" style="width:100%;height:100%"/>
+    
+
+    <script type="text/javascript">
         var winW, winH, pos;
         var oWnd1, oWnd2, oWnd4, oWnd5;
 
@@ -72,5 +74,57 @@
         $(window).resize(function () {
             SizeToFit(1);
         });
-    </script>--%>
+    </script>
 </tlk:RadCodeBlock>
+--%>
+
+<div style="overflow:hidden;">
+    
+                <div class="text_welcome">
+                    <img id="Img1" src="../../Static/Images/IMAGE_PANEL.png" style="width:100%;height:100%" runat="server"/>
+                </div>
+  
+    <style>
+    #RAD_SPLITTER_ctl00_MainContent_ctrlDashboardPortalSixCell_RadSplitter
+    {
+          border: hidden !important;
+          width:100%;
+    }
+    #ctl00_MainContent_ctrlDashboardPortalSixCell_RadPane1
+    {
+        border: hidden !important;
+         width:100%;
+        }
+    </style>
+    <tlk:RadCodeBlock ID="RadCodeBlock1" runat="server">
+    <script type="text/javascript">
+        function SizeToFit(resize) { }
+        $(window).resize(function () {
+            SizeToFit(0);
+        });
+        </script>
+</tlk:RadCodeBlock>
+</div>
+<style type="text/css">    
+    .logo_wel
+    {
+        width:300px;
+        margin-bottom:20px;
+    }
+    
+    #RadPane1
+    {
+     border-right-width:0px;
+     border-bottom-width:0px;
+     color:Red;  
+    }
+      .text_welcome
+    {
+        width: 100%;
+        height: 100%;
+    }
+    .brackcrum
+    {
+        display:none
+    }
+</style>

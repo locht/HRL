@@ -14,49 +14,13 @@ Option Explicit On
 Partial Public Class ctrlDashboardPortalSixCell
 
     '''<summary>
-    '''RadWindowManager1 control.
+    '''Img1 control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents RadWindowManager1 As Global.Telerik.Web.UI.RadWindowManager
-
-    '''<summary>
-    '''rw1 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents rw1 As Global.Telerik.Web.UI.RadWindow
-
-    '''<summary>
-    '''rw2 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents rw2 As Global.Telerik.Web.UI.RadWindow
-
-    '''<summary>
-    '''rw4 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents rw4 As Global.Telerik.Web.UI.RadWindow
-
-    '''<summary>
-    '''rw5 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents rw5 As Global.Telerik.Web.UI.RadWindow
+    Protected WithEvents Img1 As Global.System.Web.UI.HtmlControls.HtmlImage
 
     '''<summary>
     '''RadCodeBlock1 control.
