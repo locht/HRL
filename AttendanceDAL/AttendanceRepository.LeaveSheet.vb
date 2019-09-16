@@ -299,7 +299,15 @@ Partial Public Class AttendanceRepository
                         From o In Context.HU_ORGANIZATION.Where(Function(f) f.ID = e.ORG_ID).DefaultIfEmpty
                         From m In Context.AT_TIME_MANUAL.Where(Function(f) f.ID = p.MANUAL_ID).DefaultIfEmpty
                         From ot In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.STATUS).DefaultIfEmpty
-                        From nb In Context.AT_COMPENSATORY.Where(Function(F) F.EMPLOYEE_ID = p.EMPLOYEE_ID And F.YEAR = _filter.FROM_DATE.Value.Year).DefaultIfEmpty
+                        From nb In Context.AT_COMPENSATORY.Where(Function(F) F.EMPLOYEE_ID = p.EMPLOYEE_ID And F.YEAR = _filter.FROM_DATE.Value.Year).DefaultIfEmpty()
+                        From pas In Context.PROCESS_APPROVED_STATUS.Where(Function(f) f.ID_REGGROUP = p.ID And f.APP_STATUS = 0 _
+                            And f.APP_LEVEL = (Context.PROCESS_APPROVED_STATUS.Where(Function(h) h.ID_REGGROUP = p.ID And h.APP_STATUS = 0).Min(Function(k) k.APP_LEVEL))).DefaultIfEmpty() _
+                        From ee In Context.HU_EMPLOYEE.Where(Function(f) f.ID = pas.EMPLOYEE_APPROVED).DefaultIfEmpty()
+
+            'Dim approveList = From p In query
+            '                  From pas In Context.PROCESS_APPROVED_STATUS.Where(Function(f) f.ID_REGGROUP = p.p.ID And f.APP_STATUS = 0 _
+            '                And f.APP_LEVEL = (Context.PROCESS_APPROVED_STATUS.Where(Function(h) h.ID_REGGROUP = p.p.ID And h.APP_STATUS = 0).Min(Function(k) k.APP_LEVEL))).DefaultIfEmpty() _
+            'From ee In Context.HU_EMPLOYEE.Where(Function(f) f.ID = pas.EMPLOYEE_APPROVED).DefaultIfEmpty()
 
             'GET LEAVE_SHEET BY EMPLOYEE ID
             If _filter.EMPLOYEE_ID.HasValue Then
@@ -369,7 +377,6 @@ Partial Public Class AttendanceRepository
                                                                        .AFTERNOON_ID = p.m.AFTERNOON_ID,
                                                                        .NOTE = p.p.NOTE,
                                                                        .DAY_NUM = p.p.DAY_NUM,
-                                                                       .EMP_APPROVES_NAME = p.p.EMP_APPROVES_NAME,
                                                                        .CREATED_BY = p.p.CREATED_BY,
                                                                        .CREATED_DATE = p.p.CREATED_DATE,
                                                                        .CREATED_LOG = p.p.CREATED_LOG,
@@ -379,7 +386,8 @@ Partial Public Class AttendanceRepository
                                                                        .STATUS_NAME = p.ot.NAME_VN,
                                                                        .MODIFIED_LOG = p.p.MODIFIED_LOG,
                                                                        .IMPORT = If(p.p.IMPORT = -1, "x", ""),
-                                                                       .REASON = p.p.REASON})
+                                                                       .REASON = p.p.REASON,
+                                                                       .EMP_APPROVES_NAME = p.ee.FULLNAME_VN})
 
             lst = lst.OrderBy(Sorts)
             Total = lst.Count
