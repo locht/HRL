@@ -382,6 +382,19 @@ Partial Public Class ProfileBusinessRepository
 
         Return Nothing
     End Function
+    Public Function CheckHasFileContract(ByVal id As List(Of Decimal)) As Decimal
+        Try
+            Using rep As New ProfileBusinessClient
+                Try
+                    Return rep.CheckHasFileContract(id)
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
 
     Public Function GetContract(ByVal _filter As ContractDTO, ByVal _param As ParamDTO,
                                 Optional ByVal Sorts As String = "CREATED_DATE desc") As List(Of ContractDTO)

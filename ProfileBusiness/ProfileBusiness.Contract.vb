@@ -298,7 +298,7 @@ Namespace ProfileBusiness.ServiceImplementations
             End Using
         End Function
 #End Region
-
+        
         Public Function GetContract(ByVal _filter As ContractDTO, ByVal PageIndex As Integer,
                                 ByVal PageSize As Integer,
                                 ByRef Total As Integer, ByVal _param As ParamDTO,
@@ -345,6 +345,19 @@ Namespace ProfileBusiness.ServiceImplementations
                     Throw ex
                 End Try
             End Using
+        End Function
+        Public Function CheckHasFileContract(ByVal id As List(Of Decimal)) As Decimal Implements ServiceContracts.IProfileBusiness.CheckHasFileContract
+            Try
+                Using rep As New ProfileRepository
+                    Try
+                        Return rep.CheckHasFileContract(id)
+                    Catch ex As Exception
+                        Throw ex
+                    End Try
+                End Using
+            Catch ex As Exception
+                Throw ex
+            End Try
         End Function
 
         Public Function ModifyContract(ByVal objContract As ContractDTO, ByVal log As UserLog, ByRef gID As Decimal) As Boolean _
