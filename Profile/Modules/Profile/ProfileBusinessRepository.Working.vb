@@ -145,6 +145,15 @@ Partial Public Class ProfileBusinessRepository
             Return rep.ApproveWorkings(ids, Log)
         End Using
     End Function
+    Public Function CheckHasFile(ByVal id As List(Of Decimal)) As Decimal
+        Try
+            Using rep As New ProfileBusinessClient
+                Return rep.CheckHasFile(id)
+            End Using
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
     Public Function GetWorking(ByVal _filter As WorkingDTO, ByVal _param As ProfileBusiness.ParamDTO,
                                Optional ByVal Sorts As String = "CREATED_DATE desc") As List(Of WorkingDTO)
         Dim lstWorking As List(Of WorkingDTO)

@@ -1774,7 +1774,8 @@ Namespace ProfileBusiness.ServiceContracts
         Function UnApproveWorking(ByVal objWorking As WorkingDTO, ByVal log As UserLog, ByRef gID As Decimal) As Boolean
         <OperationContract()>
         Function ApproveWorkings(ByVal ids As List(Of Decimal), Optional ByVal log As UserLog = Nothing) As CommandResult
-
+        <OperationContract()>
+        Function CheckHasFile(ByVal id As List(Of Decimal)) As Decimal
 #End Region
 
 #Region "Discipline"

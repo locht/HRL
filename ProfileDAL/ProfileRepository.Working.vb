@@ -7,7 +7,21 @@ Imports System.Reflection
 Partial Class ProfileRepository
 
 #Region "Working"
-
+    'check phê duyệt và đã có đính kèm file hay chưa
+    'yêu cầu nếu phê duyệt thì phải có phải đính kèm
+    Public Function CheckHasFile(ByVal id As List(Of Decimal)) As Decimal
+        Try
+            Dim workings = Context.HU_WORKING.Where(Function(p) p.STATUS_ID = ProfileCommon.DECISION_STATUS.WAIT_APPROVE_ID And id.Contains(p.ID)).ToList()
+            For Each working As HU_WORKING In workings
+                If working.FILENAME Is Nothing Or working.FILENAME = "" Then
+                    Return 1
+                End If
+            Next
+            Return 2
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
     Function ApproveWorkings(ByVal ids As List(Of Decimal), ByVal log As UserLog) As CommandResult
         Dim result = New CommandResult
         Try
