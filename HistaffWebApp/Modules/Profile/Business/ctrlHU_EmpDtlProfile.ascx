@@ -317,11 +317,11 @@
                                                 runat="server" ErrorMessage="Bạn phải nhập đối tượng lao động" ToolTip="Bạn phải nhập đối tượng lao động">
                                             </asp:RequiredFieldValidator>
                                         </td>
-                                        <td class="lb3" style="display: none">
+                                        <td class="lb3" >
                                             <asp:Label runat="server" ID="lbObject" Text="Đối tượng chấm công"></asp:Label>
                                             <span class="lbReq">*</span>
                                         </td>
-                                        <td style="display: none">
+                                        <td >
                                             <tlk:RadComboBox runat="server" ID="cboObject" SkinID="LoadDemand" OnClientSelectedIndexChanged="OnClientSelectedIndexChanged"
                                                 OnClientItemsRequesting="OnClientItemsRequesting">
                                             </tlk:RadComboBox>
