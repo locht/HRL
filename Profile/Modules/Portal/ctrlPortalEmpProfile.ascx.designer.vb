@@ -410,6 +410,60 @@ Partial Public Class ctrlPortalEmpProfile
     Protected WithEvents rdExpireIDNO As Global.Telerik.Web.UI.RadDatePicker
 
     '''<summary>
+    '''txtID_REMARK control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtID_REMARK As Global.Telerik.Web.UI.RadTextBox
+
+    '''<summary>
+    '''txtPitCode control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtPitCode As Global.Telerik.Web.UI.RadTextBox
+
+    '''<summary>
+    '''lbDayPitcode control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbDayPitcode As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''rdDayPitcode control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents rdDayPitcode As Global.Telerik.Web.UI.RadDatePicker
+
+    '''<summary>
+    '''lbPlacePitcode control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbPlacePitcode As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''txtPlacePitcode control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtPlacePitcode As Global.Telerik.Web.UI.RadTextBox
+
+    '''<summary>
     '''lbLearningLevel control.
     '''</summary>
     '''<remarks>
@@ -887,51 +941,6 @@ Partial Public Class ctrlPortalEmpProfile
     Protected WithEvents txtPassPlace As Global.Telerik.Web.UI.RadTextBox
 
     '''<summary>
-    '''txtPitCode control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents txtPitCode As Global.Telerik.Web.UI.RadTextBox
-
-    '''<summary>
-    '''lbDayPitcode control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lbDayPitcode As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
-    '''rdDayPitcode control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents rdDayPitcode As Global.Telerik.Web.UI.RadDatePicker
-
-    '''<summary>
-    '''lbPlacePitcode control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lbPlacePitcode As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
-    '''txtPlacePitcode control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents txtPlacePitcode As Global.Telerik.Web.UI.RadTextBox
-
-    '''<summary>
     '''Label8 control.
     '''</summary>
     '''<remarks>
@@ -1013,24 +1022,6 @@ Partial Public Class ctrlPortalEmpProfile
     Protected WithEvents ckDOAN_PHI As Global.System.Web.UI.WebControls.CheckBox
 
     '''<summary>
-    '''lbCHUC_VU_DOAN control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lbCHUC_VU_DOAN As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
-    '''rtCHUC_VU_DOAN control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents rtCHUC_VU_DOAN As Global.Telerik.Web.UI.RadTextBox
-
-    '''<summary>
     '''lbNGAY_VAO_DOAN control.
     '''</summary>
     '''<remarks>
@@ -1110,6 +1101,24 @@ Partial Public Class ctrlPortalEmpProfile
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents rdNGAY_VAO_DANG As Global.Telerik.Web.UI.RadDatePicker
+
+    '''<summary>
+    '''lbNOI_VAO_DANG control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbNOI_VAO_DANG As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''txtNOI_VAO_DANG control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtNOI_VAO_DANG As Global.Telerik.Web.UI.RadTextBox
 
     '''<summary>
     '''ckBanTT_ND control.
