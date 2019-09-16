@@ -18,6 +18,15 @@ Namespace ProfileBusiness.ServiceImplementations
                 End Try
             End Using
         End Function
+        Public Function CheckHasFile(ByVal id As List(Of Decimal)) As Decimal Implements IProfileBusiness.CheckHasFile
+            Try
+                Using rep As New ProfileRepository
+                    Return rep.CheckHasFile(id)
+                End Using
+            Catch ex As Exception
+                Throw ex
+            End Try
+        End Function
         Function ApproveWorkings(ByVal ids As List(Of Decimal), Optional ByVal log As UserLog = Nothing) As CommandResult Implements IProfileBusiness.ApproveWorkings
             Using rep As New ProfileRepository
                 Return rep.ApproveWorkings(ids, log)
