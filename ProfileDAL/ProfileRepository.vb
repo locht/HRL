@@ -998,7 +998,7 @@ Public Class ProfileRepository
         'Danh mục loại hợp đồng
         If _combolistDTO.GET_CONTRACTTYPE Then
             query = (From p In Context.HU_CONTRACT_TYPE
-                     Where p.ACTFLG = "A" And p.CODE <> "PLHD"
+                     Where p.ACTFLG = "A" And p.TYPE_CODE Is Nothing
                      Order By p.NAME
                     Select New ContractTypeDTO With {
                         .ID = p.ID,
