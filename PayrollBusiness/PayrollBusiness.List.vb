@@ -333,12 +333,13 @@ Namespace PayrollBusiness.ServiceImplementations
 #End Region
 
 #Region "work standard"
-        Public Function GetWorkStandard(ByVal PageIndex As Integer,
+        Public Function GetWorkStandard(ByVal _filter As Work_StandardDTO, ByVal PageIndex As Integer,
                                         ByVal PageSize As Integer,
                                         ByRef Total As Integer,
+                                        Optional ByVal log As UserLog = Nothing,
                                         Optional ByVal Sorts As String = " YEAR, PERIOD_ID desc") As List(Of Work_StandardDTO) Implements ServiceContracts.IPayrollBusiness.GetWorkStandard
             Try
-                Dim lst = PayrollRepositoryStatic.Instance.GetWorkStandard(PageIndex, PageSize, Total, Sorts)
+                Dim lst = PayrollRepositoryStatic.Instance.GetWorkStandard(_filter, PageIndex, PageSize, Total, log, Sorts)
                 Return lst
             Catch ex As Exception
                 Throw ex

@@ -45,6 +45,7 @@ Public Class Work_StandardDTO
     Public Property ACTFLG As String
     Public Property ORG_ID As Decimal?
     Public Property ORG_NAME As String
+    Public Property param As ParamDTO
 End Class
 
 

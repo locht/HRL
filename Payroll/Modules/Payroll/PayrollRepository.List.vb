@@ -807,7 +807,7 @@ Partial Public Class PayrollRepository
 #End Region
 #Region "Work Standard"
 
-    Public Function GetWorkStandard(ByVal PageIndex As Integer,
+    Public Function GetWorkStandard(ByVal _filter As Work_StandardDTO, ByVal PageIndex As Integer,
                                         ByVal PageSize As Integer,
                                         ByRef Total As Integer,
                                         Optional ByVal Sorts As String = " YEAR, PERIOD_ID desc") As List(Of Work_StandardDTO)
@@ -815,7 +815,7 @@ Partial Public Class PayrollRepository
 
         Using rep As New PayrollBusinessClient
             Try
-                lstListSalaries = rep.GetWorkStandard(PageIndex, PageSize, Total, Sorts)
+                lstListSalaries = rep.GetWorkStandard(_filter, PageIndex, PageSize, Total, Me.Log, Sorts)
                 Return lstListSalaries
             Catch ex As Exception
                 rep.Abort()

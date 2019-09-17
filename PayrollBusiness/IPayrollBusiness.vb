@@ -200,9 +200,10 @@ Namespace PayrollBusiness.ServiceContracts
 #End Region
 #Region "Work Standard"
         <OperationContract()>
-        Function GetWorkStandard(ByVal PageIndex As Integer,
+        Function GetWorkStandard(ByVal _filter As Work_StandardDTO, ByVal PageIndex As Integer,
                                         ByVal PageSize As Integer,
                                         ByRef Total As Integer,
+                                        Optional ByVal log As UserLog = Nothing,
                                         Optional ByVal Sorts As String = " YEAR, PERIOD_ID desc") As List(Of Work_StandardDTO)
         <OperationContract()>
         Function GetWorkStandardbyYear(ByVal year As Decimal) As List(Of Work_StandardDTO)

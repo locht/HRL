@@ -6116,8 +6116,8 @@ Namespace PayrollBusiness
      System.Runtime.Serialization.KnownTypeAttribute(GetType(PayrollBusiness.ATPeriodDTO)),  _
      System.Runtime.Serialization.KnownTypeAttribute(GetType(System.Collections.Generic.List(Of PayrollBusiness.AT_ORG_PERIOD))),  _
      System.Runtime.Serialization.KnownTypeAttribute(GetType(PayrollBusiness.AT_ORG_PERIOD)),  _
-     System.Runtime.Serialization.KnownTypeAttribute(GetType(System.Collections.Generic.List(Of PayrollBusiness.Work_StandardDTO))),  _
      System.Runtime.Serialization.KnownTypeAttribute(GetType(PayrollBusiness.Work_StandardDTO)),  _
+     System.Runtime.Serialization.KnownTypeAttribute(GetType(System.Collections.Generic.List(Of PayrollBusiness.Work_StandardDTO))),  _
      System.Runtime.Serialization.KnownTypeAttribute(GetType(PayrollBusiness.PAFomulerGroup)),  _
      System.Runtime.Serialization.KnownTypeAttribute(GetType(System.Collections.Generic.List(Of PayrollBusiness.PAFomulerGroup))),  _
      System.Runtime.Serialization.KnownTypeAttribute(GetType(System.Collections.Generic.List(Of PayrollBusiness.PAFomuler))),  _
@@ -8162,6 +8162,9 @@ Namespace PayrollBusiness
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private YEARField As System.Nullable(Of Decimal)
         
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private paramField As PayrollBusiness.ParamDTO
+        
         <Global.System.ComponentModel.BrowsableAttribute(false)>  _
         Public Property ExtensionData() As System.Runtime.Serialization.ExtensionDataObject Implements System.Runtime.Serialization.IExtensibleDataObject.ExtensionData
             Get
@@ -8324,6 +8327,19 @@ Namespace PayrollBusiness
                 If (Me.YEARField.Equals(value) <> true) Then
                     Me.YEARField = value
                     Me.RaisePropertyChanged("YEAR")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property param() As PayrollBusiness.ParamDTO
+            Get
+                Return Me.paramField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.paramField, value) <> true) Then
+                    Me.paramField = value
+                    Me.RaisePropertyChanged("param")
                 End If
             End Set
         End Property
@@ -9115,8 +9131,8 @@ Namespace PayrollBusiness
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(PayrollBusiness.ATPeriodDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of PayrollBusiness.AT_ORG_PERIOD))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(PayrollBusiness.AT_ORG_PERIOD)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of PayrollBusiness.Work_StandardDTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(PayrollBusiness.Work_StandardDTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of PayrollBusiness.Work_StandardDTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(PayrollBusiness.PAFomulerGroup)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of PayrollBusiness.PAFomulerGroup))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of PayrollBusiness.PAFomuler))),  _
@@ -9213,8 +9229,8 @@ Namespace PayrollBusiness
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(PayrollBusiness.ATPeriodDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of PayrollBusiness.AT_ORG_PERIOD))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(PayrollBusiness.AT_ORG_PERIOD)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of PayrollBusiness.Work_StandardDTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(PayrollBusiness.Work_StandardDTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of PayrollBusiness.Work_StandardDTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(PayrollBusiness.PAFomulerGroup)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of PayrollBusiness.PAFomulerGroup))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of PayrollBusiness.PAFomuler))),  _
@@ -9533,7 +9549,7 @@ Namespace PayrollBusiness
         Function ActivePeriod(ByVal lstID As System.Collections.Generic.List(Of Decimal), ByVal log As Common.CommonBusiness.UserLog, ByVal bActive As String) As Boolean
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IPayrollBusiness/GetWorkStandard", ReplyAction:="http://tempuri.org/IPayrollBusiness/GetWorkStandardResponse")>  _
-        Function GetWorkStandard(ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal Sorts As String) As System.Collections.Generic.List(Of PayrollBusiness.Work_StandardDTO)
+        Function GetWorkStandard(ByVal _filter As PayrollBusiness.Work_StandardDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal log As Common.CommonBusiness.UserLog, ByVal Sorts As String) As System.Collections.Generic.List(Of PayrollBusiness.Work_StandardDTO)
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IPayrollBusiness/GetWorkStandardbyYear", ReplyAction:="http://tempuri.org/IPayrollBusiness/GetWorkStandardbyYearResponse")>  _
         Function GetWorkStandardbyYear(ByVal year As Decimal) As System.Collections.Generic.List(Of PayrollBusiness.Work_StandardDTO)
@@ -10400,8 +10416,8 @@ Namespace PayrollBusiness
             Return MyBase.Channel.ActivePeriod(lstID, log, bActive)
         End Function
         
-        Public Function GetWorkStandard(ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal Sorts As String) As System.Collections.Generic.List(Of PayrollBusiness.Work_StandardDTO) Implements PayrollBusiness.IPayrollBusiness.GetWorkStandard
-            Return MyBase.Channel.GetWorkStandard(PageIndex, PageSize, Total, Sorts)
+        Public Function GetWorkStandard(ByVal _filter As PayrollBusiness.Work_StandardDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal log As Common.CommonBusiness.UserLog, ByVal Sorts As String) As System.Collections.Generic.List(Of PayrollBusiness.Work_StandardDTO) Implements PayrollBusiness.IPayrollBusiness.GetWorkStandard
+            Return MyBase.Channel.GetWorkStandard(_filter, PageIndex, PageSize, Total, log, Sorts)
         End Function
         
         Public Function GetWorkStandardbyYear(ByVal year As Decimal) As System.Collections.Generic.List(Of PayrollBusiness.Work_StandardDTO) Implements PayrollBusiness.IPayrollBusiness.GetWorkStandardbyYear

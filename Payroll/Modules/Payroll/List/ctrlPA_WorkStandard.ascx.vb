@@ -3,12 +3,21 @@ Imports Framework.UI.Utilities
 Imports Payroll.PayrollBusiness
 Imports Common
 Imports Telerik.Web.UI
+Imports WebAppLog
 
 Public Class ctrlPA_WorkStandard
     Inherits Common.CommonView
-
+    Dim _myLog As New MyLog()
+    Dim _classPath As String = "Payroll/Module/Payroll/List/" + Me.GetType().Name.ToString()
 #Region "Property"
-
+    Property orgid As Integer
+        Get
+            Return ViewState(Me.ID & "_orgid")
+        End Get
+        Set(ByVal value As Integer)
+            ViewState(Me.ID & "_orgid") = value
+        End Set
+    End Property
     Property IDSelect As Decimal
         Get
             Return ViewState(Me.ID & "_IDSelect")
@@ -94,25 +103,29 @@ Public Class ctrlPA_WorkStandard
 
     Protected Function CreateDataFilter(Optional ByVal isFull As Boolean = False) As DataTable
 
-        Dim obj As New Work_StandardDTO
+        Dim _filter As New Work_StandardDTO
         Try
             Dim MaximumRows As Integer
-            SetValueObjectByRadGrid(rgData, obj)
+            If ctrlOrg.CurrentValue IsNot Nothing Then
+                _filter.ORG_ID = Utilities.ObjToDecima(ctrlOrg.CurrentValue)
+            End If
+            _filter.param.IS_DISSOLVE = ctrlOrg.IsDissolve
+            SetValueObjectByRadGrid(rgData, _filter)
             Dim Sorts As String = rgData.MasterTableView.SortExpressions.GetSortString()
 
             Using rep As New PayrollRepository
                 If isFull Then
                     If Sorts IsNot Nothing Then
-                        Return rep.GetWorkStandard(rgData.CurrentPageIndex, rgData.PageSize, MaximumRows, Sorts).ToTable()
+                        Return rep.GetWorkStandard(_filter, rgData.CurrentPageIndex, rgData.PageSize, MaximumRows, Sorts).ToTable()
                     Else
-                        Return rep.GetWorkStandard(rgData.CurrentPageIndex, rgData.PageSize, MaximumRows).ToTable()
+                        Return rep.GetWorkStandard(_filter, rgData.CurrentPageIndex, rgData.PageSize, MaximumRows).ToTable()
                     End If
                 Else
                     Dim WorkStandard As New List(Of Work_StandardDTO)
                     If Sorts IsNot Nothing Then
-                        WorkStandard = rep.GetWorkStandard(rgData.CurrentPageIndex, rgData.PageSize, MaximumRows, Sorts)
+                        WorkStandard = rep.GetWorkStandard(_filter, rgData.CurrentPageIndex, rgData.PageSize, MaximumRows, Sorts)
                     Else
-                        WorkStandard = rep.GetWorkStandard(rgData.CurrentPageIndex, rgData.PageSize, MaximumRows)
+                        WorkStandard = rep.GetWorkStandard(_filter, rgData.CurrentPageIndex, rgData.PageSize, MaximumRows)
                     End If
                     rgData.VirtualItemCount = MaximumRows
                     rgData.DataSource = WorkStandard
@@ -368,7 +381,31 @@ Public Class ctrlPA_WorkStandard
 
     End Sub
 
+    Private Sub ctrlOrganization_SelectedNodeChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles ctrlOrg.SelectedNodeChanged
+        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
 
+        Try
+            Select Case CurrentState
+                Case CommonMessage.STATE_NEW
+                    If ctrlOrg.CurrentValue IsNot Nothing Then
+                        orgid = Decimal.Parse(ctrlOrg.CurrentValue)
+                    Else
+                        ShowMessage("Chưa chọn phòng ban?", NotifyType.Warning)
+                        Exit Sub
+                    End If
+                    'orgItem = (From p In Organizations Where p.ID = orgid).SingleOrDefault
+                    'Code = orgItem.CODE & "_" & Year & "_"
+                    'txtCode.Text = rep.AutoGenCode(Code, "HU_WELFARE_LIST", "CODE")
+            End Select
+            CreateDataFilter(False)
+            Dim startTime As DateTime = DateTime.UtcNow
+            rgData.CurrentPageIndex = 0
+            rgData.Rebind()
+            _myLog.WriteLog(_myLog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
+        Catch ex As Exception
+            _myLog.WriteLog(_myLog._error, _classPath, method, 0, ex, "")
+        End Try
+    End Sub
 #End Region
 
 #Region "Custom"
@@ -393,6 +430,6 @@ Public Class ctrlPA_WorkStandard
         End Using
 
 
-        
+
     End Sub
 End Class

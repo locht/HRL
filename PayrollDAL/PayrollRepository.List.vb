@@ -900,12 +900,20 @@ Partial Public Class PayrollRepository
 
 #Region "WORK STANDARD"
 
-    Public Function GetWorkStandard(ByVal PageIndex As Integer,
+    Public Function GetWorkStandard(ByVal _filter As Work_StandardDTO, ByVal PageIndex As Integer,
                                         ByVal PageSize As Integer,
                                         ByRef Total As Integer,
+                                        Optional ByVal log As UserLog = Nothing,
                                         Optional ByVal Sorts As String = " YEAR, PERIOD_ID desc") As List(Of Work_StandardDTO)
 
         Try
+            Using cls As New DataAccess.QueryData
+                cls.ExecuteStore("PKG_COMMON_LIST.INSERT_CHOSEN_ORG",
+                                 New With {.P_USERNAME = log.Username,
+                                           .P_ORGID = _filter.param.ORG_ID,
+                                           .P_ISDISSOLVE = _filter.param.IS_DISSOLVE})
+            End Using
+
             Dim lst = (From p In Context.PA_WORK_STANDARD
             From OT In Context.OT_OTHER_LIST.Where(Function(OT) OT.ID = p.OBJECT_ID).DefaultIfEmpty()
             From OTL In Context.OT_OTHER_LIST_TYPE.Where(Function(OTL) OTL.ID = OT.TYPE_ID And OTL.CODE = "OBJECT_LABOR").DefaultIfEmpty()

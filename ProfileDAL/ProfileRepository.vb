@@ -483,7 +483,7 @@ Public Class ProfileRepository
                                     .P_FOLDERNAME = cls.OUT_STRING,
                                     .P_CUR = cls.OUT_CURSOR}
                 Dim dtData As DataTable = cls.ExecuteStore("PKG_COMMON_LIST.GET_HU_DATA_DYNAMIC_CONTRACT", obj)
-                folderName = obj.P_FOLDERNAME
+                folderName = dtData(0)("FOLDERNAME")
                 Return dtData
             End Using
         Catch ex As Exception
