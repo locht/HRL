@@ -1,8 +1,8 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for Oracle database
 -- --------------------------------------------------
--- Date Created: 5/8/2019 3:17:24 PM
--- Generated from EDMX file: C:\workpasces\hiSSTAFF_HCM\HOSE\histaffhcm\PayrollDAL\PayrollContext.edmx
+-- Date Created: 16/09/2019 11:21:27 AM
+-- Generated from EDMX file: E:\TNG2\PayrollDAL\PayrollContext.edmx
 -- --------------------------------------------------
 
 -- --------------------------------------------------
@@ -857,7 +857,8 @@ CREATE TABLE "dbo"."PA_WORK_STANDARD" (
    "CREATED_LOG" NVARCHAR2(255) NULL,
    "MODIFIED_BY" NVARCHAR2(255) NULL,
    "MODIFIED_DATE" DATE NULL,
-   "MODIFIED_LOG" NVARCHAR2(255) NULL
+   "MODIFIED_LOG" NVARCHAR2(255) NULL,
+   "ORG_ID" NUMBER(38,0) NULL
 );
 
 -- Creating table 'AT_PERIOD'

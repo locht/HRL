@@ -910,9 +910,12 @@ Partial Public Class PayrollRepository
             From OT In Context.OT_OTHER_LIST.Where(Function(OT) OT.ID = p.OBJECT_ID).DefaultIfEmpty()
             From OTL In Context.OT_OTHER_LIST_TYPE.Where(Function(OTL) OTL.ID = OT.TYPE_ID And OTL.CODE = "OBJECT_LABOR").DefaultIfEmpty()
             From AT In Context.AT_PERIOD.Where(Function(AT) p.PERIOD_ID = AT.ID).DefaultIfEmpty()
+            From ORG In Context.HU_ORGANIZATION.Where(Function(f) f.ID = p.ORG_ID).DefaultIfEmpty()
             Select New Work_StandardDTO With {
                                        .ID = p.ID,
                                        .YEAR = p.YEAR,
+                                       .ORG_ID = p.ORG_ID,
+                                       .ORG_NAME = ORG.NAME_VN,
                                        .PERIOD_ID = p.PERIOD_ID,
                                        .PERIOD_NAME = AT.PERIOD_NAME,
                                        .OBJECT_ID = p.OBJECT_ID,
@@ -941,10 +944,13 @@ Partial Public Class PayrollRepository
         Try
             Dim lst = (From p In Context.PA_WORK_STANDARD
             From OT In Context.OT_OTHER_LIST.Where(Function(OT) OT.ID = p.OBJECT_ID And OT.TYPE_ID = 2071).DefaultIfEmpty()
-            From AT In Context.AT_PERIOD.Where(Function(AT) p.PERIOD_ID = AT.ID).DefaultIfEmpty() Where p.YEAR = year
+            From AT In Context.AT_PERIOD.Where(Function(AT) p.PERIOD_ID = AT.ID).DefaultIfEmpty()
+            From org In Context.HU_ORGANIZATION.Where(Function(f) f.ID = p.ORG_ID).DefaultIfEmpty() Where p.YEAR = year
             Select New Work_StandardDTO With {
                                        .ID = p.ID,
                                        .YEAR = p.YEAR,
+                                       .ORG_ID = p.ORG_ID,
+                                       .ORG_NAME = org.NAME_VN,
                                        .PERIOD_ID = p.PERIOD_ID,
                                        .PERIOD_NAME = AT.PERIOD_NAME,
                                        .OBJECT_ID = p.OBJECT_ID,
@@ -982,6 +988,7 @@ Partial Public Class PayrollRepository
             objPeriodData.YEAR = objPeriod.YEAR
             objPeriodData.PERIOD_ID = objPeriod.PERIOD_ID
             objPeriodData.OBJECT_ID = objPeriod.OBJECT_ID
+            objPeriodData.ORG_ID = objPeriod.ORG_ID
             objPeriodData.PERIOD_STANDARD = objPeriod.Period_standard
             objPeriodData.REMARK = objPeriod.REMARK
             objPeriodData.ACTFLG = objPeriod.ACTFLG
@@ -1020,6 +1027,7 @@ Partial Public Class PayrollRepository
         Try
             Context.PA_WORK_STANDARD.Attach(objPeriodData)
             objPeriodData.YEAR = objPeriod.YEAR
+            objPeriodData.ORG_ID = objPeriod.ORG_ID
             objPeriodData.PERIOD_ID = objPeriod.PERIOD_ID
             objPeriodData.OBJECT_ID = objPeriod.OBJECT_ID
             objPeriodData.PERIOD_STANDARD = objPeriod.Period_standard

@@ -23,6 +23,42 @@ Partial Public Class ctrlPA_WorkStandard
     Protected WithEvents RadSplitter3 As Global.Telerik.Web.UI.RadSplitter
 
     '''<summary>
+    '''LeftPane control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents LeftPane As Global.Telerik.Web.UI.RadPane
+
+    '''<summary>
+    '''ctrlOrg control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents ctrlOrg As Global.Common.ctrlOrganization
+
+    '''<summary>
+    '''MainPane control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents MainPane As Global.Telerik.Web.UI.RadPane
+
+    '''<summary>
+    '''RadSplitter1 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents RadSplitter1 As Global.Telerik.Web.UI.RadSplitter
+
+    '''<summary>
     '''RadPane1 control.
     '''</summary>
     '''<remarks>
@@ -102,6 +138,24 @@ Partial Public Class ctrlPA_WorkStandard
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents cboPeriod As Global.Telerik.Web.UI.RadComboBox
+
+    '''<summary>
+    '''Td1 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents Td1 As Global.System.Web.UI.HtmlControls.HtmlTableCell
+
+    '''<summary>
+    '''Td2 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents Td2 As Global.System.Web.UI.HtmlControls.HtmlTableCell
 
     '''<summary>
     '''txtWordStandard control.

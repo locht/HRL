@@ -81,7 +81,7 @@ Public Class ctrlPA_WorkStandard
                         rgData.CurrentPageIndex = 0
                         rgData.MasterTableView.SortExpressions.Clear()
                         rgData.Rebind()
-                        SelectedItemDataGridByKey(rgData, IDSelect, )
+                        SelectedItemDataGridByKey(rgData, IDSelect)
                     Case "Cancel"
                         rgData.MasterTableView.ClearSelectedItems()
                 End Select
@@ -133,16 +133,18 @@ Public Class ctrlPA_WorkStandard
                     EnabledGridNotPostback(rgData, False)
                     EnableControlAll(True, rntxtYEAR, cboLabor, cboPeriod, txtRemark, txtWordStandard)
                     rntxtYEAR.Focus()
-
+                    ctrlOrg.Enabled = True
                 Case CommonMessage.STATE_NORMAL
                     EnabledGridNotPostback(rgData, True)
                     EnableControlAll(False, rntxtYEAR, cboLabor, cboPeriod, txtRemark, txtWordStandard)
                     cboPeriod.Focus()
+                    ctrlOrg.Enabled = False
                 Case CommonMessage.STATE_EDIT
                     EnabledGridNotPostback(rgData, False)
                     'rgData.Enabled = False
                     EnableControlAll(True, rntxtYEAR, cboLabor, cboPeriod, txtRemark, txtWordStandard)
                     cboPeriod.Focus()
+                    ctrlOrg.Enabled = True
                 Case CommonMessage.STATE_DELETE
                     Dim lstDeletes As New List(Of Decimal)
                     For idx = 0 To rgData.SelectedItems.Count - 1
@@ -222,7 +224,7 @@ Public Class ctrlPA_WorkStandard
     Protected Sub OnToolbar_Command(ByVal sender As Object, ByVal e As RadToolBarEventArgs) Handles Me.OnMainToolbarClick
         Dim objWorkStandardDTO As New Work_StandardDTO
         Dim gID As Decimal
-
+        Dim orgID As String = String.Empty
         Try
             Select Case CType(e.Item, RadToolBarButton).CommandName
                 Case CommonMessage.TOOLBARITEM_CREATE
@@ -275,6 +277,7 @@ Public Class ctrlPA_WorkStandard
                         objWorkStandardDTO.REMARK = txtRemark.Text
                         objWorkStandardDTO.PERIOD_ID = cboPeriod.SelectedValue
                         objWorkStandardDTO.Period_standard = Decimal.Parse(txtWordStandard.Text)
+                        objWorkStandardDTO.ORG_ID = ctrlOrg.CurrentValue
                         Using rep As New PayrollRepository
                             Select Case CurrentState
 
@@ -290,10 +293,9 @@ Public Class ctrlPA_WorkStandard
                                             ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), Utilities.NotifyType.Error)
                                         End If
                                     Else
-                                        
                                         ShowMessage(Translate("Kỳ lương đã được thiết lập ngày công chế độ"), Utilities.NotifyType.Information)
                                     End If
-                                    
+
                                 Case CommonMessage.STATE_EDIT
                                     objWorkStandardDTO.ID = rgData.SelectedValue
                                     If rep.ModifyWorkStandard(objWorkStandardDTO, gID) Then

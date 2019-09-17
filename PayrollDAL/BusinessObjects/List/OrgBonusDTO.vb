@@ -34,15 +34,17 @@ Public Class WorkFactorDTO
 End Class
 Public Class Work_StandardDTO
     Public Property ID As Decimal
-    Public Property YEAR As Decimal
-    Public Property PERIOD_ID As Decimal
+    Public Property YEAR As Decimal?
+    Public Property PERIOD_ID As Decimal?
     Public Property PERIOD_NAME As String
-    Public Property OBJECT_ID As Decimal
+    Public Property OBJECT_ID As Decimal?
     Public Property OBJECT_NAME As String
-    Public Property Period_standard As Decimal
+    Public Property Period_standard As Decimal?
     Public Property REMARK As String
     Public Property CREATED_DATE As Date?
     Public Property ACTFLG As String
+    Public Property ORG_ID As Decimal?
+    Public Property ORG_NAME As String
 End Class
 
 

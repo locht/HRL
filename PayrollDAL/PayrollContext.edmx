@@ -859,6 +859,7 @@
             <Property Name="MODIFIED_BY" Type="nvarchar2" Nullable="true" MaxLength="255" />
             <Property Name="MODIFIED_DATE" Type="date" Nullable="true" />
             <Property Name="MODIFIED_LOG" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="ORG_ID" Type="number" Nullable="true" Precision="38" />
         </EntityType>
         <EntityType Name="AT_PERIOD">
             <Key>
@@ -2680,6 +2681,7 @@
           <Property Type="String" Name="MODIFIED_BY" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Type="DateTime" Name="MODIFIED_DATE" />
           <Property Type="String" Name="MODIFIED_LOG" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="Decimal" Name="ORG_ID" Nullable="true" />
         </EntityType>
         <EntityType Name="AT_PERIOD">
           <Key>
@@ -3961,6 +3963,7 @@
                     <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
                     <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
                     <ScalarProperty Name="MODIFIED_LOG" ColumnName="MODIFIED_LOG" />
+                    <ScalarProperty Name="ORG_ID" ColumnName="ORG_ID" />
                 </MappingFragment>
             </EntityTypeMapping>
         </EntitySetMapping>
@@ -4648,7 +4651,7 @@
         <EntityTypeShape EntityType="PayrollModel.PA_ORGBONUS" Width="1.5" PointX="8.1644753162583683" PointY="28.817569254346921" />
         <EntityTypeShape EntityType="PayrollModel.PA_PAYMENTSOURCES" Width="1.5" PointX="2.06720529406667" PointY="9.5307876661097577" />
         <EntityTypeShape EntityType="PayrollModel.PA_WORKFACTOR" Width="1.5" PointX="5.9971400024356045" PointY="29.58217874056761" />
-        <EntityTypeShape EntityType="PayrollModel.PA_WORK_STANDARD" Width="1.5" PointX="3.42349587167776" PointY="17.333396278942654" />
+        <EntityTypeShape EntityType="PayrollModel.PA_WORK_STANDARD" Width="1.5" PointX="3.375" PointY="17.375" Height="3.7109993489583353" />
         <EntityTypeShape EntityType="PayrollModel.AT_PERIOD" Width="1.5" PointX="4.125" PointY="0.5" Height="4.0956022135416656" />
         <EntityTypeShape EntityType="PayrollModel.PA_LISTSAL" Width="1.5" PointX="13.625" PointY="10.75" Height="4.0956022135416674" />
         <EntityTypeShape EntityType="PayrollModel.PA_LISTSALARIES" Width="1.5" PointX="13.625" PointY="15.75" Height="7.1724251302083246" />
