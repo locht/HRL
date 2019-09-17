@@ -8836,6 +8836,9 @@ Namespace PayrollBusiness
      System.ServiceModel.ServiceContractAttribute(ConfigurationName:="PayrollBusiness.IPayrollBusiness")>  _
     Public Interface IPayrollBusiness
         
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IPayrollBusiness/CheckPeriod", ReplyAction:="http://tempuri.org/IPayrollBusiness/CheckPeriodResponse")>  _
+        Function CheckPeriod(ByVal PeriodId As Integer, ByVal EmployeeId As Decimal) As Boolean
+        
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IPayrollBusiness/GetOrgBonus", ReplyAction:="http://tempuri.org/IPayrollBusiness/GetOrgBonusResponse")>  _
         Function GetOrgBonus(ByVal _filter As PayrollBusiness.OrgBonusDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal Sorts As String) As System.Collections.Generic.List(Of PayrollBusiness.OrgBonusDTO)
         
@@ -8973,6 +8976,9 @@ Namespace PayrollBusiness
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IPayrollBusiness/ActiveSaleCommision", ReplyAction:="http://tempuri.org/IPayrollBusiness/ActiveSaleCommisionResponse")>  _
         Function ActiveSaleCommision(ByVal lstID As System.Collections.Generic.List(Of Decimal), ByVal log As Common.CommonBusiness.UserLog, ByVal bActive As String) As Boolean
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IPayrollBusiness/GetEffectSalaryGroup", ReplyAction:="http://tempuri.org/IPayrollBusiness/GetEffectSalaryGroupResponse")>  _
+        Function GetEffectSalaryGroup() As PayrollBusiness.SalaryGroupDTO
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IPayrollBusiness/GetSalaryLevel", ReplyAction:="http://tempuri.org/IPayrollBusiness/GetSalaryLevelResponse")>  _
         Function GetSalaryLevel(ByVal _filter As PayrollBusiness.SalaryLevelDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal Sorts As String) As System.Collections.Generic.List(Of PayrollBusiness.SalaryLevelDTO)
@@ -9374,9 +9380,6 @@ Namespace PayrollBusiness
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IPayrollBusiness/CHECK_OPEN_CLOSE", ReplyAction:="http://tempuri.org/IPayrollBusiness/CHECK_OPEN_CLOSEResponse")>  _
         Function CHECK_OPEN_CLOSE(ByVal PeriodId As Integer, ByVal EmployeeId As String, ByVal log As Common.CommonBusiness.UserLog) As System.Data.DataTable
         
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IPayrollBusiness/CheckPeriod", ReplyAction:="http://tempuri.org/IPayrollBusiness/CheckPeriodResponse")>  _
-        Function CheckPeriod(ByVal PeriodId As Integer, ByVal EmployeeId As Decimal) As Boolean
-        
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IPayrollBusiness/GetAllowanceList", ReplyAction:="http://tempuri.org/IPayrollBusiness/GetAllowanceListResponse")>  _
         Function GetAllowanceList(ByVal _filter As PayrollBusiness.AllowanceListDTO, ByVal Sorts As String) As System.Collections.Generic.List(Of PayrollBusiness.AllowanceListDTO)
         
@@ -9569,6 +9572,9 @@ Namespace PayrollBusiness
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IPayrollBusiness/ActiveWorkStandard", ReplyAction:="http://tempuri.org/IPayrollBusiness/ActiveWorkStandardResponse")>  _
         Function ActiveWorkStandard(ByVal lstID As System.Collections.Generic.List(Of Decimal), ByVal log As Common.CommonBusiness.UserLog, ByVal bActive As String) As Boolean
         
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IPayrollBusiness/IsCompanyLevel", ReplyAction:="http://tempuri.org/IPayrollBusiness/IsCompanyLevelResponse")>  _
+        Function IsCompanyLevel(ByVal org_id As Decimal) As Boolean
+        
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IPayrollBusiness/DeleteFomulerGroup", ReplyAction:="http://tempuri.org/IPayrollBusiness/DeleteFomulerGroupResponse")>  _
         Function DeleteFomulerGroup(ByVal lstDelete As PayrollBusiness.PAFomulerGroup) As Boolean
         
@@ -9628,9 +9634,6 @@ Namespace PayrollBusiness
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IPayrollBusiness/DeleteSalaryGroup", ReplyAction:="http://tempuri.org/IPayrollBusiness/DeleteSalaryGroupResponse")>  _
         Function DeleteSalaryGroup(ByVal lstID As System.Collections.Generic.List(Of Decimal)) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IPayrollBusiness/GetEffectSalaryGroup", ReplyAction:="http://tempuri.org/IPayrollBusiness/GetEffectSalaryGroupResponse")>  _
-        Function GetEffectSalaryGroup() As PayrollBusiness.SalaryGroupDTO
     End Interface
     
     <System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")>  _
@@ -9663,6 +9666,10 @@ Namespace PayrollBusiness
         Public Sub New(ByVal binding As System.ServiceModel.Channels.Binding, ByVal remoteAddress As System.ServiceModel.EndpointAddress)
             MyBase.New(binding, remoteAddress)
         End Sub
+        
+        Public Function CheckPeriod(ByVal PeriodId As Integer, ByVal EmployeeId As Decimal) As Boolean Implements PayrollBusiness.IPayrollBusiness.CheckPeriod
+            Return MyBase.Channel.CheckPeriod(PeriodId, EmployeeId)
+        End Function
         
         Public Function GetOrgBonus(ByVal _filter As PayrollBusiness.OrgBonusDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal Sorts As String) As System.Collections.Generic.List(Of PayrollBusiness.OrgBonusDTO) Implements PayrollBusiness.IPayrollBusiness.GetOrgBonus
             Return MyBase.Channel.GetOrgBonus(_filter, PageIndex, PageSize, Total, Sorts)
@@ -9846,6 +9853,10 @@ Namespace PayrollBusiness
         
         Public Function ActiveSaleCommision(ByVal lstID As System.Collections.Generic.List(Of Decimal), ByVal log As Common.CommonBusiness.UserLog, ByVal bActive As String) As Boolean Implements PayrollBusiness.IPayrollBusiness.ActiveSaleCommision
             Return MyBase.Channel.ActiveSaleCommision(lstID, log, bActive)
+        End Function
+        
+        Public Function GetEffectSalaryGroup() As PayrollBusiness.SalaryGroupDTO Implements PayrollBusiness.IPayrollBusiness.GetEffectSalaryGroup
+            Return MyBase.Channel.GetEffectSalaryGroup
         End Function
         
         Public Function GetSalaryLevel(ByVal _filter As PayrollBusiness.SalaryLevelDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal Sorts As String) As System.Collections.Generic.List(Of PayrollBusiness.SalaryLevelDTO) Implements PayrollBusiness.IPayrollBusiness.GetSalaryLevel
@@ -10184,10 +10195,6 @@ Namespace PayrollBusiness
             Return MyBase.Channel.CHECK_OPEN_CLOSE(PeriodId, EmployeeId, log)
         End Function
         
-        Public Function CheckPeriod(ByVal PeriodId As Integer, ByVal EmployeeId As Decimal) As Boolean Implements PayrollBusiness.IPayrollBusiness.CheckPeriod
-            Return MyBase.Channel.CheckPeriod(PeriodId, EmployeeId)
-        End Function
-        
         Public Function GetAllowanceList(ByVal _filter As PayrollBusiness.AllowanceListDTO, ByVal Sorts As String) As System.Collections.Generic.List(Of PayrollBusiness.AllowanceListDTO) Implements PayrollBusiness.IPayrollBusiness.GetAllowanceList
             Return MyBase.Channel.GetAllowanceList(_filter, Sorts)
         End Function
@@ -10444,6 +10451,10 @@ Namespace PayrollBusiness
             Return MyBase.Channel.ActiveWorkStandard(lstID, log, bActive)
         End Function
         
+        Public Function IsCompanyLevel(ByVal org_id As Decimal) As Boolean Implements PayrollBusiness.IPayrollBusiness.IsCompanyLevel
+            Return MyBase.Channel.IsCompanyLevel(org_id)
+        End Function
+        
         Public Function DeleteFomulerGroup(ByVal lstDelete As PayrollBusiness.PAFomulerGroup) As Boolean Implements PayrollBusiness.IPayrollBusiness.DeleteFomulerGroup
             Return MyBase.Channel.DeleteFomulerGroup(lstDelete)
         End Function
@@ -10522,10 +10533,6 @@ Namespace PayrollBusiness
         
         Public Function DeleteSalaryGroup(ByVal lstID As System.Collections.Generic.List(Of Decimal)) As Boolean Implements PayrollBusiness.IPayrollBusiness.DeleteSalaryGroup
             Return MyBase.Channel.DeleteSalaryGroup(lstID)
-        End Function
-        
-        Public Function GetEffectSalaryGroup() As PayrollBusiness.SalaryGroupDTO Implements PayrollBusiness.IPayrollBusiness.GetEffectSalaryGroup
-            Return MyBase.Channel.GetEffectSalaryGroup
         End Function
     End Class
 End Namespace

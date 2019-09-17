@@ -899,6 +899,14 @@ Partial Public Class PayrollRepository
 #End Region
 
 #Region "WORK STANDARD"
+    Public Function IsCompanyLevel(ByVal org_id As Decimal) As Boolean
+        Try
+            Dim orgId2 As Decimal? = Context.HUV_ORGANIZATION.Where(Function(f) f.ID = org_id).Select(Function(f) f.ORG_ID2).FirstOrDefault()
+            Return org_id = orgId2
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
 
     Public Function GetWorkStandard(ByVal _filter As Work_StandardDTO, ByVal PageIndex As Integer,
                                         ByVal PageSize As Integer,
@@ -919,6 +927,9 @@ Partial Public Class PayrollRepository
             From OTL In Context.OT_OTHER_LIST_TYPE.Where(Function(OTL) OTL.ID = OT.TYPE_ID And OTL.CODE = "OBJECT_LABOR").DefaultIfEmpty()
             From AT In Context.AT_PERIOD.Where(Function(AT) p.PERIOD_ID = AT.ID).DefaultIfEmpty()
             From ORG In Context.HU_ORGANIZATION.Where(Function(f) f.ID = p.ORG_ID).DefaultIfEmpty()
+            From s In Context.SE_CHOSEN_ORG.Where(Function(se) se.ORG_ID = ORG.ID And
+                                                                    se.USERNAME = log.Username.ToUpper)
+            Where p.ORG_ID = _filter.param.ORG_ID
             Select New Work_StandardDTO With {
                                        .ID = p.ID,
                                        .YEAR = p.YEAR,
@@ -933,6 +944,21 @@ Partial Public Class PayrollRepository
                                        .REMARK = p.REMARK,
             .ACTFLG = If(p.ACTFLG = "A", "Áp dụng", "Ngừng áp dụng")
                                        })
+            If _filter.YEAR IsNot Nothing Then
+                lst = lst.Where(Function(f) f.YEAR = _filter.YEAR)
+            End If
+            If _filter.PERIOD_NAME <> "" Then
+                lst = lst.Where(Function(f) f.PERIOD_NAME.ToUpper.Contains(_filter.PERIOD_NAME.ToUpper))
+            End If
+            If _filter.OBJECT_NAME <> "" Then
+                lst = lst.Where(Function(f) f.OBJECT_NAME.ToUpper.Contains(_filter.OBJECT_NAME.ToUpper))
+            End If
+            If _filter.ORG_ID <> 0 Then
+                lst = lst.Where(Function(p) p.ORG_ID = _filter.ORG_ID)
+            End If
+            If _filter.ACTFLG <> "" Then
+                lst = lst.Where(Function(p) p.ACTFLG.ToUpper.Contains(_filter.ACTFLG.ToUpper))
+            End If
 
             lst = lst.OrderBy(Sorts)
             Total = lst.Count
@@ -1014,16 +1040,12 @@ Partial Public Class PayrollRepository
 
     Public Function ValidateWorkStandard(ByVal _validate As Work_StandardDTO) As Boolean
         Try
-
-
             Dim query = (From p In Context.PA_WORK_STANDARD Where p.YEAR = _validate.YEAR And p.PERIOD_ID = _validate.PERIOD_ID And p.OBJECT_ID = _validate.OBJECT_ID And p.ID <> _validate.ID).ToList
             If query.Count > 0 Then
                 Return False
             Else
                 Return True
             End If
-
-
         Catch ex As Exception
             WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iPayroll")
             Throw ex
@@ -1081,7 +1103,6 @@ Partial Public Class PayrollRepository
             Throw ex
         End Try
     End Function
-
 #End Region
 
 #Region "List Salary Fomuler"

@@ -370,7 +370,13 @@ Namespace PayrollBusiness.ServiceImplementations
             End Try
         End Function
 
-
+        Public Function IsCompanyLevel(ByVal org_id As Decimal) As Boolean Implements ServiceContracts.IPayrollBusiness.IsCompanyLevel
+            Try
+                Return PayrollRepositoryStatic.Instance.IsCompanyLevel(org_id)
+            Catch ex As Exception
+                Throw ex
+            End Try
+        End Function
 
         Public Function ModifyWorkStandard(ByVal objPeriod As Work_StandardDTO, ByVal log As UserLog, ByRef gID As Decimal) As Boolean Implements ServiceContracts.IPayrollBusiness.ModifyWorkStandard
             Try

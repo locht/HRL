@@ -65,6 +65,7 @@
             <EntitySet Name="PA_TITLE_COST" EntityType="PayrollModel.Store.PA_TITLE_COST" store:Type="Tables"  />
             <EntitySet Name="HU_TITLE" EntityType="PayrollModel.Store.HU_TITLE" store:Type="Tables"  />
             <EntitySet Name="PA_SALE_COMMISION" EntityType="PayrollModel.Store.PA_SALE_COMMISION" store:Type="Tables"  />
+            <EntitySet Name="HUV_ORGANIZATION" EntityType="PayrollModel.Store.HUV_ORGANIZATION" store:Type="Tables"  />
             <AssociationSet Name="FK_PSG_PSL" Association="PayrollModel.Store.FK_PSG_PSL">
                 <End Role="PA_SALARY_GROUP" EntitySet="PA_SALARY_GROUP" />
                 <End Role="PA_SALARY_LEVEL" EntitySet="PA_SALARY_LEVEL" />
@@ -1375,6 +1376,47 @@
             <Property Name="ACTFLG" Type="nvarchar2" Nullable="true" MaxLength="21" />
             <Property Name="SALE_RATE" Type="number" Nullable="true" Precision="38" />
         </EntityType>
+        <EntityType Name="HUV_ORGANIZATION">
+            <Key>
+                <PropertyRef Name="ID" />
+            </Key>
+            <Property Name="ID" Type="number" Nullable="false" Precision="38" />
+            <Property Name="NAME_VN" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="ORG_NAME" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="PARENT_ID" Type="number" Nullable="true" Precision="38" />
+            <Property Name="CODE" Type="nvarchar2" Nullable="true" MaxLength="50" />
+            <Property Name="ADDRESS" Type="nvarchar2" Nullable="true" MaxLength="1023" />
+            <Property Name="DESCRIPTION_PATH" Type="nvarchar2" Nullable="true" MaxLength="1023" />
+            <Property Name="ORG_NAME1" Type="nvarchar2" Nullable="true" MaxLength="1999" />
+            <Property Name="ORG_NAME2" Type="nvarchar2" Nullable="true" MaxLength="1999" />
+            <Property Name="ORG_NAME3" Type="nvarchar2" Nullable="true" MaxLength="1999" />
+            <Property Name="ORG_NAME4" Type="nvarchar2" Nullable="true" MaxLength="1999" />
+            <Property Name="ORG_NAME5" Type="nvarchar2" Nullable="true" MaxLength="1999" />
+            <Property Name="ORG_NAME6" Type="nvarchar2" Nullable="true" MaxLength="1999" />
+            <Property Name="ORG_NAME7" Type="nvarchar2" Nullable="true" MaxLength="1999" />
+            <Property Name="ORG_NAME8" Type="nvarchar2" Nullable="true" MaxLength="1999" />
+            <Property Name="ORG_NAME9" Type="nvarchar2" Nullable="true" MaxLength="1999" />
+            <Property Name="ORG_ID1" Type="number" Nullable="true" Precision="38" />
+            <Property Name="ORG_ID2" Type="number" Nullable="true" Precision="38" />
+            <Property Name="ORG_ID3" Type="number" Nullable="true" Precision="38" />
+            <Property Name="ORG_ID4" Type="number" Nullable="true" Precision="38" />
+            <Property Name="ORG_ID5" Type="number" Nullable="true" Precision="38" />
+            <Property Name="ORG_ID6" Type="number" Nullable="true" Precision="38" />
+            <Property Name="ORG_ID7" Type="number" Nullable="true" Precision="38" />
+            <Property Name="ORG_ID8" Type="number" Nullable="true" Precision="38" />
+            <Property Name="ORG_ID9" Type="number" Nullable="true" Precision="38" />
+            <Property Name="ORG_CODE1" Type="nvarchar2" Nullable="true" MaxLength="1999" />
+            <Property Name="ORG_CODE2" Type="nvarchar2" Nullable="true" MaxLength="1999" />
+            <Property Name="ORG_CODE3" Type="nvarchar2" Nullable="true" MaxLength="1999" />
+            <Property Name="ORG_CODE4" Type="nvarchar2" Nullable="true" MaxLength="1999" />
+            <Property Name="ORG_CODE5" Type="nvarchar2" Nullable="true" MaxLength="1999" />
+            <Property Name="ORG_CODE6" Type="nvarchar2" Nullable="true" MaxLength="1999" />
+            <Property Name="ORG_CODE7" Type="nvarchar2" Nullable="true" MaxLength="1999" />
+            <Property Name="ORG_CODE8" Type="nvarchar2" Nullable="true" MaxLength="1999" />
+            <Property Name="ORG_CODE9" Type="nvarchar2" Nullable="true" MaxLength="1999" />
+            <Property Name="ORG_PATH" Type="nvarchar2" Nullable="true" MaxLength="2000" />
+            <Property Name="HU_ORG_TITLEID" Type="number" Nullable="false" Precision="38" />
+        </EntityType>
     <Association Name="FK_PSG_PSL">
         <End Role="PA_SALARY_GROUP" Type="PayrollModel.Store.PA_SALARY_GROUP" Multiplicity="1">
         </End>
@@ -1727,6 +1769,7 @@
           <EntitySet Name="PA_TITLE_COST" EntityType="PayrollModel.PA_TITLE_COST" />
           <EntitySet Name="HU_TITLE" EntityType="PayrollModel.HU_TITLE" />
           <EntitySet Name="PA_SALE_COMMISION" EntityType="PayrollModel.PA_SALE_COMMISION" />
+          <EntitySet Name="HUV_ORGANIZATION" EntityType="PayrollModel.HUV_ORGANIZATION" />
           </EntityContainer>
         <EntityType Name="PA_SALARY_GROUP">
           <Key>
@@ -3197,6 +3240,47 @@
           <Property Type="String" Name="ACTFLG" MaxLength="21" FixedLength="false" Unicode="true" />
           <Property Type="Decimal" Name="SALE_RATE" />
         </EntityType>
+        <EntityType Name="HUV_ORGANIZATION">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Decimal" Name="ID" Nullable="false" Precision="38" Scale="0" />
+          <Property Type="String" Name="NAME_VN" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ORG_NAME" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="Decimal" Name="PARENT_ID" Precision="38" Scale="0" />
+          <Property Type="String" Name="CODE" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ADDRESS" MaxLength="1023" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="DESCRIPTION_PATH" MaxLength="1023" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ORG_NAME1" MaxLength="1999" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ORG_NAME2" MaxLength="1999" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ORG_NAME3" MaxLength="1999" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ORG_NAME4" MaxLength="1999" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ORG_NAME5" MaxLength="1999" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ORG_NAME6" MaxLength="1999" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ORG_NAME7" MaxLength="1999" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ORG_NAME8" MaxLength="1999" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ORG_NAME9" MaxLength="1999" FixedLength="false" Unicode="true" />
+          <Property Type="Decimal" Name="ORG_ID1" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="ORG_ID2" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="ORG_ID3" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="ORG_ID4" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="ORG_ID5" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="ORG_ID6" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="ORG_ID7" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="ORG_ID8" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="ORG_ID9" Precision="38" Scale="0" />
+          <Property Type="String" Name="ORG_CODE1" MaxLength="1999" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ORG_CODE2" MaxLength="1999" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ORG_CODE3" MaxLength="1999" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ORG_CODE4" MaxLength="1999" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ORG_CODE5" MaxLength="1999" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ORG_CODE6" MaxLength="1999" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ORG_CODE7" MaxLength="1999" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ORG_CODE8" MaxLength="1999" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ORG_CODE9" MaxLength="1999" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ORG_PATH" MaxLength="2000" FixedLength="false" Unicode="true" />
+          <Property Type="Decimal" Name="HU_ORG_TITLEID" Nullable="false" Precision="38" Scale="0" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -4505,6 +4589,48 @@
                 </MappingFragment>
             </EntityTypeMapping>
         </EntitySetMapping>
+        <EntitySetMapping Name="HUV_ORGANIZATION">
+            <EntityTypeMapping TypeName="IsTypeOf(PayrollModel.HUV_ORGANIZATION)">
+                <MappingFragment StoreEntitySet="HUV_ORGANIZATION">
+                    <ScalarProperty Name="ID" ColumnName="ID" />
+                    <ScalarProperty Name="NAME_VN" ColumnName="NAME_VN" />
+                    <ScalarProperty Name="ORG_NAME" ColumnName="ORG_NAME" />
+                    <ScalarProperty Name="PARENT_ID" ColumnName="PARENT_ID" />
+                    <ScalarProperty Name="CODE" ColumnName="CODE" />
+                    <ScalarProperty Name="ADDRESS" ColumnName="ADDRESS" />
+                    <ScalarProperty Name="DESCRIPTION_PATH" ColumnName="DESCRIPTION_PATH" />
+                    <ScalarProperty Name="ORG_NAME1" ColumnName="ORG_NAME1" />
+                    <ScalarProperty Name="ORG_NAME2" ColumnName="ORG_NAME2" />
+                    <ScalarProperty Name="ORG_NAME3" ColumnName="ORG_NAME3" />
+                    <ScalarProperty Name="ORG_NAME4" ColumnName="ORG_NAME4" />
+                    <ScalarProperty Name="ORG_NAME5" ColumnName="ORG_NAME5" />
+                    <ScalarProperty Name="ORG_NAME6" ColumnName="ORG_NAME6" />
+                    <ScalarProperty Name="ORG_NAME7" ColumnName="ORG_NAME7" />
+                    <ScalarProperty Name="ORG_NAME8" ColumnName="ORG_NAME8" />
+                    <ScalarProperty Name="ORG_NAME9" ColumnName="ORG_NAME9" />
+                    <ScalarProperty Name="ORG_ID1" ColumnName="ORG_ID1" />
+                    <ScalarProperty Name="ORG_ID2" ColumnName="ORG_ID2" />
+                    <ScalarProperty Name="ORG_ID3" ColumnName="ORG_ID3" />
+                    <ScalarProperty Name="ORG_ID4" ColumnName="ORG_ID4" />
+                    <ScalarProperty Name="ORG_ID5" ColumnName="ORG_ID5" />
+                    <ScalarProperty Name="ORG_ID6" ColumnName="ORG_ID6" />
+                    <ScalarProperty Name="ORG_ID7" ColumnName="ORG_ID7" />
+                    <ScalarProperty Name="ORG_ID8" ColumnName="ORG_ID8" />
+                    <ScalarProperty Name="ORG_ID9" ColumnName="ORG_ID9" />
+                    <ScalarProperty Name="ORG_CODE1" ColumnName="ORG_CODE1" />
+                    <ScalarProperty Name="ORG_CODE2" ColumnName="ORG_CODE2" />
+                    <ScalarProperty Name="ORG_CODE3" ColumnName="ORG_CODE3" />
+                    <ScalarProperty Name="ORG_CODE4" ColumnName="ORG_CODE4" />
+                    <ScalarProperty Name="ORG_CODE5" ColumnName="ORG_CODE5" />
+                    <ScalarProperty Name="ORG_CODE6" ColumnName="ORG_CODE6" />
+                    <ScalarProperty Name="ORG_CODE7" ColumnName="ORG_CODE7" />
+                    <ScalarProperty Name="ORG_CODE8" ColumnName="ORG_CODE8" />
+                    <ScalarProperty Name="ORG_CODE9" ColumnName="ORG_CODE9" />
+                    <ScalarProperty Name="ORG_PATH" ColumnName="ORG_PATH" />
+                    <ScalarProperty Name="HU_ORG_TITLEID" ColumnName="HU_ORG_TITLEID" />
+                </MappingFragment>
+            </EntityTypeMapping>
+        </EntitySetMapping>
     </EntityContainerMapping>
 </Mapping></edmx:Mappings>
   </edmx:Runtime>
@@ -4526,7 +4652,7 @@
     </edmx:Options>
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram Name="PayrollContext" ZoomLevel="86" ShowGrid="false" SnapToGrid="true" DisplayType="true" >
+      <Diagram Name="PayrollContext" ZoomLevel="69" ShowGrid="false" SnapToGrid="true" DisplayType="true" >
         <EntityTypeShape EntityType="PayrollModel.PA_SALARY_GROUP" Width="1.875" PointX="6.375" PointY="2.125" Height="4.480205078125" IsExpanded="true" />
         <EntityTypeShape EntityType="PayrollModel.PA_SALARY_LEVEL" Width="1.875" PointX="9.125" PointY="2" Height="4.0956022135416656" IsExpanded="true" />
         <EntityTypeShape EntityType="PayrollModel.PA_SALARY_RANK" Width="2.25" PointX="15.5" PointY="1.625" Height="3.5186979166666656" IsExpanded="true" />
@@ -4676,6 +4802,7 @@
         <EntityTypeShape EntityType="PayrollModel.PA_TITLE_COST" Width="1.5" PointX="21.375" PointY="14.75" Height="4.2879036458333246" />
         <EntityTypeShape EntityType="PayrollModel.HU_TITLE" Width="1.5" PointX="0.75" PointY="22.75" Height="4.8648079427083246" />
         <EntityTypeShape EntityType="PayrollModel.PA_SALE_COMMISION" Width="2.125" PointX="22.625" PointY="20.75" Height="3.5186979166666674" />
+        <EntityTypeShape EntityType="PayrollModel.HUV_ORGANIZATION" Width="1.5" PointX="11.495874836806149" PointY="24.070537712457842" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

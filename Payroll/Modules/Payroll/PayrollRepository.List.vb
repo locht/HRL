@@ -904,6 +904,18 @@ Partial Public Class PayrollRepository
         End Using
     End Function
 
+    Public Function IsCompanyLevel(ByVal org_id As Decimal) As Boolean
+        Using rep As New PayrollBusinessClient
+            Try
+                Return rep.IsCompanyLevel(org_id)
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+
+    End Function
+
 #End Region
 #Region "lunch list : Đơn giá tiền ăn trưa"
 

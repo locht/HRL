@@ -3,7 +3,7 @@
 <%@ Import Namespace="Framework.UI" %>
 <tlk:RadSplitter ID="RadSplitter3" runat="server" Width="100%" Height="100%">
     <tlk:RadPane ID="LeftPane" runat="server" MinWidth="200" Width="260px" Scrolling="None">
-        <Common:ctrlOrganization ID="ctrlOrg" runat="server" CheckBoxes="All" CheckChildNodes="true" />
+        <Common:ctrlOrganization ID="ctrlOrg" runat="server" />
     </tlk:RadPane>
     <tlk:RadPane ID="MainPane" runat="server" Scrolling="None">
         <tlk:RadSplitter ID="RadSplitter1" runat="server" Width="100%" Height="100%" Orientation="Horizontal">

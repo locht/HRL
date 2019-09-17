@@ -26,17 +26,30 @@ Public Class ctrlPA_WorkStandard
             ViewState(Me.ID & "_IDSelect") = value
         End Set
     End Property
-
+    Property WorkStandard As List(Of Work_StandardDTO)
+        Get
+            Return ViewState(Me.ID & "_WorkStandard")
+        End Get
+        Set(ByVal value As List(Of Work_StandardDTO))
+            ViewState(Me.ID & "_WorkStandard") = value
+        End Set
+    End Property
 #End Region
 
 #Region "Page"
     Public Overrides Sub ViewLoad(ByVal e As System.EventArgs)
         Try
-            Refresh()
-            UpdateControlState()
-            rgData.SetFilter()
-            rgData.AllowCustomPaging = True
-            rgData.PageSize = Common.Common.DefaultPageSize
+            If Not IsPostBack Then
+                ctrlOrg.AutoPostBack = True
+                ctrlOrg.LoadDataAfterLoaded = True
+                ctrlOrg.OrganizationType = OrganizationType.OrganizationLocation
+                ctrlOrg.CheckBoxes = TreeNodeTypes.None
+                Refresh()
+                UpdateControlState()
+                rgData.SetFilter()
+                rgData.AllowCustomPaging = True
+                rgData.PageSize = Common.Common.DefaultPageSize
+            End If
         Catch ex As Exception
             DisplayException(Me.ViewName, Me.ID, ex)
         End Try
@@ -102,12 +115,12 @@ Public Class ctrlPA_WorkStandard
     End Sub
 
     Protected Function CreateDataFilter(Optional ByVal isFull As Boolean = False) As DataTable
-
         Dim _filter As New Work_StandardDTO
+        _filter.param = New ParamDTO
         Try
             Dim MaximumRows As Integer
             If ctrlOrg.CurrentValue IsNot Nothing Then
-                _filter.ORG_ID = Utilities.ObjToDecima(ctrlOrg.CurrentValue)
+                _filter.param.ORG_ID = Utilities.ObjToDecima(ctrlOrg.CurrentValue)
             End If
             _filter.param.IS_DISSOLVE = ctrlOrg.IsDissolve
             SetValueObjectByRadGrid(rgData, _filter)
@@ -121,7 +134,6 @@ Public Class ctrlPA_WorkStandard
                         Return rep.GetWorkStandard(_filter, rgData.CurrentPageIndex, rgData.PageSize, MaximumRows).ToTable()
                     End If
                 Else
-                    Dim WorkStandard As New List(Of Work_StandardDTO)
                     If Sorts IsNot Nothing Then
                         WorkStandard = rep.GetWorkStandard(_filter, rgData.CurrentPageIndex, rgData.PageSize, MaximumRows, Sorts)
                     Else
@@ -130,8 +142,6 @@ Public Class ctrlPA_WorkStandard
                     rgData.VirtualItemCount = MaximumRows
                     rgData.DataSource = WorkStandard
                 End If
-
-
             End Using
         Catch ex As Exception
             Throw ex
@@ -146,18 +156,17 @@ Public Class ctrlPA_WorkStandard
                     EnabledGridNotPostback(rgData, False)
                     EnableControlAll(True, rntxtYEAR, cboLabor, cboPeriod, txtRemark, txtWordStandard)
                     rntxtYEAR.Focus()
-                    ctrlOrg.Enabled = True
                 Case CommonMessage.STATE_NORMAL
                     EnabledGridNotPostback(rgData, True)
                     EnableControlAll(False, rntxtYEAR, cboLabor, cboPeriod, txtRemark, txtWordStandard)
                     cboPeriod.Focus()
-                    ctrlOrg.Enabled = False
+                    ctrlOrg.Enabled = True
                 Case CommonMessage.STATE_EDIT
                     EnabledGridNotPostback(rgData, False)
                     'rgData.Enabled = False
                     EnableControlAll(True, rntxtYEAR, cboLabor, cboPeriod, txtRemark, txtWordStandard)
                     cboPeriod.Focus()
-                    ctrlOrg.Enabled = True
+                    ctrlOrg.Enabled = False
                 Case CommonMessage.STATE_DELETE
                     Dim lstDeletes As New List(Of Decimal)
                     For idx = 0 To rgData.SelectedItems.Count - 1
@@ -173,7 +182,7 @@ Public Class ctrlPA_WorkStandard
                             ShowMessage(Translate(CommonMessage.MESSAGE_IS_USING), NotifyType.Error)
                         End If
                     End Using
-
+                    ClearControlValue(rntxtYEAR, cboPeriod, txtRemark, txtWordStandard, cboLabor)
                 Case CommonMessage.STATE_ACTIVE
                     Dim lstDeletes As New List(Of Decimal)
                     For idx = 0 To rgData.SelectedItems.Count - 1
@@ -226,11 +235,9 @@ Public Class ctrlPA_WorkStandard
 
         Using rep As New PayrollRepository
             FillRadCombobox(cboLabor, rep.GetOtherList("OBJECT_LABOR"), "NAME", "ID", False)
-
         End Using
         Utilities.OnClientRowSelectedChanged(rgData, dic)
     End Sub
-
 #End Region
 
 #Region "Event"
@@ -253,11 +260,8 @@ Public Class ctrlPA_WorkStandard
                         ShowMessage(Translate(CommonMessage.MESSAGE_NOT_SELECT_MULTI_ROW), NotifyType.Warning)
                         Exit Sub
                     End If
-
                     CurrentState = CommonMessage.STATE_EDIT
-
                     UpdateControlState()
-
                 Case CommonMessage.TOOLBARITEM_DELETE
                     If rgData.SelectedItems.Count = 0 Then
                         ShowMessage(Translate(CommonMessage.MESSAGE_NOT_SELECT_ROW), NotifyType.Warning)
@@ -290,8 +294,14 @@ Public Class ctrlPA_WorkStandard
                         objWorkStandardDTO.REMARK = txtRemark.Text
                         objWorkStandardDTO.PERIOD_ID = cboPeriod.SelectedValue
                         objWorkStandardDTO.Period_standard = Decimal.Parse(txtWordStandard.Text)
-                        objWorkStandardDTO.ORG_ID = ctrlOrg.CurrentValue
                         Using rep As New PayrollRepository
+
+                            If Not rep.IsCompanyLevel(ctrlOrg.CurrentValue) Then
+                                ShowMessage(Translate("Vui lòng chỉ thiết lập ngày công chuẩn theo công ty"), NotifyType.Alert)
+                                Exit Sub
+                            End If
+
+                            objWorkStandardDTO.ORG_ID = ctrlOrg.CurrentValue
                             Select Case CurrentState
 
                                 Case CommonMessage.STATE_NEW
@@ -401,9 +411,44 @@ Public Class ctrlPA_WorkStandard
             Dim startTime As DateTime = DateTime.UtcNow
             rgData.CurrentPageIndex = 0
             rgData.Rebind()
+            ClearControlValue(cboLabor, cboPeriod, rntxtYEAR, txtWordStandard, txtRemark)
             _myLog.WriteLog(_myLog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
             _myLog.WriteLog(_myLog._error, _classPath, method, 0, ex, "")
+        End Try
+    End Sub
+
+    Private Sub rgData_SelectedIndexChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles rgData.SelectedIndexChanged
+        Try
+            If rgData.SelectedItems.Count Then
+                Dim sItem As GridDataItem = rgData.SelectedItems(0)
+                If sItem.GetDataKeyValue("ID").ToString <> "" Then
+                    Dim item = (From p In WorkStandard Where p.ID = Decimal.Parse(sItem.GetDataKeyValue("ID").ToString) Select p).FirstOrDefault
+                    If item IsNot Nothing Then
+                        If item.OBJECT_ID IsNot Nothing Then
+                            cboLabor.Text = item.OBJECT_NAME
+                            cboLabor.SelectedValue = item.OBJECT_ID
+                        Else
+                            cboLabor.Text = " "
+                        End If
+                        If item.PERIOD_ID IsNot Nothing Then
+                            cboPeriod.Text = item.PERIOD_NAME
+                            cboPeriod.SelectedValue = item.PERIOD_ID
+                        Else
+                            cboPeriod.Text = " "
+                        End If
+                        If item.YEAR IsNot Nothing Then
+                            rntxtYEAR.Text = item.YEAR
+                        End If
+                        If item.Period_standard IsNot Nothing Then
+                            txtWordStandard.Text = item.Period_standard
+                        End If
+                        txtRemark.Text = item.REMARK
+                    End If
+                End If
+            End If
+        Catch ex As Exception
+            Throw ex
         End Try
     End Sub
 #End Region
@@ -417,10 +462,7 @@ Public Class ctrlPA_WorkStandard
         End If
     End Function
 #End Region
-
-
     Protected Sub rntxtYEAR_TextChanged(ByVal sender As Object, ByVal e As EventArgs) Handles rntxtYEAR.TextChanged
-
         Using rep As New PayrollRepository
             FillRadCombobox(cboPeriod, rep.GetPeriodbyYear(rntxtYEAR.Value), "PERIOD_NAME", "ID", False)
             Dim Sorts As String = rgData.MasterTableView.SortExpressions.GetSortString()
@@ -428,8 +470,5 @@ Public Class ctrlPA_WorkStandard
             WorkStandard = rep.GetWorkStandardByYear(rntxtYEAR.Value)
             rgData.DataSource = WorkStandard
         End Using
-
-
-
     End Sub
 End Class

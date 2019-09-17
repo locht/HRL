@@ -207,7 +207,6 @@ Namespace PayrollBusiness.ServiceContracts
                                         Optional ByVal Sorts As String = " YEAR, PERIOD_ID desc") As List(Of Work_StandardDTO)
         <OperationContract()>
         Function GetWorkStandardbyYear(ByVal year As Decimal) As List(Of Work_StandardDTO)
-
         <OperationContract()>
         Function InsertWorkStandard(ByVal objPeriod As Work_StandardDTO, ByVal log As UserLog, ByRef gID As Decimal) As Boolean
         <OperationContract()>
@@ -218,6 +217,8 @@ Namespace PayrollBusiness.ServiceContracts
         Function ValidateWorkStandard(ByVal objPeriod As Work_StandardDTO) As Boolean
         <OperationContract()>
         Function ActiveWorkStandard(ByVal lstID As List(Of Decimal), ByVal log As UserLog, ByVal bActive As String) As Boolean
+        <OperationContract()>
+        Function IsCompanyLevel(ByVal org_id As Decimal) As Boolean
 #End Region
 
 #Region "List Salary"
