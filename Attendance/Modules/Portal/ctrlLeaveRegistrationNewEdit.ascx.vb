@@ -639,7 +639,7 @@ Public Class ctrlLeaveRegistrationNewEdit
         Dim rep As New AttendanceRepository
         Dim PH As DataTable = New DataTable()
         Dim dr As DataRow() = New DataRow() {rPH}
-        dr(0)("STATUS") = 0 'Chờ phê duyệt
+        dr(0)("STATUS") = 3 'Chờ phê duyệt
         PH = dr.CopyToDataTable()
         PH.TableName = "PH"
         Dim dsLeaveSheet As New DataSet("DATA")
