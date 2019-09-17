@@ -438,6 +438,13 @@ Public Class ctrlInsManagerSunCare
                 _error = False
             End If
 
+            If IsNumeric(rows("LEVEL_ID")) AndAlso rep.CHECK_EMPLOYEE(rows("EMPLOYEE_CODE")) <> 0 AndAlso CheckDate(rows("START_DATE")) AndAlso CheckDate(rows("END_DATE")) Then
+                If rep.CHECK_MANAGER_SUN_CARE(rows("EMPLOYEE_CODE"), rows("START_DATE"), rows("END_DATE"), rows("LEVEL_ID")) > 0 Then
+                    newRow("DISCIPTION") = newRow("DISCIPTION") + "Bảo hiểm tư nhân - Tồn tại,"
+                    _error = False
+                End If
+            End If
+
             If _error = False Then
                 dtLogs.Rows.Add(newRow)
                 count = count + 1

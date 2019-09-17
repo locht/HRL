@@ -397,6 +397,17 @@ Partial Class InsuranceRepository
         End Using
     End Function
 
+    Public Function CHECK_MANAGER_SUN_CARE(ByVal P_EMP_CODE As String, ByVal P_START_DATE As String, ByVal P_END_DATE As String, ByVal P_LEVEL_ID As Decimal) As Integer
+        Using rep As New InsuranceBusinessClient
+            Try
+                Return rep.CHECK_MANAGER_SUN_CARE(P_EMP_CODE, P_START_DATE, P_END_DATE, P_LEVEL_ID)
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+    End Function
+
     Public Function ActiveSunCare(ByVal lstID As List(Of Decimal), ByVal bActive As Decimal) As Boolean
         Using rep As New InsuranceBusinessClient
             Try
