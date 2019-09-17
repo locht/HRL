@@ -358,6 +358,10 @@ Namespace InsuranceBusiness.ServiceContracts
         <OperationContract()>
         Function ModifySunCare(ByVal objTitle As INS_SUN_CARE_DTO,
                                    ByVal log As UserLog, ByRef gID As Decimal) As Boolean
+
+        <OperationContract()>
+        Function CHECK_MANAGER_SUN_CARE(ByVal P_EMP_CODE As String, ByVal P_START_DATE As String, ByVal P_END_DATE As String, ByVal P_LEVEL_ID As Decimal) As Integer
+
         <OperationContract()>
         Function ActiveSunCare(ByVal lstID As List(Of Decimal), ByVal log As UserLog, ByVal bActive As Decimal) As Boolean
         <OperationContract()>

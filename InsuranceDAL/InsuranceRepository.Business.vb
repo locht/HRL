@@ -1729,6 +1729,22 @@ Partial Public Class InsuranceRepository
 
     End Function
 
+    Public Function CHECK_MANAGER_SUN_CARE(ByVal P_EMP_CODE As String, ByVal P_START_DATE As String, ByVal P_END_DATE As String, ByVal P_LEVEL_ID As Decimal) As Integer
+        Try
+            Using cls As New DataAccess.QueryData
+                Dim obj = New With {.P_EMP_CODE = P_EMP_CODE,
+                                    .P_START_DATE = P_START_DATE,
+                                    .P_END_DATE = P_END_DATE,
+                                    .P_LEVEL_ID = P_LEVEL_ID,
+                                    .P_OUT = cls.OUT_NUMBER}
+                cls.ExecuteStore("PKG_INS_BUSINESS.CHECK_MANAGER_SUN_CARE", obj)
+                Return Integer.Parse(obj.P_OUT)
+            End Using
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+
     Public Function ActiveSunCare(ByVal lstID As List(Of Decimal), ByVal log As UserLog, ByVal bActive As Decimal) As Boolean
         Dim lstData As List(Of INS_SUN_CARE)
         Try

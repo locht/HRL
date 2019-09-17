@@ -422,6 +422,17 @@ Namespace InsuranceBusiness.ServiceImplementations
             End Using
         End Function
 
+        Public Function CHECK_MANAGER_SUN_CARE(ByVal P_EMP_CODE As String, ByVal P_START_DATE As String, ByVal P_END_DATE As String, ByVal P_LEVEL_ID As Decimal) As Integer Implements ServiceContracts.IInsuranceBusiness.CHECK_MANAGER_SUN_CARE
+            Using rep As New InsuranceRepository
+                Try
+
+                    Return rep.CHECK_MANAGER_SUN_CARE(P_EMP_CODE, P_START_DATE, P_END_DATE, P_LEVEL_ID)
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
+
         Public Function ActiveSunCare(ByVal lstID As List(Of Decimal), ByVal log As UserLog, ByVal bActive As Decimal) As Boolean Implements ServiceContracts.IInsuranceBusiness.ActiveSunCare
             Using rep As New InsuranceRepository
                 Try

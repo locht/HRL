@@ -10392,6 +10392,9 @@ Namespace InsuranceBusiness
      System.ServiceModel.ServiceContractAttribute(ConfigurationName:="InsuranceBusiness.IInsuranceBusiness")>  _
     Public Interface IInsuranceBusiness
         
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/GetInsHealthExt", ReplyAction:="http://tempuri.org/IInsuranceBusiness/GetInsHealthExtResponse")>  _
+        Function GetInsHealthExt(ByVal username As String, ByVal id As System.Nullable(Of Double), ByVal employee_id As String, ByVal ins_org_id As System.Nullable(Of Double), ByVal health_ins_card As String, ByVal effective_from_date As System.Nullable(Of Date), ByVal effective_to_date As System.Nullable(Of Date), ByVal health_from_date As System.Nullable(Of Date), ByVal health_to_date As System.Nullable(Of Date)) As System.Data.DataTable
+        
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/UpdateInsHealthExt", ReplyAction:="http://tempuri.org/IInsuranceBusiness/UpdateInsHealthExtResponse")>  _
         Function UpdateInsHealthExt(ByVal username As String, ByVal id As System.Nullable(Of Double), ByVal employee_id As String, ByVal ins_org_id As System.Nullable(Of Double), ByVal health_ins_card As String, ByVal effective_from_date As System.Nullable(Of Date), ByVal effective_to_date As System.Nullable(Of Date), ByVal health_from_date As System.Nullable(Of Date), ByVal health_to_date As System.Nullable(Of Date)) As Double
         
@@ -10430,6 +10433,9 @@ Namespace InsuranceBusiness
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/ModifySunCare", ReplyAction:="http://tempuri.org/IInsuranceBusiness/ModifySunCareResponse")>  _
         Function ModifySunCare(ByVal objTitle As InsuranceBusiness.INS_SUN_CARE_DTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/CHECK_MANAGER_SUN_CARE", ReplyAction:="http://tempuri.org/IInsuranceBusiness/CHECK_MANAGER_SUN_CAREResponse")>  _
+        Function CHECK_MANAGER_SUN_CARE(ByVal P_EMP_CODE As String, ByVal P_START_DATE As String, ByVal P_END_DATE As String, ByVal P_LEVEL_ID As Decimal) As Integer
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/ActiveSunCare", ReplyAction:="http://tempuri.org/IInsuranceBusiness/ActiveSunCareResponse")>  _
         Function ActiveSunCare(ByVal lstID As System.Collections.Generic.List(Of Decimal), ByVal log As Common.CommonBusiness.UserLog, ByVal bActive As Decimal) As Boolean
@@ -10796,9 +10802,6 @@ Namespace InsuranceBusiness
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/UpdateHealthImport", ReplyAction:="http://tempuri.org/IInsuranceBusiness/UpdateHealthImportResponse")>  _
         Function UpdateHealthImport(ByVal username As String, ByVal employee_id As String, ByVal ins_org_name As String, ByVal seniority_insurance As String, ByVal social_number As String, ByVal social_status As String, ByVal social_grant_date As String, ByVal social_save_number As String, ByVal health_number As String, ByVal health_status As String, ByVal health_effect_from_date As String, ByVal health_effect_to_date As String, ByVal health_receive_date As String, ByVal health_receiver As String, ByVal health_area_ins As String) As Double
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/GetInsHealthExt", ReplyAction:="http://tempuri.org/IInsuranceBusiness/GetInsHealthExtResponse")>  _
-        Function GetInsHealthExt(ByVal username As String, ByVal id As System.Nullable(Of Double), ByVal employee_id As String, ByVal ins_org_id As System.Nullable(Of Double), ByVal health_ins_card As String, ByVal effective_from_date As System.Nullable(Of Date), ByVal effective_to_date As System.Nullable(Of Date), ByVal health_from_date As System.Nullable(Of Date), ByVal health_to_date As System.Nullable(Of Date)) As System.Data.DataTable
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/GetComboboxData", ReplyAction:="http://tempuri.org/IInsuranceBusiness/GetComboboxDataResponse")>  _
         Function GetComboboxData(ByRef cbxData As InsuranceBusiness.ComboBoxDataDTO) As Boolean
@@ -11252,6 +11255,10 @@ Namespace InsuranceBusiness
             MyBase.New(binding, remoteAddress)
         End Sub
         
+        Public Function GetInsHealthExt(ByVal username As String, ByVal id As System.Nullable(Of Double), ByVal employee_id As String, ByVal ins_org_id As System.Nullable(Of Double), ByVal health_ins_card As String, ByVal effective_from_date As System.Nullable(Of Date), ByVal effective_to_date As System.Nullable(Of Date), ByVal health_from_date As System.Nullable(Of Date), ByVal health_to_date As System.Nullable(Of Date)) As System.Data.DataTable Implements InsuranceBusiness.IInsuranceBusiness.GetInsHealthExt
+            Return MyBase.Channel.GetInsHealthExt(username, id, employee_id, ins_org_id, health_ins_card, effective_from_date, effective_to_date, health_from_date, health_to_date)
+        End Function
+        
         Public Function UpdateInsHealthExt(ByVal username As String, ByVal id As System.Nullable(Of Double), ByVal employee_id As String, ByVal ins_org_id As System.Nullable(Of Double), ByVal health_ins_card As String, ByVal effective_from_date As System.Nullable(Of Date), ByVal effective_to_date As System.Nullable(Of Date), ByVal health_from_date As System.Nullable(Of Date), ByVal health_to_date As System.Nullable(Of Date)) As Double Implements InsuranceBusiness.IInsuranceBusiness.UpdateInsHealthExt
             Return MyBase.Channel.UpdateInsHealthExt(username, id, employee_id, ins_org_id, health_ins_card, effective_from_date, effective_to_date, health_from_date, health_to_date)
         End Function
@@ -11302,6 +11309,10 @@ Namespace InsuranceBusiness
         
         Public Function ModifySunCare(ByVal objTitle As InsuranceBusiness.INS_SUN_CARE_DTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean Implements InsuranceBusiness.IInsuranceBusiness.ModifySunCare
             Return MyBase.Channel.ModifySunCare(objTitle, log, gID)
+        End Function
+        
+        Public Function CHECK_MANAGER_SUN_CARE(ByVal P_EMP_CODE As String, ByVal P_START_DATE As String, ByVal P_END_DATE As String, ByVal P_LEVEL_ID As Decimal) As Integer Implements InsuranceBusiness.IInsuranceBusiness.CHECK_MANAGER_SUN_CARE
+            Return MyBase.Channel.CHECK_MANAGER_SUN_CARE(P_EMP_CODE, P_START_DATE, P_END_DATE, P_LEVEL_ID)
         End Function
         
         Public Function ActiveSunCare(ByVal lstID As System.Collections.Generic.List(Of Decimal), ByVal log As Common.CommonBusiness.UserLog, ByVal bActive As Decimal) As Boolean Implements InsuranceBusiness.IInsuranceBusiness.ActiveSunCare
@@ -11742,10 +11753,6 @@ Namespace InsuranceBusiness
         
         Public Function UpdateHealthImport(ByVal username As String, ByVal employee_id As String, ByVal ins_org_name As String, ByVal seniority_insurance As String, ByVal social_number As String, ByVal social_status As String, ByVal social_grant_date As String, ByVal social_save_number As String, ByVal health_number As String, ByVal health_status As String, ByVal health_effect_from_date As String, ByVal health_effect_to_date As String, ByVal health_receive_date As String, ByVal health_receiver As String, ByVal health_area_ins As String) As Double Implements InsuranceBusiness.IInsuranceBusiness.UpdateHealthImport
             Return MyBase.Channel.UpdateHealthImport(username, employee_id, ins_org_name, seniority_insurance, social_number, social_status, social_grant_date, social_save_number, health_number, health_status, health_effect_from_date, health_effect_to_date, health_receive_date, health_receiver, health_area_ins)
-        End Function
-        
-        Public Function GetInsHealthExt(ByVal username As String, ByVal id As System.Nullable(Of Double), ByVal employee_id As String, ByVal ins_org_id As System.Nullable(Of Double), ByVal health_ins_card As String, ByVal effective_from_date As System.Nullable(Of Date), ByVal effective_to_date As System.Nullable(Of Date), ByVal health_from_date As System.Nullable(Of Date), ByVal health_to_date As System.Nullable(Of Date)) As System.Data.DataTable Implements InsuranceBusiness.IInsuranceBusiness.GetInsHealthExt
-            Return MyBase.Channel.GetInsHealthExt(username, id, employee_id, ins_org_id, health_ins_card, effective_from_date, effective_to_date, health_from_date, health_to_date)
         End Function
         
         Public Function GetComboboxData(ByRef cbxData As InsuranceBusiness.ComboBoxDataDTO) As Boolean Implements InsuranceBusiness.IInsuranceBusiness.GetComboboxData
