@@ -3113,7 +3113,8 @@ Partial Public Class AttendanceRepository
                                        .HOURS_STOP = p.p.HOURS_STOP,
                                        .HOURS_STAR_CHECKIN = p.p.HOURS_STAR_CHECKIN,
                                        .HOURS_STAR_CHECKOUT = p.p.HOURS_STAR_CHECKOUT,
-                                       .NOTE = p.p.NOTE}).ToList
+                                       .NOTE = p.p.NOTE,
+                                       .ORG_ID = p.p.ORG_ID}).ToList
             Return lst.ToTable
         Catch ex As Exception
             WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iTime")
