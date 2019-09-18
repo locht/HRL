@@ -7,6 +7,11 @@ Imports Common.CommonMessage
 Imports Attendance.AttendanceRepository
 Imports Attendance.AttendanceBusiness
 Imports WebAppLog
+Imports System.IO
+Imports HistaffFrameworkPublic
+Imports System.Globalization
+Imports Profile.ProfileBusiness
+
 Public Class ctrlDeclaresOT
     Inherits Common.CommonView
     Protected WithEvents ctrlOrgPopup As ctrlFindOrgPopup
@@ -49,6 +54,15 @@ Public Class ctrlDeclaresOT
             ViewState(Me.ID & "_dtDataImportEmployee") = value
         End Set
 
+    End Property
+
+    Private Property dtLogs As DataTable
+        Get
+            Return PageViewState(Me.ID & "_dtLogs")
+        End Get
+        Set(ByVal value As DataTable)
+            PageViewState(Me.ID & "_dtLogs") = value
+        End Set
     End Property
 #End Region
 
@@ -366,7 +380,7 @@ Public Class ctrlDeclaresOT
         Dim startTime As DateTime = DateTime.UtcNow
         Try
             Dim rep As New AttendanceRepository
-            Dim _param = New ParamDTO With {.ORG_ID = Decimal.Parse(ctrlOrganization.CurrentValue), _
+            Dim _param = New Attendance.AttendanceBusiness.ParamDTO With {.ORG_ID = Decimal.Parse(ctrlOrganization.CurrentValue), _
                                             .PERIOD_ID = Decimal.Parse(cboPeriod.SelectedValue),
                                             .IS_DISSOLVE = ctrlOrganization.IsDissolve}
 
@@ -684,75 +698,77 @@ Public Class ctrlDeclaresOT
     ''' <param name="e"></param>
     ''' <remarks></remarks>
     Private Sub ctrlUpload1_OkClicked(ByVal sender As Object, ByVal e As System.EventArgs) Handles ctrlUpload1.OkClicked
-        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
-        Dim startTime As DateTime = DateTime.UtcNow
-        Dim fileName As String
-        Dim dsDataPrepare As New DataSet
-        Dim workbook As Aspose.Cells.Workbook
-        Dim worksheet As Aspose.Cells.Worksheet
-        Dim dtDataHeard As New DataTable
         Try
-            Dim tempPath As String = ConfigurationManager.AppSettings("ExcelFileFolder")
-            Dim savepath = Context.Server.MapPath(tempPath)
-            For Each file As UploadedFile In ctrlUpload1.UploadedFiles
-                fileName = System.IO.Path.Combine(savepath, Guid.NewGuid().ToString() & ".xls")
-                file.SaveAs(fileName, True)
-                workbook = New Aspose.Cells.Workbook(fileName)
-                If workbook.Worksheets.GetSheetByCodeName("ImportOT") Is Nothing Then
-                    ShowMessage(Translate("File mẫu không đúng định dạng"), NotifyType.Warning)
-                    Exit Sub
-                End If
-                worksheet = workbook.Worksheets(0)
-                dsDataPrepare.Tables.Add(worksheet.Cells.ExportDataTableAsString(3, 0, worksheet.Cells.MaxRow + 1, worksheet.Cells.MaxColumn + 1, True))
-                If System.IO.File.Exists(fileName) Then System.IO.File.Delete(fileName)
-            Next
-            dtData = dtData.Clone()
-            dtDataHeard = dtData.Clone()
-            For Each dt As DataTable In dsDataPrepare.Tables
-                For Each row In dt.Rows
-                    Dim isRow = ImportValidate.TrimRow(row)
-                    If Not isRow Then
-                        Continue For
-                    End If
-                    dtData.ImportRow(row)
-                    dtDataHeard.ImportRow(row)
-                Next
-            Next
-            If loadToGrid(dtDataHeard) Then
-                For Each row As DataRow In dtData.Rows
-                    If row("HS_OT10") <> "" Then
-                        row("HS_OT_NAME") = "1.0"
-                    End If
-                    If row("HS_OT15") <> "" Then
-                        row("HS_OT_NAME") = "1.5"
-                    End If
-                    If row("HS_OT20") <> "" Then
-                        row("HS_OT_NAME") = "2.0"
-                    End If
-                    If row("HS_OT27") <> "" Then
-                        row("HS_OT_NAME") = "2.7"
-                    End If
-                    If row("HS_OT30") <> "" Then
-                        row("HS_OT_NAME") = "3.0"
-                    End If
-                    If row("HS_OT39") <> "" Then
-                        row("HS_OT_NAME") = "3.9"
-                    End If
-                Next
-                'rgDeclaresOT.VirtualItemCount = dtData.Rows.Count
-                'rgDeclaresOT.DataSource = dtData
-                'rgDeclaresOT.DataBind()
-                'CurrentState = CommonMessage.STATE_NEW
-                'UpdateControlState()
-                SaveOT()
-                Refresh("InsertView")
-                CurrentState = CommonMessage.STATE_NORMAL
-                UpdateControlState()
-            End If
-            _myLog.WriteLog(_myLog._info, _classPath, method,
-                                            CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
+            Import_Data()
+            'Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+            'Dim startTime As DateTime = DateTime.UtcNow
+            'Dim fileName As String
+            'Dim dsDataPrepare As New DataSet
+            'Dim workbook As Aspose.Cells.Workbook
+            'Dim worksheet As Aspose.Cells.Worksheet
+            'Dim dtDataHeard As New DataTable
+            'Try
+            '    Dim tempPath As String = ConfigurationManager.AppSettings("ExcelFileFolder")
+            '    Dim savepath = Context.Server.MapPath(tempPath)
+            '    For Each file As UploadedFile In ctrlUpload1.UploadedFiles
+            '        fileName = System.IO.Path.Combine(savepath, Guid.NewGuid().ToString() & ".xls")
+            '        file.SaveAs(fileName, True)
+            '        workbook = New Aspose.Cells.Workbook(fileName)
+            '        If workbook.Worksheets.GetSheetByCodeName("ImportOT") Is Nothing Then
+            '            ShowMessage(Translate("File mẫu không đúng định dạng"), NotifyType.Warning)
+            '            Exit Sub
+            '        End If
+            '        worksheet = workbook.Worksheets(0)
+            '        dsDataPrepare.Tables.Add(worksheet.Cells.ExportDataTableAsString(3, 0, worksheet.Cells.MaxRow + 1, worksheet.Cells.MaxColumn + 1, True))
+            '        If System.IO.File.Exists(fileName) Then System.IO.File.Delete(fileName)
+            '    Next
+            '    dtData = dtData.Clone()
+            '    dtDataHeard = dtData.Clone()
+            '    For Each dt As DataTable In dsDataPrepare.Tables
+            '        For Each row In dt.Rows
+            '            Dim isRow = ImportValidate.TrimRow(row)
+            '            If Not isRow Then
+            '                Continue For
+            '            End If
+            '            dtData.ImportRow(row)
+            '            dtDataHeard.ImportRow(row)
+            '        Next
+            '    Next
+            '    If loadToGrid(dtDataHeard) Then
+            '        For Each row As DataRow In dtData.Rows
+            '            If row("HS_OT10") <> "" Then
+            '                row("HS_OT_NAME") = "1.0"
+            '            End If
+            '            If row("HS_OT15") <> "" Then
+            '                row("HS_OT_NAME") = "1.5"
+            '            End If
+            '            If row("HS_OT20") <> "" Then
+            '                row("HS_OT_NAME") = "2.0"
+            '            End If
+            '            If row("HS_OT27") <> "" Then
+            '                row("HS_OT_NAME") = "2.7"
+            '            End If
+            '            If row("HS_OT30") <> "" Then
+            '                row("HS_OT_NAME") = "3.0"
+            '            End If
+            '            If row("HS_OT39") <> "" Then
+            '                row("HS_OT_NAME") = "3.9"
+            '            End If
+            '        Next
+            '        'rgDeclaresOT.VirtualItemCount = dtData.Rows.Count
+            '        'rgDeclaresOT.DataSource = dtData
+            '        'rgDeclaresOT.DataBind()
+            '        'CurrentState = CommonMessage.STATE_NEW
+            '        'UpdateControlState()
+            '        SaveOT()
+            '        Refresh("InsertView")
+            '        CurrentState = CommonMessage.STATE_NORMAL
+            '        UpdateControlState()
+            'End If
+            '_myLog.WriteLog(_myLog._info, _classPath, method,
+            '                                CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
-            _myLog.WriteLog(_myLog._error, _classPath, method, 0, ex, "")
+            '_myLog.WriteLog(_myLog._error, _classPath, method, 0, ex, "")
             ShowMessage(Translate("Import bị lỗi. Kiểm tra lại biểu mẫu Import"), NotifyType.Error)
         End Try
     End Sub
@@ -820,7 +836,7 @@ Public Class ctrlDeclaresOT
         Try
             Dim MaximumRows As Integer
             SetValueObjectByRadGrid(rgDeclaresOT, obj)
-            Dim _param = New PARAMDTO With {.ORG_ID = ctrlOrganization.CurrentValue, _
+            Dim _param = New Attendance.AttendanceBusiness.ParamDTO With {.ORG_ID = ctrlOrganization.CurrentValue, _
                                            .IS_DISSOLVE = ctrlOrganization.IsDissolve,
                                            .IS_FULL = True}
             Dim Sorts As String = rgDeclaresOT.MasterTableView.SortExpressions.GetSortString()
@@ -926,6 +942,248 @@ Public Class ctrlDeclaresOT
             DisplayException(Me.ViewName, Me.ID, ex)
         End Try
     End Sub
+
+    Private Sub Import_Data()
+        Try
+            Dim rep As New AttendanceRepository
+            Dim tempPath As String = ConfigurationManager.AppSettings("ExcelFileFolder")
+            Dim countFile As Integer = ctrlUpload1.UploadedFiles.Count
+            Dim fileName As String
+            Dim savepath = Context.Server.MapPath(tempPath)
+            Dim ds As New DataSet
+            If countFile > 0 Then
+                Dim file As UploadedFile = ctrlUpload1.UploadedFiles(countFile - 1)
+                fileName = System.IO.Path.Combine(savepath, file.FileName)
+                file.SaveAs(fileName, True)
+                Using ep As New ExcelPackage
+                    ds = ep.ReadExcelToDataSet(fileName, False)
+                End Using
+            End If
+            If ds Is Nothing Then
+                Exit Sub
+            End If
+            TableMapping(ds.Tables(0))
+
+            If dtLogs Is Nothing Or dtLogs.Rows.Count <= 0 Then
+                Dim DocXml As String = String.Empty
+                Dim sw As New StringWriter()
+                If ds.Tables(0) IsNot Nothing AndAlso ds.Tables(0).Rows.Count > 0 Then
+                    ds.Tables(0).WriteXml(sw, False)
+                    DocXml = sw.ToString
+                    If rep.INPORT_AT_OT_REGISTRATION(DocXml) Then
+                        ShowMessage(Translate(Common.CommonMessage.MESSAGE_TRANSACTION_SUCCESS), Framework.UI.Utilities.NotifyType.Success)
+                        rgDeclaresOT.Rebind()
+                    Else
+                        ShowMessage(Translate(Common.CommonMessage.MESSAGE_TRANSACTION_FAIL), Framework.UI.Utilities.NotifyType.Warning)
+                    End If
+                End If
+            Else
+                Session("EXPORTREPORT") = dtLogs
+                ScriptManager.RegisterStartupScript(Me.Page, Me.Page.GetType(), "javascriptfunction", "ExportReport('HU_ANNUALLEAVE_PLANS_ERROR')", True)
+                ShowMessage(Translate("Có lỗi trong quá trình import. Lưu file lỗi chi tiết"), Utilities.NotifyType.Error)
+            End If
+        Catch ex As Exception
+
+        End Try
+    End Sub
+
+    Private Sub TableMapping(ByVal dtTemp As System.Data.DataTable)
+        Dim rep As New AttendanceRepository
+        Dim rep1 As New ProfileBusinessClient
+        ' lấy dữ liệu thô từ excel vào và tinh chỉnh dữ liệu
+        dtTemp.Columns(1).ColumnName = "EMPLOYEE_CODE"
+        dtTemp.Columns(5).ColumnName = "REGIST_DATE"
+        dtTemp.Columns(6).ColumnName = "FROM_AM"
+        dtTemp.Columns(7).ColumnName = "FROM_AM_NN"
+        dtTemp.Columns(8).ColumnName = "TO_AM"
+        dtTemp.Columns(9).ColumnName = "TO_AM_NN"
+        dtTemp.Columns(10).ColumnName = "FROM_PM"
+        dtTemp.Columns(11).ColumnName = "FROM_PM_NN"
+        dtTemp.Columns(12).ColumnName = "TO_PM"
+        dtTemp.Columns(13).ColumnName = "TO_PM_NN"
+        dtTemp.Columns(15).ColumnName = "OT_TYPE_ID"
+        dtTemp.Columns(17).ColumnName = "OT"
+        dtTemp.Columns(18).ColumnName = "NOTE"
+
+        dtTemp.Columns(16).ColumnName = "TOTAL_OT"
+
+        'XOA DONG TIEU DE VA HEADER
+        dtTemp.Rows(0).Delete()
+        dtTemp.Rows(1).Delete()
+        dtTemp.Rows(2).Delete()
+        dtTemp.Rows(3).Delete()
+        dtTemp.Rows(4).Delete()
+
+        ' add Log
+        Dim _error As Boolean = True
+        Dim count As Integer
+        Dim newRow As DataRow
+
+        If dtLogs Is Nothing Then
+            dtLogs = New DataTable("data")
+            dtLogs.Columns.Add("ID", GetType(Integer))
+            dtLogs.Columns.Add("EMPLOYEE_CODE", GetType(String))
+            dtLogs.Columns.Add("DISCIPTION", GetType(String))
+        End If
+        dtLogs.Clear()
+
+        'XOA NHUNG DONG DU LIEU NULL EMPLOYYE CODE
+        Dim rowDel As DataRow
+        For i As Integer = 0 To dtTemp.Rows.Count - 1
+            If dtTemp.Rows(i).RowState = DataRowState.Deleted OrElse dtTemp.Rows(i).RowState = DataRowState.Detached Then Continue For
+            rowDel = dtTemp.Rows(i)
+            If rowDel("EMPLOYEE_CODE").ToString.Trim = "" Then
+                dtTemp.Rows(i).Delete()
+            End If
+        Next
+
+        For Each rows As DataRow In dtTemp.Rows
+            If rows.RowState = DataRowState.Deleted OrElse rows.RowState = DataRowState.Detached Then Continue For
+
+            Dim totalHour As Decimal = 0.0
+            Dim fromAM As Decimal = 0.0
+            Dim fromMNAM As Decimal = 0.0
+            Dim toAM As Decimal = 0.0
+            Dim toMMAM As Decimal = 0.0
+            Dim fromPM As Decimal = 0.0
+            Dim fromMNPM As Decimal = 0.0
+            Dim toPM As Decimal = 0.0
+            Dim toMNPM As Decimal = 0.0
+
+            Dim totalFromAM As Decimal = 0.0
+            Dim totalToAM As Decimal = 0.0
+            Dim totalFromPM As Decimal = 0.0
+            Dim totalToPM As Decimal = 0.0
+            Dim AM As Decimal = 0.0 'tong tgian OT tu 0am - 6am
+            Dim PM As Decimal = 0.0 'tong tgian OT tu 10pm - 11h59pm
+
+            newRow = dtLogs.NewRow
+            newRow("ID") = count + 1
+            newRow("EMPLOYEE_CODE") = rows("EMPLOYEE_CODE")
+
+            ' Nhân viên k có trong hệ thống
+            If rep1.CHECK_EMPLOYEE(rows("EMPLOYEE_CODE")) = 0 Then
+                newRow("DISCIPTION") = "Mã nhân viên - Không tồn tại,"
+                _error = False
+            End If
+
+            If IsDBNull(rows("REGIST_DATE")) OrElse rows("REGIST_DATE") = "" OrElse CheckDate(rows("REGIST_DATE")) = False Then
+                rows("REGIST_DATE") = "NULL"
+                newRow("DISCIPTION") = newRow("DISCIPTION") + "Ngày làm thêm - Không đúng định dạng,"
+                _error = False
+            End If
+
+            If IsNumeric(rows("FROM_AM")) Or IsNumeric(rows("FROM_AM_NN")) Or IsNumeric(rows("TO_AM")) Or IsNumeric(rows("TO_AM_NN")) Then
+                If Not (IsNumeric(rows("FROM_AM"))) Then
+                    newRow("DISCIPTION") = newRow("DISCIPTION") + "Từ giờ buổi sáng - Không đúng định dạng,"
+                    _error = False
+                End If
+
+                If Not (IsNumeric(rows("FROM_AM_NN"))) Then
+                    newRow("DISCIPTION") = newRow("DISCIPTION") + "Từ phút buổi sáng - Không đúng định dạng,"
+                    _error = False
+                End If
+
+                If Not (IsNumeric(rows("TO_AM"))) Then
+                    newRow("DISCIPTION") = newRow("DISCIPTION") + "Đến giờ buổi sáng - Không đúng định dạng,"
+                    _error = False
+                End If
+
+                If Not (IsNumeric(rows("TO_AM_NN"))) Then
+                    newRow("DISCIPTION") = newRow("DISCIPTION") + "Đến phút buổi sáng - Không đúng định dạng,"
+                    _error = False
+                End If
+            End If
+
+            If IsNumeric(rows("FROM_PM")) Or IsNumeric(rows("FROM_PM_NN")) Or IsNumeric(rows("TO_PM")) Or IsNumeric(rows("TO_PM_NN")) Then
+                If Not (IsNumeric(rows("FROM_PM"))) Then
+                    newRow("DISCIPTION") = newRow("DISCIPTION") + "Từ giờ buổi chiều - Không đúng định dạng,"
+                    _error = False
+                End If
+
+                If Not (IsNumeric(rows("FROM_PM_NN"))) Then
+                    newRow("DISCIPTION") = newRow("DISCIPTION") + "Từ phút buổi chiều - Không đúng định dạng,"
+                    _error = False
+                End If
+
+                If Not (IsNumeric(rows("TO_PM"))) Then
+                    newRow("DISCIPTION") = newRow("DISCIPTION") + "Đến giờ buổi chiều - Không đúng định dạng,"
+                    _error = False
+                End If
+
+                If Not (IsNumeric(rows("TO_PM_NN"))) Then
+                    newRow("DISCIPTION") = newRow("DISCIPTION") + "Đến phút buổi chiều - Không đúng định dạng,"
+                    _error = False
+                End If
+            End If
+
+            If Not (IsNumeric(rows("OT_TYPE_ID"))) Then
+                newRow("DISCIPTION") = newRow("DISCIPTION") + "Loại làm thêm - Không đúng định dạng,"
+                _error = False
+            End If
+
+            If Not (IsNumeric(rows("OT"))) Then
+                newRow("DISCIPTION") = newRow("DISCIPTION") + "Hệ số - Không đúng định dạng,"
+                _error = False
+            End If
+
+            AM = 0
+            If IsNumeric(rows("FROM_AM")) AndAlso IsNumeric(rows("FROM_AM_NN")) AndAlso IsNumeric(rows("TO_AM")) AndAlso IsNumeric(rows("TO_AM_NN")) Then
+                fromAM = rows("FROM_AM")
+                fromMNAM = Decimal.Parse(If(rows("FROM_AM_NN") = 30, 0.5, 0))
+                toAM = rows("TO_AM")
+                toMMAM = Decimal.Parse(If(rows("TO_AM_NN") = 30, 0.5, 0))
+                totalFromAM = fromAM + fromMNAM
+                totalToAM = toAM + toMMAM
+                If totalFromAM > totalToAM Then
+                    newRow("DISCIPTION") = newRow("DISCIPTION") + "Giờ làm thêm AM - không hợp lệ,"
+                    _error = False
+                End If
+                AM = totalToAM - totalFromAM
+            End If
+
+            PM = 0
+            If IsNumeric(rows("FROM_PM")) AndAlso IsNumeric(rows("FROM_PM_NN")) AndAlso IsNumeric(rows("TO_PM")) AndAlso IsNumeric(rows("TO_PM_NN")) Then
+                fromPM = rows("FROM_PM")
+                fromMNPM = Decimal.Parse(If(rows("FROM_PM_NN") = 30, 0.5, 0))
+                toPM = rows("TO_PM")
+                toMNPM = Decimal.Parse(If(rows("TO_PM_NN") = 30, 0.5, 0))
+                totalFromPM = fromPM + fromMNPM
+                totalToPM = toPM + toMNPM
+                If totalFromPM > totalToPM Then
+                    newRow("DISCIPTION") = newRow("DISCIPTION") + "Giờ làm thêm PM - không hợp lệ,"
+                    _error = False
+                End If
+                PM = totalToPM - totalFromPM
+            End If
+
+            rows("TOTAL_OT") = (AM + PM).ToString().Replace(",", ".")
+
+            If _error = False Then
+                dtLogs.Rows.Add(newRow)
+                count = count + 1
+                _error = True
+            End If
+        Next
+        dtTemp.AcceptChanges()
+    End Sub
+
+    Private Function CheckDate(ByVal value As String) As Boolean
+        Dim dateCheck As Boolean
+        Dim result As Date
+
+        If value = "" Or value = "&nbsp;" Then
+            value = ""
+            Return True
+        End If
+
+        Try
+            dateCheck = DateTime.TryParseExact(value, "dd/MM/yyyy", New CultureInfo("en-US"), DateTimeStyles.None, result)
+            Return dateCheck
+        Catch ex As Exception
+            Return False
+        End Try
+    End Function
 
     'Private Sub rgDeclaresOT_ItemDataBound(ByVal sender As Object, ByVal e As Telerik.Web.UI.GridItemEventArgs) Handles rgDeclaresOT.ItemDataBound
     '    If e.Item.ItemType = GridItemType.Item Or e.Item.ItemType = GridItemType.AlternatingItem Then

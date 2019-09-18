@@ -1205,6 +1205,9 @@ Namespace AttendanceBusiness.ServiceContracts
 #End Region
 
         <OperationContract()>
+        Function INPORT_AT_OT_REGISTRATION(ByVal P_DOCXML As String, ByVal log As UserLog) As Boolean
+
+        <OperationContract()>
         Function GET_PE_ASSESS_MESS(ByVal EMP As Decimal?) As DataTable
 
         <OperationContract()>

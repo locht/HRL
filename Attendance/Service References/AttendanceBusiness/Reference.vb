@@ -31099,6 +31099,9 @@ Namespace AttendanceBusiness
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IAttendanceBusiness/GetEmployeeShifts", ReplyAction:="http://tempuri.org/IAttendanceBusiness/GetEmployeeShiftsResponse")>  _
         Function GetEmployeeShifts(ByVal employee_Id As Decimal, ByVal fromDate As Date, ByVal toDate As Date) As System.Collections.Generic.List(Of AttendanceBusiness.EMPLOYEE_SHIFT_DTO)
         
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IAttendanceBusiness/INPORT_AT_OT_REGISTRATION", ReplyAction:="http://tempuri.org/IAttendanceBusiness/INPORT_AT_OT_REGISTRATIONResponse")>  _
+        Function INPORT_AT_OT_REGISTRATION(ByVal P_DOCXML As String, ByVal log As Common.CommonBusiness.UserLog) As Boolean
+        
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IAttendanceBusiness/GET_PE_ASSESS_MESS", ReplyAction:="http://tempuri.org/IAttendanceBusiness/GET_PE_ASSESS_MESSResponse")>  _
         Function GET_PE_ASSESS_MESS(ByVal EMP As System.Nullable(Of Decimal)) As System.Data.DataTable
         
@@ -32677,6 +32680,10 @@ Namespace AttendanceBusiness
         
         Public Function GetEmployeeShifts(ByVal employee_Id As Decimal, ByVal fromDate As Date, ByVal toDate As Date) As System.Collections.Generic.List(Of AttendanceBusiness.EMPLOYEE_SHIFT_DTO) Implements AttendanceBusiness.IAttendanceBusiness.GetEmployeeShifts
             Return MyBase.Channel.GetEmployeeShifts(employee_Id, fromDate, toDate)
+        End Function
+        
+        Public Function INPORT_AT_OT_REGISTRATION(ByVal P_DOCXML As String, ByVal log As Common.CommonBusiness.UserLog) As Boolean Implements AttendanceBusiness.IAttendanceBusiness.INPORT_AT_OT_REGISTRATION
+            Return MyBase.Channel.INPORT_AT_OT_REGISTRATION(P_DOCXML, log)
         End Function
         
         Public Function GET_PE_ASSESS_MESS(ByVal EMP As System.Nullable(Of Decimal)) As System.Data.DataTable Implements AttendanceBusiness.IAttendanceBusiness.GET_PE_ASSESS_MESS
