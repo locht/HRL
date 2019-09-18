@@ -7,8 +7,8 @@ Public Class WordCommon
     Implements IDisposable
     Public Shared Function InsertHeaderLogo(ByVal doc As Document, ByVal dt As DataTable, ByVal sourcePath As String) As Document
         Try
-            Dim path As String = sourcePath + dt.Rows(0)("FILE_HEADER")
-            Dim path1 As String = sourcePath + dt.Rows(0)("FILE_FOOTER")
+            Dim path As String = sourcePath + dt.Rows(0)("ATTACH_FILE_HEADER") + "/" + dt.Rows(0)("FILE_HEADER")
+            Dim path1 As String = sourcePath + dt.Rows(0)("ATTACH_FILE_FOOTER") + "/" + dt.Rows(0)("FILE_FOOTER")
             Dim builder As DocumentBuilder = New DocumentBuilder(doc)
             Dim firstSection As Section = builder.CurrentSection
             Dim pageSetup As PageSetup = firstSection.PageSetup

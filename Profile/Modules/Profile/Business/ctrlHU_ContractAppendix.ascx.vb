@@ -243,7 +243,7 @@ Public Class ctrlHU_ContractAppendix
         Dim sv_sdateliqui As String = String.Empty
         Dim sv_emp As String = ""
         Dim sv_FormID As Decimal = 0
-        Dim sourcePath = Server.MapPath("~/AttachFile/Profile/ctrlLocation/")
+        Dim sourcePath = Server.MapPath("~/ReportTemplates/Profile/LocationInfo/")
         Dim dtData As DataTable
         Dim reportName As String = String.Empty
         Dim reportNameOut As String = "String.Empty"

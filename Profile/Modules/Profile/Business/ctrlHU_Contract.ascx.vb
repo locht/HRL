@@ -282,7 +282,7 @@ Public Class ctrlHU_Contract
                 Case CommonMessage.TOOLBARITEM_PRINT
                     Dim dtData As DataTable
                     Dim dtDataCon As DataTable
-                    Dim sourcePath = Server.MapPath("~/AttachFile/Profile/ctrlLocation/")
+                    Dim sourcePath = Server.MapPath("~/ReportTemplates/Profile/LocationInfo/")
                     Dim folderName As String = "ContractSupport"
                     Dim filePath As String = ""
                     Dim extension As String = ""
