@@ -6509,4 +6509,20 @@ Partial Public Class AttendanceRepository
         End Try
     End Function
 #End Region
+
+    Public Function INPORT_AT_OT_REGISTRATION(ByVal P_DOCXML As String, ByVal log As UserLog) As Boolean
+        Try
+            Using cls As New DataAccess.QueryData
+                cls.ExecuteStore("PKG_ATTENDANCE_LIST.INPORT_AT_OT_REGISTRATION",
+                                 New With {.P_DOCXML = P_DOCXML,
+                                           .P_USERNAME = log.Username})
+            End Using
+            Return True
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iInsurance")
+            Throw ex
+            Return False
+        End Try
+    End Function
+
 End Class

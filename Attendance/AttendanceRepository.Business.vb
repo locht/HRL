@@ -1681,4 +1681,15 @@ Partial Class AttendanceRepository
         End Using
     End Function
 #End Region
+
+    Public Function INPORT_AT_OT_REGISTRATION(ByVal P_DOCXML As String) As Boolean
+        Using rep As New AttendanceBusinessClient
+            Try
+                Return rep.INPORT_AT_OT_REGISTRATION(P_DOCXML, Me.Log)
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+    End Function
 End Class

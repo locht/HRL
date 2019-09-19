@@ -1699,5 +1699,16 @@ Namespace AttendanceBusiness.ServiceImplementations
             End Using
         End Function
 #End Region
+
+        Public Function INPORT_AT_OT_REGISTRATION(ByVal P_DOCXML As String, ByVal log As UserLog) As Boolean Implements ServiceContracts.IAttendanceBusiness.INPORT_AT_OT_REGISTRATION
+            Using rep As New AttendanceRepository
+                Try
+
+                    Return rep.INPORT_AT_OT_REGISTRATION(P_DOCXML, log)
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
     End Class
 End Namespace

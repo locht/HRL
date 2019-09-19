@@ -1169,6 +1169,7 @@ Public Class Export
         Try
             'Dim is_disolve = Boolean.Parse(Request.Params("IS_DISSOLVE"))
             Dim rep As New Attendance.AttendanceRepository
+            Dim repc As New Common.CommonRepository
             Dim org_id = Decimal.Parse(Request.Params("orgid"))
             Dim obj As New Attendance.AttendanceBusiness.ParamDTO
             Dim dtDataShift As New DataTable
@@ -1181,7 +1182,20 @@ Public Class Export
                 obj.PERIOD_ID = Decimal.Parse(Request.Params("PERIOD_ID"))
             End If
             dtDataShift = rep.GetAT_ListShift()
-
+            'check is root
+            Dim ListComboData = New ComboBoxDataDTO
+            ListComboData.GET_LIST_SHIFT = True
+            rep.GetComboboxData(ListComboData)
+            Dim list_id_shilf = ListComboData.LIST_LIST_SHIFT.Select(Function(n)
+                                                                         Return n.ID
+                                                                     End Function).ToList
+            Dim listremove = dtDataShift.AsEnumerable.Where(Function(n)
+                                                                Return Not list_id_shilf.Contains(n.Field(Of Decimal)("ID"))
+                                                            End Function).ToList
+            listremove.ForEach(Function(n)
+                                   dtDataShift.Rows.Remove(n)
+                                   Return True
+                               End Function)
             Dim dsData As DataSet = rep.GetDataFromOrg(obj)
             dsData.Tables(0).TableName = "Table"
             If dtDataShift IsNot Nothing Then
