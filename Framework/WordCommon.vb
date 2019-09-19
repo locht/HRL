@@ -14,31 +14,43 @@ Public Class WordCommon
             Dim pageSetup As PageSetup = firstSection.PageSetup
             pageSetup.DifferentFirstPageHeaderFooter = True
             'Dim height = pageSetup.PageHeight - pageSetup.TopMargin - pageSetup.BottomMargin
-            Dim width = Decimal.Parse(pageSetup.PageWidth - 2 * pageSetup.LeftMargin)
+            Dim width = Decimal.Parse(pageSetup.PageWidth)
             'add image to header,footer in first page
             pageSetup.HeaderDistance = 0
             builder.MoveToHeaderFooter(HeaderFooterType.HeaderFirst)
             builder.ParagraphFormat.Alignment = ParagraphAlignment.Distributed
             If File.Exists(path) Then
-                builder.InsertImage(path, RelativeHorizontalPosition.Page, 0, RelativeVerticalPosition.Page, 0, width, 145, WrapType.Inline)
+                Dim shape As Shape = builder.InsertImage(path, RelativeHorizontalPosition.Page, 0, RelativeVerticalPosition.Page, 0, width, 145, WrapType.Square)
+                shape.RelativeHorizontalPosition = RelativeHorizontalPosition.Page
+                shape.Left = 0
+                shape.Top = 0
             End If
             builder.MoveToHeaderFooter(HeaderFooterType.FooterFirst)
             builder.ParagraphFormat.Alignment = ParagraphAlignment.Distributed
             If File.Exists(path1) Then
-                builder.InsertImage(path1, RelativeHorizontalPosition.Page, 0, RelativeVerticalPosition.Page, 0, width, 110, WrapType.Inline)
+                Dim shape As Shape = builder.InsertImage(path1, RelativeHorizontalPosition.Page, 0, RelativeVerticalPosition.Page, 0, width, 110, WrapType.Square)
+                shape.RelativeHorizontalPosition = RelativeHorizontalPosition.Page
+                shape.Left = 0
+                shape.Top = 700
             End If
             'add image to footer in other pages
             builder.MoveToHeaderFooter(HeaderFooterType.FooterEven)
             pageSetup.FooterDistance = 0
             builder.ParagraphFormat.Alignment = ParagraphAlignment.Distributed
             If File.Exists(path1) Then
-                builder.InsertImage(path1, RelativeHorizontalPosition.Page, 0, RelativeVerticalPosition.Page, 0, width, 110, WrapType.Inline)
+                Dim shape As Shape = builder.InsertImage(path1, RelativeHorizontalPosition.Page, 0, RelativeVerticalPosition.Page, 0, width, 110, WrapType.Square)
+                shape.RelativeHorizontalPosition = RelativeHorizontalPosition.Page
+                shape.Left = 0
+                shape.Top = 700
             End If
             builder.MoveToHeaderFooter(HeaderFooterType.FooterPrimary)
             pageSetup.FooterDistance = 0
             builder.ParagraphFormat.Alignment = ParagraphAlignment.Distributed
             If File.Exists(path1) Then
-                builder.InsertImage(path1, RelativeHorizontalPosition.Page, 0, RelativeVerticalPosition.Page, 0, width, 110, WrapType.Inline)
+                Dim shape As Shape = builder.InsertImage(path1, RelativeHorizontalPosition.Page, 0, RelativeVerticalPosition.Page, 0, width, 110, WrapType.Square)
+                shape.RelativeHorizontalPosition = RelativeHorizontalPosition.Page
+                shape.Left = 0
+                shape.Top = 700
             End If
             'pageSetup.DifferentFirstPageHeaderFooter = False
             Return doc
