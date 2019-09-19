@@ -1159,6 +1159,13 @@ Public Class ctrlDeclaresOT
 
             rows("TOTAL_OT") = (AM + PM).ToString().Replace(",", ".")
 
+            If CheckDate(rows("REGIST_DATE")) AndAlso IsNumeric(rows("OT")) Then
+                If rep.CHECK_OT_REGISTRATION_EXIT(rows("EMPLOYEE_CODE"), rows("REGIST_DATE"), rows("OT")) > 0 Then
+                    newRow("DISCIPTION") = newRow("DISCIPTION") + "Ngày OT đã được đăng ký, vui lòng chọn ngày khác,"
+                    _error = False
+                End If
+            End If
+
             If _error = False Then
                 dtLogs.Rows.Add(newRow)
                 count = count + 1

@@ -1208,6 +1208,9 @@ Namespace AttendanceBusiness.ServiceContracts
         Function INPORT_AT_OT_REGISTRATION(ByVal P_DOCXML As String, ByVal log As UserLog) As Boolean
 
         <OperationContract()>
+        Function CHECK_OT_REGISTRATION_EXIT(ByVal P_EMP_CODE As String, ByVal P_DATE As String, ByVal P_HESO As String) As Integer
+
+        <OperationContract()>
         Function GET_PE_ASSESS_MESS(ByVal EMP As Decimal?) As DataTable
 
         <OperationContract()>

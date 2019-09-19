@@ -31102,6 +31102,9 @@ Namespace AttendanceBusiness
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IAttendanceBusiness/INPORT_AT_OT_REGISTRATION", ReplyAction:="http://tempuri.org/IAttendanceBusiness/INPORT_AT_OT_REGISTRATIONResponse")>  _
         Function INPORT_AT_OT_REGISTRATION(ByVal P_DOCXML As String, ByVal log As Common.CommonBusiness.UserLog) As Boolean
         
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IAttendanceBusiness/CHECK_OT_REGISTRATION_EXIT", ReplyAction:="http://tempuri.org/IAttendanceBusiness/CHECK_OT_REGISTRATION_EXITResponse")>  _
+        Function CHECK_OT_REGISTRATION_EXIT(ByVal P_EMP_CODE As String, ByVal P_DATE As String, ByVal P_HESO As String) As Integer
+        
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IAttendanceBusiness/GET_PE_ASSESS_MESS", ReplyAction:="http://tempuri.org/IAttendanceBusiness/GET_PE_ASSESS_MESSResponse")>  _
         Function GET_PE_ASSESS_MESS(ByVal EMP As System.Nullable(Of Decimal)) As System.Data.DataTable
         
@@ -32684,6 +32687,10 @@ Namespace AttendanceBusiness
         
         Public Function INPORT_AT_OT_REGISTRATION(ByVal P_DOCXML As String, ByVal log As Common.CommonBusiness.UserLog) As Boolean Implements AttendanceBusiness.IAttendanceBusiness.INPORT_AT_OT_REGISTRATION
             Return MyBase.Channel.INPORT_AT_OT_REGISTRATION(P_DOCXML, log)
+        End Function
+        
+        Public Function CHECK_OT_REGISTRATION_EXIT(ByVal P_EMP_CODE As String, ByVal P_DATE As String, ByVal P_HESO As String) As Integer Implements AttendanceBusiness.IAttendanceBusiness.CHECK_OT_REGISTRATION_EXIT
+            Return MyBase.Channel.CHECK_OT_REGISTRATION_EXIT(P_EMP_CODE, P_DATE, P_HESO)
         End Function
         
         Public Function GET_PE_ASSESS_MESS(ByVal EMP As System.Nullable(Of Decimal)) As System.Data.DataTable Implements AttendanceBusiness.IAttendanceBusiness.GET_PE_ASSESS_MESS

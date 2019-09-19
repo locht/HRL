@@ -1710,5 +1710,16 @@ Namespace AttendanceBusiness.ServiceImplementations
                 End Try
             End Using
         End Function
+
+        Public Function CHECK_OT_REGISTRATION_EXIT(ByVal P_EMP_CODE As String, ByVal P_DATE As String, ByVal P_HESO As String) As Integer Implements ServiceContracts.IAttendanceBusiness.CHECK_OT_REGISTRATION_EXIT
+            Using rep As New AttendanceRepository
+                Try
+
+                    Return rep.CHECK_OT_REGISTRATION_EXIT(P_EMP_CODE, P_DATE, P_HESO)
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
     End Class
 End Namespace

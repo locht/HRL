@@ -6257,12 +6257,26 @@ Partial Public Class AttendanceRepository
                          Where p.ID <> _validate.ID _
                            And p.EMPLOYEE_ID = _validate.EMPLOYEE_ID _
                            And p.REGIST_DATE = _validate.REGIST_DATE _
+                           And ((_validate.OT_100 <> 0 And p.OT_100 <> 0) Or _validate.OT_100 = 0) _
+                           And ((_validate.OT_150 <> 0 And p.OT_150 <> 0) Or _validate.OT_150 = 0) _
+                           And ((_validate.OT_200 <> 0 And p.OT_200 <> 0) Or _validate.OT_200 = 0) _
+                           And ((_validate.OT_210 <> 0 And p.OT_210 <> 0) Or _validate.OT_210 = 0) _
+                           And ((_validate.OT_270 <> 0 And p.OT_270 <> 0) Or _validate.OT_270 = 0) _
+                           And ((_validate.OT_300 <> 0 And p.OT_300 <> 0) Or _validate.OT_300 = 0) _
+                           And ((_validate.OT_370 <> 0 And p.OT_370 <> 0) Or _validate.OT_370 = 0) _
                            And p.IS_DELETED = 0).FirstOrDefault()
                 Return (Not query Is Nothing)
             Else
                 query = (From p In Context.AT_OT_REGISTRATION
                          Where p.EMPLOYEE_ID = _validate.EMPLOYEE_ID _
                          And p.REGIST_DATE = _validate.REGIST_DATE _
+                         And ((_validate.OT_100 <> 0 And p.OT_100 <> 0) Or _validate.OT_100 = 0) _
+                         And ((_validate.OT_150 <> 0 And p.OT_150 <> 0) Or _validate.OT_150 = 0) _
+                         And ((_validate.OT_200 <> 0 And p.OT_200 <> 0) Or _validate.OT_200 = 0) _
+                         And ((_validate.OT_210 <> 0 And p.OT_210 <> 0) Or _validate.OT_210 = 0) _
+                         And ((_validate.OT_270 <> 0 And p.OT_270 <> 0) Or _validate.OT_270 = 0) _
+                         And ((_validate.OT_300 <> 0 And p.OT_300 <> 0) Or _validate.OT_300 = 0) _
+                         And ((_validate.OT_370 <> 0 And p.OT_370 <> 0) Or _validate.OT_370 = 0) _
                          And p.IS_DELETED = 0 _
                          And p.SIGN_ID.HasValue).FirstOrDefault()
                 Return (Not query Is Nothing)
@@ -6522,6 +6536,21 @@ Partial Public Class AttendanceRepository
             WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iInsurance")
             Throw ex
             Return False
+        End Try
+    End Function
+
+    Public Function CHECK_OT_REGISTRATION_EXIT(ByVal P_EMP_CODE As String, ByVal P_DATE As String, ByVal P_HESO As String) As Integer
+        Try
+            Using cls As New DataAccess.QueryData
+                Dim obj = New With {.P_CODE_NAME = P_EMP_CODE,
+                                    .P_DATE = P_DATE,
+                                    .P_HESO = P_HESO,
+                                    .P_OUT = cls.OUT_NUMBER}
+                cls.ExecuteStore("PKG_ATTENDANCE_LIST.CHECK_OT_REGISTRATION_EXIT", obj)
+                Return Integer.Parse(obj.P_OUT)
+            End Using
+        Catch ex As Exception
+            Throw ex
         End Try
     End Function
 

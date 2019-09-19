@@ -1692,4 +1692,15 @@ Partial Class AttendanceRepository
             End Try
         End Using
     End Function
+
+    Public Function CHECK_OT_REGISTRATION_EXIT(ByVal P_EMP_CODE As String, ByVal P_DATE As String, ByVal P_HESO As String) As Integer
+        Using rep As New AttendanceBusinessClient
+            Try
+                Return rep.CHECK_OT_REGISTRATION_EXIT(P_EMP_CODE, P_DATE, P_HESO)
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+    End Function
 End Class
