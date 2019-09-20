@@ -155,10 +155,12 @@ Public Class ctrlGroupFunctionAddEdit
             If Not ViewShowed Then Exit Sub
             Dim Sorts As String = rgGrid.MasterTableView.SortExpressions.GetSortString()
             Dim filter As New FunctionDTO
-            filter.FID = rgGrid.MasterTableView.GetColumn("FID").CurrentFilterValue
-            filter.NAME = rgGrid.MasterTableView.GetColumn("NAME").CurrentFilterValue
-            filter.FUNCTION_GROUP_NAME = rgGrid.MasterTableView.GetColumn("FUNCTION_GROUP_NAME").CurrentFilterValue
-            filter.MODULE_NAME = rgGrid.MasterTableView.GetColumn("MODULE_NAME").CurrentFilterValue
+
+            'Modify: TUNGLD - 20/09/19
+            filter.FID = rgGrid.MasterTableView.GetColumn("FID").CurrentFilterValue.Normalize(NormalizationForm.FormC)
+            filter.NAME = rgGrid.MasterTableView.GetColumn("NAME").CurrentFilterValue.Normalize(NormalizationForm.FormC)
+            filter.FUNCTION_GROUP_NAME = rgGrid.MasterTableView.GetColumn("FUNCTION_GROUP_NAME").CurrentFilterValue.Normalize(NormalizationForm.FormC)
+            filter.MODULE_NAME = rgGrid.MasterTableView.GetColumn("MODULE_NAME").CurrentFilterValue.Normalize(NormalizationForm.FormC)
 
             'If GroupID_Old = Nothing Or GroupID_Old <> GroupID _
             '    Or GroupFunction Is Nothing Or Message = CommonMessage.ACTION_SAVED _
