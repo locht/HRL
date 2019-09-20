@@ -131,7 +131,12 @@ Public Class ctrlHU_WelfareList
                 _myLog.WriteLog(_myLog._error, _classPath, method, 0, ex, "")
             End Try
         Else
-            Exit Sub
+            If ctrlOrg.CurrentValue IsNot Nothing Then
+                orgid = Decimal.Parse(ctrlOrg.CurrentValue)
+            Else
+                ShowMessage("Chưa chọn phòng ban?", NotifyType.Warning)
+                Exit Sub
+            End If
         End If
     End Sub
 
@@ -690,6 +695,10 @@ Public Class ctrlHU_WelfareList
                             objWelfareList.CONTRACT_TYPE = strWorkStatusID.Aggregate(Function(cur, [next]) cur & "," & [next])
                             objWelfareList.CONTRACT_TYPE_NAME = strWorkStatusName.Aggregate(Function(cur, [next]) cur & "," & [next])
                         End If
+                        If (nmMONEY.Value Is Nothing) Then
+                            ShowMessage(" Bạn phải nhập số tiền.", NotifyType.Error)
+                            Exit Sub
+                        End If
                         objWelfareList.CHILD_OLD_FROM = nmCHILD_OLD_FROM.Value
                         objWelfareList.CHILD_OLD_TO = nmCHILD_OLD_TO.Value
                         If (objWelfareList.CHILD_OLD_FROM > objWelfareList.CHILD_OLD_TO) Then
@@ -704,6 +713,10 @@ Public Class ctrlHU_WelfareList
                         End If
                       
                         objWelfareList.MONEY = nmMONEY.Value
+                        If (lbMoney.Text Is Nothing) Then
+                            ShowMessage(" Bạn phải nhập số tiền.", NotifyType.Error)
+                            Exit Sub
+                        End If
                         If (dpSTART_DATE.SelectedDate Is Nothing) Then
                             ShowMessage("Bạn phải nhập ngày hiệu lực", NotifyType.Error)
                             Exit Sub

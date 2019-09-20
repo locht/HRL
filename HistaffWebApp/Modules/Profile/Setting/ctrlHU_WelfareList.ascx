@@ -40,9 +40,9 @@
                         <td>
                             <tlk:RadNumericTextBox ID="nmMONEY" MinValue="1" MaxLength="38" runat="server">
                             </tlk:RadNumericTextBox>
-                            <asp:RequiredFieldValidator Enable="false" ID="cvalMONEY" ControlToValidate="nmMONEY" runat="server"
+                          <%--  <asp:RequiredFieldValidator Enable="false" ID="cvalMONEY" ControlToValidate="nmMONEY" runat="server"
                                 ErrorMessage="Bạn phải nhập số tiền." ToolTip="Bạn phải nhập số tiền.">
-                            </asp:RequiredFieldValidator>
+                            </asp:RequiredFieldValidator>--%>
                         </td>
                         <td rowspan="5" style="vertical-align: top;">
                             <tlk:RadListBox ID="lstbGender" CheckBoxes="true" runat="server" Height="60px" Width="100px"

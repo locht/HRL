@@ -63,9 +63,9 @@
                 <td>
                     <tlk:RadNumericTextBox ID="nmMONEY" MinValue="1" MaxLength="38" runat="server">
                     </tlk:RadNumericTextBox>
-                    <asp:RequiredFieldValidator ID="cvalMONEY" ControlToValidate="nmMONEY" runat="server"
+                <%--    <asp:RequiredFieldValidator ID="cvalMONEY" ControlToValidate="nmMONEY" runat="server"
                         ErrorMessage="<%$ Translate: Bạn phải nhập số tiền. %>" ToolTip="<%$ Translate: Bạn phải nhập số tiền. %>">
-                    </asp:RequiredFieldValidator>
+                    </asp:RequiredFieldValidator>--%>
                 </td>
                 <td class="lb">
                     <asp:Label ID="lbSENIORITY" runat="server" Text="Thâm niên (tháng)"></asp:Label>
