@@ -1073,23 +1073,22 @@ Partial Public Class CommonRepository
 
         Dim lstTemp As New List(Of SE_FUNCTION)
         If log.Username = "ADMIN" Then
-            lstTemp = (From p In Context.SE_FUNCTION.Where(Function(f) f.ACTFLG = "A") Select p).ToList
+            lstTemp = (From p In Context.SE_FUNCTION Select p).ToList
         Else
             lstTemp = (From p In Context.SE_FUNCTION
                        From q In Context.SE_USER_PERMISSION.Where(Function(f) f.FUNCTION_ID = p.ID)
                        From u In Context.SE_USER.Where(Function(f) f.ID = q.USER_ID And f.USERNAME = log.Username)
-                       Where p.ACTFLG = "A"
-                       Select p).ToList
+                       Select p).ToList()
         End If
 
         If _filter.MODULE_NAME <> "" Then
-            lstTemp = lstTemp.Where(Function(p) p.SE_MODULE.NAME.ToUpper.Contains(_filter.MODULE_NAME.ToUpper))
+            lstTemp = lstTemp.Where(Function(p) p.SE_MODULE.NAME.ToUpper.Contains(_filter.MODULE_NAME.ToUpper)).ToList()
         End If
         If _filter.FUNCTION_GROUP_NAME <> "" Then
-            lstTemp = lstTemp.Where(Function(p) p.SE_FUNCTION_GROUP.NAME.ToUpper.Contains(_filter.FUNCTION_GROUP_NAME.ToUpper))
+            lstTemp = lstTemp.Where(Function(p) p.SE_FUNCTION_GROUP.NAME.ToUpper.Contains(_filter.FUNCTION_GROUP_NAME.ToUpper)).ToList()
         End If
         If _filter.NAME <> "" Then
-            lstTemp = lstTemp.Where(Function(p) p.NAME.ToUpper.Contains(_filter.NAME.ToUpper))
+            lstTemp = lstTemp.Where(Function(p) p.NAME.ToUpper.Contains(_filter.NAME.ToUpper)).ToList()
         End If
         Dim lst1 = (From p In lstTemp Select p.ID)
         Dim lst2 = (From p In Context.SE_GROUP_PERMISSION Where p.GROUP_ID = _groupID Select p.FUNCTION_ID)
