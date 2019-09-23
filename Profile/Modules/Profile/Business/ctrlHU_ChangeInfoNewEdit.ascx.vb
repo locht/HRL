@@ -1371,9 +1371,9 @@ Public Class ctrlHU_ChangeInfoNewEdit
             Select Case CurrentState
                 Case CommonMessage.STATE_NEW
                     Dim dtdata As DataTable = Nothing
-                    dtData = (New ProfileRepository).GetOtherList("DECISION_STATUS", True)
-                    If dtData IsNot Nothing AndAlso dtData.Rows.Count > 0 Then
-                        FillRadCombobox(cboStatus, dtData, "NAME", "ID", True)
+                    dtdata = (New ProfileRepository).GetOtherList("DECISION_STATUS", True)
+                    If dtdata IsNot Nothing AndAlso dtdata.Rows.Count > 0 Then
+                        FillRadCombobox(cboStatus, dtdata, "NAME", "ID", True)
                         cboStatus.ClearSelection()
                         cboStatus.SelectedIndex = 1
                     End If
@@ -1551,11 +1551,12 @@ Public Class ctrlHU_ChangeInfoNewEdit
 
     Private Sub cboDecisionType_SelectedIndexChanged(sender As Object, e As Telerik.Web.UI.RadComboBoxSelectedIndexChangedEventArgs) Handles cboDecisionType.SelectedIndexChanged
         Try
-            If isEdit <> 1 Then
-                txtOrgName.Text = ""
-                hidOrg.ClearValue()
-                cboTitle.ClearValue()
-            End If
+            'nếu muốn chỉnh sửa k clear thì mở ở dưới ra
+            ' If isEdit <> 1 Then
+            txtOrgName.Text = ""
+            hidOrg.ClearValue()
+            cboTitle.ClearValue()
+            ' End If
         Catch ex As Exception
             Throw ex
         End Try
