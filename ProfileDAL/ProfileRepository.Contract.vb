@@ -1195,6 +1195,7 @@ Partial Class ProfileRepository
                 If IsFirstContract(objContract) Then
                     InsertDecision(objContract)
                 End If
+                InsertFileContractWhenApprove(objContract, log)
             End If
             If objContract.ListAttachFiles IsNot Nothing Then
                 For Each File As AttachFilesDTO In objContract.ListAttachFiles
@@ -1217,6 +1218,43 @@ Partial Class ProfileRepository
         End Try
 
     End Function
+    Private Sub InsertFileContractWhenApprove(ByVal objContract As ContractDTO, ByVal log As UserLog)
+        Try
+            Dim fileContract As New HU_FILECONTRACT
+            If objContract IsNot Nothing Then
+                fileContract.ID = Utilities.GetNextSequence(Context, Context.HU_FILECONTRACT.EntitySet.Name)
+                Dim outNum = GET_NEXT_APPENDIX_ORDER(fileContract.ID, objContract.ID, fileContract.EMP_ID)
+                Dim order = String.Format("{0}", Format(outNum, "00"))
+                fileContract.ID_CONTRACT = objContract.ID
+                fileContract.START_DATE = objContract.START_DATE
+                fileContract.EXPIRE_DATE = objContract.EXPIRE_DATE
+                fileContract.CONTRACT_NO = objContract.CONTRACT_NO
+                fileContract.SIGN_DATE = objContract.SIGN_DATE
+                fileContract.SIGN_ID = objContract.SIGN_ID
+                fileContract.SIGN_ORG_ID = objContract.ORG_ID
+                fileContract.SIGNER_NAME = objContract.SIGNER_NAME
+                fileContract.SIGNER_TITLE = objContract.SIGNER_TITLE
+                fileContract.SIGN_ID2 = objContract.SIGN_ID2
+                fileContract.SIGNER_NAME2 = objContract.SIGNER_NAME2
+                fileContract.SIGNER_TITLE2 = objContract.SIGNER_TITLE2
+                fileContract.EMP_ID = objContract.EMPLOYEE_ID
+                fileContract.WORKING_ID = objContract.WORKING_ID
+                fileContract.STATUS_ID = 447
+                fileContract.APPEND_TYPEID = 11
+                fileContract.STT = outNum
+                fileContract.APPEND_NUMBER = objContract.CONTRACT_NO + "-" + order
+                fileContract.CREATED_DATE = Date.Now
+                fileContract.CREATED_BY = log.Username
+                fileContract.CREATED_LOG = log.Username
+                fileContract.MODIFIED_DATE = Date.Now
+                fileContract.MODIFIED_BY = log.Username
+                fileContract.MODIFIED_LOG = log.Username
+                Context.HU_FILECONTRACT.AddObject(fileContract)
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
     Private Function IsFirstContract(ByVal contractDto As ContractDTO) As Boolean
         'dong nhat loai phe duyet là 447 nen sua lai
         Return Context.HU_CONTRACT.Count(Function(p) p.STATUS_ID = ProfileCommon.DECISION_STATUS.APPROVE_ID And p.EMPLOYEE_ID = contractDto.EMPLOYEE_ID) = 0
