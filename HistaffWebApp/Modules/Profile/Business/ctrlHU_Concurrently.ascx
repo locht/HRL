@@ -65,7 +65,7 @@
                         <ClientEvents OnRowDblClick="gridRowDblClick" />
                         <Scrolling AllowScroll="true" UseStaticHeaders="true" FrozenColumnsCount="3" />
                     </ClientSettings>
-                    <MasterTableView DataKeyNames="ID,STATUS,EXPIRE_DATE_CON" ClientDataKeyNames="ID,EMPLOYEE_ID,STATUS,EXPIRE_DATE_CON,ORG_ID_DESC,ORG_CON,TITLE_CON,ORG_NAME,TITLE_NAME,TITLE_ID,ORG_ID">
+                    <MasterTableView DataKeyNames="ID,STATUS,EXPIRE_DATE_CON" ClientDataKeyNames="ID,EMPLOYEE_ID,STATUS,EXPIRE_DATE_CON,ORG_ID_DESC,ORG_CON,TITLE_CON,ORG_NAME,TITLE_NAME,TITLE_ID,ORG_ID,STATUS_STOP">
                         <Columns>
                             <tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderStyle-HorizontalAlign="Center"
                                 HeaderStyle-Width="30px" ItemStyle-HorizontalAlign="Center">
@@ -184,8 +184,8 @@
             if (bCheck > 1) {
                 return 3;
             }
-            var status = $find('<%# rgConcurrently.ClientID%>').get_masterTableView().get_selectedItems()[0].getDataKeyValue('STATUS');
-            if (status != 1) {
+            var status = $find('<%# rgConcurrently.ClientID%>').get_masterTableView().get_selectedItems()[0].getDataKeyValue('STATUS_STOP');
+            if (status == 1) {
                 return 2;
             }
             var empID = $find('<%# rgConcurrently.ClientID%>').get_masterTableView().get_selectedItems()[0].getDataKeyValue('EMPLOYEE_ID');
@@ -277,7 +277,7 @@
                     setTimeout(function () { $.noty.close(n.options.id); }, 5000);
                 }
                 if (OpenTransfer_New(false) == 2) {
-                    m = 'Không thỏa điều kiện, vui lòng kiểm tra lại';
+                    m = 'Bản ghi đang ở trạng thái phê duyệt không thể sửa. Kiểm tra lại';
                     var n = noty({ text: m, dismissQueue: true, type: 'warning' });
                     setTimeout(function () { $.noty.close(n.options.id); }, 5000);
                 }
