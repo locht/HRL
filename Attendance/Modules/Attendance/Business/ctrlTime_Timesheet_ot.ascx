@@ -1,6 +1,8 @@
 ﻿<%@ Control Language="vb" AutoEventWireup="false" CodeBehind="ctrlTime_Timesheet_ot.ascx.vb"
     Inherits="Attendance.ctrlTime_Timesheet_ot" %>
 <%@ Import Namespace="Common" %>
+<%@ Import Namespace="Framework.UI.Utilities" %>
+ <link type  = "text/css" href = "/Styles/StyleCustom.css" rel = "Stylesheet"/>
 <Common:ctrlMessageBox ID="ctrlMessageBox" runat="server" />
 <tlk:RadSplitter ID="RadSplitter1" runat="server" Width="100%" Height="100%">
     <tlk:RadPane ID="LeftPane" runat="server" MinWidth="260" Width="260px" Scrolling="None">
@@ -33,7 +35,7 @@
                             </tlk:RadComboBox>
                         </td>
                         <td>
-                            <tlk:RadButton ID="btnSearch" Text="Tìm kiếm" runat="server" ToolTip="">
+                            <tlk:RadButton ID="btnSearch" Text="<%$ Translate: Tìm%>" runat="server" ToolTip="" SkinID="ButtonFind">
                             </tlk:RadButton>
                         </td>
                     </tr>
@@ -43,6 +45,8 @@
                 <tlk:RadGrid PageSize="50" ID="rgTimeTimesheet_ot" runat="server" Height="100%">
                     <ClientSettings>
                         <Scrolling AllowScroll="true" UseStaticHeaders="true" FrozenColumnsCount="3" />
+                        <ClientEvents OnGridCreated="GridCreated" />
+                        <ClientEvents OnCommand="ValidateFilter" />
                     </ClientSettings>
                     <MasterTableView DataKeyNames="ID,ORG_DESC" ClientDataKeyNames="ID,EMPLOYEE_ID">
                         <Columns>
@@ -57,8 +61,18 @@
                                 UniqueName="TITLE_NAME" HeaderStyle-Width="150px" SortExpression="TITLE_NAME" />
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Cấp nhân sự %>" DataField="STAFF_RANK_NAME"
                                 ItemStyle-HorizontalAlign="Center" SortExpression="STAFF_RANK_NAME" UniqueName="STAFF_RANK_NAME" />
-                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Đơn vị %>" DataField="ORG_NAME" UniqueName="ORG_NAME"
-                                SortExpression="ORG_NAME" HeaderStyle-Width="200px" />
+                            <tlk:GridTemplateColumn HeaderText="<%$ Translate: Đơn vị %>" DataField="ORG_NAME" SortExpression="ORG_NAME"
+                                UniqueName="ORG_NAME">
+                                <HeaderStyle Width="200px" />
+                                <ItemTemplate>
+                                 <asp:Label ID="Label1" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.ORG_NAME") %>'>
+                                </asp:Label>
+                                <tlk:RadToolTip RenderMode="Lightweight" ID="RadToolTip1" runat="server" TargetControlID="Label1"
+                                                    RelativeTo="Element" Position="BottomCenter">
+                                <%# DrawTreeByString(DataBinder.Eval(Container, "DataItem.ORG_DESC"))%>
+                                </tlk:RadToolTip>
+                            </ItemTemplate>
+                         </tlk:GridTemplateColumn>
                             <tlk:GridTemplateColumn HeaderText="D1" AllowFiltering="false" Visible="false" UniqueName="D1">
                                 <HeaderStyle Width="80px" />
                                 <ItemStyle HorizontalAlign="Center" />
@@ -276,17 +290,21 @@
                                     <%# Eval("D31")%>
                                 </ItemTemplate>
                             </tlk:GridTemplateColumn>
-                            <tlk:GridNumericColumn HeaderText="<%$ Translate: Tổng số giờ làm thêm hệ số 1.5 %>"
+                            <tlk:GridNumericColumn HeaderText="<%$ Translate: Tổng số giờ làm thêm hệ số 1.0 %>"
                                 DataField="TOTAL_FACTOR1" ItemStyle-HorizontalAlign="Center" DataFormatString="{0:n2}"
                                 SortExpression="TOTAL_FACTOR1" UniqueName="TOTAL_FACTOR1">
                             </tlk:GridNumericColumn>
-                            <tlk:GridNumericColumn HeaderText="<%$ Translate: Tổng số giờ làm thêm hệ số 2.1 %>"
+                            <tlk:GridNumericColumn HeaderText="<%$ Translate: Tổng số giờ làm thêm hệ số 1.5 %>"
                                 DataField="TOTAL_FACTOR1_5" ItemStyle-HorizontalAlign="Center" DataFormatString="{0:n2}"
                                 SortExpression="TOTAL_FACTOR1_5" UniqueName="TOTAL_FACTOR1_5">
                             </tlk:GridNumericColumn>
                             <tlk:GridNumericColumn HeaderText="<%$ Translate: Tổng số giờ làm thêm hệ số 2 %>"
                                 DataField="TOTAL_FACTOR2" ItemStyle-HorizontalAlign="Center" DataFormatString="{0:n2}"
                                 SortExpression="TOTAL_FACTOR2" UniqueName="TOTAL_FACTOR2">
+                            </tlk:GridNumericColumn>
+                            <tlk:GridNumericColumn HeaderText="<%$ Translate: Tổng số giờ làm thêm hệ số 2.1 %>"
+                                DataField="TOTAL_FACTOR2_1" ItemStyle-HorizontalAlign="Center" DataFormatString="{0:n2}"
+                                SortExpression="TOTAL_FACTOR2_1" UniqueName="TOTAL_FACTOR2_1">
                             </tlk:GridNumericColumn>
                             <tlk:GridNumericColumn HeaderText="<%$ Translate: Tổng số giờ làm thêm hệ số 2.7 %>"
                                 DataField="TOTAL_FACTOR2_7" ItemStyle-HorizontalAlign="Center" DataFormatString="{0:n2}"
@@ -304,10 +322,36 @@
                                 DataField="TOTAL_FACTOR_CONVERT" ItemStyle-HorizontalAlign="Center" DataFormatString="{0:n2}"
                                 SortExpression="TOTAL_FACTOR_CONVERT" UniqueName="TOTAL_FACTOR_CONVERT">
                             </tlk:GridNumericColumn>
-                            <tlk:GridNumericColumn HeaderText="<%$ Translate: Số giờ làm thêm được thanh toán %>"
-                                DataField="NUMBER_FACTOR_PAY" ItemStyle-HorizontalAlign="Center" DataFormatString="{0:n2}"
-                                SortExpression="NUMBER_FACTOR_PAY" UniqueName="NUMBER_FACTOR_PAY">
+                            <tlk:GridNumericColumn HeaderText="<%$ Translate: Tổng số giờ làm thêm chuyển nghỉ bù hệ số 1.0 %>"
+                                DataField="TOTAL_NB1" ItemStyle-HorizontalAlign="Center" DataFormatString="{0:n2}"
+                                SortExpression="TOTAL_NB1" UniqueName="TOTAL_NB1">
                             </tlk:GridNumericColumn>
+                            <tlk:GridNumericColumn HeaderText="<%$ Translate: Tổng số giờ làm thêm chuyển nghỉ bù hệ số 1.5 %>"
+                                DataField="TOTAL_NB1_5" ItemStyle-HorizontalAlign="Center" DataFormatString="{0:n2}"
+                                SortExpression="TOTAL_NB1_5" UniqueName="TOTAL_NB1_5">
+                            </tlk:GridNumericColumn>
+                            <tlk:GridNumericColumn HeaderText="<%$ Translate: Tổng số giờ làm thêm chuyển nghỉ bù hệ số 2 %>"
+                                DataField="TOTAL_NB2" ItemStyle-HorizontalAlign="Center" DataFormatString="{0:n2}"
+                                SortExpression="TOTAL_NB2" UniqueName="TOTAL_NB2">
+                            </tlk:GridNumericColumn>
+                            <tlk:GridNumericColumn HeaderText="<%$ Translate: Tổng số giờ làm thêm chuyển nghỉ bù hệ số 2.1 %>"
+                                DataField="TOTAL_NB2_1" ItemStyle-HorizontalAlign="Center" DataFormatString="{0:n2}"
+                                SortExpression="TOTAL_NB2_1" UniqueName="TOTAL_NB2_1">
+                            </tlk:GridNumericColumn>
+                            <tlk:GridNumericColumn HeaderText="<%$ Translate: Tổng số giờ làm thêm chuyển nghỉ bù hệ số 2.7 %>"
+                                DataField="TOTAL_NB2_7" ItemStyle-HorizontalAlign="Center" DataFormatString="{0:n2}"
+                                SortExpression="TOTAL_NB2_7" UniqueName="TOTAL_NB2_7">
+                            </tlk:GridNumericColumn>
+                            <tlk:GridNumericColumn HeaderText="<%$ Translate: Tổng số giờ làm thêm chuyển nghỉ bù hệ số 3 %>"
+                                DataField="TOTAL_NB3" ItemStyle-HorizontalAlign="Center" DataFormatString="{0:n2}"
+                                SortExpression="TOTAL_NB3" UniqueName="TOTAL_NB3">
+                            </tlk:GridNumericColumn>
+                            <tlk:GridNumericColumn HeaderText="<%$ Translate: Tổng số giờ làm thêm chuyển nghỉ bù hệ số 3.9 %>"
+                                DataField="TOTAL_NB3_9" ItemStyle-HorizontalAlign="Center" DataFormatString="{0:n2}"
+                                SortExpression="TOTAL_NB3_9" UniqueName="TOTAL_NB3_9">
+                            </tlk:GridNumericColumn>
+
+                            
                             <tlk:GridNumericColumn HeaderText="<%$ Translate: Số giờ làm thêm được chuyển nghỉ bù %>"
                                 DataField="NUMBER_FACTOR_CP" ItemStyle-HorizontalAlign="Center" DataFormatString="{0:n2}"
                                 SortExpression="NUMBER_FACTOR_CP" UniqueName="NUMBER_FACTOR_CP">
@@ -340,6 +384,23 @@
 <tlk:RadScriptBlock ID="scriptBlock" runat="server">
     <script type="text/javascript">
         var enableAjax = true;
+        var splitterID = 'ctl00_MainContent_ctrlTime_Timesheet_ot_RadSplitter3';
+        function ValidateFilter(sender, eventArgs) {
+            var params = eventArgs.get_commandArgument() + '';
+            if (params.indexOf("|") > 0) {
+                var s = eventArgs.get_commandArgument().split("|");
+                if (s.length > 1) {
+                    var val = s[1];
+                    if (validateHTMLText(val) || validateSQLText(val)) {
+                        eventArgs.set_cancel(true);
+                    }
+                }
+            }
+        }
+
+        function GridCreated(sender, eventArgs) {
+            registerOnfocusOut(splitterID);
+        }
         function gridRowDblClick(sender, eventArgs) {
             OpenEditWindow();
         }
@@ -375,20 +436,30 @@
                     args.set_cancel(true);
                 }
             } else if (args.get_item().get_commandName() == 'EXPORT') {
+                var grid = $find("<%=rgTimeTimesheet_ot.ClientID %>");
+                var masterTable = grid.get_masterTableView();
+                var rows = masterTable.get_dataItems();
+                if (rows.length == 0) {
+                    var m = '<%= Translate(CommonMessage.MESSAGE_WARNING_EXPORT_EMPTY) %>';
+                    var n = noty({ text: m, dismissQueue: true, type: 'warning' });
+                    setTimeout(function () { $.noty.close(n.options.id); }, 5000);
+                    args.set_cancel(true);
+                    return;
+                }
                 enableAjax = false;
             }
 
-            if (args.get_item().get_commandName() == "CALCULATE") {
-                if (!UserConfirmation()) args.set_cancel(true);
-            }
-
-
+        if (args.get_item().get_commandName() == "CALCULATE") {
+            if (!UserConfirmation()) args.set_cancel(true);
         }
-        function OnClientClose(sender, args) {
-            var m;
-            var arg = args.get_argument();
-            if (arg == '1') {
-                m = '<%# Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS) %>';
+
+
+    }
+    function OnClientClose(sender, args) {
+        var m;
+        var arg = args.get_argument();
+        if (arg == '1') {
+            m = '<%# Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS) %>';
                 var n = noty({ text: m, dismissQueue: true, type: 'success' });
                 setTimeout(function () { $.noty.close(n.options.id); }, 5000);
                 $find("<%= rgTimeTimesheet_ot.ClientID %>").get_masterTableView().rebind();
