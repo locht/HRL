@@ -360,7 +360,17 @@ Public Class ctrlOrganization
             ViewState(Me.ID & "_CurrentValue") = value
         End Set
     End Property
-
+    Public Property PARENT_ID_VALUE As String
+        Get
+            If trvOrganization.SelectedValue <> Nothing Then
+                ViewState(Me.ID & "_PARENT_ID_VALUE") = trvOrganization.SelectedNode.Level
+            End If
+            Return ViewState(Me.ID & "_PARENT_ID_VALUE")
+        End Get
+        Set(ByVal value As String)
+            ViewState(Me.ID & "_PARENT_ID_VALUE") = value
+        End Set
+    End Property
     ''' <summary>
     ''' Lấy hoặc trả về code sơ đồ tổ chức đang chọn hiện tại dưới dạng String
     ''' </summary>
@@ -679,6 +689,7 @@ Public Class ctrlOrganization
             If trvOrganization.SelectedNode IsNot Nothing Then
                 CurrentValue = trvOrganization.SelectedValue
                 CurrentText = trvOrganization.SelectedNode.Text.Substring(trvOrganization.SelectedNode.Text.IndexOf("-") + 1)
+                PARENT_ID_VALUE = trvOrganization.SelectedNode.Level
                 trvOrganization.SelectedNode.ExpandParentNodes()
             End If
             RaiseEvent SelectedNodeChanged(sender, e)
