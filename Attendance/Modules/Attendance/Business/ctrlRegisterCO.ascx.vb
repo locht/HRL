@@ -734,10 +734,10 @@ Public Class ctrlRegisterCO
                         Exit Sub
                     End If
                 End Try
-                If workbook.Worksheets.GetSheetByCodeName("IMPORT_REGISTER_CO") Is Nothing Then
-                    ShowMessage(Translate("File mẫu không đúng định dạng"), NotifyType.Warning)
-                    Exit Sub
-                End If
+                'If workbook.Worksheets.GetSheetByCodeName("IMPORT_REGISTER_CO") Is Nothing Then
+                '    ShowMessage(Translate("File mẫu không đúng định dạng"), NotifyType.Warning)
+                '    Exit Sub
+                'End If
                 worksheet = workbook.Worksheets(0)
                 dsDataPrepare.Tables.Add(worksheet.Cells.ExportDataTableAsString(6, 0, worksheet.Cells.MaxRow + 1, worksheet.Cells.MaxColumn + 1, True))
                 If System.IO.File.Exists(fileName) Then System.IO.File.Delete(fileName)

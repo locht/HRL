@@ -796,12 +796,6 @@
     <Content Include="Modules\Training\Setting\ctrlTR_SettingAssessmentForm.ascx" />
     <Content Include="Modules\Training\Setting\ctrlTR_SettingCriteriaGroup.ascx" />
     <Content Include="Modules\Training\Setting\ctrlTR_TitleCourse.ascx" />
-    <Content Include="ReportTemplates\Attendance\Import\AT_IMPOERT_REGISTER_CO.xlsx">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="ReportTemplates\Attendance\Import\AT_IMPOERT_REGISTER_CO_Error.xlsx">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <Content Include="ReportTemplates\Attendance\Import\Import_DeclareTimeRice.xlsx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -1434,6 +1428,8 @@
     <Content Include="ReportTemplates\Payroll\Business\TEMP_IMPORT_HOSOLUONG.xls" />
     <Content Include="ReportTemplates\Profile\ctrlDashboardHome.xls" />
     <Content Include="ReportTemplates\Attendance\Import\Template_ImportCTT_error.xls" />
+    <Content Include="ReportTemplates\Attendance\Import\AT_IMPORT_REGISTER_CO.xlsx" />
+    <Content Include="ReportTemplates\Attendance\Import\AT_IMPORT_REGISTER_CO_Error.xlsx" />
     <None Include="Styles\ImgConfig.jquery.css" />
     <Content Include="Styles\font-awesome.css" />
     <Content Include="Styles\img\icon-tree.png" />
