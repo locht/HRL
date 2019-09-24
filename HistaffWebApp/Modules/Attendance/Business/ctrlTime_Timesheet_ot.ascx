@@ -290,17 +290,21 @@
                                     <%# Eval("D31")%>
                                 </ItemTemplate>
                             </tlk:GridTemplateColumn>
-                            <tlk:GridNumericColumn HeaderText="<%$ Translate: Tổng số giờ làm thêm hệ số 1.5 %>"
+                            <tlk:GridNumericColumn HeaderText="<%$ Translate: Tổng số giờ làm thêm hệ số 1.0 %>"
                                 DataField="TOTAL_FACTOR1" ItemStyle-HorizontalAlign="Center" DataFormatString="{0:n2}"
                                 SortExpression="TOTAL_FACTOR1" UniqueName="TOTAL_FACTOR1">
                             </tlk:GridNumericColumn>
-                            <tlk:GridNumericColumn HeaderText="<%$ Translate: Tổng số giờ làm thêm hệ số 2.1 %>"
+                            <tlk:GridNumericColumn HeaderText="<%$ Translate: Tổng số giờ làm thêm hệ số 1.5 %>"
                                 DataField="TOTAL_FACTOR1_5" ItemStyle-HorizontalAlign="Center" DataFormatString="{0:n2}"
                                 SortExpression="TOTAL_FACTOR1_5" UniqueName="TOTAL_FACTOR1_5">
                             </tlk:GridNumericColumn>
                             <tlk:GridNumericColumn HeaderText="<%$ Translate: Tổng số giờ làm thêm hệ số 2 %>"
                                 DataField="TOTAL_FACTOR2" ItemStyle-HorizontalAlign="Center" DataFormatString="{0:n2}"
                                 SortExpression="TOTAL_FACTOR2" UniqueName="TOTAL_FACTOR2">
+                            </tlk:GridNumericColumn>
+                            <tlk:GridNumericColumn HeaderText="<%$ Translate: Tổng số giờ làm thêm hệ số 2.1 %>"
+                                DataField="TOTAL_FACTOR2_1" ItemStyle-HorizontalAlign="Center" DataFormatString="{0:n2}"
+                                SortExpression="TOTAL_FACTOR2_1" UniqueName="TOTAL_FACTOR2_1">
                             </tlk:GridNumericColumn>
                             <tlk:GridNumericColumn HeaderText="<%$ Translate: Tổng số giờ làm thêm hệ số 2.7 %>"
                                 DataField="TOTAL_FACTOR2_7" ItemStyle-HorizontalAlign="Center" DataFormatString="{0:n2}"
@@ -318,10 +322,36 @@
                                 DataField="TOTAL_FACTOR_CONVERT" ItemStyle-HorizontalAlign="Center" DataFormatString="{0:n2}"
                                 SortExpression="TOTAL_FACTOR_CONVERT" UniqueName="TOTAL_FACTOR_CONVERT">
                             </tlk:GridNumericColumn>
-                            <tlk:GridNumericColumn HeaderText="<%$ Translate: Số giờ làm thêm được thanh toán %>"
-                                DataField="NUMBER_FACTOR_PAY" ItemStyle-HorizontalAlign="Center" DataFormatString="{0:n2}"
-                                SortExpression="NUMBER_FACTOR_PAY" UniqueName="NUMBER_FACTOR_PAY">
+                            <tlk:GridNumericColumn HeaderText="<%$ Translate: Tổng số giờ làm thêm chuyển nghỉ bù hệ số 1.0 %>"
+                                DataField="TOTAL_NB1" ItemStyle-HorizontalAlign="Center" DataFormatString="{0:n2}"
+                                SortExpression="TOTAL_NB1" UniqueName="TOTAL_NB1">
                             </tlk:GridNumericColumn>
+                            <tlk:GridNumericColumn HeaderText="<%$ Translate: Tổng số giờ làm thêm chuyển nghỉ bù hệ số 1.5 %>"
+                                DataField="TOTAL_NB1_5" ItemStyle-HorizontalAlign="Center" DataFormatString="{0:n2}"
+                                SortExpression="TOTAL_NB1_5" UniqueName="TOTAL_NB1_5">
+                            </tlk:GridNumericColumn>
+                            <tlk:GridNumericColumn HeaderText="<%$ Translate: Tổng số giờ làm thêm chuyển nghỉ bù hệ số 2 %>"
+                                DataField="TOTAL_NB2" ItemStyle-HorizontalAlign="Center" DataFormatString="{0:n2}"
+                                SortExpression="TOTAL_NB2" UniqueName="TOTAL_NB2">
+                            </tlk:GridNumericColumn>
+                            <tlk:GridNumericColumn HeaderText="<%$ Translate: Tổng số giờ làm thêm chuyển nghỉ bù hệ số 2.1 %>"
+                                DataField="TOTAL_NB2_1" ItemStyle-HorizontalAlign="Center" DataFormatString="{0:n2}"
+                                SortExpression="TOTAL_NB2_1" UniqueName="TOTAL_NB2_1">
+                            </tlk:GridNumericColumn>
+                            <tlk:GridNumericColumn HeaderText="<%$ Translate: Tổng số giờ làm thêm chuyển nghỉ bù hệ số 2.7 %>"
+                                DataField="TOTAL_NB2_7" ItemStyle-HorizontalAlign="Center" DataFormatString="{0:n2}"
+                                SortExpression="TOTAL_NB2_7" UniqueName="TOTAL_NB2_7">
+                            </tlk:GridNumericColumn>
+                            <tlk:GridNumericColumn HeaderText="<%$ Translate: Tổng số giờ làm thêm chuyển nghỉ bù hệ số 3 %>"
+                                DataField="TOTAL_NB3" ItemStyle-HorizontalAlign="Center" DataFormatString="{0:n2}"
+                                SortExpression="TOTAL_NB3" UniqueName="TOTAL_NB3">
+                            </tlk:GridNumericColumn>
+                            <tlk:GridNumericColumn HeaderText="<%$ Translate: Tổng số giờ làm thêm chuyển nghỉ bù hệ số 3.9 %>"
+                                DataField="TOTAL_NB3_9" ItemStyle-HorizontalAlign="Center" DataFormatString="{0:n2}"
+                                SortExpression="TOTAL_NB3_9" UniqueName="TOTAL_NB3_9">
+                            </tlk:GridNumericColumn>
+
+                            
                             <tlk:GridNumericColumn HeaderText="<%$ Translate: Số giờ làm thêm được chuyển nghỉ bù %>"
                                 DataField="NUMBER_FACTOR_CP" ItemStyle-HorizontalAlign="Center" DataFormatString="{0:n2}"
                                 SortExpression="NUMBER_FACTOR_CP" UniqueName="NUMBER_FACTOR_CP">
@@ -419,26 +449,26 @@
                 enableAjax = false;
             }
 
-            if (args.get_item().get_commandName() == "CALCULATE") {
-                if (!UserConfirmation()) args.set_cancel(true);
-            }
-
-
+        if (args.get_item().get_commandName() == "CALCULATE") {
+            if (!UserConfirmation()) args.set_cancel(true);
         }
-        function OnClientClose(sender, args) {
-            var m;
-            var arg = args.get_argument();
-            if (arg == '1') {
-                m = '<%# Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS) %>';
-                var n = noty({ text: m, dismissQueue: true, type: 'success' });
-                setTimeout(function () { $.noty.close(n.options.id); }, 5000);
-                $find("<%= rgTimeTimesheet_ot.ClientID %>").get_masterTableView().rebind();
+
+
+    }
+    function OnClientClose(sender, args) {
+        var m;
+        var arg = args.get_argument();
+        if (arg == '1') {
+            m = '<%# Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS) %>';
+            var n = noty({ text: m, dismissQueue: true, type: 'success' });
+            setTimeout(function () { $.noty.close(n.options.id); }, 5000);
+            $find("<%= rgTimeTimesheet_ot.ClientID %>").get_masterTableView().rebind();
             }
             $get("<%# btnSearch.ClientId %>").click();
-        }
+    }
 
-        function postBack(url) {
-            var ajaxManager = $find("<%= AjaxManagerId %>");
+    function postBack(url) {
+        var ajaxManager = $find("<%= AjaxManagerId %>");
             ajaxManager.ajaxRequest(url); //Making ajax request with the argument
         }
 

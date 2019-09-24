@@ -989,17 +989,17 @@ Partial Public Class AttendanceRepository
             obj.PERIOD_ID = p_period_id
             LOG_AT(_param, log, lstEmployee, "TỔNG HỢP CÔNG LÀM THÊM GIỜ", obj, P_ORG_ID)
             Using cls As New DataAccess.NonQueryData
-                'cls.ExecuteStore("PKG_ATTENDANCE_BUSINESS.CAL_TIMETIMESHEET_OT",
-                '                               New With {.P_USERNAME = log.Username.ToUpper,
-                '                                         .P_ORG_ID = P_ORG_ID,
-                '                                         .P_PERIOD_ID = p_period_id,
-                '                                         .P_ISDISSOLVE = _param.IS_DISSOLVE})
-
-                cls.ExecuteStore("PKG_ATTENDANCE_BUSINESS.CAL_TIME_TIMESHEET_ALL",
+                cls.ExecuteStore("PKG_ATTENDANCE_BUSINESS.CAL_TIMETIMESHEET_OT",
                                                New With {.P_USERNAME = log.Username.ToUpper,
                                                          .P_ORG_ID = P_ORG_ID,
                                                          .P_PERIOD_ID = p_period_id,
                                                          .P_ISDISSOLVE = _param.IS_DISSOLVE})
+
+                'cls.ExecuteStore("PKG_ATTENDANCE_BUSINESS.CAL_TIME_TIMESHEET_ALL",
+                '                               New With {.P_USERNAME = log.Username.ToUpper,
+                '                                         .P_ORG_ID = P_ORG_ID,
+                '                                         .P_PERIOD_ID = p_period_id,
+                '                                         .P_ISDISSOLVE = _param.IS_DISSOLVE})
                 Return True
             End Using
 
