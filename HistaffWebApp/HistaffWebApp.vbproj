@@ -1434,6 +1434,7 @@
     <Content Include="ReportTemplates\Payroll\Business\TEMP_IMPORT_HOSOLUONG.xls" />
     <Content Include="ReportTemplates\Profile\ctrlDashboardHome.xls" />
     <Content Include="ReportTemplates\Attendance\Import\Template_ImportCTT_error.xls" />
+    <Content Include="ReportTemplates\19. Báo cáo - Danh sách HĐLĐ của CBNV TNG %281%29.xls" />
     <None Include="Styles\ImgConfig.jquery.css" />
     <Content Include="Styles\font-awesome.css" />
     <Content Include="Styles\img\icon-tree.png" />
