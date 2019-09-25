@@ -36,9 +36,7 @@
                 <td>
                     <tlk:RadTextBox ID="txtOrgName" runat="server" ReadOnly="True" Width="130px">
                     </tlk:RadTextBox>
-                    <tlk:RadButton EnableEmbeddedSkins="false" ID="btnFindOrg" runat="server" SkinID="ButtonView"
-                        CausesValidation="false">
-                    </tlk:RadButton>
+                    <tlk:RadButton ID="btnFindOrg" runat="server" SkinID="ButtonView" CausesValidation="false" />
                     <asp:RequiredFieldValidator ID="RequiredFieldValidator2" ControlToValidate="txtOrgName"
                         runat="server" ErrorMessage="<%$ Translate: Bạn phải nhập phòng ban %>" ToolTip="<%$ Translate: Bạn phải nhập phòng ban %>"> 
                     </asp:RequiredFieldValidator>
@@ -396,7 +394,7 @@
 <Common:ctrlUpload ID="ctrlUpload2" runat="server" />
 <tlk:RadCodeBlock ID="RadCodeBlock1" runat="server">
     <script type="text/javascript">
-
+        var enableAjax = true;
         function cusTitle(oSrc, args) {
             var cbo = $find("<%# cboTitle.ClientID %>");
             args.IsValid = (cbo.get_value().length != 0);
