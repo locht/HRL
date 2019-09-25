@@ -1223,7 +1223,7 @@ Partial Class ProfileRepository
             Dim fileContract As New HU_FILECONTRACT
             If objContract IsNot Nothing Then
                 fileContract.ID = Utilities.GetNextSequence(Context, Context.HU_FILECONTRACT.EntitySet.Name)
-                Dim outNum = GET_NEXT_APPENDIX_ORDER(fileContract.ID, objContract.ID, fileContract.EMP_ID)
+                Dim outNum = GET_NEXT_APPENDIX_ORDER(0, objContract.ID, objContract.EMPLOYEE_ID)
                 Dim order = String.Format("{0}", Format(outNum, "00"))
                 fileContract.ID_CONTRACT = objContract.ID
                 fileContract.START_DATE = objContract.START_DATE
