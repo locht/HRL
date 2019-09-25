@@ -3144,6 +3144,7 @@ Public Class ProfileRepository
                                                        .STATUS_STOP_NAME = If(p.p.STATUS_STOP = 1, "Đã phê duyệt", "Chưa phê duyệt"),
                                                        .ORG_ID_DESC = p.org_con.DESCRIPTION_PATH,
                                                        .STATUS = p.p.STATUS,
+                                                       .STATUS_STOP = p.p.STATUS_STOP,
                                                        .CREATED_DATE = p.p.CREATED_DATE,
                                                        .SIGN_NAME = p.sign.FULLNAME_VN,
                                                        .SIGN_TITLE_NAME = p.sign_title.NAME_VN,

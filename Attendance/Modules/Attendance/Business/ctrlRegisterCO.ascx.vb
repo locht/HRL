@@ -760,13 +760,11 @@ Public Class ctrlRegisterCO
                 Dim dtDataImp As DataTable = dsDataPrepare.Tables(0)
                 For Each dr In dsDataComper.Rows
                     objSIGN = New AT_LEAVESHEETDTO
-                    objSIGN.EMPLOYEE_ID = CDec(dr("EMPLOYEE_ID"))
                     objSIGN.EMPLOYEE_CODE = dr("EMPLOYEE_CODE")
-                    objSIGN.BALANCE_NOW = CDec(If(dr("BALANCE_NOW") = "", Nothing, dr("BALANCE_NOW")))
+                    objSIGN.MANUAL_ID = CDec(dr("MANUAL_ID"))
                     objSIGN.LEAVE_FROM = ToDate(dr("LEAVE_FROM"))
                     objSIGN.LEAVE_TO = ToDate(dr("LEAVE_TO"))
-                    objSIGN.MANUAL_ID = CDec(dr("MANUAL_ID"))
-                    'objSIGN.ORG_ID = CDec(dr("ORG_ID"))
+                    objSIGN.DAY_NUM = CDec(dr("DAY_NUM"))
                     objSIGN.NOTE = dr("NOTE")
                     rep.InsertLeaveSheet(objSIGN, gID)
                 Next
