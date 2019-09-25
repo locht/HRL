@@ -7,6 +7,7 @@ Imports System.Web.HttpResponse
 Imports System.Reflection
 Imports System.Web
 Imports Telerik.Web.UI
+Imports Aspose.Cells.Drawing
 
 Public Class AsposeExcelCommon
     Implements IDisposable
@@ -47,9 +48,33 @@ Public Class AsposeExcelCommon
                 designer.Open(filePath)
                 designer.SetDataSource(dsData)
 
+                Dim worksheet As Aspose.Cells.Worksheet = designer.Workbook.Worksheets(0)
+
+                If dsData.Tables(0).Rows(0)("FILE_LOGO").ToString IsNot Nothing And dsData.Tables(0).Rows(0)("FILE_LOGO").ToString <> "" Then
+                    'Adding a picture at the location of a cell whose row and column indices
+
+                    Dim b As Byte() = File.ReadAllBytes(dsData.Tables(0).Rows(0)("FILE_LOGO").ToString)
+
+                    Dim ms As New System.IO.MemoryStream(b)
+                    Dim pictureIndex As Integer = worksheet.Pictures.Add(1, 1, ms)
+
+                    'Accessing the newly added picture
+                    Dim picture As Aspose.Cells.Drawing.Picture = worksheet.Pictures(pictureIndex)
+
+                    'Positioning the picture proportional to row height and colum width
+                    picture.Width = 400
+                    picture.Height = 120
+                End If
+
+
+
                 'add parameter in report and header + footer
                 designer.Process()
                 designer.Workbook.CalculateFormula()
+
+                'Dim index As Integer = designer.Workbook.Worksheets(0).Pictures.Add(3, 2, 3, 2, "C:\Users\Hong Quan\Pictures\Saved Pictures\961839.jpg")
+                'Dim pic As Picture = designer.Workbook.Worksheets(0).Pictures(index)
+                'pic.Placement = PlacementType.FreeFloating
                 With designer.Workbook
                     .CalculateFormula()
                     Select Case type
@@ -90,7 +115,9 @@ Public Class AsposeExcelCommon
                 designer.SetDataSource(dsData) 'Bind lần 2 -> z hả a
                 designer.Process()
                 designer.Workbook.CalculateFormula()
-
+                'Dim index As Integer = designer.Workbook.Worksheets(0).Pictures.Add(3, 2, 3, 2, "C:\Users\Hong Quan\Pictures\Saved Pictures\961839.jpg")
+                'Dim pic As Picture = designer.Workbook.Worksheets(0).Pictures(index)
+                'pic.Placement = PlacementType.FreeFloating
                 'sau do mo~ lai file da~ save va fill data vao
                 'designer = New WorkbookDesigner
                 'designer.Open(filePathTemp & fileName & ".xls")
@@ -387,7 +414,7 @@ Public Class AsposeExcelCommon
 
 #End Region
 
-    Public Function ReadFileToDataTable(ByVal fileName As String) As DataTable                 
+    Public Function ReadFileToDataTable(ByVal fileName As String) As DataTable
         Dim workbook As New Aspose.Cells.Workbook(fileName)
         Dim worksheet As Aspose.Cells.Worksheet = workbook.Worksheets(0)
         Dim dtDataPrepare As DataTable = worksheet.Cells.ExportDataTable(0, 0, worksheet.Cells.MaxRow + 1, worksheet.Cells.MaxColumn + 1)
