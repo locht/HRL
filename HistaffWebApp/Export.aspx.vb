@@ -1069,13 +1069,6 @@ Public Class Export
             If dtDataTimeManual IsNot Nothing Then
                 dsData.Tables.Add(dtDataTimeManual)
             End If
-            Dim dtStatusShift As New DataTable
-            dtStatusShift.Columns.Add("SHIFT_NAME", GetType(String))
-            dtStatusShift.Columns.Add("SHIFT_VALUE", GetType(Integer))
-            dtStatusShift.Rows.Add("Đầu ca", 0)
-            dtStatusShift.Rows.Add("Cuối ca", 1)
-            dtStatusShift.TableName = "Shift"
-            dsData.Tables.Add(dtStatusShift)
 
             ExportTemplate("Attendance\Import\AT_IMPORT_REGISTER_CO.xlsx", _
                                       dsData, Nothing, _

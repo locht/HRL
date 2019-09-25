@@ -16426,6 +16426,9 @@ Namespace AttendanceBusiness
         Private STATUS_NAMEField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private STATUS_SHIFTField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private TITLE_NAMEField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -16960,6 +16963,19 @@ Namespace AttendanceBusiness
                 If (Object.ReferenceEquals(Me.STATUS_NAMEField, value) <> true) Then
                     Me.STATUS_NAMEField = value
                     Me.RaisePropertyChanged("STATUS_NAME")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property STATUS_SHIFT() As System.Nullable(Of Decimal)
+            Get
+                Return Me.STATUS_SHIFTField
+            End Get
+            Set
+                If (Me.STATUS_SHIFTField.Equals(value) <> true) Then
+                    Me.STATUS_SHIFTField = value
+                    Me.RaisePropertyChanged("STATUS_SHIFT")
                 End If
             End Set
         End Property

@@ -1,8 +1,8 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for Oracle database
 -- --------------------------------------------------
--- Date Created: 09/09/2019 3:35:51 PM
--- Generated from EDMX file: E:\TNG2\AttendanceDAL\AttendanceContext.edmx
+-- Date Created: 25/09/2019 9:35:53 AM
+-- Generated from EDMX file: E:\TNG\AttendanceDAL\AttendanceContext.edmx
 -- --------------------------------------------------
 
 -- --------------------------------------------------
@@ -365,7 +365,8 @@ CREATE TABLE "dbo"."HU_EMPLOYEE" (
    "STAFF_RANK_ID" NUMBER(38,0) NULL,
    "JOIN_DATE_STATE" DATE NULL,
    "DIRECT_MANAGER_2" NUMBER(38,0) NULL,
-   "DIRECT_MANAGER_3" NUMBER(38,0) NULL
+   "DIRECT_MANAGER_3" NUMBER(38,0) NULL,
+   "IS_KIEM_NHIEM" NUMBER(38,0) NULL
 );
 
 -- Creating table 'HU_CONTRACT'

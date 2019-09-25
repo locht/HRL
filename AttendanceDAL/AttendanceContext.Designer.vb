@@ -18,7 +18,7 @@ Imports System.Runtime.Serialization
 Imports System.Xml.Serialization
 
 
-<Assembly: EdmSchemaAttribute("0969a94a-0bc1-4b3c-8ed1-4e2cc666946d")>
+<Assembly: EdmSchemaAttribute("b43dd7d7-5de7-46f3-bda6-e11ca99b5b6b")>
 #Region "EDM Relationship Metadata"
 <Assembly: EdmRelationshipAttribute("AttendanceModel", "FK_OOLT_OOL", "OT_OTHER_LIST_TYPE", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(OT_OTHER_LIST_TYPE), "OT_OTHER_LIST", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(OT_OTHER_LIST), True)>
 <Assembly: EdmRelationshipAttribute("AttendanceModel", "FK_OOLG_OOLT", "OT_OTHER_LIST_GROUP", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(OT_OTHER_LIST_GROUP), "OT_OTHER_LIST_TYPE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(OT_OTHER_LIST_TYPE), True)>
@@ -39953,6 +39953,31 @@ Public Partial Class HU_EMPLOYEE
     End Sub
 
     Private Partial Sub OnDIRECT_MANAGER_3Changed()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property IS_KIEM_NHIEM() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _IS_KIEM_NHIEM
+        End Get
+        Set
+            OnIS_KIEM_NHIEMChanging(value)
+            ReportPropertyChanging("IS_KIEM_NHIEM")
+            _IS_KIEM_NHIEM = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("IS_KIEM_NHIEM")
+            OnIS_KIEM_NHIEMChanged()
+        End Set
+    End Property
+
+    Private _IS_KIEM_NHIEM As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnIS_KIEM_NHIEMChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnIS_KIEM_NHIEMChanged()
     End Sub
 
     #End Region

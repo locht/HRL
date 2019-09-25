@@ -299,6 +299,7 @@
             <Property Name="JOIN_DATE_STATE" Type="date" Nullable="true" />
             <Property Name="DIRECT_MANAGER_2" Type="number" Nullable="true" Precision="38" />
             <Property Name="DIRECT_MANAGER_3" Type="number" Nullable="true" Precision="38" />
+            <Property Name="IS_KIEM_NHIEM" Type="number" Nullable="true" Precision="38" />
         </EntityType>
         <EntityType Name="HU_CONTRACT">
             <Key>
@@ -2960,6 +2961,7 @@
           <Property Type="DateTime" Name="JOIN_DATE_STATE" />
           <Property Type="Decimal" Name="DIRECT_MANAGER_2" Nullable="true" />
           <Property Type="Decimal" Name="DIRECT_MANAGER_3" Nullable="true" />
+          <Property Type="Decimal" Name="IS_KIEM_NHIEM" Nullable="true" />
         </EntityType>
 		<EntityType Name="HU_CONTRACT">
           <Key>
@@ -5396,6 +5398,7 @@
                     <ScalarProperty Name="JOIN_DATE_STATE" ColumnName="JOIN_DATE_STATE" />
                     <ScalarProperty Name="DIRECT_MANAGER_2" ColumnName="DIRECT_MANAGER_2" />
                     <ScalarProperty Name="DIRECT_MANAGER_3" ColumnName="DIRECT_MANAGER_3" />
+                    <ScalarProperty Name="IS_KIEM_NHIEM" ColumnName="IS_KIEM_NHIEM" />
                 </MappingFragment>
             </EntityTypeMapping>
         </EntitySetMapping>
@@ -7681,7 +7684,7 @@
         <EntityTypeShape EntityType="AttendanceModel.AT_GSIGN" Width="1.5" PointX="0.625" PointY="4.5" Height="0.39999999999999858" IsExpanded="false" />
         <EntityTypeShape EntityType="AttendanceModel.AT_SWIPE_DATA" Width="1.5" PointX="7.625" PointY="6.5" Height="3.5186979166666656" IsExpanded="true" />
         <EntityTypeShape EntityType="AttendanceModel.AT_ORG_PERIOD" Width="1.5" PointX="7.625" PointY="8.5" Height="0.39999999999999858" IsExpanded="false" />
-        <EntityTypeShape EntityType="AttendanceModel.HU_EMPLOYEE" Width="2.375" PointX="0.625" PointY="3.125" Height="7.7493294270833335" IsExpanded="true" />
+        <EntityTypeShape EntityType="AttendanceModel.HU_EMPLOYEE" Width="2.375" PointX="0.625" PointY="3.125" Height="7.941630859375" IsExpanded="true" />
 		<EntityTypeShape EntityType="AttendanceModel.HU_CONTRACT" Width="2.5" PointX="8.5" PointY="1.875" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="AttendanceModel.HU_EMPLOYEE_EDUCATION" Width="2.75" PointX="3.75" PointY="2" Height="0.40000000037252903" IsExpanded="false" />
         <EntityTypeShape EntityType="AttendanceModel.HU_EMPLOYEE_FILES" Width="1.5" PointX="6.625" PointY="1.125" Height="0.4" IsExpanded="false" />
@@ -7694,15 +7697,15 @@
           <ConnectorPoint PointX="3.75" PointY="3.3250000000000028" />
         </AssociationConnector>
         <AssociationConnector Association="AttendanceModel.FK_HE_HEE" >
-          <ConnectorPoint PointX="1.8125" PointY="3.125" />
-          <ConnectorPoint PointX="1.8125" PointY="2.2000000001862645" />
-          <ConnectorPoint PointX="2.3541691666666664" PointY="2.2000000001862641" />
-          <ConnectorPoint PointX="2.5208358333333334" PointY="2.2000000001862645" />
+          <ConnectorPoint PointX="1.49999875" PointY="3.125" />
+          <ConnectorPoint PointX="1.49999875" PointY="2.2000000001862645" />
+          <ConnectorPoint PointX="2.1979185416666662" PointY="2.2000000001862641" />
+          <ConnectorPoint PointX="2.3645852083333332" PointY="2.2000000001862645" />
           <ConnectorPoint PointX="3.75" PointY="2.2000000001862645" />
         </AssociationConnector>
         <AssociationConnector Association="AttendanceModel.FK_HE_HEF" >
-          <ConnectorPoint PointX="2.4375025" PointY="3.125" />
-          <ConnectorPoint PointX="2.4375025" PointY="1.3250000000000002" />
+          <ConnectorPoint PointX="2.2812518749999997" PointY="3.125" />
+          <ConnectorPoint PointX="2.2812518749999997" PointY="1.3250000000000002" />
           <ConnectorPoint PointX="6.625" PointY="1.3250000000000002" />
         </AssociationConnector>
         <AssociationConnector Association="AttendanceModel.FK_HE_HEO" >
@@ -7714,10 +7717,10 @@
           <ConnectorPoint PointX="3.75" PointY="5.5750000001862645" />
         </AssociationConnector>
         <AssociationConnector Association="AttendanceModel.FK_HUEMD_HUEM" >
-          <ConnectorPoint PointX="1.4672115384615385" PointY="10.874329427083334" />
-          <ConnectorPoint PointX="1.4672115384615385" PointY="11.124329427083332" />
-          <ConnectorPoint PointX="2.1742307692307694" PointY="11.124329427083332" />
-          <ConnectorPoint PointX="2.1742307692307694" PointY="10.874329427083334" />
+          <ConnectorPoint PointX="1.4672115384615385" PointY="11.066630859375" />
+          <ConnectorPoint PointX="1.4672115384615385" PointY="11.316630859375" />
+          <ConnectorPoint PointX="2.1742307692307694" PointY="11.316630859375" />
+          <ConnectorPoint PointX="2.1742307692307694" PointY="11.066630859375" />
         </AssociationConnector>
         <EntityTypeShape EntityType="AttendanceModel.AT_TIMESHEET_REGISTER" Width="2.75" PointX="3.625" PointY="9.5" Height="0.39999999999999858" IsExpanded="false" />
         <EntityTypeShape EntityType="AttendanceModel.SE_APP_PROCESS" Width="1.5" PointX="9.625" PointY="6.5" Height="0.39999999999999858" IsExpanded="false" />

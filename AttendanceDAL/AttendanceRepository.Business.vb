@@ -3321,8 +3321,36 @@ Partial Public Class AttendanceRepository
     Public Function InsertLeaveSheet(ByVal objLeave As AT_LEAVESHEETDTO, ByVal log As UserLog, ByRef gID As Decimal) As Boolean
         Dim fromdate As Date?
         Try
-
-            Return True
+            Dim emp = (From p In Context.HU_EMPLOYEE
+                        Where p.EMPLOYEE_CODE = objLeave.EMPLOYEE_CODE And p.IS_KIEM_NHIEM Is Nothing
+                        Select p).FirstOrDefault()
+            If emp IsNot Nothing Then
+                Dim atLeave As New AT_LEAVESHEET
+                atLeave.ID = Utilities.GetNextSequence(Context, Context.AT_LEAVESHEET.EntitySet.Name)
+                atLeave.EMPLOYEE_ID = emp.ID
+                atLeave.LEAVE_FROM = objLeave.LEAVE_FROM
+                atLeave.LEAVE_TO = objLeave.LEAVE_TO
+                atLeave.MANUAL_ID = objLeave.MANUAL_ID
+                atLeave.DAY_NUM = objLeave.DAY_NUM
+                atLeave.NOTE = objLeave.NOTE
+                atLeave.STATUS = 2
+                atLeave.IS_APP = -1
+                atLeave.IMPORT = -1
+                Context.AT_LEAVESHEET.AddObject(atLeave)
+                Dim timeSpan As TimeSpan = objLeave.LEAVE_TO - objLeave.LEAVE_FROM
+                For i As Integer = 0 To timeSpan.Days
+                    Dim atLeaveDT As New AT_LEAVESHEET_DETAIL
+                    atLeaveDT.EMPLOYEE_ID = emp.ID
+                    atLeaveDT.LEAVESHEET_ID = atLeave.ID
+                    atLeaveDT.MANUAL_ID = objLeave.MANUAL_ID
+                    atLeaveDT.LEAVE_DAY = objLeave.LEAVE_FROM.Value.AddDays(i)
+                    atLeaveDT.DAY_NUM = 1
+                    atLeaveDT.STATUS_SHIFT = If(objLeave.STATUS_SHIFT Is Nothing, 1, objLeave.STATUS_SHIFT)
+                    Context.AT_LEAVESHEET_DETAIL.AddObject(atLeaveDT)
+                Next
+            End If
+            Context.SaveChanges(log)
+            Return (True)
         Catch ex As Exception
             WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iTime")
             Throw ex

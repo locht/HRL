@@ -42,5 +42,6 @@
     Public Property IMPORT As String 'Tự sinh do import bảng công
     Public Property IS_APP As Decimal?
     Public Property REASON As String
+    Public Property STATUS_SHIFT As Decimal?
 End Class
 
