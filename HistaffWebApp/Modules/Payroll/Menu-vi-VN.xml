@@ -15,6 +15,7 @@
       <Group>
         <Item Value="ctrlPA_Period" Text="Khai báo kỳ lương" PostBack="True" NavigateUrl="Default.aspx?mid=Payroll&amp;fid=ctrlPA_Period&amp;group=Setting" CheckPermission="true" />
         <Item Value="ctrlPA_Formula" Text="Khai báo công thức lương" PostBack="True" NavigateUrl="Default.aspx?mid=Payroll&amp;fid=ctrlPA_Formula&amp;group=Setting" CheckPermission="true"/>
+        <Item Value="ctrlPA_WorkStandard" Text="Thiết lập ngày công chuẩn" PostBack="True" NavigateUrl="Default.aspx?mid=Payroll&amp;fid=ctrlPA_WorkStandard&amp;group=Setting" CheckPermission="true"/>
         <Item Value="ctrlPA_PaymentsList" Text="Tham số hệ thống" PostBack="True" NavigateUrl="Default.aspx?mid=Payroll&amp;fid=ctrlPA_PaymentsList&amp;group=Setting" CheckPermission="true"/>
       </Group>
     </Item>

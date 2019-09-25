@@ -248,6 +248,12 @@ Public Class ctrlPA_WorkStandard
         Try
             Select Case CType(e.Item, RadToolBarButton).CommandName
                 Case CommonMessage.TOOLBARITEM_CREATE
+                    Using rep As New PayrollRepository
+                        If Not rep.IsCompanyLevel(ctrlOrg.CurrentValue) Then
+                            ShowMessage(Translate("Vui lòng chỉ thiết lập ngày công chuẩn theo công ty"), NotifyType.Warning)
+                            Exit Sub
+                        End If
+                    End Using
                     CurrentState = CommonMessage.STATE_NEW
                     ClearControlValue(rntxtYEAR, cboPeriod, txtRemark, txtWordStandard, cboLabor)
                     UpdateControlState()
@@ -295,12 +301,6 @@ Public Class ctrlPA_WorkStandard
                         objWorkStandardDTO.PERIOD_ID = cboPeriod.SelectedValue
                         objWorkStandardDTO.Period_standard = Decimal.Parse(txtWordStandard.Text)
                         Using rep As New PayrollRepository
-
-                            If Not rep.IsCompanyLevel(ctrlOrg.CurrentValue) Then
-                                ShowMessage(Translate("Vui lòng chỉ thiết lập ngày công chuẩn theo công ty"), NotifyType.Alert)
-                                Exit Sub
-                            End If
-
                             objWorkStandardDTO.ORG_ID = ctrlOrg.CurrentValue
                             Select Case CurrentState
 
