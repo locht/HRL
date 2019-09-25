@@ -6582,4 +6582,52 @@ Partial Public Class AttendanceRepository
         End Try
     End Function
 
+    Public Function CHECK_EMPLOYEE(ByVal P_EMP_CODE As String) As Integer
+        Try
+            Dim result As Integer
+            If (From p In Context.HU_EMPLOYEE Where p.EMPLOYEE_CODE = P_EMP_CODE).Count > 0 Then
+                result = 1
+            Else
+                result = 0
+            End If
+
+            Return result
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iInsurance")
+            Throw ex
+        End Try
+    End Function
+
+    Public Function INPORT_NB(ByVal P_DOCXML As String, ByVal log As UserLog, ByVal P_PERIOD_ID As Integer) As Boolean
+        Try
+            Using cls As New DataAccess.QueryData
+                cls.ExecuteStore("PKG_ATTENDANCE_BUSINESS.INPORT_NB",
+                                 New With {.P_DOCXML = P_DOCXML,
+                                           .P_USERNAME = log.Username,
+                                           .P_PERIOD_ID = P_PERIOD_ID})
+            End Using
+            Return True
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iInsurance")
+            Throw ex
+            Return False
+        End Try
+    End Function
+
+    Public Function INPORT_NB_PREV(ByVal P_DOCXML As String, ByVal log As UserLog, ByVal P_YEAR As Integer) As Boolean
+        Try
+            Using cls As New DataAccess.QueryData
+                cls.ExecuteStore("PKG_ATTENDANCE_BUSINESS.INPORT_NB_PREV",
+                                 New With {.P_DOCXML = P_DOCXML,
+                                           .P_USERNAME = log.Username,
+                                           .P_YEAR = P_YEAR})
+            End Using
+            Return True
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iInsurance")
+            Throw ex
+            Return False
+        End Try
+    End Function
+
 End Class

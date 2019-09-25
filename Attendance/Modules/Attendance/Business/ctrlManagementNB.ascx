@@ -186,6 +186,8 @@
         </tlk:RadWindow>
     </Windows>
 </tlk:RadWindowManager>
+<Common:ctrlUpload ID="ctrlUpload" runat="server" />
+<Common:ctrlUpload ID="ctrlUpload1" runat="server" />
 <tlk:RadScriptBlock ID="scriptBlock" runat="server">
     <script type="text/javascript">
         var enableAjax = true;
@@ -216,7 +218,7 @@
                     OpenEditWindow("Edit");
                     args.set_cancel(true);
                 }
-            } else if (args.get_item().get_commandName() == 'EXPORT') {
+            } else if (args.get_item().get_commandName() == 'EXPORT' || args.get_item().get_commandName() == 'NEXT' || args.get_item().get_commandName() == 'PRINT') {
                 enableAjax = false;
             }
         }

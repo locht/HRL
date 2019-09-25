@@ -1721,5 +1721,38 @@ Namespace AttendanceBusiness.ServiceImplementations
                 End Try
             End Using
         End Function
+
+        Public Function CHECK_EMPLOYEE(ByVal P_EMP_CODE As String) As Integer Implements ServiceContracts.IAttendanceBusiness.CHECK_EMPLOYEE
+            Using rep As New AttendanceRepository
+                Try
+                    Return rep.CHECK_EMPLOYEE(P_EMP_CODE)
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
+
+        Public Function INPORT_NB(ByVal P_DOCXML As String, ByVal log As UserLog, ByVal P_PERIOD_ID As Integer) As Boolean Implements ServiceContracts.IAttendanceBusiness.INPORT_NB
+            Using rep As New AttendanceRepository
+                Try
+
+                    Return rep.INPORT_NB(P_DOCXML, log, P_PERIOD_ID)
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
+
+        Public Function INPORT_NB_PREV(ByVal P_DOCXML As String, ByVal log As UserLog, ByVal P_YEAR As Integer) As Boolean Implements ServiceContracts.IAttendanceBusiness.INPORT_NB_PREV
+            Using rep As New AttendanceRepository
+                Try
+
+                    Return rep.INPORT_NB_PREV(P_DOCXML, log, P_YEAR)
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
+
     End Class
 End Namespace

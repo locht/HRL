@@ -1703,4 +1703,37 @@ Partial Class AttendanceRepository
             End Try
         End Using
     End Function
+
+    Public Function CHECK_EMPLOYEE(ByVal P_EMP_CODE As String) As Integer
+        Using rep As New AttendanceBusinessClient
+            Try
+                Return rep.CHECK_EMPLOYEE(P_EMP_CODE)
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+    End Function
+
+    Public Function INPORT_NB(ByVal P_DOCXML As String, ByVal P_PERIOD_ID As Integer) As Boolean
+        Using rep As New AttendanceBusinessClient
+            Try
+                Return rep.INPORT_NB(P_DOCXML, Me.Log, P_PERIOD_ID)
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+    End Function
+
+    Public Function INPORT_NB_PREV(ByVal P_DOCXML As String, ByVal P_YEAR As Integer) As Boolean
+        Using rep As New AttendanceBusinessClient
+            Try
+                Return rep.INPORT_NB_PREV(P_DOCXML, Me.Log, P_YEAR)
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+    End Function
 End Class

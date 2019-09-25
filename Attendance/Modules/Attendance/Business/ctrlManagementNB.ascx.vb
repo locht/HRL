@@ -7,6 +7,8 @@ Imports Common.CommonMessage
 Imports Attendance.AttendanceRepository
 Imports Attendance.AttendanceBusiness
 Imports WebAppLog
+Imports System.IO
+Imports HistaffFrameworkPublic
 
 Public Class ctrlManagementNB
     Inherits Common.CommonView
@@ -49,6 +51,15 @@ Public Class ctrlManagementNB
         End Get
         Set(ByVal value As List(Of AT_PERIODDTO))
             ViewState(Me.ID & "_PERIOD") = value
+        End Set
+    End Property
+
+    Private Property dtLogs As DataTable
+        Get
+            Return PageViewState(Me.ID & "_dtLogs")
+        End Get
+        Set(ByVal value As DataTable)
+            PageViewState(Me.ID & "_dtLogs") = value
         End Set
     End Property
 
@@ -113,8 +124,20 @@ Public Class ctrlManagementNB
             Me.MainToolBar = tbarMainToolBar
             Common.Common.BuildToolbar(Me.MainToolBar,
                                        ToolbarItem.Calculate,
-                                       ToolbarItem.Export)
+                                       ToolbarItem.Export,
+                                       ToolbarItem.Next,
+                                       ToolbarItem.Import,
+                                       ToolbarItem.Print,
+                                       ToolbarItem.Active)
+
             MainToolBar.Items(0).Text = Translate("Tổng hợp")
+            MainToolBar.Items(2).Text = Translate("Xuất file mẫu điều chỉnh phép năm trước")
+            CType(MainToolBar.Items(2), RadToolBarButton).ImageUrl = CType(MainToolBar.Items(1), RadToolBarButton).ImageUrl
+            MainToolBar.Items(3).Text = Translate("Nhập file mẫu điều chỉnh phép năm trước")
+            MainToolBar.Items(4).Text = Translate("Xuất file mẫu")
+            CType(MainToolBar.Items(4), RadToolBarButton).ImageUrl = CType(MainToolBar.Items(1), RadToolBarButton).ImageUrl
+            MainToolBar.Items(5).Text = Translate("Nhập file mẫu")
+            CType(MainToolBar.Items(5), RadToolBarButton).ImageUrl = CType(MainToolBar.Items(3), RadToolBarButton).ImageUrl
             Me.MainToolBar.OnClientButtonClicking = "OnClientButtonClicking"
             CType(Me.Page, AjaxPage).AjaxManager.ClientEvents.OnRequestStart = "onRequestStart"
             _myLog.WriteLog(_myLog._info, _classPath, method,
@@ -205,7 +228,7 @@ Public Class ctrlManagementNB
         Catch ex As Exception
             _myLog.WriteLog(_myLog._error, _classPath, method, 0, ex, "")
         End Try
-      
+
     End Sub
     ''' <summary>
     ''' Phương thức làm mới thông tin trên trang
@@ -319,6 +342,26 @@ Public Class ctrlManagementNB
                         Exit Sub
                     End If
 
+                Case TOOLBARITEM_NEXT
+                    Using xls As New ExcelCommon
+                        Dim dataSet As New DataSet
+                        Dim dtVariable As New DataTable
+                        Dim tempPath = "~/ReportTemplates//Attendance//Import//TEMPLATE_IMPORT_NB.xls"
+                        Dim bCheck = xls.ExportExcelTemplate(
+                          System.IO.Path.Combine(Server.MapPath(tempPath)), "IMPORT_NB", dataSet, Nothing, Response)
+                    End Using
+                Case TOOLBARITEM_PRINT
+                    Using xls As New ExcelCommon
+                        Dim dataSet As New DataSet
+                        Dim dtVariable As New DataTable
+                        Dim tempPath = "~/ReportTemplates//Attendance//Import//TEMPLATE_IMPORT_NB_PREV.xls"
+                        Dim bCheck = xls.ExportExcelTemplate(
+                              System.IO.Path.Combine(Server.MapPath(tempPath)), "IMPORT_NB_NamTruoc", dataSet, Nothing, Response)
+                    End Using
+                Case TOOLBARITEM_IMPORT
+                    ctrlUpload.Show()
+                Case TOOLBARITEM_ACTIVE
+                    ctrlUpload1.Show()
             End Select
             ' UpdateControlState()
             _myLog.WriteLog(_myLog._info, _classPath, method,
@@ -355,6 +398,254 @@ Public Class ctrlManagementNB
         End Try
 
     End Sub
+
+    ''' <lastupdate>
+    ''' 06/09/2017 14:00
+    ''' </lastupdate>
+    ''' <summary>
+    ''' Xu ly su kien click cho button ctrUpload
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
+    ''' <remarks></remarks>
+    Private Sub ctrlUpload_OkClicked(ByVal sender As Object, ByVal e As System.EventArgs) Handles ctrlUpload.OkClicked
+        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+        Try
+            Import_Data()
+        Catch ex As Exception
+            _myLog.WriteLog(_myLog._error, _classPath, method, 0, ex, "")
+            ShowMessage(Translate("Import bị lỗi. Kiểm tra lại biểu mẫu Import"), NotifyType.Error)
+        End Try
+    End Sub
+
+
+    ''' <lastupdate>
+    ''' 06/09/2017 14:00
+    ''' </lastupdate>
+    ''' <summary>
+    ''' Xu ly su kien click cho button ctrUpload1
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
+    ''' <remarks></remarks>
+    Private Sub ctrlUpload1_OkClicked(ByVal sender As Object, ByVal e As System.EventArgs) Handles ctrlUpload1.OkClicked
+        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+        Try
+            Import_Data1()
+        Catch ex As Exception
+            _myLog.WriteLog(_myLog._error, _classPath, method, 0, ex, "")
+            ShowMessage(Translate("Import bị lỗi. Kiểm tra lại biểu mẫu Import"), NotifyType.Error)
+        End Try
+    End Sub
+
+    Private Sub Import_Data()
+        Try
+            Dim rep As New AttendanceRepository
+            Dim tempPath As String = ConfigurationManager.AppSettings("ExcelFileFolder")
+            Dim countFile As Integer = ctrlUpload.UploadedFiles.Count
+            Dim fileName As String
+            Dim savepath = Context.Server.MapPath(tempPath)
+            Dim ds As New DataSet
+            If countFile > 0 Then
+                Dim file As UploadedFile = ctrlUpload.UploadedFiles(countFile - 1)
+                fileName = System.IO.Path.Combine(savepath, file.FileName)
+                file.SaveAs(fileName, True)
+                Using ep As New ExcelPackage
+                    ds = ep.ReadExcelToDataSet(fileName, False)
+                End Using
+            End If
+            If ds Is Nothing Then
+                Exit Sub
+            End If
+            TableMapping(ds.Tables(0))
+
+            If dtLogs Is Nothing Or dtLogs.Rows.Count <= 0 Then
+                Dim DocXml As String = String.Empty
+                Dim sw As New StringWriter()
+                If ds.Tables(0) IsNot Nothing AndAlso ds.Tables(0).Rows.Count > 0 Then
+                    ds.Tables(0).WriteXml(sw, False)
+                    DocXml = sw.ToString
+                    If rep.INPORT_NB(DocXml, cboPeriodId.SelectedValue) Then
+                        ShowMessage(Translate(Common.CommonMessage.MESSAGE_TRANSACTION_SUCCESS), Framework.UI.Utilities.NotifyType.Success)
+                        'rgData.Rebind()
+                    Else
+                        ShowMessage(Translate(Common.CommonMessage.MESSAGE_TRANSACTION_FAIL), Framework.UI.Utilities.NotifyType.Warning)
+                    End If
+                End If
+            Else
+                Session("EXPORTREPORT") = dtLogs
+                ScriptManager.RegisterStartupScript(Me.Page, Me.Page.GetType(), "javascriptfunction", "ExportReport('HU_ANNUALLEAVE_PLANS_ERROR')", True)
+                ShowMessage(Translate("Có lỗi trong quá trình import. Lưu file lỗi chi tiết"), Utilities.NotifyType.Error)
+            End If
+        Catch ex As Exception
+
+        End Try
+    End Sub
+
+    Private Sub Import_Data1()
+        Try
+            Dim rep As New AttendanceRepository
+            Dim tempPath As String = ConfigurationManager.AppSettings("ExcelFileFolder")
+            Dim countFile As Integer = ctrlUpload1.UploadedFiles.Count
+            Dim fileName As String
+            Dim savepath = Context.Server.MapPath(tempPath)
+            Dim ds As New DataSet
+            If countFile > 0 Then
+                Dim file As UploadedFile = ctrlUpload1.UploadedFiles(countFile - 1)
+                fileName = System.IO.Path.Combine(savepath, file.FileName)
+                file.SaveAs(fileName, True)
+                Using ep As New ExcelPackage
+                    ds = ep.ReadExcelToDataSet(fileName, False)
+                End Using
+            End If
+            If ds Is Nothing Then
+                Exit Sub
+            End If
+            TableMapping1(ds.Tables(0))
+
+            If dtLogs Is Nothing Or dtLogs.Rows.Count <= 0 Then
+                Dim DocXml As String = String.Empty
+                Dim sw As New StringWriter()
+                If ds.Tables(0) IsNot Nothing AndAlso ds.Tables(0).Rows.Count > 0 Then
+                    ds.Tables(0).WriteXml(sw, False)
+                    DocXml = sw.ToString
+                    If rep.INPORT_NB_PREV(DocXml, cboYear.SelectedValue) Then
+                        ShowMessage(Translate(Common.CommonMessage.MESSAGE_TRANSACTION_SUCCESS), Framework.UI.Utilities.NotifyType.Success)
+                        'rgData.Rebind()
+                    Else
+                        ShowMessage(Translate(Common.CommonMessage.MESSAGE_TRANSACTION_FAIL), Framework.UI.Utilities.NotifyType.Warning)
+                    End If
+                End If
+            Else
+                Session("EXPORTREPORT") = dtLogs
+                ScriptManager.RegisterStartupScript(Me.Page, Me.Page.GetType(), "javascriptfunction", "ExportReport('HU_ANNUALLEAVE_PLANS_ERROR')", True)
+                ShowMessage(Translate("Có lỗi trong quá trình import. Lưu file lỗi chi tiết"), Utilities.NotifyType.Error)
+            End If
+        Catch ex As Exception
+
+        End Try
+    End Sub
+
+    Private Sub TableMapping(ByVal dtTemp As System.Data.DataTable)
+        Dim rep As New AttendanceRepository
+        ' lấy dữ liệu thô từ excel vào và tinh chỉnh dữ liệu
+        dtTemp.Columns(0).ColumnName = "EMPLOYEE_CODE"
+        dtTemp.Columns(5).ColumnName = "COMPENSATORY_EDIT"
+
+        'XOA DONG TIEU DE VA HEADER
+        dtTemp.Rows(0).Delete()
+
+        ' add Log
+        Dim _error As Boolean = True
+        Dim count As Integer
+        Dim newRow As DataRow
+        If dtLogs Is Nothing Then
+            dtLogs = New DataTable("data")
+            dtLogs.Columns.Add("ID", GetType(Integer))
+            dtLogs.Columns.Add("EMPLOYEE_CODE", GetType(String))
+            dtLogs.Columns.Add("DISCIPTION", GetType(String))
+        End If
+        dtLogs.Clear()
+
+        'XOA NHUNG DONG DU LIEU NULL EMPLOYYE CODE
+        Dim rowDel As DataRow
+        For i As Integer = 0 To dtTemp.Rows.Count - 1
+            If dtTemp.Rows(i).RowState = DataRowState.Deleted OrElse dtTemp.Rows(i).RowState = DataRowState.Detached Then Continue For
+            rowDel = dtTemp.Rows(i)
+            If rowDel("EMPLOYEE_CODE").ToString.Trim = "" Then
+                dtTemp.Rows(i).Delete()
+            End If
+        Next
+
+        For Each rows As DataRow In dtTemp.Rows
+            If rows.RowState = DataRowState.Deleted OrElse rows.RowState = DataRowState.Detached Then Continue For
+
+            newRow = dtLogs.NewRow
+            newRow("ID") = count + 1
+            newRow("EMPLOYEE_CODE") = rows("EMPLOYEE_CODE")
+
+            ' Nhân viên k có trong hệ thống
+            If rep.CHECK_EMPLOYEE(rows("EMPLOYEE_CODE")) = 0 Then
+                newRow("DISCIPTION") = "Mã nhân viên - Không tồn tại,"
+                _error = False
+            End If
+
+            If Not (IsNumeric(rows("COMPENSATORY_EDIT"))) Then
+                rows("COMPENSATORY_EDIT") = 0
+                newRow("DISCIPTION") = newRow("DISCIPTION") + "Số ngày phép bù điều chỉnh - Không đúng định dạng,"
+                _error = False
+            End If
+
+            If _error = False Then
+                dtLogs.Rows.Add(newRow)
+                count = count + 1
+                _error = True
+            End If
+        Next
+        dtTemp.AcceptChanges()
+    End Sub
+
+    Private Sub TableMapping1(ByVal dtTemp As System.Data.DataTable)
+        Dim rep As New AttendanceRepository
+        ' lấy dữ liệu thô từ excel vào và tinh chỉnh dữ liệu
+        dtTemp.Columns(0).ColumnName = "EMPLOYEE_CODE"
+        dtTemp.Columns(5).ColumnName = "PREV_HAVE"
+
+        'XOA DONG TIEU DE VA HEADER
+        dtTemp.Rows(0).Delete()
+
+        ' add Log
+        Dim _error As Boolean = True
+        Dim count As Integer
+        Dim newRow As DataRow
+        If dtLogs Is Nothing Then
+            dtLogs = New DataTable("data")
+            dtLogs.Columns.Add("ID", GetType(Integer))
+            dtLogs.Columns.Add("EMPLOYEE_CODE", GetType(String))
+            dtLogs.Columns.Add("DISCIPTION", GetType(String))
+        End If
+        dtLogs.Clear()
+
+        'XOA NHUNG DONG DU LIEU NULL EMPLOYYE CODE
+        Dim rowDel As DataRow
+        For i As Integer = 0 To dtTemp.Rows.Count - 1
+            If dtTemp.Rows(i).RowState = DataRowState.Deleted OrElse dtTemp.Rows(i).RowState = DataRowState.Detached Then Continue For
+            rowDel = dtTemp.Rows(i)
+            If rowDel("EMPLOYEE_CODE").ToString.Trim = "" Then
+                dtTemp.Rows(i).Delete()
+            End If
+        Next
+
+        For Each rows As DataRow In dtTemp.Rows
+            If rows.RowState = DataRowState.Deleted OrElse rows.RowState = DataRowState.Detached Then Continue For
+
+            newRow = dtLogs.NewRow
+            newRow("ID") = count + 1
+            newRow("EMPLOYEE_CODE") = rows("EMPLOYEE_CODE")
+
+            ' Nhân viên k có trong hệ thống
+            If rep.CHECK_EMPLOYEE(rows("EMPLOYEE_CODE")) = 0 Then
+                newRow("DISCIPTION") = "Mã nhân viên - Không tồn tại,"
+                _error = False
+            End If
+
+            If Not (IsNumeric(rows("PREV_HAVE"))) Then
+                rows("PREV_HAVE") = 0
+                newRow("DISCIPTION") = newRow("DISCIPTION") + "Số phép bù năm trước chuyển sang - Không đúng định dạng,"
+                _error = False
+            End If
+
+            If _error = False Then
+                dtLogs.Rows.Add(newRow)
+                count = count + 1
+                _error = True
+            End If
+        Next
+        dtTemp.AcceptChanges()
+    End Sub
+
+
+
     ''' <summary>
     ''' Xử lý sự kiện Tạo dữ liệu filter
     ''' </summary>
