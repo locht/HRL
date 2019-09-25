@@ -87,6 +87,9 @@
                                     <tlk:GridBoundColumn HeaderText="<%$ Translate: Chức danh %>" DataField="TITLE_NAME"
                                          HeaderStyle-Width="270px" ItemStyle-Width="270px" UniqueName="TITLE_NAME" SortExpression="TITLE_NAME"
                                         ItemStyle-HorizontalAlign="Center" />
+                                  <tlk:GridBoundColumn HeaderText="<%$ Translate:Loại làm thêm %>" DataField="OT_TYPE_NAME"
+                                         HeaderStyle-Width="270px" ItemStyle-Width="270px" UniqueName="OT_TYPE_NAME" SortExpression="OT_TYPE_NAME"
+                                        ItemStyle-HorizontalAlign="Center" />
                                     <tlk:GridDateTimeColumn HeaderText="<%$ Translate: Ngày làm thêm %>" DataField="REGIST_DATE"
                                          HeaderStyle-Width="100px" ItemStyle-Width="100px" UniqueName="REGIST_DATE" SortExpression="REGIST_DATE"
                                         DataFormatString="{0:dd/MM/yyyy}" ItemStyle-HorizontalAlign="Center" />
