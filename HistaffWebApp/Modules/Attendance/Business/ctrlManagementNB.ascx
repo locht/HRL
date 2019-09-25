@@ -186,6 +186,8 @@
         </tlk:RadWindow>
     </Windows>
 </tlk:RadWindowManager>
+<Common:ctrlUpload ID="ctrlUpload" runat="server" />
+<Common:ctrlUpload ID="ctrlUpload1" runat="server" />
 <tlk:RadScriptBlock ID="scriptBlock" runat="server">
     <script type="text/javascript">
         var enableAjax = true;
@@ -216,15 +218,15 @@
                     OpenEditWindow("Edit");
                     args.set_cancel(true);
                 }
-            } else if (args.get_item().get_commandName() == 'EXPORT') {
+            } else if (args.get_item().get_commandName() == 'EXPORT' || args.get_item().get_commandName() == 'NEXT' || args.get_item().get_commandName() == 'PRINT') {
                 enableAjax = false;
             }
-        }
-        function OnClientClose(oWnd, args) {
-            postBack(oWnd.get_navigateUrl());
-        }
-        function postBack(url) {
-            var ajaxManager = $find("<%= AjaxManagerId %>");
+    }
+    function OnClientClose(oWnd, args) {
+        postBack(oWnd.get_navigateUrl());
+    }
+    function postBack(url) {
+        var ajaxManager = $find("<%= AjaxManagerId %>");
             ajaxManager.ajaxRequest(url); //Making ajax request with the argument
         }
     </script>

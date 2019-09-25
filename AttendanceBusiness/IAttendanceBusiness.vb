@@ -1215,5 +1215,14 @@ Namespace AttendanceBusiness.ServiceContracts
 
         <OperationContract()>
         Function PRS_DASHBOARD_BY_APPROVE(ByVal P_EMPLOYEE_APP_ID As Decimal, ByVal P_PROCESS_TYPE As String) As DataTable
+
+        <OperationContract()>
+        Function CHECK_EMPLOYEE(ByVal P_EMP_CODE As String) As Integer
+
+        <OperationContract()>
+        Function INPORT_NB(ByVal P_DOCXML As String, ByVal log As UserLog, ByVal P_PERIOD_ID As Integer) As Boolean
+
+        <OperationContract()>
+        Function INPORT_NB_PREV(ByVal P_DOCXML As String, ByVal log As UserLog, ByVal P_YEAR As Integer) As Boolean
     End Interface
 End Namespace

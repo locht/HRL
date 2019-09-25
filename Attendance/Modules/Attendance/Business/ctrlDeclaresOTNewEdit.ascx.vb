@@ -399,8 +399,8 @@ Public Class ctrlDeclaresOTNewEdit
                         obj.EMPLOYEE_ID = hidEmpId.Value
                         obj.IS_DELETED = 0
                         obj.NOTE = txtNote.Text
-                        obj.OT_TYPE_ID = ListComboData.LIST_LIST_OT_TYPE.Where(Function(f) f.CODE = "OT").Select(Function(g) g.ID).FirstOrDefault
-
+                        'obj.OT_TYPE_ID = ListComboData.LIST_LIST_OT_TYPE.Where(Function(f) f.CODE = "OT").Select(Function(g) g.ID).FirstOrDefault
+                        obj.OT_TYPE_ID = cboTypeOT.SelectedValue
                         obj.REGIST_DATE = rdRegDate.SelectedDate
                         If hidSignId.Value.ToString = "" Then 'chua dang ky ca
                             lstdtHoliday = AttendanceRepositoryStatic.Instance.GetHolidayByCalenderToTable(rdRegDate.SelectedDate, rdRegDate.SelectedDate)

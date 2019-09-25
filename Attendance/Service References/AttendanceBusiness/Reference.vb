@@ -31127,6 +31127,15 @@ Namespace AttendanceBusiness
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IAttendanceBusiness/PRS_DASHBOARD_BY_APPROVE", ReplyAction:="http://tempuri.org/IAttendanceBusiness/PRS_DASHBOARD_BY_APPROVEResponse")>  _
         Function PRS_DASHBOARD_BY_APPROVE(ByVal P_EMPLOYEE_APP_ID As Decimal, ByVal P_PROCESS_TYPE As String) As System.Data.DataTable
         
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IAttendanceBusiness/CHECK_EMPLOYEE", ReplyAction:="http://tempuri.org/IAttendanceBusiness/CHECK_EMPLOYEEResponse")>  _
+        Function CHECK_EMPLOYEE(ByVal P_EMP_CODE As String) As Integer
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IAttendanceBusiness/INPORT_NB", ReplyAction:="http://tempuri.org/IAttendanceBusiness/INPORT_NBResponse")>  _
+        Function INPORT_NB(ByVal P_DOCXML As String, ByVal log As Common.CommonBusiness.UserLog, ByVal P_PERIOD_ID As Integer) As Boolean
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IAttendanceBusiness/INPORT_NB_PREV", ReplyAction:="http://tempuri.org/IAttendanceBusiness/INPORT_NB_PREVResponse")>  _
+        Function INPORT_NB_PREV(ByVal P_DOCXML As String, ByVal log As Common.CommonBusiness.UserLog, ByVal P_YEAR As Integer) As Boolean
+        
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IAttendanceBusiness/GET_ORGID", ReplyAction:="http://tempuri.org/IAttendanceBusiness/GET_ORGIDResponse")>  _
         Function GET_ORGID(ByVal EMPID As Integer) As Integer
         
@@ -32715,6 +32724,18 @@ Namespace AttendanceBusiness
         
         Public Function PRS_DASHBOARD_BY_APPROVE(ByVal P_EMPLOYEE_APP_ID As Decimal, ByVal P_PROCESS_TYPE As String) As System.Data.DataTable Implements AttendanceBusiness.IAttendanceBusiness.PRS_DASHBOARD_BY_APPROVE
             Return MyBase.Channel.PRS_DASHBOARD_BY_APPROVE(P_EMPLOYEE_APP_ID, P_PROCESS_TYPE)
+        End Function
+        
+        Public Function CHECK_EMPLOYEE(ByVal P_EMP_CODE As String) As Integer Implements AttendanceBusiness.IAttendanceBusiness.CHECK_EMPLOYEE
+            Return MyBase.Channel.CHECK_EMPLOYEE(P_EMP_CODE)
+        End Function
+        
+        Public Function INPORT_NB(ByVal P_DOCXML As String, ByVal log As Common.CommonBusiness.UserLog, ByVal P_PERIOD_ID As Integer) As Boolean Implements AttendanceBusiness.IAttendanceBusiness.INPORT_NB
+            Return MyBase.Channel.INPORT_NB(P_DOCXML, log, P_PERIOD_ID)
+        End Function
+        
+        Public Function INPORT_NB_PREV(ByVal P_DOCXML As String, ByVal log As Common.CommonBusiness.UserLog, ByVal P_YEAR As Integer) As Boolean Implements AttendanceBusiness.IAttendanceBusiness.INPORT_NB_PREV
+            Return MyBase.Channel.INPORT_NB_PREV(P_DOCXML, log, P_YEAR)
         End Function
         
         Public Function GET_ORGID(ByVal EMPID As Integer) As Integer Implements AttendanceBusiness.IAttendanceBusiness.GET_ORGID
