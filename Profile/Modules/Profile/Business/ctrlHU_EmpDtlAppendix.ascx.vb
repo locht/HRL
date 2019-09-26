@@ -8,6 +8,7 @@ Public Class ctrlHU_EmpDtlAppendix
     Inherits CommonView
     Protected WithEvents ViewItem As ViewBase
     Dim psp As New ProfileStoreProcedure
+    Public Overrides Property MustAuthorize As Boolean = False
 #Region "Property"
 
     Private Property dt As DataTable
@@ -73,7 +74,7 @@ Public Class ctrlHU_EmpDtlAppendix
 
     Public Overrides Sub ViewInit(ByVal e As System.EventArgs)
         Try
-            Me.MainToolBar = tbarDetail
+            Me.MainToolBar = tbarMainToolBar
             Common.Common.BuildToolbar(Me.MainToolBar, ToolbarItem.Export)
             Me.MainToolBar.OnClientButtonClicking = "OnClientButtonClicking"
             CType(Me.Page, AjaxPage).AjaxManager.ClientEvents.OnRequestStart = "onRequestStart"
