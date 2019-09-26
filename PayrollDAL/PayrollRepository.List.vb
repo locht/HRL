@@ -1040,7 +1040,7 @@ Partial Public Class PayrollRepository
 
     Public Function ValidateWorkStandard(ByVal _validate As Work_StandardDTO) As Boolean
         Try
-            Dim query = (From p In Context.PA_WORK_STANDARD Where p.YEAR = _validate.YEAR And p.PERIOD_ID = _validate.PERIOD_ID And p.OBJECT_ID = _validate.OBJECT_ID And p.ID <> _validate.ID).ToList
+            Dim query = (From p In Context.PA_WORK_STANDARD Where p.ORG_ID = _validate.ORG_ID And p.PERIOD_ID = _validate.PERIOD_ID And p.OBJECT_ID = _validate.OBJECT_ID And p.ID <> _validate.ID).ToList
             If query.Count > 0 Then
                 Return False
             Else
