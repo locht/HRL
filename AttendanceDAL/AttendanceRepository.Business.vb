@@ -1569,6 +1569,8 @@ Partial Public Class AttendanceRepository
 
             'tempLst = tempLst.OrderBy(Sorts)
             'tempLst = tempLst.Skip(PageIndex * PageSize).Take(PageSize)
+
+            Total = tempLst.Count
             Return tempLst
         Catch ex As Exception
             WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iTime")
@@ -1805,11 +1807,11 @@ Partial Public Class AttendanceRepository
     End Function
 
     Public Function DeleteRegisterOT(ByVal lstID As List(Of Decimal)) As Boolean
-        Dim lstl As List(Of AT_REGISTER_OT)
+        Dim lstl As List(Of AT_OT_REGISTRATION)
         Try
-            lstl = (From p In Context.AT_REGISTER_OT Where lstID.Contains(p.ID)).ToList
+            lstl = (From p In Context.AT_OT_REGISTRATION Where lstID.Contains(p.ID)).ToList
             For index = 0 To lstl.Count - 1
-                Context.AT_REGISTER_OT.DeleteObject(lstl(index))
+                Context.AT_OT_REGISTRATION.DeleteObject(lstl(index))
             Next
             Context.SaveChanges()
             Return True
@@ -5925,7 +5927,7 @@ Partial Public Class AttendanceRepository
                     dto.SIGN_CODE = If(row("SIGN_CODE").ToString <> "", row("SIGN_CODE"), Nothing)
                     dto.OT_TYPE_ID = row("OT_TYPE_ID")
                     dto.OT_TYPE_NAME = If(row("OT_TYPE_NAME").ToString <> "", row("OT_TYPE_NAME"), Nothing)
-                    dto.ID_REGGROUP = row("ID_REGGROUP")
+                    'dto.ID_REGGROUP = row("ID_REGGROUP")
                     dto.TOTAL_OT = row("TOTAL_OT")
                     dto.OT_100 = row("OT_100")
                     dto.OT_150 = row("OT_150")

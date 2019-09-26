@@ -1403,38 +1403,30 @@ Partial Class ProfileRepository
             Employee.WORK_STATUS = ProfileCommon.OT_WORK_STATUS.WORKING_ID
 
             Dim STR As ContractTypeDTO = (From p In Context.HU_CONTRACT_TYPE
+                                          From ot In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.TYPE_ID).DefaultIfEmpty
                                  Where p.ID = objContract.CONTRACTTYPE_ID
                                  Select New ContractTypeDTO With {
-                                     .CODE = p.CODE
+                                     .CODE = ot.CODE
                                      }).FirstOrDefault
             'neu hop dong phe duyet la thu viec thi up date vao join_date_state con neu chinh thuc thi 
             'update vào join_date_state và join_date cua hu_employee
             If STR.CODE = "HDTV" Then
                 Employee.EMP_STATUS = 8
-                'If Employee.JOIN_DATE Is Nothing Then
-                '    Employee.JOIN_DATE_STATE = objContract.START_DATE
-                'End If
-                If Employee.JOIN_DATE Is Nothing Then
-                    Employee.JOIN_DATE = objContract.START_DATE
+                If Employee.JOIN_DATE_STATE Is Nothing Then
+                    Employee.JOIN_DATE_STATE = objContract.START_DATE
                 End If
             Else
                 Employee.EMP_STATUS = 9
                 If Employee.JOIN_DATE Is Nothing Then
                     Employee.JOIN_DATE = objContract.START_DATE
+                End If
+                If Employee.SENIORITY_DATE Is Nothing Then
                     Employee.SENIORITY_DATE = objContract.START_DATE
                 End If
                 If Employee.JOIN_DATE_STATE Is Nothing Then
                     Employee.JOIN_DATE_STATE = objContract.START_DATE
                 End If
-
-
-                'If Employee.JOIN_DATE Is Nothing Then
-                '    Employee.JOIN_DATE = objContract.START_DATE
-                '    Employee.JOIN_DATE_STATE = objContract.START_DATE
-                'End If
             End If
-
-
             ' update  bảo hiểm
             'Dim wokingSalary As WorkingDTO = (From w In Context.HU_WORKING
             '                                  Where w.ID = objContract.WORKING_ID

@@ -14,31 +14,31 @@ Option Explicit On
 Partial Public Class ctrlHU_EmpDtlAppendix
 
     '''<summary>
-    '''RadSplitter2 control.
+    '''RadSplitter3 control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents RadSplitter2 As Global.Telerik.Web.UI.RadSplitter
+    Protected WithEvents RadSplitter3 As Global.Telerik.Web.UI.RadSplitter
 
     '''<summary>
-    '''paneTop control.
+    '''ToolbarPane control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents paneTop As Global.Telerik.Web.UI.RadPane
+    Protected WithEvents ToolbarPane As Global.Telerik.Web.UI.RadPane
 
     '''<summary>
-    '''tbarDetail control.
+    '''tbarMainToolBar control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents tbarDetail As Global.Telerik.Web.UI.RadToolBar
+    Protected WithEvents tbarMainToolBar As Global.Telerik.Web.UI.RadToolBar
 
     '''<summary>
     '''RadPane2 control.
@@ -59,13 +59,13 @@ Partial Public Class ctrlHU_EmpDtlAppendix
     Protected WithEvents ctrlEmpBasicInfo As Global.Profile.ctrlEmpBasicInfo
 
     '''<summary>
-    '''RadPane1 control.
+    '''RadPane4 control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents RadPane1 As Global.Telerik.Web.UI.RadPane
+    Protected WithEvents RadPane4 As Global.Telerik.Web.UI.RadPane
 
     '''<summary>
     '''rgGrid control.
