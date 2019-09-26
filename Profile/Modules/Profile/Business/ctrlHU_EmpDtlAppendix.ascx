@@ -1,7 +1,7 @@
 ﻿<%@ Control Language="vb" AutoEventWireup="false" CodeBehind="ctrlHU_EmpDtlAppendix.ascx.vb"
     Inherits="Profile.ctrlHU_EmpDtlAppendix" %>
 <%@ Register Src="../Shared/ctrlEmpBasicInfo.ascx" TagName="ctrlEmpBasicInfo" TagPrefix="Profile" %>
-<tlk:RadSplitter ID="RadSplitter3" runat="server"  Height="100%" Width="100%" SkinID="Demo" Orientation="Horizontal" >
+<tlk:RadSplitter ID="RadSplitter3" runat="server"  Orientation="Horizontal" Scrolling="None">
     <tlk:RadPane runat="server" ID="ToolbarPane" Height="33px" Scrolling="None">
         <tlk:RadToolBar runat="server" ID="tbarMainToolBar" OnClientButtonClicking="ClientButtonClicking">
         </tlk:RadToolBar>
