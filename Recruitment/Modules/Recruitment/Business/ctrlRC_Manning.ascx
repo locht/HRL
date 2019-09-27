@@ -89,7 +89,7 @@
                                 <%# Translate("Phê duyệt")%>:
                             </td>
                             <td>
-                                <asp:CheckBox ID="cbStatus" runat="server" Checked =true />
+                                <asp:CheckBox ID="cbStatus" runat="server"  Checked =true />
                             </td>
                         </tr>
                         <tr>
@@ -132,9 +132,9 @@
             </tlk:RadPane>
             <tlk:RadPane ID="RadPane3" runat="server" Scrolling="None">
                 <tlk:RadGrid ID="rgManning" runat="server" AutoGenerateColumns="False" AllowPaging="True"
-                    AllowSorting="True" AllowMultiRowSelection="false" CellSpacing="0" GridLines="None"  Height="100%" Width="100%"
+                    AllowSorting="True" AllowMultiRowSelection="true" CellSpacing="0" GridLines="None"  Height="100%" Width="100%"
                       AllowFilteringByColumn="true" AllowMultiRowEdit="True">
-                    <ClientSettings>
+                    <ClientSettings EnableRowHoverStyle="true">
                         <Scrolling AllowScroll="True" UseStaticHeaders="True" />
                         <Selecting AllowRowSelect="True" />
                     </ClientSettings>
@@ -150,7 +150,7 @@
                                 SortExpression="NAME" UniqueName="NAME" ReadOnly = "true" >
                                 <HeaderStyle HorizontalAlign="Center" />
                             </tlk:GridBoundColumn>
-                            <tlk:GridBoundColumn DataField="ORG_NAME" FilterControlWidth="90%" HeaderText="<%$ Translate: Phòng ban %>"
+                             <tlk:GridBoundColumn DataField="ORG_NAME" FilterControlWidth="90%" HeaderText="<%$ Translate: Phòng ban %>"
                                 SortExpression="ORG_NAME" UniqueName="ORG_NAME" ReadOnly = "true" >
                                 <HeaderStyle HorizontalAlign="Center" />
                             </tlk:GridBoundColumn>
@@ -227,11 +227,11 @@
             postBack(oWnd.get_navigateUrl());
         }
 
-        function OnFocus(index) {
-            var grid = $find('<%# rgManning.ClientID%>').get_masterTableView();
-            grid.clearSelectedItems();
-            grid.get_dataItems()[index].set_selected(true);
-        }
+        //        function OnFocus(index) {
+        //            var grid = $find('<%# rgManning.ClientID%>').get_masterTableView();
+        //            grid.clearSelectedItems();
+        //            grid.get_dataItems()[index].set_selected(true);
+        //        }
 
         function OnChanged(sender, eventArgs) {
             $find("<%= RadAjaxPanel1.ClientID%>").ajaxRequestWithTarget("<%= RadAjaxPanel1.UniqueID %>", sender.get_id());

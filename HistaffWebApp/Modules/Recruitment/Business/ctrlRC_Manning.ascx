@@ -132,9 +132,9 @@
             </tlk:RadPane>
             <tlk:RadPane ID="RadPane3" runat="server" Scrolling="None">
                 <tlk:RadGrid ID="rgManning" runat="server" AutoGenerateColumns="False" AllowPaging="True"
-                    AllowSorting="True" AllowMultiRowSelection="false" CellSpacing="0" GridLines="None"  Height="100%" Width="100%"
+                    AllowSorting="True" AllowMultiRowSelection="true" CellSpacing="0" GridLines="None"  Height="100%" Width="100%"
                       AllowFilteringByColumn="true" AllowMultiRowEdit="True">
-                    <ClientSettings>
+                    <ClientSettings EnableRowHoverStyle="true">
                         <Scrolling AllowScroll="True" UseStaticHeaders="True" />
                         <Selecting AllowRowSelect="True" />
                     </ClientSettings>
@@ -227,11 +227,11 @@
             postBack(oWnd.get_navigateUrl());
         }
 
-        function OnFocus(index) {
-            var grid = $find('<%# rgManning.ClientID%>').get_masterTableView();
-            grid.clearSelectedItems();
-            grid.get_dataItems()[index].set_selected(true);
-        }
+//        function OnFocus(index) {
+//            var grid = $find('<%# rgManning.ClientID%>').get_masterTableView();
+//            grid.clearSelectedItems();
+//            grid.get_dataItems()[index].set_selected(true);
+//        }
 
         function OnChanged(sender, eventArgs) {
             $find("<%= RadAjaxPanel1.ClientID%>").ajaxRequestWithTarget("<%= RadAjaxPanel1.UniqueID %>", sender.get_id());

@@ -222,6 +222,7 @@ Public Class ctrlRC_Manning
 
                         Refresh("UpdateView")
                         UpdateControlState()
+                        rgManning.Rebind()
                     Else
                         CurrentState = CommonMessage.STATE_NORMAL
                         ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), NotifyType.Error)
@@ -336,7 +337,7 @@ Public Class ctrlRC_Manning
                                     GetManningOrgInfo()
 
                                     'reload gird
-                                    rgManning.DataSource = repStore.GetListManningByName(Int32.Parse(hidMannOrgId.Value), Int32.Parse(hidOrgID.Value), year)
+                                    rgManning.DataSource = repStore.GetListManningByName(If(hidMannOrgId.Value = "", 0, Int32.Parse(hidMannOrgId.Value)), Int32.Parse(ctrlOrganization.CurrentValue), year)
                                     rgManning.Rebind()
 
                                 Case CommonMessage.STATE_EDIT
@@ -448,8 +449,7 @@ Public Class ctrlRC_Manning
                     dtListMannName = repStore.LoadComboboxListMannName(ctrlOrganization.CurrentValue, If(cboYear.SelectedValue = "", 0, Int32.Parse(cboYear.SelectedValue)))
                     FillRadCombobox(cboListManning, dtListMannName, "NAME", "ID")
                 End If
-                rgManning.CurrentPageIndex = 0
-                rgManning.MasterTableView.SortExpressions.Clear()
+                rgManning.DataSource = Nothing
                 rgManning.Rebind()
             End Using
         Catch ex As Exception
@@ -461,13 +461,15 @@ Public Class ctrlRC_Manning
         Try
             Dim dtListMannName As DataTable
             If cboYear.SelectedValue Is Nothing Or cboYear.SelectedValue = "" Then
-                FillRadCombobox(cboListManning, Nothing, "NAME", "ID")
+                FillRadCombobox(cboListManning, New DataTable, "NAME", "ID")
             Else
                 cboListManning.ClearSelection()
                 dtListMannName = repStore.LoadComboboxListMannName(ctrlOrganization.CurrentValue, cboYear.SelectedValue)
                 FillRadCombobox(cboListManning, dtListMannName, "NAME", "ID")
 
             End If
+            rgManning.DataSource = Nothing
+            rgManning.Rebind()
         Catch ex As Exception
             DisplayException(Me.ViewName, Me.ID, ex)
         End Try
@@ -525,7 +527,7 @@ Public Class ctrlRC_Manning
 
             Dim year As Integer = If(cboYear.SelectedValue = [String].Empty, 0, Int32.Parse(cboYear.SelectedValue))
             Dim manning As Integer = If(cboListManning.SelectedValue = [String].Empty, 0, Decimal.Parse(cboListManning.SelectedValue))
-            tabSource = repStore.GetListManningByName(manning, Int32.Parse(hidOrgID.Value), year)
+            tabSource = repStore.GetListManningByName(manning, Int32.Parse(ctrlOrganization.CurrentValue), year)
             rgManning.DataSource = tabSource
             rgManning.Rebind()
 
@@ -626,7 +628,7 @@ Public Class ctrlRC_Manning
                     objMT.ID = data.GetDataKeyValue("ID")
                     If data.GetDataKeyValue("NEW_MANNING") IsNot Nothing Then
                         objMT.NEW_MANNING = CType(data.Item("NEW_MANNING").Controls(0), RadNumericTextBox).Value
-                        ' objMO.NEW_MANNING += objMT.NEW_MANNING
+                        'objMO.NEW_MANNING += objMT.NEW_MANNING
                     Else
                         objMT.NEW_MANNING = 0
                     End If
@@ -639,7 +641,7 @@ Public Class ctrlRC_Manning
 
                     objMT.MOBILIZE_COUNT_MANNING = objMT.NEW_MANNING - objMT.CURRENT_MANNING
                     objMT.NOTE = CType(data.Item("NOTE").Controls(0), TextBox).Text
-                    ' objMT.MOBILIZE_COUNT_MANNING += objMT.MOBILIZE_COUNT_MANNING
+                    'objMT.MOBILIZE_COUNT_MANNING += objMT.MOBILIZE_COUNT_MANNING
 
                     If (repStore.UpdateNewManningTitle(objMT) = 1) Then
                         complete = complete + 1
@@ -664,8 +666,13 @@ Public Class ctrlRC_Manning
         End Try
     End Function
     Private Function DeleteData() As Boolean
+        Dim lstID As String = String.Empty
         Try
-            Return repStore.DeleteManning(Int32.Parse(cboListManning.SelectedValue))
+            For i As Integer = 0 To rgManning.SelectedItems.Count - 1
+                Dim item As GridDataItem = rgManning.SelectedItems(i)
+                lstID = If(lstID = String.Empty, item.GetDataKeyValue("ID"), lstID & "," & item.GetDataKeyValue("ID"))
+            Next
+            Return repStore.DeleteManning(lstID, Int32.Parse(cboListManning.SelectedValue))
         Catch ex As Exception
             Return False
         End Try
@@ -915,7 +922,7 @@ Public Class ctrlRC_Manning
             'Dim lstData As DataTable = repStore.GetListManningByName(-1, Int32.Parse(hidOrgID.Value), year)
             'Dim lstData As DataTable = repStore.GetListManningByName(-1, 0, year)
             'tabSource = repStore.GetListManningByName(-1, 0, year)
-            tabSource = repStore.GetListManningByName(cboList, If(hidOrgID.Value = "", 0, Int32.Parse(hidOrgID.Value)), year)
+            tabSource = repStore.GetListManningByName(cboList, If(ctrlOrganization.CurrentValue = "", 0, Int32.Parse(ctrlOrganization.CurrentValue)), year)
 
             rgManning.DataSource = tabSource
             rgManning.MasterTableView.VirtualItemCount = tabSource.Rows.Count
@@ -932,7 +939,7 @@ Public Class ctrlRC_Manning
             item.Edit = value
         Next
 
-        rgManning.Rebind()
+        'rgManning.Rebind()
     End Sub
     Public Sub ExportFileDataXML(ByVal dsReport As DataSet, ByVal requestId As Decimal, ByVal programID As Decimal, ByVal mid As String, ByVal type As Decimal)
         Try

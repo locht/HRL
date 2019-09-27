@@ -179,9 +179,9 @@ Public Class RecruitmentStoreProcedure
         Return Int32.Parse(objUpd(0).ToString())
     End Function
 
-    Public Function DeleteManning(ByVal P_MANNING_ORG_ID As Int32) As Boolean
+    Public Function DeleteManning(ByVal P_ID As String, ByVal P_MANNING_ORG_ID As Integer) As Boolean
         Dim objUpd As Object = rep.ExecuteStoreScalar("PKG_RECRUITMENT.DELETE_MANNING", _
-                                                   New List(Of Object)(New Object() {P_MANNING_ORG_ID, OUT_NUMBER}))
+                                                   New List(Of Object)(New Object() {P_ID, P_MANNING_ORG_ID, OUT_NUMBER}))
         Return True
     End Function
 
