@@ -1198,6 +1198,10 @@ Public Class ctrlHU_WageNewEdit
                     ShowMessage(Translate("Nhân viên trạng thái nghỉ việc. Không được phép chỉnh sửa thông tin."), Utilities.NotifyType.Warning)
                     Exit Sub
                 End If
+                If obj.DIRECT_MANAGER Is Nothing Or obj.OBJECT_ATTENDANCE Is Nothing Or obj.OBJECT_LABOR Is Nothing Then
+                    ShowMessage(Translate(" Nhân viên chưa có dữ liệu Quản lý trực tiếp, Đối tượng chấm công, Đối tượng lao động. Vui lòng kiểm tra và bổ sung trước khi tạo hồ sơ lương."), NotifyType.Warning)
+                    Exit Sub
+                End If
                 ClearControlValue(cbSalaryGroup, cbSalaryLevel, cbSalaryRank, cboTaxTable, cboSalTYPE, rnFactorSalary, SalaryInsurance, cboAllowance_Total, basicSalary,
                               Salary_Total, rnOtherSalary1, rnOtherSalary2, rnOtherSalary3, rnOtherSalary4, rnOtherSalary5)
                 rgAllow.DataSource = New List(Of WorkingAllowanceDTO)
