@@ -78,6 +78,24 @@ Public Class ctrlHU_WageNewEdit
             ViewState(Me.ID & "_EmployeeID") = value
         End Set
     End Property
+
+    Property total As Decimal
+        Get
+            Return ViewState(Me.ID & "_total")
+        End Get
+        Set(ByVal value As Decimal)
+            ViewState(Me.ID & "_total") = value
+        End Set
+    End Property
+
+    Property basicSal As Decimal
+        Get
+            Return ViewState(Me.ID & "_basicSal")
+        End Get
+        Set(ByVal value As Decimal)
+            ViewState(Me.ID & "_basicSal") = value
+        End Set
+    End Property
 #End Region
 #Region "Page"
     ''' <summary>
@@ -286,6 +304,7 @@ Public Class ctrlHU_WageNewEdit
                     End If
                     If Working.SAL_BASIC IsNot Nothing Then
                         basicSalary.Text = Working.SAL_BASIC
+                        basicSal = Working.SAL_BASIC
                     End If
                     If Working.SAL_INS IsNot Nothing Then
                         SalaryInsurance.Text = Working.SAL_INS
@@ -295,12 +314,13 @@ Public Class ctrlHU_WageNewEdit
                     End If
                     If Working.SAL_TOTAL IsNot Nothing Then
                         Salary_Total.Text = Working.SAL_TOTAL
+                        total = Working.SAL_TOTAL
                     End If
                     cbSalaryGroup.Enabled = False
                     cbSalaryLevel.Enabled = False
                     cbSalaryRank.Enabled = False
                     rnFactorSalary.Enabled = True
-                    basicSalary.Enabled = False
+                    'basicSalary.Enabled = False
                     rnPercentSalary.Enabled = False
                     Salary_Total.Enabled = False
                     'rnOtherSalary1.Enabled = False
@@ -1008,7 +1028,7 @@ Public Class ctrlHU_WageNewEdit
             _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
         End Try
     End Sub
-    Private Sub rnOtherSalary1_TextChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles rnOtherSalary1.TextChanged, rnOtherSalary2.TextChanged, rnOtherSalary3.TextChanged, SalaryInsurance.TextChanged, rnPercentSalary.TextChanged, rnFactorSalary.TextChanged
+    Private Sub rnFactorSalary_TextChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles rnFactorSalary.TextChanged
         Try
             Select Case cboSalTYPE.Text
                 Case "Thử việc"
@@ -1029,9 +1049,36 @@ Public Class ctrlHU_WageNewEdit
             Throw ex
         End Try
     End Sub
+
     Private Sub basicSalary_TextChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles basicSalary.TextChanged
         Try
-            CalculatorSalary()
+            'CalculatorSalary()
+            If basicSalary.Value < basicSal Then
+                ShowMessage(Translate("Không được điều chỉnh lương cơ bản nhỏ hơn hệ số nhân với lương tối thiểu vùng"), NotifyType.Warning)
+                Exit Sub
+            End If
+            If rnPercentSalary.Value.HasValue Then
+                If cboSalTYPE.Text = "Kiêm nhiệm" Then
+                    total = (If(basicSalary.Value.HasValue, basicSalary.Value, 0) + _
+                             If(rnOtherSalary1.Value.HasValue, rnOtherSalary1.Value, 0) + _
+                             If(rnOtherSalary2.Value.HasValue, rnOtherSalary2.Value, 0)) * rnPercentSalary.Value / 100
+                    ' basicSalary.Enabled = True
+                Else
+                    total = basicSalary.Value * rnPercentSalary.Value / 100 + _
+                        If(rnOtherSalary1.Value.HasValue, rnOtherSalary1.Value, 0) 
+                    ' basicSalary.Enabled = False
+                End If
+            End If
+            Salary_Total.Value = total
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+    Private Sub rnOtherSalary1_TextChanged(sender As Object, e As System.EventArgs) Handles rnOtherSalary1.TextChanged
+        Try
+            If basicSalary.Text <> "" And Salary_Total.Text <> "" Then
+                Salary_Total.Value = basicSalary.Value + rnOtherSalary1.Value
+            End If
         Catch ex As Exception
             Throw ex
         End Try
@@ -1374,8 +1421,8 @@ Public Class ctrlHU_WageNewEdit
             '    Salary_Total.Value = total
             '    basicSalary.Enabled = False
             'End If
-            Dim total As Decimal
-            Dim basicSal As Decimal = 0
+            'Dim total As Decimal
+            ' Dim basicSal As Decimal = 0
             Dim factorSal As String = ""
             Dim rnFactorSal As Decimal
             'Get luong toi thieu vung
@@ -1392,7 +1439,7 @@ Public Class ctrlHU_WageNewEdit
                 basicSal = rnFactorSal * _lttv
                 basicSalary.Value = basicSal
             Else
-                    basicSalary.Value = 0
+                basicSalary.Value = 0
             End If
 
             If rnPercentSalary.Value.HasValue Then
@@ -1400,12 +1447,11 @@ Public Class ctrlHU_WageNewEdit
                     total = (If(basicSalary.Value.HasValue, basicSalary.Value, 0) + _
                              If(rnOtherSalary1.Value.HasValue, rnOtherSalary1.Value, 0) + _
                              If(rnOtherSalary2.Value.HasValue, rnOtherSalary2.Value, 0)) * rnPercentSalary.Value / 100
-                    basicSalary.Enabled = True
+                    ' basicSalary.Enabled = True
                 Else
                     total = basicSal * rnPercentSalary.Value / 100 + _
-                        If(rnOtherSalary1.Value.HasValue, rnOtherSalary1.Value, 0) + _
-                        If(rnOtherSalary2.Value.HasValue, rnOtherSalary2.Value, 0)
-                    basicSalary.Enabled = False
+                        If(rnOtherSalary1.Value.HasValue, rnOtherSalary1.Value, 0) 
+                    ' basicSalary.Enabled = False
                 End If
             End If
             Salary_Total.Value = total
@@ -1466,13 +1512,13 @@ Public Class ctrlHU_WageNewEdit
         End Using
         Select Case cboSalTYPE.Text
             Case "Thử việc"
-                EnableControlAll(True, cbSalaryGroup, cbSalaryLevel, cbSalaryRank, rnFactorSalary, basicSalary, rnPercentSalary, Salary_Total, rnOtherSalary1)
+                EnableControlAll(True, cbSalaryGroup, cbSalaryLevel, cbSalaryRank, rnFactorSalary, rnPercentSalary, Salary_Total, rnOtherSalary1)
                 rnPercentSalary.Value = _tyLeThuViec
             Case "Chính thức"
-                EnableControlAll(True, cbSalaryGroup, cbSalaryLevel, cbSalaryRank, rnFactorSalary, basicSalary, rnPercentSalary, Salary_Total, rnOtherSalary1)
+                EnableControlAll(True, cbSalaryGroup, cbSalaryLevel, cbSalaryRank, rnFactorSalary, rnPercentSalary, Salary_Total, rnOtherSalary1)
                 rnPercentSalary.Value = _tyLeChinhThuc
             Case "Kiêm nhiệm"
-                EnableControlAll(True, basicSalary, rnPercentSalary, rnFactorSalary, rnOtherSalary1, rnOtherSalary2)
+                EnableControlAll(True, rnPercentSalary, rnFactorSalary, rnOtherSalary1, rnOtherSalary2)
                 EnableControlAll(False, cbSalaryGroup, cbSalaryLevel, cbSalaryRank, Salary_Total)
                 ClearControlValue(cbSalaryGroup, cbSalaryLevel, cbSalaryRank, rnFactorSalary, basicSalary, Salary_Total)
         End Select
@@ -1486,6 +1532,7 @@ Public Class ctrlHU_WageNewEdit
         End If
     End Sub
 #End Region
+
 End Class
 Structure DATA_IN
     Public EMPLOYEE_ID As Decimal?
