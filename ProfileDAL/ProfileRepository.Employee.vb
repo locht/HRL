@@ -2689,7 +2689,7 @@ Partial Class ProfileRepository
                      From title In Context.HU_TITLE.Where(Function(f) f.ID = emp.TITLE_ID).DefaultIfEmpty
                      From dhkt In Context.HU_COMMEND_LIST.Where(Function(f) f.ID = p.TITLE_ID).DefaultIfEmpty
                      From httt In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.COMMEND_PAY And f.TYPE_CODE = "COMMEND_PAY" And f.ACTFLG = "A").DefaultIfEmpty
-            Where (ce.HU_EMPLOYEE_ID = _empId And p.STATUS_ID = ProfileCommon.COMMEND_STATUS.APPROVE_ID)
+            Where (ce.HU_EMPLOYEE_ID = _empId And p.STATUS_ID = 447)
                      Order By p.EFFECT_DATE
                      Select New CommendDTO With {
                      .DECISION_NO = p.NO,

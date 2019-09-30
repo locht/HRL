@@ -1231,6 +1231,7 @@ Partial Public Class AttendanceRepository
                                        .TOTAL_FACTOR1 = p.ot.TOTAL_FACTOR1,
                                        .TOTAL_FACTOR1_5 = p.ot.TOTAL_FACTOR1_5,
                                        .TOTAL_FACTOR2 = p.ot.TOTAL_FACTOR2,
+                                       .TOTAL_FACTOR2_1 = p.ot.TOTAL_FACTOR2_1,
                                        .TOTAL_FACTOR2_7 = p.ot.TOTAL_FACTOR2_7,
                                        .TOTAL_FACTOR3 = p.ot.TOTAL_FACTOR3,
                                        .TOTAL_FACTOR3_9 = p.ot.TOTAL_FACTOR3_9,
