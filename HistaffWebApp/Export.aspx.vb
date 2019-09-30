@@ -1091,7 +1091,7 @@ Public Class Export
 
                 ExportTemplate("Attendance\Import\AT_IMPORT_REGISTER_CO_Error.xlsx", _
                                           dtData, Nothing, _
-                                          "AT_IMPOERT_REGISTER_CO_Error" & Format(Date.Now, "yyyyMMdd"))
+                                          "AT_IMPORT_REGISTER_CO_Error" & Format(Date.Now, "yyyyMMdd"))
             End Using
         Catch ex As Exception
             Throw ex

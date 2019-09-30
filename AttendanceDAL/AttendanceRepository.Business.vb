@@ -3321,7 +3321,6 @@ Partial Public Class AttendanceRepository
     End Function
 
     Public Function InsertLeaveSheet(ByVal objLeave As AT_LEAVESHEETDTO, ByVal log As UserLog, ByRef gID As Decimal) As Boolean
-        Dim fromdate As Date?
         Try
             Dim emp = (From p In Context.HU_EMPLOYEE
                         Where p.EMPLOYEE_CODE = objLeave.EMPLOYEE_CODE And p.IS_KIEM_NHIEM Is Nothing
@@ -3333,23 +3332,21 @@ Partial Public Class AttendanceRepository
                 atLeave.LEAVE_FROM = objLeave.LEAVE_FROM
                 atLeave.LEAVE_TO = objLeave.LEAVE_TO
                 atLeave.MANUAL_ID = objLeave.MANUAL_ID
-                atLeave.DAY_NUM = objLeave.DAY_NUM
+                atLeave.DAY_NUM = If(objLeave.STATUS_SHIFT = -1 Or objLeave.STATUS_SHIFT = 0, 1, 0.5)
                 atLeave.NOTE = objLeave.NOTE
-                atLeave.STATUS = 2
+                atLeave.STATUS = 1 'phe duyet
                 atLeave.IS_APP = -1
                 atLeave.IMPORT = -1
                 Context.AT_LEAVESHEET.AddObject(atLeave)
-                Dim timeSpan As TimeSpan = objLeave.LEAVE_TO - objLeave.LEAVE_FROM
-                For i As Integer = 0 To timeSpan.Days
-                    Dim atLeaveDT As New AT_LEAVESHEET_DETAIL
-                    atLeaveDT.EMPLOYEE_ID = emp.ID
-                    atLeaveDT.LEAVESHEET_ID = atLeave.ID
-                    atLeaveDT.MANUAL_ID = objLeave.MANUAL_ID
-                    atLeaveDT.LEAVE_DAY = objLeave.LEAVE_FROM.Value.AddDays(i)
-                    atLeaveDT.DAY_NUM = 1
-                    atLeaveDT.STATUS_SHIFT = If(objLeave.STATUS_SHIFT Is Nothing, 1, objLeave.STATUS_SHIFT)
-                    Context.AT_LEAVESHEET_DETAIL.AddObject(atLeaveDT)
-                Next
+                Dim atLeaveDT As New AT_LEAVESHEET_DETAIL
+                atLeaveDT.ID = Utilities.GetNextSequence(Context, Context.AT_LEAVESHEET_DETAIL.EntitySet.Name)
+                atLeaveDT.EMPLOYEE_ID = emp.ID
+                atLeaveDT.LEAVESHEET_ID = atLeave.ID
+                atLeaveDT.MANUAL_ID = objLeave.MANUAL_ID
+                atLeaveDT.LEAVE_DAY = objLeave.LEAVE_FROM
+                atLeaveDT.DAY_NUM = If(objLeave.STATUS_SHIFT = -1 Or objLeave.STATUS_SHIFT = 0, 1, 0.5)
+                atLeaveDT.STATUS_SHIFT = If(objLeave.STATUS_SHIFT = -1 Or objLeave.STATUS_SHIFT = 0, 0, objLeave.STATUS_SHIFT)
+                Context.AT_LEAVESHEET_DETAIL.AddObject(atLeaveDT)
             End If
             Context.SaveChanges(log)
             Return (True)
@@ -3414,21 +3411,23 @@ Partial Public Class AttendanceRepository
         Try
             dtDataSave.Columns.Add("EMPLOYEE_CODE")
             dtDataSave.Columns.Add("MANUAL_ID")
-            dtDataSave.Columns.Add("MORNING_ID")
-            dtDataSave.Columns.Add("AFTERNOON_ID")
+            dtDataSave.Columns.Add("STATUS_SHIFT_VALUE")
+            'dtDataSave.Columns.Add("MORNING_ID")
+            'dtDataSave.Columns.Add("AFTERNOON_ID")
             dtDataSave.Columns.Add("TOTAL_DAY_ENT", GetType(Decimal)) ' tổng ngày nghỉ phép
             dtDataSave.Columns.Add("TOTAL_DAY_COM", GetType(Decimal)) ' tổng ngày nghỉ bù
 
             For Each row As DataRow In dtData.Rows
                 Dim empCode As String = row("EMPLOYEE_CODE")
                 Dim fromDate As Date
-                DateTime.TryParseExact(row("LEAVE_FROM"), "dd/MM/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, fromDate)
+                DateTime.TryParseExact(row("LEAVE_DAY"), "dd/MM/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, fromDate)
                 Dim toDate As Date
-                DateTime.TryParseExact(row("LEAVE_TO"), "dd/MM/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, toDate)
-                'Dim toDate As Date = Date.Parse(row("LEAVE_TO"))
+                DateTime.TryParseExact(row("LEAVE_DAY"), "dd/MM/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, toDate)
+                toDate = toDate.AddDays(1)
                 Dim manualId As Decimal = Utilities.Obj2Decima(row("MANUAL_ID"))
-                Dim monningId As Decimal = Utilities.Obj2Decima(row("MORNING_ID"))
-                Dim afternoonId As Decimal = Utilities.Obj2Decima(row("AFTERNOON_ID"))
+                Dim statusShift As Decimal = If(row("STATUS_SHIFT_VALUE") = String.Empty, -1, Utilities.Obj2Decima(row("STATUS_SHIFT_VALUE")))
+                'Dim monningId As Decimal = Utilities.Obj2Decima(row("MORNING_ID"))
+                'Dim afternoonId As Decimal = Utilities.Obj2Decima(row("AFTERNOON_ID"))
                 Dim emp = (From e In Context.HU_EMPLOYEE
                            Where e.EMPLOYEE_CODE = empCode And e.JOIN_DATE <= fromDate And
                                (e.TER_EFFECT_DATE Is Nothing Or
@@ -3446,12 +3445,15 @@ Partial Public Class AttendanceRepository
                 rowDataSave = dtDataSave.NewRow
                 rowDataSave("EMPLOYEE_CODE") = empCode
                 rowDataSave("MANUAL_ID") = manualId
-                rowDataSave("MORNING_ID") = monningId
-                rowDataSave("AFTERNOON_ID") = afternoonId
-                rowDataSave("TOTAL_DAY_ENT") = If(monningId = afternoonId, GetTotalDAY(employee_id, 251, fromDate, toDate).Rows(0)(0).ToString, Utilities.Obj2Decima(GetTotalDAY(employee_id, 251, fromDate, toDate).Rows(0)(0) / 2))
-                rowDataSave("TOTAL_DAY_COM") = If(monningId = afternoonId, GetTotalDAY(employee_id, 255, fromDate, toDate).Rows(0)(0).ToString, Utilities.Obj2Decima(GetTotalDAY(employee_id, 255, fromDate, toDate).Rows(0)(0) / 2))
+                'rowDataSave("MORNING_ID") = monningId
+                'rowDataSave("AFTERNOON_ID") = afternoonId
+                If manualId = 251 Then
+                    rowDataSave("TOTAL_DAY_ENT") = If(statusShift = -1 Or statusShift = 0, 1, 0.5)
+                End If
+                If manualId = 255 Then
+                    rowDataSave("TOTAL_DAY_COM") = If(statusShift = -1 Or statusShift = 0, 1, 0.5)
+                End If
                 dtDataSave.Rows.Add(rowDataSave)
-
 
                 ' khởi tạo dòng trong datatable lỗi.
                 rowError = dtDataError.NewRow
@@ -3463,12 +3465,12 @@ Partial Public Class AttendanceRepository
                 at_compensatory = GetNghiBu(employee_id, fromDate.Year)
                 '4. tổng số ngày đăng ký của nhân viên trên file import.
                 'totalDayRes = GetTotalDAY(employee_id, 251, Date.Parse(row("LEAVE_FROM")), Date.Parse(row("LEAVE_TO")))
-                totalPhep = dtDataSave.Compute("SUM(TOTAL_DAY_ENT)", "EMPLOYEE_CODE = " & empCode & " AND (MORNING_ID = 251 OR AFTERNOON_ID = 251)")
+                totalPhep = dtDataSave.Compute("SUM(TOTAL_DAY_ENT)", "EMPLOYEE_CODE = " & empCode & " AND MANUAL_ID = 251")
 
                 ' nếu là kiểu đăng ký nghỉ phép
-                If Utilities.Obj2Decima(row("MORNING_ID")) = 251 Or Utilities.Obj2Decima(row("AFTERNOON_ID")) = 251 Then
+                If Utilities.Obj2Decima(row("MANUAL_ID")) = 251 Then
                     If dtDataUserPHEPNAM IsNot Nothing And at_entilement IsNot Nothing Then
-                        If at_entilement.TOTAL_HAVE.Value - (dtDataUserPHEPNAM.Rows(0)(0) + totalPhep) < -3 Then
+                        If at_entilement.TOTAL_HAVE.Value - (dtDataUserPHEPNAM.Rows(0)(0) + totalPhep) < 0 Then
                             rowError("MANUAL_NAME") = "Tổng số ngày nghỉ phép của bạn trong năm nay đã vượt quá mức cho phép."
                             isError = True
                         End If
@@ -3484,9 +3486,9 @@ Partial Public Class AttendanceRepository
                 ' nếu là kiểu đăng ký nghỉ bù
                 dtDataUserPHEPBU = GetTotalPHEPBU(employee_id, fromDate.Year, Utilities.Obj2Decima(row("MANUAL_ID")))
                 'totalDayRes = GetTotalDAY(employee_id, 255, Date.Parse(row("LEAVE_FROM")), Date.Parse(row("LEAVE_TO")))
-                totalBu = Utilities.Obj2Decima(dtDataSave.Compute("SUM(TOTAL_DAY_COM)", "EMPLOYEE_CODE = " & empCode & " AND (MORNING_ID = 255 OR AFTERNOON_ID = 255)"))
+                totalBu = Utilities.Obj2Decima(dtDataSave.Compute("SUM(TOTAL_DAY_COM)", "EMPLOYEE_CODE = " & empCode & " AND MANUAL_ID = 255"))
 
-                If Utilities.Obj2Decima(row("MORNING_ID")) = 255 Or Utilities.Obj2Decima(row("AFTERNOON_ID")) = 255 Then
+                If Utilities.Obj2Decima(row("MANUAL_ID")) = 255 Then
                     If dtDataUserPHEPBU IsNot Nothing And at_compensatory IsNot Nothing Then
                         If at_compensatory.TOTAL_HAVE.Value - (dtDataUserPHEPBU.Rows(0)(0) + totalBu) < 0 Then
                             rowError("MANUAL_NAME") = "Tổng số ngày nghỉ bù của bạn đã vượt quá mức cho phép."

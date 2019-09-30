@@ -76,6 +76,7 @@ Public Class ctrlRegisterCO
         Get
             If ViewState(Me.ID & "_dtData") Is Nothing Then
                 Dim dt As New DataTable
+                dt.Columns.Add("ID", GetType(String))
                 dt.Columns.Add("STT", GetType(String))
                 dt.Columns.Add("EMPLOYEE_ID", GetType(String))
                 dt.Columns.Add("EMPLOYEE_CODE", GetType(String))
@@ -83,16 +84,11 @@ Public Class ctrlRegisterCO
                 dt.Columns.Add("TITLE_NAME", GetType(String))
                 dt.Columns.Add("ORG_NAME", GetType(String))
                 dt.Columns.Add("ORG_PATH", GetType(String))
-                dt.Columns.Add("STAFF_RANK_NAME", GetType(String))
-                dt.Columns.Add("BALANCE_NOW", GetType(String))
-                dt.Columns.Add("LEAVE_FROM", GetType(String))
-                dt.Columns.Add("LEAVE_TO", GetType(String))
+                dt.Columns.Add("LEAVE_DAY", GetType(String))
                 dt.Columns.Add("MANUAL_NAME", GetType(String))
                 dt.Columns.Add("MANUAL_ID", GetType(String))
-                dt.Columns.Add("MORNING_NAME", GetType(String))
-                dt.Columns.Add("MORNING_ID", GetType(String))
-                dt.Columns.Add("AFTERNOON_NAME", GetType(String))
-                dt.Columns.Add("AFTERNOON_ID", GetType(String))
+                dt.Columns.Add("STATUS_SHIFT", GetType(String))
+                dt.Columns.Add("STATUS_SHIFT_VALUE", GetType(String))
                 dt.Columns.Add("NOTE", GetType(String))
                 ViewState(Me.ID & "_dtData") = dt
             End If
@@ -762,9 +758,10 @@ Public Class ctrlRegisterCO
                     objSIGN = New AT_LEAVESHEETDTO
                     objSIGN.EMPLOYEE_CODE = dr("EMPLOYEE_CODE")
                     objSIGN.MANUAL_ID = CDec(dr("MANUAL_ID"))
-                    objSIGN.LEAVE_FROM = ToDate(dr("LEAVE_FROM"))
-                    objSIGN.LEAVE_TO = ToDate(dr("LEAVE_TO"))
-                    objSIGN.DAY_NUM = CDec(dr("DAY_NUM"))
+                    objSIGN.LEAVE_FROM = ToDate(dr("LEAVE_DAY"))
+                    objSIGN.LEAVE_TO = ToDate(dr("LEAVE_DAY"))
+                    objSIGN.DAY_NUM = If(dr("DAY_NUM") = String.Empty, 1, CDec(dr("DAY_NUM")))
+                    objSIGN.STATUS_SHIFT = If(dr("STATUS_SHIFT_VALUE") = String.Empty, -1, CDec(dr("STATUS_SHIFT_VALUE")))
                     objSIGN.NOTE = dr("NOTE")
                     rep.InsertLeaveSheet(objSIGN, gID)
                 Next
@@ -802,6 +799,7 @@ Public Class ctrlRegisterCO
             'Dim is_Validate As Boolean
             Dim _validate As New AT_LEAVESHEETDTO
             Dim rep As New AttendanceRepository
+            Dim store As New AttendanceStoreProcedure
             dtData.TableName = "DATA"
             dtDataImportEmployee = dtData.Clone
             dtError = dtData.Clone
@@ -812,29 +810,10 @@ Public Class ctrlRegisterCO
                 rowError = dtError.NewRow
                 sError = "Chưa nhập mã nhân viên"
                 ImportValidate.EmptyValue("EMPLOYEE_CODE", row, rowError, isError, sError)
-
-                sError = "Nghỉ từ ngày không được để trống"
-                ImportValidate.IsValidDate("LEAVE_FROM", row, rowError, isError, sError)
-                sError = "Nghỉ đến ngày không được để trống"
-                ImportValidate.IsValidDate("LEAVE_TO", row, rowError, isError, sError)
-                If rowError("LEAVE_FROM").ToString = "" And _
-                   rowError("LEAVE_TO").ToString = "" And _
-                    row("LEAVE_FROM").ToString <> "" And _
-                   row("LEAVE_TO").ToString <> "" Then
-                    Dim startdate = Date.Parse(row("LEAVE_FROM"))
-                    Dim enddate = Date.Parse(row("LEAVE_TO"))
-                    If startdate > enddate Then
-                        rowError("LEAVE_FROM") = "Nghỉ từ ngày phải nhỏ hơn nghỉ tới ngày"
-                        isError = True
-                    End If
-                End If
+                sError = "Ngày nghỉ không được để trống"
+                ImportValidate.IsValidDate("LEAVE_DAY", row, rowError, isError, sError)
                 sError = "Kiểu công"
                 ImportValidate.IsValidList("MANUAL_NAME", "MANUAL_ID", row, rowError, isError, sError)
-                sError = "Kiểu công buổi sáng"
-                ImportValidate.IsValidList("MORNING_NAME", "MORNING_ID", row, rowError, isError, sError)
-                sError = "Kiểu công buổi chiều"
-                ImportValidate.IsValidList("AFTERNOON_NAME", "AFTERNOON_ID", row, rowError, isError, sError)
-
                 If isError Then
                     rowError("STT") = irow
                     If rowError("EMPLOYEE_CODE").ToString = "" Then
@@ -862,15 +841,17 @@ Public Class ctrlRegisterCO
             Else
                 ' check nv them vao file import có nằm trong hệ thống không.
                 For j As Integer = 0 To dsDataComper.Rows.Count - 1
-                    If dsDataComper(j)("EMPLOYEE_ID") = "" Then
-                        dtEmpID = New DataTable
-                        dtEmpID = rep.GetEmployeeID(dsDataComper(j)("EMPLOYEE_CODE"), rdDenngay.SelectedDate)
-                        rowError = dtError.NewRow
-                        If dtEmpID Is Nothing Or dtEmpID.Rows.Count <= 0 Then
-                            rowError("EMPLOYEE_CODE") = "Mã nhân viên " & dsDataComper(j)("EMPLOYEE_CODE") & " không tồn tại trên hệ thống."
+                    dtEmpID = New DataTable
+                    dtEmpID = rep.GetEmployeeID(dsDataComper(j)("EMPLOYEE_CODE"), rdDenngay.SelectedDate)
+                    rowError = dtError.NewRow
+                    If dtEmpID Is Nothing Or dtEmpID.Rows.Count <= 0 Then
+                        rowError("EMPLOYEE_CODE") = "Mã nhân viên " & dsDataComper(j)("EMPLOYEE_CODE") & " không tồn tại trên hệ thống."
+                        isError = True
+                    Else
+                        Dim outNum As Int32 = store.CHECK_KIEM_NHIEM(dsDataComper(j)("EMPLOYEE_CODE"))
+                        If outNum > 0 Then
+                            rowError("EMPLOYEE_CODE") = "Mã nhân viên " & dsDataComper(j)("EMPLOYEE_CODE") & " có kiêm nhiệm."
                             isError = True
-                        Else
-                            dsDataComper(j)("EMPLOYEE_ID") = dtEmpID.Rows(0)("ID")
                         End If
                     End If
                     If isError Then
@@ -886,7 +867,7 @@ Public Class ctrlRegisterCO
                     ScriptManager.RegisterStartupScript(Me.Page, Me.Page.GetType(), "javascriptfunction", "ExportReport('Template_Register_Error')", True)
                     ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), Utilities.NotifyType.Error)
                 Else
-                    'check phép < -3
+                    'check phép < 0
                     dtError = rep.checkLeaveImport(dtData)
                     If dtError IsNot Nothing AndAlso dtError.Rows.Count > 0 Then
                         dtError.TableName = "DATA"
