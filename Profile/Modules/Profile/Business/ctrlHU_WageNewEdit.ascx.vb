@@ -1076,8 +1076,14 @@ Public Class ctrlHU_WageNewEdit
     End Sub
     Private Sub rnOtherSalary1_TextChanged(sender As Object, e As System.EventArgs) Handles rnOtherSalary1.TextChanged
         Try
-            If basicSalary.Text <> "" And Salary_Total.Text <> "" Then
+            If basicSalary.Text <> "" Then
+                If rnOtherSalary1.Text = "" Then
+                    rnOtherSalary1.Value = 0
+                End If
                 Salary_Total.Value = basicSalary.Value + rnOtherSalary1.Value
+                If rnOtherSalary1.Text = 0 Then
+                    rnOtherSalary1.Text = ""
+                End If
             End If
         Catch ex As Exception
             Throw ex
