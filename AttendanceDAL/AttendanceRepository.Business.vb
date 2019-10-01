@@ -3326,14 +3326,23 @@ Partial Public Class AttendanceRepository
             Dim emp = (From p In Context.HU_EMPLOYEE
                         Where p.EMPLOYEE_CODE = objLeave.EMPLOYEE_CODE And p.IS_KIEM_NHIEM Is Nothing
                         Select p).FirstOrDefault()
+            Dim dayNum As Decimal = If(objLeave.STATUS_SHIFT = -1 Or objLeave.STATUS_SHIFT = 0, 1, 0.5)
+            Dim statusShift As Decimal = If(objLeave.STATUS_SHIFT = -1 Or objLeave.STATUS_SHIFT = 0, 0, objLeave.STATUS_SHIFT)
             If emp IsNot Nothing Then
+                Dim query = From p In Context.AT_LEAVESHEET_DETAIL
+                            Where p.EMPLOYEE_ID = emp.ID And p.MANUAL_ID = objLeave.MANUAL_ID _
+                            And p.LEAVE_DAY = objLeave.LEAVE_FROM And p.STATUS_SHIFT = statusShift
+
+                If query.ToList.Count > 0 Then
+                    Return True
+                End If
                 Dim atLeave As New AT_LEAVESHEET
                 atLeave.ID = Utilities.GetNextSequence(Context, Context.AT_LEAVESHEET.EntitySet.Name)
                 atLeave.EMPLOYEE_ID = emp.ID
                 atLeave.LEAVE_FROM = objLeave.LEAVE_FROM
                 atLeave.LEAVE_TO = objLeave.LEAVE_TO
                 atLeave.MANUAL_ID = objLeave.MANUAL_ID
-                atLeave.DAY_NUM = If(objLeave.STATUS_SHIFT = -1 Or objLeave.STATUS_SHIFT = 0, 1, 0.5)
+                atLeave.DAY_NUM = dayNum
                 atLeave.NOTE = objLeave.NOTE
                 atLeave.STATUS = 1 'phe duyet
                 atLeave.IS_APP = -1
@@ -3345,8 +3354,8 @@ Partial Public Class AttendanceRepository
                 atLeaveDT.LEAVESHEET_ID = atLeave.ID
                 atLeaveDT.MANUAL_ID = objLeave.MANUAL_ID
                 atLeaveDT.LEAVE_DAY = objLeave.LEAVE_FROM
-                atLeaveDT.DAY_NUM = If(objLeave.STATUS_SHIFT = -1 Or objLeave.STATUS_SHIFT = 0, 1, 0.5)
-                atLeaveDT.STATUS_SHIFT = If(objLeave.STATUS_SHIFT = -1 Or objLeave.STATUS_SHIFT = 0, 0, objLeave.STATUS_SHIFT)
+                atLeaveDT.DAY_NUM = dayNum
+                atLeaveDT.STATUS_SHIFT = statusShift
                 Context.AT_LEAVESHEET_DETAIL.AddObject(atLeaveDT)
             End If
             Context.SaveChanges(log)
