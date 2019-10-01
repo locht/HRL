@@ -18,7 +18,7 @@ Imports System.Runtime.Serialization
 Imports System.Xml.Serialization
 
 
-<Assembly: EdmSchemaAttribute("3e530c33-a7a0-4157-b494-3be7b0ad3b06")>
+<Assembly: EdmSchemaAttribute("5ce54386-3e77-4d13-a084-df530d93b7e9")>
 #Region "EDM Relationship Metadata"
 <Assembly: EdmRelationshipAttribute("AttendanceModel", "FK_OOLT_OOL", "OT_OTHER_LIST_TYPE", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(OT_OTHER_LIST_TYPE), "OT_OTHER_LIST", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(OT_OTHER_LIST), True)>
 <Assembly: EdmRelationshipAttribute("AttendanceModel", "FK_OOLG_OOLT", "OT_OTHER_LIST_GROUP", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(OT_OTHER_LIST_GROUP), "OT_OTHER_LIST_TYPE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(OT_OTHER_LIST_TYPE), True)>
@@ -31372,6 +31372,56 @@ Public Partial Class AT_TIME_TIMESHEET_MONTHLY
     End Sub
 
     Private Partial Sub OnWORKING_KLDChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property SALARY_ID_NEW() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _SALARY_ID_NEW
+        End Get
+        Set
+            OnSALARY_ID_NEWChanging(value)
+            ReportPropertyChanging("SALARY_ID_NEW")
+            _SALARY_ID_NEW = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("SALARY_ID_NEW")
+            OnSALARY_ID_NEWChanged()
+        End Set
+    End Property
+
+    Private _SALARY_ID_NEW As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnSALARY_ID_NEWChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnSALARY_ID_NEWChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property SALARY_ID() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _SALARY_ID
+        End Get
+        Set
+            OnSALARY_IDChanging(value)
+            ReportPropertyChanging("SALARY_ID")
+            _SALARY_ID = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("SALARY_ID")
+            OnSALARY_IDChanged()
+        End Set
+    End Property
+
+    Private _SALARY_ID As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnSALARY_IDChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnSALARY_IDChanged()
     End Sub
 
     #End Region

@@ -1167,7 +1167,7 @@ Partial Public Class AttendanceRepository
                                            .P_ISDISSOLVE = _param.IS_DISSOLVE})
             End Using
             Dim query = From p In Context.AT_TIME_TIMESHEET_MONTHLY
-                        From ot In Context.AT_TIME_TIMESHEET_OT.Where(Function(f) f.EMPLOYEE_ID = p.EMPLOYEE_ID And f.PERIOD_ID = p.PERIOD_ID).DefaultIfEmpty
+                        From ot In Context.AT_TIME_TIMESHEET_OT.Where(Function(f) f.EMPLOYEE_ID = p.EMPLOYEE_ID And f.PERIOD_ID = p.PERIOD_ID And p.SALARY_ID = p.SALARY_ID_NEW).DefaultIfEmpty
                         From e In Context.HU_EMPLOYEE.Where(Function(f) f.ID = p.EMPLOYEE_ID)
                         From t In Context.HU_TITLE.Where(Function(f) f.ID = p.TITLE_ID).DefaultIfEmpty
                         From s In Context.HU_STAFF_RANK.Where(Function(f) f.ID = p.STAFF_RANK_ID).DefaultIfEmpty
