@@ -1057,6 +1057,11 @@ Public Class ctrlHU_WageNewEdit
                 ShowMessage(Translate("Không được điều chỉnh lương cơ bản nhỏ hơn hệ số nhân với lương tối thiểu vùng"), NotifyType.Warning)
                 Exit Sub
             End If
+            If basicSalary.Value Is Nothing Then
+                ShowMessage(Translate("Bạn hãy nhập lương cơ bản"), NotifyType.Warning)
+                Exit Sub
+            End If
+
             If rnPercentSalary.Value.HasValue Then
                 If cboSalTYPE.Text = "Kiêm nhiệm" Then
                     total = (If(basicSalary.Value.HasValue, basicSalary.Value, 0) + _
@@ -1076,15 +1081,17 @@ Public Class ctrlHU_WageNewEdit
     End Sub
     Private Sub rnOtherSalary1_TextChanged(sender As Object, e As System.EventArgs) Handles rnOtherSalary1.TextChanged
         Try
-            If basicSalary.Text <> "" Then
-                If rnOtherSalary1.Text = "" Then
-                    rnOtherSalary1.Value = 0
-                End If
-                Salary_Total.Value = basicSalary.Value + rnOtherSalary1.Value
-                If rnOtherSalary1.Text = 0 Then
-                    rnOtherSalary1.Text = ""
-                End If
-            End If
+            'If basicSalary.Text <> "" Then
+            '    If rnOtherSalary1.Text = "" Then
+            '        rnOtherSalary1.Value = 0
+            '    End If
+            '    Salary_Total.Value = (basicSalary.Value * rnPercentSalary.Value / 100) + rnOtherSalary1.Value
+            '    If rnOtherSalary1.Text = 0 Then
+            '        rnOtherSalary1.Text = ""
+            '    End If
+            'End If
+            Salary_Total.Value = basicSalary.Value * rnPercentSalary.Value / 100 + _
+                        If(rnOtherSalary1.Value.HasValue, rnOtherSalary1.Value, 0)
         Catch ex As Exception
             Throw ex
         End Try
