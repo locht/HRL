@@ -967,7 +967,7 @@ Public Class ctrlHU_ContractAppendix
                 _error = False
             End If
 
-            If Not IsDBNull(rows("EXPIRE_DATE")) OrElse rows("EXPIRE_DATE") <> "" Then
+            If Not IsDBNull(rows("EXPIRE_DATE")) Then
                 If CheckDate(rows("EXPIRE_DATE")) = False Then
                     rows("EXPIRE_DATE") = "NULL"
                     newRow("DISCIPTION") = newRow("DISCIPTION") + "Ngày kết thúc - Không đúng định dạng,"
