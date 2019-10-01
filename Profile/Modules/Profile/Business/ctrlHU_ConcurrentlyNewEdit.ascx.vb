@@ -752,6 +752,8 @@ Public Class ctrlHU_ConcurrentlyNewEdit
                     DisableControls(LeftPane, False)
                     EnabledGrid(rgConcurrently, True)
                     cboTitleId.Enabled = False
+                    btnDownload.Enabled = True
+                    btnDownload1.Enabled = True
                 Case CommonMessage.STATE_NEW
                     DisableControls(LeftPane, True)
                     EnabledGrid(rgConcurrently, False)
@@ -787,7 +789,7 @@ Public Class ctrlHU_ConcurrentlyNewEdit
                         btnSIGN_STOP.Enabled = False
                         txtREMARK_STOP.ReadOnly = True
                         btnUploadFile1.Enabled = False
-                        btnDownload1.Enabled = False
+                        btnDownload1.Enabled = True
                         btnSIGN_STOP2.Enabled = False
                         cboTitleId.Enabled = False
                     End If
