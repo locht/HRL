@@ -42814,4 +42814,60 @@ Xin cám ơn!
       <string>Số tiền trừ mỗi tháng</string>
     </Value>
   </Item>
+  <Item>
+    <Key>
+      <string>CRTLSETUPEXCHANGE</string>
+    </Key>
+    <Value>
+      <string>Thiết lập thang quy đổi trừ công</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>BẠN HÃY CHỌN NGÀY HIỆU LỰC.</string>
+    </Key>
+    <Value>
+      <string>Bạn hãy chọn ngày hiệu lực.</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>TỪ PHÚT</string>
+    </Key>
+    <Value>
+      <string>Từ phút</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>ĐẾN PHÚT</string>
+    </Key>
+    <Value>
+      <string>Đến phút</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>TỪ (PHÚT)</string>
+    </Key>
+    <Value>
+      <string>Từ (phút)</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>ĐẾN (PHÚT)</string>
+    </Key>
+    <Value>
+      <string>Đến (phút)</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>SỐ NGÀY CÔNG BỊ TRỪ</string>
+    </Key>
+    <Value>
+      <string>Số ngày công bị trừ</string>
+    </Value>
+  </Item>
 </SerializableDictionaryOfStringString>
