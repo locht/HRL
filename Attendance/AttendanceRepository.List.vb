@@ -1044,7 +1044,73 @@ Partial Class AttendanceRepository
 
     End Function
 #End Region
+#Region "Thiết lập thang quy đổi"
+    Public Function GetAT_SetUp_Exchange(ByVal _filter As AT_SETUP_EXCHANGEDTO,
+                                    Optional ByVal PageIndex As Integer = 0,
+                                        Optional ByVal PageSize As Integer = Integer.MaxValue,
+                                        Optional ByRef Total As Integer = 0,
+                                   Optional ByVal Sorts As String = "CREATED_DATE desc") As List(Of AT_SETUP_EXCHANGEDTO)
+        Dim lstTerminal As List(Of AT_SETUP_EXCHANGEDTO)
 
+        Using rep As New AttendanceBusinessClient
+            Try
+                lstTerminal = rep.GetAT_SetUp_Exchange(_filter, PageIndex, PageSize, Total, Sorts, Log)
+                Return lstTerminal
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+        Return Nothing
+    End Function
+    Public Function InsertAT_SetUp_Exchange(ByVal objTerminal As AT_SETUP_EXCHANGEDTO, ByRef gID As Decimal) As Boolean
+        Using rep As New AttendanceBusinessClient
+            Try
+                Return rep.InsertAT_SetUp_Exchange(objTerminal, Me.Log, gID)
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+
+    End Function
+
+    Public Function ModifyAT_SetUp_Exchange(ByVal objTerminal As AT_SETUP_EXCHANGEDTO, ByRef gID As Decimal) As Boolean
+        Using rep As New AttendanceBusinessClient
+            Try
+                Return rep.ModifyAT_SetUp_Exchange(objTerminal, Me.Log, gID)
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+
+    End Function
+
+    Public Function ActiveAT_SetUp_Exchange(ByVal lstTerminal As List(Of Decimal), ByVal sActive As String) As Boolean
+        Using rep As New AttendanceBusinessClient
+            Try
+                Return rep.ActiveAT_SetUp_Exchange(lstTerminal, Me.Log, sActive)
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+
+    End Function
+
+    Public Function DeleteAT_SetUp_Exchange(ByVal lstTerminal As List(Of Decimal)) As Boolean
+        Using rep As New AttendanceBusinessClient
+            Try
+                Return rep.DeleteAT_SetUp_Exchange(lstTerminal)
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+
+    End Function
+#End Region
 #Region "Thiết lập máy chấm công"
     Public Function GetAT_TERMINAL(ByVal _filter As AT_TERMINALSDTO,
                                     Optional ByVal PageIndex As Integer = 0,

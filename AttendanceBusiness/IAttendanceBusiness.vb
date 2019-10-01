@@ -755,7 +755,26 @@ Namespace AttendanceBusiness.ServiceContracts
         <OperationContract()>
         Function DeleteAT_SETUP_TIME_EMP(ByVal lstID As List(Of Decimal)) As Boolean
 #End Region
+#Region "Thiết lập thang quy đổi"
+        <OperationContract()>
+        Function GetAT_SetUp_Exchange(ByVal _filter As AT_SETUP_EXCHANGEDTO,
+                                   Optional ByVal PageIndex As Integer = 0,
+                                 Optional ByVal PageSize As Integer = Integer.MaxValue,
+                                 Optional ByRef Total As Integer = 0,
+                                        Optional ByVal Sorts As String = "CREATED_DATE desc",
+                                   Optional ByVal log As UserLog = Nothing) As List(Of AT_SETUP_EXCHANGEDTO)
+        <OperationContract()>
+        Function InsertAT_SetUp_Exchange(ByVal objData As AT_SETUP_EXCHANGEDTO, ByVal log As UserLog, ByRef gID As Decimal) As Boolean
 
+        <OperationContract()>
+        Function ModifyAT_SetUp_Exchange(ByVal objData As AT_SETUP_EXCHANGEDTO, ByVal log As UserLog, ByRef gID As Decimal) As Boolean
+
+        <OperationContract()>
+        Function ActiveAT_SetUp_Exchange(ByVal lstID As List(Of Decimal), ByVal log As UserLog, ByVal bActive As String) As Boolean
+
+        <OperationContract()>
+        Function DeleteAT_SetUp_Exchange(ByVal lstID As List(Of Decimal)) As Boolean
+#End Region
 #Region "Đăng ký máy chấm công"
         <OperationContract()>
         Function GetAT_TERMINAL(ByVal _filter As AT_TERMINALSDTO,

@@ -20,6 +20,7 @@
     <Item Text="Thiết lập"  PostBack="False">
       <Group>
         <Item Value="ctrlSwipeMachine" Text="Đăng ký máy chấm công" PostBack="True" NavigateUrl="Default.aspx?mid=Attendance&amp;fid=ctrlSwipeMachine&amp;group=Setting" CheckPermission="true" />
+        <Item Value="crtlSetUpExchange" Text="Thiết lập thang quy đổi trừ công" PostBack="True" NavigateUrl="Default.aspx?mid=Attendance&amp;fid=crtlSetUpExchange&amp;group=Setting" CheckPermission="true" />
         <Item Value="ctrlSwipeMachineStatus" Text="Tình trạng máy chấm công" PostBack="True" NavigateUrl="Default.aspx?mid=Attendance&amp;fid=ctrlSwipeMachineStatus&amp;group=Setting" CheckPermission="true" />
         <Item Value="ctrlATTimeManual" Text="Kiểu công" PostBack="True" NavigateUrl="Default.aspx?mid=Attendance&amp;fid=ctrlATTimeManual&amp;group=Setting" CheckPermission="true" />
         <Item Value="ctrlSetUpCodeAttEmp" Text="Thiết lập mã chấm công" PostBack="True" NavigateUrl="Default.aspx?mid=Attendance&amp;fid=ctrlSetUpCodeAttEmp&amp;group=Setting" CheckPermission="true" />

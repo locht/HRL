@@ -2644,7 +2644,158 @@ Partial Public Class AttendanceRepository
         End Try
     End Function
 #End Region
+#Region "Thiết lập thang quy đổi"
+    Public Function GetAT_SetUp_Exchange(ByVal _filter As AT_SETUP_EXCHANGEDTO,
+                                 Optional ByVal PageIndex As Integer = 0,
+                                 Optional ByVal PageSize As Integer = Integer.MaxValue,
+                                 Optional ByRef Total As Integer = 0,
+                                   Optional ByVal Sorts As String = "CREATED_DATE desc",
+                                   Optional ByVal log As UserLog = Nothing) As List(Of AT_SETUP_EXCHANGEDTO)
+        Try
 
+            Using cls As New DataAccess.QueryData
+                cls.ExecuteStore("PKG_COMMON_LIST.INSERT_CHOSEN_ORG",
+                                 New With {.P_USERNAME = log.Username.ToUpper,
+                                           .P_ORGID = _filter.ORG_ID,
+                                           .P_ISDISSOLVE = _filter.IS_DISSOLVE})
+            End Using
+
+            Dim query = From p In Context.AT_SETUP_EXCHANGE
+                        From org In Context.HU_ORGANIZATION.Where(Function(f) f.ID = p.ORG_ID).DefaultIfEmpty
+                        From k In Context.SE_CHOSEN_ORG.Where(Function(f) p.ORG_ID = f.ORG_ID And f.USERNAME.ToUpper = log.Username.ToUpper)
+                        From ot In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.TYPE_EXCHANGE And f.ACTFLG = "A").DefaultIfEmpty
+                         From ot1 In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.OBJECT_ATTENDACE And f.ACTFLG = "A").DefaultIfEmpty
+                        Select New AT_SETUP_EXCHANGEDTO With {
+                                       .ID = p.ID,
+                                       .ORG_ID = p.ORG_ID,
+                                       .ORG_NAME = org.NAME_VN,
+                                       .EFFECT_DATE = p.EFFECT_DATE,
+                                       .OBJECT_ATTENDACE = p.OBJECT_ATTENDACE,
+                                       .OBJECT_ATTENDACE_NAME = ot1.NAME_VN,
+                                       .TYPE_EXCHANGE = p.TYPE_EXCHANGE,
+                                       .TYPE_EXCHANGE_NAME = ot.NAME_VN,
+                                       .NUMBER_DATE = p.NUMBER_DATE,
+                                       .FROM_MINUTE = p.FROM_MINUTE,
+                                       .TO_MINUTE = p.TO_MINUTE,
+                                       .ACTFLG = If(p.ACTFLG = "A", "Áp dụng", "Ngừng Áp dụng"),
+                                       .CREATED_DATE = p.CREATED_DATE,
+                                       .CREATED_BY = p.CREATED_BY,
+                                       .CREATED_LOG = p.CREATED_LOG,
+                                       .MODIFIED_DATE = p.MODIFIED_DATE,
+                                       .MODIFIED_BY = p.MODIFIED_BY,
+                                       .MODIFIED_LOG = p.MODIFIED_LOG}
+
+            Dim lst = query
+
+            If Not String.IsNullOrEmpty(_filter.ORG_NAME) Then
+                lst = lst.Where(Function(f) f.ORG_NAME.ToLower().Contains(_filter.ORG_NAME.ToLower()))
+            End If
+            If _filter.EFFECT_DATE IsNot Nothing Then
+                lst = lst.Where(Function(F) F.EFFECT_DATE = _filter.EFFECT_DATE)
+            End If
+            If _filter.FROM_MINUTE IsNot Nothing Then
+                lst = lst.Where(Function(F) F.FROM_MINUTE = _filter.FROM_MINUTE)
+            End If
+            If _filter.TO_MINUTE IsNot Nothing Then
+                lst = lst.Where(Function(F) F.TO_MINUTE = _filter.TO_MINUTE)
+            End If
+            If _filter.NUMBER_DATE IsNot Nothing Then
+                lst = lst.Where(Function(F) F.NUMBER_DATE = _filter.NUMBER_DATE)
+            End If
+            If Not String.IsNullOrEmpty(_filter.OBJECT_ATTENDACE_NAME) Then
+                lst = lst.Where(Function(f) f.OBJECT_ATTENDACE_NAME.ToLower().Contains(_filter.OBJECT_ATTENDACE_NAME.ToLower()))
+            End If
+            If Not String.IsNullOrEmpty(_filter.TYPE_EXCHANGE_NAME) Then
+                lst = lst.Where(Function(f) f.TYPE_EXCHANGE_NAME.ToLower().Contains(_filter.TYPE_EXCHANGE_NAME.ToLower()))
+            End If
+
+            If Not String.IsNullOrEmpty(_filter.ACTFLG) Then
+                lst = lst.Where(Function(f) f.ACTFLG.ToLower().Contains(_filter.ACTFLG.ToLower()))
+            End If
+            lst = lst.OrderBy(Sorts)
+            Total = lst.Count
+            lst = lst.Skip(PageIndex * PageSize).Take(PageSize)
+
+            Return lst.ToList
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iTime")
+            Throw ex
+        End Try
+    End Function
+    Public Function InsertAT_SetUp_Exchange(ByVal objTitle As AT_SETUP_EXCHANGEDTO,
+                                   ByVal log As UserLog, ByRef gID As Decimal) As Boolean
+        Dim objTitleData As New AT_SETUP_EXCHANGE
+        Dim iCount As Integer = 0
+        Try
+            objTitleData.ID = Utilities.GetNextSequence(Context, Context.AT_SETUP_EXCHANGE.EntitySet.Name)
+            objTitleData.ORG_ID = objTitle.ORG_ID
+            objTitleData.EFFECT_DATE = objTitle.EFFECT_DATE
+            objTitleData.OBJECT_ATTENDACE = objTitle.OBJECT_ATTENDACE
+            objTitleData.TYPE_EXCHANGE = objTitle.TYPE_EXCHANGE
+            objTitleData.ACTFLG = objTitle.ACTFLG
+            objTitleData.FROM_MINUTE = objTitle.FROM_MINUTE
+            objTitleData.TO_MINUTE = objTitle.TO_MINUTE
+            objTitleData.NUMBER_DATE = objTitle.NUMBER_DATE
+            Context.AT_SETUP_EXCHANGE.AddObject(objTitleData)
+            Context.SaveChanges(log)
+            gID = objTitleData.ID
+            Return True
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iTime")
+            Throw ex
+        End Try
+    End Function
+    Public Function ModifyAT_SetUp_Exchange(ByVal objTitle As AT_SETUP_EXCHANGEDTO,
+                                 ByVal log As UserLog, ByRef gID As Decimal) As Boolean
+        Dim objTitleData As New AT_SETUP_EXCHANGE With {.ID = objTitle.ID}
+        Try
+            objTitleData = (From p In Context.AT_SETUP_EXCHANGE Where p.ID = objTitleData.ID).SingleOrDefault
+            objTitleData.ORG_ID = objTitle.ORG_ID
+            objTitleData.EFFECT_DATE = objTitle.EFFECT_DATE
+            objTitleData.OBJECT_ATTENDACE = objTitle.OBJECT_ATTENDACE
+            objTitleData.TYPE_EXCHANGE = objTitle.TYPE_EXCHANGE
+            objTitleData.ACTFLG = objTitle.ACTFLG
+            objTitleData.FROM_MINUTE = objTitle.FROM_MINUTE
+            objTitleData.TO_MINUTE = objTitle.TO_MINUTE
+            objTitleData.NUMBER_DATE = objTitle.NUMBER_DATE
+            Context.SaveChanges(log)
+            gID = objTitleData.ID
+            Return True
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iTime")
+            Throw ex
+        End Try
+    End Function
+    Public Function DeleteAT_SetUp_Exchange(ByVal lstID As List(Of Decimal)) As Boolean
+        Dim lstAT_Terminal As List(Of AT_SETUP_EXCHANGE)
+        Try
+            lstAT_Terminal = (From p In Context.AT_SETUP_EXCHANGE Where lstID.Contains(p.ID)).ToList
+            For index = 0 To lstAT_Terminal.Count - 1
+                Context.AT_SETUP_EXCHANGE.DeleteObject(lstAT_Terminal(index))
+            Next
+            Context.SaveChanges()
+            Return True
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iTime")
+            ' Utility.WriteExceptionLog(ex, Me.ToString() & ".DeleteTerminal")
+            Throw ex
+        End Try
+    End Function
+    Public Function ActiveAT_SetUp_Exchange(ByVal lstID As List(Of Decimal), ByVal log As UserLog, ByVal bActive As String) As Boolean
+        Dim lstData As List(Of AT_SETUP_EXCHANGE)
+        Try
+            lstData = (From p In Context.AT_SETUP_EXCHANGE Where lstID.Contains(p.ID)).ToList
+            For index = 0 To lstData.Count - 1
+                lstData(index).ACTFLG = bActive
+            Next
+            Context.SaveChanges(log)
+            Return True
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iTime")
+            Throw ex
+        End Try
+    End Function
+#End Region
 #Region "Đăng ký máy chấm công"
     ''' <summary>
     ''' Lấy dữ liệu đăng ký máy chấm công
@@ -3216,7 +3367,7 @@ Partial Public Class AttendanceRepository
             objTitleData.EFFECT_DATE_TO = objTitle.EFFECT_DATE_TO
             objTitleData.SINGDEFAULE = objTitle.SINGDEFAULE
             objTitleData.NOTE = objTitle.NOTE
-             objTitleData.SING_SUN = objTitle.SING_SUN
+            objTitleData.SING_SUN = objTitle.SING_SUN
             objTitleData.SING_SAT = objTitle.SING_SAT
             Context.SaveChanges(log)
             gID = objTitleData.ID
@@ -4336,7 +4487,7 @@ Partial Public Class AttendanceRepository
             Next
 
 
-          
+
             Return True
         Catch ex As Exception
             WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iTime")

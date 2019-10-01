@@ -954,7 +954,69 @@ Namespace AttendanceBusiness.ServiceImplementations
             End Using
         End Function
 #End Region
+#Region "Thiết lập thang quy đổi"
+        Public Function GetAT_SetUp_Exchange(ByVal _filter As AT_SETUP_EXCHANGEDTO,
+                                  Optional ByVal PageIndex As Integer = 0,
+                                        Optional ByVal PageSize As Integer = Integer.MaxValue,
+                                        Optional ByRef Total As Integer = 0,
+                                    Optional ByVal Sorts As String = "CREATED_DATE desc",
+                                   Optional ByVal log As UserLog = Nothing) As List(Of AT_SETUP_EXCHANGEDTO) Implements ServiceContracts.IAttendanceBusiness.GetAT_SetUp_Exchange
+            Using rep As New AttendanceRepository
+                Try
 
+                    Return rep.GetAT_SetUp_Exchange(_filter, PageIndex, PageSize, Total, Sorts, log)
+                Catch ex As Exception
+
+                    Throw ex
+                End Try
+            End Using
+        End Function
+
+        Public Function InsertAT_SetUp_Exchange(ByVal objData As AT_SETUP_EXCHANGEDTO, ByVal log As UserLog, ByRef gID As Decimal) As Boolean Implements ServiceContracts.IAttendanceBusiness.InsertAT_SetUp_Exchange
+            Using rep As New AttendanceRepository
+                Try
+
+                    Return rep.InsertAT_SetUp_Exchange(objData, log, gID)
+                Catch ex As Exception
+
+                    Throw ex
+                End Try
+            End Using
+        End Function
+
+        Public Function ModifyAT_SetUp_Exchange(ByVal objData As AT_SETUP_EXCHANGEDTO, ByVal log As UserLog, ByRef gID As Decimal) As Boolean Implements ServiceContracts.IAttendanceBusiness.ModifyAT_SetUp_Exchange
+            Using rep As New AttendanceRepository
+                Try
+
+                    Return rep.ModifyAT_SetUp_Exchange(objData, log, gID)
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
+
+        Public Function ActiveAT_SetUp_Exchange(ByVal lstID As List(Of Decimal), ByVal log As UserLog, ByVal bActive As String) As Boolean Implements ServiceContracts.IAttendanceBusiness.ActiveAT_SetUp_Exchange
+            Using rep As New AttendanceRepository
+                Try
+
+                    Return rep.ActiveAT_SetUp_Exchange(lstID, log, bActive)
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
+
+        Public Function DeleteAT_SetUp_Exchange(ByVal lstID As List(Of Decimal)) As Boolean Implements ServiceContracts.IAttendanceBusiness.DeleteAT_SetUp_Exchange
+            Using rep As New AttendanceRepository
+                Try
+
+                    Return rep.DeleteAT_SetUp_Exchange(lstID)
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
+#End Region
 #Region "Thiết lập máy chấm công"
         Public Function GetAT_TERMINAL(ByVal _filter As AT_TERMINALSDTO,
                                   Optional ByVal PageIndex As Integer = 0,

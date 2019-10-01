@@ -199,6 +199,7 @@
     <Content Include="Modules\Attendance\List\ctrlListParamSystem.ascx" />
     <Content Include="Modules\Attendance\List\ctrlRitual_Hose.ascx" />
     <Content Include="Modules\Attendance\Report\ctrlAT_ReportList.ascx" />
+    <Content Include="Modules\Attendance\Setting\crtlSetUpExchange.ascx" />
     <Content Include="Modules\Attendance\Setting\ctrlSetUpCodeAttEmp.ascx" />
     <Content Include="Modules\Attendance\Setting\ctrlSwipeMachineStatus.ascx" />
     <Content Include="Modules\Attendance\Setting\ctrlSetUpTimeEmp.ascx" />
@@ -311,6 +312,9 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\AttendanceBusiness\Attendance.AttendanceBusiness.AT_REGISTER_OTDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\AttendanceBusiness\Attendance.AttendanceBusiness.AT_SETUP_EXCHANGEDTO.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\AttendanceBusiness\Attendance.AttendanceBusiness.AT_SETUP_SPECIALDTO.datasource">
@@ -695,6 +699,13 @@
     </Compile>
     <Compile Include="Modules\Attendance\Report\ctrlAT_ReportList.ascx.vb">
       <DependentUpon>ctrlAT_ReportList.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Modules\Attendance\Setting\crtlSetUpExchange.ascx.designer.vb">
+      <DependentUpon>crtlSetUpExchange.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Attendance\Setting\crtlSetUpExchange.ascx.vb">
+      <DependentUpon>crtlSetUpExchange.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Modules\Attendance\Setting\ctrlSetUpCodeAttEmp.ascx.designer.vb">

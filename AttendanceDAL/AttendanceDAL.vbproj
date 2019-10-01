@@ -113,6 +113,7 @@
     <Compile Include="BusinessObjects\AT_PERIODDTO.vb" />
     <Compile Include="BusinessObjects\AT_COMPENSATORYDTO.vb" />
     <Compile Include="BusinessObjects\AT_ENTITLEMENTDTO.vb" />
+    <Compile Include="BusinessObjects\AT_SETUP_EXCHANGEDTO.vb" />
     <Compile Include="BusinessObjects\AT_SHIFTCYCLEDTO.vb" />
     <Compile Include="BusinessObjects\AT_TERMINALSDTO.vb" />
     <Compile Include="BusinessObjects\AT_SWIPE_DATADTO.vb" />
