@@ -298,6 +298,10 @@
                                 DataField="TOTAL_FACTOR1_5" ItemStyle-HorizontalAlign="Center" DataFormatString="{0:n2}"
                                 SortExpression="TOTAL_FACTOR1_5" UniqueName="TOTAL_FACTOR1_5">
                             </tlk:GridNumericColumn>
+                             <tlk:GridNumericColumn HeaderText="<%$ Translate: Tổng số giờ làm thêm hệ số 1.8 %>"
+                                DataField="TOTAL_FACTOR1_8" ItemStyle-HorizontalAlign="Center" DataFormatString="{0:n2}"
+                                SortExpression="TOTAL_FACTOR1_8" UniqueName="TOTAL_FACTOR1_8">
+                            </tlk:GridNumericColumn>
                             <tlk:GridNumericColumn HeaderText="<%$ Translate: Tổng số giờ làm thêm hệ số 2 %>"
                                 DataField="TOTAL_FACTOR2" ItemStyle-HorizontalAlign="Center" DataFormatString="{0:n2}"
                                 SortExpression="TOTAL_FACTOR2" UniqueName="TOTAL_FACTOR2">
@@ -329,6 +333,10 @@
                             <tlk:GridNumericColumn HeaderText="<%$ Translate: Tổng số giờ làm thêm chuyển nghỉ bù hệ số 1.5 %>"
                                 DataField="TOTAL_NB1_5" ItemStyle-HorizontalAlign="Center" DataFormatString="{0:n2}"
                                 SortExpression="TOTAL_NB1_5" UniqueName="TOTAL_NB1_5">
+                            </tlk:GridNumericColumn>
+                            <tlk:GridNumericColumn HeaderText="<%$ Translate: Tổng số giờ làm thêm chuyển nghỉ bù hệ số 1.8 %>"
+                                DataField="TOTAL_NB1_8" ItemStyle-HorizontalAlign="Center" DataFormatString="{0:n2}"
+                                SortExpression="TOTAL_NB1_8" UniqueName="TOTAL_NB1_8">
                             </tlk:GridNumericColumn>
                             <tlk:GridNumericColumn HeaderText="<%$ Translate: Tổng số giờ làm thêm chuyển nghỉ bù hệ số 2 %>"
                                 DataField="TOTAL_NB2" ItemStyle-HorizontalAlign="Center" DataFormatString="{0:n2}"

@@ -1016,6 +1016,16 @@ Namespace AttendanceBusiness.ServiceImplementations
                 End Try
             End Using
         End Function
+        Public Function CheckTrung_AT__SetUp_exchange(ByVal id As Decimal, ByVal from_minute As Decimal, ByVal to_minute As Decimal) As Integer Implements ServiceContracts.IAttendanceBusiness.CheckTrung_AT__SetUp_exchange
+            Using rep As New AttendanceRepository
+                Try
+
+                    Return rep.CheckTrung_AT__SetUp_exchange(id, from_minute, to_minute)
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
 #End Region
 #Region "Thiết lập máy chấm công"
         Public Function GetAT_TERMINAL(ByVal _filter As AT_TERMINALSDTO,

@@ -213,6 +213,7 @@ Public Class ctrlDeclaresOTNewEdit
                     hid270.Value = OtRegistration.OT_270
                     hid300.Value = OtRegistration.OT_300
                     hid390.Value = OtRegistration.OT_370
+                    hid180.Value = OtRegistration.OT_180
 
                     If OtRegistration.OT_100 IsNot Nothing AndAlso OtRegistration.OT_100 <> 0 Then
                         cbohs_ot.SelectedValue = "1.0"
@@ -220,6 +221,10 @@ Public Class ctrlDeclaresOTNewEdit
 
                     If OtRegistration.OT_150 IsNot Nothing AndAlso OtRegistration.OT_150 <> 0 Then
                         cbohs_ot.SelectedValue = "1.5"
+                    End If
+
+                    If OtRegistration.OT_180 IsNot Nothing AndAlso OtRegistration.OT_180 <> 0 Then
+                        cbohs_ot.SelectedValue = "1.8"
                     End If
 
                     If OtRegistration.OT_200 IsNot Nothing AndAlso OtRegistration.OT_200 <> 0 Then
@@ -423,6 +428,7 @@ Public Class ctrlDeclaresOTNewEdit
                         obj.OT_270 = ObjToDecima(hid270.Value, 0)
                         obj.OT_300 = ObjToDecima(hid300.Value, 0)
                         obj.OT_370 = ObjToDecima(hid390.Value, 0)
+                        obj.OT_180 = ObjToDecima(hid180.Value, 0)
 
                         obj.FROM_AM = rntbFromAM.Value
                         If Not String.IsNullOrEmpty(cboFromAM.SelectedValue) Then
@@ -722,6 +728,7 @@ Public Class ctrlDeclaresOTNewEdit
                 hidTotal.Value = totalHour
                 hid100.Value = 0.0
                 hid150.Value = 0.0
+                hid180.Value = 0.0
                 hid200.Value = 0.0
                 hid210.Value = 0.0
                 hid270.Value = 0.0
@@ -734,6 +741,10 @@ Public Class ctrlDeclaresOTNewEdit
 
                 If cbohs_ot.SelectedValue = "1.5" Then
                     hid150.Value = totalHour
+                End If
+
+                If cbohs_ot.SelectedValue = "1.8" Then
+                    hid180.Value = totalHour
                 End If
 
                 If cbohs_ot.SelectedValue = "2.0" Then

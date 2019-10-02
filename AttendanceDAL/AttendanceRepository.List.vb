@@ -2795,6 +2795,28 @@ Partial Public Class AttendanceRepository
             Throw ex
         End Try
     End Function
+    Public Function CheckTrung_AT__SetUp_exchange(ByVal id As Decimal, ByVal from_minute As Decimal, ByVal to_minute As Decimal) As Integer
+        Dim objlst As New List(Of AT_SETUP_EXCHANGEDTO)
+        Try
+            objlst = (From p In Context.AT_SETUP_EXCHANGE
+                      Where id <> p.ID
+                     Select New AT_SETUP_EXCHANGEDTO With {
+                      .FROM_MINUTE = p.FROM_MINUTE,
+                      .TO_MINUTE = p.TO_MINUTE
+                    }).ToList
+            For Each line In objlst
+                If (from_minute = line.FROM_MINUTE Or from_minute = line.TO_MINUTE) Then
+                    Return 1
+                End If
+                If (to_minute = line.FROM_MINUTE Or to_minute = line.TO_MINUTE) Then
+                    Return 1
+                End If
+            Next
+            Return 2
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
 #End Region
 #Region "Đăng ký máy chấm công"
     ''' <summary>

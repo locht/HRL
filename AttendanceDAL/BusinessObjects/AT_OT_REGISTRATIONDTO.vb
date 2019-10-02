@@ -24,6 +24,7 @@
     Public Property TOTAL_OT As Decimal?
     Public Property OT_100 As Decimal?
     Public Property OT_150 As Decimal?
+    Public Property OT_180 As Decimal?
     Public Property OT_200 As Decimal?
     Public Property OT_210 As Decimal?
     Public Property OT_270 As Decimal?
