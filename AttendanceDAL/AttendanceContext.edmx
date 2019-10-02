@@ -5273,7 +5273,7 @@
           <Property Type="Decimal" Name="TYPE_EXCHANGE" Precision="38" Scale="0" />
           <Property Type="Decimal" Name="FROM_MINUTE" Precision="38" Scale="0" />
           <Property Type="Decimal" Name="TO_MINUTE" Precision="38" Scale="0" />
-          <Property Type="Decimal" Name="NUMBER_DATE" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="NUMBER_DATE" />
           <Property Type="DateTime" Name="CREATED_DATE" />
           <Property Type="String" Name="CREATED_BY" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="CREATED_LOG" MaxLength="255" FixedLength="false" Unicode="true" />
@@ -7883,7 +7883,7 @@
         <EntityTypeShape EntityType="AttendanceModel.AT_TYPE_PROCESS" Width="1.5" PointX="15.375" PointY="23.75" Height="1.5956835937500031" />
         <EntityTypeShape EntityType="AttendanceModel.AT_TIME_MANUAL_RATE" Width="1.5" PointX="24.25" PointY="21.5" Height="1.5956835937500031" />
         <EntityTypeShape EntityType="AttendanceModel.AT_ENTITLEMENT" Width="1.5" PointX="0.75" PointY="21.75" Height="21.402731119791667" />
-        <EntityTypeShape EntityType="AttendanceModel.AT_SETUP_EXCHANGE" Width="1.5" PointX="20.375" PointY="24.75" Height="3.9033007812499818" />
+        <EntityTypeShape EntityType="AttendanceModel.AT_SETUP_EXCHANGE" Width="2" PointX="20.375" PointY="24.75" Height="3.9033007812499818" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

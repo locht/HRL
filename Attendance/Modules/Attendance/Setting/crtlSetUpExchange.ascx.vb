@@ -276,7 +276,7 @@ Public Class crtlSetUpExchange
             dic.Add("TYPE_EXCHANGE", cboType)
             dic.Add("FROM_MINUTE", rtxtFromMinute)
             dic.Add("TO_MINUTE", rtxtToMinute)
-            dic.Add("NUMBER_DATE", rtxtDateDeducted)
+            ' dic.Add("NUMBER_DATE", rtxtDateDeducted)
             GetDataCombo()
             Utilities.OnClientRowSelectedChanged(rglSwipeMachine, dic)
             _myLog.WriteLog(_myLog._info, _classPath, method,
@@ -322,6 +322,10 @@ Public Class crtlSetUpExchange
                     End If
                     If (rglSwipeMachine.SelectedItems.Count > 1) Then
                         ShowMessage(Translate(CommonMessage.MESSAGE_NOT_SELECT_MULTI_ROW), NotifyType.Warning)
+                        Exit Sub
+                    End If
+                    If ctrlOrganization.CurrentValue = "" Or ctrlOrganization.CurrentValue = 1 Then
+                        ShowMessage("Chỉ được thêm cấp công ty, Thao tác lại", NotifyType.Warning)
                         Exit Sub
                     End If
                     CurrentState = CommonMessage.STATE_EDIT
@@ -588,7 +592,7 @@ Public Class crtlSetUpExchange
             FillRadCombobox(cboObjectAttendace, dtData, "NAME", "ID")
             Dim dtData1 As DataTable
             dtData1 = rep.GetOtherList("TYPE_DSVM", True)
-            FillRadCombobox(cboType, dtData, "NAME", "ID")
+            FillRadCombobox(cboType, dtData1, "NAME", "ID")
             rep.Dispose()
         Catch ex As Exception
 
@@ -596,4 +600,27 @@ Public Class crtlSetUpExchange
     End Sub
 #End Region
 
+    Private Sub rglSwipeMachine_SelectedIndexChanged(sender As Object, e As System.EventArgs) Handles rglSwipeMachine.SelectedIndexChanged
+        Try
+            If rglSwipeMachine.SelectedItems.Count > 0 Then
+                Dim slItem As GridDataItem
+                slItem = rglSwipeMachine.SelectedItems(0)
+                txtCongty.Text = slItem.GetDataKeyValue("ORG_NAME")
+                rdEffectDate.SelectedDate = slItem.GetDataKeyValue("EFFECT_DATE")
+                cboObjectAttendace.Text = slItem.GetDataKeyValue("OBJECT_ATTENDACE_NAME")
+                cboType.Text = slItem.GetDataKeyValue("TYPE_EXCHANGE_NAME")
+                If slItem.GetDataKeyValue("FROM_MINUTE") IsNot Nothing Then
+                    rtxtFromMinute.Value = Decimal.Parse(slItem.GetDataKeyValue("FROM_MINUTE"))
+                End If
+                If slItem.GetDataKeyValue("TO_MINUTE") IsNot Nothing Then
+                    rtxtToMinute.Value = Decimal.Parse(slItem.GetDataKeyValue("TO_MINUTE"))
+                End If
+                If slItem.GetDataKeyValue("NUMBER_DATE") IsNot Nothing Then
+                    rtxtDateDeducted.Value = Decimal.Parse(slItem.GetDataKeyValue("NUMBER_DATE"))
+                End If
+            End If
+        Catch ex As Exception
+
+        End Try
+    End Sub
 End Class
