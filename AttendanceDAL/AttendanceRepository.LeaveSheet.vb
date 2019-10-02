@@ -172,6 +172,9 @@ Partial Public Class AttendanceRepository
                         From ot In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.STATUS).DefaultIfEmpty
                         From nb In Context.AT_COMPENSATORY.Where(Function(F) F.EMPLOYEE_ID = p.EMPLOYEE_ID And F.YEAR = _filter.FROM_DATE.Value.Year).DefaultIfEmpty
                         From k In Context.SE_CHOSEN_ORG.Where(Function(f) e.ORG_ID = f.ORG_ID And f.USERNAME.ToUpper = log.Username.ToUpper)
+                        From pas In Context.PROCESS_APPROVED_STATUS.Where(Function(f) f.ID_REGGROUP = p.ID _
+                            And f.APP_LEVEL = (Context.PROCESS_APPROVED_STATUS.Where(Function(h) h.ID_REGGROUP = p.ID And h.APP_STATUS = 0).Min(Function(ki) ki.APP_LEVEL))).DefaultIfEmpty() _
+                        From ee In Context.HU_EMPLOYEE.Where(Function(f) f.ID = pas.EMPLOYEE_APPROVED).DefaultIfEmpty()
                         Where (lstID.Contains(p.ID))
             If _filter.ISTEMINAL Then
                 query = query.Where(Function(f) f.e.WORK_STATUS = 257)
@@ -240,7 +243,7 @@ Partial Public Class AttendanceRepository
                                                                        .AFTERNOON_ID = p.m.AFTERNOON_ID,
                                                                        .NOTE = p.p.NOTE,
                                                                        .DAY_NUM = p.p.DAY_NUM,
-                                                                       .EMP_APPROVES_NAME = p.p.EMP_APPROVES_NAME,
+                                                                       .EMP_APPROVES_NAME = p.ee.FULLNAME_VN,
                                                                        .CREATED_BY = p.p.CREATED_BY,
                                                                        .CREATED_DATE = p.p.CREATED_DATE,
                                                                        .CREATED_LOG = p.p.CREATED_LOG,
