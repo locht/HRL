@@ -1120,7 +1120,7 @@ Partial Class ProfileRepository
     Public Function CheckExistFamilyEdit(ByVal pk_key As Decimal) As FamilyEditDTO
         Try
             Dim query = (From p In Context.HU_FAMILY_EDIT
-                         Where p.STATUS <> 2 And p.FK_PKEY = pk_key
+                         Where p.STATUS <> 2 And p.STATUS <> 3 And p.FK_PKEY = pk_key
                          Select New FamilyEditDTO With {
                              .ID = p.ID,
                              .STATUS = p.STATUS}).FirstOrDefault
