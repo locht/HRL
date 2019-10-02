@@ -365,8 +365,14 @@ Public Class crtlSetUpExchange
 
                 Case CommonMessage.TOOLBARITEM_SAVE
                     If Page.IsValid Then
+                        Dim id_check As Decimal
                         If rtxtFromMinute.Value.HasValue And rtxtToMinute.Value.HasValue Then
-                            Dim check = rep.CheckTrung_AT__SetUp_exchange(rtxtFromMinute.Value, rtxtToMinute.Value)
+                            If rglSwipeMachine.SelectedValue IsNot Nothing Then
+                                id_check = rglSwipeMachine.SelectedValue
+                            Else
+                                id_check = 0
+                            End If
+                            Dim check = rep.CheckTrung_AT__SetUp_exchange(id_check, rtxtFromMinute.Value, rtxtToMinute.Value)
                             If check = 1 Then
                                 ShowMessage(Translate("Trùng số lượng phút,kiểm tra lại"), NotifyType.Warning)
                                 Exit Sub
