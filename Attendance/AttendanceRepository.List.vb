@@ -1110,6 +1110,16 @@ Partial Class AttendanceRepository
         End Using
 
     End Function
+    Public Function CheckTrung_AT__SetUp_exchange(ByVal from_minute As Decimal, ByVal to_minute As Decimal) As Integer
+        Using rep As New AttendanceBusinessClient
+            Try
+                Return rep.CheckTrung_AT__SetUp_exchange(from_minute, to_minute)
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+    End Function
 #End Region
 #Region "Thiết lập máy chấm công"
     Public Function GetAT_TERMINAL(ByVal _filter As AT_TERMINALSDTO,

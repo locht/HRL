@@ -365,6 +365,13 @@ Public Class crtlSetUpExchange
 
                 Case CommonMessage.TOOLBARITEM_SAVE
                     If Page.IsValid Then
+                        If rtxtFromMinute.Value.HasValue And rtxtToMinute.Value.HasValue Then
+                            Dim check = rep.CheckTrung_AT__SetUp_exchange(rtxtFromMinute.Value, rtxtToMinute.Value)
+                            If check = 1 Then
+                                ShowMessage(Translate("Trùng số lượng phút,kiểm tra lại"), NotifyType.Warning)
+                                Exit Sub
+                            End If
+                        End If
                         objTerminal.ORG_ID = ctrlOrganization.CurrentValue
                         objTerminal.EFFECT_DATE = rdEffectDate.SelectedDate
                         If cboObjectAttendace.SelectedValue <> "" Then

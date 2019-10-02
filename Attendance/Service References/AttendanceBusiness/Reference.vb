@@ -18,6 +18,85 @@ Namespace AttendanceBusiness
     
     <System.Diagnostics.DebuggerStepThroughAttribute(),  _
      System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0"),  _
+     System.Runtime.Serialization.DataContractAttribute(Name:="StatisticDTO", [Namespace]:="http://schemas.datacontract.org/2004/07/AttendanceDAL"),  _
+     System.SerializableAttribute()>  _
+    Partial Public Class StatisticDTO
+        Inherits Object
+        Implements System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged
+        
+        <System.NonSerializedAttribute()>  _
+        Private extensionDataField As System.Runtime.Serialization.ExtensionDataObject
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private NAMEField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private VALUEField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private VALUE_SECONDField As System.Nullable(Of Decimal)
+        
+        <Global.System.ComponentModel.BrowsableAttribute(false)>  _
+        Public Property ExtensionData() As System.Runtime.Serialization.ExtensionDataObject Implements System.Runtime.Serialization.IExtensibleDataObject.ExtensionData
+            Get
+                Return Me.extensionDataField
+            End Get
+            Set
+                Me.extensionDataField = value
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property NAME() As String
+            Get
+                Return Me.NAMEField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.NAMEField, value) <> true) Then
+                    Me.NAMEField = value
+                    Me.RaisePropertyChanged("NAME")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property VALUE() As System.Nullable(Of Decimal)
+            Get
+                Return Me.VALUEField
+            End Get
+            Set
+                If (Me.VALUEField.Equals(value) <> true) Then
+                    Me.VALUEField = value
+                    Me.RaisePropertyChanged("VALUE")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property VALUE_SECOND() As System.Nullable(Of Decimal)
+            Get
+                Return Me.VALUE_SECONDField
+            End Get
+            Set
+                If (Me.VALUE_SECONDField.Equals(value) <> true) Then
+                    Me.VALUE_SECONDField = value
+                    Me.RaisePropertyChanged("VALUE_SECOND")
+                End If
+            End Set
+        End Property
+        
+        Public Event PropertyChanged As System.ComponentModel.PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
+        
+        Protected Sub RaisePropertyChanged(ByVal propertyName As String)
+            Dim propertyChanged As System.ComponentModel.PropertyChangedEventHandler = Me.PropertyChangedEvent
+            If (Not (propertyChanged) Is Nothing) Then
+                propertyChanged(Me, New System.ComponentModel.PropertyChangedEventArgs(propertyName))
+            End If
+        End Sub
+    End Class
+    
+    <System.Diagnostics.DebuggerStepThroughAttribute(),  _
+     System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0"),  _
      System.Runtime.Serialization.DataContractAttribute(Name:="AT_OFFFSETTINGDTO", [Namespace]:="http://schemas.datacontract.org/2004/07/AttendanceDAL"),  _
      System.SerializableAttribute()>  _
     Partial Public Class AT_OFFFSETTINGDTO
@@ -7563,85 +7642,6 @@ Namespace AttendanceBusiness
                 If (Object.ReferenceEquals(Me.REMARKField, value) <> true) Then
                     Me.REMARKField = value
                     Me.RaisePropertyChanged("REMARK")
-                End If
-            End Set
-        End Property
-        
-        Public Event PropertyChanged As System.ComponentModel.PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
-        
-        Protected Sub RaisePropertyChanged(ByVal propertyName As String)
-            Dim propertyChanged As System.ComponentModel.PropertyChangedEventHandler = Me.PropertyChangedEvent
-            If (Not (propertyChanged) Is Nothing) Then
-                propertyChanged(Me, New System.ComponentModel.PropertyChangedEventArgs(propertyName))
-            End If
-        End Sub
-    End Class
-    
-    <System.Diagnostics.DebuggerStepThroughAttribute(),  _
-     System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0"),  _
-     System.Runtime.Serialization.DataContractAttribute(Name:="StatisticDTO", [Namespace]:="http://schemas.datacontract.org/2004/07/AttendanceDAL"),  _
-     System.SerializableAttribute()>  _
-    Partial Public Class StatisticDTO
-        Inherits Object
-        Implements System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged
-        
-        <System.NonSerializedAttribute()>  _
-        Private extensionDataField As System.Runtime.Serialization.ExtensionDataObject
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private NAMEField As String
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private VALUEField As System.Nullable(Of Decimal)
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private VALUE_SECONDField As System.Nullable(Of Decimal)
-        
-        <Global.System.ComponentModel.BrowsableAttribute(false)>  _
-        Public Property ExtensionData() As System.Runtime.Serialization.ExtensionDataObject Implements System.Runtime.Serialization.IExtensibleDataObject.ExtensionData
-            Get
-                Return Me.extensionDataField
-            End Get
-            Set
-                Me.extensionDataField = value
-            End Set
-        End Property
-        
-        <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property NAME() As String
-            Get
-                Return Me.NAMEField
-            End Get
-            Set
-                If (Object.ReferenceEquals(Me.NAMEField, value) <> true) Then
-                    Me.NAMEField = value
-                    Me.RaisePropertyChanged("NAME")
-                End If
-            End Set
-        End Property
-        
-        <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property VALUE() As System.Nullable(Of Decimal)
-            Get
-                Return Me.VALUEField
-            End Get
-            Set
-                If (Me.VALUEField.Equals(value) <> true) Then
-                    Me.VALUEField = value
-                    Me.RaisePropertyChanged("VALUE")
-                End If
-            End Set
-        End Property
-        
-        <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property VALUE_SECOND() As System.Nullable(Of Decimal)
-            Get
-                Return Me.VALUE_SECONDField
-            End Get
-            Set
-                If (Me.VALUE_SECONDField.Equals(value) <> true) Then
-                    Me.VALUE_SECONDField = value
-                    Me.RaisePropertyChanged("VALUE_SECOND")
                 End If
             End Set
         End Property
@@ -31430,6 +31430,9 @@ Namespace AttendanceBusiness
      System.ServiceModel.ServiceContractAttribute(ConfigurationName:="AttendanceBusiness.IAttendanceBusiness")>  _
     Public Interface IAttendanceBusiness
         
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IAttendanceBusiness/GetStatisticTimeProject", ReplyAction:="http://tempuri.org/IAttendanceBusiness/GetStatisticTimeProjectResponse")>  _
+        Function GetStatisticTimeProject(ByVal _year As Integer, ByVal _month As Integer, ByVal log As Common.CommonBusiness.UserLog) As System.Collections.Generic.List(Of AttendanceBusiness.StatisticDTO)
+        
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IAttendanceBusiness/InsertOffSettingTime", ReplyAction:="http://tempuri.org/IAttendanceBusiness/InsertOffSettingTimeResponse")>  _
         Function InsertOffSettingTime(ByVal objOffSetting As AttendanceBusiness.AT_OFFFSETTINGDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
         
@@ -31501,6 +31504,9 @@ Namespace AttendanceBusiness
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IAttendanceBusiness/INPORT_NB_PREV", ReplyAction:="http://tempuri.org/IAttendanceBusiness/INPORT_NB_PREVResponse")>  _
         Function INPORT_NB_PREV(ByVal P_DOCXML As String, ByVal log As Common.CommonBusiness.UserLog, ByVal P_YEAR As Integer) As Boolean
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IAttendanceBusiness/GET_TOTAL_OT_APPROVE", ReplyAction:="http://tempuri.org/IAttendanceBusiness/GET_TOTAL_OT_APPROVEResponse")>  _
+        Function GET_TOTAL_OT_APPROVE(ByVal empid As Decimal, ByVal enddate As Date) As Decimal
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IAttendanceBusiness/AT_CHECK_ORG_PERIOD_STATUS_OT", ReplyAction:="http://tempuri.org/IAttendanceBusiness/AT_CHECK_ORG_PERIOD_STATUS_OTResponse")>  _
         Function AT_CHECK_ORG_PERIOD_STATUS_OT(ByVal LISTORG As String, ByVal PERIOD As Decimal) As Integer
@@ -31756,9 +31762,6 @@ Namespace AttendanceBusiness
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IAttendanceBusiness/GetStatisticTimeOtByOrg", ReplyAction:="http://tempuri.org/IAttendanceBusiness/GetStatisticTimeOtByOrgResponse")>  _
         Function GetStatisticTimeOtByOrg(ByVal _year As Integer, ByVal _month As Integer, ByVal log As Common.CommonBusiness.UserLog) As System.Collections.Generic.List(Of AttendanceBusiness.StatisticDTO)
         
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IAttendanceBusiness/GetStatisticTimeProject", ReplyAction:="http://tempuri.org/IAttendanceBusiness/GetStatisticTimeProjectResponse")>  _
-        Function GetStatisticTimeProject(ByVal _year As Integer, ByVal _month As Integer, ByVal log As Common.CommonBusiness.UserLog) As System.Collections.Generic.List(Of AttendanceBusiness.StatisticDTO)
-        
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IAttendanceBusiness/ModifyAT_FML", ReplyAction:="http://tempuri.org/IAttendanceBusiness/ModifyAT_FMLResponse")>  _
         Function ModifyAT_FML(ByVal objATFML As AttendanceBusiness.AT_FMLDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
         
@@ -31927,6 +31930,9 @@ Namespace AttendanceBusiness
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IAttendanceBusiness/DeleteAT_SetUp_Exchange", ReplyAction:="http://tempuri.org/IAttendanceBusiness/DeleteAT_SetUp_ExchangeResponse")>  _
         Function DeleteAT_SetUp_Exchange(ByVal lstID As System.Collections.Generic.List(Of Decimal)) As Boolean
         
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IAttendanceBusiness/CheckTrung_AT__SetUp_exchange", ReplyAction:="http://tempuri.org/IAttendanceBusiness/CheckTrung_AT__SetUp_exchangeResponse")>  _
+        Function CheckTrung_AT__SetUp_exchange(ByVal from_minute As Decimal, ByVal to_minute As Decimal) As Integer
+        
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IAttendanceBusiness/GetAT_TERMINAL", ReplyAction:="http://tempuri.org/IAttendanceBusiness/GetAT_TERMINALResponse")>  _
         Function GetAT_TERMINAL(ByVal _filter As AttendanceBusiness.AT_TERMINALSDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal Sorts As String, ByVal log As Common.CommonBusiness.UserLog) As System.Collections.Generic.List(Of AttendanceBusiness.AT_TERMINALSDTO)
         
@@ -32004,7 +32010,8 @@ Namespace AttendanceBusiness
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of Date))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of Short))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of System.Nullable(Of Decimal)))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(Common.CommonBusiness.UserLog)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of AttendanceBusiness.StatisticDTO))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(AttendanceBusiness.StatisticDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(AttendanceBusiness.AT_OFFFSETTINGDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of AttendanceBusiness.AT_OFFFSETTING_EMPDTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(AttendanceBusiness.AT_OFFFSETTING_EMPDTO)),  _
@@ -32046,8 +32053,6 @@ Namespace AttendanceBusiness
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of AttendanceBusiness.AT_PROJECT_WORKDTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(AttendanceBusiness.AT_PROJECT_EMPDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of AttendanceBusiness.AT_PROJECT_EMPDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of AttendanceBusiness.StatisticDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(AttendanceBusiness.StatisticDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(AttendanceBusiness.AT_FMLDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(AttendanceBusiness.AT_GSIGNDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of AttendanceBusiness.AT_GSIGNDTO))),  _
@@ -32119,7 +32124,8 @@ Namespace AttendanceBusiness
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(AttendanceBusiness.AT_TIME_TIMESHEET_MONTHLYDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of AttendanceBusiness.AT_TIME_TIMESHEET_MONTHLYDTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(AttendanceBusiness.AT_TIME_RICEDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of AttendanceBusiness.AT_TIME_RICEDTO)))>  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of AttendanceBusiness.AT_TIME_RICEDTO))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(Common.CommonBusiness.UserLog))>  _
         Function ValidateOtRegistration(ByVal _validate As AttendanceBusiness.AT_OT_REGISTRATIONDTO) As Object
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IAttendanceBusiness/HRReviewOtRegistration", ReplyAction:="http://tempuri.org/IAttendanceBusiness/HRReviewOtRegistrationResponse")>  _
@@ -32130,9 +32136,6 @@ Namespace AttendanceBusiness
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IAttendanceBusiness/GET_REG_PORTAL", ReplyAction:="http://tempuri.org/IAttendanceBusiness/GET_REG_PORTALResponse")>  _
         Function GET_REG_PORTAL(ByVal empid As Decimal, ByVal startdate As Date, ByVal enddate As Date, ByVal strId As String, ByVal type As String) As System.Collections.Generic.List(Of AttendanceBusiness.APPOINTMENT_DTO)
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IAttendanceBusiness/GET_TOTAL_OT_APPROVE", ReplyAction:="http://tempuri.org/IAttendanceBusiness/GET_TOTAL_OT_APPROVEResponse")>  _
-        Function GET_TOTAL_OT_APPROVE(ByVal empid As Decimal, ByVal enddate As Date) As Decimal
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IAttendanceBusiness/DeleteDelareRice", ReplyAction:="http://tempuri.org/IAttendanceBusiness/DeleteDelareRiceResponse")>  _
         Function DeleteDelareRice(ByVal lstID As System.Collections.Generic.List(Of Decimal)) As Boolean
@@ -32301,7 +32304,8 @@ Namespace AttendanceBusiness
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of Date))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of Short))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of System.Nullable(Of Decimal)))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(Common.CommonBusiness.UserLog)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of AttendanceBusiness.StatisticDTO))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(AttendanceBusiness.StatisticDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(AttendanceBusiness.AT_OFFFSETTINGDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of AttendanceBusiness.AT_OFFFSETTING_EMPDTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(AttendanceBusiness.AT_OFFFSETTING_EMPDTO)),  _
@@ -32343,8 +32347,6 @@ Namespace AttendanceBusiness
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of AttendanceBusiness.AT_PROJECT_WORKDTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(AttendanceBusiness.AT_PROJECT_EMPDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of AttendanceBusiness.AT_PROJECT_EMPDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of AttendanceBusiness.StatisticDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(AttendanceBusiness.StatisticDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(AttendanceBusiness.AT_FMLDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(AttendanceBusiness.AT_GSIGNDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of AttendanceBusiness.AT_GSIGNDTO))),  _
@@ -32416,7 +32418,8 @@ Namespace AttendanceBusiness
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(AttendanceBusiness.AT_TIME_TIMESHEET_MONTHLYDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of AttendanceBusiness.AT_TIME_TIMESHEET_MONTHLYDTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(AttendanceBusiness.AT_TIME_RICEDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of AttendanceBusiness.AT_TIME_RICEDTO)))>  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of AttendanceBusiness.AT_TIME_RICEDTO))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(Common.CommonBusiness.UserLog))>  _
         Function InsertWorkSign(ByVal objWorkSigns As System.Collections.Generic.List(Of AttendanceBusiness.AT_WORKSIGNDTO), ByVal objWork As AttendanceBusiness.AT_WORKSIGNDTO, ByVal p_fromdate As Date, ByVal p_endDate As System.Nullable(Of Date), ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Object
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IAttendanceBusiness/ValidateWORKSIGN", ReplyAction:="http://tempuri.org/IAttendanceBusiness/ValidateWORKSIGNResponse")>  _
@@ -32442,7 +32445,8 @@ Namespace AttendanceBusiness
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of Date))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of Short))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of System.Nullable(Of Decimal)))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(Common.CommonBusiness.UserLog)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of AttendanceBusiness.StatisticDTO))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(AttendanceBusiness.StatisticDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(AttendanceBusiness.AT_OFFFSETTINGDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of AttendanceBusiness.AT_OFFFSETTING_EMPDTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(AttendanceBusiness.AT_OFFFSETTING_EMPDTO)),  _
@@ -32484,8 +32488,6 @@ Namespace AttendanceBusiness
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of AttendanceBusiness.AT_PROJECT_WORKDTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(AttendanceBusiness.AT_PROJECT_EMPDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of AttendanceBusiness.AT_PROJECT_EMPDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of AttendanceBusiness.StatisticDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(AttendanceBusiness.StatisticDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(AttendanceBusiness.AT_FMLDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(AttendanceBusiness.AT_GSIGNDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of AttendanceBusiness.AT_GSIGNDTO))),  _
@@ -32557,7 +32559,8 @@ Namespace AttendanceBusiness
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(AttendanceBusiness.AT_TIME_TIMESHEET_MONTHLYDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of AttendanceBusiness.AT_TIME_TIMESHEET_MONTHLYDTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(AttendanceBusiness.AT_TIME_RICEDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of AttendanceBusiness.AT_TIME_RICEDTO)))>  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of AttendanceBusiness.AT_TIME_RICEDTO))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(Common.CommonBusiness.UserLog))>  _
         Function InsertProjectAssign(ByVal objProjectAssigns As System.Collections.Generic.List(Of AttendanceBusiness.AT_PROJECT_ASSIGNDTO), ByVal objWork As AttendanceBusiness.AT_PROJECT_ASSIGNDTO, ByVal p_fromdate As Date, ByVal p_endDate As System.Nullable(Of Date), ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Object
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IAttendanceBusiness/ModifyProjectAssign", ReplyAction:="http://tempuri.org/IAttendanceBusiness/ModifyProjectAssignResponse")>  _
@@ -32865,7 +32868,8 @@ Namespace AttendanceBusiness
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of Date))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of Short))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of System.Nullable(Of Decimal)))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(Common.CommonBusiness.UserLog)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of AttendanceBusiness.StatisticDTO))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(AttendanceBusiness.StatisticDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(AttendanceBusiness.AT_OFFFSETTINGDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of AttendanceBusiness.AT_OFFFSETTING_EMPDTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(AttendanceBusiness.AT_OFFFSETTING_EMPDTO)),  _
@@ -32907,8 +32911,6 @@ Namespace AttendanceBusiness
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of AttendanceBusiness.AT_PROJECT_WORKDTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(AttendanceBusiness.AT_PROJECT_EMPDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of AttendanceBusiness.AT_PROJECT_EMPDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of AttendanceBusiness.StatisticDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(AttendanceBusiness.StatisticDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(AttendanceBusiness.AT_FMLDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(AttendanceBusiness.AT_GSIGNDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of AttendanceBusiness.AT_GSIGNDTO))),  _
@@ -32980,7 +32982,8 @@ Namespace AttendanceBusiness
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(AttendanceBusiness.AT_TIME_TIMESHEET_MONTHLYDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of AttendanceBusiness.AT_TIME_TIMESHEET_MONTHLYDTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(AttendanceBusiness.AT_TIME_RICEDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of AttendanceBusiness.AT_TIME_RICEDTO)))>  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of AttendanceBusiness.AT_TIME_RICEDTO))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(Common.CommonBusiness.UserLog))>  _
         Function ValidateTimesheet(ByVal _validate As AttendanceBusiness.AT_TIME_TIMESHEET_MONTHLYDTO, ByVal sType As String, ByVal log As Common.CommonBusiness.UserLog) As Object
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IAttendanceBusiness/GetDelareRice", ReplyAction:="http://tempuri.org/IAttendanceBusiness/GetDelareRiceResponse")>  _
@@ -33035,6 +33038,10 @@ Namespace AttendanceBusiness
         Public Sub New(ByVal binding As System.ServiceModel.Channels.Binding, ByVal remoteAddress As System.ServiceModel.EndpointAddress)
             MyBase.New(binding, remoteAddress)
         End Sub
+        
+        Public Function GetStatisticTimeProject(ByVal _year As Integer, ByVal _month As Integer, ByVal log As Common.CommonBusiness.UserLog) As System.Collections.Generic.List(Of AttendanceBusiness.StatisticDTO) Implements AttendanceBusiness.IAttendanceBusiness.GetStatisticTimeProject
+            Return MyBase.Channel.GetStatisticTimeProject(_year, _month, log)
+        End Function
         
         Public Function InsertOffSettingTime(ByVal objOffSetting As AttendanceBusiness.AT_OFFFSETTINGDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean Implements AttendanceBusiness.IAttendanceBusiness.InsertOffSettingTime
             Return MyBase.Channel.InsertOffSettingTime(objOffSetting, log, gID)
@@ -33130,6 +33137,10 @@ Namespace AttendanceBusiness
         
         Public Function INPORT_NB_PREV(ByVal P_DOCXML As String, ByVal log As Common.CommonBusiness.UserLog, ByVal P_YEAR As Integer) As Boolean Implements AttendanceBusiness.IAttendanceBusiness.INPORT_NB_PREV
             Return MyBase.Channel.INPORT_NB_PREV(P_DOCXML, log, P_YEAR)
+        End Function
+        
+        Public Function GET_TOTAL_OT_APPROVE(ByVal empid As Decimal, ByVal enddate As Date) As Decimal Implements AttendanceBusiness.IAttendanceBusiness.GET_TOTAL_OT_APPROVE
+            Return MyBase.Channel.GET_TOTAL_OT_APPROVE(empid, enddate)
         End Function
         
         Public Function AT_CHECK_ORG_PERIOD_STATUS_OT(ByVal LISTORG As String, ByVal PERIOD As Decimal) As Integer Implements AttendanceBusiness.IAttendanceBusiness.AT_CHECK_ORG_PERIOD_STATUS_OT
@@ -33468,10 +33479,6 @@ Namespace AttendanceBusiness
             Return MyBase.Channel.GetStatisticTimeOtByOrg(_year, _month, log)
         End Function
         
-        Public Function GetStatisticTimeProject(ByVal _year As Integer, ByVal _month As Integer, ByVal log As Common.CommonBusiness.UserLog) As System.Collections.Generic.List(Of AttendanceBusiness.StatisticDTO) Implements AttendanceBusiness.IAttendanceBusiness.GetStatisticTimeProject
-            Return MyBase.Channel.GetStatisticTimeProject(_year, _month, log)
-        End Function
-        
         Public Function ModifyAT_FML(ByVal objATFML As AttendanceBusiness.AT_FMLDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean Implements AttendanceBusiness.IAttendanceBusiness.ModifyAT_FML
             Return MyBase.Channel.ModifyAT_FML(objATFML, log, gID)
         End Function
@@ -33696,6 +33703,10 @@ Namespace AttendanceBusiness
             Return MyBase.Channel.DeleteAT_SetUp_Exchange(lstID)
         End Function
         
+        Public Function CheckTrung_AT__SetUp_exchange(ByVal from_minute As Decimal, ByVal to_minute As Decimal) As Integer Implements AttendanceBusiness.IAttendanceBusiness.CheckTrung_AT__SetUp_exchange
+            Return MyBase.Channel.CheckTrung_AT__SetUp_exchange(from_minute, to_minute)
+        End Function
+        
         Public Function GetAT_TERMINAL(ByVal _filter As AttendanceBusiness.AT_TERMINALSDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal Sorts As String, ByVal log As Common.CommonBusiness.UserLog) As System.Collections.Generic.List(Of AttendanceBusiness.AT_TERMINALSDTO) Implements AttendanceBusiness.IAttendanceBusiness.GetAT_TERMINAL
             Return MyBase.Channel.GetAT_TERMINAL(_filter, PageIndex, PageSize, Total, Sorts, log)
         End Function
@@ -33806,10 +33817,6 @@ Namespace AttendanceBusiness
         
         Public Function GET_REG_PORTAL(ByVal empid As Decimal, ByVal startdate As Date, ByVal enddate As Date, ByVal strId As String, ByVal type As String) As System.Collections.Generic.List(Of AttendanceBusiness.APPOINTMENT_DTO) Implements AttendanceBusiness.IAttendanceBusiness.GET_REG_PORTAL
             Return MyBase.Channel.GET_REG_PORTAL(empid, startdate, enddate, strId, type)
-        End Function
-        
-        Public Function GET_TOTAL_OT_APPROVE(ByVal empid As Decimal, ByVal enddate As Date) As Decimal Implements AttendanceBusiness.IAttendanceBusiness.GET_TOTAL_OT_APPROVE
-            Return MyBase.Channel.GET_TOTAL_OT_APPROVE(empid, enddate)
         End Function
         
         Public Function DeleteDelareRice(ByVal lstID As System.Collections.Generic.List(Of Decimal)) As Boolean Implements AttendanceBusiness.IAttendanceBusiness.DeleteDelareRice
