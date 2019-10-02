@@ -1,8 +1,8 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for Oracle database
 -- --------------------------------------------------
--- Date Created: 10/02/2019 9:43:10 AM
--- Generated from EDMX file: D:\MyProject\TNG\TNG\AttendanceDAL\AttendanceContext.edmx
+-- Date Created: 10/2/2019 2:05:02 PM
+-- Generated from EDMX file: D:\TNG_SOURCE_NEW\AttendanceDAL\AttendanceContext.edmx
 -- --------------------------------------------------
 
 -- --------------------------------------------------
@@ -2023,7 +2023,8 @@ CREATE TABLE "dbo"."AT_OT_REGISTRATION" (
    "TO_PM" NUMBER(38,0) NULL,
    "TO_PM_MN" NUMBER(38,0) NULL,
    "HR_REVIEW" NUMBER(38,0) NULL,
-   "ID_REGGROUP" NUMBER(38,0) NULL
+   "ID_REGGROUP" NUMBER(38,0) NULL,
+   "OT_180" NUMBER(38,0) NULL
 );
 
 -- Creating table 'AT_OFFSETTING_TIMEKEEPING'

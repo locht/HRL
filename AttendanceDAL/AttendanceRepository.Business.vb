@@ -1504,6 +1504,7 @@ Partial Public Class AttendanceRepository
                                        .TOTAL_OT = p.p.TOTAL_OT,
                                        .OT_100 = p.p.OT_100,
                                        .OT_150 = p.p.OT_150,
+                                       .OT_180 = p.p.OT_180,
                                        .OT_200 = p.p.OT_200,
                                        .OT_210 = p.p.OT_210,
                                        .OT_270 = p.p.OT_270,
@@ -6138,6 +6139,7 @@ Partial Public Class AttendanceRepository
                                        .TOTAL_OT = If(p.r.TOTAL_OT Is Nothing, 0, p.r.TOTAL_OT),
                                        .OT_100 = If(p.r.OT_100 Is Nothing, 0, p.r.OT_100),
                                        .OT_150 = If(p.r.OT_150 Is Nothing, 0, p.r.OT_150),
+                                       .OT_180 = If(p.r.OT_180 Is Nothing, 0, p.r.OT_180),
                                        .OT_200 = If(p.r.OT_200 Is Nothing, 0, p.r.OT_200),
                                        .OT_210 = If(p.r.OT_210 Is Nothing, 0, p.r.OT_210),
                                        .OT_270 = If(p.r.OT_270 Is Nothing, 0, p.r.OT_270),
@@ -6178,6 +6180,7 @@ Partial Public Class AttendanceRepository
             objData.IS_DELETED = obj.IS_DELETED
             objData.OT_100 = obj.OT_100
             objData.OT_150 = obj.OT_150
+            objData.OT_180 = obj.OT_180
             objData.OT_200 = obj.OT_200
             objData.OT_210 = obj.OT_210
             objData.OT_270 = obj.OT_270
@@ -6219,6 +6222,7 @@ Partial Public Class AttendanceRepository
             objData.IS_DELETED = obj.IS_DELETED
             objData.OT_100 = obj.OT_100
             objData.OT_150 = obj.OT_150
+            objData.OT_180 = obj.OT_180
             objData.OT_200 = obj.OT_200
             objData.OT_210 = obj.OT_210
             objData.OT_270 = obj.OT_270

@@ -13392,6 +13392,9 @@ Namespace AttendanceBusiness
         Private OT_150Field As System.Nullable(Of Decimal)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private OT_180Field As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private OT_200Field As System.Nullable(Of Decimal)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -13812,6 +13815,19 @@ Namespace AttendanceBusiness
                 If (Me.OT_150Field.Equals(value) <> true) Then
                     Me.OT_150Field = value
                     Me.RaisePropertyChanged("OT_150")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property OT_180() As System.Nullable(Of Decimal)
+            Get
+                Return Me.OT_180Field
+            End Get
+            Set
+                If (Me.OT_180Field.Equals(value) <> true) Then
+                    Me.OT_180Field = value
+                    Me.RaisePropertyChanged("OT_180")
                 End If
             End Set
         End Property

@@ -68,6 +68,15 @@ Partial Public Class ctrlDeclaresOTNewEdit
     Protected WithEvents hid150 As Global.System.Web.UI.WebControls.HiddenField
 
     '''<summary>
+    '''hid180 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents hid180 As Global.System.Web.UI.WebControls.HiddenField
+
+    '''<summary>
     '''hid200 control.
     '''</summary>
     '''<remarks>
