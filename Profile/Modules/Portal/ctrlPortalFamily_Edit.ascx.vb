@@ -448,10 +448,10 @@ Public Class ctrlPortalFamily_Edit
                             ShowMessage("Thông tin đang phê duyệt, thao tác thực hiện không thành công", NotifyType.Warning)
                             Exit Sub
                         End If
-                        'If status = 3 Then
-                        '   ShowMessage("Thông tin đang không phê duyệt, thao tác thực hiện không thành công", NotifyType.Warning)
-                        '   Exit Sub
-                        'End If
+                        If status = 3 Then
+                            ShowMessage("Thông tin đang không phê duyệt, thao tác thực hiện không thành công", NotifyType.Warning)
+                            Exit Sub
+                        End If
                     Next
 
                     ctrlMessageBox.MessageText = Translate("Thông tin đã gửi duyệt sẽ không được chỉnh sửa. Bạn chắc chắn muốn gửi duyệt?")
@@ -503,6 +503,9 @@ Public Class ctrlPortalFamily_Edit
                         CurrentState = CommonMessage.STATE_NORMAL
                     Case 2
                         ShowMessage("Bản ghi đã Phê duyệt chỉ được xem thông tin", NotifyType.Warning)
+                        CurrentState = CommonMessage.STATE_NORMAL
+                    Case 3
+                        ShowMessage("Bản ghi đã Không phê duyệt chỉ được xem thông tin", NotifyType.Warning)
                         CurrentState = CommonMessage.STATE_NORMAL
                     Case Else
                         CurrentState = CommonMessage.STATE_EDIT
@@ -611,9 +614,12 @@ Public Class ctrlPortalFamily_Edit
                 chkIs_Pass.Checked = item.GetDataKeyValue("IS_PASS")
                 If item.GetDataKeyValue("FK_PKEY") IsNot Nothing Then
                     hidFamilyID.Value = item.GetDataKeyValue("FK_PKEY")
+                    checkFK_Pkey = 0
+                Else
+                    checkFK_Pkey = 1
                 End If
                 hidID.Value = item.GetDataKeyValue("ID")
-                checkFK_Pkey = 1
+
                 chkIsDeduct_CheckedChanged(Nothing, Nothing)
                 UpdateControlState()
             End If
@@ -630,7 +636,7 @@ Public Class ctrlPortalFamily_Edit
                 End Using
                 Dim item1 = CType(e.Item, GridDataItem)
                 For Each LINE In FAMILY_DS
-                    If LINE.FK_PKEY = item1.GetDataKeyValue("ID") Then
+                    If LINE.FK_PKEY = item1.GetDataKeyValue("ID") And (LINE.STATUS = 0 Or LINE.STATUS = 1) Then
                         ShowMessage(Translate("Đã có thông tin ở mục chỉnh sửa."), NotifyType.Warning)
                         Exit Sub
                     End If
