@@ -73,6 +73,9 @@
                         </td>
                         <td>
                             <tlk:RadNumericTextBox ID="rtxtDateDeducted" runat="server">
+                                <NumberFormat AllowRounding="false" KeepNotRoundedValue="true" DecimalDigits="1"
+                                    DecimalSeparator="." />
+                                <ClientEvents OnBlur="displayDecimalFormat" OnLoad="displayDecimalFormat" OnValueChanged="displayDecimalFormat" />
                             </tlk:RadNumericTextBox>
                         </td>
                     </tr>
@@ -110,9 +113,9 @@
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Đến phút%>" DataField="TO_MINUTE"
                                 UniqueName="TO_MINUTE" SortExpression="TO_MINUTE">
                             </tlk:GridBoundColumn>
-                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Số ngày%>" DataField="NUMBER_DATE"
-                                UniqueName="NUMBER_DATE" SortExpression="NUMBER_DATE">
-                            </tlk:GridBoundColumn>
+                            <tlk:GridNumericColumn HeaderText="<%$ Translate: Số ngày%>" DataField="NUMBER_DATE"
+                                UniqueName="NUMBER_DATE" SortExpression="NUMBER_DATE" >
+                            </tlk:GridNumericColumn>
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Trạng thái %>" DataField="ACTFLG"
                                 UniqueName="ACTFLG" SortExpression="ACTFLG">
                                 <HeaderStyle Width="70px" />
@@ -190,7 +193,9 @@
             eventArgs.set_enableAjax(enableAjax);
             enableAjax = true;
         }
-
+        function displayDecimalFormat(sender, args) {
+            sender.set_textBoxValue(sender.get_value().toString());
+        }
     
     </script>
 </tlk:RadCodeBlock>
