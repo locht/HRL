@@ -691,6 +691,12 @@ Public Class ctrlHU_Terminate
             Next
 
             If lstID.Count > 0 Then
+                For Each item As GridDataItem In rgTerminate.SelectedItems
+                    If item.GetDataKeyValue("STATUS_ID") = ProfileCommon.DECISION_STATUS.APPROVE_ID Then
+                        ShowMessage(Translate("Bản ghi đã phê duyệt."), NotifyType.Warning)
+                        Exit Sub
+                    End If
+                Next
                 If rep.ApproveListTerminate(lstID) Then
                     ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), NotifyType.Success)
                     rgTerminate.Rebind()

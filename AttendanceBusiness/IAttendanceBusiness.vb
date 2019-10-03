@@ -89,7 +89,12 @@ Namespace AttendanceBusiness.ServiceContracts
         <OperationContract()>
         Function PRI_PROCESS(ByVal employee_id_app As Decimal, ByVal employee_id As Decimal, ByVal period_id As Integer, ByVal status As Decimal, ByVal process_type As String, ByVal notes As String, ByVal id_reggroup As Integer, Optional ByVal log As UserLog = Nothing) As Int32
         <OperationContract()>
-        Function PRS_GETLEAVE_BY_APPROVE(ByVal employee_id As Decimal, ByVal status_id As Integer, ByVal year As Integer, Optional ByVal log As UserLog = Nothing) As DataTable
+        Function PRS_GETLEAVE_BY_APPROVE1(ByVal param As AT_PORTAL_REG_DTO,
+                                         Optional ByRef Total As Integer = 0,
+                                     Optional ByVal PageIndex As Integer = 0,
+                                     Optional ByVal PageSize As Integer = Integer.MaxValue,
+                                      Optional ByVal Sorts As String = "CREATED_DATE desc",
+                                     Optional ByVal log As UserLog = Nothing) As DataTable
         <OperationContract()>
         Function GetOtherList(ByVal sType As String, ByVal sLang As String, ByVal isBlank As Boolean) As DataTable
 

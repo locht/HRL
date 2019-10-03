@@ -336,6 +336,13 @@ Public Class ctrlHU_WageMng
                         ShowMessage(Translate(CommonMessage.MESSAGE_NOT_SELECT_ROW), NotifyType.Error)
                         Exit Sub
                     End If
+                    For Each item As GridDataItem In rgWorking.SelectedItems
+                        If item.GetDataKeyValue("STATUS_ID") = ProfileCommon.DECISION_STATUS.APPROVE_ID Then
+                            ShowMessage(Translate("Bản ghi đã phê duyệt."), NotifyType.Warning)
+                            Exit Sub
+                        End If
+                    Next
+                  
                     Dim workingIds = New List(Of Decimal)
                     For Each selectedItem As GridDataItem In rgWorking.SelectedItems
                         workingIds.Add(selectedItem.GetDataKeyValue("ID"))
