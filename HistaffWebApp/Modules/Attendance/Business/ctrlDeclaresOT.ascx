@@ -109,6 +109,8 @@
                                          HeaderStyle-Width="100px" ItemStyle-Width="100px" SortExpression="OT_100" ItemStyle-HorizontalAlign="Center" />
                                     <tlk:GridNumericColumn HeaderText="<%$ Translate: 150% %>" DataField="OT_150" UniqueName="OT_150"
                                          HeaderStyle-Width="100px" ItemStyle-Width="100px" SortExpression="OT_150" ItemStyle-HorizontalAlign="Center" />
+                                   <tlk:GridNumericColumn HeaderText="<%$ Translate: 180% %>" DataField="OT_180" UniqueName="OT_180"
+                                         HeaderStyle-Width="100px" ItemStyle-Width="100px" SortExpression="OT_180" ItemStyle-HorizontalAlign="Center" />
                                     <tlk:GridNumericColumn HeaderText="<%$ Translate: 200% %>" DataField="OT_200" UniqueName="OT_200"
                                          HeaderStyle-Width="100px" ItemStyle-Width="100px" SortExpression="OT_200" ItemStyle-HorizontalAlign="Center" />
                                     <tlk:GridNumericColumn HeaderText="<%$ Translate: 210% %>" DataField="OT_210" UniqueName="OT_210"

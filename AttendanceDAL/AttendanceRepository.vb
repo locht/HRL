@@ -271,7 +271,7 @@ Partial Public Class AttendanceRepository
             End If
             If cbxData.GET_LIST_HS_OT Then
                 cbxData.LIST_LIST_HS_OT = (From p In Context.OT_OTHER_LIST Join t In Context.OT_OTHER_LIST_TYPE On p.TYPE_ID Equals t.ID
-                                           Where p.ACTFLG = "A" And t.CODE = "HS_OT" Order By p.ID Descending
+                                           Where p.ACTFLG = "A" And t.CODE = "HS_OT" Order By p.CODE Ascending
                                            Select New OT_OTHERLIST_DTO With {
                                                 .ID = p.ID,
                                                 .CODE = p.CODE,

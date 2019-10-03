@@ -82,7 +82,7 @@
                 </td>
                 <td>
                     <%--<asp:CheckBox ID="ckSpecDH" runat="server" Text="Đặc biệt độc hại" />--%>
-                    <asp:CheckBox ID="ckOVT" runat="server" Text="Tính OVT" />
+                    <asp:CheckBox ID="ckOVT" runat="server" Text="Tính phụ cấp làm thêm giờ" />
                 </td>
             </tr>
             <tr>

@@ -387,8 +387,9 @@ Public Class ctrlHU_CommendNewEdit
                     FileOldName = If(FileOldName = "", txtUpload.Text, FileOldName)
 
                     If Commend.STATUS_ID = ProfileCommon.COMMEND_STATUS.APPROVE_ID Then
-                        RightPane.Enabled = False
+                        'RightPane.Enabled = False
                         CType(MainToolBar.Items(0), RadToolBarButton).Enabled = False
+                        btnDownload.Enabled = True
                     End If
 
                     'dien dữ lieu vao lưới ( nhan vien hoac phòng ban )
@@ -2305,11 +2306,13 @@ Public Class ctrlHU_CommendNewEdit
                         EnableControlAll(False, rdEffectDate, txtDecisionNo, cboStatus, rdSignDate, txtSignerName,
                                          btnFindSinger, txtSignerTitle, cboCommendObj, cboCommend_Title,
                                          cboCommendType, cboCommendPay, rntxtMoney,
-                                         cboPeriod, chkTAX, cboPeriodTax, txtCommend_Detail, txtRemark, txtUpload,
-                                         btnUploadFile, txtYear)
+                                         cboPeriod, chkTAX, cboPeriodTax, txtCommend_Detail, txtRemark, cboCommendLevel,
+                                         txtYear)
                         Utilities.EnabledGrid(rgEmployee, False, False)
                         Utilities.EnabledGrid(rgOrg, False, False)
+                        EnableControlAll(True, btnDownload, btnUploadFile)
                     End If
+
                 End If
             End If
 

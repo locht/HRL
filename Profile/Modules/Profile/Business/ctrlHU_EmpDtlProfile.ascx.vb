@@ -949,9 +949,9 @@ Public Class ctrlHU_EmpDtlProfile
                                            cboPROVINCEEMP_BRITH, cboDISTRICTEMP_BRITH, cboWARDEMP_BRITH, ckCHUHO, txtNoHouseHolds, txtCodeHouseHolds, cboObjectIns)
                     Else
                         EnableControlAll(False, txtOrgName2,
-                               txtTitleGroup, cboStaffRank, txtDirectManager,
-                               cboObject, txtTimeID, cbObjectBook, txtmanager)
-                        EnableControlAll(True, btnFindOrg, cboTitle, cboObjectLabor, btnFindDirect)
+                               txtTitleGroup, txtDirectManager,
+                               txtTimeID, cbObjectBook, txtmanager)
+                        EnableControlAll(True, btnFindOrg, cboTitle, cboObject, cboStaffRank, cboObjectLabor, btnFindDirect)
                         EnableControlAll(False, cboWorkStatus, txtEmpCODE, cboEmpStatus, rtBookNo, cboInsRegion)
                         EnableControlAll(True, rtCHUC_VU_DANG, rdNGAY_VAO_DANG_DB, rdNGAY_VAO_DANG)
                         EnableControlAll(True, ckDOAN_PHI, rtCHUC_VU_DOAN, rdNGAY_VAO_DOAN)
@@ -1000,7 +1000,7 @@ Public Class ctrlHU_EmpDtlProfile
                         txtTimeID.ReadOnly = True
                     End If
                     If EmployeeInfo.LAST_WORKING_ID IsNot Nothing Then
-                        EnableControlAll(False, cboTitle, cboStaffRank, cboObject, btnFindOrg)
+                        EnableControlAll(False, cboTitle, cboStaffRank, cboObject, btnFindOrg, cboObjectLabor, btnFindDirect)
                     End If
                 Case Else
                     If EmployeeInfo.WORK_STATUS IsNot Nothing Then

@@ -321,7 +321,7 @@ Public Class ctrlHU_WageNewEdit
                     cbSalaryRank.Enabled = False
                     rnFactorSalary.Enabled = True
                     'basicSalary.Enabled = False
-                    rnPercentSalary.Enabled = False
+                    'rnPercentSalary.Enabled = False
                     Salary_Total.Enabled = False
                     'rnOtherSalary1.Enabled = False
                     'GetDATA_IN()
@@ -868,6 +868,8 @@ Public Class ctrlHU_WageNewEdit
                         sender.Items.Add(radItem)
                     Next
                 End If
+                basicSalary.AutoPostBack = True
+                rnPercentSalary.AutoPostBack = True
             End Using
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
@@ -1057,6 +1059,11 @@ Public Class ctrlHU_WageNewEdit
                 ShowMessage(Translate("Không được điều chỉnh lương cơ bản nhỏ hơn hệ số nhân với lương tối thiểu vùng"), NotifyType.Warning)
                 Exit Sub
             End If
+            If basicSalary.Value Is Nothing Then
+                ShowMessage(Translate("Bạn hãy nhập lương cơ bản"), NotifyType.Warning)
+                Exit Sub
+            End If
+
             If rnPercentSalary.Value.HasValue Then
                 If cboSalTYPE.Text = "Kiêm nhiệm" Then
                     total = (If(basicSalary.Value.HasValue, basicSalary.Value, 0) + _
@@ -1064,8 +1071,8 @@ Public Class ctrlHU_WageNewEdit
                              If(rnOtherSalary2.Value.HasValue, rnOtherSalary2.Value, 0)) * rnPercentSalary.Value / 100
                     ' basicSalary.Enabled = True
                 Else
-                    total = basicSalary.Value * rnPercentSalary.Value / 100 + _
-                        If(rnOtherSalary1.Value.HasValue, rnOtherSalary1.Value, 0) 
+                    total = (basicSalary.Value + _
+                        If(rnOtherSalary1.Value.HasValue, rnOtherSalary1.Value, 0)) * rnPercentSalary.Value / 100
                     ' basicSalary.Enabled = False
                 End If
             End If
@@ -1076,20 +1083,55 @@ Public Class ctrlHU_WageNewEdit
     End Sub
     Private Sub rnOtherSalary1_TextChanged(sender As Object, e As System.EventArgs) Handles rnOtherSalary1.TextChanged
         Try
-            If basicSalary.Text <> "" Then
-                If rnOtherSalary1.Text = "" Then
-                    rnOtherSalary1.Value = 0
-                End If
-                Salary_Total.Value = basicSalary.Value + rnOtherSalary1.Value
-                If rnOtherSalary1.Text = 0 Then
-                    rnOtherSalary1.Text = ""
+            If rnPercentSalary.Value.HasValue Then
+                If cboSalTYPE.Text = "Kiêm nhiệm" Then
+                    total = (If(basicSalary.Value.HasValue, basicSalary.Value, 0) + _
+                           If(rnOtherSalary1.Value.HasValue, rnOtherSalary1.Value, 0) + _
+                           If(rnOtherSalary2.Value.HasValue, rnOtherSalary2.Value, 0)) * rnPercentSalary.Value / 100
+                    Salary_Total.Value = total
+                Else
+                    Salary_Total.Value = (basicSalary.Value + _
+                        If(rnOtherSalary1.Value.HasValue, rnOtherSalary1.Value, 0)) * rnPercentSalary.Value / 100
                 End If
             End If
         Catch ex As Exception
             Throw ex
         End Try
     End Sub
-
+    Private Sub rnOtherSalary2_TextChanged(sender As Object, e As System.EventArgs) Handles rnOtherSalary2.TextChanged
+        Try
+            If rnPercentSalary.Value.HasValue Then
+                If cboSalTYPE.Text = "Kiêm nhiệm" Then
+                    total = (If(basicSalary.Value.HasValue, basicSalary.Value, 0) + _
+                           If(rnOtherSalary1.Value.HasValue, rnOtherSalary1.Value, 0) + _
+                           If(rnOtherSalary2.Value.HasValue, rnOtherSalary2.Value, 0)) * rnPercentSalary.Value / 100
+                    Salary_Total.Value = total
+                Else
+                    Salary_Total.Value = (basicSalary.Value + _
+                        If(rnOtherSalary1.Value.HasValue, rnOtherSalary1.Value, 0)) * rnPercentSalary.Value / 100
+                End If
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+    Private Sub rnPercentSalary_TextChanged(sender As Object, e As System.EventArgs) Handles rnPercentSalary.TextChanged
+        Try
+            If rnPercentSalary.Value.HasValue Then
+                If cboSalTYPE.Text = "Kiêm nhiệm" Then
+                    total = (If(basicSalary.Value.HasValue, basicSalary.Value, 0) + _
+                           If(rnOtherSalary1.Value.HasValue, rnOtherSalary1.Value, 0) + _
+                           If(rnOtherSalary2.Value.HasValue, rnOtherSalary2.Value, 0)) * rnPercentSalary.Value / 100
+                    Salary_Total.Value = total
+                Else
+                    Salary_Total.Value = (basicSalary.Value + _
+                        If(rnOtherSalary1.Value.HasValue, rnOtherSalary1.Value, 0)) * rnPercentSalary.Value / 100
+                End If
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
     ''' <summary>
     ''' Event selected item combobox phu cap
     ''' </summary>
@@ -1460,7 +1502,7 @@ Public Class ctrlHU_WageNewEdit
                     ' basicSalary.Enabled = True
                 Else
                     total = basicSal * rnPercentSalary.Value / 100 + _
-                        If(rnOtherSalary1.Value.HasValue, rnOtherSalary1.Value, 0) 
+                        If(rnOtherSalary1.Value.HasValue, rnOtherSalary1.Value, 0)
                     ' basicSalary.Enabled = False
                 End If
             End If
@@ -1530,8 +1572,21 @@ Public Class ctrlHU_WageNewEdit
             Case "Kiêm nhiệm"
                 EnableControlAll(True, rnPercentSalary, rnFactorSalary, rnOtherSalary1, rnOtherSalary2)
                 EnableControlAll(False, cbSalaryGroup, cbSalaryLevel, cbSalaryRank, Salary_Total)
-                ClearControlValue(cbSalaryGroup, cbSalaryLevel, cbSalaryRank, rnFactorSalary, basicSalary, Salary_Total)
+                ClearControlValue(cbSalaryGroup, cbSalaryLevel, cbSalaryRank, rnFactorSalary, basicSalary, Salary_Total, rnPercentSalary)
         End Select
+        If rnPercentSalary.Value.HasValue Then
+            If cboSalTYPE.Text = "Kiêm nhiệm" Then
+                total = (If(basicSalary.Value.HasValue, basicSalary.Value, 0) + _
+                         If(rnOtherSalary1.Value.HasValue, rnOtherSalary1.Value, 0) + _
+                         If(rnOtherSalary2.Value.HasValue, rnOtherSalary2.Value, 0)) * rnPercentSalary.Value / 100
+                ' basicSalary.Enabled = True
+            Else
+                total = (basicSalary.Value + _
+                    If(rnOtherSalary1.Value.HasValue, rnOtherSalary1.Value, 0)) * rnPercentSalary.Value / 100
+                ' basicSalary.Enabled = False
+            End If
+        End If
+        Salary_Total.Value = total
         'ClearControlValue(cbSalaryGroup, cbSalaryLevel, cbSalaryRank, rnFactorSalary, basicSalary, Salary_Total)
     End Sub
     Private Sub SetTaxTableByCode(ByVal taxTables As List(Of OtherListDTO), ByVal code As String)
@@ -1543,6 +1598,8 @@ Public Class ctrlHU_WageNewEdit
     End Sub
 #End Region
 
+  
+  
 End Class
 Structure DATA_IN
     Public EMPLOYEE_ID As Decimal?

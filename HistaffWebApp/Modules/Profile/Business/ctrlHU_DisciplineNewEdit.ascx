@@ -318,7 +318,7 @@
             <tr>               
                 <td class="lb">
                     <asp:CheckBox ID="chkAmountInMonth" runat="server"  Checked="false" CausesValidation="false" AutoPostBack="true"  Enabled="false"/>
-                    <asp:Label runat="server" ID="lbAmountInMonth" Text="Số tiền trừ theo tỷ lệ/mỗi tháng lương"></asp:Label>
+                    <asp:Label runat="server" ID="lbAmountInMonth" Text="Tỷ lệ trừ vào mỗi tháng lương"></asp:Label>
                 </td>               
                 <td>                    
                     <tlk:RadNumericTextBox ID="rnAmountInMonth" runat="server" SkinID="Money" TabIndex="27" Enabled="false">

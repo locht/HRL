@@ -124,20 +124,22 @@ Public Class ctrlManagementNB
             Me.MainToolBar = tbarMainToolBar
             Common.Common.BuildToolbar(Me.MainToolBar,
                                        ToolbarItem.Calculate,
-                                       ToolbarItem.Export,
-                                       ToolbarItem.Next,
-                                       ToolbarItem.Import,
-                                       ToolbarItem.Print,
-                                       ToolbarItem.Active)
+                                       ToolbarItem.Export)
+
+
+            'ToolbarItem.Next,
+            'ToolbarItem.Import,
+            'ToolbarItem.Print,
+            'ToolbarItem.Active
 
             MainToolBar.Items(0).Text = Translate("Tổng hợp")
-            MainToolBar.Items(2).Text = Translate("Xuất file mẫu điều chỉnh phép năm trước")
-            CType(MainToolBar.Items(2), RadToolBarButton).ImageUrl = CType(MainToolBar.Items(1), RadToolBarButton).ImageUrl
-            MainToolBar.Items(3).Text = Translate("Nhập file mẫu điều chỉnh phép năm trước")
-            MainToolBar.Items(4).Text = Translate("Xuất file mẫu")
-            CType(MainToolBar.Items(4), RadToolBarButton).ImageUrl = CType(MainToolBar.Items(1), RadToolBarButton).ImageUrl
-            MainToolBar.Items(5).Text = Translate("Nhập file mẫu")
-            CType(MainToolBar.Items(5), RadToolBarButton).ImageUrl = CType(MainToolBar.Items(3), RadToolBarButton).ImageUrl
+            'MainToolBar.Items(2).Text = Translate("Xuất file mẫu điều chỉnh phép năm trước")
+            'CType(MainToolBar.Items(2), RadToolBarButton).ImageUrl = CType(MainToolBar.Items(1), RadToolBarButton).ImageUrl
+            'MainToolBar.Items(3).Text = Translate("Nhập file mẫu điều chỉnh phép năm trước")
+            'MainToolBar.Items(4).Text = Translate("Xuất file mẫu")
+            'CType(MainToolBar.Items(4), RadToolBarButton).ImageUrl = CType(MainToolBar.Items(1), RadToolBarButton).ImageUrl
+            'MainToolBar.Items(5).Text = Translate("Nhập file mẫu")
+            'CType(MainToolBar.Items(5), RadToolBarButton).ImageUrl = CType(MainToolBar.Items(3), RadToolBarButton).ImageUrl
             Me.MainToolBar.OnClientButtonClicking = "OnClientButtonClicking"
             CType(Me.Page, AjaxPage).AjaxManager.ClientEvents.OnRequestStart = "onRequestStart"
             _myLog.WriteLog(_myLog._info, _classPath, method,

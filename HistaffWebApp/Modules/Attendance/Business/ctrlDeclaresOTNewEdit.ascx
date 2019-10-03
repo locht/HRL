@@ -7,6 +7,7 @@
 <asp:HiddenField ID="hidStatus" runat="server" />
 <asp:HiddenField ID="hid100" runat="server" />
 <asp:HiddenField ID="hid150" runat="server" />
+<asp:HiddenField ID="hid180" runat="server" />
 <asp:HiddenField ID="hid200" runat="server" />
 <asp:HiddenField ID="hid210" runat="server" />
 <asp:HiddenField ID="hid270" runat="server" />

@@ -130,7 +130,7 @@
     <Windows>
         <tlk:RadWindow runat="server" ID="rwPopup" VisibleStatusbar="false" Width="950px"
             OnClientBeforeClose="OnClientBeforeClose" OnClientClose="OnClientClose" Height="600px"
-            EnableShadow="true" Behaviors="Close, Maximize" Modal="true" ShowContentDuringLoad="false">
+            EnableShadow="true" Behaviors="Close, Maximize" Modal="true" ShowContentDuringLoad="true">
         </tlk:RadWindow>
     </Windows>
 </tlk:RadWindowManager>

@@ -185,7 +185,7 @@
                      </tlk:RadComboBox>
                 </td>
               <td class="lb">
-                    <asp:Label ID="Label4" runat="server" Text="Thôn/ẤP"></asp:Label>
+                    <asp:Label ID="Label4" runat="server" Text="Thôn/Ấp"></asp:Label>
                 </td>
                 <td >
                     <tlk:RadTextBox runat="server" ID="txtHamlet1" Width="100%" />

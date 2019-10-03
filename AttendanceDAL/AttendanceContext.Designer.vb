@@ -18,7 +18,7 @@ Imports System.Runtime.Serialization
 Imports System.Xml.Serialization
 
 
-<Assembly: EdmSchemaAttribute("064a70d8-b9b5-4436-a557-e47c85370266")>
+<Assembly: EdmSchemaAttribute("586cbb67-89bd-4246-afe4-b840739b3d2d")>
 #Region "EDM Relationship Metadata"
 <Assembly: EdmRelationshipAttribute("AttendanceModel", "FK_OOLT_OOL", "OT_OTHER_LIST_TYPE", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(OT_OTHER_LIST_TYPE), "OT_OTHER_LIST", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(OT_OTHER_LIST), True)>
 <Assembly: EdmRelationshipAttribute("AttendanceModel", "FK_OOLG_OOLT", "OT_OTHER_LIST_GROUP", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(OT_OTHER_LIST_GROUP), "OT_OTHER_LIST_TYPE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(OT_OTHER_LIST_TYPE), True)>
@@ -15820,6 +15820,31 @@ Public Partial Class AT_OT_REGISTRATION
     End Sub
 
     Private Partial Sub OnID_REGGROUPChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property OT_180() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _OT_180
+        End Get
+        Set
+            OnOT_180Changing(value)
+            ReportPropertyChanging("OT_180")
+            _OT_180 = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("OT_180")
+            OnOT_180Changed()
+        End Set
+    End Property
+
+    Private _OT_180 As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnOT_180Changing(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnOT_180Changed()
     End Sub
 
     #End Region
