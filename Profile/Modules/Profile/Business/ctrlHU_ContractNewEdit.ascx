@@ -127,6 +127,7 @@
             <tr>
                 <td class="lb">
                     <asp:Label ID="lbStatus" runat="server" Text="<%$ Translate: Trạng thái %>"></asp:Label>
+                      <span class="lbReq">*</span>    
                 </td>
                 <td>
                     <tlk:RadComboBox ID="cboStatus" runat="server">
