@@ -1518,6 +1518,10 @@ Partial Class ProfileRepository
             objOrganizationData.UNIT_LEVEL = objOrganization.UNIT_LEVEL
             'objOrganizationData.AUTOGENTIMESHEET = objOrganization.AutoGenTimeSheet
             'END EDIT;
+
+            'tự phân quyền cho user ko phải admin thấy org vừa tạo
+            AuthorUserOrganization(log, objOrganizationData.ID)
+
             Context.SaveChanges(log)
             gID = objOrganizationData.ID
             Return True
@@ -1525,8 +1529,20 @@ Partial Class ProfileRepository
             WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iProfile")
             Throw ex
         End Try
-
     End Function
+
+    Public Sub AuthorUserOrganization(ByVal log As UserLog, ByVal org_id As Decimal)
+        Try
+            Dim user = Context.SE_USER.Where(Function(f) f.USERNAME.ToLower = log.Username.ToLower).FirstOrDefault
+            Dim _item As New SE_USER_ORG_ACCESS
+            _item.ID = Utilities.GetNextSequence(Context, Context.SE_USER_ORG_ACCESS.EntitySet.Name)
+            _item.USER_ID = user.ID
+            _item.ORG_ID = org_id
+            Context.SE_USER_ORG_ACCESS.AddObject(_item)
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
 
     Public Function ValidateOrganization(ByVal _validate As OrganizationDTO)
         Dim query
@@ -5678,9 +5694,9 @@ Partial Class ProfileRepository
 
 #Region " danh mục người ký"
     'load dữ liệu
-   Public Function GET_HU_SIGNER(ByVal _filter As SignerDTO,
-                                   ByVal _param As ParamDTO,
-                                   Optional ByVal log As UserLog = Nothing) As DataTable
+    Public Function GET_HU_SIGNER(ByVal _filter As SignerDTO,
+                                    ByVal _param As ParamDTO,
+                                    Optional ByVal log As UserLog = Nothing) As DataTable
         Try
             Using cls As New DataAccess.QueryData
                 cls.ExecuteStore("PKG_COMMON_LIST.INSERT_CHOSEN_ORG",
