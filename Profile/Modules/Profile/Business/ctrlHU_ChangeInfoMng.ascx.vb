@@ -941,6 +941,12 @@ Public Class ctrlHU_ChangeInfoMng
 
             If lstID.Count > 0 Then
                 Dim bCheckHasfile = rep.CheckHasFile(lstID)
+                For Each item As GridDataItem In rgWorking.SelectedItems
+                    If item.GetDataKeyValue("STATUS_ID") = ProfileCommon.DECISION_STATUS.APPROVE_ID Then
+                        ShowMessage(Translate("Bản ghi đã phê duyệt."), NotifyType.Warning)
+                        Exit Sub
+                    End If
+                Next
                 If bCheckHasfile = 1 Then
                     ShowMessage(Translate("Duyệt khi tất cả các record đã có tập tin đính kèm,bạn kiểm tra lại"), NotifyType.Warning)
                     Exit Sub
