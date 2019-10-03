@@ -839,6 +839,7 @@ Public Class ctrlRegisterCO
             If isError Then
                 Return False
             Else
+                Dim lstToCheckLeaveLimit As New List(Of AT_LEAVESHEETDTO) 'Emp_ID, Manual_id, total_day
                 ' check nv them vao file import có nằm trong hệ thống không.
                 For j As Integer = 0 To dsDataComper.Rows.Count - 1
                     dtEmpID = New DataTable
@@ -848,10 +849,21 @@ Public Class ctrlRegisterCO
                         rowError("EMPLOYEE_CODE") = "Mã nhân viên " & dsDataComper(j)("EMPLOYEE_CODE") & " không tồn tại trên hệ thống."
                         isError = True
                     Else
-                        Dim outNum As Int32 = store.CHECK_KIEM_NHIEM(dsDataComper(j)("EMPLOYEE_CODE"))
-                        If outNum > 0 Then
-                            rowError("EMPLOYEE_CODE") = "Mã nhân viên " & dsDataComper(j)("EMPLOYEE_CODE") & " có kiêm nhiệm."
-                            isError = True
+                        Dim dayNum As Decimal = If(dsDataComper(j)("DAY_NUM") = String.Empty, 1, CDec(dsDataComper(j)("DAY_NUM")))
+                        Dim empId As Decimal = CDec(dtEmpID(0)("ID"))
+                        Dim manualId As Decimal = CDec(dsDataComper(j)("MANUAL_ID"))
+                        Dim leaveDay As Date = ToDate(dsDataComper(j)("LEAVE_DAY"))
+                        If Not lstToCheckLeaveLimit.Exists(Function(f) f.EMPLOYEE_ID = empId And f.MANUAL_ID = manualId) Then
+                            Dim dto As New AT_LEAVESHEETDTO
+                            dto.EMPLOYEE_CODE = dsDataComper(j)("EMPLOYEE_CODE")
+                            dto.EMPLOYEE_ID = empId
+                            dto.MANUAL_ID = manualId
+                            dto.DAY_NUM = dayNum
+                            dto.LEAVE_FROM = leaveDay
+                            lstToCheckLeaveLimit.Add(dto)
+                        Else
+                            Dim dto As AT_LEAVESHEETDTO = lstToCheckLeaveLimit.Find(Function(f) f.EMPLOYEE_ID = empId And f.MANUAL_ID = manualId)
+                            dto.DAY_NUM += dayNum
                         End If
                     End If
                     If isError Then
@@ -868,7 +880,31 @@ Public Class ctrlRegisterCO
                     ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), Utilities.NotifyType.Error)
                 Else
                     'check phép < 0
-                    dtError = rep.checkLeaveImport(dtData)
+                    For Each dto As AT_LEAVESHEETDTO In lstToCheckLeaveLimit
+                        rowError = dtError.NewRow
+                        If dto.MANUAL_ID = 5 Then
+                            Dim dtSourceEntitlement = rep.GET_INFO_PHEPNAM(dto.EMPLOYEE_ID, dto.LEAVE_FROM)
+                            Dim intBalance = If(dtSourceEntitlement.Rows(0)("PHEP_CONLAI") Is Nothing, 0, CDec(dtSourceEntitlement.Rows(0)("PHEP_CONLAI").ToString()))
+                            If dto.DAY_NUM > intBalance Then
+                                rowError("EMPLOYEE_CODE") = "Mã nhân viên " & dto.EMPLOYEE_CODE & " đã vượt quá số phép qui định, vui lòng điều chỉnh lại dữ liệu"
+                                isError = True
+                            End If
+                        End If
+                        If dto.MANUAL_ID = 6 Then
+                            Dim dtSourceNB = store.GET_INFO_NGHIBU(dto.EMPLOYEE_ID, dto.LEAVE_FROM)
+                            Dim intBalance = If(dtSourceNB.Rows(0)("CUR_HAVE") Is Nothing, 0, CDec(dtSourceNB.Rows(0)("CUR_HAVE").ToString()))
+                            If dto.DAY_NUM > intBalance Then
+                                rowError("EMPLOYEE_CODE") = "Mã nhân viên " & dto.EMPLOYEE_CODE & " đã vượt quá số phép qui định, vui lòng điều chỉnh lại dữ liệu"
+                                isError = True
+                            End If
+                        End If
+                        If isError Then
+                            rowError("ID") = irowEm
+                            dtError.Rows.Add(rowError)
+                        End If
+                        irowEm = irowEm + 1
+                        isError = False
+                    Next
                     If dtError IsNot Nothing AndAlso dtError.Rows.Count > 0 Then
                         dtError.TableName = "DATA"
                         Session("EXPORTREPORT") = dtError

@@ -7,10 +7,15 @@ Imports Common
 
 Partial Class AttendanceStoreProcedure
     Dim hfr As New HistaffFrameworkRepository
-    Public Function CHECK_KIEM_NHIEM(ByVal emp_code As String) As Int32
+    Public Function GET_INFO_NGHIBU(ByVal id As Decimal, ByVal fromDate As Date) As DataTable
         Try
-            Dim obj As Object = rep.ExecuteStoreScalar("PKG_AT_LIST.CHECK_KIEM_NHIEM", New List(Of Object)(New Object() {emp_code, OUT_NUMBER}))
-            Return Int32.Parse(obj(0).ToString)
+            Dim dt As New DataTable
+            Dim ds As DataSet = hfr.ExecuteToDataSet("PKG_AT_LIST.GET_INFO_NGHIBU",
+                                           New List(Of Object)(New Object() {id, fromDate, OUT_CURSOR}))
+            If Not ds Is Nothing Or Not ds.Tables(0) Is Nothing Then
+                dt = ds.Tables(0)
+            End If
+            Return dt
         Catch ex As Exception
             Throw ex
         End Try

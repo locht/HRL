@@ -3457,10 +3457,10 @@ Partial Public Class AttendanceRepository
                 rowDataSave("MANUAL_ID") = manualId
                 'rowDataSave("MORNING_ID") = monningId
                 'rowDataSave("AFTERNOON_ID") = afternoonId
-                If manualId = 251 Then
+                If manualId = 5 Then
                     rowDataSave("TOTAL_DAY_ENT") = If(statusShift = -1 Or statusShift = 0, 1, 0.5)
                 End If
-                If manualId = 255 Then
+                If manualId = 6 Then
                     rowDataSave("TOTAL_DAY_COM") = If(statusShift = -1 Or statusShift = 0, 1, 0.5)
                 End If
                 dtDataSave.Rows.Add(rowDataSave)
@@ -3474,11 +3474,11 @@ Partial Public Class AttendanceRepository
                 '3 phép bù được phép nghỉ trong năm.
                 at_compensatory = GetNghiBu(employee_id, fromDate.Year)
                 '4. tổng số ngày đăng ký của nhân viên trên file import.
-                'totalDayRes = GetTotalDAY(employee_id, 251, Date.Parse(row("LEAVE_FROM")), Date.Parse(row("LEAVE_TO")))
-                totalPhep = dtDataSave.Compute("SUM(TOTAL_DAY_ENT)", "EMPLOYEE_CODE = " & empCode & " AND MANUAL_ID = 251")
+                'totalDayRes = GetTotalDAY(employee_id, 5, Date.Parse(row("LEAVE_FROM")), Date.Parse(row("LEAVE_TO")))
+                totalPhep = dtDataSave.Compute("SUM(TOTAL_DAY_ENT)", "EMPLOYEE_CODE = " & empCode & " AND MANUAL_ID = 5")
 
                 ' nếu là kiểu đăng ký nghỉ phép
-                If Utilities.Obj2Decima(row("MANUAL_ID")) = 251 Then
+                If Utilities.Obj2Decima(row("MANUAL_ID")) = 5 Then
                     If dtDataUserPHEPNAM IsNot Nothing And at_entilement IsNot Nothing Then
                         If at_entilement.TOTAL_HAVE.Value - (dtDataUserPHEPNAM.Rows(0)(0) + totalPhep) < 0 Then
                             rowError("MANUAL_NAME") = "Tổng số ngày nghỉ phép của bạn trong năm nay đã vượt quá mức cho phép."
@@ -3495,10 +3495,10 @@ Partial Public Class AttendanceRepository
                 End If
                 ' nếu là kiểu đăng ký nghỉ bù
                 dtDataUserPHEPBU = GetTotalPHEPBU(employee_id, fromDate.Year, Utilities.Obj2Decima(row("MANUAL_ID")))
-                'totalDayRes = GetTotalDAY(employee_id, 255, Date.Parse(row("LEAVE_FROM")), Date.Parse(row("LEAVE_TO")))
-                totalBu = Utilities.Obj2Decima(dtDataSave.Compute("SUM(TOTAL_DAY_COM)", "EMPLOYEE_CODE = " & empCode & " AND MANUAL_ID = 255"))
+                'totalDayRes = GetTotalDAY(employee_id, 6, Date.Parse(row("LEAVE_FROM")), Date.Parse(row("LEAVE_TO")))
+                totalBu = Utilities.Obj2Decima(dtDataSave.Compute("SUM(TOTAL_DAY_COM)", "EMPLOYEE_CODE = " & empCode & " AND MANUAL_ID = 6"))
 
-                If Utilities.Obj2Decima(row("MANUAL_ID")) = 255 Then
+                If Utilities.Obj2Decima(row("MANUAL_ID")) = 6 Then
                     If dtDataUserPHEPBU IsNot Nothing And at_compensatory IsNot Nothing Then
                         If at_compensatory.TOTAL_HAVE.Value - (dtDataUserPHEPBU.Rows(0)(0) + totalBu) < 0 Then
                             rowError("MANUAL_NAME") = "Tổng số ngày nghỉ bù của bạn đã vượt quá mức cho phép."
