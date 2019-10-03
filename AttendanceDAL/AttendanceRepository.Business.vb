@@ -5944,6 +5944,7 @@ Partial Public Class AttendanceRepository
                     dto.TOTAL_OT = row("TOTAL_OT")
                     dto.OT_100 = row("OT_100")
                     dto.OT_150 = row("OT_150")
+                    dto.OT_180 = row("OT_180")
                     dto.OT_200 = row("OT_200")
                     dto.OT_210 = row("OT_210")
                     dto.OT_270 = row("OT_270")
