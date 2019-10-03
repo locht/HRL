@@ -1195,7 +1195,12 @@ Partial Class ProfileRepository
                 If IsFirstContract(objContract) Then
                     InsertDecision(objContract)
                 End If
-                InsertFileContractWhenApprove(objContract, log)
+                Dim conType = Context.HU_CONTRACT_TYPE.Where(Function(f) f.ID = objContractData.CONTRACT_TYPE_ID).FirstOrDefault()
+                'check hop dong chinh thuc moi insert filecontract
+                Dim typeIdHDCT As Decimal = 6359
+                If conType IsNot Nothing AndAlso conType.TYPE_ID = typeIdHDCT Then
+                    InsertFileContractWhenApprove(objContract, log)
+                End If
             End If
             If objContract.ListAttachFiles IsNot Nothing Then
                 For Each File As AttachFilesDTO In objContract.ListAttachFiles
