@@ -17,4 +17,5 @@
     Public Property IS_CHANGE_PASS As Integer
     Public Property CREATED_DATE As Date?
     Public Property MODULE_ADMIN As String
+    Public Property WORK_STATUS As Decimal?
 End Class

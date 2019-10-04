@@ -3449,6 +3449,9 @@ Namespace CommonBusiness
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private USERNAMEField As String
         
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private WORK_STATUSField As System.Nullable(Of Decimal)
+        
         <Global.System.ComponentModel.BrowsableAttribute(false)>  _
         Public Property ExtensionData() As System.Runtime.Serialization.ExtensionDataObject Implements System.Runtime.Serialization.IExtensibleDataObject.ExtensionData
             Get
@@ -3689,6 +3692,19 @@ Namespace CommonBusiness
                 If (Object.ReferenceEquals(Me.USERNAMEField, value) <> true) Then
                     Me.USERNAMEField = value
                     Me.RaisePropertyChanged("USERNAME")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property WORK_STATUS() As System.Nullable(Of Decimal)
+            Get
+                Return Me.WORK_STATUSField
+            End Get
+            Set
+                If (Me.WORK_STATUSField.Equals(value) <> true) Then
+                    Me.WORK_STATUSField = value
+                    Me.RaisePropertyChanged("WORK_STATUS")
                 End If
             End Set
         End Property
@@ -6329,7 +6345,10 @@ Namespace CommonBusiness
         Private BIRTH_DATEField As System.Nullable(Of Date)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private BIRTH_PLACEField As String
+        Private BIRTH_PLACEField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private BIRTH_PLACE_NAMEField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private CONTRACT_IDField As System.Nullable(Of Decimal)
@@ -6445,14 +6464,27 @@ Namespace CommonBusiness
         End Property
         
         <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property BIRTH_PLACE() As String
+        Public Property BIRTH_PLACE() As System.Nullable(Of Decimal)
             Get
                 Return Me.BIRTH_PLACEField
             End Get
             Set
-                If (Object.ReferenceEquals(Me.BIRTH_PLACEField, value) <> true) Then
+                If (Me.BIRTH_PLACEField.Equals(value) <> true) Then
                     Me.BIRTH_PLACEField = value
                     Me.RaisePropertyChanged("BIRTH_PLACE")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property BIRTH_PLACE_NAME() As String
+            Get
+                Return Me.BIRTH_PLACE_NAMEField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.BIRTH_PLACE_NAMEField, value) <> true) Then
+                    Me.BIRTH_PLACE_NAMEField = value
+                    Me.RaisePropertyChanged("BIRTH_PLACE_NAME")
                 End If
             End Set
         End Property

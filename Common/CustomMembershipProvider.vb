@@ -113,6 +113,8 @@ Public Class CustomMembershipProvider
                         Throw New Exception(LoginError.NO_PERMISSION)
                     ElseIf user.ACTFLG = "I" Then
                         Throw New Exception(LoginError.USER_LOCKED)
+                    ElseIf user.WORK_STATUS = 257 Then
+                        Throw New Exception(LoginError.EMPLOYEE_WORK_STATUS)
                     ElseIf user.PASSWORD = encry.EncryptString(password) Then
 
                         If user.EFFECT_DATE > Date.Now OrElse
@@ -120,8 +122,9 @@ Public Class CustomMembershipProvider
                              user.EXPIRE_DATE <= Date.Now) Then
                             Throw New Exception(LoginError.USERNAME_EXPIRED)
                         End If
-
+                 
                         bSuccess = True
+                  
                     Else
                         Dim bIsAdmin As Boolean = False
                         If user.MODULE_ADMIN <> "" Then

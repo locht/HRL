@@ -100,6 +100,9 @@ Public Class Login1
                 Case LoginError.USER_LOCKED
                     Utilities.ShowMessage(LoginUser, Me.Translate("Tài khoản đã bị khóa"), Utilities.NotifyType.Warning)
                     _mylog.WriteLog(_mylog._warning, _classPath, method, 0, Nothing, "Tài khoản đã bị khóa")
+                Case LoginError.EMPLOYEE_WORK_STATUS
+                    Utilities.ShowMessage(LoginUser, Me.Translate("Tài khoản của nhân viên đã nghỉ việc"), Utilities.NotifyType.Warning)
+                    _mylog.WriteLog(_mylog._warning, _classPath, method, 0, Nothing, "Tài khoản của nhân viên đã nghỉ việc")
                 Case Else
                     DisplayException(Me.Title, "", ex)
                     _myLog.WriteLog(_myLog._error, _classPath, method, 0, ex, "")

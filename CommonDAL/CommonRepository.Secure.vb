@@ -1885,8 +1885,28 @@ Partial Public Class CommonRepository
         Try
             If Username = "" Then Return New UserDTO
             Dim query = (From p In Context.SE_USER
-                         Where p.USERNAME.ToUpper = Username.ToUpper)
-            Dim objUser = query.FirstOrDefault
+                         From e In Context.HU_EMPLOYEE.Where(Function(f) f.ID = p.EMPLOYEE_ID).DefaultIfEmpty
+                         Where p.USERNAME.ToUpper = Username.ToUpper
+                         Select New UserDTO With {
+                             .ID = p.ID,
+                             .USERNAME = p.USERNAME,
+                             .PASSWORD = p.PASSWORD,
+                             .FULLNAME = p.FULLNAME,
+                             .EMAIL = p.EMAIL,
+                             .TELEPHONE = p.TELEPHONE,
+                             .IS_APP = p.IS_APP,
+                             .IS_PORTAL = p.IS_PORTAL,
+                             .EMPLOYEE_CODE = p.EMPLOYEE_CODE,
+                             .EMPLOYEE_ID = p.EMPLOYEE_ID,
+                             .IS_AD = p.IS_AD,
+                             .EFFECT_DATE = p.EFFECT_DATE,
+                             .EXPIRE_DATE = p.EXPIRE_DATE,
+                             .ACTFLG = p.ACTFLG,
+                             .IS_CHANGE_PASS = p.IS_CHANGE_PASS,
+                             .CREATED_DATE = p.CREATED_DATE,
+                             .MODULE_ADMIN = p.MODULE_ADMIN,
+                             .work_status = e.WORK_STATUS}).FirstOrDefault
+            Dim objUser = query
             If objUser IsNot Nothing Then
                 Dim isUserPermission As Boolean = True
                 If objUser.MODULE_ADMIN Is Nothing Then
@@ -1919,7 +1939,8 @@ Partial Public Class CommonRepository
                                          .EMPLOYEE_ID = objUser.EMPLOYEE_ID,
                                          .EFFECT_DATE = objUser.EFFECT_DATE,
                                          .EXPIRE_DATE = objUser.EXPIRE_DATE,
-                                         .IS_USER_PERMISSION = isUserPermission}
+                                         .IS_USER_PERMISSION = isUserPermission,
+                                         .work_status = objUser.work_status}
             End If
             Return Nothing
         Catch ex As Exception
