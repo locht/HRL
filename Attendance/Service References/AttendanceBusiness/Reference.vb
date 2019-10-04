@@ -19011,6 +19011,9 @@ Namespace AttendanceBusiness
         Private END_DATEField As System.Nullable(Of Date)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private EXPIREDATEField As System.Nullable(Of Date)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private FULLNAME_VNField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -19639,6 +19642,19 @@ Namespace AttendanceBusiness
                 If (Me.END_DATEField.Equals(value) <> true) Then
                     Me.END_DATEField = value
                     Me.RaisePropertyChanged("END_DATE")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property EXPIREDATE() As System.Nullable(Of Date)
+            Get
+                Return Me.EXPIREDATEField
+            End Get
+            Set
+                If (Me.EXPIREDATEField.Equals(value) <> true) Then
+                    Me.EXPIREDATEField = value
+                    Me.RaisePropertyChanged("EXPIREDATE")
                 End If
             End Set
         End Property

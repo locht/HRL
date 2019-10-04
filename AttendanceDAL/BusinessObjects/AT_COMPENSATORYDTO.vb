@@ -63,5 +63,6 @@
     Public Property CUR_HAVE10 As Decimal?
     Public Property CUR_HAVE11 As Decimal?
     Public Property CUR_HAVE12 As Decimal?
+    Public Property EXPIREDATE As Date?
 End Class
 
