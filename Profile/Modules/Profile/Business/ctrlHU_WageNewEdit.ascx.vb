@@ -527,6 +527,22 @@ Public Class ctrlHU_WageNewEdit
                         '    ShowMessage(Translate("Hệ số/Mức thưởng phải lớn hơn 0"), NotifyType.Warning)
                         '    Exit Sub
                         'End If
+                        If cboSalTYPE.Text = "Chính thức" Then
+                            If rnPercentSalary.Value < 100 Then
+                                ShowMessage(Translate("nhập % hưởng lương 'chính thức' > 100%"), NotifyType.Warning)
+                                'rnPercentSalary.Value = 100
+                                rnPercentSalary.Focus()
+                                Exit Sub
+                            End If
+                        End If
+                        If cboSalTYPE.Text = "Thử việc" Then
+                            If rnPercentSalary.Value < 85 Then
+                                ShowMessage(Translate("nhập % hưởng lương 'thử việc' > 85%"), NotifyType.Warning)
+                                'rnPercentSalary.Value = 85
+                                rnPercentSalary.Focus()
+                                Exit Sub
+                            End If
+                        End If
 
                         Dim gID As Decimal
                         With objWorking
