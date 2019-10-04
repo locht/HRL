@@ -127,7 +127,7 @@ Public Class ctrlHU_Signer
         'rgData.ClientSettings.EnablePostBackOnRowClick = True
         InitControl()
         If Not IsPostBack Then
-            
+
             GetDataComboBox()
             ViewConfig(RadPane2)
             GirdConfig(rgData)
@@ -229,9 +229,11 @@ Public Class ctrlHU_Signer
                 Case CommonMessage.STATE_NEW
                     psp.DisableControls(MainPanel, True)
                     Utilities.EnabledGridNotPostback(rgData, False)
+                    txtCode.Enabled = False
                 Case CommonMessage.STATE_EDIT
                     psp.DisableControls(MainPanel, True)
                     Utilities.EnabledGridNotPostback(rgData, False)
+                    txtCode.Enabled = False
                 Case CommonMessage.STATE_DEACTIVE
 
                     Dim lstDeletes As New List(Of Decimal)
@@ -281,8 +283,24 @@ Public Class ctrlHU_Signer
         dic.Add("TITLE_NAME", txtNAME_EN)
         dic.Add("ORG_ID", rtORG_ID)
         dic.Add("ORG_NAME", rtOrg_Name)
-        dic.Add("REMARK", txtRemark)
+        'dic.Add("REMARK", txtRemark)
         Utilities.OnClientRowSelectedChanged(rgData, dic)
+    End Sub
+    Private Sub rgData_SelectedIndexChanged(sender As Object, e As System.EventArgs) Handles rgData.SelectedIndexChanged
+        Try
+            If rgData.SelectedItems.Count > 0 Then
+                Dim slItem As GridDataItem
+                slItem = rgData.SelectedItems(0)
+                txtCode.Text = slItem.GetDataKeyValue("SIGNER_CODE").ToString
+                txtTYPE_NAME.Text = slItem.GetDataKeyValue("NAME").ToString
+                txtNAME_EN.Text = slItem.GetDataKeyValue("TITLE_NAME").ToString
+                rtOrg_Name.Text = slItem.GetDataKeyValue("ORG_NAME").ToString
+                txtRemark.Text = slItem.GetDataKeyValue("REMARK").ToString
+            End If
+
+        Catch ex As Exception
+            Throw ex
+        End Try
     End Sub
 #End Region
 
@@ -328,6 +346,7 @@ Public Class ctrlHU_Signer
                     psp.ResetControlValue(MainPanel)
                     IDSelect = 0
                     rgData.Rebind()
+
                 Case CommonMessage.TOOLBARITEM_EDIT
                     If rgData.SelectedItems.Count = 0 Then
                         ShowMessage(Translate(CommonMessage.MESSAGE_NOT_SELECT_ROW), NotifyType.Warning)
@@ -654,4 +673,5 @@ Public Class ctrlHU_Signer
 #End Region
 
 
+    
 End Class

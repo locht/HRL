@@ -76,7 +76,7 @@
             <tlk:RadPane ID="RadPane2" runat="server" Scrolling="None" Height ="80%">
                 <tlk:RadGrid ID="rgData" runat="server" AutoGenerateColumns="False" AllowPaging="True"
                     Height="80%" AllowSorting="True" AllowMultiRowSelection="true" AllowFilteringByColumn="true">
-                    <ClientSettings EnableRowHoverStyle="true">
+                    <ClientSettings EnableRowHoverStyle="true" EnablePostBackOnRowClick="true">
                         <Selecting AllowRowSelect="true" />
                     </ClientSettings>
                     <MasterTableView CommandItemDisplay="None" DataKeyNames="ID" ClientDataKeyNames="ID,SIGNER_CODE,TITLE_NAME,REMARK,NAME,ORG_ID,ORG_NAME">
