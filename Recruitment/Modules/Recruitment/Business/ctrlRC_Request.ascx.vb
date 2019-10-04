@@ -5,15 +5,19 @@ Imports Common
 Imports Telerik.Web.UI
 Imports HistaffFrameworkPublic
 Imports System.IO
+Imports Aspose.Cells
+Imports WebAppLog
 
 Public Class ctrlRC_Request
     Inherits Common.CommonView
     Protected WithEvents RequestView As ViewBase
     Private store As New RecruitmentStoreProcedure()
     'Dim sListRejectID As String = ""
-
+    Dim dsDataComper As New DataTable
+    Dim _myLog As New MyLog()
+    Dim pathLog As String = _myLog._pathLog
+    Dim _classPath As String = "Recruitment/Modules/Recruitment/Business/" + Me.GetType().Name.ToString()
 #Region "Property"
-
     Property IsLoad As Boolean
         Get
             Return ViewState(Me.ID & "_IsLoad")
@@ -32,7 +36,73 @@ Public Class ctrlRC_Request
         End Set
     End Property
 
+    Property dtData As DataTable
+        Get
+            If ViewState(Me.ID & "_dtData") Is Nothing Then
+                Dim dt As New DataTable
+                dt.Columns.Add("STT", GetType(String))
+                dt.Columns.Add("ORG_NAME", GetType(String))
+                dt.Columns.Add("ORG_ID", GetType(String))
+                dt.Columns.Add("TITLE_NAME", GetType(String))
+                dt.Columns.Add("TITLE_ID", GetType(String))
+                dt.Columns.Add("SEND_DATE", GetType(String))
+                dt.Columns.Add("CONTRACT_TYPE_NAME", GetType(String))
+                dt.Columns.Add("CONTRACT_TYPE_ID", GetType(String))
+                dt.Columns.Add("RC_RECRUIT_PROPERTY_NAME", GetType(String))
+                dt.Columns.Add("RC_RECRUIT_PROPERTY", GetType(String))
+                dt.Columns.Add("RECRUIT_REASON_NAME", GetType(String))
+                dt.Columns.Add("RECRUIT_REASON_ID", GetType(String))
+                dt.Columns.Add("IS_SUPPORT_NAME", GetType(String))
+                dt.Columns.Add("IS_SUPPORT", GetType(String))
+                dt.Columns.Add("RECRUIT_REASON", GetType(String))
+                dt.Columns.Add("LEARNING_LEVEL_NAME", GetType(String))
+                dt.Columns.Add("LEARNING_LEVEL_ID", GetType(String))
+                dt.Columns.Add("AGE_FROM", GetType(String))
+                dt.Columns.Add("AGE_TO", GetType(String))
+                dt.Columns.Add("QUALIFICATION_NAME", GetType(String))
+                dt.Columns.Add("QUALIFICATION", GetType(String))
+                dt.Columns.Add("SPECIALSKILLS_NAME", GetType(String))
+                dt.Columns.Add("SPECIALSKILLS", GetType(String))
+                dt.Columns.Add("LANGUAGE_NAME", GetType(String))
+                dt.Columns.Add("LANGUAGE", GetType(String))
+                dt.Columns.Add("LANGUAGELEVEL_NAME", GetType(String))
+                dt.Columns.Add("LANGUAGELEVEL", GetType(String))
+                dt.Columns.Add("LANGUAGESCORES", GetType(String))
+                dt.Columns.Add("FOREIGN_ABILITY", GetType(String))
+                dt.Columns.Add("EXPECTED_JOIN_DATE", GetType(String))
+                dt.Columns.Add("EXPERIENCE_NUMBER", GetType(String))
+                dt.Columns.Add("COMPUTER_LEVEL_NAME", GetType(String))
+                dt.Columns.Add("COMPUTER_LEVEL", GetType(String))
+                dt.Columns.Add("COMPUTER_APP_LEVEL", GetType(String))
+                dt.Columns.Add("RECRUIT_NUMBER", GetType(String))
+                dt.Columns.Add("IS_OVER_LIMIT_NAME", GetType(String))
+                dt.Columns.Add("IS_OVER_LIMIT", GetType(String))
+                dt.Columns.Add("GENDER_PRIORITY_NAME", GetType(String))
+                dt.Columns.Add("GENDER_PRIORITY", GetType(String))
+                dt.Columns.Add("STATUS_NAME", GetType(String))
+                dt.Columns.Add("STATUS_ID", GetType(String))
+                dt.Columns.Add("DESCRIPTION", GetType(String))
+                dt.Columns.Add("MAINTASK", GetType(String))
+                dt.Columns.Add("REQUEST_EXPERIENCE", GetType(String))
+                dt.Columns.Add("REQUEST_OTHER", GetType(String))
+                dt.Columns.Add("REMARK", GetType(String))
+                ViewState(Me.ID & "_dtData") = dt
+            End If
+            Return ViewState(Me.ID & "_dtData")
+        End Get
+        Set(ByVal value As DataTable)
+            ViewState(Me.ID & "_dtData") = value
+        End Set
+    End Property
 
+    Property dtDataImport As DataTable
+        Get
+            Return ViewState(Me.ID & "_dtDataImport")
+        End Get
+        Set(ByVal value As DataTable)
+            ViewState(Me.ID & "_dtDataImport") = value
+        End Set
+    End Property
 #End Region
 
 #Region "Page"
@@ -76,11 +146,15 @@ Public Class ctrlRC_Request
             Me.ctrlMessageBox.Listener = Me
             Me.MainToolBar = tbarMain
             ''TODO: DAIDM comment
-            Common.Common.BuildToolbar(Me.MainToolBar, ToolbarItem.Create, ToolbarItem.Edit, ToolbarItem.Delete,
-                                       ToolbarItem.Approve, ToolbarItem.Reject) ', ToolbarItem.Seperator, ToolbarItem.Export)
-            CType(MainToolBar.Items(3), RadToolBarButton).Text = "Phê duyệt"
-            CType(MainToolBar.Items(4), RadToolBarButton).Text = "Không phê duyệt"
-            'CType(MainToolBar.Items(6), RadToolBarButton).Text = "Xuất tờ trình"
+            Common.Common.BuildToolbar(Me.MainToolBar, ToolbarItem.Create, ToolbarItem.Edit, ToolbarItem.Export,
+                                       ToolbarItem.Next, ToolbarItem.Import, ToolbarItem.Delete,
+                                       ToolbarItem.Approve, ToolbarItem.Reject)
+            CType(MainToolBar.Items(2), RadToolBarButton).Text = "Xuất Excel"
+            CType(MainToolBar.Items(3), RadToolBarButton).Text = "Xuất file mẫu"
+            CType(Me.MainToolBar.Items(3), RadToolBarButton).ImageUrl = CType(Me.MainToolBar.Items(2), RadToolBarButton).ImageUrl
+            CType(MainToolBar.Items(4), RadToolBarButton).Text = "Nhập file mẫu"
+            CType(MainToolBar.Items(6), RadToolBarButton).Text = "Phê duyệt"
+            CType(MainToolBar.Items(7), RadToolBarButton).Text = "Không phê duyệt"
         Catch ex As Exception
             Throw ex
         End Try
@@ -239,79 +313,90 @@ Public Class ctrlRC_Request
                     '    rwPopup.Height = "250"
                     '    rwPopup.VisibleOnPageLoad = True
                     'End If
+                    'Case CommonMessage.TOOLBARITEM_EXPORT
+                    'If rgData.SelectedItems.Count = 0 Then
+                    '    ShowMessage(Translate(CommonMessage.MESSAGE_NOT_SELECT_ROW), NotifyType.Warning)
+                    '    Exit Sub
+                    'End If
+
+                    'Dim sIDList As String = ""
+                    'Dim hfr As New HistaffFrameworkRepository
+                    'Dim tempPath As String = "~/Word/Recruitment/BM04_TT_Ke_hoach_TD.doc"
+                    'For Each dr As Telerik.Web.UI.GridDataItem In rgData.SelectedItems
+                    '    sIDList &= IIf(sIDList = vbNullString, Decimal.Parse(dr("ID").Text).ToString, "," & Decimal.Parse(dr("ID").Text).ToString)
+                    'Next
+                    'If sIDList = "," Then
+                    '    sIDList = ""
+                    'End If
+                    'If sIDList <> "" Then
+
+                    '    'If store.CHECK_REQUEST_NOT_APPROVE(sIDList) > 0 Then
+                    '    '    ShowMessage(Translate("Tồn tại thông tin chưa được phê duyệt.<br /> Vui lòng kiểm tra lại!"), NotifyType.Warning)
+                    '    '    Exit Sub
+                    '    'End If
+
+                    '    Dim dsData As DataSet = New DataSet
+                    '    Dim arr() As String
+                    '    arr = sIDList.Split(",")
+                    '    For Each val As String In arr
+                    '        Dim ds = hfr.ExecuteToDataSet("PKG_RECRUITMENT.EXPORT_RC_NEEDS_BYLISTID", New List(Of Object)({val}))
+                    '        dsData.Merge(ds, True, MissingSchemaAction.Add)
+                    '    Next
+
+                    '    If (dsData Is Nothing OrElse dsData.Tables(0).Rows.Count = 0) Then
+                    '        ShowMessage(Translate("Không có dữ liệu để in báo cáo"), NotifyType.Warning)
+                    '        Exit Sub
+                    '    End If
+
+                    '    Dim tbl1 As New DataTable
+                    '    Dim col_NAM As New DataColumn("NAM", GetType(String))
+                    '    Dim col_THANG As New DataColumn("THANG", GetType(String))
+                    '    Dim col_NGAY As New DataColumn("NGAY", GetType(String))
+
+                    '    tbl1.Columns.Add(col_NAM)
+                    '    tbl1.Columns.Add(col_THANG)
+                    '    tbl1.Columns.Add(col_NGAY)
+
+                    '    Dim row = tbl1.NewRow
+                    '    row(0) = DateTime.Now.Year.ToString()
+                    '    row(1) = DateTime.Now.Month.ToString()
+                    '    row(2) = DateTime.Now.Month.ToString()
+                    '    tbl1.Rows.Add(row)
+
+                    '    dsData.Tables.Add(tbl1)
+                    '    dsData.Tables(0).TableName = "DT1"
+                    '    dsData.Tables(1).TableName = "DT"
+
+                    '    For i As Int32 = 0 To dsData.Tables(0).Rows.Count - 1
+                    '        dsData.Tables(0).Rows(i)("STT") = i + 1
+                    '    Next
+
+                    '    If Not System.IO.File.Exists(MapPath(tempPath)) Then
+                    '        ShowMessage(Translate("Mẫu báo cáo không tồn tại"), NotifyType.Warning)
+                    '        Exit Sub
+                    '    End If
+
+                    '    ExportWordMailMergeDS(System.IO.Path.Combine(Server.MapPath(tempPath)),
+                    '                        "TT_KeHoach_TD_" + DateTime.Now.ToString("HHmmssddMMyyyy") + ".doc",
+                    '                        dsData, Response)
+                    'End If
                 Case CommonMessage.TOOLBARITEM_EXPORT
-                    Try
-                        If rgData.SelectedItems.Count = 0 Then
-                            ShowMessage(Translate(CommonMessage.MESSAGE_NOT_SELECT_ROW), NotifyType.Warning)
+                    Dim dtData As DataTable
+                    Using xls As New ExcelCommon
+                        dtData = CreateDataFilter(True)
+                        If dtData.Rows.Count = 0 Then
+                            ShowMessage(Translate(CommonMessage.MESSAGE_WARNING_EXPORT_EMPTY), NotifyType.Warning)
+                            Exit Sub
+                        ElseIf dtData.Rows.Count > 0 Then
+                            rgData.ExportExcel(Server, Response, dtData, "Title")
                             Exit Sub
                         End If
-
-                        Dim sIDList As String = ""
-                        Dim hfr As New HistaffFrameworkRepository
-                        Dim tempPath As String = "~/Word/Recruitment/BM04_TT_Ke_hoach_TD.doc"
-                        For Each dr As Telerik.Web.UI.GridDataItem In rgData.SelectedItems
-                            sIDList &= IIf(sIDList = vbNullString, Decimal.Parse(dr("ID").Text).ToString, "," & Decimal.Parse(dr("ID").Text).ToString)
-                        Next
-                        If sIDList = "," Then
-                            sIDList = ""
-                        End If
-                        If sIDList <> "" Then
-
-                            'If store.CHECK_REQUEST_NOT_APPROVE(sIDList) > 0 Then
-                            '    ShowMessage(Translate("Tồn tại thông tin chưa được phê duyệt.<br /> Vui lòng kiểm tra lại!"), NotifyType.Warning)
-                            '    Exit Sub
-                            'End If
-
-                            Dim dsData As DataSet = New DataSet
-                            Dim arr() As String
-                            arr = sIDList.Split(",")
-                            For Each val As String In arr
-                                Dim ds = hfr.ExecuteToDataSet("PKG_RECRUITMENT.EXPORT_RC_NEEDS_BYLISTID", New List(Of Object)({val}))
-                                dsData.Merge(ds, True, MissingSchemaAction.Add)
-                            Next
-
-                            If (dsData Is Nothing OrElse dsData.Tables(0).Rows.Count = 0) Then
-                                ShowMessage(Translate("Không có dữ liệu để in báo cáo"), NotifyType.Warning)
-                                Exit Sub
-                            End If
-
-                            Dim tbl1 As New DataTable
-                            Dim col_NAM As New DataColumn("NAM", GetType(String))
-                            Dim col_THANG As New DataColumn("THANG", GetType(String))
-                            Dim col_NGAY As New DataColumn("NGAY", GetType(String))
-
-                            tbl1.Columns.Add(col_NAM)
-                            tbl1.Columns.Add(col_THANG)
-                            tbl1.Columns.Add(col_NGAY)
-
-                            Dim row = tbl1.NewRow
-                            row(0) = DateTime.Now.Year.ToString()
-                            row(1) = DateTime.Now.Month.ToString()
-                            row(2) = DateTime.Now.Month.ToString()
-                            tbl1.Rows.Add(row)
-
-                            dsData.Tables.Add(tbl1)
-                            dsData.Tables(0).TableName = "DT1"
-                            dsData.Tables(1).TableName = "DT"
-
-                            For i As Int32 = 0 To dsData.Tables(0).Rows.Count - 1
-                                dsData.Tables(0).Rows(i)("STT") = i + 1
-                            Next
-
-                            If Not System.IO.File.Exists(MapPath(tempPath)) Then
-                                ShowMessage(Translate("Mẫu báo cáo không tồn tại"), NotifyType.Warning)
-                                Exit Sub
-                            End If
-
-                            ExportWordMailMergeDS(System.IO.Path.Combine(Server.MapPath(tempPath)),
-                                                "TT_KeHoach_TD_" + DateTime.Now.ToString("HHmmssddMMyyyy") + ".doc",
-                                                dsData, Response)
-                        End If
-                    Catch ex As Exception
-
-                    End Try
-
-
+                    End Using
+                Case CommonMessage.TOOLBARITEM_NEXT
+                    Export_TemplateRecruitment()
+                Case CommonMessage.TOOLBARITEM_IMPORT
+                    ctrlUpload1.AllowedExtensions = "xls,xlsx"
+                    ctrlUpload1.Show()
             End Select
         Catch ex As Exception
             DisplayException(Me.ViewName, Me.ID, ex)
@@ -408,17 +493,225 @@ Public Class ctrlRC_Request
 
             rgData.VirtualItemCount = MaximumRows
             rgData.DataSource = lstData
+            Return lstData.ToTable
         Catch ex As Exception
             Throw ex
         End Try
 
     End Function
 
-#End Region
+    Private Sub Export_TemplateRecruitment()
+        Dim rep As New RecruitmentStoreProcedure
+        Try
+            Dim configPath As String = ConfigurationManager.AppSettings("ReportTemplatesFolder")
+            Dim filePath As String = AppDomain.CurrentDomain.BaseDirectory & configPath & "\"
+            Dim dsData As DataSet = rep.GetRecruitmentImport()
+            dsData.Tables(10).TableName = "Table11"
+            dsData.Tables(9).TableName = "Table10"
+            dsData.Tables(8).TableName = "Table9"
+            dsData.Tables(7).TableName = "Table8"
+            dsData.Tables(6).TableName = "Table7"
+            dsData.Tables(5).TableName = "Table6"
+            dsData.Tables(4).TableName = "Table5"
+            dsData.Tables(3).TableName = "Table4"
+            dsData.Tables(2).TableName = "Table3"
+            dsData.Tables(1).TableName = "Table2"
+            dsData.Tables(0).TableName = "Table1"
+            If File.Exists(filePath + "\Recruitment\Import\Template_yeucautuyendung.xls") Then
+                ExportTemplate(filePath + "\Recruitment\Import\Template_yeucautuyendung.xls",
+                                      dsData, Nothing, "Template_Recruitment_" & Format(Date.Now, "yyyyMMdd"))
+            Else
+                ShowMessage(Translate("Template không tồn tại"), Utilities.NotifyType.Error)
+                Exit Sub
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
 
+    Public Function ExportTemplate(ByVal sReportFileName As String,
+                                                    ByVal dsData As DataSet,
+                                                    ByVal dtVariable As DataTable,
+                                                    ByVal filename As String) As Boolean
+
+        Dim filePath As String
+        'Dim templatefolder As String
+
+        Dim designer As WorkbookDesigner
+        Try
+            'cau hinh lai duong dan tren server
+            filePath = sReportFileName
+
+            If Not File.Exists(filePath) Then
+                ScriptManager.RegisterStartupScript(Page, Page.GetType(), "javascriptfunction", "goBack()", True)
+                Return False
+            End If
+
+            designer = New WorkbookDesigner
+            designer.Open(filePath)
+            designer.SetDataSource(dsData)
+
+            If dtVariable IsNot Nothing Then
+                Dim intCols As Integer = dtVariable.Columns.Count
+                For i As Integer = 0 To intCols - 1
+                    designer.SetDataSource(dtVariable.Columns(i).ColumnName.ToString(), dtVariable.Rows(0).ItemArray(i).ToString())
+                Next
+            End If
+            designer.Process()
+            designer.Workbook.CalculateFormula()
+            designer.Workbook.Save(HttpContext.Current.Response, filename & ".xls", ContentDisposition.Attachment, New XlsSaveOptions())
+        Catch ex As Exception
+            Return False
+        End Try
+        Return True
+    End Function
+#End Region
     Protected Sub btnSearch_Click(sender As Object, e As EventArgs) Handles btnSearch.Click
         rgData.CurrentPageIndex = 0
         rgData.MasterTableView.SortExpressions.Clear()
         rgData.Rebind()
     End Sub
+
+    Private Sub ctrlUpload1_OkClicked(ByVal sender As Object, ByVal e As System.EventArgs) Handles ctrlUpload1.OkClicked
+        Dim fileName As String
+        Dim dsDataPrepare As New DataSet
+        Dim rep As New RecruitmentRepository
+        Dim workbook As Aspose.Cells.Workbook
+        Dim worksheet As Aspose.Cells.Worksheet
+        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+        Try
+            Dim startTime As DateTime = DateTime.UtcNow
+            If ctrlUpload1.UploadedFiles.Count = 0 Then
+                ShowMessage(Translate("Bảng dữ liệu chưa có cột hoặc file không đúng định dạng"), NotifyType.Warning)
+                Exit Sub
+            End If
+            Dim tempPath As String = ConfigurationManager.AppSettings("ExcelFileFolder")
+            Dim savepath = Context.Server.MapPath(tempPath)
+            For Each file As UploadedFile In ctrlUpload1.UploadedFiles
+                fileName = System.IO.Path.Combine(savepath, Guid.NewGuid().ToString() & ".xls")
+                file.SaveAs(fileName, True)
+                Try
+                    workbook = New Aspose.Cells.Workbook(fileName)
+                Catch ex As Exception
+                    If ex.ToString.Contains("This file's format is not supported or you don't specify a correct format") Then
+                        ShowMessage(Translate("Bảng dữ liệu chưa có cột hoặc file không đúng định dạng"), NotifyType.Warning)
+                        Exit Sub
+                    End If
+                End Try
+                'If workbook.Worksheets.GetSheetByCodeName("IMPORT_REGISTER_CO") Is Nothing Then
+                '    ShowMessage(Translate("File mẫu không đúng định dạng"), NotifyType.Warning)
+                '    Exit Sub
+                'End If
+                worksheet = workbook.Worksheets(0)
+                dsDataPrepare.Tables.Add(worksheet.Cells.ExportDataTableAsString(2, 0, worksheet.Cells.MaxRow + 1, worksheet.Cells.MaxColumn + 1, True))
+                If System.IO.File.Exists(fileName) Then System.IO.File.Delete(fileName)
+            Next
+            dtData = dtData.Clone()
+            dsDataComper = dsDataPrepare.Tables(0).Clone()
+            For Each dt As DataTable In dsDataPrepare.Tables
+                For Each row In dt.Rows
+                    Dim isRow = ImportValidate.TrimRow(row)
+                    If Not isRow Then
+                        Continue For
+                    End If
+                    dtData.ImportRow(row)
+                    dsDataComper.ImportRow(row)
+                Next
+            Next
+            If loadToGrid() Then
+                Dim objSIGN As RequestDTO
+                Dim gID As Decimal
+                Dim dtDataImp As DataTable = dsDataPrepare.Tables(0)
+                For Each dr In dsDataComper.Rows
+                    objSIGN = New RequestDTO
+                    rep.InsertRequest(objSIGN, gID)
+                Next
+                CurrentState = CommonMessage.STATE_NORMAL
+                Refresh("InsertView")
+                _myLog.WriteLog(_myLog._info, _classPath, method,
+                                    CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
+            End If
+        Catch ex As Exception
+            _myLog.WriteLog(_myLog._error, _classPath, method, 0, ex, "")
+            ShowMessage(Translate("Import bị lỗi. Kiểm tra lại biểu mẫu Import"), NotifyType.Error)
+        End Try
+    End Sub
+
+    Function loadToGrid() As Boolean
+        Dim dtError As New DataTable("ERROR")
+        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+        Try
+            Dim startTime As DateTime = DateTime.UtcNow
+            If dtData.Rows.Count = 0 Then
+                ShowMessage("File mẫu không đúng định dạng", NotifyType.Warning)
+                Return False
+            End If
+            Dim rowError As DataRow
+            Dim isError As Boolean = False
+            Dim sError As String = String.Empty
+            'Dim is_Validate As Boolean
+            Dim _validate As New RequestDTO
+            Dim rep As New RecruitmentRepository
+            Dim store As New RecruitmentStoreProcedure
+            dtData.TableName = "DATA"
+            dtDataImport = dtData.Clone
+            dtError = dtData.Clone
+            Dim irow = 4
+            Dim irowEm = 4
+
+            For Each row As DataRow In dtData.Rows
+                rowError = dtError.NewRow
+                sError = "Ban/Phòng"
+                ImportValidate.IsValidList("ORG_NAME", "ORG_ID", row, rowError, isError, sError)
+                sError = "Vị trí tuyển dụng"
+                ImportValidate.IsValidList("TITLE_NAME", "TITLE_ID", row, rowError, isError, sError)
+                sError = "Ngày gửi yêu cầu không được để trống"
+                ImportValidate.IsValidDate("SEND_DATE", row, rowError, isError, sError)
+                sError = "Ngày cần đáp ứng không được để trống"
+                ImportValidate.IsValidDate("EXPECTED_JOIN_DATE", row, rowError, isError, sError)
+                sError = "Số lượng cần tuyển"
+                ImportValidate.IsValidList("RECRUIT_NUMBER", "RECRUIT_NUMBER", row, rowError, isError, sError)
+                sError = "Lý do tuyển dụng"
+                ImportValidate.IsValidList("RECRUIT_REASON_NAME", "RECRUIT_REASON_ID", row, rowError, isError, sError)
+                sError = "Trình độ học vấn"
+                ImportValidate.IsValidList("LEARNING_LEVEL_NAME", "LEARNING_LEVEL_ID", row, rowError, isError, sError)
+                sError = "Độ tuổi từ"
+                ImportValidate.IsValidList("AGE_FROM", "AGE_FROM", row, rowError, isError, sError)
+                sError = "Độ tuổi đến"
+                ImportValidate.IsValidList("AGE_TO", "AGE_TO", row, rowError, isError, sError)
+                sError = "Nghiệp vụ chuyên môn"
+                ImportValidate.IsValidList("QUALIFICATION_NAME", "QUALIFICATION", row, rowError, isError, sError)
+                sError = "Chưa nhập Mô tả công việc"
+                ImportValidate.EmptyValue("DESCRIPTION", row, rowError, isError, sError)
+                If isError Then
+                    row("STT") = irow
+                    row("ORG_NAME") = rowError("ORG_NAME").ToString
+                    row("TITLE_NAME") = rowError("TITLE_NAME").ToString
+                    row("SEND_DATE") = rowError("SEND_DATE").ToString
+                    row("EXPECTED_JOIN_DATE") = rowError("EXPECTED_JOIN_DATE").ToString
+                    row("RECRUIT_NUMBER") = rowError("RECRUIT_NUMBER").ToString
+                    row("RECRUIT_REASON_NAME") = rowError("RECRUIT_REASON_NAME").ToString
+                    row("LEARNING_LEVEL_NAME") = rowError("LEARNING_LEVEL_NAME").ToString
+                    row("AGE_FROM") = rowError("AGE_FROM").ToString
+                    row("AGE_TO") = rowError("AGE_TO").ToString
+                    row("QUALIFICATION_NAME") = rowError("QUALIFICATION_NAME").ToString
+                    row("DESCRIPTION") = rowError("DESCRIPTION").ToString
+                    dtError.Rows.Add(rowError)
+                Else
+                    dtDataImport.ImportRow(row)
+                End If
+                irow = irow + 1
+                isError = False
+            Next
+            If dtError.Rows.Count > 0 Then
+                dtError.TableName = "DATA"
+                Session("EXPORTREPORT") = dtError
+                ScriptManager.RegisterStartupScript(Me.Page, Me.Page.GetType(), "javascriptfunction", "ExportReport('Template_yeucautuyendung_Error')", True)
+                ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), Utilities.NotifyType.Error)
+            End If
+            Return Not isError
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
 End Class

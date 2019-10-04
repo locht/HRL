@@ -5,12 +5,12 @@
     <tlk:RadPane ID="LeftPane" runat="server" MinWidth="200" Width="250px" Scrolling="None">
         <Common:ctrlOrganization ID="ctrlOrg" runat="server" />
     </tlk:RadPane>
-    <tlk:RadPane ID="MainPane" runat="server" Scrolling="None">
+    <tlk:RadPane ID="MainPane" runat="server">
         <tlk:RadSplitter ID="RadSplitter3" runat="server" Width="100%" Height="100%" Orientation="Horizontal">
             <tlk:RadPane ID="RadPane1" runat="server" Height="33px" Scrolling="None">
                 <tlk:RadToolBar ID="tbarMain" runat="server" OnClientButtonClicking="clientButtonClicking" />
             </tlk:RadPane>
-            <tlk:RadPane ID="RadPane3" runat="server" Height="50px" Scrolling="None">
+            <tlk:RadPane ID="RadPane3" runat="server" Height="80px" Scrolling="None">
                 <table class="table-form">
                     <tr>
                         <td class="lb">
@@ -30,6 +30,8 @@
                                 ControlToCompare="rdFromDate" Operator="GreaterThanEqual" ErrorMessage="<%$ Translate: Đến ngày phải lớn hơn Từ ngày %>"
                                 ToolTip="<%$ Translate: Đến ngày phải lớn hơn Từ ngày %>"></asp:CompareValidator>
                         </td>
+                    </tr>
+                    <tr>
                         <td class="lb">
                             <%# Translate("Trạng thái")%>
                         </td>
@@ -39,15 +41,14 @@
                         </td>
                         <td>
                             <tlk:RadButton ID="btnSearch" runat="server" SkinID="ButtonFind" CausesValidation="false"
-                                Text="<%$ Translate: Tìm %>">
+                                Text="<%$ Translate: Tìm kiếm %>">
                             </tlk:RadButton>
                         </td>
                     </tr>
                 </table>
             </tlk:RadPane>
             <tlk:RadPane ID="RadPane2" runat="server" Scrolling="None">
-                <tlk:RadGrid ID="rgData" runat="server" Height="100%" PageSize="50" AllowPaging="true"
-                    AllowMultiRowSelection="True">
+                <tlk:RadGrid ID="rgData" runat="server" Height="100%" AllowMultiRowSelection="True">
                     <MasterTableView DataKeyNames="ID" ClientDataKeyNames="ID,STATUS_ID,RC_RECRUIT_PROPERTY,RC_RECRUIT_PROPERTY_NAME,IS_OVER_LIMIT,IS_SUPPORT,FOREIGN_ABILITY,COMPUTER_APP_LEVEL,GENDER_PRIORITY,GENDER_PRIORITY_NAME,RECRUIT_NUMBER,UPLOAD_FILE">
                         <Columns>
                             <tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderStyle-HorizontalAlign="Center"
@@ -57,9 +58,9 @@
                             <tlk:GridDateTimeColumn HeaderText="<%$ Translate: Ngày gửi yêu cầu %>" DataField="SEND_DATE"
                                 SortExpression="SEND_DATE" UniqueName="SEND_DATE" />
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Đơn vị %>" DataField="ORG_NAME" SortExpression="ORG_NAME"
-                                UniqueName="ORG_NAME" HeaderStyle-Width="250px" />
+                                UniqueName="ORG_NAME" />
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Vị trí tuyển dụng %>" DataField="TITLE_NAME"
-                                SortExpression="TITLE_NAME" UniqueName="TITLE_NAME" HeaderStyle-Width="200px" />
+                                SortExpression="TITLE_NAME" UniqueName="TITLE_NAME" />
                             <tlk:GridNumericColumn HeaderText="<%$ Translate: Số lượng nam %>" DataField="MALE_NUMBER"
                                 SortExpression="MALE_NUMBER" UniqueName="MALE_NUMBER" />
                             <tlk:GridNumericColumn HeaderText="<%$ Translate: Số lượng nữ %>" DataField="FEMALE_NUMBER"
@@ -69,7 +70,7 @@
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Lý do tuyển dụng %>" DataField="RECRUIT_REASON_NAME"
                                 SortExpression="RECRUIT_REASON_NAME" UniqueName="RECRUIT_REASON_NAME" />
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Lý do tuyển dụng chi tiết %>" DataField="RECRUIT_REASON"
-                                SortExpression="RECRUIT_REASON" UniqueName="RECRUIT_REASON"/>
+                                SortExpression="RECRUIT_REASON" UniqueName="RECRUIT_REASON" />
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Lý do không phê duyệt %>" DataField="REMARK_REJECT"
                                 SortExpression="REMARK_REJECT" UniqueName="REMARK_REJECT" />
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Ghi chú %>" DataField="REMARK" SortExpression="REMARK"
@@ -81,7 +82,7 @@
                         </Columns>
                     </MasterTableView>
                     <ClientSettings>
-                        <Selecting AllowRowSelect="True" />
+                        <Selecting AllowRowSelect="True"/>
                         <ClientEvents OnRowDblClick="gridRowDblClick" />
                     </ClientSettings>
                 </tlk:RadGrid>
@@ -89,13 +90,14 @@
         </tlk:RadSplitter>
     </tlk:RadPane>
 </tlk:RadSplitter>
-<asp:HiddenField ID="hddLinkPopup" runat="server" Value="Dialog.aspx?mid=Recruitment&fid=ctrlRC_RequestReject&group=Business" />
+<asp:HiddenField ID="hddLinkPopup" runat="server" Value="Dialog.aspx?mid=Recruitment&fid=ctrlRC_RequestReject&group=Business&noscroll=1" />
 <Common:ctrlMessageBox ID="ctrlMessageBox" runat="server" />
+<Common:ctrlUpload ID="ctrlUpload1" runat="server" />
 <tlk:RadWindowManager ID="RadWindowManager1" runat="server">
     <Windows>
         <tlk:RadWindow runat="server" ID="rwPopup" Width="800px" VisibleStatusbar="false"
-            OnClientClose="OnClientClose" Height="500px" EnableShadow="true" Behaviors="Close, Maximize, Move"
-            Modal="true" ShowContentDuringLoad="false">
+            OnClientClose="OnClientClose" Height="500px" EnableShadow="true"
+            Behaviors="Close, Maximize, Move" Modal="true" ShowContentDuringLoad="false">
         </tlk:RadWindow>
     </Windows>
 </tlk:RadWindowManager>
@@ -107,10 +109,10 @@
             enableAjax = true;
         }
         function OpenNew() {
-            window.open('/Default.aspx?mid=Recruitment&fid=ctrlRC_RequestNewEdit&group=Business', "_self"); /*
+            var oWindow = radopen('Dialog.aspx?mid=Recruitment&fid=ctrlRC_RequestNewEdit&group=Business&noscroll=1', "rwPopup");
             var pos = $("html").offset();
             //            oWindow.moveTo(pos.left, pos.top);
-            //            oWindow.setSize($(window).width() - 30, $(window).height() - 30); oWindow.center(); */
+            //            oWindow.setSize($(window).width(), $(window).height());
             oWindow.moveTo(pos.left, pos.middle);
             oWindow.setSize(1200, 500);
         }
@@ -126,10 +128,10 @@
             if (bCheck > 1)
                 return 1;
             var id = $find('<%# rgData.ClientID%>').get_masterTableView().get_selectedItems()[0].getDataKeyValue('ID');
-            window.open('/Default.aspx?mid=Recruitment&fid=ctrlRC_RequestNewEdit&group=Business&ID=' + id, "_self"); /*
+            var oWindow = radopen('Dialog.aspx?mid=Recruitment&fid=ctrlRC_RequestNewEdit&group=Business&noscroll=1&ID=' + id, "rwPopup");
             var pos = $("html").offset();
             //            oWindow.moveTo(pos.left, pos.top);
-            //            oWindow.setSize($(window).width() - 30, $(window).height() - 30); oWindow.center(); */
+            //            oWindow.setSize($(window).width(), $(window).height());
             oWindow.moveTo(pos.left, pos.middle);
             oWindow.setSize(1200, 500);
             return 2;
@@ -159,6 +161,9 @@
                 args.set_cancel(true);
             }
             if (args.get_item().get_commandName() == "PRINT" || args.get_item().get_commandName() == "EXPORT") {
+                enableAjax = false;
+            }
+            if (args.get_item().get_commandName() == "NEXT") {
                 enableAjax = false;
             }
             if (args.get_item().get_commandName() == 'DELETE' ||

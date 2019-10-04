@@ -92,6 +92,7 @@
 </tlk:RadSplitter>
 <asp:HiddenField ID="hddLinkPopup" runat="server" Value="Dialog.aspx?mid=Recruitment&fid=ctrlRC_RequestReject&group=Business&noscroll=1" />
 <Common:ctrlMessageBox ID="ctrlMessageBox" runat="server" />
+<Common:ctrlUpload ID="ctrlUpload1" runat="server" />
 <tlk:RadWindowManager ID="RadWindowManager1" runat="server">
     <Windows>
         <tlk:RadWindow runat="server" ID="rwPopup" Width="800px" VisibleStatusbar="false"
@@ -160,6 +161,9 @@
                 args.set_cancel(true);
             }
             if (args.get_item().get_commandName() == "PRINT" || args.get_item().get_commandName() == "EXPORT") {
+                enableAjax = false;
+            }
+            if (args.get_item().get_commandName() == "NEXT") {
                 enableAjax = false;
             }
             if (args.get_item().get_commandName() == 'DELETE' ||

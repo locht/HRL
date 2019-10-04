@@ -123,6 +123,8 @@ Public Class Export
                         Template_ImportHoSoLuong()
                     Case "Timesheet_machineExport"
                         Timesheet_machineExport()
+                    Case "Template_yeucautuyendung_Error"
+                        Template_yeucautuyendung_Error()
                 End Select
             Catch ex As Exception
                 ScriptManager.RegisterStartupScript(Page, Page.GetType(), "javascriptfunction", "goBack()", True)
@@ -175,6 +177,21 @@ Public Class Export
     '        Throw ex
     '    End Try
     'End Sub
+
+    Private Sub Template_yeucautuyendung_Error()
+        Try
+            Dim dtData = Session("EXPORTREPORT")
+            Dim dtVar As DataTable = dtData.Clone
+            If dtData.Rows.Count > 0 Then
+                dtVar.ImportRow(dtData.Rows(0))
+            End If
+            ExportTemplate("Recruitment\Import\Template_yeucautuyendung_Error.xls", _
+                                      dtData, dtVar, _
+                                      "TemplateImportError_" & Format(Date.Now, "yyyyMMdd"))
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
 
     Private Sub TR_ASSESSMENT_RESULT_ERROR()
         Try

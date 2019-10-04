@@ -92,6 +92,14 @@ Public Class RecruitmentStoreProcedure
 #End Region
 
 #Region "Manning - QL định biên"
+    Public Function GetRecruitmentImport() As DataSet
+        Try
+            Dim ds As DataSet = rep.ExecuteToDataSet("PKG_RECRUITMENT_EXPORT.GET_RECRUITMENT_IMPORT", New List(Of Object)(New Object() {OUT_CURSOR, OUT_CURSOR, OUT_CURSOR, OUT_CURSOR, OUT_CURSOR, OUT_CURSOR, OUT_CURSOR, OUT_CURSOR, OUT_CURSOR, OUT_CURSOR, OUT_CURSOR}))
+            Return ds
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
     Public Function GetCountEmpWorking(ByRef title_id As Decimal) As Integer
         Dim obj = rep.ExecuteStoreScalar("PKG_RECRUITMENT.GETCOUNT_EMPWORKING", New List(Of Object)(New Object() {title_id, OUT_NUMBER}))
         Return Integer.Parse(obj(0).ToString)
