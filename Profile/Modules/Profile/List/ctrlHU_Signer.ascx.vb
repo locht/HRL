@@ -603,6 +603,11 @@ Public Class ctrlHU_Signer
         Dim result As Integer
         'Dim gID As Decimal
         Dim PA As New SignerDTO
+        If txtCode.Text = "" Then
+            ShowMessage(Translate("Bạn vui lòng nhập mã người ký"), Utilities.NotifyType.Warning)
+            Exit Function
+        End If
+
         log = LogHelper.GetUserLog
         PA.ID = IDSelect
         PA.SIGNER_CODE = txtCode.Text

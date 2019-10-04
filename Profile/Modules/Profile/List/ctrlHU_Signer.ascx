@@ -31,9 +31,9 @@
                                     </tlk:RadTextBox>
                                     <tlk:RadButton ID="btnFindEmp" runat="server" SkinID="ButtonView" CausesValidation="false">
                                     </tlk:RadButton>
-                                    <asp:RequiredFieldValidator ID="reqCode" ControlToValidate="txtCode" runat="server"
+                                   <%-- <asp:RequiredFieldValidator ID="reqCode" ControlToValidate="txtCode" runat="server"
                                         ErrorMessage="<%$ Translate: Bạn phải nhập mã người ký %>" ToolTip="<%$ Translate: Bạn phải nhập mã người ký %>">
-                                    </asp:RequiredFieldValidator>
+                                    </asp:RequiredFieldValidator>--%>
                                 </td>
                                 <td class="lb">
                                     <asp:Label ID ="lbTYPE_NAME" runat ="server" Text ="Tên người ký"></asp:Label>
