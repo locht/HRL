@@ -1022,11 +1022,11 @@ BREAKFUNCTION:
                 dr("ORG_NAME") = ds.Tables(0).Rows(i)(2)
                 dr("TITLE_NAME") = ds.Tables(0).Rows(i)(3)
                 dr("EFFECT_DATE") = DateTime.FromOADate(ds.Tables(0).Rows(i)(4))
-                dr("OLD_MANNING") = ds.Tables(0).Rows(i)(5)
-                dr("CURRENT_MANNING") = ds.Tables(0).Rows(i)(6)
-                dr("NEW_MANNING") = ds.Tables(0).Rows(i)(7)
-                dr("MOBILIZE_COUNT_MANNING") = ds.Tables(0).Rows(i)(8)
-                dr("NOTE") = If(ds.Tables(0).Rows(i).Field(Of String)(9) Is Nothing, "", ds.Tables(0).Rows(i).Field(Of String)(9))
+                'dr("OLD_MANNING") = ds.Tables(0).Rows(i)(5)
+                'dr("CURRENT_MANNING") = ds.Tables(0).Rows(i)(6)
+                dr("NEW_MANNING") = ds.Tables(0).Rows(i)(5)
+                'dr("MOBILIZE_COUNT_MANNING") = ds.Tables(0).Rows(i)(8)
+                dr("NOTE") = If(ds.Tables(0).Rows(i).Field(Of String)(6) Is Nothing, "", ds.Tables(0).Rows(i).Field(Of String)(6))
                 'For j = colDataPeriodBegin To endColDataAT - 1
                 '    dr(j) = ds.Tables(0).Rows(i)(j)
                 'Next

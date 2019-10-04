@@ -658,4 +658,5 @@ Public Enum LoginError
     USER_LOCKED
     USER_NOT_EMPLOYEE
     USER_NOT_ORG
+    EMPLOYEE_WORK_STATUS
 End Enum

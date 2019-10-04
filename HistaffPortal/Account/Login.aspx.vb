@@ -101,6 +101,8 @@ Public Class Login
                     Utilities.ShowMessage(LoginUser, Me.Translate("Tài khoản đã bị khóa"), Utilities.NotifyType.Warning)
                 Case LoginError.USER_NOT_EMPLOYEE
                     Utilities.ShowMessage(LoginUser, Me.Translate("Tài khoản không phải nhân viên"), Utilities.NotifyType.Warning)
+                Case LoginError.EMPLOYEE_WORK_STATUS
+                    Utilities.ShowMessage(LoginUser, Me.Translate("Tài khoản của nhân viên đã nghỉ việc"), Utilities.NotifyType.Warning)
                 Case Else
                     DisplayException(Me.Title, "", ex)
             End Select

@@ -3765,7 +3765,8 @@ Partial Public Class AttendanceRepository
                                        .CUR_HAVE = p.ot.CUR_HAVE,
                                        .CUR_USED = p.ot.CUR_USED,
                                        .TOTAL_CUR_HAVE = p.ot.TOTAL_HAVE,
-                                       .CREATED_DATE = p.ot.CREATED_DATE})
+                                       .CREATED_DATE = p.ot.CREATED_DATE,
+                                       .EXPIREDATE = p.ot.EXPIREDATE})
 
             lst = lst.OrderBy(Sorts)
             Total = lst.Count

@@ -87,6 +87,8 @@ Public Class CustomMembershipProviderPortal
                     If Not bSuccess Then Throw New Exception(LoginError.WRONG_USERNAME_OR_PASSWORD)
                 ElseIf user.ACTFLG = "I" Then
                     Throw New Exception(LoginError.USER_LOCKED)
+                ElseIf user.WORK_STATUS = 257 Then
+                    Throw New Exception(LoginError.EMPLOYEE_WORK_STATUS)
                 ElseIf user.PASSWORD = encry.EncryptString(password) Then
                     If user.EFFECT_DATE > Date.Now OrElse (user.EXPIRE_DATE IsNot Nothing AndAlso user.EXPIRE_DATE <= Date.Now) Then
                         Throw New Exception(LoginError.USERNAME_EXPIRED)

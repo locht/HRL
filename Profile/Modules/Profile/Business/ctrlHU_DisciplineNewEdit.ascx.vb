@@ -1381,11 +1381,11 @@ Public Class ctrlHU_DisciplineNewEdit
                 chkAmountInMonth.Enabled = True
 
                 If chkAmountInMonth.Checked Then
-                    rnAmountInMonth.Enabled = False
-                    rnAmountDeductedMonth.Enabled = True
-                Else
                     rnAmountInMonth.Enabled = True
                     rnAmountDeductedMonth.Enabled = False
+                Else
+                    rnAmountInMonth.Enabled = False
+                    rnAmountDeductedMonth.Enabled = True
                 End If
 
                 Using rep As New ProfileRepository
@@ -1427,14 +1427,14 @@ Public Class ctrlHU_DisciplineNewEdit
         Try
             Dim startTime As DateTime = DateTime.UtcNow
             If chkAmountInMonth.Checked Then
-                rnAmountInMonth.Enabled = False
+                rnAmountInMonth.Enabled = True
                 rnAmountInMonth.Value = 0
 
-                rnAmountDeductedMonth.Enabled = True
-            Else
-                rnAmountInMonth.Enabled = True
-
                 rnAmountDeductedMonth.Enabled = False
+            Else
+                rnAmountInMonth.Enabled = False
+
+                rnAmountDeductedMonth.Enabled = True
                 rnAmountDeductedMonth.Value = 0
             End If
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")

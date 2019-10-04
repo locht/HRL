@@ -527,6 +527,22 @@ Public Class ctrlHU_WageNewEdit
                         '    ShowMessage(Translate("Hệ số/Mức thưởng phải lớn hơn 0"), NotifyType.Warning)
                         '    Exit Sub
                         'End If
+                        If cboSalTYPE.Text = "Chính thức" Then
+                            If rnPercentSalary.Value < 100 Then
+                                ShowMessage(Translate("nhập % hưởng lương 'chính thức' > 100%"), NotifyType.Warning)
+                                'rnPercentSalary.Value = 100
+                                rnPercentSalary.Focus()
+                                Exit Sub
+                            End If
+                        End If
+                        If cboSalTYPE.Text = "Thử việc" Then
+                            If rnPercentSalary.Value < 85 Then
+                                ShowMessage(Translate("nhập % hưởng lương 'thử việc' > 85%"), NotifyType.Warning)
+                                'rnPercentSalary.Value = 85
+                                rnPercentSalary.Focus()
+                                Exit Sub
+                            End If
+                        End If
 
                         Dim gID As Decimal
                         With objWorking
@@ -868,8 +884,6 @@ Public Class ctrlHU_WageNewEdit
                         sender.Items.Add(radItem)
                     Next
                 End If
-                basicSalary.AutoPostBack = True
-                rnPercentSalary.AutoPostBack = True
             End Using
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
@@ -1572,22 +1586,19 @@ Public Class ctrlHU_WageNewEdit
             Case "Kiêm nhiệm"
                 EnableControlAll(True, rnPercentSalary, rnFactorSalary, rnOtherSalary1, rnOtherSalary2)
                 EnableControlAll(False, cbSalaryGroup, cbSalaryLevel, cbSalaryRank, Salary_Total)
-                ClearControlValue(cbSalaryGroup, cbSalaryLevel, cbSalaryRank, rnFactorSalary, basicSalary, Salary_Total, rnPercentSalary)
+                ClearControlValue(cbSalaryGroup, cbSalaryLevel, cbSalaryRank, rnFactorSalary, basicSalary, Salary_Total)
         End Select
         If rnPercentSalary.Value.HasValue Then
             If cboSalTYPE.Text = "Kiêm nhiệm" Then
                 total = (If(basicSalary.Value.HasValue, basicSalary.Value, 0) + _
-                         If(rnOtherSalary1.Value.HasValue, rnOtherSalary1.Value, 0) + _
-                         If(rnOtherSalary2.Value.HasValue, rnOtherSalary2.Value, 0)) * rnPercentSalary.Value / 100
-                ' basicSalary.Enabled = True
+                       If(rnOtherSalary1.Value.HasValue, rnOtherSalary1.Value, 0) + _
+                       If(rnOtherSalary2.Value.HasValue, rnOtherSalary2.Value, 0)) * rnPercentSalary.Value / 100
+                Salary_Total.Value = total
             Else
-                total = (basicSalary.Value + _
+                Salary_Total.Value = (basicSalary.Value + _
                     If(rnOtherSalary1.Value.HasValue, rnOtherSalary1.Value, 0)) * rnPercentSalary.Value / 100
-                ' basicSalary.Enabled = False
             End If
         End If
-        Salary_Total.Value = total
-        'ClearControlValue(cbSalaryGroup, cbSalaryLevel, cbSalaryRank, rnFactorSalary, basicSalary, Salary_Total)
     End Sub
     Private Sub SetTaxTableByCode(ByVal taxTables As List(Of OtherListDTO), ByVal code As String)
         Dim taxTable = taxTables.FirstOrDefault(Function(f) f.CODE = code)
