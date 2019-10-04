@@ -39,8 +39,8 @@
                    <tlk:GridBoundColumn HeaderText="Người ký" DataField="SIGN_NAME"
                         UniqueName="SIGN_NAME" SortExpression="SIGN_NAME">
                     </tlk:GridBoundColumn>
-                    <tlk:GridBoundColumn HeaderText="Chức danh người ký" DataField="SIGN_TITLE"
-                        UniqueName="SIGN_TITLE" SortExpression="SIGN_TITLE">
+                    <tlk:GridBoundColumn HeaderText="Chức danh người ký" DataField="SIGN_TITLE_NAME"
+                        UniqueName="SIGN_TITLE_NAME" SortExpression="SIGN_TITLE_NAME">
                     </tlk:GridBoundColumn>
                      <tlk:GridBoundColumn HeaderText="Ghi chú" DataField="NOTE"
                         UniqueName="NOTE" SortExpression="NOTE">
