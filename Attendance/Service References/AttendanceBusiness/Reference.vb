@@ -32741,8 +32741,8 @@ Namespace AttendanceBusiness
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IAttendanceBusiness/PRI_PROCESS", ReplyAction:="http://tempuri.org/IAttendanceBusiness/PRI_PROCESSResponse")>  _
         Function PRI_PROCESS(ByVal employee_id_app As Decimal, ByVal employee_id As Decimal, ByVal period_id As Integer, ByVal status As Decimal, ByVal process_type As String, ByVal notes As String, ByVal id_reggroup As Integer, ByVal log As Common.CommonBusiness.UserLog) As Integer
         
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IAttendanceBusiness/PRS_GETLEAVE_BY_APPROVE", ReplyAction:="http://tempuri.org/IAttendanceBusiness/PRS_GETLEAVE_BY_APPROVEResponse")>  _
-        Function PRS_GETLEAVE_BY_APPROVE(ByVal employee_id As Decimal, ByVal status_id As Integer, ByVal year As Integer, ByVal log As Common.CommonBusiness.UserLog) As System.Data.DataTable
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IAttendanceBusiness/PRS_GETLEAVE_BY_APPROVE1", ReplyAction:="http://tempuri.org/IAttendanceBusiness/PRS_GETLEAVE_BY_APPROVE1Response")>  _
+        Function PRS_GETLEAVE_BY_APPROVE1(ByVal param As AttendanceBusiness.AT_PORTAL_REG_DTO, ByRef Total As Integer, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByVal Sorts As String, ByVal log As Common.CommonBusiness.UserLog) As System.Data.DataTable
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IAttendanceBusiness/GetOtherList", ReplyAction:="http://tempuri.org/IAttendanceBusiness/GetOtherListResponse")>  _
         Function GetOtherList(ByVal sType As String, ByVal sLang As String, ByVal isBlank As Boolean) As System.Data.DataTable
@@ -34299,8 +34299,8 @@ Namespace AttendanceBusiness
             Return MyBase.Channel.PRI_PROCESS(employee_id_app, employee_id, period_id, status, process_type, notes, id_reggroup, log)
         End Function
         
-        Public Function PRS_GETLEAVE_BY_APPROVE(ByVal employee_id As Decimal, ByVal status_id As Integer, ByVal year As Integer, ByVal log As Common.CommonBusiness.UserLog) As System.Data.DataTable Implements AttendanceBusiness.IAttendanceBusiness.PRS_GETLEAVE_BY_APPROVE
-            Return MyBase.Channel.PRS_GETLEAVE_BY_APPROVE(employee_id, status_id, year, log)
+        Public Function PRS_GETLEAVE_BY_APPROVE1(ByVal param As AttendanceBusiness.AT_PORTAL_REG_DTO, ByRef Total As Integer, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByVal Sorts As String, ByVal log As Common.CommonBusiness.UserLog) As System.Data.DataTable Implements AttendanceBusiness.IAttendanceBusiness.PRS_GETLEAVE_BY_APPROVE1
+            Return MyBase.Channel.PRS_GETLEAVE_BY_APPROVE1(param, Total, PageIndex, PageSize, Sorts, log)
         End Function
         
         Public Function GetOtherList(ByVal sType As String, ByVal sLang As String, ByVal isBlank As Boolean) As System.Data.DataTable Implements AttendanceBusiness.IAttendanceBusiness.GetOtherList

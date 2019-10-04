@@ -88,10 +88,10 @@ Public Class ctrlLeaveRegistrationByManager
     End Sub
 
     Public Overrides Sub ViewInit(ByVal e As System.EventArgs)
-        'rgMain.SetFilter()
+        rgMain.SetFilter()
         rgMain.AllowCustomPaging = True
         rgMain.PageSize = Common.Common.DefaultPageSize
-        SetFilter(rgMain)
+        'SetFilter(rgMain)
         InitControl()
     End Sub
 
@@ -275,29 +275,71 @@ Public Class ctrlLeaveRegistrationByManager
             End If
             If Not String.IsNullOrEmpty(cboStatus.SelectedValue) Then
                 _filter.STATUS = cboStatus.SelectedValue
+            Else
+                _filter.STATUS = 5
             End If
-         
-
+            Dim MaximumRows As Integer
             SetValueObjectByRadGrid(rgMain, _filter)
             Dim Sorts As String = rgMain.MasterTableView.SortExpressions.GetSortString()
-
             If isFull Then
-                If Sorts IsNot Nothing Then
-                    Return rep.PRS_GETLEAVE_BY_APPROVE(EmployeeID, If(cboStatus.SelectedValue = "", 5, cboStatus.SelectedValue), txtYear.Text)
-                Else
-                    Return rep.PRS_GETLEAVE_BY_APPROVE(EmployeeID, If(cboStatus.SelectedValue = "", 5, cboStatus.SelectedValue), txtYear.Text)
-                End If
+                LeaveMasters = rep.PRS_GETLEAVE_BY_APPROVE1(_filter)
             Else
-                If Sorts IsNot Nothing Then
-                    Me.LeaveMasters = rep.PRS_GETLEAVE_BY_APPROVE(EmployeeID, If(cboStatus.SelectedValue = "", 5, cboStatus.SelectedValue), txtYear.Text)
-                Else
-                    Me.LeaveMasters = rep.PRS_GETLEAVE_BY_APPROVE(EmployeeID, If(cboStatus.SelectedValue = "", 5, cboStatus.SelectedValue), txtYear.Text)
-                End If
+                LeaveMasters = rep.PRS_GETLEAVE_BY_APPROVE1(_filter, MaximumRows, rgMain.CurrentPageIndex, rgMain.PageSize)
+            End If
+            Dim strWher As String = "1=1 "
+            If _filter.EMPLOYEE_CODE IsNot Nothing Then
+                strWher += " AND  EMPLOYEE_CODE LIKE '" + "%" + _filter.EMPLOYEE_CODE + "%" + "'"
+            End If
+            If _filter.STATUS_NAME IsNot Nothing Then
+                strWher += " AND  STATUS_NAME LIKE '" + "%" + _filter.STATUS_NAME + "%" + "'"
+            End If
+            If _filter.EMPLOYEE_NAME IsNot Nothing Then
+                strWher += " AND  EMPLOYEE_NAME LIKE '" + "%" + _filter.EMPLOYEE_NAME + "%" + "'"
+            End If
+            If _filter.DEPARTMENT IsNot Nothing Then
+                strWher += " AND  DEPARTMENT LIKE '" + "%" + _filter.DEPARTMENT + "%" + "'"
+            End If
+            If _filter.SIGN_NAME IsNot Nothing Then
+                strWher += " AND  SIGN_NAME LIKE '" + "%" + _filter.SIGN_NAME + "%" + "'"
+            End If
+            If _filter.JOBTITLE IsNot Nothing Then
+                strWher += " AND  JOBTITLE LIKE '" + "%" + _filter.JOBTITLE + "%" + "'"
+            End If
+            If _filter.FROM_DATE.HasValue Then
+                strWher += " AND  FROM_DATE = '" + Date.Parse(_filter.FROM_DATE).ToString("dd/MM/yyyy") + "'"
+            End If
+            If _filter.TO_DATE.HasValue Then
+                strWher += " AND  TO_DATE = '" + Date.Parse(_filter.TO_DATE).ToString("dd/MM/yyyy") + "'"
+            End If
+            
+            If _filter.TOTAL_LEAVE IsNot Nothing Then
+                strWher += " AND  TOTAL_LEAVE = '" + _filter.TOTAL_LEAVE.ToString() + "'"
+            End If
+            If _filter.NOTE IsNot Nothing Then
+                strWher += " AND  NOTE LIKE '" + "%" + _filter.NOTE + "%" + "'"
+            End If
+            If _filter.MODIFIED_BY IsNot Nothing Then
+                strWher += " AND  MODIFIED_BY LIKE '" + "%" + _filter.MODIFIED_BY + "%" + "'"
+            End If
+            If _filter.MODIFIED_DATE.HasValue Then
+                strWher += " AND  MODIFIED_DATE = '" + Date.Parse(_filter.MODIFIED_DATE).ToString("dd/MM/yyyy") + "'"
+            End If
+            If _filter.REASON IsNot Nothing Then
+                strWher += " AND  REASON LIKE '" + "%" + _filter.REASON + "%" + "'"
+            End If
+            If Me.LeaveMasters.Select(strWher).Count > 0 Then
+                Me.LeaveMasters = Me.LeaveMasters.Select(strWher).CopyToDataTable()
+            Else
+                Me.LeaveMasters = Me.LeaveMasters.Clone()
             End If
             rgMain.MasterTableView.FilterExpression = String.Empty
-            rgMain.VirtualItemCount = Me.LeaveMasterTotal
-            rgMain.DataSource = Me.LeaveMasters
+            If LeaveMasters.Rows.Count > 0 Then
+                rgMain.VirtualItemCount = LeaveMasters.Rows.Count
+            Else
+                rgMain.VirtualItemCount = Me.LeaveMasterTotal
+            End If
 
+            rgMain.DataSource = Me.LeaveMasters
         Catch ex As Exception
             Throw ex
         End Try

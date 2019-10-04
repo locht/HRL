@@ -43,8 +43,8 @@
                         <ClientEvents OnRowDblClick="gridRowDblClick" />
                     </ClientSettings>
                     <MasterTableView DataKeyNames="ID, ID_EMPLOYEE, EMPLOYEE_CODE, EMPLOYEE_NAME, DEPARTMENT, JOBTITLE, 
-                 YEAR,FROM_DATE, TO_DATE, ID_SIGN, SIGN_CODE,SIGN_NAME, TOTAL_LEAVE, NOTE, ID_REGGROUP,
-                 STATUS, STATUS_NAME, IMPORT" ClientDataKeyNames="ID, ID_EMPLOYEE, EMPLOYEE_CODE, EMPLOYEE_NAME, DEPARTMENT, JOBTITLE, 
+                 YEAR,FROM_DATE, TO_DATE, ID_SIGN, SIGN_CODE,SIGN_NAME, TOTAL_LEAVE, NOTE, ID_REGGROUP,MODIFIED_DATE,
+                 STATUS, STATUS_NAME, IMPORT" ClientDataKeyNames="ID, ID_EMPLOYEE, EMPLOYEE_CODE, EMPLOYEE_NAME, DEPARTMENT, JOBTITLE,MODIFIED_DATE, 
                  YEAR,FROM_DATE, TO_DATE, ID_SIGN, SIGN_CODE,SIGN_NAME, TOTAL_LEAVE, NOTE, ID_REGGROUP,
                  STATUS, STATUS_NAME, IMPORT">
                         <Columns>
@@ -69,16 +69,16 @@
                                 HeaderStyle-Width="270px" ItemStyle-Width="270px" />
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Loại nghỉ %>" DataField="SIGN_NAME"
                                 UniqueName="SIGN_NAME" SortExpression="SIGN_NAME" HeaderStyle-Width="200px" ItemStyle-Width="200px" />
-                            <tlk:GridDateTimeColumn HeaderText="<%$ Translate: Thời gian bắt đầu nghỉ phép %>"
+                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Thời gian bắt đầu nghỉ phép %>"
                                 DataField="FROM_DATE" UniqueName="FROM_DATE" SortExpression="FROM_DATE" DataFormatString="{0:dd/MM/yyyy}"
                                 ItemStyle-HorizontalAlign="Center" ItemStyle-Width="100px">
                                 <HeaderStyle Width="100px" />
-                            </tlk:GridDateTimeColumn>
-                            <tlk:GridDateTimeColumn HeaderText="<%$ Translate: Thời gian kết thúc nghỉ phép %>"
+                            </tlk:GridBoundColumn>
+                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Thời gian kết thúc nghỉ phép %>"
                                 DataField="TO_DATE" UniqueName="TO_DATE" SortExpression="TO_DATE" DataFormatString="{0:dd/MM/yyyy}"
                                 ItemStyle-HorizontalAlign="Center" ItemStyle-Width="100px">
                                 <HeaderStyle Width="100px" />
-                            </tlk:GridDateTimeColumn>
+                            </tlk:GridBoundColumn>
                             <tlk:GridNumericColumn HeaderText="<%$ Translate: Số ngày %>" DataField="TOTAL_LEAVE"
                                 UniqueName="TOTAL_LEAVE" SortExpression="TOTAL_LEAVE" ItemStyle-HorizontalAlign="Right"
                                 ItemStyle-Width="100px">
@@ -100,11 +100,11 @@
                                 UniqueName="MODIFIED_BY" SortExpression="MODIFIED_BY" ItemStyle-Width="140px">
                                 <HeaderStyle Width="140px" />
                             </tlk:GridBoundColumn>
-                            <tlk:GridDateTimeColumn HeaderText="<%$ Translate: Ngày cập nhật %>" DataField="MODIFIED_DATE"
+                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Ngày cập nhật %>" DataField="MODIFIED_DATE"
                                 UniqueName="MODIFIED_DATE" SortExpression="MODIFIED_DATE" DataFormatString="{0:dd/MM/yyyy}"
                                 ItemStyle-HorizontalAlign="Center" ItemStyle-Width="100px">
                                 <HeaderStyle Width="100px" />
-                            </tlk:GridDateTimeColumn>
+                            </tlk:GridBoundColumn>
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Lý do không duyệt %>" DataField="REASON"
                                 UniqueName="REASON" SortExpression="REASON" HeaderStyle-Width="200px" ItemStyle-Width="200px" />
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Tự sinh do import bảng công %>" DataField="IMPORT"

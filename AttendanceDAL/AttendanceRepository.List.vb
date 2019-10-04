@@ -31,10 +31,21 @@ Partial Public Class AttendanceRepository
             Return Int32.Parse(obj.P_RESULT)
         End Using
     End Function
-    Public Function PRS_GETLEAVE_BY_APPROVE(ByVal employee_id As Decimal, ByVal status_id As Integer, ByVal year As Integer, Optional ByVal log As UserLog = Nothing) As DataTable
+    Public Function PRS_GETLEAVE_BY_APPROVE1(ByVal param As AT_PORTAL_REG_DTO,
+                                          Optional ByRef Total As Integer = 0,
+                                          Optional ByVal PageIndex As Integer = 0,
+                                          Optional ByVal PageSize As Integer = Integer.MaxValue,
+                                           Optional ByVal Sorts As String = "CREATED_DATE desc",
+                                         Optional ByVal log As UserLog = Nothing) As DataTable
         Using cls As New DataAccess.QueryData
-            Dim dt As DataTable = cls.ExecuteStore("PKG_AT_PROCESS.PRS_GETLEAVE_BY_APPROVE", New With {.P_EMPLOYEE_ID = employee_id,
-                                                                                               .P_STATUS = status_id, .P_YEAR = year, .P_CUR = cls.OUT_CURSOR})
+            Dim dt As New DataTable
+            Dim ds As DataSet = cls.ExecuteStore("PKG_AT_PROCESS.PRS_GETLEAVE_BY_APPROVE", New With {.P_EMPLOYEE_ID = param.ID_EMPLOYEE,
+                                                                                               .P_STATUS = param.STATUS, .P_YEAR = param.YEAR, .P_CUR = cls.OUT_CURSOR}, False)
+            If ds IsNot Nothing Then
+                If Not ds Is Nothing Or Not ds.Tables(0) Is Nothing Then
+                    dt = ds.Tables(0)
+                End If
+            End If
             Return dt
         End Using
     End Function

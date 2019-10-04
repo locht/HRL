@@ -99,13 +99,16 @@ Partial Class AttendanceRepository
             End Try
         End Using
     End Function
-    Public Function PRS_GETLEAVE_BY_APPROVE(ByVal employee_id As Decimal, ByVal status_id As Integer, ByVal year As Integer) As DataTable
+    Public Function PRS_GETLEAVE_BY_APPROVE1(ByVal param As AT_PORTAL_REG_DTO,
+                                            Optional ByRef Total As Integer = 0,
+                               Optional ByVal PageIndex As Integer = 0,
+                               Optional ByVal PageSize As Integer = Integer.MaxValue,
+                                Optional ByVal Sorts As String = "CREATED_DATE desc"
+                               ) As DataTable
         Using rep As New AttendanceBusinessClient
             Try
-
-                Return rep.PRS_GETLEAVE_BY_APPROVE(employee_id, status_id, year, Me.Log)
+                Return rep.PRS_GETLEAVE_BY_APPROVE1(param, Total, PageIndex, PageSize, Sorts, Me.Log)
             Catch ex As Exception
-
                 Throw ex
             End Try
         End Using
