@@ -62,11 +62,14 @@
                                 UniqueName="TITLE_NAME_VN" SortExpression="TITLE_NAME_VN" HeaderStyle-Width="120px" />
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Đơn vị %>" DataField="ORG_NAME" UniqueName="ORG_NAME"
                                 SortExpression="ORG_NAME" HeaderStyle-Width="200px" />
-                            <%--<tlk:GridBoundColumn HeaderText="<%$ Translate: Cấp nhân sự %>" DataField="STAFF_RANK_NAME"
-                                ItemStyle-HorizontalAlign="Center" SortExpression="STAFF_RANK_NAME" UniqueName="STAFF_RANK_NAME"
-                                HeaderStyle-Width="100px" />
-                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Kỳ tính %>" DataField="PERIOD_NAME"
-                                UniqueName="PERIOD_NAME" SortExpression="PERIOD_NAME" HeaderStyle-Width="120px" />--%>
+                            <tlk:GridDateTimeColumn HeaderText="Ngày hết hạn nghỉ bù năm trước" DataField="EXPIREDATE"
+                                UniqueName="EXPIREDATE" DataFormatString="{0:dd/MM/yyyy}" SortExpression="EXPIREDATE">
+                                <HeaderStyle HorizontalAlign="Center" Width="120px" />
+                                <ItemStyle HorizontalAlign="Center" />
+                            </tlk:GridDateTimeColumn>
+                            <tlk:GridNumericColumn HeaderText="<%$ Translate: Phép bù năm trước chuyển sang %>" DataField="PREV_HAVE" ItemStyle-HorizontalAlign="Center"
+                                DataFormatString="{0:n2}" SortExpression="PREV_HAVE" UniqueName="PREV_HAVE">
+                            </tlk:GridNumericColumn>
                             <tlk:GridNumericColumn HeaderText="<%$ Translate: Tăng T1 %>" DataField="AL_T1" ItemStyle-HorizontalAlign="Center"
                                 DataFormatString="{0:n2}" SortExpression="AL_T1" UniqueName="AL_T1">
                             </tlk:GridNumericColumn>
