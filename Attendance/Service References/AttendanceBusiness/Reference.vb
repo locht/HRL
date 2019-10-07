@@ -31963,7 +31963,7 @@ Namespace AttendanceBusiness
         Function DeleteAT_SetUp_Exchange(ByVal lstID As System.Collections.Generic.List(Of Decimal)) As Boolean
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IAttendanceBusiness/CheckTrung_AT__SetUp_exchange", ReplyAction:="http://tempuri.org/IAttendanceBusiness/CheckTrung_AT__SetUp_exchangeResponse")>  _
-        Function CheckTrung_AT__SetUp_exchange(ByVal id As Decimal, ByVal from_minute As Decimal, ByVal to_minute As Decimal) As Integer
+        Function CheckTrung_AT__SetUp_exchange(ByVal id As Decimal, ByVal from_minute As Decimal, ByVal to_minute As Decimal, ByVal EFFECT_DATE As Date, ByVal OBJECT_ATTENDACE As Decimal, ByVal TYPE_EXCHANGE As Decimal, ByVal ORG_ID As Decimal) As Integer
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IAttendanceBusiness/GetAT_TERMINAL", ReplyAction:="http://tempuri.org/IAttendanceBusiness/GetAT_TERMINALResponse")>  _
         Function GetAT_TERMINAL(ByVal _filter As AttendanceBusiness.AT_TERMINALSDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal Sorts As String, ByVal log As Common.CommonBusiness.UserLog) As System.Collections.Generic.List(Of AttendanceBusiness.AT_TERMINALSDTO)
@@ -33735,8 +33735,8 @@ Namespace AttendanceBusiness
             Return MyBase.Channel.DeleteAT_SetUp_Exchange(lstID)
         End Function
         
-        Public Function CheckTrung_AT__SetUp_exchange(ByVal id As Decimal, ByVal from_minute As Decimal, ByVal to_minute As Decimal) As Integer Implements AttendanceBusiness.IAttendanceBusiness.CheckTrung_AT__SetUp_exchange
-            Return MyBase.Channel.CheckTrung_AT__SetUp_exchange(id, from_minute, to_minute)
+        Public Function CheckTrung_AT__SetUp_exchange(ByVal id As Decimal, ByVal from_minute As Decimal, ByVal to_minute As Decimal, ByVal EFFECT_DATE As Date, ByVal OBJECT_ATTENDACE As Decimal, ByVal TYPE_EXCHANGE As Decimal, ByVal ORG_ID As Decimal) As Integer Implements AttendanceBusiness.IAttendanceBusiness.CheckTrung_AT__SetUp_exchange
+            Return MyBase.Channel.CheckTrung_AT__SetUp_exchange(id, from_minute, to_minute, EFFECT_DATE, OBJECT_ATTENDACE, TYPE_EXCHANGE, ORG_ID)
         End Function
         
         Public Function GetAT_TERMINAL(ByVal _filter As AttendanceBusiness.AT_TERMINALSDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal Sorts As String, ByVal log As Common.CommonBusiness.UserLog) As System.Collections.Generic.List(Of AttendanceBusiness.AT_TERMINALSDTO) Implements AttendanceBusiness.IAttendanceBusiness.GetAT_TERMINAL

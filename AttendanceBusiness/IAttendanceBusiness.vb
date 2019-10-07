@@ -780,7 +780,12 @@ Namespace AttendanceBusiness.ServiceContracts
         <OperationContract()>
         Function DeleteAT_SetUp_Exchange(ByVal lstID As List(Of Decimal)) As Boolean
         <OperationContract()>
-        Function CheckTrung_AT__SetUp_exchange(ByVal id As Decimal, ByVal from_minute As Decimal, ByVal to_minute As Decimal) As Integer
+        Function CheckTrung_AT__SetUp_exchange(ByVal id As Decimal, ByVal from_minute As Decimal,
+                                               ByVal to_minute As Decimal,
+                                               ByVal EFFECT_DATE As Date,
+                                                  ByVal OBJECT_ATTENDACE As Decimal,
+                                                  ByVal TYPE_EXCHANGE As Decimal,
+                                                  ByVal ORG_ID As Decimal) As Integer
 #End Region
 #Region "Đăng ký máy chấm công"
         <OperationContract()>
