@@ -29896,6 +29896,9 @@ Namespace AttendanceBusiness
         Private TOTAL_FACTOR1_5Field As System.Nullable(Of Decimal)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private TOTAL_FACTOR1_8Field As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private TOTAL_FACTOR2Field As System.Nullable(Of Decimal)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -30529,6 +30532,19 @@ Namespace AttendanceBusiness
                 If (Me.TOTAL_FACTOR1_5Field.Equals(value) <> true) Then
                     Me.TOTAL_FACTOR1_5Field = value
                     Me.RaisePropertyChanged("TOTAL_FACTOR1_5")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property TOTAL_FACTOR1_8() As System.Nullable(Of Decimal)
+            Get
+                Return Me.TOTAL_FACTOR1_8Field
+            End Get
+            Set
+                If (Me.TOTAL_FACTOR1_8Field.Equals(value) <> true) Then
+                    Me.TOTAL_FACTOR1_8Field = value
+                    Me.RaisePropertyChanged("TOTAL_FACTOR1_8")
                 End If
             End Set
         End Property

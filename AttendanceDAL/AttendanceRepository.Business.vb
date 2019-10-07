@@ -1248,7 +1248,8 @@ Partial Public Class AttendanceRepository
                                        .MIN_OUT_WORK_DEDUCT = p.p.MIN_OUT_WORK_DEDUCT,
                                        .MIN_EARLY = p.p.MIN_EARLY,
                                        .WORKING_KLD = p.p.WORKING_KLD,
-                                       .WORKING_TN = p.p.WORKING_TN
+                                       .WORKING_TN = p.p.WORKING_TN,
+                                       .TOTAL_FACTOR1_8 = p.ot.TOTAL_FACTOR1_8
                                    })
 
             'If _filter.IS_TERMINATE Then
@@ -4962,7 +4963,7 @@ Partial Public Class AttendanceRepository
         Try
             Dim query = From p In Context.AT_SWIPE_DATA
                         From machine_type In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.MACHINE_TYPE).DefaultIfEmpty
-            From e In Context.HU_EMPLOYEE.Where(Function(f) f.ID = p.EMPLOYEE_ID).DefaultIfEmpty()
+            From e In Context.HU_EMPLOYEE.Where(Function(f) f.ID = p.EMPLOYEE_ID)
             Dim lst = query.Select(Function(p) New AT_SWIPE_DATADTO With {
                                        .ID = p.p.ID,
                                        .ITIME_ID = p.e.ITIME_ID,

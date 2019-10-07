@@ -18,7 +18,7 @@ Imports System.Runtime.Serialization
 Imports System.Xml.Serialization
 
 
-<Assembly: EdmSchemaAttribute("586cbb67-89bd-4246-afe4-b840739b3d2d")>
+<Assembly: EdmSchemaAttribute("c565af9f-86ec-4c2e-8582-20187a643fba")>
 #Region "EDM Relationship Metadata"
 <Assembly: EdmRelationshipAttribute("AttendanceModel", "FK_OOLT_OOL", "OT_OTHER_LIST_TYPE", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(OT_OTHER_LIST_TYPE), "OT_OTHER_LIST", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(OT_OTHER_LIST), True)>
 <Assembly: EdmRelationshipAttribute("AttendanceModel", "FK_OOLG_OOLT", "OT_OTHER_LIST_GROUP", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(OT_OTHER_LIST_GROUP), "OT_OTHER_LIST_TYPE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(OT_OTHER_LIST_TYPE), True)>
@@ -33328,6 +33328,31 @@ Public Partial Class AT_TIME_TIMESHEET_OT
     End Sub
 
     Private Partial Sub OnTOTAL_FACTOR2_1Changed()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property TOTAL_FACTOR1_8() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _TOTAL_FACTOR1_8
+        End Get
+        Set
+            OnTOTAL_FACTOR1_8Changing(value)
+            ReportPropertyChanging("TOTAL_FACTOR1_8")
+            _TOTAL_FACTOR1_8 = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("TOTAL_FACTOR1_8")
+            OnTOTAL_FACTOR1_8Changed()
+        End Set
+    End Property
+
+    Private _TOTAL_FACTOR1_8 As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnTOTAL_FACTOR1_8Changing(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnTOTAL_FACTOR1_8Changed()
     End Sub
 
     #End Region
