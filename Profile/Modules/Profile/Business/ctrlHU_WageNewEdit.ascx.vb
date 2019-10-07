@@ -1027,6 +1027,11 @@ Public Class ctrlHU_WageNewEdit
                     End If
                 End If
             Next
+            If (rdEffectDate.SelectedDate IsNot Nothing) Then
+                EnableControlAll(True, cbSalaryGroup, cbSalaryLevel, cbSalaryRank)
+            Else
+                EnableControlAll(False, cbSalaryGroup, cbSalaryLevel, cbSalaryRank)
+            End If
             'Ngay hieu luc thay doi => load lai thang luong theo ngay hieu luc
             ClearControlValue(cbSalaryGroup, cbSalaryLevel, cbSalaryRank, SalaryInsurance, rnFactorSalary)
             Dim dtData As DataTable = New DataTable()
@@ -1184,6 +1189,11 @@ Public Class ctrlHU_WageNewEdit
             Select Case CurrentState
                 Case CommonMessage.STATE_NEW
                     EnableControlAll(True, btnFindEmployee, chkIsInsurrance, SalaryInsurance)
+                    If (rdEffectDate.SelectedDate IsNot Nothing) Then
+                        EnableControlAll(True, cbSalaryGroup, cbSalaryLevel, cbSalaryRank)
+                    Else
+                        EnableControlAll(False, cbSalaryGroup, cbSalaryLevel, cbSalaryRank)
+                    End If
                 Case CommonMessage.STATE_EDIT
                     EnableControlAll(False, btnFindEmployee, chkIsInsurrance)
                     If cboStatus.SelectedValue = ProfileCommon.DECISION_STATUS.WAIT_APPROVE_ID Then
