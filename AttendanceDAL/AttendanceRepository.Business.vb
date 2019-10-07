@@ -1248,7 +1248,8 @@ Partial Public Class AttendanceRepository
                                        .MIN_OUT_WORK_DEDUCT = p.p.MIN_OUT_WORK_DEDUCT,
                                        .MIN_EARLY = p.p.MIN_EARLY,
                                        .WORKING_KLD = p.p.WORKING_KLD,
-                                       .WORKING_TN = p.p.WORKING_TN
+                                       .WORKING_TN = p.p.WORKING_TN,
+                                       .TOTAL_FACTOR1_8 = p.ot.TOTAL_FACTOR1_8
                                    })
 
             'If _filter.IS_TERMINATE Then

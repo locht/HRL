@@ -894,6 +894,7 @@
             <Property Name="END_DATE" Type="date" Nullable="true" />
             <Property Name="BACKUP_MONTH_BEFORE" Type="number" Nullable="true" Precision="38" />
             <Property Name="TOTAL_FACTOR2_1" Type="number" Nullable="true" Precision="38" />
+            <Property Name="TOTAL_FACTOR1_8" Type="number" Nullable="true" Precision="38" />
         </EntityType>
         <EntityType Name="AT_DMVS">
             <Key>
@@ -3690,6 +3691,7 @@
           <Property Type="DateTime" Name="END_DATE" />
           <Property Type="Decimal" Name="BACKUP_MONTH_BEFORE" Precision="38" Scale="0" />
           <Property Type="Decimal" Name="TOTAL_FACTOR2_1" />
+          <Property Type="Decimal" Name="TOTAL_FACTOR1_8" />
         </EntityType>
         <EntityType Name="AT_DMVS">
           <Key>
@@ -6066,6 +6068,7 @@
                     <ScalarProperty Name="END_DATE" ColumnName="END_DATE" />
                     <ScalarProperty Name="BACKUP_MONTH_BEFORE" ColumnName="BACKUP_MONTH_BEFORE" />
                     <ScalarProperty Name="TOTAL_FACTOR2_1" ColumnName="TOTAL_FACTOR2_1" />
+                    <ScalarProperty Name="TOTAL_FACTOR1_8" ColumnName="TOTAL_FACTOR1_8" />
                 </MappingFragment>
             </EntityTypeMapping>
         </EntitySetMapping>
@@ -7743,7 +7746,7 @@
     </edmx:Options>
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram Name="AttendanceContext" ShowGrid="false" DisplayType="true" ZoomLevel="93" >
+      <Diagram Name="AttendanceContext" ShowGrid="false" DisplayType="true" ZoomLevel="94" >
         <EntityTypeShape EntityType="AttendanceModel.OT_OTHER_LIST" Width="1.5" PointX="5.125" PointY="7.625" Height="0.40000000037252903" IsExpanded="false" />
         <EntityTypeShape EntityType="AttendanceModel.OT_OTHER_LIST_GROUP" Width="1.5" PointX="0.625" PointY="7.625" Height="0.40000000037252903" IsExpanded="false" />
         <EntityTypeShape EntityType="AttendanceModel.OT_OTHER_LIST_TYPE" Width="1.5" PointX="2.875" PointY="7.625" Height="0.40000000037252903" IsExpanded="false" />
@@ -7823,7 +7826,7 @@
         <EntityTypeShape EntityType="AttendanceModel.AT_PORTAL_REG" Width="2.625" PointX="18" PointY="6.375" Height="7.5570279947916656" IsExpanded="true" />
         <EntityTypeShape EntityType="AttendanceModel.HU_STAFF_RANK" Width="1.5" PointX="11.625" PointY="10.5" Height="0.39999999999999858" IsExpanded="false" />
         <EntityTypeShape EntityType="AttendanceModel.AT_TIME_TIMESHEET_RICE" Width="1.5" PointX="12.625" PointY="0.5" Height="0.4" IsExpanded="false" />
-        <EntityTypeShape EntityType="AttendanceModel.AT_TIME_TIMESHEET_OT" Width="2.125" PointX="15.625" PointY="7.25" Height="11.979960937500003" IsExpanded="true" />
+        <EntityTypeShape EntityType="AttendanceModel.AT_TIME_TIMESHEET_OT" Width="2.125" PointX="17.875" PointY="7.625" Height="12.172262369791667" IsExpanded="true" />
         <EntityTypeShape EntityType="AttendanceModel.AT_DMVS" Width="1.5" PointX="12.625" PointY="4.5" Height="0.39999999999999858" IsExpanded="false" />
         <EntityTypeShape EntityType="AttendanceModel.AT_HOLIDAY" Width="1.875" PointX="6.375" PointY="12" Height="3.9033007812500031" IsExpanded="true" />
         <EntityTypeShape EntityType="AttendanceModel.AT_HOLIDAY_GENERAL" Width="1.5" PointX="8.625" PointY="12.5" Height="0.39999999999999858" IsExpanded="false" />

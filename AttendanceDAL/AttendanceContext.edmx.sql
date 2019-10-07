@@ -1,7 +1,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for Oracle database
 -- --------------------------------------------------
--- Date Created: 10/2/2019 2:05:02 PM
+-- Date Created: 10/7/2019 10:49:20 AM
 -- Generated from EDMX file: D:\TNG_SOURCE_NEW\AttendanceDAL\AttendanceContext.edmx
 -- --------------------------------------------------
 
@@ -937,7 +937,8 @@ CREATE TABLE "dbo"."AT_TIME_TIMESHEET_OT" (
    "FROM_DATE" DATE NULL,
    "END_DATE" DATE NULL,
    "BACKUP_MONTH_BEFORE" NUMBER(38,0) NULL,
-   "TOTAL_FACTOR2_1" NUMBER(38,0) NULL
+   "TOTAL_FACTOR2_1" NUMBER(38,0) NULL,
+   "TOTAL_FACTOR1_8" NUMBER(38,0) NULL
 );
 
 -- Creating table 'AT_DMVS'

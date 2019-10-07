@@ -57,6 +57,7 @@
 
     Public Property TOTAL_FACTOR1 As Decimal?
     Public Property TOTAL_FACTOR1_5 As Decimal?
+    Public Property TOTAL_FACTOR1_8 As Decimal?
     Public Property TOTAL_FACTOR2 As Decimal?
     Public Property TOTAL_FACTOR2_1 As Decimal?
     Public Property TOTAL_FACTOR2_7 As Decimal?
