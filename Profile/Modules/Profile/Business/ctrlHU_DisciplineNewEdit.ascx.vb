@@ -275,6 +275,7 @@ Public Class ctrlHU_DisciplineNewEdit
                         cboPeriod.Enabled = True
                         nmYear.Value = Discipline.YEAR_PERIOD
                         nmYear_TextChanged(Nothing, Nothing)
+                        
                         If Discipline.PERIOD_ID Is Nothing Then
                             cboPeriod.ClearValue()
                         Else
@@ -305,13 +306,29 @@ Public Class ctrlHU_DisciplineNewEdit
                         chkAmountInMonth.Enabled = True
                         chkAmountInMonth.Checked = Discipline.IS_AMOUNT_IN_MONTH
 
-                        If chkAmountInMonth.Checked Then
-                            rnAmountInMonth.Enabled = False
-                            rnAmountDeductedMonth.Enabled = True
-                        Else
-                            rnAmountInMonth.Enabled = True
-                            rnAmountDeductedMonth.Enabled = False
+                        'If chkAmountInMonth.Checked Then
+                        '    rnAmountInMonth.Enabled = False
+                        '    rnAmountDeductedMonth.Enabled = True
+                        'Else
+                        '    rnAmountInMonth.Enabled = True
+                        '    rnAmountDeductedMonth.Enabled = False
+                        'End If
+
+                        If chkDeductFromSalary.Checked Then
+                            If chkAmountInMonth.Checked Then
+                                rnAmountInMonth.Enabled = True
+
+                                rnAmountDeductedMonth.Text = ""
+                                rnAmountDeductedMonth.Enabled = False
+                            Else
+                                rnAmountInMonth.Text = ""
+                                rnAmountInMonth.Enabled = False
+
+                                rnAmountDeductedMonth.Enabled = True
+
+                            End If
                         End If
+
 
                     Else
                         nmYear.Enabled = False
@@ -1430,8 +1447,10 @@ Public Class ctrlHU_DisciplineNewEdit
                 rnAmountInMonth.Enabled = True
                 rnAmountInMonth.Value = 0
 
+                rnAmountDeductedMonth.Text = ""
                 rnAmountDeductedMonth.Enabled = False
             Else
+                rnAmountInMonth.Text = ""
                 rnAmountInMonth.Enabled = False
 
                 rnAmountDeductedMonth.Enabled = True
