@@ -5,8 +5,8 @@
 <tlk:RadSplitter ID="RadSplitter3" runat="server" Width="100%" Height="100%" Orientation="Horizontal">
     <tlk:RadPane ID="RadPane1" runat="server" Height="230px" Scrolling="None">
         <tlk:RadToolBar ID="tbarMain" runat="server" />
-        <asp:ValidationSummary ID="valSum" runat="server" />
-        <table class="table-form">
+        <asp:ValidationSummary ID="valSum" runat="server" DisplayMode="BulletList" CssClass="validationsummary" />
+        <table class="table-form" onkeydown="return (event.keyCode!=13)">
             <tr>
                 <td class="lb">
                     <asp:Label runat="server" ID="lbTitleGroup" Text="Nhóm chức danh"></asp:Label><span

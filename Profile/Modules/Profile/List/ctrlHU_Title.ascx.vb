@@ -374,9 +374,7 @@ dontrefresh:
 
 #Region "Event"
     Private Sub cboTitleGroup_SelectedIndexChanged(sender As Object, e As RadComboBoxSelectedIndexChangedEventArgs) Handles cboTitleGroup.SelectedIndexChanged, cboOrgLevel.SelectedIndexChanged
-        Dim rep As New ProfileRepository
         Dim repS As New ProfileStoreProcedure
-        Dim dtData As New DataTable()
         Dim dtOrgLevel As New DataTable()
         Try
             Dim ORG_CODE As String = String.Empty
@@ -385,18 +383,30 @@ dontrefresh:
                 dtOrgLevel = repS.GET_ORGID_COMPANY_LEVEL()
                 ORG_CODE = dtOrgLevel.Select("ORG_ID='" + cboOrgLevel.SelectedValue + "'")(0)("ORG_CODE").ToString
             End If
+            GenerateTitleCode()
+        Catch ex As Exception
+            Throw ex
+        Finally
+            dtOrgLevel.Dispose()
+        End Try
+    End Sub
+
+    Private Sub GenerateTitleCode()
+        Dim rep As New ProfileRepository
+        Dim dtData As New DataTable()
+        Try
+            Dim TITLE_GROUP As String = String.Empty
             If IsNumeric(cboTitleGroup.SelectedValue) Then
                 dtData = rep.GetOtherList("HU_TITLE_GROUP", True)
                 TITLE_GROUP = dtData.Select("ID='" + cboTitleGroup.SelectedValue + "'")(0)("CODE").ToString
             End If
-            If rgMain.SelectedValue Is Nothing Then
+            If rgMain.SelectedValue IsNot Nothing Then
                 txtCode.Text = rep.AutoGenCode(TITLE_GROUP, "HU_TITLE", "CODE")
             End If
         Catch ex As Exception
             Throw ex
         Finally
             dtData.Dispose()
-            dtOrgLevel.Dispose()
             rep.Dispose()
         End Try
     End Sub
@@ -502,6 +512,7 @@ dontrefresh:
                     If Page.IsValid Then
                         ' Dim code = (From a In dataTable.AsEnumerable Where a("ID") = cboTitleGroup.SelectedValue Select a("CODE"))
                         'txtCode.Text = rep.AutoGenCode("CD", "HU_TITLE", "CODE")
+                        GenerateTitleCode()
                         objTitle.CODE = txtCode.Text.Trim
                         objTitle.NAME_VN = txtNameVN.Text.Trim
                         objTitle.NAME_EN = txtNameVN.Text.Trim
