@@ -1019,11 +1019,16 @@ Namespace AttendanceBusiness.ServiceImplementations
                 End Try
             End Using
         End Function
-        Public Function CheckTrung_AT__SetUp_exchange(ByVal id As Decimal, ByVal from_minute As Decimal, ByVal to_minute As Decimal) As Integer Implements ServiceContracts.IAttendanceBusiness.CheckTrung_AT__SetUp_exchange
+        Public Function CheckTrung_AT__SetUp_exchange(ByVal id As Decimal, ByVal from_minute As Decimal,
+                                                      ByVal to_minute As Decimal,
+                                                       ByVal EFFECT_DATE As Date,
+                                                  ByVal OBJECT_ATTENDACE As Decimal,
+                                                  ByVal TYPE_EXCHANGE As Decimal,
+                                                  ByVal ORG_ID As Decimal) As Integer Implements ServiceContracts.IAttendanceBusiness.CheckTrung_AT__SetUp_exchange
             Using rep As New AttendanceRepository
                 Try
 
-                    Return rep.CheckTrung_AT__SetUp_exchange(id, from_minute, to_minute)
+                    Return rep.CheckTrung_AT__SetUp_exchange(id, from_minute, to_minute, EFFECT_DATE, OBJECT_ATTENDACE, TYPE_EXCHANGE, ORG_ID)
                 Catch ex As Exception
                     Throw ex
                 End Try

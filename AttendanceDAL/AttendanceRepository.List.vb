@@ -2806,20 +2806,29 @@ Partial Public Class AttendanceRepository
             Throw ex
         End Try
     End Function
-    Public Function CheckTrung_AT__SetUp_exchange(ByVal id As Decimal, ByVal from_minute As Decimal, ByVal to_minute As Decimal) As Integer
+    Public Function CheckTrung_AT__SetUp_exchange(ByVal id As Decimal, ByVal from_minute As Decimal,
+                                                  ByVal to_minute As Decimal,
+                                                  ByVal EFFECT_DATE As Date,
+                                                  ByVal OBJECT_ATTENDACE As Decimal,
+                                                  ByVal TYPE_EXCHANGE As Decimal,
+                                                  ByVal ORG_ID As Decimal) As Integer
         Dim objlst As New List(Of AT_SETUP_EXCHANGEDTO)
         Try
             objlst = (From p In Context.AT_SETUP_EXCHANGE
                       Where id <> p.ID
                      Select New AT_SETUP_EXCHANGEDTO With {
                       .FROM_MINUTE = p.FROM_MINUTE,
-                      .TO_MINUTE = p.TO_MINUTE
+                      .TO_MINUTE = p.TO_MINUTE,
+                      .EFFECT_DATE = p.EFFECT_DATE,
+                      .OBJECT_ATTENDACE = p.OBJECT_ATTENDACE,
+                      .TYPE_EXCHANGE = p.TYPE_EXCHANGE,
+                      .ORG_ID = p.ORG_ID
                     }).ToList
             For Each line In objlst
-                If (from_minute = line.FROM_MINUTE Or from_minute = line.TO_MINUTE) Then
+                If ((from_minute = line.FROM_MINUTE Or from_minute = line.TO_MINUTE) And EFFECT_DATE = line.EFFECT_DATE And OBJECT_ATTENDACE = line.OBJECT_ATTENDACE And TYPE_EXCHANGE = line.TYPE_EXCHANGE And ORG_ID = line.ORG_ID) Then
                     Return 1
                 End If
-                If (to_minute = line.FROM_MINUTE Or to_minute = line.TO_MINUTE) Then
+                If ((to_minute = line.FROM_MINUTE Or to_minute = line.TO_MINUTE) And EFFECT_DATE = line.EFFECT_DATE And OBJECT_ATTENDACE = line.OBJECT_ATTENDACE And TYPE_EXCHANGE = line.TYPE_EXCHANGE And ORG_ID = line.ORG_ID) Then
                     Return 1
                 End If
             Next
