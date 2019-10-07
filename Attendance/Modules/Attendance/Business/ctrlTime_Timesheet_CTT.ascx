@@ -132,7 +132,7 @@
                 </table>
             </tlk:radpane>
             <tlk:radpane id="RadPane1" runat="server" scrolling="None">
-                <tlk:radgrid pagesize="50" id="rgTimeTimesheet_cct" allowcustompaging="true" allowpaging="true"
+                <tlk:radgrid pagesize="50" id="rgTimeTimesheet_cct" allowcustompaging="true" allowpaging="true" AllowSorting="True"
                     runat="server" autogeneratecolumns="false" height="100%" skinid="GridAT">
                     <clientsettings>
                         <Scrolling AllowScroll="true" UseStaticHeaders="true" FrozenColumnsCount="3" />
