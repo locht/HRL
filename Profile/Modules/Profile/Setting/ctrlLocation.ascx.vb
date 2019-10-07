@@ -177,21 +177,26 @@ Public Class ctrlLocation
             Select Case CurrentState
                 Case CommonMessage.STATE_NORMAL
                     'CleanControl()
-                    PaneMain.Enabled = True
+                    'PaneMain.Enabled = False
                     PaneGrid.Enabled = True
+                    EnableControlAll(True, btnDownload_LG, btnDownload_FT, btnDownload_HD)
+                    EnableControlAll(False, btnFindOrg, txtLocationEn, txtLocationShort, txtAddress, txtPhone, txtFax, txtAddress_Emp, txtOfficePlace, txtWebsite, ckIsSignContract, _
+                    cboProvince, cboDistrict, cboWard, lbUploadFile_LG, txtUploadFile_LG, txtUpload_LG, txtAccountNumber, cbBank, cboRank_Banch, txtUpload_HD, txtUploadFile_HD, btnUploadFile_HD, txtTaxCode, txtChange_tax_code, rdpTaxDate, txtTaxPlace, txtUpload_FT, txtUploadFile_FT, btnUploadFile_FT, btnLawAgentId, _
+                    btnSignupAgent, txtNumberBusiness, rdRegisterDate, txtNameBusiness, txtNote, btnUploadFile_LG)
                     'rgLocation.Rebind()
-                    EnableControlAll(False, txtLocationEn, txtLocationShort, txtAddress, txtPhone, txtFax, txtAddress_Emp, _
-                                     txtOfficePlace, txtWebsite, ckIsSignContract, cboProvince, cboDistrict, cboWard, _
-                                     btnFindOrg, btnUploadFile_FT, btnUploadFile_HD, btnUploadFile_LG, txtAccountNumber, _
-                                     cboRank_Banch, cbBank, txtTaxCode, txtChange_tax_code, rdpTaxDate, txtTaxPlace, _
-                                     btnLawAgentId, btnSignupAgent, txtNumberBusiness, txtNote, rdRegisterDate)
                 Case CommonMessage.STATE_EDIT
-                    PaneMain.Enabled = True
+                    'PaneMain.Enabled = True
                     PaneGrid.Enabled = False
+                    EnableControlAll(True, btnFindOrg, txtLocationEn, txtLocationShort, txtAddress, txtPhone, txtFax, txtAddress_Emp, txtOfficePlace, txtWebsite, ckIsSignContract, _
+                    cboProvince, cboDistrict, cboWard, lbUploadFile_LG, txtUploadFile_LG, txtUpload_LG, txtAccountNumber, cbBank, cboRank_Banch, txtUpload_HD, txtUploadFile_HD, btnUploadFile_HD, txtTaxCode, txtChange_tax_code, rdpTaxDate, txtTaxPlace, txtUpload_FT, txtUploadFile_FT, btnUploadFile_FT, btnLawAgentId, _
+                    btnSignupAgent, txtNumberBusiness, rdRegisterDate, txtNameBusiness, txtNote, btnUploadFile_LG)
                 Case CommonMessage.STATE_NEW
                     If isLoadPopup = 0 Then
                         'CleanControl()
-                        PaneMain.Enabled = True
+                        'PaneMain.Enabled = True
+                        EnableControlAll(True, btnFindOrg, txtLocationEn, txtLocationShort, txtAddress, txtPhone, txtFax, txtAddress_Emp, txtOfficePlace, txtWebsite, ckIsSignContract, _
+                   cboProvince, cboDistrict, cboWard, lbUploadFile_LG, txtUploadFile_LG, txtUpload_LG, txtAccountNumber, cbBank, cboRank_Banch, txtUpload_HD, txtUploadFile_HD, btnUploadFile_HD, txtTaxCode, txtChange_tax_code, rdpTaxDate, txtTaxPlace, txtUpload_FT, txtUploadFile_FT, btnUploadFile_FT, btnLawAgentId, _
+                   btnSignupAgent, txtNumberBusiness, rdRegisterDate, txtNameBusiness, txtNote, btnUploadFile_LG)
                     End If
                     PaneGrid.Enabled = False
                 Case CommonMessage.STATE_DELETE
