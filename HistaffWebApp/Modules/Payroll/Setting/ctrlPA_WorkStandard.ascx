@@ -15,6 +15,13 @@
                 <table class="table-form">
                     <tr>
                         <td class="lb">
+                            <%# Translate("Tên công ty")%>
+                        </td>
+                        <td>
+                            <tlk:RadTextBox runat="server" ID="txtCongty">
+                            </tlk:RadTextBox>
+                        </td>
+                        <td class="lb">
                             <%# Translate("Đối tượng lao động")%><span class="lbReq">*</span>
                         </td>
                         <td>

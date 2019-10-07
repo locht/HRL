@@ -95,6 +95,15 @@ Partial Public Class ctrlPA_WorkStandard
     Protected WithEvents ValidationSummary1 As Global.System.Web.UI.WebControls.ValidationSummary
 
     '''<summary>
+    '''txtCongty control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtCongty As Global.Telerik.Web.UI.RadTextBox
+
+    '''<summary>
     '''cboLabor control.
     '''</summary>
     '''<remarks>

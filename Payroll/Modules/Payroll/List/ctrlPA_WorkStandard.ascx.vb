@@ -156,9 +156,10 @@ Public Class ctrlPA_WorkStandard
                     EnabledGridNotPostback(rgData, False)
                     EnableControlAll(True, rntxtYEAR, cboLabor, cboPeriod, txtRemark, txtWordStandard)
                     rntxtYEAR.Focus()
+                    ctrlOrg.Enabled = False
                 Case CommonMessage.STATE_NORMAL
                     EnabledGridNotPostback(rgData, True)
-                    EnableControlAll(False, rntxtYEAR, cboLabor, cboPeriod, txtRemark, txtWordStandard)
+                    EnableControlAll(False, rntxtYEAR, cboLabor, cboPeriod, txtRemark, txtWordStandard, txtCongty)
                     cboPeriod.Focus()
                     ctrlOrg.Enabled = True
                 Case CommonMessage.STATE_EDIT
@@ -226,7 +227,7 @@ Public Class ctrlPA_WorkStandard
 
     Public Overrides Sub BindData()
         Dim dic As New Dictionary(Of String, Control)
-
+        dic.Add("ORG_NAME", txtCongty)
         dic.Add("YEAR", rntxtYEAR)
         dic.Add("OBJECT_ID", cboLabor)
         dic.Add("PERIOD_ID", cboPeriod)
@@ -255,7 +256,9 @@ Public Class ctrlPA_WorkStandard
                         End If
                     End Using
                     CurrentState = CommonMessage.STATE_NEW
-                    ClearControlValue(rntxtYEAR, cboPeriod, txtRemark, txtWordStandard, cboLabor)
+                    ClearControlValue(rntxtYEAR, cboPeriod, txtRemark, txtWordStandard, cboLabor, txtCongty)
+                    txtCongty.Text = ctrlOrg.CurrentText
+                    txtCongty.Enabled = False
                     UpdateControlState()
                 Case CommonMessage.TOOLBARITEM_EDIT
                     If rgData.SelectedItems.Count = 0 Then
@@ -267,6 +270,8 @@ Public Class ctrlPA_WorkStandard
                         Exit Sub
                     End If
                     CurrentState = CommonMessage.STATE_EDIT
+                    txtCongty.Text = ctrlOrg.CurrentText
+                    txtCongty.Enabled = False
                     UpdateControlState()
                 Case CommonMessage.TOOLBARITEM_DELETE
                     If rgData.SelectedItems.Count = 0 Then
@@ -357,7 +362,7 @@ Public Class ctrlPA_WorkStandard
                     ctrlMessageBox.Show()
                 Case CommonMessage.TOOLBARITEM_CANCEL
                     CurrentState = CommonMessage.STATE_NORMAL
-                    ClearControlValue(rntxtYEAR, cboLabor, cboPeriod, txtRemark, txtWordStandard)
+                    ClearControlValue(rntxtYEAR, cboLabor, cboPeriod, txtRemark, txtWordStandard, txtCongty)
             End Select
             UpdateControlState()
 
@@ -443,6 +448,7 @@ Public Class ctrlPA_WorkStandard
                         If item.Period_standard IsNot Nothing Then
                             txtWordStandard.Text = item.Period_standard
                         End If
+                        txtCongty.Text = item.ORG_NAME
                         txtRemark.Text = item.REMARK
                     End If
                 End If
