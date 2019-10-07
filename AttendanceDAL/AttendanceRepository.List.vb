@@ -7053,7 +7053,7 @@ Partial Public Class AttendanceRepository
                             .FULLNAME_EN = e.FULLNAME_EN,
                             .FULLNAME_VN = e.FULLNAME_VN,
                             .ORG_ID = e.ORG_ID,
-                            .ORG_NAME = o.NAME_EN,
+                            .ORG_NAME = o.NAME_VN,
                             .ORG_DESC = o.DESCRIPTION_PATH,
                             .TITLE_ID = e.TITLE_ID,
                             .TITLE_NAME_EN = t.NAME_EN,
