@@ -619,15 +619,47 @@ Public Class ctrlRC_Request
                 Next
             Next
             If loadToGrid() Then
-                Dim objSIGN As RequestDTO
+                Dim dto As RequestDTO
                 Dim gID As Decimal
                 Dim dtDataImp As DataTable = dsDataPrepare.Tables(0)
                 For Each dr In dsDataComper.Rows
-                    objSIGN = New RequestDTO
-                    rep.InsertRequest(objSIGN, gID)
+                    dto = New RequestDTO
+                    dto.ORG_ID = CDec(dr("ORG_ID"))
+                    dto.TITLE_ID = CDec(dr("TITLE_ID"))
+                    dto.SEND_DATE = ToDate(dr("SEND_DATE"))
+                    dto.CONTRACT_TYPE_ID = If(dr("CONTRACT_TYPE_ID") <> "", CDec(dr("CONTRACT_TYPE_ID")), Nothing)
+                    dto.RC_RECRUIT_PROPERTY = If(dr("RC_RECRUIT_PROPERTY") <> "", CDec(dr("RC_RECRUIT_PROPERTY")), Nothing)
+                    dto.RECRUIT_REASON_ID = If(dr("RECRUIT_REASON_ID") <> "", CDec(dr("RECRUIT_REASON_ID")), Nothing)
+                    dto.IS_SUPPORT = If(dr("IS_SUPPORT") <> "", CDec(dr("IS_SUPPORT")), Nothing)
+                    dto.RECRUIT_REASON = dr("RECRUIT_REASON")
+                    dto.LEARNING_LEVEL_ID = If(dr("LEARNING_LEVEL_ID") <> "", CDec(dr("LEARNING_LEVEL_ID")), Nothing)
+                    dto.AGE_FROM = If(dr("AGE_FROM") <> "", CDec(dr("AGE_FROM")), Nothing)
+                    dto.AGE_TO = If(dr("AGE_TO") <> "", CDec(dr("AGE_TO")), Nothing)
+                    dto.QUALIFICATION = If(dr("QUALIFICATION") <> "", dr("QUALIFICATION"), Nothing)
+                    dto.SPECIALSKILLS = If(dr("SPECIALSKILLS") <> "", dr("SPECIALSKILLS"), Nothing)
+                    dto.LANGUAGE = If(dr("LANGUAGE") <> "", dr("LANGUAGE"), Nothing)
+                    dto.LANGUAGELEVEL = If(dr("LANGUAGELEVEL") <> "", dr("LANGUAGELEVEL"), Nothing)
+                    dto.LANGUAGESCORES = If(dr("LANGUAGESCORES") <> "", CDec(dr("LANGUAGESCORES")), Nothing)
+                    dto.FOREIGN_ABILITY = dr("FOREIGN_ABILITY")
+                    dto.EXPECTED_JOIN_DATE = ToDate(dr("EXPECTED_JOIN_DATE"))
+                    dto.EXPERIENCE_NUMBER = If(dr("EXPERIENCE_NUMBER") <> "", CDec(dr("EXPERIENCE_NUMBER")), Nothing)
+                    dto.COMPUTER_LEVEL = dr("COMPUTER_LEVEL")
+                    dto.COMPUTER_APP_LEVEL = dr("COMPUTER_APP_LEVEL")
+                    dto.RECRUIT_NUMBER = If(dr("RECRUIT_NUMBER") <> "", CDec(dr("RECRUIT_NUMBER")), Nothing)
+                    dto.IS_OVER_LIMIT = If(dr("IS_OVER_LIMIT") <> "", CDec(dr("IS_OVER_LIMIT")), Nothing)
+                    dto.GENDER_PRIORITY = If(dr("GENDER_PRIORITY") <> "", CDec(dr("GENDER_PRIORITY")), Nothing)
+                    dto.STATUS_ID = If(dr("STATUS_ID") <> "", CDec(dr("STATUS_ID")), Nothing)
+                    dto.DESCRIPTION = dr("DESCRIPTION")
+                    dto.MAINTASK = dr("MAINTASK")
+                    dto.REQUEST_EXPERIENCE = dr("REQUEST_EXPERIENCE")
+                    dto.REQUEST_OTHER = dr("REQUEST_OTHER")
+                    dto.REMARK = dr("REMARK")
+                    rep.InsertRequest(dto, gID)
                 Next
                 CurrentState = CommonMessage.STATE_NORMAL
                 Refresh("InsertView")
+                ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), NotifyType.Success)
+                rgData.Rebind()
                 _myLog.WriteLog(_myLog._info, _classPath, method,
                                     CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
             End If

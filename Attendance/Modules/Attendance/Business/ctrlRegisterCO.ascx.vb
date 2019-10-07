@@ -757,7 +757,7 @@ Public Class ctrlRegisterCO
                 For Each dr In dsDataComper.Rows
                     objSIGN = New AT_LEAVESHEETDTO
                     objSIGN.EMPLOYEE_CODE = dr("EMPLOYEE_CODE")
-                    objSIGN.MANUAL_ID = CDec(dr("MANUAL_ID"))
+                    objSIGN.MANUAL_ID = If(dr("MANUAL_ID") <> "", CDec(dr("MANUAL_ID")), Nothing)
                     objSIGN.LEAVE_FROM = ToDate(dr("LEAVE_DAY"))
                     objSIGN.LEAVE_TO = ToDate(dr("LEAVE_DAY"))
                     objSIGN.DAY_NUM = If(dr("DAY_NUM") = String.Empty, 1, CDec(dr("DAY_NUM")))

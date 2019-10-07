@@ -593,9 +593,26 @@ Partial Class RecruitmentRepository
 
     End Function
 
+    Public Function CheckExistRequest(ByVal objRequest As RequestDTO) As Boolean
+        Try
+            Dim query = (From p In Context.RC_REQUEST
+                        Where p.ORG_ID = objRequest.ORG_ID _
+                        And p.TITLE_ID = objRequest.TITLE_ID _
+                        And p.SEND_DATE = objRequest.SEND_DATE _
+                        And p.EXPECTED_JOIN_DATE = objRequest.EXPECTED_JOIN_DATE
+                        Select p.ID).ToList()
+            Return query.Count > 0
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+
     Public Function InsertRequest(ByVal objRequest As RequestDTO, ByVal log As UserLog, ByRef gID As Decimal) As Boolean
         Dim objRequestData As New RC_REQUEST
         Try
+            If CheckExistRequest(objRequest) Then
+                Return False
+            End If
             objRequestData.ID = Utilities.GetNextSequence(Context, Context.RC_REQUEST.EntitySet.Name)
             objRequestData.IS_IN_PLAN = objRequest.IS_IN_PLAN
             objRequestData.ORG_ID = objRequest.ORG_ID
@@ -647,9 +664,6 @@ Partial Class RecruitmentRepository
             End If
             Context.SaveChanges(log)
             gID = objRequestData.ID
-
-
-
             Return True
         Catch ex As Exception
             Utility.WriteExceptionLog(ex, Me.ToString() & ".InsertRequest")
