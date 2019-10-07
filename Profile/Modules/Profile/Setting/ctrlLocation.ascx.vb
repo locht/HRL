@@ -177,9 +177,14 @@ Public Class ctrlLocation
             Select Case CurrentState
                 Case CommonMessage.STATE_NORMAL
                     'CleanControl()
-                    PaneMain.Enabled = False
+                    PaneMain.Enabled = True
                     PaneGrid.Enabled = True
                     'rgLocation.Rebind()
+                    EnableControlAll(False, txtLocationEn, txtLocationShort, txtAddress, txtPhone, txtFax, txtAddress_Emp, _
+                                     txtOfficePlace, txtWebsite, ckIsSignContract, cboProvince, cboDistrict, cboWard, _
+                                     btnFindOrg, btnUploadFile_FT, btnUploadFile_HD, btnUploadFile_LG, txtAccountNumber, _
+                                     cboRank_Banch, cbBank, txtTaxCode, txtChange_tax_code, rdpTaxDate, txtTaxPlace, _
+                                     btnLawAgentId, btnSignupAgent, txtNumberBusiness, txtNote, rdRegisterDate)
                 Case CommonMessage.STATE_EDIT
                     PaneMain.Enabled = True
                     PaneGrid.Enabled = False
