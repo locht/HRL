@@ -220,10 +220,10 @@ Public Class ctrlTime_Timesheet_CTT
                                                                      ToolbarAuthorize.Import,
                                                                      Translate("Nhập file mẫu")))
 
-            Me.MainToolBar.Items.Add(Common.Common.CreateToolbarItem("EXPORT_ORIGIN",
-                                                                  ToolbarIcons.Export,
-                                                                  ToolbarAuthorize.Export,
-                                                                  Translate("Xuất bảng công gốc")))
+            'Me.MainToolBar.Items.Add(Common.Common.CreateToolbarItem("EXPORT_ORIGIN",
+            '                                                      ToolbarIcons.Export,
+            '                                                      ToolbarAuthorize.Export,
+            '                                                      Translate("Xuất bảng công gốc")))
             Me.MainToolBar.Items.Add(Common.Common.CreateToolbarItem("CALCULATE",
                                                                   ToolbarIcons.Calculator,
                                                                   ToolbarAuthorize.None,
