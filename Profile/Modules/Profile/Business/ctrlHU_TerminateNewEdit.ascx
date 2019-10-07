@@ -308,7 +308,7 @@
                                 </div>
                             </CommandItemTemplate>
                             <Columns>
-                                <%--<tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderStyle-HorizontalAlign="Center"
+                             <%--   <tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderStyle-HorizontalAlign="Center"
                                     HeaderStyle-Width="30px" ItemStyle-HorizontalAlign="Center">
                                 </tlk:GridClientSelectColumn>--%>
                                 <tlk:GridBoundColumn HeaderText="<%$ Translate: Tên loại công nợ %>" DataField="DEBT_TYPE_NAME"

@@ -1446,6 +1446,7 @@ Public Class ctrlHU_TerminateNewEdit
                 AddDebt(dataSource)
                 ClearControlValue(cboDebtType, rntxtDebtMoney, txtDebtNote, cboDebtStatus)
                 rgDebt.DataSource = dataSource
+                rgDebt.DataBind()
                 'Case "btnEditDebt"
                 '    EditDebt(lstDebtForEdit, IDDebtSelecting)
                 '    rgDebt.DataSource = lstDebtForEdit
@@ -1453,11 +1454,14 @@ Public Class ctrlHU_TerminateNewEdit
                 DeleteDebts(dataSource)
                 ClearControlValue(cboDebtType, rntxtDebtMoney, txtDebtNote, cboDebtStatus)
                 rgDebt.DataSource = dataSource
+                If dataSource.Count = 0 Then
+                    rgDebt.DataSource = New List(Of DebtDTO)
+                End If
+                rgDebt.DataBind()
         End Select
         If rgDebt.DataSource Is Nothing Then
             rgDebt.DataSource = dataSource
         End If
-        rgDebt.DataBind()
         CalculateDebtTotal()
     End Sub
 
@@ -1526,7 +1530,7 @@ Public Class ctrlHU_TerminateNewEdit
     End Function
     Private Function DeleteDebts(ByVal dataSource As List(Of DebtDTO)) As List(Of DebtDTO)
         Try
-            For Each item As GridDataItem In rgDebt.SelectedItems
+            For Each item As GridDataItem In rgDebt.Items
                 Dim item_Ck = (From p In dataSource.AsEnumerable Where p.DEBT_TYPE_ID = item.GetDataKeyValue("DEBT_TYPE_ID")).FirstOrDefault
                 If item_Ck IsNot Nothing Then
                     dataSource.Remove(item_Ck)
