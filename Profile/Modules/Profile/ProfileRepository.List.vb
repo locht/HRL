@@ -2180,4 +2180,22 @@ Partial Public Class ProfileRepository
         End Try
     End Function
 #End Region
+    Public Function GetNameOrg(ByVal org_id As Decimal) As String
+        Using rep As New ProfileBusinessClient
+            Try
+                Return rep.GetNameOrg(org_id)
+            Catch ex As Exception
+                Throw ex
+            End Try
+        End Using
+    End Function
+    Public Function GetMaxId() As Decimal
+        Using rep As New ProfileBusinessClient
+            Try
+                Return rep.GetMaxId()
+            Catch ex As Exception
+                Throw ex
+            End Try
+        End Using
+    End Function
 End Class

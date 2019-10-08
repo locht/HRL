@@ -32,7 +32,10 @@ Namespace ProfileBusiness.ServiceContracts
         <OperationContract()>
         Function GET_NEXT_APPENDIX_ORDER(ByVal id As Decimal, ByVal contract_id As Decimal, ByVal emp_id As Decimal) As Integer
 #End Region
-
+        <OperationContract()>
+        Function GetMaxId() As Decimal
+        <OperationContract()>
+        Function GetNameOrg(ByVal org_id As Decimal) As String
         <OperationContract()>
         Function GetOrgsTree() As List(Of OrganizationDTO)
 
