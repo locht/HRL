@@ -29947,6 +29947,9 @@ Namespace AttendanceBusiness
         Private WORKING_DAField As System.Nullable(Of Decimal)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private WORKING_DEDUCTField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private WORKING_EField As System.Nullable(Of Decimal)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -30753,6 +30756,19 @@ Namespace AttendanceBusiness
                 If (Me.WORKING_DAField.Equals(value) <> true) Then
                     Me.WORKING_DAField = value
                     Me.RaisePropertyChanged("WORKING_DA")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property WORKING_DEDUCT() As System.Nullable(Of Decimal)
+            Get
+                Return Me.WORKING_DEDUCTField
+            End Get
+            Set
+                If (Me.WORKING_DEDUCTField.Equals(value) <> true) Then
+                    Me.WORKING_DEDUCTField = value
+                    Me.RaisePropertyChanged("WORKING_DEDUCT")
                 End If
             End Set
         End Property
