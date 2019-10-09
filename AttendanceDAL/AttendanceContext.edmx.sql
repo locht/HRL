@@ -1,7 +1,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for Oracle database
 -- --------------------------------------------------
--- Date Created: 10/7/2019 10:49:20 AM
+-- Date Created: 10/9/2019 1:53:49 PM
 -- Generated from EDMX file: D:\TNG_SOURCE_NEW\AttendanceDAL\AttendanceContext.edmx
 -- --------------------------------------------------
 
@@ -1897,7 +1897,8 @@ CREATE TABLE "dbo"."AT_TIME_TIMESHEET_MONTHLY" (
    "WORKING_TN" NUMBER(38,0) NULL,
    "WORKING_KLD" NUMBER(38,0) NULL,
    "SALARY_ID_NEW" NUMBER(38,0) NULL,
-   "SALARY_ID" NUMBER(38,0) NULL
+   "SALARY_ID" NUMBER(38,0) NULL,
+   "WORKING_STANDARD" NUMBER(38,0) NULL
 );
 
 -- Creating table 'AT_PORTAL_REG_LIST'
