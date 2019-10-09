@@ -239,7 +239,11 @@ Public Class ctrlDashboardHome
                 If item.GetDataKeyValue("LINK_POPUP") Is Nothing Then
                     link.Visible = False
                 Else
-                    link.OnClientClick = item.GetDataKeyValue("LINK_POPUP")
+                    'link.OnClientClick = item.GetDataKeyValue("LINK_POPUP")
+                    Dim linkPopup As String = item.GetDataKeyValue("LINK_POPUP")
+                    Dim url As String = linkPopup.Substring(7, linkPopup.Length - 7 - 2)
+                    link.Attributes.Add("href", "../" & url)
+                    link.Attributes.Add("target", "_blank")
                 End If
             End If
         Catch ex As Exception
