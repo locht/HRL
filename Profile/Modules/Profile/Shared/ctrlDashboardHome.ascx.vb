@@ -416,7 +416,7 @@ Public Class ctrlDashboardHome
             If Not Common.Common.sendEmailByServerMail(SM.SendTo,
                                                        If(mailCC <> "", mailCC, dataMail.Rows(0)("MAIL_CC").ToString()),
                                                        If(titleMail <> "", titleMail, dataMail.Rows(0)("TITLE").ToString()), bodyNew, String.Empty) Then
-                ShowMessage(Translate(CommonMessage.MESSAGE_SENDMAIL_ERROR), NotifyType.Warning)
+                ShowMessage(Translate("Gửi mail thất bại"), NotifyType.Warning)
                 Exit Sub
             End If
         Catch ex As Exception
