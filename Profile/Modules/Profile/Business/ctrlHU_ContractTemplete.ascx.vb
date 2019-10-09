@@ -519,6 +519,9 @@ Public Class ctrlHU_ContractTemplete
         Try
             isLoadPopup = 2
             UpdateControlState()
+            ctrlFindSigner.MustHaveContract = True
+            ctrlFindSigner.LoadAllOrganization = False
+            ctrlFindSigner.IsOnlyWorkingWithoutTer = True
             ctrlFindSigner.Show()
         Catch ex As Exception
             DisplayException(Me.ViewName, Me.ID, ex)
@@ -528,6 +531,9 @@ Public Class ctrlHU_ContractTemplete
         Try
             isLoadPopup = 4
             UpdateControlState()
+            ctrlFindSigner2.MustHaveContract = True
+            ctrlFindSigner2.LoadAllOrganization = False
+            ctrlFindSigner2.IsOnlyWorkingWithoutTer = True
             ctrlFindSigner2.Show()
         Catch ex As Exception
             DisplayException(Me.ViewName, Me.ID, ex)

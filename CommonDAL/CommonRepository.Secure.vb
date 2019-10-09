@@ -2221,14 +2221,14 @@ Partial Public Class CommonRepository
             End If
             Dim dateNow As Date? = Date.Now.Date
 
-            If _filter.IS_TER Then
-                query = query.Where(Function(f) f.p.WORK_STATUS = -1 And f.p.TER_EFFECT_DATE IsNot Nothing)
-                queryCommon = queryCommon.Where(Function(f) f.p.WORK_STATUS = -1 And f.p.TER_EFFECT_DATE IsNot Nothing)
-            Else
-                query = query.Where(Function(f) f.p.WORK_STATUS Is Nothing Or (f.p.WORK_STATUS IsNot Nothing And _
-                                         (f.p.WORK_STATUS <> -1 Or (f.p.WORK_STATUS = -1 And f.p.TER_EFFECT_DATE > dateNow))))
-                queryCommon = queryCommon.Where(Function(f) f.p.WORK_STATUS Is Nothing Or (f.p.WORK_STATUS IsNot Nothing And _
-                                         (f.p.WORK_STATUS <> -1 Or (f.p.WORK_STATUS = -1 And f.p.TER_EFFECT_DATE > dateNow))))
+            If Not _filter.IsOnlyWorkingWithoutTer Then
+                If _filter.IS_TER Then
+                    query = query.Where(Function(f) f.p.WORK_STATUS = 257 And f.p.TER_EFFECT_DATE <= dateNow)
+                    queryCommon = queryCommon.Where(Function(f) f.p.WORK_STATUS = 257 And f.p.TER_EFFECT_DATE <= dateNow)
+                Else
+                    query = query.Where(Function(f) f.p.WORK_STATUS <> 257 And f.p.TER_EFFECT_DATE > dateNow)
+                    queryCommon = queryCommon.Where(Function(f) f.p.WORK_STATUS <> 257 And f.p.TER_EFFECT_DATE > dateNow)
+                End If
             End If
 
             If _filter.EMPLOYEE_CODE <> "" Then
@@ -2314,10 +2314,10 @@ Partial Public Class CommonRepository
                     query = query.Where(Function(f) f.p.WORK_STATUS = 257 And f.p.TER_EFFECT_DATE <= dateNow)
                 Else
                     query = query.Where(Function(f) f.p.WORK_STATUS Is Nothing Or (f.p.WORK_STATUS IsNot Nothing And _
-                                             (f.p.WORK_STATUS <> 257 Or (f.p.WORK_STATUS = 257 And f.te.LAST_DATE > dateNow))))
+                                             (f.p.WORK_STATUS <> 257 Or (f.p.WORK_STATUS <> 257 And f.te.LAST_DATE > dateNow))))
                 End If
             Else
-                query = query.Where(Function(f) f.p.WORK_STATUS Is Nothing Or (f.p.WORK_STATUS IsNot Nothing And f.p.WORK_STATUS <> 257))
+                query = query.Where(Function(f) f.p.WORK_STATUS IsNot Nothing And f.p.WORK_STATUS = 258)
             End If
 
             Select Case _filter.IS_3B

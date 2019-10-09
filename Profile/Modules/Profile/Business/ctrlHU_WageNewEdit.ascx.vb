@@ -710,7 +710,9 @@ Public Class ctrlHU_WageNewEdit
                 Case btnFindEmployee.ID
                     ctrlFindEmployeePopup.Show()
                 Case btnFindSign.ID
-                    ctrlFindSigner.MustHaveContract = False
+                    ctrlFindSigner.MustHaveContract = True
+                    ctrlFindSigner.LoadAllOrganization = False
+                    ctrlFindSigner.IsOnlyWorkingWithoutTer = True
                     ctrlFindSigner.Show()
             End Select
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")

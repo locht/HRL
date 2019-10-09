@@ -486,6 +486,8 @@ Public Class ctrlHU_ContractNewEdit
             UpdateControlState()
             'LoadPopup(2)
             ctrlFindSigner.MustHaveContract = True
+            ctrlFindSigner.LoadAllOrganization = False
+            ctrlFindSigner.IsOnlyWorkingWithoutTer = True
             ctrlFindSigner.Show()
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
@@ -501,6 +503,8 @@ Public Class ctrlHU_ContractNewEdit
             UpdateControlState()
             'LoadPopup(2)
             ctrlFindSigner2.MustHaveContract = True
+            ctrlFindSigner2.LoadAllOrganization = False
+            ctrlFindSigner2.IsOnlyWorkingWithoutTer = True
             ctrlFindSigner2.Show()
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception

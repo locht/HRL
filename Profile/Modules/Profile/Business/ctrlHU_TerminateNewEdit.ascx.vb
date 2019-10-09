@@ -954,7 +954,9 @@ Public Class ctrlHU_TerminateNewEdit
         Try
             isLoadPopup = 2
             UpdateControlState()
-            'ctrlFindSigner.MustHaveContract = False
+            ctrlFindSigner.MustHaveContract = True
+            ctrlFindSigner.LoadAllOrganization = False
+            ctrlFindSigner.IsOnlyWorkingWithoutTer = True
             ctrlFindSigner.Show()
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
