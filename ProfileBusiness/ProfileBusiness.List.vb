@@ -682,6 +682,24 @@ Namespace ProfileBusiness.ServiceImplementations
                 End Try
             End Using
         End Function
+        Public Function GetMaxId() As Decimal Implements ServiceContracts.IProfileBusiness.GetMaxId
+            Using rep As New ProfileRepository
+                Try
+                    Return rep.GetMaxId()
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
+        Public Function GetNameOrg(ByVal org_id As Decimal) As String Implements ServiceContracts.IProfileBusiness.GetNameOrg
+            Using rep As New ProfileRepository
+                Try
+                    Return rep.GetNameOrg(org_id)
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
 
         Public Function ModifyOrganization(ByVal objOrganization As OrganizationDTO, ByVal log As UserLog, ByRef gID As Decimal) As Boolean Implements ServiceContracts.IProfileBusiness.ModifyOrganization
             Using rep As New ProfileRepository

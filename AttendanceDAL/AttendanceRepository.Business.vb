@@ -1188,7 +1188,7 @@ Partial Public Class AttendanceRepository
                                        .ORG_DESC = p.o.DESCRIPTION_PATH,
                                        .ORG_ID = p.p.ORG_ID,
                                        .PERIOD_ID = p.po.ID,
-                                       .PERIOD_STANDARD = p.po.PERIOD_STANDARD,
+                                       .PERIOD_STANDARD = p.p.WORKING_STANDARD,
                                        .STAFF_RANK_NAME = p.s.NAME,
                                        .DECISION_START = p.p.DECISION_START,
                                        .DECISION_END = p.p.DECISION_END,

@@ -1474,7 +1474,27 @@ Partial Class ProfileRepository
             Throw ex
         End Try
     End Function
+    Public Function GetMaxId() As Decimal
+        Try
+            Dim chuoi As Decimal = (From p In Context.HU_ORGANIZATION
+                         Select p.ID Order By ID Descending).FirstOrDefault
+            Return chuoi
+        Catch ex As Exception
+            Throw ex
+        End Try
 
+    End Function
+    Public Function GetNameOrg(ByVal org_id As Decimal) As String
+        Dim str As String = ""
+        Try
+            Dim chuoi = Context.HU_ORGANIZATION.Where(Function(f) f.ID = org_id).FirstOrDefault
+            str = chuoi.NAME_VN
+            Return str
+        Catch ex As Exception
+            Throw ex
+        End Try
+
+    End Function
     Public Function InsertOrganization(ByVal objOrganization As OrganizationDTO,
                                    ByVal log As UserLog, ByRef gID As Decimal) As Boolean
         Dim objOrganizationData As New HU_ORGANIZATION

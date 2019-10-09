@@ -415,11 +415,11 @@ Public Class ctrlHU_Organization
                             objOrgFunction.REPRESENTATIVE_ID = hidRepresentative.Value
                         End If
                         Dim objPath As OrganizationPathDTO
-                        If treeOrgFunction.SelectedNode IsNot Nothing Then
-                            objPath = GetUpLevelByNode(treeOrgFunction.SelectedNode)
-                            objOrgFunction.HIERARCHICAL_PATH = objPath.HIERARCHICAL_PATH
-                            objOrgFunction.DESCRIPTION_PATH = objPath.DESCRIPTION_PATH
-                        End If
+                        'If treeOrgFunction.SelectedNode IsNot Nothing Then
+                        '    objPath = GetUpLevelByNode(treeOrgFunction.SelectedNode)
+                        '    objOrgFunction.HIERARCHICAL_PATH = objPath.HIERARCHICAL_PATH
+                        '    objOrgFunction.DESCRIPTION_PATH = objPath.DESCRIPTION_PATH
+                        'End If
                         Dim lstPath As New List(Of OrganizationPathDTO)
                         If hidID.Value IsNot Nothing Then
                             If hidID.Value <> "" Then
@@ -435,7 +435,26 @@ Public Class ctrlHU_Organization
                                     End If
                                 End If
                                 objOrgFunction.ACTFLG = "A"
-
+                                If treeOrgFunction.Nodes.Count > 0 Then
+                                    GetDownLevelByNode(treeOrgFunction.Nodes(0), lstPath)
+                                End If
+                                Dim id As Decimal
+                                id = rep.GetMaxId()
+                                id = id + 1
+                                If treeOrgFunction.SelectedNode IsNot Nothing Then
+                                    objPath = GetUpLevelByNode(treeOrgFunction.SelectedNode)
+                                    objOrgFunction.HIERARCHICAL_PATH = objPath.HIERARCHICAL_PATH + ";" + id.ToString
+                                    ' objOrgFunction.DESCRIPTION_PATH = objPath.DESCRIPTION_PATH
+                                    Dim mang()
+                                    Dim str As String = ""
+                                    mang = objPath.HIERARCHICAL_PATH.Split(";")
+                                    For Each line In mang
+                                        Dim chuoi = rep.GetNameOrg(line)
+                                        str += chuoi + ";"
+                                    Next
+                                    str += txtNameVN.Text
+                                    objOrgFunction.DESCRIPTION_PATH = str
+                                End If
                                 'GetDownLevelByNode(treeOrgFunction.Nodes(0), lstPath)
                                 If rep.InsertOrganization(objOrgFunction, gID) Then
                                     '' số bản ghi cập nhật
@@ -483,36 +502,36 @@ Public Class ctrlHU_Organization
                                     'Refresh("InsertView")
 
                                     Refresh("InsertView")
-                                    If treeOrgFunction.Nodes.Count > 0 Then
-                                        GetDownLevelByNode(treeOrgFunction.Nodes(0), lstPath)
-                                    End If
+                                    'If treeOrgFunction.Nodes.Count > 0 Then
+                                    '    GetDownLevelByNode(treeOrgFunction.Nodes(0), lstPath)
+                                    'End If
                                     ' số bản ghi cập nhật
                                     Dim iSoBanGhi As Integer = 50
                                     ' số dư để làm tròn
                                     Dim iSoDu As Integer = lstPath.Count Mod iSoBanGhi
                                     Dim iTongVongLap As Integer
                                     ' số vòng lặp khi làm tròn vs số bản ghi cập nhật
-                                    If iSoDu = 0 Then
-                                        iTongVongLap = (lstPath.Count - iSoDu) / iSoBanGhi
-                                    Else
-                                        iTongVongLap = ((lstPath.Count - iSoDu) / iSoBanGhi) + 1
-                                    End If
-                                    For item = 0 To iTongVongLap - 1
-                                        ' cập nhật từng đợt ( tối đa = số bản ghi cập nhật )
-                                        Dim lstUpdate As New List(Of OrganizationPathDTO)
+                                    'If iSoDu = 0 Then
+                                    '    iTongVongLap = (lstPath.Count - iSoDu) / iSoBanGhi
+                                    'Else
+                                    '    iTongVongLap = ((lstPath.Count - iSoDu) / iSoBanGhi) + 1
+                                    'End If
+                                    'For item = 0 To iTongVongLap - 1
+                                    '    ' cập nhật từng đợt ( tối đa = số bản ghi cập nhật )
+                                    '    Dim lstUpdate As New List(Of OrganizationPathDTO)
 
-                                        If item <> iTongVongLap - 1 Then
-                                            For idx = item * iSoBanGhi To (item + 1) * iSoBanGhi - 1
-                                                lstUpdate.Add(lstPath(idx))
-                                            Next
-                                        Else
-                                            For idx = item * iSoBanGhi To lstPath.Count - 1
-                                                lstUpdate.Add(lstPath(idx))
-                                            Next
-                                        End If
-                                        ' cập nhật bản ghi
-                                        rep.ModifyOrganizationPath(lstUpdate)
-                                    Next
+                                    '    If item <> iTongVongLap - 1 Then
+                                    '        For idx = item * iSoBanGhi To (item + 1) * iSoBanGhi - 1
+                                    '            lstUpdate.Add(lstPath(idx))
+                                    '        Next
+                                    '    Else
+                                    '        For idx = item * iSoBanGhi To lstPath.Count - 1
+                                    '            lstUpdate.Add(lstPath(idx))
+                                    '        Next
+                                    '    End If
+                                    '    ' cập nhật bản ghi
+                                    '    rep.ModifyOrganizationPath(lstUpdate)
+                                    'Next
 
                                     CurrentState = CommonMessage.STATE_NORMAL
 
@@ -522,6 +541,11 @@ Public Class ctrlHU_Organization
                                 End If
                                 Common.Common.OrganizationLocationDataSession = Nothing
                             Case CommonMessage.STATE_EDIT
+                                If treeOrgFunction.SelectedNode IsNot Nothing Then
+                                    objPath = GetUpLevelByNode(treeOrgFunction.SelectedNode)
+                                    objOrgFunction.HIERARCHICAL_PATH = objPath.HIERARCHICAL_PATH
+                                    objOrgFunction.DESCRIPTION_PATH = objPath.DESCRIPTION_PATH
+                                End If
                                 objOrgFunction.ID = Decimal.Parse(hidID.Value)
                                 'objOrgFunction.ID = Decimal.Parse(hidID.Value)
                                 'GetDownLevelByNode(treeOrgFunction.Nodes(0), lstPath)

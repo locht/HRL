@@ -314,6 +314,7 @@ Public Class crtlSetUpExchange
                     ClearControlValue(txtCongty, rdEffectDate, cboObjectAttendace, cboType, rtxtFromMinute, rtxtToMinute, rtxtDateDeducted)
                     txtCongty.Text = ctrlOrganization.CurrentText
                     txtCongty.Enabled = False
+                    ctrlOrganization.Enabled = False
                     UpdateControlState()
                 Case CommonMessage.TOOLBARITEM_EDIT
                     If rglSwipeMachine.SelectedItems.Count = 0 Then
@@ -328,6 +329,7 @@ Public Class crtlSetUpExchange
                         ShowMessage("Chỉ được thêm cấp công ty, Thao tác lại", NotifyType.Warning)
                         Exit Sub
                     End If
+                    ctrlOrganization.Enabled = False
                     CurrentState = CommonMessage.STATE_EDIT
                     UpdateControlState()
 
@@ -426,6 +428,7 @@ Public Class crtlSetUpExchange
                         End Select
                     End If
                 Case CommonMessage.TOOLBARITEM_CANCEL
+                    ctrlOrganization.Enabled = True
                     CurrentState = CommonMessage.STATE_NORMAL
                     Refresh("Cancel")
                     UpdateControlState()
