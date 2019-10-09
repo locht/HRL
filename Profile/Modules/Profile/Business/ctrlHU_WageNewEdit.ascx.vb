@@ -1588,16 +1588,16 @@ Public Class ctrlHU_WageNewEdit
         End Using
         Select Case cboSalTYPE.Text
             Case "Thử việc"
-                EnableControlAll(True, cbSalaryGroup, cbSalaryLevel, cbSalaryRank, rnFactorSalary, rnPercentSalary, Salary_Total, rnOtherSalary1)
+                EnableControlAll(True, cbSalaryGroup, cbSalaryLevel, cbSalaryRank, rnFactorSalary, rnPercentSalary, Salary_Total, rnOtherSalary1, basicSalary)
                 rnPercentSalary.Value = _tyLeThuViec
                 ClearControlValue(rnFactorSalary, basicSalary)
             Case "Chính thức"
-                EnableControlAll(True, cbSalaryGroup, cbSalaryLevel, cbSalaryRank, rnFactorSalary, rnPercentSalary, Salary_Total, rnOtherSalary1)
+                EnableControlAll(True, cbSalaryGroup, cbSalaryLevel, cbSalaryRank, rnFactorSalary, rnPercentSalary, Salary_Total, rnOtherSalary1, basicSalary)
                 rnPercentSalary.Value = _tyLeChinhThuc
                 ClearControlValue(rnFactorSalary, basicSalary)
             Case "Kiêm nhiệm"
                 EnableControlAll(True, rnPercentSalary, rnOtherSalary1, rnOtherSalary2)
-                EnableControlAll(False, cbSalaryGroup, cbSalaryLevel, cbSalaryRank, Salary_Total, rnFactorSalary)
+                EnableControlAll(False, cbSalaryGroup, cbSalaryLevel, cbSalaryRank, Salary_Total, rnFactorSalary, basicSalary)
                 rnFactorSalary.Text = 0
                 basicSalary.Text = 0
                 ClearControlValue(cbSalaryGroup, cbSalaryLevel, cbSalaryRank, Salary_Total)
