@@ -514,7 +514,10 @@ Public Class ctrlHU_DisciplineNewEdit
                             ShowMessage(Translate("Bạn chưa chọn nhân viên"), NotifyType.Warning)
                             Exit Sub
                         End If
-
+                        If rnAmountDeductedMonth.Value > rnAmountToPaid.Value Then
+                            ShowMessage(Translate("Bạn phải nhập Số tiền trừ mỗi tháng nhỏ hơn Số tiền còn phải nộp"), NotifyType.Warning)
+                            Exit Sub
+                        End If
                         Try
                             Dim totalSumIndemMoney As Decimal = 0
                             Dim totalAmountToPaid As Decimal = 0
