@@ -42,6 +42,7 @@ Public Class ctrlHU_Signer
                 dt.Columns.Add("REMARK", GetType(String))
                 dt.Columns.Add("ORG_ID", GetType(String))
                 dt.Columns.Add("ACTFLG", GetType(String))
+                dt.Columns.Add("SIGNER_ID", GetType(Decimal))
                 ViewState(Me.ID & "_dtData") = dt
             End If
             Return ViewState(Me.ID & "_dtData")
@@ -296,6 +297,9 @@ Public Class ctrlHU_Signer
                 txtNAME_EN.Text = slItem.GetDataKeyValue("TITLE_NAME").ToString
                 rtOrg_Name.Text = slItem.GetDataKeyValue("ORG_NAME").ToString
                 txtRemark.Text = slItem.GetDataKeyValue("REMARK").ToString
+                If slItem.GetDataKeyValue("SIGNER_ID").ToString <> "" Then
+                    hidEmpID.Value = slItem.GetDataKeyValue("SIGNER_ID")
+                End If
             End If
 
         Catch ex As Exception
@@ -610,6 +614,7 @@ Public Class ctrlHU_Signer
 
         log = LogHelper.GetUserLog
         PA.ID = IDSelect
+        PA.SIGNER_ID = hidEmpID.Value
         PA.SIGNER_CODE = txtCode.Text
         If IsNumeric(rtORG_ID.Text) Then
             PA.ORG_ID = Decimal.Parse(rtORG_ID.Text)
@@ -626,7 +631,7 @@ Public Class ctrlHU_Signer
         PA.CREATED_LOG = log.Ip + "/" + log.ComputerName
         ' Cập nhât thông tin 
         If IDSelect <> 0 Then
-            Dim check1 As Integer = rep.CHECK_EXIT(txtCode.Text, IDSelect, PA.ORG_ID)
+            Dim check1 As Integer = rep.CHECK_EXIT(hidEmpID.Value, IDSelect, PA.ORG_ID, PA.TITLE_NAME)
             If check1 <> 0 Then
                 ShowMessage(Translate("Dữ liệu đã tồn tại"), Utilities.NotifyType.Warning)
                 Exit Function
@@ -634,7 +639,7 @@ Public Class ctrlHU_Signer
             result = rep.UPDATE_HU_SIGNER(PA)
             ' Thêm mới thông tin
         Else
-            Dim check As Integer = rep.CHECK_EXIT(txtCode.Text, 0, PA.ORG_ID)
+            Dim check As Integer = rep.CHECK_EXIT(hidEmpID.Value, 0, PA.ORG_ID, PA.TITLE_NAME)
             If check <> 0 Then
                 ShowMessage(Translate("Dữ liệu đã tồn tại"), Utilities.NotifyType.Warning)
                 Exit Function
@@ -678,5 +683,5 @@ Public Class ctrlHU_Signer
 #End Region
 
 
-    
+
 End Class

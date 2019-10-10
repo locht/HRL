@@ -1,7 +1,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for Oracle database
 -- --------------------------------------------------
--- Date Created: 09/17/2019 9:16:07 AM
+-- Date Created: 10/10/2019 3:14:42 PM
 -- Generated from EDMX file: D:\MyProject\TNG\TNG\ProfileDAL\ProfileContext.edmx
 -- --------------------------------------------------
 
@@ -3647,7 +3647,8 @@ CREATE TABLE "dbo"."HU_SIGNER" (
    "MODIFIED_DATE" DATE NULL,
    "MODIFIED_LOG" NCLOB NULL,
    "SIGNER_CODE" NCLOB NULL,
-   "ORG_ID" NUMBER(38,0) NULL
+   "ORG_ID" NUMBER(38,0) NULL,
+   "SIGNER_ID" NUMBER(38,0) NULL
 );
 
 -- Creating table 'SE_USER_ORG_ACCESS'
