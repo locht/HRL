@@ -2226,8 +2226,8 @@ Partial Public Class CommonRepository
                     query = query.Where(Function(f) f.p.WORK_STATUS = 257 And f.p.TER_EFFECT_DATE <= dateNow)
                     queryCommon = queryCommon.Where(Function(f) f.p.WORK_STATUS = 257 And f.p.TER_EFFECT_DATE <= dateNow)
                 Else
-                    query = query.Where(Function(f) f.p.WORK_STATUS <> 257 And f.p.TER_EFFECT_DATE > dateNow)
-                    queryCommon = queryCommon.Where(Function(f) f.p.WORK_STATUS <> 257 And f.p.TER_EFFECT_DATE > dateNow)
+                    query = query.Where(Function(f) f.p.WORK_STATUS <> 257)
+                    queryCommon = queryCommon.Where(Function(f) f.p.WORK_STATUS <> 257)
                 End If
             End If
 
