@@ -14,7 +14,7 @@ Inherits="Profile.ctrlDashboardHome" %>
                         <div style="float: left">
                             <tlk:RadButton ID="btnSendMail" runat="server" Icon-PrimaryIconUrl="~/Static/Images/Toolbar/send_email.png"
                                 CausesValidation="false" Width="85px" Text="<%$ Translate: Gửi mail %>" ToolTip="MAIL"
-                                CommandName="SendMail" OnClientClicking="SelectGridClick">
+                                CommandName="SendMail">
                             </tlk:RadButton>
                         </div>
                         <div style="float: left">
