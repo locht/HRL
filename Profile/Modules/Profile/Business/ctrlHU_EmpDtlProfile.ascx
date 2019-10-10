@@ -336,14 +336,14 @@
                                             </tlk:RadDatePicker>
                                         </td>
                                         <td class="lb3">
-                                            <asp:Label runat="server" ID="Label4" Text="Ngày vào làm/thử việc"></asp:Label>
+                                            <asp:Label runat="server" ID="Label4" Text="Ngày vào làm chính thức"></asp:Label>
                                         </td>
                                         <td>
                                             <tlk:RadDatePicker runat="server" ID="rdJoinDateState" Enabled="false" DateInput-Enabled="false">
                                             </tlk:RadDatePicker>
                                         </td>
                                         <td class="lb3">
-                                            <asp:Label runat="server" ID="lbJoinDate" Text="Ngày vào làm chính thức"></asp:Label>
+                                            <asp:Label runat="server" ID="lbJoinDate" Text="Ngày vào làm/thử việc"></asp:Label>
                                         </td>
                                         <td>
                                             <tlk:RadDatePicker runat="server" ID="rdJoinDate" Enabled="false" DateInput-Enabled="false">
