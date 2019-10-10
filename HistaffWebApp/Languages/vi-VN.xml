@@ -28345,7 +28345,7 @@ Xin cám ơn!
       <string>BỘ PHẬN</string>
     </Key>
     <Value>
-      <string>Bộ phận</string>
+      <string>Ban/Phòng</string>
     </Value>
   </Item>
   <Item>
@@ -40217,7 +40217,7 @@ Xin cám ơn!
       <string>KHAI BÁO PLHĐ</string>
     </Key>
     <Value>
-      <string>Khai báo PLHĐ</string>
+      <string>Thêm</string>
     </Value>
   </Item>
   <Item>
@@ -42816,10 +42816,842 @@ Xin cám ơn!
   </Item>
   <Item>
     <Key>
+      <string>GROUP</string>
+    </Key>
+    <Value>
+      <string>group</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>FUNCTION_ID</string>
+    </Key>
+    <Value>
+      <string>FUNCTION_ID</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>PHÂN QUYỀN THEO NHÓM</string>
+    </Key>
+    <Value>
+      <string>Phân quyền theo nhóm</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>SAO CHÉP</string>
+    </Key>
+    <Value>
+      <string>Sao chép</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>CTRLGROUPFUNCTIONADDEDIT</string>
+    </Key>
+    <Value>
+      <string>ctrlGroupFunctionAddEdit</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>HỌ TÊN NHÂN THÂN</string>
+    </Key>
+    <Value>
+      <string>Họ tên nhân thân</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>LÀ CHỦ HỘ</string>
+    </Key>
+    <Value>
+      <string>Là chủ hộ</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>SỐ SỔ HỘ KHẨU</string>
+    </Key>
+    <Value>
+      <string>Số sổ hộ khẩu</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>MÃ HỘ GIA ĐÌNH</string>
+    </Key>
+    <Value>
+      <string>Mã hộ gia đình</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>PHƯỜNG/XÃ</string>
+    </Key>
+    <Value>
+      <string>Phường/Xã</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>THÔN/ẤP/KHU PHỐ</string>
+    </Key>
+    <Value>
+      <string>Thôn/Ấp/Khu phố</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>MÃ SỐ THUẾ NGƯỜI PHỤ THUỘC</string>
+    </Key>
+    <Value>
+      <string>Mã số thuế người phụ thuộc</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>QUYỀN</string>
+    </Key>
+    <Value>
+      <string>Quyền</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>TỈNH/THÀNH PHỐ NƠI ĐĂNG KÝ KHAI SINH</string>
+    </Key>
+    <Value>
+      <string>Tỉnh/Thành phố nơi đăng ký khai sinh</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>QUẬN/HUYỆN NƠI ĐĂNG KÝ KHAI SINH</string>
+    </Key>
+    <Value>
+      <string>Quận/Huyện nơi đăng ký khai sinh</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>PHƯỜNG/XÃ NƠI ĐĂNG KÝ KHAI SINH</string>
+    </Key>
+    <Value>
+      <string>Phường/Xã nơi đăng ký khai sinh</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>NGÀY BẮT ĐẦU GIẢM TRỪ</string>
+    </Key>
+    <Value>
+      <string>Ngày bắt đầu giảm trừ</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>BẠN CÓ MUỐN GỬI PHÊ DUYỆT</string>
+    </Key>
+    <Value>
+      <string>Bạn có muốn gửi phê duyệt</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>KHAI BÁO ỨNG VIÊN</string>
+    </Key>
+    <Value>
+      <string>Khai báo ứng viên</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>THIẾT LẬP CÁC MÔN THI</string>
+    </Key>
+    <Value>
+      <string>Thiết lập các môn thi</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>LÊN LỊCH THI</string>
+    </Key>
+    <Value>
+      <string>Lên lịch thi</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>CHUYỂN SANG HSNS</string>
+    </Key>
+    <Value>
+      <string>Chuyển sang HSNS</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>KÝ HIỆU CA</string>
+    </Key>
+    <Value>
+      <string>Ký hiệu ca</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>LÀM THÊM BUỔI SÁNG TỪ</string>
+    </Key>
+    <Value>
+      <string>Làm thêm buổi sáng từ</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>LÀM THÊM BUỔI SÁNG ĐẾN</string>
+    </Key>
+    <Value>
+      <string>Làm thêm buổi sáng đến</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>LÀM THÊM BUỔI CHIỀU TỪ</string>
+    </Key>
+    <Value>
+      <string>Làm thêm buổi chiều từ</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>LÀM THÊM BUỔI CHIỀU ĐẾN</string>
+    </Key>
+    <Value>
+      <string>Làm thêm buổi chiều đến</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>TỔNG SỐ GIỜ LÀM THÊM</string>
+    </Key>
+    <Value>
+      <string>Tổng số giờ làm thêm</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>150%</string>
+    </Key>
+    <Value>
+      <string>150%</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>200%</string>
+    </Key>
+    <Value>
+      <string>200%</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>210%</string>
+    </Key>
+    <Value>
+      <string>210%</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>270%</string>
+    </Key>
+    <Value>
+      <string>270%</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>300%</string>
+    </Key>
+    <Value>
+      <string>300%</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>390%</string>
+    </Key>
+    <Value>
+      <string>390%</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>LÍ DO LÀM THÊM</string>
+    </Key>
+    <Value>
+      <string>Lí do làm thêm</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>NGƯỜI CẬP NHẬT</string>
+    </Key>
+    <Value>
+      <string>Người cập nhật</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>NGÀY CẬP NHẬT</string>
+    </Key>
+    <Value>
+      <string>Ngày cập nhật</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>CTRLPA_WORKSTANDARD</string>
+    </Key>
+    <Value>
+      <string>Thiết lập ngày công chuẩn</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>BẠN PHẢI CHỌN ĐỐI TƯỢNG LAO ĐỘNG.</string>
+    </Key>
+    <Value>
+      <string>Bạn phải chọn đối tượng lao động.</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>BẠN PHẢI NHẬP NGÀY CÔNG CHẾ ĐỘ.</string>
+    </Key>
+    <Value>
+      <string>Bạn phải nhập ngày công chế độ.</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>NGÀY CÔNG CHẾ ĐỘ.</string>
+    </Key>
+    <Value>
+      <string>Ngày công chế độ.</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>NGÀY CÔNG CHẾ ĐỘ</string>
+    </Key>
+    <Value>
+      <string>Ngày công chế độ</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>ĐỐI TƯỢNG CHI TRẢ</string>
+    </Key>
+    <Value>
+      <string>Đối tượng chi trả</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>REGIME_ID</string>
+    </Key>
+    <Value>
+      <string>REGIME_ID</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>LOẠI HƯỞNG CHẾ ĐỘ</string>
+    </Key>
+    <Value>
+      <string>Loại hưởng chế độ</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>SỐ NGÀY TÍNH</string>
+    </Key>
+    <Value>
+      <string>Số ngày tính</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>TIỀN LƯƠNG TÍNH HƯỞNG BHXH</string>
+    </Key>
+    <Value>
+      <string>Tiền lương tính hưởng BHXH</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>SỐ TIỀN HƯỞNG THEO CHẾ ĐỘ</string>
+    </Key>
+    <Value>
+      <string>Số tiền hưởng theo chế độ</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>SỐ TIỀN TRỢ CẤP ĐƯỢC HƯỞNG</string>
+    </Key>
+    <Value>
+      <string>Số tiền trợ cấp được hưởng</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>SỐ TIỀN TRỢ CẤP ĐIỀU CHỈNH</string>
+    </Key>
+    <Value>
+      <string>Số tiền trợ cấp điều chỉnh</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>THỜI ĐIỂM TÍNH</string>
+    </Key>
+    <Value>
+      <string>Thời điểm tính</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>SỐ TIỀN DUYỆT CHI</string>
+    </Key>
+    <Value>
+      <string>Số tiền duyệt chi</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>QUẢN LÝ THÔNG TIN HƯỞNG CHẾ ĐỘ</string>
+    </Key>
+    <Value>
+      <string>Quản lý thông tin hưởng chế độ</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>NGHỈ SINH TỪ NGÀY</string>
+    </Key>
+    <Value>
+      <string>Nghỉ sinh từ ngày</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>NGHỈ SINH ĐẾN NGÀY</string>
+    </Key>
+    <Value>
+      <string>Nghỉ sinh đến ngày</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>BẠN PHẢI NHẬP LOẠI CHẾ ĐỘ HƯỞNG.</string>
+    </Key>
+    <Value>
+      <string>Bạn phải nhập Loại chế độ hưởng.</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>TỪ NGÀY PHẢI LỚN HƠN ĐẾN NGÀY</string>
+    </Key>
+    <Value>
+      <string>Từ ngày phải lớn hơn đến ngày</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>SỐ NGÀY HƯỞNG KHÔNG VƯỢT QUÁ SỐ NGÀY HƯỞNG TỐI ĐA</string>
+    </Key>
+    <Value>
+      <string>Số ngày hưởng không vượt quá số ngày hưởng tối đa</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>BẠN PHẢI NHẬP ĐỢT KHAI BÁO.</string>
+    </Key>
+    <Value>
+      <string>Bạn phải nhập Đợt khai báo.</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>CHỈNH SỬA THÔNG TIN HƯỞNG CHẾ ĐỘ</string>
+    </Key>
+    <Value>
+      <string>Chỉnh sửa thông tin hưởng chế độ</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>LOẠI CHẾ ĐỘ HƯỞNG</string>
+    </Key>
+    <Value>
+      <string>Loại chế độ hưởng</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>NGHỈ TẠI GIA ĐÌNH</string>
+    </Key>
+    <Value>
+      <string>Nghỉ tại gia đình</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>SỐ TIỀN TRỢ CẤP TẠM ỨNG</string>
+    </Key>
+    <Value>
+      <string>Số tiền trợ cấp tạm ứng</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>THÔNG TIN BH DUYỆT</string>
+    </Key>
+    <Value>
+      <string>Thông tin BH duyệt</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>CHỌN PHÒNG BAN CẦN XUẤT BÁO CÁO</string>
+    </Key>
+    <Value>
+      <string>Chọn phòng ban cần xuất báo cáo</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>DANH SÁCH CỘT DỮ LIỆU</string>
+    </Key>
+    <Value>
+      <string>Danh sách cột dữ liệu</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>CỘT DỮ LIỆU CHỌN</string>
+    </Key>
+    <Value>
+      <string>Cột dữ liệu chọn</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>ĐIỀU KIỆN</string>
+    </Key>
+    <Value>
+      <string>Điều kiện</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>TÊN BỘ PHẬN</string>
+    </Key>
+    <Value>
+      <string>Tên bộ phận</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>ĐƠN VỊ CẤP 3</string>
+    </Key>
+    <Value>
+      <string>Đơn vị cấp 3</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>ĐƠN VỊ CẤP 4</string>
+    </Key>
+    <Value>
+      <string>Đơn vị cấp 4</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>ĐƠN VỊ CẤP 5</string>
+    </Key>
+    <Value>
+      <string>Đơn vị cấp 5</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>ĐƠN VỊ CẤP 6</string>
+    </Key>
+    <Value>
+      <string>Đơn vị cấp 6</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>ĐƠN VỊ CẤP 7</string>
+    </Key>
+    <Value>
+      <string>Đơn vị cấp 7</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>ĐƠN VỊ CẤP 8</string>
+    </Key>
+    <Value>
+      <string>Đơn vị cấp 8</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>SỐ HỘ KHẨU</string>
+    </Key>
+    <Value>
+      <string>Số hộ khẩu</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>XÃ PHƯỜNG THƯỜNG TRÚ</string>
+    </Key>
+    <Value>
+      <string>Xã phường thường trú</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>QUẬN HUYỆN THƯỜNG TRÚ</string>
+    </Key>
+    <Value>
+      <string>Quận huyện thường trú</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>THÀNH PHỐ THƯỜNG TRÚ</string>
+    </Key>
+    <Value>
+      <string>Thành phố thường trú</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>THÔN/ẤP/KHU PHỐ THƯỜNG TRÚ</string>
+    </Key>
+    <Value>
+      <string>Thôn/Ấp/Khu phố thường trú</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>ĐỐI TƯỢNG BẢO HIỂM</string>
+    </Key>
+    <Value>
+      <string>Đối tượng bảo hiểm</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>NƠI CẤP MST</string>
+    </Key>
+    <Value>
+      <string>Nơi cấp MST</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>SỐ HỢP ĐỒNG MỚI NHẤT</string>
+    </Key>
+    <Value>
+      <string>Số hợp đồng mới nhất</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>LOẠI HỢP ĐỒNG MỚI NHẤT</string>
+    </Key>
+    <Value>
+      <string>Loại hợp đồng mới nhất</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>NGÀY HIỆU LỰC HỢP ĐỒNG MỚI NHẤT</string>
+    </Key>
+    <Value>
+      <string>Ngày hiệu lực hợp đồng mới nhất</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>NGÀY KẾT THÚC HIỆU LỰC HỢP ĐỒNG MỚI NHẤT</string>
+    </Key>
+    <Value>
+      <string>Ngày kết thúc hiệu lực hợp đồng mới nhất</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>NGÀY TÍNH THÂM NIÊN</string>
+    </Key>
+    <Value>
+      <string>Ngày tính thâm niên</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>NGÀY VÀO ĐẢNG CHÍNH THỨC</string>
+    </Key>
+    <Value>
+      <string>Ngày vào Đảng chính thức</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>TỈNH/TP ĐĂNG KÝ KHAI SINH</string>
+    </Key>
+    <Value>
+      <string>Tỉnh/TP đăng ký khai sinh</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>QUẬN/HUYỆN ĐĂNG KÝ KHAI SINH</string>
+    </Key>
+    <Value>
+      <string>Quận/huyện đăng ký khai sinh</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>PHƯỜNG/XÃ ĐĂNG KÝ KHAI SINH</string>
+    </Key>
+    <Value>
+      <string>Phường/xã đăng ký khai sinh</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>XÃ PHƯỜNG TẠM TRÚ</string>
+    </Key>
+    <Value>
+      <string>Xã phường tạm trú</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>QUẬN HUYỆN TẠM TRÚ</string>
+    </Key>
+    <Value>
+      <string>Quận huyện tạm trú</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>THÀNH PHỐ TẠM TRÚ</string>
+    </Key>
+    <Value>
+      <string>Thành phố tạm trú</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>MỐI QUAN HỆ VỚI NGƯỜI LIÊN HỆ</string>
+    </Key>
+    <Value>
+      <string>Mối quan hệ với người liên hệ</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>SỐ ĐIỆN THOẠI DI ĐỘNG NGƯỜI LIÊN HỆ</string>
+    </Key>
+    <Value>
+      <string>Số điện thoại di động người liên hệ</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>ĐIỆN THOAI DI ĐỘNG</string>
+    </Key>
+    <Value>
+      <string>Điện thoai di động</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>SỐ TÀI KHOẢN NGÂN HÀNG</string>
+    </Key>
+    <Value>
+      <string>Số tài khoản ngân hàng</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>TÊN CHỦ THỤ HƯỞNG</string>
+    </Key>
+    <Value>
+      <string>Tên chủ thụ hưởng</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>LÀ ĐẢNG VIÊN</string>
+    </Key>
+    <Value>
+      <string>Là Đảng viên</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>TRÌNH ĐỘ TIN HỌC CƠ BẢN</string>
+    </Key>
+    <Value>
+      <string>Trình độ tin học cơ bản</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>LOẠI CHỨNG CHỈ</string>
+    </Key>
+    <Value>
+      <string>Loại chứng chỉ</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>TRÌNH ĐỘ TIN HỌC ỨNG DỤNG</string>
+    </Key>
+    <Value>
+      <string>Trình độ tin học ứng dụng</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>BẠN CHƯA CHỌN CỘT DỮ LIỆU HIỂN THỊ</string>
+    </Key>
+    <Value>
+      <string>Bạn chưa chọn cột dữ liệu hiển thị</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
       <string>CRTLSETUPEXCHANGE</string>
     </Key>
     <Value>
-      <string>Thiết lập thang quy đổi trừ công</string>
+      <string>Thiết lập quy đổi trừ công từ đi trễ - về sớm</string>
     </Value>
   </Item>
   <Item>
@@ -42848,6 +43680,14 @@ Xin cám ơn!
   </Item>
   <Item>
     <Key>
+      <string>THIẾT LẬP THANG QUY ĐỔI NGAY CÔNG</string>
+    </Key>
+    <Value>
+      <string>Thiết lập thang quy đổi ngay công</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
       <string>TỪ (PHÚT)</string>
     </Key>
     <Value>
@@ -42868,6 +43708,22 @@ Xin cám ơn!
     </Key>
     <Value>
       <string>Số ngày công bị trừ</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>MÃ CÔNG TY</string>
+    </Key>
+    <Value>
+      <string>Mã công ty</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>TỔNG SỐ TIỀN CÔNG NỢ PHẢI THU</string>
+    </Key>
+    <Value>
+      <string>Tổng số tiền công nợ phải thu</string>
     </Value>
   </Item>
 </SerializableDictionaryOfStringString>
