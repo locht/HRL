@@ -156,7 +156,6 @@ Public Class ctrlDashboardHome
             rgContract.SetFilter()
             rgContract.PageSize = 100
             CType(Me.Page, AjaxPage).AjaxManager.ClientEvents.OnRequestStart = "onRequestStart"
-
         Catch ex As Exception
             DisplayException(Me.ViewName, Me.ID, ex)
         End Try
@@ -317,6 +316,14 @@ Public Class ctrlDashboardHome
         CommonConfig.GetReminderConfigFromDatabase()
         Dim receiver As String = ""
         Try
+            For Each row As GridDataItem In rgContract.SelectedItems
+                Dim workEmail As String = row.GetDataKeyValue("WORK_EMAIL")
+                Dim remindName As String = row.GetDataKeyValue("REMIND_NAME")
+                If workEmail = String.Empty Or workEmail = "" Then
+                    ShowMessage(Translate("Không thể gửi mail nhắc nhở " + remindName), NotifyType.Warning)
+                    Exit Sub
+                End If
+            Next
             'Lấy ra những item được chọn ở lưới
             For index = 0 To rgContract.SelectedItems.Count - 1
                 Dim item As GridDataItem = rgContract.SelectedItems(index)
@@ -325,7 +332,6 @@ Public Class ctrlDashboardHome
                 '1: het han HD chinh thuc , 20: het han HD thu viec
                 If remindType = "1" Or remindType = "20" Then
                     SendMailWithTemplate(remindType, item)
-                Else
                     'lstDataSelected.Add(RemindList.Find(Function(f) f.EMPLOYEE_CODE = item.GetDataKeyValue("EMPLOYEE_CODE") And f.LINK_POPUP = item.GetDataKeyValue("LINK_POPUP")))
                     'receiver = item.GetDataKeyValue("WORK_EMAIL")
                     'If lstDataSelected.Count = 0 Then
@@ -357,8 +363,7 @@ Public Class ctrlDashboardHome
                     '        Exit Sub
                     '    End If
                     'End Using
-                    ShowMessage(Translate("Không thể gửi mail nhắc nhở " + remindName), NotifyType.Warning)
-                    Exit Sub
+                    
                 End If
             Next
             ShowMessage(Translate(CommonMessage.MESSAGE_SENDMAIL_COMPLETED), NotifyType.Success)
