@@ -122,6 +122,7 @@ Public Class ctrlHU_ContractNewEdit
             If (_flag = False) Then
                 EnableControlAll_Cus(False, LeftPane)
                 btnDownload.Enabled = True
+                btnUpload.Enabled = True
             End If
 
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
@@ -280,7 +281,8 @@ Public Class ctrlHU_ContractNewEdit
                             _flag = False
                             EnableControlAll_Cus(False, LeftPane)
                             btnDownload.Enabled = True
-                            MainToolBar.Items(0).Enabled = False
+                            btnUpload.Enabled = True
+                            'MainToolBar.Items(0).Enabled = False
                         End If
 
                         If Contract.WORK_STATUS = ProfileCommon.OT_WORK_STATUS.TERMINATE_ID Then
