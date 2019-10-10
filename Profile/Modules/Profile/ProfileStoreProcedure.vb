@@ -394,7 +394,14 @@ Public Class ProfileStoreProcedure
         End If
         Return dt
     End Function
-
+    Public Function GET_ORGID_COMPANY_LEVEL_USER_ID(ByVal user_id As Decimal) As DataTable
+        Dim dt As New DataTable
+        Dim ds As DataSet = hfr.ExecuteToDataSet("PKG_HU_IPROFILE.GET_ORGID_COMPANY_LEVEL_USER_ID", New List(Of Object)(New Object() {user_id}))
+        If Not ds Is Nothing Or Not ds.Tables(0) Is Nothing Then
+            dt = ds.Tables(0)
+        End If
+        Return dt
+    End Function
     ''' <summary>
     ''' Lấy danh sách Loại tổ chức
     ''' </summary>

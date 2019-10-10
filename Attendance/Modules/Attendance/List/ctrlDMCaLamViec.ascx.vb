@@ -497,7 +497,11 @@ Public Class ctrlDMCaLamViec
 
             'hoaivv
             Dim dtOrgLevel As DataTable
-            dtOrgLevel = repS.GET_ORGID_COMPANY_LEVEL()
+            'Dim US As New USERDTO
+            Dim user_id As Decimal
+            Dim user = LogHelper.CurrentUser
+            user_id = user.ID
+            dtOrgLevel = repS.GET_ORGID_COMPANY_LEVEL_USER_ID(user_id)
             Dim dr As DataRow = dtOrgLevel.NewRow
             dr("ORG_ID") = "-1"
             dr("ORG_NAME_VN") = "Dùng  Chung"
