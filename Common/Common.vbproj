@@ -139,6 +139,7 @@
     <Content Include="Modules\Common\ApproveProcess\ctrlApproveSetupOrg.ascx" />
     <Content Include="Modules\Common\ApproveProcess\ctrlApproveTemplate.ascx" />
     <Content Include="Modules\Common\ApproveProcess\ctrlApproveTemplateAddEdit.ascx" />
+    <Content Include="Modules\Common\ctrlLanguageManagement_P.ascx" />
     <Content Include="Modules\Common\ctrlCommon_Reject.ascx" />
     <Content Include="Modules\Common\ctrlFindEmployeeSignPopupDialog.ascx" />
     <Content Include="Modules\Common\ctrlUploadWithTeamplate.ascx" />
@@ -444,6 +445,13 @@
     <Compile Include="Modules\Common\CommonRepository.Secure.vb" />
     <Compile Include="Modules\Common\CommonRepository.ApproveProcess.vb" />
     <Compile Include="Modules\Common\CommonWorkflow.vb" />
+    <Compile Include="Modules\Common\ctrlLanguageManagement_P.ascx.designer.vb">
+      <DependentUpon>ctrlLanguageManagement_P.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Common\ctrlLanguageManagement_P.ascx.vb">
+      <DependentUpon>ctrlLanguageManagement_P.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
     <Compile Include="Modules\Common\ctrlCommon_Reject.ascx.designer.vb">
       <DependentUpon>ctrlCommon_Reject.ascx</DependentUpon>
     </Compile>
