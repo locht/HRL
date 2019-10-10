@@ -188,8 +188,10 @@ Public Class ctrlDeclaresOTNewEdit
                         If data IsNot Nothing Then
                             OtRegistration = data.FirstOrDefault
                             EmployeeShift = rep.GetEmployeeShifts(empId, OtRegistration.REGIST_DATE, OtRegistration.REGIST_DATE).FirstOrDefault
-                            hidSignId.Value = EmployeeShift.ID_SIGN
-                            hidSignName.Value = EmployeeShift.SIGN_CODE
+                            If EmployeeShift IsNot Nothing Then
+                                hidSignId.Value = EmployeeShift.ID_SIGN
+                                hidSignName.Value = EmployeeShift.SIGN_CODE
+                            End If
                         End If
                     End If
                     EmployeeDto = rep.GetEmployeeInfor(empId, Nothing)

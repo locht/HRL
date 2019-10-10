@@ -812,9 +812,9 @@ Public Class ctrlSignWork
                                 '        row("D" & index) = exists.ID
                                 '    End If
                             End If
-                            If Not existsHoliday Is Nothing Then
-                                row("D" & index) = 81
-                            End If
+                            'If Not existsHoliday Is Nothing Then
+                            '    row("D" & index) = 81
+                            'End If
                         End If
 
                     Else
