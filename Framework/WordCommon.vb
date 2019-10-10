@@ -28,7 +28,7 @@ Public Class WordCommon
             builder.MoveToHeaderFooter(HeaderFooterType.FooterFirst)
             builder.ParagraphFormat.Alignment = ParagraphAlignment.Distributed
             If File.Exists(path1) Then
-                Dim shape As Shape = builder.InsertImage(path1, RelativeHorizontalPosition.Page, 0, RelativeVerticalPosition.Page, 0, width, 110, WrapType.Square)
+                Dim shape As Shape = builder.InsertImage(path1, RelativeHorizontalPosition.Page, 0, RelativeVerticalPosition.Page, 0, width, 110, WrapType.None)
                 shape.RelativeHorizontalPosition = RelativeHorizontalPosition.Page
                 shape.Left = 0
                 shape.Top = 700
@@ -38,7 +38,7 @@ Public Class WordCommon
             pageSetup.FooterDistance = 0
             builder.ParagraphFormat.Alignment = ParagraphAlignment.Distributed
             If File.Exists(path1) Then
-                Dim shape As Shape = builder.InsertImage(path1, RelativeHorizontalPosition.Page, 0, RelativeVerticalPosition.Page, 0, width, 110, WrapType.Square)
+                Dim shape As Shape = builder.InsertImage(path1, RelativeHorizontalPosition.Page, 0, RelativeVerticalPosition.Page, 0, width, 110, WrapType.None)
                 shape.RelativeHorizontalPosition = RelativeHorizontalPosition.Page
                 shape.Left = 0
                 shape.Top = 700
@@ -47,7 +47,7 @@ Public Class WordCommon
             pageSetup.FooterDistance = 0
             builder.ParagraphFormat.Alignment = ParagraphAlignment.Distributed
             If File.Exists(path1) Then
-                Dim shape As Shape = builder.InsertImage(path1, RelativeHorizontalPosition.Page, 0, RelativeVerticalPosition.Page, 0, width, 110, WrapType.Square)
+                Dim shape As Shape = builder.InsertImage(path1, RelativeHorizontalPosition.Page, 0, RelativeVerticalPosition.Page, 0, width, 110, WrapType.None)
                 shape.RelativeHorizontalPosition = RelativeHorizontalPosition.Page
                 shape.Left = 0
                 shape.Top = 700

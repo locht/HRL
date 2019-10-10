@@ -1,6 +1,7 @@
 ﻿Imports Framework.UI.Utilities
 Imports HistaffFrameworkPublic
 Imports HistaffFrameworkPublic.FrameworkUtilities
+Imports Recruitment.RecruitmentBusiness
 
 Public Class RecruitmentStoreProcedure
     Private rep As New HistaffFrameworkRepository
@@ -92,6 +93,14 @@ Public Class RecruitmentStoreProcedure
 #End Region
 
 #Region "Manning - QL định biên"
+    Public Function CheckExistRequest(ByVal objRequest As RequestDTO) As Integer
+        Try
+            Dim obj = rep.ExecuteStoreScalar("PKG_RECRUITMENT.CHECK_EXIST_REQUEST", New List(Of Object)(New Object() {objRequest.ORG_ID, objRequest.TITLE_ID, objRequest.SEND_DATE, objRequest.EXPECTED_JOIN_DATE, OUT_NUMBER}))
+            Return Integer.Parse(obj(0).ToString)
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
     Public Function GetRecruitmentImport() As DataSet
         Try
             Dim ds As DataSet = rep.ExecuteToDataSet("PKG_RECRUITMENT_EXPORT.GET_RECRUITMENT_IMPORT", New List(Of Object)(New Object() {OUT_CURSOR, OUT_CURSOR, OUT_CURSOR, OUT_CURSOR, OUT_CURSOR, OUT_CURSOR, OUT_CURSOR, OUT_CURSOR, OUT_CURSOR, OUT_CURSOR, OUT_CURSOR}))

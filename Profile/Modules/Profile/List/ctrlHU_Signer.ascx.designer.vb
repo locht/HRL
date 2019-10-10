@@ -140,15 +140,6 @@ Partial Public Class ctrlHU_Signer
     Protected WithEvents btnFindEmp As Global.Telerik.Web.UI.RadButton
 
     '''<summary>
-    '''reqCode control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents reqCode As Global.System.Web.UI.WebControls.RequiredFieldValidator
-
-    '''<summary>
     '''lbTYPE_NAME control.
     '''</summary>
     '''<remarks>

@@ -3709,6 +3709,7 @@
             <Property Name="MODIFIED_LOG" Type="nclob" Nullable="true" />
             <Property Name="SIGNER_CODE" Type="nclob" Nullable="true" />
             <Property Name="ORG_ID" Type="number" Nullable="true" Precision="38" />
+            <Property Name="SIGNER_ID" Type="number" Nullable="true" Precision="38" />
         </EntityType>
         <EntityType Name="SE_USER_ORG_ACCESS">
             <Key>
@@ -8258,6 +8259,7 @@
           <Property Type="String" Name="MODIFIED_LOG" />
           <Property Type="String" Name="SIGNER_CODE" />
           <Property Type="Decimal" Name="ORG_ID" Nullable="true" />
+          <Property Type="Decimal" Name="SIGNER_ID" />
         </EntityType>
         <EntityType Name="SE_USER_ORG_ACCESS">
           <Key>
@@ -11903,6 +11905,7 @@
                     <ScalarProperty Name="MODIFIED_LOG" ColumnName="MODIFIED_LOG" />
                     <ScalarProperty Name="SIGNER_CODE" ColumnName="SIGNER_CODE" />
                     <ScalarProperty Name="ORG_ID" ColumnName="ORG_ID" />
+                    <ScalarProperty Name="SIGNER_ID" ColumnName="SIGNER_ID" />
                 </MappingFragment>
             </EntityTypeMapping>
         </EntitySetMapping>
@@ -12329,7 +12332,7 @@
         <EntityTypeShape EntityType="ProfileModel.HU_CONCURRENTLY" Width="1.875" PointX="21.25" PointY="30.375" Height="9.4800423177083317" IsExpanded="true" />
         <EntityTypeShape EntityType="ProfileModel.HU_CERTIFICATE" Width="1.5" PointX="19.375" PointY="30.375" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="ProfileModel.HU_CERTIFICATE_EDIT" Width="3.125" PointX="9.375" PointY="31.375" Height="0.4" IsExpanded="false" />
-        <EntityTypeShape EntityType="ProfileModel.HU_SIGNER" Width="1.5" PointX="30" PointY="7.25" Height="0.4" IsExpanded="false" />
+        <EntityTypeShape EntityType="ProfileModel.HU_SIGNER" Width="1.5" PointX="30" PointY="7.25" Height="3.9033007812499996" IsExpanded="true" />
         <EntityTypeShape EntityType="ProfileModel.SE_USER_ORG_ACCESS" Width="1.5" PointX="33.5" PointY="7" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="ProfileModel.HU_WELFARE_MNG_EMP" Width="2.5" PointX="7.375" PointY="26.25" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="ProfileModel.HU_ORGANIZATION_V" Width="1.5" PointX="25.375" PointY="32.75" Height="0.4" IsExpanded="false" />

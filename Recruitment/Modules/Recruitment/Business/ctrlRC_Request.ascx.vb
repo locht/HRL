@@ -717,6 +717,7 @@ Public Class ctrlRC_Request
                 ImportValidate.EmptyValue("DESCRIPTION", row, rowError, isError, sError)
                 If isError Then
                     row("STT") = irow
+                    rowError("STT") = irow
                     row("ORG_NAME") = rowError("ORG_NAME").ToString
                     row("TITLE_NAME") = rowError("TITLE_NAME").ToString
                     row("SEND_DATE") = rowError("SEND_DATE").ToString
@@ -730,7 +731,19 @@ Public Class ctrlRC_Request
                     row("DESCRIPTION") = rowError("DESCRIPTION").ToString
                     dtError.Rows.Add(rowError)
                 Else
-                    dtDataImport.ImportRow(row)
+                    'Check exist
+                    Dim dto As New RequestDTO
+                    dto.ORG_ID = CDec(row("ORG_ID"))
+                    dto.TITLE_ID = CDec(row("TITLE_ID"))
+                    dto.SEND_DATE = ToDate(row("SEND_DATE"))
+                    dto.EXPECTED_JOIN_DATE = ToDate(row("EXPECTED_JOIN_DATE"))
+                    If store.CheckExistRequest(dto) > 0 Then
+                        rowError("STT") = irow
+                        rowError("ORG_NAME") = "Đã có tuyển dụng này."
+                        dtError.Rows.Add(rowError)
+                    Else
+                        dtDataImport.ImportRow(row)
+                    End If
                 End If
                 irow = irow + 1
                 isError = False
