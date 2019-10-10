@@ -4,7 +4,7 @@
 <style type="text/css">
     #RAD_SPLITTER_PANE_CONTENT_ctl00_MainContent_ctrlHU_Signer_RadPane1
     {
-        height: 70px !important;
+        height: 35px !important;
     }
 </style>
 <tlk:RadSplitter ID="RadSplitter3" runat="server" Width="100%" Height="100%">
@@ -73,13 +73,13 @@
                     </fieldset>
                 </asp:Panel>
             </tlk:RadPane>
-            <tlk:RadPane ID="RadPane2" runat="server" Scrolling="None" Height ="80%">
+            <tlk:RadPane ID="RadPane2" runat="server" Scrolling="None" Height ="70%">
                 <tlk:RadGrid ID="rgData" runat="server" AutoGenerateColumns="False" AllowPaging="True"
-                    Height="80%" AllowSorting="True" AllowMultiRowSelection="true" AllowFilteringByColumn="true">
+                    Height="95%" AllowSorting="True" AllowMultiRowSelection="true" AllowFilteringByColumn="true">
                     <ClientSettings EnableRowHoverStyle="true" EnablePostBackOnRowClick="true">
                         <Selecting AllowRowSelect="true" />
                     </ClientSettings>
-                    <MasterTableView CommandItemDisplay="None" DataKeyNames="ID" ClientDataKeyNames="ID,SIGNER_CODE,TITLE_NAME,REMARK,NAME,ORG_ID,ORG_NAME">
+                    <MasterTableView CommandItemDisplay="None" DataKeyNames="ID,SIGNER_ID" ClientDataKeyNames="ID,SIGNER_CODE,TITLE_NAME,REMARK,NAME,ORG_ID,ORG_NAME,SIGNER_ID">
                         <Columns>
                         </Columns>
                     </MasterTableView>

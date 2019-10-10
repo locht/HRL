@@ -5939,7 +5939,7 @@ Partial Public Class AttendanceRepository
                     dto.TITLE_ID = row("TITLE_ID")
                     dto.TITLE_NAME = row("TITLE_NAME")
                     dto.REGIST_DATE = row("REGIST_DATE")
-                    dto.SIGN_ID = If(row("SIGN_ID").ToString <> "0", row("SIGN_ID"), Nothing)
+                    dto.SIGN_ID = If(row("SIGN_ID").ToString <> "", row("SIGN_ID"), Nothing)
                     dto.SIGN_CODE = If(row("SIGN_CODE").ToString <> "", row("SIGN_CODE"), Nothing)
                     dto.OT_TYPE_ID = row("OT_TYPE_ID")
                     dto.OT_TYPE_NAME = If(row("OT_TYPE_NAME").ToString <> "", row("OT_TYPE_NAME"), Nothing)

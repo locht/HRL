@@ -399,6 +399,7 @@ dontrefresh:
             If IsNumeric(cboTitleGroup.SelectedValue) Then
                 dtData = rep.GetOtherList("HU_TITLE_GROUP", True)
                 TITLE_GROUP = dtData.Select("ID='" + cboTitleGroup.SelectedValue + "'")(0)("CODE").ToString
+                txtCode.Text = rep.AutoGenCode(TITLE_GROUP, "HU_TITLE", "CODE")
             End If
             If rgMain.SelectedValue IsNot Nothing Then
                 txtCode.Text = rep.AutoGenCode(TITLE_GROUP, "HU_TITLE", "CODE")
@@ -512,6 +513,7 @@ dontrefresh:
                     If Page.IsValid Then
                         ' Dim code = (From a In dataTable.AsEnumerable Where a("ID") = cboTitleGroup.SelectedValue Select a("CODE"))
                         'txtCode.Text = rep.AutoGenCode("CD", "HU_TITLE", "CODE")
+                        'txtCode.Text = rep.AutoGenCode(TITLE_GROUP, "HU_TITLE", "CODE")
                         GenerateTitleCode()
                         objTitle.CODE = txtCode.Text.Trim
                         objTitle.NAME_VN = txtNameVN.Text.Trim

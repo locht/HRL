@@ -5734,6 +5734,7 @@ Partial Class ProfileRepository
                                         .SIGNER_CODE = f.p.SIGNER_CODE,
                                         .NAME = f.p.NAME,
                                         .TITLE_NAME = f.p.TITLE_NAME,
+                                        .SIGNER_ID = f.p.SIGNER_ID,
                                         .ORG_NAME = f.g.NAME_VN,
                                         .REMARK = f.p.REMARK,
                                         .ORG_ID = f.p.ORG_ID,
@@ -5753,6 +5754,7 @@ Partial Class ProfileRepository
                 Dim dtData = cls.ExecuteStore("PKG_HU_IPROFILE_LIST.INSERT_HU_SIGNER", New With {
                                                                                                  PA.NAME,
                                                                                                  PA.SIGNER_CODE,
+                                                                                                 PA.SIGNER_ID,
                                                                                                  PA.TITLE_NAME,
                                                                                                 PA.REMARK,
                                                                                                  PA.ORG_ID,
@@ -5774,6 +5776,7 @@ Partial Class ProfileRepository
                                                                                             PA.ID,
                                                                                             PA.NAME,
                                                                                             PA.SIGNER_CODE,
+                                                                                            PA.SIGNER_ID,
                                                                                             PA.TITLE_NAME,
                                                                                             PA.REMARK,
                                                                                             PA.ORG_ID,
@@ -5787,7 +5790,7 @@ Partial Class ProfileRepository
         End Try
     End Function
     'CHECK DL DA TON TAI HAY CHUA
-    Public Function CHECK_EXIT(ByVal P_ID As String, ByVal idemp As Decimal, ByVal ORG_ID As Decimal) As Boolean
+    Public Function CHECK_EXIT(ByVal P_ID As String, ByVal idemp As Decimal, ByVal ORG_ID As Decimal, ByVal title_name As String) As Boolean
         Try
 
             Using cls As New DataAccess.QueryData
@@ -5795,6 +5798,7 @@ Partial Class ProfileRepository
                                                                                     P_ID,
                                                                                     idemp,
                                                                                     ORG_ID,
+                                                                                    title_name,
                                                                                   .P_OUT = cls.OUT_CURSOR})
                 If Decimal.Parse(dtData(0)("CHECK1").ToString) > 0 Then
                     Return True
