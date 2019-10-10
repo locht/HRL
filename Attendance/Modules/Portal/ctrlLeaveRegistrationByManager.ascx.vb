@@ -163,8 +163,8 @@ Public Class ctrlLeaveRegistrationByManager
                     End If
                     Dim listDataCheck As New List(Of AT_PROCESS_DTO)
                     For Each dr As Telerik.Web.UI.GridDataItem In rgMain.SelectedItems
-                        If dr.GetDataKeyValue("STATUS") <> PortalStatus.WaitingForApproval Then
-                            ShowMessage(Translate("Thao tác này chỉ thực hiện với giờ làm thêm đang chờ phê duyệt, vui lòng chọn đơn khác"), NotifyType.Warning)
+                        If dr.GetDataKeyValue("STATUS") = 1 Then
+                            ShowMessage(Translate("Thao tác này chỉ áp dụng cho đơn đăng ký nghỉ ở trạng thái Chờ phê duyệt"), NotifyType.Warning)
                             Exit Sub
                         End If
                     Next
@@ -178,6 +178,14 @@ Public Class ctrlLeaveRegistrationByManager
                         ShowMessage(Translate(CommonMessage.MESSAGE_NOT_SELECT_ROW), NotifyType.Warning)
                         Exit Sub
                     End If
+
+                    For Each dr As Telerik.Web.UI.GridDataItem In rgMain.SelectedItems
+                        If dr.GetDataKeyValue("STATUS") = 1 Then
+                            ShowMessage(Translate("Thao tác này chỉ áp dụng cho đơn đăng ký nghỉ ở trạng thái Chờ phê duyệt."), NotifyType.Warning)
+                            Exit Sub
+                        End If
+                    Next
+
                     ctrlCommon_Reject.Show()
             End Select
         Catch ex As Exception
