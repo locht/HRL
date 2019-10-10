@@ -890,7 +890,7 @@ Partial Class ProfileRepository
             objEmpData.STAFF_RANK_ID = objEmp.STAFF_RANK_ID
             objEmpData.ITIME_ID = objEmp.ITIME_ID
             objEmpData.OBJECTTIMEKEEPING = objEmp.OBJECTTIMEKEEPING
-            objEmpData.PA_OBJECT_SALARY_ID = 1
+            'objEmpData.PA_OBJECT_SALARY_ID = 1
             objEmpData.OBJECT_LABOR = objEmp.OBJECT_LABOR
             objEmpData.SENIORITY_DATE = objEmp.SENIORITY_DATE
             objEmpData.ITIME_ID = objEmp.ITIME_ID

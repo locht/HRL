@@ -1417,8 +1417,8 @@ Partial Class ProfileRepository
             'update vào join_date_state và join_date cua hu_employee
             If STR.CODE = "HDTV" Then
                 Employee.EMP_STATUS = 8
-                If Employee.JOIN_DATE_STATE Is Nothing Then
-                    Employee.JOIN_DATE_STATE = objContract.START_DATE
+                If Employee.JOIN_DATE Is Nothing Then
+                    Employee.JOIN_DATE = objContract.START_DATE
                 End If
             Else
                 Employee.EMP_STATUS = 9

@@ -177,7 +177,7 @@
     <Content Include="Modules\Portal\ctrlConfiguration.ascx" />
     <Content Include="Modules\Portal\ctrlEventManager.ascx" />
     <Content Include="Modules\Portal\ctrlEventNewEdit.ascx" />
-    <Content Include="Modules\Common\ctrlLanguageManagement.ascx" />
+    <Content Include="Modules\Common\ctrlLanguageManagementPortal.ascx" />
     <Content Include="Modules\Portal\ctrlRegisterLeave.ascx" />
     <Content Include="Modules\Profile\ctrlDBCertificateExpires.ascx" />
     <Content Include="Modules\Profile\ctrlEmployeeInfo.ascx" />

@@ -42366,4 +42366,12 @@ Xin cám ơn!
       <string>ctrlPortalWorking</string>
     </Value>
   </Item>
+  <Item>
+    <Key>
+      <string>CTRLLANGUAGEMANAGEMENT_P</string>
+    </Key>
+    <Value>
+      <string>Quản lý ngôn ngữ</string>
+    </Value>
+  </Item>
 </SerializableDictionaryOfStringString>
