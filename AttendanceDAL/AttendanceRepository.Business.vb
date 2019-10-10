@@ -1188,7 +1188,7 @@ Partial Public Class AttendanceRepository
                                        .ORG_DESC = p.o.DESCRIPTION_PATH,
                                        .ORG_ID = p.p.ORG_ID,
                                        .PERIOD_ID = p.po.ID,
-                                       .PERIOD_STANDARD = p.po.PERIOD_STANDARD,
+                                       .PERIOD_STANDARD = p.p.WORKING_STANDARD,
                                        .STAFF_RANK_NAME = p.s.NAME,
                                        .DECISION_START = p.p.DECISION_START,
                                        .DECISION_END = p.p.DECISION_END,
@@ -1249,7 +1249,8 @@ Partial Public Class AttendanceRepository
                                        .MIN_EARLY = p.p.MIN_EARLY,
                                        .WORKING_KLD = p.p.WORKING_KLD,
                                        .WORKING_TN = p.p.WORKING_TN,
-                                       .TOTAL_FACTOR1_8 = p.ot.TOTAL_FACTOR1_8
+                                       .TOTAL_FACTOR1_8 = p.ot.TOTAL_FACTOR1_8,
+                                       .WORKING_DEDUCT = p.p.WORKING_DEDUCT
                                    })
 
             'If _filter.IS_TERMINATE Then

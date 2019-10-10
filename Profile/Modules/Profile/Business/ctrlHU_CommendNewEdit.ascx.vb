@@ -710,6 +710,9 @@ Public Class ctrlHU_CommendNewEdit
         Try
             isLoadPopup = 3
             UpdateControlState()
+            ctrlFindSigner.MustHaveContract = True
+            ctrlFindSigner.LoadAllOrganization = False
+            ctrlFindSigner.IsOnlyWorkingWithoutTer = True
             ctrlFindSigner.Show()
 
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")

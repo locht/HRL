@@ -239,7 +239,11 @@ Public Class ctrlDashboardHome
                 If item.GetDataKeyValue("LINK_POPUP") Is Nothing Then
                     link.Visible = False
                 Else
-                    link.OnClientClick = item.GetDataKeyValue("LINK_POPUP")
+                    'link.OnClientClick = item.GetDataKeyValue("LINK_POPUP")
+                    Dim linkPopup As String = item.GetDataKeyValue("LINK_POPUP")
+                    Dim url As String = linkPopup.Substring(7, linkPopup.Length - 7 - 2)
+                    link.Attributes.Add("href", "../" & url)
+                    link.Attributes.Add("target", "_blank")
                 End If
             End If
         Catch ex As Exception
@@ -416,7 +420,7 @@ Public Class ctrlDashboardHome
             If Not Common.Common.sendEmailByServerMail(SM.SendTo,
                                                        If(mailCC <> "", mailCC, dataMail.Rows(0)("MAIL_CC").ToString()),
                                                        If(titleMail <> "", titleMail, dataMail.Rows(0)("TITLE").ToString()), bodyNew, String.Empty) Then
-                ShowMessage(Translate(CommonMessage.MESSAGE_SENDMAIL_ERROR), NotifyType.Warning)
+                ShowMessage(Translate("Gửi mail thất bại"), NotifyType.Warning)
                 Exit Sub
             End If
         Catch ex As Exception

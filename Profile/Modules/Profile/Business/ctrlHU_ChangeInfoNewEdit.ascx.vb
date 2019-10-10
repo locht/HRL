@@ -786,7 +786,9 @@ Public Class ctrlHU_ChangeInfoNewEdit
                 Case btnFindEmployee.ID
                     ctrlFindEmployeePopup.Show()
                 Case btnFindSign.ID
-                    ctrlFindSigner.MustHaveContract = False
+                    ctrlFindSigner.MustHaveContract = True
+                    ctrlFindSigner.LoadAllOrganization = False
+                    ctrlFindSigner.IsOnlyWorkingWithoutTer = True
                     ctrlFindSigner.Show()
             End Select
 

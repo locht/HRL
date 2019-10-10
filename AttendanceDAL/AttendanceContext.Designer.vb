@@ -18,7 +18,7 @@ Imports System.Runtime.Serialization
 Imports System.Xml.Serialization
 
 
-<Assembly: EdmSchemaAttribute("c565af9f-86ec-4c2e-8582-20187a643fba")>
+<Assembly: EdmSchemaAttribute("6d74ff56-a1b1-48d4-95ab-65acf7cf13c7")>
 #Region "EDM Relationship Metadata"
 <Assembly: EdmRelationshipAttribute("AttendanceModel", "FK_OOLT_OOL", "OT_OTHER_LIST_TYPE", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(OT_OTHER_LIST_TYPE), "OT_OTHER_LIST", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(OT_OTHER_LIST), True)>
 <Assembly: EdmRelationshipAttribute("AttendanceModel", "FK_OOLG_OOLT", "OT_OTHER_LIST_GROUP", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(OT_OTHER_LIST_GROUP), "OT_OTHER_LIST_TYPE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(OT_OTHER_LIST_TYPE), True)>
@@ -31873,6 +31873,56 @@ Public Partial Class AT_TIME_TIMESHEET_MONTHLY
     End Sub
 
     Private Partial Sub OnSALARY_IDChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property WORKING_STANDARD() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _WORKING_STANDARD
+        End Get
+        Set
+            OnWORKING_STANDARDChanging(value)
+            ReportPropertyChanging("WORKING_STANDARD")
+            _WORKING_STANDARD = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("WORKING_STANDARD")
+            OnWORKING_STANDARDChanged()
+        End Set
+    End Property
+
+    Private _WORKING_STANDARD As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnWORKING_STANDARDChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnWORKING_STANDARDChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property WORKING_DEDUCT() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _WORKING_DEDUCT
+        End Get
+        Set
+            OnWORKING_DEDUCTChanging(value)
+            ReportPropertyChanging("WORKING_DEDUCT")
+            _WORKING_DEDUCT = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("WORKING_DEDUCT")
+            OnWORKING_DEDUCTChanged()
+        End Set
+    End Property
+
+    Private _WORKING_DEDUCT As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnWORKING_DEDUCTChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnWORKING_DEDUCTChanged()
     End Sub
 
     #End Region
