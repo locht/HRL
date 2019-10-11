@@ -152,6 +152,7 @@ Public Class ctrlHU_ContractTemplete
             If (_flag = False) Then
                 EnableControlAll_Cus(False, NORMAL)
                 btnDownload.Enabled = True
+                btnUploadFile.Enabled = True
             End If
         Catch ex As Exception
             DisplayException(Me.ViewName, Me.ID, ex)
@@ -1422,7 +1423,8 @@ Public Class ctrlHU_ContractTemplete
                     _flag = False
                     EnableControlAll_Cus(False, NORMAL)
                     btnDownload.Enabled = True
-                    MainToolBar.Items(0).Enabled = False
+                    btnUploadFile.Enabled = True
+                    '  MainToolBar.Items(0).Enabled = False
                     MainToolBar.Items(1).Enabled = True
                     'MainToolBar.Items(3).Enabled = True
                 End If
