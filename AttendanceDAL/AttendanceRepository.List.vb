@@ -3335,7 +3335,7 @@ Partial Public Class AttendanceRepository
             'Dim Period = (From w In Context.AT_PERIOD Where w.ID = period_ID).FirstOrDefault
 
             Dim query = From p In Context.HU_EMPLOYEE
-                        Where p.EMPLOYEE_CODE = employee_code And p.WORK_STATUS <> 257 Or (p.WORK_STATUS = 257 And p.TER_LAST_DATE >= end_date)
+                        Where p.EMPLOYEE_CODE = employee_code And (p.WORK_STATUS <> 257 Or (p.WORK_STATUS = 257 And p.TER_LAST_DATE >= end_date))
                         Order By p.IS_KIEM_NHIEM Descending
             Dim lst = query.Select(Function(p) New EmployeeDTO With {
                                        .ID = p.ID,
