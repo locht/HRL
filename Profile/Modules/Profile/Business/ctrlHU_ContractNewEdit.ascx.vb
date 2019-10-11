@@ -868,10 +868,11 @@ Public Class ctrlHU_ContractNewEdit
             _filter.EMPLOYEE_ID = hidEmployeeID.Value
             Select Case CurrentState
                 Case CommonMessage.STATE_NEW
+                    'rang buoc chi ap dung cho them moi
+                    args.IsValid = rep.ValidateContract("EXIST_EFFECT_DATE", _filter)
                 Case CommonMessage.STATE_EDIT
                     _filter.ID = hidID.Value
             End Select
-            args.IsValid = rep.ValidateContract("EXIST_EFFECT_DATE", _filter)
             rep.Dispose()
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
