@@ -325,10 +325,10 @@ Public Class crtlSetUpExchange
                         ShowMessage(Translate(CommonMessage.MESSAGE_NOT_SELECT_MULTI_ROW), NotifyType.Warning)
                         Exit Sub
                     End If
-                    If ctrlOrganization.CurrentValue = "" Or ctrlOrganization.CurrentValue = 1 Then
-                        ShowMessage("Chỉ được thêm cấp công ty, Thao tác lại", NotifyType.Warning)
-                        Exit Sub
-                    End If
+                    'If ctrlOrganization.CurrentValue = "" Or ctrlOrganization.CurrentValue = 1 Then
+                    '    ShowMessage("Chỉ được thêm cấp công ty, Thao tác lại", NotifyType.Warning)
+                    '    Exit Sub
+                    'End If
                     ctrlOrganization.Enabled = False
                     CurrentState = CommonMessage.STATE_EDIT
                     UpdateControlState()

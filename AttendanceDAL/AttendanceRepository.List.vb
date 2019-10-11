@@ -2765,7 +2765,7 @@ Partial Public Class AttendanceRepository
             objTitleData.EFFECT_DATE = objTitle.EFFECT_DATE
             objTitleData.OBJECT_ATTENDACE = objTitle.OBJECT_ATTENDACE
             objTitleData.TYPE_EXCHANGE = objTitle.TYPE_EXCHANGE
-            objTitleData.ACTFLG = objTitle.ACTFLG
+            'objTitleData.ACTFLG = objTitle.ACTFLG
             objTitleData.FROM_MINUTE = objTitle.FROM_MINUTE
             objTitleData.TO_MINUTE = objTitle.TO_MINUTE
             objTitleData.NUMBER_DATE = objTitle.NUMBER_DATE
