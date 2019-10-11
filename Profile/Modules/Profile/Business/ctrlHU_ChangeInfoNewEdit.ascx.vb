@@ -420,8 +420,9 @@ Public Class ctrlHU_ChangeInfoNewEdit
                     If Working.STATUS_ID = ProfileCommon.DECISION_STATUS.APPROVE_ID Or
                         Working.STATUS_ID = ProfileCommon.DECISION_STATUS.NOT_APPROVE_ID Then
                         EnableControlAll_Cus(False, LeftPane)
-                        MainToolBar.Items(0).Enabled = False
+                        'MainToolBar.Items(0).Enabled = False
                         btnDownload.Enabled = True
+                        btnUploadFile.Enabled = True
                     End If
 
                 Case "NormalView"

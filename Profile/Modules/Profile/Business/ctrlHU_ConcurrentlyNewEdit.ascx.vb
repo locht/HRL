@@ -753,7 +753,9 @@ Public Class ctrlHU_ConcurrentlyNewEdit
                     EnabledGrid(rgConcurrently, True)
                     cboTitleId.Enabled = False
                     btnDownload.Enabled = True
+                    btnUploadFile.Enabled = True
                     btnDownload1.Enabled = True
+                    btnUploadFile1.Enabled = True
                 Case CommonMessage.STATE_NEW
                     DisableControls(LeftPane, True)
                     EnabledGrid(rgConcurrently, False)

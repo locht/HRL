@@ -404,6 +404,7 @@ Public Class ctrlHU_DisciplineNewEdit
                         End If
 
                         btnDownload.Enabled = True
+                        btnUploadFile.Enabled = True
 
                         Dim btnEmployee As RadButton = rgEmployee.MasterTableView.GetItems(GridItemType.CommandItem)(0).FindControl("btnEmployee")
                         btnEmployee.Enabled = False

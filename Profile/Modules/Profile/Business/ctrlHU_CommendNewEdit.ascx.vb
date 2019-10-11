@@ -388,8 +388,9 @@ Public Class ctrlHU_CommendNewEdit
 
                     If Commend.STATUS_ID = ProfileCommon.COMMEND_STATUS.APPROVE_ID Then
                         'RightPane.Enabled = False
-                        CType(MainToolBar.Items(0), RadToolBarButton).Enabled = False
+                        'CType(MainToolBar.Items(0), RadToolBarButton).Enabled = False
                         btnDownload.Enabled = True
+                        btnUploadFile.Enabled = True
                     End If
 
                     'dien dữ lieu vao lưới ( nhan vien hoac phòng ban )
