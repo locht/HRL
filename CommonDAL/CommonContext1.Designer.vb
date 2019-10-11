@@ -18,7 +18,7 @@ Imports System.Runtime.Serialization
 Imports System.Xml.Serialization
 
 
-<Assembly: EdmSchemaAttribute("0f4ef41d-db10-4043-9c63-642732adbbdd")>
+<Assembly: EdmSchemaAttribute("0a29a273-4f9f-4c0d-99fa-f13ee7b28694")>
 #Region "EDM Relationship Metadata"
 <Assembly: EdmRelationshipAttribute("CommonModel", "SE_GRP_SE_USR", "SE_GROUP", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(SE_GROUP), "SE_USER", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(SE_USER))>
 <Assembly: EdmRelationshipAttribute("CommonModel", "FK_SM_SF", "SE_MODULE", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(SE_MODULE), "SE_FUNCTION", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(SE_FUNCTION), True)>
@@ -4782,6 +4782,31 @@ Public Partial Class HU_SIGNER
     End Sub
 
     Private Partial Sub OnORG_IDChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property SIGNER_ID() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _SIGNER_ID
+        End Get
+        Set
+            OnSIGNER_IDChanging(value)
+            ReportPropertyChanging("SIGNER_ID")
+            _SIGNER_ID = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("SIGNER_ID")
+            OnSIGNER_IDChanged()
+        End Set
+    End Property
+
+    Private _SIGNER_ID As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnSIGNER_IDChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnSIGNER_IDChanged()
     End Sub
 
     #End Region

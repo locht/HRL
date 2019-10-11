@@ -320,7 +320,7 @@ Public Class ctrlDashboardHome
                 Dim workEmail As String = row.GetDataKeyValue("WORK_EMAIL")
                 Dim remindName As String = row.GetDataKeyValue("REMIND_NAME")
                 If workEmail = String.Empty Or workEmail = "" Then
-                    ShowMessage(Translate("Không thể gửi mail nhắc nhở " + remindName), NotifyType.Warning)
+                    ShowMessage(Translate("Nhân viên chưa thiết lập email"), NotifyType.Warning)
                     Exit Sub
                 End If
             Next
@@ -363,7 +363,9 @@ Public Class ctrlDashboardHome
                     '        Exit Sub
                     '    End If
                     'End Using
-                    
+                Else
+                    ShowMessage(Translate("Không có template email nhắc nhở " + remindName), NotifyType.Warning)
+                    Exit Sub
                 End If
             Next
             ShowMessage(Translate(CommonMessage.MESSAGE_SENDMAIL_COMPLETED), NotifyType.Success)

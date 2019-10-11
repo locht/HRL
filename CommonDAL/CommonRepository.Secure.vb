@@ -2197,7 +2197,7 @@ Partial Public Class CommonRepository
             End Using
 
             Dim query = From sign In Context.HU_SIGNER.Where(Function(f) f.ACTFLG = 1)
-                        From p In Context.HU_EMPLOYEE.Where(Function(f) f.EMPLOYEE_CODE = sign.SIGNER_CODE).DefaultIfEmpty
+                        From p In Context.HU_EMPLOYEE.Where(Function(f) f.ID = sign.SIGNER_ID).DefaultIfEmpty
                         From cv In Context.HU_EMPLOYEE_CV.Where(Function(f) f.EMPLOYEE_ID = p.ID).DefaultIfEmpty
                         From o In Context.HU_ORGANIZATION.Where(Function(f) f.ID = sign.ORG_ID).DefaultIfEmpty
                         From t In Context.HU_TITLE.Where(Function(f) f.ID = p.TITLE_ID).DefaultIfEmpty
@@ -2215,10 +2215,10 @@ Partial Public Class CommonRepository
             '                  From k In Context.SE_CHOSEN_ORG.Where(Function(f) sign.ORG_ID = f.ORG_ID).DefaultIfEmpty
             '                  From te In Context.HU_TERMINATE.Where(Function(f) p.ID = f.EMPLOYEE_ID).DefaultIfEmpty
 
-            If _filter.MustHaveContract Then
-                query = query.Where(Function(f) f.p.JOIN_DATE.HasValue)
-                'queryCommon = queryCommon.Where(Function(f) f.p.JOIN_DATE.HasValue)
-            End If
+            'If _filter.MustHaveContract Then
+            '    query = query.Where(Function(f) f.p.JOIN_DATE.HasValue)
+            '    'queryCommon = queryCommon.Where(Function(f) f.p.JOIN_DATE.HasValue)
+            'End If
             Dim dateNow As Date? = Date.Now.Date
 
             If Not _filter.IsOnlyWorkingWithoutTer Then
