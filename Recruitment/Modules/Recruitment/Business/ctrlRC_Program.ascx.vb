@@ -62,8 +62,8 @@ Public Class ctrlRC_Program
         Try
             Me.ctrlMessageBox.Listener = Me
             Me.MainToolBar = tbarMain
-            Common.Common.BuildToolbar(Me.MainToolBar, ToolbarItem.Edit, ToolbarItem.Print)
-
+            'Common.Common.BuildToolbar(Me.MainToolBar, ToolbarItem.Edit, ToolbarItem.Print)
+            Common.Common.BuildToolbar(Me.MainToolBar, ToolbarItem.Edit)
             CType(MainToolBar.Items(0), RadToolBarButton).Text = "Khai báo yêu cầu tuyển dụng chi tiết"
         Catch ex As Exception
             Throw ex
