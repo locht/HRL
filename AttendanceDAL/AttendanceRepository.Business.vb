@@ -6604,6 +6604,22 @@ Partial Public Class AttendanceRepository
         End Try
     End Function
 
+    Public Function CHECK_LEAVE_EXITS(ByVal P_EMP_CODE As String, ByVal P_DATE As String, ByVal P_MANUAL_ID As Decimal, ByVal P_CA As Decimal) As Integer
+        Try
+            Using cls As New DataAccess.QueryData
+                Dim obj = New With {.P_CODE_NAME = P_EMP_CODE,
+                                    .P_DATE = P_DATE,
+                                    .P_MANUAL_ID = P_MANUAL_ID,
+                                    .P_CA = P_CA,
+                                    .P_OUT = cls.OUT_NUMBER}
+                cls.ExecuteStore("PKG_ATTENDANCE_LIST.CHECK_LEAVE_EXITS", obj)
+                Return Integer.Parse(obj.P_OUT)
+            End Using
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+
     Public Function CHECK_EMPLOYEE(ByVal P_EMP_CODE As String) As Integer
         Try
             Dim result As Integer

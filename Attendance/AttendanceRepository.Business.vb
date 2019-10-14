@@ -1704,6 +1704,17 @@ Partial Class AttendanceRepository
         End Using
     End Function
 
+    Public Function CHECK_LEAVE_EXITS(ByVal P_EMP_CODE As String, ByVal P_DATE As String, ByVal P_MANUAL_ID As Decimal, ByVal P_CA As Decimal) As Integer
+        Using rep As New AttendanceBusinessClient
+            Try
+                Return rep.CHECK_LEAVE_EXITS(P_EMP_CODE, P_DATE, P_MANUAL_ID, P_CA)
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+    End Function
+
     Public Function CHECK_EMPLOYEE(ByVal P_EMP_CODE As String) As Integer
         Using rep As New AttendanceBusinessClient
             Try
