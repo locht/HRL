@@ -355,6 +355,15 @@ Public Class ctrlHU_ConcurrentlyNewEdit
                                 End If
                             End If
                         End If
+                        If cboStatus.SelectedValue = "1" Then
+                            Select Case FormType
+                                Case 1
+                                    If rdEFFECT_DATE_STOP.SelectedDate Is Nothing Then
+                                        ShowMessage(Translate("bạn phải nhập ngày hiệu lực thôi kiêm nhiệm"), NotifyType.Warning)
+                                        Exit Sub
+                                    End If
+                            End Select
+                        End If
                         If Save(strID, _err) Then
                             FillData()
                             CurrentState = CommonMessage.STATE_NORMAL
