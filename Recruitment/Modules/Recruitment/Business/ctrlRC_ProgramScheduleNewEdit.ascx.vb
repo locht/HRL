@@ -518,6 +518,11 @@ Public Class ctrlRC_ProgramScheduleNewEdit
                 ShowMessage(Translate("Ứng viên được chọn không có email,Xin vui lòng kiểm tra lại"), NotifyType.Warning)
                 Exit Sub
             End If
+        Next
+        For index = 0 To rgCanSchedule.SelectedItems.Count - 1
+            Dim item As GridDataItem = rgCanSchedule.SelectedItems(index)
+            Dim ID As Decimal = item.GetDataKeyValue("ID")
+            mail = store.Get_Email_Candidate(ID)
             dataMail = store.GET_MAIL_TEMPLATE("TMPV", "Recruitment")
             body = dataMail.Rows(0)("CONTENT").ToString
             titleMail = "THƯ MỜI PHỎNG VẤN"
