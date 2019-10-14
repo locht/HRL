@@ -266,6 +266,15 @@ Partial Public Class ctrlInsInformations
     Protected WithEvents txtSI_TO_MONTH As Global.Telerik.Web.UI.RadMonthYearPicker
 
     '''<summary>
+    '''RadButton1 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents RadButton1 As Global.Telerik.Web.UI.RadButton
+
+    '''<summary>
     '''txtSOCIAL_NUMBER control.
     '''</summary>
     '''<remarks>
@@ -363,6 +372,15 @@ Partial Public Class ctrlInsInformations
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtHI_TO_MONTH As Global.Telerik.Web.UI.RadMonthYearPicker
+
+    '''<summary>
+    '''RadButton2 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents RadButton2 As Global.Telerik.Web.UI.RadButton
 
     '''<summary>
     '''txtHEALTH_NUMBER control.
@@ -464,6 +482,15 @@ Partial Public Class ctrlInsInformations
     Protected WithEvents txtUNEMP_TO_MONTH As Global.Telerik.Web.UI.RadMonthYearPicker
 
     '''<summary>
+    '''RadButton3 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents RadButton3 As Global.Telerik.Web.UI.RadButton
+
+    '''<summary>
     '''txtBHTNLD_BNN_FROM_MONTH control.
     '''</summary>
     '''<remarks>
@@ -480,6 +507,15 @@ Partial Public Class ctrlInsInformations
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtBHTNLD_BNN_TO_MONTH As Global.Telerik.Web.UI.RadMonthYearPicker
+
+    '''<summary>
+    '''RadButton4 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents RadButton4 As Global.Telerik.Web.UI.RadButton
 
     '''<summary>
     '''FindEmployee control.
