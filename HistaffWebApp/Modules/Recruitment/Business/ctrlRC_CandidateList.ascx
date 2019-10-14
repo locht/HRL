@@ -139,12 +139,12 @@
                         <td>
                             <asp:CheckBox ID="chkCandiateIsEmp" runat="server" />
                         </td>
-                        <td class="lb">
+                       <%-- <td class="lb">
                             <%# Translate("Ứng viên nội bộ")%>
                         </td>
                         <td>
                             <asp:CheckBox ID="chkCandidateIsLocaltion" runat="server" />
-                        </td>
+                        </td>--%>
                         <td>
                             <tlk:RadButton Width="100px" runat="server" ID="btnSearch" SkinID="ButtonFind" Text="<%$ Translate: Tìm kiếm %>">
                             </tlk:RadButton>

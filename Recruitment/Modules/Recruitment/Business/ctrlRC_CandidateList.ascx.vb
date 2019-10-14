@@ -1223,11 +1223,11 @@ Public Class ctrlRC_CandidateList
             Else
                 _filter.LANHANVIEN_ID = ""
             End If
-            If chkCandidateIsLocaltion.Checked Then
-                _filter.NOIBO_ID = RecruitmentCommon.RC_CANDIDATE_STATUS.NOIBO_ID
-            Else
-                _filter.NOIBO_ID = ""
-            End If
+            'If chkCandidateIsLocaltion.Checked Then
+            '    _filter.NOIBO_ID = RecruitmentCommon.RC_CANDIDATE_STATUS.NOIBO_ID
+            'Else
+            '    _filter.NOIBO_ID = ""
+            'End If
 
             Dim MaximumRows As Integer
             
