@@ -387,7 +387,9 @@ Public Class ctrlRC_ProgramScheduleNewEdit
                         'End If
                     Case CommonMessage.TOOLBARITEM_CANCEL
                         ''POPUPTOLINK_CANCEL
-                        Response.Redirect("/Default.aspx?mid=Recruitment&fid=ctrlRC_ProgramSchedule&group=Business")
+                        Dim PROGRAM_ID As String = Request.QueryString("PROGRAM_ID")
+                        Response.Redirect("/Default.aspx?mid=Recruitment&fid=ctrlRC_ProgramSchedule&group=Business&PROGRAM_ID=" & PROGRAM_ID)
+                        ' Response.Redirect("/Default.aspx?mid=Recruitment&fid=ctrlRC_ProgramSchedule&group=Business")
                 End Select
 
 
