@@ -1136,16 +1136,16 @@ Public Class ctrlRC_CandidateList
     End Function
 
 
-    Protected Sub btnHSNVTransfer_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnHSNVTransfer.Click
-        Try
-            isLoadPopup = 1
-            UpdateControlState()
-            ctrlFindEmployeePopup.Show()
-        Catch ex As Exception
-            DisplayException(Me.ViewName, Me.ID, ex)
-        End Try
+    'Protected Sub btnHSNVTransfer_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnHSNVTransfer.Click
+    '    Try
+    '        isLoadPopup = 1
+    '        UpdateControlState()
+    '        ctrlFindEmployeePopup.Show()
+    '    Catch ex As Exception
+    '        DisplayException(Me.ViewName, Me.ID, ex)
+    '    End Try
 
-    End Sub
+    'End Sub
 
     Private Sub ctrlFindEmployeePopup_EmployeeSelected(ByVal sender As Object, ByVal e As System.EventArgs) Handles ctrlFindEmployeePopup.EmployeeSelected
         Dim lstCommonEmployee As New List(Of CommonBusiness.EmployeePopupFindDTO)
@@ -1223,11 +1223,11 @@ Public Class ctrlRC_CandidateList
             Else
                 _filter.LANHANVIEN_ID = ""
             End If
-            'If chkCandidateIsLocaltion.Checked Then
-            '    _filter.NOIBO_ID = RecruitmentCommon.RC_CANDIDATE_STATUS.NOIBO_ID
-            'Else
-            '    _filter.NOIBO_ID = ""
-            'End If
+            If chkCandidateIsLocaltion.Checked Then
+                _filter.NOIBO_ID = RecruitmentCommon.RC_CANDIDATE_STATUS.NOIBO_ID
+            Else
+                _filter.NOIBO_ID = ""
+            End If
 
             Dim MaximumRows As Integer
             

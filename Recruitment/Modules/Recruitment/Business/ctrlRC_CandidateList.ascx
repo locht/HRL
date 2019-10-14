@@ -139,12 +139,12 @@
                         <td>
                             <asp:CheckBox ID="chkCandiateIsEmp" runat="server" />
                         </td>
-                        <%--<td class="lb">
+                        <td class="lb">
                             <%# Translate("Ứng viên nội bộ")%>
                         </td>
                         <td>
                             <asp:CheckBox ID="chkCandidateIsLocaltion" runat="server" />
-                        </td>--%>
+                        </td>
                         <td>
                             <tlk:RadButton Width="100px" runat="server" ID="btnSearch" SkinID="ButtonFind" Text="<%$ Translate: Tìm kiếm %>">
                             </tlk:RadButton>
@@ -214,10 +214,10 @@
                         OnClientClicking="btnBlacklistClick">
                     </tlk:RadButton>
                 </td>
-                <td>
+               <%-- <td>
                     <tlk:RadButton ID="btnHSNVTransfer" runat="server" Text="<%$ Translate: [...] Ứng viên nội bộ %>">
                     </tlk:RadButton>
-                </td>
+                </td>--%>
                 <td>
                     <tlk:RadButton ID="btnPontential" runat="server" Text="<%$ Translate: [...] Ứng viên tiềm năng %>"
                         OnClientClicking="btnPontentialClick" AutoPostBack="false">

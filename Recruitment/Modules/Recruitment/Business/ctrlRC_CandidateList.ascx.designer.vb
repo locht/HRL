@@ -248,6 +248,15 @@ Partial Public Class ctrlRC_CandidateList
     Protected WithEvents chkCandiateIsEmp As Global.System.Web.UI.WebControls.CheckBox
 
     '''<summary>
+    '''chkCandidateIsLocaltion control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents chkCandidateIsLocaltion As Global.System.Web.UI.WebControls.CheckBox
+
+    '''<summary>
     '''btnSearch control.
     '''</summary>
     '''<remarks>
@@ -309,15 +318,6 @@ Partial Public Class ctrlRC_CandidateList
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents btnBlacklist As Global.Telerik.Web.UI.RadButton
-
-    '''<summary>
-    '''btnHSNVTransfer control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents btnHSNVTransfer As Global.Telerik.Web.UI.RadButton
 
     '''<summary>
     '''btnPontential control.
