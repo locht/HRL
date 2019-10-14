@@ -370,11 +370,13 @@ Public Class ctrlTime_Timesheet_CTT
                                                     .S_ORG_ID = strOrgs,
                                                     .PERIOD_ID = Decimal.Parse(cboPeriod.SelectedValue),
                                                     .IS_DISSOLVE = ctrlOrganization.IsDissolve}
-
-                    Dim btnEnable As Boolean = False
-                    btnEnable = repS.IS_PERIODSTATUS(_param.S_ORG_ID, _param.PERIOD_ID)
-                    CType(_toolbar.Items(0), RadToolBarButton).Enabled = btnEnable
-                    CType(_toolbar.Items(3), RadToolBarButton).Enabled = btnEnable
+                    'hien tai bo rang buoc trong du an tng 
+                    'issue TNG(-456)
+                    '[Chấm công > Nghiệp vụ > Xử lý dữ liệu chấm công] Chọn kỳ công tháng 9/2019, nút Tổng hợp và xuất excel bị disable. Xem clip đính kèm
+                    'Dim btnEnable As Boolean = False
+                    'btnEnable = repS.IS_PERIODSTATUS(_param.S_ORG_ID, _param.PERIOD_ID)
+                    'CType(_toolbar.Items(0), RadToolBarButton).Enabled = btnEnable
+                    'CType(_toolbar.Items(3), RadToolBarButton).Enabled = btnEnable
                 End If
 
                 rgTimeTimesheet_cct.CurrentPageIndex = 0
