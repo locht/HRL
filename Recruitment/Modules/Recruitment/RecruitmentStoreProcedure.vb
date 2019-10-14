@@ -521,7 +521,20 @@ Public Class RecruitmentStoreProcedure
         End If
         Return dt
     End Function
-
+    'lấy email ds ứng viên
+    Public Function Get_Email_Candidate(ByVal ID As Decimal) As String
+        Dim obj As New List(Of Object)
+        Try
+            obj = rep.ExecuteStoreScalar("PKG_RECRUITMENT.Get_Email_Candidate", New List(Of Object)(New Object() {ID, OUT_STRING}))
+            If obj IsNot Nothing Then
+                Return obj(0)
+            Else
+                Return String.Empty
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
     'Thêm mới lịch thi tuyển cho ứng viên
     Public Function ADDNEW_CAN_PRO_SCHEDULE(ByVal CANDIDATE_ID As Int32,
                                  ByVal PROGRAM_SCHEDULE_ID As Int32,
@@ -578,7 +591,23 @@ Public Class RecruitmentStoreProcedure
                                                    }))
         Return Int32.Parse(obj(0).ToString())
     End Function
-
+    'lay template thuoc quan ly bieu mau
+    Public Function GET_MAIL_TEMPLATE(ByVal code As String, ByVal group As String) As DataTable
+        Dim dt As New DataTable
+        Dim ds As DataSet = rep.ExecuteToDataSet("PKG_RECRUITMENT_EXPORT.GET_TEMPLATE_MAIL", New List(Of Object)(New Object() {code, group}))
+        If Not ds Is Nothing Or Not ds.Tables(0) Is Nothing Then
+            dt = ds.Tables(0)
+        End If
+        Return dt
+    End Function
+    Public Function GET_INFO_CADIDATE(ByVal ID As Decimal) As DataTable
+        Dim dt As New DataTable
+        Dim ds As DataSet = rep.ExecuteToDataSet("PKG_RECRUITMENT.GET_INFO_CADIDATE", New List(Of Object)(New Object() {ID}))
+        If Not ds Is Nothing Or Not ds.Tables(0) Is Nothing Then
+            dt = ds.Tables(0)
+        End If
+        Return dt
+    End Function
     'Xóa chi phí tuyển dụng
     Public Function DELETE_PRO_SCHEDULE_CAN_ISNULL() As Int32
         Dim obj As Object = rep.ExecuteStoreScalar("PKG_RECRUITMENT.DELETE_PRO_SCHEDULE_CAN_ISNULL", New List(Of Object)(New Object() {OUT_NUMBER}))
