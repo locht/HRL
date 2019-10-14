@@ -387,7 +387,9 @@ Public Class ctrlRC_ProgramScheduleNewEdit
                         'End If
                     Case CommonMessage.TOOLBARITEM_CANCEL
                         ''POPUPTOLINK_CANCEL
-                        Response.Redirect("/Default.aspx?mid=Recruitment&fid=ctrlRC_ProgramSchedule&group=Business")
+                        Dim PROGRAM_ID As String = Request.QueryString("PROGRAM_ID")
+                        Response.Redirect("/Default.aspx?mid=Recruitment&fid=ctrlRC_ProgramSchedule&group=Business&PROGRAM_ID=" & PROGRAM_ID)
+                        ' Response.Redirect("/Default.aspx?mid=Recruitment&fid=ctrlRC_ProgramSchedule&group=Business")
                 End Select
 
 
@@ -493,6 +495,13 @@ Public Class ctrlRC_ProgramScheduleNewEdit
     End Sub
 
     Private Sub btnSendMail_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnSendMail.Click
+        Dim dataMail As DataTable
+        Dim dtValues As DataTable
+        Dim body As String = ""
+        Dim mail As String = ""
+        Dim mailCC As String = ""
+        Dim titleMail As String = ""
+        Dim bodyNew As String = ""
         If rgCanSchedule.SelectedItems.Count = 0 Then
             ShowMessage(Translate(CommonMessage.MESSAGE_NOT_SELECT_ROW), NotifyType.Warning)
             Exit Sub
@@ -503,20 +512,40 @@ Public Class ctrlRC_ProgramScheduleNewEdit
             ShowMessage(Translate(CommonMessage.MESSAGE_NOT_SELECT_ROW), NotifyType.Warning)
             Exit Sub
         End If
-        For Each item As ProgramScheduleCanDTO In lstCanSchedule
-            Dim receiver As String = item.PER_EMAIL
-            Dim cc As String = item.CC_EMPLOYEE
-            Dim subject As String = "Thông báo lịch thi cho ứng viên."
-            Dim body As String = item.CANDIDATE_NAME
-            Dim fileAttachments As String = String.Empty
-
-            If Common.Common.sendEmailByServerMail(receiver, cc, subject, body, fileAttachments, "") Then
-                ShowMessage(Translate(CommonMessage.MESSAGE_SENDMAIL_COMPLETED), NotifyType.Success)
+        For index = 0 To rgCanSchedule.SelectedItems.Count - 1
+            Dim item As GridDataItem = rgCanSchedule.SelectedItems(index)
+            Dim ID As Decimal = item.GetDataKeyValue("ID")
+            mail = store.Get_Email_Candidate(ID)
+            If mail = "" Then
+                ShowMessage(Translate("Ứng viên được chọn không có email,Xin vui lòng kiểm tra lại"), NotifyType.Warning)
+                Exit Sub
+            End If
+        Next
+        For index = 0 To rgCanSchedule.SelectedItems.Count - 1
+            Dim item As GridDataItem = rgCanSchedule.SelectedItems(index)
+            Dim ID As Decimal = item.GetDataKeyValue("ID")
+            mail = store.Get_Email_Candidate(ID)
+            dataMail = store.GET_MAIL_TEMPLATE("TMPV", "Recruitment")
+            body = dataMail.Rows(0)("CONTENT").ToString
+            titleMail = "THƯ MỜI PHỎNG VẤN"
+            mailCC = If(dataMail.Rows(0)("MAIL_CC").ToString <> "", dataMail.Rows(0)("MAIL_CC").ToString, Nothing)
+            dtValues = store.GET_INFO_CADIDATE(item.GetDataKeyValue("ID"))
+            Dim values(dtValues.Columns.Count) As String
+            If dtValues.Rows.Count > 0 Then
+                For i As Integer = 0 To dtValues.Columns.Count - 1
+                    values(i) = If(dtValues.Rows(0)(i).ToString() <> "", dtValues.Rows(0)(i), String.Empty)
+                Next
+            End If
+            bodyNew = String.Format(body, values)
+            If Not Common.Common.sendEmailByServerMail(mail,
+                                                     If(mailCC <> "", mailCC, dataMail.Rows(0)("MAIL_CC").ToString()),
+                                                      titleMail, bodyNew, String.Empty) Then
+                ShowMessage(Translate("Gửi mail thất bại"), NotifyType.Warning)
+                Exit Sub
+            Else
+                ShowMessage(Translate("Gửi mail thành công"), NotifyType.Success)
                 CurrentState = CommonMessage.STATE_NORMAL
                 UpdateControlState()
-            Else
-                ShowMessage(Translate(CommonMessage.MESSAGE_SENDMAIL_ERROR), NotifyType.Warning)
-                Exit Sub
             End If
         Next
     End Sub

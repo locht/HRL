@@ -205,7 +205,7 @@
                 </td>
                 <td>
                     <tlk:RadButton CausesValidation="false" OnClientClicked="OpenEditTransfer" ID="btnSendMail"
-                        runat="server" Text="<%$ Translate: Gửi mail %>" Visible="false">
+                        runat="server" Text="<%$ Translate: Gửi mail %>">
                     </tlk:RadButton>
                 </td>
                 <td>

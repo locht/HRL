@@ -1722,6 +1722,17 @@ Namespace AttendanceBusiness.ServiceImplementations
             End Using
         End Function
 
+        Public Function CHECK_LEAVE_EXITS(ByVal P_EMP_CODE As String, ByVal P_DATE As String, ByVal P_MANUAL_ID As Decimal, ByVal P_CA As Decimal) As Integer Implements ServiceContracts.IAttendanceBusiness.CHECK_LEAVE_EXITS
+            Using rep As New AttendanceRepository
+                Try
+
+                    Return rep.CHECK_LEAVE_EXITS(P_EMP_CODE, P_DATE, P_MANUAL_ID, P_CA)
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
+
         Public Function CHECK_EMPLOYEE(ByVal P_EMP_CODE As String) As Integer Implements ServiceContracts.IAttendanceBusiness.CHECK_EMPLOYEE
             Using rep As New AttendanceRepository
                 Try

@@ -123,10 +123,10 @@
                             </tlk:GridClientSelectColumn>
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Mã ứng viên %>" DataField="CODE"
                                 UniqueName="CODE" SortExpression="CODE" HeaderStyle-Width="60px" />
-                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Họ tên %>" DataField="FULLNAME"
-                                UniqueName="FULLNAME" SortExpression="FULLNAME" HeaderStyle-Width="90px" />
-                            <tlk:GridDateTimeColumn HeaderText="<%$ Translate: Ngày sinh %>" DataField="DOB" DataFormatString="{0:dd/MM/yyyy}"
-                                HeaderStyle-Width="90px" />
+                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Họ tên %>" DataField="FULLNAME" UniqueName="FULLNAME"
+                                SortExpression="FULLNAME" HeaderStyle-Width="90px" />
+                            <tlk:GridDateTimeColumn HeaderText="<%$ Translate: Ngày sinh %>" DataField="DOB"
+                                DataFormatString="{0:dd/MM/yyyy}" HeaderStyle-Width="90px" />
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Số CMND %>" DataField="IDNO" UniqueName="IDNO"
                                 SortExpression="IDNO" HeaderStyle-Width="90px" />
                         </Columns>
@@ -147,14 +147,16 @@
                 <table class="table-form">
                     <tr>
                         <td>
-                            <tlk:RadButton ID="btnDelete" runat="server" Font-Bold="true" Text="<--" OnClientClicked="OnClientClick" AutoPostBack="false"
-                                CausesValidation="false">
-                            </tlk:RadButton>&nbsp;
+                            <tlk:RadButton ID="btnDelete" runat="server" Font-Bold="true" Text="<--" OnClientClicked="OnClientClick"
+                                AutoPostBack="false" CausesValidation="false">
+                            </tlk:RadButton>
+                            &nbsp;
                         </td>
                     </tr>
                     <tr>
                         <td>
-                            <tlk:RadButton ID="btnInsert" runat="server" Font-Bold="true" Text="-->" OnClientClicked="OnClientClick" AutoPostBack="false">
+                            <tlk:RadButton ID="btnInsert" runat="server" Font-Bold="true" Text="-->" OnClientClicked="OnClientClick"
+                                AutoPostBack="false">
                             </tlk:RadButton>
                             &nbsp;
                         </td>
@@ -172,8 +174,8 @@
                                 UniqueName="CANDIDATE_CODE" SortExpression="CANDIDATE_CODE" HeaderStyle-Width="60px" />
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Họ tên %>" DataField="FULLNAME_VN"
                                 UniqueName="FULLNAME_VN" SortExpression="FULLNAME_VN" HeaderStyle-Width="90px" />
-                                <tlk:GridDateTimeColumn HeaderText="<%$ Translate: Ngày sinh %>" DataField="BIRTH_DATE" DataFormatString="{0:dd/MM/yyyy}"
-                                HeaderStyle-Width="90px" />
+                            <tlk:GridDateTimeColumn HeaderText="<%$ Translate: Ngày sinh %>" DataField="BIRTH_DATE"
+                                DataFormatString="{0:dd/MM/yyyy}" HeaderStyle-Width="90px" />
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Số CMND %>" DataField="ID_NO" UniqueName="ID_NO"
                                 SortExpression="ID_NO" HeaderStyle-Width="90px" />
                         </Columns>
@@ -266,10 +268,10 @@
         }
 
         function clientButtonClicking(sender, args) {
-//            if (args.get_item().get_commandName() == 'CANCEL') {
-//                getRadWindow().close(null);
-//                args.set_cancel(true);
-//            }
+            //            if (args.get_item().get_commandName() == 'CANCEL') {
+            //                getRadWindow().close(null);
+            //                args.set_cancel(true);
+            //            }
         }
     </script>
 </tlk:RadCodeBlock>
