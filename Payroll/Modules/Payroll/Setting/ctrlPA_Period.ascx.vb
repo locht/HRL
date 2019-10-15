@@ -140,7 +140,7 @@ Public Class ctrlPA_Period
             Dim dic As New Dictionary(Of String, Control)
             dic.Add("YEAR", nmrYear)
             dic.Add("PERIOD_NAME", txtPeriodName)
-            dic.Add("PERIOD_STANDARD1", txtPeriodStanDard)
+            'dic.Add("PERIOD_STANDARD1", txtPeriodStanDard)
             dic.Add("START_DATE", dpStartDate)
             dic.Add("END_DATE", dpEndDate)
             'dic.Add("BONUS_DATE", dpBonusDate)
@@ -174,14 +174,14 @@ Public Class ctrlPA_Period
                     CType(Me.MainToolBar.Items(2), RadToolBarButton).Enabled = False
                     CType(Me.MainToolBar.Items(3), RadToolBarButton).Enabled = False
                     UpdateCotrolEnabled(False)
-                    ClearControlValue(nmrYear, dpBonusDate, txtPeriodName, txtRemark, dpStartDate, dpEndDate, txtPeriodStanDard)
+                    ClearControlValue(nmrYear, dpBonusDate, txtPeriodName, txtRemark, dpStartDate, dpEndDate)
                 Case CommonMessage.STATE_NEW
                     CType(Me.MainToolBar.Items(0), RadToolBarButton).Enabled = False
                     CType(Me.MainToolBar.Items(2), RadToolBarButton).Enabled = True
                     CType(Me.MainToolBar.Items(3), RadToolBarButton).Enabled = True
                     UpdateCotrolEnabled(True)
-                    ClearControlValue(nmrYear, dpBonusDate, txtPeriodName, txtRemark, dpStartDate, dpEndDate, txtPeriodStanDard)
-                    txtPeriodStanDard.Value = 26
+                    ClearControlValue(nmrYear, dpBonusDate, txtPeriodName, txtRemark, dpStartDate, dpEndDate)
+                    'txtPeriodStanDard.Value = 26
                     EnabledGridNotPostback(rgData, False)
                 Case CommonMessage.STATE_EDIT
                     CType(Me.MainToolBar.Items(0), RadToolBarButton).Enabled = False
@@ -253,7 +253,7 @@ Public Class ctrlPA_Period
             EnableRadDatePicker(dpEndDate, bCheck)
             EnableRadDatePicker(dpBonusDate, bCheck)
             txtRemark.Enabled = bCheck
-            txtPeriodStanDard.Enabled = bCheck
+            'txtPeriodStanDard.Enabled = bCheck
             _myLog.WriteLog(_myLog._info, _classPath, method,
                                                         CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
@@ -378,7 +378,7 @@ Public Class ctrlPA_Period
                         objPeriod.YEAR = nmrYear.Value
                         objPeriod.MONTH = dpEndDate.SelectedDate.Value.Month
                         objPeriod.PERIOD_NAME = txtPeriodName.Text
-                        objPeriod.PERIOD_STANDARD = txtPeriodStanDard.Value
+                        'objPeriod.PERIOD_STANDARD = txtPeriodStanDard.Value
                         objPeriod.START_DATE = dpStartDate.SelectedDate
                         objPeriod.END_DATE = dpEndDate.SelectedDate
                         objPeriod.BONUS_DATE = dpBonusDate.SelectedDate
@@ -582,7 +582,7 @@ Public Class ctrlPA_Period
         Try
             Dim startTime As DateTime = DateTime.UtcNow
             If (CurrentState <> CommonMessage.STATE_NEW And (rgData.SelectedItems.Count = 0 Or rgData.SelectedItems.Count > 1)) Then
-                ClearControlValue(nmrYear, dpBonusDate, txtPeriodName, txtRemark, dpStartDate, dpEndDate, txtPeriodStanDard)
+                ClearControlValue(nmrYear, dpBonusDate, txtPeriodName, txtRemark, dpStartDate, dpEndDate)
             End If
             _myLog.WriteLog(_myLog._info, _classPath, method,
                               CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")

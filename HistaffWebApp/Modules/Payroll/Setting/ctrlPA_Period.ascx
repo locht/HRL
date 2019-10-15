@@ -81,7 +81,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <td class="lb">
+                      <%--  <td class="lb">
                             <%# Translate("Ngày công chuẩn")%><span class="lbReq">*</span>
                         </td>
                         <td>
@@ -94,7 +94,7 @@
                             <asp:RequiredFieldValidator ID="RequiredFieldValidator2" ControlToValidate="txtPeriodStanDard"
                                 runat="server" ErrorMessage="<%$ Translate: Bạn phải nhập ngày công chuẩn %>" ToolTip="<%$ Translate: Bạn phải nhập ngày công chuẩn %>">
                             </asp:RequiredFieldValidator>
-                        </td>
+                        </td>--%>
                         <td class="lb" style="display:none">
                             <%# Translate("Ngày chi thưởng")%><span class="lbReq">*</span>
                         </td>
@@ -139,8 +139,8 @@
                                 <HeaderStyle Width="120px" />
                                 <ItemStyle Width="120px" />
                             </tlk:GridDateTimeColumn>
-                               <tlk:GridBoundColumn HeaderText="<%$ Translate:Ngày công chuẩn %>" 
-                        HeaderStyle-Width="110px" DataField="PERIOD_STANDARD1" UniqueName="PERIOD_STANDARD1" SortExpression="PERIOD_STANDARD1" />
+                              <%-- <tlk:GridBoundColumn HeaderText="<%$ Translate:Ngày công chuẩn %>" 
+                        HeaderStyle-Width="110px" DataField="PERIOD_STANDARD1" UniqueName="PERIOD_STANDARD1" SortExpression="PERIOD_STANDARD1" />--%>
                             <%--<tlk:GridDateTimeColumn HeaderText="<%$ Translate: Ngày chi thưởng%>" DataField="BONUS_DATE"
                                 SortExpression="BONUS_DATE" UniqueName="BONUS_DATE" DataFormatString="{0:dd/MM/yyyy}">
                                 <HeaderStyle Width="120px" />
