@@ -10,7 +10,7 @@
             </tlk:RadButton>
             <br />
             <br />
-            <tlk:RadGrid ID="gridCadidate" runat="server" Height="380px" AllowMultiRowEdit="false"
+            <tlk:RadGrid ID="gridCadidate" runat="server" Height="300px" AllowMultiRowEdit="false"
                 OnSelectedIndexChanged="gridCadidate_SelectedIndexChanged" AllowSorting="false">
                 <MasterTableView DataKeyNames="ID" SkinID="GridSingleSelect" ClientDataKeyNames="ID">
                     <Columns>

@@ -65,7 +65,7 @@
             </tr>
         </table>
     </tlk:RadPane>
-    <tlk:RadPane ID="DetailPane" runat="server" Scrolling="None" Height="500px">
+    <tlk:RadPane ID="DetailPane" runat="server" Scrolling="None" Height="550px">
         <tlk:RadTabStrip ID="rtabProfileInfo" runat="server" CausesValidation="false" MultiPageID="RadMultiPage1"
             AutoPostBack="false">
             <Tabs>
