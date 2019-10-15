@@ -2747,6 +2747,7 @@ Partial Public Class AttendanceRepository
             objTitleData.FROM_MINUTE = objTitle.FROM_MINUTE
             objTitleData.TO_MINUTE = objTitle.TO_MINUTE
             objTitleData.NUMBER_DATE = objTitle.NUMBER_DATE
+            objTitleData.STT = objTitle.STT
             Context.AT_SETUP_EXCHANGE.AddObject(objTitleData)
             Context.SaveChanges(log)
             gID = objTitleData.ID
@@ -2769,6 +2770,7 @@ Partial Public Class AttendanceRepository
             objTitleData.FROM_MINUTE = objTitle.FROM_MINUTE
             objTitleData.TO_MINUTE = objTitle.TO_MINUTE
             objTitleData.NUMBER_DATE = objTitle.NUMBER_DATE
+            objTitleData.STT = objTitle.STT
             Context.SaveChanges(log)
             gID = objTitleData.ID
             Return True

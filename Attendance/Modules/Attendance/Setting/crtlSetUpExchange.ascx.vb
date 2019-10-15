@@ -391,6 +391,7 @@ Public Class crtlSetUpExchange
                         objTerminal.FROM_MINUTE = rtxtFromMinute.Value
                         objTerminal.TO_MINUTE = rtxtToMinute.Value
                         objTerminal.NUMBER_DATE = rtxtDateDeducted.Value
+
                         Select Case CurrentState
                             Case CommonMessage.STATE_NEW
                                 objTerminal.ORG_ID = ctrlOrganization.CurrentValue

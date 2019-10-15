@@ -10,6 +10,7 @@
     Public Property FROM_MINUTE As Decimal?
     Public Property TO_MINUTE As Decimal?
     Public Property NUMBER_DATE As Decimal?
+    Public Property STT As Decimal?
     Public Property ACTFLG As String
     Public Property IS_DISSOLVE As Decimal?
     Public Property CREATED_DATE As Date?

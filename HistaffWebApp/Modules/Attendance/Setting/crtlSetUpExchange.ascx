@@ -78,6 +78,13 @@
                                 <ClientEvents OnBlur="displayDecimalFormat" OnLoad="displayDecimalFormat" OnValueChanged="displayDecimalFormat" />
                             </tlk:RadNumericTextBox>
                         </td>
+                        <td class="lb">
+                            <%# Translate("Số ngày công bị trừ")%>
+                        </td>
+                        <td>
+                            <tlk:RadNumericTextBox ID="rtxtSTT" runat="server">
+                            </tlk:RadNumericTextBox>
+                        </td>
                     </tr>
                 </table>
             </tlk:RadPane>
@@ -114,7 +121,7 @@
                                 UniqueName="TO_MINUTE" SortExpression="TO_MINUTE">
                             </tlk:GridBoundColumn>
                             <tlk:GridNumericColumn HeaderText="<%$ Translate: Số ngày%>" DataField="NUMBER_DATE"
-                                UniqueName="NUMBER_DATE" SortExpression="NUMBER_DATE" >
+                                UniqueName="NUMBER_DATE" SortExpression="NUMBER_DATE">
                             </tlk:GridNumericColumn>
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Trạng thái %>" DataField="ACTFLG"
                                 UniqueName="ACTFLG" SortExpression="ACTFLG">
