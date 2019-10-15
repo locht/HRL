@@ -78,6 +78,13 @@
                                 <ClientEvents OnBlur="displayDecimalFormat" OnLoad="displayDecimalFormat" OnValueChanged="displayDecimalFormat" />
                             </tlk:RadNumericTextBox>
                         </td>
+                        <td class="lb">
+                            <%# Translate("Số thứ tự")%>
+                        </td>
+                        <td>
+                            <tlk:RadNumericTextBox ID="rtxtSTT" runat="server">
+                            </tlk:RadNumericTextBox>
+                        </td>
                     </tr>
                 </table>
             </tlk:RadPane>
@@ -89,7 +96,7 @@
                         <ClientEvents OnGridCreated="GridCreated" />
                         <ClientEvents OnCommand="ValidateFilter" />
                     </ClientSettings>
-                    <MasterTableView DataKeyNames="ID" ClientDataKeyNames="ORG_NAME,ORG_ID,EFFECT_DATE,OBJECT_ATTENDACE,OBJECT_ATTENDACE_NAME,TYPE_EXCHANGE,TYPE_EXCHANGE_NAME,FROM_MINUTE,TO_MINUTE,NUMBER_DATE">
+                    <MasterTableView DataKeyNames="ID" ClientDataKeyNames="ORG_NAME,ORG_ID,EFFECT_DATE,OBJECT_ATTENDACE,OBJECT_ATTENDACE_NAME,TYPE_EXCHANGE,TYPE_EXCHANGE_NAME,FROM_MINUTE,TO_MINUTE,NUMBER_DATE,STT">
                         <Columns>
                             <tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderStyle-HorizontalAlign="Center"
                                 HeaderStyle-Width="30px" ItemStyle-HorizontalAlign="Center">
@@ -114,7 +121,10 @@
                                 UniqueName="TO_MINUTE" SortExpression="TO_MINUTE">
                             </tlk:GridBoundColumn>
                             <tlk:GridNumericColumn HeaderText="<%$ Translate: Số ngày%>" DataField="NUMBER_DATE"
-                                UniqueName="NUMBER_DATE" SortExpression="NUMBER_DATE" >
+                                UniqueName="NUMBER_DATE" SortExpression="NUMBER_DATE">
+                            </tlk:GridNumericColumn>
+                            <tlk:GridNumericColumn HeaderText="<%$ Translate: Số thứ tự%>" DataField="STT" UniqueName="STT"
+                                SortExpression="STT">
                             </tlk:GridNumericColumn>
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Trạng thái %>" DataField="ACTFLG"
                                 UniqueName="ACTFLG" SortExpression="ACTFLG">

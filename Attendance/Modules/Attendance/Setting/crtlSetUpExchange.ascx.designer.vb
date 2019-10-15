@@ -176,6 +176,15 @@ Partial Public Class crtlSetUpExchange
     Protected WithEvents rtxtDateDeducted As Global.Telerik.Web.UI.RadNumericTextBox
 
     '''<summary>
+    '''rtxtSTT control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents rtxtSTT As Global.Telerik.Web.UI.RadNumericTextBox
+
+    '''<summary>
     '''RadPane2 control.
     '''</summary>
     '''<remarks>

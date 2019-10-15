@@ -174,6 +174,8 @@
                             <tlk:RadMonthYearPicker DateInput-DisplayDateFormat="MM/yyyy" runat="server" ID="txtSI_TO_MONTH" Culture="en-US"
                                 TabIndex="7">
                             </tlk:RadMonthYearPicker>
+                            <tlk:RadButton  runat="server" ID="RadButton1" OnClientClicked ="clearRadDatePicker" Text="Xóa"  Width ="25px" style="margin-top:0px">
+                            </tlk:RadButton>
                         </td>
                     </tr>
                     <tr>
@@ -277,6 +279,8 @@
                             <tlk:RadMonthYearPicker DateInput-DisplayDateFormat="MM/yyyy" runat="server" ID="txtHI_TO_MONTH" Culture="en-US"
                                 TabIndex="18">
                             </tlk:RadMonthYearPicker>
+                            <tlk:RadButton runat="server" ID="RadButton2" OnClientClicked ="clearRadDatePicker1" Text="Xóa" Width ="25px" style="margin-top:0px">
+                            </tlk:RadButton>
                         </td>
                     </tr>
                     <tr>
@@ -383,6 +387,8 @@
                             <tlk:RadMonthYearPicker DateInput-DisplayDateFormat="MM/yyyy" runat="server" ID="txtUNEMP_TO_MONTH" Culture="en-US"
                                 TabIndex="28">
                             </tlk:RadMonthYearPicker>
+                            <tlk:RadButton  runat="server" ID="RadButton3" OnClientClicked ="clearRadDatePicker4" Text="Xóa"  Width ="25px" style="margin-top:0px">
+                            </tlk:RadButton>
                         </td>
                     </tr>
                 </table>
@@ -410,6 +416,8 @@
                             <tlk:RadMonthYearPicker DateInput-DisplayDateFormat="MM/yyyy" runat="server" ID="txtBHTNLD_BNN_TO_MONTH" Culture="en-US"
                                 TabIndex="28">
                             </tlk:RadMonthYearPicker>
+                            <tlk:RadButton  runat="server" ID="RadButton4" OnClientClicked ="clearRadDatePicker5" Text="Xóa"  Width ="25px" style="margin-top:0px">
+                            </tlk:RadButton>
                         </td>
                     </tr>
                 </table>
@@ -456,6 +464,26 @@
                 e.preventDefault();
             }
         });
+
+        function clearRadDatePicker() {
+            var datepicker = $find("<%= txtSI_TO_MONTH.ClientID%>");
+            datepicker.clear();
+        }
+
+        function clearRadDatePicker1() {
+            var datepicker = $find("<%= txtHI_TO_MONTH.ClientID%>");
+            datepicker.clear();
+        }
+
+        function clearRadDatePicker4() {
+            var datepicker = $find("<%= txtUNEMP_TO_MONTH.ClientID%>");
+            datepicker.clear();
+        }
+
+        function clearRadDatePicker5() {
+            var datepicker = $find("<%= txtBHTNLD_BNN_TO_MONTH.ClientID%>");
+            datepicker.clear();
+        }
 
     </script>
 </tlk:RadCodeBlock>

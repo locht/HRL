@@ -18,7 +18,7 @@ Imports System.Runtime.Serialization
 Imports System.Xml.Serialization
 
 
-<Assembly: EdmSchemaAttribute("6d74ff56-a1b1-48d4-95ab-65acf7cf13c7")>
+<Assembly: EdmSchemaAttribute("64dbd82b-01e7-4adb-8c11-45255eb3936b")>
 #Region "EDM Relationship Metadata"
 <Assembly: EdmRelationshipAttribute("AttendanceModel", "FK_OOLT_OOL", "OT_OTHER_LIST_TYPE", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(OT_OTHER_LIST_TYPE), "OT_OTHER_LIST", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(OT_OTHER_LIST), True)>
 <Assembly: EdmRelationshipAttribute("AttendanceModel", "FK_OOLG_OOLT", "OT_OTHER_LIST_GROUP", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(OT_OTHER_LIST_GROUP), "OT_OTHER_LIST_TYPE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(OT_OTHER_LIST_TYPE), True)>
@@ -21160,6 +21160,31 @@ Public Partial Class AT_SETUP_EXCHANGE
     End Sub
 
     Private Partial Sub OnACTFLGChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property STT() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _STT
+        End Get
+        Set
+            OnSTTChanging(value)
+            ReportPropertyChanging("STT")
+            _STT = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("STT")
+            OnSTTChanged()
+        End Set
+    End Property
+
+    Private _STT As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnSTTChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnSTTChanged()
     End Sub
 
     #End Region

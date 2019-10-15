@@ -195,15 +195,15 @@ Public Class crtlSetUpExchange
                 Case CommonMessage.STATE_NEW
 
                     ' txtCode.Text = rep.AutoGenCode("MCC", "AT_TERMINALS", "TERMINAL_CODE")
-                    EnableControlAll(True, rdEffectDate, cboObjectAttendace, cboType, rtxtFromMinute, rtxtToMinute, rtxtDateDeducted)
+                    EnableControlAll(True, rdEffectDate, cboObjectAttendace, cboType, rtxtFromMinute, rtxtToMinute, rtxtDateDeducted, rtxtSTT)
                     EnabledGridNotPostback(rglSwipeMachine, False)
 
                 Case CommonMessage.STATE_NORMAL
-                    ClearControlValue(txtCongty, rdEffectDate, cboObjectAttendace, cboType, rtxtFromMinute, rtxtToMinute, rtxtDateDeducted)
-                    EnableControlAll(False, txtCongty, rdEffectDate, cboObjectAttendace, cboType, rtxtFromMinute, rtxtToMinute, rtxtDateDeducted)
+                    ClearControlValue(txtCongty, rdEffectDate, cboObjectAttendace, cboType, rtxtFromMinute, rtxtToMinute, rtxtDateDeducted, rtxtSTT)
+                    EnableControlAll(False, txtCongty, rdEffectDate, cboObjectAttendace, cboType, rtxtFromMinute, rtxtToMinute, rtxtDateDeducted, rtxtSTT)
                     EnabledGridNotPostback(rglSwipeMachine, True)
                 Case CommonMessage.STATE_EDIT
-                    EnableControlAll(True, txtCongty, rdEffectDate, cboObjectAttendace, cboType, rtxtFromMinute, rtxtToMinute, rtxtDateDeducted)
+                    EnableControlAll(True, txtCongty, rdEffectDate, cboObjectAttendace, cboType, rtxtFromMinute, rtxtToMinute, rtxtDateDeducted, rtxtSTT)
                     EnabledGridNotPostback(rglSwipeMachine, False)
 
                 Case CommonMessage.STATE_DEACTIVE
@@ -219,7 +219,7 @@ Public Class crtlSetUpExchange
                     Else
                         ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), NotifyType.Warning)
                     End If
-                    ClearControlValue(txtCongty, rdEffectDate, cboObjectAttendace, cboType, rtxtFromMinute, rtxtToMinute, rtxtDateDeducted)
+                    ClearControlValue(txtCongty, rdEffectDate, cboObjectAttendace, cboType, rtxtFromMinute, rtxtToMinute, rtxtDateDeducted, rtxtSTT)
                 Case CommonMessage.STATE_ACTIVE
                     Dim lstDeletes As New List(Of Decimal)
                     For idx = 0 To rglSwipeMachine.SelectedItems.Count - 1
@@ -233,7 +233,7 @@ Public Class crtlSetUpExchange
                     Else
                         ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), NotifyType.Warning)
                     End If
-                    ClearControlValue(txtCongty, rdEffectDate, cboObjectAttendace, cboType, rtxtFromMinute, rtxtToMinute, rtxtDateDeducted)
+                    ClearControlValue(txtCongty, rdEffectDate, cboObjectAttendace, cboType, rtxtFromMinute, rtxtToMinute, rtxtDateDeducted, rtxtSTT)
                 Case CommonMessage.STATE_DELETE
                     Dim lstDeletes As New List(Of Decimal)
                     For idx = 0 To rglSwipeMachine.SelectedItems.Count - 1
@@ -311,7 +311,7 @@ Public Class crtlSetUpExchange
                         Exit Sub
                     End If
                     CurrentState = CommonMessage.STATE_NEW
-                    ClearControlValue(txtCongty, rdEffectDate, cboObjectAttendace, cboType, rtxtFromMinute, rtxtToMinute, rtxtDateDeducted)
+                    ClearControlValue(txtCongty, rdEffectDate, cboObjectAttendace, cboType, rtxtFromMinute, rtxtToMinute, rtxtDateDeducted, rtxtSTT)
                     txtCongty.Text = ctrlOrganization.CurrentText
                     txtCongty.Enabled = False
                     ctrlOrganization.Enabled = False
@@ -391,6 +391,9 @@ Public Class crtlSetUpExchange
                         objTerminal.FROM_MINUTE = rtxtFromMinute.Value
                         objTerminal.TO_MINUTE = rtxtToMinute.Value
                         objTerminal.NUMBER_DATE = rtxtDateDeducted.Value
+                        If IsNumeric(rtxtSTT.Value) Then
+                            objTerminal.STT = rtxtSTT.Value
+                        End If
                         Select Case CurrentState
                             Case CommonMessage.STATE_NEW
                                 objTerminal.ORG_ID = ctrlOrganization.CurrentValue
@@ -633,6 +636,9 @@ Public Class crtlSetUpExchange
                 End If
                 If slItem.GetDataKeyValue("NUMBER_DATE") IsNot Nothing Then
                     rtxtDateDeducted.Value = Decimal.Parse(slItem.GetDataKeyValue("NUMBER_DATE"))
+                End If
+                If slItem.GetDataKeyValue("STT") IsNot Nothing Then
+                    rtxtSTT.Value = Decimal.Parse(slItem.GetDataKeyValue("STT"))
                 End If
             End If
         Catch ex As Exception
