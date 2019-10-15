@@ -355,14 +355,11 @@ Public Class ctrlHU_ConcurrentlyNewEdit
                                 End If
                             End If
                         End If
-                        If cboStatus.SelectedValue = "1" Then
-                            Select Case FormType
-                                Case 1
-                                    If rdEFFECT_DATE_STOP.SelectedDate Is Nothing Then
-                                        ShowMessage(Translate("bạn phải nhập ngày hiệu lực thôi kiêm nhiệm"), NotifyType.Warning)
-                                        Exit Sub
-                                    End If
-                            End Select
+                        If cbSTATUS_STOP.Enabled = True Then
+                            If rdEFFECT_DATE_STOP.SelectedDate Is Nothing Then
+                                ShowMessage(Translate("bạn phải nhập ngày hiệu lực thôi kiêm nhiệm"), NotifyType.Warning)
+                                Exit Sub
+                            End If
                         End If
                         If Save(strID, _err) Then
                             FillData()
@@ -379,33 +376,33 @@ Public Class ctrlHU_ConcurrentlyNewEdit
                         FillData()
                     End If
                 Case CommonMessage.TOOLBARITEM_CANCEL
-                    CurrentState = CommonMessage.STATE_NORMAL
-                    FormType = 2
-                    FillData()
-                    EnabledGrid(rgConcurrently, True)
-                    cboTitleId.Enabled = False
+                        CurrentState = CommonMessage.STATE_NORMAL
+                        FormType = 2
+                        FillData()
+                        EnabledGrid(rgConcurrently, True)
+                        cboTitleId.Enabled = False
                 Case CommonMessage.TOOLBARITEM_DELETE
-                    If rgConcurrently.SelectedItems.Count = 0 Then
-                        ShowMessage(Translate(CommonMessage.MESSAGE_NOT_SELECT_ROW), NotifyType.Warning)
-                        Exit Sub
-                    End If
-                    For Each grid As GridDataItem In rgConcurrently.SelectedItems
-                        id = Decimal.Parse(grid.GetDataKeyValue("ID").ToString())
-                        status = If(grid.GetDataKeyValue("STATUS").ToString() = "", 0, Decimal.Parse(grid.GetDataKeyValue("STATUS").ToString()))
-                        If status = 1 Then
-                            ShowMessage("Bản ghi đã được phê duyệt", NotifyType.Warning)
+                        If rgConcurrently.SelectedItems.Count = 0 Then
+                            ShowMessage(Translate(CommonMessage.MESSAGE_NOT_SELECT_ROW), NotifyType.Warning)
                             Exit Sub
                         End If
-                        strID &= IIf(strID = vbNullString, id, "," & id)
-                    Next
-                    ctrlMessageBox.MessageText = Translate(CommonMessage.MESSAGE_CONFIRM_DELETE)
-                    ctrlMessageBox.ActionName = CommonMessage.TOOLBARITEM_DELETE
-                    ctrlMessageBox.DataBind()
-                    ctrlMessageBox.Show()
-                    'Case CommonMessage.TOOLBARITEM_PRINT
-                    '    PrintConcurrently("PCKN")
-                    'Case CommonMessage.TOOLBARITEM_REJECT
-                    '    PrintConcurrently("TPCKN")
+                        For Each grid As GridDataItem In rgConcurrently.SelectedItems
+                            id = Decimal.Parse(grid.GetDataKeyValue("ID").ToString())
+                            status = If(grid.GetDataKeyValue("STATUS").ToString() = "", 0, Decimal.Parse(grid.GetDataKeyValue("STATUS").ToString()))
+                            If status = 1 Then
+                                ShowMessage("Bản ghi đã được phê duyệt", NotifyType.Warning)
+                                Exit Sub
+                            End If
+                            strID &= IIf(strID = vbNullString, id, "," & id)
+                        Next
+                        ctrlMessageBox.MessageText = Translate(CommonMessage.MESSAGE_CONFIRM_DELETE)
+                        ctrlMessageBox.ActionName = CommonMessage.TOOLBARITEM_DELETE
+                        ctrlMessageBox.DataBind()
+                        ctrlMessageBox.Show()
+                        'Case CommonMessage.TOOLBARITEM_PRINT
+                        '    PrintConcurrently("PCKN")
+                        'Case CommonMessage.TOOLBARITEM_REJECT
+                        '    PrintConcurrently("TPCKN")
             End Select
             UpdateControlState()
         Catch ex As Exception
