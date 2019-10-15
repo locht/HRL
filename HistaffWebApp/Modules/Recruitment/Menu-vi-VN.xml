@@ -3,26 +3,23 @@
   <Group>
     <Item Text="Nghiệp vụ"  PostBack="False">
       <Group>
-        <Item  Value="ctrlRC_PlanReg"  Text="Quản lý kế hoạch tuyển dụng" PostBack="True" NavigateUrl="Default.aspx?mid=Recruitment&amp;fid=ctrlRC_PlanReg&amp;group=Business" CheckPermission="true"/>
+	    <Item  Value="ctrlRC_Manning"  Text="Quản lý định biên" PostBack="True" NavigateUrl="Default.aspx?mid=Recruitment&amp;fid=ctrlRC_Manning&amp;group=Business" CheckPermission="true"/>
         <Item  Value="ctrlRC_Request"  Text="Quản lý yêu cầu tuyển dụng" PostBack="True" NavigateUrl="Default.aspx?mid=Recruitment&amp;fid=ctrlRC_Request&amp;group=Business" CheckPermission="true"/>
-        <Item  Value="ctrlRC_Stage"  Text="Quản lý đợt tuyển dụng" PostBack="True" NavigateUrl="Default.aspx?mid=Recruitment&amp;fid=ctrlRC_Stage&amp;group=Business" CheckPermission="true"/>
         <Item  Value="ctrlRC_Program"  Text="Chương trình tuyển dụng" PostBack="True" NavigateUrl="Default.aspx?mid=Recruitment&amp;fid=ctrlRC_Program&amp;group=Business" CheckPermission="true"/>
-        <Item  Value="ctrlRC_StageCost"  Text="Quản lý chi phí tuyển dụng" PostBack="True" NavigateUrl="Default.aspx?mid=Recruitment&amp;fid=ctrlRC_StageCost&amp;group=Business" CheckPermission="true"/>
         <Item  Value="ctrlRC_CVPool"  Text="Quản lý nguồn ứng viên" PostBack="True" NavigateUrl="Default.aspx?mid=Recruitment&amp;fid=ctrlRC_CVPool&amp;group=Business" CheckPermission="true"/>
-        <Item  Value="ctrlRC_Manning"  Text="Quản lý định biên" PostBack="True" NavigateUrl="Default.aspx?mid=Recruitment&amp;fid=ctrlRC_Manning&amp;group=Business" CheckPermission="true"/>
+      </Group>
+    </Item>
+
+    <Item Text="Danh mục"  PostBack="False">
+      <Group>
+        <Item Value="ctrlRC_Exams" Text="Khai báo môn thi tuyển" PostBack="True" NavigateUrl="Default.aspx?mid=Recruitment&amp;fid=ctrlRC_Exams&amp;group=List" CheckPermission="true"/>
+        <Item Value="ctrlOtherList" Text="Tham số hệ thống" PostBack="True" NavigateUrl="Default.aspx?mid=Recruitment&amp;fid=ctrlOtherList&amp;group=List" CheckPermission="true"/>
       </Group>
     </Item>
 
     <Item Text="Báo cáo" PostBack="False">
       <Group>
         <Item Value="ctrlRC_ReportList" Text="Danh sách báo cáo" PostBack="True" NavigateUrl="Default.aspx?mid=Recruitment&amp;fid=ctrlRC_ReportList&amp;group=report" CheckPermission="true"/>
-      </Group>
-    </Item>
-    
-    <Item Text="Danh mục"  PostBack="False">
-      <Group>
-        <Item Value="ctrlRC_Exams" Text="Khai báo môn thi tuyển" PostBack="True" NavigateUrl="Default.aspx?mid=Recruitment&amp;fid=ctrlRC_Exams&amp;group=List" CheckPermission="true"/>
-        <Item Value="ctrlOtherList" Text="Tham số hệ thống" PostBack="True" NavigateUrl="Default.aspx?mid=Recruitment&amp;fid=ctrlOtherList&amp;group=List" CheckPermission="true"/>
       </Group>
     </Item>
 

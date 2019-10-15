@@ -288,6 +288,13 @@ Public Class ctrlRC_ProgramInterviewResult
     End Sub
 
     Private Sub cmdSendEmail_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles cmdSendEmail.Click
+        Dim dataMail As DataTable
+        Dim dtValues As DataTable
+        Dim body As String = ""
+        Dim mail As String = ""
+        Dim mailCC As String = ""
+        Dim titleMail As String = ""
+        Dim bodyNew As String = ""
         If gridCadidate.SelectedItems.Count = 0 Then
             ShowMessage(Translate(CommonMessage.MESSAGE_NOT_SELECT_ROW), NotifyType.Warning)
             Exit Sub
@@ -298,32 +305,69 @@ Public Class ctrlRC_ProgramInterviewResult
             ShowMessage(Translate(CommonMessage.MESSAGE_NOT_SELECT_ROW), NotifyType.Warning)
             Exit Sub
         End If
-
+        For index = 0 To gridCadidate.SelectedItems.Count - 1
+            Dim item As GridDataItem = gridCadidate.SelectedItems(index)
+            Dim ID As Decimal = item.GetDataKeyValue("ID")
+            Mail = store.Get_Email_Candidate(ID)
+            If Mail = "" Then
+                ShowMessage(Translate("Ứng viên được chọn không có email,Xin vui lòng kiểm tra lại"), NotifyType.Warning)
+                Exit Sub
+            End If
+        Next
+        For index = 0 To gridCadidate.SelectedItems.Count - 1
+            Dim item As GridDataItem = gridCadidate.SelectedItems(index)
+            Dim ID As Decimal = item.GetDataKeyValue("ID")
+            Mail = store.Get_Email_Candidate(ID)
+            dataMail = store.GET_MAIL_TEMPLATE("TCO", "Recruitment")
+            body = dataMail.Rows(0)("CONTENT").ToString
+            titleMail = "THƯ CẢM ƠN"
+            mailCC = If(dataMail.Rows(0)("MAIL_CC").ToString <> "", dataMail.Rows(0)("MAIL_CC").ToString, Nothing)
+            dtValues = store.GET_INFO_CADIDATE(item.GetDataKeyValue("ID"))
+            Dim values(dtValues.Columns.Count) As String
+            If dtValues.Rows.Count > 0 Then
+                For i As Integer = 0 To dtValues.Columns.Count - 1
+                    values(i) = If(dtValues.Rows(0)(i).ToString() <> "", dtValues.Rows(0)(i), String.Empty)
+                Next
+            End If
+            bodyNew = String.Format(body, values)
+            If Not Common.Common.sendEmailByServerMail(Mail,
+                                                     If(mailCC <> "", mailCC, dataMail.Rows(0)("MAIL_CC").ToString()),
+                                                      titleMail, bodyNew, String.Empty) Then
+                ShowMessage(Translate("Gửi mail thất bại"), NotifyType.Warning)
+                Exit Sub
+            Else
+                ShowMessage(Translate("Gửi mail thành công"), NotifyType.Success)
+                ' Update Candidate Status
+                store.UPDATE_CANDIDATE_STATUS(Int32.Parse(dataItem("ID").Text), RCContant.TUCHOI)
+                CurrentState = CommonMessage.STATE_NORMAL
+                UpdateControlState()
+            End If
+        Next
         ' format email
         'Dim receiver As String = dataItem("Email").Text
-        Dim receiver As String = "tanvn@tinhvan.com"
-        Dim subject As String = "Thư cám ơn"
-        Dim body As String = String.Empty
-        'format body by html template
-        Dim reader As StreamReader = New StreamReader(Server.MapPath("~/Modules/Recruitment/Templates/ThuCamOn.htm"))
-        body = reader.ReadToEnd
-        body = body.Replace("{ngày}", DateTime.Now.Day)
-        body = body.Replace("{tháng}", DateTime.Now.Month)
-        body = body.Replace("{năm}", DateTime.Now.Year)
-        body = body.Replace("{họ tên}", dataItem("FullName").Text.ToUpper())
+        'Dim receiver As String = "tanvn@tinhvan.com"
+        'Dim subject As String = "Thư cám ơn"
+        'Dim body As String = String.Empty
+        ''format body by html template
+        'Dim reader As StreamReader = New StreamReader(Server.MapPath("~/Modules/Recruitment/Templates/ThuCamOn.htm"))
+        'body = reader.ReadToEnd
+        'body = body.Replace("{ngày}", DateTime.Now.Day)
+        'body = body.Replace("{tháng}", DateTime.Now.Month)
+        'body = body.Replace("{năm}", DateTime.Now.Year)
+        'body = body.Replace("{họ tên}", dataItem("FullName").Text.ToUpper())
 
-        If Common.Common.sendEmailByServerMail(receiver, String.Empty, subject, body, String.Empty, "") Then
-            ShowMessage(Translate(CommonMessage.MESSAGE_SENDMAIL_COMPLETED), NotifyType.Success)
+        'If Common.Common.sendEmailByServerMail(receiver, String.Empty, subject, body, String.Empty, "") Then
+        '    ShowMessage(Translate(CommonMessage.MESSAGE_SENDMAIL_COMPLETED), NotifyType.Success)
 
-            'Update Candidate Status
-            store.UPDATE_CANDIDATE_STATUS(Int32.Parse(dataItem("ID").Text), RCContant.TUCHOI)
+        '    'Update Candidate Status
+        '    store.UPDATE_CANDIDATE_STATUS(Int32.Parse(dataItem("ID").Text), RCContant.TUCHOI)
 
-            CurrentState = CommonMessage.STATE_NORMAL
-            UpdateControlState()
-        Else
-            ShowMessage(Translate(CommonMessage.MESSAGE_SENDMAIL_ERROR), NotifyType.Warning)
-            Exit Sub
-        End If
+        '    CurrentState = CommonMessage.STATE_NORMAL
+        '    UpdateControlState()
+        'Else
+        '    ShowMessage(Translate(CommonMessage.MESSAGE_SENDMAIL_ERROR), NotifyType.Warning)
+        '    Exit Sub
+        'End If
     End Sub
 
 #End Region

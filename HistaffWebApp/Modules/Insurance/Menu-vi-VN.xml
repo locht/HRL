@@ -18,7 +18,7 @@
         <Item Text="Quy định đối tượng và % đóng BH"  PostBack="False">
           <Group>
             <Item Value="ctrlDMRegion" Text="Vùng bảo hiểm" PostBack="True" NavigateUrl="Default.aspx?mid=Insurance&amp;fid=ctrlDMRegion&amp;group=List" CheckPermission="True"/>
-            <Item Value="ctrlInsListParamInsurance" Text="Quy định mức đóng bảo hiểm" PostBack="True" NavigateUrl="Default.aspx?mid=Insurance&amp;fid=ctrlInsListParamInsurance&amp;group=List" CheckPermission="True"/>
+            <Item Value="ctrlInsListParamInsurance" Text="Quy định tỷ lệ đóng bảo hiểm" PostBack="True" NavigateUrl="Default.aspx?mid=Insurance&amp;fid=ctrlInsListParamInsurance&amp;group=List" CheckPermission="True"/>
             <Item Value="ctrlInsObjectPayInsurrance" Text="Quy định đối tượng đóng bảo hiểm" PostBack="True" NavigateUrl="Default.aspx?mid=Insurance&amp;fid=ctrlInsObjectPayInsurrance&amp;group=List" CheckPermission="True"/>
           </Group>
         </Item>
