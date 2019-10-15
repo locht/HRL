@@ -112,7 +112,7 @@
             <tlk:RadTextBox runat="server" ID="txtManager" ReadOnly="true" Width="85%" />
         </td>
          <td class="lb" style="width: 130px">
-            <%# Translate("Đối tượng nhân viên")%>
+            <%# Translate("Loại hình lao động")%>
         </td>
         <td>           
              <tlk:RadTextBox ID="txtObjectLabor" runat="server" ReadOnly="true">

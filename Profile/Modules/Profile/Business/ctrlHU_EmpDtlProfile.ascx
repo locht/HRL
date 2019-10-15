@@ -306,7 +306,7 @@
                                             </tlk:RadComboBox>
                                         </td>
                                         <td class="lbInfo">
-                                            <asp:Label runat="server" ID="lbObjectLabor" Text="Đối tượng lao động"></asp:Label>
+                                            <asp:Label runat="server" ID="lbObjectLabor" Text="Loại hình lao động"></asp:Label>
                                             <span class="lbReq">*</span>
                                         </td>
                                         <td>

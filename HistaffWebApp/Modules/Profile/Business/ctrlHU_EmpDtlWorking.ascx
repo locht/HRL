@@ -18,7 +18,7 @@
                     <tlk:GridBoundColumn HeaderText="Chức danh" DataField="TITLE_NAME"
                         UniqueName="TITLE_NAME" SortExpression="TITLE_NAME">
                     </tlk:GridBoundColumn>
-                    <tlk:GridBoundColumn HeaderText="Đối tượng lao động" DataField="OBJECT_LABOR_TITLE"
+                    <tlk:GridBoundColumn HeaderText="Loại hình lao động" DataField="OBJECT_LABOR_TITLE"
                         UniqueName="OBJECT_LABOR_TITLE" SortExpression="OBJECT_LABOR_TITLE">
                     </tlk:GridBoundColumn>
                     <tlk:GridBoundColumn HeaderText="Người quản lý trực tiếp" DataField="DIRECT_MANAGER_NAME"
