@@ -4,7 +4,7 @@
 <asp:HiddenField ID="hdProgramID" runat="server" />
 <tlk:RadSplitter ID="RadSplitter1" runat="server" Width="100%">
     <tlk:RadPane ID="LeftPane" runat="server" MinWidth="200" Width="600px" Scrolling="None">
-        <fieldset style="height: 90%; padding-right: 5px">
+        <fieldset style="height: 80%; padding-right: 5px">
             <legend>
                 <%# Translate("Danh sách ứng viên")%></legend>
             <tlk:RadButton ID="cmdSendEmail" runat="server" CausesValidation="false" Text="<%$ Translate: Gửi thư cảm ơn %>">
