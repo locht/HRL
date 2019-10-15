@@ -21113,7 +21113,7 @@ Xin cám ơn!
       <string>CTRLEMPDTLPROFILE</string>
     </Key>
     <Value>
-      <string>ctrlEmpDtlProfile</string>
+      <string>Chi tiết hồ sơ nhân viên</string>
     </Value>
   </Item>
   <Item>
@@ -27753,7 +27753,7 @@ Xin cám ơn!
       <string>SUBMIT</string>
     </Key>
     <Value>
-      <string>SUBMIT</string>
+      <string>Gửi duyệt</string>
     </Value>
   </Item>
   <Item>
@@ -42323,7 +42323,7 @@ Xin cám ơn!
       <string>CTRLDASHBOARDPORTALSIXCELL</string>
     </Key>
     <Value>
-      <string>Bảng thông tin</string>
+      <string />
     </Value>
   </Item>
   <Item>
@@ -42363,15 +42363,687 @@ Xin cám ơn!
       <string>CTRLPORTALWORKING</string>
     </Key>
     <Value>
-      <string>ctrlPortalWorking</string>
+      <string>Quá trình công tác tại công ty</string>
     </Value>
   </Item>
   <Item>
     <Key>
-      <string>CTRLLANGUAGEMANAGEMENT_P</string>
+      <string>CTRLLEAVEREGISTRATION</string>
     </Key>
     <Value>
-      <string>Quản lý ngôn ngữ</string>
+      <string>Danh sách đơn nghỉ cá nhân</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>THỜI GIAN BẮT ĐẦU NGHỈ PHÉP</string>
+    </Key>
+    <Value>
+      <string>Thời gian bắt đầu nghỉ phép</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>THỜI GIAN KẾT THÚC NGHỈ PHÉP</string>
+    </Key>
+    <Value>
+      <string>Thời gian kết thúc nghỉ phép</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>LÍ DO NGHỈ PHÉP</string>
+    </Key>
+    <Value>
+      <string>Lí do nghỉ phép</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>TỰ SINH DO IMPORT BẢNG CÔNG</string>
+    </Key>
+    <Value>
+      <string>Tự sinh do import bảng công</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>THE ACTION ONLY APPLIES FOR THE RECORDS THAT HAVE STATUS AS SAVED OR UNVERIFIED BY HR. PLEASE SELECT OTHER RECORD.</string>
+    </Key>
+    <Value>
+      <string>The action only applies for the records that have status as Saved or Unverified by HR. Please select other record.</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>MESSAGE_EXIST_INFOR</string>
+    </Key>
+    <Value>
+      <string>MESSAGE_EXIST_INFOR</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>DANH SÁCH ĐƠN NGHỈ CÁ NHÂN</string>
+    </Key>
+    <Value>
+      <string>Danh sách đơn nghỉ cá nhân</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>CTRLLEAVEREGISTRATIONNEWEDIT</string>
+    </Key>
+    <Value>
+      <string>Đơn đăng ký nghỉ</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>THÔNG TIN PHÉP NĂM</string>
+    </Key>
+    <Value>
+      <string>Thông tin phép năm</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>PHÉP CHẾ ĐỘ</string>
+    </Key>
+    <Value>
+      <string>Phép chế độ</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>PHÉP CŨ CHUYỂN QUA</string>
+    </Key>
+    <Value>
+      <string>Phép cũ chuyển qua</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>PHÉP THEO THÁNG LÀM VIỆC</string>
+    </Key>
+    <Value>
+      <string>Phép theo tháng làm việc</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>PHÉP CŨ ĐÃ NGHỈ</string>
+    </Key>
+    <Value>
+      <string>Phép cũ đã nghỉ</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>PHÉP ĐÃ NGHỈ</string>
+    </Key>
+    <Value>
+      <string>Phép đã nghỉ</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>PHÉP CŨ CÒN HIỆU LỰC</string>
+    </Key>
+    <Value>
+      <string>Phép cũ còn hiệu lực</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>PHÉP ĐÃ ĐĂNG KÝ</string>
+    </Key>
+    <Value>
+      <string>Phép đã đăng ký</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>QUỸ PHÉP CÒN LẠI</string>
+    </Key>
+    <Value>
+      <string>Quỹ phép còn lại</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>THÔNG TIN ĐĂNG KÝ NGHỈ PHÉP</string>
+    </Key>
+    <Value>
+      <string>Thông tin đăng ký nghỉ phép</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>SỐ NGÀY ĐĂNG KÝ NGHỈ</string>
+    </Key>
+    <Value>
+      <string>Số ngày đăng ký nghỉ</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>THỜI GIAN BẮT ĐẦU NGHỈ</string>
+    </Key>
+    <Value>
+      <string>Thời gian bắt đầu nghỉ</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>LÝ DO NGHỈ PHÉP</string>
+    </Key>
+    <Value>
+      <string>Lý do nghỉ phép</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>BẠN CÓ MUỐN GỬI PHÊ DUYỆT?</string>
+    </Key>
+    <Value>
+      <string>Bạn có muốn gửi phê duyệt?</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>CTRLLEAVEREGISTRATIONBYMANAGER</string>
+    </Key>
+    <Value>
+      <string>Phê duyệt đơn nghỉ</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>SỐ NGÀY TRONG KẾ HOẠCH</string>
+    </Key>
+    <Value>
+      <string>Số ngày trong kế hoạch</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>SỐ NGÀY NGOÀI KẾ HOẠCH</string>
+    </Key>
+    <Value>
+      <string>Số ngày ngoài kế hoạch</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>NGƯỜI CẬP NHẬT</string>
+    </Key>
+    <Value>
+      <string>Người cập nhật</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>NGÀY CẬP NHẬT</string>
+    </Key>
+    <Value>
+      <string>Ngày cập nhật</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>CTRLCOMMON_REJECT</string>
+    </Key>
+    <Value>
+      <string>ctrlCommon_Reject</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>VUI LÒNG NHẬP LÝ DO KHÔNG PHÊ DUYỆT</string>
+    </Key>
+    <Value>
+      <string>Vui lòng nhập lý do không phê duyệt</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>BẠN PHẢI NHẬP LÝ DO KHÔNG PHÊ DUYỆT</string>
+    </Key>
+    <Value>
+      <string>Bạn phải nhập lý do không phê duyệt</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>PHÊ DUYỆT (QLTT)</string>
+    </Key>
+    <Value>
+      <string>Phê duyệt (QLTT)</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>KHÔNG PHÊ DUYỆT (QLTT)</string>
+    </Key>
+    <Value>
+      <string>Không phê duyệt (QLTT)</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>CTRLPORTALFAMILY_EDIT</string>
+    </Key>
+    <Value>
+      <string>Thông tin nhân thân</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>LÀ CHỦ HỘ</string>
+    </Key>
+    <Value>
+      <string>Là chủ hộ</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>THÔNG TIN CHỈNH SỬA</string>
+    </Key>
+    <Value>
+      <string>Thông tin chỉnh sửa</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>SỐ HỘ KHẨU</string>
+    </Key>
+    <Value>
+      <string>Số hộ khẩu</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>MÃ HỘ GIA ĐÌNH</string>
+    </Key>
+    <Value>
+      <string>Mã hộ gia đình</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>THÔN/ẤP</string>
+    </Key>
+    <Value>
+      <string>Thôn/Ấp</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>PHÊ DUYỆT ĐƠN NGHỈ</string>
+    </Key>
+    <Value>
+      <string>Phê duyệt đơn nghỉ</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>BẠN PHẢI CHỌN TỪ NGÀY</string>
+    </Key>
+    <Value>
+      <string>Bạn phải chọn Từ ngày</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>BẠN PHẢI CHỌN ĐẾN NGÀY</string>
+    </Key>
+    <Value>
+      <string>Bạn phải chọn Đến ngày</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>ĐƠN ĐĂNG KÝ NGHỈ</string>
+    </Key>
+    <Value>
+      <string>Đơn đăng ký nghỉ</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>NGÀY ĐĂNG KÝ NGHỈ ĐÃ BỊ TRÙNG</string>
+    </Key>
+    <Value>
+      <string>Ngày đăng ký nghỉ đã bị trùng</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>CTRLINFOCERTIFICATE</string>
+    </Key>
+    <Value>
+      <string>Quản lý chứng chỉ</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>BẠN PHẢI CHỌN TỪ THÁNG</string>
+    </Key>
+    <Value>
+      <string>Bạn phải chọn từ tháng</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>BẠN PHẢI CHỌN TÊN TRƯỜNG</string>
+    </Key>
+    <Value>
+      <string>Bạn phải chọn tên trường</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>BẠN PHẢI CHỌN NGÀY HIỆU LỰC</string>
+    </Key>
+    <Value>
+      <string>Bạn phải chọn ngày hiệu lực</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>QUẢN LÝ CHỨNG CHỈ</string>
+    </Key>
+    <Value>
+      <string>Quản lý chứng chỉ</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>THỜI GIAN ĐÀO TẠO TỪ THÁNG</string>
+    </Key>
+    <Value>
+      <string>Thời gian đào tạo từ tháng</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>MÃ SỐ CHỨNG CHỈ</string>
+    </Key>
+    <Value>
+      <string>Mã số chứng chỉ</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>HIỆU LỰC CHỨNG CHỈ TỪ</string>
+    </Key>
+    <Value>
+      <string>Hiệu lực chứng chỉ từ</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>HIỆU LỰC CHỨNG CHỈ ĐẾN</string>
+    </Key>
+    <Value>
+      <string>Hiệu lực chứng chỉ đến</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>XẾP LOẠI TỐT NGHIỆP</string>
+    </Key>
+    <Value>
+      <string>Xếp loại tốt nghiệp</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>CTRLPORTALEMPPROFILE</string>
+    </Key>
+    <Value>
+      <string>Hồ sơ nhân sự</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>HỒ SƠ NHÂN SỰ</string>
+    </Key>
+    <Value>
+      <string>Hồ sơ nhân sự</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>TÌNH TRẠNG NHÂN VIÊN</string>
+    </Key>
+    <Value>
+      <string>Tình trạng nhân viên</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>MÃ CHẤM CÔNG</string>
+    </Key>
+    <Value>
+      <string>Mã chấm công</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>ĐỐI TƯỢNG NHÂN VIÊN</string>
+    </Key>
+    <Value>
+      <string>Loại hình lao động</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>NGÀY THỬ VIỆC</string>
+    </Key>
+    <Value>
+      <string>Ngày thử việc</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>NGÀY VÀO CHÍNH THỨC</string>
+    </Key>
+    <Value>
+      <string>Ngày vào chính thức</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>HUYỆN NƠI SINH</string>
+    </Key>
+    <Value>
+      <string>Huyện nơi sinh</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>XÃ NƠI SINH</string>
+    </Key>
+    <Value>
+      <string>Xã nơi sinh</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>ĐỐI TƯỢNG ĐÓNG BẢO HIỂM</string>
+    </Key>
+    <Value>
+      <string>Đối tượng đóng bảo hiểm</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>GHI CHÚ THAY ĐỔI CMND</string>
+    </Key>
+    <Value>
+      <string>Ghi chú thay đổi CMND</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>THÔN/ẤP/KHU PHỐ</string>
+    </Key>
+    <Value>
+      <string>Thôn/Ấp/Khu phố</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>THÔNG TIN LIÊN HỆ KHẨN CẤP</string>
+    </Key>
+    <Value>
+      <string>Thông tin liên hệ khẩn cấp</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>THÔNG TIN THUẾ VÀ TÀI KHOẢN NGÂN HÀNG</string>
+    </Key>
+    <Value>
+      <string>Thông tin thuế và tài khoản ngân hàng</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>THÔNG TIN NHÂN THÂN</string>
+    </Key>
+    <Value>
+      <string>Thông tin nhân thân</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>CTRLPORTALWORKINGBEFORE</string>
+    </Key>
+    <Value>
+      <string>Quá trình công tác trước đây</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>CTRLPORTALCONTRACT</string>
+    </Key>
+    <Value>
+      <string>Quá trình hợp đồng lao động</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>QUÁ TRÌNH HỢP ĐỒNG LAO ĐỘNG</string>
+    </Key>
+    <Value>
+      <string>Quá trình hợp đồng lao động</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>CTRLPORTALCONTRACTAPPENDIX</string>
+    </Key>
+    <Value>
+      <string>Quá trình ký phụ lục hợp đồng</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>CTRLPORTALSALARY</string>
+    </Key>
+    <Value>
+      <string>Quá trình thay đổi lương</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>KHOẢN BỔ SUNG</string>
+    </Key>
+    <Value>
+      <string>Khoản bổ sung</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>QUÁ TRÌNH THAY ĐỔI LƯƠNG - PHỤ CẤP</string>
+    </Key>
+    <Value>
+      <string>Quá trình thay đổi lương - phụ cấp</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>CTRLPORTALCOMMEND</string>
+    </Key>
+    <Value>
+      <string>Quá trình khen thưởng</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>CTRLPORTALDISCIPLINE</string>
+    </Key>
+    <Value>
+      <string>Quá trình kỷ luật</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>CTRLPORTALCONCURRENTLY</string>
+    </Key>
+    <Value>
+      <string>Quá trình kiêm nhiệm</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>QUÁ TRÌNH KIÊM NHIỆM PORTAL</string>
+    </Key>
+    <Value>
+      <string>Quá trình kiêm nhiệm portal</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>NGƯỜI PHÊ DUYỆT KẾ TIẾP</string>
+    </Key>
+    <Value>
+      <string>Người phê duyệt kế tiếp</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>NGƯỜI CẬP NHẬT GẦN NHẤT</string>
+    </Key>
+    <Value>
+      <string>Người cập nhật gần nhất</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>NGÀY CẬP NHẬT GẦN NHẤT</string>
+    </Key>
+    <Value>
+      <string>Ngày cập nhật gần nhất</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>CTRLPA_PORTALSALARY</string>
+    </Key>
+    <Value>
+      <string>Phiếu lương</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>PHIẾU LƯƠNG</string>
+    </Key>
+    <Value>
+      <string>Phiếu lương</string>
     </Value>
   </Item>
 </SerializableDictionaryOfStringString>

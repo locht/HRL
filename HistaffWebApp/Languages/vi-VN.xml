@@ -2131,7 +2131,7 @@
       <string>ĐƠN VỊ/PHÒNG BAN</string>
     </Key>
     <Value>
-      <string>Đơn vị/Phòng ban</string>
+      <string>Ban/Phòng</string>
     </Value>
   </Item>
   <Item>
@@ -3619,7 +3619,7 @@
       <string>ĐƠN VỊ</string>
     </Key>
     <Value>
-      <string>Đơn vị</string>
+      <string>Bộ phận</string>
     </Value>
   </Item>
   <Item>
@@ -5091,7 +5091,7 @@
       <string>NGÀY VÀO CÔNG TY</string>
     </Key>
     <Value>
-      <string>Ngày vào công ty</string>
+      <string>Ngày ký HĐ chính thức</string>
     </Value>
   </Item>
   <Item>
@@ -22553,7 +22553,7 @@ Xin cám ơn!
       <string>CTRLINSLISTPARAMINSURANCE</string>
     </Key>
     <Value>
-      <string>Quy định mức đóng bảo hiểm</string>
+      <string>Quy định tỷ lệ đóng bảo hiểm</string>
     </Value>
   </Item>
   <Item>
@@ -42467,7 +42467,7 @@ Xin cám ơn!
       <string>NGÀY VÀO LÀM/THỬ VIỆC</string>
     </Key>
     <Value>
-      <string>Ngày vào làm/thử việc</string>
+      <string>Ngày nhận việc</string>
     </Value>
   </Item>
   <Item>
@@ -42579,7 +42579,7 @@ Xin cám ơn!
       <string>ĐỐI TƯỢNG LAO ĐỘNG</string>
     </Key>
     <Value>
-      <string>Đối tượng lao động</string>
+      <string>Loại hình lao động</string>
     </Value>
   </Item>
   <Item>
@@ -43123,7 +43123,7 @@ Xin cám ơn!
       <string>BẠN PHẢI CHỌN ĐỐI TƯỢNG LAO ĐỘNG.</string>
     </Key>
     <Value>
-      <string>Bạn phải chọn đối tượng lao động.</string>
+      <string>Bạn phải chọn Loại hình lao động</string>
     </Value>
   </Item>
   <Item>
@@ -43724,6 +43724,278 @@ Xin cám ơn!
     </Key>
     <Value>
       <string>Tổng số tiền công nợ phải thu</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>LOẠI TỔ CHỨC</string>
+    </Key>
+    <Value>
+      <string>Loại tổ chức</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>MÃ CHỨC DANH *</string>
+    </Key>
+    <Value>
+      <string>Mã chức danh *</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>ĐỐI TƯỢNG ĐỘC HẠI</string>
+    </Key>
+    <Value>
+      <string>Đối tượng độc hại</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>TÍNH OVT</string>
+    </Key>
+    <Value>
+      <string>Tính phụ cấp làm thêm giờ</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>TÀI LIỆU ĐÍNH KÈM</string>
+    </Key>
+    <Value>
+      <string>Tài liệu đính kèm</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>TỔNG SỐ GIỜ LÀM THÊM HỆ SỐ 1.0</string>
+    </Key>
+    <Value>
+      <string>Tổng số giờ làm thêm hệ số 1.0</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>TỔNG SỐ GIỜ LÀM THÊM HỆ SỐ 1.8</string>
+    </Key>
+    <Value>
+      <string>Tổng số giờ làm thêm hệ số 1.8</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>TỔNG SỐ GIỜ LÀM THÊM HỆ SỐ 2.1</string>
+    </Key>
+    <Value>
+      <string>Tổng số giờ làm thêm hệ số 2.1</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>TỔNG SỐ GIỜ LÀM THÊM CHUYỂN NGHỈ BÙ HỆ SỐ 1.0</string>
+    </Key>
+    <Value>
+      <string>Tổng số giờ làm thêm chuyển nghỉ bù hệ số 1.0</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>TỔNG SỐ GIỜ LÀM THÊM CHUYỂN NGHỈ BÙ HỆ SỐ 1.5</string>
+    </Key>
+    <Value>
+      <string>Tổng số giờ làm thêm chuyển nghỉ bù hệ số 1.5</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>TỔNG SỐ GIỜ LÀM THÊM CHUYỂN NGHỈ BÙ HỆ SỐ 1.8</string>
+    </Key>
+    <Value>
+      <string>Tổng số giờ làm thêm chuyển nghỉ bù hệ số 1.8</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>TỔNG SỐ GIỜ LÀM THÊM CHUYỂN NGHỈ BÙ HỆ SỐ 2</string>
+    </Key>
+    <Value>
+      <string>Tổng số giờ làm thêm chuyển nghỉ bù hệ số 2</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>TỔNG SỐ GIỜ LÀM THÊM CHUYỂN NGHỈ BÙ HỆ SỐ 2.1</string>
+    </Key>
+    <Value>
+      <string>Tổng số giờ làm thêm chuyển nghỉ bù hệ số 2.1</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>TỔNG SỐ GIỜ LÀM THÊM CHUYỂN NGHỈ BÙ HỆ SỐ 2.7</string>
+    </Key>
+    <Value>
+      <string>Tổng số giờ làm thêm chuyển nghỉ bù hệ số 2.7</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>TỔNG SỐ GIỜ LÀM THÊM CHUYỂN NGHỈ BÙ HỆ SỐ 3</string>
+    </Key>
+    <Value>
+      <string>Tổng số giờ làm thêm chuyển nghỉ bù hệ số 3</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>TỔNG SỐ GIỜ LÀM THÊM CHUYỂN NGHỈ BÙ HỆ SỐ 3.9</string>
+    </Key>
+    <Value>
+      <string>Tổng số giờ làm thêm chuyển nghỉ bù hệ số 3.9</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>TỔNG HỢP CÔNG LÀM THÊM GIỜ</string>
+    </Key>
+    <Value>
+      <string>Tổng hợp công làm thêm giờ</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>QUẢN LÝ CHỨC NĂNG</string>
+    </Key>
+    <Value>
+      <string>Quản lý chức năng</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>BẠN PHẢI CHỌN ĐỐI TƯỢNG LAO ĐỘNG</string>
+    </Key>
+    <Value>
+      <string>Bạn phải chọn Loại hình lao động</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>BẠN PHẢI ĐÍNH KÈM TẬP TIN KHI PHÊ DUYỆT</string>
+    </Key>
+    <Value>
+      <string>Bạn phải đính kèm tập tin khi phê duyệt</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>BẠN PHẢI NHẬP TỶ LỆ CÔNG TY ĐÓNG BH TNLD, BNN.</string>
+    </Key>
+    <Value>
+      <string>Bạn phải nhập tỷ lệ công ty đóng BH TNLD, BNN.</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>BẠN PHẢI NHẬP TỶ LỆ NHÂN VIÊN ĐÓNG BH TNLD, BNN.</string>
+    </Key>
+    <Value>
+      <string>Bạn phải nhập tỷ lệ nhân viên đóng BH TNLD, BNN.</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>NGÀY CHỐT SỔ BHXH</string>
+    </Key>
+    <Value>
+      <string>Ngày chốt sổ BHXH</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>NGÀY CHỐT SỔ BHYT</string>
+    </Key>
+    <Value>
+      <string>Ngày chốt sổ BHYT</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>MỨC TRẦN BH TNLD,BNN</string>
+    </Key>
+    <Value>
+      <string>Mức trần BH TNLD,BNN</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>% NHÂN VIÊN BH TNLD, BNN</string>
+    </Key>
+    <Value>
+      <string>% Nhân viên BH TNLD, BNN</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>% CÔNG TY BH TNLD, BNN</string>
+    </Key>
+    <Value>
+      <string>% Công ty BH TNLD, BNN</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>MỨC TRẦN BHXH-NN</string>
+    </Key>
+    <Value>
+      <string>Mức trần BHXH-NN</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>% NHÂN VIÊN BHXH-NN</string>
+    </Key>
+    <Value>
+      <string>% Nhân viên BHXH-NN</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>% CÔNG TY BHXH-NN</string>
+    </Key>
+    <Value>
+      <string>% Công ty BHXH-NN</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>BH TNLD,BNN</string>
+    </Key>
+    <Value>
+      <string>BH TNLD,BNN</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>BH TNLD, BNN</string>
+    </Key>
+    <Value>
+      <string>BH TNLD, BNN</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>BHXH-NN</string>
+    </Key>
+    <Value>
+      <string>BHXH-NN</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>PHÉP BÙ NĂM TRƯỚC CHUYỂN SANG</string>
+    </Key>
+    <Value>
+      <string>Phép bù năm trước chuyển sang</string>
     </Value>
   </Item>
 </SerializableDictionaryOfStringString>
