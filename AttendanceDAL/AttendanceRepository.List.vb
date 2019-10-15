@@ -2686,6 +2686,7 @@ Partial Public Class AttendanceRepository
                                        .TYPE_EXCHANGE = p.TYPE_EXCHANGE,
                                        .TYPE_EXCHANGE_NAME = ot.NAME_VN,
                                        .NUMBER_DATE = p.NUMBER_DATE,
+                                       .STT = p.STT,
                                        .FROM_MINUTE = p.FROM_MINUTE,
                                        .TO_MINUTE = p.TO_MINUTE,
                                        .ACTFLG = If(p.ACTFLG = "A", "Áp dụng", "Ngừng Áp dụng"),
@@ -2827,10 +2828,16 @@ Partial Public Class AttendanceRepository
                       .ORG_ID = p.ORG_ID
                     }).ToList
             For Each line In objlst
-                If ((from_minute = line.FROM_MINUTE Or from_minute = line.TO_MINUTE) And EFFECT_DATE = line.EFFECT_DATE And OBJECT_ATTENDACE = line.OBJECT_ATTENDACE And TYPE_EXCHANGE = line.TYPE_EXCHANGE And ORG_ID = line.ORG_ID) Then
+                If (((line.FROM_MINUTE < from_minute And line.TO_MINUTE > from_minute) _
+                     Or (line.FROM_MINUTE < to_minute And line.TO_MINUTE > to_minute)) And
+                    EFFECT_DATE = line.EFFECT_DATE And OBJECT_ATTENDACE = line.OBJECT_ATTENDACE _
+                    And TYPE_EXCHANGE = line.TYPE_EXCHANGE And ORG_ID = line.ORG_ID) Then
                     Return 1
                 End If
-                If ((to_minute = line.FROM_MINUTE Or to_minute = line.TO_MINUTE) And EFFECT_DATE = line.EFFECT_DATE And OBJECT_ATTENDACE = line.OBJECT_ATTENDACE And TYPE_EXCHANGE = line.TYPE_EXCHANGE And ORG_ID = line.ORG_ID) Then
+                If (((line.FROM_MINUTE < from_minute And line.TO_MINUTE > from_minute) _
+                     Or (line.FROM_MINUTE < to_minute And line.TO_MINUTE > to_minute)) And
+                    EFFECT_DATE = line.EFFECT_DATE And OBJECT_ATTENDACE = line.OBJECT_ATTENDACE And
+                    TYPE_EXCHANGE = line.TYPE_EXCHANGE And ORG_ID = line.ORG_ID) Then
                     Return 1
                 End If
             Next
