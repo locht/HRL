@@ -73,4 +73,7 @@
     'Dinh kem file
     Public Property ATTACH_FILE As String
     Public Property FILENAME As String
+    'ngay thanh ly,tap tin dinh kem
+    Public Property LIQUIDATION_DATE As Date?
+    Public Property REMARK_LIQUIDATION As String
 End Class

@@ -3,55 +3,55 @@
 <%@ Import Namespace="Common" %>
 <%@ Import Namespace="Framework.UI.Utilities" %>
 <link href="/Styles/StyleCustom.css" rel="stylesheet" type="text/css" />
-<tlk:RadSplitter ID="RadSplitter1" runat="server" Width="100%" Height="100%">
-    <tlk:RadPane ID="LeftPane" runat="server" MinWidth="200" Width="250px" Scrolling="None">
+<tlk:radsplitter id="RadSplitter1" runat="server" width="100%" height="100%">
+    <tlk:radpane id="LeftPane" runat="server" minwidth="200" width="250px" scrolling="None">
         <Common:ctrlOrganization ID="ctrlOrg" runat="server" />
-    </tlk:RadPane>
-    <tlk:RadSplitBar ID="RadSplitBar1" runat="server" CollapseMode="Forward">
-    </tlk:RadSplitBar>
-    <tlk:RadPane ID="MainPane" runat="server" Scrolling="None">
-        <tlk:RadSplitter ID="RadSplitter3" runat="server" Width="100%" Height="100%" Orientation="Horizontal">
-            <tlk:RadPane ID="RadPane3" runat="server" Height="35px" Scrolling="None">
-                <tlk:RadToolBar ID="tbarContracts" runat="server" OnClientButtonClicking="clientButtonClicking" />
-            </tlk:RadPane>
-            <tlk:RadPane ID="RadPane1" runat="server" Height="38px" Scrolling="None">
+    </tlk:radpane>
+    <tlk:radsplitbar id="RadSplitBar1" runat="server" collapsemode="Forward">
+    </tlk:radsplitbar>
+    <tlk:radpane id="MainPane" runat="server" scrolling="None">
+        <tlk:radsplitter id="RadSplitter3" runat="server" width="100%" height="100%" orientation="Horizontal">
+            <tlk:radpane id="RadPane3" runat="server" height="35px" scrolling="None">
+                <tlk:radtoolbar id="tbarContracts" runat="server" onclientbuttonclicking="clientButtonClicking" />
+            </tlk:radpane>
+            <tlk:radpane id="RadPane1" runat="server" height="38px" scrolling="None">
                 <table class="table-form">
                     <tr>
                         <td class="lb">
                             <asp:Label ID="lbFromDate" runat="server" Text="Ngày bắt đầu từ"></asp:Label>
                         </td>
                         <td>
-                            <tlk:RadDatePicker ID="rdFromDate" runat="server">
-                            </tlk:RadDatePicker>
+                            <tlk:raddatepicker id="rdFromDate" runat="server">
+                            </tlk:raddatepicker>
                         </td>
                         <td class="lb">
-                           <asp:Label ID="lbToDate" runat="server" Text="Đến"></asp:Label>
+                            <asp:Label ID="lbToDate" runat="server" Text="Đến"></asp:Label>
                         </td>
                         <td>
-                            <tlk:RadDatePicker ID="rdToDate" runat="server">
-                            </tlk:RadDatePicker>
+                            <tlk:raddatepicker id="rdToDate" runat="server">
+                            </tlk:raddatepicker>
                         </td>
                         <td>
                             <asp:CheckBox ID="chkTerminate" runat="server" Text="Liệt kê cả nhân viên nghỉ việc" />
                         </td>
                         <td>
-                            <tlk:RadButton ID="btnSearch" runat="server" Text="Tìm" SkinID="ButtonFind">
-                            </tlk:RadButton>
+                            <tlk:radbutton id="btnSearch" runat="server" text="Tìm" skinid="ButtonFind">
+                            </tlk:radbutton>
                         </td>
                     </tr>
                 </table>
                 <asp:PlaceHolder ID="ViewPlaceHolder" runat="server"></asp:PlaceHolder>
-            </tlk:RadPane>
-            <tlk:RadPane ID="RadPane2" runat="server" Scrolling="None">
-                <tlk:RadGrid PageSize="50" ID="rgContract" runat="server" Height="100%" AllowPaging="True"
-                    AllowSorting="True" AllowMultiRowSelection="true">
-                    <ClientSettings EnableRowHoverStyle="true">
+            </tlk:radpane>
+            <tlk:radpane id="RadPane2" runat="server" scrolling="None">
+                <tlk:radgrid pagesize="50" id="rgContract" runat="server" height="100%" allowpaging="True"
+                    allowsorting="True" allowmultirowselection="true">
+                    <clientsettings enablerowhoverstyle="true">
                         <Selecting AllowRowSelect="true" />
                         <ClientEvents OnRowDblClick="gridRowDblClick" />
                           <Scrolling AllowScroll="true" UseStaticHeaders="true" FrozenColumnsCount="3"/>
-                    </ClientSettings>
-                    <MasterTableView DataKeyNames="ID,ORG_ID,EMPLOYEE_ID,EMPLOYEE_CODE,STATUS_CODE,STATUS_ID,CONTRACTTYPE_ID"
-                        ClientDataKeyNames="ID,ORG_ID,EMPLOYEE_ID,STATUS_CODE,CONTRACTTYPE_CODE,STATUS_ID,CONTRACTTYPE_ID,EMPLOYEE_CODE">
+                    </clientsettings>
+                    <mastertableview datakeynames="ID,ORG_ID,EMPLOYEE_ID,EMPLOYEE_CODE,STATUS_CODE,STATUS_ID,CONTRACTTYPE_ID"
+                        clientdatakeynames="ID,ORG_ID,EMPLOYEE_ID,STATUS_CODE,CONTRACTTYPE_CODE,STATUS_ID,CONTRACTTYPE_ID,EMPLOYEE_CODE">
                         <Columns>
                             <%--<tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderStyle-HorizontalAlign="Center"
                                 HeaderStyle-Width="30px" ItemStyle-HorizontalAlign="Center">
@@ -102,22 +102,22 @@
                             <tlk:GridBoundColumn HeaderText="ORG_DESC" DataField="ORG_DESC" UniqueName="ORG_DESC"
                                 SortExpression="ORG_DESC" Visible="false" />--%>
                         </Columns>
-                    </MasterTableView>
-                    <HeaderStyle Width="120px" />
-                </tlk:RadGrid>
-            </tlk:RadPane>         
-        </tlk:RadSplitter>
-    </tlk:RadPane>
-</tlk:RadSplitter>
-<tlk:RadWindowManager ID="RadWindowManager1" runat="server">
-    <Windows>
+                    </mastertableview>
+                    <headerstyle width="120px" />
+                </tlk:radgrid>
+            </tlk:radpane>
+        </tlk:radsplitter>
+    </tlk:radpane>
+</tlk:radsplitter>
+<tlk:radwindowmanager id="RadWindowManager1" runat="server">
+    <windows>
         <tlk:RadWindow runat="server" ID="rwPopup" VisibleStatusbar="false" Width="950px"
             OnClientClose="popupclose" Height="600px" EnableShadow="true" Behaviors="Close, Maximize, Move"
             Modal="true" ShowContentDuringLoad="false" Title="<%$ Translate: Tạo hợp đồng %>">
         </tlk:RadWindow>
-    </Windows>
-</tlk:RadWindowManager>
-<tlk:RadCodeBlock ID="RadCodeBlock1" runat="server">
+    </windows>
+</tlk:radwindowmanager>
+<tlk:radcodeblock id="RadCodeBlock1" runat="server">
     <script type="text/javascript">
         function OpenNew() {
             var extented = '';
@@ -153,11 +153,24 @@
             oWindow.center(); */
             return 0;
         }
-
+        function OPENTHANHLY() {
+            var grid = $find('<%= rgContract.ClientID%>')
+            var emp_id = $find('<%= rgContract.ClientID%>').get_masterTableView().get_selectedItems()[0].getDataKeyValue('EMPLOYEE_ID');
+            var idCT = $find('<%= rgContract.ClientID%>').get_masterTableView().get_selectedItems()[0].getDataKeyValue('ID');
+            var oWindow = radopen('Dialog.aspx?mid=Profile&fid=ctrlContract_Liquidate&group=Business&noscroll=1&empid=' + emp_id + '&idCT=' + idCT, "rwPopup");
+            var pos = $("html").offset();
+            oWindow.moveTo(pos.left, pos.top);
+            oWindow.setSize(800, 300);
+            oWindow.center();
+        }
         var enableAjax = true;
         function clientButtonClicking(sender, args) {
             if (args.get_item().get_commandName() == 'CREATE') {
                 OpenNew();
+                args.set_cancel(true);
+            }
+            if (args.get_item().get_commandName() == 'REFRESH') {
+                OPENTHANHLY();
                 args.set_cancel(true);
             }
             if (args.get_item().get_commandName() == "PRINT") {
@@ -203,6 +216,7 @@
             OpenEditContract();
         }
 
+
         function onRequestStart(sender, eventArgs) {
             eventArgs.set_enableAjax(enableAjax);
             enableAjax = true;
@@ -223,6 +237,7 @@
 
 
         function btnPrintSupportClick(sender, args) {
+            alert(1);
             var bCheck = $find('<%= rgContract.ClientID %>').get_masterTableView().get_selectedItems().length;
             if (bCheck == 0) {
                 var m = '<%= Translate(CommonMessage.MESSAGE_NOT_SELECT_ROW) %>';
@@ -231,15 +246,24 @@
                 args.set_cancel(true);
                 return;
             }
-//            if (bCheck > 1) {
-//                var m = '<%= Translate(CommonMessage.MESSAGE_NOT_SELECT_MULTI_ROW) %>';
-//                var n = noty({ text: m, dismissQueue: true, type: 'warning' });
-//                setTimeout(function () { $.noty.close(n.options.id); }, 5000);
-//                args.set_cancel(true);
-//                return;
-//            }
+            //            if (bCheck > 1) {
+            //                var m = '<%= Translate(CommonMessage.MESSAGE_NOT_SELECT_MULTI_ROW) %>';
+            //                var n = noty({ text: m, dismissQueue: true, type: 'warning' });
+            //                setTimeout(function () { $.noty.close(n.options.id); }, 5000);
+            //                args.set_cancel(true);
+            //                return;
+            //            }
             enableAjax = false;
         }
+        //        function Liquidation_Click() {
+        //            var grid = $find('<%= rgContract.ClientID%>')
+        //            var emp_id = $find('<%= rgContract.ClientID%>').get_masterTableView().get_selectedItems()[0].getDataKeyValue('EMPLOYEE_ID');
+        //            var idCT = $find('<%= rgContract.ClientID%>').get_masterTableView().get_selectedItems()[0].getDataKeyValue('ID');
+        //            var oWindow = radopen('Dialog.aspx?mid=Profile&fid=ctrlContract_Liquidate&group=Business&noscroll=1&empid=' + emp_id + '&idCT=' + idCT, "rwPopup");
+        //            var pos = $("html").offset();
+        //            oWindow.moveTo(pos.left, pos.top);
+        //            oWindow.setSize($(window).width(), $(window).height());
+        //        }
     </script>
-</tlk:RadCodeBlock>
+</tlk:radcodeblock>
 <Common:ctrlMessageBox ID="ctrlMessageBox" runat="server" />

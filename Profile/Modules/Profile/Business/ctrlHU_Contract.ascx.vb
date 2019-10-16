@@ -201,7 +201,8 @@ Public Class ctrlHU_Contract
                                        ToolbarItem.Export,
                                        ToolbarItem.Delete,
                                        ToolbarItem.Print,
-                                       ToolbarItem.Next)
+                                       ToolbarItem.Next,
+                                       ToolbarItem.Refresh)
             Me.MainToolBar.Items.Add(Common.Common.CreateToolbarItem(CommonMessage.TOOLBARITEM_CREATE_BATCH,
                                                                   ToolbarIcons.Add,
                                                                   ToolbarAuthorize.None,
@@ -210,6 +211,8 @@ Public Class ctrlHU_Contract
             CType(MainToolBar.Items(5), RadToolBarButton).Text = "In Offer Letter"
 
             CType(MainToolBar.Items(5), RadToolBarButton).ImageUrl = CType(MainToolBar.Items(4), RadToolBarButton).ImageUrl
+            CType(MainToolBar.Items(6), RadToolBarButton).Text = Translate("Thanh lý hợp đồng")
+            CType(MainToolBar.Items(6), RadToolBarButton).ImageUrl = CType(MainToolBar.Items(1), RadToolBarButton).ImageUrl
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
             Throw ex
@@ -275,6 +278,7 @@ Public Class ctrlHU_Contract
     Protected Sub OnToolbar_Command(ByVal sender As Object, ByVal e As RadToolBarEventArgs) Handles Me.OnMainToolbarClick
         Dim objOrgFunction As New OrganizationDTO
         Dim sError As String = ""
+        Dim status As Integer
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
         Try
             Dim startTime As DateTime = DateTime.UtcNow
@@ -561,6 +565,26 @@ Public Class ctrlHU_Contract
                     End Using
                 Case CommonMessage.TOOLBARITEM_CREATE_BATCH
                     BatchApproveContract()
+                Case CommonMessage.TOOLBARITEM_REFRESH
+                    If rgContract.SelectedItems.Count = 0 Then
+                        ShowMessage(Translate(CommonMessage.MESSAGE_NOT_SELECT_ROW), NotifyType.Warning)
+                        Exit Sub
+                    End If
+                    If rgContract.SelectedItems.Count > 1 Then
+                        ShowMessage(Translate(CommonMessage.MESSAGE_NOT_SELECT_MULTI_ROW), NotifyType.Warning)
+                        Exit Sub
+                    End If
+                    Dim item As GridDataItem = rgContract.SelectedItems(0)
+                    status = If(item.GetDataKeyValue("STATUS_ID").ToString() = "", 0, Decimal.Parse(item.GetDataKeyValue("STATUS_ID").ToString()))
+                    If status <> 447 Then
+                        ShowMessage("Hợp đồng chưa phê duyệt, vui lòng kiểm tra lại", NotifyType.Warning)
+                        Exit Sub
+                    End If
+                    'ctrlMessageBox.MessageText = "Bạn thực sự muốn thanh lý hợp đồng này ?"
+                    'ctrlMessageBox.MessageTitle = item.GetDataKeyValue("EMPLOYEE_CODE").ToString
+                    'ctrlMessageBox.ActionName = CommonMessage.TOOLBARITEM_REFRESH
+                    'ctrlMessageBox.DataBind()
+                    'ctrlMessageBox.Show()
             End Select
 
             'UpdateControlState()
@@ -587,6 +611,15 @@ Public Class ctrlHU_Contract
             If e.ActionName = CommonMessage.TOOLBARITEM_DELETE And e.ButtonID = MessageBoxButtonType.ButtonYes Then
                 CurrentState = CommonMessage.STATE_DELETE
                 UpdateControlState()
+            End If
+            ' Mở form thanh lý hợp đồng
+            If e.ActionName = CommonMessage.TOOLBARITEM_REFRESH And e.ButtonID = MessageBoxButtonType.ButtonYes Then
+                Dim str As String = "Liquidation_Click();"
+                ScriptManager.RegisterStartupScript(Me.Page, Me.Page.GetType, "clientButtonClicking", str, True)
+                'Dim item As GridDataItem = rgContract.SelectedItems(0)
+                'Dim employeeid As String = item.GetDataKeyValue("EMPLOYEE_ID").ToString
+                'Dim id As String = item.GetDataKeyValue("ID").ToString
+                'Response.Redirect("Dialog.aspx?mid=Profile&fid=ctrlContract_Liquidate&group=Business&noscroll=1&empid=" + employeeid + "&idCT=" + id)
             End If
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception

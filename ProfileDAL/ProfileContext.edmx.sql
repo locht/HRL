@@ -1,7 +1,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for Oracle database
 -- --------------------------------------------------
--- Date Created: 10/10/2019 3:14:42 PM
+-- Date Created: 10/16/2019 9:21:57 AM
 -- Generated from EDMX file: D:\MyProject\TNG\TNG\ProfileDAL\ProfileContext.edmx
 -- --------------------------------------------------
 
@@ -767,7 +767,9 @@ CREATE TABLE "dbo"."HU_CONTRACT" (
    "SIGNER_NAME2" NCLOB NULL,
    "SIGNER_TITLE2" NCLOB NULL,
    "ATTACH_FILE" NVARCHAR2(1023) NULL,
-   "FILENAME" NVARCHAR2(500) NULL
+   "FILENAME" NVARCHAR2(500) NULL,
+   "LIQUIDATION_DATE" DATE NULL,
+   "REMARK_LIQUIDATION" NCLOB NULL
 );
 
 -- Creating table 'HU_FAMILY'
