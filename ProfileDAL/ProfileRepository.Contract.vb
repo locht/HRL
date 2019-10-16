@@ -998,6 +998,8 @@ Partial Class ProfileRepository
                                             .EMPLOYEE_CODE = p.e.EMPLOYEE_CODE,
                                             .EMPLOYEE_NAME = p.e.FULLNAME_VN,
                                             .ORG_ID = p.e.ID,
+                                            .LIQUIDATION_DATE = p.p.LIQUIDATION_DATE,
+                                            .REMARK_LIQUIDATION = p.p.REMARK_LIQUIDATION,
                                             .ORG_NAME = p.o.NAME_VN,
                                             .ORG_DESC = p.o.DESCRIPTION_PATH,
                                             .TITLE_NAME = p.t.NAME_VN,
