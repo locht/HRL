@@ -367,6 +367,16 @@ Partial Public Class ProfileBusinessRepository
 
     End Function
 #End Region
+    Public Function UpdateDateToContract(ByVal id As Decimal, ByVal day As Date, ByVal remark As String) As Boolean
+        Using rep As New ProfileBusinessClient
+            Try
+                Return rep.UpdateDateToContract(id, day, remark)
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+    End Function
     Public Function GetContract(ByVal _filter As ContractDTO, ByVal PageIndex As Integer,
                                 ByVal PageSize As Integer,
                                 ByRef Total As Integer, ByVal _param As ParamDTO,

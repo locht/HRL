@@ -18,7 +18,7 @@ Imports System.Runtime.Serialization
 Imports System.Xml.Serialization
 
 
-<Assembly: EdmSchemaAttribute("abe3f7c9-4ebc-4302-9c4a-7d1f01a00e18")>
+<Assembly: EdmSchemaAttribute("88213d18-1670-423e-8a0c-e5bc306b10a6")>
 #Region "EDM Relationship Metadata"
 <Assembly: EdmRelationshipAttribute("ProfileModel", "FK_HU_NAT_HU_PRO", "HU_NATION", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_NATION), "HU_PROVINCE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_PROVINCE), True)>
 <Assembly: EdmRelationshipAttribute("ProfileModel", "FK_HU_PRO_HU_DIS", "HU_PROVINCE", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_PROVINCE), "HU_DISTRICT", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_DISTRICT), True)>
@@ -18456,6 +18456,56 @@ Public Partial Class HU_CONTRACT
     End Sub
 
     Private Partial Sub OnFILENAMEChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property LIQUIDATION_DATE() As Nullable(Of Global.System.DateTime)
+        Get
+            Return _LIQUIDATION_DATE
+        End Get
+        Set
+            OnLIQUIDATION_DATEChanging(value)
+            ReportPropertyChanging("LIQUIDATION_DATE")
+            _LIQUIDATION_DATE = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("LIQUIDATION_DATE")
+            OnLIQUIDATION_DATEChanged()
+        End Set
+    End Property
+
+    Private _LIQUIDATION_DATE As Nullable(Of Global.System.DateTime)
+    Private Partial Sub OnLIQUIDATION_DATEChanging(value As Nullable(Of Global.System.DateTime))
+    End Sub
+
+    Private Partial Sub OnLIQUIDATION_DATEChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property REMARK_LIQUIDATION() As Global.System.String
+        Get
+            Return _REMARK_LIQUIDATION
+        End Get
+        Set
+            OnREMARK_LIQUIDATIONChanging(value)
+            ReportPropertyChanging("REMARK_LIQUIDATION")
+            _REMARK_LIQUIDATION = StructuralObject.SetValidValue(value, true)
+            ReportPropertyChanged("REMARK_LIQUIDATION")
+            OnREMARK_LIQUIDATIONChanged()
+        End Set
+    End Property
+
+    Private _REMARK_LIQUIDATION As Global.System.String
+    Private Partial Sub OnREMARK_LIQUIDATIONChanging(value As Global.System.String)
+    End Sub
+
+    Private Partial Sub OnREMARK_LIQUIDATIONChanged()
     End Sub
 
     #End Region

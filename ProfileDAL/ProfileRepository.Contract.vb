@@ -816,6 +816,21 @@ Partial Class ProfileRepository
 #End Region
 
 #Region "Contract"
+    'update ngay thanh ly vao hop dong
+    Public Function UpdateDateToContract(ByVal id As Decimal, ByVal day As Date, ByVal remark As String) As Boolean
+        Dim objContractData As New HU_CONTRACT With {.ID = id}
+        Try
+            objContractData = (From p In Context.HU_CONTRACT Where p.ID = id).FirstOrDefault
+            objContractData.ID = id
+            objContractData.LIQUIDATION_DATE = day
+            objContractData.REMARK_LIQUIDATION = remark
+            Context.SaveChanges()
+            Return True
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+
     'check phê duyệt và đã có đính kèm file hay chưa
     'yêu cầu nếu phê duyệt thì phải có phải đính kèm
     Public Function CheckHasFileFileContract(ByVal id As List(Of Decimal)) As Decimal
