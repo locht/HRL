@@ -321,13 +321,17 @@ Public Class ctrlRC_ProgramInterviewResult
             dataMail = store.GET_MAIL_TEMPLATE("TCO", "Recruitment")
             body = dataMail.Rows(0)("CONTENT").ToString
             titleMail = "THƯ CẢM ƠN"
-            mailCC = If(dataMail.Rows(0)("MAIL_CC").ToString <> "", dataMail.Rows(0)("MAIL_CC").ToString, Nothing)
+            ' mailCC = If(dataMail.Rows(0)("MAIL_CC").ToString <> "", dataMail.Rows(0)("MAIL_CC").ToString, Nothing)
+            mailCC = If(LogHelper.CurrentUser.EMAIL IsNot Nothing, LogHelper.CurrentUser.EMAIL.ToString, Nothing)
             dtValues = store.GET_INFO_CADIDATE(item.GetDataKeyValue("ID"))
             Dim values(dtValues.Columns.Count) As String
             If dtValues.Rows.Count > 0 Then
                 For i As Integer = 0 To dtValues.Columns.Count - 1
                     values(i) = If(dtValues.Rows(0)(i).ToString() <> "", dtValues.Rows(0)(i), String.Empty)
                 Next
+            Else
+                ShowMessage(Translate("Chưa có thông tin,Bạn vui lòng kiểm tra lại"), NotifyType.Warning)
+                Exit Sub
             End If
             bodyNew = String.Format(body, values)
             If Not Common.Common.sendEmailByServerMail(Mail,
