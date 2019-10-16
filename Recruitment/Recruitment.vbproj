@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
@@ -15,6 +16,15 @@
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <MyType>Custom</MyType>
     <UseIISExpress>false</UseIISExpress>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>4.0</OldToolsVersion>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -23,7 +33,7 @@
     <DefineTrace>true</DefineTrace>
     <OutputPath>bin\</OutputPath>
     <DocumentationFile>Recruitment.xml</DocumentationFile>
-    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022,42353,42354,42355</NoWarn>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -32,7 +42,7 @@
     <Optimize>true</Optimize>
     <OutputPath>bin\</OutputPath>
     <DocumentationFile>Recruitment.xml</DocumentationFile>
-    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022,42353,42354,42355</NoWarn>
   </PropertyGroup>
   <PropertyGroup>
     <OptionExplicit>On</OptionExplicit>
@@ -258,6 +268,8 @@
     <Content Include="Modules\Recruitment\Business\ctrlRC_PlanReg.ascx" />
     <Content Include="Modules\Recruitment\List\ctrlCostCenter.ascx" />
     <Content Include="Modules\Recruitment\Report\ctrlRC_ReportList.ascx" />
+    <Content Include="Modules\Recruitment\Shared\ctrlFindProgramPopupDialog.ascx" />
+    <Content Include="Modules\Recruitment\Shared\ctrlFindProgramPopupView.ascx" />
     <Content Include="Modules\Recruitment\Shared\ctrlRC_CanBasicInfo.ascx" />
     <Content Include="Modules\Recruitment\Templates\ThuCamOn.htm" />
     <Content Include="Modules\Recruitment\Templates\TiepNhanThuViec.htm" />
@@ -394,6 +406,20 @@
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Modules\Recruitment\RecruitmentRepository.Dashboard.vb" />
+    <Compile Include="Modules\Recruitment\Shared\ctrlFindProgramPopupDialog.ascx.designer.vb">
+      <DependentUpon>ctrlFindProgramPopupDialog.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Recruitment\Shared\ctrlFindProgramPopupDialog.ascx.vb">
+      <DependentUpon>ctrlFindProgramPopupDialog.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Modules\Recruitment\Shared\ctrlFindProgramPopupView.ascx.designer.vb">
+      <DependentUpon>ctrlFindProgramPopupView.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Recruitment\Shared\ctrlFindProgramPopupView.ascx.vb">
+      <DependentUpon>ctrlFindProgramPopupView.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
     <Compile Include="RCContant.vb" />
     <Compile Include="BusinessObjects\COSTALLOCATE_DTO.vb" />
     <Compile Include="BusinessObjects\COST_COSTALLOCATE_DTO.vb" />
@@ -732,8 +758,13 @@
       <Name>WebAppLog</Name>
     </ProjectReference>
   </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.VisualBasic.targets" />
-  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
   <ProjectExtensions>
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">

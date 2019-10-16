@@ -14,6 +14,7 @@ Public Class ctrlRC_CandidateList
     Protected WithEvents ctrlFindEmployeePopup As ctrlFindEmployeePopup
     Public WithEvents AjaxManager As RadAjaxManager
     Public Property AjaxManagerId As String
+    Protected WithEvents ctrlFindProgramDialog As New ctrlFindProgramPopupDialog
 #Region "Properties"
     ' Không dùng nên khóa lại
     'Private Property CandidateList As List(Of CandidateDTO)
@@ -281,7 +282,7 @@ Public Class ctrlRC_CandidateList
     Private Sub ctrlMessageBox_ButtonCommand(ByVal sender As Object, ByVal e As MessageBoxEventArgs) Handles ctrlMessageBox.ButtonCommand
         Try
             If e.ButtonID = MessageBoxButtonType.ButtonYes Then
-
+                Dim strID As String
                 'Kiểm tra các điều kiện trước khi xóa
                 Dim lstCanID As New List(Of Decimal)
                 For Each dr As Telerik.Web.UI.GridDataItem In rgCandidateList.SelectedItems
@@ -316,16 +317,46 @@ Public Class ctrlRC_CandidateList
                             Else
                                 ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), Utilities.NotifyType.Success)
                             End If
+                        Case "CHUYENUNGVIEN"
+                            For Each dr As GridDataItem In rgCandidateList.SelectedItems
+                                strID &= IIf(strID = vbNullString, dr.GetDataKeyValue("ID"), "," & dr.GetDataKeyValue("ID"))
+                            Next
+
+                            Session("ID_CANDIDATE") = strID
+
+                            If Not FindOrgTitle.Controls.Contains(ctrlFindProgramDialog) Then
+                                ctrlFindProgramDialog = Me.Register("ctrlFindProgramPopupDialog", "Recruitment", "ctrlFindProgramPopupDialog", "Shared")
+                                FindOrgTitle.Controls.Add(ctrlFindProgramDialog)
+                                ctrlFindProgramDialog.Show()
+                            End If
                     End Select
                     rgCandidateList.Rebind()
                 End Using
-
-
             End If
         Catch ex As Exception
             DisplayException(Me.ViewName, Me.ID, ex)
         End Try
 
+    End Sub
+
+    Private Sub cmdYCTDKhac_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles cmdYCTDKhac.Click
+        Dim strEmp As String = ""
+        If rgCandidateList.SelectedItems.Count = 0 Then
+            ShowMessage("Vui lòng chọn 1 ứng viên", NotifyType.Warning)
+            Exit Sub
+        End If
+        For Each dr As Telerik.Web.UI.GridDataItem In rgCandidateList.SelectedItems
+            If strEmp = "" Then
+                strEmp = dr.GetDataKeyValue("FULLNAME_VN")
+            Else
+                strEmp = strEmp + "," + dr.GetDataKeyValue("FULLNAME_VN")
+            End If
+        Next
+
+        ctrlMessageBox.MessageText = Translate("Bạn có muốn chuyển ứng viên: " + strEmp + " sang vị trí khác không")
+        ctrlMessageBox.ActionName = "CHUYENUNGVIEN"
+        ctrlMessageBox.DataBind()
+        ctrlMessageBox.Show()
     End Sub
 
     Protected Sub RadGrid_NeedDataSource(ByVal source As Object, ByVal e As GridNeedDataSourceEventArgs) Handles rgCandidateList.NeedDataSource

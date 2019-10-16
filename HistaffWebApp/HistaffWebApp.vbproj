@@ -735,6 +735,8 @@
     <Content Include="Modules\Recruitment\QuickLaunch-vi-VN.xml" />
     <Content Include="Modules\Recruitment\Report\ctrlRC_ReportList.ascx" />
     <Content Include="Modules\Recruitment\Shared\ctrlCanBasicInfo.ascx" />
+    <Content Include="Modules\Recruitment\Shared\ctrlFindProgramPopupDialog.ascx" />
+    <Content Include="Modules\Recruitment\Shared\ctrlFindProgramPopupView.ascx" />
     <Content Include="Modules\Recruitment\Shared\ctrlRC_CanBasicInfo.ascx" />
     <Content Include="Modules\Recruitment\Templates\ThuCamOn.htm" />
     <Content Include="Modules\Recruitment\Templates\TiepNhanThuViec.htm" />

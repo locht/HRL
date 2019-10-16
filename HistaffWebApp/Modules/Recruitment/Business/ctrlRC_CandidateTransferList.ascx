@@ -285,7 +285,7 @@
             </tlk:RadPageView>
         </tlk:RadMultiPage>
     </tlk:RadPane>
-    <tlk:RadPane ID="RadPane4" runat="server" Height="50px" Scrolling="None">
+    <tlk:RadPane ID="RadPane4" runat="server" Height="70px" Scrolling="None">
         <table class="table-form">
             <tr>
                 <td>
@@ -334,10 +334,26 @@
                     </tlk:RadButton>
                 </td>
             </tr>
+             <tr>
+                 <td colspan ="2">
+                    <tlk:RadButton ID="cmdYCTDKhac" runat="server" Width="100%" Text="<%$ Translate: Chuyển sang vị trí tuyển dụng khác %>">
+                    </tlk:RadButton>
+                </td>
+            </tr>
         </table>
     </tlk:RadPane>
 </tlk:RadSplitter>
 <Common:ctrlMessageBox ID="ctrlMessageBox" runat="server" />
+<Common:ctrlMessageBox ID="ctrlMessageBoxTransferProgram" runat="server" />
+<asp:PlaceHolder ID="FindOrgTitle" runat="server"></asp:PlaceHolder>
+<tlk:RadWindowManager ID="RadWindowManager1" runat="server">
+    <Windows>
+        <tlk:RadWindow runat="server" ID="rwPopup" VisibleStatusbar="false" Width="1000"
+            Height="500px" OnClientClose="OnClientClose" EnableShadow="true" Behaviors="Close, Maximize, Move"
+            OnClientBeforeClose="OnClientBeforeClose" Modal="true" ShowContentDuringLoad="false">
+        </tlk:RadWindow>
+    </Windows>
+</tlk:RadWindowManager>
 <tlk:RadCodeBlock ID="RadCodeBlock1" runat="server">
     <script type="text/javascript">
 
@@ -435,6 +451,19 @@
             else {
                 if (sender.get_checkedItems().length == items.get_count() - 1) {
                     firstItem.set_checked(!firstItem.get_checked());
+                }
+            }
+        }
+        function OnClientClose(oWnd, args) {
+            $find("<%= rgCandidateList.ClientID %>").get_masterTableView().rebind();
+        }
+
+        function OnClientBeforeClose(sender, eventArgs) {
+            var arg = eventArgs.get_argument();
+            if (!arg) {
+                if (!confirm("Bạn có muốn đóng màn hình không?")) {
+                    //if cancel is clicked prevent the window from closing
+                    args.set_cancel(true);
                 }
             }
         }

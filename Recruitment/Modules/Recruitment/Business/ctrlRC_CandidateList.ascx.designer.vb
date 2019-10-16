@@ -329,6 +329,15 @@ Partial Public Class ctrlRC_CandidateList
     Protected WithEvents btnPontential As Global.Telerik.Web.UI.RadButton
 
     '''<summary>
+    '''cmdYCTDKhac control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents cmdYCTDKhac As Global.Telerik.Web.UI.RadButton
+
+    '''<summary>
     '''RadWindowManager1 control.
     '''</summary>
     '''<remarks>
@@ -363,6 +372,15 @@ Partial Public Class ctrlRC_CandidateList
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents phFindEmployee As Global.System.Web.UI.WebControls.PlaceHolder
+
+    '''<summary>
+    '''FindOrgTitle control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents FindOrgTitle As Global.System.Web.UI.WebControls.PlaceHolder
 
     '''<summary>
     '''scriptBlock control.
