@@ -2828,14 +2828,14 @@ Partial Public Class AttendanceRepository
                       .ORG_ID = p.ORG_ID
                     }).ToList
             For Each line In objlst
-                If (((line.FROM_MINUTE < from_minute And line.TO_MINUTE > from_minute) _
-                     Or (line.FROM_MINUTE < to_minute And line.TO_MINUTE > to_minute)) And
+                If (((line.FROM_MINUTE <= from_minute And line.TO_MINUTE >= from_minute) _
+                     Or (line.FROM_MINUTE <= to_minute And line.TO_MINUTE >= to_minute)) And
                     EFFECT_DATE = line.EFFECT_DATE And OBJECT_ATTENDACE = line.OBJECT_ATTENDACE _
                     And TYPE_EXCHANGE = line.TYPE_EXCHANGE And ORG_ID = line.ORG_ID) Then
                     Return 1
                 End If
-                If (((line.FROM_MINUTE < from_minute And line.TO_MINUTE > from_minute) _
-                     Or (line.FROM_MINUTE < to_minute And line.TO_MINUTE > to_minute)) And
+                If (((line.FROM_MINUTE <= from_minute And line.TO_MINUTE >= from_minute) _
+                     Or (line.FROM_MINUTE <= to_minute And line.TO_MINUTE >= to_minute)) And
                     EFFECT_DATE = line.EFFECT_DATE And OBJECT_ATTENDACE = line.OBJECT_ATTENDACE And
                     TYPE_EXCHANGE = line.TYPE_EXCHANGE And ORG_ID = line.ORG_ID) Then
                     Return 1
