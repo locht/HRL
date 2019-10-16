@@ -816,6 +816,21 @@ Partial Class ProfileRepository
 #End Region
 
 #Region "Contract"
+    'update ngay thanh ly vao hop dong
+    Public Function UpdateDateToContract(ByVal id As Decimal, ByVal day As Date, ByVal remark As String) As Boolean
+        Dim objContractData As New HU_CONTRACT With {.ID = id}
+        Try
+            objContractData = (From p In Context.HU_CONTRACT Where p.ID = id).FirstOrDefault
+            objContractData.ID = id
+            objContractData.LIQUIDATION_DATE = day
+            objContractData.REMARK_LIQUIDATION = remark
+            Context.SaveChanges()
+            Return True
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+
     'check phê duyệt và đã có đính kèm file hay chưa
     'yêu cầu nếu phê duyệt thì phải có phải đính kèm
     Public Function CheckHasFileFileContract(ByVal id As List(Of Decimal)) As Decimal
@@ -983,6 +998,8 @@ Partial Class ProfileRepository
                                             .EMPLOYEE_CODE = p.e.EMPLOYEE_CODE,
                                             .EMPLOYEE_NAME = p.e.FULLNAME_VN,
                                             .ORG_ID = p.e.ID,
+                                            .LIQUIDATION_DATE = p.p.LIQUIDATION_DATE,
+                                            .REMARK_LIQUIDATION = p.p.REMARK_LIQUIDATION,
                                             .ORG_NAME = p.o.NAME_VN,
                                             .ORG_DESC = p.o.DESCRIPTION_PATH,
                                             .TITLE_NAME = p.t.NAME_VN,
@@ -1144,6 +1161,7 @@ Partial Class ProfileRepository
                             Where e.EMPLOYEE_ID = _validate.EMPLOYEE_ID And
                             e.START_DATE >= _validate.START_DATE And
                             e.ID <> _validate.ID And
+                            e.LIQUIDATION_DATE Is Nothing And
                             e.STATUS_ID = ProfileCommon.DECISION_STATUS.APPROVE_ID).Count = 0
                 Case "EXIST_CONTRACT_NO"
                     Return (From p In Context.HU_CONTRACT

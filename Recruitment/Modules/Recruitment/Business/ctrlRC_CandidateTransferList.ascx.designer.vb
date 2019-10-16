@@ -374,6 +374,15 @@ Partial Public Class ctrlRC_CandidateTransferList
     Protected WithEvents btnLĐ As Global.Telerik.Web.UI.RadButton
 
     '''<summary>
+    '''cmdYCTDKhac control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents cmdYCTDKhac As Global.Telerik.Web.UI.RadButton
+
+    '''<summary>
     '''ctrlMessageBox control.
     '''</summary>
     '''<remarks>
@@ -381,6 +390,42 @@ Partial Public Class ctrlRC_CandidateTransferList
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents ctrlMessageBox As Global.Common.ctrlMessageBox
+
+    '''<summary>
+    '''ctrlMessageBoxTransferProgram control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents ctrlMessageBoxTransferProgram As Global.Common.ctrlMessageBox
+
+    '''<summary>
+    '''FindOrgTitle control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents FindOrgTitle As Global.System.Web.UI.WebControls.PlaceHolder
+
+    '''<summary>
+    '''RadWindowManager1 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents RadWindowManager1 As Global.Telerik.Web.UI.RadWindowManager
+
+    '''<summary>
+    '''rwPopup control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents rwPopup As Global.Telerik.Web.UI.RadWindow
 
     '''<summary>
     '''RadCodeBlock1 control.

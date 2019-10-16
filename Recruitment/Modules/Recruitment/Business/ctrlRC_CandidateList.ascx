@@ -156,7 +156,7 @@
     </tlk:RadPane>
     <tlk:RadPane ID="RadPane2" runat="server" Scrolling="None">
         <tlk:RadGrid ID="rgCandidateList" runat="server" Height="100%">
-            <MasterTableView DataKeyNames="ID,Candidate_CODE,STATUS_ID" ClientDataKeyNames="ID,Candidate_CODE,STATUS_ID">
+            <MasterTableView DataKeyNames="ID,Candidate_CODE,STATUS_ID,FULLNAME_VN" ClientDataKeyNames="ID,Candidate_CODE,STATUS_ID,FULLNAME_VN">
                 <Columns>
                     <tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderStyle-HorizontalAlign="Center"
                         HeaderStyle-Width="40px" ItemStyle-HorizontalAlign="Center">
@@ -223,6 +223,10 @@
                         OnClientClicking="btnPontentialClick" AutoPostBack="false">
                     </tlk:RadButton>
                 </td>
+                <td>
+                    <tlk:RadButton ID="cmdYCTDKhac" runat="server" Text="<%$ Translate: Chuyển sang vị trí tuyển dụng khác %>">
+                    </tlk:RadButton>
+                </td>
             </tr>
         </table>
     </tlk:RadPane>
@@ -237,6 +241,7 @@
 </tlk:RadWindowManager>
 <common:ctrlupload id="ctrlUpload1" runat="server" />
 <asp:PlaceHolder ID="phFindEmployee" runat="server"></asp:PlaceHolder>
+<asp:PlaceHolder ID="FindOrgTitle" runat="server"></asp:PlaceHolder>
 <tlk:RadScriptBlock ID="scriptBlock" runat="server">
     <script type="text/javascript">
 
@@ -311,12 +316,12 @@
             } else if (args.get_item().get_commandName() == 'EXPORT' || args.get_item().get_commandName() == 'PRINT' || args.get_item().get_commandName() == 'UNLOCK' || args.get_item().get_commandName() == 'PREVIOUS') {
                 enableAjax = false;
             }
-        }
+}
 
-        function btnTransferClick(sender, args) {
-            var bCheck = $find('<%# rgCandidateList.ClientID %>').get_masterTableView().get_selectedItems().length;
-            if (bCheck == 0) {
-                m = '<%# Translate(CommonMessage.MESSAGE_NOT_SELECT_ROW) %>';
+function btnTransferClick(sender, args) {
+    var bCheck = $find('<%# rgCandidateList.ClientID %>').get_masterTableView().get_selectedItems().length;
+    if (bCheck == 0) {
+        m = '<%# Translate(CommonMessage.MESSAGE_NOT_SELECT_ROW) %>';
                 n = noty({ text: m, dismissQueue: true, type: 'warning' });
                 setTimeout(function () { $.noty.close(n.options.id); }, 5000);
                 return;
@@ -368,7 +373,7 @@
         }
 
         function OnClientClose(oWnd, args) {
-                $find("<%= rgCandidateList.ClientID %>").get_masterTableView().rebind();
+            $find("<%= rgCandidateList.ClientID %>").get_masterTableView().rebind();
         }
 
         function postBack(url) {

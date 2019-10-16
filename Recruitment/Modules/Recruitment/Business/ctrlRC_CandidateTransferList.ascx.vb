@@ -10,6 +10,7 @@ Imports Common.CommonBusiness
 Public Class ctrlRC_CandidateTransferList
     Inherits Common.CommonView
     Private Property psp As New RecruitmentRepository
+    Protected WithEvents ctrlFindProgramDialog As New ctrlFindProgramPopupDialog
 
 #Region "Properties"
     Private Property CandidateList As List(Of CandidateDTO)
@@ -253,6 +254,46 @@ Public Class ctrlRC_CandidateTransferList
             ShowMessage(Translate(CommonMessage.MESSAGE_SENDMAIL_ERROR), NotifyType.Warning)
             Exit Sub
         End If
+    End Sub
+
+    Private Sub cmdYCTDKhac_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles cmdYCTDKhac.Click
+        Dim strEmp As String = ""
+        Dim status As String
+        If rgCandidateList.SelectedItems.Count = 0 Then
+            ShowMessage("Vui lòng chọn 1 ứng viên", NotifyType.Warning)
+            Exit Sub
+        End If
+
+        For Each dr As Telerik.Web.UI.GridDataItem In rgCandidateList.SelectedItems
+            Status = dr.GetDataKeyValue("STATUS_CODE").ToString
+            Select Case status
+                'Case RCContant.TUCHOI
+                '    ShowMessage(Translate("Tồn tại ứng viên đang ở từ chối trúng tuyển"), NotifyType.Warning)
+                '    Exit Sub
+                'Case RCContant.BLACKLIST
+                '    ShowMessage(Translate("Tồn tại ứng viên đang ở trạng thái BlackList"), NotifyType.Warning)
+                '    Exit Sub
+                'Case RCContant.THUMOI
+                '    ShowMessage(Translate("Tồn tại ứng viên đang ở trạng thái Đã gửi thư mời tuyển dụng"), NotifyType.Warning)
+                '    Exit Sub
+                Case RCContant.NHANVIEN
+                    ShowMessage(Translate("Tồn tại ứng viên đang ở trạng thái Đã là nhân viên"), NotifyType.Warning)
+                    Exit Sub
+                Case RCContant.TIEPNHANLD
+                    ShowMessage(Translate("Tồn tại ứng viên đang ở trạng thái gửi thông báo tiếp nhận LĐ thử việc"), NotifyType.Warning)
+                    Exit Sub
+            End Select
+            If strEmp = "" Then
+                strEmp = dr.GetDataKeyValue("FULLNAME_VN")
+            Else
+                strEmp = strEmp + "," + dr.GetDataKeyValue("FULLNAME_VN")
+            End If
+        Next
+
+        ctrlMessageBoxTransferProgram.MessageText = Translate("Bạn có muốn chuyển ứng viên: " + strEmp + " sang vị trí khác không")
+        ctrlMessageBoxTransferProgram.ActionName = "CHUYENUNGVIEN"
+        ctrlMessageBoxTransferProgram.DataBind()
+        ctrlMessageBoxTransferProgram.Show()
     End Sub
 
 
@@ -540,30 +581,57 @@ Public Class ctrlRC_CandidateTransferList
 
     End Sub
 
+
+    Private Sub ctrlMessageBoxTransferProgram_ButtonCommand(ByVal sender As Object, ByVal e As Common.MessageBoxEventArgs) Handles ctrlMessageBoxTransferProgram.ButtonCommand
+        Dim log As New UserLog
+        log = LogHelper.GetUserLog
+        Try
+            If e.ButtonID = MessageBoxButtonType.ButtonYes Then
+                Dim strID As String
+                For Each dr As GridDataItem In rgCandidateList.SelectedItems
+                    strID &= IIf(strID = vbNullString, dr.GetDataKeyValue("ID_CANDIDATE"), "," & dr.GetDataKeyValue("ID_CANDIDATE"))
+                Next
+                Session("ID_CANDIDATE") = strID
+
+                If Not FindOrgTitle.Controls.Contains(ctrlFindProgramDialog) Then
+                    ctrlFindProgramDialog = Me.Register("ctrlFindProgramPopupDialog", "Recruitment", "ctrlFindProgramPopupDialog", "Shared")
+                    FindOrgTitle.Controls.Add(ctrlFindProgramDialog)
+                    ctrlFindProgramDialog.Show()
+                End If
+            Else
+                Return
+            End If
+            rgCandidateList.Rebind()
+        Catch ex As Exception
+            DisplayException(Me.ViewName, Me.ID, ex)
+        End Try
+    End Sub
+
+
     Private Sub ctrlMessageBox_ButtonCommand(ByVal sender As Object, ByVal e As MessageBoxEventArgs) Handles ctrlMessageBox.ButtonCommand
         Dim log As New UserLog
         log = LogHelper.GetUserLog
         Try
             If e.ButtonID = MessageBoxButtonType.ButtonYes Then
-                strIDCandidate = ""
-                Dim lstCanID As New List(Of Decimal)
-                For Each dr As Telerik.Web.UI.GridDataItem In rgCandidateList.SelectedItems
-                    strIDCandidate = strIDCandidate & dr.GetDataKeyValue("ID_CANDIDATE") & ","
-                Next
-                ' Kiem tra neu la trang thai nhan vien thi insert du lieu moi vao cac table nhan vien
-                If e.ActionName = RCContant.NHANVIEN Then
-                    If psp.INSERT_CADIDATE_EMPLOYEE(strIDCandidate, log.Username, log.Ip + log.ComputerName) Then
-                        ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), Utilities.NotifyType.Success)
+                    strIDCandidate = ""
+                    Dim lstCanID As New List(Of Decimal)
+                    For Each dr As Telerik.Web.UI.GridDataItem In rgCandidateList.SelectedItems
+                        strIDCandidate = strIDCandidate & dr.GetDataKeyValue("ID_CANDIDATE") & ","
+                    Next
+                    ' Kiem tra neu la trang thai nhan vien thi insert du lieu moi vao cac table nhan vien
+                    If e.ActionName = RCContant.NHANVIEN Then
+                        If psp.INSERT_CADIDATE_EMPLOYEE(strIDCandidate, log.Username, log.Ip + log.ComputerName) Then
+                            ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), Utilities.NotifyType.Success)
+                        Else
+                            ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), Utilities.NotifyType.Success)
+                        End If
                     Else
-                        ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), Utilities.NotifyType.Success)
+                        If psp.UPDATE_CANDIDATE_STATUS(strIDCandidate, e.ActionName) = 1 Then
+                            ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), Utilities.NotifyType.Success)
+                        Else
+                            ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), Utilities.NotifyType.Success)
+                        End If
                     End If
-                Else
-                    If psp.UPDATE_CANDIDATE_STATUS(strIDCandidate, e.ActionName) = 1 Then
-                        ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), Utilities.NotifyType.Success)
-                    Else
-                        ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), Utilities.NotifyType.Success)
-                    End If
-                End If
                 rgCandidateList.Rebind()
                 rgResult.Rebind()
             End If

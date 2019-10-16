@@ -1614,7 +1614,8 @@ Namespace ProfileBusiness.ServiceContracts
 
         <OperationContract()>
         Function ValidateContract(ByVal sType As String, ByVal obj As ContractDTO) As Boolean
-
+        <OperationContract()>
+        Function UpdateDateToContract(ByVal id As Decimal, ByVal day As Date, ByVal remark As String) As Boolean
         <OperationContract()>
         Function InsertContract(ByVal objContract As ContractDTO, ByVal log As UserLog, ByRef gID As Decimal) As Boolean
         <OperationContract()>

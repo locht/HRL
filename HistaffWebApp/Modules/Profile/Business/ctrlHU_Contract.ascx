@@ -154,11 +154,24 @@
             oWindow.center(); */
             return 0;
         }
-
+        function OPENTHANHLY() {
+            var grid = $find('<%= rgContract.ClientID%>')
+            var emp_id = $find('<%= rgContract.ClientID%>').get_masterTableView().get_selectedItems()[0].getDataKeyValue('EMPLOYEE_ID');
+            var idCT = $find('<%= rgContract.ClientID%>').get_masterTableView().get_selectedItems()[0].getDataKeyValue('ID');
+            var oWindow = radopen('Dialog.aspx?mid=Profile&fid=ctrlContract_Liquidate&group=Business&noscroll=1&empid=' + emp_id + '&idCT=' + idCT, "rwPopup");
+            var pos = $("html").offset();
+            oWindow.moveTo(pos.left, pos.top);
+            oWindow.setSize(800,300);
+            oWindow.center();
+        }
         var enableAjax = true;
         function clientButtonClicking(sender, args) {
             if (args.get_item().get_commandName() == 'CREATE') {
                 OpenNew();
+                args.set_cancel(true);
+            }
+            if (args.get_item().get_commandName() == 'REFRESH') {
+                OPENTHANHLY();
                 args.set_cancel(true);
             }
             if (args.get_item().get_commandName() == "PRINT") {
@@ -241,6 +254,14 @@
             //            }
             enableAjax = false;
         }
+//        function Liquidation_Click() {
+//            var emp_id = $find('<%= rgContract.ClientID%>').get_masterTableView().get_selectedItems()[0].getDataKeyValue('EMPLOYEE_ID');
+//            var idCT = $find('<%= rgContract.ClientID%>').get_masterTableView().get_selectedItems()[0].getDataKeyValue('ID');
+//            var oWindow = radopen('Dialog.aspx?mid=Profile&fid=ctrlContract_Liquidate&group=Business&noscroll=1&empid=' + emp_id + '&idCT=' + idCT, "rwPopup");
+//            var pos = $("html").offset();
+//            oWindow.moveTo(pos.left, pos.top);
+//            oWindow.setSize($(window).width(), $(window).height());
+//        }
     </script>
 </tlk:RadCodeBlock>
 <Common:ctrlMessageBox ID="ctrlMessageBox" runat="server" />
