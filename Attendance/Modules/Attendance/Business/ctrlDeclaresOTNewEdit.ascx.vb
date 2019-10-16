@@ -588,40 +588,41 @@ Public Class ctrlDeclaresOTNewEdit
                     Dim dto As New AT_OT_REGISTRATIONDTO
                     dto.REGIST_DATE = rdRegDate.SelectedDate
                     dto.EMPLOYEE_ID = hidEmpId.Value
-                    Dim validRegistDate = rep.CheckRegDateBetweenJoinAndTerDate(hidEmpId.Value, rdRegDate.SelectedDate)
-                    If Not validRegistDate Then
-                        ShowMessage(Translate("Ngày làm thêm phải sau ngày vào công ty và trước ngày nghỉ việc."), NotifyType.Warning)
-                        rdRegDate.ClearValue()
+                    If (hidEmpId.Value <> 0) Then
+                        Dim validRegistDate = rep.CheckRegDateBetweenJoinAndTerDate(hidEmpId.Value, rdRegDate.SelectedDate)
+                        If Not validRegistDate Then
+                            ShowMessage(Translate("Ngày làm thêm phải sau ngày vào công ty và trước ngày nghỉ việc."), NotifyType.Warning)
+                            rdRegDate.ClearValue()
 
-                        hidSignId.Value = Nothing
-                        rdRegDate.Focus()
-                        Exit Sub
-                    End If
-                    'Dim data = rep.GetOtRegistration(dto)
-                    'If data IsNot Nothing AndAlso data.Where(Function(f) f.ID <> hidID.Value).FirstOrDefault IsNot Nothing Then
-                    '    ShowMessage(Translate("Ngày làm thêm đã được đăng ký"), NotifyType.Warning)
-                    '    rdRegDate.ClearValue()
-                    '    hidSignId.Value = Nothing
-                    '    rdRegDate.Focus()
-                    '    Exit Sub
-                    'End If
+                            hidSignId.Value = Nothing
+                            rdRegDate.Focus()
+                            Exit Sub
+                        End If
+                        'Dim data = rep.GetOtRegistration(dto)
+                        'If data IsNot Nothing AndAlso data.Where(Function(f) f.ID <> hidID.Value).FirstOrDefault IsNot Nothing Then
+                        '    ShowMessage(Translate("Ngày làm thêm đã được đăng ký"), NotifyType.Warning)
+                        '    rdRegDate.ClearValue()
+                        '    hidSignId.Value = Nothing
+                        '    rdRegDate.Focus()
+                        '    Exit Sub
+                        'End If
 
-                    EmployeeShift = rep.GetEmployeeShifts(hidEmpId.Value, rdRegDate.SelectedDate, rdRegDate.SelectedDate).FirstOrDefault
-                    If EmployeeShift IsNot Nothing Then
-                        hidSignId.Value = EmployeeShift.ID_SIGN
-                        hidSignName.Value = EmployeeShift.SIGN_CODE
-                        'lstdtHoliday = AttendanceRepositoryStatic.Instance.GetHolidayByCalenderToTable(rdRegDate.SelectedDate, rdRegDate.SelectedDate)
-                        'CalculateOT()
-                    End If
-
-                End Using
-
-                Using rep As New HistaffFrameworkRepository
-                    Dim response = rep.ExecuteStoreScalar("PKG_ATTENDANCE_BUSINESS.GET_TOTAL_ACCUMULATIVE_OT", New List(Of Object)(New Object() {hidEmpId.Value, rdRegDate.SelectedDate.Value, OUT_NUMBER}))
-                    If response IsNot Nothing Then
-                        rntTotalAccumulativeOTHours.Text = Decimal.Parse(response(0).ToString()).ToString("N1")
+                        EmployeeShift = rep.GetEmployeeShifts(hidEmpId.Value, rdRegDate.SelectedDate, rdRegDate.SelectedDate).FirstOrDefault
+                        If EmployeeShift IsNot Nothing Then
+                            hidSignId.Value = EmployeeShift.ID_SIGN
+                            hidSignName.Value = EmployeeShift.SIGN_CODE
+                            'lstdtHoliday = AttendanceRepositoryStatic.Instance.GetHolidayByCalenderToTable(rdRegDate.SelectedDate, rdRegDate.SelectedDate)
+                            'CalculateOT()
+                        End If
                     End If
                 End Using
+
+            Using rep As New HistaffFrameworkRepository
+                Dim response = rep.ExecuteStoreScalar("PKG_ATTENDANCE_BUSINESS.GET_TOTAL_ACCUMULATIVE_OT", New List(Of Object)(New Object() {hidEmpId.Value, rdRegDate.SelectedDate.Value, OUT_NUMBER}))
+                If response IsNot Nothing Then
+                    rntTotalAccumulativeOTHours.Text = Decimal.Parse(response(0).ToString()).ToString("N1")
+                End If
+            End Using
             End If
         Catch ex As Exception
             DisplayException(Me.ViewName, Me.ID, ex)
