@@ -1161,6 +1161,7 @@ Partial Class ProfileRepository
                             Where e.EMPLOYEE_ID = _validate.EMPLOYEE_ID And
                             e.START_DATE >= _validate.START_DATE And
                             e.ID <> _validate.ID And
+                            e.LIQUIDATION_DATE Is Nothing And
                             e.STATUS_ID = ProfileCommon.DECISION_STATUS.APPROVE_ID).Count = 0
                 Case "EXIST_CONTRACT_NO"
                     Return (From p In Context.HU_CONTRACT

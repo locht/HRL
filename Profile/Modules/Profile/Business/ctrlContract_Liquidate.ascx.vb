@@ -85,8 +85,7 @@ Public Class ctrlContract_Liquidate
                     CurrentState = CommonMessage.STATE_NORMAL
                 Case CommonMessage.TOOLBARITEM_SAVE
                     Call SaveData()
-
-
+                    'Response.Redirect("/Default.aspx?mid=Profile&fid=ctrlHU_Contract&group=Business")
             End Select
         Catch ex As Exception
             DisplayException(Me.ViewName, Me.ID, ex)
@@ -106,7 +105,7 @@ Public Class ctrlContract_Liquidate
             Dim rep As New ProfileBusinessRepository
             Dim check = rep.UpdateDateToContract(Request.Params("idCT"), dtpLiquiDate.SelectedDate, txtRemark.Text)
             If check = True Then
-                ScriptManager.RegisterStartupScript(Me.Page, Me.Page.GetType, "clientButtonClicking", "btnCancelClick();", True)
+                ScriptManager.RegisterStartupScript(Me.Page, Me.Page.GetType, "clientButtonClicking", "getRadWindow().close('1');", True)
                 ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), Utilities.NotifyType.Success)
             Else
                 ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), Utilities.NotifyType.Success)
