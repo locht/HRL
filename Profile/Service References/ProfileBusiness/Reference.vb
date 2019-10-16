@@ -3683,6 +3683,9 @@ Namespace ProfileBusiness
         Private IS_TERField As Boolean
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private LIQUIDATION_DATEField As System.Nullable(Of Date)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private ListAttachFilesField As System.Collections.Generic.List(Of ProfileBusiness.AttachFilesDTO)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -3729,6 +3732,9 @@ Namespace ProfileBusiness
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private REMARKField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private REMARK_LIQUIDATIONField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private SAL_BASICField As System.Nullable(Of Decimal)
@@ -4095,6 +4101,19 @@ Namespace ProfileBusiness
         End Property
         
         <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property LIQUIDATION_DATE() As System.Nullable(Of Date)
+            Get
+                Return Me.LIQUIDATION_DATEField
+            End Get
+            Set
+                If (Me.LIQUIDATION_DATEField.Equals(value) <> true) Then
+                    Me.LIQUIDATION_DATEField = value
+                    Me.RaisePropertyChanged("LIQUIDATION_DATE")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
         Public Property ListAttachFiles() As System.Collections.Generic.List(Of ProfileBusiness.AttachFilesDTO)
             Get
                 Return Me.ListAttachFilesField
@@ -4298,6 +4317,19 @@ Namespace ProfileBusiness
                 If (Object.ReferenceEquals(Me.REMARKField, value) <> true) Then
                     Me.REMARKField = value
                     Me.RaisePropertyChanged("REMARK")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property REMARK_LIQUIDATION() As String
+            Get
+                Return Me.REMARK_LIQUIDATIONField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.REMARK_LIQUIDATIONField, value) <> true) Then
+                    Me.REMARK_LIQUIDATIONField = value
+                    Me.RaisePropertyChanged("REMARK_LIQUIDATION")
                 End If
             End Set
         End Property
