@@ -4355,7 +4355,7 @@ Partial Public Class AttendanceRepository
                                        .STAFF_RANK_NAME = p.c.NAME,
                                        .ORG_NAME = p.o.NAME_VN,
                                        .ORG_DESC = p.o.DESCRIPTION_PATH,
-                                       .JOIN_DATE_STATE = p.E.JOIN_DATE,
+                                       .JOIN_DATE_STATE = p.E.SENIORITY_DATE,
                                        .PERIOD_NAME = p.p.PERIOD_NAME,
                                        .WORKING_TIME_HAVE = p.en.WORKING_TIME_HAVE,
                                        .PREV_HAVE = p.en.PREV_HAVE,
