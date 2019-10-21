@@ -18,7 +18,7 @@ Public Class ctrlRC_Exams
             ViewState(Me.ID & "_IsLoad") = value
         End Set
     End Property
-
+   
 #End Region
 
 #Region "Page"
@@ -89,8 +89,15 @@ Public Class ctrlRC_Exams
                 Case CommonMessage.STATE_NEW, CommonMessage.STATE_EDIT
                     txtName.Enabled = True
                     rntxtExamsOrder.Enabled = True
-                    rntxtPointLadder.Enabled = True
-                    rntxtPointPass.Enabled = True
+                    If chkIsPV.Checked Then
+                        rntxtPointLadder.Enabled = False
+                        rntxtPointPass.Enabled = False
+                        rntxtPointLadder.Value = 0
+                        rntxtPointPass.Value = 0
+                    Else
+                        rntxtPointLadder.Enabled = True
+                        rntxtPointPass.Enabled = True
+                    End If
                     chkIsPV.Enabled = True
                     EnableRadCombo(cboTitle, False)
                     EnabledGridNotPostback(rgData, False)
@@ -163,6 +170,26 @@ Public Class ctrlRC_Exams
                     CurrentState = CommonMessage.STATE_EDIT
                 Case CommonMessage.TOOLBARITEM_SAVE
                     If Page.IsValid Then
+                        If txtName.Text = "" Then
+                            ShowMessage(Translate("Bạn phải nhập Tên môn thi"), Utilities.NotifyType.Warning)
+                            Exit Sub
+                        End If
+                        If rntxtPointLadder.Value Is Nothing Then
+                            ShowMessage(Translate("Bạn phải nhập Thang điểm"), Utilities.NotifyType.Warning)
+                            Exit Sub
+                        End If
+                        If txtHeso.Text = "" Then
+                            ShowMessage(Translate("Bạn phải nhập Hệ số"), Utilities.NotifyType.Warning)
+                            Exit Sub
+                        End If
+                        If rntxtPointPass.Value Is Nothing Then
+                            ShowMessage(Translate("Bạn phải nhập Điểm đạt"), Utilities.NotifyType.Warning)
+                            Exit Sub
+                        End If
+                        If rntxtPointLadder.Value < rntxtPointPass.Value Then
+                            ShowMessage(Translate("Thang điểm phải lớn hơn Điểm đạt"), NotifyType.Warning)
+                            Exit Sub
+                        End If
                         If rntxtExamsOrder.Value Is Nothing Then
                             ShowMessage(Translate("Bạn phải nhập Thứ tự sắp xếp"), Utilities.NotifyType.Warning)
                             Exit Sub
@@ -322,5 +349,4 @@ End Sub
     End Function
 
 #End Region
-
 End Class
