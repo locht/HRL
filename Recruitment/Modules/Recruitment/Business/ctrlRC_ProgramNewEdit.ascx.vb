@@ -197,7 +197,11 @@ Public Class ctrlRC_ProgramNewEdit
                     rdReceiveEnd.SelectedDate = obj.RECEIVE_END
                     rdRecruitStart.SelectedDate = obj.RECRUIT_START
                     lblExpectedToWorkDay.Text = obj.EXPECTED_JOIN_DATE.Value.ToString("dd/MM/yyyy")
-                    lblRecruitNumber.Text = obj.NUMBERRECRUITMENT
+                    If obj.NUMBERRECRUITMENT = Nothing Then
+                        lblRecruitNumber.Text = 0
+                    Else
+                        lblRecruitNumber.Text = obj.NUMBERRECRUITMENT
+                    End If 
                     hidID.Value = obj.ID
                     hidOrgID.Value = obj.ORG_ID
                     ' bind data to cboRecruitment
@@ -209,7 +213,11 @@ Public Class ctrlRC_ProgramNewEdit
                     If obj.SPECIALSKILLS IsNot Nothing Then
                         cboSpecialSkills.SelectedValue = obj.SPECIALSKILLS
                     End If
-                    chkIsInPlan.Checked = obj.IS_IN_PLAN
+                    If obj.IS_IN_PLAN Is Nothing Then
+                        chkIsInPlan.Checked = False
+                    Else
+                        chkIsInPlan.Checked = obj.IS_IN_PLAN
+                    End If
                     chkIsPortal.Checked = False
                     If obj.IS_PORTAL IsNot Nothing Then
                         chkIsPortal.Checked = obj.IS_PORTAL

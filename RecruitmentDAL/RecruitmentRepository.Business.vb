@@ -973,7 +973,7 @@ Partial Class RecruitmentRepository
                                        .CANDIDATE_RECEIVED = (From can In Context.RC_CANDIDATE
                                                            Where can.RC_PROGRAM_ID = p.ID And can.STATUS_ID = "NHANVIEN").Count,
                                        .EXPECTED_JOIN_DATE = rec.EXPECTED_JOIN_DATE,
-                                       .NUMBERRECRUITMENT = (rec.MALE_NUMBER + rec.FEMALE_NUMBER),
+                                       .NUMBERRECRUITMENT = p.REQUEST_NUMBER,
                                        .NEGOTIABLESALARY = p.NEGOTIABLESALARY,
                                        .REQUEST_SALARY_TO = p.REQUEST_SALARY_TO,
                                        .REQUESTOTHER = p.REQUESTOTHER,
