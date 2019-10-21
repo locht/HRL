@@ -10,7 +10,7 @@
                 <tlk:RadToolBar ID="tbarMain" runat="server" OnClientButtonClicking="clientButtonClicking" />
             </tlk:RadPane>
             <tlk:RadPane ID="RadPane3" runat="server" Height="250px" Scrolling="None">
-                <table  class="table-form">
+                <table class="table-form">
                     <tr>
                         <td class="lb">
                             <%# Translate("Phòng ban")%>
@@ -78,11 +78,11 @@
                         </td>
                         <td colspan="2">
                             <tlk:RadButton ButtonType="ToggleButton" ToggleType="CheckBox" runat="server" CausesValidation="false"
-                                ID="chkIsPV" Text="<%$ Translate: Phỏng vấn? %>">
+                                ID="chkIsPV" Text="<%$ Translate: Phỏng vấn %>">
                             </tlk:RadButton>
                         </td>
                     </tr>
-                     <tr>
+                    <tr>
                         <td class="lb">
                             <%# Translate("Ghi chú")%>
                         </td>
@@ -95,6 +95,9 @@
             </tlk:RadPane>
             <tlk:RadPane ID="RadPane2" runat="server" Scrolling="None">
                 <tlk:RadGrid ID="rgData" runat="server" Height="100%" SkinID="GridSingleSelect">
+                    <ClientSettings EnableRowHoverStyle="true" EnablePostBackOnRowClick="true">
+                        <Selecting AllowRowSelect="true" />
+                    </ClientSettings>
                     <MasterTableView DataKeyNames="ID" ClientDataKeyNames="ID,NAME,POINT_LADDER,POINT_PASS,EXAMS_ORDER,IS_PV,COEFFICIENT,REMARK">
                         <Columns>
                             <tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderStyle-HorizontalAlign="Center"
@@ -113,8 +116,8 @@
                                 SortExpression="EXAMS_ORDER" UniqueName="EXAMS_ORDER" />
                             <tlk:GridCheckBoxColumn HeaderText="<%$ Translate: Phỏng vấn? %>" DataField="IS_PV"
                                 UniqueName="IS_PV" SortExpression="IS_PV" ShowFilterIcon="true" />
-                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Ghi chú %>" DataField="REMARK"
-                                SortExpression="REMARK" UniqueName="REMARK" />
+                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Ghi chú %>" DataField="REMARK" SortExpression="REMARK"
+                                UniqueName="REMARK" />
                         </Columns>
                     </MasterTableView>
                 </tlk:RadGrid>

@@ -77,7 +77,7 @@
                         </td>
                         <td colspan="2">
                             <tlk:RadButton ButtonType="ToggleButton" ToggleType="CheckBox" runat="server" CausesValidation="false"
-                                ID="chkIsPV" Text="<%$ Translate: Phỏng vấn? %>">
+                                ID="chkIsPV" Text="<%$ Translate: Phỏng vấn %>">
                             </tlk:RadButton>
                         </td>
                     </tr>
@@ -95,6 +95,9 @@
             <tlk:RadPane ID="RadPane2" runat="server" Scrolling="None">
                 <tlk:RadGrid ID="rgData" runat="server" Height="100%" PageSize="50" AllowPaging="true"
                     SkinID="GridSingleSelect">
+                    <ClientSettings EnableRowHoverStyle="true" EnablePostBackOnRowClick="true">
+                        <Selecting AllowRowSelect="true" />
+                    </ClientSettings>
                     <MasterTableView DataKeyNames="ID" ClientDataKeyNames="ID,NAME,POINT_LADDER,POINT_PASS,EXAMS_ORDER,IS_PV,COEFFICIENT,REMARK">
                         <Columns>
                             <tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderStyle-HorizontalAlign="Center"
@@ -112,7 +115,7 @@
                             <tlk:GridNumericColumn HeaderText="<%$ Translate: Thư tự sắp xếp %>" DataField="EXAMS_ORDER"
                                 SortExpression="EXAMS_ORDER" UniqueName="EXAMS_ORDER" />
                             <tlk:GridCheckBoxColumn HeaderText="<%$ Translate: Phỏng vấn? %>" DataField="IS_PV"
-                                UniqueName="IS_PV" SortExpression="IS_PV" ShowFilterIcon="true"  AllowFiltering="false"/>
+                                UniqueName="IS_PV" SortExpression="IS_PV" ShowFilterIcon="true" AllowFiltering="false" />
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Ghi chú %>" DataField="REMARK" SortExpression="REMARK"
                                 UniqueName="REMARK" />
                         </Columns>
