@@ -306,7 +306,7 @@
                 </td>
                 <td>
                     <tlk:RadButton ID="btnSendEmailReceive" runat="server" Text="<%$ Translate: Gửi email thư mời nhận việc %>"
-                        OnClientClicked="DisableAjax">
+                        OnClientClicked="DisableAjax" Visible="false" >
                     </tlk:RadButton>
                 </td>
                 <td>
@@ -316,7 +316,7 @@
                 </td>
                 <td>
                     <tlk:RadButton ID="btnThankLetter" runat="server" Text="<%$ Translate: Thư cảm ơn %>"
-                        OnClientClicked="DisableAjax">
+                        OnClientClicked="DisableAjax" Visible="false">
                     </tlk:RadButton>
                 </td>
                 <td>
@@ -325,12 +325,12 @@
                 </td>
                 <td>
                     <tlk:RadButton ID="btnExportContract" runat="server" Text="<%$ Translate: Xuất tờ trình ký HĐLĐ thử việc %>"
-                        OnClientClicked="DisableAjax">
+                        OnClientClicked="DisableAjax" Visible="false">
                     </tlk:RadButton>
                 </td>
                 <td>
                     <tlk:RadButton ID="btnLĐ" runat="server" Text="<%$ Translate: Gửi email thông báo tiếp nhận LĐ thử việc  %>"
-                        OnClientClicked="DisableAjax">
+                        OnClientClicked="DisableAjax" Visible="false">
                     </tlk:RadButton>
                 </td>
             </tr>
