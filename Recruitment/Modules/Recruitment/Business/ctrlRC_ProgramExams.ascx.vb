@@ -127,8 +127,13 @@ Public Class ctrlRC_ProgramExams
                 Case CommonMessage.STATE_NEW, CommonMessage.STATE_EDIT
                     txtName.Enabled = True
                     rntxtExamsOrder.Enabled = True
-                    rntxtPointLadder.Enabled = True
-                    rntxtPointPass.Enabled = True
+                    If chkIsPV.Checked Then
+                        rntxtPointLadder.Enabled = False
+                        rntxtPointPass.Enabled = False
+                    Else
+                        rntxtPointLadder.Enabled = True
+                        rntxtPointPass.Enabled = True
+                    End If
                     chkIsPV.Enabled = True
                     rntxtCoefficient.Enabled = True
                     txtRemark.Enabled = True
