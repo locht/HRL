@@ -112,9 +112,9 @@ Public Class ctrlFindProgramPopupView
             Dim Sorts As String = rgOrgTitle.MasterTableView.SortExpressions.GetSortString()
             Dim lstData As List(Of ProgramDTO)
             If Sorts IsNot Nothing Then
-                lstData = rep.GetProgram(_filter, rgOrgTitle.CurrentPageIndex, rgOrgTitle.PageSize, MaximumRows, _param, Sorts)
+                lstData = rep.GetProgramSearch(_filter, rgOrgTitle.CurrentPageIndex, rgOrgTitle.PageSize, MaximumRows, _param, Sorts)
             Else
-                lstData = rep.GetProgram(_filter, rgOrgTitle.CurrentPageIndex, rgOrgTitle.PageSize, MaximumRows, _param)
+                lstData = rep.GetProgramSearch(_filter, rgOrgTitle.CurrentPageIndex, rgOrgTitle.PageSize, MaximumRows, _param)
             End If
 
 

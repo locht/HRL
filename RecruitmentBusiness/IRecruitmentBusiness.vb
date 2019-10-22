@@ -127,6 +127,13 @@ Namespace RecruitmentBusiness.ServiceContracts
                                         Optional ByVal log As UserLog = Nothing) As List(Of ProgramDTO)
 
         <OperationContract()>
+        Function GetProgramSearch(ByVal _filter As ProgramDTO, ByVal PageIndex As Integer,
+                                        ByVal PageSize As Integer,
+                                        ByRef Total As Integer, ByVal _param As ParamDTO,
+                                        Optional ByVal Sorts As String = "CREATED_DATE desc",
+                                        Optional ByVal log As UserLog = Nothing) As List(Of ProgramDTO)
+
+        <OperationContract()>
         Function GetProgramByID(ByVal _filter As ProgramDTO) As ProgramDTO
 
         <OperationContract()>

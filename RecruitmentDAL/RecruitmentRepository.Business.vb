@@ -899,6 +899,126 @@ Partial Class RecruitmentRepository
 
     End Function
 
+
+    Public Function GetProgramSearch(ByVal _filter As ProgramDTO, ByVal PageIndex As Integer,
+                                        ByVal PageSize As Integer,
+                                        ByRef Total As Integer, ByVal _param As ParamDTO,
+                                        Optional ByVal Sorts As String = "CREATED_DATE desc",
+                                        Optional ByVal log As UserLog = Nothing) As List(Of ProgramDTO)
+
+        Try
+            Using cls As New DataAccess.QueryData
+                cls.ExecuteStore("PKG_COMMON_LIST.INSERT_CHOSEN_ORG",
+                                 New With {.P_USERNAME = log.Username,
+                                           .P_ORGID = _param.ORG_ID,
+                                           .P_ISDISSOLVE = _param.IS_DISSOLVE})
+            End Using
+
+            Dim query = From p In Context.RC_PROGRAM
+                        From org In Context.HU_ORGANIZATION.Where(Function(f) f.ID = p.ORG_ID)
+                        From sta In Context.RC_STAGE.Where(Function(f) f.ID = p.STAGE_ID).DefaultIfEmpty
+                        From title In Context.HU_TITLE.Where(Function(f) f.ID = p.TITLE_ID)
+                        From status In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.STATUS_ID).DefaultIfEmpty
+                        From reason In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.RECRUIT_REASON_ID).DefaultIfEmpty
+                        From rectype In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.RECRUIT_TYPE_ID).DefaultIfEmpty
+                        From k In Context.SE_CHOSEN_ORG.Where(Function(f) p.ORG_ID = f.ORG_ID And f.USERNAME.ToUpper = log.Username.ToUpper)
+                        Where p.STATUS_ID = 4060
+                        Select New ProgramDTO With {
+                                           .ID = p.ID,
+                                           .CODE = p.CODE,
+                                           .ORG_ID = p.ORG_ID,
+                                           .ORG_NAME = org.NAME_VN,
+                                           .ORG_DESC = org.DESCRIPTION_PATH,
+                                           .TITLE_NAME = title.NAME_VN,
+                                           .IS_IN_PLAN = p.IS_IN_PLAN,
+                                           .SEND_DATE = p.SEND_DATE,
+                                           .REMARK = p.REMARK,
+                                           .RECRUIT_REASON_NAME = reason.NAME_VN,
+                                           .RECRUIT_REASON = p.RECRUIT_REASON,
+                                           .REQUEST_NUMBER = p.REQUEST_NUMBER,
+                                           .RECRUIT_START = p.RECRUIT_START,
+                                           .RECEIVE_END = p.RECEIVE_END,
+                                           .STATUS_ID = p.STATUS_ID,
+                                           .STATUS_NAME = status.NAME_VN,
+                                           .CREATED_DATE = p.CREATED_DATE,
+                                           .STAGE_ID = p.STAGE_ID,
+                                           .RECRUIT_TYPE_ID = rectype.CODE,
+                                           .CANDIDATE_COUNT = (From can In Context.RC_CANDIDATE
+                                                                Where can.RC_PROGRAM_ID = p.ID).Count,
+                                           .CANDIDATE_REQUEST = (From reg In Context.RC_PLAN_REG
+                                                              Where reg.SEND_DATE.Value.Year = p.SEND_DATE.Value.Year And _
+                                                              reg.STATUS_ID = RecruitmentCommon.RC_PLAN_REG_STATUS.APPROVE_ID And _
+                                                              reg.ORG_ID = p.ORG_ID And reg.TITLE_ID = p.TITLE_ID Select reg.RECRUIT_NUMBER).Sum}
+
+            ' = x.RECRUIT_NUMBER, '
+            Dim lst = query
+            'If _filter.FROM_DATE IsNot Nothing Then
+            '    lst = lst.Where(Function(p) p.SEND_DATE >= _filter.FROM_DATE)
+            'End If
+            'If _filter.TO_DATE IsNot Nothing Then
+            '    lst = lst.Where(Function(p) p.SEND_DATE <= _filter.TO_DATE)
+            'End If
+            'If _filter.SEND_DATE IsNot Nothing Then
+            '    lst = lst.Where(Function(p) p.SEND_DATE = _filter.SEND_DATE)
+            'End If
+            'If _filter.RECRUIT_START IsNot Nothing Then
+            '    lst = lst.Where(Function(p) p.RECRUIT_START = _filter.RECRUIT_START)
+            'End If
+            'If _filter.RECEIVE_END IsNot Nothing Then
+            '    lst = lst.Where(Function(p) p.RECEIVE_END = _filter.RECEIVE_END)
+            'End If
+            'If _filter.ORG_NAME <> "" Then
+            '    lst = lst.Where(Function(p) p.ORG_NAME.ToUpper.Contains(_filter.ORG_NAME.ToUpper))
+            'End If
+            'If _filter.TITLE_NAME <> "" Then
+            '    lst = lst.Where(Function(p) p.TITLE_NAME.ToUpper.Contains(_filter.TITLE_NAME.ToUpper))
+            'End If
+            'If _filter.SEND_DATE IsNot Nothing Then
+            '    lst = lst.Where(Function(p) p.SEND_DATE = _filter.SEND_DATE)
+            'End If
+            'If _filter.STATUS_ID IsNot Nothing Then
+            '    lst = lst.Where(Function(p) p.STATUS_ID = _filter.STATUS_ID)
+            'End If
+            'If _filter.RECRUIT_SCOPE_ID IsNot Nothing Then
+            '    lst = lst.Where(Function(p) p.RECRUIT_SCOPE_ID = _filter.RECRUIT_SCOPE_ID)
+            'End If
+            'If _filter.IS_IN_PLAN IsNot Nothing Then
+            '    lst = lst.Where(Function(p) p.IS_IN_PLAN.Equals(True))
+            'End If
+            'If _filter.STATUS_NAME <> "" Then
+            '    lst = lst.Where(Function(p) p.STATUS_NAME.ToUpper.Contains(_filter.STATUS_NAME.ToUpper))
+            'End If
+            'If _filter.RECRUIT_REASON_NAME <> "" Then
+            '    lst = lst.Where(Function(p) p.RECRUIT_REASON_NAME.ToUpper.Contains(_filter.RECRUIT_REASON_NAME.ToUpper))
+            'End If
+            'If _filter.CODE <> "" Then
+            '    lst = lst.Where(Function(p) p.CODE.ToUpper.Contains(_filter.CODE.ToUpper))
+            'End If
+            'If _filter.RECRUIT_REASON <> "" Then
+            '    lst = lst.Where(Function(p) p.RECRUIT_REASON.ToUpper.Contains(_filter.RECRUIT_REASON.ToUpper))
+            'End If
+            'If _filter.REQUEST_NUMBER IsNot Nothing Then
+            '    lst = lst.Where(Function(p) p.REQUEST_NUMBER = _filter.REQUEST_NUMBER)
+            'End If
+            'If _filter.STAGE_ID IsNot Nothing Then
+            '    lst = lst.Where(Function(p) p.STAGE_ID = _filter.STAGE_ID)
+            'End If
+            'If _filter.RECRUIT_TYPE_ID <> "" Then
+            '    lst = lst.Where(Function(p) p.RECRUIT_TYPE_ID = _filter.RECRUIT_TYPE_ID)
+            'End If
+            lst = lst.OrderBy(Sorts)
+            Total = lst.Count
+            lst = lst.Skip(PageIndex * PageSize).Take(PageSize)
+
+            Return lst.ToList
+        Catch ex As Exception
+            Utility.WriteExceptionLog(ex, Me.ToString() & ".GetProgram")
+            Throw ex
+        End Try
+
+    End Function
+
+
     Public Function GetProgramByID(ByVal _filter As ProgramDTO) As ProgramDTO
 
         Try
