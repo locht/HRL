@@ -381,7 +381,16 @@ Public Class ctrlDeclaresOTNewEdit
                             cboToPM.Focus()
                             Exit Sub
                         End If
-
+                        If rntbFromAM.Value >= rntbToAM.Value And cboFromAM.SelectedValue >= cboToAM.SelectedValue Then
+                            ShowMessage(Translate("Nhập giờ AM: Từ lớn hơn giờ Đến"), NotifyType.Warning)
+                            rntbFromAM.Focus()
+                            Exit Sub
+                        End If
+                        If rntbFromPM.Value >= rntbToPM.Value And cboFromPM.SelectedValue >= cboToPM.SelectedValue Then
+                            ShowMessage(Translate("Nhập giờ PM: Từ lớn hơn giờ Đến"), NotifyType.Warning)
+                            rntbFromPM.Focus()
+                            Exit Sub
+                        End If
                         
                         'If String.IsNullOrEmpty(hidTotal.Value) Or (Not String.IsNullOrEmpty(hidTotal.Value) AndAlso Decimal.Parse(hidTotal.Value) <= 0) Then
                         '    ShowMessage(Translate("Tổng đăng ký tăng ca không hợp lệ."), NotifyType.Warning)
