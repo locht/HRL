@@ -92,7 +92,11 @@ Public Class ctrlRC_ProgramExams
                     rntxtPointLadder.Enabled = True
                     rntxtPointPass.Enabled = True
                 End If
-                txtRemark.Text = slItem.GetDataKeyValue("REMARK").ToString
+                If slItem.GetDataKeyValue("REMARK") IsNot Nothing Then
+                    txtRemark.Text = slItem.GetDataKeyValue("REMARK").ToString
+                Else
+                    txtRemark.Text = ""
+                End If
             End If
         Catch ex As Exception
             Throw ex
