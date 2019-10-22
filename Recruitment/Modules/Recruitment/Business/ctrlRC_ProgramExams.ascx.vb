@@ -214,6 +214,7 @@ Public Class ctrlRC_ProgramExams
                     chkIsPV.Checked = False
                     rntxtCoefficient.Value = 1
                     txtRemark.Text = ""
+                    ClearControlValue(hidID)
                 Case CommonMessage.TOOLBARITEM_EDIT
                     CurrentState = CommonMessage.STATE_EDIT
                 Case CommonMessage.TOOLBARITEM_SAVE

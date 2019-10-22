@@ -114,7 +114,7 @@
                                 SortExpression="COEFFICIENT" UniqueName="COEFFICIENT" />
                             <tlk:GridNumericColumn HeaderText="<%$ Translate: Thư tự sắp xếp %>" DataField="EXAMS_ORDER"
                                 SortExpression="EXAMS_ORDER" UniqueName="EXAMS_ORDER" />
-                            <tlk:GridCheckBoxColumn HeaderText="<%$ Translate: Phỏng vấn? %>" DataField="IS_PV"
+                            <tlk:GridCheckBoxColumn HeaderText="<%$ Translate: Phỏng vấn %>" DataField="IS_PV"
                                 UniqueName="IS_PV" SortExpression="IS_PV" ShowFilterIcon="true" AllowFiltering="false" />
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Ghi chú %>" DataField="REMARK" SortExpression="REMARK"
                                 UniqueName="REMARK" />
