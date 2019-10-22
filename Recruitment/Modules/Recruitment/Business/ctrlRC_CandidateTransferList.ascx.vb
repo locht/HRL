@@ -109,9 +109,11 @@ Public Class ctrlRC_CandidateTransferList
         Try
             Me.ctrlMessageBox.Listener = Me
             Me.MainToolBar = tbarMainToolBar
-            tbarMainToolBar.Visible = False
+            'tbarMainToolBar.Visible = False
             rgCandidateList.ClientSettings.EnablePostBackOnRowClick = True
-            rgAspiration.ClientSettings.EnablePostBackOnRowClick = True
+            'rgAspiration.ClientSettings.EnablePostBackOnRowClick = True
+            Common.Common.BuildToolbar(Me.MainToolBar, ToolbarItem.Save)
+            CType(MainToolBar.Items(0), RadToolBarButton).Text = "Lưu thông tin thỏa thuận"
             CType(Me.Page, AjaxPage).AjaxManager.ClientEvents.OnRequestStart = "onRequestStart"
             'Load danh sach trang thai ung vien len rad listbox
             LoadDataRadlistBox()
@@ -190,8 +192,23 @@ Public Class ctrlRC_CandidateTransferList
             Dim rep As New RecruitmentRepository
 
             Select Case CType(e.Item, RadToolBarButton).CommandName
-
-
+                Case CommonMessage.TOOLBARITEM_SAVE
+                    If rgAspiration.SelectedItems.Count = 0 Then
+                        ShowMessage(Translate("Chọn record muốn lưu"), NotifyType.Warning)
+                        Exit Sub
+                    End If
+                    For Each Item As GridDataItem In rgAspiration.SelectedItems
+                        Dim ID_CANDIDATE = Item("ID_CANDIDATE").Text
+                        Dim PLACE_WORK = DirectCast(Item.FindControl("PLACE_WORK"), RadTextBox).Text
+                        Dim RECEIVE_FROM As Date? = DirectCast(Item.FindControl("RECEIVE_FROM"), RadDatePicker).SelectedDate
+                        Dim RECEIVE_TO As Date? = DirectCast(Item.FindControl("RECEIVE_TO"), RadDatePicker).SelectedDate
+                        Dim PROBATION_FROM As Date? = DirectCast(Item.FindControl("PROBATION_FROM"), RadDatePicker).SelectedDate
+                        Dim PROBATION_TO As Date? = DirectCast(Item.FindControl("PROBATION_TO"), RadDatePicker).SelectedDate
+                        If psp.UPDATE_ASPIRATION(ID_CANDIDATE, PLACE_WORK, RECEIVE_FROM, RECEIVE_TO, PROBATION_FROM, PROBATION_TO) = 1 Then
+                            rgAspiration.Rebind()
+                            ShowMessage(Translate("Lưu thành công"), NotifyType.Success)
+                        End If
+                    Next
             End Select
             'UpdateControlState()
         Catch ex As Exception
@@ -694,20 +711,20 @@ Public Class ctrlRC_CandidateTransferList
         End Try
     End Sub
     ' Cập nhật nguyện vọng
-    Protected Sub rgAspiration_SelectedIndexChanged(sender As Object, e As EventArgs) Handles rgAspiration.SelectedIndexChanged
-        For Each Item As GridDataItem In rgAspiration.SelectedItems
-            Dim ID_CANDIDATE = Item("ID_CANDIDATE").Text
-            Dim PLACE_WORK = DirectCast(Item.FindControl("PLACE_WORK"), RadTextBox).Text
-            Dim RECEIVE_FROM As Date? = DirectCast(Item.FindControl("RECEIVE_FROM"), RadDatePicker).SelectedDate
-            Dim RECEIVE_TO As Date? = DirectCast(Item.FindControl("RECEIVE_TO"), RadDatePicker).SelectedDate
-            Dim PROBATION_FROM As Date? = DirectCast(Item.FindControl("PROBATION_FROM"), RadDatePicker).SelectedDate
-            Dim PROBATION_TO As Date? = DirectCast(Item.FindControl("PROBATION_TO"), RadDatePicker).SelectedDate
-            If psp.UPDATE_ASPIRATION(ID_CANDIDATE, PLACE_WORK, RECEIVE_FROM, RECEIVE_TO, PROBATION_FROM, PROBATION_TO) = 1 Then
-                rgAspiration.Rebind()
-            End If
-        Next
+    'Protected Sub rgAspiration_SelectedIndexChanged(sender As Object, e As EventArgs) Handles rgAspiration.SelectedIndexChanged
+    '    For Each Item As GridDataItem In rgAspiration.SelectedItems
+    '        Dim ID_CANDIDATE = Item("ID_CANDIDATE").Text
+    '        Dim PLACE_WORK = DirectCast(Item.FindControl("PLACE_WORK"), RadTextBox).Text
+    '        Dim RECEIVE_FROM As Date? = DirectCast(Item.FindControl("RECEIVE_FROM"), RadDatePicker).SelectedDate
+    '        Dim RECEIVE_TO As Date? = DirectCast(Item.FindControl("RECEIVE_TO"), RadDatePicker).SelectedDate
+    '        Dim PROBATION_FROM As Date? = DirectCast(Item.FindControl("PROBATION_FROM"), RadDatePicker).SelectedDate
+    '        Dim PROBATION_TO As Date? = DirectCast(Item.FindControl("PROBATION_TO"), RadDatePicker).SelectedDate
+    '        If psp.UPDATE_ASPIRATION(ID_CANDIDATE, PLACE_WORK, RECEIVE_FROM, RECEIVE_TO, PROBATION_FROM, PROBATION_TO) = 1 Then
+    '            rgAspiration.Rebind()
+    '        End If
+    '    Next
 
-    End Sub
+    'End Sub
 #End Region
 
 #Region "Custom"

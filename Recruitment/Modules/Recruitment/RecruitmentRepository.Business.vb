@@ -216,6 +216,25 @@ Partial Class RecruitmentRepository
         Return Nothing
     End Function
 
+    Public Function GetProgramSearch(ByVal _filter As ProgramDTO, ByVal PageIndex As Integer,
+                                        ByVal PageSize As Integer,
+                                        ByRef Total As Integer, ByVal _param As ParamDTO,
+                                        Optional ByVal Sorts As String = "CREATED_DATE desc") As List(Of ProgramDTO)
+        Dim lstProgram As List(Of ProgramDTO)
+
+        Using rep As New RecruitmentBusinessClient
+            Try
+                lstProgram = rep.GetProgramSearch(_filter, PageIndex, PageSize, Total, _param, Sorts, Me.Log)
+                Return lstProgram
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+
+        Return Nothing
+    End Function
+
     Public Function GetProgramByID(ByVal _filter As ProgramDTO) As ProgramDTO
         Using rep As New RecruitmentBusinessClient
             Try

@@ -815,9 +815,11 @@ Public Class ctrlRegisterCO
                 sError = "Kiểu công"
                 ImportValidate.IsValidList("MANUAL_NAME", "MANUAL_ID", row, rowError, isError, sError)
 
-                If rep.CHECK_LEAVE_EXITS(row("EMPLOYEE_CODE").ToString, row("LEAVE_DAY").ToString, row("MANUAL_ID").ToString, row("STATUS_SHIFT_VALUE").ToString) > 0 Then
-                    sError = "Ngày nghỉ không hợp lệ"
-                    isError = True
+                If row("EMPLOYEE_CODE").ToString <> "" AndAlso row("LEAVE_DAY").ToString <> "" AndAlso row("MANUAL_ID").ToString <> "" Then
+                    If rep.CHECK_LEAVE_EXITS(row("EMPLOYEE_CODE").ToString, row("LEAVE_DAY").ToString, row("MANUAL_ID").ToString, If(row("STATUS_SHIFT_VALUE").ToString <> "", row("STATUS_SHIFT_VALUE").ToString, 0)) > 0 Then
+                        sError = "Ngày nghỉ không hợp lệ"
+                        isError = True
+                    End If
                 End If
 
                 If isError Then

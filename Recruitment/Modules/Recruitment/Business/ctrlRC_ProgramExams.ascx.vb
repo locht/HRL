@@ -62,6 +62,47 @@ Public Class ctrlRC_ProgramExams
         End Try
     End Sub
 
+    Private Sub rgData_SelectedIndexChanged(sender As Object, e As System.EventArgs) Handles rgData.SelectedIndexChanged
+        Try
+            If rgData.SelectedItems.Count > 0 Then
+                Dim slItem As GridDataItem
+                slItem = rgData.SelectedItems(0)
+                If IsNumeric(slItem.GetDataKeyValue("ID")) Then
+                    hidID.Value = slItem.GetDataKeyValue("ID").ToString
+                End If
+                txtName.Text = slItem.GetDataKeyValue("NAME").ToString()
+                If IsNumeric(slItem.GetDataKeyValue("POINT_LADDER")) Then
+                    rntxtPointLadder.Value = slItem.GetDataKeyValue("POINT_LADDER").ToString
+                End If
+                If IsNumeric(slItem.GetDataKeyValue("POINT_PASS")) Then
+                    rntxtPointPass.Value = slItem.GetDataKeyValue("POINT_PASS").ToString
+                End If
+                If IsNumeric(slItem.GetDataKeyValue("EXAMS_ORDER")) Then
+                    rntxtExamsOrder.Value = slItem.GetDataKeyValue("EXAMS_ORDER").ToString
+                End If
+                If IsNumeric(slItem.GetDataKeyValue("COEFFICIENT")) Then
+                    rntxtCoefficient.Value = slItem.GetDataKeyValue("COEFFICIENT").ToString
+                End If
+                If slItem.GetDataKeyValue("IS_PV") = True Then
+                    chkIsPV.Checked = True
+                    rntxtPointLadder.Enabled = False
+                    rntxtPointPass.Enabled = False
+                Else
+                    chkIsPV.Checked = False
+                    rntxtPointLadder.Enabled = True
+                    rntxtPointPass.Enabled = True
+                End If
+                If slItem.GetDataKeyValue("REMARK") IsNot Nothing Then
+                    txtRemark.Text = slItem.GetDataKeyValue("REMARK").ToString
+                Else
+                    txtRemark.Text = ""
+                End If
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
     Protected Sub InitControl()
         Try
             Me.ctrlMessageBox.Listener = Me
@@ -90,8 +131,13 @@ Public Class ctrlRC_ProgramExams
                 Case CommonMessage.STATE_NEW, CommonMessage.STATE_EDIT
                     txtName.Enabled = True
                     rntxtExamsOrder.Enabled = True
-                    rntxtPointLadder.Enabled = True
-                    rntxtPointPass.Enabled = True
+                    If chkIsPV.Checked Then
+                        rntxtPointLadder.Enabled = False
+                        rntxtPointPass.Enabled = False
+                    Else
+                        rntxtPointLadder.Enabled = True
+                        rntxtPointPass.Enabled = True
+                    End If
                     chkIsPV.Enabled = True
                     rntxtCoefficient.Enabled = True
                     txtRemark.Enabled = True
@@ -143,7 +189,19 @@ Public Class ctrlRC_ProgramExams
     End Sub
 
 #End Region
-
+    Private Sub chkIsPV_CheckedChanged(sender As Object, e As System.EventArgs) Handles chkIsPV.CheckedChanged
+        Try
+            If chkIsPV.Checked Then
+                rntxtPointLadder.Enabled = False
+                rntxtPointPass.Enabled = False
+            Else
+                rntxtPointLadder.Enabled = True
+                rntxtPointPass.Enabled = True
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
 #Region "Event"
 
     Protected Sub OnToolbar_Command(ByVal sender As Object, ByVal e As RadToolBarEventArgs) Handles Me.OnMainToolbarClick
@@ -160,6 +218,7 @@ Public Class ctrlRC_ProgramExams
                     chkIsPV.Checked = False
                     rntxtCoefficient.Value = 1
                     txtRemark.Text = ""
+                    ClearControlValue(hidID)
                 Case CommonMessage.TOOLBARITEM_EDIT
                     CurrentState = CommonMessage.STATE_EDIT
                 Case CommonMessage.TOOLBARITEM_SAVE
@@ -184,7 +243,7 @@ Public Class ctrlRC_ProgramExams
                         End If
                         Dim obj As New ProgramExamsDTO
                         obj.RC_PROGRAM_ID = hidProgramID.Value
-                        obj.Exams_ORDER = rntxtExamsOrder.Value
+                        obj.EXAMS_ORDER = rntxtExamsOrder.Value
                         obj.NAME = txtName.Text
                         obj.COEFFICIENT = rntxtCoefficient.Value
                         obj.REMARK = txtRemark.Text
@@ -270,5 +329,7 @@ Public Class ctrlRC_ProgramExams
     End Function
 
 #End Region
+
+
 
 End Class
