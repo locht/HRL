@@ -98,7 +98,7 @@
             <legend>
                 <%# Translate("Chọn các tiêu chí để lọc dữ liệu")%></legend>--%>
         <table class="table-form">
-            <tr style="height:5px"> 
+            <tr style="height: 5px">
             </tr>
             <tr>
                 <td class="item-head" colspan="6">
@@ -306,21 +306,25 @@
                 </td>
                 <td>
                     <tlk:RadButton ID="btnSendEmailReceive" runat="server" Text="<%$ Translate: Gửi email thư mời nhận việc %>"
-                        OnClientClicked="DisableAjax"  Visible="false">
-                    </tlk:RadButton>
-                </td>
-                <td>
-                    <tlk:RadButton ID="btnReceive" runat="server" Text="<%$ Translate: Thư mời nhận việc %>"
-                        OnClientClicked="DisableAjax" >
-                    </tlk:RadButton>
-                </td>
-                <td>
-                    <tlk:RadButton ID="btnThankLetter" runat="server" Text="<%$ Translate: Thư cảm ơn %>"
                         OnClientClicked="DisableAjax" Visible="false">
                     </tlk:RadButton>
                 </td>
                 <td>
+                    <tlk:RadButton ID="btnReceive" runat="server" Text="<%$ Translate: Thư mời nhận việc %>"
+                        OnClientClicked="DisableAjax">
+                    </tlk:RadButton>
+                </td>
+                <td>
+                    <tlk:RadButton ID="btnThankLetter" runat="server" Text="<%$ Translate: Thư cảm ơn %>"
+                        OnClientClicked="DisableAjax">
+                    </tlk:RadButton>
+                </td>
+                <td>
                     <tlk:RadButton ID="btnTransfer" runat="server" Text="<%$ Translate: Chuyển sang HSNV %>">
+                    </tlk:RadButton>
+                </td>
+                <td colspan="2">
+                    <tlk:RadButton ID="cmdYCTDKhac" runat="server" Width="100%" Text="<%$ Translate: Chuyển sang vị trí tuyển dụng khác %>">
                     </tlk:RadButton>
                 </td>
                 <td>
@@ -331,12 +335,6 @@
                 <td>
                     <tlk:RadButton ID="btnLĐ" runat="server" Text="<%$ Translate: Gửi email thông báo tiếp nhận LĐ thử việc  %>"
                         OnClientClicked="DisableAjax" Visible="false">
-                    </tlk:RadButton>
-                </td>
-            </tr>
-             <tr>
-                 <td colspan ="2">
-                    <tlk:RadButton ID="cmdYCTDKhac" runat="server" Width="100%" Text="<%$ Translate: Chuyển sang vị trí tuyển dụng khác %>">
                     </tlk:RadButton>
                 </td>
             </tr>

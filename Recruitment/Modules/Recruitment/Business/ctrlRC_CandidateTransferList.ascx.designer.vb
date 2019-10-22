@@ -356,6 +356,15 @@ Partial Public Class ctrlRC_CandidateTransferList
     Protected WithEvents btnTransfer As Global.Telerik.Web.UI.RadButton
 
     '''<summary>
+    '''cmdYCTDKhac control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents cmdYCTDKhac As Global.Telerik.Web.UI.RadButton
+
+    '''<summary>
     '''btnExportContract control.
     '''</summary>
     '''<remarks>
@@ -372,15 +381,6 @@ Partial Public Class ctrlRC_CandidateTransferList
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents btnLĐ As Global.Telerik.Web.UI.RadButton
-
-    '''<summary>
-    '''cmdYCTDKhac control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents cmdYCTDKhac As Global.Telerik.Web.UI.RadButton
 
     '''<summary>
     '''ctrlMessageBox control.
