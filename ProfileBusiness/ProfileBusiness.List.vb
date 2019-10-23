@@ -2555,6 +2555,16 @@ Namespace ProfileBusiness.ServiceImplementations
 
             End Try
         End Function
+
+        Public Function CHECK_LOCATION_EXITS(ByVal P_ID As Decimal?, ByVal ORG_ID As Decimal) As Boolean Implements ServiceContracts.IProfileBusiness.CHECK_LOCATION_EXITS
+            Try
+                Dim rep As New ProfileRepository
+                Return rep.CHECK_LOCATION_EXITS(P_ID, ORG_ID)
+            Catch ex As Exception
+
+            End Try
+        End Function
+
 #End Region
     End Class
 End Namespace

@@ -2198,4 +2198,14 @@ Partial Public Class ProfileRepository
             End Try
         End Using
     End Function
+
+    Public Function CHECK_LOCATION_EXITS(ByVal P_ID As Decimal?, ByVal ORG_ID As Decimal) As Boolean
+        Try
+            Using rep As New ProfileBusinessClient
+                Return rep.CHECK_LOCATION_EXITS(P_ID, ORG_ID)
+            End Using
+        Catch ex As Exception
+
+        End Try
+    End Function
 End Class
