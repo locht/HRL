@@ -1,6 +1,7 @@
 ﻿<%@ Control Language="vb" AutoEventWireup="false" CodeBehind="ctrlHU_Title.ascx.vb"
     Inherits="Profile.ctrlHU_Title" %>
 <%@ Import Namespace="Common" %>
+<asp:HiddenField ID="hidTITLE_GROUP_ID" runat="server" />
 <link href="/Styles/StyleCustom.css" rel="stylesheet" type="text/css" />
 <tlk:RadSplitter ID="RadSplitter3" runat="server" Width="100%" Height="100%" Orientation="Horizontal">
     <tlk:RadPane ID="RadPane1" runat="server" Height="230px" Scrolling="None">
@@ -124,7 +125,7 @@
             <ClientSettings EnableRowHoverStyle="true">
                 <Selecting AllowRowSelect="true" />
             </ClientSettings>
-            <MasterTableView DataKeyNames="ID" ClientDataKeyNames="CODE,NAME_VN,TITLE_GROUP_NAME,TITLE_GROUP_ID,REMARK,ORG_ID,ORG_TYPE,FILENAME,HURTFUL,HURTFUL_CHECK,OVT,OVT_CHECK,SPEC_HURFUL,SPEC_HURFUL_CHECK,UPLOAD_FILE,HURT_TYPE_ID,HURT_TYPE_NAME">
+            <MasterTableView DataKeyNames="ID" ClientDataKeyNames="CODE,NAME_VN,TITLE_GROUP_NAME,TITLE_GROUP_ID,REMARK,ORG_ID,ORG_TYPE,FILENAME,HURTFUL,HURTFUL_CHECK,OVT,OVT_CHECK,SPEC_HURFUL,SPEC_HURFUL_CHECK,UPLOAD_FILE,HURT_TYPE_ID,HURT_TYPE_NAME,TITLE_GROUP_ID1">
                 <Columns>
                     <%--<tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderStyle-HorizontalAlign="Center"
                         HeaderStyle-Width="30px" ItemStyle-HorizontalAlign="Center">

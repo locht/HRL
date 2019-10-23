@@ -356,6 +356,7 @@ dontrefresh:
             dic.Add("NAME_VN", txtNameVN)
             dic.Add("REMARK", txtRemark)
             dic.Add("TITLE_GROUP_ID", cboTitleGroup)
+            dic.Add("TITLE_GROUP_ID1", hidTITLE_GROUP_ID)
             dic.Add("ORG_ID", cboOrgLevel)
             dic.Add("ORG_TYPE", cboOrgType)
             dic.Add("HURT_TYPE_ID", cboHurtType)
@@ -383,7 +384,10 @@ dontrefresh:
                 dtOrgLevel = repS.GET_ORGID_COMPANY_LEVEL()
                 ORG_CODE = dtOrgLevel.Select("ORG_ID='" + cboOrgLevel.SelectedValue + "'")(0)("ORG_CODE").ToString
             End If
-            GenerateTitleCode()
+            If hidTITLE_GROUP_ID.Value <> cboTitleGroup.SelectedValue Then
+                GenerateTitleCode()
+            End If
+
         Catch ex As Exception
             Throw ex
         Finally
@@ -514,7 +518,7 @@ dontrefresh:
                         ' Dim code = (From a In dataTable.AsEnumerable Where a("ID") = cboTitleGroup.SelectedValue Select a("CODE"))
                         'txtCode.Text = rep.AutoGenCode("CD", "HU_TITLE", "CODE")
                         'txtCode.Text = rep.AutoGenCode(TITLE_GROUP, "HU_TITLE", "CODE")
-                        GenerateTitleCode()
+                        'GenerateTitleCode()
                         objTitle.CODE = txtCode.Text.Trim
                         objTitle.NAME_VN = txtNameVN.Text.Trim
                         objTitle.NAME_EN = txtNameVN.Text.Trim

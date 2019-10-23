@@ -119,7 +119,8 @@ Partial Class ProfileRepository
                                    .HURT_TYPE_NAME = hurtType.NAME_VN,
                                    .OVT_CHECK = If(p.OVT = -1, True, False),
                                    .UPLOAD_FILE = p.UPLOAD_FILE,
-                                   .FILENAME = p.FILENAME}
+                                   .FILENAME = p.FILENAME,
+                                   .TITLE_GROUP_ID1 = p.TITLE_GROUP_ID}
 
             Dim lst = query
 

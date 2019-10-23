@@ -34,4 +34,5 @@
     Public Property ORG_TYPE As Decimal?
     Public Property ORG_TYPE_NAME As String
     Public Property FILENAME As String
+    Public Property TITLE_GROUP_ID1 As Decimal?
 End Class

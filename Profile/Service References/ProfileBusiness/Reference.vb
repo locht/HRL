@@ -6779,6 +6779,9 @@ Namespace ProfileBusiness
         Private TITLE_GROUP_IDField As System.Nullable(Of Decimal)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private TITLE_GROUP_ID1Field As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private TITLE_GROUP_NAMEField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -7186,6 +7189,19 @@ Namespace ProfileBusiness
                 If (Me.TITLE_GROUP_IDField.Equals(value) <> true) Then
                     Me.TITLE_GROUP_IDField = value
                     Me.RaisePropertyChanged("TITLE_GROUP_ID")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property TITLE_GROUP_ID1() As System.Nullable(Of Decimal)
+            Get
+                Return Me.TITLE_GROUP_ID1Field
+            End Get
+            Set
+                If (Me.TITLE_GROUP_ID1Field.Equals(value) <> true) Then
+                    Me.TITLE_GROUP_ID1Field = value
+                    Me.RaisePropertyChanged("TITLE_GROUP_ID1")
                 End If
             End Set
         End Property
