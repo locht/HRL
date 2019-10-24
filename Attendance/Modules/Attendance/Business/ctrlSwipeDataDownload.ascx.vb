@@ -172,6 +172,11 @@ Public Class ctrlSwipeDataDownload
                                                                      ToolbarAuthorize.Import,
                                                                      Translate("Nhập file mẫu")))
 
+            Me.MainToolBar.Items.Add(Common.Common.CreateToolbarItem("DOWNLOADDATA",
+                                                                     ToolbarIcons.Calculator,
+                                                                     ToolbarAuthorize.Special1,
+                                                                     Translate("Tải dữ liệu")))
+
             'Me.MainToolBar.Items.Add(Common.Common.CreateToolbarItem("IMPORT",
             '                                                        ToolbarIcons.Import,
             '                                                        ToolbarAuthorize.Import,
@@ -367,6 +372,8 @@ Public Class ctrlSwipeDataDownload
                         ShowMessage(Translate(CommonMessage.MESSAGE_NOT_CHOOSE_MACHINE_TYPE), NotifyType.Warning)
                         Exit Sub
                     End If
+                Case "DOWNLOADDATA"
+
             End Select
             _myLog.WriteLog(_myLog._info, _classPath, method,
                                                            CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
