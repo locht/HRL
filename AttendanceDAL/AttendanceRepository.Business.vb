@@ -19,6 +19,11 @@ Partial Public Class AttendanceRepository
 #Region "Integate InOut"
 
     Public Function ProcessInOutData() As Boolean
+        'If ReadCheckInOutData(DateAdd(DateInterval.Day, -60, Now), Now) Then
+        '    Return True
+        'Else
+        '    Return False
+        'End If
         Dim TimeStr As String = ConfigurationManager.AppSettings("TIMESYNC")
         If TimeStr = "" Then Return False
         Dim timesync As Date = Now()
