@@ -50242,6 +50242,9 @@ Namespace ProfileBusiness
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GET_PROCESS_PLCONTRACT_PORTAL", ReplyAction:="http://tempuri.org/IProfileBusiness/GET_PROCESS_PLCONTRACT_PORTALResponse")>  _
         Function GET_PROCESS_PLCONTRACT_PORTAL(ByVal P_EMP_ID As Decimal) As System.Data.DataTable
         
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/CHECK_LOCATION_EXITS", ReplyAction:="http://tempuri.org/IProfileBusiness/CHECK_LOCATION_EXITSResponse")>  _
+        Function CHECK_LOCATION_EXITS(ByVal P_ID As System.Nullable(Of Decimal), ByVal ORG_ID As Decimal) As Boolean
+        
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetEmployeeHistory", ReplyAction:="http://tempuri.org/IProfileBusiness/GetEmployeeHistoryResponse")>  _
         Function GetEmployeeHistory(ByVal _empId As Decimal) As System.Data.DataTable
         
@@ -52392,6 +52395,10 @@ Namespace ProfileBusiness
         
         Public Function GET_PROCESS_PLCONTRACT_PORTAL(ByVal P_EMP_ID As Decimal) As System.Data.DataTable Implements ProfileBusiness.IProfileBusiness.GET_PROCESS_PLCONTRACT_PORTAL
             Return MyBase.Channel.GET_PROCESS_PLCONTRACT_PORTAL(P_EMP_ID)
+        End Function
+        
+        Public Function CHECK_LOCATION_EXITS(ByVal P_ID As System.Nullable(Of Decimal), ByVal ORG_ID As Decimal) As Boolean Implements ProfileBusiness.IProfileBusiness.CHECK_LOCATION_EXITS
+            Return MyBase.Channel.CHECK_LOCATION_EXITS(P_ID, ORG_ID)
         End Function
         
         Public Function GetEmployeeHistory(ByVal _empId As Decimal) As System.Data.DataTable Implements ProfileBusiness.IProfileBusiness.GetEmployeeHistory

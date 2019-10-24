@@ -154,7 +154,7 @@ Partial Public Class AttendanceRepository
         Try
             For Each obj In ListobjImport
                 Dim count As Integer = 0
-                Dim emp_id = (From e In Context.HU_EMPLOYEE Where e.EMPLOYEE_CODE = obj.EMPLOYEE_CODE Select e.ID).FirstOrDefault
+                Dim emp_id = (From e In Context.HU_EMPLOYEE Where e.EMPLOYEE_CODE = obj.EMPLOYEE_CODE And e.IS_KIEM_NHIEM Is Nothing Select e.ID).FirstOrDefault
                 count = (From p In Context.AT_TIMESHEET_MACHINET_IMPORT Where p.EMPLOYEE_ID = emp_id And p.WORKING_DAY = obj.WORKINGDAY).ToList.Count()
                 If count > 0 Then
                     Dim objImport As AT_TIMESHEET_MACHINET_IMPORT

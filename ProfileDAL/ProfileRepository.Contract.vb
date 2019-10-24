@@ -1543,7 +1543,7 @@ Partial Class ProfileRepository
             If nameTypeContract.CODE = "HDTV" Then
                 str = employeeCode.ToString + "/".ToString() + Year(objContract.START_DATE).ToString() + "/" + "HDTV".ToString() + If(codeLocation.CODE IsNot Nothing, "/".ToString(), Nothing) + codeLocation.CODE
             Else
-                str = employeeCode.ToString + "/".ToString() + Year(objContract.START_DATE).ToString() + "/" + "HD".ToString() + If(codeLocation.CODE IsNot Nothing, "/".ToString(), Nothing) + codeLocation.CODE
+                str = employeeCode.ToString + "/".ToString() + Year(objContract.START_DATE).ToString() + "/" + "HDLD".ToString() + If(codeLocation.CODE IsNot Nothing, "/".ToString(), Nothing) + codeLocation.CODE
             End If
             Dim query = (From ct In Context.HU_CONTRACT
                        Where ct.EMPLOYEE_ID = objContract.EMPLOYEE_ID And ct.CONTRACT_TYPE_ID = objContract.CONTRACTTYPE_ID)
