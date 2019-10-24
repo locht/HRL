@@ -668,6 +668,7 @@ Public Class ctrlHU_TerminateNewEdit
                 rntxtDebtMoney.Value = Decimal.Parse(_item.GetDataKeyValue("MONEY"))
                 cboDebtStatus.SelectedValue = _item.GetDataKeyValue("DEBT_STATUS")
                 txtDebtNote.Text = _item.GetDataKeyValue("REMARK")
+                hidCheckDelete.Value = _item.GetDataKeyValue("DEBT_TYPE_ID")
             Next
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
@@ -1532,13 +1533,20 @@ Public Class ctrlHU_TerminateNewEdit
     End Function
     Private Function DeleteDebts(ByVal dataSource As List(Of DebtDTO)) As List(Of DebtDTO)
         Try
-            For Each item As GridDataItem In rgDebt.Items
-                Dim item_Ck = (From p In dataSource.AsEnumerable Where p.DEBT_TYPE_ID = item.GetDataKeyValue("DEBT_TYPE_ID")).FirstOrDefault
+            'For Each item As GridDataItem In rgDebt.Items
+            '    Dim item_Ck = (From p In dataSource.AsEnumerable Where p.DEBT_TYPE_ID = item.GetDataKeyValue("DEBT_TYPE_ID")).FirstOrDefault
+            '    If item_Ck IsNot Nothing Then
+            '        dataSource.Remove(item_Ck)
+            '    End If
+            'Next
+            If hidCheckDelete.Value <> "" Then
+                Dim item_Ck = (From p In dataSource.AsEnumerable Where p.DEBT_TYPE_ID = hidCheckDelete.Value).FirstOrDefault
                 If item_Ck IsNot Nothing Then
                     dataSource.Remove(item_Ck)
                 End If
-            Next
+            End If
             Return dataSource
+
         Catch ex As Exception
             Throw ex
         End Try

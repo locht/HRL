@@ -15,6 +15,7 @@
         <asp:HiddenField ID="hidOrgAbbr" runat="server" />
         <asp:HiddenField ID="hiSalbasic" runat="server" />
         <asp:HiddenField ID="hidWorkStatus" runat="server" />
+        <asp:HiddenField ID="hidCheckDelete" runat="server" />
         <asp:ValidationSummary ID="valSum" runat="server" DisplayMode="BulletList" CssClass="validationsummary" />
         <table class="table-form" onkeydown="return (event.keyCode!=13)">
             <tr>
@@ -308,9 +309,9 @@
                                 </div>
                             </CommandItemTemplate>
                             <Columns>
-                             <%--   <tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderStyle-HorizontalAlign="Center"
+                                <tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderStyle-HorizontalAlign="Center"
                                     HeaderStyle-Width="30px" ItemStyle-HorizontalAlign="Center">
-                                </tlk:GridClientSelectColumn>--%>
+                                </tlk:GridClientSelectColumn>
                                 <tlk:GridBoundColumn HeaderText="<%$ Translate: Tên loại công nợ %>" DataField="DEBT_TYPE_NAME"
                                     SortExpression="DEBT_TYPE_NAME" UniqueName="DEBT_TYPE_NAME" ReadOnly="true" />
                                 <tlk:GridNumericColumn HeaderText="<%$ Translate: Số tiền %>" DataField="MONEY" SortExpression="MONEY"
