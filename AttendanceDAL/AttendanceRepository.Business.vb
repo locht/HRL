@@ -14,10 +14,84 @@ Imports Framework.Data.DataAccess
 Imports Oracle.DataAccess.Client
 Imports System.Globalization
 Imports HistaffFrameworkPublic.HistaffFrameworkEnum
-
-
-
+Imports System.IO
 Partial Public Class AttendanceRepository
+#Region "Integate InOut"
+
+    Public Function ProcessInOutData() As Boolean
+        Dim TimeStr As String = ConfigurationManager.AppSettings("TIMESYNC")
+        If TimeStr = "" Then Return False
+        Dim timesync As Date = Now()
+        Dim startTime As DateTime = DateTime.UtcNow
+        Try
+            Dim arr As Array = TimeStr.Split(";")
+            For Each str As String In arr
+                If Date.TryParse(str, timesync) Then
+                    If Format(timesync, "dd/MM/yyyy hh:mm") = Format(Now, "dd/MM/yyyy hh:mm") Then
+                        If ReadCheckInOutData(timesync, timesync) Then
+                            Return True
+                        Else
+                            Return False
+                        End If
+                    End If
+                End If
+            Next
+        Catch ex As Exception
+            Throw ex
+        End Try
+
+
+    End Function
+
+    Public Function ReadCheckInOutData(ByVal dateFrom As Date, ByVal dateTo As Date) As Boolean
+        Dim startTime As DateTime = DateTime.UtcNow
+        Try
+            Dim ds As DataSet
+            Dim g_ConStringSql As String
+            Dim strFromDate As String = dateFrom.Year.ToString + IIf(dateFrom.Month >= 10, dateFrom.Month.ToString(), "0" + dateFrom.Month.ToString()) + IIf(dateFrom.Day >= 10, dateFrom.Day.ToString, "0" + dateFrom.Day.ToString())
+            Dim strEndDate As String = dateTo.Year.ToString + IIf(dateTo.Month >= 10, dateTo.Month.ToString(), "0" + dateTo.Month.ToString()) + IIf(dateTo.Day >= 10, dateTo.Day.ToString, "0" + dateTo.Day.ToString())
+            g_ConStringSql = SQLHelper.LoadConfig()
+            Dim strSql As String = String.Format(SQLHelper.GetSQLText("CHECKINOUT"), strFromDate, strEndDate)
+            ds = SQLHelper.ExecuteQuery(strSql, g_ConStringSql)
+           
+            If Not ds Is Nothing Then
+                If ds.Tables.Count = 0 Then Return False
+                Dim sw As New StringWriter()
+                Dim DocXml As String = String.Empty
+                ds.Tables(0).WriteXml(sw, False)
+                DocXml = sw.ToString
+                Try
+                    ImportDataINOUT(DocXml, dateFrom, dateTo)
+                    Return True
+                Catch ex As Exception
+                    Return True
+                End Try
+            Else
+                Return False
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+    Private Function ImportDataINOUT(ByVal DataXML As String, ByVal FROM_DATE As Date, ByVal END_TODATE As Date)
+        Try
+            Using cls As New DataAccess.QueryData
+                Dim obj_data As DataTable = cls.ExecuteStore("PKG_ATTENDANCE_BUSINESS.IMPORT_DATA_INOUT",
+                                           New With {.P_DATA = DataXML,
+                                                     .P_USER = "AUTO",
+                                                     .P_FROM_DATE = FROM_DATE,
+                                                     .P_END_DATE = END_TODATE,
+                                                     .P_OUT = cls.OUT_CURSOR
+                                                     })
+                Return CBool(obj_data(0)(0))
+
+            End Using
+            Return True
+        Catch ex As Exception
+            Return False
+        End Try
+    End Function
+#End Region
     Dim ls_AT_SWIPE_DATADTO As New List(Of AT_SWIPE_DATADTO)
 #Region "CONFIG TEMPLATE "
     Public Function GET_CONFIG_TEMPLATE(ByVal MACHINE_TYPE As Decimal?) As DataSet
