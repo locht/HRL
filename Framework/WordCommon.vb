@@ -31,7 +31,7 @@ Public Class WordCommon
                 Dim shape As Shape = builder.InsertImage(path1, RelativeHorizontalPosition.Page, 0, RelativeVerticalPosition.Page, 0, width, 110, WrapType.None)
                 shape.RelativeHorizontalPosition = RelativeHorizontalPosition.Page
                 shape.Left = 0
-                shape.Top = 700
+                shape.Top = 730
             End If
             'add image to footer in other pages
             builder.MoveToHeaderFooter(HeaderFooterType.FooterEven)
@@ -41,7 +41,7 @@ Public Class WordCommon
                 Dim shape As Shape = builder.InsertImage(path1, RelativeHorizontalPosition.Page, 0, RelativeVerticalPosition.Page, 0, width, 110, WrapType.None)
                 shape.RelativeHorizontalPosition = RelativeHorizontalPosition.Page
                 shape.Left = 0
-                shape.Top = 700
+                shape.Top = 730
             End If
             builder.MoveToHeaderFooter(HeaderFooterType.FooterPrimary)
             pageSetup.FooterDistance = 0
@@ -50,7 +50,7 @@ Public Class WordCommon
                 Dim shape As Shape = builder.InsertImage(path1, RelativeHorizontalPosition.Page, 0, RelativeVerticalPosition.Page, 0, width, 110, WrapType.None)
                 shape.RelativeHorizontalPosition = RelativeHorizontalPosition.Page
                 shape.Left = 0
-                shape.Top = 700
+                shape.Top = 730
             End If
             'pageSetup.DifferentFirstPageHeaderFooter = False
             Return doc
