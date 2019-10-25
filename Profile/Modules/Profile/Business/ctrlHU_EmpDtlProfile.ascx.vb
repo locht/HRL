@@ -900,7 +900,7 @@ Public Class ctrlHU_EmpDtlProfile
                     End If
 
                 Case CommonMessage.STATE_EDIT
-                    rtIdTitleConcurrent.Visible = True
+                    rtIdTitleConcurrent.Visible = False
                     'RadPane4.Visible = False
                     If EmployeeInfo.WORK_STATUS IsNot Nothing Then
                         EnableControlAll(False, txtOrgName2, btnFindOrg,

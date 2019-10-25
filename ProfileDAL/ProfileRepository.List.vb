@@ -5739,7 +5739,7 @@ Partial Class ProfileRepository
                                         .ORG_NAME = f.g.NAME_VN,
                                         .REMARK = f.p.REMARK,
                                         .ORG_ID = f.p.ORG_ID,
-                                        .ACTFLG = If(f.p.ACTFLG = 1, "A", "I")
+                                        .ACTFLG = If(f.p.ACTFLG = 1, "Áp dụng", "Ngưng áp dụng")
                                        })
 
             Return lst.ToList.ToTable()
