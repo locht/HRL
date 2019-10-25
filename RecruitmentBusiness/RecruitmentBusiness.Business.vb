@@ -169,6 +169,20 @@ Namespace RecruitmentBusiness.ServiceImplementations
             End Try
         End Function
 
+        Public Function GetProgramSearch(ByVal _filter As ProgramDTO, ByVal PageIndex As Integer,
+                                        ByVal PageSize As Integer,
+                                        ByRef Total As Integer, ByVal _param As ParamDTO,
+                                        Optional ByVal Sorts As String = "CREATED_DATE desc",
+                                        Optional ByVal log As UserLog = Nothing) As List(Of ProgramDTO) Implements ServiceContracts.IRecruitmentBusiness.GetProgramSearch
+            Try
+                Dim lst = RecruitmentRepositoryStatic.Instance.GetProgramSearch(_filter, PageIndex, PageSize, Total, _param, Sorts, log)
+                Return lst
+            Catch ex As Exception
+
+                Throw ex
+            End Try
+        End Function
+
         Public Function GetProgramByID(ByVal _filter As ProgramDTO) As ProgramDTO Implements ServiceContracts.IRecruitmentBusiness.GetProgramByID
             Try
                 Dim lst = RecruitmentRepositoryStatic.Instance.GetProgramByID(_filter)

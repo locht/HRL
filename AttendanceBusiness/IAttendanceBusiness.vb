@@ -24,6 +24,8 @@ Namespace AttendanceBusiness.ServiceContracts
                                       Optional ByVal Sorts As String = "CREATED_DATE desc", Optional ByVal log As UserLog = Nothing) As List(Of AT_LEAVESHEETDTO)
 #End Region
         <OperationContract()>
+        Function ReadCheckInOutData(ByVal dateFrom As Date, ByVal dateTo As Date) As Boolean
+        <OperationContract()>
         Function GETIDFROMPROCESS(ByVal Id As Decimal) As Decimal
         <OperationContract()>
         Function CAL_SUMMARY_DATA_INOUT(ByVal Period_id As Decimal) As Boolean

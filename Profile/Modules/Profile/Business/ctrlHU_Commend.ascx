@@ -85,7 +85,7 @@
                                 SortExpression="EMPLOYEE_CODE" UniqueName="EMPLOYEE_CODE" HeaderStyle-Width="60px" />
                             <tlk:GridBoundColumn HeaderText="Họ tên nhân viên" DataField="EMPLOYEE_NAME"
                                 SortExpression="EMPLOYEE_NAME" UniqueName="EMPLOYEE_NAME" HeaderStyle-Width="150px" /> 
-                            <tlk:GridBoundColumn HeaderText="Phòng ban" DataField="ORG_NAME"
+                            <tlk:GridBoundColumn HeaderText="Ban/Phòng" DataField="ORG_NAME"
                                 SortExpression="ORG_NAME" UniqueName="ORG_NAME" HeaderStyle-Width="150px" />
                             <tlk:GridBoundColumn HeaderText="Chức danh" DataField="TITLE_NAME"
                                 SortExpression="TITLE_NAME" UniqueName="TITLE_NAME" HeaderStyle-Width="150px" />

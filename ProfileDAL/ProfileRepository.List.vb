@@ -119,7 +119,8 @@ Partial Class ProfileRepository
                                    .HURT_TYPE_NAME = hurtType.NAME_VN,
                                    .OVT_CHECK = If(p.OVT = -1, True, False),
                                    .UPLOAD_FILE = p.UPLOAD_FILE,
-                                   .FILENAME = p.FILENAME}
+                                   .FILENAME = p.FILENAME,
+                                   .TITLE_GROUP_ID1 = p.TITLE_GROUP_ID}
 
             Dim lst = query
 
@@ -5842,5 +5843,22 @@ Partial Class ProfileRepository
         End Try
         Return True
     End Function
+
+    Public Function CHECK_LOCATION_EXITS(ByVal P_ID As Decimal?, ByVal ORG_ID As Decimal) As Boolean
+        Try
+
+            Using cls As New DataAccess.QueryData
+                Dim dtData As DataTable = cls.ExecuteStore("PKG_HU_IPROFILE_LIST.CHECK_LOCATION_EXITS", New With {.P_ID = P_ID, .P_ORG_ID = ORG_ID, .P_OUT = cls.OUT_CURSOR})
+                If Decimal.Parse(dtData(0)("CHECK1").ToString) > 0 Then
+                    Return True
+                Else
+                    Return False
+                End If
+            End Using
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+
 #End Region
 End Class

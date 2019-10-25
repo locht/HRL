@@ -14,6 +14,15 @@ Option Explicit On
 Partial Public Class ctrlHU_Title
 
     '''<summary>
+    '''hidTITLE_GROUP_ID control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents hidTITLE_GROUP_ID As Global.System.Web.UI.WebControls.HiddenField
+
+    '''<summary>
     '''RadSplitter3 control.
     '''</summary>
     '''<remarks>

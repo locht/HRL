@@ -76,7 +76,7 @@
         </table>
     </tlk:RadPane>
     <tlk:RadPane ID="RadPane2" runat="server" Scrolling="None">
-        <tlk:RadGrid ID="rgData" runat="server" Height="100%" AllowPaging="true" Width="100%" PageSize="50" OnPreRender ="rgData_PreRender">
+        <tlk:RadGrid ID="rgData" runat="server" Height="100%" AllowPaging="true" Width="100%" PageSize="50">
              <ClientSettings EnablePostBackOnRowClick="True">
                         <ClientEvents OnGridCreated="GridCreated" />
                         <ClientEvents OnCommand="ValidateFilter" />

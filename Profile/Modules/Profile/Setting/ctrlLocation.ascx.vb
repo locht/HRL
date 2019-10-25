@@ -348,6 +348,12 @@ Public Class ctrlLocation
                         If hfOrg.Value IsNot Nothing And hfOrg.Value <> "" Then
                             objLocationFunction.ORG_ID = hfOrg.Value
                         End If
+
+                        If rep.CHECK_LOCATION_EXITS(If(hfID.Value <> "", hfID.Value, Nothing), objLocationFunction.ORG_ID) Then
+                            ShowMessage(Translate("Thông tin Location đã tồn lại, Vui lòng kiểm tra lại."), NotifyType.Warning)
+                            Exit Sub
+                        End If
+
                         If txtLocationCODE.Text IsNot Nothing And txtLocationCODE.Text <> "" Then
                             objLocationFunction.CODE = txtLocationCODE.Text.Trim
                         End If

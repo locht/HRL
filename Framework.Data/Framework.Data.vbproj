@@ -114,6 +114,7 @@
     <Compile Include="DataAccess\NonQuery.vb" />
     <Compile Include="DataAccess\OracleCommon.vb" />
     <Compile Include="DataAccess\Query.vb" />
+    <Compile Include="DataAccess\SQLHelper.vb" />
     <Compile Include="EncryptDecrypt.vb" />
     <Compile Include="EntityHelper.vb" />
     <Compile Include="ExtensionMethods.vb" />

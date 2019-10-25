@@ -7,6 +7,19 @@ Imports LinqKit
 ' NOTE: You can use the "Rename" command on the context menu to change the class name "Service1" in both code and config file together.
 Namespace AttendanceBusiness.ServiceImplementations
     Partial Public Class AttendanceBusiness
+        Function ReadCheckInOutData(ByVal dateFrom As Date, ByVal dateTo As Date) As Boolean Implements IAttendanceBusiness.ReadCheckInOutData
+            Try
+                Using rep As New AttendanceRepository
+                    Try
+                        Return rep.ReadCheckInOutData(dateFrom, dateTo)
+                    Catch ex As Exception
+                        Throw ex
+                    End Try
+                End Using
+            Catch ex As Exception
+                Return False
+            End Try
+        End Function
         Function Upd_TimeTImesheetMachines(ByVal LstObj As List(Of AT_TIME_TIMESHEET_MACHINETDTO), Optional ByVal log As UserLog = Nothing) As Boolean Implements IAttendanceBusiness.Upd_TimeTImesheetMachines
             Try
                 Using rep As New AttendanceRepository
@@ -51,7 +64,7 @@ Namespace AttendanceBusiness.ServiceImplementations
             End Using
         End Function
 
-        Public Function InsertDataInout(ByVal lstDataInout As List(Of AT_DATAINOUTDTO), fromDate As Date, toDate As Date,
+        Public Function InsertDataInout(ByVal lstDataInout As List(Of AT_DATAINOUTDTO), ByVal fromDate As Date, ByVal toDate As Date,
                                         ByVal log As UserLog) As Boolean _
                                     Implements ServiceContracts.IAttendanceBusiness.InsertDataInout
             Using rep As New AttendanceRepository
@@ -235,7 +248,7 @@ Namespace AttendanceBusiness.ServiceImplementations
                 End Try
             End Using
         End Function
-        
+
         Public Function ValidateWORKSIGN(ByVal objWORKSIGN As AT_WORKSIGNDTO) As Boolean Implements ServiceContracts.IAttendanceBusiness.ValidateWORKSIGN
             Using rep As New AttendanceRepository
                 Try
@@ -854,7 +867,7 @@ Namespace AttendanceBusiness.ServiceImplementations
             End Using
         End Function
 
-        Public Function ValidateTimesheet(ByVal _validate As AT_TIME_TIMESHEET_MONTHLYDTO, sType As String, log As UserLog) _
+        Public Function ValidateTimesheet(ByVal _validate As AT_TIME_TIMESHEET_MONTHLYDTO, ByVal sType As String, ByVal log As UserLog) _
             Implements IAttendanceBusiness.ValidateTimesheet
 
             Using rep As New AttendanceRepository

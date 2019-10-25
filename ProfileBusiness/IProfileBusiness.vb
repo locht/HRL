@@ -2761,6 +2761,9 @@ Namespace ProfileBusiness.ServiceContracts
         Function GET_EMPLOYEE(ByVal P_EMP_CODE As String) As DataTable
         <OperationContract()>
         Function GET_PROCESS_PLCONTRACT_PORTAL(ByVal P_EMP_ID As Decimal) As DataTable
+
+        <OperationContract()>
+        Function CHECK_LOCATION_EXITS(ByVal P_ID As Decimal?, ByVal ORG_ID As Decimal) As Boolean
     End Interface
 
 End Namespace

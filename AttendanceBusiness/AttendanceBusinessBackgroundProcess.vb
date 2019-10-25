@@ -26,8 +26,8 @@ Namespace AttendanceBusiness.BackgroundProcess
         End Sub
 
         Private Sub Timer_Tick(ByVal sender As Object, ByVal e As Timers.ElapsedEventArgs) Handles timer.Elapsed
-            'TONG HOP DATA IN/OUT
-            'ThreadPool.QueueUserWorkItem(AddressOf New AttendanceRepository().CAL_SUMMARY_DATA_INOUT, Now)
+            'Import file quẹt thẻ / vân tay
+            ThreadPool.QueueUserWorkItem(AddressOf AttendanceRepositoryStatic.Instance.ProcessInOutData, Now)
         End Sub
     End Class
 End Namespace

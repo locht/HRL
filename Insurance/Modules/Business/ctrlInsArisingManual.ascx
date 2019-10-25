@@ -15,7 +15,12 @@
         <div style="margin-left: 30px; margin-top: 5px; width: 1270px;">
             <fieldset style="width: auto; height: auto">
                 <legend>
-                    <b><asp:Label runat="server" ID="lbCommonInfo" Text="Thông tin chung"></asp:Label></b>
+                    <b>
+                        <asp:Label runat="server" ID="lbCommonInfo" Text="Thông tin chung">
+
+                       </asp:Label>
+
+                    </b>
                 </legend>
                 <table class="table-form">
                     <tr>
@@ -339,7 +344,7 @@
                                     <asp:Label runat="server" ID="lbA_SI" Text="BH_XH"></asp:Label>
                                 </td>
                                 <td>
-                                    <tlk:RadNumericTextBox MinValue="0" Value="0" ID="txtA_SI" runat="server">
+                                    <tlk:RadNumericTextBox MinValue="0" Value="0" ID="txtA_SI" runat="server" ReadOnly="true">
                                         <NumberFormat GroupSeparator="," DecimalDigits="0" />
                                     </tlk:RadNumericTextBox>
                                 </td>
@@ -349,7 +354,7 @@
                                     <asp:Label runat="server" ID="lbA_HI" Text="Bảo hiểm Y tế"></asp:Label>
                                 </td>
                                 <td>
-                                    <tlk:RadNumericTextBox MinValue="0" Value="0" ID="txtA_HI" runat="server">
+                                    <tlk:RadNumericTextBox MinValue="0" Value="0" ID="txtA_HI" runat="server" ReadOnly="true">
                                         <NumberFormat GroupSeparator="," DecimalDigits="0" />
                                     </tlk:RadNumericTextBox>
                                 </td>
@@ -359,7 +364,7 @@
                                     <asp:Label runat="server" ID="lbA_UI" Text="Bảo hiểm thất nghiệp"></asp:Label>
                                 </td>
                                 <td>
-                                    <tlk:RadNumericTextBox MinValue="0" Value="0" ID="txtA_UI" runat="server">
+                                    <tlk:RadNumericTextBox MinValue="0" Value="0" ID="txtA_UI" runat="server" ReadOnly="true">
                                         <NumberFormat GroupSeparator="," DecimalDigits="0" />
                                     </tlk:RadNumericTextBox>
                                 </td>
@@ -369,8 +374,8 @@
                                     <%# Translate("BHTNLD_BNN")%>
                                 </td>
                                 <td>
-                                    <tlk:RadNumericTextBox ID="rdA_BHTNLD_BNN" runat="server" SkinID="Money" Width="151px" ShowSpinButtons="true"
-                                        IncrementSettings-Step="5000">
+                                    <tlk:RadNumericTextBox ID="rdA_BHTNLD_BNN" runat="server" SkinID="Money"
+                                        IncrementSettings-Step="5000" ReadOnly="true">
                                     </tlk:RadNumericTextBox>
                                 </td>
                             </tr>
@@ -408,7 +413,7 @@
                                     <asp:Label runat="server" ID="lbR_SI" Text="BH_XH"></asp:Label>
                                 </td>
                                 <td>
-                                    <tlk:RadNumericTextBox MinValue="0" Value="0" ID="txtR_SI" runat="server">
+                                    <tlk:RadNumericTextBox MinValue="0" Value="0" ID="txtR_SI" runat="server" ReadOnly="true">
                                         <NumberFormat GroupSeparator="," DecimalDigits="0" />
                                     </tlk:RadNumericTextBox>
                                 </td>
@@ -418,7 +423,7 @@
                                     <asp:Label runat="server" ID="lbR_HI" Text="Bảo hiểm Y tế"></asp:Label>
                                 </td>
                                 <td>
-                                    <tlk:RadNumericTextBox MinValue="0" Value="0" ID="txtR_HI" runat="server">
+                                    <tlk:RadNumericTextBox MinValue="0" Value="0" ID="txtR_HI" runat="server" ReadOnly="true">
                                         <NumberFormat GroupSeparator="," DecimalDigits="0" />
                                     </tlk:RadNumericTextBox>
                                 </td>
@@ -428,7 +433,7 @@
                                     <asp:Label runat="server" ID="lbR_UI" Text="Bảo hiểm thất nghiệp"></asp:Label>
                                 </td>
                                 <td>
-                                    <tlk:RadNumericTextBox MinValue="0" Value="0" ID="txtR_UI" runat="server">
+                                    <tlk:RadNumericTextBox MinValue="0" Value="0" ID="txtR_UI" runat="server" ReadOnly="true">
                                         <NumberFormat GroupSeparator="," DecimalDigits="0" />
                                     </tlk:RadNumericTextBox>
                                 </td>
@@ -438,8 +443,8 @@
                                     <%# Translate("BHTNLD_BNN")%>
                                 </td>
                                 <td>
-                                    <tlk:RadNumericTextBox ID="rdR_BHTNLD_BNN" runat="server" Width="151px" ShowSpinButtons="true"
-                                        IncrementSettings-Step="5000">
+                                    <tlk:RadNumericTextBox ID="rdR_BHTNLD_BNN" runat="server"
+                                        IncrementSettings-Step="5000" ReadOnly="true">
                                        <%-- <NumberFormat AllowRounding="false" KeepNotRoundedValue="true" />
                                         <ClientEvents OnValueChanged="setDisplayValue" OnLoad="setDisplayValue" />--%>
                                     </tlk:RadNumericTextBox>
@@ -479,7 +484,7 @@
                                     <asp:Label runat="server" ID="lbO_HI" Text="Bảo hiểm Y tế"></asp:Label>
                                 </td>
                                 <td>
-                                    <tlk:RadNumericTextBox MinValue="0" Value="0" ID="txtO_HI" runat="server">
+                                    <tlk:RadNumericTextBox MinValue="0" Value="0" ID="txtO_HI" runat="server" ReadOnly="true">
                                         <NumberFormat GroupSeparator="," DecimalDigits="0" />
                                     </tlk:RadNumericTextBox>
                                 </td>
@@ -489,7 +494,7 @@
                                     <asp:Label runat="server" ID="lbO_UI" Text="Bảo hiểm thất nghiệp"></asp:Label>
                                 </td>
                                 <td>
-                                    <tlk:RadNumericTextBox MinValue="0" Value="0" ID="txtO_UI" runat="server">
+                                    <tlk:RadNumericTextBox MinValue="0" Value="0" ID="txtO_UI" runat="server" ReadOnly="true">
                                         <NumberFormat GroupSeparator="," DecimalDigits="0" />
                                     </tlk:RadNumericTextBox>
                                 </td>
@@ -498,7 +503,7 @@
                                 <td class="lb">                                    
                                 </td>
                                 <td>
-                                    <tlk:RadNumericTextBox MinValue="0" style="display:none" Value="0" ID="RadNumericTextBox1" runat="server">
+                                    <tlk:RadNumericTextBox MinValue="0" style="display:none" Value="0" ID="RadNumericTextBox1" runat="server" ReadOnly="true">
                                         <NumberFormat GroupSeparator="," DecimalDigits="0" />
                                     </tlk:RadNumericTextBox>
                                 </td>                            

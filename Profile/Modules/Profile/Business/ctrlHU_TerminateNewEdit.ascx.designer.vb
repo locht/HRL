@@ -131,6 +131,15 @@ Partial Public Class ctrlHU_TerminateNewEdit
     Protected WithEvents hidWorkStatus As Global.System.Web.UI.WebControls.HiddenField
 
     '''<summary>
+    '''hidCheckDelete control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents hidCheckDelete As Global.System.Web.UI.WebControls.HiddenField
+
+    '''<summary>
     '''valSum control.
     '''</summary>
     '''<remarks>
