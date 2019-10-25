@@ -325,10 +325,10 @@ Public Class crtlSetUpExchange
                         ShowMessage(Translate(CommonMessage.MESSAGE_NOT_SELECT_MULTI_ROW), NotifyType.Warning)
                         Exit Sub
                     End If
-                    'If ctrlOrganization.CurrentValue = "" Or ctrlOrganization.CurrentValue = 1 Then
-                    '    ShowMessage("Chỉ được thêm cấp công ty, Thao tác lại", NotifyType.Warning)
-                    '    Exit Sub
-                    'End If
+                    If ctrlOrganization.CurrentValue = "" Or ctrlOrganization.CurrentValue = 1 Then
+                        ShowMessage("Chỉ được thêm cấp công ty, Thao tác lại", NotifyType.Warning)
+                        Exit Sub
+                    End If
                     ctrlOrganization.Enabled = False
                     CurrentState = CommonMessage.STATE_EDIT
                     UpdateControlState()
@@ -403,6 +403,7 @@ Public Class crtlSetUpExchange
                                     IDSelect = gID
                                     Refresh("InsertView")
                                     UpdateControlState()
+                                    ctrlOrganization.Enabled = True
                                 Else
                                     ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), Utilities.NotifyType.Error)
                                 End If
@@ -425,6 +426,7 @@ Public Class crtlSetUpExchange
                                     IDSelect = objTerminal.ID
                                     Refresh("UpdateView")
                                     UpdateControlState()
+                                    ctrlOrganization.Enabled = True
                                 Else
                                     ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), Utilities.NotifyType.Error)
                                 End If
