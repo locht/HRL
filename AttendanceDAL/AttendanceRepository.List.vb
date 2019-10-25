@@ -3192,7 +3192,7 @@ Partial Public Class AttendanceRepository
             Using cls As New DataAccess.QueryData
                 cls.ExecuteStore("PKG_COMMON_LIST.INSERT_CHOSEN_ORG",
                                  New With {.P_USERNAME = log.Username.ToUpper,
-                                           .P_ORGID = 1,
+                                           .P_ORGID = _filter.ORG_ID,
                                            .P_ISDISSOLVE = 0})
             End Using
 

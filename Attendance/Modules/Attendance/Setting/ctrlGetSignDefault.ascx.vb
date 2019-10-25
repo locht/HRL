@@ -343,6 +343,15 @@ Public Class ctrlGetSignDefault
             SetValueObjectByRadGrid(rgWorkschedule, obj)
             Dim Sorts As String = rgWorkschedule.MasterTableView.SortExpressions.GetSortString()
 
+
+            If ctrlOrg.CurrentValue IsNot Nothing Then
+                obj.ORG_ID = Utilities.ObjToDecima(ctrlOrg.CurrentValue)
+            Else
+                rgWorkschedule.DataSource = New List(Of AT_SIGNDEFAULTDTO)
+                '_filter.param.ORG_ID = psp.GET_ID_ORG()
+                Exit Function
+            End If
+
             If Not isFull Then
                 If Sorts IsNot Nothing Then
                     Me.AT_SignDF = rep.GetAT_SIGNDEFAULT(obj, rgWorkschedule.CurrentPageIndex, rgWorkschedule.PageSize, MaximumRows, "CREATED_DATE desc")
@@ -746,6 +755,29 @@ Public Class ctrlGetSignDefault
 
         Try
             CreateDataFilter()
+            _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
+        Catch ex As Exception
+            'DisplayException(Me.ViewName, Me.ID, ex)
+            _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
+        End Try
+    End Sub
+
+    ''' <lastupdate>11/07/2017</lastupdate>
+    ''' <summary>Load datasource cho grid</summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
+    ''' <remarks></remarks>
+    Private Sub ctrlOrg_SelectedNodeChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles ctrlOrg.SelectedNodeChanged
+        Dim startTime As DateTime = DateTime.UtcNow
+        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+
+        Try
+            'CreateDataFilter()
+            'Refresh()
+            'rgWorkschedule.CurrentPageIndex = 0
+            'rgWorkschedule.MasterTableView.SortExpressions.Clear()
+            rgWorkschedule.Rebind()
+
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
             'DisplayException(Me.ViewName, Me.ID, ex)
