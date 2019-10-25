@@ -257,10 +257,10 @@ Public Class ctrlHU_ContractAppendix
                     End If
 
                     Dim tempPath As String = "TemplateDynamic\"
-                    If Not File.Exists(System.IO.Path.Combine(Server.MapPath(tempPath), "ContractAppendixSupport\PLHD.doc")) Then
-                        ShowMessage(Translate(CommonMessage.MESSAGE_NOT_EXSIXT_FILE), NotifyType.Warning)
-                        Exit Sub
-                    End If
+                    'If Not File.Exists(System.IO.Path.Combine(Server.MapPath(tempPath), "ContractAppendixSupport\PLHD.doc")) Then
+                    '    ShowMessage(Translate(CommonMessage.MESSAGE_NOT_EXSIXT_FILE), NotifyType.Warning)
+                    '    Exit Sub
+                    'End If
 
                     Dim prp As New ProfileBusinessRepository
 
