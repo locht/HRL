@@ -26,6 +26,7 @@ Partial Public Class AttendanceRepository
         'End If
         Dim TimeStr As String = ConfigurationManager.AppSettings("TIMESYNC")
         If TimeStr = "" Then Return False
+
         Dim timesync As Date = Now()
         Dim startTime As DateTime = DateTime.UtcNow
         Try
