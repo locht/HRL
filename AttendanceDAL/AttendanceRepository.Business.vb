@@ -5044,7 +5044,7 @@ Partial Public Class AttendanceRepository
         Try
             Dim query = From p In Context.AT_SWIPE_DATA
                         From machine_type In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.MACHINE_TYPE).DefaultIfEmpty
-            From e In Context.HU_EMPLOYEE.Where(Function(f) f.ID = p.EMPLOYEE_ID)
+            From e In Context.HU_EMPLOYEE.Where(Function(f) f.ID = p.EMPLOYEE_ID).DefaultIfEmpty
             Dim lst = query.Select(Function(p) New AT_SWIPE_DATADTO With {
                                        .ID = p.p.ID,
                                        .ITIME_ID = p.e.ITIME_ID,

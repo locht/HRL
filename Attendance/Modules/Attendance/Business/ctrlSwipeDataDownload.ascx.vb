@@ -373,7 +373,14 @@ Public Class ctrlSwipeDataDownload
                         Exit Sub
                     End If
                 Case "DOWNLOADDATA"
-
+                    If IsDate(rdStartDate.SelectedDate) AndAlso IsDate(rdEndDate.SelectedDate) Then
+                        Dim IAttendance As IAttendanceBusiness = New AttendanceBusinessClient()
+                        IAttendance.ReadCheckInOutData(rdStartDate.SelectedDate, rdEndDate.SelectedDate)
+                        Refresh("InsertView")
+                    Else
+                        ShowMessage(Translate(CommonMessage.MESSAGE_NOTSELECT_PERIOD), NotifyType.Warning)
+                        Return
+                    End If
             End Select
             _myLog.WriteLog(_myLog._info, _classPath, method,
                                                            CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
