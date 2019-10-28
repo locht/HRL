@@ -951,6 +951,7 @@ Public Class ctrlRC_CanDtlProfile
                 txtFirstNameVN.ReadOnly = True
                 txtLastNameVN.ReadOnly = True
                 txtEmpCODE.ReadOnly = False
+                CurrentState = CommonMessage.STATE_EDIT
         End Select
 
         ChangeToolbarState()
