@@ -1016,7 +1016,7 @@ Public Class ctrlDeclaresOT
 
         ' add Log
         Dim _error As Boolean = True
-        Dim count As Integer
+        Dim count As Integer = 5
         Dim newRow As DataRow
 
         If dtLogs Is Nothing Then
@@ -1056,9 +1056,9 @@ Public Class ctrlDeclaresOT
             Dim totalToPM As Decimal = 0.0
             Dim AM As Decimal = 0.0 'tong tgian OT tu 0am - 6am
             Dim PM As Decimal = 0.0 'tong tgian OT tu 10pm - 11h59pm
-
+            count = count + 1
             newRow = dtLogs.NewRow
-            newRow("ID") = count + 1
+            newRow("ID") = count
             newRow("EMPLOYEE_CODE") = rows("EMPLOYEE_CODE")
 
             ' Nhân viên k có trong hệ thống
@@ -1168,7 +1168,6 @@ Public Class ctrlDeclaresOT
 
             If _error = False Then
                 dtLogs.Rows.Add(newRow)
-                count = count + 1
                 _error = True
             End If
         Next
