@@ -378,19 +378,13 @@ Public Class ctrlHU_Concurrently
         End Try
     End Sub
 
-    'Private Sub ctrlOrg_SelectedNodeChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles ctrlOrg.SelectedNodeChanged
-
-    '    Try
-    '        Dim dtData As New DataTable
-    '        rgConcurrently.Rebind()
-    '        ' Lay chuc danh theo phong ban
-    '        'dtData = psp.GET_TITLE_ORG(ctrlOrg.CurrentValue)
-    '        'FillRadCombobox(cboTITLE_CON, dtData, "NAME_VN", "ID", False)
-    '        'cboTITLE_CON.Text = String.Empty
-    '    Catch ex As Exception
-    '        DisplayException(Me.ViewName, Me.ID, ex)
-    '    End Try
-    'End Sub
+    Private Sub ctrlOrg_SelectedNodeChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles ctrlOrg.SelectedNodeChanged
+        Try
+            rgConcurrently.Rebind()
+        Catch ex As Exception
+            DisplayException(Me.ViewName, Me.ID, ex)
+        End Try
+    End Sub
 
     Protected Sub btnSearch_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnSearch.Click
         Try
