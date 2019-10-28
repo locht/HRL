@@ -469,7 +469,8 @@ Partial Class ProfileRepository
                                         .OTHERSALARY1 = p.OTHERSALARY1,
                                         .FACTORSALARY = p.FACTORSALARY,
                                         .OBJECT_LABOR = p.OBJECT_LABOR,
-                                        .OBJECT_LABORNAME = objectLabor.NAME_VN
+                                        .OBJECT_LABORNAME = objectLabor.NAME_VN,
+                                        .OTHERSALARY3 = p.OTHERSALARY3
                                         }
             Dim dateNow = Date.Now.Date
             If Not _filter.IS_TER Then
