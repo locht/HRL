@@ -14,13 +14,14 @@ Public Class WordCommon
             Dim pageSetup As PageSetup = firstSection.PageSetup
             pageSetup.DifferentFirstPageHeaderFooter = True
             'Dim height = pageSetup.PageHeight - pageSetup.TopMargin - pageSetup.BottomMargin
-            Dim width = Decimal.Parse(pageSetup.PageWidth)
+            'Dim width = Decimal.Parse(pageSetup.PageWidth)
+            Dim width = 594
             'add image to header,footer in first page
             pageSetup.HeaderDistance = 0
             builder.MoveToHeaderFooter(HeaderFooterType.HeaderFirst)
             builder.ParagraphFormat.Alignment = ParagraphAlignment.Distributed
             If File.Exists(path) Then
-                Dim shape As Shape = builder.InsertImage(path, RelativeHorizontalPosition.Page, 0, RelativeVerticalPosition.Page, 0, width, 145, WrapType.Square)
+                Dim shape As Shape = builder.InsertImage(path, RelativeHorizontalPosition.Page, 0, RelativeVerticalPosition.Page, 0, width, 117, WrapType.Square)
                 shape.RelativeHorizontalPosition = RelativeHorizontalPosition.Page
                 shape.Left = 0
                 shape.Top = 0
