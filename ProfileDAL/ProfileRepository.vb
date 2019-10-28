@@ -3155,9 +3155,6 @@ Public Class ProfileRepository
             lstEmp = lstEmp.OrderBy(Sorts)
             Total = lstEmp.Count
             lstEmp = lstEmp.Skip(PageIndex * PageSize).Take(PageSize)
-
-
-
             listCommend = lstEmp.ToList()
 
             Return listCommend

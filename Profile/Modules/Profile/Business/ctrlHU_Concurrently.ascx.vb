@@ -413,7 +413,7 @@ Public Class ctrlHU_Concurrently
                 '    rgConcurrently.Rebind()
                 'Else
                 '    ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), NotifyType.Error)
-                'End If
+                'End If 
             End If
         Catch ex As Exception
             DisplayException(Me.ViewName, Me.ID, ex)
