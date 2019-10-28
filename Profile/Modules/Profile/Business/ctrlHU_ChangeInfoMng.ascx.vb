@@ -158,7 +158,7 @@ Public Class ctrlHU_ChangeInfoMng
             'Me.MainToolBar.Items.Add(Common.Common.CreateToolbarItem("EXPIRE_TEMP", ToolbarIcons.DeActive,
             '                                                         ToolbarAuthorize.Create, Translate("Cắt phụ cấp")))
 
-            CType(MainToolBar.Items(4), RadToolBarButton).Text = "In tờ trình"
+            CType(MainToolBar.Items(4), RadToolBarButton).Text = "In"
             CType(Me.Page, AjaxPage).AjaxManager.ClientEvents.OnRequestStart = "onRequestStart"
             rgWorking.MasterTableView.GetColumn("DECISION_TYPE_NAME").HeaderText = UI.DecisionType
 
