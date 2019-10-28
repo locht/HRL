@@ -19,32 +19,33 @@
                 <fieldset>
                     <legend>
                         <%# Translate("Tìm kiếm")%></legend>
-                        <table class="table-form">
-                            <tr>
-                                <td>
-                                    <%# Translate("Năm")%>:
-                                </td>
-                                <td>
-                                    <tlk:RadComboBox ID="cboYear" runat="server" AutoPostBack="true" CausesValidation="false">
-                                    </tlk:RadComboBox>
-                                </td>
-                                <td>
-                                    <%# Translate("Tên định biên")%>:
-                                </td>
-                                <td>
-                                    <tlk:RadComboBox ID="cboListManning" runat="server" AutoPostBack="true" CausesValidation="false">
-                                    </tlk:RadComboBox>
-                                </td>
-                                 <td>
+                    <table class="table-form">
+                        <tr>
+                            <td>
+                                <%# Translate("Năm")%>:
+                            </td>
+                            <td>
+                                <tlk:RadComboBox ID="cboYear" runat="server" AutoPostBack="true" CausesValidation="false">
+                                </tlk:RadComboBox>
+                            </td>
+                            <td>
+                                <%# Translate("Tên định biên")%>:
+                            </td>
+                            <td>
+                                <tlk:RadComboBox ID="cboListManning" runat="server" AutoPostBack="true" CausesValidation="false">
+                                </tlk:RadComboBox>
+                            </td>
+                            <td>
                                 <tlk:RadButton ID="btnSearch" runat="server" SkinID="ButtonFind" CausesValidation="false"
                                     Text="<%$ Translate: Tìm %>">
                                 </tlk:RadButton>
                             </td>
-                            </tr>
-                        </table>
+                        </tr>
+                    </table>
                 </fieldset>
                 <fieldset>
-                    <legend><%# Translate("Thông tin định biên")%></legend>
+                    <legend>
+                        <%# Translate("Thông tin định biên")%></legend>
                     <table class="table-form">
                         <tr>
                             <td>
@@ -89,7 +90,7 @@
                                 <%# Translate("Phê duyệt")%>:
                             </td>
                             <td>
-                                <asp:CheckBox ID="cbStatus" runat="server"  Checked =true />
+                                <asp:CheckBox ID="cbStatus" runat="server" Checked="true" />
                             </td>
                         </tr>
                         <tr>
@@ -132,35 +133,36 @@
             </tlk:RadPane>
             <tlk:RadPane ID="RadPane3" runat="server" Scrolling="None">
                 <tlk:RadGrid ID="rgManning" runat="server" AutoGenerateColumns="False" AllowPaging="True"
-                    AllowSorting="True" AllowMultiRowSelection="true" CellSpacing="0" GridLines="None"  Height="100%" Width="100%"
-                      AllowFilteringByColumn="true" AllowMultiRowEdit="True">
+                    AllowSorting="True" AllowMultiRowSelection="true" CellSpacing="0" GridLines="None"
+                    Height="100%" Width="100%" AllowFilteringByColumn="true" AllowMultiRowEdit="True">
                     <ClientSettings EnableRowHoverStyle="true">
                         <Scrolling AllowScroll="True" UseStaticHeaders="True" />
                         <Selecting AllowRowSelect="True" />
                     </ClientSettings>
                     <PagerStyle AlwaysVisible="true" Mode="NextPrevAndNumeric" />
-                    <MasterTableView DataKeyNames="ID,NEW_MANNING,CURRENT_MANNING,NOTE" ClientDataKeyNames="NEW_MANNING,CURRENT_MANNING,NOTE" EditMode="InPlace">
+                    <MasterTableView DataKeyNames="ID,NEW_MANNING,CURRENT_MANNING,NOTE" ClientDataKeyNames="NEW_MANNING,CURRENT_MANNING,NOTE,NAME,EFFECT_DATE,OLD_MANNING,MOBILIZE_COUNT_MANNING,STATUS"
+                        EditMode="InPlace">
                         <Columns>
                             <tlk:GridBoundColumn DataField="ID" UniqueName="ID" Visible="false">
                             </tlk:GridBoundColumn>
-                             <tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderStyle-HorizontalAlign="Center"
+                            <tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderStyle-HorizontalAlign="Center"
                                 HeaderStyle-Width="30px" ItemStyle-HorizontalAlign="Center">
                             </tlk:GridClientSelectColumn>
                             <tlk:GridBoundColumn DataField="NAME" EmptyDataText="" FilterControlWidth="90%" HeaderText="<%$ Translate: Tên định biên %>"
-                                SortExpression="NAME" UniqueName="NAME" ReadOnly = "true" >
+                                SortExpression="NAME" UniqueName="NAME" ReadOnly="true">
                                 <HeaderStyle HorizontalAlign="Center" />
                             </tlk:GridBoundColumn>
-                             <tlk:GridBoundColumn DataField="ORG_NAME" FilterControlWidth="90%" HeaderText="<%$ Translate: Phòng ban %>"
-                                SortExpression="ORG_NAME" UniqueName="ORG_NAME" ReadOnly = "true" >
+                            <tlk:GridBoundColumn DataField="ORG_NAME" FilterControlWidth="90%" HeaderText="<%$ Translate: Phòng ban %>"
+                                SortExpression="ORG_NAME" UniqueName="ORG_NAME" ReadOnly="true">
                                 <HeaderStyle HorizontalAlign="Center" />
                             </tlk:GridBoundColumn>
                             <tlk:GridBoundColumn DataField="TITLE_NAME" FilterControlWidth="90%" HeaderText="<%$ Translate: Chức danh %>"
-                                SortExpression="TITLE_NAME" UniqueName="TITLE_NAME" ReadOnly = "true" >
+                                SortExpression="TITLE_NAME" UniqueName="TITLE_NAME" ReadOnly="true">
                                 <HeaderStyle HorizontalAlign="Center" />
                             </tlk:GridBoundColumn>
                             <tlk:GridBoundColumn DataField="EFFECT_DATE" EmptyDataText="" FilterControlWidth="90%"
                                 HeaderText="<%$ Translate: Ngày hiệu lực %>" SortExpression="EFFECT_DATE" UniqueName="EFFECT_DATE"
-                                DataFormatString="{0:dd/MM/yyyy}" ReadOnly = "true" >
+                                DataFormatString="{0:dd/MM/yyyy}" ReadOnly="true">
                                 <HeaderStyle HorizontalAlign="Center" Width="70px" />
                             </tlk:GridBoundColumn>
                             <%-- <tlk:GridBoundColumn DataField="EmployeeCount" EmptyDataText="" FilterControlWidth="90%"
@@ -168,33 +170,34 @@
                                 <HeaderStyle HorizontalAlign="Center" Width="90px" />
                             </tlk:GridBoundColumn>--%>
                             <tlk:GridBoundColumn DataField="OLD_MANNING" EmptyDataText="" FilterControlWidth="90%"
-                                HeaderText="<%$ Translate: Định biên cũ %>" SortExpression="OLD_MANNING" UniqueName="OLD_MANNING"  ReadOnly = "true">
+                                HeaderText="<%$ Translate: Định biên cũ %>" SortExpression="OLD_MANNING" UniqueName="OLD_MANNING"
+                                ReadOnly="true">
                                 <HeaderStyle HorizontalAlign="Center" Width="90px" />
                             </tlk:GridBoundColumn>
                             <tlk:GridBoundColumn DataField="CURRENT_MANNING" EmptyDataText="" HeaderText="<%$ Translate: SL.NV hiện tại %>"
-                                SortExpression="CURRENT_MANNING" UniqueName="CURRENT_MANNING"  ReadOnly = "true">
+                                SortExpression="CURRENT_MANNING" UniqueName="CURRENT_MANNING" ReadOnly="true">
                                 <HeaderStyle HorizontalAlign="Center" Width="90px" />
                             </tlk:GridBoundColumn>
-                           <%-- <tlk:GridTemplateColumn DataField="NEW_MANNING" HeaderText="<%$ Translate: Định biên mới %>"
+                            <tlk:GridTemplateColumn DataField="NEW_MANNING" HeaderText="<%$ Translate: Định biên mới %>"
                                 SortExpression="NEW_MANNING" UniqueName="NEW_MANNING" AutoPostBackOnFilter="true">
                                 <HeaderStyle HorizontalAlign="Center" Width="90px" />
-                                  <ItemTemplate>
-                                       <tlk:RadNumericTextBox ID="txtNewManning" ShowSpinButtons="false" MinValue="0" DataType="Interger" 
-                                    runat="server" CausesValidation="false" Text='<%# (Eval("NEW_MANNING")) %>' Width="78px">
+                                <ItemTemplate>
+                                    <tlk:RadNumericTextBox ID="txtNewManning" ShowSpinButtons="false" MinValue="0" DataType="Interger"
+                                        runat="server" CausesValidation="false" Text='<%# (Eval("NEW_MANNING")) %>' Width="78px">
                                         <ClientEvents OnBlur="OnChanged" />
                                     </tlk:RadNumericTextBox>
-                                  </ItemTemplate>
-                            </tlk:GridTemplateColumn>--%>
-                             <tlk:GridNumericColumn HeaderText="<%$ Translate: Định biên mới %>" DataField="NEW_MANNING"
+                                </ItemTemplate>
+                            </tlk:GridTemplateColumn>
+                            <%-- <tlk:GridNumericColumn HeaderText="<%$ Translate: Định biên mới %>" DataField="NEW_MANNING"
                                 ItemStyle-HorizontalAlign="Right" SortExpression="NEW_MANNING"
                                 UniqueName="NEW_MANNING">
                             <HeaderStyle HorizontalAlign="Center" Width="170px"  />
-                            </tlk:GridNumericColumn>
+                            </tlk:GridNumericColumn>--%>
                             <tlk:GridBoundColumn DataField="MOBILIZE_COUNT_MANNING" EmptyDataText="" HeaderText="<%$ Translate: Số lượng tăng/giảm %>"
-                                SortExpression="MOBILIZE_COUNT_MANNING" UniqueName="MOBILIZE_COUNT_MANNING" ReadOnly = "true" >
-                                <HeaderStyle HorizontalAlign="Center" Width="100px"  />
+                                SortExpression="MOBILIZE_COUNT_MANNING" UniqueName="MOBILIZE_COUNT_MANNING" ReadOnly="true">
+                                <HeaderStyle HorizontalAlign="Center" Width="100px" />
                             </tlk:GridBoundColumn>
-                           <%-- <tlk:GridTemplateColumn DataField="NOTE" HeaderText="<%$ Translate: Ghi chú %>" SortExpression="NOTE"
+                             <tlk:GridTemplateColumn DataField="NOTE" HeaderText="<%$ Translate: Ghi chú %>" SortExpression="NOTE"
                                 UniqueName="NOTE">
                                 <HeaderStyle HorizontalAlign="Center" />
                                 <ItemTemplate>
@@ -202,9 +205,9 @@
                                     <ClientEvents OnBlur="OnChanged" />
                                     </tlk:RadTextBox>
                                 </ItemTemplate>
-                            </tlk:GridTemplateColumn>--%>
-                              <tlk:GridBoundColumn HeaderText="<%$ Translate: Ghi chú %>" DataField="NOTE"
-                                SortExpression="NOTE" UniqueName="NOTE"/>
+                            </tlk:GridTemplateColumn>
+                           <%-- <tlk:GridBoundColumn HeaderText="<%$ Translate: Ghi chú %>" DataField="NOTE" SortExpression="NOTE"
+                                UniqueName="NOTE" />--%>
                         </Columns>
                         <HeaderStyle Width="150px" />
                     </MasterTableView></tlk:RadGrid><Common:ctrlMessageBox ID="ctrlMessageBox" runat="server" />
@@ -227,11 +230,11 @@
             postBack(oWnd.get_navigateUrl());
         }
 
-//        function OnFocus(index) {
-//            var grid = $find('<%# rgManning.ClientID%>').get_masterTableView();
-//            grid.clearSelectedItems();
-//            grid.get_dataItems()[index].set_selected(true);
-//        }
+        //        function OnFocus(index) {
+        //            var grid = $find('<%# rgManning.ClientID%>').get_masterTableView();
+        //            grid.clearSelectedItems();
+        //            grid.get_dataItems()[index].set_selected(true);
+        //        }
 
         function OnChanged(sender, eventArgs) {
             $find("<%= RadAjaxPanel1.ClientID%>").ajaxRequestWithTarget("<%= RadAjaxPanel1.UniqueID %>", sender.get_id());
