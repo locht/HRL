@@ -505,7 +505,10 @@ Public Class ctrlRC_Request
         Try
             Dim configPath As String = ConfigurationManager.AppSettings("ReportTemplatesFolder")
             Dim filePath As String = AppDomain.CurrentDomain.BaseDirectory & configPath & "\"
-            Dim dsData As DataSet = rep.GetRecruitmentImport()
+            Dim user As String = UserLogHelper.GetUsername
+            Dim _param = New ParamDTO With {.ORG_ID = Decimal.Parse(ctrlOrg.CurrentValue), _
+                                             .IS_DISSOLVE = ctrlOrg.IsDissolve}
+            Dim dsData As DataSet = rep.GetRecruitmentImport(user, _param)
             dsData.Tables(10).TableName = "Table11"
             dsData.Tables(9).TableName = "Table10"
             dsData.Tables(8).TableName = "Table9"

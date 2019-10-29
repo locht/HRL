@@ -101,9 +101,9 @@ Public Class RecruitmentStoreProcedure
             Throw ex
         End Try
     End Function
-    Public Function GetRecruitmentImport() As DataSet
+    Public Function GetRecruitmentImport(ByVal user As String, ByVal _param As ParamDTO) As DataSet
         Try
-            Dim ds As DataSet = rep.ExecuteToDataSet("PKG_RECRUITMENT_EXPORT.GET_RECRUITMENT_IMPORT", New List(Of Object)(New Object() {OUT_CURSOR, OUT_CURSOR, OUT_CURSOR, OUT_CURSOR, OUT_CURSOR, OUT_CURSOR, OUT_CURSOR, OUT_CURSOR, OUT_CURSOR, OUT_CURSOR, OUT_CURSOR}))
+            Dim ds As DataSet = rep.ExecuteToDataSet("PKG_RECRUITMENT_EXPORT.GET_RECRUITMENT_IMPORT", New List(Of Object)(New Object() {user, _param.ORG_ID, _param.IS_DISSOLVE, OUT_CURSOR, OUT_CURSOR, OUT_CURSOR, OUT_CURSOR, OUT_CURSOR, OUT_CURSOR, OUT_CURSOR, OUT_CURSOR, OUT_CURSOR, OUT_CURSOR, OUT_CURSOR}))
             Return ds
         Catch ex As Exception
             Throw ex
