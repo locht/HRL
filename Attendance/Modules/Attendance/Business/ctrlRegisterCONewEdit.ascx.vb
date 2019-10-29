@@ -774,7 +774,7 @@ Public Class ctrlRegisterCONewEdit
                 If IsDBNull(SHIFT_DAY) = True Then
                     cbo.Enabled = False
                 Else
-                    If SHIFT_DAY <= 0.5 Then
+                    If SHIFT_DAY <= 0.5 Or SHIFT_DAY > 1 Then
                         cbo.Enabled = False
                     Else
                         cbo.Enabled = True
