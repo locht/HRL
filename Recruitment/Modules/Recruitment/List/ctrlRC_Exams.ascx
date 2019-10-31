@@ -46,7 +46,7 @@
                         <td>
                             <tlk:RadTextBox ID="txtName" runat="server">
                             </tlk:RadTextBox>
-                            <asp:RequiredFieldValidator ID="RequiredFieldValidator3" ControlToValidate="txtName"
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator3" ControlToValidate="txtName"  Enabled="false"
                                 runat="server" ErrorMessage="<%$ Translate: Bạn phải nhập Tên môn thi %>" ToolTip="<%$ Translate: Bạn phải nhập Tên môn thi %>"> 
                             </asp:RequiredFieldValidator>
                         </td>
@@ -56,7 +56,7 @@
                         <td>
                             <tlk:RadNumericTextBox ID="rntxtPointLadder" runat="server" SkinID="number">
                             </tlk:RadNumericTextBox>
-                            <asp:RequiredFieldValidator ID="RequiredFieldValidator2" ControlToValidate="rntxtPointLadder"
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator2" ControlToValidate="rntxtPointLadder"  Enabled="false"
                                 runat="server" ErrorMessage="<%$ Translate: Bạn phải nhập Thang điểm %>" ToolTip="<%$ Translate: Bạn phải nhập Thang điểm %>"> 
                             </asp:RequiredFieldValidator>
                         </td>
@@ -66,7 +66,7 @@
                         <td>
                             <tlk:RadTextBox ID="txtHeso" runat="server">
                             </tlk:RadTextBox>
-                            <asp:RequiredFieldValidator ID="RequiredFieldValidator4" ControlToValidate="txtHeso"
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator4" ControlToValidate="txtHeso"  Enabled="false"
                                 runat="server" ErrorMessage="<%$ Translate: Bạn phải nhập Hệ số %>" ToolTip="<%$ Translate: Bạn phải nhập Hệ số %>"> 
                             </asp:RequiredFieldValidator>
                         </td>
@@ -78,7 +78,7 @@
                         <td>
                             <tlk:RadNumericTextBox ID="rntxtPointPass" runat="server" SkinID="number">
                             </tlk:RadNumericTextBox>
-                             <asp:RequiredFieldValidator ID="RequiredFieldValidator1" ControlToValidate="rntxtPointPass"
+                             <asp:RequiredFieldValidator ID="RequiredFieldValidator1" ControlToValidate="rntxtPointPass"  Enabled="false"
                                 runat="server" ErrorMessage="<%$ Translate: Bạn phải nhập Điểm đạt %>" ToolTip="<%$ Translate: Bạn phải nhập Điểm đạt %>"> 
                             </asp:RequiredFieldValidator>
                         </td>
