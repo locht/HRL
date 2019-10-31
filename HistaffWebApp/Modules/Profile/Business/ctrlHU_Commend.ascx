@@ -12,7 +12,7 @@
             <tlk:RadPane ID="RadPane3" runat="server" Height="33px" Scrolling="None">
                 <tlk:RadToolBar ID="tbarCommends" runat="server" OnClientButtonClicking="clientButtonClicking" />
             </tlk:RadPane>
-            <tlk:RadPane ID="RadPane1" runat="server" Height="100px" Scrolling="None">
+            <tlk:RadPane ID="RadPane1" runat="server" Height="80px" Scrolling="None">
                 <table class="table-form">
                     <tr>
                         <td class="lb">

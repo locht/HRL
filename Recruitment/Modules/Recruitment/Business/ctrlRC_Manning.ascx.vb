@@ -180,8 +180,8 @@ Public Class ctrlRC_Manning
             Common.Common.BuildToolbar(Me.MainToolBar, ToolbarItem.Create, ToolbarItem.Edit, ToolbarItem.Seperator,
                                        ToolbarItem.Save, ToolbarItem.Cancel, ToolbarItem.Import, ToolbarItem.Export, ToolbarItem.Delete)
             CType(MainToolBar.Items(3), RadToolBarButton).CausesValidation = True
-            'Me.MainToolBar.OnClientButtonClicking = "clientButtonClicking"
-            'rgManning.ClientSettings.EnablePostBackOnRowClick = False
+            Me.MainToolBar.OnClientButtonClicking = "clientButtonClicking"
+            rgManning.ClientSettings.EnablePostBackOnRowClick = True
             Me.MainToolBar.OnClientButtonClicking = "OnClientButtonClicking"
             CType(Me.Page, AjaxPage).AjaxManager.ClientEvents.OnRequestStart = "onRequestStart"
         Catch ex As Exception
@@ -200,7 +200,7 @@ Public Class ctrlRC_Manning
                     cbStatus.Enabled = False
                     EnableRadCombo(cboYear, True)
                     EnableRadCombo(cboListManning, True)
-                    EnabledGrid(rgManning, False)
+                    EnabledGrid(rgManning, True)
                     ctrlOrganization.Enabled = True
                     EnableGridView(False)
                 Case CommonMessage.STATE_NEW, CommonMessage.STATE_EDIT
@@ -307,7 +307,7 @@ Public Class ctrlRC_Manning
                     End If
                     rgManning.MasterTableView.EditMode = GridEditMode.InPlace
 
-                    EnableGridView(True)
+                    'EnableGridView(True)
 
                     CurrentState = CommonMessage.STATE_EDIT
                     UpdateControlState()
@@ -554,7 +554,7 @@ Public Class ctrlRC_Manning
             objMO.ORG_ID = ctrlOrganization.CurrentValue
             objMO.MANNING_NAME = rbtManName.Text
             objMO.EFFECT_DATE = rdEffectDate.SelectedDate
-            objMO.NOTE = rbtNote.Text
+
             objMO.OLD_MANNING = 0
             objMO.CURRENT_MANNING = 0
             objMO.NEW_MANNING = 0
@@ -566,6 +566,7 @@ Public Class ctrlRC_Manning
             End If
 
             If hidMannOrgId.Value = "" Then
+                objMO.NOTE = rbtNote.Text
                 IsCompeted = repStore.AddNewManningOrg(objMO)
                 Dim idManningOrg As Int32 = repStore.GetManningOrgId()
                 hidMannOrgId.Value = idManningOrg
@@ -573,6 +574,8 @@ Public Class ctrlRC_Manning
                 IsCompeted = repStore.UpdateNewManningOrg(idManningOrg)
             Else
                 objMO.ID = hidMannOrgId.Value
+                Dim item = TryCast(rgManning.SelectedItems(0), GridDataItem)
+                objMO.NOTE = TryCast(item.FindControl("txtNote"), RadTextBox).Text
                 IsCompeted = repStore.UpdateManningOrg(objMO)
                 repStore.UpdateNewManningOrg(cboListManning.SelectedValue)
             End If
@@ -626,21 +629,24 @@ Public Class ctrlRC_Manning
                 For Each data As GridDataItem In rgManning.SelectedItems
                     count = count + 1
                     objMT.ID = data.GetDataKeyValue("ID")
+                    Dim item = TryCast(rgManning.SelectedItems(0), GridDataItem)
                     If data.GetDataKeyValue("NEW_MANNING") IsNot Nothing Then
-                        objMT.NEW_MANNING = CType(data.Item("NEW_MANNING").Controls(0), RadNumericTextBox).Value
+                        objMT.NEW_MANNING = TryCast(item.FindControl("txtNewManning"), RadNumericTextBox).Value
                         'objMO.NEW_MANNING += objMT.NEW_MANNING
                     Else
                         objMT.NEW_MANNING = 0
                     End If
-                    If data.GetDataKeyValue("CURRENT_MANNING") IsNot Nothing Then
-                        objMT.CURRENT_MANNING = Int32.Parse(data.GetDataKeyValue("CURRENT_MANNING"))
-                        'objMO.CURRENT_MANNING += objMT.CURRENT_MANNING
-                    Else
-                        objMT.CURRENT_MANNING = 0
-                    End If
+                    'If data.GetDataKeyValue("CURRENT_MANNING") IsNot Nothing Then
+                    '    objMT.CURRENT_MANNING = Int32.Parse(data.GetDataKeyValue("CURRENT_MANNING"))
+                    '    'objMO.CURRENT_MANNING += objMT.CURRENT_MANNING
+                    'Else
+                    '    objMT.CURRENT_MANNING = 0
+                    'End If
 
                     objMT.MOBILIZE_COUNT_MANNING = objMT.NEW_MANNING - objMT.CURRENT_MANNING
-                    objMT.NOTE = CType(data.Item("NOTE").Controls(0), TextBox).Text
+                    ' objMT.NOTE = CType(data.Item("NOTE").Controls(0), TextBox).Text
+
+                    objMT.NOTE = TryCast(item.FindControl("txtNote"), RadTextBox).Text
                     'objMT.MOBILIZE_COUNT_MANNING += objMT.MOBILIZE_COUNT_MANNING
 
                     If (repStore.UpdateNewManningTitle(objMT) = 1) Then
@@ -895,7 +901,7 @@ Public Class ctrlRC_Manning
                 hidMannOrgId.Value = tab.Rows(0)("ID").ToString()
                 rbtManName.Text = tab.Rows(0)("NAME").ToString()
                 rdEffectDate.SelectedDate = tab.Rows(0)("EFFECT_DATE")
-                rbtNote.Text = tab.Rows(0)("NOTE").ToString
+                'rbtNote.Text = tab.Rows(0)("NOTE").ToString
                 rbtManningOld.Text = tab.Rows(0)("OLD_MANNING").ToString
                 rbtManningCurrentCount.Text = tab.Rows(0)("CURRENT_MANNING").ToString
                 rbtManningCountMobilize.Text = tab.Rows(0)("MOBILIZE_COUNT_MANNING").ToString
@@ -1098,7 +1104,8 @@ BREAKFUNCTION:
                 repStore.UpdateNewManningOrg(cboListManning.SelectedValue)
                 GetManningOrgInfo()
                 rgManning.SelectedIndexes.Clear()
-            Case "txtNOTE"
+            Case "txtNote"
+                objMT.ID = Int32.Parse(item.GetDataKeyValue("ID").ToString())
                 objMT.NOTE = TryCast(item.FindControl("txtNote"), RadTextBox).Text
                 repStore.UpdateNewManningTitle(objMT)
                 rgManning.SelectedIndexes.Clear()
@@ -1116,5 +1123,26 @@ BREAKFUNCTION:
             Dim txtNote As RadTextBox = TryCast(e.Item.FindControl("txtNote"), RadTextBox)
             ' txtNewManning.Attributes.Add("OnFocus", "OnFocus('" + e.Item.ItemIndex.ToString() + "')")
         End If
+    End Sub
+
+    Private Sub rgManning_SelectedIndexChanged(sender As Object, e As System.EventArgs) Handles rgManning.SelectedIndexChanged
+        Try
+            If rgManning.SelectedItems.Count > 0 Then
+                Dim slItem As GridDataItem
+                slItem = rgManning.SelectedItems(0)
+                hidMannOrgId.Value = slItem.GetDataKeyValue("ID").ToString()
+                rbtManName.Text = slItem.GetDataKeyValue("NAME").ToString()
+                rdEffectDate.SelectedDate = slItem.GetDataKeyValue("EFFECT_DATE")
+                rbtNote.Text = slItem.GetDataKeyValue("NOTE").ToString
+                rbtManningOld.Text = slItem.GetDataKeyValue("OLD_MANNING").ToString
+                rbtManningCurrentCount.Text = slItem.GetDataKeyValue("CURRENT_MANNING").ToString
+                rbtManningCountMobilize.Text = slItem.GetDataKeyValue("MOBILIZE_COUNT_MANNING").ToString
+                rbtManningNew.Text = slItem.GetDataKeyValue("NEW_MANNING").ToString
+                cbStatus.Checked = If(slItem.GetDataKeyValue("STATUS").ToString() = "0", False, True)
+            End If
+
+        Catch ex As Exception
+            Throw ex
+        End Try
     End Sub
 End Class

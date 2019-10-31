@@ -2258,16 +2258,16 @@ Public Class ctrlREPORT
             End If
             Dim dsReport As New DataSet
             dsReport = rep.ExecuteToDataSet(store_Out, lstParaValue)
-            If (dsReport Is Nothing OrElse dsReport.Tables.Count = 0) Then
+            If (dsReport Is Nothing OrElse dsReport.Tables(0).Rows.Count = 0) Then
                 ShowMessage(Translate("Không có dữ liệu để in báo cáo"), Framework.UI.Utilities.NotifyType.Warning)
                 Exit Sub
             End If
             Dim sourcePath = Server.MapPath("~/ReportTemplates/Profile/LocationInfo/")
-            Dim path As String = sourcePath + "/" + dsReport.Tables(0).Rows(0)("ATTACH_FILE_LOGO").ToString + "/" + dsReport.Tables(0).Rows(0)("FILE_LOGO").ToString
+            Dim path As String = sourcePath + dsReport.Tables(0).Rows(0)("ATTACH_FILE_LOGO").ToString + dsReport.Tables(0).Rows(0)("FILE_LOGO").ToString
             If Not File.Exists(path) Then
-                'dsReport.Tables(0).Rows(0)("FILE_LOGO") = sourcePath + "/" + "NoImage.jpg"
+                dsReport.Tables(0).Rows(0)("FILE_LOGO") = "NoImage.jpg"
             Else
-                dsReport.Tables(0).Rows(0)("FILE_LOGO") = sourcePath + dsReport.Tables(0).Rows(0)("ATTACH_FILE_LOGO") + "/" + dsReport.Tables(0).Rows(0)("FILE_LOGO")
+                dsReport.Tables(0).Rows(0)("FILE_LOGO") = sourcePath + dsReport.Tables(0).Rows(0)("ATTACH_FILE_LOGO") + dsReport.Tables(0).Rows(0)("FILE_LOGO")
             End If
             If programID <> -1 Then
                 'get Template URL

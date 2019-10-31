@@ -3084,11 +3084,11 @@ Public Class ProfileRepository
             Dim queryEmp = From p In Context.HU_CONCURRENTLY
                            From e In Context.HU_EMPLOYEE.Where(Function(e) e.ID = p.EMPLOYEE_ID)
                            From cv In Context.HU_EMPLOYEE_CV.Where(Function(cv) e.ID = cv.EMPLOYEE_ID)
-                           From org In Context.SE_CHOSEN_ORG.Where(Function(f) e.ORG_ID = f.ORG_ID And f.USERNAME.ToUpper = log.Username.ToUpper)
-                           From huv_org_id In Context.HU_ORGANIZATION_V.Where(Function(f) f.ID = e.ORG_ID).DefaultIfEmpty
+                           From org In Context.SE_CHOSEN_ORG.Where(Function(f) p.ORG_ID = f.ORG_ID And f.USERNAME.ToUpper = log.Username.ToUpper)
+                           From huv_org_id In Context.HU_ORGANIZATION_V.Where(Function(f) f.ID = p.ORG_ID).DefaultIfEmpty
                            From cty In Context.HU_ORGANIZATION.Where(Function(f) f.ID = huv_org_id.ID2).DefaultIfEmpty
-                           From o In Context.HU_ORGANIZATION.Where(Function(o) o.ID = e.ORG_ID).DefaultIfEmpty
-                           From t In Context.HU_TITLE.Where(Function(t) t.ID = e.TITLE_ID).DefaultIfEmpty
+                           From o In Context.HU_ORGANIZATION.Where(Function(o) o.ID = p.ORG_ID).DefaultIfEmpty
+                           From t In Context.HU_TITLE.Where(Function(t) t.ID = p.TITLE_ID).DefaultIfEmpty
                            From tc In Context.HU_TITLE.Where(Function(tc) tc.ID = p.TITLE_CON).DefaultIfEmpty
                            From org_con In Context.HU_ORGANIZATION.Where(Function(org_con) org_con.ID = p.ORG_CON).DefaultIfEmpty
                            From huv_con_org_id In Context.HU_ORGANIZATION_V.Where(Function(f) f.ID = p.ORG_CON).DefaultIfEmpty
@@ -3155,9 +3155,6 @@ Public Class ProfileRepository
             lstEmp = lstEmp.OrderBy(Sorts)
             Total = lstEmp.Count
             lstEmp = lstEmp.Skip(PageIndex * PageSize).Take(PageSize)
-
-
-
             listCommend = lstEmp.ToList()
 
             Return listCommend

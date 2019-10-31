@@ -557,6 +557,8 @@ Public Class CommonView
                     rCol.Visible = Boolean.Parse(row.Item("Is_Visible"))
                     If row.Field(Of String)("DataType").Trim().ToUpper = "DateTime".ToUpper Then
                         rCol.DataFormatString = ConfigurationManager.AppSettings("FDATEGRID")
+                    ElseIf row.Field(Of String)("DataType").Trim() = "DateTimeHour" Then
+                        rCol.DataFormatString = "{0:dd/MM/yyyy hh:mm}"
                     ElseIf row.Field(Of String)("DataType").Trim() = "Number" Then
                         rCol.DataFormatString = "{0:#,##0.##}"
                     End If

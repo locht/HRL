@@ -109,12 +109,13 @@
             enableAjax = true;
         }
         function OpenNew() {
-            var oWindow = radopen('Dialog.aspx?mid=Recruitment&fid=ctrlRC_RequestNewEdit&group=Business&noscroll=1', "rwPopup");
-            var pos = $("html").offset();
+          //  var oWindow = radopen('Dialog.aspx?mid=Recruitment&fid=ctrlRC_RequestNewEdit&group=Business&noscroll=1', "rwPopup");
+//            var pos = $("html").offset();
             //            oWindow.moveTo(pos.left, pos.top);
             //            oWindow.setSize($(window).width(), $(window).height());
-            oWindow.moveTo(pos.left, pos.middle);
-            oWindow.setSize(1200, 500);
+//            oWindow.moveTo(pos.left, pos.middle);
+            //            oWindow.setSize(1200, 500);
+            window.open('/Default.aspx?mid=Recruitment&fid=ctrlRC_RequestNewEdit&group=Business&noscroll=1', "_self");
         }
 
         function gridRowDblClick(sender, eventArgs) {
@@ -128,12 +129,13 @@
             if (bCheck > 1)
                 return 1;
             var id = $find('<%# rgData.ClientID%>').get_masterTableView().get_selectedItems()[0].getDataKeyValue('ID');
-            var oWindow = radopen('Dialog.aspx?mid=Recruitment&fid=ctrlRC_RequestNewEdit&group=Business&noscroll=1&ID=' + id, "rwPopup");
-            var pos = $("html").offset();
+            window.open('/Default.aspx?mid=Recruitment&fid=ctrlRC_RequestNewEdit&group=Business&noscroll=1&ID=' + id, "_self");
+            //var oWindow = radopen('Dialog.aspx?mid=Recruitment&fid=ctrlRC_RequestNewEdit&group=Business&noscroll=1&ID=' + id, "rwPopup");
+//            var pos = $("html").offset();
             //            oWindow.moveTo(pos.left, pos.top);
             //            oWindow.setSize($(window).width(), $(window).height());
-            oWindow.moveTo(pos.left, pos.middle);
-            oWindow.setSize(1200, 500);
+//            oWindow.moveTo(pos.left, pos.middle);
+//            oWindow.setSize(1200, 500);
             return 2;
         }
 

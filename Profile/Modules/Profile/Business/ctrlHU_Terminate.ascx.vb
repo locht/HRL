@@ -359,6 +359,7 @@ Public Class ctrlHU_Terminate
                     Dim extension As String = ""
                     Dim iError As Integer = 0
                     Dim item As GridDataItem = rgTerminate.SelectedItems(0)
+                    Dim sourcePath = Server.MapPath("~/ReportTemplates/Profile/LocationInfo/")
                     ' Kiểm tra + lấy thông tin trong database
                     Using rep As New ProfileRepository
                         dtData = rep.GetHU_DataDynamic(item.GetDataKeyValue("ID"),
@@ -392,6 +393,7 @@ Public Class ctrlHU_Terminate
                                              item.GetDataKeyValue("EMPLOYEE_CODE") & "_" & _
                                              Format(Date.Now, "yyyyMMddHHmmss"),
                                              dtData,
+                                             sourcePath,
                                              Response)
                     End Using
                 Case CommonMessage.TOOLBARITEM_EXPORT

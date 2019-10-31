@@ -393,6 +393,9 @@ Partial Public Class PayrollRepository
                         If sqlInsertVal <> "" Then
                             sqlInsertVal = sqlInsertVal.Remove(sqlInsertVal.Length - 1, 1)
                         End If
+                        If sqlInsert_Temp = "," Then
+                            Continue For
+                        End If
                         If sqlInsert_Temp <> "" Then
                             sqlInsert_Temp = sqlInsert_Temp.Remove(0, 1)
                             sqlInsert_Temp = sqlInsert_Temp.Remove(sqlInsert_Temp.Length - 1, 1)

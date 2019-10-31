@@ -35,7 +35,7 @@ Public Class AsposeExcelCommon
         Dim rep As New HistaffFrameworkRepository
         Try
             Dim pathTemp As String = ""
-            If dsData.Tables.Count = 1 Then
+            If dsData.Tables.Count > 0 Then
                 If Not File.Exists(filePath) Then
                     _error = "1"
                     Return False
@@ -50,7 +50,7 @@ Public Class AsposeExcelCommon
 
                 Dim worksheet As Aspose.Cells.Worksheet = designer.Workbook.Worksheets(0)
 
-                If dsData.Tables(0).Rows(0)("FILE_LOGO").ToString IsNot Nothing And dsData.Tables(0).Rows(0)("FILE_LOGO").ToString <> "" Then
+                If dsData.Tables(0).Rows(0)("FILE_LOGO").ToString IsNot Nothing And dsData.Tables(0).Rows(0)("FILE_LOGO").ToString <> "" And dsData.Tables(0).Rows(0)("FILE_LOGO").ToString <> "NoImage.jpg" Then
                     'Adding a picture at the location of a cell whose row and column indices
 
                     Dim b As Byte() = File.ReadAllBytes(dsData.Tables(0).Rows(0)("FILE_LOGO").ToString)
@@ -65,8 +65,6 @@ Public Class AsposeExcelCommon
                     picture.Width = 400
                     picture.Height = 120
                 End If
-
-
 
                 'add parameter in report and header + footer
                 designer.Process()
