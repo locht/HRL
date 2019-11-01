@@ -342,7 +342,8 @@ Public Class ctrlRC_ProgramExamsResult
             body = dataMail.Rows(0)("CONTENT").ToString
             titleMail = "THƯ CẢM ƠN"
             'mailCC = If(dataMail.Rows(0)("MAIL_CC").ToString <> "", dataMail.Rows(0)("MAIL_CC").ToString, Nothing)
-            mailCC = If(LogHelper.CurrentUser.EMAIL IsNot Nothing, LogHelper.CurrentUser.EMAIL.ToString, Nothing)
+            'mailCC = If(LogHelper.CurrentUser. IsNot Nothing, LogHelper.CurrentUser.EMAIL.ToString, Nothing)
+            mailCC = store.GET_EMAIL_COMPANY(LogHelper.CurrentUser.EMPLOYEE_ID)
             dtValues = store.GET_INFO_CADIDATE(item.GetDataKeyValue("ID"))
             Dim values(dtValues.Columns.Count) As String
             If dtValues.Rows.Count > 0 Then

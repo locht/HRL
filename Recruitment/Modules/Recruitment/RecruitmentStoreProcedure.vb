@@ -608,6 +608,19 @@ Public Class RecruitmentStoreProcedure
         End If
         Return dt
     End Function
+    Public Function GET_EMAIL_COMPANY(ByVal empid As Decimal) As String
+        Dim obj As New List(Of Object)
+        Try
+            obj = rep.ExecuteStoreScalar("PKG_RECRUITMENT.GET_MAIL_COMPANY", New List(Of Object)(New Object() {empid, OUT_STRING}))
+            If obj IsNot Nothing Then
+                Return obj(0).ToString
+            Else
+                Return String.Empty
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
     'Xóa chi phí tuyển dụng
     Public Function DELETE_PRO_SCHEDULE_CAN_ISNULL() As Int32
         Dim obj As Object = rep.ExecuteStoreScalar("PKG_RECRUITMENT.DELETE_PRO_SCHEDULE_CAN_ISNULL", New List(Of Object)(New Object() {OUT_NUMBER}))
