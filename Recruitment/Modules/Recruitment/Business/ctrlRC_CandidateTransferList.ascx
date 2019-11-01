@@ -314,11 +314,11 @@
                         OnClientClicked="DisableAjax">
                     </tlk:RadButton>
                 </td>
-                <td>
+              <%--  <td>
                     <tlk:RadButton ID="btnThankLetter" runat="server" Text="<%$ Translate: Thư cảm ơn %>"
                         OnClientClicked="DisableAjax">
                     </tlk:RadButton>
-                </td>
+                </td>--%>
                 <td>
                     <tlk:RadButton ID="btnTransfer" runat="server" Text="<%$ Translate: Chuyển sang HSNV %>">
                     </tlk:RadButton>

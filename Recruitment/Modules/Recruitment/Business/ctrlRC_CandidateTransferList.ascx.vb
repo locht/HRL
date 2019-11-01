@@ -216,62 +216,62 @@ Public Class ctrlRC_CandidateTransferList
         End Try
     End Sub
 
-    Private Sub btnThankLetter_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnThankLetter.Click
-        Dim status As String
-        For Each dr As Telerik.Web.UI.GridDataItem In rgCandidateList.SelectedItems
-            status = dr.GetDataKeyValue("STATUS_CODE").ToString
-            Select Case status
-                Case RCContant.TRUNGTUYEN
-                    ShowMessage(Translate("Tồn tại ứng viên đang ở trạng thái Đã gửi thư mời tuyển dụng"), NotifyType.Warning)
-                    Exit Sub
-                Case RCContant.BLACKLIST
-                    ShowMessage(Translate("Tồn tại ứng viên đang ở trạng thái BlackList"), NotifyType.Warning)
-                    Exit Sub
-                Case RCContant.PONTENTIAL
-                    ShowMessage(Translate("Tồn tại ứng viên đang ở trạng thái Đã gửi thư mời tuyển dụng"), NotifyType.Warning)
-                    Exit Sub
-                Case RCContant.THUMOI
-                    ShowMessage(Translate("Tồn tại ứng viên đang ở trạng thái Đã gửi thư mời tuyển dụng"), NotifyType.Warning)
-                    Exit Sub
-                Case RCContant.NHANVIEN
-                    ShowMessage(Translate("Tồn tại ứng viên đang ở trạng thái Đã gửi thư mời tuyển dụng"), NotifyType.Warning)
-                    Exit Sub
-                Case RCContant.TIEPNHANLD
-                    ShowMessage(Translate("Tồn tại ứng viên đang ở trạng thái gửi thông báo tiếp nhận LĐ thử việc"), NotifyType.Warning)
-                    Exit Sub
-            End Select
-        Next
-        Dim dataItem = TryCast(rgCandidateList.SelectedItems(0), GridDataItem)
-        If dataItem Is Nothing Then
-            ShowMessage(Translate(CommonMessage.MESSAGE_NOT_SELECT_ROW), NotifyType.Warning)
-            Exit Sub
-        End If
-        ' format email
-        'Dim receiver As String = dataItem("Email").Text
-        Dim receiver As String = "tanvn@tinhvan.com"
-        Dim cc As String = String.Empty
-        Dim subject As String = "Thư cám ơn"
-        Dim body As String = String.Empty
-        Dim fileAttachments As String = String.Empty
-        'format body by html template
-        Dim reader As StreamReader = New StreamReader(Server.MapPath("~/Modules/Recruitment/Templates/TiepNhanThuViec.htm"))
-        body = reader.ReadToEnd
-        'body = body.Replace("{ngày}", DateTime.Now.Day)
-        'body = body.Replace("{tháng}", DateTime.Now.Month)
-        'body = body.Replace("{năm}", DateTime.Now.Year)
-        body = body.Replace("{họ tên}", dataItem("FULLNAME_VN").Text.ToUpper())
+    'Private Sub btnThankLetter_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnThankLetter.Click
+    '    Dim status As String
+    '    For Each dr As Telerik.Web.UI.GridDataItem In rgCandidateList.SelectedItems
+    '        status = dr.GetDataKeyValue("STATUS_CODE").ToString
+    '        Select Case status
+    '            Case RCContant.TRUNGTUYEN
+    '                ShowMessage(Translate("Tồn tại ứng viên đang ở trạng thái Đã gửi thư mời tuyển dụng"), NotifyType.Warning)
+    '                Exit Sub
+    '            Case RCContant.BLACKLIST
+    '                ShowMessage(Translate("Tồn tại ứng viên đang ở trạng thái BlackList"), NotifyType.Warning)
+    '                Exit Sub
+    '            Case RCContant.PONTENTIAL
+    '                ShowMessage(Translate("Tồn tại ứng viên đang ở trạng thái Đã gửi thư mời tuyển dụng"), NotifyType.Warning)
+    '                Exit Sub
+    '            Case RCContant.THUMOI
+    '                ShowMessage(Translate("Tồn tại ứng viên đang ở trạng thái Đã gửi thư mời tuyển dụng"), NotifyType.Warning)
+    '                Exit Sub
+    '            Case RCContant.NHANVIEN
+    '                ShowMessage(Translate("Tồn tại ứng viên đang ở trạng thái Đã gửi thư mời tuyển dụng"), NotifyType.Warning)
+    '                Exit Sub
+    '            Case RCContant.TIEPNHANLD
+    '                ShowMessage(Translate("Tồn tại ứng viên đang ở trạng thái gửi thông báo tiếp nhận LĐ thử việc"), NotifyType.Warning)
+    '                Exit Sub
+    '        End Select
+    '    Next
+    '    Dim dataItem = TryCast(rgCandidateList.SelectedItems(0), GridDataItem)
+    '    If dataItem Is Nothing Then
+    '        ShowMessage(Translate(CommonMessage.MESSAGE_NOT_SELECT_ROW), NotifyType.Warning)
+    '        Exit Sub
+    '    End If
+    '    ' format email
+    '    'Dim receiver As String = dataItem("Email").Text
+    '    Dim receiver As String = "tanvn@tinhvan.com"
+    '    Dim cc As String = String.Empty
+    '    Dim subject As String = "Thư cám ơn"
+    '    Dim body As String = String.Empty
+    '    Dim fileAttachments As String = String.Empty
+    '    'format body by html template
+    '    Dim reader As StreamReader = New StreamReader(Server.MapPath("~/Modules/Recruitment/Templates/TiepNhanThuViec.htm"))
+    '    body = reader.ReadToEnd
+    '    'body = body.Replace("{ngày}", DateTime.Now.Day)
+    '    'body = body.Replace("{tháng}", DateTime.Now.Month)
+    '    'body = body.Replace("{năm}", DateTime.Now.Year)
+    '    body = body.Replace("{họ tên}", dataItem("FULLNAME_VN").Text.ToUpper())
 
-        If Common.Common.sendEmailByServerMail(receiver, cc, subject, body, fileAttachments, "") Then
-            ShowMessage(Translate(CommonMessage.MESSAGE_SENDMAIL_COMPLETED), NotifyType.Success)
-            'Update Candidate Status
-            psp.UPDATE_CANDIDATE_STATUS(dataItem("ID").Text, RCContant.TUCHOI)
-            CurrentState = CommonMessage.STATE_NORMAL
-            UpdateControlState()
-        Else
-            ShowMessage(Translate(CommonMessage.MESSAGE_SENDMAIL_ERROR), NotifyType.Warning)
-            Exit Sub
-        End If
-    End Sub
+    '    If Common.Common.sendEmailByServerMail(receiver, cc, subject, body, fileAttachments, "") Then
+    '        ShowMessage(Translate(CommonMessage.MESSAGE_SENDMAIL_COMPLETED), NotifyType.Success)
+    '        'Update Candidate Status
+    '        psp.UPDATE_CANDIDATE_STATUS(dataItem("ID").Text, RCContant.TUCHOI)
+    '        CurrentState = CommonMessage.STATE_NORMAL
+    '        UpdateControlState()
+    '    Else
+    '        ShowMessage(Translate(CommonMessage.MESSAGE_SENDMAIL_ERROR), NotifyType.Warning)
+    '        Exit Sub
+    '    End If
+    'End Sub
 
     Private Sub cmdYCTDKhac_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles cmdYCTDKhac.Click
         Dim strEmp As String = ""

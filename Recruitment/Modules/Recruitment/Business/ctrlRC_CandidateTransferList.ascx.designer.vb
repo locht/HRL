@@ -338,15 +338,6 @@ Partial Public Class ctrlRC_CandidateTransferList
     Protected WithEvents btnReceive As Global.Telerik.Web.UI.RadButton
 
     '''<summary>
-    '''btnThankLetter control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents btnThankLetter As Global.Telerik.Web.UI.RadButton
-
-    '''<summary>
     '''btnTransfer control.
     '''</summary>
     '''<remarks>
