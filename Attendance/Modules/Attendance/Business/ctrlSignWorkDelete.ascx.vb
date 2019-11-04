@@ -218,7 +218,7 @@ Public Class ctrlSignWorkDelete
                                                  .FROMDATE = rdFromdate.SelectedDate, _
                                                  .ENDDATE = rdEnddate.SelectedDate}
                         ' kiem tra ky cong da dong chua?
-                        If rep.IS_PERIODSTATUS_BY_DATE(_param) = False Then
+                        If rep.IS_PERIODSTATUS_BY_DATE(_param) Then
                             ShowMessage(Translate("Kỳ công đã đóng, bạn không thể thêm/sửa"), NotifyType.Error)
                             Exit Sub
                         End If
