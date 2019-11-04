@@ -115,9 +115,10 @@ Public Class ctrlHU_EmpDtlFamily
 
     Public Overrides Sub Refresh(Optional ByVal Message As String = "")
         Try
+           
             Me.CurrentPlaceHolder = Me.ViewName
             ctrlEmpBasicInfo.SetProperty("CurrentPlaceHolder", Me.CurrentPlaceHolder)
-           
+
         Catch ex As Exception
             DisplayException(Me.ViewName, Me.ID, ex)
         End Try
@@ -217,6 +218,22 @@ Public Class ctrlHU_EmpDtlFamily
                     If Page.IsValid Then
                         If chkIsDeduct.Checked = True And rdDeductFrom.SelectedDate Is Nothing Then
                             ShowMessage(Translate("Chưa chọn ngày giảm trừ"), Utilities.NotifyType.Warning)
+                            Exit Sub
+                        End If
+                        If txtFullName.Text = "" Then
+                            ShowMessage(Translate("Bạn phải nhập Họ tên"), Utilities.NotifyType.Warning)
+                            Exit Sub
+                        End If
+                        If cboRelationship.SelectedValue = "" Then
+                            ShowMessage(Translate("Bạn phải nhập Mối quan hệ "), Utilities.NotifyType.Warning)
+                            Exit Sub
+                        End If
+                        If rdBirthDate.SelectedDate Is Nothing Then
+                            ShowMessage(Translate("Bạn phải nhập Ngày sinh"), Utilities.NotifyType.Warning)
+                            Exit Sub
+                        End If
+                        If rdDeductFrom.SelectedDate > rdDeductTo.SelectedDate Then
+                            ShowMessage(Translate("Ngày kết thúc giảm trừ phải lớn hơn ngày bắt đầu"), Utilities.NotifyType.Warning)
                             Exit Sub
                         End If
                         Select Case CurrentState

@@ -113,15 +113,6 @@ Partial Public Class ctrlHU_EmpDtlFamily
     Protected WithEvents txtFullName As Global.Telerik.Web.UI.RadTextBox
 
     '''<summary>
-    '''reqFullname control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents reqFullname As Global.System.Web.UI.WebControls.RequiredFieldValidator
-
-    '''<summary>
     '''lbRelationship control.
     '''</summary>
     '''<remarks>
@@ -138,15 +129,6 @@ Partial Public Class ctrlHU_EmpDtlFamily
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents cboRelationship As Global.Telerik.Web.UI.RadComboBox
-
-    '''<summary>
-    '''RequiredFieldValidator2 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents RequiredFieldValidator2 As Global.System.Web.UI.WebControls.RequiredFieldValidator
 
     '''<summary>
     '''cvalRelationship control.
@@ -174,15 +156,6 @@ Partial Public Class ctrlHU_EmpDtlFamily
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents rdBirthDate As Global.Telerik.Web.UI.RadDatePicker
-
-    '''<summary>
-    '''RequiredFieldValidator1 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents RequiredFieldValidator1 As Global.System.Web.UI.WebControls.RequiredFieldValidator
 
     '''<summary>
     '''cboGender control.
@@ -633,15 +606,6 @@ Partial Public Class ctrlHU_EmpDtlFamily
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents rdDeductTo As Global.Telerik.Web.UI.RadDatePicker
-
-    '''<summary>
-    '''compareDeductTo_DeductFrom control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents compareDeductTo_DeductFrom As Global.System.Web.UI.WebControls.CompareValidator
 
     '''<summary>
     '''lbNKS control.

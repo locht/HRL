@@ -28,20 +28,20 @@
                 <td>
                     <tlk:RadTextBox runat="server" ID="txtFullName">
                     </tlk:RadTextBox>
-                    <asp:RequiredFieldValidator ID="reqFullname" ControlToValidate="txtFullName" runat="server"
+                   <%-- <asp:RequiredFieldValidator ID="reqFullname" ControlToValidate="txtFullName" runat="server"
                         ErrorMessage="Bạn phải nhập họ tên" ToolTip="Bạn phải nhập họ tên">
-                    </asp:RequiredFieldValidator>
+                    </asp:RequiredFieldValidator>--%>
                 </td>
                 <td class="lb" style="width: 150px">
                     <asp:Label ID="lbRelationship" runat="server" Text="Mối quan hệ"></asp:Label>
                 </td>
                 <td>
-                    <tlk:RadComboBox runat="server" ID="cboRelationship" CausesValidation="false">
+                    <tlk:RadComboBox runat="server" ID="cboRelationship" >
                     </tlk:RadComboBox>
-                    <asp:RequiredFieldValidator ID="RequiredFieldValidator2" ControlToValidate="cboRelationship"
+                 <%--   <asp:RequiredFieldValidator ID="RequiredFieldValidator2" ControlToValidate="cboRelationship"
                         runat="server" ErrorMessage="Bạn phải chọn Mối quan hệ" ToolTip="Bạn phải chọn Mối quan hệ">
-                    </asp:RequiredFieldValidator>
-                    <asp:CustomValidator ID="cvalRelationship" runat="server" ErrorMessage="Bạn phải chọn Mối quan hệ"
+                    </asp:RequiredFieldValidator>--%>
+                    <asp:CustomValidator ID="cvalRelationship"  Enabled="false" runat="server" ErrorMessage="Bạn phải chọn Mối quan hệ"
                         ToolTip="Bạn phải chọn Mối quan hệ">
                     </asp:CustomValidator>
                 </td>
@@ -52,9 +52,9 @@
                 <td>
                     <tlk:RadDatePicker runat="server" ID="rdBirthDate">
                     </tlk:RadDatePicker>
-                    <asp:RequiredFieldValidator ID="RequiredFieldValidator1" ControlToValidate="rdBirthDate"
+                <%--    <asp:RequiredFieldValidator ID="RequiredFieldValidator1" ControlToValidate="rdBirthDate"
                         runat="server" ErrorMessage="Bạn phải nhập Ngày sinh" ToolTip="Bạn phải nhập Ngày sinh">
-                    </asp:RequiredFieldValidator>
+                    </asp:RequiredFieldValidator>--%>
                 </td>
 
                 <td class="lb">
@@ -301,11 +301,11 @@
                 <td>
                     <tlk:RadDatePicker runat="server" ID="rdDeductTo" Enabled="false">
                     </tlk:RadDatePicker>
-                    <asp:CompareValidator ID="compareDeductTo_DeductFrom" runat="server" ErrorMessage="Ngày kết thúc giảm trừ phải lớn hơn ngày bắt đầu"
+                    <%--<asp:CompareValidator ID="compareDeductTo_DeductFrom" runat="server" ErrorMessage="Ngày kết thúc giảm trừ phải lớn hơn ngày bắt đầu"
                         ToolTip="Ngày kết thúc giảm trừ phải lớn hơn ngày bắt đầu"
                         ControlToValidate="rdDeductTo" ControlToCompare="rdDeductFrom" Operator="GreaterThanEqual"
                         Type="Date">
-                    </asp:CompareValidator>
+                    </asp:CompareValidator>--%>
                 </td>
             </tr>
 
