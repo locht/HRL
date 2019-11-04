@@ -5793,7 +5793,7 @@ Partial Public Class AttendanceRepository
             objTitleData.CREATE_BY_SHOW = objData.CREATE_BY_SHOW
             objTitleData.CREATE_DATE_SHOW = objData.CREATE_DATE_SHOW
             objTitleData.NOTE = objData.NOTE
-            objTitleData.ACTFLG = objData.ACTFLG
+            objTitleData.ACTFLG = If(objData.ACTFLG Is Nothing, (From p In Context.AT_LIST_PARAM_SYSTEM Where p.ID = objTitleData.ID Select p.ACTFLG).SingleOrDefault, objData.ACTFLG)
             objTitleData.CREATED_BY = objData.CREATED_BY
             objTitleData.CREATED_DATE = objData.CREATED_DATE
             objTitleData.CREATED_LOG = objData.CREATED_LOG
