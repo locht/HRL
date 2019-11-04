@@ -889,6 +889,12 @@ Partial Class ProfileRepository
                 objContractData.AFTERNOON_STOP = objContract.AFTERNOON_STOP
                 objContractData.TITLE_ID = objContract.TITLE_ID
                 objContractData.ORG_ID = objContract.ORG_ID
+                'call quan ly truc tiep,doi tuong cham cong,dôi tuong lao dong,bac nhan vien
+                Dim objEmployee = (From p In Context.HU_EMPLOYEE Where objContractData.EMPLOYEE_ID = p.ID).FirstOrDefault
+                objContractData.DIRECT_MANAGER = objEmployee.DIRECT_MANAGER
+                objContractData.STAFF_RANK_ID = objEmployee.STAFF_RANK_ID
+                objContractData.OBJECT_LABOUR = objEmployee.OBJECT_LABOR
+                objContractData.OBJECTTIMEKEEPING = objEmployee.OBJECTTIMEKEEPING
                 If objContractData.STATUS_ID = ProfileCommon.DECISION_STATUS.APPROVE_ID Then
                     'objContractData.STATUS_ID = ProfileCommon.DECISION_STATUS.APPROVE_ID
                     'objContract.STATUS_ID = ProfileCommon.DECISION_STATUS.APPROVE_ID
