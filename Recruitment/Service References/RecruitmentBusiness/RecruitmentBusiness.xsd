@@ -900,10 +900,56 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="ArrayOfProgramExamsDTO" nillable="true" type="tns:ArrayOfProgramExamsDTO" />
+  <xs:complexType name="CandidateFamilyDTO">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ADDRESS" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="BIRTH_BOOK" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="BIRTH_DATE" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="BIRTH_DAY" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="BIRTH_DIS" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="BIRTH_MONTH" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="BIRTH_NAT" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="BIRTH_NAT2" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="BIRTH_NO" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="BIRTH_PRO" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="BIRTH_YEAR" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="CANDIDATE_CODE" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CANDIDATE_ID" type="xs:decimal" />
+      <xs:element minOccurs="0" name="COMPANY" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CREATED_BY" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CREATED_DATE" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="CREATED_LOG" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DEDUCT_FROM" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="DEDUCT_TO" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="DIED_DATE" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="FULLNAME" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ID" type="xs:decimal" />
+      <xs:element minOccurs="0" name="ID_DATE" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="ID_NO" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ID_PLACE" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="IS_DEDUCT" type="xs:decimal" />
+      <xs:element minOccurs="0" name="IS_DIED" nillable="true" type="xs:boolean" />
+      <xs:element minOccurs="0" name="IS_MLG" nillable="true" type="xs:boolean" />
+      <xs:element minOccurs="0" name="JOB" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="MODIFIED_BY" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="MODIFIED_DATE" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="MODIFIED_LOG" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PER_ADDRESS" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PHONE_NUMBER" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PIT_CODE" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PIT_DATE" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="RC_FAMILY_ID" type="xs:decimal" />
+      <xs:element minOccurs="0" name="RELATION_ID" type="xs:decimal" />
+      <xs:element minOccurs="0" name="RELATION_NAME" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="REMARK" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CandidateFamilyDTO" nillable="true" type="tns:CandidateFamilyDTO" />
   <xs:complexType name="CandidateDTO">
     <xs:sequence>
       <xs:element minOccurs="0" name="BIRTH_DATE" nillable="true" type="xs:dateTime" />
       <xs:element minOccurs="0" name="CANDIDATE_CODE" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CARE_TITLE_NAME" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="CREATED_BY" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="CREATED_DATE" nillable="true" type="xs:dateTime" />
       <xs:element minOccurs="0" name="CREATED_LOG" nillable="true" type="xs:string" />
@@ -944,6 +990,7 @@
       <xs:element minOccurs="0" name="ORG_NAME" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="PONTENTIAL" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="RC_PROGRAM_ID" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="RECRUIMENT_WEBSITE" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="STATUS_ID" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="STATUS_NAME" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="THIDAT_ID" nillable="true" type="xs:string" />
@@ -997,6 +1044,9 @@
       <xs:element minOccurs="0" name="EDUCATION_ID" nillable="true" type="xs:decimal" />
       <xs:element minOccurs="0" name="EDUCATION_ID_NAME" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="EDUCATION_MAJORS" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FINDER_ADDRESS" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FINDER_NAME" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FINDER_SDT" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="FULLNAME_VN" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="GENDER" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="GENDER_NAME" nillable="true" type="xs:string" />
@@ -1266,50 +1316,6 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="CandidateImportDTO" nillable="true" type="tns:CandidateImportDTO" />
-  <xs:complexType name="CandidateFamilyDTO">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="ADDRESS" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="BIRTH_BOOK" nillable="true" type="xs:decimal" />
-      <xs:element minOccurs="0" name="BIRTH_DATE" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="BIRTH_DAY" nillable="true" type="xs:int" />
-      <xs:element minOccurs="0" name="BIRTH_DIS" nillable="true" type="xs:decimal" />
-      <xs:element minOccurs="0" name="BIRTH_MONTH" nillable="true" type="xs:int" />
-      <xs:element minOccurs="0" name="BIRTH_NAT" nillable="true" type="xs:decimal" />
-      <xs:element minOccurs="0" name="BIRTH_NAT2" nillable="true" type="xs:decimal" />
-      <xs:element minOccurs="0" name="BIRTH_NO" nillable="true" type="xs:decimal" />
-      <xs:element minOccurs="0" name="BIRTH_PRO" nillable="true" type="xs:decimal" />
-      <xs:element minOccurs="0" name="BIRTH_YEAR" nillable="true" type="xs:int" />
-      <xs:element minOccurs="0" name="CANDIDATE_CODE" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="CANDIDATE_ID" type="xs:decimal" />
-      <xs:element minOccurs="0" name="COMPANY" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="CREATED_BY" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="CREATED_DATE" type="xs:dateTime" />
-      <xs:element minOccurs="0" name="CREATED_LOG" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="DEDUCT_FROM" nillable="true" type="xs:dateTime" />
-      <xs:element minOccurs="0" name="DEDUCT_TO" nillable="true" type="xs:dateTime" />
-      <xs:element minOccurs="0" name="DIED_DATE" nillable="true" type="xs:dateTime" />
-      <xs:element minOccurs="0" name="FULLNAME" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="ID" type="xs:decimal" />
-      <xs:element minOccurs="0" name="ID_DATE" nillable="true" type="xs:dateTime" />
-      <xs:element minOccurs="0" name="ID_NO" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="ID_PLACE" nillable="true" type="xs:decimal" />
-      <xs:element minOccurs="0" name="IS_DEDUCT" type="xs:decimal" />
-      <xs:element minOccurs="0" name="IS_DIED" nillable="true" type="xs:boolean" />
-      <xs:element minOccurs="0" name="IS_MLG" nillable="true" type="xs:boolean" />
-      <xs:element minOccurs="0" name="JOB" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="MODIFIED_BY" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="MODIFIED_DATE" type="xs:dateTime" />
-      <xs:element minOccurs="0" name="MODIFIED_LOG" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="PER_ADDRESS" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="PIT_CODE" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="PIT_DATE" nillable="true" type="xs:dateTime" />
-      <xs:element minOccurs="0" name="RC_FAMILY_ID" type="xs:decimal" />
-      <xs:element minOccurs="0" name="RELATION_ID" type="xs:decimal" />
-      <xs:element minOccurs="0" name="RELATION_NAME" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="REMARK" nillable="true" type="xs:string" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="CandidateFamilyDTO" nillable="true" type="tns:CandidateFamilyDTO" />
   <xs:complexType name="ArrayOfCandidateFamilyDTO">
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="unbounded" name="CandidateFamilyDTO" nillable="true" type="tns:CandidateFamilyDTO" />

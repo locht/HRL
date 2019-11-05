@@ -1,8 +1,8 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for Oracle database
 -- --------------------------------------------------
--- Date Created: 08/28/2019 6:10:48 PM
--- Generated from EDMX file: D:\MyProject\TNG\TNG\RecruitmentDAL\RecruitmentContext.edmx
+-- Date Created: 05-Nov-19 2:59:36 PM
+-- Generated from EDMX file: E:\PROJECT\MyTNG\RecruitmentDAL\RecruitmentContext.edmx
 -- --------------------------------------------------
 
 -- --------------------------------------------------
@@ -522,7 +522,9 @@ CREATE TABLE "dbo"."RC_CANDIDATE" (
    "IS_BLACKLIST" NUMBER(5,0) NULL,
    "IS_REHIRE" NUMBER(5,0) NULL,
    "STATUS_ID" NCLOB NULL,
-   "EMPLOYEE_CODE" NVARCHAR2(255) NULL
+   "EMPLOYEE_CODE" NVARCHAR2(255) NULL,
+   "CARE_TITLE_NAME" NVARCHAR2(225) NULL,
+   "RECRUIMENT_WEBSITE" NVARCHAR2(225) NULL
 );
 
 -- Creating table 'RC_CANDIDATE_EDUCATION'
@@ -729,7 +731,10 @@ CREATE TABLE "dbo"."RC_CANDIDATE_CV" (
    "CON_DISTRICT" NUMBER(38,0) NULL,
    "CON_WARD" NUMBER(38,0) NULL,
    "CON_ADDRESS" NVARCHAR2(255) NULL,
-   "PER_WARD" NUMBER(38,0) NULL
+   "PER_WARD" NUMBER(38,0) NULL,
+   "FINDER_NAME" NCLOB NULL,
+   "FINDER_SDT" NCLOB NULL,
+   "FINDER_ADDRESS" NCLOB NULL
 );
 
 -- Creating table 'RC_PROGRAM_SCHEDULE'
@@ -801,7 +806,8 @@ CREATE TABLE "dbo"."RC_CANDIDATE_FAMILY" (
    "BIRTH_NAT" NUMBER(38,0) NULL,
    "BIRTH_PRO" NUMBER(38,0) NULL,
    "BIRTH_DIS" NUMBER(38,0) NULL,
-   "BIRTH_NAT2" NUMBER(38,0) NULL
+   "BIRTH_NAT2" NUMBER(38,0) NULL,
+   "PHONE_NUMBER" NCLOB NULL
 );
 
 -- Creating table 'RC_CANDIDATE_TRAINSINGER'

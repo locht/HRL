@@ -405,6 +405,21 @@ Partial Class RecruitmentRepository
         Return Nothing
     End Function
 
+    Public Function GetCandidateFamily_ByID(ByVal sCandidateID As Decimal) As CandidateFamilyDTO
+        Dim lstCandidateFamily As CandidateFamilyDTO
+        Using rep As New RecruitmentBusinessClient
+            Try
+                lstCandidateFamily = rep.GetCandidateFamily_ByID(sCandidateID)
+                Return lstCandidateFamily
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+
+        Return Nothing
+    End Function
+
     Public Function CreateNewCandidateCode() As CandidateDTO
         Using rep As New RecruitmentBusinessClient
             Try
@@ -418,17 +433,18 @@ Partial Class RecruitmentRepository
     End Function
 
     Public Function InsertCandidate(ByVal objEmp As CandidateDTO, ByRef gID As Decimal, _
-                                  ByRef _strEmpCode As String, _
-                                  ByVal _imageBinary As Byte(), _
-                                   ByVal objEmpCV As CandidateCVDTO,
-                                         ByVal objEmpEdu As CandidateEduDTO, _
-                                   ByVal objEmpOther As CandidateOtherInfoDTO, _
-                                      ByVal objEmpHealth As CandidateHealthDTO, _
-                                      ByVal objEmpExpect As CandidateExpectDTO) As Boolean
+                                    ByRef _strEmpCode As String, _
+                                    ByVal _imageBinary As Byte(), _
+                                    ByVal objEmpCV As CandidateCVDTO,
+                                    ByVal objEmpEdu As CandidateEduDTO, _
+                                    ByVal objEmpOther As CandidateOtherInfoDTO, _
+                                    ByVal objEmpHealth As CandidateHealthDTO, _
+                                    ByVal objEmpExpect As CandidateExpectDTO, _
+                                    ByVal objEmpFamily As CandidateFamilyDTO) As Boolean
         Using rep As New RecruitmentBusinessClient
             Try
                 Return rep.InsertCandidate(objEmp, Me.Log, gID, _strEmpCode, _imageBinary, objEmpCV, objEmpEdu, _
-                                                objEmpOther, objEmpHealth, objEmpExpect)
+                                                objEmpOther, objEmpHealth, objEmpExpect, objEmpFamily)
             Catch ex As Exception
                 rep.Abort()
                 Throw ex
@@ -443,12 +459,13 @@ Partial Class RecruitmentRepository
                                          ByVal objEmpEdu As CandidateEduDTO, _
                                       ByVal objEmpOther As CandidateOtherInfoDTO, _
                                       ByVal objEmpHealth As CandidateHealthDTO, _
-                                      ByVal objEmpExpect As CandidateExpectDTO) As Boolean
+                                      ByVal objEmpExpect As CandidateExpectDTO, _
+                                    ByVal objEmpFamily As CandidateFamilyDTO) As Boolean
 
         Using rep As New RecruitmentBusinessClient
             Try
                 Return rep.ModifyCandidate(objEmp, Me.Log, gID, _imageBinary, objEmpCV, objEmpEdu, _
-                                                 objEmpOther, objEmpHealth, objEmpExpect)
+                                                 objEmpOther, objEmpHealth, objEmpExpect, objEmpFamily)
             Catch ex As Exception
                 rep.Abort()
                 Throw ex
@@ -456,6 +473,7 @@ Partial Class RecruitmentRepository
         End Using
 
     End Function
+
 
 
     Public Function DeleteCandidate(ByVal lstEmpID As List(Of Decimal), ByRef sError As String) As Boolean

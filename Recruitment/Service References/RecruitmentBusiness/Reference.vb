@@ -10936,6 +10936,677 @@ Namespace RecruitmentBusiness
     
     <System.Diagnostics.DebuggerStepThroughAttribute(),  _
      System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0"),  _
+     System.Runtime.Serialization.DataContractAttribute(Name:="CandidateFamilyDTO", [Namespace]:="http://schemas.datacontract.org/2004/07/RecruitmentDAL"),  _
+     System.SerializableAttribute()>  _
+    Partial Public Class CandidateFamilyDTO
+        Inherits Object
+        Implements System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged
+        
+        <System.NonSerializedAttribute()>  _
+        Private extensionDataField As System.Runtime.Serialization.ExtensionDataObject
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private ADDRESSField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private BIRTH_BOOKField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private BIRTH_DATEField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private BIRTH_DAYField As System.Nullable(Of Integer)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private BIRTH_DISField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private BIRTH_MONTHField As System.Nullable(Of Integer)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private BIRTH_NATField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private BIRTH_NAT2Field As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private BIRTH_NOField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private BIRTH_PROField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private BIRTH_YEARField As System.Nullable(Of Integer)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private CANDIDATE_CODEField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private CANDIDATE_IDField As Decimal
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private COMPANYField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private CREATED_BYField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private CREATED_DATEField As Date
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private CREATED_LOGField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private DEDUCT_FROMField As System.Nullable(Of Date)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private DEDUCT_TOField As System.Nullable(Of Date)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private DIED_DATEField As System.Nullable(Of Date)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private FULLNAMEField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private IDField As Decimal
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private ID_DATEField As System.Nullable(Of Date)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private ID_NOField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private ID_PLACEField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private IS_DEDUCTField As Decimal
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private IS_DIEDField As System.Nullable(Of Boolean)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private IS_MLGField As System.Nullable(Of Boolean)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private JOBField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private MODIFIED_BYField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private MODIFIED_DATEField As Date
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private MODIFIED_LOGField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private PER_ADDRESSField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private PHONE_NUMBERField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private PIT_CODEField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private PIT_DATEField As System.Nullable(Of Date)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private RC_FAMILY_IDField As Decimal
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private RELATION_IDField As Decimal
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private RELATION_NAMEField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private REMARKField As String
+        
+        <Global.System.ComponentModel.BrowsableAttribute(false)>  _
+        Public Property ExtensionData() As System.Runtime.Serialization.ExtensionDataObject Implements System.Runtime.Serialization.IExtensibleDataObject.ExtensionData
+            Get
+                Return Me.extensionDataField
+            End Get
+            Set
+                Me.extensionDataField = value
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property ADDRESS() As String
+            Get
+                Return Me.ADDRESSField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.ADDRESSField, value) <> true) Then
+                    Me.ADDRESSField = value
+                    Me.RaisePropertyChanged("ADDRESS")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property BIRTH_BOOK() As System.Nullable(Of Decimal)
+            Get
+                Return Me.BIRTH_BOOKField
+            End Get
+            Set
+                If (Me.BIRTH_BOOKField.Equals(value) <> true) Then
+                    Me.BIRTH_BOOKField = value
+                    Me.RaisePropertyChanged("BIRTH_BOOK")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property BIRTH_DATE() As String
+            Get
+                Return Me.BIRTH_DATEField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.BIRTH_DATEField, value) <> true) Then
+                    Me.BIRTH_DATEField = value
+                    Me.RaisePropertyChanged("BIRTH_DATE")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property BIRTH_DAY() As System.Nullable(Of Integer)
+            Get
+                Return Me.BIRTH_DAYField
+            End Get
+            Set
+                If (Me.BIRTH_DAYField.Equals(value) <> true) Then
+                    Me.BIRTH_DAYField = value
+                    Me.RaisePropertyChanged("BIRTH_DAY")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property BIRTH_DIS() As System.Nullable(Of Decimal)
+            Get
+                Return Me.BIRTH_DISField
+            End Get
+            Set
+                If (Me.BIRTH_DISField.Equals(value) <> true) Then
+                    Me.BIRTH_DISField = value
+                    Me.RaisePropertyChanged("BIRTH_DIS")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property BIRTH_MONTH() As System.Nullable(Of Integer)
+            Get
+                Return Me.BIRTH_MONTHField
+            End Get
+            Set
+                If (Me.BIRTH_MONTHField.Equals(value) <> true) Then
+                    Me.BIRTH_MONTHField = value
+                    Me.RaisePropertyChanged("BIRTH_MONTH")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property BIRTH_NAT() As System.Nullable(Of Decimal)
+            Get
+                Return Me.BIRTH_NATField
+            End Get
+            Set
+                If (Me.BIRTH_NATField.Equals(value) <> true) Then
+                    Me.BIRTH_NATField = value
+                    Me.RaisePropertyChanged("BIRTH_NAT")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property BIRTH_NAT2() As System.Nullable(Of Decimal)
+            Get
+                Return Me.BIRTH_NAT2Field
+            End Get
+            Set
+                If (Me.BIRTH_NAT2Field.Equals(value) <> true) Then
+                    Me.BIRTH_NAT2Field = value
+                    Me.RaisePropertyChanged("BIRTH_NAT2")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property BIRTH_NO() As System.Nullable(Of Decimal)
+            Get
+                Return Me.BIRTH_NOField
+            End Get
+            Set
+                If (Me.BIRTH_NOField.Equals(value) <> true) Then
+                    Me.BIRTH_NOField = value
+                    Me.RaisePropertyChanged("BIRTH_NO")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property BIRTH_PRO() As System.Nullable(Of Decimal)
+            Get
+                Return Me.BIRTH_PROField
+            End Get
+            Set
+                If (Me.BIRTH_PROField.Equals(value) <> true) Then
+                    Me.BIRTH_PROField = value
+                    Me.RaisePropertyChanged("BIRTH_PRO")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property BIRTH_YEAR() As System.Nullable(Of Integer)
+            Get
+                Return Me.BIRTH_YEARField
+            End Get
+            Set
+                If (Me.BIRTH_YEARField.Equals(value) <> true) Then
+                    Me.BIRTH_YEARField = value
+                    Me.RaisePropertyChanged("BIRTH_YEAR")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property CANDIDATE_CODE() As String
+            Get
+                Return Me.CANDIDATE_CODEField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.CANDIDATE_CODEField, value) <> true) Then
+                    Me.CANDIDATE_CODEField = value
+                    Me.RaisePropertyChanged("CANDIDATE_CODE")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property CANDIDATE_ID() As Decimal
+            Get
+                Return Me.CANDIDATE_IDField
+            End Get
+            Set
+                If (Me.CANDIDATE_IDField.Equals(value) <> true) Then
+                    Me.CANDIDATE_IDField = value
+                    Me.RaisePropertyChanged("CANDIDATE_ID")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property COMPANY() As String
+            Get
+                Return Me.COMPANYField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.COMPANYField, value) <> true) Then
+                    Me.COMPANYField = value
+                    Me.RaisePropertyChanged("COMPANY")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property CREATED_BY() As String
+            Get
+                Return Me.CREATED_BYField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.CREATED_BYField, value) <> true) Then
+                    Me.CREATED_BYField = value
+                    Me.RaisePropertyChanged("CREATED_BY")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property CREATED_DATE() As Date
+            Get
+                Return Me.CREATED_DATEField
+            End Get
+            Set
+                If (Me.CREATED_DATEField.Equals(value) <> true) Then
+                    Me.CREATED_DATEField = value
+                    Me.RaisePropertyChanged("CREATED_DATE")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property CREATED_LOG() As String
+            Get
+                Return Me.CREATED_LOGField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.CREATED_LOGField, value) <> true) Then
+                    Me.CREATED_LOGField = value
+                    Me.RaisePropertyChanged("CREATED_LOG")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property DEDUCT_FROM() As System.Nullable(Of Date)
+            Get
+                Return Me.DEDUCT_FROMField
+            End Get
+            Set
+                If (Me.DEDUCT_FROMField.Equals(value) <> true) Then
+                    Me.DEDUCT_FROMField = value
+                    Me.RaisePropertyChanged("DEDUCT_FROM")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property DEDUCT_TO() As System.Nullable(Of Date)
+            Get
+                Return Me.DEDUCT_TOField
+            End Get
+            Set
+                If (Me.DEDUCT_TOField.Equals(value) <> true) Then
+                    Me.DEDUCT_TOField = value
+                    Me.RaisePropertyChanged("DEDUCT_TO")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property DIED_DATE() As System.Nullable(Of Date)
+            Get
+                Return Me.DIED_DATEField
+            End Get
+            Set
+                If (Me.DIED_DATEField.Equals(value) <> true) Then
+                    Me.DIED_DATEField = value
+                    Me.RaisePropertyChanged("DIED_DATE")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property FULLNAME() As String
+            Get
+                Return Me.FULLNAMEField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.FULLNAMEField, value) <> true) Then
+                    Me.FULLNAMEField = value
+                    Me.RaisePropertyChanged("FULLNAME")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property ID() As Decimal
+            Get
+                Return Me.IDField
+            End Get
+            Set
+                If (Me.IDField.Equals(value) <> true) Then
+                    Me.IDField = value
+                    Me.RaisePropertyChanged("ID")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property ID_DATE() As System.Nullable(Of Date)
+            Get
+                Return Me.ID_DATEField
+            End Get
+            Set
+                If (Me.ID_DATEField.Equals(value) <> true) Then
+                    Me.ID_DATEField = value
+                    Me.RaisePropertyChanged("ID_DATE")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property ID_NO() As String
+            Get
+                Return Me.ID_NOField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.ID_NOField, value) <> true) Then
+                    Me.ID_NOField = value
+                    Me.RaisePropertyChanged("ID_NO")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property ID_PLACE() As System.Nullable(Of Decimal)
+            Get
+                Return Me.ID_PLACEField
+            End Get
+            Set
+                If (Me.ID_PLACEField.Equals(value) <> true) Then
+                    Me.ID_PLACEField = value
+                    Me.RaisePropertyChanged("ID_PLACE")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property IS_DEDUCT() As Decimal
+            Get
+                Return Me.IS_DEDUCTField
+            End Get
+            Set
+                If (Me.IS_DEDUCTField.Equals(value) <> true) Then
+                    Me.IS_DEDUCTField = value
+                    Me.RaisePropertyChanged("IS_DEDUCT")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property IS_DIED() As System.Nullable(Of Boolean)
+            Get
+                Return Me.IS_DIEDField
+            End Get
+            Set
+                If (Me.IS_DIEDField.Equals(value) <> true) Then
+                    Me.IS_DIEDField = value
+                    Me.RaisePropertyChanged("IS_DIED")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property IS_MLG() As System.Nullable(Of Boolean)
+            Get
+                Return Me.IS_MLGField
+            End Get
+            Set
+                If (Me.IS_MLGField.Equals(value) <> true) Then
+                    Me.IS_MLGField = value
+                    Me.RaisePropertyChanged("IS_MLG")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property JOB() As String
+            Get
+                Return Me.JOBField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.JOBField, value) <> true) Then
+                    Me.JOBField = value
+                    Me.RaisePropertyChanged("JOB")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property MODIFIED_BY() As String
+            Get
+                Return Me.MODIFIED_BYField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.MODIFIED_BYField, value) <> true) Then
+                    Me.MODIFIED_BYField = value
+                    Me.RaisePropertyChanged("MODIFIED_BY")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property MODIFIED_DATE() As Date
+            Get
+                Return Me.MODIFIED_DATEField
+            End Get
+            Set
+                If (Me.MODIFIED_DATEField.Equals(value) <> true) Then
+                    Me.MODIFIED_DATEField = value
+                    Me.RaisePropertyChanged("MODIFIED_DATE")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property MODIFIED_LOG() As String
+            Get
+                Return Me.MODIFIED_LOGField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.MODIFIED_LOGField, value) <> true) Then
+                    Me.MODIFIED_LOGField = value
+                    Me.RaisePropertyChanged("MODIFIED_LOG")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property PER_ADDRESS() As String
+            Get
+                Return Me.PER_ADDRESSField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.PER_ADDRESSField, value) <> true) Then
+                    Me.PER_ADDRESSField = value
+                    Me.RaisePropertyChanged("PER_ADDRESS")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property PHONE_NUMBER() As String
+            Get
+                Return Me.PHONE_NUMBERField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.PHONE_NUMBERField, value) <> true) Then
+                    Me.PHONE_NUMBERField = value
+                    Me.RaisePropertyChanged("PHONE_NUMBER")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property PIT_CODE() As String
+            Get
+                Return Me.PIT_CODEField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.PIT_CODEField, value) <> true) Then
+                    Me.PIT_CODEField = value
+                    Me.RaisePropertyChanged("PIT_CODE")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property PIT_DATE() As System.Nullable(Of Date)
+            Get
+                Return Me.PIT_DATEField
+            End Get
+            Set
+                If (Me.PIT_DATEField.Equals(value) <> true) Then
+                    Me.PIT_DATEField = value
+                    Me.RaisePropertyChanged("PIT_DATE")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property RC_FAMILY_ID() As Decimal
+            Get
+                Return Me.RC_FAMILY_IDField
+            End Get
+            Set
+                If (Me.RC_FAMILY_IDField.Equals(value) <> true) Then
+                    Me.RC_FAMILY_IDField = value
+                    Me.RaisePropertyChanged("RC_FAMILY_ID")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property RELATION_ID() As Decimal
+            Get
+                Return Me.RELATION_IDField
+            End Get
+            Set
+                If (Me.RELATION_IDField.Equals(value) <> true) Then
+                    Me.RELATION_IDField = value
+                    Me.RaisePropertyChanged("RELATION_ID")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property RELATION_NAME() As String
+            Get
+                Return Me.RELATION_NAMEField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.RELATION_NAMEField, value) <> true) Then
+                    Me.RELATION_NAMEField = value
+                    Me.RaisePropertyChanged("RELATION_NAME")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property REMARK() As String
+            Get
+                Return Me.REMARKField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.REMARKField, value) <> true) Then
+                    Me.REMARKField = value
+                    Me.RaisePropertyChanged("REMARK")
+                End If
+            End Set
+        End Property
+        
+        Public Event PropertyChanged As System.ComponentModel.PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
+        
+        Protected Sub RaisePropertyChanged(ByVal propertyName As String)
+            Dim propertyChanged As System.ComponentModel.PropertyChangedEventHandler = Me.PropertyChangedEvent
+            If (Not (propertyChanged) Is Nothing) Then
+                propertyChanged(Me, New System.ComponentModel.PropertyChangedEventArgs(propertyName))
+            End If
+        End Sub
+    End Class
+    
+    <System.Diagnostics.DebuggerStepThroughAttribute(),  _
+     System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0"),  _
      System.Runtime.Serialization.DataContractAttribute(Name:="CandidateDTO", [Namespace]:="http://schemas.datacontract.org/2004/07/RecruitmentDAL"),  _
      System.SerializableAttribute()>  _
     Partial Public Class CandidateDTO
@@ -10950,6 +11621,9 @@ Namespace RecruitmentBusiness
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private CANDIDATE_CODEField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private CARE_TITLE_NAMEField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private CREATED_BYField As String
@@ -11072,6 +11746,9 @@ Namespace RecruitmentBusiness
         Private RC_PROGRAM_IDField As System.Nullable(Of Decimal)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private RECRUIMENT_WEBSITEField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private STATUS_IDField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -11136,6 +11813,19 @@ Namespace RecruitmentBusiness
                 If (Object.ReferenceEquals(Me.CANDIDATE_CODEField, value) <> true) Then
                     Me.CANDIDATE_CODEField = value
                     Me.RaisePropertyChanged("CANDIDATE_CODE")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property CARE_TITLE_NAME() As String
+            Get
+                Return Me.CARE_TITLE_NAMEField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.CARE_TITLE_NAMEField, value) <> true) Then
+                    Me.CARE_TITLE_NAMEField = value
+                    Me.RaisePropertyChanged("CARE_TITLE_NAME")
                 End If
             End Set
         End Property
@@ -11661,6 +12351,19 @@ Namespace RecruitmentBusiness
         End Property
         
         <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property RECRUIMENT_WEBSITE() As String
+            Get
+                Return Me.RECRUIMENT_WEBSITEField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.RECRUIMENT_WEBSITEField, value) <> true) Then
+                    Me.RECRUIMENT_WEBSITEField = value
+                    Me.RaisePropertyChanged("RECRUIMENT_WEBSITE")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
         Public Property STATUS_ID() As String
             Get
                 Return Me.STATUS_IDField
@@ -11934,6 +12637,15 @@ Namespace RecruitmentBusiness
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private EDUCATION_MAJORSField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private FINDER_ADDRESSField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private FINDER_NAMEField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private FINDER_SDTField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private FULLNAME_VNField As String
@@ -12623,6 +13335,45 @@ Namespace RecruitmentBusiness
                 If (Object.ReferenceEquals(Me.EDUCATION_MAJORSField, value) <> true) Then
                     Me.EDUCATION_MAJORSField = value
                     Me.RaisePropertyChanged("EDUCATION_MAJORS")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property FINDER_ADDRESS() As String
+            Get
+                Return Me.FINDER_ADDRESSField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.FINDER_ADDRESSField, value) <> true) Then
+                    Me.FINDER_ADDRESSField = value
+                    Me.RaisePropertyChanged("FINDER_ADDRESS")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property FINDER_NAME() As String
+            Get
+                Return Me.FINDER_NAMEField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.FINDER_NAMEField, value) <> true) Then
+                    Me.FINDER_NAMEField = value
+                    Me.RaisePropertyChanged("FINDER_NAME")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property FINDER_SDT() As String
+            Get
+                Return Me.FINDER_SDTField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.FINDER_SDTField, value) <> true) Then
+                    Me.FINDER_SDTField = value
+                    Me.RaisePropertyChanged("FINDER_SDT")
                 End If
             End Set
         End Property
@@ -16112,661 +16863,6 @@ Namespace RecruitmentBusiness
     
     <System.Diagnostics.DebuggerStepThroughAttribute(),  _
      System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0"),  _
-     System.Runtime.Serialization.DataContractAttribute(Name:="CandidateFamilyDTO", [Namespace]:="http://schemas.datacontract.org/2004/07/RecruitmentDAL"),  _
-     System.SerializableAttribute()>  _
-    Partial Public Class CandidateFamilyDTO
-        Inherits Object
-        Implements System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged
-        
-        <System.NonSerializedAttribute()>  _
-        Private extensionDataField As System.Runtime.Serialization.ExtensionDataObject
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private ADDRESSField As String
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private BIRTH_BOOKField As System.Nullable(Of Decimal)
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private BIRTH_DATEField As String
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private BIRTH_DAYField As System.Nullable(Of Integer)
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private BIRTH_DISField As System.Nullable(Of Decimal)
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private BIRTH_MONTHField As System.Nullable(Of Integer)
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private BIRTH_NATField As System.Nullable(Of Decimal)
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private BIRTH_NAT2Field As System.Nullable(Of Decimal)
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private BIRTH_NOField As System.Nullable(Of Decimal)
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private BIRTH_PROField As System.Nullable(Of Decimal)
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private BIRTH_YEARField As System.Nullable(Of Integer)
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private CANDIDATE_CODEField As String
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private CANDIDATE_IDField As Decimal
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private COMPANYField As String
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private CREATED_BYField As String
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private CREATED_DATEField As Date
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private CREATED_LOGField As String
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private DEDUCT_FROMField As System.Nullable(Of Date)
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private DEDUCT_TOField As System.Nullable(Of Date)
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private DIED_DATEField As System.Nullable(Of Date)
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private FULLNAMEField As String
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private IDField As Decimal
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private ID_DATEField As System.Nullable(Of Date)
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private ID_NOField As String
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private ID_PLACEField As System.Nullable(Of Decimal)
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private IS_DEDUCTField As Decimal
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private IS_DIEDField As System.Nullable(Of Boolean)
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private IS_MLGField As System.Nullable(Of Boolean)
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private JOBField As String
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private MODIFIED_BYField As String
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private MODIFIED_DATEField As Date
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private MODIFIED_LOGField As String
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private PER_ADDRESSField As String
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private PIT_CODEField As String
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private PIT_DATEField As System.Nullable(Of Date)
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private RC_FAMILY_IDField As Decimal
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private RELATION_IDField As Decimal
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private RELATION_NAMEField As String
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private REMARKField As String
-        
-        <Global.System.ComponentModel.BrowsableAttribute(false)>  _
-        Public Property ExtensionData() As System.Runtime.Serialization.ExtensionDataObject Implements System.Runtime.Serialization.IExtensibleDataObject.ExtensionData
-            Get
-                Return Me.extensionDataField
-            End Get
-            Set
-                Me.extensionDataField = value
-            End Set
-        End Property
-        
-        <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property ADDRESS() As String
-            Get
-                Return Me.ADDRESSField
-            End Get
-            Set
-                If (Object.ReferenceEquals(Me.ADDRESSField, value) <> true) Then
-                    Me.ADDRESSField = value
-                    Me.RaisePropertyChanged("ADDRESS")
-                End If
-            End Set
-        End Property
-        
-        <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property BIRTH_BOOK() As System.Nullable(Of Decimal)
-            Get
-                Return Me.BIRTH_BOOKField
-            End Get
-            Set
-                If (Me.BIRTH_BOOKField.Equals(value) <> true) Then
-                    Me.BIRTH_BOOKField = value
-                    Me.RaisePropertyChanged("BIRTH_BOOK")
-                End If
-            End Set
-        End Property
-        
-        <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property BIRTH_DATE() As String
-            Get
-                Return Me.BIRTH_DATEField
-            End Get
-            Set
-                If (Object.ReferenceEquals(Me.BIRTH_DATEField, value) <> true) Then
-                    Me.BIRTH_DATEField = value
-                    Me.RaisePropertyChanged("BIRTH_DATE")
-                End If
-            End Set
-        End Property
-        
-        <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property BIRTH_DAY() As System.Nullable(Of Integer)
-            Get
-                Return Me.BIRTH_DAYField
-            End Get
-            Set
-                If (Me.BIRTH_DAYField.Equals(value) <> true) Then
-                    Me.BIRTH_DAYField = value
-                    Me.RaisePropertyChanged("BIRTH_DAY")
-                End If
-            End Set
-        End Property
-        
-        <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property BIRTH_DIS() As System.Nullable(Of Decimal)
-            Get
-                Return Me.BIRTH_DISField
-            End Get
-            Set
-                If (Me.BIRTH_DISField.Equals(value) <> true) Then
-                    Me.BIRTH_DISField = value
-                    Me.RaisePropertyChanged("BIRTH_DIS")
-                End If
-            End Set
-        End Property
-        
-        <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property BIRTH_MONTH() As System.Nullable(Of Integer)
-            Get
-                Return Me.BIRTH_MONTHField
-            End Get
-            Set
-                If (Me.BIRTH_MONTHField.Equals(value) <> true) Then
-                    Me.BIRTH_MONTHField = value
-                    Me.RaisePropertyChanged("BIRTH_MONTH")
-                End If
-            End Set
-        End Property
-        
-        <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property BIRTH_NAT() As System.Nullable(Of Decimal)
-            Get
-                Return Me.BIRTH_NATField
-            End Get
-            Set
-                If (Me.BIRTH_NATField.Equals(value) <> true) Then
-                    Me.BIRTH_NATField = value
-                    Me.RaisePropertyChanged("BIRTH_NAT")
-                End If
-            End Set
-        End Property
-        
-        <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property BIRTH_NAT2() As System.Nullable(Of Decimal)
-            Get
-                Return Me.BIRTH_NAT2Field
-            End Get
-            Set
-                If (Me.BIRTH_NAT2Field.Equals(value) <> true) Then
-                    Me.BIRTH_NAT2Field = value
-                    Me.RaisePropertyChanged("BIRTH_NAT2")
-                End If
-            End Set
-        End Property
-        
-        <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property BIRTH_NO() As System.Nullable(Of Decimal)
-            Get
-                Return Me.BIRTH_NOField
-            End Get
-            Set
-                If (Me.BIRTH_NOField.Equals(value) <> true) Then
-                    Me.BIRTH_NOField = value
-                    Me.RaisePropertyChanged("BIRTH_NO")
-                End If
-            End Set
-        End Property
-        
-        <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property BIRTH_PRO() As System.Nullable(Of Decimal)
-            Get
-                Return Me.BIRTH_PROField
-            End Get
-            Set
-                If (Me.BIRTH_PROField.Equals(value) <> true) Then
-                    Me.BIRTH_PROField = value
-                    Me.RaisePropertyChanged("BIRTH_PRO")
-                End If
-            End Set
-        End Property
-        
-        <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property BIRTH_YEAR() As System.Nullable(Of Integer)
-            Get
-                Return Me.BIRTH_YEARField
-            End Get
-            Set
-                If (Me.BIRTH_YEARField.Equals(value) <> true) Then
-                    Me.BIRTH_YEARField = value
-                    Me.RaisePropertyChanged("BIRTH_YEAR")
-                End If
-            End Set
-        End Property
-        
-        <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property CANDIDATE_CODE() As String
-            Get
-                Return Me.CANDIDATE_CODEField
-            End Get
-            Set
-                If (Object.ReferenceEquals(Me.CANDIDATE_CODEField, value) <> true) Then
-                    Me.CANDIDATE_CODEField = value
-                    Me.RaisePropertyChanged("CANDIDATE_CODE")
-                End If
-            End Set
-        End Property
-        
-        <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property CANDIDATE_ID() As Decimal
-            Get
-                Return Me.CANDIDATE_IDField
-            End Get
-            Set
-                If (Me.CANDIDATE_IDField.Equals(value) <> true) Then
-                    Me.CANDIDATE_IDField = value
-                    Me.RaisePropertyChanged("CANDIDATE_ID")
-                End If
-            End Set
-        End Property
-        
-        <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property COMPANY() As String
-            Get
-                Return Me.COMPANYField
-            End Get
-            Set
-                If (Object.ReferenceEquals(Me.COMPANYField, value) <> true) Then
-                    Me.COMPANYField = value
-                    Me.RaisePropertyChanged("COMPANY")
-                End If
-            End Set
-        End Property
-        
-        <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property CREATED_BY() As String
-            Get
-                Return Me.CREATED_BYField
-            End Get
-            Set
-                If (Object.ReferenceEquals(Me.CREATED_BYField, value) <> true) Then
-                    Me.CREATED_BYField = value
-                    Me.RaisePropertyChanged("CREATED_BY")
-                End If
-            End Set
-        End Property
-        
-        <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property CREATED_DATE() As Date
-            Get
-                Return Me.CREATED_DATEField
-            End Get
-            Set
-                If (Me.CREATED_DATEField.Equals(value) <> true) Then
-                    Me.CREATED_DATEField = value
-                    Me.RaisePropertyChanged("CREATED_DATE")
-                End If
-            End Set
-        End Property
-        
-        <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property CREATED_LOG() As String
-            Get
-                Return Me.CREATED_LOGField
-            End Get
-            Set
-                If (Object.ReferenceEquals(Me.CREATED_LOGField, value) <> true) Then
-                    Me.CREATED_LOGField = value
-                    Me.RaisePropertyChanged("CREATED_LOG")
-                End If
-            End Set
-        End Property
-        
-        <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property DEDUCT_FROM() As System.Nullable(Of Date)
-            Get
-                Return Me.DEDUCT_FROMField
-            End Get
-            Set
-                If (Me.DEDUCT_FROMField.Equals(value) <> true) Then
-                    Me.DEDUCT_FROMField = value
-                    Me.RaisePropertyChanged("DEDUCT_FROM")
-                End If
-            End Set
-        End Property
-        
-        <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property DEDUCT_TO() As System.Nullable(Of Date)
-            Get
-                Return Me.DEDUCT_TOField
-            End Get
-            Set
-                If (Me.DEDUCT_TOField.Equals(value) <> true) Then
-                    Me.DEDUCT_TOField = value
-                    Me.RaisePropertyChanged("DEDUCT_TO")
-                End If
-            End Set
-        End Property
-        
-        <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property DIED_DATE() As System.Nullable(Of Date)
-            Get
-                Return Me.DIED_DATEField
-            End Get
-            Set
-                If (Me.DIED_DATEField.Equals(value) <> true) Then
-                    Me.DIED_DATEField = value
-                    Me.RaisePropertyChanged("DIED_DATE")
-                End If
-            End Set
-        End Property
-        
-        <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property FULLNAME() As String
-            Get
-                Return Me.FULLNAMEField
-            End Get
-            Set
-                If (Object.ReferenceEquals(Me.FULLNAMEField, value) <> true) Then
-                    Me.FULLNAMEField = value
-                    Me.RaisePropertyChanged("FULLNAME")
-                End If
-            End Set
-        End Property
-        
-        <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property ID() As Decimal
-            Get
-                Return Me.IDField
-            End Get
-            Set
-                If (Me.IDField.Equals(value) <> true) Then
-                    Me.IDField = value
-                    Me.RaisePropertyChanged("ID")
-                End If
-            End Set
-        End Property
-        
-        <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property ID_DATE() As System.Nullable(Of Date)
-            Get
-                Return Me.ID_DATEField
-            End Get
-            Set
-                If (Me.ID_DATEField.Equals(value) <> true) Then
-                    Me.ID_DATEField = value
-                    Me.RaisePropertyChanged("ID_DATE")
-                End If
-            End Set
-        End Property
-        
-        <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property ID_NO() As String
-            Get
-                Return Me.ID_NOField
-            End Get
-            Set
-                If (Object.ReferenceEquals(Me.ID_NOField, value) <> true) Then
-                    Me.ID_NOField = value
-                    Me.RaisePropertyChanged("ID_NO")
-                End If
-            End Set
-        End Property
-        
-        <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property ID_PLACE() As System.Nullable(Of Decimal)
-            Get
-                Return Me.ID_PLACEField
-            End Get
-            Set
-                If (Me.ID_PLACEField.Equals(value) <> true) Then
-                    Me.ID_PLACEField = value
-                    Me.RaisePropertyChanged("ID_PLACE")
-                End If
-            End Set
-        End Property
-        
-        <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property IS_DEDUCT() As Decimal
-            Get
-                Return Me.IS_DEDUCTField
-            End Get
-            Set
-                If (Me.IS_DEDUCTField.Equals(value) <> true) Then
-                    Me.IS_DEDUCTField = value
-                    Me.RaisePropertyChanged("IS_DEDUCT")
-                End If
-            End Set
-        End Property
-        
-        <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property IS_DIED() As System.Nullable(Of Boolean)
-            Get
-                Return Me.IS_DIEDField
-            End Get
-            Set
-                If (Me.IS_DIEDField.Equals(value) <> true) Then
-                    Me.IS_DIEDField = value
-                    Me.RaisePropertyChanged("IS_DIED")
-                End If
-            End Set
-        End Property
-        
-        <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property IS_MLG() As System.Nullable(Of Boolean)
-            Get
-                Return Me.IS_MLGField
-            End Get
-            Set
-                If (Me.IS_MLGField.Equals(value) <> true) Then
-                    Me.IS_MLGField = value
-                    Me.RaisePropertyChanged("IS_MLG")
-                End If
-            End Set
-        End Property
-        
-        <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property JOB() As String
-            Get
-                Return Me.JOBField
-            End Get
-            Set
-                If (Object.ReferenceEquals(Me.JOBField, value) <> true) Then
-                    Me.JOBField = value
-                    Me.RaisePropertyChanged("JOB")
-                End If
-            End Set
-        End Property
-        
-        <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property MODIFIED_BY() As String
-            Get
-                Return Me.MODIFIED_BYField
-            End Get
-            Set
-                If (Object.ReferenceEquals(Me.MODIFIED_BYField, value) <> true) Then
-                    Me.MODIFIED_BYField = value
-                    Me.RaisePropertyChanged("MODIFIED_BY")
-                End If
-            End Set
-        End Property
-        
-        <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property MODIFIED_DATE() As Date
-            Get
-                Return Me.MODIFIED_DATEField
-            End Get
-            Set
-                If (Me.MODIFIED_DATEField.Equals(value) <> true) Then
-                    Me.MODIFIED_DATEField = value
-                    Me.RaisePropertyChanged("MODIFIED_DATE")
-                End If
-            End Set
-        End Property
-        
-        <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property MODIFIED_LOG() As String
-            Get
-                Return Me.MODIFIED_LOGField
-            End Get
-            Set
-                If (Object.ReferenceEquals(Me.MODIFIED_LOGField, value) <> true) Then
-                    Me.MODIFIED_LOGField = value
-                    Me.RaisePropertyChanged("MODIFIED_LOG")
-                End If
-            End Set
-        End Property
-        
-        <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property PER_ADDRESS() As String
-            Get
-                Return Me.PER_ADDRESSField
-            End Get
-            Set
-                If (Object.ReferenceEquals(Me.PER_ADDRESSField, value) <> true) Then
-                    Me.PER_ADDRESSField = value
-                    Me.RaisePropertyChanged("PER_ADDRESS")
-                End If
-            End Set
-        End Property
-        
-        <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property PIT_CODE() As String
-            Get
-                Return Me.PIT_CODEField
-            End Get
-            Set
-                If (Object.ReferenceEquals(Me.PIT_CODEField, value) <> true) Then
-                    Me.PIT_CODEField = value
-                    Me.RaisePropertyChanged("PIT_CODE")
-                End If
-            End Set
-        End Property
-        
-        <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property PIT_DATE() As System.Nullable(Of Date)
-            Get
-                Return Me.PIT_DATEField
-            End Get
-            Set
-                If (Me.PIT_DATEField.Equals(value) <> true) Then
-                    Me.PIT_DATEField = value
-                    Me.RaisePropertyChanged("PIT_DATE")
-                End If
-            End Set
-        End Property
-        
-        <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property RC_FAMILY_ID() As Decimal
-            Get
-                Return Me.RC_FAMILY_IDField
-            End Get
-            Set
-                If (Me.RC_FAMILY_IDField.Equals(value) <> true) Then
-                    Me.RC_FAMILY_IDField = value
-                    Me.RaisePropertyChanged("RC_FAMILY_ID")
-                End If
-            End Set
-        End Property
-        
-        <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property RELATION_ID() As Decimal
-            Get
-                Return Me.RELATION_IDField
-            End Get
-            Set
-                If (Me.RELATION_IDField.Equals(value) <> true) Then
-                    Me.RELATION_IDField = value
-                    Me.RaisePropertyChanged("RELATION_ID")
-                End If
-            End Set
-        End Property
-        
-        <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property RELATION_NAME() As String
-            Get
-                Return Me.RELATION_NAMEField
-            End Get
-            Set
-                If (Object.ReferenceEquals(Me.RELATION_NAMEField, value) <> true) Then
-                    Me.RELATION_NAMEField = value
-                    Me.RaisePropertyChanged("RELATION_NAME")
-                End If
-            End Set
-        End Property
-        
-        <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property REMARK() As String
-            Get
-                Return Me.REMARKField
-            End Get
-            Set
-                If (Object.ReferenceEquals(Me.REMARKField, value) <> true) Then
-                    Me.REMARKField = value
-                    Me.RaisePropertyChanged("REMARK")
-                End If
-            End Set
-        End Property
-        
-        Public Event PropertyChanged As System.ComponentModel.PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
-        
-        Protected Sub RaisePropertyChanged(ByVal propertyName As String)
-            Dim propertyChanged As System.ComponentModel.PropertyChangedEventHandler = Me.PropertyChangedEvent
-            If (Not (propertyChanged) Is Nothing) Then
-                propertyChanged(Me, New System.ComponentModel.PropertyChangedEventArgs(propertyName))
-            End If
-        End Sub
-    End Class
-    
-    <System.Diagnostics.DebuggerStepThroughAttribute(),  _
-     System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0"),  _
      System.Runtime.Serialization.DataContractAttribute(Name:="TrainSingerDTO", [Namespace]:="http://schemas.datacontract.org/2004/07/RecruitmentDAL"),  _
      System.SerializableAttribute()>  _
     Partial Public Class TrainSingerDTO
@@ -18411,744 +18507,751 @@ Namespace RecruitmentBusiness
      System.ServiceModel.ServiceContractAttribute(ConfigurationName:="RecruitmentBusiness.IRecruitmentBusiness")>  _
     Public Interface IRecruitmentBusiness
         
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IRecruitmentBusiness/ValidateCost", ReplyAction:="http://tempuri.org/IRecruitmentBusiness/ValidateCostResponse")> _
-        Function ValidateCost(ByVal objCostCenter As RecruitmentBusiness.CostDTO) As Boolean
-
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IRecruitmentBusiness/DeleteCost", ReplyAction:="http://tempuri.org/IRecruitmentBusiness/DeleteCostResponse")> _
-        Function DeleteCost(ByVal obj As RecruitmentBusiness.CostDTO) As Boolean
-
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IRecruitmentBusiness/GetComboList", ReplyAction:="http://tempuri.org/IRecruitmentBusiness/GetComboListResponse")> _
-        Function GetComboList(ByRef _combolistDTO As RecruitmentBusiness.ComboBoxDataDTO) As Boolean
-
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IRecruitmentBusiness/GetOtherList", ReplyAction:="http://tempuri.org/IRecruitmentBusiness/GetOtherListResponse")> _
-        Function GetOtherList(ByVal sType As String, ByVal sLang As String, ByVal isBlank As Boolean) As System.Data.DataTable
-
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IRecruitmentBusiness/GetContractTypeList", ReplyAction:="http://tempuri.org/IRecruitmentBusiness/GetContractTypeListResponse")> _
-        Function GetContractTypeList(ByVal isBlank As Boolean) As System.Data.DataTable
-
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IRecruitmentBusiness/GetTitleByOrgList", ReplyAction:="http://tempuri.org/IRecruitmentBusiness/GetTitleByOrgListResponse")> _
-        Function GetTitleByOrgList(ByVal orgID As Decimal, ByVal sLang As String, ByVal isBlank As Boolean) As System.Data.DataTable
-
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IRecruitmentBusiness/GetTitleByOrgListInPlan", ReplyAction:="http://tempuri.org/IRecruitmentBusiness/GetTitleByOrgListInPlanResponse")> _
-        Function GetTitleByOrgListInPlan(ByVal orgID As Decimal, ByVal _year As Decimal, ByVal sLang As String, ByVal isBlank As Boolean) As System.Data.DataTable
-
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IRecruitmentBusiness/GetProgramExamsList", ReplyAction:="http://tempuri.org/IRecruitmentBusiness/GetProgramExamsListResponse")> _
-        Function GetProgramExamsList(ByVal programID As Decimal, ByVal sLang As String, ByVal isBlank As Boolean) As System.Data.DataTable
-
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IRecruitmentBusiness/GetProgramList", ReplyAction:="http://tempuri.org/IRecruitmentBusiness/GetProgramListResponse")> _
-        Function GetProgramList(ByVal orgID As Decimal, ByVal sLang As String, ByVal isBlank As Boolean) As System.Data.DataTable
-
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IRecruitmentBusiness/GetCVPoolEmpRecord", ReplyAction:="http://tempuri.org/IRecruitmentBusiness/GetCVPoolEmpRecordResponse")> _
-        Function GetCVPoolEmpRecord(ByVal _filter As RecruitmentBusiness.CVPoolEmpDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal Sorts As String, ByVal log As Common.CommonBusiness.UserLog) As System.Collections.Generic.List(Of RecruitmentBusiness.CVPoolEmpDTO)
-
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IRecruitmentBusiness/ExportReport", ReplyAction:="http://tempuri.org/IRecruitmentBusiness/ExportReportResponse")> _
-        Function ExportReport(ByVal sPkgName As String, ByVal sStartDate As System.Nullable(Of Date), ByVal sEndDate As System.Nullable(Of Date), ByVal sOrg As String, ByVal IsDissolve As Integer, ByVal sUserName As String, ByVal sLang As String) As System.Data.DataSet
-
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IRecruitmentBusiness/GetReportById", ReplyAction:="http://tempuri.org/IRecruitmentBusiness/GetReportByIdResponse")> _
-        Function GetReportById(ByVal _filter As RecruitmentBusiness.Se_ReportDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal log As Common.CommonBusiness.UserLog, ByVal Sorts As String) As System.Collections.Generic.List(Of RecruitmentBusiness.Se_ReportDTO)
-
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IRecruitmentBusiness/GetStatisticGender", ReplyAction:="http://tempuri.org/IRecruitmentBusiness/GetStatisticGenderResponse")> _
-        Function GetStatisticGender(ByVal _year As Integer, ByVal log As Common.CommonBusiness.UserLog) As System.Collections.Generic.List(Of RecruitmentBusiness.StatisticDTO)
-
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IRecruitmentBusiness/GetStatisticEduacation", ReplyAction:="http://tempuri.org/IRecruitmentBusiness/GetStatisticEduacationResponse")> _
-        Function GetStatisticEduacation(ByVal _year As Integer, ByVal log As Common.CommonBusiness.UserLog) As System.Collections.Generic.List(Of RecruitmentBusiness.StatisticDTO)
-
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IRecruitmentBusiness/GetStatisticCanToEmp", ReplyAction:="http://tempuri.org/IRecruitmentBusiness/GetStatisticCanToEmpResponse")> _
-        Function GetStatisticCanToEmp(ByVal _year As Integer, ByVal log As Common.CommonBusiness.UserLog) As System.Collections.Generic.List(Of RecruitmentBusiness.StatisticDTO)
-
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IRecruitmentBusiness/GetStatisticEstimateReality", ReplyAction:="http://tempuri.org/IRecruitmentBusiness/GetStatisticEstimateRealityResponse")> _
-        Function GetStatisticEstimateReality(ByVal _year As Integer, ByVal log As Common.CommonBusiness.UserLog) As System.Collections.Generic.List(Of RecruitmentBusiness.StatisticDTO)
-
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IRecruitmentBusiness/TestService", ReplyAction:="http://tempuri.org/IRecruitmentBusiness/TestServiceResponse")> _
-        Function TestService(ByVal str As String) As String
-
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IRecruitmentBusiness/GetWardList", ReplyAction:="http://tempuri.org/IRecruitmentBusiness/GetWardListResponse")> _
-        Function GetWardList(ByVal districtID As Decimal, ByVal isBlank As Boolean) As System.Data.DataTable
-
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IRecruitmentBusiness/GetCostCenter", ReplyAction:="http://tempuri.org/IRecruitmentBusiness/GetCostCenterResponse")> _
-        Function GetCostCenter(ByVal _filter As RecruitmentBusiness.CostCenterDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal Sorts As String) As System.Collections.Generic.List(Of RecruitmentBusiness.CostCenterDTO)
-
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IRecruitmentBusiness/InsertCostCenter", ReplyAction:="http://tempuri.org/IRecruitmentBusiness/InsertCostCenterResponse")> _
-        Function InsertCostCenter(ByVal objCostCenter As RecruitmentBusiness.CostCenterDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
-
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IRecruitmentBusiness/ValidateCostCenter", ReplyAction:="http://tempuri.org/IRecruitmentBusiness/ValidateCostCenterResponse")> _
-        Function ValidateCostCenter(ByVal objCostCenter As RecruitmentBusiness.CostCenterDTO) As Boolean
-
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IRecruitmentBusiness/ModifyCostCenter", ReplyAction:="http://tempuri.org/IRecruitmentBusiness/ModifyCostCenterResponse")> _
-        Function ModifyCostCenter(ByVal objCostCenter As RecruitmentBusiness.CostCenterDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
-
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IRecruitmentBusiness/ActiveCostCenter", ReplyAction:="http://tempuri.org/IRecruitmentBusiness/ActiveCostCenterResponse")> _
-        Function ActiveCostCenter(ByVal lstID As System.Collections.Generic.List(Of Decimal), ByVal log As Common.CommonBusiness.UserLog, ByVal bActive As Boolean) As Boolean
-
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IRecruitmentBusiness/DeleteCostCenter", ReplyAction:="http://tempuri.org/IRecruitmentBusiness/DeleteCostCenterResponse")> _
-        Function DeleteCostCenter(ByVal lstID As System.Collections.Generic.List(Of Decimal)) As Boolean
-
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IRecruitmentBusiness/GetExamsDtl", ReplyAction:="http://tempuri.org/IRecruitmentBusiness/GetExamsDtlResponse")> _
-        Function GetExamsDtl(ByVal _filter As RecruitmentBusiness.ExamsDtlDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal Sorts As String) As System.Collections.Generic.List(Of RecruitmentBusiness.ExamsDtlDTO)
-
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IRecruitmentBusiness/UpdateExamsDtl", ReplyAction:="http://tempuri.org/IRecruitmentBusiness/UpdateExamsDtlResponse")> _
-        Function UpdateExamsDtl(ByVal objExams As RecruitmentBusiness.ExamsDtlDTO, ByVal log As Common.CommonBusiness.UserLog) As Boolean
-
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IRecruitmentBusiness/DeleteExamsDtl", ReplyAction:="http://tempuri.org/IRecruitmentBusiness/DeleteExamsDtlResponse")> _
-        Function DeleteExamsDtl(ByVal obj As RecruitmentBusiness.ExamsDtlDTO) As Boolean
-
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IRecruitmentBusiness/GetPlanReg", ReplyAction:="http://tempuri.org/IRecruitmentBusiness/GetPlanRegResponse")> _
-        Function GetPlanReg(ByVal _filter As RecruitmentBusiness.PlanRegDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal _param As RecruitmentBusiness.ParamDTO, ByVal Sorts As String, ByVal isSearch As Boolean, ByVal log As Common.CommonBusiness.UserLog) As System.Collections.Generic.List(Of RecruitmentBusiness.PlanRegDTO)
-
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IRecruitmentBusiness/GetPlanRegByID", ReplyAction:="http://tempuri.org/IRecruitmentBusiness/GetPlanRegByIDResponse")> _
-        Function GetPlanRegByID(ByVal _filter As RecruitmentBusiness.PlanRegDTO) As RecruitmentBusiness.PlanRegDTO
-
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IRecruitmentBusiness/InsertPlanReg", ReplyAction:="http://tempuri.org/IRecruitmentBusiness/InsertPlanRegResponse")> _
-        Function InsertPlanReg(ByVal objPlanReg As RecruitmentBusiness.PlanRegDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
-
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IRecruitmentBusiness/ModifyPlanReg", ReplyAction:="http://tempuri.org/IRecruitmentBusiness/ModifyPlanRegResponse")> _
-        Function ModifyPlanReg(ByVal objPlanReg As RecruitmentBusiness.PlanRegDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
-
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IRecruitmentBusiness/DeletePlanReg", ReplyAction:="http://tempuri.org/IRecruitmentBusiness/DeletePlanRegResponse")> _
-        Function DeletePlanReg(ByVal lstID As System.Collections.Generic.List(Of Decimal)) As Boolean
-
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IRecruitmentBusiness/UpdateStatusPlanReg", ReplyAction:="http://tempuri.org/IRecruitmentBusiness/UpdateStatusPlanRegResponse")> _
-        Function UpdateStatusPlanReg(ByVal lstID As System.Collections.Generic.List(Of Decimal), ByVal status As Decimal) As Boolean
-
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IRecruitmentBusiness/GetPlanSummary", ReplyAction:="http://tempuri.org/IRecruitmentBusiness/GetPlanSummaryResponse")> _
-        Function GetPlanSummary(ByVal _year As Decimal, ByVal _param As RecruitmentBusiness.ParamDTO, ByVal log As Common.CommonBusiness.UserLog) As System.Data.DataTable
-
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IRecruitmentBusiness/GetRequest", ReplyAction:="http://tempuri.org/IRecruitmentBusiness/GetRequestResponse")> _
-        Function GetRequest(ByVal _filter As RecruitmentBusiness.RequestDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal _param As RecruitmentBusiness.ParamDTO, ByVal Sorts As String, ByVal log As Common.CommonBusiness.UserLog) As System.Collections.Generic.List(Of RecruitmentBusiness.RequestDTO)
-
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IRecruitmentBusiness/GetRequestByID", ReplyAction:="http://tempuri.org/IRecruitmentBusiness/GetRequestByIDResponse")> _
-        Function GetRequestByID(ByVal _filter As RecruitmentBusiness.RequestDTO) As RecruitmentBusiness.RequestDTO
-
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IRecruitmentBusiness/InsertRequest", ReplyAction:="http://tempuri.org/IRecruitmentBusiness/InsertRequestResponse")> _
-        Function InsertRequest(ByVal objRequest As RecruitmentBusiness.RequestDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
-
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IRecruitmentBusiness/ModifyRequest", ReplyAction:="http://tempuri.org/IRecruitmentBusiness/ModifyRequestResponse")> _
-        Function ModifyRequest(ByVal objRequest As RecruitmentBusiness.RequestDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
-
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IRecruitmentBusiness/DeleteRequest", ReplyAction:="http://tempuri.org/IRecruitmentBusiness/DeleteRequestResponse")> _
-        Function DeleteRequest(ByVal lstID As System.Collections.Generic.List(Of Decimal)) As Boolean
-
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IRecruitmentBusiness/UpdateStatusRequest", ReplyAction:="http://tempuri.org/IRecruitmentBusiness/UpdateStatusRequestResponse")> _
-        Function UpdateStatusRequest(ByVal lstID As System.Collections.Generic.List(Of Decimal), ByVal status As Decimal, ByVal log As Common.CommonBusiness.UserLog) As Boolean
-
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IRecruitmentBusiness/GetProgram", ReplyAction:="http://tempuri.org/IRecruitmentBusiness/GetProgramResponse")> _
-        Function GetProgram(ByVal _filter As RecruitmentBusiness.ProgramDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal _param As RecruitmentBusiness.ParamDTO, ByVal Sorts As String, ByVal log As Common.CommonBusiness.UserLog) As System.Collections.Generic.List(Of RecruitmentBusiness.ProgramDTO)
-
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IRecruitmentBusiness/GetProgramSearch", ReplyAction:="http://tempuri.org/IRecruitmentBusiness/GetProgramSearchResponse")> _
-        Function GetProgramSearch(ByVal _filter As RecruitmentBusiness.ProgramDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal _param As RecruitmentBusiness.ParamDTO, ByVal Sorts As String, ByVal log As Common.CommonBusiness.UserLog) As System.Collections.Generic.List(Of RecruitmentBusiness.ProgramDTO)
-
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IRecruitmentBusiness/GetProgramByID", ReplyAction:="http://tempuri.org/IRecruitmentBusiness/GetProgramByIDResponse")> _
-        Function GetProgramByID(ByVal _filter As RecruitmentBusiness.ProgramDTO) As RecruitmentBusiness.ProgramDTO
-
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IRecruitmentBusiness/ModifyProgram", ReplyAction:="http://tempuri.org/IRecruitmentBusiness/ModifyProgramResponse")> _
-        Function ModifyProgram(ByVal objProgram As RecruitmentBusiness.ProgramDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
-
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IRecruitmentBusiness/XuatToTrinh", ReplyAction:="http://tempuri.org/IRecruitmentBusiness/XuatToTrinhResponse")> _
-        Function XuatToTrinh(ByVal sID As Decimal) As System.Data.DataTable
-
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IRecruitmentBusiness/GetProgramExams", ReplyAction:="http://tempuri.org/IRecruitmentBusiness/GetProgramExamsResponse")> _
-        Function GetProgramExams(ByVal _filter As RecruitmentBusiness.ProgramExamsDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal Sorts As String) As System.Collections.Generic.List(Of RecruitmentBusiness.ProgramExamsDTO)
-
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IRecruitmentBusiness/GetProgramExamsByID", ReplyAction:="http://tempuri.org/IRecruitmentBusiness/GetProgramExamsByIDResponse")> _
-        Function GetProgramExamsByID(ByVal _filter As RecruitmentBusiness.ProgramExamsDTO) As RecruitmentBusiness.ProgramExamsDTO
-
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IRecruitmentBusiness/UpdateProgramExams", ReplyAction:="http://tempuri.org/IRecruitmentBusiness/UpdateProgramExamsResponse")> _
-        Function UpdateProgramExams(ByVal objExams As RecruitmentBusiness.ProgramExamsDTO, ByVal log As Common.CommonBusiness.UserLog) As Boolean
-
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IRecruitmentBusiness/DeleteProgramExams", ReplyAction:="http://tempuri.org/IRecruitmentBusiness/DeleteProgramExamsResponse")> _
-        Function DeleteProgramExams(ByVal obj As RecruitmentBusiness.ProgramExamsDTO) As Boolean
-
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IRecruitmentBusiness/CheckExistCandidate", ReplyAction:="http://tempuri.org/IRecruitmentBusiness/CheckExistCandidateResponse")> _
-        Function CheckExistCandidate(ByVal strEmpCode As String) As Boolean
-
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IRecruitmentBusiness/ValidateInsertCandidate", ReplyAction:="http://tempuri.org/IRecruitmentBusiness/ValidateInsertCandidateResponse")> _
-        Function ValidateInsertCandidate(ByVal sEmpId As String, ByVal sID_No As String, ByVal sFullName As String, ByVal dBirthDate As Date, ByVal sType As String) As Boolean
-
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IRecruitmentBusiness/GetCandidateImage", ReplyAction:="http://tempuri.org/IRecruitmentBusiness/GetCandidateImageResponse")> _
-        Function GetCandidateImage(ByVal gEmpID As Decimal, ByRef sError As String) As Byte()
-
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IRecruitmentBusiness/InsertCandidate", ReplyAction:="http://tempuri.org/IRecruitmentBusiness/InsertCandidateResponse")> _
-        Function InsertCandidate(ByVal objEmp As RecruitmentBusiness.CandidateDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal, ByRef _strEmpCode As String, ByVal _imageBinary() As Byte, ByVal objEmpCV As RecruitmentBusiness.CandidateCVDTO, ByVal objEmpEdu As RecruitmentBusiness.CandidateEduDTO, ByVal objEmpOther As RecruitmentBusiness.CandidateOtherInfoDTO, ByVal objEmpHealth As RecruitmentBusiness.CandidateHealthDTO, ByVal objEmpExpect As RecruitmentBusiness.CandidateExpectDTO) As Boolean
-
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IRecruitmentBusiness/CreateNewCandidateCode", ReplyAction:="http://tempuri.org/IRecruitmentBusiness/CreateNewCandidateCodeResponse")> _
-        Function CreateNewCandidateCode() As RecruitmentBusiness.CandidateDTO
-
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IRecruitmentBusiness/ModifyCandidate", ReplyAction:="http://tempuri.org/IRecruitmentBusiness/ModifyCandidateResponse")> _
-        Function ModifyCandidate(ByVal objEmp As RecruitmentBusiness.CandidateDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal, ByVal _imageBinary() As Byte, ByVal objEmpCV As RecruitmentBusiness.CandidateCVDTO, ByVal objEmpEdu As RecruitmentBusiness.CandidateEduDTO, ByVal objEmpOther As RecruitmentBusiness.CandidateOtherInfoDTO, ByVal objEmpHealth As RecruitmentBusiness.CandidateHealthDTO, ByVal objEmpExpect As RecruitmentBusiness.CandidateExpectDTO) As Boolean
-
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IRecruitmentBusiness/GetListCandidatePaging", ReplyAction:="http://tempuri.org/IRecruitmentBusiness/GetListCandidatePagingResponse")> _
-        Function GetListCandidatePaging(ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal _filter As RecruitmentBusiness.CandidateDTO, ByVal Sorts As String) As System.Collections.Generic.List(Of RecruitmentBusiness.CandidateDTO)
-
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IRecruitmentBusiness/GetFindCandidatePaging", ReplyAction:="http://tempuri.org/IRecruitmentBusiness/GetFindCandidatePagingResponse")> _
-        Function GetFindCandidatePaging(ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal _filter As RecruitmentBusiness.CandidateDTO, ByVal Sorts As String) As System.Collections.Generic.List(Of RecruitmentBusiness.CandidateDTO)
-
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IRecruitmentBusiness/GetListCandidateTransferPaging", ReplyAction:="http://tempuri.org/IRecruitmentBusiness/GetListCandidateTransferPagingResponse")> _
-        Function GetListCandidateTransferPaging(ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal _filter As RecruitmentBusiness.CandidateDTO, ByVal Sorts As String) As System.Collections.Generic.List(Of RecruitmentBusiness.CandidateDTO)
-
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IRecruitmentBusiness/GetListCandidate", ReplyAction:="http://tempuri.org/IRecruitmentBusiness/GetListCandidateResponse")> _
-        Function GetListCandidate(ByVal _filter As RecruitmentBusiness.CandidateDTO, ByVal Sorts As String) As System.Collections.Generic.List(Of RecruitmentBusiness.CandidateDTO)
-
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IRecruitmentBusiness/GetCandidateInfo", ReplyAction:="http://tempuri.org/IRecruitmentBusiness/GetCandidateInfoResponse")> _
-        Function GetCandidateInfo(ByVal sCandidateCode As String) As RecruitmentBusiness.CandidateDTO
-
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IRecruitmentBusiness/GetCandidateCV", ReplyAction:="http://tempuri.org/IRecruitmentBusiness/GetCandidateCVResponse")> _
-        Function GetCandidateCV(ByVal sCandidateID As Decimal) As RecruitmentBusiness.CandidateCVDTO
-
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IRecruitmentBusiness/GetCandidateEdu", ReplyAction:="http://tempuri.org/IRecruitmentBusiness/GetCandidateEduResponse")> _
-        Function GetCandidateEdu(ByVal sCandidateID As Decimal) As RecruitmentBusiness.CandidateEduDTO
-
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IRecruitmentBusiness/GetCandidateOtherInfo", ReplyAction:="http://tempuri.org/IRecruitmentBusiness/GetCandidateOtherInfoResponse")> _
-        Function GetCandidateOtherInfo(ByVal sCandidateID As Decimal) As RecruitmentBusiness.CandidateOtherInfoDTO
-
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IRecruitmentBusiness/GetCandidateHealthInfo", ReplyAction:="http://tempuri.org/IRecruitmentBusiness/GetCandidateHealthInfoResponse")> _
-        Function GetCandidateHealthInfo(ByVal sCandidateID As Decimal) As RecruitmentBusiness.CandidateHealthDTO
-
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IRecruitmentBusiness/GetCandidateExpectInfo", ReplyAction:="http://tempuri.org/IRecruitmentBusiness/GetCandidateExpectInfoResponse")> _
-        Function GetCandidateExpectInfo(ByVal sCandidateID As Decimal) As RecruitmentBusiness.CandidateExpectDTO
-
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IRecruitmentBusiness/GetCandidateHistory", ReplyAction:="http://tempuri.org/IRecruitmentBusiness/GetCandidateHistoryResponse")> _
-        Function GetCandidateHistory(ByVal sCandidateID As Decimal, ByVal sCandidateIDNO As Decimal) As System.Collections.Generic.List(Of RecruitmentBusiness.CandidateHistoryDTO)
-
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IRecruitmentBusiness/DeleteCandidate", ReplyAction:="http://tempuri.org/IRecruitmentBusiness/DeleteCandidateResponse")> _
-        Function DeleteCandidate(ByVal lstEmpID As System.Collections.Generic.List(Of Decimal), ByVal log As Common.CommonBusiness.UserLog, ByRef sError As String) As Boolean
-
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IRecruitmentBusiness/UpdateProgramCandidate", ReplyAction:="http://tempuri.org/IRecruitmentBusiness/UpdateProgramCandidateResponse")> _
-        Function UpdateProgramCandidate(ByVal lstCanID As System.Collections.Generic.List(Of Decimal), ByVal programID As Decimal, ByVal log As Common.CommonBusiness.UserLog) As Boolean
-
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IRecruitmentBusiness/UpdateStatusCandidate", ReplyAction:="http://tempuri.org/IRecruitmentBusiness/UpdateStatusCandidateResponse")> _
-        Function UpdateStatusCandidate(ByVal lstCanID As System.Collections.Generic.List(Of Decimal), ByVal statusID As String, ByVal log As Common.CommonBusiness.UserLog) As Boolean
-
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IRecruitmentBusiness/UpdatePontentialCandidate", ReplyAction:="http://tempuri.org/IRecruitmentBusiness/UpdatePontentialCandidateResponse")> _
-        Function UpdatePontentialCandidate(ByVal lstCanID As System.Collections.Generic.List(Of Decimal), ByVal bCheck As Boolean, ByVal log As Common.CommonBusiness.UserLog) As Boolean
-
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IRecruitmentBusiness/UpdateBlackListCandidate", ReplyAction:="http://tempuri.org/IRecruitmentBusiness/UpdateBlackListCandidateResponse")> _
-        Function UpdateBlackListCandidate(ByVal lstCanID As System.Collections.Generic.List(Of Decimal), ByVal bCheck As Boolean, ByVal log As Common.CommonBusiness.UserLog) As Boolean
-
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IRecruitmentBusiness/UpdateReHireCandidate", ReplyAction:="http://tempuri.org/IRecruitmentBusiness/UpdateReHireCandidateResponse")> _
-        Function UpdateReHireCandidate(ByVal lstCanID As System.Collections.Generic.List(Of Decimal), ByVal bCheck As Boolean, ByVal log As Common.CommonBusiness.UserLog) As Boolean
-
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IRecruitmentBusiness/GetCandidateImport", ReplyAction:="http://tempuri.org/IRecruitmentBusiness/GetCandidateImportResponse")> _
-        Function GetCandidateImport() As System.Data.DataSet
-
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IRecruitmentBusiness/ImportCandidate", ReplyAction:="http://tempuri.org/IRecruitmentBusiness/ImportCandidateResponse")> _
-        Function ImportCandidate(ByVal lst As System.Collections.Generic.List(Of RecruitmentBusiness.CandidateImportDTO), ByVal log As Common.CommonBusiness.UserLog) As Boolean
-
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IRecruitmentBusiness/TransferHSNVToCandidate", ReplyAction:="http://tempuri.org/IRecruitmentBusiness/TransferHSNVToCandidateResponse")> _
-        Function TransferHSNVToCandidate(ByVal empID As Decimal, ByVal orgID As Decimal, ByVal titleID As Decimal, ByVal programID As Decimal, ByVal log As Common.CommonBusiness.UserLog) As Boolean
-
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IRecruitmentBusiness/GetCandidateFamily", ReplyAction:="http://tempuri.org/IRecruitmentBusiness/GetCandidateFamilyResponse")> _
-        Function GetCandidateFamily(ByVal _filter As RecruitmentBusiness.CandidateFamilyDTO) As System.Collections.Generic.List(Of RecruitmentBusiness.CandidateFamilyDTO)
-
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IRecruitmentBusiness/InsertCandidateFamily", ReplyAction:="http://tempuri.org/IRecruitmentBusiness/InsertCandidateFamilyResponse")> _
-        Function InsertCandidateFamily(ByVal objFamily As RecruitmentBusiness.CandidateFamilyDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
-
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IRecruitmentBusiness/ModifyCandidateFamily", ReplyAction:="http://tempuri.org/IRecruitmentBusiness/ModifyCandidateFamilyResponse")> _
-        Function ModifyCandidateFamily(ByVal objFamily As RecruitmentBusiness.CandidateFamilyDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
-
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IRecruitmentBusiness/DeleteCandidateFamily", ReplyAction:="http://tempuri.org/IRecruitmentBusiness/DeleteCandidateFamilyResponse")> _
-        Function DeleteCandidateFamily(ByVal lstDecimals As System.Collections.Generic.List(Of Decimal), ByVal log As Common.CommonBusiness.UserLog) As Boolean
-
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IRecruitmentBusiness/ValidateFamily", ReplyAction:="http://tempuri.org/IRecruitmentBusiness/ValidateFamilyResponse")> _
-        Function ValidateFamily(ByVal _validate As RecruitmentBusiness.CandidateFamilyDTO) As Boolean
-
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IRecruitmentBusiness/GetCandidateTrainSinger", ReplyAction:="http://tempuri.org/IRecruitmentBusiness/GetCandidateTrainSingerResponse")> _
-        Function GetCandidateTrainSinger(ByVal _filter As RecruitmentBusiness.TrainSingerDTO) As System.Collections.Generic.List(Of RecruitmentBusiness.TrainSingerDTO)
-
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IRecruitmentBusiness/InsertCandidateTrainSinger", ReplyAction:="http://tempuri.org/IRecruitmentBusiness/InsertCandidateTrainSingerResponse")> _
-        Function InsertCandidateTrainSinger(ByVal objTrainSinger As RecruitmentBusiness.TrainSingerDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
-
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IRecruitmentBusiness/ModifyCandidateTrainSinger", ReplyAction:="http://tempuri.org/IRecruitmentBusiness/ModifyCandidateTrainSingerResponse")> _
-        Function ModifyCandidateTrainSinger(ByVal objTrainSinger As RecruitmentBusiness.TrainSingerDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
-
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IRecruitmentBusiness/DeleteCandidateTrainSinger", ReplyAction:="http://tempuri.org/IRecruitmentBusiness/DeleteCandidateTrainSingerResponse")> _
-        Function DeleteCandidateTrainSinger(ByVal lstDecimals As System.Collections.Generic.List(Of Decimal), ByVal log As Common.CommonBusiness.UserLog) As Boolean
-
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IRecruitmentBusiness/GetCandidateReference", ReplyAction:="http://tempuri.org/IRecruitmentBusiness/GetCandidateReferenceResponse")> _
-        Function GetCandidateReference(ByVal _filter As RecruitmentBusiness.CandidateReferenceDTO) As System.Collections.Generic.List(Of RecruitmentBusiness.CandidateReferenceDTO)
-
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IRecruitmentBusiness/InsertCandidateReference", ReplyAction:="http://tempuri.org/IRecruitmentBusiness/InsertCandidateReferenceResponse")> _
-        Function InsertCandidateReference(ByVal objTrainSinger As RecruitmentBusiness.CandidateReferenceDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
-
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IRecruitmentBusiness/ModifyCandidateReference", ReplyAction:="http://tempuri.org/IRecruitmentBusiness/ModifyCandidateReferenceResponse")> _
-        Function ModifyCandidateReference(ByVal objTrainSinger As RecruitmentBusiness.CandidateReferenceDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
-
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IRecruitmentBusiness/DeleteCandidateReference", ReplyAction:="http://tempuri.org/IRecruitmentBusiness/DeleteCandidateReferenceResponse")> _
-        Function DeleteCandidateReference(ByVal lstDecimals As System.Collections.Generic.List(Of Decimal), ByVal log As Common.CommonBusiness.UserLog) As Boolean
-
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IRecruitmentBusiness/GetCandidateBeforeWT", ReplyAction:="http://tempuri.org/IRecruitmentBusiness/GetCandidateBeforeWTResponse")> _
-        Function GetCandidateBeforeWT(ByVal _filter As RecruitmentBusiness.CandidateBeforeWTDTO) As System.Collections.Generic.List(Of RecruitmentBusiness.CandidateBeforeWTDTO)
-
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IRecruitmentBusiness/InsertCandidateBeforeWT", ReplyAction:="http://tempuri.org/IRecruitmentBusiness/InsertCandidateBeforeWTResponse")> _
-        Function InsertCandidateBeforeWT(ByVal objCandidateBeforeWT As RecruitmentBusiness.CandidateBeforeWTDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
-
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IRecruitmentBusiness/ModifyCandidateBeforeWT", ReplyAction:="http://tempuri.org/IRecruitmentBusiness/ModifyCandidateBeforeWTResponse")> _
-        Function ModifyCandidateBeforeWT(ByVal objCandidateBeforeWT As RecruitmentBusiness.CandidateBeforeWTDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
-
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IRecruitmentBusiness/DeleteCandidateBeforeWT", ReplyAction:="http://tempuri.org/IRecruitmentBusiness/DeleteCandidateBeforeWTResponse")> _
-        Function DeleteCandidateBeforeWT(ByVal lstDecimals As System.Collections.Generic.List(Of Decimal), ByVal log As Common.CommonBusiness.UserLog) As Boolean
-
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IRecruitmentBusiness/GetProgramSchedule", ReplyAction:="http://tempuri.org/IRecruitmentBusiness/GetProgramScheduleResponse")> _
-        Function GetProgramSchedule(ByVal _filter As RecruitmentBusiness.ProgramScheduleDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal Sorts As String) As System.Collections.Generic.List(Of RecruitmentBusiness.ProgramScheduleDTO)
-
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IRecruitmentBusiness/GetProgramScheduleByID", ReplyAction:="http://tempuri.org/IRecruitmentBusiness/GetProgramScheduleByIDResponse")> _
-        Function GetProgramScheduleByID(ByVal _filter As RecruitmentBusiness.ProgramScheduleDTO) As RecruitmentBusiness.ProgramScheduleDTO
-
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IRecruitmentBusiness/GetCandidateNotScheduleByScheduleID", ReplyAction:="http://tempuri.org/IRecruitmentBusiness/GetCandidateNotScheduleByScheduleIDRespon" & _
-            "se")> _
-        Function GetCandidateNotScheduleByScheduleID(ByVal _filter As RecruitmentBusiness.ProgramScheduleCanDTO) As System.Collections.Generic.List(Of RecruitmentBusiness.ProgramScheduleCanDTO)
-
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IRecruitmentBusiness/GetCandidateScheduleByScheduleID", ReplyAction:="http://tempuri.org/IRecruitmentBusiness/GetCandidateScheduleByScheduleIDResponse")> _
-        Function GetCandidateScheduleByScheduleID(ByVal _filter As RecruitmentBusiness.ProgramScheduleCanDTO) As System.Collections.Generic.List(Of RecruitmentBusiness.ProgramScheduleCanDTO)
-
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IRecruitmentBusiness/UpdateProgramSchedule", ReplyAction:="http://tempuri.org/IRecruitmentBusiness/UpdateProgramScheduleResponse")> _
-        Function UpdateProgramSchedule(ByVal objExams As RecruitmentBusiness.ProgramScheduleDTO, ByVal log As Common.CommonBusiness.UserLog) As Boolean
-
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IRecruitmentBusiness/GetCandidateResult", ReplyAction:="http://tempuri.org/IRecruitmentBusiness/GetCandidateResultResponse")> _
-        Function GetCandidateResult(ByVal _filter As RecruitmentBusiness.ProgramScheduleCanDTO) As System.Collections.Generic.List(Of RecruitmentBusiness.ProgramScheduleCanDTO)
-
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IRecruitmentBusiness/UpdateCandidateResult", ReplyAction:="http://tempuri.org/IRecruitmentBusiness/UpdateCandidateResultResponse")> _
-        Function UpdateCandidateResult(ByVal lst As System.Collections.Generic.List(Of RecruitmentBusiness.ProgramScheduleCanDTO), ByVal log As Common.CommonBusiness.UserLog) As Boolean
-
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IRecruitmentBusiness/GetCost", ReplyAction:="http://tempuri.org/IRecruitmentBusiness/GetCostResponse")> _
-        Function GetCost(ByVal _filter As RecruitmentBusiness.CostDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal Sorts As String) As System.Collections.Generic.List(Of RecruitmentBusiness.CostDTO)
-
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IRecruitmentBusiness/UpdateCost", ReplyAction:="http://tempuri.org/IRecruitmentBusiness/UpdateCostResponse")> _
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IRecruitmentBusiness/UpdateCost", ReplyAction:="http://tempuri.org/IRecruitmentBusiness/UpdateCostResponse")>  _
         Function UpdateCost(ByVal objExams As RecruitmentBusiness.CostDTO, ByVal log As Common.CommonBusiness.UserLog) As Boolean
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IRecruitmentBusiness/ValidateCost", ReplyAction:="http://tempuri.org/IRecruitmentBusiness/ValidateCostResponse")>  _
+        Function ValidateCost(ByVal objCostCenter As RecruitmentBusiness.CostDTO) As Boolean
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IRecruitmentBusiness/DeleteCost", ReplyAction:="http://tempuri.org/IRecruitmentBusiness/DeleteCostResponse")>  _
+        Function DeleteCost(ByVal obj As RecruitmentBusiness.CostDTO) As Boolean
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IRecruitmentBusiness/GetComboList", ReplyAction:="http://tempuri.org/IRecruitmentBusiness/GetComboListResponse")>  _
+        Function GetComboList(ByRef _combolistDTO As RecruitmentBusiness.ComboBoxDataDTO) As Boolean
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IRecruitmentBusiness/GetOtherList", ReplyAction:="http://tempuri.org/IRecruitmentBusiness/GetOtherListResponse")>  _
+        Function GetOtherList(ByVal sType As String, ByVal sLang As String, ByVal isBlank As Boolean) As System.Data.DataTable
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IRecruitmentBusiness/GetContractTypeList", ReplyAction:="http://tempuri.org/IRecruitmentBusiness/GetContractTypeListResponse")>  _
+        Function GetContractTypeList(ByVal isBlank As Boolean) As System.Data.DataTable
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IRecruitmentBusiness/GetTitleByOrgList", ReplyAction:="http://tempuri.org/IRecruitmentBusiness/GetTitleByOrgListResponse")>  _
+        Function GetTitleByOrgList(ByVal orgID As Decimal, ByVal sLang As String, ByVal isBlank As Boolean) As System.Data.DataTable
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IRecruitmentBusiness/GetTitleByOrgListInPlan", ReplyAction:="http://tempuri.org/IRecruitmentBusiness/GetTitleByOrgListInPlanResponse")>  _
+        Function GetTitleByOrgListInPlan(ByVal orgID As Decimal, ByVal _year As Decimal, ByVal sLang As String, ByVal isBlank As Boolean) As System.Data.DataTable
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IRecruitmentBusiness/GetProgramExamsList", ReplyAction:="http://tempuri.org/IRecruitmentBusiness/GetProgramExamsListResponse")>  _
+        Function GetProgramExamsList(ByVal programID As Decimal, ByVal sLang As String, ByVal isBlank As Boolean) As System.Data.DataTable
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IRecruitmentBusiness/GetProgramList", ReplyAction:="http://tempuri.org/IRecruitmentBusiness/GetProgramListResponse")>  _
+        Function GetProgramList(ByVal orgID As Decimal, ByVal sLang As String, ByVal isBlank As Boolean) As System.Data.DataTable
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IRecruitmentBusiness/GetCVPoolEmpRecord", ReplyAction:="http://tempuri.org/IRecruitmentBusiness/GetCVPoolEmpRecordResponse")>  _
+        Function GetCVPoolEmpRecord(ByVal _filter As RecruitmentBusiness.CVPoolEmpDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal Sorts As String, ByVal log As Common.CommonBusiness.UserLog) As System.Collections.Generic.List(Of RecruitmentBusiness.CVPoolEmpDTO)
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IRecruitmentBusiness/ExportReport", ReplyAction:="http://tempuri.org/IRecruitmentBusiness/ExportReportResponse")>  _
+        Function ExportReport(ByVal sPkgName As String, ByVal sStartDate As System.Nullable(Of Date), ByVal sEndDate As System.Nullable(Of Date), ByVal sOrg As String, ByVal IsDissolve As Integer, ByVal sUserName As String, ByVal sLang As String) As System.Data.DataSet
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IRecruitmentBusiness/GetReportById", ReplyAction:="http://tempuri.org/IRecruitmentBusiness/GetReportByIdResponse")>  _
+        Function GetReportById(ByVal _filter As RecruitmentBusiness.Se_ReportDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal log As Common.CommonBusiness.UserLog, ByVal Sorts As String) As System.Collections.Generic.List(Of RecruitmentBusiness.Se_ReportDTO)
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IRecruitmentBusiness/GetStatisticGender", ReplyAction:="http://tempuri.org/IRecruitmentBusiness/GetStatisticGenderResponse")>  _
+        Function GetStatisticGender(ByVal _year As Integer, ByVal log As Common.CommonBusiness.UserLog) As System.Collections.Generic.List(Of RecruitmentBusiness.StatisticDTO)
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IRecruitmentBusiness/GetStatisticEduacation", ReplyAction:="http://tempuri.org/IRecruitmentBusiness/GetStatisticEduacationResponse")>  _
+        Function GetStatisticEduacation(ByVal _year As Integer, ByVal log As Common.CommonBusiness.UserLog) As System.Collections.Generic.List(Of RecruitmentBusiness.StatisticDTO)
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IRecruitmentBusiness/GetStatisticCanToEmp", ReplyAction:="http://tempuri.org/IRecruitmentBusiness/GetStatisticCanToEmpResponse")>  _
+        Function GetStatisticCanToEmp(ByVal _year As Integer, ByVal log As Common.CommonBusiness.UserLog) As System.Collections.Generic.List(Of RecruitmentBusiness.StatisticDTO)
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IRecruitmentBusiness/GetStatisticEstimateReality", ReplyAction:="http://tempuri.org/IRecruitmentBusiness/GetStatisticEstimateRealityResponse")>  _
+        Function GetStatisticEstimateReality(ByVal _year As Integer, ByVal log As Common.CommonBusiness.UserLog) As System.Collections.Generic.List(Of RecruitmentBusiness.StatisticDTO)
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IRecruitmentBusiness/TestService", ReplyAction:="http://tempuri.org/IRecruitmentBusiness/TestServiceResponse")>  _
+        Function TestService(ByVal str As String) As String
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IRecruitmentBusiness/GetWardList", ReplyAction:="http://tempuri.org/IRecruitmentBusiness/GetWardListResponse")>  _
+        Function GetWardList(ByVal districtID As Decimal, ByVal isBlank As Boolean) As System.Data.DataTable
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IRecruitmentBusiness/GetCostCenter", ReplyAction:="http://tempuri.org/IRecruitmentBusiness/GetCostCenterResponse")>  _
+        Function GetCostCenter(ByVal _filter As RecruitmentBusiness.CostCenterDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal Sorts As String) As System.Collections.Generic.List(Of RecruitmentBusiness.CostCenterDTO)
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IRecruitmentBusiness/InsertCostCenter", ReplyAction:="http://tempuri.org/IRecruitmentBusiness/InsertCostCenterResponse")>  _
+        Function InsertCostCenter(ByVal objCostCenter As RecruitmentBusiness.CostCenterDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IRecruitmentBusiness/ValidateCostCenter", ReplyAction:="http://tempuri.org/IRecruitmentBusiness/ValidateCostCenterResponse")>  _
+        Function ValidateCostCenter(ByVal objCostCenter As RecruitmentBusiness.CostCenterDTO) As Boolean
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IRecruitmentBusiness/ModifyCostCenter", ReplyAction:="http://tempuri.org/IRecruitmentBusiness/ModifyCostCenterResponse")>  _
+        Function ModifyCostCenter(ByVal objCostCenter As RecruitmentBusiness.CostCenterDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IRecruitmentBusiness/ActiveCostCenter", ReplyAction:="http://tempuri.org/IRecruitmentBusiness/ActiveCostCenterResponse")>  _
+        Function ActiveCostCenter(ByVal lstID As System.Collections.Generic.List(Of Decimal), ByVal log As Common.CommonBusiness.UserLog, ByVal bActive As Boolean) As Boolean
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IRecruitmentBusiness/DeleteCostCenter", ReplyAction:="http://tempuri.org/IRecruitmentBusiness/DeleteCostCenterResponse")>  _
+        Function DeleteCostCenter(ByVal lstID As System.Collections.Generic.List(Of Decimal)) As Boolean
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IRecruitmentBusiness/GetExamsDtl", ReplyAction:="http://tempuri.org/IRecruitmentBusiness/GetExamsDtlResponse")>  _
+        Function GetExamsDtl(ByVal _filter As RecruitmentBusiness.ExamsDtlDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal Sorts As String) As System.Collections.Generic.List(Of RecruitmentBusiness.ExamsDtlDTO)
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IRecruitmentBusiness/UpdateExamsDtl", ReplyAction:="http://tempuri.org/IRecruitmentBusiness/UpdateExamsDtlResponse")>  _
+        Function UpdateExamsDtl(ByVal objExams As RecruitmentBusiness.ExamsDtlDTO, ByVal log As Common.CommonBusiness.UserLog) As Boolean
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IRecruitmentBusiness/DeleteExamsDtl", ReplyAction:="http://tempuri.org/IRecruitmentBusiness/DeleteExamsDtlResponse")>  _
+        Function DeleteExamsDtl(ByVal obj As RecruitmentBusiness.ExamsDtlDTO) As Boolean
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IRecruitmentBusiness/GetPlanReg", ReplyAction:="http://tempuri.org/IRecruitmentBusiness/GetPlanRegResponse")>  _
+        Function GetPlanReg(ByVal _filter As RecruitmentBusiness.PlanRegDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal _param As RecruitmentBusiness.ParamDTO, ByVal Sorts As String, ByVal isSearch As Boolean, ByVal log As Common.CommonBusiness.UserLog) As System.Collections.Generic.List(Of RecruitmentBusiness.PlanRegDTO)
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IRecruitmentBusiness/GetPlanRegByID", ReplyAction:="http://tempuri.org/IRecruitmentBusiness/GetPlanRegByIDResponse")>  _
+        Function GetPlanRegByID(ByVal _filter As RecruitmentBusiness.PlanRegDTO) As RecruitmentBusiness.PlanRegDTO
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IRecruitmentBusiness/InsertPlanReg", ReplyAction:="http://tempuri.org/IRecruitmentBusiness/InsertPlanRegResponse")>  _
+        Function InsertPlanReg(ByVal objPlanReg As RecruitmentBusiness.PlanRegDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IRecruitmentBusiness/ModifyPlanReg", ReplyAction:="http://tempuri.org/IRecruitmentBusiness/ModifyPlanRegResponse")>  _
+        Function ModifyPlanReg(ByVal objPlanReg As RecruitmentBusiness.PlanRegDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IRecruitmentBusiness/DeletePlanReg", ReplyAction:="http://tempuri.org/IRecruitmentBusiness/DeletePlanRegResponse")>  _
+        Function DeletePlanReg(ByVal lstID As System.Collections.Generic.List(Of Decimal)) As Boolean
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IRecruitmentBusiness/UpdateStatusPlanReg", ReplyAction:="http://tempuri.org/IRecruitmentBusiness/UpdateStatusPlanRegResponse")>  _
+        Function UpdateStatusPlanReg(ByVal lstID As System.Collections.Generic.List(Of Decimal), ByVal status As Decimal) As Boolean
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IRecruitmentBusiness/GetPlanSummary", ReplyAction:="http://tempuri.org/IRecruitmentBusiness/GetPlanSummaryResponse")>  _
+        Function GetPlanSummary(ByVal _year As Decimal, ByVal _param As RecruitmentBusiness.ParamDTO, ByVal log As Common.CommonBusiness.UserLog) As System.Data.DataTable
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IRecruitmentBusiness/GetRequest", ReplyAction:="http://tempuri.org/IRecruitmentBusiness/GetRequestResponse")>  _
+        Function GetRequest(ByVal _filter As RecruitmentBusiness.RequestDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal _param As RecruitmentBusiness.ParamDTO, ByVal Sorts As String, ByVal log As Common.CommonBusiness.UserLog) As System.Collections.Generic.List(Of RecruitmentBusiness.RequestDTO)
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IRecruitmentBusiness/GetRequestByID", ReplyAction:="http://tempuri.org/IRecruitmentBusiness/GetRequestByIDResponse")>  _
+        Function GetRequestByID(ByVal _filter As RecruitmentBusiness.RequestDTO) As RecruitmentBusiness.RequestDTO
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IRecruitmentBusiness/InsertRequest", ReplyAction:="http://tempuri.org/IRecruitmentBusiness/InsertRequestResponse")>  _
+        Function InsertRequest(ByVal objRequest As RecruitmentBusiness.RequestDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IRecruitmentBusiness/ModifyRequest", ReplyAction:="http://tempuri.org/IRecruitmentBusiness/ModifyRequestResponse")>  _
+        Function ModifyRequest(ByVal objRequest As RecruitmentBusiness.RequestDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IRecruitmentBusiness/DeleteRequest", ReplyAction:="http://tempuri.org/IRecruitmentBusiness/DeleteRequestResponse")>  _
+        Function DeleteRequest(ByVal lstID As System.Collections.Generic.List(Of Decimal)) As Boolean
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IRecruitmentBusiness/UpdateStatusRequest", ReplyAction:="http://tempuri.org/IRecruitmentBusiness/UpdateStatusRequestResponse")>  _
+        Function UpdateStatusRequest(ByVal lstID As System.Collections.Generic.List(Of Decimal), ByVal status As Decimal, ByVal log As Common.CommonBusiness.UserLog) As Boolean
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IRecruitmentBusiness/GetProgram", ReplyAction:="http://tempuri.org/IRecruitmentBusiness/GetProgramResponse")>  _
+        Function GetProgram(ByVal _filter As RecruitmentBusiness.ProgramDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal _param As RecruitmentBusiness.ParamDTO, ByVal Sorts As String, ByVal log As Common.CommonBusiness.UserLog) As System.Collections.Generic.List(Of RecruitmentBusiness.ProgramDTO)
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IRecruitmentBusiness/GetProgramSearch", ReplyAction:="http://tempuri.org/IRecruitmentBusiness/GetProgramSearchResponse")>  _
+        Function GetProgramSearch(ByVal _filter As RecruitmentBusiness.ProgramDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal _param As RecruitmentBusiness.ParamDTO, ByVal Sorts As String, ByVal log As Common.CommonBusiness.UserLog) As System.Collections.Generic.List(Of RecruitmentBusiness.ProgramDTO)
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IRecruitmentBusiness/GetProgramByID", ReplyAction:="http://tempuri.org/IRecruitmentBusiness/GetProgramByIDResponse")>  _
+        Function GetProgramByID(ByVal _filter As RecruitmentBusiness.ProgramDTO) As RecruitmentBusiness.ProgramDTO
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IRecruitmentBusiness/ModifyProgram", ReplyAction:="http://tempuri.org/IRecruitmentBusiness/ModifyProgramResponse")>  _
+        Function ModifyProgram(ByVal objProgram As RecruitmentBusiness.ProgramDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IRecruitmentBusiness/XuatToTrinh", ReplyAction:="http://tempuri.org/IRecruitmentBusiness/XuatToTrinhResponse")>  _
+        Function XuatToTrinh(ByVal sID As Decimal) As System.Data.DataTable
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IRecruitmentBusiness/GetProgramExams", ReplyAction:="http://tempuri.org/IRecruitmentBusiness/GetProgramExamsResponse")>  _
+        Function GetProgramExams(ByVal _filter As RecruitmentBusiness.ProgramExamsDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal Sorts As String) As System.Collections.Generic.List(Of RecruitmentBusiness.ProgramExamsDTO)
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IRecruitmentBusiness/GetProgramExamsByID", ReplyAction:="http://tempuri.org/IRecruitmentBusiness/GetProgramExamsByIDResponse")>  _
+        Function GetProgramExamsByID(ByVal _filter As RecruitmentBusiness.ProgramExamsDTO) As RecruitmentBusiness.ProgramExamsDTO
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IRecruitmentBusiness/UpdateProgramExams", ReplyAction:="http://tempuri.org/IRecruitmentBusiness/UpdateProgramExamsResponse")>  _
+        Function UpdateProgramExams(ByVal objExams As RecruitmentBusiness.ProgramExamsDTO, ByVal log As Common.CommonBusiness.UserLog) As Boolean
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IRecruitmentBusiness/DeleteProgramExams", ReplyAction:="http://tempuri.org/IRecruitmentBusiness/DeleteProgramExamsResponse")>  _
+        Function DeleteProgramExams(ByVal obj As RecruitmentBusiness.ProgramExamsDTO) As Boolean
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IRecruitmentBusiness/CheckExistCandidate", ReplyAction:="http://tempuri.org/IRecruitmentBusiness/CheckExistCandidateResponse")>  _
+        Function CheckExistCandidate(ByVal strEmpCode As String) As Boolean
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IRecruitmentBusiness/ValidateInsertCandidate", ReplyAction:="http://tempuri.org/IRecruitmentBusiness/ValidateInsertCandidateResponse")>  _
+        Function ValidateInsertCandidate(ByVal sEmpId As String, ByVal sID_No As String, ByVal sFullName As String, ByVal dBirthDate As Date, ByVal sType As String) As Boolean
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IRecruitmentBusiness/GetCandidateFamily_ByID", ReplyAction:="http://tempuri.org/IRecruitmentBusiness/GetCandidateFamily_ByIDResponse")>  _
+        Function GetCandidateFamily_ByID(ByVal sCandidateID As Decimal) As RecruitmentBusiness.CandidateFamilyDTO
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IRecruitmentBusiness/GetCandidateImage", ReplyAction:="http://tempuri.org/IRecruitmentBusiness/GetCandidateImageResponse")>  _
+        Function GetCandidateImage(ByVal gEmpID As Decimal, ByRef sError As String) As Byte()
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IRecruitmentBusiness/InsertCandidate", ReplyAction:="http://tempuri.org/IRecruitmentBusiness/InsertCandidateResponse")>  _
+        Function InsertCandidate(ByVal objEmp As RecruitmentBusiness.CandidateDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal, ByRef _strEmpCode As String, ByVal _imageBinary() As Byte, ByVal objEmpCV As RecruitmentBusiness.CandidateCVDTO, ByVal objEmpEdu As RecruitmentBusiness.CandidateEduDTO, ByVal objEmpOther As RecruitmentBusiness.CandidateOtherInfoDTO, ByVal objEmpHealth As RecruitmentBusiness.CandidateHealthDTO, ByVal objEmpExpect As RecruitmentBusiness.CandidateExpectDTO, ByVal objEmpFamily As RecruitmentBusiness.CandidateFamilyDTO) As Boolean
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IRecruitmentBusiness/CreateNewCandidateCode", ReplyAction:="http://tempuri.org/IRecruitmentBusiness/CreateNewCandidateCodeResponse")>  _
+        Function CreateNewCandidateCode() As RecruitmentBusiness.CandidateDTO
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IRecruitmentBusiness/ModifyCandidate", ReplyAction:="http://tempuri.org/IRecruitmentBusiness/ModifyCandidateResponse")>  _
+        Function ModifyCandidate(ByVal objEmp As RecruitmentBusiness.CandidateDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal, ByVal _imageBinary() As Byte, ByVal objEmpCV As RecruitmentBusiness.CandidateCVDTO, ByVal objEmpEdu As RecruitmentBusiness.CandidateEduDTO, ByVal objEmpOther As RecruitmentBusiness.CandidateOtherInfoDTO, ByVal objEmpHealth As RecruitmentBusiness.CandidateHealthDTO, ByVal objEmpExpect As RecruitmentBusiness.CandidateExpectDTO, ByVal objEmpFamily As RecruitmentBusiness.CandidateFamilyDTO) As Boolean
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IRecruitmentBusiness/GetListCandidatePaging", ReplyAction:="http://tempuri.org/IRecruitmentBusiness/GetListCandidatePagingResponse")>  _
+        Function GetListCandidatePaging(ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal _filter As RecruitmentBusiness.CandidateDTO, ByVal Sorts As String) As System.Collections.Generic.List(Of RecruitmentBusiness.CandidateDTO)
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IRecruitmentBusiness/GetFindCandidatePaging", ReplyAction:="http://tempuri.org/IRecruitmentBusiness/GetFindCandidatePagingResponse")>  _
+        Function GetFindCandidatePaging(ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal _filter As RecruitmentBusiness.CandidateDTO, ByVal Sorts As String) As System.Collections.Generic.List(Of RecruitmentBusiness.CandidateDTO)
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IRecruitmentBusiness/GetListCandidateTransferPaging", ReplyAction:="http://tempuri.org/IRecruitmentBusiness/GetListCandidateTransferPagingResponse")>  _
+        Function GetListCandidateTransferPaging(ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal _filter As RecruitmentBusiness.CandidateDTO, ByVal Sorts As String) As System.Collections.Generic.List(Of RecruitmentBusiness.CandidateDTO)
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IRecruitmentBusiness/GetListCandidate", ReplyAction:="http://tempuri.org/IRecruitmentBusiness/GetListCandidateResponse")>  _
+        Function GetListCandidate(ByVal _filter As RecruitmentBusiness.CandidateDTO, ByVal Sorts As String) As System.Collections.Generic.List(Of RecruitmentBusiness.CandidateDTO)
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IRecruitmentBusiness/GetCandidateInfo", ReplyAction:="http://tempuri.org/IRecruitmentBusiness/GetCandidateInfoResponse")>  _
+        Function GetCandidateInfo(ByVal sCandidateCode As String) As RecruitmentBusiness.CandidateDTO
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IRecruitmentBusiness/GetCandidateCV", ReplyAction:="http://tempuri.org/IRecruitmentBusiness/GetCandidateCVResponse")>  _
+        Function GetCandidateCV(ByVal sCandidateID As Decimal) As RecruitmentBusiness.CandidateCVDTO
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IRecruitmentBusiness/GetCandidateEdu", ReplyAction:="http://tempuri.org/IRecruitmentBusiness/GetCandidateEduResponse")>  _
+        Function GetCandidateEdu(ByVal sCandidateID As Decimal) As RecruitmentBusiness.CandidateEduDTO
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IRecruitmentBusiness/GetCandidateOtherInfo", ReplyAction:="http://tempuri.org/IRecruitmentBusiness/GetCandidateOtherInfoResponse")>  _
+        Function GetCandidateOtherInfo(ByVal sCandidateID As Decimal) As RecruitmentBusiness.CandidateOtherInfoDTO
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IRecruitmentBusiness/GetCandidateHealthInfo", ReplyAction:="http://tempuri.org/IRecruitmentBusiness/GetCandidateHealthInfoResponse")>  _
+        Function GetCandidateHealthInfo(ByVal sCandidateID As Decimal) As RecruitmentBusiness.CandidateHealthDTO
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IRecruitmentBusiness/GetCandidateExpectInfo", ReplyAction:="http://tempuri.org/IRecruitmentBusiness/GetCandidateExpectInfoResponse")>  _
+        Function GetCandidateExpectInfo(ByVal sCandidateID As Decimal) As RecruitmentBusiness.CandidateExpectDTO
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IRecruitmentBusiness/GetCandidateHistory", ReplyAction:="http://tempuri.org/IRecruitmentBusiness/GetCandidateHistoryResponse")>  _
+        Function GetCandidateHistory(ByVal sCandidateID As Decimal, ByVal sCandidateIDNO As Decimal) As System.Collections.Generic.List(Of RecruitmentBusiness.CandidateHistoryDTO)
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IRecruitmentBusiness/DeleteCandidate", ReplyAction:="http://tempuri.org/IRecruitmentBusiness/DeleteCandidateResponse")>  _
+        Function DeleteCandidate(ByVal lstEmpID As System.Collections.Generic.List(Of Decimal), ByVal log As Common.CommonBusiness.UserLog, ByRef sError As String) As Boolean
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IRecruitmentBusiness/UpdateProgramCandidate", ReplyAction:="http://tempuri.org/IRecruitmentBusiness/UpdateProgramCandidateResponse")>  _
+        Function UpdateProgramCandidate(ByVal lstCanID As System.Collections.Generic.List(Of Decimal), ByVal programID As Decimal, ByVal log As Common.CommonBusiness.UserLog) As Boolean
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IRecruitmentBusiness/UpdateStatusCandidate", ReplyAction:="http://tempuri.org/IRecruitmentBusiness/UpdateStatusCandidateResponse")>  _
+        Function UpdateStatusCandidate(ByVal lstCanID As System.Collections.Generic.List(Of Decimal), ByVal statusID As String, ByVal log As Common.CommonBusiness.UserLog) As Boolean
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IRecruitmentBusiness/UpdatePontentialCandidate", ReplyAction:="http://tempuri.org/IRecruitmentBusiness/UpdatePontentialCandidateResponse")>  _
+        Function UpdatePontentialCandidate(ByVal lstCanID As System.Collections.Generic.List(Of Decimal), ByVal bCheck As Boolean, ByVal log As Common.CommonBusiness.UserLog) As Boolean
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IRecruitmentBusiness/UpdateBlackListCandidate", ReplyAction:="http://tempuri.org/IRecruitmentBusiness/UpdateBlackListCandidateResponse")>  _
+        Function UpdateBlackListCandidate(ByVal lstCanID As System.Collections.Generic.List(Of Decimal), ByVal bCheck As Boolean, ByVal log As Common.CommonBusiness.UserLog) As Boolean
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IRecruitmentBusiness/UpdateReHireCandidate", ReplyAction:="http://tempuri.org/IRecruitmentBusiness/UpdateReHireCandidateResponse")>  _
+        Function UpdateReHireCandidate(ByVal lstCanID As System.Collections.Generic.List(Of Decimal), ByVal bCheck As Boolean, ByVal log As Common.CommonBusiness.UserLog) As Boolean
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IRecruitmentBusiness/GetCandidateImport", ReplyAction:="http://tempuri.org/IRecruitmentBusiness/GetCandidateImportResponse")>  _
+        Function GetCandidateImport() As System.Data.DataSet
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IRecruitmentBusiness/ImportCandidate", ReplyAction:="http://tempuri.org/IRecruitmentBusiness/ImportCandidateResponse")>  _
+        Function ImportCandidate(ByVal lst As System.Collections.Generic.List(Of RecruitmentBusiness.CandidateImportDTO), ByVal log As Common.CommonBusiness.UserLog) As Boolean
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IRecruitmentBusiness/TransferHSNVToCandidate", ReplyAction:="http://tempuri.org/IRecruitmentBusiness/TransferHSNVToCandidateResponse")>  _
+        Function TransferHSNVToCandidate(ByVal empID As Decimal, ByVal orgID As Decimal, ByVal titleID As Decimal, ByVal programID As Decimal, ByVal log As Common.CommonBusiness.UserLog) As Boolean
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IRecruitmentBusiness/GetCandidateFamily", ReplyAction:="http://tempuri.org/IRecruitmentBusiness/GetCandidateFamilyResponse")>  _
+        Function GetCandidateFamily(ByVal _filter As RecruitmentBusiness.CandidateFamilyDTO) As System.Collections.Generic.List(Of RecruitmentBusiness.CandidateFamilyDTO)
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IRecruitmentBusiness/InsertCandidateFamily", ReplyAction:="http://tempuri.org/IRecruitmentBusiness/InsertCandidateFamilyResponse")>  _
+        Function InsertCandidateFamily(ByVal objFamily As RecruitmentBusiness.CandidateFamilyDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IRecruitmentBusiness/ModifyCandidateFamily", ReplyAction:="http://tempuri.org/IRecruitmentBusiness/ModifyCandidateFamilyResponse")>  _
+        Function ModifyCandidateFamily(ByVal objFamily As RecruitmentBusiness.CandidateFamilyDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IRecruitmentBusiness/DeleteCandidateFamily", ReplyAction:="http://tempuri.org/IRecruitmentBusiness/DeleteCandidateFamilyResponse")>  _
+        Function DeleteCandidateFamily(ByVal lstDecimals As System.Collections.Generic.List(Of Decimal), ByVal log As Common.CommonBusiness.UserLog) As Boolean
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IRecruitmentBusiness/ValidateFamily", ReplyAction:="http://tempuri.org/IRecruitmentBusiness/ValidateFamilyResponse")>  _
+        Function ValidateFamily(ByVal _validate As RecruitmentBusiness.CandidateFamilyDTO) As Boolean
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IRecruitmentBusiness/GetCandidateTrainSinger", ReplyAction:="http://tempuri.org/IRecruitmentBusiness/GetCandidateTrainSingerResponse")>  _
+        Function GetCandidateTrainSinger(ByVal _filter As RecruitmentBusiness.TrainSingerDTO) As System.Collections.Generic.List(Of RecruitmentBusiness.TrainSingerDTO)
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IRecruitmentBusiness/InsertCandidateTrainSinger", ReplyAction:="http://tempuri.org/IRecruitmentBusiness/InsertCandidateTrainSingerResponse")>  _
+        Function InsertCandidateTrainSinger(ByVal objTrainSinger As RecruitmentBusiness.TrainSingerDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IRecruitmentBusiness/ModifyCandidateTrainSinger", ReplyAction:="http://tempuri.org/IRecruitmentBusiness/ModifyCandidateTrainSingerResponse")>  _
+        Function ModifyCandidateTrainSinger(ByVal objTrainSinger As RecruitmentBusiness.TrainSingerDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IRecruitmentBusiness/DeleteCandidateTrainSinger", ReplyAction:="http://tempuri.org/IRecruitmentBusiness/DeleteCandidateTrainSingerResponse")>  _
+        Function DeleteCandidateTrainSinger(ByVal lstDecimals As System.Collections.Generic.List(Of Decimal), ByVal log As Common.CommonBusiness.UserLog) As Boolean
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IRecruitmentBusiness/GetCandidateReference", ReplyAction:="http://tempuri.org/IRecruitmentBusiness/GetCandidateReferenceResponse")>  _
+        Function GetCandidateReference(ByVal _filter As RecruitmentBusiness.CandidateReferenceDTO) As System.Collections.Generic.List(Of RecruitmentBusiness.CandidateReferenceDTO)
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IRecruitmentBusiness/InsertCandidateReference", ReplyAction:="http://tempuri.org/IRecruitmentBusiness/InsertCandidateReferenceResponse")>  _
+        Function InsertCandidateReference(ByVal objTrainSinger As RecruitmentBusiness.CandidateReferenceDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IRecruitmentBusiness/ModifyCandidateReference", ReplyAction:="http://tempuri.org/IRecruitmentBusiness/ModifyCandidateReferenceResponse")>  _
+        Function ModifyCandidateReference(ByVal objTrainSinger As RecruitmentBusiness.CandidateReferenceDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IRecruitmentBusiness/DeleteCandidateReference", ReplyAction:="http://tempuri.org/IRecruitmentBusiness/DeleteCandidateReferenceResponse")>  _
+        Function DeleteCandidateReference(ByVal lstDecimals As System.Collections.Generic.List(Of Decimal), ByVal log As Common.CommonBusiness.UserLog) As Boolean
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IRecruitmentBusiness/GetCandidateBeforeWT", ReplyAction:="http://tempuri.org/IRecruitmentBusiness/GetCandidateBeforeWTResponse")>  _
+        Function GetCandidateBeforeWT(ByVal _filter As RecruitmentBusiness.CandidateBeforeWTDTO) As System.Collections.Generic.List(Of RecruitmentBusiness.CandidateBeforeWTDTO)
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IRecruitmentBusiness/InsertCandidateBeforeWT", ReplyAction:="http://tempuri.org/IRecruitmentBusiness/InsertCandidateBeforeWTResponse")>  _
+        Function InsertCandidateBeforeWT(ByVal objCandidateBeforeWT As RecruitmentBusiness.CandidateBeforeWTDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IRecruitmentBusiness/ModifyCandidateBeforeWT", ReplyAction:="http://tempuri.org/IRecruitmentBusiness/ModifyCandidateBeforeWTResponse")>  _
+        Function ModifyCandidateBeforeWT(ByVal objCandidateBeforeWT As RecruitmentBusiness.CandidateBeforeWTDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IRecruitmentBusiness/DeleteCandidateBeforeWT", ReplyAction:="http://tempuri.org/IRecruitmentBusiness/DeleteCandidateBeforeWTResponse")>  _
+        Function DeleteCandidateBeforeWT(ByVal lstDecimals As System.Collections.Generic.List(Of Decimal), ByVal log As Common.CommonBusiness.UserLog) As Boolean
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IRecruitmentBusiness/GetProgramSchedule", ReplyAction:="http://tempuri.org/IRecruitmentBusiness/GetProgramScheduleResponse")>  _
+        Function GetProgramSchedule(ByVal _filter As RecruitmentBusiness.ProgramScheduleDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal Sorts As String) As System.Collections.Generic.List(Of RecruitmentBusiness.ProgramScheduleDTO)
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IRecruitmentBusiness/GetProgramScheduleByID", ReplyAction:="http://tempuri.org/IRecruitmentBusiness/GetProgramScheduleByIDResponse")>  _
+        Function GetProgramScheduleByID(ByVal _filter As RecruitmentBusiness.ProgramScheduleDTO) As RecruitmentBusiness.ProgramScheduleDTO
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IRecruitmentBusiness/GetCandidateNotScheduleByScheduleID", ReplyAction:="http://tempuri.org/IRecruitmentBusiness/GetCandidateNotScheduleByScheduleIDRespon"& _ 
+            "se")>  _
+        Function GetCandidateNotScheduleByScheduleID(ByVal _filter As RecruitmentBusiness.ProgramScheduleCanDTO) As System.Collections.Generic.List(Of RecruitmentBusiness.ProgramScheduleCanDTO)
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IRecruitmentBusiness/GetCandidateScheduleByScheduleID", ReplyAction:="http://tempuri.org/IRecruitmentBusiness/GetCandidateScheduleByScheduleIDResponse")>  _
+        Function GetCandidateScheduleByScheduleID(ByVal _filter As RecruitmentBusiness.ProgramScheduleCanDTO) As System.Collections.Generic.List(Of RecruitmentBusiness.ProgramScheduleCanDTO)
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IRecruitmentBusiness/UpdateProgramSchedule", ReplyAction:="http://tempuri.org/IRecruitmentBusiness/UpdateProgramScheduleResponse")>  _
+        Function UpdateProgramSchedule(ByVal objExams As RecruitmentBusiness.ProgramScheduleDTO, ByVal log As Common.CommonBusiness.UserLog) As Boolean
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IRecruitmentBusiness/GetCandidateResult", ReplyAction:="http://tempuri.org/IRecruitmentBusiness/GetCandidateResultResponse")>  _
+        Function GetCandidateResult(ByVal _filter As RecruitmentBusiness.ProgramScheduleCanDTO) As System.Collections.Generic.List(Of RecruitmentBusiness.ProgramScheduleCanDTO)
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IRecruitmentBusiness/UpdateCandidateResult", ReplyAction:="http://tempuri.org/IRecruitmentBusiness/UpdateCandidateResultResponse")>  _
+        Function UpdateCandidateResult(ByVal lst As System.Collections.Generic.List(Of RecruitmentBusiness.ProgramScheduleCanDTO), ByVal log As Common.CommonBusiness.UserLog) As Boolean
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IRecruitmentBusiness/GetCost", ReplyAction:="http://tempuri.org/IRecruitmentBusiness/GetCostResponse")>  _
+        Function GetCost(ByVal _filter As RecruitmentBusiness.CostDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal Sorts As String) As System.Collections.Generic.List(Of RecruitmentBusiness.CostDTO)
     End Interface
-
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")> _
+    
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")>  _
     Public Interface IRecruitmentBusinessChannel
         Inherits RecruitmentBusiness.IRecruitmentBusiness, System.ServiceModel.IClientChannel
     End Interface
-
-    <System.Diagnostics.DebuggerStepThroughAttribute(), _
-     System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")> _
+    
+    <System.Diagnostics.DebuggerStepThroughAttribute(),  _
+     System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")>  _
     Partial Public Class RecruitmentBusinessClient
         Inherits System.ServiceModel.ClientBase(Of RecruitmentBusiness.IRecruitmentBusiness)
         Implements RecruitmentBusiness.IRecruitmentBusiness
-
+        
         Public Sub New()
-            MyBase.New()
+            MyBase.New
         End Sub
-
+        
         Public Sub New(ByVal endpointConfigurationName As String)
             MyBase.New(endpointConfigurationName)
         End Sub
-
+        
         Public Sub New(ByVal endpointConfigurationName As String, ByVal remoteAddress As String)
             MyBase.New(endpointConfigurationName, remoteAddress)
         End Sub
-
+        
         Public Sub New(ByVal endpointConfigurationName As String, ByVal remoteAddress As System.ServiceModel.EndpointAddress)
             MyBase.New(endpointConfigurationName, remoteAddress)
         End Sub
-
+        
         Public Sub New(ByVal binding As System.ServiceModel.Channels.Binding, ByVal remoteAddress As System.ServiceModel.EndpointAddress)
             MyBase.New(binding, remoteAddress)
         End Sub
-
+        
+        Public Function UpdateCost(ByVal objExams As RecruitmentBusiness.CostDTO, ByVal log As Common.CommonBusiness.UserLog) As Boolean Implements RecruitmentBusiness.IRecruitmentBusiness.UpdateCost
+            Return MyBase.Channel.UpdateCost(objExams, log)
+        End Function
+        
         Public Function ValidateCost(ByVal objCostCenter As RecruitmentBusiness.CostDTO) As Boolean Implements RecruitmentBusiness.IRecruitmentBusiness.ValidateCost
             Return MyBase.Channel.ValidateCost(objCostCenter)
         End Function
-
+        
         Public Function DeleteCost(ByVal obj As RecruitmentBusiness.CostDTO) As Boolean Implements RecruitmentBusiness.IRecruitmentBusiness.DeleteCost
             Return MyBase.Channel.DeleteCost(obj)
         End Function
-
+        
         Public Function GetComboList(ByRef _combolistDTO As RecruitmentBusiness.ComboBoxDataDTO) As Boolean Implements RecruitmentBusiness.IRecruitmentBusiness.GetComboList
             Return MyBase.Channel.GetComboList(_combolistDTO)
         End Function
-
+        
         Public Function GetOtherList(ByVal sType As String, ByVal sLang As String, ByVal isBlank As Boolean) As System.Data.DataTable Implements RecruitmentBusiness.IRecruitmentBusiness.GetOtherList
             Return MyBase.Channel.GetOtherList(sType, sLang, isBlank)
         End Function
-
+        
         Public Function GetContractTypeList(ByVal isBlank As Boolean) As System.Data.DataTable Implements RecruitmentBusiness.IRecruitmentBusiness.GetContractTypeList
             Return MyBase.Channel.GetContractTypeList(isBlank)
         End Function
-
+        
         Public Function GetTitleByOrgList(ByVal orgID As Decimal, ByVal sLang As String, ByVal isBlank As Boolean) As System.Data.DataTable Implements RecruitmentBusiness.IRecruitmentBusiness.GetTitleByOrgList
             Return MyBase.Channel.GetTitleByOrgList(orgID, sLang, isBlank)
         End Function
-
+        
         Public Function GetTitleByOrgListInPlan(ByVal orgID As Decimal, ByVal _year As Decimal, ByVal sLang As String, ByVal isBlank As Boolean) As System.Data.DataTable Implements RecruitmentBusiness.IRecruitmentBusiness.GetTitleByOrgListInPlan
             Return MyBase.Channel.GetTitleByOrgListInPlan(orgID, _year, sLang, isBlank)
         End Function
-
+        
         Public Function GetProgramExamsList(ByVal programID As Decimal, ByVal sLang As String, ByVal isBlank As Boolean) As System.Data.DataTable Implements RecruitmentBusiness.IRecruitmentBusiness.GetProgramExamsList
             Return MyBase.Channel.GetProgramExamsList(programID, sLang, isBlank)
         End Function
-
+        
         Public Function GetProgramList(ByVal orgID As Decimal, ByVal sLang As String, ByVal isBlank As Boolean) As System.Data.DataTable Implements RecruitmentBusiness.IRecruitmentBusiness.GetProgramList
             Return MyBase.Channel.GetProgramList(orgID, sLang, isBlank)
         End Function
-
+        
         Public Function GetCVPoolEmpRecord(ByVal _filter As RecruitmentBusiness.CVPoolEmpDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal Sorts As String, ByVal log As Common.CommonBusiness.UserLog) As System.Collections.Generic.List(Of RecruitmentBusiness.CVPoolEmpDTO) Implements RecruitmentBusiness.IRecruitmentBusiness.GetCVPoolEmpRecord
             Return MyBase.Channel.GetCVPoolEmpRecord(_filter, PageIndex, PageSize, Total, Sorts, log)
         End Function
-
+        
         Public Function ExportReport(ByVal sPkgName As String, ByVal sStartDate As System.Nullable(Of Date), ByVal sEndDate As System.Nullable(Of Date), ByVal sOrg As String, ByVal IsDissolve As Integer, ByVal sUserName As String, ByVal sLang As String) As System.Data.DataSet Implements RecruitmentBusiness.IRecruitmentBusiness.ExportReport
             Return MyBase.Channel.ExportReport(sPkgName, sStartDate, sEndDate, sOrg, IsDissolve, sUserName, sLang)
         End Function
-
+        
         Public Function GetReportById(ByVal _filter As RecruitmentBusiness.Se_ReportDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal log As Common.CommonBusiness.UserLog, ByVal Sorts As String) As System.Collections.Generic.List(Of RecruitmentBusiness.Se_ReportDTO) Implements RecruitmentBusiness.IRecruitmentBusiness.GetReportById
             Return MyBase.Channel.GetReportById(_filter, PageIndex, PageSize, Total, log, Sorts)
         End Function
-
+        
         Public Function GetStatisticGender(ByVal _year As Integer, ByVal log As Common.CommonBusiness.UserLog) As System.Collections.Generic.List(Of RecruitmentBusiness.StatisticDTO) Implements RecruitmentBusiness.IRecruitmentBusiness.GetStatisticGender
             Return MyBase.Channel.GetStatisticGender(_year, log)
         End Function
-
+        
         Public Function GetStatisticEduacation(ByVal _year As Integer, ByVal log As Common.CommonBusiness.UserLog) As System.Collections.Generic.List(Of RecruitmentBusiness.StatisticDTO) Implements RecruitmentBusiness.IRecruitmentBusiness.GetStatisticEduacation
             Return MyBase.Channel.GetStatisticEduacation(_year, log)
         End Function
-
+        
         Public Function GetStatisticCanToEmp(ByVal _year As Integer, ByVal log As Common.CommonBusiness.UserLog) As System.Collections.Generic.List(Of RecruitmentBusiness.StatisticDTO) Implements RecruitmentBusiness.IRecruitmentBusiness.GetStatisticCanToEmp
             Return MyBase.Channel.GetStatisticCanToEmp(_year, log)
         End Function
-
+        
         Public Function GetStatisticEstimateReality(ByVal _year As Integer, ByVal log As Common.CommonBusiness.UserLog) As System.Collections.Generic.List(Of RecruitmentBusiness.StatisticDTO) Implements RecruitmentBusiness.IRecruitmentBusiness.GetStatisticEstimateReality
             Return MyBase.Channel.GetStatisticEstimateReality(_year, log)
         End Function
-
+        
         Public Function TestService(ByVal str As String) As String Implements RecruitmentBusiness.IRecruitmentBusiness.TestService
             Return MyBase.Channel.TestService(str)
         End Function
-
+        
         Public Function GetWardList(ByVal districtID As Decimal, ByVal isBlank As Boolean) As System.Data.DataTable Implements RecruitmentBusiness.IRecruitmentBusiness.GetWardList
             Return MyBase.Channel.GetWardList(districtID, isBlank)
         End Function
-
+        
         Public Function GetCostCenter(ByVal _filter As RecruitmentBusiness.CostCenterDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal Sorts As String) As System.Collections.Generic.List(Of RecruitmentBusiness.CostCenterDTO) Implements RecruitmentBusiness.IRecruitmentBusiness.GetCostCenter
             Return MyBase.Channel.GetCostCenter(_filter, PageIndex, PageSize, Total, Sorts)
         End Function
-
+        
         Public Function InsertCostCenter(ByVal objCostCenter As RecruitmentBusiness.CostCenterDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean Implements RecruitmentBusiness.IRecruitmentBusiness.InsertCostCenter
             Return MyBase.Channel.InsertCostCenter(objCostCenter, log, gID)
         End Function
-
+        
         Public Function ValidateCostCenter(ByVal objCostCenter As RecruitmentBusiness.CostCenterDTO) As Boolean Implements RecruitmentBusiness.IRecruitmentBusiness.ValidateCostCenter
             Return MyBase.Channel.ValidateCostCenter(objCostCenter)
         End Function
-
+        
         Public Function ModifyCostCenter(ByVal objCostCenter As RecruitmentBusiness.CostCenterDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean Implements RecruitmentBusiness.IRecruitmentBusiness.ModifyCostCenter
             Return MyBase.Channel.ModifyCostCenter(objCostCenter, log, gID)
         End Function
-
+        
         Public Function ActiveCostCenter(ByVal lstID As System.Collections.Generic.List(Of Decimal), ByVal log As Common.CommonBusiness.UserLog, ByVal bActive As Boolean) As Boolean Implements RecruitmentBusiness.IRecruitmentBusiness.ActiveCostCenter
             Return MyBase.Channel.ActiveCostCenter(lstID, log, bActive)
         End Function
-
+        
         Public Function DeleteCostCenter(ByVal lstID As System.Collections.Generic.List(Of Decimal)) As Boolean Implements RecruitmentBusiness.IRecruitmentBusiness.DeleteCostCenter
             Return MyBase.Channel.DeleteCostCenter(lstID)
         End Function
-
+        
         Public Function GetExamsDtl(ByVal _filter As RecruitmentBusiness.ExamsDtlDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal Sorts As String) As System.Collections.Generic.List(Of RecruitmentBusiness.ExamsDtlDTO) Implements RecruitmentBusiness.IRecruitmentBusiness.GetExamsDtl
             Return MyBase.Channel.GetExamsDtl(_filter, PageIndex, PageSize, Total, Sorts)
         End Function
-
+        
         Public Function UpdateExamsDtl(ByVal objExams As RecruitmentBusiness.ExamsDtlDTO, ByVal log As Common.CommonBusiness.UserLog) As Boolean Implements RecruitmentBusiness.IRecruitmentBusiness.UpdateExamsDtl
             Return MyBase.Channel.UpdateExamsDtl(objExams, log)
         End Function
-
+        
         Public Function DeleteExamsDtl(ByVal obj As RecruitmentBusiness.ExamsDtlDTO) As Boolean Implements RecruitmentBusiness.IRecruitmentBusiness.DeleteExamsDtl
             Return MyBase.Channel.DeleteExamsDtl(obj)
         End Function
-
+        
         Public Function GetPlanReg(ByVal _filter As RecruitmentBusiness.PlanRegDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal _param As RecruitmentBusiness.ParamDTO, ByVal Sorts As String, ByVal isSearch As Boolean, ByVal log As Common.CommonBusiness.UserLog) As System.Collections.Generic.List(Of RecruitmentBusiness.PlanRegDTO) Implements RecruitmentBusiness.IRecruitmentBusiness.GetPlanReg
             Return MyBase.Channel.GetPlanReg(_filter, PageIndex, PageSize, Total, _param, Sorts, isSearch, log)
         End Function
-
+        
         Public Function GetPlanRegByID(ByVal _filter As RecruitmentBusiness.PlanRegDTO) As RecruitmentBusiness.PlanRegDTO Implements RecruitmentBusiness.IRecruitmentBusiness.GetPlanRegByID
             Return MyBase.Channel.GetPlanRegByID(_filter)
         End Function
-
+        
         Public Function InsertPlanReg(ByVal objPlanReg As RecruitmentBusiness.PlanRegDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean Implements RecruitmentBusiness.IRecruitmentBusiness.InsertPlanReg
             Return MyBase.Channel.InsertPlanReg(objPlanReg, log, gID)
         End Function
-
+        
         Public Function ModifyPlanReg(ByVal objPlanReg As RecruitmentBusiness.PlanRegDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean Implements RecruitmentBusiness.IRecruitmentBusiness.ModifyPlanReg
             Return MyBase.Channel.ModifyPlanReg(objPlanReg, log, gID)
         End Function
-
+        
         Public Function DeletePlanReg(ByVal lstID As System.Collections.Generic.List(Of Decimal)) As Boolean Implements RecruitmentBusiness.IRecruitmentBusiness.DeletePlanReg
             Return MyBase.Channel.DeletePlanReg(lstID)
         End Function
-
+        
         Public Function UpdateStatusPlanReg(ByVal lstID As System.Collections.Generic.List(Of Decimal), ByVal status As Decimal) As Boolean Implements RecruitmentBusiness.IRecruitmentBusiness.UpdateStatusPlanReg
             Return MyBase.Channel.UpdateStatusPlanReg(lstID, status)
         End Function
-
+        
         Public Function GetPlanSummary(ByVal _year As Decimal, ByVal _param As RecruitmentBusiness.ParamDTO, ByVal log As Common.CommonBusiness.UserLog) As System.Data.DataTable Implements RecruitmentBusiness.IRecruitmentBusiness.GetPlanSummary
             Return MyBase.Channel.GetPlanSummary(_year, _param, log)
         End Function
-
+        
         Public Function GetRequest(ByVal _filter As RecruitmentBusiness.RequestDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal _param As RecruitmentBusiness.ParamDTO, ByVal Sorts As String, ByVal log As Common.CommonBusiness.UserLog) As System.Collections.Generic.List(Of RecruitmentBusiness.RequestDTO) Implements RecruitmentBusiness.IRecruitmentBusiness.GetRequest
             Return MyBase.Channel.GetRequest(_filter, PageIndex, PageSize, Total, _param, Sorts, log)
         End Function
-
+        
         Public Function GetRequestByID(ByVal _filter As RecruitmentBusiness.RequestDTO) As RecruitmentBusiness.RequestDTO Implements RecruitmentBusiness.IRecruitmentBusiness.GetRequestByID
             Return MyBase.Channel.GetRequestByID(_filter)
         End Function
-
+        
         Public Function InsertRequest(ByVal objRequest As RecruitmentBusiness.RequestDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean Implements RecruitmentBusiness.IRecruitmentBusiness.InsertRequest
             Return MyBase.Channel.InsertRequest(objRequest, log, gID)
         End Function
-
+        
         Public Function ModifyRequest(ByVal objRequest As RecruitmentBusiness.RequestDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean Implements RecruitmentBusiness.IRecruitmentBusiness.ModifyRequest
             Return MyBase.Channel.ModifyRequest(objRequest, log, gID)
         End Function
-
+        
         Public Function DeleteRequest(ByVal lstID As System.Collections.Generic.List(Of Decimal)) As Boolean Implements RecruitmentBusiness.IRecruitmentBusiness.DeleteRequest
             Return MyBase.Channel.DeleteRequest(lstID)
         End Function
-
+        
         Public Function UpdateStatusRequest(ByVal lstID As System.Collections.Generic.List(Of Decimal), ByVal status As Decimal, ByVal log As Common.CommonBusiness.UserLog) As Boolean Implements RecruitmentBusiness.IRecruitmentBusiness.UpdateStatusRequest
             Return MyBase.Channel.UpdateStatusRequest(lstID, status, log)
         End Function
-
+        
         Public Function GetProgram(ByVal _filter As RecruitmentBusiness.ProgramDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal _param As RecruitmentBusiness.ParamDTO, ByVal Sorts As String, ByVal log As Common.CommonBusiness.UserLog) As System.Collections.Generic.List(Of RecruitmentBusiness.ProgramDTO) Implements RecruitmentBusiness.IRecruitmentBusiness.GetProgram
             Return MyBase.Channel.GetProgram(_filter, PageIndex, PageSize, Total, _param, Sorts, log)
         End Function
-
+        
         Public Function GetProgramSearch(ByVal _filter As RecruitmentBusiness.ProgramDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal _param As RecruitmentBusiness.ParamDTO, ByVal Sorts As String, ByVal log As Common.CommonBusiness.UserLog) As System.Collections.Generic.List(Of RecruitmentBusiness.ProgramDTO) Implements RecruitmentBusiness.IRecruitmentBusiness.GetProgramSearch
             Return MyBase.Channel.GetProgramSearch(_filter, PageIndex, PageSize, Total, _param, Sorts, log)
         End Function
-
+        
         Public Function GetProgramByID(ByVal _filter As RecruitmentBusiness.ProgramDTO) As RecruitmentBusiness.ProgramDTO Implements RecruitmentBusiness.IRecruitmentBusiness.GetProgramByID
             Return MyBase.Channel.GetProgramByID(_filter)
         End Function
-
+        
         Public Function ModifyProgram(ByVal objProgram As RecruitmentBusiness.ProgramDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean Implements RecruitmentBusiness.IRecruitmentBusiness.ModifyProgram
             Return MyBase.Channel.ModifyProgram(objProgram, log, gID)
         End Function
-
+        
         Public Function XuatToTrinh(ByVal sID As Decimal) As System.Data.DataTable Implements RecruitmentBusiness.IRecruitmentBusiness.XuatToTrinh
             Return MyBase.Channel.XuatToTrinh(sID)
         End Function
-
+        
         Public Function GetProgramExams(ByVal _filter As RecruitmentBusiness.ProgramExamsDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal Sorts As String) As System.Collections.Generic.List(Of RecruitmentBusiness.ProgramExamsDTO) Implements RecruitmentBusiness.IRecruitmentBusiness.GetProgramExams
             Return MyBase.Channel.GetProgramExams(_filter, PageIndex, PageSize, Total, Sorts)
         End Function
-
+        
         Public Function GetProgramExamsByID(ByVal _filter As RecruitmentBusiness.ProgramExamsDTO) As RecruitmentBusiness.ProgramExamsDTO Implements RecruitmentBusiness.IRecruitmentBusiness.GetProgramExamsByID
             Return MyBase.Channel.GetProgramExamsByID(_filter)
         End Function
-
+        
         Public Function UpdateProgramExams(ByVal objExams As RecruitmentBusiness.ProgramExamsDTO, ByVal log As Common.CommonBusiness.UserLog) As Boolean Implements RecruitmentBusiness.IRecruitmentBusiness.UpdateProgramExams
             Return MyBase.Channel.UpdateProgramExams(objExams, log)
         End Function
-
+        
         Public Function DeleteProgramExams(ByVal obj As RecruitmentBusiness.ProgramExamsDTO) As Boolean Implements RecruitmentBusiness.IRecruitmentBusiness.DeleteProgramExams
             Return MyBase.Channel.DeleteProgramExams(obj)
         End Function
-
+        
         Public Function CheckExistCandidate(ByVal strEmpCode As String) As Boolean Implements RecruitmentBusiness.IRecruitmentBusiness.CheckExistCandidate
             Return MyBase.Channel.CheckExistCandidate(strEmpCode)
         End Function
-
+        
         Public Function ValidateInsertCandidate(ByVal sEmpId As String, ByVal sID_No As String, ByVal sFullName As String, ByVal dBirthDate As Date, ByVal sType As String) As Boolean Implements RecruitmentBusiness.IRecruitmentBusiness.ValidateInsertCandidate
             Return MyBase.Channel.ValidateInsertCandidate(sEmpId, sID_No, sFullName, dBirthDate, sType)
         End Function
-
+        
+        Public Function GetCandidateFamily_ByID(ByVal sCandidateID As Decimal) As RecruitmentBusiness.CandidateFamilyDTO Implements RecruitmentBusiness.IRecruitmentBusiness.GetCandidateFamily_ByID
+            Return MyBase.Channel.GetCandidateFamily_ByID(sCandidateID)
+        End Function
+        
         Public Function GetCandidateImage(ByVal gEmpID As Decimal, ByRef sError As String) As Byte() Implements RecruitmentBusiness.IRecruitmentBusiness.GetCandidateImage
             Return MyBase.Channel.GetCandidateImage(gEmpID, sError)
         End Function
-
-        Public Function InsertCandidate(ByVal objEmp As RecruitmentBusiness.CandidateDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal, ByRef _strEmpCode As String, ByVal _imageBinary() As Byte, ByVal objEmpCV As RecruitmentBusiness.CandidateCVDTO, ByVal objEmpEdu As RecruitmentBusiness.CandidateEduDTO, ByVal objEmpOther As RecruitmentBusiness.CandidateOtherInfoDTO, ByVal objEmpHealth As RecruitmentBusiness.CandidateHealthDTO, ByVal objEmpExpect As RecruitmentBusiness.CandidateExpectDTO) As Boolean Implements RecruitmentBusiness.IRecruitmentBusiness.InsertCandidate
-            Return MyBase.Channel.InsertCandidate(objEmp, log, gID, _strEmpCode, _imageBinary, objEmpCV, objEmpEdu, objEmpOther, objEmpHealth, objEmpExpect)
+        
+        Public Function InsertCandidate(ByVal objEmp As RecruitmentBusiness.CandidateDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal, ByRef _strEmpCode As String, ByVal _imageBinary() As Byte, ByVal objEmpCV As RecruitmentBusiness.CandidateCVDTO, ByVal objEmpEdu As RecruitmentBusiness.CandidateEduDTO, ByVal objEmpOther As RecruitmentBusiness.CandidateOtherInfoDTO, ByVal objEmpHealth As RecruitmentBusiness.CandidateHealthDTO, ByVal objEmpExpect As RecruitmentBusiness.CandidateExpectDTO, ByVal objEmpFamily As RecruitmentBusiness.CandidateFamilyDTO) As Boolean Implements RecruitmentBusiness.IRecruitmentBusiness.InsertCandidate
+            Return MyBase.Channel.InsertCandidate(objEmp, log, gID, _strEmpCode, _imageBinary, objEmpCV, objEmpEdu, objEmpOther, objEmpHealth, objEmpExpect, objEmpFamily)
         End Function
-
+        
         Public Function CreateNewCandidateCode() As RecruitmentBusiness.CandidateDTO Implements RecruitmentBusiness.IRecruitmentBusiness.CreateNewCandidateCode
             Return MyBase.Channel.CreateNewCandidateCode
         End Function
-
-        Public Function ModifyCandidate(ByVal objEmp As RecruitmentBusiness.CandidateDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal, ByVal _imageBinary() As Byte, ByVal objEmpCV As RecruitmentBusiness.CandidateCVDTO, ByVal objEmpEdu As RecruitmentBusiness.CandidateEduDTO, ByVal objEmpOther As RecruitmentBusiness.CandidateOtherInfoDTO, ByVal objEmpHealth As RecruitmentBusiness.CandidateHealthDTO, ByVal objEmpExpect As RecruitmentBusiness.CandidateExpectDTO) As Boolean Implements RecruitmentBusiness.IRecruitmentBusiness.ModifyCandidate
-            Return MyBase.Channel.ModifyCandidate(objEmp, log, gID, _imageBinary, objEmpCV, objEmpEdu, objEmpOther, objEmpHealth, objEmpExpect)
+        
+        Public Function ModifyCandidate(ByVal objEmp As RecruitmentBusiness.CandidateDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal, ByVal _imageBinary() As Byte, ByVal objEmpCV As RecruitmentBusiness.CandidateCVDTO, ByVal objEmpEdu As RecruitmentBusiness.CandidateEduDTO, ByVal objEmpOther As RecruitmentBusiness.CandidateOtherInfoDTO, ByVal objEmpHealth As RecruitmentBusiness.CandidateHealthDTO, ByVal objEmpExpect As RecruitmentBusiness.CandidateExpectDTO, ByVal objEmpFamily As RecruitmentBusiness.CandidateFamilyDTO) As Boolean Implements RecruitmentBusiness.IRecruitmentBusiness.ModifyCandidate
+            Return MyBase.Channel.ModifyCandidate(objEmp, log, gID, _imageBinary, objEmpCV, objEmpEdu, objEmpOther, objEmpHealth, objEmpExpect, objEmpFamily)
         End Function
-
+        
         Public Function GetListCandidatePaging(ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal _filter As RecruitmentBusiness.CandidateDTO, ByVal Sorts As String) As System.Collections.Generic.List(Of RecruitmentBusiness.CandidateDTO) Implements RecruitmentBusiness.IRecruitmentBusiness.GetListCandidatePaging
             Return MyBase.Channel.GetListCandidatePaging(PageIndex, PageSize, Total, _filter, Sorts)
         End Function
-
+        
         Public Function GetFindCandidatePaging(ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal _filter As RecruitmentBusiness.CandidateDTO, ByVal Sorts As String) As System.Collections.Generic.List(Of RecruitmentBusiness.CandidateDTO) Implements RecruitmentBusiness.IRecruitmentBusiness.GetFindCandidatePaging
             Return MyBase.Channel.GetFindCandidatePaging(PageIndex, PageSize, Total, _filter, Sorts)
         End Function
-
+        
         Public Function GetListCandidateTransferPaging(ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal _filter As RecruitmentBusiness.CandidateDTO, ByVal Sorts As String) As System.Collections.Generic.List(Of RecruitmentBusiness.CandidateDTO) Implements RecruitmentBusiness.IRecruitmentBusiness.GetListCandidateTransferPaging
             Return MyBase.Channel.GetListCandidateTransferPaging(PageIndex, PageSize, Total, _filter, Sorts)
         End Function
-
+        
         Public Function GetListCandidate(ByVal _filter As RecruitmentBusiness.CandidateDTO, ByVal Sorts As String) As System.Collections.Generic.List(Of RecruitmentBusiness.CandidateDTO) Implements RecruitmentBusiness.IRecruitmentBusiness.GetListCandidate
             Return MyBase.Channel.GetListCandidate(_filter, Sorts)
         End Function
-
+        
         Public Function GetCandidateInfo(ByVal sCandidateCode As String) As RecruitmentBusiness.CandidateDTO Implements RecruitmentBusiness.IRecruitmentBusiness.GetCandidateInfo
             Return MyBase.Channel.GetCandidateInfo(sCandidateCode)
         End Function
-
+        
         Public Function GetCandidateCV(ByVal sCandidateID As Decimal) As RecruitmentBusiness.CandidateCVDTO Implements RecruitmentBusiness.IRecruitmentBusiness.GetCandidateCV
             Return MyBase.Channel.GetCandidateCV(sCandidateID)
         End Function
-
+        
         Public Function GetCandidateEdu(ByVal sCandidateID As Decimal) As RecruitmentBusiness.CandidateEduDTO Implements RecruitmentBusiness.IRecruitmentBusiness.GetCandidateEdu
             Return MyBase.Channel.GetCandidateEdu(sCandidateID)
         End Function
-
+        
         Public Function GetCandidateOtherInfo(ByVal sCandidateID As Decimal) As RecruitmentBusiness.CandidateOtherInfoDTO Implements RecruitmentBusiness.IRecruitmentBusiness.GetCandidateOtherInfo
             Return MyBase.Channel.GetCandidateOtherInfo(sCandidateID)
         End Function
-
+        
         Public Function GetCandidateHealthInfo(ByVal sCandidateID As Decimal) As RecruitmentBusiness.CandidateHealthDTO Implements RecruitmentBusiness.IRecruitmentBusiness.GetCandidateHealthInfo
             Return MyBase.Channel.GetCandidateHealthInfo(sCandidateID)
         End Function
-
+        
         Public Function GetCandidateExpectInfo(ByVal sCandidateID As Decimal) As RecruitmentBusiness.CandidateExpectDTO Implements RecruitmentBusiness.IRecruitmentBusiness.GetCandidateExpectInfo
             Return MyBase.Channel.GetCandidateExpectInfo(sCandidateID)
         End Function
-
+        
         Public Function GetCandidateHistory(ByVal sCandidateID As Decimal, ByVal sCandidateIDNO As Decimal) As System.Collections.Generic.List(Of RecruitmentBusiness.CandidateHistoryDTO) Implements RecruitmentBusiness.IRecruitmentBusiness.GetCandidateHistory
             Return MyBase.Channel.GetCandidateHistory(sCandidateID, sCandidateIDNO)
         End Function
-
+        
         Public Function DeleteCandidate(ByVal lstEmpID As System.Collections.Generic.List(Of Decimal), ByVal log As Common.CommonBusiness.UserLog, ByRef sError As String) As Boolean Implements RecruitmentBusiness.IRecruitmentBusiness.DeleteCandidate
             Return MyBase.Channel.DeleteCandidate(lstEmpID, log, sError)
         End Function
-
+        
         Public Function UpdateProgramCandidate(ByVal lstCanID As System.Collections.Generic.List(Of Decimal), ByVal programID As Decimal, ByVal log As Common.CommonBusiness.UserLog) As Boolean Implements RecruitmentBusiness.IRecruitmentBusiness.UpdateProgramCandidate
             Return MyBase.Channel.UpdateProgramCandidate(lstCanID, programID, log)
         End Function
-
+        
         Public Function UpdateStatusCandidate(ByVal lstCanID As System.Collections.Generic.List(Of Decimal), ByVal statusID As String, ByVal log As Common.CommonBusiness.UserLog) As Boolean Implements RecruitmentBusiness.IRecruitmentBusiness.UpdateStatusCandidate
             Return MyBase.Channel.UpdateStatusCandidate(lstCanID, statusID, log)
         End Function
-
+        
         Public Function UpdatePontentialCandidate(ByVal lstCanID As System.Collections.Generic.List(Of Decimal), ByVal bCheck As Boolean, ByVal log As Common.CommonBusiness.UserLog) As Boolean Implements RecruitmentBusiness.IRecruitmentBusiness.UpdatePontentialCandidate
             Return MyBase.Channel.UpdatePontentialCandidate(lstCanID, bCheck, log)
         End Function
-
+        
         Public Function UpdateBlackListCandidate(ByVal lstCanID As System.Collections.Generic.List(Of Decimal), ByVal bCheck As Boolean, ByVal log As Common.CommonBusiness.UserLog) As Boolean Implements RecruitmentBusiness.IRecruitmentBusiness.UpdateBlackListCandidate
             Return MyBase.Channel.UpdateBlackListCandidate(lstCanID, bCheck, log)
         End Function
-
+        
         Public Function UpdateReHireCandidate(ByVal lstCanID As System.Collections.Generic.List(Of Decimal), ByVal bCheck As Boolean, ByVal log As Common.CommonBusiness.UserLog) As Boolean Implements RecruitmentBusiness.IRecruitmentBusiness.UpdateReHireCandidate
             Return MyBase.Channel.UpdateReHireCandidate(lstCanID, bCheck, log)
         End Function
-
+        
         Public Function GetCandidateImport() As System.Data.DataSet Implements RecruitmentBusiness.IRecruitmentBusiness.GetCandidateImport
             Return MyBase.Channel.GetCandidateImport
         End Function
-
+        
         Public Function ImportCandidate(ByVal lst As System.Collections.Generic.List(Of RecruitmentBusiness.CandidateImportDTO), ByVal log As Common.CommonBusiness.UserLog) As Boolean Implements RecruitmentBusiness.IRecruitmentBusiness.ImportCandidate
             Return MyBase.Channel.ImportCandidate(lst, log)
         End Function
-
+        
         Public Function TransferHSNVToCandidate(ByVal empID As Decimal, ByVal orgID As Decimal, ByVal titleID As Decimal, ByVal programID As Decimal, ByVal log As Common.CommonBusiness.UserLog) As Boolean Implements RecruitmentBusiness.IRecruitmentBusiness.TransferHSNVToCandidate
             Return MyBase.Channel.TransferHSNVToCandidate(empID, orgID, titleID, programID, log)
         End Function
-
+        
         Public Function GetCandidateFamily(ByVal _filter As RecruitmentBusiness.CandidateFamilyDTO) As System.Collections.Generic.List(Of RecruitmentBusiness.CandidateFamilyDTO) Implements RecruitmentBusiness.IRecruitmentBusiness.GetCandidateFamily
             Return MyBase.Channel.GetCandidateFamily(_filter)
         End Function
-
+        
         Public Function InsertCandidateFamily(ByVal objFamily As RecruitmentBusiness.CandidateFamilyDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean Implements RecruitmentBusiness.IRecruitmentBusiness.InsertCandidateFamily
             Return MyBase.Channel.InsertCandidateFamily(objFamily, log, gID)
         End Function
-
+        
         Public Function ModifyCandidateFamily(ByVal objFamily As RecruitmentBusiness.CandidateFamilyDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean Implements RecruitmentBusiness.IRecruitmentBusiness.ModifyCandidateFamily
             Return MyBase.Channel.ModifyCandidateFamily(objFamily, log, gID)
         End Function
-
+        
         Public Function DeleteCandidateFamily(ByVal lstDecimals As System.Collections.Generic.List(Of Decimal), ByVal log As Common.CommonBusiness.UserLog) As Boolean Implements RecruitmentBusiness.IRecruitmentBusiness.DeleteCandidateFamily
             Return MyBase.Channel.DeleteCandidateFamily(lstDecimals, log)
         End Function
-
+        
         Public Function ValidateFamily(ByVal _validate As RecruitmentBusiness.CandidateFamilyDTO) As Boolean Implements RecruitmentBusiness.IRecruitmentBusiness.ValidateFamily
             Return MyBase.Channel.ValidateFamily(_validate)
         End Function
-
+        
         Public Function GetCandidateTrainSinger(ByVal _filter As RecruitmentBusiness.TrainSingerDTO) As System.Collections.Generic.List(Of RecruitmentBusiness.TrainSingerDTO) Implements RecruitmentBusiness.IRecruitmentBusiness.GetCandidateTrainSinger
             Return MyBase.Channel.GetCandidateTrainSinger(_filter)
         End Function
-
+        
         Public Function InsertCandidateTrainSinger(ByVal objTrainSinger As RecruitmentBusiness.TrainSingerDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean Implements RecruitmentBusiness.IRecruitmentBusiness.InsertCandidateTrainSinger
             Return MyBase.Channel.InsertCandidateTrainSinger(objTrainSinger, log, gID)
         End Function
-
+        
         Public Function ModifyCandidateTrainSinger(ByVal objTrainSinger As RecruitmentBusiness.TrainSingerDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean Implements RecruitmentBusiness.IRecruitmentBusiness.ModifyCandidateTrainSinger
             Return MyBase.Channel.ModifyCandidateTrainSinger(objTrainSinger, log, gID)
         End Function
-
+        
         Public Function DeleteCandidateTrainSinger(ByVal lstDecimals As System.Collections.Generic.List(Of Decimal), ByVal log As Common.CommonBusiness.UserLog) As Boolean Implements RecruitmentBusiness.IRecruitmentBusiness.DeleteCandidateTrainSinger
             Return MyBase.Channel.DeleteCandidateTrainSinger(lstDecimals, log)
         End Function
-
+        
         Public Function GetCandidateReference(ByVal _filter As RecruitmentBusiness.CandidateReferenceDTO) As System.Collections.Generic.List(Of RecruitmentBusiness.CandidateReferenceDTO) Implements RecruitmentBusiness.IRecruitmentBusiness.GetCandidateReference
             Return MyBase.Channel.GetCandidateReference(_filter)
         End Function
-
+        
         Public Function InsertCandidateReference(ByVal objTrainSinger As RecruitmentBusiness.CandidateReferenceDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean Implements RecruitmentBusiness.IRecruitmentBusiness.InsertCandidateReference
             Return MyBase.Channel.InsertCandidateReference(objTrainSinger, log, gID)
         End Function
-
+        
         Public Function ModifyCandidateReference(ByVal objTrainSinger As RecruitmentBusiness.CandidateReferenceDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean Implements RecruitmentBusiness.IRecruitmentBusiness.ModifyCandidateReference
             Return MyBase.Channel.ModifyCandidateReference(objTrainSinger, log, gID)
         End Function
-
+        
         Public Function DeleteCandidateReference(ByVal lstDecimals As System.Collections.Generic.List(Of Decimal), ByVal log As Common.CommonBusiness.UserLog) As Boolean Implements RecruitmentBusiness.IRecruitmentBusiness.DeleteCandidateReference
             Return MyBase.Channel.DeleteCandidateReference(lstDecimals, log)
         End Function
-
+        
         Public Function GetCandidateBeforeWT(ByVal _filter As RecruitmentBusiness.CandidateBeforeWTDTO) As System.Collections.Generic.List(Of RecruitmentBusiness.CandidateBeforeWTDTO) Implements RecruitmentBusiness.IRecruitmentBusiness.GetCandidateBeforeWT
             Return MyBase.Channel.GetCandidateBeforeWT(_filter)
         End Function
-
+        
         Public Function InsertCandidateBeforeWT(ByVal objCandidateBeforeWT As RecruitmentBusiness.CandidateBeforeWTDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean Implements RecruitmentBusiness.IRecruitmentBusiness.InsertCandidateBeforeWT
             Return MyBase.Channel.InsertCandidateBeforeWT(objCandidateBeforeWT, log, gID)
         End Function
-
+        
         Public Function ModifyCandidateBeforeWT(ByVal objCandidateBeforeWT As RecruitmentBusiness.CandidateBeforeWTDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean Implements RecruitmentBusiness.IRecruitmentBusiness.ModifyCandidateBeforeWT
             Return MyBase.Channel.ModifyCandidateBeforeWT(objCandidateBeforeWT, log, gID)
         End Function
-
+        
         Public Function DeleteCandidateBeforeWT(ByVal lstDecimals As System.Collections.Generic.List(Of Decimal), ByVal log As Common.CommonBusiness.UserLog) As Boolean Implements RecruitmentBusiness.IRecruitmentBusiness.DeleteCandidateBeforeWT
             Return MyBase.Channel.DeleteCandidateBeforeWT(lstDecimals, log)
         End Function
-
+        
         Public Function GetProgramSchedule(ByVal _filter As RecruitmentBusiness.ProgramScheduleDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal Sorts As String) As System.Collections.Generic.List(Of RecruitmentBusiness.ProgramScheduleDTO) Implements RecruitmentBusiness.IRecruitmentBusiness.GetProgramSchedule
             Return MyBase.Channel.GetProgramSchedule(_filter, PageIndex, PageSize, Total, Sorts)
         End Function
-
+        
         Public Function GetProgramScheduleByID(ByVal _filter As RecruitmentBusiness.ProgramScheduleDTO) As RecruitmentBusiness.ProgramScheduleDTO Implements RecruitmentBusiness.IRecruitmentBusiness.GetProgramScheduleByID
             Return MyBase.Channel.GetProgramScheduleByID(_filter)
         End Function
-
+        
         Public Function GetCandidateNotScheduleByScheduleID(ByVal _filter As RecruitmentBusiness.ProgramScheduleCanDTO) As System.Collections.Generic.List(Of RecruitmentBusiness.ProgramScheduleCanDTO) Implements RecruitmentBusiness.IRecruitmentBusiness.GetCandidateNotScheduleByScheduleID
             Return MyBase.Channel.GetCandidateNotScheduleByScheduleID(_filter)
         End Function
-
+        
         Public Function GetCandidateScheduleByScheduleID(ByVal _filter As RecruitmentBusiness.ProgramScheduleCanDTO) As System.Collections.Generic.List(Of RecruitmentBusiness.ProgramScheduleCanDTO) Implements RecruitmentBusiness.IRecruitmentBusiness.GetCandidateScheduleByScheduleID
             Return MyBase.Channel.GetCandidateScheduleByScheduleID(_filter)
         End Function
-
+        
         Public Function UpdateProgramSchedule(ByVal objExams As RecruitmentBusiness.ProgramScheduleDTO, ByVal log As Common.CommonBusiness.UserLog) As Boolean Implements RecruitmentBusiness.IRecruitmentBusiness.UpdateProgramSchedule
             Return MyBase.Channel.UpdateProgramSchedule(objExams, log)
         End Function
-
+        
         Public Function GetCandidateResult(ByVal _filter As RecruitmentBusiness.ProgramScheduleCanDTO) As System.Collections.Generic.List(Of RecruitmentBusiness.ProgramScheduleCanDTO) Implements RecruitmentBusiness.IRecruitmentBusiness.GetCandidateResult
             Return MyBase.Channel.GetCandidateResult(_filter)
         End Function
-
+        
         Public Function UpdateCandidateResult(ByVal lst As System.Collections.Generic.List(Of RecruitmentBusiness.ProgramScheduleCanDTO), ByVal log As Common.CommonBusiness.UserLog) As Boolean Implements RecruitmentBusiness.IRecruitmentBusiness.UpdateCandidateResult
             Return MyBase.Channel.UpdateCandidateResult(lst, log)
         End Function
-
+        
         Public Function GetCost(ByVal _filter As RecruitmentBusiness.CostDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal Sorts As String) As System.Collections.Generic.List(Of RecruitmentBusiness.CostDTO) Implements RecruitmentBusiness.IRecruitmentBusiness.GetCost
             Return MyBase.Channel.GetCost(_filter, PageIndex, PageSize, Total, Sorts)
-        End Function
-
-        Public Function UpdateCost(ByVal objExams As RecruitmentBusiness.CostDTO, ByVal log As Common.CommonBusiness.UserLog) As Boolean Implements RecruitmentBusiness.IRecruitmentBusiness.UpdateCost
-            Return MyBase.Channel.UpdateCost(objExams, log)
         End Function
     End Class
 End Namespace

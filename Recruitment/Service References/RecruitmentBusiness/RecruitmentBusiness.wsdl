@@ -16,12 +16,18 @@
       <xsd:import schemaLocation="http://localhost:9999/RecruitmentBusiness.svc?xsd=xsd0" namespace="http://tempuri.org/" />
       <xsd:import schemaLocation="http://localhost:9999/RecruitmentBusiness.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
       <xsd:import schemaLocation="http://localhost:9999/RecruitmentBusiness.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/RecruitmentDAL" />
-      <xsd:import schemaLocation="http://localhost:9999/RecruitmentBusiness.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/System.Data" />
-      <xsd:import schemaLocation="http://localhost:9999/RecruitmentBusiness.svc?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/Framework.Data" />
+      <xsd:import schemaLocation="http://localhost:9999/RecruitmentBusiness.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/Framework.Data" />
+      <xsd:import schemaLocation="http://localhost:9999/RecruitmentBusiness.svc?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/System.Data" />
       <xsd:import schemaLocation="http://localhost:9999/RecruitmentBusiness.svc?xsd=xsd5" />
       <xsd:import schemaLocation="http://localhost:9999/RecruitmentBusiness.svc?xsd=xsd6" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
     </xsd:schema>
   </wsdl:types>
+  <wsdl:message name="IRecruitmentBusiness_UpdateCost_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateCost" />
+  </wsdl:message>
+  <wsdl:message name="IRecruitmentBusiness_UpdateCost_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateCostResponse" />
+  </wsdl:message>
   <wsdl:message name="IRecruitmentBusiness_ValidateCost_InputMessage">
     <wsdl:part name="parameters" element="tns:ValidateCost" />
   </wsdl:message>
@@ -328,6 +334,12 @@
   <wsdl:message name="IRecruitmentBusiness_ValidateInsertCandidate_OutputMessage">
     <wsdl:part name="parameters" element="tns:ValidateInsertCandidateResponse" />
   </wsdl:message>
+  <wsdl:message name="IRecruitmentBusiness_GetCandidateFamily_ByID_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCandidateFamily_ByID" />
+  </wsdl:message>
+  <wsdl:message name="IRecruitmentBusiness_GetCandidateFamily_ByID_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCandidateFamily_ByIDResponse" />
+  </wsdl:message>
   <wsdl:message name="IRecruitmentBusiness_GetCandidateImage_InputMessage">
     <wsdl:part name="parameters" element="tns:GetCandidateImage" />
   </wsdl:message>
@@ -622,13 +634,11 @@
   <wsdl:message name="IRecruitmentBusiness_GetCost_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetCostResponse" />
   </wsdl:message>
-  <wsdl:message name="IRecruitmentBusiness_UpdateCost_InputMessage">
-    <wsdl:part name="parameters" element="tns:UpdateCost" />
-  </wsdl:message>
-  <wsdl:message name="IRecruitmentBusiness_UpdateCost_OutputMessage">
-    <wsdl:part name="parameters" element="tns:UpdateCostResponse" />
-  </wsdl:message>
   <wsdl:portType name="IRecruitmentBusiness">
+    <wsdl:operation name="UpdateCost">
+      <wsdl:input wsaw:Action="http://tempuri.org/IRecruitmentBusiness/UpdateCost" message="tns:IRecruitmentBusiness_UpdateCost_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IRecruitmentBusiness/UpdateCostResponse" message="tns:IRecruitmentBusiness_UpdateCost_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="ValidateCost">
       <wsdl:input wsaw:Action="http://tempuri.org/IRecruitmentBusiness/ValidateCost" message="tns:IRecruitmentBusiness_ValidateCost_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IRecruitmentBusiness/ValidateCostResponse" message="tns:IRecruitmentBusiness_ValidateCost_OutputMessage" />
@@ -833,6 +843,10 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IRecruitmentBusiness/ValidateInsertCandidate" message="tns:IRecruitmentBusiness_ValidateInsertCandidate_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IRecruitmentBusiness/ValidateInsertCandidateResponse" message="tns:IRecruitmentBusiness_ValidateInsertCandidate_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="GetCandidateFamily_ByID">
+      <wsdl:input wsaw:Action="http://tempuri.org/IRecruitmentBusiness/GetCandidateFamily_ByID" message="tns:IRecruitmentBusiness_GetCandidateFamily_ByID_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IRecruitmentBusiness/GetCandidateFamily_ByIDResponse" message="tns:IRecruitmentBusiness_GetCandidateFamily_ByID_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="GetCandidateImage">
       <wsdl:input wsaw:Action="http://tempuri.org/IRecruitmentBusiness/GetCandidateImage" message="tns:IRecruitmentBusiness_GetCandidateImage_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IRecruitmentBusiness/GetCandidateImageResponse" message="tns:IRecruitmentBusiness_GetCandidateImage_OutputMessage" />
@@ -1029,14 +1043,19 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IRecruitmentBusiness/GetCost" message="tns:IRecruitmentBusiness_GetCost_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IRecruitmentBusiness/GetCostResponse" message="tns:IRecruitmentBusiness_GetCost_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="UpdateCost">
-      <wsdl:input wsaw:Action="http://tempuri.org/IRecruitmentBusiness/UpdateCost" message="tns:IRecruitmentBusiness_UpdateCost_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IRecruitmentBusiness/UpdateCostResponse" message="tns:IRecruitmentBusiness_UpdateCost_OutputMessage" />
-    </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="WSHttpBinding_IRecruitmentBusiness" type="tns:IRecruitmentBusiness">
     <wsp:PolicyReference URI="#WSHttpBinding_IRecruitmentBusiness_policy" />
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="UpdateCost">
+      <soap12:operation soapAction="http://tempuri.org/IRecruitmentBusiness/UpdateCost" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="ValidateCost">
       <soap12:operation soapAction="http://tempuri.org/IRecruitmentBusiness/ValidateCost" style="document" />
       <wsdl:input>
@@ -1496,6 +1515,15 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="GetCandidateFamily_ByID">
+      <soap12:operation soapAction="http://tempuri.org/IRecruitmentBusiness/GetCandidateFamily_ByID" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="GetCandidateImage">
       <soap12:operation soapAction="http://tempuri.org/IRecruitmentBusiness/GetCandidateImage" style="document" />
       <wsdl:input>
@@ -1930,15 +1958,6 @@
     </wsdl:operation>
     <wsdl:operation name="GetCost">
       <soap12:operation soapAction="http://tempuri.org/IRecruitmentBusiness/GetCost" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="UpdateCost">
-      <soap12:operation soapAction="http://tempuri.org/IRecruitmentBusiness/UpdateCost" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

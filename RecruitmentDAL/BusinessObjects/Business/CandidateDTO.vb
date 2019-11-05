@@ -62,4 +62,9 @@
     Public Property NOIBO_ID As String
     Public Property PONTENTIAL As String
 
+    'Chức danh quan tâm
+    Public Property CARE_TITLE_NAME As String
+
+    'Trang tuyển dụng
+    Public Property RECRUIMENT_WEBSITE As String
 End Class

@@ -18,7 +18,7 @@ Imports System.Runtime.Serialization
 Imports System.Xml.Serialization
 
 
-<Assembly: EdmSchemaAttribute("62c21d27-6b1b-490e-9f11-089780dc1899")>
+<Assembly: EdmSchemaAttribute("c2b18d10-5001-49b1-8393-b23b865dfca2")>
 #Region "EDM Relationship Metadata"
 <Assembly: EdmRelationshipAttribute("RecruitmentModel", "FK_FE_HEH", "HU_EMPLOYEE", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_EMPLOYEE), "HU_EMPLOYEE_HEALTH1", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(HU_EMPLOYEE_HEALTH1), True)>
 <Assembly: EdmRelationshipAttribute("RecruitmentModel", "FK_HE_HEC", "HU_EMPLOYEE", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_EMPLOYEE), "HU_EMPLOYEE_CV", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(HU_EMPLOYEE_CV), True)>
@@ -17304,6 +17304,56 @@ Public Partial Class RC_CANDIDATE
     Private Partial Sub OnEMPLOYEE_CODEChanged()
     End Sub
 
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property CARE_TITLE_NAME() As Global.System.String
+        Get
+            Return _CARE_TITLE_NAME
+        End Get
+        Set
+            OnCARE_TITLE_NAMEChanging(value)
+            ReportPropertyChanging("CARE_TITLE_NAME")
+            _CARE_TITLE_NAME = StructuralObject.SetValidValue(value, true)
+            ReportPropertyChanged("CARE_TITLE_NAME")
+            OnCARE_TITLE_NAMEChanged()
+        End Set
+    End Property
+
+    Private _CARE_TITLE_NAME As Global.System.String
+    Private Partial Sub OnCARE_TITLE_NAMEChanging(value As Global.System.String)
+    End Sub
+
+    Private Partial Sub OnCARE_TITLE_NAMEChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property RECRUIMENT_WEBSITE() As Global.System.String
+        Get
+            Return _RECRUIMENT_WEBSITE
+        End Get
+        Set
+            OnRECRUIMENT_WEBSITEChanging(value)
+            ReportPropertyChanging("RECRUIMENT_WEBSITE")
+            _RECRUIMENT_WEBSITE = StructuralObject.SetValidValue(value, true)
+            ReportPropertyChanged("RECRUIMENT_WEBSITE")
+            OnRECRUIMENT_WEBSITEChanged()
+        End Set
+    End Property
+
+    Private _RECRUIMENT_WEBSITE As Global.System.String
+    Private Partial Sub OnRECRUIMENT_WEBSITEChanging(value As Global.System.String)
+    End Sub
+
+    Private Partial Sub OnRECRUIMENT_WEBSITEChanged()
+    End Sub
+
     #End Region
 
 End Class
@@ -19864,6 +19914,81 @@ Public Partial Class RC_CANDIDATE_CV
     Private Partial Sub OnPER_WARDChanged()
     End Sub
 
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property FINDER_NAME() As Global.System.String
+        Get
+            Return _FINDER_NAME
+        End Get
+        Set
+            OnFINDER_NAMEChanging(value)
+            ReportPropertyChanging("FINDER_NAME")
+            _FINDER_NAME = StructuralObject.SetValidValue(value, true)
+            ReportPropertyChanged("FINDER_NAME")
+            OnFINDER_NAMEChanged()
+        End Set
+    End Property
+
+    Private _FINDER_NAME As Global.System.String
+    Private Partial Sub OnFINDER_NAMEChanging(value As Global.System.String)
+    End Sub
+
+    Private Partial Sub OnFINDER_NAMEChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property FINDER_SDT() As Global.System.String
+        Get
+            Return _FINDER_SDT
+        End Get
+        Set
+            OnFINDER_SDTChanging(value)
+            ReportPropertyChanging("FINDER_SDT")
+            _FINDER_SDT = StructuralObject.SetValidValue(value, true)
+            ReportPropertyChanged("FINDER_SDT")
+            OnFINDER_SDTChanged()
+        End Set
+    End Property
+
+    Private _FINDER_SDT As Global.System.String
+    Private Partial Sub OnFINDER_SDTChanging(value As Global.System.String)
+    End Sub
+
+    Private Partial Sub OnFINDER_SDTChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property FINDER_ADDRESS() As Global.System.String
+        Get
+            Return _FINDER_ADDRESS
+        End Get
+        Set
+            OnFINDER_ADDRESSChanging(value)
+            ReportPropertyChanging("FINDER_ADDRESS")
+            _FINDER_ADDRESS = StructuralObject.SetValidValue(value, true)
+            ReportPropertyChanged("FINDER_ADDRESS")
+            OnFINDER_ADDRESSChanged()
+        End Set
+    End Property
+
+    Private _FINDER_ADDRESS As Global.System.String
+    Private Partial Sub OnFINDER_ADDRESSChanging(value As Global.System.String)
+    End Sub
+
+    Private Partial Sub OnFINDER_ADDRESSChanged()
+    End Sub
+
     #End Region
 
 End Class
@@ -22152,6 +22277,31 @@ Public Partial Class RC_CANDIDATE_FAMILY
     End Sub
 
     Private Partial Sub OnBIRTH_NAT2Changed()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property PHONE_NUMBER() As Global.System.String
+        Get
+            Return _PHONE_NUMBER
+        End Get
+        Set
+            OnPHONE_NUMBERChanging(value)
+            ReportPropertyChanging("PHONE_NUMBER")
+            _PHONE_NUMBER = StructuralObject.SetValidValue(value, true)
+            ReportPropertyChanged("PHONE_NUMBER")
+            OnPHONE_NUMBERChanged()
+        End Set
+    End Property
+
+    Private _PHONE_NUMBER As Global.System.String
+    Private Partial Sub OnPHONE_NUMBERChanging(value As Global.System.String)
+    End Sub
+
+    Private Partial Sub OnPHONE_NUMBERChanged()
     End Sub
 
     #End Region

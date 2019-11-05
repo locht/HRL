@@ -195,9 +195,9 @@ Public Class ctrlRC_CanDtlProfile
                     txtFirstNameVN.Text = CandidateInfo.FIRST_NAME_VN
                     txtLastNameVN.Text = CandidateInfo.LAST_NAME_VN
                     hidOrg.Value = CandidateInfo.ORG_ID
-
                     txtOrgName.Text = CandidateInfo.ORG_NAME
-
+                    txtCare_TitleName.Text = CandidateInfo.CARE_TITLE_NAME
+                    txtCare_Website.Text = CandidateInfo.RECRUIMENT_WEBSITE
 
                     'Phần sơ yếu lý lịch
                     Dim empCV = rep.GetCandidateCV(CandidateInfo.ID)
@@ -354,6 +354,21 @@ Public Class ctrlRC_CanDtlProfile
                         If empCV.TEMP_RESIDENCE_CARD_END IsNot Nothing Then
                             rdTheTamTruDenNgay.SelectedDate = empCV.TEMP_RESIDENCE_CARD_END
                         End If
+
+                        txtNGT_Fullname.Text = empCV.FINDER_NAME
+                        txtNGT_SDT.Text = empCV.FINDER_SDT
+                        txtNGT_DiaChi.Text = empCV.FINDER_ADDRESS
+                    End If
+
+                    'Phần gia đình
+                    Dim EmpFamily = rep.GetCandidateFamily_ByID(CandidateInfo.ID)
+                    If EmpFamily IsNot Nothing Then
+                        txtNT_FullName.Text = EmpFamily.FULLNAME
+                        txtNT_SDT.Text = EmpFamily.PHONE_NUMBER
+                        txtNT_DiaChi.Text = EmpFamily.ADDRESS
+                        If IsNumeric(EmpFamily.RELATION_ID) = True Then
+                            rcbNT_Relation.SelectedValue = EmpFamily.RELATION_ID
+                        End If
                     End If
 
                     'Phần trình độ
@@ -487,7 +502,7 @@ Public Class ctrlRC_CanDtlProfile
                         txtVienGanB.Text = EmpHealthInfo.VIEM_GAN_B
                         txtDaHoaLieu.Text = EmpHealthInfo.DA_HOA_LIEU
                         txtGhiChuSK.Text = EmpHealthInfo.GHI_CHU_SUC_KHOE
-                        
+
                     End If
                     'Candidate Nguyện vọng
                     Dim EmpExpectInfo = rep.GetCandidateExpectInfo(CandidateInfo.ID)
@@ -589,6 +604,7 @@ Public Class ctrlRC_CanDtlProfile
                 ListComboData.GET_DISTRICT = True
                 ListComboData.GET_NATION = True
                 ListComboData.GET_PROVINCE = True
+                ListComboData.GET_RELATION = True
                 'ListComboData.GET_PROVINC()
                 rep.GetComboList(ListComboData)
             End If
@@ -597,6 +613,9 @@ Public Class ctrlRC_CanDtlProfile
             ' Giới tính
             dtData = rep.GetOtherList("GENDER", True)
             FillRadCombobox(cboGender, dtData, "NAME", "ID")
+
+            'Mối quan hệ
+            FillDropDownList(rcbNT_Relation, ListComboData.LIST_RELATION, "NAME_VN", "ID", Common.Common.SystemLanguage, True, cboNation.SelectedValue)
 
             'Tình trạng hôn nhân
             dtData = rep.GetOtherList("FAMILY_STATUS", True)
@@ -1083,6 +1102,7 @@ Public Class ctrlRC_CanDtlProfile
         Dim EmpEducation As New CandidateEduDTO
         Dim EmpHealthInfo As New CandidateHealthDTO
         Dim EmpExpectInfo As New CandidateExpectDTO
+        Dim EmpFamily As New CandidateFamilyDTO
         Try
             'Candidate
             If CandidateInfo Is Nothing Then
@@ -1100,7 +1120,8 @@ Public Class ctrlRC_CanDtlProfile
             CandidateInfo.LAST_NAME_VN = txtLastNameVN.Text.Trim()
             CandidateInfo.ORG_ID = Decimal.Parse(hidOrg.Value)
             CandidateInfo.TITLE_ID = Decimal.Parse(hidTitle.Value)
-
+            CandidateInfo.CARE_TITLE_NAME = txtCare_TitleName.Text.Trim()
+            CandidateInfo.RECRUIMENT_WEBSITE = txtCare_Website.Text.Trim()
 
             'Candidate CV
             EmpCV = New CandidateCVDTO
@@ -1167,6 +1188,14 @@ Public Class ctrlRC_CanDtlProfile
                 EmpCV.CONTACT_DISTRICT_ID = Decimal.Parse(cboContractDictrict.SelectedValue)
             End If
 
+            'Candidate Family
+            EmpFamily.FULLNAME = txtNT_FullName.Text.Trim
+            If IsNumeric(rcbNT_Relation.SelectedValue) = True Then
+                EmpFamily.RELATION_ID = rcbNT_Relation.SelectedValue
+            End If
+            EmpFamily.PHONE_NUMBER = txtNT_SDT.Text.Trim
+            EmpFamily.ADDRESS = txtNT_DiaChi.Text.Trim
+
             'Lấy ảnh của nhân viên
             If ImageFile IsNot Nothing Then
                 Dim bytes(ImageFile.ContentLength - 1) As Byte
@@ -1221,6 +1250,9 @@ Public Class ctrlRC_CanDtlProfile
             EmpCV.TEMP_RESIDENCE_CARD = txtTheTamTru.Text
             EmpCV.TEMP_RESIDENCE_CARD_START = rdTheTamTruTuNgay.SelectedDate
             EmpCV.TEMP_RESIDENCE_CARD_END = rdTheTamTruDenNgay.SelectedDate
+            EmpCV.FINDER_NAME = txtNGT_Fullname.Text.Trim()
+            EmpCV.FINDER_SDT = txtNGT_SDT.Text.Trim()
+            EmpCV.FINDER_ADDRESS = txtNGT_DiaChi.Text.Trim()
 
             'EmpEducation
             If cboNgoaNgu1.SelectedValue <> "" Then
@@ -1359,17 +1391,17 @@ Public Class ctrlRC_CanDtlProfile
             ' Nguyện vọng
             EmpExpectInfo = New CandidateExpectDTO
             EmpExpectInfo.TIME_START = cboExpectThoiGianLamViec.SelectedValue
-            EmpExpectInfo.PROBATIONARY_SALARY = If(txtExpectMucLuongThuViec.Text = String.Empty, 0, 1)
-            EmpExpectInfo.OFFICIAL_SALARY = If(txtExpectMucLuongChinhThuc.Text = String.Empty, 0, 1)
+            EmpExpectInfo.PROBATIONARY_SALARY = If(txtExpectMucLuongThuViec.Text = String.Empty, 0, Decimal.Parse(txtExpectMucLuongThuViec.Text.Trim))
+            EmpExpectInfo.OFFICIAL_SALARY = If(txtExpectMucLuongChinhThuc.Text = String.Empty, 0, Decimal.Parse(txtExpectMucLuongChinhThuc.Text.Trim))
             EmpExpectInfo.DATE_START = txtExpectNgayBatDau.SelectedDate
             EmpExpectInfo.OTHER_REQUEST = txtExpectDeNghiKhac.Text
 
             If CandidateInfo IsNot Nothing Then
                 If hidID.Value <> "" Then
                     CandidateInfo.ID = Decimal.Parse(hidID.Value)
-                    result = rep.ModifyCandidate(CandidateInfo, gID, _binaryImage, EmpCV, EmpEducation, EmpOtherInfo, EmpHealthInfo, EmpExpectInfo)
+                    result = rep.ModifyCandidate(CandidateInfo, gID, _binaryImage, EmpCV, EmpEducation, EmpOtherInfo, EmpHealthInfo, EmpExpectInfo, EmpFamily)
                 Else
-                    result = rep.InsertCandidate(CandidateInfo, gID, strEmpCode, _binaryImage, EmpCV, EmpEducation, EmpOtherInfo, EmpHealthInfo, EmpExpectInfo)
+                    result = rep.InsertCandidate(CandidateInfo, gID, strEmpCode, _binaryImage, EmpCV, EmpEducation, EmpOtherInfo, EmpHealthInfo, EmpExpectInfo, EmpFamily)
                 End If
                 Refresh()
             End If

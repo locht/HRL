@@ -175,6 +175,9 @@ Namespace RecruitmentBusiness.ServiceContracts
         <OperationContract()>
         Function ValidateInsertCandidate(ByVal sEmpId As String, ByVal sID_No As String, ByVal sFullName As String, ByVal dBirthDate As Date, ByVal sType As String) As Boolean
 
+        <OperationContract()>
+        Function GetCandidateFamily_ByID(ByVal sCandidateID As Decimal) As CandidateFamilyDTO
+
         ''' <summary>
         ''' Trả về binary của ảnh hồ sơ ứng viên
         ''' </summary>
@@ -203,11 +206,12 @@ Namespace RecruitmentBusiness.ServiceContracts
         Function InsertCandidate(ByVal objEmp As CandidateDTO, ByVal log As UserLog, ByRef gID As Decimal, _
                                   ByRef _strEmpCode As String, _
                                   ByVal _imageBinary As Byte(),
-                                   ByVal objEmpCV As CandidateCVDTO, _
-                                         ByVal objEmpEdu As CandidateEduDTO, _
+                                  ByVal objEmpCV As CandidateCVDTO, _
+                                  ByVal objEmpEdu As CandidateEduDTO, _
                                    ByVal objEmpOther As CandidateOtherInfoDTO, _
                                          ByVal objEmpHealth As CandidateHealthDTO, _
-                                         ByVal objEmpExpect As CandidateExpectDTO) As Boolean
+                                         ByVal objEmpExpect As CandidateExpectDTO, _
+                                         ByVal objEmpFamily As CandidateFamilyDTO) As Boolean
 
         <OperationContract()>
         Function CreateNewCandidateCode() As CandidateDTO
@@ -233,7 +237,8 @@ Namespace RecruitmentBusiness.ServiceContracts
                                          ByVal objEmpEdu As CandidateEduDTO, _
                                    ByVal objEmpOther As CandidateOtherInfoDTO, _
                                          ByVal objEmpHealth As CandidateHealthDTO, _
-                                         ByVal objEmpExpect As CandidateExpectDTO) As Boolean
+                                         ByVal objEmpExpect As CandidateExpectDTO, _
+                                         ByVal objEmpFamily As CandidateFamilyDTO) As Boolean
 
 
         ''' <summary>

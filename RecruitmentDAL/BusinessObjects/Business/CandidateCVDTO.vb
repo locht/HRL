@@ -124,4 +124,8 @@
     'THEM TRUONG PHUONG XA THUONG TRU PER_WARD
     Public Property PER_WARD As Decimal?
     Public Property PER_WARD_NAME As String
+
+    Public Property FINDER_NAME As String
+    Public Property FINDER_SDT As String
+    Public Property FINDER_ADDRESS As String
 End Class

@@ -282,6 +282,16 @@ Namespace RecruitmentBusiness.ServiceImplementations
             End Try
         End Function
 
+        Public Function GetCandidateFamily_ByID(ByVal sCandidateID As Decimal) As CandidateFamilyDTO _
+            Implements ServiceContracts.IRecruitmentBusiness.GetCandidateFamily_ByID
+            Try
+                Dim rep As New RecruitmentRepository
+                Return rep.GetCandidateFamily_ByID(sCandidateID)
+            Catch ex As Exception
+                Throw ex
+            End Try
+        End Function
+
         Public Function GetCandidateImage(ByVal gEmpID As Decimal, ByRef sError As String) As Byte() _
             Implements ServiceContracts.IRecruitmentBusiness.GetCandidateImage
             Try
@@ -312,13 +322,14 @@ Namespace RecruitmentBusiness.ServiceImplementations
                                          ByVal objEmpEdu As CandidateEduDTO, _
                                          ByVal objEmpOther As CandidateOtherInfoDTO, _
                                          ByVal objEmpHealth As CandidateHealthDTO, _
-                                         ByVal objEmpExpect As CandidateExpectDTO) As Boolean _
+                                         ByVal objEmpExpect As CandidateExpectDTO, _
+                                         ByVal objEmpFamily As CandidateFamilyDTO) As Boolean _
                                 Implements ServiceContracts.IRecruitmentBusiness.InsertCandidate
 
             Try
                 Dim rep As New RecruitmentRepository
                 Return rep.InsertCandidate(objEmp, log, gID, _strEmpCode, _imageBinary, objEmpCV, objEmpEdu _
-                                             , objEmpOther, objEmpHealth, objEmpExpect)
+                                             , objEmpOther, objEmpHealth, objEmpExpect, objEmpFamily)
             Catch ex As Exception
                 WriteExceptionLog(ex, "InsertCandidate")
                 Throw ex
@@ -332,12 +343,13 @@ Namespace RecruitmentBusiness.ServiceImplementations
                                          ByVal objEmpEdu As CandidateEduDTO, _
                                         ByVal objEmpOther As CandidateOtherInfoDTO, _
                                          ByVal objEmpHealth As CandidateHealthDTO, _
-                                         ByVal objEmpExpect As CandidateExpectDTO) As Boolean _
+                                         ByVal objEmpExpect As CandidateExpectDTO, _
+                                         ByVal objEmpFamily As CandidateFamilyDTO) As Boolean _
                                 Implements ServiceContracts.IRecruitmentBusiness.ModifyCandidate
             Try
                 Dim rep As New RecruitmentRepository
                 Return rep.ModifyCandidate(objEmp, log, gID, _imageBinary, objEmpCV, objEmpEdu, _
-                                             objEmpOther, objEmpHealth, objEmpExpect)
+                                             objEmpOther, objEmpHealth, objEmpExpect, objEmpFamily)
             Catch ex As Exception
                 WriteExceptionLog(ex, "ModifyCandidate")
                 Throw ex

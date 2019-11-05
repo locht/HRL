@@ -1908,7 +1908,8 @@ Partial Class RecruitmentRepository
                                          ByVal objEmpEdu As CandidateEduDTO, _
                                          ByVal objEmpOther As CandidateOtherInfoDTO, _
                                          ByVal objEmpHealth As CandidateHealthDTO, _
-                                         ByVal objEmpExpect As CandidateExpectDTO) As Boolean
+                                         ByVal objEmpExpect As CandidateExpectDTO, _
+                                         ByVal objEmpFamily As CandidateFamilyDTO) As Boolean
 
         Try
             '---------- 1.0 Thêm vào bảng RC_Candidate ----------
@@ -1947,6 +1948,8 @@ Partial Class RecruitmentRepository
             objEmpData.TITLE_NAME = objEmp.TITLE_NAME
             objEmpData.WORK = objEmp.WORK
             objEmpData.FILE_NAME = objEmp.FILE_NAME
+            objEmpData.CARE_TITLE_NAME = objEmp.CARE_TITLE_NAME
+            objEmpData.RECRUIMENT_WEBSITE = objEmp.RECRUIMENT_WEBSITE
             If objEmp.FILE_SIZE IsNot Nothing Then
                 FileInsert(objEmp.ID, pathCandidate, objEmp.FILE_SIZE)
             End If
@@ -2024,6 +2027,10 @@ Partial Class RecruitmentRepository
             objEmpCVData.TEMP_RESIDENCE_CARD_START = objEmpCV.TEMP_RESIDENCE_CARD_START
             objEmpCVData.TEMP_RESIDENCE_CARD_END = objEmpCV.TEMP_RESIDENCE_CARD_END
 
+            objEmpCVData.FINDER_NAME = objEmpCV.FINDER_NAME
+            objEmpCVData.FINDER_SDT = objEmpCV.FINDER_SDT
+            objEmpCVData.FINDER_ADDRESS = objEmpCV.FINDER_ADDRESS
+
             If objEmpCV.IMAGE <> "" Then
                 objEmpCVData.IMAGE = objEmpData.CANDIDATE_CODE & objEmpCV.IMAGE
             End If
@@ -2077,6 +2084,15 @@ Partial Class RecruitmentRepository
             objEmpOtherData.ACCOUNT_EFFECT_DATE = objEmpOther.ACCOUNT_EFFECT_DATE
             Context.RC_CANDIDATE_OTHER_INFO.AddObject(objEmpOtherData)
 
+            '---------- 5.0 Thêm vào bảng RC_Candidate_Family ----------
+            Dim objEmpFamilyData As New RC_CANDIDATE_FAMILY
+            objEmpFamilyData.CANDIDATE_ID = objEmpData.ID
+            objEmpFamilyData.FULLNAME = objEmpFamily.FULLNAME
+            objEmpFamilyData.RELATION_ID = objEmpFamily.RELATION_ID
+            objEmpFamilyData.PHONE_NUMBER = objEmpFamily.PHONE_NUMBER
+            objEmpFamilyData.ADDRESS = objEmpFamily.ADDRESS
+            Context.RC_CANDIDATE_FAMILY.AddObject(objEmpFamilyData)
+
             ' Thêm vào bảng CandidateExpect
             Dim objEmpExpectData As New RC_CANDIDATE_EXPECT
             objEmpExpectData.CANDIDATE_ID = objEmpData.ID
@@ -2126,7 +2142,8 @@ Partial Class RecruitmentRepository
                                          ByVal objEmpEdu As CandidateEduDTO, _
                                          ByVal objEmpOther As CandidateOtherInfoDTO, _
                                          ByVal objEmpHealth As CandidateHealthDTO, _
-                                         ByVal objEmpExpect As CandidateExpectDTO) As Boolean
+                                         ByVal objEmpExpect As CandidateExpectDTO, _
+                                         ByVal objEmpFamily As CandidateFamilyDTO) As Boolean
 
         Try
             Dim objEmpData As New RC_CANDIDATE With {.ID = objEmp.ID}
@@ -2144,6 +2161,8 @@ Partial Class RecruitmentRepository
             objEmpData.TITLE_NAME = objEmp.TITLE_NAME
             objEmpData.WORK = objEmp.WORK
             objEmpData.FILE_NAME = objEmp.FILE_NAME
+            objEmpData.CARE_TITLE_NAME = objEmp.CARE_TITLE_NAME
+            objEmpData.RECRUIMENT_WEBSITE = objEmp.RECRUIMENT_WEBSITE
             If objEmp.FILE_SIZE IsNot Nothing Then
                 FileInsert(objEmp.ID, pathCandidate, objEmp.FILE_SIZE)
             End If
@@ -2222,6 +2241,10 @@ Partial Class RecruitmentRepository
                 objEmpCVData.TEMP_RESIDENCE_CARD_START = objEmpCV.TEMP_RESIDENCE_CARD_START
                 objEmpCVData.TEMP_RESIDENCE_CARD_END = objEmpCV.TEMP_RESIDENCE_CARD_END
 
+                objEmpCVData.FINDER_NAME = objEmpCV.FINDER_NAME
+                objEmpCVData.FINDER_SDT = objEmpCV.FINDER_SDT
+                objEmpCVData.FINDER_ADDRESS = objEmpCV.FINDER_ADDRESS
+
                 If isInsert Then
                     Context.RC_CANDIDATE_CV.AddObject(objEmpCVData)
                 End If
@@ -2299,6 +2322,28 @@ Partial Class RecruitmentRepository
                     Context.RC_CANDIDATE_OTHER_INFO.AddObject(objEmpOtherData)
                 End If
             End If
+
+            '---------- 5.0 Thêm vào bảng RC_Candidate_Family ----------
+            If objEmpFamily IsNot Nothing Then
+                Dim isInsert As Boolean = False
+                Dim objEmpFamilyData As RC_CANDIDATE_FAMILY
+                objEmpFamilyData = (From p In Context.RC_CANDIDATE_FAMILY Where p.CANDIDATE_ID = objEmp.ID).FirstOrDefault
+                If objEmpFamilyData Is Nothing Then
+                    objEmpFamilyData = New RC_CANDIDATE_FAMILY
+                    isInsert = True
+                End If
+
+                objEmpFamilyData.CANDIDATE_ID = objEmpData.ID
+                objEmpFamilyData.FULLNAME = objEmpFamily.FULLNAME
+                objEmpFamilyData.RELATION_ID = objEmpFamily.RELATION_ID
+                objEmpFamilyData.PHONE_NUMBER = objEmpFamily.PHONE_NUMBER
+                objEmpFamilyData.ADDRESS = objEmpFamily.ADDRESS
+
+                If isInsert Then
+                    Context.RC_CANDIDATE_FAMILY.AddObject(objEmpFamilyData)
+                End If
+            End If
+
             ' Thêm vào bảng CandidateExpect
             If objEmpExpect IsNot Nothing Then
                 Dim isInsert As Boolean = False
@@ -2436,6 +2481,12 @@ Partial Class RecruitmentRepository
                     Next
                     Context.RC_CANDIDATE.DeleteObject(lstEmpDelete(i))
 
+                    '5. Xóa RC_CANDIDATE_FAMILY
+                    Dim lstEmpFamilyDelete = (From p In Context.RC_CANDIDATE_FAMILY Where p.CANDIDATE_ID = canID).ToList
+                    For idx As Int16 = 0 To lstEmpHistoryDelete.Count - 1
+                        Context.RC_CANDIDATE_FAMILY.DeleteObject(lstEmpFamilyDelete(idx))
+                    Next
+                    Context.RC_CANDIDATE.DeleteObject(lstEmpDelete(i))
                 End If
             Next
             If sError = "" Then
@@ -2579,7 +2630,9 @@ Partial Class RecruitmentRepository
                                                 .FILE_NAME = e.FILE_NAME,
                                                 .TITLE_NAME = e.TITLE_NAME,
                                                 .WORK = e.WORK,
-                                                .STATUS_ID = e.STATUS_ID
+                                                .STATUS_ID = e.STATUS_ID,
+                                                .CARE_TITLE_NAME = e.CARE_TITLE_NAME,
+                                                .RECRUIMENT_WEBSITE = e.RECRUIMENT_WEBSITE
                                                 }).FirstOrDefault
 
                 Return query
@@ -2603,7 +2656,7 @@ Partial Class RecruitmentRepository
             Dim query = (From e In Context.RC_CANDIDATE_CV
                          From ot1 In Context.HU_WARD.Where(Function(f) f.ID = e.CON_WARD).DefaultIfEmpty
                          From ot2 In Context.HU_WARD.Where(Function(f) f.ID = e.PER_WARD).DefaultIfEmpty
-                     Where (e.CANDIDATE_ID = sCandidateID)
+                         Where (e.CANDIDATE_ID = sCandidateID)
                      Select New CandidateCVDTO With {
                  .CANDIDATE_ID = e.CANDIDATE_ID,
                  .GENDER = e.GENDER,
@@ -2667,11 +2720,38 @@ Partial Class RecruitmentRepository
                  .TEMP_RESIDENCE_CARD = e.TEMP_RESIDENCE_CARD,
                  .TEMP_RESIDENCE_CARD_END = e.TEMP_RESIDENCE_CARD_END,
                  .TEMP_RESIDENCE_CARD_START = e.TEMP_RESIDENCE_CARD_START,
-            .WORK_EMAIl = e.WORK_EMAIL
+                 .WORK_EMAIl = e.WORK_EMAIL,
+                 .FINDER_NAME = e.FINDER_NAME,
+                 .FINDER_SDT = e.FINDER_SDT,
+                 .FINDER_ADDRESS = e.FINDER_ADDRESS
                  }).FirstOrDefault
             Return query
         Catch ex As Exception
             Utility.WriteExceptionLog(ex, Me.ToString() & ".GetCandidateCV")
+            Throw ex
+        End Try
+    End Function
+
+    ''' <summary>
+    ''' Lấy thông tin Nhân thân của ứng viên
+    ''' </summary>
+    ''' <param name="sCandidateID"></param>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
+    Public Function GetCandidateFamily_ByID(ByVal sCandidateID As Decimal) As CandidateFamilyDTO
+        Try
+            Dim query = (From e In Context.RC_CANDIDATE_FAMILY
+                         Where (e.CANDIDATE_ID = sCandidateID)
+                        Select New CandidateFamilyDTO With {
+                         .ID = e.ID,
+                         .FULLNAME = e.FULLNAME,
+                         .RELATION_ID = e.RELATION_ID,
+                         .PHONE_NUMBER = e.PHONE_NUMBER,
+                         .ADDRESS = e.ADDRESS
+                         }).FirstOrDefault
+            Return query
+        Catch ex As Exception
+            Utility.WriteExceptionLog(ex, Me.ToString() & ".GetCandidateFamily")
             Throw ex
         End Try
     End Function
@@ -2914,7 +2994,7 @@ Partial Class RecruitmentRepository
     Public Function ImportCandidate(ByVal lst As List(Of CandidateImportDTO), ByVal log As UserLog) As Boolean
         Try
             For Each can In lst
-                InsertCandidate(can.can, log, 0, "", Nothing, can.can_cv, can.can_edu, can.can_other, Nothing, Nothing)
+                InsertCandidate(can.can, log, 0, "", Nothing, can.can_cv, can.can_edu, can.can_other, Nothing, Nothing, Nothing)
             Next
 
             Return True

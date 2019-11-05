@@ -110,6 +110,20 @@
                                     <tlk:RadTextBox ID="txtTitleName" runat="server" ReadOnly="true">
                                     </tlk:RadTextBox>
                                 </td>
+                                <td class="lb">
+                                    <%# Translate("Chức danh quan tâm")%>
+                                </td>
+                                <td>
+                                    <tlk:RadTextBox ID="txtCare_TitleName" runat="server" >
+                                    </tlk:RadTextBox>
+                                </td>
+                                <td class="lb">
+                                    <%# Translate("Trang tuyển dụng")%>
+                                </td>
+                                <td>
+                                    <tlk:RadTextBox ID="txtCare_Website" runat="server" >
+                                    </tlk:RadTextBox>
+                                </td>
                             </tr>
                         </table>
                     </asp:Panel>
@@ -296,6 +310,24 @@
                                 </tlk:RadButton>
                             </td>
                         </tr>
+                        <tr>
+                            <td class="lb">
+                                <%# Translate("Điểm mạnh")%>
+                            </td>
+                            <td colspan="7">
+                                <tlk:RadTextBox ID="txtStranger" runat="server" Width="100%">
+                                </tlk:RadTextBox>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="lb">
+                                <%# Translate("Điểm yếu")%>
+                            </td>
+                            <td colspan="7">
+                                <tlk:RadTextBox ID="txtWeakness" runat="server" Width="100%">
+                                </tlk:RadTextBox>
+                            </td>
+                        </tr>
                     </table>
                 </fieldset>
                 <fieldset style="width: auto; height: auto">
@@ -439,7 +471,7 @@
                                 </tlk:RadComboBox>
                             </td>
                         </tr>
-                        <tr>
+                        <tr style="display: none">
                             <td class="lb">
                                 <%# Translate("Email công ty")%>
                                 <span class="lbReq">*</span>
@@ -450,13 +482,6 @@
                                 <asp:RequiredFieldValidator ID="RequiredFieldValidator11" ControlToValidate="cv_txtEmailCaNhanCongTy"
                                     runat="server" ErrorMessage="<%$ Translate: Bạn phải nhập Email công ty %>" ToolTip="<%$ Translate: Bạn phải nhập Email công ty %>">
                                 </asp:RequiredFieldValidator>
-                            </td>
-                            <td class="lb">
-                                <%# Translate("Email cá nhân")%>
-                            </td>
-                            <td>
-                                <tlk:RadTextBox ID="txtEmailCaNhan" runat="server">
-                                </tlk:RadTextBox>
                             </td>
                         </tr>
                         <tr style="display: none">
@@ -495,6 +520,13 @@
                             </td>
                         </tr>
                         <tr>
+                            <td class="lb">
+                                <%# Translate("Email cá nhân")%>
+                            </td>
+                            <td>
+                                <tlk:RadTextBox ID="txtEmailCaNhan" runat="server">
+                                </tlk:RadTextBox>
+                            </td>
                             <td class="lb">
                                 <%# Translate("Điện thoại di dộng")%>
                             </td>
@@ -1107,7 +1139,7 @@
                         <%# Translate("Thông tin tổ chức chính trị, xã hội")%>
                     </legend>
                     <table class="table-form">
-                        <tr>
+                        <tr style="display: none">
                             <td colspan="6">
                                 <asp:CheckBox ID="chkDoanVien" runat="server" Text="<%$ Translate: Đoàn viên %>" />
                                 <hr />
@@ -1144,11 +1176,11 @@
                                 <tlk:RadTextBox ID="txtNoiVaoDoan" runat="server" Width="100%">
                                 </tlk:RadTextBox>
                             </td>
+                        </tr>
+                        <tr style="display: none">
                             <td>
                                 <asp:CheckBox ID="chkDoanPhi" runat="server" Text="<%$ Translate: Đoàn phí %>" />
                             </td>
-                        </tr>
-                        <tr>
                             <td colspan="6">
                                 <asp:CheckBox ID="chkDangVien" runat="server" Text="<%$ Translate: Đảng viên %>" />
                                 <hr />
@@ -1236,7 +1268,7 @@
                                 </tlk:RadTextBox>
                             </td>
                         </tr>
-                        <tr>
+                        <tr style="display: none">
                             <td colspan="6">
                                 <asp:CheckBox ID="chkCuuChienBinh" runat="server" Text="<%$ Translate: Tham gia cựu chiến binh %>" />
                                 <hr />
@@ -1364,6 +1396,77 @@
                             <td colspan="5">
                                 <tlk:RadComboBox runat="server" ID="cboGDChinhSach" SkinID="LoadDemand">
                                 </tlk:RadComboBox>
+                            </td>
+                        </tr>
+                    </table>
+                </fieldset>
+                <fieldset>
+                    <legend>
+                        <%# Translate("Thông tin người thân")%>
+                    </legend>
+                    <table class="table-form">
+                        <tr>
+                            <td class="lb">
+                                <%# Translate("Họ tên")%>
+                            </td>
+                            <td>
+                                <tlk:RadTextBox ID="txtNT_FullName" runat="server">
+                                </tlk:RadTextBox>
+                            </td>
+                            <td class="lb">
+                                <%# Translate("Mối quan hệ")%>
+                            </td>
+                            <td>
+                                <tlk:RadComboBox runat="server" ID="rcbNT_Relation">
+                                </tlk:RadComboBox>
+                            </td>
+                            <td class="lb">
+                                <%# Translate("Số điện thoại")%>
+                            </td>
+                            <td>
+                                <tlk:RadTextBox ID="txtNT_SDT" runat="server">
+                                </tlk:RadTextBox>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="lb">
+                                <%# Translate("Địa chỉ")%>
+                            </td>
+                            <td colspan="5">
+                                <tlk:RadTextBox ID="txtNT_DiaChi" runat="server" SkinID="Textbox1023" Width="100%">
+                                </tlk:RadTextBox>
+                            </td>
+                        </tr>
+                    </table>
+                </fieldset>
+                <fieldset>
+                    <legend>
+                        <%# Translate("Thông tin người giới thiệu")%>
+                    </legend>
+                    <table class="table-form">
+                        <tr>
+                            <td class="lb">
+                                <%# Translate("Họ tên")%>
+                            </td>
+                            <td>
+                                <tlk:RadTextBox ID="txtNGT_Fullname" runat="server">
+                                </tlk:RadTextBox>
+                            </td>
+                            <td class="lb">
+                                <%# Translate("Số điện thoại")%>
+                            </td>
+                            <td>
+                                <tlk:RadTextBox ID="txtNGT_SDT" runat="server">
+                                </tlk:RadTextBox>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="lb">
+                                <%# Translate("Địa chỉ")%>
+                            </td>
+                            <td colspan="5">
+                                <tlk:RadTextBox ID="txtNGT_DiaChi" runat="server" SkinID="Textbox1023" Width="100%">
+                                </tlk:RadTextBox>
                             </td>
                         </tr>
                     </table>

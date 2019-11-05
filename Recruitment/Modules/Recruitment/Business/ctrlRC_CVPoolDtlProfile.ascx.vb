@@ -1060,6 +1060,8 @@ Public Class ctrlRC_CVPoolDtlProfile
         Dim EmpEducation As New CandidateEduDTO
         Dim EmpHealthInfo As New CandidateHealthDTO
         Dim EmpExpectInfo As New CandidateExpectDTO
+        Dim EmpFamily As New CandidateFamilyDTO
+
         Try
             'Candidate
             If CandidateInfo Is Nothing Then
@@ -1347,9 +1349,9 @@ Public Class ctrlRC_CVPoolDtlProfile
             If CandidateInfo IsNot Nothing Then
                 If hidID.Value <> "" Then
                     CandidateInfo.ID = Decimal.Parse(hidID.Value)
-                    result = rep.ModifyCandidate(CandidateInfo, gID, _binaryImage, EmpCV, EmpEducation, EmpOtherInfo, EmpHealthInfo, EmpExpectInfo)
+                    result = rep.ModifyCandidate(CandidateInfo, gID, _binaryImage, EmpCV, EmpEducation, EmpOtherInfo, EmpHealthInfo, EmpExpectInfo, EmpFamily)
                 Else
-                    result = rep.InsertCandidate(CandidateInfo, gID, strEmpCode, _binaryImage, EmpCV, EmpEducation, EmpOtherInfo, EmpHealthInfo, EmpExpectInfo)
+                    result = rep.InsertCandidate(CandidateInfo, gID, strEmpCode, _binaryImage, EmpCV, EmpEducation, EmpOtherInfo, EmpHealthInfo, EmpExpectInfo, EmpFamily)
                 End If
                 Refresh()
             End If

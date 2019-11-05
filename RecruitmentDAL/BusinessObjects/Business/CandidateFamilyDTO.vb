@@ -41,5 +41,5 @@
     Public Property MODIFIED_BY As String
     Public Property MODIFIED_LOG As String
 
-
+    Public Property PHONE_NUMBER As String
 End Class
