@@ -151,6 +151,116 @@ Public Class AsposeExcelCommon
     End Function
 
 
+    ''' <summary>
+    ''' 
+    ''' </summary>a 
+    ''' <param name="filePath"></param>
+    ''' <param name="fileName"></param>
+    ''' <param name="dsData"></param>
+    ''' <param name="Response"></param>
+    ''' <param name="_error">
+    ''' 1 - Temp không tồn tại
+    ''' 2 - Data không tồn tại
+    ''' </param>
+    ''' <param name="type">
+    ''' 0 - Excel
+    ''' 1 - Pdf</param>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
+    Public Function ExportExcelTemplateReportNoLogo(ByVal filePath As String, ByVal filePathTemp As String, ByVal fileName As String,
+                                            ByVal dsData As DataSet, ByVal Response As System.Web.HttpResponse, Optional ByRef _error As String = "",
+                                            Optional ByVal type As ExportType = ExportType.Excel) As Boolean
+        Dim designer As WorkbookDesigner
+        Dim rep As New HistaffFrameworkRepository
+        Try
+            Dim pathTemp As String = ""
+            If dsData.Tables.Count = 1 Then
+                If Not File.Exists(filePath) Then
+                    _error = "1"
+                    Return False
+                End If
+                If dsData Is Nothing OrElse (dsData IsNot Nothing AndAlso dsData.Tables.Count = 0) Then
+                    _error = "2"
+                    Return False
+                End If
+                designer = New WorkbookDesigner
+                designer.Open(filePath)
+                designer.SetDataSource(dsData)
+
+
+
+                'add parameter in report and header + footer
+                designer.Process()
+                designer.Workbook.CalculateFormula()
+                With designer.Workbook
+                    .CalculateFormula()
+                    Select Case type
+                        Case ExportType.Excel
+                            .Save(Response, fileName & ".xls", ContentDisposition.Attachment, New XlsSaveOptions())
+                        Case ExportType.PDF
+                            .Save(Response, fileName & ".pdf", ContentDisposition.Attachment, New OoxmlSaveOptions(CType(FileFormatType.Pdf, SaveFormat)))
+                    End Select
+                End With
+            Else  'Template co nhieu datatable
+                If Not File.Exists(filePath) Then
+                    _error = "1"
+                    Return False
+                End If
+                If dsData Is Nothing OrElse (dsData IsNot Nothing AndAlso dsData.Tables.Count = 0) Then
+                    _error = "2"
+                    Return False
+                End If
+                Dim dsDataDynamic = dsData.Tables(dsData.Tables.Count - 1).Copy()
+                Dim dsDataFill As New DataSet
+                dsDataFill.Tables.Add(dsDataDynamic)
+                Dim table As DataTable = dsData.Tables(dsData.Tables.Count - 1)
+                'If (dsData.Tables.CanRemove(table)) Then
+                '    dsData.Tables.Remove(table)
+                'End If
+
+                'dsData = dsData.
+                designer = New WorkbookDesigner
+                designer.Open(filePath)
+                designer.SetDataSource(dsData)
+                designer.Process()
+                designer.Workbook.CalculateFormula()
+                designer.Workbook.Save(filePathTemp & fileName & ".xls", New XlsSaveOptions())
+
+                'sau do mo~ lai file da~ save va fill data vao
+                designer = New WorkbookDesigner
+                designer.Open(filePathTemp & fileName & ".xls")
+                designer.SetDataSource(dsDataFill)
+
+                'add parameter in report and header + footer
+                designer.Process()
+                designer.Workbook.CalculateFormula()
+                'Dim range As Range = designer.Workbook.Worksheets(1).Cells.CreateRange("AN:BQ")
+
+                With designer.Workbook
+                    .CalculateFormula()
+                    Select Case type
+                        Case ExportType.Excel
+                            .Save(Response, fileName & ".xls", ContentDisposition.Attachment, New XlsSaveOptions())
+                        Case ExportType.PDF
+                            .Save(Response, fileName & ".pdf", ContentDisposition.Attachment, New OoxmlSaveOptions(CType(FileFormatType.Pdf, SaveFormat)))
+                    End Select
+                End With
+
+                Dim fInfo As New FileInfo(filePathTemp & fileName & ".xls")
+                If fInfo.Exists Then
+                    fInfo.Delete()
+                End If
+            End If
+
+            'System.Diagnostics.Process.Start(fileName) 'view after save
+
+            Return True
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+
+
     Public Function ExportExcelTemplateReportPassword(ByVal filePath As String, ByVal filePathTemp As String, ByVal fileName As String,
                                                         ByVal dsData As DataSet, ByVal passWord As String, Optional ByRef _error As String = "",
                                                         Optional ByVal type As ExportType = ExportType.Excel) As String

@@ -82,6 +82,9 @@ Partial Public Class AttendanceRepository
                 'update
                 Dim ID_LEAVE As Decimal = CDec(rPH("ID"))
                 Dim objPH = (From p In Context.AT_LEAVESHEET Where p.ID = ID_LEAVE Select p).SingleOrDefault
+                objPH.MODIFIED_BY = rPH("EMPLOYEE_NAME").ToString
+                objPH.MODIFIED_DATE = DateTime.Now
+                objPH.MODIFIED_LOG = log.Ip + "\" + log.ComputerName
                 oProps = objPH.GetType().GetProperties()
                 For Each pi As PropertyInfo In oProps
                     Try
@@ -120,6 +123,12 @@ Partial Public Class AttendanceRepository
                         Continue For
                     End Try
                 Next pi
+                objPH.CREATED_BY = rPH("EMPLOYEE_NAME").ToString
+                objPH.MODIFIED_BY = rPH("EMPLOYEE_NAME").ToString
+                objPH.CREATED_DATE = DateTime.Now
+                objPH.MODIFIED_DATE = DateTime.Now
+                objPH.CREATED_LOG = log.Ip + "\" + log.ComputerName
+                objPH.MODIFIED_LOG = log.Ip + "\" + log.ComputerName
                 objPH.ID = Utilities.GetNextSequence(Context, Context.AT_LEAVESHEET.EntitySet.Name)
                 Context.AT_LEAVESHEET.AddObject(objPH)
                 For Each row As DataRow In CT.Rows
@@ -137,7 +146,7 @@ Partial Public Class AttendanceRepository
                     Context.AT_LEAVESHEET_DETAIL.AddObject(objCT)
                 Next
             End If
-            Context.SaveChanges(log)
+            Context.SaveChanges()
             Return True
         Catch ex As Exception
             Return False
