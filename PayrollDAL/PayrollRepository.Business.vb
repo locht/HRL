@@ -343,7 +343,7 @@ Partial Public Class PayrollRepository
     Public Function GetSalaryList_TYPE(ByVal POBJ_SAL_ID As Decimal) As List(Of PAListSalariesDTO)
         Try
             Dim query = From p In Context.PA_LISTSALARIES
-             Where p.OBJ_SAL_ID = POBJ_SAL_ID And p.IS_IMPORT = -1
+             Where ((POBJ_SAL_ID = 2 And p.OBJ_SAL_ID = 1) Or p.OBJ_SAL_ID = POBJ_SAL_ID) And p.IS_IMPORT = -1
             Dim lst = query.Select(Function(s) New PAListSalariesDTO With {
                                         .ID = s.ID,
                                         .COL_NAME = s.COL_NAME,
