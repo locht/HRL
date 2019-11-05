@@ -65,7 +65,7 @@
             </tr>
         </table>
     </tlk:RadPane>
-    <tlk:RadPane ID="DetailPane" runat="server" Scrolling="None" Height="550px">
+    <tlk:RadPane ID="DetailPane" runat="server" Scrolling="None" Height="1100px">
         <tlk:RadTabStrip ID="rtabProfileInfo" runat="server" CausesValidation="false" MultiPageID="RadMultiPage1"
             AutoPostBack="false">
             <Tabs>
@@ -77,7 +77,7 @@
             </Tabs>
         </tlk:RadTabStrip>
         <tlk:RadMultiPage ID="RadMultiPage1" SelectedIndex="0" runat="server" Width="100%"
-            ScrollBars="Auto" Height="100%">
+            ScrollBars="Auto">
             <tlk:RadPageView ID="RadPageView1" runat="server" Width="100%">
                 <Recruitment:ctrlRC_ProgramExamsResult runat="server" ID="ctrlRC_ProgramExamsResult" />
             </tlk:RadPageView>
