@@ -590,15 +590,6 @@ Partial Public Class ctrlRC_CanDtlProfile
     Protected WithEvents cv_txtEmailCaNhanCongTy As Global.Telerik.Web.UI.RadTextBox
 
     '''<summary>
-    '''RequiredFieldValidator11 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents RequiredFieldValidator11 As Global.System.Web.UI.WebControls.RequiredFieldValidator
-
-    '''<summary>
     '''cboContactAddNation control.
     '''</summary>
     '''<remarks>
