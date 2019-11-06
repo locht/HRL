@@ -1101,6 +1101,10 @@
       <xs:element minOccurs="0" name="TEMP_RESIDENCE_CARD" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="TEMP_RESIDENCE_CARD_END" nillable="true" type="xs:dateTime" />
       <xs:element minOccurs="0" name="TEMP_RESIDENCE_CARD_START" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="URGENT_ADDRESS" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="URGENT_PER_NAME" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="URGENT_PER_RELATION" type="xs:decimal" />
+      <xs:element minOccurs="0" name="URGENT_PER_SDT" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="VISA_DATE" nillable="true" type="xs:dateTime" />
       <xs:element minOccurs="0" name="VISA_DATE_EXPIRATION" nillable="true" type="xs:dateTime" />
       <xs:element minOccurs="0" name="VISA_NUMBER" nillable="true" type="xs:string" />

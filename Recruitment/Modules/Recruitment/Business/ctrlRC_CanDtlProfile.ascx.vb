@@ -358,18 +358,25 @@ Public Class ctrlRC_CanDtlProfile
                         txtNGT_Fullname.Text = empCV.FINDER_NAME
                         txtNGT_SDT.Text = empCV.FINDER_SDT
                         txtNGT_DiaChi.Text = empCV.FINDER_ADDRESS
+
+                        txtNT_FullName.Text = empCV.URGENT_PER_NAME
+                        txtNT_SDT.Text = empCV.URGENT_PER_SDT
+                        txtNT_DiaChi.Text = empCV.URGENT_ADDRESS
+                        If IsNumeric(empCV.URGENT_PER_RELATION) = True Then
+                            rcbNT_Relation.SelectedValue = empCV.URGENT_PER_RELATION
+                        End If
                     End If
 
                     'Phần gia đình
-                    Dim EmpFamily = rep.GetCandidateFamily_ByID(CandidateInfo.ID)
-                    If EmpFamily IsNot Nothing Then
-                        txtNT_FullName.Text = EmpFamily.FULLNAME
-                        txtNT_SDT.Text = EmpFamily.PHONE_NUMBER
-                        txtNT_DiaChi.Text = EmpFamily.ADDRESS
-                        If IsNumeric(EmpFamily.RELATION_ID) = True Then
-                            rcbNT_Relation.SelectedValue = EmpFamily.RELATION_ID
-                        End If
-                    End If
+                    'Dim EmpFamily = rep.GetCandidateFamily_ByID(CandidateInfo.ID)
+                    'If EmpFamily IsNot Nothing Then
+                    '    txtNT_FullName.Text = EmpFamily.FULLNAME
+                    '    txtNT_SDT.Text = EmpFamily.PHONE_NUMBER
+                    '    txtNT_DiaChi.Text = EmpFamily.ADDRESS
+                    '    If IsNumeric(EmpFamily.RELATION_ID) = True Then
+                    '        rcbNT_Relation.SelectedValue = EmpFamily.RELATION_ID
+                    '    End If
+                    'End If
 
                     'Phần trình độ
                     Dim EmpEducation = rep.GetCandidateEdu(CandidateInfo.ID)
@@ -1188,6 +1195,7 @@ Public Class ctrlRC_CanDtlProfile
                 EmpCV.CONTACT_DISTRICT_ID = Decimal.Parse(cboContractDictrict.SelectedValue)
             End If
 
+
             'Candidate Family
             EmpFamily.FULLNAME = txtNT_FullName.Text.Trim
             If IsNumeric(rcbNT_Relation.SelectedValue) = True Then
@@ -1253,6 +1261,13 @@ Public Class ctrlRC_CanDtlProfile
             EmpCV.FINDER_NAME = txtNGT_Fullname.Text.Trim()
             EmpCV.FINDER_SDT = txtNGT_SDT.Text.Trim()
             EmpCV.FINDER_ADDRESS = txtNGT_DiaChi.Text.Trim()
+
+            EmpCV.URGENT_PER_NAME = txtNT_FullName.Text.Trim
+            EmpCV.URGENT_PER_SDT = txtNT_SDT.Text.Trim
+            EmpCV.URGENT_ADDRESS = txtNT_DiaChi.Text.Trim
+            If IsNumeric(EmpCV.URGENT_PER_RELATION) = True Then
+                EmpCV.URGENT_PER_RELATION = rcbNT_Relation.SelectedValue
+            End If
 
             'EmpEducation
             If cboNgoaNgu1.SelectedValue <> "" Then

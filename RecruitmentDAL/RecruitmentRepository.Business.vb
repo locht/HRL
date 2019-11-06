@@ -2031,6 +2031,11 @@ Partial Class RecruitmentRepository
             objEmpCVData.FINDER_SDT = objEmpCV.FINDER_SDT
             objEmpCVData.FINDER_ADDRESS = objEmpCV.FINDER_ADDRESS
 
+            objEmpCVData.URGENT_PER_NAME = objEmpCV.URGENT_PER_NAME
+            objEmpCVData.URGENT_PER_RELATION = objEmpCV.URGENT_PER_RELATION
+            objEmpCVData.URGENT_PER_SDT = objEmpCV.URGENT_PER_SDT
+            objEmpCVData.URGENT_ADDRESS = objEmpCV.URGENT_ADDRESS
+
             If objEmpCV.IMAGE <> "" Then
                 objEmpCVData.IMAGE = objEmpData.CANDIDATE_CODE & objEmpCV.IMAGE
             End If
@@ -2083,15 +2088,6 @@ Partial Class RecruitmentRepository
             objEmpOtherData.IS_PAYMENT_VIA_BANK = objEmpOther.IS_PAYMENT_VIA_BANK
             objEmpOtherData.ACCOUNT_EFFECT_DATE = objEmpOther.ACCOUNT_EFFECT_DATE
             Context.RC_CANDIDATE_OTHER_INFO.AddObject(objEmpOtherData)
-
-            '---------- 5.0 Thêm vào bảng RC_Candidate_Family ----------
-            Dim objEmpFamilyData As New RC_CANDIDATE_FAMILY
-            objEmpFamilyData.CANDIDATE_ID = objEmpData.ID
-            objEmpFamilyData.FULLNAME = objEmpFamily.FULLNAME
-            objEmpFamilyData.RELATION_ID = objEmpFamily.RELATION_ID
-            objEmpFamilyData.PHONE_NUMBER = objEmpFamily.PHONE_NUMBER
-            objEmpFamilyData.ADDRESS = objEmpFamily.ADDRESS
-            Context.RC_CANDIDATE_FAMILY.AddObject(objEmpFamilyData)
 
             ' Thêm vào bảng CandidateExpect
             Dim objEmpExpectData As New RC_CANDIDATE_EXPECT
@@ -2245,6 +2241,11 @@ Partial Class RecruitmentRepository
                 objEmpCVData.FINDER_SDT = objEmpCV.FINDER_SDT
                 objEmpCVData.FINDER_ADDRESS = objEmpCV.FINDER_ADDRESS
 
+                objEmpCVData.URGENT_PER_NAME = objEmpCV.URGENT_PER_NAME
+                objEmpCVData.URGENT_PER_RELATION = objEmpCV.URGENT_PER_RELATION
+                objEmpCVData.URGENT_PER_SDT = objEmpCV.URGENT_PER_SDT
+                objEmpCVData.URGENT_ADDRESS = objEmpCV.URGENT_ADDRESS
+
                 If isInsert Then
                     Context.RC_CANDIDATE_CV.AddObject(objEmpCVData)
                 End If
@@ -2320,27 +2321,6 @@ Partial Class RecruitmentRepository
 
                 If isInsert Then
                     Context.RC_CANDIDATE_OTHER_INFO.AddObject(objEmpOtherData)
-                End If
-            End If
-
-            '---------- 5.0 Thêm vào bảng RC_Candidate_Family ----------
-            If objEmpFamily IsNot Nothing Then
-                Dim isInsert As Boolean = False
-                Dim objEmpFamilyData As RC_CANDIDATE_FAMILY
-                objEmpFamilyData = (From p In Context.RC_CANDIDATE_FAMILY Where p.CANDIDATE_ID = objEmp.ID).FirstOrDefault
-                If objEmpFamilyData Is Nothing Then
-                    objEmpFamilyData = New RC_CANDIDATE_FAMILY
-                    isInsert = True
-                End If
-
-                objEmpFamilyData.CANDIDATE_ID = objEmpData.ID
-                objEmpFamilyData.FULLNAME = objEmpFamily.FULLNAME
-                objEmpFamilyData.RELATION_ID = objEmpFamily.RELATION_ID
-                objEmpFamilyData.PHONE_NUMBER = objEmpFamily.PHONE_NUMBER
-                objEmpFamilyData.ADDRESS = objEmpFamily.ADDRESS
-
-                If isInsert Then
-                    Context.RC_CANDIDATE_FAMILY.AddObject(objEmpFamilyData)
                 End If
             End If
 
@@ -2723,7 +2703,11 @@ Partial Class RecruitmentRepository
                  .WORK_EMAIl = e.WORK_EMAIL,
                  .FINDER_NAME = e.FINDER_NAME,
                  .FINDER_SDT = e.FINDER_SDT,
-                 .FINDER_ADDRESS = e.FINDER_ADDRESS
+                 .FINDER_ADDRESS = e.FINDER_ADDRESS,
+                 .URGENT_PER_NAME = e.URGENT_PER_NAME,
+                 .URGENT_PER_RELATION = If(e.URGENT_PER_RELATION Is Nothing, 0, e.URGENT_PER_RELATION),
+                 .URGENT_PER_SDT = e.URGENT_PER_SDT,
+                 .URGENT_ADDRESS = e.URGENT_ADDRESS
                  }).FirstOrDefault
             Return query
         Catch ex As Exception
