@@ -479,9 +479,9 @@
                             <td>
                                 <tlk:RadTextBox runat="server" ID="cv_txtEmailCaNhanCongTy">
                                 </tlk:RadTextBox>
-                                <asp:RequiredFieldValidator ID="RequiredFieldValidator11" ControlToValidate="cv_txtEmailCaNhanCongTy"
+                                <%--<asp:RequiredFieldValidator ID="RequiredFieldValidator11" ControlToValidate="cv_txtEmailCaNhanCongTy"
                                     runat="server" ErrorMessage="<%$ Translate: Bạn phải nhập Email công ty %>" ToolTip="<%$ Translate: Bạn phải nhập Email công ty %>">
-                                </asp:RequiredFieldValidator>
+                                </asp:RequiredFieldValidator>--%>
                             </td>
                         </tr>
                         <tr style="display: none">
