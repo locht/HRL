@@ -151,6 +151,7 @@
             <EntitySet Name="SE_USER_ORG_ACCESS" EntityType="ProfileModel.Store.SE_USER_ORG_ACCESS" store:Type="Tables" />
             <EntitySet Name="HU_WELFARE_MNG_EMP" EntityType="ProfileModel.Store.HU_WELFARE_MNG_EMP" store:Type="Tables" />
             <EntitySet Name="HU_ORGANIZATION_V" EntityType="ProfileModel.Store.HU_ORGANIZATION_V" store:Type="Tables" />
+            <EntitySet Name="AT_WORKSIGN" EntityType="ProfileModel.Store.AT_WORKSIGN" store:Type="Tables" />
             <EntitySet Name="SE_USER_REPORT" EntityType="ProfileModel.Store.SE_USER_REPORT" store:Type="Tables" />
             <AssociationSet Name="FK_HUN_HUP" Association="ProfileModel.Store.FK_HU_NAT_HU_PRO">
                 <End Role="HU_NATION" EntitySet="HU_NATION" />
@@ -3784,6 +3785,23 @@
             <Property Name="DESCRIPTION4" Type="nvarchar2" Nullable="true" MaxLength="2000" />
             <Property Name="NAME_VN" Type="nvarchar2" Nullable="true" MaxLength="255" />
         </EntityType>
+        <EntityType Name="AT_WORKSIGN">
+            <Key>
+                <PropertyRef Name="ID" />
+            </Key>
+            <Property Name="ID" Type="number" Nullable="false" Precision="38" />
+            <Property Name="EMPLOYEE_ID" Type="number" Nullable="false" Precision="38" />
+            <Property Name="WORKINGDAY" Type="date" Nullable="false" />
+            <Property Name="PERIOD_ID" Type="number" Nullable="false" Precision="38" />
+            <Property Name="CREATED_DATE" Type="date" Nullable="true" />
+            <Property Name="CREATED_BY" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="CREATED_LOG" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="MODIFIED_DATE" Type="date" Nullable="true" />
+            <Property Name="MODIFIED_BY" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="MODIFIED_LOG" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="SHIFT_ID" Type="number" Nullable="true" Precision="38" />
+            <Property Name="IS_IMPORT" Type="number" Nullable="true" Precision="38" />
+        </EntityType>
         <EntityType Name="SE_USER_REPORT">
             <Key>
                 <PropertyRef Name="SE_REPORT_ID" />
@@ -4420,6 +4438,7 @@
           <EntitySet Name="SE_USER_ORG_ACCESS" EntityType="ProfileModel.SE_USER_ORG_ACCESS" />
           <EntitySet Name="HU_WELFARE_MNG_EMP" EntityType="ProfileModel.HU_WELFARE_MNG_EMP" />
           <EntitySet Name="HU_ORGANIZATION_V" EntityType="ProfileModel.HU_ORGANIZATION_V" />
+          <EntitySet Name="AT_WORKSIGN" EntityType="ProfileModel.AT_WORKSIGN" />
         </EntityContainer>
         <EntityType Name="HU_PROVINCE">
           <Key>
@@ -8336,6 +8355,23 @@
           <Property Type="String" Name="DESCRIPTION4" MaxLength="2000" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="NAME_VN" MaxLength="255" FixedLength="false" Unicode="true" />
         </EntityType>
+        <EntityType Name="AT_WORKSIGN">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Decimal" Name="ID" Nullable="false" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="EMPLOYEE_ID" Nullable="false" Precision="38" Scale="0" />
+          <Property Type="DateTime" Name="WORKINGDAY" Nullable="false" />
+          <Property Type="Decimal" Name="PERIOD_ID" Nullable="false" Precision="38" Scale="0" />
+          <Property Type="DateTime" Name="CREATED_DATE" />
+          <Property Type="String" Name="CREATED_BY" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="CREATED_LOG" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="MODIFIED_DATE" />
+          <Property Type="String" Name="MODIFIED_BY" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="MODIFIED_LOG" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="Decimal" Name="SHIFT_ID" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="IS_IMPORT" Precision="38" Scale="0" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -11989,6 +12025,24 @@
                 </MappingFragment>
             </EntityTypeMapping>
         </EntitySetMapping>
+        <EntitySetMapping Name="AT_WORKSIGN">
+            <EntityTypeMapping TypeName="IsTypeOf(ProfileModel.AT_WORKSIGN)">
+                <MappingFragment StoreEntitySet="AT_WORKSIGN">
+                    <ScalarProperty Name="ID" ColumnName="ID" />
+                    <ScalarProperty Name="EMPLOYEE_ID" ColumnName="EMPLOYEE_ID" />
+                    <ScalarProperty Name="WORKINGDAY" ColumnName="WORKINGDAY" />
+                    <ScalarProperty Name="PERIOD_ID" ColumnName="PERIOD_ID" />
+                    <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+                    <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+                    <ScalarProperty Name="CREATED_LOG" ColumnName="CREATED_LOG" />
+                    <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+                    <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+                    <ScalarProperty Name="MODIFIED_LOG" ColumnName="MODIFIED_LOG" />
+                    <ScalarProperty Name="SHIFT_ID" ColumnName="SHIFT_ID" />
+                    <ScalarProperty Name="IS_IMPORT" ColumnName="IS_IMPORT" />
+                </MappingFragment>
+            </EntityTypeMapping>
+        </EntitySetMapping>
         <AssociationSetMapping Name="SE_USER_REPORT" TypeName="ProfileModel.SE_USER_REPORT" StoreEntitySet="SE_USER_REPORT">
             <EndProperty Name="SE_REPORT">
                 <ScalarProperty Name="ID" ColumnName="SE_REPORT_ID" />
@@ -12082,10 +12136,8 @@
         <AssociationConnector Association="ProfileModel.FK_HE_HEC">
           <ConnectorPoint PointX="18.000001" PointY="1.025" />
           <ConnectorPoint PointX="18.000001" PointY="3.575" />
-          <ConnectorPoint PointX="17.743491145833332" PointY="3.5749999999999997" />
-          <ConnectorPoint PointX="17.576824479166667" PointY="3.575" />
-          <ConnectorPoint PointX="17.538409739583333" PointY="3.5749999999999997" />
-          <ConnectorPoint PointX="17.371743072916669" PointY="3.575" />
+          <ConnectorPoint PointX="17.645833333333332" PointY="3.5749999999999988" />
+          <ConnectorPoint PointX="17.322914166666667" PointY="3.575" />
           <ConnectorPoint PointX="16.25" PointY="3.575" />
         </AssociationConnector>
         <AssociationConnector Association="ProfileModel.FK_FE_HEH">
@@ -12095,10 +12147,8 @@
           <ConnectorPoint PointX="18.135418166666671" PointY="2.2" />
           <ConnectorPoint PointX="18.083334333333333" PointY="2.1999999999999997" />
           <ConnectorPoint PointX="17.916667666666669" PointY="2.2" />
-          <ConnectorPoint PointX="17.743491145833332" PointY="2.1999999999999997" />
-          <ConnectorPoint PointX="17.576824479166667" PointY="2.2" />
-          <ConnectorPoint PointX="17.538409739583333" PointY="2.1999999999999997" />
-          <ConnectorPoint PointX="17.371743072916669" PointY="2.2" />
+          <ConnectorPoint PointX="17.645833333333332" PointY="2.1999999999999988" />
+          <ConnectorPoint PointX="17.322914166666667" PointY="2.2" />
           <ConnectorPoint PointX="16.375" PointY="2.2" />
         </AssociationConnector>
         <AssociationConnector Association="ProfileModel.FK_HE_HEE">
@@ -12109,19 +12159,19 @@
         </AssociationConnector>
         <EntityTypeShape EntityType="ProfileModel.HU_CONTRACT" Width="2.5" PointX="7.125" PointY="3.125" Height="7.7493294270833335" IsExpanded="true" />
         <AssociationConnector Association="ProfileModel.FK_HC_HE">
-          <ConnectorPoint PointX="9.625" PointY="5.8955044986979246" />
-          <ConnectorPoint PointX="10.041666666666666" PointY="5.8955044986979237" />
-          <ConnectorPoint PointX="10.208333333333334" PointY="5.8955044986979246" />
-          <ConnectorPoint PointX="17.6601578125" PointY="5.8955044986979246" />
-          <ConnectorPoint PointX="17.6601578125" PointY="1.025" />
+          <ConnectorPoint PointX="9.625" PointY="4.2624999999999993" />
+          <ConnectorPoint PointX="10.041666666666666" PointY="4.2624999999999984" />
+          <ConnectorPoint PointX="10.208333333333334" PointY="4.2624999999999993" />
+          <ConnectorPoint PointX="17.322914166666667" PointY="4.2624999999999984" />
+          <ConnectorPoint PointX="17.489580833333331" PointY="4.2624999999999993" />
+          <ConnectorPoint PointX="17.5625" PointY="4.2624999999999993" />
+          <ConnectorPoint PointX="17.5625" PointY="1.025" />
         </AssociationConnector>
         <EntityTypeShape EntityType="ProfileModel.HU_FAMILY" Width="2.875" PointX="8.5" PointY="0.5" Height="0.4" IsExpanded="false" />
         <AssociationConnector Association="ProfileModel.FK_HE_HC" ManuallyRouted="false">
-          <ConnectorPoint PointX="17.45507640625" PointY="1.025" />
-          <ConnectorPoint PointX="17.45507640625" PointY="4.3937500000000007" />
-          <ConnectorPoint PointX="10.208333333333334" PointY="4.39375" />
-          <ConnectorPoint PointX="10.041666666666666" PointY="4.3937500000000007" />
-          <ConnectorPoint PointX="9.625" PointY="4.3937500000000007" />
+          <ConnectorPoint PointX="17.4062475" PointY="1.025" />
+          <ConnectorPoint PointX="17.4062475" PointY="8.6375000000000028" />
+          <ConnectorPoint PointX="9.625" PointY="8.6375000000000028" />
         </AssociationConnector>
         <EntityTypeShape EntityType="ProfileModel.HU_DISCIPLINE" Width="3.5" PointX="1.375" PointY="8.75" Height="9.6723437500000031" IsExpanded="true" />
         <EntityTypeShape EntityType="ProfileModel.HU_WORKING_BEFORE" Width="1.875" PointX="11.25" PointY="1.75" Height="0.4" IsExpanded="false" />
@@ -12132,10 +12182,8 @@
           <ConnectorPoint PointX="18.135418166666671" PointY="1.8437500000000009" />
           <ConnectorPoint PointX="18.083334333333333" PointY="1.8437500000000002" />
           <ConnectorPoint PointX="17.916667666666669" PointY="1.8437500000000009" />
-          <ConnectorPoint PointX="17.743491145833332" PointY="1.8437500000000002" />
-          <ConnectorPoint PointX="17.576824479166667" PointY="1.8437500000000009" />
-          <ConnectorPoint PointX="17.538409739583333" PointY="1.8437500000000002" />
-          <ConnectorPoint PointX="17.371743072916669" PointY="1.8437500000000009" />
+          <ConnectorPoint PointX="17.645833333333332" PointY="1.8437499999999998" />
+          <ConnectorPoint PointX="17.322914166666667" PointY="1.8437500000000009" />
           <ConnectorPoint PointX="13.125" PointY="1.8437500000000009" />
         </AssociationConnector>
         <AssociationConnector Association="ProfileModel.FK_OTDCO_HUDC">
@@ -12220,10 +12268,8 @@
           <ConnectorPoint PointX="18.218751500000003" PointY="2.875" />
           <ConnectorPoint PointX="18.083334333333333" PointY="2.8749999999999996" />
           <ConnectorPoint PointX="17.916667666666669" PointY="2.875" />
-          <ConnectorPoint PointX="17.743491145833332" PointY="2.8749999999999996" />
-          <ConnectorPoint PointX="17.576824479166667" PointY="2.875" />
-          <ConnectorPoint PointX="17.538409739583333" PointY="2.8749999999999996" />
-          <ConnectorPoint PointX="17.371743072916669" PointY="2.875" />
+          <ConnectorPoint PointX="17.645833333333332" PointY="2.8749999999999987" />
+          <ConnectorPoint PointX="17.322914166666667" PointY="2.875" />
           <ConnectorPoint PointX="8.4583333333333339" PointY="2.8749999999999996" />
           <ConnectorPoint PointX="8.2916666666666661" PointY="2.875" />
           <ConnectorPoint PointX="6.9977179487179484" PointY="2.8749999999999996" />
@@ -12369,6 +12415,7 @@
         <EntityTypeShape EntityType="ProfileModel.SE_USER_ORG_ACCESS" Width="1.5" PointX="33.5" PointY="7" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="ProfileModel.HU_WELFARE_MNG_EMP" Width="2.5" PointX="7.375" PointY="26.25" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="ProfileModel.HU_ORGANIZATION_V" Width="1.5" PointX="25.375" PointY="32.75" Height="0.4" IsExpanded="false" />
+        <EntityTypeShape EntityType="ProfileModel.AT_WORKSIGN" Width="1.5" PointX="15.375" PointY="4.75" Height="3.3263964843749818" />
         </Diagram>
     </Diagrams>
   </Designer>
