@@ -7,7 +7,7 @@ Imports HistaffWebAppResources.My.Resources
 Public Class ctrlHU_EmpDtlSalary
     Inherits CommonView
     Protected WithEvents ViewItem As ViewBase
-    Public Overrides Property MustAuthorize As Boolean = False
+    ' Public Overrides Property MustAuthorize As Boolean = False
 
 
 #Region "Property"

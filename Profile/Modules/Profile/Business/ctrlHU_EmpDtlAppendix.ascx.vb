@@ -8,7 +8,7 @@ Public Class ctrlHU_EmpDtlAppendix
     Inherits CommonView
     Protected WithEvents ViewItem As ViewBase
     Dim psp As New ProfileStoreProcedure
-    Public Overrides Property MustAuthorize As Boolean = False
+    ' Public Overrides Property MustAuthorize As Boolean = False
 #Region "Property"
 
     Private Property dt As DataTable

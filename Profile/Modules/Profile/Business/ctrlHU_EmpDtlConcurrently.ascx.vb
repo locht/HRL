@@ -7,7 +7,7 @@ Imports Telerik.Web.UI
 Public Class ctrlHU_EmpDtlConcurrently
     Inherits CommonView
     Protected WithEvents ViewItem As ViewBase
-    Public Overrides Property MustAuthorize As Boolean = False
+    'Public Overrides Property MustAuthorize As Boolean = False
     Dim log As New UserLog
 
 #Region "Property"

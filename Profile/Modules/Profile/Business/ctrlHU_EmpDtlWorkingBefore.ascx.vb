@@ -8,7 +8,7 @@ Imports Common.CommonMessage
 Public Class ctrlHU_EmpDtlWorkingBefore
     Inherits CommonView
     Dim employeeCode As String
-    Public Overrides Property MustAuthorize As Boolean = False
+    'Public Overrides Property MustAuthorize As Boolean = False
 #Region "Properties"
     Property SelectedItem As List(Of Decimal)
         Get

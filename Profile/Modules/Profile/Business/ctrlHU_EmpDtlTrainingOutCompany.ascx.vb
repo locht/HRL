@@ -14,7 +14,7 @@ Imports ICSharpCode.SharpZipLib.Checksums
 
 Public Class ctrlHU_EmpDtlTrainingOutCompany
     Inherits CommonView
-    Public Overrides Property MustAuthorize As Boolean = False
+    ' Public Overrides Property MustAuthorize As Boolean = False
     Dim _mylog As New MyLog()
     Dim _pathLog As String = _mylog._pathLog
     Dim _classPath As String = "Profile\Modules\Profile\List" + Me.GetType().Name.ToString()

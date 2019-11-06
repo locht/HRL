@@ -7,7 +7,7 @@ Imports Telerik.Web.UI
 Public Class ctrlHU_EmpDtlCommend
     Inherits CommonView
     Protected WithEvents ViewItem As ViewBase
-    Public Overrides Property MustAuthorize As Boolean = False
+    'Public Overrides Property MustAuthorize As Boolean = False
 
 #Region "Property"
     Public Property GridList As List(Of CommendDTO)

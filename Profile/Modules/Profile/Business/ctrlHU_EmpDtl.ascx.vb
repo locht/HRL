@@ -14,7 +14,7 @@ Public Class ctrlHU_EmpDtl
     Public WithEvents CurrentView As ViewBase
     Public WithEvents ViewImage As ViewBase
 
-    Public Overrides Property MustAuthorize As Boolean = False
+    Public Overrides Property MustAuthorize As Boolean = True
     
     'Content: Write log time and error
     Dim _mylog As New MyLog()
