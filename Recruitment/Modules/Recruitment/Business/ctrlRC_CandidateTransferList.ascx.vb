@@ -110,7 +110,7 @@ Public Class ctrlRC_CandidateTransferList
             Me.ctrlMessageBox.Listener = Me
             Me.MainToolBar = tbarMainToolBar
             'tbarMainToolBar.Visible = False
-            rgCandidateList.ClientSettings.EnablePostBackOnRowClick = True
+            'rgCandidateList.ClientSettings.EnablePostBackOnRowClick = True
             'rgAspiration.ClientSettings.EnablePostBackOnRowClick = True
             Common.Common.BuildToolbar(Me.MainToolBar, ToolbarItem.Save)
             CType(MainToolBar.Items(0), RadToolBarButton).Text = "Lưu thông tin thỏa thuận"
