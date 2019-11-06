@@ -2036,6 +2036,9 @@ Partial Class RecruitmentRepository
             objEmpCVData.URGENT_PER_SDT = objEmpCV.URGENT_PER_SDT
             objEmpCVData.URGENT_ADDRESS = objEmpCV.URGENT_ADDRESS
 
+            objEmpCVData.STRANGER = objEmpCV.STRANGER
+            objEmpCVData.WEAKNESS = objEmpCV.WEAKNESS
+
             If objEmpCV.IMAGE <> "" Then
                 objEmpCVData.IMAGE = objEmpData.CANDIDATE_CODE & objEmpCV.IMAGE
             End If
@@ -2245,6 +2248,9 @@ Partial Class RecruitmentRepository
                 objEmpCVData.URGENT_PER_RELATION = objEmpCV.URGENT_PER_RELATION
                 objEmpCVData.URGENT_PER_SDT = objEmpCV.URGENT_PER_SDT
                 objEmpCVData.URGENT_ADDRESS = objEmpCV.URGENT_ADDRESS
+
+                objEmpCVData.STRANGER = objEmpCV.STRANGER
+                objEmpCVData.WEAKNESS = objEmpCV.WEAKNESS
 
                 If isInsert Then
                     Context.RC_CANDIDATE_CV.AddObject(objEmpCVData)
@@ -2707,7 +2713,9 @@ Partial Class RecruitmentRepository
                  .URGENT_PER_NAME = e.URGENT_PER_NAME,
                  .URGENT_PER_RELATION = If(e.URGENT_PER_RELATION Is Nothing, 0, e.URGENT_PER_RELATION),
                  .URGENT_PER_SDT = e.URGENT_PER_SDT,
-                 .URGENT_ADDRESS = e.URGENT_ADDRESS
+                 .URGENT_ADDRESS = e.URGENT_ADDRESS,
+                 .STRANGER = e.STRANGER,
+                 .WEAKNESS = e.WEAKNESS
                  }).FirstOrDefault
             Return query
         Catch ex As Exception

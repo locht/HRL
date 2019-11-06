@@ -18,7 +18,7 @@ Imports System.Runtime.Serialization
 Imports System.Xml.Serialization
 
 
-<Assembly: EdmSchemaAttribute("48f4a41c-3f7d-4774-aff3-61543c071d8b")>
+<Assembly: EdmSchemaAttribute("b84afe26-1ee4-4234-928f-b635ccb777ec")>
 #Region "EDM Relationship Metadata"
 <Assembly: EdmRelationshipAttribute("RecruitmentModel", "FK_FE_HEH", "HU_EMPLOYEE", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_EMPLOYEE), "HU_EMPLOYEE_HEALTH1", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(HU_EMPLOYEE_HEALTH1), True)>
 <Assembly: EdmRelationshipAttribute("RecruitmentModel", "FK_HE_HEC", "HU_EMPLOYEE", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_EMPLOYEE), "HU_EMPLOYEE_CV", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(HU_EMPLOYEE_CV), True)>
@@ -20087,6 +20087,56 @@ Public Partial Class RC_CANDIDATE_CV
     End Sub
 
     Private Partial Sub OnURGENT_ADDRESSChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property STRANGER() As Global.System.String
+        Get
+            Return _STRANGER
+        End Get
+        Set
+            OnSTRANGERChanging(value)
+            ReportPropertyChanging("STRANGER")
+            _STRANGER = StructuralObject.SetValidValue(value, true)
+            ReportPropertyChanged("STRANGER")
+            OnSTRANGERChanged()
+        End Set
+    End Property
+
+    Private _STRANGER As Global.System.String
+    Private Partial Sub OnSTRANGERChanging(value As Global.System.String)
+    End Sub
+
+    Private Partial Sub OnSTRANGERChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property WEAKNESS() As Global.System.String
+        Get
+            Return _WEAKNESS
+        End Get
+        Set
+            OnWEAKNESSChanging(value)
+            ReportPropertyChanging("WEAKNESS")
+            _WEAKNESS = StructuralObject.SetValidValue(value, true)
+            ReportPropertyChanged("WEAKNESS")
+            OnWEAKNESSChanged()
+        End Set
+    End Property
+
+    Private _WEAKNESS As Global.System.String
+    Private Partial Sub OnWEAKNESSChanging(value As Global.System.String)
+    End Sub
+
+    Private Partial Sub OnWEAKNESSChanged()
     End Sub
 
     #End Region

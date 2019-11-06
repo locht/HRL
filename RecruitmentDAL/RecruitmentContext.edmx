@@ -716,6 +716,8 @@
             <Property Name="URGENT_PER_RELATION" Type="number" Nullable="true" Precision="38" />
             <Property Name="URGENT_PER_SDT" Type="nclob" Nullable="true" />
             <Property Name="URGENT_ADDRESS" Type="nclob" Nullable="true" />
+            <Property Name="STRANGER" Type="nclob" Nullable="true" />
+            <Property Name="WEAKNESS" Type="nclob" Nullable="true" />
         </EntityType>
         <EntityType Name="RC_PROGRAM_SCHEDULE">
             <Key>
@@ -2556,6 +2558,8 @@
           <Property Type="Decimal" Name="URGENT_PER_RELATION" />
           <Property Type="String" Name="URGENT_PER_SDT" />
           <Property Type="String" Name="URGENT_ADDRESS" />
+          <Property Type="String" Name="STRANGER" />
+          <Property Type="String" Name="WEAKNESS" />
         </EntityType>
         <EntityType Name="RC_PROGRAM_SCHEDULE">
           <Key>
@@ -4300,6 +4304,8 @@
                     <ScalarProperty Name="URGENT_PER_RELATION" ColumnName="URGENT_PER_RELATION" />
                     <ScalarProperty Name="URGENT_PER_SDT" ColumnName="URGENT_PER_SDT" />
                     <ScalarProperty Name="URGENT_ADDRESS" ColumnName="URGENT_ADDRESS" />
+                    <ScalarProperty Name="STRANGER" ColumnName="STRANGER" />
+                    <ScalarProperty Name="WEAKNESS" ColumnName="WEAKNESS" />
                 </MappingFragment>
             </EntityTypeMapping>
         </EntitySetMapping>
@@ -5306,7 +5312,7 @@
     </edmx:Options>
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram Name="RecruitmentContext" ZoomLevel="98" >
+      <Diagram Name="RecruitmentContext" ZoomLevel="94" >
         <EntityTypeShape EntityType="RecruitmentModel.RC_COST_CENTER" Width="1.5" PointX="1" PointY="25.5" IsExpanded="false" Height="0.4" />
         <EntityTypeShape EntityType="RecruitmentModel.SE_CHOSEN_ORG" Width="1.5" PointX="2.75" PointY="0.75" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="RecruitmentModel.HU_FAMILY" Width="1.5" PointX="3.875" PointY="32.625" Height="0.4" IsExpanded="false" />
@@ -5330,7 +5336,7 @@
         <EntityTypeShape EntityType="RecruitmentModel.RC_CANDIDATE_EDUCATION" Width="1.5" PointX="18.375" PointY="14.75" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="RecruitmentModel.RC_CANDIDATE_HISTORY" Width="1.5" PointX="20.375" PointY="5.75" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="RecruitmentModel.RC_CANDIDATE_OTHER_INFO" Width="1.5" PointX="23.25" PointY="11.5" Height="0.4" IsExpanded="false" />
-        <EntityTypeShape EntityType="RecruitmentModel.RC_CANDIDATE_CV" Width="2.375" PointX="23.125" PointY="17" Height="17.749003906250003" IsExpanded="true" />
+        <EntityTypeShape EntityType="RecruitmentModel.RC_CANDIDATE_CV" Width="2.375" PointX="23.125" PointY="17" Height="18.133606770833332" IsExpanded="true" />
         <EntityTypeShape EntityType="RecruitmentModel.RC_PROGRAM_SCHEDULE" Width="2.625" PointX="7" PointY="22.75" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="RecruitmentModel.RC_PROGRAM_SCHEDULE_CAN" Width="2.5" PointX="12.375" PointY="21.75" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="RecruitmentModel.RC_PROGRAM_SCHEDULE_USHER" Width="3.625" PointX="15.125" PointY="21.75" Height="0.4" IsExpanded="false" />

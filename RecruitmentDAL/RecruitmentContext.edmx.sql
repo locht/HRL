@@ -1,7 +1,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for Oracle database
 -- --------------------------------------------------
--- Date Created: 06-Nov-19 4:17:05 PM
+-- Date Created: 06-Nov-19 6:31:09 PM
 -- Generated from EDMX file: E:\PROJECT\MyTNG\RecruitmentDAL\RecruitmentContext.edmx
 -- --------------------------------------------------
 
@@ -738,7 +738,9 @@ CREATE TABLE "dbo"."RC_CANDIDATE_CV" (
    "URGENT_PER_NAME" NCLOB NULL,
    "URGENT_PER_RELATION" NUMBER(38,0) NULL,
    "URGENT_PER_SDT" NCLOB NULL,
-   "URGENT_ADDRESS" NCLOB NULL
+   "URGENT_ADDRESS" NCLOB NULL,
+   "STRANGER" NCLOB NULL,
+   "WEAKNESS" NCLOB NULL
 );
 
 -- Creating table 'RC_PROGRAM_SCHEDULE'
