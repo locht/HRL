@@ -2270,6 +2270,14 @@ Public Class ctrlREPORT
                 Else
                     dsReport.Tables(0).Rows(0)("FILE_LOGO") = sourcePath + dsReport.Tables(0).Rows(0)("ATTACH_FILE_LOGO") + dsReport.Tables(0).Rows(0)("FILE_LOGO")
                 End If
+            Else
+                Dim sourcePath = Server.MapPath("~/ReportTemplates/Profile/LocationInfo/")
+                Dim path As String = sourcePath + dsReport.Tables(1).Rows(0)("ATTACH_FILE_LOGO").ToString + dsReport.Tables(1).Rows(0)("FILE_LOGO").ToString
+                If Not File.Exists(path) Then
+                    dsReport.Tables(1).Rows(0)("FILE_LOGO") = "NoImage.jpg"
+                Else
+                    dsReport.Tables(1).Rows(0)("FILE_LOGO") = sourcePath + dsReport.Tables(1).Rows(0)("ATTACH_FILE_LOGO") + dsReport.Tables(1).Rows(0)("FILE_LOGO")
+                End If
             End If
 
             If programID <> -1 Then

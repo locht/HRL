@@ -174,7 +174,7 @@ Public Class AsposeExcelCommon
         Dim rep As New HistaffFrameworkRepository
         Try
             Dim pathTemp As String = ""
-            If dsData.Tables.Count = 1 Then
+            If dsData.Tables.Count > 0 Then
                 If Not File.Exists(filePath) Then
                     _error = "1"
                     Return False
@@ -187,11 +187,31 @@ Public Class AsposeExcelCommon
                 designer.Open(filePath)
                 designer.SetDataSource(dsData)
 
+                Dim worksheet As Aspose.Cells.Worksheet = designer.Workbook.Worksheets(0)
 
+                If dsData.Tables(1).Rows(0)("FILE_LOGO").ToString IsNot Nothing And dsData.Tables(1).Rows(0)("FILE_LOGO").ToString <> "" And dsData.Tables(1).Rows(0)("FILE_LOGO").ToString <> "NoImage.jpg" Then
+                    'Adding a picture at the location of a cell whose row and column indices
+
+                    Dim b As Byte() = File.ReadAllBytes(dsData.Tables(0).Rows(0)("FILE_LOGO").ToString)
+
+                    Dim ms As New System.IO.MemoryStream(b)
+                    Dim pictureIndex As Integer = worksheet.Pictures.Add(1, 1, ms)
+
+                    'Accessing the newly added picture
+                    Dim picture As Aspose.Cells.Drawing.Picture = worksheet.Pictures(pictureIndex)
+
+                    'Positioning the picture proportional to row height and colum width
+                    picture.Width = 400
+                    picture.Height = 120
+                End If
 
                 'add parameter in report and header + footer
                 designer.Process()
                 designer.Workbook.CalculateFormula()
+
+                'Dim index As Integer = designer.Workbook.Worksheets(0).Pictures.Add(3, 2, 3, 2, "C:\Users\Hong Quan\Pictures\Saved Pictures\961839.jpg")
+                'Dim pic As Picture = designer.Workbook.Worksheets(0).Pictures(index)
+                'pic.Placement = PlacementType.FreeFloating
                 With designer.Workbook
                     .CalculateFormula()
                     Select Case type
@@ -210,10 +230,10 @@ Public Class AsposeExcelCommon
                     _error = "2"
                     Return False
                 End If
-                Dim dsDataDynamic = dsData.Tables(dsData.Tables.Count - 1).Copy()
-                Dim dsDataFill As New DataSet
-                dsDataFill.Tables.Add(dsDataDynamic)
-                Dim table As DataTable = dsData.Tables(dsData.Tables.Count - 1)
+                'Dim dsDataDynamic = dsData.Tables(dsData.Tables.Count - 1).Copy()
+                'Dim dsDataFill As New DataSet
+                'dsDataFill.Tables.Add(dsDataDynamic)
+                'Dim table As DataTable = dsData.Tables(dsData.Tables.Count - 1)
                 'If (dsData.Tables.CanRemove(table)) Then
                 '    dsData.Tables.Remove(table)
                 'End If
@@ -226,14 +246,23 @@ Public Class AsposeExcelCommon
                 designer.Workbook.CalculateFormula()
                 designer.Workbook.Save(filePathTemp & fileName & ".xls", New XlsSaveOptions())
 
-                'sau do mo~ lai file da~ save va fill data vao
+                'roi bị lan 2 luon o day
                 designer = New WorkbookDesigner
                 designer.Open(filePathTemp & fileName & ".xls")
-                designer.SetDataSource(dsDataFill)
-
-                'add parameter in report and header + footer
+                designer.SetDataSource(dsData) 'Bind lần 2 -> z hả a
                 designer.Process()
                 designer.Workbook.CalculateFormula()
+                'Dim index As Integer = designer.Workbook.Worksheets(0).Pictures.Add(3, 2, 3, 2, "C:\Users\Hong Quan\Pictures\Saved Pictures\961839.jpg")
+                'Dim pic As Picture = designer.Workbook.Worksheets(0).Pictures(index)
+                'pic.Placement = PlacementType.FreeFloating
+                'sau do mo~ lai file da~ save va fill data vao
+                'designer = New WorkbookDesigner
+                'designer.Open(filePathTemp & fileName & ".xls")
+                'designer.SetDataSource(dsDataFill)
+
+                'add parameter in report and header + footer
+                'designer.Process()
+                'designer.Workbook.CalculateFormula()
                 'Dim range As Range = designer.Workbook.Worksheets(1).Cells.CreateRange("AN:BQ")
 
                 With designer.Workbook
