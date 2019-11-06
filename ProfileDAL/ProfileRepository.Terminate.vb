@@ -868,6 +868,7 @@ Partial Class ProfileRepository
 
     Public Function ApproveTerminate(ByVal objTerminate As TerminateDTO, ByVal log As UserLog) As Boolean
         Dim objEmployeeData1 As HU_EMPLOYEE
+        Dim objAtWorkSignData As AT_WORKSIGN
         Try
             If Not objTerminate.STATUS_ID = ProfileCommon.DECISION_STATUS.APPROVE_ID Then
                 Return False
@@ -884,7 +885,11 @@ Partial Class ProfileRepository
                 End If
                 objEmployeeData.TER_EFFECT_DATE = objTerminate.EFFECT_DATE
                 objEmployeeData.TER_LAST_DATE = objTerminate.LAST_DATE
+
+                objAtWorkSignData = (From p In Context.AT_WORKSIGN Where p.EMPLOYEE_ID = objEmployeeData.ID And p.WORKINGDAY >= objTerminate.EFFECT_DATE).FirstOrDefault
+                Context.AT_WORKSIGN.DeleteObject(objAtWorkSignData)
             Next
+
             If log IsNot Nothing Then
                 Context.SaveChanges(log)
             Else
