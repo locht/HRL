@@ -147,7 +147,7 @@
         <tlk:RadMultiPage ID="RadMultiPage1" SelectedIndex="0" runat="server" Width="100%"
             Height="380px">
             <tlk:RadPageView ID="rpvElect" runat="server" Width="100%" Height="380px">
-                <tlk:RadGrid ID="rgCandidateList" runat="server" Width="100%" Height="380px">
+                <tlk:RadGrid ID="rgCandidateList" runat="server" Width="100%" Height="200px">
                     <MasterTableView DataKeyNames="ID,CANDIDATE_CODE,ID_CANDIDATE" ClientDataKeyNames="ID,CANDIDATE_CODE,STATUS_CODE,ID_CANDIDATE">
                         <Columns>
                             <tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderStyle-HorizontalAlign="Center"
@@ -193,7 +193,7 @@
                 </tlk:RadGrid>
             </tlk:RadPageView>
             <tlk:RadPageView ID="rpvResult" runat="server" Width="100%" Height="360px">
-                <tlk:RadGrid ID="rgResult" runat="server" Height="360px" AllowFilteringByColumn="true"
+                <tlk:RadGrid ID="rgResult" runat="server" Height="200px" AllowFilteringByColumn="true"
                     AllowPaging="true" PageSize="50">
                     <MasterTableView DataKeyNames="ID" ClientDataKeyNames="ID">
                         <Columns>
@@ -221,7 +221,7 @@
                 </tlk:RadGrid>
             </tlk:RadPageView>
             <tlk:RadPageView ID="rpvAspiration" runat="server" Width="100%" Height="360px">
-                <tlk:RadGrid ID="rgAspiration" runat="server" Height="360px" Width="100%" AllowScroll="true">
+                <tlk:RadGrid ID="rgAspiration" runat="server" Height="200px" Width="100%" AllowScroll="true">
                     <MasterTableView DataKeyNames="ID" ClientDataKeyNames="ID,CANDIDATE_CODE,ID_CANDIDATE,PLACE_WORK,RECEIVE_FROM,RECEIVE_TO,PROBATION_FROM,PROBATION_TO">
                         <Columns>
                             <tlk:GridBoundColumn DataField="ID" Visible="false" />
@@ -354,7 +354,7 @@
 </tlk:RadWindowManager>
 <tlk:RadCodeBlock ID="RadCodeBlock1" runat="server">
     <script type="text/javascript">
-
+       
         function gridRowDblClick(sender, eventArgs) {
             OpenEditWindow("Normal");
         }
