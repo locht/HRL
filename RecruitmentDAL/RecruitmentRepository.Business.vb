@@ -2557,6 +2557,7 @@ Partial Class RecruitmentRepository
                 Dim objEmpData As New RC_CANDIDATE With {.ID = canID}
                 Context.RC_CANDIDATE.Attach(objEmpData)
                 objEmpData.IS_BLACKLIST = bCheck
+                objEmpData.STATUS_ID = "BLACKLIST"
             Next
             Context.SaveChanges(log)
 

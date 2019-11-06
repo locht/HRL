@@ -828,9 +828,9 @@ Public Class ctrlRC_CanDtlProfile
                         End Select
                     End If
                 Case TOOLBARITEM_CANCEL
-                    If CurrentState = CommonMessage.STATE_NEW Then 'Nếu là trạng thái new thì xóa ảnh hiện tại
-                        ScriptManager.RegisterStartupScript(Page, Page.GetType, "Close", "CloseWindow();", True)
-                    End If
+                    ' If CurrentState = CommonMessage.STATE_NEW Then 'Nếu là trạng thái new thì xóa ảnh hiện tại
+                    ScriptManager.RegisterStartupScript(Page, Page.GetType, "Close", "CloseWindow();", True)
+                    'End If
                     CurrentState = CommonMessage.STATE_NORMAL
                     'divFileAttach.Visible = False
                 Case TOOLBARITEM_DELETE
