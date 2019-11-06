@@ -712,6 +712,10 @@
             <Property Name="FINDER_NAME" Type="nclob" Nullable="true" />
             <Property Name="FINDER_SDT" Type="nclob" Nullable="true" />
             <Property Name="FINDER_ADDRESS" Type="nclob" Nullable="true" />
+            <Property Name="URGENT_PER_NAME" Type="nclob" Nullable="true" />
+            <Property Name="URGENT_PER_RELATION" Type="number" Nullable="true" Precision="38" />
+            <Property Name="URGENT_PER_SDT" Type="nclob" Nullable="true" />
+            <Property Name="URGENT_ADDRESS" Type="nclob" Nullable="true" />
         </EntityType>
         <EntityType Name="RC_PROGRAM_SCHEDULE">
             <Key>
@@ -2548,6 +2552,10 @@
           <Property Type="String" Name="FINDER_NAME" />
           <Property Type="String" Name="FINDER_SDT" />
           <Property Type="String" Name="FINDER_ADDRESS" />
+          <Property Type="String" Name="URGENT_PER_NAME" />
+          <Property Type="Decimal" Name="URGENT_PER_RELATION" />
+          <Property Type="String" Name="URGENT_PER_SDT" />
+          <Property Type="String" Name="URGENT_ADDRESS" />
         </EntityType>
         <EntityType Name="RC_PROGRAM_SCHEDULE">
           <Key>
@@ -4288,6 +4296,10 @@
                     <ScalarProperty Name="FINDER_NAME" ColumnName="FINDER_NAME" />
                     <ScalarProperty Name="FINDER_SDT" ColumnName="FINDER_SDT" />
                     <ScalarProperty Name="FINDER_ADDRESS" ColumnName="FINDER_ADDRESS" />
+                    <ScalarProperty Name="URGENT_PER_NAME" ColumnName="URGENT_PER_NAME" />
+                    <ScalarProperty Name="URGENT_PER_RELATION" ColumnName="URGENT_PER_RELATION" />
+                    <ScalarProperty Name="URGENT_PER_SDT" ColumnName="URGENT_PER_SDT" />
+                    <ScalarProperty Name="URGENT_ADDRESS" ColumnName="URGENT_ADDRESS" />
                 </MappingFragment>
             </EntityTypeMapping>
         </EntitySetMapping>
@@ -5314,15 +5326,15 @@
         <EntityTypeShape EntityType="RecruitmentModel.OT_OTHER_LIST_TYPE" Width="1.5" PointX="9.125" PointY="16.625" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="RecruitmentModel.RC_PLAN_REG" Width="1.5" PointX="16.375" PointY="14.75" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="RecruitmentModel.HU_CONTRACT_TYPE" Width="2" PointX="20" PointY="0.875" Height="0.4" IsExpanded="false" />
-        <EntityTypeShape EntityType="RecruitmentModel.RC_CANDIDATE" Width="1.5" PointX="18.375" PointY="5.75" Height="6.21091796875" IsExpanded="true" />
+        <EntityTypeShape EntityType="RecruitmentModel.RC_CANDIDATE" Width="1.5" PointX="18.375" PointY="5.75" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="RecruitmentModel.RC_CANDIDATE_EDUCATION" Width="1.5" PointX="18.375" PointY="14.75" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="RecruitmentModel.RC_CANDIDATE_HISTORY" Width="1.5" PointX="20.375" PointY="5.75" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="RecruitmentModel.RC_CANDIDATE_OTHER_INFO" Width="1.5" PointX="23.25" PointY="11.5" Height="0.4" IsExpanded="false" />
-        <EntityTypeShape EntityType="RecruitmentModel.RC_CANDIDATE_CV" Width="2.375" PointX="20.375" PointY="17.75" Height="16.979798177083332" IsExpanded="true" />
+        <EntityTypeShape EntityType="RecruitmentModel.RC_CANDIDATE_CV" Width="2.375" PointX="23.125" PointY="17" Height="17.749003906250003" IsExpanded="true" />
         <EntityTypeShape EntityType="RecruitmentModel.RC_PROGRAM_SCHEDULE" Width="2.625" PointX="7" PointY="22.75" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="RecruitmentModel.RC_PROGRAM_SCHEDULE_CAN" Width="2.5" PointX="12.375" PointY="21.75" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="RecruitmentModel.RC_PROGRAM_SCHEDULE_USHER" Width="3.625" PointX="15.125" PointY="21.75" Height="0.4" IsExpanded="false" />
-        <EntityTypeShape EntityType="RecruitmentModel.RC_CANDIDATE_FAMILY" Width="1.5" PointX="8.75" PointY="29" Height="7.3647265625000031" IsExpanded="true" />
+        <EntityTypeShape EntityType="RecruitmentModel.RC_CANDIDATE_FAMILY" Width="1.5" PointX="8.75" PointY="29" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="RecruitmentModel.RC_CANDIDATE_TRAINSINGER" Width="1.5" PointX="2.875" PointY="6.5" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="RecruitmentModel.RC_CANDIDATE_BEFOREWT" Width="1.5" PointX="3.375" PointY="26.375" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="RecruitmentModel.RC_COST" Width="2" PointX="22.25" PointY="6.75" Height="0.4" IsExpanded="false" />
@@ -5332,7 +5344,7 @@
         <EntityTypeShape EntityType="RecruitmentModel.HU_EMPLOYEE_EDUCATION" Width="1.5" PointX="21" PointY="20.25" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="RecruitmentModel.HU_EMPLOYEE_HEALTH" Width="1.5" PointX="3.375" PointY="12.75" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="RecruitmentModel.HU_EMPLOYEE_OTHER_INFO" Width="1.5" PointX="7.375" PointY="0.75" Height="0.4" IsExpanded="false" />
-        <EntityTypeShape EntityType="RecruitmentModel.HU_EMPLOYEE_TRAIN" Width="1.5" PointX="23.875" PointY="22.375" Height="0.4" IsExpanded="false" />
+        <EntityTypeShape EntityType="RecruitmentModel.HU_EMPLOYEE_TRAIN" Width="1.5" PointX="21.125" PointY="22.75" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="RecruitmentModel.HU_EMPLOYEE_TRAINSINGER" Width="1.5" PointX="11.375" PointY="25.75" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="RecruitmentModel.HU_EMPLOYEE" Width="1.5" PointX="27.625" PointY="9.5" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="RecruitmentModel.HU_EMPLOYEE_CV" Width="1.5" PointX="30.875" PointY="29.75" Height="0.4" IsExpanded="false" />
@@ -5408,8 +5420,8 @@
         </AssociationConnector>
         <AssociationConnector Association="RecruitmentModel.FK_HU_ORG_HU_ORG" >
           <ConnectorPoint PointX="25.889153846153846" PointY="16.775" />
-          <ConnectorPoint PointX="25.889153846153846" PointY="17.025" />
-          <ConnectorPoint PointX="26.372076923076925" PointY="17.025" />
+          <ConnectorPoint PointX="25.889153846153846" PointY="17.025000000000002" />
+          <ConnectorPoint PointX="26.372076923076925" PointY="17.025000000000002" />
           <ConnectorPoint PointX="26.372076923076925" PointY="16.775" />
         </AssociationConnector>
         <EntityTypeShape EntityType="RecruitmentModel.HU_BANK" Width="1.5" PointX="5.75" PointY="12.125" Height="0.4" IsExpanded="false" />

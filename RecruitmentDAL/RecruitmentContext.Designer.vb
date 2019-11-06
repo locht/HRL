@@ -18,7 +18,7 @@ Imports System.Runtime.Serialization
 Imports System.Xml.Serialization
 
 
-<Assembly: EdmSchemaAttribute("c2b18d10-5001-49b1-8393-b23b865dfca2")>
+<Assembly: EdmSchemaAttribute("48f4a41c-3f7d-4774-aff3-61543c071d8b")>
 #Region "EDM Relationship Metadata"
 <Assembly: EdmRelationshipAttribute("RecruitmentModel", "FK_FE_HEH", "HU_EMPLOYEE", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_EMPLOYEE), "HU_EMPLOYEE_HEALTH1", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(HU_EMPLOYEE_HEALTH1), True)>
 <Assembly: EdmRelationshipAttribute("RecruitmentModel", "FK_HE_HEC", "HU_EMPLOYEE", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_EMPLOYEE), "HU_EMPLOYEE_CV", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(HU_EMPLOYEE_CV), True)>
@@ -19987,6 +19987,106 @@ Public Partial Class RC_CANDIDATE_CV
     End Sub
 
     Private Partial Sub OnFINDER_ADDRESSChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property URGENT_PER_NAME() As Global.System.String
+        Get
+            Return _URGENT_PER_NAME
+        End Get
+        Set
+            OnURGENT_PER_NAMEChanging(value)
+            ReportPropertyChanging("URGENT_PER_NAME")
+            _URGENT_PER_NAME = StructuralObject.SetValidValue(value, true)
+            ReportPropertyChanged("URGENT_PER_NAME")
+            OnURGENT_PER_NAMEChanged()
+        End Set
+    End Property
+
+    Private _URGENT_PER_NAME As Global.System.String
+    Private Partial Sub OnURGENT_PER_NAMEChanging(value As Global.System.String)
+    End Sub
+
+    Private Partial Sub OnURGENT_PER_NAMEChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property URGENT_PER_RELATION() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _URGENT_PER_RELATION
+        End Get
+        Set
+            OnURGENT_PER_RELATIONChanging(value)
+            ReportPropertyChanging("URGENT_PER_RELATION")
+            _URGENT_PER_RELATION = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("URGENT_PER_RELATION")
+            OnURGENT_PER_RELATIONChanged()
+        End Set
+    End Property
+
+    Private _URGENT_PER_RELATION As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnURGENT_PER_RELATIONChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnURGENT_PER_RELATIONChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property URGENT_PER_SDT() As Global.System.String
+        Get
+            Return _URGENT_PER_SDT
+        End Get
+        Set
+            OnURGENT_PER_SDTChanging(value)
+            ReportPropertyChanging("URGENT_PER_SDT")
+            _URGENT_PER_SDT = StructuralObject.SetValidValue(value, true)
+            ReportPropertyChanged("URGENT_PER_SDT")
+            OnURGENT_PER_SDTChanged()
+        End Set
+    End Property
+
+    Private _URGENT_PER_SDT As Global.System.String
+    Private Partial Sub OnURGENT_PER_SDTChanging(value As Global.System.String)
+    End Sub
+
+    Private Partial Sub OnURGENT_PER_SDTChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property URGENT_ADDRESS() As Global.System.String
+        Get
+            Return _URGENT_ADDRESS
+        End Get
+        Set
+            OnURGENT_ADDRESSChanging(value)
+            ReportPropertyChanging("URGENT_ADDRESS")
+            _URGENT_ADDRESS = StructuralObject.SetValidValue(value, true)
+            ReportPropertyChanged("URGENT_ADDRESS")
+            OnURGENT_ADDRESSChanged()
+        End Set
+    End Property
+
+    Private _URGENT_ADDRESS As Global.System.String
+    Private Partial Sub OnURGENT_ADDRESSChanging(value As Global.System.String)
+    End Sub
+
+    Private Partial Sub OnURGENT_ADDRESSChanged()
     End Sub
 
     #End Region

@@ -12810,6 +12810,18 @@ Namespace RecruitmentBusiness
         Private TEMP_RESIDENCE_CARD_STARTField As System.Nullable(Of Date)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private URGENT_ADDRESSField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private URGENT_PER_NAMEField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private URGENT_PER_RELATIONField As Decimal
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private URGENT_PER_SDTField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private VISA_DATEField As System.Nullable(Of Date)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -14076,6 +14088,58 @@ Namespace RecruitmentBusiness
                 If (Me.TEMP_RESIDENCE_CARD_STARTField.Equals(value) <> true) Then
                     Me.TEMP_RESIDENCE_CARD_STARTField = value
                     Me.RaisePropertyChanged("TEMP_RESIDENCE_CARD_START")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property URGENT_ADDRESS() As String
+            Get
+                Return Me.URGENT_ADDRESSField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.URGENT_ADDRESSField, value) <> true) Then
+                    Me.URGENT_ADDRESSField = value
+                    Me.RaisePropertyChanged("URGENT_ADDRESS")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property URGENT_PER_NAME() As String
+            Get
+                Return Me.URGENT_PER_NAMEField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.URGENT_PER_NAMEField, value) <> true) Then
+                    Me.URGENT_PER_NAMEField = value
+                    Me.RaisePropertyChanged("URGENT_PER_NAME")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property URGENT_PER_RELATION() As Decimal
+            Get
+                Return Me.URGENT_PER_RELATIONField
+            End Get
+            Set
+                If (Me.URGENT_PER_RELATIONField.Equals(value) <> true) Then
+                    Me.URGENT_PER_RELATIONField = value
+                    Me.RaisePropertyChanged("URGENT_PER_RELATION")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property URGENT_PER_SDT() As String
+            Get
+                Return Me.URGENT_PER_SDTField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.URGENT_PER_SDTField, value) <> true) Then
+                    Me.URGENT_PER_SDTField = value
+                    Me.RaisePropertyChanged("URGENT_PER_SDT")
                 End If
             End Set
         End Property

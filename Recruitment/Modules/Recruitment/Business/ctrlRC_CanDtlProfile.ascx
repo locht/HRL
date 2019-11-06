@@ -458,11 +458,6 @@
                                 <tlk:RadComboBox runat="server" ID="cboContractDictrict" AutoPostBack="true" CausesValidation="false">
                                 </tlk:RadComboBox>
                             </td>
-                            <td>
-                                <%--<asp:RequiredFieldValidator ID="cv_rfvContractDictrict" ControlToValidate="cboContractDictrict"
-                                    runat="server" ErrorMessage="<%$ Translate: Bạn phải chọn quận/huyện %>" ToolTip="<%$ Translate: Bạn phải chọn quận/huyện %>"> 
-                                </asp:RequiredFieldValidator>--%>
-                            </td>
                             <td class="lb">
                                 <%# Translate("Phường/Xã")%>
                             </td>
@@ -1134,7 +1129,7 @@
                 </fieldset>
             </tlk:RadPageView>
             <tlk:RadPageView ID="rpvOtherInfo" runat="server" Width="100%">
-                <fieldset>
+                <fieldset style="display:none">
                     <legend>
                         <%# Translate("Thông tin tổ chức chính trị, xã hội")%>
                     </legend>
@@ -1246,7 +1241,7 @@
                                 </tlk:RadTextBox>
                             </td>
                         </tr>
-                        <tr>
+                        <tr style="display:none">
                             <td colspan="6">
                                 <asp:CheckBox ID="chkCongDoanPhi" runat="server" Text="<%$ Translate: Công đoàn phí %>" />
                                 <hr />

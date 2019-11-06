@@ -178,14 +178,20 @@ Public Class ctrlHU_Organization
                     Select Case Message
                         Case "UpdateView"
                             ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), NotifyType.Success)
+                            Dim callFunction = Common.CommonRepository.GetOrganizationLocationTreeView()
                             lstOrganization = rep.GetOrganization()
-                            Me.Organizations = lstOrganization
+                            Dim lstorgper = (From p In Common.Common.OrganizationLocationDataSession Select p.ID).ToList()
+                            Dim lst = (From p In lstOrganization Where lstorgper.Contains(p.ID)).ToList()
+                            Me.Organizations = lst
                             CurrentState = CommonMessage.STATE_NORMAL
                             UpdateToolbarState(CurrentState)
                         Case "InsertView"
                             ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), NotifyType.Success)
+                            Dim callFunction = Common.CommonRepository.GetOrganizationLocationTreeView()
                             lstOrganization = rep.GetOrganization()
-                            Me.Organizations = lstOrganization
+                            Dim lstorgper = (From p In Common.Common.OrganizationLocationDataSession Select p.ID).ToList()
+                            Dim lst = (From p In lstOrganization Where lstorgper.Contains(p.ID)).ToList()
+                            Me.Organizations = lst
                             CurrentState = CommonMessage.STATE_NORMAL
                     End Select
                 End If
