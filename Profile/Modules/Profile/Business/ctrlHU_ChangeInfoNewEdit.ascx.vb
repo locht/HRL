@@ -617,6 +617,9 @@ Public Class ctrlHU_ChangeInfoNewEdit
                             If IsNumeric(cbOBJECT_ATTENDANCE.SelectedValue) Then
                                 .OBJECT_ATTENDANCE = cbOBJECT_ATTENDANCE.SelectedValue
                             End If
+                            If IsNumeric(cboObjectLaborNew.SelectedValue) Then
+                                .OBJECT_LABOR = cboObjectLaborNew.SelectedValue
+                            End If
                         End With
 
                         Select Case CurrentState
