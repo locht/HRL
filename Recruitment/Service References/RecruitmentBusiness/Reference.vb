@@ -12801,6 +12801,9 @@ Namespace RecruitmentBusiness
         Private RELIGION_NAMEField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private STRANGERField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private TEMP_RESIDENCE_CARDField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -12844,6 +12847,9 @@ Namespace RecruitmentBusiness
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private VNAIRLINES_PLACEField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private WEAKNESSField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private WORK_EMAIlField As String
@@ -14054,6 +14060,19 @@ Namespace RecruitmentBusiness
         End Property
         
         <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property STRANGER() As String
+            Get
+                Return Me.STRANGERField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.STRANGERField, value) <> true) Then
+                    Me.STRANGERField = value
+                    Me.RaisePropertyChanged("STRANGER")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
         Public Property TEMP_RESIDENCE_CARD() As String
             Get
                 Return Me.TEMP_RESIDENCE_CARDField
@@ -14244,6 +14263,19 @@ Namespace RecruitmentBusiness
                 If (Object.ReferenceEquals(Me.VNAIRLINES_PLACEField, value) <> true) Then
                     Me.VNAIRLINES_PLACEField = value
                     Me.RaisePropertyChanged("VNAIRLINES_PLACE")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property WEAKNESS() As String
+            Get
+                Return Me.WEAKNESSField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.WEAKNESSField, value) <> true) Then
+                    Me.WEAKNESSField = value
+                    Me.RaisePropertyChanged("WEAKNESS")
                 End If
             End Set
         End Property

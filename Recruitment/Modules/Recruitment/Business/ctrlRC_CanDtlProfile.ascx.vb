@@ -365,6 +365,9 @@ Public Class ctrlRC_CanDtlProfile
                         If IsNumeric(empCV.URGENT_PER_RELATION) = True Then
                             rcbNT_Relation.SelectedValue = empCV.URGENT_PER_RELATION
                         End If
+
+                        txtStranger.Text = empCV.STRANGER
+                        txtWeakness.Text = empCV.WEAKNESS
                     End If
 
                     'Phần gia đình
@@ -1195,15 +1198,6 @@ Public Class ctrlRC_CanDtlProfile
                 EmpCV.CONTACT_DISTRICT_ID = Decimal.Parse(cboContractDictrict.SelectedValue)
             End If
 
-
-            'Candidate Family
-            EmpFamily.FULLNAME = txtNT_FullName.Text.Trim
-            If IsNumeric(rcbNT_Relation.SelectedValue) = True Then
-                EmpFamily.RELATION_ID = rcbNT_Relation.SelectedValue
-            End If
-            EmpFamily.PHONE_NUMBER = txtNT_SDT.Text.Trim
-            EmpFamily.ADDRESS = txtNT_DiaChi.Text.Trim
-
             'Lấy ảnh của nhân viên
             If ImageFile IsNot Nothing Then
                 Dim bytes(ImageFile.ContentLength - 1) As Byte
@@ -1265,9 +1259,14 @@ Public Class ctrlRC_CanDtlProfile
             EmpCV.URGENT_PER_NAME = txtNT_FullName.Text.Trim
             EmpCV.URGENT_PER_SDT = txtNT_SDT.Text.Trim
             EmpCV.URGENT_ADDRESS = txtNT_DiaChi.Text.Trim
-            If IsNumeric(EmpCV.URGENT_PER_RELATION) = True Then
+            If IsNumeric(rcbNT_Relation.SelectedValue) = True Then
                 EmpCV.URGENT_PER_RELATION = rcbNT_Relation.SelectedValue
+            Else
+                EmpCV.URGENT_PER_RELATION = 0
             End If
+
+            EmpCV.STRANGER = txtStranger.Text.Trim
+            EmpCV.WEAKNESS = txtWeakness.Text.Trim
 
             'EmpEducation
             If cboNgoaNgu1.SelectedValue <> "" Then

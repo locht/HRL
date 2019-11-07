@@ -128,9 +128,11 @@
     Public Property FINDER_NAME As String
     Public Property FINDER_SDT As String
     Public Property FINDER_ADDRESS As String
-
     Public Property URGENT_PER_NAME As String
     Public Property URGENT_PER_RELATION As Decimal
     Public Property URGENT_PER_SDT As String
     Public Property URGENT_ADDRESS As String
+    Public Property STRANGER As String
+    Public Property WEAKNESS As String
+
 End Class

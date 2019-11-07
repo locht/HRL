@@ -1098,6 +1098,7 @@
       <xs:element minOccurs="0" name="PIT_CODE" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="RELIGION" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="RELIGION_NAME" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="STRANGER" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="TEMP_RESIDENCE_CARD" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="TEMP_RESIDENCE_CARD_END" nillable="true" type="xs:dateTime" />
       <xs:element minOccurs="0" name="TEMP_RESIDENCE_CARD_START" nillable="true" type="xs:dateTime" />
@@ -1113,6 +1114,7 @@
       <xs:element minOccurs="0" name="VNAIRLINES_DATE_EXPIRATION" nillable="true" type="xs:dateTime" />
       <xs:element minOccurs="0" name="VNAIRLINES_NUMBER" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="VNAIRLINES_PLACE" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="WEAKNESS" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="WORK_EMAIl" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="WORK_FORTE" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="WORK_PERMIT" nillable="true" type="xs:string" />
