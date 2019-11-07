@@ -135,12 +135,12 @@
                 <tlk:RadGrid ID="rgManning" runat="server" AutoGenerateColumns="False" AllowPaging="True"
                     AllowSorting="True" AllowMultiRowSelection="true" CellSpacing="0" GridLines="None"
                     Height="100%" Width="100%" AllowFilteringByColumn="true" AllowMultiRowEdit="True">
-                    <ClientSettings EnableRowHoverStyle="true">
+                    <ClientSettings>
                         <Scrolling AllowScroll="True" UseStaticHeaders="True" />
                         <Selecting AllowRowSelect="True" />
                     </ClientSettings>
                     <PagerStyle AlwaysVisible="true" Mode="NextPrevAndNumeric" />
-                    <MasterTableView DataKeyNames="ID,NEW_MANNING,CURRENT_MANNING,NOTE" ClientDataKeyNames="NEW_MANNING,CURRENT_MANNING,NOTE,NAME,EFFECT_DATE,OLD_MANNING,MOBILIZE_COUNT_MANNING,STATUS"
+                    <MasterTableView DataKeyNames="ID,NEW_MANNING,CURRENT_MANNING,NOTE,NAME,EFFECT_DATE,OLD_MANNING,MOBILIZE_COUNT_MANNING" ClientDataKeyNames="NEW_MANNING,CURRENT_MANNING,NOTE,NAME,EFFECT_DATE,OLD_MANNING,MOBILIZE_COUNT_MANNING"
                         EditMode="InPlace">
                         <Columns>
                             <tlk:GridBoundColumn DataField="ID" UniqueName="ID" Visible="false">
