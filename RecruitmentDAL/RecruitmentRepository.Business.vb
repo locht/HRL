@@ -1168,8 +1168,9 @@ Partial Class RecruitmentRepository
             objProgramData.REQUEST_EXPERIENCE = objProgram.REQUEST_EXPERIENCE
             objProgramData.REMARK = objProgram.REMARK
             objProgramData.STATUS_ID = objProgram.STATUS_ID
-            objProgramData.REQUEST_NUMBER = If(objProgram.FEMALE_NUMBER Is Nothing, 0, objProgram.FEMALE_NUMBER) +
-                If(objProgram.MALE_NUMBER Is Nothing, 0, objProgram.MALE_NUMBER)
+            'objProgramData.REQUEST_NUMBER = If(objProgram.FEMALE_NUMBER Is Nothing, 0, objProgram.FEMALE_NUMBER) +
+            '    If(objProgram.MALE_NUMBER Is Nothing, 0, objProgram.MALE_NUMBER)
+            objProgramData.REQUEST_NUMBER = If(objProgram.RECRUIT_NUMBER Is Nothing, 0, objProgram.RECRUIT_NUMBER)
             objProgramData.RC_REQUEST_ID = objProgram.ID
             Context.RC_PROGRAM.AddObject(objProgramData)
             If lstEmp IsNot Nothing Then

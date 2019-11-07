@@ -138,7 +138,7 @@ Public Class ctrlRC_CandidateList
                 lblSendDate.Text = objPro.SEND_DATE
                 lblCode.Text = objPro.CODE
                 lblJobName.Text = objPro.JOB_NAME
-                lblRequestNumber.Text = objPro.NUMBERRECRUITMENT
+                lblRequestNumber.Text = objPro.REQUEST_NUMBER
                 lblQuantityHasRecruitment.Text = objPro.CANDIDATE_RECEIVED
                 lblStatusRequest.Text = objPro.STATUS_NAME
                 lblReasonRecruitment.Text = objPro.RECRUIT_REASON
