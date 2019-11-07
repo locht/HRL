@@ -192,7 +192,7 @@ Public Class AsposeExcelCommon
                 If dsData.Tables(1).Rows(0)("FILE_LOGO").ToString IsNot Nothing And dsData.Tables(1).Rows(0)("FILE_LOGO").ToString <> "" And dsData.Tables(1).Rows(0)("FILE_LOGO").ToString <> "NoImage.jpg" Then
                     'Adding a picture at the location of a cell whose row and column indices
 
-                    Dim b As Byte() = File.ReadAllBytes(dsData.Tables(0).Rows(0)("FILE_LOGO").ToString)
+                    Dim b As Byte() = File.ReadAllBytes(dsData.Tables(1).Rows(0)("FILE_LOGO").ToString)
 
                     Dim ms As New System.IO.MemoryStream(b)
                     Dim pictureIndex As Integer = worksheet.Pictures.Add(1, 1, ms)
