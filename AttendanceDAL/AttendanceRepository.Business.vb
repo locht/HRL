@@ -3409,7 +3409,7 @@ Partial Public Class AttendanceRepository
             Dim emp = (From p In Context.HU_EMPLOYEE
                         Where p.EMPLOYEE_CODE = objLeave.EMPLOYEE_CODE And p.IS_KIEM_NHIEM Is Nothing
                         Select p).FirstOrDefault()
-            Dim dayNum As Decimal = If(objLeave.STATUS_SHIFT = -1 Or objLeave.STATUS_SHIFT = 0, 1, 0.5)
+            'Dim dayNum As Decimal = If(objLeave.STATUS_SHIFT = -1 Or objLeave.STATUS_SHIFT = 0, 1, 0.5)
             Dim statusShift As Decimal = If(objLeave.STATUS_SHIFT = -1 Or objLeave.STATUS_SHIFT = 0, 0, objLeave.STATUS_SHIFT)
             If emp IsNot Nothing Then
                 Dim query = From p In Context.AT_LEAVESHEET_DETAIL
@@ -3425,7 +3425,7 @@ Partial Public Class AttendanceRepository
                 atLeave.LEAVE_FROM = objLeave.LEAVE_FROM
                 atLeave.LEAVE_TO = objLeave.LEAVE_TO
                 atLeave.MANUAL_ID = objLeave.MANUAL_ID
-                atLeave.DAY_NUM = dayNum
+                atLeave.DAY_NUM = objLeave.DAY_NUM
                 atLeave.NOTE = objLeave.NOTE
                 atLeave.STATUS = 1 'phe duyet
                 atLeave.IS_APP = -1
@@ -3437,7 +3437,7 @@ Partial Public Class AttendanceRepository
                 atLeaveDT.LEAVESHEET_ID = atLeave.ID
                 atLeaveDT.MANUAL_ID = objLeave.MANUAL_ID
                 atLeaveDT.LEAVE_DAY = objLeave.LEAVE_FROM
-                atLeaveDT.DAY_NUM = dayNum
+                atLeaveDT.DAY_NUM = objLeave.DAY_NUM
                 atLeaveDT.STATUS_SHIFT = statusShift
                 Context.AT_LEAVESHEET_DETAIL.AddObject(atLeaveDT)
             End If
@@ -6694,6 +6694,25 @@ Partial Public Class AttendanceRepository
                                     .P_OUT = cls.OUT_NUMBER}
                 cls.ExecuteStore("PKG_ATTENDANCE_LIST.CHECK_LEAVE_EXITS", obj)
                 Return Integer.Parse(obj.P_OUT)
+            End Using
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+
+    Public Function CHECK_LEAVE_SHEET(ByVal P_EMP_CODE As String, ByVal P_DATE As String, ByVal P_CA As Decimal) As Decimal
+        Try
+            Using cls As New DataAccess.QueryData
+                Dim obj = New With {.P_CODE_NAME = P_EMP_CODE,
+                                    .P_DATE = P_DATE,
+                                    .P_CA = P_CA,
+                                    .P_OUT = cls.OUT_NUMBER}
+                cls.ExecuteStore("PKG_ATTENDANCE_LIST.CHECK_LEAVE_SHEET", obj)
+
+                If obj.P_OUT = ".5" Then
+                    Return 0.5
+                End If
+                Return Decimal.Parse(obj.P_OUT)
             End Using
         Catch ex As Exception
             Throw ex

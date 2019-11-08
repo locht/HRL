@@ -2219,7 +2219,7 @@
       <string>NGƯỜI PHÊ DUYỆT</string>
     </Key>
     <Value>
-      <string>Người phê duyệt</string>
+      <string>Người phê duyệt kế tiếp</string>
     </Value>
   </Item>
   <Item>
@@ -12353,7 +12353,7 @@ Xin cám ơn!
       <string>MÔ TẢ CÔNG VIỆC</string>
     </Key>
     <Value>
-      <string>Mô tả công việc</string>
+      <string>Mô tả công việc chính</string>
     </Value>
   </Item>
   <Item>
@@ -18537,7 +18537,7 @@ Xin cám ơn!
       <string>NHÓM GIẤY TỜ TÙY THÂN</string>
     </Key>
     <Value>
-      <string>Nhóm giấy tờ tùy thân</string>
+      <string>Giấy tờ khác</string>
     </Value>
   </Item>
   <Item>
@@ -26377,7 +26377,7 @@ Xin cám ơn!
       <string>NGÀY THANH TOÁN</string>
     </Key>
     <Value>
-      <string>Ngày thanh toán</string>
+      <string>Ngày hiệu lực</string>
     </Value>
   </Item>
   <Item>
@@ -43635,7 +43635,7 @@ Xin cám ơn!
       <string>TRÌNH ĐỘ TIN HỌC ỨNG DỤNG</string>
     </Key>
     <Value>
-      <string>Trình độ tin học ứng dụng</string>
+      <string>Tin học ứng dụng</string>
     </Value>
   </Item>
   <Item>
@@ -43996,6 +43996,350 @@ Xin cám ơn!
     </Key>
     <Value>
       <string>Phép bù năm trước chuyển sang</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>LOẠI PHÚC LỢI KHÔNG TỒN TẠI HOẶC ĐÃ NGỪNG ÁP DỤNG.</string>
+    </Key>
+    <Value>
+      <string>Loại phúc lợi không tồn tại hoặc đã ngừng áp dụng.</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>NHẬP FILE</string>
+    </Key>
+    <Value>
+      <string>Nhập file</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>THÔNG TIN PHÚC LỢI</string>
+    </Key>
+    <Value>
+      <string>Thông tin phúc lợi</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>TNG HỖ TRỢ TRIỂN KHAI</string>
+    </Key>
+    <Value>
+      <string>TNG hỗ trợ triển khai</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>BẠN PHẢI NHẬP ĐỘ TUỔI TỪ</string>
+    </Key>
+    <Value>
+      <string>Bạn phải nhập Độ tuổi từ</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>BẠN PHẢI NHẬP ĐỘ TUỔI ĐẾN</string>
+    </Key>
+    <Value>
+      <string>Bạn phải nhập Độ tuổi đến</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>BẠN PHẢI CHỌN NGHIỆP VỤ CHUYÊN MÔN</string>
+    </Key>
+    <Value>
+      <string>Bạn phải chọn Nghiệp vụ chuyên môn</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>BẠN PHẢI NHẬP SỐ LƯỢNG CẦN TUYỂN</string>
+    </Key>
+    <Value>
+      <string>Bạn phải nhập Số lượng cần tuyển</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>VƯỢT ĐỊNH BIÊN</string>
+    </Key>
+    <Value>
+      <string>Vượt định biên</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>BẠN PHẢI NHẬP MÔ TẢ CÔNG VIỆC</string>
+    </Key>
+    <Value>
+      <string>Bạn phải nhập Mô tả công việc</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>THÔNG TIN YÊU CẦU TUYỂN DỤNG</string>
+    </Key>
+    <Value>
+      <string>Thông tin yêu cầu tuyển dụng</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>TÍNH CHẤT TUYỂN DỤNG</string>
+    </Key>
+    <Value>
+      <string>Tính chất tuyển dụng</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>DIỄN GIẢI CHI TIẾT</string>
+    </Key>
+    <Value>
+      <string>Diễn giải chi tiết</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>ĐÍNH KÈM MÔ TẢ</string>
+    </Key>
+    <Value>
+      <string>Đính kèm mô tả</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>ĐIỂM NGOẠI NGỮ</string>
+    </Key>
+    <Value>
+      <string>Điểm ngoại ngữ</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>KHẢ NĂNG NGOẠI NGỮ</string>
+    </Key>
+    <Value>
+      <string>Khả năng ngoại ngữ</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>NGÀY CẦN ĐÁP ỨNG</string>
+    </Key>
+    <Value>
+      <string>Ngày cần đáp ứng</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>SỐ NĂM KINH NGHIỆM TỐI THIỂU</string>
+    </Key>
+    <Value>
+      <string>Số năm kinh nghiệm tối thiểu</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>TRÌNH ĐỘ TIN HỌC VĂN PHÒNG</string>
+    </Key>
+    <Value>
+      <string>Trình độ tin học văn phòng</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>ƯU TIÊN GIỚI TÍNH</string>
+    </Key>
+    <Value>
+      <string>Ưu tiên giới tính</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>YÊU CẦU CHÍNH</string>
+    </Key>
+    <Value>
+      <string>Yêu cầu chính</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>ĐÍNH KÈM TẬP TIN</string>
+    </Key>
+    <Value>
+      <string>Đính kèm tập tin</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>TRONG KẾ HOẠCH</string>
+    </Key>
+    <Value>
+      <string>Trong kế hoạch</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>LƯƠNG THỎA THUẬN</string>
+    </Key>
+    <Value>
+      <string>Lương thỏa thuận</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>SỐ LƯỢNG THEO YÊU CẦU</string>
+    </Key>
+    <Value>
+      <string>Số lượng theo yêu cầu</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>NGƯỜI THEO DÕI</string>
+    </Key>
+    <Value>
+      <string>Người theo dõi</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>MỨC LƯƠNG YÊU CẦU TỪ</string>
+    </Key>
+    <Value>
+      <string>Mức lương yêu cầu từ</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>MỨC LƯƠNG YÊU CẦU ĐẾN</string>
+    </Key>
+    <Value>
+      <string>Mức lương yêu cầu đến</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>COMMONVIEW</string>
+    </Key>
+    <Value>
+      <string>CommonView</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>CHUYỂN SANG VỊ TRÍ TUYỂN DỤNG KHÁC</string>
+    </Key>
+    <Value>
+      <string>Chuyển sang vị trí tuyển dụng khác</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>BẠN PHẢI CHỌN SỐ CMND</string>
+    </Key>
+    <Value>
+      <string>Bạn phải chọn Số CMND</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>CHỨC DANH QUAN TÂM</string>
+    </Key>
+    <Value>
+      <string>Chức danh quan tâm</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>TRANG TUYỂN DỤNG</string>
+    </Key>
+    <Value>
+      <string>Trang tuyển dụng</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>SỐ CMND/THẺ CĂN CƯỚC</string>
+    </Key>
+    <Value>
+      <string>Số CMND/thẻ căn cước</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>ĐIỂM MẠNH</string>
+    </Key>
+    <Value>
+      <string>Điểm mạnh</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>ĐIỂM YẾU</string>
+    </Key>
+    <Value>
+      <string>Điểm yếu</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>THÔN ẤP KHU PHỐ</string>
+    </Key>
+    <Value>
+      <string>Thôn ấp khu phố</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>THÔNG TIN NGƯỜI THÂN</string>
+    </Key>
+    <Value>
+      <string>Thông tin liên hệ khẩn cấp</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>THÔNG TIN NGƯỜI GIỚI THIỆU</string>
+    </Key>
+    <Value>
+      <string>Thông tin người giới thiệu</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>TÌM KIẾM CƠ BẢN</string>
+    </Key>
+    <Value>
+      <string>Tìm kiếm cơ bản</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>MÃ ỨNG NIÊN</string>
+    </Key>
+    <Value>
+      <string>Mã ứng niên</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>QUẢN LÝ NGUỒN ỨNG VIÊN</string>
+    </Key>
+    <Value>
+      <string>Quản lý nguồn ứng viên</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>PHỎNG VẤN</string>
+    </Key>
+    <Value>
+      <string>Phỏng vấn</string>
     </Value>
   </Item>
 </SerializableDictionaryOfStringString>

@@ -760,7 +760,7 @@ Public Class ctrlRegisterCO
                     objSIGN.MANUAL_ID = If(dr("MANUAL_ID") <> "", CDec(dr("MANUAL_ID")), Nothing)
                     objSIGN.LEAVE_FROM = ToDate(dr("LEAVE_DAY"))
                     objSIGN.LEAVE_TO = ToDate(dr("LEAVE_DAY"))
-                    objSIGN.DAY_NUM = If(dr("DAY_NUM") = String.Empty, 1, CDec(dr("DAY_NUM")))
+                    objSIGN.DAY_NUM = rep.CHECK_LEAVE_SHEET(dr("EMPLOYEE_CODE").ToString, dr("LEAVE_DAY").ToString, If(dr("STATUS_SHIFT_VALUE").ToString <> "", dr("STATUS_SHIFT_VALUE").ToString, 0))
                     objSIGN.STATUS_SHIFT = If(dr("STATUS_SHIFT_VALUE") = String.Empty, -1, CDec(dr("STATUS_SHIFT_VALUE")))
                     objSIGN.NOTE = dr("NOTE")
                     rep.InsertLeaveSheet(objSIGN, gID)
@@ -822,6 +822,13 @@ Public Class ctrlRegisterCO
                     End If
                 End If
 
+                If isError = False AndAlso row("EMPLOYEE_CODE").ToString <> "" AndAlso row("LEAVE_DAY").ToString <> "" Then
+                    If rep.CHECK_LEAVE_SHEET(row("EMPLOYEE_CODE").ToString, row("LEAVE_DAY").ToString, If(row("STATUS_SHIFT_VALUE").ToString <> "", row("STATUS_SHIFT_VALUE").ToString, 0)) = 0 Then
+                        sError = "Ngày có kiểu công là 0.5, 1.5 không được đăng ký đầu ca, cuối ca"
+                        isError = True
+                    End If
+                End If
+
                 If isError Then
                     rowError("STT") = irow
                     If rowError("EMPLOYEE_CODE").ToString = "" Then
@@ -859,7 +866,7 @@ Public Class ctrlRegisterCO
                         rowError("EMPLOYEE_CODE") = "Mã nhân viên " & dsDataComper(j)("EMPLOYEE_CODE") & " không tồn tại trên hệ thống."
                         isError = True
                     Else
-                        Dim dayNum As Decimal = If(dsDataComper(j)("DAY_NUM") = String.Empty, 1, CDec(dsDataComper(j)("DAY_NUM")))
+                        Dim dayNum As Decimal = rep.CHECK_LEAVE_SHEET(dsDataComper(j)("EMPLOYEE_CODE").ToString, dsDataComper(j)("LEAVE_DAY").ToString, If(dsDataComper(j)("STATUS_SHIFT_VALUE").ToString <> "", dsDataComper(j)("STATUS_SHIFT_VALUE").ToString, 0))
                         Dim empId As Decimal = CDec(dtEmpID(0)("ID"))
                         Dim manualId As Decimal = CDec(dsDataComper(j)("MANUAL_ID"))
                         Dim leaveDay As Date = ToDate(dsDataComper(j)("LEAVE_DAY"))
