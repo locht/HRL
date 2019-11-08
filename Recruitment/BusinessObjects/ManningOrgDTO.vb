@@ -3,6 +3,7 @@
     Public Property ORG_ID As Decimal?
     Public Property ORG_NAME As String
     Public Property MANNING_NAME As String
+    Public Property TITLE_NAME As String
     Public Property EFFECT_DATE As Date?
     Public Property NOTE As String
     Public Property OLD_MANNING As Int32?

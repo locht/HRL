@@ -545,6 +545,7 @@ Public Class ctrlHU_ConcurrentlyNewEdit
                 End If
             End If
             rep.Dispose()
+            Session.Remove("CallAllOrg")
             isLoadPopup = 0
         Catch ex As Exception
             DisplayException(Me.ViewName, Me.ID, ex)
@@ -839,6 +840,7 @@ Public Class ctrlHU_ConcurrentlyNewEdit
                     End If
                 Case 2
                     ' Popup phòng ban
+                    HttpContext.Current.Session("CallAllOrg") = "LoadAllOrg"
                     ctrlFindOrgPopup = Me.Register("ctrlFindOrgPopup", "Common", "ctrlFindOrgPopup")
                     phFindOrgCon.Controls.Add(ctrlFindOrgPopup)
                 Case 3

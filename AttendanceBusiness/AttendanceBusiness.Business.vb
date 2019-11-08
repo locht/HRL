@@ -1746,6 +1746,17 @@ Namespace AttendanceBusiness.ServiceImplementations
             End Using
         End Function
 
+        Public Function CHECK_LEAVE_SHEET(ByVal P_EMP_CODE As String, ByVal P_DATE As String, ByVal P_CA As Decimal) As Decimal Implements ServiceContracts.IAttendanceBusiness.CHECK_LEAVE_SHEET
+            Using rep As New AttendanceRepository
+                Try
+
+                    Return rep.CHECK_LEAVE_SHEET(P_EMP_CODE, P_DATE, P_CA)
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
+
         Public Function CHECK_EMPLOYEE(ByVal P_EMP_CODE As String) As Integer Implements ServiceContracts.IAttendanceBusiness.CHECK_EMPLOYEE
             Using rep As New AttendanceRepository
                 Try

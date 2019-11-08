@@ -1247,6 +1247,9 @@ Namespace AttendanceBusiness.ServiceContracts
         Function CHECK_LEAVE_EXITS(ByVal P_EMP_CODE As String, ByVal P_DATE As String, ByVal P_MANUAL_ID As Decimal, ByVal P_CA As Decimal) As Integer
 
         <OperationContract()>
+        Function CHECK_LEAVE_SHEET(ByVal P_EMP_CODE As String, ByVal P_DATE As String, ByVal P_CA As Decimal) As Decimal
+
+        <OperationContract()>
         Function GET_PE_ASSESS_MESS(ByVal EMP As Decimal?) As DataTable
 
         <OperationContract()>

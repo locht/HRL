@@ -135,11 +135,38 @@ Public Class RecruitmentStoreProcedure
 
     Public Function GetListManningByName(ByVal MANNING_ORG_ID As Integer,
                                         ByVal ORG_ID As Integer,
-                                        ByVal YEAR As Integer) As DataTable
-        Dim listManning As DataTable
+                                        ByVal YEAR As Integer,
+                                        ByVal param As ManningOrgDTO,
+                                       Optional ByRef Total As Integer = 0,
+                                   Optional ByVal PageIndex As Integer = 0,
+                                   Optional ByVal PageSize As Integer = Integer.MaxValue) As DataTable
+        Dim listManning As New DataTable
         Dim ds As DataSet = rep.ExecuteToDataSet("PKG_RECRUITMENT.GETLIST_MANNING_BY_NAME", New List(Of Object)(New Object() {MANNING_ORG_ID, ORG_ID, YEAR, OUT_CURSOR}))
         If Not ds Is Nothing Or Not ds.Tables(0) Is Nothing Then
             listManning = ds.Tables(0)
+            If param.CURRENT_MANNING IsNot Nothing Then
+                listManning = (From p In listManning.AsEnumerable Where p("CURRENT_MANNING").ToString.ToUpper.Contains(param.CURRENT_MANNING.ToString.ToUpper)).CopyToDataTable
+            End If
+            If param.NEW_MANNING IsNot Nothing Then
+                listManning = (From p In listManning.AsEnumerable Where p("NEW_MANNING").ToString.ToUpper.Contains(param.NEW_MANNING.ToString.ToUpper)).CopyToDataTable
+            End If
+            If param.NOTE IsNot Nothing Then
+                listManning = (From p In listManning.AsEnumerable Where p("NOTE").ToString.ToUpper.Contains(param.NOTE.ToString.ToUpper)).CopyToDataTable
+            End If
+            If param.OLD_MANNING IsNot Nothing Then
+                listManning = (From p In listManning.AsEnumerable Where p("OLD_MANNING").ToString.ToUpper.Contains(param.OLD_MANNING.ToString.ToUpper)).CopyToDataTable
+            End If
+            If param.MOBILIZE_COUNT_MANNING IsNot Nothing Then
+                listManning = (From p In listManning.AsEnumerable Where p("MOBILIZE_COUNT_MANNING").ToString.ToUpper.Contains(param.MOBILIZE_COUNT_MANNING.ToString.ToUpper)).CopyToDataTable
+            End If
+            If param.ORG_NAME IsNot Nothing Then
+                listManning = (From p In listManning.AsEnumerable Where p("ORG_NAME").ToString.ToUpper.Contains(param.ORG_NAME.ToString.ToUpper)).CopyToDataTable
+            End If
+            If param.TITLE_NAME IsNot Nothing Then
+                listManning = (From p In listManning.AsEnumerable Where p("TITLE_NAME").ToString.ToUpper.Contains(param.TITLE_NAME.ToString.ToUpper)).CopyToDataTable
+            End If
+            Total = listManning.Rows.Count
+            listManning = If(listManning.Rows.Count > 0, listManning.AsEnumerable.Skip(PageIndex * PageSize).Take(PageSize).CopyToDataTable, Nothing)
         End If
         Return listManning
     End Function
@@ -195,7 +222,11 @@ Public Class RecruitmentStoreProcedure
                                                    New List(Of Object)(New Object() {obj.ID, obj.NEW_MANNING, obj.NOTE, obj.MOBILIZE_COUNT_MANNING, OUT_NUMBER}))
         Return Int32.Parse(objUpd(0).ToString())
     End Function
-
+    Public Function DELETE_RECORD_IMPORT(ByVal P_ID As String) As Boolean
+        Dim objUpd As Object = rep.ExecuteStoreScalar("PKG_RECRUITMENT.DELETE_RECORD_IMPORT", _
+                                                   New List(Of Object)(New Object() {P_ID, OUT_NUMBER}))
+        Return True
+    End Function
     Public Function DeleteManning(ByVal P_ID As String, ByVal P_MANNING_ORG_ID As Integer) As Boolean
         Dim objUpd As Object = rep.ExecuteStoreScalar("PKG_RECRUITMENT.DELETE_MANNING", _
                                                    New List(Of Object)(New Object() {P_ID, P_MANNING_ORG_ID, OUT_NUMBER}))
