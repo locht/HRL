@@ -306,7 +306,7 @@
                             <td>
                                 <tlk:RadButton ID="cv_cbxKhongCuTru" ToggleType="CheckBox" ButtonType="ToggleButton"
                                     Text="<%$ Translate: Đối tượng không cư trú %>" runat="server" CausesValidation="false"
-                                    AutoPostBack="false">
+                                    AutoPostBack="false" Visible="false" >
                                 </tlk:RadButton>
                             </td>
                         </tr>
@@ -315,7 +315,7 @@
                                 <%# Translate("Điểm mạnh")%>
                             </td>
                             <td colspan="7">
-                                <tlk:RadTextBox ID="txtStranger" runat="server" Width="100%">
+                                <tlk:RadTextBox ID="txtStranger" runat="server" Width="100%" SkinID="TextBox1023">
                                 </tlk:RadTextBox>
                             </td>
                         </tr>
@@ -324,7 +324,7 @@
                                 <%# Translate("Điểm yếu")%>
                             </td>
                             <td colspan="7">
-                                <tlk:RadTextBox ID="txtWeakness" runat="server" Width="100%">
+                                <tlk:RadTextBox ID="txtWeakness" runat="server" Width="100%" SkinID="TextBox1023">
                                 </tlk:RadTextBox>
                             </td>
                         </tr>
@@ -894,29 +894,30 @@
                     </legend>
                     <table class="table-form">
                         <tr>
-                            <td class="lb">
-                                <%# Translate("Chứng chỉ")%>
-                            </td>
-                            <td>
-                                <tlk:RadComboBox runat="server" ID="cboChungchi">
-                                </tlk:RadComboBox>
-                            </td>
-                            <td style="display: none" class="lb">
-                                <%# Translate("Chứng chỉ")%>
-                            </td>
-                            <td style="display: none">
-                                <tlk:RadTextBox ID="txtDegreeChungChi1" runat="server">
-                                </tlk:RadTextBox>
-                            </td>
-                            <td class="lb">
-                                <%# Translate("Trình độ")%>
+                         <td class="lb">
+                                <%# Translate("Trình độ tin học cơ bản")%>
                             </td>
                             <td>
                                 <tlk:RadComboBox runat="server" ID="cboDegreeTrinhDo1">
                                 </tlk:RadComboBox>
                             </td>
                             <td class="lb">
-                                <%# Translate("Điểm số/Xếp loại")%>
+                                <%# Translate("Loại chứng chỉ")%>
+                            </td>
+                            <td>
+                                <tlk:RadComboBox runat="server" ID="cboChungchi">
+                                </tlk:RadComboBox>
+                            </td>
+                            <td style="display: none" class="lb">
+                                <%# Translate("Loại chứng chỉ")%>
+                            </td>
+                            <td style="display: none">
+                                <tlk:RadTextBox ID="txtDegreeChungChi1" runat="server">
+                                </tlk:RadTextBox>
+                            </td>
+                           
+                            <td class="lb">
+                                <%# Translate("Trình độ tin học ứng dụng")%>
                             </td>
                             <td>
                                 <tlk:RadTextBox ID="txtDegreeDiemSoXepLoai1" runat="server">
@@ -948,14 +949,14 @@
                         </tr>
                         <tr style="display: none">
                             <td class="lb">
-                                <%# Translate("Chứng chỉ")%>
+                                <%# Translate("Loại chứng chỉ")%>
                             </td>
                             <td>
                                 <tlk:RadTextBox ID="txtDegreeChungChi3" runat="server">
                                 </tlk:RadTextBox>
                             </td>
                             <td class="lb">
-                                <%# Translate("Trình độ")%>
+                                <%# Translate("Trình độ tin học cơ bản")%>
                             </td>
                             <td>
                                 <tlk:RadComboBox runat="server" ID="cboDegreeTrinhDo3">
@@ -986,21 +987,21 @@
                                 </tlk:RadComboBox>
                             </td>
                             <td style="display: none" class="lb">
-                                <%# Translate("Ngoại ngữ")%>
+                                <%# Translate("Trình độ ngoại ngữ")%>
                             </td>
                             <td style="display: none">
                                 <tlk:RadTextBox ID="txtTDNNNgoaiNgu1" runat="server">
                                 </tlk:RadTextBox>
                             </td>
                             <td class="lb">
-                                <%# Translate("Trình độ")%>
+                                <%# Translate("Trình độ ngoại ngữ")%>
                             </td>
                             <td>
                                 <tlk:RadComboBox runat="server" ID="cboTDNNTrinhDo1">
                                 </tlk:RadComboBox>
                             </td>
                             <td class="lb">
-                                <%# Translate("Điểm")%>
+                                <%# Translate("Điểm số/Xếp loại")%>
                             </td>
                             <td>
                                 <tlk:RadNumericTextBox ID="txtTDNNDiem1" runat="server" MinValue="0" GroupSeparator="">
@@ -1074,14 +1075,8 @@
                         <%# Translate("Thông tin nguyện vọng")%>
                     </legend>
                     <table class="table-form">
-                        <tr>
-                            <td class="lb">
-                                <%# Translate("Thời gian làm việc")%>
-                            </td>
-                            <td>
-                                <tlk:RadComboBox runat="server" ID="cboExpectThoiGianLamViec" SkinID="LoadDemand">
-                                </tlk:RadComboBox>
-                            </td>
+                        <tr >
+                          
                             <td class="lb">
                                 <%# Translate("Mức lương thử việc")%>
                             </td>
@@ -1097,6 +1092,20 @@
                                 <tlk:RadNumericTextBox ID="txtExpectMucLuongChinhThuc" runat="server" MinValue="0">
                                     <NumberFormat AllowRounding="false" GroupSeparator="" />
                                 </tlk:RadNumericTextBox>
+                            </td>
+                              <td class="lb">
+                                <%# Translate("Địa điểm làm việc")%>
+                            </td>
+                            <td >
+                                <tlk:RadTextBox ID="txtWORK_LOCATION" runat="server" >
+                                </tlk:RadTextBox>
+                            </td>
+                             <%-- <td class="lb"  >
+                                <%# Translate("Thời gian làm việc")%>
+                            </td>--%>
+                            <td>
+                                <tlk:RadComboBox runat="server" ID="cboExpectThoiGianLamViec" SkinID="LoadDemand" Visible="false">
+                                </tlk:RadComboBox>
                             </td>
                         </tr>
                         <tr>
@@ -1121,7 +1130,7 @@
                                 <%# Translate("Đề nghị khác")%>
                             </td>
                             <td colspan="5">
-                                <tlk:RadTextBox ID="txtExpectDeNghiKhac" runat="server" TextMode="MultiLine" Width="100%">
+                                <tlk:RadTextBox ID="txtExpectDeNghiKhac" runat="server" TextMode="MultiLine" Width="100%" SkinID="TextBox1023">
                                 </tlk:RadTextBox>
                             </td>
                         </tr>
@@ -1496,18 +1505,25 @@
                             </td>
                         </tr>
                         <tr>
-                            <td class="lb">
-                                <%# Translate("Chi nhánh ngân hàng")%>
-                            </td>
-                            <td>
-                                <tlk:RadComboBox runat="server" ID="cboTKChiNhanhNganHang">
-                                </tlk:RadComboBox>
-                            </td>
+                          
                             <td class="lb">
                                 <%# Translate("Ngân hàng")%>
                             </td>
                             <td>
-                                <tlk:RadComboBox runat="server" ID="cboTKNganHang">
+                               <%-- <tlk:RadComboBox runat="server" ID="cboTKNganHang"  SkinID="LoadDemand" OnClientSelectedIndexChanged="OnClientSelectedIndexChanged"
+                                                OnClientItemsRequesting="OnClientItemsRequesting">
+                                </tlk:RadComboBox>--%>
+                                 <tlk:RadComboBox runat="server" ID="cboTKNganHang" >
+                                </tlk:RadComboBox>
+                            </td>
+                              <td class="lb">
+                                <%# Translate("Chi nhánh ngân hàng")%>
+                            </td>
+                            <td>
+                          <%--      <tlk:RadComboBox runat="server" ID="cboTKChiNhanhNganHang"  SkinID="LoadDemand" OnClientSelectedIndexChanged="OnClientSelectedIndexChanged"
+                                                OnClientItemsRequesting="OnClientItemsRequesting">
+                                </tlk:RadComboBox>--%>
+                                  <tlk:RadComboBox runat="server" ID="cboTKChiNhanhNganHang" >
                                 </tlk:RadComboBox>
                             </td>
                             <td class="lb">
@@ -1705,6 +1721,50 @@
         function displayDecimalFormat(sender, args) {
             sender.set_textBoxValue(sender.get_value().toString());
         }
+        //        function OnClientSelectedIndexChanged(sender, eventArgs) {
+        //            var id = sender.get_id();
+        //            var cbo;
+        //            switch (id) {
+        //                case '<%= cboTKNganHang.ClientID %>':
+        //                    cbo = $find('<%= cboTKChiNhanhNganHang.ClientID %>');
+        //                    clearSelectRadcombo(cbo);
+        //                    break;
+        //                default:
+        //                    break;
+        //            }
+        //        }
+        //        function clearSelectRadcombo(cbo) {
+        //            if (cbo) {
+        //                cbo.clearItems();
+        //                cbo.clearSelection();
+        //                cbo.set_text('');
+        //            }
+        //        }
+        //        function clearSelectRadtextbox(cbo) {
+        //            if (cbo) {
+        //                cbo.clear();
+        //            }
+        //        }
+        //        function OnClientItemsRequesting(sender, eventArgs) {
+        //            var id = sender.get_id();
+        //            var cbo;
+        //            var value;
+        //            switch (id) {
+        //                case '<%= cboTKChiNhanhNganHang.ClientID %>':
+        //                    cbo = $find('<%= cboTKNganHang.ClientID %>');
+        //                    value = cbo.get_value();
+        //                    break;
+        //                default:
+        //                    break;
+        //            }
 
+        //            if (!value) {
+        //                value = 0;
+        //            }
+        //            var context = eventArgs.get_context();
+        //            context["valueCustom"] = value;
+        //            context["value"] = sender.get_value();
+
+        //        }
     </script>
 </tlk:RadScriptBlock>

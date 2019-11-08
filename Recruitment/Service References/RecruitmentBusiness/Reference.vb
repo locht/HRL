@@ -16605,6 +16605,9 @@ Namespace RecruitmentBusiness
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private TIME_STARTField As String
         
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private WORK_LOCATIONField As String
+        
         <Global.System.ComponentModel.BrowsableAttribute(false)>  _
         Public Property ExtensionData() As System.Runtime.Serialization.ExtensionDataObject Implements System.Runtime.Serialization.IExtensibleDataObject.ExtensionData
             Get
@@ -16689,6 +16692,19 @@ Namespace RecruitmentBusiness
                 If (Object.ReferenceEquals(Me.TIME_STARTField, value) <> true) Then
                     Me.TIME_STARTField = value
                     Me.RaisePropertyChanged("TIME_START")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property WORK_LOCATION() As String
+            Get
+                Return Me.WORK_LOCATIONField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.WORK_LOCATIONField, value) <> true) Then
+                    Me.WORK_LOCATIONField = value
+                    Me.RaisePropertyChanged("WORK_LOCATION")
                 End If
             End Set
         End Property

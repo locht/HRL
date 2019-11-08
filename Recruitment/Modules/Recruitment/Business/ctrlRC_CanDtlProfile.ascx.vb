@@ -522,6 +522,7 @@ Public Class ctrlRC_CanDtlProfile
                         txtExpectMucLuongChinhThuc.Text = EmpExpectInfo.OFFICIAL_SALARY
                         txtExpectNgayBatDau.SelectedDate = EmpExpectInfo.DATE_START
                         txtExpectDeNghiKhac.Text = EmpExpectInfo.OTHER_REQUEST
+                        txtWORK_LOCATION.Text = EmpExpectInfo.WORK_LOCATION
                     End If
                 Else
                     'mac dinh load lên 12/12 nên set cứng ở đây,sau này thay đổi id thi set lại chỗ này,trình độ văn hóa
@@ -1409,7 +1410,7 @@ Public Class ctrlRC_CanDtlProfile
             EmpExpectInfo.OFFICIAL_SALARY = If(txtExpectMucLuongChinhThuc.Text = String.Empty, 0, Decimal.Parse(txtExpectMucLuongChinhThuc.Text.Trim))
             EmpExpectInfo.DATE_START = txtExpectNgayBatDau.SelectedDate
             EmpExpectInfo.OTHER_REQUEST = txtExpectDeNghiKhac.Text
-
+            EmpExpectInfo.WORK_LOCATION = txtWORK_LOCATION.Text
             If CandidateInfo IsNot Nothing Then
                 If hidID.Value <> "" Then
                     CandidateInfo.ID = Decimal.Parse(hidID.Value)

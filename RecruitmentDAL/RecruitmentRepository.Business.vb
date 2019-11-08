@@ -2102,6 +2102,7 @@ Partial Class RecruitmentRepository
                 objEmpExpectData.OFFICIAL_SALARY = objEmpExpect.OFFICIAL_SALARY
                 objEmpExpectData.DATE_START = objEmpExpect.DATE_START
                 objEmpExpectData.OTHER_REQUEST = objEmpExpect.OTHER_REQUEST
+                objEmpExpectData.WORK_LOCATION = objEmpExpect.WORK_LOCATION
             End If
             Context.RC_CANDIDATE_EXPECT.AddObject(objEmpExpectData)
 
@@ -2347,6 +2348,7 @@ Partial Class RecruitmentRepository
                 objEmpExpectData.OFFICIAL_SALARY = objEmpExpect.OFFICIAL_SALARY
                 objEmpExpectData.DATE_START = objEmpExpect.DATE_START
                 objEmpExpectData.OTHER_REQUEST = objEmpExpect.OTHER_REQUEST
+                objEmpExpectData.WORK_LOCATION = objEmpExpect.WORK_LOCATION
 
                 If isInsert Then
                     Context.RC_CANDIDATE_EXPECT.AddObject(objEmpExpectData)
@@ -2865,7 +2867,8 @@ Partial Class RecruitmentRepository
                 .PROBATIONARY_SALARY = e.PROBATIONARY_SALARY,
                 .OFFICIAL_SALARY = e.OFFICIAL_SALARY,
                 .DATE_START = e.DATE_START,
-                .OTHER_REQUEST = e.OTHER_REQUEST
+                .OTHER_REQUEST = e.OTHER_REQUEST,
+                .WORK_LOCATION = e.WORK_LOCATION
                 }).FirstOrDefault
             Return query
         Catch ex As Exception

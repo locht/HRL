@@ -18,7 +18,7 @@ Imports System.Runtime.Serialization
 Imports System.Xml.Serialization
 
 
-<Assembly: EdmSchemaAttribute("b84afe26-1ee4-4234-928f-b635ccb777ec")>
+<Assembly: EdmSchemaAttribute("e8240edd-a266-4970-a456-1f946c7f3dfd")>
 #Region "EDM Relationship Metadata"
 <Assembly: EdmRelationshipAttribute("RecruitmentModel", "FK_FE_HEH", "HU_EMPLOYEE", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_EMPLOYEE), "HU_EMPLOYEE_HEALTH1", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(HU_EMPLOYEE_HEALTH1), True)>
 <Assembly: EdmRelationshipAttribute("RecruitmentModel", "FK_HE_HEC", "HU_EMPLOYEE", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_EMPLOYEE), "HU_EMPLOYEE_CV", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(HU_EMPLOYEE_CV), True)>
@@ -21597,6 +21597,31 @@ Public Partial Class RC_CANDIDATE_EXPECT
     End Sub
 
     Private Partial Sub OnOTHER_REQUESTChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property WORK_LOCATION() As Global.System.String
+        Get
+            Return _WORK_LOCATION
+        End Get
+        Set
+            OnWORK_LOCATIONChanging(value)
+            ReportPropertyChanging("WORK_LOCATION")
+            _WORK_LOCATION = StructuralObject.SetValidValue(value, true)
+            ReportPropertyChanged("WORK_LOCATION")
+            OnWORK_LOCATIONChanged()
+        End Set
+    End Property
+
+    Private _WORK_LOCATION As Global.System.String
+    Private Partial Sub OnWORK_LOCATIONChanging(value As Global.System.String)
+    End Sub
+
+    Private Partial Sub OnWORK_LOCATIONChanged()
     End Sub
 
     #End Region

@@ -5,4 +5,5 @@
     Public Property OFFICIAL_SALARY As Decimal?
     Public Property DATE_START As Date?
     Public Property OTHER_REQUEST As String
+    Public Property WORK_LOCATION As String
 End Class
