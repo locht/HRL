@@ -162,6 +162,9 @@ Public Class RecruitmentStoreProcedure
             If param.ORG_NAME IsNot Nothing Then
                 listManning = (From p In listManning.AsEnumerable Where p("ORG_NAME").ToString.ToUpper.Contains(param.ORG_NAME.ToString.ToUpper)).CopyToDataTable
             End If
+            If param.TITLE_NAME IsNot Nothing Then
+                listManning = (From p In listManning.AsEnumerable Where p("TITLE_NAME").ToString.ToUpper.Contains(param.TITLE_NAME.ToString.ToUpper)).CopyToDataTable
+            End If
             Total = listManning.Rows.Count
             listManning = If(listManning.Rows.Count > 0, listManning.AsEnumerable.Skip(PageIndex * PageSize).Take(PageSize).CopyToDataTable, Nothing)
         End If

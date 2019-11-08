@@ -292,14 +292,15 @@ Public Class ctrlRC_Manning
         Try
             Select Case CType(e.Item, RadToolBarButton).CommandName
                 Case CommonMessage.TOOLBARITEM_CREATE
-                    If ctrlOrganization.CurrentValue = "" Then
-                        ShowMessage(Translate("Bạn phải chọn Phòng ban tuyển dụng"), Utilities.NotifyType.Warning)
-                        Exit Sub
-                    End If
-                    If ctrlOrganization.PARENT_ID_VALUE <> 1 And ctrlOrganization.PARENT_ID_VALUE <> 0 Then
+                    If ctrlOrganization.CurrentValue = "" Or ctrlOrganization.CurrentValue = 1 Then
                         ShowMessage(Translate("Bạn phải chọn đơn vị thuộc cấp Công ty"), Utilities.NotifyType.Warning)
                         Exit Sub
                     End If
+                    'If ctrlOrganization.PARENT_ID_VALUE <> 1 And ctrlOrganization.PARENT_ID_VALUE <> 0 Then
+                    '    ShowMessage(Translate("Bạn phải chọn đơn vị thuộc cấp Công ty"), Utilities.NotifyType.Warning)
+                    '    Exit Sub
+                    'End If
+
                     CurrentState = CommonMessage.STATE_NEW
 
                     'reset manning org info
@@ -962,6 +963,10 @@ Public Class ctrlRC_Manning
             Else
                 tabSource = repStore.GetListManningByName(cboList, If(ctrlOrganization.CurrentValue = "", 0, Int32.Parse(ctrlOrganization.CurrentValue)), year, _filter, MaximumRows, rgManning.CurrentPageIndex, rgManning.PageSize)
             End If
+            If tabSource Is Nothing Then
+                tabSource = New DataTable
+            End If
+
             'rgManning.DataSource = tabSource
             'rgManning.MasterTableView.VirtualItemCount = tabSource.Rows.Count
             'rgManning.CurrentPageIndex = rgManning.MasterTableView.CurrentPageIndex
