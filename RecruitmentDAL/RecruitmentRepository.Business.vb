@@ -1704,9 +1704,8 @@ Partial Class RecruitmentRepository
                         From ot In Context.HU_TITLE.Where(Function(f) p.TITLE_ID = f.ID).DefaultIfEmpty
                         From org In Context.HU_ORGANIZATION.Where(Function(f) p.ORG_ID = f.ID).DefaultIfEmpty
                         From cv In Context.RC_CANDIDATE_CV.Where(Function(f) p.ID = f.CANDIDATE_ID).DefaultIfEmpty
-                        From status In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.STATUS_ID).DefaultIfEmpty
-                        Where p.EMPLOYEE_CODE Is Nothing
-                        Order By p.CREATED_DATE Descending
+                        From status In Context.OT_OTHER_LIST.Where(Function(f) f.CODE = p.STATUS_ID).DefaultIfEmpty
+                        Where p.EMPLOYEE_CODE Is Nothing And p.STATUS_ID = "PONTENTIAL"
 
             If _filter.RC_PROGRAM_ID IsNot Nothing Then
                 query = query.Where(Function(f) f.p.RC_PROGRAM_ID = _filter.RC_PROGRAM_ID)
@@ -1752,9 +1751,9 @@ Partial Class RecruitmentRepository
                 lst = lst.Where(Function(p) p.ID_NO.ToUpper().IndexOf(_filter.ID_NO.ToUpper) >= 0)
             End If
 
-            If _filter.IS_PONTENTIAL IsNot Nothing Then
-                lst = lst.Where(Function(p) p.IS_PONTENTIAL = _filter.IS_PONTENTIAL)
-            End If
+            'If _filter.IS_PONTENTIAL IsNot Nothing Then
+            '    lst = lst.Where(Function(p) p.IS_PONTENTIAL = _filter.IS_PONTENTIAL)
+            'End If
 
             If _filter.BIRTH_DATE IsNot Nothing Then
                 lst = lst.Where(Function(p) p.BIRTH_DATE = _filter.BIRTH_DATE)
