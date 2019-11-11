@@ -2530,12 +2530,11 @@ Partial Class RecruitmentRepository
                     Dim empCode As String = ""
                     TransferCandidateToHSNV(canID, log, empCode)
                     objEmpData.EMPLOYEE_CODE = empCode
+                ElseIf statusID = RecruitmentCommon.RC_CANDIDATE_STATUS.DUDIEUKIEN_ID Then
+                    objEmpData.IS_BLACKLIST = 0
                 End If
             Next
-
-
             Context.SaveChanges(log)
-
             Return True
         Catch ex As Exception
             Utility.WriteExceptionLog(ex, Me.ToString() & ".UpdateStatusCandidate")
