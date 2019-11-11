@@ -71,6 +71,7 @@
             <EntitySet Name="SE_REPORT" EntityType="RecruitmentModel.Store.SE_REPORT" store:Type="Tables"  />
             <EntitySet Name="SE_USER_REPORT" EntityType="RecruitmentModel.Store.SE_USER_REPORT" store:Type="Tables"  />
             <EntitySet Name="HU_WARD" EntityType="RecruitmentModel.Store.HU_WARD" store:Type="Tables"  />
+            <EntitySet Name="HU_ORGANIZATION_V" EntityType="RecruitmentModel.Store.HU_ORGANIZATION_V" store:Type="Tables"  />
             <AssociationSet Name="FK_FE_HEH" Association="RecruitmentModel.Store.FK_FE_HEH">
                 <End Role="HU_EMPLOYEE" EntitySet="HU_EMPLOYEE" />
                 <End Role="HU_EMPLOYEE_HEALTH1" EntitySet="HU_EMPLOYEE_HEALTH1" />
@@ -1662,6 +1663,43 @@
             <Property Name="MODIFIED_LOG" Type="nvarchar2" Nullable="true" MaxLength="255" />
             <Property Name="NOTE" Type="nvarchar2" Nullable="true" MaxLength="1023" />
         </EntityType>
+        <EntityType Name="HU_ORGANIZATION_V">
+            <Key>
+                <PropertyRef Name="ID" />
+            </Key>
+            <Property Name="CODE_C1" Type="varchar2" Nullable="true" MaxLength="4000" />
+            <Property Name="NAME_C1" Type="nvarchar2" Nullable="true" MaxLength="1999" />
+            <Property Name="CODE_C2" Type="varchar2" Nullable="true" MaxLength="4000" />
+            <Property Name="NAME_C2" Type="nvarchar2" Nullable="true" MaxLength="1999" />
+            <Property Name="CODE_C3" Type="varchar2" Nullable="true" MaxLength="4000" />
+            <Property Name="NAME_C3" Type="nvarchar2" Nullable="true" MaxLength="1999" />
+            <Property Name="CODE_C4" Type="varchar2" Nullable="true" MaxLength="4000" />
+            <Property Name="NAME_C4" Type="nvarchar2" Nullable="true" MaxLength="1999" />
+            <Property Name="CODE_C5" Type="varchar2" Nullable="true" MaxLength="4000" />
+            <Property Name="NAME_C5" Type="nvarchar2" Nullable="true" MaxLength="1999" />
+            <Property Name="CODE_C6" Type="varchar2" Nullable="true" MaxLength="4000" />
+            <Property Name="NAME_C6" Type="nvarchar2" Nullable="true" MaxLength="1999" />
+            <Property Name="CODE_C7" Type="varchar2" Nullable="true" MaxLength="4000" />
+            <Property Name="NAME_C7" Type="nvarchar2" Nullable="true" MaxLength="1999" />
+            <Property Name="CODE_C8" Type="varchar2" Nullable="true" MaxLength="4000" />
+            <Property Name="NAME_C8" Type="nvarchar2" Nullable="true" MaxLength="1999" />
+            <Property Name="CODE_C9" Type="varchar2" Nullable="true" MaxLength="4000" />
+            <Property Name="NAME_C9" Type="nvarchar2" Nullable="true" MaxLength="1999" />
+            <Property Name="LEVEL_ID" Type="number" Nullable="true" Precision="38" />
+            <Property Name="DESCRIPTION" Type="nvarchar2" Nullable="true" MaxLength="2000" />
+            <Property Name="ID" Type="number" Nullable="false" Precision="38" />
+            <Property Name="ID1" Type="varchar2" Nullable="true" MaxLength="4000" />
+            <Property Name="ID2" Type="varchar2" Nullable="true" MaxLength="4000" />
+            <Property Name="ID3" Type="varchar2" Nullable="true" MaxLength="4000" />
+            <Property Name="ID4" Type="varchar2" Nullable="true" MaxLength="4000" />
+            <Property Name="ID5" Type="varchar2" Nullable="true" MaxLength="4000" />
+            <Property Name="ID6" Type="varchar2" Nullable="true" MaxLength="4000" />
+            <Property Name="ID7" Type="varchar2" Nullable="true" MaxLength="4000" />
+            <Property Name="ID8" Type="varchar2" Nullable="true" MaxLength="4000" />
+            <Property Name="ID9" Type="varchar2" Nullable="true" MaxLength="4000" />
+            <Property Name="DESCRIPTION4" Type="nvarchar2" Nullable="true" MaxLength="2000" />
+            <Property Name="NAME_VN" Type="nvarchar2" Nullable="true" MaxLength="255" />
+        </EntityType>
     <Association Name="FK_FE_HEH">
         <End Role="HU_EMPLOYEE" Type="RecruitmentModel.Store.HU_EMPLOYEE" Multiplicity="1">
         </End>
@@ -1966,6 +2004,7 @@
           <EntitySet Name="SE_REPORT" EntityType="RecruitmentModel.SE_REPORT" />
           <EntitySet Name="SE_USER_REPORT" EntityType="RecruitmentModel.SE_USER_REPORT" />
           <EntitySet Name="HU_WARD" EntityType="RecruitmentModel.HU_WARD" />
+          <EntitySet Name="HU_ORGANIZATION_V" EntityType="RecruitmentModel.HU_ORGANIZATION_V" />
           </EntityContainer>
         <EntityType Name="RC_COST_CENTER">
           <Key>
@@ -3687,6 +3726,43 @@
           <Property Type="String" Name="MODIFIED_LOG" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="NOTE" MaxLength="1023" FixedLength="false" Unicode="true" />
         </EntityType>
+        <EntityType Name="HU_ORGANIZATION_V">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="String" Name="CODE_C1" MaxLength="4000" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="NAME_C1" MaxLength="1999" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="CODE_C2" MaxLength="4000" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="NAME_C2" MaxLength="1999" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="CODE_C3" MaxLength="4000" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="NAME_C3" MaxLength="1999" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="CODE_C4" MaxLength="4000" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="NAME_C4" MaxLength="1999" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="CODE_C5" MaxLength="4000" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="NAME_C5" MaxLength="1999" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="CODE_C6" MaxLength="4000" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="NAME_C6" MaxLength="1999" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="CODE_C7" MaxLength="4000" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="NAME_C7" MaxLength="1999" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="CODE_C8" MaxLength="4000" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="NAME_C8" MaxLength="1999" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="CODE_C9" MaxLength="4000" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="NAME_C9" MaxLength="1999" FixedLength="false" Unicode="true" />
+          <Property Type="Decimal" Name="LEVEL_ID" Precision="38" Scale="0" />
+          <Property Type="String" Name="DESCRIPTION" MaxLength="2000" FixedLength="false" Unicode="true" />
+          <Property Type="Decimal" Name="ID" Nullable="false" Precision="38" Scale="0" />
+          <Property Type="String" Name="ID1" MaxLength="4000" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="ID2" MaxLength="4000" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="ID3" MaxLength="4000" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="ID4" MaxLength="4000" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="ID5" MaxLength="4000" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="ID6" MaxLength="4000" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="ID7" MaxLength="4000" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="ID8" MaxLength="4000" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="ID9" MaxLength="4000" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="DESCRIPTION4" MaxLength="2000" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="NAME_VN" MaxLength="255" FixedLength="false" Unicode="true" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -5294,6 +5370,44 @@
                 </MappingFragment>
             </EntityTypeMapping>
         </EntitySetMapping>
+        <EntitySetMapping Name="HU_ORGANIZATION_V">
+            <EntityTypeMapping TypeName="IsTypeOf(RecruitmentModel.HU_ORGANIZATION_V)">
+                <MappingFragment StoreEntitySet="HU_ORGANIZATION_V">
+                    <ScalarProperty Name="ID" ColumnName="ID" />
+                    <ScalarProperty Name="CODE_C1" ColumnName="CODE_C1" />
+                    <ScalarProperty Name="NAME_C1" ColumnName="NAME_C1" />
+                    <ScalarProperty Name="CODE_C2" ColumnName="CODE_C2" />
+                    <ScalarProperty Name="NAME_C2" ColumnName="NAME_C2" />
+                    <ScalarProperty Name="CODE_C3" ColumnName="CODE_C3" />
+                    <ScalarProperty Name="NAME_C3" ColumnName="NAME_C3" />
+                    <ScalarProperty Name="CODE_C4" ColumnName="CODE_C4" />
+                    <ScalarProperty Name="NAME_C4" ColumnName="NAME_C4" />
+                    <ScalarProperty Name="CODE_C5" ColumnName="CODE_C5" />
+                    <ScalarProperty Name="NAME_C5" ColumnName="NAME_C5" />
+                    <ScalarProperty Name="CODE_C6" ColumnName="CODE_C6" />
+                    <ScalarProperty Name="NAME_C6" ColumnName="NAME_C6" />
+                    <ScalarProperty Name="CODE_C7" ColumnName="CODE_C7" />
+                    <ScalarProperty Name="NAME_C7" ColumnName="NAME_C7" />
+                    <ScalarProperty Name="CODE_C8" ColumnName="CODE_C8" />
+                    <ScalarProperty Name="NAME_C8" ColumnName="NAME_C8" />
+                    <ScalarProperty Name="CODE_C9" ColumnName="CODE_C9" />
+                    <ScalarProperty Name="NAME_C9" ColumnName="NAME_C9" />
+                    <ScalarProperty Name="LEVEL_ID" ColumnName="LEVEL_ID" />
+                    <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+                    <ScalarProperty Name="ID1" ColumnName="ID1" />
+                    <ScalarProperty Name="ID2" ColumnName="ID2" />
+                    <ScalarProperty Name="ID3" ColumnName="ID3" />
+                    <ScalarProperty Name="ID4" ColumnName="ID4" />
+                    <ScalarProperty Name="ID5" ColumnName="ID5" />
+                    <ScalarProperty Name="ID6" ColumnName="ID6" />
+                    <ScalarProperty Name="ID7" ColumnName="ID7" />
+                    <ScalarProperty Name="ID8" ColumnName="ID8" />
+                    <ScalarProperty Name="ID9" ColumnName="ID9" />
+                    <ScalarProperty Name="DESCRIPTION4" ColumnName="DESCRIPTION4" />
+                    <ScalarProperty Name="NAME_VN" ColumnName="NAME_VN" />
+                </MappingFragment>
+            </EntityTypeMapping>
+        </EntitySetMapping>
     </EntityContainerMapping>
 </Mapping></edmx:Mappings>
   </edmx:Runtime>
@@ -5315,7 +5429,7 @@
     </edmx:Options>
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram Name="RecruitmentContext" ZoomLevel="94" >
+      <Diagram Name="RecruitmentContext" ZoomLevel="77" >
         <EntityTypeShape EntityType="RecruitmentModel.RC_COST_CENTER" Width="1.5" PointX="1" PointY="25.5" IsExpanded="false" Height="0.4" />
         <EntityTypeShape EntityType="RecruitmentModel.SE_CHOSEN_ORG" Width="1.5" PointX="2.75" PointY="0.75" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="RecruitmentModel.HU_FAMILY" Width="1.5" PointX="3.875" PointY="32.625" Height="0.4" IsExpanded="false" />
@@ -5463,6 +5577,7 @@
         <EntityTypeShape EntityType="RecruitmentModel.SE_REPORT" Width="1.5" PointX="3.375" PointY="7.75" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="RecruitmentModel.SE_USER_REPORT" Width="1.5" PointX="0.75" PointY="3.75" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="RecruitmentModel.HU_WARD" Width="1.5" PointX="8.375" PointY="4.75" Height="0.4" IsExpanded="false" />
+        <EntityTypeShape EntityType="RecruitmentModel.HU_ORGANIZATION_V" Width="2.625" PointX="3.375" PointY="4" Height="7.1724251302083246" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

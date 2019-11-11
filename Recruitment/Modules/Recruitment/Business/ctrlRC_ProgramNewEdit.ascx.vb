@@ -431,6 +431,7 @@ Public Class ctrlRC_ProgramNewEdit
                             emp.SOFT_SKILL_ID = item.Value
                             lstSoft.Add(emp)
                         Next
+
                         obj.lstEmp = lstEmp
                         obj.lstCharac = lstCharac
                         obj.lstScope = lstScp

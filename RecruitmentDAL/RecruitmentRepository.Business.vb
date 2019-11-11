@@ -795,9 +795,11 @@ Partial Class RecruitmentRepository
                                            .P_ORGID = _param.ORG_ID,
                                            .P_ISDISSOLVE = _param.IS_DISSOLVE})
             End Using
-
             Dim query = From p In Context.RC_PROGRAM
+                        From PRE In Context.RC_REQUEST.Where(Function(f) f.ID = p.RC_REQUEST_ID).DefaultIfEmpty
                         From org In Context.HU_ORGANIZATION.Where(Function(f) f.ID = p.ORG_ID)
+                        From huv_org_id In Context.HU_ORGANIZATION_V.Where(Function(f) f.ID = p.ORG_ID).DefaultIfEmpty
+                        From cty In Context.HU_ORGANIZATION.Where(Function(f) f.ID = huv_org_id.ID2).DefaultIfEmpty
                         From sta In Context.RC_STAGE.Where(Function(f) f.ID = p.STAGE_ID).DefaultIfEmpty
                         From title In Context.HU_TITLE.Where(Function(f) f.ID = p.TITLE_ID)
                         From status In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.STATUS_ID).DefaultIfEmpty
@@ -823,7 +825,10 @@ Partial Class RecruitmentRepository
                                            .STATUS_NAME = status.NAME_VN,
                                            .CREATED_DATE = p.CREATED_DATE,
                                            .STAGE_ID = p.STAGE_ID,
+                                           .ORG_NAME_CTY = cty.NAME_VN,
                                            .RECRUIT_TYPE_ID = rectype.CODE,
+                                           .IS_SUPPORT = PRE.IS_SUPPORT,
+                                           .EXPECTED_JOIN_DATE = PRE.EXPECTED_JOIN_DATE,
                                            .CANDIDATE_COUNT = (From can In Context.RC_CANDIDATE
                                                                 Where can.RC_PROGRAM_ID = p.ID).Count,
                                            .CANDIDATE_REQUEST = (From reg In Context.RC_PLAN_REG
@@ -1020,15 +1025,13 @@ Partial Class RecruitmentRepository
 
 
     Public Function GetProgramByID(ByVal _filter As ProgramDTO) As ProgramDTO
-
         Try
-
             Dim query = From p In Context.RC_PROGRAM
                         From org In Context.HU_ORGANIZATION.Where(Function(f) f.ID = p.ORG_ID)
                         From title In Context.HU_TITLE.Where(Function(f) f.ID = p.TITLE_ID)
                         From pic In Context.HU_EMPLOYEE.Where(Function(f) f.ID = p.PIC_ID).DefaultIfEmpty
                         From pic2 In Context.HU_EMPLOYEE.Where(Function(f) f.ID = p.FOLLOWERS_EMP_ID).DefaultIfEmpty
-                        From rec In Context.RC_REQUEST.Where(Function(f) f.ORG_ID = p.ORG_ID).DefaultIfEmpty
+                        From rec In Context.RC_REQUEST.Where(Function(f) f.ID = p.RC_REQUEST_ID).DefaultIfEmpty
                         From status In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.STATUS_ID).DefaultIfEmpty
                         Where p.ID = _filter.ID
                         Select New ProgramDTO With {
@@ -1099,6 +1102,11 @@ Partial Class RecruitmentRepository
                                        .REQUESTOTHER = p.REQUESTOTHER,
                                        .REQUESTOTHER_DEFAULT = rec.REQUEST_OTHER,
                                        .STAGE_ID = rec.STATUS_ID,
+                                       .IS_SUPPORT = rec.IS_SUPPORT,
+                                       .IS_OVER_LIMIT = rec.IS_OVER_LIMIT,
+                                       .CONTRACT_TYPE_ID = rec.CONTRACT_TYPE_ID,
+                                       .RC_RECRUIT_PROPERTY = rec.RC_RECRUIT_PROPERTY,
+                                       .RECRUIT_NUMBER = rec.RECRUIT_NUMBER,
                                        .FOLLOWERS_EMP_ID = p.FOLLOWERS_EMP_ID,
                                        .FOLLOWERS_EMP_NAME = pic2.FULLNAME_VN,
                                        .SPECIALSKILLS = p.SPECIALSKILLS,
@@ -1168,6 +1176,7 @@ Partial Class RecruitmentRepository
             objProgramData.REQUEST_EXPERIENCE = objProgram.REQUEST_EXPERIENCE
             objProgramData.REMARK = objProgram.REMARK
             objProgramData.STATUS_ID = objProgram.STATUS_ID
+          
             'objProgramData.REQUEST_NUMBER = If(objProgram.FEMALE_NUMBER Is Nothing, 0, objProgram.FEMALE_NUMBER) +
             '    If(objProgram.MALE_NUMBER Is Nothing, 0, objProgram.MALE_NUMBER)
             objProgramData.REQUEST_NUMBER = If(objProgram.RECRUIT_NUMBER Is Nothing, 0, objProgram.RECRUIT_NUMBER)

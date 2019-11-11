@@ -463,6 +463,7 @@
     <Content Include="Modules\Profile\Business\ctrlHU_EmpDtlAppendix.ascx" />
     <Content Include="Modules\Profile\Shared\ctrlDashboardHome.ascx" />
     <Content Include="Modules\Profile\Shared\ctrlHomeDashboard.ascx" />
+    <Content Include="Modules\Recruitment\Business\ctrlRC_ProgrammNewEdit.ascx" />
     <Content Include="Modules\Recruitment\Business\ctrlRC_Manning.ascx" />
     <Content Include="Modules\Profile\Business\ctrlHU_ALP.ascx" />
     <Content Include="Modules\Profile\Business\ctrlHU_ALPNewEdit.ascx" />

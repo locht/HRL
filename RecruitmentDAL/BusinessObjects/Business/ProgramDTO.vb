@@ -110,5 +110,11 @@
     Public Property SPECIALSKILLS As Decimal?
     Public Property EXPECTED_JOIN_DATE As Date?
     Public Property NUMBERRECRUITMENT As String
+    Public Property IS_SUPPORT As Boolean?
+    Public Property IS_OVER_LIMIT As Boolean?
+    Public Property CONTRACT_TYPE_ID As Decimal?
+    Public Property RC_RECRUIT_PROPERTY As Decimal?
+    Public Property RECRUIT_NUMBER As Decimal?
+    Public Property ORG_NAME_CTY As String
 End Class
 

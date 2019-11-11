@@ -51,11 +51,11 @@
                         </td>
                         <td>
                             <tlk:RadComboBox ID="cboRecType" runat="server">
-                            <Items>
-                                <tlk:RadComboBoxItem Text="-- Tất cả --" Value="" Selected="true"/>
-                                <tlk:RadComboBoxItem Text="Trong kế hoạch" Value="-1"/>
-                                <tlk:RadComboBoxItem Text="Ngoài kế hoạch" Value="0"/>
-                            </Items>
+                                <Items>
+                                    <tlk:RadComboBoxItem Text="-- Tất cả --" Value="" Selected="true" />
+                                    <tlk:RadComboBoxItem Text="Trong kế hoạch" Value="-1" />
+                                    <tlk:RadComboBoxItem Text="Ngoài kế hoạch" Value="0" />
+                                </Items>
                             </tlk:RadComboBox>
                         </td>
                         <td>
@@ -78,36 +78,43 @@
                             <tlk:GridBoundColumn DataField="ID" Visible="false" />
                             <tlk:GridDateTimeColumn HeaderText="<%$ Translate: Ngày gửi yêu cầu %>" DataField="SEND_DATE"
                                 SortExpression="SEND_DATE" UniqueName="SEND_DATE" HeaderStyle-Width="120px" />
-                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Mã tuyển dụng %>" DataField="CODE"
-                                SortExpression="CODE" UniqueName="CODE" />
-                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Đơn vị %>" DataField="ORG_NAME" SortExpression="ORG_NAME"
-                                UniqueName="ORG_NAME" />
+                            <tlk:GridDateTimeColumn HeaderText="<%$ Translate: Ngày đáp ứng %>" DataField="EXPECTED_JOIN_DATE"
+                                SortExpression="EXPECTED_JOIN_DATE" UniqueName="EXPECTED_JOIN_DATE" HeaderStyle-Width="120px" />
+                            <%-- <tlk:GridBoundColumn HeaderText="<%$ Translate: Mã tuyển dụng %>" DataField="CODE"
+                                SortExpression="CODE" UniqueName="CODE" />--%>
+                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Công ty %>" DataField="ORG_NAME_CTY" SortExpression="ORG_NAME_CTY"
+                                UniqueName="ORG_NAME_CTY" />
+                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Ban/Phòng %>" DataField="ORG_NAME"
+                                SortExpression="ORG_NAME" UniqueName="ORG_NAME" />
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Vị trí tuyển dụng %>" DataField="TITLE_NAME"
                                 SortExpression="TITLE_NAME" UniqueName="TITLE_NAME" />
-                            <tlk:GridCheckBoxColumn HeaderText="<%$ Translate: Trong ngân sách? %>" DataField="IS_IN_PLAN"
-                                UniqueName="IS_IN_PLAN" SortExpression="IS_IN_PLAN" HeaderStyle-Width="70px" HeaderStyle-HorizontalAlign="Center" />
+                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Số lượng yêu cầu %>" DataField="REQUEST_NUMBER"
+                                SortExpression="REQUEST_NUMBER" UniqueName="REQUEST_NUMBER" AllowFiltering="false"
+                                HeaderStyle-Width="90px" />
+                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Lý do tuyển dụng %>" DataField="RECRUIT_REASON"
+                                SortExpression="RECRUIT_REASON" UniqueName="RECRUIT_REASON" />
+                            <tlk:GridCheckBoxColumn HeaderText="<%$ Translate: TNG Hỗ trợ %>" DataField="IS_SUPPORT" UniqueName="IS_SUPPORT"
+                                SortExpression="IS_SUPPORT" HeaderStyle-Width="70px" HeaderStyle-HorizontalAlign="Center" />
+                            <tlk:GridNumericColumn HeaderText="<%$ Translate: Hồ sơ đã nhận %>" DataField="CANDIDATE_COUNT"
+                                SortExpression="CANDIDATE_COUNT" UniqueName="CANDIDATE_COUNT" AllowFiltering="false"
+                                HeaderStyle-Width="90px" />
+                            <tlk:GridNumericColumn HeaderText="<%$ Translate: Số lượng trong kế hoạch %>" DataField="CANDIDATE_REQUEST"
+                                SortExpression="CANDIDATE_REQUEST" UniqueName="CANDIDATE_REQUEST" AllowFiltering="false"
+                                HeaderStyle-Width="90px" />
+                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Trạng thái %>" DataField="STATUS_NAME"
+                                SortExpression="STATUS_NAME" UniqueName="STATUS_NAME" />
+                            <%-- <tlk:GridCheckBoxColumn HeaderText="<%$ Translate: Trong ngân sách? %>" DataField="IS_IN_PLAN"
+                                UniqueName="IS_IN_PLAN" SortExpression="IS_IN_PLAN" HeaderStyle-Width="70px"
+                                HeaderStyle-HorizontalAlign="Center" />
                             <tlk:GridDateTimeColumn HeaderText="<%$ Translate: Ngày bắt đầu tuyển dụng %>" DataField="RECRUIT_START"
                                 SortExpression="RECRUIT_START" UniqueName="RECRUIT_START" HeaderStyle-Width="120px" />
                             <tlk:GridDateTimeColumn HeaderText="<%$ Translate: Ngày kết thúc nhận hồ sơ %>" DataField="RECEIVE_END"
                                 SortExpression="RECEIVE_END" UniqueName="RECEIVE_END" HeaderStyle-Width="120px" />
-                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Lý do tuyển dụng %>" DataField="RECRUIT_REASON_NAME"
-                                SortExpression="RECRUIT_REASON_NAME" UniqueName="RECRUIT_REASON_NAME" />
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Lý do tuyển dụng chi tiết %>" DataField="RECRUIT_REASON"
-                                SortExpression="RECRUIT_REASON" UniqueName="RECRUIT_REASON" />
-                            <tlk:GridNumericColumn HeaderText="<%$ Translate: Số lượng trong kế hoạch %>" DataField="CANDIDATE_REQUEST"
-                                SortExpression="CANDIDATE_REQUEST" UniqueName="CANDIDATE_REQUEST" AllowFiltering="false"
-                                HeaderStyle-Width="90px" />
-                            <tlk:GridNumericColumn HeaderText="<%$ Translate: Hồ sơ đã nhận %>" DataField="CANDIDATE_COUNT"
-                                SortExpression="CANDIDATE_COUNT" UniqueName="CANDIDATE_COUNT" AllowFiltering="false"
-                                HeaderStyle-Width="90px" />
-                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Số lượng yêu cầu %>" DataField="REQUEST_NUMBER"
-                                SortExpression="REQUEST_NUMBER" UniqueName="REQUEST_NUMBER" AllowFiltering="false"
-                                HeaderStyle-Width="90px" />
-                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Trạng thái %>" DataField="STATUS_NAME"
-                                SortExpression="STATUS_NAME" UniqueName="STATUS_NAME" />
+                                SortExpression="RECRUIT_REASON" UniqueName="RECRUIT_REASON" />--%>
                             <tlk:GridBoundColumn HeaderText="ORG_DESC" DataField="ORG_DESC" UniqueName="ORG_DESC"
                                 SortExpression="ORG_DESC" Visible="false" />
-                             <tlk:GridBoundColumn HeaderText="STAGE_ID" DataField="STAGE_ID" UniqueName="STAGE_ID"
+                            <tlk:GridBoundColumn HeaderText="STAGE_ID" DataField="STAGE_ID" UniqueName="STAGE_ID"
                                 SortExpression="STAGE_ID" Visible="false" />
                         </Columns>
                         <HeaderStyle Width="150px" />
@@ -169,7 +176,7 @@
             enableAjax = true;
         }
         function OpenNew() {
-            var oWindow = radopen('Dialog.aspx?mid=Recruitment&fid=ctrlRC_ProgramNewEdit&group=Business&noscroll=1', "rwPopup");
+            var oWindow = radopen('Dialog.aspx?mid=Recruitment&fid=ctrlRC_ProgrammNewEdit&group=Business&noscroll=1', "rwPopup");
             var pos = $("html").offset();
             oWindow.moveTo(pos.left, pos.top);
             oWindow.setSize($(window).width(), $(window).height());
@@ -185,7 +192,7 @@
             if (bCheck > 1)
                 return 1;
             var id = $find('<%# rgData.ClientID%>').get_masterTableView().get_selectedItems()[0].getDataKeyValue('ID');
-            var oWindow = radopen('Dialog.aspx?mid=Recruitment&fid=ctrlRC_ProgramNewEdit&group=Business&noscroll=1&ID=' + id, "rwPopup");
+            var oWindow = radopen('Dialog.aspx?mid=Recruitment&fid=ctrlRC_ProgrammNewEdit&group=Business&noscroll=1&ID=' + id, "rwPopup");
             var pos = $("html").offset();
             oWindow.moveTo(pos.left, pos.top);
             oWindow.setSize($(window).width(), $(window).height());

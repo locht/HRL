@@ -8380,6 +8380,9 @@ Namespace RecruitmentBusiness
         Private COMPUTER_LEVEL_NAMEField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private CONTRACT_TYPE_IDField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private CREATED_BYField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -8443,7 +8446,13 @@ Namespace RecruitmentBusiness
         Private IS_IN_PLANField As System.Nullable(Of Boolean)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private IS_OVER_LIMITField As System.Nullable(Of Boolean)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private IS_PORTALField As System.Nullable(Of Boolean)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private IS_SUPPORTField As System.Nullable(Of Boolean)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private JOB_NAMEField As String
@@ -8536,6 +8545,9 @@ Namespace RecruitmentBusiness
         Private ORG_NAMEField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private ORG_NAME_CTYField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private PIC_IDField As System.Nullable(Of Decimal)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -8551,7 +8563,13 @@ Namespace RecruitmentBusiness
         Private PRIORITY_LEVEL_NAMEField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private RC_RECRUIT_PROPERTYField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private RECEIVE_ENDField As System.Nullable(Of Date)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private RECRUIT_NUMBERField As System.Nullable(Of Decimal)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private RECRUIT_REASONField As String
@@ -8843,6 +8861,19 @@ Namespace RecruitmentBusiness
         End Property
         
         <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property CONTRACT_TYPE_ID() As System.Nullable(Of Decimal)
+            Get
+                Return Me.CONTRACT_TYPE_IDField
+            End Get
+            Set
+                If (Me.CONTRACT_TYPE_IDField.Equals(value) <> true) Then
+                    Me.CONTRACT_TYPE_IDField = value
+                    Me.RaisePropertyChanged("CONTRACT_TYPE_ID")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
         Public Property CREATED_BY() As String
             Get
                 Return Me.CREATED_BYField
@@ -9116,6 +9147,19 @@ Namespace RecruitmentBusiness
         End Property
         
         <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property IS_OVER_LIMIT() As System.Nullable(Of Boolean)
+            Get
+                Return Me.IS_OVER_LIMITField
+            End Get
+            Set
+                If (Me.IS_OVER_LIMITField.Equals(value) <> true) Then
+                    Me.IS_OVER_LIMITField = value
+                    Me.RaisePropertyChanged("IS_OVER_LIMIT")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
         Public Property IS_PORTAL() As System.Nullable(Of Boolean)
             Get
                 Return Me.IS_PORTALField
@@ -9124,6 +9168,19 @@ Namespace RecruitmentBusiness
                 If (Me.IS_PORTALField.Equals(value) <> true) Then
                     Me.IS_PORTALField = value
                     Me.RaisePropertyChanged("IS_PORTAL")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property IS_SUPPORT() As System.Nullable(Of Boolean)
+            Get
+                Return Me.IS_SUPPORTField
+            End Get
+            Set
+                If (Me.IS_SUPPORTField.Equals(value) <> true) Then
+                    Me.IS_SUPPORTField = value
+                    Me.RaisePropertyChanged("IS_SUPPORT")
                 End If
             End Set
         End Property
@@ -9519,6 +9576,19 @@ Namespace RecruitmentBusiness
         End Property
         
         <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property ORG_NAME_CTY() As String
+            Get
+                Return Me.ORG_NAME_CTYField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.ORG_NAME_CTYField, value) <> true) Then
+                    Me.ORG_NAME_CTYField = value
+                    Me.RaisePropertyChanged("ORG_NAME_CTY")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
         Public Property PIC_ID() As System.Nullable(Of Decimal)
             Get
                 Return Me.PIC_IDField
@@ -9584,6 +9654,19 @@ Namespace RecruitmentBusiness
         End Property
         
         <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property RC_RECRUIT_PROPERTY() As System.Nullable(Of Decimal)
+            Get
+                Return Me.RC_RECRUIT_PROPERTYField
+            End Get
+            Set
+                If (Me.RC_RECRUIT_PROPERTYField.Equals(value) <> true) Then
+                    Me.RC_RECRUIT_PROPERTYField = value
+                    Me.RaisePropertyChanged("RC_RECRUIT_PROPERTY")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
         Public Property RECEIVE_END() As System.Nullable(Of Date)
             Get
                 Return Me.RECEIVE_ENDField
@@ -9592,6 +9675,19 @@ Namespace RecruitmentBusiness
                 If (Me.RECEIVE_ENDField.Equals(value) <> true) Then
                     Me.RECEIVE_ENDField = value
                     Me.RaisePropertyChanged("RECEIVE_END")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property RECRUIT_NUMBER() As System.Nullable(Of Decimal)
+            Get
+                Return Me.RECRUIT_NUMBERField
+            End Get
+            Set
+                If (Me.RECRUIT_NUMBERField.Equals(value) <> true) Then
+                    Me.RECRUIT_NUMBERField = value
+                    Me.RaisePropertyChanged("RECRUIT_NUMBER")
                 End If
             End Set
         End Property
