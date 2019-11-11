@@ -66,7 +66,7 @@
             </tr>
             <tr>
                 <td class="lb">
-                    <%# Translate("Loại hợp đồng")%>
+                    <%# Translate("Loại hình lao động")%>
                 </td>
                 <td colspan="2">
                     <tlk:RadComboBox ID="cboTypeContract" runat="server" Enabled="false">

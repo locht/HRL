@@ -984,23 +984,25 @@ Public Class ctrlRC_RequestNewEdit
             'Dim OUT_NUMBER As String
             'Dim obj = rep.ExecuteStoreScalar("PKG_RECRUITMENT.GET_TOTAL_EMPLOYEE_BY_TITLEID", New List(Of Object)({hidOrgID.Value, cboTitle.SelectedValue, Common.Common.GetUserName(), OUT_NUMBER}))
             'txtCurrentNumber.Text = obj(0).ToString()
-
-            If hidOrgID.Value <> String.Empty Then
-                Dim tab As DataTable = store.GetCurrentManningTitle(Int32.Parse(hidOrgID.Value), cboTitle.SelectedValue)
-                If tab.Rows.Count > 0 Then
-                    txtPayrollLimit.Text = tab.Rows(0)("NEW_MANNING").ToString()
-                    txtCurrentNumber.Text = tab.Rows(0)("CURRENT_MANNING").ToString()
-                    txtDifferenceNumber.Text = tab.Rows(0)("MOBILIZE_COUNT_MANNING").ToString()
-                Else
-                    txtPayrollLimit.Text = "0"
-                    txtCurrentNumber.Text = "0"
-                    txtDifferenceNumber.Text = "0"
+            If rdSendDate IsNot Nothing Then
+                If hidOrgID.Value <> String.Empty Then
+                    Dim tab As DataTable = store.GetCurrentManningTitle1(Int32.Parse(hidOrgID.Value), cboTitle.SelectedValue, rdSendDate.SelectedDate)
+                    If tab.Rows.Count > 0 Then
+                        txtPayrollLimit.Text = tab.Rows(0)("NEW_MANNING").ToString()
+                        txtCurrentNumber.Text = tab.Rows(0)("CURRENT_MANNING").ToString()
+                        txtDifferenceNumber.Text = tab.Rows(0)("MOBILIZE_COUNT_MANNING").ToString()
+                    Else
+                        txtPayrollLimit.Text = "0"
+                        txtCurrentNumber.Text = "0"
+                        txtDifferenceNumber.Text = "0"
+                    End If
                 End If
             End If
         Catch ex As Exception
             DisplayException(Me.ViewName, Me.ID, ex)
         End Try
     End Sub
+
 
     Private Sub loadDatasource(ByVal strUpload As String)
         Dim startTime As DateTime = DateTime.UtcNow
@@ -1018,4 +1020,24 @@ Public Class ctrlRC_RequestNewEdit
     End Sub
 
 
+    Private Sub rdSendDate_SelectedDateChanged(sender As Object, e As Telerik.Web.UI.Calendar.SelectedDateChangedEventArgs) Handles rdSendDate.SelectedDateChanged
+        Try
+            If rdSendDate IsNot Nothing Then
+                If hidOrgID.Value <> String.Empty Then
+                    Dim tab As DataTable = store.GetCurrentManningTitle1(Int32.Parse(hidOrgID.Value), cboTitle.SelectedValue, rdSendDate.SelectedDate)
+                    If tab.Rows.Count > 0 Then
+                        txtPayrollLimit.Text = tab.Rows(0)("NEW_MANNING").ToString()
+                        txtCurrentNumber.Text = tab.Rows(0)("CURRENT_MANNING").ToString()
+                        txtDifferenceNumber.Text = tab.Rows(0)("MOBILIZE_COUNT_MANNING").ToString()
+                    Else
+                        txtPayrollLimit.Text = "0"
+                        txtCurrentNumber.Text = "0"
+                        txtDifferenceNumber.Text = "0"
+                    End If
+                End If
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
 End Class

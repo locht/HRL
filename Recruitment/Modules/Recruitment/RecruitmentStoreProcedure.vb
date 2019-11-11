@@ -290,6 +290,14 @@ Public Class RecruitmentStoreProcedure
         End If
         Return listYear
     End Function
+    Public Function GetCurrentManningTitle1(ByVal P_ORG_ID As Integer, ByVal P_TITLE_ID As Integer, ByVal p_date As Date) As DataTable
+        Dim listYear As DataTable
+        Dim ds As DataSet = rep.ExecuteToDataSet("PKG_RECRUITMENT.GET_CURRENT_MANNING_TITLE1", New List(Of Object)(New Object() {P_ORG_ID, P_TITLE_ID, p_date, OUT_CURSOR}))
+        If Not ds Is Nothing Or Not ds.Tables(0) Is Nothing Then
+            listYear = ds.Tables(0)
+        End If
+        Return listYear
+    End Function
 
 #End Region
 

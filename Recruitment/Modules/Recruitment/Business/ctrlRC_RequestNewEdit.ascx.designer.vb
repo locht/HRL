@@ -77,6 +77,24 @@ Partial Public Class ctrlRC_RequestNewEdit
     Protected WithEvents valSum As Global.System.Web.UI.WebControls.ValidationSummary
 
     '''<summary>
+    '''mitiple control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents mitiple As Global.Telerik.Web.UI.RadMultiPage
+
+    '''<summary>
+    '''rpvID control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents rpvID As Global.Telerik.Web.UI.RadPageView
+
+    '''<summary>
     '''txtOrgName control.
     '''</summary>
     '''<remarks>

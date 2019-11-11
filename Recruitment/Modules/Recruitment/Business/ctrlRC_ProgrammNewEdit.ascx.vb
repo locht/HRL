@@ -315,8 +315,10 @@ Public Class ctrlRC_ProgrammNewEdit
                 dtData = rep.GetOtherList("RC_RECRUIT_PROPERTY")
                 FillRadCombobox(cboTCRecruit, dtData, "NAME", "ID", True)
                 'CONTRACT TYPE
-                dtData = rep.GetOtherList("CONTRACT_TYPE", True)
-                FillRadCombobox(cboTypeContract, dtData, "NAME", "ID", True)
+                'dtData = rep.GetOtherList("CONTRACT_TYPE", True)
+                'FillRadCombobox(cboTypeContract, dtData, "NAME", "ID", True)
+                dtData = rep.GetOtherList("LABOR_TYPE", True)
+                FillRadCombobox(cboTypeContract, dtData, "NAME", "ID")
                 'tinh thanh
                 dtData = rep.GetProvinceList("False")
                 FillRadCombobox(cboLocation, dtData, "NAME", "ID", True)
