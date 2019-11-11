@@ -1798,6 +1798,7 @@ Partial Class RecruitmentRepository
                          .TITLE_NAME_VN = p.ot.NAME_VN,
                          .JOIN_DATE = p.p.JOIN_DATE,
                          .MODIFIED_DATE = p.p.MODIFIED_DATE,
+                         .IMAGE = p.cv.IMAGE,
                          .ID_NO = p.cv.ID_NO})
 
             If _filter.ORG_ID <> 0 Then
@@ -2613,7 +2614,8 @@ Partial Class RecruitmentRepository
                 If sCandidateCode = "" Then Return Nothing
                 Dim query As CandidateDTO = (From e In Context.RC_CANDIDATE
                                             From org In Context.HU_ORGANIZATION.Where(Function(f) e.ORG_ID = f.ID).DefaultIfEmpty
-                                            Where e.CANDIDATE_CODE = sCandidateCode
+                From cv In Context.RC_CANDIDATE_CV.Where(Function(f) e.ID = f.CANDIDATE_ID).DefaultIfEmpty
+                Where (e.CANDIDATE_CODE = sCandidateCode)
                                             Select New CandidateDTO With {
                                                 .ID = e.ID,
                                                 .FIRST_NAME_VN = e.FIRST_NAME_VN,
@@ -2631,7 +2633,8 @@ Partial Class RecruitmentRepository
                                                 .WORK = e.WORK,
                                                 .STATUS_ID = e.STATUS_ID,
                                                 .CARE_TITLE_NAME = e.CARE_TITLE_NAME,
-                                                .RECRUIMENT_WEBSITE = e.RECRUIMENT_WEBSITE
+                                                .RECRUIMENT_WEBSITE = e.RECRUIMENT_WEBSITE,
+                                                .IMAGE = cv.IMAGE
                                                 }).FirstOrDefault
 
                 Return query
