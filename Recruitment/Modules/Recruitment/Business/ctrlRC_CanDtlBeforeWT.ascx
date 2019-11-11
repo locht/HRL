@@ -13,47 +13,51 @@
     <tlk:RadPane ID="RadPane1" runat="server" Height="33px" Scrolling="None">
         <tlk:RadToolBar ID="tbarMainToolBar" runat="server" OnClientButtonClicking="OnClientButtonClicking" />
     </tlk:RadPane>
-    <tlk:RadPane ID="RadPaneLeft" runat="server" Height="100%">
+    <tlk:RadPane ID="RadPaneLeft" runat="server" Height="250px">
         <%--    <asp:ValidationSummary ID="valSum" runat="server" DisplayMode="BulletList" CssClass="validationsummary" />--%>
         <table class="table-form" style="padding-left: 32px">
             <tr>
                 <td style="text-align: left" class="lb">
-                    <%# Translate("Tên công ty")%><span class="lbReq">*</span>
+                    <%# Translate("Tên công ty")%><%--<span class="lbReq">*</span>--%>
                 </td>
                 <td>
                     <tlk:RadTextBox runat="server" ID="txtOrgname">
                     </tlk:RadTextBox>
-                    <asp:RequiredFieldValidator ID="RequiredFieldValidator1" ControlToValidate="txtOrgname"
-                        runat="server" ErrorMessage="<%$ Translate: Bạn phải nhập tên công ty %>" ToolTip="<%$ Translate: Bạn phải nhập tên công ty %>"> </asp:RequiredFieldValidator>
+                   <%-- <asp:RequiredFieldValidator ID="RequiredFieldValidator1" ControlToValidate="txtOrgname"
+                        runat="server" ErrorMessage="<%$ Translate: Bạn phải nhập tên công ty %>" ToolTip="<%$ Translate: Bạn phải nhập tên công ty %>"> </asp:RequiredFieldValidator>--%>
                 </td>
-                <td style="text-align: left" class="lb">
+                 <td style="text-align: left" class="lb">
+                    <%# Translate("Chức danh")%><%--<span class="lbReq">*</span>--%>
+                </td>
+                <td>
+                    <tlk:RadTextBox runat="server" ID="txtTitlename">
+                    </tlk:RadTextBox>
+                   <%-- <asp:RequiredFieldValidator ID="RequiredFieldValidator3" ControlToValidate="txtTitlename"
+                        runat="server" ErrorMessage="<%$ Translate: Bạn phải nhập chức danh %>" ToolTip="<%$ Translate: Bạn phải nhập chức danh %>"> </asp:RequiredFieldValidator>--%>
+                </td>
+                <%--<td style="text-align: left" class="lb">
                     <%# Translate("Số điện thoại")%>
                 </td>
                 <td>
                     <tlk:RadTextBox runat="server" ID="txtPhone">
                     </tlk:RadTextBox>
                 </td>
-                <td style="text-align: left" class="lb">
-                    <%# Translate("Địa chỉ công ty ")%><span class="lbReq">*</span>
-                </td>
-                <td>
-                    <tlk:RadTextBox runat="server" ID="txtOrgAddress">
-                    </tlk:RadTextBox>
-                    <asp:RequiredFieldValidator ID="RequiredFieldValidator2" ControlToValidate="txtOrgAddress"
-                        runat="server" ErrorMessage="<%$ Translate: Bạn phải nhập địa chỉ công ty %>"
-                        ToolTip="<%$ Translate: Bạn phải nhập địa chỉ công ty %>"> </asp:RequiredFieldValidator>
-                </td>
+                --%>
             </tr>
             <tr>
                 <td style="text-align: left" class="lb">
-                    <%# Translate("Chức danh")%><span class="lbReq">*</span>
+                    <%# Translate("Địa chỉ công ty ")%><%--<span class="lbReq">*</span>--%>
                 </td>
-                <td>
-                    <tlk:RadTextBox runat="server" ID="txtTitlename">
+                <td colspan="3">
+                    <tlk:RadTextBox runat="server" ID="txtOrgAddress" Width ="100%">
                     </tlk:RadTextBox>
-                    <asp:RequiredFieldValidator ID="RequiredFieldValidator3" ControlToValidate="txtTitlename"
-                        runat="server" ErrorMessage="<%$ Translate: Bạn phải nhập chức danh %>" ToolTip="<%$ Translate: Bạn phải nhập chức danh %>"> </asp:RequiredFieldValidator>
+                   <%-- <asp:RequiredFieldValidator ID="RequiredFieldValidator2" ControlToValidate="txtOrgAddress"
+                        runat="server" ErrorMessage="<%$ Translate: Bạn phải nhập địa chỉ công ty %>"
+                        ToolTip="<%$ Translate: Bạn phải nhập địa chỉ công ty %>"> </asp:RequiredFieldValidator>--%>
                 </td>
+            </tr>
+            <%--<tr>
+               
                 <td style="text-align: left" class="lb">
                     <%# Translate("Công việc chính")%>
                 </td>
@@ -68,20 +72,20 @@
                     <tlk:RadTextBox runat="server" ID="txtReasonLeave">
                     </tlk:RadTextBox>
                 </td>
-            </tr>
+            </tr>--%>
             <tr>
                 <td style="text-align: left" class="lb">
-                    <%# Translate("Ngày vào")%>
-                    <span class="lbReq">*</span>
+                    <%# Translate("Từ tháng/năm")%>
+                    <%--<span class="lbReq">*</span>--%>
                 </td>
                 <td>
                     <tlk:RadDatePicker ID="rdFromdate" DateInput-DisplayDateFormat="MM/yyyy" runat="server">
                     </tlk:RadDatePicker>
-                    <asp:RequiredFieldValidator ID="reqStartDate" ControlToValidate="rdFromdate" runat="server"
-                        ErrorMessage="<%$ Translate: Bạn phải nhập ngày vào. %>" ToolTip="<%$ Translate: Bạn phải nhập ngày vào %>"> </asp:RequiredFieldValidator>
+                    <%--<asp:RequiredFieldValidator ID="reqStartDate" ControlToValidate="rdFromdate" runat="server"
+                        ErrorMessage="<%$ Translate: Bạn phải nhập ngày vào. %>" ToolTip="<%$ Translate: Bạn phải nhập ngày vào %>"> </asp:RequiredFieldValidator>--%>
                 </td>
                 <td style="text-align: left" class="lb">
-                    <%# Translate("Ngày nghỉ")%><span class="lbReq">*</span>
+                    <%# Translate("Đến tháng/năm")%><%--<span class="lbReq">*</span>--%>
                 </td>
                 <td>
                     <tlk:RadDatePicker ID="rdTodate" runat="server" DateInput-DisplayDateFormat="MM/yyyy">
@@ -92,13 +96,13 @@
                 </td>
             </tr>
             <tr>
-                <td class="lb" style="text-align: left">
+                <%--<td class="lb" style="text-align: left">
                     <%# Translate("Cấp trên trực tiếp")%>
                 </td>
                 <td>
                     <tlk:RadTextBox ID="txtDirectManager" runat="server">
                     </tlk:RadTextBox>
-                </td>
+                </td>--%>
                 <td class="lb" style="text-align: left">
                     <%# Translate("Ghi chú")%>
                 </td>
@@ -109,8 +113,8 @@
             </tr>
         </table>
     </tlk:RadPane>
-    <tlk:RadPane ID="RadPane3" runat="server" Scrolling="None" Height="210px">
-        <tlk:RadGrid ID="rgCandidateBeforeWT" runat="server" AutoGenerateColumns="False"
+    <tlk:RadPane ID="RadPane3" runat="server" Scrolling="None" Height="100%">
+        <tlk:RadGrid ID="rgCandidateBeforeWT" runat="server" AutoGenerateColumns="False" PageSize="50"
             AllowPaging="True" AllowSorting="True" AllowMultiRowSelection="True" CellSpacing="0"
             GridLines="None" Height="100%">
             <ClientSettings EnableRowHoverStyle="true">
@@ -135,19 +139,19 @@
                         UniqueName="ORG_NAME" Visible="True">
                         <HeaderStyle Width="200px" HorizontalAlign="Center" />
                     </tlk:GridBoundColumn>
-                    <tlk:GridBoundColumn DataField="ORG_PHONE" HeaderText="<%$ Translate : Điện thoại công ty %>"
+                    <%--<tlk:GridBoundColumn DataField="ORG_PHONE" HeaderText="<%$ Translate : Điện thoại công ty %>"
                         UniqueName="ORG_PHONE" Visible="True">
                         <HeaderStyle Width="200px" HorizontalAlign="Center" />
-                    </tlk:GridBoundColumn>
-                    <tlk:GridBoundColumn DataField="ORG_ADDRESS" HeaderText="<%$ Translate : Địa chỉ công ty %>"
+                    </tlk:GridBoundColumn>--%>
+                   <%-- <tlk:GridBoundColumn DataField="ORG_ADDRESS" HeaderText="<%$ Translate : Địa chỉ công ty %>"
                         UniqueName="ORG_ADDRESS" Visible="True">
                         <HeaderStyle Width="200px" HorizontalAlign="Center" />
-                    </tlk:GridBoundColumn>
-                    <tlk:GridBoundColumn DataField="FROMDATE" HeaderText="<%$ Translate : Ngày vào %>"
+                    </tlk:GridBoundColumn>--%>
+                    <tlk:GridBoundColumn DataField="FROMDATE" HeaderText="<%$ Translate : Từ tháng/năm %>"
                         DataFormatString="{0:MM/yyyy}" UniqueName="FROMDATE" Visible="True">
                         <HeaderStyle Width="100px" HorizontalAlign="Center" />
                     </tlk:GridBoundColumn>
-                    <tlk:GridBoundColumn DataField="TODATE" HeaderText="<%$ Translate : Ngày nghỉ %>"
+                    <tlk:GridBoundColumn DataField="TODATE" HeaderText="<%$ Translate : Đến tháng/năm %>"
                         DataFormatString="{0:MM/yyyy}" UniqueName="TODATE" Visible="True">
                         <HeaderStyle Width="100px" HorizontalAlign="Center" />
                     </tlk:GridBoundColumn>
@@ -155,18 +159,18 @@
                         UniqueName="TITLE_NAME" Visible="True">
                         <HeaderStyle Width="100px" HorizontalAlign="Center" />
                     </tlk:GridBoundColumn>
-                    <tlk:GridBoundColumn DataField="DIRECT_MANAGER" HeaderText="<%$ Translate : Cấp trên trực tiếp %>"
+                 <%--   <tlk:GridBoundColumn DataField="DIRECT_MANAGER" HeaderText="<%$ Translate : Cấp trên trực tiếp %>"
                         UniqueName="DIRECT_MANAGER" Visible="True">
                         <HeaderStyle Width="100px" HorizontalAlign="Center" />
-                    </tlk:GridBoundColumn>
-                    <tlk:GridBoundColumn DataField="WORK" HeaderText="<%$ Translate : Công việc chính %>"
+                    </tlk:GridBoundColumn>--%>
+                    <%--<tlk:GridBoundColumn DataField="WORK" HeaderText="<%$ Translate : Công việc chính %>"
                         UniqueName="WORK" Visible="True">
                         <HeaderStyle Width="100px" HorizontalAlign="Center" />
                     </tlk:GridBoundColumn>
                     <tlk:GridBoundColumn DataField="REASON_LEAVE" HeaderText="<%$ Translate : Lý do nghỉ việc %>"
                         UniqueName="REASON_LEAVE" Visible="True">
                         <HeaderStyle Width="100px" HorizontalAlign="Center" />
-                    </tlk:GridBoundColumn>
+                    </tlk:GridBoundColumn>--%>
                     <tlk:GridBoundColumn DataField="REMARK" HeaderText="<%$ Translate : Ghi chú %>" UniqueName="REMARK"
                         Visible="True">
                         <HeaderStyle Width="200px" HorizontalAlign="Center" />

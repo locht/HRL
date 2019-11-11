@@ -245,18 +245,18 @@ Public Class ctrlRC_CanDtlBeforeWT
                 rdTodate.Clear()
             End If
             txtOrgname.Text = HttpUtility.HtmlDecode(item("ORG_NAME").Text)
-            txtPhone.Text = HttpUtility.HtmlDecode(item("ORG_PHONE").Text)
+            'txtPhone.Text = HttpUtility.HtmlDecode(item("ORG_PHONE").Text)
             txtOrgAddress.Text = HttpUtility.HtmlDecode(item("ORG_ADDRESS").Text)
             txtTitlename.Text = HttpUtility.HtmlDecode(item("TITLE_NAME").Text)
-            txtWork.Text = HttpUtility.HtmlDecode(item("WORK").Text)
-            txtReasonLeave.Text = HttpUtility.HtmlDecode(item("REASON_LEAVE").Text)
+            ' txtWork.Text = HttpUtility.HtmlDecode(item("WORK").Text)
+            'txtReasonLeave.Text = HttpUtility.HtmlDecode(item("REASON_LEAVE").Text)
             If item("FROMDATE").Text.Trim() <> "" Then
                 rdFromdate.SelectedDate = item("FROMDATE").Text
             End If
             If item("TODATE").Text.Trim() <> "" Then
                 rdFromdate.SelectedDate = item("TODATE").Text
             End If
-            txtDirectManager.Text = HttpUtility.HtmlDecode(item("DIRECT_MANAGER").Text)
+            'txtDirectManager.Text = HttpUtility.HtmlDecode(item("DIRECT_MANAGER").Text)
             txtRemark.Text = HttpUtility.HtmlDecode(item("REMARK").Text)
         Catch ex As Exception
             DisplayException(Me.ViewName, Me.ID, ex)
@@ -314,12 +314,12 @@ Public Class ctrlRC_CanDtlBeforeWT
             objCandidateBeforeWT.TODATE = rdTodate.SelectedDate
             objCandidateBeforeWT.ORG_NAME = txtOrgname.Text
             objCandidateBeforeWT.TITLE_NAME = txtTitlename.Text
-            objCandidateBeforeWT.WORK = txtWork.Text
+            'objCandidateBeforeWT.WORK = txtWork.Text
             objCandidateBeforeWT.REMARK = txtRemark.Text
             objCandidateBeforeWT.ORG_PHONE = txtOrgname.Text
             objCandidateBeforeWT.ORG_ADDRESS = txtOrgAddress.Text
-            objCandidateBeforeWT.DIRECT_MANAGER = txtDirectManager.Text
-            objCandidateBeforeWT.REASON_LEAVE = txtReasonLeave.Text
+            'objCandidateBeforeWT.DIRECT_MANAGER = txtDirectManager.Text
+            'objCandidateBeforeWT.REASON_LEAVE = txtReasonLeave.Text
 
             Dim gID As Decimal
             If hidEmpBeforeWTID.Value = "" Then
