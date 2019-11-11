@@ -981,9 +981,226 @@ Public Class ctrlRC_CanDtlProfile
                 txtFirstNameVN.ReadOnly = True
                 txtLastNameVN.ReadOnly = True
                 txtEmpCODE.ReadOnly = False
+                Dim isEnable As Boolean = False
+                For Each ctrl In rpvEmpCV.Controls
+                    If TypeOf (ctrl) Is RadComboBox Then
+                        Dim c As RadComboBox = ctrl
+                        EnableRadCombo(c, isEnable)
+                    End If
+                    If TypeOf (ctrl) Is RadTextBox Then
+                        Dim c As RadTextBox = ctrl
+                        c.ReadOnly = Not isEnable
+                    End If
+                    If TypeOf (ctrl) Is RadNumericTextBox Then
+                        Dim c As RadNumericTextBox = ctrl
+                        c.ReadOnly = Not isEnable
+                    End If
+                    If TypeOf (ctrl) Is RadDatePicker Then
+                        Dim c As RadDatePicker = ctrl
+                        EnableRadDatePicker(c, isEnable)
+                    End If
+                    If TypeOf (ctrl) Is RadDateTimePicker Then
+                        Dim c As RadDateTimePicker = ctrl
+                        EnableRadDateTimePicker(c, isEnable)
+                    End If
+                    If TypeOf (ctrl) Is RadTimePicker Then
+                        Dim c As RadTimePicker = ctrl
+                        EnableRadTimePicker(c, isEnable)
+                    End If
+                    If TypeOf (ctrl) Is TextBox Then
+                        Dim c As TextBox = ctrl
+                        c.ReadOnly = Not isEnable
+                    End If
+                    If TypeOf (ctrl) Is CheckBox Then
+                        Dim c As CheckBox = ctrl
+                        c.Enabled = isEnable
+                    End If
+                    If TypeOf (ctrl) Is RadButton Then
+                        Dim c As RadButton = ctrl
+                        c.Enabled = isEnable
+                    End If
+                    If TypeOf (ctrl) Is Button Then
+                        Dim c As Button = ctrl
+                        c.Enabled = isEnable
+                    End If
+                    If TypeOf (ctrl) Is RadListBox Then
+                        Dim c As RadListBox = ctrl
+                        c.Enabled = isEnable
+                    End If
+                    If TypeOf (ctrl) Is RadMonthYearPicker Then
+                        Dim c As RadMonthYearPicker = ctrl
+                        c.Enabled = isEnable
+                    End If
+                    If TypeOf (ctrl) Is RadGrid Then
+                        Dim c As RadGrid = ctrl
+                        c.Enabled = isEnable
+                    End If
+                Next
+                For Each ctrl In rpvEmpDegree.Controls
+                    If TypeOf (ctrl) Is RadComboBox Then
+                        Dim c As RadComboBox = ctrl
+                        EnableRadCombo(c, isEnable)
+                    End If
+                    If TypeOf (ctrl) Is RadTextBox Then
+                        Dim c As RadTextBox = ctrl
+                        c.ReadOnly = Not isEnable
+                    End If
+                    If TypeOf (ctrl) Is RadNumericTextBox Then
+                        Dim c As RadNumericTextBox = ctrl
+                        c.ReadOnly = Not isEnable
+                    End If
+                    If TypeOf (ctrl) Is RadDatePicker Then
+                        Dim c As RadDatePicker = ctrl
+                        EnableRadDatePicker(c, isEnable)
+                    End If
+                    If TypeOf (ctrl) Is RadDateTimePicker Then
+                        Dim c As RadDateTimePicker = ctrl
+                        EnableRadDateTimePicker(c, isEnable)
+                    End If
+                    If TypeOf (ctrl) Is RadTimePicker Then
+                        Dim c As RadTimePicker = ctrl
+                        EnableRadTimePicker(c, isEnable)
+                    End If
+                    If TypeOf (ctrl) Is TextBox Then
+                        Dim c As TextBox = ctrl
+                        c.ReadOnly = Not isEnable
+                    End If
+                    If TypeOf (ctrl) Is CheckBox Then
+                        Dim c As CheckBox = ctrl
+                        c.Enabled = isEnable
+                    End If
+                    If TypeOf (ctrl) Is RadButton Then
+                        Dim c As RadButton = ctrl
+                        c.Enabled = isEnable
+                    End If
+                    If TypeOf (ctrl) Is Button Then
+                        Dim c As Button = ctrl
+                        c.Enabled = isEnable
+                    End If
+                    If TypeOf (ctrl) Is RadListBox Then
+                        Dim c As RadListBox = ctrl
+                        c.Enabled = isEnable
+                    End If
+                    If TypeOf (ctrl) Is RadMonthYearPicker Then
+                        Dim c As RadMonthYearPicker = ctrl
+                        c.Enabled = isEnable
+                    End If
+                    If TypeOf (ctrl) Is RadGrid Then
+                        Dim c As RadGrid = ctrl
+                        c.Enabled = isEnable
+                    End If
+                Next
+                For Each ctrl In rpvIdExpect.Controls
+                    If TypeOf (ctrl) Is RadComboBox Then
+                        Dim c As RadComboBox = ctrl
+                        EnableRadCombo(c, isEnable)
+                    End If
+                    If TypeOf (ctrl) Is RadTextBox Then
+                        Dim c As RadTextBox = ctrl
+                        c.ReadOnly = Not isEnable
+                    End If
+                    If TypeOf (ctrl) Is RadNumericTextBox Then
+                        Dim c As RadNumericTextBox = ctrl
+                        c.ReadOnly = Not isEnable
+                    End If
+                    If TypeOf (ctrl) Is RadDatePicker Then
+                        Dim c As RadDatePicker = ctrl
+                        EnableRadDatePicker(c, isEnable)
+                    End If
+                    If TypeOf (ctrl) Is RadDateTimePicker Then
+                        Dim c As RadDateTimePicker = ctrl
+                        EnableRadDateTimePicker(c, isEnable)
+                    End If
+                    If TypeOf (ctrl) Is RadTimePicker Then
+                        Dim c As RadTimePicker = ctrl
+                        EnableRadTimePicker(c, isEnable)
+                    End If
+                    If TypeOf (ctrl) Is TextBox Then
+                        Dim c As TextBox = ctrl
+                        c.ReadOnly = Not isEnable
+                    End If
+                    If TypeOf (ctrl) Is CheckBox Then
+                        Dim c As CheckBox = ctrl
+                        c.Enabled = isEnable
+                    End If
+                    If TypeOf (ctrl) Is RadButton Then
+                        Dim c As RadButton = ctrl
+                        c.Enabled = isEnable
+                    End If
+                    If TypeOf (ctrl) Is Button Then
+                        Dim c As Button = ctrl
+                        c.Enabled = isEnable
+                    End If
+                    If TypeOf (ctrl) Is RadListBox Then
+                        Dim c As RadListBox = ctrl
+                        c.Enabled = isEnable
+                    End If
+                    If TypeOf (ctrl) Is RadMonthYearPicker Then
+                        Dim c As RadMonthYearPicker = ctrl
+                        c.Enabled = isEnable
+                    End If
+                    If TypeOf (ctrl) Is RadGrid Then
+                        Dim c As RadGrid = ctrl
+                        c.Enabled = isEnable
+                    End If
+                Next
+                For Each ctrl In rpvOtherInfo.Controls
+                    If TypeOf (ctrl) Is RadComboBox Then
+                        Dim c As RadComboBox = ctrl
+                        EnableRadCombo(c, isEnable)
+                    End If
+                    If TypeOf (ctrl) Is RadTextBox Then
+                        Dim c As RadTextBox = ctrl
+                        c.ReadOnly = Not isEnable
+                    End If
+                    If TypeOf (ctrl) Is RadNumericTextBox Then
+                        Dim c As RadNumericTextBox = ctrl
+                        c.ReadOnly = Not isEnable
+                    End If
+                    If TypeOf (ctrl) Is RadDatePicker Then
+                        Dim c As RadDatePicker = ctrl
+                        EnableRadDatePicker(c, isEnable)
+                    End If
+                    If TypeOf (ctrl) Is RadDateTimePicker Then
+                        Dim c As RadDateTimePicker = ctrl
+                        EnableRadDateTimePicker(c, isEnable)
+                    End If
+                    If TypeOf (ctrl) Is RadTimePicker Then
+                        Dim c As RadTimePicker = ctrl
+                        EnableRadTimePicker(c, isEnable)
+                    End If
+                    If TypeOf (ctrl) Is TextBox Then
+                        Dim c As TextBox = ctrl
+                        c.ReadOnly = Not isEnable
+                    End If
+                    If TypeOf (ctrl) Is CheckBox Then
+                        Dim c As CheckBox = ctrl
+                        c.Enabled = isEnable
+                    End If
+                    If TypeOf (ctrl) Is RadButton Then
+                        Dim c As RadButton = ctrl
+                        c.Enabled = isEnable
+                    End If
+                    If TypeOf (ctrl) Is Button Then
+                        Dim c As Button = ctrl
+                        c.Enabled = isEnable
+                    End If
+                    If TypeOf (ctrl) Is RadListBox Then
+                        Dim c As RadListBox = ctrl
+                        c.Enabled = isEnable
+                    End If
+                    If TypeOf (ctrl) Is RadMonthYearPicker Then
+                        Dim c As RadMonthYearPicker = ctrl
+                        c.Enabled = isEnable
+                    End If
+                    If TypeOf (ctrl) Is RadGrid Then
+                        Dim c As RadGrid = ctrl
+                        c.Enabled = isEnable
+                    End If
+                Next
                 CurrentState = CommonMessage.STATE_EDIT
         End Select
-
+                
         ChangeToolbarState()
         Me.Send(CurrentState)
     End Sub
