@@ -974,9 +974,10 @@ Public Class ctrlRC_Manning
             rgManning.DataSource = tabSource
             rgManning.VirtualItemCount = MaximumRows
         Catch ex As Exception
-            Throw ex
+            tabSource = New DataTable
+            rgManning.DataSource = tabSource
+            rgManning.VirtualItemCount = 0
         End Try
-
     End Function
     Private Sub EnableGridView(ByVal value As Boolean)
 
