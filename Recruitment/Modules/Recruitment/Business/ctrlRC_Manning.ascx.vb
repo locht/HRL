@@ -292,14 +292,14 @@ Public Class ctrlRC_Manning
         Try
             Select Case CType(e.Item, RadToolBarButton).CommandName
                 Case CommonMessage.TOOLBARITEM_CREATE
-                    If ctrlOrganization.CurrentValue = "" Or ctrlOrganization.CurrentValue = 1 Then
-                        ShowMessage(Translate("Bạn phải chọn đơn vị thuộc cấp Công ty"), Utilities.NotifyType.Warning)
-                        Exit Sub
-                    End If
-                    'If ctrlOrganization.PARENT_ID_VALUE <> 1 And ctrlOrganization.PARENT_ID_VALUE <> 0 Then
+                    'If ctrlOrganization.CurrentValue = "" Or ctrlOrganization.CurrentValue = 1 Then
                     '    ShowMessage(Translate("Bạn phải chọn đơn vị thuộc cấp Công ty"), Utilities.NotifyType.Warning)
                     '    Exit Sub
                     'End If
+                    If ctrlOrganization.PARENT_ID_VALUE <> 1 And ctrlOrganization.PARENT_ID_VALUE <> 0 Then
+                        ShowMessage(Translate("Bạn phải chọn đơn vị thuộc cấp Công ty"), Utilities.NotifyType.Warning)
+                        Exit Sub
+                    End If
 
                     CurrentState = CommonMessage.STATE_NEW
 
