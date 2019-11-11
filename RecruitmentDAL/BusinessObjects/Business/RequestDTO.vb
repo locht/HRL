@@ -59,4 +59,5 @@
     Public Property RECRUIT_NUMBER As Decimal?
 
     Public Property FILE_NAME As String
+    Public Property LOCATION_ID As Decimal?
 End Class

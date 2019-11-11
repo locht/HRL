@@ -30,7 +30,19 @@ Public Class RecruitmentRepository
             Throw ex
         End Try
     End Function
+    Public Function GetProvinceList(ByVal isBlank As Boolean) As DataTable
+        Try
+            Using cls As New DataAccess.QueryData
+                Dim dtData As DataTable = cls.ExecuteStore("PKG_COMMON_LIST.GET_HU_PROVINCE",
+                                           New With {.P_ISBLANK = isBlank,
+                                                     .P_CUR = cls.OUT_CURSOR})
 
+                Return dtData
+            End Using
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
     Public Function GetContractTypeList(ByVal isBlank As Boolean) As DataTable
         Try
             Using cls As New DataAccess.QueryData

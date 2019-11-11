@@ -57,24 +57,35 @@
                             <tlk:GridBoundColumn DataField="ID" Visible="false" />
                             <tlk:GridDateTimeColumn HeaderText="<%$ Translate: Ngày gửi yêu cầu %>" DataField="SEND_DATE"
                                 SortExpression="SEND_DATE" UniqueName="SEND_DATE" />
+                            <tlk:GridDateTimeColumn HeaderText="<%$ Translate: Ngày đáp ứng %>" DataField="EXPECTED_JOIN_DATE"
+                                SortExpression="EXPECTED_JOIN_DATE" UniqueName="EXPECTED_JOIN_DATE" HeaderStyle-Width="120px" />
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Đơn vị %>" DataField="ORG_NAME" SortExpression="ORG_NAME"
                                 UniqueName="ORG_NAME" />
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Vị trí tuyển dụng %>" DataField="TITLE_NAME"
                                 SortExpression="TITLE_NAME" UniqueName="TITLE_NAME" />
-                            <tlk:GridNumericColumn HeaderText="<%$ Translate: Số lượng nam %>" DataField="MALE_NUMBER"
+                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Số lượng cần tuyển %>" DataField="RECRUIT_NUMBER"
+                                SortExpression="RECRUIT_NUMBER" UniqueName="RECRUIT_NUMBER" AllowFiltering="false"
+                                HeaderStyle-Width="90px" />
+                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Tính chất tuyển dụng %>" DataField="RC_RECRUIT_PROPERTY_NAME"
+                                SortExpression="RC_RECRUIT_PROPERTY_NAME" UniqueName="RC_RECRUIT_PROPERTY_NAME"
+                                AllowFiltering="false" HeaderStyle-Width="90px" />
+                            <%--  <tlk:GridNumericColumn HeaderText="<%$ Translate: Số lượng nam %>" DataField="MALE_NUMBER"
                                 SortExpression="MALE_NUMBER" UniqueName="MALE_NUMBER" />
                             <tlk:GridNumericColumn HeaderText="<%$ Translate: Số lượng nữ %>" DataField="FEMALE_NUMBER"
-                                SortExpression="FEMALE_NUMBER" UniqueName="FEMALE_NUMBER" />
-                            <tlk:GridDateTimeColumn HeaderText="<%$ Translate: Ngày dự kiến đi làm %>" DataField="EXPECTED_JOIN_DATE"
-                                SortExpression="EXPECTED_JOIN_DATE" UniqueName="EXPECTED_JOIN_DATE" />
+                                SortExpression="FEMALE_NUMBER" UniqueName="FEMALE_NUMBER" />--%>
+                            <%--    <tlk:GridDateTimeColumn HeaderText="<%$ Translate: Ngày dự kiến đi làm %>" DataField="EXPECTED_JOIN_DATE"
+                                SortExpression="EXPECTED_JOIN_DATE" UniqueName="EXPECTED_JOIN_DATE" />--%>
+                            <tlk:GridCheckBoxColumn HeaderText="<%$ Translate: TNG Hỗ trợ %>" DataField="IS_SUPPORT"
+                                UniqueName="IS_SUPPORT" SortExpression="IS_SUPPORT" HeaderStyle-Width="70px"
+                                HeaderStyle-HorizontalAlign="Center" />
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Lý do tuyển dụng %>" DataField="RECRUIT_REASON_NAME"
                                 SortExpression="RECRUIT_REASON_NAME" UniqueName="RECRUIT_REASON_NAME" />
-                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Lý do tuyển dụng chi tiết %>" DataField="RECRUIT_REASON"
-                                SortExpression="RECRUIT_REASON" UniqueName="RECRUIT_REASON" />
+                            <%--<tlk:GridBoundColumn HeaderText="<%$ Translate: Lý do tuyển dụng chi tiết %>" DataField="RECRUIT_REASON"
+                                SortExpression="RECRUIT_REASON" UniqueName="RECRUIT_REASON" />--%>
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Lý do không phê duyệt %>" DataField="REMARK_REJECT"
                                 SortExpression="REMARK_REJECT" UniqueName="REMARK_REJECT" />
-                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Ghi chú %>" DataField="REMARK" SortExpression="REMARK"
-                                UniqueName="REMARK" />
+                            <%--   <tlk:GridBoundColumn HeaderText="<%$ Translate: Ghi chú %>" DataField="REMARK" SortExpression="REMARK"
+                                UniqueName="REMARK" />--%>
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Trạng thái %>" DataField="STATUS_NAME"
                                 SortExpression="STATUS_NAME" UniqueName="STATUS_NAME" />
                             <tlk:GridBoundColumn HeaderText="ORG_DESC" DataField="ORG_DESC" UniqueName="ORG_DESC"
@@ -82,7 +93,7 @@
                         </Columns>
                     </MasterTableView>
                     <ClientSettings>
-                        <Selecting AllowRowSelect="True"/>
+                        <Selecting AllowRowSelect="True" />
                         <ClientEvents OnRowDblClick="gridRowDblClick" />
                     </ClientSettings>
                 </tlk:RadGrid>
@@ -96,8 +107,8 @@
 <tlk:RadWindowManager ID="RadWindowManager1" runat="server">
     <Windows>
         <tlk:RadWindow runat="server" ID="rwPopup" Width="800px" VisibleStatusbar="false"
-            OnClientClose="OnClientClose" Height="500px" EnableShadow="true"
-            Behaviors="Close, Maximize, Move" Modal="true" ShowContentDuringLoad="false">
+            OnClientClose="OnClientClose" Height="500px" EnableShadow="true" Behaviors="Close, Maximize, Move"
+            Modal="true" ShowContentDuringLoad="false">
         </tlk:RadWindow>
     </Windows>
 </tlk:RadWindowManager>
@@ -109,11 +120,11 @@
             enableAjax = true;
         }
         function OpenNew() {
-          //  var oWindow = radopen('Dialog.aspx?mid=Recruitment&fid=ctrlRC_RequestNewEdit&group=Business&noscroll=1', "rwPopup");
-//            var pos = $("html").offset();
+            //  var oWindow = radopen('Dialog.aspx?mid=Recruitment&fid=ctrlRC_RequestNewEdit&group=Business&noscroll=1', "rwPopup");
+            //            var pos = $("html").offset();
             //            oWindow.moveTo(pos.left, pos.top);
             //            oWindow.setSize($(window).width(), $(window).height());
-//            oWindow.moveTo(pos.left, pos.middle);
+            //            oWindow.moveTo(pos.left, pos.middle);
             //            oWindow.setSize(1200, 500);
             window.open('/Default.aspx?mid=Recruitment&fid=ctrlRC_RequestNewEdit&group=Business&noscroll=1', "_self");
         }
@@ -131,11 +142,11 @@
             var id = $find('<%# rgData.ClientID%>').get_masterTableView().get_selectedItems()[0].getDataKeyValue('ID');
             window.open('/Default.aspx?mid=Recruitment&fid=ctrlRC_RequestNewEdit&group=Business&noscroll=1&ID=' + id, "_self");
             //var oWindow = radopen('Dialog.aspx?mid=Recruitment&fid=ctrlRC_RequestNewEdit&group=Business&noscroll=1&ID=' + id, "rwPopup");
-//            var pos = $("html").offset();
+            //            var pos = $("html").offset();
             //            oWindow.moveTo(pos.left, pos.top);
             //            oWindow.setSize($(window).width(), $(window).height());
-//            oWindow.moveTo(pos.left, pos.middle);
-//            oWindow.setSize(1200, 500);
+            //            oWindow.moveTo(pos.left, pos.middle);
+            //            oWindow.setSize(1200, 500);
             return 2;
         }
 

@@ -31,8 +31,8 @@
                     <%# Translate("Địa điểm làm việc")%>
                 </td>
                 <td>
-                    <tlk:RadTextBox ID="cboLocation" runat="server" ReadOnly="true">
-                    </tlk:RadTextBox>
+                    <tlk:RadComboBox ID="cboLocation" runat="server" Enabled="false">
+                    </tlk:RadComboBox>
                 </td>
             </tr>
             <tr>

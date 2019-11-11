@@ -128,6 +128,10 @@ Public Class ctrlRC_RequestNewEdit
                     If obj.CONTRACT_TYPE_ID IsNot Nothing Then
                         cboContractType.SelectedValue = obj.CONTRACT_TYPE_ID
                     End If
+                    If obj.LOCATION_ID IsNot Nothing Then
+                        cbolocationWork.SelectedValue = obj.LOCATION_ID
+                    End If
+
                     If obj.RECRUIT_REASON_ID IsNot Nothing Then
                         cboRecruitReason.SelectedValue = obj.RECRUIT_REASON_ID
                     End If
@@ -318,6 +322,7 @@ Public Class ctrlRC_RequestNewEdit
                         'Else
                         '    obj.TITLE_ID = cboTitle.SelectedValue
                         'End If
+
                         obj.TITLE_ID = cboTitle.SelectedValue
                         obj.SEND_DATE = rdSendDate.SelectedDate
                         If cboContractType.SelectedValue <> "" Then
@@ -334,6 +339,10 @@ Public Class ctrlRC_RequestNewEdit
                         If cboRecruitProperty.SelectedValue <> "" Then
                             obj.RC_RECRUIT_PROPERTY = cboRecruitProperty.SelectedValue
                         End If
+                        If cbolocationWork.SelectedValue <> "" Then
+                            obj.LOCATION_ID = cbolocationWork.SelectedValue
+                        End If
+
                         obj.IS_OVER_LIMIT = chkIsOver.Checked
                         obj.IS_SUPPORT = chkIsSupport.Checked
                         obj.FOREIGN_ABILITY = txtForeignAbility.Text
@@ -641,7 +650,8 @@ Public Class ctrlRC_RequestNewEdit
                 FillRadCombobox(cboRecruitReason, dtData, "NAME", "ID")
                 dtData = rep.GetOtherList("LEARNING_LEVEL", True)
                 FillRadCombobox(cboLearningLevel, dtData, "NAME", "ID")
-                dtData = rep.GetContractTypeList(True)
+                'load loai hinh hop dong
+                dtData = rep.GetOtherList("LABOR_TYPE", True)
                 FillRadCombobox(cboContractType, dtData, "NAME", "ID")
                 ' Load data to cbo ACADEMY,LANGUAGE, LANGUAGE_LEVEL,MAJOR,SPECIALSKILLS
                 'LANGUAGE
@@ -659,15 +669,15 @@ Public Class ctrlRC_RequestNewEdit
                 'COMPUTERLEVEL
                 dtData = rep.GetOtherList("RC_COMPUTER_LEVEL", True)
                 FillRadCombobox(cboComputerLevel, dtData, "NAME", "ID", True)
-                'CONTRACT TYPE
-                dtData = rep.GetOtherList("CONTRACT_TYPE", True)
-                FillRadCombobox(cboContractType, dtData, "NAME", "ID", True)
                 'RECRUIT PROPERTY
                 dtData = rep.GetOtherList("RC_RECRUIT_PROPERTY")
                 FillRadCombobox(cboRecruitProperty, dtData, "NAME", "ID", True)
                 'GENDER
                 dtData = rep.GetOtherList("GENDER")
                 FillRadCombobox(cboGenderPriority, dtData, "NAME", "ID", True)
+                'tinh thanh
+                dtData = rep.GetProvinceList("False")
+                FillRadCombobox(cbolocationWork, dtData, "NAME", "ID")
             End Using
         Catch ex As Exception
             Throw ex

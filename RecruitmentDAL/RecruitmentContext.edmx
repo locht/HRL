@@ -353,6 +353,7 @@
             <Property Name="UPLOAD_FILE" Type="nclob" Nullable="true" />
             <Property Name="RECRUIT_NUMBER" Type="number" Nullable="true" Precision="38" />
             <Property Name="FILE_NAME" Type="nvarchar2" Nullable="true" MaxLength="1023" />
+            <Property Name="LOCATION_ID" Type="number" Nullable="true" Precision="38" />
         </EntityType>
         <EntityType Name="RC_REQUEST_EMP">
             <Key>
@@ -2234,6 +2235,7 @@
           <Property Type="String" Name="UPLOAD_FILE" />
           <Property Type="Decimal" Name="RECRUIT_NUMBER" Nullable="true" />
           <Property Type="String" Name="FILE_NAME" MaxLength="1023" />
+          <Property Type="Decimal" Name="LOCATION_ID" />
         </EntityType>
         <EntityType Name="RC_REQUEST_EMP">
           <Key>
@@ -4007,6 +4009,7 @@
                     <ScalarProperty Name="UPLOAD_FILE" ColumnName="UPLOAD_FILE" />
                     <ScalarProperty Name="RECRUIT_NUMBER" ColumnName="RECRUIT_NUMBER" />
                     <ScalarProperty Name="FILE_NAME" ColumnName="FILE_NAME" />
+                    <ScalarProperty Name="LOCATION_ID" ColumnName="LOCATION_ID" />
                 </MappingFragment>
             </EntityTypeMapping>
         </EntitySetMapping>
@@ -5442,7 +5445,7 @@
         <EntityTypeShape EntityType="RecruitmentModel.RC_PROGRAM_EXAMS" Width="1.75" PointX="13.75" PointY="6.75" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="RecruitmentModel.RC_PROGRAM_SCOPE" Width="2" PointX="13.75" PointY="9.75" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="RecruitmentModel.RC_PROGRAM_SOFT_SKILL" Width="2.375" PointX="13.75" PointY="12.75" Height="0.4" IsExpanded="false" />
-        <EntityTypeShape EntityType="RecruitmentModel.RC_REQUEST" Width="1.5" PointX="17.5" PointY="0.5" Height="0.4" IsExpanded="false" />
+        <EntityTypeShape EntityType="RecruitmentModel.RC_REQUEST" Width="1.5" PointX="17.5" PointY="0.5" Height="10.056946614583332" IsExpanded="true" />
         <EntityTypeShape EntityType="RecruitmentModel.RC_REQUEST_EMP" Width="1.5" PointX="15.75" PointY="7.75" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="RecruitmentModel.OT_OTHER_LIST" Width="1.5" PointX="14" PointY="15.5" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="RecruitmentModel.OT_OTHER_LIST_GROUP" Width="1.5" PointX="16.375" PointY="10.75" Height="0.4" IsExpanded="false" />

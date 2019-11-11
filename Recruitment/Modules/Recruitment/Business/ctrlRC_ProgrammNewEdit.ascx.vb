@@ -116,6 +116,10 @@ Public Class ctrlRC_ProgrammNewEdit
                     Else
                         chkVuotDB.Checked = False
                     End If
+                    If obj.LOCATION_ID IsNot Nothing Then
+                        cboLocation.SelectedValue = obj.LOCATION_ID
+                    End If
+
                     txtCode.Text = obj.CODE
                     If obj.CONTRACT_TYPE_ID IsNot Nothing Then
                         cboTypeContract.SelectedValue = obj.CONTRACT_TYPE_ID
@@ -313,6 +317,9 @@ Public Class ctrlRC_ProgrammNewEdit
                 'CONTRACT TYPE
                 dtData = rep.GetOtherList("CONTRACT_TYPE", True)
                 FillRadCombobox(cboTypeContract, dtData, "NAME", "ID", True)
+                'tinh thanh
+                dtData = rep.GetProvinceList("False")
+                FillRadCombobox(cboLocation, dtData, "NAME", "ID", True)
             End Using
         Catch ex As Exception
             Throw ex

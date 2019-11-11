@@ -7284,6 +7284,9 @@ Namespace RecruitmentBusiness
         Private LEARNING_LEVEL_NAMEField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private LOCATION_IDField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private MAINTASKField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -7766,6 +7769,19 @@ Namespace RecruitmentBusiness
                 If (Object.ReferenceEquals(Me.LEARNING_LEVEL_NAMEField, value) <> true) Then
                     Me.LEARNING_LEVEL_NAMEField = value
                     Me.RaisePropertyChanged("LEARNING_LEVEL_NAME")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property LOCATION_ID() As System.Nullable(Of Decimal)
+            Get
+                Return Me.LOCATION_IDField
+            End Get
+            Set
+                If (Me.LOCATION_IDField.Equals(value) <> true) Then
+                    Me.LOCATION_IDField = value
+                    Me.RaisePropertyChanged("LOCATION_ID")
                 End If
             End Set
         End Property
@@ -8507,6 +8523,9 @@ Namespace RecruitmentBusiness
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private LEARNING_LEVEL_NAMEField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private LOCATION_IDField As System.Nullable(Of Decimal)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private MAJOR_MAIN_IDField As String
@@ -9415,6 +9434,19 @@ Namespace RecruitmentBusiness
                 If (Object.ReferenceEquals(Me.LEARNING_LEVEL_NAMEField, value) <> true) Then
                     Me.LEARNING_LEVEL_NAMEField = value
                     Me.RaisePropertyChanged("LEARNING_LEVEL_NAME")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property LOCATION_ID() As System.Nullable(Of Decimal)
+            Get
+                Return Me.LOCATION_IDField
+            End Get
+            Set
+                If (Me.LOCATION_IDField.Equals(value) <> true) Then
+                    Me.LOCATION_IDField = value
+                    Me.RaisePropertyChanged("LOCATION_ID")
                 End If
             End Set
         End Property
@@ -18730,6 +18762,9 @@ Namespace RecruitmentBusiness
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IRecruitmentBusiness/GetOtherList", ReplyAction:="http://tempuri.org/IRecruitmentBusiness/GetOtherListResponse")>  _
         Function GetOtherList(ByVal sType As String, ByVal sLang As String, ByVal isBlank As Boolean) As System.Data.DataTable
         
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IRecruitmentBusiness/GetProvinceList", ReplyAction:="http://tempuri.org/IRecruitmentBusiness/GetProvinceListResponse")>  _
+        Function GetProvinceList(ByVal isBlank As Boolean) As System.Data.DataTable
+        
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IRecruitmentBusiness/GetContractTypeList", ReplyAction:="http://tempuri.org/IRecruitmentBusiness/GetContractTypeListResponse")>  _
         Function GetContractTypeList(ByVal isBlank As Boolean) As System.Data.DataTable
         
@@ -19072,6 +19107,10 @@ Namespace RecruitmentBusiness
         
         Public Function GetOtherList(ByVal sType As String, ByVal sLang As String, ByVal isBlank As Boolean) As System.Data.DataTable Implements RecruitmentBusiness.IRecruitmentBusiness.GetOtherList
             Return MyBase.Channel.GetOtherList(sType, sLang, isBlank)
+        End Function
+        
+        Public Function GetProvinceList(ByVal isBlank As Boolean) As System.Data.DataTable Implements RecruitmentBusiness.IRecruitmentBusiness.GetProvinceList
+            Return MyBase.Channel.GetProvinceList(isBlank)
         End Function
         
         Public Function GetContractTypeList(ByVal isBlank As Boolean) As System.Data.DataTable Implements RecruitmentBusiness.IRecruitmentBusiness.GetContractTypeList

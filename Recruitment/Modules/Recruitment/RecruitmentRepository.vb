@@ -36,7 +36,21 @@ Public Class RecruitmentRepository
 
         Return Nothing
     End Function
+    Public Function GetProvinceList(Optional ByVal isBlank As Boolean = False) As DataTable
+        Dim dtData As DataTable
 
+        Using rep As New RecruitmentBusinessClient
+            Try
+                dtData = rep.GetProvinceList(isBlank)
+                Return dtData
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+
+        Return Nothing
+    End Function
     Public Function GetContractTypeList(Optional ByVal isBlank As Boolean = False) As DataTable
         Dim dtData As DataTable
 

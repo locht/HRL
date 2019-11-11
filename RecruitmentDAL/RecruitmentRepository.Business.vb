@@ -498,6 +498,7 @@ Partial Class RecruitmentRepository
                                        .RC_RECRUIT_PROPERTY = p.RC_RECRUIT_PROPERTY,
                                        .IS_OVER_LIMIT = p.IS_OVER_LIMIT,
                                        .IS_SUPPORT = p.IS_SUPPORT,
+                                       .LOCATION_ID = p.LOCATION_ID,
                                        .FOREIGN_ABILITY = p.FOREIGN_ABILITY,
                                        .COMPUTER_APP_LEVEL = p.COMPUTER_APP_LEVEL,
                                        .GENDER_PRIORITY = p.GENDER_PRIORITY,
@@ -652,6 +653,7 @@ Partial Class RecruitmentRepository
             objRequestData.RECRUIT_NUMBER = objRequest.RECRUIT_NUMBER
             objRequestData.FILE_NAME = objRequest.FILE_NAME
             objRequestData.UPLOAD_FILE = objRequest.UPLOAD_FILE
+            objRequestData.LOCATION_ID = objRequest.LOCATION_ID
             Context.RC_REQUEST.AddObject(objRequestData)
             If objRequest.lstEmp IsNot Nothing Then
                 For Each item In objRequest.lstEmp
@@ -711,6 +713,7 @@ Partial Class RecruitmentRepository
             objRequestData.RECRUIT_NUMBER = objRequest.RECRUIT_NUMBER
             objRequestData.FILE_NAME = objRequest.FILE_NAME
             objRequestData.UPLOAD_FILE = objRequest.UPLOAD_FILE
+            objRequestData.LOCATION_ID = objRequest.LOCATION_ID
             Dim lstRegEmp = (From p In Context.RC_REQUEST_EMP Where p.RC_REQUEST_ID = objRequestData.ID).ToList
             For Each item In lstRegEmp
                 Context.RC_REQUEST_EMP.DeleteObject(item)
@@ -1105,6 +1108,7 @@ Partial Class RecruitmentRepository
                                        .IS_SUPPORT = rec.IS_SUPPORT,
                                        .IS_OVER_LIMIT = rec.IS_OVER_LIMIT,
                                        .CONTRACT_TYPE_ID = rec.CONTRACT_TYPE_ID,
+                                       .LOCATION_ID = rec.LOCATION_ID,
                                        .RC_RECRUIT_PROPERTY = rec.RC_RECRUIT_PROPERTY,
                                        .RECRUIT_NUMBER = rec.RECRUIT_NUMBER,
                                        .FOLLOWERS_EMP_ID = p.FOLLOWERS_EMP_ID,
@@ -1176,7 +1180,7 @@ Partial Class RecruitmentRepository
             objProgramData.REQUEST_EXPERIENCE = objProgram.REQUEST_EXPERIENCE
             objProgramData.REMARK = objProgram.REMARK
             objProgramData.STATUS_ID = objProgram.STATUS_ID
-          
+
             'objProgramData.REQUEST_NUMBER = If(objProgram.FEMALE_NUMBER Is Nothing, 0, objProgram.FEMALE_NUMBER) +
             '    If(objProgram.MALE_NUMBER Is Nothing, 0, objProgram.MALE_NUMBER)
             objProgramData.REQUEST_NUMBER = If(objProgram.RECRUIT_NUMBER Is Nothing, 0, objProgram.RECRUIT_NUMBER)
@@ -1704,8 +1708,9 @@ Partial Class RecruitmentRepository
                         From ot In Context.HU_TITLE.Where(Function(f) p.TITLE_ID = f.ID).DefaultIfEmpty
                         From org In Context.HU_ORGANIZATION.Where(Function(f) p.ORG_ID = f.ID).DefaultIfEmpty
                         From cv In Context.RC_CANDIDATE_CV.Where(Function(f) p.ID = f.CANDIDATE_ID).DefaultIfEmpty
-                        From status In Context.OT_OTHER_LIST.Where(Function(f) f.CODE = p.STATUS_ID).DefaultIfEmpty
-                        Where p.EMPLOYEE_CODE Is Nothing And p.STATUS_ID = "PONTENTIAL"
+                        From status In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.STATUS_ID).DefaultIfEmpty
+                        Where p.EMPLOYEE_CODE Is Nothing
+                        Order By p.CREATED_DATE Descending
 
             If _filter.RC_PROGRAM_ID IsNot Nothing Then
                 query = query.Where(Function(f) f.p.RC_PROGRAM_ID = _filter.RC_PROGRAM_ID)
@@ -1751,9 +1756,9 @@ Partial Class RecruitmentRepository
                 lst = lst.Where(Function(p) p.ID_NO.ToUpper().IndexOf(_filter.ID_NO.ToUpper) >= 0)
             End If
 
-            'If _filter.IS_PONTENTIAL IsNot Nothing Then
-            '    lst = lst.Where(Function(p) p.IS_PONTENTIAL = _filter.IS_PONTENTIAL)
-            'End If
+            If _filter.IS_PONTENTIAL IsNot Nothing Then
+                lst = lst.Where(Function(p) p.IS_PONTENTIAL = _filter.IS_PONTENTIAL)
+            End If
 
             If _filter.BIRTH_DATE IsNot Nothing Then
                 lst = lst.Where(Function(p) p.BIRTH_DATE = _filter.BIRTH_DATE)
@@ -2529,11 +2534,12 @@ Partial Class RecruitmentRepository
                     Dim empCode As String = ""
                     TransferCandidateToHSNV(canID, log, empCode)
                     objEmpData.EMPLOYEE_CODE = empCode
-                ElseIf statusID = RecruitmentCommon.RC_CANDIDATE_STATUS.DUDIEUKIEN_ID Then
-                    objEmpData.IS_BLACKLIST = 0
                 End If
             Next
+
+
             Context.SaveChanges(log)
+
             Return True
         Catch ex As Exception
             Utility.WriteExceptionLog(ex, Me.ToString() & ".UpdateStatusCandidate")
