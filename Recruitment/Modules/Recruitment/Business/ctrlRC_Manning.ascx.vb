@@ -466,6 +466,7 @@ Public Class ctrlRC_Manning
                     Dim dtListMannName As DataTable
                     dtListMannName = repStore.LoadComboboxListMannName(ctrlOrganization.CurrentValue, If(cboYear.SelectedValue = "", 0, Int32.Parse(cboYear.SelectedValue)))
                     FillRadCombobox(cboListManning, dtListMannName, "NAME", "ID")
+                    cboListManning.Text = ""
                 End If
                 rgManning.DataSource = Nothing
                 rgManning.Rebind()

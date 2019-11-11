@@ -144,6 +144,10 @@ Public Class RecruitmentStoreProcedure
         Dim ds As DataSet = rep.ExecuteToDataSet("PKG_RECRUITMENT.GETLIST_MANNING_BY_NAME", New List(Of Object)(New Object() {MANNING_ORG_ID, ORG_ID, YEAR, OUT_CURSOR}))
         If Not ds Is Nothing Or Not ds.Tables(0) Is Nothing Then
             listManning = ds.Tables(0)
+            If listManning.Rows.Count = 0 Then
+                listManning = New DataTable
+                Return listManning
+            End If
             If param.CURRENT_MANNING IsNot Nothing Then
                 listManning = (From p In listManning.AsEnumerable Where p("CURRENT_MANNING").ToString.ToUpper.Contains(param.CURRENT_MANNING.ToString.ToUpper)).CopyToDataTable
             End If
