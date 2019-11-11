@@ -218,6 +218,7 @@
     <Content Include="Modules\Common\ctrlMessageBox.ascx" />
     <Content Include="Modules\Common\ctrlOrganization.ascx" />
     <Content Include="Modules\Common\ctrlUpload.ascx" />
+    <Content Include="Modules\Recruitment\Business\ctrlRC_ProgrammNewEdit.ascx" />
     <Content Include="Modules\Recruitment\Business\ctrlRC_CVPoolReference.ascx" />
     <Content Include="Modules\Recruitment\Business\ctrlRC_CVPoolDtlBeforeWT.ascx" />
     <Content Include="Modules\Recruitment\Business\ctrlRC_CVPoolDtlFamily.ascx" />
@@ -286,6 +287,13 @@
     <Compile Include="BusinessObjects\ManningOrgDTO.vb" />
     <Compile Include="BusinessObjects\PROGRAM_SCHEDULE_CAN_DTO.vb" />
     <Compile Include="Modules\Recruitment\ATConstant.vb" />
+    <Compile Include="Modules\Recruitment\Business\ctrlRC_ProgrammNewEdit.ascx.designer.vb">
+      <DependentUpon>ctrlRC_ProgrammNewEdit.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Recruitment\Business\ctrlRC_ProgrammNewEdit.ascx.vb">
+      <DependentUpon>ctrlRC_ProgrammNewEdit.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
     <Compile Include="Modules\Recruitment\Business\ctrlRC_CVPoolReference.ascx.designer.vb">
       <DependentUpon>ctrlRC_CVPoolReference.ascx</DependentUpon>
     </Compile>
