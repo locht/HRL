@@ -380,7 +380,7 @@ Partial Public Class ctrlRC_CanDtlProfile
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents rntxtCMND As Global.Telerik.Web.UI.RadNumericTextBox
+    Protected WithEvents rntxtCMND As Global.Telerik.Web.UI.RadTextBox
 
     '''<summary>
     '''reqID_NO control.

@@ -18,7 +18,7 @@ Imports System.Runtime.Serialization
 Imports System.Xml.Serialization
 
 
-<Assembly: EdmSchemaAttribute("bd239bac-28a4-4652-ba96-a151ae360d34")>
+<Assembly: EdmSchemaAttribute("d23b3ecc-d7a9-418d-9bed-db1e5cd36e59")>
 #Region "EDM Relationship Metadata"
 <Assembly: EdmRelationshipAttribute("RecruitmentModel", "FK_FE_HEH", "HU_EMPLOYEE", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_EMPLOYEE), "HU_EMPLOYEE_HEALTH1", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(HU_EMPLOYEE_HEALTH1), True)>
 <Assembly: EdmRelationshipAttribute("RecruitmentModel", "FK_HE_HEC", "HU_EMPLOYEE", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_EMPLOYEE), "HU_EMPLOYEE_CV", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(HU_EMPLOYEE_CV), True)>
@@ -18845,21 +18845,21 @@ Public Partial Class RC_CANDIDATE_CV
     ''' </summary>
     <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
     <DataMemberAttribute()>
-    Public Property ID_NO() As Nullable(Of Global.System.Decimal)
+    Public Property ID_NO() As Global.System.String
         Get
             Return _ID_NO
         End Get
         Set
             OnID_NOChanging(value)
             ReportPropertyChanging("ID_NO")
-            _ID_NO = StructuralObject.SetValidValue(value)
+            _ID_NO = StructuralObject.SetValidValue(value, true)
             ReportPropertyChanged("ID_NO")
             OnID_NOChanged()
         End Set
     End Property
 
-    Private _ID_NO As Nullable(Of Global.System.Decimal)
-    Private Partial Sub OnID_NOChanging(value As Nullable(Of Global.System.Decimal))
+    Private _ID_NO As Global.System.String
+    Private Partial Sub OnID_NOChanging(value As Global.System.String)
     End Sub
 
     Private Partial Sub OnID_NOChanged()

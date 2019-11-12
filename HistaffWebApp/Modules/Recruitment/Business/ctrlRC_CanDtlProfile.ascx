@@ -254,9 +254,8 @@
                                 <span class="lbReq">*</span>
                             </td>
                             <td>
-                                <tlk:RadNumericTextBox ID="rntxtCMND" runat="server">
-                                    <NumberFormat AllowRounding="false" GroupSeparator="" />
-                                </tlk:RadNumericTextBox>
+                                <tlk:RadTextBox ID="rntxtCMND" runat="server">
+                                </tlk:RadTextBox>
                                 <asp:RequiredFieldValidator ID="reqID_NO" runat="server" ErrorMessage="<%$ Translate: Bạn phải chọn Số CMND %>"
                                     ToolTip="<%$ Translate: Bạn phải chọn Số CMND %>" ControlToValidate="rntxtCMND">
                                 </asp:RequiredFieldValidator>

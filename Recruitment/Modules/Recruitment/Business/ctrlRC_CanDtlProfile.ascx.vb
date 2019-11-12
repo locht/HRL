@@ -225,7 +225,7 @@ Public Class ctrlRC_CanDtlProfile
                         If empCV.RELIGION IsNot Nothing Then
                             cboReligion.SelectedValue = empCV.RELIGION
                         End If
-                        rntxtCMND.Value = empCV.ID_NO
+                        rntxtCMND.Text = empCV.ID_NO
                         If empCV.ID_DATE IsNot Nothing Then
                             rdCMNDDate.SelectedDate = empCV.ID_DATE
                         End If
@@ -999,7 +999,7 @@ Public Class ctrlRC_CanDtlProfile
         cboNative.SelectedValue = 1724
         cboReligion.ClearSelection()
 
-        rntxtCMND.Value = Nothing
+        rntxtCMND.Text = Nothing
         rdCMNDDate.SelectedDate = Nothing
         cboCMNDPlace.ClearSelection()
 
@@ -1147,7 +1147,7 @@ Public Class ctrlRC_CanDtlProfile
             EmpCV.MARITAL_STATUS = cboTinhTrangHN.SelectedValue
             EmpCV.RELIGION = cboReligion.SelectedValue
             If rntxtCMND.Text <> "" Then
-                EmpCV.ID_NO = Decimal.Parse(rntxtCMND.Value)
+                EmpCV.ID_NO = rntxtCMND.Text
             End If
 
             EmpCV.ID_DATE = rdCMNDDate.SelectedDate
