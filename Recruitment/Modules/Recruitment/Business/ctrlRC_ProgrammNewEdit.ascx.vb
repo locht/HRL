@@ -138,6 +138,10 @@ Public Class ctrlRC_ProgrammNewEdit
                         RadPane2.Enabled = False
                     End If
                     GetTotalEmployeeByTitleID()
+                    If cboStatus.Text = "Phê duyệt" Then
+                        cboStatus.Text = ""
+                    End If
+
                 Case "InsertView"
                     CurrentState = CommonMessage.STATE_NEW
                     rdSendDate.AutoPostBack = True
