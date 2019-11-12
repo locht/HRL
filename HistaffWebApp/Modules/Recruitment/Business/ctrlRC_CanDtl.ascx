@@ -10,13 +10,13 @@
                 <tlk:RadPanelItem Text="<%$ Translate:Hồ sơ ứng viên %>" Expanded="True">
                     <Items>
                         <tlk:RadPanelItem Value="ctrlRC_CanDtlProfile" Text="<%$ Translate:Hồ sơ ứng viên%>"
-                            NavigateUrl='<%# String.Format("/Default.aspx?mid=Recruitment&fid=ctrlRC_CanDtl&group=Business&Can={0}&PROGRAM_ID={1}&Place=ctrlRC_CanDtlProfile&state=Normal", CandidateCode, ProgramID) %>' />
+                            NavigateUrl='<%# String.Format("/Dialog.aspx?mid=Recruitment&fid=ctrlRC_CanDtl&group=Business&Can={0}&PROGRAM_ID={1}&Place=ctrlRC_CanDtlProfile&state=Normal", CandidateCode, ProgramID) %>' />
                         <tlk:RadPanelItem Value="ctrlRC_CanDtlBeforeWT" Text="<%$ Translate:Quá trình công tác%>"
-                            NavigateUrl='<%# String.Format("/Default.aspx?mid=Recruitment&fid=ctrlRC_CanDtl&group=Business&Can={0}&PROGRAM_ID={1}&Place=ctrlRC_CanDtlBeforeWT&state=Normal", CandidateCode, ProgramID) %>' />
+                            NavigateUrl='<%# String.Format("/Dialog.aspx?mid=Recruitment&fid=ctrlRC_CanDtl&group=Business&Can={0}&PROGRAM_ID={1}&Place=ctrlRC_CanDtlBeforeWT&state=Normal", CandidateCode, ProgramID) %>' />
                         <tlk:RadPanelItem Value="ctrlRC_CanDtlTraining" Text="<%$ Translate:Quá trình đào tạo%>"
-                            NavigateUrl='<%# String.Format("/Default.aspx?mid=Recruitment&fid=ctrlRC_CanDtl&group=Business&Can={0}&PROGRAM_ID={1}&Place=ctrlRC_CanDtlTraining&state=Normal", CandidateCode, ProgramID) %>' />
+                            NavigateUrl='<%# String.Format("/Dialog.aspx?mid=Recruitment&fid=ctrlRC_CanDtl&group=Business&Can={0}&PROGRAM_ID={1}&Place=ctrlRC_CanDtlTraining&state=Normal", CandidateCode, ProgramID) %>' />
                         <tlk:RadPanelItem Value="ctrlRC_CadidateReference" Text="<%$ Translate:Người tham chiếu%>"
-                            NavigateUrl='<%# String.Format("/Default.aspx?mid=Recruitment&fid=ctrlRC_CanDtl&group=Business&Can={0}&PROGRAM_ID={1}&Place=ctrlRC_CadidateReference&state=Normal", CandidateCode, ProgramID) %>' />
+                            NavigateUrl='<%# String.Format("/Dialog.aspx?mid=Recruitment&fid=ctrlRC_CanDtl&group=Business&Can={0}&PROGRAM_ID={1}&Place=ctrlRC_CadidateReference&state=Normal", CandidateCode, ProgramID) %>' />
                     </Items>
                 </tlk:RadPanelItem>
             </Items>
