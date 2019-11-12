@@ -984,7 +984,7 @@ Public Class ctrlRC_RequestNewEdit
             'Dim OUT_NUMBER As String
             'Dim obj = rep.ExecuteStoreScalar("PKG_RECRUITMENT.GET_TOTAL_EMPLOYEE_BY_TITLEID", New List(Of Object)({hidOrgID.Value, cboTitle.SelectedValue, Common.Common.GetUserName(), OUT_NUMBER}))
             'txtCurrentNumber.Text = obj(0).ToString()
-            If rdSendDate IsNot Nothing Then
+            If IsDate(rdSendDate.SelectedDate) Then
                 If hidOrgID.Value <> String.Empty Then
                     Dim tab As DataTable = store.GetCurrentManningTitle1(Int32.Parse(hidOrgID.Value), cboTitle.SelectedValue, rdSendDate.SelectedDate)
                     If tab.Rows.Count > 0 Then
@@ -1022,7 +1022,7 @@ Public Class ctrlRC_RequestNewEdit
 
     Private Sub rdSendDate_SelectedDateChanged(sender As Object, e As Telerik.Web.UI.Calendar.SelectedDateChangedEventArgs) Handles rdSendDate.SelectedDateChanged
         Try
-            If rdSendDate IsNot Nothing Then
+            If IsDate(rdSendDate.SelectedDate) Then
                 If hidOrgID.Value <> String.Empty Then
                     Dim tab As DataTable = store.GetCurrentManningTitle1(Int32.Parse(hidOrgID.Value), cboTitle.SelectedValue, rdSendDate.SelectedDate)
                     If tab.Rows.Count > 0 Then
