@@ -816,8 +816,10 @@ Public Class ctrlRC_CanDtlProfile
                             Case STATE_NEW
                                 If Save(strEmpCode, _err) Then
                                     'Page.Response.Redirect("Dialog.aspx?mid=Recruitment&fid=ctrlRC_CanDtl&group=Business&Can=" & strEmpCode & "&state=Normal&noscroll=1&message=success&reload=1")
-                                    Page.Response.Redirect(String.Format("Dialog.aspx?mid=Recruitment&fid=ctrlRC_CanDtl&group=Business&gUID={0}&Can={1}&state=Normal&ORGID={2}&TITLEID={3}&PROGRAM_ID={4}&noscroll=1", hidID.Value, strEmpCode, hidOrg.Value, hidTitle.Value, hidProgramID.Value))
-                                    Exit Sub
+                                    CurrentState = CommonMessage.STATE_NORMAL
+                                    ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), Utilities.NotifyType.Success)
+                                    'Page.Response.Redirect(String.Format("Dialog.aspx?mid=Recruitment&fid=ctrlRC_CanDtl&group=Business&gUID={0}&Can={1}&state=Normal&ORGID={2}&TITLEID={3}&PROGRAM_ID={4}&noscroll=1", hidID.Value, strEmpCode, hidOrg.Value, hidTitle.Value, hidProgramID.Value))
+                                    'Exit Sub
                                 Else
                                     ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL) & vbNewLine & Translate(_err), Utilities.NotifyType.Error)
                                     Exit Sub
