@@ -580,6 +580,20 @@ Public Class RecruitmentStoreProcedure
             Throw ex
         End Try
     End Function
+    'lấy email ds ứng viên
+    Public Function Get_Email_Employee(ByVal ID As Decimal) As String
+        Dim obj As New List(Of Object)
+        Try
+            obj = rep.ExecuteStoreScalar("PKG_RECRUITMENT.Get_Email_Employee", New List(Of Object)(New Object() {ID, OUT_STRING}))
+            If obj IsNot Nothing Then
+                Return obj(0)
+            Else
+                Return String.Empty
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
     'Thêm mới lịch thi tuyển cho ứng viên
     Public Function ADDNEW_CAN_PRO_SCHEDULE(ByVal CANDIDATE_ID As Int32,
                                  ByVal PROGRAM_SCHEDULE_ID As Int32,
