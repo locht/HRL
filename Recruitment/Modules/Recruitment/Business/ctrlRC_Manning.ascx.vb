@@ -296,7 +296,7 @@ Public Class ctrlRC_Manning
                     '    ShowMessage(Translate("Bạn phải chọn đơn vị thuộc cấp Công ty"), Utilities.NotifyType.Warning)
                     '    Exit Sub
                     'End If
-                    If ctrlOrganization.PARENT_ID_VALUE <> 1 And ctrlOrganization.PARENT_ID_VALUE <> 0 Then
+                    If ctrlOrganization.PARENT_ID_VALUE <> 1 And ctrlOrganization.PARENT_ID_VALUE <> 0 And ctrlOrganization.PARENT_ID_VALUE <> "" Then
                         ShowMessage(Translate("Bạn phải chọn đơn vị thuộc cấp Công ty"), Utilities.NotifyType.Warning)
                         Exit Sub
                     End If
