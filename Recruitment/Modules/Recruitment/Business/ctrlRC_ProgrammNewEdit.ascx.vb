@@ -138,6 +138,10 @@ Public Class ctrlRC_ProgrammNewEdit
                         RadPane2.Enabled = False
                     End If
                     GetTotalEmployeeByTitleID()
+                    If cboStatus.Text = "Phê duyệt" Then
+                        cboStatus.Text = ""
+                    End If
+
                 Case "InsertView"
                     CurrentState = CommonMessage.STATE_NEW
                     rdSendDate.AutoPostBack = True
@@ -158,7 +162,7 @@ Public Class ctrlRC_ProgrammNewEdit
             'txtCurrentNumber.Text = obj(0).ToString()
 
             If hidOrgID.Value <> String.Empty Then
-                Dim tab As DataTable = store.GetCurrentManningTitle(Int32.Parse(hidOrgID.Value), hidTitleID.Value)
+                Dim tab As DataTable = store.GetCurrentManningTitle1(Int32.Parse(hidOrgID.Value), hidTitleID.Value, rdSendDate.SelectedDate)
                 If tab.Rows.Count > 0 Then
                     txtCountDB.Text = tab.Rows(0)("NEW_MANNING").ToString()
                     txtCountNow.Text = tab.Rows(0)("CURRENT_MANNING").ToString()

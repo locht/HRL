@@ -9,6 +9,9 @@ Imports System.IO
 Imports System.Runtime.Serialization.Formatters.Binary
 Imports System.Xml.Serialization
 Imports Common.CommonBusiness
+Imports System.Reflection
+Imports HistaffFrameworkPublic
+Imports Profile
 
 Public Class ctrlRC_CanDtlProfile
     Inherits CommonView
@@ -142,8 +145,8 @@ Public Class ctrlRC_CanDtlProfile
         Try
             CType(Me.Page, AjaxPage).AjaxManager.ClientEvents.OnRequestStart = "onRequestStart"
             InitControl()
-
-            'AccessPanelBar()
+            GetParams()
+            AccessPanelBar()
             If Request.Params("FormType") IsNot Nothing Then
                 FormType = Request.Params("FormType")
                 Select Case FormType
@@ -163,10 +166,10 @@ Public Class ctrlRC_CanDtlProfile
     'Load trang
     Public Overrides Sub ViewLoad(ByVal e As System.EventArgs)
         Try
-
-            GetParams()
+            If Not IsPostBack Then
+                Refresh()
+            End If
             UpdateControlState()
-            Refresh()
             CurrentPlaceHolder = Me.ViewName
         Catch ex As Exception
             DisplayException(Me.ViewName, Me.ID, ex)
@@ -550,59 +553,59 @@ Public Class ctrlRC_CanDtlProfile
     End Sub
 
     ''Quyền truy cập PanelBar
-    'Public Sub AccessPanelBar()
-    '    Try
-    '        Dim i As Integer = 0
-    '        ' lặp item của RadPanelBar
-    '        While (i < rtabRecruitmentInfo.Tabs.Count)
-    '            ' lấy item của đang lặp
-    '            Dim itm As RadTab = rtabRecruitmentInfo.Tabs(i)
-    '            Using rep As New CommonRepository
-    '                ' lấy thông tin user đang đăng nhập
-    '                Dim user = LogHelper.CurrentUser
-    '                ' check xem có phải admin không
-    '                Dim GroupAdmin As Boolean = rep.CheckGroupAdmin(Utilities.GetUsername)
-    '                ' nếu không phải admin
-    '                If GroupAdmin = False Then
-    '                    ' lấy quyền của user
-    '                    Dim permissions As List(Of PermissionDTO) = rep.GetUserPermissions(Utilities.GetUsername)
-    '                    ' nếu có quyền
-    '                    If permissions IsNot Nothing Then
-    '                        ' kiểm tra các chức năng ngoại trừ chức năng là báo cáo
-    '                        ' thay vì .value e phải xài .ID đúng không nào ;)
-    '                        Dim isPermissions = (From p In permissions Where p.FID = itm.PageViewID).Any
-    '                        ' nếu không tồn tại --> xóa item
-    '                        If Not isPermissions Then
-    '                            rtabRecruitmentInfo.Tabs(i).Visible = False
-    '                            i = i + 1
-    '                            Continue While
-    '                        Else
-    '                            'Set mặc định tabs đầu tiên được chọn
-    '                            If flagTab = 0 Then
-    '                                rtabRecruitmentInfo.Tabs.Item(i).Selected = True
-    '                                RadMultiPage1.SelectedIndex = i
-    '                                flagTab = 1
-    '                            End If
+    Public Sub AccessPanelBar()
+        Try
+            Dim i As Integer = 0
+            ' lặp item của RadPanelBar
+            While (i < rtabRecruitmentInfo.Tabs.Count)
+                ' lấy item của đang lặp
+                Dim itm As RadTab = rtabRecruitmentInfo.Tabs(i)
+                Using rep As New CommonRepository
+                    ' lấy thông tin user đang đăng nhập
+                    Dim user = LogHelper.CurrentUser
+                    ' check xem có phải admin không
+                    Dim GroupAdmin As Boolean = rep.CheckGroupAdmin(Utilities.GetUsername)
+                    ' nếu không phải admin
+                    If GroupAdmin = False Then
+                        ' lấy quyền của user
+                        Dim permissions As List(Of PermissionDTO) = rep.GetUserPermissions(Utilities.GetUsername)
+                        ' nếu có quyền
+                        If permissions IsNot Nothing Then
+                            ' kiểm tra các chức năng ngoại trừ chức năng là báo cáo
+                            ' thay vì .value e phải xài .ID đúng không nào ;)
+                            Dim isPermissions = (From p In permissions Where p.FID = itm.PageViewID).Any
+                            ' nếu không tồn tại --> xóa item
+                            If Not isPermissions Then
+                                rtabRecruitmentInfo.Tabs(i).Visible = False
+                                i = i + 1
+                                Continue While
+                            Else
+                                'Set mặc định tabs đầu tiên được chọn
+                                If flagTab = 0 Then
+                                    rtabRecruitmentInfo.Tabs.Item(i).Selected = True
+                                    RadMultiPage1.SelectedIndex = i
+                                    flagTab = 1
+                                End If
 
-    '                        End If
-    '                    End If
-    '                Else
-    '                    ' nếu là admin + có quyền
-    '                    If user.MODULE_ADMIN = "*" OrElse (user.MODULE_ADMIN IsNot Nothing AndAlso user.MODULE_ADMIN.Contains(Me.ModuleName)) Then
-    '                    Else
-    '                        ' xóa nếu admin không có quyền
-    '                        rtabRecruitmentInfo.Tabs.RemoveAt(i)
-    '                        Continue While
-    '                    End If
-    '                End If
-    '            End Using
-    '            i = i + 1
-    '        End While
-    '        ' làm tưởng tự tabstrip
-    '    Catch ex As Exception
-    '        Throw ex
-    '    End Try
-    'End Sub
+                            End If
+                        End If
+                    Else
+                        ' nếu là admin + có quyền
+                        If user.MODULE_ADMIN = "*" OrElse (user.MODULE_ADMIN IsNot Nothing AndAlso user.MODULE_ADMIN.Contains(Me.ModuleName)) Then
+                        Else
+                            ' xóa nếu admin không có quyền
+                            rtabRecruitmentInfo.Tabs.RemoveAt(i)
+                            Continue While
+                        End If
+                    End If
+                End Using
+                i = i + 1
+            End While
+            ' làm tưởng tự tabstrip
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
 
     'Đổ dữ liệu vào Combobox
     Private Sub GetDataCombo()
@@ -638,7 +641,7 @@ Public Class ctrlRC_CanDtlProfile
             dtData = rep.GetOtherList("NATIVE", True)
             FillRadCombobox(cboNative, dtData, "NAME", "ID")
 
-            
+
             ' Quốc gia
             FillDropDownList(cboNation, ListComboData.LIST_NATION, "NAME_VN", "ID", Common.Common.SystemLanguage, True, cboNation.SelectedValue)
             FillDropDownList(cboPerNation, ListComboData.LIST_NATION, "NAME_VN", "ID", Common.Common.SystemLanguage, True, cboPerNation.SelectedValue)
@@ -661,7 +664,7 @@ Public Class ctrlRC_CanDtlProfile
             FillDropDownList(cboContractDictrict, ListComboData.LIST_DISTRICT, "NAME_VN", "ID", Common.Common.SystemLanguage, True, cboContractDictrict.SelectedValue)
             FillDropDownList(cboContractAddDictrict, ListComboData.LIST_DISTRICT, "NAME_VN", "ID", Common.Common.SystemLanguage, True, cboContractAddDictrict.SelectedValue)
             'phường xã
-           
+
 
             ' Nguyen quán
             FillDropDownList(cboNavNation, ListComboData.LIST_NATION, "NAME_VN", "ID", Common.Common.SystemLanguage, True, cboNavNation.SelectedValue)
@@ -719,7 +722,7 @@ Public Class ctrlRC_CanDtlProfile
             FillDropDownList(cboTKNganHang, ListComboData.LIST_BANK, "BANK_NAME", "ID", Common.Common.SystemLanguage, True, cboTKNganHang.SelectedValue)
 
             'Chi nhánh ngân hàng
-            FillDropDownList(cboTKChiNhanhNganHang, ListComboData.LIST_BANK_BRACH, "BRANCH_NAME", "ID", Common.Common.SystemLanguage, True, cboTKChiNhanhNganHang.SelectedValue)
+            'FillDropDownList(cboTKChiNhanhNganHang, ListComboData.LIST_BANK_BRACH, "BRANCH_NAME", "ID", Common.Common.SystemLanguage, True, cboTKChiNhanhNganHang.SelectedValue)
             ' CMND
             FillDropDownList(cboCMNDPlace, ListComboData.LIST_PROVINCE, "NAME_VN", "ID", Common.Common.SystemLanguage, True, cboCMNDPlace.SelectedValue)
             'dtData = rep.GetOtherList("ID_PLACE", True)
@@ -762,6 +765,7 @@ Public Class ctrlRC_CanDtlProfile
                          ToolbarItem.Cancel)
             CType(Me.MainToolBar.Items(2), RadToolBarButton).CausesValidation = True
             Dim ajaxLoading = CType(Me.Page, AjaxPage).AjaxLoading
+            CType(Me.Page, AjaxPage).AjaxManager.ClientEvents.OnRequestStart = "onRequestStart"
             ajaxLoading.InitialDelayTime = 100
             'CType(Me.Page, AjaxPage).AjaxManager.AjaxSettings.AddAjaxSetting(btnChoose, phPopup)
         Catch ex As Exception
@@ -812,8 +816,10 @@ Public Class ctrlRC_CanDtlProfile
                             Case STATE_NEW
                                 If Save(strEmpCode, _err) Then
                                     'Page.Response.Redirect("Dialog.aspx?mid=Recruitment&fid=ctrlRC_CanDtl&group=Business&Can=" & strEmpCode & "&state=Normal&noscroll=1&message=success&reload=1")
-                                    Page.Response.Redirect(String.Format("Dialog.aspx?mid=Recruitment&fid=ctrlRC_CanDtl&group=Business&gUID={0}&Can={1}&state=Normal&ORGID={2}&TITLEID={3}&PROGRAM_ID={4}&noscroll=1", hidID.Value, strEmpCode, hidOrg.Value, hidTitle.Value, hidProgramID.Value))
-                                    Exit Sub
+                                    CurrentState = CommonMessage.STATE_NORMAL
+                                    ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), Utilities.NotifyType.Success)
+                                    'Page.Response.Redirect(String.Format("Dialog.aspx?mid=Recruitment&fid=ctrlRC_CanDtl&group=Business&gUID={0}&Can={1}&state=Normal&ORGID={2}&TITLEID={3}&PROGRAM_ID={4}&noscroll=1", hidID.Value, strEmpCode, hidOrg.Value, hidTitle.Value, hidProgramID.Value))
+                                    'Exit Sub
                                 Else
                                     ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL) & vbNewLine & Translate(_err), Utilities.NotifyType.Error)
                                     Exit Sub
@@ -829,11 +835,11 @@ Public Class ctrlRC_CanDtlProfile
                         End Select
                     End If
                 Case TOOLBARITEM_CANCEL
-                    ' If CurrentState = CommonMessage.STATE_NEW Then 'Nếu là trạng thái new thì xóa ảnh hiện tại
-                    ScriptManager.RegisterStartupScript(Page, Page.GetType, "Close", "CloseWindow();", True)
-                    'End If
+                    If CurrentState = CommonMessage.STATE_NEW Then 'Nếu là trạng thái new thì xóa ảnh hiện tại
+                        ScriptManager.RegisterStartupScript(Page, Page.GetType, "Close", "CloseWindow();", True)
+                    End If
+                    Refresh()
                     CurrentState = CommonMessage.STATE_NORMAL
-                    'divFileAttach.Visible = False
                 Case TOOLBARITEM_DELETE
 
                     ctrlMessageBox.MessageText = Translate(CommonMessage.MESSAGE_CONFIRM_DELETE)
@@ -901,11 +907,11 @@ Public Class ctrlRC_CanDtlProfile
         Try
             If CurrentState = STATE_NEW Then
                 Using rep As New RecruitmentRepository
-                    args.IsValid = rep.ValidateInsertCandidate(txtEmpCODE.Text, 
-															   rntxtCMND.Text, 
-															   txtFirstNameVN.Text & " " & txtLastNameVN.Text, 
-															   rdBirthDate.SelectedDate, 
-															   "DATE_FULLNAME")
+                    args.IsValid = rep.ValidateInsertCandidate(txtEmpCODE.Text,
+                                                               rntxtCMND.Text,
+                                                               txtFirstNameVN.Text & " " & txtLastNameVN.Text,
+                                                               rdBirthDate.SelectedDate,
+                                                               "DATE_FULLNAME")
                 End Using
             Else
                 args.IsValid = True
@@ -950,257 +956,32 @@ Public Class ctrlRC_CanDtlProfile
 #Region "Custom"
     'Cập nhật trạng thái Control và tắt bật Popup
     Public Overrides Sub UpdateControlState()
-        If CandidateInfo IsNot Nothing Then
-            'lblFileName.Text = ""
-            'If CandidateInfo.FILE_NAME <> "" Then
-            '    divGetFile.Visible = True
-            '    lblFileName.Text = CandidateInfo.FILE_NAME
-            'End If
-        End If
 
-        If CurrentState Is Nothing Then
-            CurrentState = STATE_NORMAL
-            'divFileAttach.Visible = False
-        End If
         Select Case CurrentState
             Case CommonMessage.STATE_NEW
-                'divGetFile.Visible = False
+                DisableControls(DetailPane, True)
+                DisableControls(RadPane1, True)
                 btnSearchEmp.Enabled = True
                 txtFirstNameVN.ReadOnly = False
                 txtLastNameVN.ReadOnly = False
                 txtEmpCODE.ReadOnly = True
             Case CommonMessage.STATE_EDIT
-
+                DisableControls(DetailPane, True)
+                DisableControls(RadPane1, True)
                 btnSearchEmp.Enabled = False
                 txtFirstNameVN.ReadOnly = False
                 txtLastNameVN.ReadOnly = False
                 txtEmpCODE.ReadOnly = True
             Case CommonMessage.STATE_NORMAL
                 'divFileAttach.Visible = False
+                DisableControls(DetailPane, False)
+                DisableControls(RadPane1, False)
                 btnSearchEmp.Enabled = True
                 txtFirstNameVN.ReadOnly = True
                 txtLastNameVN.ReadOnly = True
                 txtEmpCODE.ReadOnly = False
-                Dim isEnable As Boolean = False
-                For Each ctrl In rpvEmpCV.Controls
-                    If TypeOf (ctrl) Is RadComboBox Then
-                        Dim c As RadComboBox = ctrl
-                        EnableRadCombo(c, isEnable)
-                    End If
-                    If TypeOf (ctrl) Is RadTextBox Then
-                        Dim c As RadTextBox = ctrl
-                        c.ReadOnly = Not isEnable
-                    End If
-                    If TypeOf (ctrl) Is RadNumericTextBox Then
-                        Dim c As RadNumericTextBox = ctrl
-                        c.ReadOnly = Not isEnable
-                    End If
-                    If TypeOf (ctrl) Is RadDatePicker Then
-                        Dim c As RadDatePicker = ctrl
-                        EnableRadDatePicker(c, isEnable)
-                    End If
-                    If TypeOf (ctrl) Is RadDateTimePicker Then
-                        Dim c As RadDateTimePicker = ctrl
-                        EnableRadDateTimePicker(c, isEnable)
-                    End If
-                    If TypeOf (ctrl) Is RadTimePicker Then
-                        Dim c As RadTimePicker = ctrl
-                        EnableRadTimePicker(c, isEnable)
-                    End If
-                    If TypeOf (ctrl) Is TextBox Then
-                        Dim c As TextBox = ctrl
-                        c.ReadOnly = Not isEnable
-                    End If
-                    If TypeOf (ctrl) Is CheckBox Then
-                        Dim c As CheckBox = ctrl
-                        c.Enabled = isEnable
-                    End If
-                    If TypeOf (ctrl) Is RadButton Then
-                        Dim c As RadButton = ctrl
-                        c.Enabled = isEnable
-                    End If
-                    If TypeOf (ctrl) Is Button Then
-                        Dim c As Button = ctrl
-                        c.Enabled = isEnable
-                    End If
-                    If TypeOf (ctrl) Is RadListBox Then
-                        Dim c As RadListBox = ctrl
-                        c.Enabled = isEnable
-                    End If
-                    If TypeOf (ctrl) Is RadMonthYearPicker Then
-                        Dim c As RadMonthYearPicker = ctrl
-                        c.Enabled = isEnable
-                    End If
-                    If TypeOf (ctrl) Is RadGrid Then
-                        Dim c As RadGrid = ctrl
-                        c.Enabled = isEnable
-                    End If
-                Next
-                For Each ctrl In rpvEmpDegree.Controls
-                    If TypeOf (ctrl) Is RadComboBox Then
-                        Dim c As RadComboBox = ctrl
-                        EnableRadCombo(c, isEnable)
-                    End If
-                    If TypeOf (ctrl) Is RadTextBox Then
-                        Dim c As RadTextBox = ctrl
-                        c.ReadOnly = Not isEnable
-                    End If
-                    If TypeOf (ctrl) Is RadNumericTextBox Then
-                        Dim c As RadNumericTextBox = ctrl
-                        c.ReadOnly = Not isEnable
-                    End If
-                    If TypeOf (ctrl) Is RadDatePicker Then
-                        Dim c As RadDatePicker = ctrl
-                        EnableRadDatePicker(c, isEnable)
-                    End If
-                    If TypeOf (ctrl) Is RadDateTimePicker Then
-                        Dim c As RadDateTimePicker = ctrl
-                        EnableRadDateTimePicker(c, isEnable)
-                    End If
-                    If TypeOf (ctrl) Is RadTimePicker Then
-                        Dim c As RadTimePicker = ctrl
-                        EnableRadTimePicker(c, isEnable)
-                    End If
-                    If TypeOf (ctrl) Is TextBox Then
-                        Dim c As TextBox = ctrl
-                        c.ReadOnly = Not isEnable
-                    End If
-                    If TypeOf (ctrl) Is CheckBox Then
-                        Dim c As CheckBox = ctrl
-                        c.Enabled = isEnable
-                    End If
-                    If TypeOf (ctrl) Is RadButton Then
-                        Dim c As RadButton = ctrl
-                        c.Enabled = isEnable
-                    End If
-                    If TypeOf (ctrl) Is Button Then
-                        Dim c As Button = ctrl
-                        c.Enabled = isEnable
-                    End If
-                    If TypeOf (ctrl) Is RadListBox Then
-                        Dim c As RadListBox = ctrl
-                        c.Enabled = isEnable
-                    End If
-                    If TypeOf (ctrl) Is RadMonthYearPicker Then
-                        Dim c As RadMonthYearPicker = ctrl
-                        c.Enabled = isEnable
-                    End If
-                    If TypeOf (ctrl) Is RadGrid Then
-                        Dim c As RadGrid = ctrl
-                        c.Enabled = isEnable
-                    End If
-                Next
-                For Each ctrl In rpvIdExpect.Controls
-                    If TypeOf (ctrl) Is RadComboBox Then
-                        Dim c As RadComboBox = ctrl
-                        EnableRadCombo(c, isEnable)
-                    End If
-                    If TypeOf (ctrl) Is RadTextBox Then
-                        Dim c As RadTextBox = ctrl
-                        c.ReadOnly = Not isEnable
-                    End If
-                    If TypeOf (ctrl) Is RadNumericTextBox Then
-                        Dim c As RadNumericTextBox = ctrl
-                        c.ReadOnly = Not isEnable
-                    End If
-                    If TypeOf (ctrl) Is RadDatePicker Then
-                        Dim c As RadDatePicker = ctrl
-                        EnableRadDatePicker(c, isEnable)
-                    End If
-                    If TypeOf (ctrl) Is RadDateTimePicker Then
-                        Dim c As RadDateTimePicker = ctrl
-                        EnableRadDateTimePicker(c, isEnable)
-                    End If
-                    If TypeOf (ctrl) Is RadTimePicker Then
-                        Dim c As RadTimePicker = ctrl
-                        EnableRadTimePicker(c, isEnable)
-                    End If
-                    If TypeOf (ctrl) Is TextBox Then
-                        Dim c As TextBox = ctrl
-                        c.ReadOnly = Not isEnable
-                    End If
-                    If TypeOf (ctrl) Is CheckBox Then
-                        Dim c As CheckBox = ctrl
-                        c.Enabled = isEnable
-                    End If
-                    If TypeOf (ctrl) Is RadButton Then
-                        Dim c As RadButton = ctrl
-                        c.Enabled = isEnable
-                    End If
-                    If TypeOf (ctrl) Is Button Then
-                        Dim c As Button = ctrl
-                        c.Enabled = isEnable
-                    End If
-                    If TypeOf (ctrl) Is RadListBox Then
-                        Dim c As RadListBox = ctrl
-                        c.Enabled = isEnable
-                    End If
-                    If TypeOf (ctrl) Is RadMonthYearPicker Then
-                        Dim c As RadMonthYearPicker = ctrl
-                        c.Enabled = isEnable
-                    End If
-                    If TypeOf (ctrl) Is RadGrid Then
-                        Dim c As RadGrid = ctrl
-                        c.Enabled = isEnable
-                    End If
-                Next
-                For Each ctrl In rpvOtherInfo.Controls
-                    If TypeOf (ctrl) Is RadComboBox Then
-                        Dim c As RadComboBox = ctrl
-                        EnableRadCombo(c, isEnable)
-                    End If
-                    If TypeOf (ctrl) Is RadTextBox Then
-                        Dim c As RadTextBox = ctrl
-                        c.ReadOnly = Not isEnable
-                    End If
-                    If TypeOf (ctrl) Is RadNumericTextBox Then
-                        Dim c As RadNumericTextBox = ctrl
-                        c.ReadOnly = Not isEnable
-                    End If
-                    If TypeOf (ctrl) Is RadDatePicker Then
-                        Dim c As RadDatePicker = ctrl
-                        EnableRadDatePicker(c, isEnable)
-                    End If
-                    If TypeOf (ctrl) Is RadDateTimePicker Then
-                        Dim c As RadDateTimePicker = ctrl
-                        EnableRadDateTimePicker(c, isEnable)
-                    End If
-                    If TypeOf (ctrl) Is RadTimePicker Then
-                        Dim c As RadTimePicker = ctrl
-                        EnableRadTimePicker(c, isEnable)
-                    End If
-                    If TypeOf (ctrl) Is TextBox Then
-                        Dim c As TextBox = ctrl
-                        c.ReadOnly = Not isEnable
-                    End If
-                    If TypeOf (ctrl) Is CheckBox Then
-                        Dim c As CheckBox = ctrl
-                        c.Enabled = isEnable
-                    End If
-                    If TypeOf (ctrl) Is RadButton Then
-                        Dim c As RadButton = ctrl
-                        c.Enabled = isEnable
-                    End If
-                    If TypeOf (ctrl) Is Button Then
-                        Dim c As Button = ctrl
-                        c.Enabled = isEnable
-                    End If
-                    If TypeOf (ctrl) Is RadListBox Then
-                        Dim c As RadListBox = ctrl
-                        c.Enabled = isEnable
-                    End If
-                    If TypeOf (ctrl) Is RadMonthYearPicker Then
-                        Dim c As RadMonthYearPicker = ctrl
-                        c.Enabled = isEnable
-                    End If
-                    If TypeOf (ctrl) Is RadGrid Then
-                        Dim c As RadGrid = ctrl
-                        c.Enabled = isEnable
-                    End If
-                Next
-                CurrentState = CommonMessage.STATE_EDIT
         End Select
-                
+
         ChangeToolbarState()
         Me.Send(CurrentState)
     End Sub
@@ -1780,5 +1561,103 @@ Public Class ctrlRC_CanDtlProfile
         Catch ex As Exception
 
         End Try
+    End Sub
+
+    ' Chuyen trang thai control
+    Public Sub DisableControls(ByVal control As System.Web.UI.Control, ByVal status As Boolean)
+        For Each c As System.Web.UI.Control In control.Controls
+            If TypeOf c Is RadTabStrip Then
+            Else
+                ' Get the Enabled property by reflection.
+                Dim type As Type = c.GetType
+                Dim prop As PropertyInfo = type.GetProperty("Enabled")
+
+                ' Set it to False to disable the control.
+                If Not prop Is Nothing Then
+                    prop.SetValue(c, status, Nothing)
+                End If
+                ' Recurse into child controls.
+                If c.Controls.Count > 0 Then
+                    Me.DisableControls(c, status)
+                End If
+            End If
+
+        Next
+
+    End Sub
+    Protected Sub cboCommon_ItemsRequested(ByVal sender As Object, ByVal e As RadComboBoxItemsRequestedEventArgs) _
+      Handles cboTKNganHang.ItemsRequested, cboTKChiNhanhNganHang.ItemsRequested
+        Using rep As New ProfileRepository
+            Dim dtData As DataTable
+            Dim sText As String = e.Text
+            Dim dValue As Decimal
+            Dim sSelectValue As String = IIf(e.Context("value") IsNot Nothing, e.Context("value"), "")
+            Select Case sender.ID
+
+                Case cboTKNganHang.ID
+                    dtData = rep.GetBankList(True)
+                Case cboTKChiNhanhNganHang.ID
+                    dValue = IIf(e.Context("valueCustom") IsNot Nothing, e.Context("valueCustom"), 0)
+                    dtData = rep.GetBankBranchList(dValue, True)
+            End Select
+
+            If sText <> "" Then
+                Dim dtExist = (From p In dtData
+                              Where p("NAME") IsNot DBNull.Value AndAlso _
+                              p("NAME").ToString.ToUpper = sText.ToUpper)
+
+                If dtExist.Count = 0 Then
+                    Dim dtFilter = (From p In dtData
+                              Where p("NAME") IsNot DBNull.Value AndAlso _
+                              p("NAME").ToString.ToUpper.Contains(sText.ToUpper))
+
+                    If dtFilter.Count > 0 Then
+                        dtData = dtFilter.CopyToDataTable
+                    Else
+                        dtData = dtData.Clone
+                    End If
+
+                    Dim itemOffset As Integer = e.NumberOfItems
+                    Dim endOffset As Integer = dtData.Rows.Count 'Math.Min(itemOffset + sender.ItemsPerRequest, dtData.Rows.Count)
+                    e.EndOfItems = endOffset = dtData.Rows.Count
+
+                    For i As Integer = itemOffset To endOffset - 1
+                        Dim radItem As RadComboBoxItem = New RadComboBoxItem(dtData.Rows(i)("NAME").ToString(), dtData.Rows(i)("ID").ToString())
+                        Select Case sender.ID
+                            'Case cboTitle.ID
+                            '    radItem.Attributes("GROUP_NAME") = dtData.Rows(i)("GROUP_NAME").ToString()
+                        End Select
+                        sender.Items.Add(radItem)
+                    Next
+                Else
+
+                    Dim itemOffset As Integer = e.NumberOfItems
+                    Dim endOffset As Integer = dtData.Rows.Count
+                    e.EndOfItems = True
+
+                    For i As Integer = itemOffset To endOffset - 1
+                        Dim radItem As RadComboBoxItem = New RadComboBoxItem(dtData.Rows(i)("NAME").ToString(), dtData.Rows(i)("ID").ToString())
+                        Select Case sender.ID
+                            'Case cboTitle.ID
+                            '    radItem.Attributes("GROUP_NAME") = dtData.Rows(i)("GROUP_NAME").ToString()
+                        End Select
+                        sender.Items.Add(radItem)
+                    Next
+                End If
+            Else
+                Dim itemOffset As Integer = e.NumberOfItems
+                Dim endOffset As Integer = dtData.Rows.Count 'Math.Min(itemOffset + sender.ItemsPerRequest, dtData.Rows.Count)
+                e.EndOfItems = endOffset = dtData.Rows.Count
+
+                For i As Integer = itemOffset To endOffset - 1
+                    Dim radItem As RadComboBoxItem = New RadComboBoxItem(dtData.Rows(i)("NAME").ToString(), dtData.Rows(i)("ID").ToString())
+                    Select Case sender.ID
+                        'Case cboTitle.ID
+                        '    radItem.Attributes("GROUP_NAME") = dtData.Rows(i)("GROUP_NAME").ToString()
+                    End Select
+                    sender.Items.Add(radItem)
+                Next
+            End If
+        End Using
     End Sub
 End Class

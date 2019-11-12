@@ -1510,20 +1510,16 @@
                                 <%# Translate("Ngân hàng")%>
                             </td>
                             <td>
-                               <%-- <tlk:RadComboBox runat="server" ID="cboTKNganHang"  SkinID="LoadDemand" OnClientSelectedIndexChanged="OnClientSelectedIndexChanged"
+                                <tlk:RadComboBox runat="server" ID="cboTKNganHang"  SkinID="LoadDemand" OnClientSelectedIndexChanged="OnClientSelectedIndexChanged"
                                                 OnClientItemsRequesting="OnClientItemsRequesting">
-                                </tlk:RadComboBox>--%>
-                                 <tlk:RadComboBox runat="server" ID="cboTKNganHang" >
                                 </tlk:RadComboBox>
                             </td>
                               <td class="lb">
                                 <%# Translate("Chi nhánh ngân hàng")%>
                             </td>
                             <td>
-                          <%--      <tlk:RadComboBox runat="server" ID="cboTKChiNhanhNganHang"  SkinID="LoadDemand" OnClientSelectedIndexChanged="OnClientSelectedIndexChanged"
+                                <tlk:RadComboBox runat="server" ID="cboTKChiNhanhNganHang"  SkinID="LoadDemand" OnClientSelectedIndexChanged="OnClientSelectedIndexChanged"
                                                 OnClientItemsRequesting="OnClientItemsRequesting">
-                                </tlk:RadComboBox>--%>
-                                  <tlk:RadComboBox runat="server" ID="cboTKChiNhanhNganHang" >
                                 </tlk:RadComboBox>
                             </td>
                             <td class="lb">
@@ -1721,50 +1717,50 @@
         function displayDecimalFormat(sender, args) {
             sender.set_textBoxValue(sender.get_value().toString());
         }
-//        function OnClientSelectedIndexChanged(sender, eventArgs) {
-//            var id = sender.get_id();
-//            var cbo;
-//            switch (id) {
-//                case '<%= cboTKNganHang.ClientID %>':
-//                    cbo = $find('<%= cboTKChiNhanhNganHang.ClientID %>');
-//                    clearSelectRadcombo(cbo);
-//                    break;
-//                default:
-//                    break;
-//            }
-//        }
-//        function clearSelectRadcombo(cbo) {
-//            if (cbo) {
-//                cbo.clearItems();
-//                cbo.clearSelection();
-//                cbo.set_text('');
-//            }
-//        }
-//        function clearSelectRadtextbox(cbo) {
-//            if (cbo) {
-//                cbo.clear();
-//            }
-//        }
-//        function OnClientItemsRequesting(sender, eventArgs) {
-//            var id = sender.get_id();
-//            var cbo;
-//            var value;
-//            switch (id) {
-//                case '<%= cboTKChiNhanhNganHang.ClientID %>':
-//                    cbo = $find('<%= cboTKNganHang.ClientID %>');
-//                    value = cbo.get_value();
-//                    break;
-//                default:
-//                    break;
-//            }
+        function OnClientSelectedIndexChanged(sender, eventArgs) {
+            var id = sender.get_id();
+            var cbo;
+            switch (id) {
+                case '<%= cboTKNganHang.ClientID %>':
+                    cbo = $find('<%= cboTKChiNhanhNganHang.ClientID %>');
+                    clearSelectRadcombo(cbo);
+                    break;
+                default:
+                    break;
+            }
+        }
+        function clearSelectRadcombo(cbo) {
+            if (cbo) {
+                cbo.clearItems();
+                cbo.clearSelection();
+                cbo.set_text('');
+            }
+        }
+        function clearSelectRadtextbox(cbo) {
+            if (cbo) {
+                cbo.clear();
+            }
+        }
+        function OnClientItemsRequesting(sender, eventArgs) {
+            var id = sender.get_id();
+            var cbo;
+            var value;
+            switch (id) {
+                case '<%= cboTKChiNhanhNganHang.ClientID %>':
+                    cbo = $find('<%= cboTKNganHang.ClientID %>');
+                    value = cbo.get_value();
+                    break;
+                default:
+                    break;
+            }
 
-//            if (!value) {
-//                value = 0;
-//            }
-//            var context = eventArgs.get_context();
-//            context["valueCustom"] = value;
-//            context["value"] = sender.get_value();
+            if (!value) {
+                value = 0;
+            }
+            var context = eventArgs.get_context();
+            context["valueCustom"] = value;
+            context["value"] = sender.get_value();
 
-//        }
+        }
     </script>
 </tlk:RadScriptBlock>
