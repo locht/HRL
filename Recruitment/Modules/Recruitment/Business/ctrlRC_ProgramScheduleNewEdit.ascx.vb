@@ -265,7 +265,7 @@ Public Class ctrlRC_ProgramScheduleNewEdit
             'For Each item As RadListBoxItem In collection
             '    item.Checked = True
             'Next
-            'rlbExams.Enabled = False
+            rlbExams.Enabled = True
 
         End If
     End Sub
@@ -713,7 +713,7 @@ Public Class ctrlRC_ProgramScheduleNewEdit
                     Dim item As GridDataItem = rgCanNotSchedule.SelectedItems(idx)
                     'insert candidate --> program schedule candidate
                     Dim idCandidate As Int32 = Int32.Parse(item.GetDataKeyValue("ID").ToString())
-                    For Each itemExams As RadListBoxItem In rlbExams.Items
+                    For Each itemExams As RadListBoxItem In rlbExams.SelectedItems
                         If itemExams.Checked = True Then
                             Dim idPro_Exams As Int32 = Decimal.Parse(itemExams.Value)
                             store.ADDNEW_CAN_PRO_SCHEDULE(idCandidate, Decimal.Parse(hidID.Value), idPro_Exams)
