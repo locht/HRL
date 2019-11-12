@@ -10,6 +10,8 @@ Imports System.Runtime.Serialization.Formatters.Binary
 Imports System.Xml.Serialization
 Imports Common.CommonBusiness
 Imports System.Reflection
+Imports HistaffFrameworkPublic
+Imports Profile
 
 Public Class ctrlRC_CanDtlProfile
     Inherits CommonView
@@ -720,7 +722,7 @@ Public Class ctrlRC_CanDtlProfile
             FillDropDownList(cboTKNganHang, ListComboData.LIST_BANK, "BANK_NAME", "ID", Common.Common.SystemLanguage, True, cboTKNganHang.SelectedValue)
 
             'Chi nhánh ngân hàng
-            FillDropDownList(cboTKChiNhanhNganHang, ListComboData.LIST_BANK_BRACH, "BRANCH_NAME", "ID", Common.Common.SystemLanguage, True, cboTKChiNhanhNganHang.SelectedValue)
+            'FillDropDownList(cboTKChiNhanhNganHang, ListComboData.LIST_BANK_BRACH, "BRANCH_NAME", "ID", Common.Common.SystemLanguage, True, cboTKChiNhanhNganHang.SelectedValue)
             ' CMND
             FillDropDownList(cboCMNDPlace, ListComboData.LIST_PROVINCE, "NAME_VN", "ID", Common.Common.SystemLanguage, True, cboCMNDPlace.SelectedValue)
             'dtData = rep.GetOtherList("ID_PLACE", True)
@@ -763,6 +765,7 @@ Public Class ctrlRC_CanDtlProfile
                          ToolbarItem.Cancel)
             CType(Me.MainToolBar.Items(2), RadToolBarButton).CausesValidation = True
             Dim ajaxLoading = CType(Me.Page, AjaxPage).AjaxLoading
+            CType(Me.Page, AjaxPage).AjaxManager.ClientEvents.OnRequestStart = "onRequestStart"
             ajaxLoading.InitialDelayTime = 100
             'CType(Me.Page, AjaxPage).AjaxManager.AjaxSettings.AddAjaxSetting(btnChoose, phPopup)
         Catch ex As Exception
@@ -1579,5 +1582,80 @@ Public Class ctrlRC_CanDtlProfile
 
         Next
 
+    End Sub
+    Protected Sub cboCommon_ItemsRequested(ByVal sender As Object, ByVal e As RadComboBoxItemsRequestedEventArgs) _
+      Handles cboTKNganHang.ItemsRequested, cboTKChiNhanhNganHang.ItemsRequested
+        Using rep As New ProfileRepository
+            Dim dtData As DataTable
+            Dim sText As String = e.Text
+            Dim dValue As Decimal
+            Dim sSelectValue As String = IIf(e.Context("value") IsNot Nothing, e.Context("value"), "")
+            Select Case sender.ID
+
+                Case cboTKNganHang.ID
+                    dtData = rep.GetBankList(True)
+                Case cboTKChiNhanhNganHang.ID
+                    dValue = IIf(e.Context("valueCustom") IsNot Nothing, e.Context("valueCustom"), 0)
+                    dtData = rep.GetBankBranchList(dValue, True)
+            End Select
+
+            If sText <> "" Then
+                Dim dtExist = (From p In dtData
+                              Where p("NAME") IsNot DBNull.Value AndAlso _
+                              p("NAME").ToString.ToUpper = sText.ToUpper)
+
+                If dtExist.Count = 0 Then
+                    Dim dtFilter = (From p In dtData
+                              Where p("NAME") IsNot DBNull.Value AndAlso _
+                              p("NAME").ToString.ToUpper.Contains(sText.ToUpper))
+
+                    If dtFilter.Count > 0 Then
+                        dtData = dtFilter.CopyToDataTable
+                    Else
+                        dtData = dtData.Clone
+                    End If
+
+                    Dim itemOffset As Integer = e.NumberOfItems
+                    Dim endOffset As Integer = dtData.Rows.Count 'Math.Min(itemOffset + sender.ItemsPerRequest, dtData.Rows.Count)
+                    e.EndOfItems = endOffset = dtData.Rows.Count
+
+                    For i As Integer = itemOffset To endOffset - 1
+                        Dim radItem As RadComboBoxItem = New RadComboBoxItem(dtData.Rows(i)("NAME").ToString(), dtData.Rows(i)("ID").ToString())
+                        Select Case sender.ID
+                            'Case cboTitle.ID
+                            '    radItem.Attributes("GROUP_NAME") = dtData.Rows(i)("GROUP_NAME").ToString()
+                        End Select
+                        sender.Items.Add(radItem)
+                    Next
+                Else
+
+                    Dim itemOffset As Integer = e.NumberOfItems
+                    Dim endOffset As Integer = dtData.Rows.Count
+                    e.EndOfItems = True
+
+                    For i As Integer = itemOffset To endOffset - 1
+                        Dim radItem As RadComboBoxItem = New RadComboBoxItem(dtData.Rows(i)("NAME").ToString(), dtData.Rows(i)("ID").ToString())
+                        Select Case sender.ID
+                            'Case cboTitle.ID
+                            '    radItem.Attributes("GROUP_NAME") = dtData.Rows(i)("GROUP_NAME").ToString()
+                        End Select
+                        sender.Items.Add(radItem)
+                    Next
+                End If
+            Else
+                Dim itemOffset As Integer = e.NumberOfItems
+                Dim endOffset As Integer = dtData.Rows.Count 'Math.Min(itemOffset + sender.ItemsPerRequest, dtData.Rows.Count)
+                e.EndOfItems = endOffset = dtData.Rows.Count
+
+                For i As Integer = itemOffset To endOffset - 1
+                    Dim radItem As RadComboBoxItem = New RadComboBoxItem(dtData.Rows(i)("NAME").ToString(), dtData.Rows(i)("ID").ToString())
+                    Select Case sender.ID
+                        'Case cboTitle.ID
+                        '    radItem.Attributes("GROUP_NAME") = dtData.Rows(i)("GROUP_NAME").ToString()
+                    End Select
+                    sender.Items.Add(radItem)
+                Next
+            End If
+        End Using
     End Sub
 End Class
