@@ -265,7 +265,7 @@ Public Class ctrlRC_ProgramScheduleNewEdit
             'For Each item As RadListBoxItem In collection
             '    item.Checked = True
             'Next
-            rlbExams.Enabled = False
+            'rlbExams.Enabled = False
 
         End If
     End Sub

@@ -97,11 +97,7 @@
                         </tr>
                         <tr>
                             <td>
-                                <tlk:RadListBox runat="server" ID="rlbExams" CheckBoxes="true" Width="300px" Height="120px"
-                                    AllowReorder="true" Enabled="false">
-                                    <ButtonSettings ShowReorder="false" />
-                                    <Items>
-                                    </Items>
+                                <tlk:RadListBox runat="server" ID="rlbExams" CheckBoxes="true" Width="300px" Height="120px">
                                 </tlk:RadListBox>
                             </td>
                         </tr>
