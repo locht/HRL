@@ -749,5 +749,71 @@ Public Class RecruitmentStoreProcedure
     End Function
 #End Region
 
+#Region "trainning"
+    Public Function Get_candidate_trainning(ByVal p_candidate_code As String) As DataTable
+        Dim dt As New DataTable
+        Dim ds As DataSet = rep.ExecuteToDataSet("PKG_RECRUITMENT.Get_candidate_trainning", New List(Of Object)(New Object() {p_candidate_code}))
+        If Not ds Is Nothing Or Not ds.Tables(0) Is Nothing Then
+            dt = ds.Tables(0)
+        End If
+        Return dt
+    End Function
 
+    Public Function GetComboList(ByVal p_combobox_code As String) As List(Of OtherListDTO)
+        Dim dt As New DataTable
+        Dim ds As DataSet = rep.ExecuteToDataSet("PKG_RECRUITMENT.get_combobox", New List(Of Object)(New Object() {p_combobox_code}))
+        If Not ds Is Nothing Or Not ds.Tables(0) Is Nothing Then
+            Dim re As New List(Of OtherListDTO)
+            For Each item In ds.Tables(0).AsEnumerable
+                re.Add(New OtherListDTO With {
+                       .ID = item.Field(Of Decimal)("ID"),
+                        .NAME_VN = item.Field(Of String)("NAME_VN"),
+                        .NAME_EN = item.Field(Of String)("NAME_EN")
+                       })
+            Next
+            Return re
+        End If
+        Return New List(Of OtherListDTO)
+    End Function
+
+    Public Function insert_cadidate_trainning(ByVal r As RC_CANDIDATE_TRAINNING_DTO) As Int32
+        Dim obj As Object = rep.ExecuteStoreScalar("PKG_RECRUITMENT.insert_cadidate_trainning",
+                                                   New List(Of Object)(New Object() {
+                                                   r.YEAR_GRA, r.NAME_SHOOLS, r.FORM_TRAIN_ID, r.SPECIALIZED_TRAIN,
+                                                   r.RESULT_TRAIN, r.CERTIFICATE, r.EFFECTIVE_DATE_FROM,
+                                                   r.EFFECTIVE_DATE_TO, r.CANDIDATE_ID, r.FROM_DATE, r.TO_DATE,
+                                                   r.UPLOAD_FILE, r.FILE_NAME, r.TYPE_TRAIN_ID, r.RECEIVE_DEGREE_DATE,
+                                                   r.IS_RENEWED, r.LEVEL_ID, r.POINT_LEVEL, r.CONTENT_LEVEL, r.NOTE, r.CERTIFICATE_CODE,
+                                                   r.TYPE_TRAIN_NAME, OUT_NUMBER}))
+        Return Int32.Parse(obj(0).ToString())
+    End Function
+
+    Public Function update_cadidate_trainning(ByVal r As RC_CANDIDATE_TRAINNING_DTO) As Int32
+        Dim obj As Object = rep.ExecuteStoreScalar("PKG_RECRUITMENT.update_cadidate_trainning",
+                                                   New List(Of Object)(New Object() {
+                                                   r.ID, r.YEAR_GRA, r.NAME_SHOOLS, r.FORM_TRAIN_ID, r.SPECIALIZED_TRAIN,
+                                                   r.RESULT_TRAIN, r.CERTIFICATE, r.EFFECTIVE_DATE_FROM,
+                                                   r.EFFECTIVE_DATE_TO, r.CANDIDATE_ID, r.FROM_DATE, r.TO_DATE,
+                                                   r.UPLOAD_FILE, r.FILE_NAME, r.TYPE_TRAIN_ID, r.RECEIVE_DEGREE_DATE,
+                                                   r.IS_RENEWED, r.LEVEL_ID, r.POINT_LEVEL, r.CONTENT_LEVEL, r.NOTE, r.CERTIFICATE_CODE,
+                                                   r.TYPE_TRAIN_NAME, OUT_NUMBER}))
+        Return Int32.Parse(obj(0).ToString())
+    End Function
+    Public Function delete_rc_candidate_trainning(ByVal ls_id As List(Of Decimal), ByRef num_row As Decimal) As Boolean
+        Try
+            For Each item In ls_id
+                Dim obj As Object = rep.ExecuteStoreScalar("PKG_RECRUITMENT.delete_rc_candidate_trainning",
+                                                       New List(Of Object)(New Object() {item, OUT_NUMBER}))
+                Dim re = Int32.Parse(obj(0).ToString())
+                If re = -1 Then
+                    Throw New Exception("lỗi")
+                End If
+                num_row = num_row + re
+            Next
+        Catch ex As Exception
+            Return False
+        End Try
+        Return True
+    End Function
+#End Region
 End Class
