@@ -146,7 +146,7 @@ Public Class ctrlRC_CanDtlProfile
             CType(Me.Page, AjaxPage).AjaxManager.ClientEvents.OnRequestStart = "onRequestStart"
             InitControl()
             GetParams()
-            AccessPanelBar()
+            'AccessPanelBar()
             If Request.Params("FormType") IsNot Nothing Then
                 FormType = Request.Params("FormType")
                 Select Case FormType
