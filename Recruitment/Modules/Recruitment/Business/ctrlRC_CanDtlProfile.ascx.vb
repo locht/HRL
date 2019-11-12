@@ -493,6 +493,7 @@ Public Class ctrlRC_CanDtlProfile
                         txtTKTKChuyenKhoan.Text = If(EmpOtherInfo.ACCOUNT_NUMBER Is Nothing, "", EmpOtherInfo.ACCOUNT_NUMBER)
                         cboTKNganHang.SelectedValue = EmpOtherInfo.BANK
                         cboTKChiNhanhNganHang.SelectedValue = EmpOtherInfo.BANK_BRANCH
+                        cboTKChiNhanhNganHang.Text = EmpOtherInfo.BANK_BRANCH_Name
                         other_cbxThanhToanQuaNH.Checked = If(EmpOtherInfo.IS_PAYMENT_VIA_BANK Is Nothing, False, EmpOtherInfo.IS_PAYMENT_VIA_BANK)
                         If EmpOtherInfo.ACCOUNT_EFFECT_DATE IsNot Nothing Then
                             rdpTKNgayHieuLuc.SelectedDate = EmpOtherInfo.ACCOUNT_EFFECT_DATE
@@ -722,7 +723,7 @@ Public Class ctrlRC_CanDtlProfile
             FillDropDownList(cboTKNganHang, ListComboData.LIST_BANK, "BANK_NAME", "ID", Common.Common.SystemLanguage, True, cboTKNganHang.SelectedValue)
 
             'Chi nhánh ngân hàng
-            FillDropDownList(cboTKChiNhanhNganHang, ListComboData.LIST_BANK_BRACH, "BRANCH_NAME", "ID", Common.Common.SystemLanguage, True, cboTKChiNhanhNganHang.SelectedValue)
+            'FillDropDownList(cboTKChiNhanhNganHang, ListComboData.LIST_BANK_BRACH, "BRANCH_NAME", "ID", Common.Common.SystemLanguage, True, cboTKChiNhanhNganHang.SelectedValue)
             ' CMND
             FillDropDownList(cboCMNDPlace, ListComboData.LIST_PROVINCE, "NAME_VN", "ID", Common.Common.SystemLanguage, True, cboCMNDPlace.SelectedValue)
             'dtData = rep.GetOtherList("ID_PLACE", True)

@@ -13,6 +13,7 @@
     Public Property BANK_BRANCH As String
     Public Property IS_PAYMENT_VIA_BANK As Decimal?
     Public Property ACCOUNT_EFFECT_DATE As Date?
+    Public Property BANK_BRANCH_Name As String
     'Thông tin tổ chức chính trị ...
     'Đoàn
     Public Property IS_DOANVIEN As Boolean?

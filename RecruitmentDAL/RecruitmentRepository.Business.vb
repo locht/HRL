@@ -2828,6 +2828,7 @@ Partial Class RecruitmentRepository
     Public Function GetCandidateOtherInfo(ByVal sCandidateID As Decimal) As CandidateOtherInfoDTO
         Try
             Dim query = (From e In Context.RC_CANDIDATE_OTHER_INFO Where e.CANDIDATE_ID = sCandidateID
+                From bankbranch In Context.HU_BANK_BRANCH.Where(Function(f) e.BANK_BRANCH = f.ID).DefaultIfEmpty
             Select New CandidateOtherInfoDTO With {
                 .CANDIDATE_ID = e.CANDIDATE_ID,
                 .NOI_VAO_DOAN = e.NOIVAOCONGDOAN,
@@ -2838,7 +2839,8 @@ Partial Class RecruitmentRepository
                 .BANK = e.BANK,
                 .BANK_BRANCH = e.BANK_BRANCH,
                 .IS_PAYMENT_VIA_BANK = e.IS_PAYMENT_VIA_BANK,
-                .ACCOUNT_EFFECT_DATE = e.ACCOUNT_EFFECT_DATE
+                .ACCOUNT_EFFECT_DATE = e.ACCOUNT_EFFECT_DATE,
+                .BANK_BRANCH_Name = bankbranch.NAME
             }).FirstOrDefault
             Return query
         Catch ex As Exception
