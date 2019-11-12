@@ -290,6 +290,14 @@ Public Class RecruitmentStoreProcedure
         End If
         Return listYear
     End Function
+    Public Function GetCurrentManningTitle1(ByVal P_ORG_ID As Integer, ByVal P_TITLE_ID As Integer, ByVal p_date As Date) As DataTable
+        Dim listYear As DataTable
+        Dim ds As DataSet = rep.ExecuteToDataSet("PKG_RECRUITMENT.GET_CURRENT_MANNING_TITLE1", New List(Of Object)(New Object() {P_ORG_ID, P_TITLE_ID, p_date, OUT_CURSOR}))
+        If Not ds Is Nothing Or Not ds.Tables(0) Is Nothing Then
+            listYear = ds.Tables(0)
+        End If
+        Return listYear
+    End Function
 
 #End Region
 
@@ -531,8 +539,10 @@ Public Class RecruitmentStoreProcedure
     Public Function GET_PROGRAM_SCHCEDULE_LIST(ByVal P_PROGRAM_ID As Int32) As DataTable
         Dim dt As New DataTable
         Dim ds As DataSet = rep.ExecuteToDataSet("PKG_RECRUITMENT.GET_PROGRAM_SCHCEDULE_LIST", New List(Of Object)(New Object() {P_PROGRAM_ID}))
-        If Not ds Is Nothing Or Not ds.Tables(0) Is Nothing Then
-            dt = ds.Tables(0)
+        If ds.Tables.Count > 0 Then
+            If Not ds Is Nothing Or Not ds.Tables(0) Is Nothing Then
+                dt = ds.Tables(0)
+            End If
         End If
         Return dt
     End Function

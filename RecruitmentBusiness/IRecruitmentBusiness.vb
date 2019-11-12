@@ -620,7 +620,8 @@ Namespace RecruitmentBusiness.ServiceContracts
 
         <OperationContract()>
         Function GetOtherList(ByVal sType As String, ByVal sLang As String, ByVal isBlank As Boolean) As DataTable
-
+        <OperationContract()>
+        Function GetProvinceList(ByVal isBlank As Boolean) As DataTable
         <OperationContract()>
         Function GetContractTypeList(ByVal isBlank As Boolean) As DataTable
 

@@ -1,7 +1,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for Oracle database
 -- --------------------------------------------------
--- Date Created: 11/11/2019 3:38:19 PM
+-- Date Created: 11/11/2019 5:44:10 PM
 -- Generated from EDMX file: D:\MyProject\TNG\TNG\RecruitmentDAL\RecruitmentContext.edmx
 -- --------------------------------------------------
 
@@ -168,6 +168,8 @@
 -- DROP TABLE "RecruitmentModelStoreContainer"."SE_USER_REPORT";
 
 -- DROP TABLE "RecruitmentModelStoreContainer"."HU_WARD";
+
+-- DROP TABLE "RecruitmentModelStoreContainer"."HU_ORGANIZATION_V";
 
 -- --------------------------------------------------
 -- Creating all tables
@@ -385,7 +387,8 @@ CREATE TABLE "dbo"."RC_REQUEST" (
    "GENDER_PRIORITY" NUMBER(38,0) NULL,
    "UPLOAD_FILE" NCLOB NULL,
    "RECRUIT_NUMBER" NUMBER(38,0) NULL,
-   "FILE_NAME" NVARCHAR2(1023) NULL
+   "FILE_NAME" NVARCHAR2(1023) NULL,
+   "LOCATION_ID" NUMBER(38,0) NULL
 );
 
 -- Creating table 'RC_REQUEST_EMP'

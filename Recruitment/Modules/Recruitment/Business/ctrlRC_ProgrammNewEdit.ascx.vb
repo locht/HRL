@@ -116,6 +116,10 @@ Public Class ctrlRC_ProgrammNewEdit
                     Else
                         chkVuotDB.Checked = False
                     End If
+                    If obj.LOCATION_ID IsNot Nothing Then
+                        cboLocation.SelectedValue = obj.LOCATION_ID
+                    End If
+
                     txtCode.Text = obj.CODE
                     If obj.CONTRACT_TYPE_ID IsNot Nothing Then
                         cboTypeContract.SelectedValue = obj.CONTRACT_TYPE_ID
@@ -134,6 +138,10 @@ Public Class ctrlRC_ProgrammNewEdit
                         RadPane2.Enabled = False
                     End If
                     GetTotalEmployeeByTitleID()
+                    If cboStatus.Text = "Phê duyệt" Then
+                        cboStatus.Text = ""
+                    End If
+
                 Case "InsertView"
                     CurrentState = CommonMessage.STATE_NEW
                     rdSendDate.AutoPostBack = True
@@ -154,7 +162,7 @@ Public Class ctrlRC_ProgrammNewEdit
             'txtCurrentNumber.Text = obj(0).ToString()
 
             If hidOrgID.Value <> String.Empty Then
-                Dim tab As DataTable = store.GetCurrentManningTitle(Int32.Parse(hidOrgID.Value), hidTitleID.Value)
+                Dim tab As DataTable = store.GetCurrentManningTitle1(Int32.Parse(hidOrgID.Value), hidTitleID.Value, rdSendDate.SelectedDate)
                 If tab.Rows.Count > 0 Then
                     txtCountDB.Text = tab.Rows(0)("NEW_MANNING").ToString()
                     txtCountNow.Text = tab.Rows(0)("CURRENT_MANNING").ToString()
@@ -311,8 +319,13 @@ Public Class ctrlRC_ProgrammNewEdit
                 dtData = rep.GetOtherList("RC_RECRUIT_PROPERTY")
                 FillRadCombobox(cboTCRecruit, dtData, "NAME", "ID", True)
                 'CONTRACT TYPE
-                dtData = rep.GetOtherList("CONTRACT_TYPE", True)
-                FillRadCombobox(cboTypeContract, dtData, "NAME", "ID", True)
+                'dtData = rep.GetOtherList("CONTRACT_TYPE", True)
+                'FillRadCombobox(cboTypeContract, dtData, "NAME", "ID", True)
+                dtData = rep.GetOtherList("LABOR_TYPE", True)
+                FillRadCombobox(cboTypeContract, dtData, "NAME", "ID")
+                'tinh thanh
+                dtData = rep.GetProvinceList("False")
+                FillRadCombobox(cboLocation, dtData, "NAME", "ID", True)
             End Using
         Catch ex As Exception
             Throw ex

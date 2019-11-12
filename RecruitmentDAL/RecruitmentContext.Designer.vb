@@ -18,7 +18,7 @@ Imports System.Runtime.Serialization
 Imports System.Xml.Serialization
 
 
-<Assembly: EdmSchemaAttribute("7d42dd7e-9bf6-4b44-a096-7db4ff78c881")>
+<Assembly: EdmSchemaAttribute("bd239bac-28a4-4652-ba96-a151ae360d34")>
 #Region "EDM Relationship Metadata"
 <Assembly: EdmRelationshipAttribute("RecruitmentModel", "FK_FE_HEH", "HU_EMPLOYEE", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_EMPLOYEE), "HU_EMPLOYEE_HEALTH1", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(HU_EMPLOYEE_HEALTH1), True)>
 <Assembly: EdmRelationshipAttribute("RecruitmentModel", "FK_HE_HEC", "HU_EMPLOYEE", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_EMPLOYEE), "HU_EMPLOYEE_CV", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(HU_EMPLOYEE_CV), True)>
@@ -33828,6 +33828,31 @@ Public Partial Class RC_REQUEST
     End Sub
 
     Private Partial Sub OnFILE_NAMEChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property LOCATION_ID() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _LOCATION_ID
+        End Get
+        Set
+            OnLOCATION_IDChanging(value)
+            ReportPropertyChanging("LOCATION_ID")
+            _LOCATION_ID = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("LOCATION_ID")
+            OnLOCATION_IDChanged()
+        End Set
+    End Property
+
+    Private _LOCATION_ID As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnLOCATION_IDChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnLOCATION_IDChanged()
     End Sub
 
     #End Region

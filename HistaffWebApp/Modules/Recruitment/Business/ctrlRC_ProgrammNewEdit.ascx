@@ -31,8 +31,8 @@
                     <%# Translate("Địa điểm làm việc")%>
                 </td>
                 <td>
-                    <tlk:RadTextBox ID="cboLocation" runat="server" ReadOnly=true>
-                    </tlk:RadTextBox>
+                    <tlk:RadComboBox ID="cboLocation" runat="server" Enabled="false">
+                    </tlk:RadComboBox>
                 </td>
             </tr>
             <tr>
@@ -40,7 +40,7 @@
                     <%# Translate("Ngày gửi yêu cầu")%><span class="lbReq">*</span>
                 </td>
                 <td colspan="2">
-                    <tlk:RadDatePicker ID="rdSendDate" runat="server" Enabled=false>
+                    <tlk:RadDatePicker ID="rdSendDate" runat="server" Enabled="false">
                     </tlk:RadDatePicker>
                     <asp:RequiredFieldValidator ID="RequiredFieldValidator1" ControlToValidate="rdSendDate"
                         runat="server" ErrorMessage="<%$ Translate: Bạn phải nhập Ngày gửi kế hoạch %>"
@@ -51,7 +51,7 @@
                     <%# Translate("Ngày cần đáp ứng")%><span class="lbReq">*</span>
                 </td>
                 <td>
-                    <tlk:RadDatePicker ID="rdRespone" runat="server" Enabled=false>
+                    <tlk:RadDatePicker ID="rdRespone" runat="server" Enabled="false">
                     </tlk:RadDatePicker>
                     <asp:RequiredFieldValidator ID="RequiredFieldValidator2" ControlToValidate="rdRespone"
                         runat="server" ErrorMessage="<%$ Translate: Ngày cần đáp ứng %>" ToolTip="<%$ Translate:Ngày cần đáp ứng %>"> 
@@ -60,13 +60,13 @@
                 <td class="lb">
                 </td>
                 <td>
-                    <asp:CheckBox ID="chkTNGSupport" runat="server" Enabled=false Text="<%$ Translate: TNG hỗ trợ triển khai %>"
+                    <asp:CheckBox ID="chkTNGSupport" runat="server" Enabled="false" Text="<%$ Translate: TNG hỗ trợ triển khai %>"
                         Font-Bold="true" />
                 </td>
             </tr>
             <tr>
                 <td class="lb">
-                    <%# Translate("Loại hợp đồng")%>
+                    <%# Translate("Loại hình lao động")%>
                 </td>
                 <td colspan="2">
                     <tlk:RadComboBox ID="cboTypeContract" runat="server" Enabled="false">
@@ -76,7 +76,7 @@
                     <%# Translate("Tính chất tuyển dụng")%>
                 </td>
                 <td>
-                    <tlk:RadComboBox ID="cboTCRecruit" runat="server" Enabled=false>
+                    <tlk:RadComboBox ID="cboTCRecruit" runat="server" Enabled="false">
                     </tlk:RadComboBox>
                 </td>
             </tr>
@@ -101,11 +101,11 @@
                 <td class="lb">
                 </td>
                 <td>
-                    <asp:CheckBox ID="chkVuotDB" runat="server" Enabled=false Text="<%$ Translate: Vượt định biên %>"
+                    <asp:CheckBox ID="chkVuotDB" runat="server" Enabled="false" Text="<%$ Translate: Vượt định biên %>"
                         Font-Bold="true" />
                 </td>
             </tr>
-              <tr>
+            <tr>
                 <td class="lb">
                     <%# Translate("Số lượng hiện có")%>
                 </td>
@@ -133,7 +133,8 @@
                     <%# Translate("Diễn giải chi tiết")%>
                 </td>
                 <td colspan="5">
-                    <tlk:RadTextBox ID="txtRecruitReason" runat="server"  ReadOnly="true"  SkinID="Textbox1023" Width="100%">
+                    <tlk:RadTextBox ID="txtRecruitReason" runat="server" ReadOnly="true" SkinID="Textbox1023"
+                        Width="100%">
                     </tlk:RadTextBox>
                 </td>
             </tr>

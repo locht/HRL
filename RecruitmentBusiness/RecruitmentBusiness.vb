@@ -33,7 +33,14 @@ Namespace RecruitmentBusiness.ServiceImplementations
                 Throw ex
             End Try
         End Function
-
+        Public Function GetProvinceList(ByVal isBlank As Boolean) As DataTable Implements ServiceContracts.IRecruitmentBusiness.GetProvinceList
+            Try
+                Dim lst = RecruitmentRepositoryStatic.Instance.GetProvinceList(isBlank)
+                Return lst
+            Catch ex As Exception
+                Throw ex
+            End Try
+        End Function
         Public Function GetContractTypeList(ByVal isBlank As Boolean) As DataTable Implements ServiceContracts.IRecruitmentBusiness.GetContractTypeList
             Try
                 Dim lst = RecruitmentRepositoryStatic.Instance.GetContractTypeList(isBlank)

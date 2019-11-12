@@ -98,9 +98,9 @@
                             <tlk:GridNumericColumn HeaderText="<%$ Translate: Hồ sơ đã nhận %>" DataField="CANDIDATE_COUNT"
                                 SortExpression="CANDIDATE_COUNT" UniqueName="CANDIDATE_COUNT" AllowFiltering="false"
                                 HeaderStyle-Width="90px" />
-                            <tlk:GridNumericColumn HeaderText="<%$ Translate: Số lượng trong kế hoạch %>" DataField="CANDIDATE_REQUEST"
+                           <%-- <tlk:GridNumericColumn HeaderText="<%$ Translate: Số lượng trong kế hoạch %>" DataField="CANDIDATE_REQUEST"
                                 SortExpression="CANDIDATE_REQUEST" UniqueName="CANDIDATE_REQUEST" AllowFiltering="false"
-                                HeaderStyle-Width="90px" />
+                                HeaderStyle-Width="90px" />--%>
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Trạng thái %>" DataField="STATUS_NAME"
                                 SortExpression="STATUS_NAME" UniqueName="STATUS_NAME" />
                             <%-- <tlk:GridCheckBoxColumn HeaderText="<%$ Translate: Trong ngân sách? %>" DataField="IS_IN_PLAN"

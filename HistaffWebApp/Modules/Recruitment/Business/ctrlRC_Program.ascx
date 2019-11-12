@@ -3,7 +3,7 @@
 <%@ Import Namespace="Common" %>
 <tlk:RadSplitter ID="RadSplitter1" runat="server" Width="100%" Height="100%">
     <tlk:RadPane ID="LeftPane" runat="server" MinWidth="200" Width="250px" Scrolling="None">
-        <common:ctrlorganization id="ctrlOrg" runat="server" />
+        <Common:ctrlOrganization ID="ctrlOrg" runat="server" />
     </tlk:RadPane>
     <tlk:RadPane ID="MainPane" runat="server" Scrolling="None">
         <tlk:RadSplitter ID="RadSplitter3" runat="server" Width="100%" Height="100%" Orientation="Horizontal">
@@ -82,8 +82,8 @@
                                 SortExpression="EXPECTED_JOIN_DATE" UniqueName="EXPECTED_JOIN_DATE" HeaderStyle-Width="120px" />
                             <%-- <tlk:GridBoundColumn HeaderText="<%$ Translate: Mã tuyển dụng %>" DataField="CODE"
                                 SortExpression="CODE" UniqueName="CODE" HeaderStyle-Width="150px"/>--%>
-                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Công ty %>" DataField="ORG_NAME_CTY" SortExpression="ORG_NAME_CTY"
-                                UniqueName="ORG_NAME_CTY" />
+                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Công ty %>" DataField="ORG_NAME_CTY"
+                                SortExpression="ORG_NAME_CTY" UniqueName="ORG_NAME_CTY" />
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Ban/Phòng %>" DataField="ORG_NAME"
                                 SortExpression="ORG_NAME" UniqueName="ORG_NAME" />
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Vị trí tuyển dụng %>" DataField="TITLE_NAME"
@@ -93,17 +93,18 @@
                                 HeaderStyle-Width="90px" />
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Lý do tuyển dụng %>" DataField="RECRUIT_REASON"
                                 SortExpression="RECRUIT_REASON" UniqueName="RECRUIT_REASON" />
-                            <tlk:GridCheckBoxColumn HeaderText="<%$ Translate: TNG Hỗ trợ %>" DataField="IS_SUPPORT" UniqueName="IS_SUPPORT"
-                                SortExpression="IS_SUPPORT" HeaderStyle-Width="70px" HeaderStyle-HorizontalAlign="Center" />
+                            <tlk:GridCheckBoxColumn HeaderText="<%$ Translate: TNG Hỗ trợ %>" DataField="IS_SUPPORT"
+                                UniqueName="IS_SUPPORT" SortExpression="IS_SUPPORT" HeaderStyle-Width="70px"
+                                HeaderStyle-HorizontalAlign="Center" />
                             <tlk:GridNumericColumn HeaderText="<%$ Translate: Hồ sơ đã nhận %>" DataField="CANDIDATE_COUNT"
                                 SortExpression="CANDIDATE_COUNT" UniqueName="CANDIDATE_COUNT" AllowFiltering="false"
                                 HeaderStyle-Width="90px" />
-                            <tlk:GridNumericColumn HeaderText="<%$ Translate: Số lượng trong kế hoạch %>" DataField="CANDIDATE_REQUEST"
+                            <%--<tlk:GridNumericColumn HeaderText="<%$ Translate: Số lượng trong kế hoạch %>" DataField="CANDIDATE_REQUEST"
                                 SortExpression="CANDIDATE_REQUEST" UniqueName="CANDIDATE_REQUEST" AllowFiltering="false"
-                                HeaderStyle-Width="90px" />
+                                HeaderStyle-Width="90px" />--%>
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Trạng thái %>" DataField="STATUS_NAME"
                                 SortExpression="STATUS_NAME" UniqueName="STATUS_NAME" HeaderStyle-Width="100px" />
-                           <%-- <tlk:GridCheckBoxColumn HeaderText="<%$ Translate: Trong ngân sách? %>" DataField="IS_IN_PLAN"
+                            <%-- <tlk:GridCheckBoxColumn HeaderText="<%$ Translate: Trong ngân sách? %>" DataField="IS_IN_PLAN"
                                 UniqueName="IS_IN_PLAN" SortExpression="IS_IN_PLAN" HeaderStyle-Width="70px" />
                             <tlk:GridDateTimeColumn HeaderText="<%$ Translate: Ngày bắt đầu tuyển dụng %>" DataField="RECRUIT_START"
                                 SortExpression="RECRUIT_START" UniqueName="RECRUIT_START" HeaderStyle-Width="100px" />
@@ -158,7 +159,7 @@
         </tlk:RadSplitter>
     </tlk:RadPane>
 </tlk:RadSplitter>
-<common:ctrlmessagebox id="ctrlMessageBox" runat="server" />
+<Common:ctrlMessageBox ID="ctrlMessageBox" runat="server" />
 <tlk:RadWindowManager ID="RadWindowManager1" runat="server">
     <Windows>
         <tlk:RadWindow runat="server" ID="rwPopup" Width="800px" VisibleStatusbar="false"

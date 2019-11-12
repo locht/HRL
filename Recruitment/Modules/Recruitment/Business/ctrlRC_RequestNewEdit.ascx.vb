@@ -128,6 +128,10 @@ Public Class ctrlRC_RequestNewEdit
                     If obj.CONTRACT_TYPE_ID IsNot Nothing Then
                         cboContractType.SelectedValue = obj.CONTRACT_TYPE_ID
                     End If
+                    If obj.LOCATION_ID IsNot Nothing Then
+                        cbolocationWork.SelectedValue = obj.LOCATION_ID
+                    End If
+
                     If obj.RECRUIT_REASON_ID IsNot Nothing Then
                         cboRecruitReason.SelectedValue = obj.RECRUIT_REASON_ID
                     End If
@@ -318,6 +322,7 @@ Public Class ctrlRC_RequestNewEdit
                         'Else
                         '    obj.TITLE_ID = cboTitle.SelectedValue
                         'End If
+
                         obj.TITLE_ID = cboTitle.SelectedValue
                         obj.SEND_DATE = rdSendDate.SelectedDate
                         If cboContractType.SelectedValue <> "" Then
@@ -334,6 +339,10 @@ Public Class ctrlRC_RequestNewEdit
                         If cboRecruitProperty.SelectedValue <> "" Then
                             obj.RC_RECRUIT_PROPERTY = cboRecruitProperty.SelectedValue
                         End If
+                        If cbolocationWork.SelectedValue <> "" Then
+                            obj.LOCATION_ID = cbolocationWork.SelectedValue
+                        End If
+
                         obj.IS_OVER_LIMIT = chkIsOver.Checked
                         obj.IS_SUPPORT = chkIsSupport.Checked
                         obj.FOREIGN_ABILITY = txtForeignAbility.Text
@@ -641,7 +650,8 @@ Public Class ctrlRC_RequestNewEdit
                 FillRadCombobox(cboRecruitReason, dtData, "NAME", "ID")
                 dtData = rep.GetOtherList("LEARNING_LEVEL", True)
                 FillRadCombobox(cboLearningLevel, dtData, "NAME", "ID")
-                dtData = rep.GetContractTypeList(True)
+                'load loai hinh hop dong
+                dtData = rep.GetOtherList("LABOR_TYPE", True)
                 FillRadCombobox(cboContractType, dtData, "NAME", "ID")
                 ' Load data to cbo ACADEMY,LANGUAGE, LANGUAGE_LEVEL,MAJOR,SPECIALSKILLS
                 'LANGUAGE
@@ -659,15 +669,15 @@ Public Class ctrlRC_RequestNewEdit
                 'COMPUTERLEVEL
                 dtData = rep.GetOtherList("RC_COMPUTER_LEVEL", True)
                 FillRadCombobox(cboComputerLevel, dtData, "NAME", "ID", True)
-                'CONTRACT TYPE
-                dtData = rep.GetOtherList("CONTRACT_TYPE", True)
-                FillRadCombobox(cboContractType, dtData, "NAME", "ID", True)
                 'RECRUIT PROPERTY
                 dtData = rep.GetOtherList("RC_RECRUIT_PROPERTY")
                 FillRadCombobox(cboRecruitProperty, dtData, "NAME", "ID", True)
                 'GENDER
                 dtData = rep.GetOtherList("GENDER")
                 FillRadCombobox(cboGenderPriority, dtData, "NAME", "ID", True)
+                'tinh thanh
+                dtData = rep.GetProvinceList("False")
+                FillRadCombobox(cbolocationWork, dtData, "NAME", "ID")
             End Using
         Catch ex As Exception
             Throw ex
@@ -974,23 +984,25 @@ Public Class ctrlRC_RequestNewEdit
             'Dim OUT_NUMBER As String
             'Dim obj = rep.ExecuteStoreScalar("PKG_RECRUITMENT.GET_TOTAL_EMPLOYEE_BY_TITLEID", New List(Of Object)({hidOrgID.Value, cboTitle.SelectedValue, Common.Common.GetUserName(), OUT_NUMBER}))
             'txtCurrentNumber.Text = obj(0).ToString()
-
-            If hidOrgID.Value <> String.Empty Then
-                Dim tab As DataTable = store.GetCurrentManningTitle(Int32.Parse(hidOrgID.Value), cboTitle.SelectedValue)
-                If tab.Rows.Count > 0 Then
-                    txtPayrollLimit.Text = tab.Rows(0)("NEW_MANNING").ToString()
-                    txtCurrentNumber.Text = tab.Rows(0)("CURRENT_MANNING").ToString()
-                    txtDifferenceNumber.Text = tab.Rows(0)("MOBILIZE_COUNT_MANNING").ToString()
-                Else
-                    txtPayrollLimit.Text = "0"
-                    txtCurrentNumber.Text = "0"
-                    txtDifferenceNumber.Text = "0"
+            If IsDate(rdSendDate.SelectedDate) Then
+                If hidOrgID.Value <> String.Empty Then
+                    Dim tab As DataTable = store.GetCurrentManningTitle1(Int32.Parse(hidOrgID.Value), cboTitle.SelectedValue, rdSendDate.SelectedDate)
+                    If tab.Rows.Count > 0 Then
+                        txtPayrollLimit.Text = tab.Rows(0)("NEW_MANNING").ToString()
+                        txtCurrentNumber.Text = tab.Rows(0)("CURRENT_MANNING").ToString()
+                        txtDifferenceNumber.Text = tab.Rows(0)("MOBILIZE_COUNT_MANNING").ToString()
+                    Else
+                        txtPayrollLimit.Text = "0"
+                        txtCurrentNumber.Text = "0"
+                        txtDifferenceNumber.Text = "0"
+                    End If
                 End If
             End If
         Catch ex As Exception
             DisplayException(Me.ViewName, Me.ID, ex)
         End Try
     End Sub
+
 
     Private Sub loadDatasource(ByVal strUpload As String)
         Dim startTime As DateTime = DateTime.UtcNow
@@ -1008,4 +1020,24 @@ Public Class ctrlRC_RequestNewEdit
     End Sub
 
 
+    Private Sub rdSendDate_SelectedDateChanged(sender As Object, e As Telerik.Web.UI.Calendar.SelectedDateChangedEventArgs) Handles rdSendDate.SelectedDateChanged
+        Try
+            If IsDate(rdSendDate.SelectedDate) Then
+                If hidOrgID.Value <> String.Empty Then
+                    Dim tab As DataTable = store.GetCurrentManningTitle1(Int32.Parse(hidOrgID.Value), cboTitle.SelectedValue, rdSendDate.SelectedDate)
+                    If tab.Rows.Count > 0 Then
+                        txtPayrollLimit.Text = tab.Rows(0)("NEW_MANNING").ToString()
+                        txtCurrentNumber.Text = tab.Rows(0)("CURRENT_MANNING").ToString()
+                        txtDifferenceNumber.Text = tab.Rows(0)("MOBILIZE_COUNT_MANNING").ToString()
+                    Else
+                        txtPayrollLimit.Text = "0"
+                        txtCurrentNumber.Text = "0"
+                        txtDifferenceNumber.Text = "0"
+                    End If
+                End If
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
 End Class
