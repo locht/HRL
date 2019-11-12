@@ -5,35 +5,52 @@ Imports Telerik.Web.UI
 Imports Common
 Imports Common.Common
 Imports Common.CommonMessage
+Imports Ionic.Crc
+
 Public Class ctrlRC_CanDtlTraining
     Inherits CommonView
-    Dim CandidateCode As String
+    'Dim _mylog As New MyLog()
+    'Dim _pathLog As String = _mylog._pathLog
+    Dim _classPath As String = "Profile\Modules\Profile\List" + Me.GetType().Name.ToString()
+    Dim checkCRUD As Integer = 0 '0-chua thao tac 1-Insert 2-Edit 3-Save 4-Delete
 
-#Region "Properties"
-    Property CandidateInfo As CandidateDTO
+#Region "Property"
+    Property checkClickUpload As Integer
         Get
-            Return PageViewState(Me.ID & "_CandidateInfo")
+            Return ViewState(Me.ID & "_checkClickUpload")
         End Get
-        Set(ByVal value As CandidateDTO)
-            PageViewState(Me.ID & "_CandidateInfo") = value
+        Set(ByVal value As Integer)
+            ViewState(Me.ID & "_checkClickUpload") = value
         End Set
     End Property
-    Property isClear As Boolean
+
+    'Property EmployeeInfo As EmployeeDTO
+    '    Get
+    '        Return PageViewState(Me.ID & "_EmployeeInfo")
+    '    End Get
+    '    Set(ByVal value As EmployeeDTO)
+    '        PageViewState(Me.ID & "_EmployeeInfo") = value
+    '    End Set
+    'End Property
+
+    'Public Property EmployeeTrain As List(Of HU_PRO_TRAIN_OUT_COMPANYDTO)
+    '    Get
+    '        Return ViewState(Me.ID & "_EmployeeTrain")
+    '    End Get
+    '    Set(ByVal value As List(Of HU_PRO_TRAIN_OUT_COMPANYDTO))
+    '        ViewState(Me.ID & "_EmployeeTrain") = value
+    '    End Set
+    'End Property
+
+    Property DeleteEmployeeTrain As List(Of Decimal)
         Get
-            Return ViewState(Me.ID & "_isClear")
+            Return ViewState(Me.ID & "_DeleteEmployeeTrain")
         End Get
-        Set(ByVal value As Boolean)
-            ViewState(Me.ID & "_isClear") = value
+        Set(ByVal value As List(Of Decimal))
+            ViewState(Me.ID & "_DeleteEmployeeTrain") = value
         End Set
     End Property
-    Property isLoad As Boolean
-        Get
-            Return ViewState(Me.ID & "_isLoad")
-        End Get
-        Set(ByVal value As Boolean)
-            ViewState(Me.ID & "_isLoad") = value
-        End Set
-    End Property
+
     Property IDSelect As Decimal
         Get
             Return ViewState(Me.ID & "_IDSelect")
@@ -42,409 +59,627 @@ Public Class ctrlRC_CanDtlTraining
             ViewState(Me.ID & "_IDSelect") = value
         End Set
     End Property
-    Property lstTrainSinger As List(Of TrainSingerDTO)
+
+    Property Down_File As String
         Get
-            Return ViewState(Me.ID & "_lstTrainSinger")
+            Return ViewState(Me.ID & "_Down_File")
         End Get
-        Set(ByVal value As List(Of TrainSingerDTO))
-            ViewState(Me.ID & "_lstTrainSinger") = value
-        End Set
-    End Property
-    Property SelectedItem As List(Of Decimal)
-        Get
-            Return ViewState(Me.ID & "_SelectedItem")
-        End Get
-        Set(ByVal value As List(Of Decimal))
-            ViewState(Me.ID & "_SelectedItem") = value
+        Set(ByVal value As String)
+            ViewState(Me.ID & "_Down_File") = value
         End Set
     End Property
 
-    'Lưu lại đang ở View nào để load khi dùng nút Next và Previous để chuyển sang xem thông tin nhân viên khác.
-    Public Property CurrentPlaceHolder As String
+    Property FileOldName As String
         Get
-            Return PageViewState(Me.ID & "_CurrentPlaceHolder")
+            Return ViewState(Me.ID & "_FileOldName")
         End Get
         Set(ByVal value As String)
-            PageViewState(Me.ID & "_CurrentPlaceHolder") = value
+            ViewState(Me.ID & "_FileOldName") = value
+        End Set
+    End Property
+
+    Property EmployeeTrain As DataTable
+        Get
+            Return ViewState(Me.ID & "_EmployeeTrain")
+        End Get
+        Set(ByVal value As DataTable)
+            ViewState(Me.ID & "_EmployeeTrain") = value
+        End Set
+    End Property
+    Property CandidateInfo As CandidateDTO
+        Get
+            Return PageViewState(Me.ID & "_CandidateInfo")
+        End Get
+        Set(ByVal value As CandidateDTO)
+            PageViewState(Me.ID & "_CandidateInfo") = value
         End Set
     End Property
 #End Region
 
 #Region "Page"
 
+    Private Property ListComboData As ComboBoxDataDTO
+
     Public Overrides Sub ViewLoad(ByVal e As System.EventArgs)
         Try
-            UpdateControlState()
+            'ctrlEmpBasicInfo.SetProperty("EmployeeInfo", EmployeeInfo)
+            'ctrlEmpBasicInfo
+            hidCandidateCode.Value = Request.Params("Can")
             Refresh()
+            UpdateControlState()
         Catch ex As Exception
             DisplayException(Me.ViewName, Me.ID, ex)
         End Try
     End Sub
 
     Public Overrides Sub ViewInit(ByVal e As System.EventArgs)
-        rgSingleTranning.SetFilter()
-        InitControl()
+        Try
+            rgEmployeeTrain.SetFilter()
+            rgEmployeeTrain.AllowCustomPaging = True
+            rgEmployeeTrain.ClientSettings.EnablePostBackOnRowClick = True
+            InitControl()
+            'If Not IsPostBack Then
+            '    ViewConfig(RadPane1)
+            '    GirdConfig(rgEmployeeTrain)
+            'End If
+        Catch ex As Exception
+            DisplayException(Me.ViewName, Me.ID, ex)
+        End Try
+
     End Sub
 
     Protected Sub InitControl()
         Try
+            Me.ctrlMessageBox.Listener = Me
             Me.MainToolBar = tbarMainToolBar
-            BuildToolbar(Me.MainToolBar, ToolbarItem.Create, ToolbarItem.Seperator, ToolbarItem.Edit,
-                         ToolbarItem.Seperator, ToolbarItem.Save, ToolbarItem.Seperator,
-                         ToolbarItem.Cancel, ToolbarItem.Seperator, ToolbarItem.Export, ToolbarItem.Delete)
-            CType(Me.MainToolBar.Items(4), RadToolBarButton).CausesValidation = True
+            Common.Common.BuildToolbar(Me.MainToolBar, ToolbarItem.Create,
+                                       ToolbarItem.Edit,
+                                       ToolbarItem.Save, ToolbarItem.Cancel,
+                                       ToolbarItem.Delete)
+            CType(MainToolBar.Items(2), RadToolBarButton).CausesValidation = True
+            CType(Me.MainToolBar.Items(2), RadToolBarButton).Enabled = False
+            CType(Me.MainToolBar.Items(3), RadToolBarButton).Enabled = False
+            Me.MainToolBar.OnClientButtonClicking = "OnClientButtonClicking"
             CType(Me.Page, AjaxPage).AjaxManager.ClientEvents.OnRequestStart = "onRequestStart"
+
+        Catch ex As Exception
+            DisplayException(Me.ViewName, Me.ID, ex)
+        End Try
+    End Sub
+    ''' <remarks></remarks>
+    Private Sub btnUPLOAD_FILE_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnUploadFile.Click
+        checkClickUpload = 1
+        Dim startTime As DateTime = DateTime.UtcNow
+        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+
+        Try
+            ctrlUpload1.AllowedExtensions = "xls,xlsx,txt,ctr,doc,docx,xml,png,jpg,bitmap,jpeg,gif,pdf"
+            ctrlUpload1.Show()
+
+            '_mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
+        Catch ex As Exception
+            '_mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
+        End Try
+    End Sub
+    Public Overrides Sub Refresh(Optional ByVal Message As String = "")
+        Try
+            If Not IsPostBack Then
+                CurrentState = CommonMessage.STATE_NORMAL
+                rgEmployeeTrain.Rebind()
+            Else
+                Select Case Message
+                    Case "UpdateView"
+                        ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), NotifyType.Success)
+                        rgEmployeeTrain.Rebind()
+                        'SelectedItemDataGridByKey(rgEmployeeTrain, IDSelect, , rgEmployeeTrain.CurrentPageIndex)
+
+                        CurrentState = CommonMessage.STATE_NORMAL
+                    Case "InsertView"
+                        ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), NotifyType.Success)
+                        rgEmployeeTrain.CurrentPageIndex = 0
+                        rgEmployeeTrain.MasterTableView.SortExpressions.Clear()
+                        rgEmployeeTrain.Rebind()
+                        'SelectedItemDataGridByKey(rgEmployeeTrain, IDSelect, )
+                    Case "Cancel"
+                        rdToiThang.SelectedDate = Nothing
+                        rdTuThang.SelectedDate = Nothing
+                        txtRemindLink.Text = ""
+                        FileOldName = ""
+                        rgEmployeeTrain.MasterTableView.ClearSelectedItems()
+                End Select
+            End If
+
         Catch ex As Exception
             DisplayException(Me.ViewName, Me.ID, ex)
         End Try
     End Sub
 
-    Public Overrides Sub Refresh(Optional ByVal Message As String = "")
+    Protected Sub CreateDataFilter()
         Try
-            GetTrainSinger()
-            Me.CurrentPlaceHolder = Me.ViewName
-            ctrlRC_CanBasicInfo.SetProperty("CurrentPlaceHolder", Me.CurrentPlaceHolder)
-
+            Dim rep As New RecruitmentStoreProcedure
+            Me.EmployeeTrain = rep.Get_candidate_trainning(hidCandidateCode.Value)
+            rgEmployeeTrain.DataSource = Me.EmployeeTrain
         Catch ex As Exception
-            DisplayException(Me.ViewName, Me.ID, ex)
+            Throw ex
         End Try
+    End Sub
+
+    Public Overrides Sub UpdateControlState()
+
+        Try
+            Select Case CurrentState
+                Case CommonMessage.STATE_NEW
+
+                    EnabledGridNotPostback(rgEmployeeTrain, False)
+                    EnableControlAll(True, rdToiThang, cboRemark, rdTuThang, rntGraduateYear, txtRemark, cboTrainingForm, txtChuyenNganh, txtKetQua, txtTrainingSchool, txtTrainingType, rdReceiveDegree, chkTerminate, cboLevelId, rtxtPointLevel, rtxtContentLevel, txtCertificateCode, txtNote)
+                    EnabledGrid(rgEmployeeTrain, False)
+                Case CommonMessage.STATE_NORMAL
+                    EnabledGridNotPostback(rgEmployeeTrain, True)
+                    EnableControlAll(False, rdTuThang, cboRemark, rdToiThang, rntGraduateYear, rdFrom, rdTo, txtRemark, cboTrainingForm, txtChuyenNganh, txtKetQua, txtTrainingSchool, txtTrainingType, rdReceiveDegree, chkTerminate, cboLevelId, rtxtPointLevel, rtxtContentLevel, txtCertificateCode, txtNote)
+                    EnabledGrid(rgEmployeeTrain, True)
+                Case CommonMessage.STATE_EDIT
+                    EnabledGridNotPostback(rgEmployeeTrain, False)
+                    EnableControlAll(True, rdTuThang, rdToiThang, rntGraduateYear, txtRemark, cboTrainingForm, cboRemark, txtChuyenNganh, txtKetQua, txtTrainingSchool, txtTrainingType, rdReceiveDegree, chkTerminate, cboLevelId, rtxtPointLevel, rtxtContentLevel, txtCertificateCode, txtNote)
+                    EnabledGrid(rgEmployeeTrain, False)
+                    If cboRemark.SelectedValue <> "" Then
+                        If cboRemark.SelectedValue = 7086 Then
+                            EnableControlAll(True, rdFrom, rdTo)
+                            RequiredFieldValidator3.Visible = True
+                            CompareValidator1.Visible = True
+                            RequiredFieldValidator4.Visible = True
+                        End If
+                    End If
+                Case CommonMessage.STATE_DELETE
+                    Dim rep As New RecruitmentStoreProcedure
+
+                    'Dim rep As New ProfileBusinessRepository
+                    Dim lstDeletes As New List(Of Decimal)
+                    For idx = 0 To rgEmployeeTrain.SelectedItems.Count - 1
+                        Dim item As GridDataItem = rgEmployeeTrain.SelectedItems(idx)
+                        lstDeletes.Add(item.GetDataKeyValue("ID"))
+                    Next
+                    Dim re As Decimal = 0
+                    If rep.delete_rc_candidate_trainning(lstDeletes, re) Then
+                        Refresh("UpdateView")
+                        UpdateControlState()
+                    Else
+                        CurrentState = CommonMessage.STATE_NORMAL
+                        ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), NotifyType.Error)
+                        UpdateControlState()
+                    End If
+            End Select
+            Me.Send(CurrentState)
+            ChangeToolbarState()
+        Catch ex As Exception
+            Throw ex
+        End Try
+
     End Sub
 
     Public Overrides Sub BindData()
+        Dim dic As New Dictionary(Of String, Control)
+        dic.Add("FROM_DATE", rdTuThang)
+        dic.Add("TO_DATE", rdToiThang)
+        dic.Add("YEAR_GRA", rntGraduateYear)
+        dic.Add("NAME_SHOOLS", txtTrainingSchool)
+        dic.Add("FORM_TRAIN_ID", cboTrainingForm)
+        dic.Add("SPECIALIZED_TRAIN", txtChuyenNganh)
+        dic.Add("RESULT_TRAIN", txtKetQua)
+        dic.Add("CERTIFICATE", cboRemark)
+        dic.Add("EFFECTIVE_DATE_FROM", rdFrom)
+        dic.Add("EFFECTIVE_DATE_TO", rdTo)
+        dic.Add("UPLOAD_FILE", txtUploadFile)
+        dic.Add("FILE_NAME", txtRemark)
+        dic.Add("TYPE_TRAIN_NAME", txtTrainingType)
+        dic.Add("RECEIVE_DEGREE_DATE", rdReceiveDegree)
+        dic.Add("IS_RENEWED", chkTerminate)
+        dic.Add("POINT_LEVEL", rtxtPointLevel)
+        dic.Add("CONTENT_LEVEL", rtxtContentLevel)
+        'dic.Add("RECEIVE_DEGREE_DATE", rdReceiveDegree)
+        dic.Add("NOTE", txtNote)
+        dic.Add("CERTIFICATE_CODE", txtCertificateCode)
+        dic.Add("LEVEL_ID", cboLevelId)
 
+        Utilities.OnClientRowSelectedChanged(rgEmployeeTrain, dic)
+        Try
+            Dim rep As New RecruitmentStoreProcedure
+            Dim cb_data As New List(Of OtherListDTO)
+            cb_data = rep.GetComboList("GET_LEVEL_TRAIN")
+            If cb_data.Count > 0 Then
+                FillDropDownList(cboLevelId, cb_data, "NAME_VN", "ID", Common.Common.SystemLanguage, True, cboLevelId.SelectedValue)
+            End If
+            cb_data = rep.GetComboList("GET_TRAINING_FORM")
+            If cb_data.Count > 0 Then
+                FillDropDownList(cboTrainingForm, cb_data, "NAME_VN", "ID", Common.Common.SystemLanguage, True, cboTrainingForm.SelectedValue)
+            End If
+            cb_data = rep.GetComboList("GET_CERTIFICATE_TYPE")
+            If cb_data.Count > 0 Then
+                FillDropDownList(cboRemark, cb_data, "NAME_VN", "ID", Common.Common.SystemLanguage, True, cboTrainingForm.SelectedValue)
+            End If
+        Catch ex As Exception
+            DisplayException(Me.ViewName, Me.ID, ex)
+        End Try
     End Sub
 
 #End Region
 
 #Region "Event"
-
     Protected Sub OnToolbar_Command(ByVal sender As Object, ByVal e As RadToolBarEventArgs) Handles Me.OnMainToolbarClick
+        'Dim objTrain As New HU_PRO_TRAIN_OUT_COMPANYDTO
+        Dim gID As Decimal
+
         Try
             Select Case CType(e.Item, RadToolBarButton).CommandName
-                Case TOOLBARITEM_CREATE
+                Case CommonMessage.TOOLBARITEM_CREATE
+                    ClearControlValue(rdToiThang, rdTuThang, cboTrainingForm, txtTrainingType, rntGraduateYear, txtRemark, txtTrainingSchool,
+                                    cboRemark, txtChuyenNganh, txtKetQua, rdFrom, rdTo, rdReceiveDegree, cboLevelId, rtxtPointLevel, rtxtContentLevel, txtCertificateCode, txtNote)
+                    chkTerminate.Checked = False
+                    checkCRUD = 1
+                    'If EmployeeInfo.WORK_STATUS Is Nothing Then 'Or
+                    '    EmployeeInfo.WORK_STATUS IsNot Nothing AndAlso
+                    '     '(EmployeeInfo.WORK_STATUS <> ProfileCommon.OT_WORK_STATUS.TERMINATE_ID Or
+                    '    '(EmployeeInfo.WORK_STATUS = ProfileCommon.OT_WORK_STATUS.TERMINATE_ID And
+                    '    'EmployeeInfo.TER_EFFECT_DATE > Date.Now.Date Then
                     CurrentState = CommonMessage.STATE_NEW
-                    isClear = False
-                Case TOOLBARITEM_EDIT
-                    If SelectedItem Is Nothing Then
+                    rgEmployeeTrain.Rebind()
+                    'Else
+                    '    ShowMessage(Translate("Nhân viên trạng thái nghỉ việc. Không được phép chỉnh sửa thông tin."), Utilities.NotifyType.Warning)
+                    '    CurrentState = CommonMessage.STATE_NORMAL
+                    '    Exit Sub
+                    'End If
+                Case CommonMessage.TOOLBARITEM_EDIT
+                    checkCRUD = 2
+                    If rgEmployeeTrain.SelectedItems.Count = 0 Then
                         ShowMessage(Translate(CommonMessage.MESSAGE_NOT_SELECT_ROW), NotifyType.Warning)
                         Exit Sub
                     End If
-                    If SelectedItem.Count = 0 Then
-                        ShowMessage(Translate(CommonMessage.MESSAGE_NOT_SELECT_ROW), NotifyType.Warning)
-                        Exit Sub
-                    End If
-                    If SelectedItem.Count > 1 Then
+
+                    If rgEmployeeTrain.SelectedItems.Count > 1 Then
                         ShowMessage(Translate(CommonMessage.MESSAGE_NOT_SELECT_MULTI_ROW), NotifyType.Warning)
                         Exit Sub
                     End If
+
+                    'If EmployeeInfo.WORK_STATUS Is Nothing Then ' Or
+                    '    '(EmployeeInfo.WORK_STATUS IsNot Nothing AndAlso
+                    '    '(EmployeeInfo.WORK_STATUS <> ProfileCommon.OT_WORK_STATUS.TERMINATE_ID Or
+                    '    '(EmployeeInfo.WORK_STATUS = ProfileCommon.OT_WORK_STATUS.TERMINATE_ID And
+                    '    'EmployeeInfo.TER_EFFECT_DATE > Date.Now.Date))) Then
                     CurrentState = CommonMessage.STATE_EDIT
-                Case TOOLBARITEM_SAVE
-                    If Page.IsValid Then
-                        Select Case CurrentState
-                            Case STATE_NEW
-                                If Execute() Then
-                                    ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), Utilities.NotifyType.Success)
-                                    CurrentState = CommonMessage.STATE_NORMAL
-                                Else
-                                    ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), Utilities.NotifyType.Error)
-                                End If
-                            Case STATE_EDIT
-                                If Execute() Then
-                                    ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), Utilities.NotifyType.Success)
-                                    CurrentState = CommonMessage.STATE_NORMAL
-                                Else
-                                    ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), Utilities.NotifyType.Error)
-                                End If
-                        End Select
-                        SelectedItem = Nothing
-                        isClear = False
-                        isLoad = False
-                        GetTrainSinger()
-                    End If
-                Case TOOLBARITEM_CANCEL
-                    SelectedItem = Nothing
-                    ' If CurrentState = STATE_NEW Then
-                    ResetControlValue()
+                    'Else
+                    '    ShowMessage(Translate("Nhân viên trạng thái nghỉ việc. Không được phép chỉnh sửa thông tin."), Utilities.NotifyType.Warning)
+                    '    CurrentState = CommonMessage.STATE_NORMAL
+                    '    Exit Sub
                     'End If
-                    CurrentState = CommonMessage.STATE_NORMAL
-                Case TOOLBARITEM_DELETE
-                    If SelectedItem Is Nothing Then
+                Case CommonMessage.TOOLBARITEM_DELETE
+                    checkCRUD = 4
+                    If rgEmployeeTrain.SelectedItems.Count = 0 Then
                         ShowMessage(Translate(CommonMessage.MESSAGE_NOT_SELECT_ROW), NotifyType.Warning)
                         Exit Sub
                     End If
-                    If SelectedItem.Count = 0 Then
-                        ShowMessage(Translate(CommonMessage.MESSAGE_NOT_SELECT_ROW), NotifyType.Warning)
-                        Exit Sub
-                    End If
+                    'If EmployeeInfo.WORK_STATUS Is Nothing Then ' Or
+                    '    'EmployeeInfo.WORK_STATUS IsNot Nothing AndAlso
+                    '    '(EmployeeInfo.WORK_STATUS <> ProfileCommon.OT_WORK_STATUS.TERMINATE_ID Or
+                    '    '(EmployeeInfo.WORK_STATUS = ProfileCommon.OT_WORK_STATUS.TERMINATE_ID And
+                    '    'EmployeeInfo.TER_EFFECT_DATE > Date.Now.Date Then
                     ctrlMessageBox.MessageText = Translate(CommonMessage.MESSAGE_CONFIRM_DELETE)
                     ctrlMessageBox.ActionName = CommonMessage.TOOLBARITEM_DELETE
                     ctrlMessageBox.Show()
-                Case TOOLBARITEM_EXPORT
-                    Dim _error As Integer = 0
-                    Using xls As New ExcelCommon
-                        Dim lstData As List(Of TrainSingerDTO)
-                        lstData = lstTrainSinger.ToList
-                        Dim dtData1 = lstData.ToTable
-                        If dtData1.Rows.Count > 0 Then
-                            rgSingleTranning.ExportExcel(Server, Response, dtData1, "Trainning")
+                    'Else
+                    '    ShowMessage(Translate("Nhân viên trạng thái nghỉ việc. Không được phép chỉnh sửa thông tin."), Utilities.NotifyType.Warning)
+                    '    CurrentState = CommonMessage.STATE_NORMAL
+                    '    Exit Sub
+                    'End If
+                Case CommonMessage.TOOLBARITEM_EXPORT
+                    Utilities.GridExportExcel(rgEmployeeTrain, "EmployeeTrain")
+                Case CommonMessage.TOOLBARITEM_SAVE
+                    checkCRUD = 3
+                    If Page.IsValid Then
+                        Dim objTrain As New RC_CANDIDATE_TRAINNING_DTO
+
+                        'Dim rep As New ProfileBusinessRepository
+                        EnableControlAll(False, rdFrom, rdTo)
+                        'objTrain.EMPLOYEE_ID = EmployeeInfo.ID
+                        objTrain.CANDIDATE_ID = CandidateInfo.ID
+                        objTrain.FROM_DATE = rdTuThang.SelectedDate
+                        objTrain.TO_DATE = rdToiThang.SelectedDate
+                        objTrain.NAME_SHOOLS = txtTrainingSchool.Text.Trim
+                        If cboTrainingForm.SelectedValue = "" Then
+                            objTrain.FORM_TRAIN_ID = Nothing
                         Else
-                            ShowMessage(Translate("Dữ liệu không tồn tại"), NotifyType.Warning)
+                            objTrain.FORM_TRAIN_ID = cboTrainingForm.SelectedValue
                         End If
-                    End Using
-            End Select
-            ctrlRC_CanBasicInfo.SetProperty("CurrentState", Me.CurrentState)
-            ctrlRC_CanBasicInfo.Refresh()
-            UpdateControlState()
-        Catch ex As Exception
-            DisplayException(Me.ViewName, Me.ID, ex)
-        End Try
-    End Sub
 
-    Private Sub rgSingleTranning_ItemDataBound(ByVal sender As Object, ByVal e As Telerik.Web.UI.GridItemEventArgs) Handles rgSingleTranning.ItemDataBound
-        Try
-            If e.Item.ItemType = GridItemType.Item Or e.Item.ItemType = GridItemType.AlternatingItem Then
-                Dim datarow As GridDataItem = DirectCast(e.Item, GridDataItem)
-                If SelectedItem IsNot Nothing Then
-                    If SelectedItem.Contains(Decimal.Parse(datarow("ID").Text)) Then
-                        e.Item.Selected = True
+                        If cboRemark.SelectedValue = "" Then
+                            objTrain.CERTIFICATE = Nothing
+                        Else
+                            objTrain.CERTIFICATE = cboRemark.SelectedValue
+                        End If
+                        objTrain.RECEIVE_DEGREE_DATE = rdReceiveDegree.SelectedDate
+                        objTrain.YEAR_GRA = rntGraduateYear.Value
+                        objTrain.SPECIALIZED_TRAIN = txtChuyenNganh.Text.Trim
+                        objTrain.RESULT_TRAIN = txtKetQua.Text.Trim
+                        objTrain.EFFECTIVE_DATE_FROM = rdFrom.SelectedDate
+                        objTrain.EFFECTIVE_DATE_TO = rdTo.SelectedDate
+                        objTrain.FILE_NAME = txtRemark.Text.Trim
+                        objTrain.IS_RENEWED = chkTerminate.Checked
+
+                        If cboLevelId.SelectedValue = "" Then
+                            objTrain.LEVEL_ID = Nothing
+                        Else
+                            objTrain.LEVEL_ID = cboLevelId.SelectedValue
+                        End If
+
+                        objTrain.POINT_LEVEL = rtxtPointLevel.Text
+                        objTrain.CONTENT_LEVEL = rtxtContentLevel.Text
+                        objTrain.NOTE = txtNote.Text
+                        objTrain.CERTIFICATE_CODE = txtCertificateCode.Text
+                        objTrain.TYPE_TRAIN_NAME = txtTrainingType.Text
+
+                        If Down_File = Nothing Then
+                            objTrain.UPLOAD_FILE = If(txtRemindLink.Text Is Nothing, "", txtRemindLink.Text)
+                        Else
+                            objTrain.UPLOAD_FILE = If(Down_File Is Nothing, "", Down_File.ToString)
+                        End If
+
+                        Select Case CurrentState
+                            Case CommonMessage.STATE_NEW
+                                Dim rep As New RecruitmentStoreProcedure
+                                If rep.insert_cadidate_trainning(objTrain) <> -1 Then
+                                    CurrentState = CommonMessage.STATE_NORMAL
+                                    IDSelect = gID
+                                    Refresh("InsertView")
+                                    checkClickUpload = 1
+                                Else
+                                    ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), Utilities.NotifyType.Error)
+                                End If
+                            Case CommonMessage.STATE_EDIT
+                                objTrain.ID = hidSelectedtrainID.Value
+
+                                Dim rep As New RecruitmentStoreProcedure
+                                If rep.update_cadidate_trainning(objTrain) <> -1 Then
+                                    CurrentState = CommonMessage.STATE_NORMAL
+                                    IDSelect = objTrain.ID
+                                    Refresh("UpdateView")
+                                Else
+                                    ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), Utilities.NotifyType.Error)
+                                End If
+
+                        End Select
+                    Else
+                        ExcuteScript("Resize", "ResizeSplitter()")
+
                     End If
-                End If
 
-            End If
+                Case CommonMessage.TOOLBARITEM_CANCEL
+                    CurrentState = CommonMessage.STATE_NORMAL
+                    ClearControlValue(rdToiThang, rdTuThang, cboTrainingForm, txtTrainingType, rntGraduateYear, txtRemark, txtTrainingSchool,
+                                    cboRemark, txtChuyenNganh, txtKetQua, rdFrom, rdTo, rdReceiveDegree, cboLevelId, rtxtPointLevel, rtxtContentLevel, txtCertificateCode, txtNote)
+                    Refresh("Cancel")
+            End Select
+
+            UpdateControlState()
+
         Catch ex As Exception
             DisplayException(Me.ViewName, Me.ID, ex)
         End Try
-
-    End Sub
-
-    Protected Sub cval_FromDate_ToDate_ServerValidate(ByVal source As Object, ByVal args As System.Web.UI.WebControls.ServerValidateEventArgs) Handles cval_FromDate_ToDate.ServerValidate
-        Try
-            If rdFromdate.SelectedDate IsNot Nothing And rdTodate.SelectedDate IsNot Nothing Then
-                If rdTodate.SelectedDate < rdFromdate.SelectedDate Then
-                    args.IsValid = False
-                Else
-                    args.IsValid = True
-                End If
-            Else
-                args.IsValid = True
-            End If
-        Catch ex As Exception
-            DisplayException(Me.ViewName, Me.ID, ex)
-        End Try
-    End Sub
-
-    Private Sub rgTrainSinger_SelectedIndexChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles rgSingleTranning.SelectedIndexChanged
-        Try
-            If rgSingleTranning.SelectedItems.Count = 0 Then Exit Sub
-            'Lưu vào viewStates để giữ những item được select phục vụ cho phương thức delete.
-            SelectedItem = New List(Of Decimal)
-            For Each dr As Telerik.Web.UI.GridDataItem In rgSingleTranning.SelectedItems
-                SelectedItem.Add(Decimal.Parse(dr("ID").Text))
-            Next
-
-            Dim item As GridDataItem = rgSingleTranning.SelectedItems(0)
-            hidTrainSinger.Value = HttpUtility.HtmlDecode(item("ID").Text)
-            txtSchoolName.Text = HttpUtility.HtmlDecode(item("SCHOOL_NAME").Text)
-            txtBranchName.Text = HttpUtility.HtmlDecode(item("BRANCH_NAME").Text)
-            txtLevel.Text = HttpUtility.HtmlDecode(item("LEVEL").Text)
-            txtCERTIFICATE.Text = HttpUtility.HtmlDecode(item("CERTIFICATE").Text)
-            txtContent.Text = HttpUtility.HtmlDecode(item("CONTENT").Text)
-            txtTraining.Text = HttpUtility.HtmlDecode(item("TRAINNING").Text)
-            If HttpUtility.HtmlDecode(item("FROMDATE").Text).Trim() <> "" Then
-
-                rdFromdate.SelectedDate = item("FROMDATE").Text.ToDate
-            Else
-                rdFromdate.Clear()
-            End If
-            If HttpUtility.HtmlDecode(item("TODATE").Text).Trim() <> "" Then
-
-                rdTodate.SelectedDate = item("TODATE").Text.ToDate
-            Else
-                rdTodate.Clear()
-            End If
-            txtRank.Text = HttpUtility.HtmlDecode(item("RANK").Text)
-            rntxYeah.Text = HttpUtility.HtmlDecode(item("YEAR_GRADUATE").Text)
-            If HttpUtility.HtmlDecode(item("COST").Text).Trim() <> "" Then
-                rntxCost.Value = Decimal.Parse(HttpUtility.HtmlDecode(item("COST").Text).Trim())
-            End If
-            txtRemark.Text = HttpUtility.HtmlDecode(item("REMARK").Text)
-        Catch ex As Exception
-            DisplayException(Me.ViewName, Me.ID, ex)
-        End Try
-
     End Sub
 
     Private Sub ctrlMessageBox_ButtonCommand(ByVal sender As Object, ByVal e As MessageBoxEventArgs) Handles ctrlMessageBox.ButtonCommand
-        Try
-            If e.ActionName = CommonMessage.TOOLBARITEM_DELETE And e.ButtonID = MessageBoxButtonType.ButtonYes Then
-                If DeleteTrainSinger() Then  'Xóa
-                    ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), Utilities.NotifyType.Success)
-                    GetTrainSinger() 'Load lại data cho lưới.
-                    'Hủy selectedItem của grid.
-                    SelectedItem = Nothing
-                    CurrentState = CommonMessage.STATE_NORMAL
-                    isClear = False
-                    UpdateControlState()
-                    ResetControlValue()
-                Else
-                    ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), Utilities.NotifyType.Error)
-                End If
-
+        If e.ButtonID = MessageBoxButtonType.ButtonYes Then
+            If e.ActionName = CommonMessage.TOOLBARITEM_DELETE Then
+                CurrentState = CommonMessage.STATE_DELETE
             End If
+            UpdateControlState()
+        End If
+    End Sub
+
+    Protected Sub RadGrid_NeedDataSource(ByVal source As Object, ByVal e As GridNeedDataSourceEventArgs) Handles rgEmployeeTrain.NeedDataSource
+        Try
+            CreateDataFilter()
+
         Catch ex As Exception
             DisplayException(Me.ViewName, Me.ID, ex)
         End Try
 
     End Sub
+    Private Sub btnDownload_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnDownload.Click
+        Dim startTime As DateTime = DateTime.UtcNow
+        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+        Dim bCheck As Boolean = False
+        Dim configPath As String = ConfigurationManager.AppSettings("PathCetificateFolder")
+        Try
+            If txtRemark.Text <> "" Then
+                Dim strPath As String
+                If txtRemindLink.Text IsNot Nothing Then
+                    If txtRemindLink.Text <> "" Then
+                        strPath = configPath + txtRemindLink.Text
+                        bCheck = True
+                    End If
+                End If
+                If Down_File <> "" Then
+                    strPath = configPath + Down_File
+                    bCheck = True
+                End If
+                If bCheck Then
+                    ZipFiles(strPath)
+                End If
+            End If
+            '_mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
+        Catch ex As Exception
+            '_mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
+        End Try
+    End Sub
+
+    Private Sub ZipFiles(ByVal path As String)
+        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+        Dim startTime As DateTime = DateTime.UtcNow
+        Try
+            Dim crc As New CRC32()
+            Dim fileNameZip As String = txtRemark.Text.Trim
+            Dim file As System.IO.FileInfo = New System.IO.FileInfo(path & fileNameZip)
+            Response.Clear()
+            Response.AddHeader("Content-Disposition", "attachment; filename=" + file.Name)
+            Response.AddHeader("Content-Length", file.Length.ToString())
+            'Response.ContentType = "application/octet-stream"
+            Response.ContentType = "application/vnd.openxmlformats-officedocument.wordprocessingml.document "
+            Response.WriteFile(file.FullName)
+            Response.End()
+
+
+            '_mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
+        Catch ex As Exception
+            HttpContext.Current.Trace.Warn(ex.ToString())
+            '_mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
+        End Try
+    End Sub
+    Private Sub ctrlUpload1_OkClicked(ByVal sender As Object, ByVal e As System.EventArgs) Handles ctrlUpload1.OkClicked
+        Dim startTime As DateTime = DateTime.UtcNow
+        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+        Try
+            txtRemark.Text = ""
+            Dim listExtension = New List(Of String)
+            listExtension.Add(".xls")
+            listExtension.Add(".xlsx")
+            listExtension.Add(".doc")
+            listExtension.Add(".docx")
+            listExtension.Add(".pdf")
+            listExtension.Add(".jpg")
+            listExtension.Add(".png")
+            Dim fileName As String
+            Dim configPath As String = ConfigurationManager.AppSettings("PathCetificateFolder")
+            Dim strPath As String = configPath
+            If ctrlUpload1.UploadedFiles.Count >= 1 Then
+                For i = 0 To ctrlUpload1.UploadedFiles.Count - 1
+                    Dim file As UploadedFile = ctrlUpload1.UploadedFiles(i)
+                    Dim str_Filename = Guid.NewGuid.ToString() + "\"
+                    If listExtension.Any(Function(x) x.ToUpper().Trim() = file.GetExtension.ToUpper().Trim()) Then
+
+                        System.IO.Directory.CreateDirectory(strPath + str_Filename)
+                        strPath = strPath + str_Filename
+                        fileName = System.IO.Path.Combine(strPath, file.FileName)
+                        file.SaveAs(fileName, True)
+                        txtRemark.Text = file.FileName
+                        'End If
+                        Down_File = str_Filename
+                    Else
+                        ShowMessage(Translate("Vui lòng chọn file đúng định dạng. !!! Hệ thống chỉ nhận file xls,xlsx,txt,ctr,doc,docx,xml,png,jpg,bitmap,jpeg,gif"), NotifyType.Warning)
+                        Exit Sub
+                    End If
+                Next
+                loadDatasource(txtRemark.Text)
+            End If
+            '_mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
+        Catch ex As Exception
+            '_mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
+        End Try
+    End Sub
+    Private Sub loadDatasource(ByVal strUpload As String)
+        Dim startTime As DateTime = DateTime.UtcNow
+        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+
+        Try
+
+            If strUpload <> "" Then
+                txtRemark.Text = strUpload
+                FileOldName = txtRemark.Text
+                txtRemark.Text = strUpload
+            Else
+                strUpload = String.Empty
+            End If
+
+            '_mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
+        Catch ex As Exception
+            '_mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
+        End Try
+    End Sub
+
+
 #End Region
 
 #Region "Custom"
-    Private Function Execute() As Boolean
+    Private Sub cvalToiThang_ServerValidate(ByVal source As Object, ByVal args As System.Web.UI.WebControls.ServerValidateEventArgs) Handles cvalToiThang.ServerValidate
         Try
-            Dim objTrainSinger As New TrainSingerDTO
-            Dim rep As New RecruitmentRepository
-            objTrainSinger.Candidate_ID = CandidateInfo.ID
-            objTrainSinger.SCHOOL_NAME = txtSchoolName.Text
-            objTrainSinger.BRANCH_NAME = txtBranchName.Text
-            objTrainSinger.LEVEL = txtLevel.Text
-            objTrainSinger.CERTIFICATE = txtCERTIFICATE.Text
-            objTrainSinger.CONTENT = txtContent.Text
-            objTrainSinger.TRAINNING = txtTraining.Text
-            objTrainSinger.FROMDATE = rdFromdate.SelectedDate
-            objTrainSinger.TODATE = rdTodate.SelectedDate
-            objTrainSinger.RANK = txtRank.Text
-            objTrainSinger.REMARK = txtRemark.Text
-            objTrainSinger.COST = If(rntxCost.Value Is Nothing, 0, rntxCost.Value)
-            objTrainSinger.YEAR_GRADUATE = If(rntxYeah.Value Is Nothing, 0, rntxYeah.Value)
-            Dim gID As Decimal
-            If hidTrainSinger.Value = "" Then
-                rep.InsertCandidateTrainSinger(objTrainSinger, gID)
-            Else
-                objTrainSinger.ID = Decimal.Parse(hidTrainSinger.Value)
-                rep.ModifyCandidateTrainSinger(objTrainSinger, gID)
-            End If
-            IDSelect = gID
-            Return True
-        Catch ex As Exception
-            Throw ex
-        End Try
-    End Function
-
-    Public Overrides Sub UpdateControlState()
-        Try
-            If CurrentState Is Nothing Then
-                CurrentState = STATE_NORMAL
-            End If
-            Select Case CurrentState
-                Case STATE_NEW
-                    EnabledGrid(rgSingleTranning, False)
-                    SetStatusControl(True)
-                    If Not isClear Then
-                        ResetControlValue()
-                        isClear = True
-                    End If
-                Case STATE_EDIT
-                    EnabledGrid(rgSingleTranning, False)
-                    SetStatusControl(True)
-                Case STATE_NORMAL
-                    EnabledGrid(rgSingleTranning, True)
-                    SetStatusControl(False)
-            End Select
-            Me.Send(CurrentState)
-        Catch ex As Exception
-            Throw ex
-        End Try
-
-    End Sub
-
-    Protected Sub SetStatusToolBar()
-        Try
-            Select Case CurrentState
-                Case STATE_NORMAL
-                    Me.MainToolBar.Items(0).Enabled = True 'Add
-                    Me.MainToolBar.Items(2).Enabled = True 'Edit
-                    Me.MainToolBar.Items(8).Enabled = True 'Delete
-
-                    Me.MainToolBar.Items(4).Enabled = False 'Save
-                    Me.MainToolBar.Items(6).Enabled = False 'Cancel
-                Case STATE_NEW, STATE_EDIT
-                    Me.MainToolBar.Items(0).Enabled = False 'Add
-                    Me.MainToolBar.Items(2).Enabled = False 'Edit
-                    Me.MainToolBar.Items(8).Enabled = False 'Delete
-
-                    Me.MainToolBar.Items(4).Enabled = True 'Save
-                    Me.MainToolBar.Items(6).Enabled = True 'Cancel
-
-            End Select
-        Catch ex As Exception
-            Throw ex
-        End Try
-
-    End Sub
-
-    Private Sub SetStatusControl(ByVal sTrangThai As Boolean)
-        txtSchoolName.ReadOnly = Not sTrangThai
-        txtBranchName.ReadOnly = Not sTrangThai
-        txtCERTIFICATE.ReadOnly = Not sTrangThai
-        txtContent.ReadOnly = Not sTrangThai
-        txtLevel.ReadOnly = Not sTrangThai
-        txtTraining.ReadOnly = Not sTrangThai
-        txtRank.ReadOnly = Not sTrangThai
-        rntxYeah.ReadOnly = Not sTrangThai
-        rntxCost.ReadOnly = Not sTrangThai
-        txtRemark.ReadOnly = Not sTrangThai
-        Utilities.EnableRadDatePicker(rdFromdate, sTrangThai)
-        Utilities.EnableRadDatePicker(rdTodate, sTrangThai)
-        SetStatusToolBar()
-    End Sub
-
-    Private Sub ResetControlValue()
-        hidTrainSinger.Value = ""
-        txtSchoolName.Text = ""
-        txtBranchName.Text = ""
-        txtLevel.Text = ""
-        txtCERTIFICATE.Text = ""
-        txtContent.Text = ""
-        txtTraining.Text = ""
-        rdFromdate.SelectedDate = Nothing
-        rdTodate.SelectedDate = Nothing
-        txtRank.Text = ""
-        rntxYeah.Value = 0
-        rntxCost.Value = 0
-        txtRank.Text = ""
-    End Sub
-
-    Private Sub GetTrainSinger()
-        Try
-            If CandidateInfo IsNot Nothing Then
-                Dim rep As New RecruitmentRepository
-                Dim objTrainSinger As New TrainSingerDTO
-                objTrainSinger.Candidate_ID = CandidateInfo.ID
-                lstTrainSinger = rep.GetCandidateTrainSinger(objTrainSinger)
-                rgSingleTranning.DataSource = lstTrainSinger
-                rgSingleTranning.DataBind()
-                If IDSelect <> 0 Then
-                    If rgSingleTranning.Items.Count > 0 Then
-                        SelectedItemDataGridByKey(rgSingleTranning, IDSelect)
-                    End If
+            If rdToiThang.SelectedDate IsNot Nothing Then
+                If rdTuThang.SelectedDate > rdToiThang.SelectedDate Then
+                    args.IsValid = False
                 End If
             End If
         Catch ex As Exception
-            Throw ex
+            DisplayException(Me.ViewName, Me.ID, ex)
         End Try
+    End Sub
+#End Region
 
+    Protected Sub rgData_SelectedIndexChanged(ByVal sender As Object, ByVal e As EventArgs) Handles rgEmployeeTrain.SelectedIndexChanged
+        Dim dataItem = CType(rgEmployeeTrain.SelectedItems(0), GridDataItem)
+        If dataItem IsNot Nothing Then
+            Dim r = EmployeeTrain.AsEnumerable.FirstOrDefault(Function(n) n.Field(Of Decimal)("ID") = Decimal.Parse(dataItem.GetDataKeyValue("ID")))
+            hidSelectedtrainID.Value = r.Field(Of Decimal?)("ID")
+            rdTuThang.SelectedDate = r("FROM_DATE")
+            rdToiThang.SelectedDate = r.Field(Of Date?)("TO_DATE") 'dataItem.GetDataKeyValue("TO_DATE")
+            rntGraduateYear.Value = r.Field(Of Decimal?)("YEAR_GRA")
+            txtTrainingSchool.Text = r.Field(Of String)("NAME_SHOOLS")
+            If r.Field(Of Decimal?)("FORM_TRAIN_ID") IsNot Nothing Then
+                cboTrainingForm.SelectedValue = r.Field(Of Decimal?)("FORM_TRAIN_ID")
+            End If
+            txtChuyenNganh.Text = r.Field(Of String)("SPECIALIZED_TRAIN")
+            txtTrainingType.Text = r.Field(Of String)("TYPE_TRAIN_NAME")
+            txtKetQua.Text = r.Field(Of String)("RESULT_TRAIN")
+            If r.Field(Of Decimal?)("CERTIFICATE_ID") IsNot Nothing Then
+                cboRemark.SelectedValue = r.Field(Of Decimal?)("CERTIFICATE_ID")
+            End If
 
+            cboRemark.Text = r.Field(Of String)("CERTIFICATE")
+            If r.Field(Of Date?)("RECEIVE_DEGREE_DATE") IsNot Nothing Then
+                rdReceiveDegree.SelectedDate = r.Field(Of Date?)("RECEIVE_DEGREE_DATE")
+            Else
+                rdReceiveDegree.SelectedDate = Nothing
+            End If
+
+            rdFrom.SelectedDate = r.Field(Of Date?)("EFFECTIVE_DATE_FROM")
+            rdTo.SelectedDate = r.Field(Of Date?)("EFFECTIVE_DATE_TO")
+            txtRemindLink.Text = r.Field(Of String)("UPLOAD_FILE") 'dataItem.GetDataKeyValue("UPLOAD_FILE")
+            txtRemark.Text = r.Field(Of String)("FILE_NAME") 'dataItem.GetDataKeyValue("FILE_NAME")
+            chkTerminate.Checked = r.Field(Of Decimal?)("IS_RENEWED")
+            If r.Field(Of Decimal?)("LEVEL_ID") IsNot Nothing Then
+                cboLevelId.SelectedValue = r.Field(Of Decimal?)("LEVEL_ID")
+            End If
+
+            rtxtPointLevel.Text = r.Field(Of String)("POINT_LEVEL") 'dataItem.GetDataKeyValue("POINT_LEVEL")
+            rtxtContentLevel.Text = r.Field(Of String)("CONTENT_LEVEL") 'dataItem.GetDataKeyValue("CONTENT_LEVEL")
+            txtNote.Text = r.Field(Of String)("NOTE")
+            txtCertificateCode.Text = r.Field(Of String)("CERTIFICATE_CODE") 'dataItem.GetDataKeyValue("CERTIFICATE_CODE")
+            EnableControlAll(False, rdFrom, rdTo)
+        End If
     End Sub
 
-    Private Function DeleteTrainSinger() As Boolean
+    Protected Sub cboRemark_SelectedIndexChanged(sender As Object, e As Telerik.Web.UI.RadComboBoxSelectedIndexChangedEventArgs) Handles cboRemark.SelectedIndexChanged
+        Dim startTime As DateTime = DateTime.UtcNow
+        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+        rdFrom.SelectedDate = Nothing
+        rdTo.SelectedDate = Nothing
         Try
-            Dim rep As New RecruitmentRepository
-            Return rep.DeleteCandidateTrainSinger(SelectedItem)
-            Return True
-        Catch ex As Exception
-            Throw ex
-        End Try
-    End Function
+            If cboRemark.SelectedItem.Text = "Chứng chỉ" Then
+                EnableControlAll(True, rdFrom, rdTo)
+                RequiredFieldValidator3.Visible = True
+                CompareValidator1.Visible = True
+                RequiredFieldValidator4.Visible = True
+            Else
+                EnableControlAll(False, rdFrom, rdTo)
+                RequiredFieldValidator3.Visible = False
+                CompareValidator1.Visible = False
+                RequiredFieldValidator4.Visible = False
+                rdFrom.ClearValue()
+                rdTo.ClearValue()
+            End If
 
-#End Region
+            '_mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
+        Catch ex As Exception
+            '_mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
+        End Try
+    End Sub
+
+    Private Sub rdFrom_SelectedDateChanged(sender As Object, e As Telerik.Web.UI.Calendar.SelectedDateChangedEventArgs) Handles rdFrom.SelectedDateChanged
+        cboRemark.SelectedValue = 7086
+    End Sub
 End Class
