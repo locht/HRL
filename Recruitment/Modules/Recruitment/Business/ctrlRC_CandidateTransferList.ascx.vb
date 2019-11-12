@@ -514,6 +514,9 @@ Public Class ctrlRC_CandidateTransferList
                  "LETTER_RECIEVE_" & dtData.Rows(0)("NAME") & "HOTEN.doc",
                  dtData,
                  Response)
+        Else
+            ShowMessage(Translate(CommonMessage.MESSAGE_WARNING_EXPORT_EMPTY), NotifyType.Warning)
+            Exit Sub
         End If
     End Sub
 
