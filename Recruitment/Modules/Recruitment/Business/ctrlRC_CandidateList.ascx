@@ -299,8 +299,8 @@
                     args.set_cancel(true);
                 }
                 else {
-                    //OpenEditWindow("Edit");
-                    OpenEditWindow("Normal");
+                    OpenEditWindow("Edit");
+                   // OpenEditWindow("Normal");
                     args.set_cancel(true);
                 }
 
@@ -322,27 +322,27 @@ function btnTransferClick(sender, args) {
     var bCheck = $find('<%# rgCandidateList.ClientID %>').get_masterTableView().get_selectedItems().length;
     if (bCheck == 0) {
         m = '<%# Translate(CommonMessage.MESSAGE_NOT_SELECT_ROW) %>';
-                n = noty({ text: m, dismissQueue: true, type: 'warning' });
-                setTimeout(function () { $.noty.close(n.options.id); }, 5000);
-                return;
-            }
-            var oWindow = radopen('Dialog.aspx?mid=Recruitment&fid=ctrlRC_FindProgram&group=Business&noscroll=1', "rwPopup");
-            var pos = $("html").offset();
-            oWindow.moveTo(pos.left, pos.top);
-            oWindow.setSize($(window).width(), $(window).height());
-        }
+        n = noty({ text: m, dismissQueue: true, type: 'warning' });
+        setTimeout(function () { $.noty.close(n.options.id); }, 5000);
+        return;
+    }
+    var oWindow = radopen('Dialog.aspx?mid=Recruitment&fid=ctrlRC_FindProgram&group=Business&noscroll=1', "rwPopup");
+    var pos = $("html").offset();
+    oWindow.moveTo(pos.left, pos.top);
+    oWindow.setSize($(window).width(), $(window).height());
+}
 
-        function btnPontentialClick(sender, args) {
-            var oWindow = radopen('Dialog.aspx?mid=Recruitment&fid=ctrlRC_FindCandidate&group=Business&noscroll=1', "rwPopup");
-            var pos = $("html").offset();
-            oWindow.moveTo(pos.left, pos.top);
-            oWindow.setSize($(window).width(), $(window).height());
-        }
+function btnPontentialClick(sender, args) {
+    var oWindow = radopen('Dialog.aspx?mid=Recruitment&fid=ctrlRC_FindCandidate&group=Business&noscroll=1', "rwPopup");
+    var pos = $("html").offset();
+    oWindow.moveTo(pos.left, pos.top);
+    oWindow.setSize($(window).width(), $(window).height());
+}
 
-        function btnDuDieuKienClick(sender, args) {
-            var bCheck = $find('<%# rgCandidateList.ClientID %>').get_masterTableView().get_selectedItems().length;
-            if (bCheck == 0) {
-                var m = '<%# Translate(CommonMessage.MESSAGE_NOT_SELECT_ROW) %>';
+function btnDuDieuKienClick(sender, args) {
+    var bCheck = $find('<%# rgCandidateList.ClientID %>').get_masterTableView().get_selectedItems().length;
+    if (bCheck == 0) {
+        var m = '<%# Translate(CommonMessage.MESSAGE_NOT_SELECT_ROW) %>';
                 var n = noty({ text: m, dismissQueue: true, type: 'warning' });
                 setTimeout(function () { $.noty.close(n.options.id); }, 5000);
                 args.set_cancel(true);
