@@ -15373,6 +15373,9 @@ Namespace RecruitmentBusiness
         Private BANK_BRANCHField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private BANK_BRANCH_NameField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private CANDIDATE_IDField As Decimal
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -15608,6 +15611,19 @@ Namespace RecruitmentBusiness
                 If (Object.ReferenceEquals(Me.BANK_BRANCHField, value) <> true) Then
                     Me.BANK_BRANCHField = value
                     Me.RaisePropertyChanged("BANK_BRANCH")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property BANK_BRANCH_Name() As String
+            Get
+                Return Me.BANK_BRANCH_NameField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.BANK_BRANCH_NameField, value) <> true) Then
+                    Me.BANK_BRANCH_NameField = value
+                    Me.RaisePropertyChanged("BANK_BRANCH_Name")
                 End If
             End Set
         End Property
