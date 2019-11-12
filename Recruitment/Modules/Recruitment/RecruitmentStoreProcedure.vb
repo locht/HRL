@@ -539,8 +539,10 @@ Public Class RecruitmentStoreProcedure
     Public Function GET_PROGRAM_SCHCEDULE_LIST(ByVal P_PROGRAM_ID As Int32) As DataTable
         Dim dt As New DataTable
         Dim ds As DataSet = rep.ExecuteToDataSet("PKG_RECRUITMENT.GET_PROGRAM_SCHCEDULE_LIST", New List(Of Object)(New Object() {P_PROGRAM_ID}))
-        If Not ds Is Nothing Or Not ds.Tables(0) Is Nothing Then
-            dt = ds.Tables(0)
+        If ds.Tables.Count > 0 Then
+            If Not ds Is Nothing Or Not ds.Tables(0) Is Nothing Then
+                dt = ds.Tables(0)
+            End If
         End If
         Return dt
     End Function
