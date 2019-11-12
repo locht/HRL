@@ -632,7 +632,7 @@ Partial Public Class ctrlRC_CanDtlProfile
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents txtSoDienThoaiCaNhan As Global.Telerik.Web.UI.RadNumericTextBox
+    Protected WithEvents txtSoDienThoaiCaNhan As Global.Telerik.Web.UI.RadTextBox
 
     '''<summary>
     '''txtSoDienThoaiCoDinh control.
@@ -641,7 +641,7 @@ Partial Public Class ctrlRC_CanDtlProfile
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents txtSoDienThoaiCoDinh As Global.Telerik.Web.UI.RadNumericTextBox
+    Protected WithEvents txtSoDienThoaiCoDinh As Global.Telerik.Web.UI.RadTextBox
 
     '''<summary>
     '''txtMST control.

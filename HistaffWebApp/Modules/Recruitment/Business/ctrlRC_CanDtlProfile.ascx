@@ -56,7 +56,7 @@
                     <asp:Panel runat="server" ID="Panel1" DefaultButton="btnSearchEmp">
                         <table class="table-form">
                             <tr>
-                                <td>
+                                <td class="lb">
                                     <%# Translate("Mã ứng viên")%>
                                 </td>
                                 <td>
@@ -255,6 +255,7 @@
                             </td>
                             <td>
                                 <tlk:RadTextBox ID="rntxtCMND" runat="server">
+                                    <ClientEvents OnKeyPress="keyPress" />
                                 </tlk:RadTextBox>
                                 <asp:RequiredFieldValidator ID="reqID_NO" runat="server" ErrorMessage="<%$ Translate: Bạn phải chọn Số CMND %>"
                                     ToolTip="<%$ Translate: Bạn phải chọn Số CMND %>" ControlToValidate="rntxtCMND">
@@ -525,21 +526,17 @@
                                 <%# Translate("Điện thoại di dộng")%>
                             </td>
                             <td>
-                                <tlk:RadNumericTextBox ID="txtSoDienThoaiCaNhan" runat="server">
-                                    <NumberFormat AllowRounding="false" KeepNotRoundedValue="true" DecimalDigits="1"
-                                        DecimalSeparator="." />
-                                    <ClientEvents OnBlur="displayDecimalFormat" OnLoad="displayDecimalFormat" OnValueChanged="displayDecimalFormat" />
-                                </tlk:RadNumericTextBox>
+                                <tlk:RadTextBox ID="txtSoDienThoaiCaNhan" runat="server">
+                                    <ClientEvents OnKeyPress="keyPress" />
+                                </tlk:RadTextBox>
                             </td>
                             <td class="lb">
                                 <%# Translate("Điện thoại cố định")%>
                             </td>
                             <td>
-                                <tlk:RadNumericTextBox ID="txtSoDienThoaiCoDinh" runat="server">
-                                    <NumberFormat AllowRounding="false" KeepNotRoundedValue="true" DecimalDigits="1"
-                                        DecimalSeparator="." />
-                                    <ClientEvents OnBlur="displayDecimalFormat" OnLoad="displayDecimalFormat" OnValueChanged="displayDecimalFormat" />
-                                </tlk:RadNumericTextBox>
+                                <tlk:RadTextBox ID="txtSoDienThoaiCoDinh" runat="server">
+                                    <ClientEvents OnKeyPress="keyPress" />
+                                </tlk:RadTextBox>
                             </td>
                         </tr>
                         <tr style="display: none">
@@ -1760,6 +1757,12 @@
             context["valueCustom"] = value;
             context["value"] = sender.get_value();
 
+        }
+
+        function keyPress(sender, args) {
+            var text = sender.get_value() + args.get_keyCharacter();
+            if (!text.match('^[0-9]+$'))
+                args.set_cancel(true);
         }
     </script>
 </tlk:RadScriptBlock>
