@@ -6,6 +6,7 @@ Imports Telerik.Web.UI
 Imports Common.Common
 Imports Common.CommonMessage
 Imports System.IO
+Imports Aspose.Cells
 
 Public Class ctrlRC_CandidateList
 
@@ -89,7 +90,7 @@ Public Class ctrlRC_CandidateList
             DisplayException(Me.ViewName, Me.ID, ex)
         End Try
     End Sub
-    
+
     Public Overrides Sub ViewInit(ByVal e As System.EventArgs)
         Try
             AjaxManager = CType(Me.Page, AjaxPage).AjaxManager
@@ -111,7 +112,8 @@ Public Class ctrlRC_CandidateList
             Me.MainToolBar = tbarMainToolBar
             Common.Common.BuildToolbar(Me.MainToolBar, ToolbarItem.Create,
                                        ToolbarItem.Edit,
-                                       ToolbarItem.Delete, ToolbarItem.Export, ToolbarItem.Import)
+                                       ToolbarItem.Delete, ToolbarItem.ExportTemplate, ToolbarItem.Export, ToolbarItem.Import)
+            MainToolBar.Items(3).Text = Translate("Xuất file mẫu")
             CType(Me.Page, AjaxPage).AjaxManager.ClientEvents.OnRequestStart = "onRequestStart"
         Catch ex As Exception
             DisplayException(Me.ViewName, Me.ID, ex)
@@ -210,6 +212,9 @@ Public Class ctrlRC_CandidateList
 
                 Case TOOLBARITEM_IMPORT
                     ctrlUpload1.Show()
+
+                Case TOOLBARITEM_EXPORT_TEMPLATE
+                    GetInformationLists()
             End Select
             'UpdateControlState()
         Catch ex As Exception
@@ -530,8 +535,8 @@ Public Class ctrlRC_CandidateList
                             isValid = rep.ValidateInsertCandidate("", row("ID_NO"), "", Date.Now, "BLACK_LIST")
                             If Not isValid Then
                                 rowError("ID_NO") = "Ứng viên thuộc danh sách đen"
-								IsError = True
-							End If
+                                IsError = True
+                            End If
                         End If
                         If rowError("ID_NO").ToString = "" And
                             rowError("FIRST_NAME_VN").ToString = "" And
@@ -1261,7 +1266,7 @@ Public Class ctrlRC_CandidateList
             End If
 
             Dim MaximumRows As Integer
-            
+
             Dim Sorts As String = rgCandidateList.MasterTableView.SortExpressions.GetSortString()
             Dim lstData As List(Of CandidateDTO)
             If Not isFull Then
@@ -1296,6 +1301,161 @@ Public Class ctrlRC_CandidateList
         End Try
     End Function
 
+    Private Sub GetInformationLists()
+        Dim repStore As New RecruitmentStoreProcedure
+        Dim dsDB As New DataSet
+        Dim dtTonGiao, dtMoiQH, dtQuocGia, dtTinh, dtHuyen, dtXa, dtChuyenNganh, dtChuyenMon, dtHonNhan, dtDanToc As New DataTable
+        Try
+            dsDB = repStore.GET_ALL_LIST()
+            If dsDB.Tables.Count > 0 Then
+
+                'Ton Giao
+                If dsDB.Tables(0) IsNot Nothing AndAlso dsDB.Tables(0).Rows.Count > 0 Then
+                    dtTonGiao = dsDB.Tables(0)
+                End If
+
+                'Moi Quan He
+                If dsDB.Tables(1) IsNot Nothing AndAlso dsDB.Tables(1).Rows.Count > 0 Then
+                    dtMoiQH = dsDB.Tables(1)
+                End If
+
+                'Quoc Gia
+                If dsDB.Tables(2) IsNot Nothing AndAlso dsDB.Tables(2).Rows.Count > 0 Then
+                    dtQuocGia = dsDB.Tables(2)
+                End If
+
+                'Tinh(Thanh pho)
+                If dsDB.Tables(3) IsNot Nothing AndAlso dsDB.Tables(3).Rows.Count > 0 Then
+                    dtTinh = dsDB.Tables(3)
+                End If
+
+                'Huyen(Quan)
+                If dsDB.Tables(4) IsNot Nothing AndAlso dsDB.Tables(4).Rows.Count > 0 Then
+                    dtHuyen = dsDB.Tables(4)
+                End If
+
+                'Xa(Phuong)
+                If dsDB.Tables(5) IsNot Nothing AndAlso dsDB.Tables(5).Rows.Count > 0 Then
+                    dtXa = dsDB.Tables(5)
+                End If
+
+                'Chuyen Nganh
+                If dsDB.Tables(6) IsNot Nothing AndAlso dsDB.Tables(6).Rows.Count > 0 Then
+                    dtChuyenNganh = dsDB.Tables(6)
+                End If
+
+                'Chuyen Mon
+                If dsDB.Tables(7) IsNot Nothing AndAlso dsDB.Tables(7).Rows.Count > 0 Then
+                    dtChuyenMon = dsDB.Tables(7)
+                End If
+
+                'Tinh Trang Hon Nhan
+                If dsDB.Tables(8) IsNot Nothing AndAlso dsDB.Tables(8).Rows.Count > 0 Then
+                    dtHonNhan = dsDB.Tables(8)
+                End If
+
+                'Dan Toc
+                If dsDB.Tables(9) IsNot Nothing AndAlso dsDB.Tables(9).Rows.Count > 0 Then
+                    dtDanToc = dsDB.Tables(9)
+                End If
+
+                ExportTemplate("Recruitment\Import\Import_Ungvien_Template.xls", dtTonGiao, dtMoiQH, dtQuocGia, dtTinh, dtHuyen, dtXa, dtChuyenNganh, dtChuyenMon, dtHonNhan, dtDanToc, "Import_UngVien")
+            End If
+
+        Catch ex As Exception
+            DisplayException(Me.ViewName, Me.ID, ex)
+        End Try
+    End Sub
+
+    Public Function ExportTemplate(ByVal sReportFileName As String,
+                                                    ByVal dt1 As DataTable,
+                                                    ByVal dt2 As DataTable,
+                                                    ByVal dt3 As DataTable,
+                                                    ByVal dt4 As DataTable,
+                                                    ByVal dt5 As DataTable,
+                                                    ByVal dt6 As DataTable,
+                                                    ByVal dt7 As DataTable,
+                                                    ByVal dt8 As DataTable,
+                                                    ByVal dt9 As DataTable,
+                                                    ByVal dt10 As DataTable,
+                                                    ByVal filename As String) As Boolean
+
+        Dim filePath As String
+        Dim templatefolder As String
+
+        Dim designer As WorkbookDesigner
+        Try
+
+            templatefolder = ConfigurationManager.AppSettings("ReportTemplatesFolder")
+            filePath = AppDomain.CurrentDomain.BaseDirectory & "\" & templatefolder & "\" & sReportFileName
+
+            If Not File.Exists(filePath) Then
+                ScriptManager.RegisterStartupScript(Page, Page.GetType(), "javascriptfunction", "goBack()", True)
+                Return False
+            End If
+
+            designer = New WorkbookDesigner
+            designer.Open(filePath)
+
+            If dt1 IsNot Nothing Then
+                dt1.TableName = "TableTonGiao"
+                designer.SetDataSource(dt1)
+            End If
+
+            If dt2 IsNot Nothing Then
+                dt2.TableName = "TableMoiQH"
+                designer.SetDataSource(dt2)
+            End If
+
+            If dt3 IsNot Nothing Then
+                dt3.TableName = "TableQuocGia"
+                designer.SetDataSource(dt3)
+            End If
+
+            If dt4 IsNot Nothing Then
+                dt4.TableName = "TableTinh"
+                designer.SetDataSource(dt4)
+            End If
+
+            If dt5 IsNot Nothing Then
+                dt5.TableName = "TableHuyen"
+                designer.SetDataSource(dt5)
+            End If
+
+            If dt6 IsNot Nothing Then
+                dt6.TableName = "TableXa"
+                designer.SetDataSource(dt6)
+            End If
+
+            If dt7 IsNot Nothing Then
+                dt7.TableName = "TableChuyenNganh"
+                designer.SetDataSource(dt7)
+            End If
+
+            If dt8 IsNot Nothing Then
+                dt8.TableName = "TableChuyenMon"
+                designer.SetDataSource(dt8)
+            End If
+
+            If dt9 IsNot Nothing Then
+                dt9.TableName = "TableHonNhan"
+                designer.SetDataSource(dt9)
+            End If
+
+            If dt10 IsNot Nothing Then
+                dt10.TableName = "TableDanToc"
+                designer.SetDataSource(dt10)
+            End If
+
+            designer.Process()
+            designer.Workbook.CalculateFormula()
+            designer.Workbook.Save(HttpContext.Current.Response, filename & ".xls", ContentDisposition.Attachment, New XlsSaveOptions())
+
+        Catch ex As Exception
+            Return False
+        End Try
+        Return True
+    End Function
 #End Region
 
 End Class

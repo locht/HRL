@@ -313,7 +313,7 @@
                     args.set_cancel(true);
                 }
 
-            } else if (args.get_item().get_commandName() == 'EXPORT' || args.get_item().get_commandName() == 'PRINT' || args.get_item().get_commandName() == 'UNLOCK' || args.get_item().get_commandName() == 'PREVIOUS') {
+            } else if (args.get_item().get_commandName() == 'EXPORT' || args.get_item().get_commandName() == 'PRINT' || args.get_item().get_commandName() == 'UNLOCK' || args.get_item().get_commandName() == 'PREVIOUS' || args.get_item().get_commandName() == 'EXPORT_TEMPLATE') {
                 enableAjax = false;
             }
 }

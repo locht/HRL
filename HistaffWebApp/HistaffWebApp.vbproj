@@ -1438,6 +1438,7 @@
     <Content Include="ReportTemplates\19. Báo cáo - Danh sách HĐLĐ của CBNV TNG %281%29.xls" />
     <Content Include="ReportTemplates\Recruitment\Import\Template_yeucautuyendung.xls" />
     <Content Include="ReportTemplates\Recruitment\Import\Template_yeucautuyendung_Error.xls" />
+    <None Include="ReportTemplates\Recruitment\Import\Import_Ungvien_Template.xls" />
     <None Include="Styles\ImgConfig.jquery.css" />
     <Content Include="Styles\font-awesome.css" />
     <Content Include="Styles\img\icon-tree.png" />

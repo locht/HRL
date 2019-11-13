@@ -832,4 +832,16 @@ Public Class RecruitmentStoreProcedure
         Return True
     End Function
 #End Region
+
+#Region "Information Lists"
+    Public Function GET_ALL_LIST() As DataSet
+        Try
+            Dim ds As New DataSet
+            ds = rep.ExecuteToDataSet("PKG_PA_BUSINESS.GET_ALL_LIST", New List(Of Object)(New Object() {}))
+            Return ds
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+#End Region
 End Class
