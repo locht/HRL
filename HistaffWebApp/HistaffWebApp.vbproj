@@ -1030,8 +1030,12 @@
     <Content Include="ReportTemplates\Recruitment\Import\Candidate_Error.xls">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="ReportTemplates\Recruitment\Import\Template_PLAN_RES.xls" />
-    <Content Include="ReportTemplates\Recruitment\Import\Template_PLAN_RES_error.xls" />
+    <Content Include="ReportTemplates\Recruitment\Import\Template_PLAN_RES.xls">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ReportTemplates\Recruitment\Import\Template_PLAN_RES_error.xls">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="ReportTemplates\Recruitment\Report\Bao cao tinh hinh tuyen dung.xls">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -1432,7 +1436,9 @@
     <Content Include="ReportTemplates\Insurance\Business\InsMaternityMng.xlsx" />
     <Content Include="ReportTemplates\Attendance\Import\Template_GiaiTrinhNgayCong.xlsx" />
     <Content Include="ReportTemplates\Attendance\Import\Template_GiaiTrinhNgayCong_error.xlsx" />
-    <Content Include="ReportTemplates\Recruitment\Import\Dinhbien_template.xls" />
+    <Content Include="ReportTemplates\Recruitment\Import\Dinhbien_template.xls">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="ReportTemplates\Profile\WELFARE\import_phucloi_TNG.xls" />
     <Content Include="ReportTemplates\Payroll\Business\TEMP_IMPORT_HOSOLUONG.xls" />
     <Content Include="ReportTemplates\Profile\ctrlDashboardHome.xls" />
@@ -1440,8 +1446,12 @@
     <Content Include="ReportTemplates\Attendance\Import\AT_IMPORT_REGISTER_CO.xlsx" />
     <Content Include="ReportTemplates\Attendance\Import\AT_IMPORT_REGISTER_CO_Error.xlsx" />
     <Content Include="ReportTemplates\19. Báo cáo - Danh sách HĐLĐ của CBNV TNG %281%29.xls" />
-    <Content Include="ReportTemplates\Recruitment\Import\Template_yeucautuyendung.xls" />
-    <Content Include="ReportTemplates\Recruitment\Import\Template_yeucautuyendung_Error.xls" />
+    <Content Include="ReportTemplates\Recruitment\Import\Template_yeucautuyendung.xls">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ReportTemplates\Recruitment\Import\Template_yeucautuyendung_Error.xls">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="JsonErrorCode\JsonLangs.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -1454,7 +1464,9 @@
     <None Include="ReportTemplates\Recruitment\Import\Candidate_Error1.xls">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="ReportTemplates\Recruitment\Import\Import_Ungvien_Template.xls" />
+    <None Include="ReportTemplates\Recruitment\Import\Import_Ungvien_Template.xls">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="Styles\ImgConfig.jquery.css" />
     <Content Include="Styles\font-awesome.css" />
     <Content Include="Styles\img\icon-tree.png" />
