@@ -8,8 +8,137 @@ Imports Framework.Data.System.Linq.Dynamic
 Imports System.Data.Entity
 Imports System.Text.RegularExpressions
 Imports System.IO
+Imports System.Reflection
 
 Partial Class RecruitmentRepository
+    'Create ChienNV 
+    'Create date: 13-NOV-2019
+    'Import hồ sơ ứng viên
+    Public Function ImportRC(ByVal Data As DataTable, ByVal log As UserLog) As Boolean
+        Dim oPropsRC_CANDIDATE_EXPECT() As PropertyInfo = Nothing
+        Dim oPropsRC_CANDIDATE() As PropertyInfo = Nothing
+        Dim oPropsRC_CANDIDATE_CV() As PropertyInfo = Nothing
+        Dim oPropsRC_CANDIDATE_HEALTH() As PropertyInfo = Nothing
+        Dim oPropsRC_CANDIDATE_EDUCATION() As PropertyInfo = Nothing
+        Dim oPropsRC_CANDIDATE_TRAINSINGER() As PropertyInfo = Nothing
+        Dim oPropsRC_CANDIDATE_BEFOREWT() As PropertyInfo = Nothing
+        'Dim oProps() As PropertyInfo = Nothing
+        Dim objRC_CANDIDATE_EXPECT As New RC_CANDIDATE_EXPECT()
+        Dim objRC_CANDIDATE As New RC_CANDIDATE
+        Dim objRC_CANDIDATE_CV As New RC_CANDIDATE_CV
+        Dim objRC_CANDIDATE_HEALTH As New RC_CANDIDATE_HEALTH
+        Dim objRC_CANDIDATE_EDUCATION As New RC_CANDIDATE_EDUCATION
+        Try
+            'ID THAM CHIEU 
+            Dim CANDIDATE_ID As Decimal = Utilities.GetNextSequence(Context, Context.RC_CANDIDATE.EntitySet.Name)
+            objRC_CANDIDATE_EXPECT.CANDIDATE_ID = CANDIDATE_ID
+            objRC_CANDIDATE.ID = CANDIDATE_ID
+            objRC_CANDIDATE_CV.CANDIDATE_ID = CANDIDATE_ID
+            objRC_CANDIDATE_HEALTH.CANDIDATE_ID = CANDIDATE_ID
+            objRC_CANDIDATE_EDUCATION.CANDIDATE_ID = CANDIDATE_ID
+            For Each Col As DataColumn In Data.Columns
+                Try
+                    Select Case Col.ColumnName.Split("#")(0).ToUpper
+                        Case "RC_CANDIDATE_EXPECT"
+                            oPropsRC_CANDIDATE_EXPECT = objRC_CANDIDATE_EXPECT.GetType().GetProperties()
+                            Dim pi As PropertyInfo = oPropsRC_CANDIDATE_EXPECT(Col.ColumnName.Split("#")(1))
+                            pi.SetValue(objRC_CANDIDATE_EXPECT, Data(0)(Col.ColumnName.Split("#")(1)), Nothing)
+                        Case "RC_CANDIDATE"
+                            oPropsRC_CANDIDATE = objRC_CANDIDATE.GetType().GetProperties()
+                            Dim pi As PropertyInfo = oPropsRC_CANDIDATE(Col.ColumnName.Split("#")(1))
+                            pi.SetValue(objRC_CANDIDATE, Data(0)(Col.ColumnName.Split("#")(1)), Nothing)
+                        Case "RC_CANDIDATE_CV"
+                            oPropsRC_CANDIDATE_CV = objRC_CANDIDATE_CV.GetType().GetProperties()
+                            Dim pi As PropertyInfo = oPropsRC_CANDIDATE_CV(Col.ColumnName.Split("#")(1))
+                            pi.SetValue(objRC_CANDIDATE_CV, Data(0)(Col.ColumnName.Split("#")(1)), Nothing)
+                        Case "RC_CANDIDATE_HEALTH"
+                            oPropsRC_CANDIDATE_HEALTH = objRC_CANDIDATE_HEALTH.GetType().GetProperties()
+                            Dim pi As PropertyInfo = oPropsRC_CANDIDATE_HEALTH(Col.ColumnName.Split("#")(1))
+                            pi.SetValue(objRC_CANDIDATE_HEALTH, Data(0)(Col.ColumnName.Split("#")(1)), Nothing)
+                        Case "RC_CANDIDATE_EDUCATION"
+                            oPropsRC_CANDIDATE_EDUCATION = objRC_CANDIDATE_EDUCATION.GetType().GetProperties()
+                            Dim pi As PropertyInfo = oPropsRC_CANDIDATE_EDUCATION(Col.ColumnName.Split("#")(1))
+                            pi.SetValue(objRC_CANDIDATE_EDUCATION, Data(0)(Col.ColumnName.Split("#")(1)), Nothing)
+                        Case "RC_CANDIDATE_TRAINSINGER"
+                            Continue For
+                            'XU LY RIENG TH NAY
+                            'oPropsRC_CANDIDATE_TRAINSINGER = objRC_CANDIDATE_TRAINSINGER.GetType().GetProperties()
+                            'Dim pi As PropertyInfo = oPropsRC_CANDIDATE_TRAINSINGER(Col.ColumnName.Split("#")(1))
+                            'pi.SetValue(objRC_CANDIDATE_TRAINSINGER, Data(0)(Col.ColumnName.Split("#")(1)), Nothing)
+                        Case "RC_CANDIDATE_BEFOREWT"
+                            Continue For
+                            'XU LY RIENG TH NAY 
+                            'oPropsRC_CANDIDATE_BEFOREWT = objRC_CANDIDATE_BEFOREWT.GetType().GetProperties()
+                            'Dim pi As PropertyInfo = oPropsRC_CANDIDATE_BEFOREWT(Col.ColumnName.Split("#")(1))
+                            'pi.SetValue(objRC_CANDIDATE_BEFOREWT, Data(0)(Col.ColumnName.Split("#")(1)), Nothing)
+                    End Select
+                Catch ex As Exception
+                    Utility.WriteExceptionLog(ex, Me.ToString() & ".ImportRC: " + Col.ColumnName)
+                End Try
+            Next
+            Context.RC_CANDIDATE_EDUCATION.AddObject(objRC_CANDIDATE_EDUCATION)
+            Context.RC_CANDIDATE_HEALTH.AddObject(objRC_CANDIDATE_HEALTH)
+            Context.RC_CANDIDATE_CV.AddObject(objRC_CANDIDATE_CV)
+            Context.RC_CANDIDATE.AddObject(objRC_CANDIDATE)
+            Context.RC_CANDIDATE_EXPECT.AddObject(objRC_CANDIDATE_EXPECT)
+            'Dim objRC_CANDIDATE_TRAINSINGER As New RC_CANDIDATE_TRAINSINGER
+            For I As Integer = 1 To 5
+                Try
+                    Dim objRC_CANDIDATE_TRAINSINGER As New RC_CANDIDATE_TRAINSINGER
+                    objRC_CANDIDATE_TRAINSINGER.CANDIDATE_ID = CANDIDATE_ID
+                    objRC_CANDIDATE_TRAINSINGER.ID = Utilities.GetNextSequence(Context, Context.RC_CANDIDATE_TRAINSINGER.EntitySet.Name)
+                    If IsDate(Data(0)(" rc_candidate_trainsinger#FROMDATE" + I.ToString())) Then
+                        objRC_CANDIDATE_TRAINSINGER.FROMDATE = Data(0)(" rc_candidate_trainsinger#FROMDATE" + I.ToString())
+                    End If
+                    If IsDate(Data(0)(" rc_candidate_trainsinger#TODATE" + I.ToString())) Then
+                        objRC_CANDIDATE_TRAINSINGER.TODATE = Data(0)(" rc_candidate_trainsinger#TODATE" + I.ToString())
+                    End If
+                    objRC_CANDIDATE_TRAINSINGER.SCHOOL_NAME = Data(0)(" rc_candidate_trainsinger#SCHOOL_NAME" + I.ToString())
+                    objRC_CANDIDATE_TRAINSINGER.BRANCH_NAME = Data(0)(" rc_candidate_trainsinger#BRANCH_NAME" + I.ToString())
+                    objRC_CANDIDATE_TRAINSINGER.CERTIFICATE = Data(0)(" rc_candidate_trainsinger#CERTIFICATE" + I.ToString())
+                    objRC_CANDIDATE_TRAINSINGER.RANK = Data(0)(" rc_candidate_trainsinger#RANK" + I.ToString())
+                    Context.RC_CANDIDATE_TRAINSINGER.AddObject(objRC_CANDIDATE_TRAINSINGER)
+                Catch ex As Exception
+                    Continue For
+                End Try
+            Next
+            ' Dim objRC_CANDIDATE_BEFOREWT As New RC_CANDIDATE_BEFOREWT
+            For I As Integer = 1 To 3
+                Try
+                    Dim objRC_CANDIDATE_BEFOREWT As New RC_CANDIDATE_BEFOREWT
+                    objRC_CANDIDATE_BEFOREWT.CANDIDATE_ID = CANDIDATE_ID
+                    objRC_CANDIDATE_BEFOREWT.ID = Utilities.GetNextSequence(Context, Context.RC_CANDIDATE_BEFOREWT.EntitySet.Name)
+                    objRC_CANDIDATE_BEFOREWT.ORG_NAME = Data(0)(" rc_candidate_trainsinger#ORG_NAME" + I.ToString())
+                    objRC_CANDIDATE_BEFOREWT.TITLE_NAME = Data(0)(" rc_candidate_trainsinger#TITLE_NAME" + I.ToString())
+                    If IsDate(Data(0)(" rc_candidate_trainsinger#FROMDATE" + I.ToString())) Then
+                        objRC_CANDIDATE_BEFOREWT.FROMDATE = Data(0)(" rc_candidate_trainsinger#FROMDATE" + I.ToString())
+                    End If
+                    If IsDate(Data(0)(" rc_candidate_trainsinger#TODATE" + I.ToString())) Then
+                        objRC_CANDIDATE_BEFOREWT.TODATE = Data(0)(" rc_candidate_trainsinger#TODATE" + I.ToString())
+                    End If
+                    objRC_CANDIDATE_BEFOREWT.DIRECT_MANAGER = Data(0)(" rc_candidate_trainsinger#DIRECT_MANAGER" + I.ToString())
+                    objRC_CANDIDATE_BEFOREWT.WORK = Data(0)(" rc_candidate_trainsinger#WORK" + I.ToString())
+                    If IsNumeric(Data(0)(" rc_candidate_trainsinger#SALARY" + I.ToString())) Then
+                        objRC_CANDIDATE_BEFOREWT.SALARY = Data(0)(" rc_candidate_trainsinger#SALARY" + I.ToString())
+                    End If
+                    objRC_CANDIDATE_BEFOREWT.REASON_LEAVE = Data(0)(" rc_candidate_trainsinger#REASON_LEAVE" + I.ToString())
+                    Context.RC_CANDIDATE_BEFOREWT.AddObject(objRC_CANDIDATE_BEFOREWT)
+                Catch ex As Exception
+                    Continue For
+                End Try
+            Next
+            Context.SaveChanges(log)
+            Return True
+        Catch ex As Exception
+            Return False
+        Finally
+            objRC_CANDIDATE_EXPECT = Nothing
+            objRC_CANDIDATE = Nothing
+            objRC_CANDIDATE_CV = Nothing
+            objRC_CANDIDATE_HEALTH = Nothing
+            objRC_CANDIDATE_EDUCATION = Nothing
+        End Try
+    End Function
 
 #Region "PlanReg"
 
@@ -1704,12 +1833,12 @@ Partial Class RecruitmentRepository
                                        ByVal _filter As CandidateDTO,
                                        Optional ByVal Sorts As String = "Candidate_CODE desc") As List(Of CandidateDTO)
         Try
-             Dim query = From p In Context.RC_CANDIDATE
-                       From ot In Context.HU_TITLE.Where(Function(f) p.TITLE_ID = f.ID).DefaultIfEmpty
-                       From org In Context.HU_ORGANIZATION.Where(Function(f) p.ORG_ID = f.ID).DefaultIfEmpty
-                       From cv In Context.RC_CANDIDATE_CV.Where(Function(f) p.ID = f.CANDIDATE_ID).DefaultIfEmpty
-                       From status In Context.OT_OTHER_LIST.Where(Function(f) f.CODE = p.STATUS_ID).DefaultIfEmpty
-                       Where p.EMPLOYEE_CODE Is Nothing And p.STATUS_ID = "PONTENTIAL"
+            Dim query = From p In Context.RC_CANDIDATE
+                      From ot In Context.HU_TITLE.Where(Function(f) p.TITLE_ID = f.ID).DefaultIfEmpty
+                      From org In Context.HU_ORGANIZATION.Where(Function(f) p.ORG_ID = f.ID).DefaultIfEmpty
+                      From cv In Context.RC_CANDIDATE_CV.Where(Function(f) p.ID = f.CANDIDATE_ID).DefaultIfEmpty
+                      From status In Context.OT_OTHER_LIST.Where(Function(f) f.CODE = p.STATUS_ID).DefaultIfEmpty
+                      Where p.EMPLOYEE_CODE Is Nothing And p.STATUS_ID = "PONTENTIAL"
 
             If _filter.RC_PROGRAM_ID IsNot Nothing Then
                 query = query.Where(Function(f) f.p.RC_PROGRAM_ID = _filter.RC_PROGRAM_ID)

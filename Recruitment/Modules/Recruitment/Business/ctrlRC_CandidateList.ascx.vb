@@ -7,6 +7,8 @@ Imports Common.Common
 Imports Common.CommonMessage
 Imports System.IO
 Imports Aspose.Cells
+Imports Newtonsoft.Json
+Imports Newtonsoft.Json.Linq
 
 Public Class ctrlRC_CandidateList
 
@@ -222,7 +224,7 @@ Public Class ctrlRC_CandidateList
         End Try
     End Sub
 
-    Private Sub btnBlacklist_Click(sender As Object, e As System.EventArgs) Handles btnBlacklist.Click
+    Private Sub btnBlacklist_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnBlacklist.Click
 
         ctrlMessageBox.MessageText = Translate("Bạn có chắc chắn muốn chuyển trạng thái Blacklist cho các ứng viên?")
         ctrlMessageBox.ActionName = "BLACKLIST"
@@ -230,7 +232,7 @@ Public Class ctrlRC_CandidateList
         ctrlMessageBox.Show()
     End Sub
 
-    Private Sub btnDuDieuKien_Click(sender As Object, e As System.EventArgs) Handles btnDuDieuKien.Click
+    Private Sub btnDuDieuKien_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnDuDieuKien.Click
 
         For Each dr As Telerik.Web.UI.GridDataItem In rgCandidateList.SelectedItems
             Dim status_id As String = dr.GetDataKeyValue("STATUS_ID")
@@ -256,7 +258,7 @@ Public Class ctrlRC_CandidateList
         ctrlMessageBox.Show()
     End Sub
 
-    Private Sub btnKhongDuDieuKien_Click(sender As Object, e As System.EventArgs) Handles btnKhongDuDieuKien.Click
+    Private Sub btnKhongDuDieuKien_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnKhongDuDieuKien.Click
         For Each dr As Telerik.Web.UI.GridDataItem In rgCandidateList.SelectedItems
             Dim status_id As String = dr.GetDataKeyValue("STATUS_ID")
             Select Case status_id
@@ -413,8 +415,7 @@ Public Class ctrlRC_CandidateList
         End Try
     End Sub
 
-
-    Private Sub ctrlUpload1_OkClicked(ByVal sender As Object, ByVal e As System.EventArgs) Handles ctrlUpload1.OkClicked
+Private Sub ctrlUpload1_OkClicked(ByVal sender As Object, ByVal e As System.EventArgs) Handles ctrlUpload1.OkClicked
         Dim fileName As String
         Dim dsDataPrepare As New DataSet
         Dim workbook As Aspose.Cells.Workbook
@@ -431,11 +432,11 @@ Public Class ctrlRC_CandidateList
                 '//Instantiate LoadOptions specified by the LoadFormat.
                 workbook = New Aspose.Cells.Workbook(fileName)
                 worksheet = workbook.Worksheets(0)
-                If workbook.Worksheets.GetSheetByCodeName("ImportCandidate") Is Nothing Then
+                If workbook.Worksheets.GetSheetByCodeName("DATA") Is Nothing Then
                     ShowMessage("File mẫu không đúng định dạng", NotifyType.Warning)
                     Exit Sub
                 End If
-                dsDataPrepare.Tables.Add(worksheet.Cells.ExportDataTableAsString(3, 0, worksheet.Cells.MaxRow + 1, worksheet.Cells.MaxColumn + 1, True))
+                dsDataPrepare.Tables.Add(worksheet.Cells.ExportDataTableAsString(0, 0, worksheet.Cells.MaxRow + 1, worksheet.Cells.MaxColumn + 1, False))
 
                 If System.IO.File.Exists(fileName) Then System.IO.File.Delete(fileName)
             Next
@@ -452,13 +453,31 @@ Public Class ctrlRC_CandidateList
                     dtData.ImportRow(row)
                 Next
             Next
-
+            CreateStructTable(dtData)
             ImportData(dtData)
         Catch ex As Exception
             ShowMessage(Translate("Import bị lỗi. Kiểm tra lại biểu mẫu Import"), NotifyType.Error)
         End Try
     End Sub
 
+    Public Sub CreateStructTable(ByRef dt As DataTable)
+        Dim rowTableName As DataRow = dt.Rows(0)
+        Dim rowColName As DataRow = dt.Rows(1)
+        For Each col As DataColumn In dt.Columns
+            Try
+                col.ColumnName = rowTableName(col.ColumnName).ToString + "#" + rowColName(col.ColumnName)
+            Catch ex As Exception
+                ShowMessage(Translate(ex.ToString() + "--" + col.ColumnName + rowTableName(col.ColumnName).ToString + "#" + rowColName(col.ColumnName)), NotifyType.Error)
+            End Try
+        Next
+        Dim i = 0
+        While True
+            If i > 2 Then Exit While
+            dt.Rows.Remove(dt.Rows(0))
+            i += 1
+        End While
+
+    End Sub
 
     Public Sub ImportData(ByVal dtData As DataTable)
         Try
@@ -469,441 +488,38 @@ Public Class ctrlRC_CandidateList
             Dim dtError As DataTable = dtData.Clone
             dtError.TableName = "DATA"
             dtError.Columns.Add("STT", GetType(String))
-            Dim iRow As Integer = 5
+            Dim rowError As DataRow = dtError.NewRow
             Dim IsError As Boolean = False
-            For Each row In dtData.Rows
-                Dim sError As String = ""
-                Dim rowError = dtError.NewRow
-                Dim isRow = ImportValidate.TrimRow(row)
-                Dim isScpExist As Boolean = False
-                If Not isRow Then
-                    iRow += 1
+            Dim iRow As Integer = 0
+            For Each Col As DataColumn In dtData.Columns
+                Dim sError As String = String.Empty
+                Dim sValidateCode As String = String.Empty
+                Dim strMess As String = String.Empty
+                Try
+                    Dim sColName As String = Col.ColumnName.Split("#")(1)
+                    sError = GetErrorCodeByKey(sColName)
+                    ImportValidate.EmptyValue(Col.ColumnName, dtData.Rows(0), rowError, IsError, sError)
+                    sValidateCode = GetValidateCodeByKey(sColName)
+                    Select Case sValidateCode.ToUpper
+                        Case "NUMBER"
+                            strMess = GetErrorCodeByKey(sColName) + " sai định dạng số"
+                            ImportValidate.IsValidNumber(Col.ColumnName, dtData.Rows(0), rowError, IsError, strMess)
+                        Case "DATE"
+                            ImportValidate.ValidateDate(rowError(Col.ColumnName), strMess)
+                            If String.IsNullOrEmpty(strMess) Then
+                                rowError(Col.ColumnName) = strMess
+                                IsError = True
+                            End If
+                    End Select
+                Catch ex As Exception
                     Continue For
-                End If
-                sError = "Họ tên chưa nhập"
-                ImportValidate.EmptyValue("FIRST_NAME_VN", row, rowError, IsError, sError)
-                sError = "Tên chưa nhập"
-                ImportValidate.EmptyValue("LAST_NAME_VN", row, rowError, IsError, sError)
-                sError = "Giới tính nhập sai định dạng"
-                ImportValidate.IsValidNumber("GENDER", row, rowError, IsError, sError)
-
-                If row("MARITAL_STATUS_NAME").ToString <> "" Then
-                    sError = "Mã tình trạng hôn nhân sai định dạng"
-                    ImportValidate.IsValidNumber("MARITAL_STATUS", row, rowError, IsError, sError)
-                Else
-                    row("MARITAL_STATUS") = DBNull.Value
-                End If
-
-                If row("NATIVE_NAME").ToString <> "" Then
-                    sError = "Mã dân tộc sai định dạng"
-                    ImportValidate.IsValidNumber("NATIVE", row, rowError, IsError, sError)
-                Else
-                    row("NATIVE") = DBNull.Value
-                End If
-
-                sError = ""
-                ImportValidate.IsValidDate("BIRTH_DATE", row, rowError, IsError, sError)
-
-                sError = "Mã quốc gia nhập sai định dạng"
-                ImportValidate.IsValidNumber("BIRTH_NATION_ID", row, rowError, IsError, sError)
-
-                sError = "Mã nơi sinh nhập sai định dạng"
-                ImportValidate.IsValidNumber("BIRTH_PROVINCE", row, rowError, IsError, sError)
-
-                sError = "Mã Tỉnh/Thành phố nhập sai định dạng"
-                ImportValidate.IsValidNumber("NAV_PROVINCE", row, rowError, IsError, sError)
-
-                sError = "Mã Quốc tịch nhập sai định dạng"
-                ImportValidate.IsValidNumber("NATIONALITY_ID", row, rowError, IsError, sError)
-
-                If row("RELIGION_NAME").ToString <> "" Then
-                    sError = "Mã Tôn giáo sai định dạng"
-                    ImportValidate.IsValidNumber("RELIGION", row, rowError, IsError, sError)
-                Else
-                    row("RELIGION") = DBNull.Value
-                End If
-
-                sError = "Số CMND nhập sai định dạng"
-                ImportValidate.IsValidNumber("ID_NO", row, rowError, IsError, sError)
-                If rowError("ID_NO").ToString = "" Then
-                    Using rep As New RecruitmentRepository
-                        Dim isValid = rep.ValidateInsertCandidate("", row("ID_NO"), "", Date.Now, "NO_ID")
-                        If Not isValid Then
-                            rowError("ID_NO") = "CMND này đã tồn tại"
-                        End If
-                        If rowError("ID_NO").ToString = "" Then
-                            isValid = rep.ValidateInsertCandidate("", row("ID_NO"), "", Date.Now, "BLACK_LIST")
-                            If Not isValid Then
-                                rowError("ID_NO") = "Ứng viên thuộc danh sách đen"
-                                IsError = True
-                            End If
-                        End If
-                        If rowError("ID_NO").ToString = "" And
-                            rowError("FIRST_NAME_VN").ToString = "" And
-                            rowError("LAST_NAME_VN").ToString = "" And
-                            rowError("BIRTH_DATE").ToString = "" Then
-                            isValid = rep.ValidateInsertCandidate("",
-                                                               row("ID_NO"),
-                                                               row("FIRST_NAME_VN").ToString & " " & row("LAST_NAME_VN").ToString,
-                                                               Date.Parse(row("BIRTH_DATE").ToString),
-                                                               "DATE_FULLNAME")
-                            If Not isValid Then
-                                rowError("ID_NO") = "Ứng viên thuộc danh sách đen"
-                                IsError = True
-                            End If
-                        End If
-                    End Using
-                End If
-                sError = ""
-                ImportValidate.IsValidDate("ID_DATE", row, rowError, IsError, sError)
-
-                If row("ID_DATE_EXPIRATION").ToString <> "" Then
-                    sError = ""
-                    ImportValidate.IsValidDate("ID_DATE_EXPIRATION", row, rowError, IsError, sError)
-                End If
-
-                If rowError("ID_DATE").ToString = "" And _
-                    rowError("ID_DATE_EXPIRATION").ToString = "" And _
-                    row("ID_DATE").ToString <> "" And _
-                    row("ID_DATE_EXPIRATION").ToString <> "" Then
-                    Dim startdate = Date.Parse(row("ID_DATE"))
-                    Dim enddate = Date.Parse(row("ID_DATE_EXPIRATION"))
-                    If startdate > enddate Then
-                        rowError("ID_DATE_EXPIRATION") = "Ngày hết hạn CMND phải lớn hơn Ngày cấp"
-                        IsError = True
-                    End If
-                End If
-
-
-                sError = "Mã Nơi cấp nhập sai định dạng"
-                ImportValidate.IsValidNumber("ID_PLACE", row, rowError, IsError, sError)
-
-                ImportValidate.CheckNumber("IS_RESIDENT", row, 0)
-
-                sError = "Mã Nguyên quán nhập sai định dạng"
-                ImportValidate.IsValidNumber("NAV_NATION_ID", row, rowError, IsError, sError)
-
-                sError = "Địa chỉ thường trú chưa nhập"
-                ImportValidate.EmptyValue("PER_ADDRESS", row, rowError, IsError, sError)
-
-                sError = "Mã Quốc gia nhập sai định dạng"
-                ImportValidate.IsValidNumber("PER_NATION_ID", row, rowError, IsError, sError)
-
-                sError = "Mã Tỉnh/Thành phố nhập sai định dạng"
-                ImportValidate.IsValidNumber("PER_PROVINCE", row, rowError, IsError, sError)
-
-                sError = "Mã Quận/huyện nhập sai định dạng"
-                ImportValidate.IsValidNumber("PER_PROVINCE", row, rowError, IsError, sError)
-
-                sError = "Địa chỉ tạm trú chưa nhập"
-                ImportValidate.EmptyValue("CONTACT_ADDRESS", row, rowError, IsError, sError)
-
-                sError = "Mã Quốc gia nhập sai định dạng"
-                ImportValidate.IsValidNumber("CONTACT_NATION_ID", row, rowError, IsError, sError)
-
-                sError = "Mã Tỉnh/Thành phố nhập sai định dạng"
-                ImportValidate.IsValidNumber("CONTACT_PROVINCE", row, rowError, IsError, sError)
-
-                sError = "Mã Quận/huyện nhập sai định dạng"
-                ImportValidate.IsValidNumber("CONTACT_DISTRICT_ID", row, rowError, IsError, sError)
-
-                If row("PER_TAX_DATE").ToString <> "" Then
-                    sError = ""
-                    ImportValidate.IsValidDate("PER_TAX_DATE", row, rowError, IsError, sError)
-                End If
-
-                If row("PASSPORT_DATE").ToString <> "" Then
-                    sError = ""
-                    ImportValidate.IsValidDate("PASSPORT_DATE", row, rowError, IsError, sError)
-                End If
-
-                If row("PASSPORT_DATE_EXPIRATION").ToString <> "" Then
-                    sError = ""
-                    ImportValidate.IsValidDate("PASSPORT_DATE_EXPIRATION", row, rowError, IsError, sError)
-                End If
-
-                If rowError("PASSPORT_DATE").ToString = "" And _
-                    rowError("PASSPORT_DATE_EXPIRATION").ToString = "" And _
-                    row("PASSPORT_DATE").ToString <> "" And _
-                    row("PASSPORT_DATE_EXPIRATION").ToString <> "" Then
-                    Dim startdate = Date.Parse(row("PASSPORT_DATE"))
-                    Dim enddate = Date.Parse(row("PASSPORT_DATE_EXPIRATION"))
-                    If startdate > enddate Then
-                        rowError("PASSPORT_DATE_EXPIRATION") = "Ngày hết hạn phải lớn hơn Ngày cấp"
-                        IsError = True
-                    End If
-                End If
-
-                If row("VISA_DATE").ToString <> "" Then
-                    sError = ""
-                    ImportValidate.IsValidDate("VISA_DATE", row, rowError, IsError, sError)
-                End If
-
-                If row("VISA_DATE_EXPIRATION").ToString <> "" Then
-                    sError = ""
-                    ImportValidate.IsValidDate("VISA_DATE_EXPIRATION", row, rowError, IsError, sError)
-                End If
-
-                If rowError("VISA_DATE").ToString = "" And _
-                    rowError("VISA_DATE_EXPIRATION").ToString = "" And _
-                    row("VISA_DATE").ToString <> "" And _
-                    row("VISA_DATE_EXPIRATION").ToString <> "" Then
-                    Dim startdate = Date.Parse(row("VISA_DATE"))
-                    Dim enddate = Date.Parse(row("VISA_DATE_EXPIRATION"))
-                    If startdate > enddate Then
-                        rowError("VISA_DATE_EXPIRATION") = "Ngày hết hạn phải lớn hơn Ngày cấp"
-                        IsError = True
-                    End If
-                End If
-
-                If row("VNAIRLINES_DATE").ToString <> "" Then
-                    sError = ""
-                    ImportValidate.IsValidDate("VNAIRLINES_DATE", row, rowError, IsError, sError)
-                End If
-
-                If row("VNAIRLINES_DATE_EXPIRATION").ToString <> "" Then
-                    sError = ""
-                    ImportValidate.IsValidDate("VNAIRLINES_DATE_EXPIRATION", row, rowError, IsError, sError)
-                End If
-
-                If rowError("VNAIRLINES_DATE").ToString = "" And _
-                    rowError("VNAIRLINES_DATE_EXPIRATION").ToString = "" And _
-                    row("VNAIRLINES_DATE").ToString <> "" And _
-                    row("VNAIRLINES_DATE_EXPIRATION").ToString <> "" Then
-                    Dim startdate = Date.Parse(row("VNAIRLINES_DATE"))
-                    Dim enddate = Date.Parse(row("VNAIRLINES_DATE_EXPIRATION"))
-                    If startdate > enddate Then
-                        rowError("VNAIRLINES_DATE_EXPIRATION") = "Ngày hết hạn phải lớn hơn Ngày cấp"
-                        IsError = True
-                    End If
-                End If
-
-                If row("LABOUR_DATE").ToString <> "" Then
-                    sError = ""
-                    ImportValidate.IsValidDate("LABOUR_DATE", row, rowError, IsError, sError)
-                End If
-
-                If row("LABOUR_DATE_EXPIRATION").ToString <> "" Then
-                    sError = ""
-                    ImportValidate.IsValidDate("LABOUR_DATE_EXPIRATION", row, rowError, IsError, sError)
-                End If
-
-                If rowError("LABOUR_DATE").ToString = "" And _
-                    rowError("LABOUR_DATE_EXPIRATION").ToString = "" And _
-                    row("LABOUR_DATE").ToString <> "" And _
-                    row("LABOUR_DATE_EXPIRATION").ToString <> "" Then
-                    Dim startdate = Date.Parse(row("LABOUR_DATE"))
-                    Dim enddate = Date.Parse(row("LABOUR_DATE_EXPIRATION"))
-                    If startdate > enddate Then
-                        rowError("LABOUR_DATE_EXPIRATION") = "Ngày hết hạn phải lớn hơn Ngày cấp"
-                        IsError = True
-                    End If
-                End If
-
-                If row("WORK_PERMIT_START").ToString <> "" Then
-                    sError = ""
-                    ImportValidate.IsValidDate("WORK_PERMIT_START", row, rowError, IsError, sError)
-                End If
-
-                If row("WORK_PERMIT_END").ToString <> "" Then
-                    sError = ""
-                    ImportValidate.IsValidDate("WORK_PERMIT_END", row, rowError, IsError, sError)
-                End If
-
-                If rowError("WORK_PERMIT_START").ToString = "" And _
-                    rowError("WORK_PERMIT_END").ToString = "" And _
-                    row("WORK_PERMIT_START").ToString <> "" And _
-                    row("WORK_PERMIT_END").ToString <> "" Then
-                    Dim startdate = Date.Parse(row("WORK_PERMIT_START"))
-                    Dim enddate = Date.Parse(row("WORK_PERMIT_END"))
-                    If startdate > enddate Then
-                        rowError("WORK_PERMIT_END") = "Ngày hết hạn phải lớn hơn Ngày cấp"
-                        IsError = True
-                    End If
-                End If
-
-                If row("TEMP_RESIDENCE_CARD_START").ToString <> "" Then
-                    sError = ""
-                    ImportValidate.IsValidDate("TEMP_RESIDENCE_CARD_START", row, rowError, IsError, sError)
-                End If
-
-                If row("TEMP_RESIDENCE_CARD_END").ToString <> "" Then
-                    sError = ""
-                    ImportValidate.IsValidDate("TEMP_RESIDENCE_CARD_END", row, rowError, IsError, sError)
-                End If
-
-                If rowError("TEMP_RESIDENCE_CARD_START").ToString = "" And _
-                    rowError("TEMP_RESIDENCE_CARD_END").ToString = "" And _
-                    row("TEMP_RESIDENCE_CARD_START").ToString <> "" And _
-                    row("TEMP_RESIDENCE_CARD_END").ToString <> "" Then
-                    Dim startdate = Date.Parse(row("TEMP_RESIDENCE_CARD_START"))
-                    Dim enddate = Date.Parse(row("TEMP_RESIDENCE_CARD_END"))
-                    If startdate > enddate Then
-                        rowError("TEMP_RESIDENCE_CARD_END") = "Đến ngày phải lớn hơn Từ ngày"
-                        IsError = True
-                    End If
-                End If
-
-                If row("ACADEMY_NAME").ToString <> "" Then
-                    sError = "Mã Trình độ văn hóa sai định dạng"
-                    ImportValidate.IsValidNumber("ACADEMY", row, rowError, IsError, sError)
-                Else
-                    row("ACADEMY") = DBNull.Value
-                End If
-
-
-                If row("LEARNING_LEVEL_NAME").ToString <> "" Then
-                    sError = "Mã Trình độ văn hóa sai định dạng"
-                    ImportValidate.IsValidNumber("LEARNING_LEVEL", row, rowError, IsError, sError)
-                Else
-                    row("LEARNING_LEVEL") = DBNull.Value
-                End If
-
-
-                If row("FIELD_NAME").ToString <> "" Then
-                    sError = "Mã Trình độ chuyên môn sai định dạng"
-                    ImportValidate.IsValidNumber("FIELD", row, rowError, IsError, sError)
-                Else
-                    row("FIELD") = DBNull.Value
-                End If
-
-                If row("SCHOOL_NAME").ToString <> "" Then
-                    sError = "Mã Trường học sai định dạng"
-                    ImportValidate.IsValidNumber("SCHOOL", row, rowError, IsError, sError)
-                Else
-                    row("SCHOOL") = DBNull.Value
-                End If
-
-                If row("MAJOR_NAME").ToString <> "" Then
-                    sError = "Mã Chuyên ngành sai định dạng"
-                    ImportValidate.IsValidNumber("MAJOR", row, rowError, IsError, sError)
-                Else
-                    row("MAJOR") = DBNull.Value
-                End If
-
-                If row("DEGREE_NAME").ToString <> "" Then
-                    sError = "Mã Bằng cấp sai định dạng"
-                    ImportValidate.IsValidNumber("DEGREE", row, rowError, IsError, sError)
-                Else
-                    row("DEGREE") = DBNull.Value
-                End If
-
-                If row("MARK_EDU_NAME").ToString <> "" Then
-                    sError = "Mã Xếp loại sai định dạng"
-                    ImportValidate.IsValidNumber("MARK_EDU", row, rowError, IsError, sError)
-                Else
-                    row("MARK_EDU") = DBNull.Value
-                End If
-
-                If row("GPA").ToString <> "" Then
-                    sError = "Điểm tốt nghiệp sai định dạng"
-                    ImportValidate.IsValidNumber("GPA", row, rowError, IsError, sError)
-                Else
-                    row("GPA") = DBNull.Value
-                End If
-
-                If row("IT_LEVEL_NAME").ToString <> "" Then
-                    sError = "Mã Trình độ 1 sai định dạng"
-                    ImportValidate.IsValidNumber("IT_LEVEL", row, rowError, IsError, sError)
-                Else
-                    row("IT_LEVEL") = DBNull.Value
-                End If
-
-                If row("IT_LEVEL1_NAME").ToString <> "" Then
-                    sError = "Mã Trình độ 2 sai định dạng"
-                    ImportValidate.IsValidNumber("IT_LEVEL1", row, rowError, IsError, sError)
-                Else
-                    row("IT_LEVEL1") = DBNull.Value
-                End If
-
-                If row("IT_LEVEL2_NAME").ToString <> "" Then
-                    sError = "Mã Trình độ 3 sai định dạng"
-                    ImportValidate.IsValidNumber("IT_LEVEL2", row, rowError, IsError, sError)
-                Else
-                    row("IT_LEVEL2") = DBNull.Value
-                End If
-
-                If row("ENGLISH_LEVEL_NAME").ToString <> "" Then
-                    sError = "Mã Trình độ 1 sai định dạng"
-                    ImportValidate.IsValidNumber("ENGLISH_LEVEL", row, rowError, IsError, sError)
-                Else
-                    row("ENGLISH_LEVEL") = DBNull.Value
-                End If
-
-                If row("ENGLISH_MARK").ToString <> "" Then
-                    sError = "Điểm 1 sai định dạng"
-                    ImportValidate.IsValidNumber("GPA", row, rowError, IsError, sError)
-                Else
-                    row("ENGLISH_MARK") = DBNull.Value
-                End If
-
-                If row("ENGLISH_LEVEL1_NAME").ToString <> "" Then
-                    sError = "Mã Trình độ 2 sai định dạng"
-                    ImportValidate.IsValidNumber("ENGLISH_LEVEL1", row, rowError, IsError, sError)
-                Else
-                    row("ENGLISH_LEVEL1") = DBNull.Value
-                End If
-
-                If row("ENGLISH_MARK1").ToString <> "" Then
-                    sError = "Điểm 2 sai định dạng"
-                    ImportValidate.IsValidNumber("GPA", row, rowError, IsError, sError)
-                Else
-                    row("ENGLISH_MARK1") = DBNull.Value
-                End If
-
-                If row("ENGLISH_LEVEL2_NAME").ToString <> "" Then
-                    sError = "Mã Trình độ 3 sai định dạng"
-                    ImportValidate.IsValidNumber("ENGLISH_LEVEL2", row, rowError, IsError, sError)
-                Else
-                    row("ENGLISH_LEVEL2") = DBNull.Value
-                End If
-
-                If row("ENGLISH_MARK2").ToString <> "" Then
-                    sError = "Điểm 3 sai định dạng"
-                    ImportValidate.IsValidNumber("GPA", row, rowError, IsError, sError)
-                Else
-                    row("ENGLISH_MARK2") = DBNull.Value
-                End If
-
-                If row("NGAYVAOCONGDOAN").ToString <> "" Then
-                    sError = ""
-                    ImportValidate.IsValidDate("NGAYVAOCONGDOAN", row, rowError, IsError, sError)
-                End If
-
-                ImportValidate.CheckNumber("CONGDOANPHI", row, 0)
-
-                If row("ACCOUNT_NUMBER").ToString <> "" Then
-                    sError = "Số TK sai định dạng"
-                    ImportValidate.IsValidNumber("ACCOUNT_NUMBER", row, rowError, IsError, sError)
-                Else
-                    row("ACCOUNT_NUMBER") = DBNull.Value
-                End If
-
-                If row("ACCOUNT_EFFECT_DATE").ToString <> "" Then
-                    sError = ""
-                    ImportValidate.IsValidDate("ACCOUNT_EFFECT_DATE", row, rowError, IsError, sError)
-                End If
-
-                If row("BANK_BRANCH_NAME").ToString <> "" Then
-                    sError = "Mã Chi nhánh ngân hàng sai định dạng"
-                    ImportValidate.IsValidNumber("BANK_BRANCH", row, rowError, IsError, sError)
-                Else
-                    row("BANK_BRANCH") = DBNull.Value
-                End If
-
-                If row("BANK_NAME").ToString <> "" Then
-                    sError = "Mã Ngân hàng sai định dạng"
-                    ImportValidate.IsValidNumber("BANK", row, rowError, IsError, sError)
-                Else
-                    row("BANK") = DBNull.Value
-                End If
-
-                ImportValidate.CheckNumber("IS_PAYMENT_VIA_BANK", row, 0)
-
-                If IsError Then
-                    dtError.Rows.Add(rowError)
-                End If
+                Finally
+                End Try
             Next
+            If IsError Then
+                dtError.Rows.Add(rowError)
+                rowError = Nothing
+            End If
             If dtError.Rows.Count > 0 Then
                 Session("EXPORTREPORT") = dtError
                 ScriptManager.RegisterStartupScript(Me.Page, Me.Page.GetType(), "javascriptfunction", "ExportReport('RC_CANDIDATE_IMPORT_ERROR')", True)
@@ -923,8 +539,55 @@ Public Class ctrlRC_CandidateList
         End Try
 
     End Sub
+    Private Function GetErrorCodeByKey(ByVal strKey As String)
+        Dim pathJson As String = HttpContext.Current.Server.MapPath("JsonErrorCode\JsonLangs.json")
+        Dim strValue As String = String.Empty
+        Try
+            Dim stsJson As String = File.ReadAllText(pathJson)
+            Dim data As Dictionary(Of String, String) = readJson(stsJson)
+            strValue = (From obj In data
+                          Where obj.Key.Contains(strKey)
+                          Select obj.Value).First
+            If String.IsNullOrEmpty(strValue) Then
+                Return strKey
+            Else
+                Return strValue
+            End If
+        Catch ex As Exception
+            Return ""
+        End Try
+    End Function
 
-    Private Function CreateCanImport(dtData As DataTable) As List(Of CandidateImportDTO)
+    Private Function GetValidateCodeByKey(ByVal strKey As String)
+        Dim pathJson As String = HttpContext.Current.Server.MapPath("JsonErrorCode\JsonValidateCode.json")
+        Dim strValue As String = String.Empty
+        Try
+            Dim stsJson As String = File.ReadAllText(pathJson)
+            Dim data As Dictionary(Of String, String) = readJson(stsJson)
+            strValue = (From obj In data
+                          Where obj.Key.Contains(strKey)
+                          Select obj.Value).First
+            If String.IsNullOrEmpty(strValue) Then
+                Return strKey
+            Else
+                Return strValue
+            End If
+        Catch ex As Exception
+            Return ""
+        End Try
+    End Function
+
+    Private Function readJson(ByVal strJson As String)
+        Try
+            Dim read = Newtonsoft.Json.Linq.JObject.Parse(strJson)
+            Dim data = JsonConvert.DeserializeObject(Of Dictionary(Of String, String))(strJson)
+            Return data
+        Catch ex As Exception
+            Return Nothing
+        End Try
+    End Function
+
+    Private Function CreateCanImport(ByVal dtData As DataTable) As List(Of CandidateImportDTO)
         Dim lst As New List(Of CandidateImportDTO)
         Try
             For Each dr In dtData.Rows
@@ -1170,18 +833,6 @@ Public Class ctrlRC_CandidateList
             Throw ex
         End Try
     End Function
-
-
-    'Protected Sub btnHSNVTransfer_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnHSNVTransfer.Click
-    '    Try
-    '        isLoadPopup = 1
-    '        UpdateControlState()
-    '        ctrlFindEmployeePopup.Show()
-    '    Catch ex As Exception
-    '        DisplayException(Me.ViewName, Me.ID, ex)
-    '    End Try
-
-    'End Sub
 
     Private Sub ctrlFindEmployeePopup_EmployeeSelected(ByVal sender As Object, ByVal e As System.EventArgs) Handles ctrlFindEmployeePopup.EmployeeSelected
         Dim lstCommonEmployee As New List(Of CommonBusiness.EmployeePopupFindDTO)

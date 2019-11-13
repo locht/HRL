@@ -60,9 +60,6 @@
     <OptionInfer>On</OptionInfer>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="RecruitmentBusiness">
-      <HintPath>..\RecruitmentBusiness\bin\Debug\RecruitmentBusiness.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
@@ -112,6 +109,7 @@
     <Import Include="System.Web.UI.HtmlControls" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Attendance\Data\CHECKINOUT.txt" />
     <Content Include="Attendance\Email\AT_TIMESHEET_RTA.html" />
     <Content Include="Attendance\Email\AT_TIMESHEET_ATRJ.html" />
     <Content Include="Attendance\Email\AT_TIMESHEET_ATR.html" />
@@ -216,7 +214,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Attendance\App_Data\" />
-    <Folder Include="Attendance\Data\" />
     <Folder Include="Attendance\Exception\" />
     <Folder Include="Attendance\Report\" />
     <Folder Include="Attendance\Script\" />
@@ -260,6 +257,10 @@
     <ProjectReference Include="..\ProfileBusiness\ProfileBusiness.vbproj">
       <Project>{13218E20-68EE-4544-85EC-F92AE6D57A23}</Project>
       <Name>ProfileBusiness</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\RecruitmentBusiness\RecruitmentBusiness.vbproj">
+      <Project>{C6407D4F-8F99-4C56-AC1F-7A48C204A086}</Project>
+      <Name>RecruitmentBusiness</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

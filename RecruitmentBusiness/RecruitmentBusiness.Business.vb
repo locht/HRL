@@ -7,6 +7,15 @@ Imports RecruitmentBusiness.ServiceContracts
 ' NOTE: You can use the "Rename" command on the context menu to change the class name "Service1" in both code and config file together.
 Namespace RecruitmentBusiness.ServiceImplementations
     Partial Class RecruitmentBusiness
+        Function ImportRC(ByVal Data As DataTable, ByVal log As UserLog) As Boolean Implements ServiceContracts.IRecruitmentBusiness.ImportRC
+            Try
+                Dim lst = RecruitmentRepositoryStatic.Instance.ImportRC(Data, log)
+                Return lst
+            Catch ex As Exception
+
+                Throw ex
+            End Try
+        End Function
 
 #Region "PlanReg"
 
@@ -61,7 +70,7 @@ Namespace RecruitmentBusiness.ServiceImplementations
             End Try
         End Function
 
-        Public Function UpdateStatusPlanReg(ByVal lstID As List(Of Decimal), status As Decimal) As Boolean Implements ServiceContracts.IRecruitmentBusiness.UpdateStatusPlanReg
+        Public Function UpdateStatusPlanReg(ByVal lstID As List(Of Decimal), ByVal status As Decimal) As Boolean Implements ServiceContracts.IRecruitmentBusiness.UpdateStatusPlanReg
             Try
                 Return RecruitmentRepositoryStatic.Instance.UpdateStatusPlanReg(lstID, status)
             Catch ex As Exception
@@ -112,7 +121,7 @@ Namespace RecruitmentBusiness.ServiceImplementations
                 Throw ex
             End Try
         End Function
-        
+
         Public Function InsertRequest(ByVal objRequest As RequestDTO, ByVal log As UserLog, ByRef gID As Decimal) As Boolean Implements ServiceContracts.IRecruitmentBusiness.InsertRequest
             Try
                 Return RecruitmentRepositoryStatic.Instance.InsertRequest(objRequest, log, gID)
@@ -140,7 +149,7 @@ Namespace RecruitmentBusiness.ServiceImplementations
         End Function
 
         Public Function UpdateStatusRequest(ByVal lstID As List(Of Decimal),
-                                            status As Decimal,
+                                            ByVal status As Decimal,
                                             ByVal log As UserLog) As Boolean Implements ServiceContracts.IRecruitmentBusiness.UpdateStatusRequest
             Try
                 Return RecruitmentRepositoryStatic.Instance.UpdateStatusRequest(lstID, status, log)
@@ -462,7 +471,7 @@ Namespace RecruitmentBusiness.ServiceImplementations
                 Throw ex
             End Try
         End Function
-        
+
 
         Public Function GetCandidateOtherInfo(ByVal sCandidateID As Decimal) As CandidateOtherInfoDTO _
                                                  Implements ServiceContracts.IRecruitmentBusiness.GetCandidateOtherInfo
@@ -511,7 +520,7 @@ Namespace RecruitmentBusiness.ServiceImplementations
             End Try
         End Function
 
-        Public Function UpdateProgramCandidate(ByVal lstCanID As List(Of Decimal), programID As Decimal, ByVal log As UserLog) As Boolean _
+        Public Function UpdateProgramCandidate(ByVal lstCanID As List(Of Decimal), ByVal programID As Decimal, ByVal log As UserLog) As Boolean _
                 Implements ServiceContracts.IRecruitmentBusiness.UpdateProgramCandidate
             Try
                 Dim rep As New RecruitmentRepository
@@ -521,7 +530,7 @@ Namespace RecruitmentBusiness.ServiceImplementations
             End Try
         End Function
 
-        Public Function UpdateStatusCandidate(ByVal lstCanID As List(Of Decimal), statusID As String, ByVal log As UserLog) As Boolean _
+        Public Function UpdateStatusCandidate(ByVal lstCanID As List(Of Decimal), ByVal statusID As String, ByVal log As UserLog) As Boolean _
                 Implements ServiceContracts.IRecruitmentBusiness.UpdateStatusCandidate
             Try
                 Dim rep As New RecruitmentRepository
@@ -531,7 +540,7 @@ Namespace RecruitmentBusiness.ServiceImplementations
             End Try
         End Function
 
-        Public Function UpdatePontentialCandidate(ByVal lstCanID As List(Of Decimal), bCheck As Boolean, ByVal log As UserLog) As Boolean _
+        Public Function UpdatePontentialCandidate(ByVal lstCanID As List(Of Decimal), ByVal bCheck As Boolean, ByVal log As UserLog) As Boolean _
                 Implements ServiceContracts.IRecruitmentBusiness.UpdatePontentialCandidate
             Try
                 Dim rep As New RecruitmentRepository
@@ -541,7 +550,7 @@ Namespace RecruitmentBusiness.ServiceImplementations
             End Try
         End Function
 
-        Public Function UpdateBlackListCandidate(ByVal lstCanID As List(Of Decimal), bCheck As Boolean, ByVal log As UserLog) As Boolean _
+        Public Function UpdateBlackListCandidate(ByVal lstCanID As List(Of Decimal), ByVal bCheck As Boolean, ByVal log As UserLog) As Boolean _
                 Implements ServiceContracts.IRecruitmentBusiness.UpdateBlackListCandidate
             Try
                 Dim rep As New RecruitmentRepository
@@ -551,7 +560,7 @@ Namespace RecruitmentBusiness.ServiceImplementations
             End Try
         End Function
 
-        Public Function UpdateReHireCandidate(ByVal lstCanID As List(Of Decimal), bCheck As Boolean, ByVal log As UserLog) As Boolean _
+        Public Function UpdateReHireCandidate(ByVal lstCanID As List(Of Decimal), ByVal bCheck As Boolean, ByVal log As UserLog) As Boolean _
                 Implements ServiceContracts.IRecruitmentBusiness.UpdateReHireCandidate
             Try
                 Dim rep As New RecruitmentRepository
@@ -571,7 +580,7 @@ Namespace RecruitmentBusiness.ServiceImplementations
             End Try
         End Function
 
-        Public Function ImportCandidate(lst As List(Of CandidateImportDTO), ByVal log As UserLog) As Boolean _
+        Public Function ImportCandidate(ByVal lst As List(Of CandidateImportDTO), ByVal log As UserLog) As Boolean _
                       Implements ServiceContracts.IRecruitmentBusiness.ImportCandidate
             Try
                 Dim rep As New RecruitmentRepository
@@ -581,10 +590,10 @@ Namespace RecruitmentBusiness.ServiceImplementations
             End Try
         End Function
 
-        Public Function TransferHSNVToCandidate(empID As Decimal,
-                                            orgID As Decimal,
-                                            titleID As Decimal,
-                                            programID As Decimal,
+        Public Function TransferHSNVToCandidate(ByVal empID As Decimal,
+                                            ByVal orgID As Decimal,
+                                            ByVal titleID As Decimal,
+                                            ByVal programID As Decimal,
                                             ByVal log As UserLog) As Boolean _
                       Implements ServiceContracts.IRecruitmentBusiness.TransferHSNVToCandidate
             Try
