@@ -46,4 +46,7 @@
     Public Property CANDIDATE_STATUS As String 'trang thai
     Public Property CANDIDATE_STATUS_NAME As String
     Public Property CREATED_DATE As Date?
+    Public Property ORG_NAME As String
+    Public Property MODIFIED_DATE As Date?
+    Public Property TITLE_NAME_VN As String
 End Class

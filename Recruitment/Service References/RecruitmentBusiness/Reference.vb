@@ -5126,10 +5126,16 @@ Namespace RecruitmentBusiness
         Private MARK_EDU_NAMEField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private MODIFIED_DATEField As System.Nullable(Of Date)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private NATIONALITYField As System.Nullable(Of Decimal)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private NATIONALITY_NAMEField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private ORG_NAMEField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private PER_COUNTRYField As System.Nullable(Of Decimal)
@@ -5142,6 +5148,9 @@ Namespace RecruitmentBusiness
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private PER_PROVINCE_NAMEField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private TITLE_NAME_VNField As String
         
         <Global.System.ComponentModel.BrowsableAttribute(false)>  _
         Public Property ExtensionData() As System.Runtime.Serialization.ExtensionDataObject Implements System.Runtime.Serialization.IExtensibleDataObject.ExtensionData
@@ -5661,6 +5670,19 @@ Namespace RecruitmentBusiness
         End Property
         
         <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property MODIFIED_DATE() As System.Nullable(Of Date)
+            Get
+                Return Me.MODIFIED_DATEField
+            End Get
+            Set
+                If (Me.MODIFIED_DATEField.Equals(value) <> true) Then
+                    Me.MODIFIED_DATEField = value
+                    Me.RaisePropertyChanged("MODIFIED_DATE")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
         Public Property NATIONALITY() As System.Nullable(Of Decimal)
             Get
                 Return Me.NATIONALITYField
@@ -5682,6 +5704,19 @@ Namespace RecruitmentBusiness
                 If (Object.ReferenceEquals(Me.NATIONALITY_NAMEField, value) <> true) Then
                     Me.NATIONALITY_NAMEField = value
                     Me.RaisePropertyChanged("NATIONALITY_NAME")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property ORG_NAME() As String
+            Get
+                Return Me.ORG_NAMEField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.ORG_NAMEField, value) <> true) Then
+                    Me.ORG_NAMEField = value
+                    Me.RaisePropertyChanged("ORG_NAME")
                 End If
             End Set
         End Property
@@ -5734,6 +5769,19 @@ Namespace RecruitmentBusiness
                 If (Object.ReferenceEquals(Me.PER_PROVINCE_NAMEField, value) <> true) Then
                     Me.PER_PROVINCE_NAMEField = value
                     Me.RaisePropertyChanged("PER_PROVINCE_NAME")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property TITLE_NAME_VN() As String
+            Get
+                Return Me.TITLE_NAME_VNField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.TITLE_NAME_VNField, value) <> true) Then
+                    Me.TITLE_NAME_VNField = value
+                    Me.RaisePropertyChanged("TITLE_NAME_VN")
                 End If
             End Set
         End Property

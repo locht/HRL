@@ -31,7 +31,7 @@
     .msg-error
     {
         margin-left: 420px;
-        font-family: "Open Sans" , "Helvetica Neue" , Helvetica, Arial, sans-serif;
+        font-family: "Segoe UI", Arial , Verdana, Tahoma, Times;
         padding: 0px 33px 0px 0px;
         border-radius: 5px;
         text-align: center;
@@ -42,252 +42,272 @@
         overflow: hidden;
         z-index: 99999;
     }
+    .AutoHeight
+    {
+        height: auto !important;
+    }
 </style>
 <tlk:RadSplitter ID="RadSplitter1" runat="server" Width="100%" Height="100%" Orientation="Horizontal">
     <tlk:RadPane ID="ToolbarPane" runat="server" Height="32px" Scrolling="None" Visible="False">
         <tlk:RadToolBar ID="tbarMainToolBar" runat="server" OnClientButtonClicking="OnClientButtonClicking" />
     </tlk:RadPane>
-    <tlk:RadPane ID="DetailPane" runat="server" Scrolling="None" Height="300px">
-        <fieldset>
-            <table class="table-form">
-                <%--                <tr>
-                    <td colspan="6">
-                        <b></b>
-                        <hr />
-                    </td>
-                </tr>--%>
-                <tr>
-                    <td class="lb">
-                        <%# Translate("Mã ứng viên")%>
-                    </td>
-                    <td>
-                        <tlk:RadTextBox ID="txtEmployeeCode" runat="server" Width="100%">
-                        </tlk:RadTextBox>
-                    </td>
-                    <td class="lb">
-                        <%# Translate("Họ và tên")%>
-                    </td>
-                    <td>
-                        <tlk:RadTextBox ID="txtEmployeeName" runat="server" Width="100%">
-                        </tlk:RadTextBox>
-                    </td>
-                    <td class="lb">
-                        <%# Translate("Trạng thái ứng viên")%>
-                    </td>
-                    <td>
-                        <tlk:RadComboBox runat="server" ID="cboEmpStatus">
-                        </tlk:RadComboBox>
-                    </td>
-                    <td class="lb">
-                        <%# Translate("Giới tính")%>
-                    </td>
-                    <td>
-                        <tlk:RadComboBox runat="server" ID="cboGender">
-                        </tlk:RadComboBox>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="lb">
-                        <%# Translate("Tình trạng hôn nhân")%>
-                    </td>
-                    <td>
-                        <tlk:RadComboBox ID="cboTinhTrangHN" runat="server">
-                        </tlk:RadComboBox>
-                    </td>
-                    <td class="lb">
-                        <%# Translate("Quốc gia")%>
-                    </td>
-                    <td>
-                        <tlk:RadComboBox ID="cboNation" runat="server">
-                        </tlk:RadComboBox>
-                    </td>
-                    <td class="lb">
-                        <%# Translate("Nơi sinh")%>
-                    </td>
-                    <td>
-                        <tlk:RadComboBox runat="server" ID="cboProvince">
-                        </tlk:RadComboBox>
-                    </td>
-                    <td class="lb">
-                        <%# Translate("Quốc tịch")%>
-                    </td>
-                    <td>
-                        <tlk:RadComboBox runat="server" ID="cboNationality">
-                        </tlk:RadComboBox>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="lb">
-                        <%# Translate("Ngày sinh (Từ ngày)")%>
-                    </td>
-                    <td>
-                        <tlk:RadDatePicker ID="rdBirthDateFrom" runat="server">
-                        </tlk:RadDatePicker>
-                    </td>
-                    <td class="lb">
-                        <%# Translate("Ngày sinh (Đến ngày)")%>
-                    </td>
-                    <td>
-                        <tlk:RadDatePicker ID="rdBirthDateTo" runat="server">
-                        </tlk:RadDatePicker>
-                    </td>
-                    <td class="lb">
-                        <%# Translate("Tỉnh/TP")%>
-                    </td>
-                    <td>
-                        <tlk:RadComboBox runat="server" ID="cboNav_Province">
-                        </tlk:RadComboBox>
-                    </td>
-                </tr>
-                <tr>
-                    <td colspan="9">
-                        <b></b>
-                        <hr />
-                    </td>
-                </tr>
-                <tr>
-                    <td class="lb">
-                        <%# Translate("Trình độ văn hóa")%>
-                    </td>
-                    <td>
-                        <tlk:RadComboBox runat="server" ID="cboTrinhDoVanHoa">
-                        </tlk:RadComboBox>
-                    </td>
-                    <td class="lb">
-                        <%# Translate("Trình độ học vấn")%>
-                    </td>
-                    <td>
-                        <tlk:RadComboBox runat="server" ID="cboTrinhDoHocVan">
-                        </tlk:RadComboBox>
-                    </td>
-                    <td class="lb">
-                        <%# Translate("Trình độ chuyên môn")%>
-                    </td>
-                    <td>
-                        <tlk:RadComboBox runat="server" ID="cboTrinhDoChuyenMon">
-                        </tlk:RadComboBox>
-                    </td>
-                    <td class="lb">
-                        <%# Translate("Trường học")%>
-                    </td>
-                    <td>
-                        <tlk:RadComboBox ID="cboTruongHoc" runat="server">
-                        </tlk:RadComboBox>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="lb">
-                        <%# Translate("Chuyên nghành")%>
-                    </td>
-                    <td>
-                        <tlk:RadComboBox ID="cboChuyenNganh" runat="server">
-                        </tlk:RadComboBox>
-                    </td>
-                    <td class="lb">
-                        <%# Translate("Bằng cấp")%>
-                    </td>
-                    <td>
-                        <tlk:RadComboBox ID="cboBangCap" runat="server">
-                        </tlk:RadComboBox>
-                    </td>
-                    <td class="lb">
-                        <%# Translate("Xếp loại")%>
-                    </td>
-                    <td>
-                        <tlk:RadComboBox ID="cboXepLoai" runat="server">
-                        </tlk:RadComboBox>
-                    </td>
-                    <td class="lb">
-                        <%# Translate("Trình độ tin học")%>
-                    </td>
-                    <td>
-                        <tlk:RadComboBox ID="cboTrinhDoTinHoc" runat="server">
-                        </tlk:RadComboBox>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="lb">
-                        <%# Translate("Trình độ ngoại ngữ")%>
-                    </td>
-                    <td>
-                        <tlk:RadComboBox ID="cboTrinhDoNgoaiNgu" runat="server">
-                        </tlk:RadComboBox>
-                    </td>
-                </tr>
-                <tr>
-                    <td colspan="9">
-                        <b></b>
-                        <hr />
-                    </td>
-                </tr>
-                <tr>
-                    <td class="lb">
-                        <%# Translate("Chiều cao từ (cm)")%>
-                    </td>
-                    <td>
-                        <tlk:RadNumericTextBox ID="txtChieuCaoTu" runat="server" Width="100%">
-                        </tlk:RadNumericTextBox>
-                    </td>
-                    <td class="lb">
-                        <%# Translate("Chiều cao đến (cm)")%>
-                    </td>
-                    <td>
-                        <tlk:RadNumericTextBox ID="txtChieuCaoDen" runat="server" Width="100%">
-                        </tlk:RadNumericTextBox>
-                    </td>
-                    <td class="lb">
-                        <%# Translate("Cân nặng từ (kg)")%>
-                    </td>
-                    <td>
-                        <tlk:RadNumericTextBox ID="txtCanNangTu" runat="server" Width="100%">
-                        </tlk:RadNumericTextBox>
-                    </td>
-                    <td class="lb">
-                        <%# Translate("Cân nặng đến (kg)")%>
-                    </td>
-                    <td>
-                        <tlk:RadNumericTextBox ID="txtCanNangDen" runat="server" Width="100%">
-                        </tlk:RadNumericTextBox>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="lb">
-                        <%# Translate("Loại sức khỏe")%>
-                    </td>
-                    <td>
-                        <tlk:RadComboBox ID="cboLoaiSucKhoe" runat="server">
-                        </tlk:RadComboBox>
-                    </td>
-                </tr>
-            </table>
-        </fieldset>
+    <tlk:RadPane ID="DetailPane" runat="server" Width="100%" CssClass="AutoHeight">
+        <tlk:RadPanelBar runat="server" ID="RadPanelBar1" Width="100%" ExpandMode="MultipleExpandedItems"
+            OnClientItemClicking="HeightGridClick">
+            <Items>
+                <tlk:RadPanelItem Expanded="true" Text="<%$ Translate: Tìm kiếm cơ bản %>">
+                    <ContentTemplate>
+                        <table class="table-form" id="table_01">
+                            <tr>
+                                <td class="lb">
+                                    <%# Translate("Mã ứng viên")%>
+                                </td>
+                                <td>
+                                    <tlk:RadTextBox ID="txtEmployeeCode" runat="server" Width="100%">
+                                    </tlk:RadTextBox>
+                                </td>
+                                <td class="lb">
+                                    <%# Translate("Họ và tên")%>
+                                </td>
+                                <td>
+                                    <tlk:RadTextBox ID="txtEmployeeName" runat="server" Width="100%">
+                                    </tlk:RadTextBox>
+                                </td>
+                                <td class="lb">
+                                    <%# Translate("Trạng thái ứng viên")%>
+                                </td>
+                                <td>
+                                    <tlk:RadComboBox runat="server" ID="cboEmpStatus">
+                                    </tlk:RadComboBox>
+                                </td>
+                                <td class="lb">
+                                    <%# Translate("Giới tính")%>
+                                </td>
+                                <td>
+                                    <tlk:RadComboBox runat="server" ID="cboGender">
+                                    </tlk:RadComboBox>
+                                </td>
+                            </tr>
+                        </table>
+                    </ContentTemplate>
+                </tlk:RadPanelItem>
+                <tlk:RadPanelItem Text="<%$ Translate:  Tìm kiếm nâng cao %>">
+                    <ContentTemplate>
+                        <table class="table-form" id="table_02">
+                            <tr>
+                                <td class="lb">
+                                    <%# Translate("Tình trạng hôn nhân")%>
+                                </td>
+                                <td>
+                                    <tlk:RadComboBox ID="cboTinhTrangHN" runat="server">
+                                    </tlk:RadComboBox>
+                                </td>
+                                <td class="lb">
+                                    <%# Translate("Quốc gia")%>
+                                </td>
+                                <td>
+                                    <tlk:RadComboBox ID="cboNation" runat="server">
+                                    </tlk:RadComboBox>
+                                </td>
+                                <td class="lb">
+                                    <%# Translate("Nơi sinh")%>
+                                </td>
+                                <td>
+                                    <tlk:RadComboBox runat="server" ID="cboProvince">
+                                    </tlk:RadComboBox>
+                                </td>
+                                <td class="lb">
+                                    <%# Translate("Quốc tịch")%>
+                                </td>
+                                <td>
+                                    <tlk:RadComboBox runat="server" ID="cboNationality">
+                                    </tlk:RadComboBox>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="lb">
+                                    <%# Translate("Ngày sinh (Từ ngày)")%>
+                                </td>
+                                <td>
+                                    <tlk:RadDatePicker ID="rdBirthDateFrom" runat="server">
+                                    </tlk:RadDatePicker>
+                                </td>
+                                <td class="lb">
+                                    <%# Translate("Ngày sinh (Đến ngày)")%>
+                                </td>
+                                <td>
+                                    <tlk:RadDatePicker ID="rdBirthDateTo" runat="server">
+                                    </tlk:RadDatePicker>
+                                </td>
+                                <td class="lb">
+                                    <%# Translate("Tỉnh/TP")%>
+                                </td>
+                                <td>
+                                    <tlk:RadComboBox runat="server" ID="cboNav_Province">
+                                    </tlk:RadComboBox>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="9">
+                                    <b></b>
+                                    <hr />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="lb">
+                                    <%# Translate("Trình độ văn hóa")%>
+                                </td>
+                                <td>
+                                    <tlk:RadComboBox runat="server" ID="cboTrinhDoVanHoa">
+                                    </tlk:RadComboBox>
+                                </td>
+                                <td class="lb">
+                                    <%# Translate("Trình độ học vấn")%>
+                                </td>
+                                <td>
+                                    <tlk:RadComboBox runat="server" ID="cboTrinhDoHocVan">
+                                    </tlk:RadComboBox>
+                                </td>
+                                <td class="lb">
+                                    <%# Translate("Trình độ chuyên môn")%>
+                                </td>
+                                <td>
+                                    <tlk:RadComboBox runat="server" ID="cboTrinhDoChuyenMon">
+                                    </tlk:RadComboBox>
+                                </td>
+                                <td class="lb">
+                                    <%# Translate("Trường học")%>
+                                </td>
+                                <td>
+                                    <tlk:RadComboBox ID="cboTruongHoc" runat="server">
+                                    </tlk:RadComboBox>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="lb">
+                                    <%# Translate("Chuyên nghành")%>
+                                </td>
+                                <td>
+                                    <tlk:RadComboBox ID="cboChuyenNganh" runat="server">
+                                    </tlk:RadComboBox>
+                                </td>
+                                <td class="lb">
+                                    <%# Translate("Bằng cấp")%>
+                                </td>
+                                <td>
+                                    <tlk:RadComboBox ID="cboBangCap" runat="server">
+                                    </tlk:RadComboBox>
+                                </td>
+                                <td class="lb">
+                                    <%# Translate("Xếp loại")%>
+                                </td>
+                                <td>
+                                    <tlk:RadComboBox ID="cboXepLoai" runat="server">
+                                    </tlk:RadComboBox>
+                                </td>
+                                <td class="lb">
+                                    <%# Translate("Trình độ tin học")%>
+                                </td>
+                                <td>
+                                    <tlk:RadComboBox ID="cboTrinhDoTinHoc" runat="server">
+                                    </tlk:RadComboBox>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="lb">
+                                    <%# Translate("Trình độ ngoại ngữ")%>
+                                </td>
+                                <td>
+                                    <tlk:RadComboBox ID="cboTrinhDoNgoaiNgu" runat="server">
+                                    </tlk:RadComboBox>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="9">
+                                    <b></b>
+                                    <hr />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="lb">
+                                    <%# Translate("Chiều cao từ (cm)")%>
+                                </td>
+                                <td>
+                                    <tlk:RadNumericTextBox ID="txtChieuCaoTu" runat="server" Width="100%">
+                                    </tlk:RadNumericTextBox>
+                                </td>
+                                <td class="lb">
+                                    <%# Translate("Chiều cao đến (cm)")%>
+                                </td>
+                                <td>
+                                    <tlk:RadNumericTextBox ID="txtChieuCaoDen" runat="server" Width="100%">
+                                    </tlk:RadNumericTextBox>
+                                </td>
+                                <td class="lb">
+                                    <%# Translate("Cân nặng từ (kg)")%>
+                                </td>
+                                <td>
+                                    <tlk:RadNumericTextBox ID="txtCanNangTu" runat="server" Width="100%">
+                                    </tlk:RadNumericTextBox>
+                                </td>
+                                <td class="lb">
+                                    <%# Translate("Cân nặng đến (kg)")%>
+                                </td>
+                                <td>
+                                    <tlk:RadNumericTextBox ID="txtCanNangDen" runat="server" Width="100%">
+                                    </tlk:RadNumericTextBox>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="lb">
+                                    <%# Translate("Loại sức khỏe")%>
+                                </td>
+                                <td>
+                                    <tlk:RadComboBox ID="cboLoaiSucKhoe" runat="server">
+                                    </tlk:RadComboBox>
+                                </td>
+                            </tr>
+                        </table>
+                    </ContentTemplate>
+                </tlk:RadPanelItem>
+            </Items>
+        </tlk:RadPanelBar>
     </tlk:RadPane>
     <tlk:RadPane ID="DetailPaneSearch" runat="server" BorderStyle="None" MinHeight="35"
-        MaxHeight="40" Height="35px" Scrolling="None">
+        MaxHeight="35" Height="35px" Scrolling="None">
         <table class="table-form">
             <tr>
                 <td>
                     <tlk:RadButton ID="btnSearch" runat="server" SkinID="ButtonFind" CausesValidation="false"
-                        Text="<%$ Translate: Tìm kiếm %>">
+                        Text="<%$ Translate: Tìm %>">
                     </tlk:RadButton>
                 </td>
             </tr>
         </table>
     </tlk:RadPane>
-    <tlk:RadPane ID="RadPaneData" runat="server" Scrolling="None">
+    <tlk:RadPane ID="RadPaneData" runat="server" Scrolling="None" Width="100%" Height="400px">
         <tlk:RadGrid ID="rgData" runat="server" Height="100%" PageSize="50" AllowPaging="true"
             AllowMultiRowEdit="True" AllowMultiRowSelection="True" CellSpacing="0" GridLines="None">
             <MasterTableView DataKeyNames="CANDIDATE_ID,CANDIDATE_CODE" ClientDataKeyNames="CANDIDATE_ID,CANDIDATE_CODE"
                 FilterItemStyle-HorizontalAlign="Center">
                 <Columns>
                     <tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderStyle-HorizontalAlign="Center"
-                        HeaderStyle-Width="30px" ItemStyle-HorizontalAlign="Center">
+                        HeaderStyle-Width="20px" ItemStyle-HorizontalAlign="Center">
                     </tlk:GridClientSelectColumn>
                     <tlk:GridBoundColumn DataField="CANDIDATE_ID" Visible="false" />
-                    <tlk:GridBoundColumn HeaderText="<%$ Translate: Mã nhân niên %>" DataField="CANDIDATE_CODE"
-                        SortExpression="CANDIDATE_CODE" UniqueName="CANDIDATE_CODE" />
-                    <tlk:GridBoundColumn HeaderText="<%$ Translate: Tên nhân viên %>" DataField="FULL_NAME_VN"
+                    <tlk:GridBoundColumn HeaderText="<%$ Translate: Mã ứng niên %>" DataField="CANDIDATE_CODE"
+                        SortExpression="CANDIDATE_CODE" UniqueName="CANDIDATE_CODE">
+                        <HeaderStyle HorizontalAlign="Center" Width="70px" />
+                        <ItemStyle HorizontalAlign="Center" Width="70px" />
+                    </tlk:GridBoundColumn>
+                    <tlk:GridBoundColumn HeaderText="<%$ Translate: Tên ứng viên %>" DataField="FULL_NAME_VN"
                         SortExpression="FULL_NAME_VN" UniqueName="FULL_NAME_VN" />
+                    <tlk:GridBoundColumn HeaderText="<%$ Translate: Tên công ty %>" DataField="ORG_NAME"
+                        SortExpression="ORG_NAME" UniqueName="ORG_NAME" />
+                    <tlk:GridBoundColumn HeaderText="<%$ Translate: Chức danh %>" DataField="TITLE_NAME_VN"
+                        SortExpression="TITLE_NAME_VN" UniqueName="TITLE_NAME_VN" />
+                    <tlk:GridBoundColumn HeaderText="<%$ Translate: Ngày chỉnh sửa %>" DataField="MODIFIED_DATE"
+                        SortExpression="MODIFIED_DATE" UniqueName="MODIFIED_DATE" DataFormatString="{0:dd/MM/yyyy}" />
                     <tlk:GridBoundColumn HeaderText="<%$ Translate: Trạng thái tuyển dụng %>" DataField="CANDIDATE_STATUS_NAME"
                         SortExpression="CANDIDATE_STATUS_NAME" UniqueName="CANDIDATE_STATUS_NAME" />
                 </Columns>
@@ -314,7 +334,7 @@
         </tlk:RadWindow>
     </Windows>
 </tlk:RadWindowManager>
-<Common:ctrlMessageBox ID="ctrlMessageBox" runat="server" />
+<common:ctrlmessagebox id="ctrlMessageBox" runat="server" />
 <tlk:RadScriptBlock runat="server" ID="ScriptBlock">
     <script type="text/javascript">
         var enableAjax = true;
@@ -367,11 +387,11 @@
                 return 1;
             var gUId = $find('<%# rgData.ClientID%>').get_masterTableView().get_selectedItems()[0].getDataKeyValue('CANDIDATE_ID');
             var empId = $find('<%# rgData.ClientID%>').get_masterTableView().get_selectedItems()[0].getDataKeyValue('CANDIDATE_CODE');
-            var oWindow = radopen('Dialog.aspx?mid=Recruitment&fid=ctrlRC_CVPoolDtl&group=Business&gUID=' + gUId + '&Can=' +
-            empId + '&state=' + states + '&noscroll=1', "rwPopup");
+            window.open('/Default.aspx?mid=Recruitment&fid=ctrlRC_CVPoolDtl&group=Business&gUID=' + gUId + '&Can=' +
+            empId + '&state=' + states + '', "_self"); /*
             var pos = $("html").offset();
             oWindow.moveTo(pos.left, pos.top);
-            oWindow.setSize($(window).width(), $(window).height());
+            oWindow.setSize($(window).width() - 30, $(window).height() - 30); oWindow.center(); */
             return 2;
         }
 
@@ -389,6 +409,32 @@
             $find("<%= rgData.ClientID %>").get_masterTableView().rebind();
         }
 
+        function HeightGrid() {
+            var itemHeight_01 = $('#table_01').height();
+            var itemHeight_02 = $('#table_02').height();
+            var availHeight = $(window).height();
+            var difference = availHeight - itemHeight_01 - itemHeight_02 - 35 - 20;
+            $('#RadPaneData').css('height', difference + 'px');
+            //alert(difference);
+        }
+
+        function HeightGridClick(sender, args) {
+            HeightGrid();
+            //  enumerateChildItems(args.get_item());
+            //  $('#RadPaneData').css('height', 230 + 'px');
+        }
+
+        //        function enumerateChildItems(myitem) {
+        //            for (var i = 0; i < myitem.get_items().get_count(); i++) {
+        //                myitem.get_items().getItem(i).expand()
+        //                enumerateChildItems(myitem.get_items().getItem(i));
+        //            }
+        //        }yText("Tìm kiếm cơ bản");
+        //        var item = panelBar.find
+
+        //        panelItem.disable();
+
+        //        $('#table_01').click(function () { HeightGrid(); });
 
     </script>
 </tlk:RadScriptBlock>
