@@ -706,7 +706,7 @@ Public Class ctrlRC_ProgramScheduleNewEdit
 
     Protected Sub RadAjaxPanel1_AjaxRequest(ByVal sender As Object, ByVal e As AjaxRequestEventArgs)
         userlog = LogHelper.GetUserLog
-
+        Dim check As Integer = 0
         Dim str As String
         Dim arr() As String
         arr = e.Argument.Split("_")
@@ -728,10 +728,14 @@ Public Class ctrlRC_ProgramScheduleNewEdit
                         If itemExams.Checked = True Then
                             Dim idPro_Exams As Int32 = Decimal.Parse(itemExams.Value)
                             store.ADDNEW_CAN_PRO_SCHEDULE(idCandidate, Decimal.Parse(hidID.Value), idPro_Exams)
+                            check = 2
                         Else
                             Continue For
                         End If
                     Next
+                    If check = 2 Then
+                        store.UPDATE_CANDIDATE_STATUS(idCandidate, "PROCESS")
+                    End If
                 Next
 
             Case "btnDelete"
