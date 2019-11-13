@@ -41,23 +41,28 @@ Partial Class RecruitmentRepository
                     Select Case Col.ColumnName.Split("#")(0).ToUpper
                         Case "RC_CANDIDATE_EXPECT"
                             oPropsRC_CANDIDATE_EXPECT = objRC_CANDIDATE_EXPECT.GetType().GetProperties()
-                            Dim pi As PropertyInfo = oPropsRC_CANDIDATE_EXPECT(Col.ColumnName.Split("#")(1))
+                            Dim pi As PropertyInfo = (From l In oPropsRC_CANDIDATE_EXPECT Where l.Name.ToUpper.Equals(Col.ColumnName.Split("#")(1).ToUpper) Select l).FirstOrDefault()
+                            'Dim pi As PropertyInfo = oPropsRC_CANDIDATE_EXPECT(Col.ColumnName.Split("#")(1))
                             pi.SetValue(objRC_CANDIDATE_EXPECT, Data(0)(Col.ColumnName.Split("#")(1)), Nothing)
                         Case "RC_CANDIDATE"
                             oPropsRC_CANDIDATE = objRC_CANDIDATE.GetType().GetProperties()
-                            Dim pi As PropertyInfo = oPropsRC_CANDIDATE(Col.ColumnName.Split("#")(1))
+                            Dim pi As PropertyInfo = (From l In oPropsRC_CANDIDATE_EXPECT Where l.Name.ToUpper.Equals(Col.ColumnName.Split("#")(1).ToUpper) Select l).FirstOrDefault()
+                            'Dim pi As PropertyInfo = oPropsRC_CANDIDATE(Col.ColumnName.Split("#")(1))
                             pi.SetValue(objRC_CANDIDATE, Data(0)(Col.ColumnName.Split("#")(1)), Nothing)
                         Case "RC_CANDIDATE_CV"
                             oPropsRC_CANDIDATE_CV = objRC_CANDIDATE_CV.GetType().GetProperties()
-                            Dim pi As PropertyInfo = oPropsRC_CANDIDATE_CV(Col.ColumnName.Split("#")(1))
+                            Dim pi As PropertyInfo = (From l In oPropsRC_CANDIDATE_EXPECT Where l.Name.ToUpper.Equals(Col.ColumnName.Split("#")(1).ToUpper) Select l).FirstOrDefault()
+                            'Dim pi As PropertyInfo = oPropsRC_CANDIDATE_CV(Col.ColumnName.Split("#")(1))
                             pi.SetValue(objRC_CANDIDATE_CV, Data(0)(Col.ColumnName.Split("#")(1)), Nothing)
                         Case "RC_CANDIDATE_HEALTH"
                             oPropsRC_CANDIDATE_HEALTH = objRC_CANDIDATE_HEALTH.GetType().GetProperties()
-                            Dim pi As PropertyInfo = oPropsRC_CANDIDATE_HEALTH(Col.ColumnName.Split("#")(1))
+                            'Dim pi As PropertyInfo = oPropsRC_CANDIDATE_HEALTH(Col.ColumnName.Split("#")(1))
+                            Dim pi As PropertyInfo = (From l In oPropsRC_CANDIDATE_EXPECT Where l.Name.ToUpper.Equals(Col.ColumnName.Split("#")(1).ToUpper) Select l).FirstOrDefault()
                             pi.SetValue(objRC_CANDIDATE_HEALTH, Data(0)(Col.ColumnName.Split("#")(1)), Nothing)
                         Case "RC_CANDIDATE_EDUCATION"
                             oPropsRC_CANDIDATE_EDUCATION = objRC_CANDIDATE_EDUCATION.GetType().GetProperties()
-                            Dim pi As PropertyInfo = oPropsRC_CANDIDATE_EDUCATION(Col.ColumnName.Split("#")(1))
+                            'Dim pi As PropertyInfo = oPropsRC_CANDIDATE_EDUCATION(Col.ColumnName.Split("#")(1))
+                            Dim pi As PropertyInfo = (From l In oPropsRC_CANDIDATE_EXPECT Where l.Name.ToUpper.Equals(Col.ColumnName.Split("#")(1).ToUpper) Select l).FirstOrDefault()
                             pi.SetValue(objRC_CANDIDATE_EDUCATION, Data(0)(Col.ColumnName.Split("#")(1)), Nothing)
                         Case "RC_CANDIDATE_TRAINSINGER"
                             Continue For
