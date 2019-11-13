@@ -11,7 +11,7 @@ Namespace RecruitmentBusiness.ServiceContracts
         <OperationContract()>
         Function TestService(ByVal str As String) As String
         <OperationContract()>
-        Function ImportRC(ByVal Data As DataTable, ByVal log As UserLog) As Boolean
+        Function ImportRC(ByVal Data As DataTable, Optional ByVal log As UserLog = Nothing) As Boolean
 #Region "danh muc phuong xa"
         <OperationContract()>
         Function GetWardList(ByVal districtID As Decimal, ByVal isBlank As Boolean) As DataTable

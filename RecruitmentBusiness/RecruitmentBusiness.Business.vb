@@ -7,7 +7,7 @@ Imports RecruitmentBusiness.ServiceContracts
 ' NOTE: You can use the "Rename" command on the context menu to change the class name "Service1" in both code and config file together.
 Namespace RecruitmentBusiness.ServiceImplementations
     Partial Class RecruitmentBusiness
-        Function ImportRC(ByVal Data As DataTable, ByVal log As UserLog) As Boolean Implements ServiceContracts.IRecruitmentBusiness.ImportRC
+        Function ImportRC(ByVal Data As DataTable, Optional ByVal log As UserLog = Nothing) As Boolean Implements ServiceContracts.IRecruitmentBusiness.ImportRC
             Try
                 Dim lst = RecruitmentRepositoryStatic.Instance.ImportRC(Data, log)
                 Return lst

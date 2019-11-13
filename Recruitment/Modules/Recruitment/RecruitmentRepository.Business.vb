@@ -6,7 +6,16 @@ Imports System.Reflection
 
 Partial Class RecruitmentRepository
     Private rep As New HistaffFrameworkRepository
-
+    Function ImportRC(ByVal Data As DataTable) As Boolean
+        Using rep As New RecruitmentBusinessClient
+            Try
+                Return rep.ImportRC(Data, Me.Log)
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+    End Function
 #Region "PlanReg"
 
     Public Function GetPlanReg(ByVal _filter As PlanRegDTO, ByVal PageIndex As Integer,

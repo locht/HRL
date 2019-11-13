@@ -500,17 +500,19 @@ Private Sub ctrlUpload1_OkClicked(ByVal sender As Object, ByVal e As System.Even
                     sError = GetErrorCodeByKey(sColName)
                     ImportValidate.EmptyValue(Col.ColumnName, dtData.Rows(0), rowError, IsError, sError)
                     sValidateCode = GetValidateCodeByKey(sColName)
-                    Select Case sValidateCode.ToUpper
-                        Case "NUMBER"
-                            strMess = GetErrorCodeByKey(sColName) + " sai định dạng số"
-                            ImportValidate.IsValidNumber(Col.ColumnName, dtData.Rows(0), rowError, IsError, strMess)
-                        Case "DATE"
-                            ImportValidate.ValidateDate(rowError(Col.ColumnName), strMess)
-                            If String.IsNullOrEmpty(strMess) Then
-                                rowError(Col.ColumnName) = strMess
-                                IsError = True
-                            End If
-                    End Select
+                    If Not String.IsNullOrEmpty(rowError(Col.ColumnName)) Then
+                        Select Case sValidateCode.ToUpper
+                            Case "NUMBER"
+                                strMess = GetErrorCodeByKey(sColName) + " sai định dạng số"
+                                ImportValidate.IsValidNumber(Col.ColumnName, dtData.Rows(0), rowError, IsError, strMess)
+                            Case "DATE"
+                                ImportValidate.ValidateDate(rowError(Col.ColumnName), strMess)
+                                If String.IsNullOrEmpty(strMess) Then
+                                    rowError(Col.ColumnName) = strMess
+                                    IsError = True
+                                End If
+                        End Select
+                    End If
                 Catch ex As Exception
                     Continue For
                 Finally
@@ -525,19 +527,16 @@ Private Sub ctrlUpload1_OkClicked(ByVal sender As Object, ByVal e As System.Even
                 ScriptManager.RegisterStartupScript(Me.Page, Me.Page.GetType(), "javascriptfunction", "ExportReport('RC_CANDIDATE_IMPORT_ERROR')", True)
                 ShowMessage(Translate("Giao dịch không thành công, chi tiết lỗi tệp tin đính kèm"), NotifyType.Warning)
             Else
-                Dim lst = CreateCanImport(dtData)
                 Using rep As New RecruitmentRepository
-                    If rep.ImportCandidate(lst) Then
-                        ShowMessage(Translate("Import thành công " & lst.Count & " ứng viên"), NotifyType.Success)
+                    If rep.ImportRC(dtData) Then
+                        ShowMessage(Translate("Import thành công  ứng viên"), NotifyType.Success)
                         rgCandidateList.Rebind()
                     End If
-
                 End Using
             End If
         Catch ex As Exception
             Throw ex
         End Try
-
     End Sub
     Private Function GetErrorCodeByKey(ByVal strKey As String)
         Dim pathJson As String = HttpContext.Current.Server.MapPath("JsonErrorCode\JsonLangs.json")
@@ -546,7 +545,7 @@ Private Sub ctrlUpload1_OkClicked(ByVal sender As Object, ByVal e As System.Even
             Dim stsJson As String = File.ReadAllText(pathJson)
             Dim data As Dictionary(Of String, String) = readJson(stsJson)
             strValue = (From obj In data
-                          Where obj.Key.Contains(strKey)
+                          Where obj.Key.ToUpper.Contains(strKey.ToUpper)
                           Select obj.Value).First
             If String.IsNullOrEmpty(strValue) Then
                 Return strKey
@@ -565,7 +564,7 @@ Private Sub ctrlUpload1_OkClicked(ByVal sender As Object, ByVal e As System.Even
             Dim stsJson As String = File.ReadAllText(pathJson)
             Dim data As Dictionary(Of String, String) = readJson(stsJson)
             strValue = (From obj In data
-                          Where obj.Key.Contains(strKey)
+                          Where obj.Key.ToUpper.Contains(strKey.ToUpper)
                           Select obj.Value).First
             If String.IsNullOrEmpty(strValue) Then
                 Return strKey

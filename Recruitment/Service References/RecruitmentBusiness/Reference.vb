@@ -18811,6 +18811,9 @@ Namespace RecruitmentBusiness
      System.ServiceModel.ServiceContractAttribute(ConfigurationName:="RecruitmentBusiness.IRecruitmentBusiness")>  _
     Public Interface IRecruitmentBusiness
         
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IRecruitmentBusiness/GetCost", ReplyAction:="http://tempuri.org/IRecruitmentBusiness/GetCostResponse")>  _
+        Function GetCost(ByVal _filter As RecruitmentBusiness.CostDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal Sorts As String) As System.Collections.Generic.List(Of RecruitmentBusiness.CostDTO)
+        
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IRecruitmentBusiness/UpdateCost", ReplyAction:="http://tempuri.org/IRecruitmentBusiness/UpdateCostResponse")>  _
         Function UpdateCost(ByVal objExams As RecruitmentBusiness.CostDTO, ByVal log As Common.CommonBusiness.UserLog) As Boolean
         
@@ -18867,6 +18870,9 @@ Namespace RecruitmentBusiness
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IRecruitmentBusiness/TestService", ReplyAction:="http://tempuri.org/IRecruitmentBusiness/TestServiceResponse")>  _
         Function TestService(ByVal str As String) As String
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IRecruitmentBusiness/ImportRC", ReplyAction:="http://tempuri.org/IRecruitmentBusiness/ImportRCResponse")>  _
+        Function ImportRC(ByVal Data As System.Data.DataTable, ByVal log As Common.CommonBusiness.UserLog) As Boolean
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IRecruitmentBusiness/GetWardList", ReplyAction:="http://tempuri.org/IRecruitmentBusiness/GetWardListResponse")>  _
         Function GetWardList(ByVal districtID As Decimal, ByVal isBlank As Boolean) As System.Data.DataTable
@@ -19117,9 +19123,6 @@ Namespace RecruitmentBusiness
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IRecruitmentBusiness/UpdateCandidateResult", ReplyAction:="http://tempuri.org/IRecruitmentBusiness/UpdateCandidateResultResponse")>  _
         Function UpdateCandidateResult(ByVal lst As System.Collections.Generic.List(Of RecruitmentBusiness.ProgramScheduleCanDTO), ByVal log As Common.CommonBusiness.UserLog) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IRecruitmentBusiness/GetCost", ReplyAction:="http://tempuri.org/IRecruitmentBusiness/GetCostResponse")>  _
-        Function GetCost(ByVal _filter As RecruitmentBusiness.CostDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal Sorts As String) As System.Collections.Generic.List(Of RecruitmentBusiness.CostDTO)
     End Interface
     
     <System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")>  _
@@ -19152,6 +19155,10 @@ Namespace RecruitmentBusiness
         Public Sub New(ByVal binding As System.ServiceModel.Channels.Binding, ByVal remoteAddress As System.ServiceModel.EndpointAddress)
             MyBase.New(binding, remoteAddress)
         End Sub
+        
+        Public Function GetCost(ByVal _filter As RecruitmentBusiness.CostDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal Sorts As String) As System.Collections.Generic.List(Of RecruitmentBusiness.CostDTO) Implements RecruitmentBusiness.IRecruitmentBusiness.GetCost
+            Return MyBase.Channel.GetCost(_filter, PageIndex, PageSize, Total, Sorts)
+        End Function
         
         Public Function UpdateCost(ByVal objExams As RecruitmentBusiness.CostDTO, ByVal log As Common.CommonBusiness.UserLog) As Boolean Implements RecruitmentBusiness.IRecruitmentBusiness.UpdateCost
             Return MyBase.Channel.UpdateCost(objExams, log)
@@ -19227,6 +19234,10 @@ Namespace RecruitmentBusiness
         
         Public Function TestService(ByVal str As String) As String Implements RecruitmentBusiness.IRecruitmentBusiness.TestService
             Return MyBase.Channel.TestService(str)
+        End Function
+        
+        Public Function ImportRC(ByVal Data As System.Data.DataTable, ByVal log As Common.CommonBusiness.UserLog) As Boolean Implements RecruitmentBusiness.IRecruitmentBusiness.ImportRC
+            Return MyBase.Channel.ImportRC(Data, log)
         End Function
         
         Public Function GetWardList(ByVal districtID As Decimal, ByVal isBlank As Boolean) As System.Data.DataTable Implements RecruitmentBusiness.IRecruitmentBusiness.GetWardList
@@ -19559,10 +19570,6 @@ Namespace RecruitmentBusiness
         
         Public Function UpdateCandidateResult(ByVal lst As System.Collections.Generic.List(Of RecruitmentBusiness.ProgramScheduleCanDTO), ByVal log As Common.CommonBusiness.UserLog) As Boolean Implements RecruitmentBusiness.IRecruitmentBusiness.UpdateCandidateResult
             Return MyBase.Channel.UpdateCandidateResult(lst, log)
-        End Function
-        
-        Public Function GetCost(ByVal _filter As RecruitmentBusiness.CostDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal Sorts As String) As System.Collections.Generic.List(Of RecruitmentBusiness.CostDTO) Implements RecruitmentBusiness.IRecruitmentBusiness.GetCost
-            Return MyBase.Channel.GetCost(_filter, PageIndex, PageSize, Total, Sorts)
         End Function
     End Class
 End Namespace
