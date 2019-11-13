@@ -144,7 +144,7 @@ Public Class ctrlRC_ProgramScheduleNewEdit
 
                 Using rep As New RecruitmentRepository
                     Dim objPro = rep.GetProgramByID(New ProgramDTO With {.ID = Decimal.Parse(hidProgramID.Value)})
-                    lblJobName.Text = objPro.JOB_NAME
+                    lblJobName.Text = objPro.ORG_NAME
                     lblTitleName.Text = objPro.TITLE_NAME
                     lblRequestNo.Text = objPro.REQUEST_NUMBER
 
@@ -255,19 +255,25 @@ Public Class ctrlRC_ProgramScheduleNewEdit
     End Sub
 
     Private Sub LoadExamsList()
-        If Not IsPostBack Then
-            rlbExams.DataSource = store.GET_AllExams_ByProgram(Decimal.Parse(hidProgramID.Value))
-            rlbExams.DataTextField = "NAME"
-            rlbExams.DataValueField = "ID"
-            rlbExams.DataBind()
+        'If Not IsPostBack Then
+        rlbExams.DataSource = store.GET_AllExams_ByProgram(Decimal.Parse(hidProgramID.Value), hidID.Value)
+        rlbExams.DataTextField = "NAME"
+        rlbExams.DataValueField = "ID"
+        rlbExams.DataBind()
 
-            'Dim collection As IList(Of RadListBoxItem) = rlbExams.Items
-            'For Each item As RadListBoxItem In collection
-            '    item.Checked = True
-            'Next
-            'rlbExams.Enabled = False
-
+        If hidID.Value <> 0 Then
+            rlbExams.Enabled = False
+        Else
+            rlbExams.Enabled = True
         End If
+
+        'Dim collection As IList(Of RadListBoxItem) = rlbExams.Items
+        'For Each item As RadListBoxItem In collection
+        '    item.Checked = True
+        'Next
+        'rlbExams.Enabled = False
+
+        'End If
     End Sub
 
 #End Region
@@ -625,6 +631,10 @@ Public Class ctrlRC_ProgramScheduleNewEdit
 
             tabCandidateSchedule = store.GET_PROGRAM_SCHCEDULE_LIST(Decimal.Parse(hidProgramID.Value), Decimal.Parse(hidID.Value))
             rgCanSchedule.DataSource = tabCandidateSchedule
+
+            If tabCandidateSchedule.Rows.Count = 0 Then
+                rlbExams.Enabled = True
+            End If
         Catch ex As Exception
             DisplayException(Me.ViewName, Me.ID, ex)
         End Try
@@ -696,7 +706,7 @@ Public Class ctrlRC_ProgramScheduleNewEdit
 
     Protected Sub RadAjaxPanel1_AjaxRequest(ByVal sender As Object, ByVal e As AjaxRequestEventArgs)
         userlog = LogHelper.GetUserLog
-
+        Dim check As Integer = 0
         Dim str As String
         Dim arr() As String
         arr = e.Argument.Split("_")
@@ -718,10 +728,14 @@ Public Class ctrlRC_ProgramScheduleNewEdit
                         If itemExams.Checked = True Then
                             Dim idPro_Exams As Int32 = Decimal.Parse(itemExams.Value)
                             store.ADDNEW_CAN_PRO_SCHEDULE(idCandidate, Decimal.Parse(hidID.Value), idPro_Exams)
+                            check = 2
                         Else
                             Continue For
                         End If
                     Next
+                    If check = 2 Then
+                        store.UPDATE_CANDIDATE_STATUS(idCandidate, "PROCESS")
+                    End If
                 Next
 
             Case "btnDelete"
@@ -739,6 +753,13 @@ Public Class ctrlRC_ProgramScheduleNewEdit
         End Select
         rgCanNotSchedule.Rebind()
         rgCanSchedule.Rebind()
+
+        If rgCanSchedule.Items.Count = 0 Then
+            LoadExamsList()
+            rlbExams.Enabled = True
+        Else
+            rlbExams.Enabled = False
+        End If
 
     End Sub
 

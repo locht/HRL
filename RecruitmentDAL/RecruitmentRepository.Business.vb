@@ -4285,12 +4285,12 @@ Partial Class RecruitmentRepository
                                         Optional ByVal log As UserLog = Nothing) As List(Of CVPoolEmpDTO)
 
         Try
-            'Using cls As New DataAccess.QueryData
-            '    cls.ExecuteStore("PKG_COMMON_LIST.INSERT_CHOSEN_ORG",
-            '                     New With {.P_USERNAME = log.Username,
-            '                               .P_ORGID = _param.ORG_ID,
-            '                               .P_ISDISSOLVE = _param.IS_DISSOLVE})
-            'End Using
+            Using cls As New DataAccess.QueryData
+                cls.ExecuteStore("PKG_COMMON_LIST.INSERT_CHOSEN_ORG",
+                                 New With {.P_USERNAME = log.Username,
+                                           .P_ORGID = 1,
+                                           .P_ISDISSOLVE = True})
+            End Using
 
             Dim query = From p In Context.RC_CANDIDATE
                         From cv In Context.RC_CANDIDATE_CV.Where(Function(f) f.CANDIDATE_ID = p.ID).DefaultIfEmpty
@@ -4309,6 +4309,10 @@ Partial Class RecruitmentRepository
                         From lang In Context.OT_OTHER_LIST.Where(Function(f) f.ID = ed.LANGUAGE_LEVEL).DefaultIfEmpty
                         From loaisk In Context.OT_OTHER_LIST.Where(Function(f) f.ID = hea.LOAI_SUC_KHOE).DefaultIfEmpty
                          From status In Context.OT_OTHER_LIST.Where(Function(f) f.CODE = p.STATUS_ID).DefaultIfEmpty
+                         From org In Context.HU_ORGANIZATION.Where(Function(f) f.ID = p.ORG_ID).DefaultIfEmpty
+                         From orgv In Context.HU_ORGANIZATION_V.Where(Function(f) f.ID = org.ID).DefaultIfEmpty
+                         From k In Context.SE_CHOSEN_ORG.Where(Function(f) p.ORG_ID = f.ORG_ID And f.USERNAME.ToUpper = log.Username.ToUpper)
+                         From t In Context.HU_TITLE.Where(Function(f) f.ID = p.TITLE_ID).DefaultIfEmpty
                         Select New CVPoolEmpDTO With {
                             .CANDIDATE_ID = p.ID,
                             .CANDIDATE_CODE = p.CANDIDATE_CODE,
@@ -4347,7 +4351,10 @@ Partial Class RecruitmentRepository
                             .LOAI_SUC_KHOE_NAME = loaisk.NAME_VN,
                             .CANDIDATE_STATUS = status.CODE,
                             .CANDIDATE_STATUS_NAME = status.NAME_VN,
-                            .CREATED_DATE = p.CREATED_DATE}
+                            .CREATED_DATE = p.CREATED_DATE,
+                            .ORG_NAME = orgv.NAME_C2,
+                            .MODIFIED_DATE = p.MODIFIED_DATE,
+                            .TITLE_NAME_VN = t.NAME_VN}
 
             Dim lst = query
 
@@ -4423,7 +4430,15 @@ Partial Class RecruitmentRepository
             If _filter.CANDIDATE_STATUS IsNot Nothing Then
                 lst = lst.Where(Function(p) p.CANDIDATE_STATUS = _filter.CANDIDATE_STATUS)
             End If
-
+            If _filter.MODIFIED_DATE IsNot Nothing Then
+                lst = lst.Where(Function(p) p.MODIFIED_DATE <= _filter.MODIFIED_DATE)
+            End If
+            If _filter.ORG_NAME IsNot Nothing Then
+                lst = lst.Where(Function(p) p.ORG_NAME <= _filter.ORG_NAME)
+            End If
+            If _filter.TITLE_NAME_VN IsNot Nothing Then
+                lst = lst.Where(Function(p) p.TITLE_NAME_VN <= _filter.TITLE_NAME_VN)
+            End If
             lst = lst.OrderBy(Sorts)
             Total = lst.Count
             lst = lst.Skip(PageIndex * PageSize).Take(PageSize)

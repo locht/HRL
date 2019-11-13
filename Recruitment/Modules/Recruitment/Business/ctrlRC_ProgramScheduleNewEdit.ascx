@@ -25,7 +25,7 @@
                         </tr>
                         <tr>
                             <td class="lb">
-                                <%# Translate("Tên công việc")%>
+                                <%# Translate("Ban/Phòng")%>
                             </td>
                             <td>
                                 <asp:Label ID="lblJobName" runat="server" Font-Bold="true"></asp:Label>
