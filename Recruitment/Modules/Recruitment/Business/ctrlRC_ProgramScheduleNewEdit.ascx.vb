@@ -144,7 +144,7 @@ Public Class ctrlRC_ProgramScheduleNewEdit
 
                 Using rep As New RecruitmentRepository
                     Dim objPro = rep.GetProgramByID(New ProgramDTO With {.ID = Decimal.Parse(hidProgramID.Value)})
-                    lblJobName.Text = objPro.JOB_NAME
+                    lblJobName.Text = objPro.ORG_NAME
                     lblTitleName.Text = objPro.TITLE_NAME
                     lblRequestNo.Text = objPro.REQUEST_NUMBER
 
@@ -753,6 +753,8 @@ Public Class ctrlRC_ProgramScheduleNewEdit
         If rgCanSchedule.Items.Count = 0 Then
             LoadExamsList()
             rlbExams.Enabled = True
+        Else
+            rlbExams.Enabled = False
         End If
 
     End Sub
