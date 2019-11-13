@@ -806,6 +806,7 @@ Partial Public Class AttendanceRepository
                                                          .P_EMPLOYEE_NAME = param.VN_FULLNAME,
                                                          .P_ORG_NAME = param.ORG_NAME,
                                                          .P_TITLE_NAME = param.TITLE_NAME,
+                                                         .P_OBJECT_ATTENDANCE_NAME = param.OBJECT_ATTENDANCE_NAME,
                                                          .P_PAGE_SIZE = param.PAGE_SIZE,
                                                          .P_PERIOD_ID = param.PERIOD_ID,
                                                          .P_TERMINATE = param.IS_TERMINATE,

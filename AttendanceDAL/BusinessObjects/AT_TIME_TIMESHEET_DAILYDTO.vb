@@ -95,4 +95,5 @@
     Public Property MODIFIED_LOG As String
 
     Public Property COLOR As Decimal
+    Public Property OBJECT_ATTENDANCE_NAME As String
 End Class
