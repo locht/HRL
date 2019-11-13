@@ -11,10 +11,47 @@ Imports System.IO
 Imports System.Reflection
 
 Partial Class RecruitmentRepository
+    Function ConvertStringToDate(ByVal strDate As String) As Date
+        Try
+            Dim year As Integer = Now.Year
+            Dim month As Integer = Now.Month
+            Dim day As Integer = Now.Day
+            If strDate.Split("/").Count <> 3 Then Return Nothing
+            year = Integer.Parse(strDate.Split("/")(2))
+            month = Integer.Parse(strDate.Split("/")(1))
+            day = Integer.Parse(strDate.Split("/")(0))
+            Return New Date(year, month, day)
+        Catch ex As Exception
+            Return Nothing
+        End Try
+    End Function
+
+    Function SetValueObject(ByVal pi As PropertyInfo, ByVal item As Object) As Object
+        Dim value As Object
+        Try
+            Select Case pi.PropertyType
+                Case GetType(DateTime), GetType(DateTime?)
+                    value = ConvertStringToDate(item.ToString())
+                Case GetType(Double), GetType(Double?)
+                    Double.TryParse(item, value)
+                Case GetType(Decimal), GetType(Decimal?)
+                    Decimal.TryParse(item, value)
+                Case GetType(Integer), GetType(Integer?)
+                    Integer.TryParse(item, value)
+                Case GetType(Boolean), GetType(Boolean?)
+                    Boolean.TryParse(item, value)
+                Case Else
+                    value = item
+            End Select
+            Return value
+        Catch ex As Exception
+            Return Nothing
+        End Try
+    End Function
     'Create ChienNV 
     'Create date: 13-NOV-2019
     'Import hồ sơ ứng viên
-    Public Function ImportRC(ByVal Data As DataTable, ByVal log As UserLog) As Boolean
+    Public Function ImportRC(ByVal Data As DataTable, ByVal ProGramID As Decimal, ByVal log As UserLog) As Boolean
         Dim oPropsRC_CANDIDATE_EXPECT() As PropertyInfo = Nothing
         Dim oPropsRC_CANDIDATE() As PropertyInfo = Nothing
         Dim oPropsRC_CANDIDATE_CV() As PropertyInfo = Nothing
@@ -42,28 +79,39 @@ Partial Class RecruitmentRepository
                         Case "RC_CANDIDATE_EXPECT"
                             oPropsRC_CANDIDATE_EXPECT = objRC_CANDIDATE_EXPECT.GetType().GetProperties()
                             Dim pi As PropertyInfo = (From l In oPropsRC_CANDIDATE_EXPECT Where l.Name.ToUpper.Equals(Col.ColumnName.Split("#")(1).ToUpper) Select l).FirstOrDefault()
-                            'Dim pi As PropertyInfo = oPropsRC_CANDIDATE_EXPECT(Col.ColumnName.Split("#")(1))
-                            pi.SetValue(objRC_CANDIDATE_EXPECT, Data(0)(Col.ColumnName.Split("#")(1)), Nothing)
+                            If pi IsNot Nothing Then
+                                Dim value As Object
+                                value = SetValueObject(pi, Data(0)(Col.ColumnName))
+                                pi.SetValue(objRC_CANDIDATE_EXPECT, value, Nothing)
+                            End If
                         Case "RC_CANDIDATE"
                             oPropsRC_CANDIDATE = objRC_CANDIDATE.GetType().GetProperties()
-                            Dim pi As PropertyInfo = (From l In oPropsRC_CANDIDATE_EXPECT Where l.Name.ToUpper.Equals(Col.ColumnName.Split("#")(1).ToUpper) Select l).FirstOrDefault()
-                            'Dim pi As PropertyInfo = oPropsRC_CANDIDATE(Col.ColumnName.Split("#")(1))
-                            pi.SetValue(objRC_CANDIDATE, Data(0)(Col.ColumnName.Split("#")(1)), Nothing)
+                            Dim pi As PropertyInfo = (From l In oPropsRC_CANDIDATE Where l.Name.ToUpper.Equals(Col.ColumnName.Split("#")(1).ToUpper) Select l).FirstOrDefault()
+                            If pi IsNot Nothing Then
+                                Dim value As Object
+                                value = SetValueObject(pi, Data(0)(Col.ColumnName))
+                                pi.SetValue(objRC_CANDIDATE, value, Nothing)
+                            End If
                         Case "RC_CANDIDATE_CV"
                             oPropsRC_CANDIDATE_CV = objRC_CANDIDATE_CV.GetType().GetProperties()
-                            Dim pi As PropertyInfo = (From l In oPropsRC_CANDIDATE_EXPECT Where l.Name.ToUpper.Equals(Col.ColumnName.Split("#")(1).ToUpper) Select l).FirstOrDefault()
-                            'Dim pi As PropertyInfo = oPropsRC_CANDIDATE_CV(Col.ColumnName.Split("#")(1))
-                            pi.SetValue(objRC_CANDIDATE_CV, Data(0)(Col.ColumnName.Split("#")(1)), Nothing)
+                            Dim pi As PropertyInfo = (From l In oPropsRC_CANDIDATE_CV Where l.Name.ToUpper.Equals(Col.ColumnName.Split("#")(1).ToUpper) Select l).FirstOrDefault()
+                            If pi IsNot Nothing Then
+                                Dim value As Object
+                                value = SetValueObject(pi, Data(0)(Col.ColumnName))
+                                pi.SetValue(objRC_CANDIDATE_CV, value, Nothing)
+                            End If
                         Case "RC_CANDIDATE_HEALTH"
                             oPropsRC_CANDIDATE_HEALTH = objRC_CANDIDATE_HEALTH.GetType().GetProperties()
-                            'Dim pi As PropertyInfo = oPropsRC_CANDIDATE_HEALTH(Col.ColumnName.Split("#")(1))
-                            Dim pi As PropertyInfo = (From l In oPropsRC_CANDIDATE_EXPECT Where l.Name.ToUpper.Equals(Col.ColumnName.Split("#")(1).ToUpper) Select l).FirstOrDefault()
-                            pi.SetValue(objRC_CANDIDATE_HEALTH, Data(0)(Col.ColumnName.Split("#")(1)), Nothing)
+                            Dim pi As PropertyInfo = (From l In oPropsRC_CANDIDATE_HEALTH Where l.Name.ToUpper.Equals(Col.ColumnName.Split("#")(1).ToUpper) Select l).FirstOrDefault()
+                            pi.SetValue(objRC_CANDIDATE_HEALTH, Data(0)(Col.ColumnName), Nothing)
                         Case "RC_CANDIDATE_EDUCATION"
                             oPropsRC_CANDIDATE_EDUCATION = objRC_CANDIDATE_EDUCATION.GetType().GetProperties()
-                            'Dim pi As PropertyInfo = oPropsRC_CANDIDATE_EDUCATION(Col.ColumnName.Split("#")(1))
-                            Dim pi As PropertyInfo = (From l In oPropsRC_CANDIDATE_EXPECT Where l.Name.ToUpper.Equals(Col.ColumnName.Split("#")(1).ToUpper) Select l).FirstOrDefault()
-                            pi.SetValue(objRC_CANDIDATE_EDUCATION, Data(0)(Col.ColumnName.Split("#")(1)), Nothing)
+                            Dim pi As PropertyInfo = (From l In oPropsRC_CANDIDATE_EDUCATION Where l.Name.ToUpper.Equals(Col.ColumnName.Split("#")(1).ToUpper) Select l).FirstOrDefault()
+                            If pi IsNot Nothing Then
+                                Dim value As Object
+                                value = SetValueObject(pi, Data(0)(Col.ColumnName))
+                                pi.SetValue(objRC_CANDIDATE_EDUCATION, value, Nothing)
+                            End If
                         Case "RC_CANDIDATE_TRAINSINGER"
                             Continue For
                             'XU LY RIENG TH NAY
@@ -84,6 +132,23 @@ Partial Class RecruitmentRepository
             Context.RC_CANDIDATE_EDUCATION.AddObject(objRC_CANDIDATE_EDUCATION)
             Context.RC_CANDIDATE_HEALTH.AddObject(objRC_CANDIDATE_HEALTH)
             Context.RC_CANDIDATE_CV.AddObject(objRC_CANDIDATE_CV)
+            objRC_CANDIDATE.RC_PROGRAM_ID = ProGramID
+            'Sinh mã ứng viên động
+            Dim checkEMP As Integer = 0
+            Dim empCodeDB As Decimal = 0
+            Dim EMPCODE As String
+            Using query As New DataAccess.NonQueryData
+                Dim temp = query.ExecuteSQLScalar("select Candidate_CODE from RC_Candidate order by Candidate_CODE DESC", New Object)
+                If temp IsNot Nothing Then
+                    empCodeDB = Decimal.Parse(temp)
+                End If
+            End Using
+            Do
+                empCodeDB += 1
+                EMPCODE = String.Format("{0}", Format(empCodeDB, "000000"))
+                checkEMP = (From p In Context.RC_CANDIDATE Where p.CANDIDATE_CODE = EMPCODE Select p.ID).Count
+            Loop Until checkEMP = 0
+            objRC_CANDIDATE.CANDIDATE_CODE = EMPCODE
             Context.RC_CANDIDATE.AddObject(objRC_CANDIDATE)
             Context.RC_CANDIDATE_EXPECT.AddObject(objRC_CANDIDATE_EXPECT)
             'Dim objRC_CANDIDATE_TRAINSINGER As New RC_CANDIDATE_TRAINSINGER
@@ -92,16 +157,16 @@ Partial Class RecruitmentRepository
                     Dim objRC_CANDIDATE_TRAINSINGER As New RC_CANDIDATE_TRAINSINGER
                     objRC_CANDIDATE_TRAINSINGER.CANDIDATE_ID = CANDIDATE_ID
                     objRC_CANDIDATE_TRAINSINGER.ID = Utilities.GetNextSequence(Context, Context.RC_CANDIDATE_TRAINSINGER.EntitySet.Name)
-                    If IsDate(Data(0)(" rc_candidate_trainsinger#FROMDATE" + I.ToString())) Then
-                        objRC_CANDIDATE_TRAINSINGER.FROMDATE = Data(0)(" rc_candidate_trainsinger#FROMDATE" + I.ToString())
+                    If IsDate(Data(0)("rc_candidate_trainsinger#FROMDATE" + I.ToString())) Then
+                        objRC_CANDIDATE_TRAINSINGER.FROMDATE = ConvertStringToDate(Data(0)("rc_candidate_trainsinger#FROMDATE" + I.ToString()))
                     End If
-                    If IsDate(Data(0)(" rc_candidate_trainsinger#TODATE" + I.ToString())) Then
-                        objRC_CANDIDATE_TRAINSINGER.TODATE = Data(0)(" rc_candidate_trainsinger#TODATE" + I.ToString())
+                    If IsDate(Data(0)("rc_candidate_trainsinger#TODATE" + I.ToString())) Then
+                        objRC_CANDIDATE_TRAINSINGER.TODATE = ConvertStringToDate(Data(0)("rc_candidate_trainsinger#TODATE" + I.ToString()))
                     End If
-                    objRC_CANDIDATE_TRAINSINGER.SCHOOL_NAME = Data(0)(" rc_candidate_trainsinger#SCHOOL_NAME" + I.ToString())
-                    objRC_CANDIDATE_TRAINSINGER.BRANCH_NAME = Data(0)(" rc_candidate_trainsinger#BRANCH_NAME" + I.ToString())
-                    objRC_CANDIDATE_TRAINSINGER.CERTIFICATE = Data(0)(" rc_candidate_trainsinger#CERTIFICATE" + I.ToString())
-                    objRC_CANDIDATE_TRAINSINGER.RANK = Data(0)(" rc_candidate_trainsinger#RANK" + I.ToString())
+                    objRC_CANDIDATE_TRAINSINGER.SCHOOL_NAME = Data(0)("rc_candidate_trainsinger#SCHOOL_NAME" + I.ToString())
+                    objRC_CANDIDATE_TRAINSINGER.BRANCH_NAME = Data(0)("rc_candidate_trainsinger#BRANCH_NAME" + I.ToString())
+                    objRC_CANDIDATE_TRAINSINGER.CERTIFICATE = Data(0)("rc_candidate_trainsinger#CERTIFICATE" + I.ToString())
+                    objRC_CANDIDATE_TRAINSINGER.RANK = Data(0)("rc_candidate_trainsinger#RANK" + I.ToString())
                     Context.RC_CANDIDATE_TRAINSINGER.AddObject(objRC_CANDIDATE_TRAINSINGER)
                 Catch ex As Exception
                     Continue For
@@ -113,20 +178,20 @@ Partial Class RecruitmentRepository
                     Dim objRC_CANDIDATE_BEFOREWT As New RC_CANDIDATE_BEFOREWT
                     objRC_CANDIDATE_BEFOREWT.CANDIDATE_ID = CANDIDATE_ID
                     objRC_CANDIDATE_BEFOREWT.ID = Utilities.GetNextSequence(Context, Context.RC_CANDIDATE_BEFOREWT.EntitySet.Name)
-                    objRC_CANDIDATE_BEFOREWT.ORG_NAME = Data(0)(" rc_candidate_trainsinger#ORG_NAME" + I.ToString())
-                    objRC_CANDIDATE_BEFOREWT.TITLE_NAME = Data(0)(" rc_candidate_trainsinger#TITLE_NAME" + I.ToString())
-                    If IsDate(Data(0)(" rc_candidate_trainsinger#FROMDATE" + I.ToString())) Then
-                        objRC_CANDIDATE_BEFOREWT.FROMDATE = Data(0)(" rc_candidate_trainsinger#FROMDATE" + I.ToString())
+                    objRC_CANDIDATE_BEFOREWT.ORG_NAME = Data(0)("rc_candidate_beforewt#ORG_NAME" + I.ToString())
+                    objRC_CANDIDATE_BEFOREWT.TITLE_NAME = Data(0)("rc_candidate_beforewt#TITLE_NAME" + I.ToString())
+                    'If IsDate(Data(0)("rc_candidate_beforewt#FROMDATE" + I.ToString())) Then
+                    objRC_CANDIDATE_BEFOREWT.FROMDATE = ConvertStringToDate(Data(0)("rc_candidate_beforewt#FROMDATE" + I.ToString()))
+                    'End If
+                    'If IsDate(Data(0)("rc_candidate_beforewt#TODATE" + I.ToString())) Then
+                    objRC_CANDIDATE_BEFOREWT.TODATE = ConvertStringToDate(Data(0)("rc_candidate_beforewt#TODATE" + I.ToString()))
+                    'End If
+                    objRC_CANDIDATE_BEFOREWT.DIRECT_MANAGER = Data(0)("rc_candidate_beforewt#DIRECT_MANAGER" + I.ToString())
+                    objRC_CANDIDATE_BEFOREWT.WORK = Data(0)("rc_candidate_beforewt#WORK" + I.ToString())
+                    If IsNumeric(Data(0)("rc_candidate_beforewt#SALARY" + I.ToString())) Then
+                        objRC_CANDIDATE_BEFOREWT.SALARY = CDec(Data(0)("rc_candidate_beforewt#SALARY" + I.ToString()))
                     End If
-                    If IsDate(Data(0)(" rc_candidate_trainsinger#TODATE" + I.ToString())) Then
-                        objRC_CANDIDATE_BEFOREWT.TODATE = Data(0)(" rc_candidate_trainsinger#TODATE" + I.ToString())
-                    End If
-                    objRC_CANDIDATE_BEFOREWT.DIRECT_MANAGER = Data(0)(" rc_candidate_trainsinger#DIRECT_MANAGER" + I.ToString())
-                    objRC_CANDIDATE_BEFOREWT.WORK = Data(0)(" rc_candidate_trainsinger#WORK" + I.ToString())
-                    If IsNumeric(Data(0)(" rc_candidate_trainsinger#SALARY" + I.ToString())) Then
-                        objRC_CANDIDATE_BEFOREWT.SALARY = Data(0)(" rc_candidate_trainsinger#SALARY" + I.ToString())
-                    End If
-                    objRC_CANDIDATE_BEFOREWT.REASON_LEAVE = Data(0)(" rc_candidate_trainsinger#REASON_LEAVE" + I.ToString())
+                    objRC_CANDIDATE_BEFOREWT.REASON_LEAVE = Data(0)("rc_candidate_beforewt#REASON_LEAVE" + I.ToString())
                     Context.RC_CANDIDATE_BEFOREWT.AddObject(objRC_CANDIDATE_BEFOREWT)
                 Catch ex As Exception
                     Continue For

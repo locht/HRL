@@ -18872,7 +18872,7 @@ Namespace RecruitmentBusiness
         Function TestService(ByVal str As String) As String
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IRecruitmentBusiness/ImportRC", ReplyAction:="http://tempuri.org/IRecruitmentBusiness/ImportRCResponse")>  _
-        Function ImportRC(ByVal Data As System.Data.DataTable, ByVal log As Common.CommonBusiness.UserLog) As Boolean
+        Function ImportRC(ByVal Data As System.Data.DataTable, ByVal ProGramID As Decimal, ByVal log As Common.CommonBusiness.UserLog) As Boolean
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IRecruitmentBusiness/GetWardList", ReplyAction:="http://tempuri.org/IRecruitmentBusiness/GetWardListResponse")>  _
         Function GetWardList(ByVal districtID As Decimal, ByVal isBlank As Boolean) As System.Data.DataTable
@@ -19236,8 +19236,8 @@ Namespace RecruitmentBusiness
             Return MyBase.Channel.TestService(str)
         End Function
         
-        Public Function ImportRC(ByVal Data As System.Data.DataTable, ByVal log As Common.CommonBusiness.UserLog) As Boolean Implements RecruitmentBusiness.IRecruitmentBusiness.ImportRC
-            Return MyBase.Channel.ImportRC(Data, log)
+        Public Function ImportRC(ByVal Data As System.Data.DataTable, ByVal ProGramID As Decimal, ByVal log As Common.CommonBusiness.UserLog) As Boolean Implements RecruitmentBusiness.IRecruitmentBusiness.ImportRC
+            Return MyBase.Channel.ImportRC(Data, ProGramID, log)
         End Function
         
         Public Function GetWardList(ByVal districtID As Decimal, ByVal isBlank As Boolean) As System.Data.DataTable Implements RecruitmentBusiness.IRecruitmentBusiness.GetWardList

@@ -6,10 +6,10 @@ Imports System.Reflection
 
 Partial Class RecruitmentRepository
     Private rep As New HistaffFrameworkRepository
-    Function ImportRC(ByVal Data As DataTable) As Boolean
+    Function ImportRC(ByVal Data As DataTable, ByVal ProGramID As Decimal) As Boolean
         Using rep As New RecruitmentBusinessClient
             Try
-                Return rep.ImportRC(Data, Me.Log)
+                Return rep.ImportRC(Data, ProGramID, Me.Log)
             Catch ex As Exception
                 rep.Abort()
                 Throw ex

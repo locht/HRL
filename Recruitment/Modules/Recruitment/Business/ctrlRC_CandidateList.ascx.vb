@@ -528,7 +528,7 @@ Private Sub ctrlUpload1_OkClicked(ByVal sender As Object, ByVal e As System.Even
                 ShowMessage(Translate("Giao dịch không thành công, chi tiết lỗi tệp tin đính kèm"), NotifyType.Warning)
             Else
                 Using rep As New RecruitmentRepository
-                    If rep.ImportRC(dtData) Then
+                    If rep.ImportRC(dtData, If(hidProgramID.Value, hidProgramID.Value, 0)) Then
                         ShowMessage(Translate("Import thành công  ứng viên"), NotifyType.Success)
                         rgCandidateList.Rebind()
                     End If
