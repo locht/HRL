@@ -204,11 +204,14 @@ Public Class ctrlRC_CanDtlProfile
                 If CandidateInfo IsNot Nothing Then
                     'Phần hồ sơ
                     hidID.Value = CandidateInfo.ID.ToString()
-                    hidOrg.Value = CandidateInfo.ORG_ID.ToString()
+                    If IsNumeric(CandidateInfo.ORG_ID) Then
+                        hidOrg.Value = CandidateInfo.ORG_ID.ToString()
+                    End If
+
                     txtEmpCODE.Text = CandidateInfo.CANDIDATE_CODE
                     txtFirstNameVN.Text = CandidateInfo.FIRST_NAME_VN
                     txtLastNameVN.Text = CandidateInfo.LAST_NAME_VN
-                    hidOrg.Value = CandidateInfo.ORG_ID
+                    'hidOrg.Value = CandidateInfo.ORG_ID
                     txtOrgName.Text = CandidateInfo.ORG_NAME
                     txtCare_TitleName.Text = CandidateInfo.CARE_TITLE_NAME
                     txtCare_Website.Text = CandidateInfo.RECRUIMENT_WEBSITE
@@ -519,7 +522,9 @@ Public Class ctrlRC_CanDtlProfile
                         txtHuyetAp.Text = EmpHealthInfo.HUYET_AP
                         txtMatTrai.Text = EmpHealthInfo.MAT_TRAI
                         txtMatPhai.Text = EmpHealthInfo.MAT_PHAI
-                        cboLoaiSucKhoe.SelectedValue = EmpHealthInfo.LOAI_SUC_KHOE
+                        If IsNumeric(EmpHealthInfo.LOAI_SUC_KHOE) Then
+                            cboLoaiSucKhoe.SelectedValue = EmpHealthInfo.LOAI_SUC_KHOE
+                        End If
                         txtTaiMuiHong.Text = EmpHealthInfo.TAI_MUI_HONG
                         txtRangHamMat.Text = EmpHealthInfo.RANG_HAM_MAT
                         txtTim.Text = EmpHealthInfo.TIM
@@ -532,10 +537,18 @@ Public Class ctrlRC_CanDtlProfile
                     'Candidate Nguyện vọng
                     Dim EmpExpectInfo = rep.GetCandidateExpectInfo(CandidateInfo.ID)
                     If EmpExpectInfo IsNot Nothing Then
-                        cboExpectThoiGianLamViec.SelectedValue = EmpExpectInfo.TIME_START
-                        txtExpectMucLuongThuViec.Text = EmpExpectInfo.PROBATIONARY_SALARY
-                        txtExpectMucLuongChinhThuc.Text = EmpExpectInfo.OFFICIAL_SALARY
-                        txtExpectNgayBatDau.SelectedDate = EmpExpectInfo.DATE_START
+                        If IsNumeric(EmpExpectInfo.TIME_START) Then
+                            cboExpectThoiGianLamViec.SelectedValue = EmpExpectInfo.TIME_START
+                        End If
+                        If IsNumeric(EmpExpectInfo.PROBATIONARY_SALARY) Then
+                            txtExpectMucLuongThuViec.Text = EmpExpectInfo.PROBATIONARY_SALARY
+                        End If
+                        If IsNumeric(EmpExpectInfo.OFFICIAL_SALARY) Then
+                            txtExpectMucLuongChinhThuc.Text = EmpExpectInfo.OFFICIAL_SALARY
+                        End If
+                        If IsDate(EmpExpectInfo.DATE_START) Then
+                            txtExpectNgayBatDau.SelectedDate = EmpExpectInfo.DATE_START
+                        End If
                         txtExpectDeNghiKhac.Text = EmpExpectInfo.OTHER_REQUEST
                         txtWORK_LOCATION.Text = EmpExpectInfo.WORK_LOCATION
                     End If
