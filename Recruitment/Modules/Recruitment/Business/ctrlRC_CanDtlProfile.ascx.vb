@@ -1136,8 +1136,9 @@ Public Class ctrlRC_CanDtlProfile
             CandidateInfo.ID = IDemp
             CandidateInfo.RC_PROGRAM_ID = Decimal.Parse(hidProgramID.Value)
             CandidateInfo.CANDIDATE_CODE = txtEmpCODE.Text.Trim()
-            CandidateInfo.FIRST_NAME_VN = txtFirstNameVN.Text.Trim()
-            CandidateInfo.LAST_NAME_VN = txtLastNameVN.Text.Trim()
+            'txtFirstNameVN.Text = StrConv(txtFirstNameVN.Text, VbStrConv.ProperCase)
+            CandidateInfo.FIRST_NAME_VN = StrConv(txtFirstNameVN.Text, VbStrConv.ProperCase)
+            CandidateInfo.LAST_NAME_VN = StrConv(txtLastNameVN.Text, VbStrConv.ProperCase)
             CandidateInfo.ORG_ID = Decimal.Parse(hidOrg.Value)
             CandidateInfo.TITLE_ID = Decimal.Parse(hidTitle.Value)
             CandidateInfo.CARE_TITLE_NAME = txtCare_TitleName.Text.Trim()
