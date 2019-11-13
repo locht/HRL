@@ -282,7 +282,7 @@ Public Class ctrlRC_CandidateTransferList
         End If
 
         For Each dr As Telerik.Web.UI.GridDataItem In rgCandidateList.SelectedItems
-            Status = dr.GetDataKeyValue("STATUS_CODE").ToString
+            status = dr.GetDataKeyValue("STATUS_CODE").ToString
             Select Case status
                 'Case RCContant.TUCHOI
                 '    ShowMessage(Translate("Tồn tại ứng viên đang ở từ chối trúng tuyển"), NotifyType.Warning)
@@ -483,7 +483,7 @@ Public Class ctrlRC_CandidateTransferList
         Dim status As String
         Dim strID As String
         Dim tempPath As String = ConfigurationManager.AppSettings("WordFileFolder")
-
+        Dim filePath As String = ""
         For Each dr As Telerik.Web.UI.GridDataItem In rgCandidateList.SelectedItems
             status = dr.GetDataKeyValue("STATUS_CODE").ToString
             Select Case status
@@ -510,10 +510,22 @@ Public Class ctrlRC_CandidateTransferList
         Next
         Dim dtData = psp.LETTER_RECIEVE(strID)
         If dtData.Rows.Count > 0 Then
-            ExportWordMailMerge(System.IO.Path.Combine(Server.MapPath(tempPath), "Recruitment/LETTER_RECIEVE.doc"),
-                 "LETTER_RECIEVE_" & dtData.Rows(0)("NAME") & "HOTEN.doc",
-                 dtData,
-                 Response)
+            Using word As New WordCommon
+                Dim sourcePath = Server.MapPath("~/ReportTemplates/Profile/LocationInfo/")
+                word.ExportMailMerge(System.IO.Path.Combine(Server.MapPath(tempPath),
+                                    "Recruitment/LETTER_RECIEVE.doc"),
+                                    "LETTER_RECIEVE_" & dtData.Rows(0)("NAME") & "HOTEN.doc" & "_" & _
+                                    Format(Date.Now, "yyyyMMddHHmmss"),
+                                    dtData,
+                                   sourcePath,
+                                    Response)
+                'word.ExportMailMerge(System.IO.Path.Combine(Server.MapPath(tempPath),
+                '                                      "Recruitment/LETTER_RECIEVE.doc"),
+                '                                     "LETTER_RECIEVE_" & dtData.Rows(0)("NAME") & "HOTEN.doc",
+                '                                      dtData,
+                '                                      Response)
+            End Using
+
         Else
             ShowMessage(Translate(CommonMessage.MESSAGE_WARNING_EXPORT_EMPTY), NotifyType.Warning)
             Exit Sub
@@ -633,25 +645,25 @@ Public Class ctrlRC_CandidateTransferList
         log = LogHelper.GetUserLog
         Try
             If e.ButtonID = MessageBoxButtonType.ButtonYes Then
-                    strIDCandidate = ""
-                    Dim lstCanID As New List(Of Decimal)
-                    For Each dr As Telerik.Web.UI.GridDataItem In rgCandidateList.SelectedItems
-                        strIDCandidate = strIDCandidate & dr.GetDataKeyValue("ID_CANDIDATE") & ","
-                    Next
-                    ' Kiem tra neu la trang thai nhan vien thi insert du lieu moi vao cac table nhan vien
-                    If e.ActionName = RCContant.NHANVIEN Then
-                        If psp.INSERT_CADIDATE_EMPLOYEE(strIDCandidate, log.Username, log.Ip + log.ComputerName) Then
-                            ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), Utilities.NotifyType.Success)
-                        Else
-                            ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), Utilities.NotifyType.Success)
-                        End If
+                strIDCandidate = ""
+                Dim lstCanID As New List(Of Decimal)
+                For Each dr As Telerik.Web.UI.GridDataItem In rgCandidateList.SelectedItems
+                    strIDCandidate = strIDCandidate & dr.GetDataKeyValue("ID_CANDIDATE") & ","
+                Next
+                ' Kiem tra neu la trang thai nhan vien thi insert du lieu moi vao cac table nhan vien
+                If e.ActionName = RCContant.NHANVIEN Then
+                    If psp.INSERT_CADIDATE_EMPLOYEE(strIDCandidate, log.Username, log.Ip + log.ComputerName) Then
+                        ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), Utilities.NotifyType.Success)
                     Else
-                        If psp.UPDATE_CANDIDATE_STATUS(strIDCandidate, e.ActionName) = 1 Then
-                            ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), Utilities.NotifyType.Success)
-                        Else
-                            ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), Utilities.NotifyType.Success)
-                        End If
+                        ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), Utilities.NotifyType.Success)
                     End If
+                Else
+                    If psp.UPDATE_CANDIDATE_STATUS(strIDCandidate, e.ActionName) = 1 Then
+                        ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), Utilities.NotifyType.Success)
+                    Else
+                        ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), Utilities.NotifyType.Success)
+                    End If
+                End If
                 rgCandidateList.Rebind()
                 rgResult.Rebind()
             End If
