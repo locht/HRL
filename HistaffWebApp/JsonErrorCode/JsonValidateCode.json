@@ -1,0 +1,10 @@
+{
+	"CARE_TITLE_NAME":"Text",
+	"OFFICAL_SALARY":"Number",
+	"DATE_START":"Date",
+	"FIRST_NAME_VN":Text",
+	"LAST_NAME_VN":"Text",
+	"FULLNAME_VN":"Text",
+	"BIRTH_DATE":"Date",
+	"GENDER":"Number"
+}
