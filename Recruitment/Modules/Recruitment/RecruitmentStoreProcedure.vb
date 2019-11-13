@@ -134,15 +134,28 @@ Public Class RecruitmentStoreProcedure
     'End Function
 
     Public Function GetListManningByName(ByVal MANNING_ORG_ID As Integer,
-                                        ByVal ORG_ID As Integer,
-                                        ByVal YEAR As Integer,
-                                        ByVal param As ManningOrgDTO,
-                                       Optional ByRef Total As Integer = 0,
-                                   Optional ByVal PageIndex As Integer = 0,
-                                   Optional ByVal PageSize As Integer = Integer.MaxValue) As DataTable
+                                      ByVal ORG_ID As Integer,
+                                      ByVal YEAR As Integer,
+                                      ByVal isExport As Integer,
+                                      ByVal param As ManningOrgDTO,
+                                     Optional ByRef Total As Integer = 0,
+                                 Optional ByVal PageIndex As Integer = 0,
+                                 Optional ByVal PageSize As Integer = Integer.MaxValue) As DataTable
         Dim listManning As New DataTable
         Dim ds As DataSet = rep.ExecuteToDataSet("PKG_RECRUITMENT.GETLIST_MANNING_BY_NAME", New List(Of Object)(New Object() {MANNING_ORG_ID, ORG_ID, YEAR, OUT_CURSOR}))
         If Not ds Is Nothing Or Not ds.Tables(0) Is Nothing Then
+            If isExport = 1 Then
+                Dim dt As DataTable
+                dt = ds.Tables(0)
+                If dt.Rows.Count = 0 Then
+                    listManning = New DataTable
+                    Return listManning
+                End If
+                'sap xep theo phong ban
+                dt.DefaultView.Sort = "ORG_NAME ASC"
+                listManning = dt.DefaultView.ToTable()
+                Return listManning
+            End If
             listManning = ds.Tables(0)
             If listManning.Rows.Count = 0 Then
                 listManning = New DataTable
