@@ -1024,8 +1024,12 @@
     <Content Include="ReportTemplates\Recruitment\ctrlRC_CanDtlFamily.xls">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="ReportTemplates\Recruitment\Import\Candidate.xls" />
-    <Content Include="ReportTemplates\Recruitment\Import\Candidate_Error.xls" />
+    <Content Include="ReportTemplates\Recruitment\Import\Candidate.xls">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ReportTemplates\Recruitment\Import\Candidate_Error.xls">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="ReportTemplates\Recruitment\Import\Template_PLAN_RES.xls" />
     <Content Include="ReportTemplates\Recruitment\Import\Template_PLAN_RES_error.xls" />
     <Content Include="ReportTemplates\Recruitment\Report\Bao cao tinh hinh tuyen dung.xls">
@@ -1438,6 +1442,18 @@
     <Content Include="ReportTemplates\19. Báo cáo - Danh sách HĐLĐ của CBNV TNG %281%29.xls" />
     <Content Include="ReportTemplates\Recruitment\Import\Template_yeucautuyendung.xls" />
     <Content Include="ReportTemplates\Recruitment\Import\Template_yeucautuyendung_Error.xls" />
+    <None Include="JsonErrorCode\JsonLangs.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="JsonErrorCode\JsonValidateCode.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="ReportTemplates\Recruitment\Import\Candidate_Error.xlsx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="ReportTemplates\Recruitment\Import\Candidate_Error1.xls">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="ReportTemplates\Recruitment\Import\Import_Ungvien_Template.xls" />
     <None Include="Styles\ImgConfig.jquery.css" />
     <Content Include="Styles\font-awesome.css" />
