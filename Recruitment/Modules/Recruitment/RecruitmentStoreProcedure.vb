@@ -695,9 +695,9 @@ Public Class RecruitmentStoreProcedure
 
 #Region "Môn thi"
     'Lấy danh sách môn thi theo chương trình tuyển dụng
-    Public Function GET_AllExams_ByProgram(ByVal P_PROGRAM_ID As Int32) As DataTable
+    Public Function GET_AllExams_ByProgram(ByVal P_PROGRAM_ID As Int32, ByVal P_SCHEDULE_ID As Decimal?) As DataTable
         Dim dt As New DataTable
-        Dim ds As DataSet = rep.ExecuteToDataSet("PKG_RECRUITMENT.GET_ALL_EXAMS_BYPRO", New List(Of Object)(New Object() {P_PROGRAM_ID}))
+        Dim ds As DataSet = rep.ExecuteToDataSet("PKG_RECRUITMENT.GET_ALL_EXAMS_BYPRO", New List(Of Object)(New Object() {P_PROGRAM_ID, P_SCHEDULE_ID}))
         If Not ds Is Nothing Or Not ds.Tables(0) Is Nothing Then
             dt = ds.Tables(0)
         End If

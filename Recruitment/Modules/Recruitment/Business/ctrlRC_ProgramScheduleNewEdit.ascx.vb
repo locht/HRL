@@ -255,19 +255,25 @@ Public Class ctrlRC_ProgramScheduleNewEdit
     End Sub
 
     Private Sub LoadExamsList()
-        If Not IsPostBack Then
-            rlbExams.DataSource = store.GET_AllExams_ByProgram(Decimal.Parse(hidProgramID.Value))
-            rlbExams.DataTextField = "NAME"
-            rlbExams.DataValueField = "ID"
-            rlbExams.DataBind()
+        'If Not IsPostBack Then
+        rlbExams.DataSource = store.GET_AllExams_ByProgram(Decimal.Parse(hidProgramID.Value), hidID.Value)
+        rlbExams.DataTextField = "NAME"
+        rlbExams.DataValueField = "ID"
+        rlbExams.DataBind()
 
-            'Dim collection As IList(Of RadListBoxItem) = rlbExams.Items
-            'For Each item As RadListBoxItem In collection
-            '    item.Checked = True
-            'Next
-            'rlbExams.Enabled = False
-
+        If hidID.Value <> 0 Then
+            rlbExams.Enabled = False
+        Else
+            rlbExams.Enabled = True
         End If
+
+        'Dim collection As IList(Of RadListBoxItem) = rlbExams.Items
+        'For Each item As RadListBoxItem In collection
+        '    item.Checked = True
+        'Next
+        'rlbExams.Enabled = False
+
+        'End If
     End Sub
 
 #End Region
@@ -625,6 +631,10 @@ Public Class ctrlRC_ProgramScheduleNewEdit
 
             tabCandidateSchedule = store.GET_PROGRAM_SCHCEDULE_LIST(Decimal.Parse(hidProgramID.Value), Decimal.Parse(hidID.Value))
             rgCanSchedule.DataSource = tabCandidateSchedule
+
+            If tabCandidateSchedule.Rows.Count = 0 Then
+                rlbExams.Enabled = True
+            End If
         Catch ex As Exception
             DisplayException(Me.ViewName, Me.ID, ex)
         End Try
@@ -739,6 +749,11 @@ Public Class ctrlRC_ProgramScheduleNewEdit
         End Select
         rgCanNotSchedule.Rebind()
         rgCanSchedule.Rebind()
+
+        If rgCanSchedule.Items.Count = 0 Then
+            LoadExamsList()
+            rlbExams.Enabled = True
+        End If
 
     End Sub
 
