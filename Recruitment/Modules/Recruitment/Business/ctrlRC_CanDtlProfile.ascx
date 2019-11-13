@@ -1077,16 +1077,14 @@
                                 <%# Translate("Mức lương thử việc")%>
                             </td>
                             <td>
-                                <tlk:RadNumericTextBox ID="txtExpectMucLuongThuViec" runat="server" MinValue="0">
-                                    <NumberFormat AllowRounding="false" GroupSeparator="" />
+                                <tlk:RadNumericTextBox ID="txtExpectMucLuongThuViec" runat="server" MinValue="0"  AutoPostBack="false" SkinID="Money">
                                 </tlk:RadNumericTextBox>
                             </td>
                             <td class="lb" style="width: 150px">
                                 <%# Translate("Mức lương chính thức")%>
                             </td>
                             <td>
-                                <tlk:RadNumericTextBox ID="txtExpectMucLuongChinhThuc" runat="server" MinValue="0">
-                                    <NumberFormat AllowRounding="false" GroupSeparator="" />
+                                <tlk:RadNumericTextBox ID="txtExpectMucLuongChinhThuc" runat="server" MinValue="0"  AutoPostBack="false" SkinID="Money">
                                 </tlk:RadNumericTextBox>
                             </td>
                               <td class="lb">

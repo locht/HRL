@@ -26933,6 +26933,9 @@ Namespace AttendanceBusiness
         Private MORNING_NAMEField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private OBJECT_ATTENDANCE_NAMEField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private ORG_DESCField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -27858,6 +27861,19 @@ Namespace AttendanceBusiness
                 If (Object.ReferenceEquals(Me.MORNING_NAMEField, value) <> true) Then
                     Me.MORNING_NAMEField = value
                     Me.RaisePropertyChanged("MORNING_NAME")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property OBJECT_ATTENDANCE_NAME() As String
+            Get
+                Return Me.OBJECT_ATTENDANCE_NAMEField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.OBJECT_ATTENDANCE_NAMEField, value) <> true) Then
+                    Me.OBJECT_ATTENDANCE_NAMEField = value
+                    Me.RaisePropertyChanged("OBJECT_ATTENDANCE_NAME")
                 End If
             End Set
         End Property

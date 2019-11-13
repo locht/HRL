@@ -47,7 +47,14 @@ Public Class ctrlRC_Manning
             ViewState(Me.ID & "_isFlag1") = value
         End Set
     End Property
-
+    Public Property isExport As Decimal
+        Get
+            Return ViewState(Me.ID & "_isExport")
+        End Get
+        Set(ByVal value As Decimal)
+            ViewState(Me.ID & "_isExport") = value
+        End Set
+    End Property
     Public Property lstOrg As List(Of Decimal)
         Get
             Return ViewState(Me.ID & "_lstOrg")
@@ -399,6 +406,9 @@ Public Class ctrlRC_Manning
                     If cboListManning.SelectedValue <> "" Then
                         'ViewReport_Excel(Nothing)
                         Using xls As New ExcelCommon
+                            isExport = 1
+                            CreateDataFilter()
+                            isExport = 0
                             If tabSource IsNot Nothing AndAlso tabSource.Rows.Count > 0 Then
                                 Dim dsData As New DataSet
                                 Dim dtDatan As New DataTable
@@ -962,7 +972,7 @@ Public Class ctrlRC_Manning
             If dtbImport IsNot Nothing Then
                 tabSource = dtbImport
             Else
-                tabSource = repStore.GetListManningByName(cboList, If(ctrlOrganization.CurrentValue = "", 0, Int32.Parse(ctrlOrganization.CurrentValue)), year, _filter, MaximumRows, rgManning.CurrentPageIndex, rgManning.PageSize)
+                tabSource = repStore.GetListManningByName(cboList, If(ctrlOrganization.CurrentValue = "", 0, Int32.Parse(ctrlOrganization.CurrentValue)), year, isExport, _filter, MaximumRows, rgManning.CurrentPageIndex, rgManning.PageSize)
             End If
             If tabSource Is Nothing Then
                 tabSource = New DataTable

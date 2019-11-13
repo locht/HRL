@@ -16,7 +16,14 @@ Imports Profile
 Public Class ctrlRC_CanDtlProfile
     Inherits CommonView
     'Mã nhân viên
-    Dim CandidateCode As String
+    Property CandidateCode As String
+        Get
+            Return PageViewState(Me.ID & "_CandidateCode")
+        End Get
+        Set(ByVal value As String)
+            PageViewState(Me.ID & "_CandidateCode") = value
+        End Set
+    End Property
 
     'Popup
 
@@ -171,6 +178,10 @@ Public Class ctrlRC_CanDtlProfile
             End If
             UpdateControlState()
             CurrentPlaceHolder = Me.ViewName
+            Dim s = Request.Params("isdone")
+            If s = "1" Then
+                ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), Utilities.NotifyType.Success)
+            End If
         Catch ex As Exception
             DisplayException(Me.ViewName, Me.ID, ex)
         End Try
@@ -816,11 +827,10 @@ Public Class ctrlRC_CanDtlProfile
                         Select Case CurrentState
                             Case STATE_NEW
                                 If Save(strEmpCode, _err) Then
-                                    'Page.Response.Redirect("Dialog.aspx?mid=Recruitment&fid=ctrlRC_CanDtl&group=Business&Can=" & strEmpCode & "&state=Normal&noscroll=1&message=success&reload=1")
                                     CurrentState = CommonMessage.STATE_NORMAL
                                     ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), Utilities.NotifyType.Success)
-                                    'Page.Response.Redirect(String.Format("Dialog.aspx?mid=Recruitment&fid=ctrlRC_CanDtl&group=Business&gUID={0}&Can={1}&state=Normal&ORGID={2}&TITLEID={3}&PROGRAM_ID={4}&noscroll=1", hidID.Value, strEmpCode, hidOrg.Value, hidTitle.Value, hidProgramID.Value))
-                                    'Exit Sub
+                                    Page.Response.Redirect(String.Format("Dialog.aspx?mid=Recruitment&fid=ctrlRC_CanDtl&group=Business&gUID={0}&Can={1}&state=Normal&ORGID={2}&TITLEID={3}&PROGRAM_ID={4}&noscroll=1&isdone=1", hidID.Value, strEmpCode, hidOrg.Value, hidTitle.Value, hidProgramID.Value))
+                                    Exit Sub
                                 Else
                                     ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL) & vbNewLine & Translate(_err), Utilities.NotifyType.Error)
                                     Exit Sub
@@ -1126,8 +1136,9 @@ Public Class ctrlRC_CanDtlProfile
             CandidateInfo.ID = IDemp
             CandidateInfo.RC_PROGRAM_ID = Decimal.Parse(hidProgramID.Value)
             CandidateInfo.CANDIDATE_CODE = txtEmpCODE.Text.Trim()
-            CandidateInfo.FIRST_NAME_VN = txtFirstNameVN.Text.Trim()
-            CandidateInfo.LAST_NAME_VN = txtLastNameVN.Text.Trim()
+            'txtFirstNameVN.Text = StrConv(txtFirstNameVN.Text, VbStrConv.ProperCase)
+            CandidateInfo.FIRST_NAME_VN = StrConv(txtFirstNameVN.Text, VbStrConv.ProperCase)
+            CandidateInfo.LAST_NAME_VN = StrConv(txtLastNameVN.Text, VbStrConv.ProperCase)
             CandidateInfo.ORG_ID = Decimal.Parse(hidOrg.Value)
             CandidateInfo.TITLE_ID = Decimal.Parse(hidTitle.Value)
             CandidateInfo.CARE_TITLE_NAME = txtCare_TitleName.Text.Trim()

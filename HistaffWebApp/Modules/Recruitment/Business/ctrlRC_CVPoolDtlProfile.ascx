@@ -1490,8 +1490,8 @@
                                 </NoRecordsTemplate>
                                 <Columns>
                                     <tlk:GridBoundColumn DataField="ID" Visible="False" />
-                                    <tlk:GridBoundColumn HeaderText="<%$ Translate: Đợt tuyển dụng %>" DataField="STAGE_NAME"
-                                        UniqueName="STAGE_NAME" />
+                                    <%--<tlk:GridBoundColumn HeaderText="<%$ Translate: Đợt tuyển dụng %>" DataField="STAGE_NAME"
+                                        UniqueName="STAGE_NAME" />--%>
                                     <tlk:GridBoundColumn HeaderText="<%$ Translate: Đơn vị tuyển dụng %>" DataField="WORK_UNIT"
                                         UniqueName="WORK_UNIT" />
                                     <tlk:GridBoundColumn HeaderText="<%$ Translate: Vị trí %>" DataField="TITLE_NAME"

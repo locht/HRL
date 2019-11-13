@@ -27,10 +27,10 @@
                         <td>
                             <asp:Label ID="lblCode" runat="server" Text="" Font-Bold="true"></asp:Label>
                         </td>
-                        <td class="lb">
+                        <td class="lb" style="display : none">
                             <%# Translate("Tên công việc")%>:
                         </td>
-                        <td>
+                        <td style="display : none">
                             <asp:Label ID="lblJobName" runat="server" Text="" Font-Bold="true"></asp:Label>
                         </td>
                         <td class="lb">
@@ -127,10 +127,10 @@
                         <td>
                             <asp:CheckBox ID="chkCandidateCancel" runat="server" />
                         </td>
-                        <td class="lb">
+                        <td class="lb" style="display:none">
                             <%# Translate("Gửi thư mời")%>
                         </td>
-                        <td>
+                        <td style="display:none">
                             <asp:CheckBox ID="chkCandidateHavesentmail" runat="server" />
                         </td>
                         <td class="lb">
@@ -139,10 +139,10 @@
                         <td>
                             <asp:CheckBox ID="chkCandiateIsEmp" runat="server" />
                         </td>
-                        <td class="lb">
+                        <td class="lb" style="display:none">
                             <%# Translate("Ứng viên nội bộ")%>
                         </td>
-                        <td>
+                        <td style="display:none">
                             <asp:CheckBox ID="chkCandidateIsLocaltion" runat="server" />
                         </td>
                         <td>

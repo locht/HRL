@@ -37,10 +37,10 @@
                     <td>
                         <asp:Label ID="lblCode" runat="server" Font-Bold="true"></asp:Label>
                     </td>
-                    <td class="lb">
+                    <td class="lb"  style="display : none">
                         <%# Translate("Tên công việc")%>:
                     </td>
-                    <td>
+                    <td  style="display : none">
                         <asp:Label ID="lblJobName" runat="server" Font-Bold="true"></asp:Label>
                     </td>
                                    
