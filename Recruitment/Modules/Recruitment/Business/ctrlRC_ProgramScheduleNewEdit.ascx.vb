@@ -529,7 +529,8 @@ Public Class ctrlRC_ProgramScheduleNewEdit
             body = dataMail.Rows(0)("CONTENT").ToString
             titleMail = "THƯ MỜI PHỎNG VẤN"
             'mailCC = If(dataMail.Rows(0)("MAIL_CC").ToString <> "", dataMail.Rows(0)("MAIL_CC").ToString, Nothing)
-            mailCC = If(LogHelper.CurrentUser.EMAIL IsNot Nothing, LogHelper.CurrentUser.EMAIL.ToString, Nothing)
+            'mailCC = If(LogHelper.CurrentUser.EMAIL IsNot Nothing, LogHelper.CurrentUser.EMAIL.ToString, Nothing)
+            mail = store.Get_Email_Employee(If(LogHelper.CurrentUser.EMPLOYEE_ID IsNot Nothing, LogHelper.CurrentUser.EMPLOYEE_ID.ToString, Nothing))
             dtValues = store.GET_INFO_CADIDATE(item.GetDataKeyValue("ID"))
             Dim values(dtValues.Columns.Count) As String
             If dtValues.Rows.Count > 0 Then
