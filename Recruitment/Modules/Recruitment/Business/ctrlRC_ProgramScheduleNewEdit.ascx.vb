@@ -618,7 +618,7 @@ Public Class ctrlRC_ProgramScheduleNewEdit
 
     Protected Function getCanNotSchedule(Optional ByVal isFull As Boolean = False) As DataTable
         Try
-            rgCanNotSchedule.DataSource = store.GET_CANDIDATE_NOT_SCHEDULE(Decimal.Parse(hidProgramID.Value))
+            rgCanNotSchedule.DataSource = store.GET_CANDIDATE_NOT_SCHEDULE(Decimal.Parse(hidProgramID.Value), hidID.Value)
 
         Catch ex As Exception
             DisplayException(Me.ViewName, Me.ID, ex)
