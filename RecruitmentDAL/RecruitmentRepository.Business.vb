@@ -163,6 +163,9 @@ Partial Class RecruitmentRepository
                     If IsDate(Data(0)("rc_candidate_trainning#TO_DATE" + I.ToString())) Then
                         objRC_CANDIDATE_TRAINSINGER.TO_DATE = ConvertStringToDate(Data(0)("rc_candidate_trainning#TO_DATE" + I.ToString()))
                     End If
+                    If IsDBNull(Data(0)("rc_candidate_trainning#NAME_SHOOLS" + I.ToString())) OrElse String.IsNullOrEmpty(Data(0)("rc_candidate_trainning#NAME_SHOOLS" + I.ToString())) Then
+                        Continue For
+                    End If
                     objRC_CANDIDATE_TRAINSINGER.NAME_SHOOLS = Data(0)("rc_candidate_trainning#NAME_SHOOLS" + I.ToString())
                     objRC_CANDIDATE_TRAINSINGER.SPECIALIZED_TRAIN = Data(0)("rc_candidate_trainning#SPECIALIZED_TRAIN" + I.ToString())
                     objRC_CANDIDATE_TRAINSINGER.CERTIFICATE = Data(0)("rc_candidate_trainning#CERTIFICATE_CODE" + I.ToString())
@@ -178,6 +181,11 @@ Partial Class RecruitmentRepository
                     Dim objRC_CANDIDATE_BEFOREWT As New RC_CANDIDATE_BEFOREWT
                     objRC_CANDIDATE_BEFOREWT.CANDIDATE_ID = CANDIDATE_ID
                     objRC_CANDIDATE_BEFOREWT.ID = Utilities.GetNextSequence(Context, Context.RC_CANDIDATE_BEFOREWT.EntitySet.Name)
+
+                    If IsDBNull(Data(0)("rc_candidate_beforewt#ORG_NAME" + I.ToString())) OrElse String.IsNullOrEmpty(Data(0)("rc_candidate_beforewt#ORG_NAME" + I.ToString())) Then
+                        Continue For
+                    End If
+
                     objRC_CANDIDATE_BEFOREWT.ORG_NAME = Data(0)("rc_candidate_beforewt#ORG_NAME" + I.ToString())
                     objRC_CANDIDATE_BEFOREWT.TITLE_NAME = Data(0)("rc_candidate_beforewt#TITLE_NAME" + I.ToString())
                     'If IsDate(Data(0)("rc_candidate_beforewt#FROMDATE" + I.ToString())) Then

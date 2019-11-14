@@ -498,7 +498,13 @@ Private Sub ctrlUpload1_OkClicked(ByVal sender As Object, ByVal e As System.Even
                 Try
                     Dim sColName As String = Col.ColumnName.Split("#")(1)
                     sError = GetErrorCodeByKey(sColName)
-                    ImportValidate.EmptyValue(Col.ColumnName, dtData.Rows(0), rowError, IsError, sError)
+                    If Not String.IsNullOrEmpty(sError) Then
+                        ImportValidate.EmptyValue(Col.ColumnName, dtData.Rows(0), rowError, IsError, sError)
+                    End If
+
+                    If IsError Then
+                        IsError = True
+                    End If
                     sValidateCode = GetValidateCodeByKey(sColName)
                     If Not String.IsNullOrEmpty(rowError(Col.ColumnName)) Then
                         Select Case sValidateCode.ToUpper
