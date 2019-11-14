@@ -1000,8 +1000,8 @@
                                 <%# Translate("Điểm số/Xếp loại")%>
                             </td>
                             <td>
-                                <tlk:RadNumericTextBox ID="txtTDNNDiem1" runat="server" MinValue="0" GroupSeparator="">
-                                    <NumberFormat AllowRounding="false" GroupSeparator="" />
+                                <tlk:RadNumericTextBox ID="txtTDNNDiem1" runat="server"  MinValue="0" AutoPostBack="false" SkinID="Money">
+                                    
                                 </tlk:RadNumericTextBox>
                             </td>
                         </tr>
