@@ -50,6 +50,15 @@ Partial Public Class ctrlRC_ProgramUpdateResult
     Protected WithEvents RadPane1 As Global.Telerik.Web.UI.RadPane
 
     '''<summary>
+    '''lblOrgName control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblOrgName As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
     '''lblSendDate control.
     '''</summary>
     '''<remarks>
@@ -77,15 +86,6 @@ Partial Public Class ctrlRC_ProgramUpdateResult
     Protected WithEvents lblJobName As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
-    '''lblOrgName control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lblOrgName As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
     '''txtTitleName control.
     '''</summary>
     '''<remarks>
@@ -95,6 +95,15 @@ Partial Public Class ctrlRC_ProgramUpdateResult
     Protected WithEvents txtTitleName As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
+    '''lblRecordreceived control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblRecordreceived As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
     '''lblRequestNumber control.
     '''</summary>
     '''<remarks>
@@ -102,6 +111,15 @@ Partial Public Class ctrlRC_ProgramUpdateResult
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblRequestNumber As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''lblNumberHaveRecruit control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblNumberHaveRecruit As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
     '''cmdExportExcel control.
