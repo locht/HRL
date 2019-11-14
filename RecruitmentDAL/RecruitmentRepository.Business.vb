@@ -154,20 +154,20 @@ Partial Class RecruitmentRepository
             'Dim objRC_CANDIDATE_TRAINSINGER As New RC_CANDIDATE_TRAINSINGER
             For I As Integer = 1 To 5
                 Try
-                    Dim objRC_CANDIDATE_TRAINSINGER As New RC_CANDIDATE_TRAINSINGER
+                    Dim objRC_CANDIDATE_TRAINSINGER As New RC_CANDIDATE_TRAINNING
                     objRC_CANDIDATE_TRAINSINGER.CANDIDATE_ID = CANDIDATE_ID
-                    objRC_CANDIDATE_TRAINSINGER.ID = Utilities.GetNextSequence(Context, Context.RC_CANDIDATE_TRAINSINGER.EntitySet.Name)
-                    If IsDate(Data(0)("rc_candidate_trainning#FROMDATE" + I.ToString())) Then
-                        objRC_CANDIDATE_TRAINSINGER.FROMDATE = ConvertStringToDate(Data(0)("rc_candidate_trainning#FROMDATE" + I.ToString()))
+                    objRC_CANDIDATE_TRAINSINGER.ID = Utilities.GetNextSequence(Context, Context.RC_CANDIDATE_TRAINNING.EntitySet.Name)
+                    If IsDate(Data(0)("rc_candidate_trainning#FROM_DATE" + I.ToString())) Then
+                        objRC_CANDIDATE_TRAINSINGER.FROM_DATE = ConvertStringToDate(Data(0)("rc_candidate_trainning#FROM_DATE" + I.ToString()))
                     End If
-                    If IsDate(Data(0)("rc_candidate_trainning#TODATE" + I.ToString())) Then
-                        objRC_CANDIDATE_TRAINSINGER.TODATE = ConvertStringToDate(Data(0)("rc_candidate_trainning#TODATE" + I.ToString()))
+                    If IsDate(Data(0)("rc_candidate_trainning#TO_DATE" + I.ToString())) Then
+                        objRC_CANDIDATE_TRAINSINGER.TO_DATE = ConvertStringToDate(Data(0)("rc_candidate_trainning#TO_DATE" + I.ToString()))
                     End If
-                    objRC_CANDIDATE_TRAINSINGER.SCHOOL_NAME = Data(0)("rc_candidate_trainning#NAME_SHOOLS" + I.ToString())
-                    objRC_CANDIDATE_TRAINSINGER.BRANCH_NAME = Data(0)("rc_candidate_trainning#SPECIALIZED_TRAIN" + I.ToString())
+                    objRC_CANDIDATE_TRAINSINGER.NAME_SHOOLS = Data(0)("rc_candidate_trainning#NAME_SHOOLS" + I.ToString())
+                    objRC_CANDIDATE_TRAINSINGER.SPECIALIZED_TRAIN = Data(0)("rc_candidate_trainning#SPECIALIZED_TRAIN" + I.ToString())
                     objRC_CANDIDATE_TRAINSINGER.CERTIFICATE = Data(0)("rc_candidate_trainning#CERTIFICATE_CODE" + I.ToString())
-                    objRC_CANDIDATE_TRAINSINGER.RANK = Data(0)("rc_candidate_trainning#RESULT_TRAIN" + I.ToString())
-                    Context.RC_CANDIDATE_TRAINSINGER.AddObject(objRC_CANDIDATE_TRAINSINGER)
+                    objRC_CANDIDATE_TRAINSINGER.RESULT_TRAIN = Data(0)("rc_candidate_trainning#RESULT_TRAIN" + I.ToString())
+                    Context.RC_CANDIDATE_TRAINNING.AddObject(objRC_CANDIDATE_TRAINSINGER)
                 Catch ex As Exception
                     Continue For
                 End Try
