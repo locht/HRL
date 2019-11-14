@@ -338,7 +338,7 @@
                                 <%# Translate("Mô tả công việc")%><span class="lbReq">*</span>
                             </td>
                             <td colspan="5">
-                                <tlk:RadTextBox ID="txtDescription" runat="server" TextMode="MultiLine" Width="100%">
+                                <tlk:RadTextBox ID="txtDescription" runat="server" TextMode="MultiLine"  SkinID="Textbox1023" Height="43px" Width="100%">
                                 </tlk:RadTextBox>
                                 <asp:RequiredFieldValidator ID="RequiredFieldValidator9" ControlToValidate="txtDescription"
                                     runat="server" ErrorMessage="<%$ Translate: Bạn phải nhập Mô tả công việc %>"
