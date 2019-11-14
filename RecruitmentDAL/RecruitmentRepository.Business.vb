@@ -4640,11 +4640,14 @@ Partial Class RecruitmentRepository
             If _filter.MODIFIED_DATE IsNot Nothing Then
                 lst = lst.Where(Function(p) p.MODIFIED_DATE <= _filter.MODIFIED_DATE)
             End If
-            If _filter.ORG_NAME IsNot Nothing Then
-                lst = lst.Where(Function(p) p.ORG_NAME <= _filter.ORG_NAME)
+            If (_filter.ORG_NAME <> "") Then
+                lst = lst.Where(Function(p) p.ORG_NAME.ToUpper.Contains(_filter.ORG_NAME.ToUpper))
             End If
-            If _filter.TITLE_NAME_VN IsNot Nothing Then
-                lst = lst.Where(Function(p) p.TITLE_NAME_VN <= _filter.TITLE_NAME_VN)
+            If (_filter.TITLE_NAME_VN <> "") Then
+                lst = lst.Where(Function(p) p.TITLE_NAME_VN.ToUpper.Contains(_filter.TITLE_NAME_VN.ToUpper))
+            End If
+            If (_filter.CANDIDATE_STATUS_NAME <> "") Then
+                lst = lst.Where(Function(p) p.CANDIDATE_STATUS_NAME.ToUpper.Contains(_filter.CANDIDATE_STATUS_NAME.ToUpper))
             End If
             lst = lst.OrderBy(Sorts)
             Total = lst.Count

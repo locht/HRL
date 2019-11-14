@@ -140,6 +140,9 @@ Public Class ctrlRC_CVPool
     'Định nghĩa trang
     Public Overrides Sub ViewInit(ByVal e As System.EventArgs)
         Try
+            rgData.SetFilter()
+            rgData.AllowCustomPaging = True
+            rgData.PageSize = Common.Common.DefaultPageSize
             CType(Me.Page, AjaxPage).AjaxManager.ClientEvents.OnRequestStart = "onRequestStart"
             InitControl()
 
@@ -981,9 +984,12 @@ Public Class ctrlRC_CVPool
         Dim bCheck As Boolean = False
         Try
             SetValueObjectByRadGrid(rgData, _filter)
-
-            _filter.CANDIDATE_CODE = txtEmployeeCode.Text
-            _filter.FULL_NAME_VN = txtEmployeeName.Text
+            If txtEmployeeCode.Text <> "" Then
+                _filter.CANDIDATE_CODE = txtEmployeeCode.Text
+            End If
+            If txtEmployeeName.Text <> "" Then
+                _filter.FULL_NAME_VN = txtEmployeeName.Text
+            End If
             If cboGender.SelectedValue <> "" Then
                 _filter.GENDER = cboGender.SelectedValue
             End If
