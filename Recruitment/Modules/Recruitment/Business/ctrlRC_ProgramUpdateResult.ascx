@@ -7,7 +7,7 @@
 <asp:HiddenField ID="hidProgramID" runat="server" />
 <Common:ctrlMessageBox ID="ctrlMessageBox" runat="server" />
 <tlk:RadSplitter ID="RadSplitter1" runat="server" Width="100%" Height="100%" Orientation="Horizontal">
-    <tlk:RadPane ID="RadPane1" runat="server" Scrolling="None" Width="100px" Height="130px">
+    <tlk:RadPane ID="RadPane1" runat="server" Scrolling="None" Width="100px" Height="150px">
          <table class="table-form">
             <tr> 
                 <td colspan="6">
@@ -81,7 +81,7 @@
             </tr>
         </table>
     </tlk:RadPane>
-    <tlk:RadPane ID="DetailPane" runat="server" Scrolling="None" Height="1100px">
+    <tlk:RadPane ID="DetailPane" runat="server" Scrolling="None" Height="900px">
         <tlk:RadTabStrip ID="rtabProfileInfo" runat="server" CausesValidation="false" MultiPageID="RadMultiPage1"
             AutoPostBack="false">
             <Tabs>
