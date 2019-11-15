@@ -276,7 +276,7 @@
                                 <%# Translate("Điểm ngoại ngữ")%>
                             </td>
                             <td>
-                                <tlk:RadNumericTextBox ID="txtScores" runat="server" SkinID="Money" AutoPostBack="false">
+                                <tlk:RadNumericTextBox ID="txtScores" runat="server" SkinID="Decimal" AutoPostBack="false">
                                 </tlk:RadNumericTextBox>
                             </td>
                         </tr>
