@@ -849,10 +849,19 @@ Public Class RecruitmentStoreProcedure
 #End Region
 
 #Region "Information Lists"
-    Public Function GET_ALL_LIST() As DataSet
+    Public Function GET_ALL_LIST(ByVal org_id As Decimal) As DataSet
         Try
             Dim ds As New DataSet
-            ds = rep.ExecuteToDataSet("PKG_PA_BUSINESS.GET_ALL_LIST", New List(Of Object)(New Object() {}))
+            ds = rep.ExecuteToDataSet("PKG_PA_BUSINESS.GET_ALL_LIST", New List(Of Object)(New Object() {org_id}))
+            Return ds
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+    Public Function GET_ALL_LIST1(ByVal org_id As Decimal) As DataSet
+        Try
+            Dim ds As New DataSet
+            ds = rep.ExecuteToDataSet("PKG_PA_BUSINESS.GET_ALL_LIST1", New List(Of Object)(New Object() {org_id}))
             Return ds
         Catch ex As Exception
             Throw ex

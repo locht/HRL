@@ -415,7 +415,7 @@ Public Class ctrlRC_CandidateList
         End Try
     End Sub
 
-Private Sub ctrlUpload1_OkClicked(ByVal sender As Object, ByVal e As System.EventArgs) Handles ctrlUpload1.OkClicked
+    Private Sub ctrlUpload1_OkClicked(ByVal sender As Object, ByVal e As System.EventArgs) Handles ctrlUpload1.OkClicked
         Dim fileName As String
         Dim dsDataPrepare As New DataSet
         Dim workbook As Aspose.Cells.Workbook
@@ -960,9 +960,10 @@ Private Sub ctrlUpload1_OkClicked(ByVal sender As Object, ByVal e As System.Even
     Private Sub GetInformationLists()
         Dim repStore As New RecruitmentStoreProcedure
         Dim dsDB As New DataSet
-        Dim dtTonGiao, dtMoiQH, dtQuocGia, dtTinh, dtHuyen, dtXa, dtChuyenNganh, dtChuyenMon, dtHonNhan, dtDanToc As New DataTable
+        Dim dtTonGiao, dtMoiQH, dtQuocGia, dtTinh, dtHuyen, dtXa, dtChuyenNganh,
+            dtChuyenMon, dtHonNhan, dtDanToc, dtLogo As New DataTable
         Try
-            dsDB = repStore.GET_ALL_LIST()
+            dsDB = repStore.GET_ALL_LIST(hidOrg.Value)
             If dsDB.Tables.Count > 0 Then
 
                 'Ton Giao
@@ -1014,8 +1015,12 @@ Private Sub ctrlUpload1_OkClicked(ByVal sender As Object, ByVal e As System.Even
                 If dsDB.Tables(9) IsNot Nothing AndAlso dsDB.Tables(9).Rows.Count > 0 Then
                     dtDanToc = dsDB.Tables(9)
                 End If
+                'file logo
+                If dsDB.Tables(10) IsNot Nothing AndAlso dsDB.Tables(10).Rows.Count > 0 Then
+                    dtLogo = dsDB.Tables(10)
+                End If
 
-                ExportTemplate("Recruitment\Import\Import_Ungvien_Template.xls", dtTonGiao, dtMoiQH, dtQuocGia, dtTinh, dtHuyen, dtXa, dtChuyenNganh, dtChuyenMon, dtHonNhan, dtDanToc, "Import_UngVien")
+                ExportTemplate("Recruitment\Import\Import_Ungvien_Template.xls", dtTonGiao, dtMoiQH, dtQuocGia, dtTinh, dtHuyen, dtXa, dtChuyenNganh, dtChuyenMon, dtHonNhan, dtDanToc, dtLogo, "Import_UngVien")
             End If
 
         Catch ex As Exception
@@ -1034,6 +1039,7 @@ Private Sub ctrlUpload1_OkClicked(ByVal sender As Object, ByVal e As System.Even
                                                     ByVal dt8 As DataTable,
                                                     ByVal dt9 As DataTable,
                                                     ByVal dt10 As DataTable,
+                                                    ByVal dt11 As DataTable,
                                                     ByVal filename As String) As Boolean
 
         Dim filePath As String
@@ -1101,6 +1107,23 @@ Private Sub ctrlUpload1_OkClicked(ByVal sender As Object, ByVal e As System.Even
             If dt10 IsNot Nothing Then
                 dt10.TableName = "TableDanToc"
                 designer.SetDataSource(dt10)
+            End If
+            If dt11 IsNot Nothing Then
+                designer.SetDataSource(dt11)
+                Dim sourcePath = Server.MapPath("~/ReportTemplates/Profile/LocationInfo/")
+                Dim str As String = sourcePath + dt11.Rows(0)("ATTACH_FILE_LOGO").ToString + dt11.Rows(0)("FILE_LOGO").ToString
+                Dim worksheet As Aspose.Cells.Worksheet = designer.Workbook.Worksheets(0)
+                Dim b As Byte() = File.ReadAllBytes(str)
+                Dim ms As New System.IO.MemoryStream(b)
+                Dim pictureIndex As Integer = worksheet.Pictures.Add(1, 1, ms)
+
+                'Accessing the newly added picture
+                Dim picture As Aspose.Cells.Drawing.Picture = worksheet.Pictures(pictureIndex)
+
+                'Positioning the picture proportional to row height and colum width
+                picture.Width = 400
+                picture.Height = 120
+
             End If
 
             designer.Process()
