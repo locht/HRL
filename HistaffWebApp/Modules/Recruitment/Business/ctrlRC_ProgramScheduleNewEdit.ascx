@@ -58,8 +58,6 @@
                             <td>
                                 <tlk:RadComboBox ID="cboUsher" runat="server">
                                 </tlk:RadComboBox>
-                            </td>
-                            <td>
                                 <tlk:RadButton EnableEmbeddedSkins="false" ID="btnFindUsher" runat="server" SkinID="ButtonView"
                                     CausesValidation="false">
                                 </tlk:RadButton>

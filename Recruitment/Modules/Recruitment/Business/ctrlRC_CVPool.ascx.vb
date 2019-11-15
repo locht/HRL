@@ -1064,6 +1064,7 @@ Public Class ctrlRC_CVPool
                 End If
                 rgData.VirtualItemCount = MaximumRows
                 rgData.DataSource = lstData
+
             End If
         Catch ex As Exception
             Throw ex

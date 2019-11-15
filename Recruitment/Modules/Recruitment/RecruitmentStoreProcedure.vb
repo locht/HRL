@@ -621,6 +621,7 @@ Public Class RecruitmentStoreProcedure
 
     'Thêm mới thông tin phân bổ chi phí
     Public Function ADDNEW_PRO_SCHEDULE(ByVal RC_PROGRAM_ID As Int32,
+                                       ByVal EMPLOYEE_ID As Decimal?,
                                  ByVal SCHEDULE_DATE As DateTime,
                                  ByVal EXAMS_PLACE As String,
                                  ByVal NOTE As String,
@@ -628,7 +629,7 @@ Public Class RecruitmentStoreProcedure
                                  ByVal LOG As String) As Int32
         Dim obj As Object = rep.ExecuteStoreScalar("PKG_RECRUITMENT.ADDNEW_PRO_SCHEDULE", _
                                                    New List(Of Object)(New Object() {
-                                                    RC_PROGRAM_ID, SCHEDULE_DATE, EXAMS_PLACE, NOTE,
+                                                    RC_PROGRAM_ID, EMPLOYEE_ID, SCHEDULE_DATE, EXAMS_PLACE, NOTE,
                                                     CREATE_BY, LOG, OUT_NUMBER
                                                    }))
         Return Int32.Parse(obj(0).ToString())
@@ -636,6 +637,7 @@ Public Class RecruitmentStoreProcedure
 
     'Cập nhật thông tin phân bổ chi phí
     Public Function UPDATE_PRO_SCHEDULE(ByVal ID As Int32,
+                                        ByVal EMPLOYEE_ID As Decimal?,
                                  ByVal SCHEDULE_DATE As DateTime,
                                  ByVal EXAMS_PLACE As String,
                                  ByVal NOTE As String,
@@ -643,7 +645,7 @@ Public Class RecruitmentStoreProcedure
                                  ByVal LOG As String) As Int32
         Dim obj As Object = rep.ExecuteStoreScalar("PKG_RECRUITMENT.UPDATE_PRO_SCHEDULE", _
                                                      New List(Of Object)(New Object() {
-                                                     ID, SCHEDULE_DATE, EXAMS_PLACE, NOTE,
+                                                     ID, EMPLOYEE_ID, SCHEDULE_DATE, EXAMS_PLACE, NOTE,
                                                      MODIFY_BY, LOG, OUT_NUMBER
                                                    }))
         Return Int32.Parse(obj(0).ToString())

@@ -58,10 +58,8 @@
                                 <%# Translate("Người coi thi / phỏng vấn")%>
                             </td>
                             <td>
-                                <tlk:RadComboBox ID="cboUsher" runat="server" Width="200px">
+                                <tlk:RadComboBox ID="cboUsher" runat="server">
                                 </tlk:RadComboBox>
-                            </td>
-                            <td>
                                 <tlk:RadButton EnableEmbeddedSkins="false" ID="btnFindUsher" runat="server" SkinID="ButtonView"
                                     CausesValidation="false">
                                 </tlk:RadButton>

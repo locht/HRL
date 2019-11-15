@@ -1,5 +1,6 @@
 ﻿Public Class ProgramScheduleDTO
     Public Property ID As Decimal
+    Public Property EMPLOYEE_ID As Decimal?
     Public Property RC_PROGRAM_ID As Decimal?
     Public Property RC_PROGRAM_EXAMS_ID As Decimal?
     Public Property EXAMS_NAME As String

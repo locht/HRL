@@ -139,8 +139,8 @@ Public Class ctrlRC_ProgramScheduleNewEdit
                 LoadExamsList()
                 rdScheduleDate.SelectedDate = DateTime.Now
                 store.DELETE_PRO_SCHEDULE_CAN_ISNULL()
-
-
+                Dim FULLNAME As String = ""
+                Dim employee_ID As Decimal?
 
                 Using rep As New RecruitmentRepository
                     Dim objPro = rep.GetProgramByID(New ProgramDTO With {.ID = Decimal.Parse(hidProgramID.Value)})
@@ -157,8 +157,24 @@ Public Class ctrlRC_ProgramScheduleNewEdit
                             rdScheduleDate.SelectedDate = tab.Rows(0)("SCHEDULE_DATE").ToString()
                             txtExamsPlace.Text = tab.Rows(0)("EXAMS_PLACE").ToString()
                             txtNote.Text = tab.Rows(0)("NOTE").ToString()
+                            FULLNAME = tab.Rows(0)("FULLNAME").ToString()
+                            employee_ID = If(tab.Rows(0)("EMPLOYEE_ID").ToString() = "", Nothing, Decimal.Parse(tab.Rows(0)("EMPLOYEE_ID").ToString()))
+                            If employee_ID <> 0 Then
+                                cboUsher.CheckBoxes = True
+                                cboUsher.SelectedValue = employee_ID
+                                cboUsher.CheckedItemsTexts = RadComboBoxCheckedItemsTexts.DisplayAllInInput
+                                Dim item1 As New RadComboBoxItem()
+                                item1.Text = FULLNAME
+                                item1.Value = employee_ID
+                                cboUsher.Items.Add(item1)
+                                cboUsher.ClearCheckedItems()
+                                For Each chk As RadComboBoxItem In cboUsher.Items
+                                    If cboUsher.SelectedValue.Contains(chk.Value) Then
+                                        chk.Checked = True
+                                    End If
+                                Next
+                            End If
                         End If
-
                         'Dim obj = rep.GetProgramScheduleByID(New ProgramScheduleDTO With {.ID = Decimal.Parse(hidID.Value)})
                         'rdScheduleDate.SelectedDate = obj.SCHEDULE_DATE
                         'txtExamsPlace.Text = obj.EXAMS_PLACE
@@ -194,7 +210,7 @@ Public Class ctrlRC_ProgramScheduleNewEdit
                 ctrlFindEmployeePopup = Me.Register("ctrlFindEmployeePopup", "Common", "ctrlFindEmployeePopup")
                 ctrlFindEmployeePopup.MustHaveContract = False
                 phFindUsher.Controls.Add(ctrlFindEmployeePopup)
-                ctrlFindEmployeePopup.MultiSelect = True
+                ctrlFindEmployeePopup.MultiSelect = False
         End Select
 
         'Using rep As New RecruitmentRepository
@@ -300,20 +316,24 @@ Public Class ctrlRC_ProgramScheduleNewEdit
                         obj.SCHEDULE_DATE = rdScheduleDate.SelectedDate
                         obj.EXAMS_PLACE = txtExamsPlace.Text
                         obj.NOTE = txtNote.Text
-
+                        If cboUsher.SelectedValue <> "" Then
+                            obj.EMPLOYEE_ID = cboUsher.SelectedValue
+                        Else
+                            obj.EMPLOYEE_ID = Nothing
+                        End If
                         If hidID.Value <> Nothing And Decimal.Parse(hidID.Value) > 0 Then
                             'update program schedule
                             'IsSaveCompleted = store.UPDATE_PRO_SCHEDULE(Decimal.Parse(hidID.Value), obj.SCHEDULE_DATE, obj.EXAMS_PLACE, obj.NOTE, userlog.Username,
                             '                                String.Format("{0}-{1}", userlog.ComputerName, userlog.Ip))
 
-                            IsSaveCompleted = store.UPDATE_PRO_SCHEDULE(Decimal.Parse(hidID.Value), obj.SCHEDULE_DATE, obj.EXAMS_PLACE, obj.NOTE, String.Empty,
+                            IsSaveCompleted = store.UPDATE_PRO_SCHEDULE(Decimal.Parse(hidID.Value), obj.EMPLOYEE_ID, obj.SCHEDULE_DATE, obj.EXAMS_PLACE, obj.NOTE, String.Empty,
                                                              String.Empty)
 
                         Else
                             'addnew program schedule
                             'IsSaveCompleted = store.ADDNEW_PRO_SCHEDULE(obj.RC_PROGRAM_ID, obj.SCHEDULE_DATE, obj.EXAMS_PLACE, obj.NOTE, userlog.Username,
                             '                                String.Format("{0}-{1}", userlog.ComputerName, userlog.Ip))
-                            IsSaveCompleted = store.ADDNEW_PRO_SCHEDULE(obj.RC_PROGRAM_ID, obj.SCHEDULE_DATE, obj.EXAMS_PLACE, obj.NOTE, String.Empty,
+                            IsSaveCompleted = store.ADDNEW_PRO_SCHEDULE(obj.RC_PROGRAM_ID, obj.EMPLOYEE_ID, obj.SCHEDULE_DATE, obj.EXAMS_PLACE, obj.NOTE, String.Empty,
                                                             String.Empty)
 
                             If IsSaveCompleted > 0 Then
@@ -461,13 +481,18 @@ Public Class ctrlRC_ProgramScheduleNewEdit
         Dim rep As New RecruitmentRepository
         Try
             lstCommonEmployee = CType(ctrlFindEmployeePopup.SelectedEmployee, List(Of CommonBusiness.EmployeePopupFindDTO))
+            'If lstCommonEmployee.ToList.Count > 1 Then
+            '    ShowMessage(Translate("Chọn duy nhất một nhân viên"), NotifyType.Warning)
+            '    Exit Sub
+            'End If
             cboUsher.Items.Clear()
             cboUsher.CheckBoxes = True
             cboUsher.CheckedItemsTexts = RadComboBoxCheckedItemsTexts.DisplayAllInInput
             For Each itm In lstCommonEmployee
                 Dim item As New RadComboBoxItem
                 item.Value = itm.EMPLOYEE_ID
-                item.Text = itm.EMPLOYEE_CODE & " - " & itm.FULLNAME_VN
+                '  item.Text = itm.EMPLOYEE_CODE & " - " & itm.FULLNAME_VN
+                item.Text = itm.FULLNAME_VN
                 item.Checked = True
                 cboUsher.Items.Add(item)
             Next
@@ -713,7 +738,7 @@ Public Class ctrlRC_ProgramScheduleNewEdit
         str = arr(arr.Count - 1)
 
         If hidID.Value = 0 Then
-            store.ADDNEW_PRO_SCHEDULE(hidProgramID.Value, rdScheduleDate.SelectedDate, txtExamsPlace.Text, txtNote.Text, userlog.Username, String.Format("{0}-{1}", userlog.ComputerName, userlog.Ip))
+            store.ADDNEW_PRO_SCHEDULE(hidProgramID.Value, If(cboUsher.SelectedValue = "", Nothing, cboUsher.SelectedValue), rdScheduleDate.SelectedDate, txtExamsPlace.Text, txtNote.Text, userlog.Username, String.Format("{0}-{1}", userlog.ComputerName, userlog.Ip))
             'store.ADDNEW_PRO_SCHEDULE(hidProgramID.Value, rdScheduleDate.SelectedDate, txtExamsPlace.Text, txtNote.Text, String.Empty, String.Empty)
             hidID.Value = store.GET_TOPID_PRO_SCHEDULE(hidProgramID.Value)
         End If
