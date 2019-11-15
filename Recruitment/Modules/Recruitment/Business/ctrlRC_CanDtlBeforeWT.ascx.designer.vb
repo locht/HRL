@@ -104,6 +104,15 @@ Partial Public Class ctrlRC_CanDtlBeforeWT
     Protected WithEvents txtOrgname As Global.Telerik.Web.UI.RadTextBox
 
     '''<summary>
+    '''RequiredFieldValidator1 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents RequiredFieldValidator1 As Global.System.Web.UI.WebControls.RequiredFieldValidator
+
+    '''<summary>
     '''txtTitlename control.
     '''</summary>
     '''<remarks>
@@ -111,6 +120,15 @@ Partial Public Class ctrlRC_CanDtlBeforeWT
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtTitlename As Global.Telerik.Web.UI.RadTextBox
+
+    '''<summary>
+    '''RequiredFieldValidator3 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents RequiredFieldValidator3 As Global.System.Web.UI.WebControls.RequiredFieldValidator
 
     '''<summary>
     '''txtOrgAddress control.
@@ -122,6 +140,15 @@ Partial Public Class ctrlRC_CanDtlBeforeWT
     Protected WithEvents txtOrgAddress As Global.Telerik.Web.UI.RadTextBox
 
     '''<summary>
+    '''RequiredFieldValidator2 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents RequiredFieldValidator2 As Global.System.Web.UI.WebControls.RequiredFieldValidator
+
+    '''<summary>
     '''rdFromdate control.
     '''</summary>
     '''<remarks>
@@ -129,6 +156,15 @@ Partial Public Class ctrlRC_CanDtlBeforeWT
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents rdFromdate As Global.Telerik.Web.UI.RadDatePicker
+
+    '''<summary>
+    '''reqStartDate control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents reqStartDate As Global.System.Web.UI.WebControls.RequiredFieldValidator
 
     '''<summary>
     '''rdTodate control.

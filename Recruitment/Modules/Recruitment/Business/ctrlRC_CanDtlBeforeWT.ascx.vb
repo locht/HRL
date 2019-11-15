@@ -253,11 +253,11 @@ Public Class ctrlRC_CanDtlBeforeWT
             If item("FROMDATE").Text.Trim() <> "" Then
                 rdFromdate.SelectedDate = item("FROMDATE").Text
             End If
-            If item("TODATE").Text.Trim() <> "" Then
+            If item("TODATE").Text.Trim() <> "" And item("TODATE").Text <> "&nbsp;" Then
                 rdFromdate.SelectedDate = item("TODATE").Text
             End If
-            'txtDirectManager.Text = HttpUtility.HtmlDecode(item("DIRECT_MANAGER").Text)
-            txtRemark.Text = HttpUtility.HtmlDecode(item("REMARK").Text)
+                'txtDirectManager.Text = HttpUtility.HtmlDecode(item("DIRECT_MANAGER").Text)
+                txtRemark.Text = HttpUtility.HtmlDecode(item("REMARK").Text)
         Catch ex As Exception
             DisplayException(Me.ViewName, Me.ID, ex)
         End Try
