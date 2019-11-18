@@ -8702,6 +8702,9 @@ Namespace RecruitmentBusiness
         Private STATUS_NAMEField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private SUPPORT_NAMEField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private THILUCPHAIField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -10041,6 +10044,19 @@ Namespace RecruitmentBusiness
                 If (Object.ReferenceEquals(Me.STATUS_NAMEField, value) <> true) Then
                     Me.STATUS_NAMEField = value
                     Me.RaisePropertyChanged("STATUS_NAME")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property SUPPORT_NAME() As String
+            Get
+                Return Me.SUPPORT_NAMEField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.SUPPORT_NAMEField, value) <> true) Then
+                    Me.SUPPORT_NAMEField = value
+                    Me.RaisePropertyChanged("SUPPORT_NAME")
                 End If
             End Set
         End Property

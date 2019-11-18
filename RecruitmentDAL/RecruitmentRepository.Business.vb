@@ -1023,7 +1023,7 @@ Partial Class RecruitmentRepository
                                            .ORG_NAME = org.NAME_VN,
                                            .ORG_DESC = org.DESCRIPTION_PATH,
                                            .TITLE_NAME = title.NAME_VN,
-                                           .IS_IN_PLAN = p.IS_IN_PLAN,
+                                           .IS_IN_PLAN = If(p.IS_IN_PLAN Is Nothing Or p.IS_IN_PLAN = 0, False, True),
                                            .SEND_DATE = p.SEND_DATE,
                                            .REMARK = p.REMARK,
                                            .RECRUIT_REASON_NAME = reason.NAME_VN,
@@ -1037,68 +1037,79 @@ Partial Class RecruitmentRepository
                                            .STAGE_ID = p.STAGE_ID,
                                            .ORG_NAME_CTY = cty.NAME_VN,
                                            .RECRUIT_TYPE_ID = rectype.CODE,
-                                           .IS_SUPPORT = PRE.IS_SUPPORT,
+                                           .IS_SUPPORT = If(PRE.IS_SUPPORT = 0 Or PRE.IS_SUPPORT Is Nothing, False, True),
+                                           .SUPPORT_NAME = If(PRE.IS_SUPPORT = 0 Or PRE.IS_SUPPORT Is Nothing, "Không", "Có"),
                                            .EXPECTED_JOIN_DATE = PRE.EXPECTED_JOIN_DATE,
                                            .CANDIDATE_COUNT = (From can In Context.RC_CANDIDATE
-                                                                Where can.RC_PROGRAM_ID = p.ID).Count,
-                                           .CANDIDATE_REQUEST = (From reg In Context.RC_PLAN_REG
-                                                              Where reg.SEND_DATE.Value.Year = p.SEND_DATE.Value.Year And _
-                                                              reg.STATUS_ID = RecruitmentCommon.RC_PLAN_REG_STATUS.APPROVE_ID And _
-                                                              reg.ORG_ID = p.ORG_ID And reg.TITLE_ID = p.TITLE_ID Select reg.RECRUIT_NUMBER).Sum}
+                                                                Where can.RC_PROGRAM_ID = p.ID).Count}
+
+            '.CANDIDATE_REQUEST = (From reg In Context.RC_PLAN_REG
+            '                                                  Where reg.SEND_DATE.Value.Year = p.SEND_DATE.Value.Year And _
+            '                                                  reg.STATUS_ID = RecruitmentCommon.RC_PLAN_REG_STATUS.APPROVE_ID And _
+            '                                                  reg.ORG_ID = p.ORG_ID And reg.TITLE_ID = p.TITLE_ID Select reg.RECRUIT_NUMBER).Sum
 
             ' = x.RECRUIT_NUMBER, '
             Dim lst = query
-            'If _filter.FROM_DATE IsNot Nothing Then
-            '    lst = lst.Where(Function(p) p.SEND_DATE >= _filter.FROM_DATE)
-            'End If
-            'If _filter.TO_DATE IsNot Nothing Then
-            '    lst = lst.Where(Function(p) p.SEND_DATE <= _filter.TO_DATE)
-            'End If
-            'If _filter.SEND_DATE IsNot Nothing Then
-            '    lst = lst.Where(Function(p) p.SEND_DATE = _filter.SEND_DATE)
-            'End If
+            If _filter.FROM_DATE IsNot Nothing Then
+                lst = lst.Where(Function(p) p.SEND_DATE >= _filter.FROM_DATE)
+            End If
+            If _filter.TO_DATE IsNot Nothing Then
+                lst = lst.Where(Function(p) p.SEND_DATE <= _filter.TO_DATE)
+            End If
+            If _filter.SEND_DATE IsNot Nothing Then
+                lst = lst.Where(Function(p) p.SEND_DATE = _filter.SEND_DATE)
+            End If
+            If _filter.EXPECTED_JOIN_DATE IsNot Nothing Then
+                lst = lst.Where(Function(p) p.EXPECTED_JOIN_DATE = _filter.EXPECTED_JOIN_DATE)
+            End If
             'If _filter.RECRUIT_START IsNot Nothing Then
             '    lst = lst.Where(Function(p) p.RECRUIT_START = _filter.RECRUIT_START)
             'End If
             'If _filter.RECEIVE_END IsNot Nothing Then
             '    lst = lst.Where(Function(p) p.RECEIVE_END = _filter.RECEIVE_END)
             'End If
-            'If _filter.ORG_NAME <> "" Then
-            '    lst = lst.Where(Function(p) p.ORG_NAME.ToUpper.Contains(_filter.ORG_NAME.ToUpper))
-            'End If
-            'If _filter.TITLE_NAME <> "" Then
-            '    lst = lst.Where(Function(p) p.TITLE_NAME.ToUpper.Contains(_filter.TITLE_NAME.ToUpper))
-            'End If
+            If _filter.ORG_NAME_CTY IsNot Nothing Then
+                lst = lst.Where(Function(p) p.ORG_NAME_CTY.ToUpper.Contains(_filter.ORG_NAME_CTY.ToUpper))
+            End If
+            If _filter.ORG_NAME <> "" Then
+                lst = lst.Where(Function(p) p.ORG_NAME.ToUpper.Contains(_filter.ORG_NAME.ToUpper))
+            End If
+            If _filter.TITLE_NAME <> "" Then
+                lst = lst.Where(Function(p) p.TITLE_NAME.ToUpper.Contains(_filter.TITLE_NAME.ToUpper))
+            End If
             'If _filter.SEND_DATE IsNot Nothing Then
             '    lst = lst.Where(Function(p) p.SEND_DATE = _filter.SEND_DATE)
             'End If
-            'If _filter.STATUS_ID IsNot Nothing Then
-            '    lst = lst.Where(Function(p) p.STATUS_ID = _filter.STATUS_ID)
-            'End If
+            If _filter.STATUS_ID IsNot Nothing Then
+                lst = lst.Where(Function(p) p.STATUS_ID = _filter.STATUS_ID)
+            End If
             'If _filter.RECRUIT_SCOPE_ID IsNot Nothing Then
             '    lst = lst.Where(Function(p) p.RECRUIT_SCOPE_ID = _filter.RECRUIT_SCOPE_ID)
             'End If
-            'If _filter.IS_IN_PLAN IsNot Nothing Then
-            '    lst = lst.Where(Function(p) p.IS_IN_PLAN.Equals(True))
-            'End If
-            'If _filter.STATUS_NAME <> "" Then
-            '    lst = lst.Where(Function(p) p.STATUS_NAME.ToUpper.Contains(_filter.STATUS_NAME.ToUpper))
-            'End If
+            If _filter.IS_IN_PLAN IsNot Nothing Then
+                lst = lst.Where(Function(p) p.IS_IN_PLAN = _filter.IS_IN_PLAN)
+            End If
+            If _filter.STATUS_NAME <> "" Then
+                lst = lst.Where(Function(p) p.STATUS_NAME.ToUpper.Contains(_filter.STATUS_NAME.ToUpper))
+            End If
             'If _filter.RECRUIT_REASON_NAME <> "" Then
             '    lst = lst.Where(Function(p) p.RECRUIT_REASON_NAME.ToUpper.Contains(_filter.RECRUIT_REASON_NAME.ToUpper))
             'End If
+            If _filter.SUPPORT_NAME <> "" Then
+                lst = lst.Where(Function(p) p.SUPPORT_NAME.ToUpper.Contains(_filter.SUPPORT_NAME.ToUpper))
+            End If
             'If _filter.CODE <> "" Then
             '    lst = lst.Where(Function(p) p.CODE.ToUpper.Contains(_filter.CODE.ToUpper))
             'End If
-            'If _filter.RECRUIT_REASON <> "" Then
-            '    lst = lst.Where(Function(p) p.RECRUIT_REASON.ToUpper.Contains(_filter.RECRUIT_REASON.ToUpper))
-            'End If
+            If _filter.RECRUIT_REASON <> "" Then
+                lst = lst.Where(Function(p) p.RECRUIT_REASON.ToUpper.Contains(_filter.RECRUIT_REASON.ToUpper))
+            End If
             'If _filter.REQUEST_NUMBER IsNot Nothing Then
             '    lst = lst.Where(Function(p) p.REQUEST_NUMBER = _filter.REQUEST_NUMBER)
             'End If
-            'If _filter.STAGE_ID IsNot Nothing Then
-            '    lst = lst.Where(Function(p) p.STAGE_ID = _filter.STAGE_ID)
-            'End If
+            If _filter.STAGE_ID IsNot Nothing Then
+                lst = lst.Where(Function(p) p.STAGE_ID = _filter.STAGE_ID)
+            End If
             'If _filter.RECRUIT_TYPE_ID <> "" Then
             '    lst = lst.Where(Function(p) p.RECRUIT_TYPE_ID = _filter.RECRUIT_TYPE_ID)
             'End If

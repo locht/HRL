@@ -5,7 +5,7 @@
     <tlk:RadPane ID="LeftPane" runat="server" MinWidth="200" Width="250px" Scrolling="None">
         <Common:ctrlOrganization ID="ctrlOrg" runat="server" />
     </tlk:RadPane>
-    <tlk:RadPane ID="MainPane" runat="server">
+    <tlk:RadPane ID="MainPane" runat="server" Scrolling="None">
         <tlk:RadSplitter ID="RadSplitter3" runat="server" Width="100%" Height="100%" Orientation="Horizontal">
             <tlk:RadPane ID="RadPane1" runat="server" Height="33px" Scrolling="None">
                 <tlk:RadToolBar ID="tbarMain" runat="server" OnClientButtonClicking="clientButtonClicking" />
@@ -53,8 +53,8 @@
                             <tlk:RadComboBox ID="cboRecType" runat="server">
                                 <Items>
                                     <tlk:RadComboBoxItem Text="-- Tất cả --" Value="" Selected="true" />
-                                    <tlk:RadComboBoxItem Text="Trong kế hoạch" Value="-1" />
-                                    <tlk:RadComboBoxItem Text="Ngoài kế hoạch" Value="0" />
+                                    <tlk:RadComboBoxItem Text="Trong kế hoạch" Value="REC_TYPE1" />
+                                    <tlk:RadComboBoxItem Text="Ngoài kế hoạch" Value="REC_TYPE2" />
                                 </Items>
                             </tlk:RadComboBox>
                         </td>
@@ -62,14 +62,14 @@
                         </td>
                         <td>
                             <tlk:RadButton ID="btnSearch" runat="server" SkinID="ButtonFind" CausesValidation="false"
-                                Text="<%$ Translate: Tìm kiếm %>">
+                                Text="<%$ Translate: Tìm %>">
                             </tlk:RadButton>
                         </td>
                     </tr>
                 </table>
             </tlk:RadPane>
             <tlk:RadPane ID="RadPane2" runat="server" Scrolling="None">
-                <tlk:RadGrid ID="rgData" runat="server" Height="100%" AllowMultiRowSelection="false">
+                <tlk:RadGrid ID="rgData" runat="server" Height="100%" AllowPaging="true" AllowSorting="true">
                     <MasterTableView DataKeyNames="ID" ClientDataKeyNames="ID,STATUS_ID" FilterItemStyle-HorizontalAlign="Center">
                         <Columns>
                             <tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderStyle-HorizontalAlign="Center"
@@ -77,39 +77,40 @@
                             </tlk:GridClientSelectColumn>
                             <tlk:GridBoundColumn DataField="ID" Visible="false" />
                             <tlk:GridDateTimeColumn HeaderText="<%$ Translate: Ngày gửi yêu cầu %>" DataField="SEND_DATE"
-                                SortExpression="SEND_DATE" UniqueName="SEND_DATE" HeaderStyle-Width="120px" />
+                                SortExpression="SEND_DATE" UniqueName="SEND_DATE" HeaderStyle-Width="100px" />
                             <tlk:GridDateTimeColumn HeaderText="<%$ Translate: Ngày đáp ứng %>" DataField="EXPECTED_JOIN_DATE"
                                 SortExpression="EXPECTED_JOIN_DATE" UniqueName="EXPECTED_JOIN_DATE" HeaderStyle-Width="120px" />
                             <%-- <tlk:GridBoundColumn HeaderText="<%$ Translate: Mã tuyển dụng %>" DataField="CODE"
-                                SortExpression="CODE" UniqueName="CODE" />--%>
-                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Công ty %>" DataField="ORG_NAME_CTY" SortExpression="ORG_NAME_CTY"
-                                UniqueName="ORG_NAME_CTY" />
+                                SortExpression="CODE" UniqueName="CODE" HeaderStyle-Width="150px"/>--%>
+                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Công ty %>" DataField="ORG_NAME_CTY"
+                                SortExpression="ORG_NAME_CTY" UniqueName="ORG_NAME_CTY" />
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Ban/Phòng %>" DataField="ORG_NAME"
                                 SortExpression="ORG_NAME" UniqueName="ORG_NAME" />
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Vị trí tuyển dụng %>" DataField="TITLE_NAME"
                                 SortExpression="TITLE_NAME" UniqueName="TITLE_NAME" />
-                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Số lượng yêu cầu %>" DataField="REQUEST_NUMBER"
+                            <tlk:GridNumericColumn HeaderText="<%$ Translate: Số lượng yêu cầu %>" DataField="REQUEST_NUMBER"
                                 SortExpression="REQUEST_NUMBER" UniqueName="REQUEST_NUMBER" AllowFiltering="false"
                                 HeaderStyle-Width="90px" />
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Lý do tuyển dụng %>" DataField="RECRUIT_REASON"
                                 SortExpression="RECRUIT_REASON" UniqueName="RECRUIT_REASON" />
-                            <tlk:GridCheckBoxColumn HeaderText="<%$ Translate: TNG Hỗ trợ %>" DataField="IS_SUPPORT" UniqueName="IS_SUPPORT"
-                                SortExpression="IS_SUPPORT" HeaderStyle-Width="70px" HeaderStyle-HorizontalAlign="Center" />
+                           <%-- <tlk:GridCheckBoxColumn HeaderText="<%$ Translate: TNG Hỗ trợ %>" DataField="IS_SUPPORT"
+                                UniqueName="IS_SUPPORT" SortExpression="IS_SUPPORT" HeaderStyle-Width="70px" />--%>
+                             <tlk:GridBoundColumn HeaderText="<%$ Translate: TNG Hỗ trợ %>" DataField="SUPPORT_NAME"
+                                SortExpression="SUPPORT_NAME" UniqueName="SUPPORT_NAME" />
                             <tlk:GridNumericColumn HeaderText="<%$ Translate: Hồ sơ đã nhận %>" DataField="CANDIDATE_COUNT"
                                 SortExpression="CANDIDATE_COUNT" UniqueName="CANDIDATE_COUNT" AllowFiltering="false"
                                 HeaderStyle-Width="90px" />
-                           <%-- <tlk:GridNumericColumn HeaderText="<%$ Translate: Số lượng trong kế hoạch %>" DataField="CANDIDATE_REQUEST"
+                            <%--<tlk:GridNumericColumn HeaderText="<%$ Translate: Số lượng trong kế hoạch %>" DataField="CANDIDATE_REQUEST"
                                 SortExpression="CANDIDATE_REQUEST" UniqueName="CANDIDATE_REQUEST" AllowFiltering="false"
                                 HeaderStyle-Width="90px" />--%>
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Trạng thái %>" DataField="STATUS_NAME"
-                                SortExpression="STATUS_NAME" UniqueName="STATUS_NAME" />
+                                SortExpression="STATUS_NAME" UniqueName="STATUS_NAME" HeaderStyle-Width="100px" />
                             <%-- <tlk:GridCheckBoxColumn HeaderText="<%$ Translate: Trong ngân sách? %>" DataField="IS_IN_PLAN"
-                                UniqueName="IS_IN_PLAN" SortExpression="IS_IN_PLAN" HeaderStyle-Width="70px"
-                                HeaderStyle-HorizontalAlign="Center" />
+                                UniqueName="IS_IN_PLAN" SortExpression="IS_IN_PLAN" HeaderStyle-Width="70px" />
                             <tlk:GridDateTimeColumn HeaderText="<%$ Translate: Ngày bắt đầu tuyển dụng %>" DataField="RECRUIT_START"
-                                SortExpression="RECRUIT_START" UniqueName="RECRUIT_START" HeaderStyle-Width="120px" />
+                                SortExpression="RECRUIT_START" UniqueName="RECRUIT_START" HeaderStyle-Width="100px" />
                             <tlk:GridDateTimeColumn HeaderText="<%$ Translate: Ngày kết thúc nhận hồ sơ %>" DataField="RECEIVE_END"
-                                SortExpression="RECEIVE_END" UniqueName="RECEIVE_END" HeaderStyle-Width="120px" />
+                                SortExpression="RECEIVE_END" UniqueName="RECEIVE_END" HeaderStyle-Width="100px" />
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Lý do tuyển dụng chi tiết %>" DataField="RECRUIT_REASON"
                                 SortExpression="RECRUIT_REASON" UniqueName="RECRUIT_REASON" />--%>
                             <tlk:GridBoundColumn HeaderText="ORG_DESC" DataField="ORG_DESC" UniqueName="ORG_DESC"
@@ -129,27 +130,27 @@
                 <table class="table-form">
                     <tr>
                         <td>
-                            <tlk:RadButton ID="btnCandidate" runat="server" Text="<%$ Translate: 1. Khai báo ứng viên %>"
+                            <tlk:RadButton ID="btnCandidate" runat="server" Text="<%$ Translate: Khai báo ứng viên %>"
                                 OnClientClicking="btnCandidateClick" AutoPostBack="false">
                             </tlk:RadButton>
                         </td>
                         <td>
-                            <tlk:RadButton ID="btnExams" runat="server" Text="<%$ Translate: 2. Thiết lập các môn thi %>"
+                            <tlk:RadButton ID="btnExams" runat="server" Text="<%$ Translate: Thiết lập các môn thi %>"
                                 OnClientClicking="btnExamsClick" AutoPostBack="false">
                             </tlk:RadButton>
                         </td>
                         <td>
-                            <tlk:RadButton ID="btnSchedule" runat="server" Text="<%$ Translate: 3. Lên lịch thi %>"
+                            <tlk:RadButton ID="btnSchedule" runat="server" Text="<%$ Translate: Lên lịch thi %>"
                                 OnClientClicking="btnScheduleClick" AutoPostBack="false">
                             </tlk:RadButton>
                         </td>
                         <td>
-                            <tlk:RadButton ID="btnResult" runat="server" Text="<%$ Translate: 4. Cập nhật kết quả %>"
+                            <tlk:RadButton ID="btnResult" runat="server" Text="<%$ Translate: Cập nhật kết quả %>"
                                 OnClientClicking="btnResultClick" AutoPostBack="false">
                             </tlk:RadButton>
                         </td>
                         <td>
-                            <tlk:RadButton ID="btnTransfer" runat="server" Text="<%$ Translate: 5. Chuyển sang HSNS %>"
+                            <tlk:RadButton ID="btnTransfer" runat="server" Text="<%$ Translate: Chuyển sang HSNS %>"
                                 OnClientClicking="btnTransferClick" AutoPostBack="false">
                             </tlk:RadButton>
                         </td>
@@ -176,10 +177,10 @@
             enableAjax = true;
         }
         function OpenNew() {
-            var oWindow = radopen('Dialog.aspx?mid=Recruitment&fid=ctrlRC_ProgrammNewEdit&group=Business&noscroll=1', "rwPopup");
+            window.open('/Default.aspx?mid=Recruitment&fid=ctrlRC_ProgrammNewEdit&group=Business', "_self"); /*
             var pos = $("html").offset();
             oWindow.moveTo(pos.left, pos.top);
-            oWindow.setSize($(window).width(), $(window).height());
+            oWindow.setSize($(window).width() - 30, $(window).height() - 30); oWindow.center(); */
         }
         function gridRowDblClick(sender, eventArgs) {
             OpenEdit();
@@ -192,10 +193,10 @@
             if (bCheck > 1)
                 return 1;
             var id = $find('<%# rgData.ClientID%>').get_masterTableView().get_selectedItems()[0].getDataKeyValue('ID');
-            var oWindow = radopen('Dialog.aspx?mid=Recruitment&fid=ctrlRC_ProgrammNewEdit&group=Business&noscroll=1&ID=' + id, "rwPopup");
+            window.open('/Default.aspx?mid=Recruitment&fid=ctrlRC_ProgrammNewEdit&group=Business&ID=' + id, "_self"); /*
             var pos = $("html").offset();
             oWindow.moveTo(pos.left, pos.top);
-            oWindow.setSize($(window).width(), $(window).height());
+            oWindow.setSize($(window).width() - 30, $(window).height() - 30); oWindow.center(); */
             return 2;
         }
 
@@ -271,10 +272,10 @@
                 return;
             }
             var id = $find('<%# rgData.ClientID%>').get_masterTableView().get_selectedItems()[0].getDataKeyValue('ID');
-            var oWindow = radopen('Dialog.aspx?mid=Recruitment&fid=ctrlRC_ProgramExams&group=Business&PROGRAM_ID=' + id, "rwPopup");
+            window.open('/Default.aspx?mid=Recruitment&fid=ctrlRC_ProgramExams&group=Business&PROGRAM_ID=' + id); /*
             var pos = $("html").offset();
             oWindow.moveTo(pos.left, pos.top);
-            oWindow.setSize($(window).width(), $(window).height());
+            oWindow.setSize($(window).width() - 30, $(window).height() - 30); oWindow.center(); */
         }
 
         function btnScheduleClick(sender, args) {
@@ -309,10 +310,10 @@
                 return;
             }
             var id = $find('<%# rgData.ClientID%>').get_masterTableView().get_selectedItems()[0].getDataKeyValue('ID');
-            var oWindow = radopen('Dialog.aspx?mid=Recruitment&fid=ctrlRC_ProgramUpdateResult&group=Business&noscroll=1&PROGRAM_ID=' + id, "rwPopup");
+            window.open('/Default.aspx?mid=Recruitment&fid=ctrlRC_ProgramUpdateResult&group=Business&PROGRAM_ID=' + id); /*
             var pos = $("html").offset();
             oWindow.moveTo(pos.left, pos.top);
-            oWindow.setSize($(window).width(), $(window).height());
+            oWindow.setSize($(window).width() - 30, $(window).height() - 30); oWindow.center(); */
         }
         function btnTransferClick(sender, args) {
             var bCheck = $find('<%# rgData.ClientID %>').get_masterTableView().get_selectedItems().length;
@@ -329,10 +330,10 @@
                 return;
             }
             var id = $find('<%# rgData.ClientID%>').get_masterTableView().get_selectedItems()[0].getDataKeyValue('ID');
-            var oWindow = radopen('Dialog.aspx?mid=Recruitment&fid=ctrlRC_CandidateTransferList&group=Business&noscroll=1&PROGRAM_ID=' + id, "rwPopup");
+            window.open('/Default.aspx?mid=Recruitment&fid=ctrlRC_CandidateTransferList&group=Business&PROGRAM_ID=' + id); /*
             var pos = $("html").offset();
             oWindow.moveTo(pos.left, pos.top);
-            oWindow.setSize($(window).width(), $(window).height());
+            oWindow.setSize($(window).width() - 30, $(window).height() - 30); oWindow.center(); */
         }
 
         function OnClientClose(oWnd, args) {

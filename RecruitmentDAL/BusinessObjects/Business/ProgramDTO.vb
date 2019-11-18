@@ -117,5 +117,7 @@
     Public Property RECRUIT_NUMBER As Decimal?
     Public Property ORG_NAME_CTY As String
     Public Property LOCATION_ID As Decimal?
+    Public Property SUPPORT_NAME As String
+
 End Class
 

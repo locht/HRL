@@ -997,7 +997,7 @@ Public Class Utilities
                         Case GetType(DateTime), GetType(DateTime?)
                             'ConfigurationManager.AppSettings("FDATECLIENT")
                             'DateTime.TryParseExact(item.CurrentFilterValue, "d/M/yyyy h:mm:ss tt", CultureInfo.InvariantCulture, DateTimeStyles.None, value)
-                            DateTime.TryParseExact(item.CurrentFilterValue, ConfigurationManager.AppSettings("FDATECLIENT"), CultureInfo.InvariantCulture, DateTimeStyles.None, value)
+                            DateTime.TryParseExact(item.CurrentFilterValue.Replace("SA", "AM"), ConfigurationManager.AppSettings("FDATECLIENT"), CultureInfo.InvariantCulture, DateTimeStyles.None, value)
                             'Dim da As DateTime
                             'value = da.ToString("dd/MM/yyyy")
                             If value IsNot Nothing AndAlso value <> DateTime.MinValue Then

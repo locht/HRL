@@ -37,7 +37,7 @@ Public Class ctrlRC_Program
         Try
             rgData.SetFilter()
             rgData.AllowCustomPaging = True
-            rgData.PageSize = Common.Common.DefaultPageSize
+            rgData.PageSize = 50
             CType(Me.Page, AjaxPage).AjaxManager.ClientEvents.OnRequestStart = "onRequestStart"
             InitControl()
         Catch ex As Exception
@@ -271,55 +271,58 @@ Public Class ctrlRC_Program
                                                .IS_DISSOLVE = ctrlOrg.IsDissolve}
             _filter.FROM_DATE = rdFromDate.SelectedDate
             _filter.TO_DATE = rdToDate.SelectedDate
-            _filter.STAGE_ID = Decimal.Parse(cboRecPeriod.SelectedValue)
-
-            Select Case cboRecType.SelectedValue
-                Case "REC_TYPE1"
-                    _filter.IS_IN_PLAN = True
-                Case "REC_TYPE2"
-                    _filter.IS_IN_PLAN = False
-            End Select
-
-            'If cboRecType.SelectedValue <> "" Then
-            '    _filter.RECRUIT_TYPE_ID = cboRecType.SelectedValue
-            'End If
-            If cboStatus.SelectedValue <> "" Then
-                _filter.STATUS_ID = cboStatus.SelectedValue
-            End If
-            Dim MaximumRows As Integer
-            Dim Sorts As String = rgData.MasterTableView.SortExpressions.GetSortString()
-            Dim lstData As List(Of ProgramDTO)
-            If Sorts IsNot Nothing Then
-                lstData = rep.GetProgram(_filter, rgData.CurrentPageIndex, rgData.PageSize, MaximumRows, _param, Sorts)
-            Else
-                lstData = rep.GetProgram(_filter, rgData.CurrentPageIndex, rgData.PageSize, MaximumRows, _param)
+            If cboRecPeriod.SelectedValue <> "" AndAlso cboRecPeriod.SelectedValue <> 0 Then
+                _filter.STAGE_ID = Decimal.Parse(cboRecPeriod.SelectedValue)
             End If
 
-            Dim lst = (From p In lstData).ToList
+                Select Case cboRecType.SelectedValue
+                    Case "REC_TYPE1"
+                        _filter.IS_IN_PLAN = True
+                    Case "REC_TYPE2"
+                        _filter.IS_IN_PLAN = False
+                End Select
 
-            If cboRecType.SelectedIndex <> 0 Then
-                lst = (From p In lst Where p.IS_IN_PLAN = cboRecType.SelectedValue).ToList
-            End If
+                'If cboRecType.SelectedValue <> "" Then
+                '    _filter.RECRUIT_TYPE_ID = cboRecType.SelectedValue
+                'End If
+                If cboStatus.SelectedValue <> "" Then
+                    _filter.STATUS_ID = cboStatus.SelectedValue
+                End If
+                Dim MaximumRows As Integer
+                Dim Sorts As String = rgData.MasterTableView.SortExpressions.GetSortString()
+                Dim lstData As List(Of ProgramDTO)
+                If Sorts IsNot Nothing Then
+                    lstData = rep.GetProgram(_filter, rgData.CurrentPageIndex, rgData.PageSize, MaximumRows, _param, Sorts)
+                Else
+                    lstData = rep.GetProgram(_filter, rgData.CurrentPageIndex, rgData.PageSize, MaximumRows, _param)
+                End If
 
-            If rdFromDate.SelectedDate IsNot Nothing Then
-                lst = (From p In lst Where p.SEND_DATE >= rdFromDate.SelectedDate).ToList
-            End If
+                'Dim lst = (From p In lstData).ToList
 
-            If rdToDate.SelectedDate IsNot Nothing Then
-                lst = (From p In lst Where p.SEND_DATE <= rdToDate.SelectedDate).ToList
-            End If
+                'If cboRecType.SelectedIndex <> 0 Then
+                '    lst = (From p In lst Where p.IS_IN_PLAN = cboRecType.SelectedValue).ToList
+                'End If
 
-            If cboRecPeriod.SelectedIndex <> 0 Then
-                lst = (From p In lst Where p.STAGE_ID = cboRecPeriod.SelectedValue).ToList
-            End If
+                'If rdFromDate.SelectedDate IsNot Nothing Then
+                '    lst = (From p In lst Where p.SEND_DATE >= rdFromDate.SelectedDate).ToList
+                'End If
 
-            If cboStatus.SelectedValue <> String.Empty Then
-                lst = (From p In lst Where p.STATUS_ID = cboStatus.SelectedValue).ToList
-            End If
+                'If rdToDate.SelectedDate IsNot Nothing Then
+                '    lst = (From p In lst Where p.SEND_DATE <= rdToDate.SelectedDate).ToList
+                'End If
 
+                'If cboRecPeriod.SelectedIndex <> 0 Then
+                '    lst = (From p In lst Where p.STAGE_ID = cboRecPeriod.SelectedValue).ToList
+                'End If
 
-            rgData.VirtualItemCount = MaximumRows
-            rgData.DataSource = lst
+                'If cboStatus.SelectedValue <> String.Empty Then
+                '    lst = (From p In lst Where p.STATUS_ID = cboStatus.SelectedValue).ToList
+                'End If
+                rgData.DataSource = Nothing
+
+                rgData.DataSource = lstData.ToList
+                rgData.VirtualItemCount = MaximumRows
+
         Catch ex As Exception
             Throw ex
         End Try

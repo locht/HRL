@@ -53,8 +53,8 @@
                             <tlk:RadComboBox ID="cboRecType" runat="server">
                                 <Items>
                                     <tlk:RadComboBoxItem Text="-- Tất cả --" Value="" Selected="true" />
-                                    <tlk:RadComboBoxItem Text="Trong kế hoạch" Value="-1" />
-                                    <tlk:RadComboBoxItem Text="Ngoài kế hoạch" Value="0" />
+                                    <tlk:RadComboBoxItem Text="Trong kế hoạch" Value="REC_TYPE1" />
+                                    <tlk:RadComboBoxItem Text="Ngoài kế hoạch" Value="REC_TYPE2" />
                                 </Items>
                             </tlk:RadComboBox>
                         </td>
@@ -69,7 +69,7 @@
                 </table>
             </tlk:RadPane>
             <tlk:RadPane ID="RadPane2" runat="server" Scrolling="None">
-                <tlk:RadGrid ID="rgData" runat="server" Height="100%" AllowPaging="true" PageSize="50">
+                <tlk:RadGrid ID="rgData" runat="server" Height="100%" AllowPaging="true" AllowSorting="true">
                     <MasterTableView DataKeyNames="ID" ClientDataKeyNames="ID,STATUS_ID" FilterItemStyle-HorizontalAlign="Center">
                         <Columns>
                             <tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderStyle-HorizontalAlign="Center"
@@ -93,9 +93,10 @@
                                 HeaderStyle-Width="90px" />
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Lý do tuyển dụng %>" DataField="RECRUIT_REASON"
                                 SortExpression="RECRUIT_REASON" UniqueName="RECRUIT_REASON" />
-                            <tlk:GridCheckBoxColumn HeaderText="<%$ Translate: TNG Hỗ trợ %>" DataField="IS_SUPPORT"
-                                UniqueName="IS_SUPPORT" SortExpression="IS_SUPPORT" HeaderStyle-Width="70px"
-                                HeaderStyle-HorizontalAlign="Center" />
+                           <%-- <tlk:GridCheckBoxColumn HeaderText="<%$ Translate: TNG Hỗ trợ %>" DataField="IS_SUPPORT"
+                                UniqueName="IS_SUPPORT" SortExpression="IS_SUPPORT" HeaderStyle-Width="70px" />--%>
+                             <tlk:GridBoundColumn HeaderText="<%$ Translate: TNG Hỗ trợ %>" DataField="SUPPORT_NAME"
+                                SortExpression="SUPPORT_NAME" UniqueName="SUPPORT_NAME" />
                             <tlk:GridNumericColumn HeaderText="<%$ Translate: Hồ sơ đã nhận %>" DataField="CANDIDATE_COUNT"
                                 SortExpression="CANDIDATE_COUNT" UniqueName="CANDIDATE_COUNT" AllowFiltering="false"
                                 HeaderStyle-Width="90px" />
