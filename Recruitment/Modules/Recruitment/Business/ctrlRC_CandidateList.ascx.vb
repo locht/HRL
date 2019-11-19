@@ -348,11 +348,18 @@ Public Class ctrlRC_CandidateList
 
     Private Sub cmdYCTDKhac_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles cmdYCTDKhac.Click
         Dim strEmp As String = ""
+        Dim status As String
         If rgCandidateList.SelectedItems.Count = 0 Then
             ShowMessage("Vui lòng chọn 1 ứng viên", NotifyType.Warning)
             Exit Sub
         End If
         For Each dr As Telerik.Web.UI.GridDataItem In rgCandidateList.SelectedItems
+            status = dr.GetDataKeyValue("STATUS_ID").ToString
+            Select Case status
+                Case RCContant.NHANVIEN
+                    ShowMessage(Translate("Tồn tại ứng viên đang ở trạng thái Đã là nhân viên"), NotifyType.Warning)
+                    Exit Sub
+            End Select
             If strEmp = "" Then
                 strEmp = dr.GetDataKeyValue("FULLNAME_VN")
             Else
