@@ -7,7 +7,7 @@
 <asp:HiddenField ID="hidProgramID" runat="server" />
 <Common:ctrlMessageBox ID="ctrlMessageBox" runat="server" />
 <tlk:RadSplitter ID="RadSplitter1" runat="server" Width="100%" Height="100%" Orientation="Horizontal">
-    <tlk:RadPane ID="RadPane1" runat="server" Scrolling="None" Width="100px" Height="150px">
+    <tlk:RadPane ID="RadPane1" runat="server" Scrolling="None" Width="100px" Height="100px">
          <table class="table-form">
             <tr> 
                 <td colspan="6">
@@ -81,7 +81,7 @@
             </tr>
         </table>
     </tlk:RadPane>
-    <tlk:RadPane ID="DetailPane" runat="server" Scrolling="None" Height="900px">
+    <tlk:RadPane ID="DetailPane" runat="server" Height="480px">
         <tlk:RadTabStrip ID="rtabProfileInfo" runat="server" CausesValidation="false" MultiPageID="RadMultiPage1"
             AutoPostBack="false">
             <Tabs>
@@ -92,7 +92,7 @@
                 </tlk:RadTab>
             </Tabs>
         </tlk:RadTabStrip>
-        <tlk:RadMultiPage ID="RadMultiPage1" SelectedIndex="0" runat="server" 
+        <tlk:RadMultiPage ID="RadMultiPage1" SelectedIndex="0" runat="server"  Width="100%"
             ScrollBars="Auto" Height="100%">
             <tlk:RadPageView ID="RadPageView1" runat="server" Width="100%">
                 <Recruitment:ctrlRC_ProgramExamsResult runat="server" ID="ctrlRC_ProgramExamsResult" />
