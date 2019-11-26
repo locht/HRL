@@ -163,7 +163,7 @@ Public Class ctrlLeaveRegistrationByManager
                     End If
                     Dim listDataCheck As New List(Of AT_PROCESS_DTO)
                     For Each dr As Telerik.Web.UI.GridDataItem In rgMain.SelectedItems
-                        If dr.GetDataKeyValue("STATUS") = 1 Then
+                        If dr.GetDataKeyValue("STATUS") = 1 Or dr.GetDataKeyValue("STATUS") = 2 Then
                             ShowMessage(Translate("Thao tác này chỉ áp dụng cho đơn đăng ký nghỉ ở trạng thái Chờ phê duyệt"), NotifyType.Warning)
                             Exit Sub
                         End If
@@ -180,7 +180,7 @@ Public Class ctrlLeaveRegistrationByManager
                     End If
 
                     For Each dr As Telerik.Web.UI.GridDataItem In rgMain.SelectedItems
-                        If dr.GetDataKeyValue("STATUS") = 1 Then
+                        If dr.GetDataKeyValue("STATUS") = 1 Or dr.GetDataKeyValue("STATUS") = 2 Then
                             ShowMessage(Translate("Thao tác này chỉ áp dụng cho đơn đăng ký nghỉ ở trạng thái Chờ phê duyệt."), NotifyType.Warning)
                             Exit Sub
                         End If
