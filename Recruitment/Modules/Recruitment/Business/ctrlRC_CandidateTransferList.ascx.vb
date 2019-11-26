@@ -276,6 +276,7 @@ Public Class ctrlRC_CandidateTransferList
     Private Sub cmdYCTDKhac_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles cmdYCTDKhac.Click
         Dim strEmp As String = ""
         Dim status As String
+        HttpContext.Current.Session("CallAllOrg") = "LoadAllOrg"
         If rgCandidateList.SelectedItems.Count = 0 Then
             ShowMessage("Vui lòng chọn 1 ứng viên", NotifyType.Warning)
             Exit Sub
