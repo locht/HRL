@@ -12,7 +12,7 @@
     <tlk:RadPane ID="ToolbarPane" runat="server" Height="35px" Scrolling="None">
         <tlk:RadToolBar ID="tbarMainToolBar" runat="server" />
     </tlk:RadPane>
-    <tlk:RadPane ID="RadPane1" runat="server" Height="320px">
+    <tlk:RadPane ID="RadPane1" runat="server" Height="110px">
         <asp:ValidationSummary ID="valSum" runat="server" DisplayMode="BulletList" CssClass="validationsummary" />
         <table class="table-form">
             <tr>

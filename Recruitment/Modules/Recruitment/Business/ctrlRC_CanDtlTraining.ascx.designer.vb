@@ -50,24 +50,6 @@ Partial Public Class ctrlRC_CanDtlTraining
     Protected WithEvents RadSplitter3 As Global.Telerik.Web.UI.RadSplitter
 
     '''<summary>
-    '''ToolbarPane control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents ToolbarPane As Global.Telerik.Web.UI.RadPane
-
-    '''<summary>
-    '''tbarMainToolBar control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents tbarMainToolBar As Global.Telerik.Web.UI.RadToolBar
-
-    '''<summary>
     '''RadPane2 control.
     '''</summary>
     '''<remarks>
@@ -84,6 +66,24 @@ Partial Public Class ctrlRC_CanDtlTraining
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents ctrlRC_CanBasicInfo As Global.Recruitment.ctrlRC_CanBasicInfo
+
+    '''<summary>
+    '''ToolbarPane control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents ToolbarPane As Global.Telerik.Web.UI.RadPane
+
+    '''<summary>
+    '''tbarMainToolBar control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents tbarMainToolBar As Global.Telerik.Web.UI.RadToolBar
 
     '''<summary>
     '''RadPane1 control.

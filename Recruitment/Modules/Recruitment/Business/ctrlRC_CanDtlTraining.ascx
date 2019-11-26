@@ -6,13 +6,13 @@
 <asp:HiddenField ID="hidSelectedtrainID" runat="server" />
 <Common:ctrlMessageBox ID="ctrlMessageBox" runat="server" />
 <tlk:RadSplitter ID="RadSplitter3" runat="server" Orientation="Horizontal" Scrolling="None">
-    <tlk:RadPane ID="ToolbarPane" runat="server" Height="35px" Scrolling="None">
-        <tlk:RadToolBar ID="tbarMainToolBar" runat="server" />
-    </tlk:RadPane>
     <tlk:RadPane ID="RadPane2" runat="server" Height="50px" Scrolling="None">
         <recruitment:ctrlrc_canbasicinfo runat="server" id="ctrlRC_CanBasicInfo" />
     </tlk:RadPane>
-    <tlk:RadPane ID="RadPane1" runat="server" Height="180px">
+    <tlk:RadPane ID="ToolbarPane" runat="server" Height="35px" Scrolling="None">
+        <tlk:RadToolBar ID="tbarMainToolBar" runat="server" />
+    </tlk:RadPane>
+    <tlk:RadPane ID="RadPane1" runat="server" Height="110px">
         <asp:ValidationSummary ID="valSum" runat="server" DisplayMode="BulletList" CssClass="validationsummary" />
         <table class="table-form">
             <tr>
