@@ -678,6 +678,7 @@ Public Class ctrlRC_CandidateTransferList
         Try
             If hidProgramID.Value <> "" Then
                 rgCandidateList.DataSource = psp.GET_LIST_EMPLOYEE_ELECT(Decimal.Parse(hidProgramID.Value), strStatus)
+                rgCandidateList.VirtualItemCount = psp.GET_LIST_EMPLOYEE_ELECT(Decimal.Parse(hidProgramID.Value), strStatus).Rows.Count
                 CountNumberHaveRecruit(hidProgramID.Value)
             End If
         Catch ex As Exception
