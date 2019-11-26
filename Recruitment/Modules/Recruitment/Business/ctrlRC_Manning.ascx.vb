@@ -472,7 +472,9 @@ Public Class ctrlRC_Manning
                     Dim listYear As DataTable = repStore.LoadComboboxYear(Int32.Parse(ctrlOrganization.CurrentValue))
                     FillRadCombobox(cboYear, listYear, "YEAR", "YEAR")
                     cboYear.SelectedIndex = 0
-
+                    If listYear.Rows.Count = 0 Then
+                        cboYear.Text = ""
+                    End If
                     Dim dtListMannName As DataTable
                     dtListMannName = repStore.LoadComboboxListMannName(ctrlOrganization.CurrentValue, If(cboYear.SelectedValue = "", 0, Int32.Parse(cboYear.SelectedValue)))
                     FillRadCombobox(cboListManning, dtListMannName, "NAME", "ID")
