@@ -230,6 +230,15 @@ Partial Public Class ctrlRegisterCONewEdit
     Protected WithEvents rnSENIORITYHAVE As Global.Telerik.Web.UI.RadTextBox
 
     '''<summary>
+    '''txtCUR_HAVE control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtCUR_HAVE As Global.Telerik.Web.UI.RadTextBox
+
+    '''<summary>
     '''rnBALANCE control.
     '''</summary>
     '''<remarks>

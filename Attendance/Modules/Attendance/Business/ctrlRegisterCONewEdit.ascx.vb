@@ -350,6 +350,10 @@ Public Class ctrlRegisterCONewEdit
             GetLeaveSheet_Detail()
             Cal_DayLeaveSheet()
             Cal_DayEntitlement()
+
+            Dim store As New AttendanceStoreProcedure
+            Dim dtSourceNB = store.GET_INFO_NGHIBU(Decimal.Parse(rtEmployee_id.Text.Trim), rdLEAVE_FROM.SelectedDate)
+            txtCUR_HAVE.Text = If(dtSourceNB.Rows(0)("CUR_HAVE") Is Nothing, 0, CDec(dtSourceNB.Rows(0)("CUR_HAVE").ToString()))
         Catch ex As Exception
             Throw ex
         Finally
