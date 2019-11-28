@@ -41,6 +41,8 @@
             <EntitySet Name="HU_SIGNER" EntityType="CommonModel.Store.HU_SIGNER" store:Type="Tables"  />
             <EntitySet Name="SE_MAIL_TEMPLATE" EntityType="CommonModel.Store.SE_MAIL_TEMPLATE" store:Type="Tables"  />
             <EntitySet Name="HU_NATION" EntityType="CommonModel.Store.HU_NATION" store:Type="Tables"  />
+            <EntitySet Name="SE_GROUP_ORG_ACCESS" EntityType="CommonModel.Store.SE_GROUP_ORG_ACCESS" store:Type="Tables"  />
+            <EntitySet Name="SE_GROUP_ORG_FUN_ACCESS" EntityType="CommonModel.Store.SE_GROUP_ORG_FUN_ACCESS" store:Type="Tables"  />
             <EntitySet Name="SE_GRP_SE_USR" EntityType="CommonModel.Store.SE_GRP_SE_USR" store:Type="Tables"  />
             <EntitySet Name="SE_GROUP_REPORT" EntityType="CommonModel.Store.SE_GROUP_REPORT" store:Type="Tables"  />
             <EntitySet Name="SE_USER_REPORT" EntityType="CommonModel.Store.SE_USER_REPORT" store:Type="Tables"  />
@@ -657,6 +659,7 @@
             <Property Name="ID" Type="number" Nullable="false" Precision="38" />
             <Property Name="USER_ID" Type="number" Nullable="false" Precision="38" />
             <Property Name="ORG_ID" Type="number" Nullable="false" Precision="38" />
+            <Property Name="GROUP_ID" Type="number" Nullable="true" Precision="38" />
         </EntityType>
         <EntityType Name="SE_USER_PERMISSION">
             <Key>
@@ -783,6 +786,22 @@
             <Property Name="MODIFIED_DATE" Type="date" Nullable="true" />
             <Property Name="MODIFIED_BY" Type="nvarchar2" Nullable="true" MaxLength="255" />
             <Property Name="MODIFIED_LOG" Type="nvarchar2" Nullable="true" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="SE_GROUP_ORG_ACCESS">
+            <Key>
+                <PropertyRef Name="ID" />
+            </Key>
+            <Property Name="ID" Type="number" Nullable="false" Precision="38" />
+            <Property Name="GROUP_ID" Type="number" Nullable="true" Precision="38" />
+            <Property Name="ORG_ID" Type="number" Nullable="false" Precision="38" />
+        </EntityType>
+        <EntityType Name="SE_GROUP_ORG_FUN_ACCESS">
+            <Key>
+                <PropertyRef Name="ID" />
+            </Key>
+            <Property Name="ID" Type="number" Nullable="false" Precision="38" />
+            <Property Name="GROUP_ID" Type="number" Nullable="true" Precision="38" />
+            <Property Name="ORG_ID" Type="number" Nullable="false" Precision="38" />
         </EntityType>
         <EntityType Name="SE_GRP_SE_USR">
             <Key>
@@ -1112,6 +1131,8 @@
           <EntitySet Name="HU_SIGNER" EntityType="CommonModel.HU_SIGNER" />
           <EntitySet Name="SE_MAIL_TEMPLATE" EntityType="CommonModel.SE_MAIL_TEMPLATE" />
           <EntitySet Name="HU_NATION" EntityType="CommonModel.HU_NATION" />
+          <EntitySet Name="SE_GROUP_ORG_ACCESS" EntityType="CommonModel.SE_GROUP_ORG_ACCESS" />
+          <EntitySet Name="SE_GROUP_ORG_FUN_ACCESS" EntityType="CommonModel.SE_GROUP_ORG_FUN_ACCESS" />
           </EntityContainer>
         <EntityType Name="SE_GROUP">
           <Key>
@@ -1823,6 +1844,7 @@
           <Property Type="Decimal" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Type="Decimal" Name="USER_ID" Nullable="false" />
           <Property Type="Decimal" Name="ORG_ID" Nullable="false" />
+          <Property Type="Decimal" Name="GROUP_ID" />
         </EntityType>
         <EntityType Name="SE_USER_PERMISSION">
           <Key>
@@ -1949,6 +1971,22 @@
           <Property Type="DateTime" Name="MODIFIED_DATE" />
           <Property Type="String" Name="MODIFIED_BY" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="MODIFIED_LOG" MaxLength="255" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="SE_GROUP_ORG_ACCESS">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Decimal" Name="ID" Nullable="false" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="GROUP_ID" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="ORG_ID" Precision="38" Scale="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SE_GROUP_ORG_FUN_ACCESS">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Decimal" Name="ID" Nullable="false" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="GROUP_ID" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="ORG_ID" Precision="38" Scale="0" Nullable="false" />
         </EntityType>
         </Schema>
     </edmx:ConceptualModels>
@@ -2528,6 +2566,7 @@
                     <ScalarProperty Name="ID" ColumnName="ID" />
                     <ScalarProperty Name="USER_ID" ColumnName="USER_ID" />
                     <ScalarProperty Name="ORG_ID" ColumnName="ORG_ID" />
+                    <ScalarProperty Name="GROUP_ID" ColumnName="GROUP_ID" />
                 </MappingFragment>
             </EntityTypeMapping>
         </EntitySetMapping>
@@ -2664,6 +2703,24 @@
                 </MappingFragment>
             </EntityTypeMapping>
         </EntitySetMapping>
+        <EntitySetMapping Name="SE_GROUP_ORG_ACCESS">
+            <EntityTypeMapping TypeName="IsTypeOf(CommonModel.SE_GROUP_ORG_ACCESS)">
+                <MappingFragment StoreEntitySet="SE_GROUP_ORG_ACCESS">
+                    <ScalarProperty Name="ID" ColumnName="ID" />
+                    <ScalarProperty Name="GROUP_ID" ColumnName="GROUP_ID" />
+                    <ScalarProperty Name="ORG_ID" ColumnName="ORG_ID" />
+                </MappingFragment>
+            </EntityTypeMapping>
+        </EntitySetMapping>
+        <EntitySetMapping Name="SE_GROUP_ORG_FUN_ACCESS">
+            <EntityTypeMapping TypeName="IsTypeOf(CommonModel.SE_GROUP_ORG_FUN_ACCESS)">
+                <MappingFragment StoreEntitySet="SE_GROUP_ORG_FUN_ACCESS">
+                    <ScalarProperty Name="ID" ColumnName="ID" />
+                    <ScalarProperty Name="GROUP_ID" ColumnName="GROUP_ID" />
+                    <ScalarProperty Name="ORG_ID" ColumnName="ORG_ID" />
+                </MappingFragment>
+            </EntityTypeMapping>
+        </EntitySetMapping>
         <AssociationSetMapping Name="SE_GRP_SE_USR" TypeName="CommonModel.SE_GRP_SE_USR" StoreEntitySet="SE_GRP_SE_USR">
             <EndProperty Name="SE_GROUP">
                 <ScalarProperty Name="ID" ColumnName="SE_GROUPS_ID" />
@@ -2717,34 +2774,27 @@
         <EntityTypeShape EntityType="CommonModel.SE_USER" Width="2.125" PointX="18.75" PointY="6.25" Height="6.0186165364583335" IsExpanded="true" />
         <AssociationConnector Association="CommonModel.SE_GRP_SE_USR" >
           <ConnectorPoint PointX="1.85937775" PointY="4.7749999999999986" />
-          <ConnectorPoint PointX="1.85937775" PointY="5.8999999999999986" />
-          <ConnectorPoint PointX="2.9947891666666666" PointY="5.8999999999999977" />
-          <ConnectorPoint PointX="3.1614558333333336" PointY="5.8999999999999986" />
-          <ConnectorPoint PointX="3.2604166666666665" PointY="5.8999999999999977" />
-          <ConnectorPoint PointX="3.4270833333333335" PointY="5.8999999999999986" />
-          <ConnectorPoint PointX="9.2916641666666653" PointY="5.8999999999999977" />
-          <ConnectorPoint PointX="9.4583308333333331" PointY="5.8999999999999986" />
-          <ConnectorPoint PointX="9.75" PointY="5.8999999999999986" />
-          <ConnectorPoint PointX="9.75" PointY="5.5" />
-          <ConnectorPoint PointX="12.5" PointY="5.5" />
-          <ConnectorPoint PointX="12.5" PointY="5.6499999999999986" />
-          <ConnectorPoint PointX="13.291666666666666" PointY="5.6499999999999977" />
-          <ConnectorPoint PointX="13.458333333333334" PointY="5.6499999999999986" />
-          <ConnectorPoint PointX="14.541666666666666" PointY="5.6499999999999977" />
-          <ConnectorPoint PointX="14.708333333333334" PointY="5.6499999999999986" />
-          <ConnectorPoint PointX="14.875" PointY="5.6499999999999986" />
-          <ConnectorPoint PointX="14.875" PointY="4" />
-          <ConnectorPoint PointX="17.125" PointY="4" />
-          <ConnectorPoint PointX="17.125" PointY="5.5475065104166674" />
-          <ConnectorPoint PointX="17.166666666666668" PointY="5.5475065104166665" />
-          <ConnectorPoint PointX="17.333333333333332" PointY="5.5475065104166674" />
-          <ConnectorPoint PointX="20.132811249999996" PointY="5.5475065104166674" />
-          <ConnectorPoint PointX="20.132811249999996" PointY="6.25" />
+          <ConnectorPoint PointX="1.85937775" PointY="6.0624999999999973" />
+          <ConnectorPoint PointX="2.9166666666666665" PointY="6.0624999999999964" />
+          <ConnectorPoint PointX="3.0833333333333335" PointY="6.0624999999999973" />
+          <ConnectorPoint PointX="3.1041691666666664" PointY="6.0624999999999964" />
+          <ConnectorPoint PointX="3.2708358333333334" PointY="6.0624999999999973" />
+          <ConnectorPoint PointX="5.510416666666667" PointY="6.0624999999999964" />
+          <ConnectorPoint PointX="5.677083333333333" PointY="6.0624999999999973" />
+          <ConnectorPoint PointX="9.2916641666666653" PointY="6.0624999999999964" />
+          <ConnectorPoint PointX="9.4583308333333331" PointY="6.0624999999999973" />
+          <ConnectorPoint PointX="9.9375" PointY="6.0624999999999973" />
+          <ConnectorPoint PointX="9.9375" PointY="12.792623697916667" />
+          <ConnectorPoint PointX="15.5625" PointY="12.792623697916667" />
+          <ConnectorPoint PointX="15.5625" PointY="11.437500000000004" />
+          <ConnectorPoint PointX="18.65625" PointY="11.437500000000004" />
+          <ConnectorPoint PointX="18.65625" PointY="9.355458984374998" />
+          <ConnectorPoint PointX="18.75" PointY="9.355458984374998" />
         </AssociationConnector>
         <EntityTypeShape EntityType="CommonModel.SE_MODULE" Width="1.5" PointX="2.375" PointY="10.875" Height="2.1725878906249996" IsExpanded="true" />
         <AssociationConnector Association="CommonModel.FK_SM_SF" >
-          <ConnectorPoint PointX="3.34375" PointY="10.875" />
-          <ConnectorPoint PointX="3.34375" PointY="4.951396484375" />
+          <ConnectorPoint PointX="3" PointY="10.875" />
+          <ConnectorPoint PointX="3" PointY="4.951396484375" />
         </AssociationConnector>
         <EntityTypeShape EntityType="CommonModel.SE_GROUP_PERMISSION" Width="2.625" PointX="5.125" PointY="2.125" Height="0.40000000000000036" IsExpanded="false" />
         <AssociationConnector Association="CommonModel.FK_SF_SGP" >
@@ -2777,19 +2827,17 @@
         </AssociationConnector>
         <EntityTypeShape EntityType="CommonModel.SE_REPORT" Width="1.5" PointX="4.875" PointY="5.25" Height="0.39999999999999858" IsExpanded="false" />
         <AssociationConnector Association="CommonModel.FK_SM_SR">
-          <ConnectorPoint PointX="3.0781225" PointY="10.875" />
-          <ConnectorPoint PointX="3.0781225" PointY="5.5812525" />
-          <ConnectorPoint PointX="3.2604166666666665" PointY="5.5812524999999988" />
-          <ConnectorPoint PointX="3.4270833333333335" PointY="5.5812525" />
-          <ConnectorPoint PointX="4.875" PointY="5.5812525" />
+          <ConnectorPoint PointX="3.1875025" PointY="10.875" />
+          <ConnectorPoint PointX="3.1875025" PointY="5.5812524999999908" />
+          <ConnectorPoint PointX="4.875" PointY="5.5812524999999908" />
         </AssociationConnector>
         <AssociationConnector Association="CommonModel.SE_GROUP_REPORT">
           <ConnectorPoint PointX="1.4687505" PointY="4.7749999999999986" />
           <ConnectorPoint PointX="1.4687505" PointY="5.4499999999999993" />
           <ConnectorPoint PointX="1.7760444166666667" PointY="5.4499999999999984" />
           <ConnectorPoint PointX="1.9427110833333332" PointY="5.4499999999999993" />
-          <ConnectorPoint PointX="3.2604166666666665" PointY="5.4499999999999984" />
-          <ConnectorPoint PointX="3.4270833333333335" PointY="5.4499999999999993" />
+          <ConnectorPoint PointX="2.9166666666666665" PointY="5.4499999999999984" />
+          <ConnectorPoint PointX="3.0833333333333335" PointY="5.4499999999999993" />
           <ConnectorPoint PointX="4.875" PointY="5.4499999999999993" />
         </AssociationConnector>
         <EntityTypeShape EntityType="CommonModel.HU_ORGANIZATION" Width="1.5" PointX="4.625" PointY="10.375" Height="5.634013671875" IsExpanded="true" />
@@ -2807,11 +2855,11 @@
         <EntityTypeShape EntityType="CommonModel.HU_EMPLOYEE" PointX="10" PointY="5.75" Width="3.125" Height="6.9801236979166656" IsExpanded="true" />
 		<EntityTypeShape EntityType="CommonModel.HU_TERMINATE" Width="6.125" PointX="8.75" PointY="12.875" Height="0.39999999999999858" IsExpanded="false" />
         <AssociationConnector Association="CommonModel.FK_HU_ORG_HU_EMP">
-          <ConnectorPoint PointX="5.375" PointY="10.375" />
-          <ConnectorPoint PointX="5.375" PointY="7.3249999999999993" />
-          <ConnectorPoint PointX="9.2916641666666653" PointY="7.3249999999999984" />
-          <ConnectorPoint PointX="9.4583308333333331" PointY="7.3249999999999993" />
-          <ConnectorPoint PointX="10" PointY="7.3249999999999993" />
+          <ConnectorPoint PointX="5.59375" PointY="10.375" />
+          <ConnectorPoint PointX="5.59375" PointY="5.9062499999999982" />
+          <ConnectorPoint PointX="9.2916641666666653" PointY="5.9062499999999973" />
+          <ConnectorPoint PointX="9.4583308333333331" PointY="5.9062499999999982" />
+          <ConnectorPoint PointX="10" PointY="5.9062499999999982" />
         </AssociationConnector>
         <EntityTypeShape EntityType="CommonModel.SE_MAIL" PointX="0.75" PointY="6.125" Width="1.875" Height="0.40000000000000036" IsExpanded="false" />
         <EntityTypeShape EntityType="CommonModel.SE_REMINDER" Width="1.5" PointX="4.75" PointY="1.125" Height="0.39999999999999991" IsExpanded="false" />
@@ -2848,15 +2896,17 @@
           <ConnectorPoint PointX="19.8125" PointY="5.5475065104166674" />
           <ConnectorPoint PointX="19.8125" PointY="6.25" />
         </AssociationConnector>
-        <EntityTypeShape EntityType="CommonModel.SE_USER_ORG_ACCESS" Width="1.5" PointX="2.875" PointY="12.125" Height="0.4" IsExpanded="false" />
+        <EntityTypeShape EntityType="CommonModel.SE_USER_ORG_ACCESS" Width="1.5" PointX="3.5" PointY="8.875" Height="1.7879850260416657" IsExpanded="true" />
         <EntityTypeShape EntityType="CommonModel.SE_USER_PERMISSION" Width="2.5" PointX="15" PointY="10" Height="0.4" IsExpanded="false" />
-        <EntityTypeShape EntityType="CommonModel.HUV_SE_GRP_SE_USR" Width="1.5" PointX="0.75" PointY="7.75" Height="0.4" IsExpanded="false" />
+        <EntityTypeShape EntityType="CommonModel.HUV_SE_GRP_SE_USR" Width="1.5" PointX="0.75" PointY="7.75" Height="1.4033821614583335" IsExpanded="true" />
         <EntityTypeShape EntityType="CommonModel.SE_VIEW_CONFIG" Width="1.75" PointX="6.75" PointY="14.125" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="CommonModel.AT_TIME_MANUAL" Width="1.5" PointX="2.1209831322175372" PointY="27.635870275849417" />
         <EntityTypeShape EntityType="CommonModel.SE_CASE_CONFIG" Width="1.5" PointX="3.25" PointY="13.125" Height="1.7879850260416657" />
         <EntityTypeShape EntityType="CommonModel.HU_SIGNER" Width="1.875" PointX="15.125" PointY="4.25" Height="3.9033007812499996" />
         <EntityTypeShape EntityType="CommonModel.SE_MAIL_TEMPLATE" Width="1.5" PointX="5.5995629828421229" PointY="10.490209807870077" />
         <EntityTypeShape EntityType="CommonModel.HU_NATION" Width="1.5" PointX="0.75" PointY="14.75" Height="3.1340950520833246" />
+        <EntityTypeShape EntityType="CommonModel.SE_GROUP_ORG_ACCESS" Width="1.5" PointX="3.375" PointY="6.75" Height="1.5956835937500102" />
+        <EntityTypeShape EntityType="CommonModel.SE_GROUP_ORG_FUN_ACCESS" Width="1.5" PointX="14.375" PointY="0.75" Height="1.5956835937499818" />
         </Diagram>
     </Diagrams>
   </Designer>

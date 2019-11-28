@@ -93,6 +93,8 @@
     <Compile Include="BusinessObjects\List\OtherListDTO.vb" />
     <Compile Include="BusinessObjects\List\OtherListGroupDTO.vb" />
     <Compile Include="BusinessObjects\List\OtherListTypeDTO.vb" />
+    <Compile Include="BusinessObjects\Secure\GroupOrgAccessDTO.vb" />
+    <Compile Include="BusinessObjects\Secure\GroupOrgFunAccessDTO.vb" />
     <Compile Include="BusinessObjects\Secure\MailTemplateDTO.vb" />
     <Compile Include="BusinessObjects\Secure\UserReportDTO.vb" />
     <Compile Include="BusinessObjects\Secure\UserOrgAccessDTO.vb" />

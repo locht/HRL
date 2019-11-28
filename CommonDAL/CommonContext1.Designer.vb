@@ -18,7 +18,7 @@ Imports System.Runtime.Serialization
 Imports System.Xml.Serialization
 
 
-<Assembly: EdmSchemaAttribute("0a29a273-4f9f-4c0d-99fa-f13ee7b28694")>
+<Assembly: EdmSchemaAttribute("096764f3-14d0-4612-a234-a18f0cf19a95")>
 #Region "EDM Relationship Metadata"
 <Assembly: EdmRelationshipAttribute("CommonModel", "SE_GRP_SE_USR", "SE_GROUP", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(SE_GROUP), "SE_USER", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(SE_USER))>
 <Assembly: EdmRelationshipAttribute("CommonModel", "FK_SM_SF", "SE_MODULE", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(SE_MODULE), "SE_FUNCTION", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(SE_FUNCTION), True)>
@@ -574,6 +574,34 @@ Public Partial Class CommonContext
 
     Private _HU_NATION As ObjectSet(Of HU_NATION)
 
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    Public ReadOnly Property SE_GROUP_ORG_ACCESS() As ObjectSet(Of SE_GROUP_ORG_ACCESS)
+        Get
+            If (_SE_GROUP_ORG_ACCESS Is Nothing) Then
+                _SE_GROUP_ORG_ACCESS = MyBase.CreateObjectSet(Of SE_GROUP_ORG_ACCESS)("SE_GROUP_ORG_ACCESS")
+            End If
+            Return _SE_GROUP_ORG_ACCESS
+        End Get
+    End Property
+
+    Private _SE_GROUP_ORG_ACCESS As ObjectSet(Of SE_GROUP_ORG_ACCESS)
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    Public ReadOnly Property SE_GROUP_ORG_FUN_ACCESS() As ObjectSet(Of SE_GROUP_ORG_FUN_ACCESS)
+        Get
+            If (_SE_GROUP_ORG_FUN_ACCESS Is Nothing) Then
+                _SE_GROUP_ORG_FUN_ACCESS = MyBase.CreateObjectSet(Of SE_GROUP_ORG_FUN_ACCESS)("SE_GROUP_ORG_FUN_ACCESS")
+            End If
+            Return _SE_GROUP_ORG_FUN_ACCESS
+        End Get
+    End Property
+
+    Private _SE_GROUP_ORG_FUN_ACCESS As ObjectSet(Of SE_GROUP_ORG_FUN_ACCESS)
+
     #End Region
 
     #Region "AddTo Methods"
@@ -821,6 +849,20 @@ Public Partial Class CommonContext
     ''' </summary>
     Public Sub AddToHU_NATION(ByVal hU_NATION As HU_NATION)
         MyBase.AddObject("HU_NATION", hU_NATION)
+    End Sub
+
+    ''' <summary>
+    ''' Deprecated Method for adding a new object to the SE_GROUP_ORG_ACCESS EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+    ''' </summary>
+    Public Sub AddToSE_GROUP_ORG_ACCESS(ByVal sE_GROUP_ORG_ACCESS As SE_GROUP_ORG_ACCESS)
+        MyBase.AddObject("SE_GROUP_ORG_ACCESS", sE_GROUP_ORG_ACCESS)
+    End Sub
+
+    ''' <summary>
+    ''' Deprecated Method for adding a new object to the SE_GROUP_ORG_FUN_ACCESS EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+    ''' </summary>
+    Public Sub AddToSE_GROUP_ORG_FUN_ACCESS(ByVal sE_GROUP_ORG_FUN_ACCESS As SE_GROUP_ORG_FUN_ACCESS)
+        MyBase.AddObject("SE_GROUP_ORG_FUN_ACCESS", sE_GROUP_ORG_FUN_ACCESS)
     End Sub
 
     #End Region
@@ -11719,6 +11761,220 @@ End Class
 ''' <summary>
 ''' No Metadata Documentation available.
 ''' </summary>
+<EdmEntityTypeAttribute(NamespaceName:="CommonModel", Name:="SE_GROUP_ORG_ACCESS")>
+<Serializable()>
+<DataContractAttribute(IsReference:=True)>
+Public Partial Class SE_GROUP_ORG_ACCESS
+    Inherits EntityObject
+    #Region "Factory Method"
+
+    ''' <summary>
+    ''' Create a new SE_GROUP_ORG_ACCESS object.
+    ''' </summary>
+    ''' <param name="id">Initial value of the ID property.</param>
+    ''' <param name="oRG_ID">Initial value of the ORG_ID property.</param>
+    Public Shared Function CreateSE_GROUP_ORG_ACCESS(id As Global.System.Decimal, oRG_ID As Global.System.Decimal) As SE_GROUP_ORG_ACCESS
+        Dim sE_GROUP_ORG_ACCESS as SE_GROUP_ORG_ACCESS = New SE_GROUP_ORG_ACCESS
+        sE_GROUP_ORG_ACCESS.ID = id
+        sE_GROUP_ORG_ACCESS.ORG_ID = oRG_ID
+        Return sE_GROUP_ORG_ACCESS
+    End Function
+
+    #End Region
+
+    #Region "Primitive Properties"
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=true, IsNullable:=false)>
+    <DataMemberAttribute()>
+    Public Property ID() As Global.System.Decimal
+        Get
+            Return _ID
+        End Get
+        Set
+            If (_ID <> Value) Then
+                OnIDChanging(value)
+                ReportPropertyChanging("ID")
+                _ID = StructuralObject.SetValidValue(value)
+                ReportPropertyChanged("ID")
+                OnIDChanged()
+            End If
+        End Set
+    End Property
+
+    Private _ID As Global.System.Decimal
+    Private Partial Sub OnIDChanging(value As Global.System.Decimal)
+    End Sub
+
+    Private Partial Sub OnIDChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property GROUP_ID() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _GROUP_ID
+        End Get
+        Set
+            OnGROUP_IDChanging(value)
+            ReportPropertyChanging("GROUP_ID")
+            _GROUP_ID = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("GROUP_ID")
+            OnGROUP_IDChanged()
+        End Set
+    End Property
+
+    Private _GROUP_ID As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnGROUP_IDChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnGROUP_IDChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=false)>
+    <DataMemberAttribute()>
+    Public Property ORG_ID() As Global.System.Decimal
+        Get
+            Return _ORG_ID
+        End Get
+        Set
+            OnORG_IDChanging(value)
+            ReportPropertyChanging("ORG_ID")
+            _ORG_ID = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("ORG_ID")
+            OnORG_IDChanged()
+        End Set
+    End Property
+
+    Private _ORG_ID As Global.System.Decimal
+    Private Partial Sub OnORG_IDChanging(value As Global.System.Decimal)
+    End Sub
+
+    Private Partial Sub OnORG_IDChanged()
+    End Sub
+
+    #End Region
+
+End Class
+
+''' <summary>
+''' No Metadata Documentation available.
+''' </summary>
+<EdmEntityTypeAttribute(NamespaceName:="CommonModel", Name:="SE_GROUP_ORG_FUN_ACCESS")>
+<Serializable()>
+<DataContractAttribute(IsReference:=True)>
+Public Partial Class SE_GROUP_ORG_FUN_ACCESS
+    Inherits EntityObject
+    #Region "Factory Method"
+
+    ''' <summary>
+    ''' Create a new SE_GROUP_ORG_FUN_ACCESS object.
+    ''' </summary>
+    ''' <param name="id">Initial value of the ID property.</param>
+    ''' <param name="oRG_ID">Initial value of the ORG_ID property.</param>
+    Public Shared Function CreateSE_GROUP_ORG_FUN_ACCESS(id As Global.System.Decimal, oRG_ID As Global.System.Decimal) As SE_GROUP_ORG_FUN_ACCESS
+        Dim sE_GROUP_ORG_FUN_ACCESS as SE_GROUP_ORG_FUN_ACCESS = New SE_GROUP_ORG_FUN_ACCESS
+        sE_GROUP_ORG_FUN_ACCESS.ID = id
+        sE_GROUP_ORG_FUN_ACCESS.ORG_ID = oRG_ID
+        Return sE_GROUP_ORG_FUN_ACCESS
+    End Function
+
+    #End Region
+
+    #Region "Primitive Properties"
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=true, IsNullable:=false)>
+    <DataMemberAttribute()>
+    Public Property ID() As Global.System.Decimal
+        Get
+            Return _ID
+        End Get
+        Set
+            If (_ID <> Value) Then
+                OnIDChanging(value)
+                ReportPropertyChanging("ID")
+                _ID = StructuralObject.SetValidValue(value)
+                ReportPropertyChanged("ID")
+                OnIDChanged()
+            End If
+        End Set
+    End Property
+
+    Private _ID As Global.System.Decimal
+    Private Partial Sub OnIDChanging(value As Global.System.Decimal)
+    End Sub
+
+    Private Partial Sub OnIDChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property GROUP_ID() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _GROUP_ID
+        End Get
+        Set
+            OnGROUP_IDChanging(value)
+            ReportPropertyChanging("GROUP_ID")
+            _GROUP_ID = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("GROUP_ID")
+            OnGROUP_IDChanged()
+        End Set
+    End Property
+
+    Private _GROUP_ID As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnGROUP_IDChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnGROUP_IDChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=false)>
+    <DataMemberAttribute()>
+    Public Property ORG_ID() As Global.System.Decimal
+        Get
+            Return _ORG_ID
+        End Get
+        Set
+            OnORG_IDChanging(value)
+            ReportPropertyChanging("ORG_ID")
+            _ORG_ID = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("ORG_ID")
+            OnORG_IDChanged()
+        End Set
+    End Property
+
+    Private _ORG_ID As Global.System.Decimal
+    Private Partial Sub OnORG_IDChanging(value As Global.System.Decimal)
+    End Sub
+
+    Private Partial Sub OnORG_IDChanged()
+    End Sub
+
+    #End Region
+
+End Class
+
+''' <summary>
+''' No Metadata Documentation available.
+''' </summary>
 <EdmEntityTypeAttribute(NamespaceName:="CommonModel", Name:="SE_GROUP_PERMISSION")>
 <Serializable()>
 <DataContractAttribute(IsReference:=True)>
@@ -14546,6 +14802,31 @@ Public Partial Class SE_USER_ORG_ACCESS
     End Sub
 
     Private Partial Sub OnORG_IDChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property GROUP_ID() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _GROUP_ID
+        End Get
+        Set
+            OnGROUP_IDChanging(value)
+            ReportPropertyChanging("GROUP_ID")
+            _GROUP_ID = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("GROUP_ID")
+            OnGROUP_IDChanged()
+        End Set
+    End Property
+
+    Private _GROUP_ID As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnGROUP_IDChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnGROUP_IDChanged()
     End Sub
 
     #End Region

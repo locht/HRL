@@ -4,6 +4,57 @@ Imports Framework.UI
 
 Partial Public Class CommonRepository
     Inherits CommonRepositoryBase
+#Region "Group Organization"
+    Public Function GetGroupOrganization(ByVal _groupID As Decimal) As List(Of Decimal)
+        Using rep As New CommonBusinessClient
+            Try
+                Return rep.GetGroupOrganization(_groupID)
+            Catch ex As Exception
+                Throw ex
+            End Try
+        End Using
+    End Function
+
+    Public Function GetGroupOrganizationFunction(ByVal _groupID As Decimal) As List(Of Decimal)
+        Using rep As New CommonBusinessClient
+            Try
+                Return rep.GetGroupOrganizationFunction(_groupID)
+            Catch ex As Exception
+                Throw ex
+            End Try
+        End Using
+    End Function
+
+    Public Function DeleteGroupOrganization(ByVal _groupId As Decimal)
+        Using rep As New CommonBusinessClient
+            Try
+                Return rep.DeleteGroupOrganization(_groupId)
+            Catch ex As Exception
+                Throw ex
+            End Try
+        End Using
+    End Function
+
+    Public Function UpdateGroupOrganization(ByVal _lstOrg As List(Of GroupOrgAccessDTO)) As Boolean
+        Using rep As New CommonBusinessClient
+            Try
+                Return rep.UpdateGroupOrganization(_lstOrg)
+            Catch ex As Exception
+                Throw ex
+            End Try
+        End Using
+    End Function
+
+    Public Function UpdateGroupOrganizationFunction(ByVal _lstOrg As List(Of GroupOrgFunAccessDTO)) As Boolean
+        Using rep As New CommonBusinessClient
+            Try
+                Return rep.UpdateGroupOrganizationFunction(_lstOrg)
+            Catch ex As Exception
+                Throw ex
+            End Try
+        End Using
+    End Function
+#End Region
 
 #Region "Case Config"
     Public Function GetCaseConfigByID(ByVal codename As String, ByVal codecase As String) As Integer

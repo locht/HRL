@@ -167,6 +167,7 @@
     <Content Include="Modules\Common\List\ctrlOtherListType.ascx" />
     <Content Include="Modules\Common\Secure\ctrlControlsManage.ascx" />
     <Content Include="Modules\Common\Secure\ctrlControlsNewEdit.ascx" />
+    <Content Include="Modules\Common\Secure\ctrlGroupOrganization.ascx" />
     <Content Include="Modules\Common\Secure\ctrlMailTemplate.ascx" />
     <Content Include="Modules\Common\Secure\ctrlProGramParameters.ascx" />
     <Content Include="Modules\Common\Secure\ctrlPrograms.ascx" />
@@ -646,6 +647,13 @@
     </Compile>
     <Compile Include="Modules\Common\Secure\ctrlControlsNewEdit.ascx.vb">
       <DependentUpon>ctrlControlsNewEdit.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Modules\Common\Secure\ctrlGroupOrganization.ascx.designer.vb">
+      <DependentUpon>ctrlGroupOrganization.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Common\Secure\ctrlGroupOrganization.ascx.vb">
+      <DependentUpon>ctrlGroupOrganization.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Modules\Common\Secure\ctrlMailTemplate.ascx.designer.vb">

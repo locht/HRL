@@ -51,15 +51,17 @@ Partial Public Class AttendanceRepository
 
     Public Function ReadCheckInOutData(ByVal dateFrom As Date, ByVal dateTo As Date) As Boolean
         Dim startTime As DateTime = DateTime.UtcNow
+        Dim strFromDate As String
+        Dim strEndDate As String
         Try
             Dim ds As DataSet
             Dim g_ConStringSql As String
-            Dim strFromDate As String = dateFrom.Year.ToString + IIf(dateFrom.Month >= 10, dateFrom.Month.ToString(), "0" + dateFrom.Month.ToString()) + IIf(dateFrom.Day >= 10, dateFrom.Day.ToString, "0" + dateFrom.Day.ToString())
-            Dim strEndDate As String = dateTo.Year.ToString + IIf(dateTo.Month >= 10, dateTo.Month.ToString(), "0" + dateTo.Month.ToString()) + IIf(dateTo.Day >= 10, dateTo.Day.ToString, "0" + dateTo.Day.ToString())
+            strFromDate = dateFrom.Year.ToString + IIf(dateFrom.Month >= 10, dateFrom.Month.ToString(), "0" + dateFrom.Month.ToString()) + IIf(dateFrom.Day >= 10, dateFrom.Day.ToString, "0" + dateFrom.Day.ToString())
+            strEndDate = dateTo.Year.ToString + IIf(dateTo.Month >= 10, dateTo.Month.ToString(), "0" + dateTo.Month.ToString()) + IIf(dateTo.Day >= 10, dateTo.Day.ToString, "0" + dateTo.Day.ToString())
             g_ConStringSql = SQLHelper.LoadConfig()
             Dim strSql As String = String.Format(SQLHelper.GetSQLText("CHECKINOUT"), strFromDate, strEndDate)
             ds = SQLHelper.ExecuteQuery(strSql, g_ConStringSql)
-           
+
             If Not ds Is Nothing Then
                 If ds.Tables.Count = 0 Then Return False
                 Dim sw As New StringWriter()
@@ -67,6 +69,7 @@ Partial Public Class AttendanceRepository
                 ds.Tables(0).WriteXml(sw, False)
                 DocXml = sw.ToString
                 Try
+                    WriteExceptionLog(Nothing, MethodBase.GetCurrentMethod.Name, "iTime.ReadCheckInOutData strFromDate: " + strFromDate + "|| strEndDate: " + strEndDate)
                     ImportDataINOUT(DocXml, dateFrom, dateTo)
                     Return True
                 Catch ex As Exception
@@ -75,8 +78,11 @@ Partial Public Class AttendanceRepository
             Else
                 Return False
             End If
+
         Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iTime.ReadCheckInOutData strFromDate: " + strFromDate + "|| strEndDate: " + strEndDate)
             Throw ex
+
         End Try
     End Function
     Private Function ImportDataINOUT(ByVal DataXML As String, ByVal FROM_DATE As Date, ByVal END_TODATE As Date)

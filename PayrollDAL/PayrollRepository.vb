@@ -396,6 +396,7 @@ Public Class PayrollRepository
 
 
     Private Function CAL_DATA_INOUT() As Boolean
+
         Try
 
         Catch ex As Exception

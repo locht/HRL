@@ -7,7 +7,58 @@ Imports Framework.Data.SystemConfig
 Namespace CommonBusiness.ServiceImplementations
     Partial Public Class CommonBusiness
         Implements ICommonBusiness
+#Region "Group Organization"
 
+        Public Function GetGroupOrganization(ByVal _groupID As Decimal) As List(Of Decimal) Implements ServiceContracts.ICommonBusiness.GetGroupOrganization
+            Using rep As New CommonRepository
+                Try
+                    Return rep.GetGroupOrganization(_groupID)
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
+
+        Public Function GetGroupOrganizationFunction(ByVal _groupID As Decimal) As List(Of Decimal) Implements ServiceContracts.ICommonBusiness.GetGroupOrganizationFunction
+            Using rep As New CommonRepository
+                Try
+                    Return rep.GetGroupOrganizationFunction(_groupID)
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
+
+        Public Function DeleteGroupOrganization(ByVal _groupId As Decimal) Implements ServiceContracts.ICommonBusiness.DeleteGroupOrganization
+            Using rep As New CommonRepository
+                Try
+                    Return rep.DeleteGroupOrganization(_groupId)
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
+
+        Public Function UpdateGroupOrganization(ByVal _lstOrg As List(Of GroupOrgAccessDTO)) As Boolean Implements ServiceContracts.ICommonBusiness.UpdateGroupOrganization
+            Using rep As New CommonRepository
+                Try
+                    Return rep.UpdateGroupOrganization(_lstOrg)
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
+
+        Public Function UpdateGroupOrganizationFunction(ByVal _lstOrg As List(Of GroupOrgFunAccessDTO)) As Boolean Implements ServiceContracts.ICommonBusiness.UpdateGroupOrganizationFunction
+            Using rep As New CommonRepository
+                Try
+                    Return rep.UpdateGroupOrganizationFunction(_lstOrg)
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
+#End Region
 #Region "Case config"
         Public Function GetCaseConfigByID(ByVal codename As String, ByVal codecase As String) As Integer Implements ServiceContracts.ICommonBusiness.GetCaseConfigByID
             Using rep As New CommonRepository

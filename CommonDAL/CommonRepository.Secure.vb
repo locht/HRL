@@ -16,7 +16,95 @@ Imports Oracle.DataAccess.Client
 Imports System.Reflection
 
 Partial Public Class CommonRepository
+#Region "Group Organization"
+    Public Function GetGroupOrganization(ByVal _groupID As Decimal) As List(Of Decimal)
+        Return (From p In Context.SE_GROUP_ORG_ACCESS Where p.GROUP_ID = _groupID Select p.ORG_ID).ToList
+    End Function
+    Public Function GetGroupOrganizationFunction(ByVal _groupID As Decimal) As List(Of Decimal)
+        Return (From p In Context.SE_GROUP_ORG_FUN_ACCESS Where p.GROUP_ID = _groupID Select p.ORG_ID).ToList
+    End Function
+    Public Function DeleteGroupOrganization(ByVal _groupId As Decimal)
+        Try
+            Dim query As List(Of SE_GROUP_ORG_ACCESS) = (From p In Context.SE_GROUP_ORG_ACCESS
+                                                            Where p.GROUP_ID = _groupId Select p).ToList
+            For i = 0 To query.Count - 1
+                Context.SE_GROUP_ORG_ACCESS.DeleteObject(query(i))
+            Next
+            Context.SaveChanges()
 
+            Using cls As New DataAccess.NonQueryData
+                cls.ExecuteSQL("DELETE SE_USER_ORG_ACCESS WHERE GROUP_ID =" & _groupId)
+            End Using
+            Return True
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+    Public Function UpdateGroupOrganization(ByVal _lstOrg As List(Of GroupOrgAccessDTO)) As Boolean
+        If _lstOrg.Count > 0 Then
+            Dim _groupId As Decimal
+            Dim i As Integer
+            For i = 0 To _lstOrg.Count - 1
+                Dim _item As New SE_GROUP_ORG_ACCESS
+                _item.ID = Utilities.GetNextSequence(Context, Context.SE_GROUP_ORG_ACCESS.EntitySet.Name)
+                _item.GROUP_ID = _lstOrg(i).GROUP_ID
+                _groupId = _lstOrg(i).GROUP_ID
+                _item.ORG_ID = _lstOrg(i).ORG_ID
+                Context.SE_GROUP_ORG_ACCESS.AddObject(_item)
+            Next
+
+            Dim lstEmp = (From p In Context.HUV_SE_GRP_SE_USR
+                          Where p.SE_GROUPS_ID = _groupId
+                          Select p).ToList()
+
+            If lstEmp.Count > 0 Then
+                For Each j As HUV_SE_GRP_SE_USR In lstEmp
+                    For Each _org As GroupOrgAccessDTO In _lstOrg
+                        Dim ckOrg = (From p In Context.SE_USER_ORG_ACCESS
+                                    Where (p.USER_ID = j.SE_USERS_ID) And (p.ORG_ID = _org.ORG_ID)
+                                    Select p).ToList()
+                        If ckOrg.Count <= 0 Then
+                            Dim _jtem As New SE_USER_ORG_ACCESS
+                            _jtem.ID = Utilities.GetNextSequence(Context, Context.SE_USER_ORG_ACCESS.EntitySet.Name)
+                            _jtem.ORG_ID = _org.ORG_ID
+                            _jtem.USER_ID = j.SE_USERS_ID
+                            _jtem.GROUP_ID = _groupId
+                            Context.SE_USER_ORG_ACCESS.AddObject(_jtem)
+                        End If
+                    Next
+                Next
+            End If
+            Context.SaveChanges()
+            Return True
+        Else
+            Return False
+        End If
+    End Function
+    Public Function UpdateGroupOrganizationFunction(ByVal _lstOrg As List(Of GroupOrgFunAccessDTO)) As Boolean
+        'Delete All
+        If _lstOrg.Count > 0 Then
+            Dim GroupID As Decimal = _lstOrg(0).GROUP_ID
+            Dim i As Integer
+            Dim query As List(Of SE_GROUP_ORG_FUN_ACCESS) = (From p In Context.SE_GROUP_ORG_FUN_ACCESS
+                                                         Where p.GROUP_ID = GroupID Select p).ToList
+            For i = 0 To query.Count - 1
+                Context.SE_GROUP_ORG_FUN_ACCESS.DeleteObject(query(i))
+            Next
+            Context.SaveChanges()
+            For i = 0 To _lstOrg.Count - 1
+                Dim _item As New SE_GROUP_ORG_FUN_ACCESS
+                _item.ID = Utilities.GetNextSequence(Context, Context.SE_GROUP_ORG_FUN_ACCESS.EntitySet.Name)
+                _item.GROUP_ID = _lstOrg(i).GROUP_ID
+                _item.ORG_ID = _lstOrg(i).ORG_ID
+                Context.SE_GROUP_ORG_FUN_ACCESS.AddObject(_item)
+            Next
+            Context.SaveChanges()
+            Return True
+        Else
+            Return False
+        End If
+    End Function
+#End Region
 #Region "Case config"
     Public Function GetCaseConfigByID(ByVal codename As String, ByVal codecase As String) As Integer
         Try

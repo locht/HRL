@@ -1,8 +1,8 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for Oracle database
 -- --------------------------------------------------
--- Date Created: 11/10/2019 1:42:07 PM
--- Generated from EDMX file: F:\TNG\CommonDAL\CommonContext.edmx
+-- Date Created: 11/27/2019 11:17:49 AM
+-- Generated from EDMX file: C:\workspaces\TNG\CommonDAL\CommonContext.edmx
 -- --------------------------------------------------
 
 -- --------------------------------------------------
@@ -114,6 +114,10 @@
 -- DROP TABLE "CommonModelStoreContainer"."SE_MAIL_TEMPLATE";
 
 -- DROP TABLE "CommonModelStoreContainer"."HU_NATION";
+
+-- DROP TABLE "CommonModelStoreContainer"."SE_GROUP_ORG_ACCESS";
+
+-- DROP TABLE "CommonModelStoreContainer"."SE_GROUP_ORG_FUN_ACCESS";
 
 -- DROP TABLE "CommonModelStoreContainer"."SE_GRP_SE_USR";
 
@@ -643,7 +647,8 @@ CREATE TABLE "dbo"."SE_LDAP" (
 CREATE TABLE "dbo"."SE_USER_ORG_ACCESS" (
    "ID" NUMBER(38,0) NOT NULL,
    "USER_ID" NUMBER(38,0) NOT NULL,
-   "ORG_ID" NUMBER(38,0) NOT NULL
+   "ORG_ID" NUMBER(38,0) NOT NULL,
+   "GROUP_ID" NUMBER(38,0) NULL
 );
 
 -- Creating table 'SE_USER_PERMISSION'
@@ -761,6 +766,20 @@ CREATE TABLE "dbo"."HU_NATION" (
    "MODIFIED_DATE" DATE NULL,
    "MODIFIED_BY" NVARCHAR2(255) NULL,
    "MODIFIED_LOG" NVARCHAR2(255) NULL
+);
+
+-- Creating table 'SE_GROUP_ORG_ACCESS'
+CREATE TABLE "dbo"."SE_GROUP_ORG_ACCESS" (
+   "ID" NUMBER(38,0) NOT NULL,
+   "GROUP_ID" NUMBER(38,0) NULL,
+   "ORG_ID" NUMBER(38,0) NOT NULL
+);
+
+-- Creating table 'SE_GROUP_ORG_FUN_ACCESS'
+CREATE TABLE "dbo"."SE_GROUP_ORG_FUN_ACCESS" (
+   "ID" NUMBER(38,0) NOT NULL,
+   "GROUP_ID" NUMBER(38,0) NULL,
+   "ORG_ID" NUMBER(38,0) NOT NULL
 );
 
 -- Creating table 'SE_GRP_SE_USR'
@@ -1061,6 +1080,22 @@ ADD CONSTRAINT "PK_SE_MAIL_TEMPLATE"
 -- Creating primary key on "ID"in table 'HU_NATION'
 ALTER TABLE "dbo"."HU_NATION"
 ADD CONSTRAINT "PK_HU_NATION"
+   PRIMARY KEY ("ID" )
+   ENABLE
+   VALIDATE;
+
+
+-- Creating primary key on "ID"in table 'SE_GROUP_ORG_ACCESS'
+ALTER TABLE "dbo"."SE_GROUP_ORG_ACCESS"
+ADD CONSTRAINT "PK_SE_GROUP_ORG_ACCESS"
+   PRIMARY KEY ("ID" )
+   ENABLE
+   VALIDATE;
+
+
+-- Creating primary key on "ID"in table 'SE_GROUP_ORG_FUN_ACCESS'
+ALTER TABLE "dbo"."SE_GROUP_ORG_FUN_ACCESS"
+ADD CONSTRAINT "PK_SE_GROUP_ORG_FUN_ACCESS"
    PRIMARY KEY ("ID" )
    ENABLE
    VALIDATE;

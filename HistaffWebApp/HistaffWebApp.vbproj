@@ -266,6 +266,7 @@
     <Content Include="Modules\Common\List\ctrlOtherListType.ascx" />
     <Content Include="Modules\Common\Secure\ctrlControlsManage.ascx" />
     <Content Include="Modules\Common\Secure\ctrlControlsNewEdit.ascx" />
+    <Content Include="Modules\Common\Secure\ctrlGroupOrganization.ascx" />
     <Content Include="Modules\Common\Secure\ctrlListFunction.ascx" />
     <Content Include="Modules\Common\Secure\ctrlMailTemplate.ascx" />
     <Content Include="Modules\Common\Secure\ctrlProGramParameters.ascx" />

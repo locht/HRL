@@ -12,7 +12,22 @@ Namespace CommonBusiness.ServiceContracts
 
         <OperationContract()>
         Function GetATOrgPeriod(ByVal periodID As Decimal) As DataTable
+#Region "Group Organization"
+        <OperationContract()>
+        Function GetGroupOrganization(ByVal _groupID As Decimal) As List(Of Decimal)
 
+        <OperationContract()>
+        Function GetGroupOrganizationFunction(ByVal _groupID As Decimal) As List(Of Decimal)
+
+        <OperationContract()>
+        Function DeleteGroupOrganization(ByVal _groupId As Decimal)
+
+        <OperationContract()>
+        Function UpdateGroupOrganization(ByVal _lstOrg As List(Of GroupOrgAccessDTO)) As Boolean
+
+        <OperationContract()>
+        Function UpdateGroupOrganizationFunction(ByVal _lstOrg As List(Of GroupOrgFunAccessDTO)) As Boolean
+#End Region
 #Region "Case Config"
         <OperationContract()>
         Function GetCaseConfigByID(ByVal codename As String, ByVal codecase As String) As Integer

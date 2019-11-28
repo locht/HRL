@@ -9,6 +9,7 @@ Public Class ctrlGroup
     Protected WithEvents ViewItem1 As ViewBase
     Protected WithEvents ViewItem2 As ViewBase
     Protected WithEvents ViewItem3 As ViewBase
+    Protected WithEvents ViewItem4 As ViewBase
     Dim _myLog As New MyLog()
     Dim _pathLog As String = _myLog._pathLog
     Dim _classPath As String = "Common/Modules/Common/Secure/" + Me.GetType().Name.ToString()
@@ -101,7 +102,8 @@ Public Class ctrlGroup
             Dim startTime As DateTime = DateTime.UtcNow
             ViewItem1 = Me.Register("ctrlGroupUser", "Common", "ctrlGroupUser", "Secure")
             ViewItem2 = Me.Register("ctrlGroupFunction", "Common", "ctrlGroupFunction", "Secure")
-            ViewItem3 = Me.Register("ctrlGroupReport", "Common", "ctrlGroupReport", "Secure")
+            ViewItem3 = Me.Register("ctrlGroupOrganization", "Common", "ctrlGroupOrganization", "Secure")
+            ViewItem4 = Me.Register("ctrlGroupReport", "Common", "ctrlGroupReport", "Secure")
             _myLog.WriteLog(_myLog._info, _classPath, method,
                           CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
@@ -133,6 +135,8 @@ Public Class ctrlGroup
                     ViewItem = ViewItem2
                 Case 2
                     ViewItem = ViewItem3
+                Case 4
+                    ViewItem = ViewItem4
             End Select
             TabView.Controls.Clear()
             TabView.Controls.Add(ViewItem)
