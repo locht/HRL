@@ -139,8 +139,13 @@
                 </td>
             </tr>
             <tr> 
-                <td></td>
-                <td></td>             
+                <td class="lb">
+                    <%# Translate("Phép bù còn lại")%>
+                </td>
+                <td>
+                    <tlk:RadTextBox runat="server" ID="txtCUR_HAVE" ReadOnly="true">
+                    </tlk:RadTextBox>
+                </td>                     
                 <td class="lb">
                     <%# Translate("Quỹ phép còn lại")%>
                 </td>
