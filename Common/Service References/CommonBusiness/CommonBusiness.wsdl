@@ -15,12 +15,96 @@
     <xsd:schema targetNamespace="http://tempuri.org/Imports">
       <xsd:import schemaLocation="http://localhost:9999/CommonBusiness.svc?xsd=xsd0" namespace="http://tempuri.org/" />
       <xsd:import schemaLocation="http://localhost:9999/CommonBusiness.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
-      <xsd:import schemaLocation="http://localhost:9999/CommonBusiness.svc?xsd=xsd2" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
-      <xsd:import schemaLocation="http://localhost:9999/CommonBusiness.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/Framework.Data" />
-      <xsd:import schemaLocation="http://localhost:9999/CommonBusiness.svc?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/CommonDAL" />
-      <xsd:import schemaLocation="http://localhost:9999/CommonBusiness.svc?xsd=xsd5" namespace="http://schemas.datacontract.org/2004/07/System.Data" />
+      <xsd:import schemaLocation="http://localhost:9999/CommonBusiness.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/System.Data" />
+      <xsd:import schemaLocation="http://localhost:9999/CommonBusiness.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/CommonDAL" />
+      <xsd:import schemaLocation="http://localhost:9999/CommonBusiness.svc?xsd=xsd4" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+      <xsd:import schemaLocation="http://localhost:9999/CommonBusiness.svc?xsd=xsd5" namespace="http://schemas.datacontract.org/2004/07/Framework.Data" />
     </xsd:schema>
   </wsdl:types>
+  <wsdl:message name="ICommonBusiness_GetListControl_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetListControl" />
+  </wsdl:message>
+  <wsdl:message name="ICommonBusiness_GetListControl_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetListControlResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICommonBusiness_Insert_Edit_Dynamic_Control_InputMessage">
+    <wsdl:part name="parameters" element="tns:Insert_Edit_Dynamic_Control" />
+  </wsdl:message>
+  <wsdl:message name="ICommonBusiness_Insert_Edit_Dynamic_Control_OutputMessage">
+    <wsdl:part name="parameters" element="tns:Insert_Edit_Dynamic_ControlResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICommonBusiness_GetConfigView_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetConfigView" />
+  </wsdl:message>
+  <wsdl:message name="ICommonBusiness_GetConfigView_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetConfigViewResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICommonBusiness_GetConfigViewAndFillData_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetConfigViewAndFillData" />
+  </wsdl:message>
+  <wsdl:message name="ICommonBusiness_GetConfigViewAndFillData_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetConfigViewAndFillDataResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICommonBusiness_DeleteActionLogs_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteActionLogs" />
+  </wsdl:message>
+  <wsdl:message name="ICommonBusiness_DeleteActionLogs_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteActionLogsResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICommonBusiness_GetComboList_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetComboList" />
+  </wsdl:message>
+  <wsdl:message name="ICommonBusiness_GetComboList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetComboListResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICommonBusiness_GetAllTrCertificateList_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllTrCertificateList" />
+  </wsdl:message>
+  <wsdl:message name="ICommonBusiness_GetAllTrCertificateList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllTrCertificateListResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICommonBusiness_GetCourseByList_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCourseByList" />
+  </wsdl:message>
+  <wsdl:message name="ICommonBusiness_GetCourseByList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCourseByListResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICommonBusiness_GetPeriodYear_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetPeriodYear" />
+  </wsdl:message>
+  <wsdl:message name="ICommonBusiness_GetPeriodYear_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetPeriodYearResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICommonBusiness_GetPeriodByYear_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetPeriodByYear" />
+  </wsdl:message>
+  <wsdl:message name="ICommonBusiness_GetPeriodByYear_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetPeriodByYearResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICommonBusiness_GetClassification_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetClassification" />
+  </wsdl:message>
+  <wsdl:message name="ICommonBusiness_GetClassification_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetClassificationResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICommonBusiness_GetLearningLevel_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetLearningLevel" />
+  </wsdl:message>
+  <wsdl:message name="ICommonBusiness_GetLearningLevel_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetLearningLevelResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICommonBusiness_GetHU_CompetencyList_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetHU_CompetencyList" />
+  </wsdl:message>
+  <wsdl:message name="ICommonBusiness_GetHU_CompetencyList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetHU_CompetencyListResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICommonBusiness_GetConfig_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetConfig" />
+  </wsdl:message>
+  <wsdl:message name="ICommonBusiness_GetConfig_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetConfigResponse" />
+  </wsdl:message>
   <wsdl:message name="ICommonBusiness_UpdateConfig_InputMessage">
     <wsdl:part name="parameters" element="tns:UpdateConfig" />
   </wsdl:message>
@@ -200,6 +284,18 @@
   </wsdl:message>
   <wsdl:message name="ICommonBusiness_UpdateApproveProcessStatus_OutputMessage">
     <wsdl:part name="parameters" element="tns:UpdateApproveProcessStatusResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICommonBusiness_GetLeavePlanList_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetLeavePlanList" />
+  </wsdl:message>
+  <wsdl:message name="ICommonBusiness_GetLeavePlanList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetLeavePlanListResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICommonBusiness_GetTitleList_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetTitleList" />
+  </wsdl:message>
+  <wsdl:message name="ICommonBusiness_GetTitleList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetTitleListResponse" />
   </wsdl:message>
   <wsdl:message name="ICommonBusiness_GetApproveSetupByEmployee_InputMessage">
     <wsdl:part name="parameters" element="tns:GetApproveSetupByEmployee" />
@@ -423,29 +519,41 @@
   <wsdl:message name="ICommonBusiness_ValidateComboboxActive_OutputMessage">
     <wsdl:part name="parameters" element="tns:ValidateComboboxActiveResponse" />
   </wsdl:message>
-  <wsdl:message name="ICommonBusiness_GetListControl_InputMessage">
-    <wsdl:part name="parameters" element="tns:GetListControl" />
+  <wsdl:message name="ICommonBusiness_GetMailTemplate_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetMailTemplate" />
   </wsdl:message>
-  <wsdl:message name="ICommonBusiness_GetListControl_OutputMessage">
-    <wsdl:part name="parameters" element="tns:GetListControlResponse" />
+  <wsdl:message name="ICommonBusiness_GetMailTemplate_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetMailTemplateResponse" />
   </wsdl:message>
-  <wsdl:message name="ICommonBusiness_Insert_Edit_Dynamic_Control_InputMessage">
-    <wsdl:part name="parameters" element="tns:Insert_Edit_Dynamic_Control" />
+  <wsdl:message name="ICommonBusiness_GetMailTemplateBaseCode_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetMailTemplateBaseCode" />
   </wsdl:message>
-  <wsdl:message name="ICommonBusiness_Insert_Edit_Dynamic_Control_OutputMessage">
-    <wsdl:part name="parameters" element="tns:Insert_Edit_Dynamic_ControlResponse" />
+  <wsdl:message name="ICommonBusiness_GetMailTemplateBaseCode_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetMailTemplateBaseCodeResponse" />
   </wsdl:message>
-  <wsdl:message name="ICommonBusiness_GetConfigView_InputMessage">
-    <wsdl:part name="parameters" element="tns:GetConfigView" />
+  <wsdl:message name="ICommonBusiness_InsertMailTemplate_InputMessage">
+    <wsdl:part name="parameters" element="tns:InsertMailTemplate" />
   </wsdl:message>
-  <wsdl:message name="ICommonBusiness_GetConfigView_OutputMessage">
-    <wsdl:part name="parameters" element="tns:GetConfigViewResponse" />
+  <wsdl:message name="ICommonBusiness_InsertMailTemplate_OutputMessage">
+    <wsdl:part name="parameters" element="tns:InsertMailTemplateResponse" />
   </wsdl:message>
-  <wsdl:message name="ICommonBusiness_GetConfigViewAndFillData_InputMessage">
-    <wsdl:part name="parameters" element="tns:GetConfigViewAndFillData" />
+  <wsdl:message name="ICommonBusiness_ModifyMailTemplate_InputMessage">
+    <wsdl:part name="parameters" element="tns:ModifyMailTemplate" />
   </wsdl:message>
-  <wsdl:message name="ICommonBusiness_GetConfigViewAndFillData_OutputMessage">
-    <wsdl:part name="parameters" element="tns:GetConfigViewAndFillDataResponse" />
+  <wsdl:message name="ICommonBusiness_ModifyMailTemplate_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ModifyMailTemplateResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICommonBusiness_DeleteMailTemplate_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteMailTemplate" />
+  </wsdl:message>
+  <wsdl:message name="ICommonBusiness_DeleteMailTemplate_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteMailTemplateResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICommonBusiness_CheckValidEmailTemplate_InputMessage">
+    <wsdl:part name="parameters" element="tns:CheckValidEmailTemplate" />
+  </wsdl:message>
+  <wsdl:message name="ICommonBusiness_CheckValidEmailTemplate_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CheckValidEmailTemplateResponse" />
   </wsdl:message>
   <wsdl:message name="ICommonBusiness_CheckOtherListExistInDatabase_InputMessage">
     <wsdl:part name="parameters" element="tns:CheckOtherListExistInDatabase" />
@@ -458,6 +566,48 @@
   </wsdl:message>
   <wsdl:message name="ICommonBusiness_GetATOrgPeriod_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetATOrgPeriodResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICommonBusiness_GetGroupOrganization_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetGroupOrganization" />
+  </wsdl:message>
+  <wsdl:message name="ICommonBusiness_GetGroupOrganization_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetGroupOrganizationResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICommonBusiness_GetGroupOrganizationFunction_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetGroupOrganizationFunction" />
+  </wsdl:message>
+  <wsdl:message name="ICommonBusiness_GetGroupOrganizationFunction_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetGroupOrganizationFunctionResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICommonBusiness_DeleteGroupOrganization_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteGroupOrganization" />
+  </wsdl:message>
+  <wsdl:message name="ICommonBusiness_DeleteGroupOrganization_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteGroupOrganizationResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICommonBusiness_UpdateGroupOrganization_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateGroupOrganization" />
+  </wsdl:message>
+  <wsdl:message name="ICommonBusiness_UpdateGroupOrganization_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateGroupOrganizationResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICommonBusiness_UpdateGroupOrganizationFunction_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateGroupOrganizationFunction" />
+  </wsdl:message>
+  <wsdl:message name="ICommonBusiness_UpdateGroupOrganizationFunction_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateGroupOrganizationFunctionResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICommonBusiness_GetCaseConfigByID_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCaseConfigByID" />
+  </wsdl:message>
+  <wsdl:message name="ICommonBusiness_GetCaseConfigByID_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCaseConfigByIDResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICommonBusiness_GetSignList_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetSignList" />
+  </wsdl:message>
+  <wsdl:message name="ICommonBusiness_GetSignList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetSignListResponse" />
   </wsdl:message>
   <wsdl:message name="ICommonBusiness_IsUsernameExist_InputMessage">
     <wsdl:part name="parameters" element="tns:IsUsernameExist" />
@@ -500,6 +650,12 @@
   </wsdl:message>
   <wsdl:message name="ICommonBusiness_UpdateUserStatus_OutputMessage">
     <wsdl:part name="parameters" element="tns:UpdateUserStatusResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICommonBusiness_GetOrganizationList_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetOrganizationList" />
+  </wsdl:message>
+  <wsdl:message name="ICommonBusiness_GetOrganizationList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetOrganizationListResponse" />
   </wsdl:message>
   <wsdl:message name="ICommonBusiness_GetOrganizationAll_InputMessage">
     <wsdl:part name="parameters" element="tns:GetOrganizationAll" />
@@ -837,6 +993,12 @@
   <wsdl:message name="ICommonBusiness_UpdateUserReport_OutputMessage">
     <wsdl:part name="parameters" element="tns:UpdateUserReportResponse" />
   </wsdl:message>
+  <wsdl:message name="ICommonBusiness_GetEmployeeSignToPopupFind_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetEmployeeSignToPopupFind" />
+  </wsdl:message>
+  <wsdl:message name="ICommonBusiness_GetEmployeeSignToPopupFind_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetEmployeeSignToPopupFindResponse" />
+  </wsdl:message>
   <wsdl:message name="ICommonBusiness_GetEmployeeToPopupFind_InputMessage">
     <wsdl:part name="parameters" element="tns:GetEmployeeToPopupFind" />
   </wsdl:message>
@@ -854,6 +1016,12 @@
   </wsdl:message>
   <wsdl:message name="ICommonBusiness_GetEmployeeToPopupFind_EmployeeID_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetEmployeeToPopupFind_EmployeeIDResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICommonBusiness_GetEmployeeID_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetEmployeeID" />
+  </wsdl:message>
+  <wsdl:message name="ICommonBusiness_GetEmployeeID_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetEmployeeIDResponse" />
   </wsdl:message>
   <wsdl:message name="ICommonBusiness_GetTitle_InputMessage">
     <wsdl:part name="parameters" element="tns:GetTitle" />
@@ -897,67 +1065,63 @@
   <wsdl:message name="ICommonBusiness_GetActionLogByID_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetActionLogByIDResponse" />
   </wsdl:message>
-  <wsdl:message name="ICommonBusiness_DeleteActionLogs_InputMessage">
-    <wsdl:part name="parameters" element="tns:DeleteActionLogs" />
-  </wsdl:message>
-  <wsdl:message name="ICommonBusiness_DeleteActionLogs_OutputMessage">
-    <wsdl:part name="parameters" element="tns:DeleteActionLogsResponse" />
-  </wsdl:message>
-  <wsdl:message name="ICommonBusiness_GetComboList_InputMessage">
-    <wsdl:part name="parameters" element="tns:GetComboList" />
-  </wsdl:message>
-  <wsdl:message name="ICommonBusiness_GetComboList_OutputMessage">
-    <wsdl:part name="parameters" element="tns:GetComboListResponse" />
-  </wsdl:message>
-  <wsdl:message name="ICommonBusiness_GetAllTrCertificateList_InputMessage">
-    <wsdl:part name="parameters" element="tns:GetAllTrCertificateList" />
-  </wsdl:message>
-  <wsdl:message name="ICommonBusiness_GetAllTrCertificateList_OutputMessage">
-    <wsdl:part name="parameters" element="tns:GetAllTrCertificateListResponse" />
-  </wsdl:message>
-  <wsdl:message name="ICommonBusiness_GetCourseByList_InputMessage">
-    <wsdl:part name="parameters" element="tns:GetCourseByList" />
-  </wsdl:message>
-  <wsdl:message name="ICommonBusiness_GetCourseByList_OutputMessage">
-    <wsdl:part name="parameters" element="tns:GetCourseByListResponse" />
-  </wsdl:message>
-  <wsdl:message name="ICommonBusiness_GetPeriodYear_InputMessage">
-    <wsdl:part name="parameters" element="tns:GetPeriodYear" />
-  </wsdl:message>
-  <wsdl:message name="ICommonBusiness_GetPeriodYear_OutputMessage">
-    <wsdl:part name="parameters" element="tns:GetPeriodYearResponse" />
-  </wsdl:message>
-  <wsdl:message name="ICommonBusiness_GetPeriodByYear_InputMessage">
-    <wsdl:part name="parameters" element="tns:GetPeriodByYear" />
-  </wsdl:message>
-  <wsdl:message name="ICommonBusiness_GetPeriodByYear_OutputMessage">
-    <wsdl:part name="parameters" element="tns:GetPeriodByYearResponse" />
-  </wsdl:message>
-  <wsdl:message name="ICommonBusiness_GetClassification_InputMessage">
-    <wsdl:part name="parameters" element="tns:GetClassification" />
-  </wsdl:message>
-  <wsdl:message name="ICommonBusiness_GetClassification_OutputMessage">
-    <wsdl:part name="parameters" element="tns:GetClassificationResponse" />
-  </wsdl:message>
-  <wsdl:message name="ICommonBusiness_GetLearningLevel_InputMessage">
-    <wsdl:part name="parameters" element="tns:GetLearningLevel" />
-  </wsdl:message>
-  <wsdl:message name="ICommonBusiness_GetLearningLevel_OutputMessage">
-    <wsdl:part name="parameters" element="tns:GetLearningLevelResponse" />
-  </wsdl:message>
-  <wsdl:message name="ICommonBusiness_GetHU_CompetencyList_InputMessage">
-    <wsdl:part name="parameters" element="tns:GetHU_CompetencyList" />
-  </wsdl:message>
-  <wsdl:message name="ICommonBusiness_GetHU_CompetencyList_OutputMessage">
-    <wsdl:part name="parameters" element="tns:GetHU_CompetencyListResponse" />
-  </wsdl:message>
-  <wsdl:message name="ICommonBusiness_GetConfig_InputMessage">
-    <wsdl:part name="parameters" element="tns:GetConfig" />
-  </wsdl:message>
-  <wsdl:message name="ICommonBusiness_GetConfig_OutputMessage">
-    <wsdl:part name="parameters" element="tns:GetConfigResponse" />
-  </wsdl:message>
   <wsdl:portType name="ICommonBusiness">
+    <wsdl:operation name="GetListControl">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICommonBusiness/GetListControl" message="tns:ICommonBusiness_GetListControl_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICommonBusiness/GetListControlResponse" message="tns:ICommonBusiness_GetListControl_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Insert_Edit_Dynamic_Control">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICommonBusiness/Insert_Edit_Dynamic_Control" message="tns:ICommonBusiness_Insert_Edit_Dynamic_Control_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICommonBusiness/Insert_Edit_Dynamic_ControlResponse" message="tns:ICommonBusiness_Insert_Edit_Dynamic_Control_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetConfigView">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICommonBusiness/GetConfigView" message="tns:ICommonBusiness_GetConfigView_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICommonBusiness/GetConfigViewResponse" message="tns:ICommonBusiness_GetConfigView_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetConfigViewAndFillData">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICommonBusiness/GetConfigViewAndFillData" message="tns:ICommonBusiness_GetConfigViewAndFillData_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICommonBusiness/GetConfigViewAndFillDataResponse" message="tns:ICommonBusiness_GetConfigViewAndFillData_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteActionLogs">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICommonBusiness/DeleteActionLogs" message="tns:ICommonBusiness_DeleteActionLogs_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICommonBusiness/DeleteActionLogsResponse" message="tns:ICommonBusiness_DeleteActionLogs_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetComboList">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICommonBusiness/GetComboList" message="tns:ICommonBusiness_GetComboList_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICommonBusiness/GetComboListResponse" message="tns:ICommonBusiness_GetComboList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllTrCertificateList">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICommonBusiness/GetAllTrCertificateList" message="tns:ICommonBusiness_GetAllTrCertificateList_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICommonBusiness/GetAllTrCertificateListResponse" message="tns:ICommonBusiness_GetAllTrCertificateList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCourseByList">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICommonBusiness/GetCourseByList" message="tns:ICommonBusiness_GetCourseByList_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICommonBusiness/GetCourseByListResponse" message="tns:ICommonBusiness_GetCourseByList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPeriodYear">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICommonBusiness/GetPeriodYear" message="tns:ICommonBusiness_GetPeriodYear_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICommonBusiness/GetPeriodYearResponse" message="tns:ICommonBusiness_GetPeriodYear_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPeriodByYear">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICommonBusiness/GetPeriodByYear" message="tns:ICommonBusiness_GetPeriodByYear_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICommonBusiness/GetPeriodByYearResponse" message="tns:ICommonBusiness_GetPeriodByYear_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetClassification">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICommonBusiness/GetClassification" message="tns:ICommonBusiness_GetClassification_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICommonBusiness/GetClassificationResponse" message="tns:ICommonBusiness_GetClassification_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetLearningLevel">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICommonBusiness/GetLearningLevel" message="tns:ICommonBusiness_GetLearningLevel_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICommonBusiness/GetLearningLevelResponse" message="tns:ICommonBusiness_GetLearningLevel_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetHU_CompetencyList">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICommonBusiness/GetHU_CompetencyList" message="tns:ICommonBusiness_GetHU_CompetencyList_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICommonBusiness/GetHU_CompetencyListResponse" message="tns:ICommonBusiness_GetHU_CompetencyList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetConfig">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICommonBusiness/GetConfig" message="tns:ICommonBusiness_GetConfig_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICommonBusiness/GetConfigResponse" message="tns:ICommonBusiness_GetConfig_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="UpdateConfig">
       <wsdl:input wsaw:Action="http://tempuri.org/ICommonBusiness/UpdateConfig" message="tns:ICommonBusiness_UpdateConfig_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/ICommonBusiness/UpdateConfigResponse" message="tns:ICommonBusiness_UpdateConfig_OutputMessage" />
@@ -1077,6 +1241,14 @@
     <wsdl:operation name="UpdateApproveProcessStatus">
       <wsdl:input wsaw:Action="http://tempuri.org/ICommonBusiness/UpdateApproveProcessStatus" message="tns:ICommonBusiness_UpdateApproveProcessStatus_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/ICommonBusiness/UpdateApproveProcessStatusResponse" message="tns:ICommonBusiness_UpdateApproveProcessStatus_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetLeavePlanList">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICommonBusiness/GetLeavePlanList" message="tns:ICommonBusiness_GetLeavePlanList_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICommonBusiness/GetLeavePlanListResponse" message="tns:ICommonBusiness_GetLeavePlanList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTitleList">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICommonBusiness/GetTitleList" message="tns:ICommonBusiness_GetTitleList_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICommonBusiness/GetTitleListResponse" message="tns:ICommonBusiness_GetTitleList_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="GetApproveSetupByEmployee">
       <wsdl:input wsaw:Action="http://tempuri.org/ICommonBusiness/GetApproveSetupByEmployee" message="tns:ICommonBusiness_GetApproveSetupByEmployee_InputMessage" />
@@ -1226,21 +1398,29 @@
       <wsdl:input wsaw:Action="http://tempuri.org/ICommonBusiness/ValidateComboboxActive" message="tns:ICommonBusiness_ValidateComboboxActive_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/ICommonBusiness/ValidateComboboxActiveResponse" message="tns:ICommonBusiness_ValidateComboboxActive_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="GetListControl">
-      <wsdl:input wsaw:Action="http://tempuri.org/ICommonBusiness/GetListControl" message="tns:ICommonBusiness_GetListControl_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/ICommonBusiness/GetListControlResponse" message="tns:ICommonBusiness_GetListControl_OutputMessage" />
+    <wsdl:operation name="GetMailTemplate">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICommonBusiness/GetMailTemplate" message="tns:ICommonBusiness_GetMailTemplate_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICommonBusiness/GetMailTemplateResponse" message="tns:ICommonBusiness_GetMailTemplate_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="Insert_Edit_Dynamic_Control">
-      <wsdl:input wsaw:Action="http://tempuri.org/ICommonBusiness/Insert_Edit_Dynamic_Control" message="tns:ICommonBusiness_Insert_Edit_Dynamic_Control_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/ICommonBusiness/Insert_Edit_Dynamic_ControlResponse" message="tns:ICommonBusiness_Insert_Edit_Dynamic_Control_OutputMessage" />
+    <wsdl:operation name="GetMailTemplateBaseCode">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICommonBusiness/GetMailTemplateBaseCode" message="tns:ICommonBusiness_GetMailTemplateBaseCode_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICommonBusiness/GetMailTemplateBaseCodeResponse" message="tns:ICommonBusiness_GetMailTemplateBaseCode_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="GetConfigView">
-      <wsdl:input wsaw:Action="http://tempuri.org/ICommonBusiness/GetConfigView" message="tns:ICommonBusiness_GetConfigView_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/ICommonBusiness/GetConfigViewResponse" message="tns:ICommonBusiness_GetConfigView_OutputMessage" />
+    <wsdl:operation name="InsertMailTemplate">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICommonBusiness/InsertMailTemplate" message="tns:ICommonBusiness_InsertMailTemplate_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICommonBusiness/InsertMailTemplateResponse" message="tns:ICommonBusiness_InsertMailTemplate_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="GetConfigViewAndFillData">
-      <wsdl:input wsaw:Action="http://tempuri.org/ICommonBusiness/GetConfigViewAndFillData" message="tns:ICommonBusiness_GetConfigViewAndFillData_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/ICommonBusiness/GetConfigViewAndFillDataResponse" message="tns:ICommonBusiness_GetConfigViewAndFillData_OutputMessage" />
+    <wsdl:operation name="ModifyMailTemplate">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICommonBusiness/ModifyMailTemplate" message="tns:ICommonBusiness_ModifyMailTemplate_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICommonBusiness/ModifyMailTemplateResponse" message="tns:ICommonBusiness_ModifyMailTemplate_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteMailTemplate">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICommonBusiness/DeleteMailTemplate" message="tns:ICommonBusiness_DeleteMailTemplate_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICommonBusiness/DeleteMailTemplateResponse" message="tns:ICommonBusiness_DeleteMailTemplate_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckValidEmailTemplate">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICommonBusiness/CheckValidEmailTemplate" message="tns:ICommonBusiness_CheckValidEmailTemplate_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICommonBusiness/CheckValidEmailTemplateResponse" message="tns:ICommonBusiness_CheckValidEmailTemplate_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="CheckOtherListExistInDatabase">
       <wsdl:input wsaw:Action="http://tempuri.org/ICommonBusiness/CheckOtherListExistInDatabase" message="tns:ICommonBusiness_CheckOtherListExistInDatabase_InputMessage" />
@@ -1249,6 +1429,34 @@
     <wsdl:operation name="GetATOrgPeriod">
       <wsdl:input wsaw:Action="http://tempuri.org/ICommonBusiness/GetATOrgPeriod" message="tns:ICommonBusiness_GetATOrgPeriod_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/ICommonBusiness/GetATOrgPeriodResponse" message="tns:ICommonBusiness_GetATOrgPeriod_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetGroupOrganization">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICommonBusiness/GetGroupOrganization" message="tns:ICommonBusiness_GetGroupOrganization_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICommonBusiness/GetGroupOrganizationResponse" message="tns:ICommonBusiness_GetGroupOrganization_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetGroupOrganizationFunction">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICommonBusiness/GetGroupOrganizationFunction" message="tns:ICommonBusiness_GetGroupOrganizationFunction_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICommonBusiness/GetGroupOrganizationFunctionResponse" message="tns:ICommonBusiness_GetGroupOrganizationFunction_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteGroupOrganization">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICommonBusiness/DeleteGroupOrganization" message="tns:ICommonBusiness_DeleteGroupOrganization_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICommonBusiness/DeleteGroupOrganizationResponse" message="tns:ICommonBusiness_DeleteGroupOrganization_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateGroupOrganization">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICommonBusiness/UpdateGroupOrganization" message="tns:ICommonBusiness_UpdateGroupOrganization_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICommonBusiness/UpdateGroupOrganizationResponse" message="tns:ICommonBusiness_UpdateGroupOrganization_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateGroupOrganizationFunction">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICommonBusiness/UpdateGroupOrganizationFunction" message="tns:ICommonBusiness_UpdateGroupOrganizationFunction_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICommonBusiness/UpdateGroupOrganizationFunctionResponse" message="tns:ICommonBusiness_UpdateGroupOrganizationFunction_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCaseConfigByID">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICommonBusiness/GetCaseConfigByID" message="tns:ICommonBusiness_GetCaseConfigByID_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICommonBusiness/GetCaseConfigByIDResponse" message="tns:ICommonBusiness_GetCaseConfigByID_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSignList">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICommonBusiness/GetSignList" message="tns:ICommonBusiness_GetSignList_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICommonBusiness/GetSignListResponse" message="tns:ICommonBusiness_GetSignList_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="IsUsernameExist">
       <wsdl:input wsaw:Action="http://tempuri.org/ICommonBusiness/IsUsernameExist" message="tns:ICommonBusiness_IsUsernameExist_InputMessage" />
@@ -1277,6 +1485,10 @@
     <wsdl:operation name="UpdateUserStatus">
       <wsdl:input wsaw:Action="http://tempuri.org/ICommonBusiness/UpdateUserStatus" message="tns:ICommonBusiness_UpdateUserStatus_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/ICommonBusiness/UpdateUserStatusResponse" message="tns:ICommonBusiness_UpdateUserStatus_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetOrganizationList">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICommonBusiness/GetOrganizationList" message="tns:ICommonBusiness_GetOrganizationList_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICommonBusiness/GetOrganizationListResponse" message="tns:ICommonBusiness_GetOrganizationList_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="GetOrganizationAll">
       <wsdl:input wsaw:Action="http://tempuri.org/ICommonBusiness/GetOrganizationAll" message="tns:ICommonBusiness_GetOrganizationAll_InputMessage" />
@@ -1502,6 +1714,10 @@
       <wsdl:input wsaw:Action="http://tempuri.org/ICommonBusiness/UpdateUserReport" message="tns:ICommonBusiness_UpdateUserReport_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/ICommonBusiness/UpdateUserReportResponse" message="tns:ICommonBusiness_UpdateUserReport_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="GetEmployeeSignToPopupFind">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICommonBusiness/GetEmployeeSignToPopupFind" message="tns:ICommonBusiness_GetEmployeeSignToPopupFind_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICommonBusiness/GetEmployeeSignToPopupFindResponse" message="tns:ICommonBusiness_GetEmployeeSignToPopupFind_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="GetEmployeeToPopupFind">
       <wsdl:input wsaw:Action="http://tempuri.org/ICommonBusiness/GetEmployeeToPopupFind" message="tns:ICommonBusiness_GetEmployeeToPopupFind_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/ICommonBusiness/GetEmployeeToPopupFindResponse" message="tns:ICommonBusiness_GetEmployeeToPopupFind_OutputMessage" />
@@ -1513,6 +1729,10 @@
     <wsdl:operation name="GetEmployeeToPopupFind_EmployeeID">
       <wsdl:input wsaw:Action="http://tempuri.org/ICommonBusiness/GetEmployeeToPopupFind_EmployeeID" message="tns:ICommonBusiness_GetEmployeeToPopupFind_EmployeeID_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/ICommonBusiness/GetEmployeeToPopupFind_EmployeeIDResponse" message="tns:ICommonBusiness_GetEmployeeToPopupFind_EmployeeID_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetEmployeeID">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICommonBusiness/GetEmployeeID" message="tns:ICommonBusiness_GetEmployeeID_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICommonBusiness/GetEmployeeIDResponse" message="tns:ICommonBusiness_GetEmployeeID_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="GetTitle">
       <wsdl:input wsaw:Action="http://tempuri.org/ICommonBusiness/GetTitle" message="tns:ICommonBusiness_GetTitle_InputMessage" />
@@ -1542,50 +1762,136 @@
       <wsdl:input wsaw:Action="http://tempuri.org/ICommonBusiness/GetActionLogByID" message="tns:ICommonBusiness_GetActionLogByID_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/ICommonBusiness/GetActionLogByIDResponse" message="tns:ICommonBusiness_GetActionLogByID_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="DeleteActionLogs">
-      <wsdl:input wsaw:Action="http://tempuri.org/ICommonBusiness/DeleteActionLogs" message="tns:ICommonBusiness_DeleteActionLogs_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/ICommonBusiness/DeleteActionLogsResponse" message="tns:ICommonBusiness_DeleteActionLogs_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="GetComboList">
-      <wsdl:input wsaw:Action="http://tempuri.org/ICommonBusiness/GetComboList" message="tns:ICommonBusiness_GetComboList_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/ICommonBusiness/GetComboListResponse" message="tns:ICommonBusiness_GetComboList_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="GetAllTrCertificateList">
-      <wsdl:input wsaw:Action="http://tempuri.org/ICommonBusiness/GetAllTrCertificateList" message="tns:ICommonBusiness_GetAllTrCertificateList_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/ICommonBusiness/GetAllTrCertificateListResponse" message="tns:ICommonBusiness_GetAllTrCertificateList_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="GetCourseByList">
-      <wsdl:input wsaw:Action="http://tempuri.org/ICommonBusiness/GetCourseByList" message="tns:ICommonBusiness_GetCourseByList_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/ICommonBusiness/GetCourseByListResponse" message="tns:ICommonBusiness_GetCourseByList_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="GetPeriodYear">
-      <wsdl:input wsaw:Action="http://tempuri.org/ICommonBusiness/GetPeriodYear" message="tns:ICommonBusiness_GetPeriodYear_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/ICommonBusiness/GetPeriodYearResponse" message="tns:ICommonBusiness_GetPeriodYear_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="GetPeriodByYear">
-      <wsdl:input wsaw:Action="http://tempuri.org/ICommonBusiness/GetPeriodByYear" message="tns:ICommonBusiness_GetPeriodByYear_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/ICommonBusiness/GetPeriodByYearResponse" message="tns:ICommonBusiness_GetPeriodByYear_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="GetClassification">
-      <wsdl:input wsaw:Action="http://tempuri.org/ICommonBusiness/GetClassification" message="tns:ICommonBusiness_GetClassification_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/ICommonBusiness/GetClassificationResponse" message="tns:ICommonBusiness_GetClassification_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="GetLearningLevel">
-      <wsdl:input wsaw:Action="http://tempuri.org/ICommonBusiness/GetLearningLevel" message="tns:ICommonBusiness_GetLearningLevel_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/ICommonBusiness/GetLearningLevelResponse" message="tns:ICommonBusiness_GetLearningLevel_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="GetHU_CompetencyList">
-      <wsdl:input wsaw:Action="http://tempuri.org/ICommonBusiness/GetHU_CompetencyList" message="tns:ICommonBusiness_GetHU_CompetencyList_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/ICommonBusiness/GetHU_CompetencyListResponse" message="tns:ICommonBusiness_GetHU_CompetencyList_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="GetConfig">
-      <wsdl:input wsaw:Action="http://tempuri.org/ICommonBusiness/GetConfig" message="tns:ICommonBusiness_GetConfig_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/ICommonBusiness/GetConfigResponse" message="tns:ICommonBusiness_GetConfig_OutputMessage" />
-    </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="WSHttpBinding_ICommonBusiness" type="tns:ICommonBusiness">
     <wsp:PolicyReference URI="#WSHttpBinding_ICommonBusiness_policy" />
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetListControl">
+      <soap12:operation soapAction="http://tempuri.org/ICommonBusiness/GetListControl" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Insert_Edit_Dynamic_Control">
+      <soap12:operation soapAction="http://tempuri.org/ICommonBusiness/Insert_Edit_Dynamic_Control" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetConfigView">
+      <soap12:operation soapAction="http://tempuri.org/ICommonBusiness/GetConfigView" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetConfigViewAndFillData">
+      <soap12:operation soapAction="http://tempuri.org/ICommonBusiness/GetConfigViewAndFillData" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteActionLogs">
+      <soap12:operation soapAction="http://tempuri.org/ICommonBusiness/DeleteActionLogs" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetComboList">
+      <soap12:operation soapAction="http://tempuri.org/ICommonBusiness/GetComboList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllTrCertificateList">
+      <soap12:operation soapAction="http://tempuri.org/ICommonBusiness/GetAllTrCertificateList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCourseByList">
+      <soap12:operation soapAction="http://tempuri.org/ICommonBusiness/GetCourseByList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPeriodYear">
+      <soap12:operation soapAction="http://tempuri.org/ICommonBusiness/GetPeriodYear" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPeriodByYear">
+      <soap12:operation soapAction="http://tempuri.org/ICommonBusiness/GetPeriodByYear" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetClassification">
+      <soap12:operation soapAction="http://tempuri.org/ICommonBusiness/GetClassification" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetLearningLevel">
+      <soap12:operation soapAction="http://tempuri.org/ICommonBusiness/GetLearningLevel" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetHU_CompetencyList">
+      <soap12:operation soapAction="http://tempuri.org/ICommonBusiness/GetHU_CompetencyList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetConfig">
+      <soap12:operation soapAction="http://tempuri.org/ICommonBusiness/GetConfig" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="UpdateConfig">
       <soap12:operation soapAction="http://tempuri.org/ICommonBusiness/UpdateConfig" style="document" />
       <wsdl:input>
@@ -1849,6 +2155,24 @@
     </wsdl:operation>
     <wsdl:operation name="UpdateApproveProcessStatus">
       <soap12:operation soapAction="http://tempuri.org/ICommonBusiness/UpdateApproveProcessStatus" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetLeavePlanList">
+      <soap12:operation soapAction="http://tempuri.org/ICommonBusiness/GetLeavePlanList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTitleList">
+      <soap12:operation soapAction="http://tempuri.org/ICommonBusiness/GetTitleList" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -2189,8 +2513,8 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="GetListControl">
-      <soap12:operation soapAction="http://tempuri.org/ICommonBusiness/GetListControl" style="document" />
+    <wsdl:operation name="GetMailTemplate">
+      <soap12:operation soapAction="http://tempuri.org/ICommonBusiness/GetMailTemplate" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -2198,8 +2522,8 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="Insert_Edit_Dynamic_Control">
-      <soap12:operation soapAction="http://tempuri.org/ICommonBusiness/Insert_Edit_Dynamic_Control" style="document" />
+    <wsdl:operation name="GetMailTemplateBaseCode">
+      <soap12:operation soapAction="http://tempuri.org/ICommonBusiness/GetMailTemplateBaseCode" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -2207,8 +2531,8 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="GetConfigView">
-      <soap12:operation soapAction="http://tempuri.org/ICommonBusiness/GetConfigView" style="document" />
+    <wsdl:operation name="InsertMailTemplate">
+      <soap12:operation soapAction="http://tempuri.org/ICommonBusiness/InsertMailTemplate" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -2216,8 +2540,26 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="GetConfigViewAndFillData">
-      <soap12:operation soapAction="http://tempuri.org/ICommonBusiness/GetConfigViewAndFillData" style="document" />
+    <wsdl:operation name="ModifyMailTemplate">
+      <soap12:operation soapAction="http://tempuri.org/ICommonBusiness/ModifyMailTemplate" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteMailTemplate">
+      <soap12:operation soapAction="http://tempuri.org/ICommonBusiness/DeleteMailTemplate" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckValidEmailTemplate">
+      <soap12:operation soapAction="http://tempuri.org/ICommonBusiness/CheckValidEmailTemplate" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -2236,6 +2578,69 @@
     </wsdl:operation>
     <wsdl:operation name="GetATOrgPeriod">
       <soap12:operation soapAction="http://tempuri.org/ICommonBusiness/GetATOrgPeriod" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetGroupOrganization">
+      <soap12:operation soapAction="http://tempuri.org/ICommonBusiness/GetGroupOrganization" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetGroupOrganizationFunction">
+      <soap12:operation soapAction="http://tempuri.org/ICommonBusiness/GetGroupOrganizationFunction" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteGroupOrganization">
+      <soap12:operation soapAction="http://tempuri.org/ICommonBusiness/DeleteGroupOrganization" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateGroupOrganization">
+      <soap12:operation soapAction="http://tempuri.org/ICommonBusiness/UpdateGroupOrganization" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateGroupOrganizationFunction">
+      <soap12:operation soapAction="http://tempuri.org/ICommonBusiness/UpdateGroupOrganizationFunction" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCaseConfigByID">
+      <soap12:operation soapAction="http://tempuri.org/ICommonBusiness/GetCaseConfigByID" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSignList">
+      <soap12:operation soapAction="http://tempuri.org/ICommonBusiness/GetSignList" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -2299,6 +2704,15 @@
     </wsdl:operation>
     <wsdl:operation name="UpdateUserStatus">
       <soap12:operation soapAction="http://tempuri.org/ICommonBusiness/UpdateUserStatus" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetOrganizationList">
+      <soap12:operation soapAction="http://tempuri.org/ICommonBusiness/GetOrganizationList" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -2810,6 +3224,15 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="GetEmployeeSignToPopupFind">
+      <soap12:operation soapAction="http://tempuri.org/ICommonBusiness/GetEmployeeSignToPopupFind" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="GetEmployeeToPopupFind">
       <soap12:operation soapAction="http://tempuri.org/ICommonBusiness/GetEmployeeToPopupFind" style="document" />
       <wsdl:input>
@@ -2830,6 +3253,15 @@
     </wsdl:operation>
     <wsdl:operation name="GetEmployeeToPopupFind_EmployeeID">
       <soap12:operation soapAction="http://tempuri.org/ICommonBusiness/GetEmployeeToPopupFind_EmployeeID" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetEmployeeID">
+      <soap12:operation soapAction="http://tempuri.org/ICommonBusiness/GetEmployeeID" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -2893,96 +3325,6 @@
     </wsdl:operation>
     <wsdl:operation name="GetActionLogByID">
       <soap12:operation soapAction="http://tempuri.org/ICommonBusiness/GetActionLogByID" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="DeleteActionLogs">
-      <soap12:operation soapAction="http://tempuri.org/ICommonBusiness/DeleteActionLogs" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="GetComboList">
-      <soap12:operation soapAction="http://tempuri.org/ICommonBusiness/GetComboList" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="GetAllTrCertificateList">
-      <soap12:operation soapAction="http://tempuri.org/ICommonBusiness/GetAllTrCertificateList" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="GetCourseByList">
-      <soap12:operation soapAction="http://tempuri.org/ICommonBusiness/GetCourseByList" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="GetPeriodYear">
-      <soap12:operation soapAction="http://tempuri.org/ICommonBusiness/GetPeriodYear" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="GetPeriodByYear">
-      <soap12:operation soapAction="http://tempuri.org/ICommonBusiness/GetPeriodByYear" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="GetClassification">
-      <soap12:operation soapAction="http://tempuri.org/ICommonBusiness/GetClassification" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="GetLearningLevel">
-      <soap12:operation soapAction="http://tempuri.org/ICommonBusiness/GetLearningLevel" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="GetHU_CompetencyList">
-      <soap12:operation soapAction="http://tempuri.org/ICommonBusiness/GetHU_CompetencyList" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="GetConfig">
-      <soap12:operation soapAction="http://tempuri.org/ICommonBusiness/GetConfig" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
