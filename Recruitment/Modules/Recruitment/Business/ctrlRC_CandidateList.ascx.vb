@@ -132,6 +132,7 @@ Public Class ctrlRC_CandidateList
 
     Public Overrides Sub Refresh(Optional ByVal Message As String = "")
         Try
+            Session.Remove("CallAllOrg")
             If Not IsPostBack Then
                 Dim rep As New RecruitmentRepository
                 Dim objPro = rep.GetProgramByID(New ProgramDTO With {.ID = Decimal.Parse(hidProgramID.Value)})

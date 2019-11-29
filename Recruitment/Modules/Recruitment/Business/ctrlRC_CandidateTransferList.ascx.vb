@@ -132,6 +132,7 @@ Public Class ctrlRC_CandidateTransferList
 
     Public Overrides Sub Refresh(Optional ByVal Message As String = "")
         Try
+            Session.Remove("CallAllOrg")
             If Not IsPostBack Then
                 For Each item As RadListBoxItem In rlbStatus.Items
                     item.Checked = True
