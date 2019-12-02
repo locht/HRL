@@ -294,44 +294,44 @@ Public Class ctrlSendMailLuong
                     End If
                     Using rep As New PayrollRepository
 
-                        ' Dim lstEmployee As New List(Of Decimal)
+                        Dim lstEmployee As New List(Of Decimal)
                         For Each Item As GridDataItem In rgData.SelectedItems
-                            ' lstEmployee.Add(Item.GetDataKeyValue("ID"))
-                            Dim receiver As String = ""
-                            Dim cc As String = ""
-                            Dim subject As String
-                            Dim body As String = ""
-                            Dim fileAttachments As String = String.Empty
-                            Dim view As String = ""
-                            subject = String.Format("Thông báo phiếu lương tháng {0}", Item.GetDataKeyValue("MONTH_DATE").ToString)
+                            lstEmployee.Add(Item.GetDataKeyValue("ID"))
+                            'Dim receiver As String = ""
+                            'Dim cc As String = ""
+                            'Dim subject As String
+                            'Dim body As String = ""
+                            'Dim fileAttachments As String = String.Empty
+                            'Dim view As String = ""
+                            'subject = String.Format("Thông báo phiếu lương tháng {0}", Item.GetDataKeyValue("MONTH_DATE").ToString)
 
-                            receiver = Item.GetDataKeyValue("WORK_EMAIL")
+                            'receiver = Item.GetDataKeyValue("WORK_EMAIL")
 
-                            Dim path As Object = String.Format("{0}&fid=ctrlPA_PortalSalary", ConfigurationManager.AppSettings("PathPortalSalary"))
-                            body = String.Format("Kính gửi Anh/Chị {0} <br /><br />Phiếu lương tháng {1} của Anh/Chị đã được đăng tải lên cổng thông tin, Anh/Chị có thể truy cập <a href='{2}'>vào đây</a> xem chi tiết.<br /><br /> Cảm ơn!<br />Phòng NS kính báo.<br />Lưu ý: Email này được gởi tự động từ phần mềm nhân sự vui lòng không replly.", Item.GetDataKeyValue("FULLNAME_VN").ToString, Item.GetDataKeyValue("MONTH_DATE").ToString, path)
+                            'Dim path As Object = String.Format("{0}&fid=ctrlPA_PortalSalary", ConfigurationManager.AppSettings("PathPortalSalary"))
+                            'body = String.Format("Kính gửi Anh/Chị {0} <br /><br />Phiếu lương tháng {1} của Anh/Chị đã được đăng tải lên cổng thông tin, Anh/Chị có thể truy cập <a href='{2}'>vào đây</a> xem chi tiết.<br /><br /> Cảm ơn!<br />Phòng NS kính báo.<br />Lưu ý: Email này được gởi tự động từ phần mềm nhân sự vui lòng không replly.", Item.GetDataKeyValue("FULLNAME_VN").ToString, Item.GetDataKeyValue("MONTH_DATE").ToString, path)
 
 
-                            If Common.Common.sendEmailByServerMail(receiver, cc, subject, body, fileAttachments, view) Then
-                                ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), NotifyType.Success)
-                            Else
-                                ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), NotifyType.Error)
-                                Exit Sub
-                            End If
+                            'If Common.Common.sendEmailByServerMail(receiver, cc, subject, body, fileAttachments, view) Then
+                            '    ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), NotifyType.Success)
+                            'Else
+                            '    ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), NotifyType.Error)
+                            '    Exit Sub
+                            'End If
                         Next
 
-                        'Dim orgId As Decimal?
-                        'If lstEmployee.Count = 0 Then
-                        '    orgId = ctrlOrg.CurrentValue
-                        'End If
+                        Dim orgId As Decimal?
+                        If lstEmployee.Count = 0 Then
+                            orgId = ctrlOrg.CurrentValue
+                        End If
 
-                        ' Gửi file đính kèm: do hệ thống chưa dùng nên không xài
-                        'If rep.ActionSendPayslip(lstEmployee,
-                        '                      orgId,
-                        '                      ctrlOrg.IsDissolve,
-                        '                      cboPeriod.SelectedValue) Then
-                        '    ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), Utilities.NotifyType.Success)
+                        'Gửi file đính kèm: do hệ thống chưa dùng nên không xài
+                        If rep.ActionSendPayslip(lstEmployee,
+                                              orgId,
+                                              ctrlOrg.IsDissolve,
+                                              cboPeriod.SelectedValue) Then
+                            ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), Utilities.NotifyType.Success)
 
-                        'End If
+                        End If
 
                     End Using
             End Select

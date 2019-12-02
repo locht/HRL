@@ -29,7 +29,7 @@ Namespace PayrollBusiness.BackgroundProcess
         Private Sub Timer_Tick(ByVal sender As Object, ByVal e As Timers.ElapsedEventArgs) Handles timer.Elapsed
 
             ThreadPool.QueueUserWorkItem(AddressOf New PayrollRepository().CheckAndSendPayslip, Now)
-            ThreadPool.QueueUserWorkItem(AddressOf New PayrollRepository().CheckAndSendBonusSlip, Now)
+            'ThreadPool.QueueUserWorkItem(AddressOf New PayrollRepository().CheckAndSendBonusSlip, Now)
             'ThreadPool.QueueUserWorkItem (AddressOf New PayrollRepository().CAL_DATA_IN
         End Sub
 

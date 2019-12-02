@@ -12,6 +12,7 @@ Imports System.Data.Objects.DataClasses
 Imports Framework.Data.SystemConfig
 Imports System.Reflection
 Imports Aspose.Words
+Imports System.IO
 
 Public Class PayrollRepository
     Inherits PayrollRepositoryBase
@@ -237,7 +238,7 @@ Public Class PayrollRepository
                     If Not isExist Then
                         Return isExist
                     End If
-               
+
             End Select
             Return True
         Catch ex As Exception
@@ -485,33 +486,61 @@ Public Class PayrollRepository
                                                      .P_SENDMAIL = 1,
                                                      .P_CUR = cls.OUT_CURSOR})
 
+                Dim dtTemplate As DataTable = cls.ExecuteStore("PKG_PA_BUSINESS.GET_TEMPLATE_SEND_MAIL",
+                                          New With { .P_CUR = cls.OUT_CURSOR})
+
                 Dim isSave As Boolean = False
                 Dim config = GetConfig(ModuleID.All)
                 Dim emailFrom = If(config.ContainsKey("MailFrom"), config("MailFrom"), "")
                 rowTotal = 0
-                Dim dtDataMerge As DataTable
+                'Dim dtDataMerge As DataTable
                 For Each row As DataRow In dtData.Rows
-                    Dim filePath As String = AppDomain.CurrentDomain.BaseDirectory & "\ReportTemplates\Payroll\Report\PhieuLuong.docx"
-                    Dim doc As Document = New Document(filePath)
-                    If doc IsNot Nothing AndAlso row("WORK_EMAIL").ToString <> "" And emailFrom <> "" Then
-                        filePath = System.AppDomain.CurrentDomain.BaseDirectory & "Payroll\Attachment\" & "PhieuLuong_" & row("EMPLOYEE_CODE").ToString & "_" & Format(Date.Now, "yyyyMMddHHmmss")
-                        dtDataMerge = dtData.Clone
-                        dtDataMerge.ImportRow(row)
-                        SendPhieuLuong_File(doc, filePath, dtDataMerge, False)
-                        If (filePath IsNot Nothing) Then
-                            InsertMail(emailFrom,
-                                   row("WORK_EMAIL").ToString,
-                                   "[HiStaff] " & row("TITLE_NAME").ToString,
-                                   "Kính gửi Anh/Chị " & vbNewLine & vbNewLine &
-                                   "Phòng HCNS gửi Anh/Chị phiếu lương như file đính kèm.",
-                                   filePath,
-                                   "",
-                                   "",
-                                   "iPayroll_SendMail")
-                            isSave = True
-                            rowTotal += 1
-                        End If
+                    'Dim reader As StreamReader
+                    Dim body As String = dtTemplate.Rows(0)("CONTENT").ToString
+
+                    'Dim filePath As String = AppDomain.CurrentDomain.BaseDirectory & "\ReportTemplates\Payroll\Report\PhieuLuong.docx"
+                    'Dim doc As Document = New Document(filePath)
+                    'If doc IsNot Nothing AndAlso row("WORK_EMAIL").ToString <> "" And emailFrom <> "" Then
+                    '    'filePath = System.AppDomain.CurrentDomain.BaseDirectory & "Payroll\Attachment\" & "PhieuLuong_" & row("EMPLOYEE_CODE").ToString & "_" & Format(Date.Now, "yyyyMMddHHmmss")
+                    '    dtDataMerge = dtData.Clone
+                    '    dtDataMerge.ImportRow(row)
+                    '    SendPhieuLuong_File(doc, filePath, dtDataMerge, False)
+
+                    'reader = New StreamReader("ThuUngVienKhongPhuHop.html")
+
+                    If row("WORK_EMAIL").ToString <> "" AndAlso emailFrom <> "" Then
+                        body = body.Replace("{EMPLOYEE_CODE}", row("EMPLOYEE_CODE").ToString)
+                        body = body.Replace("{FULLNAME_VN}", row("FULLNAME_VN").ToString)
+                        body = body.Replace("{CLCHINH1}", row("CLCHINH1").ToString)
+                        body = body.Replace("{CW1}", row("CW1").ToString)
+                        body = body.Replace("{CW2}", row("CW2").ToString)
+                        body = body.Replace("{SUM1}", row("SUM1").ToString)
+                        body = body.Replace("{CL1}", row("CL1").ToString)
+                        body = body.Replace("{CL2}", row("CL2").ToString)
+                        body = body.Replace("{ADD1}", row("ADD1").ToString)
+                        body = body.Replace("{CLCHINH7}", row("CLCHINH7").ToString)
+                        body = body.Replace("{CLCHINH4}", row("CLCHINH4").ToString)
+                        body = body.Replace("{SUM2}", row("SUM2").ToString)
+                        body = body.Replace("{INSU1_2_3}", row("INSU1_2_3").ToString)
+                        body = body.Replace("{DEDUCT6}", row("DEDUCT6").ToString)
+                        body = body.Replace("{TAX4_5}", row("TAX4_5").ToString)
+                        body = body.Replace("{DEDUCT2_3_4}", row("DEDUCT2_3_4").ToString)
+                        body = body.Replace("{DEDUCT1}", row("DEDUCT1").ToString)
+                        body = body.Replace("{CSUM2}", row("CSUM2").ToString)
+
+                        'If (filePath IsNot Nothing) Then
+                        InsertMail(emailFrom,
+                               row("WORK_EMAIL").ToString,
+                               "Thông báo lương tháng  " & row("TITLE").ToString,
+                               body,
+                               "",
+                               "",
+                               "",
+                               "iPayroll_SendMail")
+                        isSave = True
+                        rowTotal += 1
                     End If
+                    'End If
                 Next
                 If isSave Then
                     Context.SaveChanges()
