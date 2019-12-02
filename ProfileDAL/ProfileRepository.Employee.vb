@@ -809,6 +809,36 @@ Partial Class ProfileRepository
             Throw ex
         End Try
     End Function
+    ' AUTO MÃ NHÂN VIÊN
+    Public Function CreateNewEMPLOYEECode() As EmployeeDTO
+        Dim objEmpData As New HU_EMPLOYEE
+        Dim empData As New EmployeeDTO
+        ' thêm kỷ luật
+        Dim fileID As Decimal = Utilities.GetNextSequence(Context, Context.HU_EMPLOYEE.EntitySet.Name)
+        'SaveCandidate(fileID, 222)
+
+        'Sinh mã ứng viên động
+        Dim checkEMP As Integer = 0
+        Dim empCodeDB As Decimal = 0
+        Dim EMPCODE As String
+
+        Using query As New DataAccess.NonQueryData
+            Dim temp = query.ExecuteSQLScalar("select EMPLOYEE_CODE from HU_EMPLOYEE " & _
+                                   "order by EMPLOYEE_CODE DESC",
+                                   New Object)
+            If temp IsNot Nothing Then
+                empCodeDB = Decimal.Parse(temp)
+            End If
+        End Using
+        Do
+            empCodeDB += 1
+            EMPCODE = String.Format("{0}", Format(empCodeDB, "000000"))
+            checkEMP = (From p In Context.HU_EMPLOYEE Where p.EMPLOYEE_CODE = EMPCODE Select p.ID).Count
+        Loop Until checkEMP = 0
+
+        Return (New EmployeeDTO With {.ID = fileID, .EMPLOYEE_CODE = EMPCODE})
+
+    End Function
 
     ''' <summary>
     ''' Thêm mới nhân viên

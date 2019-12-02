@@ -68,6 +68,18 @@ Partial Public Class ProfileBusinessRepository
         End Using
     End Function
 
+    Public Function CreateNewEMPLOYEECode() As EmployeeDTO
+        Using rep As New ProfileBusinessClient
+            Try
+                Return rep.CreateNewEMPLOYEECode()
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+
+    End Function
+
     Public Function InsertEmployee(ByVal objEmp As EmployeeDTO, ByRef gID As Decimal, _
                                   ByRef _strEmpCode As String, _
                                   ByVal _imageBinary As Byte(), _

@@ -24,7 +24,14 @@ Public Class ctrlHU_EmpDtlProfile
     Dim _classPath As String = "Profile\Modules\Profile\Business" + Me.GetType().Name.ToString()
 
 #Region "Properties"
-
+    Property EmpCode As EmployeeDTO
+        Get
+            Return ViewState(Me.ID & "_EmpCode")
+        End Get
+        Set(ByVal value As EmployeeDTO)
+            ViewState(Me.ID & "_EmpCode") = value
+        End Set
+    End Property
     Property EmployeeInfo As EmployeeDTO
         Get
             Return PageViewState(Me.ID & "_EmployeeInfo")
@@ -846,12 +853,13 @@ Public Class ctrlHU_EmpDtlProfile
                     ctrlFindEmployeePopup.LoadAllOrganization = True
                     phPopupLevel.Controls.Add(ctrlFindEmployeePopup)
             End Select
-
+            Dim r As New ProfileBusinessRepository
             Select Case CurrentState
                 Case CommonMessage.STATE_NEW
                     rtIdTitleConcurrent.Visible = False
                     'RadPane4.Visible = False
-
+                    EmpCode = r.CreateNewEMPLOYEECode()
+                    txtTimeID.Text = EmpCode.EMPLOYEE_CODE
                     EnableControlAll(True, txtOrgName2, btnFindOrg,
                                      cboTitle, txtTitleGroup, cboStaffRank, txtDirectManager, btnFindDirect,
                                      txtmanager, cboObject, cboObjectLabor, txtTimeID, cbObjectBook, cboBasic, cboCertificate, txtAppDung, txtPlaceKS, txtVillage, rdDayPitcode, txtPlacePitcode, txtPerson_Inheritance, rdEffect_Bank)
@@ -1108,7 +1116,7 @@ Public Class ctrlHU_EmpDtlProfile
             Dim checkBlackList As Boolean = False
             Dim dtData As DataTable
             Dim lstEmpID As String = ""
-
+            Dim r As New ProfileRepository
             Dim _param = New ParamDTO With {.ORG_ID = 46,
                        .IS_DISSOLVE = False}
             Dim _filter As New EmployeeDTO
@@ -1117,8 +1125,8 @@ Public Class ctrlHU_EmpDtlProfile
                 Case TOOLBARITEM_CREATE
                     ResetControlValue()
                     EmployeeInfo = Nothing
-                    CurrentState = CommonMessage.STATE_NEW
 
+                    CurrentState = CommonMessage.STATE_NEW
                 Case TOOLBARITEM_EDIT
                     If EmployeeInfo.WORK_STATUS Is Nothing Or _
                         (EmployeeInfo.WORK_STATUS IsNot Nothing AndAlso _
@@ -1917,7 +1925,6 @@ Public Class ctrlHU_EmpDtlProfile
     '        'DisplayException(Me.ViewName, Me.ID, ex)
     '    End Try
     'End Sub
-
 #End Region
 
 #Region "Custom"

@@ -48,7 +48,18 @@ Namespace ProfileBusiness.ServiceImplementations
                 End Try
             End Using
         End Function
+        Public Function CreateNewEMPLOYEECode() As EmployeeDTO _
+                           Implements ServiceContracts.IProfileBusiness.CreateNewEMPLOYEECode
 
+            Try
+                Dim rep As New ProfileRepository
+                Return rep.CreateNewEMPLOYEECode()
+            Catch ex As Exception
+                WriteExceptionLog(ex, "InsertCandidateCode")
+                Throw ex
+            End Try
+
+        End Function
         Public Function InsertEmployee(ByVal objEmp As EmployeeDTO, ByVal log As UserLog, ByRef gID As Decimal, _
                                         ByRef _strEmpCode As String, _
                                         ByVal _imageBinary As Byte(), _

@@ -1206,6 +1206,8 @@ Namespace ProfileBusiness.ServiceContracts
                                   Optional ByVal objEmpCV As EmployeeCVDTO = Nothing, _
                                   Optional ByVal objEmpEdu As EmployeeEduDTO = Nothing, _
                                   Optional ByVal objEmpHealth As EmployeeHealthDTO = Nothing) As Boolean
+        <OperationContract()>
+        Function CreateNewEMPLOYEECode() As EmployeeDTO
 
         ''' <summary>
         ''' Sửa thông tin nhân viên

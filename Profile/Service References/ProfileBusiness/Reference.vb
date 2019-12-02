@@ -51522,9 +51522,13 @@ Namespace ProfileBusiness
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetEmployeeImage", ReplyAction:="http://tempuri.org/IProfileBusiness/GetEmployeeImageResponse")>  _
         Function GetEmployeeImage(ByVal gEmpID As Decimal, ByRef sError As String) As Byte()
         
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetEmployeeImage_PrintCV", ReplyAction:="http://tempuri.org/IProfileBusiness/GetEmployeeImage_PrintCVResponse")>  _
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetEmployeeImage_PrintCV", ReplyAction:="http://tempuri.org/IProfileBusiness/GetEmployeeImage_PrintCVResponse")> _
         Function GetEmployeeImage_PrintCV(ByVal gEmpID As Decimal) As String
-        
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/CreateNewEMPLOYEECode", ReplyAction:="http://tempuri.org/IProfileBusiness/CreateNewEMPLOYEECodeResponse")> _
+        Function CreateNewEMPLOYEECode() As ProfileBusiness.EmployeeDTO
+
+
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/InsertEmployee", ReplyAction:="http://tempuri.org/IProfileBusiness/InsertEmployeeResponse")>  _
         Function InsertEmployee(ByVal objEmp As ProfileBusiness.EmployeeDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal, ByRef _strEmpCode As String, ByVal _imageBinary() As Byte, ByVal objEmpCV As ProfileBusiness.EmployeeCVDTO, ByVal objEmpEdu As ProfileBusiness.EmployeeEduDTO, ByVal objEmpHealth As ProfileBusiness.EmployeeHealthDTO) As Boolean
         
@@ -53592,7 +53596,9 @@ Namespace ProfileBusiness
         Public Function GetEmployeeImage_PrintCV(ByVal gEmpID As Decimal) As String Implements ProfileBusiness.IProfileBusiness.GetEmployeeImage_PrintCV
             Return MyBase.Channel.GetEmployeeImage_PrintCV(gEmpID)
         End Function
-        
+        Public Function CreateNewEMPLOYEECode() As ProfileBusiness.EmployeeDTO Implements ProfileBusiness.IProfileBusiness.CreateNewEMPLOYEECode
+            Return MyBase.Channel.CreateNewEMPLOYEECode
+        End Function
         Public Function InsertEmployee(ByVal objEmp As ProfileBusiness.EmployeeDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal, ByRef _strEmpCode As String, ByVal _imageBinary() As Byte, ByVal objEmpCV As ProfileBusiness.EmployeeCVDTO, ByVal objEmpEdu As ProfileBusiness.EmployeeEduDTO, ByVal objEmpHealth As ProfileBusiness.EmployeeHealthDTO) As Boolean Implements ProfileBusiness.IProfileBusiness.InsertEmployee
             Return MyBase.Channel.InsertEmployee(objEmp, log, gID, _strEmpCode, _imageBinary, objEmpCV, objEmpEdu, objEmpHealth)
         End Function
