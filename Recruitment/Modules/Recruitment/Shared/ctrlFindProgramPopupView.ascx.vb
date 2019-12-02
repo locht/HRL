@@ -145,6 +145,7 @@ Public Class ctrlFindProgramPopupView
     End Sub
 
     Private Sub btnYES_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnYES.Click
+
         GetOrgTitleSelected()
         hidSelected.Value = ""
         Dim ID_PROGRAM As Integer = 0
@@ -172,9 +173,9 @@ Public Class ctrlFindProgramPopupView
         Else
             strJS = "btnYesClick(0);"
         End If
-
         ScriptManager.RegisterStartupScript(Page, Page.GetType, "UserPopup", strJS, True)
         RaiseEvent OrgTitleSelected(sender, e)
+        Session.Remove("CallAllOrg")
     End Sub
 
 #Region "Custom"
@@ -193,4 +194,8 @@ Public Class ctrlFindProgramPopupView
         Next
     End Sub
 #End Region
+
+    Private Sub btnNO_Click(sender As Object, e As System.EventArgs) Handles btnNO.Click
+        Session.Remove("CallAllOrg")
+    End Sub
 End Class

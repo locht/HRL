@@ -78,11 +78,12 @@ Public Class ctrlRC_CandidateTransferList
         End Set
     End Property
 #End Region
-
+    Public WithEvents AjaxManager As RadAjaxManager
 #Region "Page"
     Public Overrides Sub ViewLoad(ByVal e As System.EventArgs)
         Try
             hidProgramID.Value = Request.Params("PROGRAM_ID")
+            AjaxManager = CType(Me.Page, AjaxPage).AjaxManager
             Refresh()
         Catch ex As Exception
             DisplayException(Me.ViewName, Me.ID, ex)
@@ -132,27 +133,26 @@ Public Class ctrlRC_CandidateTransferList
 
     Public Overrides Sub Refresh(Optional ByVal Message As String = "")
         Try
-            Session.Remove("CallAllOrg")
-            If Not IsPostBack Then
-                For Each item As RadListBoxItem In rlbStatus.Items
-                    item.Checked = True
-                    strStatus = strStatus & item.Value & ","
-                Next
+                If Not IsPostBack Then
+                    For Each item As RadListBoxItem In rlbStatus.Items
+                        item.Checked = True
+                        strStatus = strStatus & item.Value & ","
+                    Next
 
-                Dim rep As New RecruitmentRepository
-                Dim objPro = rep.GetProgramByID(New ProgramDTO With {.ID = Decimal.Parse(hidProgramID.Value)})
-                lblOrgName.Text = objPro.ORG_NAME
-                hidOrg.Value = objPro.ORG_ID
-                lblTitleName.Text = objPro.TITLE_NAME
-                hidTitle.Value = objPro.TITLE_ID
-                lblSendDate.Text = objPro.SEND_DATE.Value.ToString("dd/MM/yyyy")
-                lblRequestNumber.Text = objPro.REQUEST_NUMBER
-                lblNumberHaveRecruit.Text = 0
-                lblCode.Text = objPro.CODE
-                lblStatus.Text = objPro.STATUS_NAME
-                lblTypeRecruit.Text = objPro.RECRUIT_TYPE_NAME
-                lblRecruitReason.Text = objPro.RECRUIT_REASON_NAME
-            End If
+                    Dim rep As New RecruitmentRepository
+                    Dim objPro = rep.GetProgramByID(New ProgramDTO With {.ID = Decimal.Parse(hidProgramID.Value)})
+                    lblOrgName.Text = objPro.ORG_NAME
+                    hidOrg.Value = objPro.ORG_ID
+                    lblTitleName.Text = objPro.TITLE_NAME
+                    hidTitle.Value = objPro.TITLE_ID
+                    lblSendDate.Text = objPro.SEND_DATE.Value.ToString("dd/MM/yyyy")
+                    lblRequestNumber.Text = objPro.REQUEST_NUMBER
+                    lblNumberHaveRecruit.Text = 0
+                    lblCode.Text = objPro.CODE
+                    lblStatus.Text = objPro.STATUS_NAME
+                    lblTypeRecruit.Text = objPro.RECRUIT_TYPE_NAME
+                    lblRecruitReason.Text = objPro.RECRUIT_REASON_NAME
+                End If
         Catch ex As Exception
             DisplayException(Me.ViewName, Me.ID, ex)
         End Try
@@ -277,7 +277,6 @@ Public Class ctrlRC_CandidateTransferList
     Private Sub cmdYCTDKhac_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles cmdYCTDKhac.Click
         Dim strEmp As String = ""
         Dim status As String
-        HttpContext.Current.Session("CallAllOrg") = "LoadAllOrg"
         If rgCandidateList.SelectedItems.Count = 0 Then
             ShowMessage("Vui lòng chọn 1 ứng viên", NotifyType.Warning)
             Exit Sub
@@ -308,7 +307,6 @@ Public Class ctrlRC_CandidateTransferList
                 strEmp = strEmp + "," + dr.GetDataKeyValue("FULLNAME_VN")
             End If
         Next
-
         ctrlMessageBoxTransferProgram.MessageText = Translate("Bạn có muốn chuyển ứng viên: " + strEmp + " sang vị trí khác không")
         ctrlMessageBoxTransferProgram.ActionName = "CHUYENUNGVIEN"
         ctrlMessageBoxTransferProgram.DataBind()
@@ -628,6 +626,7 @@ Public Class ctrlRC_CandidateTransferList
                 Session("ID_CANDIDATE") = strID
 
                 If Not FindOrgTitle.Controls.Contains(ctrlFindProgramDialog) Then
+                    HttpContext.Current.Session("CallAllOrg") = "LoadAllOrg"
                     ctrlFindProgramDialog = Me.Register("ctrlFindProgramPopupDialog", "Recruitment", "ctrlFindProgramPopupDialog", "Shared")
                     FindOrgTitle.Controls.Add(ctrlFindProgramDialog)
                     ctrlFindProgramDialog.Show()
@@ -813,4 +812,28 @@ Public Class ctrlRC_CandidateTransferList
 
     'End Sub
 
+    Private Sub AjaxManager_AjaxRequest(sender As Object, e As Telerik.Web.UI.AjaxRequestEventArgs) Handles AjaxManager.AjaxRequest
+        Try
+            Dim eventArg As String = e.Argument  'Request("__EVENTARGUMENT")
+            If Left(eventArg, 13) <> "PopupPostback" Then
+                Exit Sub
+            End If
+            If eventArg <> "" Then
+                eventArg = Right(eventArg, eventArg.Length - 14)
+                If eventArg = "Cancel" Then
+                ElseIf eventArg = "OK" Then
+                    'For Each dr As GridDataItem In rgCandidateList.SelectedItems
+                    '    If dr.GetDataKeyValue("ID_CANDIDATE") = Session("ID_CANDIDATE") Then
+                    '        dr("STATUS_NAME").Text = "Ứng viên đã chuyển sang vị trí khác"
+                    '        dr("STATUS_CODE").Text = "CHUYENVITRI"
+                    '        Exit For
+                    '    End If
+                    'Next
+                    ShowMessage("Thao tác thành công", NotifyType.Success)
+                End If
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
 End Class

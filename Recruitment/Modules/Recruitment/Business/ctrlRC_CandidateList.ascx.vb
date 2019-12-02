@@ -15,7 +15,7 @@ Public Class ctrlRC_CandidateList
     Inherits Common.CommonView
 
     Protected WithEvents ctrlFindEmployeePopup As ctrlFindEmployeePopup
-    Public WithEvents AjaxManager As RadAjaxManager
+
     Public Property AjaxManagerId As String
     Protected WithEvents ctrlFindProgramDialog As New ctrlFindProgramPopupDialog
 #Region "Properties"
@@ -81,11 +81,12 @@ Public Class ctrlRC_CandidateList
 
 
 #End Region
-
+    Public WithEvents AjaxManager As RadAjaxManager
 #Region "Page"
     Public Overrides Sub ViewLoad(ByVal e As System.EventArgs)
         Try
             hidProgramID.Value = Request.Params("PROGRAM_ID")
+            AjaxManager = CType(Me.Page, AjaxPage).AjaxManager
             UpdateControlState()
             Refresh()
         Catch ex As Exception
@@ -132,7 +133,6 @@ Public Class ctrlRC_CandidateList
 
     Public Overrides Sub Refresh(Optional ByVal Message As String = "")
         Try
-            Session.Remove("CallAllOrg")
             If Not IsPostBack Then
                 Dim rep As New RecruitmentRepository
                 Dim objPro = rep.GetProgramByID(New ProgramDTO With {.ID = Decimal.Parse(hidProgramID.Value)})
@@ -418,7 +418,24 @@ Public Class ctrlRC_CandidateList
                         End If
                     End Using
             End Select
-
+            Dim eventArg As String = e.Argument  'Request("__EVENTARGUMENT")
+            If Left(eventArg, 13) <> "PopupPostback" Then
+                Exit Sub
+            End If
+            If eventArg <> "" Then
+                eventArg = Right(eventArg, eventArg.Length - 14)
+                If eventArg = "Cancel" Then
+                ElseIf eventArg = "OK" Then
+                    'For Each dr As GridDataItem In rgCandidateList.SelectedItems
+                    '    If dr.GetDataKeyValue("ID_CANDIDATE") = Session("ID_CANDIDATE") Then
+                    '        dr("STATUS_NAME").Text = "Ứng viên đã chuyển sang vị trí khác"
+                    '        dr("STATUS_CODE").Text = "CHUYENVITRI"
+                    '        Exit For
+                    '    End If
+                    'Next
+                    ShowMessage("Thao tác thành công", NotifyType.Success)
+                End If
+            End If
         Catch ex As Exception
             DisplayException(Me.ViewName, Me.ID, ex)
         End Try
@@ -1145,5 +1162,6 @@ Public Class ctrlRC_CandidateList
         Return True
     End Function
 #End Region
+
 
 End Class
