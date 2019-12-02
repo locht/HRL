@@ -46,6 +46,18 @@ Public Class ctrlFindProgramPopupDialog
             ViewState(Me.ID & "_IDSelect") = value
         End Set
     End Property
+
+    Public Property LoadAllOrganization As Boolean
+        Get
+            If ViewState(Me.ID & "_LoadAllOrganization") Is Nothing Then
+                ViewState(Me.ID & "_LoadAllOrganization") = False
+            End If
+            Return ViewState(Me.ID & "_LoadAllOrganization")
+        End Get
+        Set(ByVal value As Boolean)
+            ViewState(Me.ID & "_LoadAllOrganization") = value
+        End Set
+    End Property
 #End Region
 
 #Region "Page"
@@ -111,7 +123,7 @@ Public Class ctrlFindProgramPopupDialog
         Dim script As String
         script = "var oWnd = $find('" & popupId & "');"
         script &= "oWnd.add_close(OnClientClose);"
-        script &= "oWnd.setUrl('Dialog.aspx?mid=Recruitment&fid=ctrlFindProgramPopupView&group=Shared&noscroll=1');"
+        script &= "oWnd.setUrl('Dialog.aspx?mid=Recruitment&fid=ctrlFindProgramPopupView&LoadAllOrganization=" & If(LoadAllOrganization, "1", "0") & "&group=Shared&noscroll=1');"
         script &= "oWnd.show();"
         ScriptManager.RegisterStartupScript(Page, Page.GetType, "UserPopup", script, True)
     End Sub

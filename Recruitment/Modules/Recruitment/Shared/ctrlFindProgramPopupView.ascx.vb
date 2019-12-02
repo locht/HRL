@@ -59,7 +59,7 @@ Public Class ctrlFindProgramPopupView
             PageViewState(Me.ID & "_SelectedItem") = value
         End Set
     End Property
-
+    Public Property LoadAllOrganization As Boolean
 #End Region
 
 #Region "Page"
@@ -76,7 +76,9 @@ Public Class ctrlFindProgramPopupView
     Public Overrides Sub ViewLoad(ByVal e As System.EventArgs)
         Try
             CurrentValue = If(Request.Params("CurrentValue") Is Nothing, "", Request.Params("Enabled"))
-
+            LoadAllOrganization = If(Request.Params("LoadAllOrganization") = "0", False, True)
+            ctrlOrg.OrganizationType = OrganizationType.OrganizationLocation
+            ctrlOrg.LoadAllOrganization = LoadAllOrganization
         Catch ex As Exception
             Throw ex
         End Try
@@ -85,7 +87,7 @@ Public Class ctrlFindProgramPopupView
     Public Overrides Sub Refresh(Optional ByVal Message As String = "")
         Dim rep As New CommonRepository
         Try
-            ctrlOrg.OrganizationType = OrganizationType.OrganizationLocation
+           
         Catch ex As Exception
             DisplayException(Me.ViewName, Me.ID, ex)
         End Try

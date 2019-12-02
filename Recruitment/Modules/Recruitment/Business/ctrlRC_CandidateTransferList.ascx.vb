@@ -626,8 +626,9 @@ Public Class ctrlRC_CandidateTransferList
                 Session("ID_CANDIDATE") = strID
 
                 If Not FindOrgTitle.Controls.Contains(ctrlFindProgramDialog) Then
-                    HttpContext.Current.Session("CallAllOrg") = "LoadAllOrg"
+                    'HttpContext.Current.Session("CallAllOrg") = "LoadAllOrg"
                     ctrlFindProgramDialog = Me.Register("ctrlFindProgramPopupDialog", "Recruitment", "ctrlFindProgramPopupDialog", "Shared")
+                    ctrlFindProgramDialog.LoadAllOrganization = True
                     FindOrgTitle.Controls.Add(ctrlFindProgramDialog)
                     ctrlFindProgramDialog.Show()
                 End If
@@ -830,6 +831,7 @@ Public Class ctrlRC_CandidateTransferList
                     '    End If
                     'Next
                     ShowMessage("Thao tác thành công", NotifyType.Success)
+                    rgCandidateList.Rebind()
                 End If
             End If
         Catch ex As Exception

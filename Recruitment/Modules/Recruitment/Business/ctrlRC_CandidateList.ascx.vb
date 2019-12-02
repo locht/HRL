@@ -334,6 +334,7 @@ Public Class ctrlRC_CandidateList
 
                             If Not FindOrgTitle.Controls.Contains(ctrlFindProgramDialog) Then
                                 ctrlFindProgramDialog = Me.Register("ctrlFindProgramPopupDialog", "Recruitment", "ctrlFindProgramPopupDialog", "Shared")
+                                ctrlFindProgramDialog.LoadAllOrganization = True
                                 FindOrgTitle.Controls.Add(ctrlFindProgramDialog)
                                 ctrlFindProgramDialog.Show()
                             End If
@@ -350,7 +351,7 @@ Public Class ctrlRC_CandidateList
     Private Sub cmdYCTDKhac_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles cmdYCTDKhac.Click
         Dim strEmp As String = ""
         Dim status As String
-        HttpContext.Current.Session("CallAllOrg") = "LoadAllOrg"
+        'HttpContext.Current.Session("CallAllOrg") = "LoadAllOrg"
         If rgCandidateList.SelectedItems.Count = 0 Then
             ShowMessage("Vui lòng chọn 1 ứng viên", NotifyType.Warning)
             Exit Sub
