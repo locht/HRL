@@ -188,7 +188,7 @@ Public Class ctrlLeaveRegistrationNewEdit
 
     Public Overrides Sub UpdateControlState()
         Try
-            If Utilities.ObjToString(rPH("S_CODE")) = "R" Or Utilities.ObjToString(rPH("S_CODE")) = "" Then
+            If Utilities.ObjToString(rPH("S_CODE")) = "R" Or Utilities.ObjToString(rPH("S_CODE")) = "U" Or Utilities.ObjToString(rPH("S_CODE")) = "" Then
                 RadPane1.Enabled = True
                 CType(Me.MainToolBar.Items(0), RadToolBarButton).Enabled = True
                 CType(Me.MainToolBar.Items(1), RadToolBarButton).Enabled = True

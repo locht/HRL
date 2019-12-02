@@ -111,6 +111,12 @@ Partial Public Class AttendanceRepository
                     objCT.LEAVESHEET_ID = objPH.ID
                     Context.AT_LEAVESHEET_DETAIL.AddObject(objCT)
                 Next
+
+                Using cls As New DataAccess.QueryData
+                    Dim dData = cls.ExecuteStore("PKG_AT_PROCESS.DELETE_PROCESS_APPROVED_STATUS",
+                                                   New With {.P_ID = ID_LEAVE,
+                                                             .P_OUT = cls.OUT_NUMBER}, True)
+                End Using
             Else
                 'insert 
                 Dim objPH As New AT_LEAVESHEET
