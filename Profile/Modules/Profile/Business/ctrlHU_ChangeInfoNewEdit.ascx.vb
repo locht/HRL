@@ -1559,9 +1559,21 @@ Public Class ctrlHU_ChangeInfoNewEdit
         Try
             'nếu muốn chỉnh sửa k clear thì mở ở dưới ra
             ' If isEdit <> 1 Then
-            txtOrgName.Text = ""
-            hidOrg.ClearValue()
-            cboTitle.ClearValue()
+            If cboDecisionType.SelectedValue = 7561 Then
+                btnFindOrg.Enabled = False
+                cboTitle.Enabled = False
+                'If ctrlFindEmployeePopup.SelectedEmployeeID Is Nothing Then
+                If hidEmp.Value <> "" Then
+                    Dim empID = hidEmp.Value
+                    FillData(empID)
+                End If
+            Else
+                btnFindOrg.Enabled = True
+                cboTitle.Enabled = True
+                txtOrgName.Text = ""
+                hidOrg.ClearValue()
+                cboTitle.ClearValue()
+            End If
             ' End If
         Catch ex As Exception
             Throw ex
