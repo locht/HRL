@@ -355,6 +355,8 @@ Public Class ctrlRegisterCONewEdit
             Dim dtSourceNB = store.GET_INFO_NGHIBU(Decimal.Parse(rtEmployee_id.Text.Trim), rdLEAVE_FROM.SelectedDate)
             If dtSourceNB.Rows.Count > 0 Then
                 txtCUR_HAVE.Text = If(dtSourceNB.Rows(0)("CUR_HAVE") Is Nothing, 0, CDec(dtSourceNB.Rows(0)("CUR_HAVE").ToString()))
+            Else
+                txtCUR_HAVE.Text = 0
             End If
         Catch ex As Exception
             Throw ex
