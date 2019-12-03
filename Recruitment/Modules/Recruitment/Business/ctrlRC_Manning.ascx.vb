@@ -1141,33 +1141,35 @@ BREAKFUNCTION:
         str = arr(arr.Count - 1)
 
         Dim objMT As New ManningTitleDTO
-        Dim item = TryCast(rgManning.SelectedItems(0), GridDataItem)
+        'Dim item = TryCast(rgManning.SelectedItems(0), GridDataItem)
         Select Case str
             Case "txtNewManning"
-                objMT.ID = Int32.Parse(item.GetDataKeyValue("ID").ToString())
-                objMT.CURRENT_MANNING = Int32.Parse(item("CURRENT_MANNING").Text)
-                objMT.NEW_MANNING = Int32.Parse(TryCast(item.FindControl("txtNewManning"), RadNumericTextBox).Value)
-                objMT.MOBILIZE_COUNT_MANNING = objMT.NEW_MANNING - objMT.CURRENT_MANNING
-                repStore.UpdateNewManningTitle(objMT)
-                objMT.NOTE = TryCast(item.FindControl("txtNote"), RadTextBox).Text
-                repStore.UpdateNewManningTitle(objMT)
-                item("MOBILIZE_COUNT_MANNING").Text = objMT.MOBILIZE_COUNT_MANNING.Value
-
-                'updatel/reload summary manning org
-                repStore.UpdateNewManningOrg(cboListManning.SelectedValue)
-                GetManningOrgInfo()
-                'rgManning.SelectedIndexes.Clear()
-
+                For Each item As GridDataItem In rgManning.SelectedItems
+                    objMT.ID = Int32.Parse(item.GetDataKeyValue("ID").ToString())
+                    objMT.CURRENT_MANNING = Int32.Parse(item("CURRENT_MANNING").Text)
+                    objMT.NEW_MANNING = Int32.Parse(TryCast(item.FindControl("txtNewManning"), RadNumericTextBox).Value)
+                    objMT.MOBILIZE_COUNT_MANNING = objMT.NEW_MANNING - objMT.CURRENT_MANNING
+                    repStore.UpdateNewManningTitle(objMT)
+                    objMT.NOTE = TryCast(item.FindControl("txtNote"), RadTextBox).Text
+                    repStore.UpdateNewManningTitle(objMT)
+                    item("MOBILIZE_COUNT_MANNING").Text = objMT.MOBILIZE_COUNT_MANNING.Value
+                    'updatel/reload summary manning org
+                    repStore.UpdateNewManningOrg(cboListManning.SelectedValue)
+                    GetManningOrgInfo()
+                    'rgManning.SelectedIndexes.Clear()
+                Next
             Case "txtNote"
-                objMT.ID = Int32.Parse(item.GetDataKeyValue("ID").ToString())
-                'objMT.NEW_MANNING = Int32.Parse(TryCast(item.FindControl("txtNewManning"), RadNumericTextBox).Value)
-                objMT.NOTE = TryCast(item.FindControl("txtNote"), RadTextBox).Text
-                repStore.UpdateNewManningTitle(objMT)
-                objMT.CURRENT_MANNING = Int32.Parse(item("CURRENT_MANNING").Text)
-                objMT.NEW_MANNING = Int32.Parse(TryCast(item.FindControl("txtNewManning"), RadNumericTextBox).Value)
-                objMT.MOBILIZE_COUNT_MANNING = objMT.NEW_MANNING - objMT.CURRENT_MANNING
-                repStore.UpdateNewManningTitle(objMT)
-                '  rgManning.SelectedIndexes.Clear()
+                For Each item As GridDataItem In rgManning.SelectedItems
+                    objMT.ID = Int32.Parse(item.GetDataKeyValue("ID").ToString())
+                    'objMT.NEW_MANNING = Int32.Parse(TryCast(item.FindControl("txtNewManning"), RadNumericTextBox).Value)
+                    objMT.NOTE = TryCast(item.FindControl("txtNote"), RadTextBox).Text
+                    repStore.UpdateNewManningTitle(objMT)
+                    objMT.CURRENT_MANNING = Int32.Parse(item("CURRENT_MANNING").Text)
+                    objMT.NEW_MANNING = Int32.Parse(TryCast(item.FindControl("txtNewManning"), RadNumericTextBox).Value)
+                    objMT.MOBILIZE_COUNT_MANNING = objMT.NEW_MANNING - objMT.CURRENT_MANNING
+                    repStore.UpdateNewManningTitle(objMT)
+                    '  rgManning.SelectedIndexes.Clear()
+                Next
         End Select
         isFlag1 = 1
     End Sub
