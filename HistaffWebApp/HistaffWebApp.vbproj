@@ -970,18 +970,10 @@
     <Content Include="ReportTemplates\Payroll\Report\PhieuLuong.docx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="ReportTemplates\Payroll\RPT_PA_ADVANCE.xls">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="ReportTemplates\Payroll\RPT_PA_ANNUAL.xls">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="ReportTemplates\Payroll\RPT_PA_BANK.xls">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="ReportTemplates\Payroll\RPT_PA_PayrollSheet.xls">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+    <Content Include="ReportTemplates\Payroll\RPT_PA_ADVANCE.xls" />
+    <Content Include="ReportTemplates\Payroll\RPT_PA_ANNUAL.xls" />
+    <Content Include="ReportTemplates\Payroll\RPT_PA_BANK.xls" />
+    <Content Include="ReportTemplates\Payroll\RPT_PA_PayrollSheet.xls" />
     <Content Include="ReportTemplates\Profile\ctrlDBInfo.xls">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -1459,6 +1451,8 @@
     <None Include="JsonErrorCode\JsonValidateCode.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <Content Include="ReportTemplates\Payroll\IPAY_REPORT_07_OUT.xls" />
+    <Content Include="ReportTemplates\Payroll\IPAY_REPORT_08.xlsx" />
     <None Include="ReportTemplates\Recruitment\Import\Candidate_Error.xlsx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
