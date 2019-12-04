@@ -204,7 +204,17 @@ Namespace ProfileBusiness.ServiceImplementations
                 End Try
             End Using
         End Function
+        Public Function InsertListWorking1(ByVal objWorking As WorkingDTO, ByVal log As UserLog) As Boolean Implements ServiceContracts.IProfileBusiness.InsertListWorking1
+            Using rep As New ProfileRepository
+                Try
 
+                    Return rep.InsertListWorking1(objWorking, log)
+                Catch ex As Exception
+
+                    Throw ex
+                End Try
+            End Using
+        End Function
         Public Function InsertWorking1(ByVal objWorking As WorkingDTO, ByVal log As UserLog, ByRef gID As Decimal) As Boolean Implements ServiceContracts.IProfileBusiness.InsertWorking1
             Using rep As New ProfileRepository
                 Try

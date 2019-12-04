@@ -1994,7 +1994,7 @@ Partial Public Class CommonRepository
                              .IS_CHANGE_PASS = p.IS_CHANGE_PASS,
                              .CREATED_DATE = p.CREATED_DATE,
                              .MODULE_ADMIN = p.MODULE_ADMIN,
-                             .work_status = e.WORK_STATUS}).FirstOrDefault
+                             .WORK_STATUS = e.WORK_STATUS}).FirstOrDefault
             Dim objUser = query
             If objUser IsNot Nothing Then
                 Dim isUserPermission As Boolean = True
@@ -2029,7 +2029,7 @@ Partial Public Class CommonRepository
                                          .EFFECT_DATE = objUser.EFFECT_DATE,
                                          .EXPIRE_DATE = objUser.EXPIRE_DATE,
                                          .IS_USER_PERMISSION = isUserPermission,
-                                         .work_status = objUser.work_status}
+                                         .WORK_STATUS = objUser.WORK_STATUS}
             End If
             Return Nothing
         Catch ex As Exception
@@ -2518,6 +2518,8 @@ Partial Public Class CommonRepository
                       From t In Context.HU_TITLE.Where(Function(f) f.ID = p.TITLE_ID).DefaultIfEmpty
                       From birth In Context.HU_NATION.Where(Function(f) f.ID = cv.BIRTH_PLACE).DefaultIfEmpty
                       From ot In Context.OT_OTHER_LIST.Where(Function(f) f.ID = t.HURT_TYPE_ID).DefaultIfEmpty
+                      From ot1 In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.OBJECT_LABOR).DefaultIfEmpty
+                      From ot2 In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.OBJECTTIMEKEEPING).DefaultIfEmpty
                       Order By p.EMPLOYEE_CODE
                       Where (_empId.Contains(p.ID))
                       Select New EmployeePopupFindDTO With {
@@ -2538,7 +2540,11 @@ Partial Public Class CommonRepository
                           .STAFF_RANK_NAME = s.NAME,
                           .IMAGE = cv.IMAGE,
                           .HURT_TYPE_ID = t.HURT_TYPE_ID,
-                          .HURT_TYPE_NAME = ot.NAME_VN})
+                          .HURT_TYPE_NAME = ot.NAME_VN,
+                          .OBJECT_LABOR = p.OBJECT_LABOR,
+                          .OBJECTTIMEKEEPING = p.OBJECTTIMEKEEPING,
+                          .OBJECT_NAME = ot2.NAME_VN,
+                          .LABOUR_NAME = ot1.NAME_VN})
         Return result.ToList
     End Function
 

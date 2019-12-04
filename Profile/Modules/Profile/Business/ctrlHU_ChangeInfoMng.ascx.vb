@@ -151,6 +151,8 @@ Public Class ctrlHU_ChangeInfoMng
                                                                   ToolbarIcons.Add,
                                                                   ToolbarAuthorize.None,
                                                                   "Phê duyệt hàng loạt"))
+            Me.MainToolBar.Items.Add(Common.Common.CreateToolbarItem("APPROVE_MULTI_CHANGE_NEW", ToolbarIcons.Unlock,
+                                                                   ToolbarItem.CreateBatch, Translate("Điều động hàng loạt")))
             'Me.MainToolBar.Items.Add(Common.Common.CreateToolbarItem("EXPORT_TEMP", ToolbarIcons.Export,
             '                                                         ToolbarAuthorize.Export, Translate("Xuất file mẫu")))
             'Me.MainToolBar.Items.Add(Common.Common.CreateToolbarItem("IMPORT_TEMP", ToolbarIcons.Import,

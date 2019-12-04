@@ -7935,10 +7935,22 @@ Namespace CommonBusiness
         Private JOIN_DATEField As System.Nullable(Of Date)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private LABOUR_NAMEField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private MOBILE_PHONEField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private MONEYField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private OBJECTTIMEKEEPINGField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private OBJECT_LABORField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private OBJECT_NAMEField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private ORG_DESCField As String
@@ -8214,6 +8226,19 @@ Namespace CommonBusiness
         End Property
         
         <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property LABOUR_NAME() As String
+            Get
+                Return Me.LABOUR_NAMEField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.LABOUR_NAMEField, value) <> true) Then
+                    Me.LABOUR_NAMEField = value
+                    Me.RaisePropertyChanged("LABOUR_NAME")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
         Public Property MOBILE_PHONE() As String
             Get
                 Return Me.MOBILE_PHONEField
@@ -8235,6 +8260,45 @@ Namespace CommonBusiness
                 If (Me.MONEYField.Equals(value) <> true) Then
                     Me.MONEYField = value
                     Me.RaisePropertyChanged("MONEY")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property OBJECTTIMEKEEPING() As System.Nullable(Of Decimal)
+            Get
+                Return Me.OBJECTTIMEKEEPINGField
+            End Get
+            Set
+                If (Me.OBJECTTIMEKEEPINGField.Equals(value) <> true) Then
+                    Me.OBJECTTIMEKEEPINGField = value
+                    Me.RaisePropertyChanged("OBJECTTIMEKEEPING")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property OBJECT_LABOR() As System.Nullable(Of Decimal)
+            Get
+                Return Me.OBJECT_LABORField
+            End Get
+            Set
+                If (Me.OBJECT_LABORField.Equals(value) <> true) Then
+                    Me.OBJECT_LABORField = value
+                    Me.RaisePropertyChanged("OBJECT_LABOR")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property OBJECT_NAME() As String
+            Get
+                Return Me.OBJECT_NAMEField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.OBJECT_NAMEField, value) <> true) Then
+                    Me.OBJECT_NAMEField = value
+                    Me.RaisePropertyChanged("OBJECT_NAME")
                 End If
             End Set
         End Property

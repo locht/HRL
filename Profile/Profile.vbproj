@@ -175,6 +175,7 @@
     <Content Include="Modules\Portal\Dashboard\ctrlDashboardPortalSixCell.ascx" />
     <Content Include="Modules\Portal\Dashboard\ctrlDBEmployeeReg.ascx" />
     <Content Include="Modules\Portal\Dashboard\ctrlDBCertificateExpires.ascx" />
+    <Content Include="Modules\Profile\Business\ctrlHU_ApproveMutilChangeInfo_New.ascx" />
     <Content Include="Modules\Profile\Business\ctrlContract_Liquidate.ascx" />
     <Content Include="Modules\Profile\Business\ctrlHU_EmpDtlAppendix.ascx" />
     <Content Include="Modules\Profile\Business\ctrlHU_ALP.ascx" />
@@ -915,6 +916,13 @@
     </Compile>
     <Compile Include="Modules\Competency\Business\ctrlHU_CompetencyAss.ascx.vb">
       <DependentUpon>ctrlHU_CompetencyAss.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Modules\Profile\Business\ctrlHU_ApproveMutilChangeInfo_New.ascx.designer.vb">
+      <DependentUpon>ctrlHU_ApproveMutilChangeInfo_New.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Profile\Business\ctrlHU_ApproveMutilChangeInfo_New.ascx.vb">
+      <DependentUpon>ctrlHU_ApproveMutilChangeInfo_New.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Modules\Profile\Business\ctrlContract_Liquidate.ascx.designer.vb">

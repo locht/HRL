@@ -17,10 +17,10 @@
     <tlk:RadSplitBar ID="RadSplitBar1" runat="server" CollapseMode="Forward">
     </tlk:RadSplitBar>
     <tlk:RadPane ID="MainPane" runat="server" Scrolling="None">
-        <tlk:RadSplitter ID="RadSplitter3" runat="server" Width="100%" Height="100%" Orientation="Horizontal">            
+        <tlk:RadSplitter ID="RadSplitter3" runat="server" Width="100%" Height="100%" Orientation="Horizontal">
             <tlk:RadPane ID="RadPane1" runat="server" Height="72px" Scrolling="None">
                 <tlk:RadToolBar ID="tbarWorkings" runat="server" OnClientButtonClicking="clientButtonClicking" />
-                <asp:ValidationSummary ID="valSum" runat="server" DisplayMode="BulletList" CssClass="validationsummary" />                                 
+                <asp:ValidationSummary ID="valSum" runat="server" DisplayMode="BulletList" CssClass="validationsummary" />
                 <table class="table-form">
                     <tr>
                         <td class="lb">
@@ -47,19 +47,18 @@
                     </tr>
                 </table>
                 <asp:PlaceHolder ID="ViewPlaceHolder" runat="server"></asp:PlaceHolder>
-            </tlk:RadPane>        
-                     
-            <tlk:RadPane ID="RadPane2" runat="server" Scrolling="None">                   
-                <tlk:RadGrid PageSize="50" ID="rgWorking" runat="server"
-                    Height="100%">
+            </tlk:RadPane>
+            <tlk:RadPane ID="RadPane2" runat="server" Scrolling="None">
+                <tlk:RadGrid PageSize="50" ID="rgWorking" runat="server" Height="100%">
                     <ClientSettings EnableRowHoverStyle="true">
                         <Selecting AllowRowSelect="true" />
                         <ClientEvents OnRowDblClick="gridRowDblClick" />
                         <Scrolling AllowScroll="true" UseStaticHeaders="true" FrozenColumnsCount="3" />
                     </ClientSettings>
-                    <MasterTableView DataKeyNames="ID,STATUS_ID,DECISION_TYPE_ID,EMPLOYEE_CODE,DECISION_TYPE_NAME,CODE" ClientDataKeyNames="ID,EMPLOYEE_ID">
+                    <MasterTableView DataKeyNames="ID,STATUS_ID,DECISION_TYPE_ID,EMPLOYEE_CODE,DECISION_TYPE_NAME,CODE"
+                        ClientDataKeyNames="ID,EMPLOYEE_ID">
                         <Columns>
-                           <%-- <tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderStyle-HorizontalAlign="Center"
+                            <%-- <tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderStyle-HorizontalAlign="Center"
                                 HeaderStyle-Width="30px" ItemStyle-HorizontalAlign="Center">
                             </tlk:GridClientSelectColumn>
                             <tlk:GridBoundColumn DataField="ID" Visible="false" />
@@ -101,14 +100,13 @@
                     </ClientSettings>
                 </tlk:RadGrid>
             </tlk:RadPane>
-
-<%--            <tlk:RadPane ID="RadPane2" runat="server" Scrolling="None">
+            <%--            <tlk:RadPane ID="RadPane2" runat="server" Scrolling="None">
                 
             </tlk:RadPane>--%>
             <tlk:RadPane ID="RadPane4" runat="server" Scrolling="None" Height="45px" Visible="false">
                 <table class="table-form" onkeydown="return (event.keyCode!=13)">
                     <tr>
-                        <td class="lb" Visible="false">
+                        <td class="lb" visible="false">
                             <asp:Label ID="lbPrintSupport" runat="server" Text="Biễu mẫu hỗ trợ"></asp:Label>
                         </td>
                         <td>
@@ -117,18 +115,18 @@
                             <asp:CustomValidator ID="cvalPrintSupport" ControlToValidate="cboPrintSupport" runat="server"
                                 ErrorMessage="<%$ Translate: Biểu mẫu hỗ trợ không tồn tại hoặc đã ngừng áp dụng. %>"
                                 ToolTip="<%$ Translate: Biểu mẫu hỗ trợ không tồn tại hoặc đã ngừng áp dụng. %>">
-                            </asp:CustomValidator>      
+                            </asp:CustomValidator>
                         </td>
                         <td>
                             <tlk:RadButton ID="btnPrintSupport" runat="server" Text="<%$ Translate: Hỗ trợ in %>"
                                 OnClientClicking="btnPrintSupportClick" AutoPostBack="true" CausesValidation="true"
-                                OnClientClicked="btnResize" Visible="false" >
+                                OnClientClicked="btnResize" Visible="false">
                             </tlk:RadButton>
                         </td>
                     </tr>
                 </table>
             </tlk:RadPane>
-           <%-- <tlk:RadPane ID="RadPane4" runat="server" Scrolling="None" Height="45px">
+            <%-- <tlk:RadPane ID="RadPane4" runat="server" Scrolling="None" Height="45px">
                 <table class="table-form" onkeydown="return (event.keyCode!=13)">
                     <tr>
                         <td class="lb">
@@ -271,7 +269,9 @@
                 }
                 enableAjax = false;
             }
-
+            if (args.get_item().get_commandName() == "APPROVE_MULTI_CHANGE_NEW") {
+                window.open('/Default.aspx?mid=profile&fid=ctrlHU_ApproveMutilChangeInfo_New&group=business', "_self");
+            }
             if (args.get_item().get_commandName() == "EXPIRE_TEMP") {
 
                 var extented = '';

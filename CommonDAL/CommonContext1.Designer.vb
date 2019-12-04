@@ -18,7 +18,7 @@ Imports System.Runtime.Serialization
 Imports System.Xml.Serialization
 
 
-<Assembly: EdmSchemaAttribute("096764f3-14d0-4612-a234-a18f0cf19a95")>
+<Assembly: EdmSchemaAttribute("9bc9529f-af90-4efc-a0d5-0cdd2fb1a0cd")>
 #Region "EDM Relationship Metadata"
 <Assembly: EdmRelationshipAttribute("CommonModel", "SE_GRP_SE_USR", "SE_GROUP", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(SE_GROUP), "SE_USER", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(SE_USER))>
 <Assembly: EdmRelationshipAttribute("CommonModel", "FK_SM_SF", "SE_MODULE", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(SE_MODULE), "SE_FUNCTION", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(SE_FUNCTION), True)>
@@ -2074,6 +2074,56 @@ Public Partial Class HU_EMPLOYEE
     End Sub
 
     Private Partial Sub OnIS_KIEM_NHIEMChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property OBJECT_LABOR() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _OBJECT_LABOR
+        End Get
+        Set
+            OnOBJECT_LABORChanging(value)
+            ReportPropertyChanging("OBJECT_LABOR")
+            _OBJECT_LABOR = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("OBJECT_LABOR")
+            OnOBJECT_LABORChanged()
+        End Set
+    End Property
+
+    Private _OBJECT_LABOR As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnOBJECT_LABORChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnOBJECT_LABORChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property OBJECTTIMEKEEPING() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _OBJECTTIMEKEEPING
+        End Get
+        Set
+            OnOBJECTTIMEKEEPINGChanging(value)
+            ReportPropertyChanging("OBJECTTIMEKEEPING")
+            _OBJECTTIMEKEEPING = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("OBJECTTIMEKEEPING")
+            OnOBJECTTIMEKEEPINGChanged()
+        End Set
+    End Property
+
+    Private _OBJECTTIMEKEEPING As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnOBJECTTIMEKEEPINGChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnOBJECTTIMEKEEPINGChanged()
     End Sub
 
     #End Region

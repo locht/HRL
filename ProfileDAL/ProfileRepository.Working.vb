@@ -1211,6 +1211,14 @@ Partial Class ProfileRepository
 
 
     End Function
+    Public Function InsertListWorking1(ByVal objWorking As WorkingDTO, ByVal log As UserLog) As Boolean
+        Try
+            InsertWorking1(objWorking, log, 0)
+            Return True
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
     Public Function InsertWorking1(ByVal objWorking As WorkingDTO,
                                  ByVal log As UserLog,
                                  ByRef gID As Decimal) As Boolean
@@ -1902,9 +1910,9 @@ Partial Class ProfileRepository
 
             Dim item = (From p In Context.HU_EMPLOYEE Where objWorking.EMPLOYEE_ID = p.ID).FirstOrDefault
             If item IsNot Nothing Then
-          
+
                 item.LAST_WORKING_ID = objWorking.ID
-             
+
             End If
 
             Return True

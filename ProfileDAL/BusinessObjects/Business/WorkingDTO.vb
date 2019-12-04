@@ -98,6 +98,7 @@
     Public Property IS_MISSION_SHORT As Short?
     Public Property IS_WAGE_SHORT As Short?
     Public Property IS_3B_SHORT As Short?
+    Public Property LST_EMP_WORKING As List(Of WorkingDTO)
 
     Public Property lstAllowance As List(Of WorkingAllowanceDTO)
     Public Property WORKING_OLD As WorkingDTO

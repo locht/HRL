@@ -32,6 +32,10 @@
     Public Property DIRECT_MANAGER As Decimal?
     Public Property HURT_TYPE_ID As Decimal?
     Public Property HURT_TYPE_NAME As String
+    Public Property OBJECTTIMEKEEPING As Decimal?
+    Public Property OBJECT_LABOR As Decimal?
+    Public Property OBJECT_NAME As String
+    Public Property LABOUR_NAME As String
 End Class
 Public Class EmployeePopupFindListDTO
     Public Property ID As Decimal
