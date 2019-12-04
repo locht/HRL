@@ -115,8 +115,9 @@ Public Class ctrlRC_CandidateList
             Me.MainToolBar = tbarMainToolBar
             Common.Common.BuildToolbar(Me.MainToolBar, ToolbarItem.Create,
                                        ToolbarItem.Edit,
-                                       ToolbarItem.Delete, ToolbarItem.ExportTemplate, ToolbarItem.Export, ToolbarItem.Import)
-            MainToolBar.Items(3).Text = Translate("Xuất file mẫu")
+                                       ToolbarItem.Delete, ToolbarItem.Export, ToolbarItem.ExportTemplate, ToolbarItem.Import)
+            MainToolBar.Items(4).Text = Translate("Xuất file mẫu")
+            MainToolBar.Items(5).Text = Translate("Nhập file mẫu")
             CType(Me.Page, AjaxPage).AjaxManager.ClientEvents.OnRequestStart = "onRequestStart"
         Catch ex As Exception
             DisplayException(Me.ViewName, Me.ID, ex)
@@ -211,7 +212,18 @@ Public Class ctrlRC_CandidateList
                     ctrlMessageBox.DataBind()
                     ctrlMessageBox.Show()
                 Case TOOLBARITEM_EXPORT
-                    ScriptManager.RegisterStartupScript(Me.Page, Me.Page.GetType(), "javascriptfunction", "ExportReport('RC_CANDIDATE_IMPORT');", True)
+                    Dim dtData As DataTable
+                    Using xls As New ExcelCommon
+                        dtData = CreateDataFilter(True)
+                        If dtData.Rows.Count = 0 Then
+                            ShowMessage(Translate(CommonMessage.MESSAGE_WARNING_EXPORT_EMPTY), NotifyType.Warning)
+                            Exit Sub
+                        ElseIf dtData.Rows.Count > 0 Then
+                            rgCandidateList.ExportExcel(Server, Response, dtData, "Danh sách ứng viên")
+                            Exit Sub
+                        End If
+                    End Using
+                    'ScriptManager.RegisterStartupScript(Me.Page, Me.Page.GetType(), "javascriptfunction", "ExportReport('RC_CANDIDATE_IMPORT');", True)
 
                 Case TOOLBARITEM_IMPORT
                     ctrlUpload1.Show()
@@ -972,12 +984,12 @@ Public Class ctrlRC_CandidateList
                 Else
                     rgCandidateList.DataSource = New List(Of CandidateDTO)
                 End If
-                'Else
-                '    If Sorts IsNot Nothing Then
-                '        Return rep.GetListCandidate(_filter, Sorts).ToTable
-                '    Else
-                '        Return rep.GetListCandidate(_filter).ToTable
-                '    End If
+            Else
+                If Sorts IsNot Nothing Then
+                    Return rep.GetListCandidatePaging(_filter, Sorts).ToTable
+                Else
+                    Return rep.GetListCandidatePaging(_filter).ToTable
+                End If
             End If
         Catch ex As Exception
             DisplayException(Me.ViewName, Me.ID, ex)
