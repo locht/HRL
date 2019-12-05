@@ -54,18 +54,9 @@
                     <asp:Label ID="lbTitle" runat="server" Text="Chức danh"></asp:Label><span class="lbReq">*</span>
                 </td>
                 <td>
-                    <tlk:RadComboBox runat="server" ID="cboTitle" >
+                    <tlk:RadComboBox runat="server" ID="cboTitle">
                     </tlk:RadComboBox>
                 </td>
-                <td class="lb">
-                    <asp:Label ID="lbchucvu" runat="server" Text="Chức vụ"></asp:Label>
-                </td>
-                <td>
-                    <tlk:RadTextBox runat="server" ID="txtChucVu" ReadOnly="true">
-                    </tlk:RadTextBox>
-                </td>
-            </tr>
-            <tr>
                 <td class="lb">
                     <asp:Label ID="lbEffectDate" runat="server" Text="Ngày hiệu lực"></asp:Label><span
                         class="lbReq">*</span>

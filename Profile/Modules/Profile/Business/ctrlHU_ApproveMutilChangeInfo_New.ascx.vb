@@ -446,22 +446,33 @@ Public Class ctrlHU_ApproveMutilChangeInfo_New
             Dim lstemp As New List(Of WorkingDTO)
             Select Case CType(e.Item, RadToolBarButton).CommandName
                 Case CommonMessage.TOOLBARITEM_SAVE
+                   
+                    If cboStatus.SelectedValue = "" Then
+                        ShowMessage(Translate("Bạn phải chọn trạng thái"), NotifyType.Warning)
+                        Exit Sub
+                    End If
                     If cboStatus.SelectedValue = 447 Then
                         If txtUpload.Text = "" Then
                             ShowMessage(Translate("Bạn phải đính kèm tập tin khi phê duyệt"), NotifyType.Warning)
                             Exit Sub
                         End If
                     End If
-                    If cboTitle.SelectedValue = "" Then
-                        ShowMessage(Translate("Bạn phải chọn chức danh"), NotifyType.Warning)
-                        cboTitle.Focus()
-                        Exit Sub
-                    End If
+                   
                     If cboDecisionType.SelectedValue = "" Then
                         ShowMessage(Translate("Bạn phải chọn loại quyết định"), NotifyType.Warning)
                         cboDecisionType.Focus()
                         Exit Sub
                     End If
+                    If cboDecisionType.Text = "Quyết định thay đổi QLTT" Then
+
+                    Else
+                        If cboTitle.SelectedValue = "" Then
+                            ShowMessage(Translate("Bạn phải chọn chức danh"), NotifyType.Warning)
+                            cboTitle.Focus()
+                            Exit Sub
+                        End If
+                    End If
+
                     If rgEmployee.Items.Count = 0 Then
                         ShowMessage(Translate("Bạn phải chọn nhân viên"), NotifyType.Warning)
                         Exit Sub
@@ -864,9 +875,11 @@ Public Class ctrlHU_ApproveMutilChangeInfo_New
             If cboDecisionType.Text = "Quyết định thay đổi QLTT" Then
                 btnFindOrg.Enabled = False
                 cboTitle.Enabled = False
+                RequiredFieldValidator1.Enabled = False
             Else
                 btnFindOrg.Enabled = True
                 cboTitle.Enabled = True
+                RequiredFieldValidator1.Enabled = True
             End If
 
         Catch ex As Exception
@@ -1000,7 +1013,7 @@ Public Class ctrlHU_ApproveMutilChangeInfo_New
             Else
                 fileNameZip = txtFileAttach_Link.Text.Trim
             End If
-           
+
 
             Dim file As System.IO.FileInfo = New System.IO.FileInfo(path & fileNameZip)
             Response.Clear()
@@ -1018,5 +1031,5 @@ Public Class ctrlHU_ApproveMutilChangeInfo_New
         End Try
     End Sub
 
-   
+
 End Class

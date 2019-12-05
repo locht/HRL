@@ -194,24 +194,6 @@ Partial Public Class ctrlHU_ApproveMutilChangeInfo_New
     Protected WithEvents cboTitle As Global.Telerik.Web.UI.RadComboBox
 
     '''<summary>
-    '''lbchucvu control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lbchucvu As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
-    '''txtChucVu control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents txtChucVu As Global.Telerik.Web.UI.RadTextBox
-
-    '''<summary>
     '''lbEffectDate control.
     '''</summary>
     '''<remarks>
