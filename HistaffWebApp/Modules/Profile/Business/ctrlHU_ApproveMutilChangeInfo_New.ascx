@@ -170,6 +170,12 @@
                     </tlk:RadTextBox>
                 </td>
             </tr>
+             <tr>
+                <td class="item-head" colspan="8">
+                    <%# Translate("Danh sách nhân viên")%>
+                    <hr />
+                </td>
+            </tr>
             <tr style="visibility: hidden">
                 <td class="lb">
                     <tlk:RadTextBox ID="txtRemindLink" runat="server">
@@ -180,6 +186,7 @@
                     </tlk:RadTextBox>
                 </td>
             </tr>
+           
         </table>
     </tlk:RadPane>
     <tlk:RadPane ID="RadPane3" runat="server" Scrolling="None">
