@@ -1380,8 +1380,11 @@ Public Class ctrlHU_ChangeInfoNewEdit
                     dtdata = (New ProfileRepository).GetOtherList("DECISION_STATUS", True)
                     If dtdata IsNot Nothing AndAlso dtdata.Rows.Count > 0 Then
                         FillRadCombobox(cboStatus, dtdata, "NAME", "ID", True)
-                        cboStatus.ClearSelection()
-                        cboStatus.SelectedIndex = 1
+                        If cboStatus.Text = "Phê duyệt" Then
+                            cboStatus.SelectedIndex = 2
+                        Else
+                            cboStatus.SelectedIndex = 1
+                        End If
                     End If
                 Case CommonMessage.STATE_EDIT
                     EnableControlAll(False, btnFindEmployee)
