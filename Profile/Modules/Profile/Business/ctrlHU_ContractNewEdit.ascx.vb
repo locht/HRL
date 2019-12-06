@@ -1158,7 +1158,10 @@ Public Class ctrlHU_ContractNewEdit
                 If item.WORK_STATUS IsNot Nothing Then
                     hidWorkStatus.Value = item.WORK_STATUS
                 End If
-                hidEmployeeID.Value = item.ID.ToString
+                If IsNumeric(item.ID.ToString) Then
+                    hidEmployeeID.Value = item.ID.ToString
+                End If
+
                 hidOrgCode.Value = item.ORG_CODE
                 If item.OBJECTTIMEKEEPING.HasValue Then
                     code_timekeeping = item.OBJECTTIMEKEEPING
@@ -1172,7 +1175,9 @@ Public Class ctrlHU_ContractNewEdit
                 If item.OBJECT_LABOR IsNot Nothing Then
                     object_labour = item.OBJECT_LABOR
                 End If
-
+                'If IsNumeric(item.ORG_ID) Then
+                '    hidWorkingID.Value = item.ORG_ID
+                'End If
                 txtEmployeeCode.Text = item.EMPLOYEE_CODE
                 txtEmployeeName.Text = item.FULLNAME_VN
                 txtTITLE.Text = item.TITLE_NAME_VN
@@ -1243,17 +1248,34 @@ Public Class ctrlHU_ContractNewEdit
                 working = rep.GetLastWorkingSalary(New WorkingDTO With {.EMPLOYEE_ID = hidEmployeeID.Value})
             End Using
             If working IsNot Nothing Then
-                hidWorkingID.Value = working.ID
+                If IsNumeric(working.ID) Then
+                    hidWorkingID.Value = working.ID
+                End If
                 SetValueComboBox(cboSalTYPE, working.SAL_TYPE_ID, working.SAL_TYPE_NAME)
                 SetValueComboBox(cboTaxTable, working.TAX_TABLE_ID, working.TAX_TABLE_Name)
-                rnBasicSal.Value = working.SAL_BASIC
+                If IsNumeric(working.SAL_BASIC) Then
+                    rnBasicSal.Value = working.SAL_BASIC
+                End If
+                If IsNumeric(working.PERCENT_SALARY) Then
+                    PercentSalary.Value = working.PERCENT_SALARY
+                End If
                 'SalaryInsurance.Value = working.SAL_INS
-                PercentSalary.Value = working.PERCENT_SALARY
-                rnOtherSalary1.Value = working.OTHERSALARY1
-                rnOtherSalary2.Value = working.OTHERSALARY2
-                rnOtherSalary3.Value = working.OTHERSALARY3
-                Allowance_Total.Value = working.ALLOWANCE_TOTAL
-                Salary_Total.Value = working.SAL_TOTAL
+                If IsNumeric(working.OTHERSALARY1) Then
+                    rnOtherSalary1.Value = working.OTHERSALARY1
+                End If
+                If IsNumeric(working.OTHERSALARY2) Then
+                    rnOtherSalary2.Value = working.OTHERSALARY2
+                End If
+                If IsNumeric(working.OTHERSALARY3) Then
+                    rnOtherSalary3.Value = working.OTHERSALARY3
+                End If
+                If IsNumeric(working.ALLOWANCE_TOTAL) Then
+                    Allowance_Total.Value = working.ALLOWANCE_TOTAL
+                End If
+                If IsNumeric(working.SAL_TOTAL) Then
+                    Salary_Total.Value = working.SAL_TOTAL
+                End If
+
                 Working_ID.Text = If(working.DECISION_NO <> "", working.DECISION_NO, working.EFFECT_DATE.Value.Date)
                 If rdStartDate.SelectedDate Is Nothing Then
                     rdStartDate.SelectedDate = working.EFFECT_DATE
