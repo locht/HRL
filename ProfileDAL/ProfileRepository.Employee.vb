@@ -901,8 +901,9 @@ Partial Class ProfileRepository
                 checkEMP = (From p In Context.HU_EMPLOYEE Where p.EMPLOYEE_CODE = EMPCODE Select p.ID).Count
             Loop Until checkEMP = 0
 
-            objEmpData.EMPLOYEE_CODE = EMPCODE
+            'objEmpData.EMPLOYEE_CODE = EMPCODE
             _strEmpCode = EMPCODE
+            objEmpData.EMPLOYEE_CODE = objEmp.EMPLOYEE_CODE
             objEmpData.EMPLOYEE_NAME_OTHER = objEmp.EMPLOYEE_NAME_OTHER
             objEmpData.EMPLOYEE_CODE_OLD = objEmp.EMPLOYEE_CODE_OLD
             objEmpData.BOOK_NO = objEmp.BOOKNO

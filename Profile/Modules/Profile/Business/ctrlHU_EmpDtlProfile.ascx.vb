@@ -860,6 +860,7 @@ Public Class ctrlHU_EmpDtlProfile
                     'RadPane4.Visible = False
                     EmpCode = r.CreateNewEMPLOYEECode()
                     txtTimeID.Text = EmpCode.EMPLOYEE_CODE
+                    txtEmpCODE.Text = EmpCode.EMPLOYEE_CODE
                     EnableControlAll(True, txtOrgName2, btnFindOrg,
                                      cboTitle, txtTitleGroup, cboStaffRank, txtDirectManager, btnFindDirect,
                                      txtmanager, cboObject, cboObjectLabor, txtTimeID, cbObjectBook, cboBasic, cboCertificate, txtAppDung, txtPlaceKS, txtVillage, rdDayPitcode, txtPlacePitcode, txtPerson_Inheritance, rdEffect_Bank)
