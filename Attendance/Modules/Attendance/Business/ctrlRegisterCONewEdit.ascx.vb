@@ -450,7 +450,15 @@ Public Class ctrlRegisterCONewEdit
                                 ShowMessage(Translate("Đã vượt quá số phép qui định, vui lòng điều chỉnh lại dữ liệu"), NotifyType.Warning)
                                 Exit Sub
                             End If
+                        Else
+
+                            Dim curHave As Double = If(txtCUR_HAVE.Text.Trim = "", 0, Double.Parse(txtCUR_HAVE.Text.Trim))
+                            If (rnDAY_NUM.Value > curHave) Then
+                                ShowMessage(Translate("Đã vượt quá số phép qui định, vui lòng điều chỉnh lại dữ liệu"), NotifyType.Warning)
+                                Exit Sub
+                            End If
                         End If
+
 
                         CreateDataBinDing(0)
                         objValidate.LEAVE_FROM = rdLEAVE_FROM.SelectedDate
@@ -489,6 +497,13 @@ Public Class ctrlRegisterCONewEdit
         Try
             Dim empID = ctrlFindEmployeePopup.SelectedEmployeeID(0)
             FillData(empID)
+            'Dim store As New AttendanceStoreProcedure
+            'Dim dtSourceNB = store.GET_INFO_NGHIBU(Decimal.Parse(empID), rdLEAVE_FROM.SelectedDate)
+            'If dtSourceNB.Rows.Count > 0 Then
+            '    txtCUR_HAVE.Text = If(dtSourceNB.Rows(0)("CUR_HAVE") Is Nothing, 0, CDec(dtSourceNB.Rows(0)("CUR_HAVE").ToString()))
+            'Else
+            '    txtCUR_HAVE.Text = 0
+            'End If
         Catch ex As Exception
             DisplayException(Me.ViewName, Me.ID, ex)
             _myLog.WriteLog(_myLog._error, _classPath, method, 0, ex, "")
@@ -548,10 +563,12 @@ Public Class ctrlRegisterCONewEdit
 
     Private Sub Cal_DayLeaveSheet()
         Try
-            Dim sumDay As Decimal = dtDetail.Compute("SUM(DAY_NUM)", "1=1")
+            Dim sumDay = dtDetail.Compute("SUM(DAY_NUM)", "1=1")
+
+            sumDay = If(IsNumeric(sumDay), sumDay, 0)
             rnDAY_NUM.NumberFormat.AllowRounding = False
             rnDAY_NUM.NumberFormat.DecimalDigits = 2
-            rnDAY_NUM.Value = sumDay
+            rnDAY_NUM.Value = CType(sumDay, Decimal)
 
         Catch ex As Exception
             Throw ex
