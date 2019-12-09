@@ -148,8 +148,8 @@ Public Class ctrlHU_TerminateNewEdit
         Try
             GetParams()
             Refresh()
+            CalculateDebtTotal()
             UpdateControlState()
-
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
             DisplayException(Me.ViewName, Me.ID, ex)

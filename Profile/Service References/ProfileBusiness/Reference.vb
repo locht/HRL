@@ -21230,6 +21230,9 @@ Namespace ProfileBusiness
         Private TER_REASON_DETAILField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private TER_REASON_NAMEField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private TITLE_IDField As System.Nullable(Of Decimal)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -22301,6 +22304,19 @@ Namespace ProfileBusiness
                 If (Object.ReferenceEquals(Me.TER_REASON_DETAILField, value) <> true) Then
                     Me.TER_REASON_DETAILField = value
                     Me.RaisePropertyChanged("TER_REASON_DETAIL")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property TER_REASON_NAME() As String
+            Get
+                Return Me.TER_REASON_NAMEField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.TER_REASON_NAMEField, value) <> true) Then
+                    Me.TER_REASON_NAMEField = value
+                    Me.RaisePropertyChanged("TER_REASON_NAME")
                 End If
             End Set
         End Property

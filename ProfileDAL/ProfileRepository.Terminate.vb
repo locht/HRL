@@ -295,8 +295,8 @@ Partial Class ProfileRepository
                         From deci_type In Context.OT_OTHER_LIST.Where(Function(f) p.TYPE_TERMINATE = f.ID).DefaultIfEmpty
                         From status In Context.OT_OTHER_LIST.Where(Function(f) p.STATUS_ID = f.ID)
                          From status_BH In Context.OT_OTHER_LIST.Where(Function(f) p.INSURANCE_STATUS = f.ID).DefaultIfEmpty
-                        From chosen In Context.SE_CHOSEN_ORG.Where(Function(f) f.ORG_ID = e.ORG_ID And
-                                                                       f.USERNAME = log.Username.ToUpper)
+                        From chosen In Context.SE_CHOSEN_ORG.Where(Function(f) f.ORG_ID = e.ORG_ID And f.USERNAME = log.Username.ToUpper)
+                         From ter_rea_name In Context.OT_OTHER_LIST.Where(Function(f) p.TER_REASON = f.ID).DefaultIfEmpty
             Dim terminate = query.Select(Function(p) New TerminateDTO With {
                                              .ID = p.p.ID,
                                              .DECISION_NO = p.p.DECISION_NO,
@@ -356,7 +356,9 @@ Partial Class ProfileRepository
                                              .SALARYMEDIUM_LOSS = p.p.SALARYMEDIUM_LOSS,
                                              .FILENAME = p.p.FILENAME,
                                              .SUM_DEBT = p.p.SUM_DEBT,
-                                             .UPLOADFILE = p.p.UPLOADFILE})
+                                             .UPLOADFILE = p.p.UPLOADFILE,
+                                             .TER_REASON_NAME = p.ter_rea_name.NAME_VN,
+                                           .SUM_COLLECT_DEBT = p.p.SUM_COLLECT_DEBT})
 
             If _filter.EMPLOYEE_CODE IsNot Nothing Then
                 terminate = terminate.Where(Function(p) p.EMPLOYEE_CODE.ToUpper.Contains(_filter.EMPLOYEE_CODE.ToUpper))
@@ -412,7 +414,7 @@ Partial Class ProfileRepository
             Dim query = From p In Context.HU_TERMINATE
                         Join e In Context.HU_EMPLOYEE On p.EMPLOYEE_ID Equals e.ID
                         Join o In Context.HU_ORGANIZATION On e.ORG_ID Equals o.ID
-                        Join t In Context.HU_TITLE On e.TITLE_ID Equals t.ID
+                        Join t In Context.HU_TITLE On e.TITLE_ID Equals t.ID                        
 
             query = query.Where(Function(p) _filter.ID = p.p.ID)
 

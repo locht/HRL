@@ -88,6 +88,7 @@
     Public Property CODE As String
 
     Public Property TER_REASON As Decimal?
+    Public Property TER_REASON_NAME As String
     Public Property DECISION_TYPE As Decimal?
     Public Property DECISION_TYPE_NAME As String
     Public Property SUM_COLLECT_DEBT As Decimal?
