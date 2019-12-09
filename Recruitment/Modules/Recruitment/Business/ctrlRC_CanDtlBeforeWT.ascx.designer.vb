@@ -149,6 +149,24 @@ Partial Public Class ctrlRC_CanDtlBeforeWT
     Protected WithEvents RequiredFieldValidator2 As Global.System.Web.UI.WebControls.RequiredFieldValidator
 
     '''<summary>
+    '''txtWork control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtWork As Global.Telerik.Web.UI.RadTextBox
+
+    '''<summary>
+    '''txtReasonLeave control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtReasonLeave As Global.Telerik.Web.UI.RadTextBox
+
+    '''<summary>
     '''rdFromdate control.
     '''</summary>
     '''<remarks>
@@ -185,6 +203,15 @@ Partial Public Class ctrlRC_CanDtlBeforeWT
     Protected WithEvents cval_EffectDate_ExpireDate As Global.System.Web.UI.WebControls.CustomValidator
 
     '''<summary>
+    '''txtDirectManager control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtDirectManager As Global.Telerik.Web.UI.RadTextBox
+
+    '''<summary>
     '''txtRemark control.
     '''</summary>
     '''<remarks>
@@ -192,6 +219,15 @@ Partial Public Class ctrlRC_CanDtlBeforeWT
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtRemark As Global.Telerik.Web.UI.RadTextBox
+
+    '''<summary>
+    '''rnSalary control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents rnSalary As Global.Telerik.Web.UI.RadNumericTextBox
 
     '''<summary>
     '''RadPane3 control.

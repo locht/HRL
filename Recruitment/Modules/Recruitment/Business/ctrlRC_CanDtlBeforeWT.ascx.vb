@@ -248,16 +248,17 @@ Public Class ctrlRC_CanDtlBeforeWT
             'txtPhone.Text = HttpUtility.HtmlDecode(item("ORG_PHONE").Text)
             txtOrgAddress.Text = HttpUtility.HtmlDecode(item("ORG_ADDRESS").Text)
             txtTitlename.Text = HttpUtility.HtmlDecode(item("TITLE_NAME").Text)
-            ' txtWork.Text = HttpUtility.HtmlDecode(item("WORK").Text)
-            'txtReasonLeave.Text = HttpUtility.HtmlDecode(item("REASON_LEAVE").Text)
+            txtWork.Text = HttpUtility.HtmlDecode(item("WORK").Text)
+            txtReasonLeave.Text = HttpUtility.HtmlDecode(item("REASON_LEAVE").Text)
             If item("FROMDATE").Text.Trim() <> "" Then
                 rdFromdate.SelectedDate = item("FROMDATE").Text
             End If
             If item("TODATE").Text.Trim() <> "" And item("TODATE").Text <> "&nbsp;" Then
                 rdFromdate.SelectedDate = item("TODATE").Text
             End If
-                'txtDirectManager.Text = HttpUtility.HtmlDecode(item("DIRECT_MANAGER").Text)
-                txtRemark.Text = HttpUtility.HtmlDecode(item("REMARK").Text)
+            txtDirectManager.Text = HttpUtility.HtmlDecode(item("DIRECT_MANAGER").Text)
+            txtRemark.Text = HttpUtility.HtmlDecode(item("REMARK").Text)
+            rnSalary.Value = HttpUtility.HtmlDecode(item("SALARY").Text)
         Catch ex As Exception
             DisplayException(Me.ViewName, Me.ID, ex)
         End Try
@@ -314,12 +315,13 @@ Public Class ctrlRC_CanDtlBeforeWT
             objCandidateBeforeWT.TODATE = rdTodate.SelectedDate
             objCandidateBeforeWT.ORG_NAME = txtOrgname.Text
             objCandidateBeforeWT.TITLE_NAME = txtTitlename.Text
-            'objCandidateBeforeWT.WORK = txtWork.Text
+            objCandidateBeforeWT.WORK = txtWork.Text
+            objCandidateBeforeWT.SALARY = rnSalary.Text
             objCandidateBeforeWT.REMARK = txtRemark.Text
             objCandidateBeforeWT.ORG_PHONE = txtOrgname.Text
             objCandidateBeforeWT.ORG_ADDRESS = txtOrgAddress.Text
-            'objCandidateBeforeWT.DIRECT_MANAGER = txtDirectManager.Text
-            'objCandidateBeforeWT.REASON_LEAVE = txtReasonLeave.Text
+            objCandidateBeforeWT.DIRECT_MANAGER = txtDirectManager.Text
+            objCandidateBeforeWT.REASON_LEAVE = txtReasonLeave.Text
 
             Dim gID As Decimal
             If hidEmpBeforeWTID.Value = "" Then
@@ -402,7 +404,10 @@ Public Class ctrlRC_CanDtlBeforeWT
         hidEmpBeforeWTID.Value = ""
         For Each control As Control In RadPaneLeft.Controls
             If TypeOf control Is RadTextBox Then
-                DirectCast(control, RadTextBox).Text = String.Empty
+                DirectCast(control, RadTextBox).Text = String.Empty                
+            End If
+            If TypeOf control Is RadNumericTextBox Then
+                DirectCast(control, RadNumericTextBox).Text = String.Empty
             End If
         Next
         rdFromdate.SelectedDate = Nothing

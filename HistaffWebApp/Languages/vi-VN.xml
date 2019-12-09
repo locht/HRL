@@ -12353,7 +12353,7 @@ Xin cám ơn!
       <string>MÔ TẢ CÔNG VIỆC</string>
     </Key>
     <Value>
-      <string>Mô tả công việc chính</string>
+      <string>Mô tả công việc</string>
     </Value>
   </Item>
   <Item>
@@ -44340,6 +44340,70 @@ Xin cám ơn!
     </Key>
     <Value>
       <string>Phỏng vấn</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>CTRLRC_CANDTLBEFOREWT</string>
+    </Key>
+    <Value>
+      <string>ctrlRC_CanDtlBeforeWT</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>CTRLRC_CANBASICINFO</string>
+    </Key>
+    <Value>
+      <string>ctrlRC_CanBasicInfo</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>BẠN PHẢI NHẬP ĐỊA CHỈ CÔNG TY</string>
+    </Key>
+    <Value>
+      <string>Bạn phải nhập địa chỉ công ty</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>BẠN PHẢI NHẬP NGÀY VÀO.</string>
+    </Key>
+    <Value>
+      <string>Bạn phải nhập ngày vào.</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>BẠN PHẢI NHẬP NGÀY VÀO</string>
+    </Key>
+    <Value>
+      <string>Bạn phải nhập ngày vào</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>NGÀY NGHỈ PHẢI LỚN HƠN NGÀY VÀO.</string>
+    </Key>
+    <Value>
+      <string>Ngày nghỉ phải lớn hơn ngày vào.</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>QLTT</string>
+    </Key>
+    <Value>
+      <string>QLTT</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>HỒ SƠ ỨNG VIÊN - QUÁ TRÌNH CÔNG TÁC</string>
+    </Key>
+    <Value>
+      <string>Hồ sơ ứng viên - Quá trình công tác</string>
     </Value>
   </Item>
 </SerializableDictionaryOfStringString>

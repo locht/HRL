@@ -56,10 +56,10 @@
                         ToolTip="<%$ Translate: Bạn phải nhập địa chỉ công ty %>"> </asp:RequiredFieldValidator>
                 </td>
             </tr>
-            <%--<tr>
+            <tr>
                
                 <td style="text-align: left" class="lb">
-                    <%# Translate("Công việc chính")%>
+                    <%# Translate("Mô tả công việc")%>
                 </td>
                 <td>
                     <tlk:RadTextBox runat="server" ID="txtWork">
@@ -72,7 +72,7 @@
                     <tlk:RadTextBox runat="server" ID="txtReasonLeave">
                     </tlk:RadTextBox>
                 </td>
-            </tr>--%>
+            </tr>
             <tr>
                 <td style="text-align: left" class="lb">
                     <%# Translate("Từ tháng/năm")%>
@@ -96,19 +96,28 @@
                 </td>
             </tr>
             <tr>
-                <%--<td class="lb" style="text-align: left">
-                    <%# Translate("Cấp trên trực tiếp")%>
+                <td class="lb" style="text-align: left">
+                    <%# Translate("QLTT")%>
                 </td>
                 <td>
                     <tlk:RadTextBox ID="txtDirectManager" runat="server">
                     </tlk:RadTextBox>
-                </td>--%>
+                </td>
                 <td class="lb" style="text-align: left">
                     <%# Translate("Ghi chú")%>
                 </td>
                 <td colspan="3">
                     <tlk:RadTextBox ID="txtRemark" runat="server" Width="100%">
                     </tlk:RadTextBox>
+                </td>
+            </tr>
+             <tr>
+                <td class="lb" style="text-align: left">
+                    <%# Translate("Mức lương")%>
+                </td>
+                <td>
+                    <tlk:RadNumericTextBox ID="rnSalary" runat="server" MinValue="0" NumberFormat-DecimalDigits="2" NumberFormat-GroupSizes="3">
+                    </tlk:RadNumericTextBox>
                 </td>
             </tr>
         </table>
@@ -159,21 +168,26 @@
                         UniqueName="TITLE_NAME" Visible="True">
                         <HeaderStyle Width="100px" HorizontalAlign="Center" />
                     </tlk:GridBoundColumn>
-                 <%--   <tlk:GridBoundColumn DataField="DIRECT_MANAGER" HeaderText="<%$ Translate : Cấp trên trực tiếp %>"
+                 <tlk:GridBoundColumn DataField="DIRECT_MANAGER" HeaderText="<%$ Translate : QLTT %>"
                         UniqueName="DIRECT_MANAGER" Visible="True">
                         <HeaderStyle Width="100px" HorizontalAlign="Center" />
-                    </tlk:GridBoundColumn>--%>
-                    <%--<tlk:GridBoundColumn DataField="WORK" HeaderText="<%$ Translate : Công việc chính %>"
+                    </tlk:GridBoundColumn>
+                   <tlk:GridBoundColumn DataField="WORK" HeaderText="<%$ Translate : Mô tả công việc %>"
                         UniqueName="WORK" Visible="True">
                         <HeaderStyle Width="100px" HorizontalAlign="Center" />
                     </tlk:GridBoundColumn>
                     <tlk:GridBoundColumn DataField="REASON_LEAVE" HeaderText="<%$ Translate : Lý do nghỉ việc %>"
                         UniqueName="REASON_LEAVE" Visible="True">
                         <HeaderStyle Width="100px" HorizontalAlign="Center" />
-                    </tlk:GridBoundColumn>--%>
+                    </tlk:GridBoundColumn>
                     <tlk:GridBoundColumn DataField="REMARK" HeaderText="<%$ Translate : Ghi chú %>" UniqueName="REMARK"
                         Visible="True">
                         <HeaderStyle Width="200px" HorizontalAlign="Center" />
+                    </tlk:GridBoundColumn>
+                     <tlk:GridBoundColumn DataField="SALARY" HeaderText="<%$ Translate : Mức lương %>" UniqueName="SALARY"
+                        Visible="True" DataFormatString="{0:#,##0}">
+                        <HeaderStyle Width="200px" HorizontalAlign="Center" />
+                        <ItemStyle HorizontalAlign="Right" />
                     </tlk:GridBoundColumn>
                 </Columns>
             </MasterTableView>
