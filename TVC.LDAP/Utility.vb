@@ -55,7 +55,7 @@ Public Class Utility
 
     Friend Shared Function GetDirectoryObject(ByVal LdapDomain As String, ByVal UserName As String, ByVal Password As String) As DirectoryEntry
         Dim oDE As DirectoryEntry
-        oDE = New DirectoryEntry(LdapDomain, UserName, Password, AuthenticationTypes.None)
+        oDE = New DirectoryEntry(LdapDomain, UserName, Password, AuthenticationTypes.Secure)
         'oDE = New DirectoryEntry(ADPath, UserName, Password, AuthenticationTypes.Anonymous)
         Return oDE
     End Function

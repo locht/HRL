@@ -859,8 +859,8 @@ Public Class ctrlHU_EmpDtlProfile
                     rtIdTitleConcurrent.Visible = False
                     'RadPane4.Visible = False
                     EmpCode = r.CreateNewEMPLOYEECode()
-                    txtTimeID.Text = EmpCode.EMPLOYEE_CODE
-                    txtEmpCODE.Text = EmpCode.EMPLOYEE_CODE
+                    'txtTimeID.Text = EmpCode.EMPLOYEE_CODE
+                    'txtEmpCODE.Text = EmpCode.EMPLOYEE_CODE
                     EnableControlAll(True, txtOrgName2, btnFindOrg,
                                      cboTitle, txtTitleGroup, cboStaffRank, txtDirectManager, btnFindDirect,
                                      txtmanager, cboObject, cboObjectLabor, txtTimeID, cbObjectBook, cboBasic, cboCertificate, txtAppDung, txtPlaceKS, txtVillage, rdDayPitcode, txtPlacePitcode, txtPerson_Inheritance, rdEffect_Bank)
@@ -1971,6 +1971,7 @@ Public Class ctrlHU_EmpDtlProfile
         Dim EmpEdu As New EmployeeEduDTO
         Dim EmpHealth As EmployeeHealthDTO
         Dim _binaryImage As Byte()
+        Dim r As New ProfileBusinessRepository
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
         Try
             Dim startTime As DateTime = DateTime.UtcNow
@@ -2021,7 +2022,8 @@ Public Class ctrlHU_EmpDtlProfile
                 EmployeeInfo.LEVEL_MANAGER = hidLevelManager.Value
             End If
             'them moi cac truong tại đây
-            EmployeeInfo.ITIME_ID = txtTimeID.Text
+            EmpCode = r.CreateNewEMPLOYEECode()
+            EmployeeInfo.ITIME_ID = EmpCode.EMPLOYEE_CODE
             If cbObjectBook.SelectedValue <> "" Then
                 EmployeeInfo.OBJECT_INS = cboObjectIns.SelectedValue
                 EmployeeInfo.OBJECT_INS_NAME = cboObjectIns.Text

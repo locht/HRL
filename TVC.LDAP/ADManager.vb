@@ -323,8 +323,10 @@ Public Class ADManager
                                         ByVal BaseDN As String) As Boolean
         Try
 
-            Dim de As DirectoryEntry = Utility.GetDirectoryObject(LDParth & "/" & BaseDN,
-                                                                  "uid=" & UserName & "," & BaseDN,
+            'Dim de As DirectoryEntry = Utility.GetDirectoryObject(LDParth & "/" & BaseDN,
+            '                                                      "uid=" & UserName & "," & BaseDN,
+            '                                                      Password)
+            Dim de As DirectoryEntry = Utility.GetDirectoryObject(LDParth.ToUpper(), UserName,
                                                                   Password)
             Dim obj = de.NativeObject
             Return True

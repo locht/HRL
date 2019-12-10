@@ -2747,6 +2747,9 @@ Partial Class RecruitmentRepository
                 Dim objEmpData As New RC_CANDIDATE With {.ID = canID}
                 Context.RC_CANDIDATE.Attach(objEmpData)
                 objEmpData.STATUS_ID = statusID
+                If statusID = "DUDK" Then
+                    objEmpData.IS_BLACKLIST = Nothing
+                End If
                 If statusID = RecruitmentCommon.RC_CANDIDATE_STATUS.LANHANVIEN_ID Then
                     Dim empCode As String = ""
                     TransferCandidateToHSNV(canID, log, empCode)
