@@ -7,6 +7,7 @@ Imports System.Configuration
 
 Imports Framework.UI
 Imports Framework.UI.Utilities
+Imports Common
 
 ' NOTE: You can use the "Rename" command on the context menu to change the class name "Service1" in both code and config file together.
 Namespace InsuranceBusiness.ServiceImplementations
@@ -15,10 +16,24 @@ Namespace InsuranceBusiness.ServiceImplementations
 
 #Region "Danh mục đơn vị bảo hiểm"
         Public Function GetInsListInsurance(Optional ByVal Is_Full As Boolean = False) As DataTable _
-                     Implements ServiceContracts.IInsuranceBusiness.GetInsListInsurance
+            Implements ServiceContracts.IInsuranceBusiness.GetInsListInsurance
             Try
+
                 Dim rep As New DataAccess.QueryData
                 Dim dtResult As Object = rep.ExecuteStore("PKG_INS_LIST.SPS_INS_LIST_INSURANCE", New With {.P_LOADFULL = If(Is_Full, "1", "0"),
+                                                                                                           .P_CUR = OUT_CURSOR})
+                Return dtResult
+            Catch ex As Exception
+                Return Nothing
+            End Try
+        End Function
+        Public Function GetInsListInsuranceByUsername(ByVal User_Name As String, Optional ByVal Is_Full As Boolean = False) As DataTable _
+            Implements ServiceContracts.IInsuranceBusiness.GetInsListInsuranceByUsername
+            Try
+
+                Dim rep As New DataAccess.QueryData
+                Dim dtResult As Object = rep.ExecuteStore("PKG_INS_LIST.SPS_INS_LIST_INSURANCE", New With {.P_USERNAME = User_Name,
+                                                                                                           .P_LOADFULL = If(Is_Full, "1", "0"),
                                                                                                            .P_CUR = OUT_CURSOR})
                 Return dtResult
             Catch ex As Exception

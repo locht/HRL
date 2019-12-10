@@ -59,6 +59,8 @@ Namespace InsuranceBusiness.ServiceContracts
         <OperationContract()>
         Function GetInsListInsurance(Optional ByVal Is_Full As Boolean = False) As DataTable
         <OperationContract()>
+        Function GetInsListInsuranceByUsername(ByVal User_Name As String, Optional ByVal Is_Full As Boolean = False) As DataTable
+        <OperationContract()>
         Function UpdateInsListInsurance(ByVal username As String, ByVal id As Double? _
                                             , ByVal code As String _
                                             , ByVal name As String _

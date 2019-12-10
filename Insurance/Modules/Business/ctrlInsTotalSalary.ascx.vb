@@ -301,7 +301,8 @@ Public Class ctrlInsTotalSalary
 
     Private Sub GetDataCombo()
         Try
-            Dim lstSource As DataTable = (New InsuranceBusiness.InsuranceBusinessClient).GetInsListInsurance(False)
+            Dim rep As New InsuranceBusiness.InsuranceBusinessClient
+            Dim lstSource As DataTable = rep.GetInsListInsuranceByUsername(Common.Common.GetUsername(), False)
             FillRadCombobox(ddlINS_ORG_ID, lstSource, "NAME", "ID", True)
             If ddlINS_ORG_ID.Items.Count > 0 Then
                 ddlINS_ORG_ID.SelectedValue = lstSource.Rows(0)("ID")

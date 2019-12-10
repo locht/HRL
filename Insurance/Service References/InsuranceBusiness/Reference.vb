@@ -10392,6 +10392,9 @@ Namespace InsuranceBusiness
      System.ServiceModel.ServiceContractAttribute(ConfigurationName:="InsuranceBusiness.IInsuranceBusiness")>  _
     Public Interface IInsuranceBusiness
         
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/UpdateHealthImport", ReplyAction:="http://tempuri.org/IInsuranceBusiness/UpdateHealthImportResponse")>  _
+        Function UpdateHealthImport(ByVal username As String, ByVal employee_id As String, ByVal ins_org_name As String, ByVal seniority_insurance As String, ByVal social_number As String, ByVal social_status As String, ByVal social_grant_date As String, ByVal social_save_number As String, ByVal health_number As String, ByVal health_status As String, ByVal health_effect_from_date As String, ByVal health_effect_to_date As String, ByVal health_receive_date As String, ByVal health_receiver As String, ByVal health_area_ins As String) As Double
+        
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/GetInsHealthExt", ReplyAction:="http://tempuri.org/IInsuranceBusiness/GetInsHealthExtResponse")>  _
         Function GetInsHealthExt(ByVal username As String, ByVal id As System.Nullable(Of Double), ByVal employee_id As String, ByVal ins_org_id As System.Nullable(Of Double), ByVal health_ins_card As String, ByVal effective_from_date As System.Nullable(Of Date), ByVal effective_to_date As System.Nullable(Of Date), ByVal health_from_date As System.Nullable(Of Date), ByVal health_to_date As System.Nullable(Of Date)) As System.Data.DataTable
         
@@ -10403,6 +10406,9 @@ Namespace InsuranceBusiness
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/GET_MLTTC", ReplyAction:="http://tempuri.org/IInsuranceBusiness/GET_MLTTCResponse")>  _
         Function GET_MLTTC(ByVal p_date As Date) As System.Data.DataTable
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/InsertINS_CHANGE", ReplyAction:="http://tempuri.org/IInsuranceBusiness/InsertINS_CHANGEResponse")>  _
+        Function InsertINS_CHANGE(ByVal objLeave As InsuranceBusiness.INS_CHANGEDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/ModifyINS_CHANGE", ReplyAction:="http://tempuri.org/IInsuranceBusiness/ModifyINS_CHANGEResponse")>  _
         Function ModifyINS_CHANGE(ByVal objLeave As InsuranceBusiness.INS_CHANGEDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
@@ -10800,9 +10806,6 @@ Namespace InsuranceBusiness
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/DeleteInsHealthImport", ReplyAction:="http://tempuri.org/IInsuranceBusiness/DeleteInsHealthImportResponse")>  _
         Function DeleteInsHealthImport(ByVal username As String, ByVal id As System.Nullable(Of Double)) As Double
         
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/UpdateHealthImport", ReplyAction:="http://tempuri.org/IInsuranceBusiness/UpdateHealthImportResponse")>  _
-        Function UpdateHealthImport(ByVal username As String, ByVal employee_id As String, ByVal ins_org_name As String, ByVal seniority_insurance As String, ByVal social_number As String, ByVal social_status As String, ByVal social_grant_date As String, ByVal social_save_number As String, ByVal health_number As String, ByVal health_status As String, ByVal health_effect_from_date As String, ByVal health_effect_to_date As String, ByVal health_receive_date As String, ByVal health_receiver As String, ByVal health_area_ins As String) As Double
-        
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/GetComboboxData", ReplyAction:="http://tempuri.org/IInsuranceBusiness/GetComboboxDataResponse")>  _
         Function GetComboboxData(ByRef cbxData As InsuranceBusiness.ComboBoxDataDTO) As Boolean
         
@@ -10835,6 +10838,9 @@ Namespace InsuranceBusiness
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/GetInsListInsurance", ReplyAction:="http://tempuri.org/IInsuranceBusiness/GetInsListInsuranceResponse")>  _
         Function GetInsListInsurance(ByVal Is_Full As Boolean) As System.Data.DataTable
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/GetInsListInsuranceByUsername", ReplyAction:="http://tempuri.org/IInsuranceBusiness/GetInsListInsuranceByUsernameResponse")>  _
+        Function GetInsListInsuranceByUsername(ByVal User_Name As String, ByVal Is_Full As Boolean) As System.Data.DataTable
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/UpdateInsListInsurance", ReplyAction:="http://tempuri.org/IInsuranceBusiness/UpdateInsListInsuranceResponse")>  _
         Function UpdateInsListInsurance(ByVal username As String, ByVal id As System.Nullable(Of Double), ByVal code As String, ByVal name As String, ByVal address As String, ByVal phone_number As String) As Boolean
@@ -11219,9 +11225,6 @@ Namespace InsuranceBusiness
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/GetINS_CHANGEById", ReplyAction:="http://tempuri.org/IInsuranceBusiness/GetINS_CHANGEByIdResponse")>  _
         Function GetINS_CHANGEById(ByVal _id As System.Nullable(Of Decimal)) As InsuranceBusiness.INS_CHANGEDTO
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/InsertINS_CHANGE", ReplyAction:="http://tempuri.org/IInsuranceBusiness/InsertINS_CHANGEResponse")>  _
-        Function InsertINS_CHANGE(ByVal objLeave As InsuranceBusiness.INS_CHANGEDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
     End Interface
     
     <System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")>  _
@@ -11255,6 +11258,10 @@ Namespace InsuranceBusiness
             MyBase.New(binding, remoteAddress)
         End Sub
         
+        Public Function UpdateHealthImport(ByVal username As String, ByVal employee_id As String, ByVal ins_org_name As String, ByVal seniority_insurance As String, ByVal social_number As String, ByVal social_status As String, ByVal social_grant_date As String, ByVal social_save_number As String, ByVal health_number As String, ByVal health_status As String, ByVal health_effect_from_date As String, ByVal health_effect_to_date As String, ByVal health_receive_date As String, ByVal health_receiver As String, ByVal health_area_ins As String) As Double Implements InsuranceBusiness.IInsuranceBusiness.UpdateHealthImport
+            Return MyBase.Channel.UpdateHealthImport(username, employee_id, ins_org_name, seniority_insurance, social_number, social_status, social_grant_date, social_save_number, health_number, health_status, health_effect_from_date, health_effect_to_date, health_receive_date, health_receiver, health_area_ins)
+        End Function
+        
         Public Function GetInsHealthExt(ByVal username As String, ByVal id As System.Nullable(Of Double), ByVal employee_id As String, ByVal ins_org_id As System.Nullable(Of Double), ByVal health_ins_card As String, ByVal effective_from_date As System.Nullable(Of Date), ByVal effective_to_date As System.Nullable(Of Date), ByVal health_from_date As System.Nullable(Of Date), ByVal health_to_date As System.Nullable(Of Date)) As System.Data.DataTable Implements InsuranceBusiness.IInsuranceBusiness.GetInsHealthExt
             Return MyBase.Channel.GetInsHealthExt(username, id, employee_id, ins_org_id, health_ins_card, effective_from_date, effective_to_date, health_from_date, health_to_date)
         End Function
@@ -11269,6 +11276,10 @@ Namespace InsuranceBusiness
         
         Public Function GET_MLTTC(ByVal p_date As Date) As System.Data.DataTable Implements InsuranceBusiness.IInsuranceBusiness.GET_MLTTC
             Return MyBase.Channel.GET_MLTTC(p_date)
+        End Function
+        
+        Public Function InsertINS_CHANGE(ByVal objLeave As InsuranceBusiness.INS_CHANGEDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean Implements InsuranceBusiness.IInsuranceBusiness.InsertINS_CHANGE
+            Return MyBase.Channel.InsertINS_CHANGE(objLeave, log, gID)
         End Function
         
         Public Function ModifyINS_CHANGE(ByVal objLeave As InsuranceBusiness.INS_CHANGEDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean Implements InsuranceBusiness.IInsuranceBusiness.ModifyINS_CHANGE
@@ -11751,10 +11762,6 @@ Namespace InsuranceBusiness
             Return MyBase.Channel.DeleteInsHealthImport(username, id)
         End Function
         
-        Public Function UpdateHealthImport(ByVal username As String, ByVal employee_id As String, ByVal ins_org_name As String, ByVal seniority_insurance As String, ByVal social_number As String, ByVal social_status As String, ByVal social_grant_date As String, ByVal social_save_number As String, ByVal health_number As String, ByVal health_status As String, ByVal health_effect_from_date As String, ByVal health_effect_to_date As String, ByVal health_receive_date As String, ByVal health_receiver As String, ByVal health_area_ins As String) As Double Implements InsuranceBusiness.IInsuranceBusiness.UpdateHealthImport
-            Return MyBase.Channel.UpdateHealthImport(username, employee_id, ins_org_name, seniority_insurance, social_number, social_status, social_grant_date, social_save_number, health_number, health_status, health_effect_from_date, health_effect_to_date, health_receive_date, health_receiver, health_area_ins)
-        End Function
-        
         Public Function GetComboboxData(ByRef cbxData As InsuranceBusiness.ComboBoxDataDTO) As Boolean Implements InsuranceBusiness.IInsuranceBusiness.GetComboboxData
             Return MyBase.Channel.GetComboboxData(cbxData)
         End Function
@@ -11797,6 +11804,10 @@ Namespace InsuranceBusiness
         
         Public Function GetInsListInsurance(ByVal Is_Full As Boolean) As System.Data.DataTable Implements InsuranceBusiness.IInsuranceBusiness.GetInsListInsurance
             Return MyBase.Channel.GetInsListInsurance(Is_Full)
+        End Function
+        
+        Public Function GetInsListInsuranceByUsername(ByVal User_Name As String, ByVal Is_Full As Boolean) As System.Data.DataTable Implements InsuranceBusiness.IInsuranceBusiness.GetInsListInsuranceByUsername
+            Return MyBase.Channel.GetInsListInsuranceByUsername(User_Name, Is_Full)
         End Function
         
         Public Function UpdateInsListInsurance(ByVal username As String, ByVal id As System.Nullable(Of Double), ByVal code As String, ByVal name As String, ByVal address As String, ByVal phone_number As String) As Boolean Implements InsuranceBusiness.IInsuranceBusiness.UpdateInsListInsurance
@@ -12089,10 +12100,6 @@ Namespace InsuranceBusiness
         
         Public Function GetINS_CHANGEById(ByVal _id As System.Nullable(Of Decimal)) As InsuranceBusiness.INS_CHANGEDTO Implements InsuranceBusiness.IInsuranceBusiness.GetINS_CHANGEById
             Return MyBase.Channel.GetINS_CHANGEById(_id)
-        End Function
-        
-        Public Function InsertINS_CHANGE(ByVal objLeave As InsuranceBusiness.INS_CHANGEDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean Implements InsuranceBusiness.IInsuranceBusiness.InsertINS_CHANGE
-            Return MyBase.Channel.InsertINS_CHANGE(objLeave, log, gID)
         End Function
     End Class
 End Namespace
