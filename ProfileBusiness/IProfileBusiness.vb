@@ -1930,6 +1930,8 @@ Namespace ProfileBusiness.ServiceContracts
         <OperationContract()>
         Function GetCurrentPeriod() As DataTable
         <OperationContract()>
+        Function Check_has_Ter(ByVal empid As Decimal) As Decimal
+        <OperationContract()>
         Function ApproveListTerminate(ByVal listID As List(Of Decimal), ByVal log As UserLog) As Boolean
         <OperationContract()>
         Function CalculateTerminate(ByVal EmployeeId As Decimal, ByVal TerLateDate As Date) As DataTable
