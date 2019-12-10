@@ -46,6 +46,7 @@
     Public Property JOIN_DATE_STATE As Date?
     Public Property DIRECT_MANAGER As Decimal?
     Public Property DIRECT_MANAGER_NAME As String
+    Public Property DIRECT_MANAGER_TITLE_NAME As String  'Chức danh quản lý trực tiếp
     Public Property LEVEL_MANAGER As Decimal?
     Public Property LEVEL_MANAGER_NAME As String
 

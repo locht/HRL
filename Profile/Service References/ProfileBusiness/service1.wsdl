@@ -15,14 +15,26 @@
     <xsd:schema targetNamespace="http://tempuri.org/Imports">
       <xsd:import namespace="http://tempuri.org/" />
       <xsd:import namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
-      <xsd:import namespace="http://schemas.datacontract.org/2004/07/System.Data" />
       <xsd:import namespace="http://schemas.datacontract.org/2004/07/ProfileDAL" />
-      <xsd:import namespace="http://schemas.datacontract.org/2004/07/System" />
       <xsd:import namespace="http://schemas.datacontract.org/2004/07/Framework.Data" />
       <xsd:import namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+      <xsd:import namespace="http://schemas.datacontract.org/2004/07/System.Data" />
+      <xsd:import namespace="http://schemas.datacontract.org/2004/07/System" />
       <xsd:import />
     </xsd:schema>
   </wsdl:types>
+  <wsdl:message name="IProfileBusiness_ModifyCompetencyCourse_InputMessage">
+    <wsdl:part name="parameters" element="tns:ModifyCompetencyCourse" />
+  </wsdl:message>
+  <wsdl:message name="IProfileBusiness_ModifyCompetencyCourse_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ModifyCompetencyCourseResponse" />
+  </wsdl:message>
+  <wsdl:message name="IProfileBusiness_DeleteCompetencyCourse_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteCompetencyCourse" />
+  </wsdl:message>
+  <wsdl:message name="IProfileBusiness_DeleteCompetencyCourse_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteCompetencyCourseResponse" />
+  </wsdl:message>
   <wsdl:message name="IProfileBusiness_GetCourseByList_InputMessage">
     <wsdl:part name="parameters" element="tns:GetCourseByList" />
   </wsdl:message>
@@ -334,6 +346,18 @@
   </wsdl:message>
   <wsdl:message name="IProfileBusiness_CHECK_LOCATION_EXITS_OutputMessage">
     <wsdl:part name="parameters" element="tns:CHECK_LOCATION_EXITSResponse" />
+  </wsdl:message>
+  <wsdl:message name="IProfileBusiness_GetDisciplineProccess_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetDisciplineProccess" />
+  </wsdl:message>
+  <wsdl:message name="IProfileBusiness_GetDisciplineProccess_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetDisciplineProccessResponse" />
+  </wsdl:message>
+  <wsdl:message name="IProfileBusiness_GetInsuranceProccess_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetInsuranceProccess" />
+  </wsdl:message>
+  <wsdl:message name="IProfileBusiness_GetInsuranceProccess_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetInsuranceProccessResponse" />
   </wsdl:message>
   <wsdl:message name="IProfileBusiness_GetEmployeeHistory_InputMessage">
     <wsdl:part name="parameters" element="tns:GetEmployeeHistory" />
@@ -833,17 +857,17 @@
   <wsdl:message name="IProfileBusiness_InsertCompetencyCourse_OutputMessage">
     <wsdl:part name="parameters" element="tns:InsertCompetencyCourseResponse" />
   </wsdl:message>
-  <wsdl:message name="IProfileBusiness_ModifyCompetencyCourse_InputMessage">
-    <wsdl:part name="parameters" element="tns:ModifyCompetencyCourse" />
+  <wsdl:message name="IProfileBusiness_ModifyDiscipline_InputMessage">
+    <wsdl:part name="parameters" element="tns:ModifyDiscipline" />
   </wsdl:message>
-  <wsdl:message name="IProfileBusiness_ModifyCompetencyCourse_OutputMessage">
-    <wsdl:part name="parameters" element="tns:ModifyCompetencyCourseResponse" />
+  <wsdl:message name="IProfileBusiness_ModifyDiscipline_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ModifyDisciplineResponse" />
   </wsdl:message>
-  <wsdl:message name="IProfileBusiness_DeleteCompetencyCourse_InputMessage">
-    <wsdl:part name="parameters" element="tns:DeleteCompetencyCourse" />
+  <wsdl:message name="IProfileBusiness_ValidateDiscipline_InputMessage">
+    <wsdl:part name="parameters" element="tns:ValidateDiscipline" />
   </wsdl:message>
-  <wsdl:message name="IProfileBusiness_DeleteCompetencyCourse_OutputMessage">
-    <wsdl:part name="parameters" element="tns:DeleteCompetencyCourseResponse" />
+  <wsdl:message name="IProfileBusiness_ValidateDiscipline_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ValidateDisciplineResponse" />
   </wsdl:message>
   <wsdl:message name="IProfileBusiness_DeleteDiscipline_InputMessage">
     <wsdl:part name="parameters" element="tns:DeleteDiscipline" />
@@ -1343,17 +1367,11 @@
   <wsdl:message name="IProfileBusiness_GetConcurrentlyProccess_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetConcurrentlyProccessResponse" />
   </wsdl:message>
-  <wsdl:message name="IProfileBusiness_GetDisciplineProccess_InputMessage">
-    <wsdl:part name="parameters" element="tns:GetDisciplineProccess" />
+  <wsdl:message name="IProfileBusiness_ValidateEmployeeTrain_InputMessage">
+    <wsdl:part name="parameters" element="tns:ValidateEmployeeTrain" />
   </wsdl:message>
-  <wsdl:message name="IProfileBusiness_GetDisciplineProccess_OutputMessage">
-    <wsdl:part name="parameters" element="tns:GetDisciplineProccessResponse" />
-  </wsdl:message>
-  <wsdl:message name="IProfileBusiness_GetInsuranceProccess_InputMessage">
-    <wsdl:part name="parameters" element="tns:GetInsuranceProccess" />
-  </wsdl:message>
-  <wsdl:message name="IProfileBusiness_GetInsuranceProccess_OutputMessage">
-    <wsdl:part name="parameters" element="tns:GetInsuranceProccessResponse" />
+  <wsdl:message name="IProfileBusiness_ValidateEmployeeTrain_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ValidateEmployeeTrainResponse" />
   </wsdl:message>
   <wsdl:message name="IProfileBusiness_GetEmpWorkingBefore_InputMessage">
     <wsdl:part name="parameters" element="tns:GetEmpWorkingBefore" />
@@ -1697,6 +1715,12 @@
   <wsdl:message name="IProfileBusiness_GetEmployeCurrentByID_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetEmployeCurrentByIDResponse" />
   </wsdl:message>
+  <wsdl:message name="IProfileBusiness_InsertListWorking1_InputMessage">
+    <wsdl:part name="parameters" element="tns:InsertListWorking1" />
+  </wsdl:message>
+  <wsdl:message name="IProfileBusiness_InsertListWorking1_OutputMessage">
+    <wsdl:part name="parameters" element="tns:InsertListWorking1Response" />
+  </wsdl:message>
   <wsdl:message name="IProfileBusiness_InsertWorking1_InputMessage">
     <wsdl:part name="parameters" element="tns:InsertWorking1" />
   </wsdl:message>
@@ -1852,18 +1876,6 @@
   </wsdl:message>
   <wsdl:message name="IProfileBusiness_InsertDiscipline_OutputMessage">
     <wsdl:part name="parameters" element="tns:InsertDisciplineResponse" />
-  </wsdl:message>
-  <wsdl:message name="IProfileBusiness_ModifyDiscipline_InputMessage">
-    <wsdl:part name="parameters" element="tns:ModifyDiscipline" />
-  </wsdl:message>
-  <wsdl:message name="IProfileBusiness_ModifyDiscipline_OutputMessage">
-    <wsdl:part name="parameters" element="tns:ModifyDisciplineResponse" />
-  </wsdl:message>
-  <wsdl:message name="IProfileBusiness_ValidateDiscipline_InputMessage">
-    <wsdl:part name="parameters" element="tns:ValidateDiscipline" />
-  </wsdl:message>
-  <wsdl:message name="IProfileBusiness_ValidateDiscipline_OutputMessage">
-    <wsdl:part name="parameters" element="tns:ValidateDisciplineResponse" />
   </wsdl:message>
   <wsdl:message name="IProfileBusiness_GetStaffRank_InputMessage">
     <wsdl:part name="parameters" element="tns:GetStaffRank" />
@@ -2129,6 +2141,12 @@
   <wsdl:message name="IProfileBusiness_InsertEmployee_OutputMessage">
     <wsdl:part name="parameters" element="tns:InsertEmployeeResponse" />
   </wsdl:message>
+  <wsdl:message name="IProfileBusiness_CreateNewEMPLOYEECode_InputMessage">
+    <wsdl:part name="parameters" element="tns:CreateNewEMPLOYEECode" />
+  </wsdl:message>
+  <wsdl:message name="IProfileBusiness_CreateNewEMPLOYEECode_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CreateNewEMPLOYEECodeResponse" />
+  </wsdl:message>
   <wsdl:message name="IProfileBusiness_ModifyEmployee_InputMessage">
     <wsdl:part name="parameters" element="tns:ModifyEmployee" />
   </wsdl:message>
@@ -2368,12 +2386,6 @@
   </wsdl:message>
   <wsdl:message name="IProfileBusiness_DeleteEmployeeTrain_OutputMessage">
     <wsdl:part name="parameters" element="tns:DeleteEmployeeTrainResponse" />
-  </wsdl:message>
-  <wsdl:message name="IProfileBusiness_ValidateEmployeeTrain_InputMessage">
-    <wsdl:part name="parameters" element="tns:ValidateEmployeeTrain" />
-  </wsdl:message>
-  <wsdl:message name="IProfileBusiness_ValidateEmployeeTrain_OutputMessage">
-    <wsdl:part name="parameters" element="tns:ValidateEmployeeTrainResponse" />
   </wsdl:message>
   <wsdl:message name="IProfileBusiness_GetlistWelfareEMP_InputMessage">
     <wsdl:part name="parameters" element="tns:GetlistWelfareEMP" />
@@ -3396,6 +3408,14 @@
     <wsdl:part name="parameters" element="tns:GET_INFO_EMPLOYEEResponse" />
   </wsdl:message>
   <wsdl:portType name="IProfileBusiness">
+    <wsdl:operation name="ModifyCompetencyCourse">
+      <wsdl:input wsaw:Action="http://tempuri.org/IProfileBusiness/ModifyCompetencyCourse" message="tns:IProfileBusiness_ModifyCompetencyCourse_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IProfileBusiness/ModifyCompetencyCourseResponse" message="tns:IProfileBusiness_ModifyCompetencyCourse_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteCompetencyCourse">
+      <wsdl:input wsaw:Action="http://tempuri.org/IProfileBusiness/DeleteCompetencyCourse" message="tns:IProfileBusiness_DeleteCompetencyCourse_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IProfileBusiness/DeleteCompetencyCourseResponse" message="tns:IProfileBusiness_DeleteCompetencyCourse_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="GetCourseByList">
       <wsdl:input wsaw:Action="http://tempuri.org/IProfileBusiness/GetCourseByList" message="tns:IProfileBusiness_GetCourseByList_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IProfileBusiness/GetCourseByListResponse" message="tns:IProfileBusiness_GetCourseByList_OutputMessage" />
@@ -3603,6 +3623,14 @@
     <wsdl:operation name="CHECK_LOCATION_EXITS">
       <wsdl:input wsaw:Action="http://tempuri.org/IProfileBusiness/CHECK_LOCATION_EXITS" message="tns:IProfileBusiness_CHECK_LOCATION_EXITS_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IProfileBusiness/CHECK_LOCATION_EXITSResponse" message="tns:IProfileBusiness_CHECK_LOCATION_EXITS_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDisciplineProccess">
+      <wsdl:input wsaw:Action="http://tempuri.org/IProfileBusiness/GetDisciplineProccess" message="tns:IProfileBusiness_GetDisciplineProccess_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IProfileBusiness/GetDisciplineProccessResponse" message="tns:IProfileBusiness_GetDisciplineProccess_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetInsuranceProccess">
+      <wsdl:input wsaw:Action="http://tempuri.org/IProfileBusiness/GetInsuranceProccess" message="tns:IProfileBusiness_GetInsuranceProccess_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IProfileBusiness/GetInsuranceProccessResponse" message="tns:IProfileBusiness_GetInsuranceProccess_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="GetEmployeeHistory">
       <wsdl:input wsaw:Action="http://tempuri.org/IProfileBusiness/GetEmployeeHistory" message="tns:IProfileBusiness_GetEmployeeHistory_InputMessage" />
@@ -3936,13 +3964,13 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IProfileBusiness/InsertCompetencyCourse" message="tns:IProfileBusiness_InsertCompetencyCourse_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IProfileBusiness/InsertCompetencyCourseResponse" message="tns:IProfileBusiness_InsertCompetencyCourse_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="ModifyCompetencyCourse">
-      <wsdl:input wsaw:Action="http://tempuri.org/IProfileBusiness/ModifyCompetencyCourse" message="tns:IProfileBusiness_ModifyCompetencyCourse_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IProfileBusiness/ModifyCompetencyCourseResponse" message="tns:IProfileBusiness_ModifyCompetencyCourse_OutputMessage" />
+    <wsdl:operation name="ModifyDiscipline">
+      <wsdl:input wsaw:Action="http://tempuri.org/IProfileBusiness/ModifyDiscipline" message="tns:IProfileBusiness_ModifyDiscipline_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IProfileBusiness/ModifyDisciplineResponse" message="tns:IProfileBusiness_ModifyDiscipline_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="DeleteCompetencyCourse">
-      <wsdl:input wsaw:Action="http://tempuri.org/IProfileBusiness/DeleteCompetencyCourse" message="tns:IProfileBusiness_DeleteCompetencyCourse_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IProfileBusiness/DeleteCompetencyCourseResponse" message="tns:IProfileBusiness_DeleteCompetencyCourse_OutputMessage" />
+    <wsdl:operation name="ValidateDiscipline">
+      <wsdl:input wsaw:Action="http://tempuri.org/IProfileBusiness/ValidateDiscipline" message="tns:IProfileBusiness_ValidateDiscipline_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IProfileBusiness/ValidateDisciplineResponse" message="tns:IProfileBusiness_ValidateDiscipline_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="DeleteDiscipline">
       <wsdl:input wsaw:Action="http://tempuri.org/IProfileBusiness/DeleteDiscipline" message="tns:IProfileBusiness_DeleteDiscipline_InputMessage" />
@@ -4276,13 +4304,9 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IProfileBusiness/GetConcurrentlyProccess" message="tns:IProfileBusiness_GetConcurrentlyProccess_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IProfileBusiness/GetConcurrentlyProccessResponse" message="tns:IProfileBusiness_GetConcurrentlyProccess_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="GetDisciplineProccess">
-      <wsdl:input wsaw:Action="http://tempuri.org/IProfileBusiness/GetDisciplineProccess" message="tns:IProfileBusiness_GetDisciplineProccess_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IProfileBusiness/GetDisciplineProccessResponse" message="tns:IProfileBusiness_GetDisciplineProccess_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="GetInsuranceProccess">
-      <wsdl:input wsaw:Action="http://tempuri.org/IProfileBusiness/GetInsuranceProccess" message="tns:IProfileBusiness_GetInsuranceProccess_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IProfileBusiness/GetInsuranceProccessResponse" message="tns:IProfileBusiness_GetInsuranceProccess_OutputMessage" />
+    <wsdl:operation name="ValidateEmployeeTrain">
+      <wsdl:input wsaw:Action="http://tempuri.org/IProfileBusiness/ValidateEmployeeTrain" message="tns:IProfileBusiness_ValidateEmployeeTrain_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IProfileBusiness/ValidateEmployeeTrainResponse" message="tns:IProfileBusiness_ValidateEmployeeTrain_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="GetEmpWorkingBefore">
       <wsdl:input wsaw:Action="http://tempuri.org/IProfileBusiness/GetEmpWorkingBefore" message="tns:IProfileBusiness_GetEmpWorkingBefore_InputMessage" />
@@ -4512,6 +4536,10 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IProfileBusiness/GetEmployeCurrentByID" message="tns:IProfileBusiness_GetEmployeCurrentByID_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IProfileBusiness/GetEmployeCurrentByIDResponse" message="tns:IProfileBusiness_GetEmployeCurrentByID_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="InsertListWorking1">
+      <wsdl:input wsaw:Action="http://tempuri.org/IProfileBusiness/InsertListWorking1" message="tns:IProfileBusiness_InsertListWorking1_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IProfileBusiness/InsertListWorking1Response" message="tns:IProfileBusiness_InsertListWorking1_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="InsertWorking1">
       <wsdl:input wsaw:Action="http://tempuri.org/IProfileBusiness/InsertWorking1" message="tns:IProfileBusiness_InsertWorking1_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IProfileBusiness/InsertWorking1Response" message="tns:IProfileBusiness_InsertWorking1_OutputMessage" />
@@ -4615,14 +4643,6 @@
     <wsdl:operation name="InsertDiscipline">
       <wsdl:input wsaw:Action="http://tempuri.org/IProfileBusiness/InsertDiscipline" message="tns:IProfileBusiness_InsertDiscipline_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IProfileBusiness/InsertDisciplineResponse" message="tns:IProfileBusiness_InsertDiscipline_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="ModifyDiscipline">
-      <wsdl:input wsaw:Action="http://tempuri.org/IProfileBusiness/ModifyDiscipline" message="tns:IProfileBusiness_ModifyDiscipline_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IProfileBusiness/ModifyDisciplineResponse" message="tns:IProfileBusiness_ModifyDiscipline_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="ValidateDiscipline">
-      <wsdl:input wsaw:Action="http://tempuri.org/IProfileBusiness/ValidateDiscipline" message="tns:IProfileBusiness_ValidateDiscipline_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IProfileBusiness/ValidateDisciplineResponse" message="tns:IProfileBusiness_ValidateDiscipline_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="GetStaffRank">
       <wsdl:input wsaw:Action="http://tempuri.org/IProfileBusiness/GetStaffRank" message="tns:IProfileBusiness_GetStaffRank_InputMessage" />
@@ -4800,6 +4820,10 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IProfileBusiness/InsertEmployee" message="tns:IProfileBusiness_InsertEmployee_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IProfileBusiness/InsertEmployeeResponse" message="tns:IProfileBusiness_InsertEmployee_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="CreateNewEMPLOYEECode">
+      <wsdl:input wsaw:Action="http://tempuri.org/IProfileBusiness/CreateNewEMPLOYEECode" message="tns:IProfileBusiness_CreateNewEMPLOYEECode_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IProfileBusiness/CreateNewEMPLOYEECodeResponse" message="tns:IProfileBusiness_CreateNewEMPLOYEECode_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="ModifyEmployee">
       <wsdl:input wsaw:Action="http://tempuri.org/IProfileBusiness/ModifyEmployee" message="tns:IProfileBusiness_ModifyEmployee_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IProfileBusiness/ModifyEmployeeResponse" message="tns:IProfileBusiness_ModifyEmployee_OutputMessage" />
@@ -4959,10 +4983,6 @@
     <wsdl:operation name="DeleteEmployeeTrain">
       <wsdl:input wsaw:Action="http://tempuri.org/IProfileBusiness/DeleteEmployeeTrain" message="tns:IProfileBusiness_DeleteEmployeeTrain_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IProfileBusiness/DeleteEmployeeTrainResponse" message="tns:IProfileBusiness_DeleteEmployeeTrain_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="ValidateEmployeeTrain">
-      <wsdl:input wsaw:Action="http://tempuri.org/IProfileBusiness/ValidateEmployeeTrain" message="tns:IProfileBusiness_ValidateEmployeeTrain_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IProfileBusiness/ValidateEmployeeTrainResponse" message="tns:IProfileBusiness_ValidateEmployeeTrain_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="GetlistWelfareEMP">
       <wsdl:input wsaw:Action="http://tempuri.org/IProfileBusiness/GetlistWelfareEMP" message="tns:IProfileBusiness_GetlistWelfareEMP_InputMessage" />
@@ -5648,6 +5668,24 @@
   <wsdl:binding name="WSHttpBinding_IProfileBusiness" type="tns:IProfileBusiness">
     <wsp:PolicyReference URI="#WSHttpBinding_IProfileBusiness_policy" />
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ModifyCompetencyCourse">
+      <soap12:operation soapAction="http://tempuri.org/IProfileBusiness/ModifyCompetencyCourse" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteCompetencyCourse">
+      <soap12:operation soapAction="http://tempuri.org/IProfileBusiness/DeleteCompetencyCourse" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="GetCourseByList">
       <soap12:operation soapAction="http://tempuri.org/IProfileBusiness/GetCourseByList" style="document" />
       <wsdl:input>
@@ -6109,6 +6147,24 @@
     </wsdl:operation>
     <wsdl:operation name="CHECK_LOCATION_EXITS">
       <soap12:operation soapAction="http://tempuri.org/IProfileBusiness/CHECK_LOCATION_EXITS" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDisciplineProccess">
+      <soap12:operation soapAction="http://tempuri.org/IProfileBusiness/GetDisciplineProccess" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetInsuranceProccess">
+      <soap12:operation soapAction="http://tempuri.org/IProfileBusiness/GetInsuranceProccess" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -6863,8 +6919,8 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="ModifyCompetencyCourse">
-      <soap12:operation soapAction="http://tempuri.org/IProfileBusiness/ModifyCompetencyCourse" style="document" />
+    <wsdl:operation name="ModifyDiscipline">
+      <soap12:operation soapAction="http://tempuri.org/IProfileBusiness/ModifyDiscipline" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -6872,8 +6928,8 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="DeleteCompetencyCourse">
-      <soap12:operation soapAction="http://tempuri.org/IProfileBusiness/DeleteCompetencyCourse" style="document" />
+    <wsdl:operation name="ValidateDiscipline">
+      <soap12:operation soapAction="http://tempuri.org/IProfileBusiness/ValidateDiscipline" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -7628,17 +7684,8 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="GetDisciplineProccess">
-      <soap12:operation soapAction="http://tempuri.org/IProfileBusiness/GetDisciplineProccess" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="GetInsuranceProccess">
-      <soap12:operation soapAction="http://tempuri.org/IProfileBusiness/GetInsuranceProccess" style="document" />
+    <wsdl:operation name="ValidateEmployeeTrain">
+      <soap12:operation soapAction="http://tempuri.org/IProfileBusiness/ValidateEmployeeTrain" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -8159,6 +8206,15 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="InsertListWorking1">
+      <soap12:operation soapAction="http://tempuri.org/IProfileBusiness/InsertListWorking1" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="InsertWorking1">
       <soap12:operation soapAction="http://tempuri.org/IProfileBusiness/InsertWorking1" style="document" />
       <wsdl:input>
@@ -8386,24 +8442,6 @@
     </wsdl:operation>
     <wsdl:operation name="InsertDiscipline">
       <soap12:operation soapAction="http://tempuri.org/IProfileBusiness/InsertDiscipline" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="ModifyDiscipline">
-      <soap12:operation soapAction="http://tempuri.org/IProfileBusiness/ModifyDiscipline" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="ValidateDiscipline">
-      <soap12:operation soapAction="http://tempuri.org/IProfileBusiness/ValidateDiscipline" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -8807,6 +8845,15 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="CreateNewEMPLOYEECode">
+      <soap12:operation soapAction="http://tempuri.org/IProfileBusiness/CreateNewEMPLOYEECode" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="ModifyEmployee">
       <soap12:operation soapAction="http://tempuri.org/IProfileBusiness/ModifyEmployee" style="document" />
       <wsdl:input>
@@ -9160,15 +9207,6 @@
     </wsdl:operation>
     <wsdl:operation name="DeleteEmployeeTrain">
       <soap12:operation soapAction="http://tempuri.org/IProfileBusiness/DeleteEmployeeTrain" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="ValidateEmployeeTrain">
-      <soap12:operation soapAction="http://tempuri.org/IProfileBusiness/ValidateEmployeeTrain" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

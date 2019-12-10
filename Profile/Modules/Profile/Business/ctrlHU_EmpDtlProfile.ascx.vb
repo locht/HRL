@@ -176,7 +176,7 @@ Public Class ctrlHU_EmpDtlProfile
                         lblChucDanh.Text = EmployeeInfo.TITLE_NAME_VN
                         lblPhongBan.Text = EmployeeInfo.ORG_NAME
                         lblQLTT.Text = EmployeeInfo.DIRECT_MANAGER_NAME
-                        txtmanager.Text = EmployeeInfo.TITLE_NAME_VN
+                        txtmanager.Text = EmployeeInfo.DIRECT_MANAGER_TITLE_NAME
                         'lblQLTMC.Text = EmployeeInfo.LEVEL_MANAGER_NAME
                         _DIRECT_MANAGER = Utilities.ObjToString(EmployeeInfo.DIRECT_MANAGER)
                         _LEVEL_MANAGER = Utilities.ObjToString(EmployeeInfo.LEVEL_MANAGER)

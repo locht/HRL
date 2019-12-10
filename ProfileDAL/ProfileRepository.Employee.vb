@@ -627,6 +627,7 @@ Partial Class ProfileRepository
                     (From e In Context.HU_EMPLOYEE
                      From title In Context.HU_TITLE.Where(Function(f) f.ID = e.TITLE_ID)
                      From direct In Context.HU_EMPLOYEE.Where(Function(f) f.ID = e.DIRECT_MANAGER).DefaultIfEmpty
+                     From direct_title In Context.HU_TITLE.Where(Function(f) f.ID = direct.TITLE_ID).DefaultIfEmpty
                      From level In Context.HU_EMPLOYEE.Where(Function(f) f.ID = e.LEVEL_MANAGER).DefaultIfEmpty
                      From obj In Context.PA_OBJECT_SALARY.Where(Function(f) f.ID = e.PA_OBJECT_SALARY_ID).DefaultIfEmpty
                      From staffRank In Context.HU_STAFF_RANK.Where(Function(f) f.ID = e.STAFF_RANK_ID).DefaultIfEmpty
@@ -678,6 +679,7 @@ Partial Class ProfileRepository
                          .EMP_STATUS_NAME = If(e.IS_KIEM_NHIEM IsNot Nothing, str, empstatus.NAME_VN),
                          .DIRECT_MANAGER = e.DIRECT_MANAGER,
                          .DIRECT_MANAGER_NAME = direct.FULLNAME_VN,
+                         .DIRECT_MANAGER_TITLE_NAME = direct_title.NAME_VN,
                          .LEVEL_MANAGER = e.LEVEL_MANAGER,
                          .LEVEL_MANAGER_NAME = level.FULLNAME_VN,
                          .JOIN_DATE = e.JOIN_DATE,
@@ -693,7 +695,7 @@ Partial Class ProfileRepository
                          .ITIME_ID = e.ITIME_ID,
                          .TER_EFFECT_DATE = e.TER_EFFECT_DATE,
                          .OBJECT_LABOR = e.OBJECT_LABOR,
-                         .OBJECT_LABOR_NAME = objectLabor.NAME_VN
+                .OBJECT_LABOR_NAME = objectLabor.NAME_VN
                      }).FirstOrDefault
                 WriteExceptionLog(Nothing, "Getmployee1", "iProfile")
                 Dim emp As New EmployeeDTO

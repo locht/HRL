@@ -13328,6 +13328,9 @@ Namespace ProfileBusiness
         Private DIRECT_MANAGER_NAMEField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private DIRECT_MANAGER_TITLE_NAMEField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private EFFECT_DATEField As System.Nullable(Of Date)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -13726,6 +13729,19 @@ Namespace ProfileBusiness
                 If (Object.ReferenceEquals(Me.DIRECT_MANAGER_NAMEField, value) <> true) Then
                     Me.DIRECT_MANAGER_NAMEField = value
                     Me.RaisePropertyChanged("DIRECT_MANAGER_NAME")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property DIRECT_MANAGER_TITLE_NAME() As String
+            Get
+                Return Me.DIRECT_MANAGER_TITLE_NAMEField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.DIRECT_MANAGER_TITLE_NAMEField, value) <> true) Then
+                    Me.DIRECT_MANAGER_TITLE_NAMEField = value
+                    Me.RaisePropertyChanged("DIRECT_MANAGER_TITLE_NAME")
                 End If
             End Set
         End Property

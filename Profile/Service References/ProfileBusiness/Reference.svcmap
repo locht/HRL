@@ -55,11 +55,11 @@
     <MetadataFile FileName="service1.wsdl" MetadataType="Wsdl" ID="dd3317f9-f2ec-47fa-8ca2-1e9102fd00a4" SourceId="1" SourceUrl="http://localhost:9999/ProfileBusiness.svc/mex/mex/mex/mex/mex" />
     <MetadataFile FileName="service3.xsd" MetadataType="Schema" ID="f911729e-0e71-4f4b-a5b6-64adb6947750" SourceId="1" SourceUrl="http://localhost:9999/ProfileBusiness.svc/mex/mex/mex/mex/mex" />
     <MetadataFile FileName="service4.xsd" MetadataType="Schema" ID="5322cfda-b115-4961-8846-f9a6889153a8" SourceId="1" SourceUrl="http://localhost:9999/ProfileBusiness.svc/mex/mex/mex/mex/mex" />
-    <MetadataFile FileName="System.Data1.xsd" MetadataType="Schema" ID="85c48d32-29a6-41d5-86fb-4660995cd660" SourceId="1" SourceUrl="http://localhost:9999/ProfileBusiness.svc/mex/mex/mex/mex/mex" />
     <MetadataFile FileName="ProfileDAL1.xsd" MetadataType="Schema" ID="38a2285b-6ced-4a2d-b329-c1cdc4f30d72" SourceId="1" SourceUrl="http://localhost:9999/ProfileBusiness.svc/mex/mex/mex/mex/mex" />
-    <MetadataFile FileName="System1.xsd" MetadataType="Schema" ID="2c8bf5ce-d667-4268-b623-212baaad4691" SourceId="1" SourceUrl="http://localhost:9999/ProfileBusiness.svc/mex/mex/mex/mex/mex" />
     <MetadataFile FileName="Framework.Data1.xsd" MetadataType="Schema" ID="7d8d9e5c-134d-4d09-87a4-c6f20e1a05be" SourceId="1" SourceUrl="http://localhost:9999/ProfileBusiness.svc/mex/mex/mex/mex/mex" />
     <MetadataFile FileName="Arrays1.xsd" MetadataType="Schema" ID="2675ad49-01c6-4213-94b7-ccd3fa6710b5" SourceId="1" SourceUrl="http://localhost:9999/ProfileBusiness.svc/mex/mex/mex/mex/mex" />
+    <MetadataFile FileName="System.Data1.xsd" MetadataType="Schema" ID="85c48d32-29a6-41d5-86fb-4660995cd660" SourceId="1" SourceUrl="http://localhost:9999/ProfileBusiness.svc/mex/mex/mex/mex/mex" />
+    <MetadataFile FileName="System1.xsd" MetadataType="Schema" ID="2c8bf5ce-d667-4268-b623-212baaad4691" SourceId="1" SourceUrl="http://localhost:9999/ProfileBusiness.svc/mex/mex/mex/mex/mex" />
     <MetadataFile FileName="service5.xsd" MetadataType="Schema" ID="1ebed828-9996-4e0b-9c6b-2cee8ecf62f8" SourceId="1" SourceUrl="http://localhost:9999/ProfileBusiness.svc/mex/mex/mex/mex/mex" />
   </Metadata>
   <Extensions>
