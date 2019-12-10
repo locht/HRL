@@ -260,8 +260,9 @@
             var oWindow = radopen('Dialog.aspx?mid=Recruitment&fid=ctrlRC_CanDtl&group=Business&gUID=' + gUId + '&Can=' +
             empId + '&state=' + states + '&ORGID=' + orgID + '&TITLEID=' + titleID + '&PROGRAM_ID=' + programID + '&noscroll=1', "rwPopup");
             var pos = $("html").offset();
+            var desiredHeight = $(window).height() - 50;
             oWindow.moveTo(pos.left, pos.top);
-            oWindow.setSize($(window).width(), $(window).height());
+            oWindow.setSize($(window).width(), desiredHeight);
 
         }
 
@@ -282,8 +283,9 @@
             var oWindow = radopen('Dialog.aspx?mid=Recruitment&fid=ctrlRC_CanDtl&group=Business&state=New&ORGID=' +
             orgID + '&TITLEID=' + titleID + '&PROGRAM_ID=' + programID + '&noscroll=1&reload=1&FormType=0', "rwPopup");
             var pos = $("html").offset();
+            var desiredHeight = $(window).height() - 50;
             oWindow.moveTo(pos.left, pos.top);
-            oWindow.setSize($(window).width(), $(window).height());
+            oWindow.setSize($(window).width(), desiredHeight);
         }
 
         function clientButtonClicking(sender, args) {
@@ -300,7 +302,7 @@
                 }
                 else {
                     OpenEditWindow("Edit");
-                    //OpenEditWindow("Normal");
+                    // OpenEditWindow("Normal");
                     args.set_cancel(true);
                 }
 
@@ -316,31 +318,33 @@
             } else if (args.get_item().get_commandName() == 'EXPORT' || args.get_item().get_commandName() == 'PRINT' || args.get_item().get_commandName() == 'UNLOCK' || args.get_item().get_commandName() == 'PREVIOUS' || args.get_item().get_commandName() == 'EXPORT_TEMPLATE') {
                 enableAjax = false;
             }
-}
+        }
 
-function btnTransferClick(sender, args) {
-    var bCheck = $find('<%# rgCandidateList.ClientID %>').get_masterTableView().get_selectedItems().length;
-    if (bCheck == 0) {
-        m = '<%# Translate(CommonMessage.MESSAGE_NOT_SELECT_ROW) %>';
-        n = noty({ text: m, dismissQueue: true, type: 'warning' });
-        setTimeout(function () { $.noty.close(n.options.id); }, 5000);
-        return;
-    }
-    var oWindow = radopen('Dialog.aspx?mid=Recruitment&fid=ctrlRC_FindProgram&group=Business&noscroll=1', "rwPopup");
-    var pos = $("html").offset();
-    oWindow.moveTo(pos.left, pos.top);
-    oWindow.setSize($(window).width(), $(window).height());
-}
+        function btnTransferClick(sender, args) {
+            var bCheck = $find('<%# rgCandidateList.ClientID %>').get_masterTableView().get_selectedItems().length;
+            if (bCheck == 0) {
+                m = '<%# Translate(CommonMessage.MESSAGE_NOT_SELECT_ROW) %>';
+                n = noty({ text: m, dismissQueue: true, type: 'warning' });
+                setTimeout(function () { $.noty.close(n.options.id); }, 5000);
+                return;
+            }
+            var oWindow = radopen('Dialog.aspx?mid=Recruitment&fid=ctrlRC_FindProgram&group=Business&noscroll=1', "rwPopup");
+            var pos = $("html").offset();
+            var desiredHeight = $(window).height() - 50;
+            oWindow.moveTo(pos.left, pos.top);
+            oWindow.setSize($(window).width(), desiredHeight);
+        }
 
-function btnPontentialClick(sender, args) {
-    var oWindow = radopen('Dialog.aspx?mid=Recruitment&fid=ctrlRC_FindCandidate&group=Business&noscroll=1', "rwPopup");
-    var pos = $("html").offset();
-    oWindow.moveTo(pos.left, pos.top);
-    oWindow.setSize($(window).width(), $(window).height());
-}
+        function btnPontentialClick(sender, args) {
+            var oWindow = radopen('Dialog.aspx?mid=Recruitment&fid=ctrlRC_FindCandidate&group=Business&noscroll=1', "rwPopup");
+            var pos = $("html").offset();
+            var desiredHeight = $(window).height() - 50;
+            oWindow.moveTo(pos.left, pos.top);
+            oWindow.setSize($(window).width(), desiredHeight);
+        }
 
-function btnDuDieuKienClick(sender, args) {
-    var bCheck = $find('<%# rgCandidateList.ClientID %>').get_masterTableView().get_selectedItems().length;
+        function btnDuDieuKienClick(sender, args) {
+            var bCheck = $find('<%# rgCandidateList.ClientID %>').get_masterTableView().get_selectedItems().length;
             if (bCheck == 0) {
                 var m = '<%# Translate(CommonMessage.MESSAGE_NOT_SELECT_ROW) %>';
                 var n = noty({ text: m, dismissQueue: true, type: 'warning' });
