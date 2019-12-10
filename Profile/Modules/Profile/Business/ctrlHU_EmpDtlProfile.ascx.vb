@@ -1956,7 +1956,7 @@ Public Class ctrlHU_EmpDtlProfile
                           cboReligion, cboStaffRank, cboTitle, cboWorkStatus, cboEmpStatus,
                           cboPer_District, cboPer_Ward, cboNav_District, cboNav_Ward,
                           hidID, hidOrgID, hidDirectManager, hidLevelManager, chkDoanPhi)
-            chkDoanPhi.Checked = True
+            'chkDoanPhi.Checked = True
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
             _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")

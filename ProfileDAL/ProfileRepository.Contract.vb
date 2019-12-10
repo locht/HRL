@@ -1418,7 +1418,8 @@ Partial Class ProfileRepository
             lstCtrTypeAllow.Add(13)
             lstCtrTypeAllow.Add(14)
             lstCtrTypeAllow.Add(287)
-            If Employee.JOIN_DATE_STATE Is Nothing And lstCtrTypeAllow.Contains(objContract.CONTRACTTYPE_ID) Then
+            Dim Type_ID_ct As HU_CONTRACT_TYPE = (From p In Context.HU_CONTRACT_TYPE Where objContract.CONTRACTTYPE_ID = p.ID).FirstOrDefault
+            If Employee.JOIN_DATE_STATE Is Nothing And Type_ID_ct.TYPE_ID = 6359 Then
                 'Employee.JOIN_DATE_STATE = objContract.START_DATE
                 Dim empOther As HU_EMPLOYEE_CV = (From p In Context.HU_EMPLOYEE_CV
                                                   Where p.EMPLOYEE_ID = objContract.EMPLOYEE_ID).FirstOrDefault
