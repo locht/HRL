@@ -12889,11 +12889,11 @@ Public Partial Class SE_MAIL
             Return _MAIL_TO
         End Get
         Set
-            OnMAIL_TOChanging(value)
-            ReportPropertyChanging("MAIL_TO")
-            _MAIL_TO = StructuralObject.SetValidValue(value, false)
-            ReportPropertyChanged("MAIL_TO")
-            OnMAIL_TOChanged()
+            'OnMAIL_TOChanging(value)
+            'ReportPropertyChanging("MAIL_TO")
+            '_MAIL_TO = StructuralObject.SetValidValue(value, false)
+            'ReportPropertyChanged("MAIL_TO")
+            'OnMAIL_TOChanged()
         End Set
     End Property
 

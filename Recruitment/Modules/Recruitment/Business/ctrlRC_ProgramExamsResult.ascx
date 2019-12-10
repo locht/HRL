@@ -80,8 +80,8 @@
                     </td>
                     <td>
                         <tlk:RadNumericTextBox ID="txtMarks" runat="server" NumberFormat-DecimalDigits="1"
-                            NumberFormat-GroupSeparator="" ShowSpinButtons="true" MaxLength="3" MinValue="0"
-                            MaxValue="100">
+                            NumberFormat-GroupSeparator="" ShowSpinButtons="true" MaxLength="4" MinValue="0"
+                            MaxValue="1000">
                             <NumberFormat AllowRounding="false" KeepNotRoundedValue="true" DecimalDigits="1" />
                             <ClientEvents OnBlur="displayDecimalFormat" OnLoad="displayDecimalFormat" OnValueChanged="displayDecimalFormat" />
                         </tlk:RadNumericTextBox>
