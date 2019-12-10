@@ -55,6 +55,15 @@ Namespace ProfileBusiness.ServiceImplementations
 #End Region
 
 #Region "Terminate"
+        Public Function Check_has_Ter(ByVal empid As Decimal) As Decimal Implements ServiceContracts.IProfileBusiness.Check_has_Ter
+            Using rep As New ProfileRepository
+                Try
+                    Return rep.Check_has_Ter(empid)
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
         Public Function ApproveListTerminate(ByVal listID As List(Of Decimal), ByVal log As UserLog) As Boolean Implements ServiceContracts.IProfileBusiness.ApproveListTerminate
             Using rep As New ProfileRepository
                 Try

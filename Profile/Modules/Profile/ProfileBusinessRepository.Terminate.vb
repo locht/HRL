@@ -41,6 +41,16 @@ Partial Public Class ProfileBusinessRepository
 #End Region
 
 #Region "Terminate"
+    Public Function Check_has_Ter(ByVal empid As Decimal) As Decimal
+        Using rep As New ProfileBusinessClient
+            Try
+                Return rep.Check_has_Ter(empid)
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+    End Function
     Public Function ApproveListTerminate(ByVal listID As List(Of Decimal)) As Boolean
         Using rep As New ProfileBusinessClient
             Try

@@ -1002,6 +1002,13 @@ Public Class ctrlHU_TerminateNewEdit
             lstCommonEmployee = CType(ctrlFindEmployeePopup.SelectedEmployee, List(Of CommonBusiness.EmployeePopupFindDTO))
             If lstCommonEmployee.Count <> 0 Then
                 Dim item = lstCommonEmployee(0)
+                Using rep As New ProfileBusinessRepository
+                    Dim check = rep.Check_has_Ter(item.ID)
+                    If check = 1 Then
+                        ShowMessage(Translate("Nhân viên đã có quyết định nghỉ việc"), NotifyType.Warning)
+                        Exit Sub
+                    End If
+                End Using
                 txtEmployeeCode.Text = item.EMPLOYEE_CODE
                 'txtDecisionNo.Text = item.EMPLOYEE_CODE.Substring(1) + " / QDTV-KSF"
                 FillDataByEmployeeID(item.ID)

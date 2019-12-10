@@ -87,6 +87,20 @@ Partial Class ProfileRepository
 #End Region
 
 #Region "Terminate"
+    Public Function Check_has_Ter(ByVal empid As Decimal) As Decimal
+        Dim value As Decimal = 0
+        Try
+            value = (From p In Context.HU_TERMINATE
+                      Where p.EMPLOYEE_ID = empid).ToList.Count
+            If value = 0 Then
+                Return 0
+            Else
+                Return 1
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
     Public Function CalculateTerminate(ByVal EmployeeId As Decimal, ByVal TerLateDate As Date) As DataTable
         Try
             Using rep As New DataAccess.QueryData
@@ -414,7 +428,7 @@ Partial Class ProfileRepository
             Dim query = From p In Context.HU_TERMINATE
                         Join e In Context.HU_EMPLOYEE On p.EMPLOYEE_ID Equals e.ID
                         Join o In Context.HU_ORGANIZATION On e.ORG_ID Equals o.ID
-                        Join t In Context.HU_TITLE On e.TITLE_ID Equals t.ID                        
+                        Join t In Context.HU_TITLE On e.TITLE_ID Equals t.ID
 
             query = query.Where(Function(p) _filter.ID = p.p.ID)
 
