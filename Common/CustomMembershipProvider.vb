@@ -91,17 +91,21 @@ Public Class CustomMembershipProvider
                     End If
                     If user.IS_AD Then
                         Dim LdapCorrect As LdapDTO
-                        Dim email = username.Substring(username.IndexOf("@") + 1).ToLower
+                        
+                        'Dim email = username.Substring(username.IndexOf("@") + 1).ToLower
                         For Each item In CommonConfig.ListLDAP
-                            If item.DOMAIN_NAME.ToLower = email Then
-                                LdapCorrect = item
-                                Exit For
-                            End If
+                            'If item.DOMAIN_NAME.ToLower = email Then
+                            '    LdapCorrect = item
+                            '    Exit For
+                            'End If
+                            LdapCorrect = item
+                            Exit For
                         Next
+                        username = If(username.IndexOf("@") <> -1, username.Substring(0, username.IndexOf("@")), username)
                         If LdapCorrect IsNot Nothing Then
 
                             bSuccess = TVC.LDAP.ADManager.IsUserExists(LdapCorrect.LDAP_NAME,
-                                                                       username.Substring(0, username.IndexOf("@")).ToLower,
+                                                                       username.ToLower,
                                                                        password,
                                                                        LdapCorrect.BASE_DN)
 
