@@ -316,7 +316,7 @@ Public Class ctrlRC_CanDtlBeforeWT
             objCandidateBeforeWT.ORG_NAME = txtOrgname.Text
             objCandidateBeforeWT.TITLE_NAME = txtTitlename.Text
             objCandidateBeforeWT.WORK = txtWork.Text
-            objCandidateBeforeWT.SALARY = rnSalary.Text
+            objCandidateBeforeWT.SALARY = CType(rnSalary.Text, Integer)
             objCandidateBeforeWT.REMARK = txtRemark.Text
             objCandidateBeforeWT.ORG_PHONE = txtOrgname.Text
             objCandidateBeforeWT.ORG_ADDRESS = txtOrgAddress.Text
