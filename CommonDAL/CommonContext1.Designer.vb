@@ -18,7 +18,7 @@ Imports System.Runtime.Serialization
 Imports System.Xml.Serialization
 
 
-<Assembly: EdmSchemaAttribute("9bc9529f-af90-4efc-a0d5-0cdd2fb1a0cd")>
+<Assembly: EdmSchemaAttribute("f66b26b1-3710-4993-bba7-a44c1c0b4640")>
 #Region "EDM Relationship Metadata"
 <Assembly: EdmRelationshipAttribute("CommonModel", "SE_GRP_SE_USR", "SE_GROUP", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(SE_GROUP), "SE_USER", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(SE_USER))>
 <Assembly: EdmRelationshipAttribute("CommonModel", "FK_SM_SF", "SE_MODULE", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(SE_MODULE), "SE_FUNCTION", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(SE_FUNCTION), True)>
@@ -12889,9 +12889,9 @@ Public Partial Class SE_MAIL
             Return _MAIL_TO
         End Get
         Set
-            OnMAIL_TOChanging(Value)
+            OnMAIL_TOChanging(value)
             ReportPropertyChanging("MAIL_TO")
-            _MAIL_TO = StructuralObject.SetValidValue(Value, False)
+            _MAIL_TO = StructuralObject.SetValidValue(value, false)
             ReportPropertyChanged("MAIL_TO")
             OnMAIL_TOChanged()
         End Set

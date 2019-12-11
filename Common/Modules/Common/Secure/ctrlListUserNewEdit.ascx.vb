@@ -110,7 +110,7 @@ Public Class ctrlListUserNewEdit
                     btnEmployee.Enabled = True
 
                 Case CommonMessage.STATE_EDIT
-                    txtUSERNAME.ReadOnly = True
+                    txtUSERNAME.ReadOnly = False
                     txtEMAIL.ReadOnly = False
                     txtFULLNAME.ReadOnly = False
                     txtTELEPHONE.ReadOnly = False

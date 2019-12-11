@@ -1171,28 +1171,29 @@ Partial Class ProfileRepository
                 Next
             End If
             Context.SaveChanges(log)
-            'Dim user = (From p In Context.SE_USER Where p.EMPLOYEE_CODE = EMPCODE).FirstOrDefault
-            'If objEmpCV.WORK_EMAIL <> "" Then
-            '    If user Is Nothing Then
-            '        Dim _new As New SE_USER
-            '        Dim EncryptData As New EncryptData
-            '        _new.ID = Utilities.GetNextSequence(Context, Context.SE_USER.EntitySet.Name)
-            '        _new.EFFECT_DATE = Date.Now
-            '        _new.EMPLOYEE_CODE = EMPCODE
-            '        _new.FULLNAME = objEmpData.FULLNAME_VN
-            '        _new.EMAIL = objEmpCVData.WORK_EMAIL
-            '        _new.TELEPHONE = objEmpCVData.MOBILE_PHONE
-            '        _new.IS_AD = True
-            '        _new.IS_APP = False
-            '        _new.IS_PORTAL = True
-            '        _new.IS_CHANGE_PASS = "-1"
-            '        _new.ACTFLG = "A"
-            '        _new.PASSWORD = EncryptData.EncryptString(_strEmpCode)
-            '        _new.USERNAME = objEmpCV.WORK_EMAIL.ToUpper
-            '        Context.SE_USER.AddObject(_new)
-            '    End If
-            'End If
-            'Context.SaveChanges(log)
+            Dim user = (From p In Context.SE_USER Where p.EMPLOYEE_CODE = EMPCODE).FirstOrDefault
+            If objEmpCV.WORK_EMAIL <> "" Then
+                If user Is Nothing Then
+                    Dim _new As New SE_USER
+                    Dim EncryptData As New EncryptData
+                    _new.ID = Utilities.GetNextSequence(Context, Context.SE_USER.EntitySet.Name)
+                    _new.EFFECT_DATE = Date.Now
+                    _new.EMPLOYEE_CODE = EMPCODE
+                    _new.FULLNAME = objEmpData.FULLNAME_VN
+                    _new.EMAIL = objEmpCVData.WORK_EMAIL
+                    _new.TELEPHONE = objEmpCVData.MOBILE_PHONE
+                    _new.IS_AD = True
+                    _new.IS_APP = False
+                    _new.IS_PORTAL = True
+                    _new.IS_CHANGE_PASS = "-1"
+                    _new.ACTFLG = "A"
+                    _new.PASSWORD = EncryptData.EncryptString(_strEmpCode)
+                    _new.USERNAME = objEmpCV.WORK_EMAIL.ToUpper
+                    _new.EMPLOYEE_ID = objEmpData.ID
+                    Context.SE_USER.AddObject(_new)
+                End If
+            End If
+            Context.SaveChanges(log)
             gID = objEmpData.ID
             Return True
         Catch ex As Exception

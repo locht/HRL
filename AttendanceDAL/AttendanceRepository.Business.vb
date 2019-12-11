@@ -78,7 +78,6 @@ Partial Public Class AttendanceRepository
             Else
                 Return False
             End If
-
         Catch ex As Exception
             WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iTime.ReadCheckInOutData strFromDate: " + strFromDate + "|| strEndDate: " + strEndDate)
             Throw ex
