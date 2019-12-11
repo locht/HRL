@@ -105,8 +105,7 @@ Public Class ctrlListUser
                                        ToolbarItem.Seperator,
                                        ToolbarItem.Lock,
                                        ToolbarItem.Unlock,
-                                       ToolbarItem.Seperator,
-                                       ToolbarItem.Sync)
+                                       ToolbarItem.Seperator)
             CType(rtbMain.Items(3), RadToolBarButton).CausesValidation = True
             Me.MainToolBar.OnClientButtonClicking = "OnClientButtonClicking"
 
