@@ -863,9 +863,9 @@ Public Class ctrlHU_EmpDtlProfile
                     'txtEmpCODE.Text = EmpCode.EMPLOYEE_CODE
                     EnableControlAll(True, txtOrgName2, btnFindOrg,
                                      cboTitle, txtTitleGroup, cboStaffRank, txtDirectManager, btnFindDirect,
-                                     txtmanager, cboObject, cboObjectLabor, txtTimeID, cbObjectBook, cboBasic, cboCertificate, txtAppDung, txtPlaceKS, txtVillage, rdDayPitcode, txtPlacePitcode, txtPerson_Inheritance, rdEffect_Bank)
+                                     txtmanager, cboObject, cboObjectLabor, cbObjectBook, cboBasic, cboCertificate, txtAppDung, txtPlaceKS, txtVillage, rdDayPitcode, txtPlacePitcode, txtPerson_Inheritance, rdEffect_Bank)
 
-                    EnableControlAll(False, cboWorkStatus, txtEmpCODE, cboEmpStatus, rtBookNo, cboInsRegion)
+                    EnableControlAll(False, cboWorkStatus, txtEmpCODE, cboEmpStatus, rtBookNo, cboInsRegion, txtTimeID)
                     EnableControlAll(True, rtCHUC_VU_DANG, rdNGAY_VAO_DANG_DB, rdNGAY_VAO_DANG)
                     EnableControlAll(True, ckDOAN_PHI, rtCHUC_VU_DOAN, rdNGAY_VAO_DOAN)
                     EnableControlAll(True, rtCV_BANTT, rdNgay_TG_BanTT)
@@ -874,7 +874,7 @@ Public Class ctrlHU_EmpDtlProfile
                     EnableControlAll(True, cbHang_Thuong_Binh, cbGD_Chinh_Sach)
                     EnableControlAll(True, lstbPaper, lstbPaperFiled,
                                         txtBankNo, chkSaveHistory, ckBanTT_ND, rdExpireIDNO,
-                                       txtDaHoaLieu, txtTimeID, rtDiem_XL_TH, txtDiem_XL_TH2, txtNoteTDTH1, txtNoteTDTH2,
+                                       txtDaHoaLieu, rtDiem_XL_TH, txtDiem_XL_TH2, txtNoteTDTH1, txtNoteTDTH2,
                                        txtFirstNameVN, txtGhiChuSK, txtNamTN,
                                        txtHomePhone, txtHuyetAp, txtID_NO, txtIDRemark, chkIs_pay_bank,
                                        cboIDPlace, txtLangMark, txtLangMark2,
@@ -959,9 +959,9 @@ Public Class ctrlHU_EmpDtlProfile
                     Else
                         EnableControlAll(False, txtOrgName2,
                                txtTitleGroup, txtDirectManager,
-                               txtTimeID, cbObjectBook, txtmanager)
+                                cbObjectBook, txtmanager)
                         EnableControlAll(True, btnFindOrg, cboTitle, cboObject, cboStaffRank, cboObjectLabor, btnFindDirect)
-                        EnableControlAll(False, cboWorkStatus, txtEmpCODE, cboEmpStatus, rtBookNo, cboInsRegion)
+                        EnableControlAll(False, cboWorkStatus, txtEmpCODE, cboEmpStatus, rtBookNo, cboInsRegion, txtTimeID)
                         EnableControlAll(True, rtCHUC_VU_DANG, rdNGAY_VAO_DANG_DB, rdNGAY_VAO_DANG)
                         EnableControlAll(True, ckDOAN_PHI, rtCHUC_VU_DOAN, rdNGAY_VAO_DOAN)
                         EnableControlAll(True, rtCV_BANTT, rdNgay_TG_BanTT)
@@ -973,7 +973,7 @@ Public Class ctrlHU_EmpDtlProfile
                                            txtDaHoaLieu, txtNamTN, rdExpireIDNO, txtAppDung, txtPlaceKS, txtVillage, txtPlacePitcode, rdDayPitcode, txtPerson_Inheritance, rdEffect_Bank,
                                            txtFirstNameVN, txtGhiChuSK, chkIs_pay_bank,
                                            txtHomePhone, txtHuyetAp, txtID_NO, txtIDRemark,
-                                           cboIDPlace, txtLangMark, txtLangMark2, txtTimeID,
+                                           cboIDPlace, txtLangMark, txtLangMark2,
                                            txtLastNameVN, txtMatPhai, txtMatTrai,
                                            txtMobilePhone, txtNavAddress, txtNhomMau,
                                             txtPassNo, txtPassPlace, txtPerAddress, txtPerEmail, txtPhoiNguc, txtCareer,
@@ -2022,8 +2022,12 @@ Public Class ctrlHU_EmpDtlProfile
                 EmployeeInfo.LEVEL_MANAGER = hidLevelManager.Value
             End If
             'them moi cac truong tại đây
-            EmpCode = r.CreateNewEMPLOYEECode()
-            EmployeeInfo.ITIME_ID = EmpCode.EMPLOYEE_CODE
+
+            'EmpCode = r.CreateNewEMPLOYEECode()
+            If txtEmpCODE.Text <> "" Then
+                EmployeeInfo.ITIME_ID = Integer.Parse(txtEmpCODE.Text)
+            End If
+
             If cbObjectBook.SelectedValue <> "" Then
                 EmployeeInfo.OBJECT_INS = cboObjectIns.SelectedValue
                 EmployeeInfo.OBJECT_INS_NAME = cboObjectIns.Text

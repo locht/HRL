@@ -921,12 +921,11 @@ Partial Class ProfileRepository
             objEmpData.DIRECT_MANAGER = objEmp.DIRECT_MANAGER
             objEmpData.LEVEL_MANAGER = objEmp.LEVEL_MANAGER
             objEmpData.STAFF_RANK_ID = objEmp.STAFF_RANK_ID
-            objEmpData.ITIME_ID = objEmp.ITIME_ID
             objEmpData.OBJECTTIMEKEEPING = objEmp.OBJECTTIMEKEEPING
             'objEmpData.PA_OBJECT_SALARY_ID = 1
             objEmpData.OBJECT_LABOR = objEmp.OBJECT_LABOR
             objEmpData.SENIORITY_DATE = objEmp.SENIORITY_DATE
-            objEmpData.ITIME_ID = objEmp.ITIME_ID
+            objEmpData.ITIME_ID = empCodeDB
             Context.HU_EMPLOYEE.AddObject(objEmpData)
             'End Thông tin insert vào bảng HU_EMPLOYEE.
 

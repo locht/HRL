@@ -157,7 +157,7 @@
                             <asp:Label runat="server" ID="lbTimeID" Text="Mã chấm công"></asp:Label>
                         </td>
                         <td>
-                            <tlk:RadTextBox ID="txtTimeID" runat="server" Width="100px">
+                            <tlk:RadTextBox ID="txtTimeID" runat="server" ReadOnly="true" Width="100px">
                             </tlk:RadTextBox>
                             <asp:CustomValidator ValidationGroup="EmpProfile" ID="cusTimeID" runat="server" ErrorMessage="Mã quẹt thẻ đã tồn tại"
                                 ToolTip="Mã quẹt thẻ đã tồn tại">
