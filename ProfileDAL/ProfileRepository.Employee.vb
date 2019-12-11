@@ -1188,7 +1188,7 @@ Partial Class ProfileRepository
                     _new.IS_CHANGE_PASS = "-1"
                     _new.ACTFLG = "A"
                     _new.PASSWORD = EncryptData.EncryptString(_strEmpCode)
-                    _new.USERNAME = objEmpCV.WORK_EMAIL.ToUpper
+                    '_new.USERNAME = objEmpCV.WORK_EMAIL.ToUpper
                     _new.EMPLOYEE_ID = objEmpData.ID
                     Context.SE_USER.AddObject(_new)
                 End If
