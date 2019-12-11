@@ -66,6 +66,7 @@
                         <ClientEvents OnRowDblClick="gridRowDblClick" />
                         <%--<ClientEvents OnGridCreated="GridCreated" />--%>
                         <ClientEvents OnCommand="ValidateFilter" />
+                         <Scrolling AllowScroll="true" UseStaticHeaders="true" FrozenColumnsCount="4" />
                     </ClientSettings>
                     <MasterTableView DataKeyNames="ID,ORG_DESC" ClientDataKeyNames="ID,EMPLOYEE_CODE">
                         <Columns>

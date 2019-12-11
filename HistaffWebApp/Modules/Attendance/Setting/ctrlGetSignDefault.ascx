@@ -196,6 +196,7 @@
                                         <Selecting AllowRowSelect="True" />
                                         <ClientEvents OnGridCreated="GridCreated" />
                                         <ClientEvents OnCommand="ValidateFilter" />
+                                 <Scrolling AllowScroll="true" UseStaticHeaders="true" FrozenColumnsCount="3" />
                             </ClientSettings>
                             <HeaderStyle HorizontalAlign="Center" />
                         </tlk:RadGrid>

@@ -63,6 +63,7 @@
                 <tlk:RadGrid PageSize="50" ID="rgData" runat="server" Height="100%">
                     <ClientSettings EnableRowHoverStyle="true">
                         <Selecting AllowRowSelect="true" />
+                        <Scrolling AllowScroll="true" UseStaticHeaders="true" FrozenColumnsCount="2" />
                     </ClientSettings>
                     <HeaderStyle HorizontalAlign="Center" />
                     <MasterTableView DataKeyNames="ID,EMPLOYEE_ID,ORG_DESC" ClientDataKeyNames="ID,EMPLOYEE_ID">

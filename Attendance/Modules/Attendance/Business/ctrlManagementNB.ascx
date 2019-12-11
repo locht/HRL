@@ -175,6 +175,7 @@
                     <HeaderStyle HorizontalAlign="Center" />
                     <ClientSettings>
                         <Selecting AllowRowSelect="True" />
+                        <Scrolling AllowScroll="true" UseStaticHeaders="true" FrozenColumnsCount="3" />
                     </ClientSettings>
                 </tlk:RadGrid>
             </tlk:RadPane>
