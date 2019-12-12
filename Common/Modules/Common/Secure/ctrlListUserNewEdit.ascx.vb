@@ -156,7 +156,7 @@ Public Class ctrlListUserNewEdit
                         txtEMAIL.Text = User.EMAIL
                         txtFULLNAME.Text = User.FULLNAME
                         txtTELEPHONE.Text = User.TELEPHONE
-                        txtUSERNAME.Text = User.USERNAME.ToUpper
+                        txtUSERNAME.Text = If(User.USERNAME Is Nothing, "", User.USERNAME.ToUpper)
                         txtEMPLOYEE_CODE.Text = User.EMPLOYEE_CODE
                         cbIS_AD.Checked = User.IS_AD
                         cbIS_APP.Checked = User.IS_APP
