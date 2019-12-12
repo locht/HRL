@@ -2106,6 +2106,10 @@ Public Class ProfileRepository
 
             Dim query = (From p In Context.HU_FILECONTRACT
                           From u In Context.HU_EMPLOYEE.Where(Function(x) p.EMP_ID = x.ID).DefaultIfEmpty
+                          From e1 In Context.HU_EMPLOYEE.Where(Function(x) x.ID = p.SIGN_ID).DefaultIfEmpty
+                          From e2 In Context.HU_EMPLOYEE.Where(Function(x) x.ID = p.SIGN_ID2).DefaultIfEmpty
+                            From t1 In Context.HU_TITLE.Where(Function(x) x.ID = e1.TITLE_ID).DefaultIfEmpty
+                          From t2 In Context.HU_TITLE.Where(Function(x) x.ID = e2.TITLE_ID).DefaultIfEmpty
                           From t In Context.HU_TITLE.Where(Function(x) x.ID = u.TITLE_ID).DefaultIfEmpty
                           From c In Context.HU_CONTRACT.Where(Function(x) x.ID = p.ID_CONTRACT).DefaultIfEmpty
                            From type In Context.HU_CONTRACT_TYPE.Where(Function(x) x.ID = c.CONTRACT_TYPE_ID).DefaultIfEmpty
@@ -2139,11 +2143,11 @@ Public Class ProfileRepository
                                                             .FORM_ID = p.FORM_ID,
                                                             .LOCATION_ID = p.LOCATION_ID,
                                                             .SIGN_ID = p.SIGN_ID,
-                                                            .SIGNER_NAME = p.SIGNER_NAME,
-                                                            .SIGNER_TITLE = p.SIGNER_TITLE,
+                                                            .SIGNER_NAME = e1.FULLNAME_VN,
+                                                            .SIGNER_TITLE = t1.NAME_VN,
                                                             .SIGN_ID2 = p.SIGN_ID2,
-                                                            .SIGNER_NAME2 = p.SIGNER_NAME2,
-                                                            .SIGNER_TITLE2 = p.SIGNER_TITLE2,
+                                                            .SIGNER_NAME2 = e2.FULLNAME_VN,
+                                                            .SIGNER_TITLE2 = t2.NAME_VN,
                                                             .LOCATION_NAME = "",
                                                             .FORM_NAME = f.NAME_VN,
                                                             .SIGN_DATE = p.SIGN_DATE,
