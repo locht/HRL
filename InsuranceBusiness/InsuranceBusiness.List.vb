@@ -20,8 +20,7 @@ Namespace InsuranceBusiness.ServiceImplementations
             Try
 
                 Dim rep As New DataAccess.QueryData
-                Dim dtResult As Object = rep.ExecuteStore("PKG_INS_LIST.SPS_INS_LIST_INSURANCE", New With {.P_USERNAME = "",
-                                                                                                         .P_LOADFULL = If(Is_Full, "1", "0"),
+                Dim dtResult As Object = rep.ExecuteStore("PKG_INS_LIST.SPS_INS_LIST_INSURANCE", New With {.P_LOADFULL = If(Is_Full, "1", "0"),
                                                                                                            .P_CUR = OUT_CURSOR})
                 Return dtResult
             Catch ex As Exception
@@ -33,7 +32,7 @@ Namespace InsuranceBusiness.ServiceImplementations
             Try
 
                 Dim rep As New DataAccess.QueryData
-                Dim dtResult As Object = rep.ExecuteStore("PKG_INS_LIST.SPS_INS_LIST_INSURANCE", New With {.P_USERNAME = User_Name,
+                Dim dtResult As Object = rep.ExecuteStore("PKG_INS_LIST.SPS_INS_LIST_INSURANCE_USER", New With {.P_USERNAME = User_Name,
                                                                                                            .P_LOADFULL = If(Is_Full, "1", "0"),
                                                                                                            .P_CUR = OUT_CURSOR})
                 Return dtResult
