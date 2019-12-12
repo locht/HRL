@@ -315,8 +315,8 @@ Public Class ctrlRC_CanDtlBeforeWT
             objCandidateBeforeWT.TODATE = rdTodate.SelectedDate
             objCandidateBeforeWT.ORG_NAME = txtOrgname.Text
             objCandidateBeforeWT.TITLE_NAME = txtTitlename.Text
-            objCandidateBeforeWT.WORK = txtWork.Text
-            objCandidateBeforeWT.SALARY = CType(rnSalary.Text, Integer)
+            objCandidateBeforeWT.WORK = txtWork.Text             
+            objCandidateBeforeWT.SALARY = rnSalary.Value
             objCandidateBeforeWT.REMARK = txtRemark.Text
             objCandidateBeforeWT.ORG_PHONE = txtOrgname.Text
             objCandidateBeforeWT.ORG_ADDRESS = txtOrgAddress.Text
@@ -393,6 +393,9 @@ Public Class ctrlRC_CanDtlBeforeWT
         For Each control As Control In RadPaneLeft.Controls
             If TypeOf control Is RadTextBox Then
                 DirectCast(control, RadTextBox).ReadOnly = Not sTrangThai
+            End If
+            If TypeOf control Is RadNumericTextBox Then
+                DirectCast(control, RadNumericTextBox).ReadOnly = Not sTrangThai
             End If
         Next
         Utilities.EnableRadDatePicker(rdFromdate, sTrangThai)
