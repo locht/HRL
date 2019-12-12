@@ -46,6 +46,9 @@
             </tlk:RadPane>
             <tlk:RadPane ID="RadPane1" runat="server" Scrolling="None">
                 <tlk:RadGrid PageSize="50" ID="rgEntitlement" runat="server" Height="100%" Scrolling="None">
+                    <ClientSettings>
+                        <Scrolling AllowScroll="true" UseStaticHeaders="true" FrozenColumnsCount="3" />
+                    </ClientSettings>
                     <MasterTableView DataKeyNames="ID,EMPLOYEE_ID,ORG_DESC">
                         <Columns>
                             <tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderStyle-HorizontalAlign="Center"
