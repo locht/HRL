@@ -429,7 +429,8 @@ Public Class ctrlHU_DisciplineNewEdit
 
                         Next
 
-                        CurrentState = CommonMessage.STATE_NORMAL
+                        CurrentState = CommonMessage.STATE_EDIT
+
                     Else
                         For Each item As GridDataItem In rgEmployee.Items
                             Dim cbStatus = CType(item("cbStatus").Controls(0), CheckBox)
