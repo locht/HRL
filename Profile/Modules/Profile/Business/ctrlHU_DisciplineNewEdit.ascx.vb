@@ -533,7 +533,8 @@ Public Class ctrlHU_DisciplineNewEdit
                                 totalAmountToPaid += rnAmountToPaid.Value
                             End If
 
-                            If (totalSumIndemMoney <> totalAmountToPaid) Then
+                            'so sanh chenh lech tien
+                            If (System.Math.Abs(totalSumIndemMoney - totalAmountToPaid) > 50) Then
                                 ShowMessage(Translate("Tổng số tiền bồi thường đang bị chênh lệch"), NotifyType.Warning)
                                 Exit Sub
                             End If
