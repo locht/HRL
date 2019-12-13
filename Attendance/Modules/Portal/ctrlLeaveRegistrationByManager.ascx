@@ -46,7 +46,7 @@
                  YEAR,FROM_DATE, TO_DATE, ID_SIGN, SIGN_CODE,SIGN_NAME, TOTAL_LEAVE, NOTE, ID_REGGROUP,MODIFIED_DATE,
                  STATUS, STATUS_NAME, IMPORT" ClientDataKeyNames="ID, ID_EMPLOYEE, EMPLOYEE_CODE, EMPLOYEE_NAME, DEPARTMENT, JOBTITLE,MODIFIED_DATE, 
                  YEAR,FROM_DATE, TO_DATE, ID_SIGN, SIGN_CODE,SIGN_NAME, TOTAL_LEAVE, NOTE, ID_REGGROUP,
-                 STATUS, STATUS_NAME, IMPORT">
+                 STATUS, STATUS_NAME, IMPORT,REASON_NOT_AGREE">
                         <Columns>
                             <tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderStyle-HorizontalAlign="Center"
                                 HeaderStyle-Width="30px" ItemStyle-HorizontalAlign="Center">
@@ -105,8 +105,8 @@
                                 ItemStyle-HorizontalAlign="Center" ItemStyle-Width="100px">
                                 <HeaderStyle Width="100px" />
                             </tlk:GridBoundColumn>
-                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Lý do không duyệt %>" DataField="REASON"
-                                UniqueName="REASON" SortExpression="REASON" HeaderStyle-Width="200px" ItemStyle-Width="200px" />
+                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Lý do không duyệt %>" DataField="REASON_NOT_AGREE"
+                                UniqueName="REASON_NOT_AGREE" SortExpression="REASON_NOT_AGREE" HeaderStyle-Width="200px" ItemStyle-Width="200px" />
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Tự sinh do import bảng công %>" DataField="IMPORT"
                                 UniqueName="IMPORT" SortExpression="IMPORT" ItemStyle-Width="100px">
                                 <HeaderStyle Width="100px" />
