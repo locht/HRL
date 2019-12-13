@@ -858,8 +858,13 @@ Partial Class ProfileRepository
 
     Public Function DeleteTerminate(ByVal objID As Decimal, log As UserLog) As Boolean
         Dim objTerminateData As HU_TERMINATE
+        Dim objHuDebt As List(Of HU_DEBT)
         Try
             objTerminateData = (From p In Context.HU_TERMINATE Where objID = p.ID).FirstOrDefault
+            objHuDebt = (From q In Context.HU_DEBT Where q.EMPLOYEE_ID = objTerminateData.EMPLOYEE_ID).ToList
+            For index = 0 To objHuDebt.Count - 1
+                Context.HU_DEBT.DeleteObject(objHuDebt(index))
+            Next
             Context.HU_TERMINATE.DeleteObject(objTerminateData)
             Context.SaveChanges(log)
             Return True
