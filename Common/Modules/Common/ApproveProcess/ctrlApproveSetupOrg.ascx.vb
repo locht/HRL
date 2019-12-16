@@ -281,7 +281,7 @@ Public Class ctrlApproveSetupOrg
                         End If
 
                         If db.InsertApproveSetup(itemAdd) Then
-                            ClearControlValue(cboApproveProcess, cboApproveTemplate, cboKieuCong, cboPosition, cboLeavePlan, rdFromDate, rdToDate)
+                            ClearControlValue(cboApproveProcess, cboApproveTemplate, cboKieuCong, cboPosition, cboLeavePlan, rdFromDate, rdToDate, rntxtFromDay, rntxtToDay, rntxtFromHour, rntxtToHour, txtCCMailAccepting, txtCCMailAccepted)
                             ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), NotifyType.Success)
                         Else
                             ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), NotifyType.Error)
@@ -317,7 +317,7 @@ Public Class ctrlApproveSetupOrg
                         End If
 
                         If db.UpdateApproveSetup(itemEdit) Then
-                            ClearControlValue(cboApproveProcess, cboApproveTemplate, cboKieuCong, cboPosition, cboLeavePlan, rdFromDate, rdToDate)
+                            ClearControlValue(cboApproveProcess, cboApproveTemplate, cboKieuCong, cboPosition, cboLeavePlan, rdFromDate, rdToDate, rntxtFromDay, rntxtToDay, rntxtFromHour, rntxtToHour, txtCCMailAccepting, txtCCMailAccepted)
                             ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), NotifyType.Success)
                         Else
                             ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), NotifyType.Error)
@@ -584,7 +584,7 @@ Public Class ctrlApproveSetupOrg
             Dim dbTitle = db.GetTitleList()
             cboPosition.DataSource = dbTitle
             cboPosition.DataTextField = "NAME_VN"
-            cboPosition.DataValueField = "CODE"
+            cboPosition.DataValueField = "ID"
             cboPosition.DataBind()
 
             Dim dtSignList = db.GetSignList()
