@@ -262,7 +262,21 @@ Public Class ctrlHU_ChangeInfoNewEdit
                     Working = rep.GetWorkingByID(Working)
                     hidID.Value = Working.ID.ToString
                     hidEmp.Value = Working.EMPLOYEE_ID
-
+                    If Working.DECISION_TYPE_ID = 7561 Then
+                        btnFindOrg.Enabled = False
+                        cboTitle.Enabled = False
+                        'If ctrlFindEmployeePopup.SelectedEmployeeID Is Nothing Then
+                        If hidEmp.Value <> "" Then
+                            Dim empID = hidEmp.Value
+                            FillData(empID)
+                        End If
+                    Else
+                        btnFindOrg.Enabled = True
+                        cboTitle.Enabled = True
+                        txtOrgName.Text = ""
+                        hidOrg.ClearValue()
+                        cboTitle.ClearValue()
+                    End If
                     If Working.WORKING_OLD IsNot Nothing Then
                         With Working.WORKING_OLD
                             txtTitleNameOld.Text = .TITLE_NAME
