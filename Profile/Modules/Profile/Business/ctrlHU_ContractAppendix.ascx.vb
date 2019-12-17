@@ -864,6 +864,7 @@ Public Class ctrlHU_ContractAppendix
         dtTemp.Columns(8).ColumnName = "APPEND_NUMBER"
         dtTemp.Columns(9).ColumnName = "CONTENT"
         dtTemp.Columns(11).ColumnName = "SALARY"
+        dtTemp.Columns(12).ColumnName = "SALARY_MONEY"
         dtTemp.Columns(13).ColumnName = "START_DATE"
         dtTemp.Columns(14).ColumnName = "EXPIRE_DATE"
         dtTemp.Columns(15).ColumnName = "SIGN_DATE"
