@@ -44,9 +44,9 @@
                             <div class="remember">
                                 <asp:CheckBox ID="RememberMe" runat="server" Text="<%$ Translate: Ghi nhớ tài khoản%>"
                                     TextAlign="Left" />
-                                <asp:DropDownList ID="rcbLanguage" runat="server" AutoPostBack="true" CausesValidation="false"
-                                    Visible="false">
-                                </asp:DropDownList>
+                              <%--  <asp:DropDownList ID="rcbLanguage" runat="server" AutoPostBack="true" CausesValidation="false"
+                                    Visible="True">
+                                </asp:DropDownList>--%>
                             </div>
                         </div>
                     </div>

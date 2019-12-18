@@ -49,11 +49,11 @@
                             <asp:TextBox ID="Password" runat="server" CssClass="text next" TextMode="Password"></asp:TextBox>
                             <asp:Button ID="LoginButton" runat="server" CommandName="Login" Text="<%$ Translate: Đăng nhập%>"
                                 CssClass="button" />
-                            <div style="float: left">
+                          <%--  <div style="float: left">
                                 <asp:DropDownList ID="rcbLanguage" runat="server" AutoPostBack="true" CausesValidation="false"
                                     Visible="true" Style="float: left; margin-left: 28px;">
                                 </asp:DropDownList>
-                            </div>
+                            </div>--%>
                             <div class="remember">
                                 <asp:CheckBox ID="RememberMe" runat="server" Text="<%$ Translate: Ghi nhớ tài khoản%>"
                                     TextAlign="Left" />
