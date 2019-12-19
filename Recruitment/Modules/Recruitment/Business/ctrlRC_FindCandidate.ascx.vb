@@ -10,7 +10,7 @@ Imports System.IO
 Public Class ctrlRC_FindCandidate
 
     Inherits Common.CommonView
-    Public Overrides Property MustAuthorize As Boolean = False
+    Public Overrides Property MustAuthorize As Boolean = True
 
 #Region "Properties"
     Private Property CandidateList As List(Of CandidateDTO)

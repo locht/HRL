@@ -316,7 +316,7 @@ Public Class Common
                             icon = ToolbarIcons.Export
                         Case ToolbarItem.Calculate
                             strCommand = CommonMessage.TOOLBARTIEM_CALCULATE
-                            Authorize = ToolbarAuthorize.Special5
+                            Authorize = ToolbarAuthorize.Special1
                             icon = ToolbarIcons.Calculator
                         Case ToolbarItem.Approve
                             strCommand = CommonMessage.TOOLBARITEM_APPROVE
@@ -352,6 +352,7 @@ Public Class Common
                         Case ToolbarItem.Refresh
                             strCommand = CommonMessage.TOOLBARITEM_REFRESH
                             icon = ToolbarIcons.Refresh
+                            Authorize = ToolbarAuthorize.Special1
                         Case ToolbarItem.Unlock
                             strCommand = CommonMessage.TOOLBARITEM_UNLOCK
                             Authorize = ToolbarAuthorize.Special2

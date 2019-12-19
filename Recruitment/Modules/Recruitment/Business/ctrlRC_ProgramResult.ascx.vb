@@ -7,7 +7,7 @@ Imports System.IO
 
 Public Class ctrlRC_ProgramResult
     Inherits CommonView
-    Public Overrides Property MustAuthorize As Boolean = False
+    Public Overrides Property MustAuthorize As Boolean = True
 
 #Region "Property"
 

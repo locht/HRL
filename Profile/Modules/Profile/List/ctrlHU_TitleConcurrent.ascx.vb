@@ -7,7 +7,7 @@ Imports WebAppLog
 
 Public Class ctrlHU_TitleConcurrent
     Inherits Common.CommonView
-    Public Overrides Property MustAuthorize As Boolean = False
+    Public Overrides Property MustAuthorize As Boolean = True
     Protected WithEvents ctrlFindOrgPopup As ctrlFindOrgPopup
     Protected WithEvents ctrlFindEmployeePopup As ctrlFindEmployeePopup
     Dim _mylog As New MyLog()

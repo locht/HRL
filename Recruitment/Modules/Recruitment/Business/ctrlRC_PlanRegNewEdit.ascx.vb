@@ -11,7 +11,7 @@ Public Class ctrlRC_PlanRegNewEdit
     Protected WithEvents ctrlFindEmployeePopup As ctrlFindEmployeePopup
     Private rep As New HistaffFrameworkRepository
     'Private proRespository As New ProfileRepository
-    Public Overrides Property MustAuthorize As Boolean = False
+    Public Overrides Property MustAuthorize As Boolean = True
     Private store As New RecruitmentStoreProcedure()
 #Region "Property"
 

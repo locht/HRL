@@ -7,7 +7,7 @@ Imports Telerik.Web.UI
 Public Class ctrlRC_FindProgram
     Inherits Common.CommonView
     Protected WithEvents ProgramView As ViewBase
-    Public Overrides Property MustAuthorize As Boolean = False
+    Public Overrides Property MustAuthorize As Boolean = True
 
 #Region "Property"
 

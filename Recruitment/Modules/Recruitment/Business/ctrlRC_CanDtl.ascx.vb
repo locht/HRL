@@ -12,7 +12,7 @@ Public Class ctrlRC_CanDtl
     Protected WithEvents CurrentView As ViewBase
     Public WithEvents ViewImage As ViewBase
 
-    Public Overrides Property MustAuthorize As Boolean = False
+    Public Overrides Property MustAuthorize As Boolean = True
 
 #Region "Properties"
     Property isChangeImage As Boolean

@@ -8,7 +8,7 @@ Public Class ctrlRC_ProgrammNewEdit
     Inherits CommonView
     Protected WithEvents ctrlFindEmployeePopup As ctrlFindEmployeePopup
     Private store As New RecruitmentStoreProcedure()
-    Public Overrides Property MustAuthorize As Boolean = False
+    Public Overrides Property MustAuthorize As Boolean = True
 #Region "Property"
 
     '0 - normal

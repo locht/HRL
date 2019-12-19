@@ -11,7 +11,7 @@ Public Class ctrlRC_RequestNewEdit
     Inherits CommonView
     Protected WithEvents ctrlFindOrgPopup As ctrlFindOrgPopup
     Protected WithEvents ctrlFindEmployeePopup As ctrlFindEmployeePopup
-    Public Overrides Property MustAuthorize As Boolean = False
+    Public Overrides Property MustAuthorize As Boolean = True
     Private rep As New HistaffFrameworkRepository
     Private store As New RecruitmentStoreProcedure()
 

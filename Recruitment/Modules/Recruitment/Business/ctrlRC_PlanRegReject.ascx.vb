@@ -14,7 +14,7 @@ Public Class ctrlRC_PlanRegReject
     Protected WithEvents CurrentView As ViewBase
     Public WithEvents ViewImage As ViewBase
     Private rep As New HistaffFrameworkRepository
-    Public Overrides Property MustAuthorize As Boolean = False
+    Public Overrides Property MustAuthorize As Boolean = True
 
 
     Public Overrides Sub ViewInit(ByVal e As System.EventArgs)
