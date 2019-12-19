@@ -6,7 +6,7 @@ Imports Insurance.InsuranceBusiness
 Imports WebAppLog
 Public Class ctrlInsListParamInsurance
     Inherits Common.CommonView
-    Public Overrides Property MustAuthorize As Boolean = False
+    Public Overrides Property MustAuthorize As Boolean = True
     Public IDSelect As Integer
     Dim _myLog As New MyLog()
     Dim _pathLog As String = _myLog._pathLog

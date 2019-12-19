@@ -141,15 +141,8 @@ Public Class ctrlHU_Terminate
                                        ToolbarItem.Print)
             Me.MainToolBar.Items.Add(Common.Common.CreateToolbarItem(CommonMessage.TOOLBARITEM_CREATE_BATCH,
                                                                   ToolbarIcons.Add,
-                                                                  ToolbarAuthorize.None,
+                                                                  ToolbarAuthorize.Special1,
                                                                   "Phê duyệt hàng loạt"))
-
-            'Me.MainToolBar.Items.Add(Common.Common.CreateToolbarItem("PRINT_BBBG", ToolbarIcons.Print,
-            '                                                         ToolbarAuthorize.Print, Translate("In biên bản bàn giao")))
-            'Me.MainToolBar.Items.Add(Common.Common.CreateToolbarItem("PRINT_BBTL", ToolbarIcons.Print,
-            '                                                         ToolbarAuthorize.Print, Translate("In biên bản thanh lý")))
-            'Me.MainToolBar.Items.Add(Common.Common.CreateToolbarItem("PRINT_QD", ToolbarIcons.Print,
-            '                                                         ToolbarAuthorize.Print, Translate("In QĐ chấm dứt")))
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
             Throw ex

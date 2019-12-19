@@ -298,6 +298,7 @@ Public Class Common
                         Case ToolbarItem.Save
                             strCommand = CommonMessage.TOOLBARITEM_SAVE
                             icon = ToolbarIcons.Save
+                            Authorize = ToolbarAuthorize.Create
                         Case ToolbarItem.Cancel
                             strCommand = CommonMessage.TOOLBARITEM_CANCEL
                             icon = ToolbarIcons.Cancel
@@ -336,6 +337,7 @@ Public Class Common
                         Case ToolbarItem.Next
                             strCommand = CommonMessage.TOOLBARITEM_NEXT
                             icon = ToolbarIcons.Next
+                            Authorize = ToolbarAuthorize.Special1
                         Case ToolbarItem.Previous
                             strCommand = CommonMessage.TOOLBARITEM_PREVIOUS
                             icon = ToolbarIcons.Previous
@@ -389,7 +391,7 @@ Public Class Common
                             icon = ToolbarIcons.Export
                         Case ToolbarItem.ApproveBatch 'ThanhNT added 04072016
                             strCommand = CommonMessage.TOOLBARITEM_APPROVE_BATCH
-                            Authorize = ToolbarAuthorize.ApproveBatch
+                            Authorize = ToolbarAuthorize.Special1
                             icon = ToolbarIcons.Approve
                         Case ToolbarItem.View 'ThanhNT added 04072016
                             strCommand = CommonMessage.TOOLBARITEM_VIEW

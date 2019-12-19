@@ -149,17 +149,12 @@ Public Class ctrlHU_ChangeInfoMng
                                        ToolbarItem.Export, ToolbarItem.Print)
             Me.MainToolBar.Items.Add(Common.Common.CreateToolbarItem(CommonMessage.TOOLBARITEM_CREATE_BATCH,
                                                                   ToolbarIcons.Add,
-                                                                  ToolbarAuthorize.None,
+                                                                  ToolbarAuthorize.Special1,
                                                                   "Phê duyệt hàng loạt"))
-            Me.MainToolBar.Items.Add(Common.Common.CreateToolbarItem("APPROVE_MULTI_CHANGE_NEW", ToolbarIcons.Unlock,
-                                                                   ToolbarItem.CreateBatch, Translate("Điều động hàng loạt")))
-            'Me.MainToolBar.Items.Add(Common.Common.CreateToolbarItem("EXPORT_TEMP", ToolbarIcons.Export,
-            '                                                         ToolbarAuthorize.Export, Translate("Xuất file mẫu")))
-            'Me.MainToolBar.Items.Add(Common.Common.CreateToolbarItem("IMPORT_TEMP", ToolbarIcons.Import,
-            '                                                         ToolbarAuthorize.Import, Translate("Nhập file mẫu")))
-            'Me.MainToolBar.Items.Add(Common.Common.CreateToolbarItem("EXPIRE_TEMP", ToolbarIcons.DeActive,
-            '                                                         ToolbarAuthorize.Create, Translate("Cắt phụ cấp")))
-
+            Me.MainToolBar.Items.Add(Common.Common.CreateToolbarItem("APPROVE_MULTI_CHANGE_NEW",
+                                                                     ToolbarIcons.Unlock,
+                                                                     ToolbarAuthorize.Special1,
+                                                                     Translate("Điều động hàng loạt")))
             CType(MainToolBar.Items(4), RadToolBarButton).Text = "In"
             CType(Me.Page, AjaxPage).AjaxManager.ClientEvents.OnRequestStart = "onRequestStart"
             rgWorking.MasterTableView.GetColumn("DECISION_TYPE_NAME").HeaderText = UI.DecisionType

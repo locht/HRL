@@ -32,7 +32,7 @@ Public Class ctrlGetSignDefault
     ''' <value></value>
     ''' <returns></returns>
     ''' <remarks></remarks>
-    Public Overrides Property MustAuthorize As Boolean = False
+    Public Overrides Property MustAuthorize As Boolean = True
 
     ''' <summary>
     ''' dsDataComper

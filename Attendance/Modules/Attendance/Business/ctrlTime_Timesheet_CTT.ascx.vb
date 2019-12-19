@@ -226,7 +226,7 @@ Public Class ctrlTime_Timesheet_CTT
             '                                                      Translate("Xuất bảng công gốc")))
             Me.MainToolBar.Items.Add(Common.Common.CreateToolbarItem("CALCULATE",
                                                                   ToolbarIcons.Calculator,
-                                                                  ToolbarAuthorize.None,
+                                                                  ToolbarAuthorize.Special1,
                                                                   Translate("Tổng hợp")))
 
             _myLog.WriteLog(_myLog._info, _classPath, method,

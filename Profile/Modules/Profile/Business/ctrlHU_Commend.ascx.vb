@@ -188,10 +188,9 @@ Public Class ctrlHU_Commend
                                        ToolbarItem.Edit,
                                        ToolbarItem.Export,
                                        ToolbarItem.Delete, ToolbarItem.Print)
-
             Me.MainToolBar.Items.Add(Common.Common.CreateToolbarItem(CommonMessage.TOOLBARITEM_CREATE_BATCH,
                                                                   ToolbarIcons.Add,
-                                                                  ToolbarAuthorize.None,
+                                                                  ToolbarAuthorize.Special1,
                                                                   "Phê duyệt hàng loạt"))
 
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")

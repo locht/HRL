@@ -188,18 +188,12 @@ Public Class ctrlHU_Discipline
                                        ToolbarItem.Delete, ToolbarItem.Print)
             Me.MainToolBar.Items.Add(Common.Common.CreateToolbarItem(CommonMessage.TOOLBARITEM_CREATE_BATCH,
                                                                   ToolbarIcons.Add,
-                                                                  ToolbarAuthorize.None,
+                                                                  ToolbarAuthorize.Special1,
                                                                   "Phê duyệt hàng loạt"))
             Me.MainToolBar.Items.Add(Common.Common.CreateToolbarItem(CommonMessage.TOOLBARITEM_APPROVE_OPEN,
                                                                   ToolbarIcons.Add,
-                                                                  ToolbarAuthorize.None,
+                                                                  ToolbarAuthorize.Special1,
                                                                   "Mở phê duyệt"))
-            'Me.MainToolBar.Items.Add(Common.Common.CreateToolbarItem("PRINT_VPCT", ToolbarIcons.Print,
-            '                                             ToolbarAuthorize.Print, Translate("In CV VPCT")))
-            'Me.MainToolBar.Items.Add(Common.Common.CreateToolbarItem("PRINT_BKS", ToolbarIcons.Print,
-            '                                                         ToolbarAuthorize.Print, Translate("In QĐ CT")))
-
-            ' CType(MainToolBar.Items(3), RadToolBarButton).Text = "Dừng giảm trừ"
             CType(MainToolBar.Items(4), RadToolBarButton).Text = "In quyết định"
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception

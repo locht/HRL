@@ -12,7 +12,7 @@ Public Class ctrlInsMaternityMng
     'Private WithEvents viewRegister As ctrlShiftPlanningRegister
     Private store As New Store_Insurance_Business()
     Private userlog As UserLog
-    Public Overrides Property MustAuthorize As Boolean = False
+    Public Overrides Property MustAuthorize As Boolean = True
 
     Protected WithEvents ctrlFindEmployeePopup As ctrlFindEmployeePopup
     Protected WithEvents ctrlOrgSULPPopup As ctrlFindOrgPopup

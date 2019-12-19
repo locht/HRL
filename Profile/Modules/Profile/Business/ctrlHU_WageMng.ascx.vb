@@ -10,12 +10,12 @@ Imports Aspose.Cells
 
 Public Class ctrlHU_WageMng
     Inherits Common.CommonView
-
     'Content: Write log time and error
     Dim _mylog As New MyLog()
     Dim _pathLog As String = _mylog._pathLog
     Dim _classPath As String = "Profile\Modules\Profile\Business" + Me.GetType().Name.ToString()
     'Private ReadOnly RestClient As IServerDataRestClient = New ServerDataRestClient()
+
 #Region "Property"
     ''' <summary>
     ''' dtData
@@ -152,22 +152,13 @@ Public Class ctrlHU_WageMng
                                        ToolbarItem.Next, ToolbarItem.Import,
                                        ToolbarItem.Delete)
             CType(MainToolBar.Items(3), RadToolBarButton).Text = UI.Approve
+
             CType(Me.MainToolBar.Items(4), RadToolBarButton).Text = Translate("Xuất file mẫu")
             CType(Me.MainToolBar.Items(4), RadToolBarButton).ImageUrl = CType(Me.MainToolBar.Items(2), RadToolBarButton).ImageUrl
             CType(Me.MainToolBar.Items(5), RadToolBarButton).Text = Translate("Nhập file mẫu")
             CType(Me.Page, AjaxPage).AjaxManager.ClientEvents.OnRequestStart = "onRequestStart"
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
-            'rgWorking.MasterTableView.GetColumn("SAL_TYPE_NAME").HeaderText = UI.Wage_WageGRoup
-            'rgWorking.MasterTableView.GetColumn("SAL_BASIC").HeaderText = UI.Wage_BasicSalary
-            'rgWorking.MasterTableView.GetColumn("TAX_TABLE_Name").HeaderText = UI.Wage_TaxTable
-            'rgWorking.MasterTableView.GetColumn("ResponsibilityAllowances").HeaderText = UI.Wage_ResponsibilityAllowances
-            'rgWorking.MasterTableView.GetColumn("WorkAllowances").HeaderText = UI.WorkAllowances
-            'rgWorking.MasterTableView.GetColumn("AttendanceAllowances").HeaderText = UI.AttendanceAllowances
-            'rgWorking.MasterTableView.GetColumn("HousingAllowances").HeaderText = UI.HousingAllowances
-            'rgWorking.MasterTableView.GetColumn("CarRentalAllowances").HeaderText = UI.CarRentalAllowances
-            'rgWorking.MasterTableView.GetColumn("SAL_INS").HeaderText = UI.Wage_Sal_Ins
-            'rgWorking.MasterTableView.GetColumn("SAL_TOTAL").HeaderText = UI.Wage_Salary_Total
-
+          
         Catch ex As Exception
             _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
             Throw ex
