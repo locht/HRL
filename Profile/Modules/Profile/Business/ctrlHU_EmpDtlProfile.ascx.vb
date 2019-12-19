@@ -16,7 +16,7 @@ Public Class ctrlHU_EmpDtlProfile
     Public Property EmployeeID As Decimal
     Protected WithEvents ctrlFindOrgPopup As ctrlFindOrgPopup
     Protected WithEvents ctrlFindEmployeePopup As ctrlFindEmployeePopup
-    Public Overrides Property MustAuthorize As Boolean = False
+    Public Overrides Property MustAuthorize As Boolean = True
     Private procedure As ProfileStoreProcedure
     'Content: Write log time and error
     Dim _mylog As New MyLog()
