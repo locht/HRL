@@ -12,7 +12,7 @@ Public Class ctrlHU_Province
     Dim _myLog As New MyLog()
     Dim _pathLog As String = _myLog._pathLog
     Dim _classPath As String = "Profile/Modules/Profile/Report/" + Me.GetType().Name.ToString()
-    Public Overrides Property MustAuthorize As Boolean = False
+    Public Overrides Property MustAuthorize As Boolean = True
 
 #Region "Property"
 

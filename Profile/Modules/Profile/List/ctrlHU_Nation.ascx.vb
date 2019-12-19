@@ -13,7 +13,7 @@ Public Class ctrlHU_Nation
     Dim _pathLog As String = _myLog._pathLog
     Dim _classPath As String = "Profile/Modules/Profile/Report/" + Me.GetType().Name.ToString()
     Protected WithEvents NationView As ViewBase
-    Public Overrides Property MustAuthorize As Boolean = False
+    Public Overrides Property MustAuthorize As Boolean = True
 
 #Region "Properties"
 
