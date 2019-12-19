@@ -6,7 +6,7 @@ Imports Telerik.Web.UI
 Public Class ctrlInsTotalSalary
     Inherits Common.CommonView
 
-
+    Public Overrides Property MustAuthorize As Boolean = True
 #Region "Property"
 
     Public Property popupId As String
@@ -35,7 +35,7 @@ Public Class ctrlInsTotalSalary
 
     Public Overrides Sub ViewLoad(ByVal e As System.EventArgs)
         Try
-            Me.MainToolBar = tbarOtherLists
+            'Me.MainToolBar = tbarOtherLists
             Me.ctrlMessageBox.Listener = Me
             Me.rgGridData.SetFilter()
             If Not IsPostBack Then
@@ -51,7 +51,22 @@ Public Class ctrlInsTotalSalary
     End Sub
 
     Public Overrides Sub ViewInit(ByVal e As System.EventArgs)
-        InitControl()
+        Me.ctrlMessageBox.Listener = Me
+        Dim popup As RadWindow
+        popup = CType(Me.Page, AjaxPage).PopupWindow
+        popup.Title = "Tổng quỹ lương hàng loạt"
+        popupId = popup.ClientID
+        Me.MainToolBar = tbarOtherLists
+        Common.Common.BuildToolbar(Me.MainToolBar,
+                                    ToolbarItem.Calculate,
+                                    ToolbarItem.Export,
+                                    ToolbarItem.Seperator,
+                                    ToolbarItem.Create)
+        CType(Me.MainToolBar.Items(3), RadToolBarButton).Text = Translate("Tổng hợp hàng loạt")
+        'tbarOtherLists.Items(3).Text = Translate("Tổng hợp hàng loạt")
+        Me.MainToolBar.OnClientButtonClicking = "OnClientButtonClicking"
+        CType(Me.Page, AjaxPage).AjaxManager.ClientEvents.OnRequestStart = "onRequestStart"
+        'InitControl()
     End Sub
 
     Public Overrides Sub BindData()
@@ -74,21 +89,7 @@ Public Class ctrlInsTotalSalary
 
     Protected Sub InitControl()
         Try
-            Me.ctrlMessageBox.Listener = Me
-            Me.MainToolBar = tbarOtherLists
-            Common.Common.BuildToolbar(Me.MainToolBar,
-                                        ToolbarItem.Calculate,
-                                        ToolbarItem.Export,
-                                        ToolbarItem.Seperator,
-                                        ToolbarItem.Create)
-            tbarOtherLists.Items(3).Text = Translate("Tổng hợp hàng loạt")
-            Me.MainToolBar.OnClientButtonClicking = "OnClientButtonClicking"
-            CType(Me.Page, AjaxPage).AjaxManager.ClientEvents.OnRequestStart = "onRequestStart"
-
-            Dim popup As RadWindow
-            popup = CType(Me.Page, AjaxPage).PopupWindow
-            popup.Title = "Tổng quỹ lương hàng loạt"
-            popupId = popup.ClientID
+           
 
         Catch ex As Exception
             DisplayException(Me.ViewName, Me.ID, ex)
