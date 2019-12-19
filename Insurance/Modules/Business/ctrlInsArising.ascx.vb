@@ -424,8 +424,12 @@ Public Class ctrlInsArising
             dtData = rep.GetInsListChangeType() 'Loai bien dong
             FillRadCombobox(ddlINS_ARISING_TYPE_ID, dtData, "ARISING_NAME", "ID", False)
 
-            dtData = rep.GetInsListInsurance(False) 'Don vi bao hiem
-            FillRadCombobox(ddlINSORG, dtData, "CODE", "ID", False)
+
+
+
+            'dtData = rep.GetInsListInsurance(False) 'Don vi bao hiem
+            Dim lstSource As DataTable = rep.GetInsListInsuranceByUsername(Common.Common.GetUsername(), False)
+            FillRadCombobox(ddlINSORG, lstSource, "CODE", "ID", False)
         Catch ex As Exception
             Throw ex
         End Try
