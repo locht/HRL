@@ -2124,7 +2124,8 @@ Partial Public Class CommonRepository
                        .ACTFLG = p.ACTFLG,
                        .DISSOLVE_DATE = p.DISSOLVE_DATE,
                        .DESCRIPTION_PATH = p.DESCRIPTION_PATH,
-                       .FOUNDATION_DATE = p.FOUNDATION_DATE}).ToList
+                       .FOUNDATION_DATE = p.FOUNDATION_DATE}).OrderBy("ORD_NO").ToList
+
         Return lstOrgs
     End Function
     ' so do to chuc Location da duoc phan quyen
@@ -2137,10 +2138,10 @@ Partial Public Class CommonRepository
                 Dim lstGroupIds As List(Of Decimal) = (From p In u.SE_GROUPS Select p.ID).ToList
 
                 Dim query = (From org In Context.HU_ORGANIZATION
-                           Where (From user In Context.SE_USER_ORG_ACCESS
-                                  Where user.USER_ID = u.ID
-                                  Select user.ORG_ID).Contains(org.ID)
-                            Select New OrganizationDTO With {
+                             Where (From user In Context.SE_USER_ORG_ACCESS
+                                    Where user.USER_ID = u.ID
+                                    Select user.ORG_ID).Contains(org.ID)
+                             Select New OrganizationDTO With {
                                 .ID = org.ID,
                                 .CODE = org.CODE,
                                 .NAME_VN = org.NAME_VN,
@@ -2152,7 +2153,7 @@ Partial Public Class CommonRepository
                                 .DISSOLVE_DATE = org.DISSOLVE_DATE,
                                 .HIERARCHICAL_PATH = org.HIERARCHICAL_PATH,
                                 .DESCRIPTION_PATH = org.DESCRIPTION_PATH,
-                                .FOUNDATION_DATE = org.FOUNDATION_DATE}).Distinct
+                                .FOUNDATION_DATE = org.FOUNDATION_DATE}).OrderBy("ORD_NO").Distinct
 
                 lstOrgs = query.ToList
 
@@ -2190,7 +2191,7 @@ Partial Public Class CommonRepository
                                                 .DISSOLVE_DATE = p.DISSOLVE_DATE,
                                                 .FOUNDATION_DATE = p.FOUNDATION_DATE,
                                                 .DESCRIPTION_PATH = p.DESCRIPTION_PATH,
-                                                .IS_NOT_PER = True}).ToList
+                                                .IS_NOT_PER = True}).OrderBy("ORD_NO").ToList
 
                         lstOrgs.AddRange(lstOrgNotPer)
                     End If
@@ -2201,8 +2202,8 @@ Partial Public Class CommonRepository
 
             Else
                 lstOrgs = (From p In Context.HU_ORGANIZATION
-                            Order By p.ORD_NO, p.CODE, p.NAME_VN
-                            Select New OrganizationDTO With {
+                           Order By p.ORD_NO, p.CODE, p.NAME_VN
+                           Select New OrganizationDTO With {
                                 .ID = p.ID,
                                 .CODE = p.CODE,
                                 .NAME_VN = p.NAME_VN,
@@ -2213,7 +2214,7 @@ Partial Public Class CommonRepository
                                 .ACTFLG = p.ACTFLG,
                                 .DISSOLVE_DATE = p.DISSOLVE_DATE,
                                 .DESCRIPTION_PATH = p.DESCRIPTION_PATH,
-                                .FOUNDATION_DATE = p.FOUNDATION_DATE}).ToList
+                                .FOUNDATION_DATE = p.FOUNDATION_DATE}).OrderBy("ORD_NO").ToList
             End If
         End If
         Return lstOrgs

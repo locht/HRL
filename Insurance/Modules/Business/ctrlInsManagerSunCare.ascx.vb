@@ -118,7 +118,23 @@ Public Class ctrlInsManagerSunCare
             AjaxManagerId = AjaxManager.ClientID
             rgData.AllowCustomPaging = True
             rgData.ClientSettings.EnablePostBackOnRowClick = False
-            InitControl()
+            Me.ctrlMessageBox.Listener = Me
+            Me.MainToolBar = tbarMenu
+            Common.Common.BuildToolbar(Me.MainToolBar,
+                                       ToolbarItem.Create,
+                                       ToolbarItem.Edit,
+                                       ToolbarItem.Delete,
+                                       ToolbarItem.Export)
+            Me.MainToolBar.Items.Add(Common.Common.CreateToolbarItem("EXPORT_TEMP",
+                                                                   ToolbarIcons.Export,
+                                                                   ToolbarAuthorize.Special1,
+                                                                   Translate("Xuất file mẫu")))
+            Me.MainToolBar.Items.Add(Common.Common.CreateToolbarItem("IMPORT_TEMP",
+                                                                     ToolbarIcons.Import,
+                                                                     ToolbarAuthorize.Special1,
+                                                                     Translate("Nhập file mẫu")))
+            Me.MainToolBar.OnClientButtonClicking = "OnClientButtonClicking"
+            CType(Me.Page, AjaxPage).AjaxManager.ClientEvents.OnRequestStart = "onRequestStart"
             _mylog.WriteLog(_mylog._info, _classPath, method,
                                                       CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
@@ -138,23 +154,7 @@ Public Class ctrlInsManagerSunCare
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
         Try
             Dim startTime As DateTime = DateTime.UtcNow
-            Me.ctrlMessageBox.Listener = Me
-            Me.MainToolBar = tbarMenu
-            Common.Common.BuildToolbar(Me.MainToolBar,
-                                       ToolbarItem.Create,
-                                       ToolbarItem.Edit,
-                                       ToolbarItem.Delete,
-                                       ToolbarItem.Export)
-            Me.MainToolBar.Items.Add(Common.Common.CreateToolbarItem("EXPORT_TEMP",
-                                                                   ToolbarIcons.Export,
-                                                                   ToolbarAuthorize.Export,
-                                                                   Translate("Xuất file mẫu")))
-            Me.MainToolBar.Items.Add(Common.Common.CreateToolbarItem("IMPORT_TEMP",
-                                                                     ToolbarIcons.Import,
-                                                                     ToolbarAuthorize.Export,
-                                                                     Translate("Nhập file mẫu")))
-            Me.MainToolBar.OnClientButtonClicking = "OnClientButtonClicking"
-            CType(Me.Page, AjaxPage).AjaxManager.ClientEvents.OnRequestStart = "onRequestStart"
+
             _mylog.WriteLog(_mylog._info, _classPath, method,
                                               CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
