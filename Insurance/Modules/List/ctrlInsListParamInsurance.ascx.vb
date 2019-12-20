@@ -55,7 +55,18 @@ Public Class ctrlInsListParamInsurance
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
         Dim startTime As DateTime = DateTime.UtcNow
         Try
-            InitControl()
+            Me.ctrlMessageBox.Listener = Me
+            Me.MainToolBar = tbarOtherLists
+            Common.Common.BuildToolbar(Me.MainToolBar,
+                                       ToolbarItem.Create,
+                                       ToolbarItem.Edit,
+                                       ToolbarItem.Save,
+                                       ToolbarItem.Cancel,
+                                       ToolbarItem.Delete,
+                                       ToolbarItem.Export)
+            CType(Me.MainToolBar.Items(2), RadToolBarButton).CausesValidation = True
+            Me.MainToolBar.OnClientButtonClicking = "OnClientButtonClicking"
+            CType(Me.Page, AjaxPage).AjaxManager.ClientEvents.OnRequestStart = "onRequestStart"
             _myLog.WriteLog(_myLog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
             _myLog.WriteLog(_myLog._error, _classPath, method, 0, ex, "")
@@ -115,18 +126,7 @@ Public Class ctrlInsListParamInsurance
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
         Dim startTime As DateTime = DateTime.UtcNow
         Try
-            Me.ctrlMessageBox.Listener = Me
-            Me.MainToolBar = tbarOtherLists
-            Common.Common.BuildToolbar(Me.MainToolBar,
-                                       ToolbarItem.Create,
-                                       ToolbarItem.Edit,
-                                       ToolbarItem.Save,
-                                       ToolbarItem.Cancel,
-                                       ToolbarItem.Delete,
-                                       ToolbarItem.Export)
-            CType(Me.MainToolBar.Items(2), RadToolBarButton).CausesValidation = True
-            Me.MainToolBar.OnClientButtonClicking = "OnClientButtonClicking"
-            CType(Me.Page, AjaxPage).AjaxManager.ClientEvents.OnRequestStart = "onRequestStart"
+
             _myLog.WriteLog(_myLog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
             _myLog.WriteLog(_myLog._error, _classPath, method, 0, ex, "")
