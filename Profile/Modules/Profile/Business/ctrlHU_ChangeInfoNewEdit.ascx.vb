@@ -51,7 +51,7 @@ Public Class ctrlHU_ChangeInfoNewEdit
     ''' <value></value>
     ''' <returns></returns>
     ''' <remarks></remarks>
-    Public Overrides Property MustAuthorize As Boolean = False
+    Public Overrides Property MustAuthorize As Boolean = True
 
     ''' <summary>
     ''' list WorkingAllowance DTO
@@ -163,26 +163,17 @@ Public Class ctrlHU_ChangeInfoNewEdit
     Public Overrides Sub ViewInit(ByVal e As System.EventArgs)
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
         Dim startTime As DateTime = DateTime.UtcNow
-
         Try
+            Me.MainToolBar = tbarMassTransferSalary
+            Common.Common.BuildToolbar(Me.MainToolBar,
+                                       ToolbarItem.Save,
+                                       ToolbarItem.Cancel)
+            CType(MainToolBar.Items(0), RadToolBarButton).CausesValidation = True
+            Me.MainToolBar.OnClientButtonClicking = "clientButtonClicking"
             CType(Me.Page, AjaxPage).AjaxManager.ClientEvents.OnRequestStart = "onRequestStart"
             If Not IsPostBack Then
                 ViewConfig(LeftPane)
             End If
-            Me.MainToolBar = tbarMassTransferSalary
-
-            Common.Common.BuildToolbar(Me.MainToolBar,
-                                       ToolbarItem.Save,
-                                       ToolbarItem.Cancel)
-
-            'If use.Log.Username = "HR.ADMIN" Or use.Log.Username = "ADMIN" Then
-            '    Me.MainToolBar.Items.Add(Common.Common.CreateToolbarItem("UNLOCK",
-            '                             ToolbarIcons.Unlock,
-            '                             ToolbarAuthorize.Export,
-            '                             Translate("Mở chờ phê duyệt")))
-            'End If
-
-            CType(MainToolBar.Items(0), RadToolBarButton).CausesValidation = True
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
             'DisplayException(Me.ViewName, Me.ID, ex)
@@ -234,8 +225,6 @@ Public Class ctrlHU_ChangeInfoNewEdit
         Dim startTime As DateTime = DateTime.UtcNow
         Dim use As New ProfileRepositoryBase
         Try
-
-
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
             _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")

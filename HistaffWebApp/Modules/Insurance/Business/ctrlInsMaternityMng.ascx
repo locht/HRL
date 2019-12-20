@@ -220,9 +220,13 @@
             return 0;
         }
 
-        function gridRowDblClick(sender, eventArgs) {
+        function gridRowDblClick(sender, eventArgs, args) {
             OpenEdit();
-            args.set_cancel(true);
+            try {
+                args.set_cancel(true);
+            } catch (err) {
+            }
+
         }
 
         function popupclose(sender, args) {
