@@ -12,7 +12,7 @@ Public Class ctrlHU_ContractNewEdit
     Protected WithEvents ctrlFindSigner As ctrlFindEmployeePopup
     Protected WithEvents ctrlFindSigner2 As ctrlFindEmployeePopup
     Protected WithEvents ctrlFindSalaryPopup As ctrlFindSalaryPopup
-    Public Overrides Property MustAuthorize As Boolean = False
+    Public Overrides Property MustAuthorize As Boolean = True
 
     'Content: Write log time and error
     Dim _mylog As New MyLog()

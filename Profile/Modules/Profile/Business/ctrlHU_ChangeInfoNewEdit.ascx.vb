@@ -169,8 +169,20 @@ Public Class ctrlHU_ChangeInfoNewEdit
             If Not IsPostBack Then
                 ViewConfig(LeftPane)
             End If
-            InitControl()
+            Me.MainToolBar = tbarMassTransferSalary
 
+            Common.Common.BuildToolbar(Me.MainToolBar,
+                                       ToolbarItem.Save,
+                                       ToolbarItem.Cancel)
+
+            'If use.Log.Username = "HR.ADMIN" Or use.Log.Username = "ADMIN" Then
+            '    Me.MainToolBar.Items.Add(Common.Common.CreateToolbarItem("UNLOCK",
+            '                             ToolbarIcons.Unlock,
+            '                             ToolbarAuthorize.Export,
+            '                             Translate("Mở chờ phê duyệt")))
+            'End If
+
+            CType(MainToolBar.Items(0), RadToolBarButton).CausesValidation = True
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
             'DisplayException(Me.ViewName, Me.ID, ex)
@@ -222,20 +234,7 @@ Public Class ctrlHU_ChangeInfoNewEdit
         Dim startTime As DateTime = DateTime.UtcNow
         Dim use As New ProfileRepositoryBase
         Try
-            Me.MainToolBar = tbarMassTransferSalary
 
-            Common.Common.BuildToolbar(Me.MainToolBar,
-                                       ToolbarItem.Save,
-                                       ToolbarItem.Cancel)
-
-            'If use.Log.Username = "HR.ADMIN" Or use.Log.Username = "ADMIN" Then
-            '    Me.MainToolBar.Items.Add(Common.Common.CreateToolbarItem("UNLOCK",
-            '                             ToolbarIcons.Unlock,
-            '                             ToolbarAuthorize.Export,
-            '                             Translate("Mở chờ phê duyệt")))
-            'End If
-
-            CType(MainToolBar.Items(0), RadToolBarButton).CausesValidation = True
 
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception

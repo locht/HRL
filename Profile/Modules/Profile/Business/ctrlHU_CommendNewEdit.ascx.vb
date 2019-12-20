@@ -51,7 +51,7 @@ Public Class ctrlHU_CommendNewEdit
     ''' <value></value>
     ''' <returns></returns>
     ''' <remarks></remarks>
-    Public Overrides Property MustAuthorize As Boolean = False
+    Public Overrides Property MustAuthorize As Boolean = True
 
     Private Property dtLogs As DataTable
         Get
@@ -240,7 +240,14 @@ Public Class ctrlHU_CommendNewEdit
                 End Select
             End If
 
-            InitControl()
+            Me.MainToolBar = tbarCommend
+
+            Common.Common.BuildToolbar(Me.MainToolBar, ToolbarItem.Save, ToolbarItem.Seperator,
+                                       ToolbarItem.Cancel)
+
+            'Me.btnDownload.OnClientClicked = "OnClientButtonClicked"
+            CType(MainToolBar.Items(0), RadToolBarButton).CausesValidation = True
+            CType(Me.Page, AjaxPage).AjaxManager.ClientEvents.OnRequestStart = "onRequestStart"
             If Not IsPostBack Then
                 ViewConfig(RightPane)
                 'GirdConfig(rgEmployee)
@@ -276,15 +283,6 @@ Public Class ctrlHU_CommendNewEdit
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
 
         Try
-            Me.MainToolBar = tbarCommend
-
-            Common.Common.BuildToolbar(Me.MainToolBar, ToolbarItem.Save, ToolbarItem.Seperator,
-                                       ToolbarItem.Cancel)
-
-            'Me.btnDownload.OnClientClicked = "OnClientButtonClicked"
-            CType(MainToolBar.Items(0), RadToolBarButton).CausesValidation = True
-            CType(Me.Page, AjaxPage).AjaxManager.ClientEvents.OnRequestStart = "onRequestStart"
-
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
             'DisplayException(Me.ViewName, Me.ID, ex)

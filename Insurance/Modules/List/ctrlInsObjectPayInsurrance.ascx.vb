@@ -9,7 +9,7 @@ Public Class ctrlInsObjectPayInsurrance
 
     Inherits Common.CommonView
     Protected WithEvents TerminateView As ViewBase
-    Public Overrides Property MustAuthorize As Boolean = False
+    Public Overrides Property MustAuthorize As Boolean = True
 
     Dim _myLog As New MyLog()
     Dim _pathLog As String = _myLog._pathLog
@@ -70,7 +70,14 @@ Public Class ctrlInsObjectPayInsurrance
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
         Try
             Dim startTime As DateTime = DateTime.UtcNow
-            InitControl()
+            Me.MainToolBar = tbarOtherLists
+            Common.Common.BuildToolbar(Me.MainToolBar,
+                                       ToolbarItem.Save,
+                                       ToolbarItem.Cancel,
+                                       ToolbarItem.Seperator)
+            CType(Me.MainToolBar.Items(0), RadToolBarButton).CausesValidation = True
+            Me.MainToolBar.Items(0).Enabled = True
+            CType(Me.Page, AjaxPage).AjaxManager.ClientEvents.OnRequestStart = "onRequestStart"
             _myLog.WriteLog(_myLog._info, _classPath, method,
                                        CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
@@ -110,15 +117,7 @@ Public Class ctrlInsObjectPayInsurrance
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
         Try
             Dim startTime As DateTime = DateTime.UtcNow
-            'Me.ctrlMessageBox.Listener = Me
-            Me.MainToolBar = tbarOtherLists
-            Common.Common.BuildToolbar(Me.MainToolBar,
-                                       ToolbarItem.Save,
-                                       ToolbarItem.Cancel,
-                                       ToolbarItem.Seperator)
-            CType(Me.MainToolBar.Items(0), RadToolBarButton).CausesValidation = True
-            Me.MainToolBar.Items(0).Enabled = True
-            CType(Me.Page, AjaxPage).AjaxManager.ClientEvents.OnRequestStart = "onRequestStart"
+
             _myLog.WriteLog(_myLog._info, _classPath, method,
                                            CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception

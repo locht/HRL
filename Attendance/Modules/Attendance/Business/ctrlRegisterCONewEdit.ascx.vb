@@ -14,7 +14,7 @@ Public Class ctrlRegisterCONewEdit
     Inherits CommonView
     Protected WithEvents ctrlFindEmployeePopup As ctrlFindEmployeePopup
     Protected WithEvents ctrlFindSigner As ctrlFindEmployeePopup
-    Public Overrides Property MustAuthorize As Boolean = False
+    Public Overrides Property MustAuthorize As Boolean = True
     Public WithEvents AjaxManager As RadAjaxManager
     Public Property AjaxManagerId As String
 
@@ -159,7 +159,13 @@ Public Class ctrlRegisterCONewEdit
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
         Try
             Dim startTime As DateTime = DateTime.UtcNow
-            InitControl()
+            Me.MainToolBar = tbarOT
+            Common.Common.BuildToolbar(Me.MainToolBar, ToolbarItem.Save,
+                                       ToolbarItem.Cancel)
+
+            CType(MainToolBar.Items(0), RadToolBarButton).CausesValidation = True
+            Me.MainToolBar.OnClientButtonClicking = "OnClientButtonClicking"
+            CType(Me.Page, AjaxPage).AjaxManager.ClientEvents.OnRequestStart = "onRequestStart"
             _myLog.WriteLog(_myLog._info, _classPath, method,
                                     CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
@@ -250,13 +256,7 @@ Public Class ctrlRegisterCONewEdit
     Protected Sub InitControl()
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
         Try
-            Me.MainToolBar = tbarOT
-            Common.Common.BuildToolbar(Me.MainToolBar, ToolbarItem.Save,
-                                       ToolbarItem.Cancel)
 
-            CType(MainToolBar.Items(0), RadToolBarButton).CausesValidation = True
-            Me.MainToolBar.OnClientButtonClicking = "OnClientButtonClicking"
-            CType(Me.Page, AjaxPage).AjaxManager.ClientEvents.OnRequestStart = "onRequestStart"
         Catch ex As Exception
             DisplayException(Me.ViewName, Me.ID, ex)
             _myLog.WriteLog(_myLog._error, _classPath, method, 0, ex, "")

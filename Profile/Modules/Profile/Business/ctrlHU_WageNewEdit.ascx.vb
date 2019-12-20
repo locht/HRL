@@ -14,7 +14,7 @@ Public Class ctrlHU_WageNewEdit
     Inherits CommonView
     Protected WithEvents ctrlFindEmployeePopup As ctrlFindEmployeePopup
     Protected WithEvents ctrlFindSigner As ctrlFindEmployeePopup
-    Public Overrides Property MustAuthorize As Boolean = False
+    Public Overrides Property MustAuthorize As Boolean = True
     Private commonStore As New CommonProcedureNew
     'Content: Write log time and error
     Dim _mylog As New MyLog()

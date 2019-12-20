@@ -12,7 +12,7 @@ Public Class ctrlHU_TerminateNewEdit
     Inherits CommonView
     Protected WithEvents ctrlFindEmployeePopup As ctrlFindEmployeePopup
     Protected WithEvents ctrlFindSigner As ctrlFindEmployeePopup
-    Public Overrides Property MustAuthorize As Boolean = False
+    Public Overrides Property MustAuthorize As Boolean = True
 
     Private psp As New ProfileStoreProcedure
     'author: hongdx
@@ -166,7 +166,14 @@ Public Class ctrlHU_TerminateNewEdit
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
         Try
             rgHandoverContent.AllowSorting = False
-            InitControl()
+            Me.MainToolBar = tbarTerminate
+            Common.Common.BuildToolbar(Me.MainToolBar,
+                                       ToolbarItem.Save,
+                                       ToolbarItem.Cancel)
+            CType(MainToolBar.Items(0), RadToolBarButton).CausesValidation = True
+            CType(Me.Page, AjaxPage).AjaxManager.ClientEvents.OnRequestStart = "onRequestStart"
+            _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
+
             If Not IsPostBack Then
                 ViewConfig(RadPane2)
             End If
@@ -216,16 +223,7 @@ Public Class ctrlHU_TerminateNewEdit
         Dim startTime As DateTime = DateTime.UtcNow
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
         Try
-            Me.MainToolBar = tbarTerminate
-            Common.Common.BuildToolbar(Me.MainToolBar,
-                                       ToolbarItem.Save,
-                                       ToolbarItem.Cancel)
-            CType(MainToolBar.Items(0), RadToolBarButton).CausesValidation = True
-            CType(Me.Page, AjaxPage).AjaxManager.ClientEvents.OnRequestStart = "onRequestStart"
-            _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
-            'Using test As New HU_WorkingClient
-            '    Dim temp = test.TestMatrix()
-            'End Using
+
         Catch ex As Exception
             DisplayException(Me.ViewName, Me.ID, ex)
             _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")

@@ -10,7 +10,7 @@ Public Class ctrlInsManagerSunCareNewEdit
     Inherits CommonView
     Protected WithEvents ctrlFindEmployeePopup As ctrlFindEmployeePopup
     Protected WithEvents ctrlFindSigner As ctrlFindEmployeePopup
-    Public Overrides Property MustAuthorize As Boolean = False
+    Public Overrides Property MustAuthorize As Boolean = True
 
     Dim _mylog As New MyLog()
     Dim _pathLog As String = _mylog._pathLog
@@ -106,7 +106,14 @@ Public Class ctrlInsManagerSunCareNewEdit
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
         Try
             Dim startTime As DateTime = DateTime.UtcNow
-            InitControl()
+            Me.MainToolBar = tbarOT
+            Common.Common.BuildToolbar(Me.MainToolBar,
+                                       ToolbarItem.Save,
+                                       ToolbarItem.Cancel)
+            CType(MainToolBar.Items(0), RadToolBarButton).CausesValidation = True
+
+            Me.MainToolBar.OnClientButtonClicking = "OnClientButtonClicking"
+            CType(Me.Page, AjaxPage).AjaxManager.ClientEvents.OnRequestStart = "onRequestStart"
             _mylog.WriteLog(_mylog._info, _classPath, method,
                                               CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
@@ -148,14 +155,7 @@ Public Class ctrlInsManagerSunCareNewEdit
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
         Try
             Dim startTime As DateTime = DateTime.UtcNow
-            Me.MainToolBar = tbarOT
-            Common.Common.BuildToolbar(Me.MainToolBar,
-                                       ToolbarItem.Save,
-                                       ToolbarItem.Cancel)
-            CType(MainToolBar.Items(0), RadToolBarButton).CausesValidation = True
 
-            Me.MainToolBar.OnClientButtonClicking = "OnClientButtonClicking"
-            CType(Me.Page, AjaxPage).AjaxManager.ClientEvents.OnRequestStart = "onRequestStart"
             _mylog.WriteLog(_mylog._info, _classPath, method,
                                               CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception

@@ -14,7 +14,7 @@ Public Class ctrlHU_DisciplineNewEdit
     Protected WithEvents ctrlFindOrgPopup As ctrlFindOrgPopup
     Protected WithEvents ctrlFindEmployeePopup As ctrlFindEmployeePopup
     Protected WithEvents ctrlFindSigner As ctrlFindEmployeePopup
-    Public Overrides Property MustAuthorize As Boolean = False
+    Public Overrides Property MustAuthorize As Boolean = True
     'author: hongdx
     'EditDate: 21-06-2017
     'Content: Write log time and error
@@ -183,7 +183,11 @@ Public Class ctrlHU_DisciplineNewEdit
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
         Try
             Dim startTime As DateTime = DateTime.UtcNow
-            InitControl()
+            Me.MainToolBar = tbarDiscipline
+            Common.Common.BuildToolbar(Me.MainToolBar, ToolbarItem.Save, ToolbarItem.Seperator,
+                                       ToolbarItem.Cancel)
+            CType(MainToolBar.Items(0), RadToolBarButton).CausesValidation = True
+            CType(Me.Page, AjaxPage).AjaxManager.ClientEvents.OnRequestStart = "onRequestStart"
             If Request.Params("FormType") IsNot Nothing Then
                 FormType = Request.Params("FormType")
                 Select Case FormType
@@ -233,11 +237,7 @@ Public Class ctrlHU_DisciplineNewEdit
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
         Try
             Dim startTime As DateTime = DateTime.UtcNow
-            Me.MainToolBar = tbarDiscipline
-            Common.Common.BuildToolbar(Me.MainToolBar, ToolbarItem.Save, ToolbarItem.Seperator,
-                                       ToolbarItem.Cancel)
-            CType(MainToolBar.Items(0), RadToolBarButton).CausesValidation = True
-            CType(Me.Page, AjaxPage).AjaxManager.ClientEvents.OnRequestStart = "onRequestStart"
+
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
             DisplayException(Me.ViewName, Me.ID, ex)

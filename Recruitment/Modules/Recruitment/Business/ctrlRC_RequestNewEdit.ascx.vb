@@ -78,7 +78,13 @@ Public Class ctrlRC_RequestNewEdit
     End Sub
 
     Public Overrides Sub ViewInit(ByVal e As System.EventArgs)
-        InitControl()
+        Me.MainToolBar = tbarMain
+        Common.Common.BuildToolbar(Me.MainToolBar, ToolbarItem.Save, ToolbarItem.Cancel, ToolbarItem.Seperator, ToolbarItem.Export)
+        CType(MainToolBar.Items(0), RadToolBarButton).CausesValidation = True
+        CType(MainToolBar.Items(3), RadToolBarButton).Enabled = True
+        CType(MainToolBar.Items(3), RadToolBarButton).Text = "Xuất tờ trình"
+        Me.MainToolBar.OnClientButtonClicking = "clientButtonClicking"
+        CType(Me.Page, AjaxPage).AjaxManager.ClientEvents.OnRequestStart = "onRequestStart"
     End Sub
 
     Public Overrides Sub BindData()
@@ -91,13 +97,7 @@ Public Class ctrlRC_RequestNewEdit
 
     Protected Sub InitControl()
         Try
-            Me.MainToolBar = tbarMain
-            Common.Common.BuildToolbar(Me.MainToolBar, ToolbarItem.Save, ToolbarItem.Cancel, ToolbarItem.Seperator, ToolbarItem.Export)
-            CType(MainToolBar.Items(0), RadToolBarButton).CausesValidation = True
-            CType(MainToolBar.Items(3), RadToolBarButton).Enabled = True
-            CType(MainToolBar.Items(3), RadToolBarButton).Text = "Xuất tờ trình"
-            Me.MainToolBar.OnClientButtonClicking = "clientButtonClicking"
-            CType(Me.Page, AjaxPage).AjaxManager.ClientEvents.OnRequestStart = "onRequestStart"
+
         Catch ex As Exception
             DisplayException(Me.ViewName, Me.ID, ex)
         End Try
