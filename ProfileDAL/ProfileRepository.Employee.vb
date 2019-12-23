@@ -169,14 +169,13 @@ Partial Class ProfileRepository
                              .WORK_EMAIL = cv.WORK_EMAIL})
 
             Dim lstEmp = query.ToList
-            Dim orgCode As String = ""
             For Each emp In lstEmp
                 If emp.ORG_LEVEL = 860 Then
-                    orgCode = If(emp.ORG_CODE <> "", " ( " + emp.ORG_CODE + ")", "")
+                    emp.ORG_NAME = If(emp.ORG_CODE <> "", emp.ORG_CODE, "") & " (" + "Tổng số nhân viên:" & emp.EMP_COUNT & ")"
+
                 Else
-                    orgCode = ""
+                    emp.ORG_NAME = emp.ORG_NAME & " (" + "Tổng số nhân viên:" & emp.EMP_COUNT & ")"
                 End If
-                emp.ORG_NAME = emp.ORG_NAME & orgCode & " (" + "Tổng số nhân viên:" & emp.EMP_COUNT & ")"
                 emp.IMAGE_BINARY = GetEmployeeImage(emp.ID, "", False, emp.IMAGE)
             Next
             Return lstEmp
