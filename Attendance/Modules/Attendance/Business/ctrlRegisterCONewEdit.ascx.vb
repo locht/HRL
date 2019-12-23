@@ -619,6 +619,13 @@ Public Class ctrlRegisterCONewEdit
                 Else
                     Clearn__DayEntitlement()
                 End If
+                Dim store As New AttendanceStoreProcedure
+                Dim dtSourceNB = store.GET_INFO_NGHIBU(Decimal.Parse(rtEmployee_id.Text.Trim), rdLEAVE_FROM.SelectedDate)
+                If dtSourceNB.Rows.Count > 0 Then
+                    txtCUR_HAVE.Text = If(dtSourceNB.Rows(0)("CUR_HAVE") Is Nothing, 0, CDec(dtSourceNB.Rows(0)("CUR_HAVE").ToString()))
+                Else
+                    txtCUR_HAVE.Text = 0
+                End If
             Catch ex As Exception
                 Throw ex
             Finally
@@ -720,6 +727,7 @@ Public Class ctrlRegisterCONewEdit
             'Next
             'rgData.MasterTableView.Rebind()
             Cal_DayLeaveSheet()
+            Cal_DayEntitlement()
         Catch ex As Exception
             _myLog.WriteLog(_myLog._error, _classPath, method, 0, ex, "")
         End Try
