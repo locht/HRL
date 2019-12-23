@@ -42721,6 +42721,12 @@ Namespace ProfileBusiness
         Private MOBILE_PHONEField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private ORG_CODEField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private ORG_LEVELField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private ORG_NAMEField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -42855,6 +42861,32 @@ Namespace ProfileBusiness
                 If (Object.ReferenceEquals(Me.MOBILE_PHONEField, value) <> true) Then
                     Me.MOBILE_PHONEField = value
                     Me.RaisePropertyChanged("MOBILE_PHONE")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property ORG_CODE() As String
+            Get
+                Return Me.ORG_CODEField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.ORG_CODEField, value) <> true) Then
+                    Me.ORG_CODEField = value
+                    Me.RaisePropertyChanged("ORG_CODE")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property ORG_LEVEL() As System.Nullable(Of Decimal)
+            Get
+                Return Me.ORG_LEVELField
+            End Get
+            Set
+                If (Me.ORG_LEVELField.Equals(value) <> true) Then
+                    Me.ORG_LEVELField = value
+                    Me.RaisePropertyChanged("ORG_LEVEL")
                 End If
             End Set
         End Property

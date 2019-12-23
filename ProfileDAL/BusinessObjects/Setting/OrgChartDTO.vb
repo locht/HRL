@@ -12,4 +12,6 @@
     Public Property IMAGE_BINARY As Byte()
     Public Property MOBILE_PHONE As String
     Public Property WORK_EMAIL As String
+    Public Property ORG_CODE As String
+    Public Property ORG_LEVEL As Decimal?
 End Class

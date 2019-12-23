@@ -151,7 +151,7 @@ Partial Class ProfileRepository
                          Where org.ACTFLG = "A" And (org.DISSOLVE_DATE Is Nothing Or _
                                                      (org.DISSOLVE_DATE IsNot Nothing And _
                                                       org.DISSOLVE_DATE > dateNow))
-                         Order By p.EMPLOYEE_CODE
+                         Order By org.ORD_NO
                          Select New OrgChartDTO With {
                              .EMPLOYEE_CODE = p.EMPLOYEE_CODE,
                              .FIRST_NAME_VN = p.FIRST_NAME_VN,
@@ -161,15 +161,22 @@ Partial Class ProfileRepository
                              .IMAGE = cv.IMAGE,
                              .ID = org.ID,
                              .ORG_NAME = org.NAME_VN,
+                             .ORG_CODE = org.CODE,
+                             .ORG_LEVEL = org.ORG_LEVEL,
                              .EMP_COUNT = orgcount.EMP_COUNT,
                              .PARENT_ID = org.PARENT_ID,
                              .MOBILE_PHONE = cv.MOBILE_PHONE,
                              .WORK_EMAIL = cv.WORK_EMAIL})
 
             Dim lstEmp = query.ToList
-
+            Dim orgCode As String = ""
             For Each emp In lstEmp
-                emp.ORG_NAME = emp.ORG_NAME & " (" + "Tổng số nhân viên:" & emp.EMP_COUNT & ")"
+                If emp.ORG_LEVEL = 860 Then
+                    orgCode = If(emp.ORG_CODE <> "", " ( " + emp.ORG_CODE + ")", "")
+                Else
+                    orgCode = ""
+                End If
+                emp.ORG_NAME = emp.ORG_NAME & orgCode & " (" + "Tổng số nhân viên:" & emp.EMP_COUNT & ")"
                 emp.IMAGE_BINARY = GetEmployeeImage(emp.ID, "", False, emp.IMAGE)
             Next
             Return lstEmp
