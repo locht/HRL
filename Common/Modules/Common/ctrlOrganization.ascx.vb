@@ -1033,7 +1033,7 @@ Public Class ctrlOrganization
                             Where (t.DISSOLVE_DATE Is Nothing OrElse
                                    (t.DISSOLVE_DATE IsNot Nothing And t.DISSOLVE_DATE >= Date.Now)) _
                             And t.ACTFLG = "A"
-                            Order By t.DESCRIPTION_PATH).ToList
+                            Order By t.ORD_NO, t.NAME_VN.ToUpper).ToList
             Else
                 listTemp = list
             End If
