@@ -477,7 +477,7 @@ Public Class ExcelCommon
         If sPath <> "" Then
             sLink = sPath
         Else
-            sLink = sv.MapPath("~/ReportTemplates/Common/Common.xls")
+            sLink = sv.MapPath("/ReportTemplates/Common/Common.xls")
         End If
         Return ExportExcelNoTemplate(sLink, dtData, False, False, Nothing, iRow)
     End Function
