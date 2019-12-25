@@ -332,10 +332,11 @@
                 enableAjax = false;
             } else if (args.get_item().get_commandName() == "SAVE") {
                 // Nếu nhấn nút SAVE thì resize
-                if (!Page_ClientValidate(""))
-                    ResizeSplitter(splitterID, pane1ID, pane2ID, validateID, oldSize, 'rgData');
-                else
-                    ResizeSplitterDefault(splitterID, pane1ID, pane2ID, oldSize);
+            if (!Page_ClientValidate(""))
+                ResizeSplitter(splitterID, pane1ID, pane2ID, validateID, oldSize, 'rgData');
+            else
+            //                    ResizeSplitterDefault(splitterID, pane1ID, pane2ID, oldSize);
+                ResizeSplitterDefault();
             } else if (args.get_item().get_commandName() == 'CANCEL') {
                 //  getRadWindow().close(null);
                 //  args.set_cancel(true);

@@ -309,7 +309,8 @@
                 if (!Page_ClientValidate(""))
                     ResizeSplitter(splitterID, pane1ID, pane2ID, validateID, oldSize, 'rgWorkschedule');
                 else
-                    ResizeSplitterDefault(splitterID, pane1ID, pane2ID, oldSize);
+//                    ResizeSplitterDefault(splitterID, pane1ID, pane2ID, oldSize);
+                    ResizeSplitterDefault();
             } else {
                 // Nếu nhấn các nút khác thì resize default
                 ResizeSplitterDefault(splitterID, pane1ID, pane2ID, oldSize);

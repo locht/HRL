@@ -452,11 +452,11 @@ Public Class ctrlRegisterCONewEdit
                             End If
                         Else
 
-                            Dim curHave As Double = If(txtCUR_HAVE.Text.Trim = "", 0, Double.Parse(txtCUR_HAVE.Text.Trim))
-                            If (rnDAY_NUM.Value > curHave) Then
-                                ShowMessage(Translate("Đã vượt quá số phép qui định, vui lòng điều chỉnh lại dữ liệu"), NotifyType.Warning)
-                                Exit Sub
-                            End If
+                            'Dim curHave As Double = If(txtCUR_HAVE.Text.Trim = "", 0, Double.Parse(txtCUR_HAVE.Text.Trim))
+                            'If (rnDAY_NUM.Value > curHave) Then
+                            '    ShowMessage(Translate("Đã vượt quá số phép qui định, vui lòng điều chỉnh lại dữ liệu"), NotifyType.Warning)
+                            '    Exit Sub
+                            'End If
                         End If
 
 
