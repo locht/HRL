@@ -313,7 +313,7 @@
     <Content Include="Styles\Site.css" />
     <Content Include="Global.asax" />
     <Content Include="Word\Employee\CV_Template.doc" />
-    <None Include="ReportTemplates\Common\Common.xls" />
+    <Content Include="ReportTemplates\Common\Common.xls" />
     <None Include="ReportTemplates\Profile\CETIFICATE\52f873a5-e2ed-4494-bd90-a7653f87860b\Phat di muon.xlsx" />
     <None Include="ReportTemplates\Profile\CETIFICATE\5464ce45-5ca2-4021-af52-982fb623fd69\Khen thuong.xls" />
     <None Include="ReportTemplates\Profile\CETIFICATE\a0366e5c-96b3-400b-a016-403c835f0abd\Quyetdinhluong.doc" />
