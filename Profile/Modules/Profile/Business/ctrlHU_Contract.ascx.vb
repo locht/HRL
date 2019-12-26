@@ -200,13 +200,14 @@ Public Class ctrlHU_Contract
                                        ToolbarItem.Edit,
                                        ToolbarItem.Export,
                                        ToolbarItem.Print,
-                                       ToolbarItem.Next,
                                        ToolbarItem.Refresh)
+            'ToolbarItem.Next,
+
             Me.MainToolBar.Items.Add(Common.Common.CreateToolbarItem(CommonMessage.TOOLBARITEM_CREATE_BATCH,
                                                                   ToolbarIcons.Add,
                                                                   ToolbarAuthorize.Special1,
                                                                   "Phê duyệt hàng loạt"))
-            CType(MainToolBar.Items(4), RadToolBarButton).Text = "In hợp đồng"
+            'CType(MainToolBar.Items(4), RadToolBarButton).Text = "In hợp đồng"
             CType(MainToolBar.Items(5), RadToolBarButton).Text = Translate("Thanh lý hợp đồng")
             CType(MainToolBar.Items(5), RadToolBarButton).ImageUrl = CType(MainToolBar.Items(1), RadToolBarButton).ImageUrl
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
