@@ -238,7 +238,7 @@ Namespace InsuranceBusiness.ServiceImplementations
 #End Region
 
 #Region "Quản lý khai báo biến động bảo hiểm"
-        Public Function GetInsArising(ByVal username As String, ByVal fromdate As Date?, ByVal todate As Date?, ByVal arising_type_id As Double?, ByVal org_id As String, ByVal insurance_id As Double?) As DataTable _
+        Public Function GetInsArising(ByVal username As String, ByVal fromdate As Date?, ByVal todate As Date?, ByVal arising_type_id As Double?, ByVal org_id As Decimal, ByVal insurance_id As Double?, ByVal is_Dissolve As Decimal) As DataTable _
                      Implements ServiceContracts.IInsuranceBusiness.GetInsArising
             Try
                 Dim rep As New DataAccess.QueryData
@@ -246,8 +246,9 @@ Namespace InsuranceBusiness.ServiceImplementations
                                                                                                    , .P_ARISING_TYPE_ID = IIf(arising_type_id Is Nothing, System.DBNull.Value, arising_type_id) _
                                                                                                    , .P_FROMDATE = IIf(fromdate Is Nothing, System.DBNull.Value, fromdate) _
                                                                                                    , .P_TODATE = IIf(todate Is Nothing, System.DBNull.Value, todate) _
-                                                                                                   , .P_ORG_ID = IIf(org_id Is Nothing, System.DBNull.Value, org_id) _
-                                                                                                   , .P_INSURANCE_ID = IIf(insurance_id Is Nothing, System.DBNull.Value, insurance_id)})
+                                                                                                   , .P_ORG_ID = org_id _
+                                                                                                   , .P_INSURANCE_ID = IIf(insurance_id Is Nothing, System.DBNull.Value, insurance_id),
+                                                                                                    .P_IS_DISSOLVE = is_Dissolve})
 
                 Return objS
             Catch ex As Exception

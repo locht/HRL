@@ -10570,7 +10570,7 @@ Namespace InsuranceBusiness
         Function CheckDayCalculate(ByVal idRegime As Decimal, ByVal dayCal As Decimal) As System.Data.DataTable
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/GetInsArising", ReplyAction:="http://tempuri.org/IInsuranceBusiness/GetInsArisingResponse")>  _
-        Function GetInsArising(ByVal username As String, ByVal fromdate As System.Nullable(Of Date), ByVal todate As System.Nullable(Of Date), ByVal arising_type_id As System.Nullable(Of Double), ByVal org_id As String, ByVal insurance_id As System.Nullable(Of Double)) As System.Data.DataTable
+        Function GetInsArising(ByVal username As String, ByVal fromdate As System.Nullable(Of Date), ByVal todate As System.Nullable(Of Date), ByVal arising_type_id As System.Nullable(Of Double), ByVal org_id As Decimal, ByVal insurance_id As System.Nullable(Of Double), ByVal is_Dissolve As Decimal) As System.Data.DataTable
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/UpdateInsArising", ReplyAction:="http://tempuri.org/IInsuranceBusiness/UpdateInsArisingResponse")>  _
         Function UpdateInsArising(ByVal username As String, ByVal effect_date As System.Nullable(Of Date), ByVal id As Double, ByVal empid As Double, ByVal arising_type_id As Double) As Boolean
@@ -11494,8 +11494,8 @@ Namespace InsuranceBusiness
             Return MyBase.Channel.CheckDayCalculate(idRegime, dayCal)
         End Function
         
-        Public Function GetInsArising(ByVal username As String, ByVal fromdate As System.Nullable(Of Date), ByVal todate As System.Nullable(Of Date), ByVal arising_type_id As System.Nullable(Of Double), ByVal org_id As String, ByVal insurance_id As System.Nullable(Of Double)) As System.Data.DataTable Implements InsuranceBusiness.IInsuranceBusiness.GetInsArising
-            Return MyBase.Channel.GetInsArising(username, fromdate, todate, arising_type_id, org_id, insurance_id)
+        Public Function GetInsArising(ByVal username As String, ByVal fromdate As System.Nullable(Of Date), ByVal todate As System.Nullable(Of Date), ByVal arising_type_id As System.Nullable(Of Double), ByVal org_id As Decimal, ByVal insurance_id As System.Nullable(Of Double), ByVal is_Dissolve As Decimal) As System.Data.DataTable Implements InsuranceBusiness.IInsuranceBusiness.GetInsArising
+            Return MyBase.Channel.GetInsArising(username, fromdate, todate, arising_type_id, org_id, insurance_id, is_Dissolve)
         End Function
         
         Public Function UpdateInsArising(ByVal username As String, ByVal effect_date As System.Nullable(Of Date), ByVal id As Double, ByVal empid As Double, ByVal arising_type_id As Double) As Boolean Implements InsuranceBusiness.IInsuranceBusiness.UpdateInsArising

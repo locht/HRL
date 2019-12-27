@@ -4,11 +4,15 @@ Imports Common
 Imports Telerik.Web.UI
 Imports Insurance.InsuranceBusiness
 Imports Telerik.Web.UI.Calendar
+Imports WebAppLog
 
 
 Public Class ctrlInsArising
     Inherits Common.CommonView
     'Private WithEvents viewRegister As ctrlShiftPlanningRegister
+    Dim _mylog As New MyLog()
+    Dim _pathLog As String = _mylog._pathLog
+    Dim _classPath As String = "Insurance\Modules\Insurance\Business" + Me.GetType().Name.ToString()
 
 #Region "Property & Variable"
     Public Property popup As RadWindow
@@ -94,10 +98,10 @@ Public Class ctrlInsArising
                                        ToolbarItem.Seperator, ToolbarItem.Delete,
                                        ToolbarItem.Export)
             CType(Me.MainToolBar.Items(0), RadToolBarButton).CausesValidation = True
+            ctrlOrg.AutoPostBack = True
             ctrlOrg.LoadDataAfterLoaded = True
             ctrlOrg.OrganizationType = OrganizationType.OrganizationLocation
-            ctrlOrg.CheckChildNodes = True
-            ctrlOrg.CheckBoxes = TreeNodeTypes.All
+            ctrlOrg.CheckBoxes = TreeNodeTypes.None
 
             txtFROMDATE.SelectedDate = New Date(Now.Year, 1, 1)
             txtTODATE.SelectedDate = New Date(Now.Year, 12, 31)
@@ -126,9 +130,9 @@ Public Class ctrlInsArising
                 UpdateControlState(CommonMessage.STATE_NORMAL)
                 UpdateToolbarState(CommonMessage.STATE_NORMAL)
                 txtID.Text = "0"
-
-                Call LoadDataGrid()
-                ' Refresh()
+                'ctrlOrg.OrganizationType = OrganizationType.OrganizationLocation
+                'Call LoadDataGrid()
+                Refresh()
                 ' UpdateControlState()
             End If
             'rgGridData.Culture = Common.Common.SystemLanguage
@@ -154,8 +158,9 @@ Public Class ctrlInsArising
     Public Overrides Sub Refresh(Optional ByVal Message As String = "")
 
         Try
-            Call LoadDataGrid(True)
-            ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), NotifyType.Success)
+            ctrlOrg.OrganizationType = OrganizationType.OrganizationLocation
+            'Call LoadDataGrid(True)
+            'ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), NotifyType.Success)
 
         Catch ex As Exception
             DisplayException(Me.ViewName, Me.ID, ex)
@@ -317,6 +322,18 @@ Public Class ctrlInsArising
     End Sub
 
 
+    Private Sub ctrlOrg_SelectedNodeChanged(sender As Object, e As System.EventArgs) Handles ctrlOrg.SelectedNodeChanged
+        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+        Try
+            Dim startTime As DateTime = DateTime.UtcNow
+            rgGridData.CurrentPageIndex = 0
+            rgGridData.Rebind()
+            _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
+        Catch ex As Exception
+            _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
+        End Try
+    End Sub
+
 #End Region
 
 #Region "Function & Sub"
@@ -440,22 +457,30 @@ Public Class ctrlInsArising
             '--------------------ThanhNT added 22/12/2015---------------------------
             'Add condition for query data in db-
             'Get list org checked
-            Dim lstOrg = ctrlOrg.CheckedValueKeys
-            Dim lstOrgStr = ""
-            If ctrlOrg.CheckedValueKeys.Count > 0 Then
-                For i As Integer = 0 To lstOrg.Count - 1
-                    If i = lstOrg.Count - 1 Then
-                        lstOrgStr = lstOrgStr & lstOrg(i).ToString
-                    Else
-                        lstOrgStr = lstOrgStr & lstOrg(i).ToString & ","
-                    End If
-                Next
+            'Dim lstOrg = ctrlOrg.CheckedValueKeys
+            'Dim lstOrgStr = ""
+            'If ctrlOrg.CheckedValueKeys.Count > 0 Then
+            '    For i As Integer = 0 To lstOrg.Count - 1
+            '        If i = lstOrg.Count - 1 Then
+            '            lstOrgStr = lstOrgStr & lstOrg(i).ToString
+            '        Else
+            '            lstOrgStr = lstOrgStr & lstOrg(i).ToString & ","
+            '        End If
+            '    Next
+            'End If
+            Dim org_ID As Decimal
+            If ctrlOrg.CurrentValue IsNot Nothing Then
+                org_ID = Decimal.Parse(ctrlOrg.CurrentValue)
+            Else
+                rgGridData.DataSource = New List(Of EmployeeDTO)
+                Exit Sub
             End If
 
+            Dim is_Disslove = If(ctrlOrg.IsDissolve, 1, 0)
             Dim lstSource As DataTable = (New InsuranceBusiness.InsuranceBusinessClient).GetInsArising(Common.Common.GetUsername(), txtFROMDATE.SelectedDate, txtTODATE.SelectedDate _
                                                                                                    , InsCommon.getNumber(ddlGROUP_ARISING_TYPE_ID.SelectedValue) _
-                                                                                                   , lstOrgStr _
-                                                                                                   , InsCommon.getNumber(ddlINSORG.SelectedValue))
+                                                                                                   , org_ID _
+                                                                                                   , InsCommon.getNumber(ddlINSORG.SelectedValue), is_Disslove)
 
 
 
@@ -561,23 +586,14 @@ Public Class ctrlInsArising
             '--------------------ThanhNT added 22/12/2015---------------------------
             'Add condition for query data in db-
             'Get list org checked
-            Dim lstOrg = ctrlOrg.CheckedValueKeys
-            Dim lstOrgStr = ""
-            If ctrlOrg.CheckedValueKeys.Count > 0 Then
-                For i As Integer = 0 To lstOrg.Count - 1
-                    If i = lstOrg.Count - 1 Then
-                        lstOrgStr = lstOrgStr & lstOrg(i).ToString
-                    Else
-                        lstOrgStr = lstOrgStr & lstOrg(i).ToString & ","
-                    End If
-                Next
-            End If
+            Dim org_ID = Decimal.Parse(ctrlOrg.CurrentValue)
+            Dim is_Disslove = If(ctrlOrg.IsDissolve, 1, 0)
             Using xls As New ExcelCommon
 
                 Dim lstSource As DataTable = (New InsuranceBusiness.InsuranceBusinessClient).GetInsArising(Common.Common.GetUsername(), txtFROMDATE.SelectedDate, txtTODATE.SelectedDate _
                                                                                                  , InsCommon.getNumber(ddlGROUP_ARISING_TYPE_ID.SelectedValue) _
-                                                                                                 , lstOrgStr _
-                                                                                                 , InsCommon.getNumber(ddlINSORG.SelectedValue))
+                                                                                                 , org_ID _
+                                                                                                 , InsCommon.getNumber(ddlINSORG.SelectedValue), is_Disslove)
 
 
                 lstSource.TableName = "TABLE"

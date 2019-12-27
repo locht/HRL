@@ -246,6 +246,11 @@ Partial Public Class InsuranceRepository
             Throw ex
         End Try
     End Function
+
+    Public Function Get_List_ORG(ByVal parentID As Integer)
+        Dim qurey = From e In Context.HU_CONTRACT
+
+    End Function
 #End Region
 
 #Region "Quản lý thông tin bảo hiểm"

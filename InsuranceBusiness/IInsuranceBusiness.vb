@@ -507,7 +507,7 @@ Namespace InsuranceBusiness.ServiceContracts
 #Region "Bussiness"
         'Khai báo biến động bảo hiểm
         <OperationContract()>
-        Function GetInsArising(ByVal username As String, ByVal fromdate As Date?, ByVal todate As Date?, ByVal arising_type_id As Double?, ByVal org_id As String, ByVal insurance_id As Double?) As DataTable
+        Function GetInsArising(ByVal username As String, ByVal fromdate As Date?, ByVal todate As Date?, ByVal arising_type_id As Double?, ByVal org_id As Decimal, ByVal insurance_id As Double?, ByVal is_Dissolve As Decimal) As DataTable
         <OperationContract()>
         Function UpdateInsArising(ByVal username As String, ByVal effect_date As Date?, ByVal id As Double, ByVal empid As Double, ByVal arising_type_id As Double) As Boolean
         <OperationContract()>
