@@ -865,7 +865,7 @@ Public Class ctrlHU_EmpDtlProfile
                                      cboTitle, txtTitleGroup, cboStaffRank, txtDirectManager, btnFindDirect,
                                      txtmanager, cboObject, cboObjectLabor, cbObjectBook, cboBasic, cboCertificate, txtAppDung, txtPlaceKS, txtVillage, rdDayPitcode, txtPlacePitcode, txtPerson_Inheritance, rdEffect_Bank)
 
-                    EnableControlAll(False, cboWorkStatus, txtEmpCODE, cboEmpStatus, rtBookNo, cboInsRegion, txtTimeID)
+                    EnableControlAll(False, cboWorkStatus, txtEmpCODE, cboEmpStatus, rtBookNo, cboInsRegion, txtTimeID, txtTitleGroup)
                     EnableControlAll(True, rtCHUC_VU_DANG, rdNGAY_VAO_DANG_DB, rdNGAY_VAO_DANG)
                     EnableControlAll(True, ckDOAN_PHI, rtCHUC_VU_DOAN, rdNGAY_VAO_DOAN)
                     EnableControlAll(True, rtCV_BANTT, rdNgay_TG_BanTT)
@@ -961,7 +961,7 @@ Public Class ctrlHU_EmpDtlProfile
                                txtTitleGroup, txtDirectManager,
                                 cbObjectBook, txtmanager)
                         EnableControlAll(True, btnFindOrg, cboTitle, cboObject, cboStaffRank, cboObjectLabor, btnFindDirect)
-                        EnableControlAll(False, cboWorkStatus, txtEmpCODE, cboEmpStatus, rtBookNo, cboInsRegion, txtTimeID)
+                        EnableControlAll(False, cboWorkStatus, txtEmpCODE, cboEmpStatus, rtBookNo, cboInsRegion, txtTimeID, txtTitleGroup)
                         EnableControlAll(True, rtCHUC_VU_DANG, rdNGAY_VAO_DANG_DB, rdNGAY_VAO_DANG)
                         EnableControlAll(True, ckDOAN_PHI, rtCHUC_VU_DOAN, rdNGAY_VAO_DOAN)
                         EnableControlAll(True, rtCV_BANTT, rdNgay_TG_BanTT)
@@ -1046,7 +1046,7 @@ Public Class ctrlHU_EmpDtlProfile
                                       rtDV_Xuat_Ngu_QD, rdNgay_Xuat_Ngu_QD, rdNgay_Nhap_Ngu_QD, ckQD, rtDV_Xuat_Ngu_CA, rdNgay_Xuat_Ngu_CA, rdNgay_Nhap_Ngu_CA,
                                       rdNgay_TG_Ban_Nu_Cong, rtCV_Ban_Nu_Cong, ckNU_CONG, rdNgay_TG_BanTT, rtCV_BANTT, ckCONG_DOAN, ckCA, ckDANG, rtSkill,
                                       cbQLNN, cbLLCT, cbTDTH, cboTDTH2, rtTTSucKhoe,
-                                      cboPROVINCEEMP_BRITH, cboDISTRICTEMP_BRITH, cboWARDEMP_BRITH, ckCHUHO, txtNoHouseHolds, txtCodeHouseHolds, cboObjectIns)
+                                      cboPROVINCEEMP_BRITH, cboDISTRICTEMP_BRITH, cboWARDEMP_BRITH, ckCHUHO, txtNoHouseHolds, txtCodeHouseHolds, cboObjectIns, txtTitleGroup)
                     Else
                         EnableControlAll(True, btnFindOrg, cboTitle, cboObjectLabor, btnFindDirect)
                         EnableControlAll(False, lstbPaper, lstbPaperFiled, cboWorkStatus, cboEmpStatus, txtEmpCODE,
@@ -1081,7 +1081,7 @@ Public Class ctrlHU_EmpDtlProfile
                                       rtDV_Xuat_Ngu_QD, rdNgay_Xuat_Ngu_QD, rdNgay_Nhap_Ngu_QD, ckQD, rtDV_Xuat_Ngu_CA, rdNgay_Xuat_Ngu_CA, rdNgay_Nhap_Ngu_CA,
                                       rdNgay_TG_Ban_Nu_Cong, rtCV_Ban_Nu_Cong, ckNU_CONG, rdNgay_TG_BanTT, rtCV_BANTT, ckCONG_DOAN, ckCA, ckDANG, rtSkill,
                                       cbQLNN, cbLLCT, cbTDTH, cboTDTH2, rtTTSucKhoe,
-                                      cboPROVINCEEMP_BRITH, cboDISTRICTEMP_BRITH, cboWARDEMP_BRITH, ckCHUHO, txtNoHouseHolds, txtCodeHouseHolds, cboObjectIns)
+                                      cboPROVINCEEMP_BRITH, cboDISTRICTEMP_BRITH, cboWARDEMP_BRITH, ckCHUHO, txtNoHouseHolds, txtCodeHouseHolds, cboObjectIns, txtTitleGroup)
                     End If
 
 
