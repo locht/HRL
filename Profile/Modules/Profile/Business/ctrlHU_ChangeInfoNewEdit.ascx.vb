@@ -316,6 +316,7 @@ Public Class ctrlHU_ChangeInfoNewEdit
                             txtDecisionold.Text = .DECISION_NO
                             txtOrgNameOld.Text = .ORG_NAME
                             txtManagerOld.Text = .DIRECT_MANAGER_NAME
+                            txtTitleGroupOLD.Text = .TITLE_GROUP_NAME
                         End With
                     End If
 
@@ -343,7 +344,7 @@ Public Class ctrlHU_ChangeInfoNewEdit
                     FileOldName = If(FileOldName = "", txtUpload.Text, FileOldName)
                     rdEffectDate.SelectedDate = Working.EFFECT_DATE
                     rdExpireDate.SelectedDate = Working.EXPIRE_DATE
-
+                    txtTitleGroup.Text = Working.TITLE_GROUP_NAME
                     If Working.DECISION_TYPE_ID IsNot Nothing Then
                         cboDecisionType.SelectedValue = Working.DECISION_TYPE_ID
                         cboDecisionType.Text = Working.DECISION_TYPE_NAME
@@ -1208,7 +1209,12 @@ Public Class ctrlHU_ChangeInfoNewEdit
                     If IsNumeric(e.CurrentValue) Then
                         dtData = rep.GetTitleByOrgID(Decimal.Parse(e.CurrentValue), True)
                         cboTitle.ClearValue()
-                        FillRadCombobox(cboTitle, dtData, "NAME", "ID")
+                        cboTitle.Items.Clear()
+                        For Each item As DataRow In dtData.Rows
+                            Dim radItem As RadComboBoxItem = New RadComboBoxItem(item("NAME").ToString(), item("ID").ToString())
+                            radItem.Attributes("GROUP_NAME") = item("GROUP_NAME").ToString()
+                            cboTitle.Items.Add(radItem)
+                        Next
                     End If
                 End Using
             End If
@@ -1490,6 +1496,8 @@ Public Class ctrlHU_ChangeInfoNewEdit
                 txtEmployeeCode.Text = obj.EMPLOYEE_CODE
                 txtEmployeeName.Text = obj.EMPLOYEE_NAME
                 txtTitleNameOld.Text = obj.TITLE_NAME
+                txtTitleGroupOLD.Text = obj.TITLE_GROUP_NAME
+                txtTitleGroup.Text = obj.TITLE_GROUP_NAME
                 txtDecisionold.Text = obj.DECISION_NO
                 'txtDecision.Text = obj.DECISION_NO
                 txtDecisionTypeOld.Text = obj.DECISION_TYPE_NAME
@@ -1519,7 +1527,13 @@ Public Class ctrlHU_ChangeInfoNewEdit
                     If IsNumeric(hidOrg.Value) Then
                         dtdata = (New ProfileRepository).GetTitleByOrgID(Decimal.Parse(hidOrg.Value), True)
                         cboTitle.ClearValue()
-                        FillRadCombobox(cboTitle, dtdata, "NAME", "ID")
+                        cboTitle.Items.Clear()
+                        For Each item As DataRow In dtdata.Rows
+                            Dim radItem As RadComboBoxItem = New RadComboBoxItem(item("NAME").ToString(), item("ID").ToString())
+                            radItem.Attributes("GROUP_NAME") = item("GROUP_NAME").ToString()
+                            cboTitle.Items.Add(radItem)
+                        Next
+                        'FillRadCombobox(cboTitle, dtdata, "NAME", "ID")
                     End If
                 End If
                 If obj.TITLE_ID IsNot Nothing Then
