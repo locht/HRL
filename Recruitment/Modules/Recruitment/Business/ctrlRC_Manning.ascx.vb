@@ -162,7 +162,6 @@ Public Class ctrlRC_Manning
             PageViewState(Me.ID & "_tabSource") = value
         End Set
     End Property
-
 #End Region
 
 #Region "Page"
@@ -225,7 +224,8 @@ Public Class ctrlRC_Manning
                     EnableRadCombo(cboListManning, True)
                     EnabledGrid(rgManning, True)
                     ctrlOrganization.Enabled = True
-                    EnableGridView(False)
+                    EnableGridView(False)                  
+                    rgManning.Rebind()
                 Case CommonMessage.STATE_NEW, CommonMessage.STATE_EDIT
                     rbtManName.Enabled = True
                     rbtNote.Enabled = True
@@ -235,6 +235,8 @@ Public Class ctrlRC_Manning
                     EnableRadCombo(cboListManning, True)
                     EnabledGrid(rgManning, True)
                     ctrlOrganization.Enabled = False
+                    EnableGridView(True)
+                    rgManning.Rebind()
                 Case CommonMessage.STATE_DELETE
                     If DeleteData() Then
                         'reload combobox
@@ -668,7 +670,7 @@ Public Class ctrlRC_Manning
                         If data.GetDataKeyValue("NEW_MANNING") IsNot Nothing Then
                             objMT.NEW_MANNING = Int32.Parse(data.GetDataKeyValue("NEW_MANNING"))
                             'CType(data.Item("NEW_MANNING").Controls(0), RadNumericTextBox).Value
-                            'objMO.NEW_MANNING += objMT.NEW_MANNING
+                            'objMO.NEW_MANNING += objMT.NEW_MANNING                            
                         Else
                             objMT.NEW_MANNING = 0
                         End If
@@ -995,6 +997,7 @@ Public Class ctrlRC_Manning
 
         For Each item As GridItem In rgManning.MasterTableView.Items
             item.Edit = value
+            item.FindControl("txtNewManning").EnableViewState = value
         Next
 
         'rgManning.Rebind()
@@ -1180,7 +1183,16 @@ BREAKFUNCTION:
         If TypeOf e.Item Is GridDataItem Then
             Dim txtNewManning As RadNumericTextBox = TryCast(e.Item.FindControl("txtNewManning"), RadNumericTextBox)
             Dim txtNote As RadTextBox = TryCast(e.Item.FindControl("txtNote"), RadTextBox)
-            ' txtNewManning.Attributes.Add("OnFocus", "OnFocus('" + e.Item.ItemIndex.ToString() + "')")
+            ' txtNewManning.Attributes.Add("OnFocus", "OnFocus('" + e.Item.ItemIndex.ToString() + 
+
+            If CurrentState = CommonMessage.STATE_NORMAL Then
+                txtNewManning.Enabled = False
+                txtNote.Enabled = False
+            Else
+                txtNewManning.Enabled = True
+                txtNote.Enabled = True
+            End If
         End If
     End Sub
+
 End Class
