@@ -17,7 +17,7 @@
         Height="150px" EnableShadow="true" Behaviors="Close" Modal="true"  Title="<%$ Translate: Thông báo%>">
         <ContentTemplate>
             <div id="browser" style="padding: 10px;">
-                <%# Translate("Phiên làm việc của bạn đã bị ADMIN tạm dừng. Bạn hãy quay trở lại trang ")%> <a style ="text-decoration: underline" href ="Login.aspx"><%# Translate("Đăng nhập")%></a>
+                <%# Translate("Phiên làm việc của bạn đã bị ADMIN tạm dừng. Bạn hãy quay trở lại trang ")%> <a style ="text-decoration: underline" href ="/Account/Login.aspx"><%# Translate("Đăng nhập")%></a>
             </div>
         </ContentTemplate>
     </tlk:RadWindow>
