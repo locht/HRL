@@ -1456,6 +1456,7 @@ Public Class ctrlHU_ChangeInfoNewEdit
                     If Working Is Nothing Then
                         Working = New WorkingDTO With {.ID = Decimal.Parse(ID)}
                     End If
+                    hidID.Value = Working.ID
                     Refresh("UpdateView")
                     isEdit = 1
                     Exit Sub
