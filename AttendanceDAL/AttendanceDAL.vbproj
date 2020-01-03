@@ -241,6 +241,10 @@
       <Project>{5D0CFFD8-3EF0-4584-818F-3F165BD8DE0C}</Project>
       <Name>HistaffFrameworkPublic</Name>
     </ProjectReference>
+    <ProjectReference Include="..\WebAppLog\WebAppLog.vbproj">
+      <Project>{780365C3-C031-4841-9B4C-B39840797596}</Project>
+      <Name>WebAppLog</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="AttendanceContext.edmx.sql" />

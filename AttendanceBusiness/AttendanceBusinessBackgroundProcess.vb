@@ -24,10 +24,17 @@ Namespace AttendanceBusiness.BackgroundProcess
             timer.Start()
 
         End Sub
+        ''' <summary>
+        ''' Get data IN/OUT in machine 
+        ''' </summary>
+        ''' <returns></returns>
+        Public Function ProcessInOutData() As Boolean
+            Return AttendanceRepositoryStatic.Instance.ProcessInOutData()
+        End Function
 
         Private Sub Timer_Tick(ByVal sender As Object, ByVal e As Timers.ElapsedEventArgs) Handles timer.Elapsed
             'Import file quẹt thẻ / vân tay
-            ThreadPool.QueueUserWorkItem(AddressOf AttendanceRepositoryStatic.Instance.ProcessInOutData, Now)
+            'ThreadPool.QueueUserWorkItem(AddressOf AttendanceRepositoryStatic.Instance.ProcessInOutData, Now)
         End Sub
     End Class
 End Namespace

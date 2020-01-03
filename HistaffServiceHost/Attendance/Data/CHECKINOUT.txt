@@ -1,10 +1,18 @@
-﻿ SELECT A.MaChamCong EMPLOYEE_CODE
-      ,A.NgayCham WORKINGDAY
-      ,A.GioCham IN_OUT_VALUE
-      ,A.KieuCham CHECKTYPE
-      ,A.MaSoMay MACHINE_CODE
-      ,CONVERT(char, A.GioCham, 103) + ' ' + CONVERT(char, A.GioCham, 108) as IN_OUT_VALUE1
-  FROM CheckInOut A
-  WHERE convert(char, A.GioCham, 112) >='{0}'
-  AND  convert(char, A.GioCham, 112) <='{1}'
-  ORDER BY A.MaChamCong
+﻿ SELECT A.CardID EMPLOYEE_CODE
+		,A.StaffID
+		,A.TA CHECKTYPE
+		,A.CtrlID MACHINE_CODE
+		,A.EventID
+		,A.TransDT WORKINGDAY
+		,A.TypeTrans
+		,A.RecID
+		,A.SourceTrans
+		,A.LastUpdateUser
+		,A.LastUpdateDT
+		,A.TransDT IN_OUT_VALUE
+      ,CONVERT(char, A.TransDT, 103) + ' ' + CONVERT(char, A.TransDT, 108) as IN_OUT_VALUE1
+  FROM Transact A
+  WHERE A.TypeTrans=1
+  AND convert(char, A.TransDT, 112) >='{0}'
+  AND  convert(char, A.TransDT, 112) <='{1}'
+  ORDER BY CardID

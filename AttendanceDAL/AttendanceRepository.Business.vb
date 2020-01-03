@@ -15,38 +15,30 @@ Imports Oracle.DataAccess.Client
 Imports System.Globalization
 Imports HistaffFrameworkPublic.HistaffFrameworkEnum
 Imports System.IO
+Imports WebAppLog
 Partial Public Class AttendanceRepository
 #Region "Integate InOut"
-
+    Dim _myLog As New MyLog()
+    Dim _pathLog As String = _myLog._pathLog
+    Dim _classPath As String = "AttendanceRepository.Business.vb"
     Public Function ProcessInOutData() As Boolean
-        'If ReadCheckInOutData(DateAdd(DateInterval.Day, -60, Now), Now) Then
-        '    Return True
-        'Else
-        '    Return False
-        'End If
-        Dim TimeStr As String = ConfigurationManager.AppSettings("TIMESYNC")
+        Dim TimeStr As String = ConfigurationManager.AppSettings("Cron")
         If TimeStr = "" Then Return False
-
         Dim timesync As Date = Now()
+        Dim timesyncPre As Date = DateAdd(DateInterval.Day, -1, timesync)
         Dim startTime As DateTime = DateTime.UtcNow
         Try
-            Dim arr As Array = TimeStr.Split(";")
-            For Each str As String In arr
-                If Date.TryParse(str, timesync) Then
-                    If Format(timesync, "dd/MM/yyyy hh:mm") = Format(Now, "dd/MM/yyyy hh:mm") Then
-                        If ReadCheckInOutData(timesync, timesync) Then
-                            Return True
-                        Else
-                            Return False
-                        End If
-                    End If
-                End If
-            Next
+            If ReadCheckInOutData(timesyncPre, timesync) Then
+                Return True
+            Else
+                Return False
+            End If
         Catch ex As Exception
+            _myLog.WriteLog(_myLog._error, _classPath, "",
+                                           CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), ex, "")
+
             Throw ex
         End Try
-
-
     End Function
 
     Public Function ReadCheckInOutData(ByVal dateFrom As Date, ByVal dateTo As Date) As Boolean
@@ -61,7 +53,6 @@ Partial Public Class AttendanceRepository
             g_ConStringSql = SQLHelper.LoadConfig()
             Dim strSql As String = String.Format(SQLHelper.GetSQLText("CHECKINOUT"), strFromDate, strEndDate)
             ds = SQLHelper.ExecuteQuery(strSql, g_ConStringSql)
-
             If Not ds Is Nothing Then
                 If ds.Tables.Count = 0 Then Return False
                 Dim sw As New StringWriter()
