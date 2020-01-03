@@ -248,7 +248,7 @@ Public Class ctrlHU_ChangeInfoNewEdit
                 Case "UpdateView"
                     CurrentState = CommonMessage.STATE_EDIT
                     Working = rep.GetWorkingByID(Working)
-                    hidID.Value = Working.ID.ToString
+                    'hidID.Value = Working.ID.ToString
                     hidEmp.Value = Working.EMPLOYEE_ID
                     If Working.DECISION_TYPE_ID = 7561 Then
                         btnFindOrg.Enabled = False
@@ -1492,7 +1492,7 @@ Public Class ctrlHU_ChangeInfoNewEdit
                     ShowMessage(Translate("Nhân viên trạng thái nghỉ việc. Không được phép chỉnh sửa thông tin."), Utilities.NotifyType.Warning)
                     Exit Sub
                 End If
-                hidID.Value = obj.ID.ToString
+                'hidID.Value = obj.ID.ToString
                 hidEmp.Value = obj.EMPLOYEE_ID
                 txtEmployeeCode.Text = obj.EMPLOYEE_CODE
                 txtEmployeeName.Text = obj.EMPLOYEE_NAME
