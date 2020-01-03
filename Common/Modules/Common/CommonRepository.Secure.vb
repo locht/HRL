@@ -149,6 +149,18 @@ Partial Public Class CommonRepository
         End Using
     End Function
 
+    Public Function GetUserList(ByVal _filter As UserDTO,
+                        Optional ByVal Sorts As String = "CREATED_DATE desc") As List(Of UserDTO)
+        Using rep As New CommonBusinessClient
+            Try
+                Return rep.GetUserList(_filter, 0, Integer.MaxValue, 0, Sorts)
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+    End Function
+
     Public Function ValidateUser(ByVal _validate As UserDTO) As Boolean
         Using rep As New CommonBusinessClient
             Try

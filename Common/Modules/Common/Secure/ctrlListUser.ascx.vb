@@ -94,6 +94,7 @@ Public Class ctrlListUser
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
         Try
             Dim startTime As DateTime = DateTime.UtcNow
+            CType(Me.Page, AjaxPage).AjaxManager.ClientEvents.OnRequestStart = "onRequestStart"
             Me.ctrlMessageBox.Listener = Me
             Me.MainToolBar = rtbMain
             Common.BuildToolbar(Me.MainToolBar, ToolbarItem.Create,
@@ -105,7 +106,8 @@ Public Class ctrlListUser
                                        ToolbarItem.Seperator,
                                        ToolbarItem.Lock,
                                        ToolbarItem.Unlock,
-                                       ToolbarItem.Seperator)
+                                       ToolbarItem.Seperator,
+                                       ToolbarItem.Export)
             CType(rtbMain.Items(3), RadToolBarButton).CausesValidation = True
             Me.MainToolBar.OnClientButtonClicking = "OnClientButtonClicking"
 
@@ -158,6 +160,7 @@ Public Class ctrlListUser
                 rgGrid.VirtualItemCount = MaximumRows
                 rgGrid.DataSource = Me.ListUsers
                 rgGrid.MasterTableView.DataSource = Me.ListUsers
+
             End If
             _mylog.WriteLog(_mylog._info, _classPath, method,
                            CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
@@ -310,6 +313,26 @@ Public Class ctrlListUser
                     ctrlMessageBox.Show()
                 Case CommonMessage.TOOLBARITEM_CANCEL
                     UpdatePageViewState(CommonMessage.ACTION_CANCEL)
+                Case CommonMessage.TOOLBARITEM_EXPORT
+                    Dim rep As New CommonRepository
+                    Dim dtData As DataTable
+                    Dim Sorts As String = rgGrid.MasterTableView.SortExpressions.GetSortString()
+                    Dim _filter As New UserDTO
+                    SetValueObjectByRadGrid(rgGrid, _filter)
+                    If Sorts IsNot Nothing Then
+                        dtData = rep.GetUserList(_filter, Sorts).ToTable()
+                    Else
+                        dtData = rep.GetUserList(_filter).ToTable()
+                    End If
+
+                    Using xls As New ExcelCommon
+                        If dtData.Rows.Count = 0 Then
+                            ShowMessage(Translate(CommonMessage.MESSAGE_WARNING_EXPORT_EMPTY), NotifyType.Warning)
+                            Exit Sub
+                        ElseIf dtData.Rows.Count > 0 Then
+                            rgGrid.ExportExcel(Server, Response, dtData, "Title")
+                        End If
+                    End Using
             End Select
             CType(UserView, ctrlListUserNewEdit).OnToolbar_Command(sender, e)
             _mylog.WriteLog(_mylog._info, _classPath, method,

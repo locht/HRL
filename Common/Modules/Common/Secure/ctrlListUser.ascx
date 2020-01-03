@@ -86,7 +86,11 @@
 <tlk:RadCodeBlock ID="RadCodeBlock1" runat="server">
     <script type="text/javascript">
         var oldSize = 0;
-
+        var enableAjax = true;
+        function onRequestStart(sender, eventArgs) {
+            eventArgs.set_enableAjax(enableAjax);
+            enableAjax = true;
+        }
         function OnClientButtonClicking(sender, args) {
             var item = args.get_item();
             if (item.get_commandName() == "SAVE") {
@@ -95,6 +99,9 @@
             } else {
                 // Nếu nhấn các nút khác thì resize default
                 ResizeSplitterDefault();
+            }
+            if (args.get_item().get_commandName() == 'EXPORT') {
+                enableAjax = false;
             }
         }
 

@@ -1,11 +1,12 @@
 ﻿<%@ Control Language="vb" AutoEventWireup="false" CodeBehind="ctrlListUser.ascx.vb"
     Inherits="Common.ctrlListUser" %>
-
-<%@ Register Src="../ctrlMessageBox.ascx" TagName="ctrlMessageBox" TagPrefix="Common" %>
+<%@ Import Namespace="Common" %>
+<%@ Import Namespace="Framework.UI.Utilities" %><%--
+<%@ Register Src="../ctrlMessageBox.ascx" TagName="ctrlMessageBox" TagPrefix="Common" %>--%>
 <link href = "/Styles/StyleCustom.css" rel = "Stylesheet" type = "text/css" />
 <tlk:RadSplitter ID="RadSplitter1" runat="server" Width="100%" Height="100%" Orientation="Horizontal">
     <tlk:RadPane ID="RadPane1" runat="server" Height="182px" Scrolling="None">
-        <tlk:RadToolBar ID="rtbMain" runat="server" />
+        <tlk:RadToolBar ID="rtbMain" runat="server" OnClientButtonClicking="OnClientButtonClicking"/>
         <asp:PlaceHolder ID="ViewPlaceHolder" runat="server"></asp:PlaceHolder>
     </tlk:RadPane>
     <tlk:RadPane ID="RadPane2" runat="server" Scrolling="None">
@@ -96,7 +97,8 @@
         var pane2ID = 'RAD_SPLITTER_PANE_CONTENT_ctl00_MainContent_ctrlListUser_RadPane2';
         var validateID = 'MainContent_ctrlListUser_ctrlListUserNewEdit_valSum';
         var oldSize = $('#' + pane1ID).height();
-
+        var enableAjax = true;
+        
         function ValidateFilter(sender, eventArgs) {
             var params = eventArgs.get_commandArgument() + '';
             if (params.indexOf("|") > 0) {
@@ -123,6 +125,9 @@
                 } else {
                     ResizeSplitterDefault(splitterID, pane1ID, pane2ID, oldSize);
                 }
+            }
+            if (args.get_item().get_commandName() == 'EXPORT') {
+                enableAjax = false;
             } else {
                 if (item.get_commandName() == "DELETE") {
                     $('#ctl00_MainContent_ctrlListUser_ctrlListUserNewEdit_txtUSERNAME').val('')
@@ -133,9 +138,13 @@
                 }
             }
         }
-
+        function onRequestStart(sender, eventArgs) {
+            eventArgs.set_enableAjax(enableAjax);
+            enableAjax = true;
+        }
         function OnCloseClicked() {
             $find("<%=rwMessage.ClientID %>").close();
         }
     </script>
 </tlk:RadCodeBlock>
+<Common:ctrlMessageBox ID="ctrlMessageBox1" runat="server" />

@@ -447,16 +447,15 @@ Public Class ctrlRegisterCONewEdit
                         If (isFlag = True) Then
                             Dim intBalance As Double = If(rnBALANCE.Text.Trim = "", 0, Double.Parse(rnBALANCE.Text.Trim))
                             If (rnDAY_NUM.Value > intBalance) Then
-                                ShowMessage(Translate("Đã vượt quá số phép qui định, vui lòng điều chỉnh lại dữ liệu"), NotifyType.Warning)
+                                ShowMessage(Translate("Số ngày đăng ký nghỉ	lớn hơn Quỹ phép còn lại, vui lòng điều chỉnh lại dữ liệu"), NotifyType.Warning)
                                 Exit Sub
                             End If
                         Else
-
-                            'Dim curHave As Double = If(txtCUR_HAVE.Text.Trim = "", 0, Double.Parse(txtCUR_HAVE.Text.Trim))
-                            'If (rnDAY_NUM.Value > curHave) Then
-                            '    ShowMessage(Translate("Đã vượt quá số phép qui định, vui lòng điều chỉnh lại dữ liệu"), NotifyType.Warning)
-                            '    Exit Sub
-                            'End If
+                            Dim curHave As Double = If(txtCUR_HAVE.Text.Trim = "", 0, Double.Parse(txtCUR_HAVE.Text.Trim))
+                            If (rnDAY_NUM.Value > curHave) Then
+                                ShowMessage(Translate("Số ngày đăng ký nghỉ	lớn hơn Phép bù còn lại, vui lòng điều chỉnh lại dữ liệu"), NotifyType.Warning)
+                                Exit Sub
+                            End If
                         End If
 
 
