@@ -1149,7 +1149,7 @@ BREAKFUNCTION:
             Case "txtNewManning"
                 For Each item As GridDataItem In rgManning.SelectedItems
                     objMT.ID = Int32.Parse(item.GetDataKeyValue("ID").ToString())
-                    objMT.CURRENT_MANNING = Int32.Parse(item("CURRENT_MANNING").Text)
+                    objMT.CURRENT_MANNING = Int32.Parse(item.GetDataKeyValue("CURRENT_MANNING").ToString())
                     objMT.NEW_MANNING = Int32.Parse(TryCast(item.FindControl("txtNewManning"), RadNumericTextBox).Value)
                     objMT.MOBILIZE_COUNT_MANNING = objMT.NEW_MANNING - objMT.CURRENT_MANNING
                     repStore.UpdateNewManningTitle(objMT)
@@ -1167,7 +1167,7 @@ BREAKFUNCTION:
                     'objMT.NEW_MANNING = Int32.Parse(TryCast(item.FindControl("txtNewManning"), RadNumericTextBox).Value)
                     objMT.NOTE = TryCast(item.FindControl("txtNote"), RadTextBox).Text
                     repStore.UpdateNewManningTitle(objMT)
-                    objMT.CURRENT_MANNING = Int32.Parse(item("CURRENT_MANNING").Text)
+                    objMT.CURRENT_MANNING = Int32.Parse(item.GetDataKeyValue("CURRENT_MANNING").ToString())
                     objMT.NEW_MANNING = Int32.Parse(TryCast(item.FindControl("txtNewManning"), RadNumericTextBox).Value)
                     objMT.MOBILIZE_COUNT_MANNING = objMT.NEW_MANNING - objMT.CURRENT_MANNING
                     repStore.UpdateNewManningTitle(objMT)
