@@ -6907,6 +6907,9 @@ Namespace CommonBusiness
         Private FUNCTION_NAMEField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private GROUP_IDField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private IDField As Decimal
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -7106,6 +7109,19 @@ Namespace CommonBusiness
                 If (Object.ReferenceEquals(Me.FUNCTION_NAMEField, value) <> true) Then
                     Me.FUNCTION_NAMEField = value
                     Me.RaisePropertyChanged("FUNCTION_NAME")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property GROUP_ID() As System.Nullable(Of Decimal)
+            Get
+                Return Me.GROUP_IDField
+            End Get
+            Set
+                If (Me.GROUP_IDField.Equals(value) <> true) Then
+                    Me.GROUP_IDField = value
+                    Me.RaisePropertyChanged("GROUP_ID")
                 End If
             End Set
         End Property

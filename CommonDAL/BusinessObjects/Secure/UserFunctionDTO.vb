@@ -17,4 +17,5 @@
     Public Property ALLOW_SPECIAL3 As Boolean
     Public Property ALLOW_SPECIAL4 As Boolean
     Public Property ALLOW_SPECIAL5 As Boolean
+    Public Property GROUP_ID As Decimal?
 End Class

@@ -7,7 +7,8 @@ Imports WebAppLog
 Public Class ctrlUserOrganization
     Inherits CommonView
     Public Property UserInfo As UserDTO
-    Public Overrides Property MustAuthorize As Boolean = False
+    Public Overrides Property MustAuthorize As Boolean = True
+
 
     Dim _myLog As New MyLog()
     Dim _pathLog As String = _myLog._pathLog
