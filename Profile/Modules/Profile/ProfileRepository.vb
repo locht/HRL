@@ -24,10 +24,10 @@ Partial Public Class ProfileRepository
     End Function
 #End Region
 #Region "Other"
-    Public Function GetCurrentPeriod() As DataTable
+    Public Function GetCurrentPeriod(ByVal _year As Decimal) As DataTable
         Using rep As New ProfileBusinessClient
             Try
-                Return rep.GetCurrentPeriod()
+                Return rep.GetCurrentPeriod(_year)
             Catch ex As Exception
                 rep.Abort()
                 Throw ex

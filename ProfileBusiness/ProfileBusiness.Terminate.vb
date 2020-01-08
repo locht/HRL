@@ -8,11 +8,11 @@ Imports System.Configuration
 Namespace ProfileBusiness.ServiceImplementations
     Partial Class ProfileBusiness
 #Region "Other"
-        Public Function GetCurrentPeriod() As DataTable Implements ServiceContracts.IProfileBusiness.GetCurrentPeriod
+        Public Function GetCurrentPeriod(ByVal _year As Decimal) As DataTable Implements ServiceContracts.IProfileBusiness.GetCurrentPeriod
             Using rep As New ProfileRepository
                 Try
 
-                    Return rep.GetCurrentPeriod()
+                    Return rep.GetCurrentPeriod(_year)
                 Catch ex As Exception
                     Throw ex
                 End Try

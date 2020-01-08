@@ -1928,7 +1928,7 @@ Namespace ProfileBusiness.ServiceContracts
 #End Region
 #Region "Terminate"
         <OperationContract()>
-        Function GetCurrentPeriod() As DataTable
+        Function GetCurrentPeriod(ByVal _year As Decimal) As DataTable
         <OperationContract()>
         Function Check_has_Ter(ByVal empid As Decimal) As Decimal
         <OperationContract()>

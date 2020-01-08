@@ -644,22 +644,13 @@ Partial Public Class ctrlHU_TerminateNewEdit
     Protected WithEvents rntxtMoneyDeductFromSal As Global.Telerik.Web.UI.RadNumericTextBox
 
     '''<summary>
-    '''lbSalMonth control.
+    '''cboYear control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents lbSalMonth As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
-    '''cboSalMonth control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents cboSalMonth As Global.Telerik.Web.UI.RadComboBox
+    Protected WithEvents cboYear As Global.Telerik.Web.UI.RadComboBox
 
     '''<summary>
     '''lbAmountViolations control.
@@ -705,6 +696,24 @@ Partial Public Class ctrlHU_TerminateNewEdit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents reqInsStatus As Global.System.Web.UI.WebControls.RequiredFieldValidator
+
+    '''<summary>
+    '''lbSalMonth control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbSalMonth As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''cboSalMonth control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents cboSalMonth As Global.Telerik.Web.UI.RadComboBox
 
     '''<summary>
     '''cbIsAllowForTer control.

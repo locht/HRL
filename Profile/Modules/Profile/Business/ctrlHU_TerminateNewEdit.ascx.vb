@@ -13,6 +13,7 @@ Public Class ctrlHU_TerminateNewEdit
     Protected WithEvents ctrlFindEmployeePopup As ctrlFindEmployeePopup
     Protected WithEvents ctrlFindSigner As ctrlFindEmployeePopup
     Public Overrides Property MustAuthorize As Boolean = True
+    Public WithEvents AjaxManager As RadAjaxManager
 
     Private psp As New ProfileStoreProcedure
     'author: hongdx
@@ -20,6 +21,7 @@ Public Class ctrlHU_TerminateNewEdit
     'Content: Write log time and error
     'asign: hdx
     Dim _mylog As New MyLog()
+    Dim _year As Decimal = Year(DateTime.Now)
     Dim _pathLog As String = _mylog._pathLog
     Dim _classPath As String = "Profile\Modules\Profile\Business" + Me.GetType().Name.ToString()
 
@@ -166,6 +168,7 @@ Public Class ctrlHU_TerminateNewEdit
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
         Try
             rgHandoverContent.AllowSorting = False
+
             Me.MainToolBar = tbarTerminate
             Common.Common.BuildToolbar(Me.MainToolBar,
                                        ToolbarItem.Save,
@@ -1681,6 +1684,7 @@ Public Class ctrlHU_TerminateNewEdit
             Throw ex
         End Try
     End Sub
+
 #End Region
 
 #Region "Custom"
@@ -1814,7 +1818,19 @@ Public Class ctrlHU_TerminateNewEdit
             FillRadCombobox(cboDecisionType, ListComboData.LIST_TER_DECISION_TYPE, "NAME_VN", "ID", True)
 
             cboStatus.SelectedValue = ProfileCommon.DECISION_STATUS.WAIT_APPROVE_ID
-            FillRadCombobox(cboSalMonth, rep.GetCurrentPeriod(), "PERIOD_NAME", "ID", True)
+            FillRadCombobox(cboSalMonth, rep.GetCurrentPeriod(_year), "PERIOD_NAME", "ID", True)
+            Dim table As New DataTable
+            table.Columns.Add("YEAR", GetType(Integer))
+            table.Columns.Add("ID", GetType(Integer))
+            Dim row As DataRow
+            For index = 2015 To Date.Now.Year + 1
+                row = table.NewRow
+                row("ID") = index
+                row("YEAR") = index
+                table.Rows.Add(row)
+            Next
+            FillRadCombobox(cboYear, table, "YEAR", "ID")
+            cboYear.SelectedValue = Date.Now.Year
             'cboSalMonth.DataSource = rep.GetCurrentPeriod()
             'cboSalMonth.DataTextField = "PERIOD_NAME"
             'cboSalMonth.DataValueField = "ID"
@@ -2033,4 +2049,20 @@ Public Class ctrlHU_TerminateNewEdit
 
     End Class
 #End Region
+
+    
+
+    Private Sub cboYear_SelectedIndexChanged(sender As Object, e As Telerik.Web.UI.RadComboBoxSelectedIndexChangedEventArgs) Handles cboYear.SelectedIndexChanged
+
+        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+        Dim rep As New ProfileRepository
+        Dim startTime As DateTime = DateTime.UtcNow
+        Try
+            cboSalMonth.ClearSelection()
+            FillRadCombobox(cboSalMonth, rep.GetCurrentPeriod(cboYear.SelectedValue), "PERIOD_NAME", "ID", True)
+            _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
+        Catch ex As Exception
+            _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
+        End Try
+    End Sub
 End Class

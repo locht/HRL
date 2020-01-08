@@ -51054,7 +51054,7 @@ Namespace ProfileBusiness
         Function ModifyDebt(ByVal objDebt As ProfileBusiness.DebtDTO, ByVal log As Common.CommonBusiness.UserLog) As Boolean
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetCurrentPeriod", ReplyAction:="http://tempuri.org/IProfileBusiness/GetCurrentPeriodResponse")>  _
-        Function GetCurrentPeriod() As System.Data.DataTable
+        Function GetCurrentPeriod(ByVal _year As Decimal) As System.Data.DataTable
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/Check_has_Ter", ReplyAction:="http://tempuri.org/IProfileBusiness/Check_has_TerResponse")>  _
         Function Check_has_Ter(ByVal empid As Decimal) As Decimal
@@ -52946,8 +52946,8 @@ Namespace ProfileBusiness
             Return MyBase.Channel.ModifyDebt(objDebt, log)
         End Function
         
-        Public Function GetCurrentPeriod() As System.Data.DataTable Implements ProfileBusiness.IProfileBusiness.GetCurrentPeriod
-            Return MyBase.Channel.GetCurrentPeriod
+        Public Function GetCurrentPeriod(ByVal _year As Decimal) As System.Data.DataTable Implements ProfileBusiness.IProfileBusiness.GetCurrentPeriod
+            Return MyBase.Channel.GetCurrentPeriod(_year)
         End Function
         
         Public Function Check_has_Ter(ByVal empid As Decimal) As Decimal Implements ProfileBusiness.IProfileBusiness.Check_has_Ter

@@ -369,12 +369,14 @@
                     </tlk:RadNumericTextBox>
                 </td>
                 <td class="lb">
-                    <asp:Label runat ="server" ID ="lbSalMonth" Text ="Tháng lương" ></asp:Label>
+                    <%# Translate("Năm")%>
                 </td>
                 <td>
-                    <tlk:RadComboBox ID="cboSalMonth" runat="server">
+                    <tlk:RadComboBox ID="cboYear" SkinID="dDropdownList" runat="server" AutoPostBack="true" CausesValidation="False"
+                        TabIndex="12" Width="80px">
                     </tlk:RadComboBox>
-                </td>                
+                </td>
+                              
             </tr>
             <tr>
                 <td class="lb">
@@ -388,11 +390,18 @@
                     <asp:Label runat ="server" ID ="lbInsStatus" Text ="Tình trạng sổ BHXH" ></asp:Label>
                 </td>
                 <td>
-                    <tlk:RadComboBox ID="cboInsStatus" runat="server">
+                    <tlk:RadComboBox ID="cboInsStatus" runat="server"  CausesValidation="false"> 
                     </tlk:RadComboBox>
                     <asp:RequiredFieldValidator ID="reqInsStatus" ControlToValidate="cboInsStatus" runat="server"
                         ErrorMessage= "Bạn phải nhập tình trạng sổ BHXH." ToolTip="Bạn phải nhập tình trạng sổ BHXH"> </asp:RequiredFieldValidator>
                 </td>
+                <td class="lb">
+                    <asp:Label runat ="server" ID ="lbSalMonth" Text ="Tháng lương" ></asp:Label>
+                </td>
+                <td>
+                    <tlk:RadComboBox ID="cboSalMonth" runat="server" AutoPostBack="true">
+                    </tlk:RadComboBox>
+                </td>  
             </tr>
             <tr>
                 <td colspan="6">
@@ -719,5 +728,6 @@
             eventArgs.set_enableAjax(enableAjax);
             enableAjax = true;
         }
+
     </script>
 </tlk:radcodeblock>

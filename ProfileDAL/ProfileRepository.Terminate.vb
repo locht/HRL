@@ -8,10 +8,10 @@ Imports System.Reflection
 Partial Class ProfileRepository
 
 #Region "Other"
-    Public Function GetCurrentPeriod() As DataTable
+    Public Function GetCurrentPeriod(ByVal _year As Decimal) As DataTable
         Try
             Dim query = (From p In Context.AT_PERIOD
-                        Where p.YEAR = DateTime.Now.Year
+                        Where p.YEAR = _year
                         Select New With {.ID = p.ID, .PERIOD_NAME = p.PERIOD_NAME}).ToList.ToTable
             Return query
         Catch ex As Exception
