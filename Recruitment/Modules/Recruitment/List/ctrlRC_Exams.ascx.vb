@@ -174,40 +174,40 @@ Public Class ctrlRC_Exams
                             ShowMessage(Translate("Bạn phải nhập Tên môn thi"), Utilities.NotifyType.Warning)
                             Exit Sub
                         End If
-                        If rntxtPointLadder.Value Is Nothing Then
-                            ShowMessage(Translate("Bạn phải nhập Thang điểm"), Utilities.NotifyType.Warning)
-                            Exit Sub
-                        End If
-                        If txtHeso.Text = "" Then
-                            ShowMessage(Translate("Bạn phải nhập Hệ số"), Utilities.NotifyType.Warning)
-                            Exit Sub
-                        End If
-                        If rntxtPointPass.Value Is Nothing Then
-                            ShowMessage(Translate("Bạn phải nhập Điểm đạt"), Utilities.NotifyType.Warning)
-                            Exit Sub
-                        End If
-                        If rntxtPointLadder.Value < rntxtPointPass.Value Then
-                            ShowMessage(Translate("Thang điểm phải lớn hơn Điểm đạt"), NotifyType.Warning)
-                            Exit Sub
-                        End If
-                        If rntxtExamsOrder.Value Is Nothing Then
-                            ShowMessage(Translate("Bạn phải nhập Thứ tự sắp xếp"), Utilities.NotifyType.Warning)
-                            Exit Sub
-                        End If
-                        If Not chkIsPV.Checked Then
-                            If rntxtPointLadder.Value Is Nothing Then
-                                ShowMessage(Translate("Bạn phải nhập Thang điểm"), Utilities.NotifyType.Warning)
-                                Exit Sub
-                            End If
-                            If rntxtPointPass.Value Is Nothing Then
-                                ShowMessage(Translate("Bạn phải nhập Điểm đạt"), Utilities.NotifyType.Warning)
-                                Exit Sub
-                            End If
-                            If rntxtPointLadder.Value < rntxtPointPass.Value Then
-                                ShowMessage(Translate("Thang điểm phải lớn hơn Điểm đạt"), NotifyType.Warning)
-                                Exit Sub
-                            End If
-                        End If
+                        'If rntxtPointLadder.Value Is Nothing Then
+                        '    ShowMessage(Translate("Bạn phải nhập Thang điểm"), Utilities.NotifyType.Warning)
+                        '    Exit Sub
+                        'End If
+                        'If txtHeso.Text = "" Then
+                        '    ShowMessage(Translate("Bạn phải nhập Hệ số"), Utilities.NotifyType.Warning)
+                        '    Exit Sub
+                        'End If
+                        'If rntxtPointPass.Value Is Nothing Then
+                        '    ShowMessage(Translate("Bạn phải nhập Điểm đạt"), Utilities.NotifyType.Warning)
+                        '    Exit Sub
+                        'End If
+                        'If rntxtPointLadder.Value < rntxtPointPass.Value Then
+                        '    ShowMessage(Translate("Thang điểm phải lớn hơn Điểm đạt"), NotifyType.Warning)
+                        '    Exit Sub
+                        'End If
+                        'If rntxtExamsOrder.Value Is Nothing Then
+                        '    ShowMessage(Translate("Bạn phải nhập Thứ tự sắp xếp"), Utilities.NotifyType.Warning)
+                        '    Exit Sub
+                        'End If
+                        'If Not chkIsPV.Checked Then
+                        '    If rntxtPointLadder.Value Is Nothing Then
+                        '        ShowMessage(Translate("Bạn phải nhập Thang điểm"), Utilities.NotifyType.Warning)
+                        '        Exit Sub
+                        '    End If
+                        '    If rntxtPointPass.Value Is Nothing Then
+                        '        ShowMessage(Translate("Bạn phải nhập Điểm đạt"), Utilities.NotifyType.Warning)
+                        '        Exit Sub
+                        '    End If
+                        '    If rntxtPointLadder.Value < rntxtPointPass.Value Then
+                        '        ShowMessage(Translate("Thang điểm phải lớn hơn Điểm đạt"), NotifyType.Warning)
+                        '        Exit Sub
+                        '    End If
+                        'End If
                         Dim obj As New ExamsDtlDTO
                         If hidID.Value <> "" Then
                             obj.ID = Decimal.Parse(hidID.Value)
@@ -307,14 +307,14 @@ Public Class ctrlRC_Exams
         End Try
     End Sub
 	
-	Protected Sub chkIsPV_Click(ByVal sender As Object, ByVal e As System.EventArgs)
-		rntxtPointLadder.Enabled = Not chkIsPV.Checked
-		rntxtPointPass.Enabled = Not chkIsPV.Checked
-		rntxtPointLadder.CausesValidation = Not chkIsPV.Checked
-        rntxtPointPass.CausesValidation = Not chkIsPV.Checked
-        rntxtPointLadder.Value = 0
-        rntxtPointPass.Value = 0
-End Sub
+    '	Protected Sub chkIsPV_Click(ByVal sender As Object, ByVal e As System.EventArgs)
+    '		rntxtPointLadder.Enabled = Not chkIsPV.Checked
+    '		rntxtPointPass.Enabled = Not chkIsPV.Checked
+    '		rntxtPointLadder.CausesValidation = Not chkIsPV.Checked
+    '        rntxtPointPass.CausesValidation = Not chkIsPV.Checked
+    '        rntxtPointLadder.Value = 0
+    '        rntxtPointPass.Value = 0
+    'End Sub
 #End Region
 
 #Region "Custom"

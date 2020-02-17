@@ -149,15 +149,6 @@ Partial Public Class ctrlRC_Exams
     Protected WithEvents rntxtPointLadder As Global.Telerik.Web.UI.RadNumericTextBox
 
     '''<summary>
-    '''RequiredFieldValidator2 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents RequiredFieldValidator2 As Global.System.Web.UI.WebControls.RequiredFieldValidator
-
-    '''<summary>
     '''txtHeso control.
     '''</summary>
     '''<remarks>
@@ -167,15 +158,6 @@ Partial Public Class ctrlRC_Exams
     Protected WithEvents txtHeso As Global.Telerik.Web.UI.RadTextBox
 
     '''<summary>
-    '''RequiredFieldValidator4 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents RequiredFieldValidator4 As Global.System.Web.UI.WebControls.RequiredFieldValidator
-
-    '''<summary>
     '''rntxtPointPass control.
     '''</summary>
     '''<remarks>
@@ -183,15 +165,6 @@ Partial Public Class ctrlRC_Exams
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents rntxtPointPass As Global.Telerik.Web.UI.RadNumericTextBox
-
-    '''<summary>
-    '''RequiredFieldValidator1 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents RequiredFieldValidator1 As Global.System.Web.UI.WebControls.RequiredFieldValidator
 
     '''<summary>
     '''rntxtExamsOrder control.

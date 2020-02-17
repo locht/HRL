@@ -7,7 +7,7 @@
     <tlk:RadPane ID="LeftPane" runat="server" MinWidth="200" Width="250px" Scrolling="None">
         <Common:ctrlOrganization ID="ctrlOrg" runat="server" />
     </tlk:RadPane>
-    <tlk:RadPane ID="MainPane" runat="server"  Scrolling="None">
+    <tlk:RadPane ID="MainPane" runat="server">
         <tlk:RadSplitter ID="RadSplitter3" runat="server" Width="100%" Height="100%" Orientation="Horizontal">
             <tlk:RadPane ID="RadPane1" runat="server" Height="33px" Scrolling="None">
                 <tlk:RadToolBar ID="tbarMain" runat="server" OnClientButtonClicking="clientButtonClicking" />
@@ -33,9 +33,9 @@
                         </td>
                     </tr>
                     <tr>
-                        <td class="item-head" colspan="6">
-                           
-                                <%# Translate("Thiết lập môn thi")%>
+                        <td colspan="6">
+                            <b>
+                                <%# Translate("Thiết lập môn thi")%></b>
                             <hr />
                         </td>
                     </tr>
@@ -51,36 +51,36 @@
                             </asp:RequiredFieldValidator>
                         </td>
                         <td class="lb">
-                            <%# Translate("Thang điểm")%><span class="lbReq">*</span>
+                            <%# Translate("Thang điểm")%><%--<span class="lbReq">*</span>--%>
                         </td>
                         <td>
                             <tlk:RadNumericTextBox ID="rntxtPointLadder" runat="server" SkinID="number">
                             </tlk:RadNumericTextBox>
-                            <asp:RequiredFieldValidator ID="RequiredFieldValidator2" ControlToValidate="rntxtPointLadder"  Enabled="false"
+                            <%--<asp:RequiredFieldValidator ID="RequiredFieldValidator2" ControlToValidate="rntxtPointLadder"  Enabled="false"
                                 runat="server" ErrorMessage="<%$ Translate: Bạn phải nhập Thang điểm %>" ToolTip="<%$ Translate: Bạn phải nhập Thang điểm %>"> 
-                            </asp:RequiredFieldValidator>
+                            </asp:RequiredFieldValidator>--%>
                         </td>
                         <td class="lb">
-                            <%# Translate("Hệ số")%><span class="lbReq">*</span>
+                            <%# Translate("Hệ số")%><%--<span class="lbReq">*</span>--%>
                         </td>
                         <td>
                             <tlk:RadTextBox ID="txtHeso" runat="server">
                             </tlk:RadTextBox>
-                            <asp:RequiredFieldValidator ID="RequiredFieldValidator4" ControlToValidate="txtHeso"  Enabled="false"
+                           <%-- <asp:RequiredFieldValidator ID="RequiredFieldValidator4" ControlToValidate="txtHeso"  Enabled="false"
                                 runat="server" ErrorMessage="<%$ Translate: Bạn phải nhập Hệ số %>" ToolTip="<%$ Translate: Bạn phải nhập Hệ số %>"> 
-                            </asp:RequiredFieldValidator>
+                            </asp:RequiredFieldValidator>--%>
                         </td>
                     </tr>
                     <tr>
                         <td class="lb">
-                            <%# Translate("Điểm đạt")%><span class="lbReq">*</span>
+                            <%# Translate("Điểm đạt")%><%--<span class="lbReq">*</span>--%>
                         </td>
                         <td>
                             <tlk:RadNumericTextBox ID="rntxtPointPass" runat="server" SkinID="number">
                             </tlk:RadNumericTextBox>
-                             <asp:RequiredFieldValidator ID="RequiredFieldValidator1" ControlToValidate="rntxtPointPass"  Enabled="false"
+                            <%-- <asp:RequiredFieldValidator ID="RequiredFieldValidator1" ControlToValidate="rntxtPointPass"  Enabled="false"
                                 runat="server" ErrorMessage="<%$ Translate: Bạn phải nhập Điểm đạt %>" ToolTip="<%$ Translate: Bạn phải nhập Điểm đạt %>"> 
-                            </asp:RequiredFieldValidator>
+                            </asp:RequiredFieldValidator>--%>
                         </td>
                         <td class="lb">
                             <%# Translate("Thứ tự môn thi/pv")%>
@@ -101,15 +101,14 @@
                         <td>
                         </td>
                         <td>
-                            <tlk:RadButton ButtonType="ToggleButton" ToggleType="CheckBox" runat="server" CausesValidation="false"
-                                ID="chkIsPV" Text="<%$ Translate: Phỏng vấn? %>" OnClick="chkIsPV_Click">
-                            </tlk:RadButton>
+                            <tlk:RadButton ButtonType="ToggleButton" ToggleType="CheckBox" runat="server" ID="chkIsPV" Text="<%$ Translate: Phỏng vấn? %>" >
+                            </tlk:RadButton> <%--CausesValidation="false" OnClick="chkIsPV_Click"--%>
                         </td>
                     </tr>
                 </table>
             </tlk:RadPane>
             <tlk:RadPane ID="RadPane2" runat="server" Scrolling="None">
-                <tlk:RadGrid ID="rgData" runat="server" Height="100%" PageSize="50" AllowPaging="true" SkinID="GridSingleSelect">
+                <tlk:RadGrid ID="rgData" runat="server" Height="100%" SkinID="GridSingleSelect">
                     <MasterTableView DataKeyNames="ID" ClientDataKeyNames="ID,COEFFICIENT,NAME,POINT_LADDER,POINT_PASS,EXAMS_ORDER,NOTE,IS_PV">
                         <Columns>
                             <tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderStyle-HorizontalAlign="Center"
