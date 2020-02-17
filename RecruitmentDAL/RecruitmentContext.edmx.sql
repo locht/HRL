@@ -1,19 +1,177 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for Oracle database
 -- --------------------------------------------------
--- Date Created: 11/14/2019 9:17:47 AM
--- Generated from EDMX file: C:\workspaces\TNG\RecruitmentDAL\RecruitmentContext.edmx
+-- Date Created: 17/2/2020 3:55:50 PM
+-- Generated from EDMX file: G:\Cty TVC\Source\acv_19\RecruitmentDAL\RecruitmentContext.edmx
 -- --------------------------------------------------
 
 -- --------------------------------------------------
 -- Dropping existing FOREIGN KEY constraints
 -- --------------------------------------------------
 
+-- ALTER TABLE "dbo"."HU_EMPLOYEE_HEALTH1" DROP CONSTRAINT "FK_FE_HEH" CASCADE;
+
+-- ALTER TABLE "dbo"."HU_EMPLOYEE_CV" DROP CONSTRAINT "FK_HE_HEC" CASCADE;
+
+-- ALTER TABLE "dbo"."HU_EMPLOYEE_EDUCATION1" DROP CONSTRAINT "FK_HE_HEE" CASCADE;
+
+-- ALTER TABLE "dbo"."HU_EMPLOYEE_OTHER_INFO1" DROP CONSTRAINT "FK_HE_HEO" CASCADE;
+
+-- ALTER TABLE "dbo"."HU_EMPLOYEE" DROP CONSTRAINT "FK_HE_HT" CASCADE;
+
+-- ALTER TABLE "dbo"."HU_EMPLOYEE" DROP CONSTRAINT "FK_HU_ORG_HU_EMP" CASCADE;
+
+-- ALTER TABLE "dbo"."HU_EMPLOYEE" DROP CONSTRAINT "FK_HUEMD_HUEM" CASCADE;
+
+-- ALTER TABLE "dbo"."HU_ORG_TITLE" DROP CONSTRAINT "FK_HUOG_HUOT" CASCADE;
+
+-- ALTER TABLE "dbo"."HU_ORG_TITLE" DROP CONSTRAINT "FK_HUTL_HUOT" CASCADE;
+
+-- ALTER TABLE "dbo"."HU_ORGANIZATION" DROP CONSTRAINT "FK_HU_ORG_HU_ORG" CASCADE;
+
+-- ALTER TABLE "dbo"."HU_BANK_BRANCH" DROP CONSTRAINT "FK_BANKBANK_BRANCH" CASCADE;
+
+-- ALTER TABLE "dbo"."HU_DISTRICT" DROP CONSTRAINT "FK_HU_PRO_HU_DIS" CASCADE;
+
+-- ALTER TABLE "dbo"."HU_PROVINCE" DROP CONSTRAINT "FK_HU_NAT_HU_PRO" CASCADE;
+
 -- --------------------------------------------------
 -- Dropping existing tables
 -- --------------------------------------------------
 
--- DROP TABLE "RecruitmentModelStoreContainer"."RC_CANDIDATE_TRAINNING";
+-- DROP TABLE "dbo"."RC_COST_CENTER";
+
+-- DROP TABLE "dbo"."SE_CHOSEN_ORG";
+
+-- DROP TABLE "dbo"."HU_FAMILY";
+
+-- DROP TABLE "dbo"."HU_TERMINATE";
+
+-- DROP TABLE "dbo"."RC_EXAMS";
+
+-- DROP TABLE "dbo"."RC_EXAMS_DTL";
+
+-- DROP TABLE "dbo"."RC_PLAN_REG_EMP";
+
+-- DROP TABLE "dbo"."RC_PROGRAM_CHARACTER";
+
+-- DROP TABLE "dbo"."RC_PROGRAM_EMP";
+
+-- DROP TABLE "dbo"."RC_PROGRAM_EXAMS";
+
+-- DROP TABLE "dbo"."RC_PROGRAM_SCOPE";
+
+-- DROP TABLE "dbo"."RC_PROGRAM_SOFT_SKILL";
+
+-- DROP TABLE "dbo"."RC_REQUEST";
+
+-- DROP TABLE "dbo"."RC_REQUEST_EMP";
+
+-- DROP TABLE "dbo"."OT_OTHER_LIST";
+
+-- DROP TABLE "dbo"."OT_OTHER_LIST_GROUP";
+
+-- DROP TABLE "dbo"."OT_OTHER_LIST_TYPE";
+
+-- DROP TABLE "dbo"."RC_PLAN_REG";
+
+-- DROP TABLE "dbo"."HU_CONTRACT_TYPE";
+
+-- DROP TABLE "dbo"."RC_CANDIDATE";
+
+-- DROP TABLE "dbo"."RC_CANDIDATE_EDUCATION";
+
+-- DROP TABLE "dbo"."RC_CANDIDATE_HISTORY";
+
+-- DROP TABLE "dbo"."RC_CANDIDATE_OTHER_INFO";
+
+-- DROP TABLE "dbo"."RC_CANDIDATE_CV";
+
+-- DROP TABLE "dbo"."RC_PROGRAM_SCHEDULE";
+
+-- DROP TABLE "dbo"."RC_PROGRAM_SCHEDULE_CAN";
+
+-- DROP TABLE "dbo"."RC_PROGRAM_SCHEDULE_USHER";
+
+-- DROP TABLE "dbo"."RC_CANDIDATE_FAMILY";
+
+-- DROP TABLE "dbo"."RC_CANDIDATE_TRAINSINGER";
+
+-- DROP TABLE "dbo"."RC_CANDIDATE_BEFOREWT";
+
+-- DROP TABLE "dbo"."RC_COST";
+
+-- DROP TABLE "dbo"."RC_COST_FORM";
+
+-- DROP TABLE "dbo"."HU_EMPLOYEE_BANK";
+
+-- DROP TABLE "dbo"."HU_EMPLOYEE_BEFOREWT";
+
+-- DROP TABLE "dbo"."HU_EMPLOYEE_EDUCATION";
+
+-- DROP TABLE "dbo"."HU_EMPLOYEE_HEALTH";
+
+-- DROP TABLE "dbo"."HU_EMPLOYEE_OTHER_INFO";
+
+-- DROP TABLE "dbo"."HU_EMPLOYEE_TRAIN";
+
+-- DROP TABLE "dbo"."HU_EMPLOYEE_TRAINSINGER";
+
+-- DROP TABLE "dbo"."HU_EMPLOYEE";
+
+-- DROP TABLE "dbo"."HU_EMPLOYEE_CV";
+
+-- DROP TABLE "dbo"."HU_EMPLOYEE_EDUCATION1";
+
+-- DROP TABLE "dbo"."HU_EMPLOYEE_HEALTH1";
+
+-- DROP TABLE "dbo"."HU_EMPLOYEE_OTHER_INFO1";
+
+-- DROP TABLE "dbo"."HU_ORG_TITLE";
+
+-- DROP TABLE "dbo"."HU_ORGANIZATION";
+
+-- DROP TABLE "dbo"."HU_TITLE";
+
+-- DROP TABLE "dbo"."HU_BANK";
+
+-- DROP TABLE "dbo"."HU_BANK_BRANCH";
+
+-- DROP TABLE "dbo"."HU_DISTRICT";
+
+-- DROP TABLE "dbo"."HU_NATION";
+
+-- DROP TABLE "dbo"."HU_PROVINCE";
+
+-- DROP TABLE "dbo"."RC_STAGE";
+
+-- DROP TABLE "dbo"."RC_COSTALLOCATE";
+
+-- DROP TABLE "dbo"."RC_COST_COSTALLOCATE";
+
+-- DROP TABLE "dbo"."RC_MANNING_ORG";
+
+-- DROP TABLE "dbo"."RC_MANNING_TITLE";
+
+-- DROP TABLE "dbo"."RC_CANDIDATE_EXPECT";
+
+-- DROP TABLE "dbo"."RC_CANDIDATE_HEALTH";
+
+-- DROP TABLE "dbo"."RC_CANDIDATE_REFERENCE";
+
+-- DROP TABLE "dbo"."RC_PROGRAM";
+
+-- DROP TABLE "dbo"."SE_USER";
+
+-- DROP TABLE "dbo"."SE_REPORT";
+
+-- DROP TABLE "dbo"."SE_USER_REPORT";
+
+-- DROP TABLE "dbo"."HU_WARD";
+
+-- DROP TABLE "dbo"."HU_ORGANIZATION_V";
+
+-- DROP TABLE "dbo"."RC_CANDIDATE_TRAINNING";
 
 -- --------------------------------------------------
 -- Creating all tables
@@ -323,7 +481,8 @@ CREATE TABLE "dbo"."RC_PLAN_REG" (
    "MAINTASK" NCLOB NULL,
    "QUALIFICATION" NCLOB NULL,
    "QUALIFICATIONREQUEST" NCLOB NULL,
-   "COMPUTER_LEVEL" NCLOB NULL
+   "COMPUTER_LEVEL" NCLOB NULL,
+   "FILE_NAME" NVARCHAR2(255) NULL
 );
 
 -- Creating table 'HU_CONTRACT_TYPE'
