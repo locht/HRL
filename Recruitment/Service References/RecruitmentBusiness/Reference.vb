@@ -6389,6 +6389,9 @@ Namespace RecruitmentBusiness
         Private EXPECTED_JOIN_DATEField As System.Nullable(Of Date)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private FILE_NAMEField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private IDField As Decimal
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -6579,6 +6582,19 @@ Namespace RecruitmentBusiness
                 If (Me.EXPECTED_JOIN_DATEField.Equals(value) <> true) Then
                     Me.EXPECTED_JOIN_DATEField = value
                     Me.RaisePropertyChanged("EXPECTED_JOIN_DATE")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property FILE_NAME() As String
+            Get
+                Return Me.FILE_NAMEField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.FILE_NAMEField, value) <> true) Then
+                    Me.FILE_NAMEField = value
+                    Me.RaisePropertyChanged("FILE_NAME")
                 End If
             End Set
         End Property

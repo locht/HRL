@@ -17,9 +17,9 @@
     Public Class RC_PLAN_REG_STATUS
         Public Shared Name As String = "RC_PLAN_REG_STATUS"
         Public Shared TYPE_ID As Decimal = 1011
-        Public Shared APPROVE_ID As Decimal = 4051
-        Public Shared WAIT_ID As Decimal = 4050
-        Public Shared NOT_APPROVE_ID As Decimal = 4052
+        Public Shared APPROVE_ID As Decimal = 4051 'Phê duyệt
+        Public Shared WAIT_ID As Decimal = 4050 'Chờ phê duyệt
+        Public Shared NOT_APPROVE_ID As Decimal = 4052 'Không phê duyệt
     End Class
 
     Public Class RC_REQUEST_STATUS

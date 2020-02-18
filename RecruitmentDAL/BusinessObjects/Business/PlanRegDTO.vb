@@ -34,4 +34,5 @@
     Public Property QUALIFICATION As String
     Public Property QUALIFICATIONREQUEST As String
     Public Property COMPUTER_LEVEL As String
+    Public Property FILE_NAME As String
 End Class

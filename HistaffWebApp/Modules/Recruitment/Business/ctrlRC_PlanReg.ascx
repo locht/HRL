@@ -1,23 +1,23 @@
-﻿<%@ Control Language="vb" AutoEventWireup="false" CodeBehind="ctrlRC_PlanReg.ascx.vb"
+﻿<%@ Control Language="vb" AutoEventWireup="false" CodeBehind="ctrlRC_PlanReg.ascx.vb" 
     Inherits="Recruitment.ctrlRC_PlanReg" %>
 <%@ Import Namespace="Common" %>
 <tlk:RadSplitter ID="RadSplitter1" runat="server" Width="100%" Height="100%">
     <tlk:RadPane ID="LeftPane" runat="server" MinWidth="200" Width="250px" Scrolling="None">
         <Common:ctrlOrganization ID="ctrlOrg" runat="server" />
     </tlk:RadPane>
-    <tlk:RadPane ID="MainPane" runat="server" Scrolling="None">
+    <tlk:RadPane ID="MainPane" runat="server">
         <tlk:RadSplitter ID="RadSplitter3" runat="server" Width="100%" Height="100%" Orientation="Horizontal">
             <tlk:RadPane ID="RadPane1" runat="server" Height="33px" Scrolling="None">
                 <tlk:RadToolBar ID="tbarMain" runat="server" OnClientButtonClicking="clientButtonClicking" />
             </tlk:RadPane>
-            <tlk:RadPane ID="RadPane3" runat="server" Height="50px" Scrolling="None">
-                <table class="table-form">
+            <tlk:RadPane ID="RadPane3" runat="server" Height="80px" Scrolling="None">
+                <table  class="table-form">
                     <tr>
                         <td class="lb">
                             <%# Translate("Năm")%>
                         </td>
                         <td>
-                            <tlk:RadComboBox ID="cboYear" runat="server">
+                           <tlk:RadComboBox ID="cboYear" runat="server">
                             </tlk:RadComboBox>
                         </td>
                         <td class="lb">
@@ -27,45 +27,48 @@
                             <tlk:RadComboBox ID="cboStatus" runat="server">
                             </tlk:RadComboBox>
                         </td>
+                    </tr>
+                    <tr>
                         <td class="lb">
                             <%# Translate("Vị trí tuyển dụng")%>
                         </td>
                         <td>
                             <tlk:RadComboBox ID="cboPositionRC" runat="server">
                             </tlk:RadComboBox>
-                        </td>
-                        <td>
+                        </td>                        
+                        <td colspan="2" class="lb">
                             <tlk:RadButton ID="btnSearch" runat="server" SkinID="ButtonFind" CausesValidation="false"
-                                Text="<%$ Translate: Tìm %>">
+                                Text="<%$ Translate: Tìm kiếm %>">
                             </tlk:RadButton>
                         </td>
                     </tr>
                 </table>
             </tlk:RadPane>
             <tlk:RadPane ID="RadPane2" runat="server" Scrolling="None">
-                <tlk:RadGrid ID="rgData" runat="server" Height="100%" PageSize="50" AllowPaging="true">
+                <tlk:RadGrid ID="rgData" runat="server" Height="100%">
                     <MasterTableView DataKeyNames="ID" ClientDataKeyNames="ID,STATUS_ID">
                         <Columns>
                             <tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderStyle-HorizontalAlign="Center"
                                 HeaderStyle-Width="30px" ItemStyle-HorizontalAlign="Center">
                             </tlk:GridClientSelectColumn>
                             <tlk:GridBoundColumn DataField="ID" Visible="false" />
-                            <tlk:GridDateTimeColumn HeaderText="<%$ Translate: Ngày gửi nhu cầu %>" DataField="SEND_DATE"
-                                SortExpression="SEND_DATE" UniqueName="SEND_DATE" />
-                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Đơn vị %>" DataField="ORG_NAME" SortExpression="ORG_NAME"
+                            
+                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Bộ phận %>" DataField="ORG_NAME" SortExpression="ORG_NAME"
                                 UniqueName="ORG_NAME" />
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Vị trí tuyển dụng %>" DataField="TITLE_NAME"
                                 SortExpression="TITLE_NAME" UniqueName="TITLE_NAME" />
-                            <tlk:GridNumericColumn HeaderText="<%$ Translate: Số lượng cần tuyển %>" DataField="RECRUIT_NUMBER"
-                                SortExpression="RECRUIT_NUMBER" UniqueName="RECRUIT_NUMBER" />
+                            <%--<tlk:GridNumericColumn HeaderText="<%$ Translate: Số lượng cần tuyển %>" DataField="RECRUIT_NUMBER"
+                                SortExpression="RECRUIT_NUMBER" UniqueName="RECRUIT_NUMBER" />--%>
+                                  <tlk:GridDateTimeColumn HeaderText="<%$ Translate: Ngày gửi yêu cầu %>" DataField="SEND_DATE" SortExpression="SEND_DATE"
+                                UniqueName="SEND_DATE" />
                             <tlk:GridDateTimeColumn HeaderText="<%$ Translate: Ngày dự kiến đi làm %>" DataField="EXPECTED_JOIN_DATE"
                                 SortExpression="EXPECTED_JOIN_DATE" UniqueName="EXPECTED_JOIN_DATE" />
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Lý do tuyển dụng %>" DataField="RECRUIT_REASON_NAME"
                                 SortExpression="RECRUIT_REASON_NAME" UniqueName="RECRUIT_REASON_NAME" />
-                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Lý do không phê duyệt %>" DataField="REMARK_REJECT"
+                                <tlk:GridBoundColumn HeaderText="<%$ Translate: Lý do không phê duyệt %>" DataField="REMARK_REJECT"
                                 SortExpression="REMARK_REJECT" UniqueName="REMARK_REJECT" />
-                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Ghi chú %>" DataField="REMARK" SortExpression="REMARK"
-                                UniqueName="REMARK" />
+                            <%--<tlk:GridBoundColumn HeaderText="<%$ Translate: Ghi chú %>" DataField="REMARK" SortExpression="REMARK"
+                                UniqueName="REMARK" />--%>
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Trạng thái %>" DataField="STATUS_NAME"
                                 SortExpression="STATUS_NAME" UniqueName="STATUS_NAME" />
                             <tlk:GridBoundColumn HeaderText="ORG_DESC" DataField="ORG_DESC" UniqueName="ORG_DESC"
@@ -81,7 +84,7 @@
         </tlk:RadSplitter>
     </tlk:RadPane>
 </tlk:RadSplitter>
-<asp:HiddenField ID="hddLinkPopup" runat="server" Value="Dialog.aspx?mid=Recruitment&fid=ctrlRC_PlanRegReject&group=Business" />
+<asp:HiddenField ID="hddLinkPopup" runat="server" Value="Dialog.aspx?mid=Recruitment&fid=ctrlRC_PlanRegReject&group=Business&noscroll=1" />
 <Common:ctrlMessageBox ID="ctrlMessageBox" runat="server" />
 <tlk:RadWindowManager ID="RadWindowManager1" runat="server">
     <Windows>
@@ -99,17 +102,16 @@
             enableAjax = true;
         }
         function OpenNew() {
-            window.open('/Default.aspx?mid=Recruitment&fid=ctrlRC_PlanRegNewEdit&group=Business', "_self"); /*
-            var pos = $("html").offset();
+            var oWindow = radopen('Dialog.aspx?mid=Recruitment&fid=ctrlRC_PlanRegNewEdit&group=Business&noscroll=1', "rwPopup");
             oWindow.moveTo(pos.center, pos.middle);
-            //oWindow.setSize($(window).width() - 30, $(window).height() - 30); oWindow.center(); */
-            oWindow.setSize(1050, 500);
+            //oWindow.setSize($(window).width(), $(window).height());
+            oWindow.setSize(800, 500);
         }
         function OpenPlanRegReject(obj) {
             enableAjax = false;
-            window.open('/Default.aspx?mid=Recruitment&fid=ctrlRC_PlanRegReject&group=Business&RejectID=' + obj, "_self"); /*
-            oWindow.moveTo(pos.center, pos.top);
-            oWindow.setSize($(window).width() - 30, $(window).height() - 30); oWindow.center(); */
+            var oWindow = radopen('Dialog.aspx?mid=Recruitment&fid=ctrlRC_PlanRegReject&group=Business&noscroll=1&RejectID=' + obj, "rwPopup");
+            oWindow.moveTo(pos.center, pos.middle);
+            oWindow.setSize(1050, 500);
         }
         function gridRowDblClick(sender, eventArgs) {
             OpenEdit();
@@ -122,11 +124,11 @@
             if (bCheck > 1)
                 return 1;
             var id = $find('<%# rgData.ClientID%>').get_masterTableView().get_selectedItems()[0].getDataKeyValue('ID');
-            window.open('/Default.aspx?mid=Recruitment&fid=ctrlRC_PlanRegNewEdit&group=Business&ID=' + id, "_self"); /*
+            var oWindow = radopen('Dialog.aspx?mid=Recruitment&fid=ctrlRC_PlanRegNewEdit&group=Business&noscroll=1&ID=' + id, "rwPopup");
             var pos = $("html").offset();
             oWindow.moveTo(pos.center, pos.middle);
-            //oWindow.setSize($(window).width() - 30, $(window).height() - 30); oWindow.center(); */
-            oWindow.setSize(1050, 500);
+            //oWindow.setSize($(window).width(), $(window).height());
+            oWindow.setSize(800, 500);
             return 2;
         }
 

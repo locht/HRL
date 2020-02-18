@@ -34,7 +34,7 @@
                     <%# Translate("Phòng ban")%><span class="lbReq">*</span>
                 </td>
                 <td>
-                    <tlk:RadTextBox ID="txtOrgName" runat="server" ReadOnly="True" Width="130px">
+                    <tlk:RadTextBox ID="txtOrgName" runat="server" ReadOnly="True">
                     </tlk:RadTextBox>
                     <tlk:RadButton EnableEmbeddedSkins="false" ID="btnFindOrg" runat="server" SkinID="ButtonView"
                         CausesValidation="false">
@@ -43,7 +43,7 @@
                         runat="server" ErrorMessage="<%$ Translate: Bạn phải nhập phòng ban %>" ToolTip="<%$ Translate: Bạn phải nhập phòng ban %>"> 
                     </asp:RequiredFieldValidator>
                 </td>
-                <td class="lb" style="width: 150px">
+                <td class="lb">
                     <%# Translate("Vị trí tuyển dụng")%><span class="lbReq">*</span>
                 </td>
                 <td>
@@ -53,7 +53,9 @@
                         ToolTip="<%$ Translate: Bạn phải chọn Vị trí tuyển dụng %>" ClientValidationFunction="cusTitle">
                     </asp:CustomValidator>
                 </td>
-                <td class="lb" style="width: 150px">
+            </tr>
+            <tr>
+                <td class="lb">
                     <%# Translate("Số lượng tuyển")%><span class="lbReq">*</span>
                 </td>
                 <td>
@@ -66,21 +68,8 @@
                         ToolTip="<%$ Translate: Bạn phải nhập Số lượng tuyển %>"> 
                     </asp:RequiredFieldValidator>
                 </td>
-            </tr>
-            <tr>
                 <td class="lb">
-                    <%# Translate("Ngày gửi yêu cầu")%><span class="lbReq">*</span>
-                </td>
-                <td>
-                    <tlk:RadDatePicker ID="rdSendDate" runat="server">
-                    </tlk:RadDatePicker>
-                    <asp:RequiredFieldValidator ID="RequiredFieldValidator1" ControlToValidate="rdSendDate"
-                        runat="server" ErrorMessage="<%$ Translate: Bạn phải nhập Ngày gửi kế hoạch %>"
-                        ToolTip="<%$ Translate: Bạn phải nhập Ngày gửi kế hoạch %>"> 
-                    </asp:RequiredFieldValidator>
-                </td>
-                <td class="lb">
-                    <%# Translate("Ngày đi làm dự kiến")%>
+                    <%# Translate("Ngày đi làm dự kiến")%><span class="lbReq">*</span>
                 </td>
                 <td>
                     <tlk:RadDatePicker ID="rdExpectedJoinDate" runat="server">
@@ -93,6 +82,8 @@
                         ControlToCompare="rdSendDate" Operator="GreaterThanEqual" ErrorMessage="<%$ Translate: Ngày đi làm dự kiến phải lớn hơn Ngày gửi kế hoạch %>"
                         ToolTip="<%$ Translate: Ngày đi làm dự kiến phải lớn hơn Ngày gửi kế hoạch %>"></asp:CompareValidator>
                 </td>
+            </tr>
+            <tr>
                 <td class="lb">
                     <%# Translate("Lý do tuyển dụng")%>
                 </td>
@@ -100,8 +91,35 @@
                     <tlk:RadComboBox ID="cboRecruitReason" runat="server">
                     </tlk:RadComboBox>
                 </td>
+                <td class="lb">
+                    <%# Translate("Ngày gửi yêu cầu")%><span class="lbReq">*</span>
+                </td>
+                <td>
+                    <tlk:RadDatePicker ID="rdSendDate" runat="server">
+                    </tlk:RadDatePicker>
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator1" ControlToValidate="rdSendDate"
+                        runat="server" ErrorMessage="<%$ Translate: Bạn phải nhập Ngày gửi kế hoạch %>"
+                        ToolTip="<%$ Translate: Bạn phải nhập Ngày gửi kế hoạch %>"> 
+                    </asp:RequiredFieldValidator>
+                </td>
             </tr>
             <tr>
+              <td class="lb">
+                    <%# Translate("Tệp tin đính kèm")%>
+                </td>
+                <td colspan="3">
+                    <div>
+                        <tlk:RadTextBox ID="txtUploadFile" runat="server" Visible="true" ReadOnly="true">
+                        </tlk:RadTextBox>
+                        <tlk:RadButton Width="35px" runat="server" ID="btnUploadFile" Text="<%$ Translate: Đăng %>"
+                            CausesValidation="false" />
+                        <tlk:RadButton Width="22px" ID="btnDownload" runat="server" Text="<%$ Translate: Tải %>"
+                            CausesValidation="false" OnClientClicked="rbtClicked">
+                        </tlk:RadButton>
+                    </div>
+                </td>
+            </tr>
+            <%--<tr>
                 <td class="lb">
                     <%# Translate("Số lượng định biên")%>
                 </td>
@@ -130,9 +148,8 @@
                 </td>
                 <td style="width: 1px">
                     <div style="margin-right: 7px;" class="ages">
-                        <tlk:RadNumericTextBox ID="txtAgesFrom" runat="server" NumberFormat-DecimalDigits="1"
-                            NumberFormat-GroupSeparator="" ShowSpinButtons="true" MaxLength="3" MinValue="18"
-                            MaxValue="100">
+                         <tlk:RadNumericTextBox ID="txtAgesFrom" runat="server" NumberFormat-DecimalDigits="1"
+                            NumberFormat-GroupSeparator="" ShowSpinButtons="true" MaxLength="3" MinValue="18" MaxValue="100">
                             <NumberFormat AllowRounding="false" KeepNotRoundedValue="true" DecimalDigits="1" />
                         </tlk:RadNumericTextBox>
                     </div>
@@ -140,8 +157,7 @@
                         đến</label>
                     <div class="ages">
                         <tlk:RadNumericTextBox ID="txtAgesTo" runat="server" NumberFormat-DecimalDigits="1"
-                            NumberFormat-GroupSeparator="" ShowSpinButtons="true" MaxLength="3" MinValue="18"
-                            MaxValue="100">
+                            NumberFormat-GroupSeparator="" ShowSpinButtons="true" MaxLength="3" MinValue="18" MaxValue="100">
                             <NumberFormat AllowRounding="false" KeepNotRoundedValue="true" DecimalDigits="1" />
                         </tlk:RadNumericTextBox>
                     </div>
@@ -181,10 +197,9 @@
                 </td>
                 <td>
                     <tlk:RadNumericTextBox ID="txtScores" runat="server" NumberFormat-DecimalDigits="1"
-                        NumberFormat-GroupSeparator="" ShowSpinButtons="true" MaxLength="3" MinValue="0"
-                        MaxValue="100">
-                        <NumberFormat AllowRounding="false" KeepNotRoundedValue="true" DecimalDigits="1" />
-                    </tlk:RadNumericTextBox>
+                            NumberFormat-GroupSeparator="" ShowSpinButtons="true" MaxLength="3" MinValue="0" MaxValue="100">
+                            <NumberFormat AllowRounding="false" KeepNotRoundedValue="true" DecimalDigits="1" />
+                        </tlk:RadNumericTextBox>
                 </td>
             </tr>
             <tr style="display: none">
@@ -206,7 +221,7 @@
                     <%# Translate("Nghiệp vụ chuyên môn")%>
                 </td>
                 <td>
-                    <tlk:RadComboBox ID="cboQualification" runat="server">
+                    <tlk:RadComboBox ID="cboQualification" runat="server" Width="250px">
                     </tlk:RadComboBox>
                 </td>
                 <td class="lb">
@@ -257,7 +272,7 @@
                     <tlk:RadTextBox ID="txtRemark" runat="server" TextMode="MultiLine" Width="100%">
                     </tlk:RadTextBox>
                 </td>
-            </tr>
+            </tr>--%>
         </table>
     </tlk:RadPane>
 </tlk:RadSplitter>
@@ -265,7 +280,11 @@
 <asp:PlaceHolder ID="phFindOrg" runat="server"></asp:PlaceHolder>
 <tlk:RadCodeBlock ID="RadCodeBlock1" runat="server">
     <script type="text/javascript">
-
+        var enableAjax = true;
+        function onRequestStart(sender, eventArgs) {
+            eventArgs.set_enableAjax(enableAjax);
+            enableAjax = true;
+        }
         function cusTitle(oSrc, args) {
             var cbo = $find("<%# cboTitle.ClientID %>");
             args.IsValid = (cbo.get_value().length != 0);
@@ -287,5 +306,10 @@
             //                args.set_cancel(true);
             //            }
         }
+        function rbtClicked(sender, eventArgs) {
+            debugger;
+            enableAjax = false;
+        }; 
     </script>
 </tlk:RadCodeBlock>
+<Common:ctrlUpload ID="ctrlUpload1" runat="server" />

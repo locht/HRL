@@ -2,9 +2,11 @@
 Imports Framework.UI.Utilities
 Imports Recruitment.RecruitmentBusiness
 Imports Common
+Imports Profile
 Imports Telerik.Web.UI
 Imports HistaffFrameworkPublic
 Imports HistaffFrameworkPublic.FrameworkUtilities
+
 
 Public Class ctrlRC_PlanReg
     Inherits Common.CommonView
@@ -150,30 +152,36 @@ Public Class ctrlRC_PlanReg
 
     Public Overrides Sub BindData()
         Try
-            Dim dtData As DataTable
+            Dim dtData As DataTable           
             Using rep As New RecruitmentRepository
                 dtData = rep.GetOtherList("RC_PLAN_REG_STATUS", True)
                 FillRadCombobox(cboStatus, dtData, "NAME", "ID")
             End Using
+
+            ' Load cbo chức danh(Vị trí tuyển dụng)            
+            Dim ds As DataSet = rep.ExecuteToDataSet("PKG_PROFILE.GET_LIST_TITLE")
+            FillRadCombobox(cboPositionRC, ds.Tables(0), "NAME_VN", "ID")
+            cboPositionRC.DataBind()
+            cboPositionRC.Items.Insert(0, New RadComboBoxItem("", "-1"))
         Catch ex As Exception
             DisplayException(Me.ViewName, Me.ID, ex)
         End Try
     End Sub
 
-    Public Sub LoadTitleBy_OrgID()
-        Try
-            ' Load cbo chức danh(Vị trí tuyển dụng)
-            If Not ctrlOrg.CurrentValue Is Nothing Then
-                Dim ds As DataSet = rep.ExecuteToDataSet("PKG_PROFILE.READ_LIST_TITLE_BY_ORGID", New List(Of Object)({ctrlOrg.CurrentValue}))
-                FillRadCombobox(cboPositionRC, ds.Tables(0), "NAME_VN", "ID")
-                cboPositionRC.DataBind()
-                cboPositionRC.Items.Insert(0, New RadComboBoxItem("", "-1"))
-            End If
+    'Public Sub LoadTitleBy_OrgID()
+    '    Try
+    '        ' Load cbo chức danh(Vị trí tuyển dụng)
+    '        If Not ctrlOrg.CurrentValue Is Nothing Then
+    '            Dim ds As DataSet = rep.ExecuteToDataSet("PKG_PROFILE.READ_LIST_TITLE_BY_ORGID", New List(Of Object)({ctrlOrg.CurrentValue}))
+    '            FillRadCombobox(cboPositionRC, ds.Tables(0), "NAME_VN", "ID")
+    '            cboPositionRC.DataBind()
+    '            cboPositionRC.Items.Insert(0, New RadComboBoxItem("", "-1"))
+    '        End If
 
-        Catch ex As Exception
-            DisplayException(Me.ViewName, Me.ID, ex)
-        End Try
-    End Sub
+    '    Catch ex As Exception
+    '        DisplayException(Me.ViewName, Me.ID, ex)
+    '    End Try
+    'End Sub
 #End Region
 
 #Region "Event"
@@ -194,17 +202,25 @@ Public Class ctrlRC_PlanReg
                         ShowMessage(Translate(CommonMessage.MESSAGE_NOT_SELECT_MULTI_ROW), NotifyType.Warning)
                         Exit Sub
                     End If
-
+                    Dim item As GridDataItem = rgData.SelectedItems(0)
+                    If item.GetDataKeyValue("STATUS_ID") = RecruitmentCommon.RC_PLAN_REG_STATUS.APPROVE_ID Then
+                        ShowMessage(Translate("Bản ghi đang ở trạng thái phê duyệt, thao tác thực hiện không thành công"), NotifyType.Warning)
+                        Exit Sub
+                    End If
+                    If item.GetDataKeyValue("STATUS_ID") = RecruitmentCommon.RC_PLAN_REG_STATUS.NOT_APPROVE_ID Then
+                        ShowMessage(Translate("Bản ghi đang ở trạng thái không phê duyệt, thao tác thực hiện không thành công"), NotifyType.Warning)
+                        Exit Sub
+                    End If
                     CurrentState = CommonMessage.STATE_EDIT
                     UpdateControlState()
                 Case CommonMessage.TOOLBARITEM_DELETE
                     For Each item As GridDataItem In rgData.SelectedItems
                         If item.GetDataKeyValue("STATUS_ID") = RecruitmentCommon.RC_PLAN_REG_STATUS.APPROVE_ID Then
-                            ShowMessage(Translate("Tồn tại bản ghi đã ở trạng thái phê duyệt, thao tác thực hiện không thành công"), NotifyType.Warning)
+                            ShowMessage(Translate("Bản ghi đang ở trạng thái phê duyệt, thao tác thực hiện không thành công"), NotifyType.Warning)
                             Exit Sub
                         End If
                         If item.GetDataKeyValue("STATUS_ID") = RecruitmentCommon.RC_PLAN_REG_STATUS.NOT_APPROVE_ID Then
-                            ShowMessage(Translate("Tồn tại bản ghi đã ở trạng thái không phê duyệt, thao tác thực hiện không thành công"), NotifyType.Warning)
+                            ShowMessage(Translate("Bản ghi đang ở trạng thái không phê duyệt, thao tác thực hiện không thành công"), NotifyType.Warning)
                             Exit Sub
                         End If
                     Next
@@ -216,7 +232,7 @@ Public Class ctrlRC_PlanReg
                 Case CommonMessage.TOOLBARITEM_APPROVE
                     For Each item As GridDataItem In rgData.SelectedItems
                         If item.GetDataKeyValue("STATUS_ID") = RecruitmentCommon.RC_PLAN_REG_STATUS.APPROVE_ID Then
-                            ShowMessage(Translate("Tồn tại bản ghi đã ở trạng thái phê duyệt, thao tác thực hiện không thành công"), NotifyType.Warning)
+                            ShowMessage(Translate("Bản ghi đang ở trạng thái phê duyệt, thao tác thực hiện không thành công"), NotifyType.Warning)
                             Exit Sub
                         End If
                     Next
@@ -230,7 +246,7 @@ Public Class ctrlRC_PlanReg
                     sListRejectID = ""
                     For Each item As GridDataItem In rgData.SelectedItems
                         If item.GetDataKeyValue("STATUS_ID") = RecruitmentCommon.RC_PLAN_REG_STATUS.APPROVE_ID Then
-                            ShowMessage(Translate("Tồn tại bản ghi đã ở trạng thái phê duyệt, thao tác thực hiện không thành công"), NotifyType.Warning)
+                            ShowMessage(Translate("Bản ghi đang ở trạng thái phê duyệt, thao tác thực hiện không thành công"), NotifyType.Warning)
                             bStatus = False
                             Exit Sub
                         Else
@@ -290,7 +306,7 @@ Public Class ctrlRC_PlanReg
             rgData.CurrentPageIndex = 0
             rgData.MasterTableView.SortExpressions.Clear()
             rgData.Rebind()
-            LoadTitleBy_OrgID()
+            'LoadTitleBy_OrgID()
         Catch ex As Exception
             DisplayException(Me.ViewName, Me.ID, ex)
         End Try
