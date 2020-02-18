@@ -61,9 +61,9 @@
                                 SortExpression="SEND_DATE" UniqueName="SEND_DATE" />
                             <tlk:GridDateTimeColumn HeaderText="<%$ Translate: Ngày dự kiến đi làm %>" DataField="EXPECTED_JOIN_DATE"
                                 SortExpression="EXPECTED_JOIN_DATE" UniqueName="EXPECTED_JOIN_DATE" HeaderStyle-Width="120px" />
-                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Số lượng cần tuyển %>" DataField="RECRUIT_NUMBER"
+                          <%--  <tlk:GridBoundColumn HeaderText="<%$ Translate: Số lượng cần tuyển %>" DataField="RECRUIT_NUMBER"
                                 SortExpression="RECRUIT_NUMBER" UniqueName="RECRUIT_NUMBER" AllowFiltering="false"
-                                HeaderStyle-Width="90px" />
+                                HeaderStyle-Width="90px" />--%>
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Lý do tuyển dụng %>" DataField="RECRUIT_REASON_NAME"
                                 SortExpression="RECRUIT_REASON_NAME" UniqueName="RECRUIT_REASON_NAME" />
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Lý do không phê duyệt %>" DataField="REMARK_REJECT"
@@ -102,10 +102,10 @@
             enableAjax = true;
         }
         function OpenNew() {
-            //  var oWindow = radopen('Dialog.aspx?mid=Recruitment&fid=ctrlRC_RequestNewEdit&group=Business&noscroll=1', "rwPopup");
+            //            var oWindow = radopen('Dialog.aspx?mid=Recruitment&fid=ctrlRC_RequestNewEdit&group=Business&noscroll=1', "rwPopup");
             //            var pos = $("html").offset();
-            //            oWindow.moveTo(pos.left, pos.top);
-            //            oWindow.setSize($(window).width(), $(window).height());
+            //            //            oWindow.moveTo(pos.left, pos.top);
+            //            //            oWindow.setSize($(window).width(), $(window).height());
             //            oWindow.moveTo(pos.left, pos.middle);
             //            oWindow.setSize(1200, 500);
             window.open('/Default.aspx?mid=Recruitment&fid=ctrlRC_RequestNewEditV&group=Business&noscroll=1', "_self");
@@ -123,7 +123,7 @@
                 return 1;
             var id = $find('<%# rgData.ClientID%>').get_masterTableView().get_selectedItems()[0].getDataKeyValue('ID');
             window.open('/Default.aspx?mid=Recruitment&fid=ctrlRC_RequestNewEditV&group=Business&noscroll=1&ID=' + id, "_self");
-            //var oWindow = radopen('Dialog.aspx?mid=Recruitment&fid=ctrlRC_RequestNewEdit&group=Business&noscroll=1&ID=' + id, "rwPopup");
+            //            var oWindow = radopen('Dialog.aspx?mid=Recruitment&fid=ctrlRC_RequestNewEdit&group=Business&noscroll=1&ID=' + id, "rwPopup");
             //            var pos = $("html").offset();
             //            oWindow.moveTo(pos.left, pos.top);
             //            oWindow.setSize($(window).width(), $(window).height());

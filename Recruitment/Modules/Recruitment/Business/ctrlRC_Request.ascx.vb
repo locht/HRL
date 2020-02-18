@@ -17,6 +17,7 @@ Public Class ctrlRC_Request
     Dim _myLog As New MyLog()
     Dim pathLog As String = _myLog._pathLog
     Dim _classPath As String = "Recruitment/Modules/Recruitment/Business/" + Me.GetType().Name.ToString()
+    Private rep As New HistaffFrameworkRepository
 #Region "Property"
     Property IsLoad As Boolean
         Get
@@ -138,6 +139,12 @@ Public Class ctrlRC_Request
                 dtData = rep.GetOtherList("RC_REQUEST_STATUS", True)
                 FillRadCombobox(cboStatus, dtData, "NAME", "ID")
             End Using
+
+            ' Load cbo chức danh(Vị trí tuyển dụng)    
+            Dim ds As DataSet = rep.ExecuteToDataSet("PKG_PROFILE.GET_LIST_TITLE")
+            FillRadCombobox(cboRecruitment, ds.Tables(0), "NAME_VN", "ID")
+            cboRecruitment.DataBind()
+            cboRecruitment.Items.Insert(0, New RadComboBoxItem("", "-1"))
         Catch ex As Exception
             DisplayException(Me.ViewName, Me.ID, ex)
         End Try
