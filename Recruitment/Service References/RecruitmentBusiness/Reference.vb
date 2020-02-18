@@ -7435,6 +7435,9 @@ Namespace RecruitmentBusiness
         Private UPLOAD_FILEField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private YEARField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private lstEmpField As System.Collections.Generic.List(Of RecruitmentBusiness.RequestEmpDTO)
         
         <Global.System.ComponentModel.BrowsableAttribute(false)>  _
@@ -8210,6 +8213,19 @@ Namespace RecruitmentBusiness
                 If (Object.ReferenceEquals(Me.UPLOAD_FILEField, value) <> true) Then
                     Me.UPLOAD_FILEField = value
                     Me.RaisePropertyChanged("UPLOAD_FILE")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property YEAR() As System.Nullable(Of Decimal)
+            Get
+                Return Me.YEARField
+            End Get
+            Set
+                If (Me.YEARField.Equals(value) <> true) Then
+                    Me.YEARField = value
+                    Me.RaisePropertyChanged("YEAR")
                 End If
             End Set
         End Property

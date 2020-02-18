@@ -644,6 +644,9 @@ Partial Class RecruitmentRepository
             If _filter.SEND_DATE IsNot Nothing Then
                 lst = lst.Where(Function(p) p.SEND_DATE = _filter.SEND_DATE)
             End If
+            If _filter.YEAR IsNot Nothing Then
+                lst = lst.Where(Function(p) Year(p.SEND_DATE) = _filter.YEAR)
+            End If
             lst = lst.OrderBy(Sorts)
             Total = lst.Count
             lst = lst.Skip(PageIndex * PageSize).Take(PageSize)

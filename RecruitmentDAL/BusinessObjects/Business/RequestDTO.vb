@@ -60,4 +60,5 @@
 
     Public Property FILE_NAME As String
     Public Property LOCATION_ID As Decimal?
+    Public Property YEAR As Decimal?
 End Class

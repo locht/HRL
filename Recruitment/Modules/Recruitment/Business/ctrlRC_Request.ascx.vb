@@ -148,15 +148,10 @@ Public Class ctrlRC_Request
             Me.ctrlMessageBox.Listener = Me
             Me.MainToolBar = tbarMain
             ''TODO: DAIDM comment
-            Common.Common.BuildToolbar(Me.MainToolBar, ToolbarItem.Create, ToolbarItem.Edit, ToolbarItem.Export,
-                                       ToolbarItem.Next, ToolbarItem.Import, ToolbarItem.Delete,
+            Common.Common.BuildToolbar(Me.MainToolBar, ToolbarItem.Create, ToolbarItem.Edit, ToolbarItem.Delete,
                                        ToolbarItem.Approve, ToolbarItem.Reject)
-            CType(MainToolBar.Items(2), RadToolBarButton).Text = "Xuất Excel"
-            CType(MainToolBar.Items(3), RadToolBarButton).Text = "Xuất file mẫu"
-            CType(Me.MainToolBar.Items(3), RadToolBarButton).ImageUrl = CType(Me.MainToolBar.Items(2), RadToolBarButton).ImageUrl
-            CType(MainToolBar.Items(4), RadToolBarButton).Text = "Nhập file mẫu"
-            CType(MainToolBar.Items(6), RadToolBarButton).Text = "Phê duyệt"
-            CType(MainToolBar.Items(7), RadToolBarButton).Text = "Không phê duyệt"
+            CType(MainToolBar.Items(3), RadToolBarButton).Text = "Phê duyệt"
+            CType(MainToolBar.Items(4), RadToolBarButton).Text = "Không phê duyệt"
         Catch ex As Exception
             Throw ex
         End Try
@@ -479,10 +474,19 @@ Public Class ctrlRC_Request
             End If
             Dim _param = New ParamDTO With {.ORG_ID = Decimal.Parse(ctrlOrg.CurrentValue), _
                                                .IS_DISSOLVE = ctrlOrg.IsDissolve}
-            _filter.FROM_DATE = rdFromDate.SelectedDate
-            _filter.TO_DATE = rdToDate.SelectedDate
             If cboStatus.SelectedValue <> "" Then
                 _filter.STATUS_ID = Decimal.Parse(cboStatus.SelectedValue)
+            End If
+            If _param.ORG_ID <> 1 Then
+                Dim dtData As DataTable
+                dtData = store.GET_TITLE_IN_PLAN(_param.ORG_ID, 0)
+                FillRadCombobox(cboRecruitment, dtData, "NAME", "ID")
+                _filter.TITLE_NAME = cboRecruitment.Text
+            Else
+                cboRecruitment.Text = ""
+            End If
+            If IsNumeric(rnYear.Value) Then
+                _filter.YEAR = rnYear.Value
             End If
             Dim MaximumRows As Integer
             Dim Sorts As String = rgData.MasterTableView.SortExpressions.GetSortString()
