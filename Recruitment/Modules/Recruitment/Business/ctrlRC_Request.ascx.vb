@@ -484,14 +484,14 @@ Public Class ctrlRC_Request
             If cboStatus.SelectedValue <> "" Then
                 _filter.STATUS_ID = Decimal.Parse(cboStatus.SelectedValue)
             End If
-            If _param.ORG_ID <> 1 Then
-                Dim dtData As DataTable
-                dtData = store.GET_TITLE_IN_PLAN(_param.ORG_ID, 0)
-                FillRadCombobox(cboRecruitment, dtData, "NAME", "ID")
-                _filter.TITLE_NAME = cboRecruitment.Text
-            Else
-                cboRecruitment.Text = ""
-            End If
+            'If _param.ORG_ID <> 1 Then
+            '    Dim dtData As DataTable
+            '    dtData = store.GET_TITLE_IN_PLAN(_param.ORG_ID, 0)
+            '    FillRadCombobox(cboRecruitment, dtData, "NAME", "ID")
+            '    _filter.TITLE_NAME = cboRecruitment.Text
+            'Else
+            '    cboRecruitment.Text = ""
+            'End If
             If IsNumeric(rnYear.Value) Then
                 _filter.YEAR = rnYear.Value
             End If
