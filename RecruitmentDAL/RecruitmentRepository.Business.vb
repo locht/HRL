@@ -339,7 +339,8 @@ Partial Class RecruitmentRepository
                                        .MAINTASK = p.MAINTASK,
                                        .QUALIFICATION = p.QUALIFICATION,
                                        .QUALIFICATIONREQUEST = p.QUALIFICATIONREQUEST,
-                                       .COMPUTER_LEVEL = p.COMPUTER_LEVEL}
+                                       .COMPUTER_LEVEL = p.COMPUTER_LEVEL,
+                                   .FILE_NAME = p.FILE_NAME}
 
             Dim obj = query.FirstOrDefault
             Dim lstEmp = (From p In Context.RC_PLAN_REG_EMP
@@ -383,7 +384,8 @@ Partial Class RecruitmentRepository
             objPlanRegData.MAINTASK = objPlanReg.MAINTASK
             objPlanRegData.QUALIFICATION = objPlanReg.QUALIFICATION
             objPlanRegData.QUALIFICATIONREQUEST = objPlanReg.QUALIFICATIONREQUEST
-            objPlanRegData.COMPUTER_LEVEL = objPlanReg.COMPUTER_LEVEL            
+            objPlanRegData.COMPUTER_LEVEL = objPlanReg.COMPUTER_LEVEL
+            objPlanRegData.FILE_NAME = objPlanReg.FILE_NAME
             Context.RC_PLAN_REG.AddObject(objPlanRegData)
             If objPlanReg.lstEmp IsNot Nothing Then
                 For Each item In objPlanReg.lstEmp
@@ -425,7 +427,8 @@ Partial Class RecruitmentRepository
             objPlanRegData.MAINTASK = objPlanReg.MAINTASK
             objPlanRegData.QUALIFICATION = objPlanReg.QUALIFICATION
             objPlanRegData.QUALIFICATIONREQUEST = objPlanReg.QUALIFICATIONREQUEST
-            objPlanRegData.COMPUTER_LEVEL = objPlanReg.COMPUTER_LEVEL            
+            objPlanRegData.COMPUTER_LEVEL = objPlanReg.COMPUTER_LEVEL
+            objPlanRegData.FILE_NAME = objPlanReg.FILE_NAME
             Dim lstRegEmp = (From p In Context.RC_PLAN_REG_EMP Where p.RC_PLAN_REG_ID = objPlanRegData.ID).ToList
             For Each item In lstRegEmp
                 Context.RC_PLAN_REG_EMP.DeleteObject(item)

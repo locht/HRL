@@ -4,6 +4,7 @@ Imports Recruitment.RecruitmentBusiness
 Imports Telerik.Web.UI
 Imports Framework.UI.Utilities
 Imports HistaffFrameworkPublic
+Imports System.IO
 
 Public Class ctrlRC_PlanRegNewEdit
     Inherits CommonView
@@ -40,7 +41,31 @@ Public Class ctrlRC_PlanRegNewEdit
             ViewState(Me.ID & "_STATUSCODE") = value
         End Set
     End Property
+    Private Property FileUpLoad As String
+        Get
+            Return PageViewState(Me.ID & "_FileUpLoad")
+        End Get
+        Set(ByVal value As String)
+            PageViewState(Me.ID & "_FileUpLoad") = value
+        End Set
+    End Property
+    Private Property tempPathFile As String
+        Get
+            Return PageViewState(Me.ID & "_tempPathFile")
+        End Get
+        Set(ByVal value As String)
+            PageViewState(Me.ID & "_tempPathFile") = value
+        End Set
+    End Property
+    Private Property lstFile As String
+        Get
+            Return PageViewState(Me.ID & "_lstFile")
+        End Get
+        Set(ByVal value As String)
+            PageViewState(Me.ID & "_lstFile") = value
+        End Set
 
+    End Property
 
 #End Region
 
@@ -48,18 +73,22 @@ Public Class ctrlRC_PlanRegNewEdit
 
     Public Overrides Sub ViewLoad(ByVal e As System.EventArgs)
         Try
+            If Not IsPostBack Then
+                tempPathFile = Server.MapPath("FileManager\PlanReg")
+                FileUpLoad = "csv,xls,xlsx,txt,ctr,doc,docx,xml,png,jpg,bitmap,jpeg,gif,pdf"
+            End If
             ScriptManager.GetCurrent(Page).RegisterPostBackControl(tbarMain)
             GetParams()
             Refresh()
             UpdateControlState()
-            GetTotalEmployeeByTitleID()
-
+            'GetTotalEmployeeByTitleID()
         Catch ex As Exception
             DisplayException(Me.ViewName, Me.ID, ex)
         End Try
     End Sub
 
     Public Overrides Sub ViewInit(ByVal e As System.EventArgs)
+        CType(Me.Page, AjaxPage).AjaxManager.ClientEvents.OnRequestStart = "onRequestStart"
         InitControl()
     End Sub
 
@@ -96,25 +125,25 @@ Public Class ctrlRC_PlanRegNewEdit
                         txtOrgName.ToolTip = DrawTreeByString(obj.ORG_DESC)
                     End If
 
-                    txtRemark.Text = obj.REMARK
+                    'txtRemark.Text = obj.REMARK
                     rntxtRecruitNumber.Value = obj.RECRUIT_NUMBER
-                    cboEducationLevel.SelectedValue = obj.EDUCATIONLEVEL
-                    If obj.AGESFROM IsNot Nothing Then
-                        txtAgesFrom.Text = obj.AGESFROM
-                    End If
-                    If obj.AGESTO IsNot Nothing Then
-                        txtAgesTo.Text = obj.AGESTO
-                    End If
-                    cboLanguage.SelectedValue = obj.LANGUAGE
-                    cboLanguageLevel.SelectedValue = obj.LANGUAGELEVEL
-                    If txtScores.Text <> "" Then
-                        obj.LANGUAGESCORES = txtScores.Text
-                    End If
-                    cboSpecialSkills.SelectedValue = obj.SPECIALSKILLS
-                    txtMainTask.Text = obj.MAINTASK
-                    cboQualification.SelectedValue = obj.QUALIFICATION
-                    cboComputerLevel.SelectedValue = obj.COMPUTER_LEVEL
-                    txtQualificationRequest.Text = obj.QUALIFICATIONREQUEST
+                    'cboEducationLevel.SelectedValue = obj.EDUCATIONLEVEL
+                    'If obj.AGESFROM IsNot Nothing Then
+                    '    txtAgesFrom.Text = obj.AGESFROM
+                    'End If
+                    'If obj.AGESTO IsNot Nothing Then
+                    '    txtAgesTo.Text = obj.AGESTO
+                    'End If
+                    'cboLanguage.SelectedValue = obj.LANGUAGE
+                    'cboLanguageLevel.SelectedValue = obj.LANGUAGELEVEL
+                    'If txtScores.Text <> "" Then
+                    '    obj.LANGUAGESCORES = txtScores.Text
+                    'End If
+                    'cboSpecialSkills.SelectedValue = obj.SPECIALSKILLS
+                    'txtMainTask.Text = obj.MAINTASK
+                    'cboQualification.SelectedValue = obj.QUALIFICATION
+                    'cboComputerLevel.SelectedValue = obj.COMPUTER_LEVEL
+                    'txtQualificationRequest.Text = obj.QUALIFICATIONREQUEST
                     If obj.RECRUIT_REASON_ID IsNot Nothing Then
                         cboRecruitReason.SelectedValue = obj.RECRUIT_REASON_ID
                     End If
@@ -131,12 +160,13 @@ Public Class ctrlRC_PlanRegNewEdit
                     cboTitle.SelectedValue = obj.TITLE_ID
                     rdExpectedJoinDate.SelectedDate = obj.EXPECTED_JOIN_DATE
                     rdSendDate.SelectedDate = obj.SEND_DATE
-                    For Each itm In obj.lstEmp
-                        Dim item As New RadListBoxItem
-                        item.Value = itm.EMPLOYEE_ID
-                        item.Text = itm.EMPLOYEE_CODE & " - " & itm.EMPLOYEE_NAME
-                        lstEmployee.Items.Add(item)
-                    Next
+                    txtUploadFile.Text = obj.FILE_NAME
+                    'For Each itm In obj.lstEmp
+                    '    Dim item As New RadListBoxItem
+                    '    item.Value = itm.EMPLOYEE_ID
+                    '    item.Text = itm.EMPLOYEE_CODE & " - " & itm.EMPLOYEE_NAME
+                    '    lstEmployee.Items.Add(item)
+                    'Next
 
                     If obj.STATUS_ID = RecruitmentCommon.RC_PLAN_REG_STATUS.APPROVE_ID Then
                         RadPane2.Enabled = False
@@ -177,32 +207,34 @@ Public Class ctrlRC_PlanRegNewEdit
                         If cboRecruitReason.SelectedValue <> "" Then
                             obj.RECRUIT_REASON_ID = cboRecruitReason.SelectedValue
                         End If
-                        For Each item As RadListBoxItem In lstEmployee.Items
-                            Dim emp As New PlanRegEmpDTO
-                            emp.EMPLOYEE_ID = item.Value
-                            lstEmp.Add(emp)
-                        Next
-                        obj.REMARK = txtRemark.Text
-                        obj.EDUCATIONLEVEL = cboEducationLevel.SelectedValue
-                        If txtAgesFrom.Text <> "" Then
-                            obj.AGESFROM = txtAgesFrom.Text
-                        End If
-                        If txtAgesTo.Text <> "" Then
-                            obj.AGESTO = txtAgesTo.Text
-                        End If
-                        obj.LANGUAGE = cboLanguage.SelectedValue
-                        obj.LANGUAGELEVEL = cboLanguageLevel.SelectedValue
-                        If txtScores.Text <> "" Then
-                            obj.LANGUAGESCORES = txtScores.Text
-                        End If
-                        obj.SPECIALSKILLS = cboSpecialSkills.SelectedValue
-                        obj.MAINTASK = txtMainTask.Text
-                        obj.QUALIFICATION = cboQualification.SelectedValue
-                        obj.COMPUTER_LEVEL = cboComputerLevel.SelectedValue
-                        obj.QUALIFICATIONREQUEST = txtQualificationRequest.Text
-                        obj.lstEmp = lstEmp
+                        obj.FILE_NAME = txtUploadFile.Text
+                        'For Each item As RadListBoxItem In lstEmployee.Items
+                        '    Dim emp As New PlanRegEmpDTO
+                        '    emp.EMPLOYEE_ID = item.Value
+                        '    lstEmp.Add(emp)
+                        'Next
+                        'obj.REMARK = txtRemark.Text
+                        'obj.EDUCATIONLEVEL = cboEducationLevel.SelectedValue
+                        'If txtAgesFrom.Text <> "" Then
+                        '    obj.AGESFROM = txtAgesFrom.Text
+                        'End If
+                        'If txtAgesTo.Text <> "" Then
+                        '    obj.AGESTO = txtAgesTo.Text
+                        'End If
+                        'obj.LANGUAGE = cboLanguage.SelectedValue
+                        'obj.LANGUAGELEVEL = cboLanguageLevel.SelectedValue
+                        'If txtScores.Text <> "" Then
+                        '    obj.LANGUAGESCORES = txtScores.Text
+                        'End If
+                        'obj.SPECIALSKILLS = cboSpecialSkills.SelectedValue
+                        'obj.MAINTASK = txtMainTask.Text
+                        'obj.QUALIFICATION = cboQualification.SelectedValue
+                        'obj.COMPUTER_LEVEL = cboComputerLevel.SelectedValue
+                        'obj.QUALIFICATIONREQUEST = txtQualificationRequest.Text
+                        'obj.lstEmp = lstEmp
                         Select Case CurrentState
                             Case CommonMessage.STATE_NEW
+                                obj.STATUS_ID = RecruitmentCommon.RC_PLAN_REG_STATUS.WAIT_ID  'Chờ phê duyệt
                                 If rep.InsertPlanReg(obj, gID) Then
                                     ''POPUPTOLINK
                                     Response.Redirect("/Default.aspx?mid=Recruitment&fid=ctrlRC_PlanReg&group=Business")
@@ -232,20 +264,22 @@ Public Class ctrlRC_PlanRegNewEdit
         UpdateControlState()
     End Sub
 
-    Protected Sub btnFindEmployee_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnFindEmployee.Click
-        Try
-            isLoadPopup = 1
-            UpdateControlState()
-            ctrlFindEmployeePopup.Show()
-        Catch ex As Exception
-            DisplayException(Me.ViewName, Me.ID, ex)
-        End Try
+    'Protected Sub btnFindEmployee_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnFindEmployee.Click
+    '    Try
+    '        isLoadPopup = 1
+    '        UpdateControlState()
+    '        ctrlFindEmployeePopup.Show()
+    '    Catch ex As Exception
+    '        DisplayException(Me.ViewName, Me.ID, ex)
+    '    End Try
 
-    End Sub
+    'End Sub
 
     Protected Sub btnFindOrg_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnFindOrg.Click
         Try
             isLoadPopup = 2
+            txtUploadFile.ClearValue()
+            txtUploadFile.Text = ""
             UpdateControlState()
             ctrlFindOrgPopup.Show()
         Catch ex As Exception
@@ -260,13 +294,13 @@ Public Class ctrlRC_PlanRegNewEdit
         Dim rep As New RecruitmentRepository
         Try
             lstCommonEmployee = CType(ctrlFindEmployeePopup.SelectedEmployee, List(Of CommonBusiness.EmployeePopupFindDTO))
-            lstEmployee.Items.Clear()
-            For Each itm In lstCommonEmployee
-                Dim item As New RadListBoxItem
-                item.Value = itm.EMPLOYEE_ID
-                item.Text = itm.EMPLOYEE_CODE & " - " & itm.FULLNAME_VN
-                lstEmployee.Items.Add(item)
-            Next
+            'lstEmployee.Items.Clear()
+            'For Each itm In lstCommonEmployee
+            '    Dim item As New RadListBoxItem
+            '    item.Value = itm.EMPLOYEE_ID
+            '    item.Text = itm.EMPLOYEE_CODE & " - " & itm.FULLNAME_VN
+            '    lstEmployee.Items.Add(item)
+            'Next
             isLoadPopup = 0
         Catch ex As Exception
             DisplayException(Me.ViewName, Me.ID, ex)
@@ -347,24 +381,24 @@ Public Class ctrlRC_PlanRegNewEdit
                 dtData = rep.GetOtherList("RC_RECRUIT_REASON", True)
                 FillRadCombobox(cboRecruitReason, dtData, "NAME", "ID")
                 ' Load data to cbo ACADEMY,LANGUAGE, LANGUAGE_LEVEL,MAJOR,SPECIALSKILLS
-                'ACADEMY
-                dtData = rep.GetOtherList("LEARNING_LEVEL", True)
-                FillRadCombobox(cboEducationLevel, dtData, "NAME", "ID", True)
-                'LANGUAGE
-                dtData = rep.GetOtherList("RC_LANGUAGE", True)
-                FillRadCombobox(cboLanguage, dtData, "NAME", "ID", True)
-                'LANGUAGE_LEVEL
-                dtData = rep.GetOtherList("LANGUAGE_LEVEL", True)
-                FillRadCombobox(cboLanguageLevel, dtData, "NAME", "ID", True)
-                'MAJOR
-                dtData = rep.GetOtherList("MAJOR", True)
-                FillRadCombobox(cboQualification, dtData, "NAME", "ID", True)
-                'SPECIALSKILLS
-                dtData = rep.GetOtherList("SPECIALSKILLS", True)
-                FillRadCombobox(cboSpecialSkills, dtData, "NAME", "ID", True)
-                'COMPUTERLEVEL
-                dtData = rep.GetOtherList("RC_COMPUTER_LEVEL", True)
-                FillRadCombobox(cboComputerLevel, dtData, "NAME", "ID", True)
+                ''ACADEMY
+                'dtData = rep.GetOtherList("LEARNING_LEVEL", True)
+                'FillRadCombobox(cboEducationLevel, dtData, "NAME", "ID", True)
+                ''LANGUAGE
+                'dtData = rep.GetOtherList("RC_LANGUAGE", True)
+                'FillRadCombobox(cboLanguage, dtData, "NAME", "ID", True)
+                ''LANGUAGE_LEVEL
+                'dtData = rep.GetOtherList("LANGUAGE_LEVEL", True)
+                'FillRadCombobox(cboLanguageLevel, dtData, "NAME", "ID", True)
+                ''MAJOR
+                'dtData = rep.GetOtherList("MAJOR", True)
+                'FillRadCombobox(cboQualification, dtData, "NAME", "ID", True)
+                ''SPECIALSKILLS
+                'dtData = rep.GetOtherList("SPECIALSKILLS", True)
+                'FillRadCombobox(cboSpecialSkills, dtData, "NAME", "ID", True)
+                ''COMPUTERLEVEL
+                'dtData = rep.GetOtherList("RC_COMPUTER_LEVEL", True)
+                'FillRadCombobox(cboComputerLevel, dtData, "NAME", "ID", True)
             End Using
         Catch ex As Exception
             Throw ex
@@ -393,29 +427,106 @@ Public Class ctrlRC_PlanRegNewEdit
 #End Region
 
     Protected Sub cboTitle_SelectedIndexChanged(ByVal sender As Object, ByVal e As Telerik.Web.UI.RadComboBoxSelectedIndexChangedEventArgs) Handles cboTitle.SelectedIndexChanged
-        GetTotalEmployeeByTitleID()
+        'GetTotalEmployeeByTitleID()
     End Sub
 
-    Protected Sub GetTotalEmployeeByTitleID()
-        Try
-            'Dim OUT_NUMBER As String
-            'Dim obj = rep.ExecuteStoreScalar("PKG_RECRUITMENT.GET_TOTAL_EMPLOYEE_BY_TITLEID", New List(Of Object)({hidOrgID.Value, cboTitle.SelectedValue, Common.Common.GetUserName(), OUT_NUMBER}))
-            'txtCurrentNumber.Text = obj(0).ToString()
+    'Protected Sub GetTotalEmployeeByTitleID()
+    '    Try
+    '        'Dim OUT_NUMBER As String
+    '        'Dim obj = rep.ExecuteStoreScalar("PKG_RECRUITMENT.GET_TOTAL_EMPLOYEE_BY_TITLEID", New List(Of Object)({hidOrgID.Value, cboTitle.SelectedValue, Common.Common.GetUserName(), OUT_NUMBER}))
+    '        'txtCurrentNumber.Text = obj(0).ToString()
 
-            If hidOrgID.Value <> String.Empty Then
-                Dim tab As DataTable = store.GetCurrentManningTitle(Int32.Parse(hidOrgID.Value), cboTitle.SelectedValue)
-                If tab.Rows.Count > 0 Then
-                    txtPayrollLimit.Text = tab.Rows(0)("NEW_MANNING").ToString()
-                    txtCurrentNumber.Text = tab.Rows(0)("CURRENT_MANNING").ToString()
-                    txtDifferenceNumber.Text = tab.Rows(0)("MOBILIZE_COUNT_MANNING").ToString()
-                Else
-                    txtPayrollLimit.Text = "0"
-                    txtCurrentNumber.Text = "0"
-                    txtDifferenceNumber.Text = "0"
+    '        If hidOrgID.Value <> String.Empty Then
+    '            Dim tab As DataTable = store.GetCurrentManningTitle(Int32.Parse(hidOrgID.Value), cboTitle.SelectedValue)
+    '            If tab.Rows.Count > 0 Then
+    '                txtPayrollLimit.Text = tab.Rows(0)("NEW_MANNING").ToString()
+    '                txtCurrentNumber.Text = tab.Rows(0)("CURRENT_MANNING").ToString()
+    '                txtDifferenceNumber.Text = tab.Rows(0)("MOBILIZE_COUNT_MANNING").ToString()
+    '            Else
+    '                txtPayrollLimit.Text = "0"
+    '                txtCurrentNumber.Text = "0"
+    '                txtDifferenceNumber.Text = "0"
+    '            End If
+    '        End If
+    '    Catch ex As Exception
+    '        DisplayException(Me.ViewName, Me.ID, ex)
+    '    End Try
+    'End Sub
+    Private Sub btnUploadFile_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnUploadFile.Click
+        'If txtEmployeeCode.Text = "" Then
+        '    ShowMessage(Translate("Vui lòng chọn nhân viên trước khi upload file."), NotifyType.Error)
+        '    Exit Sub
+        'End If
+        ctrlUpload1.AllowedExtensions = FileUpLoad
+        ctrlUpload1.isMultiple = False
+        ctrlUpload1.Show()
+    End Sub
+    Private Sub ctrlUpload1_OkClicked(ByVal sender As Object, ByVal e As System.EventArgs) Handles ctrlUpload1.OkClicked
+        Dim pathTemp As String
+        Dim fileName As String
+        Try
+            If Not Directory.Exists(tempPathFile) Then
+                Directory.CreateDirectory(tempPathFile)
+            End If
+            ' Tạo đường dẫn để lưu file được định nghĩa trong webconfig app
+            pathTemp = tempPathFile + "\" + hidOrgID.Value
+            txtUploadFile.Text = ""
+            If ctrlUpload1.UploadedFiles.Count > 1 Then
+                ShowMessage("Chỉ được chọn Upload 1 File", NotifyType.Warning)
+            ElseIf ctrlUpload1.UploadedFiles.Count = 0 Then
+                ShowMessage("Không có tệp nào được chọn", NotifyType.Warning)
+            Else
+                ' Nếu thư mục lưu trữ file không tồn tại thì tạo mới
+                If Not Directory.Exists(pathTemp) Then
+                    Directory.CreateDirectory(pathTemp)
                 End If
+                Dim list_file = String.Join(",", Directory.GetFiles(pathTemp))
+                For i = 0 To ctrlUpload1.UploadedFiles.Count - 1
+                    Dim file As UploadedFile = ctrlUpload1.UploadedFiles(i)
+                    lstFile = file.FileName
+                    ' Lưu file xuống                   
+                    fileName = System.IO.Path.Combine(pathTemp, lstFile)
+                    file.SaveAs(fileName, True)
+                    ' Gán list tên file vào chuỗi sau để lưu vào database
+                Next
+                LoadListFileUpload(lstFile)
+                ShowMessage("Lưu file thành công.", NotifyType.Success)
             End If
         Catch ex As Exception
             DisplayException(Me.ViewName, Me.ID, ex)
         End Try
+    End Sub
+    Private Sub btnDownload_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnDownload.Click
+        Try
+            If CurrentState = CommonMessage.STATE_NEW Then
+                If hidOrgID.Value = "" Then
+                    btnDownload.ReadOnly = False
+                    Exit Sub
+                End If
+            End If
+            If txtUploadFile.Text <> "" Then
+                Dim file As System.IO.FileInfo
+                Response.Clear()
+                Dim zipName As String = [String].Format("_{0}-" + txtUploadFile.Text, DateTime.Now.ToString("yyyy-MMM-dd-HHmmss"))
+                file = New System.IO.FileInfo(System.IO.Path.Combine(tempPathFile + "\" + hidOrgID.Value, txtUploadFile.Text))
+                If file.Exists Then
+                    Response.WriteFile(file.ToString)
+                    Response.AddHeader("content-disposition", "attachment; filename=" + zipName)
+                    Response.[End]()
+                End If
+            Else
+                ShowMessage("File không tồn tại.", NotifyType.Warning)
+            End If
+        Catch ex As Exception
+            DisplayException(Me.ViewName, Me.ID, ex)
+        End Try
+    End Sub
+    Private Sub LoadListFileUpload(ByVal lstfile As String)
+        If lstfile <> "" Then
+            txtUploadFile.Text = lstfile
+            txtUploadFile.DataBind()
+        Else
+            txtUploadFile.Text = Nothing
+        End If
     End Sub
 End Class

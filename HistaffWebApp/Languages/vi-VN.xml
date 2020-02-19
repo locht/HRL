@@ -17921,7 +17921,7 @@ Xin cám ơn!
       <string>CTRLRC_PLANREG</string>
     </Key>
     <Value>
-      <string>Quản lý kế hoạch tuyển dụng</string>
+      <string>Quản lý nhu cầu tuyển dụng</string>
     </Value>
   </Item>
   <Item>
@@ -18041,7 +18041,7 @@ Xin cám ơn!
       <string>CTRLRC_PLANREGNEWEDIT</string>
     </Key>
     <Value>
-      <string>Thông tin kế hoạch tuyển dụng</string>
+      <string>Thông tin nhu cầu tuyển dụng</string>
     </Value>
   </Item>
   <Item>

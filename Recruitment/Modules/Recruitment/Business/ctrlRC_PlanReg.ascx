@@ -35,8 +35,8 @@
                         <td>
                             <tlk:RadComboBox ID="cboPositionRC" runat="server">
                             </tlk:RadComboBox>
-                        </td>
-                        <td>
+                        </td>                        
+                        <td colspan="2" class="lb">
                             <tlk:RadButton ID="btnSearch" runat="server" SkinID="ButtonFind" CausesValidation="false"
                                 Text="<%$ Translate: Tìm kiếm %>">
                             </tlk:RadButton>
@@ -52,22 +52,23 @@
                                 HeaderStyle-Width="30px" ItemStyle-HorizontalAlign="Center">
                             </tlk:GridClientSelectColumn>
                             <tlk:GridBoundColumn DataField="ID" Visible="false" />
-                            <tlk:GridDateTimeColumn HeaderText="<%$ Translate: Ngày gửi nhu cầu %>" DataField="SEND_DATE" SortExpression="SEND_DATE"
-                                UniqueName="SEND_DATE" />
-                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Đơn vị %>" DataField="ORG_NAME" SortExpression="ORG_NAME"
+                            
+                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Bộ phận %>" DataField="ORG_NAME" SortExpression="ORG_NAME"
                                 UniqueName="ORG_NAME" />
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Vị trí tuyển dụng %>" DataField="TITLE_NAME"
                                 SortExpression="TITLE_NAME" UniqueName="TITLE_NAME" />
-                            <tlk:GridNumericColumn HeaderText="<%$ Translate: Số lượng cần tuyển %>" DataField="RECRUIT_NUMBER"
-                                SortExpression="RECRUIT_NUMBER" UniqueName="RECRUIT_NUMBER" />
+                            <%--<tlk:GridNumericColumn HeaderText="<%$ Translate: Số lượng cần tuyển %>" DataField="RECRUIT_NUMBER"
+                                SortExpression="RECRUIT_NUMBER" UniqueName="RECRUIT_NUMBER" />--%>
+                                  <tlk:GridDateTimeColumn HeaderText="<%$ Translate: Ngày gửi yêu cầu %>" DataField="SEND_DATE" SortExpression="SEND_DATE"
+                                UniqueName="SEND_DATE" />
                             <tlk:GridDateTimeColumn HeaderText="<%$ Translate: Ngày dự kiến đi làm %>" DataField="EXPECTED_JOIN_DATE"
                                 SortExpression="EXPECTED_JOIN_DATE" UniqueName="EXPECTED_JOIN_DATE" />
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Lý do tuyển dụng %>" DataField="RECRUIT_REASON_NAME"
                                 SortExpression="RECRUIT_REASON_NAME" UniqueName="RECRUIT_REASON_NAME" />
                                 <tlk:GridBoundColumn HeaderText="<%$ Translate: Lý do không phê duyệt %>" DataField="REMARK_REJECT"
                                 SortExpression="REMARK_REJECT" UniqueName="REMARK_REJECT" />
-                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Ghi chú %>" DataField="REMARK" SortExpression="REMARK"
-                                UniqueName="REMARK" />
+                            <%--<tlk:GridBoundColumn HeaderText="<%$ Translate: Ghi chú %>" DataField="REMARK" SortExpression="REMARK"
+                                UniqueName="REMARK" />--%>
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Trạng thái %>" DataField="STATUS_NAME"
                                 SortExpression="STATUS_NAME" UniqueName="STATUS_NAME" />
                             <tlk:GridBoundColumn HeaderText="ORG_DESC" DataField="ORG_DESC" UniqueName="ORG_DESC"
@@ -104,7 +105,7 @@
             var oWindow = radopen('Dialog.aspx?mid=Recruitment&fid=ctrlRC_PlanRegNewEdit&group=Business&noscroll=1', "rwPopup");
             oWindow.moveTo(pos.center, pos.middle);
             //oWindow.setSize($(window).width(), $(window).height());
-            oWindow.setSize(1050, 500);
+            oWindow.setSize(800, 500);
         }
         function OpenPlanRegReject(obj) {
             enableAjax = false;
@@ -127,7 +128,7 @@
             var pos = $("html").offset();
             oWindow.moveTo(pos.center, pos.middle);
             //oWindow.setSize($(window).width(), $(window).height());
-            oWindow.setSize(1050, 500);
+            oWindow.setSize(800, 500);
             return 2;
         }
 
