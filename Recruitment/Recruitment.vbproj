@@ -173,6 +173,9 @@
     <None Include="Service References\RecruitmentBusiness\Recruitment.RecruitmentBusiness.PlanRegDTO.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <None Include="Service References\RecruitmentBusiness\Recruitment.RecruitmentBusiness.PlanYearDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Service References\RecruitmentBusiness\Recruitment.RecruitmentBusiness.ProgramDTO.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
@@ -219,6 +222,7 @@
     <Content Include="Modules\Common\ctrlMessageBox.ascx" />
     <Content Include="Modules\Common\ctrlOrganization.ascx" />
     <Content Include="Modules\Common\ctrlUpload.ascx" />
+    <Content Include="Modules\Recruitment\Business\ctrlRC_PlanYear.ascx" />
     <Content Include="Modules\Recruitment\Business\ctrlRC_RequestNewEditV.ascx" />
     <Content Include="Modules\Recruitment\Business\ctrlRC_ProgrammNewEdit.ascx" />
     <Content Include="Modules\Recruitment\Business\ctrlRC_CVPoolReference.ascx" />
@@ -290,6 +294,13 @@
     <Compile Include="BusinessObjects\PROGRAM_SCHEDULE_CAN_DTO.vb" />
     <Compile Include="BusinessObjects\RC_CANDIDATE_TRAINNING_DTO.vb" />
     <Compile Include="Modules\Recruitment\ATConstant.vb" />
+    <Compile Include="Modules\Recruitment\Business\ctrlRC_PlanYear.ascx.designer.vb">
+      <DependentUpon>ctrlRC_PlanYear.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Recruitment\Business\ctrlRC_PlanYear.ascx.vb">
+      <DependentUpon>ctrlRC_PlanYear.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
     <Compile Include="Modules\Recruitment\Business\ctrlRC_RequestNewEditV.ascx.designer.vb">
       <DependentUpon>ctrlRC_RequestNewEditV.ascx</DependentUpon>
     </Compile>
