@@ -78,7 +78,7 @@ Public Class RecruitmentRepository
             Using cls As New DataAccess.QueryData
                 Dim dtData As DataTable = cls.ExecuteStore("PKG_COMMON_LIST.GET_TITLE_BYORG_INPLAN",
                                            New With {.P_ORGID = orgID,
-                                                     .P_YEAR = _year,
+                                                     .P_TITLEID = _year,
                                                      .P_ISBLANK = isBlank,
                                                      .P_LANG = sLang,
                                                      .P_CUR = cls.OUT_CURSOR})

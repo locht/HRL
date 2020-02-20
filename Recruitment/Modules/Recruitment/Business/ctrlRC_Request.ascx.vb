@@ -141,10 +141,10 @@ Public Class ctrlRC_Request
             End Using
 
             ' Load cbo chức danh(Vị trí tuyển dụng)    
-            Dim ds As DataSet = rep.ExecuteToDataSet("PKG_PROFILE.GET_LIST_TITLE")
-            FillRadCombobox(cboRecruitment, ds.Tables(0), "NAME_VN", "ID")
-            cboRecruitment.DataBind()
-            cboRecruitment.Items.Insert(0, New RadComboBoxItem("", "-1"))
+            'Dim ds As DataSet = rep.ExecuteToDataSet("PKG_PROFILE.GET_LIST_TITLE")
+            'FillRadCombobox(cboRecruitment, ds.Tables(0), "NAME_VN", "ID")
+            'cboRecruitment.DataBind()
+            'cboRecruitment.Items.Insert(0, New RadComboBoxItem("", "-1"))
         Catch ex As Exception
             DisplayException(Me.ViewName, Me.ID, ex)
         End Try
@@ -492,8 +492,15 @@ Public Class ctrlRC_Request
             'Else
             '    cboRecruitment.Text = ""
             'End If
-            If IsNumeric(rnYear.Value) Then
-                _filter.YEAR = rnYear.Value
+            '''''ẩn tìm kiếm năm
+            'If IsNumeric(rnYear.Value) Then
+            '    _filter.YEAR = rnYear.Value
+            'End If
+            If rdFromDate.SelectedDate IsNot Nothing Then
+                _filter.FROM_DATE = rdFromDate.SelectedDate
+            End If
+            If rdToDate.SelectedDate IsNot Nothing Then
+                _filter.TO_DATE = rdToDate.SelectedDate
             End If
             Dim MaximumRows As Integer
             Dim Sorts As String = rgData.MasterTableView.SortExpressions.GetSortString()

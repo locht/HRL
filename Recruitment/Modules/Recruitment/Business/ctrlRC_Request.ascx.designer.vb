@@ -86,22 +86,40 @@ Partial Public Class ctrlRC_Request
     Protected WithEvents RadPane3 As Global.Telerik.Web.UI.RadPane
 
     '''<summary>
-    '''rnYear control.
+    '''lbFromDate control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents rnYear As Global.Telerik.Web.UI.RadNumericTextBox
+    Protected WithEvents lbFromDate As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
-    '''cboRecruitment control.
+    '''rdFromDate control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents cboRecruitment As Global.Telerik.Web.UI.RadComboBox
+    Protected WithEvents rdFromDate As Global.Telerik.Web.UI.RadDatePicker
+
+    '''<summary>
+    '''lbToDate control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbToDate As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''rdToDate control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents rdToDate As Global.Telerik.Web.UI.RadDatePicker
 
     '''<summary>
     '''cboStatus control.

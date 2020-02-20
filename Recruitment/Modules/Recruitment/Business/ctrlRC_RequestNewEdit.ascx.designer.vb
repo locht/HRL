@@ -140,13 +140,13 @@ Partial Public Class ctrlRC_RequestNewEdit
     Protected WithEvents cusTitle As Global.System.Web.UI.WebControls.CustomValidator
 
     '''<summary>
-    '''cbolocationWork control.
+    '''chkPlan control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents cbolocationWork As Global.Telerik.Web.UI.RadComboBox
+    Protected WithEvents chkPlan As Global.System.Web.UI.WebControls.CheckBox
 
     '''<summary>
     '''rdSendDate control.
@@ -194,33 +194,6 @@ Partial Public Class ctrlRC_RequestNewEdit
     Protected WithEvents CompareValidator1 As Global.System.Web.UI.WebControls.CompareValidator
 
     '''<summary>
-    '''chkIsSupport control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents chkIsSupport As Global.System.Web.UI.WebControls.CheckBox
-
-    '''<summary>
-    '''cboContractType control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents cboContractType As Global.Telerik.Web.UI.RadComboBox
-
-    '''<summary>
-    '''cboRecruitProperty control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents cboRecruitProperty As Global.Telerik.Web.UI.RadComboBox
-
-    '''<summary>
     '''cboRecruitReason control.
     '''</summary>
     '''<remarks>
@@ -257,42 +230,6 @@ Partial Public Class ctrlRC_RequestNewEdit
     Protected WithEvents RequiredFieldValidator4 As Global.System.Web.UI.WebControls.RequiredFieldValidator
 
     '''<summary>
-    '''chkIsOver control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents chkIsOver As Global.System.Web.UI.WebControls.CheckBox
-
-    '''<summary>
-    '''txtCurrentNumber control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents txtCurrentNumber As Global.Telerik.Web.UI.RadNumericTextBox
-
-    '''<summary>
-    '''txtPayrollLimit control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents txtPayrollLimit As Global.Telerik.Web.UI.RadNumericTextBox
-
-    '''<summary>
-    '''txtDifferenceNumber control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents txtDifferenceNumber As Global.Telerik.Web.UI.RadNumericTextBox
-
-    '''<summary>
     '''txtRecruitReason control.
     '''</summary>
     '''<remarks>
@@ -300,6 +237,15 @@ Partial Public Class ctrlRC_RequestNewEdit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtRecruitReason As Global.Telerik.Web.UI.RadTextBox
+
+    '''<summary>
+    '''RequiredFieldValidator10 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents RequiredFieldValidator10 As Global.System.Web.UI.WebControls.RequiredFieldValidator
 
     '''<summary>
     '''btnFindEmployee control.
@@ -428,15 +374,6 @@ Partial Public Class ctrlRC_RequestNewEdit
     Protected WithEvents txtScores As Global.Telerik.Web.UI.RadNumericTextBox
 
     '''<summary>
-    '''txtForeignAbility control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents txtForeignAbility As Global.Telerik.Web.UI.RadTextBox
-
-    '''<summary>
     '''rntxtExperienceNumber control.
     '''</summary>
     '''<remarks>
@@ -444,15 +381,6 @@ Partial Public Class ctrlRC_RequestNewEdit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents rntxtExperienceNumber As Global.Telerik.Web.UI.RadNumericTextBox
-
-    '''<summary>
-    '''cboGenderPriority control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents cboGenderPriority As Global.Telerik.Web.UI.RadComboBox
 
     '''<summary>
     '''cboComputerLevel control.
@@ -473,15 +401,6 @@ Partial Public Class ctrlRC_RequestNewEdit
     Protected WithEvents txtComputerAppLevel As Global.Telerik.Web.UI.RadTextBox
 
     '''<summary>
-    '''txtMainTask control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents txtMainTask As Global.Telerik.Web.UI.RadTextBox
-
-    '''<summary>
     '''txtDescription control.
     '''</summary>
     '''<remarks>
@@ -489,15 +408,6 @@ Partial Public Class ctrlRC_RequestNewEdit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtDescription As Global.Telerik.Web.UI.RadTextBox
-
-    '''<summary>
-    '''RequiredFieldValidator9 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents RequiredFieldValidator9 As Global.System.Web.UI.WebControls.RequiredFieldValidator
 
     '''<summary>
     '''btnUploadFileDescription control.
@@ -543,15 +453,6 @@ Partial Public Class ctrlRC_RequestNewEdit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents cboSpecialSkills As Global.Telerik.Web.UI.RadComboBox
-
-    '''<summary>
-    '''txtRequestExperience control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents txtRequestExperience As Global.Telerik.Web.UI.RadTextBox
 
     '''<summary>
     '''txtUpload control.

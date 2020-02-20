@@ -47,6 +47,9 @@
                                     runat="server" ErrorMessage="<%$ Translate: Bạn phải nhập phòng ban %>" ToolTip="<%$ Translate: Bạn phải nhập phòng ban %>"> 
                                 </asp:RequiredFieldValidator>
                             </td>
+                             <td style="width: 150px"  class="lb">
+                                <asp:CheckBox ID="chkPlan" runat="server" Text="<%$ Translate: Trong kế hoạch %>" />
+                            </td >
                             <td class="lb" style="width: 150px">
                                 <%# Translate("Vị trí tuyển dụng")%><span class="lbReq">*</span>
                             </td>
@@ -57,13 +60,14 @@
                                     ToolTip="<%$ Translate: Bạn phải chọn chức danh %>" ClientValidationFunction="cusTitle">
                                 </asp:CustomValidator>
                             </td>
-                            <td class="lb">
+                           <%-- <td class="lb">
                                 <%# Translate("Địa điểm làm việc")%>
                             </td>
                             <td>
                                 <tlk:RadComboBox runat="server" ID="cbolocationWork">
                                 </tlk:RadComboBox>
-                            </td>
+                            </td>--%>
+                              
                         </tr>
                         <tr>
                             <td class="lb">
@@ -93,26 +97,26 @@
                             </td>
                             <td>
                             </td>
-                            <td style="width: 150px">
+                            <%--<td style="width: 150px">
                                 <asp:CheckBox ID="chkIsSupport" runat="server" Text="<%$ Translate: TNG hỗ trợ triển khai %>" />
-                            </td>
+                            </td>--%>
                         </tr>
-                        <tr>
-                            <td class="lb" style="width: 150px">
+                        <%--<tr>
+                            <td class="lb" style="width: 150px"> 
                                 <%# Translate("Loại hình lao động")%>
                             </td>
                             <td>
                                 <tlk:RadComboBox ID="cboContractType" runat="server">
                                 </tlk:RadComboBox>
                             </td>
-                            <td class="lb" style="width: 150px">
+                          <%--  <td class="lb" style="width: 150px">
                                 <%# Translate("Tính chất tuyển dụng")%>
                             </td>
                             <td>
                                 <tlk:RadComboBox ID="cboRecruitProperty" runat="server">
                                 </tlk:RadComboBox>
                             </td>
-                        </tr>
+                        </tr>--%>
                         <tr>
                             <td class="lb">
                                 <%# Translate("Lý do tuyển dụng")%><span class="lbReq">*</span>
@@ -140,12 +144,12 @@
                             </td>
                             <td>
                             </td>
-                            <td style="width: 150px">
+                       <%--     <td style="width: 150px">
                                 <asp:CheckBox ID="chkIsOver" runat="server" Text="<%$ Translate: Vượt định biên %>"
                                     Checked="false" />
-                            </td>
+                            </td>--%>
                         </tr>
-                        <tr>
+                        <%--<tr>
                             <td class="lb">
                                 <%# Translate("Số lượng hiện có")%>
                             </td>
@@ -167,14 +171,18 @@
                                 <tlk:RadNumericTextBox ID="txtDifferenceNumber" ReadOnly="true" runat="server" SkinID="number">
                                 </tlk:RadNumericTextBox>
                             </td>
-                        </tr>
+                        </tr>--%>
                         <tr>
                             <td class="lb">
-                                <%# Translate("Diễn giải chi tiết")%>
+                                <%# Translate("Diễn giải chi tiết")%><span class="lbReq">*</span>
                             </td>
                             <td colspan="5">
                                 <tlk:RadTextBox ID="txtRecruitReason" runat="server" TextMode="MultiLine" Width="100%">
                                 </tlk:RadTextBox>
+                                 <asp:RequiredFieldValidator ID="RequiredFieldValidator10" ControlToValidate="txtRecruitReason"
+                                    runat="server" ErrorMessage="<%$ Translate: Bạn phải nhập Diễn giải chi tiết %>"
+                                    ToolTip="<%$ Translate: Bạn phải nhập Diễn giải chi tiết %>">
+                                </asp:RequiredFieldValidator>
                             </td>
                         </tr>
                         <tr style="display: none">
@@ -281,7 +289,7 @@
                                 </tlk:RadNumericTextBox>
                             </td>
                         </tr>
-                        <tr>
+                        <%--<tr>
                             <td class="lb">
                                 <%# Translate("Khả năng ngoại ngữ")%>
                             </td>
@@ -289,7 +297,7 @@
                                 <tlk:RadTextBox ID="txtForeignAbility" runat="server" Width="100%">
                                 </tlk:RadTextBox>
                             </td>
-                        </tr>
+                        </tr>--%>
                         <tr>
                             <td class="lb">
                                 <%# Translate("Số năm kinh nghiệm tối thiểu")%>
@@ -301,13 +309,13 @@
                                     <NumberFormat AllowRounding="false" KeepNotRoundedValue="true" DecimalDigits="1" />
                                 </tlk:RadNumericTextBox>
                             </td>
-                            <td class="lb">
+                            <%--<td class="lb">
                                 <%# Translate("Ưu tiên giới tính")%>
                             </td>
                             <td>
                                 <tlk:RadComboBox ID="cboGenderPriority" runat="server">
                                 </tlk:RadComboBox>
-                            </td>
+                            </td>--%>
                         </tr>
                         <tr>
                             <td class="lb">
@@ -327,18 +335,18 @@
                         </tr>
                         <tr>
                             <td class="lb">
-                                <%# Translate("Mô tả công việc")%><span class="lbReq">*</span>
+                                <%# Translate("Mô tả công việc")%><span class="lbReq"></span>
                             </td>
                             <td colspan="5" >
                                 <tlk:RadTextBox ID="txtDescription" runat="server" TextMode="MultiLine" SkinID="Textbox1023" Height="43px"  Width="100%">
                                 </tlk:RadTextBox>
-                                <asp:RequiredFieldValidator ID="RequiredFieldValidator9" ControlToValidate="txtDescription"
+                                <%--<asp:RequiredFieldValidator ID="RequiredFieldValidator9" ControlToValidate="txtDescription"
                                     runat="server" ErrorMessage="<%$ Translate: Bạn phải nhập Mô tả công việc %>"
                                     ToolTip="<%$ Translate: Bạn phải nhập Mô tả công việc %>">
-                                </asp:RequiredFieldValidator>
+                                </asp:RequiredFieldValidator>--%>
                             </td>
                         </tr>
-                        <tr>
+                       <%-- <tr>
                             <td class="lb">
                                 <%# Translate("Yêu cầu chính")%>
                             </td>
@@ -346,7 +354,7 @@
                                 <tlk:RadTextBox ID="txtMainTask" runat="server" TextMode="MultiLine" Width="100%">
                                 </tlk:RadTextBox>
                             </td>
-                        </tr>
+                        </tr>--%>
                         <tr style="display: none;">
                             <td class="lb" style="display: none;">
                                 <%# Translate("Đính kèm mô tả")%>
@@ -368,13 +376,13 @@
                             </td>
                         </tr>
                         <tr>
-                            <td class="lb">
+                           <%-- <td class="lb">
                                 <%# Translate("Mức độ ưu tiên")%>
                             </td>
                             <td colspan="3">
                                 <tlk:RadTextBox ID="txtRequestExperience" runat="server" TextMode="MultiLine" Width="100%">
                                 </tlk:RadTextBox>
-                            </td>
+                            </td>--%>
                             <td class="lb">
                                 <%# Translate("Đính kèm tập tin")%>
                             </td>
@@ -399,7 +407,7 @@
                                 </tlk:RadTextBox>
                             </td>
                         </tr>
-                        <tr style="display: none;">
+                        <tr >
                             <td class="lb">
                                 <%# Translate("Ghi chú")%>
                             </td>
@@ -413,6 +421,62 @@
             </tlk:RadPageView>
         </tlk:RadMultiPage>
     </tlk:RadPane>
+    <%-- <tlk:RadPane ID="RadPane3" runat="server" Scrolling="None">
+        <tlk:RadGrid ID="rgE" AllowPaging="true" AllowMultiRowEdit="true" runat="server"
+            PageSize="50" Height="100%">
+            <GroupingSettings CaseSensitive="false" />
+            <MasterTableView EditMode="InPlace" AllowPaging="true" AllowCustomPaging="true" DataKeyNames="EMPLOYEE_ID,EMPLOYEE_NAME,TITLE_ID,ORG_ID,TITLE_NAME,ORG_NAME,EMPLOYEE_CODE,,REMARK,OBJECT_ATTENDANCE_NAME,OBJECT_LABORNAME,STAFF_RANK_NAME,OBJECT_ATTENDANCE,OBJECT_LABOR,STAFF_RANK_ID"
+                ClientDataKeyNames="ID,EMPLOYEE_ID,EMPLOYEE_NAME,TITLE_ID,ORG_ID,TITLE_NAME,ORG_NAME,EMPLOYEE_CODE,REMARK,OBJECT_ATTENDANCE_NAME,OBJECT_LABORNAME,STAFF_RANK_NAME,OBJECT_ATTENDANCE,OBJECT_LABOR,STAFF_RANK_ID"
+                CommandItemDisplay="Top">
+                <CommandItemStyle Height="25px" />
+                <CommandItemTemplate>
+                    <div style="padding: 2px 0 0 0">
+                        <div style="float: left">
+                            <tlk:RadButton Width="150px" ID="btnEmployee" runat="server" Text="Chọn tất cả nhân viên"
+                                CausesValidation="false" CommandName="FindEmployee" TabIndex="3">
+                            </tlk:RadButton>
+                          
+                        <div style="float: right">
+                            <tlk:RadButton Width="100px" ID="btnDeleteEmp" runat="server" Text="Xóa" CausesValidation="false"
+                                CommandName="DeleteEmployee" TabIndex="3">
+                            </tlk:RadButton>
+                        </div>
+                    </div>
+                </CommandItemTemplate>
+                <Columns>
+                   <tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderStyle-HorizontalAlign="Center"
+                        HeaderStyle-Width="40px" ItemStyle-HorizontalAlign="Center">
+                    </tlk:GridClientSelectColumn>
+                    <tlk:GridBoundColumn HeaderText="MSNV" DataField="EMPLOYEE_CODE" ReadOnly="true"
+                        UniqueName="EMPLOYEE_CODE" SortExpression="EMPLOYEE_CODE" />
+                    <tlk:GridBoundColumn HeaderText="Họ tên nhân viên" DataField="EMPLOYEE_NAME" UniqueName="EMPLOYEE_NAME"
+                        ReadOnly="true" SortExpression="EMPLOYEE_NAME" />
+                    <tlk:GridBoundColumn HeaderText="Phòng ban" DataField="ORG_NAME" UniqueName="ORG_NAME"
+                        ReadOnly="true" SortExpression="ORG_NAME" />
+                    <tlk:GridBoundColumn HeaderText="Chức danh" DataField="TITLE_NAME" UniqueName="TITLE_NAME"
+                        ReadOnly="true" SortExpression="TITLE_NAME" />
+                    <tlk:GridBoundColumn HeaderText="Đối tượng chấm công" DataField="OBJECT_ATTENDANCE_NAME"
+                        UniqueName="OBJECT_ATTENDANCE_NAME" ReadOnly="true" SortExpression="OBJECT_ATTENDANCE_NAME" Visible="false" />
+                    <tlk:GridBoundColumn HeaderText="Loại hình lao động" DataField="OBJECT_LABORNAME"
+                        UniqueName="OBJECT_LABORNAME" ReadOnly="true" SortExpression="OBJECT_LABORNAME" Visible="false" />
+                    <tlk:GridBoundColumn HeaderText="Bậc nhân sự" DataField="STAFF_RANK_NAME" UniqueName="STAFF_RANK_NAME"
+                        ReadOnly="true" SortExpression="STAFF_RANK_NAME" Visible="false" />
+                    <tlk:GridBoundColumn HeaderText="NHÂN VIÊN" DataField="EMPLOYEE_ID" UniqueName="EMPLOYEE_ID"
+                        ReadOnly="true" SortExpression="EMPLOYEE_ID" Visible="false" />
+                    <tlk:GridBoundColumn HeaderText="CHỨC DANH" DataField="TITLE_ID" UniqueName="TITLE_ID"
+                        ReadOnly="true" SortExpression="TITLE_ID" Visible="false" />
+                    <tlk:GridBoundColumn HeaderText="TÊN PHÒNG BAN" DataField="ORG_ID" UniqueName="ORG_ID"
+                        ReadOnly="true" SortExpression="ORG_ID" Visible="false" />
+                    <tlk:GridBoundColumn HeaderText="ID THIẾT LẬP" DataField="WELFARE_ID" UniqueName="WELFARE_ID"
+                        ReadOnly="true" SortExpression="WELFARE_ID" Visible="false" />
+                </Columns>
+            </MasterTableView>
+            <HeaderStyle HorizontalAlign="Center" />
+            <ClientSettings>
+                <Selecting AllowRowSelect="True" />
+            </ClientSettings>
+        </tlk:RadGrid>
+    </tlk:RadPane>--%>
 </tlk:RadSplitter>
 <asp:PlaceHolder ID="phFindEmployee" runat="server"></asp:PlaceHolder>
 <asp:PlaceHolder ID="phFindOrg" runat="server"></asp:PlaceHolder>
@@ -423,10 +487,6 @@
         var enableAjax = true;
         function cusTitle(oSrc, args) {
             var cbo = $find("<%# cboTitle.ClientID %>");
-            args.IsValid = (cbo.get_value().length != 0);
-        }
-        function cusContractType(oSrc, args) {
-            var cbo = $find("<%# cboContractType.ClientID %>");
             args.IsValid = (cbo.get_value().length != 0);
         }
         function cusRecruitReason(oSrc, args) {
