@@ -79,7 +79,7 @@ Public Class ctrlRC_PlanRegNewEdit
             End If
             ScriptManager.GetCurrent(Page).RegisterPostBackControl(tbarMain)
             GetParams()
-            Refresh()
+            Refresh()           
             UpdateControlState()
             'GetTotalEmployeeByTitleID()
         Catch ex As Exception
@@ -168,7 +168,7 @@ Public Class ctrlRC_PlanRegNewEdit
                     '    lstEmployee.Items.Add(item)
                     'Next
 
-                    If obj.STATUS_ID = RecruitmentCommon.RC_PLAN_REG_STATUS.APPROVE_ID Then
+                    If obj.STATUS_ID <> RecruitmentCommon.RC_PLAN_REG_STATUS.WAIT_ID Then
                         RadPane2.Enabled = False
 
                         Me.MainToolBar = tbarMain
@@ -237,20 +237,25 @@ Public Class ctrlRC_PlanRegNewEdit
                                 obj.STATUS_ID = RecruitmentCommon.RC_PLAN_REG_STATUS.WAIT_ID  'Chờ phê duyệt
                                 If rep.InsertPlanReg(obj, gID) Then
                                     ''POPUPTOLINK
-                                    Response.Redirect("/Default.aspx?mid=Recruitment&fid=ctrlRC_PlanReg&group=Business")
-
+                                    Dim str As String = "getRadWindow().close('1');"
+                                    ScriptManager.RegisterStartupScript(Me.Page, Me.Page.GetType, "ClosePopup", str, True)
+                                    'Response.Redirect("/Default.aspx?mid=Recruitment&fid=ctrlRC_PlanReg&group=Business")
+                                    
                                 Else
                                     ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), Utilities.NotifyType.Error)
                                 End If
+                                rep.Dispose()
                             Case CommonMessage.STATE_EDIT
                                 obj.ID = hidID.Value
                                 If rep.ModifyPlanReg(obj, gID) Then
                                     ''POPUPTOLINK
-                                    Response.Redirect("/Default.aspx?mid=Recruitment&fid=ctrlRC_PlanReg&group=Business")
-
+                                    Dim str As String = "getRadWindow().close('1');"
+                                    ScriptManager.RegisterStartupScript(Me.Page, Me.Page.GetType, "ClosePopup", str, True)
+                                    'Response.Redirect("/Default.aspx?mid=Recruitment&fid=ctrlRC_PlanReg&group=Business")
                                 Else
                                     ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), Utilities.NotifyType.Error)
                                 End If
+                                rep.Dispose()
                         End Select
 
                     End If
@@ -348,14 +353,10 @@ Public Class ctrlRC_PlanRegNewEdit
 
     Public Overrides Sub UpdateControlState()
         Try
-            If phFindEmployee.Controls.Contains(ctrlFindEmployeePopup) Then
-                phFindEmployee.Controls.Remove(ctrlFindEmployeePopup)
-                'Me.Views.Remove(ctrlFindEmployeePopup.ID.ToUpper)
-            End If
-            If phFindOrg.Controls.Contains(ctrlFindOrgPopup) Then
-                phFindOrg.Controls.Remove(ctrlFindOrgPopup)
-                'Me.Views.Remove(ctrlFindOrgPopup.ID.ToUpper)
-            End If
+            Select Case CurrentState
+                Case CommonMessage.STATE_NEW
+                    rdSendDate.SelectedDate = DateTime.Now.Date
+            End Select
             Select Case isLoadPopup
                 Case 1
                     ctrlFindEmployeePopup = Me.Register("ctrlFindEmployeePopup", "Common", "ctrlFindEmployeePopup")

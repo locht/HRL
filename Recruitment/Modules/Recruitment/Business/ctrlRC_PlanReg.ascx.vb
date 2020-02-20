@@ -35,7 +35,14 @@ Public Class ctrlRC_PlanReg
             ViewState(Me.ID & "_ListRejectID") = value
         End Set
     End Property
-
+    Property countWAIT_ID As Decimal
+        Get
+            Return ViewState(Me.ID & "_countWAIT_ID")
+        End Get
+        Set(ByVal value As Decimal)
+            ViewState(Me.ID & "_countWAIT_ID") = value
+        End Set
+    End Property    
 #End Region
 
 #Region "Page"
@@ -85,7 +92,9 @@ Public Class ctrlRC_PlanReg
                     Dim lstDeletes As New List(Of Decimal)
                     For idx = 0 To rgData.SelectedItems.Count - 1
                         Dim item As GridDataItem = rgData.SelectedItems(idx)
-                        lstDeletes.Add(item.GetDataKeyValue("ID"))
+                        If item.GetDataKeyValue("STATUS_ID") = RecruitmentCommon.RC_PLAN_REG_STATUS.WAIT_ID Then
+                             lstDeletes.Add(item.GetDataKeyValue("ID"))
+                        End If
                     Next
                     If rep.DeletePlanReg(lstDeletes) Then
                         Refresh("UpdateView")
@@ -114,7 +123,7 @@ Public Class ctrlRC_PlanReg
                     'For idx = 0 To rgData.SelectedItems.Count - 1
                     '    Dim item As GridDataItem = rgData.SelectedItems(idx)
                     '    lstDeletes.Add(item.GetDataKeyValue("ID"))
-                    'Next
+                    'Next                    
                     'If rep.UpdateStatusPlanReg(lstDeletes, RecruitmentCommon.RC_PLAN_REG_STATUS.NOT_APPROVE_ID) Then
                     '    ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), NotifyType.Success)
                     '    CurrentState = CommonMessage.STATE_NORMAL
@@ -133,6 +142,7 @@ Public Class ctrlRC_PlanReg
         Dim rep As New RecruitmentRepository
         Try
             If Not IsPostBack Then
+                rgData.DataBind()
                 CurrentState = CommonMessage.STATE_NORMAL
             Else
                 Select Case Message
@@ -201,16 +211,7 @@ Public Class ctrlRC_PlanReg
                     If rgData.SelectedItems.Count > 1 Then
                         ShowMessage(Translate(CommonMessage.MESSAGE_NOT_SELECT_MULTI_ROW), NotifyType.Warning)
                         Exit Sub
-                    End If
-                    Dim item As GridDataItem = rgData.SelectedItems(0)
-                    If item.GetDataKeyValue("STATUS_ID") = RecruitmentCommon.RC_PLAN_REG_STATUS.APPROVE_ID Then
-                        ShowMessage(Translate("Bản ghi đang ở trạng thái phê duyệt, thao tác thực hiện không thành công"), NotifyType.Warning)
-                        Exit Sub
-                    End If
-                    If item.GetDataKeyValue("STATUS_ID") = RecruitmentCommon.RC_PLAN_REG_STATUS.NOT_APPROVE_ID Then
-                        ShowMessage(Translate("Bản ghi đang ở trạng thái không phê duyệt, thao tác thực hiện không thành công"), NotifyType.Warning)
-                        Exit Sub
-                    End If
+                    End If                   
                     CurrentState = CommonMessage.STATE_EDIT
                     UpdateControlState()
                 Case CommonMessage.TOOLBARITEM_DELETE
@@ -235,29 +236,33 @@ Public Class ctrlRC_PlanReg
                             ShowMessage(Translate("Bản ghi đang ở trạng thái phê duyệt, thao tác thực hiện không thành công"), NotifyType.Warning)
                             Exit Sub
                         End If
+                        If item.GetDataKeyValue("STATUS_ID") = RecruitmentCommon.RC_PLAN_REG_STATUS.NOT_APPROVE_ID Then
+                            ShowMessage(Translate("Bản ghi đang ở trạng thái không phê duyệt, thao tác thực hiện không thành công"), NotifyType.Warning)
+                            Exit Sub
+                        End If
                     Next
 
-                    ctrlMessageBox.MessageText = Translate(CommonMessage.MESSAGE_CONFIRM_APPROVE)
+                    ctrlMessageBox.MessageText = Translate("Bạn có muốn phê duyệt")
                     ctrlMessageBox.ActionName = CommonMessage.TOOLBARITEM_APPROVE
                     ctrlMessageBox.DataBind()
                     ctrlMessageBox.Show()
                 Case CommonMessage.TOOLBARITEM_REJECT
                     Dim bStatus As Boolean = True
+
                     sListRejectID = ""
                     For Each item As GridDataItem In rgData.SelectedItems
-                        If item.GetDataKeyValue("STATUS_ID") = RecruitmentCommon.RC_PLAN_REG_STATUS.APPROVE_ID Then
-                            ShowMessage(Translate("Bản ghi đang ở trạng thái phê duyệt, thao tác thực hiện không thành công"), NotifyType.Warning)
-                            bStatus = False
-                            Exit Sub
-                        Else
+                        If item.GetDataKeyValue("STATUS_ID") = RecruitmentCommon.RC_PLAN_REG_STATUS.WAIT_ID Then
                             sListRejectID = sListRejectID & item.GetDataKeyValue("ID") & ","
+                            countWAIT_ID += 1
                         End If
-
-                        ctrlMessageBox.MessageText = Translate(CommonMessage.MESSAGE_CONFIRM_REJECT)
-                        ctrlMessageBox.ActionName = CommonMessage.TOOLBARITEM_REJECT
-                        ctrlMessageBox.DataBind()
-                        ctrlMessageBox.Show()
                     Next
+                    If countWAIT_ID > 0 Then
+                        ShowMessage(Translate("Có " + countWAIT_ID.ToString + " bản ghi hợp lệ"), NotifyType.Success)
+                    End If
+                    ctrlMessageBox.MessageText = Translate(CommonMessage.MESSAGE_CONFIRM_REJECT)
+                    ctrlMessageBox.ActionName = CommonMessage.TOOLBARITEM_REJECT
+                    ctrlMessageBox.DataBind()
+                    ctrlMessageBox.Show()
                     'If bStatus Then
                     '    'rwPopup.NavigateUrl = ConfigurationManager.AppSettings("HostPath").ToString() & hddLinkPopup.Value & "&RejectID=" & sListRejectID
                     '    rwPopup.NavigateUrl = "http://" & Request.Url.Host & ":" & Request.Url.Port & "/" & hddLinkPopup.Value & "&RejectID=" & sListRejectID
@@ -283,13 +288,12 @@ Public Class ctrlRC_PlanReg
                 UpdateControlState()
             End If
             If e.ActionName = CommonMessage.TOOLBARITEM_REJECT And e.ButtonID = MessageBoxButtonType.ButtonYes Then
+                'CurrentState = CommonMessage.STATE_REJECT
+                'UpdateControlState()
                 rwPopup.NavigateUrl = "~/" & hddLinkPopup.Value & "&RejectID=" & sListRejectID
                 rwPopup.Width = "500"
                 rwPopup.Height = "250"
                 rwPopup.VisibleOnPageLoad = True
-
-                'CurrentState = CommonMessage.STATE_REJECT
-                'UpdateControlState()
             End If
         Catch ex As Exception
             DisplayException(Me.ViewName, Me.ID, ex)
@@ -351,8 +355,7 @@ Public Class ctrlRC_PlanReg
                 _filter.STATUS_ID = cboStatus.SelectedValue
             End If
 
-            iYear = If(cboYear.SelectedValue = [String].Empty, 0, Int32.Parse(cboYear.SelectedValue))
-
+            iYear = If(cboYear.SelectedValue = [String].Empty, Int32.Parse(If(cboYear.Text = [String].Empty, 0, cboYear.Text)), Int32.Parse(cboYear.SelectedValue))
 
             Dim _param = New ParamDTO With {.ORG_ID = Decimal.Parse(ctrlOrg.CurrentValue), _
                                                .IS_DISSOLVE = ctrlOrg.IsDissolve, .YEAR = iYear}

@@ -49,24 +49,20 @@
                 <td>
                     <tlk:RadComboBox ID="cboTitle" AutoPostBack="true" runat="server" CausesValidation="false">
                     </tlk:RadComboBox>
-                    <asp:CustomValidator ID="cusTitle" runat="server" ErrorMessage="<%$ Translate: Bạn phải chọn Vị trí tuyển dụng %>"
-                        ToolTip="<%$ Translate: Bạn phải chọn Vị trí tuyển dụng %>" ClientValidationFunction="cusTitle">
-                    </asp:CustomValidator>
+                     <asp:RequiredFieldValidator ID="RequiredFieldValidator5" ControlToValidate="cboTitle"
+                        runat="server" ErrorMessage="<%$ Translate: Bạn phải chọn Vị trí tuyển dụng %>" ToolTip="<%$ Translate: Bạn phải chọn Vị trí tuyển dụng %>"> 
+                    </asp:RequiredFieldValidator>
                 </td>
             </tr>
             <tr>
                 <td class="lb">
-                    <%# Translate("Số lượng tuyển")%><span class="lbReq">*</span>
+                    <%# Translate("Số lượng tuyển")%>
                 </td>
                 <td>
                     <tlk:RadNumericTextBox ID="rntxtRecruitNumber" runat="server" NumberFormat-DecimalDigits="1"
                         NumberFormat-GroupSeparator="" ShowSpinButtons="true" MaxLength="10" MinValue="0">
                         <NumberFormat AllowRounding="false" KeepNotRoundedValue="true" DecimalDigits="1" />
                     </tlk:RadNumericTextBox>
-                    <asp:RequiredFieldValidator ID="RequiredFieldValidator3" ControlToValidate="rntxtRecruitNumber"
-                        runat="server" ErrorMessage="<%$ Translate: Bạn phải nhập Số lượng tuyển %>"
-                        ToolTip="<%$ Translate: Bạn phải nhập Số lượng tuyển %>"> 
-                    </asp:RequiredFieldValidator>
                 </td>
                 <td class="lb">
                     <%# Translate("Ngày đi làm dự kiến")%><span class="lbReq">*</span>
@@ -85,11 +81,14 @@
             </tr>
             <tr>
                 <td class="lb">
-                    <%# Translate("Lý do tuyển dụng")%>
+                    <%# Translate("Lý do tuyển dụng")%><span class="lbReq">*</span>
                 </td>
                 <td>
                     <tlk:RadComboBox ID="cboRecruitReason" runat="server">
                     </tlk:RadComboBox>
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator6" ControlToValidate="cboTitle"
+                        runat="server" ErrorMessage="<%$ Translate: Bạn phải chọn Lý do tuyển dụng %>" ToolTip="<%$ Translate: Bạn phải chọn Lý do tuyển dụng %>"> 
+                    </asp:RequiredFieldValidator>
                 </td>
                 <td class="lb">
                     <%# Translate("Ngày gửi yêu cầu")%><span class="lbReq">*</span>
@@ -97,10 +96,6 @@
                 <td>
                     <tlk:RadDatePicker ID="rdSendDate" runat="server">
                     </tlk:RadDatePicker>
-                    <asp:RequiredFieldValidator ID="RequiredFieldValidator1" ControlToValidate="rdSendDate"
-                        runat="server" ErrorMessage="<%$ Translate: Bạn phải nhập Ngày gửi kế hoạch %>"
-                        ToolTip="<%$ Translate: Bạn phải nhập Ngày gửi kế hoạch %>"> 
-                    </asp:RequiredFieldValidator>
                 </td>
             </tr>
             <tr>
@@ -301,10 +296,10 @@
         }
 
         function clientButtonClicking(sender, args) {
-            //            if (args.get_item().get_commandName() == 'CANCEL') {
-            //                getRadWindow().close(null);
-            //                args.set_cancel(true);
-            //            }
+                        if (args.get_item().get_commandName() == 'CANCEL') {
+                            getRadWindow().close(null);
+                            args.set_cancel(true);
+                        }                     
         }
         function rbtClicked(sender, eventArgs) {
             enableAjax = false;

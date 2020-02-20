@@ -50,7 +50,7 @@ Public Class ctrlRC_PlanRegReject
                 End If
             Next
             If 1 = Integer.Parse(OUT_NUMBER) Then
-                rep_Recruitment.UpdateStatusPlanReg(lstDeletes, RecruitmentCommon.RC_REQUEST_STATUS.NOT_APPROVE_ID)
+                rep_Recruitment.UpdateStatusPlanReg(lstDeletes, RecruitmentCommon.RC_PLAN_REG_STATUS.NOT_APPROVE_ID)
                 ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), NotifyType.Success)
 
                 Dim str As String = "getRadWindow().close('1');"

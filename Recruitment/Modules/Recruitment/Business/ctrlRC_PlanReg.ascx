@@ -1,4 +1,4 @@
-﻿<%@ Control Language="vb" AutoEventWireup="false" CodeBehind="ctrlRC_PlanReg.ascx.vb" 
+﻿<%@ Control Language="vb" AutoEventWireup="false" CodeBehind="ctrlRC_PlanReg.ascx.vb"
     Inherits="Recruitment.ctrlRC_PlanReg" %>
 <%@ Import Namespace="Common" %>
 <tlk:RadSplitter ID="RadSplitter1" runat="server" Width="100%" Height="100%">
@@ -11,13 +11,13 @@
                 <tlk:RadToolBar ID="tbarMain" runat="server" OnClientButtonClicking="clientButtonClicking" />
             </tlk:RadPane>
             <tlk:RadPane ID="RadPane3" runat="server" Height="80px" Scrolling="None">
-                <table  class="table-form">
+                <table class="table-form">
                     <tr>
                         <td class="lb">
                             <%# Translate("Năm")%>
                         </td>
                         <td>
-                           <tlk:RadComboBox ID="cboYear" runat="server">
+                            <tlk:RadComboBox ID="cboYear" runat="server">
                             </tlk:RadComboBox>
                         </td>
                         <td class="lb">
@@ -35,7 +35,7 @@
                         <td>
                             <tlk:RadComboBox ID="cboPositionRC" runat="server">
                             </tlk:RadComboBox>
-                        </td>                        
+                        </td>
                         <td colspan="2" class="lb">
                             <tlk:RadButton ID="btnSearch" runat="server" SkinID="ButtonFind" CausesValidation="false"
                                 Text="<%$ Translate: Tìm kiếm %>">
@@ -52,20 +52,19 @@
                                 HeaderStyle-Width="30px" ItemStyle-HorizontalAlign="Center">
                             </tlk:GridClientSelectColumn>
                             <tlk:GridBoundColumn DataField="ID" Visible="false" />
-                            
-                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Bộ phận %>" DataField="ORG_NAME" SortExpression="ORG_NAME"
-                                UniqueName="ORG_NAME" />
+                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Bộ phận %>" DataField="ORG_NAME"
+                                SortExpression="ORG_NAME" UniqueName="ORG_NAME" />
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Vị trí tuyển dụng %>" DataField="TITLE_NAME"
                                 SortExpression="TITLE_NAME" UniqueName="TITLE_NAME" />
                             <%--<tlk:GridNumericColumn HeaderText="<%$ Translate: Số lượng cần tuyển %>" DataField="RECRUIT_NUMBER"
                                 SortExpression="RECRUIT_NUMBER" UniqueName="RECRUIT_NUMBER" />--%>
-                                  <tlk:GridDateTimeColumn HeaderText="<%$ Translate: Ngày gửi yêu cầu %>" DataField="SEND_DATE" SortExpression="SEND_DATE"
-                                UniqueName="SEND_DATE" />
+                            <tlk:GridDateTimeColumn HeaderText="<%$ Translate: Ngày gửi yêu cầu %>" DataField="SEND_DATE"
+                                SortExpression="SEND_DATE" UniqueName="SEND_DATE" />
                             <tlk:GridDateTimeColumn HeaderText="<%$ Translate: Ngày dự kiến đi làm %>" DataField="EXPECTED_JOIN_DATE"
                                 SortExpression="EXPECTED_JOIN_DATE" UniqueName="EXPECTED_JOIN_DATE" />
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Lý do tuyển dụng %>" DataField="RECRUIT_REASON_NAME"
                                 SortExpression="RECRUIT_REASON_NAME" UniqueName="RECRUIT_REASON_NAME" />
-                                <tlk:GridBoundColumn HeaderText="<%$ Translate: Lý do không phê duyệt %>" DataField="REMARK_REJECT"
+                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Lý do không phê duyệt %>" DataField="REMARK_REJECT"
                                 SortExpression="REMARK_REJECT" UniqueName="REMARK_REJECT" />
                             <%--<tlk:GridBoundColumn HeaderText="<%$ Translate: Ghi chú %>" DataField="REMARK" SortExpression="REMARK"
                                 UniqueName="REMARK" />--%>
@@ -107,22 +106,18 @@
             //oWindow.setSize($(window).width(), $(window).height());
             oWindow.setSize(800, 500);
         }
-        function OpenPlanRegReject(obj) {
-            enableAjax = false;
-            var oWindow = radopen('Dialog.aspx?mid=Recruitment&fid=ctrlRC_PlanRegReject&group=Business&noscroll=1&RejectID=' + obj, "rwPopup");
-            oWindow.moveTo(pos.center, pos.middle);
-            oWindow.setSize(1050, 500);
-        }
         function gridRowDblClick(sender, eventArgs) {
             OpenEdit();
         }
 
         function OpenEdit() {
             var bCheck = $find('<%# rgData.ClientID %>').get_masterTableView().get_selectedItems().length;
+
             if (bCheck == 0)
                 return 0;
             if (bCheck > 1)
                 return 1;
+
             var id = $find('<%# rgData.ClientID%>').get_masterTableView().get_selectedItems()[0].getDataKeyValue('ID');
             var oWindow = radopen('Dialog.aspx?mid=Recruitment&fid=ctrlRC_PlanRegNewEdit&group=Business&noscroll=1&ID=' + id, "rwPopup");
             var pos = $("html").offset();
