@@ -102,6 +102,41 @@ Partial Class RecruitmentRepository
 
 #End Region
 
+#Region "PlanYear"
+    Public Function GetPlanYear(ByVal _filter As PlanYearDTO,
+                                        ByVal pageIndex As Integer,
+                                        ByVal pageSize As Integer,
+                                        ByRef total As Integer,
+                                        ByVal _param As ParamDTO,
+                                        Optional ByVal Sorts As String = "CREATED_DATE desc",
+                                        Optional ByVal isSearch As Boolean = False) As List(Of PlanYearDTO)
+        Dim lstPlanYear As List(Of PlanYearDTO)
+        Using rep As New RecruitmentBusinessClient
+            Try
+                lstPlanYear = rep.GetPlanYear(_filter, pageIndex, pageSize, total, _param, Sorts, isSearch, Me.Log)
+                Return lstPlanYear
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+    End Function
+    Public Function GetPlanYear(ByVal _filter As PlanYearDTO,
+                                        ByVal _param As ParamDTO,
+                                        Optional ByVal Sorts As String = "CREATED_DATE desc") As List(Of PlanYearDTO)
+        Dim lstPlanYear As List(Of PlanYearDTO)
+        Using rep As New RecruitmentBusinessClient
+            Try
+                lstPlanYear = rep.GetPlanYear(_filter, 0, Integer.MaxValue, 0, _param, Sorts, False, Me.Log)
+                Return lstPlanYear
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+    End Function
+#End Region
+
 #Region "PlanSummary"
 
 

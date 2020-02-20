@@ -82,6 +82,24 @@ Namespace RecruitmentBusiness.ServiceImplementations
 
 #End Region
 
+#Region "PlanYear"
+        Public Function GetPlanYear(ByVal _filter As PlanYearDTO,
+                                        ByVal pageIndex As Integer,
+                                        ByVal pageSize As Integer,
+                                        ByRef total As Integer,
+                                        ByVal _param As ParamDTO,
+                                        Optional ByVal Sorts As String = "CREATED_DATE desc",
+                                        Optional ByVal isSearch As Boolean = False,
+                                        Optional ByVal log As UserLog = Nothing) As List(Of PlanYearDTO) Implements ServiceContracts.IRecruitmentBusiness.GetPlanYear
+            Try
+                Dim lst = RecruitmentRepositoryStatic.Instance.GetPlanYear(_filter, pageIndex, pageSize, total, _param, Sorts, isSearch, log)
+                Return lst
+            Catch ex As Exception
+                Throw ex
+            End Try
+
+        End Function
+#End Region
 #Region "PlanSummary"
 
         Public Function GetPlanSummary(ByVal _year As Decimal, ByVal _param As ParamDTO, ByVal log As UserLog) As DataTable Implements ServiceContracts.IRecruitmentBusiness.GetPlanSummary

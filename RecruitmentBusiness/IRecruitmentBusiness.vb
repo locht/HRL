@@ -87,6 +87,19 @@ Namespace RecruitmentBusiness.ServiceContracts
 
 #End Region
 
+#Region "PlanYear"
+        <OperationContract()>
+        Function GetPlanYear(ByVal _filter As PlanYearDTO,
+                                        ByVal pageIndex As Integer,
+                                        ByVal pageSize As Integer,
+                                        ByRef total As Integer,
+                                        ByVal _param As ParamDTO,
+                                        Optional ByVal Sorts As String = "CREATED_DATE desc",
+                                        Optional ByVal isSearch As Boolean = False,
+                                        Optional ByVal log As UserLog = Nothing) As List(Of PlanYearDTO)
+#End Region
+
+
 #Region "PlanSummary"
 
         <OperationContract()>

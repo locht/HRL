@@ -1079,6 +1079,15 @@ Public Class RecruitmentRepository
             _combolistDTO.LIST_STAGE = query
         End If
 
+        If _combolistDTO.GET_RC_PLAN_YEAR Then
+            query = (From P In Context.HU_EMPLOYEE
+                     Where P.JOIN_DATE IsNot Nothing
+                     Select New PlanYearDTO With {
+                         .YEAR = Year(P.JOIN_DATE)
+                    } Distinct).OrderBy("YEAR desc").ToList
+            _combolistDTO.LIST_RC_PLAN_YEAR = query
+        End If
+
         Return True
     End Function
 

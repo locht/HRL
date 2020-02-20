@@ -8,6 +8,7 @@
         <Item  Value="ctrlRC_Request"  Text="Quản lý yêu cầu tuyển dụng" PostBack="True" NavigateUrl="Default.aspx?mid=Recruitment&amp;fid=ctrlRC_Request&amp;group=Business" CheckPermission="true"/>
         <Item  Value="ctrlRC_Program"  Text="Chương trình tuyển dụng" PostBack="True" NavigateUrl="Default.aspx?mid=Recruitment&amp;fid=ctrlRC_Program&amp;group=Business" CheckPermission="true"/>
         <Item  Value="ctrlRC_CVPool"  Text="Quản lý nguồn ứng viên" PostBack="True" NavigateUrl="Default.aspx?mid=Recruitment&amp;fid=ctrlRC_CVPool&amp;group=Business" CheckPermission="true"/>
+        <Item  Value="ctrlRC_PlanYear"  Text="Kế hoạch năm" PostBack="True" NavigateUrl="Default.aspx?mid=Recruitment&amp;fid=ctrlRC_PlanYear&amp;group=Business" CheckPermission="true"/>
       </Group>
     </Item>
 

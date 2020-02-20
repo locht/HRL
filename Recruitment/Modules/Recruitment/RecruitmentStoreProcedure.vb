@@ -286,6 +286,15 @@ Public Class RecruitmentStoreProcedure
         Return listYear
     End Function
 
+    Public Function LoadComboboxYear_PlanYear(ByVal P_ORG_ID As Integer) As DataTable
+        Dim listYear As DataTable
+        Dim ds As DataSet = rep.ExecuteToDataSet("PKG_RECRUITMENT.LOAD_YEAR_PLANYEAR", New List(Of Object)(New Object() {P_ORG_ID, OUT_CURSOR}))
+        If Not ds Is Nothing Or Not ds.Tables(0) Is Nothing Then
+            listYear = ds.Tables(0)
+        End If
+        Return listYear
+    End Function
+
     Public Function LoadComboboxListMannName(ByVal org_id As Integer, ByVal year As Integer) As DataTable
         Dim listMannName As DataTable
         Dim ds As DataSet = rep.ExecuteToDataSet("PKG_RECRUITMENT.LOAD_COMBOBOX_LISTMANNINGNAME", New List(Of Object)(New Object() {org_id, year, OUT_CURSOR}))
@@ -777,6 +786,15 @@ Public Class RecruitmentStoreProcedure
             dt = ds.Tables(0)
         End If
         Return dt
+    End Function
+
+
+    Public Function SYNTHESIS_RC_YEAR_PLAN(ByVal userName As String, ByVal org_id As Integer, ByVal IS_DISSOLVE As Boolean, ByVal year As Integer) As Boolean
+        Dim ds As DataSet = rep.ExecuteToDataSet("PKG_RECRUITMENT.SYNTHESIS_RC_YEAR_PLAN",
+                                             New List(Of Object)(New Object() {org_id, year, userName, IS_DISSOLVE, OUT_NUMBER}))
+        If ds IsNot Nothing AndAlso ds.Tables(0) IsNot Nothing AndAlso ds.Tables(0).Rows.Count > 0 Then
+            Return CBool(ds.Tables(0)(0)(0))
+        End If
     End Function
 #End Region
 

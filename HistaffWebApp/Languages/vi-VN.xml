@@ -44406,4 +44406,12 @@ Xin cám ơn!
       <string>Hồ sơ ứng viên - Quá trình công tác</string>
     </Value>
   </Item>
+  <Item>
+    <Key>
+      <string>CTRLRC_PLANYEAR</string>
+    </Key>
+    <Value>
+      <string>Kế hoạch năm</string>
+    </Value>
+  </Item>
 </SerializableDictionaryOfStringString>

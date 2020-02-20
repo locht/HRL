@@ -310,4 +310,8 @@
     'đợt tuyển dụng
     Public Property GET_STAGE As Boolean
     Public Property LIST_STAGE As List(Of StageDTO)
+
+    'năm tuyển dụng
+    Public Property GET_RC_PLAN_YEAR As Boolean
+    Public Property LIST_RC_PLAN_YEAR As List(Of PlanYearDTO)
 End Class

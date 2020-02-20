@@ -493,6 +493,93 @@ Partial Class RecruitmentRepository
 
 #End Region
 
+#Region "PlanYear"
+    Public Function GetPlanYear(ByVal _filter As PlanYearDTO,
+                                        ByVal pageIndex As Integer,
+                                        ByVal pageSize As Integer,
+                                        ByRef total As Integer,
+                                        ByVal _param As ParamDTO,
+                                        Optional ByVal Sorts As String = "CREATED_DATE desc",
+                                        Optional ByVal isSearch As Boolean = False,
+                                        Optional ByVal log As UserLog = Nothing) As List(Of PlanYearDTO)
+        Try
+            Using cls As New DataAccess.QueryData
+                cls.ExecuteStore("PKG_COMMON_LIST.INSERT_CHOSEN_ORG",
+                                 New With {.P_USERNAME = log.Username,
+                                           .P_ORGID = _param.ORG_ID,
+                                           .P_ISDISSOLVE = _param.IS_DISSOLVE})
+            End Using
+
+            Dim query = From p In Context.RC_PLAN_YEAR
+                        From org In Context.HU_ORGANIZATION.Where(Function(f) f.ID = p.ORG_ID)
+                        From title In Context.HU_TITLE.Where(Function(f) f.ID = p.TITLE_ID)
+                        From k In Context.SE_CHOSEN_ORG.Where(Function(f) p.ORG_ID = f.ORG_ID And f.USERNAME.ToUpper = log.Username.ToUpper)
+                        Select New PlanYearDTO With {
+                                       .ID = p.ID,
+                                       .ORG_ID = p.ORG_ID,
+                                       .ORG_NAME = org.NAME_VN,
+                                       .ORG_DESC = org.DESCRIPTION_PATH,
+                                       .TITLE_ID = p.TITLE_ID,
+                                       .TITLE_NAME = title.NAME_VN,
+                                       .YEAR = p.YEAR,
+                                       .QUANTITY_CURRENT = p.QUANTITY_CURRENT,
+                                       .QUANTITY_NEEDED = p.QUANTITY_NEEDED,
+                                       .QUANTITY_RECEIVED = p.QUANTITY_RECEIVED,
+                                       .CREATED_DATE = p.CREATED_DATE,
+                                       .MONTH_1 = p.MONTH_1,
+                                       .MONTH_2 = p.MONTH_2,
+                                       .MONTH_3 = p.MONTH_3,
+                                       .MONTH_4 = p.MONTH_4,
+                                       .MONTH_5 = p.MONTH_5,
+                                       .MONTH_6 = p.MONTH_6,
+                                       .MONTH_7 = p.MONTH_7,
+                                       .MONTH_8 = p.MONTH_8,
+                                       .MONTH_9 = p.MONTH_9,
+                                       .MONTH_10 = p.MONTH_10,
+                                       .MONTH_11 = p.MONTH_11,
+                                       .MONTH_12 = p.MONTH_12}
+
+            Dim lst = query
+            If _filter.ORG_NAME <> "" Then
+                lst = lst.Where(Function(p) p.ORG_NAME.ToUpper.Contains(_filter.ORG_NAME.ToUpper))
+            End If
+            If _filter.TITLE_NAME <> "" Then
+                lst = lst.Where(Function(p) p.TITLE_NAME.ToUpper.Contains(_filter.TITLE_NAME.ToUpper))
+            End If
+            If IsNumeric(_filter.QUANTITY_CURRENT) Then
+                lst = lst.Where(Function(p) p.QUANTITY_CURRENT = _filter.QUANTITY_CURRENT)
+            End If
+            If IsNumeric(_filter.QUANTITY_NEEDED) Then
+                lst = lst.Where(Function(p) p.QUANTITY_NEEDED = _filter.QUANTITY_NEEDED)
+            End If
+            If IsNumeric(_filter.QUANTITY_RECEIVED) Then
+                lst = lst.Where(Function(p) p.QUANTITY_RECEIVED = _filter.QUANTITY_RECEIVED)
+            End If
+
+            If _filter.TITLE_ID IsNot Nothing Then
+                lst = lst.Where(Function(p) p.TITLE_ID = _filter.TITLE_ID)
+            End If
+            If _param.YEAR > 0 And _param.YEAR.ToString() <> "" Then
+                lst = lst.Where(Function(p) p.YEAR = _param.YEAR)
+            End If
+            If _filter.YEAR > 0 And _filter.YEAR.ToString() <> "" Then
+                lst = lst.Where(Function(p) p.YEAR = _filter.YEAR)
+            End If
+
+            lst = lst.OrderBy(Sorts)
+            total = lst.Count
+            lst = lst.Skip(pageIndex * pageSize).Take(pageSize)
+
+            Return lst.ToList
+        Catch ex As Exception
+            Utility.WriteExceptionLog(ex, Me.ToString() & ".GetPlanYear")
+            Throw ex
+        End Try
+
+    End Function
+
+#End Region
+
 #Region "PlanSummary"
 
     Public Function GetPlanSummary(ByVal _year As Decimal, ByVal _param As ParamDTO, ByVal log As UserLog) As DataTable
