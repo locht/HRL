@@ -36,6 +36,7 @@
     Public Property OBJECT_LABOR As Decimal?
     Public Property OBJECT_NAME As String
     Public Property LABOUR_NAME As String
+    Public Property TER_LAST_DATE As Date? ' ngày nghỉ việc
 End Class
 Public Class EmployeePopupFindListDTO
     Public Property ID As Decimal

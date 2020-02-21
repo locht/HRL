@@ -68,11 +68,11 @@ Public Class ctrlRC_RequestNewEdit
             PageViewState(Me.ID & "_dtbImport") = value
         End Set
     End Property
-    Property Employee_PL As List(Of WorkingDTO)
+    Property Employee_PL As List(Of RequestDTO)
         Get
             Return ViewState(Me.ID & "_Employee_PL")
         End Get
-        Set(value As List(Of WorkingDTO))
+        Set(value As List(Of RequestDTO))
             ViewState(Me.ID & "_Employee_PL") = value
         End Set
     End Property
@@ -329,6 +329,14 @@ Public Class ctrlRC_RequestNewEdit
             '    i.Edit = True
             'Next
             'rgE.Rebind()
+            If cboRecruitReason.SelectedValue <> "" Then
+                If cboRecruitReason.SelectedValue = 4053 Then
+                    RadPane3.Enabled = True
+                Else
+                    RadPane3.Enabled = False
+                End If
+            End If
+          
         Catch ex As Exception
             Throw ex
         End Try
@@ -426,6 +434,26 @@ Public Class ctrlRC_RequestNewEdit
 
                         obj.DESCRIPTIONATTACHFILE = hddFile.Value
                         obj.IS_IN_PLAN = chkPlan.Checked
+
+                        If cboRecruitReason.SelectedValue = 4053 Then
+                            If rgE.Items.Count = 0 Then
+                                ShowMessage(Translate("Bạn phải chọn nhân viên"), NotifyType.Warning)
+                                Exit Sub
+                            Else
+                                For Each line As GridDataItem In rgE.Items
+                                    obj.ID_RECRUITMENT_INSTEAD = line.GetDataKeyValue("EMPLOYEE_ID").ToString
+                                Next
+                            End If
+
+                        End If
+                        'For Each line As GridDataItem In rgE.Items
+                        '    obj.ID_RECRUITMENT_INSTEAD = line.GetDataKeyValue("EMPLOYEE_ID").ToString
+                        '    'obj.EMPLOYEE_ID = line.GetDataKeyValue("EMPLOYEE_ID").ToString
+                        '    'obj.REQUEST_ID = line.GetDataKeyValue("EMPLOYEE_ID").ToString
+                        'Next
+
+
+
                         'obj.lstEmp = lstEmp
                         Select Case CurrentState
                             Case CommonMessage.STATE_NEW
@@ -499,40 +527,38 @@ Public Class ctrlRC_RequestNewEdit
                 item.Text = itm.EMPLOYEE_CODE & " - " & itm.FULLNAME_VN
                 lstEmployee.Items.Add(item)
             Next
-            'If lstCommonEmployee.Count <> 0 Then
-            '    If Employee_PL Is Nothing Then
-            '        Employee_PL = New List(Of WorkingDTO)
-            '    End If
-            '    For Each emp As CommonBusiness.EmployeePopupFindDTO In lstCommonEmployee
-            '        Dim employee As New WorkingDTO
-            '        employee.EMPLOYEE_CODE = emp.EMPLOYEE_CODE
-            '        employee.EMPLOYEE_ID = emp.EMPLOYEE_ID
-            '        employee.ID = emp.ID
-            '        employee.EMPLOYEE_NAME = emp.FULLNAME_VN
-            '        employee.ORG_NAME = emp.ORG_NAME
-            '        employee.TITLE_NAME = emp.TITLE_NAME
-            '        employee.ORG_ID = emp.ORG_ID
-            '        employee.TITLE_ID = emp.TITLE_ID
-            '        employee.OBJECT_ATTENDANCE_NAME = emp.OBJECT_NAME
-            '        employee.OBJECT_LABORNAME = emp.LABOUR_NAME
-            '        employee.OBJECT_ATTENDANCE = emp.OBJECTTIMEKEEPING
-            '        employee.OBJECT_LABOR = emp.OBJECT_LABOR
-            '        employee.STAFF_RANK_ID = emp.STAFF_RANK_ID
-            '        employee.STAFF_RANK_NAME = emp.STAFF_RANK_NAME
-            '        Dim checkEmployeeCode As WorkingDTO = Employee_PL.Find(Function(p) p.EMPLOYEE_CODE = emp.EMPLOYEE_CODE)
-            '        If (Not checkEmployeeCode Is Nothing) Then
-            '            Continue For
-            '        End If
-            '        Employee_PL.Add(employee)
-            '    Next
-            '    '_result = False
-            '    dtbImport = Employee_PL.ToTable()
-            '    rgE.Rebind()
-            '    For Each i As GridItem In rgE.Items
-            '        i.Edit = True
-            '    Next
-            '    rgE.Rebind()
-            'End If
+            If lstCommonEmployee.Count <> 0 Then
+                If Employee_PL Is Nothing Then
+                    Employee_PL = New List(Of RequestDTO)
+                End If
+                For Each emp As CommonBusiness.EmployeePopupFindDTO In lstCommonEmployee
+                    Dim employee As New RequestDTO
+                    employee.EMPLOYEE_CODE = emp.EMPLOYEE_CODE
+                    employee.EMPLOYEE_ID = emp.EMPLOYEE_ID
+                    employee.ID_RECRUITMENT_INSTEAD = emp.ID
+                    employee.EMPLOYEE_NAME = emp.FULLNAME_VN
+                    employee.ORG_NAME_RECRUITMENT_INSTEAD = emp.ORG_NAME
+                    employee.TITLE_NAME_RECRUITMENT_INSTEAD = emp.TITLE_NAME
+                    employee.ORG_ID_RECRUITMENT_INSTEAD = emp.ORG_ID
+                    employee.TITLE_ID_RECRUITMENT_INSTEAD = emp.TITLE_ID
+                    employee.TER_LAST_DATE = emp.TER_LAST_DATE
+
+                    Dim checkEmployeeCode As RequestDTO = Employee_PL.Find(Function(p) p.EMPLOYEE_CODE = emp.EMPLOYEE_CODE)
+                    If (Not checkEmployeeCode Is Nothing) Then
+                        Continue For
+                    End If
+                    Employee_PL.Add(employee)
+                Next
+                '_result = False
+                'dtbImport = Employee_PL.ToTable()
+
+                rgE.DataSource = Employee_PL
+                rgE.Rebind()
+                For Each i As GridItem In rgE.Items
+                    i.Edit = True
+                Next
+                rgE.Rebind()
+            End If
             isLoadPopup = 0
         Catch ex As Exception
             DisplayException(Me.ViewName, Me.ID, ex)
@@ -703,6 +729,7 @@ Public Class ctrlRC_RequestNewEdit
                 Case 1
                     ctrlFindEmployeePopup = Me.Register("ctrlFindEmployeePopup", "Common", "ctrlFindEmployeePopup")
                     ctrlFindEmployeePopup.MustHaveContract = False
+                    ctrlFindEmployeePopup.IsHideTerminate = False
                     phFindEmployee.Controls.Add(ctrlFindEmployeePopup)
                     ctrlFindEmployeePopup.MultiSelect = True
                 Case 2
@@ -1168,112 +1195,122 @@ Public Class ctrlRC_RequestNewEdit
     'End Sub
 
 
-    'Private Sub SetDataToGrid_Org(ByVal EditItem As GridEditableItem)
-    '    Try
-    '        For Each col As GridColumn In rgE.Columns
-    '            Try
-    '                'Dim groupid
-    '                'For Each LINE In Employee_PL
-    '                '    groupid = LINE.GROUP_ID
-    '                'Next
-    '                ' Employee_PL.Find(Function(f) f.EMPLOYEE_CODE = empployee_code)
-    '                Dim empployee_code = EditItem.GetDataKeyValue("EMPLOYEE_CODE")
-    '                'Dim ds = dtbImport.AsEnumerable().ToList()
-    '                Dim rowData = (From p In dtbImport Where p("EMPLOYEE_CODE") = empployee_code).ToList
-    '                If rowData Is Nothing Then
-    '                    Exit Sub
-    '                End If
-    '                If InStr(",MONEY_TOTAL,REMARK,", "," + col.UniqueName + ",") > 0 Then
-    '                    Select Case EditItem(col.UniqueName).Controls(1).ID.ToString.Substring(0, 2)
-    '                        Case "cb"
+    Private Sub SetDataToGrid_Org(ByVal EditItem As GridEditableItem)
+        Try
+            For Each col As GridColumn In rgE.Columns
+                Try
+                    'Dim groupid
+                    'For Each LINE In Employee_PL
+                    '    groupid = LINE.GROUP_ID
+                    'Next
+                    ' Employee_PL.Find(Function(f) f.EMPLOYEE_CODE = empployee_code)
+                    Dim empployee_code = EditItem.GetDataKeyValue("EMPLOYEE_CODE")
+                    'Dim ds = dtbImport.AsEnumerable().ToList()
+                    Dim rowData = (From p In dtbImport Where p("EMPLOYEE_CODE") = empployee_code).ToList
+                    If rowData Is Nothing Then
+                        Exit Sub
+                    End If
+                    'If InStr(",MONEY_TOTAL,REMARK,", "," + col.UniqueName + ",") > 0 Then
+                    '    Select Case EditItem(col.UniqueName).Controls(1).ID.ToString.Substring(0, 2)
+                    '        Case "cb"
 
-    '                        Case "rt"
-    '                            Dim radTextBox As New RadTextBox
-    '                            radTextBox = CType(EditItem.FindControl(EditItem(col.UniqueName).Controls(1).ID.ToString), RadTextBox)
-    '                            radTextBox.ClearValue()
-    '                            radTextBox.Text = rowData(0)("REMARK")
-    '                        Case "rn"
-    '                            Dim radNumber As New RadNumericTextBox
-    '                            radNumber = CType(EditItem.FindControl(EditItem(col.UniqueName).Controls(1).ID.ToString), RadNumericTextBox)
-    '                            radNumber.ClearValue()
-    '                            radNumber.NumberFormat.AllowRounding = False
-    '                            radNumber.NumberFormat.DecimalDigits = 2
-    '                            radNumber.Text = rowData(0)("MONEY_TOTAL").ToString()
-    '                    End Select
-    '                Else
-    '                    Continue For
-    '                End If
-    '            Catch ex As Exception
-    '                Continue For
-    '            End Try
-    '        Next
-    '    Catch ex As Exception
+                    '            'Case "rt"
+                    '            '    Dim radTextBox As New RadTextBox
+                    '            '    radTextBox = CType(EditItem.FindControl(EditItem(col.UniqueName).Controls(1).ID.ToString), RadTextBox)
+                    '            '    radTextBox.ClearValue()
+                    '            '    'radTextBox.Text = rowData(0)("REMARK")
+                    '            'Case "rn"
+                    '            '    Dim radNumber As New RadNumericTextBox
+                    '            '    radNumber = CType(EditItem.FindControl(EditItem(col.UniqueName).Controls(1).ID.ToString), RadNumericTextBox)
+                    '            '    radNumber.ClearValue()
+                    '            '    radNumber.NumberFormat.AllowRounding = False
+                    '            '    radNumber.NumberFormat.DecimalDigits = 2
+                    '            '    'radNumber.Text = rowData(0)("MONEY_TOTAL").ToString()
+                    '    End Select
+                    'Else
+                    '    Continue For
+                    'End If
+                Catch ex As Exception
+                    Continue For
+                End Try
+            Next
+        Catch ex As Exception
 
-    '    End Try
-    'End Sub
+        End Try
+    End Sub
 
-    'Private Sub rgE_ItemCommand(sender As Object, e As Telerik.Web.UI.GridCommandEventArgs) Handles rgE.ItemCommand
-    '    Dim startTime As DateTime = DateTime.UtcNow
-    '    Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
-    '    Try
-    '        Select Case e.CommandName
-    '            Case "FindEmployee"
-    '                isLoadPopup = 1
-    '                UpdateControlState()
-    '                ctrlFindEmployeePopup.Show()
-    '            Case "DeleteEmployee"
-    '                For Each i As GridDataItem In rgE.SelectedItems
-    '                    Dim s = (From q In Employee_PL Where
-    '                             q.ID = i.GetDataKeyValue("ID")).FirstOrDefault
-    '                    Employee_PL.Remove(s)
-    '                Next
-    '                '_result = False
-    '                checkDelete = 1
-    '                dtbImport = Employee_PL.ToTable()
-    '                rgE.DataSource = dtbImport
-    '                rgE_NeedDataSource(Nothing, Nothing)
-    '                rgE.Rebind()
-    '        End Select
-    '    Catch ex As Exception
+    Private Sub rgE_ItemCommand(sender As Object, e As Telerik.Web.UI.GridCommandEventArgs) Handles rgE.ItemCommand
+        Dim startTime As DateTime = DateTime.UtcNow
+        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+        Try
+            Select Case e.CommandName
+                Case "FindEmployee"
+                    isLoadPopup = 1
+                    UpdateControlState()
+                    ctrlFindEmployeePopup.Show()
+                Case "DeleteEmployee"
+                    For Each i As GridDataItem In rgE.SelectedItems
+                        Dim s = (From q In Employee_PL Where
+                                 q.ID = i.GetDataKeyValue("ID")).FirstOrDefault
+                        Employee_PL.Remove(s)
+                    Next
+                    '_result = False
+                    checkDelete = 1
+                    dtbImport = Employee_PL.ToTable()
+                    rgE.DataSource = dtbImport
+                    rgE_NeedDataSource(Nothing, Nothing)
+                    rgE.Rebind()
+            End Select
+        Catch ex As Exception
 
-    '    End Try
-    'End Sub
+        End Try
+    End Sub
 
-    'Private Sub rgE_ItemDataBound(sender As Object, e As Telerik.Web.UI.GridItemEventArgs) Handles rgE.ItemDataBound
-    '    Try
-    '        If e.Item.Edit Then
-    '            Dim edit = CType(e.Item, GridEditableItem)
-    '            Dim item As GridDataItem = CType(e.Item, GridDataItem)
-    '            Dim rtxtmoney As New RadNumericTextBox
-    '            rtxtmoney = CType(edit.FindControl("rnMONEY"), RadNumericTextBox)
-    '            SetDataToGrid_Org(edit)
-    '            edit.Dispose()
-    '            item.Dispose()
-    '        End If
-    '    Catch ex As Exception
+    Private Sub rgE_ItemDataBound(sender As Object, e As Telerik.Web.UI.GridItemEventArgs) Handles rgE.ItemDataBound
+        Try
+            If e.Item.Edit Then
+                Dim edit = CType(e.Item, GridEditableItem)
+                Dim item As GridDataItem = CType(e.Item, GridDataItem)
+                Dim rtxtmoney As New RadNumericTextBox
+                'rtxtmoney = CType(edit.FindControl("rnMONEY"), RadNumericTextBox)
+                SetDataToGrid_Org(edit)
+                edit.Dispose()
+                item.Dispose()
+            End If
+        Catch ex As Exception
 
-    '    End Try
-    'End Sub
+        End Try
+    End Sub
 
-    'Private Sub rgE_NeedDataSource(sender As Object, e As Telerik.Web.UI.GridNeedDataSourceEventArgs) Handles rgE.NeedDataSource
-    '    Try
-    '        Dim rep As New RecruitmentRepository
-    '        If Request.Params("gUID") IsNot Nothing Then
-    '            _Id = Integer.Parse(Request.Params("gUID"))
-    '            CurrentState = CommonMessage.STATE_EDIT
+    Private Sub rgE_NeedDataSource(sender As Object, e As Telerik.Web.UI.GridNeedDataSourceEventArgs) Handles rgE.NeedDataSource
+        Try
+            Dim rep As New RecruitmentRepository
+            If Request.Params("gUID") IsNot Nothing Then
+                _Id = Integer.Parse(Request.Params("gUID"))
+                CurrentState = CommonMessage.STATE_EDIT
 
-    '        Else
-    '            CurrentState = CommonMessage.STATE_NEW
-    '            If Not IsPostBack Then
-    '                Employee_PL = New List(Of WorkingDTO)
-    '                dtbImport = Employee_PL.ToTable()
-    '            End If
-    '        End If
-    '        rgE.VirtualItemCount = dtbImport.Rows.Count 'Employee_PL.Count
-    '        rgE.DataSource = dtbImport
+            Else
+                CurrentState = CommonMessage.STATE_NEW
+                If Not IsPostBack Then
+                    Employee_PL = New List(Of RequestDTO)
+                    dtbImport = Employee_PL.ToTable()
+                End If
+            End If
+            rgE.VirtualItemCount = dtbImport.Rows.Count 'Employee_PL.Count
+            rgE.DataSource = dtbImport
 
-    '    Catch ex As Exception
+        Catch ex As Exception
 
-    '    End Try
-    'End Sub
+        End Try
+    End Sub
+
+    Private Sub cboRecruitReason_SelectedIndexChanged(sender As Object, e As Telerik.Web.UI.RadComboBoxSelectedIndexChangedEventArgs) Handles cboRecruitReason.SelectedIndexChanged
+        If cboRecruitReason.SelectedValue = 4053 Then
+            RadPane3.Enabled = True
+        Else
+            RadPane3.Enabled = False
+        End If
+
+
+    End Sub
 End Class

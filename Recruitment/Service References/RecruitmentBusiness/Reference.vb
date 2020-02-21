@@ -8265,6 +8265,15 @@ Namespace RecruitmentBusiness
         Private DESCRIPTIONATTACHFILEField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private EMPLOYEE_CODEField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private EMPLOYEE_IDField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private EMPLOYEE_NAMEField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private EXPECTED_JOIN_DATEField As System.Nullable(Of Date)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -8290,6 +8299,9 @@ Namespace RecruitmentBusiness
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private IDField As Decimal
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private ID_RECRUITMENT_INSTEADField As Decimal
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private IS_IN_PLANField As System.Nullable(Of Boolean)
@@ -8346,7 +8358,13 @@ Namespace RecruitmentBusiness
         Private ORG_IDField As System.Nullable(Of Decimal)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private ORG_ID_RECRUITMENT_INSTEADField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private ORG_NAMEField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private ORG_NAME_RECRUITMENT_INSTEADField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private QUALIFICATIONField As String
@@ -8382,6 +8400,9 @@ Namespace RecruitmentBusiness
         Private REQUEST_EXPERIENCEField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private REQUEST_IDField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private REQUEST_OTHERField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -8397,10 +8418,19 @@ Namespace RecruitmentBusiness
         Private STATUS_NAMEField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private TER_LAST_DATEField As System.Nullable(Of Date)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private TITLE_IDField As System.Nullable(Of Decimal)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private TITLE_ID_RECRUITMENT_INSTEADField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private TITLE_NAMEField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private TITLE_NAME_RECRUITMENT_INSTEADField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private TO_DATEField As System.Nullable(Of Date)
@@ -8568,6 +8598,45 @@ Namespace RecruitmentBusiness
         End Property
         
         <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property EMPLOYEE_CODE() As String
+            Get
+                Return Me.EMPLOYEE_CODEField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.EMPLOYEE_CODEField, value) <> true) Then
+                    Me.EMPLOYEE_CODEField = value
+                    Me.RaisePropertyChanged("EMPLOYEE_CODE")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property EMPLOYEE_ID() As System.Nullable(Of Decimal)
+            Get
+                Return Me.EMPLOYEE_IDField
+            End Get
+            Set
+                If (Me.EMPLOYEE_IDField.Equals(value) <> true) Then
+                    Me.EMPLOYEE_IDField = value
+                    Me.RaisePropertyChanged("EMPLOYEE_ID")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property EMPLOYEE_NAME() As String
+            Get
+                Return Me.EMPLOYEE_NAMEField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.EMPLOYEE_NAMEField, value) <> true) Then
+                    Me.EMPLOYEE_NAMEField = value
+                    Me.RaisePropertyChanged("EMPLOYEE_NAME")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
         Public Property EXPECTED_JOIN_DATE() As System.Nullable(Of Date)
             Get
                 Return Me.EXPECTED_JOIN_DATEField
@@ -8680,6 +8749,19 @@ Namespace RecruitmentBusiness
                 If (Me.IDField.Equals(value) <> true) Then
                     Me.IDField = value
                     Me.RaisePropertyChanged("ID")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property ID_RECRUITMENT_INSTEAD() As Decimal
+            Get
+                Return Me.ID_RECRUITMENT_INSTEADField
+            End Get
+            Set
+                If (Me.ID_RECRUITMENT_INSTEADField.Equals(value) <> true) Then
+                    Me.ID_RECRUITMENT_INSTEADField = value
+                    Me.RaisePropertyChanged("ID_RECRUITMENT_INSTEAD")
                 End If
             End Set
         End Property
@@ -8919,6 +9001,19 @@ Namespace RecruitmentBusiness
         End Property
         
         <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property ORG_ID_RECRUITMENT_INSTEAD() As System.Nullable(Of Decimal)
+            Get
+                Return Me.ORG_ID_RECRUITMENT_INSTEADField
+            End Get
+            Set
+                If (Me.ORG_ID_RECRUITMENT_INSTEADField.Equals(value) <> true) Then
+                    Me.ORG_ID_RECRUITMENT_INSTEADField = value
+                    Me.RaisePropertyChanged("ORG_ID_RECRUITMENT_INSTEAD")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
         Public Property ORG_NAME() As String
             Get
                 Return Me.ORG_NAMEField
@@ -8927,6 +9022,19 @@ Namespace RecruitmentBusiness
                 If (Object.ReferenceEquals(Me.ORG_NAMEField, value) <> true) Then
                     Me.ORG_NAMEField = value
                     Me.RaisePropertyChanged("ORG_NAME")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property ORG_NAME_RECRUITMENT_INSTEAD() As String
+            Get
+                Return Me.ORG_NAME_RECRUITMENT_INSTEADField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.ORG_NAME_RECRUITMENT_INSTEADField, value) <> true) Then
+                    Me.ORG_NAME_RECRUITMENT_INSTEADField = value
+                    Me.RaisePropertyChanged("ORG_NAME_RECRUITMENT_INSTEAD")
                 End If
             End Set
         End Property
@@ -9075,6 +9183,19 @@ Namespace RecruitmentBusiness
         End Property
         
         <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property REQUEST_ID() As System.Nullable(Of Decimal)
+            Get
+                Return Me.REQUEST_IDField
+            End Get
+            Set
+                If (Me.REQUEST_IDField.Equals(value) <> true) Then
+                    Me.REQUEST_IDField = value
+                    Me.RaisePropertyChanged("REQUEST_ID")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
         Public Property REQUEST_OTHER() As String
             Get
                 Return Me.REQUEST_OTHERField
@@ -9140,6 +9261,19 @@ Namespace RecruitmentBusiness
         End Property
         
         <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property TER_LAST_DATE() As System.Nullable(Of Date)
+            Get
+                Return Me.TER_LAST_DATEField
+            End Get
+            Set
+                If (Me.TER_LAST_DATEField.Equals(value) <> true) Then
+                    Me.TER_LAST_DATEField = value
+                    Me.RaisePropertyChanged("TER_LAST_DATE")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
         Public Property TITLE_ID() As System.Nullable(Of Decimal)
             Get
                 Return Me.TITLE_IDField
@@ -9153,6 +9287,19 @@ Namespace RecruitmentBusiness
         End Property
         
         <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property TITLE_ID_RECRUITMENT_INSTEAD() As System.Nullable(Of Decimal)
+            Get
+                Return Me.TITLE_ID_RECRUITMENT_INSTEADField
+            End Get
+            Set
+                If (Me.TITLE_ID_RECRUITMENT_INSTEADField.Equals(value) <> true) Then
+                    Me.TITLE_ID_RECRUITMENT_INSTEADField = value
+                    Me.RaisePropertyChanged("TITLE_ID_RECRUITMENT_INSTEAD")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
         Public Property TITLE_NAME() As String
             Get
                 Return Me.TITLE_NAMEField
@@ -9161,6 +9308,19 @@ Namespace RecruitmentBusiness
                 If (Object.ReferenceEquals(Me.TITLE_NAMEField, value) <> true) Then
                     Me.TITLE_NAMEField = value
                     Me.RaisePropertyChanged("TITLE_NAME")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property TITLE_NAME_RECRUITMENT_INSTEAD() As String
+            Get
+                Return Me.TITLE_NAME_RECRUITMENT_INSTEADField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.TITLE_NAME_RECRUITMENT_INSTEADField, value) <> true) Then
+                    Me.TITLE_NAME_RECRUITMENT_INSTEADField = value
+                    Me.RaisePropertyChanged("TITLE_NAME_RECRUITMENT_INSTEAD")
                 End If
             End Set
         End Property

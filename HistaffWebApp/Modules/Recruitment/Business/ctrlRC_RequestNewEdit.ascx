@@ -421,12 +421,12 @@
             </tlk:RadPageView>
         </tlk:RadMultiPage>
     </tlk:RadPane>
-    <%-- <tlk:RadPane ID="RadPane3" runat="server" Scrolling="None">
+     <tlk:RadPane ID="RadPane3" runat="server" Scrolling="None"  Enabled="false">
         <tlk:RadGrid ID="rgE" AllowPaging="true" AllowMultiRowEdit="true" runat="server"
             PageSize="50" Height="100%">
             <GroupingSettings CaseSensitive="false" />
-            <MasterTableView EditMode="InPlace" AllowPaging="true" AllowCustomPaging="true" DataKeyNames="EMPLOYEE_ID,EMPLOYEE_NAME,TITLE_ID,ORG_ID,TITLE_NAME,ORG_NAME,EMPLOYEE_CODE,,REMARK,OBJECT_ATTENDANCE_NAME,OBJECT_LABORNAME,STAFF_RANK_NAME,OBJECT_ATTENDANCE,OBJECT_LABOR,STAFF_RANK_ID"
-                ClientDataKeyNames="ID,EMPLOYEE_ID,EMPLOYEE_NAME,TITLE_ID,ORG_ID,TITLE_NAME,ORG_NAME,EMPLOYEE_CODE,REMARK,OBJECT_ATTENDANCE_NAME,OBJECT_LABORNAME,STAFF_RANK_NAME,OBJECT_ATTENDANCE,OBJECT_LABOR,STAFF_RANK_ID"
+            <MasterTableView EditMode="InPlace" AllowPaging="true" AllowCustomPaging="true" DataKeyNames="EMPLOYEE_CODE,EMPLOYEE_ID,EMPLOYEE_NAME,ORG_NAME_RECRUITMENT_INSTEAD,TITLE_NAME_RECRUITMENT_INSTEAD,ORG_ID_RECRUITMENT_INSTEAD,TITLE_ID_RECRUITMENT_INSTEAD,ID_RECRUITMENT_INSTEAD"
+                ClientDataKeyNames="EMPLOYEE_CODE,EMPLOYEE_ID,EMPLOYEE_NAME,ORG_NAME_RECRUITMENT_INSTEAD,TITLE_NAME_RECRUITMENT_INSTEAD,ORG_ID_RECRUITMENT_INSTEAD,TITLE_ID_RECRUITMENT_INSTEAD,ID_RECRUITMENT_INSTEAD"
                 CommandItemDisplay="Top">
                 <CommandItemStyle Height="25px" />
                 <CommandItemTemplate>
@@ -451,24 +451,20 @@
                         UniqueName="EMPLOYEE_CODE" SortExpression="EMPLOYEE_CODE" />
                     <tlk:GridBoundColumn HeaderText="Họ tên nhân viên" DataField="EMPLOYEE_NAME" UniqueName="EMPLOYEE_NAME"
                         ReadOnly="true" SortExpression="EMPLOYEE_NAME" />
-                    <tlk:GridBoundColumn HeaderText="Phòng ban" DataField="ORG_NAME" UniqueName="ORG_NAME"
-                        ReadOnly="true" SortExpression="ORG_NAME" />
-                    <tlk:GridBoundColumn HeaderText="Chức danh" DataField="TITLE_NAME" UniqueName="TITLE_NAME"
-                        ReadOnly="true" SortExpression="TITLE_NAME" />
-                    <tlk:GridBoundColumn HeaderText="Đối tượng chấm công" DataField="OBJECT_ATTENDANCE_NAME"
-                        UniqueName="OBJECT_ATTENDANCE_NAME" ReadOnly="true" SortExpression="OBJECT_ATTENDANCE_NAME" Visible="false" />
-                    <tlk:GridBoundColumn HeaderText="Loại hình lao động" DataField="OBJECT_LABORNAME"
-                        UniqueName="OBJECT_LABORNAME" ReadOnly="true" SortExpression="OBJECT_LABORNAME" Visible="false" />
-                    <tlk:GridBoundColumn HeaderText="Bậc nhân sự" DataField="STAFF_RANK_NAME" UniqueName="STAFF_RANK_NAME"
-                        ReadOnly="true" SortExpression="STAFF_RANK_NAME" Visible="false" />
+                    <tlk:GridBoundColumn HeaderText="Phòng ban" DataField="ORG_NAME_RECRUITMENT_INSTEAD" UniqueName="ORG_NAME_RECRUITMENT_INSTEAD"
+                        ReadOnly="true" SortExpression="ORG_NAME_RECRUITMENT_INSTEAD" />
+                    <tlk:GridBoundColumn HeaderText="Chức danh" DataField="TITLE_NAME_RECRUITMENT_INSTEAD" UniqueName="TITLE_NAME_RECRUITMENT_INSTEAD"
+                        ReadOnly="true" SortExpression="TITLE_NAME_RECRUITMENT_INSTEAD" />
                     <tlk:GridBoundColumn HeaderText="NHÂN VIÊN" DataField="EMPLOYEE_ID" UniqueName="EMPLOYEE_ID"
                         ReadOnly="true" SortExpression="EMPLOYEE_ID" Visible="false" />
-                    <tlk:GridBoundColumn HeaderText="CHỨC DANH" DataField="TITLE_ID" UniqueName="TITLE_ID"
-                        ReadOnly="true" SortExpression="TITLE_ID" Visible="false" />
-                    <tlk:GridBoundColumn HeaderText="TÊN PHÒNG BAN" DataField="ORG_ID" UniqueName="ORG_ID"
-                        ReadOnly="true" SortExpression="ORG_ID" Visible="false" />
-                    <tlk:GridBoundColumn HeaderText="ID THIẾT LẬP" DataField="WELFARE_ID" UniqueName="WELFARE_ID"
-                        ReadOnly="true" SortExpression="WELFARE_ID" Visible="false" />
+                    <tlk:GridBoundColumn HeaderText="CHỨC DANH" DataField="TITLE_ID_RECRUITMENT_INSTEAD" UniqueName="TITLE_ID_RECRUITMENT_INSTEAD"
+                        ReadOnly="true" SortExpression="TITLE_ID_RECRUITMENT_INSTEAD" Visible="false" />
+                    <tlk:GridBoundColumn HeaderText="TÊN PHÒNG BAN" DataField="ORG_ID_RECRUITMENT_INSTEAD" UniqueName="ORG_ID_RECRUITMENT_INSTEAD"
+                        ReadOnly="true" SortExpression="ORG_ID_RECRUITMENT_INSTEAD" Visible="false" />
+                         <tlk:GridBoundColumn HeaderText="ID" DataField="ID_RECRUITMENT_INSTEAD" UniqueName="ID_RECRUITMENT_INSTEAD"
+                        ReadOnly="true" SortExpression="ID_RECRUITMENT_INSTEAD" Visible="false" />
+                         <tlk:GridDateTimeColumn HeaderText="Ngày nghỉ việc" DataField="TER_LAST_DATE" ItemStyle-HorizontalAlign="Center" SortExpression="TER_LAST_DATE" UniqueName="TER_LAST_DATE"
+                                DataFormatString="{0:dd/MM/yyyy}" />
                 </Columns>
             </MasterTableView>
             <HeaderStyle HorizontalAlign="Center" />
@@ -476,7 +472,7 @@
                 <Selecting AllowRowSelect="True" />
             </ClientSettings>
         </tlk:RadGrid>
-    </tlk:RadPane>--%>
+    </tlk:RadPane>
 </tlk:RadSplitter>
 <asp:PlaceHolder ID="phFindEmployee" runat="server"></asp:PlaceHolder>
 <asp:PlaceHolder ID="phFindOrg" runat="server"></asp:PlaceHolder>

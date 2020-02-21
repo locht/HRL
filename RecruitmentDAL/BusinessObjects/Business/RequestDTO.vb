@@ -61,4 +61,18 @@
     Public Property FILE_NAME As String
     Public Property LOCATION_ID As Decimal?
     Public Property YEAR As Decimal?
+
+
+    Public Property ID_RECRUITMENT_INSTEAD As Decimal
+    Public Property EMPLOYEE_ID As Decimal?
+    Public Property REQUEST_ID As Decimal?
+    Public Property EMPLOYEE_CODE As String
+    Public Property EMPLOYEE_NAME As String
+    Public Property TITLE_ID_RECRUITMENT_INSTEAD As Decimal?
+    Public Property TITLE_NAME_RECRUITMENT_INSTEAD As String
+    Public Property ORG_ID_RECRUITMENT_INSTEAD As Decimal?
+    Public Property ORG_NAME_RECRUITMENT_INSTEAD As String
+    Public Property TER_LAST_DATE As Date? ' ngày nghỉ việc
+
+
 End Class

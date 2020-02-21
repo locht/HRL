@@ -74,6 +74,7 @@
     <Compile Include="BusinessObjects\Business\CandidateHealthDTO.vb" />
     <Compile Include="BusinessObjects\Business\CandidateReferenceDTO.vb" />
     <Compile Include="BusinessObjects\Business\CandidateHistoryDTO.vb" />
+    <Compile Include="BusinessObjects\Business\RecruitmentInsteadDTO.vb" />
     <Compile Include="BusinessObjects\Business\PlanYearDTO.vb" />
     <Compile Include="BusinessObjects\Business\CVPoolEmpDTO.vb" />
     <Compile Include="BusinessObjects\Business\CostallocateDTO.vb" />

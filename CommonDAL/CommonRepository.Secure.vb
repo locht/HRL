@@ -2545,7 +2545,8 @@ Partial Public Class CommonRepository
                           .OBJECT_LABOR = p.OBJECT_LABOR,
                           .OBJECTTIMEKEEPING = p.OBJECTTIMEKEEPING,
                           .OBJECT_NAME = ot2.NAME_VN,
-                          .LABOUR_NAME = ot1.NAME_VN})
+                          .LABOUR_NAME = ot1.NAME_VN,
+                          .TER_LAST_DATE = p.TER_EFFECT_DATE})
         Return result.ToList
     End Function
 

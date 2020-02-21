@@ -911,10 +911,11 @@ Partial Class RecruitmentRepository
 
     Public Function InsertRequest(ByVal objRequest As RequestDTO, ByVal log As UserLog, ByRef gID As Decimal) As Boolean
         Dim objRequestData As New RC_REQUEST
+        Dim objRC_RECRUITMENT_INSTEAD As New RC_RECRUITMENT_INSTEAD
         Try
-            If CheckExistRequest(objRequest) Then
-                Return False
-            End If
+            'If CheckExistRequest(objRequest) Then
+            '    Return False
+            'End If
             objRequestData.ID = Utilities.GetNextSequence(Context, Context.RC_REQUEST.EntitySet.Name)
             objRequestData.IS_IN_PLAN = objRequest.IS_IN_PLAN
             objRequestData.ORG_ID = objRequest.ORG_ID
@@ -955,7 +956,13 @@ Partial Class RecruitmentRepository
             objRequestData.FILE_NAME = objRequest.FILE_NAME
             objRequestData.UPLOAD_FILE = objRequest.UPLOAD_FILE
             objRequestData.LOCATION_ID = objRequest.LOCATION_ID
+
+            objRC_RECRUITMENT_INSTEAD.ID = Utilities.GetNextSequence(Context, Context.RC_REQUEST.EntitySet.Name)
+            objRC_RECRUITMENT_INSTEAD.EMPLOYEE_ID = objRequest.ID_RECRUITMENT_INSTEAD
+            objRC_RECRUITMENT_INSTEAD.REQUEST_ID = objRequestData.ID
+
             Context.RC_REQUEST.AddObject(objRequestData)
+            Context.RC_RECRUITMENT_INSTEAD.AddObject(objRC_RECRUITMENT_INSTEAD)
             If objRequest.lstEmp IsNot Nothing Then
                 For Each item In objRequest.lstEmp
                     Dim objRequestEmpData As New RC_REQUEST_EMP

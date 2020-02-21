@@ -122,6 +122,15 @@ Partial Public Class ctrlRC_RequestNewEdit
     Protected WithEvents RequiredFieldValidator2 As Global.System.Web.UI.WebControls.RequiredFieldValidator
 
     '''<summary>
+    '''chkPlan control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents chkPlan As Global.System.Web.UI.WebControls.CheckBox
+
+    '''<summary>
     '''cboTitle control.
     '''</summary>
     '''<remarks>
@@ -138,15 +147,6 @@ Partial Public Class ctrlRC_RequestNewEdit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents cusTitle As Global.System.Web.UI.WebControls.CustomValidator
-
-    '''<summary>
-    '''chkPlan control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents chkPlan As Global.System.Web.UI.WebControls.CheckBox
 
     '''<summary>
     '''rdSendDate control.
@@ -507,6 +507,24 @@ Partial Public Class ctrlRC_RequestNewEdit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtRemark As Global.Telerik.Web.UI.RadTextBox
+
+    '''<summary>
+    '''RadPane3 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents RadPane3 As Global.Telerik.Web.UI.RadPane
+
+    '''<summary>
+    '''rgE control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents rgE As Global.Telerik.Web.UI.RadGrid
 
     '''<summary>
     '''phFindEmployee control.
