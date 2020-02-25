@@ -13668,6 +13668,12 @@ Namespace ProfileBusiness
         Private EMPLOYEE_NAME_OTHERField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private EMPLOYEE_OBJECTField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private EMPLOYEE_OBJECT_NAMEField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private EMP_STATUSField As System.Nullable(Of Decimal)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -13711,6 +13717,12 @@ Namespace ProfileBusiness
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private IMAGE_URLField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private IS_HAZARDOUSField As Boolean
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private IS_HDLDField As Boolean
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private IS_HISTORYField As Boolean
@@ -14144,6 +14156,32 @@ Namespace ProfileBusiness
         End Property
         
         <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property EMPLOYEE_OBJECT() As System.Nullable(Of Decimal)
+            Get
+                Return Me.EMPLOYEE_OBJECTField
+            End Get
+            Set
+                If (Me.EMPLOYEE_OBJECTField.Equals(value) <> true) Then
+                    Me.EMPLOYEE_OBJECTField = value
+                    Me.RaisePropertyChanged("EMPLOYEE_OBJECT")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property EMPLOYEE_OBJECT_NAME() As String
+            Get
+                Return Me.EMPLOYEE_OBJECT_NAMEField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.EMPLOYEE_OBJECT_NAMEField, value) <> true) Then
+                    Me.EMPLOYEE_OBJECT_NAMEField = value
+                    Me.RaisePropertyChanged("EMPLOYEE_OBJECT_NAME")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
         Public Property EMP_STATUS() As System.Nullable(Of Decimal)
             Get
                 Return Me.EMP_STATUSField
@@ -14334,6 +14372,32 @@ Namespace ProfileBusiness
                 If (Object.ReferenceEquals(Me.IMAGE_URLField, value) <> true) Then
                     Me.IMAGE_URLField = value
                     Me.RaisePropertyChanged("IMAGE_URL")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property IS_HAZARDOUS() As Boolean
+            Get
+                Return Me.IS_HAZARDOUSField
+            End Get
+            Set
+                If (Me.IS_HAZARDOUSField.Equals(value) <> true) Then
+                    Me.IS_HAZARDOUSField = value
+                    Me.RaisePropertyChanged("IS_HAZARDOUS")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property IS_HDLD() As Boolean
+            Get
+                Return Me.IS_HDLDField
+            End Get
+            Set
+                If (Me.IS_HDLDField.Equals(value) <> true) Then
+                    Me.IS_HDLDField = value
+                    Me.RaisePropertyChanged("IS_HDLD")
                 End If
             End Set
         End Property

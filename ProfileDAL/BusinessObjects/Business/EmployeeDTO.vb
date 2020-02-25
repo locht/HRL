@@ -95,4 +95,14 @@
     'NGAY TINH THAM NIEN
     Public Property SENIORITY_DATE As Date?
 
+    ' ĐỐI TƯỢNG NHÂN VIÊN
+    Public Property EMPLOYEE_OBJECT As Decimal?
+    Public Property EMPLOYEE_OBJECT_NAME As String
+    'MÔI TRƯỜNG ĐỘC HẠI
+    Public Property IS_HAZARDOUS As Boolean
+    'TẠM HOÃN HDLD
+    Public Property IS_HDLD As Boolean
+
+
+
 End Class

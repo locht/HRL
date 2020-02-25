@@ -18,7 +18,7 @@ Imports System.Runtime.Serialization
 Imports System.Xml.Serialization
 
 
-<Assembly: EdmSchemaAttribute("7a924e76-58c2-4f84-bb13-d290536ef8dc")>
+<Assembly: EdmSchemaAttribute("e7b23186-b0be-4242-956e-f9bfd8087872")>
 #Region "EDM Relationship Metadata"
 <Assembly: EdmRelationshipAttribute("ProfileModel", "FK_HU_NAT_HU_PRO", "HU_NATION", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_NATION), "HU_PROVINCE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_PROVINCE), True)>
 <Assembly: EdmRelationshipAttribute("ProfileModel", "FK_HU_PRO_HU_DIS", "HU_PROVINCE", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_PROVINCE), "HU_DISTRICT", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_DISTRICT), True)>
@@ -23569,6 +23569,81 @@ Public Partial Class HU_EMPLOYEE
     End Sub
 
     Private Partial Sub OnSENIORITY_DATEChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property EMPLOYEE_OBJECT() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _EMPLOYEE_OBJECT
+        End Get
+        Set
+            OnEMPLOYEE_OBJECTChanging(value)
+            ReportPropertyChanging("EMPLOYEE_OBJECT")
+            _EMPLOYEE_OBJECT = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("EMPLOYEE_OBJECT")
+            OnEMPLOYEE_OBJECTChanged()
+        End Set
+    End Property
+
+    Private _EMPLOYEE_OBJECT As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnEMPLOYEE_OBJECTChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnEMPLOYEE_OBJECTChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property IS_HAZARDOUS() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _IS_HAZARDOUS
+        End Get
+        Set
+            OnIS_HAZARDOUSChanging(value)
+            ReportPropertyChanging("IS_HAZARDOUS")
+            _IS_HAZARDOUS = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("IS_HAZARDOUS")
+            OnIS_HAZARDOUSChanged()
+        End Set
+    End Property
+
+    Private _IS_HAZARDOUS As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnIS_HAZARDOUSChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnIS_HAZARDOUSChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property IS_HDLD() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _IS_HDLD
+        End Get
+        Set
+            OnIS_HDLDChanging(value)
+            ReportPropertyChanging("IS_HDLD")
+            _IS_HDLD = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("IS_HDLD")
+            OnIS_HDLDChanged()
+        End Set
+    End Property
+
+    Private _IS_HDLD As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnIS_HDLDChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnIS_HDLDChanged()
     End Sub
 
     #End Region
