@@ -40345,6 +40345,9 @@ Namespace ProfileBusiness
         Private DANG_PHIField As System.Nullable(Of Boolean)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private DATEOFENTRYField As System.Nullable(Of Date)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private DISTRICTEMP_BRITHField As System.Nullable(Of Decimal)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -40421,6 +40424,9 @@ Namespace ProfileBusiness
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private IS_CHUHOField As System.Nullable(Of Boolean)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private IS_FOREIGNERField As System.Nullable(Of Boolean)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private IS_PAY_BANKField As System.Nullable(Of Boolean)
@@ -40574,6 +40580,9 @@ Namespace ProfileBusiness
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private PER_ADDRESSField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private PER_COUNTRYField As System.Nullable(Of Decimal)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private PER_DISTRICTField As System.Nullable(Of Decimal)
@@ -41057,6 +41066,19 @@ Namespace ProfileBusiness
         End Property
         
         <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property DATEOFENTRY() As System.Nullable(Of Date)
+            Get
+                Return Me.DATEOFENTRYField
+            End Get
+            Set
+                If (Me.DATEOFENTRYField.Equals(value) <> true) Then
+                    Me.DATEOFENTRYField = value
+                    Me.RaisePropertyChanged("DATEOFENTRY")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
         Public Property DISTRICTEMP_BRITH() As System.Nullable(Of Decimal)
             Get
                 Return Me.DISTRICTEMP_BRITHField
@@ -41390,6 +41412,19 @@ Namespace ProfileBusiness
                 If (Me.IS_CHUHOField.Equals(value) <> true) Then
                     Me.IS_CHUHOField = value
                     Me.RaisePropertyChanged("IS_CHUHO")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property IS_FOREIGNER() As System.Nullable(Of Boolean)
+            Get
+                Return Me.IS_FOREIGNERField
+            End Get
+            Set
+                If (Me.IS_FOREIGNERField.Equals(value) <> true) Then
+                    Me.IS_FOREIGNERField = value
+                    Me.RaisePropertyChanged("IS_FOREIGNER")
                 End If
             End Set
         End Property
@@ -42053,6 +42088,19 @@ Namespace ProfileBusiness
                 If (Object.ReferenceEquals(Me.PER_ADDRESSField, value) <> true) Then
                     Me.PER_ADDRESSField = value
                     Me.RaisePropertyChanged("PER_ADDRESS")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property PER_COUNTRY() As System.Nullable(Of Decimal)
+            Get
+                Return Me.PER_COUNTRYField
+            End Get
+            Set
+                If (Me.PER_COUNTRYField.Equals(value) <> true) Then
+                    Me.PER_COUNTRYField = value
+                    Me.RaisePropertyChanged("PER_COUNTRY")
                 End If
             End Set
         End Property

@@ -154,4 +154,8 @@
     'noi sinh
     Public Property BIRTH_PLACEID As Decimal?
     Public Property BIRTH_PLACENAME As String
+    ''''''''''''''''''''''''''''''''''''''''''''
+    Public Property IS_FOREIGNER As Boolean?
+    Public Property DATEOFENTRY As Date?
+    Public Property PER_COUNTRY As Decimal?
 End Class

@@ -18,7 +18,7 @@ Imports System.Runtime.Serialization
 Imports System.Xml.Serialization
 
 
-<Assembly: EdmSchemaAttribute("212972df-7da7-4542-9641-a5ff174704cc")>
+<Assembly: EdmSchemaAttribute("7b2ef439-da01-4aed-93ca-d93164736845")>
 #Region "EDM Relationship Metadata"
 <Assembly: EdmRelationshipAttribute("ProfileModel", "FK_HU_NAT_HU_PRO", "HU_NATION", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_NATION), "HU_PROVINCE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_PROVINCE), True)>
 <Assembly: EdmRelationshipAttribute("ProfileModel", "FK_HU_PRO_HU_DIS", "HU_PROVINCE", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_PROVINCE), "HU_DISTRICT", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_DISTRICT), True)>
@@ -26768,6 +26768,81 @@ Public Partial Class HU_EMPLOYEE_CV
     End Sub
 
     Private Partial Sub OnID_REMARKChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property IS_FOREIGNER() As Nullable(Of Global.System.Int16)
+        Get
+            Return _IS_FOREIGNER
+        End Get
+        Set
+            OnIS_FOREIGNERChanging(value)
+            ReportPropertyChanging("IS_FOREIGNER")
+            _IS_FOREIGNER = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("IS_FOREIGNER")
+            OnIS_FOREIGNERChanged()
+        End Set
+    End Property
+
+    Private _IS_FOREIGNER As Nullable(Of Global.System.Int16)
+    Private Partial Sub OnIS_FOREIGNERChanging(value As Nullable(Of Global.System.Int16))
+    End Sub
+
+    Private Partial Sub OnIS_FOREIGNERChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property DATEOFENTRY() As Nullable(Of Global.System.DateTime)
+        Get
+            Return _DATEOFENTRY
+        End Get
+        Set
+            OnDATEOFENTRYChanging(value)
+            ReportPropertyChanging("DATEOFENTRY")
+            _DATEOFENTRY = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("DATEOFENTRY")
+            OnDATEOFENTRYChanged()
+        End Set
+    End Property
+
+    Private _DATEOFENTRY As Nullable(Of Global.System.DateTime)
+    Private Partial Sub OnDATEOFENTRYChanging(value As Nullable(Of Global.System.DateTime))
+    End Sub
+
+    Private Partial Sub OnDATEOFENTRYChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property PER_COUNTRY() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _PER_COUNTRY
+        End Get
+        Set
+            OnPER_COUNTRYChanging(value)
+            ReportPropertyChanging("PER_COUNTRY")
+            _PER_COUNTRY = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("PER_COUNTRY")
+            OnPER_COUNTRYChanged()
+        End Set
+    End Property
+
+    Private _PER_COUNTRY As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnPER_COUNTRYChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnPER_COUNTRYChanged()
     End Sub
 
     #End Region
