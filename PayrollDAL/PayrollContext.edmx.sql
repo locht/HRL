@@ -1,8 +1,8 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for Oracle database
 -- --------------------------------------------------
--- Date Created: 17/09/2019 11:40:19 AM
--- Generated from EDMX file: E:\TNG2\PayrollDAL\PayrollContext.edmx
+-- Date Created: 2/26/2020 4:07:32 PM
+-- Generated from EDMX file: D:\SOURCE_GIT_NEW\ACV\PayrollDAL\PayrollContext.edmx
 -- --------------------------------------------------
 
 -- --------------------------------------------------
@@ -162,6 +162,8 @@
 -- DROP TABLE "PayrollModelStoreContainer"."HU_TITLE";
 
 -- DROP TABLE "PayrollModelStoreContainer"."PA_SALE_COMMISION";
+
+-- DROP TABLE "PayrollModelStoreContainer"."HUV_ORGANIZATION";
 
 -- --------------------------------------------------
 -- Creating all tables
@@ -975,7 +977,8 @@ CREATE TABLE "dbo"."HU_ALLOWANCE_LIST" (
    "ORDERS" NUMBER(38,0) NULL,
    "IS_CONTRACT" NUMBER(5,0) NULL,
    "IS_INSURANCE" NUMBER(5,0) NULL,
-   "IS_PAY" NUMBER(5,0) NULL
+   "IS_PAY" NUMBER(5,0) NULL,
+   "ALLOWANCE_GROUP" NUMBER(38,0) NULL
 );
 
 -- Creating table 'HU_ALLOWANCE'

@@ -983,6 +983,7 @@
             <Property Name="IS_CONTRACT" Type="number" Nullable="true" Precision="5" />
             <Property Name="IS_INSURANCE" Type="number" Nullable="true" Precision="5" />
             <Property Name="IS_PAY" Type="number" Nullable="true" Precision="5" />
+            <Property Name="ALLOWANCE_GROUP" Type="number" Nullable="true" Precision="38" />
         </EntityType>
         <EntityType Name="HU_ALLOWANCE">
             <Key>
@@ -2847,6 +2848,7 @@
           <Property Type="Int16" Name="IS_CONTRACT" />
           <Property Type="Int16" Name="IS_INSURANCE" />
           <Property Type="Int16" Name="IS_PAY" />
+          <Property Type="Decimal" Name="ALLOWANCE_GROUP" />
         </EntityType>
         <EntityType Name="HU_ALLOWANCE">
           <Key>
@@ -4175,6 +4177,7 @@
                     <ScalarProperty Name="IS_CONTRACT" ColumnName="IS_CONTRACT" />
                     <ScalarProperty Name="IS_INSURANCE" ColumnName="IS_INSURANCE" />
                     <ScalarProperty Name="IS_PAY" ColumnName="IS_PAY" />
+                    <ScalarProperty Name="ALLOWANCE_GROUP" ColumnName="ALLOWANCE_GROUP" />
                 </MappingFragment>
             </EntityTypeMapping>
         </EntitySetMapping>
@@ -4782,7 +4785,7 @@
         <EntityTypeShape EntityType="PayrollModel.PA_LISTSAL" Width="1.5" PointX="13.625" PointY="10.75" Height="4.0956022135416674" />
         <EntityTypeShape EntityType="PayrollModel.PA_LISTSALARIES" Width="1.5" PointX="13.625" PointY="15.75" Height="7.1724251302083246" />
         <EntityTypeShape EntityType="PayrollModel.PA_TAXATION" Width="1.5" PointX="16.375" PointY="6.75" Height="4.2879036458333246" />
-        <EntityTypeShape EntityType="PayrollModel.HU_ALLOWANCE_LIST" Width="2.625" PointX="16.375" PointY="12.75" Height="4.0956022135416674" />
+        <EntityTypeShape EntityType="PayrollModel.HU_ALLOWANCE_LIST" Width="2.625" PointX="16.375" PointY="12.75" Height="4.2879036458333353" />
         <EntityTypeShape EntityType="PayrollModel.HU_ALLOWANCE" Width="1.75" PointX="0.75" PointY="17.75" Height="3.7109993489583246" />
         <EntityTypeShape EntityType="PayrollModel.PA_SEND_PAYSLIP" Width="1.5" PointX="9.625" PointY="17.75" Height="3.1340950520833246" />
         <EntityTypeShape EntityType="PayrollModel.PA_SEND_PAYSLIP_EMP" Width="1.5" PointX="16.625" PointY="17.75" Height="1.595683593749996" />

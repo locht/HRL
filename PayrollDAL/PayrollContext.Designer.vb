@@ -18,7 +18,7 @@ Imports System.Runtime.Serialization
 Imports System.Xml.Serialization
 
 
-<Assembly: EdmSchemaAttribute("dfeaae76-ed69-4db4-9365-1c190adfe8ff")>
+<Assembly: EdmSchemaAttribute("d78c9cb4-e594-42c5-8b20-4a971ce9a23a")>
 #Region "EDM Relationship Metadata"
 <Assembly: EdmRelationshipAttribute("PayrollModel", "FK_PSG_PSL", "PA_SALARY_GROUP", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(PA_SALARY_GROUP), "PA_SALARY_LEVEL", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(PA_SALARY_LEVEL), True)>
 <Assembly: EdmRelationshipAttribute("PayrollModel", "FK_PSL_PSR", "PA_SALARY_LEVEL", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(PA_SALARY_LEVEL), "PA_SALARY_RANK", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(PA_SALARY_RANK), True)>
@@ -2898,6 +2898,31 @@ Public Partial Class HU_ALLOWANCE_LIST
     End Sub
 
     Private Partial Sub OnIS_PAYChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property ALLOWANCE_GROUP() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _ALLOWANCE_GROUP
+        End Get
+        Set
+            OnALLOWANCE_GROUPChanging(value)
+            ReportPropertyChanging("ALLOWANCE_GROUP")
+            _ALLOWANCE_GROUP = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("ALLOWANCE_GROUP")
+            OnALLOWANCE_GROUPChanged()
+        End Set
+    End Property
+
+    Private _ALLOWANCE_GROUP As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnALLOWANCE_GROUPChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnALLOWANCE_GROUPChanged()
     End Sub
 
     #End Region
