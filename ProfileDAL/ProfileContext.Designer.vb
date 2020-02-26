@@ -18,7 +18,7 @@ Imports System.Runtime.Serialization
 Imports System.Xml.Serialization
 
 
-<Assembly: EdmSchemaAttribute("e7b23186-b0be-4242-956e-f9bfd8087872")>
+<Assembly: EdmSchemaAttribute("212972df-7da7-4542-9641-a5ff174704cc")>
 #Region "EDM Relationship Metadata"
 <Assembly: EdmRelationshipAttribute("ProfileModel", "FK_HU_NAT_HU_PRO", "HU_NATION", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_NATION), "HU_PROVINCE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_PROVINCE), True)>
 <Assembly: EdmRelationshipAttribute("ProfileModel", "FK_HU_PRO_HU_DIS", "HU_PROVINCE", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_PROVINCE), "HU_DISTRICT", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_DISTRICT), True)>
@@ -63374,11 +63374,9 @@ Public Partial Class HUV_ORGANIZATION
     ''' Create a new HUV_ORGANIZATION object.
     ''' </summary>
     ''' <param name="id">Initial value of the ID property.</param>
-    ''' <param name="hU_ORG_TITLEID">Initial value of the HU_ORG_TITLEID property.</param>
-    Public Shared Function CreateHUV_ORGANIZATION(id As Global.System.Decimal, hU_ORG_TITLEID As Global.System.Decimal) As HUV_ORGANIZATION
+    Public Shared Function CreateHUV_ORGANIZATION(id As Global.System.Decimal) As HUV_ORGANIZATION
         Dim hUV_ORGANIZATION as HUV_ORGANIZATION = New HUV_ORGANIZATION
         hUV_ORGANIZATION.ID = id
-        hUV_ORGANIZATION.HU_ORG_TITLEID = hU_ORG_TITLEID
         Return hUV_ORGANIZATION
     End Function
 
@@ -64261,31 +64259,6 @@ Public Partial Class HUV_ORGANIZATION
     End Sub
 
     Private Partial Sub OnORG_PATHChanged()
-    End Sub
-
-    ''' <summary>
-    ''' No Metadata Documentation available.
-    ''' </summary>
-    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=false)>
-    <DataMemberAttribute()>
-    Public Property HU_ORG_TITLEID() As Global.System.Decimal
-        Get
-            Return _HU_ORG_TITLEID
-        End Get
-        Set
-            OnHU_ORG_TITLEIDChanging(value)
-            ReportPropertyChanging("HU_ORG_TITLEID")
-            _HU_ORG_TITLEID = StructuralObject.SetValidValue(value)
-            ReportPropertyChanged("HU_ORG_TITLEID")
-            OnHU_ORG_TITLEIDChanged()
-        End Set
-    End Property
-
-    Private _HU_ORG_TITLEID As Global.System.Decimal
-    Private Partial Sub OnHU_ORG_TITLEIDChanging(value As Global.System.Decimal)
-    End Sub
-
-    Private Partial Sub OnHU_ORG_TITLEIDChanged()
     End Sub
 
     #End Region

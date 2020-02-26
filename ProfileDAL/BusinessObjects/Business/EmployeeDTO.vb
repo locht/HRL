@@ -102,7 +102,13 @@
     Public Property IS_HAZARDOUS As Boolean
     'TẠM HOÃN HDLD
     Public Property IS_HDLD As Boolean
-
-
-
+    ' ORG ID CAP 2 3 4 5 
+    Public Property ORG_ID2 As Decimal
+    Public Property ORG_NAME2 As String
+    Public Property ORG_ID3 As Decimal
+    Public Property ORG_NAME3 As String
+    Public Property ORG_ID4 As Decimal
+    Public Property ORG_NAME4 As String
+    Public Property ORG_ID5 As Decimal
+    Public Property ORG_NAME5 As String
 End Class

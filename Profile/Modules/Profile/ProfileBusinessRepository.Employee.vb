@@ -266,6 +266,23 @@ Partial Public Class ProfileBusinessRepository
         End Using
 
     End Function
+
+    Public Function GetOrganizationTreeByID(ByVal _filter As OrganizationTreeDTO) As OrganizationTreeDTO
+        Dim lstOrganization As OrganizationTreeDTO
+
+        Using rep As New ProfileBusinessClient
+            Try
+                lstOrganization = rep.GetOrganizationTreeByID(_filter)
+                Return lstOrganization
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+
+        Return Nothing
+    End Function
+
 #End Region
 
 #Region "Employee Proccess"

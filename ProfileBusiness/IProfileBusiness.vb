@@ -2743,6 +2743,8 @@ Namespace ProfileBusiness.ServiceContracts
                                        ByVal P_DATE As Date) As Boolean
 #End Region
 
+        <OperationContract()>
+        Function GetOrganizationTreeByID(ByVal _filter As OrganizationTreeDTO) As OrganizationTreeDTO
 
         <OperationContract()>
         Function GET_PROCESS_PLCONTRACT(ByVal P_EMP_CODE As String) As DataTable

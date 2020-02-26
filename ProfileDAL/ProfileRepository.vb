@@ -1450,6 +1450,17 @@ Public Class ProfileRepository
                         .NAME = p.NAME_VN}).ToList
             _combolistDTO.LIST_RELATION = query
         End If
+        'Danh mục đối tượng nhân viên
+        If _combolistDTO.GET_EMPLOYEE_OBJECT Then
+            query = (From p In Context.OT_OTHER_LIST Where p.ACTFLG = "A" Order By p.NAME_VN.ToUpper
+                     From t In Context.OT_OTHER_LIST_TYPE.Where(Function(t) t.ID = p.TYPE_ID And t.CODE = "EMPLOYEE_OBJECT")
+                     Order By p.NAME_VN
+                     Select New OtherListDTO With {
+                        .ID = p.ID,
+                        .NAME_VN = p.NAME_VN,
+                        .NAME_EN = p.NAME_EN}).ToList
+            _combolistDTO.LIST_EMPLOYEE_OBJECT = query
+        End If
         'TransferType = New_Hire -- Dùng khi thêm mới quyết định khi thêm nhân viên trong hồ sơ.
         If _combolistDTO.GET_TRANSFER_TYPE_NEW_HIRE Then
             query = (From p In Context.OT_OTHER_LIST _

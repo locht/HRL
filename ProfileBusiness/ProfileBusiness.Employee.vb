@@ -223,6 +223,19 @@ Namespace ProfileBusiness.ServiceImplementations
                 End Try
             End Using
         End Function
+        Public Function GetOrganizationTreeByID(ByVal _filter As OrganizationTreeDTO) As OrganizationTreeDTO _
+    Implements ServiceContracts.IProfileBusiness.GetOrganizationTreeByID
+            Using rep As New ProfileRepository
+                Try
+
+                    Dim lst = rep.GetOrganizationTreeByID(_filter)
+                    Return lst
+                Catch ex As Exception
+
+                    Throw ex
+                End Try
+            End Using
+        End Function
 
 #End Region
 

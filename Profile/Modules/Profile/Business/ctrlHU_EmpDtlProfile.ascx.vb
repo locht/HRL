@@ -226,6 +226,20 @@ Public Class ctrlHU_EmpDtlProfile
                             btnFindOrg.Enabled = False
                             EnableRadCombo(cboTitle, False)
                         End If
+                        If EmployeeInfo.EMPLOYEE_OBJECT IsNot Nothing Then
+                            cboEMPLOYEE_OBJECT.SelectedValue = EmployeeInfo.EMPLOYEE_OBJECT
+                            cboEMPLOYEE_OBJECT.Text = EmployeeInfo.EMPLOYEE_OBJECT_NAME
+                        End If
+                        chkIs_Hazardous.Checked = EmployeeInfo.IS_HAZARDOUS
+                        chkIS_HDLD.Checked = EmployeeInfo.IS_HDLD
+                        txtOrg_C2.Text = EmployeeInfo.ORG_NAME2
+                        txtOrg_C3.Text = EmployeeInfo.ORG_NAME3
+                        txtOrg_C4.Text = EmployeeInfo.ORG_NAME4
+                        txtOrg_C5.Text = EmployeeInfo.ORG_NAME5
+                        txtOrg_C3_1.Text = EmployeeInfo.ORG_NAME3
+                        txtOrg_C4_1.Text = EmployeeInfo.ORG_NAME4
+                        txtOrg_C5_1.Text = EmployeeInfo.ORG_NAME5
+                        'txtOrg_C2.Text = EmployeeInfo.ORG_NAME2
                         Dim empCV As EmployeeCVDTO
                         Dim empEdu As EmployeeEduDTO
                         Dim empHealth As EmployeeHealthDTO
@@ -483,6 +497,8 @@ Public Class ctrlHU_EmpDtlProfile
                                 cboRelationNLH.SelectedValue = empCV.RELATION_PER_CTR
                                 cboRelationNLH.Text = empCV.RELATION_PER_CTR_NAME
                             End If
+                            ''''''''''''''
+                         
                             txtAddressPerContract.Text = empCV.ADDRESS_PER_CTR
 
                             'chkDangPhi.Checked = False
@@ -777,14 +793,26 @@ Public Class ctrlHU_EmpDtlProfile
                 dtData = rep.GetOtherList("OBJECT_INS")
                 FillRadCombobox(cboObjectIns, dtData, "NAME", "ID")
                 cboObjectIns.SelectedIndex = 1
+                '''''''''''''''''''''''''''''''''
+                'dtData = rep.GetOtherList("EMPLOYEE_OBJECT")
+                'FillDropDownList(cboEMPLOYEE_OBJECT, dtData, "NAME", "ID", Common.Common.SystemLanguage, True, cboRelationNLH.SelectedValue)
+                ''cboObjectIns.SelectedIndex = 1
+
+
                 If ComboBoxDataDTO Is Nothing Then
                     ComboBoxDataDTO = New ComboBoxDataDTO
                     ComboBoxDataDTO.GET_RELATION = True
+                    ComboBoxDataDTO.GET_EMPLOYEE_OBJECT = True
                     rep.GetComboList(ComboBoxDataDTO)
                 End If
 
                 If ComboBoxDataDTO IsNot Nothing Then
                     FillDropDownList(cboRelationNLH, ComboBoxDataDTO.LIST_RELATION, "NAME", "ID", Common.Common.SystemLanguage, True, cboRelationNLH.SelectedValue)
+                End If
+
+
+                If ComboBoxDataDTO IsNot Nothing Then
+                    FillDropDownList(cboEMPLOYEE_OBJECT, ComboBoxDataDTO.LIST_EMPLOYEE_OBJECT, "NAME_VN", "ID", Common.Common.SystemLanguage, True, cboEMPLOYEE_OBJECT.SelectedValue)
                 End If
 
             End Using
@@ -901,7 +929,7 @@ Public Class ctrlHU_EmpDtlProfile
                                         ckQD, rtDV_Xuat_Ngu_CA, rdNgay_Xuat_Ngu_CA, rdNgay_Nhap_Ngu_CA,
                                        ckNU_CONG, ckCONG_DOAN, ckCA, ckDANG, rtSkill,
                                        cbQLNN, cbLLCT, cbTDTH, cboTDTH2, rtTTSucKhoe,
-                                       cboPROVINCEEMP_BRITH, cboDISTRICTEMP_BRITH, cboWARDEMP_BRITH, ckCHUHO, txtNoHouseHolds, txtCodeHouseHolds, cboObjectIns)
+                                       cboPROVINCEEMP_BRITH, cboDISTRICTEMP_BRITH, cboWARDEMP_BRITH, ckCHUHO, txtNoHouseHolds, txtCodeHouseHolds, cboObjectIns, cboEMPLOYEE_OBJECT, chkIs_Hazardous, chkIS_HDLD)
                     If Not Me.AllowCreate Then
                         txtFirstNameVN.ReadOnly = True
                         txtLastNameVN.ReadOnly = True
@@ -955,7 +983,7 @@ Public Class ctrlHU_EmpDtlProfile
                                             ckQD, rtDV_Xuat_Ngu_CA, rdNgay_Xuat_Ngu_CA, rdNgay_Nhap_Ngu_CA,
                                            ckNU_CONG, ckCONG_DOAN, ckCA, ckDANG, rtSkill,
                                            cbQLNN, cbLLCT, cbTDTH, cboTDTH2, rtTTSucKhoe,
-                                           cboPROVINCEEMP_BRITH, cboDISTRICTEMP_BRITH, cboWARDEMP_BRITH, ckCHUHO, txtNoHouseHolds, txtCodeHouseHolds, cboObjectIns)
+                                           cboPROVINCEEMP_BRITH, cboDISTRICTEMP_BRITH, cboWARDEMP_BRITH, ckCHUHO, txtNoHouseHolds, txtCodeHouseHolds, cboObjectIns, cboEMPLOYEE_OBJECT, chkIs_Hazardous, chkIS_HDLD)
                     Else
                         EnableControlAll(False, txtOrgName2,
                                txtTitleGroup, txtDirectManager,
@@ -999,7 +1027,7 @@ Public Class ctrlHU_EmpDtlProfile
                                             ckQD, rtDV_Xuat_Ngu_CA, rdNgay_Xuat_Ngu_CA, rdNgay_Nhap_Ngu_CA,
                                            ckNU_CONG, ckCONG_DOAN, ckCA, ckDANG, rtSkill,
                                            cbQLNN, cbLLCT, cbTDTH, cboTDTH2, rtTTSucKhoe,
-                                           cboPROVINCEEMP_BRITH, cboDISTRICTEMP_BRITH, cboWARDEMP_BRITH, ckCHUHO, txtNoHouseHolds, txtCodeHouseHolds, cboObjectIns)
+                                           cboPROVINCEEMP_BRITH, cboDISTRICTEMP_BRITH, cboWARDEMP_BRITH, ckCHUHO, txtNoHouseHolds, txtCodeHouseHolds, cboObjectIns, cboEMPLOYEE_OBJECT, chkIs_Hazardous, chkIS_HDLD)
 
                     End If
 
@@ -1046,7 +1074,7 @@ Public Class ctrlHU_EmpDtlProfile
                                       rtDV_Xuat_Ngu_QD, rdNgay_Xuat_Ngu_QD, rdNgay_Nhap_Ngu_QD, ckQD, rtDV_Xuat_Ngu_CA, rdNgay_Xuat_Ngu_CA, rdNgay_Nhap_Ngu_CA,
                                       rdNgay_TG_Ban_Nu_Cong, rtCV_Ban_Nu_Cong, ckNU_CONG, rdNgay_TG_BanTT, rtCV_BANTT, ckCONG_DOAN, ckCA, ckDANG, rtSkill,
                                       cbQLNN, cbLLCT, cbTDTH, cboTDTH2, rtTTSucKhoe,
-                                      cboPROVINCEEMP_BRITH, cboDISTRICTEMP_BRITH, cboWARDEMP_BRITH, ckCHUHO, txtNoHouseHolds, txtCodeHouseHolds, cboObjectIns, txtTitleGroup)
+                                      cboPROVINCEEMP_BRITH, cboDISTRICTEMP_BRITH, cboWARDEMP_BRITH, ckCHUHO, txtNoHouseHolds, txtCodeHouseHolds, cboObjectIns, txtTitleGroup, cboEMPLOYEE_OBJECT, chkIs_Hazardous, chkIS_HDLD)
                     Else
                         EnableControlAll(True, btnFindOrg, cboTitle, cboObjectLabor, btnFindDirect)
                         EnableControlAll(False, lstbPaper, lstbPaperFiled, cboWorkStatus, cboEmpStatus, txtEmpCODE,
@@ -1081,7 +1109,7 @@ Public Class ctrlHU_EmpDtlProfile
                                       rtDV_Xuat_Ngu_QD, rdNgay_Xuat_Ngu_QD, rdNgay_Nhap_Ngu_QD, ckQD, rtDV_Xuat_Ngu_CA, rdNgay_Xuat_Ngu_CA, rdNgay_Nhap_Ngu_CA,
                                       rdNgay_TG_Ban_Nu_Cong, rtCV_Ban_Nu_Cong, ckNU_CONG, rdNgay_TG_BanTT, rtCV_BANTT, ckCONG_DOAN, ckCA, ckDANG, rtSkill,
                                       cbQLNN, cbLLCT, cbTDTH, cboTDTH2, rtTTSucKhoe,
-                                      cboPROVINCEEMP_BRITH, cboDISTRICTEMP_BRITH, cboWARDEMP_BRITH, ckCHUHO, txtNoHouseHolds, txtCodeHouseHolds, cboObjectIns, txtTitleGroup)
+                                      cboPROVINCEEMP_BRITH, cboDISTRICTEMP_BRITH, cboWARDEMP_BRITH, ckCHUHO, txtNoHouseHolds, txtCodeHouseHolds, cboObjectIns, txtTitleGroup, cboEMPLOYEE_OBJECT, chkIs_Hazardous, chkIS_HDLD)
                     End If
 
 
@@ -1510,7 +1538,7 @@ Public Class ctrlHU_EmpDtlProfile
         cboPer_Province.ItemsRequested, cboReligion.ItemsRequested, cboStaffRank.ItemsRequested, cboTitle.ItemsRequested,
         cboWorkStatus.ItemsRequested, cboEmpStatus.ItemsRequested, cboGraduateSchool.ItemsRequested, cbWARDEMP_ID.ItemsRequested, cbDISTRICTEMP_ID.ItemsRequested, cbPROVINCEEMP_ID.ItemsRequested,
         cboPer_District.ItemsRequested, cboPer_Ward.ItemsRequested, cboNav_District.ItemsRequested, cboNav_Ward.ItemsRequested, cbPROVINCENQ_ID.ItemsRequested, cbBirth_PlaceId.ItemsRequested, cboObjectLabor.ItemsRequested,
-         cboPROVINCEEMP_BRITH.ItemsRequested, cboDISTRICTEMP_BRITH.ItemsRequested, cboWARDEMP_BRITH.ItemsRequested, cboRelationNLH.ItemsRequested
+         cboPROVINCEEMP_BRITH.ItemsRequested, cboDISTRICTEMP_BRITH.ItemsRequested, cboWARDEMP_BRITH.ItemsRequested, cboRelationNLH.ItemsRequested, cboEMPLOYEE_OBJECT.ItemsRequested
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
         Try
             Dim startTime As DateTime = DateTime.UtcNow
@@ -1736,6 +1764,19 @@ Public Class ctrlHU_EmpDtlProfile
             If orgItem IsNot Nothing Then
                 hidOrgID.Value = e.CurrentValue
                 FillDataInControls(e.CurrentValue)
+
+                Using rep As New ProfileBusinessRepository
+                    Dim ID = orgItem.ID
+                    Dim obj = rep.GetOrganizationTreeByID(New OrganizationTreeDTO With {.ID = ID})
+                    txtOrg_C2.Text = obj.ORG_NAME2
+                    txtOrg_C3.Text = obj.ORG_NAME3
+                    txtOrg_C4.Text = obj.ORG_NAME4
+                    txtOrg_C5.Text = obj.ORG_NAME5
+                    txtOrg_C3_1.Text = obj.ORG_NAME3
+                    txtOrg_C4_1.Text = obj.ORG_NAME4
+                    txtOrg_C5_1.Text = obj.ORG_NAME5
+                End Using
+
             End If
             cboTitle.ClearValue()
             ' cboInsRegion.ClearValue()
@@ -1955,7 +1996,7 @@ Public Class ctrlHU_EmpDtlProfile
                           cboLanguage, cboLanguage2, cboLearningLevel, txtLoaiSucKhoe, cboMajor, cboNationlity, cboNative, cboNav_Province, cboPer_Province,
                           cboReligion, cboStaffRank, cboTitle, cboWorkStatus, cboEmpStatus,
                           cboPer_District, cboPer_Ward, cboNav_District, cboNav_Ward,
-                          hidID, hidOrgID, hidDirectManager, hidLevelManager, chkDoanPhi)
+                          hidID, hidOrgID, hidDirectManager, hidLevelManager, chkDoanPhi, cboEMPLOYEE_OBJECT, chkIs_Hazardous, chkIS_HDLD)
             'chkDoanPhi.Checked = True
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
@@ -2181,6 +2222,11 @@ Public Class ctrlHU_EmpDtlProfile
             If cboRelationNLH.SelectedValue <> "" Then
                 EmpCV.RELATION_PER_CTR = Decimal.Parse(cboRelationNLH.SelectedValue)
             End If
+            If cboEMPLOYEE_OBJECT.SelectedValue <> "" Then
+                EmployeeInfo.EMPLOYEE_OBJECT = Decimal.Parse(cboEMPLOYEE_OBJECT.SelectedValue)
+            End If
+            EmployeeInfo.IS_HAZARDOUS = CType(chkIs_Hazardous.Checked, Decimal)
+            EmployeeInfo.IS_HDLD = CType(chkIS_HDLD.Checked, Decimal)
             EmpCV.ADDRESS_PER_CTR = txtAddressPerContract.Text.Trim()
 
             ' EmpCV.DANG_PHI = chkDangPhi.Checked

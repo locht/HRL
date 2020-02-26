@@ -651,6 +651,7 @@ Partial Class ProfileRepository
                      From objectLabor In Context.OT_OTHER_LIST.Where(Function(f) f.ID = e.OBJECT_LABOR And
                                                                         f.TYPE_ID = 6963).DefaultIfEmpty
                     From obj_ins In Context.OT_OTHER_LIST.Where(Function(f) f.ID = e.OBJECT_INS).DefaultIfEmpty
+                     From huv_org In Context.HUV_ORGANIZATION.Where(Function(f) f.ID = org.ID).DefaultIfEmpty
                 Where (e.ID = empID)
                      Select New EmployeeDTO With {
                          .ID = e.ID,
@@ -701,7 +702,15 @@ Partial Class ProfileRepository
                          .ITIME_ID = e.ITIME_ID,
                          .TER_EFFECT_DATE = e.TER_EFFECT_DATE,
                          .OBJECT_LABOR = e.OBJECT_LABOR,
-                .OBJECT_LABOR_NAME = objectLabor.NAME_VN
+                        .OBJECT_LABOR_NAME = objectLabor.NAME_VN,
+                         .EMPLOYEE_OBJECT = e.EMPLOYEE_OBJECT,
+                         .EMPLOYEE_OBJECT_NAME = titlegroup.NAME_VN,
+                         .IS_HAZARDOUS = e.IS_HAZARDOUS,
+                        .IS_HDLD = e.IS_HDLD,
+                          .ORG_NAME2 = huv_org.ORG_NAME2,
+                         .ORG_NAME3 = huv_org.ORG_NAME3,
+                         .ORG_NAME4 = huv_org.ORG_NAME4,
+                         .ORG_NAME5 = huv_org.ORG_NAME5
                      }).FirstOrDefault
                 WriteExceptionLog(Nothing, "Getmployee1", "iProfile")
                 Dim emp As New EmployeeDTO
@@ -932,7 +941,11 @@ Partial Class ProfileRepository
             objEmpData.OBJECT_LABOR = objEmp.OBJECT_LABOR
             objEmpData.SENIORITY_DATE = objEmp.SENIORITY_DATE
             objEmpData.ITIME_ID = empCodeDB
+            objEmpData.EMPLOYEE_OBJECT = objEmp.EMPLOYEE_OBJECT
+            objEmpData.IS_HAZARDOUS = objEmp.IS_HAZARDOUS
+            objEmpData.IS_HDLD = objEmp.IS_HDLD
             Context.HU_EMPLOYEE.AddObject(objEmpData)
+
             'End Thông tin insert vào bảng HU_EMPLOYEE.
 
             ' Insert bảng HU_EMPLOYEE_PAPER
@@ -1350,7 +1363,9 @@ Partial Class ProfileRepository
             objEmpData.PA_OBJECT_SALARY_ID = 1 'objEmp.PA_OBJECT_SALARY_ID
 
             objEmpData.OBJECT_LABOR = objEmp.OBJECT_LABOR
-
+            objEmpData.EMPLOYEE_OBJECT = objEmp.EMPLOYEE_OBJECT
+            objEmpData.IS_HAZARDOUS = objEmp.IS_HAZARDOUS
+            objEmpData.IS_HDLD = objEmp.IS_HDLD
             Dim lstPaperDelete = (From p In Context.HU_EMPLOYEE_PAPER Where p.EMPLOYEE_ID = objEmpData.ID).ToList
             For Each item In lstPaperDelete
                 Context.HU_EMPLOYEE_PAPER.DeleteObject(item)
@@ -2094,6 +2109,35 @@ Partial Class ProfileRepository
     Public Function CheckEmpHasContract(ByVal strEmpCode As String) As Boolean
         Try
             Return (From p In Context.HU_CONTRACT Where p.HU_EMPLOYEE.EMPLOYEE_CODE = strEmpCode And p.OT_STATUS.CODE = "1").Count > 0
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iProfile")
+            Throw ex
+        End Try
+    End Function
+    Public Function GetOrganizationTreeByID(ByVal _filter As OrganizationTreeDTO) As OrganizationTreeDTO
+        Try
+            'Dim OrganizationID = (From O In Context.HUV_ORGANIZATION
+            '                      Where O.ID = _filter.ID)
+            Dim query = From huv In Context.HUV_ORGANIZATION
+                        Where huv.ID = _filter.ID
+            Select New OrganizationTreeDTO With {.ID = huv.ID,
+                .ORG_ID1 = huv.ORG_ID1,
+                .ORG_ID2 = huv.ORG_ID2,
+                .ORG_ID3 = huv.ORG_ID3,
+                .ORG_ID4 = huv.ORG_ID4,
+                .ORG_ID5 = huv.ORG_ID5,
+                .ORG_ID6 = huv.ORG_ID6,
+                .ORG_ID7 = huv.ORG_ID7,
+                .ORG_NAME1 = huv.ORG_NAME1,
+                .ORG_NAME2 = huv.ORG_NAME2,
+                .ORG_NAME3 = huv.ORG_NAME3,
+                .ORG_NAME4 = huv.ORG_NAME4,
+                .ORG_NAME5 = huv.ORG_NAME5,
+                .ORG_NAME6 = huv.ORG_NAME6,
+                .ORG_NAME7 = huv.ORG_NAME7
+            }
+            Dim Organization = query.First()
+            Return query.FirstOrDefault
         Catch ex As Exception
             WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iProfile")
             Throw ex

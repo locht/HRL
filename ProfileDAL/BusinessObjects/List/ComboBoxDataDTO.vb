@@ -226,6 +226,9 @@
     'Danh sách OtherList - RELATION
     Public Property GET_RELATION As Boolean
     Public Property LIST_RELATION As List(Of RelationshipListDTO)
+    'danh sach đối tượng nhân viên EMPLOYEE_OBJECT
+    Public Property GET_EMPLOYEE_OBJECT As Boolean
+    Public Property LIST_EMPLOYEE_OBJECT As List(Of OtherListDTO)
 
     'OtherList - TRANSFERTYPE = NEW_HIRE
     Public Property GET_TRANSFER_TYPE_NEW_HIRE As Boolean
