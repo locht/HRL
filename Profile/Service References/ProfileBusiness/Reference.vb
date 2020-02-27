@@ -40487,6 +40487,9 @@ Namespace ProfileBusiness
         Private INS_REGION_NAMEField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private IS_ATVSField As System.Nullable(Of Boolean)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private IS_CHUHOField As System.Nullable(Of Boolean)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -40763,6 +40766,9 @@ Namespace ProfileBusiness
         Private WARDEMP_NAMEField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private WEDDINGDAYField As System.Nullable(Of Date)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private WORKPLACE_IDField As System.Nullable(Of Decimal)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -40770,6 +40776,18 @@ Namespace ProfileBusiness
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private WORK_EMAILField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private WORK_HNField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private WORK_HN_DATEField As System.Nullable(Of Date)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private WORK_HN_EXPIREField As System.Nullable(Of Date)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private WORK_HN_PLACEField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private WORK_PERMITField As String
@@ -41478,6 +41496,19 @@ Namespace ProfileBusiness
                 If (Object.ReferenceEquals(Me.INS_REGION_NAMEField, value) <> true) Then
                     Me.INS_REGION_NAMEField = value
                     Me.RaisePropertyChanged("INS_REGION_NAME")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property IS_ATVS() As System.Nullable(Of Boolean)
+            Get
+                Return Me.IS_ATVSField
+            End Get
+            Set
+                If (Me.IS_ATVSField.Equals(value) <> true) Then
+                    Me.IS_ATVSField = value
+                    Me.RaisePropertyChanged("IS_ATVS")
                 End If
             End Set
         End Property
@@ -42679,6 +42710,19 @@ Namespace ProfileBusiness
         End Property
         
         <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property WEDDINGDAY() As System.Nullable(Of Date)
+            Get
+                Return Me.WEDDINGDAYField
+            End Get
+            Set
+                If (Me.WEDDINGDAYField.Equals(value) <> true) Then
+                    Me.WEDDINGDAYField = value
+                    Me.RaisePropertyChanged("WEDDINGDAY")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
         Public Property WORKPLACE_ID() As System.Nullable(Of Decimal)
             Get
                 Return Me.WORKPLACE_IDField
@@ -42713,6 +42757,58 @@ Namespace ProfileBusiness
                 If (Object.ReferenceEquals(Me.WORK_EMAILField, value) <> true) Then
                     Me.WORK_EMAILField = value
                     Me.RaisePropertyChanged("WORK_EMAIL")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property WORK_HN() As String
+            Get
+                Return Me.WORK_HNField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.WORK_HNField, value) <> true) Then
+                    Me.WORK_HNField = value
+                    Me.RaisePropertyChanged("WORK_HN")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property WORK_HN_DATE() As System.Nullable(Of Date)
+            Get
+                Return Me.WORK_HN_DATEField
+            End Get
+            Set
+                If (Me.WORK_HN_DATEField.Equals(value) <> true) Then
+                    Me.WORK_HN_DATEField = value
+                    Me.RaisePropertyChanged("WORK_HN_DATE")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property WORK_HN_EXPIRE() As System.Nullable(Of Date)
+            Get
+                Return Me.WORK_HN_EXPIREField
+            End Get
+            Set
+                If (Me.WORK_HN_EXPIREField.Equals(value) <> true) Then
+                    Me.WORK_HN_EXPIREField = value
+                    Me.RaisePropertyChanged("WORK_HN_EXPIRE")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property WORK_HN_PLACE() As String
+            Get
+                Return Me.WORK_HN_PLACEField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.WORK_HN_PLACEField, value) <> true) Then
+                    Me.WORK_HN_PLACEField = value
+                    Me.RaisePropertyChanged("WORK_HN_PLACE")
                 End If
             End Set
         End Property

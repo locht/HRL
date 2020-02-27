@@ -1,7 +1,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for Oracle database
 -- --------------------------------------------------
--- Date Created: 2/27/2020 10:27:04 AM
+-- Date Created: 2/27/2020 4:03:39 PM
 -- Generated from EDMX file: E:\dự án 2\New folder\acv_19\ProfileDAL\ProfileContext.edmx
 -- --------------------------------------------------
 
@@ -681,7 +681,13 @@ CREATE TABLE "dbo"."HU_EMPLOYEE_CV" (
    "DATEOFENTRY" DATE NULL,
    "PER_COUNTRY" NUMBER(38,0) NULL,
    "NATIONEMP_ID" NUMBER(38,0) NULL,
-   "NAV_COUNTRY" NUMBER(38,0) NULL
+   "NAV_COUNTRY" NUMBER(38,0) NULL,
+   "WEDDINGDAY" DATE NULL,
+   "WORK_HN" NVARCHAR2(255) NULL,
+   "WORK_HN_DATE" DATE NULL,
+   "WORK_HN_EXPIRE" DATE NULL,
+   "WORK_HN_PLACE" NVARCHAR2(255) NULL,
+   "IS_ATVS" NUMBER(5,0) NULL
 );
 
 -- Creating table 'HU_EMPLOYEE_HEALTH'

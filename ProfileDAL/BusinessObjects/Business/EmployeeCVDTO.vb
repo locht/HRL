@@ -166,4 +166,13 @@
     ' quốc tịch tạm trú
     Public Property NAV_COUNTRY As Decimal?
     Public Property NAV_COUNTRY_NAME As String
+
+    Public Property WEDDINGDAY As Date?
+    'giấy phép hàng nghề
+    Public Property WORK_HN As String
+    Public Property WORK_HN_DATE As Date?
+    Public Property WORK_HN_EXPIRE As Date?
+    Public Property WORK_HN_PLACE As String
+
+    Public Property IS_ATVS As Boolean?
 End Class

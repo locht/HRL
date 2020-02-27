@@ -18,7 +18,7 @@ Imports System.Runtime.Serialization
 Imports System.Xml.Serialization
 
 
-<Assembly: EdmSchemaAttribute("8afe1ff0-d688-454f-9478-5c5789558141")>
+<Assembly: EdmSchemaAttribute("0c69f0f3-f312-4f0a-914d-080aae8febfb")>
 #Region "EDM Relationship Metadata"
 <Assembly: EdmRelationshipAttribute("ProfileModel", "FK_HU_NAT_HU_PRO", "HU_NATION", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_NATION), "HU_PROVINCE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_PROVINCE), True)>
 <Assembly: EdmRelationshipAttribute("ProfileModel", "FK_HU_PRO_HU_DIS", "HU_PROVINCE", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_PROVINCE), "HU_DISTRICT", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_DISTRICT), True)>
@@ -26918,6 +26918,156 @@ Public Partial Class HU_EMPLOYEE_CV
     End Sub
 
     Private Partial Sub OnNAV_COUNTRYChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property WEDDINGDAY() As Nullable(Of Global.System.DateTime)
+        Get
+            Return _WEDDINGDAY
+        End Get
+        Set
+            OnWEDDINGDAYChanging(value)
+            ReportPropertyChanging("WEDDINGDAY")
+            _WEDDINGDAY = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("WEDDINGDAY")
+            OnWEDDINGDAYChanged()
+        End Set
+    End Property
+
+    Private _WEDDINGDAY As Nullable(Of Global.System.DateTime)
+    Private Partial Sub OnWEDDINGDAYChanging(value As Nullable(Of Global.System.DateTime))
+    End Sub
+
+    Private Partial Sub OnWEDDINGDAYChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property WORK_HN() As Global.System.String
+        Get
+            Return _WORK_HN
+        End Get
+        Set
+            OnWORK_HNChanging(value)
+            ReportPropertyChanging("WORK_HN")
+            _WORK_HN = StructuralObject.SetValidValue(value, true)
+            ReportPropertyChanged("WORK_HN")
+            OnWORK_HNChanged()
+        End Set
+    End Property
+
+    Private _WORK_HN As Global.System.String
+    Private Partial Sub OnWORK_HNChanging(value As Global.System.String)
+    End Sub
+
+    Private Partial Sub OnWORK_HNChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property WORK_HN_DATE() As Nullable(Of Global.System.DateTime)
+        Get
+            Return _WORK_HN_DATE
+        End Get
+        Set
+            OnWORK_HN_DATEChanging(value)
+            ReportPropertyChanging("WORK_HN_DATE")
+            _WORK_HN_DATE = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("WORK_HN_DATE")
+            OnWORK_HN_DATEChanged()
+        End Set
+    End Property
+
+    Private _WORK_HN_DATE As Nullable(Of Global.System.DateTime)
+    Private Partial Sub OnWORK_HN_DATEChanging(value As Nullable(Of Global.System.DateTime))
+    End Sub
+
+    Private Partial Sub OnWORK_HN_DATEChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property WORK_HN_EXPIRE() As Nullable(Of Global.System.DateTime)
+        Get
+            Return _WORK_HN_EXPIRE
+        End Get
+        Set
+            OnWORK_HN_EXPIREChanging(value)
+            ReportPropertyChanging("WORK_HN_EXPIRE")
+            _WORK_HN_EXPIRE = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("WORK_HN_EXPIRE")
+            OnWORK_HN_EXPIREChanged()
+        End Set
+    End Property
+
+    Private _WORK_HN_EXPIRE As Nullable(Of Global.System.DateTime)
+    Private Partial Sub OnWORK_HN_EXPIREChanging(value As Nullable(Of Global.System.DateTime))
+    End Sub
+
+    Private Partial Sub OnWORK_HN_EXPIREChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property WORK_HN_PLACE() As Global.System.String
+        Get
+            Return _WORK_HN_PLACE
+        End Get
+        Set
+            OnWORK_HN_PLACEChanging(value)
+            ReportPropertyChanging("WORK_HN_PLACE")
+            _WORK_HN_PLACE = StructuralObject.SetValidValue(value, true)
+            ReportPropertyChanged("WORK_HN_PLACE")
+            OnWORK_HN_PLACEChanged()
+        End Set
+    End Property
+
+    Private _WORK_HN_PLACE As Global.System.String
+    Private Partial Sub OnWORK_HN_PLACEChanging(value As Global.System.String)
+    End Sub
+
+    Private Partial Sub OnWORK_HN_PLACEChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property IS_ATVS() As Nullable(Of Global.System.Int16)
+        Get
+            Return _IS_ATVS
+        End Get
+        Set
+            OnIS_ATVSChanging(value)
+            ReportPropertyChanging("IS_ATVS")
+            _IS_ATVS = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("IS_ATVS")
+            OnIS_ATVSChanged()
+        End Set
+    End Property
+
+    Private _IS_ATVS As Nullable(Of Global.System.Int16)
+    Private Partial Sub OnIS_ATVSChanging(value As Nullable(Of Global.System.Int16))
+    End Sub
+
+    Private Partial Sub OnIS_ATVSChanged()
     End Sub
 
     #End Region
