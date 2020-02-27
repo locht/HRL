@@ -258,6 +258,7 @@ Public Class ctrlHU_EmpDtlProfile
                             End If
 
                             rdExpireIDNO.SelectedDate = empCV.EXPIRE_DATE_IDNO
+                            rdDateOfEntry.SelectedDate = empCV.DATEOFENTRY
                             txtPerson_Inheritance.Text = empCV.PERSON_INHERITANCE
                             rdEffect_Bank.SelectedDate = empCV.EFFECTDATE_BANK
                             'txtPlaceKS.Text = empCV.BIRTH_PLACE
@@ -339,6 +340,9 @@ Public Class ctrlHU_EmpDtlProfile
                             End If
                             If IsNumeric(empCV.IS_CHUHO) Then
                                 ckCHUHO.Checked = CType(empCV.IS_CHUHO, Boolean)
+                            End If
+                            If IsNumeric(empCV.IS_FOREIGNER) Then
+                                chkForeigner.Checked = CType(empCV.IS_FOREIGNER, Boolean)
                             End If
                             If IsNumeric(empCV.CA) Then
                                 ckCA.Checked = CType(empCV.CA, Boolean)
@@ -430,6 +434,18 @@ Public Class ctrlHU_EmpDtlProfile
                                 cboNationlity.SelectedValue = empCV.NATIONALITY
                                 cboNationlity.Text = empCV.NATIONALITY_NAME
                             End If
+                            If empCV.PER_COUNTRY IsNot Nothing Then
+                                cboNationa_TT.SelectedValue = empCV.PER_COUNTRY
+                                cboNationa_TT.Text = empCV.PER_COUNTRY_NAME
+                            End If
+                            If empCV.NATIONEMP_ID IsNot Nothing Then
+                                cboNationlity_NQ.SelectedValue = empCV.NATIONEMP_ID
+                                cboNationlity_NQ.Text = empCV.NATIONEMP_ID_NAME
+                            End If
+                            If empCV.NAV_COUNTRY IsNot Nothing Then
+                                cboNationlity_TTRU.SelectedValue = empCV.NAV_COUNTRY
+                                cboNationlity_TTRU.Text = empCV.NAV_COUNTRY_NAME
+                            End If
                             txtNavAddress.Text = empCV.NAV_ADDRESS
                             If empCV.NAV_PROVINCE IsNot Nothing Then
                                 cboNav_Province.SelectedValue = empCV.NAV_PROVINCE
@@ -467,7 +483,7 @@ Public Class ctrlHU_EmpDtlProfile
                             txtID_NO.Text = empCV.ID_NO
                             rdIDDate.SelectedDate = empCV.ID_DATE
                             SetValueComboBox(cboIDPlace, empCV.ID_PLACE, empCV.PLACE_NAME)
-                            txtIDRemark.Text = empCV.ID_REMARK
+                            'txtIDRemark.Text = empCV.ID_REMARK
                             ' cboIDPlace.SelectedValue = empCV.ID_PLACE
                             'Hộ chiếu
                             txtPassNo.Text = empCV.PASS_NO
@@ -901,10 +917,10 @@ Public Class ctrlHU_EmpDtlProfile
                     EnableControlAll(True, rdNgay_Nhap_Ngu_QD, rdNgay_Xuat_Ngu_QD, rtDV_Xuat_Ngu_QD)
                     EnableControlAll(True, cbHang_Thuong_Binh, cbGD_Chinh_Sach)
                     EnableControlAll(True, lstbPaper, lstbPaperFiled,
-                                        txtBankNo, chkSaveHistory, ckBanTT_ND, rdExpireIDNO,
+                                        txtBankNo, chkSaveHistory, ckBanTT_ND, rdExpireIDNO, rdDateOfEntry,
                                        txtDaHoaLieu, rtDiem_XL_TH, txtDiem_XL_TH2, txtNoteTDTH1, txtNoteTDTH2,
                                        txtFirstNameVN, txtGhiChuSK, txtNamTN,
-                                       txtHomePhone, txtHuyetAp, txtID_NO, txtIDRemark, chkIs_pay_bank,
+                                       txtHomePhone, txtHuyetAp, txtID_NO, chkIs_pay_bank,
                                        cboIDPlace, txtLangMark, txtLangMark2,
                                        txtLastNameVN, txtMatPhai, txtMatTrai,
                                        txtMobilePhone, txtNavAddress, txtNhomMau, cboCertificate, cboBasic,
@@ -919,7 +935,7 @@ Public Class ctrlHU_EmpDtlProfile
                                        txtCanNang, txtChieuCao,
                                        cboAcademy, cboGraduateSchool, cboBank, cboBankBranch, cboFamilyStatus, rtWorkplace,
                                        cboGender, cboLangLevel, cboLangLevel2, cboLanguage, cboLanguage2, cboLearningLevel, txtLoaiSucKhoe,
-                                       cboMajor, cboNationlity, cboNative, cboNav_Province, cboPer_Province,
+                                       cboMajor, cboNationlity, cboNative, cboNav_Province, cboPer_Province, cboNationa_TT, cboNationlity_NQ, cboNationlity_TTRU,
                                        cboReligion,
                                        cboPer_District, cboPer_Ward, cboNav_District, cboNav_Ward, cbPROVINCEEMP_ID, cbDISTRICTEMP_ID, cbWARDEMP_ID, cbPROVINCENQ_ID, cbBirth_PlaceId,
                                        hidID, hidOrgID, hidDirectManager, hidLevelManager,
@@ -929,7 +945,7 @@ Public Class ctrlHU_EmpDtlProfile
                                         ckQD, rtDV_Xuat_Ngu_CA, rdNgay_Xuat_Ngu_CA, rdNgay_Nhap_Ngu_CA,
                                        ckNU_CONG, ckCONG_DOAN, ckCA, ckDANG, rtSkill,
                                        cbQLNN, cbLLCT, cbTDTH, cboTDTH2, rtTTSucKhoe,
-                                       cboPROVINCEEMP_BRITH, cboDISTRICTEMP_BRITH, cboWARDEMP_BRITH, ckCHUHO, txtNoHouseHolds, txtCodeHouseHolds, cboObjectIns, cboEMPLOYEE_OBJECT, chkIs_Hazardous, chkIS_HDLD)
+                                       cboPROVINCEEMP_BRITH, cboDISTRICTEMP_BRITH, cboWARDEMP_BRITH, ckCHUHO, txtNoHouseHolds, txtCodeHouseHolds, cboObjectIns, cboEMPLOYEE_OBJECT, chkIs_Hazardous, chkIS_HDLD, chkForeigner)
                     If Not Me.AllowCreate Then
                         txtFirstNameVN.ReadOnly = True
                         txtLastNameVN.ReadOnly = True
@@ -954,9 +970,9 @@ Public Class ctrlHU_EmpDtlProfile
                         EnableControlAll(True, cbHang_Thuong_Binh, cbGD_Chinh_Sach)
                         EnableControlAll(True, lstbPaper, lstbPaperFiled, chkSaveHistory,
                                             txtBankNo, ckBanTT_ND, rtDiem_XL_TH, txtDiem_XL_TH2, txtNoteTDTH1, txtNoteTDTH2,
-                                           txtDaHoaLieu, txtNamTN, rdExpireIDNO, txtAppDung, txtPlaceKS, txtVillage, txtPlacePitcode, rdDayPitcode, txtPerson_Inheritance, rdEffect_Bank,
+                                           txtDaHoaLieu, txtNamTN, rdExpireIDNO, txtAppDung, txtPlaceKS, txtVillage, txtPlacePitcode, rdDayPitcode, txtPerson_Inheritance, rdEffect_Bank, rdDateOfEntry,
                                            txtFirstNameVN, txtGhiChuSK, chkIs_pay_bank,
-                                           txtHomePhone, txtHuyetAp, txtID_NO, txtIDRemark,
+                                           txtHomePhone, txtHuyetAp, txtID_NO,
                                            cboIDPlace, txtLangMark, txtLangMark2, txtTimeID,
                                            txtLastNameVN, txtMatPhai, txtMatTrai,
                                            txtMobilePhone, txtNavAddress, txtNhomMau,
@@ -972,7 +988,7 @@ Public Class ctrlHU_EmpDtlProfile
                                            cboAcademy, cboGraduateSchool, cboBank, cboBankBranch, cboFamilyStatus,
                                            cboGender, cboLangLevel, cboLangLevel2, rtWorkplace,
                                            cboLanguage, cboLanguage2, cboLearningLevel, txtLoaiSucKhoe,
-                                           cboMajor, cboNationlity, cboNative, cboNav_Province, cboPer_Province,
+                                           cboMajor, cboNationlity, cboNative, cboNav_Province, cboPer_Province, cboNationa_TT, cboNationlity_NQ, cboNationlity_TTRU,
                                            cboReligion,
                                            cboPer_District, cboPer_Ward, cboNav_District, cboNav_Ward,
                                            hidID, hidOrgID, hidDirectManager, hidLevelManager,
@@ -983,7 +999,7 @@ Public Class ctrlHU_EmpDtlProfile
                                             ckQD, rtDV_Xuat_Ngu_CA, rdNgay_Xuat_Ngu_CA, rdNgay_Nhap_Ngu_CA,
                                            ckNU_CONG, ckCONG_DOAN, ckCA, ckDANG, rtSkill,
                                            cbQLNN, cbLLCT, cbTDTH, cboTDTH2, rtTTSucKhoe,
-                                           cboPROVINCEEMP_BRITH, cboDISTRICTEMP_BRITH, cboWARDEMP_BRITH, ckCHUHO, txtNoHouseHolds, txtCodeHouseHolds, cboObjectIns, cboEMPLOYEE_OBJECT, chkIs_Hazardous, chkIS_HDLD)
+                                           cboPROVINCEEMP_BRITH, cboDISTRICTEMP_BRITH, cboWARDEMP_BRITH, ckCHUHO, txtNoHouseHolds, txtCodeHouseHolds, cboObjectIns, cboEMPLOYEE_OBJECT, chkIs_Hazardous, chkIS_HDLD, chkForeigner)
                     Else
                         EnableControlAll(False, txtOrgName2,
                                txtTitleGroup, txtDirectManager,
@@ -998,9 +1014,9 @@ Public Class ctrlHU_EmpDtlProfile
                         EnableControlAll(True, cbHang_Thuong_Binh, cbGD_Chinh_Sach)
                         EnableControlAll(True, lstbPaper, lstbPaperFiled, chkSaveHistory,
                                             txtBankNo, ckBanTT_ND, rtDiem_XL_TH, txtDiem_XL_TH2, txtNoteTDTH1, txtNoteTDTH2,
-                                           txtDaHoaLieu, txtNamTN, rdExpireIDNO, txtAppDung, txtPlaceKS, txtVillage, txtPlacePitcode, rdDayPitcode, txtPerson_Inheritance, rdEffect_Bank,
+                                           txtDaHoaLieu, txtNamTN, rdExpireIDNO, txtAppDung, txtPlaceKS, txtVillage, txtPlacePitcode, rdDayPitcode, txtPerson_Inheritance, rdEffect_Bank, rdDateOfEntry,
                                            txtFirstNameVN, txtGhiChuSK, chkIs_pay_bank,
-                                           txtHomePhone, txtHuyetAp, txtID_NO, txtIDRemark,
+                                           txtHomePhone, txtHuyetAp, txtID_NO,
                                            cboIDPlace, txtLangMark, txtLangMark2,
                                            txtLastNameVN, txtMatPhai, txtMatTrai,
                                            txtMobilePhone, txtNavAddress, txtNhomMau,
@@ -1016,7 +1032,7 @@ Public Class ctrlHU_EmpDtlProfile
                                            cboAcademy, cboGraduateSchool, cboBank, cboBankBranch, cboFamilyStatus,
                                            cboGender, cboLangLevel, cboLangLevel2, rtWorkplace,
                                            cboLanguage, cboLanguage2, cboLearningLevel, txtLoaiSucKhoe,
-                                           cboMajor, cboNationlity, cboNative, cboNav_Province, cboPer_Province,
+                                           cboMajor, cboNationlity, cboNative, cboNav_Province, cboPer_Province, cboNationa_TT, cboNationlity_NQ, cboNationlity_TTRU,
                                            cboReligion,
                                            cboPer_District, cboPer_Ward, cboNav_District, cboNav_Ward,
                                            hidID, hidOrgID, hidDirectManager, hidLevelManager,
@@ -1027,7 +1043,7 @@ Public Class ctrlHU_EmpDtlProfile
                                             ckQD, rtDV_Xuat_Ngu_CA, rdNgay_Xuat_Ngu_CA, rdNgay_Nhap_Ngu_CA,
                                            ckNU_CONG, ckCONG_DOAN, ckCA, ckDANG, rtSkill,
                                            cbQLNN, cbLLCT, cbTDTH, cboTDTH2, rtTTSucKhoe,
-                                           cboPROVINCEEMP_BRITH, cboDISTRICTEMP_BRITH, cboWARDEMP_BRITH, ckCHUHO, txtNoHouseHolds, txtCodeHouseHolds, cboObjectIns, cboEMPLOYEE_OBJECT, chkIs_Hazardous, chkIS_HDLD)
+                                           cboPROVINCEEMP_BRITH, cboDISTRICTEMP_BRITH, cboWARDEMP_BRITH, ckCHUHO, txtNoHouseHolds, txtCodeHouseHolds, cboObjectIns, cboEMPLOYEE_OBJECT, chkIs_Hazardous, chkIS_HDLD, chkForeigner)
 
                     End If
 
@@ -1045,10 +1061,10 @@ Public Class ctrlHU_EmpDtlProfile
                                       txtBankNo, chkSaveHistory, ckDOAN_PHI, rtCHUC_VU_DANG, rdNGAY_VAO_DOAN,
                                       txtDaHoaLieu, rdNGAY_VAO_DANG_DB, rdNGAY_VAO_DANG, ckBanTT_ND, txtNamTN,
                                       txtFirstNameVN, txtGhiChuSK, rtCHUC_VU_DOAN, rtDiem_XL_TH, txtDiem_XL_TH2, txtNoteTDTH1, txtNoteTDTH2,
-                                      txtHomePhone, txtHuyetAp, txtID_NO, txtIDRemark, chkIs_pay_bank,
+                                      txtHomePhone, txtHuyetAp, txtID_NO, chkIs_pay_bank,
                                       cboIDPlace, txtLangMark, txtLangMark2, txtTimeID,
                                       txtLastNameVN, txtMatPhai, txtMatTrai,
-                                      txtMobilePhone, txtNavAddress, txtNhomMau, cboCertificate, cboBasic, rdExpireIDNO,
+                                      txtMobilePhone, txtNavAddress, txtNhomMau, cboCertificate, cboBasic, rdExpireIDNO, rdDateOfEntry,
                                        txtPassNo, txtPassPlace, cboObject, cboObjectLabor, cbObjectBook, txtTimeID, cboCertificate, cboBasic, txtAppDung, txtPlaceKS, txtVillage, rdDayPitcode, txtPlacePitcode, txtPerson_Inheritance, rdEffect_Bank,
                                       txtPerAddress, txtPerEmail, txtPhoiNguc, txtCareer,
                                       txtPitCode, txtRangHamMat, txtTaiMuiHong, txtTim,
@@ -1062,7 +1078,7 @@ Public Class ctrlHU_EmpDtlProfile
                                       cboAcademy, cboGraduateSchool, cboBank, cboBankBranch, cboFamilyStatus,
                                       cboGender, cboLangLevel, cboLangLevel2, rtWorkplace, cboInsRegion,
                                       cboLanguage, cboLanguage2, cboLearningLevel, txtLoaiSucKhoe,
-                                      cboMajor, cboNationlity, cboNative, cboNav_Province, cboPer_Province,
+                                      cboMajor, cboNationlity, cboNative, cboNav_Province, cboPer_Province, cboNationa_TT, cboNationlity_NQ, cboNationlity_TTRU,
                                       cboReligion, cboStaffRank, cboTitle,
                                       cboPer_District, cboPer_Ward, cboNav_District, cboNav_Ward,
                                       hidID, hidOrgID, hidDirectManager, hidLevelManager,
@@ -1074,17 +1090,17 @@ Public Class ctrlHU_EmpDtlProfile
                                       rtDV_Xuat_Ngu_QD, rdNgay_Xuat_Ngu_QD, rdNgay_Nhap_Ngu_QD, ckQD, rtDV_Xuat_Ngu_CA, rdNgay_Xuat_Ngu_CA, rdNgay_Nhap_Ngu_CA,
                                       rdNgay_TG_Ban_Nu_Cong, rtCV_Ban_Nu_Cong, ckNU_CONG, rdNgay_TG_BanTT, rtCV_BANTT, ckCONG_DOAN, ckCA, ckDANG, rtSkill,
                                       cbQLNN, cbLLCT, cbTDTH, cboTDTH2, rtTTSucKhoe,
-                                      cboPROVINCEEMP_BRITH, cboDISTRICTEMP_BRITH, cboWARDEMP_BRITH, ckCHUHO, txtNoHouseHolds, txtCodeHouseHolds, cboObjectIns, txtTitleGroup, cboEMPLOYEE_OBJECT, chkIs_Hazardous, chkIS_HDLD)
+                                      cboPROVINCEEMP_BRITH, cboDISTRICTEMP_BRITH, cboWARDEMP_BRITH, ckCHUHO, txtNoHouseHolds, txtCodeHouseHolds, cboObjectIns, txtTitleGroup, cboEMPLOYEE_OBJECT, chkIs_Hazardous, chkIS_HDLD, chkForeigner)
                     Else
                         EnableControlAll(True, btnFindOrg, cboTitle, cboObjectLabor, btnFindDirect)
                         EnableControlAll(False, lstbPaper, lstbPaperFiled, cboWorkStatus, cboEmpStatus, txtEmpCODE,
                                       txtBankNo, chkSaveHistory, ckDOAN_PHI, rtCHUC_VU_DANG, rdNGAY_VAO_DOAN,
                                       txtDaHoaLieu, rdNGAY_VAO_DANG_DB, rdNGAY_VAO_DANG, ckBanTT_ND, txtNamTN,
                                       txtFirstNameVN, txtGhiChuSK, rtCHUC_VU_DOAN, rtDiem_XL_TH, txtDiem_XL_TH2, txtNoteTDTH1, txtNoteTDTH2,
-                                      txtHomePhone, txtHuyetAp, txtID_NO, txtIDRemark, chkIs_pay_bank,
+                                      txtHomePhone, txtHuyetAp, txtID_NO, chkIs_pay_bank,
                                       cboIDPlace, txtLangMark, txtLangMark2, txtTimeID,
                                       txtLastNameVN, txtMatPhai, txtMatTrai,
-                                      txtMobilePhone, txtNavAddress, txtNhomMau, cboCertificate, cboBasic, rdExpireIDNO,
+                                      txtMobilePhone, txtNavAddress, txtNhomMau, cboCertificate, cboBasic, rdExpireIDNO, rdDateOfEntry,
                                        txtPassNo, txtPassPlace, cboObject, cbObjectBook, txtTimeID, cboCertificate, cboBasic, txtAppDung, txtPlaceKS, txtVillage, rdDayPitcode, txtPlacePitcode, txtPerson_Inheritance, rdEffect_Bank,
                                       txtPerAddress, txtPerEmail, txtPhoiNguc, txtCareer,
                                       txtPitCode, txtRangHamMat, txtTaiMuiHong, txtTim,
@@ -1098,7 +1114,7 @@ Public Class ctrlHU_EmpDtlProfile
                                       cboAcademy, cboGraduateSchool, cboBank, cboBankBranch, cboFamilyStatus,
                                       cboGender, cboLangLevel, cboLangLevel2, rtWorkplace, cboInsRegion,
                                       cboLanguage, cboLanguage2, cboLearningLevel, txtLoaiSucKhoe,
-                                      cboMajor, cboNationlity, cboNative, cboNav_Province, cboPer_Province,
+                                      cboMajor, cboNationlity, cboNative, cboNav_Province, cboPer_Province, cboNationa_TT, cboNationlity_NQ, cboNationlity_TTRU,
                                       cboReligion, cboStaffRank,
                                       cboPer_District, cboPer_Ward, cboNav_District, cboNav_Ward,
                                       hidID, hidOrgID, hidDirectManager, hidLevelManager,
@@ -1109,7 +1125,7 @@ Public Class ctrlHU_EmpDtlProfile
                                       rtDV_Xuat_Ngu_QD, rdNgay_Xuat_Ngu_QD, rdNgay_Nhap_Ngu_QD, ckQD, rtDV_Xuat_Ngu_CA, rdNgay_Xuat_Ngu_CA, rdNgay_Nhap_Ngu_CA,
                                       rdNgay_TG_Ban_Nu_Cong, rtCV_Ban_Nu_Cong, ckNU_CONG, rdNgay_TG_BanTT, rtCV_BANTT, ckCONG_DOAN, ckCA, ckDANG, rtSkill,
                                       cbQLNN, cbLLCT, cbTDTH, cboTDTH2, rtTTSucKhoe,
-                                      cboPROVINCEEMP_BRITH, cboDISTRICTEMP_BRITH, cboWARDEMP_BRITH, ckCHUHO, txtNoHouseHolds, txtCodeHouseHolds, cboObjectIns, txtTitleGroup, cboEMPLOYEE_OBJECT, chkIs_Hazardous, chkIS_HDLD)
+                                      cboPROVINCEEMP_BRITH, cboDISTRICTEMP_BRITH, cboWARDEMP_BRITH, ckCHUHO, txtNoHouseHolds, txtCodeHouseHolds, cboObjectIns, txtTitleGroup, cboEMPLOYEE_OBJECT, chkIs_Hazardous, chkIS_HDLD, chkForeigner)
                     End If
 
 
@@ -1538,7 +1554,7 @@ Public Class ctrlHU_EmpDtlProfile
         cboPer_Province.ItemsRequested, cboReligion.ItemsRequested, cboStaffRank.ItemsRequested, cboTitle.ItemsRequested,
         cboWorkStatus.ItemsRequested, cboEmpStatus.ItemsRequested, cboGraduateSchool.ItemsRequested, cbWARDEMP_ID.ItemsRequested, cbDISTRICTEMP_ID.ItemsRequested, cbPROVINCEEMP_ID.ItemsRequested,
         cboPer_District.ItemsRequested, cboPer_Ward.ItemsRequested, cboNav_District.ItemsRequested, cboNav_Ward.ItemsRequested, cbPROVINCENQ_ID.ItemsRequested, cbBirth_PlaceId.ItemsRequested, cboObjectLabor.ItemsRequested,
-         cboPROVINCEEMP_BRITH.ItemsRequested, cboDISTRICTEMP_BRITH.ItemsRequested, cboWARDEMP_BRITH.ItemsRequested, cboRelationNLH.ItemsRequested, cboEMPLOYEE_OBJECT.ItemsRequested
+         cboPROVINCEEMP_BRITH.ItemsRequested, cboDISTRICTEMP_BRITH.ItemsRequested, cboWARDEMP_BRITH.ItemsRequested, cboRelationNLH.ItemsRequested, cboEMPLOYEE_OBJECT.ItemsRequested, cboNationa_TT.ItemsRequested, cboNationlity_NQ.ItemsRequested, cboNationlity_TTRU.ItemsRequested
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
         Try
             Dim startTime As DateTime = DateTime.UtcNow
@@ -1576,6 +1592,12 @@ Public Class ctrlHU_EmpDtlProfile
                     Case cboMajor.ID
                         dtData = rep.GetOtherList("MAJOR", True)
                     Case cboNationlity.ID
+                        dtData = rep.GetNationList(True)
+                    Case cboNationa_TT.ID
+                        dtData = rep.GetNationList(True)
+                    Case cboNationlity_NQ.ID
+                        dtData = rep.GetNationList(True)
+                    Case cboNationlity_TTRU.ID
                         dtData = rep.GetNationList(True)
                     Case cboNative.ID
                         dtData = rep.GetOtherList("NATIVE", True)
@@ -1977,7 +1999,7 @@ Public Class ctrlHU_EmpDtlProfile
             ClearControlValue(txtBankNo,
                           txtDaHoaLieu, txtDirectManager, txtmanager,
                           txtFirstNameVN, txtGhiChuSK,
-                          txtHomePhone, txtHuyetAp, txtID_NO, txtIDRemark,
+                          txtHomePhone, txtHuyetAp, txtID_NO,
                           cboIDPlace, txtLangMark, txtLangMark2, txtTimeID,
                           txtLastNameVN, txtMatPhai, txtMatTrai,
                           txtMobilePhone, txtNavAddress, txtNhomMau,
@@ -1993,7 +2015,7 @@ Public Class ctrlHU_EmpDtlProfile
                           txtCanNang, txtChieuCao,
                           cboAcademy, cboGraduateSchool, cboBank, cboBankBranch, cboFamilyStatus,
                           cboGender, cboLangLevel, cboLangLevel2, cboInsRegion, rtWorkplace, cboCertificate, cboBasic,
-                          cboLanguage, cboLanguage2, cboLearningLevel, txtLoaiSucKhoe, cboMajor, cboNationlity, cboNative, cboNav_Province, cboPer_Province,
+                          cboLanguage, cboLanguage2, cboLearningLevel, txtLoaiSucKhoe, cboMajor, cboNationlity, cboNative, cboNav_Province, cboPer_Province, cboNationa_TT, cboNationlity_NQ,
                           cboReligion, cboStaffRank, cboTitle, cboWorkStatus, cboEmpStatus,
                           cboPer_District, cboPer_Ward, cboNav_District, cboNav_Ward,
                           hidID, hidOrgID, hidDirectManager, hidLevelManager, chkDoanPhi, cboEMPLOYEE_OBJECT, chkIs_Hazardous, chkIS_HDLD)
@@ -2115,8 +2137,9 @@ Public Class ctrlHU_EmpDtlProfile
                 EmployeeInfo.EMP_STATUS = cboEmpStatus.SelectedValue
             End If
             EmpCV = New EmployeeCVDTO
-            'THEM CHO NAY
+            'THEM CHO NAY rdDateOfEntry
             EmpCV.EXPIRE_DATE_IDNO = rdExpireIDNO.SelectedDate
+            EmpCV.DATEOFENTRY = rdDateOfEntry.SelectedDate
             EmpCV.PERSON_INHERITANCE = txtPerson_Inheritance.Text
             EmpCV.EFFECTDATE_BANK = rdEffect_Bank.SelectedDate
             'EmpCV.BIRTH_PLACE = txtPlaceKS.Text
@@ -2167,6 +2190,15 @@ Public Class ctrlHU_EmpDtlProfile
             If cboNationlity.SelectedValue <> "" Then
                 EmpCV.NATIONALITY = Decimal.Parse(cboNationlity.SelectedValue)
             End If
+            If cboNationa_TT.SelectedValue <> "" Then
+                EmpCV.PER_COUNTRY = Decimal.Parse(cboNationa_TT.SelectedValue)
+            End If
+            If cboNationlity_NQ.SelectedValue <> "" Then
+                EmpCV.NATIONEMP_ID = Decimal.Parse(cboNationlity_NQ.SelectedValue)
+            End If
+            If cboNationlity_TTRU.SelectedValue <> "" Then
+                EmpCV.NAV_COUNTRY = Decimal.Parse(cboNationlity_TTRU.SelectedValue)
+            End If
             EmpCV.NAV_ADDRESS = txtNavAddress.Text.Trim()
             If cboNav_Province.SelectedValue <> "" Then
                 EmpCV.NAV_PROVINCE = Decimal.Parse(cboNav_Province.SelectedValue)
@@ -2194,7 +2226,7 @@ Public Class ctrlHU_EmpDtlProfile
             EmpCV.ID_NO = txtID_NO.Text.Trim()
             EmpCV.ID_DATE = rdIDDate.SelectedDate
             EmpCV.ID_PLACE = GetValueFromComboBox(cboIDPlace)
-            EmpCV.ID_REMARK = txtIDRemark.Text.Trim()
+            'EmpCV.ID_REMARK = txtIDRemark.Text.Trim()
             'Hộ chiếu
             EmpCV.PASS_NO = txtPassNo.Text.Trim()
             EmpCV.PASS_DATE = rdPassDate.SelectedDate
@@ -2280,6 +2312,9 @@ Public Class ctrlHU_EmpDtlProfile
             End If
             If IsNumeric(ckCHUHO.Checked) Then
                 EmpCV.IS_CHUHO = CType(ckCHUHO.Checked, Decimal)
+            End If
+            If IsNumeric(chkForeigner.Checked) Then
+                EmpCV.IS_FOREIGNER = CType(chkForeigner.Checked, Decimal)
             End If
             If IsNumeric(ckCA.Checked) Then
                 EmpCV.CA = CType(ckCA.Checked, Decimal)

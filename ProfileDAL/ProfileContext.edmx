@@ -589,6 +589,8 @@
             <Property Name="IS_FOREIGNER" Type="number" Nullable="true" Precision="5" />
             <Property Name="DATEOFENTRY" Type="date" Nullable="true" />
             <Property Name="PER_COUNTRY" Type="number" Nullable="true" Precision="38" />
+            <Property Name="NATIONEMP_ID" Type="number" Nullable="true" Precision="38" />
+            <Property Name="NAV_COUNTRY" Type="number" Nullable="true" Precision="38" />
         </EntityType>
         <EntityType Name="HU_EMPLOYEE_HEALTH">
             <Key>
@@ -4869,6 +4871,8 @@
           <Property Type="Int16" Name="IS_FOREIGNER" />
           <Property Type="DateTime" Name="DATEOFENTRY" />
           <Property Type="Decimal" Name="PER_COUNTRY" Nullable="true" />
+          <Property Type="Decimal" Name="NATIONEMP_ID" Nullable="true" />
+          <Property Type="Decimal" Name="NAV_COUNTRY" Nullable="true" />
         </EntityType>
         <EntityType Name="HU_EMPLOYEE_HEALTH">
           <Key>
@@ -8728,6 +8732,8 @@
                     <ScalarProperty Name="IS_FOREIGNER" ColumnName="IS_FOREIGNER" />
                     <ScalarProperty Name="DATEOFENTRY" ColumnName="DATEOFENTRY" />
                     <ScalarProperty Name="PER_COUNTRY" ColumnName="PER_COUNTRY" />
+                    <ScalarProperty Name="NATIONEMP_ID" ColumnName="NATIONEMP_ID" />
+                    <ScalarProperty Name="NAV_COUNTRY" ColumnName="NAV_COUNTRY" />
                 </MappingFragment>
             </EntityTypeMapping>
         </EntitySetMapping>
@@ -12103,7 +12109,7 @@
     </Options>
     <!-- Diagram content (shape and connector positions) -->
     <Diagrams>
-      <Diagram Name="ProfileContext" ZoomLevel="71" ShowGrid="false" DisplayType="true" SnapToGrid="true">
+      <Diagram Name="ProfileContext" ZoomLevel="82" ShowGrid="false" DisplayType="true" SnapToGrid="true">
         <EntityTypeShape EntityType="ProfileModel.HU_PROVINCE" Width="1.5" PointX="3" PointY="9.625" Height="0.39999999999999858" IsExpanded="false" />
         <EntityTypeShape EntityType="ProfileModel.HU_DISTRICT" Width="1.75" PointX="5.25" PointY="9" Height="0.39999999999999858" IsExpanded="false" />
         <EntityTypeShape EntityType="ProfileModel.HU_NATION" Width="1.5" PointX="0.75" PointY="9.625" Height="0.40000000000000213" IsExpanded="false" />

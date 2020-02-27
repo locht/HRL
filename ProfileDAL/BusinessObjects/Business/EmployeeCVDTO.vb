@@ -157,5 +157,13 @@
     ''''''''''''''''''''''''''''''''''''''''''''
     Public Property IS_FOREIGNER As Boolean?
     Public Property DATEOFENTRY As Date?
+    'quốc tichjhthuong trú
     Public Property PER_COUNTRY As Decimal?
+    Public Property PER_COUNTRY_NAME As String
+    ''quốc tịch nguyên quán
+    Public Property NATIONEMP_ID As Decimal?
+    Public Property NATIONEMP_ID_NAME As String
+    ' quốc tịch tạm trú
+    Public Property NAV_COUNTRY As Decimal?
+    Public Property NAV_COUNTRY_NAME As String
 End Class

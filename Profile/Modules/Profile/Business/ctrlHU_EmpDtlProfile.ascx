@@ -138,7 +138,7 @@
                             <tlk:RadTextBox runat="server" ID="rtBookNo" Width="100px">
                             </tlk:RadTextBox>
                         </td>--%>
-         
+
                         <%-- <td class="lb3">
                             <asp:Label runat="server" ID="lbiTime" Text="Mã chấm công"></asp:Label>
                         </td>
@@ -147,10 +147,10 @@
                             </tlk:RadTextBox>
                         </td>--%>
                         <td class="lb">
-                            <asp:Label runat="server" ID="lbTimeID" Text="Mã chấm công"  ></asp:Label>
+                            <asp:Label runat="server" ID="lbTimeID" Text="Mã chấm công"></asp:Label>
                         </td>
                         <td>
-                            <tlk:RadTextBox ID="txtTimeID" runat="server" ReadOnly="true" Width="100px" >
+                            <tlk:RadTextBox ID="txtTimeID" runat="server" ReadOnly="true" Width="100px">
                             </tlk:RadTextBox>
                             <asp:CustomValidator ValidationGroup="EmpProfile" ID="cusTimeID" runat="server" ErrorMessage="Mã quẹt thẻ đã tồn tại"
                                 ToolTip="Mã quẹt thẻ đã tồn tại">
@@ -200,17 +200,19 @@
 
                     </tr>
                     <tr>
+                    
 
                          <td class="lb" >
                                <asp:Label runat="server" ID="lbEMPLOYEE_OBJECT" Text="Đối tượng nhân viên"></asp:Label>
-                                            <span class="lbReq">*</span>
+                                            <span class="lbReq"></span>
                           </td>
                             <td >
                                  <tlk:RadComboBox runat="server" ID="cboEMPLOYEE_OBJECT" SkinID="LoadDemand" OnClientSelectedIndexChanged="OnClientSelectedIndexChanged"
                                                 OnClientItemsRequesting="OnClientItemsRequesting">
                                   </tlk:RadComboBox>
                              </td>
-                           <td class="lb" >
+
+                          <td class="lb" >
                                             <asp:Label runat="server" ID="lbObject" Text="Đối tượng chấm công"></asp:Label>
                                             <span class="lbReq">*</span>
                                         </td>
@@ -219,15 +221,15 @@
                                                 OnClientItemsRequesting="OnClientItemsRequesting">
                                             </tlk:RadComboBox>
                                         </td>
-                                         <td>
+                                             <td>
                             <asp:CheckBox ID="chkIs_Hazardous" runat="server" Text="<%$ Translate: Môi trường độc hại %>"
                                 AutoPostBack="false"/>
                         </td>
                                <td>
                             <asp:CheckBox ID="chkIS_HDLD" runat="server" Text="<%$ Translate: Tạm hoãn HDLD %>"
-                                AutoPostBack="false"  />
+                                AutoPostBack="false" />
                         </td>
-                                                               <td>
+                                           <td>
                             <asp:CheckBox ID="chkSaveHistory" runat="server" Text="<%$ Translate: Có lưu lại lịch sử không? %>"
                                 AutoPostBack="false" Visible="false" Checked="true" />
                         </td>
@@ -329,7 +331,7 @@
                                             </tlk:RadComboBox>
                                         </td>
                                         <td class="lbInfo">
-                                            <asp:Label runat="server" ID="lbObjectLabor" Text="Loại hình lao động"></asp:Label>
+                                            <asp:Label runat="server" ID="lbObjectLabor" Text="Đối tượng lao động"></asp:Label>
                                             <span class="lbReq">*</span>
                                         </td>
                                         <td>
@@ -340,30 +342,30 @@
                                                 runat="server" ErrorMessage="Bạn phải nhập đối tượng lao động" ToolTip="Bạn phải nhập đối tượng lao động">
                                             </asp:RequiredFieldValidator>
                                         </td>
-                                              <td class="lb3">
-                                            <asp:Label runat="server" ID="lbOrg_C2" Text="Chi nhánh khối trung tâm"></asp:Label>
+                                       <td class="lb3">
+                                            <asp:Label runat="server" ID="lbOrg_C2" Text="Chi nhánh khối trung tâm"></asp:Label><span class="lbReq">*</span>
                                         </td>
                                         <td>
                                             <tlk:RadTextBox runat="server" ID="txtOrg_C2" ReadOnly="true" />
                                         </td>
                                     </tr>
-                                       <tr>
+                                    <tr>
                                     <td class="lb3">
-                                            <asp:Label runat="server" ID="lbOrg_C3" Text="Nhà máy/phòng"></asp:Label>
+                                            <asp:Label runat="server" ID="lbOrg_C3" Text="Nhà máy/phòng"></asp:Label><span class="lbReq">*</span>
                                         </td>
                                         <td>
                                             <tlk:RadTextBox runat="server" ID="txtOrg_C3" ReadOnly="true" />
                                         </td>
 
                                      <td class="lb3">
-                                            <asp:Label runat="server" ID="lbOrg_C4" Text="Ngành/VPDD"></asp:Label>
+                                            <asp:Label runat="server" ID="lbOrg_C4" Text="Ngành/VPDD"></asp:Label><span class="lbReq">*</span>
                                         </td>
                                         <td>
                                             <tlk:RadTextBox runat="server" ID="txtOrg_C4" ReadOnly="true" />
                                         </td>
 
                                             <td class="lb3">
-                                            <asp:Label runat="server" ID="lbOrg_C5" Text="Ca"></asp:Label>
+                                            <asp:Label runat="server" ID="lbOrg_C5" Text="Ca"></asp:Label><span class="lbReq">*</span>
                                         </td>
                                         <td>
                                             <tlk:RadTextBox runat="server" ID="txtOrg_C5" ReadOnly="true" />
@@ -372,21 +374,21 @@
                                     </tr>
                                       <tr>
                                     <td class="lb3">
-                                            <asp:Label runat="server" ID="lbOrg_C3_1" Text="Ban"></asp:Label>
+                                            <asp:Label runat="server" ID="lbOrg_C3_1" Text="Ban"></asp:Label><span class="lbReq">*</span>
                                         </td>
                                         <td>
                                             <tlk:RadTextBox runat="server" ID="txtOrg_C3_1" ReadOnly="true" />
                                         </td>
 
                                      <td class="lb3">
-                                            <asp:Label runat="server" ID="lbOrg_C4_1" Text="Bộ phận"></asp:Label>
+                                            <asp:Label runat="server" ID="lbOrg_C4_1" Text="Bộ phận"></asp:Label><span class="lbReq">*</span>
                                         </td>
                                         <td>
                                             <tlk:RadTextBox runat="server" ID="txtOrg_C4_1" ReadOnly="true" />
                                         </td>
 
                                             <td class="lb3">
-                                            <asp:Label runat="server" ID="lbOrg_C5_1" Text="Tổ"></asp:Label>
+                                            <asp:Label runat="server" ID="lbOrg_C5_1" Text="Tổ"></asp:Label><span class="lbReq">*</span>
                                         </td>
                                         <td>
                                             <tlk:RadTextBox runat="server" ID="txtOrg_C5_1" ReadOnly="true" />
@@ -401,13 +403,7 @@
                                             <tlk:RadDatePicker runat="server" ID="rdSeniorityDate">
                                             </tlk:RadDatePicker>
                                         </td>
-                                        <td class="lb3">
-                                            <asp:Label runat="server" ID="Label4" Text="Ngày vào làm chính thức"></asp:Label>
-                                        </td>
-                                        <td>
-                                            <tlk:RadDatePicker runat="server" ID="rdJoinDateState" Enabled="false" DateInput-Enabled="false">
-                                            </tlk:RadDatePicker>
-                                        </td>
+                                       
                                         <td class="lb3">
                                             <asp:Label runat="server" ID="lbJoinDate" Text="Ngày vào làm/thử việc"></asp:Label>
                                         </td>
@@ -415,16 +411,10 @@
                                             <tlk:RadDatePicker runat="server" ID="rdJoinDate" Enabled="false" DateInput-Enabled="false">
                                             </tlk:RadDatePicker>
                                         </td>
-                                        <td class="lb3">
-                                            <asp:Label runat="server" ID="lbter_effect_date" Text="Ngày nghỉ việc"></asp:Label>
-                                        </td>
-                                        <td>
-                                            <tlk:RadDatePicker runat="server" ID="rdter_effect_date" Enabled="false" DateInput-Enabled="false">
-                                            </tlk:RadDatePicker>
-                                        </td>
+                                     
                                     </tr>
                                     <tr>
-                                    <td class="lb3">
+                                        <td class="lb3">
                                             <asp:Label runat="server" ID="lbContractNo" Text="Số hợp đồng"></asp:Label>
                                         </td>
                                         <td>
@@ -469,7 +459,239 @@
                                             <tlk:RadTextBox runat="server" ID="txtPlaceKS" Width="100%">
                                             </tlk:RadTextBox>
                                         </td>
+                                  <%--------------------------%>
+                                      <td class="lb3">
+                                            <asp:Label runat="server" ID="lbBirthDate" Text="Ngày sinh"></asp:Label>
+                                        </td>
+                                        <td>
+                                            <tlk:RadDatePicker runat="server" ID="rdBirthDate">
+                                            </tlk:RadDatePicker>
+                                        </td>
+                                         <td class="lb3">
+                                            <asp:Label runat="server" ID="lbBirth_PlaceId" Text="Nơi sinh"></asp:Label>
+                                        </td>
                                         <td class="lb3">
+                                            <tlk:RadComboBox runat="server" ID="cbBirth_PlaceId" SkinID="LoadDemand" OnClientSelectedIndexChanged="OnClientSelectedIndexChanged"
+                                                OnClientItemsRequesting="OnClientItemsRequesting" EnabledLoadOnDemand="True">
+                                            </tlk:RadComboBox>
+                                        </td>
+                                         <td class="lb3">
+                                            <asp:Label runat="server" ID="lbGender" Text="Giới tính"></asp:Label>
+                                            <span class="lbReq">*</span>
+                                        </td>
+                                        <td>
+                                            <tlk:RadComboBox runat="server" ID="cboGender" SkinID="LoadDemand" OnClientSelectedIndexChanged="OnClientSelectedIndexChanged"
+                                                OnClientItemsRequesting="OnClientItemsRequesting">
+                                            </tlk:RadComboBox>
+                                            <asp:CustomValidator ValidationGroup="EmpProfile" ID="cusGender" runat="server" ErrorMessage="<%$ Translate: Bạn phải chọn Giới tính %>"
+                                                ToolTip="<%$ Translate: Bạn phải chọn Giới tính  %>" ClientValidationFunction="cusGender">
+                                            </asp:CustomValidator>
+                                        </td>
+                                    </tr>
+                                       <%--------------------------%>
+                                    <tr>
+                                     <td class="lb3">
+                                            <asp:Label runat="server" ID="lbNative" Text="Dân tộc"></asp:Label>
+                                        </td>
+                                        <td>
+                                            <tlk:RadComboBox runat="server" ID="cboNative" SkinID="LoadDemand" OnClientSelectedIndexChanged="OnClientSelectedIndexChanged"
+                                                OnClientItemsRequesting="OnClientItemsRequesting">
+                                            </tlk:RadComboBox>
+                                        </td>
+                                        <td class="lb3">
+                                            <asp:Label runat="server" ID="lbReligion" Text="Tôn giáo"></asp:Label>
+                                        </td>
+                                        <td>
+                                            <tlk:RadComboBox runat="server" ID="cboReligion" SkinID="LoadDemand" OnClientSelectedIndexChanged="OnClientSelectedIndexChanged"
+                                                OnClientItemsRequesting="OnClientItemsRequesting">
+                                            </tlk:RadComboBox>
+                                        </td>
+                                          <td class="lb3">
+                                            <asp:Label runat="server" ID="lbNationlity" Text="Quốc tịch"></asp:Label>
+                                        </td>
+                                        <td>
+                                            <tlk:RadComboBox runat="server" ID="cboNationlity" SkinID="LoadDemand" OnClientSelectedIndexChanged="OnClientSelectedIndexChanged"
+                                                OnClientItemsRequesting="OnClientItemsRequesting">
+                                            </tlk:RadComboBox>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                    
+                                           <td class="lb3">
+                                            <asp:Label runat="server" ID="lbID_NO" Text="Số CMND"></asp:Label>
+                                            <span class="lbReq">*</span>
+                                        </td>
+                                        <td>
+                                            <tlk:RadTextBox runat="server" ID="txtID_NO">
+                                            </tlk:RadTextBox>
+                                            <asp:RequiredFieldValidator ValidationGroup="EmpProfile" ID="RequiredFieldValidator3"
+                                                ControlToValidate="txtID_NO" runat="server" ErrorMessage="<%$ Translate: Bạn phải nhập số CMND %>"
+                                                ToolTip="<%$ Translate:  Bạn phải nhập số CMND %>">
+                                            </asp:RequiredFieldValidator>
+                                            <%--<asp:CustomValidator ValidationGroup="EmpProfile" ID="cusNO_ID" runat="server" ErrorMessage="<%$ Translate: Mã CMND đã tồn tại trong danh sách đen, không được phép thêm mới %>"
+                                                ToolTip="<%$ Translate: Mã CMND đã tồn tại trong danh sách đen, không được phép thêm mới %>">
+                                            </asp:CustomValidator>--%>
+                                        </td>
+                                         <td class="lb3">
+                                            <asp:Label runat="server" ID="lbIDDate" Text="Ngày cấp"></asp:Label>
+                                        </td>
+                                        <td>
+                                            <tlk:RadDatePicker runat="server" ID="rdIDDate">
+                                            </tlk:RadDatePicker>
+                                        </td>
+                                        <td class="lb3">
+                                            <asp:Label runat="server" ID="lbExpireIDNO" Text="Ngày hết hạn"></asp:Label>
+                                        </td>
+                                        <td>
+                                            <tlk:RadDatePicker runat="server" ID="rdExpireIDNO">
+                                            </tlk:RadDatePicker>
+                                        </td>
+                                        <td class="lb3">
+                                            <asp:Label runat="server" ID="lbIDPlace" Text="Nơi cấp"></asp:Label>
+                                        </td>
+                                        <td>
+                                            <tlk:RadComboBox runat="server" ID="cboIDPlace">
+                                            </tlk:RadComboBox>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                      <td class="lb3">
+                                            <asp:Label runat="server" ID="Label9" Text="Người nước ngoài"></asp:Label>
+                                        </td>
+                                          <td >
+                                            <asp:CheckBox ID="chkForeigner" runat="server" />
+                                        </td>
+                                          <td class="lb3">
+                                            <asp:Label runat="server" ID="lbDateOfEntry" Text="Ngày nhập cảnh"></asp:Label>
+                                        </td>
+                                        <td>
+                                            <tlk:RadDatePicker ID="rdDateOfEntry" runat="server">
+                                            </tlk:RadDatePicker>
+                                        </td>
+                                         <td class="lb3">
+                                            <asp:Label runat="server" ID="lbPassNo" Text="Số hộ chiếu"></asp:Label>
+                                        </td>
+                                        <td>
+                                            <tlk:RadTextBox ID="txtPassNo" runat="server">
+                                            </tlk:RadTextBox>
+                                        </td>
+                                    </tr>
+                                      <tr>
+                                        <td class="lb3">
+                                            <asp:Label runat="server" ID="lbPassDate" Text="Ngày cấp"></asp:Label>
+                                        </td>
+                                        <td>
+                                            <tlk:RadDatePicker ID="rdPassDate" runat="server">
+                                            </tlk:RadDatePicker>
+                                        </td>
+                                        <td class="lb3">
+                                            <asp:Label runat="server" ID="lbPassExpireDate" Text="Ngày hết hạn"></asp:Label>
+                                        </td>
+                                        <td>
+                                            <tlk:RadDatePicker ID="rdPassExpireDate" runat="server">
+                                            </tlk:RadDatePicker>
+                                            <asp:CompareValidator ValidationGroup="EmpProfile" ID="cvalPassDate" runat="server"
+                                                ErrorMessage="<%$ Translate: Ngày hết hạn phải lớn hơn ngày cấp %>" ToolTip="<%$ Translate: Ngày hết hạn phải lớn hơn ngày cấp %>"
+                                                ControlToValidate="rdPassExpireDate" ControlToCompare="rdPassDate" Operator="GreaterThanEqual"
+                                                Type="Date">
+                                            </asp:CompareValidator>
+                                        </td>
+                                         <td class="lb3">
+                                            <asp:Label runat="server" ID="lbPassPlace" Text="Nơi cấp"></asp:Label>
+                                        </td>
+                                        <td colspan="5">
+                                            <tlk:RadTextBox ID="txtPassPlace" runat="server" Width="100%">
+                                            </tlk:RadTextBox>
+                                        </td>
+                                    </tr>
+                                     <tr>
+                                        <td class="lb3">
+                                            <asp:Label runat="server" ID="lbPerAddress" Text="Địa chỉ thường trú"></asp:Label>
+                                            <span class="lbReq">*</span>
+                                        </td>
+                                        <td colspan="5">
+                                            <tlk:RadTextBox ID="txtPerAddress" runat="server" Width="100%">
+                                            </tlk:RadTextBox>
+                                            <asp:RequiredFieldValidator ValidationGroup="EmpProfile" ID="RequiredFieldValidator5"
+                                                ControlToValidate="txtPerAddress" runat="server" ErrorMessage="<%$ Translate: Bạn phải nhập Địa chỉ thường trú %>"
+                                                ToolTip="<%$ Translate:  Bạn phải nhập Địa chỉ thường trú %>">
+                                            </asp:RequiredFieldValidator>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                     <td class="lb3">
+                                            <asp:Label runat="server" ID="Label10" Text="Quốc tịch"></asp:Label>
+                                        </td>
+                                        <td>
+                                            <tlk:RadComboBox runat="server" ID="cboNationa_TT" SkinID="LoadDemand" OnClientSelectedIndexChanged="OnClientSelectedIndexChanged"
+                                                OnClientItemsRequesting="OnClientItemsRequesting">
+                                            </tlk:RadComboBox>
+                                        </td>
+                                        <td class="lb3">
+                                            <asp:Label runat="server" ID="lbPer_Province" Text="Thành phố"></asp:Label>
+                                            <span class="lbReq">*</span>
+                                        </td>
+                                        <td>
+                                            <tlk:RadComboBox runat="server" ID="cboPer_Province" SkinID="LoadDemand" OnClientSelectedIndexChanged="OnClientSelectedIndexChanged"
+                                                OnClientItemsRequesting="OnClientItemsRequesting">
+                                            </tlk:RadComboBox>
+                                            <%-- <asp:CustomValidator ValidationGroup="EmpProfile" ID="cusPer_Province" runat="server"
+                                                ErrorMessage="<%$ Translate: Bạn phải chọn Thành phố %>" ToolTip="<%$ Translate: Bạn phải chọn Thành phố  %>"
+                                                ClientValidationFunction="cusPer_Province">
+                                            </asp:CustomValidator>--%>
+                                            <asp:RequiredFieldValidator ValidationGroup="EmpProfile" ID="RequiredFieldValidator2"
+                                                ControlToValidate="cboPer_Province" runat="server" ErrorMessage="Bạn phải chọn Thành phố địa chỉ thường trú"
+                                                ToolTip="Bạn phải chọn Thành phố địa chỉ thường trú">
+                                            </asp:RequiredFieldValidator>
+                                        </td>
+                                        <td class="lb3">
+                                            <asp:Label runat="server" ID="lbPer_District" Text="Quận huyện"></asp:Label>
+                                            <span class="lbReq">*</span>
+                                        </td>
+                                        <td>
+                                            <tlk:RadComboBox runat="server" ID="cboPer_District" SkinID="LoadDemand" OnClientSelectedIndexChanged="OnClientSelectedIndexChanged"
+                                                OnClientItemsRequesting="OnClientItemsRequesting">
+                                            </tlk:RadComboBox>
+                                            <%--<asp:CustomValidator ValidationGroup="EmpProfile" ID="cusPer_District" runat="server"
+                                                ErrorMessage="<%$ Translate: Bạn phải chọn Quận huyện %>" ToolTip="<%$ Translate: Bạn phải chọn Quận huyện  %>"
+                                                ClientValidationFunction="cusPer_District">
+                                            </asp:CustomValidator>--%>
+                                            <asp:RequiredFieldValidator ValidationGroup="EmpProfile" ID="RequiredFieldValidator4"
+                                                ControlToValidate="cboPer_District" runat="server" ErrorMessage="Bạn phải chọn Quận huyện địa chỉ thường trú"
+                                                ToolTip="Bạn phải chọn Quận huyện địa chỉ thường trú">
+                                            </asp:RequiredFieldValidator>
+                                        </td>
+                                        <td class="lb3">
+                                            <asp:Label runat="server" ID="lbPer_Ward" Text="Xã phường"></asp:Label>
+                                        </td>
+                                        <td>
+                                            <tlk:RadComboBox runat="server" ID="cboPer_Ward" SkinID="LoadDemand" OnClientSelectedIndexChanged="OnClientSelectedIndexChanged"
+                                                OnClientItemsRequesting="OnClientItemsRequesting">
+                                            </tlk:RadComboBox>
+                                        </td>
+                                    </tr>
+
+                                     <tr>
+                                        <td class="lb3">
+                                            <asp:Label runat="server" ID="lbPROVINCENQ_ID" Text="Nguyên quán"></asp:Label>
+                                        </td>
+                                        <td>
+                                            <tlk:RadComboBox runat="server" ID="cbPROVINCENQ_ID" SkinID="LoadDemand" OnClientSelectedIndexChanged="OnClientSelectedIndexChanged"
+                                                OnClientItemsRequesting="OnClientItemsRequesting" EnabledLoadOnDemand="True">
+                                            </tlk:RadComboBox>
+                                        </td>
+
+                                       <td class="lb3">
+                                            <asp:Label runat="server" ID="lbNationlity_NQ" Text="Quốc tịch"></asp:Label>
+                                        </td>
+                                        <td>
+                                            <tlk:RadComboBox runat="server" ID="cboNationlity_NQ" SkinID="LoadDemand" OnClientSelectedIndexChanged="OnClientSelectedIndexChanged"
+                                                OnClientItemsRequesting="OnClientItemsRequesting">
+                                            </tlk:RadComboBox>
+                                        </td>
+                                    </tr>
+                                          <tr>
+                                         <td class="lb3">
                                             <asp:Label runat="server" ID="lbPROVINCEEMP_ID" Text="Tỉnh/Thành phố"></asp:Label>
                                         </td>
                                         <td>
@@ -493,69 +715,83 @@
                                                 OnClientItemsRequesting="OnClientItemsRequesting" EnabledLoadOnDemand="True">
                                             </tlk:RadComboBox>
                                         </td>
+                                   
+                                    </tr>
+                                     <tr>
+                                        <td class="lb3">
+                                            <asp:Label runat="server" ID="lbNavAddress" Text="Địa chỉ tạm trú"></asp:Label>
+                                        </td>
+                                        <td colspan="5">
+                                            <tlk:RadTextBox ID="txtNavAddress" runat="server" Width="100%">
+                                            </tlk:RadTextBox>
+                                        </td>
                                     </tr>
                                     <tr>
-                                        <td class="lb3">
-                                            <asp:Label runat="server" ID="lbGender" Text="Giới tính"></asp:Label>
-                                            <span class="lbReq">*</span>
+                                          <td class="lb3">
+                                            <asp:Label runat="server" ID="Label11" Text="Quốc tịch"></asp:Label>
                                         </td>
                                         <td>
-                                            <tlk:RadComboBox runat="server" ID="cboGender" SkinID="LoadDemand" OnClientSelectedIndexChanged="OnClientSelectedIndexChanged"
+                                            <tlk:RadComboBox runat="server" ID="cboNationlity_TTRU" SkinID="LoadDemand" OnClientSelectedIndexChanged="OnClientSelectedIndexChanged"
                                                 OnClientItemsRequesting="OnClientItemsRequesting">
                                             </tlk:RadComboBox>
-                                            <asp:CustomValidator ValidationGroup="EmpProfile" ID="cusGender" runat="server" ErrorMessage="<%$ Translate: Bạn phải chọn Giới tính %>"
-                                                ToolTip="<%$ Translate: Bạn phải chọn Giới tính  %>" ClientValidationFunction="cusGender">
+                                        </td>
+                                        <td class="lb3">
+                                            <asp:Label runat="server" ID="lbNav_Province" Text="Thành phố"></asp:Label>
+                                        </td>
+                                        <td>
+                                            <tlk:RadComboBox runat="server" ID="cboNav_Province" SkinID="LoadDemand" OnClientSelectedIndexChanged="OnClientSelectedIndexChanged"
+                                                OnClientItemsRequesting="OnClientItemsRequesting">
+                                            </tlk:RadComboBox>
+                                            <asp:CustomValidator ID="cusNav_Province" runat="server" ErrorMessage="<%$ Translate: Bạn phải chọn Thành phố địa chỉ tạm trú %>"
+                                                ToolTip="<%$ Translate: Bạn phải chọn Thành phố địa chỉ tạm trú %>" ClientValidationFunction="cusNav_Province">
                                             </asp:CustomValidator>
                                         </td>
                                         <td class="lb3">
-                                            <asp:Label runat="server" ID="lbBirthDate" Text="Ngày sinh"></asp:Label>
+                                            <asp:Label runat="server" ID="lbNav_District" Text="Quận huyện"></asp:Label>
                                         </td>
                                         <td>
-                                            <tlk:RadDatePicker runat="server" ID="rdBirthDate">
-                                            </tlk:RadDatePicker>
-                                        </td>
-                                        <td class="lb3">
-                                            <asp:Label runat="server" ID="lbPROVINCENQ_ID" Text="Nguyên quán"></asp:Label>
-                                        </td>
-                                        <td>
-                                            <tlk:RadComboBox runat="server" ID="cbPROVINCENQ_ID" SkinID="LoadDemand" OnClientSelectedIndexChanged="OnClientSelectedIndexChanged"
-                                                OnClientItemsRequesting="OnClientItemsRequesting" EnabledLoadOnDemand="True">
+                                            <tlk:RadComboBox runat="server" ID="cboNav_District" SkinID="LoadDemand" OnClientSelectedIndexChanged="OnClientSelectedIndexChanged"
+                                                OnClientItemsRequesting="OnClientItemsRequesting">
                                             </tlk:RadComboBox>
+                                            <asp:CustomValidator ID="cusNav_District" runat="server" ErrorMessage="<%$ Translate: Bạn phải chọn Quận huyện địa chỉ tạm trú %>"
+                                                ToolTip="<%$ Translate: Bạn phải chọn Quận huyện địa chỉ tạm trú %>" ClientValidationFunction="cusNav_District">
+                                            </asp:CustomValidator>
                                         </td>
                                         <td class="lb3">
-                                            <asp:Label runat="server" ID="lbBirth_PlaceId" Text="Nơi sinh"></asp:Label>
+                                            <asp:Label runat="server" ID="lbNav_Ward" Text="Xã phường"></asp:Label>
                                         </td>
-                                        <td colspan="3">
-                                            <tlk:RadComboBox runat="server" ID="cbBirth_PlaceId" SkinID="LoadDemand" OnClientSelectedIndexChanged="OnClientSelectedIndexChanged"
-                                                OnClientItemsRequesting="OnClientItemsRequesting" EnabledLoadOnDemand="True">
+                                        <td>
+                                            <tlk:RadComboBox runat="server" ID="cboNav_Ward" SkinID="LoadDemand" OnClientSelectedIndexChanged="OnClientSelectedIndexChanged"
+                                                OnClientItemsRequesting="OnClientItemsRequesting">
                                             </tlk:RadComboBox>
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td class="lb3">
-                                            <asp:Label runat="server" ID="lbNationlity" Text="Quốc tịch"></asp:Label>
+                                     <td class="lb3">
+                                            <asp:Label runat="server" ID="Label4" Text="Ngày vào công ty"></asp:Label>
                                         </td>
                                         <td>
-                                            <tlk:RadComboBox runat="server" ID="cboNationlity" SkinID="LoadDemand" OnClientSelectedIndexChanged="OnClientSelectedIndexChanged"
+                                            <tlk:RadDatePicker runat="server" ID="rdJoinDateState" Enabled="false" DateInput-Enabled="false">
+                                            </tlk:RadDatePicker>
+                                        </td>
+                                          <td class="lb3">
+                                        <asp:Label runat="server" ID="lbWorkStatus" Text="Trạng thái nhân viên"></asp:Label>
+                                         </td>
+                                        <td>
+                                            <tlk:RadComboBox runat="server" ID="cboWorkStatus" SkinID="LoadDemand" OnClientSelectedIndexChanged="OnClientSelectedIndexChanged"
                                                 OnClientItemsRequesting="OnClientItemsRequesting">
                                             </tlk:RadComboBox>
                                         </td>
-                                        <td class="lb3">
-                                            <asp:Label runat="server" ID="lbNative" Text="Dân tộc"></asp:Label>
+                                           <td class="lb3">
+                                            <asp:Label runat="server" ID="lbter_effect_date" Text="Ngày nghỉ việc"></asp:Label>
                                         </td>
                                         <td>
-                                            <tlk:RadComboBox runat="server" ID="cboNative" SkinID="LoadDemand" OnClientSelectedIndexChanged="OnClientSelectedIndexChanged"
-                                                OnClientItemsRequesting="OnClientItemsRequesting">
-                                            </tlk:RadComboBox>
+                                            <tlk:RadDatePicker runat="server" ID="rdter_effect_date" Enabled="false" DateInput-Enabled="false">
+                                            </tlk:RadDatePicker>
                                         </td>
-                                        <td class="lb3">
-                                            <asp:Label runat="server" ID="lbReligion" Text="Tôn giáo"></asp:Label>
-                                        </td>
-                                        <td>
-                                            <tlk:RadComboBox runat="server" ID="cboReligion" SkinID="LoadDemand" OnClientSelectedIndexChanged="OnClientSelectedIndexChanged"
-                                                OnClientItemsRequesting="OnClientItemsRequesting">
-                                            </tlk:RadComboBox>
-                                        </td>
+                                    </tr>
+                                     <%--------------------------%>              
+                                    <tr>
                                         <td class="lb3">
                                             <asp:Label runat="server" ID="lbFamilyStatus" Text="Tình trạng hôn nhân"></asp:Label>
                                         </td>
@@ -565,61 +801,16 @@
                                             </tlk:RadComboBox>
                                         </td>
                                     </tr>
-                                    <tr>
-                                        <td class="lb3">
-                                            <asp:Label runat="server" ID="lbID_NO" Text="Số CMND"></asp:Label>
-                                            <span class="lbReq">*</span>
-                                        </td>
-                                        <td>
-                                            <tlk:RadTextBox runat="server" ID="txtID_NO">
-                                            </tlk:RadTextBox>
-                                            <asp:RequiredFieldValidator ValidationGroup="EmpProfile" ID="RequiredFieldValidator3"
-                                                ControlToValidate="txtID_NO" runat="server" ErrorMessage="<%$ Translate: Bạn phải nhập số CMND %>"
-                                                ToolTip="<%$ Translate:  Bạn phải nhập số CMND %>">
-                                            </asp:RequiredFieldValidator>
-                                          <%--  <asp:CustomValidator ValidationGroup="EmpProfile" ID="cusNO_ID" runat="server" ErrorMessage="<%$ Translate: Mã CMND đã tồn tại trong danh sách đen, không được phép thêm mới %>"
-                                                ToolTip="<%$ Translate: Mã CMND đã tồn tại trong danh sách đen, không được phép thêm mới %>">
-                                            </asp:CustomValidator>--%>
-                                        </td>
-                                        <td class="lb3">
-                                            <asp:Label runat="server" ID="lbIDDate" Text="Ngày cấp"></asp:Label>
-                                        </td>
-                                        <td>
-                                            <tlk:RadDatePicker runat="server" ID="rdIDDate">
-                                            </tlk:RadDatePicker>
-                                        </td>
-                                        <td class="lb3">
-                                            <asp:Label runat="server" ID="lbExpireIDNO" Text="Ngày hết hạn"></asp:Label>
-                                        </td>
-                                        <td>
-                                            <tlk:RadDatePicker runat="server" ID="rdExpireIDNO">
-                                            </tlk:RadDatePicker>
-                                        </td>
-                                        <td class="lb3">
-                                            <asp:Label runat="server" ID="lbIDPlace" Text="Nơi cấp"></asp:Label>
-                                        </td>
-                                        <td>
-                                            <tlk:RadComboBox runat="server" ID="cboIDPlace">
-                                            </tlk:RadComboBox>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="lb3">
-                                            <asp:Label runat="server" ID="lbIDRemark" Text="Ghi chú thay đổi CMND"></asp:Label>
+                                   <%-- <tr >
+                                        <td class="lb3" >
+                                            <asp:Label runat="server" ID="lbIDRemark" Text="Ghi chú thay đổi CMND" ></asp:Label>
                                         </td>
                                         <td colspan="5">
-                                            <tlk:RadTextBox ID="txtIDRemark" runat="server" Width="100%">
+                                            <tlk:RadTextBox ID="txtIDRemark" runat="server" Width="100%" >
                                             </tlk:RadTextBox>
                                         </td>
-                                                       <td class="lb3">
-                            <asp:Label runat="server" ID="lbWorkStatus" Text="Trạng thái nhân viên"></asp:Label>
-                        </td>
-                        <td>
-                            <tlk:RadComboBox runat="server" ID="cboWorkStatus" SkinID="LoadDemand" OnClientSelectedIndexChanged="OnClientSelectedIndexChanged"
-                                OnClientItemsRequesting="OnClientItemsRequesting">
-                            </tlk:RadComboBox>
-                        </td>
-                                    </tr>
+                             
+                                    </tr>--%>
                                     <tr style="display: none">
                                         <td class="lb3">
                                             <asp:Label runat="server" ID="lbPROVINCEEMP_BRITH" Text="Tỉnh/Thành khai sinh"></asp:Label>
@@ -652,7 +843,7 @@
                                             <span class="lbReq">*</span>
                                         </td>
                                         <td>
-                                            <tlk:RadComboBox runat="server" ID="cboInsRegion" SkinID="LoadDemand" OnClientSelectedIndexChanged="OnClientSelectedIndexChanged" Enabled="false">
+                                            <tlk:RadComboBox runat="server" ID="cboInsRegion" SkinID="LoadDemand" OnClientSelectedIndexChanged="OnClientSelectedIndexChanged">
                                             </tlk:RadComboBox>
                                             <asp:CustomValidator ValidationGroup="EmpProfile" ID="cusInsRegion" runat="server"
                                                 ErrorMessage="<%$ Translate: Bạn phải chọn Vùng bảo hiểm %>" ToolTip="<%$ Translate: Bạn phải chọn Vùng bảo hiểm  %>"
@@ -1004,64 +1195,8 @@
                                             </tlk:RadTextBox>
                                         </td>
                                     </tr>
-                                    <tr>
-                                        <td class="lb3">
-                                            <asp:Label runat="server" ID="lbPerAddress" Text="Địa chỉ thường trú"></asp:Label>
-                                            <span class="lbReq">*</span>
-                                        </td>
-                                        <td colspan="5">
-                                            <tlk:RadTextBox ID="txtPerAddress" runat="server" Width="100%">
-                                            </tlk:RadTextBox>
-                                            <asp:RequiredFieldValidator ValidationGroup="EmpProfile" ID="RequiredFieldValidator5"
-                                                ControlToValidate="txtPerAddress" runat="server" ErrorMessage="<%$ Translate: Bạn phải nhập Địa chỉ thường trú %>"
-                                                ToolTip="<%$ Translate:  Bạn phải nhập Địa chỉ thường trú %>">
-                                            </asp:RequiredFieldValidator>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="lb3">
-                                            <asp:Label runat="server" ID="lbPer_Province" Text="Thành phố"></asp:Label>
-                                            <span class="lbReq">*</span>
-                                        </td>
-                                        <td>
-                                            <tlk:RadComboBox runat="server" ID="cboPer_Province" SkinID="LoadDemand" OnClientSelectedIndexChanged="OnClientSelectedIndexChanged"
-                                                OnClientItemsRequesting="OnClientItemsRequesting">
-                                            </tlk:RadComboBox>
-                                            <%-- <asp:CustomValidator ValidationGroup="EmpProfile" ID="cusPer_Province" runat="server"
-                                                ErrorMessage="<%$ Translate: Bạn phải chọn Thành phố %>" ToolTip="<%$ Translate: Bạn phải chọn Thành phố  %>"
-                                                ClientValidationFunction="cusPer_Province">
-                                            </asp:CustomValidator>--%>
-                                            <asp:RequiredFieldValidator ValidationGroup="EmpProfile" ID="RequiredFieldValidator2"
-                                                ControlToValidate="cboPer_Province" runat="server" ErrorMessage="Bạn phải chọn Thành phố địa chỉ thường trú"
-                                                ToolTip="Bạn phải chọn Thành phố địa chỉ thường trú">
-                                            </asp:RequiredFieldValidator>
-                                        </td>
-                                        <td class="lb3">
-                                            <asp:Label runat="server" ID="lbPer_District" Text="Quận huyện"></asp:Label>
-                                            <span class="lbReq">*</span>
-                                        </td>
-                                        <td>
-                                            <tlk:RadComboBox runat="server" ID="cboPer_District" SkinID="LoadDemand" OnClientSelectedIndexChanged="OnClientSelectedIndexChanged"
-                                                OnClientItemsRequesting="OnClientItemsRequesting">
-                                            </tlk:RadComboBox>
-                                            <%--<asp:CustomValidator ValidationGroup="EmpProfile" ID="cusPer_District" runat="server"
-                                                ErrorMessage="<%$ Translate: Bạn phải chọn Quận huyện %>" ToolTip="<%$ Translate: Bạn phải chọn Quận huyện  %>"
-                                                ClientValidationFunction="cusPer_District">
-                                            </asp:CustomValidator>--%>
-                                            <asp:RequiredFieldValidator ValidationGroup="EmpProfile" ID="RequiredFieldValidator4"
-                                                ControlToValidate="cboPer_District" runat="server" ErrorMessage="Bạn phải chọn Quận huyện địa chỉ thường trú"
-                                                ToolTip="Bạn phải chọn Quận huyện địa chỉ thường trú">
-                                            </asp:RequiredFieldValidator>
-                                        </td>
-                                        <td class="lb3">
-                                            <asp:Label runat="server" ID="lbPer_Ward" Text="Xã phường"></asp:Label>
-                                        </td>
-                                        <td>
-                                            <tlk:RadComboBox runat="server" ID="cboPer_Ward" SkinID="LoadDemand" OnClientSelectedIndexChanged="OnClientSelectedIndexChanged"
-                                                OnClientItemsRequesting="OnClientItemsRequesting">
-                                            </tlk:RadComboBox>
-                                        </td>
-                                    </tr>
+
+                                  
                                     <tr>
                                         <td class="lb3">
                                             <asp:Label runat="server" ID="Label6" Text="Thôn/Ấp/khu phố"></asp:Label>
@@ -1071,47 +1206,7 @@
                                             </tlk:RadTextBox>
                                         </td>
                                     </tr>
-                                    <tr>
-                                        <td class="lb3">
-                                            <asp:Label runat="server" ID="lbNavAddress" Text="Địa chỉ tạm trú"></asp:Label>
-                                        </td>
-                                        <td colspan="5">
-                                            <tlk:RadTextBox ID="txtNavAddress" runat="server" Width="100%">
-                                            </tlk:RadTextBox>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="lb3">
-                                            <asp:Label runat="server" ID="lbNav_Province" Text="Thành phố"></asp:Label>
-                                        </td>
-                                        <td>
-                                            <tlk:RadComboBox runat="server" ID="cboNav_Province" SkinID="LoadDemand" OnClientSelectedIndexChanged="OnClientSelectedIndexChanged"
-                                                OnClientItemsRequesting="OnClientItemsRequesting">
-                                            </tlk:RadComboBox>
-                                            <asp:CustomValidator ID="cusNav_Province" runat="server" ErrorMessage="<%$ Translate: Bạn phải chọn Thành phố địa chỉ tạm trú %>"
-                                                ToolTip="<%$ Translate: Bạn phải chọn Thành phố địa chỉ tạm trú %>" ClientValidationFunction="cusNav_Province">
-                                            </asp:CustomValidator>
-                                        </td>
-                                        <td class="lb3">
-                                            <asp:Label runat="server" ID="lbNav_District" Text="Quận huyện"></asp:Label>
-                                        </td>
-                                        <td>
-                                            <tlk:RadComboBox runat="server" ID="cboNav_District" SkinID="LoadDemand" OnClientSelectedIndexChanged="OnClientSelectedIndexChanged"
-                                                OnClientItemsRequesting="OnClientItemsRequesting">
-                                            </tlk:RadComboBox>
-                                            <asp:CustomValidator ID="cusNav_District" runat="server" ErrorMessage="<%$ Translate: Bạn phải chọn Quận huyện địa chỉ tạm trú %>"
-                                                ToolTip="<%$ Translate: Bạn phải chọn Quận huyện địa chỉ tạm trú %>" ClientValidationFunction="cusNav_District">
-                                            </asp:CustomValidator>
-                                        </td>
-                                        <td class="lb3">
-                                            <asp:Label runat="server" ID="lbNav_Ward" Text="Xã phường"></asp:Label>
-                                        </td>
-                                        <td>
-                                            <tlk:RadComboBox runat="server" ID="cboNav_Ward" SkinID="LoadDemand" OnClientSelectedIndexChanged="OnClientSelectedIndexChanged"
-                                                OnClientItemsRequesting="OnClientItemsRequesting">
-                                            </tlk:RadComboBox>
-                                        </td>
-                                    </tr>
+                                   
                                     <tr>
                                         <td class="lb3">
                                             <asp:Label runat="server" ID="lbMobilePhone" Text="Điện thoại di động"></asp:Label>
@@ -1198,43 +1293,8 @@
                                             </tlk:RadTextBox>
                                         </td>
                                     </tr>
-                                    <tr>
-                                        <td class="lb3">
-                                            <asp:Label runat="server" ID="lbPassNo" Text="Số hộ chiếu"></asp:Label>
-                                        </td>
-                                        <td>
-                                            <tlk:RadTextBox ID="txtPassNo" runat="server">
-                                            </tlk:RadTextBox>
-                                        </td>
-                                        <td class="lb3">
-                                            <asp:Label runat="server" ID="lbPassDate" Text="Ngày cấp"></asp:Label>
-                                        </td>
-                                        <td>
-                                            <tlk:RadDatePicker ID="rdPassDate" runat="server">
-                                            </tlk:RadDatePicker>
-                                        </td>
-                                        <td class="lb3">
-                                            <asp:Label runat="server" ID="lbPassExpireDate" Text="Ngày hết hạn"></asp:Label>
-                                        </td>
-                                        <td>
-                                            <tlk:RadDatePicker ID="rdPassExpireDate" runat="server">
-                                            </tlk:RadDatePicker>
-                                            <asp:CompareValidator ValidationGroup="EmpProfile" ID="cvalPassDate" runat="server"
-                                                ErrorMessage="<%$ Translate: Ngày hết hạn phải lớn hơn ngày cấp %>" ToolTip="<%$ Translate: Ngày hết hạn phải lớn hơn ngày cấp %>"
-                                                ControlToValidate="rdPassExpireDate" ControlToCompare="rdPassDate" Operator="GreaterThanEqual"
-                                                Type="Date">
-                                            </asp:CompareValidator>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="lb3">
-                                            <asp:Label runat="server" ID="lbPassPlace" Text="Nơi cấp"></asp:Label>
-                                        </td>
-                                        <td colspan="5">
-                                            <tlk:RadTextBox ID="txtPassPlace" runat="server" Width="100%">
-                                            </tlk:RadTextBox>
-                                        </td>
-                                    </tr>
+                             
+                                  
                                 </table>
                             </ContentTemplate>
                         </tlk:RadPanelItem>
@@ -1731,7 +1791,7 @@
                 </table>
             </tlk:RadPageView>
             <tlk:RadPageView ID="rpvEmpTitleConcurrent" runat="server" Width="100%">
-                <Profile:ctrlHU_TitleConcurrent runat="server" ID="ctrlHU_TitleConcurrent" />
+                <profile:ctrlhu_titleconcurrent runat="server" id="ctrlHU_TitleConcurrent" />
             </tlk:RadPageView>
         </tlk:RadMultiPage>
     </tlk:RadPane>

@@ -1092,6 +1092,11 @@ Partial Class ProfileRepository
                 objEmpCVData.CODE_HOUSEHOLDS = objEmpCV.CODE_HOUSEHOLDS
                 objEmpCVData.RELATION_PER_CTR = objEmpCV.RELATION_PER_CTR
                 objEmpCVData.ADDRESS_PER_CTR = objEmpCV.ADDRESS_PER_CTR
+                objEmpCVData.IS_FOREIGNER = objEmpCV.IS_FOREIGNER
+                objEmpCVData.DATEOFENTRY = objEmpCV.DATEOFENTRY
+                objEmpCVData.PER_COUNTRY = objEmpCV.PER_COUNTRY
+                objEmpCVData.NATIONEMP_ID = objEmpCV.NATIONEMP_ID
+                objEmpCVData.NAV_COUNTRY = objEmpCV.NAV_COUNTRY
                 '-----------------------------------------------
 
                 Context.HU_EMPLOYEE_CV.AddObject(objEmpCVData)
@@ -1525,7 +1530,11 @@ Partial Class ProfileRepository
                 objEmpCVData.CODE_HOUSEHOLDS = objEmpCV.CODE_HOUSEHOLDS
                 objEmpCVData.RELATION_PER_CTR = objEmpCV.RELATION_PER_CTR
                 objEmpCVData.ADDRESS_PER_CTR = objEmpCV.ADDRESS_PER_CTR
-
+                objEmpCVData.IS_FOREIGNER = objEmpCV.IS_FOREIGNER
+                objEmpCVData.DATEOFENTRY = objEmpCV.DATEOFENTRY
+                objEmpCVData.PER_COUNTRY = objEmpCV.PER_COUNTRY
+                objEmpCVData.NATIONEMP_ID = objEmpCV.NATIONEMP_ID
+                objEmpCVData.NAV_COUNTRY = objEmpCV.NAV_COUNTRY
                 '------------------------------------------------
                 If bUpdateCV = False Then
                     Context.HU_EMPLOYEE_CV.AddObject(objEmpCVData)
@@ -1795,6 +1804,9 @@ Partial Class ProfileRepository
                      From rl In Context.OT_OTHER_LIST.Where(Function(f) cv.RELIGION = f.ID).DefaultIfEmpty
                      From nt In Context.OT_OTHER_LIST.Where(Function(f) cv.NATIVE = f.ID).DefaultIfEmpty
                      From na In Context.HU_NATION.Where(Function(f) cv.NATIONALITY = f.ID).DefaultIfEmpty
+                     From p_na In Context.HU_NATION.Where(Function(f) cv.PER_COUNTRY = f.ID).DefaultIfEmpty
+                     From n_na In Context.HU_NATION.Where(Function(f) cv.NATIONEMP_ID = f.ID).DefaultIfEmpty
+                     From t_na In Context.HU_NATION.Where(Function(f) cv.NAV_COUNTRY = f.ID).DefaultIfEmpty
                      From bank In Context.HU_BANK.Where(Function(f) cv.BANK_ID = f.ID).DefaultIfEmpty
                      From bankbranch In Context.HU_BANK_BRANCH.Where(Function(f) cv.BANK_BRANCH_ID = f.ID).DefaultIfEmpty
                      From per_pro In Context.HU_PROVINCE.Where(Function(f) cv.PER_PROVINCE = f.ID).DefaultIfEmpty
@@ -1954,7 +1966,15 @@ Partial Class ProfileRepository
                          .CODE_HOUSEHOLDS = cv.CODE_HOUSEHOLDS,
                          .RELATION_PER_CTR = cv.RELATION_PER_CTR,
                          .RELATION_PER_CTR_NAME = relation_per.NAME_VN,
-                         .ADDRESS_PER_CTR = cv.ADDRESS_PER_CTR
+                         .ADDRESS_PER_CTR = cv.ADDRESS_PER_CTR,
+                         .IS_FOREIGNER = cv.IS_FOREIGNER,
+                         .DATEOFENTRY = cv.DATEOFENTRY,
+                        .PER_COUNTRY = cv.PER_COUNTRY,
+                        .PER_COUNTRY_NAME = p_na.NAME_VN,
+                         .NATIONEMP_ID = cv.NATIONEMP_ID,
+                         .NATIONEMP_ID_NAME = n_na.NAME_VN,
+                         .NAV_COUNTRY = cv.NAV_COUNTRY,
+                         .NAV_COUNTRY_NAME = t_na.NAME_VN
                          }).FirstOrDefault
             empEdu = (From edu In Context.HU_EMPLOYEE_EDUCATION
                      From a In Context.OT_OTHER_LIST.Where(Function(f) f.ID = edu.ACADEMY).DefaultIfEmpty
