@@ -49,6 +49,15 @@ Public Class ctrlHU_AllowanceList
         End Set
     End Property
 
+    Property dataTable As DataTable
+        Get
+            Return ViewState(Me.ID & "_dataTable")
+        End Get
+        Set(ByVal value As DataTable)
+            ViewState(Me.ID & "_dataTable") = value
+        End Set
+    End Property
+
 #End Region
 
 #Region "Page"
@@ -155,16 +164,14 @@ Public Class ctrlHU_AllowanceList
                     Case "UpdateView"
                         ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), NotifyType.Success)
                         rgMain.Rebind()
-                        'SelectedItemDataGridByKey(rgMain, IDSelect, , rgMain.CurrentPageIndex)
-                        ClearControlValue(txtCode, txtName, txtRemark, cboAllowType)
+                        ClearControlValue(txtCode, txtName, cbDMAlow, cboNAlow, ntxtOrder, chkIsInsurrance, chkIsContract)
                         CurrentState = CommonMessage.STATE_NORMAL
                     Case "InsertView"
                         ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), NotifyType.Success)
                         rgMain.CurrentPageIndex = 0
                         rgMain.MasterTableView.SortExpressions.Clear()
                         rgMain.Rebind()
-                        ClearControlValue(txtCode, txtName, txtRemark, cboAllowType)
-                        'SelectedItemDataGridByKey(rgMain, IDSelect, )
+                        ClearControlValue(txtCode, txtName, cbDMAlow, cboNAlow, ntxtOrder, chkIsInsurrance, chkIsContract)
                         CurrentState = CommonMessage.STATE_NORMAL
                     Case "Cancel"
                         rgMain.MasterTableView.ClearSelectedItems()
@@ -242,7 +249,7 @@ Public Class ctrlHU_AllowanceList
 
                     EnabledGridNotPostback(rgMain, False)
                     txtCode.Focus()
-                    EnableControlAll(True, txtCode, txtName, txtRemark, cboAllowType, chkIsInsurrance)
+                    EnableControlAll(True, txtCode, txtName, chkIsInsurrance, cbDMAlow, cboNAlow, ntxtOrder, chkIsContract)
                 Case CommonMessage.STATE_NORMAL
                     If rgMain.SelectedValue IsNot Nothing Then
                         Dim item = (From p In AllowanceLists Where p.ID = rgMain.SelectedValue).SingleOrDefault
@@ -251,11 +258,11 @@ Public Class ctrlHU_AllowanceList
 
                     End If
                     EnabledGridNotPostback(rgMain, True)
-                    EnableControlAll(False, txtCode, txtName, txtRemark, cboAllowType, chkIsInsurrance)
+                    EnableControlAll(False, txtCode, txtName, chkIsInsurrance, cbDMAlow, cboNAlow, ntxtOrder, chkIsContract)
                 Case CommonMessage.STATE_EDIT
 
                     EnabledGridNotPostback(rgMain, False)
-                    EnableControlAll(True, txtCode, txtName, txtRemark, cboAllowType, chkIsInsurrance)
+                    EnableControlAll(True, txtCode, txtName, chkIsInsurrance, cbDMAlow, cboNAlow, ntxtOrder, chkIsContract)
 
                 Case CommonMessage.STATE_ACTIVE
                     Dim lstDeletes As New List(Of Decimal)
@@ -317,18 +324,23 @@ Public Class ctrlHU_AllowanceList
     Public Overrides Sub BindData()
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
         Try
+            Dim dtData As DataTable
+            Using rep As New ProfileRepository
+                dataTable = rep.GetOtherList("ALLOWANCE_TYPE", True)
+                FillRadCombobox(cbDMAlow, dataTable, "NAME", "ID")
+                dtData = rep.GetOtherList("ALLOWANCE_GROUP", True)
+                FillRadCombobox(cboNAlow, dtData, "NAME", "ID")
+            End Using
+
             Dim startTime As DateTime = DateTime.UtcNow
-            'Dim lst As New List(Of AllowanceListDTO)
-            'lst.Add(New AllowanceListDTO With {.ID = 1, .NAME = "Theo tháng"})
-            'lst.Add(New AllowanceListDTO With {.ID = 2, .NAME = "Theo công hưởng lương"})
-            'lst.Add(New AllowanceListDTO With {.ID = 3, .NAME = "Theo công làm việc"})
-            'FillRadCombobox(cboAllowType, lst, "NAME", "ID")
             Dim dic As New Dictionary(Of String, Control)
             dic.Add("CODE", txtCode)
             dic.Add("NAME", txtName)
-            dic.Add("REMARK", txtRemark)
-            'dic.Add("ALLOW_TYPE", cboAllowType)
             dic.Add("IS_INSURANCE", chkIsInsurrance)
+            dic.Add("IS_CONTRACT", chkIsContract)
+            dic.Add("ALLOWANCE_TYPE", cbDMAlow)
+            dic.Add("ALLOWANCE_GROUP", cboNAlow)
+            dic.Add("ORDERS", ntxtOrder)
             Utilities.OnClientRowSelectedChanged(rgMain, dic)
             _myLog.WriteLog(_myLog._info, _classPath, method,
                                  CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
@@ -364,7 +376,7 @@ Public Class ctrlHU_AllowanceList
             Select Case CType(e.Item, RadToolBarButton).CommandName
                 Case CommonMessage.TOOLBARITEM_CREATE
                     CurrentState = CommonMessage.STATE_NEW
-                    ClearControlValue(txtCode, txtName, txtRemark, cboAllowType)
+                    ClearControlValue(txtCode, txtName)
                     ' txtCode.Text = rep.AutoGenCode("PC", "HU_ALLOWANCE_LIST", "CODE")
                     UpdateControlState()
                 Case CommonMessage.TOOLBARITEM_EDIT
@@ -437,9 +449,11 @@ Public Class ctrlHU_AllowanceList
                     If Page.IsValid Then
                         objAllowanceList.CODE = txtCode.Text.ToString.Trim
                         objAllowanceList.NAME = txtName.Text.ToString.Trim
-                        objAllowanceList.REMARK = txtRemark.Text.ToString.Trim
-                        'objAllowanceList.ALLOW_TYPE = cboAllowType.SelectedValue
                         objAllowanceList.IS_INSURANCE = chkIsInsurrance.Checked
+                        objAllowanceList.IS_CONTRACT = chkIsContract.Checked
+                        objAllowanceList.ALLOWANCE_TYPE = cbDMAlow.SelectedValue
+                        objAllowanceList.ALLOWANCE_GROUP = cboNAlow.SelectedValue
+                        objAllowanceList.ORDERS = ntxtOrder.Value
                         Select Case CurrentState
                             Case CommonMessage.STATE_NEW
                                 objAllowanceList.ACTFLG = "A"
@@ -458,7 +472,7 @@ Public Class ctrlHU_AllowanceList
                                 _validate.ID = rgMain.SelectedValue
                                 If rep.ValidateAllowanceList(_validate) Then
                                     ShowMessage(Translate(CommonMessage.MESSAGE_WARNING_EXIST_DATABASE), NotifyType.Error)
-                                    ClearControlValue(txtCode, txtName, txtRemark, cboAllowType)
+                                    ClearControlValue(txtCode, txtName, cbDMAlow, cboNAlow, ntxtOrder, chkIsInsurrance, chkIsContract)
                                     rgMain.Rebind()
                                     CurrentState = CommonMessage.STATE_NORMAL
                                     UpdateControlState()
@@ -477,7 +491,7 @@ Public Class ctrlHU_AllowanceList
                         ExcuteScript("Resize", "ResizeSplitter(splitterID, pane1ID, pane2ID, validateID, oldSize, 'rgMain')")
                     End If
                 Case CommonMessage.TOOLBARITEM_CANCEL
-                    ClearControlValue(txtCode, txtName, txtRemark, cboAllowType)
+                    ClearControlValue(txtCode, txtName, cbDMAlow, cboNAlow, ntxtOrder, chkIsInsurrance, chkIsContract)
                     CurrentState = CommonMessage.STATE_NORMAL
                     Refresh("Cancel")
                     UpdateControlState()
@@ -518,7 +532,7 @@ Public Class ctrlHU_AllowanceList
                 CurrentState = CommonMessage.STATE_DELETE
                 UpdateControlState()
             End If
-            ClearControlValue(txtCode, txtName, txtRemark, cboAllowType)
+            ClearControlValue(txtCode, txtName, cbDMAlow, cboNAlow, ntxtOrder, chkIsInsurrance, chkIsContract)
             _myLog.WriteLog(_myLog._info, _classPath, method,
                                  CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception

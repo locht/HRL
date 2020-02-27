@@ -33,30 +33,42 @@
                     <asp:RequiredFieldValidator ID="reqName" ControlToValidate="txtName" runat="server"
                         ErrorMessage="<%$ Translate: Bạn phải nhập tên phụ cấp. %>" ToolTip="<%$ Translate: Bạn phải nhập tên phụ cấp. %>"></asp:RequiredFieldValidator>
                 </td>
-                <td class="lb" style="display:none">
-                    <%# Translate("Loại hưởng")%><span class="lbReq">*</span>
-                </td>
-                <td  style="display:none">
-                    <tlk:RadComboBox ID="cboAllowType" runat="server" Width="162px">
-                    </tlk:RadComboBox>
-                    <%--<asp:CustomValidator ID="cusAllowType" runat="server" ErrorMessage="<%$ Translate: Bạn phải chọn Loại hưởng %>"
-                        ToolTip="<%$ Translate: Bạn phải chọn Loại hưởng %>" ClientValidationFunction="cusAllowType">
-                    </asp:CustomValidator>--%>
-                </td>
             </tr>
             <tr>
-                <td class="lb">
-                    <%# Translate("Ghi chú")%>
+                 <td class="lb">
+                    <%# Translate("Loại phụ cấp")%>
+                    <span class="lbReq">*</span>
                 </td>
-                <td colspan="5">
-                    <tlk:RadTextBox ID="txtRemark" runat="server" SkinID="Textbox1023" Width="100%" Height="40px">
-                    </tlk:RadTextBox>
+                <td>
+                    <tlk:RadComboBox runat="server" ID="cbDMAlow"></tlk:RadComboBox>
+                     <asp:RequiredFieldValidator ID="RequiredFieldValidator1" ControlToValidate="cbDMAlow" runat="server"
+                        ErrorMessage="<%$ Translate: Bạn phải nhập tên phụ cấp. %>" ToolTip="<%$ Translate: Bạn phải nhập tên phụ cấp. %>"></asp:RequiredFieldValidator>
+                </td>
+                <td class="lb">
+                    <%# Translate("Nhóm phụ cấp")%>
+                    <span class="lbReq">*</span>
+                </td>
+                <td>
+                    <tlk:RadComboBox runat="server" ID="cboNAlow"></tlk:RadComboBox>
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator2" ControlToValidate="cboNAlow" runat="server"
+                        ErrorMessage="<%$ Translate: Bạn phải nhập tên phụ cấp. %>" ToolTip="<%$ Translate: Bạn phải nhập tên phụ cấp. %>"></asp:RequiredFieldValidator>
                 </td>
             </tr>
-            <tr>            
-                <td>
+            <tr> 
+                <td class="lb">
+                    <%# Translate("Thứ tự")%>
                 </td>
-                <td colspan="5">
+                <td>
+                    <tlk:RadNumericTextBox ID="ntxtOrder" runat="server">
+                    </tlk:RadNumericTextBox>
+                </td>           
+                <td>
+                    <tlk:RadButton runat="server" ID="chkIsContract" ToggleType="CheckBox" ButtonType="ToggleButton"
+                        Enabled="false" CausesValidation="false" Text=" <%$ Translate: Hiển thị trên HĐLĐ %>"
+                        AutoPostBack="false">
+                    </tlk:RadButton>
+                </td>
+                <td>
                      <tlk:RadButton runat="server" ID="chkIsInsurrance" ToggleType="CheckBox" ButtonType="ToggleButton"
                         Enabled="false" CausesValidation="false" Text=" <%$ Translate: Đóng bảo hiểm %>"
                         AutoPostBack="false">
@@ -73,7 +85,7 @@
                 <ClientEvents OnGridCreated="GridCreated" />
                 <ClientEvents OnCommand="ValidateFilter" />
             </ClientSettings>
-            <MasterTableView DataKeyNames="ID" ClientDataKeyNames="CODE,NAME,REMARK,ALLOW_TYPE,IS_INSURANCE">
+            <MasterTableView DataKeyNames="ID" ClientDataKeyNames="CODE,NAME,IS_INSURANCE,ALLOWANCE_TYPE,ALLOWANCE_TYPE_NAME,ALLOWANCE_GROUP,ALLOWANCE_GROUP_NAME,ORDERS,IS_CONTRACT">
                 <Columns>
                     <tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderStyle-HorizontalAlign="Center"
                         HeaderStyle-Width="30px" ItemStyle-HorizontalAlign="Center">
@@ -83,10 +95,17 @@
                         UniqueName="CODE" />
                     <tlk:GridBoundColumn HeaderText="<%$ Translate: Tên phụ cấp %>" DataField="NAME"
                         SortExpression="NAME" UniqueName="NAME" />
-                    <tlk:GridBoundColumn HeaderText="<%$ Translate: Loại hưởng %>" DataField="ALLOW_TYPE_NAME"
-                        SortExpression="ALLOW_TYPE_NAME" UniqueName="ALLOW_TYPE_NAME" Visible="false" />
-                    <tlk:GridBoundColumn HeaderText="<%$ Translate: Ghi chú %>" DataField="REMARK" SortExpression="REMARK"
-                        UniqueName="REMARK" />
+                    <tlk:GridBoundColumn HeaderText="<%$ Translate: Loại phụ cấp %>" DataField="ALLOWANCE_TYPE_NAME"
+                        SortExpression="ALLOWANCE_TYPE_NAME" UniqueName="ALLOWANCE_TYPE_NAME" />
+                    <tlk:GridBoundColumn HeaderText="<%$ Translate: Nhóm phụ cấp %>" DataField="ALLOWANCE_GROUP_NAME"
+                        SortExpression="ALLOWANCE_GROUP_NAME" UniqueName="ALLOWANCE_GROUP_NAME" />
+                    <tlk:GridBoundColumn HeaderText="<%$ Translate: Thứ tự %>" DataField="ORDERS"
+                        SortExpression="ORDERS" UniqueName="ORDERS" />
+                     <tlk:GridCheckBoxColumn HeaderText="<%$ Translate: Hiển thị trên HĐLĐ %>" DataField="IS_CONTRACT" 
+                        AllowFiltering ="false" FooterStyle-HorizontalAlign="Center"
+                                    SortExpression="IS_CONTRACT" UniqueName="IS_CONTRACT">
+                                    <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
+                     </tlk:GridCheckBoxColumn>
                     <tlk:GridCheckBoxColumn HeaderText="<%$ Translate: Đóng bảo hiểm %>" DataField="IS_INSURANCE" 
                         AllowFiltering ="false" FooterStyle-HorizontalAlign="Center"
                                     SortExpression="IS_INSURANCE" UniqueName="IS_INSURANCE">
@@ -161,17 +180,12 @@
                 // Nếu nhấn các nút khác thì resize default
                 ResizeSplitterDefault(splitterID, pane1ID, pane2ID, oldSize);
             }
-        }
+}
 
+function onRequestStart(sender, eventArgs) {
+    eventArgs.set_enableAjax(enableAjax);
+    enableAjax = true;
+}
 
-        function onRequestStart(sender, eventArgs) {
-            eventArgs.set_enableAjax(enableAjax);
-            enableAjax = true;
-        }
-
-        function cusAllowType(oSrc, args) {
-            var cbo = $find("<%# cboAllowType.ClientID %>");
-            args.IsValid = (cbo.get_value().length != 0);
-        }
     </script>
 </tlk:RadCodeBlock>

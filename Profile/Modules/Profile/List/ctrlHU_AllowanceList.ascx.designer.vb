@@ -104,22 +104,58 @@ Partial Public Class ctrlHU_AllowanceList
     Protected WithEvents reqName As Global.System.Web.UI.WebControls.RequiredFieldValidator
 
     '''<summary>
-    '''cboAllowType control.
+    '''cbDMAlow control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents cboAllowType As Global.Telerik.Web.UI.RadComboBox
+    Protected WithEvents cbDMAlow As Global.Telerik.Web.UI.RadComboBox
 
     '''<summary>
-    '''txtRemark control.
+    '''RequiredFieldValidator1 control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents txtRemark As Global.Telerik.Web.UI.RadTextBox
+    Protected WithEvents RequiredFieldValidator1 As Global.System.Web.UI.WebControls.RequiredFieldValidator
+
+    '''<summary>
+    '''cboNAlow control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents cboNAlow As Global.Telerik.Web.UI.RadComboBox
+
+    '''<summary>
+    '''RequiredFieldValidator2 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents RequiredFieldValidator2 As Global.System.Web.UI.WebControls.RequiredFieldValidator
+
+    '''<summary>
+    '''ntxtOrder control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents ntxtOrder As Global.Telerik.Web.UI.RadNumericTextBox
+
+    '''<summary>
+    '''chkIsContract control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents chkIsContract As Global.Telerik.Web.UI.RadButton
 
     '''<summary>
     '''chkIsInsurrance control.

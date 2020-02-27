@@ -6362,7 +6362,13 @@ Namespace PayrollBusiness
         Private ACTFLGField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private ALLOWANCE_TYPEField As Decimal
+        Private ALLOWANCE_GROUPField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private ALLOWANCE_GROUP_NAMEField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private ALLOWANCE_TYPEField As System.Nullable(Of Decimal)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private ALLOWANCE_TYPE_NAMEField As String
@@ -6383,10 +6389,10 @@ Namespace PayrollBusiness
         Private IDField As Decimal
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private IS_CONTRACTField As Decimal
+        Private IS_CONTRACTField As System.Nullable(Of Decimal)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private IS_INSURANCEField As Decimal
+        Private IS_INSURANCEField As System.Nullable(Of Decimal)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private IS_PAYField As Decimal
@@ -6404,7 +6410,7 @@ Namespace PayrollBusiness
         Private NAMEField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private ORDERSField As Decimal
+        Private ORDERSField As System.Nullable(Of Decimal)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private REMARKField As String
@@ -6433,7 +6439,33 @@ Namespace PayrollBusiness
         End Property
         
         <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property ALLOWANCE_TYPE() As Decimal
+        Public Property ALLOWANCE_GROUP() As System.Nullable(Of Decimal)
+            Get
+                Return Me.ALLOWANCE_GROUPField
+            End Get
+            Set
+                If (Me.ALLOWANCE_GROUPField.Equals(value) <> true) Then
+                    Me.ALLOWANCE_GROUPField = value
+                    Me.RaisePropertyChanged("ALLOWANCE_GROUP")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property ALLOWANCE_GROUP_NAME() As String
+            Get
+                Return Me.ALLOWANCE_GROUP_NAMEField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.ALLOWANCE_GROUP_NAMEField, value) <> true) Then
+                    Me.ALLOWANCE_GROUP_NAMEField = value
+                    Me.RaisePropertyChanged("ALLOWANCE_GROUP_NAME")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property ALLOWANCE_TYPE() As System.Nullable(Of Decimal)
             Get
                 Return Me.ALLOWANCE_TYPEField
             End Get
@@ -6524,7 +6556,7 @@ Namespace PayrollBusiness
         End Property
         
         <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property IS_CONTRACT() As Decimal
+        Public Property IS_CONTRACT() As System.Nullable(Of Decimal)
             Get
                 Return Me.IS_CONTRACTField
             End Get
@@ -6537,7 +6569,7 @@ Namespace PayrollBusiness
         End Property
         
         <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property IS_INSURANCE() As Decimal
+        Public Property IS_INSURANCE() As System.Nullable(Of Decimal)
             Get
                 Return Me.IS_INSURANCEField
             End Get
@@ -6615,7 +6647,7 @@ Namespace PayrollBusiness
         End Property
         
         <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property ORDERS() As Decimal
+        Public Property ORDERS() As System.Nullable(Of Decimal)
             Get
                 Return Me.ORDERSField
             End Get

@@ -17,6 +17,7 @@ Partial Public Class PayrollRepository
         Try
             Dim query = From p In Context.HU_ALLOWANCE_LIST
                         From s In Context.OT_OTHER_LIST.Where(Function(e) e.ID = p.ALLOWANCE_TYPE).DefaultIfEmpty()
+                        From n In Context.OT_OTHER_LIST.Where(Function(e) e.ID = p.ALLOWANCE_GROUP).DefaultIfEmpty()
             'Join s In Context.OT_OTHER_LIST On p.ALLOWANCE_TYPE Equals (s.ID)
 
             Dim lst = query.Select(Function(e) New AllowanceListDTO With {
@@ -31,7 +32,9 @@ Partial Public Class PayrollRepository
                                        .IS_CONTRACT = e.p.IS_CONTRACT,
                                        .IS_INSURANCE = e.p.IS_INSURANCE,
                                        .IS_PAY = e.p.IS_PAY,
-                                       .ALLOWANCE_TYPE_NAME = e.s.NAME_VN
+                                       .ALLOWANCE_TYPE_NAME = e.s.NAME_VN,
+                                       .ALLOWANCE_GROUP = e.p.ALLOWANCE_GROUP,
+                                       .ALLOWANCE_GROUP_NAME = e.n.NAME_VN
                                    })
 
             If _filter.CODE <> "" Then

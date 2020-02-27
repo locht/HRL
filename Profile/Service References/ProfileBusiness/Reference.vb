@@ -32128,13 +32128,19 @@ Namespace ProfileBusiness
         Private ACTFLGField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private ALLOWANCE_GROUPField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private ALLOWANCE_GROUP_NAMEField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private ALLOWANCE_TYPEField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private ALLOWANCE_TYPE_NAMEField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private ALLOW_LEVELField As System.Nullable(Of Decimal)
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private ALLOW_TYPEField As System.Nullable(Of Decimal)
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private ALLOW_TYPE_NAMEField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private CODEField As String
@@ -32150,6 +32156,9 @@ Namespace ProfileBusiness
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private IDField As Decimal
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private IS_CONTRACTField As System.Nullable(Of Boolean)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private IS_DISPLAYField As System.Nullable(Of Boolean)
@@ -32168,6 +32177,9 @@ Namespace ProfileBusiness
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private NAMEField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private ORDERSField As System.Nullable(Of Decimal)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private REMARKField As String
@@ -32196,6 +32208,58 @@ Namespace ProfileBusiness
         End Property
         
         <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property ALLOWANCE_GROUP() As System.Nullable(Of Decimal)
+            Get
+                Return Me.ALLOWANCE_GROUPField
+            End Get
+            Set
+                If (Me.ALLOWANCE_GROUPField.Equals(value) <> true) Then
+                    Me.ALLOWANCE_GROUPField = value
+                    Me.RaisePropertyChanged("ALLOWANCE_GROUP")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property ALLOWANCE_GROUP_NAME() As String
+            Get
+                Return Me.ALLOWANCE_GROUP_NAMEField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.ALLOWANCE_GROUP_NAMEField, value) <> true) Then
+                    Me.ALLOWANCE_GROUP_NAMEField = value
+                    Me.RaisePropertyChanged("ALLOWANCE_GROUP_NAME")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property ALLOWANCE_TYPE() As System.Nullable(Of Decimal)
+            Get
+                Return Me.ALLOWANCE_TYPEField
+            End Get
+            Set
+                If (Me.ALLOWANCE_TYPEField.Equals(value) <> true) Then
+                    Me.ALLOWANCE_TYPEField = value
+                    Me.RaisePropertyChanged("ALLOWANCE_TYPE")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property ALLOWANCE_TYPE_NAME() As String
+            Get
+                Return Me.ALLOWANCE_TYPE_NAMEField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.ALLOWANCE_TYPE_NAMEField, value) <> true) Then
+                    Me.ALLOWANCE_TYPE_NAMEField = value
+                    Me.RaisePropertyChanged("ALLOWANCE_TYPE_NAME")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
         Public Property ALLOW_LEVEL() As System.Nullable(Of Decimal)
             Get
                 Return Me.ALLOW_LEVELField
@@ -32204,32 +32268,6 @@ Namespace ProfileBusiness
                 If (Me.ALLOW_LEVELField.Equals(value) <> true) Then
                     Me.ALLOW_LEVELField = value
                     Me.RaisePropertyChanged("ALLOW_LEVEL")
-                End If
-            End Set
-        End Property
-        
-        <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property ALLOW_TYPE() As System.Nullable(Of Decimal)
-            Get
-                Return Me.ALLOW_TYPEField
-            End Get
-            Set
-                If (Me.ALLOW_TYPEField.Equals(value) <> true) Then
-                    Me.ALLOW_TYPEField = value
-                    Me.RaisePropertyChanged("ALLOW_TYPE")
-                End If
-            End Set
-        End Property
-        
-        <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property ALLOW_TYPE_NAME() As String
-            Get
-                Return Me.ALLOW_TYPE_NAMEField
-            End Get
-            Set
-                If (Object.ReferenceEquals(Me.ALLOW_TYPE_NAMEField, value) <> true) Then
-                    Me.ALLOW_TYPE_NAMEField = value
-                    Me.RaisePropertyChanged("ALLOW_TYPE_NAME")
                 End If
             End Set
         End Property
@@ -32295,6 +32333,19 @@ Namespace ProfileBusiness
                 If (Me.IDField.Equals(value) <> true) Then
                     Me.IDField = value
                     Me.RaisePropertyChanged("ID")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property IS_CONTRACT() As System.Nullable(Of Boolean)
+            Get
+                Return Me.IS_CONTRACTField
+            End Get
+            Set
+                If (Me.IS_CONTRACTField.Equals(value) <> true) Then
+                    Me.IS_CONTRACTField = value
+                    Me.RaisePropertyChanged("IS_CONTRACT")
                 End If
             End Set
         End Property
@@ -32373,6 +32424,19 @@ Namespace ProfileBusiness
                 If (Object.ReferenceEquals(Me.NAMEField, value) <> true) Then
                     Me.NAMEField = value
                     Me.RaisePropertyChanged("NAME")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property ORDERS() As System.Nullable(Of Decimal)
+            Get
+                Return Me.ORDERSField
+            End Get
+            Set
+                If (Me.ORDERSField.Equals(value) <> true) Then
+                    Me.ORDERSField = value
+                    Me.RaisePropertyChanged("ORDERS")
                 End If
             End Set
         End Property

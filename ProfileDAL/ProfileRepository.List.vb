@@ -981,19 +981,25 @@ Partial Class ProfileRepository
 
         Try
             Dim query = From p In Context.HU_ALLOWANCE_LIST
+                        From s In Context.OT_OTHER_LIST.Where(Function(e) e.ID = p.ALLOWANCE_TYPE).DefaultIfEmpty()
+                        From n In Context.OT_OTHER_LIST.Where(Function(e) e.ID = p.ALLOWANCE_GROUP).DefaultIfEmpty()
+            'Join s In Context.OT_OTHER_LIST On p.ALLOWANCE_TYPE Equals (s.ID)
 
-            Dim lst = query.Select(Function(p) New AllowanceListDTO With {
-                                       .ID = p.ID,
-                                       .CODE = p.CODE,
-                                       .NAME = p.NAME,
-                                       .REMARK = p.REMARK,
-                                       .IS_INSURANCE = p.IS_INSURANCE,
-                                       .ALLOW_TYPE = p.ALLOWANCE_TYPE,
-                                       .ALLOW_TYPE_NAME = If(p.ALLOWANCE_TYPE = 1, "Theo tháng",
-                                                        If(p.ALLOWANCE_TYPE = 2, "Theo công hưởng lương",
-                                                           If(p.ALLOWANCE_TYPE = 3, "Theo công làm việc", ""))),
-                                       .ACTFLG = If(p.ACTFLG = "A", "Áp dụng", "Ngừng áp dụng"),
-                                       .CREATED_DATE = p.CREATED_DATE})
+            Dim lst = query.Select(Function(e) New AllowanceListDTO With {
+                                       .ID = e.p.ID,
+                                       .CODE = e.p.CODE,
+                                       .NAME = e.p.NAME,
+                                       .REMARK = e.p.REMARK,
+                                       .ACTFLG = e.p.ACTFLG,
+                                       .CREATED_DATE = e.p.CREATED_DATE,
+                                       .ALLOWANCE_TYPE = e.p.ALLOWANCE_TYPE,
+                                       .ORDERS = e.p.ORDERS,
+                                       .IS_CONTRACT = e.p.IS_CONTRACT,
+                                       .IS_INSURANCE = e.p.IS_INSURANCE,
+                                       .ALLOWANCE_TYPE_NAME = e.s.NAME_VN,
+                                       .ALLOWANCE_GROUP = e.p.ALLOWANCE_GROUP,
+                                       .ALLOWANCE_GROUP_NAME = e.n.NAME_VN
+                                   })
             If _filter.ID > 0 Then
                 lst = lst.Where(Function(p) p.ID = _filter.ID)
             End If
@@ -1003,8 +1009,11 @@ Partial Class ProfileRepository
             If _filter.NAME <> "" Then
                 lst = lst.Where(Function(p) p.NAME.ToUpper.Contains(_filter.NAME.ToUpper))
             End If
-            If _filter.ALLOW_TYPE_NAME <> "" Then
-                lst = lst.Where(Function(p) p.ALLOW_TYPE_NAME.ToUpper.Contains(_filter.ALLOW_TYPE_NAME.ToUpper))
+            If _filter.ALLOWANCE_TYPE_NAME <> "" Then
+                lst = lst.Where(Function(p) p.ALLOWANCE_TYPE_NAME.ToUpper.Contains(_filter.ALLOWANCE_TYPE_NAME.ToUpper))
+            End If
+            If _filter.ALLOWANCE_GROUP_NAME <> "" Then
+                lst = lst.Where(Function(p) p.ALLOWANCE_GROUP_NAME.ToUpper.Contains(_filter.ALLOWANCE_GROUP_NAME.ToUpper))
             End If
             If _filter.ACTFLG <> "" Then
                 lst = lst.Where(Function(p) p.ACTFLG.ToUpper.Contains(_filter.ACTFLG.ToUpper))
@@ -1033,9 +1042,12 @@ Partial Class ProfileRepository
             objAllowanceListData.CODE = objAllowanceList.CODE.Trim
             objAllowanceListData.NAME = objAllowanceList.NAME.Trim
             objAllowanceListData.ACTFLG = objAllowanceList.ACTFLG
-            objAllowanceListData.ALLOWANCE_TYPE = objAllowanceList.ALLOW_TYPE
+            objAllowanceListData.ALLOWANCE_TYPE = objAllowanceList.ALLOWANCE_TYPE
             objAllowanceListData.REMARK = objAllowanceList.REMARK
             objAllowanceListData.IS_INSURANCE = objAllowanceList.IS_INSURANCE
+            objAllowanceListData.ORDERS = objAllowanceList.ORDERS
+            objAllowanceListData.ALLOWANCE_GROUP = objAllowanceList.ALLOWANCE_GROUP
+            objAllowanceListData.IS_CONTRACT = objAllowanceList.IS_CONTRACT
             Context.HU_ALLOWANCE_LIST.AddObject(objAllowanceListData)
             Context.SaveChanges(log)
             gID = objAllowanceListData.ID
@@ -1087,9 +1099,12 @@ Partial Class ProfileRepository
             objAllowanceListData.ID = objAllowanceList.ID
             objAllowanceListData.CODE = objAllowanceList.CODE
             objAllowanceListData.NAME = objAllowanceList.NAME
-            objAllowanceListData.ALLOWANCE_TYPE = objAllowanceList.ALLOW_TYPE
+            objAllowanceListData.ALLOWANCE_TYPE = objAllowanceList.ALLOWANCE_TYPE
             objAllowanceListData.REMARK = objAllowanceList.REMARK
             objAllowanceListData.IS_INSURANCE = objAllowanceList.IS_INSURANCE
+            objAllowanceListData.ORDERS = objAllowanceList.ORDERS
+            objAllowanceListData.ALLOWANCE_GROUP = objAllowanceList.ALLOWANCE_GROUP
+            objAllowanceListData.IS_CONTRACT = objAllowanceList.IS_CONTRACT
             Context.SaveChanges(log)
             gID = objAllowanceListData.ID
             Return True

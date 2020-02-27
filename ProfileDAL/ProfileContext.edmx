@@ -2730,6 +2730,7 @@
             <Property Name="IS_CONTRACT" Type="number" Nullable="true" Precision="5" />
             <Property Name="IS_INSURANCE" Type="number" Nullable="true" Precision="5" />
             <Property Name="IS_PAY" Type="number" Nullable="true" Precision="5" />
+            <Property Name="ALLOWANCE_GROUP" Type="number" Nullable="true" Precision="38" />
         </EntityType>
         <EntityType Name="HU_COMPETENCY_COURSE">
             <Key>
@@ -7285,6 +7286,7 @@
           <Property Type="Int16" Name="IS_CONTRACT" />
           <Property Type="Int16" Name="IS_INSURANCE" />
           <Property Type="Int16" Name="IS_PAY" />
+          <Property Type="Decimal" Name="ALLOWANCE_GROUP" />
         </EntityType>
         <EntityType Name="HU_COMPETENCY_COURSE">
           <Key>
@@ -10950,6 +10952,7 @@
                     <ScalarProperty Name="IS_CONTRACT" ColumnName="IS_CONTRACT" />
                     <ScalarProperty Name="IS_INSURANCE" ColumnName="IS_INSURANCE" />
                     <ScalarProperty Name="IS_PAY" ColumnName="IS_PAY" />
+                    <ScalarProperty Name="ALLOWANCE_GROUP" ColumnName="ALLOWANCE_GROUP" />
                 </MappingFragment>
             </EntityTypeMapping>
         </EntitySetMapping>
@@ -12360,7 +12363,7 @@
         <EntityTypeShape EntityType="ProfileModel.TR_PROGRAM_RESULT" Width="1.5" PointX="5.375" PointY="27.75" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="ProfileModel.TR_REQUEST" Width="1.5" PointX="27.375" PointY="10.75" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="ProfileModel.TR_REQUEST_EMPLOYEE" Width="1.5" PointX="27.375" PointY="18.75" Height="0.4" IsExpanded="false" />
-        <EntityTypeShape EntityType="ProfileModel.HU_ALLOWANCE_LIST" Width="1.5" PointX="27.375" PointY="21.75" Height="0.4" IsExpanded="false" />
+        <EntityTypeShape EntityType="ProfileModel.HU_ALLOWANCE_LIST" Width="2.375" PointX="27.375" PointY="21.75" Height="4.2879036458333353" IsExpanded="true" />
         <EntityTypeShape EntityType="ProfileModel.HU_COMPETENCY_COURSE" Width="2.375" PointX="27.375" PointY="26.75" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="ProfileModel.HU_WORKING" Width="2.5" PointX="4.625" PointY="12.625" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="ProfileModel.PA_SALARY_TYPE" Width="1.5" PointX="28.375" PointY="5.75" Height="0.4" IsExpanded="false" />

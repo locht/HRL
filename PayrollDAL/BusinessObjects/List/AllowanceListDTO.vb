@@ -10,12 +10,14 @@
     Public Property MODIFIED_DATE As Date
     Public Property MODIFIED_BY As String
     Public Property MODIFIED_LOG As String
-    Public Property ALLOWANCE_TYPE As Decimal
+    Public Property ALLOWANCE_TYPE As Decimal?
     Public Property ALLOWANCE_TYPE_NAME As String
-    Public Property ORDERS As Decimal
-    Public Property IS_CONTRACT As Decimal
-    Public Property IS_INSURANCE As Decimal
+    Public Property ORDERS As Decimal?
+    Public Property IS_CONTRACT As Decimal?
+    Public Property IS_INSURANCE As Decimal?
     Public Property IS_PAY As Decimal
+    Public Property ALLOWANCE_GROUP As Decimal?
+    Public Property ALLOWANCE_GROUP_NAME As String
 End Class
 
 Public Class AllowanceDTO
