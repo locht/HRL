@@ -200,7 +200,7 @@ Public Class ctrlRC_PlanYear
                     Using xls As New ExcelCommon
                         dtData = CreateDataFilter(True)
                         If dtData IsNot Nothing And dtData.Rows.Count > 0 Then
-                            rgData.ExportExcel(Server, Response, dtData, "Terminate")
+                            rgData.ExportExcel(Server, Response, dtData, "Recruitment_Year_plan")
                         Else
                             ShowMessage(Translate(CommonMessage.MESSAGE_WARNING_EXPORT_EMPTY), NotifyType.Warning)
                             Exit Sub
