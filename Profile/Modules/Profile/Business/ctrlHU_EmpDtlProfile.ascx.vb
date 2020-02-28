@@ -258,12 +258,15 @@ Public Class ctrlHU_EmpDtlProfile
                             End If
 
                             rdExpireIDNO.SelectedDate = empCV.EXPIRE_DATE_IDNO
+                            rdWeddingDay.SelectedDate = empCV.WEDDINGDAY
                             rdDateOfEntry.SelectedDate = empCV.DATEOFENTRY
                             txtPerson_Inheritance.Text = empCV.PERSON_INHERITANCE
                             rdEffect_Bank.SelectedDate = empCV.EFFECTDATE_BANK
                             'txtPlaceKS.Text = empCV.BIRTH_PLACE
                             txtVillage.Text = empCV.VILLAGE
                             txtAppDung.Text = empEdu.COMPUTER_CERTIFICATE
+                            txtDriverType.Text = empEdu.DRIVER_NO
+                            txtNote.Text = empEdu.MORE_INFORMATION
                             rdDayPitcode.SelectedDate = empCV.PIT_CODE_DATE
                             txtPlacePitcode.Text = empCV.PIT_CODE_PLACE
                             If empEdu.COMPUTER_RANK IsNot Nothing Then
@@ -504,6 +507,11 @@ Public Class ctrlHU_EmpDtlProfile
                             txtPerEmail.Text = empCV.PER_EMAIL
                             txtCareer.Text = empCV.CAREER
                             txtWorkEmail.Text = empCV.WORK_EMAIL
+                            'GIẤY PHÉP HÀNH NGHỀ
+                            txtGPHN.Text = empCV.WORK_HN
+                            rdFrom_GPHN.SelectedDate = empCV.WORK_HN_DATE
+                            rdTo_GPHN.SelectedDate = empCV.WORK_HN_EXPIRE
+                            txtNoiCap_GPHN.Text = empCV.WORK_HN_PLACE
                             'Người liên hệ khi cần
                             txtContactPerson.Text = empCV.CONTACT_PER
                             'Điện thoại người liên hệ
@@ -517,14 +525,21 @@ Public Class ctrlHU_EmpDtlProfile
                          
                             txtAddressPerContract.Text = empCV.ADDRESS_PER_CTR
 
-                            'chkDangPhi.Checked = False
-                            'If empCV.DANG_PHI IsNot Nothing Then
-                            '    chkDangPhi.Checked = empCV.DANG_PHI
-                            'End If
+                            chkDangPhi.Checked = False
+                            If empCV.DANG_PHI IsNot Nothing Then
+                                chkDangPhi.Checked = empCV.DANG_PHI
+                            End If
+
                             chkDoanPhi.Checked = False
                             If empCV.DOAN_PHI IsNot Nothing Then
                                 chkDoanPhi.Checked = empCV.DOAN_PHI
                             End If
+
+                            chkATVS.Checked = False
+                            If empCV.IS_ATVS IsNot Nothing Then
+                                chkATVS.Checked = empCV.IS_ATVS
+                            End If
+
                             If empCV.BANK_ID IsNot Nothing Then
                                 cboBank.SelectedValue = empCV.BANK_ID
                                 cboBank.Text = empCV.BANK_NAME
@@ -572,6 +587,10 @@ Public Class ctrlHU_EmpDtlProfile
                             If empEdu.LANGUAGE_LEVEL2 IsNot Nothing Then
                                 cboLangLevel2.SelectedValue = empEdu.LANGUAGE_LEVEL2
                                 cboLangLevel2.Text = empEdu.LANGUAGE_LEVEL_NAME2
+                            End If
+                            If empEdu.DRIVER_TYPE IsNot Nothing Then
+                                cboDriverType.SelectedValue = empEdu.DRIVER_TYPE
+                                cboDriverType.Text = empEdu.DRIVER_TYPE_NAME
                             End If
                             txtLangMark2.Text = empEdu.LANGUAGE_MARK2
                             If empEdu.LANGUAGE2 IsNot Nothing Then
@@ -907,7 +926,7 @@ Public Class ctrlHU_EmpDtlProfile
                     'txtEmpCODE.Text = EmpCode.EMPLOYEE_CODE
                     EnableControlAll(True, txtOrgName2, btnFindOrg,
                                      cboTitle, txtTitleGroup, cboStaffRank, txtDirectManager, btnFindDirect,
-                                     txtmanager, cboObject, cboObjectLabor, cbObjectBook, cboBasic, cboCertificate, txtAppDung, txtPlaceKS, txtVillage, rdDayPitcode, txtPlacePitcode, txtPerson_Inheritance, rdEffect_Bank)
+                                     txtmanager, cboObject, cboObjectLabor, cbObjectBook, cboBasic, cboCertificate, txtAppDung, txtPlaceKS, txtVillage, rdDayPitcode, txtPlacePitcode, txtPerson_Inheritance, rdEffect_Bank, txtDriverType, txtNote)
 
                     EnableControlAll(False, cboWorkStatus, txtEmpCODE, cboEmpStatus, rtBookNo, cboInsRegion, txtTimeID, txtTitleGroup)
                     EnableControlAll(True, rtCHUC_VU_DANG, rdNGAY_VAO_DANG_DB, rdNGAY_VAO_DANG)
@@ -917,7 +936,7 @@ Public Class ctrlHU_EmpDtlProfile
                     EnableControlAll(True, rdNgay_Nhap_Ngu_QD, rdNgay_Xuat_Ngu_QD, rtDV_Xuat_Ngu_QD)
                     EnableControlAll(True, cbHang_Thuong_Binh, cbGD_Chinh_Sach)
                     EnableControlAll(True, lstbPaper, lstbPaperFiled,
-                                        txtBankNo, chkSaveHistory, ckBanTT_ND, rdExpireIDNO, rdDateOfEntry,
+                                        txtBankNo, chkSaveHistory, ckBanTT_ND, rdExpireIDNO, rdDateOfEntry, rdWeddingDay,
                                        txtDaHoaLieu, rtDiem_XL_TH, txtDiem_XL_TH2, txtNoteTDTH1, txtNoteTDTH2,
                                        txtFirstNameVN, txtGhiChuSK, txtNamTN,
                                        txtHomePhone, txtHuyetAp, txtID_NO, chkIs_pay_bank,
@@ -927,19 +946,19 @@ Public Class ctrlHU_EmpDtlProfile
                                         txtPassNo, txtPassPlace, txtPerAddress, txtPerEmail, txtPhoiNguc, txtCareer,
                                        txtPitCode, txtRangHamMat, txtTaiMuiHong, txtTim,
                                        txtVienGanB, txtVisa, txtVisaPlace,
-                                       txtWorkEmail, txtWorkPermit, txtWorkPermitPlace,
+                                       txtWorkEmail, txtWorkPermit, txtWorkPermitPlace, txtGPHN, rdFrom_GPHN, rdTo_GPHN, txtNoiCap_GPHN,
                                        txtContactPerson, txtContactPersonPhone, txtContactMobilePhone, txtChucVuDoan,
                                        rdBirthDate, rdIDDate, rdSeniorityDate,
                                        rdNgayVaoDoan, rdPassDate, rdPassExpireDate,
                                        rdVisaDate, rdVisaExpireDate, rdWorkPermitDate, rdWorPermitExpireDate,
                                        txtCanNang, txtChieuCao,
                                        cboAcademy, cboGraduateSchool, cboBank, cboBankBranch, cboFamilyStatus, rtWorkplace,
-                                       cboGender, cboLangLevel, cboLangLevel2, cboLanguage, cboLanguage2, cboLearningLevel, txtLoaiSucKhoe,
+                                       cboGender, cboLangLevel, cboLangLevel2, cboLanguage, cboLanguage2, cboLearningLevel, txtLoaiSucKhoe, cboDriverType,
                                        cboMajor, cboNationlity, cboNative, cboNav_Province, cboPer_Province, cboNationa_TT, cboNationlity_NQ, cboNationlity_TTRU,
                                        cboReligion,
                                        cboPer_District, cboPer_Ward, cboNav_District, cboNav_Ward, cbPROVINCEEMP_ID, cbDISTRICTEMP_ID, cbWARDEMP_ID, cbPROVINCENQ_ID, cbBirth_PlaceId,
                                        hidID, hidOrgID, hidDirectManager, hidLevelManager,
-                                       chkDoanPhi, rtOpption1, rtOpption2, rtOpption3, rtOpption4, rtOpption5,
+                                       chkDoanPhi, rtOpption1, rtOpption2, rtOpption3, rtOpption4, rtOpption5, chkDangPhi, chkATVS,
                                        rdOpption6, rdOpption7, rdOpption8, rdOpption9, rdOpption10,
                                         cbGD_Chinh_Sach, cbHang_Thuong_Binh, ckThuong_Binh,
                                         ckQD, rtDV_Xuat_Ngu_CA, rdNgay_Xuat_Ngu_CA, rdNgay_Nhap_Ngu_CA,
@@ -970,8 +989,8 @@ Public Class ctrlHU_EmpDtlProfile
                         EnableControlAll(True, cbHang_Thuong_Binh, cbGD_Chinh_Sach)
                         EnableControlAll(True, lstbPaper, lstbPaperFiled, chkSaveHistory,
                                             txtBankNo, ckBanTT_ND, rtDiem_XL_TH, txtDiem_XL_TH2, txtNoteTDTH1, txtNoteTDTH2,
-                                           txtDaHoaLieu, txtNamTN, rdExpireIDNO, txtAppDung, txtPlaceKS, txtVillage, txtPlacePitcode, rdDayPitcode, txtPerson_Inheritance, rdEffect_Bank, rdDateOfEntry,
-                                           txtFirstNameVN, txtGhiChuSK, chkIs_pay_bank,
+                                           txtDaHoaLieu, txtNamTN, rdExpireIDNO, txtAppDung, txtPlaceKS, txtVillage, txtPlacePitcode, rdDayPitcode, txtPerson_Inheritance, rdEffect_Bank, rdDateOfEntry, rdWeddingDay,
+                                           txtFirstNameVN, txtGhiChuSK, chkIs_pay_bank, txtDriverType, txtNote,
                                            txtHomePhone, txtHuyetAp, txtID_NO,
                                            cboIDPlace, txtLangMark, txtLangMark2, txtTimeID,
                                            txtLastNameVN, txtMatPhai, txtMatTrai,
@@ -979,20 +998,20 @@ Public Class ctrlHU_EmpDtlProfile
                                             txtPassNo, txtPassPlace, txtPerAddress, txtPerEmail, txtPhoiNguc, txtCareer,
                                            txtPitCode, txtRangHamMat, txtTaiMuiHong, txtTim,
                                            txtVienGanB, txtVisa, txtVisaPlace, cboCertificate, cboBasic,
-                                           txtWorkEmail, txtWorkPermit, txtWorkPermitPlace,
+                                           txtWorkEmail, txtWorkPermit, txtWorkPermitPlace, txtGPHN, rdFrom_GPHN, rdTo_GPHN, txtNoiCap_GPHN,
                                           txtContactPerson, txtContactPersonPhone, txtContactMobilePhone, txtChucVuDoan,
                                           rdBirthDate, rdIDDate, rdSeniorityDate,
                                            rdNgayVaoDoan, rdPassDate, rdPassExpireDate,
                                           rdVisaDate, rdVisaExpireDate, rdWorkPermitDate, rdWorPermitExpireDate,
                                            txtCanNang, txtChieuCao,
                                            cboAcademy, cboGraduateSchool, cboBank, cboBankBranch, cboFamilyStatus,
-                                           cboGender, cboLangLevel, cboLangLevel2, rtWorkplace,
+                                           cboGender, cboLangLevel, cboLangLevel2, rtWorkplace, cboDriverType,
                                            cboLanguage, cboLanguage2, cboLearningLevel, txtLoaiSucKhoe,
                                            cboMajor, cboNationlity, cboNative, cboNav_Province, cboPer_Province, cboNationa_TT, cboNationlity_NQ, cboNationlity_TTRU,
                                            cboReligion,
                                            cboPer_District, cboPer_Ward, cboNav_District, cboNav_Ward,
                                            hidID, hidOrgID, hidDirectManager, hidLevelManager,
-                                            chkDoanPhi, cbPROVINCEEMP_ID, cbDISTRICTEMP_ID, cbWARDEMP_ID, cbPROVINCENQ_ID, cbBirth_PlaceId,
+                                            chkDoanPhi, cbPROVINCEEMP_ID, cbDISTRICTEMP_ID, cbWARDEMP_ID, cbPROVINCENQ_ID, cbBirth_PlaceId, chkDangPhi, chkATVS,
                                            rtOpption1, rtOpption2, rtOpption3, rtOpption4, rtOpption5,
                                            rdOpption6, rdOpption7, rdOpption8, rdOpption9, rdOpption10,
                                             ckThuong_Binh,
@@ -1014,7 +1033,7 @@ Public Class ctrlHU_EmpDtlProfile
                         EnableControlAll(True, cbHang_Thuong_Binh, cbGD_Chinh_Sach)
                         EnableControlAll(True, lstbPaper, lstbPaperFiled, chkSaveHistory,
                                             txtBankNo, ckBanTT_ND, rtDiem_XL_TH, txtDiem_XL_TH2, txtNoteTDTH1, txtNoteTDTH2,
-                                           txtDaHoaLieu, txtNamTN, rdExpireIDNO, txtAppDung, txtPlaceKS, txtVillage, txtPlacePitcode, rdDayPitcode, txtPerson_Inheritance, rdEffect_Bank, rdDateOfEntry,
+                                           txtDaHoaLieu, txtNamTN, rdExpireIDNO, txtAppDung, txtPlaceKS, txtVillage, txtPlacePitcode, rdDayPitcode, txtPerson_Inheritance, rdEffect_Bank, rdDateOfEntry, rdWeddingDay, txtDriverType, txtNote,
                                            txtFirstNameVN, txtGhiChuSK, chkIs_pay_bank,
                                            txtHomePhone, txtHuyetAp, txtID_NO,
                                            cboIDPlace, txtLangMark, txtLangMark2,
@@ -1023,20 +1042,20 @@ Public Class ctrlHU_EmpDtlProfile
                                             txtPassNo, txtPassPlace, txtPerAddress, txtPerEmail, txtPhoiNguc, txtCareer,
                                            txtPitCode, txtRangHamMat, txtTaiMuiHong, txtTim,
                                            txtVienGanB, txtVisa, txtVisaPlace, cboCertificate, cboBasic,
-                                           txtWorkEmail, txtWorkPermit, txtWorkPermitPlace,
+                                           txtWorkEmail, txtWorkPermit, txtWorkPermitPlace, txtGPHN, rdFrom_GPHN, rdTo_GPHN, txtNoiCap_GPHN,
                                           txtContactPerson, txtContactPersonPhone, txtContactMobilePhone, txtChucVuDoan,
                                           rdBirthDate, rdIDDate, rdSeniorityDate,
                                            rdNgayVaoDoan, rdPassDate, rdPassExpireDate,
                                           rdVisaDate, rdVisaExpireDate, rdWorkPermitDate, rdWorPermitExpireDate,
                                            txtCanNang, txtChieuCao,
                                            cboAcademy, cboGraduateSchool, cboBank, cboBankBranch, cboFamilyStatus,
-                                           cboGender, cboLangLevel, cboLangLevel2, rtWorkplace,
+                                           cboGender, cboLangLevel, cboLangLevel2, rtWorkplace, cboDriverType,
                                            cboLanguage, cboLanguage2, cboLearningLevel, txtLoaiSucKhoe,
                                            cboMajor, cboNationlity, cboNative, cboNav_Province, cboPer_Province, cboNationa_TT, cboNationlity_NQ, cboNationlity_TTRU,
                                            cboReligion,
                                            cboPer_District, cboPer_Ward, cboNav_District, cboNav_Ward,
                                            hidID, hidOrgID, hidDirectManager, hidLevelManager,
-                                            chkDoanPhi, cbPROVINCEEMP_ID, cbDISTRICTEMP_ID, cbWARDEMP_ID, cbPROVINCENQ_ID, cbBirth_PlaceId,
+                                            chkDoanPhi, cbPROVINCEEMP_ID, cbDISTRICTEMP_ID, cbWARDEMP_ID, cbPROVINCENQ_ID, cbBirth_PlaceId, chkDangPhi, chkATVS,
                                            rtOpption1, rtOpption2, rtOpption3, rtOpption4, rtOpption5,
                                            rdOpption6, rdOpption7, rdOpption8, rdOpption9, rdOpption10,
                                             ckThuong_Binh,
@@ -1064,25 +1083,25 @@ Public Class ctrlHU_EmpDtlProfile
                                       txtHomePhone, txtHuyetAp, txtID_NO, chkIs_pay_bank,
                                       cboIDPlace, txtLangMark, txtLangMark2, txtTimeID,
                                       txtLastNameVN, txtMatPhai, txtMatTrai,
-                                      txtMobilePhone, txtNavAddress, txtNhomMau, cboCertificate, cboBasic, rdExpireIDNO, rdDateOfEntry,
-                                       txtPassNo, txtPassPlace, cboObject, cboObjectLabor, cbObjectBook, txtTimeID, cboCertificate, cboBasic, txtAppDung, txtPlaceKS, txtVillage, rdDayPitcode, txtPlacePitcode, txtPerson_Inheritance, rdEffect_Bank,
+                                      txtMobilePhone, txtNavAddress, txtNhomMau, cboCertificate, cboBasic, rdExpireIDNO, rdDateOfEntry, rdWeddingDay,
+                                       txtPassNo, txtPassPlace, cboObject, cboObjectLabor, cbObjectBook, txtTimeID, cboCertificate, cboBasic, txtAppDung, txtPlaceKS, txtVillage, rdDayPitcode, txtPlacePitcode, txtPerson_Inheritance, rdEffect_Bank, txtDriverType, txtNote,
                                       txtPerAddress, txtPerEmail, txtPhoiNguc, txtCareer,
                                       txtPitCode, txtRangHamMat, txtTaiMuiHong, txtTim,
                                       txtVienGanB, txtVisa, txtVisaPlace,
-                                      txtWorkEmail, txtWorkPermit, txtWorkPermitPlace,
+                                      txtWorkEmail, txtWorkPermit, txtWorkPermitPlace, txtGPHN, rdFrom_GPHN, rdTo_GPHN, txtNoiCap_GPHN,
                                       txtContactPerson, txtContactPersonPhone, txtContactMobilePhone, txtChucVuDoan,
                                       rdBirthDate, rdContractExpireDate, rdContractEffectDate, rdIDDate, rdSeniorityDate,
                                       rdNgayVaoDoan, rdPassDate, rdPassExpireDate,
                                       rdVisaDate, rdVisaExpireDate, rdWorkPermitDate, rdWorPermitExpireDate,
                                       txtCanNang, txtChieuCao,
                                       cboAcademy, cboGraduateSchool, cboBank, cboBankBranch, cboFamilyStatus,
-                                      cboGender, cboLangLevel, cboLangLevel2, rtWorkplace, cboInsRegion,
+                                      cboGender, cboLangLevel, cboLangLevel2, rtWorkplace, cboInsRegion, cboDriverType,
                                       cboLanguage, cboLanguage2, cboLearningLevel, txtLoaiSucKhoe,
                                       cboMajor, cboNationlity, cboNative, cboNav_Province, cboPer_Province, cboNationa_TT, cboNationlity_NQ, cboNationlity_TTRU,
                                       cboReligion, cboStaffRank, cboTitle,
                                       cboPer_District, cboPer_Ward, cboNav_District, cboNav_Ward,
                                       hidID, hidOrgID, hidDirectManager, hidLevelManager,
-                                      chkDoanPhi, cbPROVINCEEMP_ID, cbDISTRICTEMP_ID, cbWARDEMP_ID, cbPROVINCENQ_ID, cbBirth_PlaceId,
+                                      chkDoanPhi, cbPROVINCEEMP_ID, cbDISTRICTEMP_ID, cbWARDEMP_ID, cbPROVINCENQ_ID, cbBirth_PlaceId, chkDangPhi, chkATVS,
                                       btnFindDirect, btnFindOrg,
                                       rtOpption1, rtOpption2, rtOpption3, rtOpption4, rtOpption5,
                                       rdOpption6, rdOpption7, rdOpption8, rdOpption9, rdOpption10,
@@ -1100,25 +1119,25 @@ Public Class ctrlHU_EmpDtlProfile
                                       txtHomePhone, txtHuyetAp, txtID_NO, chkIs_pay_bank,
                                       cboIDPlace, txtLangMark, txtLangMark2, txtTimeID,
                                       txtLastNameVN, txtMatPhai, txtMatTrai,
-                                      txtMobilePhone, txtNavAddress, txtNhomMau, cboCertificate, cboBasic, rdExpireIDNO, rdDateOfEntry,
+                                      txtMobilePhone, txtNavAddress, txtNhomMau, cboCertificate, cboBasic, rdExpireIDNO, rdDateOfEntry, rdWeddingDay,
                                        txtPassNo, txtPassPlace, cboObject, cbObjectBook, txtTimeID, cboCertificate, cboBasic, txtAppDung, txtPlaceKS, txtVillage, rdDayPitcode, txtPlacePitcode, txtPerson_Inheritance, rdEffect_Bank,
-                                      txtPerAddress, txtPerEmail, txtPhoiNguc, txtCareer,
+                                      txtPerAddress, txtPerEmail, txtPhoiNguc, txtCareer, txtDriverType, txtNote,
                                       txtPitCode, txtRangHamMat, txtTaiMuiHong, txtTim,
                                       txtVienGanB, txtVisa, txtVisaPlace,
-                                      txtWorkEmail, txtWorkPermit, txtWorkPermitPlace,
+                                      txtWorkEmail, txtWorkPermit, txtWorkPermitPlace, txtGPHN, rdFrom_GPHN, rdTo_GPHN, txtNoiCap_GPHN,
                                       txtContactPerson, txtContactPersonPhone, txtContactMobilePhone, txtChucVuDoan,
                                       rdBirthDate, rdContractExpireDate, rdContractEffectDate, rdIDDate, rdSeniorityDate,
                                       rdNgayVaoDoan, rdPassDate, rdPassExpireDate,
                                       rdVisaDate, rdVisaExpireDate, rdWorkPermitDate, rdWorPermitExpireDate,
                                       txtCanNang, txtChieuCao,
                                       cboAcademy, cboGraduateSchool, cboBank, cboBankBranch, cboFamilyStatus,
-                                      cboGender, cboLangLevel, cboLangLevel2, rtWorkplace, cboInsRegion,
+                                      cboGender, cboLangLevel, cboLangLevel2, rtWorkplace, cboInsRegion, cboDriverType,
                                       cboLanguage, cboLanguage2, cboLearningLevel, txtLoaiSucKhoe,
                                       cboMajor, cboNationlity, cboNative, cboNav_Province, cboPer_Province, cboNationa_TT, cboNationlity_NQ, cboNationlity_TTRU,
                                       cboReligion, cboStaffRank,
                                       cboPer_District, cboPer_Ward, cboNav_District, cboNav_Ward,
                                       hidID, hidOrgID, hidDirectManager, hidLevelManager,
-                                      chkDoanPhi, cbPROVINCEEMP_ID, cbDISTRICTEMP_ID, cbWARDEMP_ID, cbPROVINCENQ_ID, cbBirth_PlaceId,
+                                      chkDoanPhi, cbPROVINCEEMP_ID, cbDISTRICTEMP_ID, cbWARDEMP_ID, cbPROVINCENQ_ID, cbBirth_PlaceId, chkDangPhi, chkATVS,
                                       rtOpption1, rtOpption2, rtOpption3, rtOpption4, rtOpption5,
                                       rdOpption6, rdOpption7, rdOpption8, rdOpption9, rdOpption10,
                                        rtBookNo, cbGD_Chinh_Sach, cbHang_Thuong_Binh, ckThuong_Binh,
@@ -1554,7 +1573,7 @@ Public Class ctrlHU_EmpDtlProfile
         cboPer_Province.ItemsRequested, cboReligion.ItemsRequested, cboStaffRank.ItemsRequested, cboTitle.ItemsRequested,
         cboWorkStatus.ItemsRequested, cboEmpStatus.ItemsRequested, cboGraduateSchool.ItemsRequested, cbWARDEMP_ID.ItemsRequested, cbDISTRICTEMP_ID.ItemsRequested, cbPROVINCEEMP_ID.ItemsRequested,
         cboPer_District.ItemsRequested, cboPer_Ward.ItemsRequested, cboNav_District.ItemsRequested, cboNav_Ward.ItemsRequested, cbPROVINCENQ_ID.ItemsRequested, cbBirth_PlaceId.ItemsRequested, cboObjectLabor.ItemsRequested,
-         cboPROVINCEEMP_BRITH.ItemsRequested, cboDISTRICTEMP_BRITH.ItemsRequested, cboWARDEMP_BRITH.ItemsRequested, cboRelationNLH.ItemsRequested, cboEMPLOYEE_OBJECT.ItemsRequested, cboNationa_TT.ItemsRequested, cboNationlity_NQ.ItemsRequested, cboNationlity_TTRU.ItemsRequested
+         cboPROVINCEEMP_BRITH.ItemsRequested, cboDISTRICTEMP_BRITH.ItemsRequested, cboWARDEMP_BRITH.ItemsRequested, cboRelationNLH.ItemsRequested, cboEMPLOYEE_OBJECT.ItemsRequested, cboNationa_TT.ItemsRequested, cboNationlity_NQ.ItemsRequested, cboNationlity_TTRU.ItemsRequested, cboDriverType.ItemsRequested
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
         Try
             Dim startTime As DateTime = DateTime.UtcNow
@@ -1601,6 +1620,8 @@ Public Class ctrlHU_EmpDtlProfile
                         dtData = rep.GetNationList(True)
                     Case cboNative.ID
                         dtData = rep.GetOtherList("NATIVE", True)
+                    Case cboDriverType.ID
+                        dtData = rep.GetOtherList("DRIVER_TYPE", True)
                     Case cboNav_Province.ID, cboPer_Province.ID, cboIDPlace.ID, cbPROVINCEEMP_ID.ID, cbPROVINCENQ_ID.ID, cboPROVINCEEMP_BRITH.ID, cbBirth_PlaceId.ID
                         dtData = rep.GetProvinceList(True)
                     Case cboNav_District.ID, cboPer_District.ID, cbDISTRICTEMP_ID.ID, cboDISTRICTEMP_BRITH.ID
@@ -2007,18 +2028,18 @@ Public Class ctrlHU_EmpDtlProfile
                           txtPerAddress, txtPerEmail, txtPhoiNguc, txtCareer,
                           txtPitCode, txtRangHamMat, txtTaiMuiHong, txtTim,
                           txtVienGanB, txtVisa, txtVisaPlace,
-                          txtWorkEmail, txtWorkPermit, txtWorkPermitPlace,
+                          txtWorkEmail, txtWorkPermit, txtWorkPermitPlace, txtGPHN, rdFrom_GPHN, rdTo_GPHN, txtNoiCap_GPHN,
                           txtContactPerson, txtContactPersonPhone, txtContactMobilePhone, txtChucVuDoan,
                           rdBirthDate, rdContractExpireDate, rdContractEffectDate, rdIDDate, rdSeniorityDate,
                           rdJoinDate, rdNgayVaoDoan, rdPassDate, rdPassExpireDate,
                           rdVisaDate, rdVisaExpireDate, rdWorkPermitDate, rdWorPermitExpireDate,
                           txtCanNang, txtChieuCao,
                           cboAcademy, cboGraduateSchool, cboBank, cboBankBranch, cboFamilyStatus,
-                          cboGender, cboLangLevel, cboLangLevel2, cboInsRegion, rtWorkplace, cboCertificate, cboBasic,
+                          cboGender, cboLangLevel, cboLangLevel2, cboInsRegion, rtWorkplace, cboCertificate, cboBasic, cboDriverType,
                           cboLanguage, cboLanguage2, cboLearningLevel, txtLoaiSucKhoe, cboMajor, cboNationlity, cboNative, cboNav_Province, cboPer_Province, cboNationa_TT, cboNationlity_NQ,
                           cboReligion, cboStaffRank, cboTitle, cboWorkStatus, cboEmpStatus,
                           cboPer_District, cboPer_Ward, cboNav_District, cboNav_Ward,
-                          hidID, hidOrgID, hidDirectManager, hidLevelManager, chkDoanPhi, cboEMPLOYEE_OBJECT, chkIs_Hazardous, chkIS_HDLD)
+                          hidID, hidOrgID, hidDirectManager, hidLevelManager, chkDoanPhi, cboEMPLOYEE_OBJECT, chkIs_Hazardous, chkDangPhi, chkIS_HDLD, chkATVS)
             'chkDoanPhi.Checked = True
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
@@ -2139,6 +2160,7 @@ Public Class ctrlHU_EmpDtlProfile
             EmpCV = New EmployeeCVDTO
             'THEM CHO NAY rdDateOfEntry
             EmpCV.EXPIRE_DATE_IDNO = rdExpireIDNO.SelectedDate
+            EmpCV.WEDDINGDAY = rdWeddingDay.SelectedDate
             EmpCV.DATEOFENTRY = rdDateOfEntry.SelectedDate
             EmpCV.PERSON_INHERITANCE = txtPerson_Inheritance.Text
             EmpCV.EFFECTDATE_BANK = rdEffect_Bank.SelectedDate
@@ -2246,6 +2268,11 @@ Public Class ctrlHU_EmpDtlProfile
             EmpCV.PER_EMAIL = txtPerEmail.Text.Trim()
             EmpCV.WORK_EMAIL = txtWorkEmail.Text.Trim()
             EmpCV.CAREER = txtCareer.Text.Trim()
+            ' giấy phép hành nghề
+            EmpCV.WORK_HN = txtGPHN.Text.Trim()
+            EmpCV.WORK_HN_DATE = rdFrom_GPHN.SelectedDate
+            EmpCV.WORK_HN_EXPIRE = rdTo_GPHN.SelectedDate
+            EmpCV.WORK_HN_PLACE = txtNoiCap_GPHN.Text.Trim()
             'Người liên hệ khi cần
             EmpCV.CONTACT_PER = txtContactPerson.Text.Trim()
             'Điện thoại người liên hệ
@@ -2261,7 +2288,8 @@ Public Class ctrlHU_EmpDtlProfile
             EmployeeInfo.IS_HDLD = CType(chkIS_HDLD.Checked, Decimal)
             EmpCV.ADDRESS_PER_CTR = txtAddressPerContract.Text.Trim()
 
-            ' EmpCV.DANG_PHI = chkDangPhi.Checked
+            EmpCV.DANG_PHI = CType(chkDangPhi.Checked, Decimal)
+            EmpCV.IS_ATVS = CType(chkATVS.Checked, Decimal)
             EmpCV.DOAN_PHI = CType(chkDoanPhi.Checked, Decimal)
             EmpCV.IS_PAY_BANK = chkIs_pay_bank.Checked
             If cboBank.SelectedValue <> "" Then
@@ -2398,7 +2426,8 @@ Public Class ctrlHU_EmpDtlProfile
             End If
 
             EmpEdu.COMPUTER_CERTIFICATE = txtAppDung.Text
-
+            EmpEdu.DRIVER_NO = txtDriverType.Text
+            EmpEdu.MORE_INFORMATION = txtNote.Text
             If cboCertificate.SelectedValue <> "" Then
                 EmpEdu.COMPUTER_MARK = cboCertificate.SelectedValue
             End If
@@ -2421,6 +2450,9 @@ Public Class ctrlHU_EmpDtlProfile
             End If
             If cboLangLevel2.SelectedValue <> "" Then
                 EmpEdu.LANGUAGE_LEVEL2 = cboLangLevel2.SelectedValue
+            End If
+            If cboDriverType.SelectedValue <> "" Then
+                EmpEdu.DRIVER_TYPE = cboDriverType.SelectedValue
             End If
             EmpEdu.LANGUAGE_MARK = txtLangMark.Text
             EmpEdu.LANGUAGE_MARK2 = txtLangMark2.Text

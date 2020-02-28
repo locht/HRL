@@ -47,4 +47,10 @@
     'LOAI CHUNG CHI
     Public Property COMPUTER_MARK As Decimal?
     Public Property COMPUTER_MARK_NAME As String
+    ' bằng lái xe
+    Public Property DRIVER_TYPE As Decimal?
+    Public Property DRIVER_TYPE_NAME As String
+    Public Property DRIVER_NO As String
+    Public Property MORE_INFORMATION As String
+
 End Class

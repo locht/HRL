@@ -1097,6 +1097,11 @@ Partial Class ProfileRepository
                 objEmpCVData.PER_COUNTRY = objEmpCV.PER_COUNTRY
                 objEmpCVData.NATIONEMP_ID = objEmpCV.NATIONEMP_ID
                 objEmpCVData.NAV_COUNTRY = objEmpCV.NAV_COUNTRY
+                objEmpCVData.WEDDINGDAY = objEmpCV.WEDDINGDAY
+                objEmpCVData.IS_ATVS = objEmpCV.IS_ATVS
+                objEmpCVData.WORK_HN = objEmpCV.WORK_HN
+                objEmpCVData.WORK_HN_DATE = objEmpCV.WORK_HN_DATE
+                objEmpCVData.WORK_HN_PLACE = objEmpCV.WORK_HN_PLACE
                 '-----------------------------------------------
 
                 Context.HU_EMPLOYEE_CV.AddObject(objEmpCVData)
@@ -1135,6 +1140,9 @@ Partial Class ProfileRepository
                 objEmpEduData.COMPUTER_CERTIFICATE = objEmpEdu.COMPUTER_CERTIFICATE
                 objEmpEduData.COMPUTER_MARK = objEmpEdu.COMPUTER_MARK
                 objEmpEduData.COMPUTER_RANK = objEmpEdu.COMPUTER_RANK
+                objEmpEduData.DRIVER_TYPE = objEmpEdu.DRIVER_TYPE
+                objEmpEduData.DRIVER_NO = objEmpEdu.DRIVER_NO
+                objEmpEduData.MORE_INFORMATION = objEmpEdu.MORE_INFORMATION
                 Context.HU_EMPLOYEE_EDUCATION.AddObject(objEmpEduData)
             End If
 
@@ -1535,6 +1543,11 @@ Partial Class ProfileRepository
                 objEmpCVData.PER_COUNTRY = objEmpCV.PER_COUNTRY
                 objEmpCVData.NATIONEMP_ID = objEmpCV.NATIONEMP_ID
                 objEmpCVData.NAV_COUNTRY = objEmpCV.NAV_COUNTRY
+                objEmpCVData.WEDDINGDAY = objEmpCV.WEDDINGDAY
+                objEmpCVData.IS_ATVS = objEmpCV.IS_ATVS
+                objEmpCVData.WORK_HN = objEmpCV.WORK_HN
+                objEmpCVData.WORK_HN_DATE = objEmpCV.WORK_HN_DATE
+                objEmpCVData.WORK_HN_PLACE = objEmpCV.WORK_HN_PLACE
                 '------------------------------------------------
                 If bUpdateCV = False Then
                     Context.HU_EMPLOYEE_CV.AddObject(objEmpCVData)
@@ -1580,6 +1593,9 @@ Partial Class ProfileRepository
                 objEmpEduData.TDTH2 = objEmpEdu.TDTH2
                 objEmpEduData.DIEM_XLTH2 = objEmpEdu.DIEM_XLTH2
                 objEmpEduData.NOTE_TDTH2 = objEmpEdu.NOTE_TDTH2
+                objEmpEduData.COMPUTER_RANK = objEmpEdu.COMPUTER_RANK
+                objEmpEduData.DRIVER_TYPE = objEmpEdu.DRIVER_TYPE
+                objEmpEduData.DRIVER_NO = objEmpEdu.DRIVER_NO
 
                 If bUpdateEdu = False Then
                     Context.HU_EMPLOYEE_EDUCATION.AddObject(objEmpEduData)
@@ -1974,7 +1990,13 @@ Partial Class ProfileRepository
                          .NATIONEMP_ID = cv.NATIONEMP_ID,
                          .NATIONEMP_ID_NAME = n_na.NAME_VN,
                          .NAV_COUNTRY = cv.NAV_COUNTRY,
-                         .NAV_COUNTRY_NAME = t_na.NAME_VN
+                         .NAV_COUNTRY_NAME = t_na.NAME_VN,
+                         .WEDDINGDAY = cv.WEDDINGDAY,
+                         .IS_ATVS = cv.IS_ATVS,
+                          .WORK_HN = cv.WORK_HN,
+                          .WORK_HN_DATE = cv.WORK_HN_DATE,
+                         .WORK_HN_EXPIRE = cv.WORK_HN_EXPIRE,
+                         .WORK_HN_PLACE = cv.WORK_HN_PLACE
                          }).FirstOrDefault
             empEdu = (From edu In Context.HU_EMPLOYEE_EDUCATION
                      From a In Context.OT_OTHER_LIST.Where(Function(f) f.ID = edu.ACADEMY).DefaultIfEmpty
@@ -1987,6 +2009,7 @@ Partial Class ProfileRepository
                      From school In Context.OT_OTHER_LIST.Where(Function(f) f.ID = edu.GRADUATE_SCHOOL_ID).DefaultIfEmpty
                      From OT In Context.OT_OTHER_LIST.Where(Function(F) F.ID = edu.COMPUTER_MARK).DefaultIfEmpty
                       From OT1 In Context.OT_OTHER_LIST.Where(Function(F) F.ID = edu.COMPUTER_RANK).DefaultIfEmpty
+                       From driver In Context.OT_OTHER_LIST.Where(Function(F) F.ID = edu.DRIVER_TYPE).DefaultIfEmpty
                      Where edu.EMPLOYEE_ID = sEmployeeID
                      Select New EmployeeEduDTO With {
                          .EMPLOYEE_ID = edu.EMPLOYEE_ID,
@@ -2023,7 +2046,11 @@ Partial Class ProfileRepository
                          .NOTE_TDTH1 = edu.NOTE_TDTH1,
                          .TDTH2 = edu.TDTH2,
                          .DIEM_XLTH2 = edu.DIEM_XLTH2,
-                         .NOTE_TDTH2 = edu.NOTE_TDTH2}).FirstOrDefault
+                         .NOTE_TDTH2 = edu.NOTE_TDTH2,
+                         .DRIVER_TYPE = edu.DRIVER_TYPE,
+                         .DRIVER_TYPE_NAME = driver.NAME_VN,
+                         .DRIVER_NO = edu.DRIVER_NO,
+                         .MORE_INFORMATION = edu.MORE_INFORMATION}).FirstOrDefault
 
             empHealth = (From e In Context.HU_EMPLOYEE_HEALTH
                          Where e.EMPLOYEE_ID = sEmployeeID

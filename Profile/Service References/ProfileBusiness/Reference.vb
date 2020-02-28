@@ -42923,6 +42923,15 @@ Namespace ProfileBusiness
         Private DIEM_XLTH2Field As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private DRIVER_NOField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private DRIVER_TYPEField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private DRIVER_TYPE_NAMEField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private EMPLOYEE_IDField As Decimal
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -42987,6 +42996,9 @@ Namespace ProfileBusiness
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private MODIFIED_LOGField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private MORE_INFORMATIONField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private NOTE_TDTH1Field As String
@@ -43171,6 +43183,45 @@ Namespace ProfileBusiness
                 If (Object.ReferenceEquals(Me.DIEM_XLTH2Field, value) <> true) Then
                     Me.DIEM_XLTH2Field = value
                     Me.RaisePropertyChanged("DIEM_XLTH2")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property DRIVER_NO() As String
+            Get
+                Return Me.DRIVER_NOField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.DRIVER_NOField, value) <> true) Then
+                    Me.DRIVER_NOField = value
+                    Me.RaisePropertyChanged("DRIVER_NO")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property DRIVER_TYPE() As System.Nullable(Of Decimal)
+            Get
+                Return Me.DRIVER_TYPEField
+            End Get
+            Set
+                If (Me.DRIVER_TYPEField.Equals(value) <> true) Then
+                    Me.DRIVER_TYPEField = value
+                    Me.RaisePropertyChanged("DRIVER_TYPE")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property DRIVER_TYPE_NAME() As String
+            Get
+                Return Me.DRIVER_TYPE_NAMEField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.DRIVER_TYPE_NAMEField, value) <> true) Then
+                    Me.DRIVER_TYPE_NAMEField = value
+                    Me.RaisePropertyChanged("DRIVER_TYPE_NAME")
                 End If
             End Set
         End Property
@@ -43457,6 +43508,19 @@ Namespace ProfileBusiness
                 If (Object.ReferenceEquals(Me.MODIFIED_LOGField, value) <> true) Then
                     Me.MODIFIED_LOGField = value
                     Me.RaisePropertyChanged("MODIFIED_LOG")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property MORE_INFORMATION() As String
+            Get
+                Return Me.MORE_INFORMATIONField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.MORE_INFORMATIONField, value) <> true) Then
+                    Me.MORE_INFORMATIONField = value
+                    Me.RaisePropertyChanged("MORE_INFORMATION")
                 End If
             End Set
         End Property

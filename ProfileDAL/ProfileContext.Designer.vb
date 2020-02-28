@@ -18,7 +18,7 @@ Imports System.Runtime.Serialization
 Imports System.Xml.Serialization
 
 
-<Assembly: EdmSchemaAttribute("0c69f0f3-f312-4f0a-914d-080aae8febfb")>
+<Assembly: EdmSchemaAttribute("542f52c7-4dd5-4e76-be39-3e852d743dbe")>
 #Region "EDM Relationship Metadata"
 <Assembly: EdmRelationshipAttribute("ProfileModel", "FK_HU_NAT_HU_PRO", "HU_NATION", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_NATION), "HU_PROVINCE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_PROVINCE), True)>
 <Assembly: EdmRelationshipAttribute("ProfileModel", "FK_HU_PRO_HU_DIS", "HU_PROVINCE", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_PROVINCE), "HU_DISTRICT", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_DISTRICT), True)>
@@ -30605,6 +30605,81 @@ Public Partial Class HU_EMPLOYEE_EDUCATION
     End Sub
 
     Private Partial Sub OnCOMPUTER_CERTIFICATEChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property DRIVER_TYPE() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _DRIVER_TYPE
+        End Get
+        Set
+            OnDRIVER_TYPEChanging(value)
+            ReportPropertyChanging("DRIVER_TYPE")
+            _DRIVER_TYPE = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("DRIVER_TYPE")
+            OnDRIVER_TYPEChanged()
+        End Set
+    End Property
+
+    Private _DRIVER_TYPE As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnDRIVER_TYPEChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnDRIVER_TYPEChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property DRIVER_NO() As Global.System.String
+        Get
+            Return _DRIVER_NO
+        End Get
+        Set
+            OnDRIVER_NOChanging(value)
+            ReportPropertyChanging("DRIVER_NO")
+            _DRIVER_NO = StructuralObject.SetValidValue(value, true)
+            ReportPropertyChanged("DRIVER_NO")
+            OnDRIVER_NOChanged()
+        End Set
+    End Property
+
+    Private _DRIVER_NO As Global.System.String
+    Private Partial Sub OnDRIVER_NOChanging(value As Global.System.String)
+    End Sub
+
+    Private Partial Sub OnDRIVER_NOChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property MORE_INFORMATION() As Global.System.String
+        Get
+            Return _MORE_INFORMATION
+        End Get
+        Set
+            OnMORE_INFORMATIONChanging(value)
+            ReportPropertyChanging("MORE_INFORMATION")
+            _MORE_INFORMATION = StructuralObject.SetValidValue(value, true)
+            ReportPropertyChanged("MORE_INFORMATION")
+            OnMORE_INFORMATIONChanged()
+        End Set
+    End Property
+
+    Private _MORE_INFORMATION As Global.System.String
+    Private Partial Sub OnMORE_INFORMATIONChanging(value As Global.System.String)
+    End Sub
+
+    Private Partial Sub OnMORE_INFORMATIONChanged()
     End Sub
 
     #End Region
