@@ -32,7 +32,6 @@
         <Item Value="ctrlPA_TaxationList" Text="Biểu thuế lũy tiến" PostBack="True" NavigateUrl="Default.aspx?mid=Payroll&amp;fid=ctrlPA_TaxationList&amp;group=list" CheckPermission="true"/>
         <Item Value="ctrlPA_ObjectSalary" Text="Danh mục đối tượng lương" PostBack="True" NavigateUrl="Default.aspx?mid=Payroll&amp;fid=ctrlPA_ObjectSalary&amp;group=List" CheckPermission="true"/>
         <Item Value="ctrlOtherList" Text="Tham số hệ thống" PostBack="True" NavigateUrl="Default.aspx?mid=Payroll&amp;fid=ctrlOtherList&amp;group=list" CheckPermission="true"/>
-        <Item Value="ctrlHU_AllowanceList" Text="Danh mục phụ cấp" PostBack="True" NavigateUrl="Default.aspx?mid=Profile&amp;fid=ctrlHU_AllowanceList&amp;group=List" CheckPermission="true"/>
       </Group>
     </Item>
 

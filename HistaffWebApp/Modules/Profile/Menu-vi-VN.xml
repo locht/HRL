@@ -47,6 +47,7 @@
         <Item Value="ctrlHU_BankBranch" Text="Chi nhánh ngân hàng" PostBack="True" NavigateUrl="Default.aspx?mid=Profile&amp;fid=ctrlHU_BankBranch&amp;group=List" CheckPermission="true" CausesValidation="False"/>
         <Item Value="ctrlHU_Commend_List" Text="Khen thưởng" PostBack="True" NavigateUrl="Default.aspx?mid=Profile&amp;fid=ctrlHU_Commend_List&amp;group=List" CheckPermission="true"/>
         <Item Value="ctrlHU_RelationshipList" Text="Danh mục mối quan hệ" PostBack="True" NavigateUrl="Default.aspx?mid=Profile&amp;fid=ctrlHU_RelationshipList&amp;group=list" CheckPermission="true" CausesValidation="False"/>
+        <Item Value="ctrlHU_AllowanceList" Text="Danh mục phụ cấp" PostBack="True" NavigateUrl="Default.aspx?mid=Profile&amp;fid=ctrlHU_AllowanceList&amp;group=List" CheckPermission="true"/>
         <Item Value="ctrlOtherList" Text="Tham số hệ thống" PostBack="True" NavigateUrl="Default.aspx?mid=Profile&amp;fid=ctrlOtherList&amp;group=list" CheckPermission="true" CausesValidation="False"/>
       </Group>
     </Item>
