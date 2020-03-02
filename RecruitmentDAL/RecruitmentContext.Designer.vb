@@ -18,7 +18,7 @@ Imports System.Runtime.Serialization
 Imports System.Xml.Serialization
 
 
-<Assembly: EdmSchemaAttribute("8c026cb0-5091-460e-883f-0c43f15d91e8")>
+<Assembly: EdmSchemaAttribute("b0755748-a9d0-43f8-8154-9bdee823cbf0")>
 #Region "EDM Relationship Metadata"
 <Assembly: EdmRelationshipAttribute("RecruitmentModel", "FK_FE_HEH", "HU_EMPLOYEE", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_EMPLOYEE), "HU_EMPLOYEE_HEALTH1", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(HU_EMPLOYEE_HEALTH1), True)>
 <Assembly: EdmRelationshipAttribute("RecruitmentModel", "FK_HE_HEC", "HU_EMPLOYEE", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_EMPLOYEE), "HU_EMPLOYEE_CV", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(HU_EMPLOYEE_CV), True)>
@@ -21171,11 +21171,9 @@ Public Partial Class RC_CANDIDATE_EDUCATION
     ''' Create a new RC_CANDIDATE_EDUCATION object.
     ''' </summary>
     ''' <param name="cANDIDATE_ID">Initial value of the CANDIDATE_ID property.</param>
-    ''' <param name="property">Initial value of the Property property.</param>
-    Public Shared Function CreateRC_CANDIDATE_EDUCATION(cANDIDATE_ID As Global.System.Decimal, [property] As Global.System.String) As RC_CANDIDATE_EDUCATION
+    Public Shared Function CreateRC_CANDIDATE_EDUCATION(cANDIDATE_ID As Global.System.Decimal) As RC_CANDIDATE_EDUCATION
         Dim rC_CANDIDATE_EDUCATION as RC_CANDIDATE_EDUCATION = New RC_CANDIDATE_EDUCATION
         rC_CANDIDATE_EDUCATION.CANDIDATE_ID = cANDIDATE_ID
-        rC_CANDIDATE_EDUCATION.[Property] = [property]
         Return rC_CANDIDATE_EDUCATION
     End Function
 
@@ -22433,31 +22431,6 @@ Public Partial Class RC_CANDIDATE_EDUCATION
     End Sub
 
     Private Partial Sub OnYEAR_GRADUATEChanged()
-    End Sub
-
-    ''' <summary>
-    ''' No Metadata Documentation available.
-    ''' </summary>
-    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=false)>
-    <DataMemberAttribute()>
-    Public Property [Property]() As Global.System.String
-        Get
-            Return _Property
-        End Get
-        Set
-            OnPropertyChanging(value)
-            ReportPropertyChanging("Property")
-            _Property = StructuralObject.SetValidValue(value, false)
-            ReportPropertyChanged("Property")
-            OnPropertyChanged()
-        End Set
-    End Property
-
-    Private _Property As Global.System.String
-    Private Partial Sub OnPropertyChanging(value As Global.System.String)
-    End Sub
-
-    Private Partial Sub OnPropertyChanged()
     End Sub
 
     #End Region
