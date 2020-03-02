@@ -82,7 +82,7 @@ Public Class ctrlFindTitlePopupDialog
                 Dim Sorts As String = rgTitle.MasterTableView.SortExpressions.GetSortString()
                 Dim _filter As New TitleDTO
                 _filter.CODE = rgTitle.MasterTableView.GetColumn("CODE").CurrentFilterValue
-                _filter.ORG_ID_NAME = rgTitle.MasterTableView.GetColumn("ORG_ID_NAME").CurrentFilterValue
+                ' _filter.ORG_ID_NAME = rgTitle.MasterTableView.GetColumn("ORG_ID_NAME").CurrentFilterValue
                 _filter.NAME_VN = rgTitle.MasterTableView.GetColumn("NAME_VN").CurrentFilterValue
                 _filter.REMARK = rgTitle.MasterTableView.GetColumn("REMARK").CurrentFilterValue
                 _filter.TITLE_GROUP_NAME = rgTitle.MasterTableView.GetColumn("TITLE_GROUP_NAME").CurrentFilterValue
