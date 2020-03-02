@@ -1,7 +1,14 @@
-﻿Imports HistaffFrameworkPublic
+﻿Imports Common
+Imports Common.CommonBusiness
+Imports HistaffFrameworkPublic
 Imports HistaffFrameworkPublic.FrameworkUtilities
 
 Public Class ProfileStoreProcedure
+    Public ReadOnly Property Log As UserLog
+        Get
+            Return LogHelper.GetUserLog
+        End Get
+    End Property
 #Region "ChienNV"
     ''' <summary>
     ''' Create by: ChienNV; Create date:11/10/2017; Lấy danh sách đơn vị đóng bảo hiểm.
@@ -349,7 +356,7 @@ Public Class ProfileStoreProcedure
 
 #Region "Xét duyệt khen thưởng - THANHNT 25/08/2016"
 
-    Public Function ReadDataCommendImported(ByVal orgID As Integer, ByVal userName As String, ByVal commendType As Decimal, ByVal DateReview As String, _
+    Public Function ReadDataCommendImported(ByVal orgID As Integer, ByVal userName As String, ByVal commendType As Decimal, ByVal DateReview As String,
                                             ByVal isAll As Decimal) As DataTable
         Dim ds As DataSet = hfr.ExecuteToDataSet("PKG_HU_COMMEND_CALCULATE.READ_COMMEND_CALCULATED", New List(Of Object)(New Object() {orgID, userName, commendType, DateReview, isAll}))
         If ds IsNot Nothing AndAlso ds.Tables.Count > 0 Then
@@ -414,6 +421,56 @@ Public Class ProfileStoreProcedure
             dt = ds.Tables(0)
         End If
         Return dt
+    End Function
+
+    Public Function GetAllDistrict() As DataTable
+        Dim dt As New DataTable
+        Dim ds As DataSet = hfr.ExecuteToDataSet("PKG_COMMON_LIST.GetAllDistrict", New List(Of Object)(New Object() {}))
+        If Not ds Is Nothing Or Not ds.Tables(0) Is Nothing Then
+            dt = ds.Tables(0)
+        End If
+        Return dt
+    End Function
+    Public Function ADDNEW_ORGANIZATION(ByVal r As HU_ORGANIZATION_NEW) As Int32
+        Dim t_param = New List(Of Object)(New Object() {
+                                                   r.CODE,
+                                                   r.NAME_EN,
+                                                   r.NAME_VN,
+                                                   r.PARENT_ID,
+                                                   r.DISSOLVE_DATE,
+                                                   r.FOUNDATION_DATE,
+                                                   r.REMARK,
+                                                   r.ADDRESS,
+                                                   r.FAX,
+                                                   r.REPRESENTATIVE_ID,
+                                                   r.ORD_NO,
+                                                   r.NUMBER_BUSINESS,
+                                                   r.PIT_NO,
+                                                   r.U_INSURANCE,
+                                                   r.REGION_ID,
+                                                   r.SHORT_NAME,
+                                                   r.IS_SIGN_CONTRACT,
+                                                   r.CONTRACT_CODE,
+                                                   r.GROUP_PAID_ID,
+                                                   r.UNIT_RANK_ID,
+                                                   r.PROVINCE_ID,
+                                                   r.DISTRICT_ID,
+                                                   r.WEBSITE_LINK,
+                                                   r.BANK_NO,
+                                                   r.BANK_ID,
+                                                   r.BANK_BRACH_ID,
+                                                   r.ACCOUNTING_ID,
+                                                   r.HR_ID,
+                                                   r.PROVINCE_CONTRACT_ID,
+                                                   r.DISTRICT_CONTRACT_ID,
+                                                   r.AUTHOR_LETTER,
+                                                   r.BUSS_REG_NAME,
+                                                   r.MAN_UNI_NAME,
+                                                   Me.Log.Username,
+                                                   OUT_NUMBER
+                                                   })
+        Dim obj As Object = hfr.ExecuteStoreScalar("PKG_PROFILE.ADDNEW_ORGANIZATION", t_param)
+        Return Int32.Parse(obj(0).ToString())
     End Function
 #End Region
 
