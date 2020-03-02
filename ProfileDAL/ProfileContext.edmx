@@ -597,6 +597,8 @@
             <Property Name="WORK_HN_EXPIRE" Type="date" Nullable="true" />
             <Property Name="WORK_HN_PLACE" Type="nvarchar2" Nullable="true" MaxLength="255" />
             <Property Name="IS_ATVS" Type="number" Nullable="true" Precision="5" />
+            <Property Name="TNCN_NO" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="IS_TRANSFER" Type="number" Nullable="true" Precision="5" />
         </EntityType>
         <EntityType Name="HU_EMPLOYEE_HEALTH">
             <Key>
@@ -4888,6 +4890,8 @@
           <Property Type="DateTime" Name="WORK_HN_EXPIRE" Nullable="true" />
           <Property Type="String" Name="WORK_HN_PLACE" Nullable="true" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Type="Int16" Name="IS_ATVS" />
+          <Property Type="String" Name="TNCN_NO" Nullable="true" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="Int16" Name="IS_TRANSFER" />
         </EntityType>
         <EntityType Name="HU_EMPLOYEE_HEALTH">
           <Key>
@@ -8758,6 +8762,8 @@
                     <ScalarProperty Name="WORK_HN_EXPIRE" ColumnName="WORK_HN_EXPIRE" />
                     <ScalarProperty Name="WORK_HN_PLACE" ColumnName="WORK_HN_PLACE" />
                     <ScalarProperty Name="IS_ATVS" ColumnName="IS_ATVS" />
+                    <ScalarProperty Name="TNCN_NO" ColumnName="TNCN_NO" />
+                    <ScalarProperty Name="IS_TRANSFER" ColumnName="IS_TRANSFER" />
                 </MappingFragment>
             </EntityTypeMapping>
         </EntitySetMapping>
@@ -12136,7 +12142,7 @@
     </Options>
     <!-- Diagram content (shape and connector positions) -->
     <Diagrams>
-      <Diagram Name="ProfileContext" ZoomLevel="82" ShowGrid="false" DisplayType="true" SnapToGrid="true">
+      <Diagram Name="ProfileContext" ZoomLevel="94" ShowGrid="false" DisplayType="true" SnapToGrid="true">
         <EntityTypeShape EntityType="ProfileModel.HU_PROVINCE" Width="1.5" PointX="3" PointY="9.625" Height="0.39999999999999858" IsExpanded="false" />
         <EntityTypeShape EntityType="ProfileModel.HU_DISTRICT" Width="1.75" PointX="5.25" PointY="9" Height="0.39999999999999858" IsExpanded="false" />
         <EntityTypeShape EntityType="ProfileModel.HU_NATION" Width="1.5" PointX="0.75" PointY="9.625" Height="0.40000000000000213" IsExpanded="false" />

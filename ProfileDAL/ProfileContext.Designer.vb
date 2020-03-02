@@ -18,7 +18,7 @@ Imports System.Runtime.Serialization
 Imports System.Xml.Serialization
 
 
-<Assembly: EdmSchemaAttribute("542f52c7-4dd5-4e76-be39-3e852d743dbe")>
+<Assembly: EdmSchemaAttribute("58fcd1b4-ad99-4f82-a929-45d4d92de3c5")>
 #Region "EDM Relationship Metadata"
 <Assembly: EdmRelationshipAttribute("ProfileModel", "FK_HU_NAT_HU_PRO", "HU_NATION", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_NATION), "HU_PROVINCE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_PROVINCE), True)>
 <Assembly: EdmRelationshipAttribute("ProfileModel", "FK_HU_PRO_HU_DIS", "HU_PROVINCE", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_PROVINCE), "HU_DISTRICT", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_DISTRICT), True)>
@@ -27068,6 +27068,56 @@ Public Partial Class HU_EMPLOYEE_CV
     End Sub
 
     Private Partial Sub OnIS_ATVSChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property TNCN_NO() As Global.System.String
+        Get
+            Return _TNCN_NO
+        End Get
+        Set
+            OnTNCN_NOChanging(value)
+            ReportPropertyChanging("TNCN_NO")
+            _TNCN_NO = StructuralObject.SetValidValue(value, true)
+            ReportPropertyChanged("TNCN_NO")
+            OnTNCN_NOChanged()
+        End Set
+    End Property
+
+    Private _TNCN_NO As Global.System.String
+    Private Partial Sub OnTNCN_NOChanging(value As Global.System.String)
+    End Sub
+
+    Private Partial Sub OnTNCN_NOChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property IS_TRANSFER() As Nullable(Of Global.System.Int16)
+        Get
+            Return _IS_TRANSFER
+        End Get
+        Set
+            OnIS_TRANSFERChanging(value)
+            ReportPropertyChanging("IS_TRANSFER")
+            _IS_TRANSFER = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("IS_TRANSFER")
+            OnIS_TRANSFERChanged()
+        End Set
+    End Property
+
+    Private _IS_TRANSFER As Nullable(Of Global.System.Int16)
+    Private Partial Sub OnIS_TRANSFERChanging(value As Nullable(Of Global.System.Int16))
+    End Sub
+
+    Private Partial Sub OnIS_TRANSFERChanged()
     End Sub
 
     #End Region

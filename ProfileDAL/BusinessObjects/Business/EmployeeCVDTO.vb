@@ -173,6 +173,11 @@
     Public Property WORK_HN_DATE As Date?
     Public Property WORK_HN_EXPIRE As Date?
     Public Property WORK_HN_PLACE As String
-
+    'check an toàn ve sinh 
     Public Property IS_ATVS As Boolean?
+    'check chuyên khoản ngân hàng
+    Public Property IS_TRANSFER As Boolean?
+    'mã số thếu tncn
+    Public Property TNCN_NO As String
+
 End Class

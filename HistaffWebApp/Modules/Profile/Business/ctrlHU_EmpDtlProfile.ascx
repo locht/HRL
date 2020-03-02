@@ -100,7 +100,7 @@
             <tlk:RadPageView ID="rpvEmpInfo" runat="server" Width="100%">
                 <table style="width: 99%" onkeydown="return (event.keyCode!=13)">
                     <tr>
-                        <td colspan="6">
+                        <td>
                             <asp:ValidationSummary ID="valSum" runat="server" DisplayMode="BulletList" CssClass="validationsummary"
                                 ValidationGroup="EmpProfile" />
                         </td>
@@ -1193,7 +1193,7 @@
                                 </table>
                             </ContentTemplate>
                         </tlk:RadPanelItem>
-                        <tlk:RadPanelItem Expanded="false" Text="<%$ Translate: Thông tin liên hệ %>">
+                        <tlk:RadPanelItem Expanded="false" Text="<%$ Translate: Thông tin liên hệ %>" style="display: none">
                             <ContentTemplate>
                                 <table class="table-form" style="width: 99%" onkeydown="return (event.keyCode!=13)">
                                     <tr>
@@ -1481,6 +1481,27 @@
                             <ContentTemplate>
                                 <table class="table-form" style="width: 99%" onkeydown="return (event.keyCode!=13)">
                                     <tr>
+                                     <td class="lb3">
+                                            <asp:Label runat="server" ID="Label20" Text="Mã số thuế TNCN"></asp:Label>
+                                        </td>
+                                        <td>
+                                            <tlk:RadTextBox runat="server" ID="txtTNCN_NO">
+                                            </tlk:RadTextBox>
+                                        </td>
+
+                                          <td class="lb3">
+                                            <asp:Label runat="server" ID="lbBankNo" Text="Số tài khoản ngân hàng"></asp:Label>
+                                        </td>
+                                        <td >
+                                            <tlk:RadTextBox ID="txtBankNo" runat="server">
+                                            </tlk:RadTextBox>
+                                        </td>
+                                        <td>
+                                        <asp:CheckBox ID="chkIS_TRANSFER" runat="server" Text="<%$ Translate: Chuyển khoản qua ngân hàng %>" AutoPostBack="false"/>
+                                        </td>
+                                            
+                                    </tr>
+                                    <tr>
                                         <td class="lb3">
                                             <asp:Label runat="server" ID="lbPerson_Inheritance" Text="Tên người hưởng thụ"></asp:Label>
                                         </td>
@@ -1488,27 +1509,20 @@
                                             <tlk:RadTextBox runat="server" ID="txtPerson_Inheritance">
                                             </tlk:RadTextBox>
                                         </td>
-                                        <td class="lb3">
-                                            <asp:Label runat="server" ID="lbBankNo" Text="Số tài khoản"></asp:Label>
-                                        </td>
-                                        <td class="control3">
-                                            <tlk:RadTextBox ID="txtBankNo" runat="server">
-                                            </tlk:RadTextBox>
-                                        </td>
-                                    </tr>
-                                    <tr>
+
                                         <td class="lb3">
                                             <asp:Label runat="server" ID="lbBank" Text="Ngân hàng"></asp:Label>
                                         </td>
-                                        <td class="control3">
+                                        <td >
                                             <tlk:RadComboBox ID="cboBank" runat="server" SkinID="LoadDemand" OnClientSelectedIndexChanged="OnClientSelectedIndexChanged"
                                                 OnClientItemsRequesting="OnClientItemsRequesting">
                                             </tlk:RadComboBox>
                                         </td>
+
                                         <td class="lb3">
                                             <asp:Label runat="server" ID="lbBankBranch" Text="Chi nhánh"></asp:Label>
                                         </td>
-                                        <td class="control3">
+                                        <td >
                                             <tlk:RadComboBox ID="cboBankBranch" runat="server" SkinID="LoadDemand" OnClientSelectedIndexChanged="OnClientSelectedIndexChanged"
                                                 OnClientItemsRequesting="OnClientItemsRequesting">
                                             </tlk:RadComboBox>
@@ -1524,7 +1538,7 @@
                                 </table>
                             </ContentTemplate>
                         </tlk:RadPanelItem>
-                        <tlk:RadPanelItem Expanded="false" Text="<%$ Translate: Thông tin chính trị xã hội %>">
+                        <tlk:RadPanelItem Expanded="false" Text="<%$ Translate: Thông tin chính trị xã hội %>" style="display: none">
                             <ContentTemplate>
                                 <table class="table-form" style="width: 99%" onkeydown="return (event.keyCode!=13)">
                                     <tr>
@@ -1724,13 +1738,7 @@
                                         </td>
                                     </tr>
                                     <tr style="display: none">
-                                        <td class="lb3">
-                                            <asp:Label runat="server" ID="lbChieuCao" Text="Chiều cao(cm)"></asp:Label>
-                                        </td>
-                                        <td class="control3">
-                                            <tlk:RadTextBox ID="txtChieuCao" runat="server" SkinID="Textbox50">
-                                            </tlk:RadTextBox>
-                                        </td>
+                                      
                                         <td class="lb3">
                                             <asp:Label runat="server" ID="lbTaiMuiHong" Text="Tai mũi họng"></asp:Label>
                                         </td>
@@ -1738,13 +1746,7 @@
                                             <tlk:RadTextBox ID="txtTaiMuiHong" runat="server">
                                             </tlk:RadTextBox>
                                         </td>
-                                        <td class="lb3">
-                                            <asp:Label runat="server" ID="lbCanNang" Text="Cân nặng(kg)"></asp:Label>
-                                        </td>
-                                        <td class="control3">
-                                            <tlk:RadTextBox ID="txtCanNang" runat="server" SkinID="Textbox50">
-                                            </tlk:RadTextBox>
-                                        </td>
+                                       
                                     </tr>
                                     <tr style="display: none">
                                         <td class="lb3">
@@ -1754,13 +1756,7 @@
                                             <tlk:RadTextBox ID="txtRangHamMat" runat="server">
                                             </tlk:RadTextBox>
                                         </td>
-                                        <td class="lb3">
-                                            <asp:Label runat="server" ID="lbNhomMau" Text="Nhóm máu"></asp:Label>
-                                        </td>
-                                        <td>
-                                            <tlk:RadTextBox ID="txtNhomMau" runat="server" SkinID="Textbox50">
-                                            </tlk:RadTextBox>
-                                        </td>
+                                        
                                         <td class="lb3">
                                             <asp:Label runat="server" ID="lbTim" Text="Tim"></asp:Label>
                                         </td>
@@ -1842,6 +1838,240 @@
                                 </table>
                             </ContentTemplate>
                         </tlk:RadPanelItem>
+                        <tlk:RadPanelItem Expanded="false" Text="<%$ Translate: Thông tin tham chiếu %>" >
+                            <ContentTemplate>
+                                <table class="table-form" style="width: 99%" onkeydown="return (event.keyCode!=13)">
+                                    <tr>
+                                      <td class="lb3">
+                                            <asp:Label runat="server" ID="Label21" Text="Người phỏng vấn 1"></asp:Label>
+                                        </td>
+                                        <td>
+                                            <tlk:RadTextBox runat="server" ID="txtInterviewer_1">
+                                            </tlk:RadTextBox>
+                                        </td>
+                                        <td class="lb3">
+                                            <asp:Label runat="server" ID="Label22" Text="Người phỏng vấn 2"></asp:Label>
+                                        </td>
+                                        <td>
+                                            <tlk:RadTextBox runat="server" ID="txtInterviewer_2">
+                                            </tlk:RadTextBox>
+                                        </td>
+
+                                    </tr>
+                                    <tr>
+                                    <td class="lb3">
+                                            <asp:Label runat="server" ID="Label23" Text="Người giới thiệu"></asp:Label>
+                                            <span class="lbReq">*</span>
+                                        </td>
+                                        <td>
+                                            <tlk:RadTextBox runat="server" ID="txtPresenter" ReadOnly="true" Width="130px" />
+                                            <tlk:RadButton runat="server" ID="btnPresenter" SkinID="ButtonView" CausesValidation="false">
+                                            </tlk:RadButton>                       
+                                        </td>
+                                         <td class="lb3">
+                                            <asp:Label runat="server" ID="Label24" Text="Địa chỉ"></asp:Label>
+                                        </td>
+                                        <td>
+                                            <tlk:RadTextBox runat="server" ID="txtAddress"> </tlk:RadTextBox>
+                                        </td>
+
+                                       <td class="lb3">
+                                            <asp:Label runat="server" ID="Label25" Text="Điện thoại"></asp:Label>
+                                        </td>
+                                        <td>
+                                            <tlk:RadTextBox runat="server" ID="txtNumberPhone">
+                                            </tlk:RadTextBox>
+                                        </td>
+                                    </tr>
+
+                                </table>
+                            </ContentTemplate>
+                        </tlk:RadPanelItem>
+                        <tlk:RadPanelItem Expanded="false" Text="<%$ Translate: Thông tin sức khỏe %>" >
+                            <ContentTemplate>
+                                <table class="table-form" style="width: 99%" onkeydown="return (event.keyCode!=13)">
+                                    <tr>
+                                      <td class="lb3">
+                                            <asp:Label runat="server" ID="lbChieuCao" Text="Chiều cao(cm)"></asp:Label>
+                                        </td>
+                                        <td >
+                                            <tlk:RadTextBox ID="txtChieuCao"  runat="server" SkinID="Textbox50">
+                                            </tlk:RadTextBox>
+                                        </td>
+
+                                         <td class="lb3">
+                                            <asp:Label runat="server" ID="lbNhomMau" Text="Nhóm máu"></asp:Label>
+                                        </td>
+                                        <td>
+                                            <tlk:RadTextBox ID="txtNhomMau" runat="server" SkinID="Textbox50">
+                                            </tlk:RadTextBox>
+                                        </td>
+
+                                           <td class="lb3">
+                                            <asp:Label runat="server" ID="lbCanNang" Text="Cân nặng(kg)"></asp:Label>
+                                        </td>
+                                        <td >
+                                            <tlk:RadTextBox ID="txtCanNang" runat="server" SkinID="Textbox50">
+                                            </tlk:RadTextBox>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                      <td class="lb3">
+                                            <asp:Label runat="server" ID="Label29" Text="Tiểu sử bản thân"></asp:Label>
+                                        </td>
+                                        <td>
+                                            <tlk:RadTextBox runat="server" ID="txtTieuSuBanThan">
+                                            </tlk:RadTextBox>
+                                        </td>
+
+                                          <td class="lb3">
+                                            <asp:Label runat="server" ID="Label30" Text="Tiểu sử gia đình"></asp:Label>
+                                        </td>
+                                        <td>
+                                            <tlk:RadTextBox runat="server" ID="txtTieuSuGiaDinh">
+                                            </tlk:RadTextBox>
+                                        </td>
+
+                                          <td class="lb3">
+                                            <asp:Label runat="server" ID="Label31" Text="Ghi chú"></asp:Label>
+                                        </td>
+                                        <td>
+                                            <tlk:RadTextBox runat="server" ID="txtGhiChu">
+                                            </tlk:RadTextBox>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </ContentTemplate>
+                        </tlk:RadPanelItem>
+                        <tlk:RadPanelItem Expanded="false" Text="<%$ Translate: Thông tin size bảo hộ lao động %>" >
+                            <ContentTemplate>
+                                <table class="table-form" style="width: 99%" onkeydown="return (event.keyCode!=13)">
+                                <tr>
+                                <td >
+                                  <asp:Label runat="server" ID="lbDPVP" Text="Đồng phục văn phòng"></asp:Label>
+                                        </td>
+                                </tr>
+                                    <tr>
+                                    <td class="lb3">
+                                            <asp:Label runat="server" ID="Label26" Text="Áo"></asp:Label>
+                                        </td>
+                                        <td >
+                                            <tlk:RadTextBox ID="txtAo"  runat="server" SkinID="Textbox50">
+                                            </tlk:RadTextBox>
+                                        </td>
+                                        <td class="lb3">
+                                            <asp:Label runat="server" ID="Label27" Text="Váy"></asp:Label>
+                                        </td>
+                                        <td >
+                                            <tlk:RadTextBox ID="txtVay"  runat="server" SkinID="Textbox50">
+                                            </tlk:RadTextBox>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                    <td class="lb3">
+                                            <asp:Label runat="server" ID="Label28" Text="Áo vest"></asp:Label>
+                                        </td>
+                                        <td >
+                                            <tlk:RadTextBox ID="txtAoVest"  runat="server" SkinID="Textbox50">
+                                            </tlk:RadTextBox>
+                                        </td>
+                                        <td class="lb3">
+                                            <asp:Label runat="server" ID="Label32" Text="Quần tây"></asp:Label>
+                                        </td>
+                                        <td >
+                                            <tlk:RadTextBox ID="txtQuanTay"  runat="server" SkinID="Textbox50">
+                                            </tlk:RadTextBox>
+                                        </td>
+                                    </tr>
+                                 <tr>
+                                <td >
+                                            <asp:Label runat="server" ID="lbBHLD" Text="Bảo hộ lao động"></asp:Label>
+                                        </td>
+                                </tr>
+                                 <tr>
+                                    <td class="lb3">
+                                            <asp:Label runat="server" ID="Label33" Text="Áo"></asp:Label>
+                                        </td>
+                                        <td >
+                                            <tlk:RadTextBox ID="txtAo_bh"  runat="server" SkinID="Textbox50">
+                                            </tlk:RadTextBox>
+                                        </td>
+                                         <td class="lb3">
+                                            <asp:Label runat="server" ID="Label34" Text="Quần"></asp:Label>
+                                        </td>
+                                        <td >
+                                            <tlk:RadTextBox ID="txtQuan_bh"  runat="server" SkinID="Textbox50">
+                                            </tlk:RadTextBox>
+                                        </td>
+                                         <td class="lb3">
+                                            <asp:Label runat="server" ID="Label35" Text="Quần vải"></asp:Label>
+                                        </td>
+                                        <td >
+                                            <tlk:RadTextBox ID="txtQuanVai"  runat="server" SkinID="Textbox50">
+                                            </tlk:RadTextBox>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                    <td class="lb3">
+                                            <asp:Label runat="server" ID="Label36" Text="Giày dầu"></asp:Label>
+                                        </td>
+                                        <td >
+                                            <tlk:RadTextBox ID="txtGiayDau"  runat="server" SkinID="Textbox50">
+                                            </tlk:RadTextBox>
+                                        </td>
+                                         <td class="lb3">
+                                            <asp:Label runat="server" ID="Label37" Text="Giày nhựa"></asp:Label>
+                                        </td>
+                                        <td >
+                                            <tlk:RadTextBox ID="txtGiayNhua"  runat="server" SkinID="Textbox50">
+                                            </tlk:RadTextBox>
+                                        </td>
+                                         <td class="lb3">
+                                            <asp:Label runat="server" ID="Label38" Text="Áo thun"></asp:Label>
+                                        </td>
+                                        <td >
+                                            <tlk:RadTextBox ID="txtAoThun"  runat="server" SkinID="Textbox50">
+                                            </tlk:RadTextBox>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                    <td class="lb3">
+                                            <asp:Label runat="server" ID="Label39" Text="Quần thun"></asp:Label>
+                                        </td>
+                                        <td >
+                                            <tlk:RadTextBox ID="txtQuanThun"  runat="server" SkinID="Textbox50">
+                                            </tlk:RadTextBox>
+                                        </td>
+                                         <td class="lb3">
+                                            <asp:Label runat="server" ID="Label40" Text="Dép"></asp:Label>
+                                        </td>
+                                        <td >
+                                            <tlk:RadTextBox ID="txtDep"  runat="server" SkinID="Textbox50">
+                                            </tlk:RadTextBox>
+                                        </td>
+                                         <td class="lb3">
+                                            <asp:Label runat="server" ID="Label41" Text="Nón"></asp:Label>
+                                        </td>
+                                        <td >
+                                            <tlk:RadTextBox ID="txtNon"  runat="server" SkinID="Textbox50">
+                                            </tlk:RadTextBox>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                     <td class="lb3">
+                                            <asp:Label runat="server" ID="Label42" Text="Khác"></asp:Label>
+                                        </td>
+                                        <td >
+                                            <tlk:RadTextBox ID="txtKhac"  runat="server" SkinID="Textbox50" Width="100%">
+                                            </tlk:RadTextBox>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </ContentTemplate>
+                        </tlk:RadPanelItem>
+                     
                     </Items>
                 </tlk:RadPanelBar>
             </tlk:RadPageView>

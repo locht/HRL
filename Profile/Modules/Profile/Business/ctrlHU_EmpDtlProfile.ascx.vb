@@ -540,6 +540,10 @@ Public Class ctrlHU_EmpDtlProfile
                                 chkATVS.Checked = empCV.IS_ATVS
                             End If
 
+                            chkIS_TRANSFER.Checked = False
+                            If empCV.IS_TRANSFER IsNot Nothing Then
+                                chkIS_TRANSFER.Checked = empCV.IS_TRANSFER
+                            End If
                             If empCV.BANK_ID IsNot Nothing Then
                                 cboBank.SelectedValue = empCV.BANK_ID
                                 cboBank.Text = empCV.BANK_NAME
@@ -556,6 +560,7 @@ Public Class ctrlHU_EmpDtlProfile
                             txtNoiVaoDang.Text = empCV.NOI_VAO_DANG
                             txtNoiVaoDoan.Text = empCV.NOI_VAO_DOAN
                             txtBankNo.Text = empCV.BANK_NO
+                            txtTNCN_NO.Text = empCV.TNCN_NO
 
                         End If
                         If empEdu IsNot Nothing Then
@@ -936,7 +941,7 @@ Public Class ctrlHU_EmpDtlProfile
                     EnableControlAll(True, rdNgay_Nhap_Ngu_QD, rdNgay_Xuat_Ngu_QD, rtDV_Xuat_Ngu_QD)
                     EnableControlAll(True, cbHang_Thuong_Binh, cbGD_Chinh_Sach)
                     EnableControlAll(True, lstbPaper, lstbPaperFiled,
-                                        txtBankNo, chkSaveHistory, ckBanTT_ND, rdExpireIDNO, rdDateOfEntry, rdWeddingDay,
+                                        txtBankNo, chkSaveHistory, ckBanTT_ND, rdExpireIDNO, rdDateOfEntry, rdWeddingDay, txtTNCN_NO,
                                        txtDaHoaLieu, rtDiem_XL_TH, txtDiem_XL_TH2, txtNoteTDTH1, txtNoteTDTH2,
                                        txtFirstNameVN, txtGhiChuSK, txtNamTN,
                                        txtHomePhone, txtHuyetAp, txtID_NO, chkIs_pay_bank,
@@ -958,7 +963,7 @@ Public Class ctrlHU_EmpDtlProfile
                                        cboReligion,
                                        cboPer_District, cboPer_Ward, cboNav_District, cboNav_Ward, cbPROVINCEEMP_ID, cbDISTRICTEMP_ID, cbWARDEMP_ID, cbPROVINCENQ_ID, cbBirth_PlaceId,
                                        hidID, hidOrgID, hidDirectManager, hidLevelManager,
-                                       chkDoanPhi, rtOpption1, rtOpption2, rtOpption3, rtOpption4, rtOpption5, chkDangPhi, chkATVS,
+                                       chkDoanPhi, rtOpption1, rtOpption2, rtOpption3, rtOpption4, rtOpption5, chkDangPhi, chkATVS, chkIS_TRANSFER,
                                        rdOpption6, rdOpption7, rdOpption8, rdOpption9, rdOpption10,
                                         cbGD_Chinh_Sach, cbHang_Thuong_Binh, ckThuong_Binh,
                                         ckQD, rtDV_Xuat_Ngu_CA, rdNgay_Xuat_Ngu_CA, rdNgay_Nhap_Ngu_CA,
@@ -988,7 +993,7 @@ Public Class ctrlHU_EmpDtlProfile
                         EnableControlAll(True, rdNgay_Nhap_Ngu_QD, rdNgay_Xuat_Ngu_QD, rtDV_Xuat_Ngu_QD)
                         EnableControlAll(True, cbHang_Thuong_Binh, cbGD_Chinh_Sach)
                         EnableControlAll(True, lstbPaper, lstbPaperFiled, chkSaveHistory,
-                                            txtBankNo, ckBanTT_ND, rtDiem_XL_TH, txtDiem_XL_TH2, txtNoteTDTH1, txtNoteTDTH2,
+                                            txtBankNo, ckBanTT_ND, rtDiem_XL_TH, txtDiem_XL_TH2, txtNoteTDTH1, txtNoteTDTH2, txtTNCN_NO,
                                            txtDaHoaLieu, txtNamTN, rdExpireIDNO, txtAppDung, txtPlaceKS, txtVillage, txtPlacePitcode, rdDayPitcode, txtPerson_Inheritance, rdEffect_Bank, rdDateOfEntry, rdWeddingDay,
                                            txtFirstNameVN, txtGhiChuSK, chkIs_pay_bank, txtDriverType, txtNote,
                                            txtHomePhone, txtHuyetAp, txtID_NO,
@@ -1011,7 +1016,7 @@ Public Class ctrlHU_EmpDtlProfile
                                            cboReligion,
                                            cboPer_District, cboPer_Ward, cboNav_District, cboNav_Ward,
                                            hidID, hidOrgID, hidDirectManager, hidLevelManager,
-                                            chkDoanPhi, cbPROVINCEEMP_ID, cbDISTRICTEMP_ID, cbWARDEMP_ID, cbPROVINCENQ_ID, cbBirth_PlaceId, chkDangPhi, chkATVS,
+                                            chkDoanPhi, cbPROVINCEEMP_ID, cbDISTRICTEMP_ID, cbWARDEMP_ID, cbPROVINCENQ_ID, cbBirth_PlaceId, chkDangPhi, chkATVS, chkIS_TRANSFER,
                                            rtOpption1, rtOpption2, rtOpption3, rtOpption4, rtOpption5,
                                            rdOpption6, rdOpption7, rdOpption8, rdOpption9, rdOpption10,
                                             ckThuong_Binh,
@@ -1032,7 +1037,7 @@ Public Class ctrlHU_EmpDtlProfile
                         EnableControlAll(True, rdNgay_Nhap_Ngu_QD, rdNgay_Xuat_Ngu_QD, rtDV_Xuat_Ngu_QD)
                         EnableControlAll(True, cbHang_Thuong_Binh, cbGD_Chinh_Sach)
                         EnableControlAll(True, lstbPaper, lstbPaperFiled, chkSaveHistory,
-                                            txtBankNo, ckBanTT_ND, rtDiem_XL_TH, txtDiem_XL_TH2, txtNoteTDTH1, txtNoteTDTH2,
+                                            txtBankNo, ckBanTT_ND, rtDiem_XL_TH, txtDiem_XL_TH2, txtNoteTDTH1, txtNoteTDTH2, txtTNCN_NO,
                                            txtDaHoaLieu, txtNamTN, rdExpireIDNO, txtAppDung, txtPlaceKS, txtVillage, txtPlacePitcode, rdDayPitcode, txtPerson_Inheritance, rdEffect_Bank, rdDateOfEntry, rdWeddingDay, txtDriverType, txtNote,
                                            txtFirstNameVN, txtGhiChuSK, chkIs_pay_bank,
                                            txtHomePhone, txtHuyetAp, txtID_NO,
@@ -1055,7 +1060,7 @@ Public Class ctrlHU_EmpDtlProfile
                                            cboReligion,
                                            cboPer_District, cboPer_Ward, cboNav_District, cboNav_Ward,
                                            hidID, hidOrgID, hidDirectManager, hidLevelManager,
-                                            chkDoanPhi, cbPROVINCEEMP_ID, cbDISTRICTEMP_ID, cbWARDEMP_ID, cbPROVINCENQ_ID, cbBirth_PlaceId, chkDangPhi, chkATVS,
+                                            chkDoanPhi, cbPROVINCEEMP_ID, cbDISTRICTEMP_ID, cbWARDEMP_ID, cbPROVINCENQ_ID, cbBirth_PlaceId, chkDangPhi, chkATVS, chkIS_TRANSFER,
                                            rtOpption1, rtOpption2, rtOpption3, rtOpption4, rtOpption5,
                                            rdOpption6, rdOpption7, rdOpption8, rdOpption9, rdOpption10,
                                             ckThuong_Binh,
@@ -1077,7 +1082,7 @@ Public Class ctrlHU_EmpDtlProfile
                 Case Else
                     If EmployeeInfo.WORK_STATUS IsNot Nothing Then
                         EnableControlAll(False, lstbPaper, lstbPaperFiled, cboWorkStatus, cboEmpStatus, txtEmpCODE,
-                                      txtBankNo, chkSaveHistory, ckDOAN_PHI, rtCHUC_VU_DANG, rdNGAY_VAO_DOAN,
+                                      txtBankNo, chkSaveHistory, ckDOAN_PHI, rtCHUC_VU_DANG, rdNGAY_VAO_DOAN, txtTNCN_NO,
                                       txtDaHoaLieu, rdNGAY_VAO_DANG_DB, rdNGAY_VAO_DANG, ckBanTT_ND, txtNamTN,
                                       txtFirstNameVN, txtGhiChuSK, rtCHUC_VU_DOAN, rtDiem_XL_TH, txtDiem_XL_TH2, txtNoteTDTH1, txtNoteTDTH2,
                                       txtHomePhone, txtHuyetAp, txtID_NO, chkIs_pay_bank,
@@ -1101,7 +1106,7 @@ Public Class ctrlHU_EmpDtlProfile
                                       cboReligion, cboStaffRank, cboTitle,
                                       cboPer_District, cboPer_Ward, cboNav_District, cboNav_Ward,
                                       hidID, hidOrgID, hidDirectManager, hidLevelManager,
-                                      chkDoanPhi, cbPROVINCEEMP_ID, cbDISTRICTEMP_ID, cbWARDEMP_ID, cbPROVINCENQ_ID, cbBirth_PlaceId, chkDangPhi, chkATVS,
+                                      chkDoanPhi, cbPROVINCEEMP_ID, cbDISTRICTEMP_ID, cbWARDEMP_ID, cbPROVINCENQ_ID, cbBirth_PlaceId, chkDangPhi, chkATVS, chkIS_TRANSFER,
                                       btnFindDirect, btnFindOrg,
                                       rtOpption1, rtOpption2, rtOpption3, rtOpption4, rtOpption5,
                                       rdOpption6, rdOpption7, rdOpption8, rdOpption9, rdOpption10,
@@ -1113,7 +1118,7 @@ Public Class ctrlHU_EmpDtlProfile
                     Else
                         EnableControlAll(True, btnFindOrg, cboTitle, cboObjectLabor, btnFindDirect)
                         EnableControlAll(False, lstbPaper, lstbPaperFiled, cboWorkStatus, cboEmpStatus, txtEmpCODE,
-                                      txtBankNo, chkSaveHistory, ckDOAN_PHI, rtCHUC_VU_DANG, rdNGAY_VAO_DOAN,
+                                      txtBankNo, chkSaveHistory, ckDOAN_PHI, rtCHUC_VU_DANG, rdNGAY_VAO_DOAN, txtTNCN_NO,
                                       txtDaHoaLieu, rdNGAY_VAO_DANG_DB, rdNGAY_VAO_DANG, ckBanTT_ND, txtNamTN,
                                       txtFirstNameVN, txtGhiChuSK, rtCHUC_VU_DOAN, rtDiem_XL_TH, txtDiem_XL_TH2, txtNoteTDTH1, txtNoteTDTH2,
                                       txtHomePhone, txtHuyetAp, txtID_NO, chkIs_pay_bank,
@@ -1137,7 +1142,7 @@ Public Class ctrlHU_EmpDtlProfile
                                       cboReligion, cboStaffRank,
                                       cboPer_District, cboPer_Ward, cboNav_District, cboNav_Ward,
                                       hidID, hidOrgID, hidDirectManager, hidLevelManager,
-                                      chkDoanPhi, cbPROVINCEEMP_ID, cbDISTRICTEMP_ID, cbWARDEMP_ID, cbPROVINCENQ_ID, cbBirth_PlaceId, chkDangPhi, chkATVS,
+                                      chkDoanPhi, cbPROVINCEEMP_ID, cbDISTRICTEMP_ID, cbWARDEMP_ID, cbPROVINCENQ_ID, cbBirth_PlaceId, chkDangPhi, chkATVS, chkIS_TRANSFER,
                                       rtOpption1, rtOpption2, rtOpption3, rtOpption4, rtOpption5,
                                       rdOpption6, rdOpption7, rdOpption8, rdOpption9, rdOpption10,
                                        rtBookNo, cbGD_Chinh_Sach, cbHang_Thuong_Binh, ckThuong_Binh,
@@ -2017,7 +2022,7 @@ Public Class ctrlHU_EmpDtlProfile
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
         Try
             Dim startTime As DateTime = DateTime.UtcNow
-            ClearControlValue(txtBankNo,
+            ClearControlValue(txtBankNo, txtTNCN_NO,
                           txtDaHoaLieu, txtDirectManager, txtmanager,
                           txtFirstNameVN, txtGhiChuSK,
                           txtHomePhone, txtHuyetAp, txtID_NO,
@@ -2038,8 +2043,8 @@ Public Class ctrlHU_EmpDtlProfile
                           cboGender, cboLangLevel, cboLangLevel2, cboInsRegion, rtWorkplace, cboCertificate, cboBasic, cboDriverType,
                           cboLanguage, cboLanguage2, cboLearningLevel, txtLoaiSucKhoe, cboMajor, cboNationlity, cboNative, cboNav_Province, cboPer_Province, cboNationa_TT, cboNationlity_NQ,
                           cboReligion, cboStaffRank, cboTitle, cboWorkStatus, cboEmpStatus,
-                          cboPer_District, cboPer_Ward, cboNav_District, cboNav_Ward,
-                          hidID, hidOrgID, hidDirectManager, hidLevelManager, chkDoanPhi, cboEMPLOYEE_OBJECT, chkIs_Hazardous, chkDangPhi, chkIS_HDLD, chkATVS)
+                          cboPer_District, cboPer_Ward, cboNav_District, cboNav_Ward, chkIS_TRANSFER,
+                          hidID, hidOrgID, hidDirectManager, hidLevelManager, chkDoanPhi, cboEMPLOYEE_OBJECT, chkIs_Hazardous, chkDangPhi, chkIS_HDLD, chkATVS, chkIS_TRANSFER)
             'chkDoanPhi.Checked = True
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
@@ -2290,6 +2295,7 @@ Public Class ctrlHU_EmpDtlProfile
 
             EmpCV.DANG_PHI = CType(chkDangPhi.Checked, Decimal)
             EmpCV.IS_ATVS = CType(chkATVS.Checked, Decimal)
+            EmpCV.IS_TRANSFER = CType(chkIS_TRANSFER.Checked, Decimal)
             EmpCV.DOAN_PHI = CType(chkDoanPhi.Checked, Decimal)
             EmpCV.IS_PAY_BANK = chkIs_pay_bank.Checked
             If cboBank.SelectedValue <> "" Then
@@ -2306,6 +2312,7 @@ Public Class ctrlHU_EmpDtlProfile
             EmpCV.NOI_VAO_DANG = txtNoiVaoDang.Text.Trim()
             EmpCV.NOI_VAO_DOAN = txtNoiVaoDoan.Text.Trim()
             EmpCV.BANK_NO = txtBankNo.Text.Trim()
+            EmpCV.TNCN_NO = txtTNCN_NO.Text.Trim()
             If IsNumeric(cbPROVINCENQ_ID.SelectedValue) Then
                 EmpCV.PROVINCENQ_ID = cbPROVINCENQ_ID.SelectedValue
             End If

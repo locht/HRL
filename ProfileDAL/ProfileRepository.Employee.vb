@@ -1102,6 +1102,8 @@ Partial Class ProfileRepository
                 objEmpCVData.WORK_HN = objEmpCV.WORK_HN
                 objEmpCVData.WORK_HN_DATE = objEmpCV.WORK_HN_DATE
                 objEmpCVData.WORK_HN_PLACE = objEmpCV.WORK_HN_PLACE
+                objEmpCVData.TNCN_NO = objEmpCV.TNCN_NO
+                objEmpCVData.IS_TRANSFER = objEmpCV.IS_TRANSFER
                 '-----------------------------------------------
 
                 Context.HU_EMPLOYEE_CV.AddObject(objEmpCVData)
@@ -1548,6 +1550,8 @@ Partial Class ProfileRepository
                 objEmpCVData.WORK_HN = objEmpCV.WORK_HN
                 objEmpCVData.WORK_HN_DATE = objEmpCV.WORK_HN_DATE
                 objEmpCVData.WORK_HN_PLACE = objEmpCV.WORK_HN_PLACE
+                objEmpCVData.TNCN_NO = objEmpCV.TNCN_NO
+                objEmpCVData.IS_TRANSFER = objEmpCV.IS_TRANSFER
                 '------------------------------------------------
                 If bUpdateCV = False Then
                     Context.HU_EMPLOYEE_CV.AddObject(objEmpCVData)
@@ -1996,7 +2000,9 @@ Partial Class ProfileRepository
                           .WORK_HN = cv.WORK_HN,
                           .WORK_HN_DATE = cv.WORK_HN_DATE,
                          .WORK_HN_EXPIRE = cv.WORK_HN_EXPIRE,
-                         .WORK_HN_PLACE = cv.WORK_HN_PLACE
+                         .WORK_HN_PLACE = cv.WORK_HN_PLACE,
+                         .TNCN_NO = cv.TNCN_NO,
+                         .IS_TRANSFER = cv.IS_TRANSFER
                          }).FirstOrDefault
             empEdu = (From edu In Context.HU_EMPLOYEE_EDUCATION
                      From a In Context.OT_OTHER_LIST.Where(Function(f) f.ID = edu.ACADEMY).DefaultIfEmpty

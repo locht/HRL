@@ -40502,6 +40502,9 @@ Namespace ProfileBusiness
         Private IS_PERMISSIONField As System.Nullable(Of Boolean)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private IS_TRANSFERField As System.Nullable(Of Boolean)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private MARITAL_STATUSField As System.Nullable(Of Decimal)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -40737,6 +40740,9 @@ Namespace ProfileBusiness
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private THUONG_BINHField As System.Nullable(Of Boolean)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private TNCN_NOField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private VILLAGEField As String
@@ -41561,6 +41567,19 @@ Namespace ProfileBusiness
                 If (Me.IS_PERMISSIONField.Equals(value) <> true) Then
                     Me.IS_PERMISSIONField = value
                     Me.RaisePropertyChanged("IS_PERMISSION")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property IS_TRANSFER() As System.Nullable(Of Boolean)
+            Get
+                Return Me.IS_TRANSFERField
+            End Get
+            Set
+                If (Me.IS_TRANSFERField.Equals(value) <> true) Then
+                    Me.IS_TRANSFERField = value
+                    Me.RaisePropertyChanged("IS_TRANSFER")
                 End If
             End Set
         End Property
@@ -42588,6 +42607,19 @@ Namespace ProfileBusiness
                 If (Me.THUONG_BINHField.Equals(value) <> true) Then
                     Me.THUONG_BINHField = value
                     Me.RaisePropertyChanged("THUONG_BINH")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property TNCN_NO() As String
+            Get
+                Return Me.TNCN_NOField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.TNCN_NOField, value) <> true) Then
+                    Me.TNCN_NOField = value
+                    Me.RaisePropertyChanged("TNCN_NO")
                 End If
             End Set
         End Property

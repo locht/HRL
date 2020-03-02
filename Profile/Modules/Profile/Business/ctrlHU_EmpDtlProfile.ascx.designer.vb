@@ -3029,22 +3029,22 @@ Partial Public Class ctrlHU_EmpDtlProfile
     Protected WithEvents txtWorkPermitPlace As Global.Telerik.Web.UI.RadTextBox
 
     '''<summary>
-    '''lbPerson_Inheritance control.
+    '''Label20 control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents lbPerson_Inheritance As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents Label20 As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
-    '''txtPerson_Inheritance control.
+    '''txtTNCN_NO control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents txtPerson_Inheritance As Global.Telerik.Web.UI.RadTextBox
+    Protected WithEvents txtTNCN_NO As Global.Telerik.Web.UI.RadTextBox
 
     '''<summary>
     '''lbBankNo control.
@@ -3063,6 +3063,33 @@ Partial Public Class ctrlHU_EmpDtlProfile
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtBankNo As Global.Telerik.Web.UI.RadTextBox
+
+    '''<summary>
+    '''chkIS_TRANSFER control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents chkIS_TRANSFER As Global.System.Web.UI.WebControls.CheckBox
+
+    '''<summary>
+    '''lbPerson_Inheritance control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbPerson_Inheritance As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''txtPerson_Inheritance control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtPerson_Inheritance As Global.Telerik.Web.UI.RadTextBox
 
     '''<summary>
     '''lbBank control.
@@ -3828,6 +3855,465 @@ Partial Public Class ctrlHU_EmpDtlProfile
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtGhiChuSK As Global.Telerik.Web.UI.RadTextBox
+
+    '''<summary>
+    '''Label21 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents Label21 As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''txtInterviewer_1 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtInterviewer_1 As Global.Telerik.Web.UI.RadTextBox
+
+    '''<summary>
+    '''Label22 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents Label22 As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''txtInterviewer_2 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtInterviewer_2 As Global.Telerik.Web.UI.RadTextBox
+
+    '''<summary>
+    '''Label23 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents Label23 As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''txtPresenter control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtPresenter As Global.Telerik.Web.UI.RadTextBox
+
+    '''<summary>
+    '''btnPresenter control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btnPresenter As Global.Telerik.Web.UI.RadButton
+
+    '''<summary>
+    '''Label24 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents Label24 As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''txtAddress control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtAddress As Global.Telerik.Web.UI.RadTextBox
+
+    '''<summary>
+    '''Label25 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents Label25 As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''txtNumberPhone control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtNumberPhone As Global.Telerik.Web.UI.RadTextBox
+
+    '''<summary>
+    '''Label26 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents Label26 As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''RadTextBox1 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents RadTextBox1 As Global.Telerik.Web.UI.RadTextBox
+
+    '''<summary>
+    '''Label27 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents Label27 As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''RadTextBox2 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents RadTextBox2 As Global.Telerik.Web.UI.RadTextBox
+
+    '''<summary>
+    '''Label28 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents Label28 As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''RadTextBox3 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents RadTextBox3 As Global.Telerik.Web.UI.RadTextBox
+
+    '''<summary>
+    '''Label29 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents Label29 As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''txtTieuSuBanThan control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtTieuSuBanThan As Global.Telerik.Web.UI.RadTextBox
+
+    '''<summary>
+    '''Label30 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents Label30 As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''txtTieuSuGiaDinh control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtTieuSuGiaDinh As Global.Telerik.Web.UI.RadTextBox
+
+    '''<summary>
+    '''Label31 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents Label31 As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''txtGhiChu control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtGhiChu As Global.Telerik.Web.UI.RadTextBox
+
+    '''<summary>
+    '''lbAo control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbAo As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''txtAo control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtAo As Global.Telerik.Web.UI.RadTextBox
+
+    '''<summary>
+    '''lbVay control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbVay As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''txtVay control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtVay As Global.Telerik.Web.UI.RadTextBox
+
+    '''<summary>
+    '''lbAoVest control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbAoVest As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''txtAoVest control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtAoVest As Global.Telerik.Web.UI.RadTextBox
+
+    '''<summary>
+    '''Label32 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents Label32 As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''txtQuanTay control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtQuanTay As Global.Telerik.Web.UI.RadTextBox
+
+    '''<summary>
+    '''Label33 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents Label33 As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''txtAo_bh control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtAo_bh As Global.Telerik.Web.UI.RadTextBox
+
+    '''<summary>
+    '''Label34 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents Label34 As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''txtQuan_bh control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtQuan_bh As Global.Telerik.Web.UI.RadTextBox
+
+    '''<summary>
+    '''Label35 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents Label35 As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''txtQuanVai control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtQuanVai As Global.Telerik.Web.UI.RadTextBox
+
+    '''<summary>
+    '''Label36 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents Label36 As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''txtGiayDau control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtGiayDau As Global.Telerik.Web.UI.RadTextBox
+
+    '''<summary>
+    '''Label37 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents Label37 As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''txtGiayNhua control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtGiayNhua As Global.Telerik.Web.UI.RadTextBox
+
+    '''<summary>
+    '''Label38 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents Label38 As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''txtAoThun control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtAoThun As Global.Telerik.Web.UI.RadTextBox
+
+    '''<summary>
+    '''Label39 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents Label39 As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''txtQuanThun control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtQuanThun As Global.Telerik.Web.UI.RadTextBox
+
+    '''<summary>
+    '''Label40 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents Label40 As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''txtDep control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtDep As Global.Telerik.Web.UI.RadTextBox
+
+    '''<summary>
+    '''Label41 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents Label41 As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''txtNon control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtNon As Global.Telerik.Web.UI.RadTextBox
+
+    '''<summary>
+    '''Label42 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents Label42 As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''txtKhac control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtKhac As Global.Telerik.Web.UI.RadTextBox
 
     '''<summary>
     '''rpvEmpPaper control.
