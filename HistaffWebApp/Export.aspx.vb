@@ -20,7 +20,7 @@ Public Class Export
                     Case "TR_REQUEST_EMPLOYEE_ERROR"
                         TR_REQUEST_EMPLOYEE_ERROR()
                     Case "RC_CANDIDATE_IMPORT"
-                       ' RC_CANDIDATE_IMPORT()
+                        RC_CANDIDATE_IMPORT()
                     Case "RC_CANDIDATE_IMPORT_ERROR"
                         RC_CANDIDATE_IMPORT_ERROR()
                     Case "ManIOImport"
@@ -232,7 +232,217 @@ Public Class Export
             Throw ex
         End Try
     End Sub
+    Private Sub RC_CANDIDATE_IMPORT()
+        Try
+            GetInformationLists()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+    Private Sub GetInformationLists()
+        Dim repStore As New Recruitment.RecruitmentStoreProcedure
+        Dim dsDB As New DataSet
+        Dim dtTonGiao, dtMoiQH, dtQuocGia, dtTinh, dtHuyen, dtXa, dtChuyenNganh,
+            dtChuyenMon, dtHonNhan, dtDanToc, dtLogo, dtGender, dtSchool, dtTDVH As New DataTable
+        Try
+            dsDB = repStore.GET_ALL_LIST(1)
+            If dsDB.Tables.Count > 0 Then
 
+                'Ton Giao
+                If dsDB.Tables(0) IsNot Nothing AndAlso dsDB.Tables(0).Rows.Count > 0 Then
+                    dtTonGiao = dsDB.Tables(0)
+                End If
+
+                'Moi Quan He
+                If dsDB.Tables(1) IsNot Nothing AndAlso dsDB.Tables(1).Rows.Count > 0 Then
+                    dtMoiQH = dsDB.Tables(1)
+                End If
+
+                'Quoc Gia
+                If dsDB.Tables(2) IsNot Nothing AndAlso dsDB.Tables(2).Rows.Count > 0 Then
+                    dtQuocGia = dsDB.Tables(2)
+                End If
+
+                'Tinh(Thanh pho)
+                If dsDB.Tables(3) IsNot Nothing AndAlso dsDB.Tables(3).Rows.Count > 0 Then
+                    dtTinh = dsDB.Tables(3)
+                End If
+
+                'Huyen(Quan)
+                If dsDB.Tables(4) IsNot Nothing AndAlso dsDB.Tables(4).Rows.Count > 0 Then
+                    dtHuyen = dsDB.Tables(4)
+                End If
+
+                'Xa(Phuong)
+                If dsDB.Tables(5) IsNot Nothing AndAlso dsDB.Tables(5).Rows.Count > 0 Then
+                    dtXa = dsDB.Tables(5)
+                End If
+
+                'Chuyen Nganh
+                If dsDB.Tables(6) IsNot Nothing AndAlso dsDB.Tables(6).Rows.Count > 0 Then
+                    dtChuyenNganh = dsDB.Tables(6)
+                End If
+
+                'Chuyen Mon
+                If dsDB.Tables(7) IsNot Nothing AndAlso dsDB.Tables(7).Rows.Count > 0 Then
+                    dtChuyenMon = dsDB.Tables(7)
+                End If
+
+                'Tinh Trang Hon Nhan
+                If dsDB.Tables(8) IsNot Nothing AndAlso dsDB.Tables(8).Rows.Count > 0 Then
+                    dtHonNhan = dsDB.Tables(8)
+                End If
+
+                'Dan Toc
+                If dsDB.Tables(9) IsNot Nothing AndAlso dsDB.Tables(9).Rows.Count > 0 Then
+                    dtDanToc = dsDB.Tables(9)
+                End If
+                'file logo
+                If dsDB.Tables(10) IsNot Nothing AndAlso dsDB.Tables(10).Rows.Count > 0 Then
+                    dtLogo = dsDB.Tables(10)
+                End If
+                'gioi tinh
+                If dsDB.Tables(11) IsNot Nothing AndAlso dsDB.Tables(11).Rows.Count > 0 Then
+                    dtGender = dsDB.Tables(11)
+                End If
+                'truong hoc 
+                If dsDB.Tables(12) IsNot Nothing AndAlso dsDB.Tables(12).Rows.Count > 0 Then
+                    dtSchool = dsDB.Tables(12)
+                End If
+                'trinh do van hoa
+                If dsDB.Tables(13) IsNot Nothing AndAlso dsDB.Tables(13).Rows.Count > 0 Then
+                    dtTDVH = dsDB.Tables(13)
+                End If
+
+                ExportTemplate("Recruitment\Import\Import_ungvien_acv.xls", dtTonGiao, dtMoiQH, dtQuocGia, dtTinh, dtHuyen, dtXa, dtChuyenNganh, dtChuyenMon, dtHonNhan, dtDanToc, dtLogo, dtGender, dtSchool, dtTDVH, "Import_UngVien")
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+    Public Function ExportTemplate(ByVal sReportFileName As String,
+                                                    ByVal dt1 As DataTable,
+                                                    ByVal dt2 As DataTable,
+                                                    ByVal dt3 As DataTable,
+                                                    ByVal dt4 As DataTable,
+                                                    ByVal dt5 As DataTable,
+                                                    ByVal dt6 As DataTable,
+                                                    ByVal dt7 As DataTable,
+                                                    ByVal dt8 As DataTable,
+                                                    ByVal dt9 As DataTable,
+                                                    ByVal dt10 As DataTable,
+                                                    ByVal dt11 As DataTable,
+                                                    ByVal dt12 As DataTable,
+                                                    ByVal dt13 As DataTable,
+                                                    ByVal dt14 As DataTable,
+                                                    ByVal filename As String) As Boolean
+
+        Dim filePath As String
+        Dim templatefolder As String
+
+        Dim designer As WorkbookDesigner
+        Try
+
+            templatefolder = ConfigurationManager.AppSettings("ReportTemplatesFolder")
+            filePath = AppDomain.CurrentDomain.BaseDirectory & "\" & templatefolder & "\" & sReportFileName
+
+            If Not File.Exists(filePath) Then
+                ScriptManager.RegisterStartupScript(Page, Page.GetType(), "javascriptfunction", "goBack()", True)
+                Return False
+            End If
+
+            designer = New WorkbookDesigner
+            designer.Open(filePath)
+
+            If dt1 IsNot Nothing Then
+                dt1.TableName = "TableTonGiao"
+                designer.SetDataSource(dt1)
+            End If
+
+            If dt2 IsNot Nothing Then
+                dt2.TableName = "TableMoiQH"
+                designer.SetDataSource(dt2)
+            End If
+
+            If dt3 IsNot Nothing Then
+                dt3.TableName = "TableQuocGia"
+                designer.SetDataSource(dt3)
+            End If
+
+            If dt4 IsNot Nothing Then
+                dt4.TableName = "TableTinh"
+                designer.SetDataSource(dt4)
+            End If
+
+            If dt5 IsNot Nothing Then
+                dt5.TableName = "TableHuyen"
+                designer.SetDataSource(dt5)
+            End If
+
+            If dt6 IsNot Nothing Then
+                dt6.TableName = "TableXa"
+                designer.SetDataSource(dt6)
+            End If
+
+            If dt7 IsNot Nothing Then
+                dt7.TableName = "TableChuyenNganh"
+                designer.SetDataSource(dt7)
+            End If
+
+            If dt8 IsNot Nothing Then
+                dt8.TableName = "TableChuyenMon"
+                designer.SetDataSource(dt8)
+            End If
+
+            If dt9 IsNot Nothing Then
+                dt9.TableName = "TableHonNhan"
+                designer.SetDataSource(dt9)
+            End If
+
+            If dt10 IsNot Nothing Then
+                dt10.TableName = "TableDanToc"
+                designer.SetDataSource(dt10)
+            End If
+            If dt12 IsNot Nothing Then
+                dt12.TableName = "TableGioiTinh"
+                designer.SetDataSource(dt12)
+            End If
+            If dt13 IsNot Nothing Then
+                dt13.TableName = "TableSchool"
+                designer.SetDataSource(dt13)
+            End If
+            If dt14 IsNot Nothing Then
+                dt14.TableName = "TableTDVH"
+                designer.SetDataSource(dt14)
+            End If
+            'vnm hien tai k dung logo nen rem doan code nay lai
+            'If dt11 IsNot Nothing Then
+            '    designer.SetDataSource(dt11)
+            '    Dim sourcePath = Server.MapPath("~/ReportTemplates/Profile/LocationInfo/")
+            '    Dim str As String = sourcePath + dt11.Rows(0)("ATTACH_FILE_LOGO").ToString + dt11.Rows(0)("FILE_LOGO").ToString
+            '    Dim worksheet As Aspose.Cells.Worksheet = designer.Workbook.Worksheets(0)
+            '    Dim b As Byte() = File.ReadAllBytes(str)
+            '    Dim ms As New System.IO.MemoryStream(b)
+            '    Dim pictureIndex As Integer = worksheet.Pictures.Add(1, 1, ms)
+
+            '    'Accessing the newly added picture
+            '    Dim picture As Aspose.Cells.Drawing.Picture = worksheet.Pictures(pictureIndex)
+
+            '    'Positioning the picture proportional to row height and colum width
+            '    picture.Width = 400
+            '    picture.Height = 120
+
+            'End If
+
+            designer.Process()
+            designer.Workbook.CalculateFormula()
+            designer.Workbook.Save(HttpContext.Current.Response, filename & ".xls", ContentDisposition.Attachment, New XlsSaveOptions())
+
+        Catch ex As Exception
+            Return False
+        End Try
+        Return True
+    End Function
     'Private Sub RC_CANDIDATE_IMPORT()
     '    Try
     '        Dim rep As New Recruitment.RecruitmentRepository

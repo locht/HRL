@@ -115,9 +115,11 @@ Public Class ctrlRC_CandidateList
             Me.MainToolBar = tbarMainToolBar
             Common.Common.BuildToolbar(Me.MainToolBar, ToolbarItem.Create,
                                        ToolbarItem.Edit,
-                                       ToolbarItem.Delete, ToolbarItem.Export, ToolbarItem.ExportTemplate, ToolbarItem.Import)
+                                       ToolbarItem.Delete, ToolbarItem.Export, ToolbarItem.ExportTemplate, ToolbarItem.Import, ToolbarItem.Next)
             MainToolBar.Items(4).Text = Translate("Xuất file mẫu")
             MainToolBar.Items(5).Text = Translate("Nhập file mẫu")
+            CType(Me.MainToolBar.Items(6), RadToolBarButton).ImageUrl = CType(Me.MainToolBar.Items(5), RadToolBarButton).ImageUrl
+            MainToolBar.Items(6).Text = Translate("Import CV")
             CType(Me.Page, AjaxPage).AjaxManager.ClientEvents.OnRequestStart = "onRequestStart"
         Catch ex As Exception
             DisplayException(Me.ViewName, Me.ID, ex)
@@ -1000,7 +1002,7 @@ Public Class ctrlRC_CandidateList
         Dim repStore As New RecruitmentStoreProcedure
         Dim dsDB As New DataSet
         Dim dtTonGiao, dtMoiQH, dtQuocGia, dtTinh, dtHuyen, dtXa, dtChuyenNganh,
-            dtChuyenMon, dtHonNhan, dtDanToc, dtLogo As New DataTable
+            dtChuyenMon, dtHonNhan, dtDanToc, dtLogo, dtGender, dtSchool, dtTDVH As New DataTable
         Try
             dsDB = repStore.GET_ALL_LIST(hidOrg.Value)
             If dsDB.Tables.Count > 0 Then
@@ -1058,8 +1060,20 @@ Public Class ctrlRC_CandidateList
                 If dsDB.Tables(10) IsNot Nothing AndAlso dsDB.Tables(10).Rows.Count > 0 Then
                     dtLogo = dsDB.Tables(10)
                 End If
+                'gioi tinh
+                If dsDB.Tables(11) IsNot Nothing AndAlso dsDB.Tables(11).Rows.Count > 0 Then
+                    dtGender = dsDB.Tables(11)
+                End If
+                'truong hoc 
+                If dsDB.Tables(12) IsNot Nothing AndAlso dsDB.Tables(12).Rows.Count > 0 Then
+                    dtSchool = dsDB.Tables(12)
+                End If
+                'trinh do van hoa
+                If dsDB.Tables(13) IsNot Nothing AndAlso dsDB.Tables(13).Rows.Count > 0 Then
+                    dtTDVH = dsDB.Tables(13)
+                End If
 
-                ExportTemplate("Recruitment\Import\Import_Ungvien_Template.xls", dtTonGiao, dtMoiQH, dtQuocGia, dtTinh, dtHuyen, dtXa, dtChuyenNganh, dtChuyenMon, dtHonNhan, dtDanToc, dtLogo, "Import_UngVien")
+                ExportTemplate("Recruitment\Import\Import_ungvien_acv.xls", dtTonGiao, dtMoiQH, dtQuocGia, dtTinh, dtHuyen, dtXa, dtChuyenNganh, dtChuyenMon, dtHonNhan, dtDanToc, dtLogo, dtGender, dtSchool, dtTDVH, "Import_UngVien")
             End If
 
         Catch ex As Exception
@@ -1079,6 +1093,9 @@ Public Class ctrlRC_CandidateList
                                                     ByVal dt9 As DataTable,
                                                     ByVal dt10 As DataTable,
                                                     ByVal dt11 As DataTable,
+                                                    ByVal dt12 As DataTable,
+                                                    ByVal dt13 As DataTable,
+                                                    ByVal dt14 As DataTable,
                                                     ByVal filename As String) As Boolean
 
         Dim filePath As String
@@ -1147,23 +1164,36 @@ Public Class ctrlRC_CandidateList
                 dt10.TableName = "TableDanToc"
                 designer.SetDataSource(dt10)
             End If
-            If dt11 IsNot Nothing Then
-                designer.SetDataSource(dt11)
-                Dim sourcePath = Server.MapPath("~/ReportTemplates/Profile/LocationInfo/")
-                Dim str As String = sourcePath + dt11.Rows(0)("ATTACH_FILE_LOGO").ToString + dt11.Rows(0)("FILE_LOGO").ToString
-                Dim worksheet As Aspose.Cells.Worksheet = designer.Workbook.Worksheets(0)
-                Dim b As Byte() = File.ReadAllBytes(str)
-                Dim ms As New System.IO.MemoryStream(b)
-                Dim pictureIndex As Integer = worksheet.Pictures.Add(1, 1, ms)
-
-                'Accessing the newly added picture
-                Dim picture As Aspose.Cells.Drawing.Picture = worksheet.Pictures(pictureIndex)
-
-                'Positioning the picture proportional to row height and colum width
-                picture.Width = 400
-                picture.Height = 120
-
+            If dt12 IsNot Nothing Then
+                dt12.TableName = "TableGioiTinh"
+                designer.SetDataSource(dt12)
             End If
+            If dt13 IsNot Nothing Then
+                dt13.TableName = "TableSchool"
+                designer.SetDataSource(dt13)
+            End If
+            If dt14 IsNot Nothing Then
+                dt14.TableName = "TableTDVH"
+                designer.SetDataSource(dt14)
+            End If
+            'vnm hien tai k dung logo nen rem doan code nay lai
+            'If dt11 IsNot Nothing Then
+            '    designer.SetDataSource(dt11)
+            '    Dim sourcePath = Server.MapPath("~/ReportTemplates/Profile/LocationInfo/")
+            '    Dim str As String = sourcePath + dt11.Rows(0)("ATTACH_FILE_LOGO").ToString + dt11.Rows(0)("FILE_LOGO").ToString
+            '    Dim worksheet As Aspose.Cells.Worksheet = designer.Workbook.Worksheets(0)
+            '    Dim b As Byte() = File.ReadAllBytes(str)
+            '    Dim ms As New System.IO.MemoryStream(b)
+            '    Dim pictureIndex As Integer = worksheet.Pictures.Add(1, 1, ms)
+
+            '    'Accessing the newly added picture
+            '    Dim picture As Aspose.Cells.Drawing.Picture = worksheet.Pictures(pictureIndex)
+
+            '    'Positioning the picture proportional to row height and colum width
+            '    picture.Width = 400
+            '    picture.Height = 120
+
+            'End If
 
             designer.Process()
             designer.Workbook.CalculateFormula()

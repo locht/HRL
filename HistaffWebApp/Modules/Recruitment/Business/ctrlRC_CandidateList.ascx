@@ -318,6 +318,13 @@
             } else if (args.get_item().get_commandName() == 'EXPORT' || args.get_item().get_commandName() == 'PRINT' || args.get_item().get_commandName() == 'UNLOCK' || args.get_item().get_commandName() == 'PREVIOUS' || args.get_item().get_commandName() == 'EXPORT_TEMPLATE') {
                 enableAjax = false;
             }
+            else if (args.get_item().get_commandName() == "NEXT") {
+                var oWindow = radopen('Dialog.aspx?mid=Recruitment&fid=ctrlRC_ImportCV&group=Business&noscroll=1', "rwPopup");
+                var pos = $("html").offset();
+                oWindow.moveTo(pos.left, pos.top);
+                oWindow.setSize($(window).width(), $(window).height());
+                args.set_cancel(true);
+            }
         }
 
         function btnTransferClick(sender, args) {
