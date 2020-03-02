@@ -276,6 +276,16 @@ Public Class ctrlHU_Organization
                              }
             Dim s = New Script.Serialization.JavaScriptSerializer().Serialize(json_obj.ToArray)
             hidListDistrict.Value = s
+
+            Dim dt8 = rep1.GETALLHU_BANK_BRANCH()
+            Dim json_obj1 = From n In dt8.AsEnumerable
+                            Select New With {
+                               .ID = n.Field(Of Decimal)("ID"),
+                               .NAME_VN = n.Field(Of String)("NAME"),
+                               .PROVINCE_ID = n.Field(Of Decimal?)("BANK_ID")
+                             }
+            Dim s1 = New Script.Serialization.JavaScriptSerializer().Serialize(json_obj1.ToArray)
+            hidListbankBrach.Value = s1
             'Lấy danh sách cấp đơn vị
             'dtOrgLevel = procedure.GET_ORG_LEVEL()
             'If Not dtOrgLevel Is Nothing AndAlso dtOrgLevel.Rows.Count > 0 Then
@@ -970,23 +980,6 @@ Public Class ctrlHU_Organization
         End Try
     End Sub
 
-    Protected Sub cboDISTRICT_ID_ItemsRequested(ByVal sender As Object, ByVal e As RadComboBoxItemsRequestedEventArgs) Handles cboDISTRICT_ID.ItemsRequested
-
-        Try
-            'Dim s = hidPROVINCE_ID.Value
-            If cboPROVINCE_ID.SelectedValue <> "" Then
-                Dim rep As New ProfileRepository
-                Dim dtData = rep.GetDistrictList(cboPROVINCE_ID.SelectedValue, True)
-                sender.Items.Clear()
-                For Each row In dtData.AsEnumerable
-                    Dim radItem As RadComboBoxItem = New RadComboBoxItem(row.Field(Of String)("NAME"), row.Field(Of String)("ID"))
-                    sender.Items.Add(radItem)
-                Next
-            End If
-        Catch ex As Exception
-            DisplayException(Me.ViewName, Me.ID, ex)
-        End Try
-    End Sub
 #Region "old"
     ''' <summary>
     ''' Author: TUNGNT

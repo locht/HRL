@@ -95,6 +95,15 @@ Partial Public Class ctrlHU_Organization
     Protected WithEvents hidListDistrict As Global.System.Web.UI.WebControls.HiddenField
 
     '''<summary>
+    '''hidListbankBrach control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents hidListbankBrach As Global.System.Web.UI.WebControls.HiddenField
+
+    '''<summary>
     '''tbarOrgFunctions control.
     '''</summary>
     '''<remarks>
@@ -374,6 +383,15 @@ Partial Public Class ctrlHU_Organization
     Protected WithEvents txtBANK_NO As Global.Telerik.Web.UI.RadTextBox
 
     '''<summary>
+    '''txtPIT_NO control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtPIT_NO As Global.Telerik.Web.UI.RadTextBox
+
+    '''<summary>
     '''cboBANK_ID control.
     '''</summary>
     '''<remarks>
@@ -390,15 +408,6 @@ Partial Public Class ctrlHU_Organization
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents cboBANK_BRACH_ID As Global.Telerik.Web.UI.RadComboBox
-
-    '''<summary>
-    '''txtPIT_NO control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents txtPIT_NO As Global.Telerik.Web.UI.RadTextBox
 
     '''<summary>
     '''txtREPRESENTATIVE_ID control.

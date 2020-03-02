@@ -49,6 +49,7 @@
         <asp:HiddenField ID="hidID" runat="server" />
         <asp:HiddenField ID="hidParentID" runat="server" />
         <asp:HiddenField ID="hidListDistrict" runat="server" />
+        <asp:HiddenField ID="hidListbankBrach" runat="server" />
         <%--<asp:HiddenField ID="hidRepresentative" runat="server" />--%>
         <tlk:radtoolbar id="tbarOrgFunctions" runat="server" />
         <asp:ValidationSummary ID="valSum" runat="server" DisplayMode="BulletList" CssClass="validationsummary" />
@@ -266,25 +267,26 @@
                     <tlk:radtextbox id="txtBANK_NO" runat="server" skinid="Textbox50" />
                 </td>
                 <td class="lb">
-                    <%# Translate("Tại ngân hàng")%>
-                </td>
-                <td colspan="3">
-                    <tlk:radcombobox id="cboBANK_ID" runat="server" />
-                </td>
-            </tr>
-            <tr>
-                <td class="lb">
-                    <%# Translate("Chi nhánh ngân hàng")%>
-                </td>
-                <td>
-                    <tlk:radcombobox id="cboBANK_BRACH_ID" runat="server" />
-                </td>
-                <td class="lb">
                     <%# Translate("Mã số thuế")%>
                 </td>
                 <td colspan="3">
                     <tlk:radtextbox id="txtPIT_NO" runat="server" skinid="Textbox50">
                     </tlk:radtextbox>
+                </td>
+            </tr>
+            <tr>
+                <td class="lb">
+                    
+                    <%# Translate("Tại ngân hàng")%>
+                </td>
+                <td>
+                    <tlk:radcombobox id="cboBANK_ID" runat="server" OnClientSelectedIndexChanged="OnCSIC_BANK_ID"/>
+                </td>
+                <td class="lb">
+                     <%# Translate("Chi nhánh ngân hàng")%>
+                </td>
+                <td colspan="3">
+                    <tlk:radcombobox id="cboBANK_BRACH_ID" runat="server" OnClientItemsRequested="OnCIR_BANK_BRACH_ID"/>
                 </td>
             </tr>
             <tr>
@@ -484,7 +486,6 @@
 <asp:PlaceHolder runat="server">
     <Common:ctrlFindEmployeePopup ID="ctrlREPRESENTATIVE_ID" runat="server" IsHideTerminate="false" MultiSelect="false" LoadAllOrganization="false" />
 </asp:PlaceHolder>
-
 <asp:PlaceHolder runat="server">
     <Common:ctrlFindEmployeePopup ID="CtrlhidACCOUNTING_ID" runat="server" IsHideTerminate="false" MultiSelect="false" LoadAllOrganization="false" />
 </asp:PlaceHolder>
@@ -508,11 +509,11 @@
             //enableAjax = true;
         }
 
-        function loadcombobox(id_pro, id_cbo) {
+        function loadcombobox(id_pro, id_cbo, list_id) {
             var combo = $find(id_cbo);
 
             if (id_pro > 0) {
-                var n = document.getElementById("<%= hidListDistrict.ClientID %>")
+                var n = document.getElementById(list_id)
                 var n1 = JSON.parse(n.value)
 
                 var filterObj = n1.filter(function (e) {
@@ -543,7 +544,7 @@
             if (!value) {
                 value = 0;
             }
-            loadcombobox(value, cbo2)
+            loadcombobox(value, cbo2, "<%= hidListDistrict.ClientID %>")
 
             var txttemp = document.getElementById(cbo2 + '_Input');
             txttemp.value = '';
@@ -567,7 +568,6 @@
             }
             loadcombobox(value, id)
         }
-
         function OnCSIC_PROVINCE_CONTRACT_ID(sender, eventArgs) {
             cbo = $find('<%= cboPROVINCE_CONTRACT_ID.ClientID %>');
             var cbo2 = '<%= cboDISTRICT_CONTRACT_ID.ClientID %>';
@@ -575,12 +575,11 @@
             if (!value) {
                 value = 0;
             }
-            loadcombobox(value, cbo2)
+            loadcombobox(value, cbo2, "<%= hidListDistrict.ClientID %>")
 
             var txttemp = document.getElementById(cbo2 + '_Input');
             txttemp.value = '';
         }
-
         function OnCIR_DISTRICT_CONTRACT_ID(sender, eventArgs) {
             var id = sender.get_id();
             var cbo;
@@ -597,8 +596,40 @@
             if (!value) {
                 value = 0;
             }
-            loadcombobox(value, id)
+            loadcombobox(value, id, "<%= hidListDistrict.ClientID %>")
         }
+        function OnCSIC_BANK_ID(sender, eventArgs) {
+            cbo = $find('<%= cboBANK_ID.ClientID %>');
+            var cbo2 = '<%= cboBANK_BRACH_ID.ClientID %>';
+            value = cbo.get_value();
+            if (!value) {
+                value = 0;
+            }
+            loadcombobox(value, cbo2, "<%= hidListbankBrach.ClientID %>")
+
+            var txttemp = document.getElementById(cbo2 + '_Input');
+            txttemp.value = '';
+        }
+        function OnCIR_BANK_BRACH_ID(sender, eventArgs) {
+            var id = sender.get_id();
+            var cbo;
+            var value;
+            switch (id) {
+                case '<%= cboDISTRICT_CONTRACT_ID.ClientID %>':
+                    cbo = $find('<%= cboBANK_BRACH_ID.ClientID %>');
+                    value = cbo.get_value();
+                    break;
+                default:
+                    break;
+            }
+
+            if (!value) {
+                value = 0;
+            }
+            loadcombobox(value, id, "<%= hidListbankBrach.ClientID %>")
+        }
+
+
 
         //function btnDownFile_Clicking(sender, args) {
         //    enableAjax = false;
