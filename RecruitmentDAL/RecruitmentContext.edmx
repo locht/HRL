@@ -634,6 +634,10 @@
             <Property Name="NGAY_NHAN_CV_DOAN" Type="date" Nullable="true" />
             <Property Name="NGAY_NHAN_CV_DANG" Type="date" Nullable="true" />
             <Property Name="DOAN_PHI" Type="number" Nullable="true" Precision="38" />
+            <Property Name="NGAY_VAO_DOAN" Type="nclob" Nullable="false" />
+            <Property Name="NOI_VAO_DOAN" Type="nclob" Nullable="true" />
+            <Property Name="NOI_VAO_DANG" Type="nclob" Nullable="false" />
+            <Property Name="NGAY_VAO_DANG" Type="nclob" Nullable="false" />
         </EntityType>
         <EntityType Name="RC_CANDIDATE_CV">
             <Key>
@@ -2576,36 +2580,40 @@
           <Property Type="String" Name="BANK_BRANCH" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Type="Int16" Name="IS_PAYMENT_VIA_BANK" />
           <Property Type="DateTime" Name="ACCOUNT_EFFECT_DATE" />
-          <Property Type="Int16" Name="DANG_PHI" Nullable="true" />
-          <Property Type="Decimal" Name="CHUC_VU_DANG" Nullable="true" annotation:StoreGeneratedPattern="None" />
-          <Property Type="Decimal" Name="CHUC_VU_DOAN" Nullable="true" annotation:StoreGeneratedPattern="None" />
-          <Property Type="String" Name="CAREER" Nullable="true" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Type="Int16" Name="IS_DOANVIEN" Nullable="true" />
-          <Property Type="Int16" Name="IS_DANGVIEN" Nullable="true" />
-          <Property Type="Decimal" Name="DANG_KIEMNHIEM" Nullable="true" />
-          <Property Type="String" Name="CAPUY_HIENTAI" Nullable="true" MaxLength="255" FixedLength="false" Unicode="true" annotation:StoreGeneratedPattern="None" />
-          <Property Type="String" Name="CAPUY_KIEMNHIEM" Nullable="true" MaxLength="255" FixedLength="false" Unicode="true" annotation:StoreGeneratedPattern="None" />
-          <Property Type="Int16" Name="IS_CONGDOANPHI" Nullable="true" />
-          <Property Type="DateTime" Name="CDP_NGAYVAO" Nullable="true" />
-          <Property Type="String" Name="CDP_NOIVAO" Nullable="true" MaxLength="255" FixedLength="false" Unicode="true" annotation:StoreGeneratedPattern="None" />
-          <Property Type="Int16" Name="IS_CCB" Nullable="true" />
-          <Property Type="DateTime" Name="CCB_NGAYVAO" Nullable="true" />
-          <Property Type="Decimal" Name="CCB_CHUCVU" Nullable="true" />
-          <Property Type="String" Name="CCB_NOIVAO" Nullable="true" MaxLength="255" FixedLength="false" Unicode="true" annotation:StoreGeneratedPattern="None" />
-          <Property Type="DateTime" Name="CCB_NGAYNHAPNGU" Nullable="true" />
-          <Property Type="DateTime" Name="CCB_NGAYXUATNGU" Nullable="true" />
-          <Property Type="String" Name="CCB_QUANHAM" Nullable="true" MaxLength="255" FixedLength="false" Unicode="true" annotation:StoreGeneratedPattern="None" />
-          <Property Type="String" Name="TPGD" Nullable="true" MaxLength="255" FixedLength="false" Unicode="true" annotation:StoreGeneratedPattern="None" />
-          <Property Type="String" Name="DANHHIEU" Nullable="true" MaxLength="255" FixedLength="false" Unicode="true" annotation:StoreGeneratedPattern="None" />
-          <Property Type="String" Name="SOTRUONGCONGTAC" Nullable="true" MaxLength="255" FixedLength="false" Unicode="true" annotation:StoreGeneratedPattern="None" />
-          <Property Type="Decimal" Name="LYLUANCHINHTRI" Nullable="true" />
-          <Property Type="String" Name="CONGTAC_LAUNHAT" Nullable="true" MaxLength="255" FixedLength="false" Unicode="true" annotation:StoreGeneratedPattern="None" />
-          <Property Type="Decimal" Name="QUANLYNHANUOC" Nullable="true" />
-          <Property Type="Decimal" Name="THUONGBINH" Nullable="true" />
-          <Property Type="Decimal" Name="GDCS" Nullable="true" />
+          <Property Type="Int16" Name="DANG_PHI" />
+          <Property Type="Decimal" Name="CHUC_VU_DANG" annotation:StoreGeneratedPattern="None" />
+          <Property Type="Decimal" Name="CHUC_VU_DOAN" annotation:StoreGeneratedPattern="None" />
+          <Property Type="String" Name="CAREER" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="Int16" Name="IS_DOANVIEN" />
+          <Property Type="Int16" Name="IS_DANGVIEN" />
+          <Property Type="Decimal" Name="DANG_KIEMNHIEM" />
+          <Property Type="String" Name="CAPUY_HIENTAI" MaxLength="255" FixedLength="false" Unicode="true" annotation:StoreGeneratedPattern="None" />
+          <Property Type="String" Name="CAPUY_KIEMNHIEM" MaxLength="255" FixedLength="false" Unicode="true" annotation:StoreGeneratedPattern="None" />
+          <Property Type="Int16" Name="IS_CONGDOANPHI" />
+          <Property Type="DateTime" Name="CDP_NGAYVAO" />
+          <Property Type="String" Name="CDP_NOIVAO" MaxLength="255" FixedLength="false" Unicode="true" annotation:StoreGeneratedPattern="None" />
+          <Property Type="Int16" Name="IS_CCB" />
+          <Property Type="DateTime" Name="CCB_NGAYVAO" />
+          <Property Type="Decimal" Name="CCB_CHUCVU" />
+          <Property Type="String" Name="CCB_NOIVAO" MaxLength="255" FixedLength="false" Unicode="true" annotation:StoreGeneratedPattern="None" />
+          <Property Type="DateTime" Name="CCB_NGAYNHAPNGU" />
+          <Property Type="DateTime" Name="CCB_NGAYXUATNGU" />
+          <Property Type="String" Name="CCB_QUANHAM" MaxLength="255" FixedLength="false" Unicode="true" annotation:StoreGeneratedPattern="None" />
+          <Property Type="String" Name="TPGD" MaxLength="255" FixedLength="false" Unicode="true" annotation:StoreGeneratedPattern="None" />
+          <Property Type="String" Name="DANHHIEU" MaxLength="255" FixedLength="false" Unicode="true" annotation:StoreGeneratedPattern="None" />
+          <Property Type="String" Name="SOTRUONGCONGTAC" MaxLength="255" FixedLength="false" Unicode="true" annotation:StoreGeneratedPattern="None" />
+          <Property Type="Decimal" Name="LYLUANCHINHTRI" />
+          <Property Type="String" Name="CONGTAC_LAUNHAT" MaxLength="255" FixedLength="false" Unicode="true" annotation:StoreGeneratedPattern="None" />
+          <Property Type="Decimal" Name="QUANLYNHANUOC" />
+          <Property Type="Decimal" Name="THUONGBINH" />
+          <Property Type="Decimal" Name="GDCS" />
           <Property Type="DateTime" Name="NGAY_NHAN_CV_DOAN" />
           <Property Type="DateTime" Name="NGAY_NHAN_CV_DANG" />
           <Property Type="Decimal" Name="DOAN_PHI" />
+          <Property Type="String" Name="NGAY_VAO_DOAN" Nullable="false" />
+          <Property Type="String" Name="NOI_VAO_DOAN" />
+          <Property Type="String" Name="NOI_VAO_DANG" Nullable="false" />
+          <Property Type="String" Name="NGAY_VAO_DANG" Nullable="false" />
         </EntityType>
         <EntityType Name="RC_CANDIDATE_CV">
           <Key>
@@ -4477,6 +4485,10 @@
                     <ScalarProperty Name="NGAY_NHAN_CV_DOAN" ColumnName="NGAY_NHAN_CV_DOAN" />
                     <ScalarProperty Name="NGAY_NHAN_CV_DANG" ColumnName="NGAY_NHAN_CV_DANG" />
                     <ScalarProperty Name="DOAN_PHI" ColumnName="DOAN_PHI" />
+                    <ScalarProperty Name="NGAY_VAO_DOAN" ColumnName="NGAY_VAO_DOAN" />
+                    <ScalarProperty Name="NOI_VAO_DOAN" ColumnName="NOI_VAO_DOAN" />
+                    <ScalarProperty Name="NOI_VAO_DANG" ColumnName="NOI_VAO_DANG" />
+                    <ScalarProperty Name="NGAY_VAO_DANG" ColumnName="NGAY_VAO_DANG" />
                 </MappingFragment>
             </EntityTypeMapping>
         </EntitySetMapping>
@@ -5702,7 +5714,7 @@
     </edmx:Options>
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram Name="RecruitmentContext" ZoomLevel="57" >
+      <Diagram Name="RecruitmentContext" ZoomLevel="95" >
         <EntityTypeShape EntityType="RecruitmentModel.RC_COST_CENTER" Width="1.5" PointX="1" PointY="25.5" IsExpanded="false" Height="0.4" />
         <EntityTypeShape EntityType="RecruitmentModel.SE_CHOSEN_ORG" Width="1.5" PointX="2.75" PointY="0.75" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="RecruitmentModel.HU_FAMILY" Width="1.5" PointX="3.875" PointY="32.625" Height="0.4" IsExpanded="false" />
@@ -5725,7 +5737,7 @@
         <EntityTypeShape EntityType="RecruitmentModel.RC_CANDIDATE" Width="4" PointX="32" PointY="3.375" Height="6.21091796875" IsExpanded="true" />
         <EntityTypeShape EntityType="RecruitmentModel.RC_CANDIDATE_EDUCATION" Width="2.625" PointX="18.375" PointY="14.75" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="RecruitmentModel.RC_CANDIDATE_HISTORY" Width="1.5" PointX="20.375" PointY="5.75" Height="0.4" IsExpanded="false" />
-        <EntityTypeShape EntityType="RecruitmentModel.RC_CANDIDATE_OTHER_INFO" Width="2" PointX="22.75" PointY="11.5" Height="9.8646451822916674" IsExpanded="true" />
+        <EntityTypeShape EntityType="RecruitmentModel.RC_CANDIDATE_OTHER_INFO" Width="2" PointX="22.75" PointY="11.5" Height="10.633850911458332" IsExpanded="true" />
         <EntityTypeShape EntityType="RecruitmentModel.RC_CANDIDATE_CV" Width="2.375" PointX="25.125" PointY="17.5" Height="18.902812500000003" IsExpanded="true" />
         <EntityTypeShape EntityType="RecruitmentModel.RC_PROGRAM_SCHEDULE" Width="2.625" PointX="7" PointY="22.75" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="RecruitmentModel.RC_PROGRAM_SCHEDULE_CAN" Width="2.5" PointX="12.375" PointY="21.75" Height="0.4" IsExpanded="false" />
@@ -5857,7 +5869,7 @@
         <EntityTypeShape EntityType="RecruitmentModel.RC_MANNING_ORG" Width="2" PointX="14.875" PointY="25.125" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="RecruitmentModel.RC_MANNING_TITLE" Width="2.375" PointX="14.875" PointY="28.375" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="RecruitmentModel.RC_CANDIDATE_EXPECT" Width="2.125" PointX="26.625" PointY="6.625" Height="2.3648893229166656" IsExpanded="true" />
-        <EntityTypeShape EntityType="RecruitmentModel.RC_CANDIDATE_HEALTH" Width="2" PointX="0.75" PointY="13.75" Height="0.4" IsExpanded="false" />
+        <EntityTypeShape EntityType="RecruitmentModel.RC_CANDIDATE_HEALTH" Width="2" PointX="0.75" PointY="13.75" Height="4.8648079427083353" IsExpanded="true" />
         <EntityTypeShape EntityType="RecruitmentModel.RC_CANDIDATE_REFERENCE" Width="1.5" PointX="0.625" PointY="6.875" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="RecruitmentModel.RC_PROGRAM" Width="1.5" PointX="19.375" PointY="21.75" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="RecruitmentModel.SE_USER" Width="1.5" PointX="8.375" PointY="2.75" Height="0.4" IsExpanded="false" />

@@ -18,7 +18,7 @@ Imports System.Runtime.Serialization
 Imports System.Xml.Serialization
 
 
-<Assembly: EdmSchemaAttribute("8d3b85f1-4cef-4478-a8a8-f8cd6b5fea1c")>
+<Assembly: EdmSchemaAttribute("8c026cb0-5091-460e-883f-0c43f15d91e8")>
 #Region "EDM Relationship Metadata"
 <Assembly: EdmRelationshipAttribute("RecruitmentModel", "FK_FE_HEH", "HU_EMPLOYEE", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_EMPLOYEE), "HU_EMPLOYEE_HEALTH1", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(HU_EMPLOYEE_HEALTH1), True)>
 <Assembly: EdmRelationshipAttribute("RecruitmentModel", "FK_HE_HEC", "HU_EMPLOYEE", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_EMPLOYEE), "HU_EMPLOYEE_CV", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(HU_EMPLOYEE_CV), True)>
@@ -24560,9 +24560,15 @@ Public Partial Class RC_CANDIDATE_OTHER_INFO
     ''' Create a new RC_CANDIDATE_OTHER_INFO object.
     ''' </summary>
     ''' <param name="cANDIDATE_ID">Initial value of the CANDIDATE_ID property.</param>
-    Public Shared Function CreateRC_CANDIDATE_OTHER_INFO(cANDIDATE_ID As Global.System.Decimal) As RC_CANDIDATE_OTHER_INFO
+    ''' <param name="nGAY_VAO_DOAN">Initial value of the NGAY_VAO_DOAN property.</param>
+    ''' <param name="nOI_VAO_DANG">Initial value of the NOI_VAO_DANG property.</param>
+    ''' <param name="nGAY_VAO_DANG">Initial value of the NGAY_VAO_DANG property.</param>
+    Public Shared Function CreateRC_CANDIDATE_OTHER_INFO(cANDIDATE_ID As Global.System.Decimal, nGAY_VAO_DOAN As Global.System.String, nOI_VAO_DANG As Global.System.String, nGAY_VAO_DANG As Global.System.String) As RC_CANDIDATE_OTHER_INFO
         Dim rC_CANDIDATE_OTHER_INFO as RC_CANDIDATE_OTHER_INFO = New RC_CANDIDATE_OTHER_INFO
         rC_CANDIDATE_OTHER_INFO.CANDIDATE_ID = cANDIDATE_ID
+        rC_CANDIDATE_OTHER_INFO.NGAY_VAO_DOAN = nGAY_VAO_DOAN
+        rC_CANDIDATE_OTHER_INFO.NOI_VAO_DANG = nOI_VAO_DANG
+        rC_CANDIDATE_OTHER_INFO.NGAY_VAO_DANG = nGAY_VAO_DANG
         Return rC_CANDIDATE_OTHER_INFO
     End Function
 
@@ -25720,6 +25726,106 @@ Public Partial Class RC_CANDIDATE_OTHER_INFO
     End Sub
 
     Private Partial Sub OnDOAN_PHIChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=false)>
+    <DataMemberAttribute()>
+    Public Property NGAY_VAO_DOAN() As Global.System.String
+        Get
+            Return _NGAY_VAO_DOAN
+        End Get
+        Set
+            OnNGAY_VAO_DOANChanging(value)
+            ReportPropertyChanging("NGAY_VAO_DOAN")
+            _NGAY_VAO_DOAN = StructuralObject.SetValidValue(value, false)
+            ReportPropertyChanged("NGAY_VAO_DOAN")
+            OnNGAY_VAO_DOANChanged()
+        End Set
+    End Property
+
+    Private _NGAY_VAO_DOAN As Global.System.String
+    Private Partial Sub OnNGAY_VAO_DOANChanging(value As Global.System.String)
+    End Sub
+
+    Private Partial Sub OnNGAY_VAO_DOANChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property NOI_VAO_DOAN() As Global.System.String
+        Get
+            Return _NOI_VAO_DOAN
+        End Get
+        Set
+            OnNOI_VAO_DOANChanging(value)
+            ReportPropertyChanging("NOI_VAO_DOAN")
+            _NOI_VAO_DOAN = StructuralObject.SetValidValue(value, true)
+            ReportPropertyChanged("NOI_VAO_DOAN")
+            OnNOI_VAO_DOANChanged()
+        End Set
+    End Property
+
+    Private _NOI_VAO_DOAN As Global.System.String
+    Private Partial Sub OnNOI_VAO_DOANChanging(value As Global.System.String)
+    End Sub
+
+    Private Partial Sub OnNOI_VAO_DOANChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=false)>
+    <DataMemberAttribute()>
+    Public Property NOI_VAO_DANG() As Global.System.String
+        Get
+            Return _NOI_VAO_DANG
+        End Get
+        Set
+            OnNOI_VAO_DANGChanging(value)
+            ReportPropertyChanging("NOI_VAO_DANG")
+            _NOI_VAO_DANG = StructuralObject.SetValidValue(value, false)
+            ReportPropertyChanged("NOI_VAO_DANG")
+            OnNOI_VAO_DANGChanged()
+        End Set
+    End Property
+
+    Private _NOI_VAO_DANG As Global.System.String
+    Private Partial Sub OnNOI_VAO_DANGChanging(value As Global.System.String)
+    End Sub
+
+    Private Partial Sub OnNOI_VAO_DANGChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=false)>
+    <DataMemberAttribute()>
+    Public Property NGAY_VAO_DANG() As Global.System.String
+        Get
+            Return _NGAY_VAO_DANG
+        End Get
+        Set
+            OnNGAY_VAO_DANGChanging(value)
+            ReportPropertyChanging("NGAY_VAO_DANG")
+            _NGAY_VAO_DANG = StructuralObject.SetValidValue(value, false)
+            ReportPropertyChanged("NGAY_VAO_DANG")
+            OnNGAY_VAO_DANGChanged()
+        End Set
+    End Property
+
+    Private _NGAY_VAO_DANG As Global.System.String
+    Private Partial Sub OnNGAY_VAO_DANGChanging(value As Global.System.String)
+    End Sub
+
+    Private Partial Sub OnNGAY_VAO_DANGChanged()
     End Sub
 
     #End Region

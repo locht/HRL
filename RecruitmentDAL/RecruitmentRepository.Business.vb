@@ -1870,22 +1870,34 @@ Partial Class RecruitmentRepository
         Try
             Select Case sType
                 Case "NO_ID"
-                    If Not sID_No Is Nothing And sID_No <> "" Then
+                    If Not sID_No Is Nothing And sID_No <> "" And dBirthDate.ToString <> "" And sFullName <> "" Then
                         Return ((From e In Context.RC_CANDIDATE
                          From cv In Context.RC_CANDIDATE_CV.Where(Function(f) f.CANDIDATE_ID = e.ID)
-                        Where cv.ID_NO = sID_No).Count = 0)
+                        Where (cv.ID_NO = sID_No Or (cv.BIRTH_DATE = dBirthDate And e.FULLNAME_VN = sFullName)) And e.IS_BLACKLIST = 0).Count = 0)
                     End If
                 Case "BLACK_LIST"
-                    If Not sID_No Is Nothing And sID_No <> "" Then
+                    If Not sID_No Is Nothing And sID_No <> "" And dBirthDate.ToString <> "" And sFullName <> "" Then
                         Return ((From e In Context.RC_CANDIDATE
                          From cv In Context.RC_CANDIDATE_CV.Where(Function(f) f.CANDIDATE_ID = e.ID)
-                        Where cv.ID_NO = sID_No And e.IS_BLACKLIST = -1).Count = 0)
+                        Where (cv.ID_NO = sID_No And e.IS_BLACKLIST = -1) Or (cv.BIRTH_DATE = dBirthDate And e.FULLNAME_VN = sFullName And e.IS_BLACKLIST = -1)).Count = 0)
                     End If
                 Case "DATE_FULLNAME"
                     If (sID_No = "" Or sID_No Is Nothing) And dBirthDate.ToString <> "" Then
                         Return ((From e In Context.RC_CANDIDATE
                          From cv In Context.RC_CANDIDATE_CV.Where(Function(f) f.CANDIDATE_ID = e.ID)
                         Where cv.BIRTH_DATE = dBirthDate And e.FULLNAME_VN.ToUpper = sFullName.ToUpper).Count = 0)
+                    End If
+                Case "WORKING"
+                    If (sID_No = "" Or sID_No Is Nothing) And dBirthDate.ToString <> "" And sFullName <> "" Then
+                        Return ((From e In Context.HU_EMPLOYEE
+                         From cv In Context.HU_EMPLOYEE_CV.Where(Function(f) f.EMPLOYEE_ID = e.ID)
+                        Where ((cv.BIRTH_DATE = dBirthDate And e.FULLNAME_VN.ToUpper = sFullName.ToUpper) Or cv.ID_NO = sID_No) And e.WORK_STATUS <> 257).Count = 0)
+                    End If
+                Case "TERMINATE"
+                    If (sID_No = "" Or sID_No Is Nothing) And dBirthDate.ToString <> "" And sFullName <> "" Then
+                        Return ((From e In Context.HU_EMPLOYEE
+                         From cv In Context.HU_EMPLOYEE_CV.Where(Function(f) f.EMPLOYEE_ID = e.ID)
+                        Where ((cv.BIRTH_DATE = dBirthDate And e.FULLNAME_VN.ToUpper = sFullName.ToUpper) Or cv.ID_NO = sID_No) And e.WORK_STATUS = 257).Count = 0)
                     End If
             End Select
             Return True
@@ -2295,13 +2307,14 @@ Partial Class RecruitmentRepository
             End If
 
             Context.RC_CANDIDATE.AddObject(objEmpData)
-
+            Context.SaveChanges(log)
             '---------- 2.0 Thêm vào bảng RC_Candidate_CV ----------
             Dim objEmpCVData As New RC_CANDIDATE_CV
             objEmpCVData.CANDIDATE_ID = objEmpData.ID
             objEmpCVData.CON_WARD = objEmpCV.CON_WARD
             objEmpCVData.PER_WARD = objEmpCV.PER_WARD
             objEmpCVData.BIRTH_DATE = objEmpCV.BIRTH_DATE
+            objEmpCVData.BIRTH_ADDRESS = objEmpCV.BIRTH_ADDRESS
             objEmpCVData.GENDER = objEmpCV.GENDER
             objEmpCVData.MARITAL_STATUS = objEmpCV.MARITAL_STATUS
             objEmpCVData.ID_NO = objEmpCV.ID_NO
@@ -2333,6 +2346,10 @@ Partial Class RecruitmentRepository
             objEmpCVData.CONTACT_ADDRESS_TEMP = objEmpCV.CONTACT_ADDRESS_TEMP
             objEmpCVData.CONTACT_NATION_TEMP = objEmpCV.CONTACT_NATION_TEMP
             objEmpCVData.CONTACT_PROVINCE_TEMP = objEmpCV.CONTACT_PROVINCE_TEMP
+            objEmpCVData.CONTACT_ADDRESS_NOW = objEmpCV.CONTACT_ADDRESS_NOW
+            objEmpCVData.CON_COUNTRY = objEmpCV.CON_COUNTRY
+            objEmpCVData.CON_PROVINCE = objEmpCV.CON_PROVINCE
+            objEmpCVData.CON_DISTRICT = objEmpCV.CON_DISTRICT
             objEmpCVData.CONTACT_DISTRICT_TEMP = objEmpCV.CONTACT_DISTRICT_TEMP
             objEmpCVData.CONTACT_MOBILE = objEmpCV.CONTACT_MOBILE
             objEmpCVData.CONTACT_PHONE = objEmpCV.CONTACT_PHONE
@@ -2340,6 +2357,9 @@ Partial Class RecruitmentRepository
             objEmpCVData.WORK_EMAIL = objEmpCV.WORK_EMAIl
             objEmpCVData.PER_TAX_DATE = objEmpCV.PER_TAX_DATE
             objEmpCVData.PER_TAX_PLACE = objEmpCV.PER_TAX_PLACE
+            objEmpCVData.CONTACT_PERSON = objEmpCV.CONTACT_PERSON
+            objEmpCVData.CONTACT_PERSON_ADDRESS = objEmpCV.CONTACT_PERSON_ADDRESS
+            objEmpCVData.CONTACT_PERSON_PHONE = objEmpCV.CONTACT_PERSON_PHONE
             objEmpCVData.PASSPORT_DATE_EXPIRATION = objEmpCV.PASSPORT_DATE_EXPIRATION
             objEmpCVData.VISA_NUMBER = objEmpCV.VISA_NUMBER
             objEmpCVData.VISA_DATE = objEmpCV.VISA_DATE
@@ -2376,7 +2396,7 @@ Partial Class RecruitmentRepository
                 objEmpCVData.IMAGE = objEmpData.CANDIDATE_CODE & objEmpCV.IMAGE
             End If
             Context.RC_CANDIDATE_CV.AddObject(objEmpCVData)
-
+            Context.SaveChanges(log)
             '---------- 3.0 Thêm vào bảng RC_EDUCATION ----------
             Dim objEmpEduData As New RC_CANDIDATE_EDUCATION
             objEmpEduData.YEAR_GRADUATE = objEmpEdu.YEAR_GRADUATE
@@ -2408,23 +2428,59 @@ Partial Class RecruitmentRepository
             objEmpEduData.ENGLISH2 = objEmpEdu.ENGLISH2
             objEmpEduData.ENGLISH_LEVEL2 = objEmpEdu.ENGLISH_LEVEL2
             objEmpEduData.ENGLISH_MARK2 = objEmpEdu.ENGLISH_MARK2
-
+            objEmpEduData.DATE_START = objEmpEdu.DATE_START
+            objEmpEduData.DATE_END = objEmpEdu.DATE_END
             Context.RC_CANDIDATE_EDUCATION.AddObject(objEmpEduData)
-
+            Context.SaveChanges(log)
             '---------- 4.0 Thêm vào bảng RC_Candidate_OTHER_INFO ----------
             Dim objEmpOtherData As New RC_CANDIDATE_OTHER_INFO
             objEmpOtherData.CANDIDATE_ID = objEmpData.ID
+            ' CONG DOAN
             objEmpOtherData.NGAYVAOCONGDOAN = objEmpOther.NGAY_VAO_DOAN
             objEmpOtherData.NOIVAOCONGDOAN = objEmpOther.NOI_VAO_DOAN
             objEmpOtherData.CONGDOANPHI = objEmpOther.DOAN_PHI
+            'THONG TIN TAI KHOAN
             objEmpOtherData.ACCOUNT_NAME = objEmpOther.ACCOUNT_NAME
             objEmpOtherData.ACCOUNT_NUMBER = objEmpOther.ACCOUNT_NUMBER
             objEmpOtherData.BANK = objEmpOther.BANK
             objEmpOtherData.BANK_BRANCH = objEmpOther.BANK_BRANCH
             objEmpOtherData.IS_PAYMENT_VIA_BANK = objEmpOther.IS_PAYMENT_VIA_BANK
             objEmpOtherData.ACCOUNT_EFFECT_DATE = objEmpOther.ACCOUNT_EFFECT_DATE
-            Context.RC_CANDIDATE_OTHER_INFO.AddObject(objEmpOtherData)
+            ' DOAN VIEN
+            objEmpOtherData.IS_DOANVIEN = objEmpOther.IS_DOANVIEN
+            objEmpOtherData.DOAN_PHI = objEmpOther.DOAN_PHI
+            objEmpOtherData.NGAY_VAO_DOAN = objEmpOther.NGAY_VAO_DOAN
+            objEmpOtherData.CHUC_VU_DOAN = objEmpOther.CHUC_VU_DOAN
+            objEmpOtherData.NGAY_NHAN_CV_DOAN = objEmpOther.NGAY_NHAN_CV_DOAN
+            'DANG VIEN
+            objEmpOtherData.IS_DANGVIEN = objEmpOther.IS_DANGVIEN
+            objEmpOtherData.DANG_PHI = objEmpOther.DANG_PHI
+            objEmpOtherData.NGAY_VAO_DANG = objEmpOther.NGAY_VAO_DANG
+            objEmpOtherData.CHUC_VU_DANG = objEmpOther.CHUC_VU_DANG
+            objEmpOtherData.NGAY_NHAN_CV_DANG = objEmpOther.NGAY_NHAN_CV_DANG
+            objEmpOtherData.CAPUY_HIENTAI = objEmpOtherData.CAPUY_HIENTAI
+            objEmpOtherData.CAPUY_KIEMNHIEM = objEmpOtherData.CAPUY_KIEMNHIEM
 
+            'CUU CHIEN BINH
+            objEmpOtherData.IS_CCB = objEmpOther.IS_CCB
+            objEmpOtherData.CCB_NGAYVAO = objEmpOther.CCB_NGAYVAO
+            objEmpOtherData.CCB_CHUCVU = objEmpOther.CCB_CHUCVU
+            objEmpOtherData.CCB_NOIVAO = objEmpOther.CCB_NOIVAO
+            objEmpOtherData.CCB_NGAYNHAPNGU = objEmpOther.CCB_NGAYNHAPNGU
+            objEmpOtherData.CCB_NGAYXUATNGU = objEmpOther.CCB_NGAYXUATNGU
+            objEmpOtherData.CCB_QUANHAM = objEmpOther.CCB_QUANHAM
+            objEmpOtherData.TPGD = objEmpOther.TPGD
+            objEmpOtherData.DANHHIEU = objEmpOther.DANHHIEU
+            objEmpOtherData.CAREER = objEmpOther.CAREER
+            objEmpOtherData.SOTRUONGCONGTAC = objEmpOther.SOTRUONGCONGTAC
+            objEmpOtherData.CONGTAC_LAUNHAT = objEmpOther.CONGTAC_LAUNHAT
+            objEmpOtherData.LYLUANCHINHTRI = objEmpOther.LYLUANCHINHTRI
+            objEmpOtherData.QUANLYNHANUOC = objEmpOther.QUANLYNHANUOC
+            objEmpOtherData.THUONGBINH = objEmpOther.THUONGBINH
+            objEmpOtherData.GDCS = objEmpOther.GDCS
+
+            Context.RC_CANDIDATE_OTHER_INFO.AddObject(objEmpOtherData)
+            Context.SaveChanges(log)
             ' Thêm vào bảng CandidateExpect
             Dim objEmpExpectData As New RC_CANDIDATE_EXPECT
             objEmpExpectData.CANDIDATE_ID = objEmpData.ID
@@ -2437,7 +2493,7 @@ Partial Class RecruitmentRepository
                 objEmpExpectData.WORK_LOCATION = objEmpExpect.WORK_LOCATION
             End If
             Context.RC_CANDIDATE_EXPECT.AddObject(objEmpExpectData)
-
+            Context.SaveChanges(log)
             ' Thêm vào bảng CandidateHealth
             Dim objEmpHealthData As New RC_CANDIDATE_HEALTH
             objEmpHealthData.CANDIDATE_ID = objEmpData.ID
@@ -2458,8 +2514,8 @@ Partial Class RecruitmentRepository
                 objEmpHealthData.GHI_CHU_SUC_KHOE = objEmpHealth.GHI_CHU_SUC_KHOE
                 Context.RC_CANDIDATE_HEALTH.AddObject(objEmpHealthData)
             End If
-
             Context.SaveChanges(log)
+
             gID = objEmpData.ID
             Return True
         Catch ex As Exception
@@ -2516,6 +2572,7 @@ Partial Class RecruitmentRepository
                 objEmpCVData.CON_WARD = objEmpCV.CON_WARD
                 objEmpCVData.PER_WARD = objEmpCV.PER_WARD
                 objEmpCVData.BIRTH_DATE = objEmpCV.BIRTH_DATE
+                objEmpCVData.BIRTH_ADDRESS = objEmpCV.BIRTH_ADDRESS
                 objEmpCVData.GENDER = objEmpCV.GENDER
                 objEmpCVData.MARITAL_STATUS = objEmpCV.MARITAL_STATUS
                 objEmpCVData.ID_NO = objEmpCV.ID_NO
@@ -2547,6 +2604,10 @@ Partial Class RecruitmentRepository
                 objEmpCVData.CONTACT_ADDRESS_TEMP = objEmpCV.CONTACT_ADDRESS_TEMP
                 objEmpCVData.CONTACT_NATION_TEMP = objEmpCV.CONTACT_NATION_TEMP
                 objEmpCVData.CONTACT_PROVINCE_TEMP = objEmpCV.CONTACT_PROVINCE_TEMP
+                objEmpCVData.CONTACT_ADDRESS_NOW = objEmpCV.CONTACT_ADDRESS_NOW
+                objEmpCVData.CON_COUNTRY = objEmpCV.CON_COUNTRY
+                objEmpCVData.CON_PROVINCE = objEmpCV.CON_PROVINCE
+                objEmpCVData.CON_DISTRICT = objEmpCV.CON_DISTRICT
                 objEmpCVData.CONTACT_DISTRICT_TEMP = objEmpCV.CONTACT_DISTRICT_TEMP
                 objEmpCVData.CONTACT_MOBILE = objEmpCV.CONTACT_MOBILE
                 objEmpCVData.CONTACT_PHONE = objEmpCV.CONTACT_PHONE
@@ -2554,6 +2615,9 @@ Partial Class RecruitmentRepository
                 objEmpCVData.WORK_EMAIL = objEmpCV.WORK_EMAIl
                 objEmpCVData.PER_TAX_DATE = objEmpCV.PER_TAX_DATE
                 objEmpCVData.PER_TAX_PLACE = objEmpCV.PER_TAX_PLACE
+                objEmpCVData.CONTACT_PERSON = objEmpCV.CONTACT_PERSON
+                objEmpCVData.CONTACT_PERSON_ADDRESS = objEmpCV.CONTACT_PERSON_ADDRESS
+                objEmpCVData.CONTACT_PERSON_PHONE = objEmpCV.CONTACT_PERSON_PHONE
                 objEmpCVData.PASSPORT_DATE_EXPIRATION = objEmpCV.PASSPORT_DATE_EXPIRATION
                 objEmpCVData.VISA_NUMBER = objEmpCV.VISA_NUMBER
                 objEmpCVData.VISA_DATE = objEmpCV.VISA_DATE
@@ -2647,17 +2711,49 @@ Partial Class RecruitmentRepository
                     objEmpOtherData = New RC_CANDIDATE_OTHER_INFO
                     isInsert = True
                 End If
-
-                objEmpOtherData.CANDIDATE_ID = objEmpData.ID
+                ' CONG DOAN
                 objEmpOtherData.NGAYVAOCONGDOAN = objEmpOther.NGAY_VAO_DOAN
                 objEmpOtherData.NOIVAOCONGDOAN = objEmpOther.NOI_VAO_DOAN
                 objEmpOtherData.CONGDOANPHI = objEmpOther.DOAN_PHI
+                'THONG TIN TAI KHOAN
                 objEmpOtherData.ACCOUNT_NAME = objEmpOther.ACCOUNT_NAME
                 objEmpOtherData.ACCOUNT_NUMBER = objEmpOther.ACCOUNT_NUMBER
                 objEmpOtherData.BANK = objEmpOther.BANK
                 objEmpOtherData.BANK_BRANCH = objEmpOther.BANK_BRANCH
                 objEmpOtherData.IS_PAYMENT_VIA_BANK = objEmpOther.IS_PAYMENT_VIA_BANK
                 objEmpOtherData.ACCOUNT_EFFECT_DATE = objEmpOther.ACCOUNT_EFFECT_DATE
+                ' DOAN VIEN
+                objEmpOtherData.IS_DOANVIEN = objEmpOther.IS_DOANVIEN
+                objEmpOtherData.DOAN_PHI = objEmpOther.DOAN_PHI
+                objEmpOtherData.NGAY_VAO_DOAN = objEmpOther.NGAY_VAO_DOAN
+                objEmpOtherData.CHUC_VU_DOAN = objEmpOther.CHUC_VU_DOAN
+                objEmpOtherData.NGAY_NHAN_CV_DOAN = objEmpOther.NGAY_NHAN_CV_DOAN
+                'DANG VIEN
+                objEmpOtherData.IS_DANGVIEN = objEmpOther.IS_DANGVIEN
+                objEmpOtherData.DANG_PHI = objEmpOther.DANG_PHI
+                objEmpOtherData.NGAY_VAO_DANG = objEmpOther.NGAY_VAO_DANG
+                objEmpOtherData.CHUC_VU_DANG = objEmpOther.CHUC_VU_DANG
+                objEmpOtherData.NGAY_NHAN_CV_DANG = objEmpOther.NGAY_NHAN_CV_DANG
+                objEmpOtherData.CAPUY_HIENTAI = objEmpOtherData.CAPUY_HIENTAI
+                objEmpOtherData.CAPUY_KIEMNHIEM = objEmpOtherData.CAPUY_KIEMNHIEM
+
+                'CUU CHIEN BINH
+                objEmpOtherData.IS_CCB = objEmpOther.IS_CCB
+                objEmpOtherData.CCB_NGAYVAO = objEmpOther.CCB_NGAYVAO
+                objEmpOtherData.CCB_CHUCVU = objEmpOther.CCB_CHUCVU
+                objEmpOtherData.CCB_NOIVAO = objEmpOther.CCB_NOIVAO
+                objEmpOtherData.CCB_NGAYNHAPNGU = objEmpOther.CCB_NGAYNHAPNGU
+                objEmpOtherData.CCB_NGAYXUATNGU = objEmpOther.CCB_NGAYXUATNGU
+                objEmpOtherData.CCB_QUANHAM = objEmpOther.CCB_QUANHAM
+                objEmpOtherData.TPGD = objEmpOther.TPGD
+                objEmpOtherData.DANHHIEU = objEmpOther.DANHHIEU
+                objEmpOtherData.CAREER = objEmpOther.CAREER
+                objEmpOtherData.SOTRUONGCONGTAC = objEmpOther.SOTRUONGCONGTAC
+                objEmpOtherData.CONGTAC_LAUNHAT = objEmpOther.CONGTAC_LAUNHAT
+                objEmpOtherData.LYLUANCHINHTRI = objEmpOther.LYLUANCHINHTRI
+                objEmpOtherData.QUANLYNHANUOC = objEmpOther.QUANLYNHANUOC
+                objEmpOtherData.THUONGBINH = objEmpOther.THUONGBINH
+                objEmpOtherData.GDCS = objEmpOther.GDCS
 
                 If isInsert Then
                     Context.RC_CANDIDATE_OTHER_INFO.AddObject(objEmpOtherData)
@@ -3014,6 +3110,10 @@ Partial Class RecruitmentRepository
                  .CONTACT_PROVINCE = e.CONTACT_PROVINCE,
                  .CONTACT_NATION_ID = e.CONTACT_NATION,
                  .CONTACT_DISTRICT_ID = e.CONTACT_DISTRICT,
+                 .CONTACT_ADDRESS_NOW = e.CONTACT_ADDRESS_NOW,
+                 .CON_COUNTRY = e.CON_COUNTRY,
+                 .CON_PROVINCE = e.CON_PROVINCE,
+                 .CON_DISTRICT = e.CON_DISTRICT,
                  .EDUCATION_ID = e.EDUCATION_ID,
                  .EDUCATION_MAJORS = e.EDUCATION_MAJORS,
                  .PERTAXCODE = e.PERTAXCODE,
@@ -3055,6 +3155,9 @@ Partial Class RecruitmentRepository
                  .URGENT_PER_RELATION = If(e.URGENT_PER_RELATION Is Nothing, 0, e.URGENT_PER_RELATION),
                  .URGENT_PER_SDT = e.URGENT_PER_SDT,
                  .URGENT_ADDRESS = e.URGENT_ADDRESS,
+                 .CONTACT_PERSON = e.CONTACT_PERSON,
+                 .CONTACT_PERSON_ADDRESS = e.CONTACT_PERSON_ADDRESS,
+                 .CONTACT_PERSON_PHONE = e.CONTACT_PERSON_PHONE,
                  .STRANGER = e.STRANGER,
                  .WEAKNESS = e.WEAKNESS
                  }).FirstOrDefault
@@ -3153,9 +3256,40 @@ Partial Class RecruitmentRepository
                 From bankbranch In Context.HU_BANK_BRANCH.Where(Function(f) e.BANK_BRANCH = f.ID).DefaultIfEmpty
             Select New CandidateOtherInfoDTO With {
                 .CANDIDATE_ID = e.CANDIDATE_ID,
-                .NOI_VAO_DOAN = e.NOIVAOCONGDOAN,
-                .NGAY_VAO_DOAN = e.NGAYVAOCONGDOAN,
-                .DOAN_PHI = e.CONGDOANPHI,
+                .IS_DOANVIEN = e.IS_DOANVIEN,
+                .NGAY_VAO_DOAN = e.NGAY_VAO_DOAN,
+                .CHUC_VU_DOAN = e.CHUC_VU_DOAN,
+                .NGAY_NHAN_CV_DOAN = e.NGAY_NHAN_CV_DOAN,
+                .NOI_VAO_DOAN = e.NOI_VAO_DOAN,
+                .DOAN_PHI = e.DOAN_PHI,
+                .IS_DANGVIEN = e.IS_DANGVIEN,
+                .NGAY_VAO_DANG = e.NGAY_VAO_DANG,
+                .CHUC_VU_DANG = e.CHUC_VU_DANG,
+                .NGAY_NHAN_CV_DANG = e.NGAY_NHAN_CV_DANG,
+                .DANG_KIEMNHIEM = e.DANG_KIEMNHIEM,
+                .NOI_VAO_DANG = e.NOI_VAO_DANG,
+                .DANG_PHI = e.DANG_PHI,
+                .CAPUY_HIENTAI = e.CAPUY_HIENTAI,
+                .CAPUY_KIEMNHIEM = e.CAPUY_KIEMNHIEM,
+                .IS_CONGDOANPHI = e.IS_CONGDOANPHI,
+                .CDP_NGAYVAO = e.CDP_NGAYVAO,
+                .CDP_NOIVAO = e.CDP_NOIVAO,
+                .IS_CCB = e.IS_CCB,
+                .CCB_NGAYVAO = e.CCB_NGAYVAO,
+                .CCB_NOIVAO = e.CCB_NOIVAO,
+                .CCB_CHUCVU = e.CCB_CHUCVU,
+                .CCB_NGAYNHAPNGU = e.CCB_NGAYNHAPNGU,
+                .CCB_NGAYXUATNGU = e.CCB_NGAYXUATNGU,
+                .CCB_QUANHAM = e.CCB_QUANHAM,
+                .TPGD = e.TPGD,
+                .DANHHIEU = e.DANHHIEU,
+                .CAREER = e.CAREER,
+                .SOTRUONGCONGTAC = e.SOTRUONGCONGTAC,
+                .CONGTAC_LAUNHAT = e.CONGTAC_LAUNHAT,
+                .LYLUANCHINHTRI = e.LYLUANCHINHTRI,
+                .QUANLYNHANUOC = e.QUANLYNHANUOC,
+                .THUONGBINH = e.THUONGBINH,
+                .GDCS = e.GDCS,
                 .ACCOUNT_NAME = e.ACCOUNT_NAME,
                 .ACCOUNT_NUMBER = e.ACCOUNT_NUMBER,
                 .BANK = e.BANK,
