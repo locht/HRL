@@ -18,7 +18,7 @@ Imports System.Runtime.Serialization
 Imports System.Xml.Serialization
 
 
-<Assembly: EdmSchemaAttribute("99f9aa9c-c14b-49ba-9db0-d8a203a4aef7")>
+<Assembly: EdmSchemaAttribute("8d3b85f1-4cef-4478-a8a8-f8cd6b5fea1c")>
 #Region "EDM Relationship Metadata"
 <Assembly: EdmRelationshipAttribute("RecruitmentModel", "FK_FE_HEH", "HU_EMPLOYEE", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_EMPLOYEE), "HU_EMPLOYEE_HEALTH1", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(HU_EMPLOYEE_HEALTH1), True)>
 <Assembly: EdmRelationshipAttribute("RecruitmentModel", "FK_HE_HEC", "HU_EMPLOYEE", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_EMPLOYEE), "HU_EMPLOYEE_CV", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(HU_EMPLOYEE_CV), True)>
@@ -21171,9 +21171,11 @@ Public Partial Class RC_CANDIDATE_EDUCATION
     ''' Create a new RC_CANDIDATE_EDUCATION object.
     ''' </summary>
     ''' <param name="cANDIDATE_ID">Initial value of the CANDIDATE_ID property.</param>
-    Public Shared Function CreateRC_CANDIDATE_EDUCATION(cANDIDATE_ID As Global.System.Decimal) As RC_CANDIDATE_EDUCATION
+    ''' <param name="property">Initial value of the Property property.</param>
+    Public Shared Function CreateRC_CANDIDATE_EDUCATION(cANDIDATE_ID As Global.System.Decimal, [property] As Global.System.String) As RC_CANDIDATE_EDUCATION
         Dim rC_CANDIDATE_EDUCATION as RC_CANDIDATE_EDUCATION = New RC_CANDIDATE_EDUCATION
         rC_CANDIDATE_EDUCATION.CANDIDATE_ID = cANDIDATE_ID
+        rC_CANDIDATE_EDUCATION.[Property] = [property]
         Return rC_CANDIDATE_EDUCATION
     End Function
 
@@ -22431,6 +22433,31 @@ Public Partial Class RC_CANDIDATE_EDUCATION
     End Sub
 
     Private Partial Sub OnYEAR_GRADUATEChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=false)>
+    <DataMemberAttribute()>
+    Public Property [Property]() As Global.System.String
+        Get
+            Return _Property
+        End Get
+        Set
+            OnPropertyChanging(value)
+            ReportPropertyChanging("Property")
+            _Property = StructuralObject.SetValidValue(value, false)
+            ReportPropertyChanged("Property")
+            OnPropertyChanged()
+        End Set
+    End Property
+
+    Private _Property As Global.System.String
+    Private Partial Sub OnPropertyChanging(value As Global.System.String)
+    End Sub
+
+    Private Partial Sub OnPropertyChanged()
     End Sub
 
     #End Region
@@ -25618,6 +25645,81 @@ Public Partial Class RC_CANDIDATE_OTHER_INFO
     End Sub
 
     Private Partial Sub OnGDCSChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property NGAY_NHAN_CV_DOAN() As Nullable(Of Global.System.DateTime)
+        Get
+            Return _NGAY_NHAN_CV_DOAN
+        End Get
+        Set
+            OnNGAY_NHAN_CV_DOANChanging(value)
+            ReportPropertyChanging("NGAY_NHAN_CV_DOAN")
+            _NGAY_NHAN_CV_DOAN = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("NGAY_NHAN_CV_DOAN")
+            OnNGAY_NHAN_CV_DOANChanged()
+        End Set
+    End Property
+
+    Private _NGAY_NHAN_CV_DOAN As Nullable(Of Global.System.DateTime)
+    Private Partial Sub OnNGAY_NHAN_CV_DOANChanging(value As Nullable(Of Global.System.DateTime))
+    End Sub
+
+    Private Partial Sub OnNGAY_NHAN_CV_DOANChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property NGAY_NHAN_CV_DANG() As Nullable(Of Global.System.DateTime)
+        Get
+            Return _NGAY_NHAN_CV_DANG
+        End Get
+        Set
+            OnNGAY_NHAN_CV_DANGChanging(value)
+            ReportPropertyChanging("NGAY_NHAN_CV_DANG")
+            _NGAY_NHAN_CV_DANG = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("NGAY_NHAN_CV_DANG")
+            OnNGAY_NHAN_CV_DANGChanged()
+        End Set
+    End Property
+
+    Private _NGAY_NHAN_CV_DANG As Nullable(Of Global.System.DateTime)
+    Private Partial Sub OnNGAY_NHAN_CV_DANGChanging(value As Nullable(Of Global.System.DateTime))
+    End Sub
+
+    Private Partial Sub OnNGAY_NHAN_CV_DANGChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property DOAN_PHI() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _DOAN_PHI
+        End Get
+        Set
+            OnDOAN_PHIChanging(value)
+            ReportPropertyChanging("DOAN_PHI")
+            _DOAN_PHI = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("DOAN_PHI")
+            OnDOAN_PHIChanged()
+        End Set
+    End Property
+
+    Private _DOAN_PHI As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnDOAN_PHIChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnDOAN_PHIChanged()
     End Sub
 
     #End Region

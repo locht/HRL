@@ -22,6 +22,7 @@
     Public Property CHUC_VU_DOAN As Decimal?
     Public Property CHUC_VU_DOAN_NAME As String
     Public Property DOAN_PHI As Boolean?
+    Public Property NGAY_NHAN_CV_DOAN As Date?
     'Đảng
     Public Property IS_DANGVIEN As Boolean?
     Public Property NGAY_VAO_DANG As Date?
@@ -33,7 +34,7 @@
     Public Property DANG_KIEMNHIEM_NAME As String
     Public Property CAPUY_HIENTAI As String
     Public Property CAPUY_KIEMNHIEM As String
-
+    Public Property NGAY_NHAN_CV_DANG As Date?
     'Công đoàn
     Public Property IS_CONGDOANPHI As Boolean?
     Public Property CDP_NGAYVAO As Date?

@@ -16805,6 +16805,12 @@ Namespace RecruitmentBusiness
         Private MODIFIED_LOGField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private NGAY_NHAN_CV_DANGField As System.Nullable(Of Date)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private NGAY_NHAN_CV_DOANField As System.Nullable(Of Date)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private NGAY_VAO_DANGField As System.Nullable(Of Date)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -17503,6 +17509,32 @@ Namespace RecruitmentBusiness
                 If (Object.ReferenceEquals(Me.MODIFIED_LOGField, value) <> true) Then
                     Me.MODIFIED_LOGField = value
                     Me.RaisePropertyChanged("MODIFIED_LOG")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property NGAY_NHAN_CV_DANG() As System.Nullable(Of Date)
+            Get
+                Return Me.NGAY_NHAN_CV_DANGField
+            End Get
+            Set
+                If (Me.NGAY_NHAN_CV_DANGField.Equals(value) <> true) Then
+                    Me.NGAY_NHAN_CV_DANGField = value
+                    Me.RaisePropertyChanged("NGAY_NHAN_CV_DANG")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property NGAY_NHAN_CV_DOAN() As System.Nullable(Of Date)
+            Get
+                Return Me.NGAY_NHAN_CV_DOANField
+            End Get
+            Set
+                If (Me.NGAY_NHAN_CV_DOANField.Equals(value) <> true) Then
+                    Me.NGAY_NHAN_CV_DOANField = value
+                    Me.RaisePropertyChanged("NGAY_NHAN_CV_DOAN")
                 End If
             End Set
         End Property

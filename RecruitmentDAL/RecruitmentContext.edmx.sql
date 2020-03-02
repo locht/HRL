@@ -1,7 +1,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for Oracle database
 -- --------------------------------------------------
--- Date Created: 03/02/2020 9:54:16 AM
+-- Date Created: 03/02/2020 11:43:01 AM
 -- Generated from EDMX file: F:\WORKING\acv_19\RecruitmentDAL\RecruitmentContext.edmx
 -- --------------------------------------------------
 
@@ -588,7 +588,8 @@ CREATE TABLE "dbo"."RC_CANDIDATE_EDUCATION" (
    "ENGLISH_SKILL" NCLOB NULL,
    "CERTIFICATE_ID" NUMBER(38,0) NULL,
    "LANGUAGE_ID" NUMBER(38,0) NULL,
-   "YEAR_GRADUATE" NUMBER(38,0) NULL
+   "YEAR_GRADUATE" NUMBER(38,0) NULL,
+   "Property" NCLOB NOT NULL
 );
 
 -- Creating table 'RC_CANDIDATE_HISTORY'
@@ -657,7 +658,10 @@ CREATE TABLE "dbo"."RC_CANDIDATE_OTHER_INFO" (
    "CONGTAC_LAUNHAT" NVARCHAR2(255) NULL,
    "QUANLYNHANUOC" NUMBER(38,0) NULL,
    "THUONGBINH" NUMBER(38,0) NULL,
-   "GDCS" NUMBER(38,0) NULL
+   "GDCS" NUMBER(38,0) NULL,
+   "NGAY_NHAN_CV_DOAN" DATE NULL,
+   "NGAY_NHAN_CV_DANG" DATE NULL,
+   "DOAN_PHI" NUMBER(38,0) NULL
 );
 
 -- Creating table 'RC_CANDIDATE_CV'

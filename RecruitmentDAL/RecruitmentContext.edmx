@@ -559,6 +559,7 @@
             <Property Name="CERTIFICATE_ID" Type="number" Nullable="true" Precision="38" />
             <Property Name="LANGUAGE_ID" Type="number" Nullable="true" Precision="38" />
             <Property Name="YEAR_GRADUATE" Type="number" Nullable="true" Precision="38" />
+            <Property Name="Property" Type="nclob" Nullable="false" />
         </EntityType>
         <EntityType Name="RC_CANDIDATE_HISTORY">
             <Key>
@@ -630,6 +631,9 @@
             <Property Name="QUANLYNHANUOC" Type="number" Nullable="true" Precision="38" />
             <Property Name="THUONGBINH" Type="number" Nullable="true" Precision="38" />
             <Property Name="GDCS" Type="number" Nullable="true" Precision="38" />
+            <Property Name="NGAY_NHAN_CV_DOAN" Type="date" Nullable="true" />
+            <Property Name="NGAY_NHAN_CV_DANG" Type="date" Nullable="true" />
+            <Property Name="DOAN_PHI" Type="number" Nullable="true" Precision="38" />
         </EntityType>
         <EntityType Name="RC_CANDIDATE_CV">
             <Key>
@@ -2527,6 +2531,7 @@
           <Property Type="Decimal" Name="CERTIFICATE_ID" />
           <Property Type="Decimal" Name="LANGUAGE_ID" />
           <Property Type="Decimal" Name="YEAR_GRADUATE" />
+          <Property Type="String" Name="Property" Nullable="false" />
         </EntityType>
         <EntityType Name="RC_CANDIDATE_HISTORY">
           <Key>
@@ -2598,6 +2603,9 @@
           <Property Type="Decimal" Name="QUANLYNHANUOC" Nullable="true" />
           <Property Type="Decimal" Name="THUONGBINH" Nullable="true" />
           <Property Type="Decimal" Name="GDCS" Nullable="true" />
+          <Property Type="DateTime" Name="NGAY_NHAN_CV_DOAN" />
+          <Property Type="DateTime" Name="NGAY_NHAN_CV_DANG" />
+          <Property Type="Decimal" Name="DOAN_PHI" />
         </EntityType>
         <EntityType Name="RC_CANDIDATE_CV">
           <Key>
@@ -4392,6 +4400,7 @@
                     <ScalarProperty Name="CERTIFICATE_ID" ColumnName="CERTIFICATE_ID" />
                     <ScalarProperty Name="LANGUAGE_ID" ColumnName="LANGUAGE_ID" />
                     <ScalarProperty Name="YEAR_GRADUATE" ColumnName="YEAR_GRADUATE" />
+                    <ScalarProperty Name="Property" ColumnName="Property" />
                 </MappingFragment>
             </EntityTypeMapping>
         </EntitySetMapping>
@@ -4465,6 +4474,9 @@
                     <ScalarProperty Name="QUANLYNHANUOC" ColumnName="QUANLYNHANUOC" />
                     <ScalarProperty Name="THUONGBINH" ColumnName="THUONGBINH" />
                     <ScalarProperty Name="GDCS" ColumnName="GDCS" />
+                    <ScalarProperty Name="NGAY_NHAN_CV_DOAN" ColumnName="NGAY_NHAN_CV_DOAN" />
+                    <ScalarProperty Name="NGAY_NHAN_CV_DANG" ColumnName="NGAY_NHAN_CV_DANG" />
+                    <ScalarProperty Name="DOAN_PHI" ColumnName="DOAN_PHI" />
                 </MappingFragment>
             </EntityTypeMapping>
         </EntitySetMapping>
@@ -5690,7 +5702,7 @@
     </edmx:Options>
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram Name="RecruitmentContext" ZoomLevel="85" >
+      <Diagram Name="RecruitmentContext" ZoomLevel="57" >
         <EntityTypeShape EntityType="RecruitmentModel.RC_COST_CENTER" Width="1.5" PointX="1" PointY="25.5" IsExpanded="false" Height="0.4" />
         <EntityTypeShape EntityType="RecruitmentModel.SE_CHOSEN_ORG" Width="1.5" PointX="2.75" PointY="0.75" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="RecruitmentModel.HU_FAMILY" Width="1.5" PointX="3.875" PointY="32.625" Height="0.4" IsExpanded="false" />
@@ -5711,10 +5723,10 @@
         <EntityTypeShape EntityType="RecruitmentModel.RC_PLAN_REG" Width="1.875" PointX="16.375" PointY="14.75" Height="6.5955208333333353" IsExpanded="true" />
         <EntityTypeShape EntityType="RecruitmentModel.HU_CONTRACT_TYPE" Width="2" PointX="20" PointY="0.875" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="RecruitmentModel.RC_CANDIDATE" Width="4" PointX="32" PointY="3.375" Height="6.21091796875" IsExpanded="true" />
-        <EntityTypeShape EntityType="RecruitmentModel.RC_CANDIDATE_EDUCATION" Width="1.5" PointX="18.375" PointY="14.75" Height="0.4" IsExpanded="false" />
+        <EntityTypeShape EntityType="RecruitmentModel.RC_CANDIDATE_EDUCATION" Width="2.625" PointX="18.375" PointY="14.75" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="RecruitmentModel.RC_CANDIDATE_HISTORY" Width="1.5" PointX="20.375" PointY="5.75" Height="0.4" IsExpanded="false" />
-        <EntityTypeShape EntityType="RecruitmentModel.RC_CANDIDATE_OTHER_INFO" Width="1.5" PointX="23.25" PointY="11.5" Height="0.4" IsExpanded="false" />
-        <EntityTypeShape EntityType="RecruitmentModel.RC_CANDIDATE_CV" Width="2.375" PointX="23.125" PointY="17" Height="18.902812500000003" IsExpanded="true" />
+        <EntityTypeShape EntityType="RecruitmentModel.RC_CANDIDATE_OTHER_INFO" Width="2" PointX="22.75" PointY="11.5" Height="9.8646451822916674" IsExpanded="true" />
+        <EntityTypeShape EntityType="RecruitmentModel.RC_CANDIDATE_CV" Width="2.375" PointX="25.125" PointY="17.5" Height="18.902812500000003" IsExpanded="true" />
         <EntityTypeShape EntityType="RecruitmentModel.RC_PROGRAM_SCHEDULE" Width="2.625" PointX="7" PointY="22.75" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="RecruitmentModel.RC_PROGRAM_SCHEDULE_CAN" Width="2.5" PointX="12.375" PointY="21.75" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="RecruitmentModel.RC_PROGRAM_SCHEDULE_USHER" Width="3.625" PointX="15.125" PointY="21.75" Height="0.4" IsExpanded="false" />
@@ -5744,8 +5756,8 @@
           <ConnectorPoint PointX="29.875" PointY="5.45" />
         </AssociationConnector>
         <AssociationConnector Association="RecruitmentModel.FK_HE_HEC" >
-          <ConnectorPoint PointX="27.890961538461539" PointY="9.9" />
-          <ConnectorPoint PointX="27.890961538461539" PointY="29.95" />
+          <ConnectorPoint PointX="27.849035961538462" PointY="9.9" />
+          <ConnectorPoint PointX="27.849035961538462" PointY="29.95" />
           <ConnectorPoint PointX="28.812149935897438" PointY="29.95" />
           <ConnectorPoint PointX="28.978816602564102" PointY="29.95" />
           <ConnectorPoint PointX="30.875" PointY="29.95" />
@@ -5770,8 +5782,8 @@
           <ConnectorPoint PointX="26.875" PointY="11.418747500000006" />
           <ConnectorPoint PointX="27.166666666666668" PointY="11.418747500000006" />
           <ConnectorPoint PointX="27.333333333333332" PointY="11.418747500000006" />
-          <ConnectorPoint PointX="27.807628205128207" PointY="11.418747500000006" />
-          <ConnectorPoint PointX="27.974294871794871" PointY="11.418747500000006" />
+          <ConnectorPoint PointX="27.76570262820513" PointY="11.418747500000006" />
+          <ConnectorPoint PointX="27.932369294871794" PointY="11.418747500000006" />
           <ConnectorPoint PointX="28.296858974358972" PointY="11.418747500000006" />
           <ConnectorPoint PointX="28.463525641025637" PointY="11.418747500000006" />
           <ConnectorPoint PointX="28.637837788461539" PointY="11.418747500000006" />
@@ -5779,8 +5791,8 @@
         </AssociationConnector>
         <AssociationConnector Association="RecruitmentModel.FK_HU_ORG_HU_EMP" >
           <ConnectorPoint PointX="26.875" PointY="16.575" />
-          <ConnectorPoint PointX="27.807628205128207" PointY="16.575" />
-          <ConnectorPoint PointX="27.974294871794871" PointY="16.575" />
+          <ConnectorPoint PointX="27.76570262820513" PointY="16.575" />
+          <ConnectorPoint PointX="27.932369294871794" PointY="16.575" />
           <ConnectorPoint PointX="28.380192307692305" PointY="16.575" />
           <ConnectorPoint PointX="28.380192307692305" PointY="9.9" />
         </AssociationConnector>
@@ -5792,8 +5804,8 @@
         </AssociationConnector>
         <AssociationConnector Association="RecruitmentModel.FK_HUOG_HUOT" >
           <ConnectorPoint PointX="26.875" PointY="16.443747500000008" />
-          <ConnectorPoint PointX="27.807628205128207" PointY="16.443747500000008" />
-          <ConnectorPoint PointX="27.974294871794871" PointY="16.443747500000008" />
+          <ConnectorPoint PointX="27.76570262820513" PointY="16.443747500000008" />
+          <ConnectorPoint PointX="27.932369294871794" PointY="16.443747500000008" />
           <ConnectorPoint PointX="28.296858974358972" PointY="16.443747500000008" />
           <ConnectorPoint PointX="28.463525641025637" PointY="16.443747500000008" />
           <ConnectorPoint PointX="28.812149935897438" PointY="16.443747500000008" />
@@ -5805,8 +5817,8 @@
           <ConnectorPoint PointX="26.875" PointY="11.65" />
           <ConnectorPoint PointX="27.25" PointY="12.024999999999999" />
           <ConnectorPoint PointX="27.25" PointY="11.25" />
-          <ConnectorPoint PointX="27.807628205128207" PointY="11.25" />
-          <ConnectorPoint PointX="27.974294871794871" PointY="11.25" />
+          <ConnectorPoint PointX="27.76570262820513" PointY="11.25" />
+          <ConnectorPoint PointX="27.932369294871794" PointY="11.25" />
           <ConnectorPoint PointX="28.296858974358972" PointY="11.25" />
           <ConnectorPoint PointX="28.463525641025637" PointY="11.25" />
           <ConnectorPoint PointX="28.554504455128207" PointY="11.25" />
