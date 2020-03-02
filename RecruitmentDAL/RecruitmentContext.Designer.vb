@@ -18,7 +18,7 @@ Imports System.Runtime.Serialization
 Imports System.Xml.Serialization
 
 
-<Assembly: EdmSchemaAttribute("3c5cf0ba-eede-477e-834e-5cd3472b00c0")>
+<Assembly: EdmSchemaAttribute("99f9aa9c-c14b-49ba-9db0-d8a203a4aef7")>
 #Region "EDM Relationship Metadata"
 <Assembly: EdmRelationshipAttribute("RecruitmentModel", "FK_FE_HEH", "HU_EMPLOYEE", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_EMPLOYEE), "HU_EMPLOYEE_HEALTH1", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(HU_EMPLOYEE_HEALTH1), True)>
 <Assembly: EdmRelationshipAttribute("RecruitmentModel", "FK_HE_HEC", "HU_EMPLOYEE", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_EMPLOYEE), "HU_EMPLOYEE_CV", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(HU_EMPLOYEE_CV), True)>
@@ -21051,6 +21051,106 @@ Public Partial Class RC_CANDIDATE_CV
     End Sub
 
     Private Partial Sub OnWEAKNESSChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property CONTACT_ADDRESS_NOW() As Global.System.String
+        Get
+            Return _CONTACT_ADDRESS_NOW
+        End Get
+        Set
+            OnCONTACT_ADDRESS_NOWChanging(value)
+            ReportPropertyChanging("CONTACT_ADDRESS_NOW")
+            _CONTACT_ADDRESS_NOW = StructuralObject.SetValidValue(value, true)
+            ReportPropertyChanged("CONTACT_ADDRESS_NOW")
+            OnCONTACT_ADDRESS_NOWChanged()
+        End Set
+    End Property
+
+    Private _CONTACT_ADDRESS_NOW As Global.System.String
+    Private Partial Sub OnCONTACT_ADDRESS_NOWChanging(value As Global.System.String)
+    End Sub
+
+    Private Partial Sub OnCONTACT_ADDRESS_NOWChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property CONTACT_PERSON() As Global.System.String
+        Get
+            Return _CONTACT_PERSON
+        End Get
+        Set
+            OnCONTACT_PERSONChanging(value)
+            ReportPropertyChanging("CONTACT_PERSON")
+            _CONTACT_PERSON = StructuralObject.SetValidValue(value, true)
+            ReportPropertyChanged("CONTACT_PERSON")
+            OnCONTACT_PERSONChanged()
+        End Set
+    End Property
+
+    Private _CONTACT_PERSON As Global.System.String
+    Private Partial Sub OnCONTACT_PERSONChanging(value As Global.System.String)
+    End Sub
+
+    Private Partial Sub OnCONTACT_PERSONChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property CONTACT_PERSON_ADDRESS() As Global.System.String
+        Get
+            Return _CONTACT_PERSON_ADDRESS
+        End Get
+        Set
+            OnCONTACT_PERSON_ADDRESSChanging(value)
+            ReportPropertyChanging("CONTACT_PERSON_ADDRESS")
+            _CONTACT_PERSON_ADDRESS = StructuralObject.SetValidValue(value, true)
+            ReportPropertyChanged("CONTACT_PERSON_ADDRESS")
+            OnCONTACT_PERSON_ADDRESSChanged()
+        End Set
+    End Property
+
+    Private _CONTACT_PERSON_ADDRESS As Global.System.String
+    Private Partial Sub OnCONTACT_PERSON_ADDRESSChanging(value As Global.System.String)
+    End Sub
+
+    Private Partial Sub OnCONTACT_PERSON_ADDRESSChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property CONTACT_PERSON_PHONE() As Global.System.String
+        Get
+            Return _CONTACT_PERSON_PHONE
+        End Get
+        Set
+            OnCONTACT_PERSON_PHONEChanging(value)
+            ReportPropertyChanging("CONTACT_PERSON_PHONE")
+            _CONTACT_PERSON_PHONE = StructuralObject.SetValidValue(value, true)
+            ReportPropertyChanged("CONTACT_PERSON_PHONE")
+            OnCONTACT_PERSON_PHONEChanged()
+        End Set
+    End Property
+
+    Private _CONTACT_PERSON_PHONE As Global.System.String
+    Private Partial Sub OnCONTACT_PERSON_PHONEChanging(value As Global.System.String)
+    End Sub
+
+    Private Partial Sub OnCONTACT_PERSON_PHONEChanged()
     End Sub
 
     #End Region

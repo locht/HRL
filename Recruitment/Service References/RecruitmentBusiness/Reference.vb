@@ -13910,6 +13910,9 @@ Namespace RecruitmentBusiness
         Private CONTACT_ADDRESSField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private CONTACT_ADDRESS_NOWField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private CONTACT_ADDRESS_TEMPField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -13935,6 +13938,15 @@ Namespace RecruitmentBusiness
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private CONTACT_PERField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private CONTACT_PERSONField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private CONTACT_PERSON_ADDRESSField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private CONTACT_PERSON_PHONEField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private CONTACT_PER_PHONEField As String
@@ -14339,6 +14351,19 @@ Namespace RecruitmentBusiness
         End Property
         
         <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property CONTACT_ADDRESS_NOW() As String
+            Get
+                Return Me.CONTACT_ADDRESS_NOWField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.CONTACT_ADDRESS_NOWField, value) <> true) Then
+                    Me.CONTACT_ADDRESS_NOWField = value
+                    Me.RaisePropertyChanged("CONTACT_ADDRESS_NOW")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
         Public Property CONTACT_ADDRESS_TEMP() As String
             Get
                 Return Me.CONTACT_ADDRESS_TEMPField
@@ -14451,6 +14476,45 @@ Namespace RecruitmentBusiness
                 If (Object.ReferenceEquals(Me.CONTACT_PERField, value) <> true) Then
                     Me.CONTACT_PERField = value
                     Me.RaisePropertyChanged("CONTACT_PER")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property CONTACT_PERSON() As String
+            Get
+                Return Me.CONTACT_PERSONField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.CONTACT_PERSONField, value) <> true) Then
+                    Me.CONTACT_PERSONField = value
+                    Me.RaisePropertyChanged("CONTACT_PERSON")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property CONTACT_PERSON_ADDRESS() As String
+            Get
+                Return Me.CONTACT_PERSON_ADDRESSField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.CONTACT_PERSON_ADDRESSField, value) <> true) Then
+                    Me.CONTACT_PERSON_ADDRESSField = value
+                    Me.RaisePropertyChanged("CONTACT_PERSON_ADDRESS")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property CONTACT_PERSON_PHONE() As String
+            Get
+                Return Me.CONTACT_PERSON_PHONEField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.CONTACT_PERSON_PHONEField, value) <> true) Then
+                    Me.CONTACT_PERSON_PHONEField = value
+                    Me.RaisePropertyChanged("CONTACT_PERSON_PHONE")
                 End If
             End Set
         End Property

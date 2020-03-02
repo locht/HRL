@@ -1,181 +1,181 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for Oracle database
 -- --------------------------------------------------
--- Date Created: 2/21/2020 9:44:03 AM
--- Generated from EDMX file: E:\dự án 2\acv_19\RecruitmentDAL\RecruitmentContext.edmx
+-- Date Created: 03/02/2020 9:54:16 AM
+-- Generated from EDMX file: F:\WORKING\acv_19\RecruitmentDAL\RecruitmentContext.edmx
 -- --------------------------------------------------
 
 -- --------------------------------------------------
 -- Dropping existing FOREIGN KEY constraints
 -- --------------------------------------------------
 
--- ALTER TABLE "dbo"."HU_EMPLOYEE_HEALTH1" DROP CONSTRAINT "FK_FE_HEH" CASCADE;
+-- ALTER TABLE "RecruitmentModelStoreContainer"."HU_EMPLOYEE_HEALTH1" DROP CONSTRAINT "FK_FE_HEH" CASCADE;
 
--- ALTER TABLE "dbo"."HU_EMPLOYEE_CV" DROP CONSTRAINT "FK_HE_HEC" CASCADE;
+-- ALTER TABLE "RecruitmentModelStoreContainer"."HU_EMPLOYEE_CV" DROP CONSTRAINT "FK_HE_HEC" CASCADE;
 
--- ALTER TABLE "dbo"."HU_EMPLOYEE_EDUCATION1" DROP CONSTRAINT "FK_HE_HEE" CASCADE;
+-- ALTER TABLE "RecruitmentModelStoreContainer"."HU_EMPLOYEE_EDUCATION1" DROP CONSTRAINT "FK_HE_HEE" CASCADE;
 
--- ALTER TABLE "dbo"."HU_EMPLOYEE_OTHER_INFO1" DROP CONSTRAINT "FK_HE_HEO" CASCADE;
+-- ALTER TABLE "RecruitmentModelStoreContainer"."HU_EMPLOYEE_OTHER_INFO1" DROP CONSTRAINT "FK_HE_HEO" CASCADE;
 
--- ALTER TABLE "dbo"."HU_EMPLOYEE" DROP CONSTRAINT "FK_HE_HT" CASCADE;
+-- ALTER TABLE "RecruitmentModelStoreContainer"."HU_EMPLOYEE" DROP CONSTRAINT "FK_HE_HT" CASCADE;
 
--- ALTER TABLE "dbo"."HU_EMPLOYEE" DROP CONSTRAINT "FK_HU_ORG_HU_EMP" CASCADE;
+-- ALTER TABLE "RecruitmentModelStoreContainer"."HU_EMPLOYEE" DROP CONSTRAINT "FK_HU_ORG_HU_EMP" CASCADE;
 
--- ALTER TABLE "dbo"."HU_EMPLOYEE" DROP CONSTRAINT "FK_HUEMD_HUEM" CASCADE;
+-- ALTER TABLE "RecruitmentModelStoreContainer"."HU_EMPLOYEE" DROP CONSTRAINT "FK_HUEMD_HUEM" CASCADE;
 
--- ALTER TABLE "dbo"."HU_ORG_TITLE" DROP CONSTRAINT "FK_HUOG_HUOT" CASCADE;
+-- ALTER TABLE "RecruitmentModelStoreContainer"."HU_ORG_TITLE" DROP CONSTRAINT "FK_HUOG_HUOT" CASCADE;
 
--- ALTER TABLE "dbo"."HU_ORG_TITLE" DROP CONSTRAINT "FK_HUTL_HUOT" CASCADE;
+-- ALTER TABLE "RecruitmentModelStoreContainer"."HU_ORG_TITLE" DROP CONSTRAINT "FK_HUTL_HUOT" CASCADE;
 
--- ALTER TABLE "dbo"."HU_ORGANIZATION" DROP CONSTRAINT "FK_HU_ORG_HU_ORG" CASCADE;
+-- ALTER TABLE "RecruitmentModelStoreContainer"."HU_ORGANIZATION" DROP CONSTRAINT "FK_HU_ORG_HU_ORG" CASCADE;
 
--- ALTER TABLE "dbo"."HU_BANK_BRANCH" DROP CONSTRAINT "FK_BANKBANK_BRANCH" CASCADE;
+-- ALTER TABLE "RecruitmentModelStoreContainer"."HU_BANK_BRANCH" DROP CONSTRAINT "FK_BANKBANK_BRANCH" CASCADE;
 
--- ALTER TABLE "dbo"."HU_DISTRICT" DROP CONSTRAINT "FK_HU_PRO_HU_DIS" CASCADE;
+-- ALTER TABLE "RecruitmentModelStoreContainer"."HU_DISTRICT" DROP CONSTRAINT "FK_HU_PRO_HU_DIS" CASCADE;
 
--- ALTER TABLE "dbo"."HU_PROVINCE" DROP CONSTRAINT "FK_HU_NAT_HU_PRO" CASCADE;
+-- ALTER TABLE "RecruitmentModelStoreContainer"."HU_PROVINCE" DROP CONSTRAINT "FK_HU_NAT_HU_PRO" CASCADE;
 
 -- --------------------------------------------------
 -- Dropping existing tables
 -- --------------------------------------------------
 
--- DROP TABLE "dbo"."RC_COST_CENTER";
+-- DROP TABLE "RecruitmentModelStoreContainer"."RC_COST_CENTER";
 
--- DROP TABLE "dbo"."SE_CHOSEN_ORG";
+-- DROP TABLE "RecruitmentModelStoreContainer"."SE_CHOSEN_ORG";
 
--- DROP TABLE "dbo"."HU_FAMILY";
+-- DROP TABLE "RecruitmentModelStoreContainer"."HU_FAMILY";
 
--- DROP TABLE "dbo"."HU_TERMINATE";
+-- DROP TABLE "RecruitmentModelStoreContainer"."HU_TERMINATE";
 
--- DROP TABLE "dbo"."RC_EXAMS";
+-- DROP TABLE "RecruitmentModelStoreContainer"."RC_EXAMS";
 
--- DROP TABLE "dbo"."RC_EXAMS_DTL";
+-- DROP TABLE "RecruitmentModelStoreContainer"."RC_EXAMS_DTL";
 
--- DROP TABLE "dbo"."RC_PLAN_REG_EMP";
+-- DROP TABLE "RecruitmentModelStoreContainer"."RC_PLAN_REG_EMP";
 
--- DROP TABLE "dbo"."RC_PROGRAM_CHARACTER";
+-- DROP TABLE "RecruitmentModelStoreContainer"."RC_PROGRAM_CHARACTER";
 
--- DROP TABLE "dbo"."RC_PROGRAM_EMP";
+-- DROP TABLE "RecruitmentModelStoreContainer"."RC_PROGRAM_EMP";
 
--- DROP TABLE "dbo"."RC_PROGRAM_EXAMS";
+-- DROP TABLE "RecruitmentModelStoreContainer"."RC_PROGRAM_EXAMS";
 
--- DROP TABLE "dbo"."RC_PROGRAM_SCOPE";
+-- DROP TABLE "RecruitmentModelStoreContainer"."RC_PROGRAM_SCOPE";
 
--- DROP TABLE "dbo"."RC_PROGRAM_SOFT_SKILL";
+-- DROP TABLE "RecruitmentModelStoreContainer"."RC_PROGRAM_SOFT_SKILL";
 
--- DROP TABLE "dbo"."RC_REQUEST";
+-- DROP TABLE "RecruitmentModelStoreContainer"."RC_REQUEST";
 
--- DROP TABLE "dbo"."RC_REQUEST_EMP";
+-- DROP TABLE "RecruitmentModelStoreContainer"."RC_REQUEST_EMP";
 
--- DROP TABLE "dbo"."OT_OTHER_LIST";
+-- DROP TABLE "RecruitmentModelStoreContainer"."OT_OTHER_LIST";
 
--- DROP TABLE "dbo"."OT_OTHER_LIST_GROUP";
+-- DROP TABLE "RecruitmentModelStoreContainer"."OT_OTHER_LIST_GROUP";
 
--- DROP TABLE "dbo"."OT_OTHER_LIST_TYPE";
+-- DROP TABLE "RecruitmentModelStoreContainer"."OT_OTHER_LIST_TYPE";
 
--- DROP TABLE "dbo"."RC_PLAN_REG";
+-- DROP TABLE "RecruitmentModelStoreContainer"."RC_PLAN_REG";
 
--- DROP TABLE "dbo"."HU_CONTRACT_TYPE";
+-- DROP TABLE "RecruitmentModelStoreContainer"."HU_CONTRACT_TYPE";
 
--- DROP TABLE "dbo"."RC_CANDIDATE";
+-- DROP TABLE "RecruitmentModelStoreContainer"."RC_CANDIDATE";
 
--- DROP TABLE "dbo"."RC_CANDIDATE_EDUCATION";
+-- DROP TABLE "RecruitmentModelStoreContainer"."RC_CANDIDATE_EDUCATION";
 
--- DROP TABLE "dbo"."RC_CANDIDATE_HISTORY";
+-- DROP TABLE "RecruitmentModelStoreContainer"."RC_CANDIDATE_HISTORY";
 
--- DROP TABLE "dbo"."RC_CANDIDATE_OTHER_INFO";
+-- DROP TABLE "RecruitmentModelStoreContainer"."RC_CANDIDATE_OTHER_INFO";
 
--- DROP TABLE "dbo"."RC_CANDIDATE_CV";
+-- DROP TABLE "RecruitmentModelStoreContainer"."RC_CANDIDATE_CV";
 
--- DROP TABLE "dbo"."RC_PROGRAM_SCHEDULE";
+-- DROP TABLE "RecruitmentModelStoreContainer"."RC_PROGRAM_SCHEDULE";
 
--- DROP TABLE "dbo"."RC_PROGRAM_SCHEDULE_CAN";
+-- DROP TABLE "RecruitmentModelStoreContainer"."RC_PROGRAM_SCHEDULE_CAN";
 
--- DROP TABLE "dbo"."RC_PROGRAM_SCHEDULE_USHER";
+-- DROP TABLE "RecruitmentModelStoreContainer"."RC_PROGRAM_SCHEDULE_USHER";
 
--- DROP TABLE "dbo"."RC_CANDIDATE_FAMILY";
+-- DROP TABLE "RecruitmentModelStoreContainer"."RC_CANDIDATE_FAMILY";
 
--- DROP TABLE "dbo"."RC_CANDIDATE_TRAINSINGER";
+-- DROP TABLE "RecruitmentModelStoreContainer"."RC_CANDIDATE_TRAINSINGER";
 
--- DROP TABLE "dbo"."RC_CANDIDATE_BEFOREWT";
+-- DROP TABLE "RecruitmentModelStoreContainer"."RC_CANDIDATE_BEFOREWT";
 
--- DROP TABLE "dbo"."RC_COST";
+-- DROP TABLE "RecruitmentModelStoreContainer"."RC_COST";
 
--- DROP TABLE "dbo"."RC_COST_FORM";
+-- DROP TABLE "RecruitmentModelStoreContainer"."RC_COST_FORM";
 
--- DROP TABLE "dbo"."HU_EMPLOYEE_BANK";
+-- DROP TABLE "RecruitmentModelStoreContainer"."HU_EMPLOYEE_BANK";
 
--- DROP TABLE "dbo"."HU_EMPLOYEE_BEFOREWT";
+-- DROP TABLE "RecruitmentModelStoreContainer"."HU_EMPLOYEE_BEFOREWT";
 
--- DROP TABLE "dbo"."HU_EMPLOYEE_EDUCATION";
+-- DROP TABLE "RecruitmentModelStoreContainer"."HU_EMPLOYEE_EDUCATION";
 
--- DROP TABLE "dbo"."HU_EMPLOYEE_HEALTH";
+-- DROP TABLE "RecruitmentModelStoreContainer"."HU_EMPLOYEE_HEALTH";
 
--- DROP TABLE "dbo"."HU_EMPLOYEE_OTHER_INFO";
+-- DROP TABLE "RecruitmentModelStoreContainer"."HU_EMPLOYEE_OTHER_INFO";
 
--- DROP TABLE "dbo"."HU_EMPLOYEE_TRAIN";
+-- DROP TABLE "RecruitmentModelStoreContainer"."HU_EMPLOYEE_TRAIN";
 
--- DROP TABLE "dbo"."HU_EMPLOYEE_TRAINSINGER";
+-- DROP TABLE "RecruitmentModelStoreContainer"."HU_EMPLOYEE_TRAINSINGER";
 
--- DROP TABLE "dbo"."HU_EMPLOYEE";
+-- DROP TABLE "RecruitmentModelStoreContainer"."HU_EMPLOYEE";
 
--- DROP TABLE "dbo"."HU_EMPLOYEE_CV";
+-- DROP TABLE "RecruitmentModelStoreContainer"."HU_EMPLOYEE_CV";
 
--- DROP TABLE "dbo"."HU_EMPLOYEE_EDUCATION1";
+-- DROP TABLE "RecruitmentModelStoreContainer"."HU_EMPLOYEE_EDUCATION1";
 
--- DROP TABLE "dbo"."HU_EMPLOYEE_HEALTH1";
+-- DROP TABLE "RecruitmentModelStoreContainer"."HU_EMPLOYEE_HEALTH1";
 
--- DROP TABLE "dbo"."HU_EMPLOYEE_OTHER_INFO1";
+-- DROP TABLE "RecruitmentModelStoreContainer"."HU_EMPLOYEE_OTHER_INFO1";
 
--- DROP TABLE "dbo"."HU_ORG_TITLE";
+-- DROP TABLE "RecruitmentModelStoreContainer"."HU_ORG_TITLE";
 
--- DROP TABLE "dbo"."HU_ORGANIZATION";
+-- DROP TABLE "RecruitmentModelStoreContainer"."HU_ORGANIZATION";
 
--- DROP TABLE "dbo"."HU_TITLE";
+-- DROP TABLE "RecruitmentModelStoreContainer"."HU_TITLE";
 
--- DROP TABLE "dbo"."HU_BANK";
+-- DROP TABLE "RecruitmentModelStoreContainer"."HU_BANK";
 
--- DROP TABLE "dbo"."HU_BANK_BRANCH";
+-- DROP TABLE "RecruitmentModelStoreContainer"."HU_BANK_BRANCH";
 
--- DROP TABLE "dbo"."HU_DISTRICT";
+-- DROP TABLE "RecruitmentModelStoreContainer"."HU_DISTRICT";
 
--- DROP TABLE "dbo"."HU_NATION";
+-- DROP TABLE "RecruitmentModelStoreContainer"."HU_NATION";
 
--- DROP TABLE "dbo"."HU_PROVINCE";
+-- DROP TABLE "RecruitmentModelStoreContainer"."HU_PROVINCE";
 
--- DROP TABLE "dbo"."RC_STAGE";
+-- DROP TABLE "RecruitmentModelStoreContainer"."RC_STAGE";
 
--- DROP TABLE "dbo"."RC_COSTALLOCATE";
+-- DROP TABLE "RecruitmentModelStoreContainer"."RC_COSTALLOCATE";
 
--- DROP TABLE "dbo"."RC_COST_COSTALLOCATE";
+-- DROP TABLE "RecruitmentModelStoreContainer"."RC_COST_COSTALLOCATE";
 
--- DROP TABLE "dbo"."RC_MANNING_ORG";
+-- DROP TABLE "RecruitmentModelStoreContainer"."RC_MANNING_ORG";
 
--- DROP TABLE "dbo"."RC_MANNING_TITLE";
+-- DROP TABLE "RecruitmentModelStoreContainer"."RC_MANNING_TITLE";
 
--- DROP TABLE "dbo"."RC_CANDIDATE_EXPECT";
+-- DROP TABLE "RecruitmentModelStoreContainer"."RC_CANDIDATE_EXPECT";
 
--- DROP TABLE "dbo"."RC_CANDIDATE_HEALTH";
+-- DROP TABLE "RecruitmentModelStoreContainer"."RC_CANDIDATE_HEALTH";
 
--- DROP TABLE "dbo"."RC_CANDIDATE_REFERENCE";
+-- DROP TABLE "RecruitmentModelStoreContainer"."RC_CANDIDATE_REFERENCE";
 
--- DROP TABLE "dbo"."RC_PROGRAM";
+-- DROP TABLE "RecruitmentModelStoreContainer"."RC_PROGRAM";
 
--- DROP TABLE "dbo"."SE_USER";
+-- DROP TABLE "RecruitmentModelStoreContainer"."SE_USER";
 
--- DROP TABLE "dbo"."SE_REPORT";
+-- DROP TABLE "RecruitmentModelStoreContainer"."SE_REPORT";
 
--- DROP TABLE "dbo"."SE_USER_REPORT";
+-- DROP TABLE "RecruitmentModelStoreContainer"."SE_USER_REPORT";
 
--- DROP TABLE "dbo"."HU_WARD";
+-- DROP TABLE "RecruitmentModelStoreContainer"."HU_WARD";
 
--- DROP TABLE "dbo"."HU_ORGANIZATION_V";
+-- DROP TABLE "RecruitmentModelStoreContainer"."HU_ORGANIZATION_V";
 
--- DROP TABLE "dbo"."RC_CANDIDATE_TRAINNING";
+-- DROP TABLE "RecruitmentModelStoreContainer"."RC_CANDIDATE_TRAINNING";
 
--- DROP TABLE "dbo"."RC_PLAN_YEAR";
+-- DROP TABLE "RecruitmentModelStoreContainer"."RC_PLAN_YEAR";
 
--- DROP TABLE "dbo"."RC_RECRUITMENT_INSTEAD";
+-- DROP TABLE "RecruitmentModelStoreContainer"."RC_RECRUITMENT_INSTEAD";
 
 -- --------------------------------------------------
 -- Creating all tables
@@ -750,7 +750,11 @@ CREATE TABLE "dbo"."RC_CANDIDATE_CV" (
    "URGENT_PER_SDT" NCLOB NULL,
    "URGENT_ADDRESS" NCLOB NULL,
    "STRANGER" NCLOB NULL,
-   "WEAKNESS" NCLOB NULL
+   "WEAKNESS" NCLOB NULL,
+   "CONTACT_ADDRESS_NOW" NCLOB NULL,
+   "CONTACT_PERSON" NCLOB NULL,
+   "CONTACT_PERSON_ADDRESS" NCLOB NULL,
+   "CONTACT_PERSON_PHONE" NCLOB NULL
 );
 
 -- Creating table 'RC_PROGRAM_SCHEDULE'

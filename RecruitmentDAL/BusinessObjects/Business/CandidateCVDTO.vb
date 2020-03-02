@@ -78,12 +78,14 @@
     Public Property CONTACT_NATION_TEMP As Decimal?
     Public Property CONTACT_PROVINCE_TEMP As Decimal?
     Public Property CONTACT_DISTRICT_TEMP As Decimal?
+    Public Property CONTACT_ADDRESS_NOW As String
     Public Property CONTACT_MOBILE As String
     Public Property CONTACT_PHONE As String
     Public Property PER_EMAIL As String
     Public Property PER_TAX_DATE As Date?
     Public Property PER_TAX_PLACE As String
     Public Property PASSPORT_DATE_EXPIRATION As Date?
+
 
     Public Property VISA_NUMBER As String
     Public Property VISA_DATE As Date?
@@ -121,6 +123,12 @@
     Public Property CON_DISTRICT_NAME As String
     Public Property CON_WARD As Decimal?
     Public Property CON_WARD_NAME As String
+
+    'NGUOI LIEN HE GAP
+    Public Property CONTACT_PERSON As String
+    Public Property CONTACT_PERSON_ADDRESS As String
+    Public Property CONTACT_PERSON_PHONE As String
+
     'THEM TRUONG PHUONG XA THUONG TRU PER_WARD
     Public Property PER_WARD As Decimal?
     Public Property PER_WARD_NAME As String
