@@ -18,7 +18,7 @@ Imports System.Runtime.Serialization
 Imports System.Xml.Serialization
 
 
-<Assembly: EdmSchemaAttribute("b0755748-a9d0-43f8-8154-9bdee823cbf0")>
+<Assembly: EdmSchemaAttribute("c5213129-3e4b-42cc-9ac1-35f99309b74e")>
 #Region "EDM Relationship Metadata"
 <Assembly: EdmRelationshipAttribute("RecruitmentModel", "FK_FE_HEH", "HU_EMPLOYEE", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_EMPLOYEE), "HU_EMPLOYEE_HEALTH1", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(HU_EMPLOYEE_HEALTH1), True)>
 <Assembly: EdmRelationshipAttribute("RecruitmentModel", "FK_HE_HEC", "HU_EMPLOYEE", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_EMPLOYEE), "HU_EMPLOYEE_CV", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(HU_EMPLOYEE_CV), True)>
@@ -21153,6 +21153,31 @@ Public Partial Class RC_CANDIDATE_CV
     Private Partial Sub OnCONTACT_PERSON_PHONEChanged()
     End Sub
 
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property NAV_DOMICILE() As Global.System.String
+        Get
+            Return _NAV_DOMICILE
+        End Get
+        Set
+            OnNAV_DOMICILEChanging(value)
+            ReportPropertyChanging("NAV_DOMICILE")
+            _NAV_DOMICILE = StructuralObject.SetValidValue(value, true)
+            ReportPropertyChanged("NAV_DOMICILE")
+            OnNAV_DOMICILEChanged()
+        End Set
+    End Property
+
+    Private _NAV_DOMICILE As Global.System.String
+    Private Partial Sub OnNAV_DOMICILEChanging(value As Global.System.String)
+    End Sub
+
+    Private Partial Sub OnNAV_DOMICILEChanged()
+    End Sub
+
     #End Region
 
 End Class
@@ -24533,15 +24558,9 @@ Public Partial Class RC_CANDIDATE_OTHER_INFO
     ''' Create a new RC_CANDIDATE_OTHER_INFO object.
     ''' </summary>
     ''' <param name="cANDIDATE_ID">Initial value of the CANDIDATE_ID property.</param>
-    ''' <param name="nGAY_VAO_DOAN">Initial value of the NGAY_VAO_DOAN property.</param>
-    ''' <param name="nOI_VAO_DANG">Initial value of the NOI_VAO_DANG property.</param>
-    ''' <param name="nGAY_VAO_DANG">Initial value of the NGAY_VAO_DANG property.</param>
-    Public Shared Function CreateRC_CANDIDATE_OTHER_INFO(cANDIDATE_ID As Global.System.Decimal, nGAY_VAO_DOAN As Global.System.String, nOI_VAO_DANG As Global.System.String, nGAY_VAO_DANG As Global.System.String) As RC_CANDIDATE_OTHER_INFO
+    Public Shared Function CreateRC_CANDIDATE_OTHER_INFO(cANDIDATE_ID As Global.System.Decimal) As RC_CANDIDATE_OTHER_INFO
         Dim rC_CANDIDATE_OTHER_INFO as RC_CANDIDATE_OTHER_INFO = New RC_CANDIDATE_OTHER_INFO
         rC_CANDIDATE_OTHER_INFO.CANDIDATE_ID = cANDIDATE_ID
-        rC_CANDIDATE_OTHER_INFO.NGAY_VAO_DOAN = nGAY_VAO_DOAN
-        rC_CANDIDATE_OTHER_INFO.NOI_VAO_DANG = nOI_VAO_DANG
-        rC_CANDIDATE_OTHER_INFO.NGAY_VAO_DANG = nGAY_VAO_DANG
         Return rC_CANDIDATE_OTHER_INFO
     End Function
 
@@ -25704,23 +25723,23 @@ Public Partial Class RC_CANDIDATE_OTHER_INFO
     ''' <summary>
     ''' No Metadata Documentation available.
     ''' </summary>
-    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=false)>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
     <DataMemberAttribute()>
-    Public Property NGAY_VAO_DOAN() As Global.System.String
+    Public Property NGAY_VAO_DOAN() As Nullable(Of Global.System.DateTime)
         Get
             Return _NGAY_VAO_DOAN
         End Get
         Set
             OnNGAY_VAO_DOANChanging(value)
             ReportPropertyChanging("NGAY_VAO_DOAN")
-            _NGAY_VAO_DOAN = StructuralObject.SetValidValue(value, false)
+            _NGAY_VAO_DOAN = StructuralObject.SetValidValue(value)
             ReportPropertyChanged("NGAY_VAO_DOAN")
             OnNGAY_VAO_DOANChanged()
         End Set
     End Property
 
-    Private _NGAY_VAO_DOAN As Global.System.String
-    Private Partial Sub OnNGAY_VAO_DOANChanging(value As Global.System.String)
+    Private _NGAY_VAO_DOAN As Nullable(Of Global.System.DateTime)
+    Private Partial Sub OnNGAY_VAO_DOANChanging(value As Nullable(Of Global.System.DateTime))
     End Sub
 
     Private Partial Sub OnNGAY_VAO_DOANChanged()
@@ -25754,7 +25773,7 @@ Public Partial Class RC_CANDIDATE_OTHER_INFO
     ''' <summary>
     ''' No Metadata Documentation available.
     ''' </summary>
-    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=false)>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
     <DataMemberAttribute()>
     Public Property NOI_VAO_DANG() As Global.System.String
         Get
@@ -25763,7 +25782,7 @@ Public Partial Class RC_CANDIDATE_OTHER_INFO
         Set
             OnNOI_VAO_DANGChanging(value)
             ReportPropertyChanging("NOI_VAO_DANG")
-            _NOI_VAO_DANG = StructuralObject.SetValidValue(value, false)
+            _NOI_VAO_DANG = StructuralObject.SetValidValue(value, true)
             ReportPropertyChanged("NOI_VAO_DANG")
             OnNOI_VAO_DANGChanged()
         End Set
@@ -25779,23 +25798,23 @@ Public Partial Class RC_CANDIDATE_OTHER_INFO
     ''' <summary>
     ''' No Metadata Documentation available.
     ''' </summary>
-    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=false)>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
     <DataMemberAttribute()>
-    Public Property NGAY_VAO_DANG() As Global.System.String
+    Public Property NGAY_VAO_DANG() As Nullable(Of Global.System.DateTime)
         Get
             Return _NGAY_VAO_DANG
         End Get
         Set
             OnNGAY_VAO_DANGChanging(value)
             ReportPropertyChanging("NGAY_VAO_DANG")
-            _NGAY_VAO_DANG = StructuralObject.SetValidValue(value, false)
+            _NGAY_VAO_DANG = StructuralObject.SetValidValue(value)
             ReportPropertyChanged("NGAY_VAO_DANG")
             OnNGAY_VAO_DANGChanged()
         End Set
     End Property
 
-    Private _NGAY_VAO_DANG As Global.System.String
-    Private Partial Sub OnNGAY_VAO_DANGChanging(value As Global.System.String)
+    Private _NGAY_VAO_DANG As Nullable(Of Global.System.DateTime)
+    Private Partial Sub OnNGAY_VAO_DANGChanging(value As Nullable(Of Global.System.DateTime))
     End Sub
 
     Private Partial Sub OnNGAY_VAO_DANGChanged()

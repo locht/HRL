@@ -250,6 +250,9 @@ Public Class ctrlRC_CanDtlProfile
                         If empCV.BIRTH_DATE IsNot Nothing Then
                             rdBirthDate.SelectedDate = empCV.BIRTH_DATE
                         End If
+
+                        txtBirthAddress.Text = empCV.BIRTH_ADDRESS
+
                         If empCV.BIRTH_NATION_ID IsNot Nothing Then
                             cboNation.SelectedValue = empCV.BIRTH_NATION_ID
                         End If
@@ -285,6 +288,17 @@ Public Class ctrlRC_CanDtlProfile
                         If empCV.CONTACT_DISTRICT_ID IsNot Nothing Then
                             cboContractDictrict.SelectedValue = empCV.CONTACT_DISTRICT_ID
                         End If
+                        txtNavDomicile.Text = empCV.NAV_DOMICILE
+                        txtContactAddNow.Text = empCV.CONTACT_ADDRESS_NOW
+                        If empCV.CON_COUNTRY IsNot Nothing Then
+                            cboContactAddNation.SelectedValue = empCV.CON_COUNTRY
+                        End If
+                        If empCV.CON_PROVINCE IsNot Nothing Then
+                            cboContactAddProvince.SelectedValue = empCV.CON_PROVINCE
+                        End If
+                        If empCV.CON_DISTRICT IsNot Nothing Then
+                            cboContractAddDictrict.SelectedValue = empCV.CON_DISTRICT
+                        End If
 
                         If empCV.ID_DATE_EXPIRATION IsNot Nothing Then
                             rdCMNDEnd.SelectedDate = empCV.ID_DATE_EXPIRATION
@@ -313,6 +327,9 @@ Public Class ctrlRC_CanDtlProfile
                             rdNgayCapMST.SelectedDate = empCV.PER_TAX_DATE
                         End If
                         txtNoiCapMST.Text = empCV.PER_TAX_PLACE
+                        txtContactInstancy.Text = empCV.CONTACT_PERSON
+                        txtRela_Or_Address.Text = empCV.CONTACT_PERSON_ADDRESS
+                        txtContactPersonPhone.Text = empCV.CONTACT_PERSON_PHONE
                         'Nguoi than
 
                         If empCV.PASSPORT_DATE_EXPIRATION IsNot Nothing Then
@@ -498,11 +515,84 @@ Public Class ctrlRC_CanDtlProfile
                     'Candidate Other
                     Dim EmpOtherInfo = rep.GetCandidateOtherInfo(CandidateInfo.ID)
                     If EmpOtherInfo IsNot Nothing Then
-                        chkCongDoanPhi.Checked = If(EmpOtherInfo.DOAN_PHI Is Nothing, False, EmpOtherInfo.DOAN_PHI)
+                        'DOAN VIEN
+                        chkDoanVien.Checked = If(EmpOtherInfo.IS_DOANVIEN Is Nothing, False, EmpOtherInfo.IS_DOANVIEN)
                         If EmpOtherInfo.NGAY_VAO_DOAN IsNot Nothing Then
-                            rdNgayVaoCongDoan.SelectedDate = EmpOtherInfo.NGAY_VAO_DOAN
+                            rdNgayVaoDoan.SelectedDate = EmpOtherInfo.NGAY_VAO_DOAN
                         End If
-                        txtNoiVaoCongDoan.Text = EmpOtherInfo.NOI_VAO_DOAN
+                        If EmpOtherInfo.CHUC_VU_DOAN IsNot Nothing Then
+                            cboChucVuDoan.SelectedValue = EmpOtherInfo.CHUC_VU_DOAN
+                        End If
+                        If EmpOtherInfo.NGAY_NHAN_CV_DOAN IsNot Nothing Then
+                            rdNgayNhanChucVuDoan.SelectedDate = EmpOtherInfo.NGAY_NHAN_CV_DOAN
+                        End If
+                        txtNoiVaoDoan.Text = EmpOtherInfo.NOI_VAO_DOAN
+                        chkDoanPhi.Checked = If(EmpOtherInfo.DOAN_PHI Is Nothing, False, EmpOtherInfo.DOAN_PHI)
+
+                        'DANG VIEN
+                        chkDangVien.Checked = If(EmpOtherInfo.IS_DANGVIEN Is Nothing, False, EmpOtherInfo.IS_DANGVIEN)
+                        If EmpOtherInfo.NGAY_VAO_DANG IsNot Nothing Then
+                            rdNgayVaoDang.SelectedDate = EmpOtherInfo.NGAY_VAO_DANG
+                        End If
+                        If EmpOtherInfo.CHUC_VU_DANG IsNot Nothing Then
+                            cboChucVuDang.SelectedValue = EmpOtherInfo.CHUC_VU_DANG
+                        End If
+                        If EmpOtherInfo.NGAY_NHAN_CV_DANG IsNot Nothing Then
+                            rdNgayNhanChucVuDang.SelectedDate = EmpOtherInfo.NGAY_NHAN_CV_DANG
+                        End If
+                        If EmpOtherInfo.DANG_KIEMNHIEM IsNot Nothing Then
+                            cboDangKiemNhiem.SelectedValue = EmpOtherInfo.DANG_KIEMNHIEM
+                        End If
+                        txtNoiVaoDang.Text = EmpOtherInfo.NOI_VAO_DANG
+                        chkDangPhi.Checked = If(EmpOtherInfo.DANG_PHI Is Nothing, False, EmpOtherInfo.DANG_PHI)
+                        txtCapUyHienTai.Text = EmpOtherInfo.CAPUY_HIENTAI
+                        txtCapUyKiemNhiem.Text = EmpOtherInfo.CAPUY_KIEMNHIEM
+                        If EmpOtherInfo.DANG_KIEMNHIEM IsNot Nothing Then
+                            cboDangKiemNhiem.SelectedValue = EmpOtherInfo.DANG_KIEMNHIEM
+                        End If
+
+                        ' CONG DOAN PHI
+                        chkCongDoanPhi.Checked = If(EmpOtherInfo.IS_CONGDOANPHI Is Nothing, False, EmpOtherInfo.IS_CONGDOANPHI)
+                        If EmpOtherInfo.CDP_NGAYVAO IsNot Nothing Then
+                            rdNgayVaoCongDoan.SelectedDate = EmpOtherInfo.CDP_NGAYVAO
+                        End If
+                        txtNoiVaoCongDoan.Text = EmpOtherInfo.CDP_NOIVAO
+
+                        'CUU CHIEN BINH
+                        chkCuuChienBinh.Checked = If(EmpOtherInfo.IS_CCB Is Nothing, False, EmpOtherInfo.IS_CCB)
+                        If EmpOtherInfo.CCB_NGAYVAO IsNot Nothing Then
+                            rdNgayVaoHoiCuuChienBinh.SelectedDate = EmpOtherInfo.CCB_NGAYVAO
+                        End If
+                        If EmpOtherInfo.CCB_CHUCVU IsNot Nothing Then
+                            cboChucVuCuuChienBinh.SelectedValue = EmpOtherInfo.CCB_CHUCVU
+                        End If
+                        txtNoiVaoHoiCuuChienBinh.Text = EmpOtherInfo.CCB_NOIVAO
+                        If EmpOtherInfo.CCB_NGAYNHAPNGU IsNot Nothing Then
+                            rdNgayNhapNgu.SelectedDate = EmpOtherInfo.CCB_NGAYNHAPNGU
+                        End If
+                        If EmpOtherInfo.CCB_NGAYXUATNGU IsNot Nothing Then
+                            rdNgayXuatNgu.SelectedDate = EmpOtherInfo.CCB_NGAYXUATNGU
+                        End If
+                        txtQuanHamChucVuCaoNhat.Text = EmpOtherInfo.CCB_QUANHAM
+                        txtTPGiaDinh.Text = EmpOtherInfo.TPGD
+                        txtDanhHieuDuocPhong.Text = EmpOtherInfo.DANHHIEU
+                        txtCareer.Text = EmpOtherInfo.CAREER
+                        txtSoTruongCongTac.Text = EmpOtherInfo.SOTRUONGCONGTAC
+                        txtCongTacLauNhat.Text = EmpOtherInfo.CONGTAC_LAUNHAT
+                        If EmpOtherInfo.LYLUANCHINHTRI IsNot Nothing Then
+                            cboLyLuanChinhTri.SelectedValue = EmpOtherInfo.LYLUANCHINHTRI
+                        End If
+                        If EmpOtherInfo.QUANLYNHANUOC IsNot Nothing Then
+                            cboQuanLyNhaNuoc.SelectedValue = EmpOtherInfo.QUANLYNHANUOC
+                        End If
+                        If EmpOtherInfo.THUONGBINH IsNot Nothing Then
+                            cboThuongBinh.SelectedValue = EmpOtherInfo.THUONGBINH
+                        End If
+                        If EmpOtherInfo.GDCS IsNot Nothing Then
+                            cboGDChinhSach.SelectedValue = EmpOtherInfo.GDCS
+                        End If
+
+                        'THONG TIN TAI KHOAN
                         txtTKNguoiThuHuong.Text = EmpOtherInfo.ACCOUNT_NAME
                         txtTKTKChuyenKhoan.Text = If(EmpOtherInfo.ACCOUNT_NUMBER Is Nothing, "", EmpOtherInfo.ACCOUNT_NUMBER)
                         cboTKNganHang.SelectedValue = EmpOtherInfo.BANK
@@ -838,16 +928,40 @@ Public Class ctrlRC_CanDtlProfile
                 Case TOOLBARITEM_SAVE
                     If Page.IsValid Then
                         Select Case CurrentState
+
                             Case STATE_NEW
-                                If Save(strEmpCode, _err) Then
-                                    CurrentState = CommonMessage.STATE_NORMAL
-                                    ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), Utilities.NotifyType.Success)
-                                    Page.Response.Redirect(String.Format("Dialog.aspx?mid=Recruitment&fid=ctrlRC_CanDtl&group=Business&gUID={0}&Can={1}&state=Normal&ORGID={2}&TITLEID={3}&PROGRAM_ID={4}&noscroll=1&isdone=1", hidID.Value, strEmpCode, hidOrg.Value, hidTitle.Value, hidProgramID.Value))
-                                    Exit Sub
-                                Else
-                                    ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL) & vbNewLine & Translate(_err), Utilities.NotifyType.Error)
-                                    Exit Sub
+                                'Validate
+                                Dim strMess As String = ""
+                                If Not rep.ValidateInsertCandidate(txtEmpCODE.Text, rntxtCMND.Text, txtFirstNameVN.Text & " " & txtLastNameVN.Text, rdBirthDate.SelectedDate, "WORKING") Then
+                                    strMess = "Ứng viên đang làm việc tại ACV, bạn muốn tiếp tục lưu không?"
                                 End If
+                                If Not rep.ValidateInsertCandidate(txtEmpCODE.Text, rntxtCMND.Text, txtFirstNameVN.Text & " " & txtLastNameVN.Text, rdBirthDate.SelectedDate, "TERMINATE") Then
+                                    strMess = "Ứng viên đã từng làm việc tại ACV, bạn muốn tiếp tục lưu không?"
+                                End If
+                                If Not rep.ValidateInsertCandidate(txtEmpCODE.Text, rntxtCMND.Text, txtFirstNameVN.Text & " " & txtLastNameVN.Text, rdBirthDate.SelectedDate, "NO_ID") Then
+                                    strMess = "Ứng viên đang tồn tại trong một chương trình tuyển dụng khác, bạn muốn tiếp tục lưu không?"
+                                End If
+                                If Not rep.ValidateInsertCandidate(txtEmpCODE.Text, rntxtCMND.Text, txtFirstNameVN.Text & " " & txtLastNameVN.Text, rdBirthDate.SelectedDate, "BLACKLIST") Then
+                                    strMess = "Ứng viên đang thuộc Blacklist, bạn muốn tiếp tục lưu không?"
+                                End If
+                                If strMess <> "" Then
+                                    ctrlMessageBox.MessageText = Translate(strMess)
+                                    ctrlMessageBox.ActionName = CommonMessage.TOOLBARITEM_SAVE
+                                    ctrlMessageBox.DataBind()
+                                    ctrlMessageBox.Show()
+                                Else
+                                    If Save(strEmpCode, _err) Then
+                                        CurrentState = CommonMessage.STATE_NORMAL
+                                        ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), Utilities.NotifyType.Success)
+                                        Page.Response.Redirect(String.Format("Dialog.aspx?mid=Recruitment&fid=ctrlRC_CanDtl&group=Business&gUID={0}&Can={1}&state=Normal&ORGID={2}&TITLEID={3}&PROGRAM_ID={4}&noscroll=1&isdone=1", hidID.Value, strEmpCode, hidOrg.Value, hidTitle.Value, hidProgramID.Value))
+                                        Exit Sub
+                                    Else
+                                        ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL) & vbNewLine & Translate(_err), Utilities.NotifyType.Error)
+                                        Exit Sub
+                                    End If
+                                End If
+                                
+                                
 
                             Case STATE_EDIT
                                 If Save(strEmpCode, _err) Then
@@ -900,6 +1014,22 @@ Public Class ctrlRC_CanDtlProfile
 
                 UpdateControlState()
             End If
+            If e.ActionName = CommonMessage.TOOLBARITEM_SAVE And e.ButtonID = MessageBoxButtonType.ButtonYes Then
+                Dim _err As String = ""
+                Dim strEmpCode As String = ""
+                If Save(strEmpCode, _err) Then
+                    CurrentState = CommonMessage.STATE_NORMAL
+                    ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), Utilities.NotifyType.Success)
+                    Page.Response.Redirect(String.Format("Dialog.aspx?mid=Recruitment&fid=ctrlRC_CanDtl&group=Business&gUID={0}&Can={1}&state=Normal&ORGID={2}&TITLEID={3}&PROGRAM_ID={4}&noscroll=1&isdone=1", hidID.Value, strEmpCode, hidOrg.Value, hidTitle.Value, hidProgramID.Value))
+                    Exit Sub
+                Else
+                    ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL) & vbNewLine & Translate(_err), Utilities.NotifyType.Error)
+                    Exit Sub
+                End If
+
+                UpdateControlState()
+            End If
+            
         Catch ex As Exception
             DisplayException(Me.ViewName, Me.ID, ex)
         End Try
@@ -927,53 +1057,81 @@ Public Class ctrlRC_CanDtlProfile
         End If
     End Sub
 
-    Private Sub val_Same_Date_FullName_ServerValidate(ByVal source As Object, ByVal args As System.Web.UI.WebControls.ServerValidateEventArgs) Handles val_Same_Date_FullName.ServerValidate
-        Try
-            If CurrentState = STATE_NEW Then
-                Using rep As New RecruitmentRepository
-                    args.IsValid = rep.ValidateInsertCandidate(txtEmpCODE.Text,
-                                                               rntxtCMND.Text,
-                                                               txtFirstNameVN.Text & " " & txtLastNameVN.Text,
-                                                               rdBirthDate.SelectedDate,
-                                                               "DATE_FULLNAME")
-                End Using
-            Else
-                args.IsValid = True
-            End If
-        Catch ex As Exception
-            DisplayException(Me.ViewName, Me.ID, ex)
-        End Try
-    End Sub
-    Private Sub cusNO_ID_ServerValidate(ByVal source As Object, ByVal args As System.Web.UI.WebControls.ServerValidateEventArgs) Handles cusNO_ID.ServerValidate
-        Try
-            If CurrentState = STATE_NEW Then
-                Using rep As New RecruitmentRepository
-                    args.IsValid = rep.ValidateInsertCandidate(txtEmpCODE.Text,
-                                                               rntxtCMND.Text,
-                                                               txtFirstNameVN.Text & " " & txtLastNameVN.Text,
-                                                               rdBirthDate.SelectedDate, "NO_ID")
-                End Using
-            Else
-                args.IsValid = True
-            End If
-        Catch ex As Exception
-            DisplayException(Me.ViewName, Me.ID, ex)
-        End Try
-    End Sub
+    'Private Sub val_Same_Date_FullName_ServerValidate(ByVal source As Object, ByVal args As System.Web.UI.WebControls.ServerValidateEventArgs) Handles val_Same_Date_FullName.ServerValidate
+    '    Try
+    '        If CurrentState = STATE_NEW Then
+    '            Using rep As New RecruitmentRepository
+    '                args.IsValid = rep.ValidateInsertCandidate(txtEmpCODE.Text,
+    '                                                           rntxtCMND.Text,
+    '                                                           txtFirstNameVN.Text & " " & txtLastNameVN.Text,
+    '                                                           rdBirthDate.SelectedDate,
+    '                                                           "DATE_FULLNAME")
+    '            End Using
+    '        Else
+    '            args.IsValid = True
+    '        End If
+    '    Catch ex As Exception
+    '        DisplayException(Me.ViewName, Me.ID, ex)
+    '    End Try
+    'End Sub
+    'Private Sub cusNO_ID_ServerValidate(ByVal source As Object, ByVal args As System.Web.UI.WebControls.ServerValidateEventArgs) Handles cusNO_ID.ServerValidate
+    '    Try
+    '        If CurrentState = STATE_NEW Then
+    '            Using rep As New RecruitmentRepository
+    '                args.IsValid = rep.ValidateInsertCandidate(txtEmpCODE.Text,
+    '                                                           rntxtCMND.Text,
+    '                                                           txtFirstNameVN.Text & " " & txtLastNameVN.Text,
+    '                                                           rdBirthDate.SelectedDate, "NO_ID")
+    '            End Using
+    '        Else
+    '            args.IsValid = True
+    '        End If
+    '    Catch ex As Exception
+    '        DisplayException(Me.ViewName, Me.ID, ex)
+    '    End Try
+    'End Sub
 
-    Private Sub cusBlackList_ServerValidate(ByVal source As Object, ByVal args As System.Web.UI.WebControls.ServerValidateEventArgs) Handles cusBlackList.ServerValidate
-        Try
-            If txtFirstNameVN.Text.Length <> 0 And txtLastNameVN.Text.Length <> 0 And rdBirthDate.SelectedDate IsNot Nothing Then
-                Using rep As New RecruitmentRepository
-                    args.IsValid = rep.ValidateInsertCandidate(txtEmpCODE.Text, rntxtCMND.Text, txtFirstNameVN.Text & " " & txtLastNameVN.Text, rdBirthDate.SelectedDate, "BLACK_LIST")
-                End Using
-            Else
-                args.IsValid = True
-            End If
-        Catch ex As Exception
-            DisplayException(Me.ViewName, Me.ID, ex)
-        End Try
-    End Sub
+    'Private Sub cusBlackList_ServerValidate(ByVal source As Object, ByVal args As System.Web.UI.WebControls.ServerValidateEventArgs) Handles cusBlackList.ServerValidate
+    '    Try
+    '        If txtFirstNameVN.Text.Length <> 0 And txtLastNameVN.Text.Length <> 0 And rdBirthDate.SelectedDate IsNot Nothing Then
+    '            Using rep As New RecruitmentRepository
+    '                args.IsValid = rep.ValidateInsertCandidate(txtEmpCODE.Text, rntxtCMND.Text, txtFirstNameVN.Text & " " & txtLastNameVN.Text, rdBirthDate.SelectedDate, "BLACK_LIST")
+    '            End Using
+    '        Else
+    '            args.IsValid = True
+    '        End If
+    '    Catch ex As Exception
+    '        DisplayException(Me.ViewName, Me.ID, ex)
+    '    End Try
+    'End Sub
+
+    'Private Sub cusWorking_ServerValidate(ByVal source As Object, ByVal args As System.Web.UI.WebControls.ServerValidateEventArgs) Handles cusWorking.ServerValidate
+    '    Try
+    '        If txtFirstNameVN.Text.Length <> 0 And txtLastNameVN.Text.Length <> 0 And rdBirthDate.SelectedDate IsNot Nothing Then
+    '            Using rep As New RecruitmentRepository
+    '                args.IsValid = rep.ValidateInsertCandidate(txtEmpCODE.Text, rntxtCMND.Text, txtFirstNameVN.Text & " " & txtLastNameVN.Text, rdBirthDate.SelectedDate, "WORKING")
+    '            End Using
+    '        Else
+    '            args.IsValid = True
+    '        End If
+    '    Catch ex As Exception
+    '        DisplayException(Me.ViewName, Me.ID, ex)
+    '    End Try
+    'End Sub
+
+    'Private Sub cusTerminate_ServerValidate(ByVal source As Object, ByVal args As System.Web.UI.WebControls.ServerValidateEventArgs) Handles cusTerminate.ServerValidate
+    '    Try
+    '        If txtFirstNameVN.Text.Length <> 0 And txtLastNameVN.Text.Length <> 0 And rdBirthDate.SelectedDate IsNot Nothing Then
+    '            Using rep As New RecruitmentRepository
+    '                args.IsValid = rep.ValidateInsertCandidate(txtEmpCODE.Text, rntxtCMND.Text, txtFirstNameVN.Text & " " & txtLastNameVN.Text, rdBirthDate.SelectedDate, "TERMINATE")
+    '            End Using
+    '        Else
+    '            args.IsValid = True
+    '        End If
+    '    Catch ex As Exception
+    '        DisplayException(Me.ViewName, Me.ID, ex)
+    '    End Try
+    'End Sub
 
 #End Region
 
@@ -1137,6 +1295,8 @@ Public Class ctrlRC_CanDtlProfile
         Dim EmpExpectInfo As New CandidateExpectDTO
         Dim EmpFamily As New CandidateFamilyDTO
         Try
+            
+
             'Candidate
             If CandidateInfo Is Nothing Then
                 CandidateInfo = New CandidateDTO
@@ -1180,10 +1340,8 @@ Public Class ctrlRC_CanDtlProfile
                 EmpCV.ID_PLACE = Decimal.Parse(cboCMNDPlace.SelectedValue)
             End If
 
-            EmpCV.PASSPORT_ID = txtPassport.Text
-            EmpCV.PASSPORT_DATE = rdPassport.SelectedDate
-            EmpCV.PASSPORT_PLACE_NAME = txtPassportNoiCap.Text
             EmpCV.BIRTH_DATE = rdBirthDate.SelectedDate
+            EmpCV.BIRTH_ADDRESS = txtBirthAddress.Text
 
             If cboNation.SelectedValue <> "" Then
                 EmpCV.BIRTH_NATION_ID = Decimal.Parse(cboNation.SelectedValue)
@@ -1250,6 +1408,19 @@ Public Class ctrlRC_CanDtlProfile
                 EmpCV.CONTACT_DISTRICT_TEMP = Decimal.Parse(cboContractDictrict.SelectedValue)
             End If
 
+            EmpCV.NAV_DOMICILE = txtNavDomicile.Text
+            EmpCV.CONTACT_ADDRESS_NOW = txtContactAddNow.Text
+
+            If cboContactAddNation.SelectedValue IsNot Nothing And cboContactAddNation.SelectedValue <> "" Then
+                EmpCV.CON_COUNTRY = cboContactAddNation.SelectedValue
+            End If
+            If cboContactAddProvince.SelectedValue IsNot Nothing And cboContactAddProvince.SelectedValue <> "" Then
+                EmpCV.CON_PROVINCE = cboContactAddProvince.SelectedValue
+            End If
+            If cboContractAddDictrict.SelectedValue IsNot Nothing And cboContractAddDictrict.SelectedValue <> "" Then
+                EmpCV.CON_DISTRICT = cboContractAddDictrict.SelectedValue
+            End If
+
             EmpCV.CONTACT_MOBILE = txtSoDienThoaiCaNhan.Text
             EmpCV.CONTACT_PHONE = txtSoDienThoaiCoDinh.Text
             EmpCV.PER_EMAIL = txtEmailCaNhan.Text
@@ -1257,25 +1428,38 @@ Public Class ctrlRC_CanDtlProfile
             EmpCV.PERTAXCODE = txtMST.Text
             EmpCV.PER_TAX_DATE = rdNgayCapMST.SelectedDate
             EmpCV.PER_TAX_PLACE = txtNoiCapMST.Text
+            EmpCV.CONTACT_PERSON = txtContactInstancy.Text
+            EmpCV.CONTACT_PERSON_ADDRESS = txtRela_Or_Address.Text
+            EmpCV.CONTACT_PERSON_PHONE = txtContactPersonPhone.Text
+
+            EmpCV.PASSPORT_ID = txtPassport.Text
+            EmpCV.PASSPORT_DATE = rdPassport.SelectedDate
+            EmpCV.PASSPORT_PLACE_NAME = txtPassportNoiCap.Text
             EmpCV.PASSPORT_DATE_EXPIRATION = rdPassportEnd.SelectedDate
+
             EmpCV.VISA_NUMBER = txtSoViSa.Text
             EmpCV.VISA_DATE = rdNgayCapViSa.SelectedDate
             EmpCV.VISA_DATE_EXPIRATION = rdNgayHetHanVisa.SelectedDate
             EmpCV.VISA_PLACE = txtNoiCapVisa.Text
+
             EmpCV.VNAIRLINES_NUMBER = txtVNAirlines.Text
             EmpCV.VNAIRLINES_DATE = rdVNANgayCap.SelectedDate
             EmpCV.VNAIRLINES_DATE_EXPIRATION = rdVNAHetHan.SelectedDate
             EmpCV.VNAIRLINES_PLACE = txtVNANoiCap.Text
+
             EmpCV.LABOUR_NUMBER = txtSoLaoDong.Text
             EmpCV.LABOUR_DATE = rdLaoDongNgayCap.SelectedDate
             EmpCV.LABOUR_DATE_EXPIRATION = rdLaoDongHetHan.SelectedDate
             EmpCV.LABOUR_PLACE = txtLaoDongNoiCap.Text
+
             EmpCV.WORK_PERMIT = txtGiayPhepLaoDong.Text
             EmpCV.WORK_PERMIT_START = rdGiayPhepLaoDongTyNgay.SelectedDate
             EmpCV.WORK_PERMIT_END = rdGiayPhepLaoDongDenNgay.SelectedDate
+
             EmpCV.TEMP_RESIDENCE_CARD = txtTheTamTru.Text
             EmpCV.TEMP_RESIDENCE_CARD_START = rdTheTamTruTuNgay.SelectedDate
             EmpCV.TEMP_RESIDENCE_CARD_END = rdTheTamTruDenNgay.SelectedDate
+
             EmpCV.FINDER_NAME = txtNGT_Fullname.Text.Trim()
             EmpCV.FINDER_SDT = txtNGT_SDT.Text.Trim()
             EmpCV.FINDER_ADDRESS = txtNGT_DiaChi.Text.Trim()
@@ -1293,9 +1477,7 @@ Public Class ctrlRC_CanDtlProfile
             EmpCV.WEAKNESS = txtWeakness.Text.Trim
 
             'EmpEducation
-            If cboNgoaNgu1.SelectedValue <> "" Then
-                EmpEducation.LANGUAGE_ID = cboNgoaNgu1.SelectedValue
-            End If
+
             If cboChungchi.SelectedValue <> "" Then
                 EmpEducation.CERTIFICATE_ID = cboChungchi.SelectedValue
             End If
@@ -1331,6 +1513,9 @@ Public Class ctrlRC_CanDtlProfile
             EmpEducation.IT_LEVEL2 = cboDegreeTrinhDo3.SelectedValue
             EmpEducation.IT_MARK2 = txtDegreeDiemSoXepLoai3.Text
 
+            If cboNgoaNgu1.SelectedValue <> "" Then
+                EmpEducation.LANGUAGE_ID = cboNgoaNgu1.SelectedValue
+            End If
             EmpEducation.ENGLISH = txtTDNNNgoaiNgu1.Text
             EmpEducation.ENGLISH_LEVEL = cboTDNNTrinhDo1.SelectedValue
             EmpEducation.ENGLISH_MARK = txtTDNNDiem1.Text
@@ -1343,6 +1528,16 @@ Public Class ctrlRC_CanDtlProfile
             EmpEducation.ENGLISH_LEVEL2 = cboTDNNTrinhDo3.SelectedValue
             EmpEducation.ENGLISH_MARK2 = txtTDNNDiem3.Text
 
+            ' Nguyện vọng
+            EmpExpectInfo = New CandidateExpectDTO
+            EmpExpectInfo.TIME_START = cboExpectThoiGianLamViec.SelectedValue
+            EmpExpectInfo.PROBATIONARY_SALARY = If(txtExpectMucLuongThuViec.Text = String.Empty, 0, Decimal.Parse(txtExpectMucLuongThuViec.Text.Trim))
+            EmpExpectInfo.OFFICIAL_SALARY = If(txtExpectMucLuongChinhThuc.Text = String.Empty, 0, Decimal.Parse(txtExpectMucLuongChinhThuc.Text.Trim))
+            EmpExpectInfo.DATE_START = txtExpectNgayBatDau.SelectedDate
+            EmpExpectInfo.OTHER_REQUEST = txtExpectDeNghiKhac.Text
+            EmpExpectInfo.WORK_LOCATION = txtWORK_LOCATION.Text
+
+            EmpOtherInfo = New CandidateOtherInfoDTO
             'Thông tin tổ chức chính trị ...
             'Đoàn
             EmpOtherInfo.IS_DOANVIEN = chkDoanVien.Checked
@@ -1351,36 +1546,39 @@ Public Class ctrlRC_CanDtlProfile
             If cboChucVuDoan.SelectedValue <> "" Then
                 EmpOtherInfo.CHUC_VU_DOAN = cboChucVuDoan.SelectedValue
             End If
-            EmpOtherInfo.NOI_VAO_DOAN = txtNoiVaoDoan.Text.Trim()
+            EmpOtherInfo.NOI_VAO_DOAN = txtNoiVaoDoan.Text
+            EmpOtherInfo.NGAY_NHAN_CV_DOAN = rdNgayNhanChucVuDoan.SelectedDate
+
             'Đảng
             EmpOtherInfo.IS_DANGVIEN = chkDangVien.Checked
             EmpOtherInfo.DANG_PHI = chkDangPhi.Checked
             EmpOtherInfo.NGAY_VAO_DANG = rdNgayVaoDang.SelectedDate
+            EmpOtherInfo.NGAY_NHAN_CV_DANG = rdNgayNhanChucVuDoan.SelectedDate
             If cboChucVuDang.SelectedValue <> "" Then
                 EmpOtherInfo.CHUC_VU_DANG = cboChucVuDang.SelectedValue
             End If
-            EmpOtherInfo.NOI_VAO_DANG = txtNoiVaoDang.Text.Trim()
+            EmpOtherInfo.NOI_VAO_DANG = txtNoiVaoDang.Text
             If cboDangKiemNhiem.SelectedValue <> "" Then
                 EmpOtherInfo.DANG_KIEMNHIEM = cboDangKiemNhiem.SelectedValue
             End If
-            EmpOtherInfo.CAPUY_HIENTAI = txtCapUyHienTai.Text.Trim()
-            EmpOtherInfo.CAPUY_KIEMNHIEM = txtCapUyKiemNhiem.Text.Trim()
+            EmpOtherInfo.CAPUY_HIENTAI = txtCapUyHienTai.Text
+            EmpOtherInfo.CAPUY_KIEMNHIEM = txtCapUyKiemNhiem.Text
             'Công đoàn
             EmpOtherInfo.IS_CONGDOANPHI = chkCongDoanPhi.Checked
             EmpOtherInfo.CDP_NGAYVAO = rdNgayVaoCongDoan.SelectedDate
-            EmpOtherInfo.CDP_NOIVAO = txtNoiVaoCongDoan.Text.Trim()
+            EmpOtherInfo.CDP_NOIVAO = txtNoiVaoCongDoan.Text
             'Cựu chiến binh
             EmpOtherInfo.IS_CCB = chkCuuChienBinh.Checked
-            EmpOtherInfo.CCB_NOIVAO = txtNoiVaoHoiCuuChienBinh.Text.Trim()
-            EmpOtherInfo.CCB_QUANHAM = txtQuanHamChucVuCaoNhat.Text.Trim()
+            EmpOtherInfo.CCB_NOIVAO = txtNoiVaoHoiCuuChienBinh.Text
+            EmpOtherInfo.CCB_QUANHAM = txtQuanHamChucVuCaoNhat.Text
             EmpOtherInfo.CCB_NGAYVAO = rdNgayVaoHoiCuuChienBinh.SelectedDate
             EmpOtherInfo.CCB_NGAYNHAPNGU = rdNgayNhapNgu.SelectedDate
             EmpOtherInfo.CCB_NGAYXUATNGU = rdNgayXuatNgu.SelectedDate
-            EmpOtherInfo.CAREER = txtCareer.Text.Trim()
-            EmpOtherInfo.TPGD = txtTPGiaDinh.Text.Trim()
-            EmpOtherInfo.DANHHIEU = txtDanhHieuDuocPhong.Text.Trim()
-            EmpOtherInfo.SOTRUONGCONGTAC = txtSoTruongCongTac.Text.Trim()
-            EmpOtherInfo.CONGTAC_LAUNHAT = txtCongTacLauNhat.Text.Trim()
+            EmpOtherInfo.CAREER = txtCareer.Text
+            EmpOtherInfo.TPGD = txtTPGiaDinh.Text
+            EmpOtherInfo.DANHHIEU = txtDanhHieuDuocPhong.Text
+            EmpOtherInfo.SOTRUONGCONGTAC = txtSoTruongCongTac.Text
+            EmpOtherInfo.CONGTAC_LAUNHAT = txtCongTacLauNhat.Text
             If cboChucVuCuuChienBinh.SelectedValue <> "" Then
                 EmpOtherInfo.CCB_CHUCVU = cboChucVuCuuChienBinh.SelectedValue
             End If
@@ -1396,7 +1594,6 @@ Public Class ctrlRC_CanDtlProfile
             If cboGDChinhSach.SelectedValue <> "" Then
                 EmpOtherInfo.GDCS = cboGDChinhSach.SelectedValue
             End If
-            EmpOtherInfo = New CandidateOtherInfoDTO
             ' Thông tin tài khoản ngân hàng
             EmpOtherInfo.ACCOUNT_NAME = txtTKNguoiThuHuong.Text
             If txtTKTKChuyenKhoan.Text.Trim() <> "" Then
@@ -1426,14 +1623,7 @@ Public Class ctrlRC_CanDtlProfile
             EmpHealthInfo.VIEM_GAN_B = txtVienGanB.Text
             EmpHealthInfo.DA_HOA_LIEU = txtDaHoaLieu.Text
             EmpHealthInfo.GHI_CHU_SUC_KHOE = txtGhiChuSK.Text
-            ' Nguyện vọng
-            EmpExpectInfo = New CandidateExpectDTO
-            EmpExpectInfo.TIME_START = cboExpectThoiGianLamViec.SelectedValue
-            EmpExpectInfo.PROBATIONARY_SALARY = If(txtExpectMucLuongThuViec.Text = String.Empty, 0, Decimal.Parse(txtExpectMucLuongThuViec.Text.Trim))
-            EmpExpectInfo.OFFICIAL_SALARY = If(txtExpectMucLuongChinhThuc.Text = String.Empty, 0, Decimal.Parse(txtExpectMucLuongChinhThuc.Text.Trim))
-            EmpExpectInfo.DATE_START = txtExpectNgayBatDau.SelectedDate
-            EmpExpectInfo.OTHER_REQUEST = txtExpectDeNghiKhac.Text
-            EmpExpectInfo.WORK_LOCATION = txtWORK_LOCATION.Text
+
             If CandidateInfo IsNot Nothing Then
                 If hidID.Value <> "" Then
                     CandidateInfo.ID = Decimal.Parse(hidID.Value)
@@ -1684,5 +1874,12 @@ Public Class ctrlRC_CanDtlProfile
                 Next
             End If
         End Using
+    End Sub
+
+    Private Sub rdCMNDDate_SelectedDateChanged(sender As Object, e As Telerik.Web.UI.Calendar.SelectedDateChangedEventArgs) Handles rdCMNDDate.SelectedDateChanged
+        rdCMNDEnd.Clear()
+        If (rdCMNDDate.SelectedDate IsNot Nothing) Then
+            rdCMNDEnd.SelectedDate = Date.Parse(rdCMNDDate.SelectedDate).AddYears(15)
+        End If
     End Sub
 End Class

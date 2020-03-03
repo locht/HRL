@@ -14102,6 +14102,9 @@ Namespace RecruitmentBusiness
         Private NAV_ADDRESSField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private NAV_DOMICILEField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private NAV_NATION_IDField As System.Nullable(Of Decimal)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -15178,6 +15181,19 @@ Namespace RecruitmentBusiness
                 If (Object.ReferenceEquals(Me.NAV_ADDRESSField, value) <> true) Then
                     Me.NAV_ADDRESSField = value
                     Me.RaisePropertyChanged("NAV_ADDRESS")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property NAV_DOMICILE() As String
+            Get
+                Return Me.NAV_DOMICILEField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.NAV_DOMICILEField, value) <> true) Then
+                    Me.NAV_DOMICILEField = value
+                    Me.RaisePropertyChanged("NAV_DOMICILE")
                 End If
             End Set
         End Property

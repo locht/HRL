@@ -74,6 +74,7 @@
 
     Public Property ID_DATE_EXPIRATION As Date?
     Public Property IS_RESIDENT As Decimal?
+    Public Property NAV_DOMICILE As String
     Public Property CONTACT_ADDRESS_TEMP As String
     Public Property CONTACT_NATION_TEMP As Decimal?
     Public Property CONTACT_PROVINCE_TEMP As Decimal?

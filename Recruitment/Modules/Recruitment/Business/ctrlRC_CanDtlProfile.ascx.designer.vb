@@ -329,15 +329,6 @@ Partial Public Class ctrlRC_CanDtlProfile
     Protected WithEvents cv_rfvBirthDate As Global.System.Web.UI.WebControls.RequiredFieldValidator
 
     '''<summary>
-    '''val_Same_Date_FullName control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents val_Same_Date_FullName As Global.System.Web.UI.WebControls.CustomValidator
-
-    '''<summary>
     '''cboProvince control.
     '''</summary>
     '''<remarks>
@@ -345,6 +336,15 @@ Partial Public Class ctrlRC_CanDtlProfile
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents cboProvince As Global.Telerik.Web.UI.RadComboBox
+
+    '''<summary>
+    '''txtBirthAddress control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtBirthAddress As Global.Telerik.Web.UI.RadTextBox
 
     '''<summary>
     '''cboNation control.
@@ -392,24 +392,6 @@ Partial Public Class ctrlRC_CanDtlProfile
     Protected WithEvents reqID_NO As Global.System.Web.UI.WebControls.RequiredFieldValidator
 
     '''<summary>
-    '''cusNO_ID control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents cusNO_ID As Global.System.Web.UI.WebControls.CustomValidator
-
-    '''<summary>
-    '''cusBlackList control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents cusBlackList As Global.System.Web.UI.WebControls.CustomValidator
-
-    '''<summary>
     '''rdCMNDDate control.
     '''</summary>
     '''<remarks>
@@ -417,6 +399,15 @@ Partial Public Class ctrlRC_CanDtlProfile
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents rdCMNDDate As Global.Telerik.Web.UI.RadDatePicker
+
+    '''<summary>
+    '''cv_rfvrdpCMNDDate control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents cv_rfvrdpCMNDDate As Global.System.Web.UI.WebControls.RequiredFieldValidator
 
     '''<summary>
     '''rdCMNDEnd control.
@@ -480,6 +471,15 @@ Partial Public Class ctrlRC_CanDtlProfile
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents cboNavNation As Global.Telerik.Web.UI.RadComboBox
+
+    '''<summary>
+    '''txtNavDomicile control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtNavDomicile As Global.Telerik.Web.UI.RadTextBox
 
     '''<summary>
     '''txtPerAddress control.
@@ -581,13 +581,13 @@ Partial Public Class ctrlRC_CanDtlProfile
     Protected WithEvents cboContractWard As Global.Telerik.Web.UI.RadComboBox
 
     '''<summary>
-    '''cv_txtEmailCaNhanCongTy control.
+    '''txtContactAddNow control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents cv_txtEmailCaNhanCongTy As Global.Telerik.Web.UI.RadTextBox
+    Protected WithEvents txtContactAddNow As Global.Telerik.Web.UI.RadTextBox
 
     '''<summary>
     '''cboContactAddNation control.
@@ -615,6 +615,15 @@ Partial Public Class ctrlRC_CanDtlProfile
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents cboContractAddDictrict As Global.Telerik.Web.UI.RadComboBox
+
+    '''<summary>
+    '''cv_txtEmailCaNhanCongTy control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents cv_txtEmailCaNhanCongTy As Global.Telerik.Web.UI.RadTextBox
 
     '''<summary>
     '''txtEmailCaNhan control.
@@ -725,6 +734,15 @@ Partial Public Class ctrlRC_CanDtlProfile
     Protected WithEvents rdPassportEnd As Global.Telerik.Web.UI.RadDatePicker
 
     '''<summary>
+    '''CompareValidator3 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents CompareValidator3 As Global.System.Web.UI.WebControls.CompareValidator
+
+    '''<summary>
     '''txtPassportNoiCap control.
     '''</summary>
     '''<remarks>
@@ -759,6 +777,15 @@ Partial Public Class ctrlRC_CanDtlProfile
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents rdNgayHetHanVisa As Global.Telerik.Web.UI.RadDatePicker
+
+    '''<summary>
+    '''CompareValidator4 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents CompareValidator4 As Global.System.Web.UI.WebControls.CompareValidator
 
     '''<summary>
     '''txtNoiCapVisa control.
@@ -851,6 +878,15 @@ Partial Public Class ctrlRC_CanDtlProfile
     Protected WithEvents rdLaoDongHetHan As Global.Telerik.Web.UI.RadDatePicker
 
     '''<summary>
+    '''CompareValidator5 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents CompareValidator5 As Global.System.Web.UI.WebControls.CompareValidator
+
+    '''<summary>
     '''txtLaoDongNoiCap control.
     '''</summary>
     '''<remarks>
@@ -887,6 +923,15 @@ Partial Public Class ctrlRC_CanDtlProfile
     Protected WithEvents rdGiayPhepLaoDongDenNgay As Global.Telerik.Web.UI.RadDatePicker
 
     '''<summary>
+    '''CompareValidator6 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents CompareValidator6 As Global.System.Web.UI.WebControls.CompareValidator
+
+    '''<summary>
     '''txtTheTamTru control.
     '''</summary>
     '''<remarks>
@@ -914,6 +959,15 @@ Partial Public Class ctrlRC_CanDtlProfile
     Protected WithEvents rdTheTamTruDenNgay As Global.Telerik.Web.UI.RadDatePicker
 
     '''<summary>
+    '''CompareValidator7 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents CompareValidator7 As Global.System.Web.UI.WebControls.CompareValidator
+
+    '''<summary>
     '''rpvEmpDegree control.
     '''</summary>
     '''<remarks>
@@ -921,24 +975,6 @@ Partial Public Class ctrlRC_CanDtlProfile
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents rpvEmpDegree As Global.Telerik.Web.UI.RadPageView
-
-    '''<summary>
-    '''txtEduDateStart control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents txtEduDateStart As Global.Telerik.Web.UI.RadDatePicker
-
-    '''<summary>
-    '''txtEduDateEnd control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents txtEduDateEnd As Global.Telerik.Web.UI.RadDatePicker
 
     '''<summary>
     '''cboTrinhDoVanHoa control.
@@ -984,6 +1020,33 @@ Partial Public Class ctrlRC_CanDtlProfile
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents cboChuyenNganh As Global.Telerik.Web.UI.RadComboBox
+
+    '''<summary>
+    '''txtEduDateStart control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtEduDateStart As Global.Telerik.Web.UI.RadDatePicker
+
+    '''<summary>
+    '''txtEduDateEnd control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtEduDateEnd As Global.Telerik.Web.UI.RadDatePicker
+
+    '''<summary>
+    '''CompareValidator8 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents CompareValidator8 As Global.System.Web.UI.WebControls.CompareValidator
 
     '''<summary>
     '''txtYearGra control.

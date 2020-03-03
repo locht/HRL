@@ -2307,7 +2307,7 @@ Partial Class RecruitmentRepository
             End If
 
             Context.RC_CANDIDATE.AddObject(objEmpData)
-            Context.SaveChanges(log)
+
             '---------- 2.0 Thêm vào bảng RC_Candidate_CV ----------
             Dim objEmpCVData As New RC_CANDIDATE_CV
             objEmpCVData.CANDIDATE_ID = objEmpData.ID
@@ -2334,6 +2334,7 @@ Partial Class RecruitmentRepository
             objEmpCVData.PER_PROVINCE = objEmpCV.PER_PROVINCE
             objEmpCVData.PER_NATION = objEmpCV.PER_NATION_ID
             objEmpCVData.PER_DISTRICT = objEmpCV.PER_DISTRICT_ID
+            objEmpCVData.NAV_DOMICILE = objEmpCV.NAV_DOMICILE
             objEmpCVData.CONTACT_ADDRESS = objEmpCV.CONTACT_ADDRESS
             objEmpCVData.CONTACT_PROVINCE = objEmpCV.CONTACT_PROVINCE
             objEmpCVData.CONTACT_NATION = objEmpCV.CONTACT_NATION_ID
@@ -2396,7 +2397,7 @@ Partial Class RecruitmentRepository
                 objEmpCVData.IMAGE = objEmpData.CANDIDATE_CODE & objEmpCV.IMAGE
             End If
             Context.RC_CANDIDATE_CV.AddObject(objEmpCVData)
-            Context.SaveChanges(log)
+
             '---------- 3.0 Thêm vào bảng RC_EDUCATION ----------
             Dim objEmpEduData As New RC_CANDIDATE_EDUCATION
             objEmpEduData.YEAR_GRADUATE = objEmpEdu.YEAR_GRADUATE
@@ -2431,13 +2432,14 @@ Partial Class RecruitmentRepository
             objEmpEduData.DATE_START = objEmpEdu.DATE_START
             objEmpEduData.DATE_END = objEmpEdu.DATE_END
             Context.RC_CANDIDATE_EDUCATION.AddObject(objEmpEduData)
-            Context.SaveChanges(log)
+
             '---------- 4.0 Thêm vào bảng RC_Candidate_OTHER_INFO ----------
             Dim objEmpOtherData As New RC_CANDIDATE_OTHER_INFO
             objEmpOtherData.CANDIDATE_ID = objEmpData.ID
             ' CONG DOAN
-            objEmpOtherData.NGAYVAOCONGDOAN = objEmpOther.NGAY_VAO_DOAN
-            objEmpOtherData.NOIVAOCONGDOAN = objEmpOther.NOI_VAO_DOAN
+            objEmpOtherData.IS_CONGDOANPHI = objEmpOther.IS_CONGDOANPHI
+            objEmpOtherData.CDP_NGAYVAO = objEmpOther.CDP_NGAYVAO
+            objEmpOtherData.CDP_NOIVAO = objEmpOther.CDP_NOIVAO
             objEmpOtherData.CONGDOANPHI = objEmpOther.DOAN_PHI
             'THONG TIN TAI KHOAN
             objEmpOtherData.ACCOUNT_NAME = objEmpOther.ACCOUNT_NAME
@@ -2450,12 +2452,14 @@ Partial Class RecruitmentRepository
             objEmpOtherData.IS_DOANVIEN = objEmpOther.IS_DOANVIEN
             objEmpOtherData.DOAN_PHI = objEmpOther.DOAN_PHI
             objEmpOtherData.NGAY_VAO_DOAN = objEmpOther.NGAY_VAO_DOAN
+            objEmpOtherData.NOI_VAO_DOAN = objEmpOther.NOI_VAO_DOAN
             objEmpOtherData.CHUC_VU_DOAN = objEmpOther.CHUC_VU_DOAN
             objEmpOtherData.NGAY_NHAN_CV_DOAN = objEmpOther.NGAY_NHAN_CV_DOAN
             'DANG VIEN
             objEmpOtherData.IS_DANGVIEN = objEmpOther.IS_DANGVIEN
             objEmpOtherData.DANG_PHI = objEmpOther.DANG_PHI
             objEmpOtherData.NGAY_VAO_DANG = objEmpOther.NGAY_VAO_DANG
+            objEmpOtherData.NOI_VAO_DANG = objEmpOther.NOI_VAO_DANG
             objEmpOtherData.CHUC_VU_DANG = objEmpOther.CHUC_VU_DANG
             objEmpOtherData.NGAY_NHAN_CV_DANG = objEmpOther.NGAY_NHAN_CV_DANG
             objEmpOtherData.CAPUY_HIENTAI = objEmpOtherData.CAPUY_HIENTAI
@@ -2480,7 +2484,7 @@ Partial Class RecruitmentRepository
             objEmpOtherData.GDCS = objEmpOther.GDCS
 
             Context.RC_CANDIDATE_OTHER_INFO.AddObject(objEmpOtherData)
-            Context.SaveChanges(log)
+
             ' Thêm vào bảng CandidateExpect
             Dim objEmpExpectData As New RC_CANDIDATE_EXPECT
             objEmpExpectData.CANDIDATE_ID = objEmpData.ID
@@ -2493,7 +2497,7 @@ Partial Class RecruitmentRepository
                 objEmpExpectData.WORK_LOCATION = objEmpExpect.WORK_LOCATION
             End If
             Context.RC_CANDIDATE_EXPECT.AddObject(objEmpExpectData)
-            Context.SaveChanges(log)
+
             ' Thêm vào bảng CandidateHealth
             Dim objEmpHealthData As New RC_CANDIDATE_HEALTH
             objEmpHealthData.CANDIDATE_ID = objEmpData.ID
@@ -2592,6 +2596,7 @@ Partial Class RecruitmentRepository
                 objEmpCVData.PER_PROVINCE = objEmpCV.PER_PROVINCE
                 objEmpCVData.PER_NATION = objEmpCV.PER_NATION_ID
                 objEmpCVData.PER_DISTRICT = objEmpCV.PER_DISTRICT_ID
+                objEmpCVData.NAV_DOMICILE = objEmpCV.NAV_DOMICILE
                 objEmpCVData.CONTACT_ADDRESS = objEmpCV.CONTACT_ADDRESS
                 objEmpCVData.CONTACT_PROVINCE = objEmpCV.CONTACT_PROVINCE
                 objEmpCVData.CONTACT_NATION = objEmpCV.CONTACT_NATION_ID
@@ -2712,8 +2717,9 @@ Partial Class RecruitmentRepository
                     isInsert = True
                 End If
                 ' CONG DOAN
-                objEmpOtherData.NGAYVAOCONGDOAN = objEmpOther.NGAY_VAO_DOAN
-                objEmpOtherData.NOIVAOCONGDOAN = objEmpOther.NOI_VAO_DOAN
+                objEmpOtherData.IS_CONGDOANPHI = objEmpOther.IS_CONGDOANPHI
+                objEmpOtherData.CDP_NGAYVAO = objEmpOther.CDP_NGAYVAO
+                objEmpOtherData.CDP_NOIVAO = objEmpOther.CDP_NOIVAO
                 objEmpOtherData.CONGDOANPHI = objEmpOther.DOAN_PHI
                 'THONG TIN TAI KHOAN
                 objEmpOtherData.ACCOUNT_NAME = objEmpOther.ACCOUNT_NAME
@@ -2726,14 +2732,19 @@ Partial Class RecruitmentRepository
                 objEmpOtherData.IS_DOANVIEN = objEmpOther.IS_DOANVIEN
                 objEmpOtherData.DOAN_PHI = objEmpOther.DOAN_PHI
                 objEmpOtherData.NGAY_VAO_DOAN = objEmpOther.NGAY_VAO_DOAN
+                objEmpOtherData.NOI_VAO_DOAN = objEmpOther.NOI_VAO_DOAN
                 objEmpOtherData.CHUC_VU_DOAN = objEmpOther.CHUC_VU_DOAN
                 objEmpOtherData.NGAY_NHAN_CV_DOAN = objEmpOther.NGAY_NHAN_CV_DOAN
+                objEmpOtherData.CAPUY_HIENTAI = objEmpOther.CAPUY_HIENTAI
+                objEmpOtherData.CAPUY_KIEMNHIEM = objEmpOther.CAPUY_KIEMNHIEM
+
                 'DANG VIEN
                 objEmpOtherData.IS_DANGVIEN = objEmpOther.IS_DANGVIEN
                 objEmpOtherData.DANG_PHI = objEmpOther.DANG_PHI
                 objEmpOtherData.NGAY_VAO_DANG = objEmpOther.NGAY_VAO_DANG
                 objEmpOtherData.CHUC_VU_DANG = objEmpOther.CHUC_VU_DANG
                 objEmpOtherData.NGAY_NHAN_CV_DANG = objEmpOther.NGAY_NHAN_CV_DANG
+                objEmpOtherData.NOI_VAO_DANG = objEmpOther.NOI_VAO_DANG
                 objEmpOtherData.CAPUY_HIENTAI = objEmpOtherData.CAPUY_HIENTAI
                 objEmpOtherData.CAPUY_KIEMNHIEM = objEmpOtherData.CAPUY_KIEMNHIEM
 
@@ -3097,6 +3108,7 @@ Partial Class RecruitmentRepository
                  .PASSPORT_DATE = e.PASSPORT_DATE,
                  .PASSPORT_PLACE_NAME = e.PASSPORT_PLACE,
                  .BIRTH_DATE = e.BIRTH_DATE,
+                 .BIRTH_ADDRESS = e.BIRTH_ADDRESS,
                  .BIRTH_NATION_ID = e.BIRTH_NATION,
                  .BIRTH_PROVINCE = e.BIRTH_PROVINCE,
                  .NATIONALITY_ID = e.NATIONALITY_ID,
@@ -3111,6 +3123,7 @@ Partial Class RecruitmentRepository
                  .CONTACT_NATION_ID = e.CONTACT_NATION,
                  .CONTACT_DISTRICT_ID = e.CONTACT_DISTRICT,
                  .CONTACT_ADDRESS_NOW = e.CONTACT_ADDRESS_NOW,
+                 .NAV_DOMICILE = e.NAV_DOMICILE,
                  .CON_COUNTRY = e.CON_COUNTRY,
                  .CON_PROVINCE = e.CON_PROVINCE,
                  .CON_DISTRICT = e.CON_DISTRICT,
@@ -3241,7 +3254,9 @@ Partial Class RecruitmentRepository
                .ENGLISH_MARK1 = e.ENGLISH_MARK1,
                .ENGLISH2 = e.ENGLISH2,
                .ENGLISH_LEVEL2 = e.ENGLISH_LEVEL2,
-               .ENGLISH_MARK2 = e.ENGLISH_MARK2
+               .ENGLISH_MARK2 = e.ENGLISH_MARK2,
+               .DATE_START = e.DATE_START,
+               .DATE_END = e.DATE_END
            }).FirstOrDefault
             Return query
         Catch ex As Exception

@@ -1,7 +1,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for Oracle database
 -- --------------------------------------------------
--- Date Created: 03/02/2020 6:02:09 PM
+-- Date Created: 03/03/2020 9:10:31 AM
 -- Generated from EDMX file: F:\WORKING\acv_19\RecruitmentDAL\RecruitmentContext.edmx
 -- --------------------------------------------------
 
@@ -661,10 +661,10 @@ CREATE TABLE "dbo"."RC_CANDIDATE_OTHER_INFO" (
    "NGAY_NHAN_CV_DOAN" DATE NULL,
    "NGAY_NHAN_CV_DANG" DATE NULL,
    "DOAN_PHI" NUMBER(38,0) NULL,
-   "NGAY_VAO_DOAN" NCLOB NOT NULL,
+   "NGAY_VAO_DOAN" DATE NULL,
    "NOI_VAO_DOAN" NCLOB NULL,
-   "NOI_VAO_DANG" NCLOB NOT NULL,
-   "NGAY_VAO_DANG" NCLOB NOT NULL
+   "NOI_VAO_DANG" NCLOB NULL,
+   "NGAY_VAO_DANG" DATE NULL
 );
 
 -- Creating table 'RC_CANDIDATE_CV'
@@ -761,7 +761,8 @@ CREATE TABLE "dbo"."RC_CANDIDATE_CV" (
    "CONTACT_ADDRESS_NOW" NCLOB NULL,
    "CONTACT_PERSON" NCLOB NULL,
    "CONTACT_PERSON_ADDRESS" NCLOB NULL,
-   "CONTACT_PERSON_PHONE" NCLOB NULL
+   "CONTACT_PERSON_PHONE" NCLOB NULL,
+   "NAV_DOMICILE" NCLOB NULL
 );
 
 -- Creating table 'RC_PROGRAM_SCHEDULE'
