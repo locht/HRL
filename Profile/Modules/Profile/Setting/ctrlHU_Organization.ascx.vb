@@ -9,7 +9,7 @@ Imports Ionic.Zip
 
 Public Class ctrlHU_Organization
     Inherits Common.CommonView
-    Protected WithEvents ctrlFindEmployeePopup As ctrlFindEmployeePopup
+
     Private procedure As ProfileStoreProcedure
     Dim dtOrgLevel As DataTable = Nothing
     Dim dtRegion As DataTable = Nothing
@@ -18,21 +18,30 @@ Public Class ctrlHU_Organization
 
 #Region "Property"
 
-    Property Organization As OrganizationDTO
-        Get
-            Return ViewState(Me.ID & "_Organization")
-        End Get
-        Set(ByVal value As OrganizationDTO)
-            ViewState(Me.ID & "_Organization") = value
-        End Set
-    End Property
+    'Property Organization As OrganizationDTO
+    '    Get
+    '        Return ViewState(Me.ID & "_Organization")
+    '    End Get
+    '    Set(ByVal value As OrganizationDTO)
+    '        ViewState(Me.ID & "_Organization") = value
+    '    End Set
+    'End Property
 
-    Public Property Organizations As List(Of OrganizationDTO)
+    'Public Property Organizations As List(Of OrganizationDTO)
+    '    Get
+    '        Return ViewState(Me.ID & "_Organizations")
+    '    End Get
+    '    Set(ByVal value As List(Of OrganizationDTO))
+    '        ViewState(Me.ID & "_Organizations") = value
+    '    End Set
+    'End Property
+
+    Public Property Organizations_New As DataTable
         Get
-            Return ViewState(Me.ID & "_Organizations")
+            Return ViewState(Me.ID & "_Organizations_New")
         End Get
-        Set(ByVal value As List(Of OrganizationDTO))
-            ViewState(Me.ID & "_Organizations") = value
+        Set(ByVal value As DataTable)
+            ViewState(Me.ID & "_Organizations_New") = value
         End Set
     End Property
 
@@ -91,6 +100,23 @@ Public Class ctrlHU_Organization
         End Set
     End Property
 
+    Property DT_District As DataTable
+        Get
+            Return ViewState(Me.ID & "_DT_District")
+        End Get
+        Set(ByVal value As DataTable)
+            ViewState(Me.ID & "_DT_District") = value
+        End Set
+    End Property
+
+    Property DT_HU_BANK_BRANC As DataTable
+        Get
+            Return ViewState(Me.ID & "_HU_BANK_BRANC")
+        End Get
+        Set(ByVal value As DataTable)
+            ViewState(Me.ID & "_HU_BANK_BRANC") = value
+        End Set
+    End Property
 #End Region
 
 #Region "Page"
@@ -157,17 +183,23 @@ Public Class ctrlHU_Organization
     Public Overrides Sub Refresh(Optional ByVal Message As String = "")
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
         Try
-            Dim lstOrganization As List(Of OrganizationDTO)
+            'Dim lstOrganization As List(Of OrganizationDTO)
             Dim rep As New ProfileRepository
+            Dim rep1 = New ProfileStoreProcedure
             SelectOrgFunction = String.Empty
             Try
                 Dim startTime As DateTime = DateTime.UtcNow
                 If Not IsPostBack Then
                     Dim callFunction = Common.CommonRepository.GetOrganizationLocationTreeView()
-                    lstOrganization = rep.GetOrganization()
+                    'lstOrganization = rep.GetOrganization()
                     Dim lstorgper = (From p In Common.Common.OrganizationLocationDataSession Select p.ID).ToList()
-                    Dim lst = (From p In lstOrganization Where lstorgper.Contains(p.ID)).ToList()
-                    Me.Organizations = lst
+                    'Dim lst = (From p In lstOrganization Where lstorgper.Contains(p.ID)).ToList()
+                    'Me.Organizations = lst
+                    Dim temp_org = rep1.GETORGANIZATION_NEW()
+                    Organizations_New = (From n In temp_org.AsEnumerable
+                                         Where lstorgper.Contains(n.Field(Of Decimal)("ID"))
+                                         Select n).CopyToDataTable
+
                     CurrentState = CommonMessage.STATE_NORMAL
                     org_id = Request.QueryString("id")
                     If org_id IsNot String.Empty Then
@@ -179,29 +211,37 @@ Public Class ctrlHU_Organization
                         Case "UpdateView"
                             ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), NotifyType.Success)
                             Dim callFunction = Common.CommonRepository.GetOrganizationLocationTreeView()
-                            lstOrganization = rep.GetOrganization()
+                            'lstOrganization = rep.GetOrganization()
                             Dim lstorgper = (From p In Common.Common.OrganizationLocationDataSession Select p.ID).ToList()
-                            Dim lst = (From p In lstOrganization Where lstorgper.Contains(p.ID)).ToList()
-                            Me.Organizations = lst
+                            'Dim lst = (From p In lstOrganization Where lstorgper.Contains(p.ID)).ToList()
+                            'Me.Organizations = lst
+                            Dim temp_org = rep1.GETORGANIZATION_NEW()
+                            Organizations_New = (From n In temp_org.AsEnumerable
+                                                 Where lstorgper.Contains(n.Field(Of Decimal)("ID"))
+                                                 Select n).CopyToDataTable
                             CurrentState = CommonMessage.STATE_NORMAL
                             UpdateToolbarState(CurrentState)
                         Case "InsertView"
                             ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), NotifyType.Success)
                             Dim callFunction = Common.CommonRepository.GetOrganizationLocationTreeView()
-                            lstOrganization = rep.GetOrganization()
+                            'lstOrganization = rep.GetOrganization()
                             Dim lstorgper = (From p In Common.Common.OrganizationLocationDataSession Select p.ID).ToList()
-                            Dim lst = (From p In lstOrganization Where lstorgper.Contains(p.ID)).ToList()
-                            Me.Organizations = lst
+                            'Dim lst = (From p In lstOrganization Where lstorgper.Contains(p.ID)).ToList()
+                            'Me.Organizations = lst
+                            Dim temp_org = rep1.GETORGANIZATION_NEW()
+                            Organizations_New = (From n In temp_org.AsEnumerable
+                                                 Where lstorgper.Contains(n.Field(Of Decimal)("ID"))
+                                                 Select n).CopyToDataTable
                             CurrentState = CommonMessage.STATE_NORMAL
                     End Select
                 End If
 
                 'Đưa dữ liệu vào Grid
-                If Me.Organizations IsNot Nothing Then
+                If Me.Organizations_New IsNot Nothing Then
                     If SelectOrgFunction Is String.Empty Then
                         SelectOrgFunction = treeOrgFunction.SelectedValue
                     End If
-                    BuildTreeNode(treeOrgFunction, Me.Organizations, cbDissolve.Checked)
+                    BuildTreeNode(treeOrgFunction, Me.Organizations_New, cbDissolve.Checked)
                 End If
                 rep.Dispose()
                 _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
@@ -226,41 +266,85 @@ Public Class ctrlHU_Organization
     ''' </summary>
     ''' <remarks></remarks>
     Private Sub GetDataCombo()
-        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
-        Dim startTime As DateTime = DateTime.UtcNow
+        'Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+        'Dim startTime As DateTime = DateTime.UtcNow
         Try
-            If procedure Is Nothing Then
-                procedure = New ProfileStoreProcedure()
-            End If
+            'If procedure Is Nothing Then
+            '    procedure = New ProfileStoreProcedure()
+            'End If
             'Lấy danh sách dv đóng bảo hiểm.
-            dtIsunace = procedure.GetListInsurance()
+            Dim rep1 = New ProfileStoreProcedure()
+            dtIsunace = rep1.GetListInsurance()
             If Not dtIsunace Is Nothing AndAlso dtIsunace.Rows.Count > 0 Then
                 FillRadCombobox(cboU_insurance, dtIsunace, "NAME", "ID")
             End If
             'Lấy danh sách vùng bảo hiểm
-            dtRegion = procedure.GetInsListRegion()
+            dtRegion = rep1.GetInsListRegion()
             If Not dtRegion Is Nothing AndAlso dtRegion.Rows.Count > 0 Then
                 FillRadCombobox(cboRegion, dtRegion, "REGION_NAME", "ID")
             End If
-            'Lấy danh sách cấp đơn vị
-            dtOrgLevel = procedure.GET_ORG_LEVEL()
-            If Not dtOrgLevel Is Nothing AndAlso dtOrgLevel.Rows.Count > 0 Then
-                FillRadCombobox(cboOrg_level, dtOrgLevel, "NAME_VN", "ID")
-            End If
+
             Dim rep As New ProfileRepository
-            Dim UNIT_LEVEL As New ComboBoxDataDTO
-            UNIT_LEVEL.GET_UNIT_LEVEL = True
-            Dim isUnitlevel = rep.GetComboList(UNIT_LEVEL)
-            If isUnitlevel AndAlso cbUNIT_LEVEL.Items.Count < 1 Then
-                'FillRadCombobox(cbUNIT_LEVEL, UNIT_LEVEL.LIST_UNIT_LEVEL, "NAME_VN", "ID")
-                FillDropDownList(cbUNIT_LEVEL, UNIT_LEVEL.LIST_UNIT_LEVEL, "NAME_VN", "ID")
-            End If
-            _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
+            Dim dtcbo = rep.GetOtherList("GROUP_PAID", True)
+            FillRadCombobox(cboGROUP_PAID_ID, dtcbo, "NAME", "ID")
+
+            Dim dtcbo1 = rep.GetOtherList("ORG_LEVEL", True)
+            FillRadCombobox(cboUNIT_RANK_ID, dtcbo1, "NAME", "ID")
+
+            Dim dtcbo2 = rep.GetProvinceList(True)
+            FillRadCombobox(cboPROVINCE_ID, dtcbo2, "NAME", "ID")
+            FillRadCombobox(cboPROVINCE_CONTRACT_ID, dtcbo2, "NAME", "ID")
+
+            'Dim dtcbo3 = rep.GetDistrictList(0, False)
+            'FillRadCombobox(cboDISTRICT_ID, dtcbo3, "NAME", "ID")
+
+            'Dim dtcbo6 = rep.GetDistrictList(0, False)
+            'FillRadCombobox(cboDISTRICT_CONTRACT_ID, dtcbo6, "NAME", "ID")
+
+            Dim dtcbo4 = rep.GetBankList(True)
+            FillRadCombobox(cboBANK_ID, dtcbo4, "NAME", "ID")
+
+            'Dim dtcbo5 = rep.GetBankBranchList(0)
+            'FillRadCombobox(cboBANK_BRACH_ID, dtcbo5, "NAME", "ID")
+
+            DT_District = rep1.GetAllDistrict()
+            Dim json_obj = From n In DT_District.AsEnumerable
+                           Select New With {
+                               .ID = n.Field(Of Decimal)("ID"),
+                               .NAME_VN = n.Field(Of String)("NAME_VN"),
+                               .PROVINCE_ID = n.Field(Of Decimal?)("PROVINCE_ID")
+                             }
+            Dim s = New Script.Serialization.JavaScriptSerializer().Serialize(json_obj.ToArray)
+            hidListDistrict.Value = s
+
+            DT_HU_BANK_BRANC = rep1.GETALLHU_BANK_BRANCH()
+            Dim json_obj1 = From n In DT_HU_BANK_BRANC.AsEnumerable
+                            Select New With {
+                               .ID = n.Field(Of Decimal)("ID"),
+                               .NAME_VN = n.Field(Of String)("NAME"),
+                               .PROVINCE_ID = n.Field(Of Decimal?)("BANK_ID")
+                             }
+            Dim s1 = New Script.Serialization.JavaScriptSerializer().Serialize(json_obj1.ToArray)
+            hidListbankBrach.Value = s1
+            'Lấy danh sách cấp đơn vị
+            'dtOrgLevel = procedure.GET_ORG_LEVEL()
+            'If Not dtOrgLevel Is Nothing AndAlso dtOrgLevel.Rows.Count > 0 Then
+            '    FillRadCombobox(cboOrg_level, dtOrgLevel, "NAME_VN", "ID")
+            'End If
+
+            'Dim UNIT_LEVEL As New ComboBoxDataDTO
+            'UNIT_LEVEL.GET_UNIT_LEVEL = True
+            'Dim isUnitlevel = rep.GetComboList(UNIT_LEVEL)
+            'If isUnitlevel AndAlso cbUNIT_LEVEL.Items.Count < 1 Then
+            '    'FillRadCombobox(cbUNIT_LEVEL, UNIT_LEVEL.LIST_UNIT_LEVEL, "NAME_VN", "ID")
+            '    FillDropDownList(cbUNIT_LEVEL, UNIT_LEVEL.LIST_UNIT_LEVEL, "NAME_VN", "ID")
+            'End If
+            '_mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
             Throw ex
-            _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
+            '_mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
         Finally
-            procedure = Nothing
+            'procedure = Nothing
         End Try
     End Sub
 
@@ -280,31 +364,31 @@ Public Class ctrlHU_Organization
                 Dim startTime As DateTime = DateTime.UtcNow
                 Select Case CType(e.Item, RadToolBarButton).CommandName
                     Case CommonMessage.TOOLBARITEM_CREATE
-                        If Organizations.Count > 0 Then
+                        If Organizations_New.Rows.Count > 0 Then
                             If treeOrgFunction.SelectedNode Is Nothing Then
                                 ShowMessage("Chưa chọn phòng ban?", NotifyType.Warning)
                                 Exit Sub
                             End If
-                            txtParent_Name.Text = (From p In Organizations Where p.ID = Decimal.Parse(treeOrgFunction.SelectedNode.Value)).SingleOrDefault.NAME_VN
+                            txtParent_Name.Text = Organizations_New.Select("ID = " & treeOrgFunction.SelectedNode.Value)(0).Field(Of String)("NAME_VN")
                         End If
                         CurrentState = CommonMessage.STATE_NEW
                         txtCode.Focus()
                         'tr01.Visible = False
                         'tr02.Visible = False
-                        cbUNIT_LEVEL.ClearValue()
-                        objOrgFunction.REPRESENTATIVE_ID = Nothing
-                        hidRepresentative.Value = Nothing
-                        If treeOrgFunction.SelectedNode.Level = 0 Then
-                            'tr01.Visible = True
-                            'tr02.Visible = True
-                        End If
+                        'cbUNIT_LEVEL.ClearValue()
+                        'objOrgFunction.REPRESENTATIVE_ID = Nothing
+                        'hidRepresentative.Value = Nothing
+                        'If treeOrgFunction.SelectedNode.Level = 0 Then
+                        'tr01.Visible = True
+                        'tr02.Visible = True
+                        'End If
                     Case CommonMessage.TOOLBARITEM_EDIT
                         If treeOrgFunction.SelectedNode Is Nothing Then
                             ShowMessage("Chưa chọn phòng ban?", NotifyType.Warning)
                             Exit Sub
                         End If
-                        
-                        Organization = (From p In Organizations Where p.ID = Decimal.Parse(treeOrgFunction.SelectedNode.Value)).SingleOrDefault
+
+                        'Organization = (From p In Organizations Where p.ID = Decimal.Parse(treeOrgFunction.SelectedNode.Value)).SingleOrDefault
                         CurrentState = CommonMessage.STATE_EDIT
                         txtNameVN.Focus()
                     Case CommonMessage.TOOLBARITEM_ACTIVE, CommonMessage.TOOLBARITEM_DEACTIVE
@@ -313,9 +397,9 @@ Public Class ctrlHU_Organization
                             ShowMessage("Chưa chọn phòng ban?", NotifyType.Warning)
                             Exit Sub
                         End If
-                        ActiveOrganizations = (From p In Organizations Where p.ID = Decimal.Parse(treeOrgFunction.SelectedNode.Value)).ToList
-                        If ActiveOrganizations.Count > 0 Then
-                            sActive = ActiveOrganizations(0).ACTFLG
+                        Dim tmp_ActiveOrganizations = Organizations_New.AsEnumerable.FirstOrDefault(Function(p) p.Field(Of Decimal)("ID") = Decimal.Parse(treeOrgFunction.SelectedNode.Value))
+                        If tmp_ActiveOrganizations IsNot Nothing Then
+                            sActive = tmp_ActiveOrganizations.Field(Of String)("ACTFLG")
                             If sActive = "A" Then
                                 If CType(e.Item, RadToolBarButton).CommandName = CommonMessage.TOOLBARITEM_ACTIVE Then
                                     ShowMessage("Các bản ghi đã ở trạng thái áp dụng trước đó, kiểm tra lại!", NotifyType.Warning)
@@ -329,7 +413,7 @@ Public Class ctrlHU_Organization
                             End If
 
                             If sActive = "A" Then
-                                If Not rep.CheckEmployeeInOrganization(GetAllChild(ActiveOrganizations(0).ID)) Then
+                                If Not rep.CheckEmployeeInOrganization(GetAllChild(tmp_ActiveOrganizations.Field(Of Decimal)("ID"))) Then
                                     ShowMessage("Bạn phải điều chuyển toàn bộ nhân viên trước khi giải thể.", NotifyType.Warning)
                                     Exit Sub
                                 End If
@@ -348,321 +432,180 @@ Public Class ctrlHU_Organization
                         Common.Common.OrganizationLocationDataSession = Nothing
                     Case CommonMessage.TOOLBARITEM_CANCEL
                         CurrentState = CommonMessage.STATE_NORMAL
-                        'FillDataByTree()
+                        ClearControl()
+                        FillDataByTree()
                     Case CommonMessage.TOOLBARITEM_SAVE
                         Dim strFiles As String = String.Empty
                         If Not Page.IsValid Then
                             Exit Sub
                         End If
-                        Try
-                            strFiles = lstFile.CheckedItems.Select(Function(x) x.Text).Aggregate(Function(x, y) x & "# " & y)
-                        Catch ex As Exception
-                            strFiles = ""
-                        End Try
-                        objOrgFunction.CODE = txtCode.Text
-                        objOrgFunction.NUMBER_DECISION = txtNumberDecision.Text
-                        objOrgFunction.TYPE_DECISION = txtTypeDecision.Text
-                        objOrgFunction.LOCATION_WORK = txtLocationWork.Text
-                        objOrgFunction.NAME_EN = txtNameEN.Text
-                        objOrgFunction.NAME_VN = txtNameVN.Text
-                        objOrgFunction.REMARK = txtREMARK.Text
-                        objOrgFunction.ADDRESS = rtADDRESS.Text
-                        objOrgFunction.FILES = strFiles
-                        objOrgFunction.NUMBER_BUSINESS = rtNUMBER_BUSINESS.Text
-                        objOrgFunction.DATE_BUSINESS = rdDATE_BUSINESS.SelectedDate
-                        Dim ISURANCE As Decimal = 0.0
-                        Dim REGION As Decimal = 0.0
-                        Dim ORG_LEVEL As Decimal = 0.0
-                        If IsNumeric(cbUNIT_LEVEL.SelectedValue) Then
-                            objOrgFunction.UNIT_LEVEL = cbUNIT_LEVEL.SelectedValue
-                        End If
-                        If IsDate(rdEffectDate.SelectedDate) Then
-                            objOrgFunction.EFFECT_DATE = rdEffectDate.SelectedDate
-                        End If
-                        If IsDate(rdDATE_BUSINESS.SelectedDate) Then
-                            objOrgFunction.DATE_BUSINESS = rdDATE_BUSINESS.SelectedDate
-                        End If
-                        If IsDate(rdFOUNDATION_DATE.SelectedDate) Then
-                            objOrgFunction.FOUNDATION_DATE = rdFOUNDATION_DATE.SelectedDate
-                        End If
+                        Dim row = New HU_ORGANIZATION_NEW
+                        If CurrentState = CommonMessage.STATE_NEW Then
 
-                        If IsNumeric(rdOrdNo.Value) Then
-                            objOrgFunction.ORD_NO = rdOrdNo.Value
-                        Else
-                            objOrgFunction.ORD_NO = 0
-                        End If
-
-                        If IsDate(rdDicision_Date.SelectedDate) Then
-                            objOrgFunction.DISSOLVE_DATE = rdDicision_Date.SelectedDate
-                        End If
-                        If chkOrgChart.Checked = True Then
-                            objOrgFunction.CHK_ORGCHART = True
-                        Else
-                            objOrgFunction.CHK_ORGCHART = False
-                        End If
-                        If Decimal.TryParse(cboU_insurance.SelectedValue.ToString, ISURANCE) Then
-                            objOrgFunction.U_INSURANCE = cboU_insurance.SelectedValue
-                        Else
-                            objOrgFunction.U_INSURANCE = ISURANCE
-                        End If
-                        If Decimal.TryParse(cboRegion.SelectedValue.ToString, REGION) Then
-                            objOrgFunction.REGION_ID = cboRegion.SelectedValue
-                        Else
-                            objOrgFunction.REGION_ID = REGION
-                        End If
-                        If Decimal.TryParse(cboOrg_level.SelectedValue.ToString, ORG_LEVEL) Then
-                            objOrgFunction.ORG_LEVEL = cboOrg_level.SelectedValue
-                        Else
-                            objOrgFunction.ORG_LEVEL = ORG_LEVEL
-                        End If
-                        If hidRepresentative.Value = "" Then
-                            objOrgFunction.REPRESENTATIVE_ID = Nothing
-                        Else
-                            objOrgFunction.REPRESENTATIVE_ID = hidRepresentative.Value
-                        End If
-                        Dim objPath As OrganizationPathDTO
-                        'If treeOrgFunction.SelectedNode IsNot Nothing Then
-                        '    objPath = GetUpLevelByNode(treeOrgFunction.SelectedNode)
-                        '    objOrgFunction.HIERARCHICAL_PATH = objPath.HIERARCHICAL_PATH
-                        '    objOrgFunction.DESCRIPTION_PATH = objPath.DESCRIPTION_PATH
-                        'End If
-                        Dim lstPath As New List(Of OrganizationPathDTO)
-                        If hidID.Value IsNot Nothing Then
-                            If hidID.Value <> "" Then
-                                objOrgFunction.PARENT_ID = Decimal.Parse(hidID.Value)
-                            End If
                         End If
                         Select Case CurrentState
                             Case CommonMessage.STATE_NEW
-                                If objOrgFunction.PARENT_ID = 0 Then
-                                    If Organizations.Select(Function(p) p.PARENT_ID = 0).Count > 0 Then
+                                row.PARENT_ID = treeOrgFunction.SelectedNode.Value
+                            Case CommonMessage.STATE_EDIT
+                                If hidParentID.Value IsNot Nothing Then
+                                    If hidParentID.Value <> "" Then
+                                        row.PARENT_ID = Decimal.Parse(hidParentID.Value)
+                                    End If
+                                End If
+                                If row.PARENT_ID = 0 Then
+                                    If Organizations_New.AsEnumerable.Where(Function(n) n.Field(Of Decimal)("PARENT_ID") = 0).Count() > 0 Then 'Organizations.Select(Function(p) p.PARENT_ID = 0).Count > 0 Then
                                         ShowMessage("Đã tồn tại phòng ban cao nhất?", NotifyType.Warning)
                                         Exit Sub
                                     End If
                                 End If
-                                objOrgFunction.ACTFLG = "A"
-                                If treeOrgFunction.Nodes.Count > 0 Then
-                                    GetDownLevelByNode(treeOrgFunction.Nodes(0), lstPath)
-                                End If
-                                Dim id As Decimal
-                                id = rep.GetMaxId()
-                                id = id + 1
-                                If treeOrgFunction.SelectedNode IsNot Nothing Then
-                                    objPath = GetUpLevelByNode(treeOrgFunction.SelectedNode)
-                                    objOrgFunction.HIERARCHICAL_PATH = objPath.HIERARCHICAL_PATH + ";" + id.ToString
-                                    ' objOrgFunction.DESCRIPTION_PATH = objPath.DESCRIPTION_PATH
-                                    Dim mang()
-                                    Dim str As String = ""
-                                    mang = objPath.HIERARCHICAL_PATH.Split(";")
-                                    For Each line In mang
-                                        Dim chuoi = rep.GetNameOrg(line)
-                                        str += chuoi + ";"
-                                    Next
-                                    str += txtNameVN.Text
-                                    objOrgFunction.DESCRIPTION_PATH = str
-                                End If
-                                'GetDownLevelByNode(treeOrgFunction.Nodes(0), lstPath)
-                                If rep.InsertOrganization(objOrgFunction, gID) Then
-                                    '' số bản ghi cập nhật
-                                    'Dim iSoBanGhi As Integer = 50
-                                    '' số dư để làm tròn
-                                    'Dim iSoDu As Integer = lstPath.Count Mod iSoBanGhi
-                                    'Dim iTongVongLap As Integer
-                                    '' số vòng lặp khi làm tròn vs số bản ghi cập nhật
-                                    'If iSoDu = 0 Then
-                                    '    iTongVongLap = (lstPath.Count - iSoDu) / iSoBanGhi
-                                    'Else
-                                    '    iTongVongLap = ((lstPath.Count - iSoDu) / iSoBanGhi) + 1
-                                    'End If
+                        End Select
 
-                                    'For item = 0 To iTongVongLap - 1
-                                    '    ' cập nhật từng đợt ( tối đa = số bản ghi cập nhật )
-                                    '    Dim lstUpdate As New List(Of OrganizationPathDTO)
+                        row.CODE = txtCode.Text
+                        row.NAME_EN = txtNameEN.Text
+                        row.NAME_VN = txtNameVN.Text
+                        row.REMARK = txtREMARK.Text
+                        row.ADDRESS = rtADDRESS.Text
 
-                                    '    If item <> iTongVongLap - 1 Then
-                                    '        For idx = item * iSoBanGhi To (item + 1) * iSoBanGhi - 1
-                                    '            lstUpdate.Add(lstPath(idx))
-                                    '        Next
-                                    '    Else
-                                    '        For idx = item * iSoBanGhi To lstPath.Count - 1
-                                    '            lstUpdate.Add(lstPath(idx))
-                                    '        Next
-                                    '    End If
-                                    '    ' cập nhật bản ghi
-                                    '    rep.ModifyOrganizationPath(lstUpdate)
-                                    'Next
-                                    'Using commonRepo = New CommonRepository()
-                                    '    Dim orgIds = commonRepo.GetUserOrganization(LogHelper.CurrentUser.ID)
-                                    '    Dim userOrgAccessDTOs = orgIds.Select(Function(s) New CommonBusiness.UserOrgAccessDTO() With {
-                                    '        .USER_ID = LogHelper.CurrentUser.ID,
-                                    '        .ORG_ID = s
-                                    '                                              }).ToList
+                        If IsDate(rdFOUNDATION_DATE.SelectedDate) Then
+                            row.FOUNDATION_DATE = rdFOUNDATION_DATE.SelectedDate
+                        End If
+                        If IsDate(rdDISSOLVE_DATE.SelectedDate) Then
+                            row.DISSOLVE_DATE = rdDISSOLVE_DATE.SelectedDate
+                        End If
 
-                                    '    userOrgAccessDTOs.Add(New CommonBusiness.UserOrgAccessDTO With {.USER_ID = LogHelper.CurrentUser.ID,
-                                    '                          .ORG_ID = gID})
+                        If IsNumeric(rdOrdNo.Value) Then
+                            row.ORD_NO = rdOrdNo.Value
+                        Else
+                            row.ORD_NO = 0
+                        End If
 
-                                    '    commonRepo.UpdateUserOrganization(userOrgAccessDTOs)
-                                    'End Using
+                        Dim ISURANCE As Decimal = 0.0
+                        If Decimal.TryParse(cboU_insurance.SelectedValue.ToString, ISURANCE) Then
+                            row.U_INSURANCE = cboU_insurance.SelectedValue
+                        Else
+                            row.U_INSURANCE = ISURANCE
+                        End If
 
-                                    'CurrentState = CommonMessage.STATE_NORMAL
-                                    'Refresh("InsertView")
+                        Dim REGION As Decimal = 0.0
+                        If Decimal.TryParse(cboRegion.SelectedValue.ToString, REGION) Then
+                            row.REGION_ID = cboRegion.SelectedValue
+                        Else
+                            row.REGION_ID = REGION
+                        End If
+                        If hidREPRESENTATIVE_ID.Value = "" Then
+                            row.REPRESENTATIVE_ID = Nothing
+                        Else
+                            row.REPRESENTATIVE_ID = hidREPRESENTATIVE_ID.Value
+                        End If
 
+                        If hidACCOUNTING_ID.Value = "" Then
+                            row.ACCOUNTING_ID = Nothing
+                        Else
+                            row.ACCOUNTING_ID = hidACCOUNTING_ID.Value
+                        End If
+
+                        If hidHR_ID.Value = "" Then
+                            row.HR_ID = Nothing
+                        Else
+                            row.HR_ID = hidHR_ID.Value
+                        End If
+                        '--------------
+                        row.SHORT_NAME = txtSHORT_NAME.Text
+                        row.IS_SIGN_CONTRACT = chkIsSignContract.Checked
+                        row.CONTRACT_CODE = txtCONTRACT_CODE.Text
+                        row.FAX = txtFAX.Text
+                        row.WEBSITE_LINK = txtWEBSITE_LINK.Text
+                        row.BANK_NO = txtBANK_NO.Text
+                        row.PIT_NO = txtPIT_NO.Text
+                        row.NUMBER_BUSINESS = txtNUMBER_BUSINESS.Text
+                        row.BUSS_REG_NAME = txtBUSS_REG_NAME.Text
+                        row.MAN_UNI_NAME = txtMAN_UNI_NAME.Text
+                        row.AUTHOR_LETTER = txtAUTHOR_LETTER.Text
+
+                        If cboGROUP_PAID_ID.SelectedValue <> "" Then
+                            row.GROUP_PAID_ID = cboGROUP_PAID_ID.SelectedValue
+                        End If
+                        If cboUNIT_RANK_ID.SelectedValue <> "" Then
+                            row.UNIT_RANK_ID = cboUNIT_RANK_ID.SelectedValue
+                        End If
+                        If cboPROVINCE_ID.SelectedValue <> "" Then
+                            row.PROVINCE_ID = cboPROVINCE_ID.SelectedValue
+                        End If
+                        If cboDISTRICT_ID.SelectedValue <> "" Then
+                            row.DISTRICT_ID = cboDISTRICT_ID.SelectedValue
+                        End If
+                        If cboPROVINCE_ID.SelectedValue <> "" Then
+                            row.PROVINCE_ID = cboPROVINCE_ID.SelectedValue
+                        End If
+                        If cboBANK_ID.SelectedValue <> "" Then
+                            row.BANK_ID = cboBANK_ID.SelectedValue
+                        End If
+                        If cboBANK_BRACH_ID.SelectedValue <> "" Then
+                            row.BANK_BRACH_ID = cboBANK_BRACH_ID.SelectedValue
+                        End If
+                        If cboPROVINCE_CONTRACT_ID.SelectedValue <> "" Then
+                            row.PROVINCE_CONTRACT_ID = cboPROVINCE_CONTRACT_ID.SelectedValue
+                        End If
+                        If cboDISTRICT_CONTRACT_ID.SelectedValue <> "" Then
+                            row.DISTRICT_CONTRACT_ID = cboDISTRICT_CONTRACT_ID.SelectedValue
+                        End If
+                        row.IS_SIGN_CONTRACT = chkIsSignContract.Checked
+                        'Dim objPath As OrganizationPathDTO
+                        Dim lstPath As New List(Of OrganizationPathDTO)
+                        Select Case CurrentState
+                            Case CommonMessage.STATE_NEW
+                                Dim rep1 = New ProfileStoreProcedure
+                                If rep1.ADDNEW_ORGANIZATION(row) > 0 Then
                                     Refresh("InsertView")
-                                    'If treeOrgFunction.Nodes.Count > 0 Then
-                                    '    GetDownLevelByNode(treeOrgFunction.Nodes(0), lstPath)
-                                    'End If
-                                    ' số bản ghi cập nhật
-                                    Dim iSoBanGhi As Integer = 50
-                                    ' số dư để làm tròn
-                                    Dim iSoDu As Integer = lstPath.Count Mod iSoBanGhi
-                                    Dim iTongVongLap As Integer
-                                    ' số vòng lặp khi làm tròn vs số bản ghi cập nhật
-                                    'If iSoDu = 0 Then
-                                    '    iTongVongLap = (lstPath.Count - iSoDu) / iSoBanGhi
-                                    'Else
-                                    '    iTongVongLap = ((lstPath.Count - iSoDu) / iSoBanGhi) + 1
-                                    'End If
-                                    'For item = 0 To iTongVongLap - 1
-                                    '    ' cập nhật từng đợt ( tối đa = số bản ghi cập nhật )
-                                    '    Dim lstUpdate As New List(Of OrganizationPathDTO)
-
-                                    '    If item <> iTongVongLap - 1 Then
-                                    '        For idx = item * iSoBanGhi To (item + 1) * iSoBanGhi - 1
-                                    '            lstUpdate.Add(lstPath(idx))
-                                    '        Next
-                                    '    Else
-                                    '        For idx = item * iSoBanGhi To lstPath.Count - 1
-                                    '            lstUpdate.Add(lstPath(idx))
-                                    '        Next
-                                    '    End If
-                                    '    ' cập nhật bản ghi
-                                    '    rep.ModifyOrganizationPath(lstUpdate)
-                                    'Next
-
                                     CurrentState = CommonMessage.STATE_NORMAL
-
                                     Common.Common.OrganizationLocationDataSession = Nothing
                                 Else
                                     ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), Utilities.NotifyType.Error)
                                 End If
                                 Common.Common.OrganizationLocationDataSession = Nothing
                             Case CommonMessage.STATE_EDIT
-                                If treeOrgFunction.SelectedNode IsNot Nothing Then
-                                    objPath = GetUpLevelByNode(treeOrgFunction.SelectedNode)
-                                    objOrgFunction.HIERARCHICAL_PATH = objPath.HIERARCHICAL_PATH
-                                    objOrgFunction.DESCRIPTION_PATH = objPath.DESCRIPTION_PATH
-                                End If
-                                objOrgFunction.ID = Decimal.Parse(hidID.Value)
-                                'objOrgFunction.ID = Decimal.Parse(hidID.Value)
-                                'GetDownLevelByNode(treeOrgFunction.Nodes(0), lstPath)
-                                'objOrgFunction.DESCRIPTION_PATH = objPath.DESCRIPTION_PATH.Replace(treeOrgFunction.SelectedNode.Text, txtCode.Text + " - " + txtNameVN.Text)
-                                If rep.ModifyOrganization(objOrgFunction, gID) Then
+                                'If treeOrgFunction.SelectedNode IsNot Nothing Then
+                                '    objPath = GetUpLevelByNode(treeOrgFunction.SelectedNode)
+                                '    objOrgFunction.HIERARCHICAL_PATH = objPath.HIERARCHICAL_PATH
+                                '    objOrgFunction.DESCRIPTION_PATH = objPath.DESCRIPTION_PATH
+                                'End If
+                                row.ID = Decimal.Parse(hidID.Value)
+                                Dim rep1 = New ProfileStoreProcedure
+                                If rep1.UPDATE_ORGANIZATION_NEW(row) > 0 Then
                                     Refresh("UpdateView")
-                                    GetDownLevelByNode(treeOrgFunction.Nodes(0), lstPath)
-                                    ' số bản ghi cập nhật
-                                    Dim iSoBanGhi As Integer = 50
-                                    ' số dư để làm tròn
-                                    Dim iSoDu As Integer = lstPath.Count Mod iSoBanGhi
-                                    Dim iTongVongLap As Integer
-                                    ' số vòng lặp khi làm tròn vs số bản ghi cập nhật
-                                    If iSoDu = 0 Then
-                                        iTongVongLap = (lstPath.Count - iSoDu) / iSoBanGhi
-                                    Else
-                                        iTongVongLap = ((lstPath.Count - iSoDu) / iSoBanGhi) + 1
-                                    End If
-
-                                    For item = 0 To iTongVongLap - 1
-                                        ' cập nhật từng đợt ( tối đa = số bản ghi cập nhật )
-                                        Dim lstUpdate As New List(Of OrganizationPathDTO)
-
-                                        If item <> iTongVongLap - 1 Then
-                                            For idx = item * iSoBanGhi To (item + 1) * iSoBanGhi - 1
-                                                lstUpdate.Add(lstPath(idx))
-                                            Next
-                                        Else
-                                            For idx = item * iSoBanGhi To lstPath.Count - 1
-                                                lstUpdate.Add(lstPath(idx))
-                                            Next
-                                        End If
-                                        ' cập nhật bản ghi
-                                        rep.ModifyOrganizationPath(lstUpdate)
-                                    Next
-
                                     CurrentState = CommonMessage.STATE_NORMAL
-
                                     Common.Common.OrganizationLocationDataSession = Nothing
                                 Else
                                     ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), Utilities.NotifyType.Error)
                                 End If
+                                Common.Common.OrganizationLocationDataSession = Nothing
                         End Select
-                        If gID <> 0 Then
-                            If ImageFile IsNot Nothing Then
-                                Dim filePath = AppDomain.CurrentDomain.BaseDirectory & "ReportTemplates\Profile\Organization\Logo\"
-                                If Not Directory.Exists(filePath) Then
-                                    Directory.CreateDirectory(filePath)
-                                End If
-                                Dim fileName As String = gID & "_" & ImageFile.GetName
-                                Dim dirs As String() = Directory.GetFiles(filePath, gID & "_*")
-                                If dirs.Length > 0 Then
-                                    For Each str As String In dirs
-                                        If File.Exists(str) Then
-                                            Try
-                                                File.Delete(str)
-                                            Catch ex As Exception
-                                            End Try
-                                        End If
-                                    Next
-                                End If
-                                ImageFile.SaveAs(filePath & fileName)
-                                'rbiEmployeeImage.Visible = True
-                            End If
-                            If LicenseFile IsNot Nothing Then
-                                Dim filePath = AppDomain.CurrentDomain.BaseDirectory & "ReportTemplates\Profile\Organization\License\"
-                                If Not Directory.Exists(filePath) Then
-                                    Directory.CreateDirectory(filePath)
-                                End If
-                                Dim fileName As String = gID & "_" & LicenseFile.GetName
-                                Dim dirs As String() = Directory.GetFiles(filePath, gID & "_*")
-                                If dirs.Length > 0 Then
-                                    For Each str As String In dirs
-                                        If File.Exists(str) Then
-                                            Try
-                                                File.Delete(str)
-                                            Catch ex As Exception
-                                            End Try
-                                        End If
-                                    Next
-                                End If
-                                LicenseFile.SaveAs(filePath & fileName)
-                                'btnDownFile.Visible = True
-                            End If
-                        End If
                 End Select
                 rep.Dispose()
                 UpdateToolbarState(CurrentState)
                 UpdateControlState()
                 'FillDataByTree()
                 check = ""
-                If CurrentState.ToUpper() = "NEW" Then
-                    chkOrgChart.Checked = True
-                    txtNameVN.Text = ""
-                    txtNameEN.Text = ""
-                    txtRepresentativeName.Text = ""
-                    txtCode.Text = ""
-                    rtNUMBER_BUSINESS.Text = ""
-                    rtADDRESS.Text = ""
-                    txtLocationWork.Text = ""
-                    txtTypeDecision.Text = ""
-                    txtNumberDecision.Text = ""
-                    rdEffectDate.SelectedDate = Nothing
-                    rdFOUNDATION_DATE.SelectedDate = Nothing
-                    rdOrdNo.Value = Nothing
-                    rdDATE_BUSINESS.SelectedDate = Nothing
-                    rdDicision_Date.SelectedDate = Nothing
-                    txtREMARK.Text = ""
-                    rdOrdNo.Value = Nothing
-                    GetDataCombo()
-                End If
+                'If CurrentState.ToUpper() = "NEW" Then
+                '    'chkOrgChart.Checked = True
+                '    txtNameVN.Text = ""
+                '    txtNameEN.Text = ""
+                '    'txtRepresentativeName.Text = ""
+                '    txtCode.Text = ""
+                '    'rtNUMBER_BUSINESS.Text = ""
+                '    rtADDRESS.Text = ""
+                '    'txtLocationWork.Text = ""
+                '    'txtTypeDecision.Text = ""
+                '    'txtNumberDecision.Text = ""
+                '    'rdEffectDate.SelectedDate = Nothing
+                '    rdFOUNDATION_DATE.SelectedDate = Nothing
+                '    rdOrdNo.Value = Nothing
+                '    'rdDATE_BUSINESS.SelectedDate = Nothing
+                '    'rdDicision_Date.SelectedDate = Nothing
+                '    txtREMARK.Text = ""
+                '    rdOrdNo.Value = Nothing
+                '    GetDataCombo()
+                'End If
                 _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
             Catch ex As Exception
                 DisplayException(Me.ViewName, Me.ID, ex)
@@ -733,7 +676,7 @@ Public Class ctrlHU_Organization
         Try
             Dim startTime As DateTime = DateTime.UtcNow
             SelectOrgFunction = treeOrgFunction.SelectedValue
-            BuildTreeNode(treeOrgFunction, Organizations, cbDissolve.Checked)
+            BuildTreeNode(treeOrgFunction, Organizations_New, cbDissolve.Checked)
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
             DisplayException(Me.ViewName, Me.ID, ex)
@@ -750,7 +693,7 @@ Public Class ctrlHU_Organization
             If treeOrgFunction.SelectedNode Is Nothing Then
                 Exit Sub
             End If
-            GetUpLevelByNode(treeOrgFunction.SelectedNode)
+            'GetUpLevelByNode(treeOrgFunction.SelectedNode)
             hidID.Value = treeOrgFunction.SelectedNode.Value
             SelectOrgFunction = treeOrgFunction.SelectedNode.Value
             treeOrgFunction.SelectedNode.ExpandParentNodes()
@@ -762,6 +705,70 @@ Public Class ctrlHU_Organization
         End Try
     End Sub
 
+    Private Sub btnREPRESENTATIVE_ID_Click(sender As Object, e As System.EventArgs) Handles btnREPRESENTATIVE_ID.Click
+        Try
+            ctrlREPRESENTATIVE_ID.Show()
+        Catch ex As Exception
+            ShowMessage(ex.ToString, NotifyType.Error)
+        End Try
+    End Sub
+
+    Private Sub ctrlREPRESENTATIVE_ID_EmployeeSelected(ByVal sender As Object, ByVal e As System.EventArgs) Handles ctrlREPRESENTATIVE_ID.EmployeeSelected
+        Try
+            Dim lstCommonEmployee = ctrlREPRESENTATIVE_ID.SelectedEmployee
+            If lstCommonEmployee.Count <> 0 Then
+                Dim item = lstCommonEmployee(0)
+                hidREPRESENTATIVE_ID.Value = item.ID
+                txtREPRESENTATIVE_ID.Text = item.FULLNAME_VN
+            End If
+        Catch ex As Exception
+            DisplayException(Me.ViewName, Me.ID, ex)
+        End Try
+    End Sub
+
+    Private Sub btnACCOUNTING_ID_Click(sender As Object, e As System.EventArgs) Handles btnACCOUNTING_ID.Click
+        Try
+            CtrlhidACCOUNTING_ID.Show()
+        Catch ex As Exception
+            ShowMessage(ex.ToString, NotifyType.Error)
+        End Try
+    End Sub
+
+    Private Sub CtrlhidACCOUNTING_ID_EmployeeSelected(ByVal sender As Object, ByVal e As System.EventArgs) Handles CtrlhidACCOUNTING_ID.EmployeeSelected
+        Try
+            Dim lstCommonEmployee = CtrlhidACCOUNTING_ID.SelectedEmployee
+            If lstCommonEmployee.Count <> 0 Then
+                Dim item = lstCommonEmployee(0)
+                hidACCOUNTING_ID.Value = item.ID
+                txtACCOUNTING_ID.Text = item.FULLNAME_VN
+            End If
+        Catch ex As Exception
+            DisplayException(Me.ViewName, Me.ID, ex)
+        End Try
+    End Sub
+
+    Private Sub btnHR_ID_Click(sender As Object, e As System.EventArgs) Handles btnHR_ID.Click
+        Try
+            CtrlHR_ID.Show()
+        Catch ex As Exception
+            ShowMessage(ex.ToString, NotifyType.Error)
+        End Try
+    End Sub
+
+    Private Sub CtrlHR_ID_EmployeeSelected(ByVal sender As Object, ByVal e As System.EventArgs) Handles CtrlHR_ID.EmployeeSelected
+        Try
+            Dim lstCommonEmployee = CtrlHR_ID.SelectedEmployee
+            If lstCommonEmployee.Count <> 0 Then
+                Dim item = lstCommonEmployee(0)
+                hidHR_ID.Value = item.ID
+                txtHR_ID.Text = item.FULLNAME_VN
+            End If
+        Catch ex As Exception
+            DisplayException(Me.ViewName, Me.ID, ex)
+        End Try
+    End Sub
+
+#Region "old"
     ''' <summary>
     ''' Author: TUNGNT
     ''' Des: Show Pop up chon nhan vien quan ly don vi
@@ -769,49 +776,50 @@ Public Class ctrlHU_Organization
     ''' </summary>
     ''' <param name="sender"></param>
     ''' <param name="e"></param>
-    Protected Sub btnFindRepresentative_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnFindRepresentative.Click
-        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+    'Protected Sub btnFindRepresentative_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnFindRepresentative.Click
+    '    Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
 
-        Try
-            Dim startTime As DateTime = DateTime.UtcNow
-            isLoadPopup = 1
-            UpdateControlState()
-            ctrlFindEmployeePopup.Show()
-            _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
-        Catch ex As Exception
-            DisplayException(Me.ViewName, Me.ID, ex)
-            _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
-        End Try
+    '    Try
+    '        Dim startTime As DateTime = DateTime.UtcNow
+    '        isLoadPopup = 1
+    '        UpdateControlState()
+    '        ctrlFindEmployeePopup.Show()
+    '        _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
+    '    Catch ex As Exception
+    '        DisplayException(Me.ViewName, Me.ID, ex)
+    '        _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
+    '    End Try
 
-    End Sub
+    'End Sub
+    'Private Sub ctrlFindEmployeePopup_CancelClick(ByVal sender As Object, ByVal e As System.EventArgs) _
+    '    Handles ctrlFindEmployeePopup.CancelClicked
+    '    isLoadPopup = 0
+    'End Sub
 
-    Private Sub ctrlFindEmployeePopup_CancelClick(ByVal sender As Object, ByVal e As System.EventArgs) _
-        Handles ctrlFindEmployeePopup.CancelClicked
-        isLoadPopup = 0
-    End Sub
+    'Private Sub ctrlFindEmployeePopup_EmployeeSelected(ByVal sender As Object, ByVal e As System.EventArgs) Handles ctrlFindEmployeePopup.EmployeeSelected
+    '    Dim lstCommonEmployee As New List(Of CommonBusiness.EmployeePopupFindDTO)
+    '    'Dim rep As New ProfileBusinessRepository
+    '    Dim startTime As DateTime = DateTime.UtcNow
+    '    Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
 
-    Private Sub ctrlFindEmployeePopup_EmployeeSelected(ByVal sender As Object, ByVal e As System.EventArgs) Handles ctrlFindEmployeePopup.EmployeeSelected
-        Dim lstCommonEmployee As New List(Of CommonBusiness.EmployeePopupFindDTO)
-        'Dim rep As New ProfileBusinessRepository
-        Dim startTime As DateTime = DateTime.UtcNow
-        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+    '    Try
+    '        lstCommonEmployee = CType(ctrlFindEmployeePopup.SelectedEmployee, List(Of CommonBusiness.EmployeePopupFindDTO))
+    '        If lstCommonEmployee.Count <> 0 Then
+    '            Dim item = lstCommonEmployee(0)
+    '            hidRepresentative.Value = item.ID.ToString
+    '            'txtRepresentativeName.Text = item.FULLNAME_VN
+    '            'lblChucDanh.Text = item.TITLE_NAME
+    '            DisplayImage(item.ID, item.IMAGE)
+    '        End If
+    '        isLoadPopup = 0
+    '        _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
+    '    Catch ex As Exception
+    '        DisplayException(Me.ViewName, Me.ID, ex)
+    '        _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
+    '    End Try
+    'End Sub
+#End Region
 
-        Try
-            lstCommonEmployee = CType(ctrlFindEmployeePopup.SelectedEmployee, List(Of CommonBusiness.EmployeePopupFindDTO))
-            If lstCommonEmployee.Count <> 0 Then
-                Dim item = lstCommonEmployee(0)
-                hidRepresentative.Value = item.ID.ToString
-                txtRepresentativeName.Text = item.FULLNAME_VN
-                'lblChucDanh.Text = item.TITLE_NAME
-                DisplayImage(item.ID, item.IMAGE)
-            End If
-            isLoadPopup = 0
-            _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
-        Catch ex As Exception
-            DisplayException(Me.ViewName, Me.ID, ex)
-            _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
-        End Try
-    End Sub
 
 #End Region
 
@@ -823,16 +831,16 @@ Public Class ctrlHU_Organization
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
 
         Try
-            Select Case isLoadPopup
-                Case 1
-                    If Not phPopup.Controls.Contains(ctrlFindEmployeePopup) Then
-                        ctrlFindEmployeePopup = Me.Register("ctrlFindEmployeePopup", "Common", "ctrlFindEmployeePopup")
-                        phPopup.Controls.Add(ctrlFindEmployeePopup)
-                        ctrlFindEmployeePopup.MultiSelect = False
-                        ctrlFindEmployeePopup.MustHaveContract = False
-                        ctrlFindEmployeePopup.LoadAllOrganization = True
-                    End If
-            End Select
+            'Select Case isLoadPopup
+            '    Case 1
+            '        If Not phPopup.Controls.Contains(ctrlFindEmployeePopup) Then
+            '            ctrlFindEmployeePopup = Me.Register("ctrlFindEmployeePopup", "Common", "ctrlFindEmployeePopup")
+            '            phPopup.Controls.Add(ctrlFindEmployeePopup)
+            '            ctrlFindEmployeePopup.MultiSelect = False
+            '            ctrlFindEmployeePopup.MustHaveContract = False
+            '            ctrlFindEmployeePopup.LoadAllOrganization = True
+            '        End If
+            'End Select
             Select Case CurrentState
                 Case CommonMessage.STATE_NEW
                 Case CommonMessage.STATE_NORMAL
@@ -871,138 +879,25 @@ Public Class ctrlHU_Organization
             Dim startTime As DateTime = DateTime.UtcNow
             Select Case sState
                 Case CommonMessage.STATE_NORMAL
-
-                    lstFile.Items.Clear()
-                    txtNameVN.ReadOnly = True
-                    txtNameVN.CausesValidation = False
-                    txtNameEN.ReadOnly = True
-                    txtCode.CausesValidation = False
-                    txtCode.ReadOnly = True
-                    txtREMARK.ReadOnly = True
-                    rtADDRESS.ReadOnly = True
-                    txtLocationWork.ReadOnly = True
-                    txtNumberDecision.ReadOnly = True
-                    txtTypeDecision.ReadOnly = True
-                    chkOrgChart.Enabled = False
-                    btnDownloadFile.Enabled = False
-                    btnUploadFile.Enabled = False
-                    rtNUMBER_BUSINESS.ReadOnly = True
-                    rdDATE_BUSINESS.Enabled = False
-                    rdFOUNDATION_DATE.Enabled = False
-                    rdEffectDate.Enabled = False
-                    rdDicision_Date.Enabled = False
-                    rdOrdNo.Enabled = False
-                    'txtFax.ReadOnly = True
-                    'txtMobile.ReadOnly = True
-                    'txtProvinceName.ReadOnly = True
-                    'rntxtOrdNo.ReadOnly = True
-                    'cboCostCenterCode.Enabled = False
-                    'txtNumber_business.ReadOnly = True
-                    cboU_insurance.Enabled = False
-                    cboOrg_level.Enabled = False
-                    cboRegion.Enabled = False
-                    cbUNIT_LEVEL.Enabled = False
-                    treeOrgFunction.Enabled = True
-                    cbDissolve.Enabled = True
-                    btnFindRepresentative.Enabled = False
-                    'AutoGenTimeSheet.Enabled = False
-                    '_radAsynceUpload.Enabled = False
-                    '_radAsynceUpload1.Enabled = False
-
+                    EnableControl(False)
                 Case CommonMessage.STATE_NEW
-                    lstFile.Items.Clear()
-                    UpdateToolbarState(CommonMessage.STATE_EDIT)
-                    txtCode.Enabled = True
-                    txtCode.Text = ""
-                    'AutoGenTimeSheet.Checked = False
-                    'txtNameVN.Text = ""
-                    txtREMARK.Text = ""
-                    rtADDRESS.Text = ""
-                    txtLocationWork.Text = ""
-                    txtNumberDecision.Text = ""
-                    txtTypeDecision.Text = ""
-                    check = "EDITFILE"
-                    chkOrgChart.Checked = True
-                    'txtFax.Text = ""
-                    'txtMobile.Text = ""
-                    'txtProvinceName.Text = ""
-                    'cboCostCenterCode.Text = ""
-                    txtRepresentativeName.Text = ""
-                    rtADDRESS.Text = ""
-                    txtREMARK.Text = ""
-                    'txtNumber_business.Text = ""
-                    cboU_insurance.Text = ""
-                    cboOrg_level.Text = ""
-                    cboRegion.Text = ""
-
-                    'lblChucDanh.Text = ""
-                    'rdDate_Business.SelectedDate = Nothing
-                    'rntxtOrdNo.Value = Nothing
-                    rdEffectDate.SelectedDate = Nothing
-                    rdDicision_Date.SelectedDate = Nothing
-                    rdFOUNDATION_DATE.SelectedDate = Nothing
-                    rdOrdNo.Value = Nothing
-                    'AutoGenTimeSheet.Enabled = True
+                    EnableControl(True)
+                    ClearControl()
                 Case (CommonMessage.STATE_EDIT)
-                    cbDissolve.Enabled = False
+                    EnableControl(True)
                     treeOrgFunction.Enabled = False
-                    txtCode.ReadOnly = False
-                    txtNameVN.ReadOnly = False
-                    txtNameEN.ReadOnly = False
-                    txtREMARK.ReadOnly = False
-                    rtADDRESS.ReadOnly = False
-                    txtLocationWork.ReadOnly = False
-                    txtNumberDecision.ReadOnly = False
-                    txtTypeDecision.ReadOnly = False
-                    chkOrgChart.Enabled = True
-                    btnDownloadFile.Enabled = True
-                    btnUploadFile.Enabled = True
-                    'txtFax.ReadOnly = False
-                    'txtMobile.ReadOnly = False
-                    'txtProvinceName.ReadOnly = False
-                    'rntxtOrdNo.ReadOnly = False
-                    'cboCostCenterCode.Enabled = True
-                    btnFindRepresentative.Enabled = True
-                    'txtNumber_business.ReadOnly = False
-                    cboU_insurance.Enabled = True
-                    cboOrg_level.Enabled = True
-                    cboRegion.Enabled = True
-                    cbUNIT_LEVEL.Enabled = True
-                    'EnableRadDatePicker(rdDate_Business, True)
-                    'AutoGenTimeSheet.Enabled = False
-                    EnableRadDatePicker(rdDicision_Date, True)
-                    EnableRadDatePicker(rdFOUNDATION_DATE, True)
-                    rdOrdNo.Enabled = True
-                    EnableRadDatePicker(rdEffectDate, True)
-                    '_radAsynceUpload.Enabled = True
-                    '_radAsynceUpload1.Enabled = True
                 Case "Nothing"
                     txtCode.ReadOnly = False
                     txtCode.Text = ""
                     txtNameVN.Text = ""
-                    'txtRemark.Text = ""
-                    'rdDissolveDate.SelectedDate = Nothing
-                    'rdFoundationDate.SelectedDate = Nothing
                     hidID.Value = ""
                     hidParentID.Value = ""
-                    hidRepresentative.Value = ""
+                    'hidRepresentative.Value = ""
                     txtParent_Name.Text = ""
                     rtADDRESS.Text = ""
                     txtREMARK.Text = ""
-                    txtLocationWork.Text = ""
-                    txtNumberDecision.Text = ""
-                    txtTypeDecision.Text = ""
-                    'txtFax.Text = ""
-                    'txtMobile.Text = ""
-                    'txtProvinceName.Text = ""
-                    'cboCostCenterCode.Text = ""
-                    txtRepresentativeName.Text = ""
-                    'rntxtOrdNo.Value = Nothing
-                    'txtNumber_business.Text = ""
                     cboU_insurance.Text = ""
-                    cboOrg_level.Text = ""
                     cboRegion.Text = ""
-                    'rdDate_Business.SelectedDate = Nothing
                     _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
             End Select
             ChangeToolbarState()
@@ -1012,9 +907,117 @@ Public Class ctrlHU_Organization
         End Try
 
     End Sub
+    Sub ClearControl()
+        txtCode.Text = ""
+        txtNameEN.Text = ""
+        txtSHORT_NAME.Text = ""
+        cboGROUP_PAID_ID.SelectedValue = Nothing
+        cboGROUP_PAID_ID.Text = ""
+        txtNameVN.Text = ""
+        txtREMARK.Text = ""
+        rtADDRESS.Text = ""
+        txtREPRESENTATIVE_ID.Text = ""
+        hidREPRESENTATIVE_ID.Value = Nothing
+        txtACCOUNTING_ID.Text = ""
+        txtHR_ID.Text = ""
+        hidACCOUNTING_ID.Value = Nothing
+        hidHR_ID.Value = Nothing
 
+        cboUNIT_RANK_ID.SelectedValue = Nothing
+        cboUNIT_RANK_ID.Text = ""
+
+        cboRegion.SelectedValue = Nothing
+        cboRegion.Text = ""
+
+        cboDISTRICT_ID.Text = ""
+        cboDISTRICT_ID.SelectedValue = Nothing
+
+        cboU_insurance.SelectedValue = Nothing
+        cboU_insurance.Text = ""
+
+        cboPROVINCE_ID.SelectedValue = Nothing
+        cboPROVINCE_ID.Text = ""
+
+        cboBANK_ID.SelectedValue = Nothing
+        cboBANK_ID.Text = ""
+
+        cboBANK_BRACH_ID.SelectedValue = Nothing
+        cboBANK_BRACH_ID.Text = ""
+
+        cboPROVINCE_CONTRACT_ID.SelectedValue = Nothing
+        cboPROVINCE_CONTRACT_ID.Text = ""
+        cboDISTRICT_CONTRACT_ID.SelectedValue = Nothing
+        cboDISTRICT_CONTRACT_ID.Text = ""
+
+
+        'check = "EDITFILE"
+        rtADDRESS.Text = ""
+        txtREMARK.Text = ""
+        cboRegion.Text = ""
+        rdFOUNDATION_DATE.SelectedDate = Nothing
+        rdOrdNo.Value = Nothing
+
+        chkIsSignContract.Checked = False
+        txtCONTRACT_CODE.Text = ""
+        rdOrdNo.Value = Nothing
+
+        cbDissolve.Text = ""
+        txtFAX.Text = ""
+        txtWEBSITE_LINK.Text = ""
+        txtBANK_NO.Text = ""
+        txtPIT_NO.Text = ""
+        'btnREPRESENTATIVE_ID.Enabled = IsEnable
+        txtACCOUNTING_ID.Text = ""
+        'btnHR_ID.Enabled = IsEnable
+        txtAUTHOR_LETTER.Text = ""
+        txtNUMBER_BUSINESS.Text = ""
+        txtBUSS_REG_NAME.Text = ""
+        txtMAN_UNI_NAME.Text = ""
+        rdDISSOLVE_DATE.SelectedDate = Nothing
+    End Sub
+    Sub EnableControl(ByVal IsEnable As Boolean)
+        treeOrgFunction.Enabled = Not IsEnable
+        txtCode.Enabled = IsEnable
+        'txtCode.ReadOnly = Not IsEnable
+        txtNameVN.ReadOnly = Not IsEnable
+        'txtNameVN.CausesValidation = IsEnable
+        txtNameEN.ReadOnly = Not IsEnable
+        'txtCode.CausesValidation = IsEnable
+
+        txtREMARK.ReadOnly = Not IsEnable
+        rtADDRESS.ReadOnly = Not IsEnable
+        txtSHORT_NAME.ReadOnly = Not IsEnable
+        chkIsSignContract.Enabled = IsEnable
+        txtCONTRACT_CODE.ReadOnly = Not IsEnable
+        cboGROUP_PAID_ID.Enabled = IsEnable
+        cboUNIT_RANK_ID.Enabled = IsEnable
+        cboPROVINCE_ID.Enabled = IsEnable
+        cboDISTRICT_ID.Enabled = IsEnable
+        rdFOUNDATION_DATE.Enabled = IsEnable
+        rdOrdNo.Enabled = IsEnable
+        cboU_insurance.Enabled = IsEnable
+        cboRegion.Enabled = IsEnable
+
+        cbDissolve.Enabled = Not IsEnable
+        txtFAX.ReadOnly = Not IsEnable
+        txtWEBSITE_LINK.ReadOnly = Not IsEnable
+        txtBANK_NO.ReadOnly = Not IsEnable
+        cboBANK_ID.Enabled = IsEnable
+        cboBANK_BRACH_ID.Enabled = IsEnable
+        txtPIT_NO.ReadOnly = Not IsEnable
+        btnREPRESENTATIVE_ID.Enabled = IsEnable
+        btnACCOUNTING_ID.Enabled = IsEnable
+        btnHR_ID.Enabled = IsEnable
+        txtAUTHOR_LETTER.ReadOnly = Not IsEnable
+        cboPROVINCE_CONTRACT_ID.Enabled = IsEnable
+        cboDISTRICT_CONTRACT_ID.Enabled = IsEnable
+        txtNUMBER_BUSINESS.ReadOnly = Not IsEnable
+        txtBUSS_REG_NAME.ReadOnly = Not IsEnable
+        txtMAN_UNI_NAME.ReadOnly = Not IsEnable
+        rdDISSOLVE_DATE.Enabled = IsEnable
+    End Sub
     Protected Sub BuildTreeNode(ByVal tree As RadTreeView,
-                                ByVal list As List(Of OrganizationDTO),
+                                ByVal list As DataTable,'List(Of OrganizationDTO),
                                 ByVal bCheck As Boolean)
         Dim node As New RadTreeNode
         Dim bSelected As Boolean = False
@@ -1024,21 +1027,21 @@ Public Class ctrlHU_Organization
         Try
 
             tree.Nodes.Clear()
-            If list.Count = 0 Then
+            If list.Rows.Count = 0 Then
                 Exit Sub
             End If
-            Dim listTemp = (From t In list
-                            Where t.PARENT_ID Is Nothing Select t).FirstOrDefault
+            Dim listTemp = list.AsEnumerable.FirstOrDefault(Function(n) n.Field(Of Decimal?)("PARENT_ID") Is Nothing) '(From t In list
+            'Where t.PARENT_ID Is Nothing Select t).FirstOrDefault
             Select Case Common.Common.SystemLanguage.Name
                 Case "vi-VN"
-                    node.Text = listTemp.NAME_VN
-                    node.ToolTip = listTemp.NAME_VN
+                    node.Text = listTemp.Field(Of String)("NAME_VN") 'listTemp.NAME_VN
+                    node.ToolTip = listTemp.Field(Of String)("NAME_VN") 'listTemp.NAME_VN
                 Case Else
-                    node.Text = listTemp.NAME_EN
-                    node.ToolTip = listTemp.NAME_EN
+                    node.Text = listTemp.Field(Of String)("NAME_EN") 'listTemp.NAME_EN
+                    node.ToolTip = listTemp.Field(Of String)("NAME_EN") 'listTemp.NAME_EN
             End Select
 
-            node.Value = listTemp.ID.ToString
+            node.Value = listTemp.Field(Of Decimal)("ID").ToString 'listTemp.ID.ToString
             If SelectOrgFunction IsNot Nothing Then
                 If node.Value = SelectOrgFunction Then
                     node.Selected = True
@@ -1110,61 +1113,69 @@ Public Class ctrlHU_Organization
     End Function
 
     Protected Sub BuildTreeChildNode(ByVal nodeParent As RadTreeNode,
-                                     ByVal list As List(Of OrganizationDTO),
+                                     ByVal list As DataTable,'List(Of OrganizationDTO),
                                      ByVal bCheck As Boolean,
                                      ByRef bSelected As Boolean)
         Dim startTime As DateTime = DateTime.UtcNow
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
 
-        Dim listTemp As List(Of OrganizationDTO)
+        Dim listTemp As DataTable 'List(Of OrganizationDTO)
         Try
             If bCheck Then
-                listTemp = (From t In list
-                            Where t.PARENT_ID = Decimal.Parse(nodeParent.Value)).ToList
+                Dim sfiller = "PARENT_ID = " & nodeParent.Value
+                Dim tmpfiller = list.Select(sfiller)
+                If tmpfiller.Count = 0 Then
+                    GoTo sucssec
+                End If
+                listTemp = tmpfiller.CopyToDataTable
+                'Where t.PARENT_ID = Decimal.Parse(nodeParent.Value)).ToList
             Else
-                listTemp = (From t In list
-                            Where t.PARENT_ID = Decimal.Parse(nodeParent.Value) _
-                            And (t.DISSOLVE_DATE Is Nothing Or (t.DISSOLVE_DATE IsNot Nothing And t.DISSOLVE_DATE >= Date.Now)) _
-                            And t.ACTFLG = "A").ToList
+                Dim sfiller = "PARENT_ID = " & nodeParent.Value & "and ACTFLG = 'A' and (DISSOLVE_DATE is null or (DISSOLVE_DATE is not null and DISSOLVE_DATE >= " & Date.Now.ToString("yyyy/MM/dd") & "))"
+                Dim tmpfiller = list.Select(sfiller)
+                If tmpfiller.Count = 0 Then
+                    GoTo sucssec
+                End If
+                listTemp = tmpfiller.CopyToDataTable
             End If
 
-            If listTemp.Count = 0 Then
+            If listTemp.Rows.Count = 0 Then
                 Exit Sub
             End If
-            For index As Integer = 0 To listTemp.Count - 1
-                Dim node As New RadTreeNode
-                Select Case Common.Common.SystemLanguage.Name
-                    Case "vi-VN"
-                        'node.Text = listTemp(index).CODE & " - " & listTemp(index).NAME_VN
-                        node.Text = listTemp(index).NAME_VN
-                        node.ToolTip = listTemp(index).NAME_VN
-                    Case Else
-                        'node.Text = listTemp(index).CODE & " - " & listTemp(index).NAME_EN
-                        node.Text = listTemp(index).NAME_EN
-                        node.ToolTip = listTemp(index).NAME_EN
-                End Select
+                For index As Integer = 0 To listTemp.Rows.Count - 1
+                    Dim node As New RadTreeNode
+                    Select Case Common.Common.SystemLanguage.Name
+                        Case "vi-VN"
+                            'node.Text = listTemp(index).CODE & " - " & listTemp(index).NAME_VN
+                            node.Text = listTemp.Rows(index).Field(Of String)("NAME_VN") 'listTemp(index).NAME_VN
+                            node.ToolTip = listTemp.Rows(index).Field(Of String)("NAME_VN") 'listTemp(index).NAME_VN
+                        Case Else
+                            'node.Text = listTemp(index).CODE & " - " & listTemp(index).NAME_EN
+                            node.Text = listTemp.Rows(index).Field(Of String)("NAME_EN") 'listTemp(index).NAME_EN
+                            node.ToolTip = listTemp.Rows(index).Field(Of String)("NAME_EN") 'listTemp(index).NAME_EN
+                    End Select
 
-                node.Value = listTemp(index).ID.ToString
-                If bCheck Then
-                    If listTemp(index).DISSOLVE_DATE IsNot Nothing Then
-                        If listTemp(index).DISSOLVE_DATE < Date.Now Then
-                            node.BackColor = Drawing.Color.Yellow
+                    node.Value = listTemp.Rows(index).Field(Of Decimal)("ID").ToString 'listTemp(index).ID.ToString
+                    If bCheck Then
+                        If listTemp.Rows(index).Field(Of Date?)("DISSOLVE_DATE") IsNot Nothing Then
+                            If listTemp.Rows(index).Field(Of Date?)("DISSOLVE_DATE") < Date.Now Then
+                                node.BackColor = Drawing.Color.Yellow
+                            End If
                         End If
                     End If
-                End If
-                If listTemp(index).ACTFLG = "I" Then
-                    node.BackColor = Drawing.Color.Yellow
-                End If
-                If SelectOrgFunction IsNot Nothing Then
-                    If node.Value = SelectOrgFunction Then
-                        node.Selected = True
-                        bSelected = True
+                    If listTemp.Rows(index).Field(Of String)("ACTFLG") = "I" Then
+                        node.BackColor = Drawing.Color.Yellow
                     End If
-                End If
-                nodeParent.Nodes.Add(node)
-                BuildTreeChildNode(node, list, bCheck, bSelected)
-            Next
-            _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
+                    If SelectOrgFunction IsNot Nothing Then
+                        If node.Value = SelectOrgFunction Then
+                            node.Selected = True
+                            bSelected = True
+                        End If
+                    End If
+                    nodeParent.Nodes.Add(node)
+                    BuildTreeChildNode(node, list, bCheck, bSelected)
+                Next
+sucssec:
+                _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
             Throw ex
             _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
@@ -1177,109 +1188,131 @@ Public Class ctrlHU_Organization
     ''' Date: 13/05/2018
     ''' </summary>
     Private Sub FillDataByTree()
-        Dim orgItem As OrganizationDTO
         Dim startTime As DateTime = DateTime.UtcNow
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
         Try
             If treeOrgFunction.SelectedNode Is Nothing Then
                 Exit Sub
             End If
-            orgItem = (From p In Organizations Where p.ID = Decimal.Parse(treeOrgFunction.SelectedNode.Value)).SingleOrDefault
-            If orgItem IsNot Nothing Then
-                hidParentID.Value = orgItem.PARENT_ID.ToString
-                txtParent_Name.Text = orgItem.PARENT_NAME
-                txtCode.Text = orgItem.CODE
-                txtLocationWork.Text = orgItem.LOCATION_WORK
-                txtNumberDecision.Text = orgItem.NUMBER_DECISION
-                txtTypeDecision.Text = orgItem.TYPE_DECISION
+            Dim row = Organizations_New.AsEnumerable.FirstOrDefault(Function(n) n.Field(Of Decimal)("ID") = Decimal.Parse(treeOrgFunction.SelectedNode.Value))
 
-                txtNameVN.Text = orgItem.NAME_VN
-                txtNameEN.Text = orgItem.NAME_EN
-                Dim strFiles As String = orgItem.FILES
-                If check = "EDITFILE" Then
-                    strFiles = ""
-                End If
-                If strFiles <> "" Then
-                    For Each items As String In strFiles.Split("#")
-                        Dim i As New RadListBoxItem(items, items)
-                        i.Checked = True
-                        lstFile.Items.Add(i)
-                    Next
-                End If
-                If IsNumeric(orgItem.U_INSURANCE) AndAlso orgItem.U_INSURANCE > 0 Then
-                    cboU_insurance.SelectedValue = orgItem.U_INSURANCE
+            If row IsNot Nothing Then
+                'hidID.Value = row.Field(Of Decimal?)("ID") 'orgItem.PARENT_ID.ToString
+                txtParent_Name.Text = row.Field(Of String)("PARENT_NAME") 'orgItem.PARENT_NAME
+                hidParentID.Value = row.Field(Of Decimal?)("PARENT_ID")
+                txtCode.Text = row.Field(Of String)("CODE") 'orgItem.CODE
+                txtNameVN.Text = row.Field(Of String)("NAME_VN") 'orgItem.NAME_VN
+                txtNameEN.Text = row.Field(Of String)("NAME_EN") 'orgItem.NAME_EN
+
+                If row.Field(Of Decimal?)("U_INSURANCE") AndAlso row.Field(Of Decimal?)("U_INSURANCE") > 0 Then
+                    cboU_insurance.SelectedValue = row.Field(Of Decimal?)("U_INSURANCE")
                 Else
                     ClearControlValue(cboU_insurance)
                 End If
-                'cboU_insurance.SelectedValue = orgItem.U_INSURANCE
-                If IsNumeric(orgItem.ORG_LEVEL) AndAlso orgItem.ORG_LEVEL > 0 Then
-                    cboOrg_level.SelectedValue = orgItem.ORG_LEVEL
-                Else
-                    ClearControlValue(cboOrg_level)
-                End If
-                'cboOrg_level.SelectedValue = orgItem.ORG_LEVEL
-                If orgItem.REGION_ID > 0 Then
-                    cboRegion.SelectedValue = orgItem.REGION_ID
+
+                If row.Field(Of Decimal?)("REGION_ID") > 0 Then
+                    cboRegion.SelectedValue = row.Field(Of Decimal?)("REGION_ID")
                 Else
                     ClearControlValue(cboRegion)
                 End If
-                'cboRegion.SelectedValue = If(orgItem.REGION_ID > 0, orgItem.REGION_ID, -1)
-                txtRepresentativeName.Text = orgItem.REPRESENTATIVE_NAME
-                rtNUMBER_BUSINESS.Text = orgItem.NUMBER_BUSINESS
-                rdDATE_BUSINESS.SelectedDate = Nothing
-                If IsDate(orgItem.DATE_BUSINESS) Then
-                    rdDATE_BUSINESS.SelectedDate = orgItem.DATE_BUSINESS
-                End If
-                rdEffectDate.SelectedDate = Nothing
-                If IsDate(orgItem.EFFECT_DATE) Then
-                    rdEffectDate.SelectedDate = orgItem.EFFECT_DATE
+
+                rdFOUNDATION_DATE.SelectedDate = row.Field(Of Date?)("FOUNDATION_DATE") '
+                rdDISSOLVE_DATE.SelectedDate = row.Field(Of Date?)("DISSOLVE_DATE")
+                rdOrdNo.Value = row.Field(Of Decimal?)("ORD_NO")
+
+                rtADDRESS.Text = row.Field(Of String)("ADDRESS") 'orgItem.ADDRESS
+                txtREMARK.Text = row.Field(Of String)("REMARK") 'orgItem.REMARK
+                txtSHORT_NAME.Text = row.Field(Of String)("SHORT_NAME")
+                If row.Field(Of Int16?)("IS_SIGN_CONTRACT") = -1 Then
+                    chkIsSignContract.Checked = True
                 Else
-                    rdEffectDate.SelectedDate = Nothing
+                    chkIsSignContract.Checked = False
                 End If
-                If IsDate(orgItem.FOUNDATION_DATE) Then
-                    rdFOUNDATION_DATE.SelectedDate = orgItem.FOUNDATION_DATE
+                txtCONTRACT_CODE.Text = row.Field(Of String)("CONTRACT_CODE")
+
+                If row.Field(Of Decimal?)("GROUP_PAID_ID") AndAlso row.Field(Of Decimal?)("GROUP_PAID_ID") > 0 Then
+                    cboGROUP_PAID_ID.SelectedValue = row.Field(Of Decimal?)("GROUP_PAID_ID")
                 Else
-                    ClearControlValue(rdFOUNDATION_DATE)
+                    ClearControlValue(cboGROUP_PAID_ID)
                 End If
-                If IsNumeric(orgItem.ORD_NO) Then
-                    rdOrdNo.Value = orgItem.ORD_NO
+
+                If row.Field(Of Decimal?)("UNIT_RANK_ID") AndAlso row.Field(Of Decimal?)("UNIT_RANK_ID") > 0 Then
+                    cboUNIT_RANK_ID.SelectedValue = row.Field(Of Decimal?)("UNIT_RANK_ID")
                 Else
-                    rdOrdNo.Value = 0
+                    ClearControlValue(cboUNIT_RANK_ID)
                 End If
-                rdDicision_Date.SelectedDate = Nothing
-                If IsDate(orgItem.DISSOLVE_DATE) Then
-                    rdDicision_Date.SelectedDate = orgItem.DISSOLVE_DATE
-                End If
-                If orgItem.CHK_ORGCHART = True Then
-                    chkOrgChart.Checked = True
-                Else
-                    chkOrgChart.Checked = False
-                End If
-                rtADDRESS.Text = orgItem.ADDRESS
-                txtREMARK.Text = orgItem.REMARK
-                If orgItem.REPRESENTATIVE_ID IsNot Nothing Then
-                    hidRepresentative.Value = orgItem.REPRESENTATIVE_ID
-                End If
-                If IsNumeric(orgItem.UNIT_LEVEL) AndAlso orgItem.UNIT_LEVEL > 0 Then
-                    cbUNIT_LEVEL.SelectedValue = orgItem.UNIT_LEVEL
-                Else
-                    ClearControlValue(cbUNIT_LEVEL)
-                End If
-                DisplayImage(Utilities.ObjToDecima(orgItem.REPRESENTATIVE_ID), Utilities.ObjToString(orgItem.IMAGE))
-                If treeOrgFunction.SelectedNode.Level = 1 Then
-                    Dim logoPath = AppDomain.CurrentDomain.BaseDirectory & "ReportTemplates\Profile\Organization\Logo\"
-                    If Not Directory.Exists(logoPath) Then
-                        Directory.CreateDirectory(logoPath)
+                txtFAX.Text = row.Field(Of String)("FAX")
+                txtWEBSITE_LINK.Text = row.Field(Of String)("WEBSITE_LINK")
+                txtPIT_NO.Text = row.Field(Of String)("PIT_NO")
+                txtBANK_NO.Text = row.Field(Of String)("BANK_NO")
+
+
+                If row.Field(Of Decimal?)("BANK_ID") AndAlso row.Field(Of Decimal?)("BANK_ID") > 0 Then
+                    cboBANK_ID.SelectedValue = row.Field(Of Decimal?)("BANK_ID")
+                    Dim tmp_dt = DT_HU_BANK_BRANC.Select("BANK_ID = " & row.Field(Of Decimal?)("BANK_ID"))
+                    If tmp_dt.Count() > 0 Then
+                        FillRadCombobox(cboBANK_BRACH_ID, tmp_dt.CopyToDataTable, "NAME", "ID")
                     End If
-                    Dim logo = treeOrgFunction.SelectedNode.Value & "_*"
-                    Dim dirs As String() = Directory.GetFiles(logoPath, logo)
-                    Dim licensePath = AppDomain.CurrentDomain.BaseDirectory & "ReportTemplates\Profile\Organization\License\"
-                    If Not Directory.Exists(licensePath) Then
-                        Directory.CreateDirectory(licensePath)
-                    End If
-                    Dim license = treeOrgFunction.SelectedNode.Value & "_*"
-                    dirs = Directory.GetFiles(logoPath, license)
+                Else
+                    ClearControlValue(cboBANK_ID)
                 End If
+
+                If row.Field(Of Decimal?)("BANK_BRACH_ID") AndAlso row.Field(Of Decimal?)("BANK_BRACH_ID") > 0 Then
+                    cboBANK_BRACH_ID.SelectedValue = row.Field(Of Decimal?)("BANK_BRACH_ID")
+                Else
+                    ClearControlValue(cboBANK_BRACH_ID)
+                End If
+
+                If row.Field(Of Decimal?)("PROVINCE_ID") AndAlso row.Field(Of Decimal?)("PROVINCE_ID") > 0 Then
+                    cboPROVINCE_ID.SelectedValue = row.Field(Of Decimal?)("PROVINCE_ID")
+
+                    Dim tmp_dt = DT_District.Select("PROVINCE_ID = " & row.Field(Of Decimal?)("PROVINCE_ID"))
+                    If tmp_dt.Count() > 0 Then
+                        FillRadCombobox(cboDISTRICT_ID, tmp_dt.CopyToDataTable, "NAME_VN", "ID")
+                    End If
+                Else
+                    ClearControlValue(cboPROVINCE_ID)
+                End If
+
+                If row.Field(Of Decimal?)("DISTRICT_ID") AndAlso row.Field(Of Decimal?)("DISTRICT_ID") > 0 Then
+                    cboDISTRICT_ID.SelectedValue = row.Field(Of Decimal?)("DISTRICT_ID")
+                Else
+                    ClearControlValue(cboDISTRICT_ID)
+                End If
+
+                If row.Field(Of Decimal?)("PROVINCE_CONTRACT_ID") AndAlso row.Field(Of Decimal?)("PROVINCE_CONTRACT_ID") > 0 Then
+                    cboPROVINCE_CONTRACT_ID.SelectedValue = row.Field(Of Decimal?)("PROVINCE_CONTRACT_ID")
+
+                    Dim tmp_dt = DT_District.Select("PROVINCE_ID = " & row.Field(Of Decimal?)("PROVINCE_CONTRACT_ID"))
+                    If tmp_dt.Count() > 0 Then
+                        FillRadCombobox(cboDISTRICT_CONTRACT_ID, tmp_dt.CopyToDataTable, "NAME_VN", "ID")
+                    End If
+                Else
+                    ClearControlValue(cboPROVINCE_CONTRACT_ID)
+                End If
+
+                If row.Field(Of Decimal?)("DISTRICT_CONTRACT_ID") AndAlso row.Field(Of Decimal?)("DISTRICT_CONTRACT_ID") > 0 Then
+                    cboDISTRICT_CONTRACT_ID.SelectedValue = row.Field(Of Decimal?)("DISTRICT_CONTRACT_ID")
+                Else
+                    ClearControlValue(cboDISTRICT_CONTRACT_ID)
+                End If
+                txtNUMBER_BUSINESS.Text = row.Field(Of String)("NUMBER_BUSINESS")
+                txtAUTHOR_LETTER.Text = row.Field(Of String)("AUTHOR_LETTER")
+                txtBUSS_REG_NAME.Text = row.Field(Of String)("BUSS_REG_NAME")
+                txtMAN_UNI_NAME.Text = row.Field(Of String)("MAN_UNI_NAME")
+
+                txtREPRESENTATIVE_ID.Text = row.Field(Of String)("REPRESENTATIVE_NAME")
+                hidREPRESENTATIVE_ID.Value = row.Field(Of Decimal?)("REPRESENTATIVE_ID")
+                txtACCOUNTING_ID.Text = row.Field(Of String)("ACCOUNTING_NAME")
+                If row.Field(Of Decimal?)("ACCOUNTING_ID") IsNot Nothing Then
+                    hidACCOUNTING_ID.Value = row.Field(Of Decimal?)("ACCOUNTING_ID")
+                End If
+
+                txtHR_ID.Text = row.Field(Of String)("HR_NAME")
+                If row.Field(Of Decimal?)("HR_ID") IsNot Nothing Then
+                    hidHR_ID.Value = row.Field(Of Decimal?)("HR_ID")
+                End If
+
             End If
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
@@ -1374,10 +1407,10 @@ Public Class ctrlHU_Organization
         Try
 
             result.Add(_orgId)
-            Dim lstOrgs As List(Of OrganizationDTO) = Organizations
+            'Dim lstOrgs As List(Of OrganizationDTO) = Organizations
 
-            query = (From p In lstOrgs Where p.PARENT_ID = _orgId
-                     Select p.ID).ToList
+            query = (From p In Organizations_New.AsEnumerable Where p.Field(Of Decimal?)("PARENT_ID") = _orgId
+                     Select p.Field(Of Decimal)("ID")).ToList
             For Each q As Decimal In query
                 list = GetAllChild(q)
                 result.InsertRange(0, list)
@@ -1390,85 +1423,7 @@ Public Class ctrlHU_Organization
         End Try
 
     End Function
-    Private Sub btnUploadFile_Click(sender As Object, e As System.EventArgs) Handles btnUploadFile.Click
-        ctrlUpload.MaxFileInput = 10
-        ctrlUpload.isMultiple = False
-        ctrlUpload.AllowedExtensions = "pdf,png,doc,docx,xls,xlsx,jpg,jpeg,rar"
-        ctrlUpload.Show()
-    End Sub
-    Private Sub ctrlUpload_OkClicked(sender As Object, e As System.EventArgs) Handles ctrlUpload.OkClicked
-        Try
-            If ctrlUpload.UploadedFiles.Count > 0 Then
-                For i As Integer = 0 To ctrlUpload.UploadedFiles.Count - 1
-                    Dim fileName As String = String.Empty
-                    Dim file As UploadedFile = ctrlUpload.UploadedFiles(i)
-                    fileName = Server.MapPath("~/ReportTemplates/Training/Upload")
-                    If Not Directory.Exists(fileName) Then
-                        Directory.CreateDirectory(fileName)
-                    End If
-                    'New System.IO.FileInfo(System.IO.Path.Combine(Server.MapPath("~/ReportTemplates/Training/Upload/"), strFiles.Split("#")(i)))
-                    If isPhysical = 1 Then
-                        fileName = System.IO.Path.Combine(fileName, file.FileName)
-                        'fileName = System.IO.Path.Combine(Server.MapPath("~/ReportTemplates/Training/Upload/"), file.FileName)
-                    Else
-                        fileName = System.IO.Path.Combine(Server.MapPath("~/ReportTemplates/Training/Upload/"), file.FileName)
-                    End If
 
-                    file.SaveAs(fileName, True)
-                    Dim item As New RadListBoxItem(file.FileName, file.FileName)
-                    item.Checked = True
-                    lstFile.Items.Add(item)
-                Next
-            End If
-        Catch ex As Exception
-            ShowMessage(Translate("Import bị lỗi"), NotifyType.Error)
-        End Try
-    End Sub
-    Private Sub btnDownloadFile_Click(sender As Object, e As System.EventArgs) Handles btnDownloadFile.Click
-        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
-        Try
-            Dim mid As String = "Training" 'module dao tao
-            Dim strFiles As String = String.Empty
-            If lstFile.CheckedItems.Count = 0 Then
-                Exit Sub
-            End If
-            strFiles = lstFile.CheckedItems.Select(Function(x) x.Text).Aggregate(Function(x, y) x & "#" & y)
-            strFiles = strFiles.Replace(" ", "")
-            If strFiles.Split("#").Count > 0 Then
-                Using zip As New ZipFile
-                    zip.AlternateEncodingUsage = ZipOption.AsNecessary
-                    zip.AddDirectoryByName("Files")
-                    For i As Integer = 0 To strFiles.Split("#").Count - 1
-                        Dim file As System.IO.FileInfo
-                        If isPhysical = 1 Then
-                            'file = New System.IO.FileInfo(System.IO.Path.Combine(PathTemplateInFolder & mid, strFiles.Split("#")(i)))
-                            file = New System.IO.FileInfo(System.IO.Path.Combine(Server.MapPath("~/ReportTemplates/Training/Upload/"), strFiles.Split("#")(i)))
-                        Else
-                            file = New System.IO.FileInfo(System.IO.Path.Combine(Server.MapPath("~/ReportTemplates/Training/Upload/"), strFiles.Split("#")(i)))
-                        End If
-                        If file.Exists Then
-                            zip.AddFile(file.FullName, "Files")
-                        Else
-                            ShowMessage(Translate(CommonMessage.CM_CTRLPROGRAMS_IS_NOT_EXSIST_TEMPLATE_FILE), NotifyType.Warning)
-                        End If
-                    Next
-                    Response.Clear()
-                    Dim zipName As String = [String].Format("AttachFile{0}.zip", DateTime.Now.ToString("yyyy-MMM-dd-HHmmss"))
-                    Response.ContentType = "application/zip"
-                    Response.AddHeader("content-disposition", "attachment; filename=" + zipName)
-                    zip.Save(Response.OutputStream)
-                    Response.Flush()
-                    Response.SuppressContent = True
-                    HttpContext.Current.ApplicationInstance.CompleteRequest()
-                End Using
-            Else
-                ShowMessage(Translate(CommonMessage.CM_CTRLPROGRAMS_IS_NOT_SELECTED_MODULE), NotifyType.Warning)
-                Exit Sub
-            End If
-        Catch ex As Exception
-            ShowMessage(ex.ToString, NotifyType.Error)
-        End Try
-    End Sub
 
 #End Region
 
