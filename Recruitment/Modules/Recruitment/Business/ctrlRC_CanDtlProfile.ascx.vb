@@ -734,6 +734,14 @@ Public Class ctrlRC_CanDtlProfile
                 ListComboData.GET_NATION = True
                 ListComboData.GET_PROVINCE = True
                 ListComboData.GET_RELATION = True
+                ListComboData.GET_CV_DOAN = True
+                ListComboData.GET_CV_DANG = True
+                ListComboData.GET_CVKN = True
+                ListComboData.GET_CVCCB = True
+                ListComboData.GET_LLCT = True
+                ListComboData.GET_QLNN = True
+                ListComboData.GET_TB = True
+                ListComboData.GET_GDCS = True
                 'ListComboData.GET_PROVINC()
                 rep.GetComboList(ListComboData)
             End If
@@ -845,6 +853,17 @@ Public Class ctrlRC_CanDtlProfile
             ' Nguyện vọng thời gian làm việc
             dtData = rep.GetOtherList("WORK_TIME", True)
             FillRadCombobox(cboExpectThoiGianLamViec, dtData, "NAME", "ID")
+
+            'xã hội
+            FillDropDownList(cboChucVuDoan, ListComboData.LIST_CV_DOAN, "NAME_VN", "ID", Common.Common.SystemLanguage, True, cboChucVuDoan.SelectedValue)
+            FillDropDownList(cboChucVuDang, ListComboData.LIST_CV_DANG, "NAME_VN", "ID", Common.Common.SystemLanguage, True, cboChucVuDang.SelectedValue)
+            FillDropDownList(cboDangKiemNhiem, ListComboData.LIST_CVKN, "NAME_VN", "ID", Common.Common.SystemLanguage, True, cboDangKiemNhiem.SelectedValue)
+            FillDropDownList(cboChucVuCuuChienBinh, ListComboData.LIST_CVCCB, "NAME_VN", "ID", Common.Common.SystemLanguage, True, cboChucVuCuuChienBinh.SelectedValue)
+            FillDropDownList(cboLyLuanChinhTri, ListComboData.LIST_LLCT, "NAME_VN", "ID", Common.Common.SystemLanguage, True, cboLyLuanChinhTri.SelectedValue)
+            FillDropDownList(cboQuanLyNhaNuoc, ListComboData.LIST_QLNN, "NAME_VN", "ID", Common.Common.SystemLanguage, True, cboQuanLyNhaNuoc.SelectedValue)
+            FillDropDownList(cboThuongBinh, ListComboData.LIST_TB, "NAME_VN", "ID", Common.Common.SystemLanguage, True, cboThuongBinh.SelectedValue)
+            FillDropDownList(cboGDChinhSach, ListComboData.LIST_GDCS, "NAME_VN", "ID", Common.Common.SystemLanguage, True, cboGDChinhSach.SelectedValue)
+
             ' Loại sức khỏe
             dtData = rep.GetOtherList("RC_HEALTH_STATUS", True)
             FillRadCombobox(cboLoaiSucKhoe, dtData, "NAME", "ID")

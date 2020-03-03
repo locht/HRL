@@ -98,13 +98,13 @@
                             </tr>
                             <tr>
                                 <td class="lb">
-                                    <%# Translate("Nơi làm việc")%>
+                                    <%# Translate("Nơi làm việc")%><span class="lbReq">*</span>
                                 </td>
                                 <td>
                                     <tlk:RadTextBox runat="server" ID="txtOrgName" ReadOnly="true" />
                                 </td>
                                 <td class="lb">
-                                    <%# Translate("Chức danh")%>
+                                    <%# Translate("Chức danh")%><span class="lbReq">*</span>
                                 </td>
                                 <td>
                                     <tlk:RadTextBox ID="txtTitleName" runat="server" ReadOnly="true">

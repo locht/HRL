@@ -1058,6 +1058,18 @@ Namespace RecruitmentBusiness
         Private GET_COST_CENTERField As Boolean
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private GET_CVCCBField As Boolean
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private GET_CVKNField As Boolean
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private GET_CV_DANGField As Boolean
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private GET_CV_DOANField As Boolean
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private GET_DECISION_STATUSField As Boolean
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -1089,6 +1101,9 @@ Namespace RecruitmentBusiness
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private GET_FAMILY_STATUSField As Boolean
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private GET_GDCSField As Boolean
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private GET_GENDERField As Boolean
@@ -1127,6 +1142,9 @@ Namespace RecruitmentBusiness
         Private GET_LISTField As Boolean
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private GET_LLCTField As Boolean
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private GET_MAJORField As Boolean
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -1155,6 +1173,9 @@ Namespace RecruitmentBusiness
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private GET_PROVINCEField As Boolean
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private GET_QLNNField As Boolean
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private GET_RC_PLAN_YEARField As Boolean
@@ -1194,6 +1215,9 @@ Namespace RecruitmentBusiness
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private GET_TAX_TABLEField As Boolean
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private GET_TBField As Boolean
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private GET_TER_REASONField As Boolean
@@ -1286,6 +1310,18 @@ Namespace RecruitmentBusiness
         Private LIST_COST_CENTERField As System.Collections.Generic.List(Of RecruitmentBusiness.CostCenterDTO)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private LIST_CVCCBField As System.Collections.Generic.List(Of RecruitmentBusiness.OtherListDTO)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private LIST_CVKNField As System.Collections.Generic.List(Of RecruitmentBusiness.OtherListDTO)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private LIST_CV_DANGField As System.Collections.Generic.List(Of RecruitmentBusiness.OtherListDTO)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private LIST_CV_DOANField As System.Collections.Generic.List(Of RecruitmentBusiness.OtherListDTO)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private LIST_DECISION_STATUSField As System.Collections.Generic.List(Of RecruitmentBusiness.OtherListDTO)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -1317,6 +1353,9 @@ Namespace RecruitmentBusiness
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private LIST_FAMILY_STATUSField As System.Collections.Generic.List(Of RecruitmentBusiness.OtherListDTO)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private LIST_GDCSField As System.Collections.Generic.List(Of RecruitmentBusiness.OtherListDTO)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private LIST_GENDERField As System.Collections.Generic.List(Of RecruitmentBusiness.OtherListDTO)
@@ -1355,6 +1394,9 @@ Namespace RecruitmentBusiness
         Private LIST_LISTField As System.Collections.Generic.List(Of RecruitmentBusiness.OtherListDTO)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private LIST_LLCTField As System.Collections.Generic.List(Of RecruitmentBusiness.OtherListDTO)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private LIST_MAJORField As System.Collections.Generic.List(Of RecruitmentBusiness.OtherListDTO)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -1383,6 +1425,9 @@ Namespace RecruitmentBusiness
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private LIST_PROVINCEField As System.Collections.Generic.List(Of RecruitmentBusiness.ProvinceDTO)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private LIST_QLNNField As System.Collections.Generic.List(Of RecruitmentBusiness.OtherListDTO)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private LIST_RC_PLAN_YEARField As System.Collections.Generic.List(Of RecruitmentBusiness.PlanYearDTO)
@@ -1422,6 +1467,9 @@ Namespace RecruitmentBusiness
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private LIST_TAX_TABLEField As System.Collections.Generic.List(Of RecruitmentBusiness.OtherListDTO)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private LIST_TBField As System.Collections.Generic.List(Of RecruitmentBusiness.OtherListDTO)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private LIST_TER_REASONField As System.Collections.Generic.List(Of RecruitmentBusiness.OtherListDTO)
@@ -1714,6 +1762,58 @@ Namespace RecruitmentBusiness
         End Property
         
         <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property GET_CVCCB() As Boolean
+            Get
+                Return Me.GET_CVCCBField
+            End Get
+            Set
+                If (Me.GET_CVCCBField.Equals(value) <> true) Then
+                    Me.GET_CVCCBField = value
+                    Me.RaisePropertyChanged("GET_CVCCB")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property GET_CVKN() As Boolean
+            Get
+                Return Me.GET_CVKNField
+            End Get
+            Set
+                If (Me.GET_CVKNField.Equals(value) <> true) Then
+                    Me.GET_CVKNField = value
+                    Me.RaisePropertyChanged("GET_CVKN")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property GET_CV_DANG() As Boolean
+            Get
+                Return Me.GET_CV_DANGField
+            End Get
+            Set
+                If (Me.GET_CV_DANGField.Equals(value) <> true) Then
+                    Me.GET_CV_DANGField = value
+                    Me.RaisePropertyChanged("GET_CV_DANG")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property GET_CV_DOAN() As Boolean
+            Get
+                Return Me.GET_CV_DOANField
+            End Get
+            Set
+                If (Me.GET_CV_DOANField.Equals(value) <> true) Then
+                    Me.GET_CV_DOANField = value
+                    Me.RaisePropertyChanged("GET_CV_DOAN")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
         Public Property GET_DECISION_STATUS() As Boolean
             Get
                 Return Me.GET_DECISION_STATUSField
@@ -1852,6 +1952,19 @@ Namespace RecruitmentBusiness
                 If (Me.GET_FAMILY_STATUSField.Equals(value) <> true) Then
                     Me.GET_FAMILY_STATUSField = value
                     Me.RaisePropertyChanged("GET_FAMILY_STATUS")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property GET_GDCS() As Boolean
+            Get
+                Return Me.GET_GDCSField
+            End Get
+            Set
+                If (Me.GET_GDCSField.Equals(value) <> true) Then
+                    Me.GET_GDCSField = value
+                    Me.RaisePropertyChanged("GET_GDCS")
                 End If
             End Set
         End Property
@@ -2013,6 +2126,19 @@ Namespace RecruitmentBusiness
         End Property
         
         <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property GET_LLCT() As Boolean
+            Get
+                Return Me.GET_LLCTField
+            End Get
+            Set
+                If (Me.GET_LLCTField.Equals(value) <> true) Then
+                    Me.GET_LLCTField = value
+                    Me.RaisePropertyChanged("GET_LLCT")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
         Public Property GET_MAJOR() As Boolean
             Get
                 Return Me.GET_MAJORField
@@ -2138,6 +2264,19 @@ Namespace RecruitmentBusiness
                 If (Me.GET_PROVINCEField.Equals(value) <> true) Then
                     Me.GET_PROVINCEField = value
                     Me.RaisePropertyChanged("GET_PROVINCE")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property GET_QLNN() As Boolean
+            Get
+                Return Me.GET_QLNNField
+            End Get
+            Set
+                If (Me.GET_QLNNField.Equals(value) <> true) Then
+                    Me.GET_QLNNField = value
+                    Me.RaisePropertyChanged("GET_QLNN")
                 End If
             End Set
         End Property
@@ -2307,6 +2446,19 @@ Namespace RecruitmentBusiness
                 If (Me.GET_TAX_TABLEField.Equals(value) <> true) Then
                     Me.GET_TAX_TABLEField = value
                     Me.RaisePropertyChanged("GET_TAX_TABLE")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property GET_TB() As Boolean
+            Get
+                Return Me.GET_TBField
+            End Get
+            Set
+                If (Me.GET_TBField.Equals(value) <> true) Then
+                    Me.GET_TBField = value
+                    Me.RaisePropertyChanged("GET_TB")
                 End If
             End Set
         End Property
@@ -2702,6 +2854,58 @@ Namespace RecruitmentBusiness
         End Property
         
         <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property LIST_CVCCB() As System.Collections.Generic.List(Of RecruitmentBusiness.OtherListDTO)
+            Get
+                Return Me.LIST_CVCCBField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.LIST_CVCCBField, value) <> true) Then
+                    Me.LIST_CVCCBField = value
+                    Me.RaisePropertyChanged("LIST_CVCCB")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property LIST_CVKN() As System.Collections.Generic.List(Of RecruitmentBusiness.OtherListDTO)
+            Get
+                Return Me.LIST_CVKNField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.LIST_CVKNField, value) <> true) Then
+                    Me.LIST_CVKNField = value
+                    Me.RaisePropertyChanged("LIST_CVKN")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property LIST_CV_DANG() As System.Collections.Generic.List(Of RecruitmentBusiness.OtherListDTO)
+            Get
+                Return Me.LIST_CV_DANGField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.LIST_CV_DANGField, value) <> true) Then
+                    Me.LIST_CV_DANGField = value
+                    Me.RaisePropertyChanged("LIST_CV_DANG")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property LIST_CV_DOAN() As System.Collections.Generic.List(Of RecruitmentBusiness.OtherListDTO)
+            Get
+                Return Me.LIST_CV_DOANField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.LIST_CV_DOANField, value) <> true) Then
+                    Me.LIST_CV_DOANField = value
+                    Me.RaisePropertyChanged("LIST_CV_DOAN")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
         Public Property LIST_DECISION_STATUS() As System.Collections.Generic.List(Of RecruitmentBusiness.OtherListDTO)
             Get
                 Return Me.LIST_DECISION_STATUSField
@@ -2840,6 +3044,19 @@ Namespace RecruitmentBusiness
                 If (Object.ReferenceEquals(Me.LIST_FAMILY_STATUSField, value) <> true) Then
                     Me.LIST_FAMILY_STATUSField = value
                     Me.RaisePropertyChanged("LIST_FAMILY_STATUS")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property LIST_GDCS() As System.Collections.Generic.List(Of RecruitmentBusiness.OtherListDTO)
+            Get
+                Return Me.LIST_GDCSField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.LIST_GDCSField, value) <> true) Then
+                    Me.LIST_GDCSField = value
+                    Me.RaisePropertyChanged("LIST_GDCS")
                 End If
             End Set
         End Property
@@ -3001,6 +3218,19 @@ Namespace RecruitmentBusiness
         End Property
         
         <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property LIST_LLCT() As System.Collections.Generic.List(Of RecruitmentBusiness.OtherListDTO)
+            Get
+                Return Me.LIST_LLCTField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.LIST_LLCTField, value) <> true) Then
+                    Me.LIST_LLCTField = value
+                    Me.RaisePropertyChanged("LIST_LLCT")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
         Public Property LIST_MAJOR() As System.Collections.Generic.List(Of RecruitmentBusiness.OtherListDTO)
             Get
                 Return Me.LIST_MAJORField
@@ -3126,6 +3356,19 @@ Namespace RecruitmentBusiness
                 If (Object.ReferenceEquals(Me.LIST_PROVINCEField, value) <> true) Then
                     Me.LIST_PROVINCEField = value
                     Me.RaisePropertyChanged("LIST_PROVINCE")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property LIST_QLNN() As System.Collections.Generic.List(Of RecruitmentBusiness.OtherListDTO)
+            Get
+                Return Me.LIST_QLNNField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.LIST_QLNNField, value) <> true) Then
+                    Me.LIST_QLNNField = value
+                    Me.RaisePropertyChanged("LIST_QLNN")
                 End If
             End Set
         End Property
@@ -3295,6 +3538,19 @@ Namespace RecruitmentBusiness
                 If (Object.ReferenceEquals(Me.LIST_TAX_TABLEField, value) <> true) Then
                     Me.LIST_TAX_TABLEField = value
                     Me.RaisePropertyChanged("LIST_TAX_TABLE")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property LIST_TB() As System.Collections.Generic.List(Of RecruitmentBusiness.OtherListDTO)
+            Get
+                Return Me.LIST_TBField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.LIST_TBField, value) <> true) Then
+                    Me.LIST_TBField = value
+                    Me.RaisePropertyChanged("LIST_TB")
                 End If
             End Set
         End Property

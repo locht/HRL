@@ -1088,6 +1088,126 @@ Public Class RecruitmentRepository
             _combolistDTO.LIST_RC_PLAN_YEAR = query
         End If
 
+        'chức vụ đoàn
+        If _combolistDTO.GET_CV_DOAN Then
+            query = (From p In Context.OT_OTHER_LIST
+                     Join q In Context.OT_OTHER_LIST_TYPE On p.TYPE_ID Equals q.ID Where q.CODE = "CV_DOAN"
+                     Where p.ACTFLG = "A"
+                     Order By p.NAME_VN.ToUpper
+                     Select New OtherListDTO With {
+                         .ID = p.ID,
+                         .CODE = p.CODE,
+                         .NAME_VN = p.NAME_VN,
+                         .NAME_EN = p.NAME_EN,
+                         .ATTRIBUTE1 = p.ATTRIBUTE1}).ToList
+            _combolistDTO.LIST_CV_DOAN = query
+        End If
+
+        'chức vụ đảng
+        If _combolistDTO.GET_CV_DOAN Then
+            query = (From p In Context.OT_OTHER_LIST
+                     Join q In Context.OT_OTHER_LIST_TYPE On p.TYPE_ID Equals q.ID Where q.CODE = "CV_DANG"
+                     Where p.ACTFLG = "A"
+                     Order By p.NAME_VN.ToUpper
+                     Select New OtherListDTO With {
+                         .ID = p.ID,
+                         .CODE = p.CODE,
+                         .NAME_VN = p.NAME_VN,
+                         .NAME_EN = p.NAME_EN,
+                         .ATTRIBUTE1 = p.ATTRIBUTE1}).ToList
+            _combolistDTO.LIST_CV_DANG = query
+        End If
+
+        'chức vụ kiêm nhiệm
+        If _combolistDTO.GET_CV_DOAN Then
+            query = (From p In Context.OT_OTHER_LIST
+                     Join q In Context.OT_OTHER_LIST_TYPE On p.TYPE_ID Equals q.ID Where q.CODE = "CVKN"
+                     Where p.ACTFLG = "A"
+                     Order By p.NAME_VN.ToUpper
+                     Select New OtherListDTO With {
+                         .ID = p.ID,
+                         .CODE = p.CODE,
+                         .NAME_VN = p.NAME_VN,
+                         .NAME_EN = p.NAME_EN,
+                         .ATTRIBUTE1 = p.ATTRIBUTE1}).ToList
+            _combolistDTO.LIST_CVKN = query
+        End If
+
+        'chức vụ cựu chiến binh
+        If _combolistDTO.GET_CV_DOAN Then
+            query = (From p In Context.OT_OTHER_LIST
+                     Join q In Context.OT_OTHER_LIST_TYPE On p.TYPE_ID Equals q.ID Where q.CODE = "CVCCB"
+                     Where p.ACTFLG = "A"
+                     Order By p.NAME_VN.ToUpper
+                     Select New OtherListDTO With {
+                         .ID = p.ID,
+                         .CODE = p.CODE,
+                         .NAME_VN = p.NAME_VN,
+                         .NAME_EN = p.NAME_EN,
+                         .ATTRIBUTE1 = p.ATTRIBUTE1}).ToList
+            _combolistDTO.LIST_CVCCB = query
+        End If
+
+        'lý luận chính trị
+        If _combolistDTO.GET_CV_DOAN Then
+            query = (From p In Context.OT_OTHER_LIST
+                     Join q In Context.OT_OTHER_LIST_TYPE On p.TYPE_ID Equals q.ID Where q.CODE = "LLCT_TD"
+                     Where p.ACTFLG = "A"
+                     Order By p.NAME_VN.ToUpper
+                     Select New OtherListDTO With {
+                         .ID = p.ID,
+                         .CODE = p.CODE,
+                         .NAME_VN = p.NAME_VN,
+                         .NAME_EN = p.NAME_EN,
+                         .ATTRIBUTE1 = p.ATTRIBUTE1}).ToList
+            _combolistDTO.LIST_LLCT = query
+        End If
+
+        'quản lý nhà nước 
+        If _combolistDTO.GET_CV_DOAN Then
+            query = (From p In Context.OT_OTHER_LIST
+                     Join q In Context.OT_OTHER_LIST_TYPE On p.TYPE_ID Equals q.ID Where q.CODE = "QLNN_TD"
+                     Where p.ACTFLG = "A"
+                     Order By p.NAME_VN.ToUpper
+                     Select New OtherListDTO With {
+                         .ID = p.ID,
+                         .CODE = p.CODE,
+                         .NAME_VN = p.NAME_VN,
+                         .NAME_EN = p.NAME_EN,
+                         .ATTRIBUTE1 = p.ATTRIBUTE1}).ToList
+            _combolistDTO.LIST_QLNN = query
+        End If
+
+        'thương binh
+        If _combolistDTO.GET_CV_DOAN Then
+            query = (From p In Context.OT_OTHER_LIST
+                     Join q In Context.OT_OTHER_LIST_TYPE On p.TYPE_ID Equals q.ID Where q.CODE = "TB"
+                     Where p.ACTFLG = "A"
+                     Order By p.NAME_VN.ToUpper
+                     Select New OtherListDTO With {
+                         .ID = p.ID,
+                         .CODE = p.CODE,
+                         .NAME_VN = p.NAME_VN,
+                         .NAME_EN = p.NAME_EN,
+                         .ATTRIBUTE1 = p.ATTRIBUTE1}).ToList
+            _combolistDTO.LIST_TB = query
+        End If
+
+        'gia đình chính sách
+        If _combolistDTO.GET_CV_DOAN Then
+            query = (From p In Context.OT_OTHER_LIST
+                     Join q In Context.OT_OTHER_LIST_TYPE On p.TYPE_ID Equals q.ID Where q.CODE = "GDCS"
+                     Where p.ACTFLG = "A"
+                     Order By p.NAME_VN.ToUpper
+                     Select New OtherListDTO With {
+                         .ID = p.ID,
+                         .CODE = p.CODE,
+                         .NAME_VN = p.NAME_VN,
+                         .NAME_EN = p.NAME_EN,
+                         .ATTRIBUTE1 = p.ATTRIBUTE1}).ToList
+            _combolistDTO.LIST_GDCS = query
+        End If
+
         Return True
     End Function
 

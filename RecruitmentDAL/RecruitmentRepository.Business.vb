@@ -2431,6 +2431,7 @@ Partial Class RecruitmentRepository
             objEmpEduData.ENGLISH_MARK2 = objEmpEdu.ENGLISH_MARK2
             objEmpEduData.DATE_START = objEmpEdu.DATE_START
             objEmpEduData.DATE_END = objEmpEdu.DATE_END
+            objEmpEduData.MARK_EDU = objEmpEdu.MARK_EDU
             Context.RC_CANDIDATE_EDUCATION.AddObject(objEmpEduData)
 
             '---------- 4.0 Thêm vào bảng RC_Candidate_OTHER_INFO ----------
@@ -2450,6 +2451,7 @@ Partial Class RecruitmentRepository
             objEmpOtherData.ACCOUNT_EFFECT_DATE = objEmpOther.ACCOUNT_EFFECT_DATE
             ' DOAN VIEN
             objEmpOtherData.IS_DOANVIEN = objEmpOther.IS_DOANVIEN
+            objEmpOtherData.DANG_KIEMNHIEM = objEmpOther.DANG_KIEMNHIEM
             objEmpOtherData.DOAN_PHI = objEmpOther.DOAN_PHI
             objEmpOtherData.NGAY_VAO_DOAN = objEmpOther.NGAY_VAO_DOAN
             objEmpOtherData.NOI_VAO_DOAN = objEmpOther.NOI_VAO_DOAN
@@ -2743,6 +2745,7 @@ Partial Class RecruitmentRepository
                 objEmpOtherData.DANG_PHI = objEmpOther.DANG_PHI
                 objEmpOtherData.NGAY_VAO_DANG = objEmpOther.NGAY_VAO_DANG
                 objEmpOtherData.CHUC_VU_DANG = objEmpOther.CHUC_VU_DANG
+                objEmpOtherData.DANG_KIEMNHIEM = objEmpOther.DANG_KIEMNHIEM
                 objEmpOtherData.NGAY_NHAN_CV_DANG = objEmpOther.NGAY_NHAN_CV_DANG
                 objEmpOtherData.NOI_VAO_DANG = objEmpOther.NOI_VAO_DANG
                 objEmpOtherData.CAPUY_HIENTAI = objEmpOtherData.CAPUY_HIENTAI

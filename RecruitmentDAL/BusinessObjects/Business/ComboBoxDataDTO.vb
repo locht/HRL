@@ -314,4 +314,36 @@
     'năm tuyển dụng
     Public Property GET_RC_PLAN_YEAR As Boolean
     Public Property LIST_RC_PLAN_YEAR As List(Of PlanYearDTO)
+
+    'Loại chức vụ đoàn
+    Public Property GET_CV_DOAN As Boolean
+    Public Property LIST_CV_DOAN As List(Of OtherListDTO)
+
+    'Loại chức vụ đảng
+    Public Property GET_CV_DANG As Boolean
+    Public Property LIST_CV_DANG As List(Of OtherListDTO)
+
+    'Loại chức vụ kiêm nhiệm
+    Public Property GET_CVKN As Boolean
+    Public Property LIST_CVKN As List(Of OtherListDTO)
+
+    'Loại chức vụ cựu chiến binh
+    Public Property GET_CVCCB As Boolean
+    Public Property LIST_CVCCB As List(Of OtherListDTO)
+
+    'Loại lý luận chính trị
+    Public Property GET_LLCT As Boolean
+    Public Property LIST_LLCT As List(Of OtherListDTO)
+
+    'Loại quản lý nhà nước
+    Public Property GET_QLNN As Boolean
+    Public Property LIST_QLNN As List(Of OtherListDTO)
+
+    'Loại thương binh
+    Public Property GET_TB As Boolean
+    Public Property LIST_TB As List(Of OtherListDTO)
+
+    'Loại gia đình chính sách
+    Public Property GET_GDCS As Boolean
+    Public Property LIST_GDCS As List(Of OtherListDTO)
 End Class
