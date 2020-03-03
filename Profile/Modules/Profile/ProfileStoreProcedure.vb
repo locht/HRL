@@ -422,6 +422,7 @@ Public Class ProfileStoreProcedure
         End If
         Return dt
     End Function
+#Region "baolc"
 
     Public Function GetAllDistrict() As DataTable
         Dim dt As New DataTable
@@ -434,6 +435,14 @@ Public Class ProfileStoreProcedure
     Public Function GETALLHU_BANK_BRANCH() As DataTable
         Dim dt As New DataTable
         Dim ds As DataSet = hfr.ExecuteToDataSet("PKG_COMMON_LIST.GETALLHU_BANK_BRANCH", New List(Of Object)(New Object() {}))
+        If Not ds Is Nothing Or Not ds.Tables(0) Is Nothing Then
+            dt = ds.Tables(0)
+        End If
+        Return dt
+    End Function
+    Public Function GETORGANIZATION_NEW(Optional ByVal P_ACTFLG As String = "") As DataTable
+        Dim dt As New DataTable
+        Dim ds As DataSet = hfr.ExecuteToDataSet("PKG_PROFILE.GETORGANIZATION_NEW", New List(Of Object)(New Object() {P_ACTFLG}))
         If Not ds Is Nothing Or Not ds.Tables(0) Is Nothing Then
             dt = ds.Tables(0)
         End If
@@ -474,12 +483,14 @@ Public Class ProfileStoreProcedure
                                                    r.AUTHOR_LETTER,
                                                    r.BUSS_REG_NAME,
                                                    r.MAN_UNI_NAME,
+                                                   r.D_OF_DIS_BUSS,
                                                    Me.Log.Username,
                                                    OUT_NUMBER
                                                    })
         Dim obj As Object = hfr.ExecuteStoreScalar("PKG_PROFILE.ADDNEW_ORGANIZATION", t_param)
         Return Int32.Parse(obj(0).ToString())
     End Function
+#End Region
 #End Region
 
 #Region "Terminate-Nghỉ việc"
