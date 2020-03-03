@@ -58,5 +58,4 @@
     Public Property AUTHOR_LETTER As String
     Public Property BUSS_REG_NAME As String
     Public Property MAN_UNI_NAME As String
-    Public Property D_OF_DIS_BUSS As Date?
 End Class

@@ -483,11 +483,53 @@ Public Class ProfileStoreProcedure
                                                    r.AUTHOR_LETTER,
                                                    r.BUSS_REG_NAME,
                                                    r.MAN_UNI_NAME,
-                                                   r.D_OF_DIS_BUSS,
                                                    Me.Log.Username,
                                                    OUT_NUMBER
                                                    })
         Dim obj As Object = hfr.ExecuteStoreScalar("PKG_PROFILE.ADDNEW_ORGANIZATION", t_param)
+        Return Int32.Parse(obj(0).ToString())
+    End Function
+
+    Public Function UPDATE_ORGANIZATION_NEW(ByVal r As HU_ORGANIZATION_NEW) As Int32
+        Dim t_param = New List(Of Object)(New Object() {
+                                        r.ID,
+                                        r.CODE,
+                                        r.NAME_EN,
+                                        r.NAME_VN,
+                                        r.PARENT_ID,
+                                        r.DISSOLVE_DATE,
+                                        r.FOUNDATION_DATE,
+                                        r.REMARK,
+                                        r.ADDRESS,
+                                        r.FAX,
+                                        r.REPRESENTATIVE_ID,
+                                        r.ORD_NO,
+                                        r.NUMBER_BUSINESS,
+                                        r.PIT_NO,
+                                        r.U_INSURANCE,
+                                        r.REGION_ID,
+                                        r.SHORT_NAME,
+                                        r.IS_SIGN_CONTRACT,
+                                        r.CONTRACT_CODE,
+                                        r.GROUP_PAID_ID,
+                                        r.UNIT_RANK_ID,
+                                        r.PROVINCE_ID,
+                                        r.DISTRICT_ID,
+                                        r.WEBSITE_LINK,
+                                        r.BANK_NO,
+                                        r.BANK_ID,
+                                        r.BANK_BRACH_ID,
+                                        r.ACCOUNTING_ID,
+                                        r.HR_ID,
+                                        r.PROVINCE_CONTRACT_ID,
+                                        r.DISTRICT_CONTRACT_ID,
+                                        r.AUTHOR_LETTER,
+                                        r.BUSS_REG_NAME,
+                                        r.MAN_UNI_NAME,
+                                        Me.Log.Username,
+                                        OUT_NUMBER
+                                        })
+        Dim obj As Object = hfr.ExecuteStoreScalar("PKG_PROFILE.UPDATE_ORGANIZATION_NEW", t_param)
         Return Int32.Parse(obj(0).ToString())
     End Function
 #End Region

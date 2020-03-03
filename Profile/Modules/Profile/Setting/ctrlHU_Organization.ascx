@@ -486,6 +486,7 @@
 <asp:PlaceHolder runat="server">
     <Common:ctrlFindEmployeePopup ID="ctrlREPRESENTATIVE_ID" runat="server" IsHideTerminate="false" MultiSelect="false" LoadAllOrganization="false" />
 </asp:PlaceHolder>
+
 <asp:PlaceHolder runat="server">
     <Common:ctrlFindEmployeePopup ID="CtrlhidACCOUNTING_ID" runat="server" IsHideTerminate="false" MultiSelect="false" LoadAllOrganization="false" />
 </asp:PlaceHolder>
@@ -495,7 +496,7 @@
 
 <tlk:radscriptblock id="rscriptblock" runat="server">
     <script type="text/javascript">
-        var enableAjax = false;
+        var enableAjax = true;
         //function OnClientItemSelectedIndexChanging(sender, args) {
         //    var item = args.get_item();
         //    item.set_checked(!item.get_checked());
@@ -506,7 +507,7 @@
         //}
         function onRequestStart(sender, eventArgs) {
             eventArgs.set_enableAjax(enableAjax);
-            //enableAjax = true;
+            enableAjax = true;
         }
 
         function loadcombobox(id_pro, id_cbo, list_id) {
