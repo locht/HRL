@@ -1017,7 +1017,7 @@ Public Class ctrlHU_Organization
         rdDISSOLVE_DATE.Enabled = IsEnable
     End Sub
     Protected Sub BuildTreeNode(ByVal tree As RadTreeView,
-                                ByVal list As DataTable,'List(Of OrganizationDTO),
+                                ByVal list As DataTable,
                                 ByVal bCheck As Boolean)
         Dim node As New RadTreeNode
         Dim bSelected As Boolean = False
@@ -1113,7 +1113,7 @@ Public Class ctrlHU_Organization
     End Function
 
     Protected Sub BuildTreeChildNode(ByVal nodeParent As RadTreeNode,
-                                     ByVal list As DataTable,'List(Of OrganizationDTO),
+                                     ByVal list As DataTable,
                                      ByVal bCheck As Boolean,
                                      ByRef bSelected As Boolean)
         Dim startTime As DateTime = DateTime.UtcNow
@@ -1141,41 +1141,41 @@ Public Class ctrlHU_Organization
             If listTemp.Rows.Count = 0 Then
                 Exit Sub
             End If
-                For index As Integer = 0 To listTemp.Rows.Count - 1
-                    Dim node As New RadTreeNode
-                    Select Case Common.Common.SystemLanguage.Name
-                        Case "vi-VN"
-                            'node.Text = listTemp(index).CODE & " - " & listTemp(index).NAME_VN
-                            node.Text = listTemp.Rows(index).Field(Of String)("NAME_VN") 'listTemp(index).NAME_VN
-                            node.ToolTip = listTemp.Rows(index).Field(Of String)("NAME_VN") 'listTemp(index).NAME_VN
-                        Case Else
-                            'node.Text = listTemp(index).CODE & " - " & listTemp(index).NAME_EN
-                            node.Text = listTemp.Rows(index).Field(Of String)("NAME_EN") 'listTemp(index).NAME_EN
-                            node.ToolTip = listTemp.Rows(index).Field(Of String)("NAME_EN") 'listTemp(index).NAME_EN
-                    End Select
+            For index As Integer = 0 To listTemp.Rows.Count - 1
+                Dim node As New RadTreeNode
+                Select Case Common.Common.SystemLanguage.Name
+                    Case "vi-VN"
+                        'node.Text = listTemp(index).CODE & " - " & listTemp(index).NAME_VN
+                        node.Text = listTemp.Rows(index).Field(Of String)("NAME_VN") 'listTemp(index).NAME_VN
+                        node.ToolTip = listTemp.Rows(index).Field(Of String)("NAME_VN") 'listTemp(index).NAME_VN
+                    Case Else
+                        'node.Text = listTemp(index).CODE & " - " & listTemp(index).NAME_EN
+                        node.Text = listTemp.Rows(index).Field(Of String)("NAME_EN") 'listTemp(index).NAME_EN
+                        node.ToolTip = listTemp.Rows(index).Field(Of String)("NAME_EN") 'listTemp(index).NAME_EN
+                End Select
 
-                    node.Value = listTemp.Rows(index).Field(Of Decimal)("ID").ToString 'listTemp(index).ID.ToString
-                    If bCheck Then
-                        If listTemp.Rows(index).Field(Of Date?)("DISSOLVE_DATE") IsNot Nothing Then
-                            If listTemp.Rows(index).Field(Of Date?)("DISSOLVE_DATE") < Date.Now Then
-                                node.BackColor = Drawing.Color.Yellow
-                            End If
+                node.Value = listTemp.Rows(index).Field(Of Decimal)("ID").ToString 'listTemp(index).ID.ToString
+                If bCheck Then
+                    If listTemp.Rows(index).Field(Of Date?)("DISSOLVE_DATE") IsNot Nothing Then
+                        If listTemp.Rows(index).Field(Of Date?)("DISSOLVE_DATE") < Date.Now Then
+                            node.BackColor = Drawing.Color.Yellow
                         End If
                     End If
-                    If listTemp.Rows(index).Field(Of String)("ACTFLG") = "I" Then
-                        node.BackColor = Drawing.Color.Yellow
+                End If
+                If listTemp.Rows(index).Field(Of String)("ACTFLG") = "I" Then
+                    node.BackColor = Drawing.Color.Yellow
+                End If
+                If SelectOrgFunction IsNot Nothing Then
+                    If node.Value = SelectOrgFunction Then
+                        node.Selected = True
+                        bSelected = True
                     End If
-                    If SelectOrgFunction IsNot Nothing Then
-                        If node.Value = SelectOrgFunction Then
-                            node.Selected = True
-                            bSelected = True
-                        End If
-                    End If
-                    nodeParent.Nodes.Add(node)
-                    BuildTreeChildNode(node, list, bCheck, bSelected)
-                Next
+                End If
+                nodeParent.Nodes.Add(node)
+                BuildTreeChildNode(node, list, bCheck, bSelected)
+            Next
 sucssec:
-                _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
+            _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
             Throw ex
             _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
