@@ -115,11 +115,13 @@ Public Class ctrlRC_CandidateList
             Me.MainToolBar = tbarMainToolBar
             Common.Common.BuildToolbar(Me.MainToolBar, ToolbarItem.Create,
                                        ToolbarItem.Edit,
-                                       ToolbarItem.Delete, ToolbarItem.Export, ToolbarItem.ExportTemplate, ToolbarItem.Import, ToolbarItem.Next)
+                                       ToolbarItem.Delete, ToolbarItem.Export, ToolbarItem.ExportTemplate, ToolbarItem.Import, ToolbarItem.Previous, ToolbarItem.Next)
             MainToolBar.Items(4).Text = Translate("Xuất file mẫu")
             MainToolBar.Items(5).Text = Translate("Nhập file mẫu")
-            CType(Me.MainToolBar.Items(6), RadToolBarButton).ImageUrl = CType(Me.MainToolBar.Items(5), RadToolBarButton).ImageUrl
-            MainToolBar.Items(6).Text = Translate("Import CV")
+            CType(Me.MainToolBar.Items(6), RadToolBarButton).ImageUrl = CType(Me.MainToolBar.Items(4), RadToolBarButton).ImageUrl
+            MainToolBar.Items(6).Text = Translate("Xuất CV mẫu")
+            CType(Me.MainToolBar.Items(7), RadToolBarButton).ImageUrl = CType(Me.MainToolBar.Items(5), RadToolBarButton).ImageUrl
+            MainToolBar.Items(7).Text = Translate("Import CV")
             CType(Me.Page, AjaxPage).AjaxManager.ClientEvents.OnRequestStart = "onRequestStart"
         Catch ex As Exception
             DisplayException(Me.ViewName, Me.ID, ex)

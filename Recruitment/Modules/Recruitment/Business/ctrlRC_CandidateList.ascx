@@ -1,7 +1,7 @@
 ﻿<%@ Control Language="vb" AutoEventWireup="false" CodeBehind="ctrlRC_CandidateList.ascx.vb"
     Inherits="Recruitment.ctrlRC_CandidateList" %>
 <%@ Import Namespace="Common" %>
-<common:ctrlmessagebox id="ctrlMessageBox" runat="server" />
+<Common:ctrlMessageBox ID="ctrlMessageBox" runat="server" />
 <tlk:RadSplitter ID="RadSplitter3" runat="server" Width="100%" Height="100%" Orientation="Horizontal">
     <tlk:RadPane ID="RadPane1" runat="server" Scrolling="None">
         <tlk:RadToolBar ID="tbarMainToolBar" runat="server" OnClientButtonClicking="clientButtonClicking" />
@@ -27,10 +27,10 @@
                         <td>
                             <asp:Label ID="lblCode" runat="server" Text="" Font-Bold="true"></asp:Label>
                         </td>
-                        <td class="lb" style="display : none">
+                        <td class="lb" style="display: none">
                             <%# Translate("Tên công việc")%>:
                         </td>
-                        <td style="display : none">
+                        <td style="display: none">
                             <asp:Label ID="lblJobName" runat="server" Text="" Font-Bold="true"></asp:Label>
                         </td>
                         <td class="lb">
@@ -113,24 +113,22 @@
                         <td>
                             <asp:CheckBox ID="chkElectCandidate" runat="server" />
                         </td>
-                        <td class="lb">
+                        <td class="lb" style="display: none">
                             <%# Translate("Ứng viên tiềm năng")%>
                         </td>
-                        <td>
+                        <td style="display: none">
                             <asp:CheckBox ID="chkCandidatePotential" runat="server" />
                         </td>
-                    </tr>
-                    <tr>
-                        <td class="lb">
+                        <td class="lb" style="display: none">
                             <%# Translate("Ứng viên đã từ chối")%>
                         </td>
-                        <td>
+                        <td style="display: none">
                             <asp:CheckBox ID="chkCandidateCancel" runat="server" />
                         </td>
-                        <td class="lb" style="display:none">
+                        <td class="lb" style="display: none">
                             <%# Translate("Gửi thư mời")%>
                         </td>
-                        <td style="display:none">
+                        <td style="display: none">
                             <asp:CheckBox ID="chkCandidateHavesentmail" runat="server" />
                         </td>
                         <td class="lb">
@@ -139,10 +137,10 @@
                         <td>
                             <asp:CheckBox ID="chkCandiateIsEmp" runat="server" />
                         </td>
-                        <td class="lb" style="display:none">
+                        <td class="lb">
                             <%# Translate("Ứng viên nội bộ")%>
                         </td>
-                        <td style="display:none">
+                        <td>
                             <asp:CheckBox ID="chkCandidateIsLocaltion" runat="server" />
                         </td>
                         <td>
@@ -173,11 +171,13 @@
                     </tlk:GridDateTimeColumn>
                     <tlk:GridBoundColumn HeaderText="<%$ Translate: CMND %>" DataField="ID_NO" UniqueName="ID_NO"
                         SortExpression="ID_NO" />
-                    <tlk:GridDateTimeColumn HeaderText="<%$ Translate: Ngày cấp %>" DataField="ID_DATE"
+                    <tlk:GridBoundColumn HeaderText="<%$ Translate: Nơi cấp %>" DataField="ID_PLACE" UniqueName="ID_PLACE"
+                        SortExpression="ID_PLACE" />
+                    <%--<tlk:GridDateTimeColumn HeaderText="<%$ Translate: Ngày cấp %>" DataField="ID_DATE"
                         UniqueName="ID_DATE" DataFormatString="{0:dd/MM/yyyy}" SortExpression="ID_DATE">
                         <HeaderStyle HorizontalAlign="Center" />
                         <ItemStyle HorizontalAlign="Center" />
-                    </tlk:GridDateTimeColumn>
+                    </tlk:GridDateTimeColumn>--%>
                     <%--<tlk:GridCheckBoxColumn HeaderText="<%$ Translate: Black list %>" DataField="IS_BLACKLIST"
                         UniqueName="IS_BLACKLIST" SortExpression="IS_BLACKLIST" ShowFilterIcon="true" />
                     <tlk:GridCheckBoxColumn HeaderText="<%$ Translate: ReHire %>" DataField="IS_REHIRE"
@@ -185,7 +185,9 @@
                     <tlk:GridCheckBoxColumn HeaderText="<%$ Translate: Tiềm năng %>" DataField="IS_PONTENTIAL"
                         UniqueName="IS_PONTENTIAL" SortExpression="IS_PONTENTIAL" ShowFilterIcon="true" />--%>
                     <tlk:GridBoundColumn HeaderText="<%$ Translate: Trạng thái ứng viên %>" DataField="STATUS_NAME"
-                        UniqueName="STATUS_NAME"  />
+                        UniqueName="STATUS_NAME" />
+<%--                    <tlk:GridBoundColumn HeaderText="<%$ Translate: Loại ứng viên %>" DataField="STATUS_NAME"
+                        UniqueName="STATUS_NAME" />--%>
                 </Columns>
             </MasterTableView>
             <HeaderStyle HorizontalAlign="Center" Width="100px" />
@@ -214,7 +216,7 @@
                         OnClientClicking="btnBlacklistClick">
                     </tlk:RadButton>
                 </td>
-               <%-- <td>
+                <%-- <td>
                     <tlk:RadButton ID="btnHSNVTransfer" runat="server" Text="<%$ Translate: [...] Ứng viên nội bộ %>">
                     </tlk:RadButton>
                 </td>--%>
@@ -239,7 +241,7 @@
         </tlk:RadWindow>
     </Windows>
 </tlk:RadWindowManager>
-<common:ctrlupload id="ctrlUpload1" runat="server" />
+<Common:ctrlUpload ID="ctrlUpload1" runat="server" />
 <asp:PlaceHolder ID="phFindEmployee" runat="server"></asp:PlaceHolder>
 <asp:PlaceHolder ID="FindOrgTitle" runat="server"></asp:PlaceHolder>
 <tlk:RadScriptBlock ID="scriptBlock" runat="server">

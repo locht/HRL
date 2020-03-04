@@ -1873,7 +1873,7 @@ Partial Class RecruitmentRepository
                     If Not sID_No Is Nothing And sID_No <> "" And dBirthDate.ToString <> "" And sFullName <> "" Then
                         Return ((From e In Context.RC_CANDIDATE
                          From cv In Context.RC_CANDIDATE_CV.Where(Function(f) f.CANDIDATE_ID = e.ID)
-                        Where (cv.ID_NO = sID_No Or (cv.BIRTH_DATE = dBirthDate And e.FULLNAME_VN = sFullName)) And e.IS_BLACKLIST = 0).Count = 0)
+                        Where cv.ID_NO = sID_No Or (cv.BIRTH_DATE = dBirthDate And e.FULLNAME_VN = sFullName)).Count = 0)
                     End If
                 Case "BLACK_LIST"
                     If Not sID_No Is Nothing And sID_No <> "" And dBirthDate.ToString <> "" And sFullName <> "" Then
@@ -1889,6 +1889,7 @@ Partial Class RecruitmentRepository
                     End If
                 Case "WORKING"
                     If (sID_No = "" Or sID_No Is Nothing) And dBirthDate.ToString <> "" And sFullName <> "" Then
+
                         Return ((From e In Context.HU_EMPLOYEE
                          From cv In Context.HU_EMPLOYEE_CV.Where(Function(f) f.EMPLOYEE_ID = e.ID)
                         Where ((cv.BIRTH_DATE = dBirthDate And e.FULLNAME_VN.ToUpper = sFullName.ToUpper) Or cv.ID_NO = sID_No) And e.WORK_STATUS <> 257).Count = 0)
@@ -1945,6 +1946,7 @@ Partial Class RecruitmentRepository
                          .TITLE_NAME_VN = p.ot.NAME_VN,
                          .BIRTH_DATE = p.cv.BIRTH_DATE,
                          .ID_NO = p.cv.ID_NO,
+                         .ID_PLACE = p.cv.ID_PLACE,
                          .ID_DATE = p.cv.ID_DATE,
                          .IS_BLACKLIST = p.p.IS_BLACKLIST,
                          .IS_PONTENTIAL = p.p.IS_PONTENTIAL,

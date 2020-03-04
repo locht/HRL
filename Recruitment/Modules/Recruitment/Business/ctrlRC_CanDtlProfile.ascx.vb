@@ -960,7 +960,7 @@ Public Class ctrlRC_CanDtlProfile
                                 If Not rep.ValidateInsertCandidate(txtEmpCODE.Text, rntxtCMND.Text, txtFirstNameVN.Text & " " & txtLastNameVN.Text, rdBirthDate.SelectedDate, "NO_ID") Then
                                     strMess = "Ứng viên đang tồn tại trong một chương trình tuyển dụng khác, bạn muốn tiếp tục lưu không?"
                                 End If
-                                If Not rep.ValidateInsertCandidate(txtEmpCODE.Text, rntxtCMND.Text, txtFirstNameVN.Text & " " & txtLastNameVN.Text, rdBirthDate.SelectedDate, "BLACKLIST") Then
+                                If Not rep.ValidateInsertCandidate(txtEmpCODE.Text, rntxtCMND.Text, txtFirstNameVN.Text & " " & txtLastNameVN.Text, rdBirthDate.SelectedDate, "BLACK_LIST") Then
                                     strMess = "Ứng viên đang thuộc Blacklist, bạn muốn tiếp tục lưu không?"
                                 End If
                                 If strMess <> "" Then

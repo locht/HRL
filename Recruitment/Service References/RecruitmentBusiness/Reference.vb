@@ -13294,6 +13294,9 @@ Namespace RecruitmentBusiness
         Private ID_NOField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private ID_PLACEField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private IMAGEField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -13674,6 +13677,19 @@ Namespace RecruitmentBusiness
                 If (Object.ReferenceEquals(Me.ID_NOField, value) <> true) Then
                     Me.ID_NOField = value
                     Me.RaisePropertyChanged("ID_NO")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property ID_PLACE() As String
+            Get
+                Return Me.ID_PLACEField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.ID_PLACEField, value) <> true) Then
+                    Me.ID_PLACEField = value
+                    Me.RaisePropertyChanged("ID_PLACE")
                 End If
             End Set
         End Property
