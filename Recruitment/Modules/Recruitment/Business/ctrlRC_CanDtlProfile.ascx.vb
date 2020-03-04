@@ -951,17 +951,17 @@ Public Class ctrlRC_CanDtlProfile
                             Case STATE_NEW
                                 'Validate
                                 Dim strMess As String = ""
-                                If Not rep.ValidateInsertCandidate(txtEmpCODE.Text, rntxtCMND.Text, txtFirstNameVN.Text & " " & txtLastNameVN.Text, rdBirthDate.SelectedDate, "WORKING") Then
-                                    strMess = "Ứng viên đang làm việc tại ACV, bạn muốn tiếp tục lưu không?"
-                                End If
-                                If Not rep.ValidateInsertCandidate(txtEmpCODE.Text, rntxtCMND.Text, txtFirstNameVN.Text & " " & txtLastNameVN.Text, rdBirthDate.SelectedDate, "TERMINATE") Then
-                                    strMess = "Ứng viên đã từng làm việc tại ACV, bạn muốn tiếp tục lưu không?"
-                                End If
                                 If Not rep.ValidateInsertCandidate(txtEmpCODE.Text, rntxtCMND.Text, txtFirstNameVN.Text & " " & txtLastNameVN.Text, rdBirthDate.SelectedDate, "NO_ID") Then
                                     strMess = "Ứng viên đang tồn tại trong một chương trình tuyển dụng khác, bạn muốn tiếp tục lưu không?"
                                 End If
                                 If Not rep.ValidateInsertCandidate(txtEmpCODE.Text, rntxtCMND.Text, txtFirstNameVN.Text & " " & txtLastNameVN.Text, rdBirthDate.SelectedDate, "BLACK_LIST") Then
                                     strMess = "Ứng viên đang thuộc Blacklist, bạn muốn tiếp tục lưu không?"
+                                End If
+                                If Not rep.ValidateInsertCandidate(txtEmpCODE.Text, rntxtCMND.Text, txtFirstNameVN.Text & " " & txtLastNameVN.Text, rdBirthDate.SelectedDate, "WORKING") Then
+                                    strMess = "Ứng viên đang làm việc tại ACV, bạn muốn tiếp tục lưu không?"
+                                End If
+                                If Not rep.ValidateInsertCandidate(txtEmpCODE.Text, rntxtCMND.Text, txtFirstNameVN.Text & " " & txtLastNameVN.Text, rdBirthDate.SelectedDate, "TERMINATE") Then
+                                    strMess = "Ứng viên đã từng làm việc tại ACV, bạn muốn tiếp tục lưu không?"
                                 End If
                                 If strMess <> "" Then
                                     ctrlMessageBox.MessageText = Translate(strMess)

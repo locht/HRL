@@ -1873,32 +1873,32 @@ Partial Class RecruitmentRepository
                     If Not sID_No Is Nothing And sID_No <> "" And dBirthDate.ToString <> "" And sFullName <> "" Then
                         Return ((From e In Context.RC_CANDIDATE
                          From cv In Context.RC_CANDIDATE_CV.Where(Function(f) f.CANDIDATE_ID = e.ID)
-                        Where cv.ID_NO = sID_No Or (cv.BIRTH_DATE = dBirthDate And e.FULLNAME_VN = sFullName)).Count = 0)
+                        Where ((cv.ID_NO = sID_No) Or (cv.BIRTH_DATE = dBirthDate And e.FULLNAME_VN.ToUpper = sFullName.ToUpper))).Count = 0)
                     End If
                 Case "BLACK_LIST"
                     If Not sID_No Is Nothing And sID_No <> "" And dBirthDate.ToString <> "" And sFullName <> "" Then
                         Return ((From e In Context.RC_CANDIDATE
                          From cv In Context.RC_CANDIDATE_CV.Where(Function(f) f.CANDIDATE_ID = e.ID)
-                        Where (cv.ID_NO = sID_No And e.IS_BLACKLIST = -1) Or (cv.BIRTH_DATE = dBirthDate And e.FULLNAME_VN = sFullName And e.IS_BLACKLIST = -1)).Count = 0)
+                        Where (cv.ID_NO = sID_No And e.IS_BLACKLIST = -1) Or (cv.BIRTH_DATE = dBirthDate And e.FULLNAME_VN.ToUpper = sFullName.ToUpper And e.IS_BLACKLIST = -1)).Count = 0)
                     End If
                 Case "DATE_FULLNAME"
-                    If (sID_No = "" Or sID_No Is Nothing) And dBirthDate.ToString <> "" Then
+                    If sID_No <> "" And sID_No IsNot Nothing And dBirthDate.ToString <> "" Then
                         Return ((From e In Context.RC_CANDIDATE
                          From cv In Context.RC_CANDIDATE_CV.Where(Function(f) f.CANDIDATE_ID = e.ID)
                         Where cv.BIRTH_DATE = dBirthDate And e.FULLNAME_VN.ToUpper = sFullName.ToUpper).Count = 0)
                     End If
                 Case "WORKING"
-                    If (sID_No = "" Or sID_No Is Nothing) And dBirthDate.ToString <> "" And sFullName <> "" Then
+                    If sID_No <> "" And sID_No IsNot Nothing And dBirthDate.ToString <> "" And sFullName <> "" Then
 
                         Return ((From e In Context.HU_EMPLOYEE
                          From cv In Context.HU_EMPLOYEE_CV.Where(Function(f) f.EMPLOYEE_ID = e.ID)
-                        Where ((cv.BIRTH_DATE = dBirthDate And e.FULLNAME_VN.ToUpper = sFullName.ToUpper) Or cv.ID_NO = sID_No) And e.WORK_STATUS <> 257).Count = 0)
+                        Where (cv.BIRTH_DATE = dBirthDate And e.FULLNAME_VN.ToUpper = sFullName.ToUpper) Or (cv.ID_NO = sID_No)).Count = 0)
                     End If
                 Case "TERMINATE"
-                    If (sID_No = "" Or sID_No Is Nothing) And dBirthDate.ToString <> "" And sFullName <> "" Then
+                    If sID_No <> "" And sID_No IsNot Nothing And dBirthDate.ToString <> "" And sFullName <> "" Then
                         Return ((From e In Context.HU_EMPLOYEE
                          From cv In Context.HU_EMPLOYEE_CV.Where(Function(f) f.EMPLOYEE_ID = e.ID)
-                        Where ((cv.BIRTH_DATE = dBirthDate And e.FULLNAME_VN.ToUpper = sFullName.ToUpper) Or cv.ID_NO = sID_No) And e.WORK_STATUS = 257).Count = 0)
+                        Where ((cv.BIRTH_DATE = dBirthDate And e.FULLNAME_VN.ToUpper = sFullName.ToUpper) Or (cv.ID_NO = sID_No)) And e.WORK_STATUS = 257).Count = 0)
                     End If
             End Select
             Return True
@@ -2292,6 +2292,7 @@ Partial Class RecruitmentRepository
             objEmpData.TITLE_ID = objEmp.TITLE_ID
             objEmpData.JOIN_DATE = objEmp.JOIN_DATE
             objEmpData.EFFECT_DATE = objEmp.EFFECT_DATE
+            objEmpData.STATUS_ID = RecruitmentCommon.RC_CANDIDATE_STATUS.DUDIEUKIEN_ID
             objEmpData.TITLE_NAME = objEmp.TITLE_NAME
             objEmpData.WORK = objEmp.WORK
             objEmpData.FILE_NAME = objEmp.FILE_NAME
