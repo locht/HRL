@@ -213,6 +213,7 @@
             <Property Name="TR_PROGRAM_GROUP" Type="number" Nullable="true" Precision="38" />
             <Property Name="DRIVER" Type="number" Nullable="true" Precision="38" />
             <Property Name="REMARK" Type="nclob" Nullable="true" />
+            <Property Name="TR_FREQUENCY" Type="number" Nullable="true" Precision="38" />
         </EntityType>
         <EntityType Name="TR_LECTURE">
             <Key>
@@ -1539,6 +1540,7 @@
           <Property Type="Decimal" Name="TR_PROGRAM_GROUP" />
           <Property Type="Decimal" Name="DRIVER" />
           <Property Type="String" Name="REMARK" />
+          <Property Type="Decimal" Name="TR_FREQUENCY" />
         </EntityType>
         <EntityType Name="TR_LECTURE">
           <Key>
@@ -2772,6 +2774,7 @@
                     <ScalarProperty Name="TR_PROGRAM_GROUP" ColumnName="TR_PROGRAM_GROUP" />
                     <ScalarProperty Name="DRIVER" ColumnName="DRIVER" />
                     <ScalarProperty Name="REMARK" ColumnName="REMARK" />
+                    <ScalarProperty Name="TR_FREQUENCY" ColumnName="TR_FREQUENCY" />
                 </MappingFragment>
             </EntityTypeMapping>
         </EntitySetMapping>
@@ -3842,7 +3845,7 @@
         <EntityTypeShape EntityType="TrainingModel.TR_CENTER" Width="1.5" PointX="8.75" PointY="6.75" Height="5.4417122395833335" />
         <EntityTypeShape EntityType="TrainingModel.TR_CERTIFICATE" Width="1.5" PointX="5.75" PointY="9.75" Height="3.9033007812499996" />
         <EntityTypeShape EntityType="TrainingModel.TR_CLASS" Width="1.5" PointX="10.75" PointY="6.75" Height="3.7109993489583317" />
-        <EntityTypeShape EntityType="TrainingModel.TR_COURSE" Width="2.125" PointX="2.5" PointY="11.75" Height="4.0956022135416656" />
+        <EntityTypeShape EntityType="TrainingModel.TR_COURSE" Width="2.125" PointX="2.625" PointY="9.25" Height="4.2879036458333335" />
         <EntityTypeShape EntityType="TrainingModel.TR_LECTURE" Width="1.5" PointX="10.75" PointY="11.75" Height="4.0956022135416674" />
         <EntityTypeShape EntityType="TrainingModel.TR_PLAN_JOBGRADE" Width="1.5" PointX="12.75" PointY="6.75" Height="1.5956835937500031" />
         <EntityTypeShape EntityType="TrainingModel.TR_PLAN_TITLE" Width="1.5" PointX="7.75" PointY="12.75" Height="1.5956835937500031" />
@@ -3853,7 +3856,7 @@
         <EntityTypeShape EntityType="TrainingModel.TR_PROGRAM_JOBGRADE" Width="1.5" PointX="14.75" PointY="9.75" Height="1.5956835937500102" />
         <EntityTypeShape EntityType="TrainingModel.TR_PROGRAM_LECTURE" Width="1.5" PointX="14.75" PointY="12.75" Height="1.5956835937500102" />
         <EntityTypeShape EntityType="TrainingModel.TR_PROGRAM_TITLE" Width="1.5" PointX="15.75" PointY="0.75" Height="1.5956835937500102" />
-        <EntityTypeShape EntityType="TrainingModel.TR_PROGRAM_UNIT" Width="1.5" PointX="15.75" PointY="3.75" Height="1.5956835937500102" />
+        <EntityTypeShape EntityType="TrainingModel.TR_PROGRAM_UNIT" Width="2.125" PointX="15.75" PointY="3.75" Height="1.5956835937500102" />
         <EntityTypeShape EntityType="TrainingModel.TR_REQUEST" Width="1.5" PointX="6.75" PointY="15.75" Height="4.48020507812501" />
         <EntityTypeShape EntityType="TrainingModel.TR_REQUEST_EMPLOYEE" Width="1.5" PointX="14.75" PointY="15.75" Height="1.5956835937500102" />
         <EntityTypeShape EntityType="TrainingModel.TR_CLASS_STUDENT" Width="1.5" PointX="16.75" PointY="6.75" Height="2.7494921875000031" />
@@ -3933,12 +3936,12 @@
           <ConnectorPoint PointX="24.353461538461538" PointY="19.826315104166667" />
           <ConnectorPoint PointX="24.353461538461538" PointY="19.576315104166667" />
         </AssociationConnector>
-        <EntityTypeShape EntityType="TrainingModel.TR_PROGRAM_GROUP" Width="1.5" PointX="1.25" PointY="2.375" Height="3.3263964843749996" />
+        <EntityTypeShape EntityType="TrainingModel.TR_PROGRAM_GROUP" Width="2" PointX="1.25" PointY="2.375" Height="3.3263964843749996" />
         <EntityTypeShape EntityType="TrainingModel.TR_REQUEST_CENTER" Width="1.5" PointX="11.033119601678624" PointY="1.1347264950791032" />
         <EntityTypeShape EntityType="TrainingModel.TR_REQUEST_TEACHER" Width="1.5" PointX="12.5" PointY="16.875" Height="1.5956835937500031" />
         <EntityTypeShape EntityType="TrainingModel.TR_PLAN_COST_DETAIL" Width="1.5" PointX="3.375" PointY="4.75" Height="2.1725878906249996" />
-        <EntityTypeShape EntityType="TrainingModel.TR_UNIT" Width="1.5" PointX="5.375" PointY="4.75" Height="5.057109375" />
-        <EntityTypeShape EntityType="TrainingModel.TR_PLAN_EMPLOYEE" Width="1.5" PointX="8.6947389974700009" PointY="6.4464712769009509" />
+        <EntityTypeShape EntityType="TrainingModel.TR_UNIT" Width="1.5" PointX="5.5" PointY="4.375" Height="5.057109375" />
+        <EntityTypeShape EntityType="TrainingModel.TR_PLAN_EMPLOYEE" Width="1.5" PointX="7.625" PointY="5.25" Height="1.5956835937499996" />
         <EntityTypeShape EntityType="TrainingModel.TR_TITLE_COURSE" Width="1.5" PointX="0.75" PointY="6.75" Height="2.9417936197916674" />
         <EntityTypeShape EntityType="TrainingModel.SE_REPORT" Width="2" PointX="1.25" PointY="16" Height="2.3648893229166674" />
         <EntityTypeShape EntityType="TrainingModel.SE_USER" Width="2" PointX="0.875" PointY="18.75" Height="5.6340136718749818" />

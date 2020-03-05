@@ -1,23 +1,11 @@
 ﻿<%@ Control Language="vb" AutoEventWireup="false" CodeBehind="ctrlTR_Course.ascx.vb"
     Inherits="Training.ctrlTR_Course" %>
 <tlk:RadSplitter ID="RadSplitter3" runat="server" Width="100%" Height="100%" Orientation="Horizontal">
-    <tlk:RadPane ID="RadPane1" runat="server" Height="210px" Scrolling="None">
+    <tlk:RadPane ID="RadPane1" runat="server" Height="50%" Scrolling="None">
         <tlk:RadToolBar ID="tbarMain" runat="server" />
         <asp:ValidationSummary ID="valSum" runat="server" />
         <table class="table-form">
-            <tr>
-                <td class="lb">
-                    <%# Translate("Lĩnh vực đào tạo")%>
-                    <span class="lbReq">*</span>
-                </td>
-                <td>
-                    <tlk:RadComboBox ID="cboTrainField" runat="server" AutoPostBack="true" CausesValidation="false">
-                    </tlk:RadComboBox>
-                    <asp:RequiredFieldValidator ID="reqTrainField" ControlToValidate="cboTrainField"
-                        runat="server" ErrorMessage="<%$ Translate: Bạn phải nhập lĩnh vực đào tạo %>"
-                        ToolTip="<%$ Translate: Bạn phải nhập lĩnh vực đào tạo %>">
-                    </asp:RequiredFieldValidator>
-                </td>
+            <tr>                
                 <td class="lb">
                     <%# Translate("Nhóm chương trình")%>
                     <span class="lbReq">*</span>
@@ -42,7 +30,7 @@
                     <asp:RequiredFieldValidator ID="reqCode" ControlToValidate="txtCode" runat="server"
                         ErrorMessage="<%$ Translate: Bạn phải nhập mã khóa đào tạo %>" ToolTip="<%$ Translate: Bạn phải nhập mã khóa đào tạo %>">
                     </asp:RequiredFieldValidator>
-                    <asp:CustomValidator ID="cvalCode" ControlToValidate="txtCode" runat="server" ErrorMessage="<%$ Translate: Mã khóa đào tạo đã tồn tại. %>"
+                    <asp:CustomValidator ID="cvalCode" ControlToValidate="txtCode" runat="server" ErrorMessage="<%$ Translate: Mã khóa đào tạo %>"
                         ToolTip="<%$ Translate: Mã khóa đào tạo đã tồn tại. %>">
                     </asp:CustomValidator>
                 </td>
@@ -71,6 +59,13 @@
                 <td>
                     <tlk:RadComboBox ID="cboCertificate" runat="server">
                     </tlk:RadComboBox>
+                </td>               
+                <td class="lb">
+                    <%# Translate("Tần suất đào tạo")%>
+                </td>
+                <td>
+                    <tlk:RadNumericTextBox ID="ntxtTrFrequency" MaxLength="255" runat="server">
+                    </tlk:RadNumericTextBox>                    
                 </td>
             </tr>
             <tr>
@@ -84,12 +79,7 @@
             </tr>
             <tr>
                 <td>
-                </td>
-                <td colspan="3">
-                    <tlk:RadButton ID="cbDriver" ToggleType="CheckBox" ButtonType="ToggleButton" runat="server"
-                        Text="<%$ Translate: Nhân viên lái xe %>">
-                    </tlk:RadButton>
-                </td>
+                </td>               
             </tr>
         </table>
     </tlk:RadPane>
@@ -99,7 +89,7 @@
             <ClientSettings EnableRowHoverStyle="true">
                 <Selecting AllowRowSelect="true" />
             </ClientSettings>
-            <MasterTableView DataKeyNames="ID" ClientDataKeyNames="ID,CODE,NAME,TR_CER_GROUP_ID,TR_CER_GROUP_NAME,TR_CERTIFICATE_ID,TR_CERTIFICATE_NAME,TR_TRAIN_FIELD_ID,TR_TRAIN_FIELD_NAME,TR_PROGRAM_GROUP_ID,TR_PROGRAM_GROUP_NAME,DRIVER,REMARK">
+            <MasterTableView DataKeyNames="ID" ClientDataKeyNames="ID,CODE,NAME,TR_CER_GROUP_ID,TR_CER_GROUP_NAME,TR_FREQUENCY,TR_CERTIFICATE_ID,TR_CERTIFICATE_NAME,TR_TRAIN_FIELD_ID,TR_TRAIN_FIELD_NAME,TR_PROGRAM_GROUP_ID,TR_PROGRAM_GROUP_NAME,DRIVER,REMARK">
                 <Columns>
                     <tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderStyle-HorizontalAlign="Center"
                         HeaderStyle-Width="30px" ItemStyle-HorizontalAlign="Center">
@@ -114,15 +104,13 @@
                     <tlk:GridBoundColumn HeaderText="<%$ Translate: Nhóm chứng chỉ %>" DataField="TR_CER_GROUP_NAME"
                         UniqueName="TR_CER_GROUP_NAME" SortExpression="TR_CER_GROUP_NAME" />
                     <tlk:GridBoundColumn HeaderText="<%$ Translate: Tên chứng chỉ %>" DataField="TR_CERTIFICATE_NAME"
-                        UniqueName="TR_CERTIFICATE_NAME" SortExpression="TR_CERTIFICATE_NAME" />
-                    <tlk:GridBoundColumn HeaderText="<%$ Translate: Lĩnh vực đào tạo %>" DataField="TR_TRAIN_FIELD_NAME"
-                        UniqueName="TR_TRAIN_FIELD_NAME" SortExpression="TR_TRAIN_FIELD_NAME" />
+                        UniqueName="TR_CERTIFICATE_NAME" SortExpression="TR_CERTIFICATE_NAME" />      
+                    <tlk:GridBoundColumn HeaderText="<%$ Translate: Tần suất đào tạo %>" DataField="TR_FREQUENCY"
+                        UniqueName="TR_FREQUENCY" SortExpression="TR_FREQUENCY" /> 
                     <tlk:GridBoundColumn HeaderText="<%$ Translate: ID Nhóm chương trình %>" DataField="TR_PROGRAM_GROUP_ID"
                         UniqueName="TR_PROGRAM_GROUP_ID" SortExpression="TR_PROGRAM_GROUP_ID" Visible="false" />
                     <tlk:GridBoundColumn HeaderText="<%$ Translate: Nhóm chương trình %>" DataField="TR_PROGRAM_GROUP_NAME"
-                        UniqueName="TR_PROGRAM_GROUP_NAME" SortExpression="TR_PROGRAM_GROUP_NAME" />
-                    <tlk:GridCheckBoxColumn HeaderText="<%$ Translate: Nhân viên lái xe %>" DataField="DRIVER"
-                        UniqueName="DRIVER" SortExpression="DRIVER" ShowFilterIcon="true" />
+                        UniqueName="TR_PROGRAM_GROUP_NAME" SortExpression="TR_PROGRAM_GROUP_NAME" />                   
                     <tlk:GridBoundColumn HeaderText="<%$ Translate: Ghi chú %>" DataField="REMARK" UniqueName="REMARK"
                         SortExpression="REMARK" />
                     <tlk:GridBoundColumn HeaderText="<%$ Translate: Trạng thái %>" DataField="ACTFLG"
@@ -132,7 +120,7 @@
         </tlk:RadGrid>
     </tlk:RadPane>
 </tlk:RadSplitter>
-<Common:ctrlMessageBox ID="ctrlMessageBox" runat="server" />
+<Common:ctrlmessagebox id="ctrlMessageBox" runat="server" />
 <tlk:RadCodeBlock ID="RadCodeBlock1" runat="server">
     <script type="text/javascript">
         var enableAjax = true;

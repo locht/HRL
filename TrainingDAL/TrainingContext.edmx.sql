@@ -1,19 +1,155 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for Oracle database
 -- --------------------------------------------------
--- Date Created: 11/16/2016 1:55:19 PM
--- Generated from EDMX file: C:\TinhVanConsulting\PTSC\trunk\06.DEPLOYMENT\02.Sourcecode\01.SourceCode\TrainingDAL\TrainingContext.edmx
+-- Date Created: 3/5/2020 10:28:20 AM
+-- Generated from EDMX file: D:\HiStaffWebApp\acv_19\TrainingDAL\TrainingContext.edmx
 -- --------------------------------------------------
 
 -- --------------------------------------------------
 -- Dropping existing FOREIGN KEY constraints
 -- --------------------------------------------------
 
+-- ALTER TABLE "TrainingModelStoreContainer"."HU_DISTRICT" DROP CONSTRAINT "FK_HU_PRO_HU_DIS" CASCADE;
+
+-- ALTER TABLE "TrainingModelStoreContainer"."HU_PROVINCE" DROP CONSTRAINT "FK_HU_NAT_HU_PRO" CASCADE;
+
+-- ALTER TABLE "TrainingModelStoreContainer"."HU_EMPLOYEE_CV" DROP CONSTRAINT "FK_HE_HEC" CASCADE;
+
+-- ALTER TABLE "TrainingModelStoreContainer"."HU_EMPLOYEE" DROP CONSTRAINT "FK_HE_HT" CASCADE;
+
+-- ALTER TABLE "TrainingModelStoreContainer"."HU_EMPLOYEE" DROP CONSTRAINT "FK_HU_ORG_HU_EMP" CASCADE;
+
+-- ALTER TABLE "TrainingModelStoreContainer"."HU_EMPLOYEE" DROP CONSTRAINT "FK_HUEMD_HUEM" CASCADE;
+
+-- ALTER TABLE "TrainingModelStoreContainer"."HU_ORG_TITLE" DROP CONSTRAINT "FK_HUOG_HUOT" CASCADE;
+
+-- ALTER TABLE "TrainingModelStoreContainer"."HU_ORG_TITLE" DROP CONSTRAINT "FK_HUTL_HUOT" CASCADE;
+
+-- ALTER TABLE "TrainingModelStoreContainer"."HU_ORGANIZATION" DROP CONSTRAINT "FK_HU_ORG_HU_ORG" CASCADE;
+
 -- --------------------------------------------------
 -- Dropping existing tables
 -- --------------------------------------------------
 
--- DROP TABLE "TVC_SANPHAM"."SE_USER_REPORT";
+-- DROP TABLE "TrainingModelStoreContainer"."TR_COST_CENTER";
+
+-- DROP TABLE "TrainingModelStoreContainer"."SE_CHOSEN_ORG";
+
+-- DROP TABLE "TrainingModelStoreContainer"."TR_CENTER";
+
+-- DROP TABLE "TrainingModelStoreContainer"."TR_CERTIFICATE";
+
+-- DROP TABLE "TrainingModelStoreContainer"."TR_CLASS";
+
+-- DROP TABLE "TrainingModelStoreContainer"."TR_COURSE";
+
+-- DROP TABLE "TrainingModelStoreContainer"."TR_LECTURE";
+
+-- DROP TABLE "TrainingModelStoreContainer"."TR_PLAN_JOBGRADE";
+
+-- DROP TABLE "TrainingModelStoreContainer"."TR_PLAN_TITLE";
+
+-- DROP TABLE "TrainingModelStoreContainer"."TR_PLAN_UNIT";
+
+-- DROP TABLE "TrainingModelStoreContainer"."TR_PREPARE";
+
+-- DROP TABLE "TrainingModelStoreContainer"."TR_PROGRAM";
+
+-- DROP TABLE "TrainingModelStoreContainer"."TR_PROGRAM_CENTER";
+
+-- DROP TABLE "TrainingModelStoreContainer"."TR_PROGRAM_JOBGRADE";
+
+-- DROP TABLE "TrainingModelStoreContainer"."TR_PROGRAM_LECTURE";
+
+-- DROP TABLE "TrainingModelStoreContainer"."TR_PROGRAM_TITLE";
+
+-- DROP TABLE "TrainingModelStoreContainer"."TR_PROGRAM_UNIT";
+
+-- DROP TABLE "TrainingModelStoreContainer"."TR_REQUEST";
+
+-- DROP TABLE "TrainingModelStoreContainer"."TR_REQUEST_EMPLOYEE";
+
+-- DROP TABLE "TrainingModelStoreContainer"."TR_CLASS_STUDENT";
+
+-- DROP TABLE "TrainingModelStoreContainer"."OT_OTHER_LIST";
+
+-- DROP TABLE "TrainingModelStoreContainer"."OT_OTHER_LIST_GROUP";
+
+-- DROP TABLE "TrainingModelStoreContainer"."OT_OTHER_LIST_TYPE";
+
+-- DROP TABLE "TrainingModelStoreContainer"."TR_PLAN_CENTER";
+
+-- DROP TABLE "TrainingModelStoreContainer"."TR_PLAN";
+
+-- DROP TABLE "TrainingModelStoreContainer"."HU_DISTRICT";
+
+-- DROP TABLE "TrainingModelStoreContainer"."HU_NATION";
+
+-- DROP TABLE "TrainingModelStoreContainer"."HU_PROVINCE";
+
+-- DROP TABLE "TrainingModelStoreContainer"."HU_CONTRACT";
+
+-- DROP TABLE "TrainingModelStoreContainer"."HU_CONTRACT_TYPE";
+
+-- DROP TABLE "TrainingModelStoreContainer"."TR_CLASS_SCHEDULE";
+
+-- DROP TABLE "TrainingModelStoreContainer"."TR_PROGRAM_COMMIT";
+
+-- DROP TABLE "TrainingModelStoreContainer"."TR_PROGRAM_RESULT";
+
+-- DROP TABLE "TrainingModelStoreContainer"."TR_PROGRAM_COST";
+
+-- DROP TABLE "TrainingModelStoreContainer"."TR_ASSESSMENT_FORM";
+
+-- DROP TABLE "TrainingModelStoreContainer"."TR_ASSESSMENT_RATE";
+
+-- DROP TABLE "TrainingModelStoreContainer"."TR_CHOOSE_FORM";
+
+-- DROP TABLE "TrainingModelStoreContainer"."TR_COMMIT_AFTER_TRAIN";
+
+-- DROP TABLE "TrainingModelStoreContainer"."TR_REIMBURSEMENT";
+
+-- DROP TABLE "TrainingModelStoreContainer"."TR_SETTING_ASS_FORM";
+
+-- DROP TABLE "TrainingModelStoreContainer"."TR_SETTING_CRI_GRP";
+
+-- DROP TABLE "TrainingModelStoreContainer"."TR_CRITERIA";
+
+-- DROP TABLE "TrainingModelStoreContainer"."TR_CRITERIA_GROUP";
+
+-- DROP TABLE "TrainingModelStoreContainer"."TR_ASSESSMENT_RESULT";
+
+-- DROP TABLE "TrainingModelStoreContainer"."TR_ASSESSMENT_RESULT_DTL";
+
+-- DROP TABLE "TrainingModelStoreContainer"."HU_EMPLOYEE";
+
+-- DROP TABLE "TrainingModelStoreContainer"."HU_EMPLOYEE_CV";
+
+-- DROP TABLE "TrainingModelStoreContainer"."HU_ORG_TITLE";
+
+-- DROP TABLE "TrainingModelStoreContainer"."HU_ORGANIZATION";
+
+-- DROP TABLE "TrainingModelStoreContainer"."HU_TITLE";
+
+-- DROP TABLE "TrainingModelStoreContainer"."TR_PROGRAM_GROUP";
+
+-- DROP TABLE "TrainingModelStoreContainer"."TR_REQUEST_CENTER";
+
+-- DROP TABLE "TrainingModelStoreContainer"."TR_REQUEST_TEACHER";
+
+-- DROP TABLE "TrainingModelStoreContainer"."TR_PLAN_COST_DETAIL";
+
+-- DROP TABLE "TrainingModelStoreContainer"."TR_UNIT";
+
+-- DROP TABLE "TrainingModelStoreContainer"."TR_PLAN_EMPLOYEE";
+
+-- DROP TABLE "TrainingModelStoreContainer"."TR_TITLE_COURSE";
+
+-- DROP TABLE "TrainingModelStoreContainer"."SE_REPORT";
+
+-- DROP TABLE "TrainingModelStoreContainer"."SE_USER";
+
+-- DROP TABLE "TrainingModelStoreContainer"."SE_USER_REPORT";
 
 -- --------------------------------------------------
 -- Creating all tables
@@ -120,7 +256,8 @@ CREATE TABLE "dbo"."TR_COURSE" (
    "TR_TRAIN_FIELD" NUMBER(38,0) NULL,
    "TR_PROGRAM_GROUP" NUMBER(38,0) NULL,
    "DRIVER" NUMBER(38,0) NULL,
-   "REMARK" NCLOB NULL
+   "REMARK" NCLOB NULL,
+   "TR_FREQUENCY" NUMBER(38,0) NULL
 );
 
 -- Creating table 'TR_LECTURE'

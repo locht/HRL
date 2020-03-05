@@ -131,48 +131,44 @@ Public Class ctrlTR_Course
                     EnabledGridNotPostback(rgMain, False)
                     Utilities.EnableRadCombo(cboCertificateGroup, True)
                     Utilities.EnableRadCombo(cboCertificate, True)
-                    Utilities.EnableRadCombo(cboTrainField, True)
                     Utilities.EnableRadCombo(cboProgramGroup, True)
 
                     txtCode.ReadOnly = False
                     txtName.ReadOnly = False
                     txtRemark.ReadOnly = False
+                    ntxtTrFrequency.ReadOnly = False
                     cboCertificateGroup.AutoPostBack = True
-                    cboTrainField.AutoPostBack = True
 
                 Case CommonMessage.STATE_NORMAL
                     EnabledGridNotPostback(rgMain, True)
                     Utilities.EnableRadCombo(cboCertificateGroup, False)
                     Utilities.EnableRadCombo(cboCertificate, False)
-                    Utilities.EnableRadCombo(cboTrainField, False)
                     Utilities.EnableRadCombo(cboProgramGroup, False)
                     txtCode.ReadOnly = True
                     txtName.ReadOnly = True
                     txtRemark.ReadOnly = True
+                    ntxtTrFrequency.ReadOnly = True
                     txtCode.Text = ""
                     txtName.Text = ""
+                    ntxtTrFrequency.Value = Nothing
                     txtRemark.Text = String.Empty
                     cboCertificateGroup.ClearSelection()
                     cboCertificateGroup.Text = ""
                     cboCertificate.ClearSelection()
                     cboCertificate.Text = ""
-                    cboTrainField.ClearSelection()
-                    cboTrainField.Text = ""
                     cboProgramGroup.ClearSelection()
                     cboProgramGroup.Text = ""
                     cboCertificateGroup.AutoPostBack = False
-                    cboTrainField.AutoPostBack = False
                 Case CommonMessage.STATE_EDIT
                     EnabledGridNotPostback(rgMain, True)
                     Utilities.EnableRadCombo(cboCertificateGroup, True)
                     Utilities.EnableRadCombo(cboCertificate, True)
-                    Utilities.EnableRadCombo(cboTrainField, True)
                     Utilities.EnableRadCombo(cboProgramGroup, True)
                     txtCode.ReadOnly = False
                     txtName.ReadOnly = False
                     txtRemark.ReadOnly = False
+                    ntxtTrFrequency.ReadOnly = False
                     cboCertificateGroup.AutoPostBack = True
-                    cboTrainField.AutoPostBack = True
 
                 Case CommonMessage.STATE_DELETE
                     Dim lstDeletes As New List(Of CourseDTO)
@@ -228,8 +224,10 @@ Public Class ctrlTR_Course
         Try
             Dim dtData As DataTable
             Using rep As New TrainingRepository
-                dtData = rep.GetOtherList("TR_TRAIN_FIELD", True)
-                FillRadCombobox(cboTrainField, dtData, "NAME", "ID")
+                'dtData = rep.GetOtherList("TR_TRAIN_FIELD", True)
+                'FillRadCombobox(cboTrainField, dtData, "NAME", "ID")
+                dtData = tsp.StatusProgramGroupGetList()
+                FillRadCombobox(cboProgramGroup, dtData, "NAME", "ID")
 
                 dtData = rep.GetOtherList("TR_CER_GROUP", True)
                 FillRadCombobox(cboCertificateGroup, dtData, "NAME", "ID")
@@ -240,9 +238,11 @@ Public Class ctrlTR_Course
             dic.Add("NAME", txtName)
             dic.Add("TR_CERTIFICATE_ID", cboCertificate)
             dic.Add("TR_CER_GROUP_ID", cboCertificateGroup)
-            dic.Add("TR_TRAIN_FIELD_ID", cboTrainField)
             dic.Add("TR_PROGRAM_GROUP_ID", cboProgramGroup)
-            dic.Add("DRIVER", cbDriver)
+            'dic.Add("TR_CER_GROUP_NAME", cboCertificateGroup)
+            'dic.Add("TR_CERTIFICATE_NAME", cboCertificate)
+
+            dic.Add("TR_FREQUENCY", ntxtTrFrequency)
             dic.Add("REMARK", txtRemark)
             Utilities.OnClientRowSelectedChanged(rgMain, dic)
         Catch ex As Exception
@@ -267,12 +267,11 @@ Public Class ctrlTR_Course
                     cboCertificateGroup.Text = ""
                     cboCertificate.ClearSelection()
                     cboCertificate.Text = ""
-                    cboTrainField.ClearSelection()
-                    cboTrainField.Text = ""
                     cboProgramGroup.ClearSelection()
                     cboProgramGroup.Text = ""
                     txtCode.Text = ""
                     txtName.Text = ""
+                    ntxtTrFrequency.Value = nothing
                     txtRemark.Text = String.Empty
                     UpdateControlState()
                 Case CommonMessage.TOOLBARITEM_EDIT
@@ -339,19 +338,17 @@ Public Class ctrlTR_Course
                     If Page.IsValid Then
                         objCourse.CODE = txtCode.Text
                         objCourse.NAME = txtName.Text
+                        objCourse.TR_FREQUENCY = ntxtTrFrequency.Value
                         If cboCertificateGroup.SelectedValue <> "" Then
                             objCourse.TR_CER_GROUP_ID = cboCertificateGroup.SelectedValue
                             If cboCertificate.SelectedValue <> "" Then
                                 objCourse.TR_CERTIFICATE_ID = cboCertificate.SelectedValue
                             End If
                         End If
-                        If cboTrainField.SelectedValue <> "" Then
-                            objCourse.TR_TRAIN_FIELD_ID = cboTrainField.SelectedValue
-                        End If
                         If cboProgramGroup.SelectedValue <> "" Then
                             objCourse.TR_PROGRAM_GROUP_ID = cboProgramGroup.SelectedValue
                         End If
-                        objCourse.DRIVER = cbDriver.Checked
+                        'objCourse.DRIVER = cbDriver.Checked
                         objCourse.REMARK = txtRemark.Text
                         Select Case CurrentState
                             Case CommonMessage.STATE_NEW
@@ -451,19 +448,6 @@ Public Class ctrlTR_Course
         End Try
     End Sub
 
-    Protected Sub cboTrainField_SelectedIndexChanged(ByVal sender As Object, ByVal e As Telerik.Web.UI.RadComboBoxSelectedIndexChangedEventArgs) Handles cboTrainField.SelectedIndexChanged
-        Try
-            Dim dtData As DataTable
-            If cboTrainField.SelectedValue <> "" Then
-                Using rep As New TrainingRepository
-                    dtData = tsp.ProgramGroupGetList()
-                    FillRadComboboxProgramGroupList(cboProgramGroup, dtData, "NAME", "ID", cboTrainField.SelectedValue)
-                End Using
-            End If
-        Catch ex As Exception
-            DisplayException(Me.ViewName, Me.ID, ex)
-        End Try
-    End Sub
 
 #End Region
 

@@ -272,6 +272,10 @@
       <Project>{C6407D4F-8F99-4C56-AC1F-7A48C204A086}</Project>
       <Name>RecruitmentBusiness</Name>
     </ProjectReference>
+    <ProjectReference Include="..\TrainingBusiness\TrainingBusiness.vbproj">
+      <Project>{a5f419a7-9565-4166-acda-d454c4e910b7}</Project>
+      <Name>TrainingBusiness</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />

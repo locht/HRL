@@ -9,14 +9,16 @@
 '------------------------------------------------------------------------------
 
 Imports System
+Imports System.ComponentModel
+Imports System.Data.EntityClient
 Imports System.Data.Objects
 Imports System.Data.Objects.DataClasses
-Imports System.Data.EntityClient
-Imports System.ComponentModel
-Imports System.Xml.Serialization
+Imports System.Linq
 Imports System.Runtime.Serialization
+Imports System.Xml.Serialization
 
-<Assembly: EdmSchemaAttribute("780a7943-7806-40e5-941c-85ae79ca35b5")>
+
+<Assembly: EdmSchemaAttribute("b9f100a0-f0af-4391-b37b-9cbec851c756")>
 #Region "EDM Relationship Metadata"
 <Assembly: EdmRelationshipAttribute("TrainingModel", "FK_HU_PRO_HU_DIS", "HU_PROVINCE", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(HU_PROVINCE), "HU_DISTRICT", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_DISTRICT), True)>
 <Assembly: EdmRelationshipAttribute("TrainingModel", "FK_HU_NAT_HU_PRO", "HU_NATION", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(HU_NATION), "HU_PROVINCE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_PROVINCE), True)>
@@ -45,7 +47,7 @@ Public Partial Class TrainingContext
     ''' </summary>
     Public Sub New()
         MyBase.New("name=TrainingContext", "TrainingContext")
-    MyBase.ContextOptions.LazyLoadingEnabled = true
+        MyBase.ContextOptions.LazyLoadingEnabled = true
         OnContextCreated()
     End Sub
 
@@ -54,7 +56,7 @@ Public Partial Class TrainingContext
     ''' </summary>
     Public Sub New(ByVal connectionString As String)
         MyBase.New(connectionString, "TrainingContext")
-    MyBase.ContextOptions.LazyLoadingEnabled = true
+        MyBase.ContextOptions.LazyLoadingEnabled = true
         OnContextCreated()
     End Sub
 
@@ -63,7 +65,7 @@ Public Partial Class TrainingContext
     ''' </summary>
     Public Sub New(ByVal connection As EntityConnection)
         MyBase.New(connection, "TrainingContext")
-    MyBase.ContextOptions.LazyLoadingEnabled = true
+        MyBase.ContextOptions.LazyLoadingEnabled = true
         OnContextCreated()
     End Sub
 
@@ -919,6 +921,7 @@ Public Partial Class TrainingContext
     Private _SE_USER_REPORT As ObjectSet(Of SE_USER_REPORT)
 
     #End Region
+
     #Region "AddTo Methods"
 
     ''' <summary>
@@ -1342,9 +1345,11 @@ Public Partial Class TrainingContext
     End Sub
 
     #End Region
+
 End Class
 
 #End Region
+
 #Region "Entities"
 
 ''' <summary>
@@ -1374,6 +1379,7 @@ Public Partial Class HU_CONTRACT
     End Function
 
     #End Region
+
     #Region "Primitive Properties"
 
     ''' <summary>
@@ -2079,6 +2085,7 @@ Public Partial Class HU_CONTRACT
     End Sub
 
     #End Region
+
 End Class
 
 ''' <summary>
@@ -2118,6 +2125,7 @@ Public Partial Class HU_CONTRACT_TYPE
     End Function
 
     #End Region
+
     #Region "Primitive Properties"
 
     ''' <summary>
@@ -2448,6 +2456,7 @@ Public Partial Class HU_CONTRACT_TYPE
     End Sub
 
     #End Region
+
 End Class
 
 ''' <summary>
@@ -2471,6 +2480,7 @@ Public Partial Class HU_DISTRICT
     End Function
 
     #End Region
+
     #Region "Primitive Properties"
 
     ''' <summary>
@@ -2826,6 +2836,7 @@ Public Partial Class HU_DISTRICT
     End Sub
 
     #End Region
+
     #Region "Navigation Properties"
 
     ''' <summary>
@@ -2860,6 +2871,7 @@ Public Partial Class HU_DISTRICT
     End Property
 
     #End Region
+
 End Class
 
 ''' <summary>
@@ -2883,6 +2895,7 @@ Public Partial Class HU_EMPLOYEE
     End Function
 
     #End Region
+
     #Region "Primitive Properties"
 
     ''' <summary>
@@ -3513,6 +3526,7 @@ Public Partial Class HU_EMPLOYEE
     End Sub
 
     #End Region
+
     #Region "Navigation Properties"
 
     ''' <summary>
@@ -3658,6 +3672,7 @@ Public Partial Class HU_EMPLOYEE
     End Property
 
     #End Region
+
 End Class
 
 ''' <summary>
@@ -3681,6 +3696,7 @@ Public Partial Class HU_EMPLOYEE_CV
     End Function
 
     #End Region
+
     #Region "Primitive Properties"
 
     ''' <summary>
@@ -5086,6 +5102,7 @@ Public Partial Class HU_EMPLOYEE_CV
     End Sub
 
     #End Region
+
     #Region "Navigation Properties"
 
     ''' <summary>
@@ -5120,6 +5137,7 @@ Public Partial Class HU_EMPLOYEE_CV
     End Property
 
     #End Region
+
 End Class
 
 ''' <summary>
@@ -5143,6 +5161,7 @@ Public Partial Class HU_NATION
     End Function
 
     #End Region
+
     #Region "Primitive Properties"
 
     ''' <summary>
@@ -5473,6 +5492,7 @@ Public Partial Class HU_NATION
     End Sub
 
     #End Region
+
     #Region "Navigation Properties"
 
     ''' <summary>
@@ -5494,6 +5514,7 @@ Public Partial Class HU_NATION
     End Property
 
     #End Region
+
 End Class
 
 ''' <summary>
@@ -5517,6 +5538,7 @@ Public Partial Class HU_ORG_TITLE
     End Function
 
     #End Region
+
     #Region "Primitive Properties"
 
     ''' <summary>
@@ -5772,6 +5794,7 @@ Public Partial Class HU_ORG_TITLE
     End Sub
 
     #End Region
+
     #Region "Navigation Properties"
 
     ''' <summary>
@@ -5837,6 +5860,7 @@ Public Partial Class HU_ORG_TITLE
     End Property
 
     #End Region
+
 End Class
 
 ''' <summary>
@@ -5860,6 +5884,7 @@ Public Partial Class HU_ORGANIZATION
     End Function
 
     #End Region
+
     #Region "Primitive Properties"
 
     ''' <summary>
@@ -6390,6 +6415,7 @@ Public Partial Class HU_ORGANIZATION
     End Sub
 
     #End Region
+
     #Region "Navigation Properties"
 
     ''' <summary>
@@ -6478,6 +6504,7 @@ Public Partial Class HU_ORGANIZATION
     End Property
 
     #End Region
+
 End Class
 
 ''' <summary>
@@ -6501,6 +6528,7 @@ Public Partial Class HU_PROVINCE
     End Function
 
     #End Region
+
     #Region "Primitive Properties"
 
     ''' <summary>
@@ -6856,6 +6884,7 @@ Public Partial Class HU_PROVINCE
     End Sub
 
     #End Region
+
     #Region "Navigation Properties"
 
     ''' <summary>
@@ -6908,6 +6937,7 @@ Public Partial Class HU_PROVINCE
     End Property
 
     #End Region
+
 End Class
 
 ''' <summary>
@@ -6931,6 +6961,7 @@ Public Partial Class HU_TITLE
     End Function
 
     #End Region
+
     #Region "Primitive Properties"
 
     ''' <summary>
@@ -7286,6 +7317,7 @@ Public Partial Class HU_TITLE
     End Sub
 
     #End Region
+
     #Region "Navigation Properties"
 
     ''' <summary>
@@ -7325,6 +7357,7 @@ Public Partial Class HU_TITLE
     End Property
 
     #End Region
+
 End Class
 
 ''' <summary>
@@ -7348,6 +7381,7 @@ Public Partial Class OT_OTHER_LIST
     End Function
 
     #End Region
+
     #Region "Primitive Properties"
 
     ''' <summary>
@@ -7803,6 +7837,7 @@ Public Partial Class OT_OTHER_LIST
     End Sub
 
     #End Region
+
 End Class
 
 ''' <summary>
@@ -7826,6 +7861,7 @@ Public Partial Class OT_OTHER_LIST_GROUP
     End Function
 
     #End Region
+
     #Region "Primitive Properties"
 
     ''' <summary>
@@ -8056,6 +8092,7 @@ Public Partial Class OT_OTHER_LIST_GROUP
     End Sub
 
     #End Region
+
 End Class
 
 ''' <summary>
@@ -8079,6 +8116,7 @@ Public Partial Class OT_OTHER_LIST_TYPE
     End Function
 
     #End Region
+
     #Region "Primitive Properties"
 
     ''' <summary>
@@ -8409,6 +8447,7 @@ Public Partial Class OT_OTHER_LIST_TYPE
     End Sub
 
     #End Region
+
 End Class
 
 ''' <summary>
@@ -8434,6 +8473,7 @@ Public Partial Class SE_CHOSEN_ORG
     End Function
 
     #End Region
+
     #Region "Primitive Properties"
 
     ''' <summary>
@@ -8491,6 +8531,7 @@ Public Partial Class SE_CHOSEN_ORG
     End Sub
 
     #End Region
+
 End Class
 
 ''' <summary>
@@ -8514,6 +8555,7 @@ Public Partial Class SE_REPORT
     End Function
 
     #End Region
+
     #Region "Primitive Properties"
 
     ''' <summary>
@@ -8694,6 +8736,7 @@ Public Partial Class SE_REPORT
     End Sub
 
     #End Region
+
 End Class
 
 ''' <summary>
@@ -8717,6 +8760,7 @@ Public Partial Class SE_USER
     End Function
 
     #End Region
+
     #Region "Primitive Properties"
 
     ''' <summary>
@@ -9322,6 +9366,7 @@ Public Partial Class SE_USER
     End Sub
 
     #End Region
+
 End Class
 
 ''' <summary>
@@ -9347,6 +9392,7 @@ Public Partial Class SE_USER_REPORT
     End Function
 
     #End Region
+
     #Region "Primitive Properties"
 
     ''' <summary>
@@ -9404,6 +9450,7 @@ Public Partial Class SE_USER_REPORT
     End Sub
 
     #End Region
+
 End Class
 
 ''' <summary>
@@ -9427,6 +9474,7 @@ Public Partial Class TR_ASSESSMENT_FORM
     End Function
 
     #End Region
+
     #Region "Primitive Properties"
 
     ''' <summary>
@@ -9657,6 +9705,7 @@ Public Partial Class TR_ASSESSMENT_FORM
     End Sub
 
     #End Region
+
 End Class
 
 ''' <summary>
@@ -9680,6 +9729,7 @@ Public Partial Class TR_ASSESSMENT_RATE
     End Function
 
     #End Region
+
     #Region "Primitive Properties"
 
     ''' <summary>
@@ -10010,6 +10060,7 @@ Public Partial Class TR_ASSESSMENT_RATE
     End Sub
 
     #End Region
+
 End Class
 
 ''' <summary>
@@ -10033,6 +10084,7 @@ Public Partial Class TR_ASSESSMENT_RESULT
     End Function
 
     #End Region
+
     #Region "Primitive Properties"
 
     ''' <summary>
@@ -10288,6 +10340,7 @@ Public Partial Class TR_ASSESSMENT_RESULT
     End Sub
 
     #End Region
+
 End Class
 
 ''' <summary>
@@ -10311,6 +10364,7 @@ Public Partial Class TR_ASSESSMENT_RESULT_DTL
     End Function
 
     #End Region
+
     #Region "Primitive Properties"
 
     ''' <summary>
@@ -10641,6 +10695,7 @@ Public Partial Class TR_ASSESSMENT_RESULT_DTL
     End Sub
 
     #End Region
+
 End Class
 
 ''' <summary>
@@ -10664,6 +10719,7 @@ Public Partial Class TR_CENTER
     End Function
 
     #End Region
+
     #Region "Primitive Properties"
 
     ''' <summary>
@@ -11244,6 +11300,7 @@ Public Partial Class TR_CENTER
     End Sub
 
     #End Region
+
 End Class
 
 ''' <summary>
@@ -11267,6 +11324,7 @@ Public Partial Class TR_CERTIFICATE
     End Function
 
     #End Region
+
     #Region "Primitive Properties"
 
     ''' <summary>
@@ -11647,6 +11705,7 @@ Public Partial Class TR_CERTIFICATE
     End Sub
 
     #End Region
+
 End Class
 
 ''' <summary>
@@ -11670,6 +11729,7 @@ Public Partial Class TR_CHOOSE_FORM
     End Function
 
     #End Region
+
     #Region "Primitive Properties"
 
     ''' <summary>
@@ -11950,6 +12010,7 @@ Public Partial Class TR_CHOOSE_FORM
     End Sub
 
     #End Region
+
 End Class
 
 ''' <summary>
@@ -11973,6 +12034,7 @@ Public Partial Class TR_CLASS
     End Function
 
     #End Region
+
     #Region "Primitive Properties"
 
     ''' <summary>
@@ -12328,6 +12390,7 @@ Public Partial Class TR_CLASS
     End Sub
 
     #End Region
+
 End Class
 
 ''' <summary>
@@ -12351,6 +12414,7 @@ Public Partial Class TR_CLASS_SCHEDULE
     End Function
 
     #End Region
+
     #Region "Primitive Properties"
 
     ''' <summary>
@@ -12681,6 +12745,7 @@ Public Partial Class TR_CLASS_SCHEDULE
     End Sub
 
     #End Region
+
 End Class
 
 ''' <summary>
@@ -12708,6 +12773,7 @@ Public Partial Class TR_CLASS_STUDENT
     End Function
 
     #End Region
+
     #Region "Primitive Properties"
 
     ''' <summary>
@@ -12938,6 +13004,7 @@ Public Partial Class TR_CLASS_STUDENT
     End Sub
 
     #End Region
+
 End Class
 
 ''' <summary>
@@ -12961,6 +13028,7 @@ Public Partial Class TR_COMMIT_AFTER_TRAIN
     End Function
 
     #End Region
+
     #Region "Primitive Properties"
 
     ''' <summary>
@@ -13266,6 +13334,7 @@ Public Partial Class TR_COMMIT_AFTER_TRAIN
     End Sub
 
     #End Region
+
 End Class
 
 ''' <summary>
@@ -13297,6 +13366,7 @@ Public Partial Class TR_COST_CENTER
     End Function
 
     #End Region
+
     #Region "Primitive Properties"
 
     ''' <summary>
@@ -13552,6 +13622,7 @@ Public Partial Class TR_COST_CENTER
     End Sub
 
     #End Region
+
 End Class
 
 ''' <summary>
@@ -13575,6 +13646,7 @@ Public Partial Class TR_COURSE
     End Function
 
     #End Region
+
     #Region "Primitive Properties"
 
     ''' <summary>
@@ -13979,7 +14051,33 @@ Public Partial Class TR_COURSE
     Private Partial Sub OnREMARKChanged()
     End Sub
 
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property TR_FREQUENCY() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _TR_FREQUENCY
+        End Get
+        Set
+            OnTR_FREQUENCYChanging(value)
+            ReportPropertyChanging("TR_FREQUENCY")
+            _TR_FREQUENCY = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("TR_FREQUENCY")
+            OnTR_FREQUENCYChanged()
+        End Set
+    End Property
+
+    Private _TR_FREQUENCY As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnTR_FREQUENCYChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnTR_FREQUENCYChanged()
+    End Sub
+
     #End Region
+
 End Class
 
 ''' <summary>
@@ -14003,6 +14101,7 @@ Public Partial Class TR_CRITERIA
     End Function
 
     #End Region
+
     #Region "Primitive Properties"
 
     ''' <summary>
@@ -14308,6 +14407,7 @@ Public Partial Class TR_CRITERIA
     End Sub
 
     #End Region
+
 End Class
 
 ''' <summary>
@@ -14331,6 +14431,7 @@ Public Partial Class TR_CRITERIA_GROUP
     End Function
 
     #End Region
+
     #Region "Primitive Properties"
 
     ''' <summary>
@@ -14636,6 +14737,7 @@ Public Partial Class TR_CRITERIA_GROUP
     End Sub
 
     #End Region
+
 End Class
 
 ''' <summary>
@@ -14659,6 +14761,7 @@ Public Partial Class TR_LECTURE
     End Function
 
     #End Region
+
     #Region "Primitive Properties"
 
     ''' <summary>
@@ -15064,6 +15167,7 @@ Public Partial Class TR_LECTURE
     End Sub
 
     #End Region
+
 End Class
 
 ''' <summary>
@@ -15087,6 +15191,7 @@ Public Partial Class TR_PLAN
     End Function
 
     #End Region
+
     #Region "Primitive Properties"
 
     ''' <summary>
@@ -16292,6 +16397,7 @@ Public Partial Class TR_PLAN
     End Sub
 
     #End Region
+
 End Class
 
 ''' <summary>
@@ -16315,6 +16421,7 @@ Public Partial Class TR_PLAN_CENTER
     End Function
 
     #End Region
+
     #Region "Primitive Properties"
 
     ''' <summary>
@@ -16395,6 +16502,7 @@ Public Partial Class TR_PLAN_CENTER
     End Sub
 
     #End Region
+
 End Class
 
 ''' <summary>
@@ -16418,6 +16526,7 @@ Public Partial Class TR_PLAN_COST_DETAIL
     End Function
 
     #End Region
+
     #Region "Primitive Properties"
 
     ''' <summary>
@@ -16573,6 +16682,7 @@ Public Partial Class TR_PLAN_COST_DETAIL
     End Sub
 
     #End Region
+
 End Class
 
 ''' <summary>
@@ -16596,6 +16706,7 @@ Public Partial Class TR_PLAN_EMPLOYEE
     End Function
 
     #End Region
+
     #Region "Primitive Properties"
 
     ''' <summary>
@@ -16676,6 +16787,7 @@ Public Partial Class TR_PLAN_EMPLOYEE
     End Sub
 
     #End Region
+
 End Class
 
 ''' <summary>
@@ -16699,6 +16811,7 @@ Public Partial Class TR_PLAN_JOBGRADE
     End Function
 
     #End Region
+
     #Region "Primitive Properties"
 
     ''' <summary>
@@ -16779,6 +16892,7 @@ Public Partial Class TR_PLAN_JOBGRADE
     End Sub
 
     #End Region
+
 End Class
 
 ''' <summary>
@@ -16802,6 +16916,7 @@ Public Partial Class TR_PLAN_TITLE
     End Function
 
     #End Region
+
     #Region "Primitive Properties"
 
     ''' <summary>
@@ -16882,6 +16997,7 @@ Public Partial Class TR_PLAN_TITLE
     End Sub
 
     #End Region
+
 End Class
 
 ''' <summary>
@@ -16905,6 +17021,7 @@ Public Partial Class TR_PLAN_UNIT
     End Function
 
     #End Region
+
     #Region "Primitive Properties"
 
     ''' <summary>
@@ -16985,6 +17102,7 @@ Public Partial Class TR_PLAN_UNIT
     End Sub
 
     #End Region
+
 End Class
 
 ''' <summary>
@@ -17008,6 +17126,7 @@ Public Partial Class TR_PREPARE
     End Function
 
     #End Region
+
     #Region "Primitive Properties"
 
     ''' <summary>
@@ -17263,6 +17382,7 @@ Public Partial Class TR_PREPARE
     End Sub
 
     #End Region
+
 End Class
 
 ''' <summary>
@@ -17286,6 +17406,7 @@ Public Partial Class TR_PROGRAM
     End Function
 
     #End Region
+
     #Region "Primitive Properties"
 
     ''' <summary>
@@ -18266,6 +18387,7 @@ Public Partial Class TR_PROGRAM
     End Sub
 
     #End Region
+
 End Class
 
 ''' <summary>
@@ -18289,6 +18411,7 @@ Public Partial Class TR_PROGRAM_CENTER
     End Function
 
     #End Region
+
     #Region "Primitive Properties"
 
     ''' <summary>
@@ -18369,6 +18492,7 @@ Public Partial Class TR_PROGRAM_CENTER
     End Sub
 
     #End Region
+
 End Class
 
 ''' <summary>
@@ -18392,6 +18516,7 @@ Public Partial Class TR_PROGRAM_COMMIT
     End Function
 
     #End Region
+
     #Region "Primitive Properties"
 
     ''' <summary>
@@ -18747,6 +18872,7 @@ Public Partial Class TR_PROGRAM_COMMIT
     End Sub
 
     #End Region
+
 End Class
 
 ''' <summary>
@@ -18770,6 +18896,7 @@ Public Partial Class TR_PROGRAM_COST
     End Function
 
     #End Region
+
     #Region "Primitive Properties"
 
     ''' <summary>
@@ -19075,6 +19202,7 @@ Public Partial Class TR_PROGRAM_COST
     End Sub
 
     #End Region
+
 End Class
 
 ''' <summary>
@@ -19098,6 +19226,7 @@ Public Partial Class TR_PROGRAM_GROUP
     End Function
 
     #End Region
+
     #Region "Primitive Properties"
 
     ''' <summary>
@@ -19403,6 +19532,7 @@ Public Partial Class TR_PROGRAM_GROUP
     End Sub
 
     #End Region
+
 End Class
 
 ''' <summary>
@@ -19426,6 +19556,7 @@ Public Partial Class TR_PROGRAM_JOBGRADE
     End Function
 
     #End Region
+
     #Region "Primitive Properties"
 
     ''' <summary>
@@ -19506,6 +19637,7 @@ Public Partial Class TR_PROGRAM_JOBGRADE
     End Sub
 
     #End Region
+
 End Class
 
 ''' <summary>
@@ -19529,6 +19661,7 @@ Public Partial Class TR_PROGRAM_LECTURE
     End Function
 
     #End Region
+
     #Region "Primitive Properties"
 
     ''' <summary>
@@ -19609,6 +19742,7 @@ Public Partial Class TR_PROGRAM_LECTURE
     End Sub
 
     #End Region
+
 End Class
 
 ''' <summary>
@@ -19632,6 +19766,7 @@ Public Partial Class TR_PROGRAM_RESULT
     End Function
 
     #End Region
+
     #Region "Primitive Properties"
 
     ''' <summary>
@@ -20512,6 +20647,7 @@ Public Partial Class TR_PROGRAM_RESULT
     End Sub
 
     #End Region
+
 End Class
 
 ''' <summary>
@@ -20535,6 +20671,7 @@ Public Partial Class TR_PROGRAM_TITLE
     End Function
 
     #End Region
+
     #Region "Primitive Properties"
 
     ''' <summary>
@@ -20615,6 +20752,7 @@ Public Partial Class TR_PROGRAM_TITLE
     End Sub
 
     #End Region
+
 End Class
 
 ''' <summary>
@@ -20638,6 +20776,7 @@ Public Partial Class TR_PROGRAM_UNIT
     End Function
 
     #End Region
+
     #Region "Primitive Properties"
 
     ''' <summary>
@@ -20718,6 +20857,7 @@ Public Partial Class TR_PROGRAM_UNIT
     End Sub
 
     #End Region
+
 End Class
 
 ''' <summary>
@@ -20741,6 +20881,7 @@ Public Partial Class TR_REIMBURSEMENT
     End Function
 
     #End Region
+
     #Region "Primitive Properties"
 
     ''' <summary>
@@ -21071,6 +21212,7 @@ Public Partial Class TR_REIMBURSEMENT
     End Sub
 
     #End Region
+
 End Class
 
 ''' <summary>
@@ -21094,6 +21236,7 @@ Public Partial Class TR_REQUEST
     End Function
 
     #End Region
+
     #Region "Primitive Properties"
 
     ''' <summary>
@@ -21799,6 +21942,7 @@ Public Partial Class TR_REQUEST
     End Sub
 
     #End Region
+
 End Class
 
 ''' <summary>
@@ -21822,6 +21966,7 @@ Public Partial Class TR_REQUEST_CENTER
     End Function
 
     #End Region
+
     #Region "Primitive Properties"
 
     ''' <summary>
@@ -21902,6 +22047,7 @@ Public Partial Class TR_REQUEST_CENTER
     End Sub
 
     #End Region
+
 End Class
 
 ''' <summary>
@@ -21925,6 +22071,7 @@ Public Partial Class TR_REQUEST_EMPLOYEE
     End Function
 
     #End Region
+
     #Region "Primitive Properties"
 
     ''' <summary>
@@ -22005,6 +22152,7 @@ Public Partial Class TR_REQUEST_EMPLOYEE
     End Sub
 
     #End Region
+
 End Class
 
 ''' <summary>
@@ -22028,6 +22176,7 @@ Public Partial Class TR_REQUEST_TEACHER
     End Function
 
     #End Region
+
     #Region "Primitive Properties"
 
     ''' <summary>
@@ -22108,6 +22257,7 @@ Public Partial Class TR_REQUEST_TEACHER
     End Sub
 
     #End Region
+
 End Class
 
 ''' <summary>
@@ -22147,6 +22297,7 @@ Public Partial Class TR_SETTING_ASS_FORM
     End Function
 
     #End Region
+
     #Region "Primitive Properties"
 
     ''' <summary>
@@ -22377,6 +22528,7 @@ Public Partial Class TR_SETTING_ASS_FORM
     End Sub
 
     #End Region
+
 End Class
 
 ''' <summary>
@@ -22400,6 +22552,7 @@ Public Partial Class TR_SETTING_CRI_GRP
     End Function
 
     #End Region
+
     #Region "Primitive Properties"
 
     ''' <summary>
@@ -22630,6 +22783,7 @@ Public Partial Class TR_SETTING_CRI_GRP
     End Sub
 
     #End Region
+
 End Class
 
 ''' <summary>
@@ -22657,6 +22811,7 @@ Public Partial Class TR_TITLE_COURSE
     End Function
 
     #End Region
+
     #Region "Primitive Properties"
 
     ''' <summary>
@@ -22912,6 +23067,7 @@ Public Partial Class TR_TITLE_COURSE
     End Sub
 
     #End Region
+
 End Class
 
 ''' <summary>
@@ -22935,6 +23091,7 @@ Public Partial Class TR_UNIT
     End Function
 
     #End Region
+
     #Region "Primitive Properties"
 
     ''' <summary>
@@ -23465,7 +23622,9 @@ Public Partial Class TR_UNIT
     End Sub
 
     #End Region
+
 End Class
 
 #End Region
+
 

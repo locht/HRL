@@ -187,7 +187,7 @@ Partial Class TrainingRepository
                             .ID = p.ID,
                             .CODE = p.CODE,
                             .NAME = p.NAME,
-                            .TR_CER_GROUP_ID = cer.TR_CER_GROUP_ID,
+                            .TR_CER_GROUP_ID = p.TR_CER_GROUP_ID,
                             .TR_CER_GROUP_NAME = cer_group.NAME_VN,
                             .TR_CERTIFICATE_ID = p.TR_CERTIFICATE_ID,
                             .TR_CERTIFICATE_NAME = cer.NAME_VN,
@@ -198,7 +198,8 @@ Partial Class TrainingRepository
                             .DRIVER = p.DRIVER,
                             .REMARK = p.REMARK,
                             .ACTFLG = If(p.ACTFLG <> 0, "Áp dụng", "Ngừng áp dụng"),
-                            .CREATED_DATE = p.CREATED_DATE}
+                            .CREATED_DATE = p.CREATED_DATE,
+                            .TR_FREQUENCY = p.TR_FREQUENCY}
 
             Dim lst = query
             If _filter.CODE <> "" Then
@@ -246,6 +247,7 @@ Partial Class TrainingRepository
             objCourseData.TR_PROGRAM_GROUP = objCourse.TR_PROGRAM_GROUP_ID
             objCourseData.DRIVER = objCourse.DRIVER
             objCourseData.REMARK = objCourse.REMARK
+            objCourseData.TR_FREQUENCY = objCourse.TR_FREQUENCY
             objCourseData.ACTFLG = If(objCourse.ACTFLG = "True", True, False) 'Do DTO là String nên phải chuyển true,false lại
             Context.TR_COURSE.AddObject(objCourseData)
             Context.SaveChanges(log)
@@ -291,6 +293,7 @@ Partial Class TrainingRepository
             objCourseData.TR_PROGRAM_GROUP = objCourse.TR_PROGRAM_GROUP_ID
             objCourseData.DRIVER = objCourse.DRIVER
             objCourseData.REMARK = objCourse.REMARK
+            objCourseData.TR_FREQUENCY = objCourse.TR_FREQUENCY
             Context.SaveChanges(log)
             gID = objCourseData.ID
             Return True

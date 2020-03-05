@@ -24,4 +24,5 @@
     Public Property TR_PROGRAM_GROUP_NAME As String
     Public Property DRIVER As Boolean
     Public Property REMARK As String
+    Public Property TR_FREQUENCY As Decimal?
 End Class
