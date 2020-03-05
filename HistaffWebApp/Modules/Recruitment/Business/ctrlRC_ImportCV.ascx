@@ -10,24 +10,24 @@
     </tlk:RadPane>
     <tlk:RadPane ID="RadPane2" runat="server" Scrolling="None">
         <tlk:RadGrid ID="rgData" runat="server" Height="100%" PageSize="50" AllowPaging="true">
-            <MasterTableView DataKeyNames="ID" ClientDataKeyNames="ID,IS_CMND,ID_NO,BIRTH_DATE,FIRST_NAME_VN,LAST_NAME_VN,S_ERROR,FILE_NAME">
+            <MasterTableView DataKeyNames="FULLNAME_VN,ID_NO,S_ERROR,FILE_NAME,ORG_NAME,TITLE_NAME"
+                ClientDataKeyNames="FULLNAME_VN,ID_NO,S_ERROR,FILE_NAME,ORG_NAME,TITLE_NAME">
                 <Columns>
                     <tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderStyle-HorizontalAlign="Center"
                         HeaderStyle-Width="30px" ItemStyle-HorizontalAlign="Center">
                     </tlk:GridClientSelectColumn>
                     <tlk:GridBoundColumn DataField="ID" Visible="false" />
-                    <tlk:GridBoundColumn DataField="IS_CMND" Display="false" SortExpression="IS_CMND" UniqueName="IS_CMND" HeaderStyle-Width="120px" />
-                    <tlk:GridDateTimeColumn HeaderText="<%$ Translate: CMND %>" DataField="ID_NO"
-                        SortExpression="ID_NO" UniqueName="ID_NO" HeaderStyle-Width="120px" />
-                    <tlk:GridBoundColumn HeaderText="<%$ Translate: Ngày sinh %>" DataField="BIRTH_DATE"
-                        SortExpression="BIRTH_DATE" UniqueName="BIRTH_DATE" DataFormatString="{0:dd/MM/yyyy}"/>
-                    <tlk:GridBoundColumn HeaderText="<%$ Translate: Họ và tên lót %>" DataField="FIRST_NAME_VN" SortExpression="FIRST_NAME_VN"
-                        UniqueName="FIRST_NAME_VN" />
-                    <tlk:GridBoundColumn HeaderText="<%$ Translate: Tên %>" DataField="LAST_NAME_VN"
-                        SortExpression="LAST_NAME_VN" UniqueName="LAST_NAME_VN" />
+                    <tlk:GridBoundColumn HeaderText="<%$ Translate: Họ và tên %>" DataField="FULLNAME_VN"
+                        SortExpression="FULLNAME_VN" UniqueName="FULLNAME_VN" />
+                    <tlk:GridBoundColumn HeaderText="<%$ Translate: Phòng ban %>" DataField="ORG_NAME"
+                        SortExpression="ORG_NAME" UniqueName="ORG_NAME" />
+                    <tlk:GridBoundColumn HeaderText="<%$ Translate: Vị trí %>" DataField="TITLE_NAME"
+                        SortExpression="TITLE_NAME" UniqueName="TITLE_NAME" />
+                    <tlk:GridBoundColumn HeaderText="<%$ Translate: CMND %>" DataField="ID_NO" SortExpression="ID_NO"
+                        UniqueName="ID_NO" HeaderStyle-Width="120px" />
                     <tlk:GridBoundColumn HeaderText="<%$ Translate: Chi tiết lỗi/Cảnh báo %>" DataField="S_ERROR"
                         UniqueName="S_ERROR" SortExpression="S_ERROR" />
-                    <tlk:GridDateTimeColumn HeaderText="<%$ Translate: Tên file %>" DataField="FILE_NAME"
+                    <tlk:GridBoundColumn HeaderText="<%$ Translate: Tên file %>" DataField="FILE_NAME"
                         SortExpression="FILE_NAME" UniqueName="FILE_NAME" />
                 </Columns>
                 <HeaderStyle Width="150px" />
@@ -40,12 +40,12 @@
     <Windows>
         <tlk:RadWindow runat="server" ID="rwPopup" VisibleStatusbar="false" Width="1000"
             Height="500px" EnableShadow="true" Behaviors="Close, Maximize, Move" OnClientClose="OnClientClose"
-             Modal="true" ShowContentDuringLoad="false">
+            Modal="true" ShowContentDuringLoad="false">
         </tlk:RadWindow>
     </Windows>
 </tlk:RadWindowManager>
-<common:ctrlmessagebox id="ctrlMessageBox" runat="server" />
-<common:ctrlupload id="ctrlUpload" runat="server" />
+<Common:ctrlMessageBox ID="ctrlMessageBox" runat="server" />
+<Common:ctrlUpload ID="ctrlUpload" runat="server" />
 <tlk:RadCodeBlock ID="RadCodeBlock1" runat="server">
     <script type="text/javascript">
 
@@ -68,23 +68,23 @@
             var m;
             var bCheck;
             var n;
-            
+
             if (args.get_item().get_commandName() == "SAVE") {
-//                var bCheck = $find('<%# rgData.ClientID %>').get_masterTableView().get_selectedItems().length;
-//                if (bCheck == 0) {
-//                    m = '<%# Translate(CommonMessage.MESSAGE_NOT_SELECT_ROW) %>';
-//                    n = noty({ text: m, dismissQueue: true, type: 'warning' });
-//                    setTimeout(function () { $.noty.close(n.options.id); }, 5000);
-//                    return;
-//                }
-//                if (bCheck > 1) {
-//                    m = '<%# Translate(CommonMessage.MESSAGE_NOT_SELECT_MULTI_ROW) %>';
-//                    n = noty({ text: m, dismissQueue: true, type: 'warning' });
-//                    setTimeout(function () { $.noty.close(n.options.id); }, 5000);
-//                    return;
-//                }
-//                var id = $find('<%# rgData.ClientID%>').get_masterTableView().get_selectedItems()[0].getDataKeyValue('ID');
-//                getRadWindow().close('TRANSFER;' + id);
+                //                var bCheck = $find('<%# rgData.ClientID %>').get_masterTableView().get_selectedItems().length;
+                //                if (bCheck == 0) {
+                //                    m = '<%# Translate(CommonMessage.MESSAGE_NOT_SELECT_ROW) %>';
+                //                    n = noty({ text: m, dismissQueue: true, type: 'warning' });
+                //                    setTimeout(function () { $.noty.close(n.options.id); }, 5000);
+                //                    return;
+                //                }
+                //                if (bCheck > 1) {
+                //                    m = '<%# Translate(CommonMessage.MESSAGE_NOT_SELECT_MULTI_ROW) %>';
+                //                    n = noty({ text: m, dismissQueue: true, type: 'warning' });
+                //                    setTimeout(function () { $.noty.close(n.options.id); }, 5000);
+                //                    return;
+                //                }
+                //                var id = $find('<%# rgData.ClientID%>').get_masterTableView().get_selectedItems()[0].getDataKeyValue('ID');
+                //                getRadWindow().close('TRANSFER;' + id);
                 //args.set_cancel(true);
             }
             if (args.get_item().get_commandName() == 'CANCEL') {

@@ -1463,6 +1463,7 @@
     <None Include="ReportTemplates\Recruitment\Import\Candidate_Error1.xls">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <Content Include="ReportTemplates\Recruitment\Import\Import_ungvien_acv.xls" />
     <None Include="ReportTemplates\Recruitment\Import\Import_Ungvien_Template.xls">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

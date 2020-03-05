@@ -1205,4 +1205,24 @@ Partial Class RecruitmentRepository
         Return Nothing
     End Function
 #End Region
+#Region "CheckCMND"
+    Public Function CheckExitID_NO(ByVal ID_NO As String, ByVal Candidate_ID As Decimal) As Integer
+        Try
+            Dim rep As New RecruitmentBusinessClient
+            Return rep.CheckExitID_NO(ID_NO, Candidate_ID)
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+#End Region
+#Region "orgname and titlename"
+    Public Function OrgAndTitle(ByVal org_id As Decimal, ByVal title_id As Decimal) As CandidateDTO
+        Try
+            Dim rep As New RecruitmentBusinessClient
+            Return rep.OrgAndTitle(org_id, title_id)
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+#End Region
 End Class

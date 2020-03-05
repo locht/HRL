@@ -62,7 +62,7 @@
     Public Property TUCHOI_ID As String
     Public Property NOIBO_ID As String
     Public Property PONTENTIAL As String
-
+    Public Property S_ERROR As String
     'Chức danh quan tâm
     Public Property CARE_TITLE_NAME As String
 

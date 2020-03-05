@@ -691,6 +691,13 @@ Namespace RecruitmentBusiness.ServiceContracts
         <OperationContract()>
         Function GetStatisticEstimateReality(ByVal _year As Integer, ByVal log As UserLog) As List(Of StatisticDTO)
 #End Region
-
+#Region "CheckCMND"
+        <OperationContract()>
+        Function CheckExitID_NO(ByVal ID_NO As String, ByVal Candidate_ID As Decimal) As Integer
+#End Region
+#Region "orgname and titlename"
+        <OperationContract()>
+        Function OrgAndTitle(ByVal org_id As Decimal, ByVal title_id As Decimal) As CandidateDTO
+#End Region
     End Interface
 End Namespace

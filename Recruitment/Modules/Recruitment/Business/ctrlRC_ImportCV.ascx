@@ -10,24 +10,24 @@
     </tlk:RadPane>
     <tlk:RadPane ID="RadPane2" runat="server" Scrolling="None">
         <tlk:RadGrid ID="rgData" runat="server" Height="100%" PageSize="50" AllowPaging="true">
-            <MasterTableView DataKeyNames="ID" ClientDataKeyNames="ID,ID_NO,FIRST_NAME_VN,LAST_NAME_VN,ERROR">
+            <MasterTableView DataKeyNames="FULLNAME_VN,ID_NO,S_ERROR,FILE_NAME,ORG_NAME,TITLE_NAME"
+                ClientDataKeyNames="FULLNAME_VN,ID_NO,S_ERROR,FILE_NAME,ORG_NAME,TITLE_NAME">
                 <Columns>
-                     <tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderStyle-HorizontalAlign="Center"
+                    <tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderStyle-HorizontalAlign="Center"
                         HeaderStyle-Width="30px" ItemStyle-HorizontalAlign="Center">
                     </tlk:GridClientSelectColumn>
                     <tlk:GridBoundColumn DataField="ID" Visible="false" />
-                    <%--<tlk:GridBoundColumn DataField="IS_CMND" Display="false" SortExpression="IS_CMND" UniqueName="IS_CMND" HeaderStyle-Width="120px" />--%>
-                    <tlk:GridDateTimeColumn HeaderText="<%$ Translate: CMND %>" DataField="ID_NO"
-                        SortExpression="ID_NO" UniqueName="ID_NO" HeaderStyle-Width="120px" />
-                    <tlk:GridBoundColumn HeaderText="<%$ Translate: Ngày sinh %>" DataField="BIRTH_DATE"
-                        SortExpression="BIRTH_DATE" UniqueName="BIRTH_DATE" />
-                    <tlk:GridBoundColumn HeaderText="<%$ Translate: Họ và tên lót %>" DataField="FIRST_NAME_VN" SortExpression="FIRST_NAME_VN"
-                        UniqueName="FIRST_NAME_VN" />
-                    <tlk:GridBoundColumn HeaderText="<%$ Translate: Tên %>" DataField="LAST_NAME_VN"
-                        SortExpression="LAST_NAME_VN" UniqueName="LAST_NAME_VN" />
-                    <tlk:GridCheckBoxColumn HeaderText="<%$ Translate: Chi tiết lỗi/Cảnh báo %>" DataField="S_ERROR"
+                    <tlk:GridBoundColumn HeaderText="<%$ Translate: Họ và tên %>" DataField="FULLNAME_VN"
+                        SortExpression="FULLNAME_VN" UniqueName="FULLNAME_VN" />
+                    <tlk:GridBoundColumn HeaderText="<%$ Translate: Phòng ban %>" DataField="ORG_NAME"
+                        SortExpression="ORG_NAME" UniqueName="ORG_NAME" />
+                    <tlk:GridBoundColumn HeaderText="<%$ Translate: Vị trí %>" DataField="TITLE_NAME"
+                        SortExpression="TITLE_NAME" UniqueName="TITLE_NAME" />
+                    <tlk:GridBoundColumn HeaderText="<%$ Translate: CMND %>" DataField="ID_NO" SortExpression="ID_NO"
+                        UniqueName="ID_NO" HeaderStyle-Width="120px" />
+                    <tlk:GridBoundColumn HeaderText="<%$ Translate: Chi tiết lỗi/Cảnh báo %>" DataField="S_ERROR"
                         UniqueName="S_ERROR" SortExpression="S_ERROR" />
-                    <tlk:GridDateTimeColumn HeaderText="<%$ Translate: Tên file %>" DataField="FILE_NAME"
+                    <tlk:GridBoundColumn HeaderText="<%$ Translate: Tên file %>" DataField="FILE_NAME"
                         SortExpression="FILE_NAME" UniqueName="FILE_NAME" />
                 </Columns>
                 <HeaderStyle Width="150px" />
@@ -35,7 +35,7 @@
         </tlk:RadGrid>
     </tlk:RadPane>
 </tlk:RadSplitter>
-<common:ctrlmessagebox id="ctrlMessageBox" runat="server" />
+<Common:ctrlMessageBox ID="ctrlMessageBox" runat="server" />
 <asp:HiddenField ID="hddLinkPopup" runat="server" Value="Dialog.aspx?mid=Recruitment&fid=ctrlRC_CandidateReasonChange&group=Business&noscroll=1" />
 <tlk:RadWindowManager ID="RadWindowManager1" runat="server">
     <Windows>
@@ -45,7 +45,7 @@
         </tlk:RadWindow>
     </Windows>
 </tlk:RadWindowManager>
-<common:ctrlupload id="ctrlUpload" runat="server" />
+<Common:ctrlUpload ID="ctrlUpload" runat="server" />
 <tlk:RadCodeBlock ID="RadCodeBlock1" runat="server">
     <script type="text/javascript">
 

@@ -4931,7 +4931,65 @@ Partial Class RecruitmentRepository
 
     End Function
 #End Region
+#Region "CheckCMND"
+    Public Function CheckExitID_NO(ByVal ID_NO As String, ByVal Candidate_ID As Decimal) As Integer
+        Try
+            Dim check As Integer = 0
+            Dim query = (From p In Context.RC_CANDIDATE
+                    From ot In Context.HU_TITLE.Where(Function(f) p.TITLE_ID = f.ID).DefaultIfEmpty
+                    From org In Context.HU_ORGANIZATION.Where(Function(f) p.ORG_ID = f.ID).DefaultIfEmpty
+                    From cv In Context.RC_CANDIDATE_CV.Where(Function(f) p.ID = f.CANDIDATE_ID)
+                    From status In Context.OT_OTHER_LIST.Where(Function(f) f.CODE = p.STATUS_ID).DefaultIfEmpty
+                    Where cv.ID_NO = ID_NO And p.ID <> Candidate_ID
+                    Select p.STATUS_ID, p.TITLE_ID).FirstOrDefault
+            If query IsNot Nothing Then
+                If query.STATUS_ID IsNot Nothing Then
+                    If query.STATUS_ID.ToUpper = RecruitmentCommon.RC_CANDIDATE_STATUS.LANHANVIEN_ID.ToUpper Then
+                        Return 1 '1.	Ứng viên là nhân viên: Thông báo “Ứng viên đã là nhân viên” thì không cho cập nhật thông tin vào hệ thống
+                    Else
+                        Return 3 '3.	Ứng viên đã hoặc đang ứng tuyển: thông báo “Ứng viên đã từng ứng tuyển” và cho chọn yes/no để tiếp tục
+                    End If
+                Else
+                    Return 3 '3.	Ứng viên đã hoặc đang ứng tuyển: thông báo “Ứng viên đã từng ứng tuyển” và cho chọn yes/no để tiếp tục
+                End If
+            End If
+            Dim lst = (From e In Context.HU_EMPLOYEE
+                       From cv In Context.HU_EMPLOYEE_CV.Where(Function(f) f.EMPLOYEE_ID = e.ID).DefaultIfEmpty
+                       Where cv.ID_NO = ID_NO
+                       Select e.WORK_STATUS, e.TER_LAST_DATE).FirstOrDefault
+            If lst IsNot Nothing Then
+                If lst.WORK_STATUS IsNot Nothing Then
+                    If lst.WORK_STATUS = 257 Then
+                        Return 2 '2.	Ứng viên là nhân viên nghỉ việc: Thông báo “Ứng viên là nhân viên đã nghỉ việc” thì cho chọn Yes/no để tiếp tục
+                    Else
+                        Return 1 '1.	Ứng viên là nhân viên: Thông báo “Ứng viên đã là nhân viên” thì không cho cập nhật thông tin vào hệ thống
+                    End If
+                Else
+                    Return 1 '1.	Ứng viên là nhân viên: Thông báo “Ứng viên đã là nhân viên” thì không cho cập nhật thông tin vào hệ thống
+                End If
 
+            End If
+            Return check
+        Catch ex As Exception
+
+        End Try
+    End Function
+#End Region
+#Region "orgname and titlename"
+    Public Function OrgAndTitle(ByVal org_id As Decimal, ByVal title_id As Decimal) As CandidateDTO
+        Try
+            Dim query = (From p In Context.HU_ORGANIZATION Where p.ID = org_id Select p.NAME_VN).FirstOrDefault.ToString
+
+            Dim query1 = (From p In Context.HU_TITLE Where p.ID = title_id Select p.NAME_VN).FirstOrDefault.ToString
+
+            Dim obj = New CandidateDTO With {.ORG_NAME = query.ToString(),
+                                             .TITLE_NAME = query1.ToString()}
+            Return obj
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+#End Region
 
 
 End Class
