@@ -320,6 +320,15 @@ Partial Public Class ctrlRC_CandidateList
     Protected WithEvents btnBlacklist As Global.Telerik.Web.UI.RadButton
 
     '''<summary>
+    '''btnHSNVTransfer control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btnHSNVTransfer As Global.Telerik.Web.UI.RadButton
+
+    '''<summary>
     '''btnPontential control.
     '''</summary>
     '''<remarks>

@@ -173,21 +173,20 @@
                         SortExpression="ID_NO" />
                     <tlk:GridBoundColumn HeaderText="<%$ Translate: Nơi cấp %>" DataField="ID_PLACE" UniqueName="ID_PLACE"
                         SortExpression="ID_PLACE" />
-                    <%--<tlk:GridDateTimeColumn HeaderText="<%$ Translate: Ngày cấp %>" DataField="ID_DATE"
+                    <tlk:GridDateTimeColumn HeaderText="<%$ Translate: Ngày cấp %>" DataField="ID_DATE"
                         UniqueName="ID_DATE" DataFormatString="{0:dd/MM/yyyy}" SortExpression="ID_DATE">
                         <HeaderStyle HorizontalAlign="Center" />
                         <ItemStyle HorizontalAlign="Center" />
-                    </tlk:GridDateTimeColumn>--%>
+                    </tlk:GridDateTimeColumn>
                     <%--<tlk:GridCheckBoxColumn HeaderText="<%$ Translate: Black list %>" DataField="IS_BLACKLIST"
                         UniqueName="IS_BLACKLIST" SortExpression="IS_BLACKLIST" ShowFilterIcon="true" />
                     <tlk:GridCheckBoxColumn HeaderText="<%$ Translate: ReHire %>" DataField="IS_REHIRE"
                         UniqueName="IS_REHIRE" SortExpression="IS_REHIRE" ShowFilterIcon="true" />
                     <tlk:GridCheckBoxColumn HeaderText="<%$ Translate: Tiềm năng %>" DataField="IS_PONTENTIAL"
                         UniqueName="IS_PONTENTIAL" SortExpression="IS_PONTENTIAL" ShowFilterIcon="true" />--%>
-                    <tlk:GridBoundColumn HeaderText="<%$ Translate: Trạng thái ứng viên %>" DataField="STATUS_NAME"
+                    <tlk:GridBoundColumn HeaderText="<%$ Translate: Loại ứng viên %>" DataField="STATUS_NAME"
                         UniqueName="STATUS_NAME" />
-<%--                    <tlk:GridBoundColumn HeaderText="<%$ Translate: Loại ứng viên %>" DataField="STATUS_NAME"
-                        UniqueName="STATUS_NAME" />--%>
+
                 </Columns>
             </MasterTableView>
             <HeaderStyle HorizontalAlign="Center" Width="100px" />
@@ -216,10 +215,10 @@
                         OnClientClicking="btnBlacklistClick">
                     </tlk:RadButton>
                 </td>
-                <%-- <td>
+                 <td>
                     <tlk:RadButton ID="btnHSNVTransfer" runat="server" Text="<%$ Translate: [...] Ứng viên nội bộ %>">
                     </tlk:RadButton>
-                </td>--%>
+                </td>
                 <td>
                     <tlk:RadButton ID="btnPontential" runat="server" Text="<%$ Translate: [...] Ứng viên tiềm năng %>"
                         OnClientClicking="btnPontentialClick" AutoPostBack="false">
