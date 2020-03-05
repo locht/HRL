@@ -29,7 +29,7 @@
                         ErrorMessage="<%$ Translate: Bạn phải nhập Tên nhóm tiêu chí %>" ToolTip="<%$ Translate: Bạn phải nhập Tên nhóm tiêu chí %>"></asp:RequiredFieldValidator>
                 </td>
                 <td class="lb">
-                    <%# Translate("Điểm tối đa")%><span class="lbReq">*</span>
+                    <%# Translate("Điểm tối đa")%>
                 </td>
                 <td>
                     <tlk:RadNumericTextBox ID="rntxtPointMax" runat="server" SkinID="Number">
