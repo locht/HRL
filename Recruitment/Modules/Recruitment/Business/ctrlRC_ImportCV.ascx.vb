@@ -119,6 +119,14 @@ Public Class ctrlRC_ImportCV
             ViewState(Me.ID & "_title_id") = value
         End Set
     End Property
+    Private Property program_id As Decimal
+        Get
+            Return ViewState(Me.ID & "_program_id")
+        End Get
+        Set(ByVal value As Decimal)
+            ViewState(Me.ID & "_program_id") = value
+        End Set
+    End Property
     Private Property org_name As String
         Get
             Return ViewState(Me.ID & "_org_name")
@@ -142,6 +150,7 @@ Public Class ctrlRC_ImportCV
     Public Overrides Sub ViewLoad(ByVal e As System.EventArgs)
         Try
             If Not IsPostBack Then
+                program_id = Request.Params("PROGRAMID")
                 org_id = Request.Params("ORGID")
                 title_id = Request.Params("TITLEID")
                 Using rep As New RecruitmentBusinessClient
@@ -594,10 +603,6 @@ Public Class ctrlRC_ImportCV
         Try
             Dim userlog = LogHelper.GetUserLog
             Dim lst_new As New List(Of CandidateImportDTO)
-            Dim lstct_new As New List(Of CandidateBeforeWTDTO)
-            Dim lstdt_new As New List(Of TrainSingerDTO)
-            Dim lstfm_new As New List(Of CandidateFamilyDTO)
-            Dim lstrf_new As New List(Of CandidateReferenceDTO)
             For Each i In lstSave
                 For Each item In lst
                     If item.can.ID = i Then
@@ -605,62 +610,32 @@ Public Class ctrlRC_ImportCV
                         obj_new.can = item.can
                         obj_new.can_cv = item.can_cv
                         obj_new.can_edu = item.can_edu
-                        'obj_new.can_ex = item.can_ex
-                        'obj_new.can_h = item.can_h
-                        obj_new.can_other = item.can_other
                         lst_new.Add(obj_new)
                     End If
                 Next
-                For Each item In lstct
-                    If item.CANDIDATE_ID = i Then
-                        Dim objct_new As New CandidateBeforeWTDTO
-                        objct_new = item
-                        lstct_new.Add(objct_new)
-                    End If
-                Next
-                For Each item In lstdt
-                    If item.CANDIDATE_ID = i Then
-                        Dim objdt_new As New TrainSingerDTO
-                        objdt_new = item
-                        lstdt_new.Add(objdt_new)
-                    End If
-                Next
-                For Each Item In lstfm
-                    If Item.CANDIDATE_ID = i Then
-                        Dim objfm_new As New CandidateFamilyDTO
-                        objfm_new = Item
-                        lstfm_new.Add(objfm_new)
-                    End If
-                Next
-                For Each Item In lstrf
-                    If Item.CANDIDATE_ID = i Then
-                        Dim objrf_new As New CandidateReferenceDTO
-                        objrf_new = Item
-                        lstrf_new.Add(objrf_new)
-                    End If
-                Next
+             
             Next
-            'If rep.ImportCandidateCV(lst_new, lstct_new, lstdt_new, lstfm_new, lstrf_new, userlog) Then
-            '    Dim msgt As String = "Import thành công " & lst_new.Count & " ứng viên"
-            '    'If msg.Length > 0 Then
-            '    '    msgt &= ". Danh sách ứng viên không được import " & msg.Substring(msg.Length - 1, 1).ToString & ". Vui lòng kiểm tra lại file import của những ứng viên này."
-            '    'End If
-            '    ShowMessage(Translate(msgt), NotifyType.Success)
-            '    Dim lstDel As New List(Of CandidateImportDTO)
-            '    For Each item In lst
-            '        lstDel.Add(item)
-            '    Next
-            '    For Each item In lst_new
-            '        For Each it In lstDel
-            '            If item.can.ID = it.can.ID Then
-            '                lst.Remove(it)
-            '            End If
-            '        Next
-            '    Next
-            '    rgData.Rebind()
-            'Else
-            '    ShowMessage(Translate("Không có ứng viên nào được import vui lòng kiểm tra lại toàn bộ file import của ứng viên."), NotifyType.Warning)
-            'End If
+            If rep.ImportCandidateCV(lst_new) Then
+                Dim msgt As String = "Import thành công " & lst_new.Count & " ứng viên"
+                'If msg.Length > 0 Then
+                '    msgt &= ". Danh sách ứng viên không được import " & msg.Substring(msg.Length - 1, 1).ToString & ". Vui lòng kiểm tra lại file import của những ứng viên này."
+                'End If
+                ShowMessage(Translate(msgt), NotifyType.Success)
+                Dim lstDel As New List(Of CandidateImportDTO)
+                For Each item In lst
+                    lstDel.Add(item)
+                Next
+                For Each item In lst_new
+                    For Each it In lstDel
+                        If item.can.ID = it.can.ID Then
+                            lst.Remove(it)
+                        End If
+                    Next
+                Next
+                rgData.Rebind()
+            Else
+                ShowMessage(Translate("Không có ứng viên nào được import vui lòng kiểm tra lại toàn bộ file import của ứng viên."), NotifyType.Warning)
+            End If
         Catch ex As Exception
 
         End Try
@@ -893,26 +868,27 @@ Public Class ctrlRC_ImportCV
         dtTemp.AcceptChanges()
     End Sub
     Private Sub CreateCanImportCV(ByVal dtData As DataTable)
-        Dim candidateid As Decimal = lst.Count + 1
+
         Try
             For Each dr In dtData.Rows
-
+                Dim candidateid As Decimal = lst.Count + 1
                 Dim can As New CandidateDTO
                 Dim can_cv As CandidateCVDTO
                 Dim can_edu As New CandidateEduDTO
                 Dim canimport As New CandidateImportDTO
-                'Candidate
-                If hidProgramID.Value <> "" Then
-                    can.RC_PROGRAM_ID = Decimal.Parse(hidProgramID.Value)
-                End If
+                
                 can.ORG_ID = org_id
                 can.TITLE_ID = title_id
                 can.ORG_NAME = org_name
+                can.RC_PROGRAM_ID = program_id
                 can.TITLE_NAME = title_name
                 can.FULLNAME_VN = dr("FULLNAME_VN").ToString
                 can.ID_NO = dr("ID_NO").ToString
                 can.FILE_NAME = dr("FILE_NAME").ToString
                 can.S_ERROR = dr("ERROR").ToString
+                If dr("IS_CMND").ToString <> "" Then
+                    can.IS_CMND = Decimal.Parse(dr("IS_CMND"))
+                End If
                 can.ID = candidateid
 
                 'Candidate CV

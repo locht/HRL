@@ -322,7 +322,8 @@
             else if (args.get_item().get_commandName() == "NEXT") {
                 var orgID = $get("<%=hidOrg.ClientID %>").value;
                 var titleID = $get("<%=hidTitle.ClientID %>").value;
-                var oWindow = radopen('Dialog.aspx?mid=Recruitment&fid=ctrlRC_ImportCV&group=Business&noscroll=1&ORGID=' + orgID + '&TITLEID=' + titleID, "rwPopup");
+                var programID = $get("<%=hidProgramID.ClientID %>").value;
+                var oWindow = radopen('Dialog.aspx?mid=Recruitment&fid=ctrlRC_ImportCV&group=Business&noscroll=1&ORGID=' + orgID + '&TITLEID=' + titleID + '&PROGRAMID=' + programID, "rwPopup");
                 var pos = $("html").offset();
                 oWindow.moveTo(pos.left, pos.top);
                 oWindow.setSize($(window).width(), $(window).height());

@@ -10,13 +10,15 @@
     </tlk:RadPane>
     <tlk:RadPane ID="RadPane2" runat="server" Scrolling="None">
         <tlk:RadGrid ID="rgData" runat="server" Height="100%" PageSize="50" AllowPaging="true">
-            <MasterTableView DataKeyNames="FULLNAME_VN,ID_NO,S_ERROR,FILE_NAME,ORG_NAME,TITLE_NAME"
-                ClientDataKeyNames="FULLNAME_VN,ID_NO,S_ERROR,FILE_NAME,ORG_NAME,TITLE_NAME">
+            <MasterTableView DataKeyNames="FULLNAME_VN,ID_NO,S_ERROR,FILE_NAME,ORG_NAME,TITLE_NAME,IS_CMND,ID"
+                ClientDataKeyNames="FULLNAME_VN,ID_NO,S_ERROR,FILE_NAME,ORG_NAME,TITLE_NAME,IS_CMND,ID">
                 <Columns>
                     <tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderStyle-HorizontalAlign="Center"
                         HeaderStyle-Width="30px" ItemStyle-HorizontalAlign="Center">
                     </tlk:GridClientSelectColumn>
                     <tlk:GridBoundColumn DataField="ID" Visible="false" />
+                    <tlk:GridBoundColumn DataField="IS_CMND" Display="false" SortExpression="IS_CMND"
+                        UniqueName="IS_CMND" HeaderStyle-Width="120px" />
                     <tlk:GridBoundColumn HeaderText="<%$ Translate: Họ và tên %>" DataField="FULLNAME_VN"
                         SortExpression="FULLNAME_VN" UniqueName="FULLNAME_VN" />
                     <tlk:GridBoundColumn HeaderText="<%$ Translate: Phòng ban %>" DataField="ORG_NAME"

@@ -699,5 +699,7 @@ Namespace RecruitmentBusiness.ServiceContracts
         <OperationContract()>
         Function OrgAndTitle(ByVal org_id As Decimal, ByVal title_id As Decimal) As CandidateDTO
 #End Region
+        <OperationContract()>
+        Function ImportCandidateCV(ByVal lst As List(Of CandidateImportDTO)) As Boolean
     End Interface
 End Namespace

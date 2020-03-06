@@ -980,5 +980,14 @@ Namespace RecruitmentBusiness.ServiceImplementations
             End Try
         End Function
 #End Region
+        Public Function ImportCandidateCV(ByVal lst As List(Of CandidateImportDTO)) As Boolean _
+                 Implements ServiceContracts.IRecruitmentBusiness.ImportCandidateCV
+            Try
+                Dim rep As New RecruitmentRepository
+                Return rep.ImportCandidateCV(lst)
+            Catch ex As Exception
+                Throw ex
+            End Try
+        End Function
     End Class
 End Namespace

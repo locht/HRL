@@ -1225,4 +1225,17 @@ Partial Class RecruitmentRepository
         End Try
     End Function
 #End Region
+    ' Phạm Văn Hiếu Import Candidate From Excel
+    Public Function ImportCandidateCV(ByVal lst As List(Of CandidateImportDTO)) As Boolean
+
+        Using rep As New RecruitmentBusinessClient
+            Try
+                Return rep.ImportCandidateCV(lst)
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+
+    End Function
 End Class

@@ -4990,7 +4990,148 @@ Partial Class RecruitmentRepository
         End Try
     End Function
 #End Region
+    ' Phạm Văn Hiếu- Import Candidate from Excel
+    Public Function ImportCandidateCV(ByVal lst As List(Of CandidateImportDTO)) As Boolean
+        Try
+            InsertCandidateImport(lst, 0, "", Nothing)
+            Return True
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+
+    Public Function InsertCandidateImport(ByVal lst As List(Of CandidateImportDTO),
+                                         ByRef gID As Decimal,
+                                         ByRef _strEmpCode As String,
+                                         ByVal _imageBinary As Byte()) As Boolean
+
+        Try
+            Dim objEmp As New CandidateDTO
+            Dim objEmpCV As New CandidateCVDTO
+            Dim objEmpEdu As New CandidateEduDTO
+          
+            'Sinh mã ứng viên động
+            Dim checkEMP As Integer = 0
+            Dim empCodeDB As Decimal = 0
+            Dim EMPCODE As String
+
+            Using query As New DataAccess.NonQueryData
+                Dim temp = query.ExecuteSQLScalar("select Candidate_CODE from RC_Candidate order by Candidate_CODE DESC", New Object)
+                If temp IsNot Nothing Then
+                    empCodeDB = Decimal.Parse(temp)
+                End If
+            End Using
+
+            For Each itemlst As CandidateImportDTO In lst
+                '---------- 1.0 Thêm vào bảng RC_Candidate ----------
+                objEmp = itemlst.can
+                objEmpCV = itemlst.can_cv
+                objEmpEdu = itemlst.can_edu
+
+               
+                '---------- 1.0 Thêm vào bảng RC_Candidate ----------
+                Dim objEmpData As New RC_CANDIDATE
+                Dim fileID As Decimal = Utilities.GetNextSequence(Context, Context.RC_CANDIDATE.EntitySet.Name)
+                objEmpData.ID = fileID
+                Do
+                    empCodeDB += 1
+                    EMPCODE = String.Format("{0}", Format(empCodeDB, "000000"))
+                    checkEMP = (From p In Context.RC_CANDIDATE Where p.CANDIDATE_CODE = EMPCODE Select p.ID).Count
+                Loop Until checkEMP = 0
+                _strEmpCode = EMPCODE
+                objEmpData.CANDIDATE_CODE = _strEmpCode
+                objEmpData.RC_PROGRAM_ID = objEmp.RC_PROGRAM_ID
+                'objEmpData.FIRST_NAME_VN = objEmp.FIRST_NAME_VN
+                'objEmpData.LAST_NAME_VN = objEmp.LAST_NAME_VN
+                objEmpData.FULLNAME_VN = objEmp.FULLNAME_VN
+                objEmpData.ORG_ID = objEmp.ORG_ID
+                objEmpData.TITLE_ID = objEmp.TITLE_ID
+                'objEmpData.JOIN_DATE = objEmp.JOIN_DATE
+                objEmpData.EFFECT_DATE = objEmp.EFFECT_DATE
+                objEmpData.TITLE_NAME = objEmp.TITLE_NAME
+                'objEmpData.WORK = objEmp.WORK
+                'objEmpData.FILE_NAME = objEmp.FILE_NAME
+                If objEmp.FILE_SIZE IsNot Nothing Then
+                    FileInsert(objEmp.ID, pathCandidate, objEmp.FILE_SIZE)
+                End If
+                If objEmp.WORK_STATUS IsNot Nothing Then
+                    '10,11,12,13,14 - nghỉ việc
+                    If ",10,11,12,13,14,".Contains("," & objEmp.WORK_STATUS.Value.ToString & ",") Then
+                        objEmpData.IS_REHIRE = True
+                    End If
+                End If
+
+                Context.RC_CANDIDATE.AddObject(objEmpData)
+
+                '---------- 2.0 Thêm vào bảng RC_Candidate_CV ----------
+                Dim objEmpCVData As New RC_CANDIDATE_CV
+                objEmpCVData.CANDIDATE_ID = objEmpData.ID
+                ' objEmpCVData.BIRTH_DATE = objEmpCV.BIRTH_DATE
+                objEmpCVData.GENDER = objEmpCV.GENDER
+                objEmpCVData.CONTACT_MOBILE = objEmpCV.CONTACT_MOBILE
+                objEmpCVData.PER_EMAIL = objEmpCV.PER_EMAIL
+
+                objEmpCVData.ID_NO = objEmpCV.ID_NO
+                objEmpCVData.ID_DATE = objEmpCV.ID_DATE
+                objEmpCVData.ID_PLACE = objEmpCV.ID_PLACE
+
+                objEmpCVData.NATIVE = objEmpCV.NATIVE
+                objEmpCVData.RELIGION = objEmpCV.RELIGION
+
+                'objEmpCVData.BIRTH_NATION = objEmpCV.BIRTH_NATION_ID
+                'objEmpCVData.BIRTH_PROVINCE = objEmpCV.BIRTH_PROVINCE
+                objEmpCVData.NATIONALITY_ID = objEmpCV.NATIONALITY_ID
+                'objEmpCVData.NAV_NATION = objEmpCV.NAV_NATION_ID
+                'objEmpCVData.NAV_ADDRESS = objEmpCV.NAV_ADDRESS
+                'objEmpCVData.NAV_PROVINCE = objEmpCV.NAV_PROVINCE
+                'objEmpCVData.PER_ADDRESS = objEmpCV.PER_ADDRESS
+                'objEmpCVData.PER_PROVINCE = objEmpCV.PER_PROVINCE
+                'objEmpCVData.PER_NATION = objEmpCV.PER_NATION_ID
+                'objEmpCVData.PER_DISTRICT = objEmpCV.PER_DISTRICT_ID
+                'objEmpCVData.CONTACT_ADDRESS = objEmpCV.CONTACT_ADDRESS
+                'objEmpCVData.CONTACT_PROVINCE = objEmpCV.CONTACT_PROVINCE
+                'objEmpCVData.CONTACT_NATION = objEmpCV.CONTACT_NATION_ID
+                'objEmpCVData.CONTACT_DISTRICT = objEmpCV.CONTACT_DISTRICT_ID
+                'objEmpCVData.CON_ADDRESS = objEmpCV.CONTACT_ADDRESS
+                'objEmpCVData.CON_COUNTRY = objEmpCV.CONTACT_NATION_ID
+                'objEmpCVData.CON_PROVINCE = objEmpCV.CONTACT_PROVINCE
+                'objEmpCVData.CON_DISTRICT = objEmpCV.CONTACT_DISTRICT_ID
+                'objEmpCVData.MARITAL_STATUS = objEmpCV.MARITAL_STATUS
 
 
+                If objEmpCV.IMAGE <> "" Then
+                    objEmpCVData.IMAGE = objEmpData.CANDIDATE_CODE & objEmpCV.IMAGE
+                End If
+                Context.RC_CANDIDATE_CV.AddObject(objEmpCVData)
+
+                '---------- 3.0 Thêm vào bảng RC_EDUCATION ----------
+                Dim objEmpEduData As New RC_CANDIDATE_EDUCATION
+                objEmpEduData.CANDIDATE_ID = objEmpData.ID
+                objEmpEduData.ACADEMY = objEmpEdu.ACADEMY
+                'objEmpEduData.LEARNING_LEVEL = objEmpEdu.LEARNING_LEVEL
+                'objEmpEduData.FIELD = objEmpEdu.FIELD
+                objEmpEduData.SCHOOL = objEmpEdu.SCHOOL
+
+                objEmpEduData.SCHOOL_NAME = objEmpEdu.SCHOOL_NAME
+                objEmpEduData.MAJOR = objEmpEdu.MAJOR
+                'objEmpEduData.MARK_EDU = objEmpEdu.MARK_EDU
+
+                'objEmpEduData.IT_CERTIFICATE = objEmpEdu.IT_CERTIFICATE
+                'objEmpEduData.IT_LEVEL = objEmpEdu.IT_LEVEL
+                'objEmpEduData.IT_MARK = objEmpEdu.IT_MARK
+
+
+                'objEmpEduData.ENGLISH = objEmpEdu.ENGLISH
+                'objEmpEduData.ENGLISH_LEVEL = objEmpEdu.ENGLISH_LEVEL
+                'objEmpEduData.ENGLISH_MARK = objEmpEdu.ENGLISH_MARK
+                Context.RC_CANDIDATE_EDUCATION.AddObject(objEmpEduData)
+            Next
+            Context.SaveChanges()
+            Return True
+        Catch ex As Exception
+            Throw ex
+        End Try
+
+    End Function
 End Class
 
