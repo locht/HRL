@@ -2664,6 +2664,12 @@ Namespace ProfileBusiness.ServiceContracts
         Function GetContractList(ByVal empID As Decimal) As List(Of ContractDTO)
 
         <OperationContract()>
+        Function GetOrgList(ByVal ID As Decimal) As String
+
+        <OperationContract()>
+        Function GetContractTypeCT(ByVal ID As Decimal) As String
+
+        <OperationContract()>
         Function GetTitileBaseOnEmp(ByVal ID As Decimal) As TitleDTO
 
         <OperationContract()>

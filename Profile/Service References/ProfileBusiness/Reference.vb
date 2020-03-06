@@ -50454,6 +50454,12 @@ Namespace ProfileBusiness
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetContractList", ReplyAction:="http://tempuri.org/IProfileBusiness/GetContractListResponse")>  _
         Function GetContractList(ByVal empID As Decimal) As System.Collections.Generic.List(Of ProfileBusiness.ContractDTO)
         
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetOrgList", ReplyAction:="http://tempuri.org/IProfileBusiness/GetOrgListResponse")>  _
+        Function GetOrgList(ByVal ID As Decimal) As String
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetContractTypeCT", ReplyAction:="http://tempuri.org/IProfileBusiness/GetContractTypeCTResponse")>  _
+        Function GetContractTypeCT(ByVal ID As Decimal) As String
+        
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetTitileBaseOnEmp", ReplyAction:="http://tempuri.org/IProfileBusiness/GetTitileBaseOnEmpResponse")>  _
         Function GetTitileBaseOnEmp(ByVal ID As Decimal) As ProfileBusiness.TitleDTO
         
@@ -52975,6 +52981,14 @@ Namespace ProfileBusiness
         
         Public Function GetContractList(ByVal empID As Decimal) As System.Collections.Generic.List(Of ProfileBusiness.ContractDTO) Implements ProfileBusiness.IProfileBusiness.GetContractList
             Return MyBase.Channel.GetContractList(empID)
+        End Function
+        
+        Public Function GetOrgList(ByVal ID As Decimal) As String Implements ProfileBusiness.IProfileBusiness.GetOrgList
+            Return MyBase.Channel.GetOrgList(ID)
+        End Function
+        
+        Public Function GetContractTypeCT(ByVal ID As Decimal) As String Implements ProfileBusiness.IProfileBusiness.GetContractTypeCT
+            Return MyBase.Channel.GetContractTypeCT(ID)
         End Function
         
         Public Function GetTitileBaseOnEmp(ByVal ID As Decimal) As ProfileBusiness.TitleDTO Implements ProfileBusiness.IProfileBusiness.GetTitileBaseOnEmp

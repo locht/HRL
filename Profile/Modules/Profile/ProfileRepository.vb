@@ -1318,6 +1318,30 @@ Partial Public Class ProfileRepository
 
     End Function
 
+    Public Function GetOrgList(ByVal ID As Decimal) As String
+        Using rep As New ProfileBusinessClient
+            Try
+                Return rep.GetOrgList(ID)
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+
+    End Function
+
+    Public Function GetContractTypeCT(ByVal ID As Decimal) As String
+        Using rep As New ProfileBusinessClient
+            Try
+                Return rep.GetContractTypeCT(ID)
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+
+    End Function
+
     Public Function GetTitileBaseOnEmp(ByVal ID As Decimal) As Profile.ProfileBusiness.TitleDTO
         Dim lstTitle As Profile.ProfileBusiness.TitleDTO
         Using rep As New ProfileBusinessClient

@@ -16,6 +16,7 @@
 <asp:HiddenField ID="hidContract_ID" runat="server" />
 <asp:HiddenField ID="hidEmployeeID" runat="server" />
 <asp:HiddenField ID="hidContractType_ID" runat="server" />
+<asp:HiddenField ID="hidOrgCode" runat="server" />
 <tlk:RadSplitter ID="RadSplitter1" runat="server" Width="100%" Height="100%" Orientation="Horizontal">
     <tlk:RadPane ID="RadPane1" runat="server" Height="33px" Scrolling="None">
         <tlk:RadToolBar ID="tbarContract" runat="server" OnClientButtonClicking="clientButtonClicking" />
@@ -77,7 +78,7 @@
                         </asp:RequiredFieldValidator>
                     </td>
                     <td class="lb">
-                        <asp:Label ID="lbTitle" runat="server" Text="Chức danh"></asp:Label>
+                        <asp:Label ID="lbTitle" runat="server" Text="Công việc"></asp:Label>
                     </td>
                     <td>
                         <tlk:RadTextBox ID="txtTitle" runat="server">
@@ -148,14 +149,14 @@
                         </asp:RequiredFieldValidator>
                     </td>
                     <td class="lb">
-                        <asp:Label ID="lbSign_Title" runat="server" Text="Chức vụ người ký"></asp:Label>
+                        <asp:Label ID="lbSign_Title" runat="server" Text="Công việc người ký"></asp:Label>
                     </td>
                     <td>
                         <tlk:RadTextBox ID="txtSign_Title" runat="server" ReadOnly="true">
                         </tlk:RadTextBox>
                     </td>
                 </tr>
-                <tr>
+                <%--<tr>
                     <td class="lb">
                         <asp:Label ID="lbSign2" runat="server" Text="Người ký 2"></asp:Label>
                     </td>
@@ -173,7 +174,7 @@
                         <tlk:RadTextBox ID="txtSign_Title2" runat="server">
                         </tlk:RadTextBox>
                     </td>
-                </tr>
+                </tr>--%>
                 <tr>
                     <td class="lb">
                         <asp:Label ID="lbAppend_Content" runat="server" Text="Nội dung thay đổi"></asp:Label>
@@ -186,7 +187,7 @@
                             ToolTip="<%$ Translate: Bạn phải nhập nội dung thay đổi. %>"> </asp:RequiredFieldValidator>
                     </td>
                 </tr>
-                <tr>
+               <%-- <tr>
                     <td class="lb">
                         <asp:Label ID="lbRemark" runat="server" Text="Ghi chú"></asp:Label>
                     </td>
@@ -196,8 +197,21 @@
                         <asp:RequiredFieldValidator ID="RequiredFieldValidator6" ControlToValidate="txtRemark"
                             runat="server" ErrorMessage="<%$ Translate: Bạn phải nhập ghi chú. %>" ToolTip="<%$ Translate: Bạn phải nhập ghi chú. %>"> </asp:RequiredFieldValidator>
                     </td>
-                </tr>
+                </tr>--%>
                 <tr>
+                    <td class="lb">
+                    </td>
+                    <td>
+                        <asp:CheckBox runat="server" ID="chkAuthor" Text="Ủy quyền" />
+                    </td>
+                     <td class="lb">
+                         <asp:Label ID="lbAuthorNumber" runat="server" Text="Số ủy quyền"></asp:Label>
+                    </td>
+                    <td>
+                        <tlk:RadTextBox ID="txtAuthorNumber" runat="server">
+                        </tlk:RadTextBox>
+                    </td>
+
                     <td class="lb">
                         <asp:Label ID="lbStatus_ID" runat="server" Text="Trạng Thái"></asp:Label>
                     </td>
@@ -208,7 +222,7 @@
                             ToolTip="<%$ Translate: Bạn phải chọn Trạng thái %>" ControlToValidate="cboStatus_ID">
                         </asp:RequiredFieldValidator>
                     </td>
-                    <td class="lb">
+                   <%-- <td class="lb">
                         <asp:Label ID="lbUpload" runat="server" Text="Tập tin đính kèm"></asp:Label>
                     </td>
                     <td>
@@ -221,7 +235,7 @@
                         <tlk:RadButton ID="btnDownload" runat="server" Text="<%$ Translate: Tải xuống%>"
                             CausesValidation="false" OnClientClicked="rbtClicked" TabIndex="3" EnableViewState="false">
                         </tlk:RadButton>
-                    </td>
+                    </td>--%>
                 </tr>
                 <%--THÔNG TIN LƯƠNG--%>
                 <tr>
@@ -328,14 +342,37 @@
                                          ToolTip="<%= groupWageWarning %>" ClientValidationFunction="cusSalType">
                     </asp:CustomValidator>--%>
                     </td>
-                    <td class="lb">
+                   <%-- <td class="lb">
                         <%# UI.Wage_TaxTable %>
                     </td>
                     <td>
                         <tlk:RadComboBox ID="cboTaxTable" runat="server" SkinID="LoadDemand" Enabled="False">
                         </tlk:RadComboBox>
-                    </td>
+                    </td>--%>
                 </tr>
+                <tr>
+                <td class="lb">
+                    <asp:Label runat="server" ID="lbSalaryGroup" Text="Thang lương"></asp:Label>
+                </td>
+                <td>
+                    <tlk:RadComboBox ID="cbSalaryGroup" runat="server" Enabled="False">
+                    </tlk:RadComboBox>
+                </td>
+                <td class="lb">
+                    <asp:Label runat="server" ID="lbSalaryLevel" Text="Ngạch lương"></asp:Label>
+                </td>
+                <td>
+                    <tlk:RadComboBox ID="cbSalaryLevel" runat="server" Enabled="False">
+                    </tlk:RadComboBox>
+                </td>
+                <td class="lb">
+                    <asp:Label runat="server" ID="lbSalaryRank" Text="Bậc lương"></asp:Label>
+                </td>
+                <td>
+                    <tlk:RadComboBox ID="cbSalaryRank" runat="server" Enabled="False">
+                    </tlk:RadComboBox>
+                </td>
+            </tr>
                 <tr>
                     <td class="lb">
                         <%# UI.Wage_BasicSalary %>
@@ -376,7 +413,7 @@
                 <%-- <tr>
                   
                 </tr>--%>
-                <tr>
+                <%--<tr>
                     <td class="lb">
                         <asp:Label runat="server" ID="lbOtherSalary1" Text="Thưởng hiệu quả công việc"></asp:Label>
                     </td>
@@ -398,7 +435,7 @@
                         <tlk:RadNumericTextBox runat="server" ID="rnOtherSalary3" SkinID="Money" Enabled="False">
                         </tlk:RadNumericTextBox>
                     </td>
-                </tr>
+                </tr>--%>
                 <tr>
                   <td class="lb">
                           <tlk:RadDatePicker ID="radDate" runat="server" Visible="false">

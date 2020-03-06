@@ -2706,13 +2706,14 @@ Public Class ProfileRepository
         Try
             Dim query = (From p In Context.HU_CONTRACT
                          Where p.EMPLOYEE_ID = empID AndAlso _
-                         p.STATUS_ID = ProfileCommon.DECISION_STATUS.APPROVE_ID AndAlso p.CONTRACT_NO IsNot Nothing AndAlso p.CONTRACT_TYPE_ID <> 6 AndAlso p.CONTRACT_TYPE_ID <> 35 AndAlso p.CONTRACT_TYPE_ID <> 32
+                         p.STATUS_ID = ProfileCommon.DECISION_STATUS.APPROVE_ID AndAlso p.CONTRACT_NO IsNot Nothing AndAlso (p.EXPIRE_DATE Is Nothing Or (p.EXPIRE_DATE IsNot Nothing And p.EXPIRE_DATE > Date.Now))
                          Select New ContractDTO With {.ID = p.ID,
                                                       .EMPLOYEE_ID = p.EMPLOYEE_ID,
                                                       .CONTRACT_NO = p.CONTRACT_NO,
                                                       .START_DATE = p.START_DATE,
                                                       .EXPIRE_DATE = p.EXPIRE_DATE,
-                                                      .STATUS_ID = p.STATUS_ID}).ToList()
+                                                      .STATUS_ID = p.STATUS_ID,
+                                                      .CONTRACTTYPE_ID = p.CONTRACT_TYPE_ID}).ToList()
             'If query IsNot Nothing Then
             '    query.RemoveAll(Function(x) x.START_DATE.Value.Date > Date.Now.Date)
             '    query.RemoveAll(Function(x) x.EXPIRE_DATE IsNot Nothing AndAlso x.EXPIRE_DATE.Value.Date < Date.Now.Date)
@@ -2724,6 +2725,29 @@ Public Class ProfileRepository
             Throw ex
         End Try
     End Function
+
+    Public Function GetOrgList(ByVal ID As Decimal) As String
+        Try
+            Dim query = (From p In Context.HU_ORGANIZATION Where p.ID = ID).FirstOrDefault
+
+            Return query.CODE
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iProfile")
+            Throw ex
+        End Try
+    End Function
+
+    Public Function GetContractTypeCT(ByVal ID As Decimal) As String
+        Try
+            Dim query = (From p In Context.HU_CONTRACT_TYPE Where p.ID = ID And p.CODE <> "HDKXDTH").FirstOrDefault
+
+            Return query.PERIOD
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iProfile")
+            Throw ex
+        End Try
+    End Function
+
 
     Public Function GetTitileBaseOnEmp(ByVal ID As Decimal) As TitleDTO
         Try

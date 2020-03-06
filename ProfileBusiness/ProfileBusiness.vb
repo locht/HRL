@@ -770,6 +770,26 @@ Implements ServiceContracts.IProfileBusiness.GetHU_DataDynamicContractAppendix
             End Using
         End Function
 
+        Public Function GetOrgList(ByVal ID As Decimal) As String Implements ServiceContracts.IProfileBusiness.GetOrgList
+            Using rep As New ProfileRepository
+                Try
+                    Return rep.GetOrgList(ID)
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
+
+        Public Function GetContractTypeCT(ByVal ID As Decimal) As String Implements ServiceContracts.IProfileBusiness.GetContractTypeCT
+            Using rep As New ProfileRepository
+                Try
+                    Return rep.GetContractTypeCT(ID)
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
+
         Public Function GetTitileBaseOnEmp(ByVal ID As Decimal) As TitleDTO _
           Implements ServiceContracts.IProfileBusiness.GetTitileBaseOnEmp
             Using rep As New ProfileRepository

@@ -135,6 +135,25 @@ Public Class ctrlHU_ContractTemplete
             ViewState(Me.ID & "_IDSelect") = value
         End Set
     End Property
+
+    Private Property checkStatus As String
+        Get
+            Return PageViewState(Me.ID & "_checkStatus")
+        End Get
+        Set(ByVal value As String)
+            PageViewState(Me.ID & "_checkStatus") = value
+        End Set
+    End Property
+
+    Private Property EndDateCT As Date?
+        Get
+            Return PageViewState(Me.ID & "_EndDateCT")
+        End Get
+        Set(ByVal value As Date?)
+            PageViewState(Me.ID & "_EndDateCT") = value
+        End Set
+
+    End Property
 #End Region
 
 #Region "Page"
@@ -151,8 +170,8 @@ Public Class ctrlHU_ContractTemplete
             txtContract_NumAppen.Enabled = False
             If (_flag = False) Then
                 EnableControlAll_Cus(False, NORMAL)
-                btnDownload.Enabled = True
-                btnUploadFile.Enabled = True
+                'btnDownload.Enabled = True
+                'btnUploadFile.Enabled = True
             End If
         Catch ex As Exception
             DisplayException(Me.ViewName, Me.ID, ex)
@@ -279,12 +298,19 @@ Public Class ctrlHU_ContractTemplete
                             Exit Sub
                         End If
 
-                        If cboStatus_ID.SelectedValue = 447 Then
-                            If txtUpload.Text = "" Then
-                                ShowMessage(Translate("Bạn phải đính kèm tập tin khi phê duyệt"), NotifyType.Warning)
+                        If IsDate(EndDateCT) AndAlso rdExpireDate.SelectedDate IsNot Nothing Then
+                            If rdExpireDate.SelectedDate < EndDateCT Then
+                                ShowMessage(Translate("Ngày hết hiệu lực lớn hơn ngày hết hạn của hợp đồng"), NotifyType.Error)
                                 Exit Sub
                             End If
                         End If
+
+                        'If cboStatus_ID.SelectedValue = 447 Then
+                        '    'If txtUpload.Text = "" Then
+                        '    '    ShowMessage(Translate("Bạn phải đính kèm tập tin khi phê duyệt"), NotifyType.Warning)
+                        '    '    Exit Sub
+                        '    'End If
+                        'End If
 
                         objContract.START_DATE = rdStartDate.SelectedDate
                         If rdExpireDate.SelectedDate IsNot Nothing Then
@@ -292,18 +318,18 @@ Public Class ctrlHU_ContractTemplete
                         End If
                         objContract.CONTENT_APPEND = txtAppend_Content.Text
                         objContract.EMPLOYEE_CODE = txtEmployeeCode.Text
-                        objContract.REMARK = txtRemark.Text
+                        'objContract.REMARK = txtRemark.Text
                         If cboContract.SelectedValue <> "" Then
                             objContract.CONTRACT_NO = cboContract.Text
                             objContract.ID_CONTRACT = cboContract.SelectedValue
                         End If
-                        objContract.FILENAME = txtUpload.Text.Trim
-                        objContract.UPLOADFILE = If(Down_File Is Nothing, "", Down_File)
-                        If objContract.UPLOADFILE = "" Then
-                            objContract.UPLOADFILE = If(txtRemindLink.Text Is Nothing, "", txtRemindLink.Text)
-                        Else
-                            objContract.UPLOADFILE = If(objContract.UPLOADFILE Is Nothing, "", objContract.UPLOADFILE)
-                        End If
+                        'objContract.FILENAME = txtUpload.Text.Trim
+                        ' objContract.UPLOADFILE = If(Down_File Is Nothing, "", Down_File)
+                        'If objContract.UPLOADFILE = "" Then
+                        '    objContract.UPLOADFILE = If(txtRemindLink.Text Is Nothing, "", txtRemindLink.Text)
+                        'Else
+                        '    objContract.UPLOADFILE = If(objContract.UPLOADFILE Is Nothing, "", objContract.UPLOADFILE)
+                        'End If
                         If hidContractType_ID.Value <> "" Then
                             objContract.CONTRACTTYPE_ID = hidContractType_ID.Value
                         End If
@@ -331,10 +357,13 @@ Public Class ctrlHU_ContractTemplete
                         objContract.APPEND_NUMBER = txtContract_NumAppen.Text
                         objContract.SIGN_DATE = rdSignDate.SelectedDate
 
+                        objContract.AUTHORITY = chkAuthor.Checked
+                        objContract.AUTHORITY_NUMBER = txtAuthorNumber.Text
+
                         objContract.SIGNER_NAME = txtSign.Text
-                        objContract.SIGNER_NAME2 = txtSign2.Text
+                        'objContract.SIGNER_NAME2 = txtSign2.Text
                         objContract.SIGNER_TITLE = txtSign_Title.Text
-                        objContract.SIGNER_TITLE2 = txtSign_Title2.Text
+                        'objContract.SIGNER_TITLE2 = txtSign_Title2.Text
                         objContract.STT = STT
                         'If rdExpireDate.SelectedDate IsNot Nothing Then
                         '    If Not rep.CheckExpireFileContract(rdStartDate.SelectedDate, rdExpireDate.SelectedDate, objContract.ID_CONTRACT) Then
@@ -528,18 +557,18 @@ Public Class ctrlHU_ContractTemplete
             DisplayException(Me.ViewName, Me.ID, ex)
         End Try
     End Sub
-    Private Sub btnSign2_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnSign2.Click
-        Try
-            isLoadPopup = 4
-            UpdateControlState()
-            ctrlFindSigner2.MustHaveContract = True
-            ctrlFindSigner2.LoadAllOrganization = False
-            ctrlFindSigner2.IsOnlyWorkingWithoutTer = True
-            ctrlFindSigner2.Show()
-        Catch ex As Exception
-            DisplayException(Me.ViewName, Me.ID, ex)
-        End Try
-    End Sub
+    'Private Sub btnSign2_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnSign2.Click
+    '    Try
+    '        isLoadPopup = 4
+    '        UpdateControlState()
+    '        ctrlFindSigner2.MustHaveContract = True
+    '        ctrlFindSigner2.LoadAllOrganization = False
+    '        ctrlFindSigner2.IsOnlyWorkingWithoutTer = True
+    '        ctrlFindSigner2.Show()
+    '    Catch ex As Exception
+    '        DisplayException(Me.ViewName, Me.ID, ex)
+    '    End Try
+    'End Sub
 
     Private Sub ctrlFindSignPopup_EmployeeSelected(ByVal sender As Object, ByVal e As System.EventArgs) Handles ctrlFindSigner.EmployeeSelected
         Dim lstCommonEmployee As New List(Of CommonBusiness.EmployeePopupFindDTO)
@@ -558,23 +587,23 @@ Public Class ctrlHU_ContractTemplete
 
         End Try
     End Sub
-    Private Sub ctrlFindSignPopup2_EmployeeSelected(ByVal sender As Object, ByVal e As System.EventArgs) Handles ctrlFindSigner2.EmployeeSelected
-        Dim lstCommonEmployee As New List(Of CommonBusiness.EmployeePopupFindDTO)
-        'Dim rep As New ProfileRepository
-        'Dim repOrg As New ProfileRepository
-        'Dim title As TitleDTO
-        Try
-            lstCommonEmployee = CType(ctrlFindSigner2.SelectedEmployee, List(Of CommonBusiness.EmployeePopupFindDTO))
-            If lstCommonEmployee.Count <> 0 Then
-                Dim item = lstCommonEmployee(0)
-                hidSign2.Value = item.ID
-                txtSign2.Text = item.FULLNAME_VN
-                txtSign_Title2.Text = item.TITLE_NAME
-            End If
-        Catch ex As Exception
+    'Private Sub ctrlFindSignPopup2_EmployeeSelected(ByVal sender As Object, ByVal e As System.EventArgs) Handles ctrlFindSigner2.EmployeeSelected
+    '    Dim lstCommonEmployee As New List(Of CommonBusiness.EmployeePopupFindDTO)
+    '    'Dim rep As New ProfileRepository
+    '    'Dim repOrg As New ProfileRepository
+    '    'Dim title As TitleDTO
+    '    Try
+    '        lstCommonEmployee = CType(ctrlFindSigner2.SelectedEmployee, List(Of CommonBusiness.EmployeePopupFindDTO))
+    '        If lstCommonEmployee.Count <> 0 Then
+    '            Dim item = lstCommonEmployee(0)
+    '            hidSign2.Value = item.ID
+    '            txtSign2.Text = item.FULLNAME_VN
+    '            'txtSign_Title2.Text = item.TITLE_NAME
+    '        End If
+    '    Catch ex As Exception
 
-        End Try
-    End Sub
+    '    End Try
+    'End Sub
 
     Private Sub btnSalary_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnSalary.Click
         Try
@@ -611,12 +640,16 @@ Public Class ctrlHU_ContractTemplete
                 Salary_Total.Value = working.SAL_TOTAL
                 SalaryInsurance.Value = working.SAL_INS
                 PercentSalary.Value = working.PERCENT_SALARY
-                rnOtherSalary1.Value = working.OTHERSALARY1
-                rnOtherSalary2.Value = working.OTHERSALARY2
-                rnOtherSalary3.Value = working.OTHERSALARY3
+                'rnOtherSalary1.Value = working.OTHERSALARY1
+                'rnOtherSalary2.Value = working.OTHERSALARY2
+                'rnOtherSalary3.Value = working.OTHERSALARY3
                 Allowance_Total.Value = working.ALLOWANCE_TOTAL
                 SetValueComboBox(cboSalTYPE, working.SAL_TYPE_ID, working.SAL_TYPE_NAME)
-                SetValueComboBox(cboTaxTable, working.TAX_TABLE_ID, working.TAX_TABLE_Name)
+
+                SetValueComboBox(cbSalaryGroup, working.SAL_GROUP_ID, working.SAL_GROUP_NAME)
+                SetValueComboBox(cbSalaryLevel, working.SAL_LEVEL_ID, working.SAL_LEVEL_NAME)
+                SetValueComboBox(cbSalaryRank, working.SAL_RANK_ID, working.SAL_RANK_NAME)
+                'SetValueComboBox(cboTaxTable, working.TAX_TABLE_ID, working.TAX_TABLE_Name)
                 'rgAllow.DataSource = working.lstAllowance
                 'rgAllow.Rebind()
             End If
@@ -628,29 +661,16 @@ Public Class ctrlHU_ContractTemplete
 
     End Sub
 
-    'Private Sub rgAllow_NeedDataSource(ByVal sender As Object, ByVal e As Telerik.Web.UI.GridNeedDataSourceEventArgs) Handles rgAllow.NeedDataSource
-    '    Dim lstAllow As New List(Of WorkingAllowanceDTO)
-    '    'rgAllow.DataSource = lstAllow
-    'End Sub
     Private Sub ctrlFindEmployeePopup_EmployeeSelected(sender As Object, e As System.EventArgs) Handles ctrlFindEmployeePopup.EmployeeSelected
         Dim lstCommonEmployee As New List(Of CommonBusiness.EmployeePopupFindDTO)
         Dim rep As New ProfileRepository
-        'Dim repOrg As New ProfileRepository
-        'Dim repBus As New ProfileBusinessRepository
         Dim title As TitleDTO
         Try
             IDSelect = Nothing
             lstCommonEmployee = CType(ctrlFindEmployeePopup.SelectedEmployee, List(Of CommonBusiness.EmployeePopupFindDTO))
             If lstCommonEmployee.Count <> 0 Then
                 Dim item = lstCommonEmployee(0)
-                ''Load danh sách hợp đồng của nhân viên
-                'Dim ds As DataTable = rep.GetListContract(item.EMPLOYEE_ID)
-                ''asp.ExecuteToDataSet("PKG_HU_CONTRACT.GET_LIST_HU_CONTRACT", New List(Of Object)(New Object() {item.ID}))
-                'If ds Is Nothing Or ds.Rows.Count = 0 Then
-                '    ShowMessage("Bạn chưa tạo hợp đồng lao động cho nhân viên " & item.FULLNAME_VN, NotifyType.Warning)
-                '    Exit Sub
-                'End If
-
+               
                 ''Load danh sách hợp đồng của nhân viên
 
                 listContract = rep.GetContractList(item.ID)
@@ -665,6 +685,8 @@ Public Class ctrlHU_ContractTemplete
                 txtEmployeeCode.Text = item.EMPLOYEE_CODE
                 txtEmployeeName.Text = item.FULLNAME_VN
 
+                hidOrgCode.Value = rep.GetOrgList(hidOrgID.Value)
+
                 'get thong tin chuc danh 
                 title = rep.GetTitileBaseOnEmp(item.TITLE_ID)
                 If title IsNot Nothing Then
@@ -678,27 +700,8 @@ Public Class ctrlHU_ContractTemplete
                 FillDropDownList(cboContract, listContract, "CONTRACT_NO", "ID", Common.Common.SystemLanguage, True)
                 cboContract.SelectedIndex = 0
 
-                'If item.EMPLOYEE_ID IsNot Nothing Then
-                '    listContract = rep.GetListContractBaseOnEmp(item.EMPLOYEE_ID)
-                '    If listContract IsNot Nothing And listContract.Count <> 0 Then
-                '        FillDropDownList(cboContract, listContract, "CONTRACT_NO", "ID", Common.Common.SystemLanguage, True)
-                '        cboContract.SelectedIndex = 0
-                '    End If
-                'End If
-
-
                 txtOrg.Text = item.ORG_NAME
                 hidOrgID.Value = item.ORG_ID
-
-
-                ' orgItem = repOrg.GetOrganizationByID(hidOrgID.Value)
-                'Tao moi ma hop dong
-                'If hidOrgID.Value <> String.Empty Then
-                '    Dim dt = DateTime.Now
-                '    If rdStartDate.SelectedDate IsNot Nothing Then
-                '        dt = rdStartDate.SelectedDate
-                '    End If
-                'End If
 
                 GetWorkingMax()
             End If
@@ -728,6 +731,7 @@ Public Class ctrlHU_ContractTemplete
         rgContract.DataSource = lstContract
     End Sub
     Private Sub rdStartDate_SelectedDateChanged(sender As Object, e As Telerik.Web.UI.Calendar.SelectedDateChangedEventArgs) Handles rdStartDate.SelectedDateChanged
+        Dim PERIOD As String = ""
         If hidEmployeeID.Value <> "" Then
             FillData(Convert.ToDecimal(hidEmployeeID.Value), True)
             Dim rep As New ProfileRepository
@@ -744,8 +748,21 @@ Public Class ctrlHU_ContractTemplete
                 Dim inforContract = listContract.Find(Function(x) x.ID = cboContract.SelectedValue)
                 If inforContract IsNot Nothing Then
                     radDate.SelectedDate = inforContract.START_DATE
+                    PERIOD = rep.GetContractTypeCT(inforContract.CONTRACTTYPE_ID)
+                    EndDateCT = inforContract.EXPIRE_DATE
                 End If
             End If
+
+            If PERIOD <> "" Then
+                rdExpireDate.SelectedDate = rdStartDate.SelectedDate.Value.AddMonths(PERIOD)
+            End If
+
+            If rdStartDate.SelectedDate IsNot Nothing Then
+                txtContract_NumAppen.Text = String.Format("{0}/AV-{1}-PL{2}/{3}", txtEmployeeCode.Text, hidOrgCode.Value, rdStartDate.SelectedDate.Value.Month, rdStartDate.SelectedDate.Value.Year)
+            Else
+                txtContract_NumAppen.Text = Nothing
+            End If
+
             rep.Dispose()
         End If
         'rdSignDate.SelectedDate = rdStartDate.SelectedDate
@@ -755,6 +772,7 @@ Public Class ctrlHU_ContractTemplete
         Dim rep As New ProfileRepository
         Dim emp_id As Decimal
         Dim idContractType As Decimal
+        Dim PERIOD As String = ""
         If hidEmployeeID.Value IsNot Nothing Then
             emp_id = hidEmployeeID.Value
             contrItem.EMPLOYEE_ID = hidEmployeeID.Value
@@ -765,30 +783,30 @@ Public Class ctrlHU_ContractTemplete
 
             'Hiển thị số phụ lục hợp đồng sau khi chọn hợp đồng
 
-            If CurrentState = CommonMessage.STATE_NEW Then
-                If inforContract IsNot Nothing Then
-                    Dim outNum As Integer = rep.GET_NEXT_APPENDIX_ORDER(0, cboContract.SelectedValue, contrItem.EMPLOYEE_ID) 'lay so thu tu tiep theo
-                    Dim order = String.Format("{0}", Format(outNum, "00"))
-                    txtContract_NumAppen.Text = inforContract.CONTRACT_NO + "-" + order
-                    'lay ngay het han hop dong gán vao ngày het hạn phụ lục
-                    'If inforContract.EXPIRE_DATE IsNot Nothing Then
-                    '    rdExpireDate.SelectedDate = inforContract.EXPIRE_DATE
-                    'Else
-                    '    rdExpireDate.SelectedDate = Nothing
-                    'End If
-                    STT = outNum
-                    radDate.SelectedDate = inforContract.START_DATE
-                End If
-            End If
-            If CurrentState = CommonMessage.STATE_EDIT Then
-                If inforContract IsNot Nothing Then
-                    Dim outNum As Integer = rep.GET_NEXT_APPENDIX_ORDER(IDSelect, cboContract.SelectedValue, contrItem.EMPLOYEE_ID) 'lay so thu tu tiep theo
-                    Dim order = String.Format("{0}", Format(outNum, "00"))
-                    txtContract_NumAppen.Text = inforContract.CONTRACT_NO + "-" + order
-                    STT = outNum
-                    radDate.SelectedDate = inforContract.START_DATE
-                End If
-            End If
+            'If CurrentState = CommonMessage.STATE_NEW Then
+            '    If inforContract IsNot Nothing Then
+            '        Dim outNum As Integer = rep.GET_NEXT_APPENDIX_ORDER(0, cboContract.SelectedValue, contrItem.EMPLOYEE_ID) 'lay so thu tu tiep theo
+            '        Dim order = String.Format("{0}", Format(outNum, "00"))
+            '        txtContract_NumAppen.Text = inforContract.CONTRACT_NO + "-" + order
+            '        'lay ngay het han hop dong gán vao ngày het hạn phụ lục
+            '        'If inforContract.EXPIRE_DATE IsNot Nothing Then
+            '        '    rdExpireDate.SelectedDate = inforContract.EXPIRE_DATE
+            '        'Else
+            '        '    rdExpireDate.SelectedDate = Nothing
+            '        'End If
+            '        STT = outNum
+            '        radDate.SelectedDate = inforContract.START_DATE
+            '    End If
+            'End If
+            'If CurrentState = CommonMessage.STATE_EDIT Then
+            '    If inforContract IsNot Nothing Then
+            '        Dim outNum As Integer = rep.GET_NEXT_APPENDIX_ORDER(IDSelect, cboContract.SelectedValue, contrItem.EMPLOYEE_ID) 'lay so thu tu tiep theo
+            '        Dim order = String.Format("{0}", Format(outNum, "00"))
+            '        txtContract_NumAppen.Text = inforContract.CONTRACT_NO + "-" + order
+            '        STT = outNum
+            '        radDate.SelectedDate = inforContract.START_DATE
+            '    End If
+            'End If
             'hiển thị thông tin PLHĐ đối với trường hợp sửa thông tin
             contrItem.ID_CONTRACT = cboContract.SelectedValue
 
@@ -808,8 +826,19 @@ Public Class ctrlHU_ContractTemplete
             If inforContractType IsNot Nothing Then
                 'lay thong tin loại hợp đồng 
                 hidContractType_ID.Value = inforContractType.ID
-
+                PERIOD = rep.GetContractTypeCT(inforContract.CONTRACTTYPE_ID)
+                EndDateCT = inforContract.EXPIRE_DATE
                 'txtContractType.Text = inforContractType.NAME
+            End If
+
+            If PERIOD <> "" Then
+                rdExpireDate.SelectedDate = rdStartDate.SelectedDate.Value.AddMonths(PERIOD)
+            End If
+
+            If rdStartDate.SelectedDate IsNot Nothing Then
+                txtContract_NumAppen.Text = String.Format("{0}/AV-{1}-PL{2}/{3}", txtEmployeeCode.Text, hidOrgCode.Value, rdStartDate.SelectedDate.Value.Month, rdStartDate.SelectedDate.Value.Year)
+            Else
+                txtContract_NumAppen.Text = Nothing
             End If
 
         End If
@@ -855,7 +884,7 @@ Public Class ctrlHU_ContractTemplete
                         rdExpireDate.SelectedDate = Contract.EXPIRE_DATE
                     End If
 
-                    txtRemark.Text = Contract.REMARK
+                    'txtRemark.Text = Contract.REMARK
 
                     If Contract.SIGN_ID IsNot Nothing Then
                         hidSign.Value = Contract.SIGN_ID
@@ -865,9 +894,9 @@ Public Class ctrlHU_ContractTemplete
                     End If
 
                     txtSign.Text = Contract.SIGNER_NAME
-                    txtSign2.Text = Contract.SIGNER_NAME2
+                    'txtSign2.Text = Contract.SIGNER_NAME2
                     txtSign_Title.Text = Contract.SIGNER_TITLE
-                    txtSign_Title2.Text = Contract.SIGNER_TITLE2
+                    'txtSign_Title2.Text = Contract.SIGNER_TITLE2
 
                     rdSignDate.SelectedDate = Contract.SIGN_DATE
 
@@ -875,6 +904,11 @@ Public Class ctrlHU_ContractTemplete
                         hidWorkingID.Value = Contract.WORKING_ID
                     End If
 
+                    If Contract.AUTHORITY IsNot Nothing Then
+                        chkAuthor.Checked = Contract.AUTHORITY
+                    End If
+
+                    txtAuthorNumber.Text = Contract.AUTHORITY_NUMBER
 
                     'Working_ID.Text = Contract.ID
                     'Working_ID.Text = If(Contract.DECISION_NO <> "", Contract.DECISION_NO, Contract.EFFECT_DATE1.Value.Date)
@@ -898,167 +932,167 @@ Public Class ctrlHU_ContractTemplete
         End If
         rep.Dispose()
     End Sub
-    Private Sub btnUploadFile_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnUploadFile.Click
-        Dim startTime As DateTime = DateTime.UtcNow
-        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+    'Private Sub btnUploadFile_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnUploadFile.Click
+    '    Dim startTime As DateTime = DateTime.UtcNow
+    '    Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
 
-        Try
-            ctrlUpload1.AllowedExtensions = "xls,xlsx,txt,ctr,doc,docx,xml,png,jpg,bitmap,jpeg,gif,pdf,rar,zip,ppt,pptx"
-            ctrlUpload1.Show()
+    '    Try
+    '        ctrlUpload1.AllowedExtensions = "xls,xlsx,txt,ctr,doc,docx,xml,png,jpg,bitmap,jpeg,gif,pdf,rar,zip,ppt,pptx"
+    '        ctrlUpload1.Show()
 
-            _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
-        Catch ex As Exception
-            _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
-        End Try
-    End Sub
-    Private Sub ctrlUpload1_OkClicked(ByVal sender As Object, ByVal e As System.EventArgs) Handles ctrlUpload1.OkClicked
-        Dim startTime As DateTime = DateTime.UtcNow
-        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+    '        _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
+    '    Catch ex As Exception
+    '        _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
+    '    End Try
+    'End Sub
+    'Private Sub ctrlUpload1_OkClicked(ByVal sender As Object, ByVal e As System.EventArgs) Handles ctrlUpload1.OkClicked
+    '    Dim startTime As DateTime = DateTime.UtcNow
+    '    Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
 
-        Try
-            txtUploadFile.Text = ""
-            Dim listExtension = New List(Of String)
-            listExtension.Add(".xls")
-            listExtension.Add(".xlsx")
-            listExtension.Add(".txt")
-            listExtension.Add(".ctr")
-            listExtension.Add(".doc")
-            listExtension.Add(".docx")
-            listExtension.Add(".xml")
-            listExtension.Add(".png")
-            listExtension.Add(".jpg")
-            listExtension.Add(".bitmap")
-            listExtension.Add(".jpeg")
-            listExtension.Add(".gif")
-            listExtension.Add(".pdf")
-            listExtension.Add(".rar")
-            listExtension.Add(".zip")
-            listExtension.Add(".ppt")
-            listExtension.Add(".pptx")
-            Dim fileName As String
+    '    Try
+    '        txtUploadFile.Text = ""
+    '        Dim listExtension = New List(Of String)
+    '        listExtension.Add(".xls")
+    '        listExtension.Add(".xlsx")
+    '        listExtension.Add(".txt")
+    '        listExtension.Add(".ctr")
+    '        listExtension.Add(".doc")
+    '        listExtension.Add(".docx")
+    '        listExtension.Add(".xml")
+    '        listExtension.Add(".png")
+    '        listExtension.Add(".jpg")
+    '        listExtension.Add(".bitmap")
+    '        listExtension.Add(".jpeg")
+    '        listExtension.Add(".gif")
+    '        listExtension.Add(".pdf")
+    '        listExtension.Add(".rar")
+    '        listExtension.Add(".zip")
+    '        listExtension.Add(".ppt")
+    '        listExtension.Add(".pptx")
+    '        Dim fileName As String
 
-            Dim strPath As String = Server.MapPath("~/ReportTemplates/Profile/FileContractInfo/")
-            If ctrlUpload1.UploadedFiles.Count >= 1 Then
-                For i = 0 To ctrlUpload1.UploadedFiles.Count - 1
-                    Dim file As UploadedFile = ctrlUpload1.UploadedFiles(i)
-                    Dim str_Filename = Guid.NewGuid.ToString() + "\"
-                    If listExtension.Any(Function(x) x.ToUpper().Trim() = file.GetExtension.ToUpper().Trim()) Then
-                        System.IO.Directory.CreateDirectory(strPath + str_Filename)
-                        strPath = strPath + str_Filename
-                        fileName = System.IO.Path.Combine(strPath, file.FileName)
-                        file.SaveAs(fileName, True)
-                        txtUploadFile.Text = file.FileName
-                        Down_File = str_Filename
-                    Else
-                        ShowMessage(Translate("Vui lòng chọn file đúng định dạng. !!! Hệ thống chỉ nhận file xls,xlsx,txt,ctr,doc,docx,xml,png,jpg,bitmap,jpeg,gif,pdf,rar,zip,ppt,pptx"), NotifyType.Warning)
-                        Exit Sub
-                    End If
-                Next
-                loadDatasource(txtUploadFile.Text)
-            End If
-            _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
-        Catch ex As Exception
-            _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
-        End Try
-    End Sub
-    Private Sub btnDownload_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnDownload.Click
-        Dim startTime As DateTime = DateTime.UtcNow
-        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
-        Dim bCheck As Boolean = False
-        Try
+    '        Dim strPath As String = Server.MapPath("~/ReportTemplates/Profile/FileContractInfo/")
+    '        If ctrlUpload1.UploadedFiles.Count >= 1 Then
+    '            For i = 0 To ctrlUpload1.UploadedFiles.Count - 1
+    '                Dim file As UploadedFile = ctrlUpload1.UploadedFiles(i)
+    '                Dim str_Filename = Guid.NewGuid.ToString() + "\"
+    '                If listExtension.Any(Function(x) x.ToUpper().Trim() = file.GetExtension.ToUpper().Trim()) Then
+    '                    System.IO.Directory.CreateDirectory(strPath + str_Filename)
+    '                    strPath = strPath + str_Filename
+    '                    fileName = System.IO.Path.Combine(strPath, file.FileName)
+    '                    file.SaveAs(fileName, True)
+    '                    txtUploadFile.Text = file.FileName
+    '                    Down_File = str_Filename
+    '                Else
+    '                    ShowMessage(Translate("Vui lòng chọn file đúng định dạng. !!! Hệ thống chỉ nhận file xls,xlsx,txt,ctr,doc,docx,xml,png,jpg,bitmap,jpeg,gif,pdf,rar,zip,ppt,pptx"), NotifyType.Warning)
+    '                    Exit Sub
+    '                End If
+    '            Next
+    '            loadDatasource(txtUploadFile.Text)
+    '        End If
+    '        _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
+    '    Catch ex As Exception
+    '        _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
+    '    End Try
+    'End Sub
+    'Private Sub btnDownload_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnDownload.Click
+    '    Dim startTime As DateTime = DateTime.UtcNow
+    '    Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+    '    Dim bCheck As Boolean = False
+    '    Try
 
-            If txtUpload.Text <> "" Then
-                Dim strPath_Down As String
-                If FileOldName = txtUpload.Text.Trim Or FileOldName Is Nothing Then
-                    If txtRemindLink.Text IsNot Nothing Then
-                        If txtRemindLink.Text <> "" Then
-                            strPath_Down = Server.MapPath("~/ReportTemplates/Profile/FileContractInfo/" + txtRemindLink.Text)
-                            'bCheck = True
-                            ZipFiles(strPath_Down)
-                        End If
-                    End If
-                Else
-                    If Down_File <> "" Then
-                        strPath_Down = Server.MapPath("~/ReportTemplates/Profile/FileContractInfo/" + Down_File)
-                        'bCheck = True
-                        ZipFiles(strPath_Down)
-                    End If
-                End If
-                'If bCheck Then
-                '    ZipFiles(strPath_Down)
-                'End If
-            End If
+    '        If txtUpload.Text <> "" Then
+    '            Dim strPath_Down As String
+    '            If FileOldName = txtUpload.Text.Trim Or FileOldName Is Nothing Then
+    '                If txtRemindLink.Text IsNot Nothing Then
+    '                    If txtRemindLink.Text <> "" Then
+    '                        strPath_Down = Server.MapPath("~/ReportTemplates/Profile/FileContractInfo/" + txtRemindLink.Text)
+    '                        'bCheck = True
+    '                        ZipFiles(strPath_Down)
+    '                    End If
+    '                End If
+    '            Else
+    '                If Down_File <> "" Then
+    '                    strPath_Down = Server.MapPath("~/ReportTemplates/Profile/FileContractInfo/" + Down_File)
+    '                    'bCheck = True
+    '                    ZipFiles(strPath_Down)
+    '                End If
+    '            End If
+    '            'If bCheck Then
+    '            '    ZipFiles(strPath_Down)
+    '            'End If
+    '        End If
 
-            _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
-        Catch ex As Exception
-            _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
-        End Try
-    End Sub
-    Private Sub ZipFiles(ByVal path As String)
-        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
-        Dim startTime As DateTime = DateTime.UtcNow
+    '        _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
+    '    Catch ex As Exception
+    '        _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
+    '    End Try
+    'End Sub
+    'Private Sub ZipFiles(ByVal path As String)
+    '    Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+    '    Dim startTime As DateTime = DateTime.UtcNow
 
-        Try
-            Dim crc As New Crc32()
+    '    Try
+    '        Dim crc As New Crc32()
 
-            Dim fileNameZip As String = txtUploadFile.Text.Trim
+    '        Dim fileNameZip As String = txtUploadFile.Text.Trim
 
 
-            Dim file As System.IO.FileInfo = New System.IO.FileInfo(path & fileNameZip)
-            Response.Clear()
-            Response.AddHeader("Content-Disposition", "attachment; filename=" + file.Name)
-            Response.AddHeader("Content-Length", file.Length.ToString())
-            'Response.ContentType = "application/octet-stream"
-            Response.ContentType = "application/vnd.openxmlformats-officedocument.wordprocessingml.document "
-            Response.WriteFile(file.FullName)
-            Response.End()
+    '        Dim file As System.IO.FileInfo = New System.IO.FileInfo(path & fileNameZip)
+    '        Response.Clear()
+    '        Response.AddHeader("Content-Disposition", "attachment; filename=" + file.Name)
+    '        Response.AddHeader("Content-Length", file.Length.ToString())
+    '        'Response.ContentType = "application/octet-stream"
+    '        Response.ContentType = "application/vnd.openxmlformats-officedocument.wordprocessingml.document "
+    '        Response.WriteFile(file.FullName)
+    '        Response.End()
 
-            _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
-        Catch ex As Exception
-            HttpContext.Current.Trace.Warn(ex.ToString())
-            _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
-        End Try
-    End Sub
-    Private Sub loadDatasource(ByVal strUpload As String)
-        Dim startTime As DateTime = DateTime.UtcNow
-        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
-        Try
-            'Dim data As New DataTable
-            'data.Columns.Add("FileName")
-            'Dim row As DataRow
-            'Dim str() As String
-            If strUpload <> "" Then
-                txtUploadFile.Text = strUpload
-                FileOldName = txtUpload.Text
-                txtUpload.Text = strUpload
+    '        _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
+    '    Catch ex As Exception
+    '        HttpContext.Current.Trace.Warn(ex.ToString())
+    '        _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
+    '    End Try
+    'End Sub
+    'Private Sub loadDatasource(ByVal strUpload As String)
+    '    Dim startTime As DateTime = DateTime.UtcNow
+    '    Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+    '    Try
+    '        'Dim data As New DataTable
+    '        'data.Columns.Add("FileName")
+    '        'Dim row As DataRow
+    '        'Dim str() As String
+    '        If strUpload <> "" Then
+    '            txtUploadFile.Text = strUpload
+    '            FileOldName = txtUpload.Text
+    '            txtUpload.Text = strUpload
 
-                'Str = strUpload.Split(";")
+    '            'Str = strUpload.Split(";")
 
-                'For Each s As String In str
-                '    If s <> "" Then
-                '        row = data.NewRow
-                '        row("FileName") = s
-                '        data.Rows.Add(row)
-                '    End If
-                'Next
+    '            'For Each s As String In str
+    '            '    If s <> "" Then
+    '            '        row = data.NewRow
+    '            '        row("FileName") = s
+    '            '        data.Rows.Add(row)
+    '            '    End If
+    '            'Next
 
-                'txtUpload.DataSource = data
-                'txtUpload.DataTextField = "FileName"
-                'txtUpload.DataValueField = "FileName"
-                'txtUpload.DataBind()
-            Else
-                'txtUpload.DataSource = Nothing
-                'txtUpload.ClearSelection()
-                'txtUpload.ClearCheckedItems()
-                'txtUpload.Items.Clear()
-                strUpload = String.Empty
-            End If
+    '            'txtUpload.DataSource = data
+    '            'txtUpload.DataTextField = "FileName"
+    '            'txtUpload.DataValueField = "FileName"
+    '            'txtUpload.DataBind()
+    '        Else
+    '            'txtUpload.DataSource = Nothing
+    '            'txtUpload.ClearSelection()
+    '            'txtUpload.ClearCheckedItems()
+    '            'txtUpload.Items.Clear()
+    '            strUpload = String.Empty
+    '        End If
 
-            _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
-        Catch ex As Exception
-            _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
-        End Try
-    End Sub
+    '        _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
+    '    Catch ex As Exception
+    '        _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
+    '    End Try
+    'End Sub
 #End Region
 
 #Region "Custom"
@@ -1163,10 +1197,10 @@ Public Class ctrlHU_ContractTemplete
         ReadOnlyRadComBo(cboAppend_TypeID, Not bCheck)
         ReadOnlyRadComBo(cboStatus_ID, Not bCheck)
         btnSign.ReadOnly = Not bCheck
-        btnSign2.ReadOnly = Not bCheck
+        'btnSign2.ReadOnly = Not bCheck
         txtSign_Title.Enabled = bCheck
-        txtSign_Title2.Enabled = bCheck
-        txtRemark.Enabled = bCheck
+        'txtSign_Title2.Enabled = bCheck
+        'txtRemark.Enabled = bCheck
         rntxtBasicSal.Enabled = bCheck
     End Sub
 
@@ -1179,7 +1213,7 @@ Public Class ctrlHU_ContractTemplete
         ' cboContractType.SelectedIndex = 0
         cboAppend_TypeID.SelectedIndex = 0
         cboContract.SelectedIndex = 0
-        txtRemark.Text = String.Empty
+        'txtRemark.Text = String.Empty
         txtAppend_Content.Text = String.Empty
         rdExpireDate.SelectedDate = Nothing
         rdStartDate.SelectedDate = Nothing
@@ -1188,13 +1222,13 @@ Public Class ctrlHU_ContractTemplete
         cboContract.SelectedIndex = 0
         cboStatus_ID.SelectedIndex = 0
         txtSign_Title.Text = String.Empty
-        txtSign_Title2.Text = String.Empty
-        txtRemark.Text = String.Empty
+        'txtSign_Title2.Text = String.Empty
+        'txtRemark.Text = String.Empty
         rgContract.MasterTableView.ClearSelectedItems()
         rgContract.DataSource = New List(Of FileContractDTO)
         rgContract.Rebind()
         txtSign.Text = String.Empty
-        txtSign2.Text = String.Empty
+        'txtSign2.Text = String.Empty
         rntxtBasicSal.ClearValue()
         'rgAllow.MasterTableView.ClearSelectedItems()
         'rgAllow.DataSource = New List(Of WorkingAllowanceDTO)
@@ -1218,12 +1252,17 @@ Public Class ctrlHU_ContractTemplete
                 '    rgAllow.DataBind()
                 'End If
                 PercentSalary.Value = wkm.PERCENT_SALARY
-                rnOtherSalary1.Value = wkm.OTHERSALARY1
-                rnOtherSalary2.Value = wkm.OTHERSALARY2
-                rnOtherSalary3.Value = wkm.OTHERSALARY3
+                'rnOtherSalary1.Value = wkm.OTHERSALARY1
+                'rnOtherSalary2.Value = wkm.OTHERSALARY2
+                'rnOtherSalary3.Value = wkm.OTHERSALARY3
                 Salary_Total.Value = wkm.SAL_TOTAL
                 SetValueComboBox(cboSalTYPE, wkm.SAL_TYPE_ID, wkm.SAL_TYPE_NAME)
-                SetValueComboBox(cboTaxTable, wkm.TAX_TABLE_ID, wkm.TAX_TABLE_Name)
+
+                SetValueComboBox(cbSalaryGroup, wkm.SAL_GROUP_ID, wkm.SAL_GROUP_NAME)
+                SetValueComboBox(cbSalaryLevel, wkm.SAL_LEVEL_ID, wkm.SAL_LEVEL_NAME)
+                SetValueComboBox(cbSalaryRank, wkm.SAL_RANK_ID, wkm.SAL_RANK_NAME)
+
+                'SetValueComboBox(cboTaxTable, wkm.TAX_TABLE_ID, wkm.TAX_TABLE_Name)
                 SalaryInsurance.Value = wkm.SAL_INS
                 Allowance_Total.Value = wkm.ALLOWANCE_TOTAL
             End If
@@ -1280,16 +1319,20 @@ Public Class ctrlHU_ContractTemplete
             If working IsNot Nothing Then
                 hidWorkingID.Value = working.ID
                 SetValueComboBox(cboSalTYPE, working.SAL_TYPE_ID, working.SAL_TYPE_NAME)
-                SetValueComboBox(cboTaxTable, working.TAX_TABLE_ID, working.TAX_TABLE_Name)
+
+                SetValueComboBox(cbSalaryGroup, working.SAL_GROUP_ID, working.SAL_GROUP_NAME)
+                SetValueComboBox(cbSalaryLevel, working.SAL_LEVEL_ID, working.SAL_LEVEL_NAME)
+                SetValueComboBox(cbSalaryRank, working.SAL_RANK_ID, working.SAL_RANK_NAME)
+                'SetValueComboBox(cboTaxTable, working.TAX_TABLE_ID, working.TAX_TABLE_Name)
                 rntxtBasicSal.Value = working.SAL_BASIC
                 SalaryInsurance.Value = working.SAL_INS
                 Allowance_Total.Value = working.ALLOWANCE_TOTAL
                 Salary_Total.Value = working.SAL_TOTAL
                 ' Working_ID.Text = working.ID
                 PercentSalary.Value = working.PERCENT_SALARY
-                rnOtherSalary1.Value = working.OTHERSALARY1
-                rnOtherSalary2.Value = working.OTHERSALARY2
-                rnOtherSalary3.Value = working.OTHERSALARY3
+                'rnOtherSalary1.Value = working.OTHERSALARY1
+                'rnOtherSalary2.Value = working.OTHERSALARY2
+                'rnOtherSalary3.Value = working.OTHERSALARY3
                 Working_ID.Text = If(working.DECISION_NO <> "", working.DECISION_NO, working.EFFECT_DATE.Value.Date)
                 'If rdStartDate.SelectedDate Is Nothing Then
                 '    rdStartDate.SelectedDate = working.EFFECT_DATE
@@ -1297,7 +1340,7 @@ Public Class ctrlHU_ContractTemplete
                 'rgAllow.DataSource = working.lstAllowance
                 'rgAllow.Rebind()
             Else
-                ClearControlValue(cboSalTYPE, cboTaxTable, rntxtBasicSal, SalaryInsurance, Allowance_Total, Salary_Total, rdSignDate)
+                ClearControlValue(cboSalTYPE, rntxtBasicSal, SalaryInsurance, Allowance_Total, Salary_Total, rdSignDate, cbSalaryGroup, cbSalaryLevel, cbSalaryRank)
             End If
         Catch ex As Exception
         End Try
@@ -1311,6 +1354,10 @@ Public Class ctrlHU_ContractTemplete
 
             If Not Page.IsPostBack Then
                 'ThanhNT edited 30062016 đáp ứng cho nhu cầu process của U
+
+                If Request.Params("Check") IsNot Nothing Then
+                    checkStatus = Request.Params("Check")
+                End If
 
                 'If CurrentState Is Nothing Then
                 If Request.Params("add") IsNot Nothing AndAlso Request.Params("add").ToString = "1" Then
@@ -1387,16 +1434,16 @@ Public Class ctrlHU_ContractTemplete
             Dim lstContractAppen As New List(Of FileContractDTO)
             Dim contractAppen = rep.GetFileConTractID(hidID.Value)
             If contractAppen IsNot Nothing Then
-                txtUploadFile.Text = contractAppen.FILENAME
+                'txtUploadFile.Text = contractAppen.FILENAME
                 txtRemindLink.Text = If(contractAppen.UPLOADFILE Is Nothing, "", contractAppen.UPLOADFILE)
-                loadDatasource(txtUploadFile.Text)
-                FileOldName = If(FileOldName = "", txtUpload.Text, FileOldName)
+                'loadDatasource(txtUploadFile.Text)
+                'FileOldName = If(FileOldName = "", txtUpload.Text, FileOldName)
                 hidEmployeeID.Value = contractAppen.EMPLOYEE_ID
                 txtEmployeeCode.Text = contractAppen.EMPLOYEE_CODE
                 txtEmployeeName.Text = contractAppen.EMPLOYEE_NAME
                 txtOrg.Text = contractAppen.ORG_NAME
                 'hidOrgID.Value = contractAppen.ORG_ID
-                txtRemark.Text = contractAppen.REMARK
+                ' txtRemark.Text = contractAppen.REMARK
                 txtTitle.Text = contractAppen.TITLE_NAME
 
                 Contract = contractAppen
@@ -1419,11 +1466,11 @@ Public Class ctrlHU_ContractTemplete
                 rgContract.MasterTableView.Items(0).Selected = True
                 rgContract_SelectedIndexChanged(Nothing, Nothing)
 
-                If contractAppen.STATUS_ID = ProfileCommon.DECISION_STATUS.APPROVE_ID Then
+                If contractAppen.STATUS_ID = ProfileCommon.DECISION_STATUS.APPROVE_ID AndAlso checkStatus Is Nothing Then
                     _flag = False
                     EnableControlAll_Cus(False, NORMAL)
-                    btnDownload.Enabled = True
-                    btnUploadFile.Enabled = True
+                    'btnDownload.Enabled = True
+                    'btnUploadFile.Enabled = True
                     '  MainToolBar.Items(0).Enabled = False
                     MainToolBar.Items(1).Enabled = True
                     'MainToolBar.Items(3).Enabled = True
@@ -1448,6 +1495,7 @@ Public Class ctrlHU_ContractTemplete
             txtEmployeeName.Text = obj.EMPLOYEE_NAME
             txtOrg.Text = obj.ORG_NAME
             hidOrgID.Value = obj.ORG_ID
+            hidOrgCode.Value = rep.GetOrgList(hidOrgID.Value)
             'get thong tin chuc danh 
             'Dim title As TitleDTO
             'title = rep.GetTitileBaseOnEmp(obj.TITLE_ID)

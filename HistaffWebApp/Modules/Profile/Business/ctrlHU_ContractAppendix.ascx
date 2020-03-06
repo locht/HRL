@@ -275,11 +275,11 @@
                 }
                 var status_code = $find('<%# rgContract.ClientID%>').get_masterTableView().get_selectedItems()[0].getDataKeyValue('STATUS_ID');
                 //alert(status_code);
-                if (status_code == 471) {
+                if (status_code == 447) {
                     var id = $find('<%# rgContract.ClientID%>').get_masterTableView().get_selectedItems()[0].getDataKeyValue('ID');
                     var org_id = $find('<%# rgContract.ClientID%>').get_masterTableView().get_selectedItems()[0].getDataKeyValue('ORG_ID');
                     var emp_id = $find('<%# rgContract.ClientID%>').get_masterTableView().get_selectedItems()[0].getDataKeyValue('EMPLOYEE_ID');
-                    var oWindow = radopen('Dialog.aspx?mid=Profile&fid=ctrlContractNewEdit&group=Business&noscroll=1&IDSelect=' + id + '&OrgID=' + org_id + '&empid=' + emp_id + '&FormType=0' + '&statuscode=' + status_code + '&APPROVAL=' + 1, "rwPopup");
+                    var oWindow = radopen('Dialog.aspx?mid=Profile&fid=ctrlHU_ContractTemplete&group=Business&noscroll=1&IDSelect=' + id + '&OrgID=' + org_id + '&empid=' + emp_id + '&FormType=0' + '&statuscode=' + status_code + '&Check=' + 1, "rwPopup");
                     var pos = $("html").offset();
                     oWindow.moveTo(pos.left, pos.top);
                     oWindow.setSize($(window).width(), $(window).height());

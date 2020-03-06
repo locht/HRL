@@ -197,6 +197,9 @@ Public Class ctrlHU_ContractAppendix
                                                               ToolbarIcons.Add,
                                                               ToolbarAuthorize.None,
                                                               "Phê duyệt hàng loạt"))
+
+            Me.MainToolBar.Items.Add(Common.Common.CreateToolbarItem("RESET_PASSWORD", ToolbarIcons.Reset, ToolbarAuthorize.Special5, "Sửa bản ghi đã phê duyệt"))
+
             Me.MainToolBar.Items.Add(Common.Common.CreateToolbarItem(CommonMessage.TOOLBARITEM_DELETE,
                                                  ToolbarIcons.Delete,
                                                  ToolbarAuthorize.Delete,
