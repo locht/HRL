@@ -527,25 +527,7 @@ Public Class ctrlRC_ImportCV
                 dt14.TableName = "TableTDVH"
                 designer.SetDataSource(dt14)
             End If
-            'vnm hien tai k dung logo nen rem doan code nay lai
-            'If dt11 IsNot Nothing Then
-            '    designer.SetDataSource(dt11)
-            '    Dim sourcePath = Server.MapPath("~/ReportTemplates/Profile/LocationInfo/")
-            '    Dim str As String = sourcePath + dt11.Rows(0)("ATTACH_FILE_LOGO").ToString + dt11.Rows(0)("FILE_LOGO").ToString
-            '    Dim worksheet As Aspose.Cells.Worksheet = designer.Workbook.Worksheets(0)
-            '    Dim b As Byte() = File.ReadAllBytes(str)
-            '    Dim ms As New System.IO.MemoryStream(b)
-            '    Dim pictureIndex As Integer = worksheet.Pictures.Add(1, 1, ms)
-
-            '    'Accessing the newly added picture
-            '    Dim picture As Aspose.Cells.Drawing.Picture = worksheet.Pictures(pictureIndex)
-
-            '    'Positioning the picture proportional to row height and colum width
-            '    picture.Width = 400
-            '    picture.Height = 120
-
-            'End If
-
+          
             designer.Process()
             designer.Workbook.CalculateFormula()
             designer.Workbook.Save(HttpContext.Current.Response, filename & ".xls", ContentDisposition.Attachment, New XlsSaveOptions())
