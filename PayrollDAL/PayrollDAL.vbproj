@@ -85,6 +85,7 @@
   <ItemGroup>
     <Compile Include="BusinessObjects\Dashboard\StatisticDTO.vb" />
     <Compile Include="BusinessObjects\List\SaleCommisionDTO.vb" />
+    <Compile Include="BusinessObjects\SalaryGroup\SalaryLevelTypeDTO .vb" />
     <Compile Include="PayrollRepository.Dashboard.vb" />
     <Compile Include="BusinessObjects\Business\EmployeeDTO.vb" />
     <Compile Include="BusinessObjects\Business\PAEmployeeCalculateDTO.vb" />
@@ -117,6 +118,7 @@
     <Compile Include="BusinessObjects\Setting\PASalaryFundDTO.vb" />
     <Compile Include="BusinessObjects\Setting\PASalaryPlanningDTO.vb" />
     <Compile Include="BusinessObjects\Setting\PATitleCostDTO.vb" />
+    <Compile Include="PayrollRepository.SalaryLevelType.vb" />
     <Compile Include="PayrollRepository.SalaryType.vb" />
     <Compile Include="PayrollRepository.IncentiveRank.vb" />
     <Compile Include="PayrollRepository.SalaryLevel_Unilever.vb" />

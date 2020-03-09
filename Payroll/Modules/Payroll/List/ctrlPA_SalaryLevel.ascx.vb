@@ -150,7 +150,7 @@ Public Class ctrlPA_SalaryLevel
                         ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), NotifyType.Success)
                         rgData.Rebind()
                         'SelectedItemDataGridByKey(rgData, IDSelect, , rgData.CurrentPageIndex)
-                        ClearControlValue(txtCode, txtName, txtRemark, cboSalaryGroup, rntxtOrders)
+                        ClearControlValue(cboGradeGroup, rntxtSalaryFr, rntxtSalaryTo, txtCode, txtName, txtRemark, cboSalaryGroup, rntxtOrders)
                         CurrentState = CommonMessage.STATE_NORMAL
                     Case "InsertView"
                         ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), NotifyType.Success)
@@ -158,7 +158,7 @@ Public Class ctrlPA_SalaryLevel
                         rgData.MasterTableView.SortExpressions.Clear()
                         rgData.Rebind()
                         'SelectedItemDataGridByKey(rgData, IDSelect, )
-                        ClearControlValue(txtCode, txtName, txtRemark, cboSalaryGroup, rntxtOrders)
+                        ClearControlValue(cboGradeGroup, rntxtSalaryFr, rntxtSalaryTo, txtCode, txtName, txtRemark, cboSalaryGroup, rntxtOrders)
                     Case "Cancel"
                         rgData.MasterTableView.ClearSelectedItems()
                 End Select
@@ -179,7 +179,7 @@ Public Class ctrlPA_SalaryLevel
         Try
             Dim startTime As DateTime = DateTime.UtcNow
             If (CurrentState <> CommonMessage.STATE_NEW And (rgData.SelectedItems.Count = 0 Or rgData.SelectedItems.Count > 1)) Then
-                ClearControlValue(txtCode, txtName, txtRemark, cboSalaryGroup, rntxtOrders)
+                ClearControlValue(cboGradeGroup, rntxtSalaryFr, rntxtSalaryTo, txtCode, txtName, txtRemark, cboSalaryGroup, rntxtOrders)
             End If
             _mylog.WriteLog(_mylog._info, _classPath, method,
                               CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
@@ -245,33 +245,44 @@ Public Class ctrlPA_SalaryLevel
                     txtCode.Text = ""
                     txtName.Text = ""
                     txtRemark.Text = ""
+                    cboGradeGroup.Text = ""
                     rntxtOrders.Text = "1"
+                    rntxtSalaryFr.Text = ""
+                    rntxtSalaryTo.Text = ""
                     txtCode.ReadOnly = False
                     txtName.ReadOnly = False
                     txtRemark.ReadOnly = False
                     rntxtOrders.ReadOnly = False
+                    rntxtSalaryFr.ReadOnly = False
+                    rntxtSalaryTo.ReadOnly = False
                     txtCode.Focus()
 
                     Utilities.EnableRadCombo(cboSalaryGroup, True)
-
+                    Utilities.EnableRadCombo(cboGradeGroup, True)
                 Case CommonMessage.STATE_NORMAL
-
                     EnabledGridNotPostback(rgData, True)
                     txtCode.ReadOnly = True
                     txtName.ReadOnly = True
                     txtRemark.ReadOnly = True
                     rntxtOrders.ReadOnly = True
-
+                    cboGradeGroup.ClearSelection()
+                    cboGradeGroup.Text = ""
+                    Utilities.EnableRadCombo(cboGradeGroup, False)
+                    rntxtSalaryFr.ReadOnly = True
+                    rntxtSalaryTo.ReadOnly = True
                     txtCode.Focus()
                 Case CommonMessage.STATE_EDIT
 
                     EnabledGridNotPostback(rgData, False)
                     Utilities.EnableRadCombo(cboSalaryGroup, True)
+                    Utilities.EnableRadCombo(cboGradeGroup, True)
                     txtCode.ReadOnly = True
                     txtName.ReadOnly = False
                     txtRemark.ReadOnly = False
                     rntxtOrders.ReadOnly = False
 
+                    rntxtSalaryFr.ReadOnly = False
+                    rntxtSalaryTo.ReadOnly = False
                     txtName.Focus()
                 Case CommonMessage.STATE_DELETE
                     Using rep As New PayrollRepository
@@ -335,6 +346,9 @@ Public Class ctrlPA_SalaryLevel
     Public Overrides Sub BindData()
         Dim dic As New Dictionary(Of String, Control)
         dic.Add("CODE", txtCode)
+        dic.Add("GRADE_GROUP", cboGradeGroup)
+        dic.Add("SAL_FR", rntxtSalaryFr)
+        dic.Add("SAL_TO", rntxtSalaryTo)
         dic.Add("NAME", txtName)
         dic.Add("REMARK", txtRemark)
         dic.Add("ORDERS", rntxtOrders)
@@ -353,6 +367,16 @@ Public Class ctrlPA_SalaryLevel
                 If cboSalaryGroup.Items.Count > 0 And SalaryGroupEffect IsNot Nothing Then
                     cboSalaryGroup.SelectedValue = SalaryGroupEffect.ID
                 End If
+            End Using
+        Catch ex As Exception
+            DisplayException(Me.ViewName, Me.ID, ex)
+        End Try
+
+        Try
+            Dim salaryLevelTypeDTO As New SalaryLevelTypeDTO
+            Using rep As New PayrollRepository
+                FillDropDownList(cboGradeGroup, rep.GetSalaryLevelTypeList(), "NAME_VN", "ID", Common.Common.SystemLanguage, False)
+
             End Using
         Catch ex As Exception
             DisplayException(Me.ViewName, Me.ID, ex)
@@ -437,11 +461,19 @@ Public Class ctrlPA_SalaryLevel
                             ShowMessage(Translate("Bạn chưa chọn thang bảng lương"), Utilities.NotifyType.Warning)
                             Return
                         End If
+                        'If cboGradeGroup.SelectedValue = "" Or cboGradeGroup.SelectedValue Is Nothing Then
+                        '    ShowMessage(Translate("Bạn chưa chọn nhóm ngạch bậc"), Utilities.NotifyType.Warning)
+                        '    Return
+                        'End If
                         objSalaryLevel.SAL_GROUP_ID = cboSalaryGroup.SelectedValue
                         objSalaryLevel.CODE = txtCode.Text.Trim
                         objSalaryLevel.NAME = txtName.Text.Trim
+                        objSalaryLevel.SAL_FR = rntxtSalaryFr.Text.Trim
+                        objSalaryLevel.SAL_FR = If(rntxtSalaryFr.Text = "", 0, Decimal.Parse(rntxtSalaryFr.Text))
+                        objSalaryLevel.SAL_TO = If(rntxtSalaryTo.Text = "", 0, Decimal.Parse(rntxtSalaryTo.Text))
                         objSalaryLevel.REMARK = txtRemark.Text.Trim
                         objSalaryLevel.ORDERS = If(rntxtOrders.Text = "", 1, Decimal.Parse(rntxtOrders.Text))
+                        objSalaryLevel.GRADE_GROUP = cboGradeGroup.SelectedValue
 
                         Using rep As New PayrollRepository
                             Select Case CurrentState

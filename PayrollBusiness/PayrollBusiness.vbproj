@@ -71,6 +71,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="PayrollBusiness.Dashboard.vb" />
+    <Compile Include="PayrollBusiness.SalaryLevelType.vb" />
     <Compile Include="PayrollBusiness.SalaryType.vb" />
     <Compile Include="PayrollBusiness.IncentiveRank.vb" />
     <Compile Include="PayrollBusiness.SalaryLevel_Unilever.vb" />

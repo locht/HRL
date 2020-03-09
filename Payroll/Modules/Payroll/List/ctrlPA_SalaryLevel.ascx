@@ -7,20 +7,19 @@
         <asp:HiddenField ID="hidID" runat="server" />
         <asp:ValidationSummary ID="ValidationSummary1" runat="server" DisplayMode="BulletList"
             CssClass="validationsummary" />
-        <table class="table-form">
+        <table class="table-form">  
             <tr>
                 <td class="lb">
-                    <%# Translate("Thang lương")%><span class="lbReq">*</span>
+                    <%# Translate("Nhóm ngạch bậc")%><span class="lbReq">*</span>
                 </td>
-                <td colspan="3">
-                    <tlk:RadComboBox ID="cboSalaryGroup" runat="server" >
-                    </tlk:RadComboBox>
-                    <asp:CustomValidator ID="cvalSalaryGroup" ControlToValidate="cboSalaryGroup" runat="server" ErrorMessage="<%$ Translate: Thang lương không tồn tại hoặc đã ngừng áp dụng. %>"
-                        ToolTip="<%$ Translate: Thang lương không tồn tại hoặc đã ngừng áp dụng. %>">
-                    </asp:CustomValidator>
+                 <td>
+                    <tlk:RadComboBox ID="cboGradeGroup" runat="server" >
+                    </tlk:RadComboBox>                  
+                      <asp:RequiredFieldValidator ID="reqGradeGroup" ControlToValidate="cboGradeGroup"
+                        runat="server" ErrorMessage="<%$ Translate: Bạn phải nhập nhóm ngạch bậc %>"
+                        ToolTip="<%$ Translate: Bạn phải nhập nhóm ngạch bậc %>">
+                    </asp:RequiredFieldValidator>
                 </td>
-            </tr>
-            <tr>
                 <td class="lb">
                     <%# Translate("Mã ngạch lương")%><span class="lbReq">*</span>
                 </td>
@@ -28,10 +27,10 @@
                     <tlk:RadTextBox ID="txtCode" runat="server" SkinID="Textbox50">
                     </tlk:RadTextBox>
                     <asp:RequiredFieldValidator ID="reqCode" ControlToValidate="txtCode" runat="server"
-                        ErrorMessage="<%$ Translate: Bạn phải nhập Mã nhóm lương %>" ToolTip="<%$ Translate: Bạn phải nhập Mã nhóm lương %>">
+                        ErrorMessage="<%$ Translate: Bạn phải nhập Mã ngạch lương %>" ToolTip="<%$ Translate: Bạn phải nhập Mã ngạch lương %>">
                     </asp:RequiredFieldValidator>
-                    <asp:CustomValidator ID="cvalCode" ControlToValidate="txtCode" runat="server" ErrorMessage="<%$ Translate: Mã nhóm lương đã tồn tại. %>"
-                        ToolTip="<%$ Translate: Mã nhóm lương đã tồn tại. %>">
+                    <asp:CustomValidator ID="cvalCode" ControlToValidate="txtCode" runat="server" ErrorMessage="<%$ Translate: Mã ngạch lương đã tồn tại. %>"
+                        ToolTip="<%$ Translate: Mã ngạch lương đã tồn tại. %>">
                     </asp:CustomValidator>
                     <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ErrorMessage="<%$ Translate: Mã không được chứa ký tự đặc biệt và khoảng trắng %>"
                         ControlToValidate="txtCode" ValidationExpression="^[a-zA-Z0-9_]*$"></asp:RegularExpressionValidator>
@@ -46,20 +45,38 @@
                         ErrorMessage="<%$ Translate: Bạn phải nhập Tên nhóm lương %>" ToolTip="<%$ Translate: Bạn phải nhập Tên nhóm lương %>">
                     </asp:RequiredFieldValidator>
                 </td>
-            </tr>
+            </tr>  
             <tr>
-                <td class="lb">
-                    <%# Translate("Ghi chú")%>
+               <td class="lb" id="tdSLlbSalaryFr">
+                    <label id="lbSalaryFr">
+                        <%# Translate("Mức lương từ")%></label>
+                        <span class="lbReq">*</span>
+                </td>              
+                  <td >
+                    <tlk:RadNumericTextBox runat="server" ID="rntxtSalaryFr" MinValue="1" Width="60px"
+                        ShowSpinButtons="True" ReadOnly="true" CausesValidation="false">
+                        <NumberFormat GroupSeparator="" DecimalDigits="0" />
+                    </tlk:RadNumericTextBox>
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator2" ControlToValidate="rntxtSalaryFr"
+                        runat="server" ErrorMessage="<%$ Translate: Bạn phải nhập mức lương từ. %>" ToolTip="<%$ Translate: Bạn phải nhập mức từ. %>"></asp:RequiredFieldValidator>
                 </td>
-                <td colspan="3">
-                    <tlk:RadTextBox ID="txtRemark" runat="server" SkinID="Textbox1023" Width="100%">
-                    </tlk:RadTextBox>
+                 <td class="lb" id="tdSLlbSalaryTo">
+                    <label id="lbSalaryTo">
+                        <%# Translate("Mức lương đến")%></label>
+                        <span class="lbReq">*</span>
+                </td>                
+                 <td >
+                    <tlk:RadNumericTextBox runat="server" ID="rntxtSalaryTo" MinValue="1" Width="60px"
+                         ShowSpinButtons="True" ReadOnly="true" CausesValidation="false">
+                        <NumberFormat GroupSeparator="" DecimalDigits="0" />
+                    </tlk:RadNumericTextBox>
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator4" ControlToValidate="rntxtOrders"
+                        runat="server" ErrorMessage="<%$ Translate: Bạn phải nhập mức lương đến. %>" ToolTip="<%$ Translate: Bạn phải nhập mức đến. %>"></asp:RequiredFieldValidator>
                 </td>
-            </tr>
-            <tr>
                 <td class="lb" id="tdSLlbOrders">
                     <label id="lbOrders">
                         <%# Translate("Thứ tự")%></label>
+                        <span class="lbReq">*</span>
                 </td>
                 <td colspan="3">
                     <tlk:RadNumericTextBox runat="server" ID="rntxtOrders" MinValue="1" Width="60px"
@@ -70,37 +87,69 @@
                         runat="server" ErrorMessage="<%$ Translate: Bạn phải nhập số thứ tự. %>" ToolTip="<%$ Translate: Bạn phải nhập số thứ tự. %>"></asp:RequiredFieldValidator>
                 </td>
             </tr>
+            <tr>
+                <td class="lb">
+                    <%# Translate("Thang lương")%><span class="lbReq">*</span>
+                </td>
+                <td >
+                    <tlk:RadComboBox ID="cboSalaryGroup" runat="server" >
+                    </tlk:RadComboBox>
+                    <asp:CustomValidator ID="cvalSalaryGroup" ControlToValidate="cboSalaryGroup" runat="server" ErrorMessage="<%$ Translate: Thang lương không tồn tại hoặc đã ngừng áp dụng. %>"
+                        ToolTip="<%$ Translate: Thang lương không tồn tại hoặc đã ngừng áp dụng. %>">
+                    </asp:CustomValidator>
+                </td>
+                <td class="lb">
+                    <%# Translate("Ghi chú")%>
+                </td>
+                <td colspan="3">
+                    <tlk:RadTextBox ID="txtRemark" runat="server" SkinID="Textbox1023" Width="100%">
+                    </tlk:RadTextBox>
+                </td>
+            </tr>            
         </table>
     </tlk:RadPane>
     <tlk:RadPane ID="RadPane2" runat="server" Scrolling="None">
         <tlk:RadGrid ID="rgData" runat="server" Height="100%">
-            <ClientSettings EnableRowHoverStyle="true" EnablePostBackOnRowClick="true">
+            <ClientSettings EnableRowHoverStyle="true" >
                         <Selecting AllowRowSelect="True" />
                         <ClientEvents OnGridCreated="GridCreated" />
                         <ClientEvents OnCommand="ValidateFilter" />
             </ClientSettings>
-            <MasterTableView DataKeyNames="ID" ClientDataKeyNames="SAL_GROUP_ID, CODE,NAME,REMARK,ORDERS">
+            <MasterTableView DataKeyNames="ID" ClientDataKeyNames="GRADE_GROUP,SAL_FR,SAL_TO,SAL_GROUP_ID, CODE,NAME,REMARK,ORDERS">
                 <Columns>
                     <tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderStyle-HorizontalAlign="Center"
                         HeaderStyle-Width="30px" ItemStyle-HorizontalAlign="Center">
                     </tlk:GridClientSelectColumn>
                     <tlk:GridBoundColumn DataField="ID" Visible="false" />
-                    <tlk:GridBoundColumn HeaderText="<%$ Translate: Thang lương %>" DataField="SAL_GROUP_NAME"
-                        SortExpression="SAL_GROUP_NAME" AutoPostBackOnFilter="true" ShowFilterIcon="false"
-                        AndCurrentFilterFunction="Contains" UniqueName="SAL_GROUP_NAME" />
-                    <tlk:GridBoundColumn HeaderText="<%$ Translate: Mã %>" DataField="CODE" SortExpression="CODE"
+                    <tlk:GridBoundColumn HeaderText="<%$ Translate: Nhóm ngạch bậc %>" DataField="GRADE_GROUP_NAME"
+                        SortExpression="GRADE_GROUP_NAME" AutoPostBackOnFilter="true" ShowFilterIcon="false"
+                        AndCurrentFilterFunction="Contains" UniqueName="GRADE_GROUP_NAME" />
+                     <tlk:GridBoundColumn HeaderText="<%$ Translate: Mã %>" DataField="CODE" SortExpression="CODE"
                         AutoPostBackOnFilter="true" ShowFilterIcon="false" AndCurrentFilterFunction="Contains"
                         UniqueName="CODE" />
                     <tlk:GridBoundColumn HeaderText="<%$ Translate: Tên %>" DataField="NAME" SortExpression="NAME"
                         AutoPostBackOnFilter="true" ShowFilterIcon="false" AndCurrentFilterFunction="Contains"
                         UniqueName="NAME" />
-                    <tlk:GridBoundColumn HeaderText="<%$ Translate: Ghi chú %>" DataField="REMARK" SortExpression="REMARK"
-                        UniqueName="REMARK" />
+                    <tlk:GridBoundColumn HeaderText="<%$ Translate: Thang lương %>" DataField="SAL_GROUP_NAME"
+                        SortExpression="SAL_GROUP_NAME" AutoPostBackOnFilter="true" ShowFilterIcon="false"
+                        AndCurrentFilterFunction="Contains" UniqueName="SAL_GROUP_NAME" /> 
+                    <tlk:GridNumericColumn HeaderText="<%$ Translate: Mức lương từ %>" DataField="SAL_FR" SortExpression="SAL_FR"
+                        UniqueName="SAL_FR">
+                        <HeaderStyle HorizontalAlign="Center" Width="10%" />
+                        <ItemStyle HorizontalAlign="Right" />
+                    </tlk:GridNumericColumn>
+                    <tlk:GridNumericColumn HeaderText="<%$ Translate: Mức lương đến %>" DataField="SAL_TO" SortExpression="SAL_TO"
+                        UniqueName="SAL_TO">
+                        <HeaderStyle HorizontalAlign="Center" Width="10%" />
+                        <ItemStyle HorizontalAlign="Right" />
+                    </tlk:GridNumericColumn>
                     <tlk:GridNumericColumn HeaderText="<%$ Translate: Thứ tự %>" DataField="ORDERS" SortExpression="ORDERS"
                         UniqueName="ORDERS">
                         <HeaderStyle HorizontalAlign="Center" Width="10%" />
                         <ItemStyle HorizontalAlign="Right" />
                     </tlk:GridNumericColumn>
+                    <tlk:GridBoundColumn HeaderText="<%$ Translate: Ghi chú %>" DataField="REMARK" SortExpression="REMARK"
+                        UniqueName="REMARK" />                    
                     <tlk:GridBoundColumn HeaderText="<%$ Translate: Trạng thái %>" DataField="ACTFLG"
                         SortExpression="ACTFLG" UniqueName="ACTFLG" />
                 </Columns>

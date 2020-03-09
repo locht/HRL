@@ -205,6 +205,9 @@
     <None Include="Service References\PayrollBusiness\Payroll.PayrollBusiness.SalaryLevelDTO.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <Content Include="Service References\PayrollBusiness\Payroll.PayrollBusiness.SalaryLevelTypeDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
     <None Include="Service References\PayrollBusiness\Payroll.PayrollBusiness.SalaryRankDTO.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
@@ -309,13 +312,13 @@
       <DependentUpon>Web.config</DependentUpon>
     </Content>
     <None Include="Service References\PayrollBusiness\service1.wsdl" />
-    <None Include="Service References\PayrollBusiness\service11.xsd">
-      <SubType>Designer</SubType>
-    </None>
     <None Include="Service References\PayrollBusiness\service3.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Service References\PayrollBusiness\service31.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\PayrollBusiness\service32.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Service References\PayrollBusiness\System.Data.Objects.DataClasses.xsd">
@@ -506,6 +509,7 @@
       <DependentUpon>ctrlPA_WorkStandard.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="Modules\Payroll\PayrollRepository.SalaryLevelType.vb" />
     <Compile Include="Modules\Payroll\PayrollRepository.SalaryType.vb" />
     <Compile Include="Modules\Payroll\List\ctrlPA_SalaryType.ascx.designer.vb">
       <DependentUpon>ctrlPA_SalaryType.ascx</DependentUpon>

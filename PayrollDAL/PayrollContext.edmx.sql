@@ -1,8 +1,8 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for Oracle database
 -- --------------------------------------------------
--- Date Created: 2/26/2020 4:07:32 PM
--- Generated from EDMX file: D:\SOURCE_GIT_NEW\ACV\PayrollDAL\PayrollContext.edmx
+-- Date Created: 3/9/2020 9:14:45 AM
+-- Generated from EDMX file: D:\HiStaffWebApp\acv_19\PayrollDAL\PayrollContext.edmx
 -- --------------------------------------------------
 
 -- --------------------------------------------------
@@ -205,7 +205,10 @@ CREATE TABLE "dbo"."PA_SALARY_LEVEL" (
    "MODIFIED_LOG" NVARCHAR2(255) NOT NULL,
    "ACTFLG" NVARCHAR2(1) NULL,
    "ORDERS" NUMBER(38,0) NULL,
-   "OTHER_USE" NVARCHAR2(255) NOT NULL
+   "OTHER_USE" NVARCHAR2(255) NOT NULL,
+   "GRADE_GROUP" NUMBER(38,0) NOT NULL,
+   "SAL_FR" NUMBER(38,0) NOT NULL,
+   "SAL_TO" NUMBER(38,0) NOT NULL
 );
 
 -- Creating table 'PA_SALARY_RANK'
@@ -1394,6 +1397,24 @@ CREATE TABLE "dbo"."HUV_ORGANIZATION" (
    "HU_ORG_TITLEID" NUMBER(38,0) NOT NULL
 );
 
+-- Creating table 'PA_SALARY_LEVEL_TYPE'
+CREATE TABLE "dbo"."PA_SALARY_LEVEL_TYPE" (
+   "ID" NUMBER(38,0) NOT NULL,
+   "CODE" NVARCHAR2(255) NULL,
+   "NAME_EN" NVARCHAR2(255) NULL,
+   "REMARK" NVARCHAR2(1023) NULL,
+   "CREATED_DATE" DATE NULL,
+   "CREATED_BY" NVARCHAR2(255) NULL,
+   "CREATED_LOG" NVARCHAR2(255) NULL,
+   "MODIFIED_DATE" DATE NULL,
+   "MODIFIED_BY" NVARCHAR2(255) NULL,
+   "MODIFIED_LOG" NVARCHAR2(255) NULL,
+   "ORDERS" NUMBER(38,0) NULL,
+   "ACTFLG" NVARCHAR2(1) NULL,
+   "STATUS" NUMBER(38,0) NULL,
+   "NAME_VN" NVARCHAR2(255) NOT NULL
+);
+
 
 -- --------------------------------------------------
 -- Creating all PRIMARY KEY constraints
@@ -1874,6 +1895,14 @@ ADD CONSTRAINT "PK_PA_SALE_COMMISION"
 -- Creating primary key on "ID"in table 'HUV_ORGANIZATION'
 ALTER TABLE "dbo"."HUV_ORGANIZATION"
 ADD CONSTRAINT "PK_HUV_ORGANIZATION"
+   PRIMARY KEY ("ID" )
+   ENABLE
+   VALIDATE;
+
+
+-- Creating primary key on "ID"in table 'PA_SALARY_LEVEL_TYPE'
+ALTER TABLE "dbo"."PA_SALARY_LEVEL_TYPE"
+ADD CONSTRAINT "PK_PA_SALARY_LEVEL_TYPE"
    PRIMARY KEY ("ID" )
    ENABLE
    VALIDATE;

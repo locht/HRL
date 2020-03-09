@@ -20,12 +20,17 @@ Partial Public Class PayrollRepository
         Try
             Dim query = From p In Context.PA_SALARY_LEVEL
                         Join o In Context.PA_SALARY_GROUP On p.SAL_GROUP_ID Equals o.ID
+                        Join l In Context.PA_SALARY_LEVEL_TYPE On p.GRADE_GROUP Equals l.ID
                         Where Not p.OTHER_USE.Equals("U")
 
             Dim lst = query.Select(Function(e) New SalaryLevelDTO With {
                                        .ID = e.p.ID,
                                        .SAL_GROUP_ID = e.p.SAL_GROUP_ID,
                                        .SAL_GROUP_NAME = e.o.NAME,
+                                       .GRADE_GROUP = e.p.GRADE_GROUP,
+                                       .GRADE_GROUP_NAME = e.l.NAME_VN,
+                                       .SAL_FR = e.p.SAL_FR,
+                                       .SAL_TO = e.p.SAL_TO,
                                        .CODE = e.p.CODE,
                                        .NAME = e.p.NAME,
                                        .REMARK = e.p.REMARK,
@@ -77,6 +82,9 @@ Partial Public Class PayrollRepository
             objSalaryLevelData.REMARK = objSalaryLevel.REMARK
             objSalaryLevelData.ACTFLG = objSalaryLevel.ACTFLG
             objSalaryLevelData.ORDERS = objSalaryLevel.ORDERS
+            objSalaryLevelData.GRADE_GROUP = objSalaryLevel.GRADE_GROUP
+            objSalaryLevelData.SAL_FR = objSalaryLevel.SAL_FR
+            objSalaryLevelData.SAL_TO = objSalaryLevel.SAL_TO
             objSalaryLevelData.OTHER_USE = "ALL"
             Context.PA_SALARY_LEVEL.AddObject(objSalaryLevelData)
             Context.SaveChanges(log)
@@ -132,6 +140,9 @@ Partial Public Class PayrollRepository
             objSalaryLevelData.NAME = objSalaryLevel.NAME.Trim
             objSalaryLevelData.REMARK = objSalaryLevel.REMARK
             objSalaryLevelData.ORDERS = objSalaryLevel.ORDERS
+            objSalaryLevelData.GRADE_GROUP = objSalaryLevel.GRADE_GROUP
+            objSalaryLevelData.SAL_FR = objSalaryLevel.SAL_FR
+            objSalaryLevelData.SAL_TO = objSalaryLevel.SAL_TO
             objSalaryLevelData.OTHER_USE = "ALL"
             Context.SaveChanges(log)
             gID = objSalaryLevelData.ID

@@ -12,7 +12,7 @@ Option Explicit On
 
 
 Partial Public Class ctrlPA_SalaryLevel
-
+    
     '''<summary>
     '''RadSplitter3 control.
     '''</summary>
@@ -21,7 +21,7 @@ Partial Public Class ctrlPA_SalaryLevel
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents RadSplitter3 As Global.Telerik.Web.UI.RadSplitter
-
+    
     '''<summary>
     '''RadPane1 control.
     '''</summary>
@@ -30,7 +30,7 @@ Partial Public Class ctrlPA_SalaryLevel
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents RadPane1 As Global.Telerik.Web.UI.RadPane
-
+    
     '''<summary>
     '''tbarSalaryLevels control.
     '''</summary>
@@ -39,7 +39,7 @@ Partial Public Class ctrlPA_SalaryLevel
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents tbarSalaryLevels As Global.Telerik.Web.UI.RadToolBar
-
+    
     '''<summary>
     '''hidID control.
     '''</summary>
@@ -48,7 +48,7 @@ Partial Public Class ctrlPA_SalaryLevel
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents hidID As Global.System.Web.UI.WebControls.HiddenField
-
+    
     '''<summary>
     '''ValidationSummary1 control.
     '''</summary>
@@ -57,25 +57,25 @@ Partial Public Class ctrlPA_SalaryLevel
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents ValidationSummary1 As Global.System.Web.UI.WebControls.ValidationSummary
-
+    
     '''<summary>
-    '''cboSalaryGroup control.
+    '''cboGradeGroup control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents cboSalaryGroup As Global.Telerik.Web.UI.RadComboBox
-
+    Protected WithEvents cboGradeGroup As Global.Telerik.Web.UI.RadComboBox
+    
     '''<summary>
-    '''cvalSalaryGroup control.
+    '''reqGradeGroup control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents cvalSalaryGroup As Global.System.Web.UI.WebControls.CustomValidator
-
+    Protected WithEvents reqGradeGroup As Global.System.Web.UI.WebControls.RequiredFieldValidator
+    
     '''<summary>
     '''txtCode control.
     '''</summary>
@@ -84,7 +84,7 @@ Partial Public Class ctrlPA_SalaryLevel
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtCode As Global.Telerik.Web.UI.RadTextBox
-
+    
     '''<summary>
     '''reqCode control.
     '''</summary>
@@ -93,7 +93,7 @@ Partial Public Class ctrlPA_SalaryLevel
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents reqCode As Global.System.Web.UI.WebControls.RequiredFieldValidator
-
+    
     '''<summary>
     '''cvalCode control.
     '''</summary>
@@ -102,7 +102,7 @@ Partial Public Class ctrlPA_SalaryLevel
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents cvalCode As Global.System.Web.UI.WebControls.CustomValidator
-
+    
     '''<summary>
     '''RegularExpressionValidator1 control.
     '''</summary>
@@ -111,7 +111,7 @@ Partial Public Class ctrlPA_SalaryLevel
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents RegularExpressionValidator1 As Global.System.Web.UI.WebControls.RegularExpressionValidator
-
+    
     '''<summary>
     '''txtName control.
     '''</summary>
@@ -120,7 +120,7 @@ Partial Public Class ctrlPA_SalaryLevel
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtName As Global.Telerik.Web.UI.RadTextBox
-
+    
     '''<summary>
     '''reqName control.
     '''</summary>
@@ -129,16 +129,43 @@ Partial Public Class ctrlPA_SalaryLevel
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents reqName As Global.System.Web.UI.WebControls.RequiredFieldValidator
-
+    
     '''<summary>
-    '''txtRemark control.
+    '''rntxtSalaryFr control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents txtRemark As Global.Telerik.Web.UI.RadTextBox
-
+    Protected WithEvents rntxtSalaryFr As Global.Telerik.Web.UI.RadNumericTextBox
+    
+    '''<summary>
+    '''RequiredFieldValidator2 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents RequiredFieldValidator2 As Global.System.Web.UI.WebControls.RequiredFieldValidator
+    
+    '''<summary>
+    '''rntxtSalaryTo control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents rntxtSalaryTo As Global.Telerik.Web.UI.RadNumericTextBox
+    
+    '''<summary>
+    '''RequiredFieldValidator4 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents RequiredFieldValidator4 As Global.System.Web.UI.WebControls.RequiredFieldValidator
+    
     '''<summary>
     '''rntxtOrders control.
     '''</summary>
@@ -147,7 +174,7 @@ Partial Public Class ctrlPA_SalaryLevel
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents rntxtOrders As Global.Telerik.Web.UI.RadNumericTextBox
-
+    
     '''<summary>
     '''RequiredFieldValidator3 control.
     '''</summary>
@@ -156,7 +183,34 @@ Partial Public Class ctrlPA_SalaryLevel
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents RequiredFieldValidator3 As Global.System.Web.UI.WebControls.RequiredFieldValidator
-
+    
+    '''<summary>
+    '''cboSalaryGroup control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents cboSalaryGroup As Global.Telerik.Web.UI.RadComboBox
+    
+    '''<summary>
+    '''cvalSalaryGroup control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents cvalSalaryGroup As Global.System.Web.UI.WebControls.CustomValidator
+    
+    '''<summary>
+    '''txtRemark control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtRemark As Global.Telerik.Web.UI.RadTextBox
+    
     '''<summary>
     '''RadPane2 control.
     '''</summary>
@@ -165,7 +219,7 @@ Partial Public Class ctrlPA_SalaryLevel
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents RadPane2 As Global.Telerik.Web.UI.RadPane
-
+    
     '''<summary>
     '''rgData control.
     '''</summary>
@@ -174,7 +228,7 @@ Partial Public Class ctrlPA_SalaryLevel
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents rgData As Global.Telerik.Web.UI.RadGrid
-
+    
     '''<summary>
     '''ctrlMessageBox control.
     '''</summary>
@@ -183,7 +237,7 @@ Partial Public Class ctrlPA_SalaryLevel
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents ctrlMessageBox As Global.Common.ctrlMessageBox
-
+    
     '''<summary>
     '''RadCodeBlock1 control.
     '''</summary>

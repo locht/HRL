@@ -300,6 +300,25 @@ Namespace PayrollBusiness.ServiceContracts
 
 #End Region
 
+#Region "Salary Level Type"
+
+        <OperationContract()>
+        Function GetSalaryLevelTypeList() As List(Of SalaryLevelTypeDTO)
+        <OperationContract()>
+        Function InsertSalaryLevelType(ByVal objSalaryLevel As SalaryLevelTypeDTO, ByVal log As UserLog, ByRef gID As Decimal) As Boolean
+        <OperationContract()>
+        Function ValidateSalaryLevelType(ByVal objSalaryLevel As SalaryLevelTypeDTO) As Boolean
+        <OperationContract()>
+        Function ModifySalaryLevelType(ByVal objSalaryLevel As SalaryLevelTypeDTO, ByVal log As UserLog, ByRef gID As Decimal) As Boolean
+
+        <OperationContract()>
+        Function ActiveSalaryLevelType(ByVal lstID As List(Of Decimal), ByVal log As UserLog, ByVal bActive As String) As Boolean
+
+        <OperationContract()>
+        Function DeleteSalaryLevelType(ByVal lstSalaryLevel As List(Of Decimal)) As Boolean
+
+#End Region
+
 #Region "Salary Level Unilever"
 
         <OperationContract()>
