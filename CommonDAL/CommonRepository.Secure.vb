@@ -2112,7 +2112,7 @@ Partial Public Class CommonRepository
     Public Function GetOrganizationAll() As List(Of OrganizationDTO)
         Dim lstOrgs As New List(Of OrganizationDTO)
         lstOrgs = (From p In Context.HU_ORGANIZATION
-                   Order By p.ORD_NO, p.CODE, p.NAME_VN
+                   Order By p.ORD_NO, p.NAME_VN.ToUpper
                    Select New OrganizationDTO With {
                        .ID = p.ID,
                        .CODE = p.CODE,
@@ -2124,7 +2124,7 @@ Partial Public Class CommonRepository
                        .ACTFLG = p.ACTFLG,
                        .DISSOLVE_DATE = p.DISSOLVE_DATE,
                        .DESCRIPTION_PATH = p.DESCRIPTION_PATH,
-                       .FOUNDATION_DATE = p.FOUNDATION_DATE}).OrderBy("ORD_NO").ToList
+                       .FOUNDATION_DATE = p.FOUNDATION_DATE}).ToList
 
         Return lstOrgs
     End Function
@@ -2141,6 +2141,7 @@ Partial Public Class CommonRepository
                              Where (From user In Context.SE_USER_ORG_ACCESS
                                     Where user.USER_ID = u.ID
                                     Select user.ORG_ID).Contains(org.ID)
+                             Order By org.ORD_NO, org.NAME_VN.ToUpper
                              Select New OrganizationDTO With {
                                 .ID = org.ID,
                                 .CODE = org.CODE,
@@ -2153,7 +2154,7 @@ Partial Public Class CommonRepository
                                 .DISSOLVE_DATE = org.DISSOLVE_DATE,
                                 .HIERARCHICAL_PATH = org.HIERARCHICAL_PATH,
                                 .DESCRIPTION_PATH = org.DESCRIPTION_PATH,
-                                .FOUNDATION_DATE = org.FOUNDATION_DATE}).OrderBy("ORD_NO").Distinct
+                                .FOUNDATION_DATE = org.FOUNDATION_DATE}).Distinct
 
                 lstOrgs = query.ToList
 
@@ -2179,6 +2180,7 @@ Partial Public Class CommonRepository
                     If lstOrgID.Count > 0 Then
                         Dim lstOrgNotPer = (From p In Context.HU_ORGANIZATION
                                             Where lstOrgID.Contains(p.ID)
+                                            Order By p.ORD_NO, p.NAME_VN
                                             Select New OrganizationDTO With {
                                                 .ID = p.ID,
                                                 .CODE = p.CODE,
@@ -2191,7 +2193,7 @@ Partial Public Class CommonRepository
                                                 .DISSOLVE_DATE = p.DISSOLVE_DATE,
                                                 .FOUNDATION_DATE = p.FOUNDATION_DATE,
                                                 .DESCRIPTION_PATH = p.DESCRIPTION_PATH,
-                                                .IS_NOT_PER = True}).OrderBy("ORD_NO").ToList
+                                                .IS_NOT_PER = True}).ToList
 
                         lstOrgs.AddRange(lstOrgNotPer)
                     End If
@@ -2202,7 +2204,7 @@ Partial Public Class CommonRepository
 
             Else
                 lstOrgs = (From p In Context.HU_ORGANIZATION
-                           Order By p.ORD_NO, p.CODE, p.NAME_VN
+                           Order By p.ORD_NO, p.NAME_VN
                            Select New OrganizationDTO With {
                                 .ID = p.ID,
                                 .CODE = p.CODE,
@@ -2214,7 +2216,7 @@ Partial Public Class CommonRepository
                                 .ACTFLG = p.ACTFLG,
                                 .DISSOLVE_DATE = p.DISSOLVE_DATE,
                                 .DESCRIPTION_PATH = p.DESCRIPTION_PATH,
-                                .FOUNDATION_DATE = p.FOUNDATION_DATE}).OrderBy("ORD_NO").ToList
+                                .FOUNDATION_DATE = p.FOUNDATION_DATE}).ToList
             End If
         End If
         Return lstOrgs
@@ -2223,6 +2225,7 @@ Partial Public Class CommonRepository
     Public Function GetOrganizationLocationInfo(ByVal _orgId As Decimal) As OrganizationDTO
         Dim query As OrganizationDTO
         query = (From p In Context.HU_ORGANIZATION Where p.ID = _orgId
+                 Order By p.ORD_NO, p.NAME_VN
                  Select New OrganizationDTO With {
                      .ACTFLG = p.ACTFLG,
                      .CODE = p.CODE,
@@ -2244,7 +2247,8 @@ Partial Public Class CommonRepository
 
         Do While query.PARENT_ID IsNot Nothing
             query = (From p In Context.HU_ORGANIZATION Where p.ID = query.PARENT_ID
-                 Select New OrganizationStructureDTO With {
+                     Order By p.ORD_NO, p.NAME_VN
+                     Select New OrganizationStructureDTO With {
                      .ID = p.ID,
                      .CODE = p.CODE,
                      .NAME_VN = p.NAME_VN,
@@ -2257,6 +2261,7 @@ Partial Public Class CommonRepository
     Public Function GetListOrgImport(ByVal orgID As List(Of Decimal)) As List(Of OrganizationDTO)
         Dim result = (From p In Context.HU_ORGANIZATION
                       Where orgID.Contains(p.ID)
+                      Order By p.ORD_NO, p.NAME_VN
                       Select New OrganizationDTO With {.ID = p.ID, .NAME_VN = p.NAME_VN}).ToList()
         Return result
     End Function

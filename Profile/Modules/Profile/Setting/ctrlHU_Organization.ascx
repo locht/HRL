@@ -56,7 +56,7 @@
         <table class="table-form">
             <tr>
                 <td class="lb">
-                  <asp:Label ID="lbParent_Name" runat="server" Text="Đơn vị cha"></asp:Label>             
+                  <asp:Label ID="lbParent_Name" runat="server" Text="Đơn vị cha"></asp:Label><span class="lbReq">*</span>             
                 </td>
                 <td colspan="3">
                     <tlk:radtextbox id="txtParent_Name" runat="server" readonly="true" width="100%">
@@ -115,9 +115,8 @@
                 </td>
             </tr>
             <tr>
-                <td class="lb">
-                    <asp:Label ID="lbCode" runat="server" Text="Mã đơn vị"></asp:Label>
-                   <span class="lbReq"></span>
+                <td class="lb"><%# Translate("Mã đơn vị")%>
+                   <span class="lbReq">*</span>
                 </td>
                 <td>
                     <tlk:radtextbox id="txtCode" runat="server" skinid="Textbox50">
@@ -142,7 +141,7 @@
             </tr>
             <tr>
                 <td class="lb">
-                    <%# Translate("Đơn vị kí hợp đồng")%>
+                    <%# Translate("Đơn vị kí hợp đồng")%><span class="lbReq">*</span>
                 </td>
                 <td>
                     <asp:CheckBox runat="server" ID="chkIsSignContract" />
@@ -215,7 +214,7 @@
             </tr>--%>
             <tr>
                 <td class="lb">
-                    <%# Translate("Tỉnh/Thành")%>
+                    <%# Translate("Tỉnh/Thành")%><span class="lbReq">*</span>
                 </td>
                 <td>
                     <tlk:radcombobox id="cboPROVINCE_ID" runat="server" OnClientSelectedIndexChanged="OnClientSelectedIndexChangedPROVINCE_ID"/>
@@ -226,7 +225,7 @@
                     </asp:RequiredFieldValidator>
                 </td>
                 <td class="lb">
-                    <%# Translate("Quận/Huyện")%>
+                    <%# Translate("Quận/Huyện")%><span class="lbReq">*</span>
                 </td>
                 <td colspan="3">
                     <tlk:radcombobox id="cboDISTRICT_ID" runat="server"  EnableLoadOnDemand="true" OnClientItemsRequested="OnClientItemsRequesting"/>
@@ -369,7 +368,7 @@
                     <tlk:radtextbox id="txtMAN_UNI_NAME" runat="server" skinid="Textbox50" />
                 </td>
                 <td class="lb">
-                   <asp:Label ID="ldOrdNo" runat="server" Text="Số thứ tự"></asp:Label>
+                   <%# Translate("Số thứ tự")%><span class="lbReq">*</span>
                 </td>
                 <td>
                     <tlk:RadNumericTextBox ID="rdOrdNo" runat="server" SkinID="NUMBER"></tlk:RadNumericTextBox>
@@ -483,14 +482,14 @@
 </tlk:radsplitter>
 <Common:ctrlMessageBox ID="ctrlMessageBox" runat="server" />
 
-<asp:PlaceHolder runat="server">
+<asp:PlaceHolder ID="PlaceHolder1" runat="server">
     <Common:ctrlFindEmployeePopup ID="ctrlREPRESENTATIVE_ID" runat="server" IsHideTerminate="false" MultiSelect="false" LoadAllOrganization="false" />
 </asp:PlaceHolder>
 
-<asp:PlaceHolder runat="server">
+<asp:PlaceHolder ID="PlaceHolder2" runat="server">
     <Common:ctrlFindEmployeePopup ID="CtrlhidACCOUNTING_ID" runat="server" IsHideTerminate="false" MultiSelect="false" LoadAllOrganization="false" />
 </asp:PlaceHolder>
-<asp:PlaceHolder runat="server">
+<asp:PlaceHolder ID="PlaceHolder3" runat="server">
     <Common:ctrlFindEmployeePopup ID="CtrlHR_ID" runat="server" IsHideTerminate="false" MultiSelect="false" LoadAllOrganization="false" />
 </asp:PlaceHolder>
 
@@ -512,7 +511,7 @@
 
         function loadcombobox(id_pro, id_cbo, list_id) {
             var combo = $find(id_cbo);
-
+            
             if (id_pro > 0) {
                 var n = document.getElementById(list_id)
                 var n1 = JSON.parse(n.value)
@@ -647,5 +646,5 @@
             var notify104126 = noty({ text: message, dismissQueue: true, type: 'error' });
             setTimeout(function () { $.noty.close(notify104126.options.id); }, 2000);
         }--%>
-</script>
+    </script>
 </tlk:radscriptblock>

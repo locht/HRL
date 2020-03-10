@@ -1302,7 +1302,10 @@ sucssec:
                 txtMAN_UNI_NAME.Text = row.Field(Of String)("MAN_UNI_NAME")
 
                 txtREPRESENTATIVE_ID.Text = row.Field(Of String)("REPRESENTATIVE_NAME")
-                hidREPRESENTATIVE_ID.Value = row.Field(Of Decimal?)("REPRESENTATIVE_ID")
+                If row.Field(Of Decimal?)("REPRESENTATIVE_ID") IsNot Nothing Then
+                    hidREPRESENTATIVE_ID.Value = row.Field(Of Decimal?)("REPRESENTATIVE_ID")
+                End If
+
                 txtACCOUNTING_ID.Text = row.Field(Of String)("ACCOUNTING_NAME")
                 If row.Field(Of Decimal?)("ACCOUNTING_ID") IsNot Nothing Then
                     hidACCOUNTING_ID.Value = row.Field(Of Decimal?)("ACCOUNTING_ID")

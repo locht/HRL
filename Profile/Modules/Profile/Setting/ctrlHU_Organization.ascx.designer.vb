@@ -185,15 +185,6 @@ Partial Public Class ctrlHU_Organization
     Protected WithEvents txtNameEN As Global.Telerik.Web.UI.RadTextBox
 
     '''<summary>
-    '''lbCode control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lbCode As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
     '''txtCode control.
     '''</summary>
     '''<remarks>
@@ -545,15 +536,6 @@ Partial Public Class ctrlHU_Organization
     Protected WithEvents txtMAN_UNI_NAME As Global.Telerik.Web.UI.RadTextBox
 
     '''<summary>
-    '''ldOrdNo control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents ldOrdNo As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
     '''rdOrdNo control.
     '''</summary>
     '''<remarks>
@@ -635,6 +617,15 @@ Partial Public Class ctrlHU_Organization
     Protected WithEvents ctrlMessageBox As Global.Common.ctrlMessageBox
 
     '''<summary>
+    '''PlaceHolder1 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents PlaceHolder1 As Global.System.Web.UI.WebControls.PlaceHolder
+
+    '''<summary>
     '''ctrlREPRESENTATIVE_ID control.
     '''</summary>
     '''<remarks>
@@ -644,6 +635,15 @@ Partial Public Class ctrlHU_Organization
     Protected WithEvents ctrlREPRESENTATIVE_ID As Global.Common.ctrlFindEmployeePopup
 
     '''<summary>
+    '''PlaceHolder2 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents PlaceHolder2 As Global.System.Web.UI.WebControls.PlaceHolder
+
+    '''<summary>
     '''CtrlhidACCOUNTING_ID control.
     '''</summary>
     '''<remarks>
@@ -651,6 +651,15 @@ Partial Public Class ctrlHU_Organization
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents CtrlhidACCOUNTING_ID As Global.Common.ctrlFindEmployeePopup
+
+    '''<summary>
+    '''PlaceHolder3 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents PlaceHolder3 As Global.System.Web.UI.WebControls.PlaceHolder
 
     '''<summary>
     '''CtrlHR_ID control.
