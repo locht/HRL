@@ -53,14 +53,7 @@
                 <td>
                     <tlk:RadTextBox ID="txtPhone" MaxLength="255" runat="server">
                     </tlk:RadTextBox>
-                </td>
-                <td class="lb">
-                    <%# Translate("Số fax")%>
-                </td>
-                <td>
-                    <tlk:RadTextBox ID="txtFax" MaxLength="255" runat="server">
-                    </tlk:RadTextBox>
-                </td>
+                </td>                
                 <td class="lb">
                     <%# Translate("Địa chỉ Web")%>
                 </td>
@@ -92,21 +85,7 @@
                     </tlk:RadTextBox>
                 </td>
             </tr>
-            <tr>
-                <td class="lb">
-                    <%# Translate("Mã số thuế trung tâm")%>
-                </td>
-                <td>
-                    <tlk:RadTextBox ID="txtTaxCode" MaxLength="255" runat="server">
-                    </tlk:RadTextBox>
-                </td>
-                <td class="lb">
-                    <%# Translate("Lĩnh vực đào tạo")%>
-                </td>
-                <td>
-                    <tlk:RadTextBox ID="txtTrainField" MaxLength="255" runat="server">
-                    </tlk:RadTextBox>
-                </td>
+            <tr>                           
                 <td class="lb">
                     <%# Translate("Người đại diện trung tâm")%>
                 </td>
@@ -141,7 +120,7 @@
             <ClientSettings EnableRowHoverStyle="true">
                 <Selecting AllowRowSelect="true" />
             </ClientSettings>
-            <MasterTableView DataKeyNames="ID" ClientDataKeyNames="CODE,NAME_VN,NAME_EN,ADDRESS,PHONE,FAX,WEB,CONTACT_PERSON,CONTACT_PHONE,CONTACT_EMAIL,TAX_CODE,TRAIN_FIELD,DESCRIPTION,REPRESENT,REMARK">
+            <MasterTableView DataKeyNames="ID" ClientDataKeyNames="CODE,NAME_VN,NAME_EN,ADDRESS,PHONE,WEB,CONTACT_PERSON,CONTACT_PHONE,CONTACT_EMAIL,DESCRIPTION,REPRESENT,REMARK">
                 <Columns>
                     <tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderStyle-HorizontalAlign="Center"
                         HeaderStyle-Width="30px" ItemStyle-HorizontalAlign="Center">
@@ -156,9 +135,7 @@
                     <tlk:GridBoundColumn HeaderText="<%$ Translate: Địa chỉ %>" DataField="ADDRESS" UniqueName="ADDRESS"
                         SortExpression="ADDRESS" HeaderStyle-Width="150px" />
                     <tlk:GridBoundColumn HeaderText="<%$ Translate: Điện thoại %>" DataField="PHONE"
-                        UniqueName="PHONE" SortExpression="PHONE" />
-                    <tlk:GridBoundColumn HeaderText="<%$ Translate: Số fax %>" DataField="FAX" UniqueName="FAX"
-                        SortExpression="FAX" />
+                        UniqueName="PHONE" SortExpression="PHONE" />                  
                     <tlk:GridBoundColumn HeaderText="<%$ Translate: Địa chỉ website %>" DataField="WEB"
                         UniqueName="WEB" SortExpression="WEB" />
                     <tlk:GridBoundColumn HeaderText="<%$ Translate: Người liên hệ %>" DataField="CONTACT_PERSON"
@@ -166,11 +143,7 @@
                     <tlk:GridBoundColumn HeaderText="<%$ Translate: Điện thoại người liên hệ %>" DataField="CONTACT_PHONE"
                         UniqueName="CONTACT_PHONE" SortExpression="CONTACT_PHONE" />
                     <tlk:GridBoundColumn HeaderText="<%$ Translate: Email người liên hệ %>" DataField="CONTACT_EMAIL"
-                        UniqueName="CONTACT_EMAIL" SortExpression="CONTACT_EMAIL" />
-                    <tlk:GridBoundColumn HeaderText="<%$ Translate: Mã số thuế trung tâm %>" DataField="TAX_CODE"
-                        UniqueName="TAX_CODE" SortExpression="TAX_CODE" />
-                    <tlk:GridBoundColumn HeaderText="<%$ Translate: Lĩnh vực đào tạo %>" DataField="TRAIN_FIELD"
-                        UniqueName="TRAIN_FIELD" SortExpression="TRAIN_FIELD" />
+                        UniqueName="CONTACT_EMAIL" SortExpression="CONTACT_EMAIL" />                                
                     <tlk:GridBoundColumn HeaderText="<%$ Translate: Người đại diện trung tâm %>" DataField="REPRESENT"
                         UniqueName="REPRESENT" SortExpression="REPRESENT" />
                     <tlk:GridBoundColumn HeaderText="<%$ Translate: Mô tả trung tâm %>" DataField="DESCRIPTION"

@@ -135,13 +135,10 @@ Public Class ctrlTR_Center
                     txtContactPhone.ReadOnly = False
                     txtContactPerson.ReadOnly = False
                     txtDescription.ReadOnly = False
-                    txtFax.ReadOnly = False
                     txtNameEN.ReadOnly = False
                     txtNameVN.ReadOnly = False
                     txtPhone.ReadOnly = False
                     txtRepresent.ReadOnly = False
-                    txtTaxCode.ReadOnly = False
-                    txtTrainField.ReadOnly = False
                     txtWeb.ReadOnly = False
                     txtRemark.ReadOnly = False
 
@@ -153,13 +150,10 @@ Public Class ctrlTR_Center
                     txtContactPhone.ReadOnly = True
                     txtContactPerson.ReadOnly = True
                     txtDescription.ReadOnly = True
-                    txtFax.ReadOnly = True
                     txtNameEN.ReadOnly = True
                     txtNameVN.ReadOnly = True
                     txtPhone.ReadOnly = True
                     txtRepresent.ReadOnly = True
-                    txtTaxCode.ReadOnly = True
-                    txtTrainField.ReadOnly = True
                     txtWeb.ReadOnly = True
                     txtRemark.ReadOnly = True
 
@@ -169,13 +163,10 @@ Public Class ctrlTR_Center
                     txtContactPhone.Text = ""
                     txtContactPerson.Text = ""
                     txtDescription.Text = ""
-                    txtFax.Text = ""
                     txtNameEN.Text = ""
                     txtNameVN.Text = ""
                     txtPhone.Text = ""
                     txtRepresent.Text = ""
-                    txtTaxCode.Text = ""
-                    txtTrainField.Text = ""
                     txtRemark.Text = ""
                 Case CommonMessage.STATE_EDIT
 
@@ -186,13 +177,10 @@ Public Class ctrlTR_Center
                     txtContactPhone.ReadOnly = False
                     txtContactPerson.ReadOnly = False
                     txtDescription.ReadOnly = False
-                    txtFax.ReadOnly = False
                     txtNameEN.ReadOnly = False
                     txtNameVN.ReadOnly = False
                     txtPhone.ReadOnly = False
                     txtRepresent.ReadOnly = False
-                    txtTaxCode.ReadOnly = False
-                    txtTrainField.ReadOnly = False
                     txtWeb.ReadOnly = False
                     txtRemark.ReadOnly = False
 
@@ -253,13 +241,10 @@ Public Class ctrlTR_Center
         dic.Add("NAME_EN", txtNameEN)
         dic.Add("ADDRESS", txtAddress)
         dic.Add("PHONE", txtPhone)
-        dic.Add("FAX", txtFax)
         dic.Add("WEB", txtWeb)
         dic.Add("CONTACT_PERSON", txtContactPerson)
         dic.Add("CONTACT_PHONE", txtContactPhone)
         dic.Add("CONTACT_EMAIL", txtContactEmail)
-        dic.Add("TAX_CODE", txtTaxCode)
-        dic.Add("TRAIN_FIELD", txtTrainField)
         dic.Add("DESCRIPTION", txtDescription)
         dic.Add("REPRESENT", txtRepresent)
         dic.Add("REMARK", txtRemark)
@@ -284,13 +269,10 @@ Public Class ctrlTR_Center
                     txtContactPhone.Text = ""
                     txtContactPerson.Text = ""
                     txtDescription.Text = ""
-                    txtFax.Text = ""
                     txtNameEN.Text = ""
                     txtNameVN.Text = ""
                     txtPhone.Text = ""
                     txtRepresent.Text = ""
-                    txtTaxCode.Text = ""
-                    txtTrainField.Text = ""
                     txtRemark.Text = ""
                     UpdateControlState()
                 Case CommonMessage.TOOLBARITEM_EDIT
@@ -352,13 +334,10 @@ Public Class ctrlTR_Center
                         objCenter.NAME_EN = txtNameEN.Text
                         objCenter.ADDRESS = txtAddress.Text
                         objCenter.PHONE = txtPhone.Text
-                        objCenter.FAX = txtFax.Text
                         objCenter.WEB = txtWeb.Text
                         objCenter.CONTACT_PERSON = txtContactPerson.Text
                         objCenter.CONTACT_PHONE = txtContactPhone.Text
                         objCenter.CONTACT_EMAIL = txtContactEmail.Text
-                        objCenter.TAX_CODE = txtTaxCode.Text
-                        objCenter.TRAIN_FIELD = txtTrainField.Text
                         objCenter.DESCRIPTION = txtDescription.Text
                         objCenter.REPRESENT = txtRepresent.Text
                         objCenter.REMARK = txtRemark.Text
