@@ -44414,4 +44414,84 @@ Xin cám ơn!
       <string>Kế hoạch năm</string>
     </Value>
   </Item>
+  <Item>
+    <Key>
+      <string>BẠN PHẢI NHẬP NHÓM NGẠCH BẬC</string>
+    </Key>
+    <Value>
+      <string>Bạn phải nhập nhóm ngạch bậc</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>BẠN PHẢI NHẬP MÃ NGẠCH LƯƠNG</string>
+    </Key>
+    <Value>
+      <string>Bạn phải nhập Mã ngạch lương</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>MÃ NGẠCH LƯƠNG ĐÃ TỒN TẠI.</string>
+    </Key>
+    <Value>
+      <string>Mã ngạch lương đã tồn tại.</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>BẠN PHẢI NHẬP MỨC LƯƠNG TỪ.</string>
+    </Key>
+    <Value>
+      <string>Bạn phải nhập mức lương từ.</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>BẠN PHẢI NHẬP MỨC TỪ.</string>
+    </Key>
+    <Value>
+      <string>Bạn phải nhập mức từ.</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>BẠN PHẢI NHẬP MỨC LƯƠNG ĐẾN.</string>
+    </Key>
+    <Value>
+      <string>Bạn phải nhập mức lương đến.</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>BẠN PHẢI NHẬP MỨC ĐẾN.</string>
+    </Key>
+    <Value>
+      <string>Bạn phải nhập mức đến.</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>NHÓM NGẠCH BẬC</string>
+    </Key>
+    <Value>
+      <string>Nhóm ngạch bậc</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>MỨC LƯƠNG ĐẾN</string>
+    </Key>
+    <Value>
+      <string>Mức lương đến</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>CTRLPA_SALARYLEVELGROUP</string>
+    </Key>
+    <Value>
+      <string>Nhóm ngạch lương</string>
+    </Value>
+  </Item>
 </SerializableDictionaryOfStringString>

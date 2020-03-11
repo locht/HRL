@@ -205,7 +205,11 @@
     <None Include="Service References\PayrollBusiness\Payroll.PayrollBusiness.SalaryLevelDTO.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <Content Include="Modules\Payroll\List\ctrlPA_SalaryLevelGroup.ascx" />
     <Content Include="Service References\PayrollBusiness\Payroll.PayrollBusiness.SalaryLevelTypeDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\PayrollBusiness\Payroll.PayrollBusiness.SalaryLevelGroupDTO.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
     <None Include="Service References\PayrollBusiness\Payroll.PayrollBusiness.SalaryRankDTO.datasource">
@@ -402,6 +406,13 @@
       <DependentUpon>ctrlDashboard.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="Modules\Payroll\List\ctrlPA_SalaryLevelGroup.ascx.designer.vb">
+      <DependentUpon>ctrlPA_SalaryLevelGroup.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Payroll\List\ctrlPA_SalaryLevelGroup.ascx.vb">
+      <DependentUpon>ctrlPA_SalaryLevelGroup.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
     <Compile Include="Modules\Payroll\List\ctrlPA_SaleCommision.ascx.designer.vb">
       <DependentUpon>ctrlPA_SaleCommision.ascx</DependentUpon>
     </Compile>
@@ -509,6 +520,7 @@
       <DependentUpon>ctrlPA_WorkStandard.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="Modules\Payroll\PayrollRepository.SalaryLevelGroup.vb" />
     <Compile Include="Modules\Payroll\PayrollRepository.SalaryLevelType.vb" />
     <Compile Include="Modules\Payroll\PayrollRepository.SalaryType.vb" />
     <Compile Include="Modules\Payroll\List\ctrlPA_SalaryType.ascx.designer.vb">

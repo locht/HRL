@@ -10,8 +10,8 @@
     Public Property ACTFLG_DB As String
     Public Property ORDERS As Decimal?
     Public Property OTHER_USE As Decimal?
-    Public Property GRADE_GROUP As Decimal?
+    Public Property GRADE_GROUP As Decimal
     Public Property GRADE_GROUP_NAME As String
-    Public Property SAL_FR As Decimal?
-    Public Property SAL_TO As Decimal?
+    Public Property SAL_FR As Decimal
+    Public Property SAL_TO As Decimal
 End Class

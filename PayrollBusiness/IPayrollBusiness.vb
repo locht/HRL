@@ -300,6 +300,28 @@ Namespace PayrollBusiness.ServiceContracts
 
 #End Region
 
+#Region "Salary Level Group"
+
+        <OperationContract()>
+        Function GetSalaryLevelGroup(ByVal _filter As SalaryLevelGroupDTO, ByVal PageIndex As Integer,
+                             ByVal PageSize As Integer,
+                             ByRef Total As Integer,
+                             Optional ByVal Sorts As String = "CREATED_DATE desc") As List(Of SalaryLevelGroupDTO)
+        <OperationContract()>
+        Function InsertSalaryLevelGroup(ByVal objSalaryLevelGroup As SalaryLevelGroupDTO, ByVal log As UserLog, ByRef gID As Decimal) As Boolean
+        <OperationContract()>
+        Function ValidateSalaryLevelGroup(ByVal objSalaryLevelGroup As SalaryLevelGroupDTO) As Boolean
+        <OperationContract()>
+        Function ModifySalaryLevelGroup(ByVal objSalaryLevelGroup As SalaryLevelGroupDTO, ByVal log As UserLog, ByRef gID As Decimal) As Boolean
+
+        <OperationContract()>
+        Function ActiveSalaryLevelGroup(ByVal lstID As List(Of Decimal), ByVal log As UserLog, ByVal bActive As String) As Boolean
+
+        <OperationContract()>
+        Function DeleteSalaryLevelGroup(ByVal lstSalaryLevelGroup As List(Of Decimal)) As Boolean
+
+#End Region
+
 #Region "Salary Level Type"
 
         <OperationContract()>

@@ -24,6 +24,7 @@
       <Group>
         <Item Value="ctrlPA_SalaryGroup" Text="Thang lương" PostBack="True" NavigateUrl="Default.aspx?mid=Payroll&amp;fid=ctrlPA_SalaryGroup&amp;group=List" CheckPermission="true"/>
         <Item Value="ctrlPA_SalaryLevel" Text="Ngạch lương" PostBack="True" NavigateUrl="Default.aspx?mid=Payroll&amp;fid=ctrlPA_SalaryLevel&amp;group=List" CheckPermission="true"/>
+        <Item Value="ctrlPA_SalaryLevelGroup" Text="Nhóm ngạch lương" PostBack="True" NavigateUrl="Default.aspx?mid=Payroll&amp;fid=ctrlPA_SalaryLevelGroup&amp;group=List" CheckPermission="true"/>
         <Item Value="ctrlPA_SalaryRank" Text="Bậc lương" PostBack="True" NavigateUrl="Default.aspx?mid=Payroll&amp;fid=ctrlPA_SalaryRank&amp;group=List" CheckPermission="true"/>
         <Item Value="ctrlPA_SalaryType" Text="Nhóm lương" PostBack="True" NavigateUrl="Default.aspx?mid=Payroll&amp;fid=ctrlPA_SalaryType&amp;group=List" CheckPermission="true"/>
         <Item Value="ctrlPA_SaleCommision" Text="Đối tượng Sale Commmision" PostBack="True" NavigateUrl="Default.aspx?mid=Payroll&amp;fid=ctrlPA_SaleCommision&amp;group=List" CheckPermission="true"/>
