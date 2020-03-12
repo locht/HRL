@@ -67,6 +67,8 @@
             <EntitySet Name="PA_SALE_COMMISION" EntityType="PayrollModel.Store.PA_SALE_COMMISION" store:Type="Tables"  />
             <EntitySet Name="HUV_ORGANIZATION" EntityType="PayrollModel.Store.HUV_ORGANIZATION" store:Type="Tables"  />
             <EntitySet Name="PA_SALARY_LEVEL_TYPE" EntityType="PayrollModel.Store.PA_SALARY_LEVEL_TYPE" store:Type="Tables"  />
+            <EntitySet Name="PA_SALARY_LEVEL_GROUP" EntityType="PayrollModel.Store.PA_SALARY_LEVEL_GROUP" store:Type="Tables"  />
+            <EntitySet Name="PA_SALARY_EXCHANGE_RATE" EntityType="PayrollModel.Store.PA_SALARY_EXCHANGE_RATE" store:Type="Tables"  />
             <AssociationSet Name="FK_PSG_PSL" Association="PayrollModel.Store.FK_PSG_PSL">
                 <End Role="PA_SALARY_GROUP" EntitySet="PA_SALARY_GROUP" />
                 <End Role="PA_SALARY_LEVEL" EntitySet="PA_SALARY_LEVEL" />
@@ -173,8 +175,8 @@
             <Property Name="ORDERS" Type="number" Nullable="true" Precision="38" />
             <Property Name="OTHER_USE" Type="nvarchar2" Nullable="false" MaxLength="255" />
             <Property Name="GRADE_GROUP" Type="number" Nullable="false" Precision="38" />
-            <Property Name="SAL_FR" Type="number" Nullable="false" Precision="38" />
-            <Property Name="SAL_TO" Type="number" Nullable="false" Precision="38" />
+            <Property Name="SAL_FR" Type="number" Nullable="true" Precision="38" />
+            <Property Name="SAL_TO" Type="number" Nullable="true" Precision="38" />
         </EntityType>
         <EntityType Name="PA_SALARY_RANK">
             <Key>
@@ -1441,6 +1443,45 @@
             <Property Name="STATUS" Type="number" Nullable="true" Precision="38" />
             <Property Name="NAME_VN" Type="nvarchar2" Nullable="false" MaxLength="255" />
         </EntityType>
+        <EntityType Name="PA_SALARY_LEVEL_GROUP">
+            <Key>
+                <PropertyRef Name="ID" />
+            </Key>
+            <Property Name="ID" Type="number" Nullable="false" Precision="38" />
+            <Property Name="CODE" Type="nvarchar2" Nullable="true" MaxLength="50" />
+            <Property Name="NAME_VN" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="NAME_EN" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="CREATED_DATE" Type="date" Nullable="true" />
+            <Property Name="CREATED_BY" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="CREATED_LOG" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="MODIFIED_DATE" Type="date" Nullable="true" />
+            <Property Name="MODIFIED_BY" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="MODIFIED_LOG" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="REMARK" Type="nvarchar2" Nullable="true" MaxLength="1023" />
+            <Property Name="ACTFLG" Type="nvarchar2" Nullable="true" MaxLength="1" />
+            <Property Name="ORDERS" Type="number" Nullable="true" Precision="38" />
+            <Property Name="OTHER_USE" Type="nvarchar2" Nullable="true" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="PA_SALARY_EXCHANGE_RATE">
+            <Key>
+                <PropertyRef Name="ID" />
+            </Key>
+            <Property Name="ID" Type="number" Nullable="false" Precision="38" />
+            <Property Name="CODE" Type="nvarchar2" Nullable="true" MaxLength="50" />
+            <Property Name="NAME" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="FOREIGN_CURRENCY_TYPE" Type="nvarchar2" Nullable="false" MaxLength="255" />
+            <Property Name="EFFECT_DATE" Type="date" Nullable="true" />
+            <Property Name="REMARK" Type="nvarchar2" Nullable="true" MaxLength="1023" />
+            <Property Name="CREATED_DATE" Type="date" Nullable="false" />
+            <Property Name="CREATED_BY" Type="nvarchar2" Nullable="false" MaxLength="255" />
+            <Property Name="CREATED_LOG" Type="nvarchar2" Nullable="false" MaxLength="255" />
+            <Property Name="MODIFIED_DATE" Type="date" Nullable="false" />
+            <Property Name="MODIFIED_BY" Type="nvarchar2" Nullable="false" MaxLength="255" />
+            <Property Name="MODIFIED_LOG" Type="nvarchar2" Nullable="false" MaxLength="255" />
+            <Property Name="ORDERS" Type="number" Nullable="true" Precision="38" />
+            <Property Name="ACTFLG" Type="nvarchar2" Nullable="true" MaxLength="1" />
+            <Property Name="IS_DELETED" Type="number" Nullable="true" Precision="5" />
+        </EntityType>
     <Association Name="FK_PSG_PSL">
         <End Role="PA_SALARY_GROUP" Type="PayrollModel.Store.PA_SALARY_GROUP" Multiplicity="1">
         </End>
@@ -1795,6 +1836,8 @@
           <EntitySet Name="PA_SALE_COMMISION" EntityType="PayrollModel.PA_SALE_COMMISION" />
           <EntitySet Name="HUV_ORGANIZATION" EntityType="PayrollModel.HUV_ORGANIZATION" />
           <EntitySet Name="PA_SALARY_LEVEL_TYPE" EntityType="PayrollModel.PA_SALARY_LEVEL_TYPE" />
+          <EntitySet Name="PA_SALARY_LEVEL_GROUP" EntityType="PayrollModel.PA_SALARY_LEVEL_GROUP" />
+          <EntitySet Name="PA_SALARY_EXCHANGE_RATE" EntityType="PayrollModel.PA_SALARY_EXCHANGE_RATE" />
           </EntityContainer>
         <EntityType Name="PA_SALARY_GROUP">
           <Key>
@@ -1840,8 +1883,8 @@
           <Property Type="Decimal" Name="ORDERS" Precision="38" />
           <Property Type="String" Name="OTHER_USE" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Type="Decimal" Name="GRADE_GROUP" Nullable="false" />
-          <Property Type="Decimal" Name="SAL_FR" Nullable="false" />
-          <Property Type="Decimal" Name="SAL_TO" Nullable="false" />
+          <Property Type="Decimal" Name="SAL_FR" />
+          <Property Type="Decimal" Name="SAL_TO" />
         </EntityType>
         <EntityType Name="PA_SALARY_RANK">
           <Key>
@@ -3329,6 +3372,45 @@
           <Property Type="Decimal" Name="STATUS" Precision="38" Scale="0" />
           <Property Type="String" Name="NAME_VN" Nullable="false" FixedLength="false" MaxLength="255" />
         </EntityType>
+        <EntityType Name="PA_SALARY_LEVEL_GROUP">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Decimal" Name="ID" Nullable="false" Precision="38" Scale="0" />
+          <Property Type="String" Name="CODE" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="NAME_VN" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="NAME_EN" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="CREATED_DATE" />
+          <Property Type="String" Name="CREATED_BY" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="CREATED_LOG" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="MODIFIED_DATE" />
+          <Property Type="String" Name="MODIFIED_BY" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="MODIFIED_LOG" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="REMARK" MaxLength="1023" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ACTFLG" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Type="Decimal" Name="ORDERS" Precision="38" Scale="0" />
+          <Property Type="String" Name="OTHER_USE" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="PA_SALARY_EXCHANGE_RATE">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Decimal" Name="ID" Nullable="false" Precision="38" Scale="0" />
+          <Property Type="String" Name="CODE" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="NAME" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="FOREIGN_CURRENCY_TYPE" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="EFFECT_DATE" />
+          <Property Type="String" Name="REMARK" MaxLength="1023" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="CREATED_DATE" Nullable="false" />
+          <Property Type="String" Name="CREATED_BY" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="CREATED_LOG" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="MODIFIED_DATE" Nullable="false" />
+          <Property Type="String" Name="MODIFIED_BY" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="MODIFIED_LOG" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="Decimal" Name="ORDERS" Precision="38" Scale="0" />
+          <Property Type="String" Name="ACTFLG" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Type="Int16" Name="IS_DELETED" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -4703,6 +4785,47 @@
                 </MappingFragment>
             </EntityTypeMapping>
         </EntitySetMapping>
+        <EntitySetMapping Name="PA_SALARY_LEVEL_GROUP">
+            <EntityTypeMapping TypeName="IsTypeOf(PayrollModel.PA_SALARY_LEVEL_GROUP)">
+                <MappingFragment StoreEntitySet="PA_SALARY_LEVEL_GROUP">
+                    <ScalarProperty Name="ID" ColumnName="ID" />
+                    <ScalarProperty Name="CODE" ColumnName="CODE" />
+                    <ScalarProperty Name="NAME_VN" ColumnName="NAME_VN" />
+                    <ScalarProperty Name="NAME_EN" ColumnName="NAME_EN" />
+                    <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+                    <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+                    <ScalarProperty Name="CREATED_LOG" ColumnName="CREATED_LOG" />
+                    <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+                    <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+                    <ScalarProperty Name="MODIFIED_LOG" ColumnName="MODIFIED_LOG" />
+                    <ScalarProperty Name="REMARK" ColumnName="REMARK" />
+                    <ScalarProperty Name="ACTFLG" ColumnName="ACTFLG" />
+                    <ScalarProperty Name="ORDERS" ColumnName="ORDERS" />
+                    <ScalarProperty Name="OTHER_USE" ColumnName="OTHER_USE" />
+                </MappingFragment>
+            </EntityTypeMapping>
+        </EntitySetMapping>
+        <EntitySetMapping Name="PA_SALARY_EXCHANGE_RATE">
+            <EntityTypeMapping TypeName="IsTypeOf(PayrollModel.PA_SALARY_EXCHANGE_RATE)">
+                <MappingFragment StoreEntitySet="PA_SALARY_EXCHANGE_RATE">
+                    <ScalarProperty Name="ID" ColumnName="ID" />
+                    <ScalarProperty Name="CODE" ColumnName="CODE" />
+                    <ScalarProperty Name="NAME" ColumnName="NAME" />
+                    <ScalarProperty Name="FOREIGN_CURRENCY_TYPE" ColumnName="FOREIGN_CURRENCY_TYPE" />
+                    <ScalarProperty Name="EFFECT_DATE" ColumnName="EFFECT_DATE" />
+                    <ScalarProperty Name="REMARK" ColumnName="REMARK" />
+                    <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+                    <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+                    <ScalarProperty Name="CREATED_LOG" ColumnName="CREATED_LOG" />
+                    <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+                    <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+                    <ScalarProperty Name="MODIFIED_LOG" ColumnName="MODIFIED_LOG" />
+                    <ScalarProperty Name="ORDERS" ColumnName="ORDERS" />
+                    <ScalarProperty Name="ACTFLG" ColumnName="ACTFLG" />
+                    <ScalarProperty Name="IS_DELETED" ColumnName="IS_DELETED" />
+                </MappingFragment>
+            </EntityTypeMapping>
+        </EntitySetMapping>
     </EntityContainerMapping>
 </Mapping></edmx:Mappings>
   </edmx:Runtime>
@@ -4724,7 +4847,7 @@
     </edmx:Options>
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram Name="PayrollContext" ZoomLevel="69" ShowGrid="false" SnapToGrid="true" DisplayType="true" >
+      <Diagram Name="PayrollContext" ZoomLevel="67" ShowGrid="false" SnapToGrid="true" DisplayType="true" >
         <EntityTypeShape EntityType="PayrollModel.PA_SALARY_GROUP" Width="1.875" PointX="6.375" PointY="2.125" Height="4.480205078125" IsExpanded="true" />
         <EntityTypeShape EntityType="PayrollModel.PA_SALARY_LEVEL" Width="1.875" PointX="9" PointY="1.75" Height="4.6725065104166656" IsExpanded="true" />
         <EntityTypeShape EntityType="PayrollModel.PA_SALARY_RANK" Width="2.25" PointX="15.5" PointY="1.625" Height="3.5186979166666656" IsExpanded="true" />
@@ -4873,7 +4996,9 @@
         <EntityTypeShape EntityType="PayrollModel.HU_TITLE" Width="1.5" PointX="0.75" PointY="22.75" Height="4.8648079427083246" />
         <EntityTypeShape EntityType="PayrollModel.PA_SALE_COMMISION" Width="2.125" PointX="22.625" PointY="20.75" Height="3.5186979166666674" />
         <EntityTypeShape EntityType="PayrollModel.HUV_ORGANIZATION" Width="1.5" PointX="11.495874836806149" PointY="24.070537712457842" />
-        <EntityTypeShape EntityType="PayrollModel.PA_SALARY_LEVEL_TYPE" Width="1.5" PointX="3.375" PointY="23.75" Height="3.7109993489583353" />
+        <EntityTypeShape EntityType="PayrollModel.PA_SALARY_LEVEL_TYPE" Width="2.25" PointX="2.625" PointY="23.75" Height="3.7109993489583353" />
+        <EntityTypeShape EntityType="PayrollModel.PA_SALARY_LEVEL_GROUP" Width="2.375" PointX="5.375" PointY="23.75" Height="3.7109993489583246" />
+        <EntityTypeShape EntityType="PayrollModel.PA_SALARY_EXCHANGE_RATE" Width="2.375" PointX="23.375" PointY="12.75" Height="3.9033007812499818" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
