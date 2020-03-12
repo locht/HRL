@@ -25,7 +25,6 @@
                     <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ErrorMessage="Loại ngoại tệ không được chứa ký tự đặc biệt và khoảng trắng"
                         ControlToValidate="cboFrCuType" ValidationExpression="^[a-zA-Z0-9_]*$"></asp:RegularExpressionValidator>
                 </td>
-
                 <td class="lb">
                     <asp:Label ID="lbEffectDate" runat="server" Text="Ngày hiệu lực"></asp:Label>
                     <span class="lbReq">*</span>
@@ -56,17 +55,17 @@
                 </td>
             </tr>         
         </table>
-    </tlk:RadPane>
+    </tlk:RadPane>     
     <tlk:RadPane ID="RadPane2" runat="server" Scrolling="None">
         <tlk:RadGrid ID="rgData" runat="server" Height="100%">
-            <MasterTableView DataKeyNames="ID" ClientDataKeyNames="NAME,EFFECT_DATE,REMARK,FOREIGN_CURRENCY_TYPE,ORDERS">
+            <MasterTableView DataKeyNames="ID" ClientDataKeyNames="NAME,EFFECT_DATE,REMARK,CODE,ORDERS">
                 <Columns>
                     <tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderStyle-HorizontalAlign="Center"
                         HeaderStyle-Width="30px" ItemStyle-HorizontalAlign="Center">
                     </tlk:GridClientSelectColumn>
                     <tlk:GridBoundColumn DataField="ID" Visible="false" />              
-                    <tlk:GridBoundColumn HeaderText="<%$ Translate: Loại ngoại tệ %>" DataField="FOREIGN_CURRENCY_TYPE"
-                        UniqueName="FOREIGN_CURRENCY_TYPE" SortExpression="FOREIGN_CURRENCY_TYPE" />     
+                    <tlk:GridBoundColumn HeaderText="<%$ Translate: Loại ngoại tệ %>" DataField="CODE"
+                        UniqueName="CODE" SortExpression="CODE" />     
                     <tlk:GridDateTimeColumn HeaderText="Ngày hiệu lực" DataField="EFFECT_DATE"
                         UniqueName="EFFECT_DATE" DataFormatString="{0:dd/MM/yyyy}" SortExpression="EFFECT_DATE">
                         <HeaderStyle HorizontalAlign="Center" />
@@ -74,12 +73,14 @@
                     </tlk:GridDateTimeColumn>   
                     <tlk:GridBoundColumn HeaderText="<%$ Translate: Tỷ giá %>" DataField="NAME"
                         UniqueName="NAME" SortExpression="NAME" /> 
-                      <tlk:GridBoundColumn HeaderText="<%$ Translate: Ghi chú %>" DataField="REMARK" UniqueName="REMARK"
+                     <tlk:GridBoundColumn HeaderText="<%$ Translate: Ghi chú %>" DataField="REMARK" UniqueName="REMARK"
                         SortExpression="REMARK" />
                 </Columns>
             </MasterTableView>
         </tlk:RadGrid>
     </tlk:RadPane>
+
+    
 </tlk:RadSplitter>
 <Common:ctrlMessageBox ID="ctrlMessageBox" runat="server" />
 <tlk:RadCodeBlock ID="RadCodeBlock1" runat="server">
