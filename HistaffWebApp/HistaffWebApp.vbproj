@@ -431,6 +431,7 @@
     <Content Include="Modules\Payroll\List\ctrlPA_OrgBonus.ascx" />
     <Content Include="Modules\Payroll\List\ctrlPA_PaymentsList.ascx" />
     <Content Include="Modules\Payroll\List\ctrlPA_PaymentSources.ascx" />
+    <Content Include="Modules\Payroll\List\ctrlPA_SalaryExRate.ascx" />
     <Content Include="Modules\Payroll\List\ctrlPA_SalaryGroup.ascx" />
     <Content Include="Modules\Payroll\List\ctrlPA_SalaryLevelGroup.ascx" />
     <Content Include="Modules\Payroll\List\ctrlPA_SalaryLevel.ascx" />

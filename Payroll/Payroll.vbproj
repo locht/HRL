@@ -199,12 +199,16 @@
     <None Include="Service References\PayrollBusiness\Payroll.PayrollBusiness.PaymentSourcesDTO.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <Content Include="Service References\PayrollBusiness\Payroll.PayrollBusiness.SalaryExRateDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
     <None Include="Service References\PayrollBusiness\Payroll.PayrollBusiness.SalaryGroupDTO.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\PayrollBusiness\Payroll.PayrollBusiness.SalaryLevelDTO.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <Content Include="Modules\Payroll\List\ctrlPA_SalaryExRate.ascx" />
     <Content Include="Modules\Payroll\List\ctrlPA_SalaryLevelGroup.ascx" />
     <Content Include="Service References\PayrollBusiness\Payroll.PayrollBusiness.SalaryLevelTypeDTO.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
@@ -406,6 +410,13 @@
       <DependentUpon>ctrlDashboard.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="Modules\Payroll\List\ctrlPA_SalaryExRate.ascx.designer.vb">
+      <DependentUpon>ctrlPA_SalaryExRate.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Payroll\List\ctrlPA_SalaryExRate.ascx.vb">
+      <DependentUpon>ctrlPA_SalaryExRate.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
     <Compile Include="Modules\Payroll\List\ctrlPA_SalaryLevelGroup.ascx.designer.vb">
       <DependentUpon>ctrlPA_SalaryLevelGroup.ascx</DependentUpon>
     </Compile>
@@ -520,6 +531,7 @@
       <DependentUpon>ctrlPA_WorkStandard.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="Modules\Payroll\PayrollRepository.SalaryExRate.vb" />
     <Compile Include="Modules\Payroll\PayrollRepository.SalaryLevelGroup.vb" />
     <Compile Include="Modules\Payroll\PayrollRepository.SalaryLevelType.vb" />
     <Compile Include="Modules\Payroll\PayrollRepository.SalaryType.vb" />

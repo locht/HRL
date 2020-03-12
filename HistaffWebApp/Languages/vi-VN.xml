@@ -44494,4 +44494,20 @@ Xin cám ơn!
       <string>Nhóm ngạch lương</string>
     </Value>
   </Item>
+  <Item>
+    <Key>
+      <string>CTRLPA_SALARYEXRATE</string>
+    </Key>
+    <Value>
+      <string>Tỷ giá</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>LOẠI NGOẠI TỆ</string>
+    </Key>
+    <Value>
+      <string>Loại ngoại tệ</string>
+    </Value>
+  </Item>
 </SerializableDictionaryOfStringString>

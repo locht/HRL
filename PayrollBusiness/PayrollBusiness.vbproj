@@ -71,6 +71,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="PayrollBusiness.Dashboard.vb" />
+    <Compile Include="PayrollBusiness.SalaryExRate.vb" />
+    <Compile Include="PayrollBusiness.SalaryLevelGroup.vb" />
     <Compile Include="PayrollBusiness.SalaryLevelType.vb" />
     <Compile Include="PayrollBusiness.SalaryType.vb" />
     <Compile Include="PayrollBusiness.IncentiveRank.vb" />

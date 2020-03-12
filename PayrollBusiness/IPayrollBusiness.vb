@@ -278,6 +278,29 @@ Namespace PayrollBusiness.ServiceContracts
 
 #End Region
 
+#Region "Salary ExRate"
+        <OperationContract()>
+        Function GetSalaryExRate(ByVal _filter As SalaryExRateDTO, ByVal PageIndex As Integer,
+                             ByVal PageSize As Integer,
+                             ByRef Total As Integer,
+                             Optional ByVal Sorts As String = "CREATED_DATE desc") As List(Of SalaryExRateDTO)
+        <OperationContract()>
+        Function GetSalaryExRateCombo(ByVal dateValue As Date, ByVal isBlank As Boolean) As DataTable
+        <OperationContract()>
+        Function InsertSalaryExRate(ByVal objSalaryExRate As SalaryExRateDTO, ByVal log As UserLog, ByRef gID As Decimal) As Boolean
+        <OperationContract()>
+        Function ValidateSalaryExRate(ByVal objSalaryExRate As SalaryExRateDTO) As Boolean
+        <OperationContract()>
+        Function ModifySalaryExRate(ByVal objSalaryExRate As SalaryExRateDTO, ByVal log As UserLog, ByRef gID As Decimal) As Boolean
+        <OperationContract()>
+        Function ActiveSalaryExRate(ByVal lstID As List(Of Decimal), ByVal log As UserLog, ByVal bActive As String) As Boolean
+        <OperationContract()>
+        Function DeleteSalaryExRate(ByVal lstID As List(Of Decimal)) As Boolean
+        <OperationContract()>
+        Function GetEffectSalaryExRate() As SalaryExRateDTO
+
+#End Region
+
 #Region "Salary Level"
 
         <OperationContract()>
