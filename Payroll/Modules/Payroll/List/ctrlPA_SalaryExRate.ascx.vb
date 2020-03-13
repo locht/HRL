@@ -385,7 +385,7 @@ Public Class ctrlPA_SalaryExRate
                     Using xls As New ExcelCommon
                         dtData = CreateDataFilter(True)
                         If dtData.Rows.Count > 0 Then
-                            rgData.ExportExcel(Server, Response, dtData, "SalaryGroup")
+                            rgData.ExportExcel(Server, Response, dtData, "ExchangeRate")
                         Else
                             ShowMessage(Translate(CommonMessage.MESSAGE_WARNING_EXPORT_EMPTY), NotifyType.Warning)
                         End If
@@ -542,9 +542,9 @@ Public Class ctrlPA_SalaryExRate
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
         Try
             Dim startTime As DateTime = DateTime.UtcNow
-            Dim item As GridDataItem = rgData.SelectedItems(0)
             Using rep As New PayrollRepository
                 If CurrentState = CommonMessage.STATE_EDIT Then
+                    Dim item As GridDataItem = rgData.SelectedItems(0)
                     _validate.FOR_CUR_TYPE_CODE = cboFrCuType.SelectedValue
                     _validate.ID = item.GetDataKeyValue("ID")
                     _validate.EFFECT_DATE = rdEffectDate.SelectedDate

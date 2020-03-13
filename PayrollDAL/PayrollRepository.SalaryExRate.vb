@@ -58,7 +58,6 @@ Partial Public Class PayrollRepository
 
             Dim EffectSalaryExRate = query.Select(Function(p) New SalaryExRateDTO With {
                                        .ID = p.ID,
-                                       .CODE = p.CODE,
                                        .NAME = p.NAME,
                                        .REMARK = p.REMARK,
                                        .EFFECT_DATE = p.EFFECT_DATE,
@@ -109,7 +108,6 @@ Partial Public Class PayrollRepository
         Dim objSalaryExRateData As New PA_SALARY_EXCHANGE_RATE
         Try
             objSalaryExRateData.ID = Utilities.GetNextSequence(Context, Context.PA_SALARY_EXCHANGE_RATE.EntitySet.Name)
-            'objSalaryExRateData.CODE = objSalaryExRate.CODE.Trim
             objSalaryExRateData.NAME = objSalaryExRate.NAME.Trim
             objSalaryExRateData.EFFECT_DATE = objSalaryExRate.EFFECT_DATE
             objSalaryExRateData.REMARK = objSalaryExRate.REMARK
@@ -158,7 +156,7 @@ Partial Public Class PayrollRepository
         Dim objSalaryExRateData As New PA_SALARY_EXCHANGE_RATE With {.ID = objSalaryExRate.ID}
         Try
             Context.PA_SALARY_EXCHANGE_RATE.Attach(objSalaryExRateData)
-            objSalaryExRateData.CODE = objSalaryExRate.CODE.Trim
+            objSalaryExRateData.FOR_CUR_TYPE_CODE = objSalaryExRate.FOR_CUR_TYPE_CODE
             objSalaryExRateData.NAME = objSalaryExRate.NAME.Trim
             objSalaryExRateData.EFFECT_DATE = objSalaryExRate.EFFECT_DATE
             objSalaryExRateData.REMARK = objSalaryExRate.REMARK
