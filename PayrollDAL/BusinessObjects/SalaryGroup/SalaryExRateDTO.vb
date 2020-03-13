@@ -11,5 +11,5 @@
     Public Property IS_INCENTIVE As Boolean?
     Public Property ACTFLG As String
     Public Property IS_DELETED As Decimal?
-
+    Public Property FOR_CUR_TYPE_CODE As Decimal?
 End Class

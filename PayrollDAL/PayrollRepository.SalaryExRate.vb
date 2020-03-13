@@ -19,30 +19,23 @@ Partial Public Class PayrollRepository
 
         Try
             Dim query = From p In Context.PA_SALARY_EXCHANGE_RATE
-                        Where p.IS_DELETED = 0
+                        Join l In Context.OT_OTHER_LIST On p.FOR_CUR_TYPE_CODE Equals l.ID
 
-            If _filter.CODE <> "" Then
-                query = query.Where(Function(p) p.CODE.ToUpper.Contains(_filter.CODE.ToUpper))
-            End If
 
-            If _filter.NAME <> "" Then
-                query = query.Where(Function(p) p.NAME.ToUpper.Contains(_filter.NAME.ToUpper))
-            End If
 
-            If _filter.EFFECT_DATE IsNot Nothing Then
-                query = query.Where(Function(p) p.EFFECT_DATE = _filter.EFFECT_DATE)
-            End If
+            Dim lst = query.Select(Function(e) New SalaryExRateDTO With {
+                                       .ID = e.p.ID,
+                                       .CODE = e.p.CODE,
+                                       .NAME = e.p.NAME,
+                                       .REMARK = e.p.REMARK,
+                                       .FOREIGN_CURRENCY_TYPE = e.l.NAME_VN,
+                                       .FOR_CUR_TYPE_CODE = e.p.FOR_CUR_TYPE_CODE,
+                                       .EFFECT_DATE = e.p.EFFECT_DATE,
+                                       .ORDERS = e.p.ORDERS,
+                                       .CREATED_DATE = e.p.CREATED_DATE,
+                                       .ACTFLG = If(e.p.ACTFLG = "A", "Áp dụng", "Ngừng áp dụng")})
 
-            Dim lst = query.Select(Function(p) New SalaryExRateDTO With {
-                                       .ID = p.ID,
-                                       .CODE = p.CODE,
-                                       .NAME = p.NAME,
-                                       .REMARK = p.REMARK,
-                                       .FOREIGN_CURRENCY_TYPE = p.FOREIGN_CURRENCY_TYPE,
-                                       .EFFECT_DATE = p.EFFECT_DATE,
-                                       .ORDERS = p.ORDERS,
-                                       .CREATED_DATE = p.CREATED_DATE,
-                                       .ACTFLG = If(p.ACTFLG = "A", "Áp dụng", "Ngừng áp dụng")})
+
             lst = lst.OrderBy(Sorts)
             Total = lst.Count
             lst = lst.Skip(PageIndex * PageSize).Take(PageSize)
@@ -85,16 +78,14 @@ Partial Public Class PayrollRepository
     ''' <summary>
     ''' Lay data vao combo cho bang luong
     ''' </summary>
-    ''' <param name="dateValue">Ma bang luong</param>
     ''' <param name="isBlank">0: Khong lay dong empty; 1: Co lay dong empty</param>
     ''' <returns></returns>
     ''' <remarks></remarks>
-    Public Function GetSalaryExRateCombo(ByVal dateValue As Date, ByVal isBlank As Boolean) As DataTable
+    Public Function GetSalaryExRateCombo(ByVal isBlank As Boolean) As DataTable
         Try
             Using cls As New DataAccess.QueryData
-                Dim dtData As DataTable = cls.ExecuteStore("PKG_COMMON_LIST.GET_PA_SAL_EX_RATE",
+                Dim dtData As DataTable = cls.ExecuteStore("PKG_COMMON_LIST.GET_FOREIGN_CURRENCY_TYPE",
                                            New With {.P_ISBLANK = isBlank,
-                                                     .P_DATE = dateValue,
                                                      .P_CUR = cls.OUT_CURSOR})
 
                 Return dtData
@@ -118,17 +109,15 @@ Partial Public Class PayrollRepository
         Dim objSalaryExRateData As New PA_SALARY_EXCHANGE_RATE
         Try
             objSalaryExRateData.ID = Utilities.GetNextSequence(Context, Context.PA_SALARY_EXCHANGE_RATE.EntitySet.Name)
-            objSalaryExRateData.CODE = objSalaryExRate.CODE.Trim
+            'objSalaryExRateData.CODE = objSalaryExRate.CODE.Trim
             objSalaryExRateData.NAME = objSalaryExRate.NAME.Trim
             objSalaryExRateData.EFFECT_DATE = objSalaryExRate.EFFECT_DATE
             objSalaryExRateData.REMARK = objSalaryExRate.REMARK
             objSalaryExRateData.ORDERS = objSalaryExRate.ORDERS
             objSalaryExRateData.ACTFLG = objSalaryExRate.ACTFLG
             objSalaryExRateData.IS_DELETED = objSalaryExRate.IS_DELETED
+            objSalaryExRateData.FOR_CUR_TYPE_CODE = objSalaryExRate.FOR_CUR_TYPE_CODE
             Context.PA_SALARY_EXCHANGE_RATE.AddObject(objSalaryExRateData)
-            Context.SaveChanges(log)
-
-
             Context.SaveChanges(log)
             gID = objSalaryExRateData.ID
             Return True
@@ -143,24 +132,18 @@ Partial Public Class PayrollRepository
         Dim query
         Try
             If _validate.CODE <> Nothing Then
-                If _validate.ID <> 0 Then
-                    query = (From p In Context.PA_SALARY_EXCHANGE_RATE
-                             Where p.CODE.ToUpper = _validate.CODE.ToUpper _
-                             And p.IS_DELETED = 0 _
+                query = (From p In Context.PA_SALARY_EXCHANGE_RATE
+                         Where p.CODE.ToUpper = _validate.CODE.ToUpper _
+                             And p.EFFECT_DATE = _validate.EFFECT_DATE _
                              And p.ID <> _validate.ID).SingleOrDefault
-                Else
-                    query = (From p In Context.PA_SALARY_EXCHANGE_RATE
-                             Where p.CODE.ToUpper = _validate.CODE.ToUpper _
-                             And p.IS_DELETED = 0).FirstOrDefault
-                End If
+                'If _validate.ID <> 0 Then
+
+                'Else
+                '    query = (From p In Context.PA_SALARY_EXCHANGE_RATE
+                '             Where p.CODE.ToUpper = _validate.CODE.ToUpper _
+                '             And p.EFFECT_DATE = _validate.EFFECT_DATE).FirstOrDefault
+                'End If
                 Return (query Is Nothing)
-            Else
-                If _validate.ID <> 0 Then
-                    query = (From p In Context.PA_SALARY_EXCHANGE_RATE
-                             Where p.ACTFLG.ToUpper = "A" _
-                             And p.ID = _validate.ID).FirstOrDefault
-                    Return (Not query Is Nothing)
-                End If
 
             End If
             Return True

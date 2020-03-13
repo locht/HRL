@@ -344,17 +344,6 @@ Public Class ctrlPA_SalaryLevel
     ''' </summary>
     ''' <remarks></remarks>
     Public Overrides Sub BindData()
-        Dim dic As New Dictionary(Of String, Control)
-        dic.Add("CODE", txtCode)
-        dic.Add("GRADE_GROUP", cboGradeGroup)
-        dic.Add("SAL_FR", rntxtSalaryFr)
-        dic.Add("SAL_TO", rntxtSalaryTo)
-        dic.Add("NAME", txtName)
-        dic.Add("REMARK", txtRemark)
-        dic.Add("ORDERS", rntxtOrders)
-        dic.Add("SAL_GROUP_ID", cboSalaryGroup)
-
-        Utilities.OnClientRowSelectedChanged(rgData, dic)
 
         Try
             Dim comboBoxDataDTO As New ComboBoxDataDTO
@@ -381,6 +370,19 @@ Public Class ctrlPA_SalaryLevel
         Catch ex As Exception
             DisplayException(Me.ViewName, Me.ID, ex)
         End Try
+        Dim dic As New Dictionary(Of String, Control)
+        dic.Add("CODE", txtCode)
+        dic.Add("GRADE_GROUP", cboGradeGroup)
+        dic.Add("SAL_FR", rntxtSalaryFr)
+        dic.Add("SAL_TO", rntxtSalaryTo)
+        dic.Add("NAME", txtName)
+        dic.Add("REMARK", txtRemark)
+        dic.Add("ORDERS", rntxtOrders)
+        dic.Add("SAL_GROUP_ID", cboSalaryGroup)
+
+        Utilities.OnClientRowSelectedChanged(rgData, dic)
+
+
     End Sub
 
 #End Region

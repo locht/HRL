@@ -18,7 +18,7 @@ Imports System.Runtime.Serialization
 Imports System.Xml.Serialization
 
 
-<Assembly: EdmSchemaAttribute("f382cf7c-a2e1-4199-814b-f7c57548ecc7")>
+<Assembly: EdmSchemaAttribute("dafd9dc8-a0b2-4ccb-aa49-1b87e6d0bd22")>
 #Region "EDM Relationship Metadata"
 <Assembly: EdmRelationshipAttribute("PayrollModel", "FK_PSG_PSL", "PA_SALARY_GROUP", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(PA_SALARY_GROUP), "PA_SALARY_LEVEL", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(PA_SALARY_LEVEL), True)>
 <Assembly: EdmRelationshipAttribute("PayrollModel", "FK_PSL_PSR", "PA_SALARY_LEVEL", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(PA_SALARY_LEVEL), "PA_SALARY_RANK", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(PA_SALARY_RANK), True)>
@@ -18538,23 +18538,9 @@ Public Partial Class PA_SALARY_EXCHANGE_RATE
     ''' Create a new PA_SALARY_EXCHANGE_RATE object.
     ''' </summary>
     ''' <param name="id">Initial value of the ID property.</param>
-    ''' <param name="fOREIGN_CURRENCY_TYPE">Initial value of the FOREIGN_CURRENCY_TYPE property.</param>
-    ''' <param name="cREATED_DATE">Initial value of the CREATED_DATE property.</param>
-    ''' <param name="cREATED_BY">Initial value of the CREATED_BY property.</param>
-    ''' <param name="cREATED_LOG">Initial value of the CREATED_LOG property.</param>
-    ''' <param name="mODIFIED_DATE">Initial value of the MODIFIED_DATE property.</param>
-    ''' <param name="mODIFIED_BY">Initial value of the MODIFIED_BY property.</param>
-    ''' <param name="mODIFIED_LOG">Initial value of the MODIFIED_LOG property.</param>
-    Public Shared Function CreatePA_SALARY_EXCHANGE_RATE(id As Global.System.Decimal, fOREIGN_CURRENCY_TYPE As Global.System.String, cREATED_DATE As Global.System.DateTime, cREATED_BY As Global.System.String, cREATED_LOG As Global.System.String, mODIFIED_DATE As Global.System.DateTime, mODIFIED_BY As Global.System.String, mODIFIED_LOG As Global.System.String) As PA_SALARY_EXCHANGE_RATE
+    Public Shared Function CreatePA_SALARY_EXCHANGE_RATE(id As Global.System.Decimal) As PA_SALARY_EXCHANGE_RATE
         Dim pA_SALARY_EXCHANGE_RATE as PA_SALARY_EXCHANGE_RATE = New PA_SALARY_EXCHANGE_RATE
         pA_SALARY_EXCHANGE_RATE.ID = id
-        pA_SALARY_EXCHANGE_RATE.FOREIGN_CURRENCY_TYPE = fOREIGN_CURRENCY_TYPE
-        pA_SALARY_EXCHANGE_RATE.CREATED_DATE = cREATED_DATE
-        pA_SALARY_EXCHANGE_RATE.CREATED_BY = cREATED_BY
-        pA_SALARY_EXCHANGE_RATE.CREATED_LOG = cREATED_LOG
-        pA_SALARY_EXCHANGE_RATE.MODIFIED_DATE = mODIFIED_DATE
-        pA_SALARY_EXCHANGE_RATE.MODIFIED_BY = mODIFIED_BY
-        pA_SALARY_EXCHANGE_RATE.MODIFIED_LOG = mODIFIED_LOG
         Return pA_SALARY_EXCHANGE_RATE
     End Function
 
@@ -18642,7 +18628,7 @@ Public Partial Class PA_SALARY_EXCHANGE_RATE
     ''' <summary>
     ''' No Metadata Documentation available.
     ''' </summary>
-    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=false)>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
     <DataMemberAttribute()>
     Public Property FOREIGN_CURRENCY_TYPE() As Global.System.String
         Get
@@ -18651,7 +18637,7 @@ Public Partial Class PA_SALARY_EXCHANGE_RATE
         Set
             OnFOREIGN_CURRENCY_TYPEChanging(value)
             ReportPropertyChanging("FOREIGN_CURRENCY_TYPE")
-            _FOREIGN_CURRENCY_TYPE = StructuralObject.SetValidValue(value, false)
+            _FOREIGN_CURRENCY_TYPE = StructuralObject.SetValidValue(value, true)
             ReportPropertyChanged("FOREIGN_CURRENCY_TYPE")
             OnFOREIGN_CURRENCY_TYPEChanged()
         End Set
@@ -18717,9 +18703,9 @@ Public Partial Class PA_SALARY_EXCHANGE_RATE
     ''' <summary>
     ''' No Metadata Documentation available.
     ''' </summary>
-    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=false)>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
     <DataMemberAttribute()>
-    Public Property CREATED_DATE() As Global.System.DateTime
+    Public Property CREATED_DATE() As Nullable(Of Global.System.DateTime)
         Get
             Return _CREATED_DATE
         End Get
@@ -18732,8 +18718,8 @@ Public Partial Class PA_SALARY_EXCHANGE_RATE
         End Set
     End Property
 
-    Private _CREATED_DATE As Global.System.DateTime
-    Private Partial Sub OnCREATED_DATEChanging(value As Global.System.DateTime)
+    Private _CREATED_DATE As Nullable(Of Global.System.DateTime)
+    Private Partial Sub OnCREATED_DATEChanging(value As Nullable(Of Global.System.DateTime))
     End Sub
 
     Private Partial Sub OnCREATED_DATEChanged()
@@ -18742,7 +18728,7 @@ Public Partial Class PA_SALARY_EXCHANGE_RATE
     ''' <summary>
     ''' No Metadata Documentation available.
     ''' </summary>
-    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=false)>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
     <DataMemberAttribute()>
     Public Property CREATED_BY() As Global.System.String
         Get
@@ -18751,7 +18737,7 @@ Public Partial Class PA_SALARY_EXCHANGE_RATE
         Set
             OnCREATED_BYChanging(value)
             ReportPropertyChanging("CREATED_BY")
-            _CREATED_BY = StructuralObject.SetValidValue(value, false)
+            _CREATED_BY = StructuralObject.SetValidValue(value, true)
             ReportPropertyChanged("CREATED_BY")
             OnCREATED_BYChanged()
         End Set
@@ -18767,7 +18753,7 @@ Public Partial Class PA_SALARY_EXCHANGE_RATE
     ''' <summary>
     ''' No Metadata Documentation available.
     ''' </summary>
-    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=false)>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
     <DataMemberAttribute()>
     Public Property CREATED_LOG() As Global.System.String
         Get
@@ -18776,7 +18762,7 @@ Public Partial Class PA_SALARY_EXCHANGE_RATE
         Set
             OnCREATED_LOGChanging(value)
             ReportPropertyChanging("CREATED_LOG")
-            _CREATED_LOG = StructuralObject.SetValidValue(value, false)
+            _CREATED_LOG = StructuralObject.SetValidValue(value, true)
             ReportPropertyChanged("CREATED_LOG")
             OnCREATED_LOGChanged()
         End Set
@@ -18792,9 +18778,9 @@ Public Partial Class PA_SALARY_EXCHANGE_RATE
     ''' <summary>
     ''' No Metadata Documentation available.
     ''' </summary>
-    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=false)>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
     <DataMemberAttribute()>
-    Public Property MODIFIED_DATE() As Global.System.DateTime
+    Public Property MODIFIED_DATE() As Nullable(Of Global.System.DateTime)
         Get
             Return _MODIFIED_DATE
         End Get
@@ -18807,8 +18793,8 @@ Public Partial Class PA_SALARY_EXCHANGE_RATE
         End Set
     End Property
 
-    Private _MODIFIED_DATE As Global.System.DateTime
-    Private Partial Sub OnMODIFIED_DATEChanging(value As Global.System.DateTime)
+    Private _MODIFIED_DATE As Nullable(Of Global.System.DateTime)
+    Private Partial Sub OnMODIFIED_DATEChanging(value As Nullable(Of Global.System.DateTime))
     End Sub
 
     Private Partial Sub OnMODIFIED_DATEChanged()
@@ -18817,7 +18803,7 @@ Public Partial Class PA_SALARY_EXCHANGE_RATE
     ''' <summary>
     ''' No Metadata Documentation available.
     ''' </summary>
-    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=false)>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
     <DataMemberAttribute()>
     Public Property MODIFIED_BY() As Global.System.String
         Get
@@ -18826,7 +18812,7 @@ Public Partial Class PA_SALARY_EXCHANGE_RATE
         Set
             OnMODIFIED_BYChanging(value)
             ReportPropertyChanging("MODIFIED_BY")
-            _MODIFIED_BY = StructuralObject.SetValidValue(value, false)
+            _MODIFIED_BY = StructuralObject.SetValidValue(value, true)
             ReportPropertyChanged("MODIFIED_BY")
             OnMODIFIED_BYChanged()
         End Set
@@ -18842,7 +18828,7 @@ Public Partial Class PA_SALARY_EXCHANGE_RATE
     ''' <summary>
     ''' No Metadata Documentation available.
     ''' </summary>
-    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=false)>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
     <DataMemberAttribute()>
     Public Property MODIFIED_LOG() As Global.System.String
         Get
@@ -18851,7 +18837,7 @@ Public Partial Class PA_SALARY_EXCHANGE_RATE
         Set
             OnMODIFIED_LOGChanging(value)
             ReportPropertyChanging("MODIFIED_LOG")
-            _MODIFIED_LOG = StructuralObject.SetValidValue(value, false)
+            _MODIFIED_LOG = StructuralObject.SetValidValue(value, true)
             ReportPropertyChanged("MODIFIED_LOG")
             OnMODIFIED_LOGChanged()
         End Set
@@ -18937,6 +18923,31 @@ Public Partial Class PA_SALARY_EXCHANGE_RATE
     End Sub
 
     Private Partial Sub OnIS_DELETEDChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property FOR_CUR_TYPE_CODE() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _FOR_CUR_TYPE_CODE
+        End Get
+        Set
+            OnFOR_CUR_TYPE_CODEChanging(value)
+            ReportPropertyChanging("FOR_CUR_TYPE_CODE")
+            _FOR_CUR_TYPE_CODE = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("FOR_CUR_TYPE_CODE")
+            OnFOR_CUR_TYPE_CODEChanged()
+        End Set
+    End Property
+
+    Private _FOR_CUR_TYPE_CODE As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnFOR_CUR_TYPE_CODEChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnFOR_CUR_TYPE_CODEChanged()
     End Sub
 
     #End Region

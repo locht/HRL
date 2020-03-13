@@ -313,7 +313,7 @@ Public Class ctrlPA_SalaryExRate
             dic.Add("NAME", ntxtExRate)
             dic.Add("EFFECT_DATE", rdEffectDate)
             dic.Add("REMARK", txtRemark)
-            dic.Add("CODE", cboFrCuType)
+            dic.Add("FOR_CUR_TYPE_CODE", cboFrCuType)
             Utilities.OnClientRowSelectedChanged(rgData, dic)
             _myLog.WriteLog(_myLog._info, _classPath, method,
                                 CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
@@ -392,12 +392,10 @@ Public Class ctrlPA_SalaryExRate
                     End Using
                 Case CommonMessage.TOOLBARITEM_SAVE
                     If Page.IsValid Then
-                        'objSalaryExRate.ID = cboFrCuType.SelectedValue
                         objSalaryExRate.NAME = ntxtExRate.Text.Trim
                         objSalaryExRate.EFFECT_DATE = rdEffectDate.SelectedDate
                         objSalaryExRate.REMARK = txtRemark.Text.Trim
-                        objSalaryExRate.CODE = cboFrCuType.SelectedValue
-
+                        objSalaryExRate.FOR_CUR_TYPE_CODE = cboFrCuType.SelectedValue
                         Using rep As New PayrollRepository
                             Select Case CurrentState
                                 Case CommonMessage.STATE_NEW
@@ -548,10 +546,12 @@ Public Class ctrlPA_SalaryExRate
                 If CurrentState = CommonMessage.STATE_EDIT Then
                     _validate.CODE = cboFrCuType.SelectedValue
                     _validate.ID = rgData.SelectedValue
+                    _validate.EFFECT_DATE = rdEffectDate.SelectedDate
                     args.IsValid = rep.ValidateSalaryExRate(_validate)
 
                 Else
                     _validate.CODE = cboFrCuType.SelectedValue
+                    _validate.EFFECT_DATE = rdEffectDate.SelectedDate
                     args.IsValid = rep.ValidateSalaryExRate(_validate)
                 End If
             End Using

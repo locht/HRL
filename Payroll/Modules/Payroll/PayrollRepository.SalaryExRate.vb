@@ -55,12 +55,12 @@ Partial Public Class PayrollRepository
         Return Nothing
     End Function
 
-    Public Function GetSalaryExRateCombo(dateValue As Date, ByVal isBlank As Boolean) As DataTable
+    Public Function GetSalaryExRateCombo(ByVal isBlank As Boolean) As DataTable
         Dim dtData As DataTable
 
         Using rep As New PayrollBusinessClient
             Try
-                dtData = rep.GetSalaryExRateCombo(dateValue, isBlank)
+                dtData = rep.GetSalaryExRateCombo(isBlank)
                 Return dtData
             Catch ex As Exception
                 rep.Abort()

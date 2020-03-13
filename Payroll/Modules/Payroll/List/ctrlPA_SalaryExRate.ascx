@@ -17,10 +17,10 @@
                      <tlk:RadComboBox ID="cboFrCuType" runat="server" >
                     </tlk:RadComboBox>    
                     <asp:RequiredFieldValidator ID="reqCode" ControlToValidate="cboFrCuType" runat="server"
-                        ErrorMessage="Bạn phải nhập loại ngoại tệ" ToolTip="Bạn phải nhập loại ngoại tệ">
+                        ErrorMessage="Bạn phải chọn loại ngoại tệ" ToolTip="Bạn phải nhập chọn ngoại tệ">
                     </asp:RequiredFieldValidator>
-                    <asp:CustomValidator ID="cvalCode" ControlToValidate="cboFrCuType" runat="server" ErrorMessage="Loại ngoại tệ đã tồn tại."
-                        ToolTip="Loại ngoại tệ đã tồn tại.">
+                    <asp:CustomValidator ID="cvalCode" ControlToValidate="cboFrCuType" runat="server" ErrorMessage="Loại ngoại tệ đã trùng ngày hiệu lực."
+                        ToolTip="Loại ngoại tệ đã trùng ngày hiệu lực.">
                     </asp:CustomValidator>
                     <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ErrorMessage="Loại ngoại tệ không được chứa ký tự đặc biệt và khoảng trắng"
                         ControlToValidate="cboFrCuType" ValidationExpression="^[a-zA-Z0-9_]*$"></asp:RegularExpressionValidator>
@@ -58,14 +58,14 @@
     </tlk:RadPane>     
     <tlk:RadPane ID="RadPane2" runat="server" Scrolling="None">
         <tlk:RadGrid ID="rgData" runat="server" Height="100%">
-            <MasterTableView DataKeyNames="ID" ClientDataKeyNames="NAME,EFFECT_DATE,REMARK,CODE,ORDERS">
+            <MasterTableView DataKeyNames="ID" ClientDataKeyNames="NAME,EFFECT_DATE,REMARK,FOR_CUR_TYPE_CODE,ORDERS">
                 <Columns>
                     <tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderStyle-HorizontalAlign="Center"
                         HeaderStyle-Width="30px" ItemStyle-HorizontalAlign="Center">
                     </tlk:GridClientSelectColumn>
                     <tlk:GridBoundColumn DataField="ID" Visible="false" />              
-                    <tlk:GridBoundColumn HeaderText="<%$ Translate: Loại ngoại tệ %>" DataField="CODE"
-                        UniqueName="CODE" SortExpression="CODE" />     
+                    <tlk:GridBoundColumn HeaderText="<%$ Translate: Loại ngoại tệ %>" DataField="FOREIGN_CURRENCY_TYPE"
+                        UniqueName="FOREIGN_CURRENCY_TYPE" SortExpression="FOREIGN_CURRENCY_TYPE" />     
                     <tlk:GridDateTimeColumn HeaderText="Ngày hiệu lực" DataField="EFFECT_DATE"
                         UniqueName="EFFECT_DATE" DataFormatString="{0:dd/MM/yyyy}" SortExpression="EFFECT_DATE">
                         <HeaderStyle HorizontalAlign="Center" />

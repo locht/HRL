@@ -1469,18 +1469,19 @@
             <Property Name="ID" Type="number" Nullable="false" Precision="38" />
             <Property Name="CODE" Type="nvarchar2" Nullable="true" MaxLength="50" />
             <Property Name="NAME" Type="nvarchar2" Nullable="true" MaxLength="255" />
-            <Property Name="FOREIGN_CURRENCY_TYPE" Type="nvarchar2" Nullable="false" MaxLength="255" />
+            <Property Name="FOREIGN_CURRENCY_TYPE" Type="nvarchar2" Nullable="true" MaxLength="255" />
             <Property Name="EFFECT_DATE" Type="date" Nullable="true" />
             <Property Name="REMARK" Type="nvarchar2" Nullable="true" MaxLength="1023" />
-            <Property Name="CREATED_DATE" Type="date" Nullable="false" />
-            <Property Name="CREATED_BY" Type="nvarchar2" Nullable="false" MaxLength="255" />
-            <Property Name="CREATED_LOG" Type="nvarchar2" Nullable="false" MaxLength="255" />
-            <Property Name="MODIFIED_DATE" Type="date" Nullable="false" />
-            <Property Name="MODIFIED_BY" Type="nvarchar2" Nullable="false" MaxLength="255" />
-            <Property Name="MODIFIED_LOG" Type="nvarchar2" Nullable="false" MaxLength="255" />
+            <Property Name="CREATED_DATE" Type="date" Nullable="true" />
+            <Property Name="CREATED_BY" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="CREATED_LOG" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="MODIFIED_DATE" Type="date" Nullable="true" />
+            <Property Name="MODIFIED_BY" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="MODIFIED_LOG" Type="nvarchar2" Nullable="true" MaxLength="255" />
             <Property Name="ORDERS" Type="number" Nullable="true" Precision="38" />
             <Property Name="ACTFLG" Type="nvarchar2" Nullable="true" MaxLength="1" />
             <Property Name="IS_DELETED" Type="number" Nullable="true" Precision="5" />
+            <Property Name="FOR_CUR_TYPE_CODE" Type="number" Nullable="true" Precision="38" />
         </EntityType>
     <Association Name="FK_PSG_PSL">
         <End Role="PA_SALARY_GROUP" Type="PayrollModel.Store.PA_SALARY_GROUP" Multiplicity="1">
@@ -3398,18 +3399,19 @@
           <Property Type="Decimal" Name="ID" Nullable="false" Precision="38" Scale="0" />
           <Property Type="String" Name="CODE" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="NAME" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="FOREIGN_CURRENCY_TYPE" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="FOREIGN_CURRENCY_TYPE" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Type="DateTime" Name="EFFECT_DATE" />
           <Property Type="String" Name="REMARK" MaxLength="1023" FixedLength="false" Unicode="true" />
-          <Property Type="DateTime" Name="CREATED_DATE" Nullable="false" />
-          <Property Type="String" Name="CREATED_BY" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="CREATED_LOG" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Type="DateTime" Name="MODIFIED_DATE" Nullable="false" />
-          <Property Type="String" Name="MODIFIED_BY" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="MODIFIED_LOG" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="CREATED_DATE" />
+          <Property Type="String" Name="CREATED_BY" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="CREATED_LOG" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="MODIFIED_DATE" />
+          <Property Type="String" Name="MODIFIED_BY" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="MODIFIED_LOG" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Type="Decimal" Name="ORDERS" Precision="38" Scale="0" />
           <Property Type="String" Name="ACTFLG" MaxLength="1" FixedLength="false" Unicode="true" />
           <Property Type="Int16" Name="IS_DELETED" />
+          <Property Type="Decimal" Name="FOR_CUR_TYPE_CODE" Precision="38" />
         </EntityType>
         </Schema>
     </edmx:ConceptualModels>
@@ -4823,6 +4825,7 @@
                     <ScalarProperty Name="ORDERS" ColumnName="ORDERS" />
                     <ScalarProperty Name="ACTFLG" ColumnName="ACTFLG" />
                     <ScalarProperty Name="IS_DELETED" ColumnName="IS_DELETED" />
+                    <ScalarProperty Name="FOR_CUR_TYPE_CODE" ColumnName="FOR_CUR_TYPE_CODE" />
                 </MappingFragment>
             </EntityTypeMapping>
         </EntitySetMapping>
@@ -4998,7 +5001,7 @@
         <EntityTypeShape EntityType="PayrollModel.HUV_ORGANIZATION" Width="1.5" PointX="11.495874836806149" PointY="24.070537712457842" />
         <EntityTypeShape EntityType="PayrollModel.PA_SALARY_LEVEL_TYPE" Width="2.25" PointX="2.625" PointY="23.75" Height="3.7109993489583353" />
         <EntityTypeShape EntityType="PayrollModel.PA_SALARY_LEVEL_GROUP" Width="2.375" PointX="5.375" PointY="23.75" Height="3.7109993489583246" />
-        <EntityTypeShape EntityType="PayrollModel.PA_SALARY_EXCHANGE_RATE" Width="2.375" PointX="23.375" PointY="12.75" Height="3.9033007812499818" />
+        <EntityTypeShape EntityType="PayrollModel.PA_SALARY_EXCHANGE_RATE" Width="2.375" PointX="23.375" PointY="12.75" Height="4.0956022135416674" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

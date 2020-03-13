@@ -28,12 +28,12 @@ Namespace PayrollBusiness.ServiceImplementations
             End Try
         End Function
 
-        Public Function GetSalaryExRateCombo(dateValue As Date, ByVal isBlank As Boolean) As DataTable _
+        Public Function GetSalaryExRateCombo(ByVal isBlank As Boolean) As DataTable _
             Implements ServiceContracts.IPayrollBusiness.GetSalaryExRateCombo
             Using rep As New PayrollRepository
                 Try
 
-                    Dim lst = rep.GetSalaryExRateCombo(dateValue, isBlank)
+                    Dim lst = rep.GetSalaryExRateCombo(isBlank)
                     Return lst
                 Catch ex As Exception
                     Throw ex

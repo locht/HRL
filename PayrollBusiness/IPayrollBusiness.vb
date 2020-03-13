@@ -285,7 +285,7 @@ Namespace PayrollBusiness.ServiceContracts
                              ByRef Total As Integer,
                              Optional ByVal Sorts As String = "CREATED_DATE desc") As List(Of SalaryExRateDTO)
         <OperationContract()>
-        Function GetSalaryExRateCombo(ByVal dateValue As Date, ByVal isBlank As Boolean) As DataTable
+        Function GetSalaryExRateCombo(ByVal isBlank As Boolean) As DataTable
         <OperationContract()>
         Function InsertSalaryExRate(ByVal objSalaryExRate As SalaryExRateDTO, ByVal log As UserLog, ByRef gID As Decimal) As Boolean
         <OperationContract()>
