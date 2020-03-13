@@ -18,7 +18,7 @@ Imports System.Runtime.Serialization
 Imports System.Xml.Serialization
 
 
-<Assembly: EdmSchemaAttribute("b9f100a0-f0af-4391-b37b-9cbec851c756")>
+<Assembly: EdmSchemaAttribute("dd977163-0793-4af1-8425-597fd40b6579")>
 #Region "EDM Relationship Metadata"
 <Assembly: EdmRelationshipAttribute("TrainingModel", "FK_HU_PRO_HU_DIS", "HU_PROVINCE", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(HU_PROVINCE), "HU_DISTRICT", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_DISTRICT), True)>
 <Assembly: EdmRelationshipAttribute("TrainingModel", "FK_HU_NAT_HU_PRO", "HU_NATION", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(HU_NATION), "HU_PROVINCE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_PROVINCE), True)>

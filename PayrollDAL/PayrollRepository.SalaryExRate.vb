@@ -132,17 +132,17 @@ Partial Public Class PayrollRepository
         Dim query
         Try
             If _validate.CODE <> Nothing Then
-                query = (From p In Context.PA_SALARY_EXCHANGE_RATE
-                         Where p.CODE.ToUpper = _validate.CODE.ToUpper _
-                             And p.EFFECT_DATE = _validate.EFFECT_DATE _
-                             And p.ID <> _validate.ID).SingleOrDefault
-                'If _validate.ID <> 0 Then
 
-                'Else
-                '    query = (From p In Context.PA_SALARY_EXCHANGE_RATE
-                '             Where p.CODE.ToUpper = _validate.CODE.ToUpper _
-                '             And p.EFFECT_DATE = _validate.EFFECT_DATE).FirstOrDefault
-                'End If
+                If _validate.ID <> 0 Then
+                    query = (From p In Context.PA_SALARY_EXCHANGE_RATE
+                             Where p.CODE.ToUpper = _validate.CODE.ToUpper _
+                                 And p.EFFECT_DATE = _validate.EFFECT_DATE _
+                                 And p.ID <> _validate.ID).SingleOrDefault
+                Else
+                    query = (From p In Context.PA_SALARY_EXCHANGE_RATE
+                             Where p.CODE.ToUpper = _validate.CODE.ToUpper _
+                             And p.EFFECT_DATE = _validate.EFFECT_DATE).FirstOrDefault
+                End If
                 Return (query Is Nothing)
 
             End If

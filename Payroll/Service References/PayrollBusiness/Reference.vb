@@ -4930,6 +4930,9 @@ Namespace PayrollBusiness
         Private FOREIGN_CURRENCY_TYPEField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private FOR_CUR_TYPE_CODEField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private IDField As Decimal
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -5021,6 +5024,19 @@ Namespace PayrollBusiness
                 If (Object.ReferenceEquals(Me.FOREIGN_CURRENCY_TYPEField, value) <> true) Then
                     Me.FOREIGN_CURRENCY_TYPEField = value
                     Me.RaisePropertyChanged("FOREIGN_CURRENCY_TYPE")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property FOR_CUR_TYPE_CODE() As System.Nullable(Of Decimal)
+            Get
+                Return Me.FOR_CUR_TYPE_CODEField
+            End Get
+            Set
+                If (Me.FOR_CUR_TYPE_CODEField.Equals(value) <> true) Then
+                    Me.FOR_CUR_TYPE_CODEField = value
+                    Me.RaisePropertyChanged("FOR_CUR_TYPE_CODE")
                 End If
             End Set
         End Property
@@ -9783,7 +9799,7 @@ Namespace PayrollBusiness
         Function GetSalaryExRate(ByVal _filter As PayrollBusiness.SalaryExRateDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal Sorts As String) As System.Collections.Generic.List(Of PayrollBusiness.SalaryExRateDTO)
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IPayrollBusiness/GetSalaryExRateCombo", ReplyAction:="http://tempuri.org/IPayrollBusiness/GetSalaryExRateComboResponse")>  _
-        Function GetSalaryExRateCombo(ByVal dateValue As Date, ByVal isBlank As Boolean) As System.Data.DataTable
+        Function GetSalaryExRateCombo(ByVal isBlank As Boolean) As System.Data.DataTable
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IPayrollBusiness/InsertSalaryExRate", ReplyAction:="http://tempuri.org/IPayrollBusiness/InsertSalaryExRateResponse")>  _
         Function InsertSalaryExRate(ByVal objSalaryExRate As PayrollBusiness.SalaryExRateDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
@@ -10754,8 +10770,8 @@ Namespace PayrollBusiness
             Return MyBase.Channel.GetSalaryExRate(_filter, PageIndex, PageSize, Total, Sorts)
         End Function
         
-        Public Function GetSalaryExRateCombo(ByVal dateValue As Date, ByVal isBlank As Boolean) As System.Data.DataTable Implements PayrollBusiness.IPayrollBusiness.GetSalaryExRateCombo
-            Return MyBase.Channel.GetSalaryExRateCombo(dateValue, isBlank)
+        Public Function GetSalaryExRateCombo(ByVal isBlank As Boolean) As System.Data.DataTable Implements PayrollBusiness.IPayrollBusiness.GetSalaryExRateCombo
+            Return MyBase.Channel.GetSalaryExRateCombo(isBlank)
         End Function
         
         Public Function InsertSalaryExRate(ByVal objSalaryExRate As PayrollBusiness.SalaryExRateDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean Implements PayrollBusiness.IPayrollBusiness.InsertSalaryExRate

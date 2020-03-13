@@ -127,10 +127,10 @@
   <ItemGroup>
     <None Include="My Project\DataSources\System.Data.DataSet.datasource" />
     <None Include="My Project\DataSources\System.Data.DataTable.datasource" />
-    <None Include="Service References\PayrollBusiness\Arrays1.xsd">
+    <None Include="Service References\PayrollBusiness\Arrays.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\PayrollBusiness\Framework.Data1.xsd">
+    <None Include="Service References\PayrollBusiness\Framework.Data.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Service References\PayrollBusiness\Payroll.PayrollBusiness.AllowanceDTO.datasource">
@@ -245,7 +245,7 @@
     <None Include="Service References\PayrollBusiness\PayrollBusiness41.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\PayrollBusiness\PayrollDAL1.xsd">
+    <None Include="Service References\PayrollBusiness\PayrollDAL.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Service References\PayrollBusiness\Reference.svcmap">
@@ -319,14 +319,14 @@
     <Content Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
-    <None Include="Service References\PayrollBusiness\service1.wsdl" />
-    <None Include="Service References\PayrollBusiness\service3.xsd">
+    <None Include="Service References\PayrollBusiness\service.wsdl" />
+    <None Include="Service References\PayrollBusiness\service.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\PayrollBusiness\service31.xsd">
+    <None Include="Service References\PayrollBusiness\service1.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\PayrollBusiness\service32.xsd">
+    <None Include="Service References\PayrollBusiness\service2.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Service References\PayrollBusiness\System.Data.Objects.DataClasses.xsd">
@@ -335,7 +335,7 @@
     <None Include="Service References\PayrollBusiness\System.Data.Objects.DataClasses1.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\PayrollBusiness\System.Data1.xsd">
+    <None Include="Service References\PayrollBusiness\System.Data.xsd">
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>
