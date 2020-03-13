@@ -542,15 +542,16 @@ Public Class ctrlPA_SalaryExRate
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
         Try
             Dim startTime As DateTime = DateTime.UtcNow
+            Dim item As GridDataItem = rgData.SelectedItems(0)
             Using rep As New PayrollRepository
                 If CurrentState = CommonMessage.STATE_EDIT Then
-                    _validate.CODE = cboFrCuType.SelectedValue
-                    _validate.ID = rgData.SelectedValue
+                    _validate.FOR_CUR_TYPE_CODE = cboFrCuType.SelectedValue
+                    _validate.ID = item.GetDataKeyValue("ID")
                     _validate.EFFECT_DATE = rdEffectDate.SelectedDate
                     args.IsValid = rep.ValidateSalaryExRate(_validate)
 
                 Else
-                    _validate.CODE = cboFrCuType.SelectedValue
+                    _validate.FOR_CUR_TYPE_CODE = cboFrCuType.SelectedValue
                     _validate.EFFECT_DATE = rdEffectDate.SelectedDate
                     args.IsValid = rep.ValidateSalaryExRate(_validate)
                 End If

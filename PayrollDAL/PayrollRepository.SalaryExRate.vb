@@ -131,16 +131,16 @@ Partial Public Class PayrollRepository
     Public Function ValidateSalaryExRate(ByVal _validate As SalaryExRateDTO)
         Dim query
         Try
-            If _validate.CODE <> Nothing Then
+            If _validate.FOR_CUR_TYPE_CODE IsNot Nothing Then
 
                 If _validate.ID <> 0 Then
                     query = (From p In Context.PA_SALARY_EXCHANGE_RATE
-                             Where p.CODE.ToUpper = _validate.CODE.ToUpper _
+                             Where p.FOR_CUR_TYPE_CODE = _validate.FOR_CUR_TYPE_CODE _
                                  And p.EFFECT_DATE = _validate.EFFECT_DATE _
                                  And p.ID <> _validate.ID).SingleOrDefault
                 Else
                     query = (From p In Context.PA_SALARY_EXCHANGE_RATE
-                             Where p.CODE.ToUpper = _validate.CODE.ToUpper _
+                             Where p.FOR_CUR_TYPE_CODE = _validate.FOR_CUR_TYPE_CODE _
                              And p.EFFECT_DATE = _validate.EFFECT_DATE).FirstOrDefault
                 End If
                 Return (query Is Nothing)
