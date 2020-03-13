@@ -78,9 +78,7 @@
                 </Columns>
             </MasterTableView>
         </tlk:RadGrid>
-    </tlk:RadPane>
-
-    
+    </tlk:RadPane>    
 </tlk:RadSplitter>
 <Common:ctrlMessageBox ID="ctrlMessageBox" runat="server" />
 <tlk:RadCodeBlock ID="RadCodeBlock1" runat="server">

@@ -67,10 +67,10 @@ Public Class ctrlPA_SalaryExRate
         Try
             Dim startTime As DateTime = DateTime.UtcNow
             InitControl()
-            If Not IsPostBack Then
-                ViewConfig(RadPane1)
-                GirdConfig(rgData)
-            End If
+            'If Not IsPostBack Then
+            '    ViewConfig(RadPane1)
+            '    GirdConfig(rgData)
+            'End If
             _myLog.WriteLog(_myLog._info, _classPath, method,
                                             CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
@@ -296,14 +296,24 @@ Public Class ctrlPA_SalaryExRate
     ''' </summary>
     ''' <remarks></remarks>
     Public Overrides Sub BindData()
+
         Dim dic As New Dictionary(Of String, Control)
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+
+        Try
+            Using rep As New PayrollRepository
+                'FillDropDownList(cboFrCuType, rep.GetSalaryExRateCombo(True), "NAME_VN", "ID", Common.Common.SystemLanguage, False)
+                FillRadCombobox(cboFrCuType, rep.GetSalaryExRateCombo(False), "NAME_VN", "ID", False)
+            End Using
+        Catch ex As Exception
+            _myLog.WriteLog(_myLog._error, _classPath, method, 0, ex, "")
+        End Try
         Try
             Dim startTime As DateTime = DateTime.UtcNow
             dic.Add("NAME", ntxtExRate)
             dic.Add("EFFECT_DATE", rdEffectDate)
             dic.Add("REMARK", txtRemark)
-            dic.Add("FOREIGN_CURRENCY_TYPE", cboFrCuType)
+            dic.Add("CODE", cboFrCuType)
             Utilities.OnClientRowSelectedChanged(rgData, dic)
             _myLog.WriteLog(_myLog._info, _classPath, method,
                                 CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
@@ -311,6 +321,8 @@ Public Class ctrlPA_SalaryExRate
             _myLog.WriteLog(_myLog._error, _classPath, method, 0, ex, "")
             DisplayException(Me.ViewName, Me.ID, ex)
         End Try
+
+
     End Sub
 
 #End Region
@@ -380,10 +392,12 @@ Public Class ctrlPA_SalaryExRate
                     End Using
                 Case CommonMessage.TOOLBARITEM_SAVE
                     If Page.IsValid Then
-                        objSalaryExRate.CODE = cboFrCuType.SelectedValue
+                        'objSalaryExRate.ID = cboFrCuType.SelectedValue
                         objSalaryExRate.NAME = ntxtExRate.Text.Trim
                         objSalaryExRate.EFFECT_DATE = rdEffectDate.SelectedDate
                         objSalaryExRate.REMARK = txtRemark.Text.Trim
+                        objSalaryExRate.CODE = cboFrCuType.SelectedValue
+
                         Using rep As New PayrollRepository
                             Select Case CurrentState
                                 Case CommonMessage.STATE_NEW
