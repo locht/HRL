@@ -5599,6 +5599,12 @@ Namespace PayrollBusiness
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private SAL_LEVEL_NAMEField As String
         
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private SENIORWORKField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private YEARNUMBERField As System.Nullable(Of Decimal)
+        
         <Global.System.ComponentModel.BrowsableAttribute(false)>  _
         Public Property ExtensionData() As System.Runtime.Serialization.ExtensionDataObject Implements System.Runtime.Serialization.IExtensibleDataObject.ExtensionData
             Get
@@ -5748,6 +5754,32 @@ Namespace PayrollBusiness
                 If (Object.ReferenceEquals(Me.SAL_LEVEL_NAMEField, value) <> true) Then
                     Me.SAL_LEVEL_NAMEField = value
                     Me.RaisePropertyChanged("SAL_LEVEL_NAME")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property SENIORWORK() As System.Nullable(Of Decimal)
+            Get
+                Return Me.SENIORWORKField
+            End Get
+            Set
+                If (Me.SENIORWORKField.Equals(value) <> true) Then
+                    Me.SENIORWORKField = value
+                    Me.RaisePropertyChanged("SENIORWORK")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property YEARNUMBER() As System.Nullable(Of Decimal)
+            Get
+                Return Me.YEARNUMBERField
+            End Get
+            Set
+                If (Me.YEARNUMBERField.Equals(value) <> true) Then
+                    Me.YEARNUMBERField = value
+                    Me.RaisePropertyChanged("YEARNUMBER")
                 End If
             End Set
         End Property

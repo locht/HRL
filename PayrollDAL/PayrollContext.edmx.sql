@@ -1,7 +1,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for Oracle database
 -- --------------------------------------------------
--- Date Created: 3/13/2020 9:57:03 AM
+-- Date Created: 3/16/2020 3:05:12 PM
 -- Generated from EDMX file: D:\HiStaffWebApp\acv_19\PayrollDAL\PayrollContext.edmx
 -- --------------------------------------------------
 
@@ -232,7 +232,9 @@ CREATE TABLE "dbo"."PA_SALARY_RANK" (
    "MODIFIED_LOG" NVARCHAR2(255) NOT NULL,
    "ACTFLG" NVARCHAR2(1) NULL,
    "SAL_GROUP_ID" NUMBER(38,0) NULL,
-   "ORDERS" NUMBER(38,0) NULL
+   "ORDERS" NUMBER(38,0) NULL,
+   "SENIORWORK" NUMBER(38,0) NULL,
+   "YEARNUMBER" NUMBER(38,0) NULL
 );
 
 -- Creating table 'HU_EMPLOYEE'

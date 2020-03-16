@@ -84,7 +84,6 @@ Public Class ctrlPA_SalaryRank
             rgData.SetFilter()
             rgData.AllowCustomPaging = True
             rgData.PageSize = Common.Common.DefaultPageSize
-            'rgData.ClientSettings.EnablePostBackOnRowClick = True
             InitControl()
             _myLog.WriteLog(_myLog._info, _classPath, method,
                                             CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
@@ -181,9 +180,7 @@ Public Class ctrlPA_SalaryRank
             Dim MaximumRows As Integer
             SetValueObjectByRadGrid(rgData, obj)
             Dim Sorts As String = rgData.MasterTableView.SortExpressions.GetSortString()
-            If cboSalaryGroup.SelectedValue <> "" Then
-                obj.SAL_GROUP_ID = cboSalaryGroup.SelectedValue
-            End If
+
             Using rep As New PayrollRepository
 
                 If (Utilities.Account = "U") Then
@@ -240,39 +237,47 @@ Public Class ctrlPA_SalaryRank
             Select Case CurrentState
                 Case CommonMessage.STATE_NEW
                     EnabledGridNotPostback(rgData, False)
-                    'cboSalaryLevel.SelectedValue = Nothing
                     txtRank.Text = ""
-                    'rntxtSalaryBasic.Text = ""
                     txtRemark.Text = ""
                     rntxtOrders.Text = "1"
-                    ClearControlValue(txtRank, txtRemark, rntxtOrders, cboSalaryLevel, rntxtSalaryBasic)
-                    rntxtSalaryBasic.ReadOnly = False
+                    rntxtYearNumber.Text = ""
+                    rntxtSeniorWork.Text = ""
+
+                    ClearControlValue(txtRank, txtRemark, rntxtOrders, cboSalaryLevel, rntxtYearNumber, rntxtSeniorWork)
                     txtRank.ReadOnly = False
                     txtRemark.ReadOnly = False
                     rntxtOrders.ReadOnly = False
+                    rntxtYearNumber.ReadOnly = False
+                    rntxtSeniorWork.ReadOnly = False
                     Utilities.EnableRadCombo(cboSalaryLevel, True)
-                    Utilities.EnableRadCombo(cboSalaryGroup, True)
+
                 Case CommonMessage.STATE_NORMAL
                     txtRank.Text = ""
-                    'rntxtSalaryBasic.Text = ""
                     txtRemark.Text = ""
-                    rntxtOrders.Text = ""
-                    ClearControlValue(txtRank, txtRemark, rntxtOrders, cboSalaryLevel, rntxtSalaryBasic)
+                    rntxtOrders.Text = "1"
+                    rntxtYearNumber.Text = ""
+                    rntxtSeniorWork.Text = ""
+
+                    ClearControlValue(txtRank, txtRemark, rntxtOrders, cboSalaryLevel, rntxtYearNumber, rntxtSeniorWork)
                     EnabledGridNotPostback(rgData, True)
-                    rntxtSalaryBasic.ReadOnly = True
                     txtRank.ReadOnly = True
                     txtRemark.ReadOnly = True
                     rntxtOrders.ReadOnly = True
+                    rntxtYearNumber.ReadOnly = True
+                    rntxtSeniorWork.ReadOnly = True
                     Utilities.EnableRadCombo(cboSalaryLevel, False)
-                    Utilities.EnableRadCombo(cboSalaryGroup, True)
+
                 Case CommonMessage.STATE_EDIT
                     EnabledGridNotPostback(rgData, False)
-                    rntxtSalaryBasic.ReadOnly = False
+
                     txtRank.ReadOnly = False
                     txtRemark.ReadOnly = False
                     rntxtOrders.ReadOnly = False
+                    rntxtYearNumber.ReadOnly = False
+                    rntxtSeniorWork.ReadOnly = False
+
                     Utilities.EnableRadCombo(cboSalaryLevel, False)
-                    Utilities.EnableRadCombo(cboSalaryGroup, False)
+
                 Case CommonMessage.STATE_DELETE
                     Using rep As New PayrollRepository
                         If rep.DeleteSalaryRank(DeleteSalaryRanks) Then
@@ -332,34 +337,18 @@ Public Class ctrlPA_SalaryRank
     ''' </summary>
     ''' <remarks></remarks>
     Public Overrides Sub BindData()
+        LoadComboSalaryLevel()
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
         Dim startTime As DateTime = DateTime.UtcNow
         Dim dic As New Dictionary(Of String, Control)
-        'dic.Add("SAL_GROUP_ID", cboSalaryGroup)
+
         dic.Add("SAL_LEVEL_ID", cboSalaryLevel)
         dic.Add("RANK", txtRank)
-        dic.Add("SALARY_BASIC", rntxtSalaryBasic)
+        dic.Add("YEARNUMBER", rntxtYearNumber)
+        dic.Add("SENIORWORK", rntxtSeniorWork)
         dic.Add("REMARK", txtRemark)
         dic.Add("ORDERS", rntxtOrders)
         Utilities.OnClientRowSelectedChanged(rgData, dic)
-        Try
-            Dim rep As New PayrollRepository
-            Dim comboBoxDataDTO As New ComboBoxDataDTO
-
-            comboBoxDataDTO.GET_SALARY_GROUP = True
-            rep.GetComboboxData(comboBoxDataDTO)
-
-            FillDropDownList(cboSalaryGroup, comboBoxDataDTO.LIST_SALARY_GROUP, "NAME", "ID", Common.Common.SystemLanguage, False)
-            If (comboBoxDataDTO.LIST_SALARY_GROUP.Count > 0) Then
-                cboSalaryGroup.SelectedIndex = 1
-                cboSalaryGroup_SelectedIndexChanged(Nothing, Nothing)
-            End If
-            _myLog.WriteLog(_myLog._info, _classPath, method,
-                                            CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
-        Catch ex As Exception
-            _myLog.WriteLog(_myLog._error, _classPath, method, 0, ex, "")
-            DisplayException(Me.ViewName, Me.ID, ex)
-        End Try
     End Sub
 
 #End Region
@@ -430,23 +419,16 @@ Public Class ctrlPA_SalaryRank
                     End Using
                 Case CommonMessage.TOOLBARITEM_SAVE
                     If Page.IsValid Then
-                        Dim salary As Decimal = 0
                         If cboSalaryLevel.SelectedValue = "" Or cboSalaryLevel.SelectedValue Is Nothing Then
-                            ShowMessage("Bạn chưa chọn ngạch công chức", NotifyType.Warning)
+                            ShowMessage("Bạn chưa chọn ngạch lương", NotifyType.Warning)
                             Exit Sub
                         End If
-                        Try
-                            salary = CDec(Val(rntxtSalaryBasic.Text))
-                        Catch ex As Exception
-                            ShowMessage("Số tiền/ Hệ số phải là số", NotifyType.Warning)
-                            Exit Sub
-                        End Try
-                        objSalaryRank.SAL_GROUP_ID = cboSalaryGroup.SelectedValue
                         objSalaryRank.SAL_LEVEL_ID = cboSalaryLevel.SelectedValue
                         objSalaryRank.RANK = txtRank.Text.Trim
-                        objSalaryRank.SALARY_BASIC = salary
                         objSalaryRank.REMARK = txtRemark.Text.Trim
                         objSalaryRank.ORDERS = If(String.IsNullOrEmpty(rntxtOrders.Text), 1, Decimal.Parse(rntxtOrders.Text))
+                        objSalaryRank.SENIORWORK = rntxtSeniorWork.Value
+                        objSalaryRank.YEARNUMBER = rntxtYearNumber.Value
                         Using rep As New PayrollRepository
                             Select Case CurrentState
                                 Case CommonMessage.STATE_NEW
@@ -467,7 +449,7 @@ Public Class ctrlPA_SalaryRank
                                     If repCheck.CheckExistIDTable(lstCheck, "PA_SALARY_RANK", "ID") Then
                                         ShowMessage(Translate(CommonMessage.MESSAGE_WARNING_EXIST_DATABASE), NotifyType.Error)
                                         CurrentState = CommonMessage.STATE_NORMAL
-                                        ClearControlValue(txtRank, txtRemark, rntxtOrders, rntxtSalaryBasic)
+                                        ClearControlValue(txtRank, txtRemark, rntxtOrders)
                                         cboSalaryLevel.ClearValue()
                                         UpdateControlState()
                                         rgData.Rebind()
@@ -577,77 +559,6 @@ Public Class ctrlPA_SalaryRank
     ''' 22/08/2017 14:00
     ''' </lastupdate>
     ''' <summary>
-    ''' Xu ly su kien SelectedIndexChanged cho combobox cboSalaryGroup
-    ''' </summary>
-    ''' <param name="sender"></param>
-    ''' <param name="e"></param>
-    ''' <remarks></remarks>
-    Private Sub cboSalaryGroup_SelectedIndexChanged(ByVal sender As Object, ByVal e As Telerik.Web.UI.RadComboBoxSelectedIndexChangedEventArgs) Handles cboSalaryGroup.SelectedIndexChanged
-        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
-        Try
-            Dim startTime As DateTime = DateTime.UtcNow
-            If cboSalaryGroup.SelectedValue = "" Then
-                ShowMessage(Translate("Bạn chưa chọn thang bảng lương"), Utilities.NotifyType.Warning)
-                cboSalaryLevel.Items.Clear()
-                cboSalaryLevel.ClearCheckedItems()
-                cboSalaryLevel.ClearSelection()
-                cboSalaryLevel.Text = ""
-                Return
-            End If
-            LoadComboSalaryLevel()
-            _myLog.WriteLog(_myLog._info, _classPath, method,
-                                            CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
-        Catch ex As Exception
-            _myLog.WriteLog(_myLog._error, _classPath, method, 0, ex, "")
-            DisplayException(Me.ViewName, Me.ID, ex)
-        End Try
-    End Sub
-
-    ''' <lastupdate>
-    ''' 22/08/2017 14:00
-    ''' </lastupdate>
-    ''' <summary>
-    ''' Xu ly su kien custom validate cua cvalCode
-    ''' </summary>
-    ''' <param name="source"></param>
-    ''' <param name="args"></param>
-    ''' <remarks></remarks>
-    Private Sub cvalCode_ServerValidate(ByVal source As Object, ByVal args As System.Web.UI.WebControls.ServerValidateEventArgs) Handles cvalCode.ServerValidate
-        Dim _validate As New SalaryRankDTO
-        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
-        Try
-            Dim startTime As DateTime = DateTime.UtcNow
-            Using rep As New PayrollRepository
-                If cboSalaryLevel.SelectedValue = "" Then
-                    args.IsValid = False
-                Else
-                    If CurrentState = CommonMessage.STATE_EDIT Then
-                        _validate.SAL_GROUP_ID = cboSalaryGroup.SelectedValue
-                        _validate.SAL_LEVEL_ID = cboSalaryLevel.SelectedValue
-                        _validate.RANK = txtRank.Text.Trim()
-                        _validate.ID = rgData.SelectedValue
-                        args.IsValid = rep.ValidateSalaryRank(_validate)
-
-                    Else
-                        _validate.SAL_GROUP_ID = cboSalaryGroup.SelectedValue
-                        _validate.SAL_LEVEL_ID = cboSalaryLevel.SelectedValue
-                        _validate.RANK = txtRank.Text.Trim()
-                        args.IsValid = rep.ValidateSalaryRank(_validate)
-                    End If
-                End If
-            End Using
-            _myLog.WriteLog(_myLog._info, _classPath, method,
-                                            CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
-        Catch ex As Exception
-            _myLog.WriteLog(_myLog._error, _classPath, method, 0, ex, "")
-            DisplayException(Me.ViewName, Me.ID, ex)
-        End Try
-    End Sub
-
-    ''' <lastupdate>
-    ''' 22/08/2017 14:00
-    ''' </lastupdate>
-    ''' <summary>
     ''' Xu ly su kien custom validate cua cusSalaryLevel
     ''' </summary>
     ''' <param name="source"></param>
@@ -689,9 +600,6 @@ Public Class ctrlPA_SalaryRank
             Dim startTime As DateTime = DateTime.UtcNow
             Dim obj As New SalaryLevelDTO
             Dim MaximumRows As Integer
-            If (Not String.IsNullOrEmpty(cboSalaryGroup.SelectedValue)) Then
-                obj.SAL_GROUP_ID = cboSalaryGroup.SelectedValue
-            End If
             obj.ACTFLG_DB = "A"
             Using rep As New PayrollRepository
                 Dim SalaryLevelByGroup As List(Of SalaryLevelDTO)

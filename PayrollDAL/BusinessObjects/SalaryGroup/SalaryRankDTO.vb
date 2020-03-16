@@ -10,4 +10,6 @@
     Public Property CREATED_DATE As Date?
     Public Property ACTFLG As String
     Public Property ORDERS As Decimal?
+    Public Property SENIORWORK As Decimal?
+    Public Property YEARNUMBER As Decimal?
 End Class

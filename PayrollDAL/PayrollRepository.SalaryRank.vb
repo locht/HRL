@@ -21,8 +21,7 @@ Partial Public Class PayrollRepository
             Dim query = From p In Context.PA_SALARY_RANK
                         Join o In Context.PA_SALARY_LEVEL On p.SAL_LEVEL_ID Equals o.ID
                         Join q In Context.PA_SALARY_GROUP On o.SAL_GROUP_ID Equals q.ID
-                        Where q.ID = _filter.SAL_GROUP_ID _
-                            And Not o.OTHER_USE.Equals("U")
+                        Where Not o.OTHER_USE.Equals("U")
 
             Dim lst = query.Select(Function(e) New SalaryRankDTO With {
                                        .ID = e.p.ID,
@@ -30,7 +29,8 @@ Partial Public Class PayrollRepository
                                        .SAL_GROUP_NAME = e.q.NAME,
                                        .SAL_LEVEL_ID = e.p.SAL_LEVEL_ID,
                                        .SAL_LEVEL_NAME = e.o.NAME,
-                                       .SALARY_BASIC = e.p.SALARY_BASIC,
+                                       .SENIORWORK = e.p.SENIORWORK,
+                                       .YEARNUMBER = e.p.YEARNUMBER,
                                        .RANK = e.p.RANK,
                                        .REMARK = e.p.REMARK,
                                        .ACTFLG = If(e.p.ACTFLG = "A", "Áp dụng", "Ngừng áp dụng"),
@@ -148,7 +148,8 @@ Partial Public Class PayrollRepository
             objSalaryRankData.SAL_GROUP_ID = objSalaryRank.SAL_GROUP_ID
             objSalaryRankData.SAL_LEVEL_ID = objSalaryRank.SAL_LEVEL_ID
             objSalaryRankData.RANK = objSalaryRank.RANK
-            objSalaryRankData.SALARY_BASIC = objSalaryRank.SALARY_BASIC
+            objSalaryRankData.YEARNUMBER = objSalaryRank.YEARNUMBER
+            objSalaryRankData.SENIORWORK = objSalaryRank.SENIORWORK
             objSalaryRankData.REMARK = objSalaryRank.REMARK
             objSalaryRankData.ACTFLG = objSalaryRank.ACTFLG
             objSalaryRankData.REMARK = objSalaryRank.REMARK
@@ -170,7 +171,8 @@ Partial Public Class PayrollRepository
         Try
             Context.PA_SALARY_RANK.Attach(objSalaryRankData)
             objSalaryRankData.RANK = objSalaryRank.RANK
-            objSalaryRankData.SALARY_BASIC = objSalaryRank.SALARY_BASIC
+            objSalaryRankData.SENIORWORK = objSalaryRank.SENIORWORK
+            objSalaryRankData.YEARNUMBER = objSalaryRank.YEARNUMBER
             objSalaryRankData.REMARK = objSalaryRank.REMARK
             objSalaryRankData.ORDERS = objSalaryRank.ORDERS
             Context.SaveChanges(log)

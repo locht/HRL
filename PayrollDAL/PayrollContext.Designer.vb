@@ -18,7 +18,7 @@ Imports System.Runtime.Serialization
 Imports System.Xml.Serialization
 
 
-<Assembly: EdmSchemaAttribute("dafd9dc8-a0b2-4ccb-aa49-1b87e6d0bd22")>
+<Assembly: EdmSchemaAttribute("88ec0857-6a66-4965-beb8-b94ad807f3a4")>
 #Region "EDM Relationship Metadata"
 <Assembly: EdmRelationshipAttribute("PayrollModel", "FK_PSG_PSL", "PA_SALARY_GROUP", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(PA_SALARY_GROUP), "PA_SALARY_LEVEL", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(PA_SALARY_LEVEL), True)>
 <Assembly: EdmRelationshipAttribute("PayrollModel", "FK_PSL_PSR", "PA_SALARY_LEVEL", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(PA_SALARY_LEVEL), "PA_SALARY_RANK", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(PA_SALARY_RANK), True)>
@@ -22198,6 +22198,56 @@ Public Partial Class PA_SALARY_RANK
     End Sub
 
     Private Partial Sub OnORDERSChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property SENIORWORK() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _SENIORWORK
+        End Get
+        Set
+            OnSENIORWORKChanging(value)
+            ReportPropertyChanging("SENIORWORK")
+            _SENIORWORK = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("SENIORWORK")
+            OnSENIORWORKChanged()
+        End Set
+    End Property
+
+    Private _SENIORWORK As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnSENIORWORKChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnSENIORWORKChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property YEARNUMBER() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _YEARNUMBER
+        End Get
+        Set
+            OnYEARNUMBERChanging(value)
+            ReportPropertyChanging("YEARNUMBER")
+            _YEARNUMBER = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("YEARNUMBER")
+            OnYEARNUMBERChanged()
+        End Set
+    End Property
+
+    Private _YEARNUMBER As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnYEARNUMBERChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnYEARNUMBERChanged()
     End Sub
 
     #End Region
