@@ -7,7 +7,7 @@ Namespace PayrollBusiness.ServiceImplementations
         Implements ServiceContracts.IPayrollBusiness
 
 #Region "SalaryLevelType"
-        Public Function GetSalaryLevelTypeList() As List(Of SalaryLevelTypeDTO) Implements ServiceContracts.IPayrollBusiness.GetSalaryLevelTypeList
+        Public Function GetSalaryLevelTypeList() As List(Of SalaryLevelGroupDTO) Implements ServiceContracts.IPayrollBusiness.GetSalaryLevelTypeList
             Try
                 Dim lst = PayrollRepositoryStatic.Instance.GetSalaryLevelTypeList()
                 Return lst

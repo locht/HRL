@@ -5,7 +5,7 @@ Partial Public Class PayrollRepository
 
 #Region "SalaryLevelType"
 
-    Public Function GetSalaryLevelTypeList() As List(Of SalaryLevelTypeDTO)
+    Public Function GetSalaryLevelTypeList() As List(Of SalaryLevelGroupDTO)
         Using rep As New PayrollBusinessClient
 
             Try

@@ -12,12 +12,12 @@ Partial Public Class PayrollRepository
 
 #Region "SalaryLevelType list"
 
-    Public Function GetSalaryLevelTypeList() As List(Of SalaryLevelTypeDTO)
+    Public Function GetSalaryLevelTypeList() As List(Of SalaryLevelGroupDTO)
 
         Try
-            Dim query = (From p In Context.PA_SALARY_LEVEL_TYPE
+            Dim query = (From p In Context.PA_SALARY_LEVEL_GROUP
                          Where p.ACTFLG = "A" Order By p.CREATED_DATE Descending
-                         Select New SalaryLevelTypeDTO With {
+                         Select New SalaryLevelGroupDTO With {
                              .ID = p.ID,
                              .NAME_VN = p.NAME_VN
                          }).ToList

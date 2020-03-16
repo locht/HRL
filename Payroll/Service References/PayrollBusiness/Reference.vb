@@ -694,7 +694,6 @@ Namespace PayrollBusiness
      System.Runtime.Serialization.KnownTypeAttribute(GetType(System.Collections.Generic.List(Of PayrollBusiness.SalaryExRateDTO))),  _
      System.Runtime.Serialization.KnownTypeAttribute(GetType(PayrollBusiness.SalaryLevelGroupDTO)),  _
      System.Runtime.Serialization.KnownTypeAttribute(GetType(System.Collections.Generic.List(Of PayrollBusiness.SalaryLevelGroupDTO))),  _
-     System.Runtime.Serialization.KnownTypeAttribute(GetType(System.Collections.Generic.List(Of PayrollBusiness.SalaryLevelTypeDTO))),  _
      System.Runtime.Serialization.KnownTypeAttribute(GetType(PayrollBusiness.SalaryLevelTypeDTO)),  _
      System.Runtime.Serialization.KnownTypeAttribute(GetType(PayrollBusiness.SalaryRankDTO)),  _
      System.Runtime.Serialization.KnownTypeAttribute(GetType(System.Collections.Generic.List(Of PayrollBusiness.SalaryRankDTO))),  _
@@ -9856,7 +9855,7 @@ Namespace PayrollBusiness
         Function DeleteSalaryLevelGroup(ByVal lstSalaryLevelGroup As System.Collections.Generic.List(Of Decimal)) As Boolean
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IPayrollBusiness/GetSalaryLevelTypeList", ReplyAction:="http://tempuri.org/IPayrollBusiness/GetSalaryLevelTypeListResponse")>  _
-        Function GetSalaryLevelTypeList() As System.Collections.Generic.List(Of PayrollBusiness.SalaryLevelTypeDTO)
+        Function GetSalaryLevelTypeList() As System.Collections.Generic.List(Of PayrollBusiness.SalaryLevelGroupDTO)
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IPayrollBusiness/InsertSalaryLevelType", ReplyAction:="http://tempuri.org/IPayrollBusiness/InsertSalaryLevelTypeResponse")>  _
         Function InsertSalaryLevelType(ByVal objSalaryLevel As PayrollBusiness.SalaryLevelTypeDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
@@ -9992,7 +9991,6 @@ Namespace PayrollBusiness
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of PayrollBusiness.SalaryExRateDTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(PayrollBusiness.SalaryLevelGroupDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of PayrollBusiness.SalaryLevelGroupDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of PayrollBusiness.SalaryLevelTypeDTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(PayrollBusiness.SalaryLevelTypeDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(PayrollBusiness.SalaryRankDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of PayrollBusiness.SalaryRankDTO))),  _
@@ -10096,7 +10094,6 @@ Namespace PayrollBusiness
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of PayrollBusiness.SalaryExRateDTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(PayrollBusiness.SalaryLevelGroupDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of PayrollBusiness.SalaryLevelGroupDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of PayrollBusiness.SalaryLevelTypeDTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(PayrollBusiness.SalaryLevelTypeDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(PayrollBusiness.SalaryRankDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of PayrollBusiness.SalaryRankDTO))),  _
@@ -10846,7 +10843,7 @@ Namespace PayrollBusiness
             Return MyBase.Channel.DeleteSalaryLevelGroup(lstSalaryLevelGroup)
         End Function
         
-        Public Function GetSalaryLevelTypeList() As System.Collections.Generic.List(Of PayrollBusiness.SalaryLevelTypeDTO) Implements PayrollBusiness.IPayrollBusiness.GetSalaryLevelTypeList
+        Public Function GetSalaryLevelTypeList() As System.Collections.Generic.List(Of PayrollBusiness.SalaryLevelGroupDTO) Implements PayrollBusiness.IPayrollBusiness.GetSalaryLevelTypeList
             Return MyBase.Channel.GetSalaryLevelTypeList
         End Function
         

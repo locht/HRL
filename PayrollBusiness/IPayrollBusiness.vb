@@ -348,7 +348,7 @@ Namespace PayrollBusiness.ServiceContracts
 #Region "Salary Level Type"
 
         <OperationContract()>
-        Function GetSalaryLevelTypeList() As List(Of SalaryLevelTypeDTO)
+        Function GetSalaryLevelTypeList() As List(Of SalaryLevelGroupDTO)
         <OperationContract()>
         Function InsertSalaryLevelType(ByVal objSalaryLevel As SalaryLevelTypeDTO, ByVal log As UserLog, ByRef gID As Decimal) As Boolean
         <OperationContract()>

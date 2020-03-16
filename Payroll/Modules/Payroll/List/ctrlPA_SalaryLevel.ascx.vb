@@ -463,10 +463,6 @@ Public Class ctrlPA_SalaryLevel
                             ShowMessage(Translate("Bạn chưa chọn thang bảng lương"), Utilities.NotifyType.Warning)
                             Return
                         End If
-                        'If cboGradeGroup.SelectedValue = "" Or cboGradeGroup.SelectedValue Is Nothing Then
-                        '    ShowMessage(Translate("Bạn chưa chọn nhóm ngạch bậc"), Utilities.NotifyType.Warning)
-                        '    Return
-                        'End If
                         objSalaryLevel.SAL_GROUP_ID = cboSalaryGroup.SelectedValue
                         objSalaryLevel.CODE = txtCode.Text.Trim
                         objSalaryLevel.NAME = txtName.Text.Trim
@@ -492,14 +488,7 @@ Public Class ctrlPA_SalaryLevel
                                     End If
                                 Case CommonMessage.STATE_EDIT
                                     objSalaryLevel.ID = rgData.SelectedValue
-                                    Dim saDTO As New SalaryLevelDTO
-                                    saDTO.ID = rgData.SelectedValue
-                                    Using re As New PayrollRepository
-                                        If re.ValidateSalaryLevel(saDTO) Then
-                                            ShowMessage(Translate(CommonMessage.MESSAGE_WARNING_EXIST_DATABASE), NotifyType.Error)
-                                            Exit Sub
-                                        End If
-                                    End Using
+
                                     If rep.ModifySalaryLevel(objSalaryLevel, gID) Then
                                         CurrentState = CommonMessage.STATE_NORMAL
                                         IDSelect = objSalaryLevel.ID

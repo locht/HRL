@@ -53,9 +53,8 @@
                         <span class="lbReq">*</span>
                 </td>              
                   <td >
-                    <tlk:RadNumericTextBox runat="server" ID="rntxtSalaryFr" MinValue="1" Width="60px"
-                        ShowSpinButtons="True" ReadOnly="true" CausesValidation="false">
-                        <NumberFormat GroupSeparator="" DecimalDigits="0" />
+                    <tlk:RadNumericTextBox runat="server" ID="rntxtSalaryFr" MinValue="1" Width="160px"
+                         ReadOnly="true" CausesValidation="false">                  
                     </tlk:RadNumericTextBox>
                     <asp:RequiredFieldValidator ID="RequiredFieldValidator2" ControlToValidate="rntxtSalaryFr"
                         runat="server" ErrorMessage="<%$ Translate: Bạn phải nhập mức lương từ. %>" ToolTip="<%$ Translate: Bạn phải nhập mức từ. %>"></asp:RequiredFieldValidator>
@@ -66,9 +65,8 @@
                         <span class="lbReq">*</span>
                 </td>                
                  <td >
-                    <tlk:RadNumericTextBox runat="server" ID="rntxtSalaryTo" MinValue="1" Width="60px"
-                         ShowSpinButtons="True" ReadOnly="true" CausesValidation="false">
-                        <NumberFormat GroupSeparator="" DecimalDigits="0" />
+                    <tlk:RadNumericTextBox runat="server" ID="rntxtSalaryTo" MinValue="1" Width="160px"
+                       ReadOnly="true" CausesValidation="false">                       
                     </tlk:RadNumericTextBox>
                     <asp:RequiredFieldValidator ID="RequiredFieldValidator4" ControlToValidate="rntxtOrders"
                         runat="server" ErrorMessage="<%$ Translate: Bạn phải nhập mức lương đến. %>" ToolTip="<%$ Translate: Bạn phải nhập mức đến. %>"></asp:RequiredFieldValidator>

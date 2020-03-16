@@ -210,9 +210,6 @@
     </None>
     <Content Include="Modules\Payroll\List\ctrlPA_SalaryExRate.ascx" />
     <Content Include="Modules\Payroll\List\ctrlPA_SalaryLevelGroup.ascx" />
-    <Content Include="Service References\PayrollBusiness\Payroll.PayrollBusiness.SalaryLevelTypeDTO.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
     <Content Include="Service References\PayrollBusiness\Payroll.PayrollBusiness.SalaryLevelGroupDTO.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>

@@ -20,7 +20,7 @@ Partial Public Class PayrollRepository
         Try
             Dim query = From p In Context.PA_SALARY_LEVEL
                         Join o In Context.PA_SALARY_GROUP On p.SAL_GROUP_ID Equals o.ID
-                        Join l In Context.PA_SALARY_LEVEL_TYPE On p.GRADE_GROUP Equals l.ID
+                        Join l In Context.PA_SALARY_LEVEL_GROUP On p.GRADE_GROUP Equals l.ID
                         Where Not p.OTHER_USE.Equals("U")
 
             Dim lst = query.Select(Function(e) New SalaryLevelDTO With {
