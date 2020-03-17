@@ -17,7 +17,7 @@
                     </tlk:RadTextBox>
                     <asp:RequiredFieldValidator ID="reqCode" ControlToValidate="txtCode" runat="server"
                         ErrorMessage="<%$ Translate: Bạn phải nhập Mã nhóm ngạch lương %>" ToolTip="<%$ Translate: Bạn phải nhập Mã nhóm ngạch lương %>">
-                    </asp:RequiredFieldValidator>
+                    </asp:RequiredFieldValidator>                 
                     <asp:CustomValidator ID="cvalCode" ControlToValidate="txtCode" runat="server" ErrorMessage="<%$ Translate: Mã nhóm ngạch lương đã tồn tại. %>"
                         ToolTip="<%$ Translate: Mã nhóm ngạch lương đã tồn tại. %>">
                     </asp:CustomValidator>

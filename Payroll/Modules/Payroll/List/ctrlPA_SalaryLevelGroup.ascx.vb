@@ -282,6 +282,7 @@ Public Class ctrlPA_SalaryLevelGroup
                         Dim item As GridDataItem = rgData.SelectedItems(idx)
                         lstDeletes.Add(item.GetDataKeyValue("ID"))
                     Next
+
                     Using rep As New PayrollRepository
                         If rep.ActiveSalaryLevelGroup(lstDeletes, "A") Then
                             ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), NotifyType.Success)
@@ -299,6 +300,7 @@ Public Class ctrlPA_SalaryLevelGroup
                         Dim item As GridDataItem = rgData.SelectedItems(idx)
                         lstDeletes.Add(item.GetDataKeyValue("ID"))
                     Next
+
                     Using rep As New PayrollRepository
                         If rep.ActiveSalaryLevelGroup(lstDeletes, "I") Then
                             ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), NotifyType.Success)
@@ -307,7 +309,6 @@ Public Class ctrlPA_SalaryLevelGroup
                         Else
                             ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), NotifyType.Warning)
                         End If
-
                     End Using
             End Select
             ChangeToolbarState()
@@ -380,13 +381,12 @@ Public Class ctrlPA_SalaryLevelGroup
                         lstID.Add(item.GetDataKeyValue("ID"))
                     Next
 
-                    'Using rep As New PayrollRepository
-                    '    If Not rep.CheckExistInDatabase(lstID, TABLE_NAME.PA_SALARY_LEVEL_GROUP) Then
-                    '        ShowMessage(Translate(CommonMessage.MESSAGE_IS_USING), NotifyType.Warning)
-                    '        Return
-                    '    End If
-                    'End Using
-
+                    Using rep As New PayrollRepository
+                        If Not rep.ValidateCheckExistSalaryLevelGroup(lstID) Then
+                            ShowMessage(Translate("Mã Nhóm Ngạch lương đang tham chiếu đến Ngạch lương."), NotifyType.Warning)
+                            Return
+                        End If
+                    End Using
 
                     DeleteSalaryLevels = lstID
                     ctrlMessageBox.MessageText = Translate(CommonMessage.MESSAGE_CONFIRM_DELETE)
@@ -410,7 +410,6 @@ Public Class ctrlPA_SalaryLevelGroup
                         objSalaryLevel.NAME_VN = txtName.Text.Trim
                         objSalaryLevel.REMARK = txtRemark.Text.Trim
                         objSalaryLevel.ORDERS = If(rntxtOrders.Text = "", 1, Decimal.Parse(rntxtOrders.Text))
-
 
                         Using rep As New PayrollRepository
                             Select Case CurrentState
@@ -464,8 +463,19 @@ Public Class ctrlPA_SalaryLevelGroup
                         ShowMessage(Translate(CommonMessage.MESSAGE_NOT_SELECT_ROW), NotifyType.Warning)
                         Exit Sub
                     End If
+                    Dim lstDeletes As New List(Of Decimal)
+                    For idx = 0 To rgData.SelectedItems.Count - 1
+                        Dim item As GridDataItem = rgData.SelectedItems(idx)
+                        lstDeletes.Add(item.GetDataKeyValue("ID"))
+                    Next
+                    Using rep As New PayrollRepository
+                        If rep.ValidateCheckExistSalaryLevelGroup(lstDeletes) Then
+                            ctrlMessageBox.MessageText = Translate(CommonMessage.MESSAGE_CONFIRM_DEACTIVE)
+                        Else
+                            ctrlMessageBox.MessageText = Translate("Nhóm Ngạch lương đang được áp dụng cho Ngạch lương. Bạn có muốn Ngừng áp dụng?")
+                        End If
+                    End Using
 
-                    ctrlMessageBox.MessageText = Translate(CommonMessage.MESSAGE_CONFIRM_DEACTIVE)
                     ctrlMessageBox.ActionName = CommonMessage.ACTION_DEACTIVE
                     ctrlMessageBox.DataBind()
                     ctrlMessageBox.Show()
@@ -507,6 +517,7 @@ Public Class ctrlPA_SalaryLevelGroup
         End Try
 
     End Sub
+
     ''' <lastupdate>
     ''' 23/08/2017 11:13
     ''' </lastupdate>
@@ -525,6 +536,7 @@ Public Class ctrlPA_SalaryLevelGroup
         End Try
 
     End Sub
+
     ''' <lastupdate>
     ''' 23/08/2017 11:13
     ''' </lastupdate>
@@ -548,12 +560,11 @@ Public Class ctrlPA_SalaryLevelGroup
                     _validate.CODE = txtCode.Text.Trim
                     args.IsValid = rep.ValidateSalaryLevelGroup(_validate)
                 End If
-
             End Using
-
         Catch ex As Exception
             DisplayException(Me.ViewName, Me.ID, ex)
         End Try
+
     End Sub
 #End Region
 

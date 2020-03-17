@@ -656,6 +656,7 @@ Namespace PayrollBusiness
      System.SerializableAttribute(),  _
      System.Runtime.Serialization.KnownTypeAttribute(GetType(System.Collections.Generic.List(Of Decimal))),  _
      System.Runtime.Serialization.KnownTypeAttribute(GetType(System.Collections.Generic.List(Of String))),  _
+     System.Runtime.Serialization.KnownTypeAttribute(GetType(Common.CommonBusiness.UserLog)),  _
      System.Runtime.Serialization.KnownTypeAttribute(GetType(System.Collections.Generic.List(Of PayrollBusiness.ATPriceLunchDTO))),  _
      System.Runtime.Serialization.KnownTypeAttribute(GetType(PayrollBusiness.ATPriceLunchDTO)),  _
      System.Runtime.Serialization.KnownTypeAttribute(GetType(System.Collections.Generic.List(Of PayrollBusiness.PA_ORG_LUNCH))),  _
@@ -730,8 +731,7 @@ Namespace PayrollBusiness
      System.Runtime.Serialization.KnownTypeAttribute(GetType(PayrollBusiness.EntityObject)),  _
      System.Runtime.Serialization.KnownTypeAttribute(GetType(PayrollBusiness.StructuralObject)),  _
      System.Runtime.Serialization.KnownTypeAttribute(GetType(PayrollBusiness.EntityKey)),  _
-     System.Runtime.Serialization.KnownTypeAttribute(GetType(System.Collections.Generic.List(Of PayrollBusiness.EntityKeyMember))),  _
-     System.Runtime.Serialization.KnownTypeAttribute(GetType(Common.CommonBusiness.UserLog))>  _
+     System.Runtime.Serialization.KnownTypeAttribute(GetType(System.Collections.Generic.List(Of PayrollBusiness.EntityKeyMember)))>  _
     Partial Public Class EntityKeyMember
         Inherits Object
         Implements System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged
@@ -9622,6 +9622,9 @@ Namespace PayrollBusiness
      System.ServiceModel.ServiceContractAttribute(ConfigurationName:="PayrollBusiness.IPayrollBusiness")>  _
     Public Interface IPayrollBusiness
         
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IPayrollBusiness/ActiveListSal", ReplyAction:="http://tempuri.org/IPayrollBusiness/ActiveListSalResponse")>  _
+        Function ActiveListSal(ByVal lstID As System.Collections.Generic.List(Of Decimal), ByVal log As Common.CommonBusiness.UserLog, ByVal bActive As String) As Boolean
+        
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IPayrollBusiness/DeleteListSal", ReplyAction:="http://tempuri.org/IPayrollBusiness/DeleteListSalResponse")>  _
         Function DeleteListSal(ByVal lstID As System.Collections.Generic.List(Of Decimal)) As Boolean
         
@@ -9886,6 +9889,9 @@ Namespace PayrollBusiness
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IPayrollBusiness/DeleteSalaryLevelGroup", ReplyAction:="http://tempuri.org/IPayrollBusiness/DeleteSalaryLevelGroupResponse")>  _
         Function DeleteSalaryLevelGroup(ByVal lstSalaryLevelGroup As System.Collections.Generic.List(Of Decimal)) As Boolean
         
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IPayrollBusiness/ValidateCheckExistSalaryLevelGroup", ReplyAction:="http://tempuri.org/IPayrollBusiness/ValidateCheckExistSalaryLevelGroupResponse")>  _
+        Function ValidateCheckExistSalaryLevelGroup(ByVal lstSalaryLevelGroup As System.Collections.Generic.List(Of Decimal)) As Boolean
+        
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IPayrollBusiness/GetSalaryLevelTypeList", ReplyAction:="http://tempuri.org/IPayrollBusiness/GetSalaryLevelTypeListResponse")>  _
         Function GetSalaryLevelTypeList() As System.Collections.Generic.List(Of PayrollBusiness.SalaryLevelGroupDTO)
         
@@ -9985,6 +9991,7 @@ Namespace PayrollBusiness
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IPayrollBusiness/ValidateIncentiveRank", ReplyAction:="http://tempuri.org/IPayrollBusiness/ValidateIncentiveRankResponse"),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of Decimal))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of String))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(Common.CommonBusiness.UserLog)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of PayrollBusiness.ATPriceLunchDTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(PayrollBusiness.ATPriceLunchDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of PayrollBusiness.PA_ORG_LUNCH))),  _
@@ -10060,8 +10067,7 @@ Namespace PayrollBusiness
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(PayrollBusiness.StructuralObject)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(PayrollBusiness.EntityKey)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of PayrollBusiness.EntityKeyMember))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(PayrollBusiness.EntityKeyMember)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(Common.CommonBusiness.UserLog))>  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(PayrollBusiness.EntityKeyMember))>  _
         Function ValidateIncentiveRank(ByVal _validate As PayrollBusiness.IncentiveRankDTO) As Object
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IPayrollBusiness/ActiveIncentiveRank", ReplyAction:="http://tempuri.org/IPayrollBusiness/ActiveIncentiveRankResponse")>  _
@@ -10088,6 +10094,7 @@ Namespace PayrollBusiness
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IPayrollBusiness/ValidateSalaryType_Group", ReplyAction:="http://tempuri.org/IPayrollBusiness/ValidateSalaryType_GroupResponse"),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of Decimal))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of String))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(Common.CommonBusiness.UserLog)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of PayrollBusiness.ATPriceLunchDTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(PayrollBusiness.ATPriceLunchDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of PayrollBusiness.PA_ORG_LUNCH))),  _
@@ -10163,8 +10170,7 @@ Namespace PayrollBusiness
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(PayrollBusiness.StructuralObject)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(PayrollBusiness.EntityKey)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of PayrollBusiness.EntityKeyMember))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(PayrollBusiness.EntityKeyMember)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(Common.CommonBusiness.UserLog))>  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(PayrollBusiness.EntityKeyMember))>  _
         Function ValidateSalaryType_Group(ByVal _validate As PayrollBusiness.SalaryType_GroupDTO) As Object
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IPayrollBusiness/ActiveSalaryType_Group", ReplyAction:="http://tempuri.org/IPayrollBusiness/ActiveSalaryType_GroupResponse")>  _
@@ -10232,9 +10238,6 @@ Namespace PayrollBusiness
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IPayrollBusiness/ModifyListSal", ReplyAction:="http://tempuri.org/IPayrollBusiness/ModifyListSalResponse")>  _
         Function ModifyListSal(ByVal objListSalaries As PayrollBusiness.PAListSalDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IPayrollBusiness/ActiveListSal", ReplyAction:="http://tempuri.org/IPayrollBusiness/ActiveListSalResponse")>  _
-        Function ActiveListSal(ByVal lstID As System.Collections.Generic.List(Of Decimal), ByVal log As Common.CommonBusiness.UserLog, ByVal bActive As String) As Boolean
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IPayrollBusiness/GetAllowanceList", ReplyAction:="http://tempuri.org/IPayrollBusiness/GetAllowanceListResponse")>  _
         Function GetAllowanceList(ByVal _filter As PayrollBusiness.AllowanceListDTO, ByVal Sorts As String) As System.Collections.Generic.List(Of PayrollBusiness.AllowanceListDTO)
@@ -10522,6 +10525,10 @@ Namespace PayrollBusiness
         Public Sub New(ByVal binding As System.ServiceModel.Channels.Binding, ByVal remoteAddress As System.ServiceModel.EndpointAddress)
             MyBase.New(binding, remoteAddress)
         End Sub
+        
+        Public Function ActiveListSal(ByVal lstID As System.Collections.Generic.List(Of Decimal), ByVal log As Common.CommonBusiness.UserLog, ByVal bActive As String) As Boolean Implements PayrollBusiness.IPayrollBusiness.ActiveListSal
+            Return MyBase.Channel.ActiveListSal(lstID, log, bActive)
+        End Function
         
         Public Function DeleteListSal(ByVal lstID As System.Collections.Generic.List(Of Decimal)) As Boolean Implements PayrollBusiness.IPayrollBusiness.DeleteListSal
             Return MyBase.Channel.DeleteListSal(lstID)
@@ -10875,6 +10882,10 @@ Namespace PayrollBusiness
             Return MyBase.Channel.DeleteSalaryLevelGroup(lstSalaryLevelGroup)
         End Function
         
+        Public Function ValidateCheckExistSalaryLevelGroup(ByVal lstSalaryLevelGroup As System.Collections.Generic.List(Of Decimal)) As Boolean Implements PayrollBusiness.IPayrollBusiness.ValidateCheckExistSalaryLevelGroup
+            Return MyBase.Channel.ValidateCheckExistSalaryLevelGroup(lstSalaryLevelGroup)
+        End Function
+        
         Public Function GetSalaryLevelTypeList() As System.Collections.Generic.List(Of PayrollBusiness.SalaryLevelGroupDTO) Implements PayrollBusiness.IPayrollBusiness.GetSalaryLevelTypeList
             Return MyBase.Channel.GetSalaryLevelTypeList
         End Function
@@ -11125,10 +11136,6 @@ Namespace PayrollBusiness
         
         Public Function ModifyListSal(ByVal objListSalaries As PayrollBusiness.PAListSalDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean Implements PayrollBusiness.IPayrollBusiness.ModifyListSal
             Return MyBase.Channel.ModifyListSal(objListSalaries, log, gID)
-        End Function
-        
-        Public Function ActiveListSal(ByVal lstID As System.Collections.Generic.List(Of Decimal), ByVal log As Common.CommonBusiness.UserLog, ByVal bActive As String) As Boolean Implements PayrollBusiness.IPayrollBusiness.ActiveListSal
-            Return MyBase.Channel.ActiveListSal(lstID, log, bActive)
         End Function
         
         Public Function GetAllowanceList(ByVal _filter As PayrollBusiness.AllowanceListDTO, ByVal Sorts As String) As System.Collections.Generic.List(Of PayrollBusiness.AllowanceListDTO) Implements PayrollBusiness.IPayrollBusiness.GetAllowanceList

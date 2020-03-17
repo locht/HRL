@@ -99,6 +99,18 @@ Partial Public Class PayrollRepository
 
     End Function
 
+    Public Function ValidateCheckExistSalaryLevelGroup(ByVal lstSalaryLevel As List(Of Decimal)) As Boolean
+        Using rep As New PayrollBusinessClient
+            Try
+                Return rep.ValidateCheckExistSalaryLevelGroup(lstSalaryLevel)
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+
+    End Function
+
 #End Region
 
 End Class

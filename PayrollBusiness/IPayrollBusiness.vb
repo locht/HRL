@@ -342,6 +342,8 @@ Namespace PayrollBusiness.ServiceContracts
 
         <OperationContract()>
         Function DeleteSalaryLevelGroup(ByVal lstSalaryLevelGroup As List(Of Decimal)) As Boolean
+        <OperationContract()>
+        Function ValidateCheckExistSalaryLevelGroup(ByVal lstSalaryLevelGroup As List(Of Decimal)) As Boolean
 
 #End Region
 

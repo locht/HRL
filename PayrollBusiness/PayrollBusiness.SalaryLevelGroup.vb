@@ -57,6 +57,13 @@ Namespace PayrollBusiness.ServiceImplementations
             End Try
         End Function
 
+        Public Function ValidateCheckExistSalaryLevelGroup(ByVal objSalaryLevel As List(Of Decimal)) As Boolean Implements ServiceContracts.IPayrollBusiness.ValidateCheckExistSalaryLevelGroup
+            Try
+                Return PayrollRepositoryStatic.Instance.ValidateCheckExistSalaryLevelGroup(objSalaryLevel)
+            Catch ex As Exception
+                Throw ex
+            End Try
+        End Function
 
         Public Function DeleteSalaryLevelGroup(ByVal objSalaryLevel As List(Of Decimal)) As Boolean Implements ServiceContracts.IPayrollBusiness.DeleteSalaryLevelGroup
             Try
