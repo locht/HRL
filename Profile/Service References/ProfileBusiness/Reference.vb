@@ -44043,6 +44043,277 @@ Namespace ProfileBusiness
     
     <System.Diagnostics.DebuggerStepThroughAttribute(),  _
      System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0"),  _
+     System.Runtime.Serialization.DataContractAttribute(Name:="UniformSizeDTO", [Namespace]:="http://schemas.datacontract.org/2004/07/ProfileDAL"),  _
+     System.SerializableAttribute()>  _
+    Partial Public Class UniformSizeDTO
+        Inherits Object
+        Implements System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged
+        
+        <System.NonSerializedAttribute()>  _
+        Private extensionDataField As System.Runtime.Serialization.ExtensionDataObject
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private COM_DRESSField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private COM_SHIRTField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private COM_TROUSERSField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private COM_VESTField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private EMPLOYEE_IDField As Decimal
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private OTHERField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private WORK_FABRIC_TROUSERSField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private WORK_HATField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private WORK_OIL_SHOESField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private WORK_PLASTIC_SHOESField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private WORK_SHIRTField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private WORK_SHORTSField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private WORK_SLIPField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private WORK_TROUSERSField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private WORK_T_SHIRTField As String
+        
+        <Global.System.ComponentModel.BrowsableAttribute(false)>  _
+        Public Property ExtensionData() As System.Runtime.Serialization.ExtensionDataObject Implements System.Runtime.Serialization.IExtensibleDataObject.ExtensionData
+            Get
+                Return Me.extensionDataField
+            End Get
+            Set
+                Me.extensionDataField = value
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property COM_DRESS() As String
+            Get
+                Return Me.COM_DRESSField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.COM_DRESSField, value) <> true) Then
+                    Me.COM_DRESSField = value
+                    Me.RaisePropertyChanged("COM_DRESS")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property COM_SHIRT() As String
+            Get
+                Return Me.COM_SHIRTField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.COM_SHIRTField, value) <> true) Then
+                    Me.COM_SHIRTField = value
+                    Me.RaisePropertyChanged("COM_SHIRT")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property COM_TROUSERS() As String
+            Get
+                Return Me.COM_TROUSERSField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.COM_TROUSERSField, value) <> true) Then
+                    Me.COM_TROUSERSField = value
+                    Me.RaisePropertyChanged("COM_TROUSERS")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property COM_VEST() As String
+            Get
+                Return Me.COM_VESTField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.COM_VESTField, value) <> true) Then
+                    Me.COM_VESTField = value
+                    Me.RaisePropertyChanged("COM_VEST")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property EMPLOYEE_ID() As Decimal
+            Get
+                Return Me.EMPLOYEE_IDField
+            End Get
+            Set
+                If (Me.EMPLOYEE_IDField.Equals(value) <> true) Then
+                    Me.EMPLOYEE_IDField = value
+                    Me.RaisePropertyChanged("EMPLOYEE_ID")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property OTHER() As String
+            Get
+                Return Me.OTHERField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.OTHERField, value) <> true) Then
+                    Me.OTHERField = value
+                    Me.RaisePropertyChanged("OTHER")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property WORK_FABRIC_TROUSERS() As String
+            Get
+                Return Me.WORK_FABRIC_TROUSERSField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.WORK_FABRIC_TROUSERSField, value) <> true) Then
+                    Me.WORK_FABRIC_TROUSERSField = value
+                    Me.RaisePropertyChanged("WORK_FABRIC_TROUSERS")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property WORK_HAT() As String
+            Get
+                Return Me.WORK_HATField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.WORK_HATField, value) <> true) Then
+                    Me.WORK_HATField = value
+                    Me.RaisePropertyChanged("WORK_HAT")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property WORK_OIL_SHOES() As String
+            Get
+                Return Me.WORK_OIL_SHOESField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.WORK_OIL_SHOESField, value) <> true) Then
+                    Me.WORK_OIL_SHOESField = value
+                    Me.RaisePropertyChanged("WORK_OIL_SHOES")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property WORK_PLASTIC_SHOES() As String
+            Get
+                Return Me.WORK_PLASTIC_SHOESField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.WORK_PLASTIC_SHOESField, value) <> true) Then
+                    Me.WORK_PLASTIC_SHOESField = value
+                    Me.RaisePropertyChanged("WORK_PLASTIC_SHOES")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property WORK_SHIRT() As String
+            Get
+                Return Me.WORK_SHIRTField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.WORK_SHIRTField, value) <> true) Then
+                    Me.WORK_SHIRTField = value
+                    Me.RaisePropertyChanged("WORK_SHIRT")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property WORK_SHORTS() As String
+            Get
+                Return Me.WORK_SHORTSField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.WORK_SHORTSField, value) <> true) Then
+                    Me.WORK_SHORTSField = value
+                    Me.RaisePropertyChanged("WORK_SHORTS")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property WORK_SLIP() As String
+            Get
+                Return Me.WORK_SLIPField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.WORK_SLIPField, value) <> true) Then
+                    Me.WORK_SLIPField = value
+                    Me.RaisePropertyChanged("WORK_SLIP")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property WORK_TROUSERS() As String
+            Get
+                Return Me.WORK_TROUSERSField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.WORK_TROUSERSField, value) <> true) Then
+                    Me.WORK_TROUSERSField = value
+                    Me.RaisePropertyChanged("WORK_TROUSERS")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property WORK_T_SHIRT() As String
+            Get
+                Return Me.WORK_T_SHIRTField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.WORK_T_SHIRTField, value) <> true) Then
+                    Me.WORK_T_SHIRTField = value
+                    Me.RaisePropertyChanged("WORK_T_SHIRT")
+                End If
+            End Set
+        End Property
+        
+        Public Event PropertyChanged As System.ComponentModel.PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
+        
+        Protected Sub RaisePropertyChanged(ByVal propertyName As String)
+            Dim propertyChanged As System.ComponentModel.PropertyChangedEventHandler = Me.PropertyChangedEvent
+            If (Not (propertyChanged) Is Nothing) Then
+                propertyChanged(Me, New System.ComponentModel.PropertyChangedEventArgs(propertyName))
+            End If
+        End Sub
+    End Class
+    
+    <System.Diagnostics.DebuggerStepThroughAttribute(),  _
+     System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0"),  _
      System.Runtime.Serialization.DataContractAttribute(Name:="OrgChartDTO", [Namespace]:="http://schemas.datacontract.org/2004/07/ProfileDAL"),  _
      System.SerializableAttribute()>  _
     Partial Public Class OrgChartDTO
@@ -50656,6 +50927,7 @@ Namespace ProfileBusiness
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.EmployeeCVDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.EmployeeEduDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.EmployeeHealthDTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.UniformSizeDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.OrgChartDTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.OrgChartDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.EmployeeEditDTO))),  _
@@ -50852,6 +51124,7 @@ Namespace ProfileBusiness
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.EmployeeCVDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.EmployeeEduDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.EmployeeHealthDTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.UniformSizeDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.OrgChartDTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.OrgChartDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.EmployeeEditDTO))),  _
@@ -51303,6 +51576,7 @@ Namespace ProfileBusiness
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.EmployeeCVDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.EmployeeEduDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.EmployeeHealthDTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.UniformSizeDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.OrgChartDTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.OrgChartDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.EmployeeEditDTO))),  _
@@ -51514,6 +51788,7 @@ Namespace ProfileBusiness
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.EmployeeCVDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.EmployeeEduDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.EmployeeHealthDTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.UniformSizeDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.OrgChartDTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.OrgChartDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.EmployeeEditDTO))),  _
@@ -52232,13 +52507,13 @@ Namespace ProfileBusiness
         Function GetEmployeeImage_PrintCV(ByVal gEmpID As Decimal) As String
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/InsertEmployee", ReplyAction:="http://tempuri.org/IProfileBusiness/InsertEmployeeResponse")>  _
-        Function InsertEmployee(ByVal objEmp As ProfileBusiness.EmployeeDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal, ByRef _strEmpCode As String, ByVal _imageBinary() As Byte, ByVal objEmpCV As ProfileBusiness.EmployeeCVDTO, ByVal objEmpEdu As ProfileBusiness.EmployeeEduDTO, ByVal objEmpHealth As ProfileBusiness.EmployeeHealthDTO) As Boolean
+        Function InsertEmployee(ByVal objEmp As ProfileBusiness.EmployeeDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal, ByRef _strEmpCode As String, ByVal _imageBinary() As Byte, ByVal objEmpCV As ProfileBusiness.EmployeeCVDTO, ByVal objEmpEdu As ProfileBusiness.EmployeeEduDTO, ByVal objEmpHealth As ProfileBusiness.EmployeeHealthDTO, ByVal objEmpUniform As ProfileBusiness.UniformSizeDTO) As Boolean
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/CreateNewEMPLOYEECode", ReplyAction:="http://tempuri.org/IProfileBusiness/CreateNewEMPLOYEECodeResponse")>  _
         Function CreateNewEMPLOYEECode() As ProfileBusiness.EmployeeDTO
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ModifyEmployee", ReplyAction:="http://tempuri.org/IProfileBusiness/ModifyEmployeeResponse")>  _
-        Function ModifyEmployee(ByVal objEmp As ProfileBusiness.EmployeeDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal, ByVal _imageBinary() As Byte, ByVal objEmpCV As ProfileBusiness.EmployeeCVDTO, ByVal objEmpEdu As ProfileBusiness.EmployeeEduDTO, ByVal objEmpHealth As ProfileBusiness.EmployeeHealthDTO) As Boolean
+        Function ModifyEmployee(ByVal objEmp As ProfileBusiness.EmployeeDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal, ByVal _imageBinary() As Byte, ByVal objEmpCV As ProfileBusiness.EmployeeCVDTO, ByVal objEmpEdu As ProfileBusiness.EmployeeEduDTO, ByVal objEmpHealth As ProfileBusiness.EmployeeHealthDTO, ByVal objEmpUniform As ProfileBusiness.UniformSizeDTO) As Boolean
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetEmployeeOrgChart", ReplyAction:="http://tempuri.org/IProfileBusiness/GetEmployeeOrgChartResponse")>  _
         Function GetEmployeeOrgChart(ByVal lstOrg As System.Collections.Generic.List(Of Decimal), ByVal log As Common.CommonBusiness.UserLog) As System.Collections.Generic.List(Of ProfileBusiness.OrgChartDTO)
@@ -52256,7 +52531,7 @@ Namespace ProfileBusiness
         Function GetListEmployeePortal(ByVal _filter As ProfileBusiness.EmployeeDTO) As System.Collections.Generic.List(Of ProfileBusiness.EmployeeDTO)
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetEmployeeAllByID", ReplyAction:="http://tempuri.org/IProfileBusiness/GetEmployeeAllByIDResponse")>  _
-        Function GetEmployeeAllByID(ByVal sEmployeeID As Decimal, ByRef empCV As ProfileBusiness.EmployeeCVDTO, ByRef empEdu As ProfileBusiness.EmployeeEduDTO, ByRef empHealth As ProfileBusiness.EmployeeHealthDTO) As Boolean
+        Function GetEmployeeAllByID(ByVal sEmployeeID As Decimal, ByRef empCV As ProfileBusiness.EmployeeCVDTO, ByRef empEdu As ProfileBusiness.EmployeeEduDTO, ByRef empHealth As ProfileBusiness.EmployeeHealthDTO, ByRef empUniform As ProfileBusiness.UniformSizeDTO) As Boolean
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/DeleteEmployee", ReplyAction:="http://tempuri.org/IProfileBusiness/DeleteEmployeeResponse")>  _
         Function DeleteEmployee(ByVal lstEmpID As System.Collections.Generic.List(Of Decimal), ByVal log As Common.CommonBusiness.UserLog, ByRef sError As String) As Boolean
@@ -54323,16 +54598,16 @@ Namespace ProfileBusiness
             Return MyBase.Channel.GetEmployeeImage_PrintCV(gEmpID)
         End Function
         
-        Public Function InsertEmployee(ByVal objEmp As ProfileBusiness.EmployeeDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal, ByRef _strEmpCode As String, ByVal _imageBinary() As Byte, ByVal objEmpCV As ProfileBusiness.EmployeeCVDTO, ByVal objEmpEdu As ProfileBusiness.EmployeeEduDTO, ByVal objEmpHealth As ProfileBusiness.EmployeeHealthDTO) As Boolean Implements ProfileBusiness.IProfileBusiness.InsertEmployee
-            Return MyBase.Channel.InsertEmployee(objEmp, log, gID, _strEmpCode, _imageBinary, objEmpCV, objEmpEdu, objEmpHealth)
+        Public Function InsertEmployee(ByVal objEmp As ProfileBusiness.EmployeeDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal, ByRef _strEmpCode As String, ByVal _imageBinary() As Byte, ByVal objEmpCV As ProfileBusiness.EmployeeCVDTO, ByVal objEmpEdu As ProfileBusiness.EmployeeEduDTO, ByVal objEmpHealth As ProfileBusiness.EmployeeHealthDTO, ByVal objEmpUniform As ProfileBusiness.UniformSizeDTO) As Boolean Implements ProfileBusiness.IProfileBusiness.InsertEmployee
+            Return MyBase.Channel.InsertEmployee(objEmp, log, gID, _strEmpCode, _imageBinary, objEmpCV, objEmpEdu, objEmpHealth, objEmpUniform)
         End Function
         
         Public Function CreateNewEMPLOYEECode() As ProfileBusiness.EmployeeDTO Implements ProfileBusiness.IProfileBusiness.CreateNewEMPLOYEECode
             Return MyBase.Channel.CreateNewEMPLOYEECode
         End Function
         
-        Public Function ModifyEmployee(ByVal objEmp As ProfileBusiness.EmployeeDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal, ByVal _imageBinary() As Byte, ByVal objEmpCV As ProfileBusiness.EmployeeCVDTO, ByVal objEmpEdu As ProfileBusiness.EmployeeEduDTO, ByVal objEmpHealth As ProfileBusiness.EmployeeHealthDTO) As Boolean Implements ProfileBusiness.IProfileBusiness.ModifyEmployee
-            Return MyBase.Channel.ModifyEmployee(objEmp, log, gID, _imageBinary, objEmpCV, objEmpEdu, objEmpHealth)
+        Public Function ModifyEmployee(ByVal objEmp As ProfileBusiness.EmployeeDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal, ByVal _imageBinary() As Byte, ByVal objEmpCV As ProfileBusiness.EmployeeCVDTO, ByVal objEmpEdu As ProfileBusiness.EmployeeEduDTO, ByVal objEmpHealth As ProfileBusiness.EmployeeHealthDTO, ByVal objEmpUniform As ProfileBusiness.UniformSizeDTO) As Boolean Implements ProfileBusiness.IProfileBusiness.ModifyEmployee
+            Return MyBase.Channel.ModifyEmployee(objEmp, log, gID, _imageBinary, objEmpCV, objEmpEdu, objEmpHealth, objEmpUniform)
         End Function
         
         Public Function GetEmployeeOrgChart(ByVal lstOrg As System.Collections.Generic.List(Of Decimal), ByVal log As Common.CommonBusiness.UserLog) As System.Collections.Generic.List(Of ProfileBusiness.OrgChartDTO) Implements ProfileBusiness.IProfileBusiness.GetEmployeeOrgChart
@@ -54355,8 +54630,8 @@ Namespace ProfileBusiness
             Return MyBase.Channel.GetListEmployeePortal(_filter)
         End Function
         
-        Public Function GetEmployeeAllByID(ByVal sEmployeeID As Decimal, ByRef empCV As ProfileBusiness.EmployeeCVDTO, ByRef empEdu As ProfileBusiness.EmployeeEduDTO, ByRef empHealth As ProfileBusiness.EmployeeHealthDTO) As Boolean Implements ProfileBusiness.IProfileBusiness.GetEmployeeAllByID
-            Return MyBase.Channel.GetEmployeeAllByID(sEmployeeID, empCV, empEdu, empHealth)
+        Public Function GetEmployeeAllByID(ByVal sEmployeeID As Decimal, ByRef empCV As ProfileBusiness.EmployeeCVDTO, ByRef empEdu As ProfileBusiness.EmployeeEduDTO, ByRef empHealth As ProfileBusiness.EmployeeHealthDTO, ByRef empUniform As ProfileBusiness.UniformSizeDTO) As Boolean Implements ProfileBusiness.IProfileBusiness.GetEmployeeAllByID
+            Return MyBase.Channel.GetEmployeeAllByID(sEmployeeID, empCV, empEdu, empHealth, empUniform)
         End Function
         
         Public Function DeleteEmployee(ByVal lstEmpID As System.Collections.Generic.List(Of Decimal), ByVal log As Common.CommonBusiness.UserLog, ByRef sError As String) As Boolean Implements ProfileBusiness.IProfileBusiness.DeleteEmployee

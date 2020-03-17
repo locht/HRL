@@ -18,7 +18,7 @@ Imports System.Runtime.Serialization
 Imports System.Xml.Serialization
 
 
-<Assembly: EdmSchemaAttribute("aca37f9c-c37f-400f-bc11-1636a43c822b")>
+<Assembly: EdmSchemaAttribute("24f19cc4-797b-446c-9aef-a5e30b0e7bdc")>
 #Region "EDM Relationship Metadata"
 <Assembly: EdmRelationshipAttribute("ProfileModel", "FK_HU_NAT_HU_PRO", "HU_NATION", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_NATION), "HU_PROVINCE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_PROVINCE), True)>
 <Assembly: EdmRelationshipAttribute("ProfileModel", "FK_HU_PRO_HU_DIS", "HU_PROVINCE", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_PROVINCE), "HU_DISTRICT", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_DISTRICT), True)>
@@ -2169,6 +2169,20 @@ Public Partial Class ProfileContext
 
     Private _HU_JOB_POSITION As ObjectSet(Of HU_JOB_POSITION)
 
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    Public ReadOnly Property HU_UNIFORM_SIZE() As ObjectSet(Of HU_UNIFORM_SIZE)
+        Get
+            If (_HU_UNIFORM_SIZE Is Nothing) Then
+                _HU_UNIFORM_SIZE = MyBase.CreateObjectSet(Of HU_UNIFORM_SIZE)("HU_UNIFORM_SIZE")
+            End If
+            Return _HU_UNIFORM_SIZE
+        End Get
+    End Property
+
+    Private _HU_UNIFORM_SIZE As ObjectSet(Of HU_UNIFORM_SIZE)
+
     #End Region
 
     #Region "AddTo Methods"
@@ -3207,6 +3221,13 @@ Public Partial Class ProfileContext
     ''' </summary>
     Public Sub AddToHU_JOB_POSITION(ByVal hU_JOB_POSITION As HU_JOB_POSITION)
         MyBase.AddObject("HU_JOB_POSITION", hU_JOB_POSITION)
+    End Sub
+
+    ''' <summary>
+    ''' Deprecated Method for adding a new object to the HU_UNIFORM_SIZE EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+    ''' </summary>
+    Public Sub AddToHU_UNIFORM_SIZE(ByVal hU_UNIFORM_SIZE As HU_UNIFORM_SIZE)
+        MyBase.AddObject("HU_UNIFORM_SIZE", hU_UNIFORM_SIZE)
     End Sub
 
     #End Region
@@ -57828,6 +57849,411 @@ Public Partial Class HU_TRANSFER_TERMINATE
     End Sub
 
     Private Partial Sub OnEMPLOYEE_IDChanged()
+    End Sub
+
+    #End Region
+
+End Class
+
+''' <summary>
+''' No Metadata Documentation available.
+''' </summary>
+<EdmEntityTypeAttribute(NamespaceName:="ProfileModel", Name:="HU_UNIFORM_SIZE")>
+<Serializable()>
+<DataContractAttribute(IsReference:=True)>
+Public Partial Class HU_UNIFORM_SIZE
+    Inherits EntityObject
+    #Region "Factory Method"
+
+    ''' <summary>
+    ''' Create a new HU_UNIFORM_SIZE object.
+    ''' </summary>
+    ''' <param name="eMPLOYEE_ID">Initial value of the EMPLOYEE_ID property.</param>
+    Public Shared Function CreateHU_UNIFORM_SIZE(eMPLOYEE_ID As Global.System.Decimal) As HU_UNIFORM_SIZE
+        Dim hU_UNIFORM_SIZE as HU_UNIFORM_SIZE = New HU_UNIFORM_SIZE
+        hU_UNIFORM_SIZE.EMPLOYEE_ID = eMPLOYEE_ID
+        Return hU_UNIFORM_SIZE
+    End Function
+
+    #End Region
+
+    #Region "Primitive Properties"
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=true, IsNullable:=false)>
+    <DataMemberAttribute()>
+    Public Property EMPLOYEE_ID() As Global.System.Decimal
+        Get
+            Return _EMPLOYEE_ID
+        End Get
+        Set
+            If (_EMPLOYEE_ID <> Value) Then
+                OnEMPLOYEE_IDChanging(value)
+                ReportPropertyChanging("EMPLOYEE_ID")
+                _EMPLOYEE_ID = StructuralObject.SetValidValue(value)
+                ReportPropertyChanged("EMPLOYEE_ID")
+                OnEMPLOYEE_IDChanged()
+            End If
+        End Set
+    End Property
+
+    Private _EMPLOYEE_ID As Global.System.Decimal
+    Private Partial Sub OnEMPLOYEE_IDChanging(value As Global.System.Decimal)
+    End Sub
+
+    Private Partial Sub OnEMPLOYEE_IDChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property COM_SHIRT() As Global.System.String
+        Get
+            Return _COM_SHIRT
+        End Get
+        Set
+            OnCOM_SHIRTChanging(value)
+            ReportPropertyChanging("COM_SHIRT")
+            _COM_SHIRT = StructuralObject.SetValidValue(value, true)
+            ReportPropertyChanged("COM_SHIRT")
+            OnCOM_SHIRTChanged()
+        End Set
+    End Property
+
+    Private _COM_SHIRT As Global.System.String
+    Private Partial Sub OnCOM_SHIRTChanging(value As Global.System.String)
+    End Sub
+
+    Private Partial Sub OnCOM_SHIRTChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property COM_DRESS() As Global.System.String
+        Get
+            Return _COM_DRESS
+        End Get
+        Set
+            OnCOM_DRESSChanging(value)
+            ReportPropertyChanging("COM_DRESS")
+            _COM_DRESS = StructuralObject.SetValidValue(value, true)
+            ReportPropertyChanged("COM_DRESS")
+            OnCOM_DRESSChanged()
+        End Set
+    End Property
+
+    Private _COM_DRESS As Global.System.String
+    Private Partial Sub OnCOM_DRESSChanging(value As Global.System.String)
+    End Sub
+
+    Private Partial Sub OnCOM_DRESSChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property COM_VEST() As Global.System.String
+        Get
+            Return _COM_VEST
+        End Get
+        Set
+            OnCOM_VESTChanging(value)
+            ReportPropertyChanging("COM_VEST")
+            _COM_VEST = StructuralObject.SetValidValue(value, true)
+            ReportPropertyChanged("COM_VEST")
+            OnCOM_VESTChanged()
+        End Set
+    End Property
+
+    Private _COM_VEST As Global.System.String
+    Private Partial Sub OnCOM_VESTChanging(value As Global.System.String)
+    End Sub
+
+    Private Partial Sub OnCOM_VESTChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property COM_TROUSERS() As Global.System.String
+        Get
+            Return _COM_TROUSERS
+        End Get
+        Set
+            OnCOM_TROUSERSChanging(value)
+            ReportPropertyChanging("COM_TROUSERS")
+            _COM_TROUSERS = StructuralObject.SetValidValue(value, true)
+            ReportPropertyChanged("COM_TROUSERS")
+            OnCOM_TROUSERSChanged()
+        End Set
+    End Property
+
+    Private _COM_TROUSERS As Global.System.String
+    Private Partial Sub OnCOM_TROUSERSChanging(value As Global.System.String)
+    End Sub
+
+    Private Partial Sub OnCOM_TROUSERSChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property WORK_SHIRT() As Global.System.String
+        Get
+            Return _WORK_SHIRT
+        End Get
+        Set
+            OnWORK_SHIRTChanging(value)
+            ReportPropertyChanging("WORK_SHIRT")
+            _WORK_SHIRT = StructuralObject.SetValidValue(value, true)
+            ReportPropertyChanged("WORK_SHIRT")
+            OnWORK_SHIRTChanged()
+        End Set
+    End Property
+
+    Private _WORK_SHIRT As Global.System.String
+    Private Partial Sub OnWORK_SHIRTChanging(value As Global.System.String)
+    End Sub
+
+    Private Partial Sub OnWORK_SHIRTChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property WORK_TROUSERS() As Global.System.String
+        Get
+            Return _WORK_TROUSERS
+        End Get
+        Set
+            OnWORK_TROUSERSChanging(value)
+            ReportPropertyChanging("WORK_TROUSERS")
+            _WORK_TROUSERS = StructuralObject.SetValidValue(value, true)
+            ReportPropertyChanged("WORK_TROUSERS")
+            OnWORK_TROUSERSChanged()
+        End Set
+    End Property
+
+    Private _WORK_TROUSERS As Global.System.String
+    Private Partial Sub OnWORK_TROUSERSChanging(value As Global.System.String)
+    End Sub
+
+    Private Partial Sub OnWORK_TROUSERSChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property WORK_FABRIC_TROUSERS() As Global.System.String
+        Get
+            Return _WORK_FABRIC_TROUSERS
+        End Get
+        Set
+            OnWORK_FABRIC_TROUSERSChanging(value)
+            ReportPropertyChanging("WORK_FABRIC_TROUSERS")
+            _WORK_FABRIC_TROUSERS = StructuralObject.SetValidValue(value, true)
+            ReportPropertyChanged("WORK_FABRIC_TROUSERS")
+            OnWORK_FABRIC_TROUSERSChanged()
+        End Set
+    End Property
+
+    Private _WORK_FABRIC_TROUSERS As Global.System.String
+    Private Partial Sub OnWORK_FABRIC_TROUSERSChanging(value As Global.System.String)
+    End Sub
+
+    Private Partial Sub OnWORK_FABRIC_TROUSERSChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property WORK_OIL_SHOES() As Global.System.String
+        Get
+            Return _WORK_OIL_SHOES
+        End Get
+        Set
+            OnWORK_OIL_SHOESChanging(value)
+            ReportPropertyChanging("WORK_OIL_SHOES")
+            _WORK_OIL_SHOES = StructuralObject.SetValidValue(value, true)
+            ReportPropertyChanged("WORK_OIL_SHOES")
+            OnWORK_OIL_SHOESChanged()
+        End Set
+    End Property
+
+    Private _WORK_OIL_SHOES As Global.System.String
+    Private Partial Sub OnWORK_OIL_SHOESChanging(value As Global.System.String)
+    End Sub
+
+    Private Partial Sub OnWORK_OIL_SHOESChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property WORK_PLASTIC_SHOES() As Global.System.String
+        Get
+            Return _WORK_PLASTIC_SHOES
+        End Get
+        Set
+            OnWORK_PLASTIC_SHOESChanging(value)
+            ReportPropertyChanging("WORK_PLASTIC_SHOES")
+            _WORK_PLASTIC_SHOES = StructuralObject.SetValidValue(value, true)
+            ReportPropertyChanged("WORK_PLASTIC_SHOES")
+            OnWORK_PLASTIC_SHOESChanged()
+        End Set
+    End Property
+
+    Private _WORK_PLASTIC_SHOES As Global.System.String
+    Private Partial Sub OnWORK_PLASTIC_SHOESChanging(value As Global.System.String)
+    End Sub
+
+    Private Partial Sub OnWORK_PLASTIC_SHOESChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property WORK_T_SHIRT() As Global.System.String
+        Get
+            Return _WORK_T_SHIRT
+        End Get
+        Set
+            OnWORK_T_SHIRTChanging(value)
+            ReportPropertyChanging("WORK_T_SHIRT")
+            _WORK_T_SHIRT = StructuralObject.SetValidValue(value, true)
+            ReportPropertyChanged("WORK_T_SHIRT")
+            OnWORK_T_SHIRTChanged()
+        End Set
+    End Property
+
+    Private _WORK_T_SHIRT As Global.System.String
+    Private Partial Sub OnWORK_T_SHIRTChanging(value As Global.System.String)
+    End Sub
+
+    Private Partial Sub OnWORK_T_SHIRTChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property WORK_SHORTS() As Global.System.String
+        Get
+            Return _WORK_SHORTS
+        End Get
+        Set
+            OnWORK_SHORTSChanging(value)
+            ReportPropertyChanging("WORK_SHORTS")
+            _WORK_SHORTS = StructuralObject.SetValidValue(value, true)
+            ReportPropertyChanged("WORK_SHORTS")
+            OnWORK_SHORTSChanged()
+        End Set
+    End Property
+
+    Private _WORK_SHORTS As Global.System.String
+    Private Partial Sub OnWORK_SHORTSChanging(value As Global.System.String)
+    End Sub
+
+    Private Partial Sub OnWORK_SHORTSChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property WORK_SLIP() As Global.System.String
+        Get
+            Return _WORK_SLIP
+        End Get
+        Set
+            OnWORK_SLIPChanging(value)
+            ReportPropertyChanging("WORK_SLIP")
+            _WORK_SLIP = StructuralObject.SetValidValue(value, true)
+            ReportPropertyChanged("WORK_SLIP")
+            OnWORK_SLIPChanged()
+        End Set
+    End Property
+
+    Private _WORK_SLIP As Global.System.String
+    Private Partial Sub OnWORK_SLIPChanging(value As Global.System.String)
+    End Sub
+
+    Private Partial Sub OnWORK_SLIPChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property WORK_HAT() As Global.System.String
+        Get
+            Return _WORK_HAT
+        End Get
+        Set
+            OnWORK_HATChanging(value)
+            ReportPropertyChanging("WORK_HAT")
+            _WORK_HAT = StructuralObject.SetValidValue(value, true)
+            ReportPropertyChanged("WORK_HAT")
+            OnWORK_HATChanged()
+        End Set
+    End Property
+
+    Private _WORK_HAT As Global.System.String
+    Private Partial Sub OnWORK_HATChanging(value As Global.System.String)
+    End Sub
+
+    Private Partial Sub OnWORK_HATChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property OTHER() As Global.System.String
+        Get
+            Return _OTHER
+        End Get
+        Set
+            OnOTHERChanging(value)
+            ReportPropertyChanging("OTHER")
+            _OTHER = StructuralObject.SetValidValue(value, true)
+            ReportPropertyChanged("OTHER")
+            OnOTHERChanged()
+        End Set
+    End Property
+
+    Private _OTHER As Global.System.String
+    Private Partial Sub OnOTHERChanging(value As Global.System.String)
+    End Sub
+
+    Private Partial Sub OnOTHERChanged()
     End Sub
 
     #End Region

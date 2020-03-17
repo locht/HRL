@@ -65,7 +65,8 @@ Namespace ProfileBusiness.ServiceImplementations
                                         ByVal _imageBinary As Byte(), _
                                         Optional ByVal objEmpCV As EmployeeCVDTO = Nothing, _
                                         Optional ByVal objEmpEdu As EmployeeEduDTO = Nothing, _
-                                        Optional ByVal objEmpHealth As EmployeeHealthDTO = Nothing) As Boolean _
+                                        Optional ByVal objEmpHealth As EmployeeHealthDTO = Nothing, _
+                                        Optional ByVal objEmpUniform As UniformSizeDTO = Nothing) As Boolean _
                                 Implements ServiceContracts.IProfileBusiness.InsertEmployee
 
 
@@ -73,7 +74,7 @@ Namespace ProfileBusiness.ServiceImplementations
                 Try
                     Return rep.InsertEmployee(objEmp, log, gID, _strEmpCode, _imageBinary, IIf(objEmpCV IsNot Nothing, objEmpCV, Nothing) _
                                                  , IIf(objEmpEdu IsNot Nothing, objEmpEdu, Nothing) _
-                                                 , IIf(objEmpHealth IsNot Nothing, objEmpHealth, Nothing))
+                                                 , IIf(objEmpHealth IsNot Nothing, objEmpHealth, Nothing), IIf(objEmpUniform IsNot Nothing, objEmpUniform, Nothing))
                 Catch ex As Exception
                     Throw ex
                 End Try
@@ -84,13 +85,14 @@ Namespace ProfileBusiness.ServiceImplementations
                                         ByVal _imageBinary As Byte(), _
                                         Optional ByVal objEmpCV As EmployeeCVDTO = Nothing, _
                                         Optional ByVal objEmpEdu As EmployeeEduDTO = Nothing, _
-                                        Optional ByVal objEmpHealth As EmployeeHealthDTO = Nothing) As Boolean _
+                                        Optional ByVal objEmpHealth As EmployeeHealthDTO = Nothing, _
+                                        Optional ByVal objEmpUniform As UniformSizeDTO = Nothing) As Boolean _
                                 Implements ServiceContracts.IProfileBusiness.ModifyEmployee
             Using rep As New ProfileRepository
                 Try
                     Return rep.ModifyEmployee(objEmp, log, gID, _imageBinary, IIf(objEmpCV IsNot Nothing, objEmpCV, Nothing), _
                                                  IIf(objEmpEdu IsNot Nothing, objEmpEdu, Nothing), _
-                                                 IIf(objEmpHealth IsNot Nothing, objEmpHealth, Nothing))
+                                                 IIf(objEmpHealth IsNot Nothing, objEmpHealth, Nothing), IIf(objEmpUniform IsNot Nothing, objEmpUniform, Nothing))
                 Catch ex As Exception
                     Throw ex
                 End Try
@@ -243,11 +245,12 @@ Namespace ProfileBusiness.ServiceImplementations
         Public Function GetEmployeeAllByID(ByVal sEmployeeID As Decimal,
                                   ByRef empCV As EmployeeCVDTO,
                                   ByRef empEdu As EmployeeEduDTO,
-                                  ByRef empHealth As EmployeeHealthDTO) As Boolean _
+                                  ByRef empHealth As EmployeeHealthDTO,
+                                  ByRef empUniform As UniformSizeDTO) As Boolean _
                                             Implements ServiceContracts.IProfileBusiness.GetEmployeeAllByID
             Using rep As New ProfileRepository
                 Try
-                    Return rep.GetEmployeeAllByID(sEmployeeID, empCV, empEdu, empHealth)
+                    Return rep.GetEmployeeAllByID(sEmployeeID, empCV, empEdu, empHealth, empUniform)
                 Catch ex As Exception
                     Throw ex
                 End Try

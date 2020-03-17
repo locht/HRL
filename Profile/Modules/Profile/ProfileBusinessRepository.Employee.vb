@@ -85,12 +85,13 @@ Partial Public Class ProfileBusinessRepository
                                   ByVal _imageBinary As Byte(), _
                                   Optional ByVal objEmpCV As EmployeeCVDTO = Nothing, _
                                   Optional ByVal objEmpEdu As EmployeeEduDTO = Nothing, _
-                                  Optional ByVal objEmpHealth As EmployeeHealthDTO = Nothing) As Boolean
+                                  Optional ByVal objEmpHealth As EmployeeHealthDTO = Nothing, _
+                                  Optional ByVal objEmpUniform As UniformSizeDTO = Nothing) As Boolean
         Using rep As New ProfileBusinessClient
             Try
                 Return rep.InsertEmployee(objEmp, Me.Log, gID, _strEmpCode, _imageBinary, IIf(objEmpCV IsNot Nothing, objEmpCV, Nothing), _
                                                 IIf(objEmpEdu IsNot Nothing, objEmpEdu, Nothing), _
-                                                IIf(objEmpHealth IsNot Nothing, objEmpHealth, Nothing))
+                                                IIf(objEmpHealth IsNot Nothing, objEmpHealth, Nothing), IIf(objEmpUniform IsNot Nothing, objEmpUniform, Nothing))
             Catch ex As Exception
                 rep.Abort()
                 Throw ex
@@ -103,13 +104,14 @@ Partial Public Class ProfileBusinessRepository
                                      ByVal _imageBinary As Byte(), _
                                      Optional ByVal objEmpCV As EmployeeCVDTO = Nothing, _
                                      Optional ByVal objEmpEdu As EmployeeEduDTO = Nothing, _
-                                     Optional ByVal objEmpHealth As EmployeeHealthDTO = Nothing) As Boolean
+                                     Optional ByVal objEmpHealth As EmployeeHealthDTO = Nothing, _
+                                     Optional ByVal objEmpUniform As UniformSizeDTO = Nothing) As Boolean
 
         Using rep As New ProfileBusinessClient
             Try
                 Return rep.ModifyEmployee(objEmp, Me.Log, gID, _imageBinary, IIf(objEmpCV IsNot Nothing, objEmpCV, Nothing), _
                                                 IIf(objEmpEdu IsNot Nothing, objEmpEdu, Nothing), _
-                                                IIf(objEmpHealth IsNot Nothing, objEmpHealth, Nothing))
+                                                IIf(objEmpHealth IsNot Nothing, objEmpHealth, Nothing), IIf(objEmpUniform IsNot Nothing, objEmpUniform, Nothing))
             Catch ex As Exception
                 rep.Abort()
                 Throw ex
@@ -134,10 +136,11 @@ Partial Public Class ProfileBusinessRepository
     Public Sub GetEmployeeAllByID(ByVal sEmployeeID As Decimal,
                                   ByRef empCV As EmployeeCVDTO,
                                   ByRef empEdu As EmployeeEduDTO,
-                                  ByRef empHealth As EmployeeHealthDTO)
+                                  ByRef empHealth As EmployeeHealthDTO,
+                                  ByRef empUniform As UniformSizeDTO)
         Using rep As New ProfileBusinessClient
             Try
-                rep.GetEmployeeAllByID(sEmployeeID, empCV, empEdu, empHealth)
+                rep.GetEmployeeAllByID(sEmployeeID, empCV, empEdu, empHealth, empUniform)
             Catch ex As Exception
                 rep.Abort()
                 Throw ex

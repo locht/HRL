@@ -1,8 +1,8 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for Oracle database
 -- --------------------------------------------------
--- Date Created: 3/11/2020 10:35:50 AM
--- Generated from EDMX file: D:\SOURCE_GIT_NEW\ACV_NEW\ProfileDAL\ProfileContext.edmx
+-- Date Created: 03/17/2020 3:45:51 PM
+-- Generated from EDMX file: F:\WORKING\acv_19\ProfileDAL\ProfileContext.edmx
 -- --------------------------------------------------
 
 -- --------------------------------------------------
@@ -13,9 +13,7 @@
 -- Dropping existing tables
 -- --------------------------------------------------
 
--- DROP TABLE "ACV_19_DEV"."HU_DIRECT_MANAGER";
-
--- DROP TABLE "ACV_19_DEV"."HU_JOB_POSITION";
+-- DROP TABLE "ACV_19_DEV"."HU_UNIFORM_SIZE";
 
 -- --------------------------------------------------
 -- Creating all tables
@@ -3442,6 +3440,25 @@ CREATE TABLE "dbo"."HU_JOB_POSITION" (
    "JOB_NAME" NVARCHAR2(1000) NULL
 );
 
+-- Creating table 'HU_UNIFORM_SIZE'
+CREATE TABLE "dbo"."HU_UNIFORM_SIZE" (
+   "EMPLOYEE_ID" NUMBER(38,0) NOT NULL,
+   "COM_SHIRT" NVARCHAR2(255) NULL,
+   "COM_DRESS" NVARCHAR2(255) NULL,
+   "COM_VEST" NVARCHAR2(255) NULL,
+   "COM_TROUSERS" NVARCHAR2(255) NULL,
+   "WORK_SHIRT" NVARCHAR2(255) NULL,
+   "WORK_TROUSERS" NVARCHAR2(255) NULL,
+   "WORK_FABRIC_TROUSERS" NVARCHAR2(255) NULL,
+   "WORK_OIL_SHOES" NVARCHAR2(255) NULL,
+   "WORK_PLASTIC_SHOES" NVARCHAR2(255) NULL,
+   "WORK_T_SHIRT" NVARCHAR2(255) NULL,
+   "WORK_SHORTS" NVARCHAR2(255) NULL,
+   "WORK_SLIP" NVARCHAR2(255) NULL,
+   "WORK_HAT" NVARCHAR2(255) NULL,
+   "OTHER" NVARCHAR2(255) NULL
+);
+
 -- Creating table 'SE_USER_REPORT'
 CREATE TABLE "dbo"."SE_USER_REPORT" (
    "SE_REPORT_ID" NUMBER(38,0) NOT NULL,
@@ -4633,6 +4650,14 @@ ADD CONSTRAINT "PK_HU_DIRECT_MANAGER"
 ALTER TABLE "dbo"."HU_JOB_POSITION"
 ADD CONSTRAINT "PK_HU_JOB_POSITION"
    PRIMARY KEY ("ID" )
+   ENABLE
+   VALIDATE;
+
+
+-- Creating primary key on "EMPLOYEE_ID"in table 'HU_UNIFORM_SIZE'
+ALTER TABLE "dbo"."HU_UNIFORM_SIZE"
+ADD CONSTRAINT "PK_HU_UNIFORM_SIZE"
+   PRIMARY KEY ("EMPLOYEE_ID" )
    ENABLE
    VALIDATE;
 

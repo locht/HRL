@@ -126,7 +126,8 @@ Public Class ctrlPortalEmpProfile
                         Dim empCV As EmployeeCVDTO
                         Dim empEdu As EmployeeEduDTO
                         Dim empHealth As EmployeeHealthDTO
-                        rep.GetEmployeeAllByID(EmployeeInfo.ID, empCV, empEdu, empHealth)
+                        Dim empUniform As UniformSizeDTO
+                        rep.GetEmployeeAllByID(EmployeeInfo.ID, empCV, empEdu, empHealth, empUniform)
                         If empCV IsNot Nothing Then
 
                             Dim dtPlace

@@ -243,7 +243,8 @@ Public Class ctrlHU_EmpDtlProfile
                         Dim empCV As EmployeeCVDTO
                         Dim empEdu As EmployeeEduDTO
                         Dim empHealth As EmployeeHealthDTO
-                        rep.GetEmployeeAllByID(EmployeeInfo.ID, empCV, empEdu, empHealth)
+                        Dim empUniform As UniformSizeDTO
+                        rep.GetEmployeeAllByID(EmployeeInfo.ID, empCV, empEdu, empHealth, empUniform)
                         If empCV IsNot Nothing Then
                             If empCV.IS_PAY_BANK IsNot Nothing Then
                                 chkIs_pay_bank.Checked = empCV.IS_PAY_BANK
@@ -644,6 +645,7 @@ Public Class ctrlHU_EmpDtlProfile
                             txtLoaiSucKhoe.Text = empHealth.LOAI_SUC_KHOE
                             rtTTSucKhoe.Text = empHealth.TTSUCKHOE
                         End If
+
                     End If
                 End Using
                 isLoad = True
@@ -2059,6 +2061,7 @@ Public Class ctrlHU_EmpDtlProfile
         Dim EmpCV As New EmployeeCVDTO
         Dim EmpEdu As New EmployeeEduDTO
         Dim EmpHealth As EmployeeHealthDTO
+        Dim EmpUniform As UniformSizeDTO
         Dim _binaryImage As Byte()
         Dim r As New ProfileBusinessRepository
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
@@ -2425,6 +2428,23 @@ Public Class ctrlHU_EmpDtlProfile
             EmpHealth.VIEM_GAN_B = txtVienGanB.Text.Trim()
             EmpHealth.LOAI_SUC_KHOE = txtLoaiSucKhoe.Text
             EmpHealth.TTSUCKHOE = rtTTSucKhoe.Text.Trim
+
+            EmpUniform = New UniformSizeDTO
+            EmpUniform.COM_SHIRT = txtAo.Text
+            EmpUniform.COM_DRESS = txtVay.Text
+            EmpUniform.COM_VEST = txtAoVest.Text
+            EmpUniform.COM_TROUSERS = txtQuanTay.Text
+            EmpUniform.WORK_SHIRT = txtAo_bh.Text
+            EmpUniform.WORK_TROUSERS = txtQuan_bh.Text
+            EmpUniform.WORK_FABRIC_TROUSERS = txtQuanVai.Text
+            EmpUniform.WORK_OIL_SHOES = txtGiayDau.Text
+            EmpUniform.WORK_PLASTIC_SHOES = txtGiayNhua.Text
+            EmpUniform.WORK_T_SHIRT = txtAoThun.Text
+            EmpUniform.WORK_SHORTS = txtQuanThun.Text
+            EmpUniform.WORK_SLIP = txtDep.Text
+            EmpUniform.WORK_HAT = txtNon.Text
+            EmpUniform.OTHER = txtKhac.Text
+
             EmpEdu = New EmployeeEduDTO
 
             If cboGraduateSchool.SelectedValue <> "" Then

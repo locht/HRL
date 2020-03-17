@@ -1205,7 +1205,8 @@ Namespace ProfileBusiness.ServiceContracts
                                   ByVal _imageBinary As Byte(),
                                   Optional ByVal objEmpCV As EmployeeCVDTO = Nothing, _
                                   Optional ByVal objEmpEdu As EmployeeEduDTO = Nothing, _
-                                  Optional ByVal objEmpHealth As EmployeeHealthDTO = Nothing) As Boolean
+                                  Optional ByVal objEmpHealth As EmployeeHealthDTO = Nothing, _
+                                  Optional ByVal objEmpUniform As UniformSizeDTO = Nothing) As Boolean
         <OperationContract()>
         Function CreateNewEMPLOYEECode() As EmployeeDTO
 
@@ -1228,7 +1229,8 @@ Namespace ProfileBusiness.ServiceContracts
                                   ByVal _imageBinary As Byte(), _
                                   Optional ByVal objEmpCV As EmployeeCVDTO = Nothing,
                                   Optional ByVal objEmpEdu As EmployeeEduDTO = Nothing,
-                                  Optional ByVal objEmpHealth As EmployeeHealthDTO = Nothing) As Boolean
+                                  Optional ByVal objEmpHealth As EmployeeHealthDTO = Nothing, _
+                                  Optional ByVal objEmpUniform As UniformSizeDTO = Nothing) As Boolean
 
         ''' <summary>
         ''' Lấy danh sách nhân viên theo điều kiện
@@ -1289,7 +1291,8 @@ Namespace ProfileBusiness.ServiceContracts
         Function GetEmployeeAllByID(ByVal sEmployeeID As Decimal,
                                   ByRef empCV As EmployeeCVDTO,
                                   ByRef empEdu As EmployeeEduDTO,
-                                  ByRef empHealth As EmployeeHealthDTO) As Boolean
+                                  ByRef empHealth As EmployeeHealthDTO,
+                                  ByRef empUniform As UniformSizeDTO) As Boolean
 
         ''' <summary>
         ''' Xóa nhân viên

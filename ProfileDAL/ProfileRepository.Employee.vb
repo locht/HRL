@@ -875,7 +875,8 @@ Partial Class ProfileRepository
                                         ByVal _imageBinary As Byte(),
                                         Optional ByVal objEmpCV As EmployeeCVDTO = Nothing, _
                                         Optional ByVal objEmpEdu As EmployeeEduDTO = Nothing, _
-                                        Optional ByVal objEmpHealth As EmployeeHealthDTO = Nothing) As Boolean
+                                        Optional ByVal objEmpHealth As EmployeeHealthDTO = Nothing, _
+                                        Optional ByVal objEmpUniform As UniformSizeDTO = Nothing) As Boolean
 
         Try
             'Thông tin insert vào bảng HU_EMPLOYEE.
@@ -1173,6 +1174,25 @@ Partial Class ProfileRepository
                 Context.HU_EMPLOYEE_HEALTH.AddObject(objEmpHealthData)
             End If
 
+            If objEmpUniform IsNot Nothing Then
+                Dim objEmpUniformData As New HU_UNIFORM_SIZE
+                objEmpUniformData.EMPLOYEE_ID = objEmpData.ID
+                objEmpUniformData.COM_SHIRT = objEmpUniform.COM_SHIRT
+                objEmpUniformData.COM_DRESS = objEmpUniform.COM_DRESS
+                objEmpUniformData.COM_VEST = objEmpUniform.COM_VEST
+                objEmpUniformData.COM_TROUSERS = objEmpUniform.COM_TROUSERS
+                objEmpUniformData.WORK_SHIRT = objEmpUniform.WORK_SHIRT
+                objEmpUniformData.WORK_TROUSERS = objEmpUniform.WORK_TROUSERS
+                objEmpUniformData.WORK_FABRIC_TROUSERS = objEmpUniform.WORK_FABRIC_TROUSERS
+                objEmpUniformData.WORK_PLASTIC_SHOES = objEmpUniform.WORK_PLASTIC_SHOES
+                objEmpUniformData.WORK_OIL_SHOES = objEmpUniform.WORK_OIL_SHOES
+                objEmpUniformData.WORK_T_SHIRT = objEmpUniform.WORK_T_SHIRT
+                objEmpUniformData.WORK_SLIP = objEmpUniform.WORK_SLIP
+                objEmpUniformData.WORK_HAT = objEmpUniform.WORK_HAT
+                objEmpUniformData.OTHER = objEmpUniform.OTHER
+                Context.HU_UNIFORM_SIZE.AddObject(objEmpUniformData)
+            End If
+
             'Ghi ảnh vào thư mục
             If _imageBinary IsNot Nothing AndAlso _imageBinary.Length > 0 Then
                 Dim savepath = ""
@@ -1254,7 +1274,8 @@ Partial Class ProfileRepository
                                         ByVal _imageBinary As Byte(), _
                                         Optional ByVal objEmpCV As EmployeeCVDTO = Nothing, _
                                         Optional ByVal objEmpEdu As EmployeeEduDTO = Nothing, _
-                                        Optional ByVal objEmpHealth As EmployeeHealthDTO = Nothing) As Boolean
+                                        Optional ByVal objEmpHealth As EmployeeHealthDTO = Nothing, _
+                                        Optional ByVal objEmpUniform As UniformSizeDTO = Nothing) As Boolean
 
         Try
             Dim dateChange = DateTime.Now
@@ -1348,7 +1369,8 @@ Partial Class ProfileRepository
                                         ByVal _imageBinary As Byte(), _
                                         Optional ByVal objEmpCV As EmployeeCVDTO = Nothing, _
                                         Optional ByVal objEmpEdu As EmployeeEduDTO = Nothing, _
-                                        Optional ByVal objEmpHealth As EmployeeHealthDTO = Nothing)
+                                        Optional ByVal objEmpHealth As EmployeeHealthDTO = Nothing, _
+                                        Optional ByVal objEmpUniform As UniformSizeDTO = Nothing)
         Try
             Dim objEmpData As New HU_EMPLOYEE With {.ID = objEmp.ID}
             '----Start modify HU_EMPLOYEE---
@@ -1637,6 +1659,34 @@ Partial Class ProfileRepository
                     Context.HU_EMPLOYEE_HEALTH.AddObject(objEmpHealthData)
                 End If
             End If
+
+            If objEmpUniform IsNot Nothing Then
+                Dim bUpdateUniform As Boolean
+                Dim objEmpUniformData As HU_UNIFORM_SIZE
+                bUpdateUniform = False
+                objEmpUniformData = (From p In Context.HU_UNIFORM_SIZE Where p.EMPLOYEE_ID = objEmp.ID).SingleOrDefault
+                If objEmpUniformData Is Nothing Then 'Them moi
+                    objEmpUniformData = New HU_UNIFORM_SIZE With {.EMPLOYEE_ID = objEmp.ID}
+                Else 'Update
+                    bUpdateUniform = True
+                End If
+                objEmpUniformData.COM_SHIRT = objEmpUniform.COM_SHIRT
+                objEmpUniformData.COM_DRESS = objEmpUniform.COM_DRESS
+                objEmpUniformData.COM_VEST = objEmpUniform.COM_VEST
+                objEmpUniformData.COM_TROUSERS = objEmpUniform.COM_TROUSERS
+                objEmpUniformData.WORK_SHIRT = objEmpUniform.WORK_SHIRT
+                objEmpUniformData.WORK_TROUSERS = objEmpUniform.WORK_TROUSERS
+                objEmpUniformData.WORK_FABRIC_TROUSERS = objEmpUniform.WORK_FABRIC_TROUSERS
+                objEmpUniformData.WORK_PLASTIC_SHOES = objEmpUniform.WORK_PLASTIC_SHOES
+                objEmpUniformData.WORK_OIL_SHOES = objEmpUniform.WORK_OIL_SHOES
+                objEmpUniformData.WORK_T_SHIRT = objEmpUniform.WORK_T_SHIRT
+                objEmpUniformData.WORK_SLIP = objEmpUniform.WORK_SLIP
+                objEmpUniformData.WORK_HAT = objEmpUniform.WORK_HAT
+                objEmpUniformData.OTHER = objEmpUniform.OTHER
+                If bUpdateUniform = False Then
+                    Context.HU_UNIFORM_SIZE.AddObject(objEmpUniformData)
+                End If
+            End If
             'End thông tin insert vào bảng HU_EMPLOYEE_HEALTH
 
             If _imageBinary IsNot Nothing AndAlso _imageBinary.Length > 0 Then
@@ -1816,7 +1866,8 @@ Partial Class ProfileRepository
     Public Function GetEmployeeAllByID(ByVal sEmployeeID As Decimal,
                                   ByRef empCV As EmployeeCVDTO,
                                   ByRef empEdu As EmployeeEduDTO,
-                                  ByRef empHealth As EmployeeHealthDTO) As Boolean
+                                  ByRef empHealth As EmployeeHealthDTO,
+                                  ByRef empUniform As UniformSizeDTO) As Boolean
         Try
             empCV = (From cv In Context.HU_EMPLOYEE_CV
                      From g In Context.OT_OTHER_LIST.Where(Function(f) cv.GENDER = f.ID).DefaultIfEmpty
@@ -2077,6 +2128,25 @@ Partial Class ProfileRepository
                              .DA_HOA_LIEU = e.DA_HOA_LIEU,
                              .TTSUCKHOE = e.TTSUCKHOE,
                              .GHI_CHU_SUC_KHOE = e.GHI_CHU_SUC_KHOE}).FirstOrDefault
+            empUniform = (From e In Context.HU_UNIFORM_SIZE
+                          Where e.EMPLOYEE_ID = sEmployeeID
+                          Select New UniformSizeDTO With {
+                              .EMPLOYEE_ID = e.EMPLOYEE_ID,
+                              .COM_DRESS = e.COM_DRESS,
+                              .COM_SHIRT = e.COM_SHIRT,
+                              .COM_TROUSERS = e.COM_TROUSERS,
+                              .COM_VEST = e.COM_VEST,
+                              .WORK_FABRIC_TROUSERS = e.WORK_FABRIC_TROUSERS,
+                              .WORK_HAT = e.WORK_HAT,
+                              .WORK_OIL_SHOES = e.WORK_OIL_SHOES,
+                              .WORK_PLASTIC_SHOES = e.WORK_PLASTIC_SHOES,
+                              .WORK_SHIRT = e.WORK_SHIRT,
+                              .WORK_SHORTS = e.WORK_SHORTS,
+                              .WORK_SLIP = e.WORK_SLIP,
+                              .WORK_T_SHIRT = e.WORK_T_SHIRT,
+                              .WORK_TROUSERS = e.WORK_TROUSERS,
+                              .OTHER = e.OTHER
+                        })
 
             Return True
         Catch ex As Exception
