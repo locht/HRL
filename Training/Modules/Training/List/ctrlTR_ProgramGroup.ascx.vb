@@ -110,7 +110,6 @@ Public Class ctrlTR_ProgramGroup
                 Case CommonMessage.STATE_NORMAL
 
                     EnabledGridNotPostback(rgMain, True)
-                    Utilities.EnableRadCombo(cboTrainField, False)
                     txtCode.ReadOnly = True
                     txtName.ReadOnly = True
                     txtRemark.ReadOnly = True
@@ -168,16 +167,10 @@ Public Class ctrlTR_ProgramGroup
 
     Public Overrides Sub BindData()
         Try
-            Dim dtData As DataTable
-            Using rep As New TrainingRepository
-                dtData = rep.GetOtherList("TR_TRAIN_FIELD", True)
-                FillRadCombobox(cboTrainField, dtData, "NAME", "ID")
-            End Using
 
             Dim dic As New Dictionary(Of String, Control)
             dic.Add("CODE", txtCode)
             dic.Add("NAME", txtName)
-            dic.Add("TRAIN_FIELD_ID", cboTrainField)
             dic.Add("REMARK", txtRemark)
 
             Utilities.OnClientRowSelectedChanged(rgMain, dic)
@@ -248,7 +241,7 @@ Public Class ctrlTR_ProgramGroup
 
                 Case CommonMessage.TOOLBARITEM_SAVE
                     Dim id As Int32 = 0
-                    Dim trainField As Int32 = Int32.Parse(cboTrainField.SelectedValue)
+
                     Dim code As String = txtCode.Text.Trim()
                     Dim name As String = txtName.Text.Trim()
                     Dim remark As String = txtRemark.Text.Trim()
@@ -256,7 +249,7 @@ Public Class ctrlTR_ProgramGroup
                     If Page.IsValid Then
                         Select Case CurrentState
                             Case CommonMessage.STATE_NEW
-                                If tsp.ProgramGroupCreate(code, name, trainField, remark, log.Username, log.ComputerName) = 1 Then
+                                If tsp.ProgramGroupCreate(code, name, remark, log.Username, log.ComputerName) = 1 Then
                                     CurrentState = CommonMessage.STATE_NORMAL
                                     Refresh("InsertView")
                                     UpdateControlState()
@@ -265,7 +258,7 @@ Public Class ctrlTR_ProgramGroup
                                 End If
                             Case CommonMessage.STATE_EDIT
                                 id = rgMain.SelectedValue
-                                If tsp.ProgramGroupUpdate(id, code, name, trainField, remark, log.Username, log.ComputerName) = 1 Then
+                                If tsp.ProgramGroupUpdate(id, code, name, remark, log.Username, log.ComputerName) = 1 Then
                                     CurrentState = CommonMessage.STATE_NORMAL
                                     Refresh("UpdateView")
                                     UpdateControlState()
@@ -340,7 +333,7 @@ Public Class ctrlTR_ProgramGroup
     ' Cập nhật trạng thái control New & Edit State
     Private Sub UpdateControStateNewEdit()
         EnabledGridNotPostback(rgMain, False)
-        Utilities.EnableRadCombo(cboTrainField, True)
+
         txtCode.ReadOnly = False
         txtName.ReadOnly = False
         txtRemark.ReadOnly = False
@@ -355,7 +348,7 @@ Public Class ctrlTR_ProgramGroup
         txtCode.Text = String.Empty
         txtName.Text = String.Empty
         txtRemark.Text = String.Empty
-        cboTrainField.ClearSelection()
+
     End Sub
 
     ''' <summary>

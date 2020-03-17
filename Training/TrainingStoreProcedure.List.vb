@@ -8,13 +8,11 @@ Partial Class TrainingStoreProcedure
 #Region "Program Group"
     Public Function ProgramGroupCreate(ByVal code As String,
                                        ByVal name As String,
-                                       ByVal trainFieldId As Int32,
                                        ByVal remark As String,
                                        ByVal userBy As String,
                                        ByVal userLog As String) As Int32
         Dim obj As Object = hfr.ExecuteStoreScalar("PKG_TRAINING.CREATE_PROGRAM_GROUP", New List(Of Object)(New Object() {code,
                                                                                                                         name,
-                                                                                                                        trainFieldId,
                                                                                                                         remark,
                                                                                                                         userBy,
                                                                                                                         userLog,
@@ -43,14 +41,12 @@ Partial Class TrainingStoreProcedure
     Public Function ProgramGroupUpdate(ByVal id As Int32,
                                        ByVal code As String,
                                        ByVal name As String,
-                                       ByVal trainFieldId As Int32,
                                        ByVal remark As String,
                                        ByVal userBy As String,
                                        ByVal userLog As String) As Int32
         Dim obj As Object = hfr.ExecuteStoreScalar("PKG_TRAINING.UPDATE_PROGRAM_GROUP", New List(Of Object)(New Object() {id,
                                                                                                                         code,
                                                                                                                         name,
-                                                                                                                        trainFieldId,
                                                                                                                         remark,
                                                                                                                         userBy,
                                                                                                                         userLog,

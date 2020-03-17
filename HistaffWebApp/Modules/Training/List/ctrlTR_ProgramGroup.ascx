@@ -5,19 +5,7 @@
         <tlk:RadToolBar ID="tbarMain" runat="server" />
         <asp:ValidationSummary ID="valSum" runat="server" />
         <table class="table-form">
-            <tr>
-                <td class="lb">
-                    <%# Translate("Lĩnh vực đào tạo")%>
-                    <span class="lbReq">*</span>
-                </td>
-                <td>
-                    <tlk:RadComboBox ID="cboTrainField" runat="server">
-                    </tlk:RadComboBox>
-                    <asp:RequiredFieldValidator ID="reqTrainField" ControlToValidate="cboTrainField"
-                        runat="server" ErrorMessage="<%$ Translate: Bạn phải nhập lĩnh vực đào tạo %>"
-                        ToolTip="<%$ Translate: Bạn phải nhập lĩnh vực đào tạo %>">
-                    </asp:RequiredFieldValidator>
-                </td>
+            <tr>               
                 <td class="lb">
                     <%# Translate("Mã nhóm chương trình")%>
                     <span class="lbReq">*</span>
@@ -61,7 +49,7 @@
             <ClientSettings EnableRowHoverStyle="true">
                 <Selecting AllowRowSelect="true" />
             </ClientSettings>
-            <MasterTableView DataKeyNames="ID" ClientDataKeyNames="CODE,NAME,TRAIN_FIELD_ID,REMARK">
+            <MasterTableView DataKeyNames="ID" ClientDataKeyNames="CODE,NAME,REMARK">
                 <Columns>
                     <tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderStyle-HorizontalAlign="Center"
                         HeaderStyle-Width="30px" ItemStyle-HorizontalAlign="Center">
@@ -70,9 +58,7 @@
                     <tlk:GridBoundColumn HeaderText="<%$ Translate: Mã nhóm chương trình %>" DataField="CODE"
                         UniqueName="CODE" SortExpression="CODE" />
                     <tlk:GridBoundColumn HeaderText="<%$ Translate: Tên nhóm chương trình %>" DataField="NAME"
-                        UniqueName="NAME" SortExpression="NAME" />
-                    <tlk:GridBoundColumn HeaderText="<%$ Translate: Lĩnh vực đào tạo %>" DataField="TRAIN_FIELD_NAME"
-                        UniqueName="TRAIN_FIELD_NAME" SortExpression="TRAIN_FIELD_NAME" />
+                        UniqueName="NAME" SortExpression="NAME" />                 
                     <tlk:GridBoundColumn HeaderText="<%$ Translate: Trạng thái %>" DataField="ACTFLG"
                         UniqueName="ACTFLG" SortExpression="ACTFLG" ShowFilterIcon="true" />
                 </Columns>
