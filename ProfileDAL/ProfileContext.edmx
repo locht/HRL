@@ -157,6 +157,7 @@
             <EntitySet Name="HU_UNIFORM_SIZE" EntityType="ProfileModel.Store.HU_UNIFORM_SIZE" store:Type="Tables"  />
             <EntitySet Name="HU_DIRECT_MANAGER1" EntityType="ProfileModel.Store.HU_DIRECT_MANAGER1" store:Type="Tables"  />
             <EntitySet Name="HU_JOB_POSITION1" EntityType="ProfileModel.Store.HU_JOB_POSITION1" store:Type="Tables"  />
+            <EntitySet Name="HU_JOB_DESCRIPTION" EntityType="ProfileModel.Store.HU_JOB_DESCRIPTION" store:Type="Tables"  />
             <EntitySet Name="SE_USER_REPORT" EntityType="ProfileModel.Store.SE_USER_REPORT" store:Type="Tables"  />
             <AssociationSet Name="FK_HUN_HUP" Association="ProfileModel.Store.FK_HU_NAT_HU_PRO">
                 <End Role="HU_NATION" EntitySet="HU_NATION" />
@@ -3907,6 +3908,41 @@
             <Property Name="MODIFIED_LOG" Type="nvarchar2" Nullable="true" MaxLength="255" />
             <Property Name="JOB_NAME" Type="nvarchar2" Nullable="true" MaxLength="1000" />
         </EntityType>
+        <EntityType Name="HU_JOB_DESCRIPTION">
+            <Key>
+                <PropertyRef Name="ID" />
+            </Key>
+            <Property Name="ID" Type="number" Nullable="false" Precision="38" />
+            <Property Name="CODE" Type="nvarchar2" Nullable="true" MaxLength="50" />
+            <Property Name="NAME" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="ORG_ID" Type="number" Nullable="true" Precision="38" />
+            <Property Name="TITLE_ID" Type="number" Nullable="true" Precision="38" />
+            <Property Name="TIME_WORKING" Type="number" Nullable="true" Precision="38" />
+            <Property Name="JOB_DESCRIPTION" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="WORK_CONDITION" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="JOB_PARTICULARTIES" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="WORK_ENVIRONMENT" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="JOB_RESPONSIBILITY" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="JOB_POWER" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="ATTACH_FILE" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="LEARNING_LEVEL" Type="number" Nullable="true" Precision="38" />
+            <Property Name="TRAINING_FORM" Type="number" Nullable="true" Precision="38" />
+            <Property Name="GRADUATE_SCHOOL" Type="number" Nullable="true" Precision="38" />
+            <Property Name="MAJOR_RANK" Type="number" Nullable="true" Precision="38" />
+            <Property Name="TRAINING_FORM_2" Type="number" Nullable="true" Precision="38" />
+            <Property Name="GRADUATE_SCHOOL_2" Type="number" Nullable="true" Precision="38" />
+            <Property Name="MAJOR_RANK_2" Type="number" Nullable="true" Precision="38" />
+            <Property Name="COMPUTER_RANK" Type="number" Nullable="true" Precision="38" />
+            <Property Name="LANGUAGE_1" Type="number" Nullable="true" Precision="38" />
+            <Property Name="LANGUAGE_RANK_1" Type="number" Nullable="true" Precision="38" />
+            <Property Name="LANGUAGE_2" Type="number" Nullable="true" Precision="38" />
+            <Property Name="LANGUAGE_RANK_2" Type="number" Nullable="true" Precision="38" />
+            <Property Name="LANGUAGE_3" Type="number" Nullable="true" Precision="38" />
+            <Property Name="LANGUAGE_RANK_3" Type="number" Nullable="true" Precision="38" />
+            <Property Name="SOFT_SKILL" Type="number" Nullable="true" Precision="38" />
+            <Property Name="CHARACTER" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="NOTE" Type="nvarchar2" Nullable="true" MaxLength="255" />
+        </EntityType>
         <EntityType Name="SE_USER_REPORT">
             <Key>
                 <PropertyRef Name="SE_REPORT_ID" />
@@ -4549,6 +4585,7 @@
           <EntitySet Name="HU_UNIFORM_SIZE" EntityType="ProfileModel.HU_UNIFORM_SIZE" />
           <EntitySet Name="HU_DIRECT_MANAGER1" EntityType="ProfileModel.HU_DIRECT_MANAGER1" />
           <EntitySet Name="HU_JOB_POSITION1" EntityType="ProfileModel.HU_JOB_POSITION1" />
+          <EntitySet Name="HU_JOB_DESCRIPTION" EntityType="ProfileModel.HU_JOB_DESCRIPTION" />
         </EntityContainer>
         <EntityType Name="HU_PROVINCE">
           <Key>
@@ -8582,6 +8619,41 @@
           <Property Type="String" Name="MODIFIED_LOG" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="JOB_NAME" MaxLength="1000" FixedLength="false" Unicode="true" />
         </EntityType>
+        <EntityType Name="HU_JOB_DESCRIPTION">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Decimal" Name="ID" Nullable="false" Precision="38" Scale="0" />
+          <Property Type="String" Name="CODE" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="NAME" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="Decimal" Name="ORG_ID" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="TITLE_ID" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="TIME_WORKING" Precision="38" Scale="0" />
+          <Property Type="String" Name="JOB_DESCRIPTION" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="WORK_CONDITION" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="JOB_PARTICULARTIES" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="WORK_ENVIRONMENT" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="JOB_RESPONSIBILITY" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="JOB_POWER" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ATTACH_FILE" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="Decimal" Name="LEARNING_LEVEL" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="TRAINING_FORM" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="GRADUATE_SCHOOL" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="MAJOR_RANK" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="TRAINING_FORM_2" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="GRADUATE_SCHOOL_2" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="MAJOR_RANK_2" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="COMPUTER_RANK" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="LANGUAGE_1" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="LANGUAGE_RANK_1" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="LANGUAGE_2" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="LANGUAGE_RANK_2" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="LANGUAGE_3" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="LANGUAGE_RANK_3" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="SOFT_SKILL" Precision="38" Scale="0" />
+          <Property Type="String" Name="CHARACTER" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="NOTE" MaxLength="255" FixedLength="false" Unicode="true" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -12358,6 +12430,42 @@
                 </MappingFragment>
             </EntityTypeMapping>
         </EntitySetMapping>
+        <EntitySetMapping Name="HU_JOB_DESCRIPTION">
+            <EntityTypeMapping TypeName="IsTypeOf(ProfileModel.HU_JOB_DESCRIPTION)">
+                <MappingFragment StoreEntitySet="HU_JOB_DESCRIPTION">
+                    <ScalarProperty Name="ID" ColumnName="ID" />
+                    <ScalarProperty Name="CODE" ColumnName="CODE" />
+                    <ScalarProperty Name="NAME" ColumnName="NAME" />
+                    <ScalarProperty Name="ORG_ID" ColumnName="ORG_ID" />
+                    <ScalarProperty Name="TITLE_ID" ColumnName="TITLE_ID" />
+                    <ScalarProperty Name="TIME_WORKING" ColumnName="TIME_WORKING" />
+                    <ScalarProperty Name="JOB_DESCRIPTION" ColumnName="JOB_DESCRIPTION" />
+                    <ScalarProperty Name="WORK_CONDITION" ColumnName="WORK_CONDITION" />
+                    <ScalarProperty Name="JOB_PARTICULARTIES" ColumnName="JOB_PARTICULARTIES" />
+                    <ScalarProperty Name="WORK_ENVIRONMENT" ColumnName="WORK_ENVIRONMENT" />
+                    <ScalarProperty Name="JOB_RESPONSIBILITY" ColumnName="JOB_RESPONSIBILITY" />
+                    <ScalarProperty Name="JOB_POWER" ColumnName="JOB_POWER" />
+                    <ScalarProperty Name="ATTACH_FILE" ColumnName="ATTACH_FILE" />
+                    <ScalarProperty Name="LEARNING_LEVEL" ColumnName="LEARNING_LEVEL" />
+                    <ScalarProperty Name="TRAINING_FORM" ColumnName="TRAINING_FORM" />
+                    <ScalarProperty Name="GRADUATE_SCHOOL" ColumnName="GRADUATE_SCHOOL" />
+                    <ScalarProperty Name="MAJOR_RANK" ColumnName="MAJOR_RANK" />
+                    <ScalarProperty Name="TRAINING_FORM_2" ColumnName="TRAINING_FORM_2" />
+                    <ScalarProperty Name="GRADUATE_SCHOOL_2" ColumnName="GRADUATE_SCHOOL_2" />
+                    <ScalarProperty Name="MAJOR_RANK_2" ColumnName="MAJOR_RANK_2" />
+                    <ScalarProperty Name="COMPUTER_RANK" ColumnName="COMPUTER_RANK" />
+                    <ScalarProperty Name="LANGUAGE_1" ColumnName="LANGUAGE_1" />
+                    <ScalarProperty Name="LANGUAGE_RANK_1" ColumnName="LANGUAGE_RANK_1" />
+                    <ScalarProperty Name="LANGUAGE_2" ColumnName="LANGUAGE_2" />
+                    <ScalarProperty Name="LANGUAGE_RANK_2" ColumnName="LANGUAGE_RANK_2" />
+                    <ScalarProperty Name="LANGUAGE_3" ColumnName="LANGUAGE_3" />
+                    <ScalarProperty Name="LANGUAGE_RANK_3" ColumnName="LANGUAGE_RANK_3" />
+                    <ScalarProperty Name="SOFT_SKILL" ColumnName="SOFT_SKILL" />
+                    <ScalarProperty Name="CHARACTER" ColumnName="CHARACTER" />
+                    <ScalarProperty Name="NOTE" ColumnName="NOTE" />
+                </MappingFragment>
+            </EntityTypeMapping>
+        </EntitySetMapping>
         <AssociationSetMapping Name="SE_USER_REPORT" TypeName="ProfileModel.SE_USER_REPORT" StoreEntitySet="SE_USER_REPORT">
             <EndProperty Name="SE_REPORT">
                 <ScalarProperty Name="ID" ColumnName="SE_REPORT_ID" />
@@ -12397,7 +12505,7 @@
     </Options>
     <!-- Diagram content (shape and connector positions) -->
     <Diagrams>
-      <Diagram Name="ProfileContext" ZoomLevel="94" ShowGrid="false" DisplayType="true" SnapToGrid="true">
+      <Diagram Name="ProfileContext" ZoomLevel="81" ShowGrid="false" DisplayType="true" SnapToGrid="true">
         <EntityTypeShape EntityType="ProfileModel.HU_PROVINCE" Width="1.5" PointX="3" PointY="9.625" Height="0.39999999999999858" IsExpanded="false" />
         <EntityTypeShape EntityType="ProfileModel.HU_DISTRICT" Width="1.75" PointX="5.25" PointY="9" Height="0.39999999999999858" IsExpanded="false" />
         <EntityTypeShape EntityType="ProfileModel.HU_NATION" Width="1.5" PointX="0.75" PointY="9.625" Height="0.40000000000000213" IsExpanded="false" />
@@ -12730,6 +12838,7 @@
         <EntityTypeShape EntityType="ProfileModel.HU_UNIFORM_SIZE" Width="2.25" PointX="30.375" PointY="25.75" Height="3.9033007812499818" />
         <EntityTypeShape EntityType="ProfileModel.HU_DIRECT_MANAGER1" Width="1.5" PointX="10.375" PointY="6.75" Height="1.403382161458353" />
         <EntityTypeShape EntityType="ProfileModel.HU_JOB_POSITION1" Width="1.5" PointX="9.375" PointY="32.75" Height="4.287903645833353" />
+        <EntityTypeShape EntityType="ProfileModel.HU_JOB_DESCRIPTION" Width="1.5" PointX="11.375" PointY="32.75" Height="6.7878222656249818" />
         </Diagram>
     </Diagrams>
   </Designer>
