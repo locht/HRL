@@ -21,4 +21,6 @@
     Public Property MODIFIED_BY As String
     Public Property MODIFIED_LOG As String
     Public Property TTSUCKHOE As String
+    Public Property TIEU_SU_GIA_DINH As String
+    Public Property TIEU_SU_BAN_THAN As String
 End Class

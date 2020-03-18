@@ -646,6 +646,23 @@ Public Class ctrlHU_EmpDtlProfile
                             rtTTSucKhoe.Text = empHealth.TTSUCKHOE
                         End If
 
+                        If empUniform IsNot Nothing Then
+                            txtAo.Text = empUniform.COM_SHIRT
+                            txtVay.Text = empUniform.COM_DRESS
+                            txtAoVest.Text = empUniform.COM_VEST
+                            txtQuanTay.Text = empUniform.COM_TROUSERS
+                            txtAo_bh.Text = empUniform.WORK_SHIRT
+                            txtQuan_bh.Text = empUniform.WORK_TROUSERS
+                            txtQuanVai.Text = empUniform.WORK_FABRIC_TROUSERS
+                            txtGiayDau.Text = empUniform.WORK_OIL_SHOES
+                            txtGiayNhua.Text = empUniform.WORK_PLASTIC_SHOES
+                            txtAoThun.Text = empUniform.WORK_T_SHIRT
+                            txtQuanThun.Text = empUniform.WORK_SHORTS
+                            txtDep.Text = empUniform.WORK_SLIP
+                            txtNon.Text = empUniform.WORK_HAT
+                            txtKhac.Text = empUniform.OTHER
+                        End If
+
                     End If
                 End Using
                 isLoad = True
@@ -1890,10 +1907,10 @@ Public Class ctrlHU_EmpDtlProfile
                     Using rep As New ProfileBusinessRepository
                         args.IsValid = rep.ValidateEmployee("EXIST_TIME_ID", "", txtTimeID.Text)
                     End Using
-                Case STATE_EDIT
-                    Using rep As New ProfileBusinessRepository
-                        args.IsValid = rep.ValidateEmployee("EXIST_TIME_ID", EmployeeInfo.EMPLOYEE_CODE, txtTimeID.Text)
-                    End Using
+                    'Case STATE_EDIT
+                    '    Using rep As New ProfileBusinessRepository
+                    '        args.IsValid = rep.ValidateEmployee("EXIST_TIME_ID", EmployeeInfo.EMPLOYEE_CODE, txtTimeID.Text)
+                    '    End Using
                 Case Else
                     args.IsValid = True
             End Select
@@ -2428,22 +2445,24 @@ Public Class ctrlHU_EmpDtlProfile
             EmpHealth.VIEM_GAN_B = txtVienGanB.Text.Trim()
             EmpHealth.LOAI_SUC_KHOE = txtLoaiSucKhoe.Text
             EmpHealth.TTSUCKHOE = rtTTSucKhoe.Text.Trim
+            EmpHealth.TIEU_SU_BAN_THAN = txtTieuSuBanThan.Text
+            EmpHealth.TIEU_SU_GIA_DINH = txtTieuSuGiaDinh.Text
 
             EmpUniform = New UniformSizeDTO
-            EmpUniform.COM_SHIRT = txtAo.Text
-            EmpUniform.COM_DRESS = txtVay.Text
-            EmpUniform.COM_VEST = txtAoVest.Text
-            EmpUniform.COM_TROUSERS = txtQuanTay.Text
-            EmpUniform.WORK_SHIRT = txtAo_bh.Text
-            EmpUniform.WORK_TROUSERS = txtQuan_bh.Text
-            EmpUniform.WORK_FABRIC_TROUSERS = txtQuanVai.Text
-            EmpUniform.WORK_OIL_SHOES = txtGiayDau.Text
-            EmpUniform.WORK_PLASTIC_SHOES = txtGiayNhua.Text
-            EmpUniform.WORK_T_SHIRT = txtAoThun.Text
-            EmpUniform.WORK_SHORTS = txtQuanThun.Text
-            EmpUniform.WORK_SLIP = txtDep.Text
-            EmpUniform.WORK_HAT = txtNon.Text
-            EmpUniform.OTHER = txtKhac.Text
+            EmpUniform.COM_SHIRT = txtAo.Text.Trim()
+            EmpUniform.COM_DRESS = txtVay.Text.Trim()
+            EmpUniform.COM_VEST = txtAoVest.Text.Trim()
+            EmpUniform.COM_TROUSERS = txtQuanTay.Text.Trim()
+            EmpUniform.WORK_SHIRT = txtAo_bh.Text.Trim()
+            EmpUniform.WORK_TROUSERS = txtQuan_bh.Text.Trim()
+            EmpUniform.WORK_FABRIC_TROUSERS = txtQuanVai.Text.Trim()
+            EmpUniform.WORK_OIL_SHOES = txtGiayDau.Text.Trim()
+            EmpUniform.WORK_PLASTIC_SHOES = txtGiayNhua.Text.Trim()
+            EmpUniform.WORK_T_SHIRT = txtAoThun.Text.Trim()
+            EmpUniform.WORK_SHORTS = txtQuanThun.Text.Trim()
+            EmpUniform.WORK_SLIP = txtDep.Text.Trim()
+            EmpUniform.WORK_HAT = txtNon.Text.Trim()
+            EmpUniform.OTHER = txtKhac.Text.Trim()
 
             EmpEdu = New EmployeeEduDTO
 
@@ -2531,12 +2550,14 @@ Public Class ctrlHU_EmpDtlProfile
                 result = rep.ModifyEmployee(EmployeeInfo, gID, _binaryImage,
                                             EmpCV, _
                                             EmpEdu, _
-                                            EmpHealth)
+                                            EmpHealth, _
+                                            EmpUniform)
             Else
                 result = rep.InsertEmployee(EmployeeInfo, gID, gEmpCode, _binaryImage,
                                             EmpCV, _
                                             EmpEdu, _
-                                            EmpHealth)
+                                            EmpHealth, _
+                                            EmpUniform)
                 EmployeeInfo.EMPLOYEE_CODE = gEmpCode
             End If
             strEmpID = gID

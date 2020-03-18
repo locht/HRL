@@ -4064,58 +4064,13 @@ Partial Public Class ctrlHU_EmpDtlProfile
     Protected WithEvents txtGhiChu As Global.Telerik.Web.UI.RadTextBox
 
     '''<summary>
-    '''lbAo control.
+    '''lbDPVP control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents lbAo As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
-    '''txtAo control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents txtAo As Global.Telerik.Web.UI.RadTextBox
-
-    '''<summary>
-    '''lbVay control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lbVay As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
-    '''txtVay control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents txtVay As Global.Telerik.Web.UI.RadTextBox
-
-    '''<summary>
-    '''lbAoVest control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lbAoVest As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
-    '''txtAoVest control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents txtAoVest As Global.Telerik.Web.UI.RadTextBox
+    Protected WithEvents lbDPVP As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
     '''Label32 control.
@@ -4127,13 +4082,13 @@ Partial Public Class ctrlHU_EmpDtlProfile
     Protected WithEvents Label32 As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
-    '''txtQuanTay control.
+    '''txtAo control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents txtQuanTay As Global.Telerik.Web.UI.RadTextBox
+    Protected WithEvents txtAo As Global.Telerik.Web.UI.RadTextBox
 
     '''<summary>
     '''Label33 control.
@@ -4145,13 +4100,13 @@ Partial Public Class ctrlHU_EmpDtlProfile
     Protected WithEvents Label33 As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
-    '''txtAo_bh control.
+    '''txtVay control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents txtAo_bh As Global.Telerik.Web.UI.RadTextBox
+    Protected WithEvents txtVay As Global.Telerik.Web.UI.RadTextBox
 
     '''<summary>
     '''Label34 control.
@@ -4163,13 +4118,13 @@ Partial Public Class ctrlHU_EmpDtlProfile
     Protected WithEvents Label34 As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
-    '''txtQuan_bh control.
+    '''txtAoVest control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents txtQuan_bh As Global.Telerik.Web.UI.RadTextBox
+    Protected WithEvents txtAoVest As Global.Telerik.Web.UI.RadTextBox
 
     '''<summary>
     '''Label35 control.
@@ -4181,13 +4136,22 @@ Partial Public Class ctrlHU_EmpDtlProfile
     Protected WithEvents Label35 As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
-    '''txtQuanVai control.
+    '''txtQuanTay control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents txtQuanVai As Global.Telerik.Web.UI.RadTextBox
+    Protected WithEvents txtQuanTay As Global.Telerik.Web.UI.RadTextBox
+
+    '''<summary>
+    '''lbBHLD control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbBHLD As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
     '''Label36 control.
@@ -4199,13 +4163,13 @@ Partial Public Class ctrlHU_EmpDtlProfile
     Protected WithEvents Label36 As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
-    '''txtGiayDau control.
+    '''txtAo_bh control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents txtGiayDau As Global.Telerik.Web.UI.RadTextBox
+    Protected WithEvents txtAo_bh As Global.Telerik.Web.UI.RadTextBox
 
     '''<summary>
     '''Label37 control.
@@ -4217,13 +4181,13 @@ Partial Public Class ctrlHU_EmpDtlProfile
     Protected WithEvents Label37 As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
-    '''txtGiayNhua control.
+    '''txtQuan_bh control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents txtGiayNhua As Global.Telerik.Web.UI.RadTextBox
+    Protected WithEvents txtQuan_bh As Global.Telerik.Web.UI.RadTextBox
 
     '''<summary>
     '''Label38 control.
@@ -4235,13 +4199,13 @@ Partial Public Class ctrlHU_EmpDtlProfile
     Protected WithEvents Label38 As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
-    '''txtAoThun control.
+    '''txtQuanVai control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents txtAoThun As Global.Telerik.Web.UI.RadTextBox
+    Protected WithEvents txtQuanVai As Global.Telerik.Web.UI.RadTextBox
 
     '''<summary>
     '''Label39 control.
@@ -4253,13 +4217,13 @@ Partial Public Class ctrlHU_EmpDtlProfile
     Protected WithEvents Label39 As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
-    '''txtQuanThun control.
+    '''txtGiayDau control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents txtQuanThun As Global.Telerik.Web.UI.RadTextBox
+    Protected WithEvents txtGiayDau As Global.Telerik.Web.UI.RadTextBox
 
     '''<summary>
     '''Label40 control.
@@ -4271,13 +4235,13 @@ Partial Public Class ctrlHU_EmpDtlProfile
     Protected WithEvents Label40 As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
-    '''txtDep control.
+    '''txtGiayNhua control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents txtDep As Global.Telerik.Web.UI.RadTextBox
+    Protected WithEvents txtGiayNhua As Global.Telerik.Web.UI.RadTextBox
 
     '''<summary>
     '''Label41 control.
@@ -4289,13 +4253,13 @@ Partial Public Class ctrlHU_EmpDtlProfile
     Protected WithEvents Label41 As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
-    '''txtNon control.
+    '''txtAoThun control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents txtNon As Global.Telerik.Web.UI.RadTextBox
+    Protected WithEvents txtAoThun As Global.Telerik.Web.UI.RadTextBox
 
     '''<summary>
     '''Label42 control.
@@ -4305,6 +4269,60 @@ Partial Public Class ctrlHU_EmpDtlProfile
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents Label42 As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''txtQuanThun control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtQuanThun As Global.Telerik.Web.UI.RadTextBox
+
+    '''<summary>
+    '''Label43 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents Label43 As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''txtDep control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtDep As Global.Telerik.Web.UI.RadTextBox
+
+    '''<summary>
+    '''Label44 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents Label44 As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''txtNon control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtNon As Global.Telerik.Web.UI.RadTextBox
+
+    '''<summary>
+    '''Label45 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents Label45 As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
     '''txtKhac control.

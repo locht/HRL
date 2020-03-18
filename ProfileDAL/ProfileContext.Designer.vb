@@ -18,7 +18,7 @@ Imports System.Runtime.Serialization
 Imports System.Xml.Serialization
 
 
-<Assembly: EdmSchemaAttribute("24f19cc4-797b-446c-9aef-a5e30b0e7bdc")>
+<Assembly: EdmSchemaAttribute("eceaa935-76e7-4d28-b2bb-d78d401ae6e7")>
 #Region "EDM Relationship Metadata"
 <Assembly: EdmRelationshipAttribute("ProfileModel", "FK_HU_NAT_HU_PRO", "HU_NATION", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_NATION), "HU_PROVINCE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_PROVINCE), True)>
 <Assembly: EdmRelationshipAttribute("ProfileModel", "FK_HU_PRO_HU_DIS", "HU_PROVINCE", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_PROVINCE), "HU_DISTRICT", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_DISTRICT), True)>
@@ -33542,6 +33542,56 @@ Public Partial Class HU_EMPLOYEE_HEALTH
     End Sub
 
     Private Partial Sub OnTTSUCKHOEChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property TIEU_SU_BAN_THAN() As Global.System.String
+        Get
+            Return _TIEU_SU_BAN_THAN
+        End Get
+        Set
+            OnTIEU_SU_BAN_THANChanging(value)
+            ReportPropertyChanging("TIEU_SU_BAN_THAN")
+            _TIEU_SU_BAN_THAN = StructuralObject.SetValidValue(value, true)
+            ReportPropertyChanged("TIEU_SU_BAN_THAN")
+            OnTIEU_SU_BAN_THANChanged()
+        End Set
+    End Property
+
+    Private _TIEU_SU_BAN_THAN As Global.System.String
+    Private Partial Sub OnTIEU_SU_BAN_THANChanging(value As Global.System.String)
+    End Sub
+
+    Private Partial Sub OnTIEU_SU_BAN_THANChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property TIEU_SU_GIA_DINH() As Global.System.String
+        Get
+            Return _TIEU_SU_GIA_DINH
+        End Get
+        Set
+            OnTIEU_SU_GIA_DINHChanging(value)
+            ReportPropertyChanging("TIEU_SU_GIA_DINH")
+            _TIEU_SU_GIA_DINH = StructuralObject.SetValidValue(value, true)
+            ReportPropertyChanged("TIEU_SU_GIA_DINH")
+            OnTIEU_SU_GIA_DINHChanged()
+        End Set
+    End Property
+
+    Private _TIEU_SU_GIA_DINH As Global.System.String
+    Private Partial Sub OnTIEU_SU_GIA_DINHChanging(value As Global.System.String)
+    End Sub
+
+    Private Partial Sub OnTIEU_SU_GIA_DINHChanged()
     End Sub
 
     #End Region

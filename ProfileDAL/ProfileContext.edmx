@@ -629,6 +629,8 @@
             <Property Name="MODIFIED_BY" Type="nvarchar2" Nullable="false" MaxLength="255" />
             <Property Name="MODIFIED_LOG" Type="nvarchar2" Nullable="false" MaxLength="255" />
             <Property Name="TTSUCKHOE" Type="nclob" Nullable="true" />
+            <Property Name="TIEU_SU_BAN_THAN" Type="nclob" Nullable="true" />
+            <Property Name="TIEU_SU_GIA_DINH" Type="nclob" Nullable="true" />
         </EntityType>
         <EntityType Name="HU_EMPLOYEE_EDUCATION">
             <Key>
@@ -4975,6 +4977,8 @@
           <Property Type="String" Name="MODIFIED_BY" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="MODIFIED_LOG" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="TTSUCKHOE" />
+          <Property Type="String" Name="TIEU_SU_BAN_THAN" />
+          <Property Type="String" Name="TIEU_SU_GIA_DINH" />
         </EntityType>
         <EntityType Name="HU_EMPLOYEE_EDUCATION">
           <Key>
@@ -8896,6 +8900,8 @@
                     <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
                     <ScalarProperty Name="MODIFIED_LOG" ColumnName="MODIFIED_LOG" />
                     <ScalarProperty Name="TTSUCKHOE" ColumnName="TTSUCKHOE" />
+                    <ScalarProperty Name="TIEU_SU_BAN_THAN" ColumnName="TIEU_SU_BAN_THAN" />
+                    <ScalarProperty Name="TIEU_SU_GIA_DINH" ColumnName="TIEU_SU_GIA_DINH" />
                 </MappingFragment>
             </EntityTypeMapping>
         </EntitySetMapping>
@@ -12319,10 +12325,16 @@
         </AssociationConnector>
         <EntityTypeShape EntityType="ProfileModel.OT_OTHER_LIST" Width="1.75" PointX="5.75" PointY="4.75" Height="0.40000000000000568" IsExpanded="false" />
         <AssociationConnector Association="ProfileModel.FK_OOL_HA">
-          <ConnectorPoint PointX="6.671875125" PointY="4.75" />
-          <ConnectorPoint PointX="6.671875125" PointY="3.285" />
+          <ConnectorPoint PointX="6.4374994999999995" PointY="4.75" />
+          <ConnectorPoint PointX="6.4374994999999995" PointY="3.285" />
+          <ConnectorPoint PointX="6.6979189166666666" PointY="3.2849999999999993" />
+          <ConnectorPoint PointX="6.9977179487179475" PointY="3.285" />
+          <ConnectorPoint PointX="9.8854166666666661" PointY="3.2849999999999997" />
+          <ConnectorPoint PointX="10.052083333333334" PointY="3.285" />
           <ConnectorPoint PointX="10.125" PointY="3.285" />
           <ConnectorPoint PointX="10.125" PointY="7.2" />
+          <ConnectorPoint PointX="10.052083333333334" PointY="7.1999999999999993" />
+          <ConnectorPoint PointX="9.8854166666666661" PointY="7.2" />
           <ConnectorPoint PointX="9.75" PointY="7.2" />
         </AssociationConnector>
         <EntityTypeShape EntityType="ProfileModel.HU_EMPLOYEE" Width="2.125" PointX="17.125" PointY="0.625" Height="10.441549479166666" IsExpanded="true" />
@@ -12339,15 +12351,15 @@
           <ConnectorPoint PointX="5.25" PointY="10.125" />
         </AssociationConnector>
         <EntityTypeShape EntityType="ProfileModel.HU_EMPLOYEE_CV" Width="3.125" PointX="37.625" PointY="6" Height="23.518046875000003" IsExpanded="true" />
-        <EntityTypeShape EntityType="ProfileModel.HU_EMPLOYEE_HEALTH" Width="1.875" PointX="14.5" PointY="2" Height="0.4" IsExpanded="false" />
+        <EntityTypeShape EntityType="ProfileModel.HU_EMPLOYEE_HEALTH" Width="1.875" PointX="13.5" PointY="0.5" Height="5.8263151041666665" IsExpanded="true" />
         <EntityTypeShape EntityType="ProfileModel.HU_EMPLOYEE_EDUCATION" Width="4" PointX="41" PointY="6.125" Height="7.1724251302083326" IsExpanded="true" />
         <AssociationConnector Association="ProfileModel.FK_HE_HEC">
           <ConnectorPoint PointX="19.25" PointY="6.887499999999994" />
           <ConnectorPoint PointX="37.625" PointY="6.887499999999994" />
         </AssociationConnector>
         <AssociationConnector Association="ProfileModel.FK_FE_HEH">
-          <ConnectorPoint PointX="17.125" PointY="2.2" />
-          <ConnectorPoint PointX="16.375" PointY="2.2" />
+          <ConnectorPoint PointX="17.125" PointY="2.65625" />
+          <ConnectorPoint PointX="15.375" PointY="2.65625" />
         </AssociationConnector>
         <AssociationConnector Association="ProfileModel.FK_HE_HEE">
           <ConnectorPoint PointX="19.25" PointY="5.512499999999994" />
@@ -12357,6 +12369,10 @@
         <EntityTypeShape EntityType="ProfileModel.HU_CONTRACT" Width="2.5" PointX="7.125" PointY="3.125" Height="7.7493294270833335" IsExpanded="true" />
         <AssociationConnector Association="ProfileModel.FK_HC_HE">
           <ConnectorPoint PointX="9.625" PointY="10.605914713541667" />
+          <ConnectorPoint PointX="9.8854166666666661" PointY="10.605914713541667" />
+          <ConnectorPoint PointX="10.052083333333334" PointY="10.605914713541667" />
+          <ConnectorPoint PointX="12.229166666666666" PointY="10.605914713541667" />
+          <ConnectorPoint PointX="12.395833333333334" PointY="10.605914713541667" />
           <ConnectorPoint PointX="12.604166666666666" PointY="10.605914713541667" />
           <ConnectorPoint PointX="12.770833333333334" PointY="10.605914713541667" />
           <ConnectorPoint PointX="17.125" PointY="10.605914713541667" />
@@ -12366,18 +12382,18 @@
           <ConnectorPoint PointX="17.125" PointY="9.5125" />
           <ConnectorPoint PointX="14.770833333333334" PointY="9.5125" />
           <ConnectorPoint PointX="14.604166666666666" PointY="9.5125" />
-          <ConnectorPoint PointX="12.052083333333334" PointY="9.5125" />
-          <ConnectorPoint PointX="11.885416666666666" PointY="9.5125" />
-          <ConnectorPoint PointX="10.739583333333334" PointY="9.5125" />
-          <ConnectorPoint PointX="10.572916666666666" PointY="9.5125" />
+          <ConnectorPoint PointX="12.395833333333334" PointY="9.5125" />
+          <ConnectorPoint PointX="12.229166666666666" PointY="9.5125" />
+          <ConnectorPoint PointX="10.052083333333334" PointY="9.5125" />
+          <ConnectorPoint PointX="9.8854166666666661" PointY="9.5125" />
           <ConnectorPoint PointX="9.625" PointY="9.5125" />
         </AssociationConnector>
         <EntityTypeShape EntityType="ProfileModel.HU_DISCIPLINE" Width="3.5" PointX="1.375" PointY="8.75" Height="9.6723437500000031" IsExpanded="true" />
         <EntityTypeShape EntityType="ProfileModel.HU_WORKING_BEFORE" Width="1.875" PointX="11.25" PointY="1.75" Height="0.4" IsExpanded="false" />
         <AssociationConnector Association="ProfileModel.FK_HE_HWB">
           <ConnectorPoint PointX="17.125" PointY="11.490476888020833" />
-          <ConnectorPoint PointX="11.96875" PointY="11.490476888020833" />
-          <ConnectorPoint PointX="11.96875" PointY="2.15" />
+          <ConnectorPoint PointX="12.3125" PointY="11.490476888020833" />
+          <ConnectorPoint PointX="12.3125" PointY="2.15" />
         </AssociationConnector>
         <AssociationConnector Association="ProfileModel.FK_OTDCO_HUDC">
           <ConnectorPoint PointX="5.75" PointY="5.0812520000000045" />
@@ -12411,14 +12427,14 @@
         </AssociationConnector>
         <EntityTypeShape EntityType="ProfileModel.HU_TERMINATE" Width="1.875" PointX="8.125" PointY="22.625" Height="0.4" IsExpanded="false" />
         <AssociationConnector Association="ProfileModel.FK_HUEMD_HUEM">
-          <ConnectorPoint PointX="19.25" PointY="4.1933898237179488" />
-          <ConnectorPoint PointX="19.5" PointY="4.1933898237179488" />
-          <ConnectorPoint PointX="19.5" PointY="7.5768446514423085" />
-          <ConnectorPoint PointX="19.25" PointY="7.5768446514423085" />
+          <ConnectorPoint PointX="18.1875" PointY="0.625" />
+          <ConnectorPoint PointX="18.1875" PointY="0.375" />
+          <ConnectorPoint PointX="18.658269230769232" PointY="0.375" />
+          <ConnectorPoint PointX="18.658269230769232" PointY="0.625" />
         </AssociationConnector>
         <AssociationConnector Association="ProfileModel.FK_OTST_HUCT">
-          <ConnectorPoint PointX="6.3487692307692312" PointY="4.75" />
-          <ConnectorPoint PointX="6.3487692307692312" PointY="2.375" />
+          <ConnectorPoint PointX="6.9143846153846154" PointY="4.75" />
+          <ConnectorPoint PointX="6.9143846153846154" PointY="2.375" />
           <ConnectorPoint PointX="8.375" PointY="2.375" />
           <ConnectorPoint PointX="8.375" PointY="3.125" />
         </AssociationConnector>
@@ -12431,8 +12447,8 @@
           <ConnectorPoint PointX="3.5" PointY="4.9500000000000028" />
         </AssociationConnector>
         <AssociationConnector Association="ProfileModel.FK_HE_HF">
-          <ConnectorPoint PointX="10.65625" PointY="0.9" />
-          <ConnectorPoint PointX="10.65625" PointY="11.598217832031244" />
+          <ConnectorPoint PointX="9.96875" PointY="0.9" />
+          <ConnectorPoint PointX="9.96875" PointY="11.598217832031244" />
           <ConnectorPoint PointX="17.125" PointY="11.598217832031244" />
         </AssociationConnector>
         <EntityTypeShape EntityType="ProfileModel.HUV_WORKING" Width="2.875" PointX="2.75" PointY="15.125" IsExpanded="false" Height="0.4" />
@@ -12445,6 +12461,10 @@
           <ConnectorPoint PointX="6.25" PointY="10.075" />
           <ConnectorPoint PointX="7.0625" PointY="10.075" />
           <ConnectorPoint PointX="7.0625" PointY="10.936829427083335" />
+          <ConnectorPoint PointX="9.8854166666666661" PointY="10.936829427083335" />
+          <ConnectorPoint PointX="10.052083333333334" PointY="10.936829427083335" />
+          <ConnectorPoint PointX="12.229166666666666" PointY="10.936829427083335" />
+          <ConnectorPoint PointX="12.395833333333334" PointY="10.936829427083335" />
           <ConnectorPoint PointX="12.6875" PointY="10.936829427083335" />
           <ConnectorPoint PointX="12.6875" PointY="10.075" />
           <ConnectorPoint PointX="13.5" PointY="10.075" />
@@ -12456,13 +12476,10 @@
         <EntityTypeShape EntityType="ProfileModel.HU_EMPLOYEE_TRAIN" Width="2.25" PointX="6.75" PointY="14.875" Height="0.39999999999999147" IsExpanded="false" />
         <EntityTypeShape EntityType="ProfileModel.HU_MISSION" Width="2.5" PointX="13.75" PointY="8" Height="0.40000000000000657" IsExpanded="false" />
         <AssociationConnector Association="ProfileModel.FK_OTW_HUE">
-          <ConnectorPoint PointX="17.125" PointY="2.7624999999999997" />
-          <ConnectorPoint PointX="8.4583333333333339" PointY="2.7624999999999993" />
-          <ConnectorPoint PointX="8.2916666666666661" PointY="2.7624999999999997" />
-          <ConnectorPoint PointX="6.4321025641025642" PointY="2.7624999999999993" />
-          <ConnectorPoint PointX="6.2654358974358981" PointY="2.7624999999999997" />
-          <ConnectorPoint PointX="6.15624725" PointY="2.7624999999999997" />
-          <ConnectorPoint PointX="6.15624725" PointY="4.75" />
+          <ConnectorPoint PointX="18.1875" PointY="0.625" />
+          <ConnectorPoint PointX="18.1875" PointY="0.32499999999999996" />
+          <ConnectorPoint PointX="6.78125225" PointY="0.32499999999999996" />
+          <ConnectorPoint PointX="6.78125225" PointY="4.75" />
         </AssociationConnector>
         <EntityTypeShape EntityType="ProfileModel.AT_ALDATA" Width="2.625" PointX="9.75" PointY="14.875" Height="0.40000000000000568" IsExpanded="false" />
         <EntityTypeShape EntityType="ProfileModel.HUV_CURRENT_TERMINATE" Width="1.5" PointX="13.75" PointY="14.875" Height="0.40000000000000568" IsExpanded="false" />
@@ -12600,7 +12617,7 @@
         <EntityTypeShape EntityType="ProfileModel.SE_USER_ORG_ACCESS" Width="1.5" PointX="33.5" PointY="7" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="ProfileModel.HU_WELFARE_MNG_EMP" Width="2.5" PointX="7.375" PointY="26.25" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="ProfileModel.HU_ORGANIZATION_V" Width="1.5" PointX="25.375" PointY="32.75" Height="0.4" IsExpanded="false" />
-        <EntityTypeShape EntityType="ProfileModel.AT_WORKSIGN" Width="1.5" PointX="15.375" PointY="4.75" Height="3.3263964843749818" />
+        <EntityTypeShape EntityType="ProfileModel.AT_WORKSIGN" Width="1.5" PointX="15.625" PointY="4.75" Height="3.3263964843749818" />
         <EntityTypeShape EntityType="ProfileModel.HU_DIRECT_MANAGER" Width="1.5" PointX="10.375" PointY="3.75" Height="1.403382161458353" />
         <EntityTypeShape EntityType="ProfileModel.HU_JOB_POSITION" Width="1.5" PointX="15.375" PointY="19.75" Height="4.287903645833353" />
         <EntityTypeShape EntityType="ProfileModel.HU_UNIFORM_SIZE" Width="2.25" PointX="30.375" PointY="25.75" Height="3.9033007812499818" />

@@ -1171,6 +1171,8 @@ Partial Class ProfileRepository
                 objEmpHealthData.DA_HOA_LIEU = objEmpHealth.DA_HOA_LIEU
                 objEmpHealthData.GHI_CHU_SUC_KHOE = objEmpHealth.GHI_CHU_SUC_KHOE
                 objEmpHealthData.TTSUCKHOE = objEmpHealth.TTSUCKHOE
+                objEmpHealthData.TIEU_SU_BAN_THAN = objEmpHealth.TIEU_SU_BAN_THAN
+                objEmpHealthData.TIEU_SU_GIA_DINH = objEmpHealth.TIEU_SU_GIA_DINH
                 Context.HU_EMPLOYEE_HEALTH.AddObject(objEmpHealthData)
             End If
 
@@ -1314,7 +1316,7 @@ Partial Class ProfileRepository
                                 cmd.ExecuteNonQuery()
                             End If
 
-                            ModifyEmployeeByLinq(objEmp, log, gID, _imageBinary, objEmpCV, objEmpEdu, objEmpHealth)
+                            ModifyEmployeeByLinq(objEmp, log, gID, _imageBinary, objEmpCV, objEmpEdu, objEmpHealth, objEmpUniform)
 
                             If objEmp.IS_HISTORY Then
                                 cmd.Parameters.Clear()
@@ -1655,6 +1657,8 @@ Partial Class ProfileRepository
                 objEmpHealthData.DA_HOA_LIEU = objEmpHealth.DA_HOA_LIEU
                 objEmpHealthData.GHI_CHU_SUC_KHOE = objEmpHealth.GHI_CHU_SUC_KHOE
                 objEmpHealthData.TTSUCKHOE = objEmpHealth.TTSUCKHOE
+                objEmpHealthData.TIEU_SU_BAN_THAN = objEmpHealth.TIEU_SU_BAN_THAN
+                objEmpHealthData.TIEU_SU_GIA_DINH = objEmpHealth.TIEU_SU_GIA_DINH
                 If bUpdateHealth = False Then
                     Context.HU_EMPLOYEE_HEALTH.AddObject(objEmpHealthData)
                 End If
@@ -2146,7 +2150,7 @@ Partial Class ProfileRepository
                               .WORK_T_SHIRT = e.WORK_T_SHIRT,
                               .WORK_TROUSERS = e.WORK_TROUSERS,
                               .OTHER = e.OTHER
-                        })
+                        }).FirstOrDefault()
 
             Return True
         Catch ex As Exception

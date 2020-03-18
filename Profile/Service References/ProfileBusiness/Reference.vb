@@ -43727,6 +43727,12 @@ Namespace ProfileBusiness
         Private TAI_MUI_HONGField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private TIEU_SU_BAN_THANField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private TIEU_SU_GIA_DINHField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private TIMField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -43988,6 +43994,32 @@ Namespace ProfileBusiness
                 If (Object.ReferenceEquals(Me.TAI_MUI_HONGField, value) <> true) Then
                     Me.TAI_MUI_HONGField = value
                     Me.RaisePropertyChanged("TAI_MUI_HONG")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property TIEU_SU_BAN_THAN() As String
+            Get
+                Return Me.TIEU_SU_BAN_THANField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.TIEU_SU_BAN_THANField, value) <> true) Then
+                    Me.TIEU_SU_BAN_THANField = value
+                    Me.RaisePropertyChanged("TIEU_SU_BAN_THAN")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property TIEU_SU_GIA_DINH() As String
+            Get
+                Return Me.TIEU_SU_GIA_DINHField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.TIEU_SU_GIA_DINHField, value) <> true) Then
+                    Me.TIEU_SU_GIA_DINHField = value
+                    Me.RaisePropertyChanged("TIEU_SU_GIA_DINH")
                 End If
             End Set
         End Property
