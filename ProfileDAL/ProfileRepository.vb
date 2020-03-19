@@ -1103,7 +1103,7 @@ Public Class ProfileRepository
         End If
         'Danh mục trình độ tin học: 
         If _combolistDTO.GET_COMPUTER_LEVEL Then
-            query = (From p In Context.OT_OTHER_LIST Join q In Context.OT_OTHER_LIST_TYPE On p.TYPE_ID Equals q.ID Where q.CODE = "COMPUTER_LEVEL" _
+            query = (From p In Context.OT_OTHER_LIST Join q In Context.OT_OTHER_LIST_TYPE On p.TYPE_ID Equals q.ID Where q.CODE = "RC_COMPUTER_LEVEL" _
                      And p.ACTFLG = "A"
                      Order By p.NAME_VN
                      Select New OtherListDTO With {
@@ -1115,7 +1115,7 @@ Public Class ProfileRepository
         'Danh mục ngoại ngữ :  
         If _combolistDTO.GET_LANGUAGE Then
             query = (From p In Context.OT_OTHER_LIST
-                     Join q In Context.OT_OTHER_LIST_TYPE On p.TYPE_ID Equals q.ID Where q.CODE = "LANGUAGE" _
+                     Join q In Context.OT_OTHER_LIST_TYPE On p.TYPE_ID Equals q.ID Where q.CODE = "RC_LANGUAGE" _
                      And p.ACTFLG = "A"
                      Order By p.NAME_VN
                      Select New OtherListDTO With {
@@ -1187,7 +1187,7 @@ Public Class ProfileRepository
         'Danh mục trình độ ngoại ngữ :  
         If _combolistDTO.GET_LANGUAGE_LEVEL Then
             query = (From p In Context.OT_OTHER_LIST
-                     Join q In Context.OT_OTHER_LIST_TYPE On p.TYPE_ID Equals q.ID Where q.CODE = "LANGUAGE_LEVEL" _
+                     Join q In Context.OT_OTHER_LIST_TYPE On p.TYPE_ID Equals q.ID Where q.CODE = "RC_LANGUAGE_LEVEL" _
                      And p.ACTFLG = "A"
                      Order By p.NAME_VN
                      Select New OtherListDTO With {
@@ -1572,6 +1572,48 @@ Public Class ProfileRepository
                         .NAME_EN = p.NAME_EN,
                         .CODE = p.CODE}).ToList
             _combolistDTO.LIST_TER_DECISION_TYPE = query
+        End If
+
+        'kỹ năng mềm
+        If _combolistDTO.GET_SOFT_SKILL Then
+            query = (From p In Context.OT_OTHER_LIST
+                     Join q In Context.OT_OTHER_LIST_TYPE On p.TYPE_ID Equals q.ID
+                     Where q.CODE = "RC_SOFT_SKILL" And p.ACTFLG = "A"
+                     Order By p.NAME_VN
+                    Select New OtherListDTO With {
+                        .ID = p.ID,
+                        .NAME_VN = p.NAME_VN,
+                        .NAME_EN = p.NAME_EN,
+                        .CODE = p.CODE}).ToList
+            _combolistDTO.LIST_SOFT_SKILLS = query
+        End If
+
+        'danh sách trường
+        If _combolistDTO.GET_GRADUATE_SCHOOL Then
+            query = (From p In Context.OT_OTHER_LIST
+                     Join q In Context.OT_OTHER_LIST_TYPE On p.TYPE_ID Equals q.ID
+                     Where q.CODE = "HU_GRADUATE_SCHOOL" And p.ACTFLG = "A"
+                     Order By p.NAME_VN
+                    Select New OtherListDTO With {
+                        .ID = p.ID,
+                        .NAME_VN = p.NAME_VN,
+                        .NAME_EN = p.NAME_EN,
+                        .CODE = p.CODE}).ToList
+            _combolistDTO.LIST_GRADUATE_SCHOOL = query
+        End If
+
+        'thoi gian lam viec
+        If _combolistDTO.GET_WORK_TIME Then
+            query = (From p In Context.OT_OTHER_LIST
+                     Join q In Context.OT_OTHER_LIST_TYPE On p.TYPE_ID Equals q.ID
+                     Where q.CODE = "WORK_TIME" And p.ACTFLG = "A"
+                     Order By p.NAME_VN
+                    Select New OtherListDTO With {
+                        .ID = p.ID,
+                        .NAME_VN = p.NAME_VN,
+                        .NAME_EN = p.NAME_EN,
+                        .CODE = p.CODE}).ToList
+            _combolistDTO.LIST_WORK_TIME = query
         End If
         Return True
     End Function

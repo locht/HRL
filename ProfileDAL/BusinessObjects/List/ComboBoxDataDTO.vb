@@ -310,4 +310,16 @@
     'OtherList - Loai quyet dinh cua Nghi viec
     Public Property GET_TER_DECISION_TYPE As Boolean
     Public Property LIST_TER_DECISION_TYPE As List(Of OtherListDTO)
+
+    'danh sach truong
+    Public Property GET_GRADUATE_SCHOOL As Boolean
+    Public Property LIST_GRADUATE_SCHOOL As List(Of OtherListDTO)
+
+    'danhs sach ky nang mem
+    Public Property GET_SOFT_SKILL As Boolean
+    Public Property LIST_SOFT_SKILLS As List(Of OtherListDTO)
+
+    'thoi gian lam viec
+    Public Property GET_WORK_TIME As Boolean
+    Public Property LIST_WORK_TIME As List(Of OtherListDTO)
 End Class

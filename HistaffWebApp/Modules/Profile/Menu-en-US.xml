@@ -19,6 +19,7 @@
             <Item Value="ctrlHU_WelfareMngAuto" Text="Welfare Automation Manager" PostBack="True" NavigateUrl="Default.aspx?mid=Profile&amp;fid=ctrlHU_WelfareMngAuto&amp;group=Business" CheckPermission="true" CausesValidation="False" />
           </Group>
         </Item>
+        <Item Value="ctrlHU_Commend" Text="Job Description" PostBack="True" NavigateUrl="Default.aspx?mid=Profile&amp;fid=ctrlHU_JobDescription&amp;group=Business" CheckPermission="true"/>
         <Item Value="ctrlHU_LabourProtectionMng" Text="Management of labor protection" PostBack="True" NavigateUrl="Default.aspx?mid=Profile&amp;fid=ctrlHU_LabourProtectionMng&amp;group=Business" CheckPermission="true" CausesValidation="False" />
         <Item Value="ctrlHU_OccupationalSafety" Text="Safety Management" PostBack="True" NavigateUrl="Default.aspx?mid=Profile&amp;fid=ctrlHU_OccupationalSafety&amp;group=Business" CheckPermission="true" CausesValidation="False" />
         <Item Value="ctrlHU_AssetMng" Text="Manage asset allocation" PostBack="True" NavigateUrl="Default.aspx?mid=Profile&amp;fid=ctrlHU_AssetMng&amp;group=Business" CheckPermission="true" CausesValidation="False" />

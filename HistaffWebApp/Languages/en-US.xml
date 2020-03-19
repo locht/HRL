@@ -18913,4 +18913,20 @@
       <string>Quản lý ngôn ngữ</string>
     </Value>
   </Item>
+  <Item>
+    <Key>
+      <string>CTRLHU_JOBDESCRIPTION</string>
+    </Key>
+    <Value>
+      <string>Job Description</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>CTRLHU_JOBDESCRIPTIONNEWEDIT</string>
+    </Key>
+    <Value>
+      <string>Job Information</string>
+    </Value>
+  </Item>
 </SerializableDictionaryOfStringString>

@@ -465,6 +465,8 @@
     <Content Include="Modules\Profile\Business\ctrlHU_ApproveMutilChangeInfo_New.ascx" />
     <Content Include="Modules\Profile\Business\ctrlContract_Liquidate.ascx" />
     <Content Include="Modules\Profile\Business\ctrlHU_EmpDtlAppendix.ascx" />
+    <Content Include="Modules\Profile\Business\ctrlHU_JobDescription.ascx" />
+    <Content Include="Modules\Profile\Business\ctrlHU_JobDescriptionNewEdit.ascx" />
     <Content Include="Modules\Profile\Shared\ctrlDashboardHome.ascx" />
     <Content Include="Modules\Profile\Shared\ctrlHomeDashboard.ascx" />
     <Content Include="Modules\Recruitment\Business\ctrlRC_ImportCV.ascx" />

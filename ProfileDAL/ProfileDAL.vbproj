@@ -86,6 +86,7 @@
     <Compile Include="BusinessObjects\Business\CETIFICATEDTO.vb" />
     <Compile Include="BusinessObjects\Business\CETIFICATE_EDITDTO.vb" />
     <Compile Include="BusinessObjects\Business\CommandResult.vb" />
+    <Compile Include="BusinessObjects\Business\JobDescriptionDTO.vb" />
     <Compile Include="BusinessObjects\Business\Temp_ConcurrentlyDTO.vb" />
     <Compile Include="BusinessObjects\Business\TransferTerminateDTO.vb" />
     <Compile Include="BusinessObjects\Business\HandoverContentDTO.vb" />

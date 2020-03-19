@@ -1,7 +1,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for Oracle database
 -- --------------------------------------------------
--- Date Created: 03/18/2020 10:35:21 AM
+-- Date Created: 03/19/2020 11:37:26 AM
 -- Generated from EDMX file: F:\WORKING\acv_19\ProfileDAL\ProfileContext.edmx
 -- --------------------------------------------------
 
@@ -1126,7 +1126,9 @@ CREATE TABLE "dbo"."PA_SALARY_LEVEL" (
    "CREATED_LOG" NVARCHAR2(255) NOT NULL,
    "MODIFIED_DATE" DATE NOT NULL,
    "MODIFIED_BY" NVARCHAR2(255) NOT NULL,
-   "MODIFIED_LOG" NVARCHAR2(255) NOT NULL
+   "MODIFIED_LOG" NVARCHAR2(255) NOT NULL,
+   "SAL_FR" NUMBER(38,0) NULL,
+   "SAL_TO" NUMBER(38,0) NULL
 );
 
 -- Creating table 'PA_SALARY_PAGE'
@@ -3877,7 +3879,14 @@ CREATE TABLE "dbo"."HU_JOB_DESCRIPTION" (
    "LANGUAGE_RANK_3" NUMBER(38,0) NULL,
    "SOFT_SKILL" NUMBER(38,0) NULL,
    "CHARACTER" NVARCHAR2(255) NULL,
-   "NOTE" NVARCHAR2(255) NULL
+   "NOTE" NVARCHAR2(255) NULL,
+   "CREATED_DATE" DATE NULL,
+   "CREATED_BY" NVARCHAR2(255) NULL,
+   "CREATED_LOG" NVARCHAR2(255) NULL,
+   "MODDIFIED_DATE" DATE NULL,
+   "MODIFIED_BY" NVARCHAR2(255) NULL,
+   "MODIFIED_LOG" NVARCHAR2(255) NULL,
+   "FILENAME" NCLOB NULL
 );
 
 -- Creating table 'SE_USER_REPORT'

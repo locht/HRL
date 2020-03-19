@@ -1148,7 +1148,16 @@ Namespace ProfileBusiness.ServiceContracts
 #End Region
 
 #End Region
-
+#Region "Job Description"
+        <OperationContract()>
+        Function GetJobDescription(ByVal _filter As JobDescriptionDTO,
+                                        ByVal _param As ParamDTO,
+                                        ByVal PageIndex As Integer,
+                                        ByVal PageSize As Integer,
+                                        ByRef Total As Integer,
+                                        Optional ByVal Sorts As String = "CREATED_DATE desc",
+                                        Optional ByVal log As UserLog = Nothing) As List(Of JobDescriptionDTO)
+#End Region
 #Region "Bussiness"
 
 #Region "EmployeeBussiness - Nghiệp vụ hồ sơ"

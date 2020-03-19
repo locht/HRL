@@ -2647,4 +2647,213 @@ Partial Class ProfileRepository
 
 #End Region
 
+#Region "Job description"
+    Public Function GetJobDescription(ByVal _filter As JobDescriptionDTO,
+                                        ByVal _param As ParamDTO,
+                                        ByVal PageIndex As Integer,
+                                        ByVal PageSize As Integer,
+                                        ByRef Total As Integer,
+                                        Optional ByVal Sorts As String = "CREATED_DATE desc",
+                                        Optional ByVal log As UserLog = Nothing) As List(Of JobDescriptionDTO)
+        Try
+            Using cls As New DataAccess.QueryData
+                cls.ExecuteStore("PKG_COMMON_LIST.INSERT_CHOSEN_ORG",
+                                 New With {.P_USERNAME = log.Username,
+                                           .P_ORGID = _param.ORG_ID,
+                                           .P_ISDISSOLVE = _param.IS_DISSOLVE})
+            End Using
+            Dim query = (From p In Context.HU_JOB_DESCRIPTION
+                        From org In Context.HU_ORGANIZATION.Where(Function(f) f.ID = p.ORG_ID)
+                        From title In Context.HU_TITLE.Where(Function(f) f.ID = p.TITLE_ID)
+                        From sal In Context.PA_SALARY_LEVEL.Where(Function(f) f.ID = title.LEVEL_ID).DefaultIfEmpty
+                        From chosen In Context.SE_CHOSEN_ORG.Where(Function(f) f.ORG_ID = p.ORG_ID And
+                                                           f.USERNAME = log.Username.ToUpper)
+                        Select New JobDescriptionDTO With {
+                                .ID = p.ID,
+                                .CODE = p.CODE,
+                                .NAME = p.NAME,
+                                .ORG_ID = p.ORG_ID,
+                                .ORG_NAME = org.NAME_VN,
+                                .TITLE_ID = p.TITLE_ID,
+                                .TITLE_NAME = title.NAME_VN,
+                                .TIME_WORKING = p.TIME_WORKING,
+                                .JOB_DESCRIPTION = p.JOB_DESCRIPTION,
+                                .WORK_CONDITION = p.WORK_CONDITION,
+                                .JOB_PARTICULARTIES = p.JOB_PARTICULARTIES,
+                                .WORK_ENVIRONMENT = p.WORK_ENVIRONMENT,
+                                .JOB_RESPONSIBILITY = p.JOB_RESPONSIBILITY,
+                                .JOB_POWER = p.JOB_POWER,
+                                .ATTACH_FILE = p.ATTACH_FILE,
+                                .LEARNING_LEVEL = p.LEARNING_LEVEL,
+                                .TRAINING_FORM = p.TRAINING_FORM,
+                                .GRADUATE_SCHOOL = p.GRADUATE_SCHOOL,
+                                .MAJOR_RANK = p.MAJOR_RANK,
+                                .TRAINING_FORM_2 = p.TRAINING_FORM_2,
+                                .GRADUATE_SCHOOL_2 = p.GRADUATE_SCHOOL_2,
+                                .MAJOR_RANK_2 = p.MAJOR_RANK_2,
+                                .COMPUTER_RANK = p.COMPUTER_RANK,
+                                .LANGUAGE_1 = p.LANGUAGE_1,
+                                .LANGUAGE_RANK_1 = p.LANGUAGE_RANK_1,
+                                .LANGUAGE_2 = p.LANGUAGE_2,
+                                .LANGUAGE_RANK_2 = p.LANGUAGE_RANK_2,
+                                .LANGUAGE_3 = p.LANGUAGE_RANK_3,
+                                .SOFT_SKILL = p.SOFT_SKILL,
+                                .NOTE = p.NOTE,
+                                .SAL_FROM = sal.SAL_FR,
+                                .SAL_TO = sal.SAL_TO,
+                                .CHARACTER = p.CHARACTER,
+                                .CREATED_BY = p.CREATED_BY,
+                                .CREATED_DATE = p.CREATED_DATE,
+                                .CREATED_LOG = p.CREATED_LOG,
+                                .MODIFIED_BY = p.MODIFIED_BY,
+                                .MODIFIED_DATE = p.MODDIFIED_DATE,
+                                .MODIFIED_LOG = p.MODIFIED_LOG
+                            })
+            If _filter.CODE IsNot Nothing Or _filter.CODE <> "" Then
+                query = query.Where(Function(f) f.CODE.ToUpper().Contains(_filter.CODE.ToUpper()))
+            End If
+
+            If _filter.NAME IsNot Nothing Or _filter.NAME <> "" Then
+                query = query.Where(Function(f) f.NAME.ToUpper().Contains(_filter.NAME.ToUpper()))
+            End If
+
+            If _filter.JOB_DESCRIPTION IsNot Nothing Or _filter.JOB_DESCRIPTION <> "" Then
+                query = query.Where(Function(f) f.JOB_DESCRIPTION.ToUpper.Contains(_filter.JOB_DESCRIPTION.ToUpper))
+            End If
+
+            If _filter.WORK_CONDITION IsNot Nothing Or _filter.WORK_CONDITION <> "" Then
+                query = query.Where(Function(f) f.WORK_CONDITION.ToUpper().Contains(_filter.WORK_CONDITION.ToUpper()))
+            End If
+
+            If _filter.JOB_PARTICULARTIES IsNot Nothing Or _filter.JOB_PARTICULARTIES <> "" Then
+                query = query.Where(Function(f) f.JOB_PARTICULARTIES.ToUpper().Contains(_filter.JOB_PARTICULARTIES.ToUpper()))
+            End If
+
+            If _filter.WORK_ENVIRONMENT IsNot Nothing Or _filter.WORK_ENVIRONMENT <> "" Then
+                query = query.Where(Function(f) f.WORK_ENVIRONMENT.ToUpper().Contains(_filter.WORK_ENVIRONMENT.ToUpper()))
+            End If
+
+            If _filter.JOB_RESPONSIBILITY IsNot Nothing Or _filter.JOB_RESPONSIBILITY <> "" Then
+                query = query.Where(Function(f) f.JOB_RESPONSIBILITY.ToUpper().Contains(_filter.JOB_RESPONSIBILITY.ToUpper()))
+            End If
+
+            If _filter.JOB_POWER IsNot Nothing Or _filter.JOB_POWER <> "" Then
+                query = query.Where(Function(f) f.JOB_POWER.ToUpper().Contains(_filter.JOB_POWER.ToUpper()))
+            End If
+
+            If IsNumeric(_filter.SAL_FROM) Then
+                query = query.Where(Function(f) f.SAL_FROM = _filter.SAL_FROM)
+            End If
+
+            If IsNumeric(_filter.SAL_TO) Then
+                query = query.Where(Function(f) f.SAL_TO = _filter.SAL_TO)
+            End If
+
+            Dim jobDes = query
+
+            jobDes = jobDes.OrderBy(Sorts)
+            Total = jobDes.Count
+            jobDes = jobDes.Skip(PageIndex * PageSize).Take(PageSize)
+            Dim result = jobDes.ToList
+            Return result
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+
+    Public Function InserJobDescription(ByVal objJobDes As JobDescriptionDTO, ByVal log As UserLog) As Boolean
+        Dim objJobDesData As New JobDescriptionDTO
+        Try
+            objJobDesData.ID = Utilities.GetNextSequence(Context, Context.HU_JOB_DESCRIPTION.EntitySet.Name)
+            objJobDesData.CODE = objJobDes.CODE
+            objJobDesData.NAME = objJobDes.NAME
+            objJobDesData.ORG_ID = objJobDes.ORG_ID
+            objJobDesData.TITLE_ID = objJobDes.TITLE_ID
+            objJobDesData.TIME_WORKING = objJobDes.TIME_WORKING
+            objJobDesData.JOB_DESCRIPTION = objJobDes.JOB_DESCRIPTION
+            objJobDesData.WORK_CONDITION = objJobDes.WORK_CONDITION
+            objJobDesData.JOB_PARTICULARTIES = objJobDesData.JOB_PARTICULARTIES
+            objJobDesData.WORK_ENVIRONMENT = objJobDes.WORK_ENVIRONMENT
+            objJobDesData.JOB_RESPONSIBILITY = objJobDes.JOB_RESPONSIBILITY
+            objJobDesData.JOB_POWER = objJobDes.JOB_POWER
+            objJobDesData.ATTACH_FILE = objJobDes.ATTACH_FILE
+            objJobDesData.FILENAME = objJobDes.FILENAME
+            objJobDesData.LEARNING_LEVEL = objJobDes.LEARNING_LEVEL
+            objJobDesData.TRAINING_FORM = objJobDes.TRAINING_FORM
+            objJobDesData.TRAINING_FORM_2 = objJobDes.TRAINING_FORM_2
+            objJobDesData.GRADUATE_SCHOOL = objJobDes.GRADUATE_SCHOOL
+            objJobDesData.GRADUATE_SCHOOL_2 = objJobDes.GRADUATE_SCHOOL_2
+            objJobDesData.MAJOR_RANK = objJobDes.MAJOR_RANK
+            objJobDesData.MAJOR_RANK_2 = objJobDes.MAJOR_RANK_2
+            objJobDesData.COMPUTER_RANK = objJobDes.COMPUTER_RANK
+            objJobDesData.LANGUAGE_1 = objJobDes.LANGUAGE_1
+            objJobDesData.LANGUAGE_RANK_1 = objJobDes.LANGUAGE_RANK_1
+            objJobDesData.LANGUAGE_2 = objJobDes.LANGUAGE_2
+            objJobDesData.LANGUAGE_RANK_2 = objJobDes.LANGUAGE_RANK_2
+            objJobDesData.LANGUAGE_3 = objJobDes.LANGUAGE_3
+            objJobDesData.LANGUAGE_RANK_3 = objJobDes.LANGUAGE_RANK_3
+            objJobDesData.SOFT_SKILL = objJobDes.SOFT_SKILL
+            objJobDesData.CHARACTER = objJobDes.CHARACTER
+            objJobDesData.NOTE = objJobDes.NOTE
+            Context.SaveChanges(log)
+            Return True
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iProfile")
+            Return False
+        End Try
+    End Function
+
+    Public Function ModifyJobDescription(ByVal objJobDes As JobDescriptionDTO, ByVal log As UserLog, ByRef gID As Decimal) As Boolean
+        Try
+            Dim objJobDesData = (From p In Context.HU_JOB_DESCRIPTION Where p.ID = objJobDes.ID).FirstOrDefault
+            objJobDesData.NAME = objJobDes.NAME
+            objJobDesData.ORG_ID = objJobDes.ORG_ID
+            objJobDesData.TITLE_ID = objJobDes.TITLE_ID
+            objJobDesData.TIME_WORKING = objJobDes.TIME_WORKING
+            objJobDesData.JOB_DESCRIPTION = objJobDes.JOB_DESCRIPTION
+            objJobDesData.WORK_CONDITION = objJobDes.WORK_CONDITION
+            objJobDesData.JOB_PARTICULARTIES = objJobDesData.JOB_PARTICULARTIES
+            objJobDesData.WORK_ENVIRONMENT = objJobDes.WORK_ENVIRONMENT
+            objJobDesData.JOB_RESPONSIBILITY = objJobDes.JOB_RESPONSIBILITY
+            objJobDesData.JOB_POWER = objJobDes.JOB_POWER
+            objJobDesData.ATTACH_FILE = objJobDes.ATTACH_FILE
+            objJobDesData.FILENAME = objJobDes.FILENAME
+            objJobDesData.LEARNING_LEVEL = objJobDes.LEARNING_LEVEL
+            objJobDesData.TRAINING_FORM = objJobDes.TRAINING_FORM
+            objJobDesData.TRAINING_FORM_2 = objJobDes.TRAINING_FORM_2
+            objJobDesData.GRADUATE_SCHOOL = objJobDes.GRADUATE_SCHOOL
+            objJobDesData.GRADUATE_SCHOOL_2 = objJobDes.GRADUATE_SCHOOL_2
+            objJobDesData.MAJOR_RANK = objJobDes.MAJOR_RANK
+            objJobDesData.MAJOR_RANK_2 = objJobDes.MAJOR_RANK_2
+            objJobDesData.COMPUTER_RANK = objJobDes.COMPUTER_RANK
+            objJobDesData.LANGUAGE_1 = objJobDes.LANGUAGE_1
+            objJobDesData.LANGUAGE_RANK_1 = objJobDes.LANGUAGE_RANK_1
+            objJobDesData.LANGUAGE_2 = objJobDes.LANGUAGE_2
+            objJobDesData.LANGUAGE_RANK_2 = objJobDes.LANGUAGE_RANK_2
+            objJobDesData.LANGUAGE_3 = objJobDes.LANGUAGE_3
+            objJobDesData.LANGUAGE_RANK_3 = objJobDes.LANGUAGE_RANK_3
+            objJobDesData.SOFT_SKILL = objJobDes.SOFT_SKILL
+            objJobDesData.CHARACTER = objJobDes.CHARACTER
+            objJobDesData.NOTE = objJobDes.NOTE
+            Context.SaveChanges(log)
+            Return True
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iProfile")
+            Return False
+        End Try
+    End Function
+
+    Public Function DeleteJobDescretion(ByVal objJobDes As JobDescriptionDTO) As Boolean
+        Try
+            Dim objJobDesData = (From p In Context.HU_JOB_DESCRIPTION Where p.ID = objJobDes.ID).FirstOrDefault
+            Context.HU_JOB_DESCRIPTION.DeleteObject(objJobDesData)
+            Context.SaveChanges()
+            Return True
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iProfile")
+            Throw ex
+        End Try
+    End Function
+#End Region
+
 End Class

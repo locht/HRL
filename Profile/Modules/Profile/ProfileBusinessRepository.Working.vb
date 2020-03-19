@@ -474,5 +474,20 @@ Partial Public Class ProfileBusinessRepository
     End Function
 
 #End Region
+#Region "Job Description"
+    Public Function GetJobDescription(ByVal _filter As JobDescriptionDTO,
+                                        ByVal _param As ParamDTO,
+                                        ByVal PageIndex As Integer,
+                                        ByVal PageSize As Integer,
+                                        ByRef Total As Integer,
+                                        Optional ByVal Sorts As String = "CREATED_DATE desc") As List(Of JobDescriptionDTO)
+        Try
+            Using rep As New ProfileBusinessClient
+                Return rep.GetJobDescription(_filter, _param, PageIndex, PageSize, Total, Sorts, Me.Log)
+            End Using
+        Catch ex As Exception
 
+        End Try
+    End Function
+#End Region
 End Class

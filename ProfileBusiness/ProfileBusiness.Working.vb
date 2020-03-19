@@ -409,5 +409,22 @@ Namespace ProfileBusiness.ServiceImplementations
 
 #End Region
 
+#Region "Job Description"
+        Public Function GetJobDescription(ByVal _filter As JobDescriptionDTO,
+                                        ByVal _param As ParamDTO,
+                                        ByVal PageIndex As Integer,
+                                        ByVal PageSize As Integer,
+                                        ByRef Total As Integer,
+                                        Optional ByVal Sorts As String = "CREATED_DATE desc",
+                                        Optional ByVal log As UserLog = Nothing) As List(Of JobDescriptionDTO) Implements ServiceContracts.IProfileBusiness.GetJobDescription
+            Try
+                Using rep As New ProfileRepository
+                    Return rep.GetJobDescription(_filter, _param, PageIndex, PageSize, Total, Sorts, log)
+                End Using
+            Catch ex As Exception
+                Throw ex
+            End Try
+        End Function
+#End Region
     End Class
 End Namespace

@@ -175,6 +175,8 @@
     <Content Include="Modules\Portal\Dashboard\ctrlDashboardPortalSixCell.ascx" />
     <Content Include="Modules\Portal\Dashboard\ctrlDBEmployeeReg.ascx" />
     <Content Include="Modules\Portal\Dashboard\ctrlDBCertificateExpires.ascx" />
+    <Content Include="Modules\Profile\Business\ctrlHU_JobDescription.ascx" />
+    <Content Include="Modules\Profile\Business\ctrlHU_JobDescriptionNewEdit.ascx" />
     <Content Include="Modules\Profile\Business\ctrlHU_ApproveMutilChangeInfo_New.ascx" />
     <Content Include="Modules\Profile\Business\ctrlContract_Liquidate.ascx" />
     <Content Include="Modules\Profile\Business\ctrlHU_EmpDtlAppendix.ascx" />
@@ -917,6 +919,20 @@
     </Compile>
     <Compile Include="Modules\Competency\Business\ctrlHU_CompetencyAss.ascx.vb">
       <DependentUpon>ctrlHU_CompetencyAss.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Modules\Profile\Business\ctrlHU_JobDescription.ascx.designer.vb">
+      <DependentUpon>ctrlHU_JobDescription.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Profile\Business\ctrlHU_JobDescription.ascx.vb">
+      <DependentUpon>ctrlHU_JobDescription.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Modules\Profile\Business\ctrlHU_JobDescriptionNewEdit.ascx.designer.vb">
+      <DependentUpon>ctrlHU_JobDescriptionNewEdit.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Profile\Business\ctrlHU_JobDescriptionNewEdit.ascx.vb">
+      <DependentUpon>ctrlHU_JobDescriptionNewEdit.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Modules\Profile\Business\ctrlHU_ApproveMutilChangeInfo_New.ascx.designer.vb">

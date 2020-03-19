@@ -44510,4 +44510,20 @@ Xin cám ơn!
       <string>Loại ngoại tệ</string>
     </Value>
   </Item>
+  <Item>
+    <Key>
+      <string>CTRLHU_JOBDESCRIPTION</string>
+    </Key>
+    <Value>
+      <string>Bảng mô tả công việc</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>CTRLHU_JOBDESCRIPTIONNEWEDIT</string>
+    </Key>
+    <Value>
+      <string>Thông tin công việc</string>
+    </Value>
+  </Item>
 </SerializableDictionaryOfStringString>
