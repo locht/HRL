@@ -47,9 +47,7 @@
                     </tlk:RadNumericTextBox>
                     <asp:RequiredFieldValidator ID="RequiredFieldValidator3" ControlToValidate="rntxtOrders"
                         runat="server" ErrorMessage="<%$ Translate: Bạn phải nhập số thứ tự. %>" ToolTip="<%$ Translate: Bạn phải nhập số thứ tự. %>"></asp:RequiredFieldValidator>
-                </td>
-               
-
+                </td>    
                 <td class="lb" id="tdcblbIs_SalaryM" runat="server" >
                     <label id="Label5">
                         <%# Translate("Lương tháng")%></label>

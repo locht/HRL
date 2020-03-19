@@ -389,6 +389,12 @@ Public Class ctrlPA_SalaryType
                         objSalaryType.IS_FINALI = cbIS_FINALI.Checked
 
                         objSalaryType.ORDERS = If(rntxtOrders.Text = "", 1, Decimal.Parse(rntxtOrders.Text))
+
+                        If cbIS_SALARYM.Checked = False And cbIS_INCENTIVE.Checked = False And cbIS_FINALI.Checked = False Then
+                            ShowMessage("Bạn phải chọn một trong ba nhóm lương ", NotifyType.Warning)
+                            Exit Sub
+                        End If
+
                         Using rep As New PayrollRepository
                             Select Case CurrentState
                                 Case CommonMessage.STATE_NEW
@@ -552,24 +558,19 @@ Public Class ctrlPA_SalaryType
         End Try
     End Sub
 
-
     Private Sub cbIS_SALARYM_CheckedChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles cbIS_SALARYM.CheckedChanged
         Try
             If cbIS_SALARYM.Checked Then
                 cbIS_INCENTIVE.Checked = False
                 cbIS_FINALI.Checked = False
-
             End If
-
         Catch ex As Exception
 
         End Try
     End Sub
 
-
     Private Sub cbIS_INCENTIVE_CheckedChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles cbIS_INCENTIVE.CheckedChanged
         Try
-
             If cbIS_INCENTIVE.Checked Then
                 cbIS_SALARYM.Checked = False
                 cbIS_FINALI.Checked = False
@@ -581,21 +582,14 @@ Public Class ctrlPA_SalaryType
 
     Private Sub cbIS_FINALI_CheckedChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles cbIS_FINALI.CheckedChanged
         Try
-
             If cbIS_FINALI.Checked Then
                 cbIS_INCENTIVE.Checked = False
                 cbIS_SALARYM.Checked = False
             End If
-
         Catch ex As Exception
 
         End Try
     End Sub
-    'Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
-    '    For i As Integer = 0 To checkBoxList1.Items.Count - 1
-    '        checkBoxList1.Items(i).Attributes.Add("onclick", "MutExChkList(this)")
-    '    Next
-    'End Sub
 
 #End Region
 
