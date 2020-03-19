@@ -79,6 +79,7 @@ Public Class ctrlHU_JobDescriptionNewEdit
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
         Try
             Dim startTime As DateTime = DateTime.UtcNow
+            GetParams()
             UpdateControlState()
             Refresh()
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
@@ -90,16 +91,18 @@ Public Class ctrlHU_JobDescriptionNewEdit
 
     Public Overrides Sub Refresh(Optional ByVal Message As String = "")
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
-        Dim repNS As New ProfileRepository
+        Dim rep As New ProfileBusinessRepository
+        Dim startTime As DateTime = DateTime.UtcNow
         Try
-            Dim startTime As DateTime = DateTime.UtcNow
+            Select Case Message
+                Case "UpdateView"
+                    CurrentState = CommonMessage.STATE_EDIT
+                    'Contract = rep.GetContractByID(New ContractDTO With {.ID = hidID.Value})
 
-            If Not isLoad Then
-                Using rep As New ProfileBusinessRepository
-
-                End Using
-                isLoad = True
-            End If
+                Case "NormalView"
+                    CurrentState = CommonMessage.STATE_NEW
+            End Select
+            rep.Dispose()
 
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
@@ -562,6 +565,28 @@ Public Class ctrlHU_JobDescriptionNewEdit
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
             HttpContext.Current.Trace.Warn(ex.ToString())
+            _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
+        End Try
+    End Sub
+
+    Private Sub GetParams()
+        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+        Dim startTime As DateTime = DateTime.UtcNow
+
+        Try
+            If CurrentState Is Nothing Then
+                If Request.Params("ID") IsNot Nothing Then
+                    hidID.Value = Request.Params("ID")
+                    Refresh("UpdateView")
+                    Exit Sub
+                End If
+
+                Refresh("NormalView")
+            End If
+
+            _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
+        Catch ex As Exception
+            Throw ex
             _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
         End Try
     End Sub

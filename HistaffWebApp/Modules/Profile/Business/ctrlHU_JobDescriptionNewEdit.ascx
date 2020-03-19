@@ -35,7 +35,7 @@
     SkinID="Demo">
     <tlk:RadPane ID="ToolbarPane" runat="server" Height="30px" Scrolling="None">
         <tlk:RadToolBar ID="tbarMainToolBar" runat="server" OnClientButtonClicking="clientButtonClicking"
-            ValidationGroup="EmpProfile" />
+            ValidationGroup="JobDescription" />
     </tlk:RadPane>
     <tlk:RadPane ID="DetailPane" runat="server" Scrolling="None" Height="73%">
         <tlk:RadTabStrip ID="rtabProfileInfo" runat="server" CausesValidation="false" MultiPageID="RadMultiPage1"
@@ -55,7 +55,7 @@
                     <tr>
                         <td colspan="6">
                             <asp:ValidationSummary ID="valSum" runat="server" DisplayMode="BulletList" CssClass="validationsummary"
-                                ValidationGroup="EmpProfile" />
+                                ValidationGroup="JobDescription" />
                         </td>
                     </tr>
                 </table>
@@ -93,7 +93,7 @@
                         <td class="control3">
                             <tlk:RadTextBox runat="server" ID="txtOrgName2" ReadOnly="true" />
                             <tlk:RadButton runat="server" ID="btnFindOrg" SkinID="ButtonView" CausesValidation="false" />
-                            <asp:RequiredFieldValidator ValidationGroup="EmpProfile" ID="RequiredFieldValidator1"
+                            <asp:RequiredFieldValidator ValidationGroup="JobDescription" ID="RequiredFieldValidator1"
                                 ControlToValidate="txtOrgName2" runat="server" ErrorMessage="<%$ Translate: Bạn phải chọn đơn vị %>"
                                 ToolTip="<%$ Translate: Bạn phải chọn bộ phận %>">
                             </asp:RequiredFieldValidator>
@@ -199,7 +199,7 @@
                         <td>
                             <tlk:RadComboBox runat="server" ID="cboLearningLV" SkinID="LoadDemand">
                             </tlk:RadComboBox>
-                            <asp:RequiredFieldValidator ValidationGroup="EmpProfile" ID="RequiredFieldValidator2"
+                            <asp:RequiredFieldValidator ValidationGroup="JobDescription" ID="RequiredFieldValidator2"
                                 ControlToValidate="cboLearningLV" runat="server" ErrorMessage="Bạn phải chọn trình độ học vấn"
                                 ToolTip="Bạn phải chọn trình độ học vấn">
                             </asp:RequiredFieldValidator>
