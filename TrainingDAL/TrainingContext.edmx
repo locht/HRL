@@ -744,6 +744,7 @@
             <Property Name="MODIFIED_BY" Type="nvarchar2" Nullable="true" MaxLength="50" />
             <Property Name="MODIFIED_DATE" Type="date" Nullable="true" />
             <Property Name="MODIFIED_LOG" Type="nvarchar2" Nullable="true" MaxLength="1023" />
+            <Property Name="RATE_TYPE" Type="number" Nullable="true" Precision="38" />
         </EntityType>
         <EntityType Name="TR_ASSESSMENT_RATE">
             <Key>
@@ -2098,6 +2099,7 @@
           <Property Type="String" Name="MODIFIED_BY" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Type="DateTime" Name="MODIFIED_DATE" />
           <Property Type="String" Name="MODIFIED_LOG" MaxLength="1023" FixedLength="false" Unicode="true" />
+          <Property Type="Decimal" Name="RATE_TYPE" Precision="38" />
         </EntityType>
         <EntityType Name="TR_ASSESSMENT_RATE">
           <Key>
@@ -3332,6 +3334,7 @@
                     <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
                     <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
                     <ScalarProperty Name="MODIFIED_LOG" ColumnName="MODIFIED_LOG" />
+                    <ScalarProperty Name="RATE_TYPE" ColumnName="RATE_TYPE" />
                 </MappingFragment>
             </EntityTypeMapping>
         </EntitySetMapping>
@@ -3879,7 +3882,7 @@
         <EntityTypeShape EntityType="TrainingModel.TR_PROGRAM_COMMIT" Width="1.5" PointX="18.75" PointY="13.75" Height="3.7109993489583317" />
         <EntityTypeShape EntityType="TrainingModel.TR_PROGRAM_RESULT" Width="1.75" PointX="18.75" PointY="18.75" Height="7.5570279947916674" />
         <EntityTypeShape EntityType="TrainingModel.TR_PROGRAM_COST" Width="1.5" PointX="20.75" PointY="0.75" Height="3.3263964843750031" />
-        <EntityTypeShape EntityType="TrainingModel.TR_ASSESSMENT_FORM" Width="1.5" PointX="20.75" PointY="5.75" Height="2.7494921874999818" />
+        <EntityTypeShape EntityType="TrainingModel.TR_ASSESSMENT_FORM" Width="1.5" PointX="20.75" PointY="5.75" Height="2.9417936197916656" />
         <EntityTypeShape EntityType="TrainingModel.TR_ASSESSMENT_RATE" Width="1.5" PointX="20.75" PointY="9.75" Height="3.3263964843749818" />
         <EntityTypeShape EntityType="TrainingModel.TR_CHOOSE_FORM" Width="1.5" PointX="20.75" PointY="14.75" Height="3.1340950520833246" />
         <EntityTypeShape EntityType="TrainingModel.TR_COMMIT_AFTER_TRAIN" Width="1.5" PointX="20.75" PointY="18.75" Height="3.3263964843749818" />

@@ -12,7 +12,7 @@ Option Explicit On
 
 
 Partial Public Class ctrlTR_AssessmentForm
-
+    
     '''<summary>
     '''RadSplitter3 control.
     '''</summary>
@@ -21,7 +21,7 @@ Partial Public Class ctrlTR_AssessmentForm
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents RadSplitter3 As Global.Telerik.Web.UI.RadSplitter
-
+    
     '''<summary>
     '''RadPane1 control.
     '''</summary>
@@ -30,7 +30,7 @@ Partial Public Class ctrlTR_AssessmentForm
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents RadPane1 As Global.Telerik.Web.UI.RadPane
-
+    
     '''<summary>
     '''tbarMain control.
     '''</summary>
@@ -39,7 +39,7 @@ Partial Public Class ctrlTR_AssessmentForm
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents tbarMain As Global.Telerik.Web.UI.RadToolBar
-
+    
     '''<summary>
     '''valSum control.
     '''</summary>
@@ -48,7 +48,43 @@ Partial Public Class ctrlTR_AssessmentForm
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents valSum As Global.System.Web.UI.WebControls.ValidationSummary
-
+    
+    '''<summary>
+    '''lbFrCuType control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbFrCuType As Global.System.Web.UI.WebControls.Label
+    
+    '''<summary>
+    '''cboRateType control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents cboRateType As Global.Telerik.Web.UI.RadComboBox
+    
+    '''<summary>
+    '''reqCode control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents reqCode As Global.System.Web.UI.WebControls.RequiredFieldValidator
+    
+    '''<summary>
+    '''RegularExpressionValidator1 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents RegularExpressionValidator1 As Global.System.Web.UI.WebControls.RegularExpressionValidator
+    
     '''<summary>
     '''txtName control.
     '''</summary>
@@ -57,7 +93,7 @@ Partial Public Class ctrlTR_AssessmentForm
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtName As Global.Telerik.Web.UI.RadTextBox
-
+    
     '''<summary>
     '''reqNameVN control.
     '''</summary>
@@ -66,7 +102,7 @@ Partial Public Class ctrlTR_AssessmentForm
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents reqNameVN As Global.System.Web.UI.WebControls.RequiredFieldValidator
-
+    
     '''<summary>
     '''txtRemark control.
     '''</summary>
@@ -75,7 +111,7 @@ Partial Public Class ctrlTR_AssessmentForm
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtRemark As Global.Telerik.Web.UI.RadTextBox
-
+    
     '''<summary>
     '''RadPane2 control.
     '''</summary>
@@ -84,7 +120,7 @@ Partial Public Class ctrlTR_AssessmentForm
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents RadPane2 As Global.Telerik.Web.UI.RadPane
-
+    
     '''<summary>
     '''rgMain control.
     '''</summary>
@@ -93,7 +129,7 @@ Partial Public Class ctrlTR_AssessmentForm
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents rgMain As Global.Telerik.Web.UI.RadGrid
-
+    
     '''<summary>
     '''ctrlMessageBox control.
     '''</summary>
@@ -102,7 +138,7 @@ Partial Public Class ctrlTR_AssessmentForm
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents ctrlMessageBox As Global.Common.ctrlMessageBox
-
+    
     '''<summary>
     '''RadCodeBlock1 control.
     '''</summary>

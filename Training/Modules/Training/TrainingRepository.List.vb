@@ -860,6 +860,17 @@ Partial Class TrainingRepository
 
     End Function
 
+    Public Function GetTrRateCombo(ByVal isBlank As Boolean) As DataTable
+        Using rep As New TrainingBusinessClient
+            Try
+                Return rep.GetTrRateCombo(isBlank)
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+    End Function
+
 #End Region
 
 End Class

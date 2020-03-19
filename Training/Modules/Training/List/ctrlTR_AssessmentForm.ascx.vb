@@ -128,19 +128,23 @@ Public Class ctrlTR_AssessmentForm
             Select Case CurrentState
                 Case CommonMessage.STATE_NEW
                     EnabledGridNotPostback(rgMain, False)
+                    Utilities.EnableRadCombo(cboRateType, True)
                     txtName.ReadOnly = False
                     txtRemark.ReadOnly = False
 
                 Case CommonMessage.STATE_NORMAL
                     EnabledGridNotPostback(rgMain, True)
+                    Utilities.EnableRadCombo(cboRateType, False)
                     txtName.ReadOnly = True
                     txtRemark.ReadOnly = True
 
                     txtName.Text = ""
                     txtRemark.Text = ""
+
                 Case CommonMessage.STATE_EDIT
 
                     EnabledGridNotPostback(rgMain, False)
+                    Utilities.EnableRadCombo(cboRateType, True)
                     txtName.ReadOnly = False
                     txtRemark.ReadOnly = False
 
@@ -168,9 +172,19 @@ Public Class ctrlTR_AssessmentForm
     End Sub
 
     Public Overrides Sub BindData()
+        Try
+            Using rep As New TrainingRepository
+
+                FillRadCombobox(cboRateType, rep.GetTrRateCombo(False), "NAME_VN", "ID", True)
+            End Using
+        Catch ex As Exception
+
+        End Try
+
         Dim dic As New Dictionary(Of String, Control)
         dic.Add("NAME", txtName)
         dic.Add("REMARK", txtRemark)
+        dic.Add("RATE_TYPE", cboRateType)
         Utilities.OnClientRowSelectedChanged(rgMain, dic)
     End Sub
 
@@ -185,10 +199,12 @@ Public Class ctrlTR_AssessmentForm
             Select Case CType(e.Item, RadToolBarButton).CommandName
                 Case CommonMessage.TOOLBARITEM_CREATE
                     CurrentState = CommonMessage.STATE_NEW
+                    Utilities.EnableRadCombo(cboRateType, True)
                     txtName.Text = ""
                     txtRemark.Text = ""
                     UpdateControlState()
                 Case CommonMessage.TOOLBARITEM_EDIT
+                    Utilities.EnableRadCombo(cboRateType, True)
                     If rgMain.SelectedItems.Count = 0 Then
                         ShowMessage(Translate(CommonMessage.MESSAGE_NOT_SELECT_ROW), NotifyType.Warning)
                         Exit Sub
@@ -202,6 +218,7 @@ Public Class ctrlTR_AssessmentForm
                     UpdateControlState()
 
                 Case CommonMessage.TOOLBARITEM_DELETE
+                    Utilities.EnableRadCombo(cboRateType, False)
                     If rgMain.SelectedItems.Count = 0 Then
                         ShowMessage(Translate(CommonMessage.MESSAGE_NOT_SELECT_ROW), NotifyType.Warning)
                         Exit Sub
@@ -245,7 +262,7 @@ Public Class ctrlTR_AssessmentForm
                         With objAssessmentForm
                             objAssessmentForm.NAME = txtName.Text
                             objAssessmentForm.REMARK = txtRemark.Text
-
+                            objAssessmentForm.RATE_TYPE = cboRateType.SelectedValue
                         End With
                         Select Case CurrentState
                             Case CommonMessage.STATE_NEW
@@ -254,6 +271,7 @@ Public Class ctrlTR_AssessmentForm
                                     IDSelect = gID
                                     Refresh("InsertView")
                                     UpdateControlState()
+                                    ClearControlValue(cboRateType, txtName, txtRemark)
                                 Else
                                     ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), Utilities.NotifyType.Error)
                                 End If
@@ -263,7 +281,7 @@ Public Class ctrlTR_AssessmentForm
                                     CurrentState = CommonMessage.STATE_NORMAL
                                     IDSelect = objAssessmentForm.ID
                                     Refresh("UpdateView")
-                                    UpdateControlState()
+                                    ClearControlValue(cboRateType, txtName, txtRemark)
                                 Else
                                     ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), Utilities.NotifyType.Error)
                                 End If

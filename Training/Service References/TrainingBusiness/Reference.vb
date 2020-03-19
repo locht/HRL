@@ -14046,6 +14046,9 @@ Namespace TrainingBusiness
         Private NAMEField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private RATE_TYPEField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private REMARKField As String
         
         <Global.System.ComponentModel.BrowsableAttribute(false)>  _
@@ -14158,6 +14161,19 @@ Namespace TrainingBusiness
                 If (Object.ReferenceEquals(Me.NAMEField, value) <> true) Then
                     Me.NAMEField = value
                     Me.RaisePropertyChanged("NAME")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property RATE_TYPE() As System.Nullable(Of Decimal)
+            Get
+                Return Me.RATE_TYPEField
+            End Get
+            Set
+                If (Me.RATE_TYPEField.Equals(value) <> true) Then
+                    Me.RATE_TYPEField = value
+                    Me.RaisePropertyChanged("RATE_TYPE")
                 End If
             End Set
         End Property
@@ -14683,6 +14699,9 @@ Namespace TrainingBusiness
      System.ServiceModel.ServiceContractAttribute(ConfigurationName:="TrainingBusiness.ITrainingBusiness")>  _
     Public Interface ITrainingBusiness
         
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ITrainingBusiness/GetPlanById", ReplyAction:="http://tempuri.org/ITrainingBusiness/GetPlanByIdResponse")>  _
+        Function GetPlanById(ByVal Id As Decimal) As TrainingBusiness.PlanDTO
+        
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ITrainingBusiness/InsertPlan", ReplyAction:="http://tempuri.org/ITrainingBusiness/InsertPlanResponse")>  _
         Function InsertPlan(ByVal plan As TrainingBusiness.PlanDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
         
@@ -15115,6 +15134,9 @@ Namespace TrainingBusiness
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ITrainingBusiness/DeleteAssessmentForm", ReplyAction:="http://tempuri.org/ITrainingBusiness/DeleteAssessmentFormResponse")>  _
         Function DeleteAssessmentForm(ByVal lstAssessmentForm As System.Collections.Generic.List(Of TrainingBusiness.AssessmentFormDTO)) As Boolean
         
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ITrainingBusiness/GetTrRateCombo", ReplyAction:="http://tempuri.org/ITrainingBusiness/GetTrRateComboResponse")>  _
+        Function GetTrRateCombo(ByVal isBlank As Boolean) As System.Data.DataTable
+        
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ITrainingBusiness/GetCriteriaGroupNotByFormID", ReplyAction:="http://tempuri.org/ITrainingBusiness/GetCriteriaGroupNotByFormIDResponse")>  _
         Function GetCriteriaGroupNotByFormID(ByVal _filter As TrainingBusiness.SettingAssFormDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal Sorts As String) As System.Collections.Generic.List(Of TrainingBusiness.SettingAssFormDTO)
         
@@ -15156,9 +15178,6 @@ Namespace TrainingBusiness
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ITrainingBusiness/GetPlans", ReplyAction:="http://tempuri.org/ITrainingBusiness/GetPlansResponse")>  _
         Function GetPlans(ByVal filter As TrainingBusiness.PlanDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal _param As TrainingBusiness.ParamDTO, ByVal Sorts As String, ByVal log As Common.CommonBusiness.UserLog) As System.Collections.Generic.List(Of TrainingBusiness.PlanDTO)
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ITrainingBusiness/GetPlanById", ReplyAction:="http://tempuri.org/ITrainingBusiness/GetPlanByIdResponse")>  _
-        Function GetPlanById(ByVal Id As Decimal) As TrainingBusiness.PlanDTO
     End Interface
     
     <System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")>  _
@@ -15191,6 +15210,10 @@ Namespace TrainingBusiness
         Public Sub New(ByVal binding As System.ServiceModel.Channels.Binding, ByVal remoteAddress As System.ServiceModel.EndpointAddress)
             MyBase.New(binding, remoteAddress)
         End Sub
+        
+        Public Function GetPlanById(ByVal Id As Decimal) As TrainingBusiness.PlanDTO Implements TrainingBusiness.ITrainingBusiness.GetPlanById
+            Return MyBase.Channel.GetPlanById(Id)
+        End Function
         
         Public Function InsertPlan(ByVal plan As TrainingBusiness.PlanDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean Implements TrainingBusiness.ITrainingBusiness.InsertPlan
             Return MyBase.Channel.InsertPlan(plan, log, gID)
@@ -15768,6 +15791,10 @@ Namespace TrainingBusiness
             Return MyBase.Channel.DeleteAssessmentForm(lstAssessmentForm)
         End Function
         
+        Public Function GetTrRateCombo(ByVal isBlank As Boolean) As System.Data.DataTable Implements TrainingBusiness.ITrainingBusiness.GetTrRateCombo
+            Return MyBase.Channel.GetTrRateCombo(isBlank)
+        End Function
+        
         Public Function GetCriteriaGroupNotByFormID(ByVal _filter As TrainingBusiness.SettingAssFormDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal Sorts As String) As System.Collections.Generic.List(Of TrainingBusiness.SettingAssFormDTO) Implements TrainingBusiness.ITrainingBusiness.GetCriteriaGroupNotByFormID
             Return MyBase.Channel.GetCriteriaGroupNotByFormID(_filter, PageIndex, PageSize, Total, Sorts)
         End Function
@@ -15822,10 +15849,6 @@ Namespace TrainingBusiness
         
         Public Function GetPlans(ByVal filter As TrainingBusiness.PlanDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal _param As TrainingBusiness.ParamDTO, ByVal Sorts As String, ByVal log As Common.CommonBusiness.UserLog) As System.Collections.Generic.List(Of TrainingBusiness.PlanDTO) Implements TrainingBusiness.ITrainingBusiness.GetPlans
             Return MyBase.Channel.GetPlans(filter, PageIndex, PageSize, Total, _param, Sorts, log)
-        End Function
-        
-        Public Function GetPlanById(ByVal Id As Decimal) As TrainingBusiness.PlanDTO Implements TrainingBusiness.ITrainingBusiness.GetPlanById
-            Return MyBase.Channel.GetPlanById(Id)
         End Function
     End Class
 End Namespace

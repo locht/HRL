@@ -284,6 +284,9 @@ Namespace TrainingBusiness.ServiceContracts
 
         <OperationContract()>
         Function DeleteAssessmentForm(ByVal lstAssessmentForm() As AssessmentFormDTO) As Boolean
+        <OperationContract()>
+        Function GetTrRateCombo(ByVal isBlank As Boolean) As DataTable
+
 #End Region
 
 #End Region

@@ -1,7 +1,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for Oracle database
 -- --------------------------------------------------
--- Date Created: 3/19/2020 9:27:30 AM
+-- Date Created: 3/19/2020 10:46:31 AM
 -- Generated from EDMX file: D:\HiStaffWebApp\acv_19\TrainingDAL\TrainingContext.edmx
 -- --------------------------------------------------
 
@@ -758,7 +758,8 @@ CREATE TABLE "dbo"."TR_ASSESSMENT_FORM" (
    "CREATED_LOG" NVARCHAR2(1023) NULL,
    "MODIFIED_BY" NVARCHAR2(50) NULL,
    "MODIFIED_DATE" DATE NULL,
-   "MODIFIED_LOG" NVARCHAR2(1023) NULL
+   "MODIFIED_LOG" NVARCHAR2(1023) NULL,
+   "RATE_TYPE" NUMBER(38,0) NULL
 );
 
 -- Creating table 'TR_ASSESSMENT_RATE'

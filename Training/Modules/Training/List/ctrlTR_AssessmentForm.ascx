@@ -7,10 +7,25 @@
         <table class="table-form">
             <tr>
                 <td class="lb">
+                    <asp:Label ID="lbFrCuType" runat="server" Text="Loại đánh giá"></asp:Label>
+                    <span class="lbReq">*</span>
+                </td>
+                <td>
+                     <tlk:RadComboBox ID="cboRateType" runat="server" >
+                    </tlk:RadComboBox>    
+                    <asp:RequiredFieldValidator ID="reqCode" ControlToValidate="cboRateType" runat="server"
+                        ErrorMessage="Bạn phải chọn Loại đánh giá" ToolTip="Bạn phải chọn Loại đánh giá">
+                    </asp:RequiredFieldValidator>  
+                    <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ErrorMessage="Loại đánh gi không được chứa ký tự đặc biệt và khoảng trắng"
+                        ControlToValidate="cboRateType" ValidationExpression="^[a-zA-Z0-9_]*$"></asp:RegularExpressionValidator>
+                </td>
+            </tr>
+            <tr>
+                <td class="lb">
                     <%# Translate("Tên mẫu biểu")%><span class="lbReq">*</span>
                 </td>
                 <td>
-                    <tlk:RadTextBox ID="txtName" MaxLength="255" runat="server">
+                    <tlk:RadTextBox ID="txtName" MaxLength="255" runat="server" Width="350px">
                     </tlk:RadTextBox>
                     <asp:RequiredFieldValidator ID="reqNameVN" ControlToValidate="txtName" runat="server"
                         ErrorMessage="<%$ Translate: Bạn phải nhập Tên mẫu biểu %>" ToolTip="<%$ Translate: Bạn phải nhập Tên mẫu biểu %>"></asp:RequiredFieldValidator>
@@ -33,16 +48,18 @@
             <ClientSettings EnableRowHoverStyle="true">
                 <Selecting AllowRowSelect="true" />
             </ClientSettings>
-            <MasterTableView DataKeyNames="ID" ClientDataKeyNames="NAME,REMARK">
+            <MasterTableView DataKeyNames="ID" ClientDataKeyNames="NAME,REMARK,RATE_TYPE">
                 <Columns>
                     <tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderStyle-HorizontalAlign="Center"
                         HeaderStyle-Width="30px" ItemStyle-HorizontalAlign="Center">
                     </tlk:GridClientSelectColumn>
                     <tlk:GridBoundColumn DataField="ID" Visible="false" />
+                      <tlk:GridBoundColumn HeaderText="<%$ Translate: Loại đánh giá %>" DataField="RATE_TYPE"
+                        UniqueName="RATE_TYPE" SortExpression="RATE_TYPE" />
                     <tlk:GridBoundColumn HeaderText="<%$ Translate: Tên mẫu biểu %>" DataField="NAME"
-                        UniqueName="NAME" SortExpression="NAME" />
+                        UniqueName="NAME" SortExpression="NAME" HeaderStyle-Width="40%" />
                     <tlk:GridBoundColumn HeaderText="<%$ Translate: Ghi chú %>" DataField="REMARK" UniqueName="REMARK"
-                        SortExpression="REMARK" />
+                        SortExpression="REMARK" HeaderStyle-Width="60%" />
                 </Columns>
                 <ItemStyle Width="100px" />
                 <HeaderStyle Width="100px" />

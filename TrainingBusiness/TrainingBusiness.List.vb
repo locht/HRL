@@ -530,6 +530,13 @@ Namespace TrainingBusiness.ServiceImplementations
             End Try
         End Function
 
+        Public Function GetTrRateCombo(ByVal isBlank As Boolean) As DataTable Implements ServiceContracts.ITrainingBusiness.GetTrRateCombo
+            Try
+                Return TrainingRepositoryStatic.Instance.GetTrRateCombo(isBlank)
+            Catch ex As Exception
+                Throw ex
+            End Try
+        End Function
 
 #End Region
 

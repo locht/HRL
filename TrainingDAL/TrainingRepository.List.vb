@@ -6,6 +6,7 @@ Imports System.Threading
 Imports Framework.Data.System.Linq.Dynamic
 Imports Framework.Data.SystemConfig
 Imports System.Configuration
+Imports System.Reflection
 
 Partial Class TrainingRepository
 
@@ -907,15 +908,15 @@ Partial Class TrainingRepository
     End Function
 
     Public Function InsertCriteria(ByVal objCriteria As CriteriaDTO, ByVal log As UserLog, ByRef gID As Decimal) As Boolean
-        Dim objCriteriaData As New TR_Criteria
+        Dim objCriteriaData As New TR_CRITERIA
         Try
-            objCriteriaData.ID = Utilities.GetNextSequence(Context, Context.TR_Criteria.EntitySet.Name)
+            objCriteriaData.ID = Utilities.GetNextSequence(Context, Context.TR_CRITERIA.EntitySet.Name)
             objCriteriaData.CODE = objCriteria.CODE
             objCriteriaData.NAME = objCriteria.NAME
             objCriteriaData.REMARK = objCriteria.REMARK
             objCriteriaData.POINT_MAX = objCriteria.POINT_MAX
             objCriteriaData.ACTFLG = If(objCriteria.ACTFLG = "True", True, False)
-            Context.TR_Criteria.AddObject(objCriteriaData)
+            Context.TR_CRITERIA.AddObject(objCriteriaData)
             Context.SaveChanges(log)
             gID = objCriteriaData.ID
             Return True
@@ -930,11 +931,11 @@ Partial Class TrainingRepository
         Try
             If _validate.CODE <> Nothing Then
                 If _validate.ID <> 0 Then
-                    query = (From p In Context.TR_Criteria
+                    query = (From p In Context.TR_CRITERIA
                              Where p.CODE.ToUpper = _validate.CODE.ToUpper _
                              And p.ID <> _validate.ID).FirstOrDefault
                 Else
-                    query = (From p In Context.TR_Criteria
+                    query = (From p In Context.TR_CRITERIA
                              Where p.CODE.ToUpper = _validate.CODE.ToUpper).FirstOrDefault
                 End If
 
@@ -948,9 +949,9 @@ Partial Class TrainingRepository
     End Function
 
     Public Function ModifyCriteria(ByVal objCriteria As CriteriaDTO, ByVal log As UserLog, ByRef gID As Decimal) As Boolean
-        Dim objCriteriaData As New TR_Criteria With {.ID = objCriteria.ID}
+        Dim objCriteriaData As New TR_CRITERIA With {.ID = objCriteria.ID}
         Try
-            Context.TR_Criteria.Attach(objCriteriaData)
+            Context.TR_CRITERIA.Attach(objCriteriaData)
             objCriteriaData.CODE = objCriteria.CODE
             objCriteriaData.NAME = objCriteria.NAME
             objCriteriaData.REMARK = objCriteria.REMARK
@@ -966,9 +967,9 @@ Partial Class TrainingRepository
     End Function
 
     Public Function ActiveCriteria(ByVal lstID As List(Of Decimal), ByVal log As UserLog, ByVal bActive As Boolean) As Boolean
-        Dim lstData As List(Of TR_Criteria)
+        Dim lstData As List(Of TR_CRITERIA)
         Try
-            lstData = (From p In Context.TR_Criteria Where lstID.Contains(p.ID)).ToList
+            lstData = (From p In Context.TR_CRITERIA Where lstID.Contains(p.ID)).ToList
             For index = 0 To lstData.Count - 1
                 lstData(index).ACTFLG = bActive
             Next
@@ -981,12 +982,12 @@ Partial Class TrainingRepository
     End Function
 
     Public Function DeleteCriteria(ByVal lstCriteria() As CriteriaDTO) As Boolean
-        Dim lstCriteriaData As List(Of TR_Criteria)
+        Dim lstCriteriaData As List(Of TR_CRITERIA)
         Dim lstIDCriteria As List(Of Decimal) = (From p In lstCriteria.ToList Select p.ID).ToList
         Try
-            lstCriteriaData = (From p In Context.TR_Criteria Where lstIDCriteria.Contains(p.ID)).ToList
+            lstCriteriaData = (From p In Context.TR_CRITERIA Where lstIDCriteria.Contains(p.ID)).ToList
             For index = 0 To lstCriteriaData.Count - 1
-                Context.TR_Criteria.DeleteObject(lstCriteriaData(index))
+                Context.TR_CRITERIA.DeleteObject(lstCriteriaData(index))
             Next
             Context.SaveChanges()
             Return True
@@ -1047,15 +1048,15 @@ Partial Class TrainingRepository
     End Function
 
     Public Function InsertCriteriaGroup(ByVal objCriteriaGroup As CriteriaGroupDTO, ByVal log As UserLog, ByRef gID As Decimal) As Boolean
-        Dim objCriteriaGroupData As New TR_Criteria_Group
+        Dim objCriteriaGroupData As New TR_CRITERIA_GROUP
         Try
-            objCriteriaGroupData.ID = Utilities.GetNextSequence(Context, Context.TR_Criteria_Group.EntitySet.Name)
+            objCriteriaGroupData.ID = Utilities.GetNextSequence(Context, Context.TR_CRITERIA_GROUP.EntitySet.Name)
             objCriteriaGroupData.CODE = objCriteriaGroup.CODE
             objCriteriaGroupData.NAME = objCriteriaGroup.NAME
             objCriteriaGroupData.REMARK = objCriteriaGroup.REMARK
             objCriteriaGroupData.POINT_MAX = objCriteriaGroup.POINT_MAX
             objCriteriaGroupData.ACTFLG = If(objCriteriaGroup.ACTFLG = "True", True, False)
-            Context.TR_Criteria_Group.AddObject(objCriteriaGroupData)
+            Context.TR_CRITERIA_GROUP.AddObject(objCriteriaGroupData)
             Context.SaveChanges(log)
             gID = objCriteriaGroupData.ID
             Return True
@@ -1070,11 +1071,11 @@ Partial Class TrainingRepository
         Try
             If _validate.CODE <> Nothing Then
                 If _validate.ID <> 0 Then
-                    query = (From p In Context.TR_Criteria_Group
+                    query = (From p In Context.TR_CRITERIA_GROUP
                              Where p.CODE.ToUpper = _validate.CODE.ToUpper _
                              And p.ID <> _validate.ID).FirstOrDefault
                 Else
-                    query = (From p In Context.TR_Criteria_Group
+                    query = (From p In Context.TR_CRITERIA_GROUP
                              Where p.CODE.ToUpper = _validate.CODE.ToUpper).FirstOrDefault
                 End If
 
@@ -1088,9 +1089,9 @@ Partial Class TrainingRepository
     End Function
 
     Public Function ModifyCriteriaGroup(ByVal objCriteriaGroup As CriteriaGroupDTO, ByVal log As UserLog, ByRef gID As Decimal) As Boolean
-        Dim objCriteriaGroupData As New TR_Criteria_Group With {.ID = objCriteriaGroup.ID}
+        Dim objCriteriaGroupData As New TR_CRITERIA_GROUP With {.ID = objCriteriaGroup.ID}
         Try
-            Context.TR_Criteria_Group.Attach(objCriteriaGroupData)
+            Context.TR_CRITERIA_GROUP.Attach(objCriteriaGroupData)
             objCriteriaGroupData.CODE = objCriteriaGroup.CODE
             objCriteriaGroupData.NAME = objCriteriaGroup.NAME
             objCriteriaGroupData.REMARK = objCriteriaGroup.REMARK
@@ -1106,9 +1107,9 @@ Partial Class TrainingRepository
     End Function
 
     Public Function ActiveCriteriaGroup(ByVal lstID As List(Of Decimal), ByVal log As UserLog, ByVal bActive As Boolean) As Boolean
-        Dim lstData As List(Of TR_Criteria_Group)
+        Dim lstData As List(Of TR_CRITERIA_GROUP)
         Try
-            lstData = (From p In Context.TR_Criteria_Group Where lstID.Contains(p.ID)).ToList
+            lstData = (From p In Context.TR_CRITERIA_GROUP Where lstID.Contains(p.ID)).ToList
             For index = 0 To lstData.Count - 1
                 lstData(index).ACTFLG = bActive
             Next
@@ -1121,12 +1122,12 @@ Partial Class TrainingRepository
     End Function
 
     Public Function DeleteCriteriaGroup(ByVal lstCriteriaGroup() As CriteriaGroupDTO) As Boolean
-        Dim lstCriteriaGroupData As List(Of TR_Criteria_Group)
+        Dim lstCriteriaGroupData As List(Of TR_CRITERIA_GROUP)
         Dim lstIDCriteriaGroup As List(Of Decimal) = (From p In lstCriteriaGroup.ToList Select p.ID).ToList
         Try
             lstCriteriaGroupData = (From p In Context.TR_CRITERIA_GROUP Where lstIDCriteriaGroup.Contains(p.ID)).ToList
             For index = 0 To lstCriteriaGroupData.Count - 1
-                Context.TR_Criteria_Group.DeleteObject(lstCriteriaGroupData(index))
+                Context.TR_CRITERIA_GROUP.DeleteObject(lstCriteriaGroupData(index))
             Next
             Context.SaveChanges()
             Return True
@@ -1211,7 +1212,7 @@ Partial Class TrainingRepository
     End Function
 
     Public Function ModifyAssessmentRate(ByVal objAssessmentRate As AssessmentRateDTO, ByVal log As UserLog, ByRef gID As Decimal) As Boolean
-        Dim objAssessmentRateData As New TR_Assessment_Rate With {.ID = objAssessmentRate.ID}
+        Dim objAssessmentRateData As New TR_ASSESSMENT_RATE With {.ID = objAssessmentRate.ID}
         Try
             Context.TR_ASSESSMENT_RATE.Attach(objAssessmentRateData)
             objAssessmentRateData.NAME_EN = objAssessmentRate.NAME_EN
@@ -1245,12 +1246,12 @@ Partial Class TrainingRepository
     End Function
 
     Public Function DeleteAssessmentRate(ByVal lstAssessmentRate() As AssessmentRateDTO) As Boolean
-        Dim lstAssessmentRateData As List(Of TR_Assessment_Rate)
+        Dim lstAssessmentRateData As List(Of TR_ASSESSMENT_RATE)
         Dim lstIDAssessmentRate As List(Of Decimal) = (From p In lstAssessmentRate.ToList Select p.ID).ToList
         Try
-            lstAssessmentRateData = (From p In Context.TR_Assessment_Rate Where lstIDAssessmentRate.Contains(p.ID)).ToList
+            lstAssessmentRateData = (From p In Context.TR_ASSESSMENT_RATE Where lstIDAssessmentRate.Contains(p.ID)).ToList
             For index = 0 To lstAssessmentRateData.Count - 1
-                Context.TR_Assessment_Rate.DeleteObject(lstAssessmentRateData(index))
+                Context.TR_ASSESSMENT_RATE.DeleteObject(lstAssessmentRateData(index))
             Next
             Context.SaveChanges()
             Return True
@@ -1276,6 +1277,7 @@ Partial Class TrainingRepository
                         Select New AssessmentFormDTO With {
                             .ID = p.ID,
                             .NAME = p.NAME,
+                            .RATE_TYPE = p.RATE_TYPE,
                             .REMARK = p.REMARK,
                             .CREATED_DATE = p.CREATED_DATE}
 
@@ -1304,6 +1306,7 @@ Partial Class TrainingRepository
             objAssessmentFormData.ID = Utilities.GetNextSequence(Context, Context.TR_ASSESSMENT_FORM.EntitySet.Name)
             objAssessmentFormData.NAME = objAssessmentForm.NAME
             objAssessmentFormData.REMARK = objAssessmentForm.REMARK
+            objAssessmentFormData.RATE_TYPE = objAssessmentForm.RATE_TYPE
             Context.TR_ASSESSMENT_FORM.AddObject(objAssessmentFormData)
             Context.SaveChanges(log)
             gID = objAssessmentFormData.ID
@@ -1319,6 +1322,7 @@ Partial Class TrainingRepository
         Try
             Context.TR_ASSESSMENT_FORM.Attach(objAssessmentFormData)
             objAssessmentFormData.NAME = objAssessmentForm.NAME
+            objAssessmentFormData.RATE_TYPE = objAssessmentForm.RATE_TYPE
             objAssessmentFormData.REMARK = objAssessmentForm.REMARK
             Context.SaveChanges(log)
             gID = objAssessmentFormData.ID
@@ -1346,6 +1350,27 @@ Partial Class TrainingRepository
             Throw ex
         End Try
 
+    End Function
+
+    ''' <summary>
+    ''' Lay data vao combo 
+    ''' </summary>
+    ''' <param name="isBlank">0: Khong lay dong empty; 1: Co lay dong empty</param>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
+    Public Function GetTrRateCombo(ByVal isBlank As Boolean) As DataTable
+        Try
+            Using cls As New DataAccess.QueryData
+                Dim dtData As DataTable = cls.ExecuteStore("PKG_COMMON_LIST.GET_TR_RATE_TYPE",
+                                           New With {.P_ISBLANK = isBlank,
+                                                     .P_CUR = cls.OUT_CURSOR})
+
+                Return dtData
+            End Using
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iProfile")
+            Throw ex
+        End Try
     End Function
 
 #End Region

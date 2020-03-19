@@ -18,7 +18,7 @@ Imports System.Runtime.Serialization
 Imports System.Xml.Serialization
 
 
-<Assembly: EdmSchemaAttribute("9cf27b3d-b4dc-4eb1-b488-4428ba9f5445")>
+<Assembly: EdmSchemaAttribute("4645c2d6-d5dc-4be8-8cb1-290dd3a67f4b")>
 #Region "EDM Relationship Metadata"
 <Assembly: EdmRelationshipAttribute("TrainingModel", "FK_HU_PRO_HU_DIS", "HU_PROVINCE", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(HU_PROVINCE), "HU_DISTRICT", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_DISTRICT), True)>
 <Assembly: EdmRelationshipAttribute("TrainingModel", "FK_HU_NAT_HU_PRO", "HU_NATION", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(HU_NATION), "HU_PROVINCE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_PROVINCE), True)>
@@ -9702,6 +9702,31 @@ Public Partial Class TR_ASSESSMENT_FORM
     End Sub
 
     Private Partial Sub OnMODIFIED_LOGChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property RATE_TYPE() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _RATE_TYPE
+        End Get
+        Set
+            OnRATE_TYPEChanging(value)
+            ReportPropertyChanging("RATE_TYPE")
+            _RATE_TYPE = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("RATE_TYPE")
+            OnRATE_TYPEChanged()
+        End Set
+    End Property
+
+    Private _RATE_TYPE As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnRATE_TYPEChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnRATE_TYPEChanged()
     End Sub
 
     #End Region
