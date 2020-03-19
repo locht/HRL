@@ -1,7 +1,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for Oracle database
 -- --------------------------------------------------
--- Date Created: 3/16/2020 3:05:12 PM
+-- Date Created: 3/17/2020 5:48:11 PM
 -- Generated from EDMX file: D:\HiStaffWebApp\acv_19\PayrollDAL\PayrollContext.edmx
 -- --------------------------------------------------
 
@@ -767,7 +767,9 @@ CREATE TABLE "dbo"."PA_SALARY_TYPE" (
    "MODIFIED_LOG" NVARCHAR2(255) NOT NULL,
    "ORDERS" NUMBER(38,0) NULL,
    "IS_INCENTIVE" NUMBER(38,0) NULL,
-   "ACTFLG" NVARCHAR2(1) NULL
+   "ACTFLG" NVARCHAR2(1) NULL,
+   "IS_SALARYM" NUMBER(38,0) NULL,
+   "IS_FINALI" NUMBER(38,0) NULL
 );
 
 -- Creating table 'PA_SALARYTYPE_GROUP'

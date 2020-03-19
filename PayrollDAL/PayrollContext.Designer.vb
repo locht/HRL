@@ -18,7 +18,7 @@ Imports System.Runtime.Serialization
 Imports System.Xml.Serialization
 
 
-<Assembly: EdmSchemaAttribute("88ec0857-6a66-4965-beb8-b94ad807f3a4")>
+<Assembly: EdmSchemaAttribute("5344e870-47e6-4c4c-87a1-0fdb150013aa")>
 #Region "EDM Relationship Metadata"
 <Assembly: EdmRelationshipAttribute("PayrollModel", "FK_PSG_PSL", "PA_SALARY_GROUP", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(PA_SALARY_GROUP), "PA_SALARY_LEVEL", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(PA_SALARY_LEVEL), True)>
 <Assembly: EdmRelationshipAttribute("PayrollModel", "FK_PSL_PSR", "PA_SALARY_LEVEL", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(PA_SALARY_LEVEL), "PA_SALARY_RANK", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(PA_SALARY_RANK), True)>
@@ -22654,6 +22654,56 @@ Public Partial Class PA_SALARY_TYPE
     End Sub
 
     Private Partial Sub OnACTFLGChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property IS_SALARYM() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _IS_SALARYM
+        End Get
+        Set
+            OnIS_SALARYMChanging(value)
+            ReportPropertyChanging("IS_SALARYM")
+            _IS_SALARYM = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("IS_SALARYM")
+            OnIS_SALARYMChanged()
+        End Set
+    End Property
+
+    Private _IS_SALARYM As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnIS_SALARYMChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnIS_SALARYMChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property IS_FINALI() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _IS_FINALI
+        End Get
+        Set
+            OnIS_FINALIChanging(value)
+            ReportPropertyChanging("IS_FINALI")
+            _IS_FINALI = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("IS_FINALI")
+            OnIS_FINALIChanged()
+        End Set
+    End Property
+
+    Private _IS_FINALI As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnIS_FINALIChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnIS_FINALIChanged()
     End Sub
 
     #End Region

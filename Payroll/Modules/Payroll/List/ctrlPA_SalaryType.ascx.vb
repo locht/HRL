@@ -209,18 +209,18 @@ Public Class ctrlPA_SalaryType
             Select Case CurrentState
                 Case CommonMessage.STATE_NEW
                     EnabledGridNotPostback(rgData, False)
-                    EnableControlAll(True, txtCode, txtName, txtRemark, cbIS_INCENTIVE, rntxtOrders)
+                    EnableControlAll(True, txtCode, txtName, txtRemark, cbIS_SALARYM, cbIS_FINALI, cbIS_INCENTIVE, rntxtOrders)
                     rgData.Rebind()
                     txtCode.ReadOnly = False
                     txtCode.Focus()
                 Case CommonMessage.STATE_NORMAL
                     EnabledGridNotPostback(rgData, True)
-                    EnableControlAll(False, txtCode, txtName, txtRemark, cbIS_INCENTIVE, rntxtOrders)
+                    EnableControlAll(False, txtCode, txtName, txtRemark, cbIS_SALARYM, cbIS_FINALI, cbIS_INCENTIVE, rntxtOrders)
                     txtCode.ReadOnly = True
                     txtName.Focus()
                 Case CommonMessage.STATE_EDIT
                     EnabledGridNotPostback(rgData, False)
-                    EnableControlAll(True, txtCode, txtName, txtRemark, cbIS_INCENTIVE, rntxtOrders)
+                    EnableControlAll(True, txtCode, txtName, txtRemark, cbIS_SALARYM, cbIS_FINALI, cbIS_INCENTIVE, rntxtOrders)
                     txtCode.ReadOnly = True
                     txtName.Focus()
                 Case CommonMessage.STATE_DELETE
@@ -233,7 +233,7 @@ Public Class ctrlPA_SalaryType
                         If rep.DeleteSalaryType(lstDeletes) Then
                             Refresh("UpdateView")
                             UpdateControlState()
-                            ClearControlValue(txtCode, txtName, txtRemark, cbIS_INCENTIVE, rntxtOrders)
+                            ClearControlValue(txtCode, txtName, txtRemark, cbIS_SALARYM, cbIS_FINALI, cbIS_INCENTIVE, rntxtOrders)
                         Else
                             CurrentState = CommonMessage.STATE_NORMAL
                             ShowMessage(Translate(CommonMessage.MESSAGE_IS_USING), NotifyType.Error)
@@ -250,7 +250,7 @@ Public Class ctrlPA_SalaryType
                             ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), NotifyType.Success)
                             CurrentState = CommonMessage.STATE_NORMAL
                             rgData.Rebind()
-                            ClearControlValue(txtCode, txtName, txtRemark, cbIS_INCENTIVE, rntxtOrders)
+                            ClearControlValue(txtCode, txtName, txtRemark, cbIS_SALARYM, cbIS_FINALI, cbIS_INCENTIVE, rntxtOrders)
                             rgData.SelectedIndexes.Clear()
                         Else
                             ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), NotifyType.Warning)
@@ -268,7 +268,7 @@ Public Class ctrlPA_SalaryType
                             ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), NotifyType.Success)
                             CurrentState = CommonMessage.STATE_NORMAL
                             rgData.Rebind()
-                            ClearControlValue(txtCode, txtName, txtRemark, cbIS_INCENTIVE, rntxtOrders)
+                            ClearControlValue(txtCode, txtName, txtRemark, cbIS_SALARYM, cbIS_FINALI, cbIS_INCENTIVE, rntxtOrders)
                             rgData.SelectedIndexes.Clear()
                         Else
                             ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), NotifyType.Warning)
@@ -300,7 +300,9 @@ Public Class ctrlPA_SalaryType
             dic.Add("CODE", txtCode)
             dic.Add("NAME", txtName)
             dic.Add("REMARK", txtRemark)
+            dic.Add("IS_SALARYM", cbIS_SALARYM)
             dic.Add("IS_INCENTIVE", cbIS_INCENTIVE)
+            dic.Add("IS_FINALI", cbIS_FINALI)
             dic.Add("ORDERS", rntxtOrders)
             Utilities.OnClientRowSelectedChanged(rgData, dic)
             _myLog.WriteLog(_myLog._info, _classPath, method,
@@ -381,7 +383,11 @@ Public Class ctrlPA_SalaryType
                         objSalaryType.CODE = txtCode.Text.Trim
                         objSalaryType.NAME = txtName.Text.Trim
                         objSalaryType.REMARK = txtRemark.Text.Trim
-                        objSalaryType.IS_INCENTIVE = If(cbIS_INCENTIVE.Checked, 1, 0)
+
+                        objSalaryType.IS_INCENTIVE = cbIS_INCENTIVE.Checked
+                        objSalaryType.IS_SALARYM = cbIS_SALARYM.Checked
+                        objSalaryType.IS_FINALI = cbIS_FINALI.Checked
+
                         objSalaryType.ORDERS = If(rntxtOrders.Text = "", 1, Decimal.Parse(rntxtOrders.Text))
                         Using rep As New PayrollRepository
                             Select Case CurrentState
@@ -392,7 +398,7 @@ Public Class ctrlPA_SalaryType
                                         IDSelect = gID
                                         Refresh("InsertView")
                                         UpdateControlState()
-                                        ClearControlValue(txtCode, txtName, txtRemark, cbIS_INCENTIVE, rntxtOrders)
+                                        ClearControlValue(txtCode, txtName, txtRemark, cbIS_SALARYM, cbIS_FINALI, cbIS_INCENTIVE, rntxtOrders)
                                     Else
                                         ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), Utilities.NotifyType.Error)
                                     End If
@@ -403,7 +409,7 @@ Public Class ctrlPA_SalaryType
                                     lstCheck.Add(objSalaryType.ID)
                                     If repCheck.CheckExistIDTable(lstCheck, "PA_SALARY_TYPE", "ID") = True Then
                                         ShowMessage(Translate(CommonMessage.MESSAGE_WARNING_EXIST_DATABASE), NotifyType.Error)
-                                        ClearControlValue(txtCode, txtName, txtRemark, cbIS_INCENTIVE, rntxtOrders)
+                                        ClearControlValue(txtCode, txtName, txtRemark, cbIS_SALARYM, cbIS_FINALI, cbIS_INCENTIVE, rntxtOrders)
                                         CurrentState = CommonMessage.STATE_NORMAL
                                         UpdateControlState()
                                         Exit Sub
@@ -413,7 +419,7 @@ Public Class ctrlPA_SalaryType
                                         IDSelect = objSalaryType.ID
                                         Refresh("UpdateView")
                                         UpdateControlState()
-                                        ClearControlValue(txtCode, txtName, txtRemark, cbIS_INCENTIVE, rntxtOrders)
+                                        ClearControlValue(txtCode, txtName, txtRemark, cbIS_SALARYM, cbIS_FINALI, cbIS_INCENTIVE, rntxtOrders)
                                     Else
                                         ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), Utilities.NotifyType.Error)
                                     End If
@@ -442,7 +448,7 @@ Public Class ctrlPA_SalaryType
                     ctrlMessageBox.Show()
                 Case CommonMessage.TOOLBARITEM_CANCEL
                     CurrentState = CommonMessage.STATE_NORMAL
-                    ClearControlValue(txtCode, txtName, txtRemark, cbIS_INCENTIVE, rntxtOrders)
+                    ClearControlValue(txtCode, txtName, txtRemark, cbIS_SALARYM, cbIS_FINALI, cbIS_INCENTIVE, rntxtOrders)
                     rgData.SelectedIndexes.Clear()
             End Select
             UpdateControlState()
@@ -545,6 +551,51 @@ Public Class ctrlPA_SalaryType
             DisplayException(Me.ViewName, Me.ID, ex)
         End Try
     End Sub
+
+
+    Private Sub cbIS_SALARYM_CheckedChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles cbIS_SALARYM.CheckedChanged
+        Try
+            If cbIS_SALARYM.Checked Then
+                cbIS_INCENTIVE.Checked = False
+                cbIS_FINALI.Checked = False
+
+            End If
+
+        Catch ex As Exception
+
+        End Try
+    End Sub
+
+
+    Private Sub cbIS_INCENTIVE_CheckedChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles cbIS_INCENTIVE.CheckedChanged
+        Try
+
+            If cbIS_INCENTIVE.Checked Then
+                cbIS_SALARYM.Checked = False
+                cbIS_FINALI.Checked = False
+            End If
+        Catch ex As Exception
+
+        End Try
+    End Sub
+
+    Private Sub cbIS_FINALI_CheckedChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles cbIS_FINALI.CheckedChanged
+        Try
+
+            If cbIS_FINALI.Checked Then
+                cbIS_INCENTIVE.Checked = False
+                cbIS_SALARYM.Checked = False
+            End If
+
+        Catch ex As Exception
+
+        End Try
+    End Sub
+    'Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
+    '    For i As Integer = 0 To checkBoxList1.Items.Count - 1
+    '        checkBoxList1.Items(i).Attributes.Add("onclick", "MutExChkList(this)")
+    '    Next
+    'End Sub
 
 #End Region
 

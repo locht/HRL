@@ -7,7 +7,7 @@
         <asp:HiddenField ID="hidID" runat="server" />
         <asp:ValidationSummary ID="ValidationSummary1" runat="server" DisplayMode="BulletList"
             CssClass="validationsummary" />
-        <table class="table-form">
+        <table class="table-form" >
             <tr>
                 <td class="lb">
                     <%# Translate("Mã")%><span class="lbReq">*</span>
@@ -34,17 +34,8 @@
                         ErrorMessage="<%$ Translate: Bạn phải nhập tên thang bảng lương. %>" ToolTip="<%$ Translate: Bạn phải nhập tên thang bảng lương. %>">
                     </asp:RequiredFieldValidator>
                 </td>
-            </tr>
-            <tr>
-                <td class="lb">
-                    <%# Translate("Ghi chú")%>
-                </td>
-                <td colspan="3">
-                    <tlk:RadTextBox ID="txtRemark" runat="server" SkinID="Textbox1023" Width="100%">
-                    </tlk:RadTextBox>
-                </td>
-            </tr>
-            <tr>
+            </tr>          
+            <tr >
                 <td class="lb" id="tdSGlbOrders">
                     <label id="lbOrders">
                         <%# Translate("Thứ tự")%></label>
@@ -57,23 +48,56 @@
                     <asp:RequiredFieldValidator ID="RequiredFieldValidator3" ControlToValidate="rntxtOrders"
                         runat="server" ErrorMessage="<%$ Translate: Bạn phải nhập số thứ tự. %>" ToolTip="<%$ Translate: Bạn phải nhập số thứ tự. %>"></asp:RequiredFieldValidator>
                 </td>
+               
+
+                <td class="lb" id="tdcblbIs_SalaryM" runat="server" >
+                    <label id="Label5">
+                        <%# Translate("Lương tháng")%></label>
+                </td>
+                <td id="tdcbIs_SalaryM" runat="server" >
+                    <div style="margin: -4px; margin-top: 1px">
+                        <tlk:RadButton ID="cbIS_SALARYM" ToggleType="CheckBox" ButtonType="ToggleButton"
+                            Text="" runat="server" AutoPostBack="True"  >
+                        </tlk:RadButton>                                            
+                    </div>
+                </td>
                 <td class="lb" id="tdSGlbIs_Incentive" runat="server" >
                     <label id="Label3">
-                        <%# Translate("Bảng thưởng HQCV")%></label>
+                        <%# Translate("Thưởng")%></label>
                 </td>
                 <td id="tdSGcbIs_Incentive" runat="server" >
                     <div style="margin: -4px; margin-top: 1px">
                         <tlk:RadButton ID="cbIS_INCENTIVE" ToggleType="CheckBox" ButtonType="ToggleButton"
-                            Text="" runat="server" AutoPostBack="false" CausesValidation="false">
-                        </tlk:RadButton>
+                            Text="" runat="server" AutoPostBack="True">
+                        </tlk:RadButton>                       
                     </div>
+                </td>
+                <td class="lb" id="tdcblbIs_Finali" runat="server" >
+                    <label id="Label4">
+                        <%# Translate("Quyết toán thuế TNCN")%></label>
+                </td>
+                <td id="tdcbIs_Finali" runat="server" >
+                    <div style="margin: -4px; margin-top: 1px">
+                        <tlk:RadButton ID="cbIS_FINALI" ToggleType="CheckBox" ButtonType="ToggleButton"
+                            Text="" runat="server" AutoPostBack="True" >
+                        </tlk:RadButton>                       
+                    </div>
+                </td>
+            </tr>
+              <tr>
+                <td class="lb">
+                    <%# Translate("Ghi chú")%>
+                </td>
+                <td colspan="3">
+                    <tlk:RadTextBox ID="txtRemark" runat="server" SkinID="Textbox1023" Width="100%">
+                    </tlk:RadTextBox>
                 </td>
             </tr>
         </table>
     </tlk:RadPane>
     <tlk:RadPane ID="RadPane2" runat="server" Scrolling="None">
         <tlk:RadGrid ID="rgData" runat="server" Height="100%">
-            <MasterTableView DataKeyNames="ID" ClientDataKeyNames="CODE,NAME,REMARK,IS_INCENTIVE,ORDERS">
+            <MasterTableView DataKeyNames="ID" ClientDataKeyNames="CODE,NAME,REMARK,IS_INCENTIVE,IS_FINALI,IS_SALARYM,ORDERS">
                 <Columns>
                     <tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderStyle-HorizontalAlign="Center"
                         HeaderStyle-Width="30px" ItemStyle-HorizontalAlign="Center">
@@ -82,22 +106,23 @@
                     <tlk:GridBoundColumn HeaderText="<%$ Translate: Mã %>" DataField="CODE" SortExpression="CODE"
                         UniqueName="CODE" />
                     <tlk:GridBoundColumn HeaderText="<%$ Translate: Tên %>" DataField="NAME" SortExpression="NAME"
-                        UniqueName="NAME" />
-                    <tlk:GridTemplateColumn HeaderText="<%$ Translate: IS_INCENTIVE %>" UniqueName="IS_INCENTIVE" DataField="IS_INCENTIVE">
-                        <ItemTemplate>
-                            <tlk:RadButton ID="chkIS_INCENTIVE" ToggleType="CheckBox" ButtonType="ToggleButton"
-                                Checked='<%# ParseBoolean(Eval("IS_INCENTIVE").ToString()) %>' Text=""
-                                runat="server" AutoPostBack="false" CausesValidation="false" ReadOnly="True">
-                            </tlk:RadButton>
-                        </ItemTemplate>
-                        <ItemStyle HorizontalAlign="Center" Width="10%"></ItemStyle>
-                        <HeaderStyle HorizontalAlign="Center" Width="10%"></HeaderStyle>
-                    </tlk:GridTemplateColumn>
+                        UniqueName="NAME" />                    
+                    <tlk:GridCheckBoxColumn UniqueName="IS_SALARYM" DataField="IS_SALARYM" HeaderText="<%$ Translate: Lương tháng %>"
+                        SortExpression="IS_SALARYM" ItemStyle-HorizontalAlign="Center" AllowFiltering="false">
+                    </tlk:GridCheckBoxColumn>
+                          <tlk:GridCheckBoxColumn UniqueName="IS_INCENTIVE" DataField="IS_INCENTIVE" HeaderText="<%$ Translate: Thưởng %>"
+                        SortExpression="IS_INCENTIVE" ItemStyle-HorizontalAlign="Center" AllowFiltering="false">
+                    </tlk:GridCheckBoxColumn>   
+                      <tlk:GridCheckBoxColumn UniqueName="IS_FINALI" DataField="IS_FINALI" HeaderText="<%$ Translate: Quyết toán thuế TNCN %>"
+                        SortExpression="IS_FINALI" ItemStyle-HorizontalAlign="Center" AllowFiltering="false">
+                    </tlk:GridCheckBoxColumn>
                     <tlk:GridNumericColumn HeaderText="<%$ Translate: Thứ tự %>" DataField="ORDERS" SortExpression="ORDERS"
                         UniqueName="ORDERS">
                         <HeaderStyle HorizontalAlign="Center" Width="10%" />
                         <ItemStyle HorizontalAlign="Right" />
                     </tlk:GridNumericColumn>
+                     <tlk:GridBoundColumn HeaderText="<%$ Translate: Ghi chú %>" DataField="REMARK" SortExpression="REMARK"
+                        UniqueName="REMARK" />
                     <tlk:GridBoundColumn HeaderText="<%$ Translate: Trạng thái %>" DataField="ACTFLG"
                         SortExpression="ACTFLG" UniqueName="ACTFLG" />
                 </Columns>
@@ -127,6 +152,7 @@
             eventArgs.set_enableAjax(enableAjax);
             enableAjax = true;
         }
+     
 
         // Hàm Resize lại Splitter khi nhấn nút SAVE có validate
         function ResizeSplitter() {

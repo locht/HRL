@@ -3080,7 +3080,13 @@ Namespace PayrollBusiness
         Private IDField As Decimal
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private IS_INCENTIVEField As System.Nullable(Of Decimal)
+        Private IS_FINALIField As System.Nullable(Of Boolean)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private IS_INCENTIVEField As System.Nullable(Of Boolean)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private IS_SALARYMField As System.Nullable(Of Boolean)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private NAMEField As String
@@ -3154,7 +3160,20 @@ Namespace PayrollBusiness
         End Property
         
         <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property IS_INCENTIVE() As System.Nullable(Of Decimal)
+        Public Property IS_FINALI() As System.Nullable(Of Boolean)
+            Get
+                Return Me.IS_FINALIField
+            End Get
+            Set
+                If (Me.IS_FINALIField.Equals(value) <> true) Then
+                    Me.IS_FINALIField = value
+                    Me.RaisePropertyChanged("IS_FINALI")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property IS_INCENTIVE() As System.Nullable(Of Boolean)
             Get
                 Return Me.IS_INCENTIVEField
             End Get
@@ -3162,6 +3181,19 @@ Namespace PayrollBusiness
                 If (Me.IS_INCENTIVEField.Equals(value) <> true) Then
                     Me.IS_INCENTIVEField = value
                     Me.RaisePropertyChanged("IS_INCENTIVE")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property IS_SALARYM() As System.Nullable(Of Boolean)
+            Get
+                Return Me.IS_SALARYMField
+            End Get
+            Set
+                If (Me.IS_SALARYMField.Equals(value) <> true) Then
+                    Me.IS_SALARYMField = value
+                    Me.RaisePropertyChanged("IS_SALARYM")
                 End If
             End Set
         End Property

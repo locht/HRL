@@ -12,7 +12,7 @@ Option Explicit On
 
 
 Partial Public Class ctrlPA_SalaryType
-
+    
     '''<summary>
     '''RadSplitter3 control.
     '''</summary>
@@ -21,7 +21,7 @@ Partial Public Class ctrlPA_SalaryType
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents RadSplitter3 As Global.Telerik.Web.UI.RadSplitter
-
+    
     '''<summary>
     '''RadPane1 control.
     '''</summary>
@@ -30,7 +30,7 @@ Partial Public Class ctrlPA_SalaryType
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents RadPane1 As Global.Telerik.Web.UI.RadPane
-
+    
     '''<summary>
     '''tbarSalaryTypes control.
     '''</summary>
@@ -39,7 +39,7 @@ Partial Public Class ctrlPA_SalaryType
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents tbarSalaryTypes As Global.Telerik.Web.UI.RadToolBar
-
+    
     '''<summary>
     '''hidID control.
     '''</summary>
@@ -48,7 +48,7 @@ Partial Public Class ctrlPA_SalaryType
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents hidID As Global.System.Web.UI.WebControls.HiddenField
-
+    
     '''<summary>
     '''ValidationSummary1 control.
     '''</summary>
@@ -57,7 +57,7 @@ Partial Public Class ctrlPA_SalaryType
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents ValidationSummary1 As Global.System.Web.UI.WebControls.ValidationSummary
-
+    
     '''<summary>
     '''txtCode control.
     '''</summary>
@@ -66,7 +66,7 @@ Partial Public Class ctrlPA_SalaryType
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtCode As Global.Telerik.Web.UI.RadTextBox
-
+    
     '''<summary>
     '''reqCode control.
     '''</summary>
@@ -75,7 +75,7 @@ Partial Public Class ctrlPA_SalaryType
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents reqCode As Global.System.Web.UI.WebControls.RequiredFieldValidator
-
+    
     '''<summary>
     '''cvalCode control.
     '''</summary>
@@ -84,7 +84,7 @@ Partial Public Class ctrlPA_SalaryType
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents cvalCode As Global.System.Web.UI.WebControls.CustomValidator
-
+    
     '''<summary>
     '''RegularExpressionValidator1 control.
     '''</summary>
@@ -93,7 +93,7 @@ Partial Public Class ctrlPA_SalaryType
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents RegularExpressionValidator1 As Global.System.Web.UI.WebControls.RegularExpressionValidator
-
+    
     '''<summary>
     '''txtName control.
     '''</summary>
@@ -102,7 +102,7 @@ Partial Public Class ctrlPA_SalaryType
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtName As Global.Telerik.Web.UI.RadTextBox
-
+    
     '''<summary>
     '''reqName control.
     '''</summary>
@@ -111,16 +111,7 @@ Partial Public Class ctrlPA_SalaryType
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents reqName As Global.System.Web.UI.WebControls.RequiredFieldValidator
-
-    '''<summary>
-    '''txtRemark control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents txtRemark As Global.Telerik.Web.UI.RadTextBox
-
+    
     '''<summary>
     '''rntxtOrders control.
     '''</summary>
@@ -129,7 +120,7 @@ Partial Public Class ctrlPA_SalaryType
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents rntxtOrders As Global.Telerik.Web.UI.RadNumericTextBox
-
+    
     '''<summary>
     '''RequiredFieldValidator3 control.
     '''</summary>
@@ -138,7 +129,34 @@ Partial Public Class ctrlPA_SalaryType
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents RequiredFieldValidator3 As Global.System.Web.UI.WebControls.RequiredFieldValidator
-
+    
+    '''<summary>
+    '''tdcblbIs_SalaryM control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents tdcblbIs_SalaryM As Global.System.Web.UI.HtmlControls.HtmlTableCell
+    
+    '''<summary>
+    '''tdcbIs_SalaryM control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents tdcbIs_SalaryM As Global.System.Web.UI.HtmlControls.HtmlTableCell
+    
+    '''<summary>
+    '''cbIS_SALARYM control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents cbIS_SALARYM As Global.Telerik.Web.UI.RadButton
+    
     '''<summary>
     '''tdSGlbIs_Incentive control.
     '''</summary>
@@ -147,7 +165,7 @@ Partial Public Class ctrlPA_SalaryType
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents tdSGlbIs_Incentive As Global.System.Web.UI.HtmlControls.HtmlTableCell
-
+    
     '''<summary>
     '''tdSGcbIs_Incentive control.
     '''</summary>
@@ -156,7 +174,7 @@ Partial Public Class ctrlPA_SalaryType
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents tdSGcbIs_Incentive As Global.System.Web.UI.HtmlControls.HtmlTableCell
-
+    
     '''<summary>
     '''cbIS_INCENTIVE control.
     '''</summary>
@@ -165,7 +183,43 @@ Partial Public Class ctrlPA_SalaryType
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents cbIS_INCENTIVE As Global.Telerik.Web.UI.RadButton
-
+    
+    '''<summary>
+    '''tdcblbIs_Finali control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents tdcblbIs_Finali As Global.System.Web.UI.HtmlControls.HtmlTableCell
+    
+    '''<summary>
+    '''tdcbIs_Finali control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents tdcbIs_Finali As Global.System.Web.UI.HtmlControls.HtmlTableCell
+    
+    '''<summary>
+    '''cbIS_FINALI control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents cbIS_FINALI As Global.Telerik.Web.UI.RadButton
+    
+    '''<summary>
+    '''txtRemark control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtRemark As Global.Telerik.Web.UI.RadTextBox
+    
     '''<summary>
     '''RadPane2 control.
     '''</summary>
@@ -174,7 +228,7 @@ Partial Public Class ctrlPA_SalaryType
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents RadPane2 As Global.Telerik.Web.UI.RadPane
-
+    
     '''<summary>
     '''rgData control.
     '''</summary>
@@ -183,7 +237,7 @@ Partial Public Class ctrlPA_SalaryType
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents rgData As Global.Telerik.Web.UI.RadGrid
-
+    
     '''<summary>
     '''ctrlMessageBox control.
     '''</summary>
@@ -192,7 +246,7 @@ Partial Public Class ctrlPA_SalaryType
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents ctrlMessageBox As Global.Common.ctrlMessageBox
-
+    
     '''<summary>
     '''RadCodeBlock1 control.
     '''</summary>

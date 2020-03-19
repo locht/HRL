@@ -759,6 +759,8 @@
             <Property Name="ORDERS" Type="number" Nullable="true" Precision="38" />
             <Property Name="IS_INCENTIVE" Type="number" Nullable="true" Precision="38" />
             <Property Name="ACTFLG" Type="nvarchar2" Nullable="true" MaxLength="1" />
+            <Property Name="IS_SALARYM" Type="number" Nullable="true" Precision="38" />
+            <Property Name="IS_FINALI" Type="number" Nullable="true" Precision="38" />
         </EntityType>
         <EntityType Name="PA_SALARYTYPE_GROUP">
             <Key>
@@ -2678,6 +2680,8 @@
           <Property Type="Decimal" Name="IS_INCENTIVE" />
           <Property Type="String" Name="ACTFLG" MaxLength="1" />
           <NavigationProperty Name="PA_SALARYTYPE_GROUP" Relationship="PayrollModel.SALARYTYPE_FK" FromRole="PA_SALARY_TYPE" ToRole="PA_SALARYTYPE_GROUP" />
+          <Property Type="Decimal" Name="IS_SALARYM" />
+          <Property Type="Decimal" Name="IS_FINALI" />
         </EntityType>
         <EntityType Name="PA_SALARYTYPE_GROUP">
           <Key>
@@ -4073,6 +4077,8 @@
                     <ScalarProperty Name="ORDERS" ColumnName="ORDERS" />
                     <ScalarProperty Name="IS_INCENTIVE" ColumnName="IS_INCENTIVE" />
                     <ScalarProperty Name="ACTFLG" ColumnName="ACTFLG" />
+                    <ScalarProperty Name="IS_SALARYM" ColumnName="IS_SALARYM" />
+                    <ScalarProperty Name="IS_FINALI" ColumnName="IS_FINALI" />
                 </MappingFragment>
             </EntityTypeMapping>
         </EntitySetMapping>
@@ -4969,7 +4975,7 @@
         <EntityTypeShape EntityType="PayrollModel.PA_PAYMENT_LIST" Width="3" PointX="0.75" PointY="12.75" Height="3.7109993489583353" IsExpanded="true" />
         <EntityTypeShape EntityType="PayrollModel.PA_INCENTIVE_RANK" Width="2.25" PointX="4.375" PointY="13" Height="3.9033007812500031" />
         <EntityTypeShape EntityType="PayrollModel.PA_INCENTIVE_RANK_DETAIL" Width="3.125" PointX="5" PointY="17.25" Height="0.4" IsExpanded="false" />
-        <EntityTypeShape EntityType="PayrollModel.PA_SALARY_TYPE" Width="2.125" PointX="6.75" PointY="11.75" Height="3.5186979166666674" />
+        <EntityTypeShape EntityType="PayrollModel.PA_SALARY_TYPE" Width="2.125" PointX="6.75" PointY="11.75" Height="4.0956022135416656" />
         <EntityTypeShape EntityType="PayrollModel.PA_SALARYTYPE_GROUP" Width="2.125" PointX="8.25" PointY="7.25" Height="3.9033007812499996" />
         <AssociationConnector Association="PayrollModel.SALARYTYPE_FK">
           <ConnectorPoint PointX="8.5625" PointY="11.75" />

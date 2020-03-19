@@ -44,6 +44,8 @@ Partial Public Class PayrollRepository
                                        .NAME = p.NAME,
                                        .REMARK = p.REMARK,
                                        .IS_INCENTIVE = p.IS_INCENTIVE,
+                                       .IS_FINALI = p.IS_FINALI,
+                                       .IS_SALARYM = p.IS_SALARYM,
                                        .ORDERS = p.ORDERS,
                                        .CREATED_DATE = p.CREATED_DATE,
                                        .ACTFLG = If(p.ACTFLG = "A", "Áp dụng", "Ngừng áp dụng")
@@ -149,6 +151,8 @@ Partial Public Class PayrollRepository
             objSalaryTypeData.NAME = objSalaryType.NAME.Trim
             objSalaryTypeData.REMARK = objSalaryType.REMARK
             objSalaryTypeData.IS_INCENTIVE = objSalaryType.IS_INCENTIVE
+            objSalaryTypeData.IS_FINALI = objSalaryType.IS_FINALI
+            objSalaryTypeData.IS_SALARYM = objSalaryType.IS_SALARYM
             objSalaryTypeData.ORDERS = objSalaryType.ORDERS
             objSalaryTypeData.ACTFLG = objSalaryType.ACTFLG
             Context.PA_SALARY_TYPE.AddObject(objSalaryTypeData)
@@ -204,6 +208,8 @@ Partial Public Class PayrollRepository
             objSalaryTypeData.NAME = objSalaryType.NAME.Trim
             objSalaryTypeData.REMARK = objSalaryType.REMARK
             objSalaryTypeData.IS_INCENTIVE = objSalaryType.IS_INCENTIVE
+            objSalaryTypeData.IS_FINALI = objSalaryType.IS_FINALI
+            objSalaryTypeData.IS_SALARYM = objSalaryType.IS_SALARYM
             objSalaryTypeData.ORDERS = objSalaryType.ORDERS
 
             Context.SaveChanges(log)
