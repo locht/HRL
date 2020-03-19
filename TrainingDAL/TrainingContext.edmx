@@ -1067,7 +1067,6 @@
             <Property Name="ID" Type="number" Nullable="false" Precision="38" />
             <Property Name="CODE" Type="nclob" Nullable="true" />
             <Property Name="NAME" Type="nclob" Nullable="true" />
-            <Property Name="TRAIN_FIELD_ID" Type="number" Nullable="true" Precision="38" />
             <Property Name="REMARK" Type="nclob" Nullable="true" />
             <Property Name="CREATED_BY" Type="nclob" Nullable="true" />
             <Property Name="CREATED_DATE" Type="date" Nullable="true" />
@@ -2520,7 +2519,6 @@
           <Property Type="Decimal" Name="ID" Nullable="false" Precision="38" Scale="0" />
           <Property Type="String" Name="CODE" />
           <Property Type="String" Name="NAME" />
-          <Property Type="Decimal" Name="TRAIN_FIELD_ID" />
           <Property Type="String" Name="REMARK" />
           <Property Type="String" Name="CREATED_BY" />
           <Property Type="DateTime" Name="CREATED_DATE" />
@@ -3673,7 +3671,6 @@
                     <ScalarProperty Name="ID" ColumnName="ID" />
                     <ScalarProperty Name="CODE" ColumnName="CODE" />
                     <ScalarProperty Name="NAME" ColumnName="NAME" />
-                    <ScalarProperty Name="TRAIN_FIELD_ID" ColumnName="TRAIN_FIELD_ID" />
                     <ScalarProperty Name="REMARK" ColumnName="REMARK" />
                     <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
                     <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
@@ -3936,7 +3933,7 @@
           <ConnectorPoint PointX="24.353461538461538" PointY="19.826315104166667" />
           <ConnectorPoint PointX="24.353461538461538" PointY="19.576315104166667" />
         </AssociationConnector>
-        <EntityTypeShape EntityType="TrainingModel.TR_PROGRAM_GROUP" Width="2" PointX="1.25" PointY="2.375" Height="3.3263964843749996" />
+        <EntityTypeShape EntityType="TrainingModel.TR_PROGRAM_GROUP" Width="2" PointX="1.25" PointY="2.375" Height="3.1340950520833326" />
         <EntityTypeShape EntityType="TrainingModel.TR_REQUEST_CENTER" Width="1.5" PointX="11.033119601678624" PointY="1.1347264950791032" />
         <EntityTypeShape EntityType="TrainingModel.TR_REQUEST_TEACHER" Width="1.5" PointX="12.5" PointY="16.875" Height="1.5956835937500031" />
         <EntityTypeShape EntityType="TrainingModel.TR_PLAN_COST_DETAIL" Width="1.5" PointX="3.375" PointY="4.75" Height="2.1725878906249996" />

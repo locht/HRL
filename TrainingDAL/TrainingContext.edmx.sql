@@ -1,7 +1,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for Oracle database
 -- --------------------------------------------------
--- Date Created: 3/5/2020 10:28:20 AM
+-- Date Created: 3/19/2020 9:27:30 AM
 -- Generated from EDMX file: D:\HiStaffWebApp\acv_19\TrainingDAL\TrainingContext.edmx
 -- --------------------------------------------------
 
@@ -1066,7 +1066,6 @@ CREATE TABLE "dbo"."TR_PROGRAM_GROUP" (
    "ID" NUMBER(38,0) NOT NULL,
    "CODE" NCLOB NULL,
    "NAME" NCLOB NULL,
-   "TRAIN_FIELD_ID" NUMBER(38,0) NULL,
    "REMARK" NCLOB NULL,
    "CREATED_BY" NCLOB NULL,
    "CREATED_DATE" DATE NULL,
