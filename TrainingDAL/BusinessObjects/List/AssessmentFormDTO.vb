@@ -9,4 +9,5 @@
     Public Property MODIFIED_BY As String
     Public Property MODIFIED_LOG As String
     Public Property RATE_TYPE As Decimal?
+    Public Property RATE_TYPE_NAME As String
 End Class

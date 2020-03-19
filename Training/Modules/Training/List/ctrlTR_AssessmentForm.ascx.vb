@@ -132,6 +132,8 @@ Public Class ctrlTR_AssessmentForm
                     txtName.ReadOnly = False
                     txtRemark.ReadOnly = False
 
+                    cboRateType.SelectedValue = "7703"
+
                 Case CommonMessage.STATE_NORMAL
                     EnabledGridNotPostback(rgMain, True)
                     Utilities.EnableRadCombo(cboRateType, False)
@@ -174,8 +176,10 @@ Public Class ctrlTR_AssessmentForm
     Public Overrides Sub BindData()
         Try
             Using rep As New TrainingRepository
+                Dim dtData As New DataTable
+                dtData = rep.GetTrRateCombo(False)
+                FillRadCombobox(cboRateType, dtData, "NAME_VN", "ID", False)
 
-                FillRadCombobox(cboRateType, rep.GetTrRateCombo(False), "NAME_VN", "ID", True)
             End Using
         Catch ex As Exception
 
@@ -223,7 +227,6 @@ Public Class ctrlTR_AssessmentForm
                         ShowMessage(Translate(CommonMessage.MESSAGE_NOT_SELECT_ROW), NotifyType.Warning)
                         Exit Sub
                     End If
-
 
                     ctrlMessageBox.MessageText = Translate(CommonMessage.MESSAGE_CONFIRM_DELETE)
                     ctrlMessageBox.ActionName = CommonMessage.TOOLBARITEM_DELETE

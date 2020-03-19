@@ -1274,10 +1274,12 @@ Partial Class TrainingRepository
 
         Try
             Dim query = From p In Context.TR_ASSESSMENT_FORM
+                        Join l In Context.OT_OTHER_LIST On p.RATE_TYPE Equals l.ID
                         Select New AssessmentFormDTO With {
                             .ID = p.ID,
                             .NAME = p.NAME,
                             .RATE_TYPE = p.RATE_TYPE,
+                            .RATE_TYPE_NAME = l.NAME_VN,
                             .REMARK = p.REMARK,
                             .CREATED_DATE = p.CREATED_DATE}
 

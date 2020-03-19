@@ -14049,6 +14049,9 @@ Namespace TrainingBusiness
         Private RATE_TYPEField As System.Nullable(Of Decimal)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private RATE_TYPE_NAMEField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private REMARKField As String
         
         <Global.System.ComponentModel.BrowsableAttribute(false)>  _
@@ -14174,6 +14177,19 @@ Namespace TrainingBusiness
                 If (Me.RATE_TYPEField.Equals(value) <> true) Then
                     Me.RATE_TYPEField = value
                     Me.RaisePropertyChanged("RATE_TYPE")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property RATE_TYPE_NAME() As String
+            Get
+                Return Me.RATE_TYPE_NAMEField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.RATE_TYPE_NAMEField, value) <> true) Then
+                    Me.RATE_TYPE_NAMEField = value
+                    Me.RaisePropertyChanged("RATE_TYPE_NAME")
                 End If
             End Set
         End Property
