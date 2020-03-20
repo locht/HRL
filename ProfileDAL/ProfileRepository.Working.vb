@@ -2712,7 +2712,9 @@ Partial Class ProfileRepository
             If _filter.CODE IsNot Nothing Or _filter.CODE <> "" Then
                 query = query.Where(Function(f) f.CODE.ToUpper().Contains(_filter.CODE.ToUpper()))
             End If
-
+            If IsNumeric(_filter.TITLE_ID) Then
+                query = query.Where(Function(f) f.TITLE_ID = _filter.TITLE_ID)
+            End If
             If _filter.NAME IsNot Nothing Or _filter.NAME <> "" Then
                 query = query.Where(Function(f) f.NAME.ToUpper().Contains(_filter.NAME.ToUpper()))
             End If

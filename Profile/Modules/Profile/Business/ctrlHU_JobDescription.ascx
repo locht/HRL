@@ -22,10 +22,10 @@
                             <asp:Label ID="lbKeyWord" runat="server" Text="Chức danh"></asp:Label>
                         </td>
                         <td>
-                            <tlk:RadTextBox ID="txtTitle" runat="server">
-                            </tlk:RadTextBox>
+                            <tlk:RadComboBox ID="cboTitle" runat="server" AutoPostBack="true" >
+                            </tlk:RadComboBox>
                         </td>
-                        <td>
+                        <td style="display:none">
                             <tlk:RadButton ID="btnSearch" runat="server" Text="Tìm" SkinID="ButtonFind">
                             </tlk:RadButton>
                         </td>

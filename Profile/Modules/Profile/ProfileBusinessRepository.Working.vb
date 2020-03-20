@@ -491,6 +491,19 @@ Partial Public Class ProfileBusinessRepository
 
     End Function
 
+    Public Function GetJobDescription(ByVal _filter As JobDescriptionDTO,
+                                        ByVal _param As ParamDTO,
+                                        Optional ByVal Sorts As String = "CREATED_DATE desc") As List(Of JobDescriptionDTO)
+        Using rep As New ProfileBusinessClient
+            Try
+                Return rep.GetJobDescription(_filter, _param, 0, Integer.MaxValue, 0, Sorts, Me.Log)
+            Catch ex As Exception
+                Throw ex
+            End Try
+        End Using
+
+    End Function
+
     Public Function InserJobDescription(ByVal objJobDes As JobDescriptionDTO) As Boolean
         Using rep As New ProfileBusinessClient
             Try

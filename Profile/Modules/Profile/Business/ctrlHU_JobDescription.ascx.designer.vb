@@ -104,13 +104,13 @@ Partial Public Class ctrlHU_JobDescription
     Protected WithEvents lbKeyWord As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
-    '''txtTitle control.
+    '''cboTitle control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents txtTitle As Global.Telerik.Web.UI.RadTextBox
+    Protected WithEvents cboTitle As Global.Telerik.Web.UI.RadComboBox
 
     '''<summary>
     '''btnSearch control.

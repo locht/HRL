@@ -130,6 +130,7 @@ Public Class ctrlHU_JobDescription
             Me.MainToolBar = tbarWorkings
             Common.Common.BuildToolbar(Me.MainToolBar,
                                        ToolbarItem.Create, ToolbarItem.Edit,
+                                       ToolbarItem.Export,
                                        ToolbarItem.Delete)
             CType(Me.Page, AjaxPage).AjaxManager.ClientEvents.OnRequestStart = "onRequestStart"
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
@@ -183,7 +184,25 @@ Public Class ctrlHU_JobDescription
 
     End Sub
 
-
+    Public Overrides Sub BindData()
+        Try
+            Dim dtData As DataTable
+            Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+            Dim startTime As DateTime = DateTime.UtcNow
+            Try
+                Using rep As New ProfileRepository
+                    dtData = rep.GetTitleList(True)
+                    FillRadCombobox(cboTitle, dtData, "NAME", "ID")
+                End Using
+                _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
+            Catch ex As Exception
+                Throw ex
+                _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
+            End Try
+        Catch ex As Exception
+            'DisplayException(Me.ViewName, Me.ID, ex)
+        End Try
+    End Sub
 #End Region
 
 #Region "Event"
@@ -219,6 +238,15 @@ Public Class ctrlHU_JobDescription
                     ctrlMessageBox.ActionName = CommonMessage.TOOLBARITEM_DELETE
                     ctrlMessageBox.DataBind()
                     ctrlMessageBox.Show()
+                Case CommonMessage.TOOLBARITEM_EXPORT
+                    Using xls As New ExcelCommon
+                        dtData = CreateDataFilter(True)
+                        If dtData.Rows.Count > 0 Then
+                            rgJobDes.ExportExcel(Server, Response, dtData, "JobsDescription")
+                        Else
+                            ShowMessage(Translate(CommonMessage.MESSAGE_WARNING_EXPORT_EMPTY), Utilities.NotifyType.Warning)
+                        End If
+                    End Using
             End Select
 
             UpdateControlState()
@@ -256,6 +284,7 @@ Public Class ctrlHU_JobDescription
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
         Try
             Dim startTime As DateTime = DateTime.UtcNow
+            rgJobDes.CurrentPageIndex = 0
             rgJobDes.Rebind()
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
@@ -285,13 +314,19 @@ Public Class ctrlHU_JobDescription
         End Try
 
     End Sub
-    ''' <summary>
-    ''' add tooltip (so do to chuc) len tung row trong grid
-    ''' </summary>
-    ''' <param name="sender"></param>
-    ''' <param name="e"></param>
-    ''' <remarks></remarks>
-
+    
+    Private Sub cboTitle_SelectedIndexChanged(sender As Object, e As Telerik.Web.UI.RadComboBoxSelectedIndexChangedEventArgs) Handles cboTitle.SelectedIndexChanged
+        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+        Try
+            Dim startTime As DateTime = DateTime.UtcNow
+            rgJobDes.CurrentPageIndex = 0
+            rgJobDes.Rebind()
+            _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
+        Catch ex As Exception
+            DisplayException(Me.ViewName, Me.ID, ex)
+            _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
+        End Try
+    End Sub
 #End Region
 
 #Region "Custom"
@@ -348,6 +383,9 @@ Public Class ctrlHU_JobDescription
                 rgJobDes.DataSource = New List(Of EmployeeDTO)
                 Exit Function
             End If
+            If cboTitle.SelectedValue <> "" Then
+                _filter.TITLE_ID = cboTitle.SelectedValue
+            End If
             Dim _param = New ParamDTO With {.ORG_ID = Decimal.Parse(ctrlOrg.CurrentValue),
                                             .IS_DISSOLVE = ctrlOrg.IsDissolve}
 
@@ -355,13 +393,19 @@ Public Class ctrlHU_JobDescription
 
             Dim MaximumRows As Integer
             Dim Sorts As String = rgJobDes.MasterTableView.SortExpressions.GetSortString()
-
-            If Sorts IsNot Nothing Then
-                rgJobDes.DataSource = rep.GetJobDescription(_filter, _param, rgJobDes.CurrentPageIndex, rgJobDes.PageSize, MaximumRows, Sorts)
+            If isFull Then
+                If Sorts IsNot Nothing Then
+                    Return rep.GetJobDescription(_filter, _param, Sorts).ToTable()
+                Else
+                    Return rep.GetJobDescription(_filter, _param).ToTable()
+                End If
             Else
-                rgJobDes.DataSource = rep.GetJobDescription(_filter, _param, rgJobDes.CurrentPageIndex, rgJobDes.PageSize, MaximumRows, )
+                If Sorts IsNot Nothing Then
+                    rgJobDes.DataSource = rep.GetJobDescription(_filter, _param, rgJobDes.CurrentPageIndex, rgJobDes.PageSize, MaximumRows, Sorts)
+                Else
+                    rgJobDes.DataSource = rep.GetJobDescription(_filter, _param, rgJobDes.CurrentPageIndex, rgJobDes.PageSize, MaximumRows, )
+                End If
             End If
-
             rgJobDes.VirtualItemCount = MaximumRows
 
             rep.Dispose()
@@ -380,4 +424,6 @@ Public Class ctrlHU_JobDescription
         Return Errors.ResourceManager.GetString(input)
     End Function
 #End Region
+
+
 End Class
