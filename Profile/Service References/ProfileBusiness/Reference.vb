@@ -4282,6 +4282,9 @@ Namespace ProfileBusiness
         Private ATTACH_FILEField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private AUTHORITYField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private CONTRACTTYPE_CODEField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -4324,6 +4327,12 @@ Namespace ProfileBusiness
         Private FILENAMEField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private FORM_WORKField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private FORM_WORK_NAMEField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private FROM_DATEField As System.Nullable(Of Date)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -4351,6 +4360,9 @@ Namespace ProfileBusiness
         Private MODIFIED_LOGField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private MONEY_RISKField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private MORNING_STARTField As System.Nullable(Of Date)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -4358,6 +4370,9 @@ Namespace ProfileBusiness
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private NAME_SIGN_CONTRACTField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private NUMBER_AUTHORITYField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private OBJECTTIMEKEEPINGField As System.Nullable(Of Decimal)
@@ -4468,6 +4483,9 @@ Namespace ProfileBusiness
         Private WORK_STATUSField As System.Nullable(Of Decimal)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private WORK_TO_DOField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private WorkingField As ProfileBusiness.WorkingDTO
         
         <Global.System.ComponentModel.BrowsableAttribute(false)>  _
@@ -4515,6 +4533,19 @@ Namespace ProfileBusiness
                 If (Object.ReferenceEquals(Me.ATTACH_FILEField, value) <> true) Then
                     Me.ATTACH_FILEField = value
                     Me.RaisePropertyChanged("ATTACH_FILE")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property AUTHORITY() As System.Nullable(Of Decimal)
+            Get
+                Return Me.AUTHORITYField
+            End Get
+            Set
+                If (Me.AUTHORITYField.Equals(value) <> true) Then
+                    Me.AUTHORITYField = value
+                    Me.RaisePropertyChanged("AUTHORITY")
                 End If
             End Set
         End Property
@@ -4702,6 +4733,32 @@ Namespace ProfileBusiness
         End Property
         
         <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property FORM_WORK() As System.Nullable(Of Decimal)
+            Get
+                Return Me.FORM_WORKField
+            End Get
+            Set
+                If (Me.FORM_WORKField.Equals(value) <> true) Then
+                    Me.FORM_WORKField = value
+                    Me.RaisePropertyChanged("FORM_WORK")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property FORM_WORK_NAME() As String
+            Get
+                Return Me.FORM_WORK_NAMEField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.FORM_WORK_NAMEField, value) <> true) Then
+                    Me.FORM_WORK_NAMEField = value
+                    Me.RaisePropertyChanged("FORM_WORK_NAME")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
         Public Property FROM_DATE() As System.Nullable(Of Date)
             Get
                 Return Me.FROM_DATEField
@@ -4819,6 +4876,19 @@ Namespace ProfileBusiness
         End Property
         
         <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property MONEY_RISK() As System.Nullable(Of Decimal)
+            Get
+                Return Me.MONEY_RISKField
+            End Get
+            Set
+                If (Me.MONEY_RISKField.Equals(value) <> true) Then
+                    Me.MONEY_RISKField = value
+                    Me.RaisePropertyChanged("MONEY_RISK")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
         Public Property MORNING_START() As System.Nullable(Of Date)
             Get
                 Return Me.MORNING_STARTField
@@ -4853,6 +4923,19 @@ Namespace ProfileBusiness
                 If (Object.ReferenceEquals(Me.NAME_SIGN_CONTRACTField, value) <> true) Then
                     Me.NAME_SIGN_CONTRACTField = value
                     Me.RaisePropertyChanged("NAME_SIGN_CONTRACT")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property NUMBER_AUTHORITY() As String
+            Get
+                Return Me.NUMBER_AUTHORITYField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.NUMBER_AUTHORITYField, value) <> true) Then
+                    Me.NUMBER_AUTHORITYField = value
+                    Me.RaisePropertyChanged("NUMBER_AUTHORITY")
                 End If
             End Set
         End Property
@@ -5321,6 +5404,19 @@ Namespace ProfileBusiness
                 If (Me.WORK_STATUSField.Equals(value) <> true) Then
                     Me.WORK_STATUSField = value
                     Me.RaisePropertyChanged("WORK_STATUS")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property WORK_TO_DO() As String
+            Get
+                Return Me.WORK_TO_DOField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.WORK_TO_DOField, value) <> true) Then
+                    Me.WORK_TO_DOField = value
+                    Me.RaisePropertyChanged("WORK_TO_DO")
                 End If
             End Set
         End Property

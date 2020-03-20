@@ -18,7 +18,7 @@ Imports System.Runtime.Serialization
 Imports System.Xml.Serialization
 
 
-<Assembly: EdmSchemaAttribute("c48afa2f-3b98-4b8c-9964-d4bafb9a8571")>
+<Assembly: EdmSchemaAttribute("7c608b56-cdab-4deb-a156-f17ec8085278")>
 #Region "EDM Relationship Metadata"
 <Assembly: EdmRelationshipAttribute("ProfileModel", "FK_HU_NAT_HU_PRO", "HU_NATION", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_NATION), "HU_PROVINCE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_PROVINCE), True)>
 <Assembly: EdmRelationshipAttribute("ProfileModel", "FK_HU_PRO_HU_DIS", "HU_PROVINCE", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_PROVINCE), "HU_DISTRICT", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_DISTRICT), True)>
@@ -19014,6 +19014,131 @@ Public Partial Class HU_CONTRACT
     End Sub
 
     Private Partial Sub OnREMARK_LIQUIDATIONChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property MONEY_RISK() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _MONEY_RISK
+        End Get
+        Set
+            OnMONEY_RISKChanging(value)
+            ReportPropertyChanging("MONEY_RISK")
+            _MONEY_RISK = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("MONEY_RISK")
+            OnMONEY_RISKChanged()
+        End Set
+    End Property
+
+    Private _MONEY_RISK As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnMONEY_RISKChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnMONEY_RISKChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property NUMBER_AUTHORITY() As Global.System.String
+        Get
+            Return _NUMBER_AUTHORITY
+        End Get
+        Set
+            OnNUMBER_AUTHORITYChanging(value)
+            ReportPropertyChanging("NUMBER_AUTHORITY")
+            _NUMBER_AUTHORITY = StructuralObject.SetValidValue(value, true)
+            ReportPropertyChanged("NUMBER_AUTHORITY")
+            OnNUMBER_AUTHORITYChanged()
+        End Set
+    End Property
+
+    Private _NUMBER_AUTHORITY As Global.System.String
+    Private Partial Sub OnNUMBER_AUTHORITYChanging(value As Global.System.String)
+    End Sub
+
+    Private Partial Sub OnNUMBER_AUTHORITYChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property WORK_TO_DO() As Global.System.String
+        Get
+            Return _WORK_TO_DO
+        End Get
+        Set
+            OnWORK_TO_DOChanging(value)
+            ReportPropertyChanging("WORK_TO_DO")
+            _WORK_TO_DO = StructuralObject.SetValidValue(value, true)
+            ReportPropertyChanged("WORK_TO_DO")
+            OnWORK_TO_DOChanged()
+        End Set
+    End Property
+
+    Private _WORK_TO_DO As Global.System.String
+    Private Partial Sub OnWORK_TO_DOChanging(value As Global.System.String)
+    End Sub
+
+    Private Partial Sub OnWORK_TO_DOChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property AUTHORITY() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _AUTHORITY
+        End Get
+        Set
+            OnAUTHORITYChanging(value)
+            ReportPropertyChanging("AUTHORITY")
+            _AUTHORITY = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("AUTHORITY")
+            OnAUTHORITYChanged()
+        End Set
+    End Property
+
+    Private _AUTHORITY As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnAUTHORITYChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnAUTHORITYChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property FORM_WORK() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _FORM_WORK
+        End Get
+        Set
+            OnFORM_WORKChanging(value)
+            ReportPropertyChanging("FORM_WORK")
+            _FORM_WORK = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("FORM_WORK")
+            OnFORM_WORKChanged()
+        End Set
+    End Property
+
+    Private _FORM_WORK As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnFORM_WORKChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnFORM_WORKChanged()
     End Sub
 
     #End Region
@@ -47536,6 +47661,31 @@ Public Partial Class HU_ORGANIZATION
     End Sub
 
     Private Partial Sub OnEFFECT_DATEChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property CONTRACT_CODE() As Global.System.String
+        Get
+            Return _CONTRACT_CODE
+        End Get
+        Set
+            OnCONTRACT_CODEChanging(value)
+            ReportPropertyChanging("CONTRACT_CODE")
+            _CONTRACT_CODE = StructuralObject.SetValidValue(value, true)
+            ReportPropertyChanged("CONTRACT_CODE")
+            OnCONTRACT_CODEChanged()
+        End Set
+    End Property
+
+    Private _CONTRACT_CODE As Global.System.String
+    Private Partial Sub OnCONTRACT_CODEChanging(value As Global.System.String)
+    End Sub
+
+    Private Partial Sub OnCONTRACT_CODEChanged()
     End Sub
 
     #End Region

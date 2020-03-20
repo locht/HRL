@@ -1,8 +1,8 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for Oracle database
 -- --------------------------------------------------
--- Date Created: 03/20/2020 10:43:01 AM
--- Generated from EDMX file: F:\WORKING\acv_19\ProfileDAL\ProfileContext.edmx
+-- Date Created: 03/20/2020 2:49:58 PM
+-- Generated from EDMX file: D:\MyProject2020\ACV1\acv_19\ProfileDAL\ProfileContext.edmx
 -- --------------------------------------------------
 
 -- --------------------------------------------------
@@ -809,7 +809,12 @@ CREATE TABLE "dbo"."HU_CONTRACT" (
    "ATTACH_FILE" NVARCHAR2(1023) NULL,
    "FILENAME" NVARCHAR2(500) NULL,
    "LIQUIDATION_DATE" DATE NULL,
-   "REMARK_LIQUIDATION" NCLOB NULL
+   "REMARK_LIQUIDATION" NCLOB NULL,
+   "MONEY_RISK" NUMBER(38,0) NULL,
+   "NUMBER_AUTHORITY" NCLOB NULL,
+   "WORK_TO_DO" NCLOB NULL,
+   "AUTHORITY" NUMBER(38,0) NULL,
+   "FORM_WORK" NUMBER(38,0) NULL
 );
 
 -- Creating table 'HU_FAMILY'
@@ -2916,7 +2921,8 @@ CREATE TABLE "dbo"."HU_ORGANIZATION" (
    "TYPE_DECISION" NCLOB NULL,
    "CHK_ORGCHART" NUMBER(38,0) NULL,
    "FILES" NCLOB NULL,
-   "EFFECT_DATE" DATE NULL
+   "EFFECT_DATE" DATE NULL,
+   "CONTRACT_CODE" NCLOB NULL
 );
 
 -- Creating table 'HU_TALENT_POOL'

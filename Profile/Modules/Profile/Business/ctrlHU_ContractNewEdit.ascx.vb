@@ -739,63 +739,63 @@ Public Class ctrlHU_ContractNewEdit
     ''' <param name="sender"></param>
     ''' <param name="e"></param>
     ''' <remarks></remarks>
-    Protected Sub cboContractType_SelectedIndexChanged(ByVal sender As Object, ByVal e As Telerik.Web.UI.RadComboBoxSelectedIndexChangedEventArgs) Handles cboContractType.SelectedIndexChanged
-        Dim item As New ContractTypeDTO
-        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
-        Try
-            Dim startTime As DateTime = DateTime.UtcNow
-            If rdStartDate.SelectedDate IsNot Nothing Then
-                Dim dExpire As Date = rdStartDate.SelectedDate
-                If cboContractType.SelectedValue <> "" Then
-                    item = (From p In ListComboData.LIST_CONTRACTTYPE Where p.ID = Decimal.Parse(cboContractType.SelectedValue)).SingleOrDefault
-                End If
-                If item IsNot Nothing Then
-                    If item.PERIOD IsNot Nothing Then
-                        hidPeriod.Value = item.PERIOD
-                    Else
-                        hidPeriod.Value = 0
-                    End If
-                End If
-                If CType(hidPeriod.Value, Double) = 0 Then
-                    rdExpireDate.SelectedDate = Nothing
-                Else
-                    dExpire = dExpire.AddMonths(CType(hidPeriod.Value, Double))
-                    dExpire = dExpire.AddDays(CType(-1, Double))
-                    rdExpireDate.SelectedDate = dExpire
-                End If
-            End If
+    'Protected Sub cboContractType_SelectedIndexChanged(ByVal sender As Object, ByVal e As Telerik.Web.UI.RadComboBoxSelectedIndexChangedEventArgs) Handles cboContractType.SelectedIndexChanged
+    '    Dim item As New ContractTypeDTO
+    '    Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+    '    Try
+    '        Dim startTime As DateTime = DateTime.UtcNow
+    '        If rdStartDate.SelectedDate IsNot Nothing Then
+    '            Dim dExpire As Date = rdStartDate.SelectedDate
+    '            If cboContractType.SelectedValue <> "" Then
+    '                item = (From p In ListComboData.LIST_CONTRACTTYPE Where p.ID = Decimal.Parse(cboContractType.SelectedValue)).SingleOrDefault
+    '            End If
+    '            If item IsNot Nothing Then
+    '                If item.PERIOD IsNot Nothing Then
+    '                    hidPeriod.Value = item.PERIOD
+    '                Else
+    '                    hidPeriod.Value = 0
+    '                End If
+    '            End If
+    '            If CType(hidPeriod.Value, Double) = 0 Then
+    '                rdExpireDate.SelectedDate = Nothing
+    '            Else
+    '                dExpire = dExpire.AddMonths(CType(hidPeriod.Value, Double))
+    '                dExpire = dExpire.AddDays(CType(-1, Double))
+    '                rdExpireDate.SelectedDate = dExpire
+    '            End If
+    '        End If
 
-            Dim employeeId As Double = 0
-            Double.TryParse(hidEmployeeID.Value, employeeId)
-            If cboSignContract.SelectedValue <> "" And rdStartDate.SelectedDate IsNot Nothing Then
-                txtContractNo.Text = CreateDynamicContractNo(employeeId)
-            End If
+    '        Dim employeeId As Double = 0
+    '        Double.TryParse(hidEmployeeID.Value, employeeId)
+    '        If cboSignContract.SelectedValue <> "" And rdStartDate.SelectedDate IsNot Nothing Then
+    '            txtContractNo.Text = CreateDynamicContractNo(employeeId)
+    '        End If
 
-            _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
-        Catch ex As Exception
-            DisplayException(Me.ViewName, Me.ID, ex)
-            _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
-        End Try
-    End Sub
+    '        _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
+    '    Catch ex As Exception
+    '        DisplayException(Me.ViewName, Me.ID, ex)
+    '        _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
+    '    End Try
+    'End Sub
 
-    Protected Sub cboSignContract_SelectedIndexChanged(ByVal sender As Object, ByVal e As Telerik.Web.UI.RadComboBoxSelectedIndexChangedEventArgs) Handles cboSignContract.SelectedIndexChanged
-        Dim item As New ContractTypeDTO
-        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
-        Try
-            Dim startTime As DateTime = DateTime.UtcNow
+    'Protected Sub cboSignContract_SelectedIndexChanged(ByVal sender As Object, ByVal e As Telerik.Web.UI.RadComboBoxSelectedIndexChangedEventArgs) Handles cboSignContract.SelectedIndexChanged
+    '    Dim item As New ContractTypeDTO
+    '    Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+    '    Try
+    '        Dim startTime As DateTime = DateTime.UtcNow
 
-            Dim employeeId As Double = 0
-            Double.TryParse(hidEmployeeID.Value, employeeId)
-            If cboSignContract.SelectedValue <> "" And rdStartDate.SelectedDate IsNot Nothing Then
-                txtContractNo.Text = CreateDynamicContractNo(employeeId)
-            End If
+    '        Dim employeeId As Double = 0
+    '        Double.TryParse(hidEmployeeID.Value, employeeId)
+    '        If cboSignContract.SelectedValue <> "" And rdStartDate.SelectedDate IsNot Nothing Then
+    '            txtContractNo.Text = CreateDynamicContractNo(employeeId)
+    '        End If
 
-            _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
-        Catch ex As Exception
-            DisplayException(Me.ViewName, Me.ID, ex)
-            _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
-        End Try
-    End Sub
+    '        _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
+    '    Catch ex As Exception
+    '        DisplayException(Me.ViewName, Me.ID, ex)
+    '        _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
+    '    End Try
+    'End Sub
     ''' <lastupdate>
     ''' 06/07/2017 17:53
     ''' </lastupdate>
@@ -810,12 +810,6 @@ Public Class ctrlHU_ContractNewEdit
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
         Try
             Dim startTime As DateTime = DateTime.UtcNow
-            'If cboContractType.SelectedValue = "" Then
-            '    If rdStartDate.SelectedDate IsNot Nothing Then
-            '        txtContractNo.Text = CreateDynamicContractNo(hidEmployeeID.Value)
-            '    End If
-            '    Exit Sub
-            'End If
             If rdStartDate.SelectedDate IsNot Nothing Then
                 Dim dExpire As Date = rdStartDate.SelectedDate
                 If cboContractType.SelectedValue <> "" Then
@@ -834,10 +828,10 @@ Public Class ctrlHU_ContractNewEdit
                     rdExpireDate.SelectedDate = dExpire
                 End If
                 Dim employeeId As Double = 0
+                Dim orgId As Double = 0
                 Double.TryParse(hidEmployeeID.Value, employeeId)
-                If cboSignContract.SelectedValue <> "" Then
-                    txtContractNo.Text = CreateDynamicContractNo(employeeId)
-                End If
+                Double.TryParse(hidOrgID.Value, orgId)
+                txtContractNo.Text = CreateDynamicContractNo(employeeId, orgId)
             End If
             If rdStartDate.SelectedDate < rdSignDate.SelectedDate Then
                 rdSignDate.SelectedDate = rdStartDate.SelectedDate
@@ -1089,6 +1083,9 @@ Public Class ctrlHU_ContractNewEdit
         'chuẩn hóa lại đồng bộ trạng thái là 446 447 nên sửa lại cách load data lên
         dtData = rep.GetOtherList(OtherTypes.DecisionStatus, True)
         FillRadCombobox(cboStatus, dtData, "NAME", "ID", True)
+        'hinh thuc lam viẹc
+        dtData = rep.GetOtherList("WORK_TIME", True)
+        FillRadCombobox(cboFormWork, dtData, "NAME", "ID", True)
     End Sub
     ''' <lastupdate>
     ''' 06/07/2017 17:53
@@ -1105,7 +1102,6 @@ Public Class ctrlHU_ContractNewEdit
             Dim startTime As DateTime = DateTime.UtcNow
 
             If CurrentState Is Nothing Then
-                cboContractType.AutoPostBack = True
                 If Request.Params("IDSelect") IsNot Nothing Then
                     hidID.Value = Request.Params("IDSelect")
                     Refresh("UpdateView")
@@ -1161,7 +1157,7 @@ Public Class ctrlHU_ContractNewEdit
                 If IsNumeric(item.ID.ToString) Then
                     hidEmployeeID.Value = item.ID.ToString
                 End If
-
+                hidOrgID.Value = item.ORG_ID
                 hidOrgCode.Value = item.ORG_CODE
                 If item.OBJECTTIMEKEEPING.HasValue Then
                     code_timekeeping = item.OBJECTTIMEKEEPING
@@ -1175,18 +1171,16 @@ Public Class ctrlHU_ContractNewEdit
                 If item.OBJECT_LABOR IsNot Nothing Then
                     object_labour = item.OBJECT_LABOR
                 End If
-                'If IsNumeric(item.ORG_ID) Then
-                '    hidWorkingID.Value = item.ORG_ID
-                'End If
                 txtEmployeeCode.Text = item.EMPLOYEE_CODE
                 txtEmployeeName.Text = item.FULLNAME_VN
                 txtTITLE.Text = item.TITLE_NAME_VN
-                'txtSTAFF_RANK.Text = item.STAFF_RANK_NAME
                 txtOrg_Name.Text = item.ORG_NAME
                 GetWorkingMax()
-                Dim employeeId As Double = 0
-                Double.TryParse(hidEmployeeID.Value, employeeId)
-                txtContractNo.Text = CreateDynamicContractNo(employeeId)
+                'Dim employeeId As Double = 0
+                'Double.TryParse(hidEmployeeID.Value, employeeId)
+                'Dim orgId As Double = 0
+                'Double.TryParse(hidOrgID.Value, orgId)
+                'txtContractNo.Text = CreateDynamicContractNo(employeeId, orgId)
                 'txtContractNo.Enabled = True
                 ClearControlValue(rdStartDate, rdSignDate)
             End Using
@@ -1203,26 +1197,25 @@ Public Class ctrlHU_ContractNewEdit
     ''' Phương thức xử lý việc tạo số hợp đồng một cách tự động
     ''' </summary>
     ''' <remarks></remarks>
-    Private Function CreateDynamicContractNo(ByVal empId As Double) As String
+    Private Function CreateDynamicContractNo(ByVal empId As Double, ByVal orgId As Double) As String
         If empId < 1 Then
             Return String.Empty
         End If
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
         Dim startTime As DateTime = DateTime.UtcNow
         Try
-            If CurrentState = CommonMessage.STATE_NORMAL Or
-                CurrentState Is Nothing Or
-                 String.IsNullOrWhiteSpace(cboContractType.SelectedValue) Then
-                Return String.Empty
-            End If
+            'If CurrentState = CommonMessage.STATE_NORMAL Or
+            '    CurrentState Is Nothing Or
+            '     String.IsNullOrWhiteSpace(cboContractType.SelectedValue) Then
+            '    Return String.Empty
+            'End If
             Using rep As New ProfileBusinessRepository
                 Return rep.CreateContractNo(New ContractDTO With {
                                                        .START_DATE = rdStartDate.SelectedDate,
                                                        .ORG_NAME = txtOrg_Name.Text,
-                                                       .ID_SIGN_CONTRACT = cboSignContract.SelectedValue,
                                                        .EMPLOYEE_ID = empId,
                                                        .EMPLOYEE_CODE = txtEmployeeCode.Text,
-                                                       .CONTRACTTYPE_ID = cboContractType.SelectedValue
+                                                       .ORG_ID = orgId
                                                        })
             End Using
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")

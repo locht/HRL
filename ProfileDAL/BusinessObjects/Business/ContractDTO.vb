@@ -76,4 +76,11 @@
     'ngay thanh ly,tap tin dinh kem
     Public Property LIQUIDATION_DATE As Date?
     Public Property REMARK_LIQUIDATION As String
+    '
+    Public Property MONEY_RISK As Decimal?
+    Public Property NUMBER_AUTHORITY As String
+    Public Property WORK_TO_DO As String
+    Public Property AUTHORITY As Decimal?
+    Public Property FORM_WORK As Decimal?
+    Public Property FORM_WORK_NAME As String
 End Class
