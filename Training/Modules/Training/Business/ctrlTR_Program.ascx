@@ -127,22 +127,12 @@
             </tlk:RadPane>
             <tlk:RadPane ID="RadPane3" runat="server" Height="50px" Scrolling="None">
                 <table class="table-form">
-                    <tr>
-                        <td>
-                            <tlk:RadButton ID="btnPrepare" runat="server" Text="<%$ Translate: Chuẩn bị khóa học %>"
-                                OnClientClicking="btnPrepareClick" AutoPostBack="false">
-                            </tlk:RadButton>
-                        </td>
+                    <tr>                     
                         <td>
                             <tlk:RadButton ID="btnClass" runat="server" Text="<%$ Translate: Thông tin lớp học %>"
                                 OnClientClicking="btnClassClick" AutoPostBack="false">
                             </tlk:RadButton>
-                        </td>
-                        <td>
-                            <tlk:RadButton ID="btnCommit" runat="server" Text="<%$ Translate: Cam kết đào tạo %>"
-                                OnClientClicking="btnCommitClick" AutoPostBack="false">
-                            </tlk:RadButton>
-                        </td>
+                        </td>                        
                         <td>
                             <tlk:RadButton ID="btnResult" runat="server" Text="<%$ Translate: Cập nhật kết quả %>"
                                 OnClientClicking="btnResultClick" AutoPostBack="false">
@@ -298,7 +288,7 @@
         }
 
 
-        function btnPrepareClick(sender, args) {
+<%--        function btnPrepareClick(sender, args) {
             var bCheck = $find('<%# rgData.ClientID %>').get_masterTableView().get_selectedItems().length;
             if (bCheck == 0) {
                 m = '<%# Translate(CommonMessage.MESSAGE_NOT_SELECT_ROW) %>';
@@ -318,7 +308,7 @@
             oWindow.moveTo(pos.left, pos.top);
             oWindow.setSize($(window).width() - 30, $(window).height() - 30);
             oWindow.center();
-        }
+        }--%>
         function btnClassClick(sender, args) {
 
             var bCheck = $find('<%# rgData.ClientID %>').get_masterTableView().get_selectedItems().length;
@@ -342,7 +332,7 @@
             oWindow.center();
         }
 
-        function btnCommitClick(sender, args) {
+<%--        function btnCommitClick(sender, args) {
             var bCheck = $find('<%# rgData.ClientID %>').get_masterTableView().get_selectedItems().length;
             if (bCheck == 0) {
                 m = '<%# Translate(CommonMessage.MESSAGE_NOT_SELECT_ROW) %>';
@@ -363,7 +353,7 @@
             oWindow.moveTo(pos.left, pos.top);
             oWindow.setSize($(window).width() - 30, $(window).height() - 30);
             oWindow.center();
-        }
+        }--%>
         function btnResultClick(sender, args) {
             var bCheck = $find('<%# rgData.ClientID %>').get_masterTableView().get_selectedItems().length;
             if (bCheck == 0) {

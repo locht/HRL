@@ -42,10 +42,10 @@ Public Class ctrlTR_Program
         Try
             Me.ctrlMessageBox.Listener = Me
             Me.MainToolBar = tbarMain
-            Common.Common.BuildToolbar(Me.MainToolBar, ToolbarItem.Create, ToolbarItem.Delete, ToolbarItem.Print, ToolbarItem.SendMail)
+            Common.Common.BuildToolbar(Me.MainToolBar, ToolbarItem.Create, ToolbarItem.Delete)
             CType(MainToolBar.Items(0), RadToolBarButton).Text = "Khai báo khóa đào tạo chi tiết"
-            CType(MainToolBar.Items(2), RadToolBarButton).Text = "In tờ trình kế hoạch đào tạo"
-            CType(MainToolBar.Items(3), RadToolBarButton).Text = "Thông báo đào tạo"
+            'CType(MainToolBar.Items(2), RadToolBarButton).Text = "In tờ trình kế hoạch đào tạo"
+            'CType(MainToolBar.Items(3), RadToolBarButton).Text = "Thông báo đào tạo"
             'tbarMain.Items.Add(Common.Common.CreateToolbarItem("CREATE_CP",
             '                                                   ToolbarIcons.Add,
             '                                                   ToolbarAuthorize.Create,
