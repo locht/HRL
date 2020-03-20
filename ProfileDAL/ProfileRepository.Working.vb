@@ -2895,6 +2895,7 @@ Partial Class ProfileRepository
                         From org In Context.HU_ORGANIZATION.Where(Function(f) f.ID = p.ORG_ID)
                         From title In Context.HU_TITLE.Where(Function(f) f.ID = p.TITLE_ID)
                         From sal In Context.PA_SALARY_LEVEL.Where(Function(f) f.ID = title.LEVEL_ID).DefaultIfEmpty
+                        Where p.ID = ID
                         Select New JobDescriptionDTO With {
                                 .ID = p.ID,
                                 .CODE = p.CODE,
@@ -2924,7 +2925,8 @@ Partial Class ProfileRepository
                                 .LANGUAGE_RANK_1 = p.LANGUAGE_RANK_1,
                                 .LANGUAGE_2 = p.LANGUAGE_2,
                                 .LANGUAGE_RANK_2 = p.LANGUAGE_RANK_2,
-                                .LANGUAGE_3 = p.LANGUAGE_RANK_3,
+                                .LANGUAGE_3 = p.LANGUAGE_3,
+                                .LANGUAGE_RANK_3 = p.LANGUAGE_RANK_3,
                                 .SOFT_SKILL = p.SOFT_SKILL,
                                 .NOTE = p.NOTE,
                                 .SAL_FROM = sal.SAL_FR,

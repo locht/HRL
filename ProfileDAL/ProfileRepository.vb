@@ -124,6 +124,23 @@ Public Class ProfileRepository
         End Try
     End Function
 
+    Public Function GetJobDescByTitleID(ByVal titleID As Decimal, ByVal sLang As String, ByVal isBlank As Boolean) As DataTable
+        Try
+            Using cls As New DataAccess.QueryData
+                Dim dtData As DataTable = cls.ExecuteStore("PKG_COMMON_LIST.GET_JOBDESC_BYTITLE",
+                                           New With {.P_TITLEID = titleID,
+                                                     .P_ISBLANK = isBlank,
+                                                     .P_LANG = sLang,
+                                                     .P_CUR = cls.OUT_CURSOR})
+
+                Return dtData
+            End Using
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iProfile")
+            Throw ex
+        End Try
+    End Function
+
     Public Function GetTitleList(ByVal sLang As String, ByVal isBlank As Boolean) As DataTable
         Try
             Using cls As New DataAccess.QueryData

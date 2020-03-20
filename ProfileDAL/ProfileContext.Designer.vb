@@ -18,7 +18,7 @@ Imports System.Runtime.Serialization
 Imports System.Xml.Serialization
 
 
-<Assembly: EdmSchemaAttribute("7c608b56-cdab-4deb-a156-f17ec8085278")>
+<Assembly: EdmSchemaAttribute("7d18c397-b71d-4eca-8306-cc4997f11079")>
 #Region "EDM Relationship Metadata"
 <Assembly: EdmRelationshipAttribute("ProfileModel", "FK_HU_NAT_HU_PRO", "HU_NATION", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_NATION), "HU_PROVINCE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_PROVINCE), True)>
 <Assembly: EdmRelationshipAttribute("ProfileModel", "FK_HU_PRO_HU_DIS", "HU_PROVINCE", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_PROVINCE), "HU_DISTRICT", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_DISTRICT), True)>
@@ -33942,24 +33942,24 @@ Public Partial Class HU_EMPLOYEE_HEALTH
     ''' </summary>
     <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
     <DataMemberAttribute()>
-    Public Property TIEU_SU_BAN_THAN() As Global.System.String
+    Public Property TIEUSU_BANTHAN() As Global.System.String
         Get
-            Return _TIEU_SU_BAN_THAN
+            Return _TIEUSU_BANTHAN
         End Get
         Set
-            OnTIEU_SU_BAN_THANChanging(value)
-            ReportPropertyChanging("TIEU_SU_BAN_THAN")
-            _TIEU_SU_BAN_THAN = StructuralObject.SetValidValue(value, true)
-            ReportPropertyChanged("TIEU_SU_BAN_THAN")
-            OnTIEU_SU_BAN_THANChanged()
+            OnTIEUSU_BANTHANChanging(value)
+            ReportPropertyChanging("TIEUSU_BANTHAN")
+            _TIEUSU_BANTHAN = StructuralObject.SetValidValue(value, true)
+            ReportPropertyChanged("TIEUSU_BANTHAN")
+            OnTIEUSU_BANTHANChanged()
         End Set
     End Property
 
-    Private _TIEU_SU_BAN_THAN As Global.System.String
-    Private Partial Sub OnTIEU_SU_BAN_THANChanging(value As Global.System.String)
+    Private _TIEUSU_BANTHAN As Global.System.String
+    Private Partial Sub OnTIEUSU_BANTHANChanging(value As Global.System.String)
     End Sub
 
-    Private Partial Sub OnTIEU_SU_BAN_THANChanged()
+    Private Partial Sub OnTIEUSU_BANTHANChanged()
     End Sub
 
     ''' <summary>
@@ -33967,24 +33967,24 @@ Public Partial Class HU_EMPLOYEE_HEALTH
     ''' </summary>
     <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
     <DataMemberAttribute()>
-    Public Property TIEU_SU_GIA_DINH() As Global.System.String
+    Public Property TIEUSU_GIADINH() As Global.System.String
         Get
-            Return _TIEU_SU_GIA_DINH
+            Return _TIEUSU_GIADINH
         End Get
         Set
-            OnTIEU_SU_GIA_DINHChanging(value)
-            ReportPropertyChanging("TIEU_SU_GIA_DINH")
-            _TIEU_SU_GIA_DINH = StructuralObject.SetValidValue(value, true)
-            ReportPropertyChanged("TIEU_SU_GIA_DINH")
-            OnTIEU_SU_GIA_DINHChanged()
+            OnTIEUSU_GIADINHChanging(value)
+            ReportPropertyChanging("TIEUSU_GIADINH")
+            _TIEUSU_GIADINH = StructuralObject.SetValidValue(value, true)
+            ReportPropertyChanged("TIEUSU_GIADINH")
+            OnTIEUSU_GIADINHChanged()
         End Set
     End Property
 
-    Private _TIEU_SU_GIA_DINH As Global.System.String
-    Private Partial Sub OnTIEU_SU_GIA_DINHChanging(value As Global.System.String)
+    Private _TIEUSU_GIADINH As Global.System.String
+    Private Partial Sub OnTIEUSU_GIADINHChanging(value As Global.System.String)
     End Sub
 
-    Private Partial Sub OnTIEU_SU_GIA_DINHChanged()
+    Private Partial Sub OnTIEUSU_GIADINHChanged()
     End Sub
 
     #End Region

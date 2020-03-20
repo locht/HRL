@@ -111,4 +111,13 @@
     Public Property ORG_NAME4 As String
     Public Property ORG_ID5 As Decimal
     Public Property ORG_NAME5 As String
+
+    '' THONG TIN  CONG TAC
+    Public Property JOB_POSITION As Decimal?
+    Public Property JOB_POSITION_NAME As String
+    Public Property JOB_DESCRIPTION As Decimal?
+    Public Property JOB_ATTACH_FILE As String
+    Public Property JOB_FILENAME As String
+    Public Property ListAttachFiles As List(Of AttachFilesDTO)
+    Public Property PRODUCTION_PROCESS As Decimal?
 End Class

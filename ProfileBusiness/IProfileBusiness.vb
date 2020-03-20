@@ -99,6 +99,9 @@ Namespace ProfileBusiness.ServiceContracts
         Function GetTitleByOrgID(ByVal orgID As Decimal, ByVal sLang As String, ByVal isBlank As Boolean) As DataTable
 
         <OperationContract()>
+        Function GetJobDescByTitleID(ByVal titleID As Decimal, ByVal sLang As String, ByVal isBlank As Boolean) As DataTable
+
+        <OperationContract()>
         Function GetTitleList(ByVal sLang As String, ByVal isBlank As Boolean) As DataTable
 
         <OperationContract()>

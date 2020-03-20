@@ -650,6 +650,7 @@ Partial Class ProfileRepository
                                                                         f.TYPE_ID = 2235).DefaultIfEmpty
                      From objectLabor In Context.OT_OTHER_LIST.Where(Function(f) f.ID = e.OBJECT_LABOR And
                                                                         f.TYPE_ID = 6963).DefaultIfEmpty
+                    From job_pos In Context.HU_JOB_POSITION.Where(Function(f) f.ID = e.JOB_POSITION).DefaultIfEmpty
                     From obj_ins In Context.OT_OTHER_LIST.Where(Function(f) f.ID = e.OBJECT_INS).DefaultIfEmpty
                      From huv_org In Context.HUV_ORGANIZATION.Where(Function(f) f.ID = org.ID).DefaultIfEmpty
                 Where (e.ID = empID)
@@ -710,9 +711,22 @@ Partial Class ProfileRepository
                           .ORG_NAME2 = huv_org.ORG_NAME2,
                          .ORG_NAME3 = huv_org.ORG_NAME3,
                          .ORG_NAME4 = huv_org.ORG_NAME4,
-                         .ORG_NAME5 = huv_org.ORG_NAME5
+                         .JOB_POSITION = e.JOB_POSITION,
+                         .JOB_POSITION_NAME = job_pos.JOB_NAME,
+                         .JOB_DESCRIPTION = e.JOB_DESCRIPTION,
+                         .JOB_ATTACH_FILE = e.JOB_ATTACH_FILE,
+                         .JOB_FILENAME = e.JOB_FILENAME,
+                         .PRODUCTION_PROCESS = e.PRODUCTION_PROCESS,
+                .ORG_NAME5 = huv_org.ORG_NAME5
                      }).FirstOrDefault
                 WriteExceptionLog(Nothing, "Getmployee1", "iProfile")
+                query.ListAttachFiles = (From p In Context.HU_ATTACHFILES.Where(Function(f) f.FK_ID = empID)
+                                      Select New AttachFilesDTO With {.ID = p.ID,
+                                                                      .FK_ID = p.FK_ID,
+                                                                      .FILE_TYPE = p.FILE_TYPE,
+                                                                      .FILE_PATH = p.FILE_PATH,
+                                                                      .CONTROL_NAME = p.CONTROL_NAME,
+                                                                      .ATTACHFILE_NAME = p.ATTACHFILE_NAME}).ToList()
                 Dim emp As New EmployeeDTO
                 emp = query
                 WriteExceptionLog(Nothing, "Getmployee2", "iProfile")
@@ -945,8 +959,25 @@ Partial Class ProfileRepository
             objEmpData.EMPLOYEE_OBJECT = objEmp.EMPLOYEE_OBJECT
             objEmpData.IS_HAZARDOUS = objEmp.IS_HAZARDOUS
             objEmpData.IS_HDLD = objEmp.IS_HDLD
+            objEmpData.PRODUCTION_PROCESS = objEmp.PRODUCTION_PROCESS
+            objEmpData.JOB_POSITION = objEmp.JOB_POSITION
+            objEmpData.JOB_DESCRIPTION = objEmp.JOB_DESCRIPTION
+            objEmpData.JOB_ATTACH_FILE = objEmp.JOB_ATTACH_FILE
+            objEmpData.JOB_FILENAME = objEmp.JOB_FILENAME
             Context.HU_EMPLOYEE.AddObject(objEmpData)
 
+            If objEmp.ListAttachFiles IsNot Nothing Then
+                For Each File As AttachFilesDTO In objEmp.ListAttachFiles
+                    Dim objFile As New HU_ATTACHFILES
+                    objFile.ID = Utilities.GetNextSequence(Context, Context.HU_ATTACHFILES.EntitySet.Name)
+                    objFile.FK_ID = objEmpData.ID
+                    objFile.FILE_PATH = File.FILE_PATH
+                    objFile.ATTACHFILE_NAME = File.ATTACHFILE_NAME
+                    objFile.CONTROL_NAME = File.CONTROL_NAME
+                    objFile.FILE_TYPE = File.FILE_TYPE
+                    Context.HU_ATTACHFILES.AddObject(objFile)
+                Next
+            End If
             'End Thông tin insert vào bảng HU_EMPLOYEE.
 
             ' Insert bảng HU_EMPLOYEE_PAPER
@@ -1171,8 +1202,8 @@ Partial Class ProfileRepository
                 objEmpHealthData.DA_HOA_LIEU = objEmpHealth.DA_HOA_LIEU
                 objEmpHealthData.GHI_CHU_SUC_KHOE = objEmpHealth.GHI_CHU_SUC_KHOE
                 objEmpHealthData.TTSUCKHOE = objEmpHealth.TTSUCKHOE
-                objEmpHealthData.TIEU_SU_BAN_THAN = objEmpHealth.TIEU_SU_BAN_THAN
-                objEmpHealthData.TIEU_SU_GIA_DINH = objEmpHealth.TIEU_SU_GIA_DINH
+                objEmpHealthData.TIEUSU_BANTHAN = objEmpHealth.TIEU_SU_BAN_THAN
+                objEmpHealthData.TIEUSU_GIADINH = objEmpHealth.TIEU_SU_GIA_DINH
                 Context.HU_EMPLOYEE_HEALTH.AddObject(objEmpHealthData)
             End If
 
@@ -1405,6 +1436,26 @@ Partial Class ProfileRepository
             objEmpData.EMPLOYEE_OBJECT = objEmp.EMPLOYEE_OBJECT
             objEmpData.IS_HAZARDOUS = objEmp.IS_HAZARDOUS
             objEmpData.IS_HDLD = objEmp.IS_HDLD
+            objEmpData.PRODUCTION_PROCESS = objEmp.PRODUCTION_PROCESS
+            objEmpData.JOB_DESCRIPTION = objEmp.JOB_DESCRIPTION
+            objEmpData.JOB_POSITION = objEmp.JOB_POSITION
+            objEmpData.JOB_ATTACH_FILE = objEmp.JOB_ATTACH_FILE
+            objEmpData.JOB_FILENAME = objEmp.JOB_FILENAME
+            Dim lstAtt = (From p In Context.HU_ATTACHFILES Where p.FK_ID = objEmpData.ID).ToList()
+            For index = 0 To lstAtt.Count - 1
+                Context.HU_ATTACHFILES.DeleteObject(lstAtt(index))
+            Next
+
+            For Each File As AttachFilesDTO In objEmp.ListAttachFiles
+                Dim objFile As New HU_ATTACHFILES
+                objFile.ID = Utilities.GetNextSequence(Context, Context.HU_ATTACHFILES.EntitySet.Name)
+                objFile.FK_ID = objEmpData.ID
+                objFile.FILE_PATH = File.FILE_PATH
+                objFile.ATTACHFILE_NAME = File.ATTACHFILE_NAME
+                objFile.CONTROL_NAME = File.CONTROL_NAME
+                objFile.FILE_TYPE = File.FILE_TYPE
+                Context.HU_ATTACHFILES.AddObject(objFile)
+            Next
             Dim lstPaperDelete = (From p In Context.HU_EMPLOYEE_PAPER Where p.EMPLOYEE_ID = objEmpData.ID).ToList
             For Each item In lstPaperDelete
                 Context.HU_EMPLOYEE_PAPER.DeleteObject(item)
@@ -1657,8 +1708,8 @@ Partial Class ProfileRepository
                 objEmpHealthData.DA_HOA_LIEU = objEmpHealth.DA_HOA_LIEU
                 objEmpHealthData.GHI_CHU_SUC_KHOE = objEmpHealth.GHI_CHU_SUC_KHOE
                 objEmpHealthData.TTSUCKHOE = objEmpHealth.TTSUCKHOE
-                objEmpHealthData.TIEU_SU_BAN_THAN = objEmpHealth.TIEU_SU_BAN_THAN
-                objEmpHealthData.TIEU_SU_GIA_DINH = objEmpHealth.TIEU_SU_GIA_DINH
+                objEmpHealthData.TIEUSU_BANTHAN = objEmpHealth.TIEU_SU_BAN_THAN
+                objEmpHealthData.TIEUSU_GIADINH = objEmpHealth.TIEU_SU_GIA_DINH
                 If bUpdateHealth = False Then
                     Context.HU_EMPLOYEE_HEALTH.AddObject(objEmpHealthData)
                 End If
@@ -2131,6 +2182,8 @@ Partial Class ProfileRepository
                              .VIEM_GAN_B = e.VIEM_GAN_B,
                              .DA_HOA_LIEU = e.DA_HOA_LIEU,
                              .TTSUCKHOE = e.TTSUCKHOE,
+                             .TIEU_SU_BAN_THAN = e.TIEUSU_BANTHAN,
+                             .TIEU_SU_GIA_DINH = e.TIEUSU_GIADINH,
                              .GHI_CHU_SUC_KHOE = e.GHI_CHU_SUC_KHOE}).FirstOrDefault
             empUniform = (From e In Context.HU_UNIFORM_SIZE
                           Where e.EMPLOYEE_ID = sEmployeeID

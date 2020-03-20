@@ -637,8 +637,8 @@
             <Property Name="MODIFIED_BY" Type="nvarchar2" Nullable="false" MaxLength="255" />
             <Property Name="MODIFIED_LOG" Type="nvarchar2" Nullable="false" MaxLength="255" />
             <Property Name="TTSUCKHOE" Type="nclob" Nullable="true" />
-            <Property Name="TIEU_SU_BAN_THAN" Type="nclob" Nullable="true" />
-            <Property Name="TIEU_SU_GIA_DINH" Type="nclob" Nullable="true" />
+            <Property Name="TIEUSU_BANTHAN" Type="nclob" Nullable="true" />
+            <Property Name="TIEUSU_GIADINH" Type="nclob" Nullable="true" />
         </EntityType>
         <EntityType Name="HU_EMPLOYEE_EDUCATION">
             <Key>
@@ -5072,8 +5072,8 @@
           <Property Type="String" Name="MODIFIED_BY" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="MODIFIED_LOG" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="TTSUCKHOE" />
-          <Property Type="String" Name="TIEU_SU_BAN_THAN" />
-          <Property Type="String" Name="TIEU_SU_GIA_DINH" />
+          <Property Type="String" Name="TIEUSU_BANTHAN" />
+          <Property Type="String" Name="TIEUSU_GIADINH" />
         </EntityType>
         <EntityType Name="HU_EMPLOYEE_EDUCATION">
           <Key>
@@ -9079,8 +9079,8 @@
                     <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
                     <ScalarProperty Name="MODIFIED_LOG" ColumnName="MODIFIED_LOG" />
                     <ScalarProperty Name="TTSUCKHOE" ColumnName="TTSUCKHOE" />
-                    <ScalarProperty Name="TIEU_SU_BAN_THAN" ColumnName="TIEU_SU_BAN_THAN" />
-                    <ScalarProperty Name="TIEU_SU_GIA_DINH" ColumnName="TIEU_SU_GIA_DINH" />
+                    <ScalarProperty Name="TIEUSU_BANTHAN" ColumnName="TIEUSU_BANTHAN" />
+                    <ScalarProperty Name="TIEUSU_GIADINH" ColumnName="TIEUSU_GIADINH" />
                 </MappingFragment>
             </EntityTypeMapping>
         </EntitySetMapping>
@@ -12565,7 +12565,7 @@
     </Options>
     <!-- Diagram content (shape and connector positions) -->
     <Diagrams>
-      <Diagram Name="ProfileContext" ZoomLevel="74" ShowGrid="false" DisplayType="true" SnapToGrid="true">
+      <Diagram Name="ProfileContext" ZoomLevel="88" ShowGrid="false" DisplayType="true" SnapToGrid="true">
         <EntityTypeShape EntityType="ProfileModel.HU_PROVINCE" Width="1.5" PointX="3" PointY="9.625" Height="0.39999999999999858" IsExpanded="false" />
         <EntityTypeShape EntityType="ProfileModel.HU_DISTRICT" Width="1.75" PointX="5.25" PointY="9" Height="0.39999999999999858" IsExpanded="false" />
         <EntityTypeShape EntityType="ProfileModel.HU_NATION" Width="1.5" PointX="0.75" PointY="9.625" Height="0.40000000000000213" IsExpanded="false" />

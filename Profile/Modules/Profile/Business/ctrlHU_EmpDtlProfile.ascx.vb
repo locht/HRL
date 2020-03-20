@@ -9,6 +9,7 @@ Imports System.IO
 Imports System.Runtime.Serialization.Formatters.Binary
 Imports System.Xml.Serialization
 Imports WebAppLog
+Imports Ionic.Crc
 
 Public Class ctrlHU_EmpDtlProfile
     Inherits CommonView
@@ -95,6 +96,15 @@ Public Class ctrlHU_EmpDtlProfile
         End Get
         Set(ByVal value As ComboBoxDataDTO)
             ViewState(Me.ID & "_ComboBoxDataDTO") = value
+        End Set
+    End Property
+
+    Property ListAttachFile As List(Of AttachFilesDTO)
+        Get
+            Return ViewState(Me.ID & "_ListAttachFile")
+        End Get
+        Set(ByVal value As List(Of AttachFilesDTO))
+            ViewState(Me.ID & "_ListAttachFile") = value
         End Set
     End Property
 
@@ -240,10 +250,34 @@ Public Class ctrlHU_EmpDtlProfile
                         txtOrg_C4_1.Text = EmployeeInfo.ORG_NAME4
                         txtOrg_C5_1.Text = EmployeeInfo.ORG_NAME5
                         'txtOrg_C2.Text = EmployeeInfo.ORG_NAME2
+
+                        If EmployeeInfo.JOB_POSITION IsNot Nothing Then
+                            cboJobPosition.Text = EmployeeInfo.JOB_POSITION_NAME
+                            cboJobPosition.SelectedValue = EmployeeInfo.JOB_POSITION
+                        End If
+                        If EmployeeInfo.TITLE_ID IsNot Nothing Then
+                            Dim dtData As New DataTable
+                            Using rep2 As New ProfileRepository
+                                dtData = rep2.GetJobDescByTitleID(EmployeeInfo.TITLE_ID, True)
+                                FillRadCombobox(cboJobDescription, dtData, "NAME", "ID", True)
+                            End Using
+                        End If
+                        If EmployeeInfo.JOB_DESCRIPTION IsNot Nothing Then
+                            cboJobDescription.SelectedValue = EmployeeInfo.JOB_DESCRIPTION
+                        End If
+
+                        If EmployeeInfo.PRODUCTION_PROCESS IsNot Nothing Then
+                            cboProductionProcess.SelectedValue = EmployeeInfo.PRODUCTION_PROCESS
+                        End If
+                        ListAttachFile = EmployeeInfo.ListAttachFiles
+                        txtUploadFile.Text = EmployeeInfo.JOB_ATTACH_FILE
+                        txtUpload.Text = EmployeeInfo.JOB_FILENAME
+
                         Dim empCV As EmployeeCVDTO
                         Dim empEdu As EmployeeEduDTO
                         Dim empHealth As EmployeeHealthDTO
                         Dim empUniform As UniformSizeDTO
+
                         rep.GetEmployeeAllByID(EmployeeInfo.ID, empCV, empEdu, empHealth, empUniform)
                         If empCV IsNot Nothing Then
                             If empCV.IS_PAY_BANK IsNot Nothing Then
@@ -523,7 +557,7 @@ Public Class ctrlHU_EmpDtlProfile
                                 cboRelationNLH.Text = empCV.RELATION_PER_CTR_NAME
                             End If
                             ''''''''''''''
-                         
+
                             txtAddressPerContract.Text = empCV.ADDRESS_PER_CTR
 
                             chkDangPhi.Checked = False
@@ -873,6 +907,8 @@ Public Class ctrlHU_EmpDtlProfile
                 If ComboBoxDataDTO IsNot Nothing Then
                     FillDropDownList(cboEMPLOYEE_OBJECT, ComboBoxDataDTO.LIST_EMPLOYEE_OBJECT, "NAME_VN", "ID", Common.Common.SystemLanguage, True, cboEMPLOYEE_OBJECT.SelectedValue)
                 End If
+                dtData = rep.GetOtherList("RC_PRODUCTION_PROCESS", True)
+                FillRadCombobox(cboProductionProcess, dtData, "NAME", "ID", True)
 
             End Using
 
@@ -950,7 +986,7 @@ Public Class ctrlHU_EmpDtlProfile
                     'txtEmpCODE.Text = EmpCode.EMPLOYEE_CODE
                     EnableControlAll(True, txtOrgName2, btnFindOrg,
                                      cboTitle, txtTitleGroup, cboStaffRank, txtDirectManager, btnFindDirect,
-                                     txtmanager, cboObject, cboObjectLabor, cbObjectBook, cboBasic, cboCertificate, txtAppDung, txtPlaceKS, txtVillage, rdDayPitcode, txtPlacePitcode, txtPerson_Inheritance, rdEffect_Bank, txtDriverType, txtNote)
+                                     txtmanager, cboObject, cboObjectLabor, cbObjectBook, cboBasic, cboCertificate, txtAppDung, txtPlaceKS, txtVillage, rdDayPitcode, txtPlacePitcode, txtPerson_Inheritance, rdEffect_Bank, txtDriverType, txtNote, cboJobDescription, cboJobPosition, cboProductionProcess, btnUpload)
 
                     EnableControlAll(False, cboWorkStatus, txtEmpCODE, cboEmpStatus, rtBookNo, cboInsRegion, txtTimeID, txtTitleGroup)
                     EnableControlAll(True, rtCHUC_VU_DANG, rdNGAY_VAO_DANG_DB, rdNGAY_VAO_DANG)
@@ -1005,7 +1041,7 @@ Public Class ctrlHU_EmpDtlProfile
 
 
                         EnableControlAll(False, cboWorkStatus, txtEmpCODE, cboEmpStatus, rtBookNo, cboInsRegion)
-                        EnableControlAll(True, rtCHUC_VU_DANG, rdNGAY_VAO_DANG_DB, rdNGAY_VAO_DANG)
+                        EnableControlAll(True, rtCHUC_VU_DANG, rdNGAY_VAO_DANG_DB, rdNGAY_VAO_DANG, cboJobDescription, cboJobPosition, cboProductionProcess, btnUpload)
                         EnableControlAll(True, ckDOAN_PHI, rtCHUC_VU_DOAN, rdNGAY_VAO_DOAN)
                         EnableControlAll(True, rtCV_BANTT, rdNgay_TG_BanTT)
                         EnableControlAll(True, rtCV_Ban_Nu_Cong, rdNgay_TG_Ban_Nu_Cong)
@@ -1047,7 +1083,7 @@ Public Class ctrlHU_EmpDtlProfile
                         EnableControlAll(False, txtOrgName2,
                                txtTitleGroup, txtDirectManager,
                                 cbObjectBook, txtmanager)
-                        EnableControlAll(True, btnFindOrg, cboTitle, cboObject, cboStaffRank, cboObjectLabor, btnFindDirect)
+                        EnableControlAll(True, btnFindOrg, cboTitle, cboObject, cboStaffRank, cboObjectLabor, btnFindDirect, cboJobDescription, cboJobPosition, cboProductionProcess, btnUpload)
                         EnableControlAll(False, cboWorkStatus, txtEmpCODE, cboEmpStatus, rtBookNo, cboInsRegion, txtTimeID, txtTitleGroup)
                         EnableControlAll(True, rtCHUC_VU_DANG, rdNGAY_VAO_DANG_DB, rdNGAY_VAO_DANG)
                         EnableControlAll(True, ckDOAN_PHI, rtCHUC_VU_DOAN, rdNGAY_VAO_DOAN)
@@ -1133,7 +1169,8 @@ Public Class ctrlHU_EmpDtlProfile
                                       rtDV_Xuat_Ngu_QD, rdNgay_Xuat_Ngu_QD, rdNgay_Nhap_Ngu_QD, ckQD, rtDV_Xuat_Ngu_CA, rdNgay_Xuat_Ngu_CA, rdNgay_Nhap_Ngu_CA,
                                       rdNgay_TG_Ban_Nu_Cong, rtCV_Ban_Nu_Cong, ckNU_CONG, rdNgay_TG_BanTT, rtCV_BANTT, ckCONG_DOAN, ckCA, ckDANG, rtSkill,
                                       cbQLNN, cbLLCT, cbTDTH, cboTDTH2, rtTTSucKhoe,
-                                      cboPROVINCEEMP_BRITH, cboDISTRICTEMP_BRITH, cboWARDEMP_BRITH, ckCHUHO, txtNoHouseHolds, txtCodeHouseHolds, cboObjectIns, txtTitleGroup, cboEMPLOYEE_OBJECT, chkIs_Hazardous, chkIS_HDLD, chkForeigner)
+                                      cboPROVINCEEMP_BRITH, cboDISTRICTEMP_BRITH, cboWARDEMP_BRITH, ckCHUHO, txtNoHouseHolds, txtCodeHouseHolds, cboObjectIns, txtTitleGroup, cboEMPLOYEE_OBJECT, chkIs_Hazardous, chkIS_HDLD, chkForeigner,
+                                       cboJobDescription, cboJobPosition, cboProductionProcess, btnUpload)
                     Else
                         EnableControlAll(True, btnFindOrg, cboTitle, cboObjectLabor, btnFindDirect)
                         EnableControlAll(False, lstbPaper, lstbPaperFiled, cboWorkStatus, cboEmpStatus, txtEmpCODE,
@@ -1168,7 +1205,8 @@ Public Class ctrlHU_EmpDtlProfile
                                       rtDV_Xuat_Ngu_QD, rdNgay_Xuat_Ngu_QD, rdNgay_Nhap_Ngu_QD, ckQD, rtDV_Xuat_Ngu_CA, rdNgay_Xuat_Ngu_CA, rdNgay_Nhap_Ngu_CA,
                                       rdNgay_TG_Ban_Nu_Cong, rtCV_Ban_Nu_Cong, ckNU_CONG, rdNgay_TG_BanTT, rtCV_BANTT, ckCONG_DOAN, ckCA, ckDANG, rtSkill,
                                       cbQLNN, cbLLCT, cbTDTH, cboTDTH2, rtTTSucKhoe,
-                                      cboPROVINCEEMP_BRITH, cboDISTRICTEMP_BRITH, cboWARDEMP_BRITH, ckCHUHO, txtNoHouseHolds, txtCodeHouseHolds, cboObjectIns, txtTitleGroup, cboEMPLOYEE_OBJECT, chkIs_Hazardous, chkIS_HDLD, chkForeigner)
+                                      cboPROVINCEEMP_BRITH, cboDISTRICTEMP_BRITH, cboWARDEMP_BRITH, ckCHUHO, txtNoHouseHolds, txtCodeHouseHolds, cboObjectIns, txtTitleGroup, cboEMPLOYEE_OBJECT, chkIs_Hazardous, chkIS_HDLD, chkForeigner,
+                                      cboJobDescription, cboJobPosition, cboProductionProcess, btnUpload)
                     End If
 
 
@@ -1661,6 +1699,7 @@ Public Class ctrlHU_EmpDtlProfile
                     Case cboTitle.ID
                         dValue = IIf(e.Context("valueCustom") IsNot Nothing, e.Context("valueCustom"), 0)
                         dtData = rep.GetTitleByOrgID(dValue, True)
+                        
                         'Case cboTrainingForm.ID
                         '    dtData = rep.GetOtherList("TRAINING_FORM", True)
                     Case cboWorkStatus.ID
@@ -1921,6 +1960,85 @@ Public Class ctrlHU_EmpDtlProfile
         End Try
     End Sub
 
+    Protected Sub btnUpload_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnUpload.Click
+        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+        Dim startTime As DateTime = DateTime.UtcNow
+        Try
+            ctrlUpload1.AllowedExtensions = "xls,xlsx,txt,ctr,doc,docx,xml,png,jpg,bitmap,jpeg,gif,pdf,rar,zip,ppt,pptx"
+            ctrlUpload1.Show()
+            _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
+        Catch ex As Exception
+            _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
+        End Try
+    End Sub
+
+    Private Sub ctrlUpload1_OkClicked(ByVal sender As Object, ByVal e As System.EventArgs) Handles ctrlUpload1.OkClicked
+        Dim startTime As DateTime = DateTime.UtcNow
+        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+
+        Try
+            txtUpload.Text = ""
+            Dim listExtension = New List(Of String)
+            listExtension.Add(".xls")
+            listExtension.Add(".xlsx")
+            listExtension.Add(".txt")
+            listExtension.Add(".ctr")
+            listExtension.Add(".doc")
+            listExtension.Add(".docx")
+            listExtension.Add(".xml")
+            listExtension.Add(".png")
+            listExtension.Add(".jpg")
+            listExtension.Add(".bitmap")
+            listExtension.Add(".jpeg")
+            listExtension.Add(".gif")
+            listExtension.Add(".pdf")
+            listExtension.Add(".rar")
+            listExtension.Add(".zip")
+            listExtension.Add(".ppt")
+            listExtension.Add(".pptx")
+            Dim fileName As String
+
+            Dim strPath As String = Server.MapPath("~/ReportTemplates/Profile/EmployeeInfo/")
+            If ctrlUpload1.UploadedFiles.Count >= 1 Then
+                Dim finfo As New AttachFilesDTO
+                ListAttachFile = New List(Of AttachFilesDTO)
+                Dim file As UploadedFile = ctrlUpload1.UploadedFiles(ctrlUpload1.UploadedFiles.Count - 1)
+                If listExtension.Any(Function(x) x.ToUpper().Trim() = file.GetExtension.ToUpper().Trim()) Then
+                    System.IO.Directory.CreateDirectory(strPath)
+                    strPath = strPath
+                    fileName = System.IO.Path.Combine(strPath, file.FileName)
+                    file.SaveAs(fileName, True)
+                    txtUpload.Text = file.FileName
+                    finfo.FILE_PATH = strPath + file.FileName
+                    finfo.ATTACHFILE_NAME = file.FileName
+                    finfo.CONTROL_NAME = "ctrlHU_EmpDtlProfile"
+                    finfo.FILE_TYPE = file.GetExtension
+                    ListAttachFile.Add(finfo)
+                Else
+                    ShowMessage(Translate("Vui lòng chọn file đúng định dạng. !!! Hệ thống chỉ nhận file xls,xlsx,txt,ctr,doc,docx,xml,png,jpg,bitmap,jpeg,gif,pdf,rar,zip,ppt,pptx"), NotifyType.Warning)
+                    Exit Sub
+                End If
+            End If
+            _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
+        Catch ex As Exception
+            _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
+        End Try
+    End Sub
+
+    Private Sub btnDownload_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnDownload.Click
+        Dim startTime As DateTime = DateTime.UtcNow
+        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+        Try
+            If txtUpload.Text <> "" Then
+                Dim strPath_Down As String = Server.MapPath("~/ReportTemplates/Profile/EmployeeInfo/" + txtUploadFile.Text)
+                'bCheck = True
+                ZipFiles(strPath_Down, 2)
+            End If
+            _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
+        Catch ex As Exception
+            _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
+        End Try
+    End Sub
     'Private Sub ckDANG_CheckedChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles ckDANG.CheckedChanged
 
     '    Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
@@ -2034,6 +2152,20 @@ Public Class ctrlHU_EmpDtlProfile
     '        'DisplayException(Me.ViewName, Me.ID, ex)
     '    End Try
     'End Sub
+
+    Private Sub cboTitle_SelectedIndexChanged(sender As Object, e As Telerik.Web.UI.RadComboBoxSelectedIndexChangedEventArgs) Handles cboTitle.SelectedIndexChanged
+        Dim dtData As New DataTable
+        Dim rep As New ProfileRepository
+        Try
+            ClearControlValue(cboJobDescription)
+            If cboTitle.SelectedValue <> "" Then
+                dtData = rep.GetJobDescByTitleID(cboTitle.SelectedValue, True)
+                FillRadCombobox(cboJobDescription, dtData, "NAME", "ID")
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
 #End Region
 
 #Region "Custom"
@@ -2063,7 +2195,8 @@ Public Class ctrlHU_EmpDtlProfile
                           cboLanguage, cboLanguage2, cboLearningLevel, txtLoaiSucKhoe, cboMajor, cboNationlity, cboNative, cboNav_Province, cboPer_Province, cboNationa_TT, cboNationlity_NQ,
                           cboReligion, cboStaffRank, cboTitle, cboWorkStatus, cboEmpStatus,
                           cboPer_District, cboPer_Ward, cboNav_District, cboNav_Ward, chkIS_TRANSFER,
-                          hidID, hidOrgID, hidDirectManager, hidLevelManager, chkDoanPhi, cboEMPLOYEE_OBJECT, chkIs_Hazardous, chkDangPhi, chkIS_HDLD, chkATVS, chkIS_TRANSFER)
+                          hidID, hidOrgID, hidDirectManager, hidLevelManager, chkDoanPhi, cboEMPLOYEE_OBJECT, chkIs_Hazardous, chkDangPhi, chkIS_HDLD, chkATVS, chkIS_TRANSFER,
+                          cboJobPosition, cboJobDescription, txtUpload, txtUploadFile, cboProductionProcess)
             'chkDoanPhi.Checked = True
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
@@ -2182,6 +2315,23 @@ Public Class ctrlHU_EmpDtlProfile
             If cboEmpStatus.SelectedValue <> "" Then
                 EmployeeInfo.EMP_STATUS = cboEmpStatus.SelectedValue
             End If
+            If cboJobDescription.SelectedValue <> "" Then
+                EmployeeInfo.JOB_DESCRIPTION = cboJobDescription.SelectedValue
+            End If
+            If cboJobPosition.SelectedValue <> "" Then
+                EmployeeInfo.JOB_POSITION = cboJobPosition.SelectedValue
+            End If
+            If cboProductionProcess.SelectedValue <> "" Then
+                EmployeeInfo.PRODUCTION_PROCESS = cboProductionProcess.SelectedValue
+            End If
+            EmployeeInfo.JOB_ATTACH_FILE = txtUploadFile.Text
+            EmployeeInfo.JOB_FILENAME = txtUpload.Text
+            If ListAttachFile IsNot Nothing Then
+                EmployeeInfo.ListAttachFiles = ListAttachFile
+            End If
+
+
+            ''CV
             EmpCV = New EmployeeCVDTO
             'THEM CHO NAY rdDateOfEntry
             EmpCV.EXPIRE_DATE_IDNO = rdExpireIDNO.SelectedDate
@@ -2646,8 +2796,83 @@ Public Class ctrlHU_EmpDtlProfile
             Throw ex
         End Try
     End Function
+
+    Private Sub ZipFiles(ByVal path As String, ByVal _ID As Decimal)
+        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+        Dim startTime As DateTime = DateTime.UtcNow
+
+        Try
+            Dim crc As New CRC32()
+            'Dim pathZip As String = AppDomain.CurrentDomain.BaseDirectory & "Zip\"
+            'Dim fileNameZip As String = "ThongTinKhenThuong.zip"
+            Dim fileNameZip As String
+
+            fileNameZip = txtUpload.Text.Trim
+            'If Not Directory.Exists(pathZip) Then
+            '    Directory.CreateDirectory(pathZip)
+            'Else
+            '    For Each deleteFile In Directory.GetFiles(pathZip, "*.*", SearchOption.TopDirectoryOnly)
+            '        File.Delete(deleteFile)
+            '    Next
+            'End If
+
+            'Dim s As New ZipOutputStream(File.Create(pathZip & fileNameZip))
+            's.SetLevel(0)
+            '' 0 - store only to 9 - means best compression
+            'For i As Integer = 0 To Directory.GetFiles(path).Length - 1
+            '    ' Must use a relative path here so that files show up in the Windows Zip File Viewer
+            '    ' .. hence the use of Path.GetFileName(...)
+            '    Dim fileName As String = System.IO.Path.GetFileName(Directory.GetFiles(path)(i))
+
+            '    Dim entry As New ZipEntry(fileName)
+            '    entry.DateTime = DateTime.Now
+
+            '    ' Read in the 
+            '    Using fs As FileStream = File.Open(Directory.GetFiles(path)(i), FileMode.Open)
+            '        Dim buffer As Byte() = New Byte(fs.Length - 1) {}
+            '        fs.Read(buffer, 0, buffer.Length)
+            '        entry.Size = fs.Length
+            '        fs.Close()
+            '        crc.Reset()
+            '        crc.Update(buffer)
+            '        entry.Crc = crc.Value
+            '        s.PutNextEntry(entry)
+            '        s.Write(buffer, 0, buffer.Length)
+            '    End Using
+            'Next
+            's.Finish()
+            's.Close()
+
+            'Using FileStream = File.Open(path & fileNameZip, FileMode.Open)
+            '    Dim buffer As Byte() = New Byte(FileStream.Length - 1) {}
+            '    FileStream.Read(buffer, 0, buffer.Length)
+            '    Dim rEx As New System.Text.RegularExpressions.Regex("[^a-zA-Z0-9_\-\.]+")
+            '    Response.Clear()
+            '    Response.AddHeader("Content-Disposition", "attachment; filename=" + rEx.Replace(fileNameZip, "_"))
+            '    Response.AddHeader("Content-Length", FileStream.Length.ToString())
+            '    Response.ContentType = "application/octet-stream"
+            '    Response.BinaryWrite(buffer)
+            '    FileStream.Close()
+            'End Using
+
+            Dim file As System.IO.FileInfo = New System.IO.FileInfo(path & fileNameZip)
+            Response.Clear()
+            Response.AddHeader("Content-Disposition", "attachment; filename=" + file.Name)
+            Response.AddHeader("Content-Length", file.Length.ToString())
+            'Response.ContentType = "application/octet-stream"
+            Response.ContentType = "application/vnd.openxmlformats-officedocument.wordprocessingml.document "
+            Response.WriteFile(file.FullName)
+            Response.End()
+
+            _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
+        Catch ex As Exception
+            HttpContext.Current.Trace.Warn(ex.ToString())
+            _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
+        End Try
+    End Sub
 #End Region
 
 
 
+    
 End Class

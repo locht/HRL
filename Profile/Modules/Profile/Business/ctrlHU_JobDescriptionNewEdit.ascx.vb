@@ -176,7 +176,7 @@ Public Class ctrlHU_JobDescriptionNewEdit
                             cboLanguage2.SelectedValue = JobDes.LANGUAGE_2
                         End If
                         If JobDes.LANGUAGE_RANK_2 IsNot Nothing Then
-                            cboLanguageRank1.SelectedValue = JobDes.LANGUAGE_RANK_1
+                            cboLanguageRank2.SelectedValue = JobDes.LANGUAGE_RANK_2
                         End If
                         If JobDes.LANGUAGE_3 IsNot Nothing Then
                             cboLanguage3.SelectedValue = JobDes.LANGUAGE_3
@@ -358,7 +358,7 @@ Public Class ctrlHU_JobDescriptionNewEdit
             Dim r As New ProfileBusinessRepository
             Select Case CurrentState
                 Case CommonMessage.STATE_NEW
-                    EnableControlAll(True, txtOrgName2, btnFindOrg,
+                    EnableControlAll(True, btnFindOrg,
                                      cboTitle)
 
                 Case CommonMessage.STATE_EDIT
@@ -554,7 +554,7 @@ Public Class ctrlHU_JobDescriptionNewEdit
 
     Private Sub ctrlOrgPopup_OrganizationSelected(ByVal sender As Object, ByVal e As Common.OrganizationSelectedEventArgs) Handles ctrlFindOrgPopup.OrganizationSelected
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
-        Dim rep As New ProfileBusinessRepository
+        Dim rep As New ProfileRepository
         Try
             Dim startTime As DateTime = DateTime.UtcNow
             Dim orgItem = ctrlFindOrgPopup.CurrentItemDataObject
@@ -562,9 +562,9 @@ Public Class ctrlHU_JobDescriptionNewEdit
                 hidOrgID.Value = e.CurrentValue
                 txtOrgName2.Text = e.CurrentText
                 Dim dtData As New DataTable
-                dtData = rep.GET_TITLE_ORG(e.CurrentValue)
+                dtData = rep.GetTitleByOrgID(e.CurrentValue, True)
                 cboTitle.ClearValue()
-                FillRadCombobox(cboTitle, dtData, "NAME_VN", "ID", True)
+                FillRadCombobox(cboTitle, dtData, "NAME", "ID", True)
             End If
             cboTitle.ClearValue()
             isLoadPopup = 0
