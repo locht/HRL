@@ -358,8 +358,11 @@ Public Class ctrlHU_ContractNewEdit
                             ShowMessage(Translate("Bạn phải chọn Tờ trình/QĐ"), NotifyType.Warning)
                             Exit Sub
                         End If
-                        If Not rep.CheckNotAllow(hidEmployeeID.Value) Then
-
+                        If cboContractType.Text <> "Hợp đồng không xác định thời hạn" Then
+                            If Not rep.CheckNotAllow(hidEmployeeID.Value) Then
+                                ShowMessage(Translate("Đã có 2 hợp đồng chính thức,xin kiểm tra lại"), NotifyType.Warning)
+                                Exit Sub
+                            End If
                         End If
                         'If cboStatus.SelectedValue = 447 Then
                         '    If txtUpload.Text = "" Then

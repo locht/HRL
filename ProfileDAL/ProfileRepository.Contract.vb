@@ -1361,12 +1361,12 @@ Partial Class ProfileRepository
             Dim check = (From p In Context.HU_CONTRACT
                        From ct In Context.HU_CONTRACT_TYPE.Where(Function(f) f.ID = p.CONTRACT_TYPE_ID).DefaultIfEmpty
                        From ot In Context.OT_OTHER_LIST.Where(Function(f) f.ID = ct.TYPE_ID).DefaultIfEmpty
-                       Where p.EMPLOYEE_ID = empid).ToList.Count
+                       Where p.EMPLOYEE_ID = empid And p.STATUS_ID = 447).ToList.Count
 
             If check >= 2 Then
                 Return False
             End If
-            Return False
+            Return True
         Catch ex As Exception
             Throw
         End Try
