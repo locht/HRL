@@ -31,14 +31,14 @@
                     <tlk:RadTextBox ID="txtName" runat="server">
                     </tlk:RadTextBox>
                     <asp:RequiredFieldValidator ID="reqName" ControlToValidate="txtName" runat="server"
-                        ErrorMessage="<%$ Translate: Bạn phải nhập tên thang bảng lương. %>" ToolTip="<%$ Translate: Bạn phải nhập tên thang bảng lương. %>">
+                        ErrorMessage="<%$ Translate: Bạn phải nhập tên nhóm lương. %>" ToolTip="<%$ Translate: Bạn phải nhập tên nhóm lương. %>">
                     </asp:RequiredFieldValidator>
                 </td>
             </tr>          
             <tr >
                 <td class="lb" id="tdSGlbOrders">
                     <label id="lbOrders">
-                        <%# Translate("Thứ tự")%></label>
+                        <%# Translate("Thứ tự")%><span class="lbReq">*</span></label>
                 </td>
                 <td>
                     <tlk:RadNumericTextBox runat="server" ID="rntxtOrders" MinValue="1" Width="60px"
@@ -47,8 +47,9 @@
                     </tlk:RadNumericTextBox>
                     <asp:RequiredFieldValidator ID="RequiredFieldValidator3" ControlToValidate="rntxtOrders"
                         runat="server" ErrorMessage="<%$ Translate: Bạn phải nhập số thứ tự. %>" ToolTip="<%$ Translate: Bạn phải nhập số thứ tự. %>"></asp:RequiredFieldValidator>
-                </td>       
-                <td class="lb" id="tdcblbIs_SalaryM" runat="server" >
+                </td> 
+                
+                <td class="lb" id="tdcblbIs_SalaryM" runat="server"  >
                     <label id="Label5">
                         <%# Translate("Lương tháng")%></label>
                 </td>
@@ -56,32 +57,17 @@
                     <div style="margin: -4px; margin-top: 1px">
                         <tlk:RadButton ID="cbIS_SALARYM" ToggleType="CheckBox" ButtonType="ToggleButton"
                             Text="" runat="server" AutoPostBack="True"  >
-                        </tlk:RadButton>                                            
-                    </div>
-                </td>
-                <td class="lb" id="tdSGlbIs_Incentive" runat="server" >
-                    <label id="Label3">
-                        <%# Translate("Thưởng")%></label>
-                </td>
-                <td id="tdSGcbIs_Incentive" runat="server" >
-                    <div style="margin: -4px; margin-top: 1px">
+                        </tlk:RadButton> 
+                        <%# Translate("Thưởng")%>
                         <tlk:RadButton ID="cbIS_INCENTIVE" ToggleType="CheckBox" ButtonType="ToggleButton"
-                            Text="" runat="server" AutoPostBack="True">
-                        </tlk:RadButton>                       
-                    </div>
-                </td>
-                <td class="lb" id="tdcblbIs_Finali" runat="server" >
-                    <label id="Label4">
-                        <%# Translate("Quyết toán thuế TNCN")%></label>
-                </td>
-                <td id="tdcbIs_Finali" runat="server" >
-                    <div style="margin: -4px; margin-top: 1px">
-                        <tlk:RadButton ID="cbIS_FINALI" ToggleType="CheckBox" ButtonType="ToggleButton"
                             Text="" runat="server" AutoPostBack="True" >
-                        </tlk:RadButton>                       
+                        </tlk:RadButton>  
+                        <label id="Label4"><%# Translate("Quyết toán thuế TNCN")%></label>
+                         <tlk:RadButton ID="cbIS_FINALI" ToggleType="CheckBox" ButtonType="ToggleButton"
+                            Text="" runat="server" AutoPostBack="True" >
+                        </tlk:RadButton>   
                     </div>
-                </td>
-            </tr>
+                </td>              
               <tr>
                 <td class="lb">
                     <%# Translate("Ghi chú")%>

@@ -282,9 +282,10 @@ Public Class ctrlTR_AssessmentForm
                                 objAssessmentForm.ID = rgMain.SelectedValue
                                 If rep.ModifyAssessmentForm(objAssessmentForm, gID) Then
                                     CurrentState = CommonMessage.STATE_NORMAL
+                                    ClearControlValue(cboRateType, txtName, txtRemark)
                                     IDSelect = objAssessmentForm.ID
                                     Refresh("UpdateView")
-                                    ClearControlValue(cboRateType, txtName, txtRemark)
+                                    UpdateControlState()
                                 Else
                                     ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), Utilities.NotifyType.Error)
                                 End If

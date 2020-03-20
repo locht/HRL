@@ -158,24 +158,6 @@ Partial Public Class ctrlPA_SalaryType
     Protected WithEvents cbIS_SALARYM As Global.Telerik.Web.UI.RadButton
     
     '''<summary>
-    '''tdSGlbIs_Incentive control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents tdSGlbIs_Incentive As Global.System.Web.UI.HtmlControls.HtmlTableCell
-    
-    '''<summary>
-    '''tdSGcbIs_Incentive control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents tdSGcbIs_Incentive As Global.System.Web.UI.HtmlControls.HtmlTableCell
-    
-    '''<summary>
     '''cbIS_INCENTIVE control.
     '''</summary>
     '''<remarks>
@@ -183,24 +165,6 @@ Partial Public Class ctrlPA_SalaryType
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents cbIS_INCENTIVE As Global.Telerik.Web.UI.RadButton
-    
-    '''<summary>
-    '''tdcblbIs_Finali control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents tdcblbIs_Finali As Global.System.Web.UI.HtmlControls.HtmlTableCell
-    
-    '''<summary>
-    '''tdcbIs_Finali control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents tdcbIs_Finali As Global.System.Web.UI.HtmlControls.HtmlTableCell
     
     '''<summary>
     '''cbIS_FINALI control.
