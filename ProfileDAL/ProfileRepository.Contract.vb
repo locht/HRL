@@ -1049,6 +1049,7 @@ Partial Class ProfileRepository
                         From sal_rank In Context.PA_SALARY_RANK.Where(Function(f) w.SAL_RANK_ID = f.ID).DefaultIfEmpty
                         From taxTable In Context.OT_OTHER_LIST.Where(Function(f) f.ID = w.TAX_TABLE_ID).DefaultIfEmpty
                         From sal_type In Context.PA_SALARY_TYPE.Where(Function(f) w.SAL_TYPE_ID = f.ID).DefaultIfEmpty
+                        From form_work In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.FORM_WORK).DefaultIfEmpty
                         From lo In Context.HU_LOCATION.Where(Function(f) f.ID = p.ID_SIGN_CONTRACT).DefaultIfEmpty
                         Where p.ID = _filter.ID
                         Select New ContractDTO With {.ID = p.ID,
@@ -1095,7 +1096,13 @@ Partial Class ProfileRepository
                                                      .AFTERNOON_START = p.AFTERNOON_START,
                                                      .AFTERNOON_STOP = p.AFTERNOON_STOP,
                                                      .ATTACH_FILE = p.ATTACH_FILE,
-                                                     .FILENAME = p.FILENAME
+                                                     .FILENAME = p.FILENAME,
+                                                     .WORK_TO_DO = p.WORK_TO_DO,
+                                                     .NUMBER_AUTHORITY = p.NUMBER_AUTHORITY,
+                                                     .AUTHORITY = If(p.AUTHORITY = -1, True, False),
+                                                     .MONEY_RISK = p.MONEY_RISK,
+                                                     .FORM_WORK = p.FORM_WORK,
+                                                     .FORM_WORK_NAME = form_work.NAME_VN
                                                    }
 
             Dim result = query.FirstOrDefault
@@ -1212,6 +1219,16 @@ Partial Class ProfileRepository
             objContractData.ORG_ID = objContract.ORG_ID
             objContractData.ATTACH_FILE = objContract.ATTACH_FILE
             objContractData.FILENAME = objContract.FILENAME
+            '
+            objContractData.FORM_WORK = objContract.FORM_WORK
+            objContractData.MORNING_START = objContract.MORNING_START
+            objContractData.MORNING_STOP = objContract.MORNING_STOP
+            objContractData.AFTERNOON_START = objContract.AFTERNOON_START
+            objContractData.AFTERNOON_STOP = objContract.AFTERNOON_STOP
+            objContractData.NUMBER_AUTHORITY = objContract.NUMBER_AUTHORITY
+            objContractData.AUTHORITY = objContract.AUTHORITY
+            objContractData.WORK_TO_DO = objContract.WORK_TO_DO
+            objContractData.MONEY_RISK = objContract.MONEY_RISK
             Context.HU_CONTRACT.AddObject(objContractData)
             ' Phê duyệt
             If objContract.STATUS_ID = ProfileCommon.DECISION_STATUS.APPROVE_ID Then
@@ -1338,6 +1355,22 @@ Partial Class ProfileRepository
                                      .IS_WAGE = 0
                                      })
     End Sub
+    'ham kiem tra neu 2 hop dong ct thi k cho insert
+    Public Function CheckNotAllow(ByVal empid As Decimal) As Boolean
+        Try
+            Dim check = (From p In Context.HU_CONTRACT
+                       From ct In Context.HU_CONTRACT_TYPE.Where(Function(f) f.ID = p.CONTRACT_TYPE_ID).DefaultIfEmpty
+                       From ot In Context.OT_OTHER_LIST.Where(Function(f) f.ID = ct.TYPE_ID).DefaultIfEmpty
+                       Where p.EMPLOYEE_ID = empid).ToList.Count
+
+            If check >= 2 Then
+                Return False
+            End If
+            Return False
+        Catch ex As Exception
+            Throw
+        End Try
+    End Function
     Public Function ModifyContract(ByVal objContract As ContractDTO,
                                    ByVal log As UserLog, ByRef gID As Decimal) As Boolean
         Dim objContractData As New HU_CONTRACT With {.ID = objContract.ID}
@@ -1369,6 +1402,16 @@ Partial Class ProfileRepository
             objContractData.ORG_ID = objContract.ORG_ID
             objContractData.ATTACH_FILE = objContract.ATTACH_FILE
             objContractData.FILENAME = objContract.FILENAME
+            '
+            objContractData.FORM_WORK = objContract.FORM_WORK
+            objContractData.MORNING_START = objContract.MORNING_START
+            objContractData.MORNING_STOP = objContract.MORNING_STOP
+            objContractData.AFTERNOON_START = objContract.AFTERNOON_START
+            objContractData.AFTERNOON_STOP = objContract.AFTERNOON_STOP
+            objContractData.NUMBER_AUTHORITY = objContract.NUMBER_AUTHORITY
+            objContractData.AUTHORITY = objContract.AUTHORITY
+            objContractData.WORK_TO_DO = objContract.WORK_TO_DO
+            objContractData.MONEY_RISK = objContract.MONEY_RISK
             ' Phê duyệt
             If objContract.STATUS_ID = ProfileCommon.DECISION_STATUS.APPROVE_ID Then
                 ApproveContract(objContract)

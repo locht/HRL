@@ -248,6 +248,26 @@ Public Class ctrlHU_ContractNewEdit
                         rdStartDate.SelectedDate = Contract.START_DATE
                         rdExpireDate.SelectedDate = Contract.EXPIRE_DATE
                         rdSignDate.SelectedDate = Contract.SIGN_DATE
+
+                        txtNumberAuthority.Text = Contract.NUMBER_AUTHORITY
+                        txtWorkToDo.Text = Contract.WORK_TO_DO
+                        If Contract.AUTHORITY = True Then
+                            chkAuthority.Checked = True
+                        Else
+                            chkAuthority.Checked = False
+                        End If
+                        If IsNumeric(Contract.MONEY_RISK.Value) Then
+                            rnRisk.Value = Contract.MONEY_RISK
+                        End If
+                        rtStart_Morning.SelectedDate = Contract.MORNING_START
+                        rtEnd_Morning.SelectedDate = Contract.MORNING_STOP
+                        rtStart_Afternoon.SelectedDate = Contract.AFTERNOON_START
+                        rtEnd_Afternoon.SelectedDate = Contract.AFTERNOON_STOP
+                        If Contract.FORM_WORK IsNot Nothing Then
+                            cboFormWork.SelectedValue = Contract.FORM_WORK
+                        End If
+
+
                         If Contract.Working IsNot Nothing Then
                             SetValueComboBox(cboSalTYPE, Contract.Working.SAL_TYPE_ID, Contract.Working.SAL_TYPE_NAME)
                             SetValueComboBox(cboTaxTable, Contract.Working.TAX_TABLE_ID, Contract.Working.TAX_TABLE_Name)
@@ -338,12 +358,15 @@ Public Class ctrlHU_ContractNewEdit
                             ShowMessage(Translate("Bạn phải chọn Tờ trình/QĐ"), NotifyType.Warning)
                             Exit Sub
                         End If
-                        If cboStatus.SelectedValue = 447 Then
-                            If txtUpload.Text = "" Then
-                                ShowMessage(Translate("Bạn phải đính kèm tập tin khi phê duyệt"), NotifyType.Warning)
-                                Exit Sub
-                            End If
+                        If Not rep.CheckNotAllow(hidEmployeeID.Value) Then
+
                         End If
+                        'If cboStatus.SelectedValue = 447 Then
+                        '    If txtUpload.Text = "" Then
+                        '        ShowMessage(Translate("Bạn phải đính kèm tập tin khi phê duyệt"), NotifyType.Warning)
+                        '        Exit Sub
+                        '    End If
+                        'End If
                         If cboSignContract.SelectedValue <> "" Then
                             objContract.ID_SIGN_CONTRACT = cboSignContract.SelectedValue
                         End If
@@ -384,6 +407,28 @@ Public Class ctrlHU_ContractNewEdit
                         If ListAttachFile IsNot Nothing Then
                             objContract.ListAttachFiles = ListAttachFile
                         End If
+                        'hinh thuc lam viec
+                        If cboFormWork.SelectedValue <> "" Then
+                            objContract.FORM_WORK = cboFormWork.SelectedValue
+                        End If
+                        'bat buoc k can check valid
+                        objContract.MORNING_START = rdStartDate.SelectedDate.Value.AddHours(Double.Parse(rtStart_Morning.SelectedTime.Value.TotalHours))
+                        objContract.MORNING_STOP = rdStartDate.SelectedDate.Value.AddHours(Double.Parse(rtEnd_Morning.SelectedTime.Value.TotalHours))
+                        objContract.AFTERNOON_START = rdStartDate.SelectedDate.Value.AddHours(Double.Parse(rtStart_Morning.SelectedTime.Value.TotalHours))
+                        objContract.AFTERNOON_STOP = rdStartDate.SelectedDate.Value.AddHours(Double.Parse(rtEnd_Afternoon.SelectedTime.Value.TotalHours))
+                        'tien rui ro
+                        If IsNumeric(rnRisk.Value) Then
+                            objContract.MONEY_RISK = rnRisk.Value
+                        End If
+                        'uy quyen
+                        If chkAuthority.Checked Then
+                            objContract.AUTHORITY = chkAuthority.Checked
+                        End If
+                        'so uy quyen
+                        objContract.NUMBER_AUTHORITY = txtNumberAuthority.Text
+                        'cv phai lam
+                        objContract.WORK_TO_DO = txtWorkToDo.Text
+
                         Select Case CurrentState
                             Case CommonMessage.STATE_NEW
                                 If rep.InsertContract(objContract, gID) Then

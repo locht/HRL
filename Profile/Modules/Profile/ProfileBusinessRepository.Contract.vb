@@ -377,6 +377,16 @@ Partial Public Class ProfileBusinessRepository
             End Try
         End Using
     End Function
+    Public Function CheckNotAllow(ByVal empid As Decimal) As Boolean
+        Using rep As New ProfileBusinessClient
+            Try
+                Return rep.CheckNotAllow(empid)
+            Catch ex As Exception
+                Throw ex
+            End Try
+        End Using
+    End Function
+
     Public Function GetContract(ByVal _filter As ContractDTO, ByVal PageIndex As Integer,
                                 ByVal PageSize As Integer,
                                 ByRef Total As Integer, ByVal _param As ParamDTO,
