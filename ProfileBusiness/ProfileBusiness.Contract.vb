@@ -354,6 +354,15 @@ Namespace ProfileBusiness.ServiceImplementations
                 End Try
             End Using
         End Function
+        Public Function CheckNotAllow(ByVal empid As Decimal) As Boolean Implements ServiceContracts.IProfileBusiness.CheckNotAllow
+            Using rep As New ProfileRepository
+                Try
+                    Return rep.CheckNotAllow(empid)
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
         Public Function CheckHasFileFileContract(ByVal id As List(Of Decimal)) As Decimal Implements ServiceContracts.IProfileBusiness.CheckHasFileFileContract
             Try
                 Using rep As New ProfileRepository

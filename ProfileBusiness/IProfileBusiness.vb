@@ -1644,6 +1644,8 @@ Namespace ProfileBusiness.ServiceContracts
         <OperationContract()>
         Function InsertContract(ByVal objContract As ContractDTO, ByVal log As UserLog, ByRef gID As Decimal) As Boolean
         <OperationContract()>
+        Function CheckNotAllow(ByVal empid As Decimal) As Boolean
+        <OperationContract()>
         Function CheckHasFileContract(ByVal id As List(Of Decimal)) As Decimal
         <OperationContract()>
         Function CheckHasFileFileContract(ByVal id As List(Of Decimal)) As Decimal
