@@ -18,7 +18,7 @@ Imports System.Runtime.Serialization
 Imports System.Xml.Serialization
 
 
-<Assembly: EdmSchemaAttribute("1a00dd28-c780-4e54-8f94-61903fb571a4")>
+<Assembly: EdmSchemaAttribute("c48afa2f-3b98-4b8c-9964-d4bafb9a8571")>
 #Region "EDM Relationship Metadata"
 <Assembly: EdmRelationshipAttribute("ProfileModel", "FK_HU_NAT_HU_PRO", "HU_NATION", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_NATION), "HU_PROVINCE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_PROVINCE), True)>
 <Assembly: EdmRelationshipAttribute("ProfileModel", "FK_HU_PRO_HU_DIS", "HU_PROVINCE", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_PROVINCE), "HU_DISTRICT", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_DISTRICT), True)>
@@ -23955,6 +23955,131 @@ Public Partial Class HU_EMPLOYEE
     End Sub
 
     Private Partial Sub OnIS_HDLDChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property JOB_POSITION() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _JOB_POSITION
+        End Get
+        Set
+            OnJOB_POSITIONChanging(value)
+            ReportPropertyChanging("JOB_POSITION")
+            _JOB_POSITION = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("JOB_POSITION")
+            OnJOB_POSITIONChanged()
+        End Set
+    End Property
+
+    Private _JOB_POSITION As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnJOB_POSITIONChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnJOB_POSITIONChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property JOB_DESCRIPTION() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _JOB_DESCRIPTION
+        End Get
+        Set
+            OnJOB_DESCRIPTIONChanging(value)
+            ReportPropertyChanging("JOB_DESCRIPTION")
+            _JOB_DESCRIPTION = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("JOB_DESCRIPTION")
+            OnJOB_DESCRIPTIONChanged()
+        End Set
+    End Property
+
+    Private _JOB_DESCRIPTION As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnJOB_DESCRIPTIONChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnJOB_DESCRIPTIONChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property PRODUCTION_PROCESS() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _PRODUCTION_PROCESS
+        End Get
+        Set
+            OnPRODUCTION_PROCESSChanging(value)
+            ReportPropertyChanging("PRODUCTION_PROCESS")
+            _PRODUCTION_PROCESS = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("PRODUCTION_PROCESS")
+            OnPRODUCTION_PROCESSChanged()
+        End Set
+    End Property
+
+    Private _PRODUCTION_PROCESS As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnPRODUCTION_PROCESSChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnPRODUCTION_PROCESSChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property JOB_ATTACH_FILE() As Global.System.String
+        Get
+            Return _JOB_ATTACH_FILE
+        End Get
+        Set
+            OnJOB_ATTACH_FILEChanging(value)
+            ReportPropertyChanging("JOB_ATTACH_FILE")
+            _JOB_ATTACH_FILE = StructuralObject.SetValidValue(value, true)
+            ReportPropertyChanged("JOB_ATTACH_FILE")
+            OnJOB_ATTACH_FILEChanged()
+        End Set
+    End Property
+
+    Private _JOB_ATTACH_FILE As Global.System.String
+    Private Partial Sub OnJOB_ATTACH_FILEChanging(value As Global.System.String)
+    End Sub
+
+    Private Partial Sub OnJOB_ATTACH_FILEChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property JOB_FILENAME() As Global.System.String
+        Get
+            Return _JOB_FILENAME
+        End Get
+        Set
+            OnJOB_FILENAMEChanging(value)
+            ReportPropertyChanging("JOB_FILENAME")
+            _JOB_FILENAME = StructuralObject.SetValidValue(value, true)
+            ReportPropertyChanged("JOB_FILENAME")
+            OnJOB_FILENAMEChanged()
+        End Set
+    End Property
+
+    Private _JOB_FILENAME As Global.System.String
+    Private Partial Sub OnJOB_FILENAMEChanging(value As Global.System.String)
+    End Sub
+
+    Private Partial Sub OnJOB_FILENAMEChanged()
     End Sub
 
     #End Region
