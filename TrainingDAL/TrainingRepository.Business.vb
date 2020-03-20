@@ -1938,6 +1938,23 @@ Partial Class TrainingRepository
         End Try
     End Function
 
+    Public Function ValidateClassProgram(ByVal lstId As List(Of Decimal)) As Boolean
+        Try
+            Dim num As Integer
+            Dim query = From p In Context.TR_PROGRAM
+                        Join c In Context.TR_CLASS On p.ID Equals c.TR_PROGRAM_ID
+                        Where lstId.Contains(p.ID)
+            num = query.Count
+
+            If num > 0 Then
+                Return True
+            End If
+            Return False
+        Catch ex As Exception
+
+        End Try
+    End Function
+
 #End Region
 
 #Region "Prepare"

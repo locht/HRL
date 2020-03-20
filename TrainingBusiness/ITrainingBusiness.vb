@@ -451,6 +451,9 @@ Namespace TrainingBusiness.ServiceContracts
         <OperationContract()>
         Function DeletePrograms(ByVal lstId As List(Of Decimal)) As Boolean
 
+        <OperationContract()>
+        Function ValidateClassProgram(ByVal lstId As List(Of Decimal)) As Boolean
+
 #End Region
 
 #Region "Prepare"

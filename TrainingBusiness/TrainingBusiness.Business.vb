@@ -275,6 +275,14 @@ Namespace TrainingBusiness.ServiceImplementations
             End Try
         End Function
 
+        Function ValidateClassProgram(ByVal lstId As List(Of Decimal)) As Boolean Implements ServiceContracts.ITrainingBusiness.ValidateClassProgram
+            Try
+                Dim rep As New TrainingRepository
+                Return rep.ValidateClassProgram(lstId)
+            Catch ex As Exception
+                Throw ex
+            End Try
+        End Function
 #End Region
 
 #Region "Prepare"

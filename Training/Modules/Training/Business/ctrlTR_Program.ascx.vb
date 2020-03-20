@@ -93,6 +93,10 @@ Public Class ctrlTR_Program
                         Dim item As GridDataItem = rgData.SelectedItems(idx)
                         lstDeletes.Add(item.GetDataKeyValue("ID"))
                     Next
+                    If rep.ValidateClassProgram(lstDeletes) Then
+                        ShowMessage("Không được xóa Chương trình đào tạo đã tạo thông tin lớp học", NotifyType.Warning)
+                        Exit Sub
+                    End If
                     CurrentState = CommonMessage.STATE_NORMAL
                     If rep.DeletePrograms(lstDeletes) Then
                         Refresh("UpdateView")
@@ -132,6 +136,15 @@ Public Class ctrlTR_Program
                     UpdateControlState()
 
                 Case CommonMessage.TOOLBARITEM_DELETE
+                    If rgData.SelectedItems.Count = 0 Then
+                        ShowMessage(Translate(CommonMessage.MESSAGE_NOT_SELECT_ROW), NotifyType.Warning)
+                        Exit Sub
+                    End If
+                    If rgData.SelectedItems.Count > 1 Then
+                        ShowMessage(Translate(CommonMessage.MESSAGE_NOT_SELECT_MULTI_ROW), NotifyType.Warning)
+                        Exit Sub
+                    End If
+
                     ctrlMessageBox.MessageText = Translate(CommonMessage.MESSAGE_CONFIRM_DELETE)
                     ctrlMessageBox.ActionName = CommonMessage.TOOLBARITEM_DELETE
                     ctrlMessageBox.DataBind()

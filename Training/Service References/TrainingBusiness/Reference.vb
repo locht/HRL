@@ -14778,6 +14778,9 @@ Namespace TrainingBusiness
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ITrainingBusiness/DeletePrograms", ReplyAction:="http://tempuri.org/ITrainingBusiness/DeleteProgramsResponse")>  _
         Function DeletePrograms(ByVal lstId As System.Collections.Generic.List(Of Decimal)) As Boolean
         
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ITrainingBusiness/ValidateClassProgram", ReplyAction:="http://tempuri.org/ITrainingBusiness/ValidateClassProgramResponse")>  _
+        Function ValidateClassProgram(ByVal lstId As System.Collections.Generic.List(Of Decimal)) As Boolean
+        
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ITrainingBusiness/GetPrepare", ReplyAction:="http://tempuri.org/ITrainingBusiness/GetPrepareResponse")>  _
         Function GetPrepare(ByVal _filter As TrainingBusiness.ProgramPrepareDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal Sorts As String) As System.Collections.Generic.List(Of TrainingBusiness.ProgramPrepareDTO)
         
@@ -15309,6 +15312,10 @@ Namespace TrainingBusiness
         
         Public Function DeletePrograms(ByVal lstId As System.Collections.Generic.List(Of Decimal)) As Boolean Implements TrainingBusiness.ITrainingBusiness.DeletePrograms
             Return MyBase.Channel.DeletePrograms(lstId)
+        End Function
+        
+        Public Function ValidateClassProgram(ByVal lstId As System.Collections.Generic.List(Of Decimal)) As Boolean Implements TrainingBusiness.ITrainingBusiness.ValidateClassProgram
+            Return MyBase.Channel.ValidateClassProgram(lstId)
         End Function
         
         Public Function GetPrepare(ByVal _filter As TrainingBusiness.ProgramPrepareDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal Sorts As String) As System.Collections.Generic.List(Of TrainingBusiness.ProgramPrepareDTO) Implements TrainingBusiness.ITrainingBusiness.GetPrepare

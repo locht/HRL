@@ -61,6 +61,7 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\ref\Aspose.Words.dll</HintPath>
     </Reference>
+    <Reference Include="Common, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -118,7 +119,13 @@
     <None Include="Service References\TrainingBusiness\Arrays.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Service References\TrainingBusiness\Arrays2.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Service References\TrainingBusiness\Framework.Data.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\TrainingBusiness\Framework.Data2.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Service References\TrainingBusiness\service.wsdl" />
@@ -128,10 +135,23 @@
     <None Include="Service References\TrainingBusiness\service1.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Service References\TrainingBusiness\service2.wsdl" />
     <None Include="Service References\TrainingBusiness\service2.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Service References\TrainingBusiness\service5.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\TrainingBusiness\service6.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\TrainingBusiness\service7.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Service References\TrainingBusiness\System.Data.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\TrainingBusiness\System.Data2.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Service References\TrainingBusiness\Training.TrainingBusiness.AssessmentFormDTO.datasource">
@@ -310,6 +330,9 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\TrainingBusiness\TrainingDAL.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\TrainingBusiness\TrainingDAL2.xsd">
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>
