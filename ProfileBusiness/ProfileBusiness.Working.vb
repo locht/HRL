@@ -417,13 +417,53 @@ Namespace ProfileBusiness.ServiceImplementations
                                         ByRef Total As Integer,
                                         Optional ByVal Sorts As String = "CREATED_DATE desc",
                                         Optional ByVal log As UserLog = Nothing) As List(Of JobDescriptionDTO) Implements ServiceContracts.IProfileBusiness.GetJobDescription
-            Try
-                Using rep As New ProfileRepository
+            Using rep As New ProfileRepository
+                Try
                     Return rep.GetJobDescription(_filter, _param, PageIndex, PageSize, Total, Sorts, log)
-                End Using
             Catch ex As Exception
                 Throw ex
-            End Try
+                End Try
+            End Using
+        End Function
+
+        Public Function InserJobDescription(ByVal objJobDes As JobDescriptionDTO, ByVal log As UserLog) As Boolean Implements ServiceContracts.IProfileBusiness.InserJobDescription
+            Using rep As New ProfileRepository
+                Try
+                    Return rep.InserJobDescription(objJobDes, log)
+            Catch ex As Exception
+                Throw ex
+                End Try
+            End Using
+        End Function
+
+        Public Function ModifyJobDescription(ByVal objJobDes As JobDescriptionDTO, ByVal log As UserLog, ByRef gID As Decimal) As Boolean Implements ServiceContracts.IProfileBusiness.ModifyJobDescription
+            Using rep As New ProfileRepository
+                Try
+                    Return rep.ModifyJobDescription(objJobDes, log, gID)
+            Catch ex As Exception
+                Throw ex
+                End Try
+            End Using
+        End Function
+
+        Public Function DeleteJobDescretion(ByVal objJobDes As JobDescriptionDTO) As Boolean Implements ServiceContracts.IProfileBusiness.DeleteJobDescretion
+            Using rep As New ProfileRepository
+                Try
+                    Return rep.DeleteJobDescretion(objJobDes)
+            Catch ex As Exception
+                Throw ex
+                End Try
+            End Using
+        End Function
+
+        Public Function GetJobDesByID(ByVal ID As Decimal) As JobDescriptionDTO Implements ServiceContracts.IProfileBusiness.GetJobDesByID
+            Using rep As New ProfileRepository
+                Try
+                    Return rep.GetJobDesByID(ID)
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
         End Function
 #End Region
     End Class

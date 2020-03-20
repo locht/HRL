@@ -210,31 +210,11 @@ Public Class ctrlHU_JobDescription
                         Exit Sub
                     End If
                     CurrentState = CommonMessage.STATE_EDIT
-                Case CommonMessage.TOOLBARITEM_EXPORT
-                    Dim dtData As DataTable
-                    Using xls As New ExcelCommon
-                        dtData = CreateDataFilter(True)
-                        If dtData.Rows.Count > 0 Then
-                            rgJobDes.ExportExcel(Server, Response, dtData, "Wage")
-                        Else
-                            ShowMessage(Translate(CommonMessage.MESSAGE_WARNING_EXPORT_EMPTY), NotifyType.Warning)
-                        End If
-                    End Using
                 Case CommonMessage.TOOLBARITEM_DELETE
                     If rgJobDes.SelectedItems.Count = 0 Then
                         ShowMessage(Translate(CommonMessage.MESSAGE_NOT_SELECT_ROW), NotifyType.Warning)
                         Exit Sub
                     End If
-                    For Each item As GridDataItem In rgJobDes.SelectedItems
-                        If item.GetDataKeyValue("STATUS_ID") = ProfileCommon.DECISION_STATUS.APPROVE_ID Then
-                            ShowMessage(Translate("Bản ghi đã phê duyệt. Thao tác thực hiện không thành công"), NotifyType.Warning)
-                            Exit Sub
-                        End If
-                        If item.GetDataKeyValue("STATUS_ID") = ProfileCommon.DECISION_STATUS.NOT_APPROVE_ID Then
-                            ShowMessage(Translate("Bản ghi không phê duyệt. Thao tác thực hiện không thành công"), NotifyType.Warning)
-                            Exit Sub
-                        End If
-                    Next
                     ctrlMessageBox.MessageText = Translate(CommonMessage.MESSAGE_CONFIRM_DELETE)
                     ctrlMessageBox.ActionName = CommonMessage.TOOLBARITEM_DELETE
                     ctrlMessageBox.DataBind()
@@ -248,21 +228,6 @@ Public Class ctrlHU_JobDescription
             _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
         End Try
     End Sub
-    Private Function ValidateApprove(ByRef workingIds As List(Of Decimal)) As List(Of String)
-        Dim result = New List(Of String)
-        Using repo As New ProfileBusinessRepository
-            Dim param = New ParamDTO With {.ORG_ID = Decimal.Parse(ctrlOrg.CurrentValue),
-                    .IS_DISSOLVE = ctrlOrg.IsDissolve}
-
-            Dim workings = repo.GetWorking(New WorkingDTO With {.Ids = workingIds}, param)
-            For Each workingDto As WorkingDTO In workings
-                If Not workingDto.STATUS_ID.HasValue Or workingDto.STATUS_ID.Value <> ProfileCommon.DECISION_STATUS.WAIT_APPROVE_ID Then
-                    result.Add(String.Format("{0} ", workingDto.ID))
-                End If
-            Next
-        End Using
-        Return result
-    End Function
     ''' <summary>
     ''' Load lai grid khi click node in treeview
     ''' Rebind=> reload lai ham NeedDataSource
@@ -313,10 +278,6 @@ Public Class ctrlHU_JobDescription
                 CurrentState = CommonMessage.STATE_DELETE
                 UpdateControlState()
             End If
-            If e.ActionName = CommonMessage.TOOLBARITEM_APPROVE_BATCH And e.ButtonID = MessageBoxButtonType.ButtonYes Then
-                CurrentState = CommonMessage.TOOLBARITEM_APPROVE_BATCH
-                UpdateControlState()
-            End If
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
             DisplayException(Me.ViewName, Me.ID, ex)
@@ -348,11 +309,9 @@ Public Class ctrlHU_JobDescription
             rgJobDes.Enabled = True
             ctrlOrg.Enabled = True
             Select Case CurrentState
-                Case CommonMessage.STATE_NEW
-                Case CommonMessage.STATE_EDIT
                 Case CommonMessage.STATE_DELETE
                     Using rep As New ProfileBusinessRepository
-                        If rep.DeleteWorking(New WorkingDTO With {.ID = rgJobDes.SelectedValue}) Then
+                        If rep.DeleteJobDescretion(New JobDescriptionDTO With {.ID = rgJobDes.SelectedValue}) Then
                             ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), NotifyType.Success)
                             CurrentState = CommonMessage.STATE_NORMAL
                             rgJobDes.CurrentPageIndex = 0

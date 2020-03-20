@@ -2762,7 +2762,7 @@ Partial Class ProfileRepository
     End Function
 
     Public Function InserJobDescription(ByVal objJobDes As JobDescriptionDTO, ByVal log As UserLog) As Boolean
-        Dim objJobDesData As New JobDescriptionDTO
+        Dim objJobDesData As New HU_JOB_DESCRIPTION
         Try
             objJobDesData.ID = Utilities.GetNextSequence(Context, Context.HU_JOB_DESCRIPTION.EntitySet.Name)
             objJobDesData.CODE = objJobDes.CODE
@@ -2772,7 +2772,7 @@ Partial Class ProfileRepository
             objJobDesData.TIME_WORKING = objJobDes.TIME_WORKING
             objJobDesData.JOB_DESCRIPTION = objJobDes.JOB_DESCRIPTION
             objJobDesData.WORK_CONDITION = objJobDes.WORK_CONDITION
-            objJobDesData.JOB_PARTICULARTIES = objJobDesData.JOB_PARTICULARTIES
+            objJobDesData.JOB_PARTICULARTIES = objJobDes.JOB_PARTICULARTIES
             objJobDesData.WORK_ENVIRONMENT = objJobDes.WORK_ENVIRONMENT
             objJobDesData.JOB_RESPONSIBILITY = objJobDes.JOB_RESPONSIBILITY
             objJobDesData.JOB_POWER = objJobDes.JOB_POWER
@@ -2795,6 +2795,20 @@ Partial Class ProfileRepository
             objJobDesData.SOFT_SKILL = objJobDes.SOFT_SKILL
             objJobDesData.CHARACTER = objJobDes.CHARACTER
             objJobDesData.NOTE = objJobDes.NOTE
+            Context.HU_JOB_DESCRIPTION.AddObject(objJobDesData)
+
+            If objJobDes.ListAttachFiles IsNot Nothing Then
+                For Each File As AttachFilesDTO In objJobDes.ListAttachFiles
+                    Dim objFile As New HU_ATTACHFILES
+                    objFile.ID = Utilities.GetNextSequence(Context, Context.HU_ATTACHFILES.EntitySet.Name)
+                    objFile.FK_ID = objJobDesData.ID
+                    objFile.FILE_PATH = File.FILE_PATH
+                    objFile.ATTACHFILE_NAME = File.ATTACHFILE_NAME
+                    objFile.CONTROL_NAME = File.CONTROL_NAME
+                    objFile.FILE_TYPE = File.FILE_TYPE
+                    Context.HU_ATTACHFILES.AddObject(objFile)
+                Next
+            End If
             Context.SaveChanges(log)
             Return True
         Catch ex As Exception
@@ -2812,7 +2826,7 @@ Partial Class ProfileRepository
             objJobDesData.TIME_WORKING = objJobDes.TIME_WORKING
             objJobDesData.JOB_DESCRIPTION = objJobDes.JOB_DESCRIPTION
             objJobDesData.WORK_CONDITION = objJobDes.WORK_CONDITION
-            objJobDesData.JOB_PARTICULARTIES = objJobDesData.JOB_PARTICULARTIES
+            objJobDesData.JOB_PARTICULARTIES = objJobDes.JOB_PARTICULARTIES
             objJobDesData.WORK_ENVIRONMENT = objJobDes.WORK_ENVIRONMENT
             objJobDesData.JOB_RESPONSIBILITY = objJobDes.JOB_RESPONSIBILITY
             objJobDesData.JOB_POWER = objJobDes.JOB_POWER
@@ -2835,6 +2849,23 @@ Partial Class ProfileRepository
             objJobDesData.SOFT_SKILL = objJobDes.SOFT_SKILL
             objJobDesData.CHARACTER = objJobDes.CHARACTER
             objJobDesData.NOTE = objJobDes.NOTE
+
+            'xoa nhung file attach cu
+            Dim lstAtt = (From p In Context.HU_ATTACHFILES Where p.FK_ID = objJobDesData.ID).ToList()
+            For index = 0 To lstAtt.Count - 1
+                Context.HU_ATTACHFILES.DeleteObject(lstAtt(index))
+            Next
+
+            For Each File As AttachFilesDTO In objJobDes.ListAttachFiles
+                Dim objFile As New HU_ATTACHFILES
+                objFile.ID = Utilities.GetNextSequence(Context, Context.HU_ATTACHFILES.EntitySet.Name)
+                objFile.FK_ID = objJobDesData.ID
+                objFile.FILE_PATH = File.FILE_PATH
+                objFile.ATTACHFILE_NAME = File.ATTACHFILE_NAME
+                objFile.CONTROL_NAME = File.CONTROL_NAME
+                objFile.FILE_TYPE = File.FILE_TYPE
+                Context.HU_ATTACHFILES.AddObject(objFile)
+            Next
             Context.SaveChanges(log)
             Return True
         Catch ex As Exception
@@ -2851,6 +2882,68 @@ Partial Class ProfileRepository
             Return True
         Catch ex As Exception
             WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iProfile")
+            Throw ex
+        End Try
+    End Function
+
+    Public Function GetJobDesByID(ByVal ID As Decimal) As JobDescriptionDTO
+        Dim objJobDes As New JobDescriptionDTO
+        Try
+            objJobDes = (From p In Context.HU_JOB_DESCRIPTION
+                        From org In Context.HU_ORGANIZATION.Where(Function(f) f.ID = p.ORG_ID)
+                        From title In Context.HU_TITLE.Where(Function(f) f.ID = p.TITLE_ID)
+                        From sal In Context.PA_SALARY_LEVEL.Where(Function(f) f.ID = title.LEVEL_ID).DefaultIfEmpty
+                        Select New JobDescriptionDTO With {
+                                .ID = p.ID,
+                                .CODE = p.CODE,
+                                .NAME = p.NAME,
+                                .ORG_ID = p.ORG_ID,
+                                .ORG_NAME = org.NAME_VN,
+                                .TITLE_ID = p.TITLE_ID,
+                                .TITLE_NAME = title.NAME_VN,
+                                .TIME_WORKING = p.TIME_WORKING,
+                                .JOB_DESCRIPTION = p.JOB_DESCRIPTION,
+                                .WORK_CONDITION = p.WORK_CONDITION,
+                                .JOB_PARTICULARTIES = p.JOB_PARTICULARTIES,
+                                .WORK_ENVIRONMENT = p.WORK_ENVIRONMENT,
+                                .JOB_RESPONSIBILITY = p.JOB_RESPONSIBILITY,
+                                .JOB_POWER = p.JOB_POWER,
+                                .ATTACH_FILE = p.ATTACH_FILE,
+                                .FILENAME = p.FILENAME,
+                                .LEARNING_LEVEL = p.LEARNING_LEVEL,
+                                .TRAINING_FORM = p.TRAINING_FORM,
+                                .GRADUATE_SCHOOL = p.GRADUATE_SCHOOL,
+                                .MAJOR_RANK = p.MAJOR_RANK,
+                                .TRAINING_FORM_2 = p.TRAINING_FORM_2,
+                                .GRADUATE_SCHOOL_2 = p.GRADUATE_SCHOOL_2,
+                                .MAJOR_RANK_2 = p.MAJOR_RANK_2,
+                                .COMPUTER_RANK = p.COMPUTER_RANK,
+                                .LANGUAGE_1 = p.LANGUAGE_1,
+                                .LANGUAGE_RANK_1 = p.LANGUAGE_RANK_1,
+                                .LANGUAGE_2 = p.LANGUAGE_2,
+                                .LANGUAGE_RANK_2 = p.LANGUAGE_RANK_2,
+                                .LANGUAGE_3 = p.LANGUAGE_RANK_3,
+                                .SOFT_SKILL = p.SOFT_SKILL,
+                                .NOTE = p.NOTE,
+                                .SAL_FROM = sal.SAL_FR,
+                                .SAL_TO = sal.SAL_TO,
+                                .CHARACTER = p.CHARACTER,
+                                .CREATED_BY = p.CREATED_BY,
+                                .CREATED_DATE = p.CREATED_DATE,
+                                .CREATED_LOG = p.CREATED_LOG,
+                                .MODIFIED_BY = p.MODIFIED_BY,
+                                .MODIFIED_DATE = p.MODDIFIED_DATE,
+                                .MODIFIED_LOG = p.MODIFIED_LOG
+                            }).FirstOrDefault
+            objJobDes.ListAttachFiles = (From p In Context.HU_ATTACHFILES.Where(Function(f) f.FK_ID = ID)
+                                      Select New AttachFilesDTO With {.ID = p.ID,
+                                                                      .FK_ID = p.FK_ID,
+                                                                      .FILE_TYPE = p.FILE_TYPE,
+                                                                      .FILE_PATH = p.FILE_PATH,
+                                                                      .CONTROL_NAME = p.CONTROL_NAME,
+                                                                      .ATTACHFILE_NAME = p.ATTACHFILE_NAME}).ToList()
+            Return objJobDes
+        Catch ex As Exception
             Throw ex
         End Try
     End Function

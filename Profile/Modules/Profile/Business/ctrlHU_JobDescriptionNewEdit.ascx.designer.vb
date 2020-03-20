@@ -149,6 +149,15 @@ Partial Public Class ctrlHU_JobDescriptionNewEdit
     Protected WithEvents txtJobCode As Global.Telerik.Web.UI.RadTextBox
 
     '''<summary>
+    '''RequiredFieldValidator4 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents RequiredFieldValidator4 As Global.System.Web.UI.WebControls.RequiredFieldValidator
+
+    '''<summary>
     '''lbJobName control.
     '''</summary>
     '''<remarks>
@@ -165,6 +174,15 @@ Partial Public Class ctrlHU_JobDescriptionNewEdit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtJobName As Global.Telerik.Web.UI.RadTextBox
+
+    '''<summary>
+    '''RequiredFieldValidator3 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents RequiredFieldValidator3 As Global.System.Web.UI.WebControls.RequiredFieldValidator
 
     '''<summary>
     '''lbJobPowew control.
@@ -732,6 +750,15 @@ Partial Public Class ctrlHU_JobDescriptionNewEdit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents phPopupOrg As Global.System.Web.UI.WebControls.PlaceHolder
+
+    '''<summary>
+    '''ctrlUpload1 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents ctrlUpload1 As Global.Common.ctrlUpload
 
     '''<summary>
     '''ScriptBlock control.

@@ -481,13 +481,59 @@ Partial Public Class ProfileBusinessRepository
                                         ByVal PageSize As Integer,
                                         ByRef Total As Integer,
                                         Optional ByVal Sorts As String = "CREATED_DATE desc") As List(Of JobDescriptionDTO)
-        Try
-            Using rep As New ProfileBusinessClient
+        Using rep As New ProfileBusinessClient
+            Try
                 Return rep.GetJobDescription(_filter, _param, PageIndex, PageSize, Total, Sorts, Me.Log)
-            End Using
-        Catch ex As Exception
+            Catch ex As Exception
+                Throw ex
+            End Try
+        End Using
 
-        End Try
+    End Function
+
+    Public Function InserJobDescription(ByVal objJobDes As JobDescriptionDTO) As Boolean
+        Using rep As New ProfileBusinessClient
+            Try
+                Return rep.InserJobDescription(objJobDes, Me.Log)
+            Catch ex As Exception
+                Throw ex
+            End Try
+        End Using
+
+    End Function
+
+    Public Function ModifyJobDescription(ByVal objJobDes As JobDescriptionDTO, ByRef gID As Decimal) As Boolean
+        Using rep As New ProfileBusinessClient
+
+            Try
+                Return rep.ModifyJobDescription(objJobDes, Me.Log, gID)
+            Catch ex As Exception
+                Throw ex
+            End Try
+        End Using
+
+    End Function
+
+    Public Function DeleteJobDescretion(ByVal objJobDes As JobDescriptionDTO) As Boolean
+        Using rep As New ProfileBusinessClient
+
+            Try
+                Return rep.DeleteJobDescretion(objJobDes)
+            Catch ex As Exception
+                Throw ex
+            End Try
+        End Using
+
+    End Function
+
+    Public Function GetJobDesByID(ByVal ID As Decimal) As JobDescriptionDTO
+        Using rep As New ProfileBusinessClient
+            Try
+                Return rep.GetJobDesByID(ID)
+            Catch ex As Exception
+                Throw ex
+            End Try
+        End Using
     End Function
 #End Region
 End Class

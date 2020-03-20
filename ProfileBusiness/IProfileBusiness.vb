@@ -1157,6 +1157,17 @@ Namespace ProfileBusiness.ServiceContracts
                                         ByRef Total As Integer,
                                         Optional ByVal Sorts As String = "CREATED_DATE desc",
                                         Optional ByVal log As UserLog = Nothing) As List(Of JobDescriptionDTO)
+        <OperationContract()>
+        Function InserJobDescription(ByVal objJobDes As JobDescriptionDTO, ByVal log As UserLog) As Boolean
+
+        <OperationContract()>
+        Function ModifyJobDescription(ByVal objJobDes As JobDescriptionDTO, ByVal log As UserLog, ByRef gID As Decimal) As Boolean
+
+        <OperationContract()>
+        Function DeleteJobDescretion(ByVal objJobDes As JobDescriptionDTO) As Boolean
+
+        <OperationContract()>
+        Function GetJobDesByID(ByVal ID As Decimal) As JobDescriptionDTO
 #End Region
 #Region "Bussiness"
 

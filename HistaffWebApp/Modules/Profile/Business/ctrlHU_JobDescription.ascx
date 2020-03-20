@@ -53,8 +53,8 @@
                                 SortExpression="NAME" UniqueName="NAME" />
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Mô tả công việc %>" DataField="JOB_DESCRIPTION"
                                 SortExpression="JOB_DESCRIPTION" UniqueName="JOB_DESCRIPTION" />
-                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Điều kiện làm việc %>" DataField="JOB_CONDITION" SortExpression="JOB_CONDITION"
-                                UniqueName="JOB_CONDITION" />
+                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Điều kiện làm việc %>" DataField="WORK_CONDITION" SortExpression="WORK_CONDITION"
+                                UniqueName="WORK_CONDITION" />
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Đặc thù công việc %>" DataField="JOB_PARTICULARTIES"
                                 SortExpression="JOB_PARTICULARTIES" UniqueName="JOB_PARTICULARTIES" /> 
 
@@ -65,7 +65,7 @@
                                 SortExpression="JOB_RESPONSIBILITY" UniqueName="JOB_RESPONSIBILITY" />
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Quyền hạn được hưởng %>" DataField="JOB_POWER"
                                 SortExpression="JOB_POWER" UniqueName="JOB_POWER" />
-                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Mức lương từ %>" DataField="SAL_FROM"
+                            <tlk:GridNumericColumn HeaderText="<%$ Translate: Mức lương từ %>" DataField="SAL_FROM" DataFormatString="{0:N0}"
                                 SortExpression="SAL_FROM" UniqueName="SAL_FROM" />
                             <tlk:GridNumericColumn HeaderText="<%$ Translate: Mức lương đến %>" DataField="SAL_TO" ItemStyle-HorizontalAlign="Right"
                                 DataFormatString="{0:N0}" SortExpression="SAL_TO" UniqueName="SAL_TO" />

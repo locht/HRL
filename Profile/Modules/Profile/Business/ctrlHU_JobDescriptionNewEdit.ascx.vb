@@ -43,6 +43,14 @@ Public Class ctrlHU_JobDescriptionNewEdit
         End Set
     End Property
 
+    Property ListAttachFile As List(Of AttachFilesDTO)
+        Get
+            Return ViewState(Me.ID & "_ListAttachFile")
+        End Get
+        Set(ByVal value As List(Of AttachFilesDTO))
+            ViewState(Me.ID & "_ListAttachFile") = value
+        End Set
+    End Property
 
     Property vcf As DataSet
         Get
@@ -69,6 +77,16 @@ Public Class ctrlHU_JobDescriptionNewEdit
             ViewState(Me.ID & "_Down_File") = value
         End Set
     End Property
+
+    Property JobDes As JobDescriptionDTO
+        Get
+            Return ViewState(Me.ID & "_JobDes")
+        End Get
+        Set(value As JobDescriptionDTO)
+            ViewState(Me.ID & "_JobDes") = value
+        End Set
+    End Property
+
 #End Region
 
 #Region "Page"
@@ -92,11 +110,84 @@ Public Class ctrlHU_JobDescriptionNewEdit
     Public Overrides Sub Refresh(Optional ByVal Message As String = "")
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
         Dim rep As New ProfileBusinessRepository
+        Dim dtData As New DataTable
         Dim startTime As DateTime = DateTime.UtcNow
         Try
             Select Case Message
                 Case "UpdateView"
                     CurrentState = CommonMessage.STATE_EDIT
+                    JobDes = rep.GetJobDesByID(hidID.Value)
+                    If JobDes IsNot Nothing Then
+                        ListAttachFile = JobDes.ListAttachFiles
+                        txtUpload.Text = String.Join(",", (From p In JobDes.ListAttachFiles.AsEnumerable Select p.ATTACHFILE_NAME).ToArray)
+                        txtJobCode.Text = JobDes.CODE
+                        txtJobName.Text = JobDes.NAME
+                        txtJobPower.Text = JobDes.JOB_POWER
+                        txtOrgName2.Text = JobDes.ORG_NAME
+                        hidOrgID.Value = JobDes.ORG_ID
+                        dtData = rep.GET_TITLE_ORG(JobDes.ORG_ID)
+                        FillRadCombobox(cboTitle, dtData, "NAME_VN", "ID", True)
+                        If JobDes.TITLE_ID IsNot Nothing Then
+                            cboTitle.SelectedValue = JobDes.TITLE_ID
+                        End If
+                        txtUploadFile.Text = JobDes.ATTACH_FILE
+                        txtUpload.Text = JobDes.FILENAME
+                        If JobDes.TIME_WORKING IsNot Nothing Then
+                            cboTimeWorking.SelectedValue = JobDes.TIME_WORKING
+                        End If
+                        txtJobCondition.Text = JobDes.WORK_CONDITION
+                        txtNote.Text = JobDes.NOTE
+                        txtJobDescription.Text = JobDes.JOB_DESCRIPTION
+                        txtJobParticularties.Text = JobDes.JOB_PARTICULARTIES
+                        txtJobEnvironment.Text = JobDes.WORK_ENVIRONMENT
+                        txtJobReponsibility.Text = JobDes.JOB_RESPONSIBILITY
+                        txtCharacter.Text = JobDes.CHARACTER
+                        If JobDes.LEARNING_LEVEL IsNot Nothing Then
+                            cboLearningLV.SelectedValue = JobDes.LEARNING_LEVEL
+                        End If
+                        If JobDes.TRAINING_FORM IsNot Nothing Then
+                            cboTrainingForm.SelectedValue = JobDes.TRAINING_FORM
+                        End If
+                        If JobDes.GRADUATE_SCHOOL IsNot Nothing Then
+                            cboGraduateSchool.SelectedValue = JobDes.GRADUATE_SCHOOL
+                        End If
+                        If JobDes.MAJOR_RANK IsNot Nothing Then
+                            cboMajorRank.SelectedValue = JobDes.MAJOR_RANK
+                        End If
+                        If JobDes.TRAINING_FORM_2 IsNot Nothing Then
+                            cboTrainingForm2.SelectedValue = JobDes.TRAINING_FORM_2
+                        End If
+                        If JobDes.GRADUATE_SCHOOL_2 IsNot Nothing Then
+                            cboGraduateSchool2.SelectedValue = JobDes.GRADUATE_SCHOOL_2
+                        End If
+                        If JobDes.MAJOR_RANK_2 IsNot Nothing Then
+                            cboMajorRank2.SelectedValue = JobDes.MAJOR_RANK_2
+                        End If
+                        If JobDes.COMPUTER_RANK IsNot Nothing Then
+                            cboComputerRank.SelectedValue = JobDes.COMPUTER_RANK
+                        End If
+                        If JobDes.LANGUAGE_1 IsNot Nothing Then
+                            cboLanguage1.SelectedValue = JobDes.LANGUAGE_1
+                        End If
+                        If JobDes.LANGUAGE_RANK_1 IsNot Nothing Then
+                            cboLanguageRank1.SelectedValue = JobDes.LANGUAGE_RANK_1
+                        End If
+                        If JobDes.LANGUAGE_2 IsNot Nothing Then
+                            cboLanguage2.SelectedValue = JobDes.LANGUAGE_2
+                        End If
+                        If JobDes.LANGUAGE_RANK_2 IsNot Nothing Then
+                            cboLanguageRank1.SelectedValue = JobDes.LANGUAGE_RANK_1
+                        End If
+                        If JobDes.LANGUAGE_3 IsNot Nothing Then
+                            cboLanguage3.SelectedValue = JobDes.LANGUAGE_3
+                        End If
+                        If JobDes.LANGUAGE_RANK_3 IsNot Nothing Then
+                            cboLanguageRank3.SelectedValue = JobDes.LANGUAGE_RANK_3
+                        End If
+                        If JobDes.SOFT_SKILL IsNot Nothing Then
+                            cboSoftSkill.SelectedValue = JobDes.SOFT_SKILL
+                        End If
+                    End If
                     'Contract = rep.GetContractByID(New ContractDTO With {.ID = hidID.Value})
 
                 Case "NormalView"
@@ -218,8 +309,8 @@ Public Class ctrlHU_JobDescriptionNewEdit
                 FillDropDownList(cboLearningLV, lstCombobox.LIST_LEARNING_LEVEL, "NAME_VN", "ID")
                 FillDropDownList(cboTrainingForm, lstCombobox.LIST_TRAINING_FORM, "NAME_VN", "ID")
                 FillDropDownList(cboTrainingForm2, lstCombobox.LIST_TRAINING_FORM, "NAME_VN", "ID")
-                FillDropDownList(cboMajorRank, lstCombobox.LIST_TRAINING_FORM, "NAME_VN", "ID")
-                FillDropDownList(cboMajorRank2, lstCombobox.LIST_TRAINING_FORM, "NAME_VN", "ID")
+                FillDropDownList(cboMajorRank, lstCombobox.LIST_MARK_EDU, "NAME_VN", "ID")
+                FillDropDownList(cboMajorRank2, lstCombobox.LIST_MARK_EDU, "NAME_VN", "ID")
                 FillDropDownList(cboGraduateSchool, lstCombobox.LIST_GRADUATE_SCHOOL, "NAME_VN", "ID")
                 FillDropDownList(cboGraduateSchool2, lstCombobox.LIST_GRADUATE_SCHOOL, "NAME_VN", "ID")
                 FillDropDownList(cboComputerRank, lstCombobox.LIST_COMPUTER_LEVEL, "NAME_VN", "ID")
@@ -244,7 +335,7 @@ Public Class ctrlHU_JobDescriptionNewEdit
                          ToolbarItem.Save,
                          ToolbarItem.Cancel)
             CType(Me.Page, AjaxPage).AjaxManager.ClientEvents.OnRequestStart = "onRequestStart"
-
+            CType(MainToolBar.Items(0), RadToolBarButton).CausesValidation = True
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
             _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
@@ -293,8 +384,13 @@ Public Class ctrlHU_JobDescriptionNewEdit
         Try
             Dim startTime As DateTime = DateTime.UtcNow
             Dim rep As New ProfileBusinessRepository
+            Dim gID As Decimal
             Dim objJobDes As New JobDescriptionDTO
-
+            Dim strUrl As String = Request.Url.ToString()
+            Dim isPopup As Boolean = False
+            If (strUrl.ToUpper.Contains("DIALOG")) Then
+                isPopup = True
+            End If
             Select Case CType(e.Item, RadToolBarButton).CommandName
                 Case TOOLBARITEM_CREATE
                     ResetControlValue()
@@ -372,17 +468,45 @@ Public Class ctrlHU_JobDescriptionNewEdit
                                 .SOFT_SKILL = cboSoftSkill.SelectedValue
                             End If
                             .CHARACTER = txtCharacter.Text
-
+                            If ListAttachFile IsNot Nothing Then
+                                .ListAttachFiles = ListAttachFile
+                            End If
                         End With
                         Select Case CurrentState
                             Case STATE_NEW
-
+                                If rep.InserJobDescription(objJobDes) Then
+                                    If (isPopup) Then
+                                        Dim str As String = "getRadWindow().close('1');"
+                                        ScriptManager.RegisterStartupScript(Me.Page, Me.Page.GetType, "clientButtonClicking", str, True)
+                                    Else
+                                        Session("Result") = 1
+                                        Response.Redirect("/Default.aspx?mid=Profile&fid=ctrlHU_JobDescription&group=Business")
+                                    End If
+                                Else
+                                    ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), Utilities.NotifyType.Error)
+                                End If
                             Case STATE_EDIT
+                                objJobDes.ID = Decimal.Parse(hidID.Value)
+                                If rep.ModifyJobDescription(objJobDes, gID) Then
+                                    If (isPopup) Then
+                                        Dim str As String = "getRadWindow().close('1');"
+                                        ScriptManager.RegisterStartupScript(Me.Page, Me.Page.GetType, "clientButtonClicking", str, True)
+                                    Else
+                                        Session("Result") = 1
+                                        Response.Redirect("/Default.aspx?mid=Profile&fid=ctrlHU_JobDescription&group=Business")
+                                    End If
+                                Else
+                                    ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), Utilities.NotifyType.Error)
+                                End If
                         End Select
                     End If
                 Case TOOLBARITEM_CANCEL
-
-                    CurrentState = CommonMessage.STATE_NORMAL
+                    If (isPopup) Then
+                        Dim str As String = "getRadWindow().close('1');"
+                        ScriptManager.RegisterStartupScript(Me.Page, Me.Page.GetType, "clientButtonClicking", str, True)
+                    Else
+                        Response.Redirect("/Default.aspx?mid=Profile&fid=ctrlHU_JobDescription&group=Business")
+                    End If
 
             End Select
             UpdateControlState()
@@ -430,13 +554,17 @@ Public Class ctrlHU_JobDescriptionNewEdit
 
     Private Sub ctrlOrgPopup_OrganizationSelected(ByVal sender As Object, ByVal e As Common.OrganizationSelectedEventArgs) Handles ctrlFindOrgPopup.OrganizationSelected
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+        Dim rep As New ProfileBusinessRepository
         Try
             Dim startTime As DateTime = DateTime.UtcNow
             Dim orgItem = ctrlFindOrgPopup.CurrentItemDataObject
             If orgItem IsNot Nothing Then
                 hidOrgID.Value = e.CurrentValue
                 txtOrgName2.Text = e.CurrentText
-
+                Dim dtData As New DataTable
+                dtData = rep.GET_TITLE_ORG(e.CurrentValue)
+                cboTitle.ClearValue()
+                FillRadCombobox(cboTitle, dtData, "NAME_VN", "ID", True)
             End If
             cboTitle.ClearValue()
             isLoadPopup = 0
@@ -456,6 +584,71 @@ Public Class ctrlHU_JobDescriptionNewEdit
                 Dim strPath_Down As String = Server.MapPath("~/ReportTemplates/Profile/WorkingInfo/" + txtUploadFile.Text)
                 'bCheck = True
                 ZipFiles(strPath_Down, 2)
+            End If
+            _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
+        Catch ex As Exception
+            _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
+        End Try
+    End Sub
+
+    Protected Sub btnUpload_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnUpload.Click
+        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+        Dim startTime As DateTime = DateTime.UtcNow
+        Try
+            ctrlUpload1.AllowedExtensions = "xls,xlsx,txt,ctr,doc,docx,xml,png,jpg,bitmap,jpeg,gif,pdf,rar,zip,ppt,pptx"
+            ctrlUpload1.Show()
+            _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
+        Catch ex As Exception
+            _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
+        End Try
+    End Sub
+
+    Private Sub ctrlUpload1_OkClicked(ByVal sender As Object, ByVal e As System.EventArgs) Handles ctrlUpload1.OkClicked
+        Dim startTime As DateTime = DateTime.UtcNow
+        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+
+        Try
+            txtUpload.Text = ""
+            Dim listExtension = New List(Of String)
+            listExtension.Add(".xls")
+            listExtension.Add(".xlsx")
+            listExtension.Add(".txt")
+            listExtension.Add(".ctr")
+            listExtension.Add(".doc")
+            listExtension.Add(".docx")
+            listExtension.Add(".xml")
+            listExtension.Add(".png")
+            listExtension.Add(".jpg")
+            listExtension.Add(".bitmap")
+            listExtension.Add(".jpeg")
+            listExtension.Add(".gif")
+            listExtension.Add(".pdf")
+            listExtension.Add(".rar")
+            listExtension.Add(".zip")
+            listExtension.Add(".ppt")
+            listExtension.Add(".pptx")
+            Dim fileName As String
+
+            Dim strPath As String = Server.MapPath("~/ReportTemplates/Profile/WorkingInfo/")
+            If ctrlUpload1.UploadedFiles.Count >= 1 Then
+                Dim finfo As New AttachFilesDTO
+                ListAttachFile = New List(Of AttachFilesDTO)
+                Dim file As UploadedFile = ctrlUpload1.UploadedFiles(ctrlUpload1.UploadedFiles.Count - 1)
+                If listExtension.Any(Function(x) x.ToUpper().Trim() = file.GetExtension.ToUpper().Trim()) Then
+                    System.IO.Directory.CreateDirectory(strPath)
+                    strPath = strPath
+                    fileName = System.IO.Path.Combine(strPath, file.FileName)
+                    file.SaveAs(fileName, True)
+                    txtUpload.Text = file.FileName
+                    finfo.FILE_PATH = strPath + file.FileName
+                    finfo.ATTACHFILE_NAME = file.FileName
+                    finfo.CONTROL_NAME = "ctrlHU_JobDescriptionNewEdit"
+                    finfo.FILE_TYPE = file.GetExtension
+                    ListAttachFile.Add(finfo)
+                Else
+                    ShowMessage(Translate("Vui lòng chọn file đúng định dạng. !!! Hệ thống chỉ nhận file xls,xlsx,txt,ctr,doc,docx,xml,png,jpg,bitmap,jpeg,gif,pdf,rar,zip,ppt,pptx"), NotifyType.Warning)
+                    Exit Sub
+                End If
             End If
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
