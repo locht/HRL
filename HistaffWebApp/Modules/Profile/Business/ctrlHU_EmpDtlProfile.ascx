@@ -254,8 +254,8 @@
                                             <span class="lbReq">*</span>
                                         </td>
                                         <td class="control3">
-                                            <tlk:RadComboBox runat="server" ID="cboTitle" SkinID="LoadDemand" AutoPostBack="true" OnClientSelectedIndexChanged="OnClientSelectedIndexChanged"
-                                                OnClientItemsRequesting="OnClientItemsRequesting">
+                                            <tlk:RadComboBox runat="server" ID="cboTitle" SkinID="LoadDemand" AutoPostBack="true"
+                                                OnClientSelectedIndexChanged="OnClientSelectedIndexChanged" OnClientItemsRequesting="OnClientItemsRequesting">
                                             </tlk:RadComboBox>
                                             <asp:CustomValidator ValidationGroup="EmpProfile" ID="cusTitle" runat="server" ErrorMessage="Bạn phải chọn Chức danh"
                                                 ToolTip="Bạn phải chọn Chức danh" ClientValidationFunction="cusTitle">
@@ -307,7 +307,7 @@
                                             <asp:Label runat="server" ID="lbJobDescription" Text="Mô tả chức danh công việc"></asp:Label>
                                         </td>
                                         <td>
-                                            <tlk:RadComboBox runat="server" ID="cboJobDescription"  />
+                                            <tlk:RadComboBox runat="server" ID="cboJobDescription" />
                                         </td>
                                     </tr>
                                     <tr>
@@ -331,8 +331,9 @@
                                         </td>
                                         <td>
                                             <tlk:RadComboBox runat="server" ID="cboProductionProcess" />
-                                            <asp:RequiredFieldValidator ValidationGroup="EmpProfile" ID="RequiredFieldValidator6" ControlToValidate="cboProductionProcess"
-                                                runat="server" ErrorMessage="Bạn phải chọn công đoạn sản xuất" ToolTip="Bạn phải chọn công đoạn sản xuất">
+                                            <asp:RequiredFieldValidator ValidationGroup="EmpProfile" ID="RequiredFieldValidator6"
+                                                ControlToValidate="cboProductionProcess" runat="server" ErrorMessage="Bạn phải chọn công đoạn sản xuất"
+                                                ToolTip="Bạn phải chọn công đoạn sản xuất">
                                             </asp:RequiredFieldValidator>
                                         </td>
                                     </tr>
@@ -1214,18 +1215,6 @@
                             <ContentTemplate>
                                 <table class="table-form" style="width: 99%" onkeydown="return (event.keyCode!=13)">
                                     <tr>
-                                        <td class="control3" align="right">
-                                            <asp:CheckBox ID="ckCHUHO" Text="Là chủ hộ" runat="server" Checked="false" onclick="enableTextbox(this.id)" />
-                                        </td>
-                                        <td>
-                                        </td>
-                                        <td class="lb3">
-                                            <asp:Label runat="server" ID="lbNoHouseHolds" Text="Số hộ khẩu"></asp:Label>
-                                        </td>
-                                        <td class="control3">
-                                            <tlk:RadTextBox runat="server" ID="txtNoHouseHolds">
-                                            </tlk:RadTextBox>
-                                        </td>
                                         <td class="lb3">
                                             <asp:Label runat="server" ID="lbCodeHouseHolds" Text="Mã hộ gia đình"></asp:Label>
                                         </td>
@@ -1249,6 +1238,20 @@
                         <tlk:RadPanelItem Expanded="false" Text="<%$ Translate: Thông tin phụ %>">
                             <ContentTemplate>
                                 <table class="table-form" style="width: 99%" onkeydown="return (event.keyCode!=13)">
+                                    <tr>
+                                        <td class="control3" align="right">
+                                            <asp:CheckBox ID="ckCHUHO" Text="Là chủ hộ" runat="server" Checked="false" onclick="enableTextbox(this.id)" />
+                                        </td>
+                                        <td>
+                                        </td>
+                                        <td class="lb3">
+                                            <asp:Label runat="server" ID="lbNoHouseHolds" Text="Số hộ khẩu"></asp:Label>
+                                        </td>
+                                        <td class="control3">
+                                            <tlk:RadTextBox runat="server" ID="txtNoHouseHolds">
+                                            </tlk:RadTextBox>
+                                        </td>
+                                    </tr>
                                     <tr>
                                         <td class="lb3">
                                             <asp:Label runat="server" ID="lbWorkEmail" Text="Email công ty"></asp:Label>
