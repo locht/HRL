@@ -18,7 +18,7 @@ Imports System.Runtime.Serialization
 Imports System.Xml.Serialization
 
 
-<Assembly: EdmSchemaAttribute("7d18c397-b71d-4eca-8306-cc4997f11079")>
+<Assembly: EdmSchemaAttribute("db60cc56-8502-470e-a2b7-a819034cd50c")>
 #Region "EDM Relationship Metadata"
 <Assembly: EdmRelationshipAttribute("ProfileModel", "FK_HU_NAT_HU_PRO", "HU_NATION", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_NATION), "HU_PROVINCE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_PROVINCE), True)>
 <Assembly: EdmRelationshipAttribute("ProfileModel", "FK_HU_PRO_HU_DIS", "HU_PROVINCE", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_PROVINCE), "HU_DISTRICT", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_DISTRICT), True)>
@@ -21277,6 +21277,56 @@ Public Partial Class HU_DISCIPLINE
     End Sub
 
     Private Partial Sub OnIS_AMOUNT_IN_MONTHChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property DATE_ISSUES() As Nullable(Of Global.System.DateTime)
+        Get
+            Return _DATE_ISSUES
+        End Get
+        Set
+            OnDATE_ISSUESChanging(value)
+            ReportPropertyChanging("DATE_ISSUES")
+            _DATE_ISSUES = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("DATE_ISSUES")
+            OnDATE_ISSUESChanged()
+        End Set
+    End Property
+
+    Private _DATE_ISSUES As Nullable(Of Global.System.DateTime)
+    Private Partial Sub OnDATE_ISSUESChanging(value As Nullable(Of Global.System.DateTime))
+    End Sub
+
+    Private Partial Sub OnDATE_ISSUESChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property MONEY_MATERIAL() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _MONEY_MATERIAL
+        End Get
+        Set
+            OnMONEY_MATERIALChanging(value)
+            ReportPropertyChanging("MONEY_MATERIAL")
+            _MONEY_MATERIAL = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("MONEY_MATERIAL")
+            OnMONEY_MATERIALChanged()
+        End Set
+    End Property
+
+    Private _MONEY_MATERIAL As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnMONEY_MATERIALChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnMONEY_MATERIALChanged()
     End Sub
 
     #End Region

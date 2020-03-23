@@ -256,7 +256,9 @@ Partial Class ProfileRepository
                                                                        .AMOUNT_SAL_MONTH = p.p.AMOUNT_SAL_MONTH,
                                                                        .AMOUNT_IN_MONTH = p.p.AMOUNT_IN_MONTH,
                                                                        .AMOUNT_DEDUCT_AMOUNT = p.p.AMOUNT_DEDUCT_AMOUNT,
-                                                                       .NO_DISCIPLINE = p.p.NO_DISCIPLINE
+                                                                       .NO_DISCIPLINE = p.p.NO_DISCIPLINE,
+                                                                       .DATE_ISSUES = p.p.DATE_ISSUES,
+                                                                       .MONEY_MATERIAL = p.p.MONEY_MATERIAL
                                                                       })
             ''Logger.LogInfo(obj)
             Return obj.SingleOrDefault
@@ -299,6 +301,8 @@ Partial Class ProfileRepository
             objDisciplineData.SIGNER_NAME = objDiscipline.SIGNER_NAME
             objDisciplineData.SIGNER_TITLE = objDiscipline.SIGNER_TITLE
             objDisciplineData.PERFORM_TIME = objDiscipline.PERFORM_TIME
+            objDisciplineData.DATE_ISSUES = objDiscipline.DATE_ISSUES
+            objDisciplineData.MONEY_MATERIAL = objDiscipline.MONEY_MATERIAL
 
             objDisciplineData.DEL_DISCIPLINE_DATE = objDiscipline.DEL_DISCIPLINE_DATE
             objDisciplineData.NOTE_DISCIPLINE = objDiscipline.NOTE_DISCIPLINE
@@ -508,6 +512,8 @@ Partial Class ProfileRepository
             objDisciplineData.SIGNER_NAME = objDiscipline.SIGNER_NAME
             objDisciplineData.SIGNER_TITLE = objDiscipline.SIGNER_TITLE
             objDisciplineData.PERFORM_TIME = objDiscipline.PERFORM_TIME
+            objDisciplineData.DATE_ISSUES = objDiscipline.DATE_ISSUES
+            objDisciplineData.MONEY_MATERIAL = objDiscipline.MONEY_MATERIAL
 
             objDisciplineData.DEL_DISCIPLINE_DATE = objDiscipline.DEL_DISCIPLINE_DATE
             objDisciplineData.NOTE_DISCIPLINE = objDiscipline.NOTE_DISCIPLINE

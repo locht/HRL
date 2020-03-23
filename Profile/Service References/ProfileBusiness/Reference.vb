@@ -15033,6 +15033,9 @@ Namespace ProfileBusiness
         Private CREATED_LOGField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private DATE_ISSUESField As System.Nullable(Of Date)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private DECISION_IDField As System.Nullable(Of Decimal)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -15136,6 +15139,9 @@ Namespace ProfileBusiness
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private MONEYField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private MONEY_MATERIALField As System.Nullable(Of Decimal)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private NAMEField As String
@@ -15337,6 +15343,19 @@ Namespace ProfileBusiness
                 If (Object.ReferenceEquals(Me.CREATED_LOGField, value) <> true) Then
                     Me.CREATED_LOGField = value
                     Me.RaisePropertyChanged("CREATED_LOG")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property DATE_ISSUES() As System.Nullable(Of Date)
+            Get
+                Return Me.DATE_ISSUESField
+            End Get
+            Set
+                If (Me.DATE_ISSUESField.Equals(value) <> true) Then
+                    Me.DATE_ISSUESField = value
+                    Me.RaisePropertyChanged("DATE_ISSUES")
                 End If
             End Set
         End Property
@@ -15792,6 +15811,19 @@ Namespace ProfileBusiness
                 If (Me.MONEYField.Equals(value) <> true) Then
                     Me.MONEYField = value
                     Me.RaisePropertyChanged("MONEY")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property MONEY_MATERIAL() As System.Nullable(Of Decimal)
+            Get
+                Return Me.MONEY_MATERIALField
+            End Get
+            Set
+                If (Me.MONEY_MATERIALField.Equals(value) <> true) Then
+                    Me.MONEY_MATERIALField = value
+                    Me.RaisePropertyChanged("MONEY_MATERIAL")
                 End If
             End Set
         End Property

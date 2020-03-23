@@ -305,15 +305,6 @@ Public Class ctrlHU_DisciplineNewEdit
 
                         chkAmountInMonth.Enabled = True
                         chkAmountInMonth.Checked = Discipline.IS_AMOUNT_IN_MONTH
-
-                        'If chkAmountInMonth.Checked Then
-                        '    rnAmountInMonth.Enabled = False
-                        '    rnAmountDeductedMonth.Enabled = True
-                        'Else
-                        '    rnAmountInMonth.Enabled = True
-                        '    rnAmountDeductedMonth.Enabled = False
-                        'End If
-
                         If chkDeductFromSalary.Checked Then
                             If chkAmountInMonth.Checked Then
                                 rnAmountInMonth.Enabled = True
@@ -361,11 +352,16 @@ Public Class ctrlHU_DisciplineNewEdit
                     'rdIssueDate.SelectedDate = Discipline.ISSUE_DATE
                     rdSignDate.SelectedDate = Discipline.SIGN_DATE
                     txtPerformDiscipline.Text = Discipline.PERFORM_TIME
-                    cboStatus.SelectedValue = Discipline.STATUS_ID.ToString
-                    cboDisciplineLevel.SelectedValue = Discipline.DISCIPLINE_LEVEL.ToString
-                    cboDisciplineObj.SelectedValue = Discipline.DISCIPLINE_OBJ.ToString
-                    cboDisciplineType.SelectedValue = Discipline.DISCIPLINE_TYPE.ToString
-                    cboDisciplineReason.SelectedValue = Discipline.DISCIPLINE_REASON.ToString
+                    cboStatus.SelectedValue = Discipline.STATUS_ID
+                    cboDisciplineLevel.SelectedValue = Discipline.DISCIPLINE_LEVEL
+                    cboDisciplineObj.SelectedValue = Discipline.DISCIPLINE_OBJ
+                    cboDisciplineType.SelectedValue = Discipline.DISCIPLINE_TYPE
+                    cboDisciplineReason.SelectedValue = Discipline.DISCIPLINE_REASON
+                    rdDateNotice.SelectedDate = Discipline.DATE_ISSUES
+                    If IsNumeric(Discipline.MONEY_MATERIAL) Then
+                        rnMaterial.Value = Discipline.MONEY_MATERIAL
+                    End If
+
 
                     rdDelDisciplineDate.SelectedDate = Discipline.DEL_DISCIPLINE_DATE
                     txtNoteDiscipline.Text = Discipline.NOTE_DISCIPLINE
@@ -408,10 +404,7 @@ Public Class ctrlHU_DisciplineNewEdit
 
                         Dim btnEmployee As RadButton = rgEmployee.MasterTableView.GetItems(GridItemType.CommandItem)(0).FindControl("btnEmployee")
                         btnEmployee.Enabled = False
-                        Dim btnQD As RadButton = rgEmployee.MasterTableView.GetItems(GridItemType.CommandItem)(0).FindControl("btnQD")
-                        btnQD.Enabled = True
-                        Dim btnHSL As RadButton = rgEmployee.MasterTableView.GetItems(GridItemType.CommandItem)(0).FindControl("btnHSL")
-                        btnHSL.Enabled = True
+                    
                         Dim btnDeleteEmp As RadButton = rgEmployee.MasterTableView.GetItems(GridItemType.CommandItem)(0).FindControl("btnDeleteEmp")
                         btnDeleteEmp.Enabled = False
 
@@ -446,11 +439,7 @@ Public Class ctrlHU_DisciplineNewEdit
                         Dim btnEmployee As RadButton = rgEmployee.MasterTableView.GetItems(GridItemType.CommandItem)(0).FindControl("btnEmployee")
                         btnEmployee.Enabled = True
 
-                        Dim btnQD As RadButton = rgEmployee.MasterTableView.GetItems(GridItemType.CommandItem)(0).FindControl("btnQD")
-                        btnQD.Enabled = False
-
-                        Dim btnHSL As RadButton = rgEmployee.MasterTableView.GetItems(GridItemType.CommandItem)(0).FindControl("btnHSL")
-                        btnHSL.Enabled = False
+                        
 
                         Dim btnDeleteEmp As RadButton = rgEmployee.MasterTableView.GetItems(GridItemType.CommandItem)(0).FindControl("btnDeleteEmp")
                         btnDeleteEmp.Enabled = True
@@ -500,7 +489,6 @@ Public Class ctrlHU_DisciplineNewEdit
                         If chkPhatTien.Checked = True Then
                             If Not Utilities.ObjToDecima(rntxtMoney.Value) > 0 Then
                                 ShowMessage(Translate("Số tiền phải lớn hơn 0"), NotifyType.Warning)
-
                                 Exit Sub
                             End If
                         End If
@@ -516,10 +504,10 @@ Public Class ctrlHU_DisciplineNewEdit
                             ShowMessage(Translate("Bạn chưa chọn nhân viên"), NotifyType.Warning)
                             Exit Sub
                         End If
-                        If rnAmountDeductedMonth.Value > rnAmountToPaid.Value Then
-                            ShowMessage(Translate("Bạn phải nhập Số tiền trừ mỗi tháng nhỏ hơn Số tiền còn phải nộp"), NotifyType.Warning)
-                            Exit Sub
-                        End If
+                        'If rnAmountDeductedMonth.Value > rnAmountToPaid.Value Then
+                        '    ShowMessage(Translate("Bạn phải nhập Số tiền trừ mỗi tháng nhỏ hơn Số tiền còn phải nộp"), NotifyType.Warning)
+                        '    Exit Sub
+                        'End If
                         Try
                             Dim totalSumIndemMoney As Decimal = 0
                             Dim totalAmountToPaid As Decimal = 0
@@ -533,11 +521,11 @@ Public Class ctrlHU_DisciplineNewEdit
                                 totalAmountToPaid += rnAmountToPaid.Value
                             End If
 
-                            'so sanh chenh lech tien
-                            If (System.Math.Abs(totalSumIndemMoney - totalAmountToPaid) > 50) Then
-                                ShowMessage(Translate("Tổng số tiền bồi thường đang bị chênh lệch"), NotifyType.Warning)
-                                Exit Sub
-                            End If
+                            ''so sanh chenh lech tien
+                            'If (System.Math.Abs(totalSumIndemMoney - totalAmountToPaid) > 50) Then
+                            '    ShowMessage(Translate("Tổng số tiền bồi thường đang bị chênh lệch"), NotifyType.Warning)
+                            '    Exit Sub
+                            'End If
 
                         Catch ex As Exception
                             _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
@@ -591,18 +579,6 @@ Public Class ctrlHU_DisciplineNewEdit
                                 Exit Sub
                             End If
                         End If
-                        'If (rdIssueDate.SelectedDate.HasValue And rdSignDate.SelectedDate.HasValue) Then
-                        '    If (CLng(rdIssueDate.SelectedDate.Value.Subtract(rdSignDate.SelectedDate.Value).TotalSeconds()) < 0) Then
-                        '        ShowMessage(Translate("Ngày ban hành phải sau ngày ký"), NotifyType.Error)
-                        '        Exit Sub
-                        '    End If
-                        'End If
-                        'If (rdSignDate.SelectedDate.HasValue And cboStatus.SelectedValue = ProfileCommon.DISCIPLINE_STATUS.APPROVE_ID) Then
-                        '    If (CLng(rdSignDate.SelectedDate.Value.Subtract(DateTime.Now).TotalSeconds()) > 0) Then
-                        '        ShowMessage(Translate("Chưa ký không được duyệt bản ghi"), NotifyType.Error)
-                        '        Exit Sub
-                        '    End If
-                        'End If
                         If (rdSignDate.SelectedDate.HasValue And rdEffectDate.SelectedDate.HasValue) Then
                             If (CLng(rdSignDate.SelectedDate.Value.Subtract(rdEffectDate.SelectedDate.Value).TotalSeconds()) > 0) Then
                                 ShowMessage(Translate("Ngày có hiệu lực phải sau ngày ký"), NotifyType.Error)
@@ -615,12 +591,6 @@ Public Class ctrlHU_DisciplineNewEdit
                                 Exit Sub
                             End If
                         End If
-                        'If (rdIssueDate.SelectedDate.HasValue And rdExpireDate.SelectedDate.HasValue) Then
-                        '    If (CLng(rdIssueDate.SelectedDate.Value.Subtract(rdExpireDate.SelectedDate.Value).TotalSeconds()) > 0) Then
-                        '        ShowMessage(Translate("Ngày ban hành phải trước ngày hết hiệu lực"), NotifyType.Error)
-                        '        Exit Sub
-                        '    End If
-                        'End If
                         objDiscipline.FILENAME = txtUpload.Text.Trim
                         objDiscipline.UPLOADFILE = If(Down_File Is Nothing, "", Down_File)
                         If objDiscipline.UPLOADFILE = "" Then
@@ -632,6 +602,10 @@ Public Class ctrlHU_DisciplineNewEdit
                         objDiscipline.REMARK = txtRemark.Text.Trim
                         objDiscipline.EFFECT_DATE = rdEffectDate.SelectedDate
                         objDiscipline.EXPIRE_DATE = rdExpireDate.SelectedDate
+                        objDiscipline.DATE_ISSUES = rdDateNotice.SelectedDate
+                        If IsNumeric(rnMaterial.Value) Then
+                            objDiscipline.MONEY_MATERIAL = rnMaterial.Value
+                        End If
                         'objDiscipline.ISSUE_DATE = rdIssueDate.SelectedDate
                         objDiscipline.SIGNER_NAME = txtSignerName.Text.Trim
                         objDiscipline.SIGN_DATE = rdSignDate.SelectedDate
@@ -655,17 +629,13 @@ Public Class ctrlHU_DisciplineNewEdit
                         For Each i As GridDataItem In rgEmployee.Items
                             Dim o As New DisciplineEmpDTO
                             o.HU_EMPLOYEE_ID = i.GetDataKeyValue("HU_EMPLOYEE_ID")
-                            'o.MONEY = CType(i("MONEY").Controls(0), RadNumericTextBox).Value
-                            'o.INDEMNIFY_MONEY = CType(i("INDEMNIFY_MONEY").Controls(0), RadNumericTextBox).Value
-                            'Dim money As String = CType(i("MONEY").Controls(0), TextBox).Text.Trim
-                            'o.MONEY = If(money <> "", Decimal.Parse(money), Nothing)
+                          
+                            Dim money As String = CType(i("MONEY").Controls(0), RadNumericTextBox).Value
+                            o.MONEY = If(money <> "", Decimal.Parse(money), Nothing)
                             Dim iden_money As String = CType(i("INDEMNIFY_MONEY").Controls(0), RadNumericTextBox).Value
                             o.INDEMNIFY_MONEY = If(iden_money <> "", Decimal.Parse(iden_money), Nothing)
-
-
                             Dim is_NoPro As Boolean = CType(i("NO_PROCESS").Controls(0), CheckBox).Checked
                             o.NO_PROCESS = If(is_NoPro = False, 0, 1)
-
                             lstDisciplineEmp.Add(o)
                         Next
                         objDiscipline.DISCIPLINE_EMP = lstDisciplineEmp
@@ -920,18 +890,18 @@ Public Class ctrlHU_DisciplineNewEdit
                     End If
                 Next
 
-                Dim intMoney As Decimal = 0
-                Dim intAmountToPaid As Decimal = 0
-                If (Employee_Discipline.Count > 0) Then
-                    If rnAmountToPaid.Value IsNot Nothing Then
-                        intAmountToPaid += rnAmountToPaid.Value
-                    End If
-                    intMoney = Utilities.ObjToDecima(intAmountToPaid / Employee_Discipline.Count)
-                End If
+                'Dim intMoney As Decimal = 0
+                'Dim intAmountToPaid As Decimal = 0
+                'If (Employee_Discipline.Count > 0) Then
+                '    If rnAmountToPaid.Value IsNot Nothing Then
+                '        intAmountToPaid += rnAmountToPaid.Value
+                '    End If
+                '    intMoney = Utilities.ObjToDecima(intAmountToPaid / Employee_Discipline.Count)
+                'End If
 
-                For index = 0 To Employee_Discipline.Count - 1
-                    Employee_Discipline.Item(index).INDEMNIFY_MONEY = intMoney
-                Next
+                'For index = 0 To Employee_Discipline.Count - 1
+                '    Employee_Discipline.Item(index).INDEMNIFY_MONEY = intMoney
+                'Next
 
                 rgEmployee.Rebind()
                 For Each i As GridItem In rgEmployee.Items
@@ -1068,28 +1038,28 @@ Public Class ctrlHU_DisciplineNewEdit
     ''' <param name="source"></param>
     ''' <param name="args"></param>
     ''' <remarks></remarks>
-    Protected Sub cvalDisciplineLevel_ServerValidate(ByVal source As Object, ByVal args As System.Web.UI.WebControls.ServerValidateEventArgs) Handles cvalDisciplineLevel.ServerValidate
-        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
-        Try
-            Dim startTime As DateTime = DateTime.UtcNow
-            Dim rep As New ProfileRepository
-            Dim validate As New OtherListDTO
-            If CurrentState = CommonMessage.STATE_EDIT Or CurrentState = CommonMessage.STATE_NEW Then
-                validate.ID = cboDisciplineLevel.SelectedValue
-                validate.ACTFLG = "A"
-                args.IsValid = rep.ValidateOtherList(validate)
-            End If
-            If Not args.IsValid Then
-                Dim dtData = rep.GetOtherList(validate.ID)
-                FillRadCombobox(cboDisciplineLevel, dtData, "NAME", "ID")
-            End If
-            rep.Dispose()
-            _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
-        Catch ex As Exception
-            DisplayException(Me.ViewName, Me.ID, ex)
-            _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
-        End Try
-    End Sub
+    'Protected Sub cvalDisciplineLevel_ServerValidate(ByVal source As Object, ByVal args As System.Web.UI.WebControls.ServerValidateEventArgs) Handles cvalDisciplineLevel.ServerValidate
+    '    Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+    '    Try
+    '        Dim startTime As DateTime = DateTime.UtcNow
+    '        Dim rep As New ProfileRepository
+    '        Dim validate As New OtherListDTO
+    '        If CurrentState = CommonMessage.STATE_EDIT Or CurrentState = CommonMessage.STATE_NEW Then
+    '            validate.ID = cboDisciplineLevel.SelectedValue
+    '            validate.ACTFLG = "A"
+    '            args.IsValid = rep.ValidateOtherList(validate)
+    '        End If
+    '        If Not args.IsValid Then
+    '            Dim dtData = rep.GetOtherList(validate.ID)
+    '            FillRadCombobox(cboDisciplineLevel, dtData, "NAME", "ID")
+    '        End If
+    '        rep.Dispose()
+    '        _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
+    '    Catch ex As Exception
+    '        DisplayException(Me.ViewName, Me.ID, ex)
+    '        _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
+    '    End Try
+    'End Sub
     ''' <lastupdate>
     ''' 11/07/2017 13:40
     ''' </lastupdate>
@@ -1197,27 +1167,26 @@ Public Class ctrlHU_DisciplineNewEdit
                     If countEmp = 0 Then
                         Exit Sub
                     End If
-                    Dim totalMoney = 0
+                    ' Dim totalMoney = 0
                     Dim totalIndemnyfiMoney = 0
-                    If rntxtMoney.Value IsNot Nothing Then
+                    'If rntxtMoney.Value IsNot Nothing Then
+                    '    Try
+                    '        totalMoney += rntxtMoney.Value
+                    '    Catch ex As Exception
+                    '        ShowMessage("Tổng tiền vượt giới hạn cho phép", NotifyType.Error)
+                    '        Exit Sub
+                    '    End Try
+
+                    'End If
+                    If rnPaidIMoeny.Value IsNot Nothing Or rnMaterial.Value IsNot Nothing Then
                         Try
-                            totalMoney += rntxtMoney.Value
+                            totalIndemnyfiMoney += If(IsNumeric(rnPaidIMoeny.Value), rnPaidIMoeny.Value, 0) + If(IsNumeric(rnMaterial.Value), rnMaterial.Value, 0)
                         Catch ex As Exception
                             ShowMessage("Tổng tiền vượt giới hạn cho phép", NotifyType.Error)
                             Exit Sub
                         End Try
-
                     End If
-                    If rntxtIndemnifyMoney.Value IsNot Nothing Then
-                        Try
-                            totalIndemnyfiMoney += rntxtIndemnifyMoney.Value
-                        Catch ex As Exception
-                            ShowMessage("Tổng tiền vượt giới hạn cho phép", NotifyType.Error)
-                            Exit Sub
-                        End Try
-
-                    End If
-                    Dim shareEmp = Decimal.Round(totalMoney / countEmp)
+                    'Dim shareEmp = Decimal.Round(totalMoney / countEmp)
                     Dim shareEmpIndemnyfi = Decimal.Round(totalIndemnyfiMoney / countEmp)
 
                     Dim totalSumMoney As Decimal = 0
@@ -1225,9 +1194,9 @@ Public Class ctrlHU_DisciplineNewEdit
 
                     For Each item In Employee_Discipline
                         Try
-                            totalSumMoney += shareEmp
+                            'totalSumMoney += shareEmp
                             totalSumIndemMoney += shareEmpIndemnyfi
-                            item.MONEY = shareEmp
+                            'item.MONEY = shareEmp
                             item.INDEMNIFY_MONEY = shareEmpIndemnyfi
                         Catch ex As Exception
                             ShowMessage("Tổng tiền vượt giới hạn cho phép", NotifyType.Error)
@@ -1235,44 +1204,44 @@ Public Class ctrlHU_DisciplineNewEdit
                         End Try
                     Next
 
-                    If Employee_Discipline.Count > 0 Then
-                        Dim totalMoneyEmp As Decimal = 0
-                        Dim totalMoneyIndemEmp As Decimal = 0
-                        If rntxtMoney.Value IsNot Nothing Then
-                            Try
-                                totalMoneyEmp += rntxtMoney.Value
-                            Catch ex As Exception
-                                ShowMessage("Tổng tiền vượt giới hạn cho phép", NotifyType.Error)
-                                Exit Sub
-                            End Try
+                    'If Employee_Discipline.Count > 0 Then
+                    '    Dim totalMoneyEmp As Decimal = 0
+                    '    Dim totalMoneyIndemEmp As Decimal = 0
+                    '    If rntxtMoney.Value IsNot Nothing Then
+                    '        Try
+                    '            totalMoneyEmp += rntxtMoney.Value
+                    '        Catch ex As Exception
+                    '            ShowMessage("Tổng tiền vượt giới hạn cho phép", NotifyType.Error)
+                    '            Exit Sub
+                    '        End Try
 
-                        End If
-                        If rntxtIndemnifyMoney.Value IsNot Nothing Then
-                            Try
-                                totalMoneyIndemEmp += rntxtIndemnifyMoney.Value
-                            Catch ex As Exception
-                                ShowMessage("Tổng tiền vượt giới hạn cho phép", NotifyType.Error)
-                                Exit Sub
-                            End Try
+                    '    End If
+                    '    If rntxtIndemnifyMoney.Value IsNot Nothing Then
+                    '        Try
+                    '            totalMoneyIndemEmp += rntxtIndemnifyMoney.Value
+                    '        Catch ex As Exception
+                    '            ShowMessage("Tổng tiền vượt giới hạn cho phép", NotifyType.Error)
+                    '            Exit Sub
+                    '        End Try
 
-                        End If
-                        Dim colMoney = CType(rgEmployee.Columns.FindByUniqueName("MONEY"), GridNumericColumn)
-                        Dim colMoneyIndem = CType(rgEmployee.Columns.FindByUniqueName("INDEMNIFY_MONEY"), GridNumericColumn)
-                        colMoney.FooterText = ""
-                        colMoneyIndem.FooterText = ""
-                        If totalSumMoney <> totalMoneyEmp Then
-                            colMoney.Aggregate = GridAggregateFunction.None
-                            rgEmployee.Columns.FindByUniqueName("MONEY").FooterText = "Lệch: " & Format((totalSumMoney - totalMoneyEmp), "n0")
-                        Else
-                            colMoney.Aggregate = GridAggregateFunction.Sum
-                        End If
-                        If totalSumIndemMoney <> totalMoneyIndemEmp Then
-                            colMoneyIndem.Aggregate = GridAggregateFunction.None
-                            colMoneyIndem.FooterText = "Lệch: " & Format((totalSumIndemMoney - totalMoneyIndemEmp), "n0")
-                        Else
-                            colMoneyIndem.Aggregate = GridAggregateFunction.Sum
-                        End If
-                    End If
+                    '    End If
+                    '    'Dim colMoney = CType(rgEmployee.Columns.FindByUniqueName("MONEY"), GridNumericColumn)
+                    '    Dim colMoneyIndem = CType(rgEmployee.Columns.FindByUniqueName("INDEMNIFY_MONEY"), GridNumericColumn)
+                    '    'colMoney.FooterText = ""
+                    '    colMoneyIndem.FooterText = ""
+                    '    If totalSumMoney <> totalMoneyEmp Then
+                    '        ' colMoney.Aggregate = GridAggregateFunction.None
+                    '        rgEmployee.Columns.FindByUniqueName("MONEY").FooterText = "Lệch: " & Format((totalSumMoney - totalMoneyEmp), "n0")
+                    '    Else
+                    '        '  colMoney.Aggregate = GridAggregateFunction.Sum
+                    '    End If
+                    '    If totalSumIndemMoney <> totalMoneyIndemEmp Then
+                    '        colMoneyIndem.Aggregate = GridAggregateFunction.None
+                    '        colMoneyIndem.FooterText = "Lệch: " & Format((totalSumIndemMoney - totalMoneyIndemEmp), "n0")
+                    '    Else
+                    '        colMoneyIndem.Aggregate = GridAggregateFunction.Sum
+                    '    End If
+                    'End If
                     rgEmployee.Rebind()
                 Case "FindEmployee"
                     isLoadPopup = 1
@@ -1695,42 +1664,42 @@ Public Class ctrlHU_DisciplineNewEdit
         Try
             Dim startTime As DateTime = DateTime.UtcNow
 
-            Dim intMoney As Decimal = 0
-            Dim intIndemnifyMoney As Decimal = 0
-            Dim intAmountPaidCash As Decimal = 0
-            Dim totalPaidIMoeny As Decimal = 0
-            Dim totalAmountToPaid As Decimal = 0
+            'Dim intMoney As Decimal = 0
+            'Dim intIndemnifyMoney As Decimal = 0
+            'Dim intAmountPaidCash As Decimal = 0
+            'Dim totalPaidIMoeny As Decimal = 0
+            'Dim totalAmountToPaid As Decimal = 0
 
-            If rntxtMoney.Value IsNot Nothing Then
-                intMoney += rntxtMoney.Value
-            End If
-            If rntxtIndemnifyMoney.Value IsNot Nothing Then
-                intIndemnifyMoney += rntxtIndemnifyMoney.Value
-            End If
+            'If rntxtMoney.Value IsNot Nothing Then
+            '    intMoney += rntxtMoney.Value
+            'End If
+            'If rntxtIndemnifyMoney.Value IsNot Nothing Then
+            '    intIndemnifyMoney += rntxtIndemnifyMoney.Value
+            'End If
 
-            If rdAmountPaidCash.Value IsNot Nothing Then
-                intAmountPaidCash += rdAmountPaidCash.Value
-            End If
+            'If rdAmountPaidCash.Value IsNot Nothing Then
+            '    intAmountPaidCash += rdAmountPaidCash.Value
+            'End If
 
-            totalPaidIMoeny = Utilities.ObjToDecima(intMoney + intIndemnifyMoney)
-            rnPaidIMoeny.Value = totalPaidIMoeny
+            'totalPaidIMoeny = Utilities.ObjToDecima(intMoney + intIndemnifyMoney)
+            'rnPaidIMoeny.Value = totalPaidIMoeny
 
-            totalAmountToPaid = Utilities.ObjToDecima(totalPaidIMoeny - intAmountPaidCash)
-            rnAmountToPaid.Value = totalAmountToPaid
+            'totalAmountToPaid = Utilities.ObjToDecima(totalPaidIMoeny - intAmountPaidCash)
+            'rnAmountToPaid.Value = totalAmountToPaid
 
-            Dim intMoneyDetail As Decimal = 0
-            Dim intAmountToPaid As Decimal = 0
-            If (Employee_Discipline.Count > 0) Then
-                If rnAmountToPaid.Value IsNot Nothing Then
-                    intAmountToPaid += rnAmountToPaid.Value
-                End If
-                intMoneyDetail = Utilities.ObjToDecima(intAmountToPaid / Employee_Discipline.Count)
-            End If
+            'Dim intMoneyDetail As Decimal = 0
+            'Dim intAmountToPaid As Decimal = 0
+            'If (Employee_Discipline.Count > 0) Then
+            '    If rnAmountToPaid.Value IsNot Nothing Then
+            '        intAmountToPaid += rnAmountToPaid.Value
+            '    End If
+            '    intMoneyDetail = Utilities.ObjToDecima(intAmountToPaid / Employee_Discipline.Count)
+            'End If
 
-            For index = 0 To Employee_Discipline.Count - 1
-                Employee_Discipline.Item(index).INDEMNIFY_MONEY = intMoneyDetail
-            Next
-            rgEmployee.Rebind()
+            'For index = 0 To Employee_Discipline.Count - 1
+            '    Employee_Discipline.Item(index).INDEMNIFY_MONEY = intMoneyDetail
+            'Next
+            'rgEmployee.Rebind()
 
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
@@ -1889,57 +1858,7 @@ Public Class ctrlHU_DisciplineNewEdit
 
         Try
             Dim crc As New Crc32()
-            'Dim pathZip As String = AppDomain.CurrentDomain.BaseDirectory & "Zip\"
-            'Dim fileNameZip As String = "ThongTinKyLuat.zip"
             Dim fileNameZip As String = txtUploadFile.Text.Trim
-
-            'If Not Directory.Exists(pathZip) Then
-            '    Directory.CreateDirectory(pathZip)
-            'Else
-            '    For Each deleteFile In Directory.GetFiles(pathZip, "*.*", SearchOption.TopDirectoryOnly)
-            '        File.Delete(deleteFile)
-            '    Next
-            'End If
-
-            'Dim s As New ZipOutputStream(File.Create(pathZip & fileNameZip))
-            's.SetLevel(0)
-            '' 0 - store only to 9 - means best compression
-            'For i As Integer = 0 To Directory.GetFiles(path).Length - 1
-            '    ' Must use a relative path here so that files show up in the Windows Zip File Viewer
-            '    ' .. hence the use of Path.GetFileName(...)
-            '    Dim fileName As String = System.IO.Path.GetFileName(Directory.GetFiles(path)(i))
-
-            '    Dim entry As New ZipEntry(fileName)
-            '    entry.DateTime = DateTime.Now
-
-            '    ' Read in the 
-            '    Using fs As FileStream = File.Open(Directory.GetFiles(path)(i), FileMode.Open)
-            '        Dim buffer As Byte() = New Byte(fs.Length - 1) {}
-            '        fs.Read(buffer, 0, buffer.Length)
-            '        entry.Size = fs.Length
-            '        fs.Close()
-            '        crc.Reset()
-            '        crc.Update(buffer)
-            '        entry.Crc = crc.Value
-            '        s.PutNextEntry(entry)
-            '        s.Write(buffer, 0, buffer.Length)
-            '    End Using
-            'Next
-            's.Finish()
-            's.Close()
-
-            'Using FileStream = File.Open(path & fileNameZip, FileMode.Open)
-            '    Dim buffer As Byte() = New Byte(FileStream.Length - 1) {}
-            '    FileStream.Read(buffer, 0, buffer.Length)
-            '    Dim rEx As New System.Text.RegularExpressions.Regex("[^a-zA-Z0-9_\-\.]+")
-            '    Response.Clear()
-            '    Response.AddHeader("Content-Disposition", "attachment; filename=" + rEx.Replace(fileNameZip, "_"))
-            '    Response.AddHeader("Content-Length", FileStream.Length.ToString())
-            '    Response.ContentType = "application/octet-stream"
-            '    Response.BinaryWrite(buffer)
-            '    FileStream.Close()
-            'End Using
-
             Dim file As System.IO.FileInfo = New System.IO.FileInfo(path & fileNameZip)
             Response.Clear()
             Response.AddHeader("Content-Disposition", "attachment; filename=" + file.Name)

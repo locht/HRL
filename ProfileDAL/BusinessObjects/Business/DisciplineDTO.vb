@@ -76,4 +76,7 @@
     Public Property EFFECT_TO As Date?
 
     Public Property IS_AMOUNT_IN_MONTH As Boolean
+
+    Public Property DATE_ISSUES As Date?
+    Public Property MONEY_MATERIAL As Decimal?
 End Class

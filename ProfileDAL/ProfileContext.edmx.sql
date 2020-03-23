@@ -1,8 +1,8 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for Oracle database
 -- --------------------------------------------------
--- Date Created: 03/20/2020 4:31:20 PM
--- Generated from EDMX file: F:\WORKING\acv_19\ProfileDAL\ProfileContext.edmx
+-- Date Created: 03/23/2020 2:48:40 PM
+-- Generated from EDMX file: D:\MyProject2020\ACV1\acv_19\ProfileDAL\ProfileContext.edmx
 -- --------------------------------------------------
 
 -- --------------------------------------------------
@@ -912,7 +912,9 @@ CREATE TABLE "dbo"."HU_DISCIPLINE" (
    "AMOUNT_IN_MONTH" NUMBER(38,0) NULL,
    "AMOUNT_DEDUCT_AMOUNT" NUMBER(38,0) NULL,
    "NO_DISCIPLINE" NCLOB NULL,
-   "IS_AMOUNT_IN_MONTH" NUMBER(38,0) NULL
+   "IS_AMOUNT_IN_MONTH" NUMBER(38,0) NULL,
+   "DATE_ISSUES" DATE NULL,
+   "MONEY_MATERIAL" NUMBER(38,0) NULL
 );
 
 -- Creating table 'HU_WORKING_BEFORE'
