@@ -81,4 +81,8 @@
     Public Property FORM_NAME As String
     Public Property ORDER As Decimal? 'ThanhNT added 22/09/2016 - Sort theo thứ tự của danh mục khen thưởng
     Public Property YEAR As Decimal?
+
+    'TamBT 20200323
+    Public Property ORG_NAME2 As String
+    Public Property ORG_NAME3 As String
 End Class

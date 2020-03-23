@@ -2543,33 +2543,6 @@ Partial Public Class ctrlHU_EmpDtlProfile
     Protected WithEvents txtNoteTDTH2 As Global.Telerik.Web.UI.RadTextBox
 
     '''<summary>
-    '''ckCHUHO control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents ckCHUHO As Global.System.Web.UI.WebControls.CheckBox
-
-    '''<summary>
-    '''lbNoHouseHolds control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lbNoHouseHolds As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
-    '''txtNoHouseHolds control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents txtNoHouseHolds As Global.Telerik.Web.UI.RadTextBox
-
-    '''<summary>
     '''lbCodeHouseHolds control.
     '''</summary>
     '''<remarks>
@@ -2604,6 +2577,33 @@ Partial Public Class ctrlHU_EmpDtlProfile
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtVillage As Global.Telerik.Web.UI.RadTextBox
+
+    '''<summary>
+    '''ckCHUHO control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents ckCHUHO As Global.System.Web.UI.WebControls.CheckBox
+
+    '''<summary>
+    '''lbNoHouseHolds control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbNoHouseHolds As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''txtNoHouseHolds control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtNoHouseHolds As Global.Telerik.Web.UI.RadTextBox
 
     '''<summary>
     '''lbWorkEmail control.

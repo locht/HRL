@@ -2947,27 +2947,39 @@ Partial Class ProfileRepository
                      From ce In Context.HU_COMMEND_EMP.Where(Function(ce) ce.HU_COMMEND_ID = p.ID).DefaultIfEmpty
                      From emp In Context.HU_EMPLOYEE.Where(Function(f) f.ID = ce.HU_EMPLOYEE_ID).DefaultIfEmpty
                      From o In Context.HU_ORGANIZATION.Where(Function(o) o.ID = emp.ORG_ID).DefaultIfEmpty
+                     From org_v In Context.HUV_ORGANIZATION.Where(Function(f) f.ID = ce.ORG_ID).DefaultIfEmpty
                      From lv In Context.HU_COMMEND_LEVEL.Where(Function(f) f.ID = p.COMMEND_LEVEL).DefaultIfEmpty
                      From t In Context.HU_COMMEND_LIST.Where(Function(f) f.ID = p.COMMEND_TYPE).DefaultIfEmpty
-                     From title In Context.HU_TITLE.Where(Function(f) f.ID = emp.TITLE_ID).DefaultIfEmpty
+                     From title In Context.HU_TITLE.Where(Function(f) f.ID = ce.TITLE_ID).DefaultIfEmpty
                      From dhkt In Context.HU_COMMEND_LIST.Where(Function(f) f.ID = p.TITLE_ID).DefaultIfEmpty
+                     From cm_obj In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.COMMEND_OBJ).DefaultIfEmpty
                      From httt In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.COMMEND_PAY And f.TYPE_CODE = "COMMEND_PAY" And f.ACTFLG = "A").DefaultIfEmpty
             Where (ce.HU_EMPLOYEE_ID = _empId And p.STATUS_ID = 447)
                      Order By p.EFFECT_DATE
                      Select New CommendDTO With {
+                     .ID = p.ID,
                      .DECISION_NO = p.NO,
+                     .COMMEND_OBJ = p.COMMEND_OBJ,
+                     .COMMEND_OBJ_NAME = cm_obj.NAME_VN,
                      .EFFECT_DATE = p.EFFECT_DATE,
                      .EXPIRE_DATE = p.EXPIRE_DATE,
+                     .ORG_NAME2 = org_v.ORG_NAME2,
+                     .ORG_NAME3 = org_v.ORG_NAME3,
+                     .SIGNER_NAME = p.SIGNER_NAME,
+                     .SIGNER_TITLE = p.SIGNER_TITLE,
                      .TITLE_NAME = title.NAME_VN,
+                     .COMMEND_LEVEL = p.COMMEND_LEVEL,
                      .COMMEND_LEVEL_NAME = lv.NAME,
                      .ORG_NAME = o.NAME_VN,
+                     .COMMEND_TYPE = p.COMMEND_TYPE,
                      .COMMEND_TYPE_NAME = t.NAME,
                      .REMARK = p.REMARK,
                      .MONEY = ce.MONEY,
+                     .COMMEND_TITLE_ID = p.TITLE_ID,
                      .COMMEND_TITLE_NAME = dhkt.NAME,
                      .YEAR = p.YEAR,
+                     .SIGN_DATE = p.SIGN_DATE,
                      .COMMEND_PAY_NAME = httt.NAME_VN,
-                     .SIGNER_NAME = p.SIGNER_NAME,
                      .NOTE = p.NOTE}).ToList()
 
             Return query.ToList
