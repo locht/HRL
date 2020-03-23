@@ -20,6 +20,23 @@ Partial Class TrainingRepository
         Return Nothing
     End Function
 
+
+    Public Function GetIDCourseList(ByVal idSelected As String) As List(Of CourseDTO)
+        Dim lstCourse As List(Of CourseDTO)
+
+        Using rep As New TrainingBusinessClient
+            Try
+                lstCourse = rep.GetIDCourseList(idSelected)
+                Return lstCourse
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+        Return Nothing
+    End Function
+
+
     Public Function GetTitlesByOrgs(ByVal orgIds As List(Of Decimal), ByVal langCode As String) As List(Of PlanTitleDTO)
         Using rep As New TrainingBusinessClient
             Try

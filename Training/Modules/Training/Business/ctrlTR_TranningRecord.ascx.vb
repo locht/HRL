@@ -59,10 +59,30 @@ Public Class ctrlTR_TranningRecord
                     Case "Cancel"
                         rgData.MasterTableView.ClearSelectedItems()
                 End Select
+
             End If
         Catch ex As Exception
             DisplayException(Me.ViewName, Me.ID, ex)
         End Try
+    End Sub
+
+    Private Sub cboProgramGroup_SelectedIndexChanging(sender As Object, e As Telerik.Web.UI.RadComboBoxSelectedIndexChangedEventArgs) Handles cboProgramGroup.SelectedIndexChanged
+        If cboProgramGroup.SelectedValue <> "" Then
+            Using rep1 As New TrainingRepository
+                Dim lst As List(Of CourseDTO)
+
+                lst = rep1.GetIDCourseList(cboProgramGroup.SelectedValue)
+                FillRadCombobox(cboCourse, lst, "NAME", "ID")
+            End Using
+        Else
+            Using rep As New TrainingRepository
+                Dim lst As List(Of CourseDTO)
+
+                lst = rep.GetCourseList()
+                FillRadCombobox(cboCourse, lst, "NAME", "ID")
+            End Using
+            cboCourse.Text = ""
+        End If
     End Sub
 
     Public Overrides Sub UpdateControlState()
@@ -71,6 +91,7 @@ Public Class ctrlTR_TranningRecord
             Select Case CurrentState
                 Case CommonMessage.STATE_DELETE
             End Select
+
         Catch ex As Exception
             Throw ex
         End Try
@@ -101,18 +122,32 @@ Public Class ctrlTR_TranningRecord
     Public Overrides Sub BindData()
         MyBase.BindData()
         GetDataCombo()
+
     End Sub
     Private Sub GetDataCombo()
         Try
-            Dim dtData As DataTable
-            Using rep As New TrainingRepository
-                Dim lst As List(Of CourseDTO)
-                lst = rep.GetCourseList()
-                FillRadCombobox(cboCourse, lst, "NAME", "ID")
 
-                dtData = rep.GetOtherList("TR_TRAIN_FIELD", True)
-                FillRadCombobox(cboTrainField, dtData, "NAME", "ID")
-            End Using
+            Dim dtData As DataTable
+            Dim _filter As New CourseDTO
+            If cboProgramGroup.SelectedValue <> "" Then
+                Using rep As New TrainingRepository
+                    Dim lst As List(Of CourseDTO)
+
+                    lst = rep.GetIDCourseList(cboProgramGroup.SelectedValue)
+                    FillRadCombobox(cboCourse, lst, "NAME", "ID")
+
+                End Using
+            Else
+                Using rep As New TrainingRepository
+                    Dim lst As List(Of CourseDTO)
+
+                    lst = rep.GetCourseList()
+                    FillRadCombobox(cboCourse, lst, "NAME", "ID")
+
+                    'dtData = rep.GetOtherList("TR_TRAIN_FIELD", True)
+                    'FillRadCombobox(cboTrainField, dtData, "NAME", "ID")
+                End Using
+            End If
 
             Dim tsp As New TrainingStoreProcedure()
             dtData = tsp.ProgramGroupGetList()
@@ -208,9 +243,9 @@ Public Class ctrlTR_TranningRecord
         End Try
     End Sub
 
-    Private Sub btnSearch_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnSearch.Click
-        rgData.Rebind()
-    End Sub
+    'Private Sub btnSearch_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnSearch.Click
+    '    rgData.Rebind()
+    'End Sub
 
     Protected Sub RadGrid_NeedDataSource(ByVal source As Object, ByVal e As GridNeedDataSourceEventArgs) Handles rgData.NeedDataSource
         Try
@@ -242,9 +277,10 @@ Public Class ctrlTR_TranningRecord
             If cboProgramGroup.SelectedValue <> "" Then
                 _filter.TR_PROGRAM_GROUP_ID = cboProgramGroup.SelectedValue
             End If
-            If cboTrainField.SelectedValue <> "" Then
-                _filter.FIELDS_ID = cboTrainField.SelectedValue
-            End If
+            'If cboTrainField.SelectedValue <> "" Then
+            '    _filter.FIELDS_ID = cboTrainField.SelectedValue
+            'End If
+
             Dim Sorts As String = rgData.MasterTableView.SortExpressions.GetSortString()
             Dim _param = New ParamDTO With {.ORG_ID = Decimal.Parse(ctrlOrg.CurrentValue), .IS_DISSOLVE = ctrlOrg.IsDissolve}
 

@@ -28,6 +28,24 @@ Partial Class TrainingRepository
         End Try
     End Function
 
+
+    Public Function GetIDCourseList(ByVal idSelected As String) As List(Of CourseDTO)
+        Try
+            Dim lst As New List(Of CourseDTO)
+            lst = (From p In Context.TR_COURSE
+                   Join t In Context.TR_PROGRAM_GROUP On p.TR_PROGRAM_GROUP Equals t.ID
+                   Where p.ACTFLG = -1 And t.ID = idSelected
+                   Select New CourseDTO() With {
+                            .ID = p.ID,
+                            .NAME = p.NAME
+                    }).ToList()
+            Return lst
+        Catch ex As Exception
+            Utility.WriteExceptionLog(ex, Me.ToString() & ".GetCourseList")
+            Throw ex
+        End Try
+    End Function
+
     Public Function GetTitlesByOrgs(ByVal orgIds As List(Of Decimal), ByVal langCode As String) As List(Of PlanTitleDTO)
         Try
             Dim lst As New List(Of PlanTitleDTO)

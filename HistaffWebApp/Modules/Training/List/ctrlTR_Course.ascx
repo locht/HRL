@@ -1,7 +1,7 @@
 ﻿<%@ Control Language="vb" AutoEventWireup="false" CodeBehind="ctrlTR_Course.ascx.vb"
     Inherits="Training.ctrlTR_Course" %>
 <tlk:RadSplitter ID="RadSplitter3" runat="server" Width="100%" Height="100%" Orientation="Horizontal">
-    <tlk:RadPane ID="RadPane1" runat="server" Height="50%" Scrolling="None">
+    <tlk:RadPane ID="RadPane1" runat="server" Height="30%" Scrolling="None">
         <tlk:RadToolBar ID="tbarMain" runat="server" />
         <asp:ValidationSummary ID="valSum" runat="server" />
         <table class="table-form">

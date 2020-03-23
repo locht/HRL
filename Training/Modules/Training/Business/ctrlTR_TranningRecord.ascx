@@ -42,31 +42,19 @@
                     </tr>
                     <tr>
                         <td class="lb">
+                            <%# Translate("Nhóm chương trình")%>
+                        </td>
+                        <td>
+                            <tlk:RadComboBox runat="server" ID="cboProgramGroup" AutoPostBack="true">
+                            </tlk:RadComboBox>
+                        </td>   
+                        <td class="lb">
                             <%# Translate("Khóa đào tạo")%>
                         </td>
                         <td>
                             <tlk:RadComboBox runat="server" ID="cboCourse">
                             </tlk:RadComboBox>
-                        </td>
-                        <td class="lb">
-                            <%# Translate("Nhóm chương trình")%>
-                        </td>
-                        <td>
-                            <tlk:RadComboBox runat="server" ID="cboProgramGroup">
-                            </tlk:RadComboBox>
-                        </td>
-                        <td class="lb">
-                            <%# Translate("Lĩnh vực đào tạo")%>
-                        </td>
-                        <td>
-                            <tlk:RadComboBox runat="server" ID="cboTrainField" Visible="False">
-                            </tlk:RadComboBox>
-                        </td>
-                        <td>
-                            <tlk:RadButton ID="btnSearch" runat="server" SkinID="ButtonFind" CausesValidation="false"
-                                Text="<%$ Translate: Tìm kiếm %>">
-                            </tlk:RadButton>
-                        </td>
+                        </td>            
                     </tr>
                 </table>
             </tlk:RadPane>

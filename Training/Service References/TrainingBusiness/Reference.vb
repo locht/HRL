@@ -1980,6 +1980,69 @@ Namespace TrainingBusiness
     
     <System.Diagnostics.DebuggerStepThroughAttribute(),  _
      System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0"),  _
+     System.Runtime.Serialization.DataContractAttribute(Name:="ParamDTO", [Namespace]:="http://schemas.datacontract.org/2004/07/TrainingDAL"),  _
+     System.SerializableAttribute()>  _
+    Partial Public Class ParamDTO
+        Inherits Object
+        Implements System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged
+        
+        <System.NonSerializedAttribute()>  _
+        Private extensionDataField As System.Runtime.Serialization.ExtensionDataObject
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private IS_DISSOLVEField As System.Nullable(Of Boolean)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private ORG_IDField As Decimal
+        
+        <Global.System.ComponentModel.BrowsableAttribute(false)>  _
+        Public Property ExtensionData() As System.Runtime.Serialization.ExtensionDataObject Implements System.Runtime.Serialization.IExtensibleDataObject.ExtensionData
+            Get
+                Return Me.extensionDataField
+            End Get
+            Set
+                Me.extensionDataField = value
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property IS_DISSOLVE() As System.Nullable(Of Boolean)
+            Get
+                Return Me.IS_DISSOLVEField
+            End Get
+            Set
+                If (Me.IS_DISSOLVEField.Equals(value) <> true) Then
+                    Me.IS_DISSOLVEField = value
+                    Me.RaisePropertyChanged("IS_DISSOLVE")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property ORG_ID() As Decimal
+            Get
+                Return Me.ORG_IDField
+            End Get
+            Set
+                If (Me.ORG_IDField.Equals(value) <> true) Then
+                    Me.ORG_IDField = value
+                    Me.RaisePropertyChanged("ORG_ID")
+                End If
+            End Set
+        End Property
+        
+        Public Event PropertyChanged As System.ComponentModel.PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
+        
+        Protected Sub RaisePropertyChanged(ByVal propertyName As String)
+            Dim propertyChanged As System.ComponentModel.PropertyChangedEventHandler = Me.PropertyChangedEvent
+            If (Not (propertyChanged) Is Nothing) Then
+                propertyChanged(Me, New System.ComponentModel.PropertyChangedEventArgs(propertyName))
+            End If
+        End Sub
+    End Class
+    
+    <System.Diagnostics.DebuggerStepThroughAttribute(),  _
+     System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0"),  _
      System.Runtime.Serialization.DataContractAttribute(Name:="RequestDTO", [Namespace]:="http://schemas.datacontract.org/2004/07/TrainingDAL"),  _
      System.SerializableAttribute()>  _
     Partial Public Class RequestDTO
@@ -3226,69 +3289,6 @@ Namespace TrainingBusiness
                 If (Object.ReferenceEquals(Me.TR_CENTER_NAMEField, value) <> true) Then
                     Me.TR_CENTER_NAMEField = value
                     Me.RaisePropertyChanged("TR_CENTER_NAME")
-                End If
-            End Set
-        End Property
-        
-        Public Event PropertyChanged As System.ComponentModel.PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
-        
-        Protected Sub RaisePropertyChanged(ByVal propertyName As String)
-            Dim propertyChanged As System.ComponentModel.PropertyChangedEventHandler = Me.PropertyChangedEvent
-            If (Not (propertyChanged) Is Nothing) Then
-                propertyChanged(Me, New System.ComponentModel.PropertyChangedEventArgs(propertyName))
-            End If
-        End Sub
-    End Class
-    
-    <System.Diagnostics.DebuggerStepThroughAttribute(),  _
-     System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0"),  _
-     System.Runtime.Serialization.DataContractAttribute(Name:="ParamDTO", [Namespace]:="http://schemas.datacontract.org/2004/07/TrainingDAL"),  _
-     System.SerializableAttribute()>  _
-    Partial Public Class ParamDTO
-        Inherits Object
-        Implements System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged
-        
-        <System.NonSerializedAttribute()>  _
-        Private extensionDataField As System.Runtime.Serialization.ExtensionDataObject
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private IS_DISSOLVEField As System.Nullable(Of Boolean)
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private ORG_IDField As Decimal
-        
-        <Global.System.ComponentModel.BrowsableAttribute(false)>  _
-        Public Property ExtensionData() As System.Runtime.Serialization.ExtensionDataObject Implements System.Runtime.Serialization.IExtensibleDataObject.ExtensionData
-            Get
-                Return Me.extensionDataField
-            End Get
-            Set
-                Me.extensionDataField = value
-            End Set
-        End Property
-        
-        <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property IS_DISSOLVE() As System.Nullable(Of Boolean)
-            Get
-                Return Me.IS_DISSOLVEField
-            End Get
-            Set
-                If (Me.IS_DISSOLVEField.Equals(value) <> true) Then
-                    Me.IS_DISSOLVEField = value
-                    Me.RaisePropertyChanged("IS_DISSOLVE")
-                End If
-            End Set
-        End Property
-        
-        <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property ORG_ID() As Decimal
-            Get
-                Return Me.ORG_IDField
-            End Get
-            Set
-                If (Me.ORG_IDField.Equals(value) <> true) Then
-                    Me.ORG_IDField = value
-                    Me.RaisePropertyChanged("ORG_ID")
                 End If
             End Set
         End Property
@@ -14715,6 +14715,9 @@ Namespace TrainingBusiness
      System.ServiceModel.ServiceContractAttribute(ConfigurationName:="TrainingBusiness.ITrainingBusiness")>  _
     Public Interface ITrainingBusiness
         
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ITrainingBusiness/GetPlans", ReplyAction:="http://tempuri.org/ITrainingBusiness/GetPlansResponse")>  _
+        Function GetPlans(ByVal filter As TrainingBusiness.PlanDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal _param As TrainingBusiness.ParamDTO, ByVal Sorts As String, ByVal log As Common.CommonBusiness.UserLog) As System.Collections.Generic.List(Of TrainingBusiness.PlanDTO)
+        
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ITrainingBusiness/GetPlanById", ReplyAction:="http://tempuri.org/ITrainingBusiness/GetPlanByIdResponse")>  _
         Function GetPlanById(ByVal Id As Decimal) As TrainingBusiness.PlanDTO
         
@@ -15183,6 +15186,9 @@ Namespace TrainingBusiness
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ITrainingBusiness/GetCourseList", ReplyAction:="http://tempuri.org/ITrainingBusiness/GetCourseListResponse")>  _
         Function GetCourseList() As System.Collections.Generic.List(Of TrainingBusiness.CourseDTO)
         
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ITrainingBusiness/GetIDCourseList", ReplyAction:="http://tempuri.org/ITrainingBusiness/GetIDCourseListResponse")>  _
+        Function GetIDCourseList(ByVal idSelected As String) As System.Collections.Generic.List(Of TrainingBusiness.CourseDTO)
+        
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ITrainingBusiness/GetTitlesByOrgs", ReplyAction:="http://tempuri.org/ITrainingBusiness/GetTitlesByOrgsResponse")>  _
         Function GetTitlesByOrgs(ByVal orgIds As System.Collections.Generic.List(Of Decimal), ByVal langCode As String) As System.Collections.Generic.List(Of TrainingBusiness.PlanTitleDTO)
         
@@ -15194,9 +15200,6 @@ Namespace TrainingBusiness
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ITrainingBusiness/GetCenters", ReplyAction:="http://tempuri.org/ITrainingBusiness/GetCentersResponse")>  _
         Function GetCenters() As System.Collections.Generic.List(Of TrainingBusiness.CenterDTO)
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ITrainingBusiness/GetPlans", ReplyAction:="http://tempuri.org/ITrainingBusiness/GetPlansResponse")>  _
-        Function GetPlans(ByVal filter As TrainingBusiness.PlanDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal _param As TrainingBusiness.ParamDTO, ByVal Sorts As String, ByVal log As Common.CommonBusiness.UserLog) As System.Collections.Generic.List(Of TrainingBusiness.PlanDTO)
     End Interface
     
     <System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")>  _
@@ -15229,6 +15232,10 @@ Namespace TrainingBusiness
         Public Sub New(ByVal binding As System.ServiceModel.Channels.Binding, ByVal remoteAddress As System.ServiceModel.EndpointAddress)
             MyBase.New(binding, remoteAddress)
         End Sub
+        
+        Public Function GetPlans(ByVal filter As TrainingBusiness.PlanDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal _param As TrainingBusiness.ParamDTO, ByVal Sorts As String, ByVal log As Common.CommonBusiness.UserLog) As System.Collections.Generic.List(Of TrainingBusiness.PlanDTO) Implements TrainingBusiness.ITrainingBusiness.GetPlans
+            Return MyBase.Channel.GetPlans(filter, PageIndex, PageSize, Total, _param, Sorts, log)
+        End Function
         
         Public Function GetPlanById(ByVal Id As Decimal) As TrainingBusiness.PlanDTO Implements TrainingBusiness.ITrainingBusiness.GetPlanById
             Return MyBase.Channel.GetPlanById(Id)
@@ -15854,6 +15861,10 @@ Namespace TrainingBusiness
             Return MyBase.Channel.GetCourseList
         End Function
         
+        Public Function GetIDCourseList(ByVal idSelected As String) As System.Collections.Generic.List(Of TrainingBusiness.CourseDTO) Implements TrainingBusiness.ITrainingBusiness.GetIDCourseList
+            Return MyBase.Channel.GetIDCourseList(idSelected)
+        End Function
+        
         Public Function GetTitlesByOrgs(ByVal orgIds As System.Collections.Generic.List(Of Decimal), ByVal langCode As String) As System.Collections.Generic.List(Of TrainingBusiness.PlanTitleDTO) Implements TrainingBusiness.ITrainingBusiness.GetTitlesByOrgs
             Return MyBase.Channel.GetTitlesByOrgs(orgIds, langCode)
         End Function
@@ -15868,10 +15879,6 @@ Namespace TrainingBusiness
         
         Public Function GetCenters() As System.Collections.Generic.List(Of TrainingBusiness.CenterDTO) Implements TrainingBusiness.ITrainingBusiness.GetCenters
             Return MyBase.Channel.GetCenters
-        End Function
-        
-        Public Function GetPlans(ByVal filter As TrainingBusiness.PlanDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal _param As TrainingBusiness.ParamDTO, ByVal Sorts As String, ByVal log As Common.CommonBusiness.UserLog) As System.Collections.Generic.List(Of TrainingBusiness.PlanDTO) Implements TrainingBusiness.ITrainingBusiness.GetPlans
-            Return MyBase.Channel.GetPlans(filter, PageIndex, PageSize, Total, _param, Sorts, log)
         End Function
     End Class
 End Namespace

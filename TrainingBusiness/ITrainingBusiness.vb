@@ -349,6 +349,9 @@ Namespace TrainingBusiness.ServiceContracts
         Function GetCourseList() As List(Of CourseDTO)
 
         <OperationContract()>
+        Function GetIDCourseList(ByVal idSelected As String) As List(Of CourseDTO)
+
+        <OperationContract()>
         Function GetTitlesByOrgs(ByVal orgIds As List(Of Decimal), ByVal langCode As String) As List(Of PlanTitleDTO)
 
         <OperationContract()>

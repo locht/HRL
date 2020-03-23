@@ -12,7 +12,7 @@ Option Explicit On
 
 
 Partial Public Class ctrlTR_TranningRecord
-
+    
     '''<summary>
     '''RadSplitter1 control.
     '''</summary>
@@ -21,7 +21,7 @@ Partial Public Class ctrlTR_TranningRecord
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents RadSplitter1 As Global.Telerik.Web.UI.RadSplitter
-
+    
     '''<summary>
     '''LeftPane control.
     '''</summary>
@@ -30,7 +30,7 @@ Partial Public Class ctrlTR_TranningRecord
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents LeftPane As Global.Telerik.Web.UI.RadPane
-
+    
     '''<summary>
     '''ctrlOrg control.
     '''</summary>
@@ -39,7 +39,7 @@ Partial Public Class ctrlTR_TranningRecord
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents ctrlOrg As Global.Common.ctrlOrganization
-
+    
     '''<summary>
     '''MainPane control.
     '''</summary>
@@ -48,7 +48,7 @@ Partial Public Class ctrlTR_TranningRecord
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents MainPane As Global.Telerik.Web.UI.RadPane
-
+    
     '''<summary>
     '''RadSplitter3 control.
     '''</summary>
@@ -57,7 +57,7 @@ Partial Public Class ctrlTR_TranningRecord
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents RadSplitter3 As Global.Telerik.Web.UI.RadSplitter
-
+    
     '''<summary>
     '''RadPane1 control.
     '''</summary>
@@ -66,7 +66,7 @@ Partial Public Class ctrlTR_TranningRecord
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents RadPane1 As Global.Telerik.Web.UI.RadPane
-
+    
     '''<summary>
     '''tbarMain control.
     '''</summary>
@@ -75,7 +75,7 @@ Partial Public Class ctrlTR_TranningRecord
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents tbarMain As Global.Telerik.Web.UI.RadToolBar
-
+    
     '''<summary>
     '''RadPane4 control.
     '''</summary>
@@ -84,7 +84,7 @@ Partial Public Class ctrlTR_TranningRecord
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents RadPane4 As Global.Telerik.Web.UI.RadPane
-
+    
     '''<summary>
     '''rdFromDate control.
     '''</summary>
@@ -93,7 +93,7 @@ Partial Public Class ctrlTR_TranningRecord
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents rdFromDate As Global.Telerik.Web.UI.RadDatePicker
-
+    
     '''<summary>
     '''rdToDate control.
     '''</summary>
@@ -102,7 +102,7 @@ Partial Public Class ctrlTR_TranningRecord
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents rdToDate As Global.Telerik.Web.UI.RadDatePicker
-
+    
     '''<summary>
     '''txtEmployee control.
     '''</summary>
@@ -111,7 +111,7 @@ Partial Public Class ctrlTR_TranningRecord
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtEmployee As Global.Telerik.Web.UI.RadTextBox
-
+    
     '''<summary>
     '''cb control.
     '''</summary>
@@ -120,16 +120,7 @@ Partial Public Class ctrlTR_TranningRecord
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents cb As Global.Telerik.Web.UI.RadButton
-
-    '''<summary>
-    '''cboCourse control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents cboCourse As Global.Telerik.Web.UI.RadComboBox
-
+    
     '''<summary>
     '''cboProgramGroup control.
     '''</summary>
@@ -138,25 +129,16 @@ Partial Public Class ctrlTR_TranningRecord
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents cboProgramGroup As Global.Telerik.Web.UI.RadComboBox
-
+    
     '''<summary>
-    '''cboTrainField control.
+    '''cboCourse control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents cboTrainField As Global.Telerik.Web.UI.RadComboBox
-
-    '''<summary>
-    '''btnSearch control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents btnSearch As Global.Telerik.Web.UI.RadButton
-
+    Protected WithEvents cboCourse As Global.Telerik.Web.UI.RadComboBox
+    
     '''<summary>
     '''RadPane2 control.
     '''</summary>
@@ -165,7 +147,7 @@ Partial Public Class ctrlTR_TranningRecord
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents RadPane2 As Global.Telerik.Web.UI.RadPane
-
+    
     '''<summary>
     '''rgData control.
     '''</summary>
@@ -174,7 +156,7 @@ Partial Public Class ctrlTR_TranningRecord
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents rgData As Global.Telerik.Web.UI.RadGrid
-
+    
     '''<summary>
     '''RadWindowManager1 control.
     '''</summary>
@@ -183,7 +165,7 @@ Partial Public Class ctrlTR_TranningRecord
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents RadWindowManager1 As Global.Telerik.Web.UI.RadWindowManager
-
+    
     '''<summary>
     '''rwPopup control.
     '''</summary>
@@ -192,7 +174,7 @@ Partial Public Class ctrlTR_TranningRecord
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents rwPopup As Global.Telerik.Web.UI.RadWindow
-
+    
     '''<summary>
     '''RadCodeBlock1 control.
     '''</summary>
@@ -201,7 +183,7 @@ Partial Public Class ctrlTR_TranningRecord
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents RadCodeBlock1 As Global.Telerik.Web.UI.RadCodeBlock
-
+    
     '''<summary>
     '''ctrlMessageBox control.
     '''</summary>

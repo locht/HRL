@@ -18,6 +18,15 @@ Namespace TrainingBusiness.ServiceImplementations
             End Try
         End Function
 
+        Public Function GetIDCourseList(ByVal idSelected As String) As List(Of CourseDTO) Implements ServiceContracts.ITrainingBusiness.GetIDCourseList
+            Try
+                Dim rep As New TrainingRepository
+                Return rep.GetIDCourseList(idSelected)
+            Catch ex As Exception
+                Throw ex
+            End Try
+        End Function
+
         Public Function GetTitlesByOrgs(ByVal orgIds As List(Of Decimal), ByVal langCode As String) As List(Of PlanTitleDTO) Implements ServiceContracts.ITrainingBusiness.GetTitlesByOrgs
             Try
                 Dim rep As New TrainingRepository
