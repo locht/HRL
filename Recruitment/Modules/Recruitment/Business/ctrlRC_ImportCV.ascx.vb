@@ -527,7 +527,7 @@ Public Class ctrlRC_ImportCV
                 dt14.TableName = "TableTDVH"
                 designer.SetDataSource(dt14)
             End If
-          
+
             designer.Process()
             designer.Workbook.CalculateFormula()
             designer.Workbook.Save(HttpContext.Current.Response, filename & ".xls", ContentDisposition.Attachment, New XlsSaveOptions())
@@ -595,7 +595,7 @@ Public Class ctrlRC_ImportCV
                         lst_new.Add(obj_new)
                     End If
                 Next
-             
+
             Next
             If rep.ImportCandidateCV(lst_new) Then
                 Dim msgt As String = "Import thành công " & lst_new.Count & " ứng viên"
@@ -729,8 +729,8 @@ Public Class ctrlRC_ImportCV
             Dim IsError As Boolean = False
             Dim Is_Er_IDNO As Boolean = False
             Dim sError As String = ""
-            
-           
+
+
             TableMapping(dtData, dtFile)
             CreateCanImportCV(dtData)
             'End If
@@ -842,7 +842,39 @@ Public Class ctrlRC_ImportCV
                 rows("FILE_NAME") = sFile_Name
             End If
             If IsDBNull(rows("DATE_NC")) OrElse CheckDate(rows("DATE_NC")) = False Then
-                rows("ERROR") = rows("ERROR") + "Ngày nhập vào không đúng định dạng"
+                rows("ERROR") = rows("ERROR") + "Ngày nhập vào không đúng định dạng,"
+                rows("FILE_NAME") = sFile_Name
+            End If
+            If IsDBNull(rows("GENDER")) Or rows("GENDER").ToString = "" Then
+                rows("ERROR") = rows("ERROR") + "Chưa nhập giới tính,"
+                rows("FILE_NAME") = sFile_Name
+            End If
+            If IsDBNull(rows("MAJOR")) Or rows("MAJOR").ToString = "" Then
+                rows("ERROR") = rows("ERROR") + "Chưa nhập chuyên môn,"
+                rows("FILE_NAME") = sFile_Name
+            End If
+            If IsDBNull(rows("SCHOOL")) Or rows("SCHOOL").ToString = "" Then
+                rows("ERROR") = rows("ERROR") + "Chưa nhập trường,"
+                rows("FILE_NAME") = sFile_Name
+            End If
+            If IsDBNull(rows("TDVH")) Or rows("TDVH").ToString = "" Then
+                rows("ERROR") = rows("ERROR") + "Chưa nhập trình độ văn hóa,"
+                rows("FILE_NAME") = sFile_Name
+            End If
+            If IsDBNull(rows("PROVINCE")) Or rows("PROVINCE").ToString = "" Then
+                rows("ERROR") = rows("ERROR") + "Chưa nhập nơi cấp cmnd,"
+                rows("FILE_NAME") = sFile_Name
+            End If
+            If IsDBNull(rows("RELIGION")) Or rows("RELIGION").ToString = "" Then
+                rows("ERROR") = rows("ERROR") + "Chưa nhập tôn giáo,"
+                rows("FILE_NAME") = sFile_Name
+            End If
+            If IsDBNull(rows("NATION")) Or rows("NATION").ToString = "" Then
+                rows("ERROR") = rows("ERROR") + "Chưa nhập quốc tịch,"
+                rows("FILE_NAME") = sFile_Name
+            End If
+            If IsDBNull(rows("DT")) Or rows("DT").ToString = "" Then
+                rows("ERROR") = rows("ERROR") + "Chưa nhập dân tộc,"
                 rows("FILE_NAME") = sFile_Name
             End If
             count += 1
@@ -858,7 +890,7 @@ Public Class ctrlRC_ImportCV
                 Dim can_cv As CandidateCVDTO
                 Dim can_edu As New CandidateEduDTO
                 Dim canimport As New CandidateImportDTO
-                
+
                 can.ORG_ID = org_id
                 can.TITLE_ID = title_id
                 can.ORG_NAME = org_name
@@ -879,7 +911,7 @@ Public Class ctrlRC_ImportCV
                 can_cv.GENDER = dr("GENDER_ID").ToString
                 can_cv.CONTACT_MOBILE = dr("PHONE").ToString ' ĐIỆN THOẠI3.
                 can_cv.PER_EMAIL = dr("EMAIL").ToString ' EMAIL
-
+                can_cv.ID_PLACE = dr("PROVINCE_ID").ToString
 
                 can_cv.ID_NO = dr("ID_NO").ToString
                 can_cv.ID_DATE = ToDate(dr("DATE_NC").ToString)
