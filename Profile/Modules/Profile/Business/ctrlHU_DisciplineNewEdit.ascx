@@ -216,7 +216,7 @@
             </tr>
             <tr>
                 <td class="lb">
-                    <asp:Label runat="server" ID="lbExplain" Text="Giải thích sự việc"></asp:Label>
+                    <asp:Label runat="server" ID="lbExplain" Text="Hành vi vi phạm"></asp:Label>
                 </td>
                 <td colspan="5">
                     <tlk:RadTextBox ID="txtExplain" runat="server" TextMode="MultiLine" Width="100%"
@@ -253,8 +253,7 @@
                 <td>
                     <tlk:RadButton ID="PaidInMoeny" ButtonType="ToggleButton" runat="server" Visible="false">
                     </tlk:RadButton>
-                    <tlk:RadNumericTextBox ID="rnPaidIMoeny" runat="server" SkinID="Money" TabIndex="21"
-                        AutoPostBack="true">
+                    <tlk:RadNumericTextBox ID="rnPaidIMoeny" runat="server" SkinID="Money" TabIndex="21">
                     </tlk:RadNumericTextBox>
                 </td>
             </tr>
@@ -461,7 +460,7 @@
                         ReadOnly="true" SortExpression="FULLNAME">
                         <HeaderStyle Width="120px" />
                     </tlk:GridBoundColumn>
-                    <tlk:GridBoundColumn HeaderText="Chức danh" DataField="TITLE_NAME" ReadOnly="true"
+                    <tlk:GridBoundColumn HeaderText="Vị trí công việc" DataField="TITLE_NAME" ReadOnly="true"
                         UniqueName="TITLE_NAME" SortExpression="TITLE_NAME">
                     </tlk:GridBoundColumn>
                     <tlk:GridBoundColumn HeaderText="Đơn vị" DataField="ORG_NAME" UniqueName="ORG_NAME"
@@ -472,13 +471,14 @@
                         DataFormatString="{0:n0}" SortExpression="MONEY" Aggregate="Sum">
                         <FooterStyle HorizontalAlign="Right" VerticalAlign="Middle" />
                     </tlk:GridNumericColumn>
-                    <tlk:GridNumericColumn HeaderText="Số tiền phải nộp" DataField="INDEMNIFY_MONEY"
+                    <tlk:GridNumericColumn HeaderText="Số tiền bồi thường" DataField="INDEMNIFY_MONEY"
                         UniqueName="INDEMNIFY_MONEY" DataFormatString="{0:n0}" SortExpression="INDEMNIFY_MONEY"
                         Aggregate="Sum">
                         <FooterStyle HorizontalAlign="Right" VerticalAlign="Middle" />
                     </tlk:GridNumericColumn>
                     <tlk:GridCheckBoxColumn HeaderText="Chưa xử lý" DataField="NO_PROCESS" DataType="System.Boolean"
-                        FilterControlWidth="20px" SortExpression="NO_PROCESS" UniqueName="NO_PROCESS">
+                        FilterControlWidth="20px" SortExpression="NO_PROCESS" UniqueName="NO_PROCESS"
+                        Visible="false">
                         <HeaderStyle HorizontalAlign="Center" Width="50px" />
                     </tlk:GridCheckBoxColumn>
                 </Columns>

@@ -185,7 +185,7 @@ Public Class ctrlHU_Discipline
             Common.Common.BuildToolbar(Me.MainToolBar, ToolbarItem.Create,
                                        ToolbarItem.Edit,
                                        ToolbarItem.Export,
-                                       ToolbarItem.Delete, ToolbarItem.Print)
+                                       ToolbarItem.Delete, ToolbarItem.Print, ToolbarItem.Next, ToolbarItem.Import)
             Me.MainToolBar.Items.Add(Common.Common.CreateToolbarItem(CommonMessage.TOOLBARITEM_CREATE_BATCH,
                                                                   ToolbarIcons.Add,
                                                                   ToolbarAuthorize.Special1,
@@ -195,6 +195,9 @@ Public Class ctrlHU_Discipline
                                                                   ToolbarAuthorize.Special1,
                                                                   "Mở phê duyệt"))
             CType(MainToolBar.Items(4), RadToolBarButton).Text = "In quyết định"
+            CType(Me.MainToolBar.Items(5), RadToolBarButton).Text = Translate("Xuất file mẫu")
+            CType(Me.MainToolBar.Items(5), RadToolBarButton).ImageUrl = CType(Me.MainToolBar.Items(2), RadToolBarButton).ImageUrl
+            CType(Me.MainToolBar.Items(6), RadToolBarButton).Text = Translate("Nhập file mẫu")
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
             Throw ex
@@ -773,17 +776,17 @@ Public Class ctrlHU_Discipline
             Next
 
             If lstID.Count > 0 Then
-                Dim bCheckHasfile = rep.CheckHasFileDiscipline(lstID)
+                'Dim bCheckHasfile = rep.CheckHasFileDiscipline(lstID)
                 For Each item As GridDataItem In rgDiscipline.SelectedItems
                     If item.GetDataKeyValue("STATUS_ID") = ProfileCommon.DECISION_STATUS.APPROVE_ID Then
                         ShowMessage(Translate("Bản ghi đã phê duyệt."), NotifyType.Warning)
                         Exit Sub
                     End If
                 Next
-                If bCheckHasfile = 1 Then
-                    ShowMessage(Translate("Duyệt khi tất cả các record đã có tập tin đính kèm,bạn kiểm tra lại"), NotifyType.Warning)
-                    Exit Sub
-                End If
+                'If bCheckHasfile = 1 Then
+                '    ShowMessage(Translate("Duyệt khi tất cả các record đã có tập tin đính kèm,bạn kiểm tra lại"), NotifyType.Warning)
+                '    Exit Sub
+                'End If
                 If rep.ApproveListDiscipline(lstID) Then
                     ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), NotifyType.Success)
                     rgDiscipline.Rebind()
