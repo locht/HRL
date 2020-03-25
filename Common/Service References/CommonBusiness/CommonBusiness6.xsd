@@ -610,6 +610,7 @@
       <xs:element minOccurs="0" name="FUNCTION_CODE" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="FUNCTION_ID" type="xs:decimal" />
       <xs:element minOccurs="0" name="FUNCTION_NAME" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="GROUP_ID" nillable="true" type="xs:decimal" />
       <xs:element minOccurs="0" name="ID" type="xs:decimal" />
       <xs:element minOccurs="0" name="MODULE_NAME" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="USER_ID" type="xs:decimal" />
@@ -709,6 +710,7 @@
       <xs:element minOccurs="0" name="BIRTH_PLACE" nillable="true" type="xs:decimal" />
       <xs:element minOccurs="0" name="BIRTH_PLACE_NAME" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="CONTRACT_ID" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="CREATE_PLACE" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="DECISION_ID" nillable="true" type="xs:decimal" />
       <xs:element minOccurs="0" name="DIRECT_MANAGER" nillable="true" type="xs:decimal" />
       <xs:element minOccurs="0" name="EFFECT_DATE" nillable="true" type="xs:dateTime" />
@@ -720,10 +722,16 @@
       <xs:element minOccurs="0" name="HURT_TYPE_ID" nillable="true" type="xs:decimal" />
       <xs:element minOccurs="0" name="HURT_TYPE_NAME" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="ID" type="xs:decimal" />
+      <xs:element minOccurs="0" name="ID_CREATE_PLACE" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="ID_NO" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="IMAGE" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="JOIN_DATE" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="LABOUR_NAME" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="MOBILE_PHONE" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="MONEY" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="OBJECTTIMEKEEPING" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="OBJECT_LABOR" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="OBJECT_NAME" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="ORG_DESC" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="ORG_ID" nillable="true" type="xs:decimal" />
       <xs:element minOccurs="0" name="ORG_NAME" nillable="true" type="xs:string" />
@@ -731,6 +739,7 @@
       <xs:element minOccurs="0" name="RECORD" nillable="true" type="xs:decimal" />
       <xs:element minOccurs="0" name="STAFF_RANK_ID" nillable="true" type="xs:decimal" />
       <xs:element minOccurs="0" name="STAFF_RANK_NAME" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TER_LAST_DATE" nillable="true" type="xs:dateTime" />
       <xs:element minOccurs="0" name="TITLE_ID" nillable="true" type="xs:decimal" />
       <xs:element minOccurs="0" name="TITLE_NAME" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="TROPHIES_NAME" nillable="true" type="xs:string" />

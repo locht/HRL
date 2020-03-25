@@ -43,6 +43,7 @@
             <EntitySet Name="HU_NATION" EntityType="CommonModel.Store.HU_NATION" store:Type="Tables"  />
             <EntitySet Name="SE_GROUP_ORG_ACCESS" EntityType="CommonModel.Store.SE_GROUP_ORG_ACCESS" store:Type="Tables"  />
             <EntitySet Name="SE_GROUP_ORG_FUN_ACCESS" EntityType="CommonModel.Store.SE_GROUP_ORG_FUN_ACCESS" store:Type="Tables"  />
+            <EntitySet Name="HU_PROVINCE" EntityType="CommonModel.Store.HU_PROVINCE" store:Type="Tables"  />
             <EntitySet Name="SE_GRP_SE_USR" EntityType="CommonModel.Store.SE_GRP_SE_USR" store:Type="Tables"  />
             <EntitySet Name="SE_GROUP_REPORT" EntityType="CommonModel.Store.SE_GROUP_REPORT" store:Type="Tables"  />
             <EntitySet Name="SE_USER_REPORT" EntityType="CommonModel.Store.SE_USER_REPORT" store:Type="Tables"  />
@@ -805,6 +806,23 @@
             <Property Name="GROUP_ID" Type="number" Nullable="true" Precision="38" />
             <Property Name="ORG_ID" Type="number" Nullable="false" Precision="38" />
         </EntityType>
+        <EntityType Name="HU_PROVINCE">
+            <Key>
+                <PropertyRef Name="ID" />
+            </Key>
+            <Property Name="ID" Type="number" Nullable="false" Precision="38" />
+            <Property Name="NAME_EN" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="NAME_VN" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="ACTFLG" Type="nvarchar2" Nullable="true" MaxLength="1" />
+            <Property Name="CODE" Type="nvarchar2" Nullable="true" MaxLength="50" />
+            <Property Name="NATION_ID" Type="number" Nullable="true" Precision="38" />
+            <Property Name="CREATED_DATE" Type="date" Nullable="true" />
+            <Property Name="CREATED_BY" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="CREATED_LOG" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="MODIFIED_DATE" Type="date" Nullable="true" />
+            <Property Name="MODIFIED_BY" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="MODIFIED_LOG" Type="nvarchar2" Nullable="true" MaxLength="255" />
+        </EntityType>
         <EntityType Name="SE_GRP_SE_USR">
             <Key>
                 <PropertyRef Name="SE_GROUPS_ID" />
@@ -1135,6 +1153,7 @@
           <EntitySet Name="HU_NATION" EntityType="CommonModel.HU_NATION" />
           <EntitySet Name="SE_GROUP_ORG_ACCESS" EntityType="CommonModel.SE_GROUP_ORG_ACCESS" />
           <EntitySet Name="SE_GROUP_ORG_FUN_ACCESS" EntityType="CommonModel.SE_GROUP_ORG_FUN_ACCESS" />
+          <EntitySet Name="HU_PROVINCE" EntityType="CommonModel.HU_PROVINCE" />
           </EntityContainer>
         <EntityType Name="SE_GROUP">
           <Key>
@@ -1992,6 +2011,23 @@
           <Property Type="Decimal" Name="GROUP_ID" Precision="38" Scale="0" />
           <Property Type="Decimal" Name="ORG_ID" Precision="38" Scale="0" Nullable="false" />
         </EntityType>
+        <EntityType Name="HU_PROVINCE">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Decimal" Name="ID" Nullable="false" Precision="38" Scale="0" />
+          <Property Type="String" Name="NAME_EN" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="NAME_VN" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ACTFLG" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="CODE" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="Decimal" Name="NATION_ID" Precision="38" Scale="0" />
+          <Property Type="DateTime" Name="CREATED_DATE" />
+          <Property Type="String" Name="CREATED_BY" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="CREATED_LOG" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="MODIFIED_DATE" />
+          <Property Type="String" Name="MODIFIED_BY" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="MODIFIED_LOG" MaxLength="255" FixedLength="false" Unicode="true" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -2727,6 +2763,24 @@
                 </MappingFragment>
             </EntityTypeMapping>
         </EntitySetMapping>
+        <EntitySetMapping Name="HU_PROVINCE">
+            <EntityTypeMapping TypeName="IsTypeOf(CommonModel.HU_PROVINCE)">
+                <MappingFragment StoreEntitySet="HU_PROVINCE">
+                    <ScalarProperty Name="ID" ColumnName="ID" />
+                    <ScalarProperty Name="NAME_EN" ColumnName="NAME_EN" />
+                    <ScalarProperty Name="NAME_VN" ColumnName="NAME_VN" />
+                    <ScalarProperty Name="ACTFLG" ColumnName="ACTFLG" />
+                    <ScalarProperty Name="CODE" ColumnName="CODE" />
+                    <ScalarProperty Name="NATION_ID" ColumnName="NATION_ID" />
+                    <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+                    <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+                    <ScalarProperty Name="CREATED_LOG" ColumnName="CREATED_LOG" />
+                    <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+                    <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+                    <ScalarProperty Name="MODIFIED_LOG" ColumnName="MODIFIED_LOG" />
+                </MappingFragment>
+            </EntityTypeMapping>
+        </EntitySetMapping>
         <AssociationSetMapping Name="SE_GRP_SE_USR" TypeName="CommonModel.SE_GRP_SE_USR" StoreEntitySet="SE_GRP_SE_USR">
             <EndProperty Name="SE_GROUP">
                 <ScalarProperty Name="ID" ColumnName="SE_GROUPS_ID" />
@@ -2920,6 +2974,7 @@
         <EntityTypeShape EntityType="CommonModel.HU_NATION" Width="1.5" PointX="0.75" PointY="14.75" Height="3.1340950520833246" />
         <EntityTypeShape EntityType="CommonModel.SE_GROUP_ORG_ACCESS" Width="1.5" PointX="3.375" PointY="6.75" Height="1.5956835937500102" />
         <EntityTypeShape EntityType="CommonModel.SE_GROUP_ORG_FUN_ACCESS" Width="1.5" PointX="14.375" PointY="0.75" Height="1.5956835937499818" />
+        <EntityTypeShape EntityType="CommonModel.HU_PROVINCE" Width="1.5" PointX="9.375" PointY="14.75" Height="3.3263964843750102" />
         </Diagram>
     </Diagrams>
   </Designer>

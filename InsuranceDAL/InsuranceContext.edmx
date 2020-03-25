@@ -4,51 +4,52 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="InsuranceModel.Store" Alias="Self" Provider="Oracle.DataAccess.Client" ProviderManifestToken="11.2" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator">
+    <Schema Namespace="InsuranceModel.Store" Alias="Self" Provider="Oracle.DataAccess.Client" ProviderManifestToken="12.2" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator">
         <EntityContainer Name="InsuranceModelStoreContainer">
-            <EntitySet Name="HU_EMPLOYEE" EntityType="InsuranceModel.Store.HU_EMPLOYEE" store:Type="Tables" />
-            <EntitySet Name="HU_EMPLOYEE_EDUCATION" EntityType="InsuranceModel.Store.HU_EMPLOYEE_EDUCATION" store:Type="Tables" />
-            <EntitySet Name="HU_EMPLOYEE_FILES" EntityType="InsuranceModel.Store.HU_EMPLOYEE_FILES" store:Type="Tables" />
-            <EntitySet Name="HU_EMPLOYEE_HEALTH" EntityType="InsuranceModel.Store.HU_EMPLOYEE_HEALTH" store:Type="Tables" />
-            <EntitySet Name="HU_EMPLOYEE_OTHER_INFO" EntityType="InsuranceModel.Store.HU_EMPLOYEE_OTHER_INFO" store:Type="Tables" />
-            <EntitySet Name="HU_EMPLOYEE_SALARY" EntityType="InsuranceModel.Store.HU_EMPLOYEE_SALARY" store:Type="Tables" />
-            <EntitySet Name="HU_EMPLOYEE_TRAIN" EntityType="InsuranceModel.Store.HU_EMPLOYEE_TRAIN" store:Type="Tables" />
-            <EntitySet Name="HU_ORG_TITLE" EntityType="InsuranceModel.Store.HU_ORG_TITLE" store:Type="Tables" />
-            <EntitySet Name="HU_ORGANIZATION" EntityType="InsuranceModel.Store.HU_ORGANIZATION" store:Type="Tables" />
-            <EntitySet Name="HU_TITLE" EntityType="InsuranceModel.Store.HU_TITLE" store:Type="Tables" />
-            <EntitySet Name="HU_WORKING" EntityType="InsuranceModel.Store.HU_WORKING" store:Type="Tables" />
-            <EntitySet Name="OT_OTHER_LIST" EntityType="InsuranceModel.Store.OT_OTHER_LIST" store:Type="Tables" />
-            <EntitySet Name="OT_OTHER_LIST_GROUP" EntityType="InsuranceModel.Store.OT_OTHER_LIST_GROUP" store:Type="Tables" />
-            <EntitySet Name="OT_OTHER_LIST_TYPE" EntityType="InsuranceModel.Store.OT_OTHER_LIST_TYPE" store:Type="Tables" />
-            <EntitySet Name="HU_DISTRICT" EntityType="InsuranceModel.Store.HU_DISTRICT" store:Type="Tables" />
-            <EntitySet Name="HU_NATION" EntityType="InsuranceModel.Store.HU_NATION" store:Type="Tables" />
-            <EntitySet Name="HU_PROVINCE" EntityType="InsuranceModel.Store.HU_PROVINCE" store:Type="Tables" />
-            <EntitySet Name="SE_CHOSEN_ORG" EntityType="InsuranceModel.Store.SE_CHOSEN_ORG" store:Type="Tables" />
-            <EntitySet Name="HU_CONTRACT" EntityType="InsuranceModel.Store.HU_CONTRACT" store:Type="Tables" />
-            <EntitySet Name="HU_CONTRACT_TYPE" EntityType="InsuranceModel.Store.HU_CONTRACT_TYPE" store:Type="Tables" />
-            <EntitySet Name="HU_CONTRACT_MAX_V" EntityType="InsuranceModel.Store.HU_CONTRACT_MAX_V" store:Type="Tables" />
-            <EntitySet Name="HU_STAFF_RANK" EntityType="InsuranceModel.Store.HU_STAFF_RANK" store:Type="Tables" />
-            <EntitySet Name="INS_ARISING" EntityType="InsuranceModel.Store.INS_ARISING" store:Type="Tables" />
-            <EntitySet Name="INS_CHANGE" EntityType="InsuranceModel.Store.INS_CHANGE" store:Type="Tables" />
-            <EntitySet Name="INS_COST_FOLLOW_LEVER" EntityType="InsuranceModel.Store.INS_COST_FOLLOW_LEVER" store:Type="Tables" />
-            <EntitySet Name="INS_ENTITLED_TYPE" EntityType="InsuranceModel.Store.INS_ENTITLED_TYPE" store:Type="Tables" />
-            <EntitySet Name="INS_GROUP_REGIMES" EntityType="InsuranceModel.Store.INS_GROUP_REGIMES" store:Type="Tables" />
-            <EntitySet Name="INS_GROUP_SUN_CARE" EntityType="InsuranceModel.Store.INS_GROUP_SUN_CARE" store:Type="Tables" />
-            <EntitySet Name="INS_SUN_CARE" EntityType="InsuranceModel.Store.INS_SUN_CARE" store:Type="Tables" />
-            <EntitySet Name="INS_WHEREHEALTH" EntityType="InsuranceModel.Store.INS_WHEREHEALTH" store:Type="Tables" />
-            <EntitySet Name="HU_EMPLOYEE_CV" EntityType="InsuranceModel.Store.HU_EMPLOYEE_CV" store:Type="Tables" />
-            <EntitySet Name="HU_WORKING_ALLOW" EntityType="InsuranceModel.Store.HU_WORKING_ALLOW" store:Type="Tables" />
-            <EntitySet Name="HU_WORKING_MAX" EntityType="InsuranceModel.Store.HU_WORKING_MAX" store:Type="Tables" />
-            <EntitySet Name="INS_SPECIFIED_OBJECTS" EntityType="InsuranceModel.Store.INS_SPECIFIED_OBJECTS" store:Type="Tables" />
-            <EntitySet Name="HU_WORKING_ALLOW1" EntityType="InsuranceModel.Store.HU_WORKING_ALLOW1" store:Type="Tables" />
-            <EntitySet Name="INS_INFOOLD" EntityType="InsuranceModel.Store.INS_INFOOLD" store:Type="Tables" />
-            <EntitySet Name="INS_INFORMATION" EntityType="InsuranceModel.Store.INS_INFORMATION" store:Type="Tables" />
-            <EntitySet Name="INS_CHANGE_TYPE" EntityType="InsuranceModel.Store.INS_CHANGE_TYPE" store:Type="Tables" />
-            <EntitySet Name="INS_REMIGE_MANAGER" EntityType="InsuranceModel.Store.INS_REMIGE_MANAGER" store:Type="Tables" />
-            <EntitySet Name="INS_REGION" EntityType="InsuranceModel.Store.INS_REGION" store:Type="Tables" />
-            <EntitySet Name="SE_USER" EntityType="InsuranceModel.Store.SE_USER" store:Type="Tables" />
-            <EntitySet Name="SE_REPORT" EntityType="InsuranceModel.Store.SE_REPORT" store:Type="Tables" />
-            <EntitySet Name="SE_USER_REPORT" EntityType="InsuranceModel.Store.SE_USER_REPORT" store:Type="Tables" />
+            <EntitySet Name="HU_EMPLOYEE" EntityType="InsuranceModel.Store.HU_EMPLOYEE" store:Type="Tables"  />
+            <EntitySet Name="HU_EMPLOYEE_EDUCATION" EntityType="InsuranceModel.Store.HU_EMPLOYEE_EDUCATION" store:Type="Tables"  />
+            <EntitySet Name="HU_EMPLOYEE_FILES" EntityType="InsuranceModel.Store.HU_EMPLOYEE_FILES" store:Type="Tables"  />
+            <EntitySet Name="HU_EMPLOYEE_HEALTH" EntityType="InsuranceModel.Store.HU_EMPLOYEE_HEALTH" store:Type="Tables"  />
+            <EntitySet Name="HU_EMPLOYEE_OTHER_INFO" EntityType="InsuranceModel.Store.HU_EMPLOYEE_OTHER_INFO" store:Type="Tables"  />
+            <EntitySet Name="HU_EMPLOYEE_SALARY" EntityType="InsuranceModel.Store.HU_EMPLOYEE_SALARY" store:Type="Tables"  />
+            <EntitySet Name="HU_EMPLOYEE_TRAIN" EntityType="InsuranceModel.Store.HU_EMPLOYEE_TRAIN" store:Type="Tables"  />
+            <EntitySet Name="HU_ORG_TITLE" EntityType="InsuranceModel.Store.HU_ORG_TITLE" store:Type="Tables"  />
+            <EntitySet Name="HU_ORGANIZATION" EntityType="InsuranceModel.Store.HU_ORGANIZATION" store:Type="Tables"  />
+            <EntitySet Name="HU_TITLE" EntityType="InsuranceModel.Store.HU_TITLE" store:Type="Tables"  />
+            <EntitySet Name="HU_WORKING" EntityType="InsuranceModel.Store.HU_WORKING" store:Type="Tables"  />
+            <EntitySet Name="OT_OTHER_LIST" EntityType="InsuranceModel.Store.OT_OTHER_LIST" store:Type="Tables"  />
+            <EntitySet Name="OT_OTHER_LIST_GROUP" EntityType="InsuranceModel.Store.OT_OTHER_LIST_GROUP" store:Type="Tables"  />
+            <EntitySet Name="OT_OTHER_LIST_TYPE" EntityType="InsuranceModel.Store.OT_OTHER_LIST_TYPE" store:Type="Tables"  />
+            <EntitySet Name="HU_DISTRICT" EntityType="InsuranceModel.Store.HU_DISTRICT" store:Type="Tables"  />
+            <EntitySet Name="HU_NATION" EntityType="InsuranceModel.Store.HU_NATION" store:Type="Tables"  />
+            <EntitySet Name="HU_PROVINCE" EntityType="InsuranceModel.Store.HU_PROVINCE" store:Type="Tables"  />
+            <EntitySet Name="SE_CHOSEN_ORG" EntityType="InsuranceModel.Store.SE_CHOSEN_ORG" store:Type="Tables"  />
+            <EntitySet Name="HU_CONTRACT" EntityType="InsuranceModel.Store.HU_CONTRACT" store:Type="Tables"  />
+            <EntitySet Name="HU_CONTRACT_TYPE" EntityType="InsuranceModel.Store.HU_CONTRACT_TYPE" store:Type="Tables"  />
+            <EntitySet Name="HU_CONTRACT_MAX_V" EntityType="InsuranceModel.Store.HU_CONTRACT_MAX_V" store:Type="Tables"  />
+            <EntitySet Name="HU_STAFF_RANK" EntityType="InsuranceModel.Store.HU_STAFF_RANK" store:Type="Tables"  />
+            <EntitySet Name="INS_ARISING" EntityType="InsuranceModel.Store.INS_ARISING" store:Type="Tables"  />
+            <EntitySet Name="INS_CHANGE" EntityType="InsuranceModel.Store.INS_CHANGE" store:Type="Tables"  />
+            <EntitySet Name="INS_COST_FOLLOW_LEVER" EntityType="InsuranceModel.Store.INS_COST_FOLLOW_LEVER" store:Type="Tables"  />
+            <EntitySet Name="INS_ENTITLED_TYPE" EntityType="InsuranceModel.Store.INS_ENTITLED_TYPE" store:Type="Tables"  />
+            <EntitySet Name="INS_GROUP_REGIMES" EntityType="InsuranceModel.Store.INS_GROUP_REGIMES" store:Type="Tables"  />
+            <EntitySet Name="INS_GROUP_SUN_CARE" EntityType="InsuranceModel.Store.INS_GROUP_SUN_CARE" store:Type="Tables"  />
+            <EntitySet Name="INS_SUN_CARE" EntityType="InsuranceModel.Store.INS_SUN_CARE" store:Type="Tables"  />
+            <EntitySet Name="INS_WHEREHEALTH" EntityType="InsuranceModel.Store.INS_WHEREHEALTH" store:Type="Tables"  />
+            <EntitySet Name="HU_EMPLOYEE_CV" EntityType="InsuranceModel.Store.HU_EMPLOYEE_CV" store:Type="Tables"  />
+            <EntitySet Name="HU_WORKING_ALLOW" EntityType="InsuranceModel.Store.HU_WORKING_ALLOW" store:Type="Tables"  />
+            <EntitySet Name="HU_WORKING_MAX" EntityType="InsuranceModel.Store.HU_WORKING_MAX" store:Type="Tables"  />
+            <EntitySet Name="INS_SPECIFIED_OBJECTS" EntityType="InsuranceModel.Store.INS_SPECIFIED_OBJECTS" store:Type="Tables"  />
+            <EntitySet Name="HU_WORKING_ALLOW1" EntityType="InsuranceModel.Store.HU_WORKING_ALLOW1" store:Type="Tables"  />
+            <EntitySet Name="INS_INFOOLD" EntityType="InsuranceModel.Store.INS_INFOOLD" store:Type="Tables"  />
+            <EntitySet Name="INS_INFORMATION" EntityType="InsuranceModel.Store.INS_INFORMATION" store:Type="Tables"  />
+            <EntitySet Name="INS_CHANGE_TYPE" EntityType="InsuranceModel.Store.INS_CHANGE_TYPE" store:Type="Tables"  />
+            <EntitySet Name="INS_REMIGE_MANAGER" EntityType="InsuranceModel.Store.INS_REMIGE_MANAGER" store:Type="Tables"  />
+            <EntitySet Name="INS_REGION" EntityType="InsuranceModel.Store.INS_REGION" store:Type="Tables"  />
+            <EntitySet Name="SE_USER" EntityType="InsuranceModel.Store.SE_USER" store:Type="Tables"  />
+            <EntitySet Name="SE_REPORT" EntityType="InsuranceModel.Store.SE_REPORT" store:Type="Tables"  />
+            <EntitySet Name="INS_REGIMES" EntityType="InsuranceModel.Store.INS_REGIMES" store:Type="Tables"  />
+            <EntitySet Name="SE_USER_REPORT" EntityType="InsuranceModel.Store.SE_USER_REPORT" store:Type="Tables"  />
             <AssociationSet Name="FK_FE_HEH" Association="InsuranceModel.Store.FK_FE_HEH">
                 <End Role="HU_EMPLOYEE" EntitySet="HU_EMPLOYEE" />
                 <End Role="HU_EMPLOYEE_HEALTH" EntitySet="HU_EMPLOYEE_HEALTH" />
@@ -1148,6 +1149,45 @@
             <Property Name="MODIFIED_BY" Type="nvarchar2" Nullable="false" MaxLength="255" />
             <Property Name="MODIFIED_LOG" Type="nvarchar2" Nullable="false" MaxLength="255" />
         </EntityType>
+        <EntityType Name="INS_REGIMES">
+            <Key>
+                <PropertyRef Name="ID" />
+            </Key>
+            <Property Name="ID" Type="number" Nullable="false" Precision="38" />
+            <Property Name="EMPLOYEE_ID" Type="number" Nullable="true" Precision="38" />
+            <Property Name="REGIME_ID" Type="number" Nullable="true" Precision="38" />
+            <Property Name="PAY_FORM" Type="number" Nullable="true" Precision="38" />
+            <Property Name="FROM_DATE" Type="date" Nullable="true" />
+            <Property Name="TO_DATE" Type="date" Nullable="true" />
+            <Property Name="DAY_CALCULATOR" Type="number" Nullable="true" Precision="38" />
+            <Property Name="BORN_DATE" Type="date" Nullable="true" />
+            <Property Name="NAME_CHILDREN" Type="nvarchar2" Nullable="true" MaxLength="200" />
+            <Property Name="CHILDREN_NO" Type="number" Nullable="true" Precision="38" />
+            <Property Name="ACCUMULATE_DAY" Type="number" Nullable="true" Precision="38" />
+            <Property Name="SUBSIDY_SALARY" Type="number" Nullable="true" Precision="38" />
+            <Property Name="SUBSIDY_AMOUNT" Type="number" Nullable="true" Precision="38" />
+            <Property Name="PAYROLL_DATE" Type="date" Nullable="true" />
+            <Property Name="CONDITION" Type="nvarchar2" Nullable="true" MaxLength="500" />
+            <Property Name="INS_PAY_AMOUNT" Type="number" Nullable="true" Precision="38" />
+            <Property Name="PAY_APPROVE_DATE" Type="date" Nullable="true" />
+            <Property Name="APPROV_DAY_NUM" Type="number" Nullable="true" Precision="38" />
+            <Property Name="NOTE" Type="nvarchar2" Nullable="true" MaxLength="500" />
+            <Property Name="CREATED_BY" Type="nvarchar2" Nullable="true" MaxLength="100" />
+            <Property Name="CREATED_DATE" Type="date" Nullable="true" />
+            <Property Name="MODIFIED_BY" Type="nvarchar2" Nullable="true" MaxLength="100" />
+            <Property Name="MODIFIED_DATE" Type="date" Nullable="true" />
+            <Property Name="CREATED_LOG" Type="nvarchar2" Nullable="true" MaxLength="500" />
+            <Property Name="MODIFIED_LOG" Type="nvarchar2" Nullable="true" MaxLength="500" />
+            <Property Name="MONEY_ADVANCE" Type="number" Nullable="true" Precision="38" />
+            <Property Name="DECLARE_DATE" Type="date" Nullable="true" />
+            <Property Name="SUBSIDY" Type="number" Nullable="true" Precision="38" />
+            <Property Name="IS_DELETED" Type="number" Nullable="true" Precision="38" />
+            <Property Name="OFF_IN_HOUSE" Type="number" Nullable="true" Precision="38" />
+            <Property Name="OFF_TOGETHER" Type="number" Nullable="true" Precision="38" />
+            <Property Name="SUBSIDY_MODIFY" Type="number" Nullable="true" Precision="38" />
+            <Property Name="REGIMES_SAL" Type="number" Nullable="true" Precision="38" />
+            <Property Name="SICK_TYPE" Type="number" Nullable="true" Precision="38" />
+        </EntityType>
         <EntityType Name="SE_USER_REPORT">
             <Key>
                 <PropertyRef Name="SE_REPORT_ID" />
@@ -1573,6 +1613,7 @@
             <End Role="SE_REPORT" EntitySet="SE_REPORT" />
             <End Role="SE_USER" EntitySet="SE_USER" />
           </AssociationSet>
+          <EntitySet Name="INS_REGIMES" EntityType="InsuranceModel.INS_REGIMES" />
         </EntityContainer>
         <EntityType Name="HU_EMPLOYEE">
           <Key>
@@ -2860,6 +2901,45 @@
           <End Type="InsuranceModel.SE_REPORT" Role="SE_REPORT" Multiplicity="*" />
           <End Type="InsuranceModel.SE_USER" Role="SE_USER" Multiplicity="*" />
         </Association>
+        <EntityType Name="INS_REGIMES">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Decimal" Name="ID" Nullable="false" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="EMPLOYEE_ID" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="REGIME_ID" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="PAY_FORM" Precision="38" Scale="0" />
+          <Property Type="DateTime" Name="FROM_DATE" />
+          <Property Type="DateTime" Name="TO_DATE" />
+          <Property Type="Decimal" Name="DAY_CALCULATOR" Precision="38" Scale="0" />
+          <Property Type="DateTime" Name="BORN_DATE" />
+          <Property Type="String" Name="NAME_CHILDREN" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="Decimal" Name="CHILDREN_NO" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="ACCUMULATE_DAY" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="SUBSIDY_SALARY" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="SUBSIDY_AMOUNT" Precision="38" Scale="0" />
+          <Property Type="DateTime" Name="PAYROLL_DATE" />
+          <Property Type="String" Name="CONDITION" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Type="Decimal" Name="INS_PAY_AMOUNT" Precision="38" Scale="0" />
+          <Property Type="DateTime" Name="PAY_APPROVE_DATE" />
+          <Property Type="Decimal" Name="APPROV_DAY_NUM" Precision="38" Scale="0" />
+          <Property Type="String" Name="NOTE" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="CREATED_BY" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="CREATED_DATE" />
+          <Property Type="String" Name="MODIFIED_BY" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="MODIFIED_DATE" />
+          <Property Type="String" Name="CREATED_LOG" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="MODIFIED_LOG" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Type="Decimal" Name="MONEY_ADVANCE" Precision="38" Scale="0" />
+          <Property Type="DateTime" Name="DECLARE_DATE" />
+          <Property Type="Decimal" Name="SUBSIDY" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="IS_DELETED" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="OFF_IN_HOUSE" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="OFF_TOGETHER" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="SUBSIDY_MODIFY" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="REGIMES_SAL" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="SICK_TYPE" Precision="38" Scale="0" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -3921,6 +4001,46 @@
                 </MappingFragment>
             </EntityTypeMapping>
         </EntitySetMapping>
+        <EntitySetMapping Name="INS_REGIMES">
+            <EntityTypeMapping TypeName="InsuranceModel.INS_REGIMES">
+                <MappingFragment StoreEntitySet="INS_REGIMES">
+                    <ScalarProperty Name="ID" ColumnName="ID" />
+                    <ScalarProperty Name="EMPLOYEE_ID" ColumnName="EMPLOYEE_ID" />
+                    <ScalarProperty Name="REGIME_ID" ColumnName="REGIME_ID" />
+                    <ScalarProperty Name="PAY_FORM" ColumnName="PAY_FORM" />
+                    <ScalarProperty Name="FROM_DATE" ColumnName="FROM_DATE" />
+                    <ScalarProperty Name="TO_DATE" ColumnName="TO_DATE" />
+                    <ScalarProperty Name="DAY_CALCULATOR" ColumnName="DAY_CALCULATOR" />
+                    <ScalarProperty Name="BORN_DATE" ColumnName="BORN_DATE" />
+                    <ScalarProperty Name="NAME_CHILDREN" ColumnName="NAME_CHILDREN" />
+                    <ScalarProperty Name="CHILDREN_NO" ColumnName="CHILDREN_NO" />
+                    <ScalarProperty Name="ACCUMULATE_DAY" ColumnName="ACCUMULATE_DAY" />
+                    <ScalarProperty Name="SUBSIDY_SALARY" ColumnName="SUBSIDY_SALARY" />
+                    <ScalarProperty Name="SUBSIDY_AMOUNT" ColumnName="SUBSIDY_AMOUNT" />
+                    <ScalarProperty Name="PAYROLL_DATE" ColumnName="PAYROLL_DATE" />
+                    <ScalarProperty Name="CONDITION" ColumnName="CONDITION" />
+                    <ScalarProperty Name="INS_PAY_AMOUNT" ColumnName="INS_PAY_AMOUNT" />
+                    <ScalarProperty Name="PAY_APPROVE_DATE" ColumnName="PAY_APPROVE_DATE" />
+                    <ScalarProperty Name="APPROV_DAY_NUM" ColumnName="APPROV_DAY_NUM" />
+                    <ScalarProperty Name="NOTE" ColumnName="NOTE" />
+                    <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+                    <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+                    <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+                    <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+                    <ScalarProperty Name="CREATED_LOG" ColumnName="CREATED_LOG" />
+                    <ScalarProperty Name="MODIFIED_LOG" ColumnName="MODIFIED_LOG" />
+                    <ScalarProperty Name="MONEY_ADVANCE" ColumnName="MONEY_ADVANCE" />
+                    <ScalarProperty Name="DECLARE_DATE" ColumnName="DECLARE_DATE" />
+                    <ScalarProperty Name="SUBSIDY" ColumnName="SUBSIDY" />
+                    <ScalarProperty Name="IS_DELETED" ColumnName="IS_DELETED" />
+                    <ScalarProperty Name="OFF_IN_HOUSE" ColumnName="OFF_IN_HOUSE" />
+                    <ScalarProperty Name="OFF_TOGETHER" ColumnName="OFF_TOGETHER" />
+                    <ScalarProperty Name="SUBSIDY_MODIFY" ColumnName="SUBSIDY_MODIFY" />
+                    <ScalarProperty Name="REGIMES_SAL" ColumnName="REGIMES_SAL" />
+                    <ScalarProperty Name="SICK_TYPE" ColumnName="SICK_TYPE" />
+                </MappingFragment>
+            </EntityTypeMapping>
+        </EntitySetMapping>
         <AssociationSetMapping Name="SE_USER_REPORT" TypeName="InsuranceModel.SE_USER_REPORT" StoreEntitySet="SE_USER_REPORT">
             <EndProperty Name="SE_REPORT">
                 <ScalarProperty Name="ID" ColumnName="SE_REPORT_ID" />
@@ -4084,18 +4204,18 @@
         <EntityTypeShape EntityType="InsuranceModel.INS_COST_FOLLOW_LEVER" Width="1.875" PointX="10.75" PointY="2.875" Height="0.39999999999999858" IsExpanded="false" />
         <EntityTypeShape EntityType="InsuranceModel.INS_ENTITLED_TYPE" Width="2.125" PointX="4.75" PointY="10.875" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="InsuranceModel.INS_GROUP_REGIMES" Width="2.125" PointX="10.75" PointY="6.875" Height="0.39999999999999858" IsExpanded="false" />
-        <EntityTypeShape EntityType="InsuranceModel.INS_GROUP_SUN_CARE" Width="1.875" PointX="7.75" PointY="10.875" Height="0.39999999999999858" IsExpanded="false" />
+        <EntityTypeShape EntityType="InsuranceModel.INS_GROUP_SUN_CARE" Width="1.875" PointX="7.75" PointY="11.125" Height="0.39999999999999858" IsExpanded="false" />
         <EntityTypeShape EntityType="InsuranceModel.INS_SUN_CARE" Width="1.5" PointX="2.75" PointY="12.875" Height="4.0956022135416674" IsExpanded="true" />
         <EntityTypeShape EntityType="InsuranceModel.INS_WHEREHEALTH" Width="1.75" PointX="12.75" PointY="4.875" Height="0.39999999999999858" IsExpanded="false" />
         <EntityTypeShape EntityType="InsuranceModel.HU_EMPLOYEE_CV" Width="2" PointX="12.75" PointY="8.875" Height="0.39999999999999858" IsExpanded="false" />
         <EntityTypeShape EntityType="InsuranceModel.HU_WORKING_ALLOW" Width="1.75" PointX="12.75" PointY="10.875" Height="0.39999999999999858" IsExpanded="false" />
         <EntityTypeShape EntityType="InsuranceModel.HU_WORKING_MAX" Width="2" PointX="10.75" PointY="12.875" Height="0.39999999999999858" IsExpanded="false" />
-        <EntityTypeShape EntityType="InsuranceModel.INS_SPECIFIED_OBJECTS" Width="1.5" PointX="13.75" PointY="1.625" Height="7.3647265625" IsExpanded="true" />
+        <EntityTypeShape EntityType="InsuranceModel.INS_SPECIFIED_OBJECTS" Width="1.5" PointX="14.75" PointY="1.75" Height="7.3647265625" IsExpanded="true" />
         <EntityTypeShape EntityType="InsuranceModel.HU_WORKING_ALLOW1" Width="1.5" PointX="13.375" PointY="12.75" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="InsuranceModel.INS_INFOOLD" Width="1.5" PointX="10.75" PointY="10.75" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="InsuranceModel.INS_INFORMATION" Width="1.875" PointX="7.75" PointY="12.75" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="InsuranceModel.INS_CHANGE_TYPE" Width="1.5" PointX="10.25" PointY="8.875" Height="0.4" IsExpanded="false" />
-        <EntityTypeShape EntityType="InsuranceModel.INS_REMIGE_MANAGER" Width="1.5" PointX="5.25" PointY="12.75" Height="0.4" IsExpanded="false" />
+        <EntityTypeShape EntityType="InsuranceModel.INS_REMIGE_MANAGER" Width="1.5" PointX="5.25" PointY="12.75" Height="6.2109179687500031" IsExpanded="true" />
         <EntityTypeShape EntityType="InsuranceModel.INS_REGION" Width="1.5" PointX="0.75" PointY="12.75" Height="3.3263964843749996" IsExpanded="true" />
         <EntityTypeShape EntityType="InsuranceModel.SE_USER" Width="2" PointX="3.625" PointY="13.875" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="InsuranceModel.SE_REPORT" Width="1.75" PointX="0.625" PointY="13.875" IsExpanded="false" Height="0.4" />
@@ -4106,6 +4226,7 @@
           <ConnectorPoint PointX="4.781249" PointY="12.8125" />
           <ConnectorPoint PointX="4.781249" PointY="13.875" />
         </AssociationConnector>
+        <EntityTypeShape EntityType="InsuranceModel.INS_REGIMES" Width="1.5" PointX="7.375" PointY="14.75" Height="7.5570279947916674" />
       </Diagram>
     </Diagrams>
   </Designer>

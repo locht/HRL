@@ -2520,6 +2520,7 @@ Partial Public Class CommonRepository
     Public Function GetEmployeeToPopupFind_EmployeeID(ByVal _empId As List(Of Decimal)) As List(Of EmployeePopupFindDTO)
         Dim result = (From p In Context.HU_EMPLOYEE
                       From cv In Context.HU_EMPLOYEE_CV.Where(Function(cv) cv.EMPLOYEE_ID = p.ID).DefaultIfEmpty
+                      From pr In Context.HU_PROVINCE.Where(Function(f) cv.ID_PLACE = f.ID).DefaultIfEmpty
                       From s In Context.HU_STAFF_RANK.Where(Function(s) s.ID = p.STAFF_RANK_ID).DefaultIfEmpty
                       From t In Context.HU_TITLE.Where(Function(f) f.ID = p.TITLE_ID).DefaultIfEmpty
                       From birth In Context.HU_NATION.Where(Function(f) f.ID = cv.BIRTH_PLACE).DefaultIfEmpty
@@ -2534,6 +2535,9 @@ Partial Public Class CommonRepository
                           .EMPLOYEE_ID = p.ID,
                           .JOIN_DATE = p.JOIN_DATE,
                           .FULLNAME_VN = p.FULLNAME_VN,
+                          .ID_NO = cv.ID_NO,
+                          .ID_CREATE_PLACE = pr.ID,
+                          .CREATE_PLACE = pr.NAME_VN,
                           .ORG_ID = p.ORG_ID,
                           .ORG_NAME = p.HU_ORGANIZATION.NAME_VN,
                           .ORG_DESC = p.HU_ORGANIZATION.DESCRIPTION_PATH,

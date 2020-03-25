@@ -1,145 +1,19 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for Oracle database
 -- --------------------------------------------------
--- Date Created: 9/3/2019 4:45:19 PM
--- Generated from EDMX file: D:\TNG_SOURCE_NEW\InsuranceDAL\InsuranceContext.edmx
+-- Date Created: 3/25/2020 10:13:37 AM
+-- Generated from EDMX file: D:\HiStaffWebApp\acv_19\InsuranceDAL\InsuranceContext.edmx
 -- --------------------------------------------------
 
 -- --------------------------------------------------
 -- Dropping existing FOREIGN KEY constraints
 -- --------------------------------------------------
 
--- ALTER TABLE "InsuranceModelStoreContainer"."HU_EMPLOYEE_HEALTH" DROP CONSTRAINT "FK_FE_HEH" CASCADE;
-
--- ALTER TABLE "InsuranceModelStoreContainer"."HU_EMPLOYEE_EDUCATION" DROP CONSTRAINT "FK_HE_HEE" CASCADE;
-
--- ALTER TABLE "InsuranceModelStoreContainer"."HU_EMPLOYEE_FILES" DROP CONSTRAINT "FK_HE_HEF" CASCADE;
-
--- ALTER TABLE "InsuranceModelStoreContainer"."HU_EMPLOYEE_OTHER_INFO" DROP CONSTRAINT "FK_HE_HEO" CASCADE;
-
--- ALTER TABLE "InsuranceModelStoreContainer"."HU_EMPLOYEE_SALARY" DROP CONSTRAINT "FK_HE_HES" CASCADE;
-
--- ALTER TABLE "InsuranceModelStoreContainer"."HU_EMPLOYEE" DROP CONSTRAINT "FK_HE_HT" CASCADE;
-
--- ALTER TABLE "InsuranceModelStoreContainer"."HU_WORKING" DROP CONSTRAINT "FK_HE_HW" CASCADE;
-
--- ALTER TABLE "InsuranceModelStoreContainer"."HU_EMPLOYEE" DROP CONSTRAINT "FK_HU_ORG_HU_EMP" CASCADE;
-
--- ALTER TABLE "InsuranceModelStoreContainer"."HU_EMPLOYEE" DROP CONSTRAINT "FK_HUEMD_HUEM" CASCADE;
-
--- ALTER TABLE "InsuranceModelStoreContainer"."HU_ORG_TITLE" DROP CONSTRAINT "FK_HUOG_HUOT" CASCADE;
-
--- ALTER TABLE "InsuranceModelStoreContainer"."HU_ORG_TITLE" DROP CONSTRAINT "FK_HUTL_HUOT" CASCADE;
-
--- ALTER TABLE "InsuranceModelStoreContainer"."HU_ORGANIZATION" DROP CONSTRAINT "FK_HU_ORG_HU_ORG" CASCADE;
-
--- ALTER TABLE "InsuranceModelStoreContainer"."HU_WORKING" DROP CONSTRAINT "FK_HUOG_HUWK" CASCADE;
-
--- ALTER TABLE "InsuranceModelStoreContainer"."HU_WORKING" DROP CONSTRAINT "FK_HUTL_HUWK" CASCADE;
-
--- ALTER TABLE "InsuranceModelStoreContainer"."HU_WORKING" DROP CONSTRAINT "FK_OTOTL_HUWK" CASCADE;
-
--- ALTER TABLE "InsuranceModelStoreContainer"."OT_OTHER_LIST" DROP CONSTRAINT "FK_OOLT_OOL" CASCADE;
-
--- ALTER TABLE "InsuranceModelStoreContainer"."OT_OTHER_LIST_TYPE" DROP CONSTRAINT "FK_OOLG_OOLT" CASCADE;
-
--- ALTER TABLE "InsuranceModelStoreContainer"."HU_DISTRICT" DROP CONSTRAINT "FK_HU_PRO_HU_DIS" CASCADE;
-
--- ALTER TABLE "InsuranceModelStoreContainer"."HU_PROVINCE" DROP CONSTRAINT "FK_HU_NAT_HU_PRO" CASCADE;
-
--- ALTER TABLE "InsuranceModelStoreContainer"."SE_USER_REPORT" DROP CONSTRAINT "FK_SE_USER_REPORT_SE_REPORT" CASCADE;
-
--- ALTER TABLE "InsuranceModelStoreContainer"."SE_USER_REPORT" DROP CONSTRAINT "FK_SE_USER_REPORT_SE_USER" CASCADE;
-
 -- --------------------------------------------------
 -- Dropping existing tables
 -- --------------------------------------------------
 
--- DROP TABLE "InsuranceModelStoreContainer"."HU_EMPLOYEE";
-
--- DROP TABLE "InsuranceModelStoreContainer"."HU_EMPLOYEE_EDUCATION";
-
--- DROP TABLE "InsuranceModelStoreContainer"."HU_EMPLOYEE_FILES";
-
--- DROP TABLE "InsuranceModelStoreContainer"."HU_EMPLOYEE_HEALTH";
-
--- DROP TABLE "InsuranceModelStoreContainer"."HU_EMPLOYEE_OTHER_INFO";
-
--- DROP TABLE "InsuranceModelStoreContainer"."HU_EMPLOYEE_SALARY";
-
--- DROP TABLE "InsuranceModelStoreContainer"."HU_EMPLOYEE_TRAIN";
-
--- DROP TABLE "InsuranceModelStoreContainer"."HU_ORG_TITLE";
-
--- DROP TABLE "InsuranceModelStoreContainer"."HU_ORGANIZATION";
-
--- DROP TABLE "InsuranceModelStoreContainer"."HU_TITLE";
-
--- DROP TABLE "InsuranceModelStoreContainer"."HU_WORKING";
-
--- DROP TABLE "InsuranceModelStoreContainer"."OT_OTHER_LIST";
-
--- DROP TABLE "InsuranceModelStoreContainer"."OT_OTHER_LIST_GROUP";
-
--- DROP TABLE "InsuranceModelStoreContainer"."OT_OTHER_LIST_TYPE";
-
--- DROP TABLE "InsuranceModelStoreContainer"."HU_DISTRICT";
-
--- DROP TABLE "InsuranceModelStoreContainer"."HU_NATION";
-
--- DROP TABLE "InsuranceModelStoreContainer"."HU_PROVINCE";
-
--- DROP TABLE "InsuranceModelStoreContainer"."SE_CHOSEN_ORG";
-
--- DROP TABLE "InsuranceModelStoreContainer"."HU_CONTRACT";
-
--- DROP TABLE "InsuranceModelStoreContainer"."HU_CONTRACT_TYPE";
-
--- DROP TABLE "InsuranceModelStoreContainer"."HU_CONTRACT_MAX_V";
-
--- DROP TABLE "InsuranceModelStoreContainer"."HU_STAFF_RANK";
-
--- DROP TABLE "InsuranceModelStoreContainer"."INS_ARISING";
-
--- DROP TABLE "InsuranceModelStoreContainer"."INS_CHANGE";
-
--- DROP TABLE "InsuranceModelStoreContainer"."INS_COST_FOLLOW_LEVER";
-
--- DROP TABLE "InsuranceModelStoreContainer"."INS_ENTITLED_TYPE";
-
--- DROP TABLE "InsuranceModelStoreContainer"."INS_GROUP_REGIMES";
-
--- DROP TABLE "InsuranceModelStoreContainer"."INS_GROUP_SUN_CARE";
-
--- DROP TABLE "InsuranceModelStoreContainer"."INS_SUN_CARE";
-
--- DROP TABLE "InsuranceModelStoreContainer"."INS_WHEREHEALTH";
-
--- DROP TABLE "InsuranceModelStoreContainer"."HU_EMPLOYEE_CV";
-
--- DROP TABLE "InsuranceModelStoreContainer"."HU_WORKING_ALLOW";
-
--- DROP TABLE "InsuranceModelStoreContainer"."HU_WORKING_MAX";
-
--- DROP TABLE "InsuranceModelStoreContainer"."INS_SPECIFIED_OBJECTS";
-
--- DROP TABLE "InsuranceModelStoreContainer"."HU_WORKING_ALLOW1";
-
--- DROP TABLE "InsuranceModelStoreContainer"."INS_INFOOLD";
-
--- DROP TABLE "InsuranceModelStoreContainer"."INS_INFORMATION";
-
--- DROP TABLE "InsuranceModelStoreContainer"."INS_CHANGE_TYPE";
-
--- DROP TABLE "InsuranceModelStoreContainer"."INS_REMIGE_MANAGER";
-
--- DROP TABLE "InsuranceModelStoreContainer"."INS_REGION";
-
--- DROP TABLE "InsuranceModelStoreContainer"."SE_USER";
-
--- DROP TABLE "InsuranceModelStoreContainer"."SE_REPORT";
-
--- DROP TABLE "InsuranceModelStoreContainer"."SE_USER_REPORT";
+-- DROP TABLE "ACV_19_DEV"."INS_REGIMES";
 
 -- --------------------------------------------------
 -- Creating all tables
@@ -1116,6 +990,44 @@ CREATE TABLE "dbo"."SE_REPORT" (
    "MODIFIED_LOG" NVARCHAR2(255) NOT NULL
 );
 
+-- Creating table 'INS_REGIMES'
+CREATE TABLE "dbo"."INS_REGIMES" (
+   "ID" NUMBER(38,0) NOT NULL,
+   "EMPLOYEE_ID" NUMBER(38,0) NULL,
+   "REGIME_ID" NUMBER(38,0) NULL,
+   "PAY_FORM" NUMBER(38,0) NULL,
+   "FROM_DATE" DATE NULL,
+   "TO_DATE" DATE NULL,
+   "DAY_CALCULATOR" NUMBER(38,0) NULL,
+   "BORN_DATE" DATE NULL,
+   "NAME_CHILDREN" NVARCHAR2(200) NULL,
+   "CHILDREN_NO" NUMBER(38,0) NULL,
+   "ACCUMULATE_DAY" NUMBER(38,0) NULL,
+   "SUBSIDY_SALARY" NUMBER(38,0) NULL,
+   "SUBSIDY_AMOUNT" NUMBER(38,0) NULL,
+   "PAYROLL_DATE" DATE NULL,
+   "CONDITION" NVARCHAR2(500) NULL,
+   "INS_PAY_AMOUNT" NUMBER(38,0) NULL,
+   "PAY_APPROVE_DATE" DATE NULL,
+   "APPROV_DAY_NUM" NUMBER(38,0) NULL,
+   "NOTE" NVARCHAR2(500) NULL,
+   "CREATED_BY" NVARCHAR2(100) NULL,
+   "CREATED_DATE" DATE NULL,
+   "MODIFIED_BY" NVARCHAR2(100) NULL,
+   "MODIFIED_DATE" DATE NULL,
+   "CREATED_LOG" NVARCHAR2(500) NULL,
+   "MODIFIED_LOG" NVARCHAR2(500) NULL,
+   "MONEY_ADVANCE" NUMBER(38,0) NULL,
+   "DECLARE_DATE" DATE NULL,
+   "SUBSIDY" NUMBER(38,0) NULL,
+   "IS_DELETED" NUMBER(38,0) NULL,
+   "OFF_IN_HOUSE" NUMBER(38,0) NULL,
+   "OFF_TOGETHER" NUMBER(38,0) NULL,
+   "SUBSIDY_MODIFY" NUMBER(38,0) NULL,
+   "REGIMES_SAL" NUMBER(38,0) NULL,
+   "SICK_TYPE" NUMBER(38,0) NULL
+);
+
 -- Creating table 'SE_USER_REPORT'
 CREATE TABLE "dbo"."SE_USER_REPORT" (
    "SE_REPORT_ID" NUMBER(38,0) NOT NULL,
@@ -1458,6 +1370,14 @@ ADD CONSTRAINT "PK_SE_USER"
 -- Creating primary key on "ID"in table 'SE_REPORT'
 ALTER TABLE "dbo"."SE_REPORT"
 ADD CONSTRAINT "PK_SE_REPORT"
+   PRIMARY KEY ("ID" )
+   ENABLE
+   VALIDATE;
+
+
+-- Creating primary key on "ID"in table 'INS_REGIMES'
+ALTER TABLE "dbo"."INS_REGIMES"
+ADD CONSTRAINT "PK_INS_REGIMES"
    PRIMARY KEY ("ID" )
    ENABLE
    VALIDATE;

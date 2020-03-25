@@ -3,7 +3,7 @@
 <%@ Register Src="~/Modules/Common/ctrlMessageBox.ascx" TagName="ctrlMessageBox"
     TagPrefix="Common" %>
 <tlk:RadSplitter ID="RadSplitter1" runat="server">
-    <tlk:RadPane ID="MainPane" runat="server" Scrolling="None">
+    <tlk:RadPane ID="MainPane" runat="server" Scrolling="Both">
         <tlk:RadToolBar ID="rtbMain" runat="server" />
         <asp:ValidationSummary ID="valSum" runat="server" DisplayMode="BulletList" CssClass="validationsummary" />
         <div style="display: none;">
@@ -51,7 +51,7 @@
                             </tlk:RadTextBox>
                         </td>
                         <td class="lb">
-                            <%# Translate("Chức danh bảo hiểm")%>
+                            <%# Translate("Chức danh ")%>
                         </td>
                         <td>
                             <tlk:RadTextBox ID="txtPOSITION" ReadOnly="true" runat="server">
@@ -71,6 +71,22 @@
                         </td>
                         <td>
                             <tlk:RadTextBox ID="txtHEALTH_NUMBER" ReadOnly="true" runat="server">
+                            </tlk:RadTextBox>
+                        </td>
+                    </tr>
+                     <tr>
+                        <td class="lb">
+                            <%# Translate("Số CMND")%>
+                        </td>
+                        <td>
+                            <tlk:RadTextBox ID="txtID_NO" ReadOnly="true" runat="server">
+                            </tlk:RadTextBox>
+                        </td>
+                        <td class="lb">
+                            <%# Translate("Nơi cấp")%>
+                        </td>
+                        <td>
+                            <tlk:RadTextBox ID="txtID_CREATE_PLACE" ReadOnly="true" runat="server">
                             </tlk:RadTextBox>
                         </td>
                     </tr>
@@ -99,17 +115,38 @@
                     <%# Translate("Thông tin hưởng chế độ")%>
                 </legend>
                 <table class="table-form">
+                     <tr>
+                        <td class="lb" style="width:130px;">
+                            <%# Translate("Đơn vị bảo hiểm")%>
+                        </td>
+                        <td>
+                            <tlk:RadTextBox ID="txtINSNAME" ReadOnly="true" runat="server">
+                            </tlk:RadTextBox>
+                        </td>
+                    </tr>
                     <tr>
                         <td class="lb" style="width:130px;">
                             <%# Translate("Loại chế độ hưởng")%><span class="lbReq">*</span>
                         </td>
-                        <td colspan="3" align="left">
+                        <td  >
                             <tlk:RadComboBox ID="ddlREGIME_ID" AutoPostBack="true" runat="server" TabIndex="6" >
                             </tlk:RadComboBox>
                             <asp:RequiredFieldValidator ID="reqddlREGIME_ID" ControlToValidate="ddlREGIME_ID"
                                 runat="server" Text="*" ErrorMessage="<%$ Translate: Bạn phải nhập Loại chế độ hưởng. %>"
                                 ToolTip="<%$ Translate: Bạn phải nhập Loại chế độ hưởng. %>"></asp:RequiredFieldValidator>
                         </td>
+
+                        <td class="lb" style="width:130px;">
+                            <%# Translate("Loại bệnh")%>
+                        </td>
+                        <td >
+                            <tlk:RadComboBox ID="cboSICKTYPE" AutoPostBack="true" runat="server" TabIndex="6" >
+                            </tlk:RadComboBox>
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator1" ControlToValidate="ddlREGIME_ID"
+                                runat="server" Text="*" ErrorMessage="<%$ Translate: Bạn phải nhập Loại chế độ hưởng. %>"
+                                ToolTip="<%$ Translate: Bạn phải nhập Loại chế độ hưởng. %>"></asp:RequiredFieldValidator>
+                        </td>
+
                     </tr>
                     <tr>
                         <td class="lb">
@@ -136,30 +173,10 @@
                                 ControlToCompare="txtFROM_DATE" Operator="GreaterThanEqual" ErrorMessage="<%$ Translate: Từ ngày phải lớn hơn đến ngày %>"
                                 ToolTip="<%$ Translate: Từ ngày phải lớn hơn đến ngày %>"></asp:CompareValidator>
                         </td>
-                    </tr>
-                    <tr style="display:none">
-                        <td class="lb">
-                            <%# Translate("Nghỉ tập trung")%>
-                        </td>
-                        <td>
-                            <tlk:RadNumericTextBox MinValue="0" Value="0" ID="txtOFF_TOGETHER" runat="server" AutoPostBack="true"
-                                TabIndex="10" >
-                                <NumberFormat GroupSeparator="," DecimalDigits="0" />
-                            </tlk:RadNumericTextBox>
-                        </td>
-                        <td class="lb">
-                            <%# Translate("Nghỉ tại gia đình")%>
-                        </td>
-                        <td>
-                            <tlk:RadNumericTextBox MinValue="0" Value="0" ID="txtOFF_IN_HOUSE" runat="server" AutoPostBack="true"
-                                TabIndex="10">
-                                <NumberFormat GroupSeparator="," DecimalDigits="0" />
-                            </tlk:RadNumericTextBox>
-                        </td>
-                    </tr>
+                    </tr>                   
                     <tr>
                         <td class="lb">
-                            <%# Translate("Số ngày tính")%>
+                            <%# Translate("Số ngày nghỉ")%>
                         </td>
                         <td>
                             <tlk:RadNumericTextBox MinValue="0" Value="0" ID="txtDAY_CALCULATOR" runat="server" AutoPostBack="true"
@@ -226,6 +243,26 @@
                             </tlk:RadNumericTextBox>
                         </td>
                     </tr>
+                     <tr >
+                        <td class="lb">
+                            <%# Translate("Nghỉ tập trung")%>
+                        </td>
+                        <td>
+                            <tlk:RadNumericTextBox MinValue="0" Value="0" ID="txtOFF_TOGETHER" runat="server" AutoPostBack="true"
+                                TabIndex="10" >
+                                <NumberFormat GroupSeparator="," DecimalDigits="0" />
+                            </tlk:RadNumericTextBox>
+                        </td>
+                        <td class="lb">
+                            <%# Translate("Nghỉ tại gia đình")%>
+                        </td>
+                        <td>
+                            <tlk:RadNumericTextBox MinValue="0" Value="0" ID="txtOFF_IN_HOUSE" runat="server" AutoPostBack="true"
+                                TabIndex="10">
+                                <NumberFormat GroupSeparator="," DecimalDigits="0" />
+                            </tlk:RadNumericTextBox>
+                        </td>
+                    </tr>
                     <tr>
                         <td class="lb">
                             <%# Translate("Số tiền hưởng theo chế độ")%>
@@ -271,7 +308,7 @@
                         </td>
                         <td>
                             <tlk:RadDatePicker DateInput-DisplayDateFormat="dd/MM/yyyy" runat="server" ID="txtDECLARE_DATE"
-                                TabIndex="18" AutoPostBack="true">
+                                TabIndex="18">
                             </tlk:RadDatePicker>
                             <asp:RequiredFieldValidator ID="reqtxtDECLARE_DATE" ControlToValidate="txtDECLARE_DATE"
                                 runat="server" Text="*" ErrorMessage="<%$ Translate: Bạn phải nhập Đợt khai báo. %>"

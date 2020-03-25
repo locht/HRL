@@ -115,7 +115,7 @@
                         <ClientEvents OnRowDblClick="gridRowDblClick" />
                     </ClientSettings>
                     <PagerStyle AlwaysVisible="true" Mode="NextPrevAndNumeric" />
-                    <MasterTableView CommandItemDisplay="None" DataKeyNames="ID" ClientDataKeyNames="ID,EMPLOYEE_ID,EMPLOYEE_CODE,EMPID,FULL_NAME,DEP_NAME,SOCIAL_NUMBER,HEALTH_NUMBER,BIRTH_DATE,PLACE_OF_BIRTH_NAME,REGIME_NM,REGIME_ID,PAY_FORM,FROM_DATE,TO_DATE,DAY_CALCULATOR,BORN_DATE,NAME_CHILDREN,CHILDREN_NO,ACCUMULATE_DAY,SUBSIDY_SALARY,SUBSIDY_AMOUNT,DECLARE_DATE,PAYROLL_DATE,CONDITION,INS_PAY_AMOUNT,PAY_APPROVE_DATE,APPROV_DAY_NUM,NOTE">
+                    <MasterTableView CommandItemDisplay="None" DataKeyNames="ID" ClientDataKeyNames="ID,EMPLOYEE_ID,EMPLOYEE_CODE,EMPID,SICK_TYPE,BRANCH,DEVI_NAME,FULL_NAME,DEP_NAME,SOCIAL_NUMBER,HEALTH_NUMBER,BIRTH_DATE,PLACE_OF_BIRTH_NAME,REGIME_NM,REGIME_ID,PAY_FORM,FROM_DATE,TO_DATE,DAY_CALCULATOR,BORN_DATE,NAME_CHILDREN,CHILDREN_NO,ACCUMULATE_DAY,SUBSIDY_SALARY,SUBSIDY_AMOUNT,DECLARE_DATE,PAYROLL_DATE,CONDITION,INS_PAY_AMOUNT,PAY_APPROVE_DATE,APPROV_DAY_NUM,NOTE">
                         <Columns>
                             <tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderStyle-HorizontalAlign="Center"
                                 HeaderStyle-Width="30px" ItemStyle-HorizontalAlign="Center">
@@ -126,7 +126,11 @@
                                 FilterControlWidth="99%" ShowFilterIcon="false" CurrentFilterFunction="Contains" AutoPostBackOnFilter="true" HeaderStyle-Width="60px" />
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Họ tên %>" DataField="FULL_NAME" UniqueName="FULL_NAME" SortExpression="FULL_NAME" 
                                 FilterControlWidth="99%" ShowFilterIcon="false" CurrentFilterFunction="Contains" AutoPostBackOnFilter="true" HeaderStyle-Width="130px"/>
+                                  <tlk:GridBoundColumn HeaderText="<%$ Translate: Chi nhánh %>" DataField="BRANCH" UniqueName="BRANCH" SortExpression="BRANCH"
+                                FilterControlWidth="99%" ShowFilterIcon="false" CurrentFilterFunction="Contains" AutoPostBackOnFilter="true" HeaderStyle-Width="170px"/>
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Phòng ban %>" DataField="DEP_NAME" UniqueName="DEP_NAME" SortExpression="DEP_NAME"
+                                FilterControlWidth="99%" ShowFilterIcon="false" CurrentFilterFunction="Contains" AutoPostBackOnFilter="true" HeaderStyle-Width="170px"/>
+                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Ngành/Bộ phận %>" DataField="DEVI_NAME" UniqueName="DEVI_NAME" SortExpression="DEVI_NAME"
                                 FilterControlWidth="99%" ShowFilterIcon="false" CurrentFilterFunction="Contains" AutoPostBackOnFilter="true" HeaderStyle-Width="170px"/>
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Ngày sinh%>" DataField="BIRTH_DATE" UniqueName="BIRTH_DATE" SortExpression="BIRTH_DATE" DataFormatString="{0:dd/MM/yyyy}"
                                 FilterControlWidth="99%" ShowFilterIcon="false" CurrentFilterFunction="Contains" AutoPostBackOnFilter="true" HeaderStyle-Width="80px"/>
@@ -134,7 +138,9 @@
                                 FilterControlWidth="99%" ShowFilterIcon="false" CurrentFilterFunction="Contains" AutoPostBackOnFilter="true" HeaderStyle-Width="170px"/>
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: REGIME_ID %>" DataField="REGIME_ID" UniqueName="REGIME_ID" SortExpression="REGIME_ID" Visible="false"/>   
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Loại hưởng chế độ%>" DataField="REGIME_NM" UniqueName="REGIME_NM" SortExpression="REGIME_NM"
-                                FilterControlWidth="99%" ShowFilterIcon="false" CurrentFilterFunction="Contains" AutoPostBackOnFilter="true" HeaderStyle-Width="250px"/>                         
+                                FilterControlWidth="99%" ShowFilterIcon="false" CurrentFilterFunction="Contains" AutoPostBackOnFilter="true" HeaderStyle-Width="250px"/>   
+                               <tlk:GridBoundColumn HeaderText="<%$ Translate: Loại bệnh%>" DataField="SICK_TYPE" UniqueName="SICK_TYPE" SortExpression="SICK_TYPE"
+                                FilterControlWidth="99%" ShowFilterIcon="false" CurrentFilterFunction="Contains" AutoPostBackOnFilter="true" HeaderStyle-Width="120px"/> 
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Từ ngày %>" DataField="FROM_DATE" UniqueName="FROM_DATE" SortExpression="FROM_DATE" DataFormatString="{0:dd/MM/yyyy}"
                                 FilterControlWidth="99%" ShowFilterIcon="false" CurrentFilterFunction="Contains" AutoPostBackOnFilter="true" HeaderStyle-Width="80px"/>
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Đến ngày %>" DataField="TO_DATE" UniqueName="TO_DATE" SortExpression="TO_DATE" DataFormatString="{0:dd/MM/yyyy}"

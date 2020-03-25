@@ -10392,6 +10392,9 @@ Namespace InsuranceBusiness
      System.ServiceModel.ServiceContractAttribute(ConfigurationName:="InsuranceBusiness.IInsuranceBusiness")>  _
     Public Interface IInsuranceBusiness
         
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/DeleteInsHealthImport", ReplyAction:="http://tempuri.org/IInsuranceBusiness/DeleteInsHealthImportResponse")>  _
+        Function DeleteInsHealthImport(ByVal username As String, ByVal id As System.Nullable(Of Double)) As Double
+        
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/UpdateHealthImport", ReplyAction:="http://tempuri.org/IInsuranceBusiness/UpdateHealthImportResponse")>  _
         Function UpdateHealthImport(ByVal username As String, ByVal employee_id As String, ByVal ins_org_name As String, ByVal seniority_insurance As String, ByVal social_number As String, ByVal social_status As String, ByVal social_grant_date As String, ByVal social_save_number As String, ByVal health_number As String, ByVal health_status As String, ByVal health_effect_from_date As String, ByVal health_effect_to_date As String, ByVal health_receive_date As String, ByVal health_receiver As String, ByVal health_area_ins As String) As Double
         
@@ -10406,6 +10409,9 @@ Namespace InsuranceBusiness
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/GET_MLTTC", ReplyAction:="http://tempuri.org/IInsuranceBusiness/GET_MLTTCResponse")>  _
         Function GET_MLTTC(ByVal p_date As Date) As System.Data.DataTable
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/GetINS_CHANGEById", ReplyAction:="http://tempuri.org/IInsuranceBusiness/GetINS_CHANGEByIdResponse")>  _
+        Function GetINS_CHANGEById(ByVal _id As System.Nullable(Of Decimal)) As InsuranceBusiness.INS_CHANGEDTO
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/InsertINS_CHANGE", ReplyAction:="http://tempuri.org/IInsuranceBusiness/InsertINS_CHANGEResponse")>  _
         Function InsertINS_CHANGE(ByVal objLeave As InsuranceBusiness.INS_CHANGEDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
@@ -10728,7 +10734,8 @@ Namespace InsuranceBusiness
                     ByVal money_advance As System.Nullable(Of Double),  _
                     ByVal off_together As System.Nullable(Of Double),  _
                     ByVal off_in_house As System.Nullable(Of Double),  _
-                    ByVal regimes_sal As System.Nullable(Of Double)) As Double
+                    ByVal regimes_sal As System.Nullable(Of Double),  _
+                    ByVal sicktype As System.Nullable(Of Double)) As Double
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/DeleteInsRegimes", ReplyAction:="http://tempuri.org/IInsuranceBusiness/DeleteInsRegimesResponse")>  _
         Function DeleteInsRegimes(ByVal username As String, ByVal id As System.Nullable(Of Double)) As Double
@@ -10803,9 +10810,6 @@ Namespace InsuranceBusiness
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/UpdateInsHealthImport", ReplyAction:="http://tempuri.org/IInsuranceBusiness/UpdateInsHealthImportResponse")>  _
         Function UpdateInsHealthImport(ByVal username As String, ByVal id As System.Nullable(Of Double), ByVal employee_id As String, ByVal ins_org_id As System.Nullable(Of Double), ByVal insurance_id As System.Nullable(Of Double), ByVal effective_from_date As System.Nullable(Of Date), ByVal effective_to_date As System.Nullable(Of Date)) As Double
         
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/DeleteInsHealthImport", ReplyAction:="http://tempuri.org/IInsuranceBusiness/DeleteInsHealthImportResponse")>  _
-        Function DeleteInsHealthImport(ByVal username As String, ByVal id As System.Nullable(Of Double)) As Double
-        
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/GetComboboxData", ReplyAction:="http://tempuri.org/IInsuranceBusiness/GetComboboxDataResponse")>  _
         Function GetComboboxData(ByRef cbxData As InsuranceBusiness.ComboBoxDataDTO) As Boolean
         
@@ -10820,6 +10824,9 @@ Namespace InsuranceBusiness
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/GetInsListEntitledType", ReplyAction:="http://tempuri.org/IInsuranceBusiness/GetInsListEntitledTypeResponse")>  _
         Function GetInsListEntitledType() As System.Data.DataTable
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/GetListSickType", ReplyAction:="http://tempuri.org/IInsuranceBusiness/GetListSickTypeResponse")>  _
+        Function GetListSickType() As System.Data.DataTable
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/GetInsListMasterlist", ReplyAction:="http://tempuri.org/IInsuranceBusiness/GetInsListMasterlistResponse")>  _
         Function GetInsListMasterlist(ByVal username As String, ByVal type As String, ByVal id As String, ByVal sval1 As String, ByVal sval2 As String, ByVal nval1 As System.Nullable(Of Double), ByVal nval2 As System.Nullable(Of Double), ByVal dval1 As System.Nullable(Of Date), ByVal dval2 As System.Nullable(Of Date), ByVal status As System.Nullable(Of Double)) As System.Data.DataTable
@@ -11222,9 +11229,6 @@ Namespace InsuranceBusiness
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/GetINS_CHANGE", ReplyAction:="http://tempuri.org/IInsuranceBusiness/GetINS_CHANGEResponse")>  _
         Function GetINS_CHANGE(ByVal _filter As InsuranceBusiness.INS_CHANGEDTO, ByVal _param As InsuranceBusiness.PARAMDTO, ByRef Total As Integer, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByVal Sorts As String, ByVal log As Common.CommonBusiness.UserLog) As System.Collections.Generic.List(Of InsuranceBusiness.INS_CHANGEDTO)
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/GetINS_CHANGEById", ReplyAction:="http://tempuri.org/IInsuranceBusiness/GetINS_CHANGEByIdResponse")>  _
-        Function GetINS_CHANGEById(ByVal _id As System.Nullable(Of Decimal)) As InsuranceBusiness.INS_CHANGEDTO
     End Interface
     
     <System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")>  _
@@ -11258,6 +11262,10 @@ Namespace InsuranceBusiness
             MyBase.New(binding, remoteAddress)
         End Sub
         
+        Public Function DeleteInsHealthImport(ByVal username As String, ByVal id As System.Nullable(Of Double)) As Double Implements InsuranceBusiness.IInsuranceBusiness.DeleteInsHealthImport
+            Return MyBase.Channel.DeleteInsHealthImport(username, id)
+        End Function
+        
         Public Function UpdateHealthImport(ByVal username As String, ByVal employee_id As String, ByVal ins_org_name As String, ByVal seniority_insurance As String, ByVal social_number As String, ByVal social_status As String, ByVal social_grant_date As String, ByVal social_save_number As String, ByVal health_number As String, ByVal health_status As String, ByVal health_effect_from_date As String, ByVal health_effect_to_date As String, ByVal health_receive_date As String, ByVal health_receiver As String, ByVal health_area_ins As String) As Double Implements InsuranceBusiness.IInsuranceBusiness.UpdateHealthImport
             Return MyBase.Channel.UpdateHealthImport(username, employee_id, ins_org_name, seniority_insurance, social_number, social_status, social_grant_date, social_save_number, health_number, health_status, health_effect_from_date, health_effect_to_date, health_receive_date, health_receiver, health_area_ins)
         End Function
@@ -11276,6 +11284,10 @@ Namespace InsuranceBusiness
         
         Public Function GET_MLTTC(ByVal p_date As Date) As System.Data.DataTable Implements InsuranceBusiness.IInsuranceBusiness.GET_MLTTC
             Return MyBase.Channel.GET_MLTTC(p_date)
+        End Function
+        
+        Public Function GetINS_CHANGEById(ByVal _id As System.Nullable(Of Decimal)) As InsuranceBusiness.INS_CHANGEDTO Implements InsuranceBusiness.IInsuranceBusiness.GetINS_CHANGEById
+            Return MyBase.Channel.GetINS_CHANGEById(_id)
         End Function
         
         Public Function InsertINS_CHANGE(ByVal objLeave As InsuranceBusiness.INS_CHANGEDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean Implements InsuranceBusiness.IInsuranceBusiness.InsertINS_CHANGE
@@ -11665,8 +11677,9 @@ Namespace InsuranceBusiness
                     ByVal money_advance As System.Nullable(Of Double),  _
                     ByVal off_together As System.Nullable(Of Double),  _
                     ByVal off_in_house As System.Nullable(Of Double),  _
-                    ByVal regimes_sal As System.Nullable(Of Double)) As Double Implements InsuranceBusiness.IInsuranceBusiness.UpdateInsRegimes
-            Return MyBase.Channel.UpdateInsRegimes(username, id, employee_id, regime_id, pay_form, from_date, to_date, day_calculator, born_date, name_children, children_no, accumulate_day, subsidy_salary, subsidy, subsidy_amount, payroll_date, declare_date, condition, ins_pay_amount, pay_approve_date, approv_day_num, note, money_advance, off_together, off_in_house, regimes_sal)
+                    ByVal regimes_sal As System.Nullable(Of Double),  _
+                    ByVal sicktype As System.Nullable(Of Double)) As Double Implements InsuranceBusiness.IInsuranceBusiness.UpdateInsRegimes
+            Return MyBase.Channel.UpdateInsRegimes(username, id, employee_id, regime_id, pay_form, from_date, to_date, day_calculator, born_date, name_children, children_no, accumulate_day, subsidy_salary, subsidy, subsidy_amount, payroll_date, declare_date, condition, ins_pay_amount, pay_approve_date, approv_day_num, note, money_advance, off_together, off_in_house, regimes_sal, sicktype)
         End Function
         
         Public Function DeleteInsRegimes(ByVal username As String, ByVal id As System.Nullable(Of Double)) As Double Implements InsuranceBusiness.IInsuranceBusiness.DeleteInsRegimes
@@ -11758,10 +11771,6 @@ Namespace InsuranceBusiness
             Return MyBase.Channel.UpdateInsHealthImport(username, id, employee_id, ins_org_id, insurance_id, effective_from_date, effective_to_date)
         End Function
         
-        Public Function DeleteInsHealthImport(ByVal username As String, ByVal id As System.Nullable(Of Double)) As Double Implements InsuranceBusiness.IInsuranceBusiness.DeleteInsHealthImport
-            Return MyBase.Channel.DeleteInsHealthImport(username, id)
-        End Function
-        
         Public Function GetComboboxData(ByRef cbxData As InsuranceBusiness.ComboBoxDataDTO) As Boolean Implements InsuranceBusiness.IInsuranceBusiness.GetComboboxData
             Return MyBase.Channel.GetComboboxData(cbxData)
         End Function
@@ -11780,6 +11789,10 @@ Namespace InsuranceBusiness
         
         Public Function GetInsListEntitledType() As System.Data.DataTable Implements InsuranceBusiness.IInsuranceBusiness.GetInsListEntitledType
             Return MyBase.Channel.GetInsListEntitledType
+        End Function
+        
+        Public Function GetListSickType() As System.Data.DataTable Implements InsuranceBusiness.IInsuranceBusiness.GetListSickType
+            Return MyBase.Channel.GetListSickType
         End Function
         
         Public Function GetInsListMasterlist(ByVal username As String, ByVal type As String, ByVal id As String, ByVal sval1 As String, ByVal sval2 As String, ByVal nval1 As System.Nullable(Of Double), ByVal nval2 As System.Nullable(Of Double), ByVal dval1 As System.Nullable(Of Date), ByVal dval2 As System.Nullable(Of Date), ByVal status As System.Nullable(Of Double)) As System.Data.DataTable Implements InsuranceBusiness.IInsuranceBusiness.GetInsListMasterlist
@@ -12096,10 +12109,6 @@ Namespace InsuranceBusiness
         
         Public Function GetINS_CHANGE(ByVal _filter As InsuranceBusiness.INS_CHANGEDTO, ByVal _param As InsuranceBusiness.PARAMDTO, ByRef Total As Integer, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByVal Sorts As String, ByVal log As Common.CommonBusiness.UserLog) As System.Collections.Generic.List(Of InsuranceBusiness.INS_CHANGEDTO) Implements InsuranceBusiness.IInsuranceBusiness.GetINS_CHANGE
             Return MyBase.Channel.GetINS_CHANGE(_filter, _param, Total, PageIndex, PageSize, Sorts, log)
-        End Function
-        
-        Public Function GetINS_CHANGEById(ByVal _id As System.Nullable(Of Decimal)) As InsuranceBusiness.INS_CHANGEDTO Implements InsuranceBusiness.IInsuranceBusiness.GetINS_CHANGEById
-            Return MyBase.Channel.GetINS_CHANGEById(_id)
         End Function
     End Class
 End Namespace

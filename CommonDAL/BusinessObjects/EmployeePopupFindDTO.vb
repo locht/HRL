@@ -37,6 +37,9 @@
     Public Property OBJECT_NAME As String
     Public Property LABOUR_NAME As String
     Public Property TER_LAST_DATE As Date? ' ngày nghỉ việc
+    Public Property ID_NO As String 'SO CMND
+    Public Property CREATE_PLACE As String 'NOI CAP { ID:PROVINCE }
+    Public Property ID_CREATE_PLACE As Decimal? '{ ID:PROVINCE }
 End Class
 Public Class EmployeePopupFindListDTO
     Public Property ID As Decimal
@@ -65,6 +68,7 @@ Public Class EmployeePopupFindListDTO
     Public Property LoadAllOrganization As Boolean
     Public Property IS_TER As Boolean
     Public Property DIRECT_MANAGER As Decimal?
+
 End Class
 
 Public Class ParamDTO

@@ -200,6 +200,7 @@
     <Content Include="Modules\Common\Secure\ctrlListUser.ascx" />
     <Content Include="Modules\Common\Secure\ctrlListUserNewEdit.ascx" />
     <None Include="ClassDiagram1.cd" />
+    <None Include="My Project\DataSources\System.Data.DataTable.datasource" />
     <None Include="Service References\CommonBusiness\Common.CommonBusiness.AccessLog.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
@@ -257,9 +258,6 @@
     <None Include="Service References\CommonBusiness\Common.CommonBusiness.GroupReportDTO.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Service References\CommonBusiness\Common.CommonBusiness.GroupUserLogDTO.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
     <None Include="Service References\CommonBusiness\Common.CommonBusiness.LdapDTO.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
@@ -270,9 +268,6 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\CommonBusiness\Common.CommonBusiness.OrganizationDTO.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\CommonBusiness\Common.CommonBusiness.OrganizationFunctionDTO.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\CommonBusiness\Common.CommonBusiness.OrganizationStructureDTO.datasource">
@@ -290,39 +285,6 @@
     <None Include="Service References\CommonBusiness\Common.CommonBusiness.PermissionDTO.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Service References\CommonBusiness\Common.CommonBusiness.ReportDataAccessMatrixDTO.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\CommonBusiness\Common.CommonBusiness.ReportFunctionAccessMatrixDTO.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\CommonBusiness\Common.CommonBusiness.ReportMasterFileDTO.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\CommonBusiness\Common.CommonBusiness.ReportReportAccessMatrixDTO.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\CommonBusiness\Common.CommonBusiness.ReportSegregationDutyDTO.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\CommonBusiness\Common.CommonBusiness.ReportSensitiveDataDTO.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\CommonBusiness\Common.CommonBusiness.ReportSensitiveReportDTO.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\CommonBusiness\Common.CommonBusiness.ReportSODViolationDTO.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\CommonBusiness\Common.CommonBusiness.ReportUserListDTO.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\CommonBusiness\Common.CommonBusiness.ReportUserPrivilegeDTO.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\CommonBusiness\Common.CommonBusiness.SalaryEnterpriseDTO.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
     <None Include="Service References\CommonBusiness\Common.CommonBusiness.se_view_config_control_DTO1.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
@@ -334,6 +296,9 @@
     </None>
     <None Include="Service References\CommonBusiness\Common.CommonBusiness.UserDTO.datasource" />
     <None Include="Service References\CommonBusiness\Common.CommonBusiness.UserDTO1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\CommonBusiness\Common.CommonBusiness.UserFunctionDTO.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\CommonBusiness\Common.CommonBusiness.UserReportDTO.datasource">

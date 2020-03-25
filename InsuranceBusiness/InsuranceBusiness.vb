@@ -74,6 +74,19 @@ Namespace InsuranceBusiness.ServiceImplementations
                 Return Nothing
             End Try
         End Function
+
+        Public Function GetListSickType() As DataTable _
+              Implements ServiceContracts.IInsuranceBusiness.GetListSickType
+            Try
+                Dim rep As New DataAccess.QueryData
+                Dim objS As Object = rep.ExecuteStore("PKG_INS_LIST.SPS_INS_SICK_TYPE",
+                                                      New With {.P_CUR = OUT_CURSOR})
+
+                Return objS
+            Catch ex As Exception
+                Return Nothing
+            End Try
+        End Function
 #End Region
 
 #Region "Function"
@@ -667,7 +680,8 @@ Namespace InsuranceBusiness.ServiceImplementations
                                         , ByVal money_advance As Double? _
                                         , ByVal off_together As Double? _
                                         , ByVal off_in_house As Double? _
-                                        , ByVal regimes_sal As Double?) As Double _
+                                        , ByVal regimes_sal As Double? _
+                                         , ByVal sicktype As Double?) As Double _
                  Implements ServiceContracts.IInsuranceBusiness.UpdateInsRegimes
             Try
                 Dim rep As New DataAccess.QueryData
@@ -695,7 +709,8 @@ Namespace InsuranceBusiness.ServiceImplementations
                                         , .P_MONEY_ADVANCE = IIf(money_advance Is Nothing, System.DBNull.Value, money_advance) _
                                         , .P_OFF_TOGETHER = IIf(off_together Is Nothing, System.DBNull.Value, off_together) _
                                         , .P_OFF_IN_HOUSE = IIf(off_in_house Is Nothing, System.DBNull.Value, off_in_house) _
-                                        , .P_REGIMES_SAL = IIf(regimes_sal Is Nothing, System.DBNull.Value, regimes_sal)})
+                                        , .P_REGIMES_SAL = IIf(regimes_sal Is Nothing, System.DBNull.Value, regimes_sal) _
+                                        , .P_SICK_TYPE = IIf(sicktype Is Nothing, System.DBNull.Value, sicktype)})
 
                 Return 1
             Catch ex As Exception

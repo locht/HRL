@@ -7912,6 +7912,9 @@ Namespace CommonBusiness
         Private CONTRACT_IDField As System.Nullable(Of Decimal)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private CREATE_PLACEField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private DECISION_IDField As System.Nullable(Of Decimal)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -7943,6 +7946,12 @@ Namespace CommonBusiness
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private IDField As Decimal
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private ID_CREATE_PLACEField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private ID_NOField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private IMAGEField As String
@@ -8071,6 +8080,19 @@ Namespace CommonBusiness
                 If (Me.CONTRACT_IDField.Equals(value) <> true) Then
                     Me.CONTRACT_IDField = value
                     Me.RaisePropertyChanged("CONTRACT_ID")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property CREATE_PLACE() As String
+            Get
+                Return Me.CREATE_PLACEField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.CREATE_PLACEField, value) <> true) Then
+                    Me.CREATE_PLACEField = value
+                    Me.RaisePropertyChanged("CREATE_PLACE")
                 End If
             End Set
         End Property
@@ -8214,6 +8236,32 @@ Namespace CommonBusiness
                 If (Me.IDField.Equals(value) <> true) Then
                     Me.IDField = value
                     Me.RaisePropertyChanged("ID")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property ID_CREATE_PLACE() As System.Nullable(Of Decimal)
+            Get
+                Return Me.ID_CREATE_PLACEField
+            End Get
+            Set
+                If (Me.ID_CREATE_PLACEField.Equals(value) <> true) Then
+                    Me.ID_CREATE_PLACEField = value
+                    Me.RaisePropertyChanged("ID_CREATE_PLACE")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property ID_NO() As String
+            Get
+                Return Me.ID_NOField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.ID_NOField, value) <> true) Then
+                    Me.ID_NOField = value
+                    Me.RaisePropertyChanged("ID_NO")
                 End If
             End Set
         End Property

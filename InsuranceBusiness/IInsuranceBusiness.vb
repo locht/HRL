@@ -17,6 +17,8 @@ Namespace InsuranceBusiness.ServiceContracts
         Function GetInsListWhereHealth() As DataTable
         <OperationContract()>
         Function GetInsListEntitledType() As DataTable
+        <OperationContract()>
+        Function GetListSickType() As DataTable
 #End Region
 
 #Region "Danh mục loại điều chỉnh Hồ sơ Bảo hiểm"
@@ -675,7 +677,8 @@ Namespace InsuranceBusiness.ServiceContracts
                                 , ByVal money_advance As Double? _
                                 , ByVal off_together As Double? _
                                 , ByVal off_in_house As Double? _
-                                , ByVal regimes_sal As Double?) As Double
+                                , ByVal regimes_sal As Double? _
+                                         , ByVal sicktype As Double?) As Double
         <OperationContract()>
         Function DeleteInsRegimes(ByVal username As String, ByVal id As Double?) As Double
         <OperationContract()>

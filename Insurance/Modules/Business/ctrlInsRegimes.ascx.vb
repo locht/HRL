@@ -179,6 +179,9 @@ Public Class ctrlInsRegimes
                     txtACCUMULATE_DAY.Enabled = False
                     txtSUBSIDY_SALARY.Enabled = False
                     txtSUBSIDY_MODIFY.Enabled = False
+                    txtID_NO.Enabled = False
+                    txtID_CREATE_PLACE.Enabled = False
+                    txtINSNAME.Enabled = False
 
                     txtSUBSIDY.Enabled = False
                     'txtMONEY_ADVANCE.Enabled = False
@@ -206,6 +209,9 @@ Public Class ctrlInsRegimes
                     txtCHILDREN_NO.Enabled = True
                     txtACCUMULATE_DAY.Enabled = True
                     txtSUBSIDY_SALARY.Enabled = True
+                    txtID_NO.Enabled = True
+                    txtID_CREATE_PLACE.Enabled = True
+                    txtINSNAME.Enabled = True
 
                     txtSUBSIDY_MODIFY.Enabled = True
                     'txtMONEY_ADVANCE.Enabled = True
@@ -303,7 +309,10 @@ Public Class ctrlInsRegimes
             txtEMPLOYEE_ID.Text = ""
             txtFULLNAME.Text = ""
             txtDEP.Text = ""
+            txtINSNAME.Text = ""
 
+            txtID_NO.Text = ""
+            txtID_CREATE_PLACE.Text = ""
             txtEMPLOYEE_ID.Text = ""
             txtFULLNAME.Text = ""
             txtDEP.Text = ""
@@ -372,7 +381,8 @@ Public Class ctrlInsRegimes
                                                                         , InsCommon.getNumber(txtSUBSIDY_MODIFY.Text) _
                                                                         , InsCommon.getNumber(txtOFF_TOGETHER.Text) _
                                                                         , InsCommon.getNumber(txtOFF_IN_HOUSE.Text) _
-                                                                        , InsCommon.getNumber(txtRegimes.Value)) Then
+                                                                        , InsCommon.getNumber(txtRegimes.Value) _
+                                                                        , InsCommon.getNumber(cboSICKTYPE.SelectedValue)) Then
                         Refresh("InsertView")
                         ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), Utilities.NotifyType.Success)
                         Dim str As String = "getRadWindow().close('1');"
@@ -405,7 +415,8 @@ Public Class ctrlInsRegimes
                                                                         , InsCommon.getNumber(txtSUBSIDY_MODIFY.Text) _
                                                                         , InsCommon.getNumber(txtOFF_TOGETHER.Text) _
                                                                         , InsCommon.getNumber(txtOFF_IN_HOUSE.Text) _
-                                                                        , InsCommon.getNumber(txtRegimes.Value)) Then
+                                                                        , InsCommon.getNumber(txtRegimes.Value) _
+                                                                        , InsCommon.getNumber(cboSICKTYPE.SelectedValue)) Then
                         Refresh("UpdateView")
                         ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), Utilities.NotifyType.Success)
                         Dim str As String = "getRadWindow().close('1');"
@@ -424,6 +435,8 @@ Public Class ctrlInsRegimes
             Dim lstSource As DataTable = (New InsuranceBusiness.InsuranceBusinessClient).GetInsListEntitledType()
             FillRadCombobox(ddlREGIME_ID, lstSource, "NAME_VN", "ID", False)
 
+            Dim lisSRC As DataTable = (New InsuranceBusiness.InsuranceBusinessClient).GetListSickType()
+            FillRadCombobox(cboSICKTYPE, lisSRC, "NAME_VN", "ID", False)
         Catch ex As Exception
             Throw ex
         End Try
@@ -431,7 +444,7 @@ Public Class ctrlInsRegimes
 
     Private Sub txtFROM_DATE_SelectedDateChanged(ByVal sender As Object, ByVal e As Telerik.Web.UI.Calendar.SelectedDateChangedEventArgs) Handles txtFROM_DATE.SelectedDateChanged
         Try
-            LoadAutoData()            
+            LoadAutoData()
             ValidateDayCalculate()
             LoadSalaryRegimes()
         Catch ex As Exception
@@ -472,6 +485,15 @@ Public Class ctrlInsRegimes
             LoadAutoData()
             ValidateDayCalculate()
             LoadSalaryRegimes()
+
+        Catch ex As Exception
+
+        End Try
+    End Sub
+
+    Private Sub txtOFF_TOGETHER_SelectedDateChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles txtOFF_TOGETHER.TextChanged
+        Try
+            LoadAutoData()
         Catch ex As Exception
 
         End Try
@@ -495,13 +517,16 @@ Public Class ctrlInsRegimes
                     InsCommon.SetNumber(txtDAY_CALCULATOR, lstSource.Rows(0)("DAY_CALCULATOR")) 'Số ngày tính
                     If CurrentState = CommonMessage.STATE_EDIT Then
                         txtACCUMULATE_DAY.Text = lstSource.Rows(0)("ACCUMULATE_DAY") - InsCommon.getNumber2(txtCurrDate.Text) 'Số ngày lũy kế
+
                     Else
                         InsCommon.SetNumber(txtACCUMULATE_DAY, lstSource.Rows(0)("ACCUMULATE_DAY"))'Số ngày lũy kế
                     End If
                     InsCommon.SetNumber(txtSUBSIDY_SALARY, lstSource.Rows(0)("SUBSIDY_SALARY")) 'Tiền lương trợ cấp
                     'InsCommon.SetNumber(txtSUBSIDY, lstSource.Rows(0)("SUBSIDY")) 'Tiền trợ cấp
                     'InsCommon.SetNumber(txtSUBSIDY_MODIFY, lstSource.Rows(0)("SUBSIDY")) 'Tiền trợ cấp chỉnh sửa
-
+                    If txtOFF_TOGETHER.Value IsNot Nothing Then
+                        txtOFF_IN_HOUSE.Value = txtDAY_CALCULATOR.Value - txtOFF_TOGETHER.Value
+                    End If
                     LoaiCal = Integer.Parse(lstSource.Rows(0)("LOAI_CAL"))
                     RateCal = Decimal.Parse(lstSource.Rows(0)("RATE_CAL"))
                     If LoaiCal = 1 Then
@@ -540,7 +565,9 @@ Public Class ctrlInsRegimes
                 txtEMPLOYEE_ID.Text = InsCommon.getString(lstSource.Rows(0)("EMPLOYEE_CODE"))
                 txtFULLNAME.Text = InsCommon.getString(lstSource.Rows(0)("FULL_NAME"))
                 txtDEP.Text = InsCommon.getString(lstSource.Rows(0)("DEP_NAME"))
-
+                txtID_NO.Text = InsCommon.getString(lstSource.Rows(0)("ID_NO"))
+                txtID_CREATE_PLACE.Text = InsCommon.getString(lstSource.Rows(0)("THONGTIN_LL"))
+                txtINSNAME.Text = InsCommon.getString(lstSource.Rows(0)("INS_ORG_NAME"))
                 txtSOCIAL_NUMBER.Text = InsCommon.getString(lstSource.Rows(0)("SOCIAL_NUMBER"))
                 txtHEALTH_NUMBER.Text = InsCommon.getString(lstSource.Rows(0)("HEALTH_NUMBER"))
                 'txtDEP.Text = InsCommon.getString(lstSource.Rows(0)("ID"))
@@ -677,6 +704,7 @@ Public Class ctrlInsRegimes
                     txtEMPLOYEE_ID.Text = lstSource.Rows(0)("EMPLOYEE_ID")
                     InsCommon.SetString(txtFULLNAME, lstSource.Rows(0)("VN_FULLNAME"))
                     InsCommon.SetString(txtDEP, lstSource.Rows(0)("ORG_NAME"))
+                    InsCommon.SetString(txtID_NO, lstSource.Rows(0)("ID_NO"))
 
                     InsCommon.SetDate(txtDoB, lstSource.Rows(0)("BIRTH_DATE"))
                     InsCommon.SetString(txtBirthPlace, lstSource.Rows(0)("PLACE_OF_BIRTH_NAME"))
@@ -688,7 +716,8 @@ Public Class ctrlInsRegimes
 
                     InsCommon.SetString(txtSOCIAL_NUMBER, lstSource.Rows(0)("SOCIAL_NUMBER"))
                     InsCommon.SetString(txtHEALTH_NUMBER, lstSource.Rows(0)("HEALTH_NUMBER"))
-
+                    InsCommon.SetString(txtID_CREATE_PLACE, lstSource.Rows(0)("THONGTIN_LL"))
+                    InsCommon.SetString(txtINSNAME, lstSource.Rows(0)("INS_ORG_NAME"))
                 End If
 
                 'hidEmployeeID.Value = item.ID.ToString
