@@ -678,7 +678,7 @@ Partial Class RecruitmentRepository
                 lst = lst.Where(Function(p) p.SEND_DATE >= _filter.FROM_DATE)
             End If
             If _filter.TO_DATE IsNot Nothing Then
-                lst = lst.Where(Function(p) p.SEND_DATE <= _filter.FROM_DATE)
+                lst = lst.Where(Function(p) p.SEND_DATE <= _filter.TO_DATE)
             End If
             If _filter.STATUS_ID IsNot Nothing Then
                 lst = lst.Where(Function(p) p.STATUS_ID = _filter.STATUS_ID)
@@ -808,12 +808,17 @@ Partial Class RecruitmentRepository
                                        .UPLOAD_FILE = p.UPLOAD_FILE}
 
             Dim obj = query.FirstOrDefault
-            Dim lstEmp = (From p In Context.RC_REQUEST_EMP
+            Dim lstEmp = (From p In Context.RC_RECRUITMENT_INSTEAD
                            From emp In Context.HU_EMPLOYEE.Where(Function(f) f.ID = p.EMPLOYEE_ID)
-                           Where p.RC_REQUEST_ID = obj.ID
-                           Select New RequestEmpDTO With {
+                           From org In Context.HU_ORGANIZATION.Where(Function(f) f.ID = emp.ORG_ID).DefaultIfEmpty
+                           From title In Context.HU_TITLE.Where(Function(f) f.ID = emp.TITLE_ID).DefaultIfEmpty
+                           Where p.REQUEST_ID = obj.ID
+                           Select New RecruitmentInsteadDTO With {
                                .EMPLOYEE_ID = p.EMPLOYEE_ID,
                                .EMPLOYEE_CODE = emp.EMPLOYEE_CODE,
+                               .ORG_NAME = org.NAME_VN,
+                               .TITLE_NAME = title.NAME_VN,
+                               .TER_LAST_DATE = emp.TER_LAST_DATE,
                                .EMPLOYEE_NAME = emp.FULLNAME_VN}).ToList
             obj.lstEmp = lstEmp
             Return obj
@@ -911,7 +916,6 @@ Partial Class RecruitmentRepository
 
     Public Function InsertRequest(ByVal objRequest As RequestDTO, ByVal log As UserLog, ByRef gID As Decimal) As Boolean
         Dim objRequestData As New RC_REQUEST
-        Dim objRC_RECRUITMENT_INSTEAD As New RC_RECRUITMENT_INSTEAD
         Try
             'If CheckExistRequest(objRequest) Then
             '    Return False
@@ -956,20 +960,21 @@ Partial Class RecruitmentRepository
             objRequestData.FILE_NAME = objRequest.FILE_NAME
             objRequestData.UPLOAD_FILE = objRequest.UPLOAD_FILE
             objRequestData.LOCATION_ID = objRequest.LOCATION_ID
-
-            objRC_RECRUITMENT_INSTEAD.ID = Utilities.GetNextSequence(Context, Context.RC_REQUEST.EntitySet.Name)
-            objRC_RECRUITMENT_INSTEAD.EMPLOYEE_ID = objRequest.ID_RECRUITMENT_INSTEAD
-            objRC_RECRUITMENT_INSTEAD.REQUEST_ID = objRequestData.ID
-
             Context.RC_REQUEST.AddObject(objRequestData)
-            Context.RC_RECRUITMENT_INSTEAD.AddObject(objRC_RECRUITMENT_INSTEAD)
+            
             If objRequest.lstEmp IsNot Nothing Then
                 For Each item In objRequest.lstEmp
-                    Dim objRequestEmpData As New RC_REQUEST_EMP
-                    objRequestEmpData.ID = Utilities.GetNextSequence(Context, Context.RC_REQUEST_EMP.EntitySet.Name)
-                    objRequestEmpData.RC_REQUEST_ID = objRequestData.ID
-                    objRequestEmpData.EMPLOYEE_ID = item.EMPLOYEE_ID
-                    Context.RC_REQUEST_EMP.AddObject(objRequestEmpData)
+                    'Dim objRequestEmpData As New RC_REQUEST_EMP
+                    'objRequestEmpData.ID = Utilities.GetNextSequence(Context, Context.RC_REQUEST_EMP.EntitySet.Name)
+                    'objRequestEmpData.RC_REQUEST_ID = objRequestData.ID
+                    'objRequestEmpData.EMPLOYEE_ID = item.EMPLOYEE_ID
+                    'Context.RC_REQUEST_EMP.AddObject(objRequestEmpData)
+                    Dim objRC_RECRUITMENT_INSTEAD As New RC_RECRUITMENT_INSTEAD
+                    objRC_RECRUITMENT_INSTEAD.ID = Utilities.GetNextSequence(Context, Context.RC_REQUEST.EntitySet.Name)
+                    objRC_RECRUITMENT_INSTEAD.EMPLOYEE_ID = item.EMPLOYEE_ID
+                    objRC_RECRUITMENT_INSTEAD.REQUEST_ID = objRequestData.ID
+
+                    Context.RC_RECRUITMENT_INSTEAD.AddObject(objRC_RECRUITMENT_INSTEAD)
                 Next
             End If
             Context.SaveChanges(log)
@@ -1022,18 +1027,34 @@ Partial Class RecruitmentRepository
             objRequestData.FILE_NAME = objRequest.FILE_NAME
             objRequestData.UPLOAD_FILE = objRequest.UPLOAD_FILE
             objRequestData.LOCATION_ID = objRequest.LOCATION_ID
-            Dim lstRegEmp = (From p In Context.RC_REQUEST_EMP Where p.RC_REQUEST_ID = objRequestData.ID).ToList
+            'Dim lstRegEmp = (From p In Context.RC_REQUEST_EMP Where p.RC_REQUEST_ID = objRequestData.ID).ToList
+            'For Each item In lstRegEmp
+            '    Context.RC_REQUEST_EMP.DeleteObject(item)
+            'Next
+            'Context.SaveChanges(log)
+            'If objRequest.lstEmp IsNot Nothing Then
+            '    For Each item In objRequest.lstEmp
+            '        Dim objRequestEmpData As New RC_REQUEST_EMP
+            '        objRequestEmpData.ID = Utilities.GetNextSequence(Context, Context.RC_REQUEST_EMP.EntitySet.Name)
+            '        objRequestEmpData.RC_REQUEST_ID = objRequestData.ID
+            '        objRequestEmpData.EMPLOYEE_ID = item.EMPLOYEE_ID
+            '        Context.RC_REQUEST_EMP.AddObject(objRequestEmpData)
+            '    Next
+            '    Context.SaveChanges(log)
+            'End If
+            Dim lstRegEmp = (From p In Context.RC_RECRUITMENT_INSTEAD Where p.REQUEST_ID = objRequestData.ID).ToList
             For Each item In lstRegEmp
-                Context.RC_REQUEST_EMP.DeleteObject(item)
+                Context.RC_RECRUITMENT_INSTEAD.DeleteObject(item)
             Next
             Context.SaveChanges(log)
             If objRequest.lstEmp IsNot Nothing Then
                 For Each item In objRequest.lstEmp
-                    Dim objRequestEmpData As New RC_REQUEST_EMP
-                    objRequestEmpData.ID = Utilities.GetNextSequence(Context, Context.RC_REQUEST_EMP.EntitySet.Name)
-                    objRequestEmpData.RC_REQUEST_ID = objRequestData.ID
-                    objRequestEmpData.EMPLOYEE_ID = item.EMPLOYEE_ID
-                    Context.RC_REQUEST_EMP.AddObject(objRequestEmpData)
+                    Dim objRC_RECRUITMENT_INSTEAD As New RC_RECRUITMENT_INSTEAD
+                    objRC_RECRUITMENT_INSTEAD.ID = Utilities.GetNextSequence(Context, Context.RC_REQUEST.EntitySet.Name)
+                    objRC_RECRUITMENT_INSTEAD.EMPLOYEE_ID = item.EMPLOYEE_ID
+                    objRC_RECRUITMENT_INSTEAD.REQUEST_ID = objRequestData.ID
+
+                    Context.RC_RECRUITMENT_INSTEAD.AddObject(objRC_RECRUITMENT_INSTEAD)
                 Next
                 Context.SaveChanges(log)
             End If
@@ -1052,9 +1073,13 @@ Partial Class RecruitmentRepository
             lstRequestData = (From p In Context.RC_REQUEST Where lstID.Contains(p.ID)).ToList
             For index = 0 To lstRequestData.Count - 1
                 Dim id = lstRequestData(index).ID
-                Dim lstRegEmp = (From p In Context.RC_REQUEST_EMP Where p.RC_REQUEST_ID = id).ToList
+                'Dim lstRegEmp = (From p In Context.RC_REQUEST_EMP Where p.RC_REQUEST_ID = id).ToList
+                'For Each item In lstRegEmp
+                '    Context.RC_REQUEST_EMP.DeleteObject(item)
+                'Next
+                Dim lstRegEmp = (From p In Context.RC_RECRUITMENT_INSTEAD Where p.REQUEST_ID = id).ToList
                 For Each item In lstRegEmp
-                    Context.RC_REQUEST_EMP.DeleteObject(item)
+                    Context.RC_RECRUITMENT_INSTEAD.DeleteObject(item)
                 Next
                 Context.RC_REQUEST.DeleteObject(lstRequestData(index))
             Next
@@ -1075,7 +1100,7 @@ Partial Class RecruitmentRepository
             For Each item In lstRequestData
                 item.STATUS_ID = status
                 If status = RecruitmentCommon.RC_REQUEST_STATUS.APPROVE_ID Then
-                    Dim lstEmp = (From p In Context.RC_REQUEST_EMP Where p.RC_REQUEST_ID = item.ID).ToList
+                    Dim lstEmp = (From p In Context.RC_RECRUITMENT_INSTEAD Where p.REQUEST_ID = item.ID).ToList
                     InsertProgram(item, lstEmp)
                 End If
             Next
@@ -1479,7 +1504,7 @@ Partial Class RecruitmentRepository
     End Function
 
     Public Function InsertProgram(ByVal objProgram As RC_REQUEST,
-                                  ByVal lstEmp As List(Of RC_REQUEST_EMP)) As Boolean
+                                  ByVal lstEmp As List(Of RC_RECRUITMENT_INSTEAD)) As Boolean
         Dim objProgramData As New RC_PROGRAM
         Try
             objProgramData.ID = Utilities.GetNextSequence(Context, Context.RC_PROGRAM.EntitySet.Name)

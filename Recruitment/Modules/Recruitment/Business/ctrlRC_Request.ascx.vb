@@ -156,9 +156,10 @@ Public Class ctrlRC_Request
             Me.MainToolBar = tbarMain
             ''TODO: DAIDM comment
             Common.Common.BuildToolbar(Me.MainToolBar, ToolbarItem.Create, ToolbarItem.Edit, ToolbarItem.Delete,
-                                       ToolbarItem.Approve, ToolbarItem.Reject)
+                                       ToolbarItem.Approve, ToolbarItem.Reject, ToolbarItem.Export)
             CType(MainToolBar.Items(3), RadToolBarButton).Text = "Phê duyệt"
             CType(MainToolBar.Items(4), RadToolBarButton).Text = "Không phê duyệt"
+            CType(MainToolBar.Items(5), RadToolBarButton).Text = "Xuất tờ trình"
         Catch ex As Exception
             Throw ex
         End Try
@@ -287,7 +288,7 @@ Public Class ctrlRC_Request
                         End If
                     Next
 
-                    ctrlMessageBox.MessageText = Translate(CommonMessage.MESSAGE_CONFIRM_APPROVE)
+                    ctrlMessageBox.MessageText = Translate("Bạn muốn phê duyệt?")
                     ctrlMessageBox.ActionName = CommonMessage.TOOLBARITEM_APPROVE
                     ctrlMessageBox.DataBind()
                     ctrlMessageBox.Show()
@@ -385,17 +386,7 @@ Public Class ctrlRC_Request
                     '                        dsData, Response)
                     'End If
                 Case CommonMessage.TOOLBARITEM_EXPORT
-                    Dim dtData As DataTable
-                    Using xls As New ExcelCommon
-                        dtData = CreateDataFilter(True)
-                        If dtData.Rows.Count = 0 Then
-                            ShowMessage(Translate(CommonMessage.MESSAGE_WARNING_EXPORT_EMPTY), NotifyType.Warning)
-                            Exit Sub
-                        ElseIf dtData.Rows.Count > 0 Then
-                            rgData.ExportExcel(Server, Response, dtData, "Title")
-                            Exit Sub
-                        End If
-                    End Using
+                    Exit Sub
                 Case CommonMessage.TOOLBARITEM_NEXT
                     Export_TemplateRecruitment()
                 Case CommonMessage.TOOLBARITEM_IMPORT

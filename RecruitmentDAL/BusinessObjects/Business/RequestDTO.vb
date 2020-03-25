@@ -31,7 +31,7 @@
     Public Property REMARK As String
     Public Property STATUS_ID As Decimal?
     Public Property STATUS_NAME As String
-    Public Property lstEmp As List(Of RequestEmpDTO)
+    Public Property lstEmp As List(Of RecruitmentInsteadDTO)
     Public Property CREATED_DATE As Date
     Public Property CREATED_BY As String
     Public Property CREATED_LOG As String

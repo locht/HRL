@@ -76,6 +76,15 @@ Public Class ctrlRC_RequestNewEdit
             ViewState(Me.ID & "_Employee_PL") = value
         End Set
     End Property
+
+    Property Employee_Request As List(Of RecruitmentInsteadDTO)
+        Get
+            Return ViewState(Me.ID & "_Employee_Request")
+        End Get
+        Set(value As List(Of RecruitmentInsteadDTO))
+            ViewState(Me.ID & "_Employee_Request") = value
+        End Set
+    End Property
     Property _Id As Integer
         Get
             Return ViewState(Me.ID & "_Id")
@@ -111,10 +120,9 @@ Public Class ctrlRC_RequestNewEdit
 
     Public Overrides Sub ViewInit(ByVal e As System.EventArgs)
         Me.MainToolBar = tbarMain
-        Common.Common.BuildToolbar(Me.MainToolBar, ToolbarItem.Save, ToolbarItem.Cancel, ToolbarItem.Seperator, ToolbarItem.Export)
+        Common.Common.BuildToolbar(Me.MainToolBar, ToolbarItem.Save, ToolbarItem.Cancel, ToolbarItem.Seperator)
         CType(MainToolBar.Items(0), RadToolBarButton).CausesValidation = True
         CType(MainToolBar.Items(3), RadToolBarButton).Enabled = True
-        CType(MainToolBar.Items(3), RadToolBarButton).Text = "Xuất tờ trình"
         Me.MainToolBar.OnClientButtonClicking = "clientButtonClicking"
         CType(Me.Page, AjaxPage).AjaxManager.ClientEvents.OnRequestStart = "onRequestStart"
         'SetGridFilter(rgE)
@@ -302,7 +310,8 @@ Public Class ctrlRC_RequestNewEdit
                     hddFile.Value = obj.DESCRIPTIONATTACHFILE
                     hypFile.Text = obj.DESCRIPTIONATTACHFILE
                     hypFile.NavigateUrl = "http://" & Request.Url.Host & ":" & Request.Url.Port & "/ReportTemplates/Recruitment/Upload/" + obj.DESCRIPTIONATTACHFILE
-
+                    Employee_Request = obj.lstEmp
+                    rgE.Rebind()
                     For Each itm In obj.lstEmp
                         Dim item As New RadListBoxItem
                         item.Value = itm.EMPLOYEE_ID
@@ -318,7 +327,7 @@ Public Class ctrlRC_RequestNewEdit
 
                 Case "InsertView"
                     CurrentState = CommonMessage.STATE_NEW
-                    chkPlan.Checked = True
+                    chkPlan.Checked = False
                     rdSendDate.AutoPostBack = True
 
                     Me.MainToolBar = tbarMain
@@ -329,14 +338,14 @@ Public Class ctrlRC_RequestNewEdit
             '    i.Edit = True
             'Next
             'rgE.Rebind()
-            If cboRecruitReason.SelectedValue <> "" Then
-                If cboRecruitReason.SelectedValue = 4053 Then
-                    RadPane3.Enabled = True
-                Else
-                    RadPane3.Enabled = False
-                End If
-            End If
-          
+            'If cboRecruitReason.SelectedValue <> "" Then
+            '    If cboRecruitReason.SelectedValue = 4053 Then
+            '        RadPane3.Enabled = True
+            '    Else
+            '        RadPane3.Enabled = False
+            '    End If
+            'End If
+
         Catch ex As Exception
             Throw ex
         End Try
@@ -357,7 +366,7 @@ Public Class ctrlRC_RequestNewEdit
                 Case CommonMessage.TOOLBARITEM_SAVE
                     If Page.IsValid Then
                         Dim obj As New RequestDTO
-                        Dim lstEmp As New List(Of RequestEmpDTO)
+                        Dim lstEmp As New List(Of RecruitmentInsteadDTO)
                         obj.ORG_ID = hidOrgID.Value
                         'obj.IS_IN_PLAN = chkPlan.Checked
                         'If obj.IS_IN_PLAN Then
@@ -417,10 +426,15 @@ Public Class ctrlRC_RequestNewEdit
                             obj.RECRUIT_REASON_ID = cboRecruitReason.SelectedValue
                         End If
                         'For Each item As RadListBoxItem In lstEmployee.Items
-                        '    Dim emp As New RequestEmpDTO
+                        '    Dim emp As New RecruitmentInsteadDTO
                         '    emp.EMPLOYEE_ID = item.Value
                         '    lstEmp.Add(emp)
                         'Next
+                        For Each item As GridDataItem In rgE.Items
+                            Dim emp As New RecruitmentInsteadDTO
+                            emp.EMPLOYEE_ID = CDec(item.GetDataKeyValue("EMPLOYEE_ID"))
+                            lstEmp.Add(emp)
+                        Next
                         obj.REMARK = txtRemark.Text
                         obj.LANGUAGE = cboLanguage.SelectedValue
                         obj.LANGUAGELEVEL = cboLanguageLevel.SelectedValue
@@ -439,10 +453,6 @@ Public Class ctrlRC_RequestNewEdit
                             If rgE.Items.Count = 0 Then
                                 ShowMessage(Translate("Bạn phải chọn nhân viên"), NotifyType.Warning)
                                 Exit Sub
-                            Else
-                                For Each line As GridDataItem In rgE.Items
-                                    obj.ID_RECRUITMENT_INSTEAD = line.GetDataKeyValue("EMPLOYEE_ID").ToString
-                                Next
                             End If
 
                         End If
@@ -454,7 +464,7 @@ Public Class ctrlRC_RequestNewEdit
 
 
 
-                        'obj.lstEmp = lstEmp
+                        obj.lstEmp = lstEmp
                         Select Case CurrentState
                             Case CommonMessage.STATE_NEW
                                 If rep.InsertRequest(obj, gID) Then
@@ -475,14 +485,6 @@ Public Class ctrlRC_RequestNewEdit
                                 End If
                         End Select
                     End If
-                Case CommonMessage.TOOLBARITEM_EXPORT
-                    Dim hfr As New HistaffFrameworkRepository
-                    Dim tempPath As String = "ReportTemplates/Recruitment/Report/"
-                    'Dim obj = hfr.ExecuteToDataSet("PKG_RECRUITMENT.EXPORT_RECRUITMENT_NEEDS", New List(Of Object)({hidID.Value, If(txtPayrollLimit.Text = "", Nothing, txtPayrollLimit.Text), If(txtCurrentNumber.Text = "", Nothing, txtCurrentNumber.Text), rntxtRecruitNumber.Text}))
-                    Dim obj = hfr.ExecuteToDataSet("PKG_RECRUITMENT.EXPORT_RECRUITMENT_NEEDS", New List(Of Object)({hidID.Value, rntxtRecruitNumber.Text}))
-                    ExportWordMailMerge(System.IO.Path.Combine(Server.MapPath(tempPath), "BM01_TT_Nhu_cau_TD.doc"),
-                                        "TT_Nhu_cau_TD_" + DateTime.Now.ToString("HHmmssddMMyyyy") + ".doc",
-                                        obj.Tables(0), Response)
                 Case CommonMessage.TOOLBARITEM_CANCEL
                     ''POPUPTOLINK_CANCEL
                     Response.Redirect("/Default.aspx?mid=Recruitment&fid=ctrlRC_Request&group=Business")
@@ -528,31 +530,29 @@ Public Class ctrlRC_RequestNewEdit
                 lstEmployee.Items.Add(item)
             Next
             If lstCommonEmployee.Count <> 0 Then
-                If Employee_PL Is Nothing Then
-                    Employee_PL = New List(Of RequestDTO)
+                If Employee_Request Is Nothing Then
+                    Employee_Request = New List(Of RecruitmentInsteadDTO)
                 End If
                 For Each emp As CommonBusiness.EmployeePopupFindDTO In lstCommonEmployee
-                    Dim employee As New RequestDTO
+                    Dim employee As New RecruitmentInsteadDTO
+                    employee.EMPLOYEE_ID = emp.ID
                     employee.EMPLOYEE_CODE = emp.EMPLOYEE_CODE
                     employee.EMPLOYEE_ID = emp.EMPLOYEE_ID
-                    employee.ID_RECRUITMENT_INSTEAD = emp.ID
                     employee.EMPLOYEE_NAME = emp.FULLNAME_VN
-                    employee.ORG_NAME_RECRUITMENT_INSTEAD = emp.ORG_NAME
-                    employee.TITLE_NAME_RECRUITMENT_INSTEAD = emp.TITLE_NAME
-                    employee.ORG_ID_RECRUITMENT_INSTEAD = emp.ORG_ID
-                    employee.TITLE_ID_RECRUITMENT_INSTEAD = emp.TITLE_ID
+                    employee.ORG_NAME = emp.ORG_NAME
+                    employee.TITLE_NAME = emp.TITLE_NAME
                     employee.TER_LAST_DATE = emp.TER_LAST_DATE
 
-                    Dim checkEmployeeCode As RequestDTO = Employee_PL.Find(Function(p) p.EMPLOYEE_CODE = emp.EMPLOYEE_CODE)
+                    Dim checkEmployeeCode As RecruitmentInsteadDTO = Employee_Request.Find(Function(p) p.EMPLOYEE_CODE = emp.EMPLOYEE_CODE)
                     If (Not checkEmployeeCode Is Nothing) Then
                         Continue For
                     End If
-                    Employee_PL.Add(employee)
+                    Employee_Request.Add(employee)
                 Next
                 '_result = False
                 'dtbImport = Employee_PL.ToTable()
 
-                rgE.DataSource = Employee_PL
+                rgE.DataSource = Employee_Request
                 rgE.Rebind()
                 For Each i As GridItem In rgE.Items
                     i.Edit = True
@@ -893,7 +893,7 @@ Public Class ctrlRC_RequestNewEdit
 
         If hidOrgID.Value <> "" Then
             Dim dtData As DataTable
-            dtData = store.GET_TITLE_IN_PLAN(hidOrgID.Value, 0)
+            dtData = store.GET_TITLE_IN_PLAN(hidOrgID.Value, CType(chkPlan.Checked, Decimal))
             FillRadCombobox(cboTitle, dtData, "NAME", "ID")
         Else
             cboTitle.Items.Clear()
@@ -1250,13 +1250,13 @@ Public Class ctrlRC_RequestNewEdit
                     ctrlFindEmployeePopup.Show()
                 Case "DeleteEmployee"
                     For Each i As GridDataItem In rgE.SelectedItems
-                        Dim s = (From q In Employee_PL Where
-                                 q.ID = i.GetDataKeyValue("ID")).FirstOrDefault
-                        Employee_PL.Remove(s)
+                        Dim s = (From q In Employee_Request Where
+                                 q.EMPLOYEE_ID = i.GetDataKeyValue("EMPLOYEE_ID")).FirstOrDefault
+                        Employee_Request.Remove(s)
                     Next
                     '_result = False
                     checkDelete = 1
-                    dtbImport = Employee_PL.ToTable()
+                    dtbImport = Employee_Request.ToTable()
                     rgE.DataSource = dtbImport
                     rgE_NeedDataSource(Nothing, Nothing)
                     rgE.Rebind()
@@ -1285,19 +1285,18 @@ Public Class ctrlRC_RequestNewEdit
     Private Sub rgE_NeedDataSource(sender As Object, e As Telerik.Web.UI.GridNeedDataSourceEventArgs) Handles rgE.NeedDataSource
         Try
             Dim rep As New RecruitmentRepository
-            If Request.Params("gUID") IsNot Nothing Then
-                _Id = Integer.Parse(Request.Params("gUID"))
+            If Request.Params("ID") IsNot Nothing Then
+                _Id = Integer.Parse(Request.Params("ID"))
                 CurrentState = CommonMessage.STATE_EDIT
 
             Else
                 CurrentState = CommonMessage.STATE_NEW
                 If Not IsPostBack Then
-                    Employee_PL = New List(Of RequestDTO)
-                    dtbImport = Employee_PL.ToTable()
+                    Employee_Request = New List(Of RecruitmentInsteadDTO)
                 End If
             End If
-            rgE.VirtualItemCount = dtbImport.Rows.Count 'Employee_PL.Count
-            rgE.DataSource = dtbImport
+            'rgE.VirtualItemCount = dtbImport.Rows.Count 'Employee_PL.Count
+            rgE.DataSource = Employee_Request
 
         Catch ex As Exception
 

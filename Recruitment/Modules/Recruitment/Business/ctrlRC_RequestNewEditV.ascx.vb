@@ -191,7 +191,7 @@ Public Class ctrlRC_RequestNewEditV
                 Case CommonMessage.TOOLBARITEM_SAVE
                     If Page.IsValid Then
                         Dim obj As New RequestDTO
-                        Dim lstEmp As New List(Of RequestEmpDTO)
+                        Dim lstEmp As New List(Of RecruitmentInsteadDTO)
                         obj.ORG_ID = hidOrgID.Value
                         obj.TITLE_ID = cboTitle.SelectedValue
                         obj.SEND_DATE = rdSendDate.SelectedDate

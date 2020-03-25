@@ -8,4 +8,5 @@
     Public Property ORG_NAME As String
     Public Property TITLE_ID As Decimal?
     Public Property TITLE_NAME As String
+    Public Property TER_LAST_DATE As DateTime?
 End Class
