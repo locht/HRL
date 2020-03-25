@@ -3004,21 +3004,29 @@ Partial Class ProfileRepository
                      From t In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.DISCIPLINE_TYPE).DefaultIfEmpty
                      From emp In Context.HU_EMPLOYEE.Where(Function(f) f.ID = de.HU_EMPLOYEE_ID)
                      From o In Context.HU_ORGANIZATION.Where(Function(o) o.ID = emp.ORG_ID)
+                     From o2 In Context.HU_ORGANIZATION_V.Where(Function(f) f.ID = o.ID).DefaultIfEmpty
                      From title In Context.HU_TITLE.Where(Function(f) f.ID = emp.TITLE_ID).DefaultIfEmpty
                      From reason In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.DISCIPLINE_REASON And f.ACTFLG = "A").DefaultIfEmpty
                      Where de.HU_EMPLOYEE_ID = _empId And p.STATUS_ID = ProfileCommon.OT_DISCIPLINE_STATUS.APPROVE_ID Order By p.EFFECT_DATE
                      Select New DisciplineDTO With {
                      .DECISION_NO = p.NO,
+                     .ORG_NAME = o.NAME_VN,
+                     .ORG_NAME2 = o2.NAME_C2,
                      .EFFECT_DATE = p.EFFECT_DATE,
                      .DISCIPLINE_DATE = p.EFFECT_DATE,
                      .EXPIRE_DATE = p.EXPIRE_DATE,
                      .DISCIPLINE_LEVEL_NAME = lv.NAME_VN,
                      .TITLE_NAME = title.NAME_VN,
-                     .ORG_NAME = o.NAME_VN,
                      .DISCIPLINE_TYPE_NAME = t.NAME_VN,
                      .MONEY = de.MONEY,
                      .SIGN_DATE = p.SIGN_DATE,
+                     .DATE_ISSUES = p.DATE_ISSUES,
+                     .SIGNER_NAME = p.SIGNER_NAME,
+                     .SIGNER_TITLE = p.SIGNER_TITLE,
+                     .DISCIPLINE_REASON_DETAIL = p.DISCIPLINE_REASON_DETAIL,
                      .DISCIPLINE_REASON_NAME = reason.NAME_VN,
+                     .INDEMNIFY_MONEY = p.INDEMNIFY_MONEY,
+                     .PAIDMONEY = p.PAIDMONEY,
                      .PERFORM_TIME = p.PERFORM_TIME}).ToList()
             Return query
         Catch ex As Exception

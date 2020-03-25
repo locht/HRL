@@ -616,9 +616,9 @@ Public Class ctrlHU_DisciplineNewEdit
                         For Each i As GridDataItem In rgEmployee.Items
                             Dim o As New DisciplineEmpDTO
                             o.HU_EMPLOYEE_ID = i.GetDataKeyValue("HU_EMPLOYEE_ID")
-                            Dim money As String = CType(i("MONEY").Controls(0), RadNumericTextBox).Value
+                            Dim money As String = If(CType(i("MONEY").Controls(0), RadNumericTextBox).Value = Nothing, "", CType(i("MONEY").Controls(0), RadNumericTextBox).Value)
                             o.MONEY = If(money <> "", Decimal.Parse(money), Nothing)
-                            Dim iden_money As String = CType(i("INDEMNIFY_MONEY").Controls(0), RadNumericTextBox).Value
+                            Dim iden_money As String = If(CType(i("INDEMNIFY_MONEY").Controls(0), RadNumericTextBox).Value = Nothing, "", CType(i("INDEMNIFY_MONEY").Controls(0), RadNumericTextBox).Value)
                             o.INDEMNIFY_MONEY = If(iden_money <> "", Decimal.Parse(iden_money), Nothing)
                             Dim is_NoPro As Boolean = CType(i("NO_PROCESS").Controls(0), CheckBox).Checked
                             o.NO_PROCESS = If(is_NoPro = False, 0, 1)

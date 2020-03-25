@@ -15171,6 +15171,9 @@ Namespace ProfileBusiness
         Private ORG_NAMEField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private ORG_NAME2Field As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private PAIDMONEYField As System.Nullable(Of Decimal)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -15941,6 +15944,19 @@ Namespace ProfileBusiness
                 If (Object.ReferenceEquals(Me.ORG_NAMEField, value) <> true) Then
                     Me.ORG_NAMEField = value
                     Me.RaisePropertyChanged("ORG_NAME")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property ORG_NAME2() As String
+            Get
+                Return Me.ORG_NAME2Field
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.ORG_NAME2Field, value) <> true) Then
+                    Me.ORG_NAME2Field = value
+                    Me.RaisePropertyChanged("ORG_NAME2")
                 End If
             End Set
         End Property
