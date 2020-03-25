@@ -1013,17 +1013,17 @@ Public Class ctrlHU_Contract
                 End If
             Next
             If lstID.Count > 0 Then
-                Dim bCheckHasfile = rep.CheckHasFileContract(lstID)
+                'Dim bCheckHasfile = rep.CheckHasFileContract(lstID)
                 For Each item As GridDataItem In rgContract.SelectedItems
                     If item.GetDataKeyValue("STATUS_ID") = ProfileCommon.DECISION_STATUS.APPROVE_ID Then
                         ShowMessage(Translate("Bản ghi đã phê duyệt."), NotifyType.Warning)
                         Exit Sub
                     End If
                 Next
-                If bCheckHasfile = 1 Then
-                    ShowMessage(Translate("Duyệt khi tất cả các record đã có tập tin đính kèm,bạn kiểm tra lại"), NotifyType.Warning)
-                    Exit Sub
-                End If
+                'If bCheckHasfile = 1 Then
+                '    ShowMessage(Translate("Duyệt khi tất cả các record đã có tập tin đính kèm,bạn kiểm tra lại"), NotifyType.Warning)
+                '    Exit Sub
+                'End If
                 If rep.ApproveListContract(lstID) Then
                     ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), NotifyType.Success)
                     rgContract.Rebind()

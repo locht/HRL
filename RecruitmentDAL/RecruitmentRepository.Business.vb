@@ -1954,6 +1954,7 @@ Partial Class RecruitmentRepository
                     From org In Context.HU_ORGANIZATION.Where(Function(f) p.ORG_ID = f.ID).DefaultIfEmpty
                     From cv In Context.RC_CANDIDATE_CV.Where(Function(f) p.ID = f.CANDIDATE_ID).DefaultIfEmpty
                     From status In Context.OT_OTHER_LIST.Where(Function(f) f.CODE = p.STATUS_ID).DefaultIfEmpty
+                    From id_place In Context.HU_PROVINCE.Where(Function(f) f.ID = cv.ID_PLACE).DefaultIfEmpty
                     Order By p.CREATED_DATE Descending
 
             If _filter.RC_PROGRAM_ID IsNot Nothing Then
@@ -1972,6 +1973,7 @@ Partial Class RecruitmentRepository
                          .BIRTH_DATE = p.cv.BIRTH_DATE,
                          .ID_NO = p.cv.ID_NO,
                          .ID_PLACE = p.cv.ID_PLACE,
+                         .ID_PLACE_NAME = p.id_place.NAME_VN,
                          .ID_DATE = p.cv.ID_DATE,
                          .IS_BLACKLIST = p.p.IS_BLACKLIST,
                          .IS_PONTENTIAL = p.p.IS_PONTENTIAL,

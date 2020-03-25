@@ -171,8 +171,8 @@
                     </tlk:GridDateTimeColumn>
                     <tlk:GridBoundColumn HeaderText="<%$ Translate: CMND %>" DataField="ID_NO" UniqueName="ID_NO"
                         SortExpression="ID_NO" />
-                    <tlk:GridBoundColumn HeaderText="<%$ Translate: Nơi cấp %>" DataField="ID_PLACE" UniqueName="ID_PLACE"
-                        SortExpression="ID_PLACE" />
+                    <tlk:GridBoundColumn HeaderText="<%$ Translate: Nơi cấp %>" DataField="ID_PLACE_NAME" UniqueName="ID_PLACE_NAME"
+                        SortExpression="ID_PLACE_NAME" />
                     <tlk:GridDateTimeColumn HeaderText="<%$ Translate: Ngày cấp %>" DataField="ID_DATE"
                         UniqueName="ID_DATE" DataFormatString="{0:dd/MM/yyyy}" SortExpression="ID_DATE">
                         <HeaderStyle HorizontalAlign="Center" />

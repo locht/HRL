@@ -45,6 +45,7 @@
     Public Property ID_NO As String
     Public Property ID_DATE As Date?
     Public Property ID_PLACE As String
+    Public Property ID_PLACE_NAME As String
     Public Property IS_PONTENTIAL As Boolean?
     Public Property IS_BLACKLIST As Boolean?
     Public Property IS_REHIRE As Boolean?
