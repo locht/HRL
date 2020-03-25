@@ -42,7 +42,7 @@
                 <td>
                     <tlk:RadComboBox runat="server" ID="cbDMAlow"></tlk:RadComboBox>
                      <asp:RequiredFieldValidator ID="RequiredFieldValidator1" ControlToValidate="cbDMAlow" runat="server"
-                        ErrorMessage="<%$ Translate: Bạn phải nhập tên phụ cấp. %>" ToolTip="<%$ Translate: Bạn phải nhập tên phụ cấp. %>"></asp:RequiredFieldValidator>
+                        ErrorMessage="<%$ Translate: Bạn phải chọn loại phụ cấp. %>" ToolTip="<%$ Translate: Bạn phải chọn loại phụ cấp. %>"></asp:RequiredFieldValidator>
                 </td>
                 <td class="lb">
                     <%# Translate("Nhóm phụ cấp")%>
@@ -51,7 +51,7 @@
                 <td>
                     <tlk:RadComboBox runat="server" ID="cboNAlow"></tlk:RadComboBox>
                     <asp:RequiredFieldValidator ID="RequiredFieldValidator2" ControlToValidate="cboNAlow" runat="server"
-                        ErrorMessage="<%$ Translate: Bạn phải nhập tên phụ cấp. %>" ToolTip="<%$ Translate: Bạn phải nhập tên phụ cấp. %>"></asp:RequiredFieldValidator>
+                        ErrorMessage="<%$ Translate: Bạn phải chọn nhóm phụ cấp. %>" ToolTip="<%$ Translate: Bạn phải chọn nhóm phụ cấp. %>"></asp:RequiredFieldValidator>
                 </td>
             </tr>
             <tr> 

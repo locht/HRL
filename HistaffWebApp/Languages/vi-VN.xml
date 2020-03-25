@@ -21201,7 +21201,7 @@ Xin cám ơn!
       <string>CTRLHU_ALLOWANCELIST</string>
     </Key>
     <Value>
-      <string>Danh mục phụ cấp</string>
+      <string>Danh mục phụ cấp, trợ cấp</string>
     </Value>
   </Item>
   <Item>
@@ -44524,6 +44524,22 @@ Xin cám ơn!
     </Key>
     <Value>
       <string>Thông tin công việc</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>HIỂN THỊ TRÊN HĐLĐ</string>
+    </Key>
+    <Value>
+      <string>Hiển thị trên HĐLĐ</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>NHÓM PHỤ CẤP</string>
+    </Key>
+    <Value>
+      <string>Nhóm phụ cấp</string>
     </Value>
   </Item>
 </SerializableDictionaryOfStringString>
