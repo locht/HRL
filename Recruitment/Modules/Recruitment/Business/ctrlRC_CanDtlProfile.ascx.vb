@@ -459,31 +459,40 @@ Public Class ctrlRC_CanDtlProfile
                             txtDiemTotNghiep.Text = EmpEducation.GPA
                         End If
 
-                        txtDegreeChungChi1.Text = EmpEducation.IT_CERTIFICATE
+                        If EmpEducation.IT_CERTIFICATE IsNot Nothing Then
+                            cboDegreeTrinhDo1.SelectedValue = EmpEducation.IT_CERTIFICATE
+                        End If
                         If EmpEducation.IT_LEVEL IsNot Nothing Then
-                            cboDegreeTrinhDo1.SelectedValue = EmpEducation.IT_LEVEL
+                            cboChungchi.SelectedValue = EmpEducation.IT_LEVEL
                         End If
                         If EmpEducation.IT_MARK IsNot Nothing Then
                             txtDegreeDiemSoXepLoai1.Text = EmpEducation.IT_MARK
                         End If
 
-                        txtDegreeChungChi2.Text = EmpEducation.IT_CERTIFICATE1
+                        If EmpEducation.IT_CERTIFICATE1 IsNot Nothing Then
+                            cboDegreeTrinhDo2.SelectedValue = EmpEducation.IT_CERTIFICATE1
+                        End If
                         If EmpEducation.IT_LEVEL1 IsNot Nothing Then
-                            cboDegreeTrinhDo2.SelectedValue = EmpEducation.IT_LEVEL1
+                            cboChungchi2.SelectedValue = EmpEducation.IT_LEVEL1
                         End If
                         If EmpEducation.IT_MARK1 IsNot Nothing Then
                             txtDegreeDiemSoXepLoai2.Text = EmpEducation.IT_MARK1
                         End If
 
-                        txtDegreeChungChi3.Text = EmpEducation.IT_CERTIFICATE2
+
+                        If EmpEducation.IT_CERTIFICATE2 IsNot Nothing Then
+                            cboDegreeTrinhDo3.SelectedValue = EmpEducation.IT_CERTIFICATE2
+                        End If
                         If EmpEducation.IT_LEVEL2 IsNot Nothing Then
-                            cboDegreeTrinhDo3.SelectedValue = EmpEducation.IT_LEVEL2
+                            cboChungchi3.SelectedValue = EmpEducation.IT_LEVEL2
                         End If
                         If EmpEducation.IT_MARK2 IsNot Nothing Then
                             txtDegreeDiemSoXepLoai3.Text = EmpEducation.IT_MARK2
                         End If
 
-                        txtTDNNNgoaiNgu1.Text = EmpEducation.ENGLISH
+                        If EmpEducation.ENGLISH IsNot Nothing Then
+                            cboNgoaNgu1.SelectedValue = EmpEducation.ENGLISH
+                        End If
                         If EmpEducation.ENGLISH_LEVEL IsNot Nothing Then
                             cboTDNNTrinhDo1.SelectedValue = EmpEducation.ENGLISH_LEVEL
                         End If
@@ -491,15 +500,18 @@ Public Class ctrlRC_CanDtlProfile
                             txtTDNNDiem1.Text = EmpEducation.ENGLISH_MARK
                         End If
 
-                        txtTDNNNgoaiNgu2.Text = EmpEducation.ENGLISH1
+                        If EmpEducation.ENGLISH1 IsNot Nothing Then
+                            cboNgoaiNgu2.SelectedValue = EmpEducation.ENGLISH1
+                        End If
                         If EmpEducation.ENGLISH_LEVEL1 IsNot Nothing Then
                             cboTDNNTrinhDo2.SelectedValue = EmpEducation.ENGLISH_LEVEL1
                         End If
                         If EmpEducation.ENGLISH_MARK1 IsNot Nothing Then
                             txtTDNNDiem2.Text = EmpEducation.ENGLISH_MARK1
                         End If
-
-                        txtTDNNNgoaiNgu3.Text = EmpEducation.ENGLISH2
+                        If cboNgoaiNgu3.SelectedValue IsNot Nothing Then
+                            cboNgoaiNgu3.SelectedValue = EmpEducation.ENGLISH2
+                        End If
                         If EmpEducation.ENGLISH_LEVEL2 IsNot Nothing Then
                             cboTDNNTrinhDo3.SelectedValue = EmpEducation.ENGLISH_LEVEL2
                         End If
@@ -838,9 +850,13 @@ Public Class ctrlRC_CanDtlProfile
             Dim dtLanguage As DataTable
             dtLanguage = rep.GetOtherList("RC_LANGUAGE_LEVEL", True)
             FillRadCombobox(cboNgoaNgu1, dtLanguage, "NAME", "ID")
+            FillRadCombobox(cboNgoaiNgu2, dtLanguage, "NAME", "ID")
+            FillRadCombobox(cboNgoaiNgu3, dtLanguage, "NAME", "ID")
             'loai chung chi
             dtData = rep.GetOtherList("MARK_EDU")
             FillRadCombobox(cboChungchi, dtData, "NAME", "ID")
+            FillRadCombobox(cboChungchi2, dtData, "NAME", "ID")
+            FillRadCombobox(cboChungchi3, dtData, "NAME", "ID")
             'Ngân hàng
             FillDropDownList(cboTKNganHang, ListComboData.LIST_BANK, "BANK_NAME", "ID", Common.Common.SystemLanguage, True, cboTKNganHang.SelectedValue)
 
@@ -1519,32 +1535,58 @@ Public Class ctrlRC_CanDtlProfile
             If txtDiemTotNghiep.Text.Trim() <> "" Then
                 EmpEducation.GPA = txtDiemTotNghiep.Text
             End If
+            '' it 1
+            If cboDegreeTrinhDo1.SelectedValue IsNot Nothing Then
+                EmpEducation.IT_CERTIFICATE = cboDegreeTrinhDo1.SelectedValue
+            End If
 
-            EmpEducation.IT_CERTIFICATE = txtDegreeChungChi1.Text
-            EmpEducation.IT_LEVEL = cboDegreeTrinhDo1.SelectedValue
+            If cboChungchi.SelectedValue IsNot Nothing Then
+                EmpEducation.IT_LEVEL = cboChungchi.SelectedValue
+            End If
             EmpEducation.IT_MARK = txtDegreeDiemSoXepLoai1.Text
-
-            EmpEducation.IT_CERTIFICATE1 = txtDegreeChungChi2.Text
-            EmpEducation.IT_LEVEL1 = cboDegreeTrinhDo2.SelectedValue
+            '' it 2
+            If cboDegreeTrinhDo2.SelectedValue IsNot Nothing Then
+                EmpEducation.IT_CERTIFICATE1 = cboDegreeTrinhDo2.SelectedValue
+            End If
+            If cboChungchi2.SelectedValue IsNot Nothing Then
+                EmpEducation.IT_LEVEL1 = cboChungchi2.SelectedValue
+            End If
             EmpEducation.IT_MARK1 = txtDegreeDiemSoXepLoai2.Text
 
-            EmpEducation.IT_CERTIFICATE2 = txtDegreeChungChi3.Text
-            EmpEducation.IT_LEVEL2 = cboDegreeTrinhDo3.SelectedValue
+            '' it 3
+            If cboDegreeTrinhDo3.SelectedValue IsNot Nothing Then
+                EmpEducation.IT_CERTIFICATE2 = cboDegreeTrinhDo3.SelectedValue
+            End If
+            If cboChungchi3.SelectedValue IsNot Nothing Then
+                EmpEducation.IT_LEVEL2 = cboChungchi3.SelectedValue
+            End If
             EmpEducation.IT_MARK2 = txtDegreeDiemSoXepLoai3.Text
 
+            'NN1
             If cboNgoaNgu1.SelectedValue <> "" Then
-                EmpEducation.LANGUAGE_ID = cboNgoaNgu1.SelectedValue
+                EmpEducation.ENGLISH = cboNgoaNgu1.SelectedValue
             End If
-            EmpEducation.ENGLISH = txtTDNNNgoaiNgu1.Text
-            EmpEducation.ENGLISH_LEVEL = cboTDNNTrinhDo1.SelectedValue
+            If cboTDNNTrinhDo1.SelectedValue <> "" Then
+                EmpEducation.ENGLISH_LEVEL = cboTDNNTrinhDo1.SelectedValue
+            End If
             EmpEducation.ENGLISH_MARK = txtTDNNDiem1.Text
 
-            EmpEducation.ENGLISH1 = txtTDNNNgoaiNgu2.Text
-            EmpEducation.ENGLISH_LEVEL1 = cboTDNNTrinhDo2.SelectedValue
+            ''NN2
+            If cboNgoaiNgu2.SelectedValue <> "" Then
+                EmpEducation.ENGLISH1 = cboNgoaiNgu2.SelectedValue
+            End If
+            If cboTDNNTrinhDo2.SelectedValue <> "" Then
+                EmpEducation.ENGLISH_LEVEL1 = cboTDNNTrinhDo2.SelectedValue
+            End If
             EmpEducation.ENGLISH_MARK1 = txtTDNNDiem2.Text
 
-            EmpEducation.ENGLISH2 = txtTDNNNgoaiNgu3.Text
-            EmpEducation.ENGLISH_LEVEL2 = cboTDNNTrinhDo3.SelectedValue
+            ''NN3
+            If cboNgoaiNgu3.SelectedValue <> "" Then
+                EmpEducation.ENGLISH2 = cboNgoaiNgu3.SelectedValue
+            End If
+            If cboTDNNTrinhDo3.SelectedValue <> "" Then
+                EmpEducation.ENGLISH_LEVEL2 = cboTDNNTrinhDo3.SelectedValue
+            End If
             EmpEducation.ENGLISH_MARK2 = txtTDNNDiem3.Text
 
             ' Nguyện vọng

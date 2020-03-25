@@ -286,7 +286,7 @@
                                 <%# Translate("Ngày cấp")%>
                             </td>
                             <td>
-                                <tlk:RadDatePicker runat="server" ID="rdCMNDDate">
+                                <tlk:RadDatePicker runat="server" ID="rdCMNDDate" AutoPostBack="true">
                                 </tlk:RadDatePicker>
                                 <asp:RequiredFieldValidator ID="cv_rfvrdpCMNDDate" runat="server" ErrorMessage="<%$ Translate: Bạn phải chọn Ngày cấp %>"
                                     ToolTip="<%$ Translate: Bạn phải chọn Ngày cấp %>" ControlToValidate="rdCMNDDate">
@@ -951,7 +951,7 @@
                     <table class="table-form">
                         <tr >
                             <td class="lb">
-                                <%# Translate("Tin học")%>
+                                <%# Translate("Tin học 1")%>
                             </td>
                             <td>
                                 <tlk:RadComboBox runat="server" ID="cboDegreeTrinhDo1">
@@ -979,19 +979,19 @@
                                 </tlk:RadTextBox>
                             </td>
                         </tr>
-                        <tr style="display:none">
+                        <tr >
                             <td class="lb">
-                                <%# Translate("Chứng chỉ tin học")%>
+                                <%# Translate("Tin học 1")%>
                             </td>
                             <td>
-                                <tlk:RadTextBox ID="txtDegreeChungChi2" runat="server">
-                                </tlk:RadTextBox>
+                                <tlk:RadComboBox runat="server" ID="cboDegreeTrinhDo2">
+                                </tlk:RadComboBox>
                             </td>
                             <td class="lb">
                                 <%# Translate("Trình độ")%>
                             </td>
                             <td>
-                                <tlk:RadComboBox runat="server" ID="cboDegreeTrinhDo2">
+                                <tlk:RadComboBox runat="server" ID="cboChungchi2">
                                 </tlk:RadComboBox>
                             </td>
                             <td class="lb">
@@ -1002,24 +1002,24 @@
                                 </tlk:RadTextBox>
                             </td>
                         </tr>
-                        <tr style="display:none">
+                        <tr >
                             <td class="lb">
-                                <%# Translate("Loại chứng chỉ")%>
-                            </td>
-                            <td>
-                                <tlk:RadTextBox ID="txtDegreeChungChi3" runat="server">
-                                </tlk:RadTextBox>
-                            </td>
-                            <td class="lb">
-                                <%# Translate("Trình độ tin học cơ bản")%>
+                                <%# Translate("Tin học 3")%>
                             </td>
                             <td>
                                 <tlk:RadComboBox runat="server" ID="cboDegreeTrinhDo3">
                                 </tlk:RadComboBox>
                             </td>
+                            <td class="lb">
+                                <%# Translate("Trình độ")%>
+                            </td>
+                            <td>
+                                <tlk:RadComboBox runat="server" ID="cboChungchi3">
+                                </tlk:RadComboBox>
+                            </td>
                             <%-- sua lai trương này cho dúng yêu cầu--%>
                             <td class="lb">
-                                <%# Translate("Trình độ tin học ứng dụng")%>
+                                <%# Translate("Điểm số/Xếp loại")%>
                             </td>
                             <td>
                                 <tlk:RadTextBox ID="txtDegreeDiemSoXepLoai3" runat="server">
@@ -1069,8 +1069,8 @@
                                 <%# Translate("Ngoại ngữ 2")%>
                             </td>
                             <td>
-                                <tlk:RadTextBox ID="txtTDNNNgoaiNgu2" runat="server">
-                                </tlk:RadTextBox>
+                                <tlk:RadComboBox ID="cboNgoaiNgu2" runat="server">
+                                </tlk:RadComboBox>
                             </td>
                             <td class="lb">
                                 <%# Translate("Trình độ ngoại ngữ 2")%>
@@ -1093,8 +1093,8 @@
                                 <%# Translate("Ngoại ngữ 3")%>
                             </td>
                             <td>
-                                <tlk:RadTextBox ID="txtTDNNNgoaiNgu3" runat="server">
-                                </tlk:RadTextBox>
+                                <tlk:RadComboBox ID="cboNgoaiNgu3" runat="server">
+                                </tlk:RadComboBox>
                             </td>
                             <td class="lb">
                                 <%# Translate("Trình độ ngoại ngữ 3")%>
