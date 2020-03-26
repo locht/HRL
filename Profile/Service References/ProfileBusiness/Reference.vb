@@ -12891,6 +12891,9 @@ Namespace ProfileBusiness
         Private IS_ORGField As Boolean
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private IS_RATIOField As Boolean
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private IS_TAXField As System.Nullable(Of Decimal)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -13473,6 +13476,19 @@ Namespace ProfileBusiness
                 If (Me.IS_ORGField.Equals(value) <> true) Then
                     Me.IS_ORGField = value
                     Me.RaisePropertyChanged("IS_ORG")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property IS_RATIO() As Boolean
+            Get
+                Return Me.IS_RATIOField
+            End Get
+            Set
+                If (Me.IS_RATIOField.Equals(value) <> true) Then
+                    Me.IS_RATIOField = value
+                    Me.RaisePropertyChanged("IS_RATIO")
                 End If
             End Set
         End Property
@@ -14138,6 +14154,9 @@ Namespace ProfileBusiness
         Private ORG_NAMEField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private RATIOField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private TITLE_IDField As System.Nullable(Of Decimal)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -14383,6 +14402,19 @@ Namespace ProfileBusiness
                 If (Object.ReferenceEquals(Me.ORG_NAMEField, value) <> true) Then
                     Me.ORG_NAMEField = value
                     Me.RaisePropertyChanged("ORG_NAME")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property RATIO() As System.Nullable(Of Decimal)
+            Get
+                Return Me.RATIOField
+            End Get
+            Set
+                If (Me.RATIOField.Equals(value) <> true) Then
+                    Me.RATIOField = value
+                    Me.RaisePropertyChanged("RATIO")
                 End If
             End Set
         End Property

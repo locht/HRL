@@ -18,7 +18,7 @@ Imports System.Runtime.Serialization
 Imports System.Xml.Serialization
 
 
-<Assembly: EdmSchemaAttribute("db60cc56-8502-470e-a2b7-a819034cd50c")>
+<Assembly: EdmSchemaAttribute("57c84180-7ca1-4814-81bc-0aeac288f529")>
 #Region "EDM Relationship Metadata"
 <Assembly: EdmRelationshipAttribute("ProfileModel", "FK_HU_NAT_HU_PRO", "HU_NATION", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_NATION), "HU_PROVINCE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_PROVINCE), True)>
 <Assembly: EdmRelationshipAttribute("ProfileModel", "FK_HU_PRO_HU_DIS", "HU_PROVINCE", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_PROVINCE), "HU_DISTRICT", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_DISTRICT), True)>
@@ -11963,6 +11963,31 @@ Public Partial Class HU_COMMEND
     Private Partial Sub OnYEARChanged()
     End Sub
 
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property IS_RATIO() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _IS_RATIO
+        End Get
+        Set
+            OnIS_RATIOChanging(value)
+            ReportPropertyChanging("IS_RATIO")
+            _IS_RATIO = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("IS_RATIO")
+            OnIS_RATIOChanged()
+        End Set
+    End Property
+
+    Private _IS_RATIO As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnIS_RATIOChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnIS_RATIOChanged()
+    End Sub
+
     #End Region
 
 End Class
@@ -12320,6 +12345,31 @@ Public Partial Class HU_COMMEND_EMP
     End Sub
 
     Private Partial Sub OnGUID_IDChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property RATIO() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _RATIO
+        End Get
+        Set
+            OnRATIOChanging(value)
+            ReportPropertyChanging("RATIO")
+            _RATIO = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("RATIO")
+            OnRATIOChanged()
+        End Set
+    End Property
+
+    Private _RATIO As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnRATIOChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnRATIOChanged()
     End Sub
 
     #End Region

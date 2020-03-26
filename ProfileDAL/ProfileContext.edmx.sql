@@ -1,8 +1,8 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for Oracle database
 -- --------------------------------------------------
--- Date Created: 03/23/2020 2:48:40 PM
--- Generated from EDMX file: D:\MyProject2020\ACV1\acv_19\ProfileDAL\ProfileContext.edmx
+-- Date Created: 03/26/2020 3:32:18 PM
+-- Generated from EDMX file: F:\WORKING\acv_19\ProfileDAL\ProfileContext.edmx
 -- --------------------------------------------------
 
 -- --------------------------------------------------
@@ -2409,7 +2409,8 @@ CREATE TABLE "dbo"."HU_COMMEND_EMP" (
    "MODIFIED_BY" NVARCHAR2(255) NULL,
    "MODIFIED_LOG" NVARCHAR2(255) NULL,
    "COMMEND_PAY" NUMBER(38,0) NULL,
-   "GUID_ID" NCLOB NULL
+   "GUID_ID" NCLOB NULL,
+   "RATIO" NUMBER(38,0) NULL
 );
 
 -- Creating table 'HU_TITLE1'
@@ -2537,7 +2538,8 @@ CREATE TABLE "dbo"."HU_COMMEND" (
    "OT_CM_OBJ" NUMBER(38,0) NULL,
    "OT_CM_LEVEL" NUMBER(38,0) NULL,
    "FILENAME" NCLOB NULL,
-   "YEAR" NUMBER(38,0) NULL
+   "YEAR" NUMBER(38,0) NULL,
+   "IS_RATIO" NUMBER(38,0) NULL
 );
 
 -- Creating table 'TR_CERTIFICATE'

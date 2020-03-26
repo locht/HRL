@@ -6,6 +6,7 @@
     Public Property FULLNAME As String
     Public Property ORG_NAME As String
     Public Property TITLE_NAME As String
+    Public Property RATIO As Decimal?
     Public Property MONEY As Decimal?
     Public Property LEVEL_NAME As String
     Public Property LEVEL_ID As Decimal?

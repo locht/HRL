@@ -85,4 +85,5 @@
     'TamBT 20200323
     Public Property ORG_NAME2 As String
     Public Property ORG_NAME3 As String
+    Public Property IS_RATIO As Boolean
 End Class
