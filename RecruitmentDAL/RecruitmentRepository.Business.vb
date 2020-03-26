@@ -5068,8 +5068,8 @@ Partial Class RecruitmentRepository
                 _strEmpCode = EMPCODE
                 objEmpData.CANDIDATE_CODE = _strEmpCode
                 objEmpData.RC_PROGRAM_ID = objEmp.RC_PROGRAM_ID
-                'objEmpData.FIRST_NAME_VN = objEmp.FIRST_NAME_VN
-                'objEmpData.LAST_NAME_VN = objEmp.LAST_NAME_VN
+                objEmpData.FIRST_NAME_VN = objEmp.FIRST_NAME_VN
+                objEmpData.LAST_NAME_VN = objEmp.LAST_NAME_VN
                 objEmpData.FULLNAME_VN = objEmp.FULLNAME_VN
                 objEmpData.ORG_ID = objEmp.ORG_ID
                 objEmpData.TITLE_ID = objEmp.TITLE_ID
@@ -5078,6 +5078,7 @@ Partial Class RecruitmentRepository
                 objEmpData.TITLE_NAME = objEmp.TITLE_NAME
                 'objEmpData.WORK = objEmp.WORK
                 'objEmpData.FILE_NAME = objEmp.FILE_NAME
+                objEmpData.STATUS_ID = "DUDK"
                 If objEmp.FILE_SIZE IsNot Nothing Then
                     FileInsert(objEmp.ID, pathCandidate, objEmp.FILE_SIZE)
                 End If
@@ -5093,7 +5094,7 @@ Partial Class RecruitmentRepository
                 '---------- 2.0 Thêm vào bảng RC_Candidate_CV ----------
                 Dim objEmpCVData As New RC_CANDIDATE_CV
                 objEmpCVData.CANDIDATE_ID = objEmpData.ID
-                ' objEmpCVData.BIRTH_DATE = objEmpCV.BIRTH_DATE
+                objEmpCVData.BIRTH_DATE = objEmpCV.BIRTH_DATE
                 objEmpCVData.GENDER = objEmpCV.GENDER
                 objEmpCVData.CONTACT_MOBILE = objEmpCV.CONTACT_MOBILE
                 objEmpCVData.PER_EMAIL = objEmpCV.PER_EMAIL

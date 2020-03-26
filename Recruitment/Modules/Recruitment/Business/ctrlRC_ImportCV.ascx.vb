@@ -245,62 +245,62 @@ Public Class ctrlRC_ImportCV
                     End If
                     If rgData.SelectedItems.Count > 1 Then
                         For Each item As GridDataItem In rgData.SelectedItems
-                            If item.GetDataKeyValue("S_ERROR") <> "" And item.GetDataKeyValue("IS_CMND") Is Nothing Then
+                            If item.GetDataKeyValue("S_ERROR") <> "" And item.GetDataKeyValue("FILE_NAME") <> "" Then
                                 ShowMessage(Translate("Tồn tại dữ liệu lỗi!"), NotifyType.Warning)
                                 lstSave.Clear()
                                 Exit Sub
                             End If
-                            If item.GetDataKeyValue("IS_CMND") = 1 Then
-                                ShowMessage(Translate("Tồn tại Ứng viên đã là nhân viên!"), NotifyType.Warning)
-                                lstSave.Clear()
-                                Exit Sub
-                            ElseIf item.GetDataKeyValue("IS_CMND") = 2 Then
-                                ShowMessage(Translate("Tồn tại Ứng viên là nhân viên đã nghỉ việc!"), NotifyType.Warning)
-                                lstSave.Clear()
-                                Exit Sub
-                            ElseIf item.GetDataKeyValue("IS_CMND") = 3 Then
-                                ShowMessage(Translate("Tồn tại Ứng viên đã từng ứng tuyển!"), NotifyType.Warning)
-                                lstSave.Clear()
-                                Exit Sub
-                            End If
+                            'If item.GetDataKeyValue("IS_CMND") = 1 Then
+                            '    ShowMessage(Translate("Tồn tại Ứng viên đã là nhân viên!"), NotifyType.Warning)
+                            '    lstSave.Clear()
+                            '    Exit Sub
+                            'ElseIf item.GetDataKeyValue("IS_CMND") = 2 Then
+                            '    ShowMessage(Translate("Tồn tại Ứng viên là nhân viên đã nghỉ việc!"), NotifyType.Warning)
+                            '    lstSave.Clear()
+                            '    Exit Sub
+                            'ElseIf item.GetDataKeyValue("IS_CMND") = 3 Then
+                            '    ShowMessage(Translate("Tồn tại Ứng viên đã từng ứng tuyển!"), NotifyType.Warning)
+                            '    lstSave.Clear()
+                            '    Exit Sub
+                            'End If
                             lstSave.Add(Decimal.Parse(item.GetDataKeyValue("ID")))
                         Next
                         SAVEIMPORT()
                     End If
-                    If rgData.SelectedItems.Count = 1 Then
-                        Dim check As Integer = 0
-                        For Each item As GridDataItem In rgData.SelectedItems
-                            If item.GetDataKeyValue("S_ERROR") <> "" And item.GetDataKeyValue("IS_CMND") Is Nothing Then
-                                ShowMessage(Translate("Tồn tại dữ liệu lỗi!"), NotifyType.Warning)
-                                lstSave.Clear()
-                                Exit Sub
-                            End If
-                            If item.GetDataKeyValue("IS_CMND") = 1 Then
-                                ShowMessage(Translate("Ứng viên đã là nhân viên!"), NotifyType.Warning)
-                                lstSave.Clear()
-                                Exit Sub
-                            ElseIf item.GetDataKeyValue("IS_CMND") = 2 Then
-                                check = 2
-                            ElseIf item.GetDataKeyValue("IS_CMND") = 3 Then
-                                check = 3
-                            End If
-                            lstSave.Add(Decimal.Parse(item.GetDataKeyValue("ID")))
-                        Next
-                        If check = 2 Or check = 3 Then
-                            ctrlMessageBox.MessageText = "Ứng viên đã tồn tại!"
-                            If check = 2 Then
-                                ctrlMessageBox.MessageText = Translate("Ứng viên là nhân viên đã nghỉ việc, Bạn có muốn tiếp tục?")
-                            End If
-                            If check = 3 Then
-                                ctrlMessageBox.MessageText = Translate("Ứng viên đã từng ứng tuyển, Bạn có muốn tiếp tục?")
-                            End If
-                            ctrlMessageBox.ActionName = "TRUNGCMND"
-                            ctrlMessageBox.DataBind()
-                            ctrlMessageBox.Show()
-                        Else
-                            SAVEIMPORT()
-                        End If
-                    End If
+                    'If rgData.SelectedItems.Count = 1 Then
+                    '    Dim check As Integer = 0
+                    '    For Each item As GridDataItem In rgData.SelectedItems
+                    '        If item.GetDataKeyValue("S_ERROR") <> "" And item.GetDataKeyValue("IS_CMND") Is Nothing Then
+                    '            ShowMessage(Translate("Tồn tại dữ liệu lỗi!"), NotifyType.Warning)
+                    '            lstSave.Clear()
+                    '            Exit Sub
+                    '        End If
+                    '        If item.GetDataKeyValue("IS_CMND") = 1 Then
+                    '            ShowMessage(Translate("Ứng viên đã là nhân viên!"), NotifyType.Warning)
+                    '            lstSave.Clear()
+                    '            Exit Sub
+                    '        ElseIf item.GetDataKeyValue("IS_CMND") = 2 Then
+                    '            check = 2
+                    '        ElseIf item.GetDataKeyValue("IS_CMND") = 3 Then
+                    '            check = 3
+                    '        End If
+                    '        lstSave.Add(Decimal.Parse(item.GetDataKeyValue("ID")))
+                    '    Next
+                    '    If check = 2 Or check = 3 Then
+                    '        ctrlMessageBox.MessageText = "Ứng viên đã tồn tại!"
+                    '        If check = 2 Then
+                    '            ctrlMessageBox.MessageText = Translate("Ứng viên là nhân viên đã nghỉ việc, Bạn có muốn tiếp tục?")
+                    '        End If
+                    '        If check = 3 Then
+                    '            ctrlMessageBox.MessageText = Translate("Ứng viên đã từng ứng tuyển, Bạn có muốn tiếp tục?")
+                    '        End If
+                    '        ctrlMessageBox.ActionName = "TRUNGCMND"
+                    '        ctrlMessageBox.DataBind()
+                    '        ctrlMessageBox.Show()
+                    '    Else
+                    '        SAVEIMPORT()
+                    '    End If
+                    'End If
                 Case CommonMessage.TOOLBARITEM_EXPORT_TEMPLATE
                     ScriptManager.RegisterStartupScript(Me.Page, Me.Page.GetType(), "javascriptfunction", "ExportReport('RC_CANDIDATE_IMPORT')", True)
                     'GetInformationLists()
@@ -751,29 +751,32 @@ Public Class ctrlRC_ImportCV
     Private Sub TableMapping(ByVal dtTemp As System.Data.DataTable, ByVal dtFile As System.Data.DataTable)
         ' lấy dữ liệu thô từ excel vào và tinh chỉnh dữ liệu
         dtTemp.Columns(0).ColumnName = "STT"
-        dtTemp.Columns(1).ColumnName = "CODE"
-        dtTemp.Columns(2).ColumnName = "FULLNAME_VN"
-        dtTemp.Columns(3).ColumnName = "GENDER"
-        dtTemp.Columns(4).ColumnName = "GENDER_ID"
-        dtTemp.Columns(5).ColumnName = "PHONE"
-        dtTemp.Columns(6).ColumnName = "EMAIL"
-        dtTemp.Columns(7).ColumnName = "MAJOR"
-        dtTemp.Columns(8).ColumnName = "MAJOR_ID"
-        dtTemp.Columns(9).ColumnName = "SCHOOL"
-        dtTemp.Columns(10).ColumnName = "SCHOOL_ID"
-        dtTemp.Columns(11).ColumnName = "TDVH"
-        dtTemp.Columns(12).ColumnName = "TDVH_ID"
-        dtTemp.Columns(13).ColumnName = "ID_NO"
-        dtTemp.Columns(14).ColumnName = "DATE_NC"
-        dtTemp.Columns(15).ColumnName = "PROVINCE"
-        dtTemp.Columns(16).ColumnName = "PROVINCE_ID"
-        dtTemp.Columns(17).ColumnName = "RELIGION"
-        dtTemp.Columns(18).ColumnName = "RELIGION_ID"
-        dtTemp.Columns(19).ColumnName = "NATION"
-        dtTemp.Columns(20).ColumnName = "NATION_ID"
-        dtTemp.Columns(21).ColumnName = "DT"
-        dtTemp.Columns(22).ColumnName = "DT_ID"
+        dtTemp.Columns(1).ColumnName = "FIRST_NAME"
+        dtTemp.Columns(2).ColumnName = "LAST_NAME"
+        dtTemp.Columns(3).ColumnName = "FULLNAME_VN"
+        dtTemp.Columns(4).ColumnName = "BIRTH_DAY"
+        dtTemp.Columns(5).ColumnName = "GENDER"
+        dtTemp.Columns(6).ColumnName = "GENDER_ID"
+        dtTemp.Columns(7).ColumnName = "PHONE"
+        dtTemp.Columns(8).ColumnName = "EMAIL"
+        dtTemp.Columns(9).ColumnName = "MAJOR"
+        dtTemp.Columns(10).ColumnName = "MAJOR_ID"
+        dtTemp.Columns(11).ColumnName = "SCHOOL"
+        dtTemp.Columns(12).ColumnName = "SCHOOL_ID"
+        dtTemp.Columns(13).ColumnName = "TDVH"
+        dtTemp.Columns(14).ColumnName = "TDVH_ID"
+        dtTemp.Columns(15).ColumnName = "ID_NO"
+        dtTemp.Columns(16).ColumnName = "DATE_NC"
+        dtTemp.Columns(17).ColumnName = "PROVINCE"
+        dtTemp.Columns(18).ColumnName = "PROVINCE_ID"
+        dtTemp.Columns(19).ColumnName = "RELIGION"
+        dtTemp.Columns(20).ColumnName = "RELIGION_ID"
+        dtTemp.Columns(21).ColumnName = "NATION"
+        dtTemp.Columns(22).ColumnName = "NATION_ID"
+        dtTemp.Columns(23).ColumnName = "DT"
+        dtTemp.Columns(24).ColumnName = "DT_ID"
         'XOA DONG TIEU DE VA HEADER
+        dtTemp.Rows(0).Delete()
         dtTemp.Rows(0).Delete()
         dtTemp.Rows(0).Delete()
         ' add Log
@@ -804,45 +807,73 @@ Public Class ctrlRC_ImportCV
             If rows.RowState = DataRowState.Deleted OrElse rows.RowState = DataRowState.Detached Then Continue For
             newRow = dtError.NewRow
             newRow("STT") = count + 1
-            Dim IsCMND As Boolean = False
-            If IsCMND = False Then
-                Dim rep As New RecruitmentRepository
-                If rows("ID_NO").ToString = "" Then
-                    Dim isValid = rep.ValidateInsertCandidate("", rows("ID_NO"), "", Date.Now, "BLACK_LIST")
-                    If Not isValid Then
-                        newRow("ID_NO") = "Ứng viên thuộc danh sách đen"
-                    End If
+            'Dim IsCMND As Boolean = False
+            'If IsCMND = False Then
+            '    Dim rep As New RecruitmentRepository
+            '    If rows("ID_NO").ToString = "" Then
+            '        Dim isValid = rep.ValidateInsertCandidate("", rows("ID_NO"), "", Date.Now, "BLACK_LIST")
+            '        If Not isValid Then
+            '            rows("ERROR") = rows("ERROR") + "Ứng viên thuộc danh sách đen,"
+            '            rows("FILE_NAME") = sFile_Name
+            '        End If
+            '    End If
+            '    Dim check As Integer = 0
+            '    check = rep.CheckExitID_NO(rows("ID_NO"), 0)
+            '    If check = 1 Then
+            '        rows("ERROR") = "Ứng viên đã là nhân viên,"
+            '        sError = "Ứng viên đã là nhân viên,"
+            '        rows("FILE_NAME") = sFile_Name
+            '        Is_Er_IDNO = True
+            '        rows("IS_CMND") = 1
+            '    End If
+            '    If check = 2 Then
+            '        rows("ERROR") = "Ứng viên là nhân viên đã nghỉ việc,"
+            '        sError = "Ứng viên là nhân viên đã nghỉ việc,"
+            '        rows("FILE_NAME") = sFile_Name
+            '        Is_Er_IDNO = True
+            '        rows("IS_CMND") = 2
+            '    End If
+            '    If check = 3 Then
+            '        rows("ERROR") = "Ứng viên đã từng ứng tuyển,"
+            '        sError = "Ứng viên đã từng ứng tuyển,"
+            '        rows("FILE_NAME") = sFile_Name
+            '        Is_Er_IDNO = True
+            '        rows("IS_CMND") = 3
+            '    End If
+            'End If
+            'nếu ngày sinh k đúng định dạng thì k check ứng viên đã làm việc hay thuộc blacklist vì sai dl đầu vào
+            Dim rep As New RecruitmentRepository
+            If rows("BIRTH_DAY").ToString = "" OrElse CheckDate(rows("BIRTH_DAY")) = False Then
+                rows("ERROR") = rows("ERROR") + "Ngày sinh không đúng định dạng,"
+                rows("FILE_NAME") = sFile_Name
+            Else
+                If Not rep.ValidateInsertCandidate("", rows("ID_NO"), rows("FULLNAME_VN"), rows("BIRTH_DAY"), "NO_ID") Then
+                    rows("ERROR") = rows("ERROR") + "Ứng viên đang tồn tại trong một chương trình tuyển dụng khác,"
                 End If
-                Dim check As Integer = 0
-                check = rep.CheckExitID_NO(rows("ID_NO"), 0)
-                If check = 1 Then
-                    rows("ERROR") = "Ứng viên đã là nhân viên,"
-                    sError = "Ứng viên đã là nhân viên,"
-                    rows("FILE_NAME") = sFile_Name
-                    Is_Er_IDNO = True
-                    rows("IS_CMND") = 1
+                If Not rep.ValidateInsertCandidate("", rows("ID_NO"), rows("FULLNAME_VN"), rows("BIRTH_DAY"), "BLACK_LIST") Then
+                    rows("ERROR") = rows("ERROR") + "Ứng viên đang thuộc Blacklist,"
                 End If
-                If check = 2 Then
-                    rows("ERROR") = "Ứng viên là nhân viên đã nghỉ việc,"
-                    sError = "Ứng viên là nhân viên đã nghỉ việc,"
-                    rows("FILE_NAME") = sFile_Name
-                    Is_Er_IDNO = True
-                    rows("IS_CMND") = 2
+                If Not rep.ValidateInsertCandidate("", rows("ID_NO"), rows("FULLNAME_VN"), rows("BIRTH_DAY"), "WORKING") Then
+                    rows("ERROR") = rows("ERROR") + "Ứng viên đang làm việc tại ACV,"
                 End If
-                If check = 3 Then
-                    rows("ERROR") = "Ứng viên đã từng ứng tuyển,"
-                    sError = "Ứng viên đã từng ứng tuyển,"
-                    rows("FILE_NAME") = sFile_Name
-                    Is_Er_IDNO = True
-                    rows("IS_CMND") = 3
+                If Not rep.ValidateInsertCandidate("", rows("ID_NO"), rows("FULLNAME_VN"), rows("BIRTH_DAY"), "TERMINATE") Then
+                    rows("ERROR") = rows("ERROR") + "Ứng viên đã từng làm việc tại ACV,"
                 End If
+            End If
+            If IsDBNull(rows("FIRST_NAME")) Or rows("FIRST_NAME").ToString = "" Then
+                rows("ERROR") = rows("ERROR") + "Chưa nhập Họ và tên lót,"
+                rows("FILE_NAME") = sFile_Name
+            End If
+            If IsDBNull(rows("LAST_NAME")) Or rows("LAST_NAME").ToString = "" Then
+                rows("ERROR") = rows("ERROR") + "Chưa nhập tên,"
+                rows("FILE_NAME") = sFile_Name
             End If
             If IsDBNull(rows("FULLNAME_VN")) Or rows("FULLNAME_VN").ToString = "" Then
                 rows("ERROR") = rows("ERROR") + "Chưa nhập tên ứng viên,"
                 rows("FILE_NAME") = sFile_Name
             End If
             If IsDBNull(rows("DATE_NC")) OrElse CheckDate(rows("DATE_NC")) = False Then
-                rows("ERROR") = rows("ERROR") + "Ngày nhập vào không đúng định dạng,"
+                rows("ERROR") = rows("ERROR") + "Ngày cấp CMND không đúng định dạng,"
                 rows("FILE_NAME") = sFile_Name
             End If
             If IsDBNull(rows("GENDER")) Or rows("GENDER").ToString = "" Then
@@ -900,6 +931,8 @@ Public Class ctrlRC_ImportCV
                 can.ID_NO = dr("ID_NO").ToString
                 can.FILE_NAME = dr("FILE_NAME").ToString
                 can.S_ERROR = dr("ERROR").ToString
+                can.FIRST_NAME_VN = dr("FIRST_NAME").ToString
+                can.LAST_NAME_VN = dr("LAST_NAME").ToString
                 If dr("IS_CMND").ToString <> "" Then
                     can.IS_CMND = Decimal.Parse(dr("IS_CMND"))
                 End If
@@ -912,7 +945,7 @@ Public Class ctrlRC_ImportCV
                 can_cv.CONTACT_MOBILE = dr("PHONE").ToString ' ĐIỆN THOẠI3.
                 can_cv.PER_EMAIL = dr("EMAIL").ToString ' EMAIL
                 can_cv.ID_PLACE = dr("PROVINCE_ID").ToString
-
+                can_cv.BIRTH_DATE = ToDate(dr("BIRTH_DAY").ToString)
                 can_cv.ID_NO = dr("ID_NO").ToString
                 can_cv.ID_DATE = ToDate(dr("DATE_NC").ToString)
                 If dr("NATION_ID").ToString <> "" Then
