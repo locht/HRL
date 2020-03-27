@@ -628,7 +628,16 @@ Public Class ProfileRepository
     ''' 
     Public Function GetComboList(ByRef _combolistDTO As ComboBoxDataDTO) As Boolean
         Dim query
-
+        'don vi ky hop dong sua lai theo vnm
+        If _combolistDTO.GET_SIGN_WORK Then
+            query = (From p In Context.HU_ORGANIZATION Where p.ACTFLG = "A" And p.is_sign_contract = -1
+                     Select New OrganizationDTO With {
+                         .ID = p.ID,
+                         .NAME_VN = p.NAME_VN,
+                         .NAME_EN = p.NAME_EN,
+                         .CODE = p.CODE}).ToList
+            _combolistDTO.LIST_SIGN_WORK = query
+        End If
         'DIA DIEM KY HOP DONG HU_LOCATION
         If _combolistDTO.GET_LOCATION Then
             query = (From p In Context.HU_LOCATION Where p.ACTFLG = "A" AndAlso p.CODE IsNot Nothing

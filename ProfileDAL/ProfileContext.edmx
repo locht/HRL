@@ -2941,6 +2941,7 @@
             <Property Name="FILES" Type="nclob" Nullable="true" />
             <Property Name="EFFECT_DATE" Type="date" Nullable="true" />
             <Property Name="CONTRACT_CODE" Type="nclob" Nullable="true" />
+            <Property Name="IS_SIGN_CONTRACT" Type="number" Nullable="true" Precision="38" />
         </EntityType>
         <EntityType Name="HU_TALENT_POOL">
             <Key>
@@ -7659,6 +7660,7 @@
           <Property Type="String" Name="FILES" />
           <Property Type="DateTime" Name="EFFECT_DATE" Nullable="true" />
           <Property Type="String" Name="CONTRACT_CODE" />
+          <Property Type="Decimal" Name="IS_SIGN_CONTRACT" />
         </EntityType>
         <Association Name="FK_HU_ORG_HU_ORG">
           <End Type="ProfileModel.HU_ORGANIZATION" Role="HU_ORGANIZATION" Multiplicity="0..1" />
@@ -11479,6 +11481,7 @@
                     <ScalarProperty Name="FILES" ColumnName="FILES" />
                     <ScalarProperty Name="EFFECT_DATE" ColumnName="EFFECT_DATE" />
                     <ScalarProperty Name="CONTRACT_CODE" ColumnName="CONTRACT_CODE" />
+                    <ScalarProperty Name="IS_SIGN_CONTRACT" ColumnName="IS_SIGN_CONTRACT" />
                 </MappingFragment>
             </EntityTypeMapping>
         </EntitySetMapping>
@@ -12841,12 +12844,12 @@
         <EntityTypeShape EntityType="ProfileModel.PA_SALARY_TYPE" Width="1.5" PointX="28.375" PointY="5.75" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="ProfileModel.HU_TITLE_CONCURRENT" Width="2.25" PointX="29.375" PointY="0.75" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="ProfileModel.HU_ORG_TITLE" Width="1.5" PointX="4.375" PointY="0.75" Height="0.4" IsExpanded="false" />
-        <EntityTypeShape EntityType="ProfileModel.HU_ORGANIZATION" Width="3.625" PointX="5.375" PointY="29.75" Height="9.0954394531250031" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProfileModel.HU_ORGANIZATION" Width="3.625" PointX="5.375" PointY="29.75" Height="9.2877408854166674" IsExpanded="true" />
         <AssociationConnector Association="ProfileModel.FK_HU_ORG_HU_ORG" >
-          <ConnectorPoint PointX="6.6604807692307695" PointY="38.845439453125" />
-          <ConnectorPoint PointX="6.6604807692307695" PointY="39.095439453125" />
-          <ConnectorPoint PointX="7.7396153846153846" PointY="39.095439453125" />
-          <ConnectorPoint PointX="7.7396153846153846" PointY="38.845439453125" />
+          <ConnectorPoint PointX="6.6604807692307695" PointY="39.037740885416667" />
+          <ConnectorPoint PointX="6.6604807692307695" PointY="39.287740885416667" />
+          <ConnectorPoint PointX="7.7396153846153846" PointY="39.287740885416667" />
+          <ConnectorPoint PointX="7.7396153846153846" PointY="39.037740885416667" />
         </AssociationConnector>
         <EntityTypeShape EntityType="ProfileModel.HU_TALENT_POOL" Width="1.5" PointX="26.375" PointY="8" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="ProfileModel.HU_EMPLOYEE_CV1" Width="1.5" PointX="0.75" PointY="30.75" Height="0.4" IsExpanded="false" />

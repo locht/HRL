@@ -105,7 +105,7 @@
                 <td class="lb">
                     <asp:Label ID="lbSignContract" runat="server" Text="Đơn vị ký hợp đồng"></asp:Label>
                 </td>
-                <td class="lb">
+                <td>
                     <tlk:RadComboBox runat="server" ID="cboSignContract" CausesValidation="false">
                     </tlk:RadComboBox>
                     <asp:RequiredFieldValidator ID="reqSignContract" ControlToValidate="cboSignContract"
@@ -135,16 +135,19 @@
                     </tlk:RadDatePicker>
                     <asp:RequiredFieldValidator ID="reqStartDate" ControlToValidate="rdStartDate" runat="server"
                         ErrorMessage="<%$ Translate: Bạn phải nhập ngày bắt đầu. %>" ToolTip="<%$ Translate: Bạn phải nhập ngày bắt đầu. %>"> </asp:RequiredFieldValidator>
-                    <asp:CustomValidator ID="CompareStartDate" runat="server" ErrorMessage="<%$ Translate: Ngày bắt đầu phải lớn hơn ngày kết thúc gần nhất %>"
-                        ToolTip="<%$ Translate: Ngày bắt đầu phải lớn hơn ngày kết thúc gần nhất %>">
+                    <asp:CustomValidator ID="CompareStartDate" runat="server" ErrorMessage="<%$ Translate: Ngày bắt đầu phải lớn hơn ngày kết thúc gần nhất của hợp động gần đây %>"
+                        ToolTip="<%$ Translate: Ngày bắt đầu phải lớn hơn ngày kết thúc gần nhất của hợp động gần đây %>">
                     </asp:CustomValidator>
                 </td>
                 <td class="lb">
                     <asp:Label ID="lbExpireDate" runat="server" Text="<%$ Translate: Ngày kết thúc %>"></asp:Label>
+                    <span class="lbReq">*</span>
                 </td>
                 <td>
                     <tlk:RadDatePicker ID="rdExpireDate" runat="server">
                     </tlk:RadDatePicker>
+                    <asp:RequiredFieldValidator ID="rqExpireDate" ControlToValidate="rdExpireDate" runat="server"
+                        ErrorMessage="<%$ Translate: Bạn phải nhập ngày kết thúc. %>" ToolTip="<%$ Translate: Bạn phải nhập ngày kết thúc. %>"> </asp:RequiredFieldValidator>
                     <asp:CompareValidator ID="CompareValidator2" runat="server" ControlToValidate="rdExpireDate"
                         Type="Date" ControlToCompare="rdStartDate" Operator="GreaterThanEqual" ErrorMessage="<%$ Translate: Ngày kết thúc phải lớn hơn ngày bắt đầu %>"
                         ToolTip="<%$ Translate: Ngày kết thúc phải lớn hơn ngày bắt đầu %>"></asp:CompareValidator>
@@ -219,7 +222,8 @@
                         ToolTip="<%$ Translate: Bạn phải chọn thời gian làm việc buổi chiều. %>">
                     </asp:RequiredFieldValidator>
                 </td>
-                <td class="lb">
+                <td>
+                    <asp:CheckBox runat="server" ID="chkAuthority" Text="Ủy quyền    " />
                     <asp:Label ID="lbNumberAuthority" runat="server" Text="<%$ Translate: Số ủy quyền %>"></asp:Label>
                 </td>
                 <td>
@@ -234,11 +238,6 @@
                 <td colspan="3">
                     <tlk:RadTextBox ID="txtWorkToDo" SkinID="Textbox1023" runat="server" Width="100%">
                     </tlk:RadTextBox>
-                </td>
-                <td class="lb">
-                </td>
-                <td>
-                    <asp:CheckBox runat="server" ID="chkAuthority" Text="Ủy quyền" />
                 </td>
             </tr>
             <tr>

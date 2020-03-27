@@ -322,4 +322,7 @@
     'thoi gian lam viec
     Public Property GET_WORK_TIME As Boolean
     Public Property LIST_WORK_TIME As List(Of OtherListDTO)
+    'don vi ky hop dong lay theo vnm
+    Public Property GET_SIGN_WORK As Boolean
+    Public Property LIST_SIGN_WORK As List(Of OrganizationDTO)
 End Class

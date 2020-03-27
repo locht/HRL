@@ -437,6 +437,15 @@ Partial Public Class ctrlHU_ContractNewEdit
     Protected WithEvents rdExpireDate As Global.Telerik.Web.UI.RadDatePicker
 
     '''<summary>
+    '''rqExpireDate control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents rqExpireDate As Global.System.Web.UI.WebControls.RequiredFieldValidator
+
+    '''<summary>
     '''CompareValidator2 control.
     '''</summary>
     '''<remarks>
@@ -608,6 +617,15 @@ Partial Public Class ctrlHU_ContractNewEdit
     Protected WithEvents rqEnd_Afternoon As Global.System.Web.UI.WebControls.RequiredFieldValidator
 
     '''<summary>
+    '''chkAuthority control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents chkAuthority As Global.System.Web.UI.WebControls.CheckBox
+
+    '''<summary>
     '''lbNumberAuthority control.
     '''</summary>
     '''<remarks>
@@ -642,15 +660,6 @@ Partial Public Class ctrlHU_ContractNewEdit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtWorkToDo As Global.Telerik.Web.UI.RadTextBox
-
-    '''<summary>
-    '''chkAuthority control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents chkAuthority As Global.System.Web.UI.WebControls.CheckBox
 
     '''<summary>
     '''lbStatus control.

@@ -308,6 +308,9 @@ Namespace ProfileBusiness.ServiceContracts
                                         Optional ByVal Sorts As String = "CREATED_DATE desc") As List(Of ContractTypeDTO)
 
         <OperationContract()>
+        Function ValidContract(ByVal empid As Decimal) As Boolean
+
+        <OperationContract()>
         Function InsertContractType(ByVal objContractType As ContractTypeDTO, ByVal log As UserLog, ByRef gID As Decimal) As Boolean
 
         <OperationContract()>

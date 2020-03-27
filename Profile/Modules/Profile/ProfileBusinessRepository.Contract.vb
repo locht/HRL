@@ -468,6 +468,15 @@ Partial Public Class ProfileBusinessRepository
 
         Return Nothing
     End Function
+    Public Function ValidContract(ByVal empid As Decimal) As Boolean
+        Using rep As New ProfileBusinessClient
+            Try
+                Return rep.ValidContract(empid)
+            Catch ex As Exception
+                Throw ex
+            End Try
+        End Using
+    End Function
 
     Public Function InsertContract(ByVal objContract As ContractDTO, ByRef gID As Decimal) As Boolean
         Using rep As New ProfileBusinessClient

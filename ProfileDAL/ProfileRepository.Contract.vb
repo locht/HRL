@@ -1164,7 +1164,21 @@ Partial Class ProfileRepository
 
 
     End Function
-
+    'k cho tạo hd mới khi hd cũ còn hiệu lực
+    Public Function ValidContract(ByVal empid As Decimal) As Boolean
+        Try
+            'lay hop dong gan nhat
+            Dim check = (From p In Context.HU_CONTRACT
+                         Where p.EMPLOYEE_ID = empid
+                          Order By p.ID Descending).FirstOrDefault()
+            If check.EXPIRE_DATE >= Date.Now Then
+                Return False
+            End If
+            Return True
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
     Public Function ValidateContract(ByVal sType As String, ByVal _validate As ContractDTO) As Boolean
         Try
             ' note: đồng bộ phê duyệt
@@ -1361,7 +1375,7 @@ Partial Class ProfileRepository
             Dim check = (From p In Context.HU_CONTRACT
                        From ct In Context.HU_CONTRACT_TYPE.Where(Function(f) f.ID = p.CONTRACT_TYPE_ID).DefaultIfEmpty
                        From ot In Context.OT_OTHER_LIST.Where(Function(f) f.ID = ct.TYPE_ID).DefaultIfEmpty
-                       Where p.EMPLOYEE_ID = empid And p.STATUS_ID = 447).ToList.Count
+                       Where p.EMPLOYEE_ID = empid).ToList.Count
 
             If check >= 2 Then
                 Return False

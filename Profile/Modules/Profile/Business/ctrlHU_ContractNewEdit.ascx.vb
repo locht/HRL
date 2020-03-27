@@ -256,7 +256,7 @@ Public Class ctrlHU_ContractNewEdit
                         Else
                             chkAuthority.Checked = False
                         End If
-                        If IsNumeric(Contract.MONEY_RISK.Value) Then
+                        If Contract.MONEY_RISK IsNot Nothing Then
                             rnRisk.Value = Contract.MONEY_RISK
                         End If
                         rtStart_Morning.SelectedDate = Contract.MORNING_START
@@ -1120,20 +1120,22 @@ Public Class ctrlHU_ContractNewEdit
         Dim rep As New ProfileRepository
         ListComboData = New ComboBoxDataDTO
         ListComboData.GET_CONTRACTTYPE = True
-        ListComboData.GET_LOCATION = True
+        ListComboData.GET_SIGN_WORK = True
         rep.GetComboList(ListComboData)
         FillDropDownList(cboContractType, ListComboData.LIST_CONTRACTTYPE, "NAME", "ID", Common.Common.SystemLanguage, False)
-        FillDropDownList(cboSignContract, ListComboData.LIST_LOCATION, "CODE", "ID", Common.Common.SystemLanguage, False)
+        FillDropDownList(cboSignContract, ListComboData.LIST_SIGN_WORK, "NAME_VN", "ID", Common.Common.SystemLanguage, False)
         rep.Dispose()
         Dim dtData As New DataTable
         'TNG-117	
         'Chuẩn hóa lại bộ trạng thái, sử dụng chung trong hệ thống
         'chuẩn hóa lại đồng bộ trạng thái là 446 447 nên sửa lại cách load data lên
-        dtData = rep.GetOtherList(OtherTypes.DecisionStatus, True)
+        dtData = rep.GetOtherList(OtherTypes.DecisionStatus)
         FillRadCombobox(cboStatus, dtData, "NAME", "ID", True)
+        cboStatus.SelectedIndex = 0
         'hinh thuc lam viẹc
         dtData = rep.GetOtherList("WORK_TIME", True)
         FillRadCombobox(cboFormWork, dtData, "NAME", "ID", True)
+        txtWorkToDo.Text = "Công việc phải làm theo sự phân công của Trưởng phòng"
     End Sub
     ''' <lastupdate>
     ''' 06/07/2017 17:53
@@ -1189,6 +1191,10 @@ Public Class ctrlHU_ContractNewEdit
                 Else
                     MainToolBar.Items(0).Enabled = True
 
+                End If
+                If Not rep.ValidContract(empID) Then
+                    ShowMessage(Translate("Hợp đồng cũ còn hiệu lực. Không được phép tạo hợp đồng mới."), Utilities.NotifyType.Warning)
+                    MainToolBar.Items(0).Enabled = False
                 End If
                 If item.CONTRACT_EFFECT_DATE IsNot Nothing Then
                     If item.CONTRACT_EXPIRE_DATE Is Nothing Then

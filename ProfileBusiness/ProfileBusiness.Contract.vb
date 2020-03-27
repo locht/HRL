@@ -422,6 +422,15 @@ Namespace ProfileBusiness.ServiceImplementations
                 End Try
             End Using
         End Function
+        Public Function ValidContract(ByVal empid As Decimal) As Boolean Implements ServiceContracts.IProfileBusiness.ValidContract
+            Using rep As New ProfileRepository
+                Try
+                    Return rep.ValidContract(empid)
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
 
         Public Function CheckContractNo(ByVal objContract As ContractDTO) As Boolean _
             Implements ServiceContracts.IProfileBusiness.CheckContractNo
