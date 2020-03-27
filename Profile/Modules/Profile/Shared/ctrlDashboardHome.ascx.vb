@@ -82,22 +82,24 @@ Public Class ctrlDashboardHome
 
     Dim approveRemind As Integer
     Dim approveHDLDRemind As Integer
-    Dim approveTHHDRemind As Integer
     Dim maternitiRemind As Integer
     Dim retirementRemind As Integer
     Dim noneSalaryRemind As Integer
-    Dim noneExpiredCertificateRemind As Integer
-    Dim noneBIRTHDAY_LD As Integer
-    Dim noneConcurrently As Integer
-    Dim noneEmpDtlFamily As Integer
 
+
+    Dim noneEmpDtlFamily As Integer
     Dim workingRemind As Integer
     Dim terminateRemind As Integer
     Dim terminateDebtRemind As Integer
     Dim noPaperRemind As Integer
-    Dim visaRemind As Integer
-    Dim worPermitRemind As Integer
     Dim certificateRemind As Integer
+
+    Dim visaRemind As Integer
+    Dim identifyRemind As Integer
+    Dim passportRemind As Integer
+    Dim worPermitRemind As Integer
+    Dim licenseRemind As Integer
+    Dim approveTHHDRemind As Integer
 
 #End Region
 
@@ -269,6 +271,10 @@ Public Class ctrlDashboardHome
                 '    'lbDenTuoiVeHuu.Text = dtReminder.Select("REMIND_TYPE = '" + cons_com.REMINDER7 + "'").Count
                 'End If
 
+                'noneExpiredCertificateRemind.ToString & "," &
+                ' noneBIRTHDAY_LD.ToString & "," &
+                '  noneConcurrently.ToString & "," &
+
                 RemindList = rep.GetRemind(probationRemind.ToString & "," &
                                                contractRemind.ToString & "," &
                                                birthdayRemind.ToString & "," &
@@ -280,10 +286,12 @@ Public Class ctrlDashboardHome
                                                maternitiRemind.ToString & "," &
                                                retirementRemind.ToString & "," &
                                                noneSalaryRemind.ToString & "," &
-                                               noneExpiredCertificateRemind.ToString & "," &
-                                               noneBIRTHDAY_LD.ToString & "," &
-                                               noneConcurrently.ToString & "," &
-                                               noneEmpDtlFamily.ToString)
+                                               noneEmpDtlFamily.ToString & "," &
+                                               visaRemind.ToString & "," &
+                                               identifyRemind.ToString & "," &
+                                               passportRemind.ToString & "," &
+                                               worPermitRemind.ToString & "," &
+                                               licenseRemind.ToString)
                 rgContract.DataSource = RemindList
             Catch ex As Exception
                 rep.Dispose()
@@ -445,20 +453,24 @@ Public Class ctrlDashboardHome
             terminateRemind = CommonConfig.ReminderTerminate
             terminateDebtRemind = CommonConfig.ReminderTerminateDebt
             noPaperRemind = CommonConfig.ReminderNoPaper
+
             visaRemind = CommonConfig.ReminderVisa
+            identifyRemind = CommonConfig.ReminderIdentify
+            passportRemind = CommonConfig.ReminderPassPort
+            worPermitRemind = CommonConfig.ReminderLabor 'giấy phép lao động
+            licenseRemind = CommonConfig.ReminderWorkPer 'giấy phép hành nghề
+            approveTHHDRemind = CommonConfig.ReminderApproveTHHDDays 'tạm hoãn hợp đồng lao động
 
-            worPermitRemind = CommonConfig.ReminderLabor
             certificateRemind = CommonConfig.ReminderCertificate
-
             approveRemind = CommonConfig.ReminderApproveDays
             approveHDLDRemind = CommonConfig.ReminderApproveHDLDDays
-            approveTHHDRemind = CommonConfig.ReminderApproveTHHDDays
+
             maternitiRemind = CommonConfig.ReminderMaternitiDays
             retirementRemind = CommonConfig.ReminderRetirementDays
             noneSalaryRemind = CommonConfig.ReminderNoneSalaryDays
-            noneExpiredCertificateRemind = CommonConfig.ReminderExpiredCertificate
-            noneBIRTHDAY_LD = CommonConfig.ReminderBIRTHDAY_LD
-            noneConcurrently = CommonConfig.ReminderConcurrently
+            'noneExpiredCertificateRemind = CommonConfig.ReminderExpiredCertificate
+            'noneBIRTHDAY_LD = CommonConfig.ReminderBIRTHDAY_LD
+            'noneConcurrently = CommonConfig.ReminderConcurrently
             noneEmpDtlFamily = CommonConfig.ReminderEmpDtlFamily
 
             'Dim dr() As DataRow

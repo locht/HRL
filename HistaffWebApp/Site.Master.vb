@@ -23,22 +23,25 @@ Public Class Site
 
     Dim approveRemind As Integer
     Dim approveHDLDRemind As Integer
-    Dim approveTHHDRemind As Integer
     Dim maternitiRemind As Integer
     Dim retirementRemind As Integer
     Dim noneSalaryRemind As Integer
-    Dim noneExpiredCertificateRemind As Integer
-    Dim noneBIRTHDAY_LD As Integer
-    Dim noneConcurrently As Integer
+
     Dim noneEmpDtlFamily As Integer
 
     Dim workingRemind As Integer
     Dim terminateRemind As Integer
     Dim terminateDebtRemind As Integer
     Dim noPaperRemind As Integer
-    Dim visaRemind As Integer
-    Dim worPermitRemind As Integer
     Dim certificateRemind As Integer
+
+    Dim visaRemind As Integer
+    Dim identifyRemind As Integer
+    Dim passportRemind As Integer
+    Dim worPermitRemind As Integer
+    Dim licenseRemind As Integer
+    Dim approveTHHDRemind As Integer
+
     Dim _mylog As New MyLog()
     Dim _pathLog As String = _mylog._pathLog
     Dim _classPath As String = Me.GetType().Name.ToString()
@@ -378,26 +381,27 @@ Public Class Site
             contractRemind = CommonConfig.ReminderContractDays
             birthdayRemind = CommonConfig.ReminderBirthdayDays
             probationRemind = CommonConfig.ReminderProbation
-
             workingRemind = CommonConfig.ReminderWorking
             terminateRemind = CommonConfig.ReminderTerminate
             terminateDebtRemind = CommonConfig.ReminderTerminateDebt
             noPaperRemind = CommonConfig.ReminderNoPaper
-            visaRemind = CommonConfig.ReminderVisa
-
-            worPermitRemind = CommonConfig.ReminderLabor
             certificateRemind = CommonConfig.ReminderCertificate
-
             approveRemind = CommonConfig.ReminderApproveDays
             approveHDLDRemind = CommonConfig.ReminderApproveHDLDDays
-            approveTHHDRemind = CommonConfig.ReminderApproveTHHDDays
             maternitiRemind = CommonConfig.ReminderMaternitiDays
             retirementRemind = CommonConfig.ReminderRetirementDays
             noneSalaryRemind = CommonConfig.ReminderNoneSalaryDays
-            noneExpiredCertificateRemind = CommonConfig.ReminderExpiredCertificate
-            noneBIRTHDAY_LD = CommonConfig.ReminderBIRTHDAY_LD
-            noneConcurrently = CommonConfig.ReminderConcurrently
+            'noneExpiredCertificateRemind = CommonConfig.ReminderExpiredCertificate
+            'noneBIRTHDAY_LD = CommonConfig.ReminderBIRTHDAY_LD
+            'noneConcurrently = CommonConfig.ReminderConcurrently
             noneEmpDtlFamily = CommonConfig.ReminderEmpDtlFamily
+
+            visaRemind = CommonConfig.ReminderVisa
+            identifyRemind = CommonConfig.ReminderIdentify
+            passportRemind = CommonConfig.ReminderPassPort
+            worPermitRemind = CommonConfig.ReminderLabor 'giấy phép lao động
+            licenseRemind = CommonConfig.ReminderWorkPer 'giấy phép hành nghề
+            approveTHHDRemind = CommonConfig.ReminderApproveTHHDDays 'tạm hoãn hợp đồng lao động
 
             If approveRemind <> 0 Then
                 dApproveRemind.Visible = True
@@ -429,21 +433,21 @@ Public Class Site
             Else
                 dNoneSalaryRemind.Visible = False
             End If
-            If noneExpiredCertificateRemind <> 0 Then
-                dExpiredCertificateRemind.Visible = True
-            Else
-                dExpiredCertificateRemind.Visible = False
-            End If
-            If noneBIRTHDAY_LD <> 0 Then
-                dBIRTHDAY_LD.Visible = True
-            Else
-                dBIRTHDAY_LD.Visible = False
-            End If
-            If noneConcurrently <> 0 Then
-                dConcurrently.Visible = True
-            Else
-                dConcurrently.Visible = False
-            End If
+            'If noneExpiredCertificateRemind <> 0 Then
+            '    dExpiredCertificateRemind.Visible = True
+            'Else
+            '    dExpiredCertificateRemind.Visible = False
+            'End If
+            'If noneBIRTHDAY_LD <> 0 Then
+            '    dBIRTHDAY_LD.Visible = True
+            'Else
+            '    dBIRTHDAY_LD.Visible = False
+            'End If
+            'If noneConcurrently <> 0 Then
+            '    dConcurrently.Visible = True
+            'Else
+            '    dConcurrently.Visible = False
+            'End If
             If noneEmpDtlFamily <> 0 Then
                 dEmpDtlFamily.Visible = True
             Else
@@ -479,21 +483,34 @@ Public Class Site
                 dnoPaperRemind.Visible = False
             End If
 
-            'If visaRemind <> 0 Then
-            '    dvisaRemind.Visible = True
-            'Else
-            '    dvisaRemind.Visible = False
-            'End If
-            dvisaRemind.Visible = False
-            dvisaRemind1.Visible = False
+            If visaRemind <> 0 Then
+                dvisaRemind.Visible = True
+            Else
+                dvisaRemind.Visible = False
+            End If
 
-            'If worPermitRemind <> 0 Then
-            '    dworPermitRemind.Visible = True
-            'Else
-            '    dworPermitRemind.Visible = False
-            'End If
+            If identifyRemind <> 0 Then
+                dRemindIdentify.Visible = True
+            Else
+                dRemindIdentify.Visible = False
+            End If
+            If passportRemind <> 0 Then
+                dRemindPassport.Visible = True
+            Else
+                dRemindPassport.Visible = False
+            End If
 
-            dworPermitRemind.Visible = False
+            If licenseRemind <> 0 Then
+                dRemindlicense.Visible = True
+            Else
+                dRemindlicense.Visible = False
+            End If
+
+            If worPermitRemind <> 0 Then
+                dworPermitRemind.Visible = True
+            Else
+                dworPermitRemind.Visible = False
+            End If
 
             'If certificateRemind <> 0 Then
             '    dcertificateRemind.Visible = True
@@ -530,22 +547,23 @@ Public Class Site
                     '                           certificateRemind.ToString
                     '                           )
 
-                    RemindList = rep.GetRemind(probationRemind.ToString & "," & _
-                                               contractRemind.ToString & "," & _
-                                               birthdayRemind.ToString & "," & _
-                                               terminateRemind.ToString & "," & _
-                                               noPaperRemind.ToString & "," & _
-                                               approveRemind.ToString & "," & _
-                                               approveHDLDRemind.ToString & "," & _
-                                               approveTHHDRemind.ToString & "," & _
-                                               maternitiRemind.ToString & "," & _
-                                               retirementRemind.ToString & "," & _
-                                               noneSalaryRemind.ToString & "," & _
-                                               noneExpiredCertificateRemind.ToString & "," & _
-                                               noneBIRTHDAY_LD.ToString & "," & _
-                                               noneConcurrently.ToString & "," & _
-                                               noneEmpDtlFamily.ToString
-                                               )
+                    RemindList = rep.GetRemind(probationRemind.ToString & "," &
+                                               contractRemind.ToString & "," &
+                                               birthdayRemind.ToString & "," &
+                                               terminateRemind.ToString & "," &
+                                               noPaperRemind.ToString & "," &
+                                               approveRemind.ToString & "," &
+                                               approveHDLDRemind.ToString & "," &
+                                               approveTHHDRemind.ToString & "," &
+                                               maternitiRemind.ToString & "," &
+                                               retirementRemind.ToString & "," &
+                                               noneSalaryRemind.ToString & "," &
+                                               noneEmpDtlFamily.ToString & "," &
+                                               visaRemind.ToString & "," &
+                                               identifyRemind.ToString & "," &
+                                               passportRemind.ToString & "," &
+                                               worPermitRemind.ToString & "," &
+                                               licenseRemind.ToString)
                     'For Each item In RemindList
                     '    item.REMIND_NAME = Translate(item.REMIND_NAME)
                     'Next
@@ -562,11 +580,7 @@ Public Class Site
                 ltrApproveHDLD.DataBind()
                 lblApproveHDLD.Text = Utilities.ObjToInt(listApproveHDLD.Count)
 
-                'Nhân viên hết hạn tạm hoãn HD
-                Dim listApproveTHHD = From p In RemindList Where p.REMIND_TYPE = 23
-                ltrApproveTHHD.DataSource = listApproveTHHD
-                ltrApproveTHHD.DataBind()
-                lblApproveTHHD.Text = Utilities.ObjToInt(listApproveTHHD.Count)
+
 
                 'Nhân viên nghỉ thai sản đi làm lại
                 Dim listMaterniti = From p In RemindList Where p.REMIND_TYPE = 24
@@ -587,22 +601,22 @@ Public Class Site
                 lblNoneSalary.Text = Utilities.ObjToInt(listNoneSalary.Count)
 
                 'Nhân viên sắp hết hạn chứng chỉ
-                Dim listExpiredCertificate = From p In RemindList Where p.REMIND_TYPE = 27
-                ltrExpiredCertificate.DataSource = listExpiredCertificate
-                ltrExpiredCertificate.DataBind()
-                lbExpiredCertificate.Text = Utilities.ObjToInt(listExpiredCertificate.Count)
+                'Dim listExpiredCertificate = From p In RemindList Where p.REMIND_TYPE = 27
+                'ltrExpiredCertificate.DataSource = listExpiredCertificate
+                'ltrExpiredCertificate.DataBind()
+                'lbExpiredCertificate.Text = Utilities.ObjToInt(listExpiredCertificate.Count)
 
-                'Sinh nhật lãnh đạo
-                Dim listBIRTHDAY_LD = From p In RemindList Where p.REMIND_TYPE = 28
-                ltrBIRTHDAY_LD.DataSource = listBIRTHDAY_LD
-                ltrBIRTHDAY_LD.DataBind()
-                lbBIRTHDAY_LD.Text = Utilities.ObjToInt(listBIRTHDAY_LD.Count)
+                ''Sinh nhật lãnh đạo
+                'Dim listBIRTHDAY_LD = From p In RemindList Where p.REMIND_TYPE = 28
+                'ltrBIRTHDAY_LD.DataSource = listBIRTHDAY_LD
+                'ltrBIRTHDAY_LD.DataBind()
+                'lbBIRTHDAY_LD.Text = Utilities.ObjToInt(listBIRTHDAY_LD.Count)
 
                 'Hết hiệu lực kiêm nhiệm
-                Dim listConcurrently = From p In RemindList Where p.REMIND_TYPE = 29
-                ltrConcurrently.DataSource = listConcurrently
-                ltrConcurrently.DataBind()
-                lbConcurrently.Text = Utilities.ObjToInt(listConcurrently.Count)
+                'Dim listConcurrently = From p In RemindList Where p.REMIND_TYPE = 29
+                'ltrConcurrently.DataSource = listConcurrently
+                'ltrConcurrently.DataBind()
+                'lbConcurrently.Text = Utilities.ObjToInt(listConcurrently.Count)
 
                 'Hết hạn giảm trừ gia cảnh
                 Dim listEmpDtlFamily = From p In RemindList Where p.REMIND_TYPE = 30
@@ -625,11 +639,43 @@ Public Class Site
                 ltrTime_GiayTo.DataSource = listGiayTo
                 ltrTime_GiayTo.DataBind()
                 lblTime_GiayTo.Text = Utilities.ObjToInt(listGiayTo.Count)
+
                 'Hết hạn Visa
-                'Dim listVisa = From p In RemindList Where p.REMIND_TYPE = 5
-                'ltrTime_Visa.DataSource = listVisa
-                'ltrTime_Visa.DataBind()
-                'lblTime_Visa.Text = Utilities.ObjToInt(listVisa.Count)
+                Dim listVisa = From p In RemindList Where p.REMIND_TYPE = 5
+                ltrTime_Visa.DataSource = listVisa
+                ltrTime_Visa.DataBind()
+                lblTime_Visa.Text = Utilities.ObjToInt(listVisa.Count)
+
+                'Hết hạn CMND
+                Dim listIdentify = From p In RemindList Where p.REMIND_TYPE = 31
+                ltrRemindIdentify.DataSource = listIdentify
+                ltrRemindIdentify.DataBind()
+                lbRemindIdentify.Text = Utilities.ObjToInt(listIdentify.Count)
+
+                'Hết hạn hộ chiếu
+                Dim listPassport = From p In RemindList Where p.REMIND_TYPE = 32
+                ltrRemindPassport.DataSource = listPassport
+                ltrRemindPassport.DataBind()
+                lbRemindPassport.Text = Utilities.ObjToInt(listPassport.Count)
+
+                'Giấy phép lao động
+                Dim listGPLD = From p In RemindList Where p.REMIND_TYPE = 19
+                ltrTime_GiayPhepLaoDong.DataSource = listGPLD
+                ltrTime_GiayPhepLaoDong.DataBind()
+                lblTime_GiayPhepLaoDong.Text = Utilities.ObjToInt(listGPLD.Count)
+
+                'Hết hạn giấy phép hành nghề
+                Dim listlicense = From p In RemindList Where p.REMIND_TYPE = 33
+                ltrRemindlicense.DataSource = listlicense
+                ltrRemindlicense.DataBind()
+                lbRemindlicense.Text = Utilities.ObjToInt(listlicense.Count)
+
+                'Nhân viên hết hạn tạm hoãn HD
+                Dim listApproveTHHD = From p In RemindList Where p.REMIND_TYPE = 23
+                ltrApproveTHHD.DataSource = listApproveTHHD
+                ltrApproveTHHD.DataBind()
+                lblApproveTHHD.Text = Utilities.ObjToInt(listApproveTHHD.Count)
+
                 'Het han to trinh - Thay đổi thông tin nhân sự
                 'Dim listToTrinh = From p In RemindList Where p.REMIND_TYPE = 13 And p.REMIND_NAME = "Thay đổi thông tin nhân sự"
                 'ltrTime_ToTrinh.DataSource = listToTrinh
@@ -640,11 +686,7 @@ Public Class Site
                 'ltrTime_ToTrinhPheDuyet.DataSource = listToTrinhPheDuyet
                 'ltrTime_ToTrinhPheDuyet.DataBind()
                 'lblTime_ToTrinhPheDuyet.Text = Utilities.ObjToInt(listToTrinhPheDuyet.Count)
-                'Giấy phép lao động
-                'Dim listGPLD = From p In RemindList Where p.REMIND_TYPE = 19
-                'ltrTime_GiayPhepLaoDong.DataSource = listGPLD
-                'ltrTime_GiayPhepLaoDong.DataBind()
-                'lblTime_GiayPhepLaoDong.Text = Utilities.ObjToInt(listGPLD.Count)
+
                 'Chung chi lao dong
                 'Dim listChungChi = From p In RemindList Where p.REMIND_TYPE = 20
                 'ltrTime_ChungChi.DataSource = listChungChi

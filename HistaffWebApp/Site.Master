@@ -308,7 +308,7 @@
                                         </ItemTemplate>
                                     </asp:ListView>
                                 </div>
-                                <div id="dExpiredCertificateRemind" runat="server" class='box48' data="17">
+                               <%-- <div id="dExpiredCertificateRemind" runat="server" class='box48' data="17">
                                     <%# Translate("Nhân viên sắp hết hạn chứng chỉ")%> (<asp:Label ID="lbExpiredCertificate" CssClass="lblNotiItem" runat="server"></asp:Label>) <i class='fa fa-chevron-down'></i>
                                 </div>
                                 <div id="collapse-17" style="display: none;">
@@ -321,11 +321,11 @@
                                             </div>
                                         </ItemTemplate>
                                     </asp:ListView>
-                                </div>
+                                </div>--%>
 
                                 <%----------------%>
 
-                                <div id="dBIRTHDAY_LD" runat="server" class='box48' data="18">
+                               <%-- <div id="dBIRTHDAY_LD" runat="server" class='box48' data="18">
                                     <%# Translate("Sinh nhật lãnh đạo")%> (<asp:Label ID="lbBIRTHDAY_LD" CssClass="lblNotiItem" runat="server"></asp:Label>) <i class='fa fa-chevron-down'></i>
                                 </div>
                                 <div id="collapse-18" style="display: none;">
@@ -338,13 +338,13 @@
                                             </div>
                                         </ItemTemplate>
                                     </asp:ListView>
-                                </div>
+                                </div>--%>
 
                                 <%---------------------%>
 
                                  <%----------------%>
 
-                                <div id="dConcurrently" runat="server" class='box48' data="19">
+<%--                                <div id="dConcurrently" runat="server" class='box48' data="19">
                                     <%# Translate("Hết hiệu lực kiêm nhiệm")%> (<asp:Label ID="lbConcurrently" CssClass="lblNotiItem" runat="server"></asp:Label>) <i class='fa fa-chevron-down'></i>
                                 </div>
                                 <div id="collapse-19" style="display: none;">
@@ -357,7 +357,7 @@
                                             </div>
                                         </ItemTemplate>
                                     </asp:ListView>
-                                </div>
+                                </div>--%>
 
                                 <%---------------------%>
 
@@ -379,6 +379,65 @@
                                 </div>
 
                                 <%---------------------%>
+
+                                   <%----------------%>
+
+                                <div id="dRemindIdentify" runat="server" class='box48' data="21">
+                                    <%# Translate("Hết hạn CMND")%> (<asp:Label ID="lbRemindIdentify" CssClass="lblNotiItem" runat="server"></asp:Label>) <i class='fa fa-chevron-down'></i>
+                                </div>
+                                <div id="collapse-21" style="display: none;">
+                                    <asp:ListView ID="ltrRemindIdentify" runat="server">
+                                        <ItemTemplate>
+                                            <div class='box25'>
+                                                <i class='fa fa-exclamation-circle'></i><a href='Default.aspx?mid=Profile&fid=ctrlHU_EmpDtl&group=Business&emp=<%# Eval("EMPLOYEE_ID")%>&Place=ctrlHU_EmpDtlFamily&state=Normal'
+                                                    target="_blank">
+                                                    <%# Eval("EMPLOYEE_CODE") + " - " + Eval("FULLNAME")%></a>
+                                            </div>
+                                        </ItemTemplate>
+                                    </asp:ListView>
+                                </div>
+
+                                <%---------------------%>
+
+                                  <%----------------%>
+
+                                <div id="dRemindPassport" runat="server" class='box48' data="22">
+                                    <%# Translate("Hết hạn Hộ chiếu")%> (<asp:Label ID="lbRemindPassport" CssClass="lblNotiItem" runat="server"></asp:Label>) <i class='fa fa-chevron-down'></i>
+                                </div>
+                                <div id="collapse-22" style="display: none;">
+                                    <asp:ListView ID="ltrRemindPassport" runat="server">
+                                        <ItemTemplate>
+                                            <div class='box25'>
+                                                <i class='fa fa-exclamation-circle'></i><a href='Default.aspx?mid=Profile&fid=ctrlHU_EmpDtl&group=Business&emp=<%# Eval("EMPLOYEE_ID")%>&Place=ctrlHU_EmpDtlFamily&state=Normal'
+                                                    target="_blank">
+                                                    <%# Eval("EMPLOYEE_CODE") + " - " + Eval("FULLNAME")%></a>
+                                            </div>
+                                        </ItemTemplate>
+                                    </asp:ListView>
+                                </div>
+
+                                <%---------------------%>
+
+                                    <%----------------%>
+
+                                <div id="dRemindlicense" runat="server" class='box48' data="23">
+                                    <%# Translate("Hết hạn giấy phép hành nghề")%> (<asp:Label ID="lbRemindlicense" CssClass="lblNotiItem" runat="server"></asp:Label>) <i class='fa fa-chevron-down'></i>
+                                </div>
+                                <div id="collapse-23" style="display: none;">
+                                    <asp:ListView ID="ltrRemindlicense" runat="server">
+                                        <ItemTemplate>
+                                            <div class='box25'>
+                                                <i class='fa fa-exclamation-circle'></i><a href='Default.aspx?mid=Profile&fid=ctrlHU_EmpDtl&group=Business&emp=<%# Eval("EMPLOYEE_ID")%>&Place=ctrlHU_EmpDtlFamily&state=Normal'
+                                                    target="_blank">
+                                                    <%# Eval("EMPLOYEE_CODE") + " - " + Eval("FULLNAME")%></a>
+                                            </div>
+                                        </ItemTemplate>
+                                    </asp:ListView>
+                                </div>
+
+                                <%---------------------%>
+
+
 
                             </div>
                         </div>

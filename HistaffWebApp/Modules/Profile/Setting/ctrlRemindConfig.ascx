@@ -4,6 +4,7 @@
     <tlk:RadPane ID="RadPane1" runat="server">
         <tlk:RadToolBar ID="tbarMain" runat="server" />
         <asp:ValidationSummary ID="valSum" runat="server" />
+
          <asp:Panel ID="radProbation" runat="server" CssClass = "Pane"> 
             <fieldset>
                 <legend>
@@ -79,6 +80,31 @@
                         </table>
                     </fieldset>
          </asp:Panel>
+         <asp:Panel ID="radIDENTIFIFY" runat="server" CssClass = "Pane">
+            <fieldset>
+                <legend>
+                    <asp:CheckBox ID="chkIdentify" runat="server" Text="<%$ Translate: Nhân viên hết hạn CMND%>"
+                        onclick="CheckChangeIdentify(this)" />
+                </legend>
+                <table class="table-form">
+                    <tr>
+                        <td class="lb lbRemind">
+                            <%# Translate("Thời gian báo trước")%><span class="lbReq">*</span>
+                        </td>
+                        <td>
+                            <tlk:RadNumericTextBox ID="rntxtIDENTIFIFY" runat="server" SkinID="Number">
+                            </tlk:RadNumericTextBox>
+                        </td>
+                        <td>
+                            (<%# Translate("ngày")%>)
+                            <asp:CustomValidator ID="valIDENTIFIFY" runat="server" ErrorMessage="<%$ Translate: Bạn chưa nhập thời gian báo trước nhân viên hết hạn CMND. %>"
+                                ToolTip="<%$ Translate: Bạn chưa nhập thời gian báo trước nhân viên hết hạn CMND. %>">
+                            </asp:CustomValidator>
+                        </td>
+                    </tr>
+                </table>
+            </fieldset>
+         </asp:Panel>
          <asp:Panel ID="radVISA" runat="server" CssClass = "Pane">
             <fieldset>
                 <legend>
@@ -96,8 +122,58 @@
                         </td>
                         <td>
                             (<%# Translate("ngày")%>)
-                            <asp:CustomValidator ID="valnmVISA" runat="server" ErrorMessage="<%$ Translate: Bạn chưa nhập thời gian báo trước nhân viên hết hạn visa, hộ chiếu. %>"
-                                ToolTip="<%$ Translate: Bạn chưa nhập thời gian báo trước nhân viên hết hạn visa, hộ chiếu. %>">
+                            <asp:CustomValidator ID="valnmVISA" runat="server" ErrorMessage="<%$ Translate: Bạn chưa nhập thời gian báo trước nhân viên hết hạn visa. %>"
+                                ToolTip="<%$ Translate: Bạn chưa nhập thời gian báo trước nhân viên hết hạn visa. %>">
+                            </asp:CustomValidator>
+                        </td>
+                    </tr>
+                </table>
+            </fieldset>
+         </asp:Panel>
+         <asp:Panel ID="radPASSPORT" runat="server" CssClass = "Pane">
+            <fieldset>
+                <legend>
+                    <asp:CheckBox ID="chkPassPort" runat="server" Text="<%$ Translate: Nhân viên hết hạn Hộ chiếu%>"
+                        onclick="CheckChangePassPort(this)" />
+                </legend>
+                <table class="table-form">
+                    <tr>
+                        <td class="lb lbRemind">
+                            <%# Translate("Thời gian báo trước")%><span class="lbReq">*</span>
+                        </td>
+                        <td>
+                            <tlk:RadNumericTextBox ID="rntxtPASSPORT" runat="server" SkinID="Number">
+                            </tlk:RadNumericTextBox>
+                        </td>
+                        <td>
+                            (<%# Translate("ngày")%>)
+                            <asp:CustomValidator ID="valPASSPORT" runat="server" ErrorMessage="<%$ Translate: Bạn chưa nhập thời gian báo trước nhân viên hết hạn hộ chiếu. %>"
+                                ToolTip="<%$ Translate: Bạn chưa nhập thời gian báo trước nhân viên hết hạn hộ chiếu. %>">
+                            </asp:CustomValidator>
+                        </td>
+                    </tr>
+                </table>
+            </fieldset>
+         </asp:Panel>
+          <asp:Panel ID="radWORKPER" runat="server" CssClass = "Pane">
+            <fieldset>
+                <legend>
+                    <asp:CheckBox ID="chkWorkPer" runat="server" Text="<%$ Translate: Nhân viên hết hạn giấy phép hành nghề. %>"
+                        onclick="CheckChangeWorkPer(this)" />
+                </legend>
+                <table class="table-form">
+                    <tr>
+                        <td class="lb lbRemind">
+                            <%# Translate("Thời gian báo trước")%><span class="lbReq">*</span>
+                        </td>
+                        <td>
+                            <tlk:RadNumericTextBox ID="rntxtWORKPER" runat="server" SkinID="Number">
+                            </tlk:RadNumericTextBox>
+                        </td>
+                        <td>
+                            (<%# Translate("ngày")%>)
+                            <asp:CustomValidator ID="valWORKPER" runat="server" ErrorMessage="<%$ Translate: Bạn chưa nhập thời gian báo trước nhân viên hết hạn giấy phép hành nghề. %>"
+                                ToolTip="<%$ Translate: Bạn chưa nhập thời gian báo trước nhân viên hết hạn giấy phép hành nghề. %>">
                             </asp:CustomValidator>
                         </td>
                     </tr>
@@ -260,7 +336,7 @@
                 </table>
             </fieldset>
         </asp:Panel>
-        <asp:Panel ID="radApproveHDLD" runat="server" CssClass = "Pane"> 
+         <asp:Panel ID="radApproveHDLD" runat="server" CssClass = "Pane"> 
             <fieldset>
                 <legend>
                     <asp:CheckBox ID="chkApproveHDLD" runat="server" Text="<%$ Translate: Nhân viên đến hạn ký lại HĐLĐ%>"
@@ -285,7 +361,7 @@
                 </table>
             </fieldset>
         </asp:Panel>
-        <asp:Panel ID="radApproveTHHD" runat="server" CssClass = "Pane"> 
+         <asp:Panel ID="radApproveTHHD" runat="server" CssClass = "Pane"> 
             <fieldset>
                 <legend>
                     <asp:CheckBox ID="chkApproveTHHD" runat="server" Text="<%$ Translate: Nhân viên hết hạn tạm hoãn HĐ. %>"
@@ -310,7 +386,7 @@
                 </table>
             </fieldset>
         </asp:Panel>   
-        <asp:Panel ID="radMaterniti" runat="server" CssClass = "Pane"> 
+         <asp:Panel ID="radMaterniti" runat="server" CssClass = "Pane"> 
             <fieldset>
                 <legend>
                     <asp:CheckBox ID="chkMaterniti" runat="server" Text="<%$ Translate: Nhân viên nghỉ thai sản đi làm lại. %>"
@@ -335,7 +411,7 @@
                 </table>
             </fieldset>
         </asp:Panel> 
-        <asp:Panel ID="radRetirement" runat="server" CssClass = "Pane"> 
+         <asp:Panel ID="radRetirement" runat="server" CssClass = "Pane"> 
             <fieldset>
                 <legend>
                     <asp:CheckBox ID="chkRetirement" runat="server" Text="<%$ Translate: Nhân viên đến tuổi nghỉ hưu. %>"
@@ -360,7 +436,7 @@
                 </table>
             </fieldset>
         </asp:Panel>   
-        <asp:Panel ID="radNoneSalary" runat="server" CssClass = "Pane"> 
+         <asp:Panel ID="radNoneSalary" runat="server" CssClass = "Pane"> 
             <fieldset>
                 <legend>
                     <asp:CheckBox ID="chkNoneSalary" runat="server" Text="<%$ Translate: Nhân viên nghỉ không lương đi làm lại. %>"
@@ -385,10 +461,9 @@
                 </table>
             </fieldset>
         </asp:Panel>
-
-
-            <%--------------------------------------%>
-           <asp:Panel ID="radExpiredCertificate" runat="server" CssClass = "Pane"> 
+        
+         <%--------------------------------------%>
+         <asp:Panel ID="radExpiredCertificate" runat="server" CssClass = "Pane"> 
             <fieldset>
                 <legend>
                     <asp:CheckBox ID="chkExpiredCertificate" runat="server" Text="<%$ Translate: Nhân viên sắp hết hạn chứng chỉ. %>"
@@ -413,9 +488,10 @@
                 </table>
             </fieldset>
         </asp:Panel>
-        
-                <%-------------------------%> 
-          <asp:Panel ID="radBIRTHDAY_LD" runat="server" CssClass = "Pane"> 
+         <%--------------------------------------%>
+
+         <%--------------------------------------%>
+         <asp:Panel ID="radBIRTHDAY_LD" runat="server" CssClass = "Pane"> 
             <fieldset>
                 <legend>
                     <asp:CheckBox ID="chkBIRTHDAY_LD" runat="server" Text="<%$ Translate: Sắp đến sinh nhật lãnh đạo %>"
@@ -440,10 +516,10 @@
                 </table>
             </fieldset>
         </asp:Panel>      
-        <%-------------------------------%> 
+         <%--------------------------------------%>
 
-        <%-------------------------%> 
-          <asp:Panel ID="radConcurrently" runat="server" CssClass = "Pane"> 
+         <%--------------------------------------%>
+         <asp:Panel ID="radConcurrently" runat="server" CssClass = "Pane"> 
             <fieldset>
                 <legend>
                     <asp:CheckBox ID="chkConcurrently" runat="server" Text="<%$ Translate: Nhân viên sắp hết hiệu lực kiêm nhiệm %>"
@@ -468,10 +544,10 @@
                 </table>
             </fieldset>
         </asp:Panel>      
-        <%-------------------------------%> 
-    
-         <%-------------------------%> 
-          <asp:Panel ID="radEmpDtlFamily" runat="server" CssClass = "Pane"> 
+         <%--------------------------------------%>
+
+         <%--------------------------------------%>
+         <asp:Panel ID="radEmpDtlFamily" runat="server" CssClass = "Pane"> 
             <fieldset>
                 <legend>
                     <asp:CheckBox ID="chkEmpDtlFamily" runat="server" Text="<%$ Translate: Nhân viên có người thân sắp hết hạn giảm trừ gia cảnh %>"
@@ -496,7 +572,7 @@
                 </table>
             </fieldset>
         </asp:Panel>      
-        <%-------------------------------%>          
+         <%--------------------------------------%>         
 
     </tlk:RadPane>
 </tlk:RadSplitter>
@@ -522,6 +598,37 @@
         }
 
 
+        function CheckChangePassPort(chk) {
+            if (chk.checked) {
+                $find("<%=rntxtPASSPORT.ClientID %>").enable();
+                $find("<%=rntxtPASSPORT.ClientID %>").focus();
+            } else {
+                $find("<%=rntxtPASSPORT.ClientID %>").clear();
+                $find("<%=rntxtPASSPORT.ClientID %>").disable();
+            }
+        }
+        
+
+        function CheckChangeWorkPer(chk) {
+            if (chk.checked) {
+                $find("<%=rntxtWORKPER.ClientID %>").enable();
+                $find("<%=rntxtWORKPER.ClientID %>").focus();
+            } else {
+                $find("<%=rntxtWORKPER.ClientID %>").clear();
+                $find("<%=rntxtWORKPER.ClientID %>").disable();
+            }
+        }
+
+        function CheckChangeIdentify(chk) {
+            if (chk.checked) {
+                $find("<%=rntxtIDENTIFIFY.ClientID %>").enable();
+                $find("<%=rntxtIDENTIFIFY.ClientID %>").focus();
+            } else {
+                $find("<%=rntxtIDENTIFIFY.ClientID %>").clear();
+                $find("<%=rntxtIDENTIFIFY.ClientID %>").disable();
+            }
+        }
+        
         function CheckChangeVisa(chk) {
             if (chk.checked) {
                 $find("<%=rntxtVISA.ClientID %>").enable();

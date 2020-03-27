@@ -634,6 +634,54 @@ Public Class CommonConfig
         End Set
     End Property
 
+    Public Shared Property ReminderPassPort() As Integer
+        Get
+            If Not dicReminderConfig.ContainsKey(CType(RemindConfigType.ExpirePassPort, Integer)) Then
+                Return 0
+            End If
+            Return Integer.Parse("0" & dicReminderConfig(CType(RemindConfigType.ExpirePassPort, Integer)).ToString)
+        End Get
+        Set(ByVal value As Integer)
+            If dicReminderConfig.ContainsKey(CType(RemindConfigType.ExpirePassPort, Integer)) Then
+                dicReminderConfig(CType(RemindConfigType.ExpirePassPort, Integer)) = value
+            Else
+                dicReminderConfig.Add(CType(RemindConfigType.ExpirePassPort, Integer), value)
+            End If
+        End Set
+    End Property
+
+    Public Shared Property ReminderIdentify() As Integer
+        Get
+            If Not dicReminderConfig.ContainsKey(CType(RemindConfigType.ExpireIdentify, Integer)) Then
+                Return 0
+            End If
+            Return Integer.Parse("0" & dicReminderConfig(CType(RemindConfigType.ExpireIdentify, Integer)).ToString)
+        End Get
+        Set(ByVal value As Integer)
+            If dicReminderConfig.ContainsKey(CType(RemindConfigType.ExpireIdentify, Integer)) Then
+                dicReminderConfig(CType(RemindConfigType.ExpireIdentify, Integer)) = value
+            Else
+                dicReminderConfig.Add(CType(RemindConfigType.ExpireIdentify, Integer), value)
+            End If
+        End Set
+    End Property
+
+    Public Shared Property ReminderWorkPer() As Integer
+        Get
+            If Not dicReminderConfig.ContainsKey(CType(RemindConfigType.ExpireWorkPer, Integer)) Then
+                Return 0
+            End If
+            Return Integer.Parse("0" & dicReminderConfig(CType(RemindConfigType.ExpireWorkPer, Integer)).ToString)
+        End Get
+        Set(ByVal value As Integer)
+            If dicReminderConfig.ContainsKey(CType(RemindConfigType.ExpireWorkPer, Integer)) Then
+                dicReminderConfig(CType(RemindConfigType.ExpireWorkPer, Integer)) = value
+            Else
+                dicReminderConfig.Add(CType(RemindConfigType.ExpireWorkPer, Integer), value)
+            End If
+        End Set
+    End Property
+
     Public Shared Property ReminderWorking() As Integer
         Get
             If Not dicReminderConfig.ContainsKey(CType(RemindConfigType.ExpireWorking, Integer)) Then
@@ -1096,7 +1144,12 @@ Public Class CommonConfig
             Using rep As New CommonRepository
                 rep.SetReminderConfig(CurrentUser, CType(RemindConfigType.Contract, Integer), ReminderContractDays)
                 rep.SetReminderConfig(CurrentUser, CType(RemindConfigType.Birthday, Integer), ReminderBirthdayDays)
-                'rep.SetReminderConfig(CurrentUser, CType(RemindConfigType.ExpireVisa, Integer), ReminderVisa)
+                '--------
+                rep.SetReminderConfig(CurrentUser, CType(RemindConfigType.ExpireVisa, Integer), ReminderVisa)
+                rep.SetReminderConfig(CurrentUser, CType(RemindConfigType.ExpirePassPort, Integer), ReminderPassPort)
+                rep.SetReminderConfig(CurrentUser, CType(RemindConfigType.ExpireIdentify, Integer), ReminderIdentify)
+                rep.SetReminderConfig(CurrentUser, CType(RemindConfigType.ExpireWorkPer, Integer), ReminderWorkPer)
+                '----------
                 rep.SetReminderConfig(CurrentUser, CType(RemindConfigType.ExpireTerminate, Integer), ReminderTerminate)
                 'rep.SetReminderConfig(CurrentUser, CType(RemindConfigType.ExpireTerminateDebt, Integer), ReminderTerminateDebt)
                 'rep.SetReminderConfig(CurrentUser, CType(RemindConfigType.ExpireWorking, Integer), ReminderWorking)

@@ -70,7 +70,11 @@ Public Class ctrlRemindConfig
             Me.ChangeToolbarState()
             rntxtCONTRACT.Enabled = chkCONTRACT.Checked
             rntxtBIRTHDAY.Enabled = chkBIRTHDAY.Checked
+
             rntxtVISA.Enabled = chkVisa.Checked
+            rntxtPASSPORT.Enabled = chkPassPort.Checked
+            rntxtWORKPER.Enabled = chkWorkPer.Checked
+            rntxtIDENTIFIFY.Enabled = chkIdentify.Checked
 
             rntxtWORKING.Enabled = chkWorking.Checked
             rntxtTERMINATE.Enabled = chkTerminate.Checked
@@ -135,6 +139,35 @@ Public Class ctrlRemindConfig
                 rntxtVISA.Value = CommonConfig.ReminderVisa
             End If
 
+            If CommonConfig.ReminderPassPort = 0 Then
+                chkPassPort.Checked = False
+                rntxtPASSPORT.Enabled = False
+                rntxtPASSPORT.Value = Nothing
+            Else
+                chkPassPort.Checked = True
+                rntxtPASSPORT.Enabled = True
+                rntxtPASSPORT.Value = CommonConfig.ReminderPassPort
+            End If
+
+            If CommonConfig.ReminderIdentify = 0 Then
+                chkIdentify.Checked = False
+                rntxtIDENTIFIFY.Enabled = False
+                rntxtIDENTIFIFY.Value = Nothing
+            Else
+                chkIdentify.Checked = True
+                rntxtIDENTIFIFY.Enabled = True
+                rntxtIDENTIFIFY.Value = CommonConfig.ReminderIdentify
+            End If
+
+            If CommonConfig.ReminderWorkPer = 0 Then
+                chkWorkPer.Checked = False
+                rntxtWORKPER.Enabled = False
+                rntxtWORKPER.Value = Nothing
+            Else
+                chkWorkPer.Checked = True
+                rntxtWORKPER.Enabled = True
+                rntxtWORKPER.Value = CommonConfig.ReminderWorkPer
+            End If
 
             If CommonConfig.ReminderWorking = 0 Then
                 chkWorking.Checked = False
@@ -340,7 +373,6 @@ Public Class ctrlRemindConfig
                             rntxtBIRTHDAY.Enabled = True
                         End If
 
-
                         If chkVisa.Checked Then
                             If rntxtVISA.Value IsNot Nothing Then
                                 CommonConfig.ReminderVisa = rntxtVISA.Value
@@ -351,6 +383,40 @@ Public Class ctrlRemindConfig
                             CommonConfig.ReminderVisa = 0
                             rntxtVISA.Enabled = True
                         End If
+
+                        If chkPassPort.Checked Then
+                            If rntxtPASSPORT.Value IsNot Nothing Then
+                                CommonConfig.ReminderPassPort = rntxtPASSPORT.Value
+                            End If
+
+                            rntxtPASSPORT.Enabled = True
+                        Else
+                            CommonConfig.ReminderPassPort = 0
+                            rntxtPASSPORT.Enabled = True
+                        End If
+
+                        If chkIdentify.Checked Then
+                            If rntxtIDENTIFIFY.Value IsNot Nothing Then
+                                CommonConfig.ReminderIdentify = rntxtIDENTIFIFY.Value
+                            End If
+
+                            rntxtIDENTIFIFY.Enabled = True
+                        Else
+                            CommonConfig.ReminderIdentify = 0
+                            rntxtIDENTIFIFY.Enabled = True
+                        End If
+
+                        If chkWorkPer.Checked Then
+                            If rntxtWORKPER.Value IsNot Nothing Then
+                                CommonConfig.ReminderWorkPer = rntxtWORKPER.Value
+                            End If
+
+                            rntxtWORKPER.Enabled = True
+                        Else
+                            CommonConfig.ReminderWorkPer = 0
+                            rntxtWORKPER.Enabled = True
+                        End If
+
                         If chkWorking.Checked Then
                             If rntxtWORKING.Value IsNot Nothing Then
                                 CommonConfig.ReminderWorking = rntxtWORKING.Value
@@ -394,8 +460,6 @@ Public Class ctrlRemindConfig
                         '---------------------------------------
                         CommonConfig.ReminderNoPaper = 0
                         '--------------------------------------
-
-
 
                         If chkCertificate.Checked Then
                             If rntxtCERTIFICATE.Value IsNot Nothing Then

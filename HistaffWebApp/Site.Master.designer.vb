@@ -12,7 +12,7 @@ Option Explicit On
 
 
 Partial Public Class Site
-
+    
     '''<summary>
     '''HeadContent control.
     '''</summary>
@@ -21,7 +21,7 @@ Partial Public Class Site
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents HeadContent As Global.System.Web.UI.WebControls.ContentPlaceHolder
-
+    
     '''<summary>
     '''Form1 control.
     '''</summary>
@@ -30,7 +30,7 @@ Partial Public Class Site
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents Form1 As Global.System.Web.UI.HtmlControls.HtmlForm
-
+    
     '''<summary>
     '''RadStyleSheetManager1 control.
     '''</summary>
@@ -39,7 +39,7 @@ Partial Public Class Site
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents RadStyleSheetManager1 As Global.Telerik.Web.UI.RadStyleSheetManager
-
+    
     '''<summary>
     '''RadScriptManager1 control.
     '''</summary>
@@ -48,7 +48,7 @@ Partial Public Class Site
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents RadScriptManager1 As Global.Telerik.Web.UI.RadScriptManager
-
+    
     '''<summary>
     '''RadInputManager1 control.
     '''</summary>
@@ -57,7 +57,7 @@ Partial Public Class Site
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents RadInputManager1 As Global.Telerik.Web.UI.RadInputManager
-
+    
     '''<summary>
     '''imglogo1 control.
     '''</summary>
@@ -66,7 +66,7 @@ Partial Public Class Site
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents imglogo1 As Global.System.Web.UI.HtmlControls.HtmlImage
-
+    
     '''<summary>
     '''btnNotiTimer control.
     '''</summary>
@@ -75,7 +75,7 @@ Partial Public Class Site
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents btnNotiTimer As Global.System.Web.UI.WebControls.Button
-
+    
     '''<summary>
     '''udTimePn control.
     '''</summary>
@@ -84,7 +84,7 @@ Partial Public Class Site
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents udTimePn As Global.System.Web.UI.UpdatePanel
-
+    
     '''<summary>
     '''ltrNumberRocord control.
     '''</summary>
@@ -93,7 +93,7 @@ Partial Public Class Site
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents ltrNumberRocord As Global.System.Web.UI.WebControls.Literal
-
+    
     '''<summary>
     '''dcontractRemind control.
     '''</summary>
@@ -102,7 +102,7 @@ Partial Public Class Site
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents dcontractRemind As Global.System.Web.UI.HtmlControls.HtmlGenericControl
-
+    
     '''<summary>
     '''lblWLEO control.
     '''</summary>
@@ -111,7 +111,7 @@ Partial Public Class Site
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblWLEO As Global.System.Web.UI.WebControls.Label
-
+    
     '''<summary>
     '''ltrWLEO control.
     '''</summary>
@@ -120,7 +120,7 @@ Partial Public Class Site
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents ltrWLEO As Global.System.Web.UI.WebControls.ListView
-
+    
     '''<summary>
     '''dbirthdayRemind control.
     '''</summary>
@@ -129,7 +129,7 @@ Partial Public Class Site
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents dbirthdayRemind As Global.System.Web.UI.HtmlControls.HtmlGenericControl
-
+    
     '''<summary>
     '''lblTime_LEAVE control.
     '''</summary>
@@ -138,7 +138,7 @@ Partial Public Class Site
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblTime_LEAVE As Global.System.Web.UI.WebControls.Label
-
+    
     '''<summary>
     '''ltrTime_LEAVE control.
     '''</summary>
@@ -147,7 +147,7 @@ Partial Public Class Site
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents ltrTime_LEAVE As Global.System.Web.UI.WebControls.ListView
-
+    
     '''<summary>
     '''dnoPaperRemind control.
     '''</summary>
@@ -156,7 +156,7 @@ Partial Public Class Site
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents dnoPaperRemind As Global.System.Web.UI.HtmlControls.HtmlGenericControl
-
+    
     '''<summary>
     '''lblTime_GiayTo control.
     '''</summary>
@@ -165,7 +165,7 @@ Partial Public Class Site
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblTime_GiayTo As Global.System.Web.UI.WebControls.Label
-
+    
     '''<summary>
     '''ltrTime_GiayTo control.
     '''</summary>
@@ -174,7 +174,7 @@ Partial Public Class Site
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents ltrTime_GiayTo As Global.System.Web.UI.WebControls.ListView
-
+    
     '''<summary>
     '''dvisaRemind control.
     '''</summary>
@@ -183,7 +183,7 @@ Partial Public Class Site
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents dvisaRemind As Global.System.Web.UI.HtmlControls.HtmlGenericControl
-
+    
     '''<summary>
     '''lblTime_Visa control.
     '''</summary>
@@ -192,7 +192,7 @@ Partial Public Class Site
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblTime_Visa As Global.System.Web.UI.WebControls.Label
-
+    
     '''<summary>
     '''ltrTime_Visa control.
     '''</summary>
@@ -201,7 +201,7 @@ Partial Public Class Site
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents ltrTime_Visa As Global.System.Web.UI.WebControls.ListView
-
+    
     '''<summary>
     '''dvisaRemind1 control.
     '''</summary>
@@ -210,7 +210,7 @@ Partial Public Class Site
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents dvisaRemind1 As Global.System.Web.UI.HtmlControls.HtmlGenericControl
-
+    
     '''<summary>
     '''lblTime_ToTrinh control.
     '''</summary>
@@ -219,7 +219,7 @@ Partial Public Class Site
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblTime_ToTrinh As Global.System.Web.UI.WebControls.Label
-
+    
     '''<summary>
     '''ltrTime_ToTrinh control.
     '''</summary>
@@ -228,7 +228,7 @@ Partial Public Class Site
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents ltrTime_ToTrinh As Global.System.Web.UI.WebControls.ListView
-
+    
     '''<summary>
     '''dworPermitRemind control.
     '''</summary>
@@ -237,7 +237,7 @@ Partial Public Class Site
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents dworPermitRemind As Global.System.Web.UI.HtmlControls.HtmlGenericControl
-
+    
     '''<summary>
     '''lblTime_GiayPhepLaoDong control.
     '''</summary>
@@ -246,7 +246,7 @@ Partial Public Class Site
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblTime_GiayPhepLaoDong As Global.System.Web.UI.WebControls.Label
-
+    
     '''<summary>
     '''ltrTime_GiayPhepLaoDong control.
     '''</summary>
@@ -255,7 +255,7 @@ Partial Public Class Site
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents ltrTime_GiayPhepLaoDong As Global.System.Web.UI.WebControls.ListView
-
+    
     '''<summary>
     '''dcertificateRemind control.
     '''</summary>
@@ -264,7 +264,7 @@ Partial Public Class Site
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents dcertificateRemind As Global.System.Web.UI.HtmlControls.HtmlGenericControl
-
+    
     '''<summary>
     '''lblTime_ChungChi control.
     '''</summary>
@@ -273,7 +273,7 @@ Partial Public Class Site
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblTime_ChungChi As Global.System.Web.UI.WebControls.Label
-
+    
     '''<summary>
     '''ltrTime_ChungChi control.
     '''</summary>
@@ -282,7 +282,7 @@ Partial Public Class Site
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents ltrTime_ChungChi As Global.System.Web.UI.WebControls.ListView
-
+    
     '''<summary>
     '''dterminateRemind control.
     '''</summary>
@@ -291,7 +291,7 @@ Partial Public Class Site
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents dterminateRemind As Global.System.Web.UI.HtmlControls.HtmlGenericControl
-
+    
     '''<summary>
     '''lblTime_NghiViec control.
     '''</summary>
@@ -300,7 +300,7 @@ Partial Public Class Site
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblTime_NghiViec As Global.System.Web.UI.WebControls.Label
-
+    
     '''<summary>
     '''ltrTime_NghiViec control.
     '''</summary>
@@ -309,7 +309,7 @@ Partial Public Class Site
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents ltrTime_NghiViec As Global.System.Web.UI.WebControls.ListView
-
+    
     '''<summary>
     '''dworkingRemind1 control.
     '''</summary>
@@ -318,7 +318,7 @@ Partial Public Class Site
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents dworkingRemind1 As Global.System.Web.UI.HtmlControls.HtmlGenericControl
-
+    
     '''<summary>
     '''lblTime_ToTrinhPheDuyet control.
     '''</summary>
@@ -327,7 +327,7 @@ Partial Public Class Site
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblTime_ToTrinhPheDuyet As Global.System.Web.UI.WebControls.Label
-
+    
     '''<summary>
     '''ltrTime_ToTrinhPheDuyet control.
     '''</summary>
@@ -336,7 +336,7 @@ Partial Public Class Site
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents ltrTime_ToTrinhPheDuyet As Global.System.Web.UI.WebControls.ListView
-
+    
     '''<summary>
     '''dProbationRemind control.
     '''</summary>
@@ -345,7 +345,7 @@ Partial Public Class Site
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents dProbationRemind As Global.System.Web.UI.HtmlControls.HtmlGenericControl
-
+    
     '''<summary>
     '''lblProbation control.
     '''</summary>
@@ -354,7 +354,7 @@ Partial Public Class Site
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblProbation As Global.System.Web.UI.WebControls.Label
-
+    
     '''<summary>
     '''ltrProbation control.
     '''</summary>
@@ -363,7 +363,7 @@ Partial Public Class Site
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents ltrProbation As Global.System.Web.UI.WebControls.ListView
-
+    
     '''<summary>
     '''dApproveRemind control.
     '''</summary>
@@ -372,7 +372,7 @@ Partial Public Class Site
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents dApproveRemind As Global.System.Web.UI.HtmlControls.HtmlGenericControl
-
+    
     '''<summary>
     '''lblApprove control.
     '''</summary>
@@ -381,7 +381,7 @@ Partial Public Class Site
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblApprove As Global.System.Web.UI.WebControls.Label
-
+    
     '''<summary>
     '''ltrApprove control.
     '''</summary>
@@ -390,7 +390,7 @@ Partial Public Class Site
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents ltrApprove As Global.System.Web.UI.WebControls.ListView
-
+    
     '''<summary>
     '''dApproveHDLDRemind control.
     '''</summary>
@@ -399,7 +399,7 @@ Partial Public Class Site
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents dApproveHDLDRemind As Global.System.Web.UI.HtmlControls.HtmlGenericControl
-
+    
     '''<summary>
     '''lblApproveHDLD control.
     '''</summary>
@@ -408,7 +408,7 @@ Partial Public Class Site
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblApproveHDLD As Global.System.Web.UI.WebControls.Label
-
+    
     '''<summary>
     '''ltrApproveHDLD control.
     '''</summary>
@@ -417,7 +417,7 @@ Partial Public Class Site
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents ltrApproveHDLD As Global.System.Web.UI.WebControls.ListView
-
+    
     '''<summary>
     '''dApproveTHHDRemind control.
     '''</summary>
@@ -426,7 +426,7 @@ Partial Public Class Site
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents dApproveTHHDRemind As Global.System.Web.UI.HtmlControls.HtmlGenericControl
-
+    
     '''<summary>
     '''lblApproveTHHD control.
     '''</summary>
@@ -435,7 +435,7 @@ Partial Public Class Site
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblApproveTHHD As Global.System.Web.UI.WebControls.Label
-
+    
     '''<summary>
     '''ltrApproveTHHD control.
     '''</summary>
@@ -444,7 +444,7 @@ Partial Public Class Site
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents ltrApproveTHHD As Global.System.Web.UI.WebControls.ListView
-
+    
     '''<summary>
     '''dMaternitiRemind control.
     '''</summary>
@@ -453,7 +453,7 @@ Partial Public Class Site
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents dMaternitiRemind As Global.System.Web.UI.HtmlControls.HtmlGenericControl
-
+    
     '''<summary>
     '''lblMaterniti control.
     '''</summary>
@@ -462,7 +462,7 @@ Partial Public Class Site
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblMaterniti As Global.System.Web.UI.WebControls.Label
-
+    
     '''<summary>
     '''ltrMaterniti control.
     '''</summary>
@@ -471,7 +471,7 @@ Partial Public Class Site
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents ltrMaterniti As Global.System.Web.UI.WebControls.ListView
-
+    
     '''<summary>
     '''dRetirementRemind control.
     '''</summary>
@@ -480,7 +480,7 @@ Partial Public Class Site
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents dRetirementRemind As Global.System.Web.UI.HtmlControls.HtmlGenericControl
-
+    
     '''<summary>
     '''lblRetirement control.
     '''</summary>
@@ -489,7 +489,7 @@ Partial Public Class Site
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblRetirement As Global.System.Web.UI.WebControls.Label
-
+    
     '''<summary>
     '''ltrRetirement control.
     '''</summary>
@@ -498,7 +498,7 @@ Partial Public Class Site
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents ltrRetirement As Global.System.Web.UI.WebControls.ListView
-
+    
     '''<summary>
     '''dNoneSalaryRemind control.
     '''</summary>
@@ -507,7 +507,7 @@ Partial Public Class Site
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents dNoneSalaryRemind As Global.System.Web.UI.HtmlControls.HtmlGenericControl
-
+    
     '''<summary>
     '''lblNoneSalary control.
     '''</summary>
@@ -516,7 +516,7 @@ Partial Public Class Site
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblNoneSalary As Global.System.Web.UI.WebControls.Label
-
+    
     '''<summary>
     '''ltrNoneSalary control.
     '''</summary>
@@ -525,88 +525,7 @@ Partial Public Class Site
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents ltrNoneSalary As Global.System.Web.UI.WebControls.ListView
-
-    '''<summary>
-    '''dExpiredCertificateRemind control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents dExpiredCertificateRemind As Global.System.Web.UI.HtmlControls.HtmlGenericControl
-
-    '''<summary>
-    '''lbExpiredCertificate control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lbExpiredCertificate As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
-    '''ltrExpiredCertificate control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents ltrExpiredCertificate As Global.System.Web.UI.WebControls.ListView
-
-    '''<summary>
-    '''dBIRTHDAY_LD control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents dBIRTHDAY_LD As Global.System.Web.UI.HtmlControls.HtmlGenericControl
-
-    '''<summary>
-    '''lbBIRTHDAY_LD control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lbBIRTHDAY_LD As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
-    '''ltrBIRTHDAY_LD control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents ltrBIRTHDAY_LD As Global.System.Web.UI.WebControls.ListView
-
-    '''<summary>
-    '''dConcurrently control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents dConcurrently As Global.System.Web.UI.HtmlControls.HtmlGenericControl
-
-    '''<summary>
-    '''lbConcurrently control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lbConcurrently As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
-    '''ltrConcurrently control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents ltrConcurrently As Global.System.Web.UI.WebControls.ListView
-
+    
     '''<summary>
     '''dEmpDtlFamily control.
     '''</summary>
@@ -615,7 +534,7 @@ Partial Public Class Site
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents dEmpDtlFamily As Global.System.Web.UI.HtmlControls.HtmlGenericControl
-
+    
     '''<summary>
     '''lbEmpDtlFamily control.
     '''</summary>
@@ -624,7 +543,7 @@ Partial Public Class Site
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lbEmpDtlFamily As Global.System.Web.UI.WebControls.Label
-
+    
     '''<summary>
     '''ltrEmpDtlFamily control.
     '''</summary>
@@ -633,7 +552,88 @@ Partial Public Class Site
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents ltrEmpDtlFamily As Global.System.Web.UI.WebControls.ListView
-
+    
+    '''<summary>
+    '''dRemindIdentify control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents dRemindIdentify As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+    
+    '''<summary>
+    '''lbRemindIdentify control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbRemindIdentify As Global.System.Web.UI.WebControls.Label
+    
+    '''<summary>
+    '''ltrRemindIdentify control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents ltrRemindIdentify As Global.System.Web.UI.WebControls.ListView
+    
+    '''<summary>
+    '''dRemindPassport control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents dRemindPassport As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+    
+    '''<summary>
+    '''lbRemindPassport control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbRemindPassport As Global.System.Web.UI.WebControls.Label
+    
+    '''<summary>
+    '''ltrRemindPassport control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents ltrRemindPassport As Global.System.Web.UI.WebControls.ListView
+    
+    '''<summary>
+    '''dRemindlicense control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents dRemindlicense As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+    
+    '''<summary>
+    '''lbRemindlicense control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbRemindlicense As Global.System.Web.UI.WebControls.Label
+    
+    '''<summary>
+    '''ltrRemindlicense control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents ltrRemindlicense As Global.System.Web.UI.WebControls.ListView
+    
     '''<summary>
     '''LoginView1 control.
     '''</summary>
@@ -642,7 +642,7 @@ Partial Public Class Site
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents LoginView1 As Global.System.Web.UI.WebControls.LoginView
-
+    
     '''<summary>
     '''HeadLoginName control.
     '''</summary>
@@ -651,7 +651,7 @@ Partial Public Class Site
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents HeadLoginName As Global.System.Web.UI.WebControls.LoginName
-
+    
     '''<summary>
     '''RadToolTip1 control.
     '''</summary>
@@ -660,7 +660,7 @@ Partial Public Class Site
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents RadToolTip1 As Global.Telerik.Web.UI.RadToolTip
-
+    
     '''<summary>
     '''rbiEmployeeImage control.
     '''</summary>
@@ -669,7 +669,7 @@ Partial Public Class Site
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents rbiEmployeeImage As Global.Telerik.Web.UI.RadBinaryImage
-
+    
     '''<summary>
     '''lblUserName control.
     '''</summary>
@@ -678,7 +678,7 @@ Partial Public Class Site
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblUserName As Global.System.Web.UI.WebControls.Label
-
+    
     '''<summary>
     '''lblEmail control.
     '''</summary>
@@ -687,7 +687,7 @@ Partial Public Class Site
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblEmail As Global.System.Web.UI.WebControls.Label
-
+    
     '''<summary>
     '''Label2 control.
     '''</summary>
@@ -696,7 +696,7 @@ Partial Public Class Site
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents Label2 As Global.System.Web.UI.WebControls.Label
-
+    
     '''<summary>
     '''HeadLoginStatus control.
     '''</summary>
@@ -705,7 +705,7 @@ Partial Public Class Site
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents HeadLoginStatus As Global.System.Web.UI.WebControls.LoginStatus
-
+    
     '''<summary>
     '''rbiEmployeeImageAll control.
     '''</summary>
@@ -714,7 +714,7 @@ Partial Public Class Site
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents rbiEmployeeImageAll As Global.System.Web.UI.HtmlControls.HtmlGenericControl
-
+    
     '''<summary>
     '''rbiEmployeeImage1 control.
     '''</summary>
@@ -723,7 +723,7 @@ Partial Public Class Site
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents rbiEmployeeImage1 As Global.Telerik.Web.UI.RadBinaryImage
-
+    
     '''<summary>
     '''lblUserName2 control.
     '''</summary>
@@ -732,7 +732,7 @@ Partial Public Class Site
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblUserName2 As Global.System.Web.UI.WebControls.Label
-
+    
     '''<summary>
     '''rsSkin control.
     '''</summary>
@@ -741,7 +741,7 @@ Partial Public Class Site
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents rsSkin As Global.Telerik.Web.UI.RadSkinManager
-
+    
     '''<summary>
     '''QuickLaunchToolbar control.
     '''</summary>
@@ -750,7 +750,7 @@ Partial Public Class Site
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents QuickLaunchToolbar As Global.Telerik.Web.UI.RadToolBar
-
+    
     '''<summary>
     '''MainContent control.
     '''</summary>
@@ -759,7 +759,7 @@ Partial Public Class Site
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents MainContent As Global.System.Web.UI.WebControls.ContentPlaceHolder
-
+    
     '''<summary>
     '''rwAbout control.
     '''</summary>
@@ -768,7 +768,7 @@ Partial Public Class Site
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents rwAbout As Global.Telerik.Web.UI.RadWindow
-
+    
     '''<summary>
     '''rwLicense control.
     '''</summary>
@@ -777,7 +777,7 @@ Partial Public Class Site
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents rwLicense As Global.Telerik.Web.UI.RadWindow
-
+    
     '''<summary>
     '''RadCodeBlock1 control.
     '''</summary>

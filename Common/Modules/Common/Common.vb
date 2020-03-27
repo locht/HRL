@@ -564,6 +564,9 @@ Public Enum RemindConfigType
     BIRTHDAY_LD = 28 ' Sắp đến sinh nhật lãnh đạo
     Concurrently = 29 ' Nhân viên sắp hết hạn kiêm nhiêm
     EmpDtlFamily = 30 ' Nhân viên có người thân sắp hết giảm trừ gia cảnh
+    ExpirePassPort = 31 'Nhân viên sắp hết hạn hộ chiếu
+    ExpireIdentify = 32 ' Nhân viên sắp hết hạn CMND
+    ExpireWorkPer = 33 ' Nhân viên sắp hết hạn giấy phép hành nghề
 End Enum
 
 Public Enum ToolbarItem
