@@ -2208,4 +2208,130 @@ Partial Public Class ProfileRepository
 
         End Try
     End Function
+
+
+#Region "Vị trí công việc"
+    Public Function GetJobPosition(ByVal _filter As Job_PositionDTO, ByVal PageIndex As Integer,
+                                ByVal PageSize As Integer,
+                                ByRef Total As Integer, ByVal _param As ParamDTO,
+                                Optional ByVal Sorts As String = "CREATED_DATE desc") As List(Of Job_PositionDTO)
+        Using rep As New ProfileBusinessClient
+            Try
+                Return rep.GetJobPosition(_filter, PageIndex, PageSize, Total, _param, Sorts, Me.Log)
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+
+        Return Nothing
+    End Function
+
+    Public Function GetJobPosition(ByVal _filter As Job_PositionDTO, ByVal _param As ParamDTO,
+                                Optional ByVal Sorts As String = "CREATED_DATE desc") As List(Of Job_PositionDTO)
+        Using rep As New ProfileBusinessClient
+            Try
+                Return rep.GetJobPosition(_filter, 0, Integer.MaxValue, 0, _param, Sorts, Me.Log)
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+
+        Return Nothing
+    End Function
+
+    Function GET_JOB_POSITION_LIST(ByVal P_ORG_ID As Decimal, ByVal P_ID As Decimal) As DataTable
+        Using rep As New ProfileBusinessClient
+            Try
+                Return rep.GET_JOB_POSITION_LIST(P_ORG_ID, P_ID)
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+    End Function
+
+    Function GET_JOB_POSITION_DETAIL(ByVal P_ID As Decimal) As DataSet
+        Using rep As New ProfileBusinessClient
+            Try
+                Return rep.GET_JOB_POSITION_DETAIL(P_ID)
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+    End Function
+
+    Function INSERT_JOB_POSITION(ByVal p_CODE As String,
+                                        ByVal p_JOB_NAME As String,
+                                        ByVal p_ORG_ID As Decimal,
+                                        ByVal p_TITLE_ID As Decimal,
+                                        ByVal p_JOB_NOTE As String,
+                                        ByVal p_COST_CODE As String,
+                                        ByVal p_IS_LEADER As Decimal,
+                                        ByVal p_EFFECT_DATE As Date) As Integer
+        Using rep As New ProfileBusinessClient
+            Try
+                Return rep.INSERT_JOB_POSITION(p_CODE, p_JOB_NAME, p_ORG_ID, p_TITLE_ID, p_JOB_NOTE, p_COST_CODE, p_IS_LEADER, p_EFFECT_DATE, Me.Log)
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+    End Function
+    Function UPDATE_JOB_POSITION(ByVal p_ID As String, ByVal p_CODE As String,
+                                        ByVal p_JOB_NAME As String,
+                                        ByVal p_ORG_ID As Decimal,
+                                        ByVal p_TITLE_ID As Decimal,
+                                        ByVal p_JOB_NOTE As String,
+                                        ByVal p_COST_CODE As String,
+                                        ByVal p_IS_LEADER As Decimal,
+                                        ByVal p_EFFECT_DATE As Date) As Integer
+        Using rep As New ProfileBusinessClient
+            Try
+                Return rep.UPDATE_JOB_POSITION(p_ID, p_CODE, p_JOB_NAME, p_ORG_ID, p_TITLE_ID, p_JOB_NOTE, p_COST_CODE, p_IS_LEADER, p_EFFECT_DATE, Me.Log)
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+    End Function
+
+    Function INSERT_DIRECT_MANAGER(ByVal P_JOB_POSITION_ID As Decimal, ByVal P_DIRECT_MANAGER As String) As Boolean
+        Using rep As New ProfileBusinessClient
+            Try
+                Return rep.INSERT_DIRECT_MANAGER(P_JOB_POSITION_ID, P_DIRECT_MANAGER)
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+    End Function
+
+    Public Function DeleteJob(ByVal lstOrgTitle As List(Of Decimal)) As Boolean
+        Using rep As New ProfileBusinessClient
+            Try
+                Return rep.DeleteJob(lstOrgTitle, Me.Log)
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+
+    End Function
+
+    Public Function ActiveJob(ByVal lstOrgTitle As List(Of Decimal), ByVal sActive As String) As Boolean
+        Using rep As New ProfileBusinessClient
+            Try
+                Return rep.ActiveJob(lstOrgTitle, sActive, Me.Log)
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+
+    End Function
+#End Region
+
 End Class

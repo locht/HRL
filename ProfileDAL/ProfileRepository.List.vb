@@ -5876,4 +5876,220 @@ Partial Class ProfileRepository
     End Function
 
 #End Region
+
+#Region "Vị trí công việc"
+
+    Public Function GetJobPosition(ByVal filter As Job_PositionDTO,
+                                        ByVal PageIndex As Integer,
+                                        ByVal PageSize As Integer,
+                                        ByRef Total As Integer, ByVal _param As ParamDTO,
+                                        Optional ByVal Sorts As String = "CREATED_DATE desc",
+                                        Optional ByVal log As UserLog = Nothing) As List(Of Job_PositionDTO)
+        Try
+
+            Using cls As New DataAccess.QueryData
+                cls.ExecuteStore("PKG_COMMON_LIST.INSERT_CHOSEN_ORG",
+                                 New With {.P_USERNAME = log.Username,
+                                           .P_ORGID = _param.ORG_ID,
+                                           .P_ISDISSOLVE = _param.IS_DISSOLVE})
+            End Using
+
+
+            Dim query = From p In Context.HU_JOB_POSITION
+                        From chosen In Context.SE_CHOSEN_ORG.Where(Function(f) f.ORG_ID = p.ORG_ID And
+                                                                       f.USERNAME = log.Username.ToUpper)
+                        From o In Context.HU_ORGANIZATION.Where(Function(f) f.ID = p.ORG_ID)
+                        From t In Context.HU_TITLE.Where(Function(f) f.ID = p.TITLE_ID).DefaultIfEmpty
+                        Order By t.CREATED_DATE
+
+
+            Dim org = query.Select(Function(p) New Job_PositionDTO With {.ID = p.p.ID,
+                                                                     .ORG_ID = p.p.ORG_ID,
+                                                                     .ORG_NAME = p.o.NAME_VN,
+                                                                     .TITLE_ID = p.p.TITLE_ID,
+                                                                     .TITLE_NAME = p.t.NAME_VN,
+                                                                     .CODE = p.p.CODE,
+                                                                     .JOB_NAME = p.p.JOB_NAME,
+                                                                     .IS_LEADER = p.p.IS_LEADER,
+                                                                     .ACTFLG = If(p.p.ACTFLG = "A", "Áp dụng", "Ngừng áp dụng")})
+
+            If filter.ORG_NAME <> "" Then
+                org = org.Where(Function(p) p.ORG_NAME.ToUpper.Contains(filter.ORG_NAME.ToUpper))
+            End If
+            If filter.TITLE_NAME <> "" Then
+                org = org.Where(Function(p) p.TITLE_NAME.ToUpper.Contains(filter.TITLE_NAME.ToUpper))
+            End If
+            If filter.CODE <> "" Then
+                org = org.Where(Function(p) p.CODE.ToUpper.Contains(filter.CODE.ToUpper))
+            End If
+            If filter.JOB_NAME <> "" Then
+                org = org.Where(Function(p) p.JOB_NAME.ToUpper.Contains(filter.JOB_NAME.ToUpper))
+            End If
+            If filter.ACTFLG <> "" Then
+                org = org.Where(Function(p) p.ACTFLG.ToUpper.Contains(filter.ACTFLG.ToUpper))
+            End If
+
+            Total = org.Count
+            org = org.Skip(PageIndex * PageSize).Take(PageSize)
+            Return org.ToList
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iProfile")
+            Throw ex
+        End Try
+
+    End Function
+
+    Public Function GET_JOB_POSITION_LIST(ByVal P_ORG_ID As Decimal, ByVal P_ID As Decimal) As DataTable
+        Try
+            Using cls As New DataAccess.QueryData
+                Dim dtData As DataTable = cls.ExecuteStore("PKG_HU_IPROFILE_LIST.GET_JOB_POSITION_LIST",
+                                           New With {.P_ORG_ID = P_ORG_ID,
+                                                     .P_ID = P_ID,
+                                                     .P_CUR = cls.OUT_CURSOR})
+
+                Return dtData
+            End Using
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iProfile")
+            Throw ex
+        End Try
+    End Function
+
+    Public Function GET_JOB_POSITION_DETAIL(ByVal P_ID As Decimal) As DataSet
+        Try
+            Using cls As New DataAccess.QueryData
+                Dim dtData As DataSet = cls.ExecuteStore("PKG_HU_IPROFILE_LIST.GET_JOB_POSITION_DETAIL",
+                                           New With {.P_ID = P_ID,
+                                                     .P_CUR = cls.OUT_CURSOR,
+                                                     .P_CUR1 = cls.OUT_CURSOR}, False)
+
+                Return dtData
+            End Using
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iProfile")
+            Throw ex
+        End Try
+    End Function
+
+    Public Function INSERT_JOB_POSITION(ByVal p_CODE As String,
+                                        ByVal p_JOB_NAME As String,
+                                        ByVal p_ORG_ID As Decimal,
+                                        ByVal p_TITLE_ID As Decimal,
+                                        ByVal p_JOB_NOTE As String,
+                                        ByVal p_COST_CODE As String,
+                                        ByVal p_IS_LEADER As Decimal,
+                                        ByVal p_EFFECT_DATE As Date,
+                                        Optional ByVal log As UserLog = Nothing) As Integer
+        Try
+            Using cls As New DataAccess.QueryData
+                Dim dtData As DataTable = cls.ExecuteStore("PKG_HU_IPROFILE_LIST.INSERT_JOB_POSITION",
+                                           New With {.P_CODE = p_CODE,
+                                                     .P_JOB_NAME = p_JOB_NAME,
+                                                     .P_ORG_ID = p_ORG_ID,
+                                                     .P_TITLE_ID = p_TITLE_ID,
+                                                     .P_JOB_NOTE = p_JOB_NOTE,
+                                                     .P_COST_CODE = p_COST_CODE,
+                                                     .P_IS_LEADER = p_IS_LEADER,
+                                                     .P_EFFECT_DATE = p_EFFECT_DATE,
+                                                     .P_CREATED_BY = log.Username,
+                                                     .P_CREATED_LOG = log.Ip & log.ComputerName,
+                                                     .P_OUT = cls.OUT_CURSOR})
+
+                Return dtData.Rows(0)("ID")
+            End Using
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iProfile")
+            Throw ex
+        End Try
+    End Function
+
+    Public Function UPDATE_JOB_POSITION(ByVal p_ID As Decimal,
+                                        ByVal p_CODE As String,
+                                        ByVal p_JOB_NAME As String,
+                                        ByVal p_ORG_ID As Decimal,
+                                        ByVal p_TITLE_ID As Decimal,
+                                        ByVal p_JOB_NOTE As String,
+                                        ByVal p_COST_CODE As String,
+                                        ByVal p_IS_LEADER As Decimal,
+                                        ByVal p_EFFECT_DATE As Date,
+                                        Optional ByVal log As UserLog = Nothing) As Integer
+        Try
+            Using cls As New DataAccess.QueryData
+                Dim dtData As DataTable = cls.ExecuteStore("PKG_HU_IPROFILE_LIST.UPDATE_JOB_POSITION",
+                                           New With {.P_ID = p_ID,
+                                                     .P_CODE = p_CODE,
+                                                     .P_JOB_NAME = p_JOB_NAME,
+                                                     .P_ORG_ID = p_ORG_ID,
+                                                     .P_TITLE_ID = p_TITLE_ID,
+                                                     .P_JOB_NOTE = p_JOB_NOTE,
+                                                     .P_COST_CODE = p_COST_CODE,
+                                                     .P_IS_LEADER = p_IS_LEADER,
+                                                     .P_EFFECT_DATE = p_EFFECT_DATE,
+                                                     .P_CREATED_BY = log.Username,
+                                                     .P_CREATED_LOG = log.Ip & log.ComputerName,
+                                                     .P_OUT = cls.OUT_CURSOR})
+
+                Return dtData.Rows(0)("ID")
+            End Using
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iProfile")
+            Throw ex
+        End Try
+    End Function
+
+    Public Function INSERT_DIRECT_MANAGER(ByVal P_JOB_POSITION_ID As Decimal, ByVal P_DIRECT_MANAGER As String) As Boolean
+        Try
+            Using cls As New DataAccess.QueryData
+                Dim dtData = cls.ExecuteStore("PKG_HU_IPROFILE_LIST.INSERT_DIRECT_MANAGER",
+                                           New With {.P_JOB_POSITION_ID = P_JOB_POSITION_ID,
+                                                     .P_DIRECT_MANAGER = P_DIRECT_MANAGER})
+
+                Return True
+            End Using
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iProfile")
+            Throw ex
+        End Try
+    End Function
+
+    Public Function ActiveJob(ByVal lstOrgTitle As List(Of Decimal), ByVal sActive As String,
+                               ByVal log As UserLog) As Boolean
+        Dim lstOrgTitleData As List(Of HU_JOB_POSITION)
+        Try
+            lstOrgTitleData = (From p In Context.HU_JOB_POSITION Where lstOrgTitle.Contains(p.ID)).ToList
+            For index = 0 To lstOrgTitleData.Count - 1
+                lstOrgTitleData(index).ACTFLG = sActive
+                lstOrgTitleData(index).MODIFIED_DATE = DateTime.Now
+                lstOrgTitleData(index).MODIFIED_BY = log.Username
+                lstOrgTitleData(index).MODIFIED_LOG = log.ComputerName
+            Next
+            Context.SaveChanges(log)
+            Return True
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iProfile")
+            Throw ex
+        End Try
+    End Function
+
+    Public Function DeleteJob(ByVal lstOrgTitle As List(Of Decimal),
+                                   ByVal log As UserLog) As Boolean
+        Dim lstOrgTitleData As List(Of HU_JOB_POSITION)
+        Try
+            lstOrgTitleData = (From p In Context.HU_JOB_POSITION Where lstOrgTitle.Contains(p.ID)).ToList
+
+            For idx = 0 To lstOrgTitleData.Count - 1
+                Context.HU_JOB_POSITION.DeleteObject(lstOrgTitleData(idx))
+            Next
+
+            Context.SaveChanges(log)
+            Return True
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iProfile")
+            Throw ex
+        End Try
+
+    End Function
+
+#End Region
+
 End Class

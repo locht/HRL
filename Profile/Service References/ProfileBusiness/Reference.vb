@@ -10415,6 +10415,325 @@ Namespace ProfileBusiness
     
     <System.Diagnostics.DebuggerStepThroughAttribute(),  _
      System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0"),  _
+     System.Runtime.Serialization.DataContractAttribute(Name:="Job_PositionDTO", [Namespace]:="http://schemas.datacontract.org/2004/07/ProfileDAL"),  _
+     System.SerializableAttribute()>  _
+    Partial Public Class Job_PositionDTO
+        Inherits Object
+        Implements System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged
+        
+        <System.NonSerializedAttribute()>  _
+        Private extensionDataField As System.Runtime.Serialization.ExtensionDataObject
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private ACTFLGField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private CODEField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private COST_CODEField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private CREATED_BYField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private CREATED_DATEField As Date
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private CREATED_LOGField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private EFFECT_DATEField As System.Nullable(Of Date)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private IDField As Decimal
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private IS_LEADERField As Boolean
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private JOB_NAMEField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private JOB_NOTEField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private MODIFIED_BYField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private MODIFIED_DATEField As Date
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private MODIFIED_LOGField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private ORG_IDField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private ORG_NAMEField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private TITLE_IDField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private TITLE_NAMEField As String
+        
+        <Global.System.ComponentModel.BrowsableAttribute(false)>  _
+        Public Property ExtensionData() As System.Runtime.Serialization.ExtensionDataObject Implements System.Runtime.Serialization.IExtensibleDataObject.ExtensionData
+            Get
+                Return Me.extensionDataField
+            End Get
+            Set
+                Me.extensionDataField = value
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property ACTFLG() As String
+            Get
+                Return Me.ACTFLGField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.ACTFLGField, value) <> true) Then
+                    Me.ACTFLGField = value
+                    Me.RaisePropertyChanged("ACTFLG")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property CODE() As String
+            Get
+                Return Me.CODEField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.CODEField, value) <> true) Then
+                    Me.CODEField = value
+                    Me.RaisePropertyChanged("CODE")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property COST_CODE() As String
+            Get
+                Return Me.COST_CODEField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.COST_CODEField, value) <> true) Then
+                    Me.COST_CODEField = value
+                    Me.RaisePropertyChanged("COST_CODE")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property CREATED_BY() As String
+            Get
+                Return Me.CREATED_BYField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.CREATED_BYField, value) <> true) Then
+                    Me.CREATED_BYField = value
+                    Me.RaisePropertyChanged("CREATED_BY")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property CREATED_DATE() As Date
+            Get
+                Return Me.CREATED_DATEField
+            End Get
+            Set
+                If (Me.CREATED_DATEField.Equals(value) <> true) Then
+                    Me.CREATED_DATEField = value
+                    Me.RaisePropertyChanged("CREATED_DATE")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property CREATED_LOG() As String
+            Get
+                Return Me.CREATED_LOGField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.CREATED_LOGField, value) <> true) Then
+                    Me.CREATED_LOGField = value
+                    Me.RaisePropertyChanged("CREATED_LOG")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property EFFECT_DATE() As System.Nullable(Of Date)
+            Get
+                Return Me.EFFECT_DATEField
+            End Get
+            Set
+                If (Me.EFFECT_DATEField.Equals(value) <> true) Then
+                    Me.EFFECT_DATEField = value
+                    Me.RaisePropertyChanged("EFFECT_DATE")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property ID() As Decimal
+            Get
+                Return Me.IDField
+            End Get
+            Set
+                If (Me.IDField.Equals(value) <> true) Then
+                    Me.IDField = value
+                    Me.RaisePropertyChanged("ID")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property IS_LEADER() As Boolean
+            Get
+                Return Me.IS_LEADERField
+            End Get
+            Set
+                If (Me.IS_LEADERField.Equals(value) <> true) Then
+                    Me.IS_LEADERField = value
+                    Me.RaisePropertyChanged("IS_LEADER")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property JOB_NAME() As String
+            Get
+                Return Me.JOB_NAMEField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.JOB_NAMEField, value) <> true) Then
+                    Me.JOB_NAMEField = value
+                    Me.RaisePropertyChanged("JOB_NAME")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property JOB_NOTE() As String
+            Get
+                Return Me.JOB_NOTEField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.JOB_NOTEField, value) <> true) Then
+                    Me.JOB_NOTEField = value
+                    Me.RaisePropertyChanged("JOB_NOTE")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property MODIFIED_BY() As String
+            Get
+                Return Me.MODIFIED_BYField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.MODIFIED_BYField, value) <> true) Then
+                    Me.MODIFIED_BYField = value
+                    Me.RaisePropertyChanged("MODIFIED_BY")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property MODIFIED_DATE() As Date
+            Get
+                Return Me.MODIFIED_DATEField
+            End Get
+            Set
+                If (Me.MODIFIED_DATEField.Equals(value) <> true) Then
+                    Me.MODIFIED_DATEField = value
+                    Me.RaisePropertyChanged("MODIFIED_DATE")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property MODIFIED_LOG() As String
+            Get
+                Return Me.MODIFIED_LOGField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.MODIFIED_LOGField, value) <> true) Then
+                    Me.MODIFIED_LOGField = value
+                    Me.RaisePropertyChanged("MODIFIED_LOG")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property ORG_ID() As System.Nullable(Of Decimal)
+            Get
+                Return Me.ORG_IDField
+            End Get
+            Set
+                If (Me.ORG_IDField.Equals(value) <> true) Then
+                    Me.ORG_IDField = value
+                    Me.RaisePropertyChanged("ORG_ID")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property ORG_NAME() As String
+            Get
+                Return Me.ORG_NAMEField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.ORG_NAMEField, value) <> true) Then
+                    Me.ORG_NAMEField = value
+                    Me.RaisePropertyChanged("ORG_NAME")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property TITLE_ID() As System.Nullable(Of Decimal)
+            Get
+                Return Me.TITLE_IDField
+            End Get
+            Set
+                If (Me.TITLE_IDField.Equals(value) <> true) Then
+                    Me.TITLE_IDField = value
+                    Me.RaisePropertyChanged("TITLE_ID")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property TITLE_NAME() As String
+            Get
+                Return Me.TITLE_NAMEField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.TITLE_NAMEField, value) <> true) Then
+                    Me.TITLE_NAMEField = value
+                    Me.RaisePropertyChanged("TITLE_NAME")
+                End If
+            End Set
+        End Property
+        
+        Public Event PropertyChanged As System.ComponentModel.PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
+        
+        Protected Sub RaisePropertyChanged(ByVal propertyName As String)
+            Dim propertyChanged As System.ComponentModel.PropertyChangedEventHandler = Me.PropertyChangedEvent
+            If (Not (propertyChanged) Is Nothing) Then
+                propertyChanged(Me, New System.ComponentModel.PropertyChangedEventArgs(propertyName))
+            End If
+        End Sub
+    End Class
+    
+    <System.Diagnostics.DebuggerStepThroughAttribute(),  _
+     System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0"),  _
      System.Runtime.Serialization.DataContractAttribute(Name:="ReminderLogDTO", [Namespace]:="http://schemas.datacontract.org/2004/07/ProfileDAL"),  _
      System.SerializableAttribute()>  _
     Partial Public Class ReminderLogDTO
@@ -52008,6 +52327,8 @@ Namespace ProfileBusiness
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.Temp_ConcurrentlyDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.Temp_ConcurrentlyDTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.OrganizationTreeDTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.Job_PositionDTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.Job_PositionDTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.ReminderLogDTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.ReminderLogDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.FamilyDTO))),  _
@@ -52207,6 +52528,8 @@ Namespace ProfileBusiness
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.Temp_ConcurrentlyDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.Temp_ConcurrentlyDTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.OrganizationTreeDTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.Job_PositionDTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.Job_PositionDTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.ReminderLogDTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.ReminderLogDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.FamilyDTO))),  _
@@ -52434,6 +52757,30 @@ Namespace ProfileBusiness
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/CHECK_LOCATION_EXITS", ReplyAction:="http://tempuri.org/IProfileBusiness/CHECK_LOCATION_EXITSResponse")>  _
         Function CHECK_LOCATION_EXITS(ByVal P_ID As System.Nullable(Of Decimal), ByVal ORG_ID As Decimal) As Boolean
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetJobPosition", ReplyAction:="http://tempuri.org/IProfileBusiness/GetJobPositionResponse")>  _
+        Function GetJobPosition(ByVal _filter As ProfileBusiness.Job_PositionDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal _param As ProfileBusiness.ParamDTO, ByVal Sorts As String, ByVal log As Common.CommonBusiness.UserLog) As System.Collections.Generic.List(Of ProfileBusiness.Job_PositionDTO)
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GET_JOB_POSITION_LIST", ReplyAction:="http://tempuri.org/IProfileBusiness/GET_JOB_POSITION_LISTResponse")>  _
+        Function GET_JOB_POSITION_LIST(ByVal P_ORG_ID As Decimal, ByVal P_ID As Decimal) As System.Data.DataTable
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GET_JOB_POSITION_DETAIL", ReplyAction:="http://tempuri.org/IProfileBusiness/GET_JOB_POSITION_DETAILResponse")>  _
+        Function GET_JOB_POSITION_DETAIL(ByVal P_ID As Decimal) As System.Data.DataSet
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/INSERT_JOB_POSITION", ReplyAction:="http://tempuri.org/IProfileBusiness/INSERT_JOB_POSITIONResponse")>  _
+        Function INSERT_JOB_POSITION(ByVal p_CODE As String, ByVal p_JOB_NAME As String, ByVal p_ORG_ID As Decimal, ByVal p_TITLE_ID As Decimal, ByVal p_JOB_NOTE As String, ByVal p_COST_CODE As String, ByVal p_IS_LEADER As Decimal, ByVal p_EFFECT_DATE As Date, ByVal log As Common.CommonBusiness.UserLog) As Integer
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/UPDATE_JOB_POSITION", ReplyAction:="http://tempuri.org/IProfileBusiness/UPDATE_JOB_POSITIONResponse")>  _
+        Function UPDATE_JOB_POSITION(ByVal p_ID As Decimal, ByVal p_CODE As String, ByVal p_JOB_NAME As String, ByVal p_ORG_ID As Decimal, ByVal p_TITLE_ID As Decimal, ByVal p_JOB_NOTE As String, ByVal p_COST_CODE As String, ByVal p_IS_LEADER As Decimal, ByVal p_EFFECT_DATE As Date, ByVal log As Common.CommonBusiness.UserLog) As Integer
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/INSERT_DIRECT_MANAGER", ReplyAction:="http://tempuri.org/IProfileBusiness/INSERT_DIRECT_MANAGERResponse")>  _
+        Function INSERT_DIRECT_MANAGER(ByVal P_JOB_POSITION_ID As Decimal, ByVal P_DIRECT_MANAGER As String) As Boolean
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/DeleteJob", ReplyAction:="http://tempuri.org/IProfileBusiness/DeleteJobResponse")>  _
+        Function DeleteJob(ByVal objOrgTitle As System.Collections.Generic.List(Of Decimal), ByVal log As Common.CommonBusiness.UserLog) As Boolean
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ActiveJob", ReplyAction:="http://tempuri.org/IProfileBusiness/ActiveJobResponse")>  _
+        Function ActiveJob(ByVal objOrgTitle As System.Collections.Generic.List(Of Decimal), ByVal sActive As String, ByVal log As Common.CommonBusiness.UserLog) As Boolean
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetRemind", ReplyAction:="http://tempuri.org/IProfileBusiness/GetRemindResponse")>  _
         Function GetRemind(ByVal _dayRemind As String, ByVal log As Common.CommonBusiness.UserLog) As System.Collections.Generic.List(Of ProfileBusiness.ReminderLogDTO)
@@ -52685,6 +53032,8 @@ Namespace ProfileBusiness
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.Temp_ConcurrentlyDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.Temp_ConcurrentlyDTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.OrganizationTreeDTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.Job_PositionDTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.Job_PositionDTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.ReminderLogDTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.ReminderLogDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.FamilyDTO))),  _
@@ -52899,6 +53248,8 @@ Namespace ProfileBusiness
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.Temp_ConcurrentlyDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.Temp_ConcurrentlyDTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.OrganizationTreeDTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.Job_PositionDTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.Job_PositionDTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.ReminderLogDTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.ReminderLogDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.FamilyDTO))),  _
@@ -54651,6 +55002,38 @@ Namespace ProfileBusiness
         
         Public Function CHECK_LOCATION_EXITS(ByVal P_ID As System.Nullable(Of Decimal), ByVal ORG_ID As Decimal) As Boolean Implements ProfileBusiness.IProfileBusiness.CHECK_LOCATION_EXITS
             Return MyBase.Channel.CHECK_LOCATION_EXITS(P_ID, ORG_ID)
+        End Function
+        
+        Public Function GetJobPosition(ByVal _filter As ProfileBusiness.Job_PositionDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal _param As ProfileBusiness.ParamDTO, ByVal Sorts As String, ByVal log As Common.CommonBusiness.UserLog) As System.Collections.Generic.List(Of ProfileBusiness.Job_PositionDTO) Implements ProfileBusiness.IProfileBusiness.GetJobPosition
+            Return MyBase.Channel.GetJobPosition(_filter, PageIndex, PageSize, Total, _param, Sorts, log)
+        End Function
+        
+        Public Function GET_JOB_POSITION_LIST(ByVal P_ORG_ID As Decimal, ByVal P_ID As Decimal) As System.Data.DataTable Implements ProfileBusiness.IProfileBusiness.GET_JOB_POSITION_LIST
+            Return MyBase.Channel.GET_JOB_POSITION_LIST(P_ORG_ID, P_ID)
+        End Function
+        
+        Public Function GET_JOB_POSITION_DETAIL(ByVal P_ID As Decimal) As System.Data.DataSet Implements ProfileBusiness.IProfileBusiness.GET_JOB_POSITION_DETAIL
+            Return MyBase.Channel.GET_JOB_POSITION_DETAIL(P_ID)
+        End Function
+        
+        Public Function INSERT_JOB_POSITION(ByVal p_CODE As String, ByVal p_JOB_NAME As String, ByVal p_ORG_ID As Decimal, ByVal p_TITLE_ID As Decimal, ByVal p_JOB_NOTE As String, ByVal p_COST_CODE As String, ByVal p_IS_LEADER As Decimal, ByVal p_EFFECT_DATE As Date, ByVal log As Common.CommonBusiness.UserLog) As Integer Implements ProfileBusiness.IProfileBusiness.INSERT_JOB_POSITION
+            Return MyBase.Channel.INSERT_JOB_POSITION(p_CODE, p_JOB_NAME, p_ORG_ID, p_TITLE_ID, p_JOB_NOTE, p_COST_CODE, p_IS_LEADER, p_EFFECT_DATE, log)
+        End Function
+        
+        Public Function UPDATE_JOB_POSITION(ByVal p_ID As Decimal, ByVal p_CODE As String, ByVal p_JOB_NAME As String, ByVal p_ORG_ID As Decimal, ByVal p_TITLE_ID As Decimal, ByVal p_JOB_NOTE As String, ByVal p_COST_CODE As String, ByVal p_IS_LEADER As Decimal, ByVal p_EFFECT_DATE As Date, ByVal log As Common.CommonBusiness.UserLog) As Integer Implements ProfileBusiness.IProfileBusiness.UPDATE_JOB_POSITION
+            Return MyBase.Channel.UPDATE_JOB_POSITION(p_ID, p_CODE, p_JOB_NAME, p_ORG_ID, p_TITLE_ID, p_JOB_NOTE, p_COST_CODE, p_IS_LEADER, p_EFFECT_DATE, log)
+        End Function
+        
+        Public Function INSERT_DIRECT_MANAGER(ByVal P_JOB_POSITION_ID As Decimal, ByVal P_DIRECT_MANAGER As String) As Boolean Implements ProfileBusiness.IProfileBusiness.INSERT_DIRECT_MANAGER
+            Return MyBase.Channel.INSERT_DIRECT_MANAGER(P_JOB_POSITION_ID, P_DIRECT_MANAGER)
+        End Function
+        
+        Public Function DeleteJob(ByVal objOrgTitle As System.Collections.Generic.List(Of Decimal), ByVal log As Common.CommonBusiness.UserLog) As Boolean Implements ProfileBusiness.IProfileBusiness.DeleteJob
+            Return MyBase.Channel.DeleteJob(objOrgTitle, log)
+        End Function
+        
+        Public Function ActiveJob(ByVal objOrgTitle As System.Collections.Generic.List(Of Decimal), ByVal sActive As String, ByVal log As Common.CommonBusiness.UserLog) As Boolean Implements ProfileBusiness.IProfileBusiness.ActiveJob
+            Return MyBase.Channel.ActiveJob(objOrgTitle, sActive, log)
         End Function
         
         Public Function GetRemind(ByVal _dayRemind As String, ByVal log As Common.CommonBusiness.UserLog) As System.Collections.Generic.List(Of ProfileBusiness.ReminderLogDTO) Implements ProfileBusiness.IProfileBusiness.GetRemind

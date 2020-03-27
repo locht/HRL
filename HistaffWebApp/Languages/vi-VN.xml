@@ -44542,4 +44542,132 @@ Xin cám ơn!
       <string>Nhóm phụ cấp</string>
     </Value>
   </Item>
+  <Item>
+    <Key>
+      <string>HẾT HẠN CMND</string>
+    </Key>
+    <Value>
+      <string>Hết hạn CMND</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>HẾT HẠN HỘ CHIẾU</string>
+    </Key>
+    <Value>
+      <string>Hết hạn Hộ chiếu</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>HẾT HẠN GIẤY PHÉP HÀNH NGHỀ</string>
+    </Key>
+    <Value>
+      <string>Hết hạn giấy phép hành nghề</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>CTRLHU_JOBPOSITION</string>
+    </Key>
+    <Value>
+      <string>Vị trí công việc</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>TRƯỞNG ĐƠN VỊ</string>
+    </Key>
+    <Value>
+      <string>Trưởng đơn vị</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>CTRLHU_JOBPOSITIONNEWEDIT</string>
+    </Key>
+    <Value>
+      <string>Thông tin vị trí công việc</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>MÃ VỊ TRÍ CÔNG VIỆC KHÔNG ĐƯỢC ĐỂ TRỐNG</string>
+    </Key>
+    <Value>
+      <string>Mã vị trí công việc không được để trống</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>TÊN VỊ TRÍ CÔNG VIỆC KHÔNG ĐƯỢC ĐỂ TRỐNG</string>
+    </Key>
+    <Value>
+      <string>Tên vị trí công việc không được để trống</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>PHÒNG BAN KHÔNG ĐƯỢC ĐỂ TRỐNG</string>
+    </Key>
+    <Value>
+      <string>Phòng ban không được để trống</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>CHỨC DANH KHÔNG ĐƯỢC ĐỂ TRỐNG</string>
+    </Key>
+    <Value>
+      <string>Chức danh không được để trống</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>CHỌN QUẢN LÝ TRỰC TIẾP</string>
+    </Key>
+    <Value>
+      <string>Chọn quản lý trực tiếp</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>NGÀY HIỆU LỰC KHÔNG ĐƯỢC ĐỂ TRỐNG</string>
+    </Key>
+    <Value>
+      <string>Ngày hiệu lực không được để trống</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>THÔNG TIN VỊ TRÍ CÔNG VIỆC</string>
+    </Key>
+    <Value>
+      <string>Thông tin vị trí công việc</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>MÃ VỊ TRÍ CÔNG VIỆC</string>
+    </Key>
+    <Value>
+      <string>Mã vị trí công việc</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>TÊN VỊ TRÍ CÔNG VIỆC</string>
+    </Key>
+    <Value>
+      <string>Tên vị trí công việc</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>CHỨC NĂNG/ YÊU CẦU CÔNG VIỆC</string>
+    </Key>
+    <Value>
+      <string>Chức năng/ yêu cầu công việc</string>
+    </Value>
+  </Item>
 </SerializableDictionaryOfStringString>

@@ -312,6 +312,8 @@
     <Content Include="Modules\Insurance\Business\ctrlInsTotalSalary.ascx" />
     <Content Include="Modules\Insurance\List\ctrlInsListOrgInsurance.ascx" />
     <Content Include="Modules\Organize\Business\ctrlHU_ChartEmployee.ascx" />
+    <Content Include="Modules\Organize\Business\ctrlHU_JobPosition.ascx" />
+    <Content Include="Modules\Organize\Business\ctrlHU_JobPositionNewEdit.ascx" />
     <Content Include="Modules\Organize\Business\ctrlHU_OrgTitleNewEdit.ascx" />
     <Content Include="Modules\Organize\ctrlDashboard.ascx" />
     <Content Include="Modules\Organize\ctrlMessageBox.ascx" />

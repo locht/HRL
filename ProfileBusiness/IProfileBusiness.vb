@@ -2809,6 +2809,49 @@ Namespace ProfileBusiness.ServiceContracts
 
         <OperationContract()>
         Function CHECK_LOCATION_EXITS(ByVal P_ID As Decimal?, ByVal ORG_ID As Decimal) As Boolean
+
+        <OperationContract()>
+        Function GetJobPosition(ByVal _filter As Job_PositionDTO, ByVal PageIndex As Integer,
+                                ByVal PageSize As Integer,
+                                ByRef Total As Integer, ByVal _param As ParamDTO,
+                                Optional ByVal Sorts As String = "CREATED_DATE desc",
+                                Optional ByVal log As UserLog = Nothing) As List(Of Job_PositionDTO)
+        <OperationContract()>
+        Function GET_JOB_POSITION_LIST(ByVal P_ORG_ID As Decimal, ByVal P_ID As Decimal) As DataTable
+
+        <OperationContract()>
+        Function GET_JOB_POSITION_DETAIL(ByVal P_ID As Decimal) As DataSet
+
+        <OperationContract()>
+        Function INSERT_JOB_POSITION(ByVal p_CODE As String,
+                                        ByVal p_JOB_NAME As String,
+                                        ByVal p_ORG_ID As Decimal,
+                                        ByVal p_TITLE_ID As Decimal,
+                                        ByVal p_JOB_NOTE As String,
+                                        ByVal p_COST_CODE As String,
+                                        ByVal p_IS_LEADER As Decimal,
+                                        ByVal p_EFFECT_DATE As Date,
+                                        Optional ByVal log As UserLog = Nothing) As Integer
+        <OperationContract()>
+        Function UPDATE_JOB_POSITION(ByVal p_ID As Decimal, ByVal p_CODE As String,
+                                        ByVal p_JOB_NAME As String,
+                                        ByVal p_ORG_ID As Decimal,
+                                        ByVal p_TITLE_ID As Decimal,
+                                        ByVal p_JOB_NOTE As String,
+                                        ByVal p_COST_CODE As String,
+                                        ByVal p_IS_LEADER As Decimal,
+                                        ByVal p_EFFECT_DATE As Date,
+                                        Optional ByVal log As UserLog = Nothing) As Integer
+
+        <OperationContract()>
+        Function INSERT_DIRECT_MANAGER(ByVal P_JOB_POSITION_ID As Decimal, ByVal P_DIRECT_MANAGER As String) As Boolean
+
+        <OperationContract()>
+        Function DeleteJob(ByVal objOrgTitle As List(Of Decimal), ByVal log As UserLog) As Boolean
+
+        <OperationContract()>
+        Function ActiveJob(ByVal objOrgTitle As List(Of Decimal), ByVal sActive As String, ByVal log As UserLog) As Boolean
+
     End Interface
 
 End Namespace
