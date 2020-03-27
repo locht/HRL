@@ -570,9 +570,11 @@ Public Class ctrlInsRegimes
                 txtINSNAME.Text = InsCommon.getString(lstSource.Rows(0)("INS_ORG_NAME"))
                 txtSOCIAL_NUMBER.Text = InsCommon.getString(lstSource.Rows(0)("SOCIAL_NUMBER"))
                 txtHEALTH_NUMBER.Text = InsCommon.getString(lstSource.Rows(0)("HEALTH_NUMBER"))
+                InsCommon.SetNumber(txtDAY_CALCULATOR, lstSource.Rows(0)("DAY_CALCULATOR"))
                 'txtDEP.Text = InsCommon.getString(lstSource.Rows(0)("ID"))
                 InsCommon.SetDate(txtDoB, lstSource.Rows(0)("BIRTH_DATE"))
-
+                cboSICKTYPE.Text = InsCommon.getString(lstSource.Rows(0)("SICK_TYPE"))
+                txtOFF_IN_HOUSE.Text = txtDAY_CALCULATOR.Value - txtOFF_TOGETHER.Value
                 txtBirthPlace.Text = InsCommon.getString(lstSource.Rows(0)("PLACE_OF_BIRTH_NAME"))
                 'txtPOSITION.Text = InsCommon.getString(lstSource.Rows(0)("ID"))
 
@@ -592,7 +594,7 @@ Public Class ctrlInsRegimes
 
                 InsCommon.SetNumber(txtACCUMULATE_DAY, lstSource.Rows(0)("ACCUMULATE_DAY"))
 
-                InsCommon.SetNumber(txtDAY_CALCULATOR, lstSource.Rows(0)("DAY_CALCULATOR"))
+
                 InsCommon.SetNumber(txtCurrDate, lstSource.Rows(0)("DAY_CALCULATOR"))
 
                 InsCommon.SetNumber(txtSUBSIDY_SALARY, lstSource.Rows(0)("SUBSIDY_SALARY"))
