@@ -200,13 +200,6 @@
             </tr>
             <tr style="display: none">
                 <td class="lb">
-                    <asp:Label runat="server" ID="lbViolationDate" Text=" Ngày vi pham"></asp:Label>
-                </td>
-                <td>
-                    <tlk:RadDatePicker ID="rdViolationDate" runat="server" TabIndex="16">
-                    </tlk:RadDatePicker>
-                </td>
-                <td class="lb">
                     <asp:Label runat="server" ID="lbDetectViolationDate" Text=" Ngày phát hiện vi phạm"></asp:Label>
                 </td>
                 <td>
@@ -225,18 +218,25 @@
                 </td>
             </tr>
             <tr>
-                <td class="lb">
+                <td class="lb" style="display: none">
                     <asp:CheckBox ID="chkPhatTien" runat="server" Checked="false" CausesValidation="false"
                         TextAlign="Right" AutoPostBack="true" />
                     <asp:Label runat="server" ID="lbMoney" Text="Số tiền phạt"></asp:Label>
                 </td>
-                <td>
+                <td style="display: none">
                     <tlk:RadNumericTextBox ID="rntxtMoney" runat="server" SkinID="Money" TabIndex="19"
                         ClientEvents-OnBlur="OnClientChanged1">
                     </tlk:RadNumericTextBox>
                     <asp:CustomValidator ID="cvalMoney" runat="server" ErrorMessage="Bạn phải nhập số tiền phải >= 0."
                         ToolTip="Bạn phải nhập số tiền phải >= 0.">
                     </asp:CustomValidator>
+                </td>
+                <td class="lb">
+                    <asp:Label runat="server" ID="lbViolationDate" Text=" Ngày vi phạm"></asp:Label>
+                </td>
+                <td>
+                    <tlk:RadDatePicker ID="rdViolationDate" runat="server" TabIndex="16">
+                    </tlk:RadDatePicker>
                 </td>
                 <td class="lb">
                     <asp:Label runat="server" ID="lbIndemnifyMoney" Text="Tổng giá trị thiệt hại"></asp:Label>

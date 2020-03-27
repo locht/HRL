@@ -1131,7 +1131,7 @@ Public Class ctrlHU_ContractNewEdit
         'chuẩn hóa lại đồng bộ trạng thái là 446 447 nên sửa lại cách load data lên
         dtData = rep.GetOtherList(OtherTypes.DecisionStatus)
         FillRadCombobox(cboStatus, dtData, "NAME", "ID", True)
-        cboStatus.SelectedIndex = 0
+        cboStatus.SelectedValue = 446
         'hinh thuc lam viẹc
         dtData = rep.GetOtherList("WORK_TIME", True)
         FillRadCombobox(cboFormWork, dtData, "NAME", "ID", True)

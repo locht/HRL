@@ -1,4 +1,5 @@
-﻿<%@ Control Language="vb" AutoEventWireup="false" CodeBehind="ctrlHU_Discipline.ascx.vb"
+﻿
+7<%@ Control Language="vb" AutoEventWireup="false" CodeBehind="ctrlHU_Discipline.ascx.vb"
     Inherits="Profile.ctrlHU_Discipline" %>
 <%@ Import Namespace="Common" %>
 <link href="/Styles/StyleCustom.css" rel="stylesheet" type="text/css" />

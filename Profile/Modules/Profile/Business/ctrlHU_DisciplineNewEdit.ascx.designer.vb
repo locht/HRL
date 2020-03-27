@@ -491,24 +491,6 @@ Partial Public Class ctrlHU_DisciplineNewEdit
     Protected WithEvents txtDisciplineReasonDetail As Global.Telerik.Web.UI.RadTextBox
 
     '''<summary>
-    '''lbViolationDate control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lbViolationDate As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
-    '''rdViolationDate control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents rdViolationDate As Global.Telerik.Web.UI.RadDatePicker
-
-    '''<summary>
     '''lbDetectViolationDate control.
     '''</summary>
     '''<remarks>
@@ -579,6 +561,24 @@ Partial Public Class ctrlHU_DisciplineNewEdit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents cvalMoney As Global.System.Web.UI.WebControls.CustomValidator
+
+    '''<summary>
+    '''lbViolationDate control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbViolationDate As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''rdViolationDate control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents rdViolationDate As Global.Telerik.Web.UI.RadDatePicker
 
     '''<summary>
     '''lbIndemnifyMoney control.
