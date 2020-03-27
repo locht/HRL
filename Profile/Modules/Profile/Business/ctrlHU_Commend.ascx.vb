@@ -192,6 +192,10 @@ Public Class ctrlHU_Commend
                                                                   ToolbarIcons.Add,
                                                                   ToolbarAuthorize.Special1,
                                                                   "Phê duyệt hàng loạt"))
+            Me.MainToolBar.Items.Add(Common.Common.CreateToolbarItem(CommonMessage.TOOLBARITEM_APPROVE_OPEN,
+                                                                  ToolbarIcons.Unlock,
+                                                                  ToolbarAuthorize.Special1,
+                                                                  "Mở phê duyệt"))
 
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
@@ -238,6 +242,14 @@ Public Class ctrlHU_Commend
 
                 Case CommonMessage.STATE_APPROVE
                     If rep.ApproveCommend(ApproveCommend) Then
+                        ApproveCommend = Nothing
+                        Refresh("UpdateView")
+                        UpdateControlState()
+                    Else
+                        ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), NotifyType.Error)
+                    End If
+                Case CommonMessage.STATE_DEACTIVE
+                    If rep.UnApproveCommend(ApproveCommend) Then
                         ApproveCommend = Nothing
                         Refresh("UpdateView")
                         UpdateControlState()
@@ -434,7 +446,27 @@ Public Class ctrlHU_Commend
                         ctrlMessageBox.DataBind()
                         ctrlMessageBox.Show()
                     End If
+                Case CommonMessage.TOOLBARITEM_APPROVE_OPEN
+                    Dim objCommend As CommendDTO
+                    'Dim rep As New ProfileBusinessRepository
+                    objCommend = (From p In Commends Where p.ID = rgCommend.SelectedValue).FirstOrDefault
 
+                    If objCommend.STATUS_ID <> ProfileCommon.COMMEND_STATUS.APPROVE_ID Then
+                        ShowMessage(Translate("Khen thưởng chưa phê duyệt, không thể mở phê duyệt. Vui lòng kiểm tra lại."), NotifyType.Warning)
+                        Exit Sub
+                    End If
+
+                    If objCommend IsNot Nothing Then
+                        ApproveCommend = New CommendDTO With {.ID = objCommend.ID,
+                                                                    .EMPLOYEE_ID = objCommend.EMPLOYEE_ID,
+                                                              .EFFECT_DATE = objCommend.EFFECT_DATE}
+                    End If
+                    If ApproveCommend IsNot Nothing Then
+                        ctrlMessageBox.MessageText = Translate(CommonMessage.MESSAGE_CONFIRM_UNAPPROVE)
+                        ctrlMessageBox.ActionName = CommonMessage.TOOLBARITEM_APPROVE_OPEN
+                        ctrlMessageBox.DataBind()
+                        ctrlMessageBox.Show()
+                    End If
                 Case CommonMessage.TOOLBARITEM_EXPORT
                     Dim dtData As DataTable
                     Using xls As New ExcelCommon
@@ -508,6 +540,11 @@ Public Class ctrlHU_Commend
 
             If e.ActionName = CommonMessage.TOOLBARITEM_APPROVE And e.ButtonID = MessageBoxButtonType.ButtonYes Then
                 CurrentState = CommonMessage.STATE_APPROVE
+                UpdateControlState()
+            End If
+
+            If e.ActionName = CommonMessage.TOOLBARITEM_APPROVE_OPEN And e.ButtonID = MessageBoxButtonType.ButtonYes Then
+                CurrentState = CommonMessage.STATE_DEACTIVE
                 UpdateControlState()
             End If
 

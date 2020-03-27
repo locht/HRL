@@ -173,6 +173,16 @@ Partial Public Class ProfileBusinessRepository
         End Using
 
     End Function
+
+    Public Function UnApproveCommend(ByVal objCommend As CommendDTO) As Boolean
+        Using rep As New ProfileBusinessClient
+            Try
+                Return rep.UnApproveCommend(objCommend)
+            Catch ex As Exception
+                Throw ex
+            End Try
+        End Using
+    End Function
 #Region "VALIDATE BUSINESS"
     Public Function ValidateBusiness(ByVal Table_Name As String, ByVal Column_Name As String, ByVal ListID As List(Of Decimal)) As Boolean
         Using rep As New ProfileBusinessClient

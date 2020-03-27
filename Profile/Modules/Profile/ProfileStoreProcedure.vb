@@ -285,6 +285,14 @@ Public Class ProfileStoreProcedure
         End If
         Return dt
     End Function
+    Public Function Get_Year_Of_Period(ByVal isBlank As Boolean) As DataTable
+        Dim dt As New DataTable
+        Dim ds As DataSet = hfr.ExecuteToDataSet("PKG_COMMON_LIST.GET_YEAR_OF_PERIOD", New List(Of Object)(New Object() {isBlank}))
+        If Not ds Is Nothing Or Not ds.Tables(0) Is Nothing Then
+            dt = ds.Tables(0)
+        End If
+        Return dt
+    End Function
     Public Function Get_Commend_Formality(ByVal isBlank As Boolean, ByVal OBJ As Decimal) As DataTable
         Dim dt As New DataTable
         Dim ds As DataSet = hfr.ExecuteToDataSet("PKG_HU_COMMEND.GET_FORMALITY_COMMEND", New List(Of Object)(New Object() {isBlank, OBJ}))

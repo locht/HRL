@@ -89,26 +89,31 @@
                                 SortExpression="ORG_NAME" UniqueName="ORG_NAME" HeaderStyle-Width="150px" />
                             <tlk:GridBoundColumn HeaderText="Chức danh" DataField="TITLE_NAME"
                                 SortExpression="TITLE_NAME" UniqueName="TITLE_NAME" HeaderStyle-Width="150px" />
-                            <tlk:GridBoundColumn HeaderText="Trạng thái" DataField="STATUS_NAME"
-                                ItemStyle-HorizontalAlign="Center" SortExpression="STATUS_NAME" UniqueName="STATUS_NAME" />
+
+                            <tlk:GridBoundColumn HeaderText="Đối tượng khen thưởng" DataField="COMMEND_OBJ_NAME"
+                                SortExpression="COMMEND_OBJ_NAME" UniqueName="COMMEND_OBJ_NAME" HeaderStyle-Width="150px" />
+
                             <tlk:GridBoundColumn HeaderText="Danh hiệu khen thưởng" DataField="COMMEND_TITLE_NAME"
                                 SortExpression="COMMEND_TITLE_NAME" UniqueName="COMMEND_TITLE_NAME" HeaderStyle-Width="150px" />
-                            <tlk:GridNumericColumn HeaderText="Mức thưởng" DataField="MONEY"
-                                ItemStyle-HorizontalAlign="Right" DataFormatString="{0:N0}" SortExpression="MONEY"
-                                UniqueName="MONEY" />
-                             <tlk:GridBoundColumn HeaderText="Hình thức khen thưởng" DataField="Commend_TYPE_NAME"
+
+                            <tlk:GridBoundColumn HeaderText="Hình thức khen thưởng" DataField="Commend_TYPE_NAME"
                                 SortExpression="Commend_TYPE_NAME" UniqueName="Commend_TYPE_NAME" HeaderStyle-Width="150px" />
-                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Hình thức trả thưởng %>" DataField="COMMEND_PAY_NAME"
-                                SortExpression="COMMEND_PAY_NAME" UniqueName="COMMEND_PAY_NAME" HeaderStyle-Width="150px" />
-                            <tlk:GridBoundColumn HeaderText="Loại khen thưởng" DataField="Commend_OBJ_NAME"
-                                SortExpression="Commend_OBJ_NAME" UniqueName="Commend_OBJ_NAME" HeaderStyle-Width="150px" />
-                            <tlk:GridBoundColumn HeaderText="Số quyết định" DataField="DECISION_NO"
-                                SortExpression="DECISION_NO" UniqueName="DECISION_NO" />
+
                             <tlk:GridDateTimeColumn HeaderText="Ngày hiệu lực" DataField="EFFECT_DATE"
                                 ItemStyle-HorizontalAlign="Center" SortExpression="EFFECT_DATE" UniqueName="EFFECT_DATE"
                                 DataFormatString="{0:dd/MM/yyyy}" />
-                            <tlk:GridBoundColumn HeaderText="Ghi chú" DataField="REMARK" SortExpression="REMARK"
+
+                            <tlk:GridBoundColumn HeaderText="Số quyết định" DataField="DECISION_NO"
+                                SortExpression="DECISION_NO" UniqueName="DECISION_NO" />
+
+                            <tlk:GridNumericColumn HeaderText="Mức thưởng" DataField="MONEY"
+                                ItemStyle-HorizontalAlign="Right" DataFormatString="{0:N0}" SortExpression="MONEY"
+                                UniqueName="MONEY" />                            
+                            
+                            <tlk:GridBoundColumn HeaderText="Lý do khen thưởng" DataField="REMARK" SortExpression="REMARK"
                                 UniqueName="REMARK" />
+                            <tlk:GridBoundColumn HeaderText="Trạng thái" DataField="STATUS_NAME"
+                                ItemStyle-HorizontalAlign="Center" SortExpression="STATUS_NAME" UniqueName="STATUS_NAME" />
                         </Columns>
                     </MasterTableView>
                     <ClientSettings EnableRowHoverStyle="true">

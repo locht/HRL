@@ -302,76 +302,22 @@ Partial Public Class ctrlHU_CommendNewEdit
     Protected WithEvents cvalCommendObj As Global.System.Web.UI.WebControls.CustomValidator
 
     '''<summary>
-    '''lbCommend_Detail control.
+    '''lbPowerPay control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents lbCommend_Detail As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents lbPowerPay As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
-    '''txtCommend_Detail control.
+    '''cboPowerPay control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents txtCommend_Detail As Global.Telerik.Web.UI.RadTextBox
-
-    '''<summary>
-    '''lbYear control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lbYear As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
-    '''txtYear control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents txtYear As Global.Telerik.Web.UI.RadTextBox
-
-    '''<summary>
-    '''RequiredFieldValidator2 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents RequiredFieldValidator2 As Global.System.Web.UI.WebControls.RequiredFieldValidator
-
-    '''<summary>
-    '''lbCommendType control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lbCommendType As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
-    '''cboCommendType control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents cboCommendType As Global.Telerik.Web.UI.RadComboBox
-
-    '''<summary>
-    '''RequiredFieldValidator_cboCommendType control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents RequiredFieldValidator_cboCommendType As Global.System.Web.UI.WebControls.RequiredFieldValidator
+    Protected WithEvents cboPowerPay As Global.Telerik.Web.UI.RadComboBox
 
     '''<summary>
     '''lbCommend_Title control.
@@ -410,40 +356,31 @@ Partial Public Class ctrlHU_CommendNewEdit
     Protected WithEvents cusCommend_Title As Global.System.Web.UI.WebControls.CustomValidator
 
     '''<summary>
-    '''lbCommendLevel control.
+    '''lbCommendType control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents lbCommendLevel As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents lbCommendType As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
-    '''cboCommendLevel control.
+    '''cboCommendType control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents cboCommendLevel As Global.Telerik.Web.UI.RadComboBox
+    Protected WithEvents cboCommendType As Global.Telerik.Web.UI.RadComboBox
 
     '''<summary>
-    '''RequiredFieldValidator4 control.
+    '''RequiredFieldValidator_cboCommendType control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents RequiredFieldValidator4 As Global.System.Web.UI.WebControls.RequiredFieldValidator
-
-    '''<summary>
-    '''cusCommendLevel control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents cusCommendLevel As Global.System.Web.UI.WebControls.CustomValidator
+    Protected WithEvents RequiredFieldValidator_cboCommendType As Global.System.Web.UI.WebControls.RequiredFieldValidator
 
     '''<summary>
     '''lbCommendPay control.
@@ -498,6 +435,114 @@ Partial Public Class ctrlHU_CommendNewEdit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents cvalMoney As Global.System.Web.UI.WebControls.CustomValidator
+
+    '''<summary>
+    '''lbCommendList control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbCommendList As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''cboCommendList control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents cboCommendList As Global.Telerik.Web.UI.RadComboBox
+
+    '''<summary>
+    '''cusCommendList control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents cusCommendList As Global.System.Web.UI.WebControls.CustomValidator
+
+    '''<summary>
+    '''lbCommendLevel control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbCommendLevel As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''cboCommendLevel control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents cboCommendLevel As Global.Telerik.Web.UI.RadComboBox
+
+    '''<summary>
+    '''RequiredFieldValidator4 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents RequiredFieldValidator4 As Global.System.Web.UI.WebControls.RequiredFieldValidator
+
+    '''<summary>
+    '''cusCommendLevel control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents cusCommendLevel As Global.System.Web.UI.WebControls.CustomValidator
+
+    '''<summary>
+    '''lbCommend_Detail control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbCommend_Detail As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''txtCommend_Detail control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtCommend_Detail As Global.Telerik.Web.UI.RadTextBox
+
+    '''<summary>
+    '''lbYear control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbYear As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''cboYear control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents cboYear As Global.Telerik.Web.UI.RadComboBox
+
+    '''<summary>
+    '''RequiredFieldValidator2 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents RequiredFieldValidator2 As Global.System.Web.UI.WebControls.RequiredFieldValidator
 
     '''<summary>
     '''lbPeriod control.
@@ -615,6 +660,24 @@ Partial Public Class ctrlHU_CommendNewEdit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents btnDownload As Global.Telerik.Web.UI.RadButton
+
+    '''<summary>
+    '''lbTyLe control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbTyLe As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''chkTyLe control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents chkTyLe As Global.Telerik.Web.UI.RadButton
 
     '''<summary>
     '''lbCommendContent control.

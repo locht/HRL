@@ -1918,6 +1918,9 @@ Namespace ProfileBusiness.ServiceContracts
         <OperationContract()>
         Function ApproveCommend(ByVal objCommend As CommendDTO) As Boolean
 
+        <OperationContract()>
+        Function UnApproveCommend(ByVal objCommend As CommendDTO) As Boolean
+
         '<OperationContract()>
         'Function GetCommendCode(ByVal id As Decimal) As String
 

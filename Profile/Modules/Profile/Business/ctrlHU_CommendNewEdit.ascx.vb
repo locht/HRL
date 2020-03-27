@@ -310,19 +310,20 @@ Public Class ctrlHU_CommendNewEdit
                     txtSignerTitle.Text = Commend.SIGNER_TITLE
                     rdSignDate.SelectedDate = Commend.SIGN_DATE
                     cboStatus.SelectedValue = Commend.STATUS_ID.ToString
-                    cboCommendLevel.SelectedValue = Commend.COMMEND_LEVEL
+                    'cboCommendLevel.SelectedValue = Commend.COMMEND_LEVEL
                     'txtDecisionName.Text = Commend.NAME
                     'rdExpireDate.SelectedDate = Commend.EXPIRE_DATE
                     'rdIssueDate.SelectedDate = Commend.ISSUE_DATE
 
-                    'If Commend.COMMEND_LEVEL IsNot Nothing Then
-                    '    cboCommendLevel.SelectedValue = Commend.COMMEND_LEVEL
-                    'End If
+                    If Commend.COMMEND_LEVEL IsNot Nothing Then
+                        cboCommendLevel.SelectedValue = Commend.COMMEND_LEVEL
+                    End If
 
                     cboCommendObj.SelectedValue = Commend.COMMEND_OBJ.ToString
                     cboCommendObj.Enabled = False
 
                     VisibleGridview(cboCommendObj.SelectedIndex)
+
 
                     If Commend.COMMEND_TYPE IsNot Nothing Then
                         cboCommendType.SelectedValue = Commend.COMMEND_TYPE.ToString
@@ -346,31 +347,31 @@ Public Class ctrlHU_CommendNewEdit
                         cboCommendPay.SelectedValue = Commend.COMMEND_PAY
                     End If
 
-                    'If Commend.COMMEND_LIST_ID IsNot Nothing Then
-                    '    cboCommendList.SelectedValue = Commend.COMMEND_LIST_ID
-                    'End If
+                    If Commend.COMMEND_LIST_ID IsNot Nothing Then
+                        cboCommendList.SelectedValue = Commend.COMMEND_LIST_ID
+                    End If
 
-                    'If Commend.POWER_PAY_ID Then
-                    '    cboPowerPay.SelectedValue = Commend.POWER_PAY_ID
-                    'End If
+                    If Commend.POWER_PAY_ID Then
+                        cboPowerPay.SelectedValue = Commend.POWER_PAY_ID
+                    End If
 
                     If Commend.IS_TAX IsNot Nothing Then
                         chkTAX.Checked = Commend.IS_TAX
+
                     End If
 
                     rdEffectDate.SelectedDate = Commend.EFFECT_DATE
-                    rdEffectDate_SelectedDateChanged(Nothing, Nothing)
+                    'rdEffectDate_SelectedDateChanged(Nothing, Nothing)
 
                     'If Commend.EXPIRE_DATE IsNot Nothing Then
                     '    rdExpireDate.SelectedDate = Commend.EXPIRE_DATE
                     'End If
 
-                    If Commend.PERIOD_ID IsNot Nothing Then
-                        cboPeriod.SelectedValue = Commend.PERIOD_ID
-                    End If
-
-                    If Commend.PERIOD_TAX IsNot Nothing Then
-                        cboPeriodTax.SelectedValue = Commend.PERIOD_TAX
+                    chkTyLe.Checked = Commend.IS_RATIO
+                    If chkTyLe.Checked Then
+                        rntxtMoney.Enabled = True
+                    Else
+                        rntxtMoney.Enabled = False
                     End If
 
                     txtCommend_Detail.Text = Commend.REMARK
@@ -378,7 +379,23 @@ Public Class ctrlHU_CommendNewEdit
                     'If Commend.FORM_ID IsNot Nothing Then
                     '    cboForm.SelectedValue = Commend.FORM_ID
                     'End If
-                    txtYear.Text = Commend.YEAR.ToString()
+                    Dim dtData As New DataTable
+                    If Commend.YEAR IsNot Nothing Then
+                        cboYear.SelectedValue = Commend.YEAR
+                        dtData = psp.Get_Commend_Period(True, cboYear.SelectedValue)
+                        FillRadCombobox(cboPeriod, dtData, "NAME", "ID", False)
+                        If chkTAX.Checked Then
+                            cboPeriodTax.Enabled = True
+                            FillRadCombobox(cboPeriodTax, dtData, "NAME", "ID", False)
+                        End If
+                    End If
+                    If Commend.PERIOD_ID IsNot Nothing Then
+                        cboPeriod.SelectedValue = Commend.PERIOD_ID
+                    End If
+
+                    If Commend.PERIOD_TAX IsNot Nothing Then
+                        cboPeriodTax.SelectedValue = Commend.PERIOD_TAX
+                    End If
                     txtUploadFile.Text = Commend.FILENAME
                     txtRemindLink.Text = If(Commend.UPLOADFILE Is Nothing, "", Commend.UPLOADFILE)
                     loadDatasource(txtUploadFile.Text)
@@ -392,7 +409,9 @@ Public Class ctrlHU_CommendNewEdit
                     End If
 
                     'dien dữ lieu vao lưới ( nhan vien hoac phòng ban )
-                    FilldataGridView(cboCommendObj.SelectedIndex)
+                    'FilldataGridView(cboCommendObj.SelectedIndex)
+                    Employee_Commend = Commend.COMMEND_EMP
+
                     rgEmployee.Rebind()
                     rgOrg.Rebind()
                     For Each i As GridItem In rgEmployee.Items
@@ -462,6 +481,10 @@ Public Class ctrlHU_CommendNewEdit
             Select Case CType(e.Item, RadToolBarButton).CommandName
                 Case CommonMessage.TOOLBARITEM_SAVE
                     If Page.IsValid Then
+                        If cboCommendObj.SelectedValue <> 389 And rgEmployee.Items.Count > 1 Then
+                            ShowMessage(Translate("Chỉ được thêm mới một nhân viên khi loại khen thưởng là cá nhân"), NotifyType.Warning)
+                            Exit Sub
+                        End If
                         Dim _filter As New CommendDTO
 
                         If cboStatus.SelectedValue = ProfileCommon.DECISION_STATUS.APPROVE_ID Then
@@ -527,6 +550,7 @@ Public Class ctrlHU_CommendNewEdit
                         objCommend.SIGNER_NAME = txtSignerName.Text
                         objCommend.SIGN_DATE = rdSignDate.SelectedDate
 
+                        objCommend.IS_RATIO = chkTyLe.Checked
 
                         If hidSignID.Value <> "" Then
                             objCommend.SIGN_ID = hidSignID.Value
@@ -535,9 +559,9 @@ Public Class ctrlHU_CommendNewEdit
                         objCommend.NO = txtDecisionNo.Text
                         objCommend.SIGNER_TITLE = txtSignerTitle.Text
 
-                        'If cboCommendLevel.SelectedValue <> "" Then
-                        '    objCommend.COMMEND_LEVEL = cboCommendLevel.SelectedValue
-                        'End If
+                        If cboCommendLevel.SelectedValue <> "" Then
+                            objCommend.COMMEND_LEVEL = cboCommendLevel.SelectedValue
+                        End If
 
                         If cboCommend_Title.SelectedValue <> "" Then
                             objCommend.COMMEND_TITLE_ID = cboCommend_Title.SelectedValue
@@ -546,22 +570,22 @@ Public Class ctrlHU_CommendNewEdit
                         objCommend.COMMEND_DETAIL = txtCommend_Detail.Text
                         If Not String.IsNullOrWhiteSpace(cboCommendPay.SelectedValue) Then
                             objCommend.COMMEND_PAY = cboCommendPay.SelectedValue
-                            If objCommend.COMMEND_PAY.HasValue AndAlso IsTienMatCommendPay(objCommend.COMMEND_PAY.Value) Then
-                                If Not rntxtMoney.Value.HasValue Then
-                                    ShowMessage(Translate("Vui lòng nhập mức thưởng khi loại thưởng là 'Tiền Mặt'"), NotifyType.Warning)
-                                    Exit Sub
-                                End If
-                            End If
+                            'If objCommend.COMMEND_PAY.HasValue AndAlso IsTienMatCommendPay(objCommend.COMMEND_PAY.Value) Then
+                            '    If Not rntxtMoney.Value.HasValue Then
+                            '        ShowMessage(Translate("Vui lòng nhập mức thưởng khi loại thưởng là 'Tiền Mặt'"), NotifyType.Warning)
+                            '        Exit Sub
+                            '    End If
+                            'End If
                         End If
 
                         ''thong tin ben sasco
-                        'If cboCommendList.SelectedValue <> "" Then
-                        '    objCommend.COMMEND_LIST_ID = cboCommendList.SelectedValue
-                        'End If
+                        If cboCommendList.SelectedValue <> "" Then
+                            objCommend.COMMEND_LIST_ID = cboCommendList.SelectedValue
+                        End If
 
-                        'If cboPowerPay.SelectedValue <> "" Then
-                        '    objCommend.POWER_PAY_ID = cboPowerPay.SelectedValue
-                        'End If
+                        If cboPowerPay.SelectedValue <> "" Then
+                            objCommend.POWER_PAY_ID = cboPowerPay.SelectedValue
+                        End If
 
                         objCommend.IS_TAX = chkTAX.Checked
 
@@ -584,63 +608,86 @@ Public Class ctrlHU_CommendNewEdit
                         'End If
 
                         'kiem tra neu doi tuong cá nhan hay tap the
-                        If cboCommendObj.SelectedIndex = 0 Then
+                        'If cboCommendObj.SelectedIndex = 0 Then
 
-                            Dim ValidGrid As Tuple(Of Boolean, String)
-                            ValidGrid = ValidateGrid_Emp()
-                            If ValidateGrid_Emp.Item1 = False Then
-                                ShowMessage(ValidateGrid_Emp.Item2, NotifyType.Warning)
-                                Exit Sub
-                            End If
-
-                            Dim TotalMoney As Decimal = 0
-                            Dim dtrgEmployee As DataTable = GetDataFromGrid(rgEmployee)
-                            For Each row As DataRow In dtrgEmployee.Rows
-                                'If row("cbStatus") = 1 Then
-                                Dim o As New CommendEmpDTO
-                                o.GUID_ID = If(Not IsDBNull(row("GUID_ID")), row("GUID_ID"), "")
-                                o.HU_EMPLOYEE_ID = row("HU_EMPLOYEE_ID")
-                                o.MONEY = If(row("MONEY") <> "", Decimal.Parse(row("MONEY")), Nothing)
-                                o.COMMEND_PAY = If(row("COMMEND_PAY") <> "", Decimal.Parse(row("COMMEND_PAY")), Nothing)
-                                o.ORG_ID = If(row("ORG_ID") <> "", Decimal.Parse(row("ORG_ID")), Nothing)
-                                o.TITLE_ID = If(row("TITLE_ID") <> "", Decimal.Parse(row("TITLE_ID")), Nothing)
-                                lstCommendEmp.Add(o)
-                                'End If
-                            Next
-                            If lstCommendEmp.Count = 0 Then
-                                ShowMessage(Translate("Vui lòng chọn nhân viên trước khi lưu"), NotifyType.Warning)
-                                Exit Sub
-                            End If
-
-                            objCommend.COMMEND_EMP = lstCommendEmp
-                        Else
-                            Dim ValidGrid2 As Tuple(Of Boolean, String)
-                            ValidGrid2 = ValidateGrid_Org()
-                            If ValidateGrid_Org.Item1 = False Then
-                                ShowMessage(ValidateGrid_Org.Item2, NotifyType.Warning)
-                                Exit Sub
-                            End If
-
-                            Dim dtrgOrg As DataTable = GetDataFromGrid(rgOrg)
-                            For Each row As DataRow In dtrgOrg.Rows
-                                If row("cbStatus") = 1 Then
-                                    Dim o As New CommendOrgDTO
-                                    o.GUID_ID = If(Not IsDBNull(row("GUID_ID")), row("GUID_ID"), "")
-                                    o.MONEY = If(row("MONEY") <> "", Decimal.Parse(row("MONEY")), Nothing)
-                                    o.COMMEND_PAY = If(row("COMMEND_PAY") <> "", Decimal.Parse(row("COMMEND_PAY")), Nothing)
-                                    o.ORG_ID = row("ORG_ID")
-                                    lstOrg.Add(o)
-                                End If
-                            Next
-
-                            If lstOrg.Count = 0 Then
-                                ShowMessage(Translate("Vui lòng chọn phòng ban trước khi lưu"), NotifyType.Warning)
-                                Exit Sub
-                            End If
-
-                            objCommend.LIST_COMMEND_ORG = lstOrg
+                        Dim ValidGrid As Tuple(Of Boolean, String)
+                        ValidGrid = ValidateGrid_Emp()
+                        If ValidateGrid_Emp.Item1 = False Then
+                            ShowMessage(ValidateGrid_Emp.Item2, NotifyType.Warning)
+                            Exit Sub
                         End If
-                        objCommend.YEAR = If(txtYear.Text.ToString <> "", Decimal.Parse(txtYear.Text), Nothing)
+
+                        Dim TotalMoney As Decimal = 0
+                        Dim dtrgEmployee As DataTable = GetDataFromGrid(rgEmployee)
+                        For Each row As DataRow In dtrgEmployee.Rows
+                            'If row.Edit = True Then
+
+                            '    Dim edit = CType(row, GridEditableItem)
+                            '    Dim rnRatio As RadNumericTextBox = CType(edit("RATIO").Controls(1), RadNumericTextBox)
+                            '    Dim rnMoney As RadNumericTextBox = CType(edit("MONEY").Controls(1), RadNumericTextBox)
+                            '    rnRatio.Enabled = True
+                            '    rnMoney.Enabled = False
+                            'End If
+                            'If row("cbStatus") = 1 Then
+                            Dim o As New CommendEmpDTO
+                            o.GUID_ID = If(Not IsDBNull(row("GUID_ID")), row("GUID_ID"), "")
+                            o.HU_EMPLOYEE_ID = row("HU_EMPLOYEE_ID")
+                            'o.MONEY = If(row("MONEY") <> "", Decimal.Parse(row("MONEY")), Nothing)
+                            If cboCommendPay.SelectedValue <> "" Then
+                                o.COMMEND_PAY = cboCommendPay.SelectedValue
+                            End If
+                            o.ORG_ID = If(Not IsNumeric(row("ORG_ID")), Decimal.Parse(row("ORG_ID")), Nothing)
+                            o.TITLE_ID = If(row("TITLE_ID") <> "", Decimal.Parse(row("TITLE_ID")), Nothing)
+                            o.RATIO = If(Not IsDBNull(row("RATIO")), Decimal.Parse(row("RATIO")), Nothing)
+                            If Not IsDBNull(row("RATIO")) Then
+                                o.MONEY = If(IsNumeric(objCommend.MONEY), objCommend.MONEY, 0) / 100 * CDec(o.RATIO)
+                            Else
+                                o.MONEY = If(Not IsDBNull(row("MONEY")), Decimal.Parse(row("MONEY")), 0)
+                            End If
+
+                            If cboCommendObj.SelectedValue <> 389 Then
+                                objCommend.MONEY = o.MONEY
+                            End If
+                            lstCommendEmp.Add(o)
+                            'End If
+                        Next
+                        If lstCommendEmp.Count = 0 Then
+                            ShowMessage(Translate("Vui lòng chọn nhân viên trước khi lưu"), NotifyType.Warning)
+                            Exit Sub
+                        End If
+
+                        objCommend.COMMEND_EMP = lstCommendEmp
+                        'Else
+                        '    Dim ValidGrid2 As Tuple(Of Boolean, String)
+                        '    ValidGrid2 = ValidateGrid_Org()
+                        '    If ValidateGrid_Org.Item1 = False Then
+                        '        ShowMessage(ValidateGrid_Org.Item2, NotifyType.Warning)
+                        '        Exit Sub
+                        '    End If
+
+                        '    Dim dtrgOrg As DataTable = GetDataFromGrid(rgOrg)
+                        '    For Each row As DataRow In dtrgOrg.Rows
+                        '        If row("cbStatus") = 1 Then
+                        '            Dim o As New CommendOrgDTO
+                        '            o.GUID_ID = If(Not IsDBNull(row("GUID_ID")), row("GUID_ID"), "")
+                        '            o.MONEY = If(row("MONEY") <> "", Decimal.Parse(row("MONEY")), Nothing)
+                        '            o.COMMEND_PAY = If(row("COMMEND_PAY") <> "", Decimal.Parse(row("COMMEND_PAY")), Nothing)
+                        '            o.ORG_ID = row("ORG_ID")
+                        '            lstOrg.Add(o)
+                        '        End If
+                        '    Next
+
+                        '    'If lstOrg.Count = 0 Then
+                        '    '    ShowMessage(Translate("Vui lòng chọn phòng ban trước khi lưu"), NotifyType.Warning)
+                        '    '    Exit Sub
+                        '    'End If
+
+                        '    objCommend.LIST_COMMEND_ORG = lstOrg
+                        'End If
+
+                        If cboYear.SelectedValue IsNot Nothing Then
+                            objCommend.YEAR = cboYear.SelectedValue
+                        End If
                         Select Case CurrentState
                             Case CommonMessage.STATE_NEW
                                 If rep.InsertCommend(objCommend, gID) Then
@@ -759,6 +806,7 @@ Public Class ctrlHU_CommendNewEdit
                     employee.TITLE_NAME = emp.TITLE_NAME
                     employee.ORG_ID = emp.ORG_ID
                     employee.TITLE_ID = emp.TITLE_ID
+                    employee.RATIO = Nothing
 
                     If emp.TITLE_ID IsNot Nothing Then
                         Dim title = repNew.GetTitleID(emp.TITLE_ID)
@@ -780,6 +828,29 @@ Public Class ctrlHU_CommendNewEdit
                 Next
 
                 rgEmployee.Rebind()
+                If chkTyLe.Checked Then
+                    For Each item As GridDataItem In rgEmployee.EditItems
+                        If item.Edit = True Then
+
+                            Dim edit = CType(item, GridEditableItem)
+                            Dim rnRatio As RadNumericTextBox = CType(edit("RATIO").Controls(1), RadNumericTextBox)
+                            Dim rnMoney As RadNumericTextBox = CType(edit("MONEY").Controls(1), RadNumericTextBox)
+                            rnRatio.Enabled = True
+                            rnMoney.Enabled = False
+                        End If
+                    Next
+                Else
+                    For Each item As GridDataItem In rgEmployee.EditItems
+                        If item.Edit = True Then
+
+                            Dim edit = CType(item, GridEditableItem)
+                            Dim rnRatio As RadNumericTextBox = CType(edit("RATIO").Controls(1), RadNumericTextBox)
+                            Dim rnMoney As RadNumericTextBox = CType(edit("MONEY").Controls(1), RadNumericTextBox)
+                            rnRatio.Enabled = False
+                            rnMoney.Enabled = True
+                        End If
+                    Next
+                End If
             End If
             'rep.Dispose()
             isLoadPopup = 0
@@ -853,6 +924,8 @@ Public Class ctrlHU_CommendNewEdit
         Dim rep As New ProfileRepository
 
         Try
+            'rgEmployee.DataSource = Nothing
+            'rgEmployee.Rebind()
             If CurrentState = CommonMessage.STATE_EDIT Or CurrentState = CommonMessage.STATE_NEW Then
                 validate.ID = cboCommendObj.SelectedValue
                 validate.ACTFLG = "A"
@@ -860,6 +933,19 @@ Public Class ctrlHU_CommendNewEdit
                 bResult = rep.ValidateOtherList(validate)
             End If
 
+            If cboCommendObj.SelectedValue = 389 Then
+                chkTyLe.Enabled = True
+                rgEmployee.Enabled = True
+                ctrlFindEmpImportPopup.MultiSelect = True
+
+            Else
+                chkTyLe.Checked = False
+                chkTyLe.Enabled = False
+                ctrlFindEmpImportPopup.MultiSelect = False
+                For Each i As GridItem In rgEmployee.Items
+                    i.Edit = False
+                Next
+            End If
             If Not bResult Then
                 ListComboData.GET_COMMEND_OBJ = True
                 rep.GetComboList(ListComboData)
@@ -870,7 +956,8 @@ Public Class ctrlHU_CommendNewEdit
             End If
             rep.Dispose()
             VisibleGridview(cboCommendObj.SelectedIndex)
-
+            rgEmployee.DataSource = Nothing
+            rgEmployee.Rebind()
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
             _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
@@ -973,7 +1060,7 @@ Public Class ctrlHU_CommendNewEdit
     '        End If
     '        Dim TotalMoneyEmp As Decimal = 0
     '        For Each i As GridDataItem In rgEmployee.Items
-    '            TotalMoneyEmp += Utilities.ObjToDecima(CType(i("MONEY").Controls(0), RadNumericTextBox).Value)
+    '            TotalMoneyEmp += Utilities.ObjToDecima(CType(i("MONEY").Controls(1), RadNumericTextBox).Value)
     '        Next
     '        args.IsValid = totalMoney = TotalMoneyEmp
     '    Catch ex As Exception
@@ -986,18 +1073,18 @@ Public Class ctrlHU_CommendNewEdit
     ''' <param name="sender"></param>
     ''' <param name="e"></param>
     ''' <remarks></remarks>
-    Private Sub rdEffectDate_SelectedDateChanged(sender As Object, e As Telerik.Web.UI.Calendar.SelectedDateChangedEventArgs) Handles rdEffectDate.SelectedDateChanged
-        Dim startTime As DateTime = DateTime.UtcNow
-        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+    'Private Sub rdEffectDate_SelectedDateChanged(sender As Object, e As Telerik.Web.UI.Calendar.SelectedDateChangedEventArgs) Handles rdEffectDate.SelectedDateChanged
+    '    Dim startTime As DateTime = DateTime.UtcNow
+    '    Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
 
-        Try
-            Get_Infor_Period()
+    '    Try
+    '        Get_Infor_Period()
 
-            _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
-        Catch ex As Exception
-            _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
-        End Try
-    End Sub
+    '        _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
+    '    Catch ex As Exception
+    '        _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
+    '    End Try
+    'End Sub
 
     ''' <lastupdate>11/07/2017</lastupdate>
     ''' <summary>Xử lý sự kiện set properties cho row cua grid Employee</summary>
@@ -1016,22 +1103,28 @@ Public Class ctrlHU_CommendNewEdit
                     Dim edit = CType(e.Item, GridEditableItem)
                     Dim item As GridDataItem = CType(e.Item, GridDataItem)
 
-                    Dim cbCommend_Pay As New RadComboBox
-                    cbCommend_Pay = CType(edit.FindControl("cbCommend_Pay"), RadComboBox)
-
+                    Dim rnRatio As New RadNumericTextBox
+                    Dim rnMoney As New RadNumericTextBox
+                    rnRatio = CType(edit("RATIO").Controls(1), RadNumericTextBox)
+                    rnMoney = CType(edit("MONEY").Controls(1), RadNumericTextBox)
                     'hinh thức khen thưởng
-                    Dim payData As DataTable
-                    payData = rep.GetOtherList("COMMEND_PAY", True)
-                    If cbCommend_Pay IsNot Nothing Then
-                        FillRadCombobox(cbCommend_Pay, payData, "NAME", "ID", False)
-                    End If
-
                     SetDataToGrid(edit)
+
+                    If chkTyLe.Checked Then
+                        rnRatio.Enabled = True
+                        rnMoney.Enabled = False
+                    Else
+                        rnRatio.Enabled = False
+                        rnMoney.Enabled = True
+                    End If
                     'cbCommend_Pay.Dispose()
                     rep.Dispose()
                     edit.Dispose()
                     item.Dispose()
+
                 End If
+
+
                 If dtData IsNot Nothing Then dtData.Dispose()
             Catch ex As Exception
                 DisplayException(Me.ViewName, Me.ID, ex)
@@ -1179,12 +1272,17 @@ Public Class ctrlHU_CommendNewEdit
 
                     Dim shareEmp = Decimal.Round(rntxtMoney.Value / countEmp)
                     For Each item As GridDataItem In rgEmployee.Items
-                        CType(item("MONEY").Controls(0), RadNumericTextBox).Value = shareEmp
+                        CType(item("MONEY").Controls(1), RadNumericTextBox).Value = shareEmp
                     Next
 
                 Case "FindEmployee"
                     isLoadPopup = 1
                     UpdateControlState()
+                    If cboCommendObj.SelectedValue = 389 Then
+                        ctrlFindEmployeePopup.MultiSelect = True
+                    Else
+                        ctrlFindEmployeePopup.MultiSelect = False
+                    End If
                     ctrlFindEmployeePopup.Show()
 
                 Case "FindEmployeeImport"
@@ -1411,7 +1509,26 @@ Public Class ctrlHU_CommendNewEdit
         End Try
     End Sub
 
+    Private Sub cboYear_SelectedIndexChanged(sender As Object, e As Telerik.Web.UI.RadComboBoxSelectedIndexChangedEventArgs) Handles cboYear.SelectedIndexChanged
+        Dim startTime As DateTime = DateTime.UtcNow
+        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
 
+        Try
+            cboPeriod.ClearValue()
+            cboPeriodTax.ClearValue()
+            If cboYear.SelectedValue <> "" Then
+                Dim dtData As New DataTable
+                dtData = psp.Get_Commend_Period(True, cboYear.SelectedValue)
+                FillRadCombobox(cboPeriod, dtData, "NAME", "ID")
+                If chkTAX.Checked Then
+                    FillRadCombobox(cboPeriodTax, dtData, "NAME", "ID")
+                End If
+            End If
+            _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
+        Catch ex As Exception
+            _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
+        End Try
+    End Sub
 
     ''' <lastupdate>11/07/2017</lastupdate>
     ''' <summary>Load dữ liệu cho grid ORG</summary>
@@ -1485,7 +1602,18 @@ Public Class ctrlHU_CommendNewEdit
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
 
         Try
-            Get_Infor_Period()
+            If chkTAX.Checked Then
+                cboPeriodTax.Enabled = True
+                cboPeriodTax.ClearValue()
+                If cboYear.SelectedValue IsNot Nothing Then
+                    Dim dtData As New DataTable
+                    dtData = psp.Get_Commend_Period(True, cboYear.SelectedValue)
+                    FillRadCombobox(cboPeriodTax, dtData, "NAME", "ID", False)
+                End If
+            Else
+                cboPeriodTax.Enabled = False
+                cboPeriodTax.ClearValue()
+            End If
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
             _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
@@ -2124,6 +2252,49 @@ Public Class ctrlHU_CommendNewEdit
         dtTemp.AcceptChanges()
     End Sub
 
+    Private Sub chkTyLe_CheckedChanged(sender As Object, e As System.EventArgs) Handles chkTyLe.CheckedChanged
+        Dim startTime As DateTime = DateTime.UtcNow
+        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+
+        Try
+            rntxtMoney.ClearValue()
+            If chkTyLe.Checked Then
+                rntxtMoney.Enabled = True
+                For Each item As GridDataItem In rgEmployee.EditItems
+                    If item.Edit = True Then
+
+                        Dim edit = CType(item, GridEditableItem)
+                        Dim rnRatio As RadNumericTextBox = CType(edit("RATIO").Controls(1), RadNumericTextBox)
+                        Dim rnMoney As RadNumericTextBox = CType(edit("MONEY").Controls(1), RadNumericTextBox)
+                        rnRatio.ClearValue()
+                        rnMoney.ClearValue()
+                        rnRatio.Enabled = True
+                        rnMoney.Enabled = False
+                    End If
+                Next
+            Else
+                rntxtMoney.Enabled = False
+                For Each item As GridDataItem In rgEmployee.EditItems
+                    If item.Edit = True Then
+
+                        Dim edit = CType(item, GridEditableItem)
+                        Dim rnRatio As RadNumericTextBox = CType(edit("RATIO").Controls(1), RadNumericTextBox)
+                        Dim rnMoney As RadNumericTextBox = CType(edit("MONEY").Controls(1), RadNumericTextBox)
+                        rnRatio.ClearValue()
+                        rnMoney.ClearValue()
+                        rnRatio.Enabled = False
+                        rnMoney.Enabled = True
+                    End If
+                Next
+            End If
+            _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
+        Catch ex As Exception
+            _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
+        End Try
+
+
+    End Sub
+
 #End Region
 
 #Region "Custom"
@@ -2154,6 +2325,15 @@ Public Class ctrlHU_CommendNewEdit
             If FindEmployeeImport.Controls.Contains(ctrlFindEmpImportPopup) Then
                 FindEmployeeImport.Controls.Remove(ctrlFindEmpImportPopup)
                 'Me.Views.Remove(ctrlFindSigner.ID.ToUpper)
+            End If
+
+            If cboCommendObj.SelectedValue = 389 Then
+                chkTyLe.Enabled = True
+            Else
+                chkTyLe.Checked = False
+                chkTyLe.Enabled = False
+                rntxtMoney.ClearValue()
+                rntxtMoney.Enabled = False
             End If
 
             Select Case isLoadPopup
@@ -2245,18 +2425,13 @@ Public Class ctrlHU_CommendNewEdit
             FillRadCombobox(cboCommend_Title, titleCommend, "NAME", "ID", False)
 
             'get loai khen thuong
-            'Dim categoryData As DataTable
-            'categoryData = rep.GetOtherList("COMMEND_CATEGORY", True)
-            'FillRadCombobox(cboCommendList, categoryData, "NAME", "ID", False)
+            dtData = rep.GetOtherList("COMMEND_CATEGORY", True)
+            FillRadCombobox(cboCommendList, dtData, "NAME", "ID", False)
 
             'thong NGUON CHI
-            Dim powerpayData As DataTable
             '  powerpayData = psp.Get_Commend_PowerPay(True)
-            ' powerpayData = rep.GetOtherList("POWER_PAY", True)
-            ' FillRadCombobox(cboPowerPay, powerpayData, "NAME", "ID", False)
-
-            powerpayData = psp.Get_PAY_POWER(True, Date.Now.Year)
-            ' FillRadCombobox(cboPowerPay, powerpayData, "NAME", "ID", False)
+            dtData = rep.GetOtherList("RC_POWER_PAY", True)
+            FillRadCombobox(cboPowerPay, dtData, "NAME", "ID", False)
 
             'hinh thức khen thưởng
             Dim listCommend As DataTable
@@ -2269,6 +2444,9 @@ Public Class ctrlHU_CommendNewEdit
             levelCommend = psp.Get_Commend_Level(True)
             FillRadCombobox(cboCommendLevel, levelCommend, "NAME", "ID", False)
 
+            'LOAD NAM
+            dtData = psp.Get_Year_Of_Period(True)
+            FillRadCombobox(cboYear, dtData, "YEAR", "ID", False)
             'load bieu mau
             'Dim formData As DataTable
             'formData = rep.GetOtherList("FORM_COMMEND", True)
@@ -2309,7 +2487,7 @@ Public Class ctrlHU_CommendNewEdit
                                          btnFindSinger, txtSignerTitle, cboCommendObj, cboCommend_Title,
                                          cboCommendType, cboCommendPay, rntxtMoney,
                                          cboPeriod, chkTAX, cboPeriodTax, txtCommend_Detail, txtRemark, cboCommendLevel,
-                                         txtYear)
+                                         cboYear)
                         Utilities.EnabledGrid(rgEmployee, False, False)
                         Utilities.EnabledGrid(rgOrg, False, False)
                         EnableControlAll(True, btnDownload, btnUploadFile)
@@ -2349,30 +2527,30 @@ Public Class ctrlHU_CommendNewEdit
     ''' <lastupdate>11/07/2017</lastupdate>
     ''' <summary>Lấy thông tin kỳ lương</summary>
     ''' <remarks></remarks>
-    Private Sub Get_Infor_Period()
-        Dim startTime As DateTime = DateTime.UtcNow
-        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+    'Private Sub Get_Infor_Period()
+    '    Dim startTime As DateTime = DateTime.UtcNow
+    '    Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
 
-        Try
-            If rdEffectDate.SelectedDate IsNot Nothing Then
-                Dim periodData As DataTable
-                periodData = psp.Get_Commend_Period(True, rdEffectDate.SelectedDate.Value.Year)
-                FillRadCombobox(cboPeriod, periodData, "NAME", "ID", False)
+    '    Try
+    '        If rdEffectDate.SelectedDate IsNot Nothing Then
+    '            Dim periodData As DataTable
+    '            periodData = psp.Get_Commend_Period(True, rdEffectDate.SelectedDate.Value.Year)
+    '            FillRadCombobox(cboPeriod, periodData, "NAME", "ID", False)
 
-                If chkTAX.Checked Then
-                    Dim periodTaxData As DataTable
-                    periodTaxData = psp.Get_Commend_Period(True, rdEffectDate.SelectedDate.Value.Year)
-                    FillRadCombobox(cboPeriodTax, periodTaxData, "NAME", "ID", False)
-                Else
-                    cboPeriodTax.ClearSelection()
-                End If
-            End If
+    '            If chkTAX.Checked Then
+    '                Dim periodTaxData As DataTable
+    '                periodTaxData = psp.Get_Commend_Period(True, rdEffectDate.SelectedDate.Value.Year)
+    '                FillRadCombobox(cboPeriodTax, periodTaxData, "NAME", "ID", False)
+    '            Else
+    '                cboPeriodTax.ClearSelection()
+    '            End If
+    '        End If
 
-            _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
-        Catch ex As Exception
-            _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
-        End Try
-    End Sub
+    '        _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
+    '    Catch ex As Exception
+    '        _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
+    '    End Try
+    'End Sub
 
     ''' <lastupdate>11/07/2017</lastupdate>
     ''' <summary>Set trạng thái hiển thị cho các grid</summary>
@@ -2383,13 +2561,14 @@ Public Class ctrlHU_CommendNewEdit
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
 
         Try
-            If cboCommendObj.SelectedIndex = 0 Then
-                rgOrg.Visible = False
-                rgEmployee.Visible = True
-            Else
-                rgOrg.Visible = True
-                rgEmployee.Visible = False
-            End If
+            'If cboCommendObj.SelectedIndex = 0 Then
+            '    rgOrg.Visible = False
+            '    rgEmployee.Visible = True
+            'Else
+            '    rgOrg.Visible = True
+            '    rgEmployee.Visible = False
+            'End If
+            rgOrg.Visible = False
 
             'danh hieu khen thuong
             Dim titleCommend As DataTable
@@ -2742,7 +2921,7 @@ Public Class ctrlHU_CommendNewEdit
                             End If
                             Continue For
                         End If
-                        If InStr(",COMMEND_PAY,MONEY,", "," + col.UniqueName + ",") > 0 Then
+                        If InStr(",COMMEND_PAY,MONEY,RATIO,", "," + col.UniqueName + ",") > 0 Then
                             Select Case Item(col.UniqueName).Controls(1).ID.ToString.Substring(0, 2)
                                 Case "cb"
                                     Dr(col.UniqueName) = CType(Item.FindControl(Item(col.UniqueName).Controls(1).ID.ToString), RadComboBox).SelectedValue
@@ -2792,7 +2971,7 @@ Public Class ctrlHU_CommendNewEdit
                 Catch ex As Exception
                 End Try
                 Try
-                    If InStr(",COMMEND_PAY,MONEY,", "," + col.UniqueName + ",") > 0 Then
+                    If InStr(",COMMEND_PAY,MONEY,RATIO,", "," + col.UniqueName + ",") > 0 Then
                         Select Case EditItem(col.UniqueName).Controls(1).ID.ToString.Substring(0, 2)
                             Case "cb"
                                 CType(EditItem.FindControl(EditItem(col.UniqueName).Controls(1).ID.ToString), RadComboBox).ClearSelection()
@@ -2803,7 +2982,11 @@ Public Class ctrlHU_CommendNewEdit
                                 radNumber.ClearValue()
                                 radNumber.NumberFormat.AllowRounding = False
                                 radNumber.NumberFormat.DecimalDigits = 2
-                                radNumber.Text = rowData.MONEY.ToString()
+                                If col.UniqueName = "MONEY" Then
+                                    radNumber.Text = Decimal.Parse(rowData.MONEY)
+                                Else
+                                    radNumber.Value = Decimal.Parse(rowData.RATIO)
+                                End If
                         End Select
                     Else
                         Continue For
@@ -2868,5 +3051,7 @@ Public Class ctrlHU_CommendNewEdit
         End Try
     End Sub
 #End Region
+
+
 
 End Class

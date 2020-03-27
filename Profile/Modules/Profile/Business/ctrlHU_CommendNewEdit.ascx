@@ -62,7 +62,7 @@
                     <asp:Label runat="server" ID="lbEffectDate" Text="Ngày hiệu lực"></asp:Label>
                 </td>
                 <td>
-                    <tlk:RadDatePicker ID="rdEffectDate" runat="server" AutoPostBack="true" TabIndex="3">
+                    <tlk:RadDatePicker ID="rdEffectDate" runat="server" TabIndex="3">
                     </tlk:RadDatePicker>
                     <asp:RequiredFieldValidator ID="reqEffectDate" ControlToValidate="rdEffectDate" runat="server"
                         ErrorMessage="Bạn phải nhập ngày hiệu lực." ToolTip="Bạn phải nhập ngày hiệu lực."> 
@@ -82,25 +82,26 @@
                     <asp:Label runat="server" ID="lbDecisionNo" Text="Số quyết định"></asp:Label>
                 </td>
                 <td>
-                    <tlk:RadTextBox ID="txtDecisionNo" runat="server" TabIndex="3" AutoPostBack="true">
+                    <tlk:RadTextBox ID="txtDecisionNo" runat="server" TabIndex="3" AutoPostBack="true"
+                        CausesValidation="false">
                     </tlk:RadTextBox>
                     <asp:RequiredFieldValidator ID="RequiredFieldValidator5" ControlToValidate="txtDecisionNo"
-                        runat="server" ErrorMessage="<%$ Translate: Bạn phải nhập số quyết định. %>" ToolTip="<%$ Translate: Bạn phải nhập số quyết định. %>"> </asp:RequiredFieldValidator>
+                        runat="server" ErrorMessage="<%$ Translate: Bạn phải nhập số quyết định. %>"
+                        ToolTip="<%$ Translate: Bạn phải nhập số quyết định. %>"> </asp:RequiredFieldValidator>
                 </td>
                 <td class="lb">
                     <asp:Label runat="server" ID="lbStatus" Text="Trạng thái"></asp:Label>
                 </td>
                 <td>
-                    <tlk:RadComboBox ID="cboStatus" runat="server" TabIndex="3" >
+                    <tlk:RadComboBox ID="cboStatus" runat="server" TabIndex="3">
                     </tlk:RadComboBox>
-                   <%-- <asp:CustomValidator ID="cvalStatus" runat="server" ErrorMessage="Bạn phải nhập trạng thái."
+                    <%-- <asp:CustomValidator ID="cvalStatus" runat="server" ErrorMessage="Bạn phải nhập trạng thái."
                         ToolTip="Bạn phải nhập trạng thái."> </asp:CustomValidator>
                     <asp:CustomValidator ID="cusStatus" ControlToValidate="cboStatus" runat="server"
                         ErrorMessage="Trạng thái không tồn tại hoặc đã ngừng áp dụng." ToolTip="Trạng thái không tồn tại hoặc đã ngừng áp dụng.">
                     </asp:CustomValidator>--%>
                     <asp:RequiredFieldValidator ID="RequiredFieldValidator6" ControlToValidate="cboStatus"
                         runat="server" ErrorMessage="<%$ Translate: Bạn phải chọn trạng thái %>" ToolTip="<%$ Translate: Bạn phải chọn trạng thái %>"> </asp:RequiredFieldValidator>
-              
                 </td>
             </tr>
             <tr>
@@ -108,17 +109,18 @@
                     <asp:Label runat="server" ID="lbSignDate" Text="Ngày ký"></asp:Label>
                 </td>
                 <td>
-                    <tlk:RadDatePicker ID="rdSignDate" runat="server" TabIndex="3" AutoPostBack="true">
+                    <tlk:RadDatePicker ID="rdSignDate" runat="server" TabIndex="3" AutoPostBack="true"
+                        CausesValidation="false">
                     </tlk:RadDatePicker>
                     <%--   <asp:RequiredFieldValidator ID="reqsigndate" ControlToValidate="rdSignDate" runat="server"
                         ErrorMessage="Bạn phải nhập ngày ký." ToolTip="Bạn phải nhập ngày ký."> 
                     </asp:RequiredFieldValidator>--%>
-                  <%--  <asp:CompareValidator ID="CompareValidator1" runat="server" ControlToValidate="rdEffectDate"
+                    <%--  <asp:CompareValidator ID="CompareValidator1" runat="server" ControlToValidate="rdEffectDate"
                         Type="Date" ControlToCompare="rdSignDate" Operator="GreaterThanEqual" ErrorMessage="Ngày hiệu lực phải lớn hơn Ngày ký"
                         ToolTip="Ngày hiệu lực phải lớn hơn Ngày ký"></asp:CompareValidator>--%>
-                          <asp:RequiredFieldValidator ID="RequiredFieldValidator3" ControlToValidate="rdEffectDate" runat="server"
-                       Type="Date" ControlToCompare="rdSignDate" Operator="GreaterThanEqual" ErrorMessage="Ngày hiệu lực phải lớn hơn Ngày ký"
-                        ToolTip="Ngày hiệu lực phải lớn hơn Ngày ký"> 
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator3" ControlToValidate="rdEffectDate"
+                        runat="server" Type="Date" ControlToCompare="rdSignDate" Operator="GreaterThanEqual"
+                        ErrorMessage="Ngày hiệu lực phải lớn hơn Ngày ký" ToolTip="Ngày hiệu lực phải lớn hơn Ngày ký"> 
                     </asp:RequiredFieldValidator>
                 </td>
                 <td class="lb">
@@ -159,44 +161,12 @@
                     <asp:CustomValidator ID="cvalCommendObj" runat="server" ErrorMessage="Bạn phải nhập đối tượng."
                         ToolTip="Bạn phải nhập đối tượng."> </asp:CustomValidator>
                 </td>
-                <%--<td class="lb">
+                <td class="lb">
                     <asp:Label runat="server" ID="lbPowerPay" Text="Nguồn chi"></asp:Label>
                 </td>
                 <td>
                     <tlk:RadComboBox ID="cboPowerPay" runat="server" CausesValidation="False" TabIndex="3">
-                    </tlk:RadComboBox>                   
-                </td>--%>
-                <td class="lb">
-                    <asp:Label runat="server" ID="lbCommend_Detail" Text="Lý do khen thưởng"></asp:Label>
-                </td>
-                <td colspan="5">
-                    <tlk:RadTextBox ID="txtCommend_Detail" runat="server" TextMode="MultiLine" Width="100%"
-                        TabIndex="3">
-                    </tlk:RadTextBox>
-                </td>
-                <td class="lb">
-                    <asp:Label runat="server" ID="lbYear" Text="Năm"></asp:Label>
-                </td>
-                <td>
-                    <tlk:RadTextBox ID="txtYear" runat="server" TabIndex="3">
-                        <ClientEvents OnKeyPress="keyPress" />
-                    </tlk:RadTextBox>
-                    <asp:RequiredFieldValidator ID="RequiredFieldValidator2" ControlToValidate="txtYear"
-                        runat="server" ErrorMessage="Bạn phải nhập năm khen thưởng" ToolTip="Bạn phải nhập năm khen thưởng"> </asp:RequiredFieldValidator>
-                </td>
-            </tr>
-            <tr>
-                <td class="lb">
-                    <asp:Label runat="server" ID="lbCommendType" Text="Hình thức khen thưởng"></asp:Label>
-                </td>
-                <td>
-                    <tlk:RadComboBox ID="cboCommendType" runat="server" CausesValidation="true" TabIndex="3" AutoPostBack="true">
                     </tlk:RadComboBox>
-                     <asp:RequiredFieldValidator ID="RequiredFieldValidator_cboCommendType" ControlToValidate="cboCommendType"
-                        runat="server" ErrorMessage="<%$ Translate: Bạn phải chọn Hình thức khen thưởng %>" ToolTip="<%$ Translate: Bạn phải chọn Hình thức khen thưởng %>"> </asp:RequiredFieldValidator>
-                 <%--   <asp:CustomValidator ID="cusCommendType" ControlToValidate="cboCommendType" runat="server"
-                        ErrorMessage="Hình thức khen thưởng không tồn tại hoặc đã ngừng áp dụng." ToolTip="Hình thức khen thưởng không tồn tại hoặc đã ngừng áp dụng.">
-                    </asp:CustomValidator>--%>
                 </td>
                 <td class="lb">
                     <asp:Label runat="server" ID="lbCommend_Title" Text="Danh hiệu khen thưởng"></asp:Label>
@@ -208,6 +178,58 @@
                         runat="server" ErrorMessage="Bạn phải chọn Danh hiệu khen thưởng" ToolTip="Bạn phải chọn Danh hiệu khen thưởng"> </asp:RequiredFieldValidator>
                     <asp:CustomValidator ID="cusCommend_Title" ControlToValidate="cboCommend_Title" runat="server"
                         ErrorMessage="Danh hiệu khen thưởng không tồn tại hoặc đã ngừng áp dụng." ToolTip="Danh hiệu khen thưởng không tồn tại hoặc đã ngừng áp dụng.">
+                    </asp:CustomValidator>
+                </td>
+            </tr>
+            <tr>
+                <td class="lb">
+                    <asp:Label runat="server" ID="lbCommendType" Text="Hình thức khen thưởng"></asp:Label>
+                </td>
+                <td>
+                    <tlk:RadComboBox ID="cboCommendType" runat="server" CausesValidation="false" TabIndex="3"
+                        AutoPostBack="true">
+                    </tlk:RadComboBox>
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator_cboCommendType" ControlToValidate="cboCommendType"
+                        runat="server" ErrorMessage="<%$ Translate: Bạn phải chọn Hình thức khen thưởng %>"
+                        ToolTip="<%$ Translate: Bạn phải chọn Hình thức khen thưởng %>"> 
+                    </asp:RequiredFieldValidator>
+                    <%--   <asp:CustomValidator ID="cusCommendType" ControlToValidate="cboCommendType" runat="server"
+                        ErrorMessage="Hình thức khen thưởng không tồn tại hoặc đã ngừng áp dụng." ToolTip="Hình thức khen thưởng không tồn tại hoặc đã ngừng áp dụng.">
+                    </asp:CustomValidator>--%>
+                </td>
+                <td class="lb">
+                    <asp:Label runat="server" ID="lbCommendPay" Text="Hình thức trả thưởng"></asp:Label>
+                </td>
+                <td>
+                    <tlk:RadComboBox ID="cboCommendPay" runat="server" CausesValidation="False" TabIndex="3">
+                    </tlk:RadComboBox>
+                    <asp:CustomValidator ID="cusCommendPay" ControlToValidate="cboCommendPay" runat="server"
+                        ErrorMessage="Hình thức trả thưởng không tồn tại hoặc đã ngừng áp dụng." ToolTip="Hình thức trả thưởng không tồn tại hoặc đã ngừng áp dụng.">
+                    </asp:CustomValidator>
+                </td>
+                <td class="lb">
+                    <asp:Label runat="server" ID="lbMoney"  Text="Số tiền (Tổng mức thưởng)"></asp:Label>
+                </td>
+                <td>
+                    <tlk:RadNumericTextBox ID="rntxtMoney"  onchange ="javascript:Set_Money(this);"  runat="server" TabIndex="3">
+                        <NumberFormat ZeroPattern="n" DecimalDigits="0"></NumberFormat>
+                    </tlk:RadNumericTextBox>
+                    <asp:CustomValidator ID="cvalMoney" runat="server" ErrorMessage="Bạn phải nhập số tiền phải >= 0."
+                        ToolTip="Bạn phải nhập số tiền phải >= 0.">
+                    </asp:CustomValidator>
+                    <%-- <asp:CustomValidator ID="cvalTotal" runat="server" ErrorMessage="Tổng số tiền của nhân viên phải bằng số tiền thưởng">
+                    </asp:CustomValidator>--%>
+                </td>
+            </tr>
+            <tr>
+                <td class="lb">
+                    <asp:Label runat="server" ID="lbCommendList" Text="Loại khen thưởng"></asp:Label>
+                </td>
+                <td>
+                    <tlk:RadComboBox ID="cboCommendList" runat="server" CausesValidation="False" TabIndex="3">
+                    </tlk:RadComboBox>
+                    <asp:CustomValidator ID="cusCommendList" ControlToValidate="cboCommendList" runat="server"
+                        ErrorMessage="Loại khen thưởng không tồn tại hoặc đã ngừng áp dụng." ToolTip="Loại khen thưởng không tồn tại hoặc đã ngừng áp dụng.">
                     </asp:CustomValidator>
                 </td>
                 <td class="lb">
@@ -223,45 +245,26 @@
                     </asp:CustomValidator>
                 </td>
                 <td class="lb">
-                    <asp:Label runat="server" ID="lbCommendPay" Text="Hình thức trả thưởng"></asp:Label>
+                    <asp:Label runat="server" ID="lbCommend_Detail" Text="Lý do khen thưởng"></asp:Label>
                 </td>
-                <td>
-                    <tlk:RadComboBox ID="cboCommendPay" runat="server" CausesValidation="False" TabIndex="3">
-                    </tlk:RadComboBox>
-                    <asp:CustomValidator ID="cusCommendPay" ControlToValidate="cboCommendPay" runat="server"
-                        ErrorMessage="Hình thức trả thưởng không tồn tại hoặc đã ngừng áp dụng." ToolTip="Hình thức trả thưởng không tồn tại hoặc đã ngừng áp dụng.">
-                    </asp:CustomValidator>
-                </td>
-                <td class="lb">
-                    <asp:Label runat="server" ID="lbMoney" Text="Mức thưởng"></asp:Label>
-                </td>
-                <td>
-                    <tlk:RadNumericTextBox ID="rntxtMoney" runat="server" TabIndex="3">
-                        <NumberFormat ZeroPattern="n" DecimalDigits="0"></NumberFormat>
-                    </tlk:RadNumericTextBox>
-                    <asp:CustomValidator ID="cvalMoney" runat="server" ErrorMessage="Bạn phải nhập số tiền phải >= 0."
-                        ToolTip="Bạn phải nhập số tiền phải >= 0.">
-                    </asp:CustomValidator>
-                    <%-- <asp:CustomValidator ID="cvalTotal" runat="server" ErrorMessage="Tổng số tiền của nhân viên phải bằng số tiền thưởng">
-                    </asp:CustomValidator>--%>
+                <td colspan="3">
+                    <tlk:RadTextBox ID="txtCommend_Detail" runat="server" TextMode="MultiLine" Width="100%"
+                        TabIndex="3">
+                    </tlk:RadTextBox>
                 </td>
             </tr>
-            <%--<tr>
-                <td class="lb">
-                    <asp:Label runat="server" ID="lbCommendList" Text="Loại khen thưởng"></asp:Label>
-                </td>
-                <td>
-                    <tlk:RadComboBox ID="cboCommendList" runat="server" CausesValidation="False" TabIndex="3">
-                    </tlk:RadComboBox>  
-                    <asp:CustomValidator ID="cusCommendList" ControlToValidate="cboCommendList" runat="server" 
-                        ErrorMessage="Loại khen thưởng không tồn tại hoặc đã ngừng áp dụng."
-                        ToolTip="Loại khen thưởng không tồn tại hoặc đã ngừng áp dụng.">
-                    </asp:CustomValidator>             
-                </td>       
-            </tr>--%>
             <tr>
                 <td class="lb">
-                    <asp:Label runat="server" ID="lbPeriod" Text="Kỳ lương"></asp:Label>
+                    <asp:Label runat="server" ID="lbYear" Text="Năm chi trả thưởng"></asp:Label>
+                </td>
+                <td>
+                    <tlk:RadComboBox runat="server" ID="cboYear" AutoPostBack="true" CausesValidation="false">
+                    </tlk:RadComboBox>
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator2" ControlToValidate="cboYear"
+                        runat="server" ErrorMessage="Bạn phải chọn năm khen thưởng" ToolTip="Bạn phải chọn năm khen thưởng"> </asp:RequiredFieldValidator>
+                </td>
+                <td class="lb">
+                    <asp:Label runat="server" ID="lbPeriod" Text="Kỳ lương chi trả"></asp:Label>
                 </td>
                 <td>
                     <tlk:RadComboBox ID="cboPeriod" runat="server" CausesValidation="False" TabIndex="3">
@@ -275,28 +278,27 @@
                         CausesValidation="false" AutoPostBack="true" TabIndex="3">
                     </tlk:RadButton>
                 </td>
+            </tr>
+            <tr>
                 <td class="lb">
                     <asp:Label runat="server" ID="lbPeriodTax" Text="Kỳ lương tính thuế"></asp:Label>
                 </td>
                 <td>
-                    <tlk:RadComboBox ID="cboPeriodTax" runat="server" CausesValidation="False" TabIndex="3">
+                    <tlk:RadComboBox ID="cboPeriodTax" Enabled="false" runat="server" CausesValidation="False"
+                        TabIndex="3">
                     </tlk:RadComboBox>
                 </td>
-            </tr>
-            <tr>
                 <td class="lb">
-                    <asp:Label runat="server" ID="lbRemark" Text="Nội dung khen thưởng"></asp:Label>
+                    <asp:Label runat="server" ID="lbRemark" Text="Ghi chú"></asp:Label>
                 </td>
-                <td colspan="7">
+                <td>
                     <tlk:RadTextBox ID="txtRemark" runat="server" TextMode="MultiLine" Width="100%" TabIndex="3">
                     </tlk:RadTextBox>
                 </td>
-            </tr>
-            <tr>
                 <td class="lb">
                     <asp:Label runat="server" ID="lbUploadFile" Text="Tập tin đính kèm"></asp:Label>
                 </td>
-                <td colspan="2">
+                <td>
                     <%--   <tlk:RadComboBox ID="cboUpload" runat="server" CheckBoxes="true" SkinID="number" Width="160px" TabIndex="3">
                     </tlk:RadComboBox>--%>
                     <tlk:RadTextBox ID="txtUpload" ReadOnly="true" runat="server" Width="130px">
@@ -307,6 +309,13 @@
                         TabIndex="3" />
                     <tlk:RadButton ID="btnDownload" runat="server" Text="Tải xuống" CausesValidation="false"
                         OnClientClicked="rbtClicked" TabIndex="3" EnableViewState="false">
+                    </tlk:RadButton>
+                </td>
+                <td class="lb">
+                    <asp:Label runat="server" ID="lbTyLe" Text="Tính theo tỷ lệ"></asp:Label>
+                </td>
+                <td>
+                    <tlk:RadButton ToggleType="CheckBox" Enabled="false" AutoPostBack="true" CausesValidation="false"  runat="server" ID="chkTyLe" ButtonType="ToggleButton" TabIndex="3">
                     </tlk:RadButton>
                 </td>
                 <%--<td class="lb">
@@ -326,7 +335,7 @@
                 <td class="lb">
                     <asp:Label runat="server" ID="lbCommendContent" Text="Nội dung khen thưởng"></asp:Label>
                 </td>
-                <td colspan="7">
+                <td colspan="6">
                     <tlk:RadTextBox ID="RadTextBox1" runat="server" TextMode="MultiLine" Width="100%"
                         TabIndex="3">
                     </tlk:RadTextBox>
@@ -349,11 +358,11 @@
                 </td>
             </tr>
         </table>
-        <tlk:RadGrid ID="rgEmployee" AllowPaging="false" AllowMultiRowEdit="true" runat="server" Height="200px">
+        <tlk:RadGrid ID="rgEmployee" AllowPaging="false" AllowMultiRowEdit="true" runat="server" Height="300px">
             <GroupingSettings CaseSensitive="false" />
-            <MasterTableView EditMode="InPlace" EditFormSettings-EditFormType="AutoGenerated" AllowPaging="false" AllowCustomPaging="false"
-                DataKeyNames="HU_COMMEND_ID,HU_EMPLOYEE_ID,EMPLOYEE_CODE,ORG_ID,TITLE_ID,FULLNAME,TITLE_NAME,ORG_NAME,COMMEND_PAY,MONEY,COMMEND_PAY_NAME,GUID_ID"
-                ClientDataKeyNames="HU_COMMEND_ID,HU_EMPLOYEE_ID,EMPLOYEE_CODE,ORG_ID,TITLE_ID,FULLNAME,TITLE_NAME,ORG_NAME,COMMEND_PAY,MONEY,COMMEND_PAY_NAME,GUID_ID"
+            <MasterTableView EditMode="InPlace" EditFormSettings-EditFormType="AutoGenerated"
+                AllowPaging="false" AllowCustomPaging="false" DataKeyNames="HU_COMMEND_ID,HU_EMPLOYEE_ID,EMPLOYEE_CODE,ORG_ID,TITLE_ID,FULLNAME,TITLE_NAME,ORG_NAME,COMMEND_PAY,MONEY,COMMEND_PAY_NAME,GUID_ID,RATIO"
+                ClientDataKeyNames="HU_COMMEND_ID,HU_EMPLOYEE_ID,EMPLOYEE_CODE,ORG_ID,TITLE_ID,FULLNAME,TITLE_NAME,ORG_NAME,COMMEND_PAY,MONEY,COMMEND_PAY_NAME,GUID_ID,RATIO"
                 CommandItemDisplay="Top">
                 <CommandItemStyle Height="25px" />
                 <CommandItemTemplate>
@@ -393,22 +402,38 @@
                         HeaderStyle-Width="200px" ReadOnly="true" SortExpression="FULLNAME" />
                     <tlk:GridBoundColumn HeaderText="Phòng ban" DataField="ORG_NAME" UniqueName="ORG_NAME"
                         HeaderStyle-Width="200px" ReadOnly="true" SortExpression="ORG_NAME" />
-                    <tlk:GridTemplateColumn HeaderText="Hình thức trả thưởng" HeaderStyle-Width="200px"
+                    <tlk:GridBoundColumn HeaderText="Vị trí công việc" DataField="TITLE_NAME" UniqueName="TITLE_NAME"
+                        HeaderStyle-Width="200px" ReadOnly="true" SortExpression="TITLE_NAME" />
+                    <%--<tlk:GridTemplateColumn HeaderText="Hình thức trả thưởng" HeaderStyle-Width="200px"
                         UniqueName="COMMEND_PAY">
                         <ItemTemplate>
-                                <%# DataBinder.Eval(Container.DataItem, "COMMEND_PAY_NAME")%>
+                            <%# DataBinder.Eval(Container.DataItem, "COMMEND_PAY_NAME")%>
                         </ItemTemplate>
                         <EditItemTemplate>
                             <tlk:RadComboBox Width="160px" runat="server" ID="cbCommend_Pay" AutoPostBack="true"
                                 OnSelectedIndexChanged="cbCommend_Pay_SelectedIndexChanged">
                             </tlk:RadComboBox>
                         </EditItemTemplate>
-                    </tlk:GridTemplateColumn>
-                    <tlk:GridTemplateColumn HeaderText="Mức thưởng" HeaderStyle-Width="100px" UniqueName="MONEY" DataField="MONEY"
-                        ColumnGroupName="WorkingNEW">
+                    </tlk:GridTemplateColumn>--%>
+                    <tlk:GridTemplateColumn HeaderText="Tỷ lệ trả thưởng" HeaderStyle-Width="100px" UniqueName="RATIO" DataField="RATIO"
+                         ColumnGroupName="RatioNew">
+                         <ItemTemplate>
+                            <%#DataBinder.Eval(Container.DataItem, "RATIO")%>
+                        </ItemTemplate>
                         <EditItemTemplate>
-                            <tlk:RadNumericTextBox SkinID="Money" DataFormatString="{0:N2}" Width="100px" runat="server"
-                                ID="rnMONEY" AutoPostBack="true" OnTextChanged="rnMONEY_TextChanged">
+                            <tlk:RadNumericTextBox SkinID="Decimal" DataFormatString="{0:N2}" Width="100px" Enabled="false" CssClass="txt_Ratio" runat="server"
+                                ID="rnRatio" onchange ="javascript:Calculate_Money(this);" >
+                            </tlk:RadNumericTextBox>
+                        </EditItemTemplate>
+                    </tlk:GridTemplateColumn>
+                    <tlk:GridTemplateColumn HeaderText="Mức thưởng" HeaderStyle-Width="100px" UniqueName="MONEY"
+                        DataField="MONEY" ColumnGroupName="WorkingNEW">
+                        <ItemTemplate>
+                            <%#DataBinder.Eval(Container.DataItem, "MONEY")%>
+                        </ItemTemplate>
+                        <EditItemTemplate>
+                            <tlk:RadNumericTextBox SkinID="Money" CssClass="txt_Money"  DataFormatString="{0:N2}" Width="100px" runat="server"
+                                ID="rnMONEY" >
                             </tlk:RadNumericTextBox>
                         </EditItemTemplate>
                     </tlk:GridTemplateColumn>
@@ -423,8 +448,8 @@
             Visible="false" Height="200px">
             <GroupingSettings CaseSensitive="false" />
             <MasterTableView EditMode="InPlace" AllowPaging="false" AllowCustomPaging="false"
-                DataKeyNames="ID,HU_COMMEND_ID,ORG_NAME,ORG_ID,COMMEND_PAY,MONEY,COMMEND_PAY_NAME,GUID_ID" 
-                ClientDataKeyNames="ID,HU_COMMEND_ID,ORG_NAME,ORG_ID,COMMEND_PAY,MONEY,COMMEND_PAY_NAME,GUID_ID"
+                DataKeyNames="ID,HU_COMMEND_ID,ORG_NAME,ORG_ID,COMMEND_PAY,MONEY,GUID_ID,RATIO"
+                ClientDataKeyNames="ID,HU_COMMEND_ID,ORG_NAME,ORG_ID,COMMEND_PAY,MONEY,GUID_ID,RATIO"
                 CommandItemDisplay="Top">
                 <CommandItemStyle Height="25px" />
                 <CommandItemTemplate>
@@ -449,7 +474,7 @@
                         HeaderStyle-Width="40px" ItemStyle-HorizontalAlign="Center">
                     </tlk:GridClientSelectColumn>
                     <tlk:GridBoundColumn DataField="GUID_ID" UniqueName="GUID_ID" SortExpression="GUID_ID"
-                        Visible="false"/>
+                        Visible="false" />
                     <tlk:GridBoundColumn DataField="ID" Visible="false" />
                     <tlk:GridBoundColumn DataField="HU_COMMEND_ID" UniqueName="HU_COMMEND_ID" SortExpression="HU_COMMEND_ID"
                         Visible="false" ReadOnly="true" ColumnGroupName="WorkingOLD" />
@@ -457,22 +482,32 @@
                         Visible="false" ReadOnly="true" ColumnGroupName="WorkingOLD" />
                     <tlk:GridBoundColumn HeaderText="Phòng ban" DataField="ORG_NAME" HeaderStyle-Width="200px"
                         ReadOnly="true" UniqueName="ORG_NAME" SortExpression="ORG_NAME" />
+                    
+                    <tlk:GridBoundColumn HeaderText="Vị trí công việc" DataField="TITLE_NAME" HeaderStyle-Width="200px"
+                        ReadOnly="true" UniqueName="TITLE_NAME" SortExpression="TITLE_NAME" />
                     <tlk:GridTemplateColumn HeaderText="Hình thức trả thưởng" HeaderStyle-Width="200px"
                         UniqueName="COMMEND_PAY">
                         <ItemTemplate>
-                                <%# DataBinder.Eval(Container.DataItem, "COMMEND_PAY_NAME")%>
+                            <%# DataBinder.Eval(Container.DataItem, "COMMEND_PAY_NAME")%>
                         </ItemTemplate>
                         <EditItemTemplate>
-                            <tlk:RadComboBox runat="server" ID="cbCommend_PayORG" AutoPostBack="true"
-                                OnSelectedIndexChanged="cbCommend_PayORG_SelectedIndexChanged">
+                            <tlk:RadComboBox runat="server" ID="cbCommend_PayORG" AutoPostBack="true" OnSelectedIndexChanged="cbCommend_PayORG_SelectedIndexChanged">
                             </tlk:RadComboBox>
                         </EditItemTemplate>
                     </tlk:GridTemplateColumn>
-                    <tlk:GridTemplateColumn HeaderText="Mức thưởng" HeaderStyle-Width="150px" UniqueName="MONEY"
+                    <tlk:GridTemplateColumn HeaderText="Tỷ lệ trả thưởng" HeaderStyle-Width="150px" UniqueName="RATIO" DataField="RATIO"
+                        ColumnGroupName="RatioNew">
+                        <EditItemTemplate>
+                            <tlk:RadNumericTextBox SkinID="Decimal" DataFormatString="{0:N2}" Width="150px" runat="server"
+                                ID="rnRatio" Enabled="false">
+                            </tlk:RadNumericTextBox>
+                        </EditItemTemplate>
+                    </tlk:GridTemplateColumn>
+                    <tlk:GridTemplateColumn HeaderText="Mức thưởng" HeaderStyle-Width="150px" UniqueName="MONEY" DataField="MONEY"
                         ColumnGroupName="WorkingNEW">
                         <EditItemTemplate>
                             <tlk:RadNumericTextBox SkinID="Money" DataFormatString="{0:N2}" Width="150px" runat="server"
-                                ID="rnMONEY_ORG" AutoPostBack="true" OnTextChanged="rnMONEY_ORG_TextChanged">
+                                ID="rnMONEY_ORG" Enabled="false">
                             </tlk:RadNumericTextBox>
                         </EditItemTemplate>
                     </tlk:GridTemplateColumn>
@@ -485,8 +520,8 @@
         </tlk:RadGrid>
     </tlk:RadPane>
 </tlk:RadSplitter>
-<common:ctrlupload id="ctrlUpload1" runat="server" />
-<common:ctrlupload id="ctrlUpload" runat="server" />
+<Common:ctrlUpload ID="ctrlUpload1" runat="server" />
+<Common:ctrlUpload ID="ctrlUpload" runat="server" />
 <asp:PlaceHolder ID="FindEmployee" runat="server"></asp:PlaceHolder>
 <asp:PlaceHolder ID="FindEmployeeImport" runat="server"></asp:PlaceHolder>
 <asp:PlaceHolder ID="FindSign" runat="server"></asp:PlaceHolder>
@@ -494,11 +529,6 @@
 <asp:PlaceHolder ID="FindOrgImport" runat="server"></asp:PlaceHolder>
 <tlk:RadCodeBlock ID="RadCodeBlock1" runat="server">
     <script type="text/javascript">
-        function keyPress(sender, args) {
-            var text = sender.get_value() + args.get_keyCharacter();
-            if (!text.match('^[0-9]+$'))
-                args.set_cancel(true);
-        }
         //        $(document).ready(function () {
         //            registerOnfocusOut('RAD_SPLITTER_PANE_CONTENT_ctl00_MainContent_ctrlHU_CommendNewEdit_RadPane2');
         //        });
@@ -534,5 +564,33 @@
         function rbtClicked(sender, eventArgs) {
             enableAjax = false;
         }
+        function Calculate_Money(sender) {
+            try {
+                var Ratio = $(sender).val().replace(',', '.');
+                var Money = $(sender).parent().parent().parent().find('.txt_Money');
+                var Total_money = $find('<%#rntxtMoney.ClientId %>').get_value();
+                Money.val(Number(Ratio) / 100 * Number(Total_money));
+            }
+            catch (err) {
+            }
+        }
+        function Set_Money(sender) {
+            try {
+                var Total_money = $find('<%#rntxtMoney.ClientID %>').get_value();
+                $('#<%#rgEmployee.ClientId %>_GridData table tbody').find('tr').each(function (f) {
+                    var Ratio = $(this).find('.txt_Ratio').val().replace(',', '.');
+                    if (isNaN(Ratio)) {
+                        Ratio = 0;
+                    }
+                    var Money = $(this).find('.txt_Money');
+                    Money.val(Number(Ratio) / 100 * Number(Total_money));
+                    Money.change()
+                });
+
+            }
+            catch (err) {
+            }
+        }
+
     </script>
 </tlk:RadCodeBlock>

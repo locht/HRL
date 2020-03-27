@@ -149,6 +149,17 @@ Namespace ProfileBusiness.ServiceImplementations
                 End Try
             End Using
         End Function
+
+        Public Function UnApproveCommend(ByVal objCommend As CommendDTO) As Boolean Implements ServiceContracts.IProfileBusiness.UnApproveCommend
+            Using rep As New ProfileRepository
+                Try
+                    Return rep.UnApproveCommend(objCommend)
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
+
 #End Region
 
 #Region "Công thức khen thưởng (Commend_formula)"

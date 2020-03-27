@@ -438,10 +438,31 @@ Partial Class ProfileRepository
                                                        .FORM_ID = p.p.FORM_ID,
                                                        .FORM_NAME = p.form.NAME_VN,
                                                        .YEAR = p.p.YEAR,
+                                                       .IS_RATIO = p.p.IS_RATIO,
                                                        .NOTE = p.p.NOTE})
-
-
-            Return obj.FirstOrDefault
+            Dim Commend As New CommendDTO
+            Commend = obj.FirstOrDefault
+            Dim lstEmp As New List(Of CommendEmpDTO)
+            lstEmp = (From p In Context.HU_COMMEND_EMP
+                      From e In Context.HU_EMPLOYEE.Where(Function(f) f.ID = p.HU_EMPLOYEE_ID)
+                      From c In Context.HU_COMMEND.Where(Function(f) f.ID = p.HU_COMMEND_ID)
+                      From o In Context.HU_ORGANIZATION.Where(Function(f) f.ID = e.ORG_ID).DefaultIfEmpty
+                      From t In Context.HU_TITLE.Where(Function(f) f.ID = e.TITLE_ID).DefaultIfEmpty
+                      Where c.ID = obj.FirstOrDefault.ID
+                      Select New CommendEmpDTO With {
+                                .EMPLOYEE_CODE = e.EMPLOYEE_CODE,
+                                .FULLNAME = e.FULLNAME_VN,
+                                .GUID_ID = p.GUID_ID,
+                                .HU_COMMEND_ID = p.HU_COMMEND_ID,
+                                .HU_EMPLOYEE_ID = p.HU_EMPLOYEE_ID,
+                                .MONEY = p.MONEY,
+                                .ORG_ID = e.ORG_ID,
+                                .ORG_NAME = o.NAME_VN,
+                                .TITLE_ID = t.ID,
+                                .TITLE_NAME = t.NAME_VN,
+                                .RATIO = p.RATIO}).ToList()
+            Commend.COMMEND_EMP = lstEmp
+            Return Commend
         Catch ex As Exception
             WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iProfile")
             Throw ex
@@ -491,6 +512,7 @@ Partial Class ProfileRepository
             objCommendData.YEAR = objCommend.YEAR
             objCommendData.IS_TAX = objCommend.IS_TAX
             objCommendData.PERIOD_TAX = objCommend.PERIOD_TAX
+            objCommendData.IS_RATIO = objCommend.IS_RATIO
 
             objCommendData.FORM_ID = objCommend.FORM_ID
             Context.HU_COMMEND.AddObject(objCommendData)
@@ -562,6 +584,7 @@ Partial Class ProfileRepository
             objCommendData.YEAR = objCommend.YEAR
             objCommendData.IS_TAX = objCommend.IS_TAX
             objCommendData.PERIOD_TAX = objCommend.PERIOD_TAX
+            objCommendData.IS_RATIO = objCommend.IS_RATIO
 
             objCommendData.FORM_ID = objCommend.FORM_ID
             InsertObjectType(objCommend)
@@ -597,6 +620,7 @@ Partial Class ProfileRepository
                 objDataEmp.COMMEND_PAY = obj.COMMEND_PAY
                 objDataEmp.ORG_ID = obj.ORG_ID
                 objDataEmp.TITLE_ID = obj.TITLE_ID
+                objDataEmp.RATIO = obj.RATIO
                 Context.HU_COMMEND_EMP.AddObject(objDataEmp)
             Next
         End If
@@ -706,6 +730,26 @@ Partial Class ProfileRepository
                 objCommendData.STATUS_ID = ProfileCommon.DECISION_STATUS.APPROVE_ID
             Next
             Context.SaveChanges(log)
+            Return True
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iProfile")
+            Throw ex
+        End Try
+    End Function
+
+
+    Public Function UnApproveCommend(ByVal objCommend As CommendDTO, Optional ByVal bCheck As Boolean = True) As Boolean
+        Dim objCommendData As HU_COMMEND
+        Try
+            If Format(objCommend.EFFECT_DATE, "yyyyMMdd") > Format(Date.Now, "yyyyMMdd") Then
+                Return False
+            End If
+            If bCheck Then
+                objCommendData = (From p In Context.HU_COMMEND Where objCommend.ID = p.ID).SingleOrDefault
+                objCommendData.STATUS_ID = ProfileCommon.DECISION_STATUS.WAIT_APPROVE_ID
+
+            End If
+            Context.SaveChanges()
             Return True
         Catch ex As Exception
             WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iProfile")
