@@ -1112,13 +1112,13 @@ Partial Public Class ctrlRC_CanDtlProfile
     Protected WithEvents txtDegreeChungChi1 As Global.Telerik.Web.UI.RadTextBox
 
     '''<summary>
-    '''txtDegreeDiemSoXepLoai1 control.
+    '''rnDegreeDiemSoXepLoai1 control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents txtDegreeDiemSoXepLoai1 As Global.Telerik.Web.UI.RadTextBox
+    Protected WithEvents rnDegreeDiemSoXepLoai1 As Global.Telerik.Web.UI.RadNumericTextBox
 
     '''<summary>
     '''cboDegreeTrinhDo2 control.
@@ -1139,13 +1139,13 @@ Partial Public Class ctrlRC_CanDtlProfile
     Protected WithEvents cboChungchi2 As Global.Telerik.Web.UI.RadComboBox
 
     '''<summary>
-    '''txtDegreeDiemSoXepLoai2 control.
+    '''rnDegreeDiemSoXepLoai2 control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents txtDegreeDiemSoXepLoai2 As Global.Telerik.Web.UI.RadTextBox
+    Protected WithEvents rnDegreeDiemSoXepLoai2 As Global.Telerik.Web.UI.RadNumericTextBox
 
     '''<summary>
     '''cboDegreeTrinhDo3 control.
@@ -1166,13 +1166,13 @@ Partial Public Class ctrlRC_CanDtlProfile
     Protected WithEvents cboChungchi3 As Global.Telerik.Web.UI.RadComboBox
 
     '''<summary>
-    '''txtDegreeDiemSoXepLoai3 control.
+    '''rnDegreeDiemSoXepLoai3 control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents txtDegreeDiemSoXepLoai3 As Global.Telerik.Web.UI.RadTextBox
+    Protected WithEvents rnDegreeDiemSoXepLoai3 As Global.Telerik.Web.UI.RadNumericTextBox
 
     '''<summary>
     '''cboNgoaNgu1 control.
@@ -1202,13 +1202,13 @@ Partial Public Class ctrlRC_CanDtlProfile
     Protected WithEvents cboTDNNTrinhDo1 As Global.Telerik.Web.UI.RadComboBox
 
     '''<summary>
-    '''txtTDNNDiem1 control.
+    '''rnTDNNDiem1 control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents txtTDNNDiem1 As Global.Telerik.Web.UI.RadNumericTextBox
+    Protected WithEvents rnTDNNDiem1 As Global.Telerik.Web.UI.RadNumericTextBox
 
     '''<summary>
     '''cboNgoaiNgu2 control.
@@ -1229,13 +1229,13 @@ Partial Public Class ctrlRC_CanDtlProfile
     Protected WithEvents cboTDNNTrinhDo2 As Global.Telerik.Web.UI.RadComboBox
 
     '''<summary>
-    '''txtTDNNDiem2 control.
+    '''rnTDNNDiem2 control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents txtTDNNDiem2 As Global.Telerik.Web.UI.RadNumericTextBox
+    Protected WithEvents rnTDNNDiem2 As Global.Telerik.Web.UI.RadNumericTextBox
 
     '''<summary>
     '''cboNgoaiNgu3 control.
@@ -1256,13 +1256,13 @@ Partial Public Class ctrlRC_CanDtlProfile
     Protected WithEvents cboTDNNTrinhDo3 As Global.Telerik.Web.UI.RadComboBox
 
     '''<summary>
-    '''txtTDNNDiem3 control.
+    '''rnTDNNDiem3 control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents txtTDNNDiem3 As Global.Telerik.Web.UI.RadNumericTextBox
+    Protected WithEvents rnTDNNDiem3 As Global.Telerik.Web.UI.RadNumericTextBox
 
     '''<summary>
     '''txtEduSkill control.

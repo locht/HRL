@@ -1171,6 +1171,9 @@ Partial Class ProfileRepository
             Dim check = (From p In Context.HU_CONTRACT
                          Where p.EMPLOYEE_ID = empid
                           Order By p.ID Descending).FirstOrDefault()
+            If check Is Nothing Then
+                Return True
+            End If
             If check.EXPIRE_DATE >= Date.Now Then
                 Return False
             End If
