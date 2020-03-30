@@ -2861,6 +2861,9 @@ Namespace ProfileBusiness.ServiceContracts
         <OperationContract()>
         Function UPDATE_END_DATE_QD(ByVal P_EMP_ID As Decimal, ByVal P_DATE As Date) As Boolean
 
+        <OperationContract()>
+        Function UpdateStatusQD(ByVal lstID As List(Of Decimal),
+                               ByVal log As UserLog) As Boolean
     End Interface
 
 End Namespace

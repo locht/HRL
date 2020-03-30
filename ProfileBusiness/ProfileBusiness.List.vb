@@ -2694,6 +2694,18 @@ Namespace ProfileBusiness.ServiceImplementations
             End Using
         End Function
 
+        Public Function UpdateStatusQD(ByVal lstID As List(Of Decimal),
+                               ByVal log As UserLog) As Boolean Implements ServiceContracts.IProfileBusiness.UpdateStatusQD
+            Using rep As New ProfileRepository
+                Try
+
+                    Return rep.UpdateStatusQD(lstID, log)
+                Catch ex As Exception
+
+                    Throw ex
+                End Try
+            End Using
+        End Function
 
 #End Region
 

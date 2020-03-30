@@ -2355,6 +2355,18 @@ Partial Public Class ProfileRepository
         End Using
     End Function
 
+    Public Function UpdateStatusQD(ByVal lstID As List(Of Decimal)) As Boolean
+        Using rep As New ProfileBusinessClient
+            Try
+                Return rep.UpdateStatusQD(lstID, Me.Log)
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+
+    End Function
+
 #End Region
 
 End Class

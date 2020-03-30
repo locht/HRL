@@ -52951,6 +52951,9 @@ Namespace ProfileBusiness
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/UPDATE_END_DATE_QD", ReplyAction:="http://tempuri.org/IProfileBusiness/UPDATE_END_DATE_QDResponse")>  _
         Function UPDATE_END_DATE_QD(ByVal P_EMP_ID As Decimal, ByVal P_DATE As Date) As Boolean
         
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/UpdateStatusQD", ReplyAction:="http://tempuri.org/IProfileBusiness/UpdateStatusQDResponse")>  _
+        Function UpdateStatusQD(ByVal lstID As System.Collections.Generic.List(Of Decimal), ByVal log As Common.CommonBusiness.UserLog) As Boolean
+        
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetComboList", ReplyAction:="http://tempuri.org/IProfileBusiness/GetComboListResponse")>  _
         Function GetComboList(ByRef _combolistDTO As ProfileBusiness.ComboBoxDataDTO) As Boolean
         
@@ -55215,6 +55218,10 @@ Namespace ProfileBusiness
         
         Public Function UPDATE_END_DATE_QD(ByVal P_EMP_ID As Decimal, ByVal P_DATE As Date) As Boolean Implements ProfileBusiness.IProfileBusiness.UPDATE_END_DATE_QD
             Return MyBase.Channel.UPDATE_END_DATE_QD(P_EMP_ID, P_DATE)
+        End Function
+        
+        Public Function UpdateStatusQD(ByVal lstID As System.Collections.Generic.List(Of Decimal), ByVal log As Common.CommonBusiness.UserLog) As Boolean Implements ProfileBusiness.IProfileBusiness.UpdateStatusQD
+            Return MyBase.Channel.UpdateStatusQD(lstID, log)
         End Function
         
         Public Function GetComboList(ByRef _combolistDTO As ProfileBusiness.ComboBoxDataDTO) As Boolean Implements ProfileBusiness.IProfileBusiness.GetComboList
