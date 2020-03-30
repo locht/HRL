@@ -71,6 +71,7 @@ Public Class ctrlHU_EmpDtlWorkingBefore
 
     Public Overrides Sub ViewInit(ByVal e As System.EventArgs)
         Try
+            CType(Me.Page, AjaxPage).AjaxManager.ClientEvents.OnRequestStart = "onRequestStart"
             rgGrid.SetFilter()
             rgGrid.AllowCustomPaging = True
             InitControl()
@@ -89,10 +90,10 @@ Public Class ctrlHU_EmpDtlWorkingBefore
         Try
             Me.MainToolBar = tbarMainToolBar
             BuildToolbar(Me.MainToolBar, ToolbarItem.Create, ToolbarItem.Seperator, ToolbarItem.Edit,
-                         ToolbarItem.Seperator, ToolbarItem.Save, ToolbarItem.Seperator,
+                         ToolbarItem.Seperator, ToolbarItem.Export, ToolbarItem.Save, ToolbarItem.Seperator,
                          ToolbarItem.Cancel, ToolbarItem.Seperator, ToolbarItem.Delete)
 
-            CType(Me.MainToolBar.Items(4), RadToolBarButton).CausesValidation = True
+            CType(Me.MainToolBar.Items(5), RadToolBarButton).CausesValidation = True
         Catch ex As Exception
             DisplayException(Me.ViewName, Me.ID, ex)
         End Try
@@ -223,6 +224,18 @@ Public Class ctrlHU_EmpDtlWorkingBefore
                         CurrentState = CommonMessage.STATE_NORMAL
                         Exit Sub
                     End If
+                Case CommonMessage.TOOLBARITEM_EXPORT
+                    Dim dtData As DataTable
+                    Using xls As New ExcelCommon
+                        dtData = lstWorkingBefore.ToTable()
+                        If dtData.Rows.Count = 0 Then
+                            ShowMessage(Translate(CommonMessage.MESSAGE_WARNING_EXPORT_EMPTY), NotifyType.Warning)
+                            Exit Sub
+                        ElseIf dtData.Rows.Count > 0 Then
+                            rgGrid.ExportExcel(Server, Response, dtData, "EmpDtlWorkingBefore")
+                            Exit Sub
+                        End If
+                    End Using
             End Select
             UpdateControlState()
             rgGrid_NeedDataSource(Nothing, Nothing)
