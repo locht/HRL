@@ -243,7 +243,7 @@ Public Class ctrlRC_ImportCV
                         ShowMessage(Translate(CommonMessage.MESSAGE_NOT_SELECT_ROW), NotifyType.Warning)
                         Exit Sub
                     End If
-                    If rgData.SelectedItems.Count > 1 Then
+                    If rgData.SelectedItems.Count >= 1 Then
                         For Each item As GridDataItem In rgData.SelectedItems
                             If item.GetDataKeyValue("S_ERROR") <> "" And item.GetDataKeyValue("FILE_NAME") <> "" Then
                                 ShowMessage(Translate("Tồn tại dữ liệu lỗi!"), NotifyType.Warning)
