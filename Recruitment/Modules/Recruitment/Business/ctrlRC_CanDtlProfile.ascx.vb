@@ -466,7 +466,7 @@ Public Class ctrlRC_CanDtlProfile
                             cboChungchi.SelectedValue = EmpEducation.IT_LEVEL
                         End If
                         If EmpEducation.IT_MARK IsNot Nothing Then
-                            txtDegreeDiemSoXepLoai1.Text = EmpEducation.IT_MARK
+                            rnDegreeDiemSoXepLoai1.Text = EmpEducation.IT_MARK
                         End If
 
                         If EmpEducation.IT_CERTIFICATE1 IsNot Nothing Then
@@ -476,7 +476,7 @@ Public Class ctrlRC_CanDtlProfile
                             cboChungchi2.SelectedValue = EmpEducation.IT_LEVEL1
                         End If
                         If EmpEducation.IT_MARK1 IsNot Nothing Then
-                            txtDegreeDiemSoXepLoai2.Text = EmpEducation.IT_MARK1
+                            rnDegreeDiemSoXepLoai2.Text = EmpEducation.IT_MARK1
                         End If
 
 
@@ -487,7 +487,7 @@ Public Class ctrlRC_CanDtlProfile
                             cboChungchi3.SelectedValue = EmpEducation.IT_LEVEL2
                         End If
                         If EmpEducation.IT_MARK2 IsNot Nothing Then
-                            txtDegreeDiemSoXepLoai3.Text = EmpEducation.IT_MARK2
+                            rnDegreeDiemSoXepLoai3.Text = EmpEducation.IT_MARK2
                         End If
 
                         If EmpEducation.ENGLISH IsNot Nothing Then
@@ -497,7 +497,7 @@ Public Class ctrlRC_CanDtlProfile
                             cboTDNNTrinhDo1.SelectedValue = EmpEducation.ENGLISH_LEVEL
                         End If
                         If EmpEducation.ENGLISH_MARK IsNot Nothing Then
-                            txtTDNNDiem1.Text = EmpEducation.ENGLISH_MARK
+                            rnTDNNDiem1.Text = EmpEducation.ENGLISH_MARK
                         End If
 
                         If EmpEducation.ENGLISH1 IsNot Nothing Then
@@ -507,7 +507,7 @@ Public Class ctrlRC_CanDtlProfile
                             cboTDNNTrinhDo2.SelectedValue = EmpEducation.ENGLISH_LEVEL1
                         End If
                         If EmpEducation.ENGLISH_MARK1 IsNot Nothing Then
-                            txtTDNNDiem2.Text = EmpEducation.ENGLISH_MARK1
+                            rnTDNNDiem2.Text = EmpEducation.ENGLISH_MARK1
                         End If
                         If cboNgoaiNgu3.SelectedValue IsNot Nothing Then
                             cboNgoaiNgu3.SelectedValue = EmpEducation.ENGLISH2
@@ -517,7 +517,7 @@ Public Class ctrlRC_CanDtlProfile
                         End If
 
                         If EmpEducation.ENGLISH_MARK2 IsNot Nothing Then
-                            txtTDNNDiem3.Text = EmpEducation.ENGLISH_MARK2
+                            rnTDNNDiem3.Text = EmpEducation.ENGLISH_MARK2
                         End If
                         txtEduDateStart.SelectedDate = EmpEducation.DATE_START
                         txtEduDateEnd.SelectedDate = EmpEducation.DATE_END
@@ -995,8 +995,8 @@ Public Class ctrlRC_CanDtlProfile
                                         Exit Sub
                                     End If
                                 End If
-                                
-                                
+
+
 
                             Case STATE_EDIT
                                 If Save(strEmpCode, _err) Then
@@ -1064,7 +1064,7 @@ Public Class ctrlRC_CanDtlProfile
 
                 UpdateControlState()
             End If
-            
+
         Catch ex As Exception
             DisplayException(Me.ViewName, Me.ID, ex)
         End Try
@@ -1330,7 +1330,7 @@ Public Class ctrlRC_CanDtlProfile
         Dim EmpExpectInfo As New CandidateExpectDTO
         Dim EmpFamily As New CandidateFamilyDTO
         Try
-            
+
 
             'Candidate
             If CandidateInfo Is Nothing Then
@@ -1543,7 +1543,7 @@ Public Class ctrlRC_CanDtlProfile
             If cboChungchi.SelectedValue IsNot Nothing Then
                 EmpEducation.IT_LEVEL = cboChungchi.SelectedValue
             End If
-            EmpEducation.IT_MARK = txtDegreeDiemSoXepLoai1.Text
+            EmpEducation.IT_MARK = rnDegreeDiemSoXepLoai1.Text
             '' it 2
             If cboDegreeTrinhDo2.SelectedValue IsNot Nothing Then
                 EmpEducation.IT_CERTIFICATE1 = cboDegreeTrinhDo2.SelectedValue
@@ -1551,7 +1551,7 @@ Public Class ctrlRC_CanDtlProfile
             If cboChungchi2.SelectedValue IsNot Nothing Then
                 EmpEducation.IT_LEVEL1 = cboChungchi2.SelectedValue
             End If
-            EmpEducation.IT_MARK1 = txtDegreeDiemSoXepLoai2.Text
+            EmpEducation.IT_MARK1 = rnDegreeDiemSoXepLoai2.Text
 
             '' it 3
             If cboDegreeTrinhDo3.SelectedValue IsNot Nothing Then
@@ -1560,7 +1560,7 @@ Public Class ctrlRC_CanDtlProfile
             If cboChungchi3.SelectedValue IsNot Nothing Then
                 EmpEducation.IT_LEVEL2 = cboChungchi3.SelectedValue
             End If
-            EmpEducation.IT_MARK2 = txtDegreeDiemSoXepLoai3.Text
+            EmpEducation.IT_MARK2 = rnDegreeDiemSoXepLoai3.Text
 
             'NN1
             If cboNgoaNgu1.SelectedValue <> "" Then
@@ -1569,7 +1569,7 @@ Public Class ctrlRC_CanDtlProfile
             If cboTDNNTrinhDo1.SelectedValue <> "" Then
                 EmpEducation.ENGLISH_LEVEL = cboTDNNTrinhDo1.SelectedValue
             End If
-            EmpEducation.ENGLISH_MARK = txtTDNNDiem1.Text
+            EmpEducation.ENGLISH_MARK = rnTDNNDiem1.Text
 
             ''NN2
             If cboNgoaiNgu2.SelectedValue <> "" Then
@@ -1578,7 +1578,7 @@ Public Class ctrlRC_CanDtlProfile
             If cboTDNNTrinhDo2.SelectedValue <> "" Then
                 EmpEducation.ENGLISH_LEVEL1 = cboTDNNTrinhDo2.SelectedValue
             End If
-            EmpEducation.ENGLISH_MARK1 = txtTDNNDiem2.Text
+            EmpEducation.ENGLISH_MARK1 = rnTDNNDiem2.Text
 
             ''NN3
             If cboNgoaiNgu3.SelectedValue <> "" Then
@@ -1587,7 +1587,7 @@ Public Class ctrlRC_CanDtlProfile
             If cboTDNNTrinhDo3.SelectedValue <> "" Then
                 EmpEducation.ENGLISH_LEVEL2 = cboTDNNTrinhDo3.SelectedValue
             End If
-            EmpEducation.ENGLISH_MARK2 = txtTDNNDiem3.Text
+            EmpEducation.ENGLISH_MARK2 = rnTDNNDiem3.Text
 
             ' Nguyện vọng
             EmpExpectInfo = New CandidateExpectDTO
