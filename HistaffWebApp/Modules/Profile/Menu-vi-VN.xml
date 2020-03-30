@@ -9,6 +9,7 @@
         <Item Value="ctrlHU_Contract" Text="Quản lý hợp đồng" PostBack="True" NavigateUrl="Default.aspx?mid=Profile&amp;fid=ctrlHU_Contract&amp;group=Business" CheckPermission="true" CausesValidation="False" />
         <Item Value="ctrlHU_ContractAppendix" Text="Quản lý phụ lục hợp đồng" PostBack="True" NavigateUrl="Default.aspx?mid=Profile&amp;fid=ctrlHU_ContractAppendix&amp;group=Business" CheckPermission="true" CausesValidation="False" />
         <Item Value="ctrlHU_ChangeInfoMng"  Text="Quản lý quá trình công tác" PostBack="True" NavigateUrl="Default.aspx?mid=Profile&amp;fid=ctrlHU_ChangeInfoMng&amp;group=Business" CheckPermission="true" CausesValidation="False" />
+        <Item Value="ctrlHU_SafeLaborMng"  Text="Quản lý tai nạn lao động" PostBack="True" NavigateUrl="Default.aspx?mid=Profile&amp;fid=ctrlHU_SafeLaborMng&amp;group=Business" CheckPermission="true" CausesValidation="False" />
         <Item Value="ctrlHU_Concurrently" Text="Quản lý kiêm nhiệm" PostBack="True" NavigateUrl="Default.aspx?mid=Profile&amp;fid=ctrlHU_Concurrently&amp;group=Business" CheckPermission="true"/>
         <Item Value="ctrlHU_Commend" Text="Bảng mô tả công việc" PostBack="True" NavigateUrl="Default.aspx?mid=Profile&amp;fid=ctrlHU_JobDescription&amp;group=Business" CheckPermission="true"/>
         <Item Value="ctrlHU_Commend" Text="Quản lý khen thưởng" PostBack="True" NavigateUrl="Default.aspx?mid=Profile&amp;fid=ctrlHU_Commend&amp;group=Business" CheckPermission="true"/>

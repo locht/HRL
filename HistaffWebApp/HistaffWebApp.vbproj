@@ -464,6 +464,8 @@
     <Content Include="Modules\Planning\Setting\ctrlPA_SalaryFund.ascx" />
     <Content Include="Modules\Planning\Report\ctrlPA_SalaryTracker.ascx" />
     <Content Include="Modules\Planning\Setting\ctrlPA_TitleCost.ascx" />
+    <Content Include="Modules\Profile\Business\ctrlHU_SafeLaborMngNewEdit.ascx" />
+    <Content Include="Modules\Profile\Business\ctrlHU_SafeLaborMng.ascx" />
     <Content Include="Modules\Profile\Business\ctrlHU_ApproveMutilChangeInfo_New.ascx" />
     <Content Include="Modules\Profile\Business\ctrlContract_Liquidate.ascx" />
     <Content Include="Modules\Profile\Business\ctrlHU_EmpDtlAppendix.ascx" />
