@@ -18,7 +18,7 @@ Imports System.Runtime.Serialization
 Imports System.Xml.Serialization
 
 
-<Assembly: EdmSchemaAttribute("af68242a-fec8-415a-a6dc-7e67a152f5b2")>
+<Assembly: EdmSchemaAttribute("83e71899-9762-48e6-ad9b-014acbee7e5f")>
 #Region "EDM Relationship Metadata"
 <Assembly: EdmRelationshipAttribute("ProfileModel", "FK_HU_NAT_HU_PRO", "HU_NATION", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_NATION), "HU_PROVINCE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_PROVINCE), True)>
 <Assembly: EdmRelationshipAttribute("ProfileModel", "FK_HU_PRO_HU_DIS", "HU_PROVINCE", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_PROVINCE), "HU_DISTRICT", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_DISTRICT), True)>
@@ -66960,6 +66960,56 @@ Public Partial Class HUV_CURRENT_WORKING
     End Sub
 
     Private Partial Sub OnOBJECT_LABORChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property JOB_POSITION() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _JOB_POSITION
+        End Get
+        Set
+            OnJOB_POSITIONChanging(value)
+            ReportPropertyChanging("JOB_POSITION")
+            _JOB_POSITION = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("JOB_POSITION")
+            OnJOB_POSITIONChanged()
+        End Set
+    End Property
+
+    Private _JOB_POSITION As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnJOB_POSITIONChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnJOB_POSITIONChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property JOB_DESCRIPTION() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _JOB_DESCRIPTION
+        End Get
+        Set
+            OnJOB_DESCRIPTIONChanging(value)
+            ReportPropertyChanging("JOB_DESCRIPTION")
+            _JOB_DESCRIPTION = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("JOB_DESCRIPTION")
+            OnJOB_DESCRIPTIONChanged()
+        End Set
+    End Property
+
+    Private _JOB_DESCRIPTION As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnJOB_DESCRIPTIONChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnJOB_DESCRIPTIONChanged()
     End Sub
 
     #End Region

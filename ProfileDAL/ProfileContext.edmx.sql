@@ -1,7 +1,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for Oracle database
 -- --------------------------------------------------
--- Date Created: 3/30/2020 3:05:41 PM
+-- Date Created: 3/30/2020 5:50:36 PM
 -- Generated from EDMX file: D:\SOURCE_GIT_NEW\SOURCR_ACV_NEW\ProfileDAL\ProfileContext.edmx
 -- --------------------------------------------------
 
@@ -3496,7 +3496,9 @@ CREATE TABLE "dbo"."HUV_CURRENT_WORKING" (
    "EFFECT_DATE" DATE NULL,
    "DIRECT_MANAGER" NUMBER(38,0) NULL,
    "OBJECT_ATTENDANCE" NUMBER(38,0) NULL,
-   "OBJECT_LABOR" NUMBER(38,0) NULL
+   "OBJECT_LABOR" NUMBER(38,0) NULL,
+   "JOB_POSITION" NUMBER(38,0) NULL,
+   "JOB_DESCRIPTION" NUMBER(38,0) NULL
 );
 
 -- Creating table 'HUV_TERMINATE_CURRENT'
