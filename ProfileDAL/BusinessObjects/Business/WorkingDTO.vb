@@ -137,4 +137,15 @@
     Public Property OTHERSALARY4 As Decimal?
     Public Property OTHERSALARY5 As Decimal?
     Public Property CODE_ATTENDANCE As Decimal?
+
+    Public Property JOB_POSITION As Decimal?
+    Public Property JOB_DESCRIPTION As Decimal?
+    Public Property IS_REPLACE As Boolean?
+    Public Property EFFECT_DH_DATE As Date?
+    Public Property IS_HURTFUL As Decimal?
+    Public Property END_DH_DATE As Date?
+    Public Property JOB_POSITION_NAME As String
+    Public Property JOB_DESCRIPTION_NAME As String
+    Public Property EMP_REPLACE As Decimal?
+    Public Property EMP_REPLACE_NAME As String
 End Class

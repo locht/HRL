@@ -5898,6 +5898,9 @@ Namespace ProfileBusiness
         Private EFFECT_DATE_OLDField As System.Nullable(Of Date)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private EFFECT_DH_DATEField As System.Nullable(Of Date)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private EMPLOYEE_3B_IDField As System.Nullable(Of Decimal)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -5908,6 +5911,15 @@ Namespace ProfileBusiness
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private EMPLOYEE_NAMEField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private EMP_REPLACEField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private EMP_REPLACE_NAMEField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private END_DH_DATEField As System.Nullable(Of Date)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private EXPIRE_DATEField As System.Nullable(Of Date)
@@ -5946,6 +5958,9 @@ Namespace ProfileBusiness
         Private IS_3B_SHORTField As System.Nullable(Of Short)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private IS_HURTFULField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private IS_MISSIONField As System.Nullable(Of Boolean)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -5958,6 +5973,9 @@ Namespace ProfileBusiness
         Private IS_PROCESS_SHORTField As System.Nullable(Of Short)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private IS_REPLACEField As System.Nullable(Of Boolean)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private IS_TERField As Boolean
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -5968,6 +5986,18 @@ Namespace ProfileBusiness
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private IdsField As System.Collections.Generic.List(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private JOB_DESCRIPTIONField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private JOB_DESCRIPTION_NAMEField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private JOB_POSITIONField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private JOB_POSITION_NAMEField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private LST_EMP_WORKINGField As System.Collections.Generic.List(Of ProfileBusiness.WorkingDTO)
@@ -6453,6 +6483,19 @@ Namespace ProfileBusiness
         End Property
         
         <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property EFFECT_DH_DATE() As System.Nullable(Of Date)
+            Get
+                Return Me.EFFECT_DH_DATEField
+            End Get
+            Set
+                If (Me.EFFECT_DH_DATEField.Equals(value) <> true) Then
+                    Me.EFFECT_DH_DATEField = value
+                    Me.RaisePropertyChanged("EFFECT_DH_DATE")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
         Public Property EMPLOYEE_3B_ID() As System.Nullable(Of Decimal)
             Get
                 Return Me.EMPLOYEE_3B_IDField
@@ -6500,6 +6543,45 @@ Namespace ProfileBusiness
                 If (Object.ReferenceEquals(Me.EMPLOYEE_NAMEField, value) <> true) Then
                     Me.EMPLOYEE_NAMEField = value
                     Me.RaisePropertyChanged("EMPLOYEE_NAME")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property EMP_REPLACE() As System.Nullable(Of Decimal)
+            Get
+                Return Me.EMP_REPLACEField
+            End Get
+            Set
+                If (Me.EMP_REPLACEField.Equals(value) <> true) Then
+                    Me.EMP_REPLACEField = value
+                    Me.RaisePropertyChanged("EMP_REPLACE")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property EMP_REPLACE_NAME() As String
+            Get
+                Return Me.EMP_REPLACE_NAMEField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.EMP_REPLACE_NAMEField, value) <> true) Then
+                    Me.EMP_REPLACE_NAMEField = value
+                    Me.RaisePropertyChanged("EMP_REPLACE_NAME")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property END_DH_DATE() As System.Nullable(Of Date)
+            Get
+                Return Me.END_DH_DATEField
+            End Get
+            Set
+                If (Me.END_DH_DATEField.Equals(value) <> true) Then
+                    Me.END_DH_DATEField = value
+                    Me.RaisePropertyChanged("END_DH_DATE")
                 End If
             End Set
         End Property
@@ -6661,6 +6743,19 @@ Namespace ProfileBusiness
         End Property
         
         <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property IS_HURTFUL() As System.Nullable(Of Decimal)
+            Get
+                Return Me.IS_HURTFULField
+            End Get
+            Set
+                If (Me.IS_HURTFULField.Equals(value) <> true) Then
+                    Me.IS_HURTFULField = value
+                    Me.RaisePropertyChanged("IS_HURTFUL")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
         Public Property IS_MISSION() As System.Nullable(Of Boolean)
             Get
                 Return Me.IS_MISSIONField
@@ -6713,6 +6808,19 @@ Namespace ProfileBusiness
         End Property
         
         <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property IS_REPLACE() As System.Nullable(Of Boolean)
+            Get
+                Return Me.IS_REPLACEField
+            End Get
+            Set
+                If (Me.IS_REPLACEField.Equals(value) <> true) Then
+                    Me.IS_REPLACEField = value
+                    Me.RaisePropertyChanged("IS_REPLACE")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
         Public Property IS_TER() As Boolean
             Get
                 Return Me.IS_TERField
@@ -6760,6 +6868,58 @@ Namespace ProfileBusiness
                 If (Object.ReferenceEquals(Me.IdsField, value) <> true) Then
                     Me.IdsField = value
                     Me.RaisePropertyChanged("Ids")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property JOB_DESCRIPTION() As System.Nullable(Of Decimal)
+            Get
+                Return Me.JOB_DESCRIPTIONField
+            End Get
+            Set
+                If (Me.JOB_DESCRIPTIONField.Equals(value) <> true) Then
+                    Me.JOB_DESCRIPTIONField = value
+                    Me.RaisePropertyChanged("JOB_DESCRIPTION")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property JOB_DESCRIPTION_NAME() As String
+            Get
+                Return Me.JOB_DESCRIPTION_NAMEField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.JOB_DESCRIPTION_NAMEField, value) <> true) Then
+                    Me.JOB_DESCRIPTION_NAMEField = value
+                    Me.RaisePropertyChanged("JOB_DESCRIPTION_NAME")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property JOB_POSITION() As System.Nullable(Of Decimal)
+            Get
+                Return Me.JOB_POSITIONField
+            End Get
+            Set
+                If (Me.JOB_POSITIONField.Equals(value) <> true) Then
+                    Me.JOB_POSITIONField = value
+                    Me.RaisePropertyChanged("JOB_POSITION")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property JOB_POSITION_NAME() As String
+            Get
+                Return Me.JOB_POSITION_NAMEField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.JOB_POSITION_NAMEField, value) <> true) Then
+                    Me.JOB_POSITION_NAMEField = value
+                    Me.RaisePropertyChanged("JOB_POSITION_NAME")
                 End If
             End Set
         End Property
@@ -52785,6 +52945,12 @@ Namespace ProfileBusiness
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ActiveJob", ReplyAction:="http://tempuri.org/IProfileBusiness/ActiveJobResponse")>  _
         Function ActiveJob(ByVal objOrgTitle As System.Collections.Generic.List(Of Decimal), ByVal sActive As String, ByVal log As Common.CommonBusiness.UserLog) As Boolean
         
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GET_JP_TO_TITLE", ReplyAction:="http://tempuri.org/IProfileBusiness/GET_JP_TO_TITLEResponse")>  _
+        Function GET_JP_TO_TITLE(ByVal P_ORG_ID As Decimal, ByVal P_TITLE_ID As Decimal, ByVal P_IS_THAYTHE As Decimal) As System.Data.DataSet
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/UPDATE_END_DATE_QD", ReplyAction:="http://tempuri.org/IProfileBusiness/UPDATE_END_DATE_QDResponse")>  _
+        Function UPDATE_END_DATE_QD(ByVal P_EMP_ID As Decimal, ByVal P_DATE As Date) As Boolean
+        
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetComboList", ReplyAction:="http://tempuri.org/IProfileBusiness/GetComboListResponse")>  _
         Function GetComboList(ByRef _combolistDTO As ProfileBusiness.ComboBoxDataDTO) As Boolean
         
@@ -55041,6 +55207,14 @@ Namespace ProfileBusiness
         
         Public Function ActiveJob(ByVal objOrgTitle As System.Collections.Generic.List(Of Decimal), ByVal sActive As String, ByVal log As Common.CommonBusiness.UserLog) As Boolean Implements ProfileBusiness.IProfileBusiness.ActiveJob
             Return MyBase.Channel.ActiveJob(objOrgTitle, sActive, log)
+        End Function
+        
+        Public Function GET_JP_TO_TITLE(ByVal P_ORG_ID As Decimal, ByVal P_TITLE_ID As Decimal, ByVal P_IS_THAYTHE As Decimal) As System.Data.DataSet Implements ProfileBusiness.IProfileBusiness.GET_JP_TO_TITLE
+            Return MyBase.Channel.GET_JP_TO_TITLE(P_ORG_ID, P_TITLE_ID, P_IS_THAYTHE)
+        End Function
+        
+        Public Function UPDATE_END_DATE_QD(ByVal P_EMP_ID As Decimal, ByVal P_DATE As Date) As Boolean Implements ProfileBusiness.IProfileBusiness.UPDATE_END_DATE_QD
+            Return MyBase.Channel.UPDATE_END_DATE_QD(P_EMP_ID, P_DATE)
         End Function
         
         Public Function GetComboList(ByRef _combolistDTO As ProfileBusiness.ComboBoxDataDTO) As Boolean Implements ProfileBusiness.IProfileBusiness.GetComboList

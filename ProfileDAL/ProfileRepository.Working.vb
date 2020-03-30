@@ -928,6 +928,9 @@ Partial Class ProfileRepository
                         From obj_att In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.OBJECT_ATTENDANCE).DefaultIfEmpty
                         From objectLabor In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.OBJECT_LABOR And
                                                                         f.TYPE_ID = 6963).DefaultIfEmpty
+                        From job In Context.HU_JOB_POSITION.Where(Function(f) f.ID = p.JOB_POSITION).DefaultIfEmpty
+                        From jobd In Context.HU_JOB_DESCRIPTION.Where(Function(f) f.ID = p.JOB_DESCRIPTION).DefaultIfEmpty
+                        From er In Context.HU_EMPLOYEE.Where(Function(f) f.ID = p.EMP_REPLACE).DefaultIfEmpty
                         Where p.ID = _filter.ID
                         Select New WorkingDTO With {
                              .ID = p.ID,
@@ -992,7 +995,16 @@ Partial Class ProfileRepository
                              .OTHERSALARY2 = p.OTHERSALARY2,
                              .OTHERSALARY3 = p.OTHERSALARY3,
                              .OTHERSALARY4 = p.OTHERSALARY4,
-            .OTHERSALARY5 = p.OTHERSALARY5
+                             .OTHERSALARY5 = p.OTHERSALARY5,
+                             .JOB_DESCRIPTION_NAME = jobd.CODE & "-" & jobd.NAME,
+                             .JOB_POSITION_NAME = job.JOB_NAME,
+                             .JOB_DESCRIPTION = p.JOB_DESCRIPTION,
+                             .JOB_POSITION = p.JOB_POSITION,
+                             .IS_REPLACE = p.IS_REPLACE,
+                             .IS_HURTFUL = p.IS_HURTFUL,
+                             .EFFECT_DH_DATE = p.EFFECT_DH_DATE,
+                             .EMP_REPLACE = p.EMP_REPLACE,
+                             .EMP_REPLACE_NAME = er.FULLNAME_VN
                          }
 
             Dim working = query.FirstOrDefault
@@ -1035,6 +1047,8 @@ Partial Class ProfileRepository
                 From OBJ_ATT In Context.OT_OTHER_LIST.Where(Function(F) F.ID = p.OBJECT_ATTENDANCE).DefaultIfEmpty
                 From objectLabor In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.OBJECT_LABOR And
                                                                         f.TYPE_ID = 6963).DefaultIfEmpty
+                From job In Context.HU_JOB_POSITION.Where(Function(f) f.ID = p.JOB_POSITION).DefaultIfEmpty
+                From jobd In Context.HU_JOB_DESCRIPTION.Where(Function(f) f.ID = p.JOB_DESCRIPTION).DefaultIfEmpty
                 Where (p.ID = query_old.ID)
                                    Select New WorkingDTO With {
                                        .ID = p.ID,
@@ -1075,7 +1089,15 @@ Partial Class ProfileRepository
                                        .SAL_RANK_ID = p.SAL_RANK_ID,
                                        .SAL_RANK_NAME = sal_rank.RANK,
                                        .DIRECT_MANAGER = p.DIRECT_MANAGER,
-                                       .DIRECT_MANAGER_NAME = direct.FULLNAME_VN}).FirstOrDefault
+                                       .DIRECT_MANAGER_NAME = direct.FULLNAME_VN,
+                                       .JOB_DESCRIPTION_NAME = jobd.CODE & "-" & jobd.NAME,
+                                      .JOB_POSITION_NAME = job.JOB_NAME,
+                                      .JOB_DESCRIPTION = p.JOB_DESCRIPTION,
+                                      .JOB_POSITION = p.JOB_POSITION,
+                                      .IS_REPLACE = p.IS_REPLACE,
+                                      .IS_HURTFUL = p.IS_HURTFUL,
+                                      .EFFECT_DH_DATE = p.EFFECT_DH_DATE,
+                                      .END_DH_DATE = p.END_DH_DATE}).FirstOrDefault
 
                 working.WORKING_OLD = working_old
             End If
@@ -1114,6 +1136,10 @@ Partial Class ProfileRepository
                             From direct In Context.HU_EMPLOYEE.Where(Function(f) f.ID = p.DIRECT_MANAGER).DefaultIfEmpty
                             From objectLabor In Context.OT_OTHER_LIST.Where(Function(f) f.ID = e.OBJECT_LABOR And
                                                                         f.TYPE_ID = 6963).DefaultIfEmpty
+                            From job In Context.HU_JOB_POSITION.Where(Function(f) f.ID = p.JOB_POSITION).DefaultIfEmpty
+                            From jobd In Context.HU_JOB_DESCRIPTION.Where(Function(f) f.ID = p.JOB_DESCRIPTION).DefaultIfEmpty
+                            From sign In Context.HU_EMPLOYEE.Where(Function(f) f.ID = p.SIGN_ID).DefaultIfEmpty
+                            From er In Context.HU_EMPLOYEE.Where(Function(f) f.ID = p.EMP_REPLACE).DefaultIfEmpty
                             Where e.ID = _filter.EMPLOYEE_ID And p.ID = workingOLD.ID
                             Order By p.EFFECT_DATE Descending
                             Select New WorkingDTO With {
@@ -1165,7 +1191,17 @@ Partial Class ProfileRepository
                                  .DIRECT_MANAGER = p.DIRECT_MANAGER,
                                  .DIRECT_MANAGER_NAME = direct.FULLNAME_VN,
                                  .OBJECT_LABOR = e.OBJECT_LABOR,
-                                 .OBJECT_LABORNAME = objectLabor.NAME_VN
+                                 .OBJECT_LABORNAME = objectLabor.NAME_VN,
+                                 .JOB_DESCRIPTION_NAME = jobd.CODE & "-" & jobd.NAME,
+                                 .JOB_POSITION_NAME = job.JOB_NAME,
+                                 .JOB_DESCRIPTION = p.JOB_DESCRIPTION,
+                                 .JOB_POSITION = p.JOB_POSITION,
+                                 .SIGN_DATE = p.SIGN_DATE,
+                                 .SIGN_NAME = sign.FULLNAME_VN,
+                                 .SIGN_TITLE = p.SIGN_TITLE,
+                                 .REMARK = p.REMARK,
+                                 .EMP_REPLACE = p.EMP_REPLACE,
+                                 .EMP_REPLACE_NAME = er.FULLNAME_VN
                                  }
 
                 Dim working = query.First()
@@ -1274,6 +1310,14 @@ Partial Class ProfileRepository
             objWorkingData.OTHERSALARY4 = objWorking.OTHERSALARY4
             objWorkingData.OTHERSALARY5 = objWorking.OTHERSALARY5
             objWorkingData.OBJECT_LABOR = objWorking.OBJECT_LABOR
+
+            objWorkingData.JOB_POSITION = objWorking.JOB_POSITION
+            objWorkingData.JOB_DESCRIPTION = objWorking.JOB_DESCRIPTION
+            objWorkingData.IS_REPLACE = objWorking.IS_REPLACE
+            objWorkingData.IS_HURTFUL = objWorking.IS_HURTFUL
+            objWorkingData.EFFECT_DH_DATE = objWorking.EFFECT_DH_DATE
+            objWorkingData.EMP_REPLACE = objWorking.EMP_REPLACE
+
             Context.HU_WORKING.AddObject(objWorkingData)
 
             ' nếu phê duyệt
@@ -1542,6 +1586,14 @@ Partial Class ProfileRepository
             objWorkingData.OTHERSALARY4 = objWorking.OTHERSALARY4
             objWorkingData.OTHERSALARY5 = objWorking.OTHERSALARY5
             objWorkingData.OBJECT_LABOR = objWorking.OBJECT_LABOR
+
+            objWorkingData.JOB_POSITION = objWorking.JOB_POSITION
+            objWorkingData.JOB_DESCRIPTION = objWorking.JOB_DESCRIPTION
+            objWorkingData.IS_REPLACE = objWorking.IS_REPLACE
+            objWorkingData.IS_HURTFUL = objWorking.IS_HURTFUL
+            objWorkingData.EFFECT_DH_DATE = objWorking.EFFECT_DH_DATE
+            objWorkingData.EMP_REPLACE = objWorking.EMP_REPLACE
+
             If objWorking.STATUS_ID = ProfileCommon.DECISION_STATUS.APPROVE_ID Then
                 ApproveWorking1(objWorking)
             End If
@@ -1889,7 +1941,8 @@ Partial Class ProfileRepository
                 item.MODIFIED_DATE = Date.Now
                 item.OBJECTTIMEKEEPING = objWorking.OBJECT_ATTENDANCE
                 item.OBJECT_LABOR = objWorking.OBJECT_LABOR
-
+                item.JOB_POSITION = objWorking.JOB_POSITION
+                item.JOB_DESCRIPTION = objWorking.JOB_DESCRIPTION
             End If
 
             Return True

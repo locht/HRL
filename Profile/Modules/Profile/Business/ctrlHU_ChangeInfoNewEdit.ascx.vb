@@ -17,6 +17,11 @@ Public Class ctrlHU_ChangeInfoNewEdit
     ''' <remarks></remarks>
     Protected WithEvents ctrlFindEmployeePopup As ctrlFindEmployeePopup
 
+    ''' <summary>''' ctrl FindEmployeeRePopup
+    ''' </summary>
+    ''' <remarks></remarks>
+    Protected WithEvents ctrlFindEmployeeRePopup As ctrlFindEmployeePopup
+
     ''' <summary>
     ''' ctrl FindEmployeePopup
     ''' </summary>
@@ -196,20 +201,6 @@ Public Class ctrlHU_ChangeInfoNewEdit
             If dtData IsNot Nothing AndAlso dtData.Rows.Count > 0 Then
                 cboDecisionType.SelectedValue = dtData.Rows(0)("ID")
             End If
-
-            Using rep As New ProfileRepository
-                dtData = rep.GetOtherList(ProfileCommon.OBJECT_ATTENDANCE.Code)
-            End Using
-            FillRadCombobox(cbOBJECT_ATTENDANCE, dtData, "NAME", "ID", True)
-            'If dtData IsNot Nothing AndAlso dtData.Rows.Count > 0 Then
-            '    cbOBJECT_ATTENDANCE.SelectedValue = dtData.Rows(0)("ID")
-            '    cbOBJECT_ATTENDANCE.SelectedIndex = 0
-            'End If
-
-            Using rep As New ProfileRepository
-                dtData = rep.GetOtherList("OBJECT_LABOR")
-            End Using
-            FillRadCombobox(cboObjectLaborNew, dtData, "NAME", "ID")
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
             'DisplayException(Me.ViewName, Me.ID, ex)
@@ -253,7 +244,6 @@ Public Class ctrlHU_ChangeInfoNewEdit
                     If Working.DECISION_TYPE_ID = 7561 Then
                         btnFindOrg.Enabled = False
                         cboTitle.Enabled = False
-                        'If ctrlFindEmployeePopup.SelectedEmployeeID Is Nothing Then
                         If hidEmp.Value <> "" Then
                             Dim empID = hidEmp.Value
                             FillData(empID)
@@ -268,19 +258,9 @@ Public Class ctrlHU_ChangeInfoNewEdit
                     If Working.WORKING_OLD IsNot Nothing Then
                         With Working.WORKING_OLD
                             txtTitleNameOld.Text = .TITLE_NAME
-                            ' txtTitleGroupOld.Text = .TITLE_GROUP_NAME
-                            'txtDecisionNoOld.Text = .DECISION_NO
-                            rtOBJECT_ATTENDANCE_OLD.Text = If(Working.WORKING_OLD.OBJECT_ATTENDANCE = 0 Or Working.OBJECT_ATTENDANCE Is Nothing, Working.WORKING_OLD.OBJECT_ATTENDANCE_NAME_OLD, Working.WORKING_OLD.OBJECT_ATTENDANCE_NAME)
-                            'If IsDate(.FILING_DATE) Then
-                            '    rdFILING_DATE_OLD.SelectedDate = .FILING_DATE
-                            'Else
-                            '    rdFILING_DATE_OLD.SelectedDate = If(IsDate(Working.FILING_DATE), Working.FILING_DATE, Nothing)
-                            'End If
                             txtDecisionTypeOld.Text = .DECISION_TYPE_NAME
-                            txtObjectLaborOld.Text = .OBJECT_LABORNAME
                             rdEffectDateOld.SelectedDate = .EFFECT_DATE
                             rdExpireDateOld.SelectedDate = .EXPIRE_DATE
-                            txtStaffRankOld.Text = .STAFF_RANK_NAME
                             If Working.WORKING_OLD.TAX_TABLE_ID IsNot Nothing Then
                             End If
                             If .STAFF_RANK_ID IsNot Nothing Then
@@ -291,46 +271,26 @@ Public Class ctrlHU_ChangeInfoNewEdit
                                 txtFileAttach_Link.Text = Working.WORKING_OLD.FILENAME
                                 txtFileAttach_Link1.Text = Working.WORKING_OLD.ATTACH_FILE
                             End If
-                            'If .SAL_GROUP_ID IsNot Nothing Then
-                            '    cboSalGroupOld.SelectedValue = .SAL_GROUP_ID
-                            '    cboSalGroupOld.Text = .SAL_GROUP_NAME
-                            'End If
-                            'If .SAL_LEVEL_ID IsNot Nothing Then
-                            '    cboSalLevelOld.SelectedValue = .SAL_LEVEL_ID
-                            '    cboSalLevelOld.Text = .SAL_LEVEL_NAME
-                            'End If
-                            'If .SAL_RANK_ID IsNot Nothing Then
-                            '    cboSalRankOld.SelectedValue = .SAL_RANK_ID
-                            '    cboSalRankOld.Text = .SAL_RANK_NAME
-                            'End If
-                            'rntxtSalBasicOld.Value = .SAL_BASIC
-                            'rntxtCostSupportOld.Value = .COST_SUPPORT
-                            'rntxtPercentSalaryOld.Value = .PERCENT_SALARY
-                            'rntxtSalTotalOld.Value = 0
-                            'If .SAL_BASIC IsNot Nothing Then
-                            '    rntxtSalTotalOld.Value += .SAL_BASIC
-                            'End If
-                            'If .COST_SUPPORT IsNot Nothing Then
-                            '    rntxtSalTotalOld.Value += .COST_SUPPORT
-                            'End If
+                            
                             txtDecisionold.Text = .DECISION_NO
                             txtOrgNameOld.Text = .ORG_NAME
-                            txtManagerOld.Text = .DIRECT_MANAGER_NAME
-                            txtTitleGroupOLD.Text = .TITLE_GROUP_NAME
+
+                            ' thong tin them moi old
+                            txtJobPositionOld.Text = .JOB_POSITION_NAME
+                            txtJobDescriptionOld.Text = .JOB_DESCRIPTION_NAME
+                            rdSignDateOld.SelectedDate = .SIGN_DATE
+                            txtSignNameOld.Text = .SIGN_NAME
+                            txtSignTitleOld.Text = .SIGN_TITLE
+                            txtRemarkOld.Text = .REMARK
+                            
                         End With
                     End If
 
                     txtEmployeeCode.Text = Working.EMPLOYEE_CODE
                     txtEmployeeName.Text = Working.EMPLOYEE_NAME
-                    If IsNumeric(Working.OBJECT_ATTENDANCE) And Working.OBJECT_ATTENDANCE <> 0 Then
-                        cbOBJECT_ATTENDANCE.SelectedValue = Working.OBJECT_ATTENDANCE
-                    End If
-                    'If IsDate(Working.FILING_DATE) Then
-                    '    rdFILING_DATE.SelectedDate = Working.FILING_DATE
-                    'End If
+                    
                     SetValueComboBox(cboTitle, Working.TITLE_ID, Working.TITLE_NAME)
 
-                    'txtTitleGroup.Text = Working.TITLE_GROUP_NAME
                     hidOrg.Value = Working.ORG_ID
                     txtOrgName.Text = Working.ORG_NAME
                     txtDecision.Text = Working.DECISION_NO
@@ -344,52 +304,15 @@ Public Class ctrlHU_ChangeInfoNewEdit
                     FileOldName = If(FileOldName = "", txtUpload.Text, FileOldName)
                     rdEffectDate.SelectedDate = Working.EFFECT_DATE
                     rdExpireDate.SelectedDate = Working.EXPIRE_DATE
-                    txtTitleGroup.Text = Working.TITLE_GROUP_NAME
                     If Working.DECISION_TYPE_ID IsNot Nothing Then
                         cboDecisionType.SelectedValue = Working.DECISION_TYPE_ID
                         cboDecisionType.Text = Working.DECISION_TYPE_NAME
                     End If
-                    If Working.OBJECT_LABOR IsNot Nothing Then
-                        cboObjectLaborNew.SelectedValue = Working.OBJECT_LABOR
-                        cboObjectLaborNew.Text = Working.OBJECT_LABORNAME
-                    End If
 
-                    If Working.STAFF_RANK_ID IsNot Nothing Then
-                        cboStaffRank.SelectedValue = Working.STAFF_RANK_ID
-                        cboStaffRank.Text = Working.STAFF_RANK_NAME
-                    End If
                     If Working.IS_PROCESS IsNot Nothing Then
                         chkIsProcess.Checked = Working.IS_PROCESS
                     End If
-                    ' txtDecisionNo.Text = Working.DECISION_NO
-
-                    'If Working.SAL_GROUP_ID IsNot Nothing Then
-                    '    cboSalGroup.SelectedValue = Working.SAL_GROUP_ID
-                    '    cboSalGroup.Text = Working.SAL_GROUP_NAME
-                    'End If
-
-                    'If Working.SAL_LEVEL_ID IsNot Nothing Then
-                    '    cboSalLevel.SelectedValue = Working.SAL_LEVEL_ID
-                    '    cboSalLevel.Text = Working.SAL_LEVEL_NAME
-                    'End If
-
-                    'If Working.SAL_RANK_ID IsNot Nothing Then
-                    '    cboSalRank.SelectedValue = Working.SAL_RANK_ID
-                    '    cboSalRank.Text = Working.SAL_RANK_NAME
-                    'End If
-
-                    'rntxtCostSupport.Value = Working.COST_SUPPORT
-                    'rntxtPercentSalary.Value = Working.PERCENT_SALARY
-                    'rntxtSalTotal.Value = 0
-
-                    'If Working.SAL_BASIC IsNot Nothing Then
-                    '    rntxtSalTotal.Value += Working.SAL_BASIC
-                    'End If
-
-                    'If Working.COST_SUPPORT IsNot Nothing Then
-                    '    rntxtSalTotal.Value += Working.COST_SUPPORT
-                    'End If
-
+                    
                     rdSignDate.SelectedDate = Working.SIGN_DATE
 
                     If Working.SIGN_ID IsNot Nothing Then
@@ -399,41 +322,58 @@ Public Class ctrlHU_ChangeInfoNewEdit
                     txtSignName.Text = Working.SIGN_NAME
                     txtSignTitle.Text = Working.SIGN_TITLE
                     txtRemark.Text = Working.REMARK
-                    '  rntxtPercentSalary.Value = Working.PERCENT_SALARY
                     lstAllow = Working.lstAllowance
 
-                    If Working.DIRECT_MANAGER IsNot Nothing Then
-                        txtManagerNew.Text = Working.DIRECT_MANAGER_NAME
-                        hidManager.Value = Working.DIRECT_MANAGER
+                    ' them moi
+                    chkIsReplace.Checked = Working.IS_REPLACE
+                    Dim DSdata As DataSet
+                    Using rep1 As New ProfileRepository
+                        DSdata = rep1.GET_JP_TO_TITLE(hidOrg.Value, cboTitle.SelectedValue, chkIsReplace.Checked)
+                    End Using
+
+                    If DSdata.Tables(0).Rows.Count > 0 Then
+                        cboJobPosition.DataSource = DSdata.Tables(0)
+                        cboJobPosition.DataTextField = "NAME"
+                        cboJobPosition.DataValueField = "ID"
+                        cboJobPosition.DataBind()
                     End If
 
-                    'Dim total As Decimal = 0
-                    'If rntxtCostSupport.Value IsNot Nothing Then
-                    '    total = total + rntxtCostSupport.Value
-                    'End If
-                    'If rntxtSalBasic.Value IsNot Nothing Then
-                    '    total = total + rntxtSalBasic.Value
-                    'End If
-                    'For Each item As GridDataItem In rgAllow.Items
-                    '    If item.GetDataKeyValue("AMOUNT") IsNot Nothing Then
-                    '        total = total + item.GetDataKeyValue("AMOUNT")
-                    '    End If
-                    'Next
-                    'rntxtTotal.Value = total
+                    If DSdata.Tables(1).Rows.Count > 0 Then
+                        cboJobDescription.DataSource = DSdata.Tables(1)
+                        cboJobDescription.DataTextField = "NAME"
+                        cboJobDescription.DataValueField = "ID"
+                        cboJobDescription.DataBind()
+                    End If
+                    cboJobPosition.SelectedValue = Working.JOB_POSITION
+
+                    If Working.JOB_DESCRIPTION IsNot Nothing Then
+                        cboJobDescription.SelectedValue = Working.JOB_DESCRIPTION
+                    End If
+
+                    rdEffectHdDate.SelectedDate = Working.EFFECT_DH_DATE
+                    chkIsHurtful.Checked = Working.IS_HURTFUL
+                    txtEmpReplace.Text = Working.EMP_REPLACE_NAME
+                    If Working.EMP_REPLACE IsNot Nothing Then
+                        hidEmpRe.Value = Working.EMP_REPLACE
+                    End If
+
                     If Working.STATUS_ID = ProfileCommon.DECISION_STATUS.APPROVE_ID Or
                         Working.STATUS_ID = ProfileCommon.DECISION_STATUS.NOT_APPROVE_ID Then
                         EnableControlAll_Cus(False, LeftPane)
-                        'MainToolBar.Items(0).Enabled = False
                         btnDownload.Enabled = True
                         btnUploadFile.Enabled = True
+                    End If
+
+                    If chkIsReplace.Checked Then
+                        btnEmpReplace.Enabled = True
+                    Else
+                        btnEmpReplace.Enabled = False
                     End If
 
                 Case "NormalView"
                     CurrentState = CommonMessage.STATE_NEW
             End Select
             rep.Dispose()
-            'RebindValue()
-            'RebindOldValue()
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
             _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
@@ -452,6 +392,7 @@ Public Class ctrlHU_ChangeInfoNewEdit
     Public Sub OnToolbar_Command(ByVal sender As Object, ByVal e As RadToolBarEventArgs) Handles Me.OnMainToolbarClick
         Dim objWorking As New WorkingDTO
         Dim rep As New ProfileBusinessRepository
+        Dim rep1 As New ProfileRepository
         Dim gID As Decimal
         Dim startTime As DateTime = DateTime.UtcNow
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
@@ -460,35 +401,6 @@ Public Class ctrlHU_ChangeInfoNewEdit
             Select Case CType(e.Item, RadToolBarButton).CommandName
                 Case CommonMessage.TOOLBARITEM_SAVE
                     If Page.IsValid Then
-                        If cboStatus.SelectedValue = ProfileCommon.DECISION_STATUS.APPROVE_ID Then
-                            'If txtDecisionNo.Text = "" Then
-                            '    ShowMessage(Translate("Bạn phải nhập số tờ trình"), NotifyType.Warning)
-                            '    txtDecisionNo.Focus()
-                            '    Exit Sub
-                            'End If
-                        End If
-                        'If cboSalType.SelectedValue = "" Then
-                        '    ShowMessage(Translate("Bạn phải chọn đối tượng lương"), NotifyType.Warning)
-                        '    cboSalType.Focus()
-                        '    Exit Sub
-                        'End If
-                        'If cboSalGroup.SelectedValue = "" Then
-                        '    ShowMessage(Translate("Bạn phải chọn thang lương"), NotifyType.Warning)
-                        '    cboSalGroup.Focus()
-                        '    Exit Sub
-                        'End If
-
-                        'If cboSalLevel.SelectedValue = "" Then
-                        '    ShowMessage(Translate("Bạn phải chọn nhóm lương"), NotifyType.Warning)
-                        '    cboSalLevel.Focus()
-                        '    Exit Sub
-                        'End If
-
-                        'If cboSalRank.SelectedValue = "" Then
-                        '    ShowMessage(Translate("Bạn phải chọn bậc lương"), NotifyType.Warning)
-                        '    cboSalRank.Focus()
-                        '    Exit Sub
-                        'End If
                         If cboStatus.SelectedValue = 447 Then
                             If txtUpload.Text = "" Then
                                 ShowMessage(Translate("Bạn phải đính kèm tập tin khi phê duyệt"), NotifyType.Warning)
@@ -506,18 +418,7 @@ Public Class ctrlHU_ChangeInfoNewEdit
                             cboDecisionType.Focus()
                             Exit Sub
                         End If
-                        If cboObjectLaborNew.SelectedValue = "" Then
-                            ShowMessage(Translate("Bạn phải chọn loại lao động"), NotifyType.Warning)
-                            cboObjectLaborNew.Focus()
-                            Exit Sub
-                        End If
-
-                        'If cboStaffRank.SelectedValue = "" Then
-                        '    ShowMessage(Translate("Bạn phải chọn cấp nhân sự"), NotifyType.Warning)
-                        '    cboStaffRank.Focus()
-                        '    Exit Sub
-                        'End If
-
+                        
                         If cboStatus.SelectedValue = "" Then
                             ShowMessage(Translate("Bạn phải chọn trạng thái"), NotifyType.Warning)
                             cboStatus.Focus()
@@ -529,12 +430,6 @@ Public Class ctrlHU_ChangeInfoNewEdit
                             rdEffectDate.Focus()
                             Exit Sub
                         End If
-
-                        'If rntxtPercentSalary Is Nothing Then
-                        '    ShowMessage(Translate("Bạn phải nhập % hưởng lương"), NotifyType.Warning)
-                        '    rntxtPercentSalary.Focus()
-                        '    Exit Sub
-                        'End If
 
                         With objWorking
                             .EMPLOYEE_ID = If(IsNumeric(hidEmp.Value), hidEmp.Value, Nothing)
@@ -555,30 +450,8 @@ Public Class ctrlHU_ChangeInfoNewEdit
                             If cboDecisionType.SelectedValue <> "" Then
                                 .DECISION_TYPE_ID = cboDecisionType.SelectedValue
                             End If
-                            If cboObjectLaborNew.SelectedValue <> "" Then
-                                .OBJECT_LABOR = cboObjectLaborNew.SelectedValue
-                            End If
-
-                            ' .DECISION_NO = txtDecisionNo.Text
                             .DECISION_NO = txtDecision.Text
 
-                            'If cboSalGroup.SelectedValue <> "" Then
-                            '    .SAL_GROUP_ID = cboSalGroup.SelectedValue
-                            'End If
-
-                            'If cboSalLevel.SelectedValue <> "" Then
-                            '    .SAL_LEVEL_ID = cboSalLevel.SelectedValue
-                            'End If
-
-                            'If cboSalRank.SelectedValue <> "" Then
-                            '    .SAL_RANK_ID = cboSalRank.SelectedValue
-                            'End If
-
-                            If cboStaffRank.SelectedValue <> "" Then
-                                .STAFF_RANK_ID = cboStaffRank.SelectedValue
-                            End If
-
-                            ' .COST_SUPPORT = rntxtCostSupport.Value
                             .SIGN_DATE = rdSignDate.SelectedDate
 
                             If hidSign.Value <> "" Then
@@ -600,84 +473,69 @@ Public Class ctrlHU_ChangeInfoNewEdit
                             If hidManager.Value <> "" Then
                                 .DIRECT_MANAGER = hidManager.Value
                             End If
-                            '.IS_WAGE = chkIsWage.Checked
                             .IS_3B = False
                             .IS_WAGE = IsWageDecisionType(cboDecisionType.SelectedValue)
 
-                            'If cboSalType.SelectedValue <> cboSalTypeOld.SelectedValue Or
-                            '    rntxtSalBasic.Value <> rntxtSalBasicOld.Value Or
-                            '    rgAllow.Items.Count > 0 Then
-                            '    .IS_WAGE = True
-                            'End If
-
-                            '  .PERCENT_SALARY = rntxtPercentSalary.Value
                             .SAL_INS = .SAL_BASIC
                             .ALLOWANCE_TOTAL = 0
+                            .IS_REPLACE = chkIsReplace.Checked
+                            If hidEmpRe.Value <> "" Then
+                                .EMP_REPLACE = hidEmpRe.Value
+                            End If
+                            .JOB_POSITION = cboJobPosition.SelectedValue
 
-                            'If IsDate(rdFILING_DATE.SelectedDate) Then
-                            '    .FILING_DATE = rdFILING_DATE.SelectedDate
-                            'End If
-                            If IsNumeric(cbOBJECT_ATTENDANCE.SelectedValue) Then
-                                .OBJECT_ATTENDANCE = cbOBJECT_ATTENDANCE.SelectedValue
+                            If cboJobDescription.SelectedValue <> "" Then
+                                .JOB_DESCRIPTION = cboJobDescription.SelectedValue
                             End If
-                            If IsNumeric(cboObjectLaborNew.SelectedValue) Then
-                                .OBJECT_LABOR = cboObjectLaborNew.SelectedValue
-                            End If
+                            .IS_HURTFUL = chkIsHurtful.Checked
+                            .EFFECT_DH_DATE = rdEffectHdDate.SelectedDate
+
                         End With
 
                         Select Case CurrentState
                             Case CommonMessage.STATE_NEW
-                                If hidManager.Value <> "" Then
-                                    If rep.InsertWorking1(objWorking, gID) Then
-                                        Dim str As String = "getRadWindow().close('1');"
-                                        ScriptManager.RegisterStartupScript(Me.Page, Me.Page.GetType, "clientButtonClicking", str, True)
-                                        ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), Utilities.NotifyType.Success)
+                                If rep.InsertWorking1(objWorking, gID) Then
 
-                                        'Clear all input
-                                        ClearControlValue(txtEmployeeCode, txtEmployeeName, txtStaffRankOld, txtOrgNameOld,
-                                                          txtTitleNameOld,
-                                        txtDecisionTypeOld, txtObjectLaborOld,
-                                                          rdEffectDateOld, rdExpireDateOld, rdEffectDate, rdExpireDate,
-                                                           rdSignDate, txtSignName, txtSignTitle,
-                                                          txtOrgName, txtRemark)
-                                        cboStaffRank.Text = String.Empty
-                                        cboTitle.Text = String.Empty
-                                        cboDecisionType.Text = String.Empty
-                                        cboObjectLaborNew.Text = String.Empty
-                                        chkIsProcess.Checked = False
-                                        Response.Redirect("/Default.aspx?mid=Profile&fid=ctrlHU_ChangeInfoMng&group=Business")
-                                    Else
-                                        ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), Utilities.NotifyType.Error)
+                                    ' Cập nhật ngày kết thúc cho hợp đồng cũ
+                                    If objWorking.STATUS_ID = 447 Then
+                                        rep1.UPDATE_END_DATE_QD(objWorking.EMPLOYEE_ID, objWorking.EFFECT_DATE)
                                     End If
-                                Else
-                                    WorkingForMessage = objWorking
-                                    ctrlMessageBox.MessageText = Translate("Bạn chắc chắn nhân viên này không có Quản lý trực tiếp ?")
-                                    ctrlMessageBox.MessageTitle = Translate("Thông báo")
-                                    ctrlMessageBox.ActionName = "CHECK_DIRECTMANAGER"
-                                    ctrlMessageBox.DataBind()
-                                    ctrlMessageBox.Show()
-                                End If
 
+                                    Dim str As String = "getRadWindow().close('1');"
+                                    ScriptManager.RegisterStartupScript(Me.Page, Me.Page.GetType, "clientButtonClicking", str, True)
+                                    ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), Utilities.NotifyType.Success)
+
+                                    'Clear all input
+                                    ClearControlValue(txtEmployeeCode, txtEmployeeName,
+                                                      txtTitleNameOld,
+                                    txtDecisionTypeOld,
+                                                      rdEffectDateOld, rdExpireDateOld, rdEffectDate, rdExpireDate,
+                                                       rdSignDate, txtSignName, txtSignTitle,
+                                                      txtOrgName, txtRemark)
+                                    'cboStaffRank.Text = String.Empty
+                                    cboTitle.Text = String.Empty
+                                    cboDecisionType.Text = String.Empty
+                                    chkIsProcess.Checked = False
+                                    Response.Redirect("/Default.aspx?mid=Profile&fid=ctrlHU_ChangeInfoMng&group=Business")
+                                Else
+                                    ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), Utilities.NotifyType.Error)
+                                End If
                             Case CommonMessage.STATE_EDIT
-                                If hidManager.Value <> "" Then
                                     objWorking.ID = Decimal.Parse(hidID.Value)
-                                    If rep.ModifyWorking1(objWorking, gID) Then
-                                        'Dim str As String = "getRadWindow().close('1');"
-                                        'ScriptManager.RegisterStartupScript(Me.Page, Me.Page.GetType, "clientButtonClicking", str, True)
-                                        ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), Utilities.NotifyType.Success)
-                                        ''POPUPTOLINK
-                                        Response.Redirect("/Default.aspx?mid=Profile&fid=ctrlHU_ChangeInfoMng&group=Business")
-                                    Else
-                                        ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), Utilities.NotifyType.Error)
+                                If rep.ModifyWorking1(objWorking, gID) Then
+
+                                    ' Cập nhật ngày kết thúc cho hợp đồng cũ
+                                    If objWorking.STATUS_ID = 447 Then
+                                        rep1.UPDATE_END_DATE_QD(objWorking.EMPLOYEE_ID, objWorking.EFFECT_DATE)
                                     End If
+
+                                    ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), Utilities.NotifyType.Success)
+                                    ''POPUPTOLINK
+                                    Response.Redirect("/Default.aspx?mid=Profile&fid=ctrlHU_ChangeInfoMng&group=Business")
                                 Else
-                                    WorkingForMessage = objWorking
-                                    ctrlMessageBox.MessageText = Translate("Bạn chắc chắn nhân viên này không có Quản lý trực tiếp ?")
-                                    ctrlMessageBox.MessageTitle = Translate("Thông báo")
-                                    ctrlMessageBox.ActionName = "CHECK_DIRECTMANAGER"
-                                    ctrlMessageBox.DataBind()
-                                    ctrlMessageBox.Show()
+                                    ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), Utilities.NotifyType.Error)
                                 End If
+                               
                         End Select
                     End If
 
@@ -720,16 +578,15 @@ Public Class ctrlHU_ChangeInfoNewEdit
                             ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), Utilities.NotifyType.Success)
 
                             'Clear all input
-                            ClearControlValue(txtEmployeeCode, txtEmployeeName, txtStaffRankOld, txtOrgNameOld,
+                            ClearControlValue(txtEmployeeCode, txtEmployeeName,
                                               txtTitleNameOld,
-                            txtDecisionTypeOld, txtObjectLaborOld,
+                            txtDecisionTypeOld,
                                               rdEffectDateOld, rdExpireDateOld, rdEffectDate, rdExpireDate,
                                                rdSignDate, txtSignName, txtSignTitle,
                                               txtOrgName, txtRemark)
-                            cboStaffRank.Text = String.Empty
+                            'cboStaffRank.Text = String.Empty
                             cboTitle.Text = String.Empty
                             cboDecisionType.Text = String.Empty
-                            cboObjectLaborNew.Text = String.Empty
                             chkIsProcess.Checked = False
                             Response.Redirect("/Default.aspx?mid=Profile&fid=ctrlHU_ChangeInfoMng&group=Business")
                         Else
@@ -775,7 +632,8 @@ Public Class ctrlHU_ChangeInfoNewEdit
     Protected Sub btnFindCommon_Click(ByVal sender As Object,
                                         ByVal e As EventArgs) Handles _
                                         btnFindEmployee.Click,
-                                        btnFindSign.Click
+                                        btnFindSign.Click,
+                                        btnEmpReplace.Click
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
         Dim startTime As DateTime = DateTime.UtcNow
 
@@ -785,6 +643,8 @@ Public Class ctrlHU_ChangeInfoNewEdit
                     isLoadPopup = 1
                 Case btnFindSign.ID
                     isLoadPopup = 2
+                Case btnEmpReplace.ID
+                    isLoadPopup = 5
             End Select
 
             UpdateControlState()
@@ -797,6 +657,8 @@ Public Class ctrlHU_ChangeInfoNewEdit
                     ctrlFindSigner.LoadAllOrganization = False
                     ctrlFindSigner.IsOnlyWorkingWithoutTer = True
                     ctrlFindSigner.Show()
+                Case btnEmpReplace.ID
+                    ctrlFindEmployeeRePopup.Show()
             End Select
 
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
@@ -815,7 +677,8 @@ Public Class ctrlHU_ChangeInfoNewEdit
                                      ByVal e As System.EventArgs) Handles _
                                  ctrlFindEmployeePopup.CancelClicked,
                                  ctrlFindSigner.CancelClicked,
-                                 ctrlFindOrgPopup.CancelClicked
+                                 ctrlFindOrgPopup.CancelClicked,
+                                 ctrlFindEmployeeRePopup.CancelClicked
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
         Dim startTime As DateTime = DateTime.UtcNow
         Try
@@ -849,6 +712,29 @@ Public Class ctrlHU_ChangeInfoNewEdit
             _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
         End Try
     End Sub
+    ''' <lastupdate>06/07/2017</lastupdate>
+    ''' <summary>Event Ok popup List Nhan vien (Giao dien 1)</summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
+    ''' <remarks></remarks>
+    Private Sub ctrlFindEmployeeRePopup_EmployeeSelected(ByVal sender As Object, ByVal e As System.EventArgs) Handles ctrlFindEmployeeRePopup.EmployeeSelected
+        Dim startTime As DateTime = DateTime.UtcNow
+        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+
+        Try
+            Dim empRelace = ctrlFindEmployeeRePopup.SelectedEmployee(0)
+            hidEmpRe.Value = empRelace.ID
+            txtEmpReplace.Text = empRelace.FULLNAME_VN
+           
+            isLoadPopup = 0
+
+            _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
+        Catch ex As Exception
+            'DisplayException(Me.ViewName, Me.ID, ex)
+            _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
+        End Try
+    End Sub
+
 
     ''' <lastupdate>06/07/2017</lastupdate>
     ''' <summary>Event Ok popup List Nhan vien (Giao dien 2)</summary>
@@ -1090,7 +976,7 @@ Public Class ctrlHU_ChangeInfoNewEdit
     ''' <remarks></remarks>
     Protected Sub cboCommon_ItemsRequested(ByVal sender As Object, ByVal e As RadComboBoxItemsRequestedEventArgs) _
                                                     Handles cboStatus.ItemsRequested,
-                                                            cboTitle.ItemsRequested, cboStaffRank.ItemsRequested
+                                                            cboTitle.ItemsRequested
 
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
         Dim startTime As DateTime = DateTime.UtcNow
@@ -1109,8 +995,8 @@ Public Class ctrlHU_ChangeInfoNewEdit
                         dValue = IIf(e.Context("valueCustom") IsNot Nothing, e.Context("valueCustom"), 0)
                         dtData = rep.GetTitleByOrgID(dValue, True)
 
-                    Case cboStaffRank.ID
-                        dtData = rep.GetStaffRankList(True)
+                        'Case cboStaffRank.ID
+                        '    dtData = rep.GetStaffRankList(True)
 
                 End Select
 
@@ -1332,34 +1218,13 @@ Public Class ctrlHU_ChangeInfoNewEdit
         End Try
     End Sub
 
-    ''' <summary>
-    ''' Event select Manager
-    ''' </summary>
-    ''' <param name="sender"></param>
-    ''' <param name="e"></param>
-    ''' <remarks></remarks>
-    Private Sub btnFindDirect_Click(sender As Object, e As System.EventArgs) Handles btnFindDirect.Click
-        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
-        Try
-            Dim startTime As DateTime = DateTime.UtcNow
-            isLoadPopup = 4
-            UpdateControlState()
-            ctrlFindManager.MustHaveContract = False
-            ctrlFindManager.Show()
-
-            _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
-        Catch ex As Exception
-            _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
-        End Try
-    End Sub
-
     Private Sub ctrlFindManager_EmployeeSelected(sender As Object, e As System.EventArgs) Handles ctrlFindManager.EmployeeSelected
         Dim objEmployee As CommonBusiness.EmployeePopupFindDTO
         Dim startTime As DateTime = DateTime.UtcNow
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
         Try
             objEmployee = ctrlFindManager.SelectedEmployee(0)
-            txtManagerNew.Text = objEmployee.FULLNAME_VN
+            'txtManagerNew.Text = objEmployee.FULLNAME_VN
             hidManager.Value = objEmployee.EMPLOYEE_ID
             isLoadPopup = 0
         Catch ex As Exception
@@ -1434,6 +1299,14 @@ Public Class ctrlHU_ChangeInfoNewEdit
                         ctrlFindManager.LoadAllOrganization = True
                         ctrlFindManager.MustHaveContract = False
                     End If
+                Case 5
+                    If Not phFindEmpRe.Controls.Contains(ctrlFindEmployeeRePopup) Then
+                        ctrlFindEmployeeRePopup = Me.Register("ctrlFindEmployeePopup", "Common", "ctrlFindEmployeePopup")
+                        phFindEmpRe.Controls.Add(ctrlFindEmployeeRePopup)
+                        ctrlFindEmployeeRePopup.MultiSelect = False
+                        ctrlFindEmployeeRePopup.LoadAllOrganization = False
+                        ctrlFindEmployeeRePopup.MustHaveContract = True
+                    End If
             End Select
 
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
@@ -1492,30 +1365,25 @@ Public Class ctrlHU_ChangeInfoNewEdit
                     ShowMessage(Translate("Nhân viên trạng thái nghỉ việc. Không được phép chỉnh sửa thông tin."), Utilities.NotifyType.Warning)
                     Exit Sub
                 End If
-                'hidID.Value = obj.ID.ToString
                 hidEmp.Value = obj.EMPLOYEE_ID
                 txtEmployeeCode.Text = obj.EMPLOYEE_CODE
                 txtEmployeeName.Text = obj.EMPLOYEE_NAME
                 txtTitleNameOld.Text = obj.TITLE_NAME
-                txtTitleGroupOLD.Text = obj.TITLE_GROUP_NAME
-                txtTitleGroup.Text = obj.TITLE_GROUP_NAME
                 txtDecisionold.Text = obj.DECISION_NO
-                'txtDecision.Text = obj.DECISION_NO
                 txtDecisionTypeOld.Text = obj.DECISION_TYPE_NAME
-                txtObjectLaborOld.Text = obj.OBJECT_LABORNAME
                 txtOrgNameOld.Text = obj.ORG_NAME
                 rdEffectDateOld.SelectedDate = obj.EFFECT_DATE
                 rdExpireDateOld.SelectedDate = obj.EXPIRE_DATE
-                txtStaffRankOld.Text = obj.STAFF_RANK_NAME
-                If obj.DIRECT_MANAGER IsNot Nothing Then
-                    txtManagerOld.Text = obj.DIRECT_MANAGER_NAME
-                    txtManagerNew.Text = obj.DIRECT_MANAGER_NAME
-                    hidManager.Value = obj.DIRECT_MANAGER
-                End If
-                If obj.STAFF_RANK_ID IsNot Nothing Then
-                    cboStaffRank.SelectedValue = obj.STAFF_RANK_ID
-                    cboStaffRank.Text = obj.STAFF_RANK_NAME
-                End If
+
+                ' thong tin them moi
+                txtJobPositionOld.Text = obj.JOB_POSITION_NAME
+                txtJobDescriptionOld.Text = obj.JOB_DESCRIPTION_NAME
+                rdSignDateOld.SelectedDate = obj.SIGN_DATE
+                txtSignNameOld.Text = obj.SIGN_NAME
+                txtSignTitleOld.Text = obj.SIGN_TITLE
+                txtRemarkOld.Text = obj.REMARK
+
+
                 If obj.FILENAME IsNot Nothing Then
                     lbFileAttach.Text = obj.FILENAME
                     txtFileAttach_Link.Text = obj.FILENAME
@@ -1534,7 +1402,6 @@ Public Class ctrlHU_ChangeInfoNewEdit
                             radItem.Attributes("GROUP_NAME") = item("GROUP_NAME").ToString()
                             cboTitle.Items.Add(radItem)
                         Next
-                        'FillRadCombobox(cboTitle, dtdata, "NAME", "ID")
                     End If
                 End If
                 If obj.TITLE_ID IsNot Nothing Then
@@ -1545,18 +1412,6 @@ Public Class ctrlHU_ChangeInfoNewEdit
                     cboDecisionType.SelectedValue = obj.DECISION_TYPE_ID
                     cboDecisionType.Text = obj.DECISION_TYPE_NAME
                 End If
-                If obj.OBJECT_LABOR IsNot Nothing Then
-                    cboObjectLaborNew.SelectedValue = obj.OBJECT_LABOR
-                    cboObjectLaborNew.Text = obj.OBJECT_LABORNAME
-                End If
-                If IsNumeric(obj.OBJECT_ATTENDANCE) Then
-                    cbOBJECT_ATTENDANCE.SelectedValue = obj.OBJECT_ATTENDANCE
-                End If
-                'If IsDate(obj.FILING_DATE) Then
-                '    rdFILING_DATE.SelectedDate = obj.FILING_DATE
-                '    rdFILING_DATE_OLD.SelectedDate = obj.FILING_DATE
-                'End If
-                rtOBJECT_ATTENDANCE_OLD.Text = obj.OBJECT_ATTENDANCE_NAME
             End Using
 
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
@@ -1595,6 +1450,57 @@ Public Class ctrlHU_ChangeInfoNewEdit
                 cboTitle.ClearValue()
             End If
             ' End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub cboTitle_SelectedIndexChanged(sender As Object, e As Telerik.Web.UI.RadComboBoxSelectedIndexChangedEventArgs) Handles cboTitle.SelectedIndexChanged
+        Try
+            Dim DSdata As DataSet
+            Using rep As New ProfileRepository
+                DSdata = rep.GET_JP_TO_TITLE(hidOrg.Value, cboTitle.SelectedValue, chkIsReplace.Checked)
+            End Using
+
+            If DSdata.Tables(0).Rows.Count > 0 Then
+                cboJobPosition.DataSource = DSdata.Tables(0)
+                cboJobPosition.DataTextField = "NAME"
+                cboJobPosition.DataValueField = "ID"
+                cboJobPosition.DataBind()
+            End If
+
+            If DSdata.Tables(1).Rows.Count > 0 Then
+                cboJobDescription.DataSource = DSdata.Tables(1)
+                cboJobDescription.DataTextField = "NAME"
+                cboJobDescription.DataValueField = "ID"
+                cboJobDescription.DataBind()
+            End If
+
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub chkIsReplace_CheckedChanged(sender As Object, e As System.EventArgs) Handles chkIsReplace.CheckedChanged
+        Try
+            Dim DSdata As DataSet
+            Using rep As New ProfileRepository
+                DSdata = rep.GET_JP_TO_TITLE(hidOrg.Value, cboTitle.SelectedValue, chkIsReplace.Checked)
+            End Using
+
+            If DSdata.Tables(0).Rows.Count > 0 Then
+                cboJobPosition.DataSource = DSdata.Tables(0)
+                cboJobPosition.DataTextField = "NAME"
+                cboJobPosition.DataValueField = "ID"
+                cboJobPosition.DataBind()
+            End If
+
+            If chkIsReplace.Checked Then
+                btnEmpReplace.Enabled = True
+            Else
+                btnEmpReplace.Enabled = False
+            End If
+
         Catch ex As Exception
             Throw ex
         End Try

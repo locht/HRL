@@ -6419,7 +6419,7 @@
       <string>PHÒNG BAN</string>
     </Key>
     <Value>
-      <string>Ban/Phòng</string>
+      <string>Phòng ban</string>
     </Value>
   </Item>
   <Item>
@@ -24201,7 +24201,7 @@ Xin cám ơn!
       <string>CTRLHU_CHANGEINFOMNG</string>
     </Key>
     <Value>
-      <string>Quản lý quá trình công tác</string>
+      <string>Quản lý thông tin thay đổi nhân sự</string>
     </Value>
   </Item>
   <Item>
@@ -44668,6 +44668,14 @@ Xin cám ơn!
     </Key>
     <Value>
       <string>Chức năng/ yêu cầu công việc</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>ĐIỀU ĐỘNG HÀNG LOẠT</string>
+    </Key>
+    <Value>
+      <string>Điều động hàng loạt</string>
     </Value>
   </Item>
 </SerializableDictionaryOfStringString>

@@ -2673,6 +2673,28 @@ Namespace ProfileBusiness.ServiceImplementations
                 End Try
             End Using
         End Function
+
+        Function GET_JP_TO_TITLE(ByVal P_ORG_ID As Decimal, ByVal P_TITLE_ID As Decimal, ByVal P_IS_THAYTHE As Decimal) As DataSet Implements ServiceContracts.IProfileBusiness.GET_JP_TO_TITLE
+            Using rep As New ProfileRepository
+                Try
+                    Return rep.GET_JP_TO_TITLE(P_ORG_ID, P_TITLE_ID, P_IS_THAYTHE)
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
+
+        Function UPDATE_END_DATE_QD(ByVal P_EMP_ID As Decimal, ByVal P_DATE As Date) As Boolean Implements ServiceContracts.IProfileBusiness.UPDATE_END_DATE_QD
+            Using rep As New ProfileRepository
+                Try
+                    Return rep.UPDATE_END_DATE_QD(P_EMP_ID, P_DATE)
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
+
+
 #End Region
 
 

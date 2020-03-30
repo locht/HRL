@@ -6090,6 +6090,39 @@ Partial Class ProfileRepository
 
     End Function
 
+    Public Function GET_JP_TO_TITLE(ByVal P_ORG_ID As Decimal, ByVal P_TITLE_ID As Decimal, ByVal P_IS_THAYTHE As Decimal) As DataSet
+        Try
+            Using cls As New DataAccess.QueryData
+                Dim dtData As DataSet = cls.ExecuteStore("PKG_HU_IPROFILE_LIST.GET_JP_TO_TITLE",
+                                           New With {.P_ORG_ID = P_ORG_ID,
+                                                     .P_TITLE_ID = P_TITLE_ID,
+                                                     .P_IS_THAYTHE = P_IS_THAYTHE,
+                                                     .P_CUR = cls.OUT_CURSOR,
+                                                     .P_CUR1 = cls.OUT_CURSOR}, False)
+
+                Return dtData
+            End Using
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iProfile")
+            Throw ex
+        End Try
+    End Function
+
+    Public Function UPDATE_END_DATE_QD(ByVal P_EMP_ID As Decimal, ByVal P_DATE As Date) As Boolean
+        Try
+            Using cls As New DataAccess.QueryData
+                Dim dtData = cls.ExecuteStore("PKG_HU_IPROFILE_LIST.UPDATE_END_DATE_QD",
+                                           New With {.P_EMP_ID = P_EMP_ID,
+                                                     .P_DATE = P_DATE})
+
+                Return True
+            End Using
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iProfile")
+            Throw ex
+        End Try
+    End Function
+
 #End Region
 
 End Class

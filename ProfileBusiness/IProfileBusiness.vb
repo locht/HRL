@@ -2855,6 +2855,12 @@ Namespace ProfileBusiness.ServiceContracts
         <OperationContract()>
         Function ActiveJob(ByVal objOrgTitle As List(Of Decimal), ByVal sActive As String, ByVal log As UserLog) As Boolean
 
+        <OperationContract()>
+        Function GET_JP_TO_TITLE(ByVal P_ORG_ID As Decimal, ByVal P_TITLE_ID As Decimal, ByVal P_IS_THAYTHE As Decimal) As DataSet
+
+        <OperationContract()>
+        Function UPDATE_END_DATE_QD(ByVal P_EMP_ID As Decimal, ByVal P_DATE As Date) As Boolean
+
     End Interface
 
 End Namespace

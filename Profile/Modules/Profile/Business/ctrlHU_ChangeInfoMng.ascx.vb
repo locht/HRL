@@ -915,6 +915,7 @@ Public Class ctrlHU_ChangeInfoMng
     ''' <remarks></remarks>
     Private Sub BatchApproveChangeInfoMng()
         Dim rep As New ProfileBusinessRepository
+        Dim rep1 As New ProfileRepository
         Dim startTime As DateTime = DateTime.UtcNow
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
         Dim lstID As New List(Of Decimal)
@@ -949,6 +950,11 @@ Public Class ctrlHU_ChangeInfoMng
                     Exit Sub
                 End If
                 If rep.ApproveListChangeInfoMng(lstID) Then
+
+                    For Each dr As Telerik.Web.UI.GridDataItem In rgWorking.SelectedItems
+                        rep1.UPDATE_END_DATE_QD(dr.GetDataKeyValue("EMPLOYEE_ID"), dr.GetDataKeyValue("EFFECT_DATE"))
+                    Next
+
                     ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), NotifyType.Success)
                     rgWorking.Rebind()
                 Else

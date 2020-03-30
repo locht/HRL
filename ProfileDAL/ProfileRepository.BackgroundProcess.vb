@@ -29,7 +29,9 @@ Partial Class ProfileRepository
                              .EFFECT_DATE = p.EFFECT_DATE,
                              .DIRECT_MANAGER = p.DIRECT_MANAGER,
                              .OBJECT_ATTENDANCE = p.OBJECT_ATTENDANCE,
-                             .OBJECT_LABOR = p.OBJECT_LABOR
+                             .OBJECT_LABOR = p.OBJECT_LABOR,
+                             .JOB_POSITION = p.JOB_POSITION,
+                             .JOB_DESCRIPTION = p.JOB_DESCRIPTION
                              }).ToList
 
             For i As Integer = 0 To query.Count - 1
