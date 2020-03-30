@@ -2848,6 +2848,7 @@
             <Property Name="EFFECT_DH_DATE" Type="date" Nullable="true" />
             <Property Name="IS_HURTFUL" Type="number" Nullable="true" Precision="38" />
             <Property Name="END_DH_DATE" Type="date" Nullable="true" />
+            <Property Name="EMP_REPLACE" Type="number" Nullable="true" Precision="38" />
         </EntityType>
         <EntityType Name="PA_SALARY_TYPE">
             <Key>
@@ -7569,6 +7570,7 @@
           <Property Type="DateTime" Name="EFFECT_DH_DATE" />
           <Property Type="Decimal" Name="IS_HURTFUL" />
           <Property Type="DateTime" Name="END_DH_DATE" />
+          <Property Type="Decimal" Name="EMP_REPLACE" />
         </EntityType>
         <EntityType Name="PA_SALARY_TYPE">
           <Key>
@@ -11396,6 +11398,7 @@
                     <ScalarProperty Name="EFFECT_DH_DATE" ColumnName="EFFECT_DH_DATE" />
                     <ScalarProperty Name="IS_HURTFUL" ColumnName="IS_HURTFUL" />
                     <ScalarProperty Name="END_DH_DATE" ColumnName="END_DH_DATE" />
+                    <ScalarProperty Name="EMP_REPLACE" ColumnName="EMP_REPLACE" />
                 </MappingFragment>
             </EntityTypeMapping>
         </EntitySetMapping>
@@ -12598,7 +12601,7 @@
     </Options>
     <!-- Diagram content (shape and connector positions) -->
     <Diagrams>
-      <Diagram Name="ProfileContext" ZoomLevel="95" ShowGrid="false" DisplayType="true" SnapToGrid="true">
+      <Diagram Name="ProfileContext" ZoomLevel="81" ShowGrid="false" DisplayType="true" SnapToGrid="true">
         <EntityTypeShape EntityType="ProfileModel.HU_PROVINCE" Width="1.5" PointX="3" PointY="9.625" Height="0.39999999999999858" IsExpanded="false" />
         <EntityTypeShape EntityType="ProfileModel.HU_DISTRICT" Width="1.75" PointX="5.25" PointY="9" Height="0.39999999999999858" IsExpanded="false" />
         <EntityTypeShape EntityType="ProfileModel.HU_NATION" Width="1.5" PointX="0.75" PointY="9.625" Height="0.40000000000000213" IsExpanded="false" />
@@ -12862,7 +12865,7 @@
         <EntityTypeShape EntityType="ProfileModel.TR_REQUEST_EMPLOYEE" Width="1.5" PointX="27.375" PointY="18.75" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="ProfileModel.HU_ALLOWANCE_LIST" Width="2.375" PointX="27.375" PointY="21.75" Height="4.2879036458333353" IsExpanded="true" />
         <EntityTypeShape EntityType="ProfileModel.HU_COMPETENCY_COURSE" Width="2.375" PointX="27.375" PointY="26.75" Height="0.4" IsExpanded="false" />
-        <EntityTypeShape EntityType="ProfileModel.HU_WORKING" Width="2.5" PointX="4.625" PointY="12.625" Height="12.364563802083332" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProfileModel.HU_WORKING" Width="2.5" PointX="4.625" PointY="12.625" Height="12.556865234375003" IsExpanded="true" />
         <EntityTypeShape EntityType="ProfileModel.PA_SALARY_TYPE" Width="1.5" PointX="28.375" PointY="5.75" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="ProfileModel.HU_TITLE_CONCURRENT" Width="2.25" PointX="29.375" PointY="0.75" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="ProfileModel.HU_ORG_TITLE" Width="1.5" PointX="4.375" PointY="0.75" Height="0.4" IsExpanded="false" />

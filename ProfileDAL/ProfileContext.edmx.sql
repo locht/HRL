@@ -1,7 +1,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for Oracle database
 -- --------------------------------------------------
--- Date Created: 3/30/2020 10:48:06 AM
+-- Date Created: 3/30/2020 3:05:41 PM
 -- Generated from EDMX file: D:\SOURCE_GIT_NEW\SOURCR_ACV_NEW\ProfileDAL\ProfileContext.edmx
 -- --------------------------------------------------
 
@@ -2837,7 +2837,8 @@ CREATE TABLE "dbo"."HU_WORKING" (
    "IS_REPLACE" NUMBER(38,0) NULL,
    "EFFECT_DH_DATE" DATE NULL,
    "IS_HURTFUL" NUMBER(38,0) NULL,
-   "END_DH_DATE" DATE NULL
+   "END_DH_DATE" DATE NULL,
+   "EMP_REPLACE" NUMBER(38,0) NULL
 );
 
 -- Creating table 'PA_SALARY_TYPE'

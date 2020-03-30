@@ -18,7 +18,7 @@ Imports System.Runtime.Serialization
 Imports System.Xml.Serialization
 
 
-<Assembly: EdmSchemaAttribute("7450aa1a-b192-496d-abcf-f2cfb8f3dee8")>
+<Assembly: EdmSchemaAttribute("af68242a-fec8-415a-a6dc-7e67a152f5b2")>
 #Region "EDM Relationship Metadata"
 <Assembly: EdmRelationshipAttribute("ProfileModel", "FK_HU_NAT_HU_PRO", "HU_NATION", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_NATION), "HU_PROVINCE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_PROVINCE), True)>
 <Assembly: EdmRelationshipAttribute("ProfileModel", "FK_HU_PRO_HU_DIS", "HU_PROVINCE", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_PROVINCE), "HU_DISTRICT", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_DISTRICT), True)>
@@ -63866,6 +63866,31 @@ Public Partial Class HU_WORKING
     End Sub
 
     Private Partial Sub OnEND_DH_DATEChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property EMP_REPLACE() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _EMP_REPLACE
+        End Get
+        Set
+            OnEMP_REPLACEChanging(value)
+            ReportPropertyChanging("EMP_REPLACE")
+            _EMP_REPLACE = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("EMP_REPLACE")
+            OnEMP_REPLACEChanged()
+        End Set
+    End Property
+
+    Private _EMP_REPLACE As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnEMP_REPLACEChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnEMP_REPLACEChanged()
     End Sub
 
     #End Region
