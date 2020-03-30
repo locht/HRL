@@ -2842,6 +2842,12 @@
             <Property Name="OTHERSALARY4" Type="number" Nullable="true" Precision="38" />
             <Property Name="OTHERSALARY5" Type="number" Nullable="true" Precision="38" />
             <Property Name="OBJECT_LABOR" Type="number" Nullable="true" Precision="38" />
+            <Property Name="JOB_POSITION" Type="number" Nullable="true" Precision="38" />
+            <Property Name="JOB_DESCRIPTION" Type="number" Nullable="true" Precision="38" />
+            <Property Name="IS_REPLACE" Type="number" Nullable="true" Precision="38" />
+            <Property Name="EFFECT_DH_DATE" Type="date" Nullable="true" />
+            <Property Name="IS_HURTFUL" Type="number" Nullable="true" Precision="38" />
+            <Property Name="END_DH_DATE" Type="date" Nullable="true" />
         </EntityType>
         <EntityType Name="PA_SALARY_TYPE">
             <Key>
@@ -7557,6 +7563,12 @@
           <Property Type="Decimal" Name="OTHERSALARY4" />
           <Property Type="Decimal" Name="OTHERSALARY5" />
           <Property Type="Decimal" Name="OBJECT_LABOR" />
+          <Property Type="Decimal" Name="JOB_POSITION" />
+          <Property Type="Decimal" Name="JOB_DESCRIPTION" />
+          <Property Type="Decimal" Name="IS_REPLACE" />
+          <Property Type="DateTime" Name="EFFECT_DH_DATE" />
+          <Property Type="Decimal" Name="IS_HURTFUL" />
+          <Property Type="DateTime" Name="END_DH_DATE" />
         </EntityType>
         <EntityType Name="PA_SALARY_TYPE">
           <Key>
@@ -11378,6 +11390,12 @@
                     <ScalarProperty Name="OTHERSALARY4" ColumnName="OTHERSALARY4" />
                     <ScalarProperty Name="OTHERSALARY5" ColumnName="OTHERSALARY5" />
                     <ScalarProperty Name="OBJECT_LABOR" ColumnName="OBJECT_LABOR" />
+                    <ScalarProperty Name="JOB_POSITION" ColumnName="JOB_POSITION" />
+                    <ScalarProperty Name="JOB_DESCRIPTION" ColumnName="JOB_DESCRIPTION" />
+                    <ScalarProperty Name="IS_REPLACE" ColumnName="IS_REPLACE" />
+                    <ScalarProperty Name="EFFECT_DH_DATE" ColumnName="EFFECT_DH_DATE" />
+                    <ScalarProperty Name="IS_HURTFUL" ColumnName="IS_HURTFUL" />
+                    <ScalarProperty Name="END_DH_DATE" ColumnName="END_DH_DATE" />
                 </MappingFragment>
             </EntityTypeMapping>
         </EntitySetMapping>
@@ -12580,7 +12598,7 @@
     </Options>
     <!-- Diagram content (shape and connector positions) -->
     <Diagrams>
-      <Diagram Name="ProfileContext" ZoomLevel="56" ShowGrid="false" DisplayType="true" SnapToGrid="true">
+      <Diagram Name="ProfileContext" ZoomLevel="95" ShowGrid="false" DisplayType="true" SnapToGrid="true">
         <EntityTypeShape EntityType="ProfileModel.HU_PROVINCE" Width="1.5" PointX="3" PointY="9.625" Height="0.39999999999999858" IsExpanded="false" />
         <EntityTypeShape EntityType="ProfileModel.HU_DISTRICT" Width="1.75" PointX="5.25" PointY="9" Height="0.39999999999999858" IsExpanded="false" />
         <EntityTypeShape EntityType="ProfileModel.HU_NATION" Width="1.5" PointX="0.75" PointY="9.625" Height="0.40000000000000213" IsExpanded="false" />
@@ -12670,21 +12688,23 @@
           <ConnectorPoint PointX="12.3125" PointY="2.15" />
         </AssociationConnector>
         <AssociationConnector Association="ProfileModel.FK_OTDCO_HUDC">
-          <ConnectorPoint PointX="6.21875" PointY="5.1500000000000057" />
-          <ConnectorPoint PointX="6.21875" PointY="13.950000000000001" />
-          <ConnectorPoint PointX="6.067708333333333" PointY="13.950000000000001" />
-          <ConnectorPoint PointX="5.901041666666667" PointY="13.950000000000001" />
-          <ConnectorPoint PointX="4.875" PointY="13.950000000000001" />
+          <ConnectorPoint PointX="5.75" PointY="5.0812525000000051" />
+          <ConnectorPoint PointX="2.6458358333333334" PointY="5.0812525000000042" />
+          <ConnectorPoint PointX="2.4791691666666664" PointY="5.0812525000000051" />
+          <ConnectorPoint PointX="1.84375" PointY="5.0812525000000051" />
+          <ConnectorPoint PointX="1.84375" PointY="8.75" />
         </AssociationConnector>
         <AssociationConnector Association="ProfileModel.FK_OTDCT_HUDC">
-          <ConnectorPoint PointX="6.6875" PointY="5.1500000000000057" />
-          <ConnectorPoint PointX="6.6875" PointY="18.075" />
-          <ConnectorPoint PointX="4.875" PointY="18.075" />
+          <ConnectorPoint PointX="5.75" PointY="4.8187475000000006" />
+          <ConnectorPoint PointX="2.5625025" PointY="4.8187475000000006" />
+          <ConnectorPoint PointX="2.5625025" PointY="8.75" />
         </AssociationConnector>
         <AssociationConnector Association="ProfileModel.FK_OTDCL_HUDC">
-          <ConnectorPoint PointX="5.984375" PointY="5.1500000000000057" />
-          <ConnectorPoint PointX="5.984375" PointY="16.2" />
-          <ConnectorPoint PointX="4.875" PointY="16.2" />
+          <ConnectorPoint PointX="5.75" PointY="5.1156262500000054" />
+          <ConnectorPoint PointX="2.6458358333333334" PointY="5.1156262500000045" />
+          <ConnectorPoint PointX="2.4791691666666664" PointY="5.1156262500000054" />
+          <ConnectorPoint PointX="2.078125" PointY="5.1156262500000054" />
+          <ConnectorPoint PointX="2.078125" PointY="8.75" />
         </AssociationConnector>
         <EntityTypeShape EntityType="ProfileModel.HU_TERMINATE" Width="1.875" PointX="8.125" PointY="22.625" Height="0.4" IsExpanded="false" />
         <AssociationConnector Association="ProfileModel.FK_HUEMD_HUEM">
@@ -12722,10 +12742,10 @@
         <AssociationConnector Association="ProfileModel.FK_PSG_PSL" >
           <ConnectorPoint PointX="7" PointY="9.7" />
           <ConnectorPoint PointX="7.0625" PointY="9.7" />
-          <ConnectorPoint PointX="7.0625" PointY="11.898336588541664" />
-          <ConnectorPoint PointX="8.4166666666666661" PointY="11.898336588541664" />
-          <ConnectorPoint PointX="8.5833333333333339" PointY="11.898336588541664" />
-          <ConnectorPoint PointX="14.125" PointY="11.898336588541664" />
+          <ConnectorPoint PointX="7.0625" PointY="11.898336588541667" />
+          <ConnectorPoint PointX="8.4166666666666661" PointY="11.898336588541667" />
+          <ConnectorPoint PointX="8.5833333333333339" PointY="11.898336588541667" />
+          <ConnectorPoint PointX="14.125" PointY="11.898336588541667" />
           <ConnectorPoint PointX="14.125" PointY="12" />
         </AssociationConnector>
         <AssociationConnector Association="ProfileModel.FK_PSL_PSR" >
@@ -12807,6 +12827,8 @@
         <EntityTypeShape EntityType="ProfileModel.SE_REPORT" Width="1.5" PointX="0.75" PointY="7" Height="0.40000000000000568" IsExpanded="false" />
         <AssociationConnector Association="ProfileModel.SE_USER_REPORT" >
           <ConnectorPoint PointX="2.25" PointY="7.2000000000000028" />
+          <ConnectorPoint PointX="2.4791691666666664" PointY="7.200000000000002" />
+          <ConnectorPoint PointX="2.6458358333333334" PointY="7.2000000000000028" />
           <ConnectorPoint PointX="3" PointY="7.2000000000000028" />
         </AssociationConnector>
         <EntityTypeShape EntityType="ProfileModel.HU_LABOURPROTECTION_MNG" Width="1.5" PointX="12.25" PointY="25.625" Height="0.40000000000000568" IsExpanded="false" />
@@ -12840,7 +12862,7 @@
         <EntityTypeShape EntityType="ProfileModel.TR_REQUEST_EMPLOYEE" Width="1.5" PointX="27.375" PointY="18.75" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="ProfileModel.HU_ALLOWANCE_LIST" Width="2.375" PointX="27.375" PointY="21.75" Height="4.2879036458333353" IsExpanded="true" />
         <EntityTypeShape EntityType="ProfileModel.HU_COMPETENCY_COURSE" Width="2.375" PointX="27.375" PointY="26.75" Height="0.4" IsExpanded="false" />
-        <EntityTypeShape EntityType="ProfileModel.HU_WORKING" Width="2.5" PointX="4.625" PointY="12.625" Height="0.4" IsExpanded="false" />
+        <EntityTypeShape EntityType="ProfileModel.HU_WORKING" Width="2.5" PointX="4.625" PointY="12.625" Height="12.364563802083332" IsExpanded="true" />
         <EntityTypeShape EntityType="ProfileModel.PA_SALARY_TYPE" Width="1.5" PointX="28.375" PointY="5.75" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="ProfileModel.HU_TITLE_CONCURRENT" Width="2.25" PointX="29.375" PointY="0.75" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="ProfileModel.HU_ORG_TITLE" Width="1.5" PointX="4.375" PointY="0.75" Height="0.4" IsExpanded="false" />

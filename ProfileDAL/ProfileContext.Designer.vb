@@ -18,7 +18,7 @@ Imports System.Runtime.Serialization
 Imports System.Xml.Serialization
 
 
-<Assembly: EdmSchemaAttribute("f2ffb80d-fb7b-4d35-8f1c-7dc4ca9248a0")>
+<Assembly: EdmSchemaAttribute("7450aa1a-b192-496d-abcf-f2cfb8f3dee8")>
 #Region "EDM Relationship Metadata"
 <Assembly: EdmRelationshipAttribute("ProfileModel", "FK_HU_NAT_HU_PRO", "HU_NATION", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_NATION), "HU_PROVINCE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_PROVINCE), True)>
 <Assembly: EdmRelationshipAttribute("ProfileModel", "FK_HU_PRO_HU_DIS", "HU_PROVINCE", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_PROVINCE), "HU_DISTRICT", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_DISTRICT), True)>
@@ -63716,6 +63716,156 @@ Public Partial Class HU_WORKING
     End Sub
 
     Private Partial Sub OnOBJECT_LABORChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property JOB_POSITION() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _JOB_POSITION
+        End Get
+        Set
+            OnJOB_POSITIONChanging(value)
+            ReportPropertyChanging("JOB_POSITION")
+            _JOB_POSITION = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("JOB_POSITION")
+            OnJOB_POSITIONChanged()
+        End Set
+    End Property
+
+    Private _JOB_POSITION As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnJOB_POSITIONChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnJOB_POSITIONChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property JOB_DESCRIPTION() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _JOB_DESCRIPTION
+        End Get
+        Set
+            OnJOB_DESCRIPTIONChanging(value)
+            ReportPropertyChanging("JOB_DESCRIPTION")
+            _JOB_DESCRIPTION = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("JOB_DESCRIPTION")
+            OnJOB_DESCRIPTIONChanged()
+        End Set
+    End Property
+
+    Private _JOB_DESCRIPTION As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnJOB_DESCRIPTIONChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnJOB_DESCRIPTIONChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property IS_REPLACE() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _IS_REPLACE
+        End Get
+        Set
+            OnIS_REPLACEChanging(value)
+            ReportPropertyChanging("IS_REPLACE")
+            _IS_REPLACE = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("IS_REPLACE")
+            OnIS_REPLACEChanged()
+        End Set
+    End Property
+
+    Private _IS_REPLACE As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnIS_REPLACEChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnIS_REPLACEChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property EFFECT_DH_DATE() As Nullable(Of Global.System.DateTime)
+        Get
+            Return _EFFECT_DH_DATE
+        End Get
+        Set
+            OnEFFECT_DH_DATEChanging(value)
+            ReportPropertyChanging("EFFECT_DH_DATE")
+            _EFFECT_DH_DATE = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("EFFECT_DH_DATE")
+            OnEFFECT_DH_DATEChanged()
+        End Set
+    End Property
+
+    Private _EFFECT_DH_DATE As Nullable(Of Global.System.DateTime)
+    Private Partial Sub OnEFFECT_DH_DATEChanging(value As Nullable(Of Global.System.DateTime))
+    End Sub
+
+    Private Partial Sub OnEFFECT_DH_DATEChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property IS_HURTFUL() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _IS_HURTFUL
+        End Get
+        Set
+            OnIS_HURTFULChanging(value)
+            ReportPropertyChanging("IS_HURTFUL")
+            _IS_HURTFUL = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("IS_HURTFUL")
+            OnIS_HURTFULChanged()
+        End Set
+    End Property
+
+    Private _IS_HURTFUL As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnIS_HURTFULChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnIS_HURTFULChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property END_DH_DATE() As Nullable(Of Global.System.DateTime)
+        Get
+            Return _END_DH_DATE
+        End Get
+        Set
+            OnEND_DH_DATEChanging(value)
+            ReportPropertyChanging("END_DH_DATE")
+            _END_DH_DATE = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("END_DH_DATE")
+            OnEND_DH_DATEChanged()
+        End Set
+    End Property
+
+    Private _END_DH_DATE As Nullable(Of Global.System.DateTime)
+    Private Partial Sub OnEND_DH_DATEChanging(value As Nullable(Of Global.System.DateTime))
+    End Sub
+
+    Private Partial Sub OnEND_DH_DATEChanged()
     End Sub
 
     #End Region
