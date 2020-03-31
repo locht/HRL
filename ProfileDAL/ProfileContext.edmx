@@ -920,6 +920,7 @@
             <Property Name="IS_REPLACE_POS" Type="number" Nullable="true" Precision="5" />
             <Property Name="TER_REASON" Type="number" Nullable="true" Precision="38" />
             <Property Name="REVERSE_SENIORITY" Type="number" Nullable="true" Precision="38" />
+            <Property Name="IS_BLACK_LIST" Type="number" Nullable="true" Precision="38" />
         </EntityType>
         <EntityType Name="HU_WORKING_OLD">
             <Key>
@@ -5581,6 +5582,7 @@
           <Property Type="Int16" Name="IS_REPLACE_POS" Nullable="true" />
           <Property Type="Decimal" Name="TER_REASON" Nullable="true" />
           <Property Type="Decimal" Name="REVERSE_SENIORITY" Nullable="true" />
+          <Property Type="Decimal" Name="IS_BLACK_LIST" />
           </EntityType>
         <Association Name="FK_HUEMD_HUEM">
           <End Type="ProfileModel.HU_EMPLOYEE" Role="HU_EMD" Multiplicity="0..1" />
@@ -9498,6 +9500,7 @@
                     <ScalarProperty Name="IS_REPLACE_POS" ColumnName="IS_REPLACE_POS" />
                     <ScalarProperty Name="TER_REASON" ColumnName="TER_REASON" />
                     <ScalarProperty Name="REVERSE_SENIORITY" ColumnName="REVERSE_SENIORITY" />
+                    <ScalarProperty Name="IS_BLACK_LIST" ColumnName="IS_BLACK_LIST" />
                 </MappingFragment>
             </EntityTypeMapping>
         </EntitySetMapping>
@@ -12871,7 +12874,7 @@
           <ConnectorPoint PointX="2.078125" PointY="5.1156262500000054" />
           <ConnectorPoint PointX="2.078125" PointY="8.75" />
         </AssociationConnector>
-        <EntityTypeShape EntityType="ProfileModel.HU_TERMINATE" Width="1.875" PointX="8.125" PointY="22.625" Height="0.4" IsExpanded="false" />
+        <EntityTypeShape EntityType="ProfileModel.HU_TERMINATE" Width="1.875" PointX="11.5" PointY="23.625" Height="14.095276692708332" IsExpanded="true" />
         <AssociationConnector Association="ProfileModel.FK_HUEMD_HUEM">
           <ConnectorPoint PointX="17.878557692307691" PointY="12.6049609375" />
           <ConnectorPoint PointX="17.878557692307691" PointY="12.8549609375" />
@@ -12981,7 +12984,7 @@
         <EntityTypeShape EntityType="ProfileModel.HU_TERMINATE_3B" Width="1.5" PointX="20.75" PointY="4.875" Height="0.39999999999999147" IsExpanded="false" />
         <EntityTypeShape EntityType="ProfileModel.HU_MERGE_FIELD" Width="1.5" PointX="4.75" PointY="20.875" Height="0.39999999999999147" IsExpanded="false" />
         <EntityTypeShape EntityType="ProfileModel.AT_ORG_PERIOD" Width="1.5" PointX="6.75" PointY="20.875" Height="0.40000000000000568" IsExpanded="false" />
-        <EntityTypeShape EntityType="ProfileModel.HUV_ORGANIZATION" Width="3.375" PointX="7.5" PointY="18" Height="7.7493294270833353" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProfileModel.HUV_ORGANIZATION" Width="3.375" PointX="7.5" PointY="18" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="ProfileModel.HU_EMPLOYEE_PAPER_FILED" Width="1.5" PointX="20.75" PointY="19.875" Height="0.39999999999999147" IsExpanded="false" />
         <EntityTypeShape EntityType="ProfileModel.HU_TERMINATE_REASON" Width="3.25" PointX="21.75" PointY="8.875" Height="0.40000000000000568" IsExpanded="false" />
         <EntityTypeShape EntityType="ProfileModel.INS_SPECIFIED_OBJECTS" Width="2.25" PointX="21.75" PointY="10.875" Height="0.40000000000000568" IsExpanded="false" />
@@ -13084,7 +13087,7 @@
         <EntityTypeShape EntityType="ProfileModel.HU_UNIFORM_SIZE" Width="2.25" PointX="30.375" PointY="25.75" Height="3.9033007812499818" />
         <EntityTypeShape EntityType="ProfileModel.HU_DIRECT_MANAGER1" Width="1.5" PointX="10.375" PointY="6.75" Height="1.403382161458353" />
         <EntityTypeShape EntityType="ProfileModel.HU_JOB_POSITION1" Width="1.5" PointX="9.375" PointY="32.75" Height="4.287903645833353" />
-        <EntityTypeShape EntityType="ProfileModel.HU_JOB_DESCRIPTION" Width="1.5" PointX="11.375" PointY="32.75" Height="8.1339322916666674" />
+        <EntityTypeShape EntityType="ProfileModel.HU_JOB_DESCRIPTION" Width="1.5" PointX="8.625" PointY="32.75" Height="8.1339322916666674" />
         <EntityTypeShape EntityType="ProfileModel.HU_SAFELABOR_MNG" Width="1.5" PointX="18.375" PointY="32.75" Height="4.4802050781249818" />
         <EntityTypeShape EntityType="ProfileModel.HU_SAFELABOR_MNG_EMP" Width="1.5" PointX="27.375" PointY="32.75" Height="4.864807942708353" />
         </Diagram>

@@ -18,7 +18,7 @@ Imports System.Runtime.Serialization
 Imports System.Xml.Serialization
 
 
-<Assembly: EdmSchemaAttribute("d480213d-238f-495a-9e21-835216670d37")>
+<Assembly: EdmSchemaAttribute("cdf70730-c4e1-45da-a9f9-0de8bf6f9387")>
 #Region "EDM Relationship Metadata"
 <Assembly: EdmRelationshipAttribute("ProfileModel", "FK_HU_NAT_HU_PRO", "HU_NATION", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_NATION), "HU_PROVINCE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_PROVINCE), True)>
 <Assembly: EdmRelationshipAttribute("ProfileModel", "FK_HU_PRO_HU_DIS", "HU_PROVINCE", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_PROVINCE), "HU_DISTRICT", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_DISTRICT), True)>
@@ -56309,6 +56309,31 @@ Public Partial Class HU_TERMINATE
     End Sub
 
     Private Partial Sub OnREVERSE_SENIORITYChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property IS_BLACK_LIST() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _IS_BLACK_LIST
+        End Get
+        Set
+            OnIS_BLACK_LISTChanging(value)
+            ReportPropertyChanging("IS_BLACK_LIST")
+            _IS_BLACK_LIST = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("IS_BLACK_LIST")
+            OnIS_BLACK_LISTChanged()
+        End Set
+    End Property
+
+    Private _IS_BLACK_LIST As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnIS_BLACK_LISTChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnIS_BLACK_LISTChanged()
     End Sub
 
     #End Region
