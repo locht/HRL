@@ -158,6 +158,8 @@
             <EntitySet Name="HU_DIRECT_MANAGER1" EntityType="ProfileModel.Store.HU_DIRECT_MANAGER1" store:Type="Tables"  />
             <EntitySet Name="HU_JOB_POSITION1" EntityType="ProfileModel.Store.HU_JOB_POSITION1" store:Type="Tables"  />
             <EntitySet Name="HU_JOB_DESCRIPTION" EntityType="ProfileModel.Store.HU_JOB_DESCRIPTION" store:Type="Tables"  />
+            <EntitySet Name="HU_SAFELABOR_MNG" EntityType="ProfileModel.Store.HU_SAFELABOR_MNG" store:Type="Tables"  />
+            <EntitySet Name="HU_SAFELABOR_MNG_EMP" EntityType="ProfileModel.Store.HU_SAFELABOR_MNG_EMP" store:Type="Tables"  />
             <EntitySet Name="SE_USER_REPORT" EntityType="ProfileModel.Store.SE_USER_REPORT" store:Type="Tables"  />
             <AssociationSet Name="FK_HUN_HUP" Association="ProfileModel.Store.FK_HU_NAT_HU_PRO">
                 <End Role="HU_NATION" EntitySet="HU_NATION" />
@@ -3977,6 +3979,54 @@
             <Property Name="MODIFIED_LOG" Type="nvarchar2" Nullable="true" MaxLength="255" />
             <Property Name="FILENAME" Type="nclob" Nullable="true" />
         </EntityType>
+        <EntityType Name="HU_SAFELABOR_MNG">
+            <Key>
+                <PropertyRef Name="ID" />
+            </Key>
+            <Property Name="ID" Type="number" Nullable="false" Precision="38" />
+            <Property Name="CODE" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="NAME" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="ORG_ID" Type="number" Nullable="true" Precision="38" />
+            <Property Name="DATE_OCCUR" Type="date" Nullable="true" />
+            <Property Name="HOUR_OCCUR" Type="date" Nullable="true" />
+            <Property Name="TYPE_ACCIDENT" Type="number" Nullable="true" Precision="38" />
+            <Property Name="PLACE_ACCIDENT" Type="nvarchar2" Nullable="true" MaxLength="500" />
+            <Property Name="REASON_ACCIDENT" Type="number" Nullable="true" Precision="38" />
+            <Property Name="REASON_DETAIL" Type="nvarchar2" Nullable="true" MaxLength="500" />
+            <Property Name="COST_ACCIDENT" Type="number" Nullable="true" Precision="38" />
+            <Property Name="REMARK" Type="nvarchar2" Nullable="true" MaxLength="500" />
+            <Property Name="CREATED_DATE" Type="date" Nullable="true" />
+            <Property Name="CREATED_BY" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="CREATED_LOG" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="MODIFIED_DATE" Type="date" Nullable="true" />
+            <Property Name="MODIFIED_BY" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="MODIFIED_LOG" Type="nvarchar2" Nullable="true" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="HU_SAFELABOR_MNG_EMP">
+            <Key>
+                <PropertyRef Name="ID" />
+            </Key>
+            <Property Name="ID" Type="number" Nullable="false" Precision="38" />
+            <Property Name="GROUP_ID" Type="number" Nullable="true" Precision="38" />
+            <Property Name="EMPLOYEE_ID" Type="number" Nullable="true" Precision="38" />
+            <Property Name="NUMBER_DATE" Type="number" Nullable="true" Precision="38" />
+            <Property Name="LEVEL_INJURED" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="LEVEL_DECLINE" Type="number" Nullable="true" Precision="38" />
+            <Property Name="MONEY_MEDICAL" Type="number" Nullable="true" Precision="38" />
+            <Property Name="COST_SALARY" Type="number" Nullable="true" Precision="38" />
+            <Property Name="MONEY_INDEMNIFY" Type="number" Nullable="true" Precision="38" />
+            <Property Name="COMPANY_PAY" Type="number" Nullable="true" Precision="38" />
+            <Property Name="DATE_INS_PAY" Type="date" Nullable="true" />
+            <Property Name="MONEY_INS_PAY" Type="number" Nullable="true" Precision="38" />
+            <Property Name="MONEY_DIFFERENCE" Type="number" Nullable="true" Precision="38" />
+            <Property Name="REMARK" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="CREATED_DATE" Type="date" Nullable="true" />
+            <Property Name="CREATED_BY" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="CREATED_LOG" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="MODIFIED_DATE" Type="date" Nullable="true" />
+            <Property Name="MODIFIED_BY" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="MODIFIED_LOG" Type="nvarchar2" Nullable="true" MaxLength="255" />
+        </EntityType>
         <EntityType Name="SE_USER_REPORT">
             <Key>
                 <PropertyRef Name="SE_REPORT_ID" />
@@ -4620,6 +4670,8 @@
           <EntitySet Name="HU_DIRECT_MANAGER1" EntityType="ProfileModel.HU_DIRECT_MANAGER1" />
           <EntitySet Name="HU_JOB_POSITION1" EntityType="ProfileModel.HU_JOB_POSITION1" />
           <EntitySet Name="HU_JOB_DESCRIPTION" EntityType="ProfileModel.HU_JOB_DESCRIPTION" />
+          <EntitySet Name="HU_SAFELABOR_MNG" EntityType="ProfileModel.HU_SAFELABOR_MNG" />
+          <EntitySet Name="HU_SAFELABOR_MNG_EMP" EntityType="ProfileModel.HU_SAFELABOR_MNG_EMP" />
         </EntityContainer>
         <EntityType Name="HU_PROVINCE">
           <Key>
@@ -8722,6 +8774,54 @@
           <Property Type="String" Name="MODIFIED_LOG" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="FILENAME" />
         </EntityType>
+        <EntityType Name="HU_SAFELABOR_MNG">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Decimal" Name="ID" Nullable="false" Precision="38" Scale="0" />
+          <Property Type="String" Name="CODE" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="NAME" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="Decimal" Name="ORG_ID" Precision="38" Scale="0" />
+          <Property Type="DateTime" Name="DATE_OCCUR" />
+          <Property Type="DateTime" Name="HOUR_OCCUR" />
+          <Property Type="Decimal" Name="TYPE_ACCIDENT" Precision="38" Scale="0" />
+          <Property Type="String" Name="PLACE_ACCIDENT" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Type="Decimal" Name="REASON_ACCIDENT" Precision="38" Scale="0" />
+          <Property Type="String" Name="REASON_DETAIL" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Type="Decimal" Name="COST_ACCIDENT" Precision="38" Scale="0" />
+          <Property Type="String" Name="REMARK" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="CREATED_DATE" />
+          <Property Type="String" Name="CREATED_BY" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="CREATED_LOG" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="MODIFIED_DATE" />
+          <Property Type="String" Name="MODIFIED_BY" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="MODIFIED_LOG" MaxLength="255" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="HU_SAFELABOR_MNG_EMP">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Decimal" Name="ID" Nullable="false" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="GROUP_ID" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="EMPLOYEE_ID" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="NUMBER_DATE" Precision="38" Scale="0" />
+          <Property Type="String" Name="LEVEL_INJURED" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="Decimal" Name="LEVEL_DECLINE" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="MONEY_MEDICAL" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="COST_SALARY" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="MONEY_INDEMNIFY" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="COMPANY_PAY" Precision="38" Scale="0" />
+          <Property Type="DateTime" Name="DATE_INS_PAY" />
+          <Property Type="Decimal" Name="MONEY_INS_PAY" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="MONEY_DIFFERENCE" Precision="38" Scale="0" />
+          <Property Type="String" Name="REMARK" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="CREATED_DATE" />
+          <Property Type="String" Name="CREATED_BY" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="CREATED_LOG" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="MODIFIED_DATE" />
+          <Property Type="String" Name="MODIFIED_BY" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="MODIFIED_LOG" MaxLength="255" FixedLength="false" Unicode="true" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -12568,6 +12668,56 @@
                 </MappingFragment>
             </EntityTypeMapping>
         </EntitySetMapping>
+        <EntitySetMapping Name="HU_SAFELABOR_MNG">
+            <EntityTypeMapping TypeName="IsTypeOf(ProfileModel.HU_SAFELABOR_MNG)">
+                <MappingFragment StoreEntitySet="HU_SAFELABOR_MNG">
+                    <ScalarProperty Name="ID" ColumnName="ID" />
+                    <ScalarProperty Name="CODE" ColumnName="CODE" />
+                    <ScalarProperty Name="NAME" ColumnName="NAME" />
+                    <ScalarProperty Name="ORG_ID" ColumnName="ORG_ID" />
+                    <ScalarProperty Name="DATE_OCCUR" ColumnName="DATE_OCCUR" />
+                    <ScalarProperty Name="HOUR_OCCUR" ColumnName="HOUR_OCCUR" />
+                    <ScalarProperty Name="TYPE_ACCIDENT" ColumnName="TYPE_ACCIDENT" />
+                    <ScalarProperty Name="PLACE_ACCIDENT" ColumnName="PLACE_ACCIDENT" />
+                    <ScalarProperty Name="REASON_ACCIDENT" ColumnName="REASON_ACCIDENT" />
+                    <ScalarProperty Name="REASON_DETAIL" ColumnName="REASON_DETAIL" />
+                    <ScalarProperty Name="COST_ACCIDENT" ColumnName="COST_ACCIDENT" />
+                    <ScalarProperty Name="REMARK" ColumnName="REMARK" />
+                    <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+                    <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+                    <ScalarProperty Name="CREATED_LOG" ColumnName="CREATED_LOG" />
+                    <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+                    <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+                    <ScalarProperty Name="MODIFIED_LOG" ColumnName="MODIFIED_LOG" />
+                </MappingFragment>
+            </EntityTypeMapping>
+        </EntitySetMapping>
+        <EntitySetMapping Name="HU_SAFELABOR_MNG_EMP">
+            <EntityTypeMapping TypeName="IsTypeOf(ProfileModel.HU_SAFELABOR_MNG_EMP)">
+                <MappingFragment StoreEntitySet="HU_SAFELABOR_MNG_EMP">
+                    <ScalarProperty Name="ID" ColumnName="ID" />
+                    <ScalarProperty Name="GROUP_ID" ColumnName="GROUP_ID" />
+                    <ScalarProperty Name="EMPLOYEE_ID" ColumnName="EMPLOYEE_ID" />
+                    <ScalarProperty Name="NUMBER_DATE" ColumnName="NUMBER_DATE" />
+                    <ScalarProperty Name="LEVEL_INJURED" ColumnName="LEVEL_INJURED" />
+                    <ScalarProperty Name="LEVEL_DECLINE" ColumnName="LEVEL_DECLINE" />
+                    <ScalarProperty Name="MONEY_MEDICAL" ColumnName="MONEY_MEDICAL" />
+                    <ScalarProperty Name="COST_SALARY" ColumnName="COST_SALARY" />
+                    <ScalarProperty Name="MONEY_INDEMNIFY" ColumnName="MONEY_INDEMNIFY" />
+                    <ScalarProperty Name="COMPANY_PAY" ColumnName="COMPANY_PAY" />
+                    <ScalarProperty Name="DATE_INS_PAY" ColumnName="DATE_INS_PAY" />
+                    <ScalarProperty Name="MONEY_INS_PAY" ColumnName="MONEY_INS_PAY" />
+                    <ScalarProperty Name="MONEY_DIFFERENCE" ColumnName="MONEY_DIFFERENCE" />
+                    <ScalarProperty Name="REMARK" ColumnName="REMARK" />
+                    <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+                    <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+                    <ScalarProperty Name="CREATED_LOG" ColumnName="CREATED_LOG" />
+                    <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+                    <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+                    <ScalarProperty Name="MODIFIED_LOG" ColumnName="MODIFIED_LOG" />
+                </MappingFragment>
+            </EntityTypeMapping>
+        </EntitySetMapping>
         <AssociationSetMapping Name="SE_USER_REPORT" TypeName="ProfileModel.SE_USER_REPORT" StoreEntitySet="SE_USER_REPORT">
             <EndProperty Name="SE_REPORT">
                 <ScalarProperty Name="ID" ColumnName="SE_REPORT_ID" />
@@ -12929,6 +13079,8 @@
         <EntityTypeShape EntityType="ProfileModel.HU_DIRECT_MANAGER1" Width="1.5" PointX="10.375" PointY="6.75" Height="1.403382161458353" />
         <EntityTypeShape EntityType="ProfileModel.HU_JOB_POSITION1" Width="1.5" PointX="9.375" PointY="32.75" Height="4.287903645833353" />
         <EntityTypeShape EntityType="ProfileModel.HU_JOB_DESCRIPTION" Width="1.5" PointX="11.375" PointY="32.75" Height="8.1339322916666674" />
+        <EntityTypeShape EntityType="ProfileModel.HU_SAFELABOR_MNG" Width="1.5" PointX="18.375" PointY="32.75" Height="4.4802050781249818" />
+        <EntityTypeShape EntityType="ProfileModel.HU_SAFELABOR_MNG_EMP" Width="1.5" PointX="27.375" PointY="32.75" Height="4.864807942708353" />
         </Diagram>
     </Diagrams>
   </Designer>
