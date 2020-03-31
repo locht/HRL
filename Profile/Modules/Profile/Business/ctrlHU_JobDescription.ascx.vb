@@ -190,9 +190,9 @@ Public Class ctrlHU_JobDescription
             Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
             Dim startTime As DateTime = DateTime.UtcNow
             Try
-                Using rep As New ProfileRepository
-                    dtData = rep.GetTitleList(True)
-                    FillRadCombobox(cboTitle, dtData, "NAME", "ID")
+                Using rep As New ProfileBusinessRepository
+                    dtData = rep.GET_TITLE_ORG(ctrlOrg.CurrentValue)
+                    FillRadCombobox(cboTitle, dtData, "NAME_VN", "ID")
                 End Using
                 _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
             Catch ex As Exception
@@ -267,6 +267,10 @@ Public Class ctrlHU_JobDescription
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
         Try
             Dim startTime As DateTime = DateTime.UtcNow
+            Using rep As New ProfileBusinessRepository
+                dtData = rep.GET_TITLE_ORG(ctrlOrg.CurrentValue)
+                FillRadCombobox(cboTitle, dtData, "NAME_VN", "ID")
+            End Using
             rgJobDes.Rebind()
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception

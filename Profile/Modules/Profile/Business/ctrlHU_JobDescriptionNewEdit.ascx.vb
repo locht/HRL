@@ -289,7 +289,7 @@ Public Class ctrlHU_JobDescriptionNewEdit
             Using rep As New ProfileRepository
                 dtData = rep.GetOtherList("")
                 Dim lstCombobox As New ComboBoxDataDTO
-                lstCombobox.GET_TRAINING_FORM = True
+                lstCombobox.GET_TRAINING_LEVEL = True
                 lstCombobox.GET_MARK_EDU = True
                 lstCombobox.GET_GRADUATE_SCHOOL = True
                 lstCombobox.GET_LEARNING_LEVEL = True
@@ -307,8 +307,8 @@ Public Class ctrlHU_JobDescriptionNewEdit
                 FillDropDownList(cboLanguageRank3, lstCombobox.LIST_LANGUAGE_LEVEL, "NAME_VN", "ID")
                 'rep.GET_TITLE_ORG
                 FillDropDownList(cboLearningLV, lstCombobox.LIST_LEARNING_LEVEL, "NAME_VN", "ID")
-                FillDropDownList(cboTrainingForm, lstCombobox.LIST_TRAINING_FORM, "NAME_VN", "ID")
-                FillDropDownList(cboTrainingForm2, lstCombobox.LIST_TRAINING_FORM, "NAME_VN", "ID")
+                FillDropDownList(cboTrainingForm, lstCombobox.LIST_TRAINING_LEVEL, "NAME_VN", "ID")
+                FillDropDownList(cboTrainingForm2, lstCombobox.LIST_TRAINING_LEVEL, "NAME_VN", "ID")
                 FillDropDownList(cboMajorRank, lstCombobox.LIST_MARK_EDU, "NAME_VN", "ID")
                 FillDropDownList(cboMajorRank2, lstCombobox.LIST_MARK_EDU, "NAME_VN", "ID")
                 FillDropDownList(cboGraduateSchool, lstCombobox.LIST_GRADUATE_SCHOOL, "NAME_VN", "ID")

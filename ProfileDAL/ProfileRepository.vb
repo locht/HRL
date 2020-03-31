@@ -1213,7 +1213,7 @@ Public Class ProfileRepository
         'Danh mục trình độ ngoại ngữ :  
         If _combolistDTO.GET_LANGUAGE_LEVEL Then
             query = (From p In Context.OT_OTHER_LIST
-                     Join q In Context.OT_OTHER_LIST_TYPE On p.TYPE_ID Equals q.ID Where q.CODE = "RC_LANGUAGE_LEVEL" _
+                     Join q In Context.OT_OTHER_LIST_TYPE On p.TYPE_ID Equals q.ID Where q.CODE = "LANGUAGE_LEVEL" _
                      And p.ACTFLG = "A"
                      Order By p.NAME_VN
                      Select New OtherListDTO With {
@@ -1640,6 +1640,19 @@ Public Class ProfileRepository
                         .NAME_EN = p.NAME_EN,
                         .CODE = p.CODE}).ToList
             _combolistDTO.LIST_WORK_TIME = query
+        End If
+
+        If _combolistDTO.GET_TRAINING_LEVEL Then
+            query = (From p In Context.OT_OTHER_LIST
+                     Join q In Context.OT_OTHER_LIST_TYPE On p.TYPE_ID Equals q.ID
+                     Where q.CODE = "TRAINING_LEVEL" And p.ACTFLG = "A"
+                     Order By p.NAME_VN
+                    Select New OtherListDTO With {
+                        .ID = p.ID,
+                        .NAME_VN = p.NAME_VN,
+                        .NAME_EN = p.NAME_EN,
+                        .CODE = p.CODE}).ToList
+            _combolistDTO.LIST_TRAINING_LEVEL = query
         End If
         Return True
     End Function

@@ -34,8 +34,7 @@
 <tlk:RadSplitter ID="RadSplitter1" runat="server" Width="100%" Height="100%" Orientation="Horizontal"
     SkinID="Demo">
     <tlk:RadPane ID="ToolbarPane" runat="server" Height="30px" Scrolling="None">
-        <tlk:RadToolBar ID="tbarMainToolBar" runat="server" OnClientButtonClicking="clientButtonClicking"
-             />
+        <tlk:RadToolBar ID="tbarMainToolBar" runat="server" OnClientButtonClicking="clientButtonClicking" />
     </tlk:RadPane>
     <tlk:RadPane ID="DetailPane" runat="server" Scrolling="None" Height="73%">
         <tlk:RadTabStrip ID="rtabProfileInfo" runat="server" CausesValidation="false" MultiPageID="RadMultiPage1"
@@ -54,8 +53,7 @@
                 <table style="width: 99%" onkeydown="return (event.keyCode!=13)">
                     <tr>
                         <td colspan="6">
-                            <asp:ValidationSummary ID="valSum" runat="server" DisplayMode="BulletList" CssClass="validationsummary"
-                                 />
+                            <asp:ValidationSummary ID="valSum" runat="server" DisplayMode="BulletList" CssClass="validationsummary" />
                         </td>
                     </tr>
                 </table>
@@ -68,7 +66,7 @@
                         <td>
                             <tlk:RadTextBox ID="txtJobCode" runat="server">
                             </tlk:RadTextBox>
-                            <asp:RequiredFieldValidator  ID="RequiredFieldValidator4" ControlToValidate="txtJobCode"
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator4" ControlToValidate="txtJobCode"
                                 runat="server" ErrorMessage="Bạn phải nhập mã công việc" ToolTip="Bạn phải nhập mã công việc">
                             </asp:RequiredFieldValidator>
                         </td>
@@ -79,16 +77,9 @@
                         <td>
                             <tlk:RadTextBox ID="txtJobName" runat="server">
                             </tlk:RadTextBox>
-                            <asp:RequiredFieldValidator  ID="RequiredFieldValidator3" ControlToValidate="txtJobName"
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator3" ControlToValidate="txtJobName"
                                 runat="server" ErrorMessage="Bạn phải nhập tên công việc" ToolTip="Bạn phải nhập tên công việc">
                             </asp:RequiredFieldValidator>
-                        </td>
-                        <td class="lb">
-                            <asp:Label runat="server" ID="lbJobPowew" Text="Quyền hạn tương ứng"></asp:Label>
-                        </td>
-                        <td>
-                            <tlk:RadTextBox ID="txtJobPower" runat="server">
-                            </tlk:RadTextBox>
                         </td>
                     </tr>
                     <tr class="setLineHeight">
@@ -97,11 +88,10 @@
                             <span class="lbReq">*</span>
                         </td>
                         <td class="control3">
-                            <tlk:RadTextBox runat="server"  ID="txtOrgName2" ReadOnly="true" />
+                            <tlk:RadTextBox runat="server" ID="txtOrgName2" ReadOnly="true" />
                             <tlk:RadButton runat="server" ID="btnFindOrg" SkinID="ButtonView" CausesValidation="false" />
-                            <asp:RequiredFieldValidator  ID="RequiredFieldValidator1"
-                                ControlToValidate="txtOrgName2" runat="server" ErrorMessage="<%$ Translate: Bạn phải chọn đơn vị %>"
-                                ToolTip="<%$ Translate: Bạn phải chọn bộ phận %>">
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator1" ControlToValidate="txtOrgName2"
+                                runat="server" ErrorMessage="<%$ Translate: Bạn phải chọn đơn vị %>" ToolTip="<%$ Translate: Bạn phải chọn bộ phận %>">
                             </asp:RequiredFieldValidator>
                         </td>
                         <td class="lb">
@@ -111,8 +101,8 @@
                         <td>
                             <tlk:RadComboBox ID="cboTitle" runat="server">
                             </tlk:RadComboBox>
-                            <asp:RequiredFieldValidator  ID="reqTitle" ControlToValidate="cboTitle"
-                                runat="server" ErrorMessage="Bạn phải chọn chức danh" ToolTip="Bạn phải chọn chức danh">
+                            <asp:RequiredFieldValidator ID="reqTitle" ControlToValidate="cboTitle" runat="server"
+                                ErrorMessage="Bạn phải chọn chức danh" ToolTip="Bạn phải chọn chức danh">
                             </asp:RequiredFieldValidator>
                         </td>
                         <td class="lb">
@@ -138,20 +128,6 @@
                             <tlk:RadComboBox runat="server" ID="cboTimeWorking" SkinID="LoadDemand">
                             </tlk:RadComboBox>
                         </td>
-                        <td class="lb">
-                            <asp:Label runat="server" ID="lbJobCondition" Text="Điều kiện làm việc"></asp:Label>
-                        </td>
-                        <td>
-                            <tlk:RadTextBox ID="txtJobCondition" runat="server">
-                            </tlk:RadTextBox>
-                        </td>
-                        <td class="lb">
-                            <asp:Label runat="server" ID="lbNote" Text="Ghi chú"></asp:Label>
-                        </td>
-                        <td>
-                            <tlk:RadTextBox ID="txtNote" runat="server">
-                            </tlk:RadTextBox>
-                        </td>
                     </tr>
                     <tr class="setLineHeight">
                         <td class="lb">
@@ -159,6 +135,16 @@
                         </td>
                         <td colspan="5">
                             <tlk:RadTextBox ID="txtJobDescription" runat="server" TextMode="MultiLine" TabIndex="18"
+                                Width="100%">
+                            </tlk:RadTextBox>
+                        </td>
+                    </tr>
+                    <tr class="setLineHeight">
+                        <td class="lb">
+                            <asp:Label runat="server" ID="lbJobCondition" Text="Điều kiện làm việc"></asp:Label>
+                        </td>
+                        <td colspan="5">
+                            <tlk:RadTextBox ID="txtJobCondition" runat="server" TextMode="MultiLine" TabIndex="18"
                                 Width="100%">
                             </tlk:RadTextBox>
                         </td>
@@ -193,6 +179,25 @@
                             </tlk:RadTextBox>
                         </td>
                     </tr>
+                    <tr class="setLineHeight">
+                        <td class="lb">
+                            <asp:Label runat="server" ID="lbJobPowew" Text="Quyền hạn tương ứng"></asp:Label>
+                        </td>
+                        <td colspan="5">
+                            <tlk:RadTextBox ID="txtJobPower" runat="server" TextMode="MultiLine" TabIndex="18"
+                                Width="100%">
+                            </tlk:RadTextBox>
+                        </td>
+                    </tr>
+                    <tr class="setLineHeight">
+                        <td class="lb">
+                            <asp:Label runat="server" ID="lbNote" Text="Ghi chú"></asp:Label>
+                        </td>
+                        <td colspan="5">
+                            <tlk:RadTextBox ID="txtNote" runat="server" TextMode="MultiLine" TabIndex="18" Width="100%">
+                            </tlk:RadTextBox>
+                        </td>
+                    </tr>
                 </table>
             </tlk:RadPageView>
             <tlk:RadPageView ID="rpvJobRequest" runat="server" Width="100%">
@@ -205,9 +210,8 @@
                         <td>
                             <tlk:RadComboBox runat="server" ID="cboLearningLV" SkinID="LoadDemand">
                             </tlk:RadComboBox>
-                            <asp:RequiredFieldValidator  ID="RequiredFieldValidator2"
-                                ControlToValidate="cboLearningLV" runat="server" ErrorMessage="Bạn phải chọn trình độ học vấn"
-                                ToolTip="Bạn phải chọn trình độ học vấn">
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator2" ControlToValidate="cboLearningLV"
+                                runat="server" ErrorMessage="Bạn phải chọn trình độ học vấn" ToolTip="Bạn phải chọn trình độ học vấn">
                             </asp:RequiredFieldValidator>
                         </td>
                     </tr>
@@ -320,11 +324,14 @@
                             <tlk:RadComboBox runat="server" ID="cboSoftSkill" SkinID="LoadDemand">
                             </tlk:RadComboBox>
                         </td>
+                    </tr>
+                    <tr class="setLineHeight">
                         <td class="lb3">
                             <asp:Label runat="server" ID="lbCharacter" Text="Tính cách"></asp:Label>
                         </td>
-                        <td class="control3">
-                            <tlk:RadTextBox runat="server" ID="txtCharacter">
+                        <td class="control3" colspan="5">
+                            <tlk:RadTextBox runat="server" ID="txtCharacter" TextMode="MultiLine" TabIndex="18"
+                                Width="100%">
                             </tlk:RadTextBox>
                         </td>
                     </tr>
@@ -334,7 +341,7 @@
     </tlk:RadPane>
 </tlk:RadSplitter>
 <asp:PlaceHolder ID="phPopupOrg" runat="server"></asp:PlaceHolder>
-<Common:ctrlUpload ID="ctrlUpload1" runat="server" />
+<common:ctrlupload id="ctrlUpload1" runat="server" />
 <tlk:RadScriptBlock runat="server" ID="ScriptBlock">
     <script type="text/javascript">
 

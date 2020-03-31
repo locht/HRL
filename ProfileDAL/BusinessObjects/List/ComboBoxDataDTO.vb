@@ -325,4 +325,8 @@
     'don vi ky hop dong lay theo vnm
     Public Property GET_SIGN_WORK As Boolean
     Public Property LIST_SIGN_WORK As List(Of OrganizationDTO)
+
+    'trinh do dao tao
+    Public Property GET_TRAINING_LEVEL As Boolean
+    Public Property LIST_TRAINING_LEVEL As List(Of OtherListDTO)
 End Class

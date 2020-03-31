@@ -11405,6 +11405,9 @@ Namespace ProfileBusiness
         Private GET_TRAINING_FORMField As Boolean
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private GET_TRAINING_LEVELField As Boolean
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private GET_TRAINING_TYPEField As Boolean
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -11652,6 +11655,9 @@ Namespace ProfileBusiness
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private LIST_TRAINING_FORMField As System.Collections.Generic.List(Of ProfileBusiness.OtherListDTO)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private LIST_TRAINING_LEVELField As System.Collections.Generic.List(Of ProfileBusiness.OtherListDTO)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private LIST_TRAINING_TYPEField As System.Collections.Generic.List(Of ProfileBusiness.OtherListDTO)
@@ -12562,6 +12568,19 @@ Namespace ProfileBusiness
                 If (Me.GET_TRAINING_FORMField.Equals(value) <> true) Then
                     Me.GET_TRAINING_FORMField = value
                     Me.RaisePropertyChanged("GET_TRAINING_FORM")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property GET_TRAINING_LEVEL() As Boolean
+            Get
+                Return Me.GET_TRAINING_LEVELField
+            End Get
+            Set
+                If (Me.GET_TRAINING_LEVELField.Equals(value) <> true) Then
+                    Me.GET_TRAINING_LEVELField = value
+                    Me.RaisePropertyChanged("GET_TRAINING_LEVEL")
                 End If
             End Set
         End Property
@@ -13641,6 +13660,19 @@ Namespace ProfileBusiness
                 If (Object.ReferenceEquals(Me.LIST_TRAINING_FORMField, value) <> true) Then
                     Me.LIST_TRAINING_FORMField = value
                     Me.RaisePropertyChanged("LIST_TRAINING_FORM")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property LIST_TRAINING_LEVEL() As System.Collections.Generic.List(Of ProfileBusiness.OtherListDTO)
+            Get
+                Return Me.LIST_TRAINING_LEVELField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.LIST_TRAINING_LEVELField, value) <> true) Then
+                    Me.LIST_TRAINING_LEVELField = value
+                    Me.RaisePropertyChanged("LIST_TRAINING_LEVEL")
                 End If
             End Set
         End Property

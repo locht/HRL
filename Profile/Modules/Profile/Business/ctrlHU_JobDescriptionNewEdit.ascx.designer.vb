@@ -185,24 +185,6 @@ Partial Public Class ctrlHU_JobDescriptionNewEdit
     Protected WithEvents RequiredFieldValidator3 As Global.System.Web.UI.WebControls.RequiredFieldValidator
 
     '''<summary>
-    '''lbJobPowew control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lbJobPowew As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
-    '''txtJobPower control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents txtJobPower As Global.Telerik.Web.UI.RadTextBox
-
-    '''<summary>
     '''lbOrg control.
     '''</summary>
     '''<remarks>
@@ -329,42 +311,6 @@ Partial Public Class ctrlHU_JobDescriptionNewEdit
     Protected WithEvents cboTimeWorking As Global.Telerik.Web.UI.RadComboBox
 
     '''<summary>
-    '''lbJobCondition control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lbJobCondition As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
-    '''txtJobCondition control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents txtJobCondition As Global.Telerik.Web.UI.RadTextBox
-
-    '''<summary>
-    '''lbNote control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lbNote As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
-    '''txtNote control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents txtNote As Global.Telerik.Web.UI.RadTextBox
-
-    '''<summary>
     '''lbJobDes control.
     '''</summary>
     '''<remarks>
@@ -381,6 +327,24 @@ Partial Public Class ctrlHU_JobDescriptionNewEdit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtJobDescription As Global.Telerik.Web.UI.RadTextBox
+
+    '''<summary>
+    '''lbJobCondition control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbJobCondition As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''txtJobCondition control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtJobCondition As Global.Telerik.Web.UI.RadTextBox
 
     '''<summary>
     '''lbJobPar control.
@@ -435,6 +399,42 @@ Partial Public Class ctrlHU_JobDescriptionNewEdit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtJobReponsibility As Global.Telerik.Web.UI.RadTextBox
+
+    '''<summary>
+    '''lbJobPowew control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbJobPowew As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''txtJobPower control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtJobPower As Global.Telerik.Web.UI.RadTextBox
+
+    '''<summary>
+    '''lbNote control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbNote As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''txtNote control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtNote As Global.Telerik.Web.UI.RadTextBox
 
     '''<summary>
     '''rpvJobRequest control.

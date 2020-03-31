@@ -53,8 +53,8 @@
                                 SortExpression="NAME" UniqueName="NAME" />
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Mô tả công việc %>" DataField="JOB_DESCRIPTION"
                                 SortExpression="JOB_DESCRIPTION" UniqueName="JOB_DESCRIPTION" />
-                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Điều kiện làm việc %>" DataField="JOB_CONDITION" SortExpression="JOB_CONDITION"
-                                UniqueName="JOB_CONDITION" />
+                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Điều kiện làm việc %>" DataField="WORK_CONDITION" SortExpression="WORK_CONDITION"
+                                UniqueName="WORK_CONDITION" />
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Đặc thù công việc %>" DataField="JOB_PARTICULARTIES"
                                 SortExpression="JOB_PARTICULARTIES" UniqueName="JOB_PARTICULARTIES" /> 
 
