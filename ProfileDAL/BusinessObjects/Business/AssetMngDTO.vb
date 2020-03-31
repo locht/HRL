@@ -15,7 +15,9 @@
     Public Property ASSET_GROUP_CODE As String
     Public Property ASSET_GROUP_NAME As String
     Public Property ASSET_VALUE As Decimal?
+    Public Property ORG_TRANFER_ID As Decimal?
     Public Property ORG_TRANFER As String
+    Public Property ORG_RECEIVE_ID As Decimal?
     Public Property ORG_RECEIVE As String
     Public Property ASSET_BARCODE As String
     Public Property ASSET_SERIAL As String

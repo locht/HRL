@@ -1674,6 +1674,8 @@
             <Property Name="ASSET_SERIAL" Type="nvarchar2" Nullable="true" MaxLength="255" />
             <Property Name="ASSET_STATUS_ID" Type="number" Nullable="true" Precision="38" />
             <Property Name="QUANTITY" Type="number" Nullable="true" Precision="38" />
+            <Property Name="ORG_TRANFER_ID" Type="number" Nullable="true" Precision="38" />
+            <Property Name="ORG_RECEIVE_ID" Type="number" Nullable="true" Precision="38" />
         </EntityType>
         <EntityType Name="HU_FAMILY_EDIT">
             <Key>
@@ -6439,6 +6441,8 @@
           <Property Type="String" Name="ASSET_SERIAL" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Type="Decimal" Name="ASSET_STATUS_ID" Precision="38" Scale="0" />
           <Property Type="Decimal" Name="QUANTITY" Nullable="true" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="ORG_TRANFER_ID" />
+          <Property Type="Decimal" Name="ORG_RECEIVE_ID" />
         </EntityType>
         <EntityType Name="HU_FAMILY_EDIT">
           <Key>
@@ -10278,6 +10282,8 @@
                     <ScalarProperty Name="ASSET_SERIAL" ColumnName="ASSET_SERIAL" />
                     <ScalarProperty Name="ASSET_STATUS_ID" ColumnName="ASSET_STATUS_ID" />
                     <ScalarProperty Name="QUANTITY" ColumnName="QUANTITY" />
+                    <ScalarProperty Name="ORG_TRANFER_ID" ColumnName="ORG_TRANFER_ID" />
+                    <ScalarProperty Name="ORG_RECEIVE_ID" ColumnName="ORG_RECEIVE_ID" />
                 </MappingFragment>
             </EntityTypeMapping>
         </EntitySetMapping>
@@ -12966,7 +12972,7 @@
         <EntityTypeShape EntityType="ProfileModel.HU_DISCIPLINE_SALARY" Width="1.5" PointX="19.75" PointY="8.875" Height="0.39999999999999147" IsExpanded="false" />
         <EntityTypeShape EntityType="ProfileModel.HU_WELFARE_LIST" Width="1.5" PointX="20.625" PointY="9.875" Height="5.8263151041666656" IsExpanded="true" />
         <EntityTypeShape EntityType="ProfileModel.HU_WELFARE_LIST_GW" Width="1.5" PointX="12.75" PointY="19.875" Height="0.39999999999999147" IsExpanded="false" />
-        <EntityTypeShape EntityType="ProfileModel.HU_ASSET_MNG" Width="1.5" PointX="16.25" PointY="25" Height="0.4" IsExpanded="false" />
+        <EntityTypeShape EntityType="ProfileModel.HU_ASSET_MNG" Width="1.5" PointX="15.625" PointY="25" Height="5.8263151041666674" IsExpanded="true" />
         <EntityTypeShape EntityType="ProfileModel.HU_FAMILY_EDIT" Width="2.125" PointX="16.625" PointY="16.375" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="ProfileModel.HU_EMPLOYEE_EDIT" Width="2.125" PointX="22.875" PointY="16" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="ProfileModel.HU_PRO_TRAIN_OUT_COMPANY_EDIT" Width="2.875" PointX="2.375" PointY="31.875" Height="0.4" IsExpanded="false" />
@@ -13010,9 +13016,9 @@
         <EntityTypeShape EntityType="ProfileModel.HU_TITLE" Width="2.125" PointX="9.25" PointY="23.875" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="ProfileModel.PA_PAYMENTSOURCES" Width="1.5" PointX="26.375" PointY="5.75" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="ProfileModel.HU_COMMEND_LEVEL" Width="1.5" PointX="11.375" PointY="26.75" Height="0.4" IsExpanded="false" />
-        <EntityTypeShape EntityType="ProfileModel.HU_COMMEND" Width="4.25" PointX="13" PointY="28.75" Height="8.3262337239583317" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProfileModel.HU_COMMEND" Width="4.25" PointX="10.375" PointY="28.625" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="ProfileModel.TR_CERTIFICATE" Width="1.5" PointX="17.875" PointY="29.25" Height="0.4" IsExpanded="false" />
-        <EntityTypeShape EntityType="ProfileModel.TR_COURSE" Width="1.5" PointX="17.625" PointY="28" Height="0.4" IsExpanded="false" />
+        <EntityTypeShape EntityType="ProfileModel.TR_COURSE" Width="1.5" PointX="19.75" PointY="27.875" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="ProfileModel.TR_PROGRAM" Width="1.5" PointX="19.5" PointY="25.75" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="ProfileModel.TR_PROGRAM_COMMIT" Width="1.5" PointX="21.375" PointY="25.75" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="ProfileModel.TR_PROGRAM_GROUP" Width="1.5" PointX="27.375" PointY="0.75" Height="0.4" IsExpanded="false" />

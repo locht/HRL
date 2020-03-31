@@ -18,7 +18,7 @@ Imports System.Runtime.Serialization
 Imports System.Xml.Serialization
 
 
-<Assembly: EdmSchemaAttribute("f6441354-d9dd-4095-a7c3-323e327fd702")>
+<Assembly: EdmSchemaAttribute("d480213d-238f-495a-9e21-835216670d37")>
 #Region "EDM Relationship Metadata"
 <Assembly: EdmRelationshipAttribute("ProfileModel", "FK_HU_NAT_HU_PRO", "HU_NATION", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_NATION), "HU_PROVINCE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_PROVINCE), True)>
 <Assembly: EdmRelationshipAttribute("ProfileModel", "FK_HU_PRO_HU_DIS", "HU_PROVINCE", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_PROVINCE), "HU_DISTRICT", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_DISTRICT), True)>
@@ -8001,6 +8001,56 @@ Public Partial Class HU_ASSET_MNG
     End Sub
 
     Private Partial Sub OnQUANTITYChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property ORG_TRANFER_ID() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _ORG_TRANFER_ID
+        End Get
+        Set
+            OnORG_TRANFER_IDChanging(value)
+            ReportPropertyChanging("ORG_TRANFER_ID")
+            _ORG_TRANFER_ID = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("ORG_TRANFER_ID")
+            OnORG_TRANFER_IDChanged()
+        End Set
+    End Property
+
+    Private _ORG_TRANFER_ID As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnORG_TRANFER_IDChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnORG_TRANFER_IDChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property ORG_RECEIVE_ID() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _ORG_RECEIVE_ID
+        End Get
+        Set
+            OnORG_RECEIVE_IDChanging(value)
+            ReportPropertyChanging("ORG_RECEIVE_ID")
+            _ORG_RECEIVE_ID = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("ORG_RECEIVE_ID")
+            OnORG_RECEIVE_IDChanged()
+        End Set
+    End Property
+
+    Private _ORG_RECEIVE_ID As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnORG_RECEIVE_IDChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnORG_RECEIVE_IDChanged()
     End Sub
 
     #End Region

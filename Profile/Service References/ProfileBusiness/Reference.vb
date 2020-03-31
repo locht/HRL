@@ -31674,7 +31674,13 @@ Namespace ProfileBusiness
         Private ORG_RECEIVEField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private ORG_RECEIVE_IDField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private ORG_TRANFERField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private ORG_TRANFER_IDField As System.Nullable(Of Decimal)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private QUANTITYField As System.Nullable(Of Decimal)
@@ -32126,6 +32132,19 @@ Namespace ProfileBusiness
         End Property
         
         <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property ORG_RECEIVE_ID() As System.Nullable(Of Decimal)
+            Get
+                Return Me.ORG_RECEIVE_IDField
+            End Get
+            Set
+                If (Me.ORG_RECEIVE_IDField.Equals(value) <> true) Then
+                    Me.ORG_RECEIVE_IDField = value
+                    Me.RaisePropertyChanged("ORG_RECEIVE_ID")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
         Public Property ORG_TRANFER() As String
             Get
                 Return Me.ORG_TRANFERField
@@ -32134,6 +32153,19 @@ Namespace ProfileBusiness
                 If (Object.ReferenceEquals(Me.ORG_TRANFERField, value) <> true) Then
                     Me.ORG_TRANFERField = value
                     Me.RaisePropertyChanged("ORG_TRANFER")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property ORG_TRANFER_ID() As System.Nullable(Of Decimal)
+            Get
+                Return Me.ORG_TRANFER_IDField
+            End Get
+            Set
+                If (Me.ORG_TRANFER_IDField.Equals(value) <> true) Then
+                    Me.ORG_TRANFER_IDField = value
+                    Me.RaisePropertyChanged("ORG_TRANFER_ID")
                 End If
             End Set
         End Property
