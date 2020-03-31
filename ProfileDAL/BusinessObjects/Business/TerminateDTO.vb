@@ -99,4 +99,5 @@
     Public Property IS_REPLACE_POS As Boolean
     Public Property REVERSE_SENIORITY As Decimal?
     Public Property lstDebts As List(Of DebtDTO)
+    Public Property IS_BLACK_LIST As Boolean?
 End Class

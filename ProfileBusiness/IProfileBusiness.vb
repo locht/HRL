@@ -2873,6 +2873,10 @@ Namespace ProfileBusiness.ServiceContracts
         <OperationContract()>
         Function UpdateStatusQD(ByVal lstID As List(Of Decimal),
                                ByVal log As UserLog) As Boolean
+
+        <OperationContract()>
+        Function UpdateStatusTer(ByVal lstID As List(Of Decimal),
+                               ByVal log As UserLog) As Boolean
     End Interface
 
 End Namespace

@@ -2707,6 +2707,19 @@ Namespace ProfileBusiness.ServiceImplementations
             End Using
         End Function
 
+        Public Function UpdateStatusTer(ByVal lstID As List(Of Decimal),
+                               ByVal log As UserLog) As Boolean Implements ServiceContracts.IProfileBusiness.UpdateStatusTer
+            Using rep As New ProfileRepository
+                Try
+
+                    Return rep.UpdateStatusTer(lstID, log)
+                Catch ex As Exception
+
+                    Throw ex
+                End Try
+            End Using
+        End Function
+
 #End Region
 
 

@@ -499,7 +499,8 @@ Partial Class ProfileRepository
                                              .DECISION_TYPE = p.p.DECISION_TYPE,
                                              .IS_ALLOW = p.p.IS_ALLOW,
                                              .IS_REPLACE_POS = p.p.IS_REPLACE_POS,
-                                             .REVERSE_SENIORITY = p.p.REVERSE_SENIORITY})
+                                             .REVERSE_SENIORITY = p.p.REVERSE_SENIORITY,
+                                             .IS_BLACK_LIST = p.p.IS_BLACK_LIST})
 
             Dim ter = obj.FirstOrDefault
 
@@ -598,6 +599,7 @@ Partial Class ProfileRepository
             objTerminateData.MODIFIED_DATE = DateTime.Now
             objTerminateData.MODIFIED_BY = log.Username
             objTerminateData.MODIFIED_LOG = log.ComputerName
+            objTerminateData.IS_BLACK_LIST = objTerminate.IS_BLACK_LIST
             Dim empID = objTerminate.EMPLOYEE_ID
             Dim query As Decimal = (From p In Context.HU_WORKING Order By p.EFFECT_DATE Descending
                                     Where p.EMPLOYEE_ID = empID And p.STATUS_ID = ProfileCommon.DECISION_STATUS.APPROVE_ID Select p.ID).FirstOrDefault
@@ -797,6 +799,7 @@ Partial Class ProfileRepository
             objTerminateData.SIGN_ID = objTerminate.SIGN_ID
             objTerminateData.SIGN_NAME = objTerminate.SIGN_NAME
             objTerminateData.SIGN_TITLE = objTerminate.SIGN_TITLE
+            objTerminateData.IS_BLACK_LIST = objTerminate.IS_BLACK_LIST
 
             'bỔ XUNG THÊM TRƯỜNG
             objTerminateData.SALARYMEDIUM = objTerminate.SALARYMEDIUM

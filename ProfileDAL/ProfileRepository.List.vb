@@ -6142,6 +6142,26 @@ Partial Class ProfileRepository
         End Try
     End Function
 
+    Public Function UpdateStatusTer(ByVal lstID As List(Of Decimal),
+                               ByVal log As UserLog) As Boolean
+        Dim lstData As List(Of HU_TERMINATE)
+        Try
+            lstData = (From p In Context.HU_TERMINATE Where lstID.Contains(p.ID)).ToList
+            For index = 0 To lstData.Count - 1
+                lstData(index).STATUS_ID = 446
+                lstData(index).MODIFIED_DATE = DateTime.Now
+                lstData(index).MODIFIED_BY = log.Username
+                lstData(index).MODIFIED_LOG = log.ComputerName
+            Next
+            Context.SaveChanges(log)
+            Return True
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iProfile")
+            Throw ex
+        End Try
+    End Function
+
+
 #End Region
 
 End Class

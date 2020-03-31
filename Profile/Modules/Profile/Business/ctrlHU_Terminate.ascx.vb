@@ -143,6 +143,7 @@ Public Class ctrlHU_Terminate
                                                                   ToolbarIcons.Add,
                                                                   ToolbarAuthorize.Special1,
                                                                   "Phê duyệt hàng loạt"))
+            MainToolBar.Items.Add(Common.Common.CreateToolbarItem("RESET_PASSWORD", ToolbarIcons.Reset, ToolbarAuthorize.Special1, "Sửa phê duyệt"))
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
             Throw ex
@@ -402,6 +403,21 @@ Public Class ctrlHU_Terminate
                     End Using
                 Case CommonMessage.TOOLBARITEM_CREATE_BATCH
                     BatchApproveTerminate()
+                Case "RESET_PASSWORD"
+                    If rgTerminate.SelectedItems.Count = 0 Then
+                        Me.ShowMessage(Translate(CommonMessage.MESSAGE_NOT_SELECT_ROW), NotifyType.Warning)
+                        Exit Sub
+                    End If
+                    For Each item As GridDataItem In rgTerminate.SelectedItems
+                        If item.GetDataKeyValue("STATUS_ID") = ProfileCommon.DECISION_STATUS.NOT_APPROVE_ID Then
+                            ShowMessage(Translate("Bản ghi không phê duyệt. Thao tác thực hiện không thành công"), NotifyType.Warning)
+                            Exit Sub
+                        End If
+                    Next
+                    ctrlMessageBox.MessageText = Translate("Bạn có muốn sửa phê duyệt")
+                    ctrlMessageBox.ActionName = "RESET_PASSWORD"
+                    ctrlMessageBox.DataBind()
+                    ctrlMessageBox.Show()
             End Select
             UpdateControlState()
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
@@ -419,11 +435,29 @@ Public Class ctrlHU_Terminate
     Private Sub ctrlMessageBox_ButtonCommand(ByVal sender As Object, ByVal e As MessageBoxEventArgs) Handles ctrlMessageBox.ButtonCommand
         Dim startTime As DateTime = DateTime.UtcNow
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+        Dim rep1 As New ProfileRepository
         Try
             If e.ActionName = CommonMessage.TOOLBARITEM_DELETE And e.ButtonID = MessageBoxButtonType.ButtonYes Then
                 CurrentState = CommonMessage.STATE_DELETE
                 UpdateControlState()
             End If
+            If e.ActionName = "RESET_PASSWORD" And e.ButtonID = MessageBoxButtonType.ButtonYes Then
+                Dim lstDeletes As New List(Of Decimal)
+                For idx = 0 To rgTerminate.SelectedItems.Count - 1
+                    Dim item As GridDataItem = rgTerminate.SelectedItems(idx)
+                    lstDeletes.Add(item.GetDataKeyValue("ID"))
+                Next
+                If rep1.UpdateStatusTer(lstDeletes) Then
+                    CurrentState = CommonMessage.STATE_NORMAL
+                    ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), NotifyType.Success)
+                    rgTerminate.Rebind()
+                Else
+                    CurrentState = CommonMessage.STATE_NORMAL
+                    ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), NotifyType.Error)
+                End If
+
+            End If
+            rep1.Dispose()
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
             DisplayException(Me.ViewName, Me.ID, ex)

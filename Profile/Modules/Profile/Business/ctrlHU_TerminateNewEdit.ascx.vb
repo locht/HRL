@@ -150,7 +150,6 @@ Public Class ctrlHU_TerminateNewEdit
         Try
             GetParams()
             Refresh()
-            CalculateDebtTotal()
             UpdateControlState()
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
@@ -252,9 +251,12 @@ Public Class ctrlHU_TerminateNewEdit
                     End If
                     txtDecisionNo.Text = Terminate.DECISION_NO
 
+                    If Terminate.IS_BLACK_LIST IsNot Nothing Then
+                        chkDSDen.Checked = Terminate.IS_BLACK_LIST
+                    End If
+
                     txtSignerName.Text = Terminate.SIGN_NAME
                     txtSignerTitle.Text = Terminate.SIGN_TITLE
-                    txtSeniority.Text = Terminate.EMPLOYEE_SENIORITY
                     txtTerReasonDetail.Text = Terminate.TER_REASON_DETAIL
                     txtRemark.Text = Terminate.REMARK
 
@@ -265,7 +267,6 @@ Public Class ctrlHU_TerminateNewEdit
                     rdLastDate.SelectedDate = Terminate.LAST_DATE
                     rdSendDate.SelectedDate = Terminate.SEND_DATE
                     rdSignDate.SelectedDate = Terminate.SIGN_DATE
-                    cbIsNoHire.Checked = Terminate.IS_NOHIRE
                     'rdContractExpireDate.SelectedDate = Terminate.EXPIRE_DATE
 
                     hidDecisionID.Value = Terminate.DECISION_ID.ToString
@@ -275,60 +276,19 @@ Public Class ctrlHU_TerminateNewEdit
                     hidID.Value = Terminate.ID.ToString
                     FillDataByEmployeeID(Terminate.EMPLOYEE_ID)
 
-                    'rdApprovalDate.SelectedDate = Terminate.APPROVAL_DATE
-                    'chkIdenitifiCard.Checked = Utilities.ObjToDecima(Terminate.IDENTIFI_CARD, -1)
-                    'rdIdentifiDate.SelectedDate = Terminate.IDENTIFI_RDATE
-                    'txtIdentifiStatus.Text = Terminate.IDENTIFI_STATUS
-                    'chkSunCard.Checked = Utilities.ObjToDecima(Terminate.SUN_CARD, -1)
-                    'rdSunDate.SelectedDate = Terminate.SUN_RDATE
-                    'txtSunStatus.Text = Terminate.SUN_STATUS
-                    'chkInsuranceCard.Checked = Utilities.ObjToDecima(Terminate.INSURANCE_CARD, -1)
-                    'rdInsuranceDate.SelectedDate = Terminate.INSURANCE_RDATE
-                    'txtInsuranceStatus.Text = Terminate.INSURANCE_STATUS
-                    'rntxtIdentifiMoney.value = Terminate.IDENTIFI_MONEY
-                    'rntxtSunMoney.value = Terminate.SUN_MONEY
-                    'rntxtInsuranceMoney.value = Terminate.INSURANCE_MONEY
-                    'rntxtRemainingLeave.Value = Terminate.REMAINING_LEAVE
-                    'rntxtPaymentLeave.Value = Terminate.PAYMENT_LEAVE
-                    rntxtAmountViolations.Value = Terminate.AMOUNT_VIOLATIONS
-                    rntxtAmountWrongful.Value = Terminate.AMOUNT_WRONGFUL
-                    rntxtAllowanceTerminate.Value = Terminate.ALLOWANCE_TERMINATE
-                    'rntxtTrainingCosts.Value = Terminate.TRAINING_COSTS
-                    'rntxtOtherCompensation.Value = Terminate.OTHER_COMPENSATION
-                    'rntxtCompensatoryLeave.Value = Terminate.COMPENSATORY_LEAVE
-                    'rntxtCompensatoryPayment.Value = Terminate.COMPENSATORY_PAYMENT
+                    
 
-                    rntxtSalaryMedium_loss.Value = Terminate.SALARYMEDIUM
-                    ' MO RA
-                    txtTimeAccidentIns_loss.Text = Terminate.SALARYMEDIUM_LOSS
-
-                    'rntxtMoneyReturn.Value = Terminate.MONEY_RETURN
-                    rntxtyearforallow_loss.Value = Terminate.YEARFORALLOW
-                    'cboTYPE_TERMINATE.SelectedValue = Terminate.TYPE_TERMINATE
+                  
                     If Terminate.TER_REASON.HasValue Then
                         cboTerReason.SelectedValue = Terminate.TER_REASON
                     End If
-                    rntxtDebtTotal.Value = Terminate.SUM_DEBT
-                    rntxtDebtTotalCollect.Value = Terminate.SUM_COLLECT_DEBT
-                    rntxtCash.Value = Terminate.AMOUNT_PAYMENT_CASH
-                    rntxtMoneyDeductFromSal.Value = Terminate.AMOUNT_DEDUCT_FROM_SAL
-                    cboSalMonth.SelectedValue = Terminate.PERIOD_ID
-                    If Terminate.INSURANCE_STATUS <> "" Then
-                        cboInsStatus.SelectedValue = Terminate.INSURANCE_STATUS
-                    End If
+                   
                     If Terminate.DECISION_TYPE.HasValue Then
                         cboDecisionType.SelectedValue = Terminate.DECISION_TYPE.ToString
                     End If
-                    cbIsAllowForTer.Checked = Terminate.IS_ALLOW
-                    cbIsReplacePos.Checked = Terminate.IS_REPLACE_POS
 
                     lstHandoverContent = Terminate.lstHandoverContent
-                    rntxtReserveSeniority.Value = Terminate.REVERSE_SENIORITY
-                    rgDebt.Rebind()
-                    For Each i As GridItem In rgDebt.Items
-                        i.Edit = True
-                    Next
-                    rgDebt.Rebind()
+                   
                     rgHandoverContent.Rebind()
                     For Each i As GridItem In rgHandoverContent.Items
                         i.Edit = True
@@ -345,13 +305,9 @@ Public Class ctrlHU_TerminateNewEdit
                         btnDownload.Enabled = True
                         btnUploadFile.Enabled = True
                         rgHandoverContent.Enabled = True
-                        rntxtCash.ReadOnly = False
-                        rgDebt.Enabled = True
                         rgHandoverContent.Enabled = True
-                        EnableRadCombo(cboDebtStatus, True)
                         MainToolBar.Items(0).Enabled = True
-                        EnableControlAll(True, cboDebtType, rntxtDebtMoney, cboDebtStatus, txtDebtNote, rgDebt, rntxtDebtTotal, _
-                                         rntxtDebtTotalCollect, rntxtCash, rntxtAmountWrongful, rntxtMoneyDeductFromSal, rntxtAmountViolations, cboInsStatus)
+                       
                     End If
 
                 Case "InsertView"
@@ -362,11 +318,7 @@ Public Class ctrlHU_TerminateNewEdit
                         objHandover.CONTENT_NAME = obj.NAME_VN
                         lstHandoverContent.Add(objHandover)
                     Next
-                    rgDebt.Rebind()
-                    For Each i As GridItem In rgDebt.Items
-                        i.Edit = True
-                    Next
-                    rgDebt.Rebind()
+                   
                     rgHandoverContent.Rebind()
                     For Each i As GridItem In rgHandoverContent.Items
                         i.Edit = True
@@ -384,7 +336,6 @@ Public Class ctrlHU_TerminateNewEdit
                     CType(MainToolBar.Items(0), RadToolBarButton).Enabled = False
                     txtSignerName.ReadOnly = True
                     txtSignerTitle.ReadOnly = True
-                    txtSeniority.ReadOnly = True
                     txtTerReasonDetail.ReadOnly = True
                     txtRemark.ReadOnly = True
 
@@ -397,9 +348,6 @@ Public Class ctrlHU_TerminateNewEdit
                     rdSendDate.Enabled = False
                     rdSignDate.Enabled = False
 
-                    cbIsNoHire.Enabled = False
-                    rntxtCash.ReadOnly = False
-
                     txtContractNo.ReadOnly = True
                     txtEmployeeCode.ReadOnly = True
                     txtEmployeeName.ReadOnly = True
@@ -409,10 +357,6 @@ Public Class ctrlHU_TerminateNewEdit
                     rdContractEffectDate.Enabled = False
                     rdContractExpireDate.Enabled = False
 
-                    cbIsReplacePos.Enabled = False
-                    cbIsAllowForTer.Enabled = False
-                    cboInsStatus.Enabled = False
-                    cboSalMonth.Enabled = False
                     cboTerReason.Enabled = False
                     cboDecisionType.Enabled = False
             End Select
@@ -468,12 +412,7 @@ Public Class ctrlHU_TerminateNewEdit
                             ShowMessage(Translate("Nhân viên có mã số {0} đã có đơn được phê duyệt. Vui lòng kiểm tra lại !", txtEmployeeCode.Text), NotifyType.Warning)
                             Exit Sub
                         End If
-                        If cbIsNoHire.Checked Then
-                            If txtRemark.Text.Trim = "" Then
-                                ShowMessage(Translate("Bạn phải nhập ghi chú"), NotifyType.Warning)
-                                Exit Sub
-                            End If
-                        End If
+                        
                         If cboStatus.SelectedValue = ProfileCommon.DECISION_STATUS.APPROVE_ID Then
                             If txtUpload.Text.Trim = "" Then
                                 ShowMessage(Translate("Bạn phải chọn tập tin đính kèm"), NotifyType.Warning)
@@ -515,81 +454,27 @@ Public Class ctrlHU_TerminateNewEdit
                         Else
                             objTerminate.UPLOADFILE = If(objTerminate.UPLOADFILE Is Nothing, "", objTerminate.UPLOADFILE)
                         End If
-                        objTerminate.IS_NOHIRE = cbIsNoHire.Checked
                         objTerminate.LAST_DATE = rdLastDate.SelectedDate
                         objTerminate.SEND_DATE = rdSendDate.SelectedDate
                         objTerminate.TER_REASON_DETAIL = txtTerReasonDetail.Text
 
                         objTerminate.REMARK = txtRemark.Text
-                        objTerminate.EMPLOYEE_SENIORITY = txtSeniority.Text
+
+                        objTerminate.IS_BLACK_LIST = chkDSDen.Checked
 
                         objTerminate.EFFECT_DATE = rdEffectDate.SelectedDate
                         objTerminate.SIGN_NAME = txtSignerName.Text
                         objTerminate.SIGN_DATE = rdSignDate.SelectedDate
 
-                        'objTerminate.APPROVAL_DATE = rdApprovalDate.SelectedDate
-                        'bổ xung loại nghỉ.
-                        'If cboTYPE_TERMINATE.Text = "" Then
-                        '    ShowMessage(Translate("Bạn phải nhập loại nghỉ"), NotifyType.Warning)
-                        '    Exit Sub
-                        'End If
-                        'objTerminate.TYPE_TERMINATE = cboTYPE_TERMINATE.SelectedValue
-
-                        'objTerminate.IDENTIFI_CARD = chkIdenitifiCard.Checked
-                        'objTerminate.IDENTIFI_RDATE = rdIdentifiDate.SelectedDate
-                        'objTerminate.IDENTIFI_STATUS = txtIdentifiStatus.Text
-                        'objTerminate.SUN_CARD = chkSunCard.Checked
-                        'objTerminate.SUN_RDATE = rdSunDate.SelectedDate
-                        'objTerminate.SUN_STATUS = txtSunStatus.Text
-                        'objTerminate.INSURANCE_CARD = chkInsuranceCard.Checked
-                        'objTerminate.INSURANCE_RDATE = rdInsuranceDate.SelectedDate
-                        'objTerminate.INSURANCE_STATUS = txtInsuranceStatus.Text
-
-                        'objTerminate.IDENTIFI_MONEY = rntxtIdentifiMoney.value
-                        'objTerminate.SUN_MONEY = rntxtSunMoney.value
-                        'objTerminate.INSURANCE_MONEY = rntxtInsuranceMoney.value
-                        'objTerminate.REMAINING_LEAVE = rntxtRemainingLeave.Value
-                        'objTerminate.PAYMENT_LEAVE = rntxtPaymentLeave.Value
-                        objTerminate.AMOUNT_VIOLATIONS = rntxtAmountViolations.Value
-                        objTerminate.AMOUNT_WRONGFUL = rntxtAmountWrongful.Value
-                        objTerminate.ALLOWANCE_TERMINATE = rntxtAllowanceTerminate.Value
-                        'objTerminate.TRAINING_COSTS = rntxtTrainingCosts.Value
-                        'objTerminate.OTHER_COMPENSATION = rntxtOtherCompensation.Value
-                        'objTerminate.COMPENSATORY_LEAVE = rntxtCompensatoryLeave.Value
-                        'objTerminate.COMPENSATORY_PAYMENT = rntxtCompensatoryPayment.Value
-
                         objTerminate.ORG_ABBR = hidOrgAbbr.Value
 
                         objTerminate.SIGN_TITLE = txtSignerTitle.Text
 
-                        objTerminate.SALARYMEDIUM = rntxtSalaryMedium_loss.Value
-                        'objTerminate.MONEY_RETURN = rntxtMoneyReturn.Value
-                        objTerminate.YEARFORALLOW = rntxtyearforallow_loss.Value
-
-                        'objTerminate.EXPIRE_DATE = rdContractExpireDate.SelectedDate
-
-                        objTerminate.SALARYMEDIUM_LOSS = txtTimeAccidentIns_loss.Text
-                        'txtTimeAccidentIns_loss.Text = Terminate.SALARYMEDIUM_LOSS
                         If cboTerReason.Text <> "" Then
                             objTerminate.TER_REASON = cboTerReason.SelectedValue
                         End If
-                        objTerminate.INSURANCE_STATUS = cboInsStatus.SelectedValue.ToString
                         objTerminate.DECISION_TYPE = cboDecisionType.SelectedValue.ToString
-                        objTerminate.SUM_DEBT = rntxtDebtTotal.Value
-                        objTerminate.SUM_COLLECT_DEBT = rntxtDebtTotalCollect.Value
-                        objTerminate.AMOUNT_PAYMENT_CASH = rntxtCash.Value
-                        objTerminate.AMOUNT_DEDUCT_FROM_SAL = rntxtMoneyDeductFromSal.Value
-                        'If cboSalMonth.Text <> "" Then
-                        '    objTerminate.PERIOD_ID = cboSalMonth.SelectedValue
-                        'End If
-                        If (cboSalMonth.Text = "") Then
-                            objTerminate.PERIOD_ID = 0
-                        Else
-                            objTerminate.PERIOD_ID = cboSalMonth.SelectedValue
-                        End If
-                        objTerminate.IS_ALLOW = cbIsAllowForTer.Checked
-                        objTerminate.IS_REPLACE_POS = cbIsReplacePos.Checked
-                        objTerminate.REVERSE_SENIORITY = rntxtReserveSeniority.Value
+                        
                         lstHandoverContent = New List(Of HandoverContentDTO)
                         For Each item As GridDataItem In rgHandoverContent.Items
                             Dim handover As New HandoverContentDTO
@@ -600,16 +485,7 @@ Public Class ctrlHU_TerminateNewEdit
                             lstHandoverContent.Add(handover)
                         Next
                         objTerminate.lstHandoverContent = lstHandoverContent
-                        Dim debts As New List(Of DebtDTO)
-                        For Each row As GridDataItem In rgDebt.Items
-                            Dim debt As New DebtDTO With {.ID = ConvertTo(row.GetDataKeyValue("ID")), _
-                                                          .MONEY = row.GetDataKeyValue("MONEY"), _
-                                                          .REMARK = row.GetDataKeyValue("REMARK"), _
-                                                          .DEBT_STATUS = row.GetDataKeyValue("DEBT_STATUS"), _
-                                                          .DEBT_TYPE_ID = row.GetDataKeyValue("DEBT_TYPE_ID")}
-                            debts.Add(debt)
-                        Next
-                        objTerminate.lstDebts = debts
+
                         Select Case CurrentState
                             Case CommonMessage.STATE_NEW
                                 If rep.InsertTerminate(objTerminate, gid) Then
@@ -657,25 +533,6 @@ Public Class ctrlHU_TerminateNewEdit
             _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
         End Try
 
-    End Sub
-
-    Private Sub rgDebt_SelectedIndexChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles rgDebt.SelectedIndexChanged
-        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
-        Dim startTime As DateTime = DateTime.UtcNow
-
-        Try
-            For Each _item As GridDataItem In rgDebt.SelectedItems
-                cboDebtType.SelectedValue = _item.GetDataKeyValue("DEBT_TYPE_ID")
-                rntxtDebtMoney.Value = Decimal.Parse(_item.GetDataKeyValue("MONEY"))
-                cboDebtStatus.SelectedValue = _item.GetDataKeyValue("DEBT_STATUS")
-                txtDebtNote.Text = _item.GetDataKeyValue("REMARK")
-                hidCheckDelete.Value = _item.GetDataKeyValue("DEBT_TYPE_ID")
-            Next
-            _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
-        Catch ex As Exception
-            'DisplayException(Me.ViewName, Me.ID, ex)
-            _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
-        End Try
     End Sub
 
     ''' <summary>
@@ -1013,15 +870,7 @@ Public Class ctrlHU_TerminateNewEdit
                 txtEmployeeCode.Text = item.EMPLOYEE_CODE
                 'txtDecisionNo.Text = item.EMPLOYEE_CODE.Substring(1) + " / QDTV-KSF"
                 FillDataByEmployeeID(item.ID)
-                If rdJoinDateState.SelectedDate IsNot Nothing And rdLastDate.SelectedDate IsNot Nothing Then
-                    If rdJoinDateState.SelectedDate < rdLastDate.SelectedDate Then
-                        txtSeniority.Text = CalculateSeniority(rdJoinDateState.SelectedDate, rdLastDate.SelectedDate)
-                    Else
-                        txtSeniority.Text = vbNullString
-                    End If
-                End If
-                'rgLabourProtect.Rebind()
-                rgDebt.Rebind()
+                
                 GetTerminateCalculate()
             End If
 
@@ -1167,13 +1016,6 @@ Public Class ctrlHU_TerminateNewEdit
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
         Try
             If rdJoinDateState.SelectedDate IsNot Nothing Then
-                If rdLastDate.SelectedDate IsNot Nothing Then
-                    If rdJoinDateState.SelectedDate < rdLastDate.SelectedDate Then
-                        txtSeniority.Text = CalculateSeniority(rdJoinDateState.SelectedDate, rdLastDate.SelectedDate)
-                    Else
-                        txtSeniority.Text = vbNullString
-                    End If
-                End If
                 If rdEffectDate.SelectedDate IsNot Nothing Then
                     If rdJoinDateState.SelectedDate > rdLastDate.SelectedDate Then
                         ShowMessage(Translate("Ngày thôi việc phải lớn hơn hoặc bằng ngày vào công ty"), NotifyType.Warning)
@@ -1284,118 +1126,7 @@ Public Class ctrlHU_TerminateNewEdit
             _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
         End Try
     End Sub
-    ' ''' <summary>
-    ' ''' Validate cval_LastDate
-    ' ''' </summary>
-    ' ''' <param name="source"></param>
-    ' ''' <param name="args"></param>
-    ' ''' <remarks></remarks>
-    'Protected Sub cval_LastDate_ServerValidate(ByVal source As Object, ByVal args As System.Web.UI.WebControls.ServerValidateEventArgs) Handles cval_LastDate_JoinDate.ServerValidate
-    '    Dim startTime As DateTime = DateTime.UtcNow
-    '    Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
-    '    Try
-    '        'ngày nghỉ thực tế bắt nhập khi trạng thái là phê duyệt
-    '        If cboStatus.SelectedValue = ProfileCommon.DECISION_STATUS.APPROVE_ID Then
-    '            If rdLastDate.SelectedDate Is Nothing Then
-    '                args.IsValid = False
-    '                Exit Sub
-    '            End If
-    '        End If
-
-
-
-    '        args.IsValid = True
-    '        _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
-    '    Catch ex As Exception
-    '        DisplayException(Me.ViewName, Me.ID, ex)
-    '        _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
-    '    End Try
-    'End Sub
-
-    ''' <summary>
-    ''' Reload, load datasource cho grid
-    ''' </summary>
-    ''' <param name="sender"></param>
-    ''' <param name="e"></param>
-    ''' <remarks></remarks>
-    'Private Sub rgLabourProtect_NeedDataSource(ByVal sender As Object, ByVal e As System.EventArgs) Handles rgLabourProtect.NeedDataSource
-    '    Dim startTime As DateTime = DateTime.UtcNow
-    '    Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
-    '    Try
-    '        Using rep As New ProfileBusinessRepository
-    '            Dim lstData As List(Of LabourProtectionMngDTO)
-    '            If hidEmpID.Value <> "" Then
-    '                lstData = rep.GetLabourProtectByTerminate(hidEmpID.Value)
-    '            Else
-    '                lstData = New List(Of LabourProtectionMngDTO)
-    '            End If
-    '            'rgLabourProtect.DataSource = lstData
-    '        End Using
-    '        _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
-    '    Catch ex As Exception
-    '        _myLog.WriteLog(_myLog._error, _classPath, method, 0, ex, "")
-    '    End Try
-
-    'End Sub
-
-    ''' <summary>
-    ''' Reload, load datasource cho grid
-    ''' </summary>
-    ''' <param name="sender"></param>
-    ''' <param name="e"></param>
-    ''' <remarks></remarks>
-    Private Sub rgDebt_NeedDataSource(ByVal sender As Object, ByVal e As System.EventArgs) Handles rgDebt.NeedDataSource
-        Dim startTime As DateTime = DateTime.UtcNow
-        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
-        Dim lstData As List(Of DebtDTO)
-        Try
-            Using rep As New ProfileBusinessRepository
-                If hidEmpID.Value <> "" Then
-                    lstData = rep.GetDebt(hidEmpID.Value, rgDebt.CurrentPageIndex, rgDebt.PageSize, 10)
-                Else
-                    lstData = New List(Of DebtDTO)
-                End If
-            End Using
-            'For index = 0 To lstData.Count - 1
-            '    lstData(0).EMPLOYEE_CODE = index + 1
-            'Next
-            rgDebt.DataSource = lstData
-            _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
-        Catch ex As Exception
-            _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
-        End Try
-
-    End Sub
-    ''' <summary>
-    ''' Event thay doi gia tri cua rdApprovalDate
-    ''' </summary>
-    ''' <param name="sender"></param>
-    ''' <param name="e"></param>
-    ''' <remarks></remarks>
-    'Private Sub rdApprovalDate_SelectedDateChanged(ByVal sender As Object, ByVal e As Telerik.Web.UI.Calendar.SelectedDateChangedEventArgs) Handles rdApprovalDate.SelectedDateChanged, rdLastDate.SelectedDateChanged
-    '    Dim startTime As DateTime = DateTime.UtcNow
-    '    Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
-    '    Try
-    '        GetTerminateCalculate()
-    '        If (rdApprovalDate.SelectedDate Is Nothing Or rdLastDate.SelectedDate Is Nothing Or hiSalbasic.Value Is Nothing) Then
-    '            rntxtAmountWrongful.ClearValue()
-    '            rntxtAmountViolations.ClearValue()
-    '        Else
-    '            If rdApprovalDate.SelectedDate > rdLastDate.SelectedDate Then
-    '                Dim day = (rdApprovalDate.SelectedDate.Value - rdLastDate.SelectedDate.Value).Days
-    '                rntxtAmountWrongful.Value = Decimal.Round(Utilities.ObjToDecima(day * (hiSalbasic.Value / 26)), 2)
-    '                rntxtAmountViolations.Value = hiSalbasic.Value / 2
-    '            Else
-    '                rntxtAmountWrongful.Value = 0
-    '                rntxtAmountViolations.Value = 0
-    '            End If
-    '        End If
-    '        _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
-    '    Catch ex As Exception
-    '        _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
-    '    End Try
-    'End Sub
-
+    
     ''' <summary>
     ''' Reload, load datasource cho grid
     ''' </summary>
@@ -1436,253 +1167,6 @@ Public Class ctrlHU_TerminateNewEdit
             _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
         End Try
 
-    End Sub
-
-    Private Sub RgDebts_ItemCommand(ByVal sender As Object, ByVal e As Telerik.Web.UI.GridCommandEventArgs) Handles rgDebt.ItemCommand
-        Dim dataSource = GetDebtsSource()
-        Select Case e.CommandName
-            Case "btnAddDebt"
-                If cboDebtType.SelectedValue = "" Then
-                    ShowMessage(Translate("Loại công nợ chưa được chọn. Vui lòng kiểm tra lại !"), NotifyType.Warning)
-                    Exit Sub
-                End If
-                If rntxtDebtMoney.Value.HasValue = False Then
-                    ShowMessage(Translate("Số tiền không để trống. Vui lòng kiểm tra lại !"), NotifyType.Warning)
-                    Exit Sub
-                End If
-                If cboDebtStatus.SelectedValue = "" Then
-                    ShowMessage(Translate("Trạng thái công nợ chưa được chọn. Vui lòng kiểm tra lại !"), NotifyType.Warning)
-                    Exit Sub
-                End If
-                AddDebt(dataSource)
-                ClearControlValue(cboDebtType, rntxtDebtMoney, txtDebtNote, cboDebtStatus)
-                rgDebt.DataSource = dataSource
-                rgDebt.DataBind()
-                'Case "btnEditDebt"
-                '    EditDebt(lstDebtForEdit, IDDebtSelecting)
-                '    rgDebt.DataSource = lstDebtForEdit
-            Case "btnDeleteDebts"
-                DeleteDebts(dataSource)
-                ClearControlValue(cboDebtType, rntxtDebtMoney, txtDebtNote, cboDebtStatus)
-                rgDebt.DataSource = dataSource
-                If dataSource.Count = 0 Then
-                    rgDebt.DataSource = New List(Of DebtDTO)
-                End If
-                rgDebt.DataBind()
-        End Select
-        If rgDebt.DataSource Is Nothing Then
-            rgDebt.DataSource = dataSource
-        End If
-        CalculateDebtTotal()
-    End Sub
-
-    Private Sub CalculateDebtTotal()
-        Dim debtTotal As Decimal = 0
-        Dim debtTotalCollect As Decimal = 0
-        For Each item As GridDataItem In rgDebt.Items
-            debtTotal += If(IsNumeric(item.GetDataKeyValue("MONEY")), Decimal.Parse(item.GetDataKeyValue("MONEY")), 0)
-            Dim status = item.GetDataKeyValue("DEBT_STATUS")
-            If status = ProfileCommon.DEBT_STATUS.NOT_COMPLETE_ID Then
-                debtTotalCollect += If(IsNumeric(item.GetDataKeyValue("MONEY")), Decimal.Parse(item.GetDataKeyValue("MONEY")), 0)
-            End If
-        Next
-        rntxtDebtTotal.Value = debtTotal
-        rntxtDebtTotalCollect.Value = debtTotalCollect
-    End Sub
-
-    Private Function GetDebtsSource() As List(Of DebtDTO)
-        Dim dataSource = New List(Of DebtDTO)
-
-        For Each item As GridDataItem In rgDebt.Items
-            dataSource.Add(New DebtDTO With {.ID = item.GetDataKeyValue("ID"),
-                           .DEBT_TYPE_ID = item.GetDataKeyValue("DEBT_TYPE_ID"),
-                           .DEBT_TYPE_NAME = item.GetDataKeyValue("DEBT_TYPE_NAME"),
-                           .DEBT_STATUS = item.GetDataKeyValue("DEBT_STATUS"),
-                           .DEBT_STATUS_NAME = item.GetDataKeyValue("DEBT_STATUS_NAME"),
-                           .MONEY = item.GetDataKeyValue("MONEY"),
-                           .REMARK = item.GetDataKeyValue("REMARK")})
-        Next
-        Return dataSource
-    End Function
-
-    Private Function EditDebt(ByVal dataSource As List(Of DebtDTO), ByVal ID As Decimal) As List(Of DebtDTO)
-        Try
-            Dim status = dataSource.Find(Function(f) f.ID = ID).DEBT_STATUS
-            If status = ProfileCommon.DEBT_STATUS.NOT_COMPLETE_ID Then
-                dataSource.Where(Function(f) f.ID = ID).FirstOrDefault().DEBT_STATUS = cboDebtStatus.SelectedValue
-                dataSource.Where(Function(f) f.ID = ID).FirstOrDefault().DEBT_STATUS_NAME = cboDebtStatus.Text
-            End If
-            Return dataSource
-        Catch ex As Exception
-            Throw ex
-        End Try
-    End Function
-    Private Function AddDebt(ByVal dataSource As List(Of DebtDTO)) As List(Of DebtDTO)
-        Try
-            'Kiểm tra (hoặc xóa) loại công nợ đã tồn tại hay chưa
-            Dim item_Ck = (From p In dataSource.AsEnumerable Where p.DEBT_TYPE_ID = cboDebtType.SelectedValue).FirstOrDefault
-            If item_Ck IsNot Nothing Then
-                dataSource.Remove(item_Ck)
-            End If
-
-            Dim rowId = dataSource.Count + 1 'dung de delete row
-
-            dataSource.Add(New DebtDTO With {.ID = Nothing,
-                           .DEBT_TYPE_ID = cboDebtType.SelectedValue,
-                           .DEBT_TYPE_NAME = cboDebtType.Text,
-                           .MONEY = If(IsNumeric(rntxtDebtMoney.Value), Decimal.Parse(rntxtDebtMoney.Value), Nothing),
-                           .REMARK = txtDebtNote.Text,
-                           .DEBT_STATUS = cboDebtStatus.SelectedValue,
-                           .DEBT_STATUS_NAME = cboDebtStatus.Text})
-            Return dataSource
-        Catch ex As Exception
-            Throw ex
-        End Try
-    End Function
-    Private Function DeleteDebts(ByVal dataSource As List(Of DebtDTO)) As List(Of DebtDTO)
-        Try
-            'For Each item As GridDataItem In rgDebt.Items
-            '    Dim item_Ck = (From p In dataSource.AsEnumerable Where p.DEBT_TYPE_ID = item.GetDataKeyValue("DEBT_TYPE_ID")).FirstOrDefault
-            '    If item_Ck IsNot Nothing Then
-            '        dataSource.Remove(item_Ck)
-            '    End If
-            'Next
-            If hidCheckDelete.Value <> "" Then
-                Dim item_Ck = (From p In dataSource.AsEnumerable Where p.DEBT_TYPE_ID = hidCheckDelete.Value).FirstOrDefault
-                If item_Ck IsNot Nothing Then
-                    dataSource.Remove(item_Ck)
-                End If
-            End If
-            Return dataSource
-
-        Catch ex As Exception
-            Throw ex
-        End Try
-    End Function
-
-    Private Sub rntxtCash_TextChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles rntxtCash.TextChanged
-        Try
-            Dim moneyDeductFromSal As Decimal = 0
-            Dim debtTotalCollect = rntxtDebtTotalCollect.Value
-            Dim cash = rntxtCash.Value
-            If IsNumeric(debtTotalCollect) AndAlso debtTotalCollect > 0 Then
-                moneyDeductFromSal = debtTotalCollect - If(IsNumeric(cash), cash, 0)
-            End If
-            rntxtMoneyDeductFromSal.Value = moneyDeductFromSal
-        Catch ex As Exception
-            Throw ex
-        End Try
-    End Sub
-
-    ''' <summary>
-    ''' Event Click checkbox Tra the BHYT
-    ''' </summary>
-    ''' <param name="sender"></param>
-    ''' <param name="e"></param>
-    ''' <remarks></remarks>
-    'Private Sub chkInsuranceCard_CheckedChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles chkInsuranceCard.CheckedChanged
-    '    Dim startTime As DateTime = DateTime.UtcNow
-    '    Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
-    '    Try
-    '        Dim rep As New ProfileBusinessRepository
-    '        Dim dtData As New DataTable
-    '        Dim salary As New Decimal
-    '        '1. kiểm tra nếu tích trả thẻ bảo hiểm
-    '        If chkInsuranceCard.Checked Then
-    '            rdInsuranceDate.Enabled = True
-    '            '2. nếu ngày thẻ và ngày làm việc cuối cùng có dữ liệu
-    '            If rdInsuranceDate.SelectedDate IsNot Nothing And rdLastDate.SelectedDate IsNot Nothing Then
-    '                '3. nếu tháng trả thẻ bhyt khác với tháng của ngày làm việc cuối cùng thì sẽ tính số tiền phải trả
-    '                If rdInsuranceDate.SelectedDate.Value.Month <> rdLastDate.SelectedDate.Value.AddDays(-1).Month Then
-    '                    dtData = rep.GetSalaryNew(hidEmpID.Value)
-    '                    Dim month As Decimal = rdInsuranceDate.SelectedDate.Value.Month - rdLastDate.SelectedDate.Value.Month
-    '                    Dim tileNV As Decimal = Utilities.ObjToDecima(rep.GetTyleNV().Rows(0)("HI_EMP"))
-    '                    If dtData IsNot Nothing AndAlso dtData.Rows.Count > 0 Then
-    '                        salary = Utilities.ObjToDecima(rep.GetSalaryNew(hidEmpID.Value).Rows(0)("NEWSALARY"))
-    '                    End If
-    '                    rntxtInsuranceMoney.Value = Utilities.ObjToDecima(month * salary * tileNV / 100)
-    '                End If
-    '            End If
-    '        Else '4. nếu trường hợp không tích chọn thì sẽ tính số tháng bằng cuối năm trừ đi ngày làm việc cuối cùng.
-    '            rdInsuranceDate.SelectedDate = Nothing
-    '            rdInsuranceDate.Enabled = False
-    '            '5. kiểm tra nếu ngày làm việc cuối cùng có dữ liệu
-    '            If rdLastDate.SelectedDate IsNot Nothing Then
-    '                dtData = rep.GetSalaryNew(hidEmpID.Value)
-    '                Dim month As Decimal = 12 - rdLastDate.SelectedDate.Value.Month
-    '                Dim tileNV As Decimal = Utilities.ObjToDecima(rep.GetTyleNV().Rows(0)("HI_EMP"))
-    '                If dtData IsNot Nothing AndAlso dtData.Rows.Count > 0 Then
-    '                    salary = Utilities.ObjToDecima(rep.GetSalaryNew(hidEmpID.Value).Rows(0)("NEWSALARY"))
-    '                End If
-    '                rntxtInsuranceMoney.Value = Utilities.ObjToDecima(month * salary * tileNV / 100)
-    '            End If
-    '        End If
-    '        _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
-    '    Catch ex As Exception
-    '        _myLog.WriteLog(_myLog._error, _classPath, method, 0, ex, "")
-    '    End Try
-
-    'End Sub
-    ''' <summary>
-    ''' Event thay doi value date cua rdInsuranceDate: Ngay tra the BHYT
-    ''' </summary>
-    ''' <param name="sender"></param>
-    ''' <param name="e"></param>
-    ''' <remarks></remarks>
-    'Private Sub rdInsuranceDate_SelectedDateChanged(ByVal sender As Object, ByVal e As Telerik.Web.UI.Calendar.SelectedDateChangedEventArgs) Handles rdInsuranceDate.SelectedDateChanged
-    '    chkInsuranceCard_CheckedChanged(Nothing, Nothing)
-    'End Sub
-    ''' <summary>
-    ''' Validate combobox trạng thái
-    ''' </summary>
-    ''' <param name="source"></param>
-    ''' <param name="args"></param>
-    ''' <remarks></remarks>
-    'Private Sub cvalStatus_ServerValidate(ByVal source As Object, ByVal args As System.Web.UI.WebControls.ServerValidateEventArgs) Handles cvalStatus.ServerValidate
-    '    Dim rep As New ProfileRepository
-    '    Dim validate As New OtherListDTO
-    '    Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
-    '    Try
-    '        Dim startTime As DateTime = DateTime.UtcNow
-    '        If CurrentState = CommonMessage.STATE_EDIT Or CurrentState = CommonMessage.STATE_NEW Then
-    '            validate.ID = cboStatus.SelectedValue
-    '            validate.ACTFLG = "A"
-    '            validate.CODE = ProfileCommon.OT_TER_STATUS.Name
-    '            args.IsValid = rep.ValidateOtherList(validate)
-    '        End If
-    '        If Not args.IsValid Then
-    '            GetDataCombo()
-    '        End If
-    '        _mylog.WriteLog(_mylog._info, _classPath, method,
-    '                                CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
-    '    Catch ex As Exception
-    '        _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
-    '        DisplayException(Me.ViewName, Me.ID, ex)
-    '    End Try
-    'End Sub
-
-
-    'tien tro cap thoi viec
-    Private Sub Tinh_Tien_Con_Lai_Changed(ByVal sender As Object, ByVal e As System.EventArgs) Handles rntxtAllowanceTerminate.TextChanged, rntxtAmountViolations.TextChanged, rntxtAmountWrongful.TextChanged
-        Tinh_Tien_Con_lai()
-    End Sub
-
-    ''' <summary>
-    ''' cboDecisionType Event
-    ''' </summary>
-    ''' <param name="sender"></param>
-    ''' <param name="e"></param>
-    ''' <remarks></remarks>
-    Private Sub cboDecisionType_SelectedIndexChanged(sender As Object, e As Telerik.Web.UI.RadComboBoxSelectedIndexChangedEventArgs) Handles cboDecisionType.SelectedIndexChanged
-        Try
-            If cboDecisionType.SelectedValue IsNot Nothing AndAlso cboDecisionType.SelectedValue = 7402 Then
-                rntxtReserveSeniority.ReadOnly = False
-            Else
-                rntxtReserveSeniority.ReadOnly = True
-            End If
-        Catch ex As Exception
-            Throw ex
-        End Try
     End Sub
 
 #End Region
@@ -1727,13 +1211,7 @@ Public Class ctrlHU_TerminateNewEdit
                 'Bổ xung lương trùng bình 6 tháng
                 Dim dTemp = If(rdEffectDate.SelectedDate Is Nothing, 0, psp.SALARY_LAST_SIX_MONTH(hidEmpID.Value, rdEffectDate.SelectedDate))
                 iYearAllow = If(dTemp <> 0, dTemp, 0)
-                rntxtSalaryMedium_loss.Value = iYearAllow
-                'số năm tính trợ cấp mất việc
-                rntxtyearforallow_loss.Value = Utilities.ObjToDecima(dt.Rows(0)("SO_NAM_TRO_CAP"))
 
-                Tinh_Tien_Tro_Cap_Thoi_Viec()
-
-                Get_InforWorkLoss()
             End If
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
@@ -1810,30 +1288,11 @@ Public Class ctrlHU_TerminateNewEdit
             Dim dtData As New DataTable
             dtData = rep.GetOtherList(OtherTypes.DecisionStatus, True)
             FillRadCombobox(cboStatus, dtData, "NAME", "ID", True)
-            FillDropDownList(cboInsStatus, ListComboData.LIST_INS_STATUS, "NAME_VN", "ID", Common.Common.SystemLanguage, True)
             FillDropDownList(cboTerReason, ListComboData.LIST_TER_REASON, "NAME_VN", "ID", Common.Common.SystemLanguage, True)
-            FillDropDownList(cboDebtStatus, ListComboData.LIST_DEBT_STATUS, "NAME_VN", "ID", Common.Common.SystemLanguage, True)
-            FillDropDownList(cboDebtType, ListComboData.LIST_DEBT_TYPE, "NAME_VN", "ID", Common.Common.SystemLanguage, True)
-            'FillDropDownList(cboDecisionType, ListComboData.LIST_DECISION_TYPE, "NAME_VN", "ID", Common.Common.SystemLanguage, True)
             FillRadCombobox(cboDecisionType, ListComboData.LIST_TER_DECISION_TYPE, "NAME_VN", "ID", True)
 
             cboStatus.SelectedValue = ProfileCommon.DECISION_STATUS.WAIT_APPROVE_ID
-            FillRadCombobox(cboSalMonth, rep.GetCurrentPeriod(_year), "PERIOD_NAME", "ID", True)
-            Dim table As New DataTable
-            table.Columns.Add("YEAR", GetType(Integer))
-            table.Columns.Add("ID", GetType(Integer))
-            Dim row As DataRow
-            For index = 2015 To Date.Now.Year + 1
-                row = table.NewRow
-                row("ID") = index
-                row("YEAR") = index
-                table.Rows.Add(row)
-            Next
-            FillRadCombobox(cboYear, table, "YEAR", "ID")
-            cboYear.SelectedValue = Date.Now.Year
-            'cboSalMonth.DataSource = rep.GetCurrentPeriod()
-            'cboSalMonth.DataTextField = "PERIOD_NAME"
-            'cboSalMonth.DataValueField = "ID"
+
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
             Throw ex
@@ -1866,14 +1325,7 @@ Public Class ctrlHU_TerminateNewEdit
                     Case 3
                         Dim empID = Request.Params("empid")
                         FillDataByEmployeeID(empID)
-                        If rdJoinDateState.SelectedDate IsNot Nothing And rdLastDate.SelectedDate IsNot Nothing Then
-                            If rdJoinDateState.SelectedDate < rdLastDate.SelectedDate Then
-                                txtSeniority.Text = CalculateSeniority(rdJoinDateState.SelectedDate, rdLastDate.SelectedDate)
-                            Else
-                                txtSeniority.Text = vbNullString
-                            End If
-
-                        End If
+                       
                         hidEmpID.Value = empID
                         'rgLabourProtect.Rebind()
                         GetTerminateCalculate()
@@ -1907,40 +1359,8 @@ Public Class ctrlHU_TerminateNewEdit
 
     End Sub
 
-    Private Sub Get_InforWorkLoss()
-        Dim ins_date = psp.GET_INFOR_INS_FROMMONTH(hidEmpID.Value)
-        'If ins_date <> New Date AndAlso rdLastDate.SelectedDate IsNot Nothing Then
-        If rdLastDate.SelectedDate IsNot Nothing AndAlso ins_date.Date.ToShortDateString <> "01/01/0001" Then
-            Dim ins_thai_san = psp.GET_INS_THAI_SAN(hidEmpID.Value, rdLastDate.SelectedDate)
-            txtTimeAccidentIns_loss.Text = CalculateSeniority(ins_date, rdLastDate.SelectedDate)
-        Else
-            txtTimeAccidentIns_loss.Text = "0 năm 0 tháng"
-        End If
-    End Sub
-
-    Private Sub Tinh_Tien_Con_lai()
-        'Dim tempValue = IIf(rntxtPaymentLeave.Value Is Nothing, 0, rntxtPaymentLeave.Value) + IIf(rntxtAllowanceTerminate.Value Is Nothing, 0, rntxtAllowanceTerminate.Value) - IIf(rntxtAmountViolations.Value Is Nothing, 0, rntxtAmountViolations.Value) - IIf(rntxtAmountWrongful.Value Is Nothing, 0, rntxtAmountWrongful.Value) - IIf(rntxtTrainingCosts.Value Is Nothing, 0, rntxtTrainingCosts.Value) - IIf(rntxtOtherCompensation.Value Is Nothing, 0, rntxtOtherCompensation.Value)
-        'rntxtMoneyReturn.Value = IIf(tempValue > 0, tempValue, Nothing)
-    End Sub
 #End Region
 
-#Region "Caculate"
-
-    Private Sub rntxtyearforallow_loss_TextChanged(sender As Object, e As System.EventArgs) Handles rntxtyearforallow_loss.TextChanged, rdEffectDate.SelectedDateChanged
-        Tinh_Tien_Tro_Cap_Thoi_Viec()
-    End Sub
-
-    Private Sub Tinh_Tien_Tro_Cap_Thoi_Viec()
-        Dim tempValue = If(rntxtSalaryMedium_loss.Value Is Nothing, 0, rntxtSalaryMedium_loss.Value) * If(rntxtyearforallow_loss.Value Is Nothing, 0, rntxtyearforallow_loss.Value) * 0.5
-        rntxtAllowanceTerminate.Text = If(tempValue > 0, Math.Round(CType(tempValue, Decimal), 0), Nothing)
-    End Sub
-
-    ''' <summary>
-    ''' Class tinh so nam cong tac cua nhan vien
-    ''' </summary>
-    ''' <remarks></remarks>
-
-#End Region
 #Region "DateDifference"
 
     Public Class DateDifference
@@ -2052,17 +1472,5 @@ Public Class ctrlHU_TerminateNewEdit
 
     
 
-    Private Sub cboYear_SelectedIndexChanged(sender As Object, e As Telerik.Web.UI.RadComboBoxSelectedIndexChangedEventArgs) Handles cboYear.SelectedIndexChanged
-
-        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
-        Dim rep As New ProfileRepository
-        Dim startTime As DateTime = DateTime.UtcNow
-        Try
-            cboSalMonth.ClearSelection()
-            FillRadCombobox(cboSalMonth, rep.GetCurrentPeriod(cboYear.SelectedValue), "PERIOD_NAME", "ID", True)
-            _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
-        Catch ex As Exception
-            _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
-        End Try
-    End Sub
+  
 End Class

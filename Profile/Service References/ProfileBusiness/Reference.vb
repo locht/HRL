@@ -32465,6 +32465,9 @@ Namespace ProfileBusiness
         Private IS_ALLOWField As Boolean
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private IS_BLACK_LISTField As System.Nullable(Of Boolean)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private IS_IMPACTField As Boolean
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -33139,6 +33142,19 @@ Namespace ProfileBusiness
                 If (Me.IS_ALLOWField.Equals(value) <> true) Then
                     Me.IS_ALLOWField = value
                     Me.RaisePropertyChanged("IS_ALLOW")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property IS_BLACK_LIST() As System.Nullable(Of Boolean)
+            Get
+                Return Me.IS_BLACK_LISTField
+            End Get
+            Set
+                If (Me.IS_BLACK_LISTField.Equals(value) <> true) Then
+                    Me.IS_BLACK_LISTField = value
+                    Me.RaisePropertyChanged("IS_BLACK_LIST")
                 End If
             End Set
         End Property
@@ -53018,6 +53034,9 @@ Namespace ProfileBusiness
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/UpdateStatusQD", ReplyAction:="http://tempuri.org/IProfileBusiness/UpdateStatusQDResponse")>  _
         Function UpdateStatusQD(ByVal lstID As System.Collections.Generic.List(Of Decimal), ByVal log As Common.CommonBusiness.UserLog) As Boolean
         
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/UpdateStatusTer", ReplyAction:="http://tempuri.org/IProfileBusiness/UpdateStatusTerResponse")>  _
+        Function UpdateStatusTer(ByVal lstID As System.Collections.Generic.List(Of Decimal), ByVal log As Common.CommonBusiness.UserLog) As Boolean
+        
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetComboList", ReplyAction:="http://tempuri.org/IProfileBusiness/GetComboListResponse")>  _
         Function GetComboList(ByRef _combolistDTO As ProfileBusiness.ComboBoxDataDTO) As Boolean
         
@@ -55286,6 +55305,10 @@ Namespace ProfileBusiness
         
         Public Function UpdateStatusQD(ByVal lstID As System.Collections.Generic.List(Of Decimal), ByVal log As Common.CommonBusiness.UserLog) As Boolean Implements ProfileBusiness.IProfileBusiness.UpdateStatusQD
             Return MyBase.Channel.UpdateStatusQD(lstID, log)
+        End Function
+        
+        Public Function UpdateStatusTer(ByVal lstID As System.Collections.Generic.List(Of Decimal), ByVal log As Common.CommonBusiness.UserLog) As Boolean Implements ProfileBusiness.IProfileBusiness.UpdateStatusTer
+            Return MyBase.Channel.UpdateStatusTer(lstID, log)
         End Function
         
         Public Function GetComboList(ByRef _combolistDTO As ProfileBusiness.ComboBoxDataDTO) As Boolean Implements ProfileBusiness.IProfileBusiness.GetComboList

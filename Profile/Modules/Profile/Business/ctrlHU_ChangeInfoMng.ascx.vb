@@ -416,10 +416,11 @@ Public Class ctrlHU_ChangeInfoMng
                     CurrentState = CommonMessage.STATE_NORMAL
                     ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), NotifyType.Success)
                     rgWorking.Rebind()
+                Else
+                    CurrentState = CommonMessage.STATE_NORMAL
+                    ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), NotifyType.Error)
                 End If
-            Else
-                CurrentState = CommonMessage.STATE_NORMAL
-                ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), NotifyType.Error)
+           
             End If
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception

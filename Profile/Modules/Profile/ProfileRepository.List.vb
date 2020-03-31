@@ -2367,6 +2367,18 @@ Partial Public Class ProfileRepository
 
     End Function
 
+    Public Function UpdateStatusTer(ByVal lstID As List(Of Decimal)) As Boolean
+        Using rep As New ProfileBusinessClient
+            Try
+                Return rep.UpdateStatusTer(lstID, Me.Log)
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+
+    End Function
+
 #End Region
 
 End Class

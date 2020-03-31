@@ -424,7 +424,7 @@ Public Class ctrlHU_Concurrently
     Private Sub RadGrid_ItemDataBound(ByVal sender As Object, ByVal e As Telerik.Web.UI.GridItemEventArgs) Handles rgConcurrently.ItemDataBound
         If e.Item.ItemType = GridItemType.Item Or e.Item.ItemType = GridItemType.AlternatingItem Then
             Dim datarow As GridDataItem = DirectCast(e.Item, GridDataItem)
-            datarow("ORG_CON_NAME").ToolTip = Utilities.DrawTreeByString(datarow.GetDataKeyValue("ORG_ID_DESC").ToString)
+            datarow("ORG_CON_NAME").ToolTip = Utilities.DrawTreeByString(datarow.GetDataKeyValue("ORG_ID_DESC"))
         End If
     End Sub
 
