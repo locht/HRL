@@ -359,12 +359,12 @@ Namespace ProfileBusiness.ServiceContracts
         Function DeleteWelfareList(ByVal lstID As List(Of Decimal), ByVal log As UserLog) As Boolean
 #End Region
 #Region "quan ly an toan lao dong"
-        <OperationContract()>
-        Function InsertSafeLaborMng(ByVal lstSafeLaborMng As SAFELABOR_MNGDTO,
-                               ByVal log As UserLog) As Boolean
-        <OperationContract()>
-        Function ModifyWelfareMng(ByVal lstSafeLaborMng As SAFELABOR_MNGDTO,
-                                 ByVal log As UserLog) As Boolean
+        '<OperationContract()>
+        'Function InsertSafeLaborMng(ByVal lstSafeLaborMng As SAFELABOR_MNGDTO,
+        '                       ByVal log As UserLog) As Boolean
+        '<OperationContract()>
+        'Function ModifyWelfareMng(ByVal lstSafeLaborMng As SAFELABOR_MNGDTO,
+        '                         ByVal log As UserLog) As Boolean
 
 #End Region
 

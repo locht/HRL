@@ -453,134 +453,134 @@ Partial Class ProfileRepository
     End Function
 #End Region
 #Region "QUAN LT TAI NAN LAO DONG"
-    Public Function InsertSafeLaborMng(ByVal lstSafeLaborMng As SAFELABOR_MNGDTO,
-                                   ByVal log As UserLog) As Boolean
-        Dim iCount As Integer = 0
-        Try
-            Dim objSafeLaborMngData As New HU_SAFELABOR_MNG
-            objSafeLaborMngData.ID = Utilities.GetNextSequence(Context, Context.HU_SAFELABOR_MNG.EntitySet.Name)
-            lstSafeLaborMng.ID = objSafeLaborMngData.ID
-            objSafeLaborMngData.CODE = lstSafeLaborMng.CODE
-            objSafeLaborMngData.NAME = lstSafeLaborMng.NAME
-            objSafeLaborMngData.ORG_ID = lstSafeLaborMng.ORG_ID
-            objSafeLaborMngData.DATE_OCCUR = lstSafeLaborMng.DATE_OCCUR
-            objSafeLaborMngData.HOUR_OCCUR = lstSafeLaborMng.HOUR_OCCUR
-            objSafeLaborMngData.TYPE_ACCIDENT = lstSafeLaborMng.TYPE_ACCIDENT
-            objSafeLaborMngData.PLACE_ACCIDENT = lstSafeLaborMng.PLACE_ACCIDENT
-            objSafeLaborMngData.REASON_ACCIDENT = lstSafeLaborMng.REASON_ACCIDENT
-            objSafeLaborMngData.REASON_DETAIL = lstSafeLaborMng.REASON_DETAIL
-            objSafeLaborMngData.COST_ACCIDENT = lstSafeLaborMng.COST_ACCIDENT
-            objSafeLaborMngData.REMARK = lstSafeLaborMng.REMARK
+    'Public Function InsertSafeLaborMng(ByVal lstSafeLaborMng As SAFELABOR_MNGDTO,
+    '                               ByVal log As UserLog) As Boolean
+    '    Dim iCount As Integer = 0
+    '    Try
+    '        Dim objSafeLaborMngData As New HU_SAFELABOR_MNG
+    '        objSafeLaborMngData.ID = Utilities.GetNextSequence(Context, Context.HU_SAFELABOR_MNG.EntitySet.Name)
+    '        lstSafeLaborMng.ID = objSafeLaborMngData.ID
+    '        objSafeLaborMngData.CODE = lstSafeLaborMng.CODE
+    '        objSafeLaborMngData.NAME = lstSafeLaborMng.NAME
+    '        objSafeLaborMngData.ORG_ID = lstSafeLaborMng.ORG_ID
+    '        objSafeLaborMngData.DATE_OCCUR = lstSafeLaborMng.DATE_OCCUR
+    '        objSafeLaborMngData.HOUR_OCCUR = lstSafeLaborMng.HOUR_OCCUR
+    '        objSafeLaborMngData.TYPE_ACCIDENT = lstSafeLaborMng.TYPE_ACCIDENT
+    '        objSafeLaborMngData.PLACE_ACCIDENT = lstSafeLaborMng.PLACE_ACCIDENT
+    '        objSafeLaborMngData.REASON_ACCIDENT = lstSafeLaborMng.REASON_ACCIDENT
+    '        objSafeLaborMngData.REASON_DETAIL = lstSafeLaborMng.REASON_DETAIL
+    '        objSafeLaborMngData.COST_ACCIDENT = lstSafeLaborMng.COST_ACCIDENT
+    '        objSafeLaborMngData.REMARK = lstSafeLaborMng.REMARK
 
-            'objSafeLaborMngData.CREATED_DATE = DateTime.Now
-            'objSafeLaborMngData.CREATED_BY = log.Username
-            'objSafeLaborMngData.CREATED_LOG = log.ComputerName
-            'objSafeLaborMngData.MODIFIED_DATE = DateTime.Now
-            'objSafeLaborMngData.MODIFIED_BY = log.Username
-            'objSafeLaborMngData.MODIFIED_LOG = log.ComputerName
-            Context.HU_SAFELABOR_MNG.AddObject(objSafeLaborMngData)
+    '        'objSafeLaborMngData.CREATED_DATE = DateTime.Now
+    '        'objSafeLaborMngData.CREATED_BY = log.Username
+    '        'objSafeLaborMngData.CREATED_LOG = log.ComputerName
+    '        'objSafeLaborMngData.MODIFIED_DATE = DateTime.Now
+    '        'objSafeLaborMngData.MODIFIED_BY = log.Username
+    '        'objSafeLaborMngData.MODIFIED_LOG = log.ComputerName
+    '        Context.HU_SAFELABOR_MNG.AddObject(objSafeLaborMngData)
 
-            InsertSafeLaborLstEmp(lstSafeLaborMng)
-            Context.SaveChanges(log)
-            Return True
-        Catch ex As Exception
-            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iProfile")
-            Throw ex
-        End Try
+    '        InsertSafeLaborLstEmp(lstSafeLaborMng)
+    '        Context.SaveChanges(log)
+    '        Return True
+    '    Catch ex As Exception
+    '        WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iProfile")
+    '        Throw ex
+    '    End Try
 
-    End Function
-    Private Sub InsertSafeLaborLstEmp(lstSafeLaborMng As SAFELABOR_MNGDTO)
-        Dim objDataEmp As HU_SAFELABOR_MNG_EMP
-        Try
-            If lstSafeLaborMng.LST_SAFELABOR_EMP IsNot Nothing Then
-                Dim objD = (From d In Context.HU_SAFELABOR_MNG_EMP Where d.GROUP_ID = lstSafeLaborMng.ID).ToList
-                For Each obj As HU_SAFELABOR_MNG_EMP In objD
-                    Context.HU_SAFELABOR_MNG_EMP.DeleteObject(obj)
-                Next
-                'insert nhan vien mới
-                For Each obj As SAFELABOR_MNG_EMPDTO In lstSafeLaborMng.LST_SAFELABOR_EMP
-                    objDataEmp = New HU_SAFELABOR_MNG_EMP
-                    objDataEmp.ID = Utilities.GetNextSequence(Context, Context.HU_SAFELABOR_MNG_EMP.EntitySet.Name)
-                    objDataEmp.GROUP_ID = lstSafeLaborMng.ID
-                    objDataEmp.EMPLOYEE_ID = obj.EMPLOYEE_ID
-                    objDataEmp.NUMBER_DATE = obj.NUMBER_DATE
-                    objDataEmp.LEVEL_INJURED = obj.LEVEL_INJURED
-                    objDataEmp.LEVEL_DECLINE = obj.LEVEL_DECLINE
-                    objDataEmp.MONEY_MEDICAL = obj.MONEY_MEDICAL
-                    objDataEmp.COST_SALARY = obj.COST_SALARY
-                    objDataEmp.MONEY_INDEMNIFY = obj.MONEY_INDEMNIFY
-                    objDataEmp.COMPANY_PAY = obj.COMPANY_PAY
-                    objDataEmp.DATE_INS_PAY = obj.DATE_INS_PAY
-                    objDataEmp.MONEY_INS_PAY = obj.MONEY_INS_PAY
-                    objDataEmp.MONEY_DIFFERENCE = obj.MONEY_DIFFERENCE
-                    objDataEmp.REMARK = obj.REMARK
-                    Context.HU_SAFELABOR_MNG_EMP.AddObject(objDataEmp)
-                Next
-            End If
-        Catch ex As Exception
-            Throw ex
-        End Try
-    End Sub
-    Public Function ModifyWelfareMng(ByVal lstSafeLaborMng As SAFELABOR_MNGDTO,
-                                  ByVal log As UserLog) As Boolean
-        Dim objSafeLaborMngData As New HU_SAFELABOR_MNG With {.ID = lstSafeLaborMng.ID}
-        Try
-            Context.HU_SAFELABOR_MNG.Attach(objSafeLaborMngData)
-            objSafeLaborMngData.ID = lstSafeLaborMng.ID
-            objSafeLaborMngData.CODE = lstSafeLaborMng.CODE
-            objSafeLaborMngData.NAME = lstSafeLaborMng.NAME
-            objSafeLaborMngData.ORG_ID = lstSafeLaborMng.ORG_ID
-            objSafeLaborMngData.DATE_OCCUR = lstSafeLaborMng.DATE_OCCUR
-            objSafeLaborMngData.HOUR_OCCUR = lstSafeLaborMng.HOUR_OCCUR
-            objSafeLaborMngData.TYPE_ACCIDENT = lstSafeLaborMng.TYPE_ACCIDENT
-            objSafeLaborMngData.PLACE_ACCIDENT = lstSafeLaborMng.PLACE_ACCIDENT
-            objSafeLaborMngData.REASON_ACCIDENT = lstSafeLaborMng.REASON_ACCIDENT
-            objSafeLaborMngData.REASON_DETAIL = lstSafeLaborMng.REASON_DETAIL
-            objSafeLaborMngData.COST_ACCIDENT = lstSafeLaborMng.COST_ACCIDENT
-            objSafeLaborMngData.REMARK = lstSafeLaborMng.REMARK
-            'objSafeLaborMngData.MODIFIED_DATE = DateTime.Now
-            'objSafeLaborMngData.MODIFIED_BY = log.Username
-            'objSafeLaborMngData.MODIFIED_LOG = log.ComputerName
-            InsertSafeLaborLstEmp(lstSafeLaborMng)
-            Context.SaveChanges(log)
-            Return True
-        Catch ex As Exception
-            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iProfile")
-            Throw ex
-        End Try
+    'End Function
+    'Private Sub InsertSafeLaborLstEmp(lstSafeLaborMng As SAFELABOR_MNGDTO)
+    '    Dim objDataEmp As HU_SAFELABOR_MNG_EMP
+    '    Try
+    '        If lstSafeLaborMng.LST_SAFELABOR_EMP IsNot Nothing Then
+    '            Dim objD = (From d In Context.HU_SAFELABOR_MNG_EMP Where d.GROUP_ID = lstSafeLaborMng.ID).ToList
+    '            For Each obj As HU_SAFELABOR_MNG_EMP In objD
+    '                Context.HU_SAFELABOR_MNG_EMP.DeleteObject(obj)
+    '            Next
+    '            'insert nhan vien mới
+    '            For Each obj As SAFELABOR_MNG_EMPDTO In lstSafeLaborMng.LST_SAFELABOR_EMP
+    '                objDataEmp = New HU_SAFELABOR_MNG_EMP
+    '                objDataEmp.ID = Utilities.GetNextSequence(Context, Context.HU_SAFELABOR_MNG_EMP.EntitySet.Name)
+    '                objDataEmp.GROUP_ID = lstSafeLaborMng.ID
+    '                objDataEmp.EMPLOYEE_ID = obj.EMPLOYEE_ID
+    '                objDataEmp.NUMBER_DATE = obj.NUMBER_DATE
+    '                objDataEmp.LEVEL_INJURED = obj.LEVEL_INJURED
+    '                objDataEmp.LEVEL_DECLINE = obj.LEVEL_DECLINE
+    '                objDataEmp.MONEY_MEDICAL = obj.MONEY_MEDICAL
+    '                objDataEmp.COST_SALARY = obj.COST_SALARY
+    '                objDataEmp.MONEY_INDEMNIFY = obj.MONEY_INDEMNIFY
+    '                objDataEmp.COMPANY_PAY = obj.COMPANY_PAY
+    '                objDataEmp.DATE_INS_PAY = obj.DATE_INS_PAY
+    '                objDataEmp.MONEY_INS_PAY = obj.MONEY_INS_PAY
+    '                objDataEmp.MONEY_DIFFERENCE = obj.MONEY_DIFFERENCE
+    '                objDataEmp.REMARK = obj.REMARK
+    '                Context.HU_SAFELABOR_MNG_EMP.AddObject(objDataEmp)
+    '            Next
+    '        End If
+    '    Catch ex As Exception
+    '        Throw ex
+    '    End Try
+    'End Sub
+    'Public Function ModifyWelfareMng(ByVal lstSafeLaborMng As SAFELABOR_MNGDTO,
+    '                              ByVal log As UserLog) As Boolean
+    '    Dim objSafeLaborMngData As New HU_SAFELABOR_MNG With {.ID = lstSafeLaborMng.ID}
+    '    Try
+    '        Context.HU_SAFELABOR_MNG.Attach(objSafeLaborMngData)
+    '        objSafeLaborMngData.ID = lstSafeLaborMng.ID
+    '        objSafeLaborMngData.CODE = lstSafeLaborMng.CODE
+    '        objSafeLaborMngData.NAME = lstSafeLaborMng.NAME
+    '        objSafeLaborMngData.ORG_ID = lstSafeLaborMng.ORG_ID
+    '        objSafeLaborMngData.DATE_OCCUR = lstSafeLaborMng.DATE_OCCUR
+    '        objSafeLaborMngData.HOUR_OCCUR = lstSafeLaborMng.HOUR_OCCUR
+    '        objSafeLaborMngData.TYPE_ACCIDENT = lstSafeLaborMng.TYPE_ACCIDENT
+    '        objSafeLaborMngData.PLACE_ACCIDENT = lstSafeLaborMng.PLACE_ACCIDENT
+    '        objSafeLaborMngData.REASON_ACCIDENT = lstSafeLaborMng.REASON_ACCIDENT
+    '        objSafeLaborMngData.REASON_DETAIL = lstSafeLaborMng.REASON_DETAIL
+    '        objSafeLaborMngData.COST_ACCIDENT = lstSafeLaborMng.COST_ACCIDENT
+    '        objSafeLaborMngData.REMARK = lstSafeLaborMng.REMARK
+    '        'objSafeLaborMngData.MODIFIED_DATE = DateTime.Now
+    '        'objSafeLaborMngData.MODIFIED_BY = log.Username
+    '        'objSafeLaborMngData.MODIFIED_LOG = log.ComputerName
+    '        InsertSafeLaborLstEmp(lstSafeLaborMng)
+    '        Context.SaveChanges(log)
+    '        Return True
+    '    Catch ex As Exception
+    '        WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iProfile")
+    '        Throw ex
+    '    End Try
 
-    End Function
-    Public Function GetSafeLaborMngById(ByVal Id As Integer
-                                        ) As SAFELABOR_MNGDTO
-        Try
-            Dim query = From p In Context.HU_SAFELABOR_MNG
-                        From o In Context.HU_ORGANIZATION.Where(Function(o) o.ID = p.ORG_ID).DefaultIfEmpty
-                        From type In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.TYPE_ACCIDENT).DefaultIfEmpty
-                        From reason In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.REASON_ACCIDENT).DefaultIfEmpty
-                        Where (p.ID = Id)
-            ' select thuộc tính
-            Dim wel = query.Select(Function(p) New SAFELABOR_MNGDTO With {
-                                       .ID = p.p.ID,
-                                       .CODE = p.p.CODE,
-                                       .NAME = p.p.NAME,
-                                       .ORG_ID = p.p.ORG_ID,
-                                       .ORG_NAME = p.o.NAME_VN,
-                                       .DATE_OCCUR = p.p.DATE_OCCUR,
-                                       .HOUR_OCCUR = p.p.HOUR_OCCUR,
-                                       .TYPE_ACCIDENT = p.p.TYPE_ACCIDENT,
-                                       .TYPE_ACCIDENT_NAME = p.type.NAME_VN,
-                                       .REASON_ACCIDENT = p.p.REASON_ACCIDENT,
-                                       .REASON_ACCIDENT_NAME = p.reason.NAME_VN,
-                                       .PLACE_ACCIDENT = p.p.PLACE_ACCIDENT,
-                                       .COST_ACCIDENT = p.p.COST_ACCIDENT,
-                                       .REMARK = p.p.REMARK
-                                       })
-            Return wel.SingleOrDefault
-        Catch ex As Exception
-            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iProfile")
-            Throw ex
-        End Try
-    End Function
+    'End Function
+    'Public Function GetSafeLaborMngById(ByVal Id As Integer
+    '                                    ) As SAFELABOR_MNGDTO
+    '    Try
+    '        Dim query = From p In Context.HU_SAFELABOR_MNG
+    '                    From o In Context.HU_ORGANIZATION.Where(Function(o) o.ID = p.ORG_ID).DefaultIfEmpty
+    '                    From type In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.TYPE_ACCIDENT).DefaultIfEmpty
+    '                    From reason In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.REASON_ACCIDENT).DefaultIfEmpty
+    '                    Where (p.ID = Id)
+    '        ' select thuộc tính
+    '        Dim wel = query.Select(Function(p) New SAFELABOR_MNGDTO With {
+    '                                   .ID = p.p.ID,
+    '                                   .CODE = p.p.CODE,
+    '                                   .NAME = p.p.NAME,
+    '                                   .ORG_ID = p.p.ORG_ID,
+    '                                   .ORG_NAME = p.o.NAME_VN,
+    '                                   .DATE_OCCUR = p.p.DATE_OCCUR,
+    '                                   .HOUR_OCCUR = p.p.HOUR_OCCUR,
+    '                                   .TYPE_ACCIDENT = p.p.TYPE_ACCIDENT,
+    '                                   .TYPE_ACCIDENT_NAME = p.type.NAME_VN,
+    '                                   .REASON_ACCIDENT = p.p.REASON_ACCIDENT,
+    '                                   .REASON_ACCIDENT_NAME = p.reason.NAME_VN,
+    '                                   .PLACE_ACCIDENT = p.p.PLACE_ACCIDENT,
+    '                                   .COST_ACCIDENT = p.p.COST_ACCIDENT,
+    '                                   .REMARK = p.p.REMARK
+    '                                   })
+    '        Return wel.SingleOrDefault
+    '    Catch ex As Exception
+    '        WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iProfile")
+    '        Throw ex
+    '    End Try
+    'End Function
 #End Region
 
    
