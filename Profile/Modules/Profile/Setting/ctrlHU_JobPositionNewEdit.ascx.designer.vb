@@ -149,15 +149,6 @@ Partial Public Class ctrlHU_JobPositionNewEdit
     Protected WithEvents RequiredFieldValidator3 As Global.System.Web.UI.WebControls.RequiredFieldValidator
 
     '''<summary>
-    '''txtJobNote control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents txtJobNote As Global.Telerik.Web.UI.RadTextBox
-
-    '''<summary>
     '''txtCostCode control.
     '''</summary>
     '''<remarks>
@@ -210,6 +201,15 @@ Partial Public Class ctrlHU_JobPositionNewEdit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents RequiredFieldValidator4 As Global.System.Web.UI.WebControls.RequiredFieldValidator
+
+    '''<summary>
+    '''txtJobNote control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtJobNote As Global.Telerik.Web.UI.RadTextBox
 
     '''<summary>
     '''RadCodeBlock1 control.
