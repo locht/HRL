@@ -358,12 +358,7 @@ Public Class ctrlHU_ContractNewEdit
                             ShowMessage(Translate("Bạn phải chọn Tờ trình/QĐ"), NotifyType.Warning)
                             Exit Sub
                         End If
-                        If cboContractType.Text <> "Hợp đồng không xác định thời hạn" Then
-                            If Not rep.CheckNotAllow(hidEmployeeID.Value) Then
-                                ShowMessage(Translate("Đã có 2 hợp đồng chính thức,xin kiểm tra lại"), NotifyType.Warning)
-                                Exit Sub
-                            End If
-                        End If
+                       
                         'If cboStatus.SelectedValue = 447 Then
                         '    If txtUpload.Text = "" Then
                         '        ShowMessage(Translate("Bạn phải đính kèm tập tin khi phê duyệt"), NotifyType.Warning)
@@ -434,6 +429,16 @@ Public Class ctrlHU_ContractNewEdit
 
                         Select Case CurrentState
                             Case CommonMessage.STATE_NEW
+                                If cboContractType.Text <> "Hợp đồng không xác định thời hạn" Then
+                                    If Not rep.CheckNotAllow(hidEmployeeID.Value) Then
+                                        ShowMessage(Translate("Đã có 2 hợp đồng chính thức,xin kiểm tra lại"), NotifyType.Warning)
+                                        Exit Sub
+                                    End If
+                                End If
+                                If Not rep.ValidContract(hidEmployeeID.Value) Then
+                                    ShowMessage(Translate("Hợp đồng cũ còn hiệu lực. Không được phép tạo hợp đồng mới."), Utilities.NotifyType.Warning)
+                                    MainToolBar.Items(0).Enabled = False
+                                End If
                                 If rep.InsertContract(objContract, gID) Then
                                     If (isPopup) Then
                                         Dim str As String = "getRadWindow().close('1');"
@@ -858,6 +863,11 @@ Public Class ctrlHU_ContractNewEdit
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
         Try
             Dim startTime As DateTime = DateTime.UtcNow
+            If cboContractType.Text = "Hợp đồng không xác định thời hạn" Then
+                rqExpireDate.Enabled = False
+            Else
+                rqExpireDate.Enabled = True
+            End If
             If rdStartDate.SelectedDate IsNot Nothing Then
                 Dim dExpire As Date = rdStartDate.SelectedDate
                 If cboContractType.SelectedValue <> "" Then
@@ -1192,10 +1202,7 @@ Public Class ctrlHU_ContractNewEdit
                     MainToolBar.Items(0).Enabled = True
 
                 End If
-                If Not rep.ValidContract(empID) Then
-                    ShowMessage(Translate("Hợp đồng cũ còn hiệu lực. Không được phép tạo hợp đồng mới."), Utilities.NotifyType.Warning)
-                    MainToolBar.Items(0).Enabled = False
-                End If
+               
                 If item.CONTRACT_EFFECT_DATE IsNot Nothing Then
                     If item.CONTRACT_EXPIRE_DATE Is Nothing Then
                         ShowMessage(Translate("Nhân viên có hợp đồng không xác định thời hạn. Không được phép chỉnh sửa thông tin."), Utilities.NotifyType.Warning)

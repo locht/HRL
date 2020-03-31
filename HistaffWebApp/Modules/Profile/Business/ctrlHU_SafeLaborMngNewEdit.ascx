@@ -10,7 +10,7 @@
     <tlk:RadPane ID="LeftPane" runat="server" Height="130px">
         <asp:ValidationSummary ID="valSum" runat="server" DisplayMode="BulletList" CssClass="validationsummary"
             ValidationGroup="" />
-        <table class="table-form">
+        <table class="table-form" style="margin-left: 100px">
             <tr>
                 <td class="lb">
                     <asp:Label ID="lbCode" runat="server" Text="Mã vụ tai nạn"></asp:Label>

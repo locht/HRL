@@ -144,6 +144,27 @@ Namespace ProfileBusiness.ServiceImplementations
         End Function
 
 #End Region
-
+#Region "quan ly tai nan lao dong"
+        Public Function InsertSafeLaborMng(ByVal lstSafeLaborMng As SAFELABOR_MNGDTO,
+                               ByVal log As UserLog) As Boolean Implements ServiceContracts.IProfileBusiness.InsertSafeLaborMng
+            Using rep As New ProfileRepository
+                Try
+                    Return rep.InsertSafeLaborMng(lstSafeLaborMng, log)
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
+        Public Function ModifyWelfareMng(ByVal lstSafeLaborMng As SAFELABOR_MNGDTO,
+                                 ByVal log As UserLog) As Boolean Implements ServiceContracts.IProfileBusiness.ModifyWelfareMng
+            Using rep As New ProfileRepository
+                Try
+                    Return rep.ModifyWelfareMng(lstSafeLaborMng, log)
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
+#End Region
     End Class
 End Namespace

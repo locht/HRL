@@ -14,4 +14,5 @@
     Public Property REASON_DETAIL As String
     Public Property COST_ACCIDENT As Decimal?
     Public Property REMARK As String
+    Public Property LST_SAFELABOR_EMP As List(Of SAFELABOR_MNG_EMPDTO)
 End Class
