@@ -3,6 +3,7 @@
 <%@ Import Namespace="Common" %>
 <asp:HiddenField ID="hidID" runat="server" />
 <asp:HiddenField ID="hidOrgID" runat="server" />
+ <asp:ValidationSummary ID="valSum" runat="server" DisplayMode="BulletList" CssClass="validationsummary" />
 <tlk:RadSplitter ID="RadSplitter3" runat="server" Width="100%" Height="100%" Orientation="Horizontal">
     <tlk:RadPane ID="RadPane1" runat="server" Height="20px" Scrolling="None">
         <tlk:RadToolBar ID="tbarOrg" runat="server"  />
@@ -64,13 +65,6 @@
            </tr>
             <tr>
                  <td class="lb">
-                   <%# Translate("Chức năng/ yêu cầu công việc")%>
-               </td>
-               <td>
-                   <tlk:RadTextBox ID="txtJobNote" runat="server">
-                    </tlk:RadTextBox>
-               </td>
-                 <td class="lb">
                    <%# Translate("Mã chi phí")%>
                </td>
                <td>
@@ -96,9 +90,7 @@
                     EnableCheckAllItemsCheckBox="true" DropDownAutoWidth="Enabled">
                     </tlk:RadComboBox>
                 </td>
-            </tr>
-           <tr>
-               <td class="lb">
+                <td class="lb">
                     <%# Translate("Ngày hiệu lực")%><span class="lbReq">*</span>
                 </td>
                <td>
@@ -106,6 +98,15 @@
                    <asp:RequiredFieldValidator ID="RequiredFieldValidator4" ControlToValidate="rdEffectDate"
                         runat="server" ErrorMessage="<%$ Translate: Ngày hiệu lực không được để trống %>" ToolTip="<%$ Translate:Ngày hiệu lực không được để trống %>"> 
                     </asp:RequiredFieldValidator>
+               </td>
+            </tr>
+           <tr>
+               <td class="lb">
+                   <%# Translate("Chức năng/ yêu cầu công việc")%>
+               </td>
+               <td colspan="7">
+                   <tlk:RadTextBox ID="txtJobNote" runat="server" Width="100%" SkinID="TextBox1023">
+                    </tlk:RadTextBox>
                </td>
            </tr>
         </table>
