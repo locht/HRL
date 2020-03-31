@@ -868,6 +868,22 @@ Partial Public Class ProfileBusinessRepository
         Return Nothing
     End Function
 
+    Public Function GET_WORK_POSITION_LIST() As DataTable
+        Dim dtdata As DataTable
+
+        Using rep As New ProfileBusinessClient
+            Try
+                dtdata = rep.GET_WORK_POSITION_LIST()
+                Return dtdata
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+
+        Return Nothing
+    End Function
+
     Public Function INSERT_EMPLOYEE_KN(ByVal P_EMPLOYEE_CODE As String,
                                        ByVal P_ORG_ID As Decimal,
                                        ByVal P_TITLE As Decimal,
@@ -912,6 +928,38 @@ Partial Public Class ProfileBusinessRepository
             Try
                 dsdata = rep.GetHoSoLuongImport()
                 Return dsdata
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+
+        Return Nothing
+    End Function
+
+    Public Function ApproveListChangeCon(ByVal listID As List(Of Decimal)) As Boolean
+        Dim dtdata As Boolean
+
+        Using rep As New ProfileBusinessClient
+            Try
+                dtdata = rep.ApproveListChangeCon(listID)
+                Return dtdata
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+
+        Return Nothing
+    End Function
+
+    Public Function DeleteConcurrentlyByID(ByVal listID As List(Of Decimal)) As Boolean
+        Dim dtdata As Boolean
+
+        Using rep As New ProfileBusinessClient
+            Try
+                dtdata = rep.DeleteConcurrentlyByID(listID)
+                Return dtdata
             Catch ex As Exception
                 rep.Abort()
                 Throw ex

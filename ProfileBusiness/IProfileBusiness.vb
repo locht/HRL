@@ -2798,6 +2798,15 @@ Namespace ProfileBusiness.ServiceContracts
         <OperationContract()>
         Function UPDATE_EMPLOYEE_KN(ByVal P_ID_KN As Decimal,
                                        ByVal P_DATE As Date) As Boolean
+
+        <OperationContract()>
+        Function ApproveListChangeCon(ByVal listID As List(Of Decimal)) As Boolean
+
+        <OperationContract()>
+        Function DeleteConcurrentlyByID(ByVal listID As List(Of Decimal)) As Boolean
+
+        <OperationContract()>
+        Function GET_WORK_POSITION_LIST() As DataTable
 #End Region
 
         <OperationContract()>

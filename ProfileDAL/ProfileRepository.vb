@@ -3093,6 +3093,8 @@ Public Class ProfileRepository
                                                      .P_ATTACH_FOLDER_BYTE = concurrently.ATTACH_FOLDER_BYTE,
                                                      .P_ATTACH_FOLDER_BYTE1 = concurrently.ATTACH_FOLDER_BYTE1,
                                                      .P_IS_CHUYEN = concurrently.IS_CHUYEN,
+                                                      .P_JOB_POSITION = concurrently.JOB_ID,
+                                                     .P_SIGN_TITLE_NAME = concurrently.SIGN_TITLE_NAME,
                                                      .P_OUT = cls.OUT_CURSOR})
 
                 Return Integer.Parse(dtData(0)("ID"))
@@ -3122,6 +3124,8 @@ Public Class ProfileRepository
                                                     .P_SIGN_DATE = concurrently.SIGN_DATE,
                                                     .P_SIGN_ID = concurrently.SIGN_ID,
                                                     .P_SIGN_ID_2 = concurrently.SIGN_ID_2,
+                                                    .P_JOB_POSITION = concurrently.JOB_ID,
+                                                    .P_SIGN_TITLE_NAME = concurrently.SIGN_TITLE_NAME,
                                                     .P_REMARK = concurrently.REMARK,
                                                     .P_CON_NO_STOP = concurrently.CON_NO_STOP,
                                                     .P_SIGN_DATE_STOP = concurrently.SIGN_DATE_STOP,
@@ -3151,6 +3155,19 @@ Public Class ProfileRepository
         End Try
     End Function
 
+    Public Function GET_WORK_POSITION_LIST() As DataTable
+        Try
+            Using cls As New DataAccess.QueryData
+                Dim dtData As DataTable = cls.ExecuteStore("PKG_HU_IPROFILE_CONCURRENTLY.GET_WORK_POSITION_LIST",
+                                           New With {.P_CUR = cls.OUT_CURSOR})
+
+                Return dtData
+            End Using
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iProfile")
+            Throw ex
+        End Try
+    End Function
 
     Public Function GET_CONCURRENTLY_BY_EMP(ByVal P_ID As Decimal) As DataTable
         Try
@@ -3219,6 +3236,7 @@ Public Class ProfileRepository
                            From sign_stop_title In Context.HU_TITLE.Where(Function(sign_stop_title) sign_stop_title.ID = sign_stop.TITLE_ID).DefaultIfEmpty
                            From sign2 In Context.HU_EMPLOYEE.Where(Function(sign2) sign2.ID = p.SIGN_ID_2).DefaultIfEmpty
                            From sign_title2 In Context.HU_TITLE.Where(Function(sign_title2) sign_title2.ID = sign2.TITLE_ID).DefaultIfEmpty
+                           From jobP In Context.HU_JOB_POSITION.Where(Function(pos) pos.ID = p.JOB_POSITION).DefaultIfEmpty
 
             If Not _filter.IS_TERMINATE Then
                 queryEmp = queryEmp.Where(Function(p) p.e.WORK_STATUS <> 257 Or (p.e.WORK_STATUS = 257 And p.e.TER_LAST_DATE >= Date.Now) Or p.e.WORK_STATUS Is Nothing)
@@ -3269,7 +3287,12 @@ Public Class ProfileRepository
                                                        .SIGN_NAME = p.sign.FULLNAME_VN,
                                                        .SIGN_TITLE_NAME = p.sign_title.NAME_VN,
                                                        .SIGN_NAME2 = p.sign2.FULLNAME_VN,
-                                                       .SIGN_TITLE_NAME2 = p.sign_title2.NAME_VN
+                                                       .SIGN_TITLE_NAME2 = p.sign_title2.NAME_VN,
+                                                       .JOB_ID = p.jobP.ID,
+                                                       .WORK_POSITION_NAME = p.jobP.JOB_NAME,
+                                                       .SIGN_DATE = p.p.SIGN_DATE,
+                                                       .REMARK = p.p.REMARK,
+                                                       .CON_NO = p.p.CON_NO
                                                        })
 
             lstEmp = lstEmp.OrderBy(Sorts)
@@ -3318,6 +3341,7 @@ Public Class ProfileRepository
                            From sign_title2 In Context.HU_TITLE.Where(Function(sign_title2) sign_title2.ID = sign2.TITLE_ID).DefaultIfEmpty
                            From sign_stop2 In Context.HU_EMPLOYEE.Where(Function(sign_stop2) sign_stop2.ID = p.SIGN_ID_STOP_2).DefaultIfEmpty
                            From sign_stop_title2 In Context.HU_TITLE.Where(Function(sign_stop_title2) sign_stop_title2.ID = sign_stop2.TITLE_ID).DefaultIfEmpty
+                           From jobP In Context.HU_JOB_POSITION.Where(Function(pos) pos.ID = p.JOB_POSITION).DefaultIfEmpty
                            Where p.EMPLOYEE_ID = EMPLOYEE_ID And p.STATUS = 1
 
             If Not _filter.IS_TERMINATE Then
@@ -3350,6 +3374,8 @@ Public Class ProfileRepository
                                                        .ORG_CON = p.p.ORG_CON,
                                                        .TITLE_CON = p.p.TITLE_CON,
                                                        .TITLE_CON_NAME = p.tc.NAME_VN,
+                                                        .JOB_ID = p.jobP.ID,
+                                                       .WORK_POSITION_NAME = p.jobP.JOB_NAME,
                                                        .ALLOW_MONEY_NUMBER = p.p.ALLOW_MONEY,
                                                        .EFFECT_DATE_CON = p.p.EFFECT_DATE_CON,
                                                        .EXPIRE_DATE_CON = p.p.EXPIRE_DATE_CON,
@@ -3418,6 +3444,45 @@ Public Class ProfileRepository
 
                 Return True
             End Using
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iProfile")
+            Throw ex
+        End Try
+    End Function
+
+    Public Function ApproveListChangeCon(ByVal listID As List(Of Decimal)) As Boolean
+        Try
+            Dim item As Decimal = 0
+            For idx = 0 To listID.Count - 1
+                item = listID(idx)
+
+                Using cls As New DataAccess.QueryData
+                    Dim dtData = cls.ExecuteStore("PKG_HU_IPROFILE_CONCURRENTLY.UPDATE_STATUS_CONCURRENTLY",
+                                           New With {.P_ID = item})
+
+                End Using
+
+            Next
+            Return True
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iProfile")
+            Throw ex
+        End Try
+    End Function
+
+    Public Function DeleteConcurrentlyByID(ByVal listID As List(Of Decimal)) As Boolean
+        Try
+            Dim item As Decimal = 0
+            For idx = 0 To listID.Count - 1
+                item = listID(idx)
+                Using cls As New DataAccess.QueryData
+                    Dim dtData = cls.ExecuteStore("PKG_HU_IPROFILE_CONCURRENTLY.DELETE_CONCURRENTLY_BYID",
+                                           New With {.P_ID = item})
+
+                End Using
+
+            Next
+            Return True
         Catch ex As Exception
             WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iProfile")
             Throw ex

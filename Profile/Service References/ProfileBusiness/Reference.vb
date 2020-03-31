@@ -9091,6 +9091,9 @@ Namespace ProfileBusiness
         Private IS_TERMINATEField As System.Nullable(Of Boolean)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private JOB_IDField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private MODIFIED_BYField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -9194,6 +9197,9 @@ Namespace ProfileBusiness
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private USER_NAMEField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private WORK_POSITION_NAMEField As String
         
         <Global.System.ComponentModel.BrowsableAttribute(false)>  _
         Public Property ExtensionData() As System.Runtime.Serialization.ExtensionDataObject Implements System.Runtime.Serialization.IExtensibleDataObject.ExtensionData
@@ -9661,6 +9667,19 @@ Namespace ProfileBusiness
         End Property
         
         <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property JOB_ID() As System.Nullable(Of Decimal)
+            Get
+                Return Me.JOB_IDField
+            End Get
+            Set
+                If (Me.JOB_IDField.Equals(value) <> true) Then
+                    Me.JOB_IDField = value
+                    Me.RaisePropertyChanged("JOB_ID")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
         Public Property MODIFIED_BY() As String
             Get
                 Return Me.MODIFIED_BYField
@@ -10111,6 +10130,19 @@ Namespace ProfileBusiness
                 If (Object.ReferenceEquals(Me.USER_NAMEField, value) <> true) Then
                     Me.USER_NAMEField = value
                     Me.RaisePropertyChanged("USER_NAME")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property WORK_POSITION_NAME() As String
+            Get
+                Return Me.WORK_POSITION_NAMEField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.WORK_POSITION_NAMEField, value) <> true) Then
+                    Me.WORK_POSITION_NAMEField = value
+                    Me.RaisePropertyChanged("WORK_POSITION_NAME")
                 End If
             End Set
         End Property
@@ -53026,6 +53058,9 @@ Namespace ProfileBusiness
      System.ServiceModel.ServiceContractAttribute(ConfigurationName:="ProfileBusiness.IProfileBusiness")>  _
     Public Interface IProfileBusiness
         
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/UpdateStatusTer", ReplyAction:="http://tempuri.org/IProfileBusiness/UpdateStatusTerResponse")>  _
+        Function UpdateStatusTer(ByVal lstID As System.Collections.Generic.List(Of Decimal), ByVal log As Common.CommonBusiness.UserLog) As Boolean
+        
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/DeleteCommendLevel", ReplyAction:="http://tempuri.org/IProfileBusiness/DeleteCommendLevelResponse")>  _
         Function DeleteCommendLevel(ByVal lstID As System.Collections.Generic.List(Of Decimal)) As Boolean
         
@@ -53172,6 +53207,7 @@ Namespace ProfileBusiness
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.Dictionary(Of Decimal, String))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of String))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.Dictionary(Of String, String))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(Common.CommonBusiness.UserLog)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.CommendFormulaDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.CommendFormulaDTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.StatisticDTO))),  _
@@ -53367,7 +53403,6 @@ Namespace ProfileBusiness
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.ProfileCommonTABLE_NAME)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.MergeFieldDTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.MergeFieldDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(Common.CommonBusiness.UserLog)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of System.Nullable(Of Decimal)))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Exception))>  _
         Function DeactiveAndActiveSigner(ByVal lstID As String, ByVal sActive As Decimal) As Object
@@ -53377,6 +53412,7 @@ Namespace ProfileBusiness
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.Dictionary(Of Decimal, String))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of String))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.Dictionary(Of String, String))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(Common.CommonBusiness.UserLog)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.CommendFormulaDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.CommendFormulaDTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.StatisticDTO))),  _
@@ -53572,7 +53608,6 @@ Namespace ProfileBusiness
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.ProfileCommonTABLE_NAME)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.MergeFieldDTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.MergeFieldDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(Common.CommonBusiness.UserLog)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of System.Nullable(Of Decimal)))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Exception))>  _
         Function DeleteSigner(ByVal lstID As String) As Object
@@ -53603,6 +53638,15 @@ Namespace ProfileBusiness
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/UPDATE_EMPLOYEE_KN", ReplyAction:="http://tempuri.org/IProfileBusiness/UPDATE_EMPLOYEE_KNResponse")>  _
         Function UPDATE_EMPLOYEE_KN(ByVal P_ID_KN As Decimal, ByVal P_DATE As Date) As Boolean
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ApproveListChangeCon", ReplyAction:="http://tempuri.org/IProfileBusiness/ApproveListChangeConResponse")>  _
+        Function ApproveListChangeCon(ByVal listID As System.Collections.Generic.List(Of Decimal)) As Boolean
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/DeleteConcurrentlyByID", ReplyAction:="http://tempuri.org/IProfileBusiness/DeleteConcurrentlyByIDResponse")>  _
+        Function DeleteConcurrentlyByID(ByVal listID As System.Collections.Generic.List(Of Decimal)) As Boolean
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GET_WORK_POSITION_LIST", ReplyAction:="http://tempuri.org/IProfileBusiness/GET_WORK_POSITION_LISTResponse")>  _
+        Function GET_WORK_POSITION_LIST() As System.Data.DataTable
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetOrganizationTreeByID", ReplyAction:="http://tempuri.org/IProfileBusiness/GetOrganizationTreeByIDResponse")>  _
         Function GetOrganizationTreeByID(ByVal _filter As ProfileBusiness.OrganizationTreeDTO) As ProfileBusiness.OrganizationTreeDTO
@@ -53675,9 +53719,6 @@ Namespace ProfileBusiness
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/UpdateStatusQD", ReplyAction:="http://tempuri.org/IProfileBusiness/UpdateStatusQDResponse")>  _
         Function UpdateStatusQD(ByVal lstID As System.Collections.Generic.List(Of Decimal), ByVal log As Common.CommonBusiness.UserLog) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/UpdateStatusTer", ReplyAction:="http://tempuri.org/IProfileBusiness/UpdateStatusTerResponse")>  _
-        Function UpdateStatusTer(ByVal lstID As System.Collections.Generic.List(Of Decimal), ByVal log As Common.CommonBusiness.UserLog) As Boolean
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/CheckExistWorkingBeforeEdit", ReplyAction:="http://tempuri.org/IProfileBusiness/CheckExistWorkingBeforeEditResponse")>  _
         Function CheckExistWorkingBeforeEdit(ByVal pk_key As Decimal) As ProfileBusiness.WorkingBeforeDTOEdit
@@ -53912,6 +53953,7 @@ Namespace ProfileBusiness
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.Dictionary(Of Decimal, String))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of String))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.Dictionary(Of String, String))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(Common.CommonBusiness.UserLog)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.CommendFormulaDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.CommendFormulaDTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.StatisticDTO))),  _
@@ -54107,7 +54149,6 @@ Namespace ProfileBusiness
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.ProfileCommonTABLE_NAME)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.MergeFieldDTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.MergeFieldDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(Common.CommonBusiness.UserLog)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of System.Nullable(Of Decimal)))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Exception))>  _
         Function ValidateCommendList(ByVal _validate As ProfileBusiness.CommendListDTO) As Object
@@ -54132,6 +54173,7 @@ Namespace ProfileBusiness
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.Dictionary(Of Decimal, String))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of String))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.Dictionary(Of String, String))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(Common.CommonBusiness.UserLog)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.CommendFormulaDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.CommendFormulaDTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.StatisticDTO))),  _
@@ -54327,7 +54369,6 @@ Namespace ProfileBusiness
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.ProfileCommonTABLE_NAME)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.MergeFieldDTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.MergeFieldDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(Common.CommonBusiness.UserLog)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of System.Nullable(Of Decimal)))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Exception))>  _
         Function ValidateCommendLevel(ByVal _validate As ProfileBusiness.CommendLevelDTO) As Object
@@ -55645,6 +55686,10 @@ Namespace ProfileBusiness
             MyBase.New(binding, remoteAddress)
         End Sub
         
+        Public Function UpdateStatusTer(ByVal lstID As System.Collections.Generic.List(Of Decimal), ByVal log As Common.CommonBusiness.UserLog) As Boolean Implements ProfileBusiness.IProfileBusiness.UpdateStatusTer
+            Return MyBase.Channel.UpdateStatusTer(lstID, log)
+        End Function
+        
         Public Function DeleteCommendLevel(ByVal lstID As System.Collections.Generic.List(Of Decimal)) As Boolean Implements ProfileBusiness.IProfileBusiness.DeleteCommendLevel
             Return MyBase.Channel.DeleteCommendLevel(lstID)
         End Function
@@ -55877,6 +55922,18 @@ Namespace ProfileBusiness
             Return MyBase.Channel.UPDATE_EMPLOYEE_KN(P_ID_KN, P_DATE)
         End Function
         
+        Public Function ApproveListChangeCon(ByVal listID As System.Collections.Generic.List(Of Decimal)) As Boolean Implements ProfileBusiness.IProfileBusiness.ApproveListChangeCon
+            Return MyBase.Channel.ApproveListChangeCon(listID)
+        End Function
+        
+        Public Function DeleteConcurrentlyByID(ByVal listID As System.Collections.Generic.List(Of Decimal)) As Boolean Implements ProfileBusiness.IProfileBusiness.DeleteConcurrentlyByID
+            Return MyBase.Channel.DeleteConcurrentlyByID(listID)
+        End Function
+        
+        Public Function GET_WORK_POSITION_LIST() As System.Data.DataTable Implements ProfileBusiness.IProfileBusiness.GET_WORK_POSITION_LIST
+            Return MyBase.Channel.GET_WORK_POSITION_LIST
+        End Function
+        
         Public Function GetOrganizationTreeByID(ByVal _filter As ProfileBusiness.OrganizationTreeDTO) As ProfileBusiness.OrganizationTreeDTO Implements ProfileBusiness.IProfileBusiness.GetOrganizationTreeByID
             Return MyBase.Channel.GetOrganizationTreeByID(_filter)
         End Function
@@ -55971,10 +56028,6 @@ Namespace ProfileBusiness
         
         Public Function UpdateStatusQD(ByVal lstID As System.Collections.Generic.List(Of Decimal), ByVal log As Common.CommonBusiness.UserLog) As Boolean Implements ProfileBusiness.IProfileBusiness.UpdateStatusQD
             Return MyBase.Channel.UpdateStatusQD(lstID, log)
-        End Function
-        
-        Public Function UpdateStatusTer(ByVal lstID As System.Collections.Generic.List(Of Decimal), ByVal log As Common.CommonBusiness.UserLog) As Boolean Implements ProfileBusiness.IProfileBusiness.UpdateStatusTer
-            Return MyBase.Channel.UpdateStatusTer(lstID, log)
         End Function
         
         Public Function CheckExistWorkingBeforeEdit(ByVal pk_key As Decimal) As ProfileBusiness.WorkingBeforeDTOEdit Implements ProfileBusiness.IProfileBusiness.CheckExistWorkingBeforeEdit

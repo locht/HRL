@@ -18,7 +18,7 @@ Imports System.Runtime.Serialization
 Imports System.Xml.Serialization
 
 
-<Assembly: EdmSchemaAttribute("cdf70730-c4e1-45da-a9f9-0de8bf6f9387")>
+<Assembly: EdmSchemaAttribute("ee429dbf-5f95-442f-88cb-d83df9e9c224")>
 #Region "EDM Relationship Metadata"
 <Assembly: EdmRelationshipAttribute("ProfileModel", "FK_HU_NAT_HU_PRO", "HU_NATION", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_NATION), "HU_PROVINCE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_PROVINCE), True)>
 <Assembly: EdmRelationshipAttribute("ProfileModel", "FK_HU_PRO_HU_DIS", "HU_PROVINCE", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_PROVINCE), "HU_DISTRICT", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_DISTRICT), True)>
@@ -18041,6 +18041,56 @@ Public Partial Class HU_CONCURRENTLY
     End Sub
 
     Private Partial Sub OnATTACH_FOLDER_BYTE1Changed()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property JOB_POSITION() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _JOB_POSITION
+        End Get
+        Set
+            OnJOB_POSITIONChanging(value)
+            ReportPropertyChanging("JOB_POSITION")
+            _JOB_POSITION = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("JOB_POSITION")
+            OnJOB_POSITIONChanged()
+        End Set
+    End Property
+
+    Private _JOB_POSITION As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnJOB_POSITIONChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnJOB_POSITIONChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property SIGN_TITLE_NAME() As Global.System.String
+        Get
+            Return _SIGN_TITLE_NAME
+        End Get
+        Set
+            OnSIGN_TITLE_NAMEChanging(value)
+            ReportPropertyChanging("SIGN_TITLE_NAME")
+            _SIGN_TITLE_NAME = StructuralObject.SetValidValue(value, true)
+            ReportPropertyChanged("SIGN_TITLE_NAME")
+            OnSIGN_TITLE_NAMEChanged()
+        End Set
+    End Property
+
+    Private _SIGN_TITLE_NAME As Global.System.String
+    Private Partial Sub OnSIGN_TITLE_NAMEChanging(value As Global.System.String)
+    End Sub
+
+    Private Partial Sub OnSIGN_TITLE_NAMEChanged()
     End Sub
 
     #End Region

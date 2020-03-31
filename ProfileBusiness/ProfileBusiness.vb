@@ -11,7 +11,7 @@ Namespace ProfileBusiness.ServiceImplementations
     Public Class ProfileBusiness
         Implements IProfileBusiness
 
-        
+
 #Region "Other List"
         Public Function GetOtherList(ByVal sType As String, ByVal sLang As String, ByVal isBlank As Boolean) As DataTable Implements ServiceContracts.IProfileBusiness.GetOtherList
             Using rep As New ProfileRepository
@@ -981,5 +981,40 @@ Implements ServiceContracts.IProfileBusiness.GetHU_DataDynamicContractAppendix
                 End Try
             End Using
         End Function
+
+
+        Public Function ApproveListChangeCon(ByVal listID As List(Of Decimal)) As Boolean Implements ServiceContracts.IProfileBusiness.ApproveListChangeCon
+            Using rep As New ProfileRepository
+                Try
+                    Dim lst = rep.ApproveListChangeCon(listID)
+                    Return lst
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
+
+        Public Function DeleteConcurrentlyByID(ByVal listID As List(Of Decimal)) As Boolean Implements ServiceContracts.IProfileBusiness.DeleteConcurrentlyByID
+            Using rep As New ProfileRepository
+                Try
+                    Dim lst = rep.DeleteConcurrentlyByID(listID)
+                    Return lst
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
+        Public Function GET_WORK_POSITION_LIST() As DataTable Implements ServiceContracts.IProfileBusiness.GET_WORK_POSITION_LIST
+            Using rep As New ProfileRepository
+                Try
+                    Dim lst = rep.GET_WORK_POSITION_LIST()
+                    Return lst
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
     End Class
+
+
 End Namespace

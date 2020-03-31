@@ -249,7 +249,7 @@ Public Class ctrlHU_ConcurrentlyNewEdit
             dtData = com.GET_COMBOBOX("OT_OTHER_LIST", "CODE", "NAME_VN", " TYPE_CODE='" + "APPROVE_STATUS2" + "' ", "NAME_VN", True)
             If dtData.Rows.Count > 0 Then
                 FillRadCombobox(cboStatus, dtData, "NAME_VN", "CODE", False)
-                FillRadCombobox(cbSTATUS_STOP, dtData, "NAME_VN", "CODE", False)
+                'FillRadCombobox(cbSTATUS_STOP, dtData, "NAME_VN", "CODE", False)
             End If
         Catch ex As Exception
             Throw ex
@@ -322,8 +322,8 @@ Public Class ctrlHU_ConcurrentlyNewEdit
                     cboTitleId.Enabled = False
                     cboStatus.Text = ""
                     cboStatus.SelectedValue = cons_com.AWAITING_APPROVAL
-                    cbSTATUS_STOP.Text = ""
-                    cbSTATUS_STOP.SelectedValue = cons_com.AWAITING_APPROVAL
+                    'cbSTATUS_STOP.Text = ""
+                    'cbSTATUS_STOP.SelectedValue = cons_com.AWAITING_APPROVAL
                 Case CommonMessage.TOOLBARITEM_EDIT
                     If cboStatus.SelectedValue = "1" Then
                         ShowMessage("Bản ghi đã được phê duyệt", NotifyType.Warning)
@@ -339,28 +339,28 @@ Public Class ctrlHU_ConcurrentlyNewEdit
                     cboTitleId.Enabled = False
                 Case CommonMessage.TOOLBARITEM_SAVE
                     If Page.IsValid Then
-                        If cbSTATUS_STOP.SelectedValue <> "" Then
-                            If cbSTATUS_STOP.SelectedValue = 1 Then
-                                If txtUploadFile1.Text = "" Then
-                                    ShowMessage(Translate("Bạn phải đính kèm tập tin khi phê duyệt"), NotifyType.Warning)
-                                    Exit Sub
-                                End If
-                            End If
-                        End If
-                        If cboStatus.SelectedValue <> "" Then
-                            If cboStatus.SelectedValue = 1 Then
-                                If txtUploadFile.Text = "" Then
-                                    ShowMessage(Translate("bạn phải đính kèm tập tin khi phê duyệt"), NotifyType.Warning)
-                                    Exit Sub
-                                End If
-                            End If
-                        End If
-                        If cbSTATUS_STOP.Enabled = True Then
-                            If rdEFFECT_DATE_STOP.SelectedDate Is Nothing Then
-                                ShowMessage(Translate("bạn phải nhập ngày hiệu lực thôi kiêm nhiệm"), NotifyType.Warning)
-                                Exit Sub
-                            End If
-                        End If
+                        'If cbSTATUS_STOP.SelectedValue <> "" Then
+                        '    If cbSTATUS_STOP.SelectedValue = 1 Then
+                        '        If txtUploadFile1.Text = "" Then
+                        '            ShowMessage(Translate("Bạn phải đính kèm tập tin khi phê duyệt"), NotifyType.Warning)
+                        '            Exit Sub
+                        '        End If
+                        '    End If
+                        'End If
+                        'If cboStatus.SelectedValue <> "" Then
+                        '    If cboStatus.SelectedValue = 1 Then
+                        '        If txtUploadFile.Text = "" Then
+                        '            ShowMessage(Translate("bạn phải đính kèm tập tin khi phê duyệt"), NotifyType.Warning)
+                        '            Exit Sub
+                        '        End If
+                        '    End If
+                        'End If
+                        'If cbSTATUS_STOP.Enabled = True Then
+                        '    If rdEFFECT_DATE_STOP.SelectedDate Is Nothing Then
+                        '        ShowMessage(Translate("bạn phải nhập ngày hiệu lực thôi kiêm nhiệm"), NotifyType.Warning)
+                        '        Exit Sub
+                        '    End If
+                        'End If
                         If Save(strID, _err) Then
                             FillData()
                             CurrentState = CommonMessage.STATE_NORMAL
@@ -443,11 +443,11 @@ Public Class ctrlHU_ConcurrentlyNewEdit
                                     ByVal e As EventArgs) Handles _
                                 btnFindEmp.Click,
                                 btnORG_CON.Click,
-                                btnSIGN.Click,
-                                btnSIGN_STOP.Click,
-                                btnOrgId.Click,
-                                btnSIGN2.Click,
-                                btnSIGN_STOP2.Click
+                                btnSIGN.Click
+        'btnSIGN_STOP.Click,
+        'btnOrgId.Click,
+        'btnSIGN2.Click,
+        'btnSIGN_STOP2.Click
         Try
             Select Case sender.ID
                 Case btnFindEmp.ID
@@ -456,14 +456,14 @@ Public Class ctrlHU_ConcurrentlyNewEdit
                     isLoadPopup = 2
                 Case btnSIGN.ID
                     isLoadPopup = 3
-                Case btnSIGN_STOP.ID
-                    isLoadPopup = 4
+                    'Case btnSIGN_STOP.ID
+                    'isLoadPopup = 4
                 Case btnOrgId.ID
                     isLoadPopup = 5
-                Case btnSIGN2.ID
-                    isLoadPopup = 6
-                Case btnSIGN_STOP2.ID
-                    isLoadPopup = 7
+                    'Case btnSIGN2.ID
+                    '    isLoadPopup = 6
+                    'Case btnSIGN_STOP2.ID
+                    '    isLoadPopup = 7
             End Select
 
             UpdateControlState()
@@ -474,12 +474,12 @@ Public Class ctrlHU_ConcurrentlyNewEdit
                     ctrlFindOrgPopup.Show()
                 Case btnSIGN.ID
                     ctrlFindEmployeeSign.Show()
-                Case btnSIGN_STOP.ID
-                    ctrlFindEmployeeSignStop.Show()
-                Case btnSIGN2.ID
-                    ctrlFindEmployeeSign2.Show()
-                Case btnSIGN_STOP2.ID
-                    ctrlFindEmployeeSignStop2.Show()
+                'Case btnSIGN_STOP.ID
+                '    ctrlFindEmployeeSignStop.Show()
+                'Case btnSIGN2.ID
+                '    ctrlFindEmployeeSign2.Show()
+                'Case btnSIGN_STOP2.ID
+                '    ctrlFindEmployeeSignStop2.Show()
                 Case btnOrgId.ID
                     ctrlFindOrgGocPopup.Show()
             End Select
@@ -530,6 +530,7 @@ Public Class ctrlHU_ConcurrentlyNewEdit
 
     Private Sub ctrlOrgPopup_OrganizationSelected(ByVal sender As Object, ByVal e As Common.OrganizationSelectedEventArgs) Handles ctrlFindOrgPopup.OrganizationSelected
         Dim dtData As New DataTable
+        Dim dtData1 As New DataTable
         Dim rep As New ProfileBusinessRepository
         Try
             Dim orgItem = ctrlFindOrgPopup.CurrentItemDataObject
@@ -539,9 +540,13 @@ Public Class ctrlHU_ConcurrentlyNewEdit
                 ORG_CONNameToolTip.Text = DrawTreeByString(orgItem.Description_Path)
                 ' Lay chuc danh theo phong ban
                 dtData = rep.GET_TITLE_ORG(e.CurrentValue)
+                dtData1 = rep.GET_WORK_POSITION_LIST()
                 If dtData.Rows.Count > 0 Then
                     FillRadCombobox(cboTITLE_CON, dtData, "NAME_VN", "ID", True)
                     cboTITLE_CON.Text = String.Empty
+                End If
+                If dtData1.Rows.Count > 0 Then
+                    FillRadCombobox(cboWorkPosition, dtData1, "NAME_VN", "ID", True)
                 End If
             End If
             rep.Dispose()
@@ -602,8 +607,8 @@ Public Class ctrlHU_ConcurrentlyNewEdit
             If lstCommonEmployee.Count <> 0 Then
                 Dim item = lstCommonEmployee(0)
                 hidSign2.Value = item.ID
-                txtSIGN2.Text = item.FULLNAME_VN
-                txtSIGN_TITLE2.Text = item.TITLE_NAME
+                ' txtSIGN2.Text = item.FULLNAME_VN
+                ' txtSIGN_TITLE2.Text = item.TITLE_NAME
             End If
             isLoadPopup = 0
         Catch ex As Exception
@@ -619,8 +624,8 @@ Public Class ctrlHU_ConcurrentlyNewEdit
             If lstCommonEmployee.Count <> 0 Then
                 Dim item = lstCommonEmployee(0)
                 hidSignStop.Value = item.ID
-                txtSIGN_STOP.Text = item.FULLNAME_VN
-                txtSIGN_STOP_TITLE.Text = item.TITLE_NAME
+                ' txtSIGN_STOP.Text = item.FULLNAME_VN
+                'txtSIGN_STOP_TITLE.Text = item.TITLE_NAME
             End If
             isLoadPopup = 0
         Catch ex As Exception
@@ -637,8 +642,8 @@ Public Class ctrlHU_ConcurrentlyNewEdit
             If lstCommonEmployee.Count <> 0 Then
                 Dim item = lstCommonEmployee(0)
                 hidSignStop2.Value = item.ID
-                txtSIGN_STOP2.Text = item.FULLNAME_VN
-                txtSIGN_STOP_TITLE2.Text = item.TITLE_NAME
+                'txtSIGN_STOP2.Text = item.FULLNAME_VN
+                'txtSIGN_STOP_TITLE2.Text = item.TITLE_NAME
             End If
             isLoadPopup = 0
         Catch ex As Exception
@@ -694,7 +699,7 @@ Public Class ctrlHU_ConcurrentlyNewEdit
         End Try
     End Sub
 
-    ' Cảnh báo nếu trạng thái phê quyệt thì bắt buộc nhập ngày hiệu lực
+    'Cảnh báo nếu trạng thái phê quyệt thì bắt buộc nhập ngày hiệu lực
     'Private Sub curStartDate_ServerValidate(ByVal source As Object, ByVal args As System.Web.UI.WebControls.ServerValidateEventArgs) Handles curStartDate.ServerValidate
     '    Try
 
@@ -759,49 +764,49 @@ Public Class ctrlHU_ConcurrentlyNewEdit
                     DisableControls(LeftPane, False)
                     EnabledGrid(rgConcurrently, True)
                     cboTitleId.Enabled = False
-                    btnDownload.Enabled = True
-                    btnUploadFile.Enabled = True
-                    btnDownload1.Enabled = True
-                    btnUploadFile1.Enabled = True
+                    'btnDownload.Enabled = True
+                    'btnUploadFile.Enabled = True
+                    'btnDownload1.Enabled = True
+                    'btnUploadFile1.Enabled = True
                 Case CommonMessage.STATE_NEW
                     DisableControls(LeftPane, True)
                     EnabledGrid(rgConcurrently, False)
                     ' Nếu đang ở trạng thái thêm mới thì disable thông tin thôi kiêm nhiệm
-                    txtCON_NO_STOP.ReadOnly = True
-                    rdEFFECT_DATE_STOP.Enabled = False
-                    rdSIGN_DATE_STOP.Enabled = False
-                    cbSTATUS_STOP.Enabled = False
-                    btnSIGN_STOP.Enabled = False
-                    btnSIGN_STOP2.Enabled = False
-                    txtREMARK_STOP.ReadOnly = True
-                    btnUploadFile1.Enabled = False
+                    'txtCON_NO_STOP.ReadOnly = True
+                    'rdEFFECT_DATE_STOP.Enabled = False
+                    'rdSIGN_DATE_STOP.Enabled = False
+                    'cbSTATUS_STOP.Enabled = False
+                    'btnSIGN_STOP.Enabled = False
+                    'btnSIGN_STOP2.Enabled = False
+                    'txtREMARK_STOP.ReadOnly = True
+                    'btnUploadFile1.Enabled = False
                     cboTitleId.Enabled = False
 
                     If txtCON_NO.Text = "" Then
                         txtCON_NO.Text = "/QĐ-TGĐ." & DateTime.Now.Year.ToString.Substring(2, 2)
                     End If
-                    If txtCON_NO_STOP.Text = "" Then
-                        txtCON_NO_STOP.Text = "/QĐ-TGĐ." & DateTime.Now.Year.ToString.Substring(2, 2)
-                    End If
+                    'If txtCON_NO_STOP.Text = "" Then
+                    '    txtCON_NO_STOP.Text = "/QĐ-TGĐ." & DateTime.Now.Year.ToString.Substring(2, 2)
+                    'End If
                 Case CommonMessage.STATE_EDIT
                     DisableControls(LeftPane, True)
                     '' Nếu trạng thái sửa bảng ghi phê duyệt thì disable trạng thái
                     'If checkStatus = "1" Then
                     '    cboStatus.Enabled = False
                     'End If
-                    If cboStatus.SelectedValue <> "1" Then
-                        ' Nếu đang ở trạng thái thêm mới thì disable thông tin thôi kiêm nhiệm
-                        txtCON_NO_STOP.ReadOnly = True
-                        rdEFFECT_DATE_STOP.Enabled = False
-                        rdSIGN_DATE_STOP.Enabled = False
-                        cbSTATUS_STOP.Enabled = False
-                        btnSIGN_STOP.Enabled = False
-                        txtREMARK_STOP.ReadOnly = True
-                        btnUploadFile1.Enabled = False
-                        btnDownload1.Enabled = True
-                        btnSIGN_STOP2.Enabled = False
-                        cboTitleId.Enabled = False
-                    End If
+                    'If cboStatus.SelectedValue <> "1" Then
+                    '    ' Nếu đang ở trạng thái thêm mới thì disable thông tin thôi kiêm nhiệm
+                    '    txtCON_NO_STOP.ReadOnly = True
+                    '    rdEFFECT_DATE_STOP.Enabled = False
+                    '    rdSIGN_DATE_STOP.Enabled = False
+                    '    cbSTATUS_STOP.Enabled = False
+                    '    btnSIGN_STOP.Enabled = False
+                    '    txtREMARK_STOP.ReadOnly = True
+                    '    btnUploadFile1.Enabled = False
+                    '    btnDownload1.Enabled = True
+                    '    btnSIGN_STOP2.Enabled = False
+                    '    cboTitleId.Enabled = False
+                    'End If
 
                     EnabledGrid(rgConcurrently, False)
             End Select
@@ -898,18 +903,19 @@ Public Class ctrlHU_ConcurrentlyNewEdit
                 btnORG_CON.Enabled = False
                 btnOrgId.Enabled = False
                 cboTITLE_CON.Enabled = False
-                rntxtALLOW_MONEY.ReadOnly = True
-                rdEFFECT_DATE_CON.Enabled = False
-                rdEXPIRE_DATE_CON.Enabled = False
+                cboWorkPosition.Enabled = False
+                'rntxtALLOW_MONEY.ReadOnly = True
+                'rdEFFECT_DATE_CON.Enabled = False
+                'rdEXPIRE_DATE_CON.Enabled = False
                 txtCON_NO.ReadOnly = True
                 rdSIGN_DATE.Enabled = False
                 cboStatus.Enabled = False
                 btnSIGN.Enabled = False
-                btnSIGN2.Enabled = False
+                'btnSIGN2.Enabled = False
                 txtRemark.ReadOnly = True
-                chkALLOW.Enabled = False
-                chkIsChuyen.Enabled = False
-                btnUploadFile.Enabled = False
+                'chkALLOW.Enabled = False
+                'chkIsChuyen.Enabled = False
+                'btnUploadFile.Enabled = False
             End If
             ChangeToolbarState()
             Me.Send(CurrentState)
@@ -939,13 +945,15 @@ Public Class ctrlHU_ConcurrentlyNewEdit
                     txtORG_CONName.Text = dr(0)("ORG_CON_NAME").ToString
                     cboTITLE_CON.SelectedValue = dr(0)("TITLE_CON").ToString
                     cboTITLE_CON.Text = dr(0)("TITLE_CON_NAME").ToString
+                    cboWorkPosition.SelectedValue = dr(0)("JOB_ID").ToString
+                    cboWorkPosition.Text = dr(0)("JOB_NAME").ToString
                     If dr(0)("EFFECT_DATE_CON").ToString <> "" Then
                         rdEFFECT_DATE_CON.SelectedDate = dr(0)("EFFECT_DATE_CON").ToString
                     End If
                     If dr(0)("EXPIRE_DATE_CON").ToString <> "" Then
                         rdEXPIRE_DATE_CON.SelectedDate = dr(0)("EXPIRE_DATE_CON").ToString
                     End If
-                    rntxtALLOW_MONEY.Value = dr(0)("ALLOW_MONEY").ToString
+                    'rntxtALLOW_MONEY.Value = dr(0)("ALLOW_MONEY").ToString
                     txtCON_NO.Text = dr(0)("CON_NO").ToString
                     cboStatus.SelectedValue = dr(0)("STATUS").ToString
                     cboStatus.Text = dr(0)("STATUS_NAME").ToString
@@ -958,50 +966,50 @@ Public Class ctrlHU_ConcurrentlyNewEdit
                     txtSIGN_TITLE.Text = dr(0)("SIGN_TITLE_NAME").ToString
 
                     hidSign2.Value = dr(0)("SIGN_ID_2").ToString
-                    txtSIGN2.Text = dr(0)("SIGN_NAME2").ToString
-                    txtSIGN_TITLE2.Text = dr(0)("SIGN_TITLE_NAME2").ToString
+                    'txtSIGN2.Text = dr(0)("SIGN_NAME2").ToString
+                    'txtSIGN_TITLE2.Text = dr(0)("SIGN_TITLE_NAME2").ToString
 
                     txtRemark.Text = dr(0)("REMARK").ToString
-                    txtCON_NO_STOP.Text = dr(0)("CON_NO_STOP").ToString
-                    If dr(0)("SIGN_DATE_STOP").ToString <> "" Then
-                        rdSIGN_DATE_STOP.SelectedDate = dr(0)("SIGN_DATE_STOP").ToString
-                    End If
-                    If dr(0)("EFFECT_DATE_STOP").ToString <> "" Then
-                        rdEFFECT_DATE_STOP.SelectedDate = dr(0)("EFFECT_DATE_STOP").ToString
-                    End If
+                    ' txtCON_NO_STOP.Text = dr(0)("CON_NO_STOP").ToString
+                    'If dr(0)("SIGN_DATE_STOP").ToString <> "" Then
+                    '    rdSIGN_DATE_STOP.SelectedDate = dr(0)("SIGN_DATE_STOP").ToString
+                    'End If
+                    'If dr(0)("EFFECT_DATE_STOP").ToString <> "" Then
+                    '    rdEFFECT_DATE_STOP.SelectedDate = dr(0)("EFFECT_DATE_STOP").ToString
+                    'End If
 
-                    cbSTATUS_STOP.SelectedValue = dr(0)("STATUS_STOP").ToString
-                    cbSTATUS_STOP.Text = dr(0)("STATUS_STOP_NAME").ToString
+                    'cbSTATUS_STOP.SelectedValue = dr(0)("STATUS_STOP").ToString
+                    'cbSTATUS_STOP.Text = dr(0)("STATUS_STOP_NAME").ToString
                     hidSignStop.Value = dr(0)("SIGN_ID_STOP").ToString
-                    txtSIGN_STOP.Text = dr(0)("SIGN_NAME_STOP").ToString
-                    txtSIGN_STOP_TITLE.Text = dr(0)("SIGN_TITLE_NAME_STOP").ToString
+                    'txtSIGN_STOP.Text = dr(0)("SIGN_NAME_STOP").ToString
+                    'txtSIGN_STOP_TITLE.Text = dr(0)("SIGN_TITLE_NAME_STOP").ToString
 
                     hidSignStop2.Value = dr(0)("SIGN_ID_STOP_2").ToString
-                    txtSIGN_STOP2.Text = dr(0)("SIGN_NAME_STOP2").ToString
-                    txtSIGN_STOP_TITLE2.Text = dr(0)("SIGN_TITLE_NAME_STOP2").ToString
+                    'txtSIGN_STOP2.Text = dr(0)("SIGN_NAME_STOP2").ToString
+                    'txtSIGN_STOP_TITLE2.Text = dr(0)("SIGN_TITLE_NAME_STOP2").ToString
 
 
-                    txtREMARK_STOP.Text = dr(0)("REMARK_STOP").ToString
+                    'txtREMARK_STOP.Text = dr(0)("REMARK_STOP").ToString
 
-                    txtUploadFile.Text = dr(0)("FILE_BYTE").ToString
-                    txtUploadFile_Link.Text = dr(0)("ATTACH_FOLDER_BYTE").ToString
-                    txtUploadFile1.Text = dr(0)("FILE_BYTE1").ToString
-                    txtUploadFile1_Link.Text = dr(0)("ATTACH_FOLDER_BYTE1").ToString
+                    'txtUploadFile.Text = dr(0)("FILE_BYTE").ToString
+                    'txtUploadFile_Link.Text = dr(0)("ATTACH_FOLDER_BYTE").ToString
+                    'txtUploadFile1.Text = dr(0)("FILE_BYTE1").ToString
+                    'txtUploadFile1_Link.Text = dr(0)("ATTACH_FOLDER_BYTE1").ToString
                     'lstFile = dr(0)("FILE_BYTE").ToString
                     'LoadListFileUpload(dr(0)("FILE_BYTE").ToString)
                     'lstFile1 = dr(0)("FILE_BYTE1").ToString
                     'LoadListFileUpload1(dr(0)("FILE_BYTE1").ToString)
 
-                    If dr(0)("IS_ALLOW").ToString <> "0" Then
-                        chkALLOW.Checked = True
-                    Else
-                        chkALLOW.Checked = False
-                    End If
-                    If dr(0)("IS_CHUYEN").ToString <> "0" Then
-                        chkIsChuyen.Checked = True
-                    Else
-                        chkIsChuyen.Checked = False
-                    End If
+                    'If dr(0)("IS_ALLOW").ToString <> "0" Then
+                    '    chkALLOW.Checked = True
+                    'Else
+                    '    chkALLOW.Checked = False
+                    'End If
+                    'If dr(0)("IS_CHUYEN").ToString <> "0" Then
+                    '    chkIsChuyen.Checked = True
+                    'Else
+                    '    chkIsChuyen.Checked = False
+                    'End If
                 End If
                 rep.Dispose()
             End If
@@ -1039,25 +1047,25 @@ Public Class ctrlHU_ConcurrentlyNewEdit
 
     End Sub
 
-    Private Sub loadDatasource(ByVal AttachID As Decimal, ByVal strUpload As String)
-        Dim startTime As DateTime = DateTime.UtcNow
-        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
-        Try
-            If strUpload <> "" Then
-                If AttachID = 0 Then
-                    txtUploadFile_Link.Text = Down_File
-                    txtUploadFile.Text = strUpload
-                Else
-                    txtUploadFile1_Link.Text = Down_File
-                    txtUploadFile1.Text = strUpload
-                End If
-            Else
-                strUpload = String.Empty
-            End If
-        Catch ex As Exception
-            Throw ex
-        End Try
-    End Sub
+    'Private Sub loadDatasource(ByVal AttachID As Decimal, ByVal strUpload As String)
+    '    Dim startTime As DateTime = DateTime.UtcNow
+    '    Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+    '    Try
+    '        If strUpload <> "" Then
+    '            If AttachID = 0 Then
+    '                txtUploadFile_Link.Text = Down_File
+    '                txtUploadFile.Text = strUpload
+    '            Else
+    '                txtUploadFile1_Link.Text = Down_File
+    '                txtUploadFile1.Text = strUpload
+    '            End If
+    '        Else
+    '            strUpload = String.Empty
+    '        End If
+    '    Catch ex As Exception
+    '        Throw ex
+    '    End Try
+    'End Sub
 
     Private Sub GetParams()
         Dim ID As String = ""
@@ -1157,6 +1165,11 @@ Public Class ctrlHU_ConcurrentlyNewEdit
             CON.TITLE_CON = cboTITLE_CON.SelectedValue
         End If
 
+        If cboWorkPosition.SelectedValue <> "" Then
+            CON.JOB_ID = cboWorkPosition.SelectedValue
+            CON.WORK_POSITION_NAME = cboWorkPosition.Text
+        End If
+
         If hidOrgId.Value <> "" Then
             CON.ORG_ID = hidOrgId.Value
         End If
@@ -1167,9 +1180,9 @@ Public Class ctrlHU_ConcurrentlyNewEdit
 
         CON.EFFECT_DATE_CON = rdEFFECT_DATE_CON.SelectedDate
         CON.EXPIRE_DATE_CON = rdEXPIRE_DATE_CON.SelectedDate
-        If rntxtALLOW_MONEY.Text <> "" Then
-            CON.ALLOW_MONEY = rntxtALLOW_MONEY.Value
-        End If
+        'If rntxtALLOW_MONEY.Text <> "" Then
+        '    CON.ALLOW_MONEY = rntxtALLOW_MONEY.Value
+        'End If
         CON.CON_NO = txtCON_NO.Text
         CON.STATUS = cboStatus.SelectedValue
         CON.SIGN_DATE = rdSIGN_DATE.SelectedDate
@@ -1179,11 +1192,11 @@ Public Class ctrlHU_ConcurrentlyNewEdit
         If hidSign2.Value <> "" Then
             CON.SIGN_ID_2 = hidSign2.Value
         End If
-        CON.REMARK = txtRemark.Text
-        CON.CON_NO_STOP = txtCON_NO_STOP.Text
-        CON.SIGN_DATE_STOP = rdSIGN_DATE_STOP.SelectedDate
-        CON.EFFECT_DATE_STOP = rdEFFECT_DATE_STOP.SelectedDate
-        CON.STATUS_STOP = cbSTATUS_STOP.SelectedValue
+
+        'CON.CON_NO_STOP = txtCON_NO_STOP.Text
+        'CON.SIGN_DATE_STOP = rdSIGN_DATE_STOP.SelectedDate
+        'CON.EFFECT_DATE_STOP = rdEFFECT_DATE_STOP.SelectedDate
+        'CON.STATUS_STOP = cbSTATUS_STOP.SelectedValue
         If hidSignStop.Value <> "" Then
             CON.SIGN_ID_STOP = hidSignStop.Value
         End If
@@ -1191,30 +1204,32 @@ Public Class ctrlHU_ConcurrentlyNewEdit
             CON.SIGN_ID_STOP_2 = hidSignStop2.Value
         End If
 
-        CON.REMARK_STOP = txtREMARK_STOP.Text
+        CON.REMARK = txtRemark.Text
+
+        'CON.REMARK_STOP = txtREMARK_STOP.Text
 
         CON.CREATED_BY = log.Username
         CON.CREATED_LOG = log.Ip + "/" + log.ComputerName
 
-        If chkALLOW.Checked = True Then
-            CON.IS_ALLOW = 1
-        Else
-            CON.IS_ALLOW = 0
-        End If
+        'If chkALLOW.Checked = True Then
+        '    CON.IS_ALLOW = 1
+        'Else
+        '    CON.IS_ALLOW = 0
+        'End If
 
-        If chkIsChuyen.Checked = True Then
-            CON.IS_CHUYEN = 1
-        Else
-            CON.IS_CHUYEN = 0
-        End If
+        'If chkIsChuyen.Checked = True Then
+        '    CON.IS_CHUYEN = 1
+        'Else
+        '    CON.IS_CHUYEN = 0
+        'End If
 
         'CON.FILE_BYTE = lstFile
         'CON.FILE_BYTE1 = lstFile1
 
-        CON.FILE_BYTE = txtUploadFile.Text.Trim
-        CON.ATTACH_FOLDER_BYTE = txtUploadFile_Link.Text.Trim
-        CON.FILE_BYTE1 = txtUploadFile1.Text.Trim
-        CON.ATTACH_FOLDER_BYTE1 = txtUploadFile1_Link.Text.Trim
+        'CON.FILE_BYTE = txtUploadFile.Text.Trim
+        'CON.ATTACH_FOLDER_BYTE = txtUploadFile_Link.Text.Trim
+        'CON.FILE_BYTE1 = txtUploadFile1.Text.Trim
+        'CON.ATTACH_FOLDER_BYTE1 = txtUploadFile1_Link.Text.Trim
 
         If IDSelect <> 0 Then
             CON.ID = IDSelect
@@ -1223,13 +1238,13 @@ Public Class ctrlHU_ConcurrentlyNewEdit
             result = rep.INSERT_CONCURRENTLY(CON)
         End If
 
-        If cboStatus.SelectedValue = "1" AndAlso rdEFFECT_DATE_STOP.SelectedDate Is Nothing Then
-            rep.INSERT_EMPLOYEE_KN(txtEmpCode.Text, hidOrgCOn.Value, cboTITLE_CON.SelectedValue, rdEFFECT_DATE_CON.SelectedDate, result)
-        End If
+        'If cboStatus.SelectedValue = "1" AndAlso rdEFFECT_DATE_STOP.SelectedDate Is Nothing Then
+        '    rep.INSERT_EMPLOYEE_KN(txtEmpCode.Text, hidOrgCOn.Value, cboTITLE_CON.SelectedValue, rdEFFECT_DATE_CON.SelectedDate, result)
+        'End If
 
-        If rdEFFECT_DATE_STOP.SelectedDate IsNot Nothing AndAlso cbSTATUS_STOP.SelectedValue = "1" Then
-            rep.UPDATE_EMPLOYEE_KN(result, rdEFFECT_DATE_STOP.SelectedDate)
-        End If
+        'If rdEFFECT_DATE_STOP.SelectedDate IsNot Nothing AndAlso cbSTATUS_STOP.SelectedValue = "1" Then
+        '    rep.UPDATE_EMPLOYEE_KN(result, rdEFFECT_DATE_STOP.SelectedDate)
+        'End If
 
         rep.Dispose()
 
@@ -1359,95 +1374,95 @@ Public Class ctrlHU_ConcurrentlyNewEdit
 
 #Region "Xử lý file đính kèm"
 
-    Private Sub btnUploadFile_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnUploadFile.Click
-        IsUpload = 0
-        ctrlUpload1.AllowedExtensions = "xls,xlsx,txt,ctr,doc,docx,xml,png,jpg,bitmap,jpeg,gif,pdf,rar,zip,ppt,pptx"
-        ctrlUpload1.Show()
-    End Sub
+    'Private Sub btnUploadFile_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnUploadFile.Click
+    '    IsUpload = 0
+    '    ctrlUpload1.AllowedExtensions = "xls,xlsx,txt,ctr,doc,docx,xml,png,jpg,bitmap,jpeg,gif,pdf,rar,zip,ppt,pptx"
+    '    ctrlUpload1.Show()
+    'End Sub
 
-    Private Sub btnDownload_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnDownload.Click
-        Dim strPath_Down As String
-        If txtUploadFile.Text <> "" Then
-            strPath_Down = Server.MapPath("~/ReportTemplates/Profile/ConcurrentlyInfo/" + txtUploadFile_Link.Text + txtUploadFile.Text)
-            ZipFiles(strPath_Down, 0)
-        End If
-    End Sub
+    'Private Sub btnDownload_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnDownload.Click
+    '    Dim strPath_Down As String
+    '    If txtUploadFile.Text <> "" Then
+    '        strPath_Down = Server.MapPath("~/ReportTemplates/Profile/ConcurrentlyInfo/" + txtUploadFile_Link.Text + txtUploadFile.Text)
+    '        ZipFiles(strPath_Down, 0)
+    '    End If
+    'End Sub
 
-    Private Sub ctrlUpload1_OkClicked(ByVal sender As Object, ByVal e As System.EventArgs) Handles ctrlUpload1.OkClicked
-        Dim startTime As DateTime = DateTime.UtcNow
-        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
-        Try
-            If IsUpload = 0 Then
-                txtUploadFile.Text = ""
-            Else
-                txtUploadFile1.Text = ""
-            End If
+    'Private Sub ctrlUpload1_OkClicked(ByVal sender As Object, ByVal e As System.EventArgs) Handles ctrlUpload1.OkClicked
+    '    Dim startTime As DateTime = DateTime.UtcNow
+    '    Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+    '    Try
+    '        If IsUpload = 0 Then
+    '            txtUploadFile.Text = ""
+    '        Else
+    '            txtUploadFile1.Text = ""
+    '        End If
 
-            Dim listExtension = New List(Of String)
-            listExtension.Add(".xls")
-            listExtension.Add(".xlsx")
-            listExtension.Add(".txt")
-            listExtension.Add(".ctr")
-            listExtension.Add(".doc")
-            listExtension.Add(".docx")
-            listExtension.Add(".xml")
-            listExtension.Add(".png")
-            listExtension.Add(".jpg")
-            listExtension.Add(".bitmap")
-            listExtension.Add(".jpeg")
-            listExtension.Add(".gif")
-            listExtension.Add(".pdf")
-            listExtension.Add(".rar")
-            listExtension.Add(".zip")
-            listExtension.Add(".ppt")
-            listExtension.Add(".pptx")
-            Dim fileName As String
+    '        Dim listExtension = New List(Of String)
+    '        listExtension.Add(".xls")
+    '        listExtension.Add(".xlsx")
+    '        listExtension.Add(".txt")
+    '        listExtension.Add(".ctr")
+    '        listExtension.Add(".doc")
+    '        listExtension.Add(".docx")
+    '        listExtension.Add(".xml")
+    '        listExtension.Add(".png")
+    '        listExtension.Add(".jpg")
+    '        listExtension.Add(".bitmap")
+    '        listExtension.Add(".jpeg")
+    '        listExtension.Add(".gif")
+    '        listExtension.Add(".pdf")
+    '        listExtension.Add(".rar")
+    '        listExtension.Add(".zip")
+    '        listExtension.Add(".ppt")
+    '        listExtension.Add(".pptx")
+    '        Dim fileName As String
 
-            Dim strPath As String = Server.MapPath("~/ReportTemplates/Profile/ConcurrentlyInfo/")
-            If ctrlUpload1.UploadedFiles.Count >= 1 Then
-                For i = 0 To ctrlUpload1.UploadedFiles.Count - 1
-                    Dim file As UploadedFile = ctrlUpload1.UploadedFiles(i)
-                    Dim str_Filename = Guid.NewGuid.ToString() + "\"
-                    If listExtension.Any(Function(x) x.ToUpper().Trim() = file.GetExtension.ToUpper().Trim()) Then
-                        System.IO.Directory.CreateDirectory(strPath + str_Filename)
-                        strPath = strPath + str_Filename
-                        fileName = System.IO.Path.Combine(strPath, file.FileName)
-                        file.SaveAs(fileName, True)
-                        If IsUpload = 0 Then
-                            txtUploadFile.Text = file.FileName
-                        Else
-                            txtUploadFile1.Text = file.FileName
-                        End If
-                        Down_File = str_Filename
-                    Else
-                        ShowMessage(Translate("Vui lòng chọn file đúng định dạng. !!! Hệ thống chỉ nhận file XLS,XLSX,TXT,CTR,DOC,DOCX,XML,PNG,JPG,BITMAP,JPEG,GIF,PDF,RAR,ZIP,PPT,PPTX"), NotifyType.Warning)
-                        Exit Sub
-                    End If
-                Next
-                If IsUpload = 0 Then
-                    loadDatasource(IsUpload, txtUploadFile.Text)
-                Else
-                    loadDatasource(IsUpload, txtUploadFile1.Text)
-                End If
-            End If
-        Catch ex As Exception
-            Throw ex
-        End Try
-    End Sub
+    '        Dim strPath As String = Server.MapPath("~/ReportTemplates/Profile/ConcurrentlyInfo/")
+    '        If ctrlUpload1.UploadedFiles.Count >= 1 Then
+    '            For i = 0 To ctrlUpload1.UploadedFiles.Count - 1
+    '                Dim file As UploadedFile = ctrlUpload1.UploadedFiles(i)
+    '                Dim str_Filename = Guid.NewGuid.ToString() + "\"
+    '                If listExtension.Any(Function(x) x.ToUpper().Trim() = file.GetExtension.ToUpper().Trim()) Then
+    '                    System.IO.Directory.CreateDirectory(strPath + str_Filename)
+    '                    strPath = strPath + str_Filename
+    '                    fileName = System.IO.Path.Combine(strPath, file.FileName)
+    '                    file.SaveAs(fileName, True)
+    '                    If IsUpload = 0 Then
+    '                        txtUploadFile.Text = file.FileName
+    '                    Else
+    '                        txtUploadFile1.Text = file.FileName
+    '                    End If
+    '                    Down_File = str_Filename
+    '                Else
+    '                    ShowMessage(Translate("Vui lòng chọn file đúng định dạng. !!! Hệ thống chỉ nhận file XLS,XLSX,TXT,CTR,DOC,DOCX,XML,PNG,JPG,BITMAP,JPEG,GIF,PDF,RAR,ZIP,PPT,PPTX"), NotifyType.Warning)
+    '                    Exit Sub
+    '                End If
+    '            Next
+    '            If IsUpload = 0 Then
+    '                loadDatasource(IsUpload, txtUploadFile.Text)
+    '            Else
+    '                loadDatasource(IsUpload, txtUploadFile1.Text)
+    '            End If
+    '        End If
+    '    Catch ex As Exception
+    '        Throw ex
+    '    End Try
+    'End Sub
 
-    Private Sub btnUploadFile1_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnUploadFile1.Click
-        IsUpload = 1
-        ctrlUpload1.AllowedExtensions = "xls,xlsx,txt,ctr,doc,docx,xml,png,jpg,bitmap,jpeg,gif,pdf,rar,zip,ppt,pptx"
-        ctrlUpload1.Show()
-    End Sub
+    'Private Sub btnUploadFile1_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnUploadFile1.Click
+    '    IsUpload = 1
+    '    ctrlUpload1.AllowedExtensions = "xls,xlsx,txt,ctr,doc,docx,xml,png,jpg,bitmap,jpeg,gif,pdf,rar,zip,ppt,pptx"
+    '    ctrlUpload1.Show()
+    'End Sub
 
-    Private Sub btnDownload1_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnDownload1.Click
-        Dim strPath_Down As String
-        If txtUploadFile1.Text <> "" Then
-            strPath_Down = Server.MapPath("~/ReportTemplates/Profile/ConcurrentlyInfo/" + txtUploadFile1_Link.Text + txtUploadFile1.Text)
-            ZipFiles(strPath_Down, 1)
-        End If
-    End Sub
+    'Private Sub btnDownload1_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnDownload1.Click
+    '    Dim strPath_Down As String
+    '    If txtUploadFile1.Text <> "" Then
+    '        strPath_Down = Server.MapPath("~/ReportTemplates/Profile/ConcurrentlyInfo/" + txtUploadFile1_Link.Text + txtUploadFile1.Text)
+    '        ZipFiles(strPath_Down, 1)
+    '    End If
+    'End Sub
 #End Region
 
 #End Region

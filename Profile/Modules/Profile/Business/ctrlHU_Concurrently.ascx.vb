@@ -136,11 +136,14 @@ Public Class ctrlHU_Concurrently
                                        ToolbarItem.Edit,
                                        ToolbarItem.Export,
                                        ToolbarItem.Delete)
-            '                            ,
+            'Me.MainToolBar.Items.Add(Common.Common.CreateToolbarItem(CommonMessage.TOOLBARITEM_CREATE_BATCH,
+            '                                                      ToolbarIcons.Add,
+            '                                                      ToolbarAuthorize.Special1,
+            '                                                      "Phê duyệt hàng loạt"))
             CType(MainToolBar.Items(0), RadToolBarButton).Text = Translate("Khai báo kiêm nhiệm")
             CType(MainToolBar.Items(1), RadToolBarButton).Text = Translate("Khai báo thôi kiêm nhiệm")
             CType(MainToolBar.Items(1), RadToolBarButton).ImageUrl = CType(MainToolBar.Items(0), RadToolBarButton).ImageUrl
-            'MainToolBar.Items.Add(Common.Common.CreateToolbarItem("SYNC", ToolbarIcons.Sync, ToolbarAuthorize.Special1, "Phê duyệt hàng loạt"))
+            MainToolBar.Items.Add(Common.Common.CreateToolbarItem("SYNC", ToolbarIcons.Sync, ToolbarAuthorize.Special1, "Phê duyệt hàng loạt"))
 
             CType(Me.Page, AjaxPage).AjaxManager.ClientEvents.OnRequestStart = "onRequestStart"
         Catch ex As Exception
@@ -349,11 +352,55 @@ Public Class ctrlHU_Concurrently
                     ctrlMessageBox.ActionName = CommonMessage.TOOLBARITEM_SYNC
                     ctrlMessageBox.DataBind()
                     ctrlMessageBox.Show()
+
             End Select
 
             UpdateControlState()
         Catch ex As Exception
             DisplayException(Me.ViewName, Me.ID, ex)
+        End Try
+    End Sub
+
+    ''' <summary>Xử lý phê duyệt quyet dinh</summary>
+    ''' <remarks></remarks>
+    Private Sub BatchApproveChangeInfoMng()
+        Dim rep As New ProfileBusinessRepository
+        Dim startTime As DateTime = DateTime.UtcNow
+        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+        Dim lstID As New List(Of Decimal)
+
+        Try
+
+            For Each dr As Telerik.Web.UI.GridDataItem In rgConcurrently.SelectedItems
+                Dim ID As New Decimal
+                If Not dr.GetDataKeyValue("STATUS").Equals("447") Then
+                    ID = dr.GetDataKeyValue("ID")
+                    lstID.Add(ID)
+                End If
+            Next
+
+            If lstID.Count > 0 Then
+                Dim bCheckHasfile = rep.ApproveListChangeCon(lstID)
+                For Each item As GridDataItem In rgConcurrently.SelectedItems
+                    If item.GetDataKeyValue("STATUS") = 1 Then
+                        ShowMessage(Translate("Bản ghi đã phê duyệt."), NotifyType.Warning)
+                        Exit Sub
+                    End If
+                Next
+
+                If rep.ApproveListChangeCon(lstID) Then
+                    ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), NotifyType.Success)
+                    rgConcurrently.Rebind()
+                Else
+                    ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), NotifyType.Error)
+                End If
+            Else
+                ShowMessage("Các quyết định được chọn đã được phê duyệt", NotifyType.Information)
+            End If
+            rep.Dispose()
+            '_mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
+        Catch ex As Exception
+            '_mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
         End Try
     End Sub
 
@@ -396,24 +443,28 @@ Public Class ctrlHU_Concurrently
 
     Private Sub ctrlMessageBox_ButtonCommand(ByVal sender As Object, ByVal e As MessageBoxEventArgs) Handles ctrlMessageBox.ButtonCommand
         log = LogHelper.GetUserLog
+        Dim rep As New ProfileBusinessRepository
+        Dim lstID As New List(Of Decimal)
         Try
             If e.ActionName = CommonMessage.TOOLBARITEM_DELETE And e.ButtonID = MessageBoxButtonType.ButtonYes Then
                 CurrentState = CommonMessage.STATE_DELETE
-                'If com.DELETE_DATA_BY_TABLE(cons.HU_CONCURRENTLY, strID, log.Username, log.Ip + "/" + log.ComputerName) = 1 Then
-                '    ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), Utilities.NotifyType.Success)
-                '    rgConcurrently.Rebind()
-                'Else
-                '    ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), NotifyType.Error)
-                'End If
+                Dim ID As New Decimal
+                For Each grid As GridDataItem In rgConcurrently.SelectedItems
+                    ID = grid.GetDataKeyValue("ID")
+                    lstID.Add(ID)
+                Next
+                If rep.DeleteConcurrentlyByID(lstID) Then
+                    ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), Utilities.NotifyType.Success)
+                    rgConcurrently.Rebind()
+                Else
+                    ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), NotifyType.Error)
+                End If
+
             End If
             If e.ActionName = CommonMessage.TOOLBARITEM_SYNC And e.ButtonID = MessageBoxButtonType.ButtonYes Then
                 CurrentState = CommonMessage.TOOLBARITEM_SYNC
-                'If com.APPROVE_DATA_BY_TABLE(cons.HU_CONCURRENTLY, strID, log.Username, log.Ip + "/" + log.ComputerName) = 1 Then
-                '    ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), Utilities.NotifyType.Success)
-                '    rgConcurrently.Rebind()
-                'Else
-                '    ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), NotifyType.Error)
-                'End If 
+
+                BatchApproveChangeInfoMng()
             End If
         Catch ex As Exception
             DisplayException(Me.ViewName, Me.ID, ex)
@@ -421,11 +472,26 @@ Public Class ctrlHU_Concurrently
 
     End Sub
 
+    'Private Sub RadGrid_ItemDataBound(ByVal sender As Object, ByVal e As Telerik.Web.UI.GridItemEventArgs) Handles rgConcurrently.ItemDataBound
+    '    If e.Item.ItemType = GridItemType.Item Or e.Item.ItemType = GridItemType.AlternatingItem Then
+    '        Dim datarow As GridDataItem = DirectCast(e.Item, GridDataItem)
+    '        datarow("ORG_CON_NAME").ToolTip = Utilities.DrawTreeByString(datarow.GetDataKeyValue("ORG_ID_DESC").ToString())
+    '    End If
+    'End Sub
+
     Private Sub RadGrid_ItemDataBound(ByVal sender As Object, ByVal e As Telerik.Web.UI.GridItemEventArgs) Handles rgConcurrently.ItemDataBound
-        If e.Item.ItemType = GridItemType.Item Or e.Item.ItemType = GridItemType.AlternatingItem Then
-            Dim datarow As GridDataItem = DirectCast(e.Item, GridDataItem)
-            datarow("ORG_CON_NAME").ToolTip = Utilities.DrawTreeByString(datarow.GetDataKeyValue("ORG_ID_DESC"))
-        End If
+        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+        Try
+
+            If e.Item.ItemType = GridItemType.Item Or e.Item.ItemType = GridItemType.AlternatingItem Then
+                Dim datarow As GridDataItem = DirectCast(e.Item, GridDataItem)
+                datarow("ORG_CON_NAME").ToolTip = Utilities.DrawTreeByString(datarow.GetDataKeyValue("ORG_ID_DESC"))
+            End If
+
+        Catch ex As Exception
+
+        End Try
+
     End Sub
 
     Protected Sub cboCommon_ItemsRequested(ByVal sender As Object, ByVal e As RadComboBoxItemsRequestedEventArgs) _

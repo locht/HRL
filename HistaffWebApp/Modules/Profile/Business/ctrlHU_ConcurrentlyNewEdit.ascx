@@ -13,11 +13,10 @@
         <tlk:RadToolBar ID="tbarCon" runat="server" OnClientButtonClicking="clientButtonClicking" />
     </tlk:RadPane>
     <tlk:RadPane ID="LeftPane" runat="server" Width="100%">
-        <div style="width: 100%">
-            <div style="width: 50%; float: left">
+        <div style="width: 100%">           
                 <fieldset>
                     <legend>
-                        <%# Translate("Thông tin chính")%>
+                        <%# Translate("Thông tin nhân viên")%>
                     </legend>
                     <table onkeydown="return (event.keyCode!=13)" style="height: 140px" class="table-form">
                         <tr>
@@ -47,8 +46,8 @@
                                 <%# Translate("Đơn vị công tác")%>
                             </td>
                             <td>
-                                   <tlk:RadToolTip ID="EmpOrgNameToolTip" runat="server" Width="100" Height="10" Position="BottomRight" 
-            Text='' TargetControlID="txtEmpOrgName"> </tlk:RadToolTip> 
+                                <tlk:RadToolTip ID="EmpOrgNameToolTip" runat="server" Width="100" Height="10" Position="BottomRight" 
+                                       Text='' TargetControlID="txtEmpOrgName"> </tlk:RadToolTip> 
                                 <tlk:RadTextBox Width="128px" ID="txtEmpOrgName" runat="server" Enabled="false">
                                 </tlk:RadTextBox>
                                 <tlk:RadButton runat="server" ID="btnOrgId" Width="8px" SkinID="ButtonView" CausesValidation="false" Enabled="false" />
@@ -67,34 +66,12 @@
                     </table>
                 </fieldset>
             </div>
-            <div style="width: 50%; float: left">
+           <%-- <div style="width: 50%; float: left">
                 <fieldset>
                     <legend>
                         <%# Translate("Thông tin kiêm nhiệm")%>
                     </legend>
-                    <table onkeydown="return (event.keyCode!=13)" class="table-form" style="height: 140px">
-                        <tr>
-                            <td style="text-align: left" class="lb">
-                                <%# Translate("Đơn vị kiêm nhiệm")%><span class="lbReq">*</span>
-                            </td>
-                            <td>
-                                <tlk:RadToolTip ID="ORG_CONNameToolTip" runat="server" Width="100" Height="10" Position="BottomRight" 
-                                 Text='' TargetControlID="txtORG_CONName"> </tlk:RadToolTip> 
-                                <tlk:RadTextBox runat="server" ID="txtORG_CONName" Width="130px" ReadOnly="true" />
-                                <tlk:RadButton runat="server" ID="btnORG_CON" SkinID="ButtonView" CausesValidation="false" />
-                                <asp:RequiredFieldValidator ID="reqOrgName" ControlToValidate="txtORG_CONName" runat="server"
-                                    ErrorMessage="<%$ Translate: Bạn phải nhập đơn vị kiêm nhiệm. %>" ToolTip="<%$ Translate: Bạn phải nhập đơn vị kiêm nhiệm. %>"> 
-                                </asp:RequiredFieldValidator>
-                            </td>
-                            <td style="text-align: left" class="lb">
-                                <%# Translate("Chức danh kiêm nhiệm")%>
-                            </td>
-                            <td>
-                                <tlk:RadComboBox  ID="cboTITLE_CON" runat="server"
-                                    CausesValidation="false">
-                                </tlk:RadComboBox>
-                            </td>
-                        </tr>
+                    <table onkeydown="return (event.keyCode!=13)" class="table-form" style="height: 140px">                        
                         <tr> 
                             <td style="display:none">
                                 <%# Translate("Phụ cấp kiêm nhiệm")%>
@@ -133,7 +110,7 @@
                                 </asp:CustomValidator>
                             </td>
                         </tr>
-                        <tr>
+                       <%-- <tr>
                              <td style="text-align: left" class="lb">
                                 <%# Translate("Tập tin đính kèm")%>
                             </td>
@@ -158,16 +135,46 @@
                         </tr>
                     </table>
                 </fieldset>
-            </div>
-        </div>
-        <div style="width: 100%">
-            <div style="width: 50%; float: left">
+            </div>--%>
+        <div style="width: 100%">  
                 <fieldset>
                     <legend>
-                        <%# Translate("Thông tin phê duyệt kiêm nhiệm")%>
+                        <%# Translate("Thông tin kiêm nhiệm")%>
                     </legend>
                     <table onkeydown="return (event.keyCode!=13)" class="table-form" style="height: 200px">
-                        <tr>
+                        <tr>                          
+                            <td style="text-align: left" class="lb">
+                                <%# Translate("Đơn vị kiêm nhiệm")%><span class="lbReq">*</span>
+                            </td>
+                            <td>
+                                <tlk:RadToolTip ID="ORG_CONNameToolTip" runat="server" Width="100" Height="10" Position="BottomRight" 
+                                 Text='' TargetControlID="txtORG_CONName"> </tlk:RadToolTip> 
+                                <tlk:RadTextBox runat="server" ID="txtORG_CONName" Width="130px" ReadOnly="true" />
+                                <tlk:RadButton runat="server" ID="btnORG_CON" SkinID="ButtonView" CausesValidation="false" />
+                                <asp:RequiredFieldValidator ID="reqOrgName" ControlToValidate="txtORG_CONName" runat="server"
+                                    ErrorMessage="<%$ Translate: Bạn phải nhập đơn vị kiêm nhiệm. %>" ToolTip="<%$ Translate: Bạn phải nhập đơn vị kiêm nhiệm. %>"> 
+                                </asp:RequiredFieldValidator>
+                            </td>
+                            <td style="text-align: left" class="lb">
+                                <%# Translate("Chức danh kiêm nhiệm")%>
+                            </td>
+                            <td>
+                                <tlk:RadComboBox  ID="cboTITLE_CON" runat="server"
+                                    CausesValidation="false">
+                                </tlk:RadComboBox>
+                            </td>   
+                           <td style="text-align: left" class="lb">
+                                <%# Translate("Vị trí công việc kiêm nhiệm")%><span class="lbReq">*</span>
+                            </td>
+                            <td>
+                                 <tlk:RadComboBox ID="cboWorkPosition" runat="server" CausesValidation="False">
+                                </tlk:RadComboBox>                              
+                                <asp:CustomValidator ID="CusWorkPosition" runat="server" ErrorMessage="<%$ Translate: Bạn phải chọn Vị trí công việc kiêm nhiệm. %>"
+                                    ToolTip="<%$ Translate: Bạn phải chọn Vị trí công việc kiêm nhiệm. %>">
+                                </asp:CustomValidator>                              
+                            </td> 
+                        </tr>
+                        <tr>                               
                             <td style="text-align: left" class="lb">
                                 <%# Translate("Số quyết định")%>
                             </td>
@@ -180,11 +187,27 @@
                                 <asp:CustomValidator ID="CusDecisionNoSame" runat="server" ErrorMessage="<%$ Translate: Mã số bị trùng  %>"
                                     ToolTip="<%$ Translate: Mã số bị trùng %>">
                                 </asp:CustomValidator>
+                            </td>                         
+                            <td style="text-align: left" class="lb">
+                                <%# Translate("Ngày hiệu lực ")%><span class="lbReq">*</span>
                             </td>
                             <td>
+                                <tlk:RadDatePicker ID="rdEFFECT_DATE_CON" runat="server">
+                                </tlk:RadDatePicker>
+                                <asp:RequiredFieldValidator ID="RequiredFieldValidator1" ControlToValidate="rdEFFECT_DATE_CON"
+                                    runat="server" ErrorMessage="<%$ Translate: Bạn phải nhập Ngày hiệu lực. %>"
+                                    ToolTip="<%$ Translate: Bạn phải nhập Ngày hiệu lực. %>"> </asp:RequiredFieldValidator>
+                            </td>
+                            <td style="text-align: left" class="lb">
+                                <%# Translate("Ngày hết hiệu lực")%>
                             </td>
                             <td>
-                            </td>
+                                <tlk:RadDatePicker ID="rdEXPIRE_DATE_CON" runat="server">
+                                </tlk:RadDatePicker>
+                                <asp:CustomValidator ID="cval_EffectDate_ExpireDate" runat="server" ErrorMessage="<%$ Translate: Ngày kết thúc phải lớn hơn ngày hiệu lực. %>"
+                                    ToolTip="<%$ Translate: Ngày kết thúc phải lớn hơn ngày hiệu lực. %>">
+                                </asp:CustomValidator>
+                            </td>                        
                         </tr>
                         <tr>
                             <td style="text-align: left" class="lb">
@@ -207,10 +230,8 @@
                                 <tlk:RadComboBox ID="cboStatus" runat="server" CausesValidation="False">
                                 </tlk:RadComboBox>
                             </td>
-                        </tr>
-                        <tr>
                             <td class="lb" style="text-align: left;">
-                                <%# Translate("Người ký 1")%><span class="lbReq">*</span>
+                                <%# Translate("Người ký ")%><span class="lbReq">*</span>
                             </td>
                             <td>
                                 <tlk:RadTextBox runat="server" ID="txtSIGN" ReadOnly="true" Width="128px" />
@@ -220,24 +241,35 @@
                                 </asp:RequiredFieldValidator>
                                 <asp:HiddenField ID="HiddenField2" runat="server" />
                             </td>
-                            <td class="lb" style="text-align: left">
-                                <%# Translate("Chức danh người ký 1")%>
+                        </tr>
+                        <tr>                          
+                            <td class="lb" >
+                                <%# Translate("Chức danh người ký ")%>
                             </td>
-                            <td>
+                            <td  >
                                 <tlk:RadTextBox ID="txtSIGN_TITLE" ReadOnly="True" runat="server">
                                 </tlk:RadTextBox>
                             </td>
-                        </tr>
-                        <tr>
+
+
+                             <td class="lb" style="text-align: left">
+                                <%# Translate("Ghi chú")%>
+                            </td>
+                            <td colspan="3">
+                                <tlk:RadTextBox ID="txtRemark" runat="server" Width="100%">
+                                </tlk:RadTextBox>
+                            </td>
+                        </tr>                    
+                   <%-- <tr>
                             <td class="lb" style="text-align: left;">
-                                <%# Translate("Người ký 2")%><%--<span class="lbReq">*</span>--%>
+                                <%# Translate("Người ký 2")%>
                             </td>
                             <td>
                                 <tlk:RadTextBox runat="server" ID="txtSIGN2" ReadOnly="true" Width="128px" />
                                 <tlk:RadButton runat="server" ID="btnSIGN2" SkinID="ButtonView" CausesValidation="false" />
                                <%-- <asp:RequiredFieldValidator ID="reqApplyName1" ControlToValidate="txtSIGN2" runat="server"
                                     ErrorMessage="<%$ Translate: Bạn phải nhập người phê duyệt. %>" ToolTip="<%$ Translate: Bạn phải nhập người phê duyệt. %>"> 
-                                </asp:RequiredFieldValidator>--%>
+                                </asp:RequiredFieldValidator>
                                 <asp:HiddenField ID="HiddenField1" runat="server" />
                             </td>
                             <td class="lb" style="text-align: left">
@@ -247,20 +279,11 @@
                                 <tlk:RadTextBox ID="txtSIGN_TITLE2" ReadOnly="True" runat="server">
                                 </tlk:RadTextBox>
                             </td>
-                        </tr>
-                        <tr>
-                            <td class="lb" style="text-align: left">
-                                <%# Translate("Ghi chú")%>
-                            </td>
-                            <td colspan="3">
-                                <tlk:RadTextBox ID="txtRemark" runat="server" Width="100%">
-                                </tlk:RadTextBox>
-                            </td>
-                        </tr>
+                        </tr>--%>                        
                     </table>
                 </fieldset>
             </div>
-            <div style="width: 50%; float: left">
+           <%-- <div style="width: 50%; float: left">
                 <fieldset>
                     <legend>
                         <%# Translate("Thông tin thôi kiêm nhiệm")%>
@@ -361,8 +384,7 @@
                         </tr>
                     </table>
                 </fieldset>
-            </div>
-        </div>
+            </div>--%>    
         <div style="float: left; width: 100%">
             <tlk:RadGrid ID="rgConcurrently" runat="server" AutoGenerateColumns="False" AllowPaging="True"
                 Height="270px" AllowSorting="True" AllowMultiRowSelection="true">

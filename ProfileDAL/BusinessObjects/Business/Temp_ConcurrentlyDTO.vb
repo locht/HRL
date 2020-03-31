@@ -71,4 +71,7 @@
 
     Public Property ATTACH_FOLDER_BYTE As String
     Public Property ATTACH_FOLDER_BYTE1 As String
+
+    Public Property JOB_ID As Decimal?
+    Public Property WORK_POSITION_NAME As String
 End Class
