@@ -86,19 +86,19 @@ Public Class ctrlHU_SafeLaborMngNewEdit
     ''' <value></value>
     ''' <returns></returns>
     ''' <remarks></remarks>
-    Property WelfareMng As WelfareMngDTO
+    Property WelfareMng As SAFELABOR_MNGDTO
         Get
             Return ViewState(Me.ID & "_WelfareMngDTO")
         End Get
-        Set(ByVal value As WelfareMngDTO)
+        Set(ByVal value As SAFELABOR_MNGDTO)
             ViewState(Me.ID & "_WelfareMngDTO") = value
         End Set
     End Property
-    Property Employee_PL As List(Of Welfatemng_empDTO)
+    Property Employee_PL As List(Of SAFELABOR_MNG_EMPDTO)
         Get
             Return ViewState(Me.ID & "_Employee_PL")
         End Get
-        Set(value As List(Of Welfatemng_empDTO))
+        Set(value As List(Of SAFELABOR_MNG_EMPDTO))
             ViewState(Me.ID & "_Employee_PL") = value
         End Set
     End Property
@@ -308,65 +308,17 @@ Public Class ctrlHU_SafeLaborMngNewEdit
             lstCommonEmployee = CType(ctrlFindEmployeePopup.SelectedEmployee, List(Of CommonBusiness.EmployeePopupFindDTO))
             If lstCommonEmployee.Count <> 0 Then
                 If Employee_PL Is Nothing Then
-                    Employee_PL = New List(Of Welfatemng_empDTO)
+                    Employee_PL = New List(Of SAFELABOR_MNG_EMPDTO)
                 End If
                 For Each emp As CommonBusiness.EmployeePopupFindDTO In lstCommonEmployee
-                    Dim employee As New Welfatemng_empDTO
+                    Dim employee As New SAFELABOR_MNG_EMPDTO
                     employee.EMPLOYEE_CODE = emp.EMPLOYEE_CODE
                     employee.EMPLOYEE_ID = emp.EMPLOYEE_ID
                     employee.ID = emp.ID
                     employee.EMPLOYEE_NAME = emp.FULLNAME_VN
                     employee.ORG_NAME = emp.ORG_NAME
                     employee.TITLE_NAME = emp.TITLE_NAME
-                    employee.ORG_ID = emp.ORG_ID
-                    employee.TITLE_ID = emp.TITLE_ID
-                    'Using rep As New ProfileBusinessRepository
-                    '    Dim dtdata = rep.GET_DETAILS_EMP(emp.ID, cboWELFARE_ID.SelectedValue, dpEFFECT_DATE.SelectedDate)
-                    '    If dtdata.Rows.Count > 0 Then
-                    '        Dim birth_date = dtdata(0)("BIRTH_DATE").ToString()
-                    '        Dim org_name2 = dtdata(0)("ORG_NAME_C2").ToString()
-                    '        Dim total_child = dtdata(0)("TOTAL_CHILD").ToString()
-                    '        Dim money_total = dtdata(0)("MONEY_TOTAL").ToString()
-                    '        Dim money_pl = dtdata(0)("MONEY_PL").ToString()
-                    '        Dim gender_id = dtdata(0)("GENDER_ID").ToString()
-                    '        Dim contract_type = dtdata(0)("CONTRACT_ID").ToString()
-                    '        Dim contract_name = dtdata(0)("CONTRACT_TYPE").ToString()
-                    '        Dim seniority = dtdata(0)("SENIORITY").ToString()
-                    '        Dim gender_name = dtdata(0)("GENDER_NAME").ToString()
-                    '        Dim wel_id = dtdata(0)("WELFARE_ID").ToString()
-                    '        If total_child <> "" Then
-                    '            employee.TOTAL_CHILD = Decimal.Parse(total_child)
-                    '        End If
-                    '        If money_total <> "" Then
-                    '            employee.MONEY_TOTAL = Decimal.Parse(money_total)
-                    '        End If
-                    '        If birth_date <> "" Then
-                    '            employee.BIRTH_DATE = birth_date
-                    '        End If
-                    '        employee.ORG_NAME2 = org_name2
-                    '        If money_pl <> "" Then
-                    '            employee.MONEY_PL = Decimal.Parse(money_pl)
-                    '        End If
-                    '        employee.SENIORITY = seniority
-                    '        employee.GENDER_NAME = gender_name
-                    '        If gender_id <> "" Then
-                    '            employee.GENDER_ID = Decimal.Parse(gender_id)
-                    '        End If
-                    '        If wel_id <> 0 Then
-                    '            employee.WELFARE_ID = Decimal.Parse(wel_id)
-                    '        End If
-
-                    '        If contract_type <> "" Then
-                    '            employee.CONTRACT_TYPE = Decimal.Parse(contract_type)
-                    '        End If
-                    '        employee.CONTRACT_NAME = contract_name
-                    '    Else
-                    '        ShowMessage(Translate("Chính sách phúc lợi chưa được thiết lập. Vui lòng kiểm tra lại."), NotifyType.Warning)
-                    '        Exit Sub
-                    '    End If
-                    'End Using
-
-                    Dim checkEmployeeCode As Welfatemng_empDTO = Employee_PL.Find(Function(p) p.EMPLOYEE_CODE = emp.EMPLOYEE_CODE)
+                    Dim checkEmployeeCode As SAFELABOR_MNG_EMPDTO = Employee_PL.Find(Function(p) p.EMPLOYEE_CODE = emp.EMPLOYEE_CODE)
                     If (Not checkEmployeeCode Is Nothing) Then
                         Continue For
                     End If
@@ -428,64 +380,57 @@ Public Class ctrlHU_SafeLaborMngNewEdit
         Dim startTime As DateTime = DateTime.UtcNow
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
         Try
-            Dim objdata As WelfareMngDTO
-            Dim objList As New List(Of WelfareMngDTO)
-            Dim lstemp As New List(Of Welfatemng_empDTO)
+            Dim objdata As SAFELABOR_MNGDTO
+            Dim objList As New List(Of SAFELABOR_MNGDTO)
+            Dim lstemp As New List(Of SAFELABOR_MNG_EMPDTO)
             Select Case CType(e.Item, RadToolBarButton).CommandName
                 Case CommonMessage.TOOLBARITEM_SAVE
-                    objdata = New WelfareMngDTO
-
-                    Dim ValidGrid As Tuple(Of Boolean, String)
-                    ValidGrid = ValidateGrid_Emp()
-                    If ValidateGrid_Emp.Item1 = False Then
-                        ShowMessage(ValidateGrid_Emp.Item2, NotifyType.Warning)
-                        Exit Sub
+                    objdata = New SAFELABOR_MNGDTO
+                    objdata.CODE = txtCode.Text
+                    objdata.NAME = txtName.Text
+                    objdata.ORG_ID = hidOrg.Value
+                    objdata.DATE_OCCUR = rdDateOccurAccident.SelectedDate
+                    objdata.HOUR_OCCUR = rdDateOccurAccident.SelectedDate.Value.AddHours(Double.Parse(rtHourOccur.SelectedTime.Value.TotalHours))
+                    If cboTypeAccident.SelectedValue <> "" Then
+                        objdata.TYPE_ACCIDENT = cboTypeAccident.SelectedValue
                     End If
+                    objdata.PLACE_ACCIDENT = txtPlaceAccident.Text
+                    If cboReasonAccident.SelectedValue <> "" Then
+                        objdata.REASON_ACCIDENT = cboReasonAccident.SelectedValue
+                    End If
+                    objdata.REASON_DETAIL = txtReasonDetail.Text
+                    If IsNumeric(rnCost.Value) Then
+                        objdata.COST_ACCIDENT = rnCost.Value
+                    End If
+                    objdata.REMARK = txtRemark.Text
+                    'Dim ValidGrid As Tuple(Of Boolean, String)
+                    'ValidGrid = ValidateGrid_Emp()
+                    'If ValidateGrid_Emp.Item1 = False Then
+                    '    ShowMessage(ValidateGrid_Emp.Item2, NotifyType.Warning)
+                    '    Exit Sub
+                    'End If
                     Dim dtrgEmployee As DataTable = GetDataFromGrid(rgEmployee)
                     For Each row As DataRow In dtrgEmployee.Rows
-                        Dim employee_id
-                        Dim title_id
-                        Dim org_id
-                        Dim gender_id
-                        Dim contract_type
-                        Dim contract_name
-                        Dim gender_name
-                        Dim welfare_id
-                        Using rep As New ProfileBusinessRepository
-                            Dim infoEmp = rep.GET_INFO_EMPLOYEE(row("EMPLOYEE_CODE").ToString)
-                            If infoEmp.Rows.Count > 0 Then
-                                employee_id = infoEmp(0)("EMPLOYEE_ID")
-                                title_id = infoEmp(0)("TITLE_ID")
-                                org_id = infoEmp(0)("ORG_ID")
-                                gender_id = infoEmp(0)("GENDER")
-                                contract_type = infoEmp(0)("CONTRACT_TYPE")
-                                contract_name = infoEmp(0)("CONTRACT_NAME")
-                                gender_name = infoEmp(0)("GENDER_NAME")
-                            End If
-                        End Using
-                        Dim o As New Welfatemng_empDTO
-                        o.EMPLOYEE_ID = If(employee_id IsNot Nothing, employee_id, Nothing)
-                        o.EMPLOYEE_CODE = row("EMPLOYEE_CODE").ToString
-                        o.GENDER_ID = If(gender_id IsNot Nothing, gender_id, Nothing)
-                        o.GENDER_NAME = gender_name
-                        o.TITLE_ID = If(title_id IsNot Nothing, title_id, Nothing)
-                        o.ORG_ID = If(org_id IsNot Nothing, org_id, Nothing)
-                        o.TOTAL_CHILD = If(row("TOTAL_CHILD") <> "", Decimal.Parse(row("TOTAL_CHILD")), Nothing)
-                        o.MONEY_TOTAL = If(row("MONEY_TOTAL") <> "", Decimal.Parse(row("MONEY_TOTAL")), Nothing)
-                        o.MONEY_PL = If(row("MONEY_PL") <> "", Decimal.Parse(row("MONEY_PL")), Nothing)
-                        o.CONTRACT_TYPE = If(contract_type IsNot Nothing, contract_type, Nothing)
-                        o.CONTRACT_NAME = contract_name
-                        o.WELFARE_ID = If(row("WELFARE_ID") <> "", Decimal.Parse(row("WELFARE_ID")), Nothing)
-                        o.SENIORITY = row("SENIORITY").ToString
+                        Dim o As New SAFELABOR_MNG_EMPDTO
+                        o.EMPLOYEE_ID = If(row("EMPLOYEE_ID") <> "", Decimal.Parse(row("EMPLOYEE_ID")), Nothing)
+                        o.NUMBER_DATE = If(row("NUMBER_DATE") <> "", Decimal.Parse(row("NUMBER_DATE")), Nothing)
+                        o.LEVEL_INJURED = row("LEVEL_INJURED").ToString
+                        o.LEVEL_DECLINE = If(row("LEVEL_DECLINE") <> "", Decimal.Parse(row("LEVEL_DECLINE")), Nothing)
+                        o.MONEY_MEDICAL = If(row("MONEY_MEDICAL") <> "", Decimal.Parse(row("MONEY_MEDICAL")), Nothing)
+                        o.COST_SALARY = If(row("COST_SALARY") <> "", Decimal.Parse(row("COST_SALARY")), Nothing)
+                        o.MONEY_INDEMNIFY = If(row("MONEY_INDEMNIFY") <> "", Decimal.Parse(row("MONEY_INDEMNIFY")), Nothing)
+                        o.COMPANY_PAY = If(row("MONEY_MEDICAL") <> "", Decimal.Parse(row("MONEY_MEDICAL")), Nothing) + If(row("COST_SALARY") <> "", Decimal.Parse(row("COST_SALARY")), Nothing) + If(row("MONEY_INDEMNIFY") <> "", Decimal.Parse(row("MONEY_INDEMNIFY")), Nothing)
+                        o.DATE_INS_PAY = If(row("DATE_INS_PAY") <> "", ToDate(row("DATE_INS_PAY")), Nothing)
+                        o.MONEY_INS_PAY = If(row("MONEY_INS_PAY") <> "", Decimal.Parse(row("MONEY_INS_PAY")), Nothing)
+                        o.MONEY_DIFFERENCE = o.COMPANY_PAY - If(row("MONEY_INS_PAY") <> "", Decimal.Parse(row("MONEY_INS_PAY")), Nothing)
                         o.REMARK = row("REMARK").ToString
-                        objdata.EMPLOYEE_ID = If(employee_id IsNot Nothing, employee_id, Nothing)
                         lstemp.Add(o)
                     Next
-                    objdata.LST_WELFATE_EMP = lstemp
+                    objdata.LST_SAFELABOR_EMP = lstemp
                     'objList.Add(objdata)
                     If CurrentState = CommonMessage.STATE_NEW Then
                         Dim rep As New ProfileBusinessRepository
-                        If rep.InsertWelfareMng(objdata) Then
+                        If rep.InsertSafeLaborMng(objdata) Then
                             ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), NotifyType.Success)
                             ''POPUPTOLINK
                             Response.Redirect("/Default.aspx?mid=Profile&fid=ctrlHU_SafeLaborMng&group=Business")
@@ -502,11 +447,10 @@ Public Class ctrlHU_SafeLaborMngNewEdit
                             ShowMessage(Translate(CommonMessage.MESSAGE_WARNING_EXIST_DATABASE), NotifyType.Error)
                             Exit Sub
                         End If
-                        If rep.ModifyWelfareMng(objdata) Then
+                        If rep.ModifySafeLaborMng(objdata) Then
                             ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), NotifyType.Success)
                             ''POPUPTOLINK
                             Response.Redirect("/Default.aspx?mid=Profile&fid=ctrlHU_SafeLaborMng&group=Business")
-
                         Else
                             ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), NotifyType.Error)
                         End If
@@ -546,16 +490,30 @@ Public Class ctrlHU_SafeLaborMngNewEdit
                             End If
                             Continue For
                         End If
-                        If InStr(",MONEY_TOTAL,REMARK,", "," + col.UniqueName + ",") > 0 Then
+                        If InStr(",NUMBER_DATE,LEVEL_INJURED,LEVEL_DECLINE,MONEY_MEDICAL,COST_SALARY,MONEY_INDEMNIFY,COMPANY_PAY,DATE_INS_PAY,MONEY_INS_PAY,MONEY_DIFFERENCE,REMARK,", "," + col.UniqueName + ",") > 0 Then
                             Select Case Item(col.UniqueName).Controls(1).ID.ToString.Substring(0, 2)
-                                Case "cb"
-                                    Dr(col.UniqueName) = CType(Item.FindControl(Item(col.UniqueName).Controls(1).ID.ToString), RadComboBox).SelectedValue
+                                Case "r1"
+                                    Dr(col.UniqueName) = CType(Item.FindControl(Item(col.UniqueName).Controls(1).ID.ToString), RadNumericTextBox).Value
+                                Case "r2"
+                                    Dr(col.UniqueName) = CType(Item.FindControl(Item(col.UniqueName).Controls(1).ID.ToString), RadTextBox).Text.Trim
+                                Case "r3"
+                                    Dr(col.UniqueName) = CType(Item.FindControl(Item(col.UniqueName).Controls(1).ID.ToString), RadNumericTextBox).Value
+                                Case "r4"
+                                    Dr(col.UniqueName) = CType(Item.FindControl(Item(col.UniqueName).Controls(1).ID.ToString), RadNumericTextBox).Value
+                                Case "r5"
+                                    Dr(col.UniqueName) = CType(Item.FindControl(Item(col.UniqueName).Controls(1).ID.ToString), RadNumericTextBox).Value
+                                Case "r6"
+                                    Dr(col.UniqueName) = CType(Item.FindControl(Item(col.UniqueName).Controls(1).ID.ToString), RadNumericTextBox).Value
+                                Case "r7"
+                                    Dr(col.UniqueName) = CType(Item.FindControl(Item(col.UniqueName).Controls(1).ID.ToString), RadNumericTextBox).Value
+                                Case "r8"
+                                    Dr(col.UniqueName) = CType(Item.FindControl(Item(col.UniqueName).Controls(1).ID.ToString), RadDatePicker).SelectedDate
+                                Case "r9"
+                                    Dr(col.UniqueName) = CType(Item.FindControl(Item(col.UniqueName).Controls(1).ID.ToString), RadNumericTextBox).Value
                                 Case "rn"
                                     Dr(col.UniqueName) = CType(Item.FindControl(Item(col.UniqueName).Controls(1).ID.ToString), RadNumericTextBox).Value
                                 Case "rt"
                                     Dr(col.UniqueName) = CType(Item.FindControl(Item(col.UniqueName).Controls(1).ID.ToString), RadTextBox).Text.Trim
-                                Case "rd"
-                                    Dr(col.UniqueName) = CType(Item.FindControl(Item(col.UniqueName).Controls(1).ID.ToString), RadDatePicker).SelectedDate
                             End Select
                         Else
                             Dr(col.UniqueName) = Item.GetDataKeyValue(col.UniqueName)
@@ -577,8 +535,8 @@ Public Class ctrlHU_SafeLaborMngNewEdit
             If e.Item.Edit Then
                 Dim edit = CType(e.Item, GridEditableItem)
                 Dim item As GridDataItem = CType(e.Item, GridDataItem)
-                Dim rtxtmoney As New RadNumericTextBox
-                rtxtmoney = CType(edit.FindControl("rnMONEY"), RadNumericTextBox)
+                'Dim rtxtmoney As New RadNumericTextBox
+                'rtxtmoney = CType(edit.FindControl("rnMONEY"), RadNumericTextBox)
                 SetDataToGrid_Org(edit)
                 edit.Dispose()
                 item.Dispose()
@@ -696,21 +654,25 @@ Public Class ctrlHU_SafeLaborMngNewEdit
 
         Dim rep As New ProfileBusinessRepository
         Try
-            WelfareMng = rep.GetWelfareMngById(_Id)
+            WelfareMng = rep.GetSafeLaborMngById(_Id)
             If Not WelfareMng Is Nothing Then
-
-                hidIDEmp.Value = WelfareMng.EMPLOYEE_ID
-
-
-
-                If WelfareMng.EFFECT_DATE < Date.Now Then
-                    MainToolBar.Items(0).Enabled = False
-                    'LeftPane.Enabled = False
+                txtCode.Text = WelfareMng.CODE
+                txtName.Text = WelfareMng.NAME
+                hidOrg.Value = WelfareMng.ORG_ID
+                txtOrgName.Text = WelfareMng.ORG_NAME
+                rdDateOccurAccident.SelectedDate = WelfareMng.DATE_OCCUR
+                rtHourOccur.SelectedDate = WelfareMng.HOUR_OCCUR
+                If WelfareMng.TYPE_ACCIDENT IsNot Nothing Then
+                    cboTypeAccident.SelectedValue = WelfareMng.TYPE_ACCIDENT
                 End If
-                If WelfareMng.WORK_STATUS = ProfileCommon.OT_WORK_STATUS.TERMINATE_ID Then
-                    MainToolBar.Items(0).Enabled = False
-                    LeftPane.Enabled = False
+                If WelfareMng.REASON_ACCIDENT IsNot Nothing Then
+                    cboReasonAccident.SelectedValue = WelfareMng.REASON_ACCIDENT
                 End If
+                txtReasonDetail.Text = WelfareMng.REASON_DETAIL
+                If WelfareMng.COST_ACCIDENT IsNot Nothing Then
+                    rnCost.Value = WelfareMng.COST_ACCIDENT
+                End If
+                txtRemark.Text = WelfareMng.REMARK
                 If checkDelete <> 1 Then
                     Dim repst = New ProfileStoreProcedure
                     dtbImport = repst.Get_list_Welfare_EMP(_Id)
@@ -734,7 +696,7 @@ Public Class ctrlHU_SafeLaborMngNewEdit
             Else
                 CurrentState = CommonMessage.STATE_NEW
                 If Not IsPostBack Then
-                    Employee_PL = New List(Of Welfatemng_empDTO)
+                    Employee_PL = New List(Of SAFELABOR_MNG_EMPDTO)
                     dtbImport = Employee_PL.ToTable()
                 End If
             End If
@@ -761,22 +723,79 @@ Public Class ctrlHU_SafeLaborMngNewEdit
                     If rowData Is Nothing Then
                         Exit Sub
                     End If
-                    If InStr(",MONEY_TOTAL,REMARK,", "," + col.UniqueName + ",") > 0 Then
+                    If InStr(",NUMBER_DATE,LEVEL_INJURED,LEVEL_DECLINE,MONEY_MEDICAL,COST_SALARY,MONEY_INDEMNIFY,COMPANY_PAY,DATE_INS_PAY,MONEY_INS_PAY,MONEY_DIFFERENCE,REMARK,", "," + col.UniqueName + ",") > 0 Then
                         Select Case EditItem(col.UniqueName).Controls(1).ID.ToString.Substring(0, 2)
-                            Case "cb"
-
-                            Case "rt"
+                            Case "r1"
+                                Dim radNumber As New RadNumericTextBox
+                                radNumber = CType(EditItem.FindControl(EditItem(col.UniqueName).Controls(1).ID.ToString), RadNumericTextBox)
+                                radNumber.ClearValue()
+                                radNumber.NumberFormat.AllowRounding = False
+                                radNumber.NumberFormat.DecimalDigits = 2
+                                radNumber.Text = rowData(0)("NUMBER_DATE").ToString()
+                            Case "r2"
                                 Dim radTextBox As New RadTextBox
                                 radTextBox = CType(EditItem.FindControl(EditItem(col.UniqueName).Controls(1).ID.ToString), RadTextBox)
                                 radTextBox.ClearValue()
-                                radTextBox.Text = rowData(0)("REMARK")
+                                radTextBox.Text = rowData(0)("LEVEL_INJURED")
+                            Case "r3"
+                                Dim radNumber As New RadNumericTextBox
+                                radNumber = CType(EditItem.FindControl(EditItem(col.UniqueName).Controls(1).ID.ToString), RadNumericTextBox)
+                                radNumber.ClearValue()
+                                radNumber.NumberFormat.AllowRounding = False
+                                radNumber.NumberFormat.DecimalDigits = 2
+                                radNumber.Text = rowData(0)("LEVEL_DECLINE").ToString()
+                            Case "r4"
+                                Dim radNumber As New RadNumericTextBox
+                                radNumber = CType(EditItem.FindControl(EditItem(col.UniqueName).Controls(1).ID.ToString), RadNumericTextBox)
+                                radNumber.ClearValue()
+                                radNumber.NumberFormat.AllowRounding = False
+                                radNumber.NumberFormat.DecimalDigits = 2
+                                radNumber.Text = rowData(0)("MONEY_MEDICAL").ToString()
+                            Case "r5"
+                                Dim radNumber As New RadNumericTextBox
+                                radNumber = CType(EditItem.FindControl(EditItem(col.UniqueName).Controls(1).ID.ToString), RadNumericTextBox)
+                                radNumber.ClearValue()
+                                radNumber.NumberFormat.AllowRounding = False
+                                radNumber.NumberFormat.DecimalDigits = 2
+                                radNumber.Text = rowData(0)("COST_SALARY").ToString()
+                            Case "r6"
+                                Dim radNumber As New RadNumericTextBox
+                                radNumber = CType(EditItem.FindControl(EditItem(col.UniqueName).Controls(1).ID.ToString), RadNumericTextBox)
+                                radNumber.ClearValue()
+                                radNumber.NumberFormat.AllowRounding = False
+                                radNumber.NumberFormat.DecimalDigits = 2
+                                radNumber.Text = rowData(0)("MONEY_INDEMNIFY").ToString()
+                            Case "r7"
+                                Dim radNumber As New RadNumericTextBox
+                                radNumber = CType(EditItem.FindControl(EditItem(col.UniqueName).Controls(1).ID.ToString), RadNumericTextBox)
+                                radNumber.ClearValue()
+                                radNumber.NumberFormat.AllowRounding = False
+                                radNumber.NumberFormat.DecimalDigits = 2
+                                radNumber.Text = rowData(0)("COMPANY_PAY").ToString()
+                            Case "r8"
+                                Dim radNumber As New RadDatePicker
+                                radNumber = CType(EditItem.FindControl(EditItem(col.UniqueName).Controls(1).ID.ToString), RadDatePicker)
+                                radNumber.ClearValue()
+                                radNumber.SelectedDate = rowData(0)("DATE_INS_PAY")
+                            Case "r9"
+                                Dim radNumber As New RadNumericTextBox
+                                radNumber = CType(EditItem.FindControl(EditItem(col.UniqueName).Controls(1).ID.ToString), RadNumericTextBox)
+                                radNumber.ClearValue()
+                                radNumber.NumberFormat.AllowRounding = False
+                                radNumber.NumberFormat.DecimalDigits = 2
+                                radNumber.Text = rowData(0)("MONEY_INS_PAY").ToString()
                             Case "rn"
                                 Dim radNumber As New RadNumericTextBox
                                 radNumber = CType(EditItem.FindControl(EditItem(col.UniqueName).Controls(1).ID.ToString), RadNumericTextBox)
                                 radNumber.ClearValue()
                                 radNumber.NumberFormat.AllowRounding = False
                                 radNumber.NumberFormat.DecimalDigits = 2
-                                radNumber.Text = rowData(0)("MONEY_TOTAL").ToString()
+                                radNumber.Text = rowData(0)("MONEY_DIFFERENCE").ToString()
+                            Case "rt"
+                                Dim radTextBox As New RadTextBox
+                                radTextBox = CType(EditItem.FindControl(EditItem(col.UniqueName).Controls(1).ID.ToString), RadTextBox)
+                                radTextBox.ClearValue()
+                                radTextBox.Text = rowData(0)("REMARK")
                         End Select
                     Else
                         Continue For

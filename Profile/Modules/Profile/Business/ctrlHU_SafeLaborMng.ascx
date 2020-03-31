@@ -16,34 +16,34 @@
             </tlk:RadPane>
             <tlk:RadPane ID="RadPane2" runat="server" Scrolling="None" Height="100%">
                 <tlk:RadGrid PageSize="50" ID="rgWelfareMng" runat="server" Height="100%">
-                    <MasterTableView DataKeyNames="ID,WORK_STATUS,EFFECT_DATE" EditMode="InPlace" ClientDataKeyNames="ID,EFFECT_DATE">
+                    <MasterTableView DataKeyNames="ID" EditMode="InPlace" ClientDataKeyNames="ID">
                         <Columns>
                             <tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderStyle-HorizontalAlign="Center"
                                 HeaderStyle-Width="30px" ItemStyle-HorizontalAlign="Center">
                             </tlk:GridClientSelectColumn>
                             <tlk:GridBoundColumn DataField="ID" Visible="false" ReadOnly="true" />
-                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Mã vụ tai nạn %>" DataField="WELFARE_NAME"
-                                ReadOnly="true" UniqueName="WELFARE_NAME" HeaderStyle-Width="100px" />
-                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Tên vụ tai bạn %>" DataField="EMPLOYEE_CODE"
-                                ReadOnly="true" UniqueName="EMPLOYEE_CODE" HeaderStyle-Width="60px" />
+                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Mã vụ tai nạn %>" DataField="CODE"
+                                ReadOnly="true" UniqueName="CODE" HeaderStyle-Width="100px" />
+                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Tên vụ tai bạn %>" DataField="NAME"
+                                ReadOnly="true" UniqueName="NAME" HeaderStyle-Width="60px" />
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Phòng ban %>" DataField="ORG_NAME"
                                 ReadOnly="true" UniqueName="ORG_NAME" HeaderStyle-Width="200px" />
-                            <tlk:GridBoundColumn HeaderText="<%$ Translate:Ngày xảy ra tại nạn  %>" DataField="EMPLOYEE_NAME"
-                                ReadOnly="true" UniqueName="EMPLOYEE_NAME" HeaderStyle-Width="150px" />
-                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Thời gian xảy ra %>" DataField="TITLE_NAME"
-                                ReadOnly="true" UniqueName="TITLE_NAME" HeaderStyle-Width="200px" />
-                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Loại tai nạn %>" DataField="SENIORITY"
-                                ReadOnly="true" UniqueName="SENIORITY" HeaderStyle-Width="200px" />
-                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Nguyên nhân tai nạn %>" DataField="EFFECT_DATE"
-                                ReadOnly="true" UniqueName="EFFECT_DATE" HeaderStyle-Width="150px" />
-                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Mức độ thương tật %>" DataField="GENDER_NAME"
-                                ReadOnly="true" UniqueName="GENDER_NAME" HeaderStyle-Width="55px" />
-                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Nơi xảy ra tai nạn %>" DataField="CONTRACT_NAME"
-                                ReadOnly="true" UniqueName="CONTRACT_NAME" HeaderStyle-Width="200px" />
-                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Chi phí tai nạn %>" DataField="TOTAL_CHILD"
-                                ReadOnly="true" UniqueName="TOTAL_CHILD" HeaderStyle-Width="65px" />
-                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Ghi chú %>" DataField="org_code2"
-                                ReadOnly="true" UniqueName="org_code2" HeaderStyle-Width="100px" />
+                            <tlk:GridBoundColumn HeaderText="<%$ Translate:Ngày xảy ra tại nạn  %>" DataField="DATE_OCCUR"
+                                ReadOnly="true" UniqueName="DATE_OCCUR" HeaderStyle-Width="150px" DataFormatString="{0:dd/MM/yyyy}" />
+                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Thời gian xảy ra %>" DataField="HOUR_OCCUR"
+                                ReadOnly="true" UniqueName="HOUR_OCCUR" HeaderStyle-Width="200px" DataFormatString="{0:HH:MM}" />
+                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Loại tai nạn %>" DataField="TYPE_ACCIDENT_NAME"
+                                ReadOnly="true" UniqueName="TYPE_ACCIDENT_NAME" HeaderStyle-Width="200px" />
+                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Nguyên nhân tai nạn %>" DataField="REASON_ACCIDENT_NAME"
+                                ReadOnly="true" UniqueName="REASON_ACCIDENT_NAME" HeaderStyle-Width="150px" />
+                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Mức độ thương tật %>" DataField=""
+                                ReadOnly="true" UniqueName="" HeaderStyle-Width="55px" />
+                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Nơi xảy ra tai nạn %>" DataField="PLACE_ACCIDENT"
+                                ReadOnly="true" UniqueName="PLACE_ACCIDENT" HeaderStyle-Width="200px" />
+                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Chi phí tai nạn %>" DataField="COST_ACCIDENT"
+                                ReadOnly="true" UniqueName="COST_ACCIDENT" HeaderStyle-Width="65px" />
+                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Ghi chú %>" DataField="REMARK" ReadOnly="true"
+                                UniqueName="REMARK" HeaderStyle-Width="100px" />
                         </Columns>
                     </MasterTableView>
                     <ClientSettings EnableRowHoverStyle="true">

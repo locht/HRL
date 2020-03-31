@@ -484,11 +484,69 @@ Partial Public Class ProfileBusinessRepository
     End Function
 
 #End Region
+#Region "quan lý an toàn lao động"
+    Public Function GetSafeLaborMng(ByVal _filter As SAFELABOR_MNGDTO, ByVal IsDissolve As Integer, ByVal PageIndex As Integer,
+                                       ByVal PageSize As Integer,
+                                       ByRef Total As Integer,
+                                       Optional ByVal Sorts As String = "CREATED_DATE desc") As List(Of SAFELABOR_MNGDTO)
+        Dim lstSafeLaborMng As List(Of SAFELABOR_MNGDTO)
+        Using rep As New ProfileBusinessClient
+            Try
+                lstSafeLaborMng = rep.GetSafeLaborMng(_filter, IsDissolve, PageIndex, PageSize, Total, Me.Log, Sorts)
+                Return lstSafeLaborMng
+            Catch ex As Exception
+                Throw ex
+            End Try
+        End Using
 
+    End Function
+    Public Function GetSafeLaborMng(ByVal _filter As SAFELABOR_MNGDTO, ByVal IsDissolve As Integer,
+                                       Optional ByVal Sorts As String = "CREATED_DATE desc") As List(Of SAFELABOR_MNGDTO)
+        Dim lstSafeLaborMng As List(Of SAFELABOR_MNGDTO)
+        Using rep As New ProfileBusinessClient
+            Try
+                lstSafeLaborMng = rep.GetSafeLaborMng(_filter, IsDissolve, 0, Integer.MaxValue, 0, Me.Log, Sorts)
+                Return lstSafeLaborMng
+            Catch ex As Exception
+                Throw ex
+            End Try
+        End Using
+
+    End Function
+    Public Function InsertSafeLaborMng(ByVal lstSafeLaborMng As SAFELABOR_MNGDTO) As Boolean
+        Using rep As New ProfileBusinessClient
+            Try
+                Return rep.InsertSafeLaborMng(lstSafeLaborMng, Log)
+            Catch ex As Exception
+                Throw ex
+            End Try
+        End Using
+    End Function
+    Public Function ModifySafeLaborMng(ByVal lstSafeLaborMng As SAFELABOR_MNGDTO) As Boolean
+        Using rep As New ProfileBusinessClient
+            Try
+                Return rep.ModifySafeLaborMng(lstSafeLaborMng, Log)
+            Catch ex As Exception
+                Throw ex
+            End Try
+        End Using
+    End Function
+
+    Public Function GetSafeLaborMngById(ByVal Id As Integer
+                                        ) As SAFELABOR_MNGDTO
+        Using rep As New ProfileBusinessClient
+            Try
+                Return rep.GetSafeLaborMngById(Id)
+            Catch ex As Exception
+                Throw ex
+            End Try
+        End Using
+    End Function
+#End Region
 #End Region
 
 #Region "Quản lý bảo hộ lao động"
-
+    
     Public Function GetLabourProtectionMng(ByVal _filter As LabourProtectionMngDTO, ByVal IsDissolve As Integer, ByVal PageIndex As Integer,
                                         ByVal PageSize As Integer,
                                         ByRef Total As Integer,

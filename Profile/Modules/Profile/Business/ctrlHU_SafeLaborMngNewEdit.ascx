@@ -124,8 +124,8 @@
         <tlk:RadGrid ID="rgEmployee" AllowPaging="true" AllowMultiRowEdit="true" runat="server"
             PageSize="50" Height="100%">
             <GroupingSettings CaseSensitive="false" />
-            <MasterTableView EditMode="InPlace" AllowPaging="true" AllowCustomPaging="true" DataKeyNames="EMPLOYEE_ID,EMPLOYEE_NAME,TITLE_ID,ORG_ID,TITLE_NAME,ORG_NAME,GENDER_ID,CONTRACT_TYPE,EMPLOYEE_CODE,GENDER_NAME,CONTRACT_NAME,SENIORITY,TOTAL_CHILD,MONEY_PL,MONEY_TOTAL,REMARK,WELFARE_ID,BIRTH_DATE"
-                ClientDataKeyNames="ID,EMPLOYEE_ID,EMPLOYEE_NAME,TITLE_ID,ORG_ID,GENDER_ID,CONTRACT_TYPE,TITLE_NAME,ORG_NAME,EMPLOYEE_CODE,GENDER_NAME,CONTRACT_NAME,SENIORITY,TOTAL_CHILD,MONEY_PL,MONEY_TOTAL,REMARK,WELFARE_ID,BIRTH_DATE"
+            <MasterTableView EditMode="InPlace" AllowPaging="true" AllowCustomPaging="true" DataKeyNames="EMPLOYEE_ID,EMPLOYEE_CODE,EMPLOYEE_NAME,ORG_NAME,TITLE_NAME,NUMBER_DATE,LEVEL_INJURED,LEVEL_DECLINE,MONEY_MEDICAL,COST_SALARY,MONEY_INDEMNIFY,COMPANY_PAY,DATE_INS_PAY,MONEY_INS_PAY,MONEY_DIFFERENCE,REMARK"
+                ClientDataKeyNames="EMPLOYEE_ID,EMPLOYEE_CODE,EMPLOYEE_NAME,ORG_NAME,TITLE_NAME,NUMBER_DATE,LEVEL_INJURED,LEVEL_DECLINE,MONEY_MEDICAL,COST_SALARY,MONEY_INDEMNIFY,COMPANY_PAY,DATE_INS_PAY,MONEY_INS_PAY,MONEY_DIFFERENCE,REMARK"
                 CommandItemDisplay="Top">
                 <CommandItemStyle Height="25px" />
                 <CommandItemTemplate>
@@ -146,6 +146,8 @@
                     <tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderStyle-HorizontalAlign="Center"
                         HeaderStyle-Width="40px" ItemStyle-HorizontalAlign="Center">
                     </tlk:GridClientSelectColumn>
+                    <tlk:GridBoundColumn HeaderText="EMPLOYEE_ID" DataField="EMPLOYEE_ID" ReadOnly="true"
+                        UniqueName="EMPLOYEE_ID" SortExpression="EMPLOYEE_ID" Visible="false" />
                     <tlk:GridBoundColumn HeaderText="MSNV" DataField="EMPLOYEE_CODE" ReadOnly="true"
                         UniqueName="EMPLOYEE_CODE" SortExpression="EMPLOYEE_CODE" />
                     <tlk:GridBoundColumn HeaderText="Họ tên nhân viên" DataField="EMPLOYEE_NAME" UniqueName="EMPLOYEE_NAME"
@@ -154,69 +156,76 @@
                         ReadOnly="true" SortExpression="ORG_NAME" />
                     <tlk:GridBoundColumn HeaderText="Chức danh" DataField="TITLE_NAME" UniqueName="TITLE_NAME"
                         ReadOnly="true" SortExpression="TITLE_NAME" />
-                    <tlk:GridTemplateColumn HeaderText="Số ngày nghỉ do tại nạn" DataField="" UniqueName="">
+                    <tlk:GridTemplateColumn HeaderText="Số ngày nghỉ do tại nạn" DataField="NUMBER_DATE"
+                        UniqueName="NUMBER_DATE">
                         <EditItemTemplate>
                             <tlk:RadNumericTextBox SkinID="Money" DataFormatString="{0:N2}" Width="90px" runat="server"
-                                ID="rnDayNumber">
+                                ID="r1DayNumber">
                             </tlk:RadNumericTextBox>
                         </EditItemTemplate>
                     </tlk:GridTemplateColumn>
-                    <tlk:GridTemplateColumn HeaderText="Mức độ thương tật" DataField="" UniqueName="">
+                    <tlk:GridTemplateColumn HeaderText="Mức độ thương tật" DataField="LEVEL_INJURED"
+                        UniqueName="LEVEL_INJURED">
                         <EditItemTemplate>
-                            <tlk:RadTextBox runat="server" ID="rtLevelInjured" Width="70px">
+                            <tlk:RadTextBox runat="server" ID="r2LevelInjured" Width="70px">
                             </tlk:RadTextBox>
                         </EditItemTemplate>
                     </tlk:GridTemplateColumn>
-                    <tlk:GridTemplateColumn HeaderText="Mức độ suy giảm LĐ" DataField="" UniqueName="">
+                    <tlk:GridTemplateColumn HeaderText="Mức độ suy giảm LĐ" DataField="LEVEL_DECLINE"
+                        UniqueName="LEVEL_DECLINE">
                         <EditItemTemplate>
-                            <tlk:RadNumericTextBox SkinID="Money" DataFormatString="{0:N2}" runat="server" ID="rnLevelDecline">
+                            <tlk:RadNumericTextBox SkinID="Money" DataFormatString="{0:N2}" runat="server" ID="r3LevelDecline">
                             </tlk:RadNumericTextBox>
                         </EditItemTemplate>
                     </tlk:GridTemplateColumn>
-                    <tlk:GridTemplateColumn HeaderText="Tiền tạm ứng y tế" DataField="" UniqueName="">
+                    <tlk:GridTemplateColumn HeaderText="Tiền tạm ứng y tế" DataField="MONEY_MEDICAL"
+                        UniqueName="MONEY_MEDICAL">
                         <EditItemTemplate>
                             <tlk:RadNumericTextBox SkinID="Money" DataFormatString="{0:N2}" Width="70px" runat="server"
-                                ID="rnMoneyMedical">
+                                ID="r4MoneyMedical">
                             </tlk:RadNumericTextBox>
                         </EditItemTemplate>
                     </tlk:GridTemplateColumn>
-                    <tlk:GridTemplateColumn HeaderText="Chi phí lương" DataField="" UniqueName="">
+                    <tlk:GridTemplateColumn HeaderText="Chi phí lương" DataField="COST_SALARY" UniqueName="COST_SALARY">
                         <EditItemTemplate>
                             <tlk:RadNumericTextBox SkinID="Money" DataFormatString="{0:N2}" Width="70px" runat="server"
-                                ID="rnCostSalary">
+                                ID="r5CostSalary">
                             </tlk:RadNumericTextBox>
                         </EditItemTemplate>
                     </tlk:GridTemplateColumn>
-                    <tlk:GridTemplateColumn HeaderText="Số tiền bồi thường" DataField="" UniqueName="">
+                    <tlk:GridTemplateColumn HeaderText="Số tiền bồi thường" DataField="MONEY_INDEMNIFY"
+                        UniqueName="MONEY_INDEMNIFY">
                         <EditItemTemplate>
                             <tlk:RadNumericTextBox SkinID="Money" DataFormatString="{0:N2}" Width="70px" runat="server"
-                                ID="rnMoneyIndemnify">
+                                ID="r6MoneyIndemnify">
                             </tlk:RadNumericTextBox>
                         </EditItemTemplate>
                     </tlk:GridTemplateColumn>
-                    <tlk:GridTemplateColumn HeaderText="Số tiền công ty trả" DataField="" UniqueName="">
+                    <tlk:GridTemplateColumn HeaderText="Số tiền công ty trả" DataField="COMPANY_PAY"
+                        UniqueName="COMPANY_PAY">
                         <EditItemTemplate>
                             <tlk:RadNumericTextBox SkinID="Money" DataFormatString="{0:N2}" Width="70px" runat="server"
-                                ID="rnCompanyPay" ReadOnly="true">
+                                ID="r7CompanyPay" ReadOnly="true">
                             </tlk:RadNumericTextBox>
                         </EditItemTemplate>
                     </tlk:GridTemplateColumn>
-                    <tlk:GridTemplateColumn HeaderText="Ngày bảo hiểm thanh toán" DataField="" UniqueName=""
-                        HeaderStyle-Width="170px">
+                    <tlk:GridTemplateColumn HeaderText="Ngày bảo hiểm thanh toán" DataField="DATE_INS_PAY"
+                        UniqueName="DATE_INS_PAY" HeaderStyle-Width="170px">
                         <EditItemTemplate>
-                            <tlk:RadDatePicker runat="server" ID="rdDateInsPay">
+                            <tlk:RadDatePicker runat="server" ID="r8DateInsPay">
                             </tlk:RadDatePicker>
                         </EditItemTemplate>
                     </tlk:GridTemplateColumn>
-                    <tlk:GridTemplateColumn HeaderText="Tiền bảo hiểm thanh toán" DataField="" UniqueName="">
+                    <tlk:GridTemplateColumn HeaderText="Tiền bảo hiểm thanh toán" DataField="MONEY_INS_PAY"
+                        UniqueName="MONEY_INS_PAY">
                         <EditItemTemplate>
                             <tlk:RadNumericTextBox SkinID="Money" DataFormatString="{0:N2}" Width="70px" runat="server"
-                                ID="rnMoneyInsPay">
+                                ID="r9MoneyInsPay">
                             </tlk:RadNumericTextBox>
                         </EditItemTemplate>
                     </tlk:GridTemplateColumn>
-                    <tlk:GridTemplateColumn HeaderText="Tiền chênh lệch" HeaderStyle-Width="100px" DataField=""
-                        UniqueName="">
+                    <tlk:GridTemplateColumn HeaderText="Tiền chênh lệch" HeaderStyle-Width="100px" DataField="MONEY_DIFFERENCE"
+                        UniqueName="MONEY_DIFFERENCE">
                         <EditItemTemplate>
                             <tlk:RadNumericTextBox SkinID="Money" DataFormatString="{0:N2}" Width="70px" runat="server"
                                 ID="rnMoneyDifference" ReadOnly="true">

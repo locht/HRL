@@ -22,11 +22,11 @@ Public Class ctrlHU_SafeLaborMng
     ''' <value></value>
     ''' <returns></returns>
     ''' <remarks></remarks>
-    Property WelfareMngs As List(Of WelfareMngDTO)
+    Property WelfareMngs As List(Of SAFELABOR_MNGDTO)
         Get
             Return ViewState(Me.ID & "_WelfareMng")
         End Get
-        Set(ByVal value As List(Of WelfareMngDTO))
+        Set(ByVal value As List(Of SAFELABOR_MNGDTO))
             ViewState(Me.ID & "_WelfareMng") = value
         End Set
     End Property
@@ -394,7 +394,7 @@ Public Class ctrlHU_SafeLaborMng
     ''' <returns></returns>
     ''' <remarks></remarks>
     Protected Function CreateDataFilter(Optional ByVal isFull As Boolean = False) As DataTable
-        Dim _filter As New WelfareMngDTO
+        Dim _filter As New SAFELABOR_MNGDTO
         Dim rep As New ProfileBusinessRepository
         Dim startTime As DateTime = DateTime.UtcNow
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
@@ -413,27 +413,18 @@ Public Class ctrlHU_SafeLaborMng
    
             If isFull Then
                 If Sorts IsNot Nothing Then
-                    Return rep.GetWelfareMng(_filter, ctrlOrg.IsDissolve, Sorts).ToTable()
+                    Return rep.GetSafeLaborMng(_filter, ctrlOrg.IsDissolve, Sorts).ToTable()
                 Else
-                    Return rep.GetWelfareMng(_filter, ctrlOrg.IsDissolve).ToTable()
+                    Return rep.GetSafeLaborMng(_filter, ctrlOrg.IsDissolve).ToTable()
                 End If
             Else
                 If Sorts IsNot Nothing Then
-                    Me.WelfareMngs = rep.GetWelfareMng(_filter, ctrlOrg.IsDissolve, rgWelfareMng.CurrentPageIndex, rgWelfareMng.PageSize, MaximumRows, Sorts)
+                    Me.WelfareMngs = rep.GetSafeLaborMng(_filter, ctrlOrg.IsDissolve, rgWelfareMng.CurrentPageIndex, rgWelfareMng.PageSize, MaximumRows, Sorts)
                 Else
-                    Me.WelfareMngs = rep.GetWelfareMng(_filter, ctrlOrg.IsDissolve, rgWelfareMng.CurrentPageIndex, rgWelfareMng.PageSize, MaximumRows)
+                    Me.WelfareMngs = rep.GetSafeLaborMng(_filter, ctrlOrg.IsDissolve, rgWelfareMng.CurrentPageIndex, rgWelfareMng.PageSize, MaximumRows)
                 End If
                 rgWelfareMng.VirtualItemCount = MaximumRows
-                Dim dt = Me.WelfareMngs.ToTable
-                dt.Columns.Add("ORG_NAME_C2")
-                dt.Columns.Add("org_code2")
-                For Each item As DataRow In dt.Rows
-                    Dim repst = New ProfileStoreProcedure
-                    Dim temp = repst.get_org_name_c2(item("EMPLOYEE_ID")).Rows(0)
-                    item("ORG_NAME_C2") = temp("ORG_NAME_C2")
-                    item("org_code2") = temp("org_code2")
-                Next
-                rgWelfareMng.DataSource = dt
+                rgWelfareMng.DataSource = WelfareMngs
 
             End If
             rep.Dispose()

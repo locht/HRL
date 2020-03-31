@@ -468,10 +468,10 @@ Partial Public Class ProfileBusinessRepository
 
         Return Nothing
     End Function
-    Public Function ValidContract(ByVal empid As Decimal) As Boolean
+    Public Function ValidContract(ByVal empid As Decimal, ByVal rd_date As Date) As Boolean
         Using rep As New ProfileBusinessClient
             Try
-                Return rep.ValidContract(empid)
+                Return rep.ValidContract(empid, rd_date)
             Catch ex As Exception
                 Throw ex
             End Try

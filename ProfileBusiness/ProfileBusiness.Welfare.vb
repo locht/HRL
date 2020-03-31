@@ -145,26 +145,50 @@ Namespace ProfileBusiness.ServiceImplementations
 
 #End Region
 #Region "quan ly tai nan lao dong"
-        'Public Function InsertSafeLaborMng(ByVal lstSafeLaborMng As SAFELABOR_MNGDTO,
-        '                       ByVal log As UserLog) As Boolean Implements ServiceContracts.IProfileBusiness.InsertSafeLaborMng
-        '    Using rep As New ProfileRepository
-        '        Try
-        '            Return rep.InsertSafeLaborMng(lstSafeLaborMng, log)
-        '        Catch ex As Exception
-        '            Throw ex
-        '        End Try
-        '    End Using
-        'End Function
-        'Public Function ModifyWelfareMng(ByVal lstSafeLaborMng As SAFELABOR_MNGDTO,
-        '                         ByVal log As UserLog) As Boolean Implements ServiceContracts.IProfileBusiness.ModifyWelfareMng
-        '    Using rep As New ProfileRepository
-        '        Try
-        '            Return rep.ModifyWelfareMng(lstSafeLaborMng, log)
-        '        Catch ex As Exception
-        '            Throw ex
-        '        End Try
-        '    End Using
-        'End Function
+        Public Function InsertSafeLaborMng(ByVal lstSafeLaborMng As SAFELABOR_MNGDTO,
+                               ByVal log As UserLog) As Boolean Implements ServiceContracts.IProfileBusiness.InsertSafeLaborMng
+            Using rep As New ProfileRepository
+                Try
+                    Return rep.InsertSafeLaborMng(lstSafeLaborMng, log)
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
+        Public Function ModifySafeLaborMng(ByVal lstSafeLaborMng As SAFELABOR_MNGDTO,
+                                 ByVal log As UserLog) As Boolean Implements ServiceContracts.IProfileBusiness.ModifySafeLaborMng
+            Using rep As New ProfileRepository
+                Try
+                    Return rep.ModifySafeLaborMng(lstSafeLaborMng, log)
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
+
+        Public Function GetSafeLaborMng(ByVal _filter As SAFELABOR_MNGDTO, ByVal IsDissolve As Integer, ByVal PageIndex As Integer,
+                                       ByVal PageSize As Integer,
+                                       ByRef Total As Integer,
+                                       ByVal UserLog As UserLog,
+                                       Optional ByVal Sorts As String = "CREATED_DATE desc") As List(Of SAFELABOR_MNGDTO) Implements ServiceContracts.IProfileBusiness.GetSafeLaborMng
+            Using rep As New ProfileRepository
+                Try
+                    Return rep.GetSafeLaborMng(_filter, IsDissolve, PageIndex, PageSize, Total, UserLog, Sorts)
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
+        Public Function GetSafeLaborMngById(ByVal Id As Integer
+                                        ) As SAFELABOR_MNGDTO Implements ServiceContracts.IProfileBusiness.GetSafeLaborMngById
+            Using rep As New ProfileRepository
+                Try
+                    Return rep.GetSafeLaborMngById(Id)
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
 #End Region
     End Class
 End Namespace

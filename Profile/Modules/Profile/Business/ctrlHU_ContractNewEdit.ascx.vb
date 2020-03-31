@@ -341,7 +341,7 @@ Public Class ctrlHU_ContractNewEdit
         Dim objContract As New ContractDTO
         Dim rep As New ProfileBusinessRepository
         Dim gID As Decimal
-        'Dim stt As OtherListDTO
+        'Dim stt As OtherListDTOsave
         Dim startTime As DateTime = DateTime.UtcNow
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
         Try
@@ -435,9 +435,9 @@ Public Class ctrlHU_ContractNewEdit
                                         Exit Sub
                                     End If
                                 End If
-                                If Not rep.ValidContract(hidEmployeeID.Value) Then
+                                If Not rep.ValidContract(hidEmployeeID.Value, rdStartDate.SelectedDate) Then
                                     ShowMessage(Translate("Hợp đồng cũ còn hiệu lực. Không được phép tạo hợp đồng mới."), Utilities.NotifyType.Warning)
-                                    MainToolBar.Items(0).Enabled = False
+                                    Exit Sub
                                 End If
                                 If rep.InsertContract(objContract, gID) Then
                                     If (isPopup) Then

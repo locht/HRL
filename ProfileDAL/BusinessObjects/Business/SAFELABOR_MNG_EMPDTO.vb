@@ -4,6 +4,8 @@
     Public Property EMPLOYEE_ID As Decimal?
     Public Property EMPLOYEE_CODE As String
     Public Property EMPLOYEE_NAME As String
+    Public Property ORG_NAME As String
+    Public Property TITLE_NAME As String
     Public Property NUMBER_DATE As Decimal?
     Public Property LEVEL_INJURED As String
     Public Property LEVEL_DECLINE As Decimal?

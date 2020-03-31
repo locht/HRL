@@ -308,7 +308,7 @@ Namespace ProfileBusiness.ServiceContracts
                                         Optional ByVal Sorts As String = "CREATED_DATE desc") As List(Of ContractTypeDTO)
 
         <OperationContract()>
-        Function ValidContract(ByVal empid As Decimal) As Boolean
+        Function ValidContract(ByVal empid As Decimal, ByVal rd_date As Date) As Boolean
 
         <OperationContract()>
         Function InsertContractType(ByVal objContractType As ContractTypeDTO, ByVal log As UserLog, ByRef gID As Decimal) As Boolean
@@ -359,13 +359,21 @@ Namespace ProfileBusiness.ServiceContracts
         Function DeleteWelfareList(ByVal lstID As List(Of Decimal), ByVal log As UserLog) As Boolean
 #End Region
 #Region "quan ly an toan lao dong"
-        '<OperationContract()>
-        'Function InsertSafeLaborMng(ByVal lstSafeLaborMng As SAFELABOR_MNGDTO,
-        '                       ByVal log As UserLog) As Boolean
-        '<OperationContract()>
-        'Function ModifyWelfareMng(ByVal lstSafeLaborMng As SAFELABOR_MNGDTO,
-        '                         ByVal log As UserLog) As Boolean
-
+        <OperationContract()>
+        Function GetSafeLaborMng(ByVal _filter As SAFELABOR_MNGDTO, ByVal IsDissolve As Integer, ByVal PageIndex As Integer,
+                                       ByVal PageSize As Integer,
+                                       ByRef Total As Integer,
+                                       ByVal UserLog As UserLog,
+                                       Optional ByVal Sorts As String = "CREATED_DATE desc") As List(Of SAFELABOR_MNGDTO)
+        <OperationContract()>
+        Function InsertSafeLaborMng(ByVal lstSafeLaborMng As SAFELABOR_MNGDTO,
+                               ByVal log As UserLog) As Boolean
+        <OperationContract()>
+        Function ModifySafeLaborMng(ByVal lstSafeLaborMng As SAFELABOR_MNGDTO,
+                                 ByVal log As UserLog) As Boolean
+        <OperationContract()>
+        Function GetSafeLaborMngById(ByVal Id As Integer
+                                       ) As SAFELABOR_MNGDTO
 #End Region
 
 #Region "AllowanceList"
