@@ -41,6 +41,24 @@ Partial Public Class ctrlHU_AssetMngNewEdit
     Protected WithEvents hidAssetID As Global.System.Web.UI.WebControls.HiddenField
 
     '''<summary>
+    '''hidOrg_tranfer control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents hidOrg_tranfer As Global.System.Web.UI.WebControls.HiddenField
+
+    '''<summary>
+    '''hidOrg_Receive control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents hidOrg_Receive As Global.System.Web.UI.WebControls.HiddenField
+
+    '''<summary>
     '''RadSplitter1 control.
     '''</summary>
     '''<remarks>
@@ -122,15 +140,6 @@ Partial Public Class ctrlHU_AssetMngNewEdit
     Protected WithEvents txtEmployeName As Global.Telerik.Web.UI.RadTextBox
 
     '''<summary>
-    '''txtTitleName control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents txtTitleName As Global.Telerik.Web.UI.RadTextBox
-
-    '''<summary>
     '''txtOrgName control.
     '''</summary>
     '''<remarks>
@@ -140,13 +149,31 @@ Partial Public Class ctrlHU_AssetMngNewEdit
     Protected WithEvents txtOrgName As Global.Telerik.Web.UI.RadTextBox
 
     '''<summary>
-    '''txtStaffRank control.
+    '''txtTitleName control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents txtStaffRank As Global.Telerik.Web.UI.RadTextBox
+    Protected WithEvents txtTitleName As Global.Telerik.Web.UI.RadTextBox
+
+    '''<summary>
+    '''txtAssetBarcode control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtAssetBarcode As Global.Telerik.Web.UI.RadTextBox
+
+    '''<summary>
+    '''RequiredFieldValidator1 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents RequiredFieldValidator1 As Global.System.Web.UI.WebControls.RequiredFieldValidator
 
     '''<summary>
     '''txtAssetID control.
@@ -201,24 +228,6 @@ Partial Public Class ctrlHU_AssetMngNewEdit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtAssGroup As Global.Telerik.Web.UI.RadTextBox
-
-    '''<summary>
-    '''txtAssetBarcode control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents txtAssetBarcode As Global.Telerik.Web.UI.RadTextBox
-
-    '''<summary>
-    '''RequiredFieldValidator1 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents RequiredFieldValidator1 As Global.System.Web.UI.WebControls.RequiredFieldValidator
 
     '''<summary>
     '''txtAssetSerial control.

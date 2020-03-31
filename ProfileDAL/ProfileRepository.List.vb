@@ -3191,14 +3191,16 @@ Partial Class ProfileRepository
                                         Optional ByVal Sorts As String = "CREATED_DATE desc") As List(Of AssetDTO)
         Try
             Dim query = From p In Context.HU_ASSET
-            Dim lst = query.Select(Function(p) New AssetDTO With {.ID = p.ID,
-                                                                  .NAME = p.NAME,
-                                                                  .ACTFLG = p.ACTFLG,
-                                                                  .ACTFLG2 = p.ACTFLG,
-                                                                  .CODE = p.CODE,
-                                                                  .GROUP_ID = p.GROUP_ID,
-                                                                     .REMARK = p.REMARK,
-                                                                  .CREATED_DATE = p.CREATED_DATE})
+            From ot In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.GROUP_ID)
+            Dim lst = query.Select(Function(p) New AssetDTO With {.ID = p.p.ID,
+                                                                  .NAME = p.p.NAME,
+                                                                  .ACTFLG = p.p.ACTFLG,
+                                                                  .ACTFLG2 = p.p.ACTFLG,
+                                                                  .CODE = p.p.CODE,
+                                                                  .GROUP_ID = p.p.GROUP_ID,
+                                                                  .GROUP_NAME = p.ot.NAME_VN,
+                                                                     .REMARK = p.p.REMARK,
+                                                                  .CREATED_DATE = p.p.CREATED_DATE})
             If _filter.CODE <> "" Then
                 lst = lst.Where(Function(p) p.CODE.ToUpper.Contains(_filter.CODE.ToUpper))
             End If

@@ -3,16 +3,19 @@
 <asp:HiddenField ID="hidID" runat="server" />
 <asp:HiddenField ID="hidEmployeeID" runat="server" />
 <asp:HiddenField ID="hidAssetID" runat="server" />
+<asp:HiddenField ID="hidOrg_tranfer" runat="server" />
+<asp:HiddenField ID="hidOrg_Receive" runat="server" />
 <style type="text/css">
     .RadButton_Metro.rbSkinnedButton, .RadButton_Metro .rbDecorated
-    {       
-        height:22px;
-    }    
-    @media screen and (-webkit-min-device-pixel-ratio:0) {
+    {
+        height: 22px;
+    }
+    @media screen and (-webkit-min-device-pixel-ratio:0)
+    {
         .RadButton_Metro.rbSkinnedButton, .RadButton_Metro .rbDecorated
-        {       
-            height:21px;
-        } 
+        {
+            height: 21px;
+        }
     }
 </style>
 <tlk:RadSplitter ID="RadSplitter1" runat="server" Width="100%" Height="100%" Orientation="Horizontal">
@@ -21,14 +24,14 @@
     </tlk:RadPane>
     <tlk:RadPane ID="LeftPane" runat="server">
         <asp:ValidationSummary ID="valSum" runat="server" DisplayMode="BulletList" CssClass="validationsummary" />
-        <table class="table-form"  onkeydown="return (event.keyCode!=13)">
+        <table class="table-form" onkeydown="return (event.keyCode!=13)">
             <tr>
                 <td class="lb" style="width: 130px">
-                    <%# Translate("Mã nhân viên")%>
+                    <%# Translate("Mã nhân viên/ người đại diện")%>
                     <span class="lbReq">*</span>
                 </td>
                 <td>
-                    <tlk:RadTextBox ID="txtEmployeeID" SkinID="ReadOnly" runat="server" Width="130px" 
+                    <tlk:RadTextBox ID="txtEmployeeID" SkinID="ReadOnly" runat="server" Width="130px"
                         ReadOnly="True">
                     </tlk:RadTextBox>
                     <tlk:RadButton ID="btnEmployee" SkinID="ButtonView" runat="server" CausesValidation="false"
@@ -38,7 +41,7 @@
                         runat="server" ErrorMessage="<%$ Translate: Bạn phải chọn nhân viên. %>" ToolTip="<%$ Translate: Bạn phải chọn nhân viên. %>"> </asp:RequiredFieldValidator>
                 </td>
                 <td class="lb" style="width: 180px">
-                    <%# Translate("Tên nhân viên")%>
+                    <%# Translate("Tên nhân viên/ Tên người đại diện")%>
                 </td>
                 <td>
                     <tlk:RadTextBox ID="txtEmployeName" runat="server" ReadOnly="True" SkinID="ReadOnly">
@@ -47,29 +50,32 @@
             </tr>
             <tr>
                 <td class="lb">
-                    <%# Translate("Chức danh")%>
-                </td>
-                <td>
-                    <tlk:RadTextBox ID="txtTitleName" runat="server" ReadOnly="True" SkinID="ReadOnly">
-                    </tlk:RadTextBox>
-                </td>
-                <td class="lb">
-                    <%# Translate("Đơn vị")%>
+                    <%# Translate("Phòng ban")%>
                 </td>
                 <td>
                     <tlk:RadTextBox ID="txtOrgName" runat="server" ReadOnly="True" SkinID="ReadOnly">
                     </tlk:RadTextBox>
                 </td>
+                <td class="lb">
+                    <%# Translate("Vị trí công việc")%>
+                </td>
+                <td>
+                    <tlk:RadTextBox ID="txtTitleName" runat="server" ReadOnly="True" SkinID="ReadOnly">
+                    </tlk:RadTextBox>
+                </td>
             </tr>
             <tr>
                 <td class="lb">
-                    <%# Translate("Cấp nhân sự")%>
+                    <%# Translate("Mã vạch tài sản")%>
+                    <span class="lbReq">*</span>
                 </td>
                 <td>
-                    <tlk:RadTextBox ID="txtStaffRank" runat="server" ReadOnly="True" SkinID="ReadOnly">
+                    <tlk:RadTextBox ID="txtAssetBarcode" runat="server" TabIndex="6">
                     </tlk:RadTextBox>
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator1" ControlToValidate="txtAssetBarcode"
+                        runat="server" ErrorMessage="<%$ Translate: Bạn phải nhập mã vạch tài sản . %>"
+                        ToolTip="<%$ Translate: Bạn phải nhập mã vạch tài sản . %>"> </asp:RequiredFieldValidator>
                 </td>
-               
                 <td class="lb">
                     <%# Translate("Mã loại tài sản")%>
                     <span class="lbReq">*</span>
@@ -88,7 +94,6 @@
                     </asp:CustomValidator>
                 </td>
             </tr>
-
             <tr>
                 <td class="lb">
                     <%# Translate("Tên tài sản")%>
@@ -98,7 +103,6 @@
                     <tlk:RadTextBox ID="txtAssetName" runat="server" ReadOnly="True" SkinID="ReadOnly">
                     </tlk:RadTextBox>
                 </td>
-
                 <td class="lb">
                     <%# Translate("Nhóm tài sản")%>
                     <span class="lbReq">*</span>
@@ -108,22 +112,12 @@
                     </tlk:RadTextBox>
                 </td>
             </tr>
-              <tr>
-                <td class="lb">
-                    <%# Translate("Mã vạch tài sản")%>
-                     <span class="lbReq">*</span>
-                </td>
-                <td>
-                     <tlk:RadTextBox ID="txtAssetBarcode" runat="server" TabIndex="6">
-                    </tlk:RadTextBox>
-                      <asp:RequiredFieldValidator ID="RequiredFieldValidator1" ControlToValidate="txtAssetBarcode" runat="server"
-                        ErrorMessage="<%$ Translate: Bạn phải nhập mã vạch tài sản . %>" ToolTip="<%$ Translate: Bạn phải nhập mã vạch tài sản . %>"> </asp:RequiredFieldValidator>
-                </td>
+            <tr>
                 <td class="lb">
                     <%# Translate("Số serial")%>
                 </td>
                 <td>
-                 <tlk:RadTextBox ID="txtAssetSerial" runat="server" TabIndex="6">
+                    <tlk:RadTextBox ID="txtAssetSerial" runat="server" TabIndex="6">
                     </tlk:RadTextBox>
                 </td>
             </tr>
@@ -142,7 +136,7 @@
                 <td class="lb" style="width: 130px">
                     <%# Translate("Bộ phận nhận bàn giao")%>
                 </td>
-               <td>
+                <td>
                     <tlk:RadTextBox ID="txtORG_RECEIVE" SkinID="ReadOnly" runat="server" Width="130px"
                         ReadOnly="True">
                     </tlk:RadTextBox>
@@ -156,7 +150,8 @@
                     <%# Translate("Giá trị tài sản")%>
                 </td>
                 <td>
-                    <tlk:RadNumericTextBox ID="rntxtAmount" runat="server" SkinID="Money" ValidationGroup="Allowance" TabIndex="6">
+                    <tlk:RadNumericTextBox ID="rntxtAmount" runat="server" SkinID="Money" ValidationGroup="Allowance"
+                        TabIndex="6">
                     </tlk:RadNumericTextBox>
                 </td>
                 <td class="lb">
@@ -176,7 +171,8 @@
                     <%# Translate("Tiền đặt cọc")%>
                 </td>
                 <td>
-                    <tlk:RadNumericTextBox ID="nmDeposits" runat="server" SkinID="Money" ValidationGroup="Allowance" TabIndex="6">
+                    <tlk:RadNumericTextBox ID="nmDeposits" runat="server" SkinID="Money" ValidationGroup="Allowance"
+                        TabIndex="6">
                     </tlk:RadNumericTextBox>
                 </td>
                 <td class="lb">
@@ -192,23 +188,22 @@
                 </td>
             </tr>
             <tr>
-                 <td class="lb" style="width: 130px">
+                <td class="lb" style="width: 130px">
                     <%# Translate("Trạng thái tài sản")%>
                 </td>
                 <td>
                     <tlk:RadComboBox ID="cboSTATUS_ID" runat="server" TabIndex="6">
                     </tlk:RadComboBox>
-                    <asp:CustomValidator ID="cvalStatusID" ControlToValidate="cboSTATUS_ID" runat="server" 
+                    <asp:CustomValidator ID="cvalStatusID" ControlToValidate="cboSTATUS_ID" runat="server"
                         ErrorMessage="<%$ Translate: Trạng thái tài sản không tồn tại hoặc đã ngừng áp dụng. %>"
                         ToolTip="<%$ Translate: Trạng thái tài sản không tồn tại hoặc đã ngừng áp dụng. %>">
                     </asp:CustomValidator>
                 </td>
                 <td class="lb">
-                 </td>
+                </td>
                 <td>
-                 </td>
+                </td>
             </tr>
-
             <tr>
                 <td class="lb">
                     <%# Translate("Mô tả")%>
@@ -226,44 +221,37 @@
 <asp:PlaceHolder ID="phFindAsset" runat="server"></asp:PlaceHolder>
 <asp:PlaceHolder ID="phFindOrgTransfer" runat="server"></asp:PlaceHolder>
 <asp:PlaceHolder ID="phFindOrgReceive" runat="server"></asp:PlaceHolder>
-
 <tlk:RadCodeBlock ID="RadCodeBlock1" runat="server">
     <script type="text/javascript">
 
         $(document).ready(function () {
-            registerOnfocusOut('RAD_SPLITTER_PANE_CONTENT_ctl00_MainContent_ctrlHU_AssetMngNewEdit_LeftPane');                                
+            registerOnfocusOut('RAD_SPLITTER_PANE_CONTENT_ctl00_MainContent_ctrlHU_AssetMngNewEdit_LeftPane');
         });
 
         var enableAjax = true;
-        function onRequestStart(sender, eventArgs)
-        {
+        function onRequestStart(sender, eventArgs) {
             eventArgs.set_enableAjax(enableAjax);
             enableAjax = true;
         }
 
         //mandatory for the RadWindow dialogs functionality
-        function getRadWindow()
-        {
-            if (window.radWindow)
-            {
+        function getRadWindow() {
+            if (window.radWindow) {
                 return window.radWindow;
             }
-            if (window.frameElement && window.frameElement.radWindow)
-            {
+            if (window.frameElement && window.frameElement.radWindow) {
                 return window.frameElement.radWindow;
             }
             return null;
         }
 
-        function clientButtonClicking(sender, args)
-        {
-//            if (args.get_item().get_commandName() == 'CANCEL')
-//            {
-//                getRadWindow().close(null);
-//                args.set_cancel(true);
-//            }
-            if (args.get_item().get_commandName() == "PRINT")
-            {
+        function clientButtonClicking(sender, args) {
+            //            if (args.get_item().get_commandName() == 'CANCEL')
+            //            {
+            //                getRadWindow().close(null);
+            //                args.set_cancel(true);
+            //            }
+            if (args.get_item().get_commandName() == "PRINT") {
                 enableAjax = false;
             }
         }

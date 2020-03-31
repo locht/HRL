@@ -13,6 +13,7 @@
         <Item Value="ctrlHU_Concurrently" Text="Quản lý kiêm nhiệm" PostBack="True" NavigateUrl="Default.aspx?mid=Profile&amp;fid=ctrlHU_Concurrently&amp;group=Business" CheckPermission="true"/>
         <Item Value="ctrlHU_Commend" Text="Bảng mô tả công việc" PostBack="True" NavigateUrl="Default.aspx?mid=Profile&amp;fid=ctrlHU_JobDescription&amp;group=Business" CheckPermission="true"/>
         <Item Value="ctrlHU_Commend" Text="Quản lý khen thưởng" PostBack="True" NavigateUrl="Default.aspx?mid=Profile&amp;fid=ctrlHU_Commend&amp;group=Business" CheckPermission="true"/>
+        <Item Value="ctrlHU_AssetMng" Text="Quản lý tài sản cấp phát" PostBack="True" NavigateUrl="Default.aspx?mid=Profile&amp;fid=ctrlHU_AssetMng&amp;group=Business" CheckPermission="true"/>
         
 		<Item Value="ctrlHU_Discipline" Text="Quản lý kỷ luật" PostBack="True" NavigateUrl="Default.aspx?mid=Profile&amp;fid=ctrlHU_Discipline&amp;group=Business" CheckPermission="true"/>
         <Item Value="ctrlHU_WelfareMng" Text="Quản lý phúc lợi cá nhân" PostBack="True" NavigateUrl="Default.aspx?mid=Profile&amp;fid=ctrlHU_WelfareMng&amp;group=Business" CheckPermission="true" CausesValidation="False" />

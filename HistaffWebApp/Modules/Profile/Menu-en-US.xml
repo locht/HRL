@@ -7,6 +7,7 @@
         <Item Value="ctrlHU_WageMng"  Text="Records management salaries" PostBack="True" NavigateUrl="Default.aspx?mid=Profile&amp;fid=ctrlHU_WageMng&amp;group=Business" CheckPermission="true" CausesValidation="False" />
         <Item Value="ctrlHU_Contract" Text="Contract Management" PostBack="True" NavigateUrl="Default.aspx?mid=Profile&amp;fid=ctrlHU_Contract&amp;group=Business" CheckPermission="true" CausesValidation="False" />
         <Item Value="ctrlHU_ChangeInfoMng"  Text="Change Management Employee Information" PostBack="True" NavigateUrl="Default.aspx?mid=Profile&amp;fid=ctrlHU_ChangeInfoMng&amp;group=Business" CheckPermission="true" CausesValidation="False" />
+        <Item Value="ctrlHU_AssetMng" Text="Asset Management" PostBack="True" NavigateUrl="Default.aspx?mid=Profile&amp;fid=ctrlHU_AssetMng&amp;group=Business" CheckPermission="true"/>
         <Item Text="Discipline"  PostBack="False">
           <Group>
             <Item Value="ctrlHU_Discipline" Text="Discipline Manager" PostBack="True" NavigateUrl="Default.aspx?mid=Profile&amp;fid=ctrlHU_Discipline&amp;group=Business" CheckPermission="true"/>

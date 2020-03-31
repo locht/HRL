@@ -53,33 +53,34 @@
                             </tlk:GridClientSelectColumn>
                             <tlk:GridBoundColumn DataField="ID" Visible="false" />
                             <tlk:GridBoundColumn DataField="STATUS_ID" Display="false" />
-                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Mã nhân viên %>" DataField="EMPLOYEE_CODE"
+                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Bộ phận nhận bàn giao %>" DataField="ORG_RECEIVE" SortExpression="ORG_RECEIVE"
+                                UniqueName="ORG_RECEIVE">
+                                <HeaderStyle Width="200px" />
+                                <ItemStyle Width="200px" />
+                            </tlk:GridBoundColumn>
+                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Mã nhân viên/ người đại diện %>" DataField="EMPLOYEE_CODE"
                                 SortExpression="EMPLOYEE_CODE" UniqueName="EMPLOYEE_CODE" />
-                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Họ tên nhân viên %>" DataField="EMPLOYEE_NAME"
+                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Tên nhân viên/ Tên người đại diện %>" DataField="EMPLOYEE_NAME"
                                 SortExpression="EMPLOYEE_NAME" UniqueName="EMPLOYEE_NAME">
                                 <HeaderStyle Width="150px" />
                                 <ItemStyle Width="150px" />
                             </tlk:GridBoundColumn>
-                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Chức danh %>" DataField="TITLE_NAME"
-                                SortExpression="TITLE_NAME" UniqueName="TITLE_NAME">
-                                <HeaderStyle Width="150px" />
-                                <ItemStyle Width="150px" />
-                            </tlk:GridBoundColumn>
-                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Cấp bậc nhân sự %>" DataField="STAFF_RANK_NAME"
-                                SortExpression="STAFF_RANK_NAME" UniqueName="STAFF_RANK_NAME" />
-                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Đơn vị %>" DataField="ORG_NAME" SortExpression="ORG_NAME"
+                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Phòng ban %>" DataField="ORG_NAME" SortExpression="ORG_NAME"
                                 UniqueName="ORG_NAME">
                                 <HeaderStyle Width="200px" />
                                 <ItemStyle Width="200px" />
                             </tlk:GridBoundColumn>
-                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Mã loại tài sản %>" DataField="ASSET_CODE"
+                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Vị trí công việc %>" DataField="TITLE_NAME"
+                                SortExpression="TITLE_NAME" UniqueName="TITLE_NAME">
+                                <HeaderStyle Width="150px" />
+                                <ItemStyle Width="150px" />
+                            </tlk:GridBoundColumn>
+                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Mã tài sản %>" DataField="ASSET_CODE"
                                 SortExpression="ASSET_CODE" UniqueName="ASSET_CODE" />
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Tên tài sản %>" DataField="ASSET_NAME"
                                 SortExpression="ASSET_NAME" UniqueName="ASSET_NAME" />
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Nhóm tài sản %>" DataField="ASSET_GROUP_NAME"
                                 SortExpression="ASSET_GROUP_NAME" UniqueName="ASSET_GROUP_NAME" HeaderStyle-Width="150px" />
-                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Mã vạch tài sản %>" DataField="ASSET_BARCODE"
-                                SortExpression="ASSET_BARCODE" UniqueName="ASSET_BARCODE" />
                             <tlk:GridNumericColumn HeaderText="<%$ Translate: Giá trị tài sản (VNĐ) %>" DataField="ASSET_VALUE"
                                 ItemStyle-HorizontalAlign="Right" DataFormatString="{0:N0}" SortExpression="ASSET_VALUE"
                                 UniqueName="ASSET_VALUE" />
@@ -98,10 +99,10 @@
                                 <HeaderStyle Width="120px" />
                                 <ItemStyle Width="120px" />
                             </tlk:GridDateTimeColumn>
-                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Trạng thái %>" DataField="STATUS_NAME"
-                                SortExpression="STATUS_NAME" UniqueName="STATUS_NAME" />
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Mô tả %>" DataField="DESC" SortExpression="DESC"
                                 UniqueName="DESC" HeaderStyle-Width="250px" />
+                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Trạng thái %>" DataField="STATUS_NAME"
+                                SortExpression="STATUS_NAME" UniqueName="STATUS_NAME" />
                         </Columns>
                         <HeaderStyle Width="100px" />
                     </MasterTableView>
@@ -143,17 +144,14 @@
             registerOnfocusOut('RAD_SPLITTER_ctl00_MainContent_ctrlHU_AssetMng_RadSplitter3');
         }
 
-        function CheckValidate()
-        {
+        function CheckValidate() {
             var bCheck = $find('<%= rgAssetMng.ClientID %>').get_masterTableView().get_selectedItems().length;
-            if (bCheck == 0)
-            {
+            if (bCheck == 0) {
                 return 1;
             }
             return 0;
         }
-        function OpenNew()
-        {
+        function OpenNew() {
             var extented = '';
             var bCheck = $find('<%= rgAssetMng.ClientID %>').get_masterTableView().get_selectedItems().length;
             if (bCheck > 0) {
@@ -168,31 +166,27 @@
             oWindow.setSize(900, 500);
             oWindow.center(); */
         }
-        function OpenEdit()
-        {
+        function OpenEdit() {
             var id = $find('<%= rgAssetMng.ClientID%>').get_masterTableView().get_selectedItems()[0].getDataKeyValue('ID');
             var item = $find('<%= rgAssetMng.ClientID%>').get_masterTableView().get_selectedItems()[0];
             var cellValue = $(item.get_cell("STATUS_ID")).text();
 
-            if (cellValue != '<%= HU_ASSET_MNG_STATUS.ASSET_WAIT %>')
-            {
+            if (cellValue != '<%= HU_ASSET_MNG_STATUS.ASSET_WAIT %>') {
                 var m = '<%= Translate("Không thể thực hiện thao tác sửa với bản ghi này.") %>';
                 var n = noty({ text: m, dismissQueue: true, type: 'warning' });
                 setTimeout(function () { $.noty.close(n.options.id); }, 10000);
                 args.set_cancel(true);
                 return;
-            }      
-                
+            }
+
             window.open('/Default.aspx?mid=Profile&fid=ctrlHU_AssetMngNewEdit&group=Business&gUID=' + id + '', "_self"); /*
             oWindow.setSize(900, 500);
             oWindow.center(); */
         }
 
-        function OnClientButtonClicking(sender, args)
-        {
+        function OnClientButtonClicking(sender, args) {
             var item = args.get_item();
-            if (args.get_item().get_commandName() == 'CREATE')
-            {
+            if (args.get_item().get_commandName() == 'CREATE') {
                 var bCheck = $find('<%= rgAssetMng.ClientID %>').get_masterTableView().get_selectedItems().length;
                 if (bCheck > 1) {
                     var m = '<%= Translate(CommonMessage.MESSAGE_NOT_SELECT_MULTI_ROW) %>';
@@ -205,8 +199,7 @@
                 OpenNew();
                 args.set_cancel(true);
             }
-            if (args.get_item().get_commandName() == 'EDIT') 
-            {                
+            if (args.get_item().get_commandName() == 'EDIT') {
                 var bCheck = $find('<%= rgAssetMng.ClientID %>').get_masterTableView().get_selectedItems().length;
                 if (bCheck == 0) {
                     var m = '<%= Translate(CommonMessage.MESSAGE_NOT_SELECT_ROW) %>';
@@ -223,35 +216,30 @@
                     return;
                 }
 
-                OpenEdit();                   
+                OpenEdit();
                 args.set_cancel(true);
             }
-            if (item.get_commandName() == "EXPORT")
-            {
+            if (item.get_commandName() == "EXPORT") {
                 enableAjax = false;
             }
         }
 
-        function gridRowDblClick(sender, eventArgs)
-        {
+        function gridRowDblClick(sender, eventArgs) {
             OpenEdit();
         }
 
         var enableAjax = true;
         var oldSize = 0;
-        function onRequestStart(sender, eventArgs)
-        {
+        function onRequestStart(sender, eventArgs) {
             eventArgs.set_enableAjax(enableAjax);
             enableAjax = true;
         }
 
 
-        function popupclose(sender, args)
-        {
+        function popupclose(sender, args) {
             var m;
             var arg = args.get_argument();
-            if (arg == '1')
-            {
+            if (arg == '1') {
                 m = '<%= Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS) %>';
                 var n = noty({ text: m, dismissQueue: true, type: 'success' });
                 setTimeout(function () { $.noty.close(n.options.id); }, 10000);

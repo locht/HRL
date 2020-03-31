@@ -74,7 +74,7 @@ Public Class ctrlHU_AssetMngNewEdit
         End Set
     End Property
 
-    
+
     ''' <summary>
     ''' isLoadPopup
     ''' </summary>
@@ -196,7 +196,13 @@ Public Class ctrlHU_AssetMngNewEdit
                         txtAssetName.Text = AssetMng.ASSET_NAME
                         rntxtAmount.Value = AssetMng.ASSET_VALUE
                         txtORG_TRANFER.Text = AssetMng.ORG_TRANFER
+                        If AssetMng.ORG_TRANFER_ID IsNot Nothing Then
+                            hidOrg_tranfer.Value = AssetMng.ORG_TRANFER_ID
+                        End If
                         txtORG_RECEIVE.Text = AssetMng.ORG_RECEIVE
+                        If AssetMng.ORG_RECEIVE_ID IsNot Nothing Then
+                            hidOrg_Receive.Value = AssetMng.ORG_RECEIVE_ID
+                        End If
                         txtAssetBarcode.Text = AssetMng.ASSET_BARCODE
                         txtAssetSerial.Text = AssetMng.ASSET_SERIAL
 
@@ -312,6 +318,12 @@ Public Class ctrlHU_AssetMngNewEdit
                         objAssetMng.DEPOSITS = nmDeposits.Value
                         objAssetMng.DESC = txtDesc.Text.Trim
                         objAssetMng.ORG_TRANFER = txtORG_TRANFER.Text
+                        If hidOrg_tranfer.Value <> "" Then
+                            objAssetMng.ORG_TRANFER_ID = hidOrg_tranfer.Value
+                        End If
+                        If hidOrg_Receive.Value <> "" Then
+                            objAssetMng.ORG_RECEIVE_ID = hidOrg_Receive.Value
+                        End If
                         objAssetMng.ORG_RECEIVE = txtORG_RECEIVE.Text
                         objAssetMng.ASSET_BARCODE = txtAssetBarcode.Text.Trim
                         objAssetMng.ASSET_SERIAL = txtAssetSerial.Text.Trim
@@ -402,7 +414,6 @@ Public Class ctrlHU_AssetMngNewEdit
                 txtEmployeName.Text = item.FULLNAME_VN
                 txtOrgName.Text = item.ORG_NAME
                 txtTitleName.Text = item.TITLE_NAME
-                txtStaffRank.Text = item.STAFF_RANK_NAME
             End If
 
             isLoadPopup = 0
@@ -422,11 +433,11 @@ Public Class ctrlHU_AssetMngNewEdit
     Private Sub ctrlOrgPopup_OrganizationSelected(sender As Object, e As Common.OrganizationSelectedEventArgs) Handles ctrlFindOrgPopup.OrganizationSelected
         Dim startTime As DateTime = DateTime.UtcNow
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
-
         Try
-            Dim orgItem = ctrlFindOrgPopup.CurrentItemDataObject
-
+            Dim orgItem As New CommonBusiness.OrganizationDTO
+            orgItem = ctrlFindOrgPopup.CurrentItemDataObject
             If orgItem IsNot Nothing Then
+                hidOrg_tranfer.Value = orgItem.ID
                 txtORG_TRANFER.Text = orgItem.NAME_VN
             End If
 
@@ -448,9 +459,11 @@ Public Class ctrlHU_AssetMngNewEdit
         Dim startTime As DateTime = DateTime.UtcNow
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
         Try
-            Dim orgItem = ctrlFindOrgReceivePopup.CurrentItemDataObject
+            Dim orgItem As New CommonBusiness.OrganizationDTO
+            orgItem = ctrlFindOrgReceivePopup.CurrentItemDataObject
 
             If orgItem IsNot Nothing Then
+                hidOrg_Receive.Value = orgItem.ID
                 txtORG_RECEIVE.Text = orgItem.NAME_VN
             End If
 
@@ -795,7 +808,6 @@ Public Class ctrlHU_AssetMngNewEdit
                 txtEmployeName.Text = AssetMng.EMPLOYEE_NAME
                 txtOrgName.Text = AssetMng.ORG_NAME
                 txtTitleName.Text = AssetMng.TITLE_NAME
-                txtStaffRank.Text = AssetMng.STAFF_RANK_NAME
 
                 If IsHasInfoEmp = False Then
                     txtAssetID.Text = AssetMng.ASSET_CODE

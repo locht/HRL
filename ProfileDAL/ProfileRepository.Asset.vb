@@ -28,6 +28,8 @@ Partial Class ProfileRepository
                          From e In Context.HU_EMPLOYEE.Where(Function(e) e.ID = p.EMPLOYEE_ID)
                          From t In Context.HU_TITLE.Where(Function(t) t.ID = e.TITLE_ID)
                          From o In Context.HU_ORGANIZATION.Where(Function(f) f.ID = e.ORG_ID)
+                         From o_tranfer In Context.HU_ORGANIZATION.Where(Function(f) f.ID = p.ORG_TRANFER_ID).DefaultIfEmpty
+                         From o_receive In Context.HU_ORGANIZATION.Where(Function(f) f.ID = p.ORG_RECEIVE_ID).DefaultIfEmpty
                          From chosen In Context.SE_CHOSEN_ORG.Where(Function(f) f.ORG_ID = e.ORG_ID And _
                                                                         f.USERNAME = log.Username.ToUpper)
                          From staffrank In Context.HU_STAFF_RANK.Where(Function(f) f.ID = e.STAFF_RANK_ID).DefaultIfEmpty
@@ -60,8 +62,10 @@ Partial Class ProfileRepository
                                          .TER_LAST_DATE = p.e.TER_EFFECT_DATE,
                                          .TITLE_NAME = p.t.NAME_VN,
                                          .STAFF_RANK_NAME = p.staffrank.NAME,
-                                         .ORG_TRANFER = p.p.ORG_TRANFER,
-                                         .ORG_RECEIVE = p.p.ORG_RECEIVE,
+                                         .ORG_TRANFER_ID = p.p.ORG_TRANFER_ID,
+                                         .ORG_TRANFER = p.o_tranfer.NAME_VN,
+                                         .ORG_RECEIVE_ID = p.p.ORG_RECEIVE_ID,
+                                         .ORG_RECEIVE = p.o_receive.NAME_VN,
                                          .ASSET_BARCODE = p.p.ASSET_BARCODE,
                                          .ASSET_SERIAL = p.p.ASSET_SERIAL,
                                          .STATUS_ID = p.p.STATUS_ID,
@@ -72,7 +76,9 @@ Partial Class ProfileRepository
             If Not _filter.IS_TERMINATE Then
                 asset = asset.Where(Function(f) f.WORK_STATUS <> 257 Or (f.WORK_STATUS = 257 And f.TER_LAST_DATE >= dateNow) Or f.WORK_STATUS Is Nothing)
             End If
-
+            If _filter.ORG_RECEIVE IsNot Nothing Then
+                asset = asset.Where(Function(f) f.ORG_RECEIVE.ToUpper.Contains(_filter.ORG_RECEIVE.ToUpper))
+            End If
             If _filter.FROM_DATE_SEARCH.HasValue Then
                 asset = asset.Where(Function(f) f.ISSUE_DATE >= _filter.FROM_DATE_SEARCH)
             End If
@@ -130,13 +136,15 @@ Partial Class ProfileRepository
                         From e In Context.HU_EMPLOYEE.Where(Function(e) e.ID = p.EMPLOYEE_ID)
                         From t In Context.HU_TITLE.Where(Function(t) t.ID = e.TITLE_ID)
                         From o In Context.HU_ORGANIZATION.Where(Function(f) f.ID = e.ORG_ID)
+                        From o_tranfer In Context.HU_ORGANIZATION.Where(Function(f) f.ID = p.ORG_TRANFER_ID).DefaultIfEmpty
+                        From o_receive In Context.HU_ORGANIZATION.Where(Function(f) f.ID = p.ORG_RECEIVE_ID).DefaultIfEmpty
                         From staffrank In Context.HU_STAFF_RANK.Where(Function(f) f.ID = e.STAFF_RANK_ID).DefaultIfEmpty
                         From assetgroup In Context.OT_OTHER_LIST.Where(Function(f) f.ID = d.GROUP_ID And _
-                                                                       f.TYPE_ID = ProfileCommon.OT_ASSET_GROUP.TYPE_ID)
+                                                                      f.TYPE_ID = ProfileCommon.OT_ASSET_GROUP.TYPE_ID)
                         From assetstatus In Context.OT_OTHER_LIST.Where(Function(f) f.ID = d.GROUP_ID And _
-                                                                       f.TYPE_ID = ProfileCommon.OT_ASSET_GROUP.TYPE_ID)
-                      Where p.ID = Id
-                   Order By p.EMPLOYEE_ID
+                                                          f.TYPE_ID = ProfileCommon.OT_ASSET_GROUP.TYPE_ID)
+         Where p.ID = Id
+      Order By p.EMPLOYEE_ID()
 
             ' select thuộc tính
             Dim wel = query.Select(Function(p) New AssetMngDTO With {
@@ -158,8 +166,10 @@ Partial Class ProfileRepository
                                          .TITLE_NAME = p.t.NAME_VN,
                                          .ASSET_GROUP_NAME = p.assetgroup.NAME_VN,
                                          .STAFF_RANK_NAME = p.staffrank.NAME,
-                                         .ORG_TRANFER = p.p.ORG_TRANFER,
-                                         .ORG_RECEIVE = p.p.ORG_RECEIVE,
+                                         .ORG_TRANFER_ID = p.p.ORG_TRANFER_ID,
+                                         .ORG_TRANFER = p.o_tranfer.NAME_VN,
+                                         .ORG_RECEIVE_ID = p.p.ORG_RECEIVE_ID,
+                                         .ORG_RECEIVE = p.o_receive.NAME_VN,
                                          .ASSET_BARCODE = p.p.ASSET_BARCODE,
                                          .ASSET_SERIAL = p.p.ASSET_SERIAL,
                                          .STATUS_ID = p.p.STATUS_ID,
@@ -188,6 +198,8 @@ Partial Class ProfileRepository
             objAssetMngData.SDESC = objAssetMng.DESC
             objAssetMngData.ASSET_DECLARE_ID = objAssetMng.ASSET_DECLARE_ID
             objAssetMngData.ORG_TRANFER = objAssetMng.ORG_TRANFER
+            objAssetMngData.ORG_TRANFER_ID = objAssetMng.ORG_TRANFER_ID
+            objAssetMngData.ORG_RECEIVE_ID = objAssetMng.ORG_RECEIVE_ID
             objAssetMngData.ORG_RECEIVE = objAssetMng.ORG_RECEIVE
             objAssetMngData.ASSET_BARCODE = objAssetMng.ASSET_BARCODE
             objAssetMngData.ASSET_SERIAL = objAssetMng.ASSET_SERIAL
@@ -219,6 +231,8 @@ Partial Class ProfileRepository
                 objAssetMngData.SDESC = objAssetMng.DESC
                 objAssetMngData.RETURN_DATE = objAssetMng.RETURN_DATE
                 objAssetMngData.ORG_TRANFER = objAssetMng.ORG_TRANFER
+                objAssetMngData.ORG_TRANFER_ID = objAssetMng.ORG_TRANFER_ID
+                objAssetMngData.ORG_RECEIVE_ID = objAssetMng.ORG_RECEIVE_ID
                 objAssetMngData.ORG_RECEIVE = objAssetMng.ORG_RECEIVE
                 objAssetMngData.ASSET_BARCODE = objAssetMng.ASSET_BARCODE
                 objAssetMngData.ASSET_SERIAL = objAssetMng.ASSET_SERIAL

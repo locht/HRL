@@ -53,33 +53,34 @@
                             </tlk:GridClientSelectColumn>
                             <tlk:GridBoundColumn DataField="ID" Visible="false" />
                             <tlk:GridBoundColumn DataField="STATUS_ID" Display="false" />
-                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Mã nhân viên %>" DataField="EMPLOYEE_CODE"
+                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Bộ phận nhận bàn giao %>" DataField="ORG_RECEIVE" SortExpression="ORG_RECEIVE"
+                                UniqueName="ORG_RECEIVE">
+                                <HeaderStyle Width="200px" />
+                                <ItemStyle Width="200px" />
+                            </tlk:GridBoundColumn>
+                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Mã nhân viên/ người đại diện %>" DataField="EMPLOYEE_CODE"
                                 SortExpression="EMPLOYEE_CODE" UniqueName="EMPLOYEE_CODE" />
-                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Họ tên nhân viên %>" DataField="EMPLOYEE_NAME"
+                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Tên nhân viên/ Tên người đại diện %>" DataField="EMPLOYEE_NAME"
                                 SortExpression="EMPLOYEE_NAME" UniqueName="EMPLOYEE_NAME">
                                 <HeaderStyle Width="150px" />
                                 <ItemStyle Width="150px" />
                             </tlk:GridBoundColumn>
-                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Chức danh %>" DataField="TITLE_NAME"
-                                SortExpression="TITLE_NAME" UniqueName="TITLE_NAME">
-                                <HeaderStyle Width="150px" />
-                                <ItemStyle Width="150px" />
-                            </tlk:GridBoundColumn>
-                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Cấp bậc nhân sự %>" DataField="STAFF_RANK_NAME"
-                                SortExpression="STAFF_RANK_NAME" UniqueName="STAFF_RANK_NAME" />
-                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Đơn vị %>" DataField="ORG_NAME" SortExpression="ORG_NAME"
+                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Phòng ban %>" DataField="ORG_NAME" SortExpression="ORG_NAME"
                                 UniqueName="ORG_NAME">
                                 <HeaderStyle Width="200px" />
                                 <ItemStyle Width="200px" />
                             </tlk:GridBoundColumn>
-                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Mã loại tài sản %>" DataField="ASSET_CODE"
+                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Vị trí công việc %>" DataField="TITLE_NAME"
+                                SortExpression="TITLE_NAME" UniqueName="TITLE_NAME">
+                                <HeaderStyle Width="150px" />
+                                <ItemStyle Width="150px" />
+                            </tlk:GridBoundColumn>
+                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Mã tài sản %>" DataField="ASSET_CODE"
                                 SortExpression="ASSET_CODE" UniqueName="ASSET_CODE" />
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Tên tài sản %>" DataField="ASSET_NAME"
                                 SortExpression="ASSET_NAME" UniqueName="ASSET_NAME" />
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Nhóm tài sản %>" DataField="ASSET_GROUP_NAME"
                                 SortExpression="ASSET_GROUP_NAME" UniqueName="ASSET_GROUP_NAME" HeaderStyle-Width="150px" />
-                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Mã vạch tài sản %>" DataField="ASSET_BARCODE"
-                                SortExpression="ASSET_BARCODE" UniqueName="ASSET_BARCODE" />
                             <tlk:GridNumericColumn HeaderText="<%$ Translate: Giá trị tài sản (VNĐ) %>" DataField="ASSET_VALUE"
                                 ItemStyle-HorizontalAlign="Right" DataFormatString="{0:N0}" SortExpression="ASSET_VALUE"
                                 UniqueName="ASSET_VALUE" />
@@ -98,10 +99,10 @@
                                 <HeaderStyle Width="120px" />
                                 <ItemStyle Width="120px" />
                             </tlk:GridDateTimeColumn>
-                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Trạng thái %>" DataField="STATUS_NAME"
-                                SortExpression="STATUS_NAME" UniqueName="STATUS_NAME" />
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Mô tả %>" DataField="DESC" SortExpression="DESC"
                                 UniqueName="DESC" HeaderStyle-Width="250px" />
+                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Trạng thái %>" DataField="STATUS_NAME"
+                                SortExpression="STATUS_NAME" UniqueName="STATUS_NAME" />
                         </Columns>
                         <HeaderStyle Width="100px" />
                     </MasterTableView>
