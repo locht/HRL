@@ -284,6 +284,7 @@
                             </td>
                             <td class="lb">
                                 <%# Translate("Ngày cấp")%>
+                                <span class="lbReq">*</span>
                             </td>
                             <td>
                                 <tlk:RadDatePicker runat="server" ID="rdCMNDDate" AutoPostBack="true">
@@ -546,7 +547,6 @@
                         <tr>
                             <td class="lb">
                                 <%# Translate("Email công ty")%>
-                                <span class="lbReq">*</span>
                             </td>
                             <td>
                                 <tlk:RadTextBox runat="server" ID="cv_txtEmailCaNhanCongTy">

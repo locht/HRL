@@ -417,7 +417,7 @@
                     </tlk:GridTemplateColumn>--%>
                     <tlk:GridTemplateColumn HeaderText="Tỷ lệ trả thưởng" HeaderStyle-Width="100px" UniqueName="RATIO" DataField="RATIO"
                          ColumnGroupName="RatioNew">
-                         <ItemTemplate>
+                         <ItemTemplate >
                             <%#DataBinder.Eval(Container.DataItem, "RATIO")%>
                         </ItemTemplate>
                         <EditItemTemplate>

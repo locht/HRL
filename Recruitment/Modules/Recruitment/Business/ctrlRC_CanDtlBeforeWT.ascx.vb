@@ -250,15 +250,21 @@ Public Class ctrlRC_CanDtlBeforeWT
             txtTitlename.Text = HttpUtility.HtmlDecode(item("TITLE_NAME").Text)
             txtWork.Text = HttpUtility.HtmlDecode(item("WORK").Text)
             txtReasonLeave.Text = HttpUtility.HtmlDecode(item("REASON_LEAVE").Text)
-            If item("FROMDATE").Text.Trim() <> "" Then
-                rdFromdate.SelectedDate = item("FROMDATE").Text
-            End If
-            If item("TODATE").Text.Trim() <> "" And item("TODATE").Text <> "&nbsp;" Then
-                rdFromdate.SelectedDate = item("TODATE").Text
-            End If
+            'If item("FROMDATE").Text.Trim() <> "" Then
+            '    rdFromdate.SelectedDate = item("FROMDATE").Text
+            'End If
+            'If item("TODATE").Text.Trim() <> "" And item("TODATE").Text <> "&nbsp;" Then
+            '    rdFromdate.SelectedDate = item("TODATE").Text
+            'End If
             txtDirectManager.Text = HttpUtility.HtmlDecode(item("DIRECT_MANAGER").Text)
             txtRemark.Text = HttpUtility.HtmlDecode(item("REMARK").Text)
-            rnSalary.Value = HttpUtility.HtmlDecode(item("SALARY").Text)
+
+            If IsNumeric(item("SALARY").Text) Then
+                rnSalary.Value = item("SALARY").Text
+            Else
+                rnSalary.ClearValue()
+            End If
+
         Catch ex As Exception
             DisplayException(Me.ViewName, Me.ID, ex)
         End Try

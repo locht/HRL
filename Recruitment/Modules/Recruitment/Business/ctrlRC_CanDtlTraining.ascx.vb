@@ -6,11 +6,12 @@ Imports Common
 Imports Common.Common
 Imports Common.CommonMessage
 Imports Ionic.Crc
+Imports WebAppLog
 
 Public Class ctrlRC_CanDtlTraining
     Inherits CommonView
-    'Dim _mylog As New MyLog()
-    'Dim _pathLog As String = _mylog._pathLog
+    Dim _mylog As New MyLog()
+    Dim _pathLog As String = _mylog._pathLog
     Dim _classPath As String = "Profile\Modules\Profile\List" + Me.GetType().Name.ToString()
     Dim checkCRUD As Integer = 0 '0-chua thao tac 1-Insert 2-Edit 3-Save 4-Delete
 
@@ -503,10 +504,12 @@ Public Class ctrlRC_CanDtlTraining
                 If bCheck Then
                     ZipFiles(strPath)
                 End If
+            Else
+                Exit Sub
             End If
-            '_mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
+            _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
-            '_mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
+            _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
         End Try
     End Sub
 
@@ -656,23 +659,25 @@ Public Class ctrlRC_CanDtlTraining
     Protected Sub cboRemark_SelectedIndexChanged(sender As Object, e As Telerik.Web.UI.RadComboBoxSelectedIndexChangedEventArgs) Handles cboRemark.SelectedIndexChanged
         Dim startTime As DateTime = DateTime.UtcNow
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
-        rdFrom.SelectedDate = Nothing
-        rdTo.SelectedDate = Nothing
+        
         Try
-            If cboRemark.SelectedItem.Text = "Chứng chỉ" Then
-                EnableControlAll(True, rdFrom, rdTo)
-                RequiredFieldValidator3.Visible = True
-                CompareValidator1.Visible = True
-                RequiredFieldValidator4.Visible = True
-            Else
-                EnableControlAll(False, rdFrom, rdTo)
-                RequiredFieldValidator3.Visible = False
-                CompareValidator1.Visible = False
-                RequiredFieldValidator4.Visible = False
-                rdFrom.ClearValue()
-                rdTo.ClearValue()
+            If CurrentState = CommonMessage.STATE_NEW Or CurrentState = CommonMessage.STATE_EDIT Then
+                rdFrom.SelectedDate = Nothing
+                rdTo.SelectedDate = Nothing
+                If cboRemark.SelectedItem.Text = "Chứng chỉ" Then
+                    EnableControlAll(True, rdFrom, rdTo)
+                    RequiredFieldValidator3.Visible = True
+                    CompareValidator1.Visible = True
+                    RequiredFieldValidator4.Visible = True
+                Else
+                    EnableControlAll(False, rdFrom, rdTo)
+                    RequiredFieldValidator3.Visible = False
+                    CompareValidator1.Visible = False
+                    RequiredFieldValidator4.Visible = False
+                    rdFrom.ClearValue()
+                    rdTo.ClearValue()
+                End If
             End If
-
             '_mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
             '_mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
@@ -680,6 +685,8 @@ Public Class ctrlRC_CanDtlTraining
     End Sub
 
     Private Sub rdFrom_SelectedDateChanged(sender As Object, e As Telerik.Web.UI.Calendar.SelectedDateChangedEventArgs) Handles rdFrom.SelectedDateChanged
-        cboRemark.SelectedValue = 7086
+        If CurrentState = CommonMessage.STATE_NEW Or CurrentState = CommonMessage.STATE_EDIT Then
+            cboRemark.SelectedValue = 7086
+        End If
     End Sub
 End Class
