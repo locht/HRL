@@ -18,7 +18,7 @@ Imports System.Runtime.Serialization
 Imports System.Xml.Serialization
 
 
-<Assembly: EdmSchemaAttribute("5882ea13-6e17-4b20-a27e-5987b7516333")>
+<Assembly: EdmSchemaAttribute("d2ccfa2d-412b-4dd9-a401-fed27343be0d")>
 #Region "EDM Relationship Metadata"
 <Assembly: EdmRelationshipAttribute("ProfileModel", "FK_HU_NAT_HU_PRO", "HU_NATION", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_NATION), "HU_PROVINCE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_PROVINCE), True)>
 <Assembly: EdmRelationshipAttribute("ProfileModel", "FK_HU_PRO_HU_DIS", "HU_PROVINCE", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_PROVINCE), "HU_DISTRICT", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_DISTRICT), True)>
@@ -68212,6 +68212,31 @@ Public Partial Class HUV_CURRENT_WORKING
     End Sub
 
     Private Partial Sub OnJOB_DESCRIPTIONChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property IS_HURTFUL() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _IS_HURTFUL
+        End Get
+        Set
+            OnIS_HURTFULChanging(value)
+            ReportPropertyChanging("IS_HURTFUL")
+            _IS_HURTFUL = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("IS_HURTFUL")
+            OnIS_HURTFULChanged()
+        End Set
+    End Property
+
+    Private _IS_HURTFUL As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnIS_HURTFULChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnIS_HURTFULChanged()
     End Sub
 
     #End Region
