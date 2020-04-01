@@ -380,6 +380,7 @@ Public Class ctrlHU_SafeLaborMngNewEdit
         Dim startTime As DateTime = DateTime.UtcNow
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
         Try
+            Dim rep As New ProfileBusinessRepository
             Dim objdata As SAFELABOR_MNGDTO
             Dim objList As New List(Of SAFELABOR_MNGDTO)
             Dim lstemp As New List(Of SAFELABOR_MNG_EMPDTO)
@@ -390,7 +391,9 @@ Public Class ctrlHU_SafeLaborMngNewEdit
                     objdata.NAME = txtName.Text
                     objdata.ORG_ID = hidOrg.Value
                     objdata.DATE_OCCUR = rdDateOccurAccident.SelectedDate
-                    objdata.HOUR_OCCUR = rdDateOccurAccident.SelectedDate.Value.AddHours(Double.Parse(rtHourOccur.SelectedTime.Value.TotalHours))
+                    If rtHourOccur.SelectedDate IsNot Nothing Then
+                        objdata.HOUR_OCCUR = rdDateOccurAccident.SelectedDate.Value.AddHours(Double.Parse(rtHourOccur.SelectedTime.Value.TotalHours))
+                    End If
                     If cboTypeAccident.SelectedValue <> "" Then
                         objdata.TYPE_ACCIDENT = cboTypeAccident.SelectedValue
                     End If
@@ -399,16 +402,16 @@ Public Class ctrlHU_SafeLaborMngNewEdit
                         objdata.REASON_ACCIDENT = cboReasonAccident.SelectedValue
                     End If
                     objdata.REASON_DETAIL = txtReasonDetail.Text
-                    If IsNumeric(rnCost.Value) Then
-                        objdata.COST_ACCIDENT = rnCost.Value
-                    End If
+
                     objdata.REMARK = txtRemark.Text
+                    objdata.LEVEL_INJURED = txtLevelInjured.Text
                     'Dim ValidGrid As Tuple(Of Boolean, String)
                     'ValidGrid = ValidateGrid_Emp()
                     'If ValidateGrid_Emp.Item1 = False Then
                     '    ShowMessage(ValidateGrid_Emp.Item2, NotifyType.Warning)
                     '    Exit Sub
                     'End If
+                    Dim sum As Decimal = 0
                     Dim dtrgEmployee As DataTable = GetDataFromGrid(rgEmployee)
                     For Each row As DataRow In dtrgEmployee.Rows
                         Dim o As New SAFELABOR_MNG_EMPDTO
@@ -425,11 +428,19 @@ Public Class ctrlHU_SafeLaborMngNewEdit
                         o.MONEY_DIFFERENCE = o.COMPANY_PAY - If(row("MONEY_INS_PAY").ToString <> "", Decimal.Parse(row("MONEY_INS_PAY")), Nothing)
                         o.REMARK = row("REMARK").ToString
                         lstemp.Add(o)
+                        sum += o.COMPANY_PAY
                     Next
+                    If sum <> 0 Then
+                        objdata.COST_ACCIDENT = sum
+                    End If
                     objdata.LST_SAFELABOR_EMP = lstemp
                     'objList.Add(objdata)
+
+                    If Not rep.CheckCodeSafe(txtCode.Text, If(WelfareMng IsNot Nothing, WelfareMng.ID, 0)) Then
+                        ShowMessage(Translate("Trùng mã vụ tai nạn,Xin kiểm tra lại"), NotifyType.Warning)
+                        Exit Sub
+                    End If
                     If CurrentState = CommonMessage.STATE_NEW Then
-                        Dim rep As New ProfileBusinessRepository
                         If rep.InsertSafeLaborMng(objdata) Then
                             ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), NotifyType.Success)
                             ''POPUPTOLINK
@@ -439,7 +450,6 @@ Public Class ctrlHU_SafeLaborMngNewEdit
                         End If
                         rep.Dispose()
                     ElseIf CurrentState = CommonMessage.STATE_EDIT Then
-                        Dim rep As New ProfileBusinessRepository
                         objdata.ID = WelfareMng.ID
                         Dim lstID As New List(Of Decimal)
                         lstID.Add(objdata.ID)
@@ -674,6 +684,7 @@ Public Class ctrlHU_SafeLaborMngNewEdit
                 End If
                 txtPlaceAccident.Text = WelfareMng.PLACE_ACCIDENT
                 txtRemark.Text = WelfareMng.REMARK
+                txtLevelInjured.Text = WelfareMng.LEVEL_INJURED
                 If checkDelete <> 1 Then
                     Dim repst = New ProfileStoreProcedure
                     dtbImport = repst.Get_list_SafeLabor_EMP(_Id)

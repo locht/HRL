@@ -374,6 +374,11 @@ Namespace ProfileBusiness.ServiceContracts
         <OperationContract()>
         Function GetSafeLaborMngById(ByVal Id As Integer
                                        ) As SAFELABOR_MNGDTO
+        <OperationContract()>
+        Function CheckCodeSafe(ByVal code As String, ByVal id As Decimal) As Boolean
+        <OperationContract()>
+        Function DeleteSafeLaborMng(ByVal lstWelfareMng() As SAFELABOR_MNGDTO,
+                                   ByVal log As UserLog) As Boolean
 #End Region
 
 #Region "AllowanceList"

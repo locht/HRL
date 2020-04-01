@@ -229,19 +229,6 @@ Public Class ctrlHU_SafeLaborMng
                         ShowMessage(Translate(CommonMessage.MESSAGE_NOT_SELECT_ROW), NotifyType.Warning)
                         Exit Sub
                     End If
-
-                    'For Each item As GridDataItem In rgWelfareMng.SelectedItems
-                    '    If item.GetDataKeyValue("WORK_STATUS") = ProfileCommon.OT_WORK_STATUS.TERMINATE_ID Then
-                    '        ShowMessage(Translate("Nhân viên nghỉ việc. Không được xóa thông tin."), Utilities.NotifyType.Warning)
-                    '        Exit Sub
-                    '    End If
-                    'Next
-                    For Each item As GridDataItem In rgWelfareMng.SelectedItems
-                        If item.GetDataKeyValue("EFFECT_DATE") <= Date.Now Then
-                            ShowMessage(Translate("Không được xóa những phúc lợi đã tới ngày hiệu lực"), Utilities.NotifyType.Warning)
-                            Exit Sub
-                        End If
-                    Next
                     ctrlMessageBox.MessageText = Translate(CommonMessage.MESSAGE_CONFIRM_DELETE)
                     ctrlMessageBox.ActionName = CommonMessage.TOOLBARITEM_DELETE
                     ctrlMessageBox.DataBind()
@@ -255,7 +242,7 @@ Public Class ctrlHU_SafeLaborMng
                             ShowMessage(Translate(CommonMessage.MESSAGE_WARNING_EXPORT_EMPTY), NotifyType.Warning)
                             Exit Sub
                         ElseIf dtData.Rows.Count > 0 Then
-                            rgWelfareMng.ExportExcel(Server, Response, dtData, "Welfare")
+                            rgWelfareMng.ExportExcel(Server, Response, dtData, "SafeLabor")
                         Else
                             ShowMessage(Translate(CommonMessage.MESSAGE_WARNING_EXPORT_EMPTY), NotifyType.Warning)
                         End If
@@ -308,14 +295,14 @@ Public Class ctrlHU_SafeLaborMng
         Try
             If e.ActionName = CommonMessage.TOOLBARITEM_DELETE And e.ButtonID = MessageBoxButtonType.ButtonYes Then
                 Dim rep As New ProfileBusinessRepository
-                Dim objD As New List(Of WelfareMngDTO)
+                Dim objD As New List(Of SAFELABOR_MNGDTO)
                 Dim lst As New List(Of Decimal)
                 For Each item As GridDataItem In rgWelfareMng.SelectedItems
-                    Dim obj As New WelfareMngDTO
+                    Dim obj As New SAFELABOR_MNGDTO
                     obj.ID = Utilities.ObjToDecima(item.GetDataKeyValue("ID"))
                     objD.Add(obj)
                 Next
-                If rep.DeleteWelfareMng(objD) Then
+                If rep.DeleteSafeLaborMng(objD) Then
                     objD = Nothing
                     Refresh("UpdateView")
                 End If

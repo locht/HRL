@@ -605,9 +605,9 @@ Partial Class ProfileRepository
                         From se In Context.SE_CHOSEN_ORG.Where(Function(se) se.ORG_ID = o.ID And _
                                                                    se.USERNAME = UserLog.Username.ToUpper)
 
-      
+
             ' lọc điều kiện
-         
+
             If _filter.CODE IsNot Nothing Then
                 query = query.Where(Function(p) p.p.CODE.ToUpper.Contains(_filter.CODE.ToUpper))
             End If
@@ -667,7 +667,37 @@ Partial Class ProfileRepository
             Throw ex
         End Try
     End Function
+    Public Function CheckCodeSafe(ByVal code As String, ByVal id As Decimal) As Boolean
+        Try
+            Dim check = (From p In Context.HU_SAFELABOR_MNG
+                       Where p.CODE.ToUpper = code.ToUpper And p.ID <> id).ToList.Count
+            If check > 0 Then
+                Return False
+            End If
+            Return True
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+    Public Function DeleteSafeLaborMng(ByVal lstSafeLaborMng() As SAFELABOR_MNGDTO,
+                                   ByVal log As UserLog) As Boolean
+        Dim lstSafeLaborMngData As List(Of HU_SAFELABOR_MNG)
+        Dim lstSafeLaborEmpData As List(Of HU_SAFELABOR_MNG_EMP)
+        Dim lstIDSafeLaborMng As List(Of Decimal?) = (From p In lstSafeLaborMng.ToList Select p.ID).ToList
+
+        lstSafeLaborMngData = (From p In Context.HU_SAFELABOR_MNG Where lstIDSafeLaborMng.Contains(p.ID)).ToList
+        For index = 0 To lstSafeLaborMngData.Count - 1
+            Context.HU_SAFELABOR_MNG.DeleteObject(lstSafeLaborMngData(index))
+        Next
+        lstSafeLaborEmpData = (From p In Context.HU_SAFELABOR_MNG_EMP Where lstIDSafeLaborMng.Contains(p.GROUP_ID)).ToList
+        For index = 0 To lstSafeLaborEmpData.Count - 1
+            Context.HU_SAFELABOR_MNG_EMP.DeleteObject(lstSafeLaborEmpData(index))
+        Next
+        Context.SaveChanges(log)
+        Return True
+    End Function
+
 #End Region
 
-   
+
 End Class

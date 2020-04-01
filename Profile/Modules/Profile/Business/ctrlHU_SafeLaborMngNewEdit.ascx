@@ -111,9 +111,16 @@
                     </tlk:RadNumericTextBox>
                 </td>
                 <td class="lb">
+                    <asp:Label ID="lbLevelInjured" runat="server" Text="<%$ Translate: Mức độ thương tật %>"></asp:Label>
+                </td>
+                <td>
+                    <tlk:RadTextBox runat="server" ID="txtLevelInjured">
+                    </tlk:RadTextBox>
+                </td>
+                <td class="lb">
                     <asp:Label ID="lbRemark" runat="server" Text="<%$ Translate: Ghi chú %>"></asp:Label>
                 </td>
-                <td colspan="3">
+                <td>
                     <tlk:RadTextBox runat="server" ID="txtRemark">
                     </tlk:RadTextBox>
                 </td>
@@ -124,8 +131,8 @@
         <tlk:RadGrid ID="rgEmployee" AllowPaging="true" AllowMultiRowEdit="true" runat="server"
             PageSize="50" Height="100%">
             <GroupingSettings CaseSensitive="false" />
-            <MasterTableView EditMode="InPlace" AllowPaging="true" AllowCustomPaging="true" DataKeyNames="EMPLOYEE_ID,EMPLOYEE_CODE,EMPLOYEE_NAME,ORG_NAME,TITLE_NAME,NUMBER_DATE,LEVEL_INJURED,LEVEL_DECLINE,MONEY_MEDICAL,COST_SALARY,MONEY_INDEMNIFY,COMPANY_PAY,DATE_INS_PAY,MONEY_INS_PAY,MONEY_DIFFERENCE,REMARK"
-                ClientDataKeyNames="EMPLOYEE_ID,EMPLOYEE_CODE,EMPLOYEE_NAME,ORG_NAME,TITLE_NAME,NUMBER_DATE,LEVEL_INJURED,LEVEL_DECLINE,MONEY_MEDICAL,COST_SALARY,MONEY_INDEMNIFY,COMPANY_PAY,DATE_INS_PAY,MONEY_INS_PAY,MONEY_DIFFERENCE,REMARK"
+            <MasterTableView EditMode="InPlace" AllowPaging="true" AllowCustomPaging="true" DataKeyNames="EMPLOYEE_ID,EMPLOYEE_CODE,EMPLOYEE_NAME,ORG_NAME,TITLE_NAME,NUMBER_DATE,LEVEL_DECLINE,MONEY_MEDICAL,COST_SALARY,MONEY_INDEMNIFY,COMPANY_PAY,DATE_INS_PAY,MONEY_INS_PAY,MONEY_DIFFERENCE,REMARK"
+                ClientDataKeyNames="EMPLOYEE_ID,EMPLOYEE_CODE,EMPLOYEE_NAME,ORG_NAME,TITLE_NAME,NUMBER_DATE,LEVEL_DECLINE,MONEY_MEDICAL,COST_SALARY,MONEY_INDEMNIFY,COMPANY_PAY,DATE_INS_PAY,MONEY_INS_PAY,MONEY_DIFFERENCE,REMARK"
                 CommandItemDisplay="Top">
                 <CommandItemStyle Height="25px" />
                 <CommandItemTemplate>
@@ -164,7 +171,7 @@
                             </tlk:RadNumericTextBox>
                         </EditItemTemplate>
                     </tlk:GridTemplateColumn>
-                   <%-- <tlk:GridTemplateColumn HeaderText="Mức độ thương tật" DataField="LEVEL_INJURED"
+                    <%-- <tlk:GridTemplateColumn HeaderText="Mức độ thương tật" DataField="LEVEL_INJURED"
                         UniqueName="LEVEL_INJURED">
                         <EditItemTemplate>
                             <tlk:RadTextBox runat="server" ID="r2LevelInjured" Width="70px">

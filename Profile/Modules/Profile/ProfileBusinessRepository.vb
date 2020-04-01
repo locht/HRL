@@ -542,6 +542,24 @@ Partial Public Class ProfileBusinessRepository
             End Try
         End Using
     End Function
+    Public Function CheckCodeSafe(ByVal code As String, ByVal id As Decimal) As Boolean
+        Using rep As New ProfileBusinessClient
+            Try
+                Return rep.CheckCodeSafe(code, id)
+            Catch ex As Exception
+                Throw ex
+            End Try
+        End Using
+    End Function
+    Public Function DeleteSafeLaborMng(ByVal lstWelfareMng As List(Of SAFELABOR_MNGDTO)) As Boolean
+        Using rep As New ProfileBusinessClient
+            Try
+                Return rep.DeleteSafeLaborMng(lstWelfareMng, Me.Log)
+            Catch ex As Exception
+                Throw ex
+            End Try
+        End Using
+    End Function
 #End Region
 #End Region
 

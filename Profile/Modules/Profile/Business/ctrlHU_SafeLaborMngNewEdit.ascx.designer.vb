@@ -329,6 +329,24 @@ Partial Public Class ctrlHU_SafeLaborMngNewEdit
     Protected WithEvents rnCost As Global.Telerik.Web.UI.RadNumericTextBox
 
     '''<summary>
+    '''lbLevelInjured control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbLevelInjured As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''txtLevelInjured control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtLevelInjured As Global.Telerik.Web.UI.RadTextBox
+
+    '''<summary>
     '''lbRemark control.
     '''</summary>
     '''<remarks>
