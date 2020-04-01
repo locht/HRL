@@ -285,14 +285,25 @@ Public Class ctrlHU_ChangeInfoNewEdit
                             
                         End With
                     End If
-
                     txtEmployeeCode.Text = Working.EMPLOYEE_CODE
                     txtEmployeeName.Text = Working.EMPLOYEE_NAME
-                    
-                    SetValueComboBox(cboTitle, Working.TITLE_ID, Working.TITLE_NAME)
-
+                    ' SetValueComboBox(cboTitle, Working.TITLE_ID, Working.TITLE_NAME)
                     hidOrg.Value = Working.ORG_ID
                     txtOrgName.Text = Working.ORG_NAME
+
+                        If IsNumeric(hidOrg.Value) Then
+                        Dim dtdata = (New ProfileRepository).GetTitleByOrgID(Decimal.Parse(hidOrg.Value), True)
+                            cboTitle.ClearValue()
+                            cboTitle.Items.Clear()
+                            For Each item As DataRow In dtdata.Rows
+                                Dim radItem As RadComboBoxItem = New RadComboBoxItem(item("NAME").ToString(), item("ID").ToString())
+                                radItem.Attributes("GROUP_NAME") = item("GROUP_NAME").ToString()
+                                cboTitle.Items.Add(radItem)
+                            Next
+                        End If
+
+                    cboTitle.SelectedValue = Working.TITLE_ID
+
                     txtDecision.Text = Working.DECISION_NO
                     If Working.STATUS_ID IsNot Nothing Then
                         cboStatus.SelectedValue = Working.STATUS_ID
