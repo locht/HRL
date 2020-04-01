@@ -2333,10 +2333,10 @@ Partial Public Class ProfileRepository
 
     End Function
 
-    Function GET_JP_TO_TITLE(ByVal P_ORG_ID As Decimal, ByVal P_TITLE_ID As Decimal, ByVal P_IS_THAYTHE As Decimal) As DataSet
+    Function GET_JP_TO_TITLE(ByVal P_ORG_ID As Decimal, ByVal P_TITLE_ID As Decimal, ByVal P_IS_THAYTHE As Decimal, ByVal P_JOB As Decimal) As DataSet
         Using rep As New ProfileBusinessClient
             Try
-                Return rep.GET_JP_TO_TITLE(P_ORG_ID, P_TITLE_ID, P_IS_THAYTHE)
+                Return rep.GET_JP_TO_TITLE(P_ORG_ID, P_TITLE_ID, P_IS_THAYTHE, P_JOB)
             Catch ex As Exception
                 rep.Abort()
                 Throw ex
@@ -2389,6 +2389,17 @@ Partial Public Class ProfileRepository
             End Try
         End Using
 
+    End Function
+
+    Function GET_JOB_EMP(ByVal P_EMP_ID As Decimal) As Integer
+        Using rep As New ProfileBusinessClient
+            Try
+                Return rep.GET_JOB_EMP(P_EMP_ID)
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
     End Function
 
 #End Region

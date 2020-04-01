@@ -2887,7 +2887,7 @@ Namespace ProfileBusiness.ServiceContracts
         Function ActiveJob(ByVal objOrgTitle As List(Of Decimal), ByVal sActive As String, ByVal log As UserLog) As Boolean
 
         <OperationContract()>
-        Function GET_JP_TO_TITLE(ByVal P_ORG_ID As Decimal, ByVal P_TITLE_ID As Decimal, ByVal P_IS_THAYTHE As Decimal) As DataSet
+        Function GET_JP_TO_TITLE(ByVal P_ORG_ID As Decimal, ByVal P_TITLE_ID As Decimal, ByVal P_IS_THAYTHE As Decimal, ByVal P_JOB As Decimal) As DataSet
 
         <OperationContract()>
         Function UPDATE_END_DATE_QD(ByVal P_EMP_ID As Decimal, ByVal P_DATE As Date) As Boolean
@@ -2901,6 +2901,9 @@ Namespace ProfileBusiness.ServiceContracts
                                ByVal log As UserLog) As Boolean
         <OperationContract()>
         Function GET_HU_ASSET(ByVal P_EMP_ID As Decimal) As DataTable
+
+        <OperationContract()>
+        Function GET_JOB_EMP(ByVal P_EMP_ID As Decimal) As Integer
     End Interface
 
 End Namespace

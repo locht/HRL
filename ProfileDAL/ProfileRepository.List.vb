@@ -6092,13 +6092,14 @@ Partial Class ProfileRepository
 
     End Function
 
-    Public Function GET_JP_TO_TITLE(ByVal P_ORG_ID As Decimal, ByVal P_TITLE_ID As Decimal, ByVal P_IS_THAYTHE As Decimal) As DataSet
+    Public Function GET_JP_TO_TITLE(ByVal P_ORG_ID As Decimal, ByVal P_TITLE_ID As Decimal, ByVal P_IS_THAYTHE As Decimal, ByVal P_JOB As Decimal) As DataSet
         Try
             Using cls As New DataAccess.QueryData
                 Dim dtData As DataSet = cls.ExecuteStore("PKG_HU_IPROFILE_LIST.GET_JP_TO_TITLE",
                                            New With {.P_ORG_ID = P_ORG_ID,
                                                      .P_TITLE_ID = P_TITLE_ID,
                                                      .P_IS_THAYTHE = P_IS_THAYTHE,
+                                                     .P_JOB = P_JOB,
                                                      .P_CUR = cls.OUT_CURSOR,
                                                      .P_CUR1 = cls.OUT_CURSOR}, False)
 
@@ -6171,6 +6172,21 @@ Partial Class ProfileRepository
                                                      .P_CUR = cls.OUT_CURSOR})
 
                 Return dtData
+            End Using
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iProfile")
+            Throw ex
+        End Try
+    End Function
+
+    Public Function GET_JOB_EMP(ByVal P_EMP_ID As Decimal) As Integer
+        Try
+            Using cls As New DataAccess.QueryData
+                Dim dtData As DataTable = cls.ExecuteStore("PKG_HU_IPROFILE_LIST.GET_JOB_EMP",
+                                           New With {.P_EMP_ID = P_EMP_ID,
+                                                     .P_OUT = cls.OUT_CURSOR})
+
+                Return dtData.Rows(0)("ID")
             End Using
         Catch ex As Exception
             WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iProfile")

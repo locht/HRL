@@ -53086,6 +53086,9 @@ Namespace ProfileBusiness
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GET_HU_ASSET", ReplyAction:="http://tempuri.org/IProfileBusiness/GET_HU_ASSETResponse")>  _
         Function GET_HU_ASSET(ByVal P_EMP_ID As Decimal) As System.Data.DataTable
         
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GET_JOB_EMP", ReplyAction:="http://tempuri.org/IProfileBusiness/GET_JOB_EMPResponse")>  _
+        Function GET_JOB_EMP(ByVal P_EMP_ID As Decimal) As Integer
+        
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ModifyCommendLevel", ReplyAction:="http://tempuri.org/IProfileBusiness/ModifyCommendLevelResponse")>  _
         Function ModifyCommendLevel(ByVal objCommendLevel As ProfileBusiness.CommendLevelDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
         
@@ -53743,7 +53746,7 @@ Namespace ProfileBusiness
         Function ActiveJob(ByVal objOrgTitle As System.Collections.Generic.List(Of Decimal), ByVal sActive As String, ByVal log As Common.CommonBusiness.UserLog) As Boolean
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GET_JP_TO_TITLE", ReplyAction:="http://tempuri.org/IProfileBusiness/GET_JP_TO_TITLEResponse")>  _
-        Function GET_JP_TO_TITLE(ByVal P_ORG_ID As Decimal, ByVal P_TITLE_ID As Decimal, ByVal P_IS_THAYTHE As Decimal) As System.Data.DataSet
+        Function GET_JP_TO_TITLE(ByVal P_ORG_ID As Decimal, ByVal P_TITLE_ID As Decimal, ByVal P_IS_THAYTHE As Decimal, ByVal P_JOB As Decimal) As System.Data.DataSet
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ModifyWorkingBeforeEdit", ReplyAction:="http://tempuri.org/IProfileBusiness/ModifyWorkingBeforeEditResponse")>  _
         Function ModifyWorkingBeforeEdit(ByVal objWorkingBefore As ProfileBusiness.WorkingBeforeDTOEdit, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
@@ -55727,6 +55730,10 @@ Namespace ProfileBusiness
             Return MyBase.Channel.GET_HU_ASSET(P_EMP_ID)
         End Function
         
+        Public Function GET_JOB_EMP(ByVal P_EMP_ID As Decimal) As Integer Implements ProfileBusiness.IProfileBusiness.GET_JOB_EMP
+            Return MyBase.Channel.GET_JOB_EMP(P_EMP_ID)
+        End Function
+        
         Public Function ModifyCommendLevel(ByVal objCommendLevel As ProfileBusiness.CommendLevelDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean Implements ProfileBusiness.IProfileBusiness.ModifyCommendLevel
             Return MyBase.Channel.ModifyCommendLevel(objCommendLevel, log, gID)
         End Function
@@ -56063,8 +56070,8 @@ Namespace ProfileBusiness
             Return MyBase.Channel.ActiveJob(objOrgTitle, sActive, log)
         End Function
         
-        Public Function GET_JP_TO_TITLE(ByVal P_ORG_ID As Decimal, ByVal P_TITLE_ID As Decimal, ByVal P_IS_THAYTHE As Decimal) As System.Data.DataSet Implements ProfileBusiness.IProfileBusiness.GET_JP_TO_TITLE
-            Return MyBase.Channel.GET_JP_TO_TITLE(P_ORG_ID, P_TITLE_ID, P_IS_THAYTHE)
+        Public Function GET_JP_TO_TITLE(ByVal P_ORG_ID As Decimal, ByVal P_TITLE_ID As Decimal, ByVal P_IS_THAYTHE As Decimal, ByVal P_JOB As Decimal) As System.Data.DataSet Implements ProfileBusiness.IProfileBusiness.GET_JP_TO_TITLE
+            Return MyBase.Channel.GET_JP_TO_TITLE(P_ORG_ID, P_TITLE_ID, P_IS_THAYTHE, P_JOB)
         End Function
         
         Public Function ModifyWorkingBeforeEdit(ByVal objWorkingBefore As ProfileBusiness.WorkingBeforeDTOEdit, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean Implements ProfileBusiness.IProfileBusiness.ModifyWorkingBeforeEdit

@@ -2674,10 +2674,10 @@ Namespace ProfileBusiness.ServiceImplementations
             End Using
         End Function
 
-        Function GET_JP_TO_TITLE(ByVal P_ORG_ID As Decimal, ByVal P_TITLE_ID As Decimal, ByVal P_IS_THAYTHE As Decimal) As DataSet Implements ServiceContracts.IProfileBusiness.GET_JP_TO_TITLE
+        Function GET_JP_TO_TITLE(ByVal P_ORG_ID As Decimal, ByVal P_TITLE_ID As Decimal, ByVal P_IS_THAYTHE As Decimal, ByVal P_JOB As Decimal) As DataSet Implements ServiceContracts.IProfileBusiness.GET_JP_TO_TITLE
             Using rep As New ProfileRepository
                 Try
-                    Return rep.GET_JP_TO_TITLE(P_ORG_ID, P_TITLE_ID, P_IS_THAYTHE)
+                    Return rep.GET_JP_TO_TITLE(P_ORG_ID, P_TITLE_ID, P_IS_THAYTHE, P_JOB)
                 Catch ex As Exception
                     Throw ex
                 End Try
@@ -2727,6 +2727,16 @@ Namespace ProfileBusiness.ServiceImplementations
                     Return rep.GET_HU_ASSET(P_EMP_ID)
                 Catch ex As Exception
 
+                    Throw ex
+                End Try
+            End Using
+        End Function
+
+        Function GET_JOB_EMP(ByVal P_EMP_ID As Decimal) As Integer Implements ServiceContracts.IProfileBusiness.GET_JOB_EMP
+            Using rep As New ProfileRepository
+                Try
+                    Return rep.GET_JOB_EMP(P_EMP_ID)
+                Catch ex As Exception
                     Throw ex
                 End Try
             End Using

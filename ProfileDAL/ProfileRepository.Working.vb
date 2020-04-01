@@ -1201,7 +1201,10 @@ Partial Class ProfileRepository
                                  .SIGN_TITLE = p.SIGN_TITLE,
                                  .REMARK = p.REMARK,
                                  .EMP_REPLACE = p.EMP_REPLACE,
-                                 .EMP_REPLACE_NAME = er.FULLNAME_VN
+                                 .EMP_REPLACE_NAME = er.FULLNAME_VN,
+                                 .IS_HURTFUL = p.IS_HURTFUL,
+                                 .DECISION_TYPE_ID = p.DECISION_TYPE_ID,
+                                 .EFFECT_DH_DATE = p.EFFECT_DH_DATE
                                  }
 
                 Dim working = query.First()
@@ -1943,6 +1946,7 @@ Partial Class ProfileRepository
                 item.OBJECT_LABOR = objWorking.OBJECT_LABOR
                 item.JOB_POSITION = objWorking.JOB_POSITION
                 item.JOB_DESCRIPTION = objWorking.JOB_DESCRIPTION
+                item.IS_HAZARDOUS = objWorking.IS_HURTFUL
             End If
 
             Return True

@@ -31,7 +31,8 @@ Partial Class ProfileRepository
                              .OBJECT_ATTENDANCE = p.OBJECT_ATTENDANCE,
                              .OBJECT_LABOR = p.OBJECT_LABOR,
                              .JOB_POSITION = p.JOB_POSITION,
-                             .JOB_DESCRIPTION = p.JOB_DESCRIPTION
+                             .JOB_DESCRIPTION = p.JOB_DESCRIPTION,
+                             .IS_HURTFUL = p.IS_HURTFUL
                              }).ToList
 
             For i As Integer = 0 To query.Count - 1

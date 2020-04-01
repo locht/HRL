@@ -328,7 +328,7 @@ Public Class ctrlHU_ChangeInfoNewEdit
                     chkIsReplace.Checked = Working.IS_REPLACE
                     Dim DSdata As DataSet
                     Using rep1 As New ProfileRepository
-                        DSdata = rep1.GET_JP_TO_TITLE(hidOrg.Value, cboTitle.SelectedValue, chkIsReplace.Checked)
+                        DSdata = rep1.GET_JP_TO_TITLE(hidOrg.Value, cboTitle.SelectedValue, chkIsReplace.Checked, Working.JOB_POSITION)
                     End Using
 
                     If DSdata.Tables(0).Rows.Count > 0 Then
@@ -401,12 +401,7 @@ Public Class ctrlHU_ChangeInfoNewEdit
             Select Case CType(e.Item, RadToolBarButton).CommandName
                 Case CommonMessage.TOOLBARITEM_SAVE
                     If Page.IsValid Then
-                        If cboStatus.SelectedValue = 447 Then
-                            If txtUpload.Text = "" Then
-                                ShowMessage(Translate("Bạn phải đính kèm tập tin khi phê duyệt"), NotifyType.Warning)
-                                Exit Sub
-                            End If
-                        End If
+                       
                         If cboTitle.SelectedValue = "" Then
                             ShowMessage(Translate("Bạn phải chọn chức danh"), NotifyType.Warning)
                             cboTitle.Focus()
@@ -720,12 +715,31 @@ Public Class ctrlHU_ChangeInfoNewEdit
     Private Sub ctrlFindEmployeeRePopup_EmployeeSelected(ByVal sender As Object, ByVal e As System.EventArgs) Handles ctrlFindEmployeeRePopup.EmployeeSelected
         Dim startTime As DateTime = DateTime.UtcNow
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
-
+        Dim JobTemp As Integer
         Try
             Dim empRelace = ctrlFindEmployeeRePopup.SelectedEmployee(0)
             hidEmpRe.Value = empRelace.ID
             txtEmpReplace.Text = empRelace.FULLNAME_VN
-           
+
+            Dim DSdata As DataSet
+            Using rep As New ProfileRepository
+                DSdata = rep.GET_JP_TO_TITLE(empRelace.ORG_ID, empRelace.TITLE_ID, chkIsReplace.Checked, 0)
+                JobTemp = rep.GET_JOB_EMP(empRelace.ID)
+            End Using
+
+            If DSdata.Tables(0).Rows.Count > 0 Then
+                cboJobPosition.DataSource = DSdata.Tables(0)
+                cboJobPosition.DataTextField = "NAME"
+                cboJobPosition.DataValueField = "ID"
+                cboJobPosition.DataBind()
+            End If
+
+            If JobTemp <> 0 Then
+                cboJobPosition.SelectedValue = JobTemp
+            End If
+
+
+
             isLoadPopup = 0
 
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
@@ -1370,7 +1384,9 @@ Public Class ctrlHU_ChangeInfoNewEdit
                 txtEmployeeName.Text = obj.EMPLOYEE_NAME
                 txtTitleNameOld.Text = obj.TITLE_NAME
                 txtDecisionold.Text = obj.DECISION_NO
+                txtDecision.Text = obj.DECISION_NO
                 txtDecisionTypeOld.Text = obj.DECISION_TYPE_NAME
+                cboDecisionType.SelectedValue = obj.DECISION_TYPE_ID
                 txtOrgNameOld.Text = obj.ORG_NAME
                 rdEffectDateOld.SelectedDate = obj.EFFECT_DATE
                 rdExpireDateOld.SelectedDate = obj.EXPIRE_DATE
@@ -1389,6 +1405,17 @@ Public Class ctrlHU_ChangeInfoNewEdit
                     txtFileAttach_Link.Text = obj.FILENAME
                     txtFileAttach_Link1.Text = obj.ATTACH_FILE
                 End If
+
+                txtUploadFile.Text = obj.FILENAME
+                txtRemindLink.Text = If(obj.ATTACH_FILE Is Nothing, "", obj.ATTACH_FILE)
+                loadDatasource(txtUploadFile.Text)
+                FileOldName = If(FileOldName = "", txtUpload.Text, FileOldName)
+
+                chkIsHurtful.Checked = obj.IS_HURTFUL
+                If IsDate(obj.EFFECT_DH_DATE) Then
+                    rdEffectHdDate.SelectedDate = obj.EFFECT_DH_DATE
+                End If
+
                 Dim dtdata As DataTable = Nothing
                 If obj.ORG_ID IsNot Nothing Then
                     txtOrgName.Text = obj.ORG_NAME
@@ -1412,6 +1439,29 @@ Public Class ctrlHU_ChangeInfoNewEdit
                     cboDecisionType.SelectedValue = obj.DECISION_TYPE_ID
                     cboDecisionType.Text = obj.DECISION_TYPE_NAME
                 End If
+
+                ' them moi cac thong tin dieu chinh
+                Dim DSdata As DataSet
+                Using rep1 As New ProfileRepository
+                    DSdata = rep1.GET_JP_TO_TITLE(hidOrg.Value, cboTitle.SelectedValue, chkIsReplace.Checked, obj.JOB_POSITION)
+                End Using
+
+                If DSdata.Tables(0).Rows.Count > 0 Then
+                    cboJobPosition.DataSource = DSdata.Tables(0)
+                    cboJobPosition.DataTextField = "NAME"
+                    cboJobPosition.DataValueField = "ID"
+                    cboJobPosition.DataBind()
+                End If
+                cboJobPosition.SelectedValue = obj.JOB_POSITION
+
+                If DSdata.Tables(1).Rows.Count > 0 Then
+                    cboJobDescription.DataSource = DSdata.Tables(1)
+                    cboJobDescription.DataTextField = "NAME"
+                    cboJobDescription.DataValueField = "ID"
+                    cboJobDescription.DataBind()
+                End If
+                cboJobDescription.SelectedValue = obj.JOB_DESCRIPTION
+
             End Using
 
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
@@ -1459,7 +1509,7 @@ Public Class ctrlHU_ChangeInfoNewEdit
         Try
             Dim DSdata As DataSet
             Using rep As New ProfileRepository
-                DSdata = rep.GET_JP_TO_TITLE(hidOrg.Value, cboTitle.SelectedValue, chkIsReplace.Checked)
+                DSdata = rep.GET_JP_TO_TITLE(hidOrg.Value, cboTitle.SelectedValue, chkIsReplace.Checked, 0)
             End Using
 
             If DSdata.Tables(0).Rows.Count > 0 Then
@@ -1485,7 +1535,7 @@ Public Class ctrlHU_ChangeInfoNewEdit
         Try
             Dim DSdata As DataSet
             Using rep As New ProfileRepository
-                DSdata = rep.GET_JP_TO_TITLE(hidOrg.Value, cboTitle.SelectedValue, chkIsReplace.Checked)
+                DSdata = rep.GET_JP_TO_TITLE(hidOrg.Value, cboTitle.SelectedValue, chkIsReplace.Checked, 0)
             End Using
 
             If DSdata.Tables(0).Rows.Count > 0 Then
