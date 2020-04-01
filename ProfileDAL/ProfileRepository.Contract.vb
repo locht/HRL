@@ -768,7 +768,7 @@ Partial Class ProfileRepository
                         From e In Context.HU_EMPLOYEE.Where(Function(f) f.ID = p.EMPLOYEE_ID)
                         From o In Context.HU_ORGANIZATION.Where(Function(f) f.ID = p.ORG_ID).DefaultIfEmpty
                        From t In Context.HU_TITLE.Where(Function(f) p.TITLE_ID = f.ID).DefaultIfEmpty
-                       From ot In Context.OT_OTHER_LIST.Where(Function(f) p.TRAINNING_ID = f.ID)
+                       From ot In Context.OT_OTHER_LIST.Where(Function(f) p.TRAINNING_ID = f.ID).DefaultIfEmpty
             Where (p.ID = _filter.ID)
                         Select New TrainningForeignDTO With {.ID = p.ID,
                                                      .START_DATE = p.START_DATE,
