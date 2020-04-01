@@ -85,7 +85,7 @@
                     <asp:Label ID="lbContractType" runat="server" Text="<%$ Translate: Loại hợp đồng %>"></asp:Label>
                 </td>
                 <td>
-                    <tlk:RadComboBox ID="cboContractType" runat="server" CausesValidation="false">
+                    <tlk:RadComboBox ID="cboContractType" runat="server" AutoPostBack="True" CausesValidation="false">
                     </tlk:RadComboBox>
                     <asp:RequiredFieldValidator ID="reqContractType" ControlToValidate="cboContractType"
                         runat="server" ErrorMessage="<%$ Translate: Bạn phải chọn Loại hợp đồng. %>"

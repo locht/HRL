@@ -1386,8 +1386,18 @@ Public Class ctrlHU_ContractNewEdit
 
         End Select
     End Sub
+    Private Sub cboContractType_SelectedIndexChanged(sender As Object, e As Telerik.Web.UI.RadComboBoxSelectedIndexChangedEventArgs) Handles cboContractType.SelectedIndexChanged
+        Try
+            If cboContractType.Text = "Hợp đồng không xác định thời hạn" Then
+                rqExpireDate.Enabled = False
+            Else
+                rqExpireDate.Enabled = True
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
 #End Region
 
-
-
+  
 End Class
