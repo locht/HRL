@@ -1894,14 +1894,15 @@ Partial Class RecruitmentRepository
     Public Function ValidateInsertCandidate(ByVal sEmpCode As String, ByVal sID_No As String, ByVal sFullName As String, ByVal dBirthDate As Date, ByVal sType As String) As Boolean
         Try
             Select Case sType
+                'Quan edit NO_ID,BLACK_LIST,TERMINATE,WORKING 4 trường này của TamBT,case khác Tâm  check lại nhé
                 Case "NO_ID"
-                    If Not sID_No Is Nothing And sID_No <> "" And dBirthDate.ToString <> "" And sFullName <> "" Then
+                    If sID_No <> "" Or (dBirthDate.ToString <> "" And sFullName <> "") Then
                         Return ((From e In Context.RC_CANDIDATE
                          From cv In Context.RC_CANDIDATE_CV.Where(Function(f) f.CANDIDATE_ID = e.ID)
                         Where ((cv.ID_NO = sID_No) Or (cv.BIRTH_DATE = dBirthDate And e.FULLNAME_VN.ToUpper = sFullName.ToUpper))).Count = 0)
                     End If
                 Case "BLACK_LIST"
-                    If Not sID_No Is Nothing And sID_No <> "" And dBirthDate.ToString <> "" And sFullName <> "" Then
+                    If sID_No <> "" Or (dBirthDate.ToString <> "" And sFullName <> "") Then
                         Return ((From e In Context.RC_CANDIDATE
                          From cv In Context.RC_CANDIDATE_CV.Where(Function(f) f.CANDIDATE_ID = e.ID)
                         Where (cv.ID_NO = sID_No And e.IS_BLACKLIST = -1) Or (cv.BIRTH_DATE = dBirthDate And e.FULLNAME_VN.ToUpper = sFullName.ToUpper And e.IS_BLACKLIST = -1)).Count = 0)
@@ -1913,14 +1914,14 @@ Partial Class RecruitmentRepository
                         Where cv.BIRTH_DATE = dBirthDate And e.FULLNAME_VN.ToUpper = sFullName.ToUpper).Count = 0)
                     End If
                 Case "WORKING"
-                    If sID_No <> "" And sID_No IsNot Nothing And dBirthDate.ToString <> "" And sFullName <> "" Then
+                    If sID_No <> "" Or (dBirthDate.ToString <> "" And sFullName <> "") Then
 
                         Return ((From e In Context.HU_EMPLOYEE
                          From cv In Context.HU_EMPLOYEE_CV.Where(Function(f) f.EMPLOYEE_ID = e.ID)
                         Where (cv.BIRTH_DATE = dBirthDate And e.FULLNAME_VN.ToUpper = sFullName.ToUpper) Or (cv.ID_NO = sID_No)).Count = 0)
                     End If
                 Case "TERMINATE"
-                    If sID_No <> "" And sID_No IsNot Nothing And dBirthDate.ToString <> "" And sFullName <> "" Then
+                    If sID_No <> "" Or (dBirthDate.ToString <> "" And sFullName <> "") Then
                         Return ((From e In Context.HU_EMPLOYEE
                          From cv In Context.HU_EMPLOYEE_CV.Where(Function(f) f.EMPLOYEE_ID = e.ID)
                         Where ((cv.BIRTH_DATE = dBirthDate And e.FULLNAME_VN.ToUpper = sFullName.ToUpper) Or (cv.ID_NO = sID_No)) And e.WORK_STATUS = 257).Count = 0)
