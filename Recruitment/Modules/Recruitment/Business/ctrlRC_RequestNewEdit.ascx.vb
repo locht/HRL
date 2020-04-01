@@ -120,9 +120,9 @@ Public Class ctrlRC_RequestNewEdit
 
     Public Overrides Sub ViewInit(ByVal e As System.EventArgs)
         Me.MainToolBar = tbarMain
-        Common.Common.BuildToolbar(Me.MainToolBar, ToolbarItem.Save, ToolbarItem.Cancel, ToolbarItem.Seperator)
+        Common.Common.BuildToolbar(Me.MainToolBar, ToolbarItem.Save, ToolbarItem.Cancel)
         CType(MainToolBar.Items(0), RadToolBarButton).CausesValidation = True
-        CType(MainToolBar.Items(3), RadToolBarButton).Enabled = True
+        'CType(MainToolBar.Items(3), RadToolBarButton).Enabled = True
         Me.MainToolBar.OnClientButtonClicking = "clientButtonClicking"
         CType(Me.Page, AjaxPage).AjaxManager.ClientEvents.OnRequestStart = "onRequestStart"
         'SetGridFilter(rgE)
@@ -331,7 +331,6 @@ Public Class ctrlRC_RequestNewEdit
                     rdSendDate.AutoPostBack = True
 
                     Me.MainToolBar = tbarMain
-                    CType(MainToolBar.Items(3), RadToolBarButton).Enabled = False
             End Select
             'rgE.Rebind()
             'For Each i As GridItem In rgE.Items
@@ -709,6 +708,10 @@ Public Class ctrlRC_RequestNewEdit
         Catch ex As Exception
             Throw ex
         End Try
+    End Sub
+
+    Private Sub chkPlan_CheckedChanged(sender As Object, e As System.EventArgs) Handles chkPlan.CheckedChanged
+        LoadComboTitle()
     End Sub
 #End Region
 
@@ -1312,4 +1315,6 @@ Public Class ctrlRC_RequestNewEdit
 
 
     End Sub
+
+
 End Class

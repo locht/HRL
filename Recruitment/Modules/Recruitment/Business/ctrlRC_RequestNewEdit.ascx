@@ -48,7 +48,7 @@
                                 </asp:RequiredFieldValidator>
                             </td>
                             <td style="width: 150px" class="lb">
-                                <asp:CheckBox ID="chkPlan" runat="server" Text="<%$ Translate: Trong kế hoạch %>" />
+                                <asp:CheckBox ID="chkPlan" runat="server" AutoPostBack="true" CausesValidation="false" Text="<%$ Translate: Trong kế hoạch %>" />
                             </td>
                             <td class="lb" style="width: 150px">
                                 <%# Translate("Vị trí tuyển dụng")%><span class="lbReq">*</span>
