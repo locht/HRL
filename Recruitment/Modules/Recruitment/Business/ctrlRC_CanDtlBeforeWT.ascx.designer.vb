@@ -194,6 +194,15 @@ Partial Public Class ctrlRC_CanDtlBeforeWT
     Protected WithEvents rdTodate As Global.Telerik.Web.UI.RadDatePicker
 
     '''<summary>
+    '''RequiredFieldValidator4 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents RequiredFieldValidator4 As Global.System.Web.UI.WebControls.RequiredFieldValidator
+
+    '''<summary>
     '''cval_EffectDate_ExpireDate control.
     '''</summary>
     '''<remarks>

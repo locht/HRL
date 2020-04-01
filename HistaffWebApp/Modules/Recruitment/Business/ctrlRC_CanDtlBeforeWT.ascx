@@ -18,7 +18,7 @@
         <table class="table-form" style="padding-left: 32px">
             <tr>
                 <td style="text-align: left" class="lb">
-                    <%# Translate("Tên công ty")%><%--<span class="lbReq">*</span>--%>
+                    <%# Translate("Tên công ty")%><span class="lbReq">*</span>
                 </td>
                 <td>
                     <tlk:RadTextBox runat="server" ID="txtOrgname">
@@ -27,7 +27,7 @@
                         runat="server" ErrorMessage="<%$ Translate: Bạn phải nhập tên công ty %>" ToolTip="<%$ Translate: Bạn phải nhập tên công ty %>"> </asp:RequiredFieldValidator>
                 </td>
                  <td style="text-align: left" class="lb">
-                    <%# Translate("Chức danh")%><%--<span class="lbReq">*</span>--%>
+                    <%# Translate("Chức danh")%><span class="lbReq">*</span>
                 </td>
                 <td>
                     <tlk:RadTextBox runat="server" ID="txtTitlename">
@@ -46,7 +46,7 @@
             </tr>
             <tr>
                 <td style="text-align: left" class="lb">
-                    <%# Translate("Địa chỉ công ty ")%><%--<span class="lbReq">*</span>--%>
+                    <%# Translate("Địa chỉ công ty ")%><span class="lbReq">*</span>
                 </td>
                 <td colspan="3">
                     <tlk:RadTextBox runat="server" ID="txtOrgAddress" Width ="100%">
@@ -76,7 +76,7 @@
             <tr>
                 <td style="text-align: left" class="lb">
                     <%# Translate("Từ tháng/năm")%>
-                    <%--<span class="lbReq">*</span>--%>
+                    <span class="lbReq">*</span>
                 </td>
                 <td>
                     <tlk:RadDatePicker ID="rdFromdate" DateInput-DisplayDateFormat="MM/yyyy" runat="server">
@@ -85,11 +85,13 @@
                         ErrorMessage="<%$ Translate: Bạn phải nhập ngày vào. %>" ToolTip="<%$ Translate: Bạn phải nhập ngày vào %>"> </asp:RequiredFieldValidator>
                 </td>
                 <td style="text-align: left" class="lb">
-                    <%# Translate("Đến tháng/năm")%><%--<span class="lbReq">*</span>--%>
+                    <%# Translate("Đến tháng/năm")%><span class="lbReq">*</span>
                 </td>
                 <td>
                     <tlk:RadDatePicker ID="rdTodate" runat="server" DateInput-DisplayDateFormat="MM/yyyy">
                     </tlk:RadDatePicker>
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator4" ControlToValidate="rdTodate" runat="server"
+                        ErrorMessage="<%$ Translate: Bạn phải nhập ngày kết thúc. %>" ToolTip="<%$ Translate: Bạn phải nhập ngày kết thúc %>"> </asp:RequiredFieldValidator>
                     <asp:CustomValidator ID="cval_EffectDate_ExpireDate" runat="server" ErrorMessage="<%$ Translate:  Ngày nghỉ phải lớn hơn ngày vào. %>"
                         ToolTip="<%$ Translate: Ngày nghỉ phải lớn hơn ngày vào. %>">
                     </asp:CustomValidator>
