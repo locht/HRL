@@ -182,14 +182,9 @@ Public Class ctrlHU_TrainingForeignNewEdit
                         txtTITLE.Text = Contract.TITLE_NAME
                         txtOrg_Name.Text = Contract.ORG_NAME
                         txtContent.Text = Contract.CONTENT
-                        txtLocation.Text = Contract.LOCATION
                         txtDecisionNo.Text = Contract.DECISION_NO
                         rdStartDate.SelectedDate = Contract.START_DATE
                         rdExpireDate.SelectedDate = Contract.EXPIRE_DATE
-                        rdSignDate.SelectedDate = Contract.SIGN_DATE
-                        If Contract.TRAINNING_ID IsNot Nothing Then
-                            cboContractType.Text = Contract.TRAINNING_NAME
-                        End If
                     End If
                 Case "NormalView"
                     CurrentState = CommonMessage.STATE_NEW
@@ -234,16 +229,11 @@ Public Class ctrlHU_TrainingForeignNewEdit
                         Dim employee = rep.GetEmployeeByID(Decimal.Parse(hidEmployeeID.Value))
                         objContract.EMPLOYEE_ID = Decimal.Parse(hidEmployeeID.Value)
                         objContract.EXPIRE_DATE = rdExpireDate.SelectedDate
-                        objContract.SIGN_DATE = rdSignDate.SelectedDate
                         objContract.START_DATE = rdStartDate.SelectedDate
                         objContract.ORG_ID = employee.ORG_ID
                         objContract.TITLE_ID = employee.TITLE_ID
                         objContract.CONTENT = txtContent.Text
-                        objContract.LOCATION = txtLocation.Text
                         objContract.DECISION_NO = txtDecisionNo.Text
-                        If cboContractType.SelectedValue <> "" Then
-                            objContract.TRAINNING_ID = cboContractType.SelectedValue
-                        End If
                         Select Case CurrentState
                             Case CommonMessage.STATE_NEW
                                 If rep.InsertTrainingForeign(objContract, gID) Then
@@ -321,42 +311,7 @@ Public Class ctrlHU_TrainingForeignNewEdit
         End Try
 
     End Sub
-    ''' <summary>
-    ''' Xu ly su kien click vao button btnSigner
-    ''' Hien thi popup co isLoadPopup = 2 khi click vao button
-    ''' Cap nhat lai trang thai cac control tren page hien tai
-    ''' </summary>
-    ''' <param name="sender"></param>
-    ''' <param name="e"></param>
-    ''' <remarks></remarks>
-    '' <lastupdate>
-    '' 06/07/2017 17:44
-    '' </lastupdate>
-    '' <summary>
-    '' Xu ly su kien click khi click vao button btnSalary
-    '' Hien thi popup voi isLoadPopup = 3
-    '' Cap nhat lai trang thai cac control tren page
-    '' </summary>
-    '' <param name="sender"></param>
-    '' <param name="e"></param>
-    '' <remarks></remarks>
-    'Protected Sub btnSalary_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnSalary.Click
-    '    Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
-    '    Try
-    '        Dim startTime As DateTime = DateTime.UtcNow
-    '        If hidEmployeeID.Value = "" Then
-    '            ShowMessage(Translate("Bạn phải chọn nhân viên."), NotifyType.Warning)
-    '            Exit Sub
-    '        End If
-    '        isLoadPopup = 3
-    '        UpdateControlState()
-    '        ' LoadPopup(3)
-    '        _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
-    '    Catch ex As Exception
-    '        DisplayException(Me.ViewName, Me.ID, ex)
-    '        _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
-    '    End Try
-    'End Sub
+   
     ''' <lastupdate>
     ''' 06/07/2017 17:48
     ''' </lastupdate>
@@ -450,45 +405,7 @@ Public Class ctrlHU_TrainingForeignNewEdit
             _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
         End Try
     End Sub
-    ''' <lastupdate>
-    ''' 06/07/2017 17:53
-    ''' </lastupdate>
-    ''' <summary>
-    ''' Xu ly su kien selectedIndexChanged cua control cboContractType
-    ''' </summary>
-    ''' <param name="sender"></param>
-    ''' <param name="e"></param>
-    ''' <remarks></remarks>
-    'Protected Sub cboContractType_SelectedIndexChanged(ByVal sender As Object, ByVal e As Telerik.Web.UI.RadComboBoxSelectedIndexChangedEventArgs) Handles cboContractType.SelectedIndexChanged
-    '    Dim item As New ContractTypeDTO
-    '    Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
-    '    Try
-    '        Dim startTime As DateTime = DateTime.UtcNow
-    '        If rdStartDate.SelectedDate IsNot Nothing Then
-
-    '            Dim dExpire As Date = rdStartDate.SelectedDate
-    '            item = (From p In ListComboData.LIST_CONTRACTTYPE Where p.ID = Decimal.Parse(cboContractType.SelectedValue)).SingleOrDefault
-    '            If item IsNot Nothing Then
-    '                hidPeriod.Value = item.PERIOD
-    '            End If
-
-    '            If CType(hidPeriod.Value, Double) = 0 Then
-    '                rdExpireDate.SelectedDate = Nothing
-    '            Else
-    '                dExpire = dExpire.AddMonths(CType(hidPeriod.Value, Double))
-    '                rdExpireDate.SelectedDate = dExpire
-    '            End If
-    '        End If
-
-    '        Dim employeeId As Double = 0
-    '        Double.TryParse(hidEmployeeID.Value, employeeId)
-    '        'txtContractNo.Text = CreateDynamicContractNo(employeeId)
-    '        _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
-    '    Catch ex As Exception
-    '        DisplayException(Me.ViewName, Me.ID, ex)
-    '        _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
-    '    End Try
-    'End Sub
+  
     ''' <lastupdate>
     ''' 06/07/2017 17:53
     ''' </lastupdate>
@@ -598,8 +515,7 @@ Public Class ctrlHU_TrainingForeignNewEdit
         Dim rep As New ProfileRepository
         ListComboData = New ComboBoxDataDTO
         ListComboData.GET_TYPE_WORK = True
-        rep.GetComboList(ListComboData)
-        FillDropDownList(cboContractType, ListComboData.LIST_TYPE_WORK, "NAME_VN", "ID", Common.Common.SystemLanguage, False)
+        
         rep.Dispose()
     End Sub
     ''' <lastupdate>
@@ -617,7 +533,6 @@ Public Class ctrlHU_TrainingForeignNewEdit
             Dim startTime As DateTime = DateTime.UtcNow
 
             If CurrentState Is Nothing Then
-                cboContractType.AutoPostBack = True
                 If Request.Params("IDSelect") IsNot Nothing Then
                     hidID.Value = Request.Params("IDSelect")
                     Refresh("UpdateView")
@@ -667,12 +582,10 @@ Public Class ctrlHU_TrainingForeignNewEdit
                 txtEmployeeCode.Text = item.EMPLOYEE_CODE
                 txtEmployeeName.Text = item.FULLNAME_VN
                 txtTITLE.Text = item.TITLE_NAME_VN
-                'txtSTAFF_RANK.Text = item.STAFF_RANK_NAME
                 txtOrg_Name.Text = item.ORG_NAME
                 Dim employeeId As Double = 0
                 Double.TryParse(hidEmployeeID.Value, employeeId)
-                'txtContractNo.Text = CreateDynamicContractNo(employeeId)
-                ClearControlValue(rdStartDate, rdSignDate)
+                ClearControlValue(rdStartDate)
             End Using
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
@@ -680,41 +593,7 @@ Public Class ctrlHU_TrainingForeignNewEdit
             _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
         End Try
     End Sub
-    ''' <lastupdate>
-    ''' 06/07/2017 17:53
-    ''' </lastupdate>
-    ''' <summary>
-    ''' Phương thức xử lý việc tạo số hợp đồng một cách tự động
-    ''' </summary>
-    ''' <remarks></remarks>
-    Private Function CreateDynamicContractNo(ByVal empId As Double) As String
-        If empId < 1 Then
-            Return String.Empty
-        End If
-        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
-        Dim startTime As DateTime = DateTime.UtcNow
-        Try
-            If CurrentState = CommonMessage.STATE_NORMAL Or
-                CurrentState Is Nothing Or
-                 String.IsNullOrWhiteSpace(cboContractType.SelectedValue) Then
-                Return String.Empty
-            End If
-            Using rep As New ProfileBusinessRepository
-                Return rep.CreateContractNo(New ContractDTO With {
-                                                       .START_DATE = rdStartDate.SelectedDate,
-                                                       .ORG_CODE = hidOrgCode.Value,
-                                                       .EMPLOYEE_ID = empId,
-                                                       .EMPLOYEE_CODE = txtEmployeeCode.Text,
-                                                       .CONTRACTTYPE_ID = cboContractType.SelectedValue
-                                                       })
-            End Using
-            _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
-        Catch ex As Exception
-            DisplayException(ViewName, ID, ex)
-            _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
-            Return String.Empty
-        End Try
-    End Function
+   
     ''' <lastupdate>
     ''' 06/07/2017 17:53
     ''' </lastupdate>

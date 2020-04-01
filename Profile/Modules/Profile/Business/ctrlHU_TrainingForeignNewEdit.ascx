@@ -20,14 +20,13 @@
                 <td class="item-head" colspan="6">
                     <b>
                         <%# Translate("Thông tin đi công tác")%>
-                     </b>
+                    </b>
                     <hr />
                 </td>
             </tr>
             <tr>
-                <td class="lb"  style="width: 200px">
+                <td class="lb" style="width: 200px">
                     <asp:Label ID="lbEmployeeCode" runat="server" Text="Mã nhân viên"></asp:Label>
-                    
                 </td>
                 <td>
                     <tlk:RadTextBox ID="txtEmployeeCode" SkinID="ReadOnly" runat="server" Width="130px"
@@ -56,19 +55,43 @@
             </tr>
             <tr>
                 <td class="lb">
-                    <asp:Label ID="lbOrg_Name" runat="server" Text="Đơn vị"></asp:Label>
+                    <asp:Label ID="lbBranch" runat="server" Text="Chi nhánh / Khối"></asp:Label>
+                </td>
+                <td>
+                    <tlk:RadTextBox ID="txtBranch" runat="server" ReadOnly="True" SkinID="ReadOnly">
+                    </tlk:RadTextBox>
+                </td>
+                <td class="lb">
+                    <asp:Label ID="lbOrg_Name" runat="server" Text="Phòng"></asp:Label>
                 </td>
                 <td>
                     <tlk:RadTextBox ID="txtOrg_Name" runat="server" ReadOnly="True" SkinID="ReadOnly">
                     </tlk:RadTextBox>
                 </td>
-         
                 <td class="lb">
-                    <asp:Label ID="lbStartDate" runat="server" Text="Ngày đi công tác"></asp:Label>
-                    
+                    <asp:Label ID="lbBan" runat="server" Text="Ban"></asp:Label>
                 </td>
                 <td>
-                    <tlk:RadDatePicker ID="rdStartDate" runat="server" AutoPostBack="True">
+                    <tlk:RadTextBox ID="txtBan" runat="server" ReadOnly="True" SkinID="ReadOnly">
+                    </tlk:RadTextBox>
+                </td>
+            </tr>
+            <tr>
+                <td class="lb">
+                    <asp:Label ID="lbDecisionNo" runat="server" Text="Số quyết định"></asp:Label>
+                    <span class="lbReq">*</span>
+                </td>
+                <td>
+                    <tlk:RadTextBox ID="txtDecisionNo" runat="server">
+                    </tlk:RadTextBox>
+                    <asp:RequiredFieldValidator ID="rqDecisionNo" ControlToValidate="txtDecisionNo" runat="server"
+                        ErrorMessage="Bạn phải nhập Số quyết định." ToolTip="Bạn phải nhập Số quyết định."> </asp:RequiredFieldValidator>
+                </td>
+                <td class="lb">
+                    <asp:Label ID="lbStartDate" runat="server" Text="Từ ngày"></asp:Label>
+                </td>
+                <td>
+                    <tlk:RadDatePicker ID="rdStartDate" runat="server">
                     </tlk:RadDatePicker>
                     <asp:RequiredFieldValidator ID="reqStartDate" ControlToValidate="rdStartDate" runat="server"
                         ErrorMessage="<%$ Translate: Bạn phải nhập ngày bắt đầu. %>" ToolTip="Bạn phải nhập ngày bắt đầu."> </asp:RequiredFieldValidator>
@@ -77,57 +100,156 @@
                     </asp:CustomValidator>
                 </td>
                 <td class="lb">
-                    <asp:Label ID="lbExpireDate" runat="server" Text="Ngày về"></asp:Label>
-                     
+                    <asp:Label ID="lbExpireDate" runat="server" Text="Đến ngày"></asp:Label>
+                    <span class="lbReq">*</span>
                 </td>
                 <td>
                     <tlk:RadDatePicker ID="rdExpireDate" runat="server">
                     </tlk:RadDatePicker>
+                    <asp:RequiredFieldValidator ID="rqExpireDate" ControlToValidate="rdExpireDate" runat="server"
+                        ErrorMessage="Bạn phải nhập kết thúc." ToolTip="Bạn phải nhập ngày kết thúc."> </asp:RequiredFieldValidator>
                     <asp:CompareValidator ID="CompareValidator2" runat="server" ControlToValidate="rdExpireDate"
                         Type="Date" ControlToCompare="rdStartDate" Operator="GreaterThanEqual" ErrorMessage="Ngày kết thúc phải lớn hơn ngày bắt đầu"
                         ToolTip="Ngày kết thúc phải lớn hơn ngày bắt đầu"></asp:CompareValidator>
                 </td>
-              </tr>
+            </tr>
             <tr>
-              <td class="lb">
-                   <asp:Label ID="lbDecisionNo" runat="server" Text="Số quyết định"></asp:Label>
+                <td class="lb">
+                    <asp:Label ID="lbPlaceFrom" runat="server" Text="Nơi đi"></asp:Label>
+                    <span class="lbReq">*</span>
                 </td>
                 <td>
-                    <tlk:RadTextBox ID="txtDecisionNo" runat="server" >
+                    <tlk:RadTextBox runat="server" ID="txtPlaceFrom">
+                    </tlk:RadTextBox>
+                    <asp:RequiredFieldValidator ID="rqPlaceFrom" ControlToValidate="txtPlaceFrom" runat="server"
+                        ErrorMessage="Bạn phải nhập Nơi đi." ToolTip="Bạn phải nhập Nơi đi."> </asp:RequiredFieldValidator>
+                </td>
+                <td class="lb">
+                    <asp:Label ID="lbPlaceTo" runat="server" Text="Nơi đến"></asp:Label>
+                    <span class="lbReq">*</span>
+                </td>
+                <td>
+                    <tlk:RadTextBox runat="server" ID="txtPlaceTo">
+                    </tlk:RadTextBox>
+                    <asp:RequiredFieldValidator ID="rqPlaceTo" ControlToValidate="txtPlaceTo" runat="server"
+                        ErrorMessage="Bạn phải nhập kết thúc." ToolTip="Bạn phải nhập ngày kết thúc."> </asp:RequiredFieldValidator>
+                </td>
+                <td class="lb">
+                    <asp:Label ID="lbTypeVisa" runat="server" Text="Loại Visa"></asp:Label>
+                </td>
+                <td>
+                    <tlk:RadComboBox runat="server" ID="cboTypeVisa">
+                    </tlk:RadComboBox>
+                </td>
+            </tr>
+            <tr>
+                <td class="lb">
+                    <asp:Label ID="lvNumberVisa" runat="server" Text="Số Visa"></asp:Label>
+                </td>
+                <td>
+                    <tlk:RadTextBox runat="server" ID="txtNumberVisa">
                     </tlk:RadTextBox>
                 </td>
                 <td class="lb">
-                    <asp:Label ID="lbContractType" runat="server" Text="Loại công tác"></asp:Label>
-                   
+                    <asp:Label ID="lbDateCap" runat="server" Text="Ngày cấp visa"></asp:Label>
                 </td>
                 <td>
-                    <tlk:RadComboBox ID="cboContractType" runat="server" AutoPostBack="true" CausesValidation="false">
-                    </tlk:RadComboBox>
-                 
+                    <tlk:RadDatePicker runat="server" ID="rdDateCap">
+                    </tlk:RadDatePicker>
                 </td>
                 <td class="lb">
-                    <asp:Label ID="lbSignDate" runat="server" Text="Ngày ký"></asp:Label>
+                    <asp:Label ID="lbDateHH" runat="server" Text="Ngày hết hạn visa"></asp:Label>
                 </td>
                 <td>
-                    <tlk:RadDatePicker ID="rdSignDate" runat="server">
+                    <tlk:RadDatePicker runat="server" ID="rdDateHH">
                     </tlk:RadDatePicker>
                 </td>
             </tr>
             <tr>
                 <td class="lb">
-                    <asp:Label ID="lbContent" runat="server" Text="Nội dung"></asp:Label>
+                    <asp:Label ID="lbPlace" runat="server" Text="Nơi cấp"></asp:Label>
+                </td>
+                <td>
+                    <tlk:RadTextBox runat="server" ID="txtPlace">
+                    </tlk:RadTextBox>
+                </td>
+                <td class="lb">
+                    <asp:Label ID="lbCost" runat="server" Text="Chi phí xin Visa"></asp:Label>
+                </td>
+                <td>
+                    <tlk:RadNumericTextBox runat="server" ID="rnCost">
+                    </tlk:RadNumericTextBox>
+                </td>
+                <td class="lb">
+                    <asp:Label ID="lbNumberDate" runat="server" Text="Số ngày ở lại"></asp:Label>
+                    <span class="lbReq">*</span>
+                </td>
+                <td>
+                    <tlk:RadNumericTextBox runat="server" ID="rnNumberDate" ReadOnly="true">
+                    </tlk:RadNumericTextBox>
+                    <asp:RequiredFieldValidator ID="rqNumberDate" ControlToValidate="rnNumberDate" runat="server"
+                        ErrorMessage="Bạn phải nhập Số ngày ở lại." ToolTip="Bạn phải nhập Số ngày ở lại."> </asp:RequiredFieldValidator>
+                </td>
+            </tr>
+            <tr>
+                <td class="lb">
+                    <asp:Label ID="lbCostKH" runat="server" Text="Chi phí tiếp khách"></asp:Label>
+                </td>
+                <td>
+                    <tlk:RadNumericTextBox runat="server" ID="rnCostKH">
+                    </tlk:RadNumericTextBox>
+                </td>
+                <td class="lb">
+                    <asp:Label ID="lbCostWork" runat="server" Text="Công tác phí"></asp:Label>
+                </td>
+                <td>
+                    <tlk:RadNumericTextBox runat="server" ID="rnCostWork">
+                    </tlk:RadNumericTextBox>
+                </td>
+                <td class="lb">
+                    <asp:Label ID="lbCostHotel" runat="server" Text="Chi phí khách sạn"></asp:Label>
+                </td>
+                <td>
+                    <tlk:RadNumericTextBox runat="server" ID="rnCostHotel">
+                    </tlk:RadNumericTextBox>
+                </td>
+            </tr>
+            <tr>
+                <td class="lb">
+                    <asp:Label ID="lbCostAnother" runat="server" Text="Chi phí khác"></asp:Label>
+                </td>
+                <td>
+                    <tlk:RadNumericTextBox runat="server" ID="rnCostAnother">
+                    </tlk:RadNumericTextBox>
+                </td>
+                <td class="lb">
+                    <asp:Label ID="lbCostGo" runat="server" Text="Chi phí đi lại"></asp:Label>
+                </td>
+                <td>
+                    <tlk:RadNumericTextBox runat="server" ID="rnCostGo">
+                    </tlk:RadNumericTextBox>
+                </td>
+                <td class="lb">
+                </td>
+                <td>
+                    <asp:CheckBox runat="server" ID="chkCostWork" Text="Có tính công tác phí hay không" />
+                </td>
+            </tr>
+            <tr>
+                <td class="lb">
+                    <asp:Label ID="lbSum" runat="server" Text="Tổng chi phí"></asp:Label>
+                </td>
+                <td>
+                    <tlk:RadNumericTextBox runat="server" ID="rnSumCost" ReadOnly="true">
+                    </tlk:RadNumericTextBox>
+                </td>
+            </tr>
+            <tr>
+                <td class="lb">
+                    <asp:Label ID="lbContent" runat="server" Text="Ghi chú"></asp:Label>
                 </td>
                 <td colspan="5">
                     <tlk:RadTextBox ID="txtContent" SkinID="Textbox1023" runat="server" Width="100%">
-                    </tlk:RadTextBox>
-                </td>
-                </tr>
-                <tr>
-                 <td class="lb">
-                   <asp:Label ID="lbtxtLocation" runat="server" Text="Địa điểm"></asp:Label>
-                </td>
-                <td colspan="5">
-                    <tlk:RadTextBox ID="txtLocation" SkinID="Textbox1023" runat="server" Width="100%">
                     </tlk:RadTextBox>
                 </td>
             </tr>
@@ -143,10 +265,7 @@
             registerOnfocusOut('RAD_SPLITTER_ctl00_MainContent_ctrlHU_ContractNewEdit_RadSplitter1');
         });
 
-        function cusContractType(oSrc, args) {
-            var cbo = $find("<%# cboContractType.ClientID%>");
-            args.IsValid = (cbo.get_value().length != 0);
-        }
+       
         //mandatory for the RadWindow dialogs functionality
         function getRadWindow() {
             if (window.radWindow) {

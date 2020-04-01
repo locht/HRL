@@ -14,7 +14,14 @@ Public Class ctrlRC_ImportCV
     Public WithEvents AjaxManager As RadAjaxManager
     Public Property AjaxManagerId As String
 #Region "Property"
-
+    Property checkOut As Decimal
+        Get
+            Return ViewState(Me.ID & "_checkOut")
+        End Get
+        Set(ByVal value As Decimal)
+            ViewState(Me.ID & "_checkOut") = value
+        End Set
+    End Property
     Property IsLoad As Boolean
         Get
             Return ViewState(Me.ID & "_IsLoad")
@@ -732,6 +739,9 @@ Public Class ctrlRC_ImportCV
 
 
             TableMapping(dtData, dtFile)
+            If checkOut = 1 Then
+                Exit Sub
+            End If
             CreateCanImportCV(dtData)
             'End If
             Dim userlog = LogHelper.GetUserLog
@@ -749,168 +759,183 @@ Public Class ctrlRC_ImportCV
         End Try
     End Sub
     Private Sub TableMapping(ByVal dtTemp As System.Data.DataTable, ByVal dtFile As System.Data.DataTable)
-        ' lấy dữ liệu thô từ excel vào và tinh chỉnh dữ liệu
-        dtTemp.Columns(0).ColumnName = "STT"
-        dtTemp.Columns(1).ColumnName = "FIRST_NAME"
-        dtTemp.Columns(2).ColumnName = "LAST_NAME"
-        dtTemp.Columns(3).ColumnName = "FULLNAME_VN"
-        dtTemp.Columns(4).ColumnName = "BIRTH_DAY"
-        dtTemp.Columns(5).ColumnName = "GENDER"
-        dtTemp.Columns(6).ColumnName = "GENDER_ID"
-        dtTemp.Columns(7).ColumnName = "PHONE"
-        dtTemp.Columns(8).ColumnName = "EMAIL"
-        dtTemp.Columns(9).ColumnName = "MAJOR"
-        dtTemp.Columns(10).ColumnName = "MAJOR_ID"
-        dtTemp.Columns(11).ColumnName = "SCHOOL"
-        dtTemp.Columns(12).ColumnName = "SCHOOL_ID"
-        dtTemp.Columns(13).ColumnName = "TDVH"
-        dtTemp.Columns(14).ColumnName = "TDVH_ID"
-        dtTemp.Columns(15).ColumnName = "ID_NO"
-        dtTemp.Columns(16).ColumnName = "DATE_NC"
-        dtTemp.Columns(17).ColumnName = "PROVINCE"
-        dtTemp.Columns(18).ColumnName = "PROVINCE_ID"
-        dtTemp.Columns(19).ColumnName = "RELIGION"
-        dtTemp.Columns(20).ColumnName = "RELIGION_ID"
-        dtTemp.Columns(21).ColumnName = "NATION"
-        dtTemp.Columns(22).ColumnName = "NATION_ID"
-        dtTemp.Columns(23).ColumnName = "DT"
-        dtTemp.Columns(24).ColumnName = "DT_ID"
-        'XOA DONG TIEU DE VA HEADER
-        dtTemp.Rows(0).Delete()
-        dtTemp.Rows(0).Delete()
-        dtTemp.Rows(0).Delete()
-        ' add Log
-        Dim _error As Boolean = True
-        Dim count As Integer
-        Dim newRow As DataRow
-        Dim dsEMP As DataTable
-        'XOA NHUNG DONG DU LIEU NULL STT
-        Dim rowDel As DataRow
-        For i As Integer = 0 To dtTemp.Rows.Count - 1
-            If dtTemp.Rows(i).RowState = DataRowState.Deleted OrElse dtTemp.Rows(i).RowState = DataRowState.Detached Then Continue For
-            rowDel = dtTemp.Rows(i)
-            If rowDel("STT").ToString.Trim = "" Then
-                dtTemp.Rows(i).Delete()
-            End If
-        Next
-        Dim sError As String = ""
-        Dim iFile As Integer = 1
-        Dim sFile_Name As String = ""
-        For Each rF As DataRow In dtFile.Rows
-            If rF("ID") = iFile Then
-                sFile_Name = rF("FILENAME").ToString
-                Exit For
-            End If
-        Next
-        Dim Is_Er_IDNO As Boolean = False
-        For Each rows As DataRow In dtTemp.Rows
-            If rows.RowState = DataRowState.Deleted OrElse rows.RowState = DataRowState.Detached Then Continue For
-            newRow = dtError.NewRow
-            newRow("STT") = count + 1
-            'Dim IsCMND As Boolean = False
-            'If IsCMND = False Then
-            '    Dim rep As New RecruitmentRepository
-            '    If rows("ID_NO").ToString = "" Then
-            '        Dim isValid = rep.ValidateInsertCandidate("", rows("ID_NO"), "", Date.Now, "BLACK_LIST")
-            '        If Not isValid Then
-            '            rows("ERROR") = rows("ERROR") + "Ứng viên thuộc danh sách đen,"
-            '            rows("FILE_NAME") = sFile_Name
-            '        End If
-            '    End If
-            '    Dim check As Integer = 0
-            '    check = rep.CheckExitID_NO(rows("ID_NO"), 0)
-            '    If check = 1 Then
-            '        rows("ERROR") = "Ứng viên đã là nhân viên,"
-            '        sError = "Ứng viên đã là nhân viên,"
-            '        rows("FILE_NAME") = sFile_Name
-            '        Is_Er_IDNO = True
-            '        rows("IS_CMND") = 1
-            '    End If
-            '    If check = 2 Then
-            '        rows("ERROR") = "Ứng viên là nhân viên đã nghỉ việc,"
-            '        sError = "Ứng viên là nhân viên đã nghỉ việc,"
-            '        rows("FILE_NAME") = sFile_Name
-            '        Is_Er_IDNO = True
-            '        rows("IS_CMND") = 2
-            '    End If
-            '    If check = 3 Then
-            '        rows("ERROR") = "Ứng viên đã từng ứng tuyển,"
-            '        sError = "Ứng viên đã từng ứng tuyển,"
-            '        rows("FILE_NAME") = sFile_Name
-            '        Is_Er_IDNO = True
-            '        rows("IS_CMND") = 3
-            '    End If
-            'End If
-            'nếu ngày sinh k đúng định dạng thì k check ứng viên đã làm việc hay thuộc blacklist vì sai dl đầu vào
-            Dim rep As New RecruitmentRepository
-            If rows("BIRTH_DAY").ToString = "" OrElse CheckDate(rows("BIRTH_DAY")) = False Then
-                rows("ERROR") = rows("ERROR") + "Ngày sinh không đúng định dạng,"
-                rows("FILE_NAME") = sFile_Name
-            Else
-                If Not rep.ValidateInsertCandidate("", rows("ID_NO"), rows("FULLNAME_VN"), rows("BIRTH_DAY"), "NO_ID") Then
-                    rows("ERROR") = rows("ERROR") + "Ứng viên đang tồn tại trong một chương trình tuyển dụng khác,"
+        Try
+
+            ' lấy dữ liệu thô từ excel vào và tinh chỉnh dữ liệu
+            dtTemp.Columns(0).ColumnName = "STT"
+            dtTemp.Columns(1).ColumnName = "FIRST_NAME"
+            dtTemp.Columns(2).ColumnName = "LAST_NAME"
+            dtTemp.Columns(3).ColumnName = "FULLNAME_VN"
+            dtTemp.Columns(4).ColumnName = "BIRTH_DAY"
+            dtTemp.Columns(5).ColumnName = "GENDER"
+            dtTemp.Columns(6).ColumnName = "GENDER_ID"
+            dtTemp.Columns(7).ColumnName = "PHONE"
+            dtTemp.Columns(8).ColumnName = "EMAIL"
+            dtTemp.Columns(9).ColumnName = "MAJOR"
+            dtTemp.Columns(10).ColumnName = "MAJOR_ID"
+            dtTemp.Columns(11).ColumnName = "SCHOOL"
+            dtTemp.Columns(12).ColumnName = "SCHOOL_ID"
+            dtTemp.Columns(13).ColumnName = "TDVH"
+            dtTemp.Columns(14).ColumnName = "TDVH_ID"
+            dtTemp.Columns(15).ColumnName = "ID_NO"
+            dtTemp.Columns(16).ColumnName = "DATE_NC"
+            dtTemp.Columns(17).ColumnName = "PROVINCE"
+            dtTemp.Columns(18).ColumnName = "PROVINCE_ID"
+            dtTemp.Columns(19).ColumnName = "RELIGION"
+            dtTemp.Columns(20).ColumnName = "RELIGION_ID"
+            dtTemp.Columns(21).ColumnName = "NATION"
+            dtTemp.Columns(22).ColumnName = "NATION_ID"
+            dtTemp.Columns(23).ColumnName = "DT"
+            dtTemp.Columns(24).ColumnName = "DT_ID"
+            'XOA DONG TIEU DE VA HEADER
+            dtTemp.Rows(0).Delete()
+            dtTemp.Rows(0).Delete()
+            dtTemp.Rows(0).Delete()
+            ' add Log
+            Dim _error As Boolean = True
+            Dim count As Integer
+            Dim newRow As DataRow
+            Dim dsEMP As DataTable
+            'XOA NHUNG DONG DU LIEU NULL STT
+            Dim rowDel As DataRow
+            For i As Integer = 0 To dtTemp.Rows.Count - 1
+                If dtTemp.Rows(i).RowState = DataRowState.Deleted OrElse dtTemp.Rows(i).RowState = DataRowState.Detached Then Continue For
+                rowDel = dtTemp.Rows(i)
+                If rowDel("STT").ToString.Trim = "" Then
+                    dtTemp.Rows(i).Delete()
+                Else
+                    checkOut = 0
                 End If
-                If Not rep.ValidateInsertCandidate("", rows("ID_NO"), rows("FULLNAME_VN"), rows("BIRTH_DAY"), "BLACK_LIST") Then
-                    rows("ERROR") = rows("ERROR") + "Ứng viên đang thuộc Blacklist,"
+            Next
+            Dim sError As String = ""
+            Dim iFile As Integer = 1
+            Dim sFile_Name As String = ""
+            For Each rF As DataRow In dtFile.Rows
+                If rF("ID") = iFile Then
+                    sFile_Name = rF("FILENAME").ToString
+                    Exit For
                 End If
-                If Not rep.ValidateInsertCandidate("", rows("ID_NO"), rows("FULLNAME_VN"), rows("BIRTH_DAY"), "WORKING") Then
-                    rows("ERROR") = rows("ERROR") + "Ứng viên đang làm việc tại ACV,"
+            Next
+            Dim Is_Er_IDNO As Boolean = False
+            For Each rows As DataRow In dtTemp.Rows
+                If rows.RowState = DataRowState.Deleted OrElse rows.RowState = DataRowState.Detached Then Continue For
+                newRow = dtError.NewRow
+                newRow("STT") = count + 1
+                'Dim IsCMND As Boolean = False
+                'If IsCMND = False Then
+                '    Dim rep As New RecruitmentRepository
+                '    If rows("ID_NO").ToString = "" Then
+                '        Dim isValid = rep.ValidateInsertCandidate("", rows("ID_NO"), "", Date.Now, "BLACK_LIST")
+                '        If Not isValid Then
+                '            rows("ERROR") = rows("ERROR") + "Ứng viên thuộc danh sách đen,"
+                '            rows("FILE_NAME") = sFile_Name
+                '        End If
+                '    End If
+                '    Dim check As Integer = 0
+                '    check = rep.CheckExitID_NO(rows("ID_NO"), 0)
+                '    If check = 1 Then
+                '        rows("ERROR") = "Ứng viên đã là nhân viên,"
+                '        sError = "Ứng viên đã là nhân viên,"
+                '        rows("FILE_NAME") = sFile_Name
+                '        Is_Er_IDNO = True
+                '        rows("IS_CMND") = 1
+                '    End If
+                '    If check = 2 Then
+                '        rows("ERROR") = "Ứng viên là nhân viên đã nghỉ việc,"
+                '        sError = "Ứng viên là nhân viên đã nghỉ việc,"
+                '        rows("FILE_NAME") = sFile_Name
+                '        Is_Er_IDNO = True
+                '        rows("IS_CMND") = 2
+                '    End If
+                '    If check = 3 Then
+                '        rows("ERROR") = "Ứng viên đã từng ứng tuyển,"
+                '        sError = "Ứng viên đã từng ứng tuyển,"
+                '        rows("FILE_NAME") = sFile_Name
+                '        Is_Er_IDNO = True
+                '        rows("IS_CMND") = 3
+                '    End If
+                'End If
+                'nếu ngày sinh k đúng định dạng thì k check ứng viên đã làm việc hay thuộc blacklist vì sai dl đầu vào
+                Dim rep As New RecruitmentRepository
+                'If IsDBNull(rows("STT")) Then
+                '    checkOut = 1
+                '    ShowMessage(Translate("Phải nhập số thứ tự,Xin kiểm tra lại"), NotifyType.Warning)
+                '    Exit Sub
+                'End If
+                If rows("BIRTH_DAY").ToString = "" OrElse CheckDate(rows("BIRTH_DAY")) = False Then
+                    rows("ERROR") = rows("ERROR") + "Ngày sinh không đúng định dạng,"
+                    rows("FILE_NAME") = sFile_Name
+                Else
+                    If Not rep.ValidateInsertCandidate("", rows("ID_NO"), rows("FULLNAME_VN"), rows("BIRTH_DAY"), "NO_ID") Then
+                        rows("ERROR") = rows("ERROR") + "Ứng viên đang tồn tại trong một chương trình tuyển dụng khác,"
+                    End If
+                    If Not rep.ValidateInsertCandidate("", rows("ID_NO"), rows("FULLNAME_VN"), rows("BIRTH_DAY"), "BLACK_LIST") Then
+                        rows("ERROR") = rows("ERROR") + "Ứng viên đang thuộc Blacklist,"
+                    End If
+                    If Not rep.ValidateInsertCandidate("", rows("ID_NO"), rows("FULLNAME_VN"), rows("BIRTH_DAY"), "WORKING") Then
+                        rows("ERROR") = rows("ERROR") + "Ứng viên đang làm việc tại ACV,"
+                    End If
+                    If Not rep.ValidateInsertCandidate("", rows("ID_NO"), rows("FULLNAME_VN"), rows("BIRTH_DAY"), "TERMINATE") Then
+                        rows("ERROR") = rows("ERROR") + "Ứng viên đã từng làm việc tại ACV,"
+                    End If
                 End If
-                If Not rep.ValidateInsertCandidate("", rows("ID_NO"), rows("FULLNAME_VN"), rows("BIRTH_DAY"), "TERMINATE") Then
-                    rows("ERROR") = rows("ERROR") + "Ứng viên đã từng làm việc tại ACV,"
+                If IsDBNull(rows("FIRST_NAME")) Or rows("FIRST_NAME").ToString = "" Then
+                    rows("ERROR") = rows("ERROR") + "Chưa nhập Họ và tên lót,"
+                    rows("FILE_NAME") = sFile_Name
                 End If
-            End If
-            If IsDBNull(rows("FIRST_NAME")) Or rows("FIRST_NAME").ToString = "" Then
-                rows("ERROR") = rows("ERROR") + "Chưa nhập Họ và tên lót,"
-                rows("FILE_NAME") = sFile_Name
-            End If
-            If IsDBNull(rows("LAST_NAME")) Or rows("LAST_NAME").ToString = "" Then
-                rows("ERROR") = rows("ERROR") + "Chưa nhập tên,"
-                rows("FILE_NAME") = sFile_Name
-            End If
-            If IsDBNull(rows("FULLNAME_VN")) Or rows("FULLNAME_VN").ToString = "" Then
-                rows("ERROR") = rows("ERROR") + "Chưa nhập tên ứng viên,"
-                rows("FILE_NAME") = sFile_Name
-            End If
-            If IsDBNull(rows("DATE_NC")) OrElse CheckDate(rows("DATE_NC")) = False Then
-                rows("ERROR") = rows("ERROR") + "Ngày cấp CMND không đúng định dạng,"
-                rows("FILE_NAME") = sFile_Name
-            End If
-            If IsDBNull(rows("GENDER")) Or rows("GENDER").ToString = "" Then
-                rows("ERROR") = rows("ERROR") + "Chưa nhập giới tính,"
-                rows("FILE_NAME") = sFile_Name
-            End If
-            If IsDBNull(rows("MAJOR")) Or rows("MAJOR").ToString = "" Then
-                rows("ERROR") = rows("ERROR") + "Chưa nhập chuyên môn,"
-                rows("FILE_NAME") = sFile_Name
-            End If
-            If IsDBNull(rows("SCHOOL")) Or rows("SCHOOL").ToString = "" Then
-                rows("ERROR") = rows("ERROR") + "Chưa nhập trường,"
-                rows("FILE_NAME") = sFile_Name
-            End If
-            If IsDBNull(rows("TDVH")) Or rows("TDVH").ToString = "" Then
-                rows("ERROR") = rows("ERROR") + "Chưa nhập trình độ văn hóa,"
-                rows("FILE_NAME") = sFile_Name
-            End If
-            If IsDBNull(rows("PROVINCE")) Or rows("PROVINCE").ToString = "" Then
-                rows("ERROR") = rows("ERROR") + "Chưa nhập nơi cấp cmnd,"
-                rows("FILE_NAME") = sFile_Name
-            End If
-            If IsDBNull(rows("RELIGION")) Or rows("RELIGION").ToString = "" Then
-                rows("ERROR") = rows("ERROR") + "Chưa nhập tôn giáo,"
-                rows("FILE_NAME") = sFile_Name
-            End If
-            If IsDBNull(rows("NATION")) Or rows("NATION").ToString = "" Then
-                rows("ERROR") = rows("ERROR") + "Chưa nhập quốc tịch,"
-                rows("FILE_NAME") = sFile_Name
-            End If
-            If IsDBNull(rows("DT")) Or rows("DT").ToString = "" Then
-                rows("ERROR") = rows("ERROR") + "Chưa nhập dân tộc,"
-                rows("FILE_NAME") = sFile_Name
-            End If
-            count += 1
-        Next
-        dtTemp.AcceptChanges()
+                If IsDBNull(rows("LAST_NAME")) Or rows("LAST_NAME").ToString = "" Then
+                    rows("ERROR") = rows("ERROR") + "Chưa nhập tên,"
+                    rows("FILE_NAME") = sFile_Name
+                End If
+                If IsDBNull(rows("FULLNAME_VN")) Or rows("FULLNAME_VN").ToString = "" Then
+                    rows("ERROR") = rows("ERROR") + "Chưa nhập tên ứng viên,"
+                    rows("FILE_NAME") = sFile_Name
+                End If
+                If IsDBNull(rows("DATE_NC")) OrElse CheckDate(rows("DATE_NC")) = False Then
+                    rows("ERROR") = rows("ERROR") + "Ngày cấp CMND không đúng định dạng,"
+                    rows("FILE_NAME") = sFile_Name
+                End If
+                If IsDBNull(rows("GENDER")) Or rows("GENDER").ToString = "" Then
+                    rows("ERROR") = rows("ERROR") + "Chưa nhập giới tính,"
+                    rows("FILE_NAME") = sFile_Name
+                End If
+                If IsDBNull(rows("MAJOR")) Or rows("MAJOR").ToString = "" Then
+                    rows("ERROR") = rows("ERROR") + "Chưa nhập chuyên môn,"
+                    rows("FILE_NAME") = sFile_Name
+                End If
+                If IsDBNull(rows("SCHOOL")) Or rows("SCHOOL").ToString = "" Then
+                    rows("ERROR") = rows("ERROR") + "Chưa nhập trường,"
+                    rows("FILE_NAME") = sFile_Name
+                End If
+                If IsDBNull(rows("TDVH")) Or rows("TDVH").ToString = "" Then
+                    rows("ERROR") = rows("ERROR") + "Chưa nhập trình độ văn hóa,"
+                    rows("FILE_NAME") = sFile_Name
+                End If
+                If IsDBNull(rows("PROVINCE")) Or rows("PROVINCE").ToString = "" Then
+                    rows("ERROR") = rows("ERROR") + "Chưa nhập nơi cấp cmnd,"
+                    rows("FILE_NAME") = sFile_Name
+                End If
+                If IsDBNull(rows("RELIGION")) Or rows("RELIGION").ToString = "" Then
+                    rows("ERROR") = rows("ERROR") + "Chưa nhập tôn giáo,"
+                    rows("FILE_NAME") = sFile_Name
+                End If
+                If IsDBNull(rows("NATION")) Or rows("NATION").ToString = "" Then
+                    rows("ERROR") = rows("ERROR") + "Chưa nhập quốc tịch,"
+                    rows("FILE_NAME") = sFile_Name
+                End If
+                If IsDBNull(rows("DT")) Or rows("DT").ToString = "" Then
+                    rows("ERROR") = rows("ERROR") + "Chưa nhập dân tộc,"
+                    rows("FILE_NAME") = sFile_Name
+                End If
+                count += 1
+            Next
+            dtTemp.AcceptChanges()
+
+        Catch ex As Exception
+            checkOut = 1
+            ShowMessage(Translate("Phải nhập số thứ tự,Xin kiểm tra lại"), NotifyType.Warning)
+            Exit Sub
+        End Try
     End Sub
     Private Sub CreateCanImportCV(ByVal dtData As DataTable)
 
