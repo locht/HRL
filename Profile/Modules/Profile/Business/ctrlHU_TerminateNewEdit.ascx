@@ -188,15 +188,21 @@
                 <td colspan="5">
                     <tlk:RadGrid PageSize="50" ID="rgHandoverContent" runat="server" Height="200px" Width="550px" SkinID="GridNotPaging"
                         AllowMultiRowEdit="true">
-                        <MasterTableView DataKeyNames="ID,TERMINATE_ID,IS_FINISH,CONTENT_ID,CONTENT_NAME,EMPLOYEE_ID" ClientDataKeyNames="ID,TERMINATE_ID,IS_FINISH,CONTENT_ID,CONTENT_NAME,EMPLOYEE_ID"
+                        <MasterTableView DataKeyNames="CHECKCOUNT" ClientDataKeyNames="CHECKCOUNT"
                             EditMode="InPlace">
                             <Columns>
-                                <tlk:GridBoundColumn HeaderText="<%$ Translate: Nội dung bàn giao %>" DataField="CONTENT_NAME"
-                                    SortExpression="CONTENT_NAME" UniqueName="CONTENT_NAME" ReadOnly="true" />
-                                <tlk:GridCheckBoxColumn HeaderText="<%$ Translate: Hoàn thành %>" DataField="IS_FINISH"
-                                    SortExpression="IS_FINISH" UniqueName="IS_FINISH">
+                                <tlk:GridBoundColumn HeaderText="<%$ Translate: Nội dung bàn giao %>" DataField="NAME"
+                                    SortExpression="NAME" UniqueName="NAME" ReadOnly="true" />
+<%--                                <tlk:GridCheckBoxColumn HeaderText="<%$ Translate: Hoàn thành %>" DataField="STATUS"
+                                    SortExpression="STATUS" UniqueName="STATUS">
                                     <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
-                                </tlk:GridCheckBoxColumn>
+                                </tlk:GridCheckBoxColumn>--%>
+                                <tlk:GridTemplateColumn HeaderText="<%$ Translate: Hoàn thành %>"
+                                ItemStyle-HorizontalAlign="Center">
+                                <ItemTemplate>
+                                    <asp:CheckBox ID="STATUS" runat="server" Enabled="False" />
+                                </ItemTemplate>
+                            </tlk:GridTemplateColumn>
                             </Columns>
                         </MasterTableView>
                     </tlk:RadGrid>
@@ -211,13 +217,6 @@
                 </td>
             </tr>
             <tr>                
-                <td class="lb" style="display:none">
-                    <asp:Label runat ="server" ID ="lbDecisionType" Text ="Loại quyết định" ></asp:Label> 
-                </td>
-                <td style="display:none">
-                    <tlk:RadComboBox ID="cboDecisionType" AutoPostBack="true" CausesValidation="false" runat="server">
-                    </tlk:RadComboBox>
-                </td>
                 <td class="lb">
                     <asp:Label runat ="server" ID ="lbDecisionNo" Text ="Số quyết định" ></asp:Label><span style="color:red"> *</span>
                 </td>
@@ -227,8 +226,31 @@
                     <asp:RequiredFieldValidator ID="reqDecisionNo" ControlToValidate="txtDecisionNo" runat="server"
                         ErrorMessage="Bạn phải nhập số quyết định." ToolTip="Bạn phải nhập số quyết định."> </asp:RequiredFieldValidator>
                 </td>
+                 <td class="lb">
+                    <asp:Label runat ="server" ID ="lbStatus" Text ="Trạng thái phê duyệt" ></asp:Label>
+                </td>
+                <td>
+                    <tlk:RadComboBox ID="cboStatus" runat="server">
+                    </tlk:RadComboBox>
+                    <asp:RequiredFieldValidator ID="reqStatus" ControlToValidate="cboStatus" runat="server"
+                        ErrorMessage= "Bạn phải chọn trạng tháỉ phê duyệt." ToolTip="Bạn phải chọn trạng tháỉ phê duyệt."> </asp:RequiredFieldValidator>
+                </td>
+                 <td class="lb">
+                    <asp:Label runat ="server" ID ="lbSignDate" Text ="Ngày ký" ></asp:Label>
+                </td>
+                <td>
+                    <tlk:RadDatePicker ID="rdSignDate" runat="server">
+                    </tlk:RadDatePicker>
+                </td>
             </tr>
             <tr>
+                 <td class="lb" style="display:none">
+                    <asp:Label runat ="server" ID ="lbDecisionType" Text ="Loại quyết định" ></asp:Label> 
+                </td>
+                <td style="display:none">
+                    <tlk:RadComboBox ID="cboDecisionType" AutoPostBack="true" CausesValidation="false" runat="server">
+                    </tlk:RadComboBox>
+                </td>
                 <td class="lb" style="display:none">
                     <asp:Label runat ="server" ID ="Label4" Text ="Tập tin đính kèm"></asp:Label>
                 </td>
@@ -243,17 +265,11 @@
                         CausesValidation="false" OnClientClicked="rbtClicked" TabIndex="3" EnableViewState="false">
                     </tlk:RadButton>
                 </td>
-                <td class="lb">
-                    <asp:Label runat ="server" ID ="lbSignDate" Text ="Ngày ký" ></asp:Label>
-                </td>
-                <td>
-                    <tlk:RadDatePicker ID="rdSignDate" runat="server">
-                    </tlk:RadDatePicker>
-                </td>
+               
             </tr>
             <tr>
                 <td class="lb">
-                    <asp:Label runat ="server" ID ="lbSignerName" Text ="Người phê duyệt" ></asp:Label>
+                    <asp:Label runat ="server" ID ="lbSignerName" Text ="Người ký" ></asp:Label>
                 </td>
                 <td>
                     <tlk:RadTextBox ID="txtSignerName" runat="server" ReadOnly="true" Width="130px" SkinID="ReadOnly">
@@ -267,15 +283,6 @@
                 <td>
                     <tlk:RadTextBox ID="txtSignerTitle" runat="server" ReadOnly="true">
                     </tlk:RadTextBox>
-                </td>
-                <td class="lb">
-                    <asp:Label runat ="server" ID ="lbStatus" Text ="Trạng thái phê duyệt" ></asp:Label>
-                </td>
-                <td>
-                    <tlk:RadComboBox ID="cboStatus" runat="server">
-                    </tlk:RadComboBox>
-                    <asp:RequiredFieldValidator ID="reqStatus" ControlToValidate="cboStatus" runat="server"
-                        ErrorMessage= "Bạn phải chọn trạng tháỉ phê duyệt." ToolTip="Bạn phải chọn trạng tháỉ phê duyệt."> </asp:RequiredFieldValidator>
                 </td>
             </tr>            
         </table>
@@ -323,7 +330,7 @@
         function btnDeleteDebtsOnClientClicking(sender, args) {
 
         }
-       
+
 
         var enableAjax = true;
         function onRequestStart(sender, eventArgs) {

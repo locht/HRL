@@ -188,15 +188,21 @@
                 <td colspan="5">
                     <tlk:RadGrid PageSize="50" ID="rgHandoverContent" runat="server" Height="200px" Width="550px" SkinID="GridNotPaging"
                         AllowMultiRowEdit="true">
-                        <MasterTableView DataKeyNames="ID,TERMINATE_ID,IS_FINISH,CONTENT_ID,CONTENT_NAME,EMPLOYEE_ID" ClientDataKeyNames="ID,TERMINATE_ID,IS_FINISH,CONTENT_ID,CONTENT_NAME,EMPLOYEE_ID"
+                        <MasterTableView DataKeyNames="CHECKCOUNT" ClientDataKeyNames="CHECKCOUNT"
                             EditMode="InPlace">
                             <Columns>
-                                <tlk:GridBoundColumn HeaderText="<%$ Translate: Nội dung bàn giao %>" DataField="CONTENT_NAME"
-                                    SortExpression="CONTENT_NAME" UniqueName="CONTENT_NAME" ReadOnly="true" />
-                                <tlk:GridCheckBoxColumn HeaderText="<%$ Translate: Hoàn thành %>" DataField="IS_FINISH"
-                                    SortExpression="IS_FINISH" UniqueName="IS_FINISH">
+                                <tlk:GridBoundColumn HeaderText="<%$ Translate: Nội dung bàn giao %>" DataField="NAME"
+                                    SortExpression="NAME" UniqueName="NAME" ReadOnly="true" />
+<%--                                <tlk:GridCheckBoxColumn HeaderText="<%$ Translate: Hoàn thành %>" DataField="STATUS"
+                                    SortExpression="STATUS" UniqueName="STATUS">
                                     <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
-                                </tlk:GridCheckBoxColumn>
+                                </tlk:GridCheckBoxColumn>--%>
+                                <tlk:GridTemplateColumn  HeaderText="<%$ Translate: Hoàn thành %>"
+                                ItemStyle-HorizontalAlign="Center">
+                                <ItemTemplate>
+                                    <asp:CheckBox ID="STATUS" runat="server" Enabled="False" />
+                                </ItemTemplate>
+                            </tlk:GridTemplateColumn>
                             </Columns>
                         </MasterTableView>
                     </tlk:RadGrid>

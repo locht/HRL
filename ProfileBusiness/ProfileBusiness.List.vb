@@ -2720,6 +2720,18 @@ Namespace ProfileBusiness.ServiceImplementations
             End Using
         End Function
 
+        Public Function GET_HU_ASSET(ByVal P_EMP_ID As Decimal) As DataTable Implements ServiceContracts.IProfileBusiness.GET_HU_ASSET
+            Using rep As New ProfileRepository
+                Try
+
+                    Return rep.GET_HU_ASSET(P_EMP_ID)
+                Catch ex As Exception
+
+                    Throw ex
+                End Try
+            End Using
+        End Function
+
 #End Region
 
 

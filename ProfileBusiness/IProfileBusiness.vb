@@ -2894,6 +2894,8 @@ Namespace ProfileBusiness.ServiceContracts
         <OperationContract()>
         Function UpdateStatusTer(ByVal lstID As List(Of Decimal),
                                ByVal log As UserLog) As Boolean
+        <OperationContract()>
+        Function GET_HU_ASSET(ByVal P_EMP_ID As Decimal) As DataTable
     End Interface
 
 End Namespace

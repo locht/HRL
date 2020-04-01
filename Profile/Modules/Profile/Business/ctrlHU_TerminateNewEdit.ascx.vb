@@ -41,14 +41,7 @@ Public Class ctrlHU_TerminateNewEdit
             ViewState(Me.ID & "_IDDebtSelecting") = value
         End Set
     End Property
-    Property lstHandoverContent As List(Of HandoverContentDTO)
-        Get
-            Return ViewState(Me.ID & "_lstHandoverContent")
-        End Get
-        Set(ByVal value As List(Of HandoverContentDTO))
-            ViewState(Me.ID & "_lstHandoverContent") = value
-        End Set
-    End Property
+
     Property lstDebtForEdit As List(Of DebtDTO)
         Get
             Return ViewState(Me.ID & "_lstDebtForEdit")
@@ -116,6 +109,15 @@ Public Class ctrlHU_TerminateNewEdit
         End Get
         Set(ByVal value As String)
             ViewState(Me.ID & "_SelectOrg") = value
+        End Set
+    End Property
+
+    Property dsDATA As DataTable
+        Get
+            Return ViewState(Me.ID & "_dsDATA")
+        End Get
+        Set(ByVal value As DataTable)
+            ViewState(Me.ID & "_dsDATA") = value
         End Set
     End Property
 
@@ -287,13 +289,6 @@ Public Class ctrlHU_TerminateNewEdit
                         cboDecisionType.SelectedValue = Terminate.DECISION_TYPE.ToString
                     End If
 
-                    lstHandoverContent = Terminate.lstHandoverContent
-                   
-                    rgHandoverContent.Rebind()
-                    For Each i As GridItem In rgHandoverContent.Items
-                        i.Edit = True
-                    Next
-                    rgHandoverContent.Rebind()
                     txtUploadFile.Text = Terminate.FILENAME
                     txtRemindLink.Text = If(Terminate.UPLOADFILE Is Nothing, "", Terminate.UPLOADFILE)
                     loadDatasource(txtUploadFile.Text)
@@ -311,19 +306,6 @@ Public Class ctrlHU_TerminateNewEdit
                     End If
 
                 Case "InsertView"
-                    lstHandoverContent = New List(Of HandoverContentDTO)
-                    For Each obj In ListComboData.LIST_HANDOVER_CONTENT
-                        Dim objHandover As New HandoverContentDTO
-                        objHandover.CONTENT_ID = obj.ID
-                        objHandover.CONTENT_NAME = obj.NAME_VN
-                        lstHandoverContent.Add(objHandover)
-                    Next
-                   
-                    rgHandoverContent.Rebind()
-                    For Each i As GridItem In rgHandoverContent.Items
-                        i.Edit = True
-                    Next
-                    rgHandoverContent.Rebind()
                     cboStatus.SelectedValue = ProfileCommon.DECISION_STATUS.WAIT_APPROVE_ID
                     cboDecisionType.SelectedIndex = 0
                     CurrentState = CommonMessage.STATE_NEW
@@ -474,18 +456,6 @@ Public Class ctrlHU_TerminateNewEdit
                             objTerminate.TER_REASON = cboTerReason.SelectedValue
                         End If
                         objTerminate.DECISION_TYPE = cboDecisionType.SelectedValue.ToString
-                        
-                        lstHandoverContent = New List(Of HandoverContentDTO)
-                        For Each item As GridDataItem In rgHandoverContent.Items
-                            Dim handover As New HandoverContentDTO
-                            handover.CONTENT_ID = item.GetDataKeyValue("CONTENT_ID")
-                            handover.CONTENT_NAME = item.GetDataKeyValue("CONTENT_NAME")
-                            Dim chk As CheckBox = CType(item("IS_FINISH").Controls(0), CheckBox)
-                            handover.IS_FINISH = chk.Checked
-                            lstHandoverContent.Add(handover)
-                        Next
-                        objTerminate.lstHandoverContent = lstHandoverContent
-
                         Select Case CurrentState
                             Case CommonMessage.STATE_NEW
                                 If rep.InsertTerminate(objTerminate, gid) Then
@@ -867,10 +837,18 @@ Public Class ctrlHU_TerminateNewEdit
                         Exit Sub
                     End If
                 End Using
+                hidEmpID.Value = item.ID
+                rgHandoverContent.Rebind()
+
+                If dsDATA.Rows.Count > 0 AndAlso dsDATA.Rows.Count > dsDATA.Rows(0)("CHECKCOUNT") Then
+                    ShowMessage(Translate("Nhân viên đã được cấp phát trang thiết bị nhưng chưa thu hồi, Vui Lòng kiểm tra lại"), NotifyType.Warning)
+                    Exit Sub
+                End If
+
+
                 txtEmployeeCode.Text = item.EMPLOYEE_CODE
-                'txtDecisionNo.Text = item.EMPLOYEE_CODE.Substring(1) + " / QDTV-KSF"
                 FillDataByEmployeeID(item.ID)
-                
+
                 GetTerminateCalculate()
             End If
 
@@ -1137,35 +1115,22 @@ Public Class ctrlHU_TerminateNewEdit
         Dim startTime As DateTime = DateTime.UtcNow
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
         Try
-            CreateDataHandoverContent(lstHandoverContent)
+            CreateDataHandoverContent()
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
             DisplayException(Me.ViewName, Me.ID, ex)
             _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
         End Try
     End Sub
-    ''' <summary>
-    ''' Check value min, max grid ly do nghi viec
-    ''' </summary>
-    ''' <param name="sender"></param>
-    ''' <param name="e"></param>
-    ''' <remarks></remarks>
     Private Sub rgHandoverContent_ItemDataBound(ByVal sender As Object, ByVal e As Telerik.Web.UI.GridItemEventArgs) Handles rgHandoverContent.ItemDataBound
-        Dim startTime As DateTime = DateTime.UtcNow
-        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
-        Try
-            'If e.Item.Edit Then
-            '    Dim edit = CType(e.Item, GridEditableItem)
-            '    Dim rntxt As RadNumericTextBox
-            '    rntxt = CType(edit("DENSITY").Controls(0), RadNumericTextBox)
-            '    rntxt.MinValue = 0
-            '    rntxt.MaxValue = 100
-            '    rntxt.Width = Unit.Percentage(100)
-            'End If
-            _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
-        Catch ex As Exception
-            _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
-        End Try
+
+        If TypeOf e.Item Is GridDataItem Then
+            Dim item As GridDataItem = TryCast(e.Item, GridDataItem)
+
+            Dim dr As DataRowView = TryCast(item.DataItem, DataRowView)
+
+            TryCast(item.FindControl("STATUS"), CheckBox).Checked = If(dr("STATUS").ToString() = "1", True, False)
+        End If
 
     End Sub
 
@@ -1344,14 +1309,13 @@ Public Class ctrlHU_TerminateNewEdit
     ''' </summary>
     ''' <param name="lstReason"></param>
     ''' <remarks></remarks>
-    Private Sub CreateDataHandoverContent(Optional ByVal lstHandoverContent As List(Of HandoverContentDTO) = Nothing)
+    Private Sub CreateDataHandoverContent()
         Dim startTime As DateTime = DateTime.UtcNow
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+        Dim rep As New ProfileRepository
         Try
-            If lstHandoverContent Is Nothing Then
-                lstHandoverContent = New List(Of HandoverContentDTO)
-            End If
-            rgHandoverContent.DataSource = lstHandoverContent
+            dsDATA = rep.GET_HU_ASSET(If(hidEmpID.Value <> "", hidEmpID.Value, 0))
+            rgHandoverContent.DataSource = dsDATA
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
             _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")

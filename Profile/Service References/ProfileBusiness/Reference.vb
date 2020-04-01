@@ -53061,6 +53061,9 @@ Namespace ProfileBusiness
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/UpdateStatusTer", ReplyAction:="http://tempuri.org/IProfileBusiness/UpdateStatusTerResponse")>  _
         Function UpdateStatusTer(ByVal lstID As System.Collections.Generic.List(Of Decimal), ByVal log As Common.CommonBusiness.UserLog) As Boolean
         
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GET_HU_ASSET", ReplyAction:="http://tempuri.org/IProfileBusiness/GET_HU_ASSETResponse")>  _
+        Function GET_HU_ASSET(ByVal P_EMP_ID As Decimal) As System.Data.DataTable
+        
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/DeleteCommendLevel", ReplyAction:="http://tempuri.org/IProfileBusiness/DeleteCommendLevelResponse")>  _
         Function DeleteCommendLevel(ByVal lstID As System.Collections.Generic.List(Of Decimal)) As Boolean
         
@@ -55688,6 +55691,10 @@ Namespace ProfileBusiness
         
         Public Function UpdateStatusTer(ByVal lstID As System.Collections.Generic.List(Of Decimal), ByVal log As Common.CommonBusiness.UserLog) As Boolean Implements ProfileBusiness.IProfileBusiness.UpdateStatusTer
             Return MyBase.Channel.UpdateStatusTer(lstID, log)
+        End Function
+        
+        Public Function GET_HU_ASSET(ByVal P_EMP_ID As Decimal) As System.Data.DataTable Implements ProfileBusiness.IProfileBusiness.GET_HU_ASSET
+            Return MyBase.Channel.GET_HU_ASSET(P_EMP_ID)
         End Function
         
         Public Function DeleteCommendLevel(ByVal lstID As System.Collections.Generic.List(Of Decimal)) As Boolean Implements ProfileBusiness.IProfileBusiness.DeleteCommendLevel

@@ -2379,6 +2379,18 @@ Partial Public Class ProfileRepository
 
     End Function
 
+    Public Function GET_HU_ASSET(ByVal P_EMP_ID As Decimal) As DataTable
+        Using rep As New ProfileBusinessClient
+            Try
+                Return rep.GET_HU_ASSET(P_EMP_ID)
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+
+    End Function
+
 #End Region
 
 End Class

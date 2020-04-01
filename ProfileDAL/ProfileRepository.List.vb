@@ -6163,6 +6163,20 @@ Partial Class ProfileRepository
         End Try
     End Function
 
+    Public Function GET_HU_ASSET(ByVal P_EMP_ID As Decimal) As DataTable
+        Try
+            Using cls As New DataAccess.QueryData
+                Dim dtData As DataTable = cls.ExecuteStore("PKG_HU_IPROFILE_LIST.GET_HU_ASSET",
+                                           New With {.P_EMP_ID = P_EMP_ID,
+                                                     .P_CUR = cls.OUT_CURSOR})
+
+                Return dtData
+            End Using
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iProfile")
+            Throw ex
+        End Try
+    End Function
 
 #End Region
 
