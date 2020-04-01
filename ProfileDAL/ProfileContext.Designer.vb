@@ -18,7 +18,7 @@ Imports System.Runtime.Serialization
 Imports System.Xml.Serialization
 
 
-<Assembly: EdmSchemaAttribute("ee429dbf-5f95-442f-88cb-d83df9e9c224")>
+<Assembly: EdmSchemaAttribute("5882ea13-6e17-4b20-a27e-5987b7516333")>
 #Region "EDM Relationship Metadata"
 <Assembly: EdmRelationshipAttribute("ProfileModel", "FK_HU_NAT_HU_PRO", "HU_NATION", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_NATION), "HU_PROVINCE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_PROVINCE), True)>
 <Assembly: EdmRelationshipAttribute("ProfileModel", "FK_HU_PRO_HU_DIS", "HU_PROVINCE", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_PROVINCE), "HU_DISTRICT", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_DISTRICT), True)>
@@ -52997,6 +52997,31 @@ Public Partial Class HU_SAFELABOR_MNG
     End Sub
 
     Private Partial Sub OnMODIFIED_LOGChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property LEVEL_INJURED() As Global.System.String
+        Get
+            Return _LEVEL_INJURED
+        End Get
+        Set
+            OnLEVEL_INJUREDChanging(value)
+            ReportPropertyChanging("LEVEL_INJURED")
+            _LEVEL_INJURED = StructuralObject.SetValidValue(value, true)
+            ReportPropertyChanged("LEVEL_INJURED")
+            OnLEVEL_INJUREDChanged()
+        End Set
+    End Property
+
+    Private _LEVEL_INJURED As Global.System.String
+    Private Partial Sub OnLEVEL_INJUREDChanging(value As Global.System.String)
+    End Sub
+
+    Private Partial Sub OnLEVEL_INJUREDChanged()
     End Sub
 
     #End Region

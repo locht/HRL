@@ -4006,6 +4006,7 @@
             <Property Name="MODIFIED_DATE" Type="date" Nullable="true" />
             <Property Name="MODIFIED_BY" Type="nvarchar2" Nullable="true" MaxLength="255" />
             <Property Name="MODIFIED_LOG" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="LEVEL_INJURED" Type="nclob" Nullable="true" />
         </EntityType>
         <EntityType Name="HU_SAFELABOR_MNG_EMP">
             <Key>
@@ -8806,6 +8807,7 @@
           <Property Type="DateTime" Name="MODIFIED_DATE" />
           <Property Type="String" Name="MODIFIED_BY" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="MODIFIED_LOG" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="LEVEL_INJURED" />
         </EntityType>
         <EntityType Name="HU_SAFELABOR_MNG_EMP">
           <Key>
@@ -12704,6 +12706,7 @@
                     <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
                     <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
                     <ScalarProperty Name="MODIFIED_LOG" ColumnName="MODIFIED_LOG" />
+                    <ScalarProperty Name="LEVEL_INJURED" ColumnName="LEVEL_INJURED" />
                 </MappingFragment>
             </EntityTypeMapping>
         </EntitySetMapping>
@@ -13094,7 +13097,7 @@
         <EntityTypeShape EntityType="ProfileModel.HU_DIRECT_MANAGER1" Width="1.5" PointX="10.375" PointY="6.75" Height="1.403382161458353" />
         <EntityTypeShape EntityType="ProfileModel.HU_JOB_POSITION1" Width="1.5" PointX="9.375" PointY="32.75" Height="4.287903645833353" />
         <EntityTypeShape EntityType="ProfileModel.HU_JOB_DESCRIPTION" Width="1.5" PointX="8.625" PointY="32.75" Height="8.1339322916666674" />
-        <EntityTypeShape EntityType="ProfileModel.HU_SAFELABOR_MNG" Width="1.5" PointX="18.375" PointY="32.75" Height="4.4802050781249818" />
+        <EntityTypeShape EntityType="ProfileModel.HU_SAFELABOR_MNG" Width="1.5" PointX="18.375" PointY="32.75" Height="4.6725065104166674" />
         <EntityTypeShape EntityType="ProfileModel.HU_SAFELABOR_MNG_EMP" Width="1.5" PointX="27.375" PointY="32.75" Height="4.864807942708353" />
         </Diagram>
     </Diagrams>

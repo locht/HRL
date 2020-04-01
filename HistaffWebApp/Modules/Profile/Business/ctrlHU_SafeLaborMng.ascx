@@ -36,8 +36,8 @@
                                 ReadOnly="true" UniqueName="TYPE_ACCIDENT_NAME" HeaderStyle-Width="200px" />
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Nguyên nhân tai nạn %>" DataField="REASON_ACCIDENT_NAME"
                                 ReadOnly="true" UniqueName="REASON_ACCIDENT_NAME" HeaderStyle-Width="150px" />
-                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Mức độ thương tật %>" DataField=""
-                                ReadOnly="true" UniqueName="" HeaderStyle-Width="55px" />
+                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Mức độ thương tật %>" DataField="LEVEL_INJURED"
+                                ReadOnly="true" UniqueName="LEVEL_INJURED" HeaderStyle-Width="55px" />
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Nơi xảy ra tai nạn %>" DataField="PLACE_ACCIDENT"
                                 ReadOnly="true" UniqueName="PLACE_ACCIDENT" HeaderStyle-Width="200px" />
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Chi phí tai nạn %>" DataField="COST_ACCIDENT"

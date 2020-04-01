@@ -413,16 +413,16 @@ Public Class ctrlHU_SafeLaborMngNewEdit
                     For Each row As DataRow In dtrgEmployee.Rows
                         Dim o As New SAFELABOR_MNG_EMPDTO
                         o.EMPLOYEE_ID = If(row("EMPLOYEE_ID") <> "", Decimal.Parse(row("EMPLOYEE_ID")), Nothing)
-                        o.NUMBER_DATE = If(row("NUMBER_DATE") <> "", Decimal.Parse(row("NUMBER_DATE")), Nothing)
-                        o.LEVEL_INJURED = row("LEVEL_INJURED").ToString
-                        o.LEVEL_DECLINE = If(row("LEVEL_DECLINE") <> "", Decimal.Parse(row("LEVEL_DECLINE")), Nothing)
-                        o.MONEY_MEDICAL = If(row("MONEY_MEDICAL") <> "", Decimal.Parse(row("MONEY_MEDICAL")), Nothing)
-                        o.COST_SALARY = If(row("COST_SALARY") <> "", Decimal.Parse(row("COST_SALARY")), Nothing)
-                        o.MONEY_INDEMNIFY = If(row("MONEY_INDEMNIFY") <> "", Decimal.Parse(row("MONEY_INDEMNIFY")), Nothing)
-                        o.COMPANY_PAY = If(row("MONEY_MEDICAL") <> "", Decimal.Parse(row("MONEY_MEDICAL")), Nothing) + If(row("COST_SALARY") <> "", Decimal.Parse(row("COST_SALARY")), Nothing) + If(row("MONEY_INDEMNIFY") <> "", Decimal.Parse(row("MONEY_INDEMNIFY")), Nothing)
-                        o.DATE_INS_PAY = If(row("DATE_INS_PAY") <> "", ToDate(row("DATE_INS_PAY")), Nothing)
-                        o.MONEY_INS_PAY = If(row("MONEY_INS_PAY") <> "", Decimal.Parse(row("MONEY_INS_PAY")), Nothing)
-                        o.MONEY_DIFFERENCE = o.COMPANY_PAY - If(row("MONEY_INS_PAY") <> "", Decimal.Parse(row("MONEY_INS_PAY")), Nothing)
+                        o.NUMBER_DATE = If(row("NUMBER_DATE").ToString <> "", Decimal.Parse(row("NUMBER_DATE")), Nothing)
+                        'o.LEVEL_INJURED = row("LEVEL_INJURED").ToString
+                        o.LEVEL_DECLINE = If(row("LEVEL_DECLINE").ToString <> "", Decimal.Parse(row("LEVEL_DECLINE")), Nothing)
+                        o.MONEY_MEDICAL = If(row("MONEY_MEDICAL").ToString <> "", Decimal.Parse(row("MONEY_MEDICAL")), Nothing)
+                        o.COST_SALARY = If(row("COST_SALARY").ToString <> "", Decimal.Parse(row("COST_SALARY")), Nothing)
+                        o.MONEY_INDEMNIFY = If(row("MONEY_INDEMNIFY").ToString <> "", Decimal.Parse(row("MONEY_INDEMNIFY")), Nothing)
+                        o.COMPANY_PAY = If(row("MONEY_MEDICAL").ToString <> "", Decimal.Parse(row("MONEY_MEDICAL")), Nothing) + If(row("COST_SALARY").ToString <> "", Decimal.Parse(row("COST_SALARY")), Nothing) + If(row("MONEY_INDEMNIFY").ToString <> "", Decimal.Parse(row("MONEY_INDEMNIFY")), Nothing)
+                        o.DATE_INS_PAY = If(row("DATE_INS_PAY").ToString <> "", ToDate(row("DATE_INS_PAY")), Nothing)
+                        o.MONEY_INS_PAY = If(row("MONEY_INS_PAY").ToString <> "", Decimal.Parse(row("MONEY_INS_PAY")), Nothing)
+                        o.MONEY_DIFFERENCE = o.COMPANY_PAY - If(row("MONEY_INS_PAY").ToString <> "", Decimal.Parse(row("MONEY_INS_PAY")), Nothing)
                         o.REMARK = row("REMARK").ToString
                         lstemp.Add(o)
                     Next
@@ -443,10 +443,10 @@ Public Class ctrlHU_SafeLaborMngNewEdit
                         objdata.ID = WelfareMng.ID
                         Dim lstID As New List(Of Decimal)
                         lstID.Add(objdata.ID)
-                        If rep.ValidateBusiness("HU_WELFARE_MNG", "ID", lstID) Then
-                            ShowMessage(Translate(CommonMessage.MESSAGE_WARNING_EXIST_DATABASE), NotifyType.Error)
-                            Exit Sub
-                        End If
+                        'If rep.ValidateBusiness("HU_WELFARE_MNG", "ID", lstID) Then
+                        '    ShowMessage(Translate(CommonMessage.MESSAGE_WARNING_EXIST_DATABASE), NotifyType.Error)
+                        '    Exit Sub
+                        'End If
                         If rep.ModifySafeLaborMng(objdata) Then
                             ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), NotifyType.Success)
                             ''POPUPTOLINK
@@ -490,7 +490,7 @@ Public Class ctrlHU_SafeLaborMngNewEdit
                             End If
                             Continue For
                         End If
-                        If InStr(",NUMBER_DATE,LEVEL_INJURED,LEVEL_DECLINE,MONEY_MEDICAL,COST_SALARY,MONEY_INDEMNIFY,COMPANY_PAY,DATE_INS_PAY,MONEY_INS_PAY,MONEY_DIFFERENCE,REMARK,", "," + col.UniqueName + ",") > 0 Then
+                        If InStr(",NUMBER_DATE,LEVEL_DECLINE,MONEY_MEDICAL,COST_SALARY,MONEY_INDEMNIFY,COMPANY_PAY,DATE_INS_PAY,MONEY_INS_PAY,MONEY_DIFFERENCE,REMARK,", "," + col.UniqueName + ",") > 0 Then
                             Select Case Item(col.UniqueName).Controls(1).ID.ToString.Substring(0, 2)
                                 Case "r1"
                                     Dr(col.UniqueName) = CType(Item.FindControl(Item(col.UniqueName).Controls(1).ID.ToString), RadNumericTextBox).Value
@@ -672,12 +672,12 @@ Public Class ctrlHU_SafeLaborMngNewEdit
                 If WelfareMng.COST_ACCIDENT IsNot Nothing Then
                     rnCost.Value = WelfareMng.COST_ACCIDENT
                 End If
+                txtPlaceAccident.Text = WelfareMng.PLACE_ACCIDENT
                 txtRemark.Text = WelfareMng.REMARK
                 If checkDelete <> 1 Then
                     Dim repst = New ProfileStoreProcedure
-                    dtbImport = repst.Get_list_Welfare_EMP(_Id)
+                    dtbImport = repst.Get_list_SafeLabor_EMP(_Id)
                 End If
-
             End If
             rep.Dispose()
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
@@ -723,7 +723,7 @@ Public Class ctrlHU_SafeLaborMngNewEdit
                     If rowData Is Nothing Then
                         Exit Sub
                     End If
-                    If InStr(",NUMBER_DATE,LEVEL_INJURED,LEVEL_DECLINE,MONEY_MEDICAL,COST_SALARY,MONEY_INDEMNIFY,COMPANY_PAY,DATE_INS_PAY,MONEY_INS_PAY,MONEY_DIFFERENCE,REMARK,", "," + col.UniqueName + ",") > 0 Then
+                    If InStr(",NUMBER_DATE,LEVEL_DECLINE,MONEY_MEDICAL,COST_SALARY,MONEY_INDEMNIFY,COMPANY_PAY,DATE_INS_PAY,MONEY_INS_PAY,MONEY_DIFFERENCE,REMARK,", "," + col.UniqueName + ",") > 0 Then
                         Select Case EditItem(col.UniqueName).Controls(1).ID.ToString.Substring(0, 2)
                             Case "r1"
                                 Dim radNumber As New RadNumericTextBox
@@ -776,7 +776,7 @@ Public Class ctrlHU_SafeLaborMngNewEdit
                                 Dim radNumber As New RadDatePicker
                                 radNumber = CType(EditItem.FindControl(EditItem(col.UniqueName).Controls(1).ID.ToString), RadDatePicker)
                                 radNumber.ClearValue()
-                                radNumber.SelectedDate = rowData(0)("DATE_INS_PAY")
+                                radNumber.SelectedDate = rowData(0)("DATE_INS_PAY").ToString
                             Case "r9"
                                 Dim radNumber As New RadNumericTextBox
                                 radNumber = CType(EditItem.FindControl(EditItem(col.UniqueName).Controls(1).ID.ToString), RadNumericTextBox)

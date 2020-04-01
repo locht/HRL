@@ -16,4 +16,5 @@
     Public Property REMARK As String
     Public Property LST_SAFELABOR_EMP As List(Of SAFELABOR_MNG_EMPDTO)
     Public Property CREATED_DATE As Date
+    Public Property LEVEL_INJURED As String
 End Class

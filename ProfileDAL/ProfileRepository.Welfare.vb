@@ -471,7 +471,7 @@ Partial Class ProfileRepository
             objSafeLaborMngData.REASON_DETAIL = lstSafeLaborMng.REASON_DETAIL
             objSafeLaborMngData.COST_ACCIDENT = lstSafeLaborMng.COST_ACCIDENT
             objSafeLaborMngData.REMARK = lstSafeLaborMng.REMARK
-
+            objSafeLaborMngData.LEVEL_INJURED = lstSafeLaborMng.LEVEL_INJURED
             'objSafeLaborMngData.CREATED_DATE = DateTime.Now
             'objSafeLaborMngData.CREATED_BY = log.Username
             'objSafeLaborMngData.CREATED_LOG = log.ComputerName
@@ -504,7 +504,7 @@ Partial Class ProfileRepository
                     objDataEmp.GROUP_ID = lstSafeLaborMng.ID
                     objDataEmp.EMPLOYEE_ID = obj.EMPLOYEE_ID
                     objDataEmp.NUMBER_DATE = obj.NUMBER_DATE
-                    objDataEmp.LEVEL_INJURED = obj.LEVEL_INJURED
+                    'objDataEmp.LEVEL_INJURED = obj.LEVEL_INJURED
                     objDataEmp.LEVEL_DECLINE = obj.LEVEL_DECLINE
                     objDataEmp.MONEY_MEDICAL = obj.MONEY_MEDICAL
                     objDataEmp.COST_SALARY = obj.COST_SALARY
@@ -538,6 +538,7 @@ Partial Class ProfileRepository
             objSafeLaborMngData.REASON_DETAIL = lstSafeLaborMng.REASON_DETAIL
             objSafeLaborMngData.COST_ACCIDENT = lstSafeLaborMng.COST_ACCIDENT
             objSafeLaborMngData.REMARK = lstSafeLaborMng.REMARK
+            objSafeLaborMngData.LEVEL_INJURED = lstSafeLaborMng.LEVEL_INJURED
             'objSafeLaborMngData.MODIFIED_DATE = DateTime.Now
             'objSafeLaborMngData.MODIFIED_BY = log.Username
             'objSafeLaborMngData.MODIFIED_LOG = log.ComputerName
@@ -572,8 +573,10 @@ Partial Class ProfileRepository
                                        .REASON_ACCIDENT = p.p.REASON_ACCIDENT,
                                        .REASON_ACCIDENT_NAME = p.reason.NAME_VN,
                                        .PLACE_ACCIDENT = p.p.PLACE_ACCIDENT,
+                                       .REASON_DETAIL = p.p.REASON_DETAIL,
                                        .COST_ACCIDENT = p.p.COST_ACCIDENT,
-                                       .REMARK = p.p.REMARK
+                                       .REMARK = p.p.REMARK,
+                                       .LEVEL_INJURED = p.p.LEVEL_INJURED
                                        })
             Return wel.SingleOrDefault
         Catch ex As Exception
@@ -610,6 +613,9 @@ Partial Class ProfileRepository
             End If
             If _filter.NAME IsNot Nothing Then
                 query = query.Where(Function(p) p.p.NAME.ToUpper.Contains(_filter.NAME.ToUpper))
+            End If
+            If _filter.LEVEL_INJURED IsNot Nothing Then
+                query = query.Where(Function(p) p.p.LEVEL_INJURED.ToUpper.Contains(_filter.LEVEL_INJURED.ToUpper))
             End If
             If _filter.ORG_NAME IsNot Nothing Then
                 query = query.Where(Function(p) p.o.NAME_VN.ToUpper.Contains(_filter.ORG_NAME.ToUpper))
@@ -650,6 +656,7 @@ Partial Class ProfileRepository
                                        .PLACE_ACCIDENT = p.p.PLACE_ACCIDENT,
                                        .COST_ACCIDENT = p.p.COST_ACCIDENT,
                                        .REMARK = p.p.REMARK,
+                                       .LEVEL_INJURED = p.p.LEVEL_INJURED,
                                        .CREATED_DATE = p.p.CREATED_DATE})
             wel = wel.OrderBy(Sorts)
             Total = wel.Count

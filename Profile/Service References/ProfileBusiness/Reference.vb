@@ -50911,6 +50911,9 @@ Namespace ProfileBusiness
         Private IDField As System.Nullable(Of Decimal)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private LEVEL_INJUREDField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private LST_SAFELABOR_EMPField As System.Collections.Generic.List(Of ProfileBusiness.SAFELABOR_MNG_EMPDTO)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -51027,6 +51030,19 @@ Namespace ProfileBusiness
                 If (Me.IDField.Equals(value) <> true) Then
                     Me.IDField = value
                     Me.RaisePropertyChanged("ID")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property LEVEL_INJURED() As String
+            Get
+                Return Me.LEVEL_INJUREDField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.LEVEL_INJUREDField, value) <> true) Then
+                    Me.LEVEL_INJUREDField = value
+                    Me.RaisePropertyChanged("LEVEL_INJURED")
                 End If
             End Set
         End Property
@@ -53060,9 +53076,6 @@ Namespace ProfileBusiness
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/UpdateStatusTer", ReplyAction:="http://tempuri.org/IProfileBusiness/UpdateStatusTerResponse")>  _
         Function UpdateStatusTer(ByVal lstID As System.Collections.Generic.List(Of Decimal), ByVal log As Common.CommonBusiness.UserLog) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GET_HU_ASSET", ReplyAction:="http://tempuri.org/IProfileBusiness/GET_HU_ASSETResponse")>  _
-        Function GET_HU_ASSET(ByVal P_EMP_ID As Decimal) As System.Data.DataTable
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/DeleteCommendLevel", ReplyAction:="http://tempuri.org/IProfileBusiness/DeleteCommendLevelResponse")>  _
         Function DeleteCommendLevel(ByVal lstID As System.Collections.Generic.List(Of Decimal)) As Boolean
@@ -55691,10 +55704,6 @@ Namespace ProfileBusiness
         
         Public Function UpdateStatusTer(ByVal lstID As System.Collections.Generic.List(Of Decimal), ByVal log As Common.CommonBusiness.UserLog) As Boolean Implements ProfileBusiness.IProfileBusiness.UpdateStatusTer
             Return MyBase.Channel.UpdateStatusTer(lstID, log)
-        End Function
-        
-        Public Function GET_HU_ASSET(ByVal P_EMP_ID As Decimal) As System.Data.DataTable Implements ProfileBusiness.IProfileBusiness.GET_HU_ASSET
-            Return MyBase.Channel.GET_HU_ASSET(P_EMP_ID)
         End Function
         
         Public Function DeleteCommendLevel(ByVal lstID As System.Collections.Generic.List(Of Decimal)) As Boolean Implements ProfileBusiness.IProfileBusiness.DeleteCommendLevel

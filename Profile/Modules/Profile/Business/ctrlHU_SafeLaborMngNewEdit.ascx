@@ -164,13 +164,13 @@
                             </tlk:RadNumericTextBox>
                         </EditItemTemplate>
                     </tlk:GridTemplateColumn>
-                    <tlk:GridTemplateColumn HeaderText="Mức độ thương tật" DataField="LEVEL_INJURED"
+                   <%-- <tlk:GridTemplateColumn HeaderText="Mức độ thương tật" DataField="LEVEL_INJURED"
                         UniqueName="LEVEL_INJURED">
                         <EditItemTemplate>
                             <tlk:RadTextBox runat="server" ID="r2LevelInjured" Width="70px">
                             </tlk:RadTextBox>
                         </EditItemTemplate>
-                    </tlk:GridTemplateColumn>
+                    </tlk:GridTemplateColumn>--%>
                     <tlk:GridTemplateColumn HeaderText="Mức độ suy giảm LĐ" DataField="LEVEL_DECLINE"
                         UniqueName="LEVEL_DECLINE">
                         <EditItemTemplate>

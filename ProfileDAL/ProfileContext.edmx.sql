@@ -1,8 +1,8 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for Oracle database
 -- --------------------------------------------------
--- Date Created: 3/31/2020 6:24:38 PM
--- Generated from EDMX file: D:\HiStaffWebApp\acv_19\ProfileDAL\ProfileContext.edmx
+-- Date Created: 04/01/2020 8:12:31 AM
+-- Generated from EDMX file: D:\MyProject2020\ACV1\acv_19\ProfileDAL\ProfileContext.edmx
 -- --------------------------------------------------
 
 -- --------------------------------------------------
@@ -3942,7 +3942,8 @@ CREATE TABLE "dbo"."HU_SAFELABOR_MNG" (
    "CREATED_LOG" NVARCHAR2(255) NULL,
    "MODIFIED_DATE" DATE NULL,
    "MODIFIED_BY" NVARCHAR2(255) NULL,
-   "MODIFIED_LOG" NVARCHAR2(255) NULL
+   "MODIFIED_LOG" NVARCHAR2(255) NULL,
+   "LEVEL_INJURED" NCLOB NULL
 );
 
 -- Creating table 'HU_SAFELABOR_MNG_EMP'
