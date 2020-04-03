@@ -6194,6 +6194,21 @@ Partial Class ProfileRepository
         End Try
     End Function
 
+    Public Function GET_JOB_CODE_AUTO(ByVal p_TITLE_ID As Decimal) As String
+        Try
+            Using cls As New DataAccess.QueryData
+                Dim dtData As DataTable = cls.ExecuteStore("PKG_HU_IPROFILE_LIST.GET_JOB_CODE_AUTO",
+                                           New With {.P_TITLE_ID = p_TITLE_ID,
+                                                     .P_OUT = cls.OUT_CURSOR})
+
+                Return dtData.Rows(0)("CODE")
+            End Using
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iProfile")
+            Throw ex
+        End Try
+    End Function
+
 #End Region
 
 End Class

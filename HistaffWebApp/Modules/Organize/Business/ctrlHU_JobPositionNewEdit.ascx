@@ -3,6 +3,8 @@
 <%@ Import Namespace="Common" %>
 <asp:HiddenField ID="hidID" runat="server" />
 <asp:HiddenField ID="hidOrgID" runat="server" />
+<asp:HiddenField ID="hidTitleID" runat="server" />
+<asp:HiddenField ID="hidCode" runat="server" />
  <asp:ValidationSummary ID="valSum" runat="server" DisplayMode="BulletList" CssClass="validationsummary" />
 <tlk:RadSplitter ID="RadSplitter3" runat="server" Width="100%" Height="100%" Orientation="Horizontal">
     <tlk:RadPane ID="RadPane1" runat="server" Height="20px" Scrolling="None">
@@ -23,7 +25,7 @@
                    <%# Translate("Mã vị trí công việc")%><span class="lbReq">*</span>
                </td>
                <td>
-                   <tlk:RadTextBox ID="txtCode" runat="server">
+                   <tlk:RadTextBox ID="txtCode" runat="server" ReadOnly="true">
                     </tlk:RadTextBox>
                    <asp:RequiredFieldValidator ID="RequiredFieldValidator1" ControlToValidate="txtCode"
                         runat="server" ErrorMessage="<%$ Translate: Mã vị trí công việc không được để trống %>" ToolTip="<%$ Translate: Mã vị trí công việc không được để trống %>"> 
@@ -56,7 +58,7 @@
                     <%# Translate("Chức danh")%><span class="lbReq">*</span>
                 </td>
                  <td>
-                    <tlk:RadComboBox runat="server" ID="cboTitle" SkinID="LoadDemand" OnClientItemsRequesting="OnClientItemsRequesting">
+                    <tlk:RadComboBox runat="server" ID="cboTitle" SkinID="LoadDemand" OnClientItemsRequesting="OnClientItemsRequesting" AutoPostBack ="true">
                     </tlk:RadComboBox>
                    <asp:RequiredFieldValidator ID="RequiredFieldValidator3" ControlToValidate="cboTitle"
                         runat="server" ErrorMessage="<%$ Translate: Chức danh không được để trống %>" ToolTip="<%$ Translate: Chức danh không được để trống %>"> 

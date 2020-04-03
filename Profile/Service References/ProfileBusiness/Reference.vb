@@ -53393,6 +53393,9 @@ Namespace ProfileBusiness
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GET_JOB_EMP", ReplyAction:="http://tempuri.org/IProfileBusiness/GET_JOB_EMPResponse")>  _
         Function GET_JOB_EMP(ByVal P_EMP_ID As Decimal) As Integer
         
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GET_JOB_CODE_AUTO", ReplyAction:="http://tempuri.org/IProfileBusiness/GET_JOB_CODE_AUTOResponse")>  _
+        Function GET_JOB_CODE_AUTO(ByVal p_TITLE_ID As Decimal) As String
+        
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ModifyCommendLevel", ReplyAction:="http://tempuri.org/IProfileBusiness/ModifyCommendLevelResponse")>  _
         Function ModifyCommendLevel(ByVal objCommendLevel As ProfileBusiness.CommendLevelDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
         
@@ -56036,6 +56039,10 @@ Namespace ProfileBusiness
         
         Public Function GET_JOB_EMP(ByVal P_EMP_ID As Decimal) As Integer Implements ProfileBusiness.IProfileBusiness.GET_JOB_EMP
             Return MyBase.Channel.GET_JOB_EMP(P_EMP_ID)
+        End Function
+        
+        Public Function GET_JOB_CODE_AUTO(ByVal p_TITLE_ID As Decimal) As String Implements ProfileBusiness.IProfileBusiness.GET_JOB_CODE_AUTO
+            Return MyBase.Channel.GET_JOB_CODE_AUTO(p_TITLE_ID)
         End Function
         
         Public Function ModifyCommendLevel(ByVal objCommendLevel As ProfileBusiness.CommendLevelDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean Implements ProfileBusiness.IProfileBusiness.ModifyCommendLevel

@@ -99,6 +99,7 @@ Public Class ctrlHU_JobPositionNewEdit
                     CurrentState = CommonMessage.STATE_EDIT
                     hidID.Value = dsdata.Tables(0).Rows(0)("ID")
                     txtCode.Text = dsdata.Tables(0).Rows(0)("CODE")
+                    hidCode.Value = dsdata.Tables(0).Rows(0)("CODE")
                     txtJobName.Text = dsdata.Tables(0).Rows(0)("JOB_NAME")
                     txtOrgName.Text = dsdata.Tables(0).Rows(0)("ORG_NAME")
                     hidOrgID.Value = dsdata.Tables(0).Rows(0)("ORG_ID")
@@ -128,6 +129,7 @@ Public Class ctrlHU_JobPositionNewEdit
                     Next
 
                     cboTitle.SelectedValue = dsdata.Tables(0).Rows(0)("TITLE_ID")
+                    hidTitleID.Value = dsdata.Tables(0).Rows(0)("TITLE_ID")
 
                     For Each item As DataRow In dtData1.Rows
                         Dim radItem As RadComboBoxItem = New RadComboBoxItem(item("JOB_NAME").ToString(), item("ID").ToString())
@@ -498,6 +500,26 @@ Public Class ctrlHU_JobPositionNewEdit
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
             _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
+        End Try
+    End Sub
+    Private Sub cboTitle_SelectedIndexChanged(sender As Object, e As Telerik.Web.UI.RadComboBoxSelectedIndexChangedEventArgs) Handles cboTitle.SelectedIndexChanged
+        Try
+            If hidTitleID.Value IsNot Nothing And hidTitleID.Value <> "" Then
+                If hidTitleID.Value <> cboTitle.SelectedValue Then
+                    Using rep As New ProfileRepository
+                        txtCode.Text = rep.GET_JOB_CODE_AUTO(cboTitle.SelectedValue)
+                    End Using
+                Else
+                    txtCode.Text = hidCode.Value
+                End If
+            Else
+                Using rep As New ProfileRepository
+                    txtCode.Text = rep.GET_JOB_CODE_AUTO(cboTitle.SelectedValue)
+                End Using
+            End If
+
+        Catch ex As Exception
+            Throw ex
         End Try
     End Sub
 #End Region

@@ -2904,6 +2904,9 @@ Namespace ProfileBusiness.ServiceContracts
 
         <OperationContract()>
         Function GET_JOB_EMP(ByVal P_EMP_ID As Decimal) As Integer
+
+        <OperationContract()>
+        Function GET_JOB_CODE_AUTO(ByVal p_TITLE_ID As Decimal) As String
     End Interface
 
 End Namespace

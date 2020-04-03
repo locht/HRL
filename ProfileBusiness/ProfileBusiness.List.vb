@@ -2742,6 +2742,16 @@ Namespace ProfileBusiness.ServiceImplementations
             End Using
         End Function
 
+        Function GET_JOB_CODE_AUTO(ByVal p_TITLE_ID As Decimal) As String Implements ServiceContracts.IProfileBusiness.GET_JOB_CODE_AUTO
+            Using rep As New ProfileRepository
+                Try
+                    Return rep.GET_JOB_CODE_AUTO(p_TITLE_ID)
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
+
 #End Region
 
 

@@ -32,6 +32,33 @@ Partial Public Class ctrlHU_JobPositionNewEdit
     Protected WithEvents hidOrgID As Global.System.Web.UI.WebControls.HiddenField
 
     '''<summary>
+    '''hidTitleID control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents hidTitleID As Global.System.Web.UI.WebControls.HiddenField
+
+    '''<summary>
+    '''hidCode control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents hidCode As Global.System.Web.UI.WebControls.HiddenField
+
+    '''<summary>
+    '''valSum control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents valSum As Global.System.Web.UI.WebControls.ValidationSummary
+
+    '''<summary>
     '''RadSplitter3 control.
     '''</summary>
     '''<remarks>

@@ -2402,6 +2402,17 @@ Partial Public Class ProfileRepository
         End Using
     End Function
 
+    Function GET_JOB_CODE_AUTO(ByVal p_TITLE_ID As Decimal) As String
+        Using rep As New ProfileBusinessClient
+            Try
+                Return rep.GET_JOB_CODE_AUTO(p_TITLE_ID)
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+    End Function
+
 #End Region
 
 End Class
