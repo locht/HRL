@@ -1519,6 +1519,10 @@ Public Class ctrlHU_ChangeInfoNewEdit
     Private Sub cboTitle_SelectedIndexChanged(sender As Object, e As Telerik.Web.UI.RadComboBoxSelectedIndexChangedEventArgs) Handles cboTitle.SelectedIndexChanged
         Try
             Dim DSdata As DataSet
+
+            cboJobPosition.ClearValue()
+            cboJobDescription.ClearValue()
+
             Using rep As New ProfileRepository
                 DSdata = rep.GET_JP_TO_TITLE(hidOrg.Value, cboTitle.SelectedValue, chkIsReplace.Checked, 0)
             End Using
@@ -1545,6 +1549,7 @@ Public Class ctrlHU_ChangeInfoNewEdit
     Private Sub chkIsReplace_CheckedChanged(sender As Object, e As System.EventArgs) Handles chkIsReplace.CheckedChanged
         Try
             Dim DSdata As DataSet
+            cboJobPosition.ClearValue()
             Using rep As New ProfileRepository
                 DSdata = rep.GET_JP_TO_TITLE(hidOrg.Value, cboTitle.SelectedValue, chkIsReplace.Checked, 0)
             End Using
