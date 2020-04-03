@@ -18,7 +18,7 @@ Imports System.Runtime.Serialization
 Imports System.Xml.Serialization
 
 
-<Assembly: EdmSchemaAttribute("77315df7-5f7d-49b0-b8d8-bd44c0f5579b")>
+<Assembly: EdmSchemaAttribute("e62d82c6-464a-4583-afa0-aca58204de9a")>
 #Region "EDM Relationship Metadata"
 <Assembly: EdmRelationshipAttribute("ProfileModel", "FK_HU_NAT_HU_PRO", "HU_NATION", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_NATION), "HU_PROVINCE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_PROVINCE), True)>
 <Assembly: EdmRelationshipAttribute("ProfileModel", "FK_HU_PRO_HU_DIS", "HU_PROVINCE", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_PROVINCE), "HU_DISTRICT", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_DISTRICT), True)>
@@ -27896,6 +27896,31 @@ Public Partial Class HU_EMPLOYEE_CV
     End Sub
 
     Private Partial Sub OnIS_TRANSFERChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property RESIDENCE() As Global.System.String
+        Get
+            Return _RESIDENCE
+        End Get
+        Set
+            OnRESIDENCEChanging(value)
+            ReportPropertyChanging("RESIDENCE")
+            _RESIDENCE = StructuralObject.SetValidValue(value, true)
+            ReportPropertyChanged("RESIDENCE")
+            OnRESIDENCEChanged()
+        End Set
+    End Property
+
+    Private _RESIDENCE As Global.System.String
+    Private Partial Sub OnRESIDENCEChanging(value As Global.System.String)
+    End Sub
+
+    Private Partial Sub OnRESIDENCEChanged()
     End Sub
 
     #End Region

@@ -612,6 +612,7 @@
             <Property Name="IS_ATVS" Type="number" Nullable="true" Precision="5" />
             <Property Name="TNCN_NO" Type="nvarchar2" Nullable="true" MaxLength="255" />
             <Property Name="IS_TRANSFER" Type="number" Nullable="true" Precision="5" />
+            <Property Name="RESIDENCE" Type="nclob" Nullable="true" />
         </EntityType>
         <EntityType Name="HU_EMPLOYEE_HEALTH">
             <Key>
@@ -5133,6 +5134,7 @@
           <Property Type="Int16" Name="IS_ATVS" />
           <Property Type="String" Name="TNCN_NO" Nullable="true" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Type="Int16" Name="IS_TRANSFER" />
+          <Property Type="String" Name="RESIDENCE" />
         </EntityType>
         <EntityType Name="HU_EMPLOYEE_HEALTH">
           <Key>
@@ -9225,6 +9227,7 @@
                     <ScalarProperty Name="IS_ATVS" ColumnName="IS_ATVS" />
                     <ScalarProperty Name="TNCN_NO" ColumnName="TNCN_NO" />
                     <ScalarProperty Name="IS_TRANSFER" ColumnName="IS_TRANSFER" />
+                    <ScalarProperty Name="RESIDENCE" ColumnName="RESIDENCE" />
                 </MappingFragment>
             </EntityTypeMapping>
         </EntitySetMapping>
@@ -12826,7 +12829,7 @@
     </Options>
     <!-- Diagram content (shape and connector positions) -->
     <Diagrams>
-      <Diagram Name="ProfileContext" ZoomLevel="81" ShowGrid="false" DisplayType="true" SnapToGrid="true">
+      <Diagram Name="ProfileContext" ZoomLevel="67" ShowGrid="false" DisplayType="true" SnapToGrid="true">
         <EntityTypeShape EntityType="ProfileModel.HU_PROVINCE" Width="1.5" PointX="3" PointY="9.625" Height="0.39999999999999858" IsExpanded="false" />
         <EntityTypeShape EntityType="ProfileModel.HU_DISTRICT" Width="1.75" PointX="5.25" PointY="9" Height="0.39999999999999858" IsExpanded="false" />
         <EntityTypeShape EntityType="ProfileModel.HU_NATION" Width="1.5" PointX="0.75" PointY="9.625" Height="0.40000000000000213" IsExpanded="false" />
@@ -12870,7 +12873,7 @@
           <ConnectorPoint PointX="4.5" PointY="10.024999999999999" />
           <ConnectorPoint PointX="5.25" PointY="10.125" />
         </AssociationConnector>
-        <EntityTypeShape EntityType="ProfileModel.HU_EMPLOYEE_CV" Width="3.125" PointX="37.625" PointY="6" Height="23.518046875000003" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProfileModel.HU_EMPLOYEE_CV" Width="3.125" PointX="37.625" PointY="6" Height="25.825664062500003" IsExpanded="true" />
         <EntityTypeShape EntityType="ProfileModel.HU_EMPLOYEE_HEALTH" Width="1.875" PointX="13.5" PointY="0.5" Height="5.8263151041666665" IsExpanded="true" />
         <EntityTypeShape EntityType="ProfileModel.HU_EMPLOYEE_EDUCATION" Width="4" PointX="41" PointY="6.125" Height="7.1724251302083326" IsExpanded="true" />
         <AssociationConnector Association="ProfileModel.FK_HE_HEC">

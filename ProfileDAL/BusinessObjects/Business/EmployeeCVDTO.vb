@@ -180,4 +180,7 @@
     'mã số thếu tncn
     Public Property TNCN_NO As String
 
+    '' nguyen quan
+    Public Property RESIDENCE As String
+
 End Class
