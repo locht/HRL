@@ -621,6 +621,22 @@ Partial Class RecruitmentRepository
     End Function
 
 
+    Public Function Update_Potential_Candidate(ByVal ID As String,
+                                               ByVal ORG As Decimal,
+                                               ByVal TITLE_ID As Decimal,
+                                               ByVal PROGRAM_ID As Decimal) As Boolean
+        Using rep As New RecruitmentBusinessClient
+            Try
+                Return rep.Update_Potential_Candidate(ID, ORG, TITLE_ID, PROGRAM_ID)
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+
+    End Function
+
+
     Public Function GetListCandidatePaging( ByVal _filter As CandidateDTO,
                                      Optional ByVal Sorts As String = "Candidate_CODE desc") As List(Of CandidateDTO)
         Using rep As New RecruitmentBusinessClient

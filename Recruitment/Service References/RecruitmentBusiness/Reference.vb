@@ -20090,6 +20090,9 @@ Namespace RecruitmentBusiness
      System.ServiceModel.ServiceContractAttribute(ConfigurationName:="RecruitmentBusiness.IRecruitmentBusiness")>  _
     Public Interface IRecruitmentBusiness
         
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IRecruitmentBusiness/GetCandidateResult", ReplyAction:="http://tempuri.org/IRecruitmentBusiness/GetCandidateResultResponse")>  _
+        Function GetCandidateResult(ByVal _filter As RecruitmentBusiness.ProgramScheduleCanDTO) As System.Collections.Generic.List(Of RecruitmentBusiness.ProgramScheduleCanDTO)
+        
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IRecruitmentBusiness/UpdateCandidateResult", ReplyAction:="http://tempuri.org/IRecruitmentBusiness/UpdateCandidateResultResponse")>  _
         Function UpdateCandidateResult(ByVal lst As System.Collections.Generic.List(Of RecruitmentBusiness.ProgramScheduleCanDTO), ByVal log As Common.CommonBusiness.UserLog) As Boolean
         
@@ -20291,6 +20294,9 @@ Namespace RecruitmentBusiness
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IRecruitmentBusiness/GetFindCandidatePaging", ReplyAction:="http://tempuri.org/IRecruitmentBusiness/GetFindCandidatePagingResponse")>  _
         Function GetFindCandidatePaging(ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal _filter As RecruitmentBusiness.CandidateDTO, ByVal Sorts As String) As System.Collections.Generic.List(Of RecruitmentBusiness.CandidateDTO)
         
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IRecruitmentBusiness/Update_Potential_Candidate", ReplyAction:="http://tempuri.org/IRecruitmentBusiness/Update_Potential_CandidateResponse")>  _
+        Function Update_Potential_Candidate(ByVal ID As String, ByVal ORG As Decimal, ByVal TITLE_ID As Decimal, ByVal PROGRAM_ID As Decimal) As Boolean
+        
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IRecruitmentBusiness/GetListCandidateTransferPaging", ReplyAction:="http://tempuri.org/IRecruitmentBusiness/GetListCandidateTransferPagingResponse")>  _
         Function GetListCandidateTransferPaging(ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal _filter As RecruitmentBusiness.CandidateDTO, ByVal Sorts As String) As System.Collections.Generic.List(Of RecruitmentBusiness.CandidateDTO)
         
@@ -20411,9 +20417,6 @@ Namespace RecruitmentBusiness
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IRecruitmentBusiness/UpdateProgramSchedule", ReplyAction:="http://tempuri.org/IRecruitmentBusiness/UpdateProgramScheduleResponse")>  _
         Function UpdateProgramSchedule(ByVal objExams As RecruitmentBusiness.ProgramScheduleDTO, ByVal log As Common.CommonBusiness.UserLog) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IRecruitmentBusiness/GetCandidateResult", ReplyAction:="http://tempuri.org/IRecruitmentBusiness/GetCandidateResultResponse")>  _
-        Function GetCandidateResult(ByVal _filter As RecruitmentBusiness.ProgramScheduleCanDTO) As System.Collections.Generic.List(Of RecruitmentBusiness.ProgramScheduleCanDTO)
     End Interface
     
     <System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")>  _
@@ -20446,6 +20449,10 @@ Namespace RecruitmentBusiness
         Public Sub New(ByVal binding As System.ServiceModel.Channels.Binding, ByVal remoteAddress As System.ServiceModel.EndpointAddress)
             MyBase.New(binding, remoteAddress)
         End Sub
+        
+        Public Function GetCandidateResult(ByVal _filter As RecruitmentBusiness.ProgramScheduleCanDTO) As System.Collections.Generic.List(Of RecruitmentBusiness.ProgramScheduleCanDTO) Implements RecruitmentBusiness.IRecruitmentBusiness.GetCandidateResult
+            Return MyBase.Channel.GetCandidateResult(_filter)
+        End Function
         
         Public Function UpdateCandidateResult(ByVal lst As System.Collections.Generic.List(Of RecruitmentBusiness.ProgramScheduleCanDTO), ByVal log As Common.CommonBusiness.UserLog) As Boolean Implements RecruitmentBusiness.IRecruitmentBusiness.UpdateCandidateResult
             Return MyBase.Channel.UpdateCandidateResult(lst, log)
@@ -20715,6 +20722,10 @@ Namespace RecruitmentBusiness
             Return MyBase.Channel.GetFindCandidatePaging(PageIndex, PageSize, Total, _filter, Sorts)
         End Function
         
+        Public Function Update_Potential_Candidate(ByVal ID As String, ByVal ORG As Decimal, ByVal TITLE_ID As Decimal, ByVal PROGRAM_ID As Decimal) As Boolean Implements RecruitmentBusiness.IRecruitmentBusiness.Update_Potential_Candidate
+            Return MyBase.Channel.Update_Potential_Candidate(ID, ORG, TITLE_ID, PROGRAM_ID)
+        End Function
+        
         Public Function GetListCandidateTransferPaging(ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal _filter As RecruitmentBusiness.CandidateDTO, ByVal Sorts As String) As System.Collections.Generic.List(Of RecruitmentBusiness.CandidateDTO) Implements RecruitmentBusiness.IRecruitmentBusiness.GetListCandidateTransferPaging
             Return MyBase.Channel.GetListCandidateTransferPaging(PageIndex, PageSize, Total, _filter, Sorts)
         End Function
@@ -20873,10 +20884,6 @@ Namespace RecruitmentBusiness
         
         Public Function UpdateProgramSchedule(ByVal objExams As RecruitmentBusiness.ProgramScheduleDTO, ByVal log As Common.CommonBusiness.UserLog) As Boolean Implements RecruitmentBusiness.IRecruitmentBusiness.UpdateProgramSchedule
             Return MyBase.Channel.UpdateProgramSchedule(objExams, log)
-        End Function
-        
-        Public Function GetCandidateResult(ByVal _filter As RecruitmentBusiness.ProgramScheduleCanDTO) As System.Collections.Generic.List(Of RecruitmentBusiness.ProgramScheduleCanDTO) Implements RecruitmentBusiness.IRecruitmentBusiness.GetCandidateResult
-            Return MyBase.Channel.GetCandidateResult(_filter)
         End Function
     End Class
 End Namespace

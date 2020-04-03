@@ -154,7 +154,25 @@ Public Class ctrlRC_FindCandidate
             Dim rep As New RecruitmentRepository
 
             Select Case CType(e.Item, RadToolBarButton).CommandName
+                Case CommonMessage.TOOLBARITEM_SAVE
+                    If rgCandidateList.SelectedItems.Count = 0 Then
+                        ShowMessage(Translate("Bạn phải chọn ứng viên tiềm năng"), Utilities.NotifyType.Warning)
+                        Exit Sub
+                    End If
+                    Dim strIDCandidate As String = ""
+                    Dim iOrgID As Decimal = If(Request.Params("ORGID") <> "", Int32.Parse(Request.Params("ORGID")), 0)
+                    Dim iTitleID As Decimal = If(Request.Params("TITLEID") <> "", Int32.Parse(Request.Params("TITLEID")), 0)
+                    Dim iProgramID As Decimal = If(Request.Params("PROGRAM_ID") <> "", Int32.Parse(Request.Params("PROGRAM_ID")), 0)
+                    For Each dr As Telerik.Web.UI.GridDataItem In rgCandidateList.SelectedItems
+                        strIDCandidate = strIDCandidate & dr.GetDataKeyValue("ID") & ","
+                    Next
 
+                    If rep.Update_Potential_Candidate(strIDCandidate, iOrgID, iTitleID, iProgramID) Then
+                        ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), NotifyType.Success)
+                        'rgCandidateList.Rebind()
+                    Else
+                        ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), NotifyType.Error)
+                    End If
                 Case TOOLBARITEM_DELETE
                     'Kiểm tra các điều kiện để xóa.
                     If rgCandidateList.SelectedItems.Count = 0 Then

@@ -411,6 +411,18 @@ Namespace RecruitmentBusiness.ServiceImplementations
                 Throw ex
             End Try
         End Function
+        Public Function Update_Potential_Candidate(ByVal ID As String,
+                                               ByVal ORG As Decimal,
+                                               ByVal TITLE_ID As Decimal,
+                                               ByVal PROGRAM_ID As Decimal) As Boolean _
+              Implements ServiceContracts.IRecruitmentBusiness.Update_Potential_Candidate
+            Try
+                Dim rep As New RecruitmentRepository
+                Return rep.Update_Potential_Candidate(ID, ORG, TITLE_ID, PROGRAM_ID)
+            Catch ex As Exception
+                Throw ex
+            End Try
+        End Function
 
         Public Function GetListCandidateTransferPaging(ByVal PageIndex As Integer,
                                      ByVal PageSize As Integer,

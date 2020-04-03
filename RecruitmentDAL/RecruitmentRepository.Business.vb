@@ -1898,33 +1898,33 @@ Partial Class RecruitmentRepository
                 Case "NO_ID"
                     If sID_No <> "" Or (dBirthDate.ToString <> "" And sFullName <> "") Then
                         Return ((From e In Context.RC_CANDIDATE
-                         From cv In Context.RC_CANDIDATE_CV.Where(Function(f) f.CANDIDATE_ID = e.ID)
-                        Where ((cv.ID_NO = sID_No) Or (cv.BIRTH_DATE = dBirthDate And e.FULLNAME_VN.ToUpper = sFullName.ToUpper))).Count = 0)
+                                 From cv In Context.RC_CANDIDATE_CV.Where(Function(f) f.CANDIDATE_ID = e.ID)
+                                 Where ((cv.ID_NO = sID_No) Or (cv.BIRTH_DATE = dBirthDate And e.FULLNAME_VN.ToUpper = sFullName.ToUpper))).Count = 0)
                     End If
                 Case "BLACK_LIST"
                     If sID_No <> "" Or (dBirthDate.ToString <> "" And sFullName <> "") Then
                         Return ((From e In Context.RC_CANDIDATE
-                         From cv In Context.RC_CANDIDATE_CV.Where(Function(f) f.CANDIDATE_ID = e.ID)
-                        Where (cv.ID_NO = sID_No And e.IS_BLACKLIST = -1) Or (cv.BIRTH_DATE = dBirthDate And e.FULLNAME_VN.ToUpper = sFullName.ToUpper And e.IS_BLACKLIST = -1)).Count = 0)
+                                 From cv In Context.RC_CANDIDATE_CV.Where(Function(f) f.CANDIDATE_ID = e.ID)
+                                 Where (cv.ID_NO = sID_No And e.IS_BLACKLIST = -1) Or (cv.BIRTH_DATE = dBirthDate And e.FULLNAME_VN.ToUpper = sFullName.ToUpper And e.IS_BLACKLIST = -1)).Count = 0)
                     End If
                 Case "DATE_FULLNAME"
                     If sID_No <> "" And sID_No IsNot Nothing And dBirthDate.ToString <> "" Then
                         Return ((From e In Context.RC_CANDIDATE
-                         From cv In Context.RC_CANDIDATE_CV.Where(Function(f) f.CANDIDATE_ID = e.ID)
-                        Where cv.BIRTH_DATE = dBirthDate And e.FULLNAME_VN.ToUpper = sFullName.ToUpper).Count = 0)
+                                 From cv In Context.RC_CANDIDATE_CV.Where(Function(f) f.CANDIDATE_ID = e.ID)
+                                 Where cv.BIRTH_DATE = dBirthDate And e.FULLNAME_VN.ToUpper = sFullName.ToUpper).Count = 0)
                     End If
                 Case "WORKING"
                     If sID_No <> "" Or (dBirthDate.ToString <> "" And sFullName <> "") Then
 
                         Return ((From e In Context.HU_EMPLOYEE
-                         From cv In Context.HU_EMPLOYEE_CV.Where(Function(f) f.EMPLOYEE_ID = e.ID)
-                        Where (cv.BIRTH_DATE = dBirthDate And e.FULLNAME_VN.ToUpper = sFullName.ToUpper) Or (cv.ID_NO = sID_No)).Count = 0)
+                                 From cv In Context.HU_EMPLOYEE_CV.Where(Function(f) f.EMPLOYEE_ID = e.ID)
+                                 Where (cv.BIRTH_DATE = dBirthDate And e.FULLNAME_VN.ToUpper = sFullName.ToUpper) Or (cv.ID_NO = sID_No)).Count = 0)
                     End If
                 Case "TERMINATE"
                     If sID_No <> "" Or (dBirthDate.ToString <> "" And sFullName <> "") Then
                         Return ((From e In Context.HU_EMPLOYEE
-                         From cv In Context.HU_EMPLOYEE_CV.Where(Function(f) f.EMPLOYEE_ID = e.ID)
-                        Where ((cv.BIRTH_DATE = dBirthDate And e.FULLNAME_VN.ToUpper = sFullName.ToUpper) Or (cv.ID_NO = sID_No)) And e.WORK_STATUS = 257).Count = 0)
+                                 From cv In Context.HU_EMPLOYEE_CV.Where(Function(f) f.EMPLOYEE_ID = e.ID)
+                                 Where ((cv.BIRTH_DATE = dBirthDate And e.FULLNAME_VN.ToUpper = sFullName.ToUpper) Or (cv.ID_NO = sID_No)) And e.WORK_STATUS = 257).Count = 0)
                     End If
             End Select
             Return True
@@ -1951,12 +1951,12 @@ Partial Class RecruitmentRepository
                                        Optional ByVal Sorts As String = "Candidate_CODE desc") As List(Of CandidateDTO)
         Try
             Dim query = From p In Context.RC_CANDIDATE
-                    From ot In Context.HU_TITLE.Where(Function(f) p.TITLE_ID = f.ID).DefaultIfEmpty
-                    From org In Context.HU_ORGANIZATION.Where(Function(f) p.ORG_ID = f.ID).DefaultIfEmpty
-                    From cv In Context.RC_CANDIDATE_CV.Where(Function(f) p.ID = f.CANDIDATE_ID).DefaultIfEmpty
-                    From status In Context.OT_OTHER_LIST.Where(Function(f) f.CODE = p.STATUS_ID).DefaultIfEmpty
-                    From id_place In Context.HU_PROVINCE.Where(Function(f) f.ID = cv.ID_PLACE).DefaultIfEmpty
-                    Order By p.CREATED_DATE Descending
+                        From ot In Context.HU_TITLE.Where(Function(f) p.TITLE_ID = f.ID).DefaultIfEmpty
+                        From org In Context.HU_ORGANIZATION.Where(Function(f) p.ORG_ID = f.ID).DefaultIfEmpty
+                        From cv In Context.RC_CANDIDATE_CV.Where(Function(f) p.ID = f.CANDIDATE_ID).DefaultIfEmpty
+                        From status In Context.OT_OTHER_LIST.Where(Function(f) f.CODE = p.STATUS_ID).DefaultIfEmpty
+                        From id_place In Context.HU_PROVINCE.Where(Function(f) f.ID = cv.ID_PLACE).DefaultIfEmpty
+                        Order By p.CREATED_DATE Descending
 
             If _filter.RC_PROGRAM_ID IsNot Nothing Then
                 query = query.Where(Function(f) f.p.RC_PROGRAM_ID = _filter.RC_PROGRAM_ID)
@@ -1984,8 +1984,8 @@ Partial Class RecruitmentRepository
                          .STATUS_NAME = p.status.NAME_VN})
 
             If _filter.CANDIDATE_CODE <> "" Then
-                lst = lst.Where(Function(p) p.CANDIDATE_CODE.ToUpper().IndexOf(_filter.CANDIDATE_CODE.ToUpper) >= 0 Or _
-                                                p.FULLNAME_VN.ToUpper().IndexOf(_filter.CANDIDATE_CODE.ToUpper) >= 0 Or _
+                lst = lst.Where(Function(p) p.CANDIDATE_CODE.ToUpper().IndexOf(_filter.CANDIDATE_CODE.ToUpper) >= 0 Or
+                                                p.FULLNAME_VN.ToUpper().IndexOf(_filter.CANDIDATE_CODE.ToUpper) >= 0 Or
                                                    p.ID_NO.ToUpper().IndexOf(_filter.CANDIDATE_CODE.ToUpper) >= 0)
             End If
 
@@ -2059,6 +2059,27 @@ Partial Class RecruitmentRepository
         End Try
     End Function
 
+    Public Function Update_Potential_Candidate(ByVal ID As String,
+                                               ByVal ORG As Decimal,
+                                               ByVal TITLE_ID As Decimal,
+                                               ByVal PROGRAM_ID As Decimal) As Boolean
+        Try
+            Using cls As New DataAccess.QueryData
+                Dim dtData = cls.ExecuteStore("PKG_RECRUITMENT.UPDATE_POTENTIAL_CANDIDATE",
+                                           New With {.P_ID = ID,
+                                                     .P_ORG = ORG,
+                                                     .P_TITLE_ID = TITLE_ID,
+                                                     .P_PROGRAM_ID = PROGRAM_ID,
+                                                     .P_OUT = cls.OUT_NUMBER})
+
+                Return True
+            End Using
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iProfile")
+            Throw ex
+        End Try
+    End Function
+
     Public Function GetFindCandidatePaging(ByVal PageIndex As Integer,
                                        ByVal PageSize As Integer,
                                        ByRef Total As Integer,
@@ -2066,11 +2087,11 @@ Partial Class RecruitmentRepository
                                        Optional ByVal Sorts As String = "Candidate_CODE desc") As List(Of CandidateDTO)
         Try
             Dim query = From p In Context.RC_CANDIDATE
-                      From ot In Context.HU_TITLE.Where(Function(f) p.TITLE_ID = f.ID).DefaultIfEmpty
-                      From org In Context.HU_ORGANIZATION.Where(Function(f) p.ORG_ID = f.ID).DefaultIfEmpty
-                      From cv In Context.RC_CANDIDATE_CV.Where(Function(f) p.ID = f.CANDIDATE_ID).DefaultIfEmpty
-                      From status In Context.OT_OTHER_LIST.Where(Function(f) f.CODE = p.STATUS_ID).DefaultIfEmpty
-                      Where p.EMPLOYEE_CODE Is Nothing And p.STATUS_ID = "PONTENTIAL"
+                        From ot In Context.HU_TITLE.Where(Function(f) p.TITLE_ID = f.ID).DefaultIfEmpty
+                        From org In Context.HU_ORGANIZATION.Where(Function(f) p.ORG_ID = f.ID).DefaultIfEmpty
+                        From cv In Context.RC_CANDIDATE_CV.Where(Function(f) p.ID = f.CANDIDATE_ID).DefaultIfEmpty
+                        From status In Context.OT_OTHER_LIST.Where(Function(f) f.CODE = p.STATUS_ID).DefaultIfEmpty
+                        Where p.EMPLOYEE_CODE Is Nothing And p.STATUS_ID = "PONTENTIAL"
 
             If _filter.RC_PROGRAM_ID IsNot Nothing Then
                 query = query.Where(Function(f) f.p.RC_PROGRAM_ID = _filter.RC_PROGRAM_ID)
@@ -2096,8 +2117,8 @@ Partial Class RecruitmentRepository
                          .STATUS_NAME = p.status.NAME_VN})
 
             If _filter.CANDIDATE_CODE <> "" Then
-                lst = lst.Where(Function(p) p.CANDIDATE_CODE.ToUpper().IndexOf(_filter.CANDIDATE_CODE.ToUpper) >= 0 Or _
-                                                p.FULLNAME_VN.ToUpper().IndexOf(_filter.CANDIDATE_CODE.ToUpper) >= 0 Or _
+                lst = lst.Where(Function(p) p.CANDIDATE_CODE.ToUpper().IndexOf(_filter.CANDIDATE_CODE.ToUpper) >= 0 Or
+                                                p.FULLNAME_VN.ToUpper().IndexOf(_filter.CANDIDATE_CODE.ToUpper) >= 0 Or
                                                    p.ID_NO.ToUpper().IndexOf(_filter.CANDIDATE_CODE.ToUpper) >= 0)
             End If
 
@@ -2145,10 +2166,10 @@ Partial Class RecruitmentRepository
         Try
             Dim lst As IQueryable(Of CandidateDTO)
             Dim query = From p In Context.RC_CANDIDATE
-                    From ot In Context.HU_TITLE.Where(Function(f) p.TITLE_ID = f.ID).DefaultIfEmpty
-                    From org In Context.HU_ORGANIZATION.Where(Function(f) p.ORG_ID = f.ID).DefaultIfEmpty
-                 From cv In Context.RC_CANDIDATE_CV.Where(Function(f) p.ID = f.CANDIDATE_ID).DefaultIfEmpty
-                  Order By p.CREATED_DATE Descending
+                        From ot In Context.HU_TITLE.Where(Function(f) p.TITLE_ID = f.ID).DefaultIfEmpty
+                        From org In Context.HU_ORGANIZATION.Where(Function(f) p.ORG_ID = f.ID).DefaultIfEmpty
+                        From cv In Context.RC_CANDIDATE_CV.Where(Function(f) p.ID = f.CANDIDATE_ID).DefaultIfEmpty
+                        Order By p.CREATED_DATE Descending
 
 
             lst = query.Select(Function(p) New CandidateDTO With {
@@ -2176,8 +2197,8 @@ Partial Class RecruitmentRepository
             End If
 
             If _filter.CANDIDATE_CODE <> "" Then
-                lst = lst.Where(Function(p) p.CANDIDATE_CODE.ToUpper().IndexOf(_filter.CANDIDATE_CODE.ToUpper) >= 0 Or _
-                                                p.FULLNAME_VN.ToUpper().IndexOf(_filter.CANDIDATE_CODE.ToUpper) >= 0 Or _
+                lst = lst.Where(Function(p) p.CANDIDATE_CODE.ToUpper().IndexOf(_filter.CANDIDATE_CODE.ToUpper) >= 0 Or
+                                                p.FULLNAME_VN.ToUpper().IndexOf(_filter.CANDIDATE_CODE.ToUpper) >= 0 Or
                                                  p.ID_NO.ToUpper().IndexOf(_filter.CANDIDATE_CODE.ToUpper) >= 0)
 
             End If
@@ -2207,8 +2228,8 @@ Partial Class RecruitmentRepository
             If Not isOneCandidate Then
                 sCandidateImage = img_link
             Else
-                sCandidateImage = (From p In Context.RC_CANDIDATE_CV Where p.CANDIDATE_ID = gEmpID _
-                                  Select p.IMAGE).FirstOrDefault
+                sCandidateImage = (From p In Context.RC_CANDIDATE_CV Where p.CANDIDATE_ID = gEmpID
+                                   Select p.IMAGE).FirstOrDefault
             End If
 
             Dim _imageBinary() As Byte = Nothing
@@ -2259,7 +2280,7 @@ Partial Class RecruitmentRepository
         Dim EMPCODE As String
 
         Using query As New DataAccess.NonQueryData
-            Dim temp = query.ExecuteSQLScalar("select Candidate_CODE from RC_Candidate " & _
+            Dim temp = query.ExecuteSQLScalar("select Candidate_CODE from RC_Candidate " &
                                    "order by Candidate_CODE DESC",
                                    New Object)
             If temp IsNot Nothing Then
@@ -2279,11 +2300,11 @@ Partial Class RecruitmentRepository
     Public Function InsertCandidate(ByVal objEmp As CandidateDTO, ByVal log As UserLog, ByRef gID As Decimal,
                                    ByRef _strEmpCode As String,
                                    ByVal _imageBinary As Byte(),
-                                   ByVal objEmpCV As CandidateCVDTO, _
-                                         ByVal objEmpEdu As CandidateEduDTO, _
-                                         ByVal objEmpOther As CandidateOtherInfoDTO, _
-                                         ByVal objEmpHealth As CandidateHealthDTO, _
-                                         ByVal objEmpExpect As CandidateExpectDTO, _
+                                   ByVal objEmpCV As CandidateCVDTO,
+                                         ByVal objEmpEdu As CandidateEduDTO,
+                                         ByVal objEmpOther As CandidateOtherInfoDTO,
+                                         ByVal objEmpHealth As CandidateHealthDTO,
+                                         ByVal objEmpExpect As CandidateExpectDTO,
                                          ByVal objEmpFamily As CandidateFamilyDTO) As Boolean
 
         Try

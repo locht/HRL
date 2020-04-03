@@ -279,6 +279,11 @@ Namespace RecruitmentBusiness.ServiceContracts
                                        ByRef Total As Integer,
                                        ByVal _filter As CandidateDTO,
                                        Optional ByVal Sorts As String = "Candidate_CODE desc") As List(Of CandidateDTO)
+        <OperationContract()>
+        Function Update_Potential_Candidate(ByVal ID As String,
+                                               ByVal ORG As Decimal,
+                                               ByVal TITLE_ID As Decimal,
+                                               ByVal PROGRAM_ID As Decimal) As Boolean
 
         <OperationContract()>
         Function GetListCandidateTransferPaging(ByVal PageIndex As Integer,

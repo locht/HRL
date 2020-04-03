@@ -345,9 +345,12 @@
             oWindow.moveTo(pos.left, pos.top);
             oWindow.setSize($(window).width(), desiredHeight);
         }
-
-        function btnPontentialClick(sender, args) {
-            var oWindow = radopen('Dialog.aspx?mid=Recruitment&fid=ctrlRC_FindCandidate&group=Business&noscroll=1', "rwPopup");
+ function btnPontentialClick(sender, args) {
+           var orgID = $get("<%=hidOrg.ClientID %>").value;
+            var titleID = $get("<%=hidTitle.ClientID %>").value;
+            var programID = $get("<%=hidProgramID.ClientID %>").value;
+            var oWindow = radopen('Dialog.aspx?mid=Recruitment&fid=ctrlRC_FindCandidate&group=Business&ORGID=' +
+            orgID + '&TITLEID=' + titleID + '&PROGRAM_ID=' + programID + '&noscroll=1', "rwPopup");
             var pos = $("html").offset();
             var desiredHeight = $(window).height() - 50;
             oWindow.moveTo(pos.left, pos.top);

@@ -107,9 +107,9 @@
                     setTimeout(function () { $.noty.close(n.options.id); }, 5000);
                     return;
                 }
-                var id = $find('<%# rgCandidateList.ClientID%>').get_masterTableView().get_selectedItems()[0].getDataKeyValue('ID');
+              <%--  var id = $find('<%# rgCandidateList.ClientID%>').get_masterTableView().get_selectedItems()[0].getDataKeyValue('ID');
                 getRadWindow().close('PONTENTIAL_TRANSFER;' + id);
-                args.set_cancel(true);
+                args.set_cancel(true);--%>
             }
 
             if (args.get_item().get_commandName() == 'CANCEL') {
