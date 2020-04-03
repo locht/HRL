@@ -20,7 +20,7 @@
                          <ClientEvents OnRowDblClick="gridRowDblClick" />
                         <Selecting AllowRowSelect="true" />
                     </ClientSettings>
-                    <MasterTableView DataKeyNames="ID,TITLE_ID,ACTFLG,JOB_NAME,ORG_ID" ClientDataKeyNames="ID,TITLE_ID,ACTFLG,JOB_NAME,ORG_ID">
+                    <MasterTableView DataKeyNames="ID,TITLE_ID,ACTFLG,JOB_NAME,ORG_ID,CODE" ClientDataKeyNames="ID,TITLE_ID,ACTFLG,JOB_NAME,ORG_ID,CODE">
                         <Columns>
                             <tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderStyle-HorizontalAlign="Center"
                                 HeaderStyle-Width="30px" ItemStyle-HorizontalAlign="Center">
@@ -102,14 +102,27 @@
                 OpenNew();
                 args.set_cancel(true);
             }
+
+            if (args.get_item().get_commandName() == 'CREATE_BATCH') {
+                if (OpenNew1() == 1) {
+                    var m = '<%= Translate(CommonMessage.MESSAGE_NOT_SELECT_ROW) %>';
+                    var n = noty({ text: m, dismissQueue: true, type: 'warning' });
+                    setTimeout(function () { $.noty.close(n.options.id); }, 5000);
+                } else if (OpenNew1() == 2) {
+                    var m = '<%= Translate("Bạn không thể sửa nhiều bản ghi! Không thể thực hiện thao tác này") %>';
+                        var n = noty({ text: m, dismissQueue: true, type: 'warning' });
+                        setTimeout(function () { $.noty.close(n.options.id); }, 5000);
+                    }
+                args.set_cancel(true);
+            }
             if (args.get_item().get_commandName() == 'REFRESH') {
                 OPENTHANHLY();
                 args.set_cancel(true);
             }
             if (args.get_item().get_commandName() == "PRINT") {
                 var bCheck = $find('<%= rgOrgTitle.ClientID%>').get_masterTableView().get_selectedItems().length;
-                if (bCheck == 0) {
-                    var m = '<%= Translate(CommonMessage.MESSAGE_NOT_SELECT_ROW) %>';
+                 if (bCheck == 0) {
+                     var m = '<%= Translate(CommonMessage.MESSAGE_NOT_SELECT_ROW) %>';
                     var n = noty({ text: m, dismissQueue: true, type: 'warning' });
                     setTimeout(function () { $.noty.close(n.options.id); }, 5000);
                     args.set_cancel(true);
@@ -126,7 +139,7 @@
                     var m = '<%= Translate(CommonMessage.MESSAGE_NOT_SELECT_ROW) %>';
                     var n = noty({ text: m, dismissQueue: true, type: 'warning' });
                     setTimeout(function () { $.noty.close(n.options.id); }, 5000);
-                } else if (OpenEditContract() == 2) {
+                } else if (OpenEdit() == 2) {
                     var m = '<%= Translate("Bạn không thể sửa nhiều bản ghi! Không thể thực hiện thao tác này") %>';
                         var n = noty({ text: m, dismissQueue: true, type: 'warning' });
                         setTimeout(function () { $.noty.close(n.options.id); }, 5000);
@@ -135,7 +148,7 @@
             }
         }
         function gridRowDblClick(sender, eventArgs) {
-             OpenEdit();
+            OpenEdit();
         }
         function popupclose(sender, args) {
             var m;
@@ -147,7 +160,31 @@
             }
         }
 
+        function popupclose(oWnd, args) {
+            $find("<%= rgOrgTitle.ClientID%>").get_masterTableView().rebind();
+             //window.location.reload();
+         }
 
+
+        function OpenNew1() {
+            var bCheck = $find('<%= rgOrgTitle.ClientID%>').get_masterTableView().get_selectedItems().length;
+            if (bCheck == 0) {
+                return 1;
+            } else if (bCheck > 1) {
+                return 2;
+            }
+            var id = $find('<%= rgOrgTitle.ClientID%>').get_masterTableView().get_selectedItems()[0].getDataKeyValue('ID');
+            var title_id = $find('<%= rgOrgTitle.ClientID%>').get_masterTableView().get_selectedItems()[0].getDataKeyValue('TITLE_ID');
+            var code = $find('<%= rgOrgTitle.ClientID%>').get_masterTableView().get_selectedItems()[0].getDataKeyValue('CODE');
+            var jobName = $find('<%= rgOrgTitle.ClientID%>').get_masterTableView().get_selectedItems()[0].getDataKeyValue('JOB_NAME');
+
+            var oWindow = radopen('Dialog.aspx?mid=Organize&fid=ctrlHU_JobPositionNew&group=Business&Status=1&ID=' + id + '&CODE=' + code + '&JOB_NAME=' + jobName + '&TITLE_ID=' + title_id, "rwPopup");
+            var pos = $("html").offset();
+            //oWindow.moveTo(pos.left, pos.top);
+            oWindow.setSize(1000, 200);
+            oWindow.center();
+            return 3;
+        }
 
         function onRequestStart(sender, eventArgs) {
             eventArgs.set_enableAjax(enableAjax);

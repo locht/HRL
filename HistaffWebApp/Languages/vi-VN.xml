@@ -44678,4 +44678,28 @@ Xin cám ơn!
       <string>Điều động hàng loạt</string>
     </Value>
   </Item>
+  <Item>
+    <Key>
+      <string>CTRLHU_JOBPOSITIONNEW</string>
+    </Key>
+    <Value>
+      <string>Thông tin nhân bản vị trí công việc</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>THÔNG TIN NHÂN BẢN</string>
+    </Key>
+    <Value>
+      <string>Thông tin nhân bản</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>SỐ PHÂN BẢN</string>
+    </Key>
+    <Value>
+      <string>Số phân bản</string>
+    </Value>
+  </Item>
 </SerializableDictionaryOfStringString>

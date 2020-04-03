@@ -2752,6 +2752,19 @@ Namespace ProfileBusiness.ServiceImplementations
             End Using
         End Function
 
+        Function INSERT_JOB_POSITION_AUTO(ByVal p_ID As Decimal,
+                                       ByVal p_TITLE_ID As Decimal,
+                                       ByVal p_NUMBER As Decimal,
+                                       Optional ByVal log As UserLog = Nothing) As Boolean Implements ServiceContracts.IProfileBusiness.INSERT_JOB_POSITION_AUTO
+            Using rep As New ProfileRepository
+                Try
+                    Return rep.INSERT_JOB_POSITION_AUTO(p_ID, p_TITLE_ID, p_NUMBER, log)
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
+
 #End Region
 
 

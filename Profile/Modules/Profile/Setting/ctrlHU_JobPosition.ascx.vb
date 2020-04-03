@@ -134,6 +134,10 @@ Public Class ctrlHU_JobPosition
                                        ToolbarItem.Delete,
                                        ToolbarItem.Active,
                                        ToolbarItem.Deactive)
+            Me.MainToolBar.Items.Add(Common.Common.CreateToolbarItem(CommonMessage.TOOLBARITEM_CREATE_BATCH,
+                                                                 ToolbarIcons.Add,
+                                                                 ToolbarAuthorize.Special1,
+                                                                 "Nhân bản"))
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
             Throw ex

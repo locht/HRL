@@ -53431,6 +53431,9 @@ Namespace ProfileBusiness
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GET_JOB_CODE_AUTO", ReplyAction:="http://tempuri.org/IProfileBusiness/GET_JOB_CODE_AUTOResponse")>  _
         Function GET_JOB_CODE_AUTO(ByVal p_TITLE_ID As Decimal) As String
         
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/INSERT_JOB_POSITION_AUTO", ReplyAction:="http://tempuri.org/IProfileBusiness/INSERT_JOB_POSITION_AUTOResponse")>  _
+        Function INSERT_JOB_POSITION_AUTO(ByVal p_ID As Decimal, ByVal p_TITLE_ID As Decimal, ByVal p_NUMBER As Decimal, ByVal log As Common.CommonBusiness.UserLog) As Boolean
+        
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ModifyCommendLevel", ReplyAction:="http://tempuri.org/IProfileBusiness/ModifyCommendLevelResponse")>  _
         Function ModifyCommendLevel(ByVal objCommendLevel As ProfileBusiness.CommendLevelDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
         
@@ -56082,6 +56085,10 @@ Namespace ProfileBusiness
         
         Public Function GET_JOB_CODE_AUTO(ByVal p_TITLE_ID As Decimal) As String Implements ProfileBusiness.IProfileBusiness.GET_JOB_CODE_AUTO
             Return MyBase.Channel.GET_JOB_CODE_AUTO(p_TITLE_ID)
+        End Function
+        
+        Public Function INSERT_JOB_POSITION_AUTO(ByVal p_ID As Decimal, ByVal p_TITLE_ID As Decimal, ByVal p_NUMBER As Decimal, ByVal log As Common.CommonBusiness.UserLog) As Boolean Implements ProfileBusiness.IProfileBusiness.INSERT_JOB_POSITION_AUTO
+            Return MyBase.Channel.INSERT_JOB_POSITION_AUTO(p_ID, p_TITLE_ID, p_NUMBER, log)
         End Function
         
         Public Function ModifyCommendLevel(ByVal objCommendLevel As ProfileBusiness.CommendLevelDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean Implements ProfileBusiness.IProfileBusiness.ModifyCommendLevel

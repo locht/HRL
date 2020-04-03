@@ -6209,6 +6209,27 @@ Partial Class ProfileRepository
         End Try
     End Function
 
+    Public Function INSERT_JOB_POSITION_AUTO(ByVal p_ID As Decimal,
+                                       ByVal p_TITLE_ID As Decimal,
+                                       ByVal p_NUMBER As Decimal,
+                                       Optional ByVal log As UserLog = Nothing) As Boolean
+        Try
+            Using cls As New DataAccess.QueryData
+                Dim dtData = cls.ExecuteStore("PKG_HU_IPROFILE_LIST.INSERT_JOB_POSITION_AUTO",
+                                           New With {.P_ID = p_ID,
+                                                     .P_TITLE_ID = p_TITLE_ID,
+                                                     .P_NUMBER = p_NUMBER,
+                                                     .P_CREATED_BY = log.Username,
+                                                     .P_CREATED_LOG = log.Ip & log.ComputerName})
+
+                Return True
+            End Using
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iProfile")
+            Throw ex
+        End Try
+    End Function
+
 #End Region
 
 End Class

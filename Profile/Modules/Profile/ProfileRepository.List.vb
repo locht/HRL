@@ -2413,6 +2413,19 @@ Partial Public Class ProfileRepository
         End Using
     End Function
 
+    Function INSERT_JOB_POSITION_AUTO(ByVal p_ID As Decimal,
+                                       ByVal p_TITLE_ID As Decimal,
+                                       ByVal p_NUMBER As Decimal) As Boolean
+        Using rep As New ProfileBusinessClient
+            Try
+                Return rep.INSERT_JOB_POSITION_AUTO(p_ID, p_TITLE_ID, p_NUMBER, Me.Log)
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+    End Function
+
 #End Region
 
 End Class

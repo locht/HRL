@@ -2910,6 +2910,12 @@ Namespace ProfileBusiness.ServiceContracts
 
         <OperationContract()>
         Function GET_JOB_CODE_AUTO(ByVal p_TITLE_ID As Decimal) As String
+
+        <OperationContract()>
+        Function INSERT_JOB_POSITION_AUTO(ByVal p_ID As Decimal,
+                                       ByVal p_TITLE_ID As Decimal,
+                                       ByVal p_NUMBER As Decimal,
+                                       Optional ByVal log As UserLog = Nothing) As Boolean
     End Interface
 
 End Namespace
