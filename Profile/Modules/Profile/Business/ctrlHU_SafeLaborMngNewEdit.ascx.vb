@@ -253,13 +253,12 @@ Public Class ctrlHU_SafeLaborMngNewEdit
                     ctrlFindEmployeePopup.Show()
                 Case "DeleteEmployee"
                     For Each i As GridDataItem In rgEmployee.SelectedItems
-                        Dim s = (From q In Employee_PL Where
-                                 q.ID = i.GetDataKeyValue("ID")).FirstOrDefault
-                        Employee_PL.Remove(s)
+                        Dim s = (From q In dtbImport Where
+                                 q("EMPLOYEE_ID") = i.GetDataKeyValue("EMPLOYEE_ID")).FirstOrDefault
+                        dtbImport.Rows.Remove(s)
                     Next
                     '_result = False
                     checkDelete = 1
-                    dtbImport = Employee_PL.ToTable()
                     rgEmployee.DataSource = dtbImport
                     rgEmployee_NeedDataSource(Nothing, Nothing)
                     rgEmployee.Rebind()

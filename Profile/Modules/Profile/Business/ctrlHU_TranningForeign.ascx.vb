@@ -199,13 +199,11 @@ Public Class ctrlHU_TranningForeign
             Common.Common.BuildToolbar(Me.MainToolBar, ToolbarItem.Create,
                                        ToolbarItem.Edit,
                                        ToolbarItem.Export,
-                                       ToolbarItem.Delete,
-                                       ToolbarItem.Print,
-                                        ToolbarItem.Import
+                                       ToolbarItem.Delete
                                        )
-            CType(MainToolBar.Items(4), RadToolBarButton).Text = "Xuất file mẫu"
-            CType(MainToolBar.Items(4), RadToolBarButton).ImageUrl = CType(MainToolBar.Items(2), RadToolBarButton).ImageUrl
-            CType(MainToolBar.Items(5), RadToolBarButton).Text = "nhập file mẫu"
+            'CType(MainToolBar.Items(4), RadToolBarButton).Text = "Xuất file mẫu"
+            'CType(MainToolBar.Items(4), RadToolBarButton).ImageUrl = CType(MainToolBar.Items(2), RadToolBarButton).ImageUrl
+            'CType(MainToolBar.Items(5), RadToolBarButton).Text = "nhập file mẫu"
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
             Throw ex
