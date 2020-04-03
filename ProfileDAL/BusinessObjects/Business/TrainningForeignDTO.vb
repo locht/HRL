@@ -34,5 +34,21 @@
     Public Property Working As WorkingDTO
     Public Property TRAINNING_ID As Decimal?
     Public Property TRAINNING_NAME As String
-
+    Public Property PLACE_FROM As String
+    Public Property PLACE_TO As String
+    Public Property VISA_ID As Decimal?
+    Public Property VISA_NAME As String
+    Public Property NUMBER_VISA As String
+    Public Property DATE_NC_VISA As Date?
+    Public Property DATE_HH_VISA As Date?
+    Public Property PLACE_VISA As String
+    Public Property COST_VISA As Decimal?
+    Public Property NUMBER_DATE As Decimal?
+    Public Property COST_KH As Decimal?
+    Public Property COST_WORK As Decimal?
+    Public Property COST_HOTEL As Decimal?
+    Public Property COST_ANOTHER As Decimal?
+    Public Property COST_GO As Decimal?
+    Public Property CHK_COSTWORK As Boolean
+    Public Property SUM_COST As Decimal?
 End Class

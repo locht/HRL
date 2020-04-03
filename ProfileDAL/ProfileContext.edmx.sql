@@ -1,8 +1,8 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for Oracle database
 -- --------------------------------------------------
--- Date Created: 4/1/2020 9:25:48 AM
--- Generated from EDMX file: D:\SOURCE_GIT_NEW\SOURCR_ACV_NEW\ProfileDAL\ProfileContext.edmx
+-- Date Created: 04/03/2020 10:16:08 AM
+-- Generated from EDMX file: D:\MyProject2020\ACV1\acv_19\ProfileDAL\ProfileContext.edmx
 -- --------------------------------------------------
 
 -- --------------------------------------------------
@@ -3361,7 +3361,23 @@ CREATE TABLE "dbo"."HU_TRAININGFOREIGN" (
    "CREATED_LOG" NVARCHAR2(255) NULL,
    "MODIFIED_DATE" DATE NULL,
    "MODIFIED_BY" NVARCHAR2(255) NULL,
-   "MODIFIED_LOG" NVARCHAR2(255) NULL
+   "MODIFIED_LOG" NVARCHAR2(255) NULL,
+   "PLACE_FROM" NCLOB NULL,
+   "PLACE_TO" NCLOB NULL,
+   "VISA_ID" NUMBER(38,0) NULL,
+   "NUMBER_VISA" NCLOB NULL,
+   "DATE_NC_VISA" DATE NULL,
+   "DATE_HH_VISA" DATE NULL,
+   "PLACE_VISA" NCLOB NULL,
+   "COST_VISA" NUMBER(38,0) NULL,
+   "NUMBER_DATE" NUMBER(38,0) NULL,
+   "COST_KH" NUMBER(38,0) NULL,
+   "COST_WORK" NUMBER(38,0) NULL,
+   "COST_HOTEL" NUMBER(38,0) NULL,
+   "COST_ANOTHER" NUMBER(38,0) NULL,
+   "COST_GO" NUMBER(38,0) NULL,
+   "CHK_COSTWORK" NUMBER(38,0) NULL,
+   "SUM_COST" NUMBER(38,0) NULL
 );
 
 -- Creating table 'HU_TRAININGMANAGE'

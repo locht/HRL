@@ -3398,6 +3398,22 @@
             <Property Name="MODIFIED_DATE" Type="date" Nullable="true" />
             <Property Name="MODIFIED_BY" Type="nvarchar2" Nullable="true" MaxLength="255" />
             <Property Name="MODIFIED_LOG" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="PLACE_FROM" Type="nclob" Nullable="true" />
+            <Property Name="PLACE_TO" Type="nclob" Nullable="true" />
+            <Property Name="VISA_ID" Type="number" Nullable="true" Precision="38" />
+            <Property Name="NUMBER_VISA" Type="nclob" Nullable="true" />
+            <Property Name="DATE_NC_VISA" Type="date" Nullable="true" />
+            <Property Name="DATE_HH_VISA" Type="date" Nullable="true" />
+            <Property Name="PLACE_VISA" Type="nclob" Nullable="true" />
+            <Property Name="COST_VISA" Type="number" Nullable="true" Precision="38" />
+            <Property Name="NUMBER_DATE" Type="number" Nullable="true" Precision="38" />
+            <Property Name="COST_KH" Type="number" Nullable="true" Precision="38" />
+            <Property Name="COST_WORK" Type="number" Nullable="true" Precision="38" />
+            <Property Name="COST_HOTEL" Type="number" Nullable="true" Precision="38" />
+            <Property Name="COST_ANOTHER" Type="number" Nullable="true" Precision="38" />
+            <Property Name="COST_GO" Type="number" Nullable="true" Precision="38" />
+            <Property Name="CHK_COSTWORK" Type="number" Nullable="true" Precision="38" />
+            <Property Name="SUM_COST" Type="number" Nullable="true" Precision="38" />
         </EntityType>
         <EntityType Name="HU_TRAININGMANAGE">
             <Key>
@@ -8200,6 +8216,22 @@
           <Property Type="DateTime" Name="MODIFIED_DATE" />
           <Property Type="String" Name="MODIFIED_BY" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="MODIFIED_LOG" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="PLACE_FROM" />
+          <Property Type="String" Name="PLACE_TO" />
+          <Property Type="Decimal" Name="VISA_ID" />
+          <Property Type="String" Name="NUMBER_VISA" />
+          <Property Type="DateTime" Name="DATE_NC_VISA" />
+          <Property Type="DateTime" Name="DATE_HH_VISA" />
+          <Property Type="String" Name="PLACE_VISA" />
+          <Property Type="Decimal" Name="COST_VISA" />
+          <Property Type="Decimal" Name="NUMBER_DATE" />
+          <Property Type="Decimal" Name="COST_KH" />
+          <Property Type="Decimal" Name="COST_WORK" />
+          <Property Type="Decimal" Name="COST_HOTEL" />
+          <Property Type="Decimal" Name="COST_ANOTHER" />
+          <Property Type="Decimal" Name="COST_GO" />
+          <Property Type="Decimal" Name="CHK_COSTWORK" />
+          <Property Type="Decimal" Name="SUM_COST" />
         </EntityType>
         <EntityType Name="HU_TRAININGMANAGE">
           <Key>
@@ -12073,6 +12105,22 @@
                     <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
                     <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
                     <ScalarProperty Name="MODIFIED_LOG" ColumnName="MODIFIED_LOG" />
+                    <ScalarProperty Name="PLACE_FROM" ColumnName="PLACE_FROM" />
+                    <ScalarProperty Name="PLACE_TO" ColumnName="PLACE_TO" />
+                    <ScalarProperty Name="VISA_ID" ColumnName="VISA_ID" />
+                    <ScalarProperty Name="NUMBER_VISA" ColumnName="NUMBER_VISA" />
+                    <ScalarProperty Name="DATE_NC_VISA" ColumnName="DATE_NC_VISA" />
+                    <ScalarProperty Name="DATE_HH_VISA" ColumnName="DATE_HH_VISA" />
+                    <ScalarProperty Name="PLACE_VISA" ColumnName="PLACE_VISA" />
+                    <ScalarProperty Name="COST_VISA" ColumnName="COST_VISA" />
+                    <ScalarProperty Name="NUMBER_DATE" ColumnName="NUMBER_DATE" />
+                    <ScalarProperty Name="COST_KH" ColumnName="COST_KH" />
+                    <ScalarProperty Name="COST_WORK" ColumnName="COST_WORK" />
+                    <ScalarProperty Name="COST_HOTEL" ColumnName="COST_HOTEL" />
+                    <ScalarProperty Name="COST_ANOTHER" ColumnName="COST_ANOTHER" />
+                    <ScalarProperty Name="COST_GO" ColumnName="COST_GO" />
+                    <ScalarProperty Name="CHK_COSTWORK" ColumnName="CHK_COSTWORK" />
+                    <ScalarProperty Name="SUM_COST" ColumnName="SUM_COST" />
                 </MappingFragment>
             </EntityTypeMapping>
         </EntitySetMapping>
@@ -13073,7 +13121,7 @@
         <EntityTypeShape EntityType="ProfileModel.HU_ALLOWANCE" Width="2.125" PointX="6.375" PointY="33.375" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="ProfileModel.HU_ATTACHFILES" Width="1.5" PointX="0.75" PointY="0.75" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="ProfileModel.HU_FILE" Width="1.5" PointX="32.375" PointY="14.75" Height="0.4" IsExpanded="false" />
-        <EntityTypeShape EntityType="ProfileModel.HU_TRAININGFOREIGN" Width="1.5" PointX="32.375" PointY="20.75" Height="0.4" IsExpanded="false" />
+        <EntityTypeShape EntityType="ProfileModel.HU_TRAININGFOREIGN" Width="2.75" PointX="31.125" PointY="15.75" Height="7.5570279947916674" IsExpanded="true" />
         <EntityTypeShape EntityType="ProfileModel.HU_TRAININGMANAGE" Width="3.125" PointX="33.375" PointY="5.75" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="ProfileModel.HU_TRAININGEVALUATE" Width="1.5" PointX="33.375" PointY="26.75" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="ProfileModel.PE_PERIOD" Width="1.5" PointX="33.375" PointY="33.125" Height="0.4" IsExpanded="false" />

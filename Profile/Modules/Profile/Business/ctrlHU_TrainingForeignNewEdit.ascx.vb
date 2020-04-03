@@ -513,9 +513,11 @@ Public Class ctrlHU_TrainingForeignNewEdit
     ''' <remarks></remarks>
     Private Sub GetDataCombo()
         Dim rep As New ProfileRepository
-        ListComboData = New ComboBoxDataDTO
-        ListComboData.GET_TYPE_WORK = True
-        
+        'ListComboData = New ComboBoxDataDTO
+        'ListComboData.GET_TYPE_WORK = True
+        Dim dtData As New DataTable
+        dtData = rep.GetOtherList("TYPE_VISA", True)
+        FillRadCombobox(cboTypeVisa, dtData, "NAME", "ID", True)
         rep.Dispose()
     End Sub
     ''' <lastupdate>
@@ -583,6 +585,8 @@ Public Class ctrlHU_TrainingForeignNewEdit
                 txtEmployeeName.Text = item.FULLNAME_VN
                 txtTITLE.Text = item.TITLE_NAME_VN
                 txtOrg_Name.Text = item.ORG_NAME
+                txtBranch.Text = item.ORG_NAME2
+                txtBan.Text = item.ORG_NAME4
                 Dim employeeId As Double = 0
                 Double.TryParse(hidEmployeeID.Value, employeeId)
                 ClearControlValue(rdStartDate)

@@ -41008,7 +41008,28 @@ Namespace ProfileBusiness
         Private extensionDataField As System.Runtime.Serialization.ExtensionDataObject
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private CHK_COSTWORKField As Boolean
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private CONTENTField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private COST_ANOTHERField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private COST_GOField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private COST_HOTELField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private COST_KHField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private COST_VISAField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private COST_WORKField As System.Nullable(Of Decimal)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private CREATED_BYField As String
@@ -41018,6 +41039,12 @@ Namespace ProfileBusiness
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private CREATED_LOGField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private DATE_HH_VISAField As System.Nullable(Of Date)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private DATE_NC_VISAField As System.Nullable(Of Date)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private DECISION_NOField As String
@@ -41056,6 +41083,12 @@ Namespace ProfileBusiness
         Private MODIFIED_LOGField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private NUMBER_DATEField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private NUMBER_VISAField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private ORG_CODEField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -41069,6 +41102,15 @@ Namespace ProfileBusiness
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private ORG_NAMEField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private PLACE_FROMField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private PLACE_TOField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private PLACE_VISAField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private REMARKField As String
@@ -41089,6 +41131,9 @@ Namespace ProfileBusiness
         Private START_DATEField As System.Nullable(Of Date)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private SUM_COSTField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private TITLE_IDField As System.Nullable(Of Decimal)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -41102,6 +41147,12 @@ Namespace ProfileBusiness
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private TRAINNING_NAMEField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private VISA_IDField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private VISA_NAMEField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private WORKING_IDField As System.Nullable(Of Decimal)
@@ -41123,6 +41174,19 @@ Namespace ProfileBusiness
         End Property
         
         <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property CHK_COSTWORK() As Boolean
+            Get
+                Return Me.CHK_COSTWORKField
+            End Get
+            Set
+                If (Me.CHK_COSTWORKField.Equals(value) <> true) Then
+                    Me.CHK_COSTWORKField = value
+                    Me.RaisePropertyChanged("CHK_COSTWORK")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
         Public Property CONTENT() As String
             Get
                 Return Me.CONTENTField
@@ -41131,6 +41195,84 @@ Namespace ProfileBusiness
                 If (Object.ReferenceEquals(Me.CONTENTField, value) <> true) Then
                     Me.CONTENTField = value
                     Me.RaisePropertyChanged("CONTENT")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property COST_ANOTHER() As System.Nullable(Of Decimal)
+            Get
+                Return Me.COST_ANOTHERField
+            End Get
+            Set
+                If (Me.COST_ANOTHERField.Equals(value) <> true) Then
+                    Me.COST_ANOTHERField = value
+                    Me.RaisePropertyChanged("COST_ANOTHER")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property COST_GO() As System.Nullable(Of Decimal)
+            Get
+                Return Me.COST_GOField
+            End Get
+            Set
+                If (Me.COST_GOField.Equals(value) <> true) Then
+                    Me.COST_GOField = value
+                    Me.RaisePropertyChanged("COST_GO")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property COST_HOTEL() As System.Nullable(Of Decimal)
+            Get
+                Return Me.COST_HOTELField
+            End Get
+            Set
+                If (Me.COST_HOTELField.Equals(value) <> true) Then
+                    Me.COST_HOTELField = value
+                    Me.RaisePropertyChanged("COST_HOTEL")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property COST_KH() As System.Nullable(Of Decimal)
+            Get
+                Return Me.COST_KHField
+            End Get
+            Set
+                If (Me.COST_KHField.Equals(value) <> true) Then
+                    Me.COST_KHField = value
+                    Me.RaisePropertyChanged("COST_KH")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property COST_VISA() As System.Nullable(Of Decimal)
+            Get
+                Return Me.COST_VISAField
+            End Get
+            Set
+                If (Me.COST_VISAField.Equals(value) <> true) Then
+                    Me.COST_VISAField = value
+                    Me.RaisePropertyChanged("COST_VISA")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property COST_WORK() As System.Nullable(Of Decimal)
+            Get
+                Return Me.COST_WORKField
+            End Get
+            Set
+                If (Me.COST_WORKField.Equals(value) <> true) Then
+                    Me.COST_WORKField = value
+                    Me.RaisePropertyChanged("COST_WORK")
                 End If
             End Set
         End Property
@@ -41170,6 +41312,32 @@ Namespace ProfileBusiness
                 If (Object.ReferenceEquals(Me.CREATED_LOGField, value) <> true) Then
                     Me.CREATED_LOGField = value
                     Me.RaisePropertyChanged("CREATED_LOG")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property DATE_HH_VISA() As System.Nullable(Of Date)
+            Get
+                Return Me.DATE_HH_VISAField
+            End Get
+            Set
+                If (Me.DATE_HH_VISAField.Equals(value) <> true) Then
+                    Me.DATE_HH_VISAField = value
+                    Me.RaisePropertyChanged("DATE_HH_VISA")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property DATE_NC_VISA() As System.Nullable(Of Date)
+            Get
+                Return Me.DATE_NC_VISAField
+            End Get
+            Set
+                If (Me.DATE_NC_VISAField.Equals(value) <> true) Then
+                    Me.DATE_NC_VISAField = value
+                    Me.RaisePropertyChanged("DATE_NC_VISA")
                 End If
             End Set
         End Property
@@ -41331,6 +41499,32 @@ Namespace ProfileBusiness
         End Property
         
         <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property NUMBER_DATE() As System.Nullable(Of Decimal)
+            Get
+                Return Me.NUMBER_DATEField
+            End Get
+            Set
+                If (Me.NUMBER_DATEField.Equals(value) <> true) Then
+                    Me.NUMBER_DATEField = value
+                    Me.RaisePropertyChanged("NUMBER_DATE")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property NUMBER_VISA() As String
+            Get
+                Return Me.NUMBER_VISAField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.NUMBER_VISAField, value) <> true) Then
+                    Me.NUMBER_VISAField = value
+                    Me.RaisePropertyChanged("NUMBER_VISA")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
         Public Property ORG_CODE() As String
             Get
                 Return Me.ORG_CODEField
@@ -41391,6 +41585,45 @@ Namespace ProfileBusiness
                 If (Object.ReferenceEquals(Me.ORG_NAMEField, value) <> true) Then
                     Me.ORG_NAMEField = value
                     Me.RaisePropertyChanged("ORG_NAME")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property PLACE_FROM() As String
+            Get
+                Return Me.PLACE_FROMField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.PLACE_FROMField, value) <> true) Then
+                    Me.PLACE_FROMField = value
+                    Me.RaisePropertyChanged("PLACE_FROM")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property PLACE_TO() As String
+            Get
+                Return Me.PLACE_TOField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.PLACE_TOField, value) <> true) Then
+                    Me.PLACE_TOField = value
+                    Me.RaisePropertyChanged("PLACE_TO")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property PLACE_VISA() As String
+            Get
+                Return Me.PLACE_VISAField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.PLACE_VISAField, value) <> true) Then
+                    Me.PLACE_VISAField = value
+                    Me.RaisePropertyChanged("PLACE_VISA")
                 End If
             End Set
         End Property
@@ -41474,6 +41707,19 @@ Namespace ProfileBusiness
         End Property
         
         <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property SUM_COST() As System.Nullable(Of Decimal)
+            Get
+                Return Me.SUM_COSTField
+            End Get
+            Set
+                If (Me.SUM_COSTField.Equals(value) <> true) Then
+                    Me.SUM_COSTField = value
+                    Me.RaisePropertyChanged("SUM_COST")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
         Public Property TITLE_ID() As System.Nullable(Of Decimal)
             Get
                 Return Me.TITLE_IDField
@@ -41534,6 +41780,32 @@ Namespace ProfileBusiness
                 If (Object.ReferenceEquals(Me.TRAINNING_NAMEField, value) <> true) Then
                     Me.TRAINNING_NAMEField = value
                     Me.RaisePropertyChanged("TRAINNING_NAME")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property VISA_ID() As System.Nullable(Of Decimal)
+            Get
+                Return Me.VISA_IDField
+            End Get
+            Set
+                If (Me.VISA_IDField.Equals(value) <> true) Then
+                    Me.VISA_IDField = value
+                    Me.RaisePropertyChanged("VISA_ID")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property VISA_NAME() As String
+            Get
+                Return Me.VISA_NAMEField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.VISA_NAMEField, value) <> true) Then
+                    Me.VISA_NAMEField = value
+                    Me.RaisePropertyChanged("VISA_NAME")
                 End If
             End Set
         End Property

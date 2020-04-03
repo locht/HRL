@@ -1632,6 +1632,7 @@ Partial Class ProfileRepository
             obj = (From p In Context.HU_EMPLOYEE
                    From staffrank In Context.HU_STAFF_RANK.Where(Function(f) p.STAFF_RANK_ID = f.ID).DefaultIfEmpty
                    From o In Context.HU_ORGANIZATION.Where(Function(f) p.ORG_ID = f.ID)
+                   From org In Context.HU_ORGANIZATION_V.Where(Function(f) f.ID = o.ID)
                    From t In Context.HU_TITLE.Where(Function(f) p.TITLE_ID = f.ID)
                    From working In Context.HU_WORKING.Where(Function(f) f.ID = p.LAST_WORKING_ID).DefaultIfEmpty
                    Where p.ID = gID
@@ -1654,6 +1655,8 @@ Partial Class ProfileRepository
                        .TER_EFFECT_DATE = p.TER_EFFECT_DATE,
                        .LAST_WORKING_ID = p.LAST_WORKING_ID,
                        .SAL_BASIC = working.SAL_BASIC,
+                       .ORG_NAME2 = org.NAME_C2,
+                       .ORG_NAME4 = org.NAME_C4,
                        .COST_SUPPORT = working.COST_SUPPORT}).FirstOrDefault
 
             Dim ctract = (From p In Context.HU_CONTRACT
