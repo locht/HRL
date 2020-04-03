@@ -355,7 +355,7 @@ Partial Public Class ProfileBusinessRepository
 
         Return Nothing
     End Function
-    Public Function DeleteTrainingForeign(ByVal objContract As TrainningForeignDTO) As Boolean
+    Public Function DeleteTrainingForeign(ByVal objContract As List(Of TrainningForeignDTO)) As Boolean
         Using rep As New ProfileBusinessClient
             Try
                 Return rep.DeleteTrainingForeign(objContract)

@@ -276,7 +276,7 @@ Namespace ProfileBusiness.ServiceImplementations
                 End Try
             End Using
         End Function
-        Public Function DeleteTrainingForeign(ByVal objContract As TrainningForeignDTO) As Boolean _
+        Public Function DeleteTrainingForeign(ByVal objContract() As TrainningForeignDTO) As Boolean _
            Implements ServiceContracts.IProfileBusiness.DeleteTrainingForeign
             Using rep As New ProfileRepository
                 Try

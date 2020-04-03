@@ -394,19 +394,8 @@ Public Class ctrlHU_TranningForeign
                     If rgContract.SelectedItems.Count = 0 Then
                         ShowMessage(Translate(CommonMessage.MESSAGE_NOT_SELECT_ROW), NotifyType.Warning)
                         Exit Sub
-                    ElseIf rgContract.SelectedItems.Count > 1 Then
-                        ShowMessage(Translate(CommonMessage.MESSAGE_NOT_SELECT_MULTI_ROW), NotifyType.Warning)
-                        Exit Sub
                     End If
                     Dim item As GridDataItem = rgContract.SelectedItems(0)
-                    If item.GetDataKeyValue("STATUS_ID") = ProfileCommon.OT_CONTRACT_STATUS.APPROVE_ID Then
-                        ShowMessage(Translate("Bản ghi đã phê duyệt. Thao tác thực hiện không thành công"), NotifyType.Warning)
-                        Exit Sub
-                    End If
-                    If item.GetDataKeyValue("STATUS_ID") = ProfileCommon.OT_CONTRACT_STATUS.NOT_APPROVE_ID Then
-                        ShowMessage(Translate("Bản ghi không phê duyệt. Thao tác thực hiện không thành công"), NotifyType.Warning)
-                        Exit Sub
-                    End If
 
                     DeleteContract = New TrainningForeignDTO With {.ID = Decimal.Parse(item("ID").Text),
                                                            .EMPLOYEE_ID = Decimal.Parse(item("EMPLOYEE_ID").Text)}
@@ -422,7 +411,7 @@ Public Class ctrlHU_TranningForeign
                             ShowMessage(Translate(CommonMessage.MESSAGE_WARNING_EXPORT_EMPTY), NotifyType.Warning)
                             Exit Sub
                         ElseIf dtData.Rows.Count > 0 Then
-                            rgContract.ExportExcel(Server, Response, dtData, "Title")
+                            rgContract.ExportExcel(Server, Response, dtData, "QLCT")
                             Exit Sub
                         End If
                     End Using
@@ -729,7 +718,14 @@ Public Class ctrlHU_TranningForeign
             ctrlOrg.Enabled = True
             Select Case CurrentState
                 Case CommonMessage.STATE_DELETE
-                    If rep.DeleteTrainingForeign(DeleteContract) Then
+                    Dim objD As New List(Of TrainningForeignDTO)
+                    Dim lst As New List(Of Decimal)
+                    For Each item As GridDataItem In rgContract.SelectedItems
+                        Dim obj As New TrainningForeignDTO
+                        obj.ID = Utilities.ObjToDecima(item.GetDataKeyValue("ID"))
+                        objD.Add(obj)
+                    Next
+                    If rep.DeleteTrainingForeign(objD) Then
                         DeleteContract = Nothing
                         IDSelect = Nothing
                         Refresh("UpdateView")

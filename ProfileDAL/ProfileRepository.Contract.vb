@@ -869,16 +869,16 @@ Partial Class ProfileRepository
 
 
     End Function
-    Public Function DeleteTrainingForeign(ByVal objContract As TrainningForeignDTO) As Boolean
+    Public Function DeleteTrainingForeign(ByVal objContract() As TrainningForeignDTO) As Boolean
         Dim objContractData As HU_TRAININGFOREIGN
         Try
-            ' Xóa  hợp đồng
-            objContractData = (From p In Context.HU_TRAININGFOREIGN Where objContract.ID = p.ID).SingleOrDefault
-            If Not objContractData Is Nothing Then
-                Context.HU_TRAININGFOREIGN.DeleteObject(objContractData)
-                Context.SaveChanges()
-                Return True
-            End If
+            Dim lstTRAININGFOREIGNData As List(Of HU_TRAININGFOREIGN)
+            Dim lstIDTRAININGFOREIGN As List(Of Decimal) = (From p In objContract.ToList Select p.ID).ToList
+            lstTRAININGFOREIGNData = (From p In Context.HU_TRAININGFOREIGN Where lstIDTRAININGFOREIGN.Contains(p.ID)).ToList
+            For index = 0 To lstTRAININGFOREIGNData.Count - 1
+                Context.HU_TRAININGFOREIGN.DeleteObject(lstTRAININGFOREIGNData(index))
+            Next
+            Context.SaveChanges()
             Return True
         Catch ex As Exception
             WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iProfile")
