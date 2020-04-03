@@ -239,6 +239,19 @@ Namespace ProfileBusiness.ServiceImplementations
             End Using
         End Function
 
+        Public Function GetOrgtree(ByVal _org_id As Decimal) As DataTable Implements ServiceContracts.IProfileBusiness.GetOrgtree
+            Using rep As New ProfileRepository
+                Try
+
+                    Dim dtData = rep.GetOrgtree(_org_id)
+                    Return dtData
+                Catch ex As Exception
+
+                    Throw ex
+                End Try
+            End Using
+        End Function
+
 #End Region
 
 #Region "EmployeeCV"

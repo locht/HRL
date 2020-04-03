@@ -286,6 +286,19 @@ Partial Public Class ProfileBusinessRepository
         Return Nothing
     End Function
 
+    Public Function GetOrgtree(ByVal _org_id As Decimal) As DataTable
+        Using rep As New ProfileBusinessClient
+            Try
+
+                Dim dtData = rep.GetOrgtree(_org_id)
+                Return dtData
+            Catch ex As Exception
+
+                Throw ex
+            End Try
+        End Using
+    End Function
+
 #End Region
 
 #Region "Employee Proccess"

@@ -1031,8 +1031,9 @@ Partial Class ProfileRepository
                 objEmpCVData.PER_WARD = objEmpCV.PER_WARD
                 objEmpCVData.HOME_PHONE = objEmpCV.HOME_PHONE
                 objEmpCVData.MOBILE_PHONE = objEmpCV.MOBILE_PHONE
-                objEmpCVData.ID_NO = objEmpCV.ID_NO
+                objEmpCVData.RESIDENCE = objEmpCV.RESIDENCE
 
+                objEmpCVData.ID_NO = objEmpCV.ID_NO
                 objEmpCVData.ID_DATE = objEmpCV.ID_DATE
                 objEmpCVData.ID_PLACE = objEmpCV.ID_PLACE
                 objEmpCVData.ID_REMARK = objEmpCV.ID_REMARK
@@ -1176,6 +1177,7 @@ Partial Class ProfileRepository
                 objEmpEduData.COMPUTER_RANK = objEmpEdu.COMPUTER_RANK
                 objEmpEduData.DRIVER_TYPE = objEmpEdu.DRIVER_TYPE
                 objEmpEduData.DRIVER_NO = objEmpEdu.DRIVER_NO
+                objEmpEduData.MOTO_DRIVING_LICENSE = objEmpEdu.MOTO_DRIVING_LICENSE
                 objEmpEduData.MORE_INFORMATION = objEmpEdu.MORE_INFORMATION
                 Context.HU_EMPLOYEE_EDUCATION.AddObject(objEmpEduData)
             End If
@@ -1521,6 +1523,7 @@ Partial Class ProfileRepository
                 objEmpCVData.PER_WARD = objEmpCV.PER_WARD
                 objEmpCVData.HOME_PHONE = objEmpCV.HOME_PHONE
                 objEmpCVData.MOBILE_PHONE = objEmpCV.MOBILE_PHONE
+                objEmpCVData.RESIDENCE = objEmpCV.RESIDENCE
                 objEmpCVData.ID_NO = objEmpCV.ID_NO
 
                 objEmpCVData.ID_DATE = objEmpCV.ID_DATE
@@ -1675,7 +1678,7 @@ Partial Class ProfileRepository
                 objEmpEduData.COMPUTER_RANK = objEmpEdu.COMPUTER_RANK
                 objEmpEduData.DRIVER_TYPE = objEmpEdu.DRIVER_TYPE
                 objEmpEduData.DRIVER_NO = objEmpEdu.DRIVER_NO
-
+                objEmpEduData.MOTO_DRIVING_LICENSE = objEmpEdu.MOTO_DRIVING_LICENSE
                 If bUpdateEdu = False Then
                     Context.HU_EMPLOYEE_EDUCATION.AddObject(objEmpEduData)
                 End If
@@ -1993,6 +1996,7 @@ Partial Class ProfileRepository
                          .INS_REGION_NAME = region.NAME_VN,
                          .HOME_PHONE = cv.HOME_PHONE,
                          .MOBILE_PHONE = cv.MOBILE_PHONE,
+                         .RESIDENCE = If(String.IsNullOrEmpty(cv.RESIDENCE), "", cv.RESIDENCE),
                          .ID_NO = cv.ID_NO,
                          .ID_DATE = cv.ID_DATE,
                          .ID_PLACE = cv.ID_PLACE,
@@ -2162,6 +2166,7 @@ Partial Class ProfileRepository
                          .DRIVER_TYPE = edu.DRIVER_TYPE,
                          .DRIVER_TYPE_NAME = driver.NAME_VN,
                          .DRIVER_NO = edu.DRIVER_NO,
+                         .MOTO_DRIVING_LICENSE = edu.MOTO_DRIVING_LICENSE,
                          .MORE_INFORMATION = edu.MORE_INFORMATION}).FirstOrDefault
 
             empHealth = (From e In Context.HU_EMPLOYEE_HEALTH
@@ -2318,6 +2323,27 @@ Partial Class ProfileRepository
             }
             Dim Organization = query.First()
             Return query.FirstOrDefault
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iProfile")
+            Throw ex
+        End Try
+    End Function
+
+    ''' <summary>
+    ''' tambt add- 03/04/2020
+    ''' </summary>
+    ''' <param name="_org_id"></param>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
+    Public Function GetOrgtree(ByVal _org_id As Decimal) As DataTable
+        Try
+            Using cls As New DataAccess.QueryData
+                Dim dtData As DataTable = cls.ExecuteStore("PKG_PROFILE_BUSINESS.GET_ORG_TREE_BY_ID",
+                                                    New With {.P_ORG_ID = _org_id,
+                                                                .CUR = cls.OUT_CURSOR})
+                Return dtData
+            End Using
+
         Catch ex As Exception
             WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iProfile")
             Throw ex

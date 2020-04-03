@@ -52,5 +52,6 @@
     Public Property DRIVER_TYPE_NAME As String
     Public Property DRIVER_NO As String
     Public Property MORE_INFORMATION As String
+    Public Property MOTO_DRIVING_LICENSE As Decimal?
 
 End Class

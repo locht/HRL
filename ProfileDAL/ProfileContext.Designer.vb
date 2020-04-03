@@ -18,7 +18,7 @@ Imports System.Runtime.Serialization
 Imports System.Xml.Serialization
 
 
-<Assembly: EdmSchemaAttribute("e62d82c6-464a-4583-afa0-aca58204de9a")>
+<Assembly: EdmSchemaAttribute("65ebf532-6644-4e7b-ba1d-5e64182bdce9")>
 #Region "EDM Relationship Metadata"
 <Assembly: EdmRelationshipAttribute("ProfileModel", "FK_HU_NAT_HU_PRO", "HU_NATION", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_NATION), "HU_PROVINCE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_PROVINCE), True)>
 <Assembly: EdmRelationshipAttribute("ProfileModel", "FK_HU_PRO_HU_DIS", "HU_PROVINCE", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_PROVINCE), "HU_DISTRICT", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_DISTRICT), True)>
@@ -31533,6 +31533,31 @@ Public Partial Class HU_EMPLOYEE_EDUCATION
     End Sub
 
     Private Partial Sub OnMORE_INFORMATIONChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property MOTO_DRIVING_LICENSE() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _MOTO_DRIVING_LICENSE
+        End Get
+        Set
+            OnMOTO_DRIVING_LICENSEChanging(value)
+            ReportPropertyChanging("MOTO_DRIVING_LICENSE")
+            _MOTO_DRIVING_LICENSE = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("MOTO_DRIVING_LICENSE")
+            OnMOTO_DRIVING_LICENSEChanged()
+        End Set
+    End Property
+
+    Private _MOTO_DRIVING_LICENSE As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnMOTO_DRIVING_LICENSEChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnMOTO_DRIVING_LICENSEChanged()
     End Sub
 
     #End Region

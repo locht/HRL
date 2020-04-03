@@ -48804,6 +48804,9 @@ Namespace ProfileBusiness
         Private MORE_INFORMATIONField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private MOTO_DRIVING_LICENSEField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private NOTE_TDTH1Field As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -49324,6 +49327,19 @@ Namespace ProfileBusiness
                 If (Object.ReferenceEquals(Me.MORE_INFORMATIONField, value) <> true) Then
                     Me.MORE_INFORMATIONField = value
                     Me.RaisePropertyChanged("MORE_INFORMATION")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property MOTO_DRIVING_LICENSE() As System.Nullable(Of Decimal)
+            Get
+                Return Me.MOTO_DRIVING_LICENSEField
+            End Get
+            Set
+                If (Me.MOTO_DRIVING_LICENSEField.Equals(value) <> true) Then
+                    Me.MOTO_DRIVING_LICENSEField = value
+                    Me.RaisePropertyChanged("MOTO_DRIVING_LICENSE")
                 End If
             End Set
         End Property
@@ -53394,6 +53410,9 @@ Namespace ProfileBusiness
      System.ServiceModel.ServiceContractAttribute(ConfigurationName:="ProfileBusiness.IProfileBusiness")>  _
     Public Interface IProfileBusiness
         
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GET_JP_TO_TITLE", ReplyAction:="http://tempuri.org/IProfileBusiness/GET_JP_TO_TITLEResponse")>  _
+        Function GET_JP_TO_TITLE(ByVal P_ORG_ID As Decimal, ByVal P_TITLE_ID As Decimal, ByVal P_IS_THAYTHE As Decimal, ByVal P_JOB As Decimal) As System.Data.DataSet
+        
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/UPDATE_END_DATE_QD", ReplyAction:="http://tempuri.org/IProfileBusiness/UPDATE_END_DATE_QDResponse")>  _
         Function UPDATE_END_DATE_QD(ByVal P_EMP_ID As Decimal, ByVal P_DATE As Date) As Boolean
         
@@ -54008,6 +54027,9 @@ Namespace ProfileBusiness
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetOrganizationTreeByID", ReplyAction:="http://tempuri.org/IProfileBusiness/GetOrganizationTreeByIDResponse")>  _
         Function GetOrganizationTreeByID(ByVal _filter As ProfileBusiness.OrganizationTreeDTO) As ProfileBusiness.OrganizationTreeDTO
         
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetOrgtree", ReplyAction:="http://tempuri.org/IProfileBusiness/GetOrgtreeResponse")>  _
+        Function GetOrgtree(ByVal _org_id As Decimal) As System.Data.DataTable
+        
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GET_PROCESS_PLCONTRACT", ReplyAction:="http://tempuri.org/IProfileBusiness/GET_PROCESS_PLCONTRACTResponse")>  _
         Function GET_PROCESS_PLCONTRACT(ByVal P_EMP_CODE As String) As System.Data.DataTable
         
@@ -54067,9 +54089,6 @@ Namespace ProfileBusiness
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ActiveJob", ReplyAction:="http://tempuri.org/IProfileBusiness/ActiveJobResponse")>  _
         Function ActiveJob(ByVal objOrgTitle As System.Collections.Generic.List(Of Decimal), ByVal sActive As String, ByVal log As Common.CommonBusiness.UserLog) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GET_JP_TO_TITLE", ReplyAction:="http://tempuri.org/IProfileBusiness/GET_JP_TO_TITLEResponse")>  _
-        Function GET_JP_TO_TITLE(ByVal P_ORG_ID As Decimal, ByVal P_TITLE_ID As Decimal, ByVal P_IS_THAYTHE As Decimal, ByVal P_JOB As Decimal) As System.Data.DataSet
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ModifyWorkingBeforeEdit", ReplyAction:="http://tempuri.org/IProfileBusiness/ModifyWorkingBeforeEditResponse")>  _
         Function ModifyWorkingBeforeEdit(ByVal objWorkingBefore As ProfileBusiness.WorkingBeforeDTOEdit, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
@@ -55103,7 +55122,7 @@ Namespace ProfileBusiness
         Function ModifyTrainingForeign(ByVal objContract As ProfileBusiness.TrainningForeignDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/DeleteTrainingForeign", ReplyAction:="http://tempuri.org/IProfileBusiness/DeleteTrainingForeignResponse")>  _
-        Function DeleteTrainingForeign(ByVal objContract As System.Collections.Generic.List(Of ProfileBusiness.TrainningForeignDTO)) As Boolean
+        Function DeleteTrainingForeign(ByVal objAssetMng As ProfileBusiness.TrainningForeignDTO) As Boolean
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetContract", ReplyAction:="http://tempuri.org/IProfileBusiness/GetContractResponse")>  _
         Function GetContract(ByVal _filter As ProfileBusiness.ContractDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal _param As ProfileBusiness.ParamDTO, ByVal Sorts As String, ByVal log As Common.CommonBusiness.UserLog) As System.Collections.Generic.List(Of ProfileBusiness.ContractDTO)
@@ -56037,6 +56056,10 @@ Namespace ProfileBusiness
             MyBase.New(binding, remoteAddress)
         End Sub
         
+        Public Function GET_JP_TO_TITLE(ByVal P_ORG_ID As Decimal, ByVal P_TITLE_ID As Decimal, ByVal P_IS_THAYTHE As Decimal, ByVal P_JOB As Decimal) As System.Data.DataSet Implements ProfileBusiness.IProfileBusiness.GET_JP_TO_TITLE
+            Return MyBase.Channel.GET_JP_TO_TITLE(P_ORG_ID, P_TITLE_ID, P_IS_THAYTHE, P_JOB)
+        End Function
+        
         Public Function UPDATE_END_DATE_QD(ByVal P_EMP_ID As Decimal, ByVal P_DATE As Date) As Boolean Implements ProfileBusiness.IProfileBusiness.UPDATE_END_DATE_QD
             Return MyBase.Channel.UPDATE_END_DATE_QD(P_EMP_ID, P_DATE)
         End Function
@@ -56317,6 +56340,10 @@ Namespace ProfileBusiness
             Return MyBase.Channel.GetOrganizationTreeByID(_filter)
         End Function
         
+        Public Function GetOrgtree(ByVal _org_id As Decimal) As System.Data.DataTable Implements ProfileBusiness.IProfileBusiness.GetOrgtree
+            Return MyBase.Channel.GetOrgtree(_org_id)
+        End Function
+        
         Public Function GET_PROCESS_PLCONTRACT(ByVal P_EMP_CODE As String) As System.Data.DataTable Implements ProfileBusiness.IProfileBusiness.GET_PROCESS_PLCONTRACT
             Return MyBase.Channel.GET_PROCESS_PLCONTRACT(P_EMP_CODE)
         End Function
@@ -56395,10 +56422,6 @@ Namespace ProfileBusiness
         
         Public Function ActiveJob(ByVal objOrgTitle As System.Collections.Generic.List(Of Decimal), ByVal sActive As String, ByVal log As Common.CommonBusiness.UserLog) As Boolean Implements ProfileBusiness.IProfileBusiness.ActiveJob
             Return MyBase.Channel.ActiveJob(objOrgTitle, sActive, log)
-        End Function
-        
-        Public Function GET_JP_TO_TITLE(ByVal P_ORG_ID As Decimal, ByVal P_TITLE_ID As Decimal, ByVal P_IS_THAYTHE As Decimal, ByVal P_JOB As Decimal) As System.Data.DataSet Implements ProfileBusiness.IProfileBusiness.GET_JP_TO_TITLE
-            Return MyBase.Channel.GET_JP_TO_TITLE(P_ORG_ID, P_TITLE_ID, P_IS_THAYTHE, P_JOB)
         End Function
         
         Public Function ModifyWorkingBeforeEdit(ByVal objWorkingBefore As ProfileBusiness.WorkingBeforeDTOEdit, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean Implements ProfileBusiness.IProfileBusiness.ModifyWorkingBeforeEdit
@@ -57237,8 +57260,8 @@ Namespace ProfileBusiness
             Return MyBase.Channel.ModifyTrainingForeign(objContract, log, gID)
         End Function
         
-        Public Function DeleteTrainingForeign(ByVal objContract As System.Collections.Generic.List(Of ProfileBusiness.TrainningForeignDTO)) As Boolean Implements ProfileBusiness.IProfileBusiness.DeleteTrainingForeign
-            Return MyBase.Channel.DeleteTrainingForeign(objContract)
+        Public Function DeleteTrainingForeign(ByVal objAssetMng As ProfileBusiness.TrainningForeignDTO) As Boolean Implements ProfileBusiness.IProfileBusiness.DeleteTrainingForeign
+            Return MyBase.Channel.DeleteTrainingForeign(objAssetMng)
         End Function
         
         Public Function GetContract(ByVal _filter As ProfileBusiness.ContractDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal _param As ProfileBusiness.ParamDTO, ByVal Sorts As String, ByVal log As Common.CommonBusiness.UserLog) As System.Collections.Generic.List(Of ProfileBusiness.ContractDTO) Implements ProfileBusiness.IProfileBusiness.GetContract

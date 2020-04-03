@@ -681,6 +681,7 @@
             <Property Name="DRIVER_TYPE" Type="number" Nullable="true" Precision="38" />
             <Property Name="DRIVER_NO" Type="nclob" Nullable="true" />
             <Property Name="MORE_INFORMATION" Type="nclob" Nullable="true" />
+            <Property Name="MOTO_DRIVING_LICENSE" Type="number" Nullable="true" Precision="38" />
         </EntityType>
         <EntityType Name="HU_CONTRACT">
             <Key>
@@ -5205,6 +5206,7 @@
           <Property Type="Decimal" Name="DRIVER_TYPE" />
           <Property Type="String" Name="DRIVER_NO" />
           <Property Type="String" Name="MORE_INFORMATION" />
+          <Property Type="Decimal" Name="MOTO_DRIVING_LICENSE" />
         </EntityType>
         <Association Name="FK_HE_HEC">
           <End Type="ProfileModel.HU_EMPLOYEE" Role="HU_EMPLOYEE" Multiplicity="1" />
@@ -9298,6 +9300,7 @@
                     <ScalarProperty Name="DRIVER_TYPE" ColumnName="DRIVER_TYPE" />
                     <ScalarProperty Name="DRIVER_NO" ColumnName="DRIVER_NO" />
                     <ScalarProperty Name="MORE_INFORMATION" ColumnName="MORE_INFORMATION" />
+                    <ScalarProperty Name="MOTO_DRIVING_LICENSE" ColumnName="MOTO_DRIVING_LICENSE" />
                 </MappingFragment>
             </EntityTypeMapping>
         </EntitySetMapping>
@@ -12875,7 +12878,7 @@
         </AssociationConnector>
         <EntityTypeShape EntityType="ProfileModel.HU_EMPLOYEE_CV" Width="3.125" PointX="37.625" PointY="6" Height="25.825664062500003" IsExpanded="true" />
         <EntityTypeShape EntityType="ProfileModel.HU_EMPLOYEE_HEALTH" Width="1.875" PointX="13.5" PointY="0.5" Height="5.8263151041666665" IsExpanded="true" />
-        <EntityTypeShape EntityType="ProfileModel.HU_EMPLOYEE_EDUCATION" Width="4" PointX="41" PointY="6.125" Height="7.1724251302083326" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProfileModel.HU_EMPLOYEE_EDUCATION" Width="4" PointX="41" PointY="6.125" Height="7.9416308593750014" IsExpanded="true" />
         <AssociationConnector Association="ProfileModel.FK_HE_HEC">
           <ConnectorPoint PointX="19.25" PointY="6.887499999999994" />
           <ConnectorPoint PointX="37.625" PointY="6.887499999999994" />

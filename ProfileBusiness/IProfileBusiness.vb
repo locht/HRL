@@ -2818,6 +2818,9 @@ Namespace ProfileBusiness.ServiceContracts
         Function GetOrganizationTreeByID(ByVal _filter As OrganizationTreeDTO) As OrganizationTreeDTO
 
         <OperationContract()>
+        Function GetOrgtree(ByVal _org_id As Decimal) As DataTable
+
+        <OperationContract()>
         Function GET_PROCESS_PLCONTRACT(ByVal P_EMP_CODE As String) As DataTable
         <OperationContract()>
         Function EXPORT_PLHD(ByVal _param As ParamDTO, ByVal log As UserLog) As DataSet

@@ -65,6 +65,42 @@ Partial Class ProfileStoreProcedure
         End If
         Return dt
     End Function
+
+    Public Function GET_JOB_POSSITION_BY_TITLE_ORG(ByVal _title_ID As Decimal, ByVal _org_id As Decimal) As DataTable
+        Dim dt As New DataTable
+        Dim ds As DataSet = hfr.ExecuteToDataSet("PKG_PROFILE_BUSINESS.GET_JOB_POSSITION_BY_TITLE_ORG", _
+                                                 New List(Of Object)(New Object() {_title_ID, _org_id}))
+        If ds IsNot Nothing Then
+            If Not ds Is Nothing Or Not ds.Tables(0) Is Nothing Then
+                dt = ds.Tables(0)
+            End If
+        End If
+        Return dt
+    End Function
+
+    Public Function GET_JOB_DESCRIPTION_BY_TITLE_ORG(ByVal _title_ID As Decimal, ByVal _org_id As Decimal) As DataTable
+        Dim dt As New DataTable
+        Dim ds As DataSet = hfr.ExecuteToDataSet("PKG_PROFILE_BUSINESS.GET_JOB_DESCRIPTION_BY_TITLE_ORG", _
+                                                 New List(Of Object)(New Object() {_title_ID, _org_id}))
+        If ds IsNot Nothing Then
+            If Not ds Is Nothing Or Not ds.Tables(0) Is Nothing Then
+                dt = ds.Tables(0)
+            End If
+        End If
+        Return dt
+    End Function
+
+    Public Function GET_DIRECT_MANAGER_BY_JOB_POS(ByVal _job_pos_ID As Decimal) As DataTable
+        Dim dt As New DataTable
+        Dim ds As DataSet = hfr.ExecuteToDataSet("PKG_PROFILE_BUSINESS.GET_DIRECT_MANAGER_BY_JOB_POS", _
+                                                 New List(Of Object)(New Object() {_job_pos_ID}))
+        If ds IsNot Nothing Then
+            If Not ds Is Nothing Or Not ds.Tables(0) Is Nothing Then
+                dt = ds.Tables(0)
+            End If
+        End If
+        Return dt
+    End Function
 #End Region
     Public Function Import_HoSoLuong(ByVal P_USER As String, ByVal P_DOCXML As String) As Boolean
         Dim ds As DataSet = hfr.ExecuteToDataSet("PKG_PROFILE.IMPORT_HOSOLUONG", New List(Of Object)(New Object() {P_USER, P_DOCXML}))

@@ -1,7 +1,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for Oracle database
 -- --------------------------------------------------
--- Date Created: 04/03/2020 11:56:00 AM
+-- Date Created: 04/03/2020 4:09:50 PM
 -- Generated from EDMX file: F:\WORKING\acv_19\ProfileDAL\ProfileContext.edmx
 -- --------------------------------------------------
 
@@ -777,7 +777,8 @@ CREATE TABLE "dbo"."HU_EMPLOYEE_EDUCATION" (
    "COMPUTER_CERTIFICATE" NCLOB NULL,
    "DRIVER_TYPE" NUMBER(38,0) NULL,
    "DRIVER_NO" NCLOB NULL,
-   "MORE_INFORMATION" NCLOB NULL
+   "MORE_INFORMATION" NCLOB NULL,
+   "MOTO_DRIVING_LICENSE" NUMBER(38,0) NULL
 );
 
 -- Creating table 'HU_CONTRACT'
