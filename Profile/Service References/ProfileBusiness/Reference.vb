@@ -55122,7 +55122,7 @@ Namespace ProfileBusiness
         Function ModifyTrainingForeign(ByVal objContract As ProfileBusiness.TrainningForeignDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/DeleteTrainingForeign", ReplyAction:="http://tempuri.org/IProfileBusiness/DeleteTrainingForeignResponse")>  _
-        Function DeleteTrainingForeign(ByVal objAssetMng As ProfileBusiness.TrainningForeignDTO) As Boolean
+        Function DeleteTrainingForeign(ByVal objContract As System.Collections.Generic.List(Of ProfileBusiness.TrainningForeignDTO)) As Boolean
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetContract", ReplyAction:="http://tempuri.org/IProfileBusiness/GetContractResponse")>  _
         Function GetContract(ByVal _filter As ProfileBusiness.ContractDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal _param As ProfileBusiness.ParamDTO, ByVal Sorts As String, ByVal log As Common.CommonBusiness.UserLog) As System.Collections.Generic.List(Of ProfileBusiness.ContractDTO)
@@ -57260,8 +57260,8 @@ Namespace ProfileBusiness
             Return MyBase.Channel.ModifyTrainingForeign(objContract, log, gID)
         End Function
         
-        Public Function DeleteTrainingForeign(ByVal objAssetMng As ProfileBusiness.TrainningForeignDTO) As Boolean Implements ProfileBusiness.IProfileBusiness.DeleteTrainingForeign
-            Return MyBase.Channel.DeleteTrainingForeign(objAssetMng)
+        Public Function DeleteTrainingForeign(ByVal objContract As System.Collections.Generic.List(Of ProfileBusiness.TrainningForeignDTO)) As Boolean Implements ProfileBusiness.IProfileBusiness.DeleteTrainingForeign
+            Return MyBase.Channel.DeleteTrainingForeign(objContract)
         End Function
         
         Public Function GetContract(ByVal _filter As ProfileBusiness.ContractDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal _param As ProfileBusiness.ParamDTO, ByVal Sorts As String, ByVal log As Common.CommonBusiness.UserLog) As System.Collections.Generic.List(Of ProfileBusiness.ContractDTO) Implements ProfileBusiness.IProfileBusiness.GetContract
