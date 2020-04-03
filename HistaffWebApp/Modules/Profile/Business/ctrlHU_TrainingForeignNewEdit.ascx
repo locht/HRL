@@ -91,7 +91,7 @@
                     <asp:Label ID="lbStartDate" runat="server" Text="Từ ngày"></asp:Label>
                 </td>
                 <td>
-                    <tlk:RadDatePicker ID="rdStartDate" runat="server">
+                    <tlk:RadDatePicker ID="rdStartDate" runat="server" AutoPostBack="true">
                     </tlk:RadDatePicker>
                     <asp:RequiredFieldValidator ID="reqStartDate" ControlToValidate="rdStartDate" runat="server"
                         ErrorMessage="Bạn phải nhập ngày bắt đầu." ToolTip="Bạn phải nhập ngày bắt đầu."> </asp:RequiredFieldValidator>
@@ -104,7 +104,7 @@
                     <span class="lbReq">*</span>
                 </td>
                 <td>
-                    <tlk:RadDatePicker ID="rdExpireDate" runat="server">
+                    <tlk:RadDatePicker ID="rdExpireDate" runat="server" AutoPostBack="true">
                     </tlk:RadDatePicker>
                     <asp:RequiredFieldValidator ID="rqExpireDate" ControlToValidate="rdExpireDate" runat="server"
                         ErrorMessage="Bạn phải nhập kết thúc." ToolTip="Bạn phải nhập ngày kết thúc."> </asp:RequiredFieldValidator>
@@ -177,7 +177,7 @@
                     <asp:Label ID="lbCost" runat="server" Text="Chi phí xin Visa"></asp:Label>
                 </td>
                 <td>
-                    <tlk:RadNumericTextBox runat="server" ID="rnCost">
+                    <tlk:RadNumericTextBox runat="server" ID="rnCost" AutoPostBack="true">
                     </tlk:RadNumericTextBox>
                 </td>
                 <td class="lb">
@@ -185,7 +185,7 @@
                     <span class="lbReq">*</span>
                 </td>
                 <td>
-                    <tlk:RadNumericTextBox runat="server" ID="rnNumberDate" ReadOnly="true">
+                    <tlk:RadNumericTextBox runat="server" ID="rnNumberDate">
                     </tlk:RadNumericTextBox>
                     <asp:RequiredFieldValidator ID="rqNumberDate" ControlToValidate="rnNumberDate" runat="server"
                         ErrorMessage="Bạn phải nhập Số ngày ở lại." ToolTip="Bạn phải nhập Số ngày ở lại."> </asp:RequiredFieldValidator>
@@ -196,21 +196,21 @@
                     <asp:Label ID="lbCostKH" runat="server" Text="Chi phí tiếp khách"></asp:Label>
                 </td>
                 <td>
-                    <tlk:RadNumericTextBox runat="server" ID="rnCostKH">
+                    <tlk:RadNumericTextBox runat="server" ID="rnCostKH" AutoPostBack="true">
                     </tlk:RadNumericTextBox>
                 </td>
                 <td class="lb">
                     <asp:Label ID="lbCostWork" runat="server" Text="Công tác phí"></asp:Label>
                 </td>
                 <td>
-                    <tlk:RadNumericTextBox runat="server" ID="rnCostWork">
+                    <tlk:RadNumericTextBox runat="server" ID="rnCostWork" AutoPostBack="true">
                     </tlk:RadNumericTextBox>
                 </td>
                 <td class="lb">
                     <asp:Label ID="lbCostHotel" runat="server" Text="Chi phí khách sạn"></asp:Label>
                 </td>
                 <td>
-                    <tlk:RadNumericTextBox runat="server" ID="rnCostHotel">
+                    <tlk:RadNumericTextBox runat="server" ID="rnCostHotel" AutoPostBack="true">
                     </tlk:RadNumericTextBox>
                 </td>
             </tr>
@@ -219,14 +219,14 @@
                     <asp:Label ID="lbCostAnother" runat="server" Text="Chi phí khác"></asp:Label>
                 </td>
                 <td>
-                    <tlk:RadNumericTextBox runat="server" ID="rnCostAnother">
+                    <tlk:RadNumericTextBox runat="server" ID="rnCostAnother" AutoPostBack="true">
                     </tlk:RadNumericTextBox>
                 </td>
                 <td class="lb">
                     <asp:Label ID="lbCostGo" runat="server" Text="Chi phí đi lại"></asp:Label>
                 </td>
                 <td>
-                    <tlk:RadNumericTextBox runat="server" ID="rnCostGo">
+                    <tlk:RadNumericTextBox runat="server" ID="rnCostGo" AutoPostBack="true">
                     </tlk:RadNumericTextBox>
                 </td>
                 <td class="lb">
@@ -240,7 +240,7 @@
                     <asp:Label ID="lbSum" runat="server" Text="Tổng chi phí"></asp:Label>
                 </td>
                 <td>
-                    <tlk:RadNumericTextBox runat="server" ID="rnSumCost" ReadOnly="true">
+                    <tlk:RadNumericTextBox runat="server" ID="rnSumCost">
                     </tlk:RadNumericTextBox>
                 </td>
             </tr>
@@ -265,7 +265,7 @@
             registerOnfocusOut('RAD_SPLITTER_ctl00_MainContent_ctrlHU_ContractNewEdit_RadSplitter1');
         });
 
-      
+
         //mandatory for the RadWindow dialogs functionality
         function getRadWindow() {
             if (window.radWindow) {

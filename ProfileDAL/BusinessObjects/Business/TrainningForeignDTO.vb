@@ -4,6 +4,8 @@
     Public Property ORG_IDS As List(Of Decimal)
     Public Property ORG_CODE As String
     Public Property ORG_NAME As String
+    Public Property ORG_NAME2 As String
+    Public Property ORG_NAME4 As String
     Public Property ORG_DESC As String
     Public Property FROM_DATE As Date?
     Public Property TO_DATE As Date?

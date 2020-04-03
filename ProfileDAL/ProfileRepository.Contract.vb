@@ -630,6 +630,7 @@ Partial Class ProfileRepository
                         From o In Context.HU_ORGANIZATION.Where(Function(f) f.ID = p.ORG_ID).DefaultIfEmpty
                        From t In Context.HU_TITLE.Where(Function(f) p.TITLE_ID = f.ID).DefaultIfEmpty
                        From ot In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.TRAINNING_ID).DefaultIfEmpty
+                          From ot1 In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.VISA_ID).DefaultIfEmpty
                       From chosen In Context.SE_CHOSEN_ORG.Where(Function(f) f.ORG_ID = e.ORG_ID And
                                                                  f.USERNAME = log.Username.ToUpper)
             ' lọc điều kiện
@@ -693,7 +694,24 @@ Partial Class ProfileRepository
                                             .DECISION_NO = p.p.DECISION_NO,
                                             .LOCATION = p.p.LOCATION,
                                             .CONTENT = p.p.CONTENT,
-            .CREATED_DATE = p.p.CREATED_DATE
+            .CREATED_DATE = p.p.CREATED_DATE,
+                                            .PLACE_FROM=p.p.PLACE_FROM,
+                                            .PLACE_TO=p.p.PLACE_TO,
+                                            .VISA_ID=p.p.VISA_ID,
+                                            .VISA_NAME=p.ot1.NAME_VN,
+                                            .NUMBER_VISA=p.p.NUMBER_VISA,
+                                            .DATE_NC_VISA=p.p.DATE_NC_VISA,
+                                            .DATE_HH_VISA=p.p.DATE_HH_VISA,
+                                            .PLACE_VISA=p.p.PLACE_VISA,
+                                            .COST_VISA=p.p.COST_VISA,
+                                            .NUMBER_DATE=p.p.NUMBER_DATE,
+                                            .COST_KH=p.p.COST_KH,
+                                            .COST_WORK=p.p.COST_WORK,
+                                            .COST_HOTEL=p.p.COST_HOTEL,
+                                            .COST_ANOTHER=p.p.COST_ANOTHER,
+                                            .COST_GO=p.p.COST_GO,
+                                            .CHK_COSTWORK=p.p.CHK_COSTWORK,
+                                            .SUM_COST=p.p.SUM_COST
                                             })
 
             trainingforeign = trainingforeign.OrderBy(Sorts)
@@ -724,6 +742,22 @@ Partial Class ProfileRepository
             objContractData.TRAINNING_NAME = objContract.TRAINNING_NAME
             objContractData.LOCATION = objContract.LOCATION
             objContractData.CONTENT = objContract.CONTENT
+            objContractData.PLACE_FROM = objContract.PLACE_FROM
+            objContractData.PLACE_TO = objContract.PLACE_TO
+            objContractData.VISA_ID = objContract.VISA_ID
+            objContractData.NUMBER_VISA = objContract.NUMBER_VISA
+            objContractData.DATE_NC_VISA = objContract.DATE_NC_VISA
+            objContractData.DATE_HH_VISA = objContract.DATE_HH_VISA
+            objContractData.PLACE_VISA = objContract.PLACE_VISA
+            objContractData.COST_VISA = objContract.COST_VISA
+            objContractData.NUMBER_DATE = objContract.NUMBER_DATE
+            objContractData.COST_KH = objContract.COST_KH
+            objContractData.COST_WORK = objContract.COST_WORK
+            objContractData.COST_HOTEL = objContract.COST_HOTEL
+            objContractData.COST_ANOTHER = objContract.COST_ANOTHER
+            objContractData.COST_GO = objContract.COST_GO
+            objContractData.SUM_COST = objContract.SUM_COST
+            objContractData.CHK_COSTWORK = objContract.CHK_COSTWORK
             Context.HU_TRAININGFOREIGN.AddObject(objContractData)
             ' Phê duyệt
             Context.SaveChanges(log)
@@ -753,6 +787,23 @@ Partial Class ProfileRepository
             objContractData.TRAINNING_NAME = objContract.TRAINNING_NAME
             objContractData.LOCATION = objContract.LOCATION
             objContractData.CONTENT = objContract.CONTENT
+            objContractData.PLACE_FROM = objContract.PLACE_FROM
+            objContractData.PLACE_TO = objContract.PLACE_TO
+            objContractData.VISA_ID = objContract.VISA_ID
+            objContractData.NUMBER_VISA = objContract.NUMBER_VISA
+            objContractData.DATE_NC_VISA = objContract.DATE_NC_VISA
+            objContractData.DATE_HH_VISA = objContract.DATE_HH_VISA
+            objContractData.PLACE_VISA = objContract.PLACE_VISA
+            objContractData.COST_VISA = objContract.COST_VISA
+            objContractData.NUMBER_DATE = objContract.NUMBER_DATE
+            objContractData.COST_KH = objContract.COST_KH
+            objContractData.COST_WORK = objContract.COST_WORK
+            objContractData.COST_HOTEL = objContract.COST_HOTEL
+            objContractData.COST_ANOTHER = objContract.COST_ANOTHER
+            objContractData.COST_GO = objContract.COST_GO
+            objContractData.SUM_COST = objContract.SUM_COST
+            objContractData.CHK_COSTWORK = objContract.CHK_COSTWORK
+
             Context.SaveChanges(log)
             gID = objContractData.ID
             Return True
@@ -767,6 +818,7 @@ Partial Class ProfileRepository
             Dim query = From p In Context.HU_TRAININGFOREIGN
                         From e In Context.HU_EMPLOYEE.Where(Function(f) f.ID = p.EMPLOYEE_ID)
                         From o In Context.HU_ORGANIZATION.Where(Function(f) f.ID = p.ORG_ID).DefaultIfEmpty
+                        From org In Context.HU_ORGANIZATION_V.Where(Function(f) f.ID = o.ID)
                        From t In Context.HU_TITLE.Where(Function(f) p.TITLE_ID = f.ID).DefaultIfEmpty
                        From ot In Context.OT_OTHER_LIST.Where(Function(f) p.TRAINNING_ID = f.ID).DefaultIfEmpty
             Where (p.ID = _filter.ID)
@@ -785,7 +837,25 @@ Partial Class ProfileRepository
                                                       .CONTENT = p.CONTENT,
                                                       .DECISION_NO = p.DECISION_NO,
                                                       .TRAINNING_ID = p.TRAINNING_ID,
-                                                      .TRAINNING_NAME = ot.NAME_VN
+                                                      .TRAINNING_NAME = ot.NAME_VN,
+                                                     .PLACE_FROM = p.PLACE_FROM,
+                                                             .PLACE_TO = p.PLACE_TO,
+                                                             .VISA_ID = p.VISA_ID,
+                                                             .DATE_NC_VISA = p.DATE_NC_VISA,
+                                                             .DATE_HH_VISA = p.DATE_HH_VISA,
+                                                             .PLACE_VISA = p.PLACE_VISA,
+                                                             .COST_VISA = p.COST_VISA,
+                                                             .NUMBER_DATE = p.NUMBER_DATE,
+                                                             .NUMBER_VISA = p.NUMBER_VISA,
+                                                             .COST_KH = p.COST_KH,
+                                                             .COST_WORK = p.COST_WORK,
+                                                             .COST_HOTEL = p.COST_HOTEL,
+                                                             .COST_ANOTHER = p.COST_ANOTHER,
+                                                             .COST_GO = p.COST_GO,
+                                                             .CHK_COSTWORK = If(p.CHK_COSTWORK = -1, True, False),
+                                                             .SUM_COST = p.SUM_COST,
+                                                             .ORG_NAME2 = org.NAME_C2,
+                                                             .ORG_NAME4 = org.NAME_C4
                             }
             Dim result = query.FirstOrDefault
             Return result

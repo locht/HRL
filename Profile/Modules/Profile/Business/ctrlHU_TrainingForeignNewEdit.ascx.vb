@@ -185,6 +185,50 @@ Public Class ctrlHU_TrainingForeignNewEdit
                         txtDecisionNo.Text = Contract.DECISION_NO
                         rdStartDate.SelectedDate = Contract.START_DATE
                         rdExpireDate.SelectedDate = Contract.EXPIRE_DATE
+                        txtPlaceFrom.Text = Contract.PLACE_FROM
+                        txtPlaceTo.Text = Contract.PLACE_TO
+                        If Contract.VISA_ID IsNot Nothing Then
+                            cboTypeVisa.SelectedValue = Contract.VISA_ID
+                        End If
+                        txtBranch.Text = Contract.ORG_NAME2
+                        txtBan.Text = Contract.ORG_NAME4
+                        txtNumberVisa.Text = Contract.NUMBER_VISA
+                        If Contract.DATE_NC_VISA IsNot Nothing Then
+                            rdDateCap.SelectedDate = Contract.DATE_NC_VISA
+                        End If
+                        If Contract.DATE_HH_VISA IsNot Nothing Then
+                            rdDateHH.SelectedDate = Contract.DATE_HH_VISA
+                        End If
+                        txtPlace.Text = Contract.PLACE_VISA
+                        If Contract.COST_VISA IsNot Nothing Then
+                            rnCost.Value = Contract.COST_VISA
+                        End If
+                        If Contract.NUMBER_DATE IsNot Nothing Then
+                            rnNumberDate.Value = Contract.NUMBER_DATE
+                        End If
+                        If Contract.COST_KH IsNot Nothing Then
+                            rnCostKH.Value = Contract.COST_KH
+                        End If
+                        If Contract.COST_WORK IsNot Nothing Then
+                            rnCostWork.Value = Contract.COST_WORK
+                        End If
+                        If Contract.COST_HOTEL IsNot Nothing Then
+                            rnCostHotel.Value = Contract.COST_HOTEL
+                        End If
+                        If Contract.COST_ANOTHER IsNot Nothing Then
+                            rnCostAnother.Value = Contract.COST_ANOTHER
+                        End If
+                        If Contract.COST_GO IsNot Nothing Then
+                            rnCostGo.Value = Contract.COST_GO
+                        End If
+                        If Contract.CHK_COSTWORK = True Then
+                            chkCostWork.Checked = True
+                        Else
+                            chkCostWork.Checked = False
+                        End If
+                        If Contract.SUM_COST IsNot Nothing Then
+                            rnSumCost.Value = Contract.SUM_COST
+                        End If
                     End If
                 Case "NormalView"
                     CurrentState = CommonMessage.STATE_NEW
@@ -234,6 +278,44 @@ Public Class ctrlHU_TrainingForeignNewEdit
                         objContract.TITLE_ID = employee.TITLE_ID
                         objContract.CONTENT = txtContent.Text
                         objContract.DECISION_NO = txtDecisionNo.Text
+                        objContract.PLACE_FROM = txtPlaceFrom.Text
+                        objContract.PLACE_TO = txtPlaceTo.Text
+                        If cboTypeVisa.SelectedValue <> "" Then
+                            objContract.VISA_ID = cboTypeVisa.SelectedValue
+                        End If
+                        objContract.NUMBER_VISA = txtNumberVisa.Text
+                        objContract.DATE_NC_VISA = rdDateCap.SelectedDate
+                        objContract.DATE_HH_VISA = rdDateHH.SelectedDate
+                        objContract.PLACE_VISA = txtPlace.Text
+                        If IsNumeric(rnCost.Value) Then
+                            objContract.COST_VISA = rnCost.Value
+                        End If
+                        If IsNumeric(rnCostKH.Value) Then
+                            objContract.COST_KH = rnCostKH.Value
+                        End If
+                        If IsNumeric(rnCostWork.Value) Then
+                            objContract.COST_WORK = rnCostWork.Value
+                        End If
+                        If IsNumeric(rnCostHotel.Value) Then
+                            objContract.COST_HOTEL = rnCostHotel.Value
+                        End If
+                        If IsNumeric(rnCostAnother.Value) Then
+                            objContract.COST_ANOTHER = rnCostAnother.Value
+                        End If
+                        If IsNumeric(rnCostGo.Value) Then
+                            objContract.COST_GO = rnCostGo.Value
+                        End If
+                        If chkCostWork.Checked Then
+                            objContract.CHK_COSTWORK = True
+                        Else
+                            objContract.CHK_COSTWORK = False
+                        End If
+                        If IsNumeric(rnNumberDate.Value) Then
+                            objContract.NUMBER_DATE = rnNumberDate.Value
+                        End If
+                        If IsNumeric(rnSumCost.Value) Then
+                            objContract.SUM_COST = rnSumCost.Value
+                        End If
                         Select Case CurrentState
                             Case CommonMessage.STATE_NEW
                                 If rep.InsertTrainingForeign(objContract, gID) Then
@@ -639,6 +721,41 @@ Public Class ctrlHU_TrainingForeignNewEdit
         End Select
     End Sub
 #End Region
+    Private Sub rdStartDate_SelectedDateChanged(sender As Object, e As Telerik.Web.UI.Calendar.SelectedDateChangedEventArgs) Handles rdStartDate.SelectedDateChanged
+        Try
+            CalNumberDay()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
 
+    Private Sub rdExpireDate_SelectedDateChanged(sender As Object, e As Telerik.Web.UI.Calendar.SelectedDateChangedEventArgs) Handles rdExpireDate.SelectedDateChanged
+        Try
+            CalNumberDay()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
 
+    Private Sub CalNumberDay()
+        Try
+            If rdStartDate.SelectedDate IsNot Nothing And rdExpireDate.SelectedDate IsNot Nothing Then
+                Dim TTF As New TimeSpan
+                Dim d1 As DateTime = rdStartDate.SelectedDate
+                Dim d2 As DateTime = rdExpireDate.SelectedDate
+                TTF = d2.Subtract(d1)
+                rnNumberDate.Value = TTF.TotalDays + 1
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub rnCost_TextChanged(sender As Object, e As System.EventArgs) Handles rnCost.TextChanged, rnCostAnother.TextChanged, rnCostGo.TextChanged, rnCostHotel.TextChanged, rnCostKH.TextChanged, rnCostWork.TextChanged
+        Try
+            rnSumCost.Value = If(IsNumeric(rnCost.Value), rnCost.Value, 0) + If(IsNumeric(rnCostHotel.Value), rnCostHotel.Value, 0) + If(IsNumeric(rnCostGo.Value), rnCostGo.Value, 0) + If(IsNumeric(rnCostWork.Value), rnCostWork.Value, 0) + If(IsNumeric(rnCostAnother.Value), rnCostAnother.Value, 0) + If(IsNumeric(rnCostKH.Value), rnCostKH.Value, 0)
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
 End Class
