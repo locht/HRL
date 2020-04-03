@@ -189,7 +189,7 @@
                         class="lbReq">*</span>
                 </td>
                 <td>
-                    <tlk:RadComboBox ID="cboDecisionType" runat="server" AutoPostBack="true" CausesValidation="false">
+                    <tlk:RadComboBox ID="cboDecisionType" runat="server" CausesValidation="false">
                     </tlk:RadComboBox>
                     <asp:CustomValidator ID="cusDecisionType" runat="server" ErrorMessage="<%# GetYouMustChoseMsg(UI.DecisionType) %>"
                         ToolTip="<%# GetYouMustChoseMsg(UI.DecisionType) %>" ClientValidationFunction="cusDecisionType"> 

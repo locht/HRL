@@ -1491,30 +1491,30 @@ Public Class ctrlHU_ChangeInfoNewEdit
 
 #End Region
 
-    Private Sub cboDecisionType_SelectedIndexChanged(sender As Object, e As Telerik.Web.UI.RadComboBoxSelectedIndexChangedEventArgs) Handles cboDecisionType.SelectedIndexChanged
-        Try
-            'nếu muốn chỉnh sửa k clear thì mở ở dưới ra
-            ' If isEdit <> 1 Then
-            If cboDecisionType.SelectedValue = 7561 Then
-                btnFindOrg.Enabled = False
-                cboTitle.Enabled = False
-                'If ctrlFindEmployeePopup.SelectedEmployeeID Is Nothing Then
-                If hidEmp.Value <> "" Then
-                    Dim empID = hidEmp.Value
-                    FillData(empID)
-                End If
-            Else
-                btnFindOrg.Enabled = True
-                cboTitle.Enabled = True
-                txtOrgName.Text = ""
-                hidOrg.ClearValue()
-                cboTitle.ClearValue()
-            End If
-            ' End If
-        Catch ex As Exception
-            Throw ex
-        End Try
-    End Sub
+    'Private Sub cboDecisionType_SelectedIndexChanged(sender As Object, e As Telerik.Web.UI.RadComboBoxSelectedIndexChangedEventArgs) Handles cboDecisionType.SelectedIndexChanged
+    '    Try
+    '        'nếu muốn chỉnh sửa k clear thì mở ở dưới ra
+    '        ' If isEdit <> 1 Then
+    '        If cboDecisionType.SelectedValue = 7561 Then
+    '            btnFindOrg.Enabled = False
+    '            cboTitle.Enabled = False
+    '            'If ctrlFindEmployeePopup.SelectedEmployeeID Is Nothing Then
+    '            If hidEmp.Value <> "" Then
+    '                Dim empID = hidEmp.Value
+    '                FillData(empID)
+    '            End If
+    '        Else
+    '            btnFindOrg.Enabled = True
+    '            cboTitle.Enabled = True
+    '            txtOrgName.Text = ""
+    '            hidOrg.ClearValue()
+    '            cboTitle.ClearValue()
+    '        End If
+    '        ' End If
+    '    Catch ex As Exception
+    '        Throw ex
+    '    End Try
+    'End Sub
 
     Private Sub cboTitle_SelectedIndexChanged(sender As Object, e As Telerik.Web.UI.RadComboBoxSelectedIndexChangedEventArgs) Handles cboTitle.SelectedIndexChanged
         Try
