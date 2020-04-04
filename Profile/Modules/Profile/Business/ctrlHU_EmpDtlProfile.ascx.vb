@@ -131,7 +131,9 @@ Public Class ctrlHU_EmpDtlProfile
     Public Overrides Sub Refresh(Optional ByVal Message As String = "")
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
         Dim repNS As New ProfileRepository
-        Dim lstP, lstPB, lstD, lstDB, lstW, lstWB As DataTable
+        Dim store As New ProfileStoreProcedure
+        Dim lstP, lstPB, lstD, lstDB, lstW, lstWB, dtData As DataTable
+
         Try
             Dim startTime As DateTime = DateTime.UtcNow
             If EmployeeInfo IsNot Nothing Then
@@ -202,6 +204,19 @@ Public Class ctrlHU_EmpDtlProfile
                         FillDataInControls(EmployeeInfo.ORG_ID)
                         cboTitle.SelectedValue = EmployeeInfo.TITLE_ID
                         cboTitle.Text = EmployeeInfo.TITLE_NAME_VN
+                        If IsNumeric(EmployeeInfo.TITLE_ID) And IsNumeric(EmployeeInfo.ORG_ID) Then
+                            dtData = store.GET_JOB_POSSITION_BY_TITLE_ORG(EmployeeInfo.TITLE_ID, EmployeeInfo.ORG_ID)
+                            FillRadCombobox(cboJobPosition, dtData, "JOB_NAME", "ID")
+                            dtData = store.GET_JOB_DESCRIPTION_BY_TITLE_ORG(EmployeeInfo.TITLE_ID, EmployeeInfo.ORG_ID)
+                            FillRadCombobox(cboJobDescription, dtData, "NAME", "ID", True)
+                        End If
+                        If IsNumeric(EmployeeInfo.JOB_POSITION) Then
+                            cboJobPosition.SelectedValue = EmployeeInfo.JOB_POSITION
+                            dtData = store.GET_DIRECT_MANAGER_BY_JOB_POS(EmployeeInfo.JOB_POSITION)
+                            FillRadCombobox(cboDirectManager, dtData, "FULLNAME_VN", "ID", True)
+                        End If
+
+
                         txtTitleGroup.Text = EmployeeInfo.TITLE_GROUP_NAME
                         rdJoinDate.SelectedDate = EmployeeInfo.JOIN_DATE
                         rdSeniorityDate.SelectedDate = EmployeeInfo.SENIORITY_DATE
@@ -215,10 +230,6 @@ Public Class ctrlHU_EmpDtlProfile
                         If EmployeeInfo.STAFF_RANK_ID IsNot Nothing Then
                             cboStaffRank.SelectedValue = EmployeeInfo.STAFF_RANK_ID
                             cboStaffRank.Text = EmployeeInfo.STAFF_RANK_NAME
-                        End If
-                        If EmployeeInfo.DIRECT_MANAGER IsNot Nothing Then
-                            txtDirectManager.Text = EmployeeInfo.DIRECT_MANAGER_NAME
-                            hidDirectManager.Value = EmployeeInfo.DIRECT_MANAGER
                         End If
                         txtTimeID.Text = EmployeeInfo.ITIME_ID
 
@@ -242,29 +253,34 @@ Public Class ctrlHU_EmpDtlProfile
                         End If
                         chkIs_Hazardous.Checked = EmployeeInfo.IS_HAZARDOUS
                         chkIS_HDLD.Checked = EmployeeInfo.IS_HDLD
-                        txtOrg_C2.Text = EmployeeInfo.ORG_NAME2
-                        txtOrg_C3.Text = EmployeeInfo.ORG_NAME3
-                        txtOrg_C4.Text = EmployeeInfo.ORG_NAME4
-                        txtOrg_C5.Text = EmployeeInfo.ORG_NAME5
-                        txtOrg_C3_1.Text = EmployeeInfo.ORG_NAME3
-                        txtOrg_C4_1.Text = EmployeeInfo.ORG_NAME4
-                        txtOrg_C5_1.Text = EmployeeInfo.ORG_NAME5
+                        dtData = rep.GetOrgtree(EmployeeInfo.ORG_ID)
+                        If dtData IsNot Nothing Then
+                            Dim row As DataRow = dtData.Rows(0)
+                            txtOrg_C2.Text = row("ORG_NAME2")
+                            If If(Not IsDBNull(row("UNIT_RANK3")), row("UNIT_RANK3"), 0) = 2 Then
+                                txtOrg_C3.Text = row("ORG_NAME3")
+                            ElseIf If(Not IsDBNull(row("UNIT_RANK3")), row("UNIT_RANK3"), 0) = 3 Then
+                                txtOrg_C3_1.Text = row("ORG_NAME3")
+                            End If
+                            If If(Not IsDBNull(row("UNIT_RANK4")), row("UNIT_RANK4"), 0) = 4 Then
+                                txtOrg_C4.Text = row("ORG_NAME4")
+                            ElseIf If(Not IsDBNull(row("UNIT_RANK4")), row("UNIT_RANK4"), 0) = 5 Then
+                                txtOrg_C4_1.Text = row("ORG_NAME4")
+                            End If
+                            If If(Not IsDBNull(row("UNIT_RANK5")), row("UNIT_RANK5"), 0) = 6 Then
+                                txtOrg_C5.Text = row("ORG_NAME5")
+                            ElseIf If(Not IsDBNull(row("UNIT_RANK5")), row("UNIT_RANK5"), 0) = 7 Then
+                                txtOrg_C5_1.Text = row("ORG_NAME5")
+                            End If
+                        End If
                         'txtOrg_C2.Text = EmployeeInfo.ORG_NAME2
-
-                        If EmployeeInfo.JOB_POSITION IsNot Nothing Then
-                            cboJobPosition.Text = EmployeeInfo.JOB_POSITION_NAME
-                            cboJobPosition.SelectedValue = EmployeeInfo.JOB_POSITION
-                        End If
-                        If EmployeeInfo.TITLE_ID IsNot Nothing Then
-                            Dim dtData As New DataTable
-                            Using rep2 As New ProfileRepository
-                                dtData = rep2.GetJobDescByTitleID(EmployeeInfo.TITLE_ID, True)
-                                FillRadCombobox(cboJobDescription, dtData, "NAME", "ID", True)
-                            End Using
-                        End If
-                        If EmployeeInfo.JOB_DESCRIPTION IsNot Nothing Then
-                            cboJobDescription.SelectedValue = EmployeeInfo.JOB_DESCRIPTION
-                        End If
+                        'txtOrg_C3.Text = EmployeeInfo.ORG_NAME3
+                        'txtOrg_C4.Text = EmployeeInfo.ORG_NAME4
+                        'txtOrg_C5.Text = EmployeeInfo.ORG_NAME5
+                        'txtOrg_C3_1.Text = EmployeeInfo.ORG_NAME3
+                        'txtOrg_C4_1.Text = EmployeeInfo.ORG_NAME4
+                        'txtOrg_C5_1.Text = EmployeeInfo.ORG_NAME5
+                        'txtOrg_C2.Text = EmployeeInfo.ORG_NAME2
 
                         If EmployeeInfo.PRODUCTION_PROCESS IsNot Nothing Then
                             cboProductionProcess.SelectedValue = EmployeeInfo.PRODUCTION_PROCESS
@@ -284,9 +300,9 @@ Public Class ctrlHU_EmpDtlProfile
                                 chkIs_pay_bank.Checked = empCV.IS_PAY_BANK
                             End If
                             '=======================================================
-                            If IsNumeric(empCV.PROVINCENQ_ID) Then
-                                cbPROVINCENQ_ID.SelectedValue = empCV.PROVINCENQ_ID
-                            End If
+                            'If IsNumeric(empCV.PROVINCENQ_ID) Then
+                            '    cbPROVINCENQ_ID.SelectedValue = empCV.PROVINCENQ_ID
+                            'End If
                             If IsNumeric(empCV.BIRTH_PLACE) Then
                                 cbBirth_PlaceId.SelectedValue = empCV.BIRTH_PLACE
                                 cbBirth_PlaceId.Text = empCV.BIRTH_PLACENAME
@@ -299,15 +315,18 @@ Public Class ctrlHU_EmpDtlProfile
                             rdEffect_Bank.SelectedDate = empCV.EFFECTDATE_BANK
                             'txtPlaceKS.Text = empCV.BIRTH_PLACE
                             txtVillage.Text = empCV.VILLAGE
-                            txtAppDung.Text = empEdu.COMPUTER_CERTIFICATE
-                            txtDriverType.Text = empEdu.DRIVER_NO
+                            If IsNumeric(empEdu.COMPUTER_CERTIFICATE) Then
+                                cboBasic.SelectedValue = empEdu.COMPUTER_CERTIFICATE
+                            End If
+                            If empEdu.COMPUTER_RANK IsNot Nothing Then
+                                cboComputerRank.SelectedValue = empEdu.COMPUTER_RANK
+                            End If
+
+                            'txtDriverType.Text = empEdu.DRIVER_NO
                             txtNote.Text = empEdu.MORE_INFORMATION
                             rdDayPitcode.SelectedDate = empCV.PIT_CODE_DATE
                             txtPlacePitcode.Text = empCV.PIT_CODE_PLACE
-                            If empEdu.COMPUTER_RANK IsNot Nothing Then
-                                cboBasic.SelectedValue = empEdu.COMPUTER_RANK
-                                cboBasic.Text = empEdu.COMPUTER_RANK_NAME
-                            End If
+                            
                             If empEdu.COMPUTER_MARK IsNot Nothing Then
                                 cboCertificate.SelectedValue = empEdu.COMPUTER_MARK
                                 cboCertificate.Text = empEdu.COMPUTER_MARK_NAME
@@ -371,6 +390,8 @@ Public Class ctrlHU_EmpDtlProfile
                             If IsNumeric(empCV.WARDEMP_BRITH) Then
                                 cboWARDEMP_BRITH.SelectedValue = empCV.WARDEMP_BRITH
                             End If
+
+                            txtResidence.Text = empCV.RESIDENCE
 
                             rtSkill.Text = empCV.SKILL
                             If IsNumeric(empCV.DANG) Then
@@ -632,6 +653,9 @@ Public Class ctrlHU_EmpDtlProfile
                                 cboDriverType.SelectedValue = empEdu.DRIVER_TYPE
                                 cboDriverType.Text = empEdu.DRIVER_TYPE_NAME
                             End If
+                            If empEdu.MOTO_DRIVING_LICENSE IsNot Nothing Then
+                                cboMotoDrivingLicense.SelectedValue = empEdu.MOTO_DRIVING_LICENSE
+                            End If
                             txtLangMark2.Text = empEdu.LANGUAGE_MARK2
                             If empEdu.LANGUAGE2 IsNot Nothing Then
                                 cboLanguage2.SelectedValue = empEdu.LANGUAGE2
@@ -856,7 +880,7 @@ Public Class ctrlHU_EmpDtlProfile
                 dtLanguageleve = rep.GetOtherList("LANGUAGE_LEVEL", True)
                 dtLanguage = rep.GetOtherList("RC_LANGUAGE_LEVEL", True)
                 FillRadCombobox(cboIDPlace, dtPlace, "NAME", "ID")
-                FillRadCombobox(cbPROVINCENQ_ID, dtPlace, "NAME", "ID")
+                'FillRadCombobox(cbPROVINCENQ_ID, dtPlace, "NAME", "ID")
                 FillRadCombobox(cbBirth_PlaceId, dtPlace, "NAME", "ID")
                 ' FillRadCombobox(cboLangLevel, dtLanguageleve, "NAME", "ID")
                 FillRadCombobox(cboLangLevel2, dtLanguageleve, "NAME", "ID")
@@ -884,8 +908,15 @@ Public Class ctrlHU_EmpDtlProfile
                 dtData = rep.GetOtherList("HU_GRADUATE_SCHOOL")
                 FillRadCombobox(cboGraduateSchool, dtData, "NAME", "ID")
                 dtData = rep.GetOtherList("OBJECT_INS")
-                FillRadCombobox(cboObjectIns, dtData, "NAME", "ID")
+                FillRadCombobox(cboObjectIns, dtData, "NAME", "ID", True)
                 cboObjectIns.SelectedIndex = 1
+                dtData = rep.GetOtherList("OBJECT_ATTENDANCE", True)
+                FillRadCombobox(cboObject, dtData, "NAME", "ID")
+                cboObject.SelectedIndex = 3
+                dtData = rep.GetOtherList("MOTO_DRIVER_TYPE", True)
+                FillRadCombobox(cboMotoDrivingLicense, dtData, "NAME", "ID", True)
+                dtData = rep.GetOtherList("COMPUTER_LEVEL", True)
+                FillRadCombobox(cboComputerRank, dtData, "NAME", "ID", True)
                 '''''''''''''''''''''''''''''''''
                 'dtData = rep.GetOtherList("EMPLOYEE_OBJECT")
                 'FillDropDownList(cboEMPLOYEE_OBJECT, dtData, "NAME", "ID", Common.Common.SystemLanguage, True, cboRelationNLH.SelectedValue)
@@ -985,8 +1016,8 @@ Public Class ctrlHU_EmpDtlProfile
                     'txtTimeID.Text = EmpCode.EMPLOYEE_CODE
                     'txtEmpCODE.Text = EmpCode.EMPLOYEE_CODE
                     EnableControlAll(True, txtOrgName2, btnFindOrg,
-                                     cboTitle, txtTitleGroup, cboStaffRank, txtDirectManager, btnFindDirect,
-                                     txtmanager, cboObject, cboObjectLabor, cbObjectBook, cboBasic, cboCertificate, txtAppDung, txtPlaceKS, txtVillage, rdDayPitcode, txtPlacePitcode, txtPerson_Inheritance, rdEffect_Bank, txtDriverType, txtNote, cboJobDescription, cboJobPosition, cboProductionProcess, btnUpload)
+                                     cboTitle, txtTitleGroup, cboStaffRank,
+                                     txtmanager, cboObject, cboObjectLabor, cbObjectBook, cboBasic, cboCertificate, cboComputerRank, txtPlaceKS, txtVillage, rdDayPitcode, txtPlacePitcode, txtPerson_Inheritance, rdEffect_Bank, cboMotoDrivingLicense, txtNote, cboJobDescription, cboProductionProcess, btnUpload)
 
                     EnableControlAll(False, cboWorkStatus, txtEmpCODE, cboEmpStatus, rtBookNo, cboInsRegion, txtTimeID, txtTitleGroup)
                     EnableControlAll(True, rtCHUC_VU_DANG, rdNGAY_VAO_DANG_DB, rdNGAY_VAO_DANG)
@@ -998,7 +1029,7 @@ Public Class ctrlHU_EmpDtlProfile
                     EnableControlAll(True, lstbPaper, lstbPaperFiled,
                                         txtBankNo, chkSaveHistory, ckBanTT_ND, rdExpireIDNO, rdDateOfEntry, rdWeddingDay, txtTNCN_NO,
                                        txtDaHoaLieu, rtDiem_XL_TH, txtDiem_XL_TH2, txtNoteTDTH1, txtNoteTDTH2,
-                                       txtFirstNameVN, txtGhiChuSK, txtNamTN,
+                                       txtFirstNameVN, txtGhiChuSK, txtNamTN, txtResidence,
                                        txtHomePhone, txtHuyetAp, txtID_NO, chkIs_pay_bank,
                                        cboIDPlace, txtLangMark, txtLangMark2,
                                        txtLastNameVN, txtMatPhai, txtMatTrai,
@@ -1016,7 +1047,7 @@ Public Class ctrlHU_EmpDtlProfile
                                        cboGender, cboLangLevel, cboLangLevel2, cboLanguage, cboLanguage2, cboLearningLevel, txtLoaiSucKhoe, cboDriverType,
                                        cboMajor, cboNationlity, cboNative, cboNav_Province, cboPer_Province, cboNationa_TT, cboNationlity_NQ, cboNationlity_TTRU,
                                        cboReligion,
-                                       cboPer_District, cboPer_Ward, cboNav_District, cboNav_Ward, cbPROVINCEEMP_ID, cbDISTRICTEMP_ID, cbWARDEMP_ID, cbPROVINCENQ_ID, cbBirth_PlaceId,
+                                       cboPer_District, cboPer_Ward, cboNav_District, cboNav_Ward, cbPROVINCEEMP_ID, cbDISTRICTEMP_ID, cbWARDEMP_ID, cbBirth_PlaceId,
                                        hidID, hidOrgID, hidDirectManager, hidLevelManager,
                                        chkDoanPhi, rtOpption1, rtOpption2, rtOpption3, rtOpption4, rtOpption5, chkDangPhi, chkATVS, chkIS_TRANSFER,
                                        rdOpption6, rdOpption7, rdOpption8, rdOpption9, rdOpption10,
@@ -1024,24 +1055,24 @@ Public Class ctrlHU_EmpDtlProfile
                                         ckQD, rtDV_Xuat_Ngu_CA, rdNgay_Xuat_Ngu_CA, rdNgay_Nhap_Ngu_CA,
                                        ckNU_CONG, ckCONG_DOAN, ckCA, ckDANG, rtSkill,
                                        cbQLNN, cbLLCT, cbTDTH, cboTDTH2, rtTTSucKhoe,
-                                       cboPROVINCEEMP_BRITH, cboDISTRICTEMP_BRITH, cboWARDEMP_BRITH, ckCHUHO, txtNoHouseHolds, txtCodeHouseHolds, cboObjectIns, cboEMPLOYEE_OBJECT, chkIs_Hazardous, chkIS_HDLD, chkForeigner)
+                                       cboPROVINCEEMP_BRITH, cboDISTRICTEMP_BRITH, cboWARDEMP_BRITH, ckCHUHO, txtNoHouseHolds, txtCodeHouseHolds, cboObjectIns, chkForeigner)
                     If Not Me.AllowCreate Then
                         txtFirstNameVN.ReadOnly = True
                         txtLastNameVN.ReadOnly = True
                         txtTimeID.ReadOnly = True
                     End If
-
+                    cboObject.SelectedIndex = 3
                 Case CommonMessage.STATE_EDIT
                     rtIdTitleConcurrent.Visible = False
                     'RadPane4.Visible = False
                     If EmployeeInfo.WORK_STATUS IsNot Nothing Then
                         EnableControlAll(False, txtOrgName2, btnFindOrg,
-                                   cboTitle, txtTitleGroup, cboStaffRank, txtDirectManager, btnFindDirect,
+                                   cboTitle, txtTitleGroup, cboStaffRank,
                                    txtmanager, cboObject, cboObjectLabor, txtTimeID, cbObjectBook)
 
 
                         EnableControlAll(False, cboWorkStatus, txtEmpCODE, cboEmpStatus, rtBookNo, cboInsRegion)
-                        EnableControlAll(True, rtCHUC_VU_DANG, rdNGAY_VAO_DANG_DB, rdNGAY_VAO_DANG, cboJobDescription, cboJobPosition, cboProductionProcess, btnUpload)
+                        EnableControlAll(True, rtCHUC_VU_DANG, rdNGAY_VAO_DANG_DB, rdNGAY_VAO_DANG, cboJobDescription, cboProductionProcess, btnUpload)
                         EnableControlAll(True, ckDOAN_PHI, rtCHUC_VU_DOAN, rdNGAY_VAO_DOAN)
                         EnableControlAll(True, rtCV_BANTT, rdNgay_TG_BanTT)
                         EnableControlAll(True, rtCV_Ban_Nu_Cong, rdNgay_TG_Ban_Nu_Cong)
@@ -1049,9 +1080,9 @@ Public Class ctrlHU_EmpDtlProfile
                         EnableControlAll(True, cbHang_Thuong_Binh, cbGD_Chinh_Sach)
                         EnableControlAll(True, lstbPaper, lstbPaperFiled, chkSaveHistory,
                                             txtBankNo, ckBanTT_ND, rtDiem_XL_TH, txtDiem_XL_TH2, txtNoteTDTH1, txtNoteTDTH2, txtTNCN_NO,
-                                           txtDaHoaLieu, txtNamTN, rdExpireIDNO, txtAppDung, txtPlaceKS, txtVillage, txtPlacePitcode, rdDayPitcode, txtPerson_Inheritance, rdEffect_Bank, rdDateOfEntry, rdWeddingDay,
-                                           txtFirstNameVN, txtGhiChuSK, chkIs_pay_bank, txtDriverType, txtNote,
-                                           txtHomePhone, txtHuyetAp, txtID_NO,
+                                           txtDaHoaLieu, txtNamTN, rdExpireIDNO, cboComputerRank, txtPlaceKS, txtVillage, txtPlacePitcode, rdDayPitcode, txtPerson_Inheritance, rdEffect_Bank, rdDateOfEntry, rdWeddingDay,
+                                           txtFirstNameVN, txtGhiChuSK, chkIs_pay_bank, cboMotoDrivingLicense, txtNote,
+                                           txtHomePhone, txtHuyetAp, txtID_NO, txtResidence,
                                            cboIDPlace, txtLangMark, txtLangMark2, txtTimeID,
                                            txtLastNameVN, txtMatPhai, txtMatTrai,
                                            txtMobilePhone, txtNavAddress, txtNhomMau,
@@ -1071,19 +1102,19 @@ Public Class ctrlHU_EmpDtlProfile
                                            cboReligion,
                                            cboPer_District, cboPer_Ward, cboNav_District, cboNav_Ward,
                                            hidID, hidOrgID, hidDirectManager, hidLevelManager,
-                                            chkDoanPhi, cbPROVINCEEMP_ID, cbDISTRICTEMP_ID, cbWARDEMP_ID, cbPROVINCENQ_ID, cbBirth_PlaceId, chkDangPhi, chkATVS, chkIS_TRANSFER,
+                                            chkDoanPhi, cbPROVINCEEMP_ID, cbDISTRICTEMP_ID, cbWARDEMP_ID, cbBirth_PlaceId, chkDangPhi, chkATVS, chkIS_TRANSFER,
                                            rtOpption1, rtOpption2, rtOpption3, rtOpption4, rtOpption5,
                                            rdOpption6, rdOpption7, rdOpption8, rdOpption9, rdOpption10,
                                             ckThuong_Binh,
                                             ckQD, rtDV_Xuat_Ngu_CA, rdNgay_Xuat_Ngu_CA, rdNgay_Nhap_Ngu_CA,
                                            ckNU_CONG, ckCONG_DOAN, ckCA, ckDANG, rtSkill,
                                            cbQLNN, cbLLCT, cbTDTH, cboTDTH2, rtTTSucKhoe,
-                                           cboPROVINCEEMP_BRITH, cboDISTRICTEMP_BRITH, cboWARDEMP_BRITH, ckCHUHO, txtNoHouseHolds, txtCodeHouseHolds, cboObjectIns, cboEMPLOYEE_OBJECT, chkIs_Hazardous, chkIS_HDLD, chkForeigner)
+                                           cboPROVINCEEMP_BRITH, cboDISTRICTEMP_BRITH, cboWARDEMP_BRITH, ckCHUHO, txtNoHouseHolds, txtCodeHouseHolds, cboObjectIns, chkForeigner)
                     Else
                         EnableControlAll(False, txtOrgName2,
-                               txtTitleGroup, txtDirectManager,
+                               txtTitleGroup,
                                 cbObjectBook, txtmanager)
-                        EnableControlAll(True, btnFindOrg, cboTitle, cboObject, cboStaffRank, cboObjectLabor, btnFindDirect, cboJobDescription, cboJobPosition, cboProductionProcess, btnUpload)
+                        EnableControlAll(True, btnFindOrg, cboTitle, cboObject, cboStaffRank, cboObjectLabor, cboJobDescription, cboProductionProcess, btnUpload)
                         EnableControlAll(False, cboWorkStatus, txtEmpCODE, cboEmpStatus, rtBookNo, cboInsRegion, txtTimeID, txtTitleGroup)
                         EnableControlAll(True, rtCHUC_VU_DANG, rdNGAY_VAO_DANG_DB, rdNGAY_VAO_DANG)
                         EnableControlAll(True, ckDOAN_PHI, rtCHUC_VU_DOAN, rdNGAY_VAO_DOAN)
@@ -1093,9 +1124,9 @@ Public Class ctrlHU_EmpDtlProfile
                         EnableControlAll(True, cbHang_Thuong_Binh, cbGD_Chinh_Sach)
                         EnableControlAll(True, lstbPaper, lstbPaperFiled, chkSaveHistory,
                                             txtBankNo, ckBanTT_ND, rtDiem_XL_TH, txtDiem_XL_TH2, txtNoteTDTH1, txtNoteTDTH2, txtTNCN_NO,
-                                           txtDaHoaLieu, txtNamTN, rdExpireIDNO, txtAppDung, txtPlaceKS, txtVillage, txtPlacePitcode, rdDayPitcode, txtPerson_Inheritance, rdEffect_Bank, rdDateOfEntry, rdWeddingDay, txtDriverType, txtNote,
+                                           txtDaHoaLieu, txtNamTN, rdExpireIDNO, cboComputerRank, txtPlaceKS, txtVillage, txtPlacePitcode, rdDayPitcode, txtPerson_Inheritance, rdEffect_Bank, rdDateOfEntry, rdWeddingDay, cboMotoDrivingLicense, txtNote,
                                            txtFirstNameVN, txtGhiChuSK, chkIs_pay_bank,
-                                           txtHomePhone, txtHuyetAp, txtID_NO,
+                                           txtHomePhone, txtHuyetAp, txtID_NO, txtResidence,
                                            cboIDPlace, txtLangMark, txtLangMark2,
                                            txtLastNameVN, txtMatPhai, txtMatTrai,
                                            txtMobilePhone, txtNavAddress, txtNhomMau,
@@ -1115,14 +1146,14 @@ Public Class ctrlHU_EmpDtlProfile
                                            cboReligion,
                                            cboPer_District, cboPer_Ward, cboNav_District, cboNav_Ward,
                                            hidID, hidOrgID, hidDirectManager, hidLevelManager,
-                                            chkDoanPhi, cbPROVINCEEMP_ID, cbDISTRICTEMP_ID, cbWARDEMP_ID, cbPROVINCENQ_ID, cbBirth_PlaceId, chkDangPhi, chkATVS, chkIS_TRANSFER,
+                                            chkDoanPhi, cbPROVINCEEMP_ID, cbDISTRICTEMP_ID, cbWARDEMP_ID, cbBirth_PlaceId, chkDangPhi, chkATVS, chkIS_TRANSFER,
                                            rtOpption1, rtOpption2, rtOpption3, rtOpption4, rtOpption5,
                                            rdOpption6, rdOpption7, rdOpption8, rdOpption9, rdOpption10,
                                             ckThuong_Binh,
                                             ckQD, rtDV_Xuat_Ngu_CA, rdNgay_Xuat_Ngu_CA, rdNgay_Nhap_Ngu_CA,
                                            ckNU_CONG, ckCONG_DOAN, ckCA, ckDANG, rtSkill,
                                            cbQLNN, cbLLCT, cbTDTH, cboTDTH2, rtTTSucKhoe,
-                                           cboPROVINCEEMP_BRITH, cboDISTRICTEMP_BRITH, cboWARDEMP_BRITH, ckCHUHO, txtNoHouseHolds, txtCodeHouseHolds, cboObjectIns, cboEMPLOYEE_OBJECT, chkIs_Hazardous, chkIS_HDLD, chkForeigner)
+                                           cboPROVINCEEMP_BRITH, cboDISTRICTEMP_BRITH, cboWARDEMP_BRITH, ckCHUHO, txtNoHouseHolds, txtCodeHouseHolds, cboObjectIns, chkForeigner)
 
                     End If
 
@@ -1132,8 +1163,9 @@ Public Class ctrlHU_EmpDtlProfile
                         txtTimeID.ReadOnly = True
                     End If
                     If EmployeeInfo.LAST_WORKING_ID IsNot Nothing Then
-                        EnableControlAll(False, cboTitle, cboStaffRank, cboObject, btnFindOrg, cboObjectLabor, btnFindDirect)
+                        EnableControlAll(False, cboTitle, cboStaffRank, cboObject, btnFindOrg, cboObjectLabor)
                     End If
+                    cboObject.SelectedIndex = 3
                 Case Else
                     If EmployeeInfo.WORK_STATUS IsNot Nothing Then
                         EnableControlAll(False, lstbPaper, lstbPaperFiled, cboWorkStatus, cboEmpStatus, txtEmpCODE,
@@ -1144,10 +1176,10 @@ Public Class ctrlHU_EmpDtlProfile
                                       cboIDPlace, txtLangMark, txtLangMark2, txtTimeID,
                                       txtLastNameVN, txtMatPhai, txtMatTrai,
                                       txtMobilePhone, txtNavAddress, txtNhomMau, cboCertificate, cboBasic, rdExpireIDNO, rdDateOfEntry, rdWeddingDay,
-                                       txtPassNo, txtPassPlace, cboObject, cboObjectLabor, cbObjectBook, txtTimeID, cboCertificate, cboBasic, txtAppDung, txtPlaceKS, txtVillage, rdDayPitcode, txtPlacePitcode, txtPerson_Inheritance, rdEffect_Bank, txtDriverType, txtNote,
+                                       txtPassNo, txtPassPlace, cboObject, cboObjectLabor, cbObjectBook, txtTimeID, cboCertificate, cboBasic, cboComputerRank, txtPlaceKS, txtVillage, rdDayPitcode, txtPlacePitcode, txtPerson_Inheritance, rdEffect_Bank, cboMotoDrivingLicense, txtNote,
                                       txtPerAddress, txtPerEmail, txtPhoiNguc, txtCareer,
                                       txtPitCode, txtRangHamMat, txtTaiMuiHong, txtTim,
-                                      txtVienGanB, txtVisa, txtVisaPlace,
+                                      txtVienGanB, txtVisa, txtVisaPlace, txtResidence,
                                       txtWorkEmail, txtWorkPermit, txtWorkPermitPlace, txtGPHN, rdFrom_GPHN, rdTo_GPHN, txtNoiCap_GPHN,
                                       txtContactPerson, txtContactPersonPhone, txtContactMobilePhone, txtChucVuDoan,
                                       rdBirthDate, rdContractExpireDate, rdContractEffectDate, rdIDDate, rdSeniorityDate,
@@ -1161,28 +1193,28 @@ Public Class ctrlHU_EmpDtlProfile
                                       cboReligion, cboStaffRank, cboTitle,
                                       cboPer_District, cboPer_Ward, cboNav_District, cboNav_Ward,
                                       hidID, hidOrgID, hidDirectManager, hidLevelManager,
-                                      chkDoanPhi, cbPROVINCEEMP_ID, cbDISTRICTEMP_ID, cbWARDEMP_ID, cbPROVINCENQ_ID, cbBirth_PlaceId, chkDangPhi, chkATVS, chkIS_TRANSFER,
-                                      btnFindDirect, btnFindOrg,
+                                      chkDoanPhi, cbPROVINCEEMP_ID, cbDISTRICTEMP_ID, cbWARDEMP_ID, chkDangPhi, chkATVS, chkIS_TRANSFER,
+                                      btnFindOrg,
                                       rtOpption1, rtOpption2, rtOpption3, rtOpption4, rtOpption5,
                                       rdOpption6, rdOpption7, rdOpption8, rdOpption9, rdOpption10,
                                        rtBookNo, cbGD_Chinh_Sach, cbHang_Thuong_Binh, ckThuong_Binh,
                                       rtDV_Xuat_Ngu_QD, rdNgay_Xuat_Ngu_QD, rdNgay_Nhap_Ngu_QD, ckQD, rtDV_Xuat_Ngu_CA, rdNgay_Xuat_Ngu_CA, rdNgay_Nhap_Ngu_CA,
                                       rdNgay_TG_Ban_Nu_Cong, rtCV_Ban_Nu_Cong, ckNU_CONG, rdNgay_TG_BanTT, rtCV_BANTT, ckCONG_DOAN, ckCA, ckDANG, rtSkill,
                                       cbQLNN, cbLLCT, cbTDTH, cboTDTH2, rtTTSucKhoe,
-                                      cboPROVINCEEMP_BRITH, cboDISTRICTEMP_BRITH, cboWARDEMP_BRITH, ckCHUHO, txtNoHouseHolds, txtCodeHouseHolds, cboObjectIns, txtTitleGroup, cboEMPLOYEE_OBJECT, chkIs_Hazardous, chkIS_HDLD, chkForeigner,
-                                       cboJobDescription, cboJobPosition, cboProductionProcess, btnUpload)
+                                      cboPROVINCEEMP_BRITH, cboDISTRICTEMP_BRITH, cboWARDEMP_BRITH, ckCHUHO, txtNoHouseHolds, txtCodeHouseHolds, cboObjectIns, txtTitleGroup, chkForeigner,
+                                       cboProductionProcess, btnUpload)
                     Else
-                        EnableControlAll(True, btnFindOrg, cboTitle, cboObjectLabor, btnFindDirect)
+                        EnableControlAll(True, btnFindOrg, cboTitle, cboObjectLabor)
                         EnableControlAll(False, lstbPaper, lstbPaperFiled, cboWorkStatus, cboEmpStatus, txtEmpCODE,
                                       txtBankNo, chkSaveHistory, ckDOAN_PHI, rtCHUC_VU_DANG, rdNGAY_VAO_DOAN, txtTNCN_NO,
                                       txtDaHoaLieu, rdNGAY_VAO_DANG_DB, rdNGAY_VAO_DANG, ckBanTT_ND, txtNamTN,
                                       txtFirstNameVN, txtGhiChuSK, rtCHUC_VU_DOAN, rtDiem_XL_TH, txtDiem_XL_TH2, txtNoteTDTH1, txtNoteTDTH2,
                                       txtHomePhone, txtHuyetAp, txtID_NO, chkIs_pay_bank,
                                       cboIDPlace, txtLangMark, txtLangMark2, txtTimeID,
-                                      txtLastNameVN, txtMatPhai, txtMatTrai,
+                                      txtLastNameVN, txtMatPhai, txtMatTrai, txtResidence,
                                       txtMobilePhone, txtNavAddress, txtNhomMau, cboCertificate, cboBasic, rdExpireIDNO, rdDateOfEntry, rdWeddingDay,
-                                       txtPassNo, txtPassPlace, cboObject, cbObjectBook, txtTimeID, cboCertificate, cboBasic, txtAppDung, txtPlaceKS, txtVillage, rdDayPitcode, txtPlacePitcode, txtPerson_Inheritance, rdEffect_Bank,
-                                      txtPerAddress, txtPerEmail, txtPhoiNguc, txtCareer, txtDriverType, txtNote,
+                                       txtPassNo, txtPassPlace, cboObject, cbObjectBook, txtTimeID, cboCertificate, cboBasic, cboComputerRank, txtPlaceKS, txtVillage, rdDayPitcode, txtPlacePitcode, txtPerson_Inheritance, rdEffect_Bank,
+                                      txtPerAddress, txtPerEmail, txtPhoiNguc, txtCareer, cboMotoDrivingLicense, txtNote,
                                       txtPitCode, txtRangHamMat, txtTaiMuiHong, txtTim,
                                       txtVienGanB, txtVisa, txtVisaPlace,
                                       txtWorkEmail, txtWorkPermit, txtWorkPermitPlace, txtGPHN, rdFrom_GPHN, rdTo_GPHN, txtNoiCap_GPHN,
@@ -1198,15 +1230,15 @@ Public Class ctrlHU_EmpDtlProfile
                                       cboReligion, cboStaffRank,
                                       cboPer_District, cboPer_Ward, cboNav_District, cboNav_Ward,
                                       hidID, hidOrgID, hidDirectManager, hidLevelManager,
-                                      chkDoanPhi, cbPROVINCEEMP_ID, cbDISTRICTEMP_ID, cbWARDEMP_ID, cbPROVINCENQ_ID, cbBirth_PlaceId, chkDangPhi, chkATVS, chkIS_TRANSFER,
+                                      chkDoanPhi, cbPROVINCEEMP_ID, cbDISTRICTEMP_ID, cbWARDEMP_ID, cbBirth_PlaceId, chkDangPhi, chkATVS, chkIS_TRANSFER,
                                       rtOpption1, rtOpption2, rtOpption3, rtOpption4, rtOpption5,
                                       rdOpption6, rdOpption7, rdOpption8, rdOpption9, rdOpption10,
                                        rtBookNo, cbGD_Chinh_Sach, cbHang_Thuong_Binh, ckThuong_Binh,
                                       rtDV_Xuat_Ngu_QD, rdNgay_Xuat_Ngu_QD, rdNgay_Nhap_Ngu_QD, ckQD, rtDV_Xuat_Ngu_CA, rdNgay_Xuat_Ngu_CA, rdNgay_Nhap_Ngu_CA,
                                       rdNgay_TG_Ban_Nu_Cong, rtCV_Ban_Nu_Cong, ckNU_CONG, rdNgay_TG_BanTT, rtCV_BANTT, ckCONG_DOAN, ckCA, ckDANG, rtSkill,
                                       cbQLNN, cbLLCT, cbTDTH, cboTDTH2, rtTTSucKhoe,
-                                      cboPROVINCEEMP_BRITH, cboDISTRICTEMP_BRITH, cboWARDEMP_BRITH, ckCHUHO, txtNoHouseHolds, txtCodeHouseHolds, cboObjectIns, txtTitleGroup, cboEMPLOYEE_OBJECT, chkIs_Hazardous, chkIS_HDLD, chkForeigner,
-                                      cboJobDescription, cboJobPosition, cboProductionProcess, btnUpload)
+                                      cboPROVINCEEMP_BRITH, cboDISTRICTEMP_BRITH, cboWARDEMP_BRITH, ckCHUHO, txtNoHouseHolds, txtCodeHouseHolds, cboObjectIns, txtTitleGroup, chkForeigner,
+                                      cboJobDescription, cboProductionProcess, btnUpload)
                     End If
 
 
@@ -1250,6 +1282,7 @@ Public Class ctrlHU_EmpDtlProfile
             Select Case CType(e.Item, RadToolBarButton).CommandName
                 Case TOOLBARITEM_CREATE
                     ResetControlValue()
+                    cboObject.SelectedIndex = 3
                     EmployeeInfo = Nothing
 
                     CurrentState = CommonMessage.STATE_NEW
@@ -1537,8 +1570,6 @@ Public Class ctrlHU_EmpDtlProfile
                         End If
                 End Select
                 UpdateControlState()
-            Else
-                Exit Sub
             End If
             ' kiểm tra xem trùng CMND có muốn lưu hay không
             If e.ActionName = CommonMessage.ACTION_ID_NO And e.ButtonID = MessageBoxButtonType.ButtonYes Then
@@ -1631,10 +1662,10 @@ Public Class ctrlHU_EmpDtlProfile
     Protected Sub cboCommon_ItemsRequested(ByVal sender As Object, ByVal e As RadComboBoxItemsRequestedEventArgs) _
     Handles cboAcademy.ItemsRequested, cboBank.ItemsRequested, cboBankBranch.ItemsRequested,
         cboFamilyStatus.ItemsRequested, cboGender.ItemsRequested, cboLangLevel.ItemsRequested, cboLangLevel2.ItemsRequested, cboLearningLevel.ItemsRequested, cboMajor.ItemsRequested,
-         cboNationlity.ItemsRequested, cboNative.ItemsRequested, cboNav_Province.ItemsRequested, cboObject.ItemsRequested,
+         cboNationlity.ItemsRequested, cboNative.ItemsRequested, cboNav_Province.ItemsRequested,
         cboPer_Province.ItemsRequested, cboReligion.ItemsRequested, cboStaffRank.ItemsRequested, cboTitle.ItemsRequested,
         cboWorkStatus.ItemsRequested, cboEmpStatus.ItemsRequested, cboGraduateSchool.ItemsRequested, cbWARDEMP_ID.ItemsRequested, cbDISTRICTEMP_ID.ItemsRequested, cbPROVINCEEMP_ID.ItemsRequested,
-        cboPer_District.ItemsRequested, cboPer_Ward.ItemsRequested, cboNav_District.ItemsRequested, cboNav_Ward.ItemsRequested, cbPROVINCENQ_ID.ItemsRequested, cbBirth_PlaceId.ItemsRequested, cboObjectLabor.ItemsRequested,
+        cboPer_District.ItemsRequested, cboPer_Ward.ItemsRequested, cboNav_District.ItemsRequested, cboNav_Ward.ItemsRequested, cbBirth_PlaceId.ItemsRequested, cboObjectLabor.ItemsRequested,
          cboPROVINCEEMP_BRITH.ItemsRequested, cboDISTRICTEMP_BRITH.ItemsRequested, cboWARDEMP_BRITH.ItemsRequested, cboRelationNLH.ItemsRequested, cboEMPLOYEE_OBJECT.ItemsRequested, cboNationa_TT.ItemsRequested, cboNationlity_NQ.ItemsRequested, cboNationlity_TTRU.ItemsRequested, cboDriverType.ItemsRequested
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
         Try
@@ -1647,8 +1678,8 @@ Public Class ctrlHU_EmpDtlProfile
                 Select Case sender.ID
                     Case cboGraduateSchool.ID
                         dtData = rep.GetOtherList("HU_GRADUATE_SCHOOL", True)
-                    Case cboObject.ID
-                        dtData = rep.GetOtherList("OBJECT_ATTENDANCE", True)
+                        'Case cboObject.ID
+                        '    dtData = rep.GetOtherList("OBJECT_ATTENDANCE", True)
                     Case cboObjectLabor.ID
                         dtData = rep.GetOtherList("OBJECT_LABOR", True)
                         'Case cboObjectIns.ID
@@ -1684,8 +1715,11 @@ Public Class ctrlHU_EmpDtlProfile
                         dtData = rep.GetOtherList("NATIVE", True)
                     Case cboDriverType.ID
                         dtData = rep.GetOtherList("DRIVER_TYPE", True)
-                    Case cboNav_Province.ID, cboPer_Province.ID, cboIDPlace.ID, cbPROVINCEEMP_ID.ID, cbPROVINCENQ_ID.ID, cboPROVINCEEMP_BRITH.ID, cbBirth_PlaceId.ID
+                    Case cboIDPlace.ID, cboPROVINCEEMP_BRITH.ID, cbBirth_PlaceId.ID
                         dtData = rep.GetProvinceList(True)
+                    Case cboPer_Province.ID, cbPROVINCEEMP_ID.ID, cboNav_Province.ID
+                        dValue = IIf(e.Context("valueCustom") IsNot Nothing, e.Context("valueCustom"), 0)
+                        dtData = rep.GetProvinceList1(dValue, True)
                     Case cboNav_District.ID, cboPer_District.ID, cbDISTRICTEMP_ID.ID, cboDISTRICTEMP_BRITH.ID
                         dValue = IIf(e.Context("valueCustom") IsNot Nothing, e.Context("valueCustom"), 0)
                         dtData = rep.GetDistrictList(dValue, True)
@@ -1699,7 +1733,7 @@ Public Class ctrlHU_EmpDtlProfile
                     Case cboTitle.ID
                         dValue = IIf(e.Context("valueCustom") IsNot Nothing, e.Context("valueCustom"), 0)
                         dtData = rep.GetTitleByOrgID(dValue, True)
-                        
+
                         'Case cboTrainingForm.ID
                         '    dtData = rep.GetOtherList("TRAINING_FORM", True)
                     Case cboWorkStatus.ID
@@ -1781,21 +1815,6 @@ Public Class ctrlHU_EmpDtlProfile
         End Try
     End Sub
 
-    Private Sub btnFindDirect_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnFindDirect.Click
-        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
-        Try
-            Dim startTime As DateTime = DateTime.UtcNow
-            isLoadPopup = 2
-            UpdateControlState()
-            ctrlFindEmployeePopup.MustHaveContract = False
-            ctrlFindEmployeePopup.Show()
-            _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
-        Catch ex As Exception
-            _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
-            'DisplayException(Me.ViewName, Me.ID, ex)
-        End Try
-    End Sub
-
     Private Sub ctrlFindEmployeePopup_EmployeeSelected(ByVal sender As Object, ByVal e As System.EventArgs) Handles ctrlFindEmployeePopup.EmployeeSelected
         Dim lstCommonEmployee As New List(Of CommonBusiness.EmployeePopupFindDTO)
         'Dim list As List(Of EmployeeDTO)
@@ -1810,8 +1829,6 @@ Public Class ctrlHU_EmpDtlProfile
             If lstCommonEmployee.Count <> 0 Then
                 Select Case isLoadPopup
                     Case 2
-                        txtDirectManager.Text = lstCommonEmployee(0).FULLNAME_VN
-                        hidDirectManager.Value = lstCommonEmployee(0).ID.ToString()
                         txtmanager.Text = lstCommonEmployee(0).TITLE_NAME
                         'If lstCommonEmployee(0).DIRECT_MANAGER IsNot Nothing Then
                         '    _filter.DIRECT_MANAGER = lstCommonEmployee(0).DIRECT_MANAGER
@@ -1867,20 +1884,35 @@ Public Class ctrlHU_EmpDtlProfile
         Try
             Dim startTime As DateTime = DateTime.UtcNow
             Dim orgItem = ctrlFindOrgPopup.CurrentItemDataObject
+            Dim dtData As New DataTable
             If orgItem IsNot Nothing Then
                 hidOrgID.Value = e.CurrentValue
                 FillDataInControls(e.CurrentValue)
-
+                ClearControlValue(txtOrg_C2, txtOrg_C3, txtOrg_C4, txtOrg_C5, txtOrg_C3_1, txtOrg_C4_1, txtOrg_C5_1)
                 Using rep As New ProfileBusinessRepository
                     Dim ID = orgItem.ID
-                    Dim obj = rep.GetOrganizationTreeByID(New OrganizationTreeDTO With {.ID = ID})
-                    txtOrg_C2.Text = obj.ORG_NAME2
-                    txtOrg_C3.Text = obj.ORG_NAME3
-                    txtOrg_C4.Text = obj.ORG_NAME4
-                    txtOrg_C5.Text = obj.ORG_NAME5
-                    txtOrg_C3_1.Text = obj.ORG_NAME3
-                    txtOrg_C4_1.Text = obj.ORG_NAME4
-                    txtOrg_C5_1.Text = obj.ORG_NAME5
+                    'Dim obj = rep.GetOrganizationTreeByID(New OrganizationTreeDTO With {.ID = ID})
+                    dtData = rep.GetOrgtree(ID)
+                    If dtData IsNot Nothing Then
+                        Dim row As DataRow = dtData.Rows(0)
+                        txtOrg_C2.Text = row("ORG_NAME2")
+                        If If(Not IsDBNull(row("UNIT_RANK3")), row("UNIT_RANK3"), 0) = 2 Then
+                            txtOrg_C3.Text = row("ORG_NAME3")
+                        ElseIf If(Not IsDBNull(row("UNIT_RANK3")), row("UNIT_RANK3"), 0) = 3 Then
+                            txtOrg_C3_1.Text = row("ORG_NAME3")
+                        End If
+                        If If(Not IsDBNull(row("UNIT_RANK4")), row("UNIT_RANK4"), 0) = 4 Then
+                            txtOrg_C4.Text = row("ORG_NAME4")
+                        ElseIf If(Not IsDBNull(row("UNIT_RANK4")), row("UNIT_RANK4"), 0) = 5 Then
+                            txtOrg_C4_1.Text = row("ORG_NAME4")
+                        End If
+                        If If(Not IsDBNull(row("UNIT_RANK5")), row("UNIT_RANK5"), 0) = 6 Then
+                            txtOrg_C5.Text = row("ORG_NAME5")
+                        ElseIf If(Not IsDBNull(row("UNIT_RANK5")), row("UNIT_RANK5"), 0) = 7 Then
+                            txtOrg_C5_1.Text = row("ORG_NAME5")
+                        End If
+                    End If
+
                 End Using
 
             End If
@@ -2155,12 +2187,12 @@ Public Class ctrlHU_EmpDtlProfile
 
     Private Sub cboTitle_SelectedIndexChanged(sender As Object, e As Telerik.Web.UI.RadComboBoxSelectedIndexChangedEventArgs) Handles cboTitle.SelectedIndexChanged
         Dim dtData As New DataTable
-        Dim rep As New ProfileRepository
+        Dim rep As New ProfileStoreProcedure
         Try
             ClearControlValue(cboJobDescription)
             If cboTitle.SelectedValue <> "" Then
-                dtData = rep.GetJobDescByTitleID(cboTitle.SelectedValue, True)
-                FillRadCombobox(cboJobDescription, dtData, "NAME", "ID")
+                dtData = rep.GET_JOB_DESCRIPTION_BY_TITLE_ORG(cboTitle.SelectedValue, hidOrgID.Value)
+                FillRadCombobox(cboJobDescription, dtData, "NAME", "ID", True)
             End If
         Catch ex As Exception
             Throw ex
@@ -2174,13 +2206,13 @@ Public Class ctrlHU_EmpDtlProfile
         Try
             Dim startTime As DateTime = DateTime.UtcNow
             ClearControlValue(txtBankNo, txtTNCN_NO,
-                          txtDaHoaLieu, txtDirectManager, txtmanager,
+                          txtDaHoaLieu, txtmanager,
                           txtFirstNameVN, txtGhiChuSK,
                           txtHomePhone, txtHuyetAp, txtID_NO,
                           cboIDPlace, txtLangMark, txtLangMark2, txtTimeID,
                           txtLastNameVN, txtMatPhai, txtMatTrai,
                           txtMobilePhone, txtNavAddress, txtNhomMau,
-                          txtOrgName2, txtPassNo, txtPassPlace, txtTimeID,
+                          txtOrgName2, txtPassNo, txtPassPlace, txtTimeID, txtResidence,
                           txtPerAddress, txtPerEmail, txtPhoiNguc, txtCareer,
                           txtPitCode, txtRangHamMat, txtTaiMuiHong, txtTim,
                           txtVienGanB, txtVisa, txtVisaPlace,
@@ -2195,8 +2227,8 @@ Public Class ctrlHU_EmpDtlProfile
                           cboLanguage, cboLanguage2, cboLearningLevel, txtLoaiSucKhoe, cboMajor, cboNationlity, cboNative, cboNav_Province, cboPer_Province, cboNationa_TT, cboNationlity_NQ,
                           cboReligion, cboStaffRank, cboTitle, cboWorkStatus, cboEmpStatus,
                           cboPer_District, cboPer_Ward, cboNav_District, cboNav_Ward, chkIS_TRANSFER,
-                          hidID, hidOrgID, hidDirectManager, hidLevelManager, chkDoanPhi, cboEMPLOYEE_OBJECT, chkIs_Hazardous, chkDangPhi, chkIS_HDLD, chkATVS, chkIS_TRANSFER,
-                          cboJobPosition, cboJobDescription, txtUpload, txtUploadFile, cboProductionProcess)
+                          hidID, hidOrgID, hidDirectManager, hidLevelManager, chkDoanPhi, chkDangPhi, chkATVS, chkIS_TRANSFER,
+                           cboJobDescription, txtUpload, txtUploadFile, cboProductionProcess)
             'chkDoanPhi.Checked = True
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
@@ -2255,10 +2287,6 @@ Public Class ctrlHU_EmpDtlProfile
                 EmployeeInfo.OBJECT_LABOR_NAME = cboObjectLabor.Text
             End If
 
-            If hidDirectManager.Value <> "" Then
-                EmployeeInfo.DIRECT_MANAGER = hidDirectManager.Value
-                EmployeeInfo.DIRECT_MANAGER_NAME = txtDirectManager.Text
-            End If
             EmployeeInfo.TITLE_GROUP_NAME = txtTitleGroup.Text
             If hidLevelManager.Value <> "" Then
                 EmployeeInfo.LEVEL_MANAGER = hidLevelManager.Value
@@ -2318,9 +2346,9 @@ Public Class ctrlHU_EmpDtlProfile
             If cboJobDescription.SelectedValue <> "" Then
                 EmployeeInfo.JOB_DESCRIPTION = cboJobDescription.SelectedValue
             End If
-            If cboJobPosition.SelectedValue <> "" Then
-                EmployeeInfo.JOB_POSITION = cboJobPosition.SelectedValue
-            End If
+            'If cboJobPosition.SelectedValue <> "" Then
+            '    EmployeeInfo.JOB_POSITION = cboJobPosition.SelectedValue
+            'End If
             If cboProductionProcess.SelectedValue <> "" Then
                 EmployeeInfo.PRODUCTION_PROCESS = cboProductionProcess.SelectedValue
             End If
@@ -2344,6 +2372,7 @@ Public Class ctrlHU_EmpDtlProfile
             EmpCV.PIT_CODE_DATE = rdDayPitcode.SelectedDate
             EmpCV.PIT_CODE_PLACE = txtPlacePitcode.Text
             EmpCV.WORKPLACE_NAME = rtWorkplace.Text
+            EmpCV.RESIDENCE = txtResidence.Text
             If cboInsRegion.SelectedValue <> "" Then
                 EmpCV.INS_REGION_ID = Decimal.Parse(cboInsRegion.SelectedValue)
             End If
@@ -2483,9 +2512,9 @@ Public Class ctrlHU_EmpDtlProfile
             EmpCV.NOI_VAO_DOAN = txtNoiVaoDoan.Text.Trim()
             EmpCV.BANK_NO = txtBankNo.Text.Trim()
             EmpCV.TNCN_NO = txtTNCN_NO.Text.Trim()
-            If IsNumeric(cbPROVINCENQ_ID.SelectedValue) Then
-                EmpCV.PROVINCENQ_ID = cbPROVINCENQ_ID.SelectedValue
-            End If
+            'If IsNumeric(cbPROVINCENQ_ID.SelectedValue) Then
+            '    EmpCV.PROVINCENQ_ID = cbPROVINCENQ_ID.SelectedValue
+            'End If
             If IsNumeric(cbBirth_PlaceId.SelectedValue) Then
                 EmpCV.BIRTH_PLACE = cbBirth_PlaceId.SelectedValue
             End If
@@ -2621,14 +2650,16 @@ Public Class ctrlHU_EmpDtlProfile
                 EmpEdu.GRADUATE_SCHOOL_NAME = cboGraduateSchool.Text
             End If
 
-            EmpEdu.COMPUTER_CERTIFICATE = txtAppDung.Text
-            EmpEdu.DRIVER_NO = txtDriverType.Text
+            'EmpEdu.COMPUTER_CERTIFICATE = txtAppDung.Text
+            'EmpEdu.DRIVER_NO = txtDriverType.Text
             EmpEdu.MORE_INFORMATION = txtNote.Text
-            If cboCertificate.SelectedValue <> "" Then
-                EmpEdu.COMPUTER_MARK = cboCertificate.SelectedValue
-            End If
+
             If cboBasic.SelectedValue <> "" Then
-                EmpEdu.COMPUTER_RANK = cboBasic.SelectedValue
+                EmpEdu.COMPUTER_CERTIFICATE = cboBasic.SelectedValue.ToString
+            End If
+
+            If cboComputerRank.SelectedValue <> "" Then
+                EmpEdu.COMPUTER_RANK = cboComputerRank.SelectedValue
             End If
 
             If txtNamTN.Text <> "" Then
@@ -2662,7 +2693,12 @@ Public Class ctrlHU_EmpDtlProfile
 
             If cboMajor.SelectedValue <> "" Then
                 EmpEdu.MAJOR = cboMajor.SelectedValue
-
+            End If
+            If cboDriverType.SelectedValue <> "" Then
+                EmpEdu.DRIVER_TYPE = cboDriverType.SelectedValue
+            End If
+            If cboMotoDrivingLicense.SelectedValue <> "" Then
+                EmpEdu.MOTO_DRIVING_LICENSE = cboMotoDrivingLicense.SelectedValue
             End If
             If ImageFile IsNot Nothing Then
                 Dim bytes(ImageFile.ContentLength - 1) As Byte
@@ -2874,5 +2910,5 @@ Public Class ctrlHU_EmpDtlProfile
 
 
 
-    
+
 End Class

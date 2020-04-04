@@ -1996,7 +1996,7 @@ Partial Class ProfileRepository
                          .INS_REGION_NAME = region.NAME_VN,
                          .HOME_PHONE = cv.HOME_PHONE,
                          .MOBILE_PHONE = cv.MOBILE_PHONE,
-                         .RESIDENCE = If(String.IsNullOrEmpty(cv.RESIDENCE), "", cv.RESIDENCE),
+                         .RESIDENCE = cv.RESIDENCE,
                          .ID_NO = cv.ID_NO,
                          .ID_DATE = cv.ID_DATE,
                          .ID_PLACE = cv.ID_PLACE,
