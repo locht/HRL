@@ -159,7 +159,7 @@ Public Class ctrlRC_Request
                                        ToolbarItem.Approve, ToolbarItem.Reject, ToolbarItem.Export)
             CType(MainToolBar.Items(3), RadToolBarButton).Text = "Phê duyệt"
             CType(MainToolBar.Items(4), RadToolBarButton).Text = "Không phê duyệt"
-            CType(MainToolBar.Items(5), RadToolBarButton).Text = "Xuất tờ trình"
+            CType(MainToolBar.Items(5), RadToolBarButton).Text = "In đề xuất tuyển dụng"
         Catch ex As Exception
             Throw ex
         End Try

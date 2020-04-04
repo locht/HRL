@@ -52,6 +52,15 @@ Public Class ctrlRC_RequestNewEdit
         End Set
     End Property
 
+    Property TitlePlan As DataTable
+        Get
+            Return ViewState(Me.ID & "_TitlePlan")
+        End Get
+        Set(value As DataTable)
+            ViewState(Me.ID & "_TitlePlan") = value
+        End Set
+    End Property
+
     Property Down_File As String
         Get
             Return ViewState(Me.ID & "_Down_File")
@@ -378,7 +387,13 @@ Public Class ctrlRC_RequestNewEdit
                         '    obj.TITLE_ID = cboTitle.SelectedValue
                         'End If
 
-                        obj.TITLE_ID = cboTitle.SelectedValue
+                        If chkPlan.Checked Then
+                            Dim item = (From t In TitlePlan Where t("ID") = cboTitle.SelectedValue).FirstOrDefault
+                            obj.TITLE_ID = CDec(item("TITLE_ID"))
+                        Else
+                            obj.TITLE_ID = cboTitle.SelectedValue
+                        End If
+
                         obj.SEND_DATE = rdSendDate.SelectedDate
                         'If cboContractType.SelectedValue <> "" Then
                         '    obj.CONTRACT_TYPE_ID = cboContractType.SelectedValue
@@ -897,6 +912,7 @@ Public Class ctrlRC_RequestNewEdit
         If hidOrgID.Value <> "" Then
             Dim dtData As DataTable
             dtData = store.GET_TITLE_IN_PLAN(hidOrgID.Value, CType(chkPlan.Checked, Decimal))
+            TitlePlan = dtData.Copy
             FillRadCombobox(cboTitle, dtData, "NAME", "ID")
         Else
             cboTitle.Items.Clear()
@@ -1086,25 +1102,29 @@ Public Class ctrlRC_RequestNewEdit
             If hidOrgID.Value <> "" And cboTitle.SelectedValue <> "" Then
                 Dim dtData As DataTable
                 'Using rep As New RecruitmentRepository
-                dtData = rep.GetTitleByOrgListInPlan(hidOrgID.Value, cboTitle.SelectedValue, True)
+                
+                'dtData = rep.GetTitleByOrgListInPlan(hidOrgID.Value, cboTitle.SelectedValue, True)
                 'FillRadCombobox(cboTitle, dtData, "NAME", "ID")
                 'End Using
+                Dim obj As New PlanRegDTO
+                obj.ID = cboTitle.SelectedValue
+                obj = rep.GetPlanRegByID(obj)
 
-                If dtData.Rows.Count > 0 Then
-                    If dtData.Rows(0)("SEND_DATE") IsNot Nothing And dtData.Rows(0)("SEND_DATE").ToString() <> String.Empty Then
-                        rdSendDate.SelectedDate = DateTime.Parse(dtData.Rows(0)("SEND_DATE").ToString())
+                If obj IsNot Nothing Then
+                    If IsDate(obj.SEND_DATE) Then
+                        rdSendDate.SelectedDate = obj.SEND_DATE
                     End If
-                    If dtData.Rows(0)("EXPECTED_JOIN_DATE") IsNot Nothing And dtData.Rows(0)("EXPECTED_JOIN_DATE").ToString() <> String.Empty Then
-                        rdExpectedJoinDate.SelectedDate = DateTime.Parse(dtData.Rows(0)("EXPECTED_JOIN_DATE").ToString())
+                    If IsDate(obj.EXPECTED_JOIN_DATE) Then
+                        rdExpectedJoinDate.SelectedDate = obj.EXPECTED_JOIN_DATE
                     End If
-                    If dtData.Rows(0)("RECRUIT_REASON_ID") IsNot Nothing And dtData.Rows(0)("RECRUIT_REASON_ID").ToString() <> String.Empty Then
-                        cboRecruitReason.SelectedValue = Decimal.Parse(dtData.Rows(0)("RECRUIT_REASON_ID").ToString())
+                    If IsNumeric(obj.RECRUIT_REASON_ID) Then
+                        cboRecruitReason.SelectedValue = obj.RECRUIT_REASON_ID
                     End If
-                    If dtData.Rows(0)("RECRUIT_NUMBER") IsNot Nothing And dtData.Rows(0)("RECRUIT_NUMBER").ToString() <> String.Empty Then
-                        rntxtRecruitNumber.Value = Decimal.Parse(dtData.Rows(0)("RECRUIT_NUMBER").ToString())
+                    If IsNumeric(obj.RECRUIT_NUMBER) Then
+                        rntxtRecruitNumber.Value = obj.RECRUIT_NUMBER
                     End If
-                    If dtData.Rows(0)("FILE_NAME") IsNot Nothing And dtData.Rows(0)("FILE_NAME").ToString() <> String.Empty Then
-                        txtUpload.Text = dtData.Rows(0)("FILE_NAME")
+                    If obj.FILE_NAME IsNot Nothing Then
+                        txtUpload.Text = obj.FILE_NAME
                     End If
                 Else
                     rdSendDate.SelectedDate = Nothing

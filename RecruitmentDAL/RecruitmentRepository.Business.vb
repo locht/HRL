@@ -675,10 +675,10 @@ Partial Class RecruitmentRepository
 
             Dim lst = query
             If _filter.FROM_DATE IsNot Nothing Then
-                lst = lst.Where(Function(p) p.SEND_DATE >= _filter.FROM_DATE)
+                lst = lst.Where(Function(p) p.EXPECTED_JOIN_DATE >= _filter.FROM_DATE)
             End If
             If _filter.TO_DATE IsNot Nothing Then
-                lst = lst.Where(Function(p) p.SEND_DATE <= _filter.TO_DATE)
+                lst = lst.Where(Function(p) p.EXPECTED_JOIN_DATE <= _filter.TO_DATE)
             End If
             If _filter.STATUS_ID IsNot Nothing Then
                 lst = lst.Where(Function(p) p.STATUS_ID = _filter.STATUS_ID)
