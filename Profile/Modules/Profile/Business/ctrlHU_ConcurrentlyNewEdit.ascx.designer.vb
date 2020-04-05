@@ -230,15 +230,6 @@ Partial Public Class ctrlHU_ConcurrentlyNewEdit
     Protected WithEvents reqOrgName As Global.System.Web.UI.WebControls.RequiredFieldValidator
     
     '''<summary>
-    '''cboTITLE_CON control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents cboTITLE_CON As Global.Telerik.Web.UI.RadComboBox
-    
-    '''<summary>
     '''cboWorkPosition control.
     '''</summary>
     '''<remarks>
@@ -255,6 +246,51 @@ Partial Public Class ctrlHU_ConcurrentlyNewEdit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents CusWorkPosition As Global.System.Web.UI.WebControls.CustomValidator
+    
+    '''<summary>
+    '''txtBrand control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtBrand As Global.Telerik.Web.UI.RadTextBox
+    
+    '''<summary>
+    '''txtDivision control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtDivision As Global.Telerik.Web.UI.RadTextBox
+    
+    '''<summary>
+    '''txtParts control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtParts As Global.Telerik.Web.UI.RadTextBox
+    
+    '''<summary>
+    '''txtShift control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtShift As Global.Telerik.Web.UI.RadTextBox
+    
+    '''<summary>
+    '''cboTITLE_CON control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents cboTITLE_CON As Global.Telerik.Web.UI.RadComboBox
     
     '''<summary>
     '''txtCON_NO control.

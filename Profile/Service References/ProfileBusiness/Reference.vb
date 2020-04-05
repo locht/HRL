@@ -9239,6 +9239,9 @@ Namespace ProfileBusiness
         Private BASIC6Field As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private BRANCH_NAMEField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private CBSTATUSField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -9270,6 +9273,9 @@ Namespace ProfileBusiness
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private CREATED_LOGField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private DIV_NAMEField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private EFFECT_DATE_CONField As System.Nullable(Of Date)
@@ -9341,10 +9347,16 @@ Namespace ProfileBusiness
         Private ORG_NAMEField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private PART_NAMEField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private REMARKField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private REMARK_STOPField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private SHIFT_NAMEField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private SIGN_DATEField As System.Nullable(Of Date)
@@ -9565,6 +9577,19 @@ Namespace ProfileBusiness
         End Property
         
         <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property BRANCH_NAME() As String
+            Get
+                Return Me.BRANCH_NAMEField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.BRANCH_NAMEField, value) <> true) Then
+                    Me.BRANCH_NAMEField = value
+                    Me.RaisePropertyChanged("BRANCH_NAME")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
         Public Property CBSTATUS() As String
             Get
                 Return Me.CBSTATUSField
@@ -9703,6 +9728,19 @@ Namespace ProfileBusiness
                 If (Object.ReferenceEquals(Me.CREATED_LOGField, value) <> true) Then
                     Me.CREATED_LOGField = value
                     Me.RaisePropertyChanged("CREATED_LOG")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property DIV_NAME() As String
+            Get
+                Return Me.DIV_NAMEField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.DIV_NAMEField, value) <> true) Then
+                    Me.DIV_NAMEField = value
+                    Me.RaisePropertyChanged("DIV_NAME")
                 End If
             End Set
         End Property
@@ -10007,6 +10045,19 @@ Namespace ProfileBusiness
         End Property
         
         <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property PART_NAME() As String
+            Get
+                Return Me.PART_NAMEField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.PART_NAMEField, value) <> true) Then
+                    Me.PART_NAMEField = value
+                    Me.RaisePropertyChanged("PART_NAME")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
         Public Property REMARK() As String
             Get
                 Return Me.REMARKField
@@ -10028,6 +10079,19 @@ Namespace ProfileBusiness
                 If (Object.ReferenceEquals(Me.REMARK_STOPField, value) <> true) Then
                     Me.REMARK_STOPField = value
                     Me.RaisePropertyChanged("REMARK_STOP")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property SHIFT_NAME() As String
+            Get
+                Return Me.SHIFT_NAMEField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.SHIFT_NAMEField, value) <> true) Then
+                    Me.SHIFT_NAMEField = value
+                    Me.RaisePropertyChanged("SHIFT_NAME")
                 End If
             End Set
         End Property
@@ -53410,6 +53474,9 @@ Namespace ProfileBusiness
      System.ServiceModel.ServiceContractAttribute(ConfigurationName:="ProfileBusiness.IProfileBusiness")>  _
     Public Interface IProfileBusiness
         
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ActiveJob", ReplyAction:="http://tempuri.org/IProfileBusiness/ActiveJobResponse")>  _
+        Function ActiveJob(ByVal objOrgTitle As System.Collections.Generic.List(Of Decimal), ByVal sActive As String, ByVal log As Common.CommonBusiness.UserLog) As Boolean
+        
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GET_JP_TO_TITLE", ReplyAction:="http://tempuri.org/IProfileBusiness/GET_JP_TO_TITLEResponse")>  _
         Function GET_JP_TO_TITLE(ByVal P_ORG_ID As Decimal, ByVal P_TITLE_ID As Decimal, ByVal P_IS_THAYTHE As Decimal, ByVal P_JOB As Decimal) As System.Data.DataSet
         
@@ -54027,6 +54094,9 @@ Namespace ProfileBusiness
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GET_WORK_POSITION_LIST", ReplyAction:="http://tempuri.org/IProfileBusiness/GET_WORK_POSITION_LISTResponse")>  _
         Function GET_WORK_POSITION_LIST() As System.Data.DataTable
         
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GET_ORG_INFOR_PART", ReplyAction:="http://tempuri.org/IProfileBusiness/GET_ORG_INFOR_PARTResponse")>  _
+        Function GET_ORG_INFOR_PART(ByVal ID As Decimal) As System.Data.DataTable
+        
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetOrganizationTreeByID", ReplyAction:="http://tempuri.org/IProfileBusiness/GetOrganizationTreeByIDResponse")>  _
         Function GetOrganizationTreeByID(ByVal _filter As ProfileBusiness.OrganizationTreeDTO) As ProfileBusiness.OrganizationTreeDTO
         
@@ -54089,9 +54159,6 @@ Namespace ProfileBusiness
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/DeleteJob", ReplyAction:="http://tempuri.org/IProfileBusiness/DeleteJobResponse")>  _
         Function DeleteJob(ByVal objOrgTitle As System.Collections.Generic.List(Of Decimal), ByVal log As Common.CommonBusiness.UserLog) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ActiveJob", ReplyAction:="http://tempuri.org/IProfileBusiness/ActiveJobResponse")>  _
-        Function ActiveJob(ByVal objOrgTitle As System.Collections.Generic.List(Of Decimal), ByVal sActive As String, ByVal log As Common.CommonBusiness.UserLog) As Boolean
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ModifyWorkingBeforeEdit", ReplyAction:="http://tempuri.org/IProfileBusiness/ModifyWorkingBeforeEditResponse")>  _
         Function ModifyWorkingBeforeEdit(ByVal objWorkingBefore As ProfileBusiness.WorkingBeforeDTOEdit, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
@@ -56059,6 +56126,10 @@ Namespace ProfileBusiness
             MyBase.New(binding, remoteAddress)
         End Sub
         
+        Public Function ActiveJob(ByVal objOrgTitle As System.Collections.Generic.List(Of Decimal), ByVal sActive As String, ByVal log As Common.CommonBusiness.UserLog) As Boolean Implements ProfileBusiness.IProfileBusiness.ActiveJob
+            Return MyBase.Channel.ActiveJob(objOrgTitle, sActive, log)
+        End Function
+        
         Public Function GET_JP_TO_TITLE(ByVal P_ORG_ID As Decimal, ByVal P_TITLE_ID As Decimal, ByVal P_IS_THAYTHE As Decimal, ByVal P_JOB As Decimal) As System.Data.DataSet Implements ProfileBusiness.IProfileBusiness.GET_JP_TO_TITLE
             Return MyBase.Channel.GET_JP_TO_TITLE(P_ORG_ID, P_TITLE_ID, P_IS_THAYTHE, P_JOB)
         End Function
@@ -56343,6 +56414,10 @@ Namespace ProfileBusiness
             Return MyBase.Channel.GET_WORK_POSITION_LIST
         End Function
         
+        Public Function GET_ORG_INFOR_PART(ByVal ID As Decimal) As System.Data.DataTable Implements ProfileBusiness.IProfileBusiness.GET_ORG_INFOR_PART
+            Return MyBase.Channel.GET_ORG_INFOR_PART(ID)
+        End Function
+        
         Public Function GetOrganizationTreeByID(ByVal _filter As ProfileBusiness.OrganizationTreeDTO) As ProfileBusiness.OrganizationTreeDTO Implements ProfileBusiness.IProfileBusiness.GetOrganizationTreeByID
             Return MyBase.Channel.GetOrganizationTreeByID(_filter)
         End Function
@@ -56425,10 +56500,6 @@ Namespace ProfileBusiness
         
         Public Function DeleteJob(ByVal objOrgTitle As System.Collections.Generic.List(Of Decimal), ByVal log As Common.CommonBusiness.UserLog) As Boolean Implements ProfileBusiness.IProfileBusiness.DeleteJob
             Return MyBase.Channel.DeleteJob(objOrgTitle, log)
-        End Function
-        
-        Public Function ActiveJob(ByVal objOrgTitle As System.Collections.Generic.List(Of Decimal), ByVal sActive As String, ByVal log As Common.CommonBusiness.UserLog) As Boolean Implements ProfileBusiness.IProfileBusiness.ActiveJob
-            Return MyBase.Channel.ActiveJob(objOrgTitle, sActive, log)
         End Function
         
         Public Function ModifyWorkingBeforeEdit(ByVal objWorkingBefore As ProfileBusiness.WorkingBeforeDTOEdit, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean Implements ProfileBusiness.IProfileBusiness.ModifyWorkingBeforeEdit

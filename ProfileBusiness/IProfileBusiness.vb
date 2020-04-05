@@ -2812,6 +2812,9 @@ Namespace ProfileBusiness.ServiceContracts
 
         <OperationContract()>
         Function GET_WORK_POSITION_LIST() As DataTable
+
+        <OperationContract()>
+        Function GET_ORG_INFOR_PART(ByVal ID As Decimal) As DataTable
 #End Region
 
         <OperationContract()>

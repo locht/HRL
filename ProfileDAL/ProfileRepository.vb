@@ -3168,6 +3168,20 @@ Public Class ProfileRepository
             Throw ex
         End Try
     End Function
+    Public Function GET_ORG_INFOR_PART(ByVal ID As Decimal) As DataTable
+        Try
+            Using cls As New DataAccess.QueryData
+                Dim dtData As DataTable = cls.ExecuteStore("PKG_HU_IPROFILE_CONCURRENTLY.GET_ORG_INFOR_PART",
+                                           New With {.P_ID_ORG = ID,
+                                                    .P_CUR = cls.OUT_CURSOR})
+
+                Return dtData
+            End Using
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iProfile")
+            Throw ex
+        End Try
+    End Function
 
     Public Function GET_CONCURRENTLY_BY_EMP(ByVal P_ID As Decimal) As DataTable
         Try
@@ -3238,6 +3252,7 @@ Public Class ProfileRepository
                            From sign_title2 In Context.HU_TITLE.Where(Function(sign_title2) sign_title2.ID = sign2.TITLE_ID).DefaultIfEmpty
                            From jobP In Context.HU_JOB_POSITION.Where(Function(pos) pos.ID = p.JOB_POSITION).DefaultIfEmpty
 
+
             If Not _filter.IS_TERMINATE Then
                 queryEmp = queryEmp.Where(Function(p) p.e.WORK_STATUS <> 257 Or (p.e.WORK_STATUS = 257 And p.e.TER_LAST_DATE >= Date.Now) Or p.e.WORK_STATUS Is Nothing)
             End If
@@ -3272,6 +3287,10 @@ Public Class ProfileRepository
                                                        .ORG_CON_NAME = p.org_con.NAME_VN,
                                                        .ORG_CON = p.p.ORG_CON,
                                                        .COM_ORG_CON_NAME = p.cty_con.NAME_VN,
+                                                       .BRANCH_NAME = p.huv_org_id.NAME_C2,
+                                                       .DIV_NAME = p.huv_org_id.NAME_C3,
+                                                       .PART_NAME = p.huv_org_id.NAME_C4,
+                                                       .SHIFT_NAME = p.huv_org_id.NAME_C5,
                                                        .TITLE_CON = p.p.TITLE_CON,
                                                        .TITLE_CON_NAME = p.tc.NAME_VN,
                                                        .ALLOW_MONEY_NUMBER = p.p.ALLOW_MONEY,

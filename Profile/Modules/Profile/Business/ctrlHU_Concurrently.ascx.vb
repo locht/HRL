@@ -136,12 +136,9 @@ Public Class ctrlHU_Concurrently
                                        ToolbarItem.Edit,
                                        ToolbarItem.Export,
                                        ToolbarItem.Delete)
-            'Me.MainToolBar.Items.Add(Common.Common.CreateToolbarItem(CommonMessage.TOOLBARITEM_CREATE_BATCH,
-            '                                                      ToolbarIcons.Add,
-            '                                                      ToolbarAuthorize.Special1,
-            '                                                      "Phê duyệt hàng loạt"))
+
             CType(MainToolBar.Items(0), RadToolBarButton).Text = Translate("Khai báo kiêm nhiệm")
-            CType(MainToolBar.Items(1), RadToolBarButton).Text = Translate("Khai báo thôi kiêm nhiệm")
+            'CType(MainToolBar.Items(1), RadToolBarButton).Text = Translate("Khai báo thôi kiêm nhiệm")
             CType(MainToolBar.Items(1), RadToolBarButton).ImageUrl = CType(MainToolBar.Items(0), RadToolBarButton).ImageUrl
             MainToolBar.Items.Add(Common.Common.CreateToolbarItem("SYNC", ToolbarIcons.Sync, ToolbarAuthorize.Special1, "Phê duyệt hàng loạt"))
 

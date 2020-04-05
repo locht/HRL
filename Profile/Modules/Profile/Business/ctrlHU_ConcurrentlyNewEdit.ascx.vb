@@ -531,6 +531,8 @@ Public Class ctrlHU_ConcurrentlyNewEdit
     Private Sub ctrlOrgPopup_OrganizationSelected(ByVal sender As Object, ByVal e As Common.OrganizationSelectedEventArgs) Handles ctrlFindOrgPopup.OrganizationSelected
         Dim dtData As New DataTable
         Dim dtData1 As New DataTable
+        Dim dr As New DataTable
+
         Dim rep As New ProfileBusinessRepository
         Try
             Dim orgItem = ctrlFindOrgPopup.CurrentItemDataObject
@@ -541,6 +543,24 @@ Public Class ctrlHU_ConcurrentlyNewEdit
                 ' Lay chuc danh theo phong ban
                 dtData = rep.GET_TITLE_ORG(e.CurrentValue)
                 dtData1 = rep.GET_WORK_POSITION_LIST()
+
+                dr = rep.GET_ORG_INFOR_PART(e.CurrentValue)
+                If dr.Rows.Count > 0 Then
+                    txtBrand.Text = dr(0)("BRANCH").ToString
+                    txtDivision.Text = dr(0)("DIV").ToString
+                    txtParts.Text = dr(0)("PART").ToString
+                    txtShift.Text = dr(0)("SHIFT").ToString
+
+                End If
+
+                'Dim dr = rep.GET_CONCURRENTLY_BY_ID(IDSelect)
+                'If dr.Rows.Count > 0 Then
+                '    EmpOrgNameToolTip.Text = Utilities.DrawTreeByString(dr(0)("Description_Path").ToString)
+                '    ORG_CONNameToolTip.Text = Utilities.DrawTreeByString(dr(0)("OrgCon_Description_Path").ToString)
+                '    hidEmpID.Value = dr(0)("EMPLOYEE_ID").ToString
+                '    txtEmpCode.Text = dr(0)("EMPLOYEE_CODE").ToString
+                '    txtEmpName.Text = dr(0)("FULLNAME_VN").ToString
+
                 If dtData.Rows.Count > 0 Then
                     FillRadCombobox(cboTITLE_CON, dtData, "NAME_VN", "ID", True)
                     cboTITLE_CON.Text = String.Empty
@@ -947,6 +967,13 @@ Public Class ctrlHU_ConcurrentlyNewEdit
                     cboTITLE_CON.Text = dr(0)("TITLE_CON_NAME").ToString
                     cboWorkPosition.SelectedValue = dr(0)("JOB_ID").ToString
                     cboWorkPosition.Text = dr(0)("JOB_NAME").ToString
+
+                    txtBrand.Text = dr(0)("BRANCH").ToString
+                    txtDivision.Text = dr(0)("DIV").ToString
+                    txtParts.Text = dr(0)("PART").ToString
+                    txtShift.Text = dr(0)("SHIFT").ToString
+
+
                     If dr(0)("EFFECT_DATE_CON").ToString <> "" Then
                         rdEFFECT_DATE_CON.SelectedDate = dr(0)("EFFECT_DATE_CON").ToString
                     End If
@@ -1169,6 +1196,14 @@ Public Class ctrlHU_ConcurrentlyNewEdit
             CON.JOB_ID = cboWorkPosition.SelectedValue
             CON.WORK_POSITION_NAME = cboWorkPosition.Text
         End If
+        If cboStatus.SelectedValue <> "" Then
+            CON.STATUS = cboStatus.Text
+        End If
+        CON.BRANCH_NAME = txtBrand.Text
+        CON.DIV_NAME = txtDivision.Text
+        CON.PART_NAME = txtParts.Text
+        CON.SHIFT_NAME = txtShift.Text
+
 
         If hidOrgId.Value <> "" Then
             CON.ORG_ID = hidOrgId.Value

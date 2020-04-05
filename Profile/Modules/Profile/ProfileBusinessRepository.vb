@@ -902,6 +902,22 @@ Partial Public Class ProfileBusinessRepository
         Return Nothing
     End Function
 
+    Public Function GET_ORG_INFOR_PART(ByVal ID As Decimal) As DataTable
+        Dim dtdata As DataTable
+
+        Using rep As New ProfileBusinessClient
+            Try
+                dtdata = rep.GET_ORG_INFOR_PART(ID)
+                Return dtdata
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+
+        Return Nothing
+    End Function
+
     Public Function INSERT_EMPLOYEE_KN(ByVal P_EMPLOYEE_CODE As String,
                                        ByVal P_ORG_ID As Decimal,
                                        ByVal P_TITLE As Decimal,

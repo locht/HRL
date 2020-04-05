@@ -155,7 +155,56 @@
                                     ErrorMessage="<%$ Translate: Bạn phải nhập đơn vị kiêm nhiệm. %>" ToolTip="<%$ Translate: Bạn phải nhập đơn vị kiêm nhiệm. %>"> 
                                 </asp:RequiredFieldValidator>
                             </td>
-                            <td style="text-align: left" class="lb">
+                       
+                           <td class="lb" style="display:none">
+                                <%# Translate("Vị trí công việc kiêm nhiệm")%><span class="lbReq">*</span>
+                            </td>
+                            <td style="display:none">
+                                 <tlk:RadComboBox ID="cboWorkPosition" runat="server" CausesValidation="False">
+                                </tlk:RadComboBox>                              
+                                <asp:CustomValidator ID="CusWorkPosition" runat="server" ErrorMessage="<%$ Translate: Bạn phải chọn Vị trí công việc kiêm nhiệm. %>"
+                                    ToolTip="<%$ Translate: Bạn phải chọn Vị trí công việc kiêm nhiệm. %>">
+                                </asp:CustomValidator>                              
+                            </td> 
+
+                              <td class="lb" style="text-align: left">
+                                <%# Translate("Chi nhánh/ Khối/ Trung tâm")%>
+                            </td>
+                            <td >
+                                <tlk:RadTextBox ID="txtBrand" runat="server" Width="100%">
+                                </tlk:RadTextBox>
+                            </td>
+                      <%--         <td class="lb" style="text-align: left">
+                                <%# Translate("Nhà máy/ Phòng")%>
+                            </td>
+                            <td >
+                                <tlk:RadTextBox ID="txtFactory" runat="server" Width="100%">
+                                </tlk:RadTextBox>
+                            </td>--%>
+                               <td class="lb" style="text-align: left">
+                                <%# Translate("Ban")%>
+                            </td>
+                            <td >
+                                <tlk:RadTextBox ID="txtDivision" runat="server" Width="100%">
+                                </tlk:RadTextBox>
+                            </td>
+                               <td class="lb" style="text-align: left">
+                                <%# Translate("Bộ phận/ Ngành")%>
+                            </td>
+                            <td >
+                                <tlk:RadTextBox ID="txtParts" runat="server" Width="100%">
+                                </tlk:RadTextBox>
+                            </td>
+                                    <td class="lb" style="text-align: left">
+                                <%# Translate("Ca tổ")%>
+                            </td>
+                            <td >
+                                <tlk:RadTextBox ID="txtShift" runat="server" Width="100%">
+                                </tlk:RadTextBox>
+                            </td>
+                        </tr>
+                        <tr>    
+                              <td style="text-align: left" class="lb">
                                 <%# Translate("Chức danh kiêm nhiệm")%>
                             </td>
                             <td>
@@ -163,18 +212,6 @@
                                     CausesValidation="false">
                                 </tlk:RadComboBox>
                             </td>   
-                           <td style="text-align: left" class="lb">
-                                <%# Translate("Vị trí công việc kiêm nhiệm")%><span class="lbReq">*</span>
-                            </td>
-                            <td>
-                                 <tlk:RadComboBox ID="cboWorkPosition" runat="server" CausesValidation="False">
-                                </tlk:RadComboBox>                              
-                                <asp:CustomValidator ID="CusWorkPosition" runat="server" ErrorMessage="<%$ Translate: Bạn phải chọn Vị trí công việc kiêm nhiệm. %>"
-                                    ToolTip="<%$ Translate: Bạn phải chọn Vị trí công việc kiêm nhiệm. %>">
-                                </asp:CustomValidator>                              
-                            </td> 
-                        </tr>
-                        <tr>                               
                             <td style="text-align: left" class="lb">
                                 <%# Translate("Số quyết định")%>
                             </td>
@@ -250,8 +287,6 @@
                                 <tlk:RadTextBox ID="txtSIGN_TITLE" ReadOnly="True" runat="server">
                                 </tlk:RadTextBox>
                             </td>
-
-
                              <td class="lb" style="text-align: left">
                                 <%# Translate("Ghi chú")%>
                             </td>

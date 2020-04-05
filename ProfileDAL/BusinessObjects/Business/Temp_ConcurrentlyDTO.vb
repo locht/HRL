@@ -74,4 +74,10 @@
 
     Public Property JOB_ID As Decimal?
     Public Property WORK_POSITION_NAME As String
+
+    Public Property BRANCH_NAME As String
+    Public Property DIV_NAME As String
+    Public Property PART_NAME As String
+    Public Property SHIFT_NAME As String
+
 End Class

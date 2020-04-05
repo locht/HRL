@@ -65,7 +65,7 @@
                         <ClientEvents OnRowDblClick="gridRowDblClick" />
                         <Scrolling AllowScroll="true" UseStaticHeaders="true" FrozenColumnsCount="3" />
                     </ClientSettings>
-                    <MasterTableView DataKeyNames="ID,STATUS,EXPIRE_DATE_CON" ClientDataKeyNames="ID,EMPLOYEE_ID,STATUS,EXPIRE_DATE_CON,ORG_ID_DESC,ORG_CON,TITLE_CON,ORG_NAME,TITLE_NAME,TITLE_ID,ORG_ID,STATUS_STOP">
+                    <MasterTableView DataKeyNames="ID,STATUS,EXPIRE_DATE_CON" ClientDataKeyNames="ID,EMPLOYEE_ID,STATUS_NAME,EXPIRE_DATE_CON,BRANCH_NAME,DIV_NAME,PART_NAME,SHIFT_NAME,ORG_ID_DESC,ORG_CON,TITLE_CON,ORG_NAME,TITLE_NAME,TITLE_ID,ORG_ID,STATUS_STOP">
                         <Columns>
                             <tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderStyle-HorizontalAlign="Center"
                                 HeaderStyle-Width="30px" ItemStyle-HorizontalAlign="Center">
@@ -84,8 +84,16 @@
                                 SortExpression="COM_ORG_CON_NAME" UniqueName="COM_ORG_CON_NAME" HeaderStyle-Width="200px" />  
                              <tlk:GridBoundColumn HeaderText="Chức danh kiêm nhiệm" DataField="TITLE_CON_NAME"
                                 SortExpression="TITLE_CON_NAME" UniqueName="TITLE_CON_NAME"  HeaderStyle-Width="150px" />
-                             <tlk:GridBoundColumn HeaderText="Vị trí công việc kiêm nhiệm" DataField="WORK_POSITION_NAME"
-                                SortExpression="WORK_POSITION_NAME" UniqueName="WORK_POSITION_NAME"  HeaderStyle-Width="150px" />
+
+                             <tlk:GridBoundColumn HeaderText="Chi nhánh/ Khối/ Trung tâm" DataField="BRANCH_NAME"
+                                SortExpression="BRANCH_NAME" UniqueName="BRANCH_NAME"  HeaderStyle-Width="150px" />
+                             <tlk:GridBoundColumn HeaderText="Ban" DataField="DIV_NAME"
+                                SortExpression="DIV_NAME" UniqueName="DIV_NAME"  HeaderStyle-Width="150px" />
+                             <tlk:GridBoundColumn HeaderText="Bộ phận/ Ngành" DataField="PART_NAME"
+                                SortExpression="PART_NAME" UniqueName="PART_NAME"  HeaderStyle-Width="150px" />
+                             <tlk:GridBoundColumn HeaderText="Ca tổ" DataField="SHIFT_NAME"
+                                SortExpression="SHIFT_NAME" UniqueName="SHIFT_NAME"  HeaderStyle-Width="150px" />
+
                               <tlk:GridBoundColumn HeaderText="Số quyết định" DataField="CON_NO"
                                 SortExpression="CON_NO" UniqueName="CON_NO"  HeaderStyle-Width="150px" />
                             <tlk:GridDateTimeColumn HeaderText="Ngày hiệu lực " DataField="EFFECT_DATE_CON"  HeaderStyle-Width="150px"
@@ -98,12 +106,10 @@
                             </tlk:GridDateTimeColumn>
                             <tlk:GridBoundColumn HeaderText="Người ký" DataField="SIGN_NAME"
                                 SortExpression="SIGN_NAME" UniqueName="SIGN_NAME" HeaderStyle-Width="120px" />
-                            <tlk:GridBoundColumn HeaderText="Chức danh người ký " DataField="SIGN_TITLE_NAME"
+                            <tlk:GridBoundColumn HeaderText="Chức danh người ký " DataField="SIGN_NAME"
                                 SortExpression="SIGN_TITLE_NAME" UniqueName="SIGN_TITLE_NAME" HeaderStyle-Width="120px" />
-                            <tlk:GridDateTimeColumn HeaderText="Ngày ký" DataField="SIGN_DATE"  HeaderStyle-Width="150px"
-                                ItemStyle-HorizontalAlign="Center" SortExpression="SIGN_DATE" UniqueName="SIGN_DATE"
-                                DataFormatString="{0:dd/MM/yyyy}">
-                            </tlk:GridDateTimeColumn>
+                             <tlk:GridBoundColumn HeaderText="Trạng thái" DataField="STATUS_NAME"
+                                SortExpression="STATUS_NAME" UniqueName="STATUS_NAME"  HeaderStyle-Width="150px" />
                             <tlk:GridBoundColumn HeaderText="Ghi chú " DataField="REMARK"
                                 SortExpression="REMARK" UniqueName="REMARK" HeaderStyle-Width="120px" />
 
@@ -190,6 +196,7 @@
             var bCheck = $find('<%# rgConcurrently.ClientID %>').get_masterTableView().get_selectedItems().length;
 
             if (bCheck == 0) {
+                return 1;
                 return 1;
             }
             if (bCheck > 1) {

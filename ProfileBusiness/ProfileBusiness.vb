@@ -1014,6 +1014,17 @@ Implements ServiceContracts.IProfileBusiness.GetHU_DataDynamicContractAppendix
                 End Try
             End Using
         End Function
+
+        Public Function GET_ORG_INFOR_PART(ByVal ID As Decimal) As DataTable Implements ServiceContracts.IProfileBusiness.GET_ORG_INFOR_PART
+            Using rep As New ProfileRepository
+                Try
+                    Dim lst = rep.GET_ORG_INFOR_PART(ID)
+                    Return lst
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
     End Class
 
 
