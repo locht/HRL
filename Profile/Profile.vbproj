@@ -187,6 +187,8 @@
     <Content Include="Modules\Profile\Business\ctrlHU_ConcurrentlyNewEdit.ascx" />
     <Content Include="Modules\Profile\Business\ctrlHU_EmpDtlConcurrently.ascx" />
     <Content Include="Modules\Profile\Business\ctrlHU_EmpInfomations.ascx" />
+    <Content Include="Modules\Profile\Business\ctrlHU_SafeLaborMng.ascx" />
+    <Content Include="Modules\Profile\Business\ctrlHU_SafeLaborMngNewEdit.ascx" />
     <Content Include="Modules\Profile\Business\ctrlHU_TrainingEvaluateNewEdit.ascx" />
     <Content Include="Modules\Profile\Business\ctrlHU_TranningEvaluate.ascx" />
     <Content Include="Modules\Profile\Business\ctrlHU_TrainingManageNewEdit.ascx" />
@@ -1006,6 +1008,20 @@
     </Compile>
     <Compile Include="Modules\Profile\Business\ctrlHU_EmpInfomations.ascx.vb">
       <DependentUpon>ctrlHU_EmpInfomations.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Modules\Profile\Business\ctrlHU_SafeLaborMng.ascx.designer.vb">
+      <DependentUpon>ctrlHU_SafeLaborMng.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Profile\Business\ctrlHU_SafeLaborMng.ascx.vb">
+      <DependentUpon>ctrlHU_SafeLaborMng.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Modules\Profile\Business\ctrlHU_SafeLaborMngNewEdit.ascx.designer.vb">
+      <DependentUpon>ctrlHU_SafeLaborMngNewEdit.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Profile\Business\ctrlHU_SafeLaborMngNewEdit.ascx.vb">
+      <DependentUpon>ctrlHU_SafeLaborMngNewEdit.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Modules\Profile\Business\ctrlHU_TrainingEvaluateNewEdit.ascx.designer.vb">
