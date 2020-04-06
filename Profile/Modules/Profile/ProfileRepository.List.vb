@@ -2426,6 +2426,17 @@ Partial Public Class ProfileRepository
         End Using
     End Function
 
+    Function CHECK_EXITS_JOB(ByVal P_JOB_ID As Decimal, ByVal P_EMP_ID As Decimal) As Integer
+        Using rep As New ProfileBusinessClient
+            Try
+                Return rep.CHECK_EXITS_JOB(P_JOB_ID, P_EMP_ID)
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+    End Function
+
 #End Region
 
 End Class

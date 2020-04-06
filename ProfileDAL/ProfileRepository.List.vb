@@ -6230,6 +6230,22 @@ Partial Class ProfileRepository
         End Try
     End Function
 
+    Public Function CHECK_EXITS_JOB(ByVal P_JOB_ID As Decimal, ByVal P_EMP_ID As Decimal) As Integer
+        Try
+            Using cls As New DataAccess.QueryData
+                Dim dtData As DataTable = cls.ExecuteStore("PKG_HU_IPROFILE_LIST.CHECK_EXITS_JOB",
+                                           New With {.P_JOB_ID = P_JOB_ID,
+                                                     .P_EMP_ID = P_EMP_ID,
+                                                     .P_OUT = cls.OUT_CURSOR})
+
+                Return dtData.Rows(0)("ID")
+            End Using
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iProfile")
+            Throw ex
+        End Try
+    End Function
+
 #End Region
 
 End Class

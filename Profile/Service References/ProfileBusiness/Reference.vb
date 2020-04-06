@@ -53501,6 +53501,9 @@ Namespace ProfileBusiness
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/INSERT_JOB_POSITION_AUTO", ReplyAction:="http://tempuri.org/IProfileBusiness/INSERT_JOB_POSITION_AUTOResponse")>  _
         Function INSERT_JOB_POSITION_AUTO(ByVal p_ID As Decimal, ByVal p_TITLE_ID As Decimal, ByVal p_NUMBER As Decimal, ByVal log As Common.CommonBusiness.UserLog) As Boolean
         
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/CHECK_EXITS_JOB", ReplyAction:="http://tempuri.org/IProfileBusiness/CHECK_EXITS_JOBResponse")>  _
+        Function CHECK_EXITS_JOB(ByVal P_JOB_ID As Decimal, ByVal P_EMP_ID As Decimal) As Integer
+        
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ModifyCommendLevel", ReplyAction:="http://tempuri.org/IProfileBusiness/ModifyCommendLevelResponse")>  _
         Function ModifyCommendLevel(ByVal objCommendLevel As ProfileBusiness.CommendLevelDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
         
@@ -56160,6 +56163,10 @@ Namespace ProfileBusiness
         
         Public Function INSERT_JOB_POSITION_AUTO(ByVal p_ID As Decimal, ByVal p_TITLE_ID As Decimal, ByVal p_NUMBER As Decimal, ByVal log As Common.CommonBusiness.UserLog) As Boolean Implements ProfileBusiness.IProfileBusiness.INSERT_JOB_POSITION_AUTO
             Return MyBase.Channel.INSERT_JOB_POSITION_AUTO(p_ID, p_TITLE_ID, p_NUMBER, log)
+        End Function
+        
+        Public Function CHECK_EXITS_JOB(ByVal P_JOB_ID As Decimal, ByVal P_EMP_ID As Decimal) As Integer Implements ProfileBusiness.IProfileBusiness.CHECK_EXITS_JOB
+            Return MyBase.Channel.CHECK_EXITS_JOB(P_JOB_ID, P_EMP_ID)
         End Function
         
         Public Function ModifyCommendLevel(ByVal objCommendLevel As ProfileBusiness.CommendLevelDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean Implements ProfileBusiness.IProfileBusiness.ModifyCommendLevel

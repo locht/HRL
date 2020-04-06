@@ -412,7 +412,19 @@ Public Class ctrlHU_ChangeInfoNewEdit
             Select Case CType(e.Item, RadToolBarButton).CommandName
                 Case CommonMessage.TOOLBARITEM_SAVE
                     If Page.IsValid Then
-                       
+
+                        If cboStatus.SelectedValue = 447 And rdEffectDate.SelectedDate > Date.Now.Date Then
+                            ShowMessage(Translate("Ngày hiệu lực phải nhỏ hơn bằng ngày hiện tại mới phê duyệt được, Vui lòng kiểm tra lại."), NotifyType.Warning)
+                            Exit Sub
+                        End If
+
+                        If chkIsReplace.Checked = False Then
+                            If rep1.CHECK_EXITS_JOB(cboJobPosition.SelectedValue, hidEmp.Value) > 0 Then
+                                ShowMessage(Translate("Vị trí công việc đã tồn tại, Vui lòng kiểm tra lại."), NotifyType.Warning)
+                                Exit Sub
+                            End If
+                        End If
+
                         If cboTitle.SelectedValue = "" Then
                             ShowMessage(Translate("Bạn phải chọn chức danh"), NotifyType.Warning)
                             cboTitle.Focus()
@@ -424,7 +436,7 @@ Public Class ctrlHU_ChangeInfoNewEdit
                             cboDecisionType.Focus()
                             Exit Sub
                         End If
-                        
+
                         If cboStatus.SelectedValue = "" Then
                             ShowMessage(Translate("Bạn phải chọn trạng thái"), NotifyType.Warning)
                             cboStatus.Focus()
@@ -527,7 +539,7 @@ Public Class ctrlHU_ChangeInfoNewEdit
                                     ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), Utilities.NotifyType.Error)
                                 End If
                             Case CommonMessage.STATE_EDIT
-                                    objWorking.ID = Decimal.Parse(hidID.Value)
+                                objWorking.ID = Decimal.Parse(hidID.Value)
                                 If rep.ModifyWorking1(objWorking, gID) Then
 
                                     ' Cập nhật ngày kết thúc cho hợp đồng cũ
@@ -541,7 +553,7 @@ Public Class ctrlHU_ChangeInfoNewEdit
                                 Else
                                     ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), Utilities.NotifyType.Error)
                                 End If
-                               
+
                         End Select
                     End If
 

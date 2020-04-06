@@ -972,17 +972,28 @@ Public Class ctrlHU_ChangeInfoMng
             Next
 
             If lstID.Count > 0 Then
-                Dim bCheckHasfile = rep.CheckHasFile(lstID)
+                'Dim bCheckHasfile = rep.CheckHasFile(lstID)
                 For Each item As GridDataItem In rgWorking.SelectedItems
                     If item.GetDataKeyValue("STATUS_ID") = ProfileCommon.DECISION_STATUS.APPROVE_ID Then
                         ShowMessage(Translate("Bản ghi đã phê duyệt."), NotifyType.Warning)
                         Exit Sub
                     End If
+
+                    If item.GetDataKeyValue("EFFECT_DATE") > Date.Now.Date Then
+                        ShowMessage(Translate("Ngày hiệu lực phải nhỏ hơn bằng ngày hiện tại mới phê duyệt được, Vui lòng kiểm tra lại."), NotifyType.Warning)
+                        Exit Sub
+                    End If
+
+                    If rep1.CHECK_EXITS_JOB(item.GetDataKeyValue("JOB_POSITION"), item.GetDataKeyValue("EMPLOYEE_ID")) > 0 Then
+                        ShowMessage(Translate("Vị trí công việc đã tồn tại, Vui lòng kiểm tra lại."), NotifyType.Warning)
+                        Exit Sub
+                    End If
                 Next
-                If bCheckHasfile = 1 Then
-                    ShowMessage(Translate("Duyệt khi tất cả các record đã có tập tin đính kèm,bạn kiểm tra lại"), NotifyType.Warning)
-                    Exit Sub
-                End If
+
+                'If bCheckHasfile = 1 Then
+                '    ShowMessage(Translate("Duyệt khi tất cả các record đã có tập tin đính kèm,bạn kiểm tra lại"), NotifyType.Warning)
+                '    Exit Sub
+                'End If
                 If rep.ApproveListChangeInfoMng(lstID) Then
 
                     For Each dr As Telerik.Web.UI.GridDataItem In rgWorking.SelectedItems

@@ -2919,6 +2919,9 @@ Namespace ProfileBusiness.ServiceContracts
                                        ByVal p_TITLE_ID As Decimal,
                                        ByVal p_NUMBER As Decimal,
                                        Optional ByVal log As UserLog = Nothing) As Boolean
+
+        <OperationContract()>
+        Function CHECK_EXITS_JOB(ByVal P_JOB_ID As Decimal, ByVal P_EMP_ID As Decimal) As Integer
     End Interface
 
 End Namespace
