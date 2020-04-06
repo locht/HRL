@@ -22,14 +22,11 @@
             </tr>
            <tr>
                <td class="lb">
-                   <%# Translate("Mã vị trí công việc")%><span class="lbReq">*</span>
+                   <%# Translate("Mã vị trí công việc")%>
                </td>
                <td>
                    <tlk:RadTextBox ID="txtCode" runat="server" ReadOnly="true">
                     </tlk:RadTextBox>
-                   <asp:RequiredFieldValidator ID="RequiredFieldValidator1" ControlToValidate="txtCode"
-                        runat="server" ErrorMessage="<%$ Translate: Mã vị trí công việc không được để trống %>" ToolTip="<%$ Translate: Mã vị trí công việc không được để trống %>"> 
-                    </asp:RequiredFieldValidator>
                </td>
                <td class="lb">
                    <%# Translate("Tên vị trí công việc")%><span class="lbReq">*</span>
