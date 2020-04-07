@@ -246,9 +246,10 @@ Public Class ctrlHU_ConcurrentlyNewEdit
         Dim dtData As New DataTable
         Try
             'Default là trạng thái 
-            dtData = com.GET_COMBOBOX("OT_OTHER_LIST", "CODE", "NAME_VN", " TYPE_CODE='" + "APPROVE_STATUS2" + "' ", "NAME_VN", True)
+            dtData = com.GET_COMBOBOX("OT_OTHER_LIST", "CODE", "NAME_VN", " TYPE_CODE='" + "APPROVE_STATUS2" + "' ", "NAME_VN", False)
             If dtData.Rows.Count > 0 Then
-                FillRadCombobox(cboStatus, dtData, "NAME_VN", "CODE", False)
+                FillRadCombobox(cboStatus, dtData, "NAME_VN", "CODE", True)
+                cboStatus.SelectedValue = "2"
                 'FillRadCombobox(cbSTATUS_STOP, dtData, "NAME_VN", "CODE", False)
             End If
         Catch ex As Exception

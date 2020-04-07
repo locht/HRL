@@ -1961,7 +1961,7 @@ Partial Class RecruitmentRepository
             If _filter.RC_PROGRAM_ID IsNot Nothing Then
                 query = query.Where(Function(f) f.p.RC_PROGRAM_ID = _filter.RC_PROGRAM_ID)
             End If
-
+            Dim statusName = "Đủ điều kiện"
             Dim lst = query.Select(Function(p) New CandidateDTO With {
                          .CANDIDATE_CODE = p.p.CANDIDATE_CODE,
                          .ID = p.p.ID,
@@ -1981,7 +1981,7 @@ Partial Class RecruitmentRepository
                          .IS_REHIRE = p.p.IS_REHIRE,
                          .MODIFIED_DATE = p.p.MODIFIED_DATE,
                          .STATUS_ID = p.p.STATUS_ID,
-                         .STATUS_NAME = p.status.NAME_VN})
+                         .STATUS_NAME = If(Not p.p.STATUS_ID <> "PONTENTIAL", statusName, p.status.NAME_VN)}) ' p.status.NAME_VN
 
             If _filter.CANDIDATE_CODE <> "" Then
                 lst = lst.Where(Function(p) p.CANDIDATE_CODE.ToUpper().IndexOf(_filter.CANDIDATE_CODE.ToUpper) >= 0 Or
