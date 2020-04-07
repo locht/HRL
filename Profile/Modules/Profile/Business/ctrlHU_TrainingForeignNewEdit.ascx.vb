@@ -180,7 +180,7 @@ Public Class ctrlHU_TrainingForeignNewEdit
                         txtEmployeeCode.Text = Contract.EMPLOYEE_CODE
                         txtEmployeeName.Text = Contract.EMPLOYEE_NAME
                         txtTITLE.Text = Contract.TITLE_NAME
-                        txtOrg_Name.Text = Contract.ORG_NAME
+
                         txtContent.Text = Contract.CONTENT
                         txtDecisionNo.Text = Contract.DECISION_NO
                         rdStartDate.SelectedDate = Contract.START_DATE
@@ -190,8 +190,21 @@ Public Class ctrlHU_TrainingForeignNewEdit
                         If Contract.VISA_ID IsNot Nothing Then
                             cboTypeVisa.SelectedValue = Contract.VISA_ID
                         End If
+                        If Contract.unit_rank_id IsNot Nothing Then
+                            If Contract.unit_rank_id IsNot Nothing And Contract.unit_rank_id = 7763 Then
+                                'org cap 3
+                                txtBan.Text = Contract.ORG_NAME
+                                txtOrg_Name.Text = ""
+                            Else
+                                txtOrg_Name.Text = Contract.ORG_NAME
+                                txtBan.Text = ""
+                            End If
+                        Else
+                            txtOrg_Name.Text = ""
+                            txtBan.Text = ""
+                        End If
+                        
                         txtBranch.Text = Contract.ORG_NAME2
-                        txtBan.Text = Contract.ORG_NAME4
                         txtNumberVisa.Text = Contract.NUMBER_VISA
                         If Contract.DATE_NC_VISA IsNot Nothing Then
                             rdDateCap.SelectedDate = Contract.DATE_NC_VISA
@@ -667,9 +680,19 @@ Public Class ctrlHU_TrainingForeignNewEdit
                 txtEmployeeCode.Text = item.EMPLOYEE_CODE
                 txtEmployeeName.Text = item.FULLNAME_VN
                 txtTITLE.Text = item.TITLE_NAME_VN
-                txtOrg_Name.Text = item.ORG_NAME
+                If item.unit_rank_id IsNot Nothing Then
+                    If item.unit_rank_id IsNot Nothing And item.unit_rank_id = 7763 Then
+                        txtBan.Text = item.ORG_NAME
+                        txtOrg_Name.Text = ""
+                    Else
+                        txtOrg_Name.Text = item.ORG_NAME
+                        txtBan.Text = ""
+                    End If
+                Else
+                    txtOrg_Name.Text = ""
+                    txtBan.Text = ""
+                End If
                 txtBranch.Text = item.ORG_NAME2
-                txtBan.Text = item.ORG_NAME4
                 Dim employeeId As Double = 0
                 Double.TryParse(hidEmployeeID.Value, employeeId)
                 ClearControlValue(rdStartDate)

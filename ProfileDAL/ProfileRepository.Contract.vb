@@ -628,7 +628,8 @@ Partial Class ProfileRepository
             Dim query = From p In Context.HU_TRAININGFOREIGN
                         From e In Context.HU_EMPLOYEE.Where(Function(f) f.ID = p.EMPLOYEE_ID)
                         From o In Context.HU_ORGANIZATION.Where(Function(f) f.ID = p.ORG_ID).DefaultIfEmpty
-                         From org In Context.HU_ORGANIZATION_V.Where(Function(f) f.ID = p.ORG_ID).DefaultIfEmpty
+                         From org In Context.HU_ORGANIZATION_V.Where(Function(f) f.ID = o.ID).DefaultIfEmpty
+                          From o1 In Context.HU_ORGANIZATION.Where(Function(f) f.ID = org.ID3).DefaultIfEmpty
                        From t In Context.HU_TITLE.Where(Function(f) p.TITLE_ID = f.ID).DefaultIfEmpty
                        From ot In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.TRAINNING_ID).DefaultIfEmpty
                           From ot1 In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.VISA_ID).DefaultIfEmpty
@@ -684,7 +685,6 @@ Partial Class ProfileRepository
                                             .EMPLOYEE_NAME = p.e.FULLNAME_VN,
                                             .EMPLOYEE_CODE = p.e.EMPLOYEE_CODE,
                                             .ORG_ID = p.e.ID,
-                                            .ORG_NAME = p.o.NAME_VN,
                                             .ORG_DESC = p.o.DESCRIPTION_PATH,
                                             .TITLE_ID = p.p.TITLE_ID,
                                             .TITLE_NAME = p.t.NAME_VN,
@@ -713,8 +713,9 @@ Partial Class ProfileRepository
                                             .COST_GO = p.p.COST_GO,
                                             .CHK_COSTWORK = p.p.CHK_COSTWORK,
                                             .SUM_COST = p.p.SUM_COST,
+                                            .ORG_NAME = If(p.o1.UNIT_RANK_ID = 7762, p.org.NAME_C3, Nothing),
                                             .ORG_NAME2 = p.org.NAME_C2,
-                                            .ORG_NAME4 = p.org.NAME_C4
+                                            .ORG_NAME4 = If(p.o1.UNIT_RANK_ID = 7763, p.org.NAME_C3, Nothing)
                                             })
 
             trainingforeign = trainingforeign.OrderBy(Sorts)
@@ -822,6 +823,7 @@ Partial Class ProfileRepository
                         From e In Context.HU_EMPLOYEE.Where(Function(f) f.ID = p.EMPLOYEE_ID)
                         From o In Context.HU_ORGANIZATION.Where(Function(f) f.ID = p.ORG_ID).DefaultIfEmpty
                         From org In Context.HU_ORGANIZATION_V.Where(Function(f) f.ID = o.ID)
+                        From o1 In Context.HU_ORGANIZATION.Where(Function(f) f.ID = org.ID3).DefaultIfEmpty
                        From t In Context.HU_TITLE.Where(Function(f) p.TITLE_ID = f.ID).DefaultIfEmpty
                        From ot In Context.OT_OTHER_LIST.Where(Function(f) p.TRAINNING_ID = f.ID).DefaultIfEmpty
             Where (p.ID = _filter.ID)
@@ -832,7 +834,6 @@ Partial Class ProfileRepository
                                                      .EMPLOYEE_CODE = e.EMPLOYEE_CODE,
                                                      .EMPLOYEE_NAME = e.FULLNAME_VN,
                                                      .ORG_ID = e.ID,
-                                                     .ORG_NAME = o.NAME_VN,
                                                      .ORG_DESC = o.DESCRIPTION_PATH,
                                                      .TITLE_NAME = t.NAME_VN,
                                                      .SIGN_DATE = p.SIGN_DATE,
@@ -859,7 +860,8 @@ Partial Class ProfileRepository
                                                              .SUM_COST = p.SUM_COST,
                                                              .ORG_NAME2 = org.NAME_C2,
                                                              .ORG_NAME4 = org.NAME_C4,
-                                                             .unit_rank_id = o.UNIT_RANK_ID
+                                                             .ORG_NAME = org.NAME_C3,
+                                                             .unit_rank_id = o1.UNIT_RANK_ID
                             }
             Dim result = query.FirstOrDefault
             Return result
@@ -1707,6 +1709,7 @@ Partial Class ProfileRepository
                    From staffrank In Context.HU_STAFF_RANK.Where(Function(f) p.STAFF_RANK_ID = f.ID).DefaultIfEmpty
                    From o In Context.HU_ORGANIZATION.Where(Function(f) p.ORG_ID = f.ID)
                    From org In Context.HU_ORGANIZATION_V.Where(Function(f) f.ID = o.ID)
+                   From o1 In Context.HU_ORGANIZATION.Where(Function(f) f.ID = org.ID3).DefaultIfEmpty
                    From t In Context.HU_TITLE.Where(Function(f) p.TITLE_ID = f.ID)
                    From working In Context.HU_WORKING.Where(Function(f) f.ID = p.LAST_WORKING_ID).DefaultIfEmpty
                    Where p.ID = gID
@@ -1715,7 +1718,6 @@ Partial Class ProfileRepository
                        .EMPLOYEE_CODE = p.EMPLOYEE_CODE,
                        .FULLNAME_VN = p.FULLNAME_VN,
                        .ORG_ID = p.ORG_ID,
-                       .ORG_NAME = o.NAME_VN,
                        .ORG_CODE = o.CODE,
                        .TITLE_ID = t.ID,
                        .TITLE_NAME_VN = t.NAME_VN,
@@ -1730,8 +1732,9 @@ Partial Class ProfileRepository
                        .LAST_WORKING_ID = p.LAST_WORKING_ID,
                        .SAL_BASIC = working.SAL_BASIC,
                        .ORG_NAME2 = org.NAME_C2,
+                       .ORG_NAME = org.NAME_C3,
                        .ORG_NAME4 = org.NAME_C4,
-                       .unit_rank_id = o.UNIT_RANK_ID,
+                       .unit_rank_id = o1.UNIT_RANK_ID,
                        .COST_SUPPORT = working.COST_SUPPORT}).FirstOrDefault
 
             Dim ctract = (From p In Context.HU_CONTRACT
