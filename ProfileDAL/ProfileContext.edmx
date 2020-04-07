@@ -160,6 +160,7 @@
             <EntitySet Name="HU_JOB_DESCRIPTION" EntityType="ProfileModel.Store.HU_JOB_DESCRIPTION" store:Type="Tables"  />
             <EntitySet Name="HU_SAFELABOR_MNG" EntityType="ProfileModel.Store.HU_SAFELABOR_MNG" store:Type="Tables"  />
             <EntitySet Name="HU_SAFELABOR_MNG_EMP" EntityType="ProfileModel.Store.HU_SAFELABOR_MNG_EMP" store:Type="Tables"  />
+            <EntitySet Name="HU_HEALTH_MNG" EntityType="ProfileModel.Store.HU_HEALTH_MNG" store:Type="Tables"  />
             <EntitySet Name="SE_USER_REPORT" EntityType="ProfileModel.Store.SE_USER_REPORT" store:Type="Tables"  />
             <AssociationSet Name="FK_HUN_HUP" Association="ProfileModel.Store.FK_HU_NAT_HU_PRO">
                 <End Role="HU_NATION" EntitySet="HU_NATION" />
@@ -4053,6 +4054,70 @@
             <Property Name="MODIFIED_BY" Type="nvarchar2" Nullable="true" MaxLength="255" />
             <Property Name="MODIFIED_LOG" Type="nvarchar2" Nullable="true" MaxLength="255" />
         </EntityType>
+        <EntityType Name="HU_HEALTH_MNG">
+            <Key>
+                <PropertyRef Name="ID" />
+            </Key>
+            <Property Name="ID" Type="number" Nullable="false" Precision="38" />
+            <Property Name="EMPLOYEE_ID" Type="number" Nullable="true" Precision="38" />
+            <Property Name="ORG_ID" Type="number" Nullable="true" Precision="38" />
+            <Property Name="TITILE_ID" Type="number" Nullable="true" Precision="38" />
+            <Property Name="CREATED_DATE" Type="date" Nullable="true" />
+            <Property Name="CREATED_BY" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="CREATED_LOG" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="MODIFIED_DATE" Type="date" Nullable="true" />
+            <Property Name="MODIFIED_BY" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="MODIFIED_LOG" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="YEAR_KHAMBENH" Type="date" Nullable="true" />
+            <Property Name="DATE_KHAMBENH" Type="date" Nullable="true" />
+            <Property Name="CAN_NANG" Type="nvarchar2" Nullable="true" MaxLength="50" />
+            <Property Name="HUYET_AP" Type="nvarchar2" Nullable="true" MaxLength="50" />
+            <Property Name="NOI_KHOA" Type="nvarchar2" Nullable="true" MaxLength="50" />
+            <Property Name="NGOAI_KHOA" Type="nvarchar2" Nullable="true" MaxLength="50" />
+            <Property Name="PHU_KHOA" Type="nvarchar2" Nullable="true" MaxLength="50" />
+            <Property Name="MAT" Type="nvarchar2" Nullable="true" MaxLength="50" />
+            <Property Name="TMH" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="RHM" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="CONG_THUC_MAU" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="DUONG_MAU" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="XN_NUOC_TIEU" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="X_QUANG" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="DIEN_TIM" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="SIEU_AM" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="XN_PHAN" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="SIEU_VI_A" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="SIEU_VI_E" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="SIEU_VI_B" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="KT_VIEN_GAN_B" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="CHUC_NANG_GAN" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="CHUC_NANG_THAN" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="MO_MAU" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="KQ1" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="KQ2" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="KQ3" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="KQ4" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="KQ5" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="KQ6" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="KQ7" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="KQ8" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="KQ9" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="KQ10" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="HEALTH_TYPE" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="NHOM_BENH" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="TEN_BENH" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="KET_LUAB" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="GHI_CHU" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="DO_THINH_LUC_SB" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="DO_THINH_LUC_HC" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="DO_CN_HO_HAP" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="XN_HAMLUONG_TOLUEN" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="BENH_NN1" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="BENH_NN2" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="BENH_TN_NN" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="NGAY_DIEU_TRI" Type="date" Nullable="true" />
+            <Property Name="PP_DIEU_TRI" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="KQ_DIEU_TRI" Type="nvarchar2" Nullable="true" MaxLength="255" />
+        </EntityType>
         <EntityType Name="SE_USER_REPORT">
             <Key>
                 <PropertyRef Name="SE_REPORT_ID" />
@@ -4698,6 +4763,7 @@
           <EntitySet Name="HU_JOB_DESCRIPTION" EntityType="ProfileModel.HU_JOB_DESCRIPTION" />
           <EntitySet Name="HU_SAFELABOR_MNG" EntityType="ProfileModel.HU_SAFELABOR_MNG" />
           <EntitySet Name="HU_SAFELABOR_MNG_EMP" EntityType="ProfileModel.HU_SAFELABOR_MNG_EMP" />
+          <EntitySet Name="HU_HEALTH_MNG" EntityType="ProfileModel.HU_HEALTH_MNG" />
         </EntityContainer>
         <EntityType Name="HU_PROVINCE">
           <Key>
@@ -8874,6 +8940,70 @@
           <Property Type="String" Name="MODIFIED_BY" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="MODIFIED_LOG" MaxLength="255" FixedLength="false" Unicode="true" />
         </EntityType>
+        <EntityType Name="HU_HEALTH_MNG">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Decimal" Name="ID" Nullable="false" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="EMPLOYEE_ID" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="ORG_ID" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="TITILE_ID" Precision="38" Scale="0" />
+          <Property Type="DateTime" Name="CREATED_DATE" />
+          <Property Type="String" Name="CREATED_BY" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="CREATED_LOG" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="MODIFIED_DATE" />
+          <Property Type="String" Name="MODIFIED_BY" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="MODIFIED_LOG" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="YEAR_KHAMBENH" />
+          <Property Type="DateTime" Name="DATE_KHAMBENH" />
+          <Property Type="String" Name="CAN_NANG" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="HUYET_AP" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="NOI_KHOA" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="NGOAI_KHOA" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="PHU_KHOA" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="MAT" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="TMH" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="RHM" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="CONG_THUC_MAU" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="DUONG_MAU" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="XN_NUOC_TIEU" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="X_QUANG" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="DIEN_TIM" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="SIEU_AM" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="XN_PHAN" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="SIEU_VI_A" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="SIEU_VI_E" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="SIEU_VI_B" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="KT_VIEN_GAN_B" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="CHUC_NANG_GAN" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="CHUC_NANG_THAN" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="MO_MAU" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="KQ1" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="KQ2" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="KQ3" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="KQ4" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="KQ5" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="KQ6" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="KQ7" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="KQ8" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="KQ9" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="KQ10" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="HEALTH_TYPE" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="NHOM_BENH" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="TEN_BENH" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="KET_LUAB" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="GHI_CHU" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="DO_THINH_LUC_SB" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="DO_THINH_LUC_HC" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="DO_CN_HO_HAP" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="XN_HAMLUONG_TOLUEN" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="BENH_NN1" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="BENH_NN2" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="BENH_TN_NN" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="NGAY_DIEU_TRI" />
+          <Property Type="String" Name="PP_DIEU_TRI" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="KQ_DIEU_TRI" MaxLength="255" FixedLength="false" Unicode="true" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -12796,6 +12926,71 @@
                 </MappingFragment>
             </EntityTypeMapping>
         </EntitySetMapping>
+        <EntitySetMapping Name="HU_HEALTH_MNG">
+            <EntityTypeMapping TypeName="IsTypeOf(ProfileModel.HU_HEALTH_MNG)">
+                <MappingFragment StoreEntitySet="HU_HEALTH_MNG">
+                    <ScalarProperty Name="ID" ColumnName="ID" />
+                    <ScalarProperty Name="EMPLOYEE_ID" ColumnName="EMPLOYEE_ID" />
+                    <ScalarProperty Name="ORG_ID" ColumnName="ORG_ID" />
+                    <ScalarProperty Name="TITILE_ID" ColumnName="TITILE_ID" />
+                    <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+                    <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+                    <ScalarProperty Name="CREATED_LOG" ColumnName="CREATED_LOG" />
+                    <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+                    <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+                    <ScalarProperty Name="MODIFIED_LOG" ColumnName="MODIFIED_LOG" />
+                    <ScalarProperty Name="YEAR_KHAMBENH" ColumnName="YEAR_KHAMBENH" />
+                    <ScalarProperty Name="DATE_KHAMBENH" ColumnName="DATE_KHAMBENH" />
+                    <ScalarProperty Name="CAN_NANG" ColumnName="CAN_NANG" />
+                    <ScalarProperty Name="HUYET_AP" ColumnName="HUYET_AP" />
+                    <ScalarProperty Name="NOI_KHOA" ColumnName="NOI_KHOA" />
+                    <ScalarProperty Name="NGOAI_KHOA" ColumnName="NGOAI_KHOA" />
+                    <ScalarProperty Name="PHU_KHOA" ColumnName="PHU_KHOA" />
+                    <ScalarProperty Name="MAT" ColumnName="MAT" />
+                    <ScalarProperty Name="TMH" ColumnName="TMH" />
+                    <ScalarProperty Name="RHM" ColumnName="RHM" />
+                    <ScalarProperty Name="CONG_THUC_MAU" ColumnName="CONG_THUC_MAU" />
+                    <ScalarProperty Name="DUONG_MAU" ColumnName="DUONG_MAU" />
+                    <ScalarProperty Name="XN_NUOC_TIEU" ColumnName="XN_NUOC_TIEU" />
+                    <ScalarProperty Name="X_QUANG" ColumnName="X_QUANG" />
+                    <ScalarProperty Name="DIEN_TIM" ColumnName="DIEN_TIM" />
+                    <ScalarProperty Name="SIEU_AM" ColumnName="SIEU_AM" />
+                    <ScalarProperty Name="XN_PHAN" ColumnName="XN_PHAN" />
+                    <ScalarProperty Name="SIEU_VI_A" ColumnName="SIEU_VI_A" />
+                    <ScalarProperty Name="SIEU_VI_E" ColumnName="SIEU_VI_E" />
+                    <ScalarProperty Name="SIEU_VI_B" ColumnName="SIEU_VI_B" />
+                    <ScalarProperty Name="KT_VIEN_GAN_B" ColumnName="KT_VIEN_GAN_B" />
+                    <ScalarProperty Name="CHUC_NANG_GAN" ColumnName="CHUC_NANG_GAN" />
+                    <ScalarProperty Name="CHUC_NANG_THAN" ColumnName="CHUC_NANG_THAN" />
+                    <ScalarProperty Name="MO_MAU" ColumnName="MO_MAU" />
+                    <ScalarProperty Name="KQ1" ColumnName="KQ1" />
+                    <ScalarProperty Name="KQ2" ColumnName="KQ2" />
+                    <ScalarProperty Name="KQ3" ColumnName="KQ3" />
+                    <ScalarProperty Name="KQ4" ColumnName="KQ4" />
+                    <ScalarProperty Name="KQ5" ColumnName="KQ5" />
+                    <ScalarProperty Name="KQ6" ColumnName="KQ6" />
+                    <ScalarProperty Name="KQ7" ColumnName="KQ7" />
+                    <ScalarProperty Name="KQ8" ColumnName="KQ8" />
+                    <ScalarProperty Name="KQ9" ColumnName="KQ9" />
+                    <ScalarProperty Name="KQ10" ColumnName="KQ10" />
+                    <ScalarProperty Name="HEALTH_TYPE" ColumnName="HEALTH_TYPE" />
+                    <ScalarProperty Name="NHOM_BENH" ColumnName="NHOM_BENH" />
+                    <ScalarProperty Name="TEN_BENH" ColumnName="TEN_BENH" />
+                    <ScalarProperty Name="KET_LUAB" ColumnName="KET_LUAB" />
+                    <ScalarProperty Name="GHI_CHU" ColumnName="GHI_CHU" />
+                    <ScalarProperty Name="DO_THINH_LUC_SB" ColumnName="DO_THINH_LUC_SB" />
+                    <ScalarProperty Name="DO_THINH_LUC_HC" ColumnName="DO_THINH_LUC_HC" />
+                    <ScalarProperty Name="DO_CN_HO_HAP" ColumnName="DO_CN_HO_HAP" />
+                    <ScalarProperty Name="XN_HAMLUONG_TOLUEN" ColumnName="XN_HAMLUONG_TOLUEN" />
+                    <ScalarProperty Name="BENH_NN1" ColumnName="BENH_NN1" />
+                    <ScalarProperty Name="BENH_NN2" ColumnName="BENH_NN2" />
+                    <ScalarProperty Name="BENH_TN_NN" ColumnName="BENH_TN_NN" />
+                    <ScalarProperty Name="NGAY_DIEU_TRI" ColumnName="NGAY_DIEU_TRI" />
+                    <ScalarProperty Name="PP_DIEU_TRI" ColumnName="PP_DIEU_TRI" />
+                    <ScalarProperty Name="KQ_DIEU_TRI" ColumnName="KQ_DIEU_TRI" />
+                </MappingFragment>
+            </EntityTypeMapping>
+        </EntitySetMapping>
         <AssociationSetMapping Name="SE_USER_REPORT" TypeName="ProfileModel.SE_USER_REPORT" StoreEntitySet="SE_USER_REPORT">
             <EndProperty Name="SE_REPORT">
                 <ScalarProperty Name="ID" ColumnName="SE_REPORT_ID" />
@@ -13159,6 +13354,7 @@
         <EntityTypeShape EntityType="ProfileModel.HU_JOB_DESCRIPTION" Width="1.5" PointX="8.625" PointY="32.75" Height="8.1339322916666674" />
         <EntityTypeShape EntityType="ProfileModel.HU_SAFELABOR_MNG" Width="1.5" PointX="18.375" PointY="32.75" Height="4.6725065104166674" />
         <EntityTypeShape EntityType="ProfileModel.HU_SAFELABOR_MNG_EMP" Width="1.5" PointX="27.375" PointY="32.75" Height="4.864807942708353" />
+        <EntityTypeShape EntityType="ProfileModel.HU_HEALTH_MNG" Width="1.5" PointX="14.375" PointY="31.75" Height="12.364563802083353" />
         </Diagram>
     </Diagrams>
   </Designer>
