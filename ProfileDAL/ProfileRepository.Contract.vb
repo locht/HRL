@@ -858,7 +858,8 @@ Partial Class ProfileRepository
                                                              .CHK_COSTWORK = If(p.CHK_COSTWORK = -1, True, False),
                                                              .SUM_COST = p.SUM_COST,
                                                              .ORG_NAME2 = org.NAME_C2,
-                                                             .ORG_NAME4 = org.NAME_C4
+                                                             .ORG_NAME4 = org.NAME_C4,
+                                                             .unit_rank_id = o.UNIT_RANK_ID
                             }
             Dim result = query.FirstOrDefault
             Return result
@@ -1730,6 +1731,7 @@ Partial Class ProfileRepository
                        .SAL_BASIC = working.SAL_BASIC,
                        .ORG_NAME2 = org.NAME_C2,
                        .ORG_NAME4 = org.NAME_C4,
+                       .unit_rank_id = o.UNIT_RANK_ID,
                        .COST_SUPPORT = working.COST_SUPPORT}).FirstOrDefault
 
             Dim ctract = (From p In Context.HU_CONTRACT

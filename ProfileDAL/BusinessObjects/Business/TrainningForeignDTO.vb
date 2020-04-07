@@ -53,4 +53,5 @@
     Public Property COST_GO As Decimal?
     Public Property CHK_COSTWORK As Boolean
     Public Property SUM_COST As Decimal?
+    Public Property unit_rank_id As Decimal?
 End Class

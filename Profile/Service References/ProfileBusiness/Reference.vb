@@ -28387,6 +28387,9 @@ Namespace ProfileBusiness
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private lstPaperFiledField As System.Collections.Generic.List(Of Decimal)
         
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private unit_rank_idField As System.Nullable(Of Decimal)
+        
         <Global.System.ComponentModel.BrowsableAttribute(false)>  _
         Public Property ExtensionData() As System.Runtime.Serialization.ExtensionDataObject Implements System.Runtime.Serialization.IExtensibleDataObject.ExtensionData
             Get
@@ -29706,6 +29709,19 @@ Namespace ProfileBusiness
                 If (Object.ReferenceEquals(Me.lstPaperFiledField, value) <> true) Then
                     Me.lstPaperFiledField = value
                     Me.RaisePropertyChanged("lstPaperFiled")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property unit_rank_id() As System.Nullable(Of Decimal)
+            Get
+                Return Me.unit_rank_idField
+            End Get
+            Set
+                If (Me.unit_rank_idField.Equals(value) <> true) Then
+                    Me.unit_rank_idField = value
+                    Me.RaisePropertyChanged("unit_rank_id")
                 End If
             End Set
         End Property
@@ -41233,6 +41249,9 @@ Namespace ProfileBusiness
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private WorkingField As ProfileBusiness.WorkingDTO
         
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private unit_rank_idField As System.Nullable(Of Decimal)
+        
         <Global.System.ComponentModel.BrowsableAttribute(false)>  _
         Public Property ExtensionData() As System.Runtime.Serialization.ExtensionDataObject Implements System.Runtime.Serialization.IExtensibleDataObject.ExtensionData
             Get
@@ -41941,6 +41960,19 @@ Namespace ProfileBusiness
                 If (Object.ReferenceEquals(Me.WorkingField, value) <> true) Then
                     Me.WorkingField = value
                     Me.RaisePropertyChanged("Working")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property unit_rank_id() As System.Nullable(Of Decimal)
+            Get
+                Return Me.unit_rank_idField
+            End Get
+            Set
+                If (Me.unit_rank_idField.Equals(value) <> true) Then
+                    Me.unit_rank_idField = value
+                    Me.RaisePropertyChanged("unit_rank_id")
                 End If
             End Set
         End Property
