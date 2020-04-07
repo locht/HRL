@@ -983,10 +983,11 @@ Public Class ctrlHU_ChangeInfoMng
                         ShowMessage(Translate("Ngày hiệu lực phải nhỏ hơn bằng ngày hiện tại mới phê duyệt được, Vui lòng kiểm tra lại."), NotifyType.Warning)
                         Exit Sub
                     End If
-
-                    If rep1.CHECK_EXITS_JOB(item.GetDataKeyValue("JOB_POSITION"), item.GetDataKeyValue("EMPLOYEE_ID")) > 0 Then
-                        ShowMessage(Translate("Vị trí công việc đã tồn tại, Vui lòng kiểm tra lại."), NotifyType.Warning)
-                        Exit Sub
+                    If item.GetDataKeyValue("IS_REPLACE") = False Then
+                        If rep1.CHECK_EXITS_JOB(item.GetDataKeyValue("JOB_POSITION"), item.GetDataKeyValue("EMPLOYEE_ID")) > 0 Then
+                            ShowMessage(Translate("Vị trí công việc đã tồn tại, Vui lòng kiểm tra lại."), NotifyType.Warning)
+                            Exit Sub
+                        End If
                     End If
                 Next
 
