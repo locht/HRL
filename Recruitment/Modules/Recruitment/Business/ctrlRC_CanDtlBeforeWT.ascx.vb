@@ -230,6 +230,7 @@ Public Class ctrlRC_CanDtlBeforeWT
                 SelectedItem.Add(Decimal.Parse(dr("ID").Text))
             Next
 
+
             Dim item As GridDataItem = rgCandidateBeforeWT.SelectedItems(0)
             hidEmpBeforeWTID.Value = HttpUtility.HtmlDecode(item("ID").Text)
             If HttpUtility.HtmlDecode(item("FROMDATE").Text).Trim() <> "" Then

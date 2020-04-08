@@ -87,6 +87,7 @@
                 <td style="text-align: left" class="lb">
                     <%# Translate("Đến tháng/năm")%><span class="lbReq">*</span>
                 </td>
+
                 <td>
                     <tlk:RadDatePicker ID="rdTodate" runat="server" DateInput-DisplayDateFormat="MM/yyyy">
                     </tlk:RadDatePicker>

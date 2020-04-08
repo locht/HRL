@@ -20,6 +20,7 @@
                 <td style="text-align: left" class="lb">
                     <%# Translate("Tên công ty")%><span class="lbReq">*</span>
                 </td>
+
                 <td>
                     <tlk:RadTextBox runat="server" ID="txtOrgname">
                     </tlk:RadTextBox>
