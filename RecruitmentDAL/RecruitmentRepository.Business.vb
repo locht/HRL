@@ -1891,7 +1891,7 @@ Partial Class RecruitmentRepository
     End Function
 
 
-    Public Function ValidateInsertCandidate(ByVal sEmpCode As String, ByVal sID_No As String, ByVal sFullName As String, ByVal dBirthDate As Date, ByVal sType As String) As Boolean
+    Public Function ValidateInsertCandidate(ByVal sEmpCode As String, ByVal sID_No As String, ByVal sFullName As String, ByVal dBirthDate As Date, ByVal sType As String, Optional _can_ID As Decimal = 0) As Boolean
         Try
             Select Case sType
                 'Quan edit NO_ID,BLACK_LIST,TERMINATE,WORKING 4 trường này của TamBT,case khác Tâm  check lại nhé
@@ -1899,19 +1899,19 @@ Partial Class RecruitmentRepository
                     If sID_No <> "" Or (dBirthDate.ToString <> "" And sFullName <> "") Then
                         Return ((From e In Context.RC_CANDIDATE
                                  From cv In Context.RC_CANDIDATE_CV.Where(Function(f) f.CANDIDATE_ID = e.ID)
-                                 Where ((cv.ID_NO = sID_No) Or (cv.BIRTH_DATE = dBirthDate And e.FULLNAME_VN.ToUpper = sFullName.ToUpper))).Count = 0)
+                                 Where ((cv.ID_NO = sID_No And cv.CANDIDATE_ID <> _can_ID) Or (cv.BIRTH_DATE = dBirthDate And e.FULLNAME_VN.ToUpper = sFullName.ToUpper And cv.CANDIDATE_ID <> _can_ID))).Count = 0)
                     End If
                 Case "BLACK_LIST"
                     If sID_No <> "" Or (dBirthDate.ToString <> "" And sFullName <> "") Then
                         Return ((From e In Context.RC_CANDIDATE
                                  From cv In Context.RC_CANDIDATE_CV.Where(Function(f) f.CANDIDATE_ID = e.ID)
-                                 Where (cv.ID_NO = sID_No And e.IS_BLACKLIST = -1) Or (cv.BIRTH_DATE = dBirthDate And e.FULLNAME_VN.ToUpper = sFullName.ToUpper And e.IS_BLACKLIST = -1)).Count = 0)
+                                 Where (cv.ID_NO = sID_No And e.IS_BLACKLIST = -1 And cv.CANDIDATE_ID <> _can_ID) Or (cv.BIRTH_DATE = dBirthDate And e.FULLNAME_VN.ToUpper = sFullName.ToUpper And e.IS_BLACKLIST = -1 And cv.CANDIDATE_ID <> _can_ID)).Count = 0)
                     End If
                 Case "DATE_FULLNAME"
                     If sID_No <> "" And sID_No IsNot Nothing And dBirthDate.ToString <> "" Then
                         Return ((From e In Context.RC_CANDIDATE
                                  From cv In Context.RC_CANDIDATE_CV.Where(Function(f) f.CANDIDATE_ID = e.ID)
-                                 Where cv.BIRTH_DATE = dBirthDate And e.FULLNAME_VN.ToUpper = sFullName.ToUpper).Count = 0)
+                                 Where cv.BIRTH_DATE = dBirthDate And e.FULLNAME_VN.ToUpper = sFullName.ToUpper And cv.CANDIDATE_ID <> _can_ID).Count = 0)
                     End If
                 Case "WORKING"
                     If sID_No <> "" Or (dBirthDate.ToString <> "" And sFullName <> "") Then

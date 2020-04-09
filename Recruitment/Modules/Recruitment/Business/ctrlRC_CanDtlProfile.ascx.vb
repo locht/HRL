@@ -1000,10 +1000,10 @@ Public Class ctrlRC_CanDtlProfile
 
                             Case STATE_EDIT
                                 Dim strMess As String = ""
-                                If Not rep.ValidateInsertCandidate(txtEmpCODE.Text, rntxtCMND.Text, txtFirstNameVN.Text & " " & txtLastNameVN.Text, rdBirthDate.SelectedDate, "NO_ID") Then
+                                If Not rep.ValidateInsertCandidate(txtEmpCODE.Text, rntxtCMND.Text, txtFirstNameVN.Text & " " & txtLastNameVN.Text, rdBirthDate.SelectedDate, "NO_ID", hidID.Value) Then
                                     strMess = "Ứng viên đang tồn tại trong một chương trình tuyển dụng khác, bạn muốn tiếp tục lưu không?"
                                 End If
-                                If Not rep.ValidateInsertCandidate(txtEmpCODE.Text, rntxtCMND.Text, txtFirstNameVN.Text & " " & txtLastNameVN.Text, rdBirthDate.SelectedDate, "BLACK_LIST") Then
+                                If Not rep.ValidateInsertCandidate(txtEmpCODE.Text, rntxtCMND.Text, txtFirstNameVN.Text & " " & txtLastNameVN.Text, rdBirthDate.SelectedDate, "BLACK_LIST", hidID.Value) Then
                                     strMess = "Ứng viên đang thuộc Blacklist, bạn muốn tiếp tục lưu không?"
                                 End If
                                 If Not rep.ValidateInsertCandidate(txtEmpCODE.Text, rntxtCMND.Text, txtFirstNameVN.Text & " " & txtLastNameVN.Text, rdBirthDate.SelectedDate, "WORKING") Then
@@ -1073,9 +1073,15 @@ Public Class ctrlRC_CanDtlProfile
                 Dim _err As String = ""
                 Dim strEmpCode As String = ""
                 If Save(strEmpCode, _err) Then
-                    CurrentState = CommonMessage.STATE_NORMAL
-                    ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), Utilities.NotifyType.Success)
-                    Page.Response.Redirect(String.Format("Dialog.aspx?mid=Recruitment&fid=ctrlRC_CanDtl&group=Business&gUID={0}&Can={1}&state=Normal&ORGID={2}&TITLEID={3}&PROGRAM_ID={4}&noscroll=1&isdone=1", hidID.Value, strEmpCode, hidOrg.Value, hidTitle.Value, hidProgramID.Value))
+                    If CurrentState = CommonMessage.STATE_NEW Then
+                        CurrentState = CommonMessage.STATE_NORMAL
+                        ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), Utilities.NotifyType.Success)
+                        Page.Response.Redirect(String.Format("Dialog.aspx?mid=Recruitment&fid=ctrlRC_CanDtl&group=Business&gUID={0}&Can={1}&state=Normal&ORGID={2}&TITLEID={3}&PROGRAM_ID={4}&noscroll=1&isdone=1", hidID.Value, strEmpCode, hidOrg.Value, hidTitle.Value, hidProgramID.Value))
+                    ElseIf CurrentState = CommonMessage.STATE_EDIT Then
+                        CurrentState = CommonMessage.STATE_NORMAL
+                        ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), Utilities.NotifyType.Success)
+                    End If
+                    
                     Exit Sub
                 Else
                     ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL) & vbNewLine & Translate(_err), Utilities.NotifyType.Error)

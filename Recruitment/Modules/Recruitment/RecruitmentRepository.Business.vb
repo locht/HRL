@@ -405,10 +405,10 @@ Partial Class RecruitmentRepository
         Return Nothing
     End Function
 
-    Public Function ValidateInsertCandidate(ByVal sEmpId As String, ByVal sID_No As String, ByVal sFullName As String, ByVal dBirthDate As Date, ByVal sType As String) As Boolean
+    Public Function ValidateInsertCandidate(ByVal sEmpId As String, ByVal sID_No As String, ByVal sFullName As String, ByVal dBirthDate As Date, ByVal sType As String, Optional _can_ID As Decimal = 0) As Boolean
         Using rep As New RecruitmentBusinessClient
             Try
-                Return rep.ValidateInsertCandidate(sEmpId, sID_No, sFullName, dBirthDate, sType)
+                Return rep.ValidateInsertCandidate(sEmpId, sID_No, sFullName, dBirthDate, sType, _can_ID)
             Catch ex As Exception
                 rep.Abort()
                 Throw ex

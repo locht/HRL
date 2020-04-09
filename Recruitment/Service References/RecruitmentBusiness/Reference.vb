@@ -20271,7 +20271,7 @@ Namespace RecruitmentBusiness
         Function CheckExistCandidate(ByVal strEmpCode As String) As Boolean
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IRecruitmentBusiness/ValidateInsertCandidate", ReplyAction:="http://tempuri.org/IRecruitmentBusiness/ValidateInsertCandidateResponse")>  _
-        Function ValidateInsertCandidate(ByVal sEmpId As String, ByVal sID_No As String, ByVal sFullName As String, ByVal dBirthDate As Date, ByVal sType As String) As Boolean
+        Function ValidateInsertCandidate(ByVal sEmpId As String, ByVal sID_No As String, ByVal sFullName As String, ByVal dBirthDate As Date, ByVal sType As String, ByVal _can_ID As Decimal) As Boolean
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IRecruitmentBusiness/GetCandidateFamily_ByID", ReplyAction:="http://tempuri.org/IRecruitmentBusiness/GetCandidateFamily_ByIDResponse")>  _
         Function GetCandidateFamily_ByID(ByVal sCandidateID As Decimal) As RecruitmentBusiness.CandidateFamilyDTO
@@ -20690,8 +20690,8 @@ Namespace RecruitmentBusiness
             Return MyBase.Channel.CheckExistCandidate(strEmpCode)
         End Function
         
-        Public Function ValidateInsertCandidate(ByVal sEmpId As String, ByVal sID_No As String, ByVal sFullName As String, ByVal dBirthDate As Date, ByVal sType As String) As Boolean Implements RecruitmentBusiness.IRecruitmentBusiness.ValidateInsertCandidate
-            Return MyBase.Channel.ValidateInsertCandidate(sEmpId, sID_No, sFullName, dBirthDate, sType)
+        Public Function ValidateInsertCandidate(ByVal sEmpId As String, ByVal sID_No As String, ByVal sFullName As String, ByVal dBirthDate As Date, ByVal sType As String, ByVal _can_ID As Decimal) As Boolean Implements RecruitmentBusiness.IRecruitmentBusiness.ValidateInsertCandidate
+            Return MyBase.Channel.ValidateInsertCandidate(sEmpId, sID_No, sFullName, dBirthDate, sType, _can_ID)
         End Function
         
         Public Function GetCandidateFamily_ByID(ByVal sCandidateID As Decimal) As RecruitmentBusiness.CandidateFamilyDTO Implements RecruitmentBusiness.IRecruitmentBusiness.GetCandidateFamily_ByID

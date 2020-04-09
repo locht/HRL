@@ -188,7 +188,7 @@ Namespace RecruitmentBusiness.ServiceContracts
         Function CheckExistCandidate(ByVal strEmpCode As String) As Boolean
 
         <OperationContract()>
-        Function ValidateInsertCandidate(ByVal sEmpId As String, ByVal sID_No As String, ByVal sFullName As String, ByVal dBirthDate As Date, ByVal sType As String) As Boolean
+        Function ValidateInsertCandidate(ByVal sEmpId As String, ByVal sID_No As String, ByVal sFullName As String, ByVal dBirthDate As Date, ByVal sType As String, Optional _can_ID As Decimal = 0) As Boolean
 
         <OperationContract()>
         Function GetCandidateFamily_ByID(ByVal sCandidateID As Decimal) As CandidateFamilyDTO
