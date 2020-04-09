@@ -342,19 +342,16 @@ Public Class ctrlHU_ChangeInfoNewEdit
                         DSdata = rep1.GET_JP_TO_TITLE(hidOrg.Value, cboTitle.SelectedValue, chkIsReplace.Checked, Working.JOB_POSITION)
                     End Using
 
-                    If DSdata.Tables(0).Rows.Count > 0 Then
-                        cboJobPosition.DataSource = DSdata.Tables(0)
-                        cboJobPosition.DataTextField = "NAME"
-                        cboJobPosition.DataValueField = "ID"
-                        cboJobPosition.DataBind()
-                    End If
+                    cboJobPosition.DataSource = DSdata.Tables(0)
+                    cboJobPosition.DataTextField = "NAME"
+                    cboJobPosition.DataValueField = "ID"
+                    cboJobPosition.DataBind()
 
-                    If DSdata.Tables(1).Rows.Count > 0 Then
-                        cboJobDescription.DataSource = DSdata.Tables(1)
-                        cboJobDescription.DataTextField = "NAME"
-                        cboJobDescription.DataValueField = "ID"
-                        cboJobDescription.DataBind()
-                    End If
+                    cboJobDescription.DataSource = DSdata.Tables(1)
+                    cboJobDescription.DataTextField = "NAME"
+                    cboJobDescription.DataValueField = "ID"
+                    cboJobDescription.DataBind()
+
                     cboJobPosition.SelectedValue = Working.JOB_POSITION
 
                     If Working.JOB_DESCRIPTION IsNot Nothing Then
@@ -750,12 +747,10 @@ Public Class ctrlHU_ChangeInfoNewEdit
                 JobTemp = rep.GET_JOB_EMP(empRelace.ID)
             End Using
 
-            If DSdata.Tables(0).Rows.Count > 0 Then
-                cboJobPosition.DataSource = DSdata.Tables(0)
-                cboJobPosition.DataTextField = "NAME"
-                cboJobPosition.DataValueField = "ID"
-                cboJobPosition.DataBind()
-            End If
+            cboJobPosition.DataSource = DSdata.Tables(0)
+            cboJobPosition.DataTextField = "NAME"
+            cboJobPosition.DataValueField = "ID"
+            cboJobPosition.DataBind()
 
             If JobTemp <> 0 Then
                 cboJobPosition.SelectedValue = JobTemp
@@ -1469,20 +1464,16 @@ Public Class ctrlHU_ChangeInfoNewEdit
                     DSdata = rep1.GET_JP_TO_TITLE(hidOrg.Value, cboTitle.SelectedValue, chkIsReplace.Checked, obj.JOB_POSITION)
                 End Using
 
-                If DSdata.Tables(0).Rows.Count > 0 Then
-                    cboJobPosition.DataSource = DSdata.Tables(0)
-                    cboJobPosition.DataTextField = "NAME"
-                    cboJobPosition.DataValueField = "ID"
-                    cboJobPosition.DataBind()
-                End If
+                cboJobPosition.DataSource = DSdata.Tables(0)
+                cboJobPosition.DataTextField = "NAME"
+                cboJobPosition.DataValueField = "ID"
+                cboJobPosition.DataBind()
                 cboJobPosition.SelectedValue = obj.JOB_POSITION
 
-                If DSdata.Tables(1).Rows.Count > 0 Then
-                    cboJobDescription.DataSource = DSdata.Tables(1)
-                    cboJobDescription.DataTextField = "NAME"
-                    cboJobDescription.DataValueField = "ID"
-                    cboJobDescription.DataBind()
-                End If
+                cboJobDescription.DataSource = DSdata.Tables(1)
+                cboJobDescription.DataTextField = "NAME"
+                cboJobDescription.DataValueField = "ID"
+                cboJobDescription.DataBind()
                 cboJobDescription.SelectedValue = obj.JOB_DESCRIPTION
 
             End Using
@@ -1539,19 +1530,19 @@ Public Class ctrlHU_ChangeInfoNewEdit
                 DSdata = rep.GET_JP_TO_TITLE(hidOrg.Value, cboTitle.SelectedValue, chkIsReplace.Checked, 0)
             End Using
 
-            If DSdata.Tables(0).Rows.Count > 0 Then
-                cboJobPosition.DataSource = DSdata.Tables(0)
-                cboJobPosition.DataTextField = "NAME"
-                cboJobPosition.DataValueField = "ID"
-                cboJobPosition.DataBind()
-            End If
+            'If DSdata.Tables(0).Rows.Count > 0 Then
+            cboJobPosition.DataSource = DSdata.Tables(0)
+            cboJobPosition.DataTextField = "NAME"
+            cboJobPosition.DataValueField = "ID"
+            cboJobPosition.DataBind()
+            ' End If
 
-            If DSdata.Tables(1).Rows.Count > 0 Then
-                cboJobDescription.DataSource = DSdata.Tables(1)
-                cboJobDescription.DataTextField = "NAME"
-                cboJobDescription.DataValueField = "ID"
-                cboJobDescription.DataBind()
-            End If
+            ' If DSdata.Tables(1).Rows.Count > 0 Then
+            cboJobDescription.DataSource = DSdata.Tables(1)
+            cboJobDescription.DataTextField = "NAME"
+            cboJobDescription.DataValueField = "ID"
+            cboJobDescription.DataBind()
+            ' End If
 
         Catch ex As Exception
             Throw ex
@@ -1566,12 +1557,11 @@ Public Class ctrlHU_ChangeInfoNewEdit
                 DSdata = rep.GET_JP_TO_TITLE(hidOrg.Value, cboTitle.SelectedValue, chkIsReplace.Checked, 0)
             End Using
 
-            If DSdata.Tables(0).Rows.Count > 0 Then
-                cboJobPosition.DataSource = DSdata.Tables(0)
-                cboJobPosition.DataTextField = "NAME"
-                cboJobPosition.DataValueField = "ID"
-                cboJobPosition.DataBind()
-            End If
+
+            cboJobPosition.DataSource = DSdata.Tables(0)
+            cboJobPosition.DataTextField = "NAME"
+            cboJobPosition.DataValueField = "ID"
+            cboJobPosition.DataBind()
 
             If chkIsReplace.Checked Then
                 btnEmpReplace.Enabled = True
