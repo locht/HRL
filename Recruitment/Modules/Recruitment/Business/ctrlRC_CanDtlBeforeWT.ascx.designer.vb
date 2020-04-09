@@ -95,6 +95,15 @@ Partial Public Class ctrlRC_CanDtlBeforeWT
     Protected WithEvents RadPaneLeft As Global.Telerik.Web.UI.RadPane
 
     '''<summary>
+    '''valSum control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents valSum As Global.System.Web.UI.WebControls.ValidationSummary
+
+    '''<summary>
     '''txtOrgname control.
     '''</summary>
     '''<remarks>
