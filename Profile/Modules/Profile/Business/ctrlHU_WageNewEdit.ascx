@@ -233,6 +233,17 @@
                         ErrorMessage="<%#  GetYouMustChoseMsg(UI.Wage_BasicSalary) %>" ToolTip="<%#  GetYouMustChoseMsg(UI.Wage_BasicSalary)%>"> 
                     </asp:RequiredFieldValidator>
                 </td>
+                 <td class="lb">
+                    <asp:Label ID="Label4" runat="server" Text="Loại tiền tệ"></asp:Label>
+                    <span class="lbReq">*</span>
+                </td>
+                <td>
+                    <tlk:RadComboBox ID="cboExRate" runat="server">
+                    </tlk:RadComboBox>
+                     <asp:RequiredFieldValidator ID="reExRate" runat="server" ControlToValidate="cboExRate"
+                        ErrorMessage="Bạn phải chọn loại tiền tệ" ToolTip="Bạn phải chọn loại tiền tệ"> 
+                    </asp:RequiredFieldValidator>
+                </td>
                   <td class="lb">
                     <asp:Label ID="lbAllowance_Total" runat="server" Text="Tổng phụ cấp"></asp:Label>
                 </td>
@@ -240,7 +251,9 @@
                     <tlk:RadNumericTextBox ID="rntxtAllowance_Total" runat="server" Enabled="False" SkinID="Money">
                     </tlk:RadNumericTextBox>
                 </td>
-                 <td class="lb">
+            </tr>
+            <tr>
+              <td class="lb">
                     <asp:Label runat="server" ID="lbPercentSalary" Text="% hưởng lương"></asp:Label>
                     <span class="lbReq">*</span>
                 </td>
@@ -251,9 +264,7 @@
                       <asp:RequiredFieldValidator ID="reqPercentSalary" runat="server" ControlToValidate="rnPercentSalary"
                         ErrorMessage="Bạn phải nhập % hưởng lương" ToolTip="Bạn phải nhập % hưởng lương"> 
                     </asp:RequiredFieldValidator>
-                </td>                            
-            </tr>
-            <tr>
+                </td> 
                 <td class="lb">
                     <asp:Label ID="Label3" runat="server" Text="Tỷ giá bảo hiểm"></asp:Label>
                     <span class="lbReq">*</span>
@@ -276,7 +287,16 @@
                     <asp:RequiredFieldValidator ID="reqSalaryInsurance" runat="server" ControlToValidate="rntxtSalaryInsurance"
                         ErrorMessage="Bạn phải nhập Mức lương chính" ToolTip="Bạn phải nhập Mức lương chính"> 
                     </asp:RequiredFieldValidator>
+                <%--<td class="lb">
+                    <asp:Label ID="lbSalary_Total" runat="server" Text="Tổng mức lương"></asp:Label>
                 </td>
+                <td>
+                    <tlk:RadNumericTextBox ID="Salary_Total" MinValue="0" runat="server" Enabled="False" SkinID="Money">
+                    </tlk:RadNumericTextBox>
+                </td>--%>
+            </tr>
+            <tr>
+             </td>
                   <td class="lb">
                     <asp:Label ID="lbTaxTable" runat="server" Text="Biểu thuế"></asp:Label>
                     <span class="lbReq">*</span>
@@ -287,26 +307,6 @@
                     <asp:CustomValidator ID="cusTaxTable" runat="server" ClientValidationFunction="cusTaxTable"
                         ErrorMessage="<%#  GetYouMustChoseMsg(UI.Wage_TaxTable) %>" ToolTip="<%#  GetYouMustChoseMsg(UI.Wage_TaxTable) %>">
                     </asp:CustomValidator>
-                </td>
-                <%--<td class="lb">
-                    <asp:Label ID="lbSalary_Total" runat="server" Text="Tổng mức lương"></asp:Label>
-                </td>
-                <td>
-                    <tlk:RadNumericTextBox ID="Salary_Total" MinValue="0" runat="server" Enabled="False" SkinID="Money">
-                    </tlk:RadNumericTextBox>
-                </td>--%>
-            </tr>
-            <tr>
-              <td class="lb">
-                    <asp:Label ID="Label4" runat="server" Text="Loại tiền tệ"></asp:Label>
-                    <span class="lbReq">*</span>
-                </td>
-                <td>
-                    <tlk:RadComboBox ID="cboExRate" runat="server">
-                    </tlk:RadComboBox>
-                    <asp:RequiredFieldValidator ID="reExRate" runat="server" ControlToValidate="cboExRate" 
-                    ErrorMessage="Bạn phải chọn loại tiền tệ" ToolTip="Bạn phải chọn loại tiền tệ">
-                    </asp:RequiredFieldValidator>
                 </td>
             </tr>
             <%--<tr >

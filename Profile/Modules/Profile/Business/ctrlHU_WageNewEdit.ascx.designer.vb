@@ -491,6 +491,33 @@ Partial Public Class ctrlHU_WageNewEdit
     Protected WithEvents reqdBasicSalary As Global.System.Web.UI.WebControls.RequiredFieldValidator
 
     '''<summary>
+    '''Label4 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents Label4 As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''cboExRate control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents cboExRate As Global.Telerik.Web.UI.RadComboBox
+
+    '''<summary>
+    '''reExRate control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents reExRate As Global.System.Web.UI.WebControls.RequiredFieldValidator
+
+    '''<summary>
     '''lbAllowance_Total control.
     '''</summary>
     '''<remarks>
@@ -615,33 +642,6 @@ Partial Public Class ctrlHU_WageNewEdit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents cusTaxTable As Global.System.Web.UI.WebControls.CustomValidator
-
-    '''<summary>
-    '''Label4 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents Label4 As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
-    '''cboExRate control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents cboExRate As Global.Telerik.Web.UI.RadComboBox
-
-    '''<summary>
-    '''reExRate control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents reExRate As Global.System.Web.UI.WebControls.RequiredFieldValidator
 
     '''<summary>
     '''lbOtherSalary4 control.
