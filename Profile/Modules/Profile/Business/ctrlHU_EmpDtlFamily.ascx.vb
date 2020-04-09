@@ -9,7 +9,7 @@ Public Class ctrlHU_EmpDtlFamily
     Inherits CommonView
     Dim employeeCode As String
     'Public Overrides Property MustAuthorize As Boolean = False
-
+    Protected WithEvents ctrlFindEmployeePopup As ctrlFindEmployeePopup
 #Region "Properties"
     Property EmployeeInfo As EmployeeDTO
         Get
@@ -17,6 +17,15 @@ Public Class ctrlHU_EmpDtlFamily
         End Get
         Set(ByVal value As EmployeeDTO)
             PageViewState(Me.ID & "_EmployeeInfo") = value
+        End Set
+    End Property
+    '1 - IsEmployee
+    Property isLoadPopup As Integer
+        Get
+            Return ViewState(Me.ID & "_isLoadPopup")
+        End Get
+        Set(ByVal value As Integer)
+            ViewState(Me.ID & "_isLoadPopup") = value
         End Set
     End Property
 
@@ -115,7 +124,7 @@ Public Class ctrlHU_EmpDtlFamily
 
     Public Overrides Sub Refresh(Optional ByVal Message As String = "")
         Try
-           
+
             Me.CurrentPlaceHolder = Me.ViewName
             ctrlEmpBasicInfo.SetProperty("CurrentPlaceHolder", Me.CurrentPlaceHolder)
 
@@ -165,7 +174,7 @@ Public Class ctrlHU_EmpDtlFamily
                 'dtPlace = rep.GetProvinceList(True)
                 ''FillRadCombobox(cboProvince_City1, dtPlace, "NAME", "ID")
                 'FillRadCombobox(cboProvince_City2, dtPlace, "NAME", "ID")
-               
+
             End Using
         Catch ex As Exception
             DisplayException(Me.ViewName, Me.ID, ex)
@@ -192,7 +201,11 @@ Public Class ctrlHU_EmpDtlFamily
                         Exit Sub
                     End If
                 Case TOOLBARITEM_EDIT
-
+                    If chkIsEmployee.Checked Then
+                        btnIsEmployee.ReadOnly = False
+                    Else
+                        btnIsEmployee.ReadOnly = True
+                    End If
 
                     If rgFamily.SelectedItems.Count = 0 Then
                         ShowMessage(Translate(CommonMessage.MESSAGE_NOT_SELECT_ROW), NotifyType.Warning)
@@ -216,10 +229,6 @@ Public Class ctrlHU_EmpDtlFamily
                     End If
                 Case TOOLBARITEM_SAVE
                     If Page.IsValid Then
-                        If chkIsDeduct.Checked = True And rdDeductFrom.SelectedDate Is Nothing Then
-                            ShowMessage(Translate("Chưa chọn ngày giảm trừ"), Utilities.NotifyType.Warning)
-                            Exit Sub
-                        End If
                         If txtFullName.Text = "" Then
                             ShowMessage(Translate("Bạn phải nhập Họ tên"), Utilities.NotifyType.Warning)
                             Exit Sub
@@ -244,7 +253,7 @@ Public Class ctrlHU_EmpDtlFamily
                                     ClearControlValue(txtFullName, cboNguyenQuan, cboRelationship, rdBirthDate, txtIDNO, txtAdress1, txtAdress_TT,
                                                         chkIsDeduct, rdDeductReg, rdDeductFrom, rdDeductTo, txtRemark, txtTax, txtCareer, txtTitle,
                                                          txtSoHoKhau, txtMaHoGiaDinh, cboProvince_City1, cboDistrict1, cboCommune1,
-                                                          cboProvince_City2, cboDistrict2, cboCommune2, txtHamlet1, chkHousehold, chkDaMat)
+                                                          cboProvince_City2, cboDistrict2, cboCommune2, txtHamlet1, chkHousehold, chkDaMat, chkIsEmployee, rdDieDate, txtCompanyWork)
                                     rgFamily.Rebind()
                                     ExcuteScript("Clear", "clRadDatePicker()")
                                 Else
@@ -257,7 +266,7 @@ Public Class ctrlHU_EmpDtlFamily
                                     ClearControlValue(txtFullName, cboNguyenQuan, cboRelationship, rdBirthDate, txtIDNO, txtAdress1, txtAdress_TT,
                                                         chkIsDeduct, rdDeductReg, rdDeductFrom, rdDeductTo, txtRemark, txtTax, txtCareer, txtTitle,
                                                          txtSoHoKhau, txtMaHoGiaDinh, cboProvince_City1, cboDistrict1, cboCommune1,
-                                                          cboProvince_City2, cboDistrict2, cboCommune2, txtHamlet1, chkHousehold, chkDaMat)
+                                                          cboProvince_City2, cboDistrict2, cboCommune2, txtHamlet1, chkHousehold, chkDaMat, chkIsEmployee, rdDieDate, txtCompanyWork)
                                     rgFamily.Rebind()
                                     ExcuteScript("Clear", "clRadDatePicker()")
                                 Else
@@ -300,6 +309,7 @@ Public Class ctrlHU_EmpDtlFamily
             ctrlEmpBasicInfo.SetProperty("CurrentState", Me.CurrentState)
             ctrlEmpBasicInfo.Refresh()
             UpdateControlState()
+            rgFamily_NeedDataSource(Nothing, Nothing)
         Catch ex As Exception
             DisplayException(Me.ViewName, Me.ID, ex)
         End Try
@@ -380,7 +390,7 @@ Public Class ctrlHU_EmpDtlFamily
             chkHousehold.Checked = item.GetDataKeyValue("IS_OWNER")
             chkDaMat.Checked = item.GetDataKeyValue("IS_PASS")
 
-            
+
 
             Using rep As New ProfileRepository
                 If IsNumeric(item.GetDataKeyValue("AD_PROVINCE_ID")) Then
@@ -506,7 +516,7 @@ Public Class ctrlHU_EmpDtlFamily
                     ClearControlValue(txtFullName, cboNguyenQuan, cboRelationship, rdBirthDate, txtIDNO, txtAdress1, txtAdress_TT,
                                         chkIsDeduct, rdDeductReg, rdDeductFrom, rdDeductTo, txtRemark, txtTax, txtCareer, txtTitle, cboGender, rdIDDate, txtIDPlace, cboNationlity, txtPhone, rdMSTDate, txtBIRTH_CODE, cboNATIONALITYFAMILY, cbTempKtPROVINCE_ID, cbTempKtDISTRICT_ID, cbTempKtWARD_ID, txtQuyen, txt_MSTPLACE,
                                            txtSoHoKhau, txtMaHoGiaDinh, cboProvince_City1, cboDistrict1, cboCommune1,
-                                                          cboProvince_City2, cboDistrict2, cboCommune2, txtHamlet1, chkHousehold, chkDaMat)
+                                                          cboProvince_City2, cboDistrict2, cboCommune2, txtHamlet1, chkHousehold, chkDaMat, chkIsEmployee, rdDieDate, txtCompanyWork)
                 Else
                     ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), Utilities.NotifyType.Error)
                 End If
@@ -615,19 +625,6 @@ Public Class ctrlHU_EmpDtlFamily
         End If
     End Sub
 
-    Private Sub chkIsDeduct_CheckedChanged(sender As Object, e As System.EventArgs) Handles chkIsDeduct.CheckedChanged
-        If chkIsDeduct.Checked Then
-            rdDeductFrom.Enabled = True
-            rdDeductTo.Enabled = True
-            rdDeductReg.Enabled = True
-            txtTax.Enabled = True
-        Else
-            rdDeductReg.Enabled = False
-            rdDeductFrom.Enabled = False
-            rdDeductTo.Enabled = False
-            txtTax.Enabled = True
-        End If
-    End Sub
 
     Private Sub chkDaMat_CheckedChanged(sender As Object, e As System.EventArgs) Handles chkDaMat.CheckedChanged
         If chkDaMat.Checked Then
@@ -772,12 +769,34 @@ Public Class ctrlHU_EmpDtlFamily
                 Case STATE_NEW
                     EnabledGrid(rgFamily, False)
                     SetStatusControl(True)
+                    btnIsEmployee.ReadOnly = True
                 Case STATE_EDIT
                     EnabledGrid(rgFamily, False)
                     SetStatusControl(True)
+                    btnIsEmployee.ReadOnly = True
                 Case STATE_NORMAL
                     EnabledGrid(rgFamily, True)
                     SetStatusControl(False)
+                    btnIsEmployee.ReadOnly = True
+            End Select
+            If chkIsEmployee.Checked Then
+                If CurrentState = STATE_EDIT Or CurrentState = STATE_NEW Then
+                    btnIsEmployee.ReadOnly = False
+                End If
+            Else
+                btnIsEmployee.ReadOnly = True
+            End If
+            Select Case isLoadPopup
+                Case 1
+                    If Not FindIsEmployee.Controls.Contains(ctrlFindEmployeePopup) Then
+                        ctrlFindEmployeePopup = Me.Register("ctrlFindEmployeePopup", "Common", "ctrlFindEmployeePopup")
+                        'If Contract.ORG_ID <> 0 Then
+                        '    ctrlFindEmployeePopup.CurrentValue = Contract.ORG_ID.ToString
+                        'End If
+                        ctrlFindEmployeePopup.MustHaveContract = True
+                        FindIsEmployee.Controls.Add(ctrlFindEmployeePopup)
+                        ctrlFindEmployeePopup.MultiSelect = False
+                    End If
             End Select
             Me.Send(CurrentState)
         Catch ex As Exception
@@ -802,6 +821,9 @@ Public Class ctrlHU_EmpDtlFamily
         txtTax.ReadOnly = Not sTrangThai
         txtIDNO.ReadOnly = Not sTrangThai
         txtFullName.ReadOnly = Not sTrangThai
+        chkIsEmployee.Enabled = sTrangThai
+        rdDieDate.Enabled = sTrangThai
+        txtCompanyWork.ReadOnly = Not sTrangThai
         chkIsDeduct.Enabled = sTrangThai
         txtCareer.ReadOnly = Not sTrangThai
         txtTitle.ReadOnly = Not sTrangThai
@@ -841,7 +863,7 @@ Public Class ctrlHU_EmpDtlFamily
                           hidFamilyID, chkIsDeduct, cboNguyenQuan, cboRelationship, cboGender, rdIDDate, txtIDPlace, cboNationlity, txtPhone, rdMSTDate, txtBIRTH_CODE, cboNATIONALITYFAMILY, cbTempKtPROVINCE_ID, cbTempKtDISTRICT_ID, cbTempKtWARD_ID, txtQuyen, txt_MSTPLACE,
                           rdBirthDate, rdDeductFrom, rdDeductReg, rdDeductTo,
                                                          txtSoHoKhau, txtMaHoGiaDinh, cboProvince_City1, cboDistrict1, cboCommune1,
-                                                          cboProvince_City2, cboDistrict2, cboCommune2, txtHamlet1, chkHousehold, chkDaMat)
+                                                          cboProvince_City2, cboDistrict2, cboCommune2, txtHamlet1, chkHousehold, chkDaMat, chkIsEmployee, rdDieDate, txtCompanyWork)
         rgFamily.SelectedIndexes.Clear()
     End Sub
 
@@ -855,7 +877,128 @@ Public Class ctrlHU_EmpDtlFamily
             Throw ex
         End Try
     End Function
+    Private Sub btnIsEmployee_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnIsEmployee.Click
+        Try
+            isLoadPopup = 1
+            UpdateControlState()
+            ctrlFindEmployeePopup.Show()
+        Catch ex As Exception
+            DisplayException(Me.ViewName, Me.ID, ex)
+        End Try
+    End Sub
+    Private Sub ctrlFindEmployeePopup_CancelClicked(ByVal sender As Object, ByVal e As System.EventArgs) Handles ctrlFindEmployeePopup.CancelClicked
+        Try
+            UpdateControlState()
+        Catch ex As Exception
+            DisplayException(Me.ViewName, Me.ID, ex)
+        End Try
+    End Sub
+    Private Sub ctrlFindEmployeePopup_EmployeeSelected(ByVal sender As Object, ByVal e As System.EventArgs) Handles ctrlFindEmployeePopup.EmployeeSelected
+        Dim lstCommonEmployee As New List(Of CommonBusiness.EmployeePopupFindDTO)
+        Dim rep As New ProfileRepository
+        Dim dtfamily As New ProfileBusinessRepository
+        Dim objFamily As FamilyDTO
+        Dim objWard As New Ward_DTO
+        Dim emp As EmployeeDTO
+        Dim empCV As EmployeeCVDTO
+        Dim empEdu As EmployeeEduDTO
+        Dim empHealth As EmployeeHealthDTO
+        Dim empUniform As UniformSizeDTO
+        Try
+            IDSelect = Nothing
+            ClearControlValue(txtFullName, txtAdress1, txtAdress_TT, txtIDNO, txtRemark, txtTax, txtCareer, txtTitle, chkIsDeduct, cboNguyenQuan, cboRelationship, cboGender, rdIDDate, cboNationlity, txtPhone, rdMSTDate, txtBIRTH_CODE, cboNATIONALITYFAMILY, cbTempKtPROVINCE_ID, cbTempKtDISTRICT_ID, cbTempKtWARD_ID, txtQuyen, txt_MSTPLACE,
+                          rdBirthDate, rdDeductFrom, rdDeductReg, rdDeductTo,
+                                                         txtSoHoKhau, txtMaHoGiaDinh, cboProvince_City1, cboDistrict1, cboCommune1,
+                                                          cboProvince_City2, cboDistrict2, cboCommune2, txtHamlet1, chkHousehold, chkDaMat, chkIsEmployee, rdDieDate, txtCompanyWork)
+            lstCommonEmployee = CType(ctrlFindEmployeePopup.SelectedEmployee, List(Of CommonBusiness.EmployeePopupFindDTO))
+            If lstCommonEmployee.Count <> 0 Then
+                Dim item = lstCommonEmployee(0)
+                emp = dtfamily.GetEmployeeByEmployeeID(item.EMPLOYEE_ID) ' kiểm tra lại hàm load thiếu thông tin 
+                dtfamily.GetEmployeeAllByID(item.EMPLOYEE_ID, empCV, empEdu, empHealth, empUniform)
+                'Họ và tên đệm(lấy theo FIRST_NAME_VN), Tên(lấy theo LAST_NAME_VN),
+                hidEmployeeid.Value = item.EMPLOYEE_ID
+                txtFullName.Text = emp.FULLNAME_VN
+                'Ngày sinh, Giới tính
+                rdBirthDate.SelectedDate = empCV.BIRTH_DATE
+                If empCV.GENDER IsNot Nothing Then
+                    cboGender.SelectedValue = empCV.GENDER
+                End If
+
+                'Nơi làm viêc (lấy theo trường phòng ban của CBNV) Nghề nghiệp (lấy theo trường vị trí công việc của CBNV)
+                txtCareer.Text = emp.TITLE_NAME_VN
+                'Số CMND, Ngày cấp CMND, Nơi cấp CMND,
+                If empCV IsNot Nothing Then
+                    txtIDNO.Text = empCV.ID_NO
+                    rdIDDate.SelectedDate = empCV.ID_DATE
+                    'If empCV.ID_PLACE IsNot Nothing Then
+                    '    cboIDPlace.SelectedValue = empCV.ID_PLACE
+                    'End If
+                    'Chủ hộ, Số hộ khẩu, Mã hộ gia đình
+                    chkHousehold.Checked = empCV.IS_CHUHO
+                    txtSoHoKhau.Text = empCV.NO_HOUSEHOLDS
+                    txtMaHoGiaDinh.Text = empCV.CODE_HOUSEHOLDS
+                    'Địa chỉ thường trú, Quốc gia, Tỉnh/TP, Quận/Huyện, Phường/Xã, Thôn/Ấp
+                    txtAdress1.Text = empCV.PER_ADDRESS
+                    If empCV.NATIONALITY IsNot Nothing Then
+                        cboNationlity.SelectedValue = empCV.NATIONALITY
+                    End If
+                    If empCV.PER_PROVINCE IsNot Nothing Then
+                        cboProvince_City1.SelectedValue = empCV.PER_PROVINCE
+                    End If
+
+                    If empCV.PER_DISTRICT IsNot Nothing Then
+                        cboDistrict1.SelectedValue = empCV.PER_DISTRICT
+                        cboDistrict1.Text = empCV.PER_DISTRICT_NAME
+                    End If
+                    If empCV.PER_WARD IsNot Nothing Then
+                        cboCommune1.SelectedValue = empCV.PER_WARD
+                        cboCommune1.Text = empCV.PER_WARD_NAME
+                    End If
+                    txtHamlet1.Text = empCV.VILLAGE
+                    'Địa chỉ tạm trú, Tỉnh/TP, Quận/Huyện, Phường/Xã
+                    txtAdress_TT.Text = empCV.NAV_ADDRESS
+                    If empCV.NAV_PROVINCE IsNot Nothing Then
+                        cboProvince_City2.SelectedValue = empCV.NAV_PROVINCE
+                    End If
+                    If empCV.NAV_DISTRICT IsNot Nothing Then
+                        cboDistrict2.SelectedValue = empCV.NAV_DISTRICT
+                        cboDistrict2.Text = empCV.NAV_DISTRICT_NAME
+                    End If
+                    If empCV.NAV_WARD IsNot Nothing Then
+                        cboCommune2.SelectedValue = empCV.NAV_WARD
+                        cboCommune2.Text = empCV.NAV_WARD_NAME
+                    End If
+                    'Số điện thoại
+                    txtPhone.Text = empCV.MOBILE_PHONE
+                    'Mã số thuế, Ngày cấp MST, Nơi cấp mã số thuế
+                    txtTax.Text = empCV.PIT_CODE
+                    If empCV.PIT_CODE_DATE IsNot Nothing Then
+                        rdMSTDate.SelectedDate = empCV.PIT_CODE_DATE
+                    End If
+                    txt_MSTPLACE.Text = empCV.PIT_CODE_PLACE
+                End If
+            End If
+            isLoadPopup = 0
+            UpdateControlState()
+            rep.Dispose()
+        Catch ex As Exception
+            DisplayException(Me.ViewName, Me.ID, ex)
+        End Try
+    End Sub
+    Private Sub chkIsEmployee_CheckedChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles chkIsEmployee.CheckedChanged
+        ClearControlValue(txtFullName, txtAdress1, txtAdress_TT, txtIDNO, txtRemark, txtTax, txtCareer, txtTitle, chkIsDeduct, cboNguyenQuan, cboRelationship, cboGender, rdIDDate, cboNationlity, txtPhone, rdMSTDate, txtBIRTH_CODE, cboNATIONALITYFAMILY, cbTempKtPROVINCE_ID, cbTempKtDISTRICT_ID, cbTempKtWARD_ID, txtQuyen, txt_MSTPLACE,
+                        rdBirthDate, rdDeductFrom, rdDeductReg, rdDeductTo,
+                                                       txtSoHoKhau, txtMaHoGiaDinh, cboProvince_City1, cboDistrict1, cboCommune1,
+                                                        cboProvince_City2, cboDistrict2, cboCommune2, txtHamlet1, chkHousehold, chkDaMat, rdDieDate, txtCompanyWork)
+        If chkIsEmployee.Checked Then
+            If CurrentState = STATE_EDIT Or CurrentState = STATE_NEW Then
+                btnIsEmployee.ReadOnly = False
+            End If
+        Else
+            btnIsEmployee.ReadOnly = True
+        End If
+    End Sub
 #End Region
 
-   
+
 End Class
