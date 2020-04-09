@@ -1,8 +1,8 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for Oracle database
 -- --------------------------------------------------
--- Date Created: 04/09/2020 3:54:01 PM
--- Generated from EDMX file: F:\WORKING\acv_19\ProfileDAL\ProfileContext.edmx
+-- Date Created: 9/4/2020 4:39:46 PM
+-- Generated from EDMX file: G:\Cty TVC\Source\acv_19\ProfileDAL\ProfileContext.edmx
 -- --------------------------------------------------
 
 -- --------------------------------------------------
@@ -1286,7 +1286,8 @@ CREATE TABLE "dbo"."HU_WORKING_ALLOW" (
    "AMOUNT" NUMBER(38,0) NULL,
    "IS_INSURRANCE" NUMBER(5,0) NULL,
    "EFFECT_DATE" DATE NULL,
-   "EXPIRE_DATE" DATE NULL
+   "EXPIRE_DATE" DATE NULL,
+   "AMOUNT_EX" NUMBER(38,0) NULL
 );
 
 -- Creating table 'HU_DYNAMIC_REPORT'
@@ -2850,7 +2851,12 @@ CREATE TABLE "dbo"."HU_WORKING" (
    "EFFECT_DH_DATE" DATE NULL,
    "IS_HURTFUL" NUMBER(38,0) NULL,
    "END_DH_DATE" DATE NULL,
-   "EMP_REPLACE" NUMBER(38,0) NULL
+   "EMP_REPLACE" NUMBER(38,0) NULL,
+   "REASON_EDIT_EFDATE" NVARCHAR2(1023) NULL,
+   "EXRATE_ID" NUMBER(38,0) NULL,
+   "SAL_BASIC_MIN" NUMBER(38,0) NULL,
+   "SAL_BASIC_MAX" NUMBER(38,0) NULL,
+   "SAL_RATE" NUMBER(38,0) NULL
 );
 
 -- Creating table 'PA_SALARY_TYPE'

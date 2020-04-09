@@ -18,7 +18,7 @@ Imports System.Runtime.Serialization
 Imports System.Xml.Serialization
 
 
-<Assembly: EdmSchemaAttribute("c6435e52-55bd-405b-b55d-bea8958ddbee")>
+<Assembly: EdmSchemaAttribute("1d1acbf8-f109-4125-8ed5-ea003cec55f0")>
 #Region "EDM Relationship Metadata"
 <Assembly: EdmRelationshipAttribute("ProfileModel", "FK_HU_NAT_HU_PRO", "HU_NATION", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_NATION), "HU_PROVINCE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_PROVINCE), True)>
 <Assembly: EdmRelationshipAttribute("ProfileModel", "FK_HU_PRO_HU_DIS", "HU_PROVINCE", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_PROVINCE), "HU_DISTRICT", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_DISTRICT), True)>
@@ -67121,6 +67121,131 @@ Public Partial Class HU_WORKING
     Private Partial Sub OnEMP_REPLACEChanged()
     End Sub
 
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property REASON_EDIT_EFDATE() As Global.System.String
+        Get
+            Return _REASON_EDIT_EFDATE
+        End Get
+        Set
+            OnREASON_EDIT_EFDATEChanging(value)
+            ReportPropertyChanging("REASON_EDIT_EFDATE")
+            _REASON_EDIT_EFDATE = StructuralObject.SetValidValue(value, true)
+            ReportPropertyChanged("REASON_EDIT_EFDATE")
+            OnREASON_EDIT_EFDATEChanged()
+        End Set
+    End Property
+
+    Private _REASON_EDIT_EFDATE As Global.System.String
+    Private Partial Sub OnREASON_EDIT_EFDATEChanging(value As Global.System.String)
+    End Sub
+
+    Private Partial Sub OnREASON_EDIT_EFDATEChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property EXRATE_ID() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _EXRATE_ID
+        End Get
+        Set
+            OnEXRATE_IDChanging(value)
+            ReportPropertyChanging("EXRATE_ID")
+            _EXRATE_ID = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("EXRATE_ID")
+            OnEXRATE_IDChanged()
+        End Set
+    End Property
+
+    Private _EXRATE_ID As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnEXRATE_IDChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnEXRATE_IDChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property SAL_BASIC_MIN() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _SAL_BASIC_MIN
+        End Get
+        Set
+            OnSAL_BASIC_MINChanging(value)
+            ReportPropertyChanging("SAL_BASIC_MIN")
+            _SAL_BASIC_MIN = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("SAL_BASIC_MIN")
+            OnSAL_BASIC_MINChanged()
+        End Set
+    End Property
+
+    Private _SAL_BASIC_MIN As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnSAL_BASIC_MINChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnSAL_BASIC_MINChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property SAL_BASIC_MAX() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _SAL_BASIC_MAX
+        End Get
+        Set
+            OnSAL_BASIC_MAXChanging(value)
+            ReportPropertyChanging("SAL_BASIC_MAX")
+            _SAL_BASIC_MAX = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("SAL_BASIC_MAX")
+            OnSAL_BASIC_MAXChanged()
+        End Set
+    End Property
+
+    Private _SAL_BASIC_MAX As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnSAL_BASIC_MAXChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnSAL_BASIC_MAXChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property SAL_RATE() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _SAL_RATE
+        End Get
+        Set
+            OnSAL_RATEChanging(value)
+            ReportPropertyChanging("SAL_RATE")
+            _SAL_RATE = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("SAL_RATE")
+            OnSAL_RATEChanged()
+        End Set
+    End Property
+
+    Private _SAL_RATE As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnSAL_RATEChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnSAL_RATEChanged()
+    End Sub
+
     #End Region
 
 End Class
@@ -67324,6 +67449,31 @@ Public Partial Class HU_WORKING_ALLOW
     End Sub
 
     Private Partial Sub OnEXPIRE_DATEChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property AMOUNT_EX() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _AMOUNT_EX
+        End Get
+        Set
+            OnAMOUNT_EXChanging(value)
+            ReportPropertyChanging("AMOUNT_EX")
+            _AMOUNT_EX = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("AMOUNT_EX")
+            OnAMOUNT_EXChanged()
+        End Set
+    End Property
+
+    Private _AMOUNT_EX As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnAMOUNT_EXChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnAMOUNT_EXChanged()
     End Sub
 
     #End Region
