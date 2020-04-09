@@ -876,7 +876,7 @@ Public Class ctrlRC_ImportCV
                         rows("ERROR") = rows("ERROR") + "Ứng viên đang làm việc tại ACV,"
                     End If
                     If Not rep.ValidateInsertCandidate("", rows("ID_NO"), rows("FULLNAME_VN"), rows("BIRTH_DAY"), "TERMINATE") Then
-                        rows("ERROR") = rows("ERROR") + "Ứng viên đã từng làm việc tại ACV,"
+                        rows("ERROR") = rows("ERROR") + "Ứng viên đã nghỉ việc ACV,"
                     End If
                 End If
                 If IsDBNull(rows("FIRST_NAME")) Or rows("FIRST_NAME").ToString = "" Then

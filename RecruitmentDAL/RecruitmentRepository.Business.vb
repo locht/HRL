@@ -1918,7 +1918,7 @@ Partial Class RecruitmentRepository
 
                         Return ((From e In Context.HU_EMPLOYEE
                                  From cv In Context.HU_EMPLOYEE_CV.Where(Function(f) f.EMPLOYEE_ID = e.ID)
-                                 Where (cv.BIRTH_DATE = dBirthDate And e.FULLNAME_VN.ToUpper = sFullName.ToUpper) Or (cv.ID_NO = sID_No)).Count = 0)
+                                 Where ((cv.BIRTH_DATE = dBirthDate And e.FULLNAME_VN.ToUpper = sFullName.ToUpper) Or (cv.ID_NO = sID_No)) And e.WORK_STATUS <> 257).Count = 0)
                     End If
                 Case "TERMINATE"
                     If sID_No <> "" Or (dBirthDate.ToString <> "" And sFullName <> "") Then
