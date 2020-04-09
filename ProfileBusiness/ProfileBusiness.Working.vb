@@ -9,6 +9,20 @@ Namespace ProfileBusiness.ServiceImplementations
     Partial Class ProfileBusiness
 
 #Region "Working"
+
+        Public Function getDtByEmpIDandEffectdate(ByVal obj As WorkingDTO) As List(Of WorkingDTO) _
+                      Implements ServiceContracts.IProfileBusiness.getDtByEmpIDandEffectdate
+            Using rep As New ProfileRepository
+                Try
+
+                    Dim lst = rep.getDtByEmpIDandEffectdate(obj)
+                    Return lst
+                Catch ex As Exception
+
+                    Throw ex
+                End Try
+            End Using
+        End Function        
         Public Function ApproveListChangeInfoMng(ByVal listID As List(Of Decimal), ByVal log As UserLog) As Boolean Implements ServiceContracts.IProfileBusiness.ApproveListChangeInfoMng
             Using rep As New ProfileRepository
                 Try
@@ -316,7 +330,7 @@ Namespace ProfileBusiness.ServiceImplementations
             End Using
         End Function
 
-        Public Function GetChangeInfoImport(param As ParamDTO, log As UserLog) As DataSet _
+        Public Function GetChangeInfoImport(ByVal param As ParamDTO, ByVal log As UserLog) As DataSet _
             Implements ServiceContracts.IProfileBusiness.GetChangeInfoImport
             Using rep As New ProfileRepository
                 Try
@@ -329,7 +343,7 @@ Namespace ProfileBusiness.ServiceImplementations
             End Using
         End Function
 
-        Public Function ImportChangeInfo(lstData As List(Of WorkingDTO),
+        Public Function ImportChangeInfo(ByVal lstData As List(Of WorkingDTO),
                                      ByRef dtError As DataTable,
                                      ByVal log As UserLog) As Boolean _
                                  Implements ServiceContracts.IProfileBusiness.ImportChangeInfo

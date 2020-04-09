@@ -7,6 +7,30 @@ Imports System.Reflection
 Partial Class ProfileRepository
 
 #Region "Working"
+    ' lấy ra title va org theo employee ID và effectdate
+    Public Function getDtByEmpIDandEffectdate(ByVal obj As WorkingDTO) As List(Of WorkingDTO)
+        Try
+            Dim query = From p In Context.HU_WORKING Where p.EMPLOYEE_ID = obj.EMPLOYEE_ID And p.EFFECT_DATE = obj.EFFECT_DATE
+                    From emp In Context.HU_EMPLOYEE.Where(Function(f) f.ID = p.EMPLOYEE_ID).DefaultIfEmpty
+                    From title In Context.HU_TITLE.Where(Function(f) f.ID = p.TITLE_ID).DefaultIfEmpty
+                    From org In Context.HU_ORGANIZATION.Where(Function(f) f.ID = p.ORG_ID).DefaultIfEmpty
+                    Select New WorkingDTO With {.ID = p.ID,
+                                                .EMPLOYEE_ID = p.EMPLOYEE_ID,
+                                                .EMPLOYEE_CODE = emp.EMPLOYEE_CODE,
+                                                .TITLE_ID = p.TITLE_ID,
+                                                .TITLE_NAME = title.NAME_VN,
+                                                .ORG_ID = p.ORG_ID,
+                                                .ORG_NAME = org.NAME_VN}
+            Dim list = query.OrderBy("ID DESC")
+            list = list.FirstOrDefault
+            list = list.ToList
+            Return list
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iProfile")
+            Throw ex
+        End Try
+    End Function
+
     'check phê duyệt và đã có đính kèm file hay chưa
     'yêu cầu nếu phê duyệt thì phải có phải đính kèm
     'màn hinh luong va hop dong
@@ -1401,6 +1425,12 @@ Partial Class ProfileRepository
         Dim iCount As Integer = 0
 
         Try
+            ' nếu phê duyệt trừ đi 1 ngày vào ngày hết hiệu lực với HSL cũ gần nhất trước đó
+            If objWorking.STATUS_ID = ProfileCommon.DECISION_STATUS.APPROVE_ID Then
+                Dim HSL_old = (From p In Context.HU_WORKING Where p.EMPLOYEE_ID = objWorking.EMPLOYEE_ID Order By p.ID Descending).FirstOrDefault
+                HSL_old.EXPIRE_DATE = objWorking.EFFECT_DATE.Value.AddDays(-1)
+                Context.HU_WORKING.AddObject(HSL_old)
+            End If
             Dim objWorkingData As New HU_WORKING
             objWorkingData.ID = Utilities.GetNextSequence(Context, Context.HU_WORKING.EntitySet.Name)
             objWorking.ID = objWorkingData.ID
@@ -1459,6 +1489,10 @@ Partial Class ProfileRepository
             ' nếu phê duyệt
             If objWorking.STATUS_ID = ProfileCommon.DECISION_STATUS.APPROVE_ID Then
                 ApproveWorking(objWorking)
+                Dim HSL_old = (From p In Context.HU_WORKING Where p.EMPLOYEE_ID = objWorking.EMPLOYEE_ID Order By p.ID Descending).FirstOrDefault
+                'trừ đi 1 ngày vào ngày hết hiệu lực với HSL cũ gần nhất trước đó khi có trạng thái phê duyệt
+                HSL_old.EXPIRE_DATE = objWorking.EFFECT_DATE.Value.AddDays(-1)
+                Context.HU_WORKING.AddObject(HSL_old)
             End If
 
             If objWorking.lstAllowance IsNot Nothing Then
@@ -1989,7 +2023,6 @@ Partial Class ProfileRepository
             WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iProfile")
             Throw ex
         End Try
-
     End Function
 
     Public Function ValidateWorking(ByVal sType As String, ByVal obj As WorkingDTO) As Boolean

@@ -1730,6 +1730,8 @@ Namespace ProfileBusiness.ServiceContracts
 
 #Region "Working"
         <OperationContract()>
+        Function getDtByEmpIDandEffectdate(ByVal obj As WorkingDTO) As List(Of WorkingDTO)
+        <OperationContract()>
         Function ApproveListChangeInfoMng(ByVal listID As List(Of Decimal), ByVal log As UserLog) As Boolean
         <OperationContract()>
         Function GetWorking(ByVal _filter As WorkingDTO,

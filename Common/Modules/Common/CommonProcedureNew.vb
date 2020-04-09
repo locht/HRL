@@ -9,7 +9,7 @@ Imports Common.CommonBusiness
 Public Class CommonProcedureNew
     Private rep As New HistaffFrameworkRepository
 
-    Function GET_MIN_AMOUNT(ByVal empId As Decimal, ByVal effect_date As Date) As Decimal
+    Function GET_MIN_AMOUNT(ByVal empId As Decimal, ByVal effect_date As Date) As Decimal?
         Try
             Dim obj = rep.ExecuteStoreScalar("PKG_COMMON_LIST.GET_MIN_AMOUNT",
                                                 New List(Of Object)(New Object() {empId, effect_date, OUT_NUMBER}))

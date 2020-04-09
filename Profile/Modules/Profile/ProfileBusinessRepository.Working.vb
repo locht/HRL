@@ -4,6 +4,21 @@ Partial Public Class ProfileBusinessRepository
     Inherits ProfileRepositoryBase
 
 #Region "Working"
+    Public Function getDtByEmpIDandEffectdate(ByVal obj As WorkingDTO) As List(Of WorkingDTO)
+        Dim lstWorking As List(Of WorkingDTO)
+
+        Using rep As New ProfileBusinessClient
+            Try
+                lstWorking = rep.getDtByEmpIDandEffectdate(obj)
+                Return lstWorking
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+
+        Return Nothing
+    End Function
     Public Function ApproveListChangeInfoMng(ByVal listID As List(Of Decimal)) As Boolean
         Using rep As New ProfileBusinessClient
             Try
@@ -359,7 +374,7 @@ Partial Public Class ProfileBusinessRepository
 
     End Function
 
-    Public Function GetChangeInfoImport(param As ProfileBusiness.ParamDTO) As DataSet
+    Public Function GetChangeInfoImport(ByVal param As ProfileBusiness.ParamDTO) As DataSet
         Using rep As New ProfileBusinessClient
             Try
                 Return rep.GetChangeInfoImport(param, Log)
@@ -371,7 +386,7 @@ Partial Public Class ProfileBusinessRepository
 
     End Function
 
-    Public Function ImportChangeInfo(lstData As List(Of WorkingDTO),
+    Public Function ImportChangeInfo(ByVal lstData As List(Of WorkingDTO),
                                      ByRef dtError As DataTable) As Boolean
         Using rep As New ProfileBusinessClient
             Try

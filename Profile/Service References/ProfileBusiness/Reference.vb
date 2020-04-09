@@ -53634,6 +53634,9 @@ Namespace ProfileBusiness
      System.ServiceModel.ServiceContractAttribute(ConfigurationName:="ProfileBusiness.IProfileBusiness")>  _
     Public Interface IProfileBusiness
         
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/DeleteJob", ReplyAction:="http://tempuri.org/IProfileBusiness/DeleteJobResponse")>  _
+        Function DeleteJob(ByVal objOrgTitle As System.Collections.Generic.List(Of Decimal), ByVal log As Common.CommonBusiness.UserLog) As Boolean
+        
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ActiveJob", ReplyAction:="http://tempuri.org/IProfileBusiness/ActiveJobResponse")>  _
         Function ActiveJob(ByVal objOrgTitle As System.Collections.Generic.List(Of Decimal), ByVal sActive As String, ByVal log As Common.CommonBusiness.UserLog) As Boolean
         
@@ -53663,6 +53666,211 @@ Namespace ProfileBusiness
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/CHECK_EXITS_JOB", ReplyAction:="http://tempuri.org/IProfileBusiness/CHECK_EXITS_JOBResponse")>  _
         Function CHECK_EXITS_JOB(ByVal P_JOB_ID As Decimal, ByVal P_EMP_ID As Decimal) As Integer
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ValidateCommendLevel", ReplyAction:="http://tempuri.org/IProfileBusiness/ValidateCommendLevelResponse"),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of Decimal))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.Dictionary(Of Decimal, String))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of String))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.Dictionary(Of String, String))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(Common.CommonBusiness.UserLog)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.CommendLevelDTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.CommendFormulaDTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.CommendFormulaDTO))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.StatisticDTO))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.StatisticDTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.CompetencyAvgEmplDTO))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.CompetencyAvgEmplDTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.TotalDayOffDTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.CompetencyCourseDTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.CompetencyCourseDTO))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.EmployeeCriteriaRecordDTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.ParamDTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.EmployeeCriteriaRecordDTO))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.TalentPoolDTO))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.TalentPoolDTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.FilterParamDTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.OtherListDTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.FileContractDTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.WorkingAllowanceDTO))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.WorkingAllowanceDTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.FileContractDTO))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.ContractTypeDTO))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.ContractTypeDTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.ContractDTO))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.ContractDTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.AttachFilesDTO))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.AttachFilesDTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.WorkingDTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.WorkingDTO))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.TitleDTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.SignerDTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.Temp_ConcurrentlyDTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.Temp_ConcurrentlyDTO))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.OrganizationTreeDTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.Job_PositionDTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.Job_PositionDTO))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.WorkingBeforeDTOEdit)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.WorkingBeforeDTOEdit))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.ComboBoxDataDTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.OtherListDTO))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.AssetDTO))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.AssetDTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.BankDTO))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.BankDTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.CommendListDTO))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.CommendListDTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.DistrictDTO))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.DistrictDTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.IndustryDTO))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.IndustryDTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.LabourProtectionDTO))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.LabourProtectionDTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.LocationDTO))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.LocationDTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.NationDTO))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.NationDTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.ProvinceDTO))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.ProvinceDTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.RelationshipListDTO))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.RelationshipListDTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.OrganizationDTO))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.OrganizationDTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.TitleDTO))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.WelfareListDTO))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.WelfareListDTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.AllowanceListDTO))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.AllowanceListDTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.ReminderLogDTO))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.ReminderLogDTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.FamilyDTO))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.FamilyDTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.WorkingBeforeDTO))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.WorkingBeforeDTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.WelfareMngDTO))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.WelfareMngDTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.Welfatemng_empDTO))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.Welfatemng_empDTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.CommendDTO))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.CommendDTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.CommendEmpDTO))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.CommendEmpDTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.CommendOrgDTO))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.CommendOrgDTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.TitleConcurrentDTO))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.TitleConcurrentDTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.DisciplineDTO))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.DisciplineDTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.DisciplineEmpDTO))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.DisciplineEmpDTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.EmployeeAssessmentDTO))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.EmployeeAssessmentDTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.EmployeeCompetencyDTO))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.EmployeeCompetencyDTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.HU_PRO_TRAIN_OUT_COMPANYDTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.HU_PRO_TRAIN_OUT_COMPANYDTO))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.TrainningManageDTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.TrainningManageDTO))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.RptDynamicColumnDTO))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.RptDynamicColumnDTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.HuDynamicConditionDTO))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.HuDynamicConditionDTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.HuConditionColDTO))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.HuConditionColDTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.EmployeeDTO))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.EmployeeDTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.LabourProtectionMngDTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.LabourProtectionMngDTO))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.OccupationalSafetyDTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.OccupationalSafetyDTO))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.ATPeriodDTO))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.ATPeriodDTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.Se_ReportDTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.Se_ReportDTO))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.ImportCommendDTO))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.ImportCommendDTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.CommendLevelDTO))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.CommandResult)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.DisciplineSalaryDTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.DisciplineSalaryDTO))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.DebtDTO))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.DebtDTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.AssetMngDTO))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.AssetMngDTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.TerminateDTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.HandoverContentDTO))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.HandoverContentDTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.TerminateReasonDTO))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.TerminateReasonDTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.TerminateDTO))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.Terminate3BDTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.Terminate3BDTO))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.HuFileDTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.HuFileDTO))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.EmployeeFileDTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.HU_PRO_TRAIN_OUT_COMPANYDTOEDIT)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.HU_PRO_TRAIN_OUT_COMPANYDTOEDIT))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.FamilyEditDTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.FamilyEditDTO))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.EmployeeTrainDTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.EmployeeTrainDTO))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.EmployeeTrainForCompanyDTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.EmployeeTrainForCompanyDTO))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.TrainningEvaluateDTO))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.TrainningEvaluateDTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.TrainningForeignDTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.TrainningForeignDTO))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.HUAllowanceDTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.HUAllowanceDTO))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.StaffRankDTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.StaffRankDTO))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.CompetencyGroupDTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.CompetencyGroupDTO))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.CompetencyDTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.CompetencyDTO))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.CompetencyBuildDTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.CompetencyBuildDTO))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.CompetencyStandardDTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.CompetencyStandardDTO))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.CompetencyAppendixDTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.CompetencyAppendixDTO))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.CompetencyEmpDTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.CompetencyEmpDTO))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.CompetencyPeriodDTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.CompetencyPeriodDTO))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.CompetencyAssDTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.CompetencyAssDTO))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.CompetencyAssDtlDTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.CompetencyAssDtlDTO))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.JobDescriptionDTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.JobDescriptionDTO))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.EmployeeCVDTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.EmployeeEduDTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.EmployeeHealthDTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.UniformSizeDTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.OrgChartDTO))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.OrgChartDTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.EmployeeEditDTO))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.EmployeeEditDTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.SAFELABOR_MNGDTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.SAFELABOR_MNG_EMPDTO))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.SAFELABOR_MNG_EMPDTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.SAFELABOR_MNGDTO))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.OrganizationPathDTO))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.OrganizationPathDTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.OrgTitleDTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.OrgTitleDTO))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.Ward_DTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.Ward_DTO))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.BankBranchDTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.BankBranchDTO))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.CETIFICATEDTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.CETIFICATEDTO))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.ProfileCommonTABLE_NAME)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.MergeFieldDTO))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.MergeFieldDTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of System.Nullable(Of Decimal)))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Exception))>  _
+        Function ValidateCommendLevel(ByVal _validate As ProfileBusiness.CommendLevelDTO) As Object
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ModifyCommendLevel", ReplyAction:="http://tempuri.org/IProfileBusiness/ModifyCommendLevelResponse")>  _
         Function ModifyCommendLevel(ByVal objCommendLevel As ProfileBusiness.CommendLevelDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
@@ -54320,8 +54528,8 @@ Namespace ProfileBusiness
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/INSERT_DIRECT_MANAGER", ReplyAction:="http://tempuri.org/IProfileBusiness/INSERT_DIRECT_MANAGERResponse")>  _
         Function INSERT_DIRECT_MANAGER(ByVal P_JOB_POSITION_ID As Decimal, ByVal P_DIRECT_MANAGER As String) As Boolean
         
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/DeleteJob", ReplyAction:="http://tempuri.org/IProfileBusiness/DeleteJobResponse")>  _
-        Function DeleteJob(ByVal objOrgTitle As System.Collections.Generic.List(Of Decimal), ByVal log As Common.CommonBusiness.UserLog) As Boolean
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/InsertWorkingBeforeEdit", ReplyAction:="http://tempuri.org/IProfileBusiness/InsertWorkingBeforeEditResponse")>  _
+        Function InsertWorkingBeforeEdit(ByVal objWorkingBefore As ProfileBusiness.WorkingBeforeDTOEdit, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ModifyWorkingBeforeEdit", ReplyAction:="http://tempuri.org/IProfileBusiness/ModifyWorkingBeforeEditResponse")>  _
         Function ModifyWorkingBeforeEdit(ByVal objWorkingBefore As ProfileBusiness.WorkingBeforeDTOEdit, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
@@ -54777,210 +54985,8 @@ Namespace ProfileBusiness
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/InsertCommendLevel", ReplyAction:="http://tempuri.org/IProfileBusiness/InsertCommendLevelResponse")>  _
         Function InsertCommendLevel(ByVal objCommendLevel As ProfileBusiness.CommendLevelDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
         
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ValidateCommendLevel", ReplyAction:="http://tempuri.org/IProfileBusiness/ValidateCommendLevelResponse"),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of Decimal))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.Dictionary(Of Decimal, String))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of String))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.Dictionary(Of String, String))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(Common.CommonBusiness.UserLog)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.CommendLevelDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.CommendFormulaDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.CommendFormulaDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.StatisticDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.StatisticDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.CompetencyAvgEmplDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.CompetencyAvgEmplDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.TotalDayOffDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.CompetencyCourseDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.CompetencyCourseDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.EmployeeCriteriaRecordDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.ParamDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.EmployeeCriteriaRecordDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.TalentPoolDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.TalentPoolDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.FilterParamDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.OtherListDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.FileContractDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.WorkingAllowanceDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.WorkingAllowanceDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.FileContractDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.ContractTypeDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.ContractTypeDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.ContractDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.ContractDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.AttachFilesDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.AttachFilesDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.WorkingDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.WorkingDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.TitleDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.SignerDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.Temp_ConcurrentlyDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.Temp_ConcurrentlyDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.OrganizationTreeDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.Job_PositionDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.Job_PositionDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.WorkingBeforeDTOEdit)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.WorkingBeforeDTOEdit))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.ComboBoxDataDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.OtherListDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.AssetDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.AssetDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.BankDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.BankDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.CommendListDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.CommendListDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.DistrictDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.DistrictDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.IndustryDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.IndustryDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.LabourProtectionDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.LabourProtectionDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.LocationDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.LocationDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.NationDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.NationDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.ProvinceDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.ProvinceDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.RelationshipListDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.RelationshipListDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.OrganizationDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.OrganizationDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.TitleDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.WelfareListDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.WelfareListDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.AllowanceListDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.AllowanceListDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.ReminderLogDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.ReminderLogDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.FamilyDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.FamilyDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.WorkingBeforeDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.WorkingBeforeDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.WelfareMngDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.WelfareMngDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.Welfatemng_empDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.Welfatemng_empDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.CommendDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.CommendDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.CommendEmpDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.CommendEmpDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.CommendOrgDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.CommendOrgDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.TitleConcurrentDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.TitleConcurrentDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.DisciplineDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.DisciplineDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.DisciplineEmpDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.DisciplineEmpDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.EmployeeAssessmentDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.EmployeeAssessmentDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.EmployeeCompetencyDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.EmployeeCompetencyDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.HU_PRO_TRAIN_OUT_COMPANYDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.HU_PRO_TRAIN_OUT_COMPANYDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.TrainningManageDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.TrainningManageDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.RptDynamicColumnDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.RptDynamicColumnDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.HuDynamicConditionDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.HuDynamicConditionDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.HuConditionColDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.HuConditionColDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.EmployeeDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.EmployeeDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.LabourProtectionMngDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.LabourProtectionMngDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.OccupationalSafetyDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.OccupationalSafetyDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.ATPeriodDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.ATPeriodDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.Se_ReportDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.Se_ReportDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.ImportCommendDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.ImportCommendDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.CommendLevelDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.CommandResult)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.DisciplineSalaryDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.DisciplineSalaryDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.DebtDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.DebtDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.AssetMngDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.AssetMngDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.TerminateDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.HandoverContentDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.HandoverContentDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.TerminateReasonDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.TerminateReasonDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.TerminateDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.Terminate3BDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.Terminate3BDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.HuFileDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.HuFileDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.EmployeeFileDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.HU_PRO_TRAIN_OUT_COMPANYDTOEDIT)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.HU_PRO_TRAIN_OUT_COMPANYDTOEDIT))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.FamilyEditDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.FamilyEditDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.EmployeeTrainDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.EmployeeTrainDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.EmployeeTrainForCompanyDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.EmployeeTrainForCompanyDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.TrainningEvaluateDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.TrainningEvaluateDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.TrainningForeignDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.TrainningForeignDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.HUAllowanceDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.HUAllowanceDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.StaffRankDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.StaffRankDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.CompetencyGroupDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.CompetencyGroupDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.CompetencyDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.CompetencyDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.CompetencyBuildDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.CompetencyBuildDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.CompetencyStandardDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.CompetencyStandardDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.CompetencyAppendixDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.CompetencyAppendixDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.CompetencyEmpDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.CompetencyEmpDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.CompetencyPeriodDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.CompetencyPeriodDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.CompetencyAssDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.CompetencyAssDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.CompetencyAssDtlDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.CompetencyAssDtlDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.JobDescriptionDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.JobDescriptionDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.EmployeeCVDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.EmployeeEduDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.EmployeeHealthDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.UniformSizeDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.OrgChartDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.OrgChartDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.EmployeeEditDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.EmployeeEditDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.SAFELABOR_MNGDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.SAFELABOR_MNG_EMPDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.SAFELABOR_MNG_EMPDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.SAFELABOR_MNGDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.OrganizationPathDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.OrganizationPathDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.OrgTitleDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.OrgTitleDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.Ward_DTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.Ward_DTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.BankBranchDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.BankBranchDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.CETIFICATEDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.CETIFICATEDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.ProfileCommonTABLE_NAME)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.MergeFieldDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.MergeFieldDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of System.Nullable(Of Decimal)))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Exception))>  _
-        Function ValidateCommendLevel(ByVal _validate As ProfileBusiness.CommendLevelDTO) As Object
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetWorking3B", ReplyAction:="http://tempuri.org/IProfileBusiness/GetWorking3BResponse")>  _
+        Function GetWorking3B(ByVal _filter As ProfileBusiness.WorkingDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal _param As ProfileBusiness.ParamDTO, ByVal Sorts As String, ByVal log As Common.CommonBusiness.UserLog) As System.Collections.Generic.List(Of ProfileBusiness.WorkingDTO)
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/InsertWorking3B", ReplyAction:="http://tempuri.org/IProfileBusiness/InsertWorking3BResponse")>  _
         Function InsertWorking3B(ByVal objWorking As ProfileBusiness.WorkingDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
@@ -55234,9 +55240,6 @@ Namespace ProfileBusiness
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetWorkingBeforeEdit", ReplyAction:="http://tempuri.org/IProfileBusiness/GetWorkingBeforeEditResponse")>  _
         Function GetWorkingBeforeEdit(ByVal _filter As ProfileBusiness.WorkingBeforeDTOEdit) As System.Collections.Generic.List(Of ProfileBusiness.WorkingBeforeDTOEdit)
         
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/InsertWorkingBeforeEdit", ReplyAction:="http://tempuri.org/IProfileBusiness/InsertWorkingBeforeEditResponse")>  _
-        Function InsertWorkingBeforeEdit(ByVal objWorkingBefore As ProfileBusiness.WorkingBeforeDTOEdit, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
-        
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/DeleteEmployeeFamilyEdit", ReplyAction:="http://tempuri.org/IProfileBusiness/DeleteEmployeeFamilyEditResponse")>  _
         Function DeleteEmployeeFamilyEdit(ByVal lstDecimals As System.Collections.Generic.List(Of Decimal), ByVal log As Common.CommonBusiness.UserLog) As Boolean
         
@@ -55423,6 +55426,9 @@ Namespace ProfileBusiness
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/DeleteWelfareMng", ReplyAction:="http://tempuri.org/IProfileBusiness/DeleteWelfareMngResponse")>  _
         Function DeleteWelfareMng(ByVal lstWelfareMng As System.Collections.Generic.List(Of ProfileBusiness.WelfareMngDTO), ByVal log As Common.CommonBusiness.UserLog) As Boolean
         
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/getDtByEmpIDandEffectdate", ReplyAction:="http://tempuri.org/IProfileBusiness/getDtByEmpIDandEffectdateResponse")>  _
+        Function getDtByEmpIDandEffectdate(ByVal obj As ProfileBusiness.WorkingDTO) As System.Collections.Generic.List(Of ProfileBusiness.WorkingDTO)
+        
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ApproveListChangeInfoMng", ReplyAction:="http://tempuri.org/IProfileBusiness/ApproveListChangeInfoMngResponse")>  _
         Function ApproveListChangeInfoMng(ByVal listID As System.Collections.Generic.List(Of Decimal), ByVal log As Common.CommonBusiness.UserLog) As Boolean
         
@@ -55488,9 +55494,6 @@ Namespace ProfileBusiness
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetAllowanceByWorkingID", ReplyAction:="http://tempuri.org/IProfileBusiness/GetAllowanceByWorkingIDResponse")>  _
         Function GetAllowanceByWorkingID(ByVal _filter As ProfileBusiness.WorkingAllowanceDTO) As System.Collections.Generic.List(Of ProfileBusiness.WorkingAllowanceDTO)
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetWorking3B", ReplyAction:="http://tempuri.org/IProfileBusiness/GetWorking3BResponse")>  _
-        Function GetWorking3B(ByVal _filter As ProfileBusiness.WorkingDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal _param As ProfileBusiness.ParamDTO, ByVal Sorts As String, ByVal log As Common.CommonBusiness.UserLog) As System.Collections.Generic.List(Of ProfileBusiness.WorkingDTO)
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ActiveBankBranch", ReplyAction:="http://tempuri.org/IProfileBusiness/ActiveBankBranchResponse")>  _
         Function ActiveBankBranch(ByVal lstID As System.Collections.Generic.List(Of Decimal), ByVal sActive As String, ByVal log As Common.CommonBusiness.UserLog) As Boolean
@@ -56289,6 +56292,10 @@ Namespace ProfileBusiness
             MyBase.New(binding, remoteAddress)
         End Sub
         
+        Public Function DeleteJob(ByVal objOrgTitle As System.Collections.Generic.List(Of Decimal), ByVal log As Common.CommonBusiness.UserLog) As Boolean Implements ProfileBusiness.IProfileBusiness.DeleteJob
+            Return MyBase.Channel.DeleteJob(objOrgTitle, log)
+        End Function
+        
         Public Function ActiveJob(ByVal objOrgTitle As System.Collections.Generic.List(Of Decimal), ByVal sActive As String, ByVal log As Common.CommonBusiness.UserLog) As Boolean Implements ProfileBusiness.IProfileBusiness.ActiveJob
             Return MyBase.Channel.ActiveJob(objOrgTitle, sActive, log)
         End Function
@@ -56327,6 +56334,10 @@ Namespace ProfileBusiness
         
         Public Function CHECK_EXITS_JOB(ByVal P_JOB_ID As Decimal, ByVal P_EMP_ID As Decimal) As Integer Implements ProfileBusiness.IProfileBusiness.CHECK_EXITS_JOB
             Return MyBase.Channel.CHECK_EXITS_JOB(P_JOB_ID, P_EMP_ID)
+        End Function
+        
+        Public Function ValidateCommendLevel(ByVal _validate As ProfileBusiness.CommendLevelDTO) As Object Implements ProfileBusiness.IProfileBusiness.ValidateCommendLevel
+            Return MyBase.Channel.ValidateCommendLevel(_validate)
         End Function
         
         Public Function ModifyCommendLevel(ByVal objCommendLevel As ProfileBusiness.CommendLevelDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean Implements ProfileBusiness.IProfileBusiness.ModifyCommendLevel
@@ -56665,8 +56676,8 @@ Namespace ProfileBusiness
             Return MyBase.Channel.INSERT_DIRECT_MANAGER(P_JOB_POSITION_ID, P_DIRECT_MANAGER)
         End Function
         
-        Public Function DeleteJob(ByVal objOrgTitle As System.Collections.Generic.List(Of Decimal), ByVal log As Common.CommonBusiness.UserLog) As Boolean Implements ProfileBusiness.IProfileBusiness.DeleteJob
-            Return MyBase.Channel.DeleteJob(objOrgTitle, log)
+        Public Function InsertWorkingBeforeEdit(ByVal objWorkingBefore As ProfileBusiness.WorkingBeforeDTOEdit, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean Implements ProfileBusiness.IProfileBusiness.InsertWorkingBeforeEdit
+            Return MyBase.Channel.InsertWorkingBeforeEdit(objWorkingBefore, log, gID)
         End Function
         
         Public Function ModifyWorkingBeforeEdit(ByVal objWorkingBefore As ProfileBusiness.WorkingBeforeDTOEdit, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean Implements ProfileBusiness.IProfileBusiness.ModifyWorkingBeforeEdit
@@ -57005,8 +57016,8 @@ Namespace ProfileBusiness
             Return MyBase.Channel.InsertCommendLevel(objCommendLevel, log, gID)
         End Function
         
-        Public Function ValidateCommendLevel(ByVal _validate As ProfileBusiness.CommendLevelDTO) As Object Implements ProfileBusiness.IProfileBusiness.ValidateCommendLevel
-            Return MyBase.Channel.ValidateCommendLevel(_validate)
+        Public Function GetWorking3B(ByVal _filter As ProfileBusiness.WorkingDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal _param As ProfileBusiness.ParamDTO, ByVal Sorts As String, ByVal log As Common.CommonBusiness.UserLog) As System.Collections.Generic.List(Of ProfileBusiness.WorkingDTO) Implements ProfileBusiness.IProfileBusiness.GetWorking3B
+            Return MyBase.Channel.GetWorking3B(_filter, PageIndex, PageSize, Total, _param, Sorts, log)
         End Function
         
         Public Function InsertWorking3B(ByVal objWorking As ProfileBusiness.WorkingDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean Implements ProfileBusiness.IProfileBusiness.InsertWorking3B
@@ -57345,10 +57356,6 @@ Namespace ProfileBusiness
             Return MyBase.Channel.GetWorkingBeforeEdit(_filter)
         End Function
         
-        Public Function InsertWorkingBeforeEdit(ByVal objWorkingBefore As ProfileBusiness.WorkingBeforeDTOEdit, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean Implements ProfileBusiness.IProfileBusiness.InsertWorkingBeforeEdit
-            Return MyBase.Channel.InsertWorkingBeforeEdit(objWorkingBefore, log, gID)
-        End Function
-        
         Public Function DeleteEmployeeFamilyEdit(ByVal lstDecimals As System.Collections.Generic.List(Of Decimal), ByVal log As Common.CommonBusiness.UserLog) As Boolean Implements ProfileBusiness.IProfileBusiness.DeleteEmployeeFamilyEdit
             Return MyBase.Channel.DeleteEmployeeFamilyEdit(lstDecimals, log)
         End Function
@@ -57597,6 +57604,10 @@ Namespace ProfileBusiness
             Return MyBase.Channel.DeleteWelfareMng(lstWelfareMng, log)
         End Function
         
+        Public Function getDtByEmpIDandEffectdate(ByVal obj As ProfileBusiness.WorkingDTO) As System.Collections.Generic.List(Of ProfileBusiness.WorkingDTO) Implements ProfileBusiness.IProfileBusiness.getDtByEmpIDandEffectdate
+            Return MyBase.Channel.getDtByEmpIDandEffectdate(obj)
+        End Function
+        
         Public Function ApproveListChangeInfoMng(ByVal listID As System.Collections.Generic.List(Of Decimal), ByVal log As Common.CommonBusiness.UserLog) As Boolean Implements ProfileBusiness.IProfileBusiness.ApproveListChangeInfoMng
             Return MyBase.Channel.ApproveListChangeInfoMng(listID, log)
         End Function
@@ -57683,10 +57694,6 @@ Namespace ProfileBusiness
         
         Public Function GetAllowanceByWorkingID(ByVal _filter As ProfileBusiness.WorkingAllowanceDTO) As System.Collections.Generic.List(Of ProfileBusiness.WorkingAllowanceDTO) Implements ProfileBusiness.IProfileBusiness.GetAllowanceByWorkingID
             Return MyBase.Channel.GetAllowanceByWorkingID(_filter)
-        End Function
-        
-        Public Function GetWorking3B(ByVal _filter As ProfileBusiness.WorkingDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal _param As ProfileBusiness.ParamDTO, ByVal Sorts As String, ByVal log As Common.CommonBusiness.UserLog) As System.Collections.Generic.List(Of ProfileBusiness.WorkingDTO) Implements ProfileBusiness.IProfileBusiness.GetWorking3B
-            Return MyBase.Channel.GetWorking3B(_filter, PageIndex, PageSize, Total, _param, Sorts, log)
         End Function
         
         Public Function ActiveBankBranch(ByVal lstID As System.Collections.Generic.List(Of Decimal), ByVal sActive As String, ByVal log As Common.CommonBusiness.UserLog) As Boolean Implements ProfileBusiness.IProfileBusiness.ActiveBankBranch

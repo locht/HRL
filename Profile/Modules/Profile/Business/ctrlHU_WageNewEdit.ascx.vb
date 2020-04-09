@@ -42,6 +42,14 @@ Public Class ctrlHU_WageNewEdit
             ViewState(Me.ID & "_Working") = value
         End Set
     End Property
+    Property obj As WorkingDTO
+        Get
+            Return ViewState(Me.ID & "_obj")
+        End Get
+        Set(ByVal value As WorkingDTO)
+            ViewState(Me.ID & "_obj") = value
+        End Set
+    End Property
     Property code_attendent As Decimal?
         Get
             Return ViewState(Me.ID & "_code_attendent")
@@ -653,6 +661,13 @@ Public Class ctrlHU_WageNewEdit
                                     ShowMessage(Translate("Số tờ trình bị trùng"), NotifyType.Warning)
                                     Exit Sub
                                 End If
+                                Using repchk_dup_hsl As New ProfileBusinessClient
+                                    'khi chọn ngày hiệu lực kiểm tra trùng trong list hồ sơ lương   
+                                    If repchk_dup_hsl.ValEffectdateByEmpCode(Working.EMPLOYEE_CODE, rdEffectDate.SelectedDate) = False Then
+                                        ShowMessage(Translate("Ngày hiệu lực bị trùng"), NotifyType.Warning)
+                                        Exit Sub
+                                    End If
+                                End Using                                
                                 If rep.InsertWorking(objWorking, gID) Then
                                     ''POPUPTOLINK
                                     Response.Redirect("/Default.aspx?mid=Profile&fid=ctrlHU_WageMng&group=Business")
@@ -1042,9 +1057,28 @@ Public Class ctrlHU_WageNewEdit
                 dtData = rep.GetSalaryGroupCombo(rdEffectDate.SelectedDate, True)
                 If dtData IsNot Nothing AndAlso dtData.Rows.Count > 0 Then
                     FillRadCombobox(cbSalaryGroup, dtData, "NAME", "ID", True)
-                End If
+                End If               
             End Using
             dtSalaryGroup = dtData
+            Using rep As New ProfileBusinessClient               
+                'khi chọn ngày hiệu lực kiểm tra trùng trong list hồ sơ lương   
+                If rep.ValEffectdateByEmpCode(txtEmployeeCode.Text, rdEffectDate.SelectedDate) = False Then
+                    ShowMessage(Translate("Ngày hiệu lực bị trùng"), NotifyType.Warning)
+                End If          
+                Dim _filter As New WorkingDTO
+                If IsNumeric(hidEmp.Value) Then
+                    _filter.EMPLOYEE_ID = hidEmp.Value
+                End If
+                If rdEffectDate.SelectedDate IsNot Nothing Then
+                    _filter.EFFECT_DATE = rdEffectDate.SelectedDate
+                End If
+                Dim workingdt As New DataTable
+                workingdt = rep.getDtByEmpIDandEffectdate(_filter).ToTable()
+                txtTitleName.Text = workingdt.Columns(0).ColumnName("TITLE_NAME")
+                hidTitle.Value = workingdt.Columns(0).ColumnName("TITLE_ID")
+                txtOrgName.Text = workingdt.Columns(0).ColumnName("ORG_NAME")
+                hidOrg.Value = workingdt.Columns(0).ColumnName("ORG_ID")
+            End Using
             'tam thoi khoa ham nay lai,,chua hieu tai s goi o cho nay,khi nao co bug thi xem lai sau
             'CalculatorSalary()
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
@@ -1268,13 +1302,13 @@ Public Class ctrlHU_WageNewEdit
         Try
             Dim startTime As DateTime = DateTime.UtcNow
             Using rep As New ProfileBusinessRepository
-                Dim obj = rep.GetEmployeCurrentByID(New WorkingDTO With {.EMPLOYEE_ID = empid})
+                obj = rep.GetEmployeCurrentByID(New WorkingDTO With {.EMPLOYEE_ID = empid})
                 If obj.WORK_STATUS = ProfileCommon.OT_WORK_STATUS.TERMINATE_ID Then
                     ShowMessage(Translate("Nhân viên trạng thái nghỉ việc. Không được phép chỉnh sửa thông tin."), Utilities.NotifyType.Warning)
                     Exit Sub
                 End If
-                If obj.DIRECT_MANAGER Is Nothing Or obj.OBJECT_ATTENDANCE Is Nothing Or obj.OBJECT_LABOR Is Nothing Then
-                    ShowMessage(Translate(" Nhân viên chưa có dữ liệu Quản lý trực tiếp, Đối tượng chấm công, Đối tượng lao động. Vui lòng kiểm tra và bổ sung trước khi tạo hồ sơ lương."), NotifyType.Warning)
+                If obj.OBJECT_ATTENDANCE Is Nothing Or obj.OBJECT_LABOR Is Nothing Then
+                    ShowMessage(Translate(" Nhân viên chưa có dữ liệuĐối tượng chấm công, Đối tượng lao động. Vui lòng kiểm tra và bổ sung trước khi tạo hồ sơ lương."), NotifyType.Warning)
                     Exit Sub
                 End If
                 ClearControlValue(cbSalaryGroup, cbSalaryLevel, cbSalaryRank, cboTaxTable, cboSalTYPE, rntxtSalaryInsurance, rntxtAllowance_Total, basicSalary,
@@ -1502,24 +1536,24 @@ Public Class ctrlHU_WageNewEdit
             'End If
             'Dim total As Decimal
             ' Dim basicSal As Decimal = 0
-            Dim factorSal As String = ""
-            Dim rnFactorSal As Decimal
+            'Dim factorSal As String = ""
+            'Dim rnFactorSal As Decimal
             'Get luong toi thieu vung
-            If rdEffectDate.SelectedDate IsNot Nothing Then
-                LoadMinAreaSalary()
-            End If
+            'If rdEffectDate.SelectedDate IsNot Nothing Then
+            '    LoadMinAreaSalary()
+            'End If
             'If rnFactorSalary.Text.Contains(".") Then
             '    factorSal = rnFactorSalary.Text.Replace(".", ",").ToString
             '    rnFactorSal = If(IsNumeric(factorSal), Decimal.Parse(factorSal), Nothing)
             'Else
             '    rnFactorSal = If(IsNumeric(rnFactorSalary.Text), Decimal.Parse(rnFactorSalary.Text), Nothing)
             'End If
-            If IsNumeric(rnFactorSal) AndAlso rnFactorSal > 0 Then
-                basicSal = rnFactorSal * _lttv
-                basicSalary.Value = basicSal
-            Else
-                basicSalary.Value = 0
-            End If
+            'If IsNumeric(rnFactorSal) AndAlso rnFactorSal > 0 Then
+            '    basicSal = rnFactorSal * _lttv
+            '    basicSalary.Value = basicSal
+            'Else
+            '    basicSalary.Value = 0
+            'End If
 
             'If rnPercentSalary.Value.HasValue Then
             '    If cboSalTYPE.Text = "Kiêm nhiệm" Then
@@ -1540,7 +1574,7 @@ Public Class ctrlHU_WageNewEdit
     End Sub
     Private Sub LoadMinAreaSalary()
         Try
-            Dim lttv = If(EmployeeID > 0, commonStore.GET_MIN_AMOUNT(EmployeeID, rdEffectDate.SelectedDate), 0)
+            Dim lttv = If(EmployeeID > 0, If(commonStore.GET_MIN_AMOUNT(EmployeeID, rdEffectDate.SelectedDate), commonStore.GET_MIN_AMOUNT(EmployeeID, rdEffectDate.SelectedDate), 0), 0)
             If IsNumeric(lttv) Then
                 _lttv = lttv
             End If
@@ -1625,9 +1659,6 @@ Public Class ctrlHU_WageNewEdit
         End If
     End Sub
 #End Region
-
-
-
 End Class
 Structure DATA_IN
     Public EMPLOYEE_ID As Decimal?
