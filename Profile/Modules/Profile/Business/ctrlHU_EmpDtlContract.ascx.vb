@@ -3,12 +3,17 @@ Imports Framework.UI.Utilities
 Imports Common
 Imports Profile.ProfileBusiness
 Imports Telerik.Web.UI
+Imports WebAppLog
 
 Public Class ctrlHU_EmpDtlContract
     Inherits CommonView
     Protected WithEvents ViewItem As ViewBase
     ' Public Overrides Property MustAuthorize As Boolean = False
-
+    Dim _mylog As New MyLog()
+    Dim _pathLog As String = _mylog._pathLog
+    Dim _classPath As String = "Profile\Modules\Profile\Business" + Me.GetType().Name.ToString()
+    Public WithEvents AjaxManager As RadAjaxManager
+    Public Property AjaxManagerId As String
 #Region "Property"
     Public Property GridList As List(Of ContractDTO)
         Get
@@ -71,6 +76,38 @@ Public Class ctrlHU_EmpDtlContract
             DisplayException(Me.ViewName, Me.ID, ex)
         End Try
     End Sub
+
+    Public Overrides Sub ViewInit(ByVal e As System.EventArgs)
+        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+        Try
+            Dim startTime As DateTime = DateTime.UtcNow
+            AjaxManager = CType(Me.Page, AjaxPage).AjaxManager
+            AjaxManagerId = AjaxManager.ClientID
+            CType(Me.Page, AjaxPage).AjaxManager.ClientEvents.OnRequestStart = "onRequestStart"
+            InitControl()
+            _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
+        Catch ex As Exception
+            'DisplayException(Me.ViewName, Me.ID, ex)
+            _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
+        End Try
+
+    End Sub
+
+    Protected Sub InitControl()
+        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+        Try
+            Dim startTime As DateTime = DateTime.UtcNow
+            Me.MainToolBar = tbarMainToolBar
+            Common.Common.BuildToolbar(Me.MainToolBar,
+                                       ToolbarItem.Export)
+            CType(Me.Page, AjaxPage).AjaxManager.ClientEvents.OnRequestStart = "onRequestStart"
+            _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
+
+        Catch ex As Exception
+            'DisplayException(Me.ViewName, Me.ID, ex)
+            _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
+        End Try
+    End Sub
 #End Region
 
 #Region "Event"
@@ -85,6 +122,33 @@ Public Class ctrlHU_EmpDtlContract
             rep.Dispose()
         Catch ex As Exception
             Me.DisplayException(Me.ViewName, Me.ID, ex)
+        End Try
+    End Sub
+
+    Protected Sub OnToolbar_Command(ByVal sender As Object, ByVal e As RadToolBarEventArgs) Handles Me.OnMainToolbarClick
+        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+        Try
+            Dim objEmployee As New EmployeeDTO
+            Dim rep As New ProfileBusinessRepository
+            Dim startTime As DateTime = DateTime.UtcNow
+            Select Case CType(e.Item, RadToolBarButton).CommandName
+                Case CommonMessage.TOOLBARITEM_EXPORT
+                    Dim dtData As DataTable
+                    Using xls As New ExcelCommon
+                        dtData = GridList.ToTable()
+                        If dtData.Rows.Count > 0 Then
+                            rgGrid.ExportExcel(Server, Response, dtData, "EmployeeList")
+                        Else
+                            ShowMessage(Translate(CommonMessage.MESSAGE_WARNING_EXPORT_EMPTY), Utilities.NotifyType.Warning)
+                        End If
+                    End Using
+            End Select
+            rep.Dispose()
+            ' UpdateControlState()
+            _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
+        Catch ex As Exception
+            'DisplayException(Me.ViewName, Me.ID, ex)
+            _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
         End Try
     End Sub
 #End Region

@@ -2943,12 +2943,18 @@ Partial Class ProfileRepository
             Dim query As List(Of ContractDTO)
             query = (From p In Context.HU_CONTRACT
                      From t In Context.HU_CONTRACT_TYPE.Where(Function(t) t.ID = p.CONTRACT_TYPE_ID)
+                     From org_v In Context.HUV_ORGANIZATION.Where(Function(f) f.ID = p.ORG_ID).DefaultIfEmpty
+                     From title In Context.HU_TITLE.Where(Function(f) f.ID = p.TITLE_ID).DefaultIfEmpty
                      Where p.EMPLOYEE_ID = _empId _
                      And p.STATUS_ID = ProfileCommon.DECISION_STATUS.APPROVE_ID Order By p.START_DATE
                      Select New ContractDTO With {
                      .CONTRACTTYPE_NAME = t.NAME,
                      .START_DATE = p.START_DATE,
                      .EXPIRE_DATE = p.EXPIRE_DATE,
+                     .ORG_NAME2 = org_v.ORG_NAME2,
+                     .ORG_NAME3 = org_v.ORG_NAME3,
+                     .TITLE_NAME = title.NAME_VN,
+                     .REMARK = p.REMARK,
                      .CONTRACT_NO = p.CONTRACT_NO,
                      .SIGNER_NAME = p.SIGNER_NAME,
                      .SIGNER_TITLE = p.SIGNER_TITLE,

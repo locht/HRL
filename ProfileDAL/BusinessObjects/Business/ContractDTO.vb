@@ -83,4 +83,9 @@
     Public Property AUTHORITY As Boolean
     Public Property FORM_WORK As Decimal?
     Public Property FORM_WORK_NAME As String
+
+    'ten phong ban cap 2
+    Public Property ORG_NAME2 As String
+    'ten phong ban cap 3
+    Public Property ORG_NAME3 As String
 End Class
