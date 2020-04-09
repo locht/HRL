@@ -18,7 +18,7 @@ Imports System.Runtime.Serialization
 Imports System.Xml.Serialization
 
 
-<Assembly: EdmSchemaAttribute("e93489ad-6f55-476a-9ec2-9b2c83da07dc")>
+<Assembly: EdmSchemaAttribute("c6435e52-55bd-405b-b55d-bea8958ddbee")>
 #Region "EDM Relationship Metadata"
 <Assembly: EdmRelationshipAttribute("ProfileModel", "FK_HU_NAT_HU_PRO", "HU_NATION", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_NATION), "HU_PROVINCE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_PROVINCE), True)>
 <Assembly: EdmRelationshipAttribute("ProfileModel", "FK_HU_PRO_HU_DIS", "HU_PROVINCE", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_PROVINCE), "HU_DISTRICT", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_DISTRICT), True)>
@@ -59850,6 +59850,31 @@ Public Partial Class HU_TITLE
     End Sub
 
     Private Partial Sub OnHURT_TYPE_IDChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property IS_SIGN() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _IS_SIGN
+        End Get
+        Set
+            OnIS_SIGNChanging(value)
+            ReportPropertyChanging("IS_SIGN")
+            _IS_SIGN = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("IS_SIGN")
+            OnIS_SIGNChanged()
+        End Set
+    End Property
+
+    Private _IS_SIGN As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnIS_SIGNChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnIS_SIGNChanged()
     End Sub
 
     #End Region

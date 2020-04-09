@@ -2771,6 +2771,7 @@ Partial Class RecruitmentRepository
                     isInsert = True
                 End If
                 ' CONG DOAN
+                objEmpOtherData.CANDIDATE_ID = objEmpData.ID
                 objEmpOtherData.IS_CONGDOANPHI = objEmpOther.IS_CONGDOANPHI
                 objEmpOtherData.CDP_NGAYVAO = objEmpOther.CDP_NGAYVAO
                 objEmpOtherData.CDP_NOIVAO = objEmpOther.CDP_NOIVAO
