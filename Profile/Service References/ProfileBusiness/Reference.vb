@@ -4377,6 +4377,9 @@ Namespace ProfileBusiness
         Private AMOUNTField As System.Nullable(Of Decimal)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private AMOUNT_EXField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private EFFECT_DATEField As System.Nullable(Of Date)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -4445,6 +4448,19 @@ Namespace ProfileBusiness
                 If (Me.AMOUNTField.Equals(value) <> true) Then
                     Me.AMOUNTField = value
                     Me.RaisePropertyChanged("AMOUNT")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property AMOUNT_EX() As System.Nullable(Of Decimal)
+            Get
+                Return Me.AMOUNT_EXField
+            End Get
+            Set
+                If (Me.AMOUNT_EXField.Equals(value) <> true) Then
+                    Me.AMOUNT_EXField = value
+                    Me.RaisePropertyChanged("AMOUNT_EX")
                 End If
             End Set
         End Property
@@ -6183,6 +6199,12 @@ Namespace ProfileBusiness
         Private EXPIRE_DATE_OLDField As System.Nullable(Of Date)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private EXRATE_IDField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private EX_RATE_NAMEField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private FACTORSALARYField As System.Nullable(Of Decimal)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -6351,6 +6373,12 @@ Namespace ProfileBusiness
         Private SAL_BASICField As System.Nullable(Of Decimal)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private SAL_BASIC_MAXField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private SAL_BASIC_MINField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private SAL_GROUP_IDField As System.Nullable(Of Decimal)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -6370,6 +6398,9 @@ Namespace ProfileBusiness
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private SAL_RANK_NAMEField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private SAL_RATEField As System.Nullable(Of Decimal)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private SAL_TOTALField As System.Nullable(Of Decimal)
@@ -6863,6 +6894,32 @@ Namespace ProfileBusiness
                 If (Me.EXPIRE_DATE_OLDField.Equals(value) <> true) Then
                     Me.EXPIRE_DATE_OLDField = value
                     Me.RaisePropertyChanged("EXPIRE_DATE_OLD")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property EXRATE_ID() As System.Nullable(Of Decimal)
+            Get
+                Return Me.EXRATE_IDField
+            End Get
+            Set
+                If (Me.EXRATE_IDField.Equals(value) <> true) Then
+                    Me.EXRATE_IDField = value
+                    Me.RaisePropertyChanged("EXRATE_ID")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property EX_RATE_NAME() As String
+            Get
+                Return Me.EX_RATE_NAMEField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.EX_RATE_NAMEField, value) <> true) Then
+                    Me.EX_RATE_NAMEField = value
+                    Me.RaisePropertyChanged("EX_RATE_NAME")
                 End If
             End Set
         End Property
@@ -7596,6 +7653,32 @@ Namespace ProfileBusiness
         End Property
         
         <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property SAL_BASIC_MAX() As System.Nullable(Of Decimal)
+            Get
+                Return Me.SAL_BASIC_MAXField
+            End Get
+            Set
+                If (Me.SAL_BASIC_MAXField.Equals(value) <> true) Then
+                    Me.SAL_BASIC_MAXField = value
+                    Me.RaisePropertyChanged("SAL_BASIC_MAX")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property SAL_BASIC_MIN() As System.Nullable(Of Decimal)
+            Get
+                Return Me.SAL_BASIC_MINField
+            End Get
+            Set
+                If (Me.SAL_BASIC_MINField.Equals(value) <> true) Then
+                    Me.SAL_BASIC_MINField = value
+                    Me.RaisePropertyChanged("SAL_BASIC_MIN")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
         Public Property SAL_GROUP_ID() As System.Nullable(Of Decimal)
             Get
                 Return Me.SAL_GROUP_IDField
@@ -7682,6 +7765,19 @@ Namespace ProfileBusiness
                 If (Object.ReferenceEquals(Me.SAL_RANK_NAMEField, value) <> true) Then
                     Me.SAL_RANK_NAMEField = value
                     Me.RaisePropertyChanged("SAL_RANK_NAME")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property SAL_RATE() As System.Nullable(Of Decimal)
+            Get
+                Return Me.SAL_RATEField
+            End Get
+            Set
+                If (Me.SAL_RATEField.Equals(value) <> true) Then
+                    Me.SAL_RATEField = value
+                    Me.RaisePropertyChanged("SAL_RATE")
                 End If
             End Set
         End Property

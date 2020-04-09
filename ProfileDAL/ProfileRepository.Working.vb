@@ -1450,6 +1450,10 @@ Partial Class ProfileRepository
             objWorkingData.OTHERSALARY3 = objWorking.OTHERSALARY3
             objWorkingData.OTHERSALARY4 = objWorking.OTHERSALARY4
             objWorkingData.OTHERSALARY5 = objWorking.OTHERSALARY5
+            objWorkingData.EXRATE_ID = objWorking.EXRATE_ID
+            objWorkingData.SAL_BASIC_MIN = objWorking.SAL_BASIC_MIN
+            objWorkingData.SAL_BASIC_MAX = objWorking.SAL_BASIC_MAX
+            objWorkingData.SAL_RATE = objWorking.SAL_RATE
             Context.HU_WORKING.AddObject(objWorkingData)
 
             ' nếu phê duyệt
@@ -1481,6 +1485,7 @@ Partial Class ProfileRepository
                     allow.IS_INSURRANCE = item.IS_INSURRANCE
                     allow.EFFECT_DATE = item.EFFECT_DATE
                     allow.EXPIRE_DATE = item.EXPIRE_DATE
+                    allow.AMOUNT_EX = item.AMOUNT_EX
                     Context.HU_WORKING_ALLOW.AddObject(allow)
                 Next
             End If
@@ -1734,6 +1739,10 @@ Partial Class ProfileRepository
             objWorkingData.OTHERSALARY3 = objWorking.OTHERSALARY3
             objWorkingData.OTHERSALARY4 = objWorking.OTHERSALARY4
             objWorkingData.OTHERSALARY5 = objWorking.OTHERSALARY5
+            objWorkingData.EXRATE_ID = objWorking.EXRATE_ID
+            objWorkingData.SAL_BASIC_MIN = objWorking.SAL_BASIC_MIN
+            objWorkingData.SAL_BASIC_MAX = objWorking.SAL_BASIC_MAX
+            objWorkingData.SAL_RATE = objWorking.SAL_RATE
             If objWorking.STATUS_ID = ProfileCommon.DECISION_STATUS.APPROVE_ID Then
                 ApproveWorking(objWorking)
             End If
@@ -1767,6 +1776,7 @@ Partial Class ProfileRepository
                     allow.IS_INSURRANCE = item.IS_INSURRANCE
                     allow.EFFECT_DATE = item.EFFECT_DATE
                     allow.EXPIRE_DATE = item.EXPIRE_DATE
+                    allow.AMOUNT_EX = item.AMOUNT_EX
                     Context.HU_WORKING_ALLOW.AddObject(allow)
                 Next
             End If

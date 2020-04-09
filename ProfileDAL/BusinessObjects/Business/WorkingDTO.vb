@@ -148,4 +148,11 @@
     Public Property JOB_DESCRIPTION_NAME As String
     Public Property EMP_REPLACE As Decimal?
     Public Property EMP_REPLACE_NAME As String
+
+    Public Property EXRATE_ID As Decimal?
+    Public Property EX_RATE_NAME As String
+
+    Public Property SAL_BASIC_MIN As Decimal?
+    Public Property SAL_BASIC_MAX As Decimal?
+    Public Property SAL_RATE As Decimal?
 End Class

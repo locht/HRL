@@ -255,26 +255,26 @@ Public Class ctrlHU_WageNewEdit
                     If IsNumeric(Working.PERCENTSALARY) Then
                         rnPercentSalary.Value = Working.PERCENTSALARY
                     End If
-                    If IsNumeric(Working.FACTORSALARY) Then
-                        rnFactorSalary.Text = Working.FACTORSALARY.ToString
-                    End If
-                    If IsNumeric(Working.OTHERSALARY1) Then
-                        rnOtherSalary1.Value = Working.OTHERSALARY1
-                    End If
-                    If IsNumeric(Working.OTHERSALARY2) Then
-                        rnOtherSalary2.Value = Working.OTHERSALARY2
-                    End If
-                    If IsNumeric(Working.OTHERSALARY3) Then
-                        rnOtherSalary3.Value = Working.OTHERSALARY3
-                    End If
+                    'If IsNumeric(Working.FACTORSALARY) Then
+                    '    rnFactorSalary.Text = Working.FACTORSALARY.ToString
+                    'End If
+                    'If IsNumeric(Working.OTHERSALARY1) Then
+                    '    rnOtherSalary1.Value = Working.OTHERSALARY1
+                    'End If
+                    'If IsNumeric(Working.OTHERSALARY2) Then
+                    '    rnOtherSalary2.Value = Working.OTHERSALARY2
+                    'End If
+                    'If IsNumeric(Working.OTHERSALARY3) Then
+                    '    rnOtherSalary3.Value = Working.OTHERSALARY3
+                    'End If
                     If IsNumeric(Working.OTHERSALARY4) Then
                         rnOtherSalary4.Value = Working.OTHERSALARY4
                     End If
                     If IsNumeric(Working.OTHERSALARY5) Then
                         rnOtherSalary5.Value = Working.OTHERSALARY5
                     End If
-                    txtUploadFile.Text = Working.ATTACH_FILE
-                    txtUpload.Text = Working.FILENAME
+                    'txtUploadFile.Text = Working.ATTACH_FILE
+                    'txtUpload.Text = Working.FILENAME
                     If Working.STAFF_RANK_ID IsNot Nothing Then
                         hidStaffRank.Value = Working.STAFF_RANK_ID
                     End If
@@ -294,8 +294,8 @@ Public Class ctrlHU_WageNewEdit
                         Working.STATUS_ID = ProfileCommon.DECISION_STATUS.NOT_APPROVE_ID Then
                         EnableControlAll_Cus(False, LeftPane)
                         '  MainToolBar.Items(0).Enabled = False
-                        btnDownload.Enabled = True
-                        btnUploadFile.Enabled = True
+                        'btnDownload.Enabled = True
+                        'btnUploadFile.Enabled = True
                     End If
 
                     basicSalary.Value = Working.SAL_BASIC
@@ -308,22 +308,22 @@ Public Class ctrlHU_WageNewEdit
                         basicSal = Working.SAL_BASIC
                     End If
                     If Working.SAL_INS IsNot Nothing Then
-                        SalaryInsurance.Text = Working.SAL_INS
+                        rntxtSalaryInsurance.Text = Working.SAL_INS
                     End If
                     If Working.ALLOWANCE_TOTAL IsNot Nothing Then
-                        cboAllowance_Total.Text = Working.ALLOWANCE_TOTAL
+                        rntxtAllowance_Total.Text = Working.ALLOWANCE_TOTAL
                     End If
-                    If Working.SAL_TOTAL IsNot Nothing Then
-                        Salary_Total.Text = Working.SAL_TOTAL
-                        total = Working.SAL_TOTAL
-                    End If
+                    'If Working.SAL_TOTAL IsNot Nothing Then
+                    '    Salary_Total.Text = Working.SAL_TOTAL
+                    '    total = Working.SAL_TOTAL
+                    'End If
                     cbSalaryGroup.Enabled = False
                     cbSalaryLevel.Enabled = False
                     cbSalaryRank.Enabled = False
-                    rnFactorSalary.Enabled = True
+                    'rnFactorSalary.Enabled = True
                     'basicSalary.Enabled = False
                     'rnPercentSalary.Enabled = False
-                    Salary_Total.Enabled = False
+                    'Salary_Total.Enabled = False
                     'rnOtherSalary1.Enabled = False
                     'GetDATA_IN()
                     'CalculatorSalary()
@@ -340,95 +340,95 @@ Public Class ctrlHU_WageNewEdit
     End Sub
 #End Region
 #Region "Event"
-    Private Sub btnUploadFile_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnUploadFile.Click
-        Dim startTime As DateTime = DateTime.UtcNow
-        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+    'Private Sub btnUploadFile_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnUploadFile.Click
+    '    Dim startTime As DateTime = DateTime.UtcNow
+    '    Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
 
-        Try
-            ctrlUpload1.AllowedExtensions = "xls,xlsx,txt,ctr,doc,docx,xml,png,jpg,bitmap,jpeg,gif,pdf,rar,zip,ppt,pptx"
-            ctrlUpload1.Show()
+    '    Try
+    '        ctrlUpload1.AllowedExtensions = "xls,xlsx,txt,ctr,doc,docx,xml,png,jpg,bitmap,jpeg,gif,pdf,rar,zip,ppt,pptx"
+    '        ctrlUpload1.Show()
 
-            _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
-        Catch ex As Exception
-            _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
-        End Try
-    End Sub
-    Private Sub ctrlUpload1_OkClicked(ByVal sender As Object, ByVal e As System.EventArgs) Handles ctrlUpload1.OkClicked
-        Dim startTime As DateTime = DateTime.UtcNow
-        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+    '        _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
+    '    Catch ex As Exception
+    '        _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
+    '    End Try
+    'End Sub
+    'Private Sub ctrlUpload1_OkClicked(ByVal sender As Object, ByVal e As System.EventArgs) Handles ctrlUpload1.OkClicked
+    '    Dim startTime As DateTime = DateTime.UtcNow
+    '    Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
 
-        Try
-            txtUploadFile.Text = ""
-            Dim listExtension = New List(Of String)
-            listExtension.Add(".xls")
-            listExtension.Add(".xlsx")
-            listExtension.Add(".txt")
-            listExtension.Add(".ctr")
-            listExtension.Add(".doc")
-            listExtension.Add(".docx")
-            listExtension.Add(".xml")
-            listExtension.Add(".png")
-            listExtension.Add(".jpg")
-            listExtension.Add(".bitmap")
-            listExtension.Add(".jpeg")
-            listExtension.Add(".gif")
-            listExtension.Add(".pdf")
-            listExtension.Add(".rar")
-            listExtension.Add(".zip")
-            listExtension.Add(".ppt")
-            listExtension.Add(".pptx")
-            Dim fileName As String
+    '    Try
+    '        txtUploadFile.Text = ""
+    '        Dim listExtension = New List(Of String)
+    '        listExtension.Add(".xls")
+    '        listExtension.Add(".xlsx")
+    '        listExtension.Add(".txt")
+    '        listExtension.Add(".ctr")
+    '        listExtension.Add(".doc")
+    '        listExtension.Add(".docx")
+    '        listExtension.Add(".xml")
+    '        listExtension.Add(".png")
+    '        listExtension.Add(".jpg")
+    '        listExtension.Add(".bitmap")
+    '        listExtension.Add(".jpeg")
+    '        listExtension.Add(".gif")
+    '        listExtension.Add(".pdf")
+    '        listExtension.Add(".rar")
+    '        listExtension.Add(".zip")
+    '        listExtension.Add(".ppt")
+    '        listExtension.Add(".pptx")
+    '        Dim fileName As String
 
-            Dim strPath As String = Server.MapPath("~/ReportTemplates/Profile/SalaryInfo/")
-            If ctrlUpload1.UploadedFiles.Count >= 1 Then
-                For i = 0 To ctrlUpload1.UploadedFiles.Count - 1
-                    Dim file As UploadedFile = ctrlUpload1.UploadedFiles(i)
-                    Dim str_Filename = Guid.NewGuid.ToString() + "\"
-                    If listExtension.Any(Function(x) x.ToUpper().Trim() = file.GetExtension.ToUpper().Trim()) Then
-                        System.IO.Directory.CreateDirectory(strPath + str_Filename)
-                        strPath = strPath + str_Filename
-                        fileName = System.IO.Path.Combine(strPath, file.FileName)
-                        file.SaveAs(fileName, True)
-                        txtUpload.Text = file.FileName
-                        Down_File = str_Filename
-                    Else
-                        ShowMessage(Translate("Vui lòng chọn file đúng định dạng. !!! Hệ thống chỉ nhận file xls,xlsx,txt,ctr,doc,docx,xml,png,jpg,bitmap,jpeg,gif,pdf,rar,zip,ppt,pptx"), NotifyType.Warning)
-                        Exit Sub
-                    End If
-                Next
-                loadDatasource(txtUpload.Text)
-            End If
-            _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
-        Catch ex As Exception
-            _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
-        End Try
-    End Sub
-    Private Sub btnDownloadOld_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnDownload.Click
-        Dim startTime As DateTime = DateTime.UtcNow
-        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
-        Try
-            If txtUpload.Text <> "" Then
-                Dim strPath_Down As String = Server.MapPath("~/ReportTemplates/Profile/SalaryInfo/" + txtUploadFile.Text + txtUpload.Text)
-                'bCheck = True
-                ZipFiles(strPath_Down, 2)
-            End If
-            _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
-        Catch ex As Exception
-            _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
-        End Try
-    End Sub
+    '        Dim strPath As String = Server.MapPath("~/ReportTemplates/Profile/SalaryInfo/")
+    '        If ctrlUpload1.UploadedFiles.Count >= 1 Then
+    '            For i = 0 To ctrlUpload1.UploadedFiles.Count - 1
+    '                Dim file As UploadedFile = ctrlUpload1.UploadedFiles(i)
+    '                Dim str_Filename = Guid.NewGuid.ToString() + "\"
+    '                If listExtension.Any(Function(x) x.ToUpper().Trim() = file.GetExtension.ToUpper().Trim()) Then
+    '                    System.IO.Directory.CreateDirectory(strPath + str_Filename)
+    '                    strPath = strPath + str_Filename
+    '                    fileName = System.IO.Path.Combine(strPath, file.FileName)
+    '                    file.SaveAs(fileName, True)
+    '                    txtUpload.Text = file.FileName
+    '                    Down_File = str_Filename
+    '                Else
+    '                    ShowMessage(Translate("Vui lòng chọn file đúng định dạng. !!! Hệ thống chỉ nhận file xls,xlsx,txt,ctr,doc,docx,xml,png,jpg,bitmap,jpeg,gif,pdf,rar,zip,ppt,pptx"), NotifyType.Warning)
+    '                    Exit Sub
+    '                End If
+    '            Next
+    '            loadDatasource(txtUpload.Text)
+    '        End If
+    '        _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
+    '    Catch ex As Exception
+    '        _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
+    '    End Try
+    'End Sub
+    'Private Sub btnDownloadOld_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnDownload.Click
+    '    Dim startTime As DateTime = DateTime.UtcNow
+    '    Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+    '    Try
+    '        If txtUpload.Text <> "" Then
+    '            Dim strPath_Down As String = Server.MapPath("~/ReportTemplates/Profile/SalaryInfo/" + txtUploadFile.Text + txtUpload.Text)
+    '            'bCheck = True
+    '            ZipFiles(strPath_Down, 2)
+    '        End If
+    '        _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
+    '    Catch ex As Exception
+    '        _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
+    '    End Try
+    'End Sub
     Private Sub cbSalaryRank_SelectedIndexChanged(ByVal sender As Object, ByVal e As Telerik.Web.UI.RadComboBoxSelectedIndexChangedEventArgs) Handles cbSalaryRank.SelectedIndexChanged
         Try
-            Using rep As New ProfileRepository
-                Dim dtdata As DataTable = New DataTable()
-                If IsNumeric(cbSalaryLevel.SelectedValue) Then
-                    dtdata = rep.GetSalaryRankList(cbSalaryLevel.SelectedValue, True)
-                    Dim row = dtdata.Select("ID='" + If(cbSalaryRank.SelectedValue = "", 0, cbSalaryRank.SelectedValue) + "'")(0)
-                    If row IsNot Nothing Then
-                        rnFactorSalary.Text = row("SALARY_BASIC").ToString
-                    End If
-                End If
-            End Using
+            'Using rep As New ProfileRepository
+            '    Dim dtdata As DataTable = New DataTable()
+            '    If IsNumeric(cbSalaryLevel.SelectedValue) Then
+            '        dtdata = rep.GetSalaryRankList(cbSalaryLevel.SelectedValue, True)
+            '        Dim row = dtdata.Select("ID='" + If(cbSalaryRank.SelectedValue = "", 0, cbSalaryRank.SelectedValue) + "'")(0)
+            '        If row IsNot Nothing Then
+            '            rnFactorSalary.Text = row("SALARY_BASIC").ToString
+            '        End If
+            '    End If
+            'End Using
             CalculatorSalary()
             basicSalary.AutoPostBack = True
             'ClearControlValue(rnOtherSalary1, rnOtherSalary2, rnOtherSalary3, rnOtherSalary4, rnOtherSalary5)
@@ -448,7 +448,7 @@ Public Class ctrlHU_WageNewEdit
                 End If
             End Using
             CalculatorSalary()
-            'ClearControlValue(cbSalaryLevel, cbSalaryRank, rnFactorSalary, SalaryInsurance, basicSalary, Salary_Total, rnOtherSalary1, _
+            'ClearControlValue(cbSalaryLevel, cbSalaryRank, rnFactorSalary, rntxtSalaryInsurance, basicSalary, Salary_Total, rnOtherSalary1, _
             '                  rnOtherSalary2, rnOtherSalary3, rnOtherSalary4, rnOtherSalary5)
         Catch ex As Exception
             Throw ex
@@ -465,7 +465,7 @@ Public Class ctrlHU_WageNewEdit
                     FillRadCombobox(cbSalaryRank, dtData, "NAME", "ID", True)
                 End If
             End Using
-            'ClearControlValue(rnFactorSalary, cbSalaryRank, SalaryInsurance, basicSalary, Salary_Total, rnOtherSalary1, _
+            'ClearControlValue(rnFactorSalary, cbSalaryRank, rntxtSalaryInsurance, basicSalary, Salary_Total, rnOtherSalary1, _
             '                  rnOtherSalary2, rnOtherSalary3, rnOtherSalary4, rnOtherSalary5)
         Catch ex As Exception
             Throw ex
@@ -501,28 +501,28 @@ Public Class ctrlHU_WageNewEdit
                             rdEffectDate.Focus()
                             Exit Sub
                         End If
-                        If cboStatus.SelectedValue = 447 Then
-                            If txtUpload.Text = "" Then
-                                ShowMessage(Translate("Bạn phải đính kèm tập tin khi phê duyệt"), NotifyType.Warning)
-                                Exit Sub
-                            End If
-                        End If
+                        'If cboStatus.SelectedValue = 447 Then
+                        '    If txtUpload.Text = "" Then
+                        '        ShowMessage(Translate("Bạn phải đính kèm tập tin khi phê duyệt"), NotifyType.Warning)
+                        '        Exit Sub
+                        '    End If
+                        'End If
 
                         If rnPercentSalary.Text = "" Then
                             ShowMessage(Translate("Bạn phải chọn % hưởng lương"), NotifyType.Warning)
                             Exit Sub
                         End If
-                        If cboSalTYPE.Text = "Kiêm nhiệm" Then
-                            If rnOtherSalary2.Text = "" Then
-                                ShowMessage(Translate("Bạn phải nhập mức phụ cấp kiêm nhiệm"), NotifyType.Warning)
-                                Exit Sub
-                            End If
-                        Else
-                            'If basicSalary.Text <> "" Then
-                            '    ShowMessage(Translate("Bạn phải nhập lương cơ bản"), NotifyType.Warning)
-                            '    Exit Sub
-                            'End If
-                        End If
+                        'If cboSalTYPE.Text = "Kiêm nhiệm" Then
+                        '    If rnOtherSalary2.Text = "" Then
+                        '        ShowMessage(Translate("Bạn phải nhập mức phụ cấp kiêm nhiệm"), NotifyType.Warning)
+                        '        Exit Sub
+                        '    End If
+                        'Else
+                        '    'If basicSalary.Text <> "" Then
+                        '    '    ShowMessage(Translate("Bạn phải nhập lương cơ bản"), NotifyType.Warning)
+                        '    '    Exit Sub
+                        '    'End If
+                        'End If
                         'factorSal = If(IsNumeric(rnFactorSalary.Text), Decimal.Parse(rnFactorSalary.Text), 0)
                         'If factorSal <= 0 Then
                         '    ShowMessage(Translate("Hệ số/Mức thưởng phải lớn hơn 0"), NotifyType.Warning)
@@ -580,24 +580,24 @@ Public Class ctrlHU_WageNewEdit
                             If IsNumeric(rnPercentSalary.Value) Then
                                 .PERCENTSALARY = rnPercentSalary.Value
                             End If
-                            If rnFactorSalary.Text.Contains(".") Then
-                                factorSal = rnFactorSalary.Text.Replace(".", ",").ToString
-                                .FACTORSALARY = If(IsNumeric(factorSal), Decimal.Parse(factorSal), Nothing)
-                            Else
-                                .FACTORSALARY = If(IsNumeric(rnFactorSalary.Text), Decimal.Parse(rnFactorSalary.Text), Nothing)
-                            End If
+                            'If rnFactorSalary.Text.Contains(".") Then
+                            '    factorSal = rnFactorSalary.Text.Replace(".", ",").ToString
+                            '    .FACTORSALARY = If(IsNumeric(factorSal), Decimal.Parse(factorSal), Nothing)
+                            'Else
+                            '    .FACTORSALARY = If(IsNumeric(rnFactorSalary.Text), Decimal.Parse(rnFactorSalary.Text), Nothing)
+                            'End If
                             'If IsNumeric(rnFactorSalary.Value) Then
                             '    .FACTORSALARY = rnFactorSalary.Value
                             'End If
-                            If IsNumeric(rnOtherSalary1.Value) Then
-                                .OTHERSALARY1 = rnOtherSalary1.Value
-                            End If
-                            If IsNumeric(rnOtherSalary2.Value) Then
-                                .OTHERSALARY2 = rnOtherSalary2.Value
-                            End If
-                            If IsNumeric(rnOtherSalary3.Value) Then
-                                .OTHERSALARY3 = rnOtherSalary3.Value
-                            End If
+                            'If IsNumeric(rnOtherSalary1.Value) Then
+                            '    .OTHERSALARY1 = rnOtherSalary1.Value
+                            'End If
+                            'If IsNumeric(rnOtherSalary2.Value) Then
+                            '    .OTHERSALARY2 = rnOtherSalary2.Value
+                            'End If
+                            'If IsNumeric(rnOtherSalary3.Value) Then
+                            '    .OTHERSALARY3 = rnOtherSalary3.Value
+                            'End If
                             If IsNumeric(rnOtherSalary4.Value) Then
                                 .OTHERSALARY4 = rnOtherSalary4.Value
                             End If
@@ -606,8 +606,8 @@ Public Class ctrlHU_WageNewEdit
                             End If
                             .SAL_BASIC = basicSalary.Value
                             .SIGN_DATE = rdSignDate.SelectedDate
-                            .ATTACH_FILE = txtUploadFile.Text 'Guid directory
-                            .FILENAME = txtUpload.Text 'ten file (a.jpg)
+                            '.ATTACH_FILE = txtUploadFile.Text 'Guid directory
+                            '.FILENAME = txtUpload.Text 'ten file (a.jpg)
                             If hidSign.Value <> "" Then
                                 .SIGN_ID = hidSign.Value
                             End If
@@ -642,9 +642,9 @@ Public Class ctrlHU_WageNewEdit
                                 Exit Sub
                             End If
                             .lstAllowance = lstAllow
-                            .SAL_TOTAL = Salary_Total.Value
+                            '.SAL_TOTAL = Salary_Total.Value
                             .TAX_TABLE_ID = Decimal.Parse(cboTaxTable.SelectedValue)
-                            .SAL_INS = SalaryInsurance.Value
+                            .SAL_INS = rntxtSalaryInsurance.Value
                         End With
 
                         Select Case CurrentState
@@ -750,8 +750,8 @@ Public Class ctrlHU_WageNewEdit
             Dim empID = ctrlFindEmployeePopup.SelectedEmployeeID(0)
             FillData(empID)
             isLoadPopup = 0
-            ClearControlValue(cbSalaryLevel, rnFactorSalary, cbSalaryRank, SalaryInsurance, basicSalary, Salary_Total, rnOtherSalary1, _
-                              rnOtherSalary2, rnOtherSalary3, rnOtherSalary4, rnOtherSalary5, rnPercentSalary)
+            ClearControlValue(cbSalaryLevel, cbSalaryRank, rntxtSalaryInsurance, basicSalary, _
+                               rnOtherSalary4, rnOtherSalary5, rnPercentSalary) ', Salary_Total,rnFactorSalary, rnOtherSalary1, rnOtherSalary2, rnOtherSalary3,
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
             DisplayException(Me.ViewName, Me.ID, ex)
@@ -808,8 +808,8 @@ Public Class ctrlHU_WageNewEdit
                                                 .IS_INSURANCE = CType(dtData.Rows(i)("IS_INSURANCE"), Boolean)})
                         Next
                     Case cboSalTYPE.ID
-                        ClearControlValue(cbSalaryGroup, cbSalaryLevel, cbSalaryRank, cboTaxTable, rnFactorSalary, SalaryInsurance, cboAllowance_Total, basicSalary,
-                              Salary_Total, rnOtherSalary1, rnOtherSalary2, rnOtherSalary3, rnOtherSalary4, rnOtherSalary5)
+                        ClearControlValue(cbSalaryGroup, cbSalaryLevel, cbSalaryRank, cboTaxTable, rntxtSalaryInsurance, rntxtAllowance_Total, basicSalary,
+                              rnOtherSalary4, rnOtherSalary5) ' rnFactorSalary,rnOtherSalary1, rnOtherSalary2, rnOtherSalary3, Salary_Total,
                         If e.Context("valueCustom") Is Nothing Then
                             dateValue = Date.Now
                         Else
@@ -919,12 +919,12 @@ Public Class ctrlHU_WageNewEdit
                         ShowMessage(Translate("Bạn phải nhập Ngày hiệu lực hồ sơ lương"), NotifyType.Warning)
                         Exit Sub
                     End If
-                    If rdAllowExpireDate.SelectedDate IsNot Nothing Then
-                        If rdAllowExpireDate.SelectedDate <= rdEffectDate.SelectedDate Then
-                            ShowMessage(Translate("Ngày kết thúc phụ cấp phải lớn hơn Ngày hiệu lực tờ trình"), NotifyType.Warning)
-                            Exit Sub
-                        End If
-                    End If
+                    'If rdAllowExpireDate.SelectedDate IsNot Nothing Then
+                    '    If rdAllowExpireDate.SelectedDate <= rdEffectDate.SelectedDate Then
+                    '        ShowMessage(Translate("Ngày kết thúc phụ cấp phải lớn hơn Ngày hiệu lực tờ trình"), NotifyType.Warning)
+                    '        Exit Sub
+                    '    End If
+                    'End If
                     Dim lstAllowList As New List(Of Decimal)
                     For Each item As GridDataItem In rgAllow.Items
                         lstAllowList.Add(item.GetDataKeyValue("ALLOWANCE_LIST_ID"))
@@ -950,16 +950,16 @@ Public Class ctrlHU_WageNewEdit
                     allow1.ALLOWANCE_LIST_NAME = cboAllowance.Text
                     allow1.AMOUNT = rntxtAmount.Value
 
-                    allow1.IS_INSURRANCE = chkIsInsurrance.Checked
+                    'allow1.IS_INSURRANCE = chkIsInsurrance.Checked
                     If rdAllowEffectDate.SelectedDate.HasValue Then
                         allow1.EFFECT_DATE = rdAllowEffectDate.SelectedDate.Value
                     Else
                         allow1.EFFECT_DATE = rdEffectDate.SelectedDate
                     End If
-                    allow1.EXPIRE_DATE = rdAllowExpireDate.SelectedDate
+                    'allow1.EXPIRE_DATE = rdAllowExpireDate.SelectedDate
                     lstAllow.Add(allow1)
-                    cboAllowance_Total.Value = If(cboAllowance_Total.Value Is Nothing, 0, cboAllowance_Total.Value) + allow1.AMOUNT
-                    ClearControlValue(cboAllowance, rntxtAmount, chkIsInsurrance, rdAllowExpireDate)
+                    rntxtAllowance_Total.Value = If(rntxtAllowance_Total.Value Is Nothing, 0, rntxtAllowance_Total.Value) + allow1.AMOUNT
+                    ClearControlValue(cboAllowance, rntxtAmount) ', chkIsInsurrance, rdAllowExpireDate
                     CalculatorSalary()
                     rgAllow.Rebind()
                 Case "DeleteAllow"
@@ -982,7 +982,7 @@ Public Class ctrlHU_WageNewEdit
                             lstAllow.Add(allow)
                         End If
                     Next
-                    ClearControlValue(cboAllowance_Total)
+                    ClearControlValue(rntxtAllowance_Total)
                     CalculatorSalary()
                     rgAllow.Rebind()
             End Select
@@ -1036,7 +1036,7 @@ Public Class ctrlHU_WageNewEdit
                 EnableControlAll(False, cbSalaryGroup, cbSalaryLevel, cbSalaryRank)
             End If
             'Ngay hieu luc thay doi => load lai thang luong theo ngay hieu luc
-            ClearControlValue(cbSalaryGroup, cbSalaryLevel, cbSalaryRank, SalaryInsurance, rnFactorSalary)
+            ClearControlValue(cbSalaryGroup, cbSalaryLevel, cbSalaryRank, rntxtSalaryInsurance) ', rnFactorSalary
             Dim dtData As DataTable = New DataTable()
             Using rep As New ProfileRepository
                 dtData = rep.GetSalaryGroupCombo(rdEffectDate.SelectedDate, True)
@@ -1052,130 +1052,130 @@ Public Class ctrlHU_WageNewEdit
             _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
         End Try
     End Sub
-    Private Sub rnFactorSalary_TextChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles rnFactorSalary.TextChanged
-        Try
-            Select Case cboSalTYPE.Text
-                Case "Thử việc"
-                    If IsNumeric(rnPercentSalary.Value) AndAlso rnPercentSalary.Value < 85 Then
-                        rnPercentSalary.Value = 85
-                        ShowMessage(Translate("Giá trị nhập không đúng qui định, vui lòng kiểm tra lại"), NotifyType.Alert)
-                        Exit Sub
-                    End If
-                Case "Chính thức"
-                    If IsNumeric(rnPercentSalary.Value) AndAlso rnPercentSalary.Value < 100 Then
-                        rnPercentSalary.Value = 100
-                        ShowMessage(Translate("Giá trị nhập không đúng qui định, vui lòng kiểm tra lại"), NotifyType.Alert)
-                        Exit Sub
-                    End If
-            End Select
-            CalculatorSalary()
-        Catch ex As Exception
-            Throw ex
-        End Try
-    End Sub
+    'Private Sub rnFactorSalary_TextChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles rnFactorSalary.TextChanged
+    '    Try
+    '        Select Case cboSalTYPE.Text
+    '            Case "Thử việc"
+    '                If IsNumeric(rnPercentSalary.Value) AndAlso rnPercentSalary.Value < 85 Then
+    '                    rnPercentSalary.Value = 85
+    '                    ShowMessage(Translate("Giá trị nhập không đúng qui định, vui lòng kiểm tra lại"), NotifyType.Alert)
+    '                    Exit Sub
+    '                End If
+    '            Case "Chính thức"
+    '                If IsNumeric(rnPercentSalary.Value) AndAlso rnPercentSalary.Value < 100 Then
+    '                    rnPercentSalary.Value = 100
+    '                    ShowMessage(Translate("Giá trị nhập không đúng qui định, vui lòng kiểm tra lại"), NotifyType.Alert)
+    '                    Exit Sub
+    '                End If
+    '        End Select
+    '        CalculatorSalary()
+    '    Catch ex As Exception
+    '        Throw ex
+    '    End Try
+    'End Sub
 
-    Private Sub basicSalary_TextChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles basicSalary.TextChanged
-        Try
-            'CalculatorSalary()
-            If basicSalary.Value < basicSal Then
-                ShowMessage(Translate("Không được điều chỉnh lương cơ bản nhỏ hơn hệ số nhân với lương tối thiểu vùng"), NotifyType.Warning)
-                Exit Sub
-            End If
-            If basicSalary.Value Is Nothing Then
-                ShowMessage(Translate("Bạn hãy nhập lương cơ bản"), NotifyType.Warning)
-                Exit Sub
-            End If
+    'Private Sub basicSalary_TextChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles basicSalary.TextChanged
+    '    Try
+    '        'CalculatorSalary()
+    '        If basicSalary.Value < basicSal Then
+    '            ShowMessage(Translate("Không được điều chỉnh lương cơ bản nhỏ hơn hệ số nhân với lương tối thiểu vùng"), NotifyType.Warning)
+    '            Exit Sub
+    '        End If
+    '        If basicSalary.Value Is Nothing Then
+    '            ShowMessage(Translate("Bạn hãy nhập lương cơ bản"), NotifyType.Warning)
+    '            Exit Sub
+    '        End If
 
-            If rnPercentSalary.Value.HasValue Then
-                If cboSalTYPE.Text = "Kiêm nhiệm" Then
-                    total = (If(basicSalary.Value.HasValue, basicSalary.Value, 0) + _
-                             If(rnOtherSalary1.Value.HasValue, rnOtherSalary1.Value, 0) + _
-                             If(rnOtherSalary2.Value.HasValue, rnOtherSalary2.Value, 0)) * rnPercentSalary.Value / 100
-                    ' basicSalary.Enabled = True
-                Else
-                    total = (basicSalary.Value + _
-                        If(rnOtherSalary1.Value.HasValue, rnOtherSalary1.Value, 0)) * rnPercentSalary.Value / 100
-                    ' basicSalary.Enabled = False
-                End If
-            End If
-            Salary_Total.Value = total
-        Catch ex As Exception
-            Throw ex
-        End Try
-    End Sub
-    Private Sub rnOtherSalary1_TextChanged(sender As Object, e As System.EventArgs) Handles rnOtherSalary1.TextChanged
-        Try
-            If rnPercentSalary.Value.HasValue Then
-                If cboSalTYPE.Text = "Kiêm nhiệm" Then
-                    total = (If(basicSalary.Value.HasValue, basicSalary.Value, 0) + _
-                           If(rnOtherSalary1.Value.HasValue, rnOtherSalary1.Value, 0) + _
-                           If(rnOtherSalary2.Value.HasValue, rnOtherSalary2.Value, 0)) * rnPercentSalary.Value / 100
-                    Salary_Total.Value = total
-                Else
-                    Salary_Total.Value = (basicSalary.Value + _
-                        If(rnOtherSalary1.Value.HasValue, rnOtherSalary1.Value, 0)) * rnPercentSalary.Value / 100
-                End If
-            End If
-        Catch ex As Exception
-            Throw ex
-        End Try
-    End Sub
-    Private Sub rnOtherSalary2_TextChanged(sender As Object, e As System.EventArgs) Handles rnOtherSalary2.TextChanged
-        Try
-            If rnPercentSalary.Value.HasValue Then
-                If cboSalTYPE.Text = "Kiêm nhiệm" Then
-                    total = (If(basicSalary.Value.HasValue, basicSalary.Value, 0) + _
-                           If(rnOtherSalary1.Value.HasValue, rnOtherSalary1.Value, 0) + _
-                           If(rnOtherSalary2.Value.HasValue, rnOtherSalary2.Value, 0)) * rnPercentSalary.Value / 100
-                    Salary_Total.Value = total
-                Else
-                    Salary_Total.Value = (basicSalary.Value + _
-                        If(rnOtherSalary1.Value.HasValue, rnOtherSalary1.Value, 0)) * rnPercentSalary.Value / 100
-                End If
-            End If
-        Catch ex As Exception
-            Throw ex
-        End Try
-    End Sub
-    Private Sub rnPercentSalary_TextChanged(sender As Object, e As System.EventArgs) Handles rnPercentSalary.TextChanged
-        Try
-            If rnPercentSalary.Value.HasValue Then
-                If cboSalTYPE.Text = "Kiêm nhiệm" Then
-                    total = (If(basicSalary.Value.HasValue, basicSalary.Value, 0) + _
-                           If(rnOtherSalary1.Value.HasValue, rnOtherSalary1.Value, 0) + _
-                           If(rnOtherSalary2.Value.HasValue, rnOtherSalary2.Value, 0)) * rnPercentSalary.Value / 100
-                    Salary_Total.Value = total
-                Else
-                    Salary_Total.Value = (basicSalary.Value + _
-                        If(rnOtherSalary1.Value.HasValue, rnOtherSalary1.Value, 0)) * rnPercentSalary.Value / 100
-                End If
-            End If
-        Catch ex As Exception
-            Throw ex
-        End Try
-    End Sub
+    '        If rnPercentSalary.Value.HasValue Then
+    '            If cboSalTYPE.Text = "Kiêm nhiệm" Then
+    '                total = (If(basicSalary.Value.HasValue, basicSalary.Value, 0) + _
+    '                         If(rnOtherSalary1.Value.HasValue, rnOtherSalary1.Value, 0) + _
+    '                         If(rnOtherSalary2.Value.HasValue, rnOtherSalary2.Value, 0)) * rnPercentSalary.Value / 100
+    '                ' basicSalary.Enabled = True
+    '            Else
+    '                total = (basicSalary.Value + _
+    '                    If(rnOtherSalary1.Value.HasValue, rnOtherSalary1.Value, 0)) * rnPercentSalary.Value / 100
+    '                ' basicSalary.Enabled = False
+    '            End If
+    '        End If
+    '        Salary_Total.Value = total
+    '    Catch ex As Exception
+    '        Throw ex
+    '    End Try
+    'End Sub
+    'Private Sub rnOtherSalary1_TextChanged(sender As Object, e As System.EventArgs) Handles rnOtherSalary1.TextChanged
+    '    Try
+    '        If rnPercentSalary.Value.HasValue Then
+    '            If cboSalTYPE.Text = "Kiêm nhiệm" Then
+    '                total = (If(basicSalary.Value.HasValue, basicSalary.Value, 0) + _
+    '                       If(rnOtherSalary1.Value.HasValue, rnOtherSalary1.Value, 0) + _
+    '                       If(rnOtherSalary2.Value.HasValue, rnOtherSalary2.Value, 0)) * rnPercentSalary.Value / 100
+    '                Salary_Total.Value = total
+    '            Else
+    '                Salary_Total.Value = (basicSalary.Value + _
+    '                    If(rnOtherSalary1.Value.HasValue, rnOtherSalary1.Value, 0)) * rnPercentSalary.Value / 100
+    '            End If
+    '        End If
+    '    Catch ex As Exception
+    '        Throw ex
+    '    End Try
+    'End Sub
+    'Private Sub rnOtherSalary2_TextChanged(sender As Object, e As System.EventArgs) Handles rnOtherSalary2.TextChanged
+    '    Try
+    '        If rnPercentSalary.Value.HasValue Then
+    '            If cboSalTYPE.Text = "Kiêm nhiệm" Then
+    '                total = (If(basicSalary.Value.HasValue, basicSalary.Value, 0) + _
+    '                       If(rnOtherSalary1.Value.HasValue, rnOtherSalary1.Value, 0) + _
+    '                       If(rnOtherSalary2.Value.HasValue, rnOtherSalary2.Value, 0)) * rnPercentSalary.Value / 100
+    '                Salary_Total.Value = total
+    '            Else
+    '                Salary_Total.Value = (basicSalary.Value + _
+    '                    If(rnOtherSalary1.Value.HasValue, rnOtherSalary1.Value, 0)) * rnPercentSalary.Value / 100
+    '            End If
+    '        End If
+    '    Catch ex As Exception
+    '        Throw ex
+    '    End Try
+    'End Sub
+    'Private Sub rnPercentSalary_TextChanged(sender As Object, e As System.EventArgs) Handles rnPercentSalary.TextChanged
+    '    Try
+    '        If rnPercentSalary.Value.HasValue Then
+    '            If cboSalTYPE.Text = "Kiêm nhiệm" Then
+    '                total = (If(basicSalary.Value.HasValue, basicSalary.Value, 0) + _
+    '                       If(rnOtherSalary1.Value.HasValue, rnOtherSalary1.Value, 0) + _
+    '                       If(rnOtherSalary2.Value.HasValue, rnOtherSalary2.Value, 0)) * rnPercentSalary.Value / 100
+    '                Salary_Total.Value = total
+    '            Else
+    '                Salary_Total.Value = (basicSalary.Value + _
+    '                    If(rnOtherSalary1.Value.HasValue, rnOtherSalary1.Value, 0)) * rnPercentSalary.Value / 100
+    '            End If
+    '        End If
+    '    Catch ex As Exception
+    '        Throw ex
+    '    End Try
+    'End Sub
     ''' <summary>
     ''' Event selected item combobox phu cap
     ''' </summary>
     ''' <param name="sender"></param>
     ''' <param name="e"></param>
     ''' <remarks></remarks>
-    Private Sub cboAllowance_SelectedIndexChanged(ByVal sender As Object, ByVal e As Telerik.Web.UI.RadComboBoxSelectedIndexChangedEventArgs) Handles cboAllowance.SelectedIndexChanged
-        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
-        Try
-            Using rep As New ProfileRepository
-                Dim allownace = rep.GetAllowanceList(New AllowanceListDTO With {.ID = cboAllowance.SelectedValue}).FirstOrDefault
-                If allownace IsNot Nothing Then
-                    chkIsInsurrance.Checked = allownace.IS_INSURANCE
-                Else
-                    chkIsInsurrance.Checked = False
-                End If
-            End Using
-        Catch ex As Exception
-            DisplayException(Me.ViewName, Me.ID, ex)
-            _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
-        End Try
-    End Sub
+    'Private Sub cboAllowance_SelectedIndexChanged(ByVal sender As Object, ByVal e As Telerik.Web.UI.RadComboBoxSelectedIndexChangedEventArgs) Handles cboAllowance.SelectedIndexChanged
+    '    Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+    '    Try
+    '        Using rep As New ProfileRepository
+    '            Dim allownace = rep.GetAllowanceList(New AllowanceListDTO With {.ID = cboAllowance.SelectedValue}).FirstOrDefault
+    '            If allownace IsNot Nothing Then
+    '                chkIsInsurrance.Checked = allownace.IS_INSURANCE
+    '            Else
+    '                chkIsInsurrance.Checked = False
+    '            End If
+    '        End Using
+    '    Catch ex As Exception
+    '        DisplayException(Me.ViewName, Me.ID, ex)
+    '        _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
+    '    End Try
+    'End Sub
 #End Region
 #Region "Custom"
 
@@ -1191,16 +1191,16 @@ Public Class ctrlHU_WageNewEdit
             Dim startTime As DateTime = DateTime.UtcNow
             Select Case CurrentState
                 Case CommonMessage.STATE_NEW
-                    EnableControlAll(True, btnFindEmployee, chkIsInsurrance, SalaryInsurance)
+                    EnableControlAll(True, btnFindEmployee, rntxtSalaryInsurance) ', chkIsInsurrance
                     If (rdEffectDate.SelectedDate IsNot Nothing) Then
                         EnableControlAll(True, cbSalaryGroup, cbSalaryLevel, cbSalaryRank)
                     Else
                         EnableControlAll(False, cbSalaryGroup, cbSalaryLevel, cbSalaryRank)
                     End If
                 Case CommonMessage.STATE_EDIT
-                    EnableControlAll(False, btnFindEmployee, chkIsInsurrance)
+                    EnableControlAll(False, btnFindEmployee) ', chkIsInsurrance
                     If cboStatus.SelectedValue = ProfileCommon.DECISION_STATUS.WAIT_APPROVE_ID Then
-                        EnableControlAll(True, cbSalaryGroup, cbSalaryLevel, cbSalaryRank, rnOtherSalary1, rnOtherSalary2, rnOtherSalary3)
+                        EnableControlAll(True, cbSalaryGroup, cbSalaryLevel, cbSalaryRank) ', rnOtherSalary1, rnOtherSalary2, rnOtherSalary3
                     End If
             End Select
             Select Case isLoadPopup
@@ -1277,8 +1277,8 @@ Public Class ctrlHU_WageNewEdit
                     ShowMessage(Translate(" Nhân viên chưa có dữ liệu Quản lý trực tiếp, Đối tượng chấm công, Đối tượng lao động. Vui lòng kiểm tra và bổ sung trước khi tạo hồ sơ lương."), NotifyType.Warning)
                     Exit Sub
                 End If
-                ClearControlValue(cbSalaryGroup, cbSalaryLevel, cbSalaryRank, cboTaxTable, cboSalTYPE, rnFactorSalary, SalaryInsurance, cboAllowance_Total, basicSalary,
-                              Salary_Total, rnOtherSalary1, rnOtherSalary2, rnOtherSalary3, rnOtherSalary4, rnOtherSalary5)
+                ClearControlValue(cbSalaryGroup, cbSalaryLevel, cbSalaryRank, cboTaxTable, cboSalTYPE, rntxtSalaryInsurance, rntxtAllowance_Total, basicSalary,
+                               rnOtherSalary4, rnOtherSalary5) ' rnFactorSalary, rnOtherSalary1, rnOtherSalary2, rnOtherSalary3, Salary_Total,
                 rgAllow.DataSource = New List(Of WorkingAllowanceDTO)
                 rgAllow.Rebind()
                 hidID.Value = obj.ID.ToString
@@ -1322,7 +1322,7 @@ Public Class ctrlHU_WageNewEdit
                     hidStaffRank.Value = ""
                     'txtStaffRank.Text = vbNullString
                 End If
-                SalaryInsurance.Text = obj.SAL_INS
+                rntxtSalaryInsurance.Text = obj.SAL_INS
             End Using
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
@@ -1349,21 +1349,21 @@ Public Class ctrlHU_WageNewEdit
         End Try
 
     End Sub
-    Private Sub loadDatasource(ByVal strUpload As String)
-        Dim startTime As DateTime = DateTime.UtcNow
-        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
-        Try
-            If strUpload <> "" Then
-                txtUploadFile.Text = Down_File
-                txtUpload.Text = strUpload
-            Else
-                strUpload = String.Empty
-            End If
-            _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
-        Catch ex As Exception
-            _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
-        End Try
-    End Sub
+    'Private Sub loadDatasource(ByVal strUpload As String)
+    '    Dim startTime As DateTime = DateTime.UtcNow
+    '    Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+    '    Try
+    '        If strUpload <> "" Then
+    '            txtUploadFile.Text = Down_File
+    '            txtUpload.Text = strUpload
+    '        Else
+    '            strUpload = String.Empty
+    '        End If
+    '        _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
+    '    Catch ex As Exception
+    '        _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
+    '    End Try
+    'End Sub
     Private Sub ZipFiles(ByVal path As String, ByVal _ID As Decimal)
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
         Dim startTime As DateTime = DateTime.UtcNow
@@ -1394,21 +1394,21 @@ Public Class ctrlHU_WageNewEdit
             If IsDate(rdEffectDate.SelectedDate) Then
                 obj.EFFECT_DATE = rdEffectDate.SelectedDate
             End If
-            If IsNumeric(SalaryInsurance.Value) Then
-                obj.SALARYINSURANCE = SalaryInsurance.Value
+            If IsNumeric(rntxtSalaryInsurance.Value) Then
+                obj.rntxtSalaryInsurance = rntxtSalaryInsurance.Value
             End If
-            If IsNumeric(rnFactorSalary.Text) Then
-                obj.FACTORSALARY = CDec(Val(rnFactorSalary.Text))
-            End If
+            'If IsNumeric(rnFactorSalary.Text) Then
+            '    obj.FACTORSALARY = CDec(Val(rnFactorSalary.Text))
+            'End If
             obj.MUCLUONGCS = 0
-            If IsNumeric(Salary_Total.Value) Then
-                obj.TOTALSALARY = Salary_Total.Value
-            End If
+            'If IsNumeric(Salary_Total.Value) Then
+            '    obj.TOTALSALARY = Salary_Total.Value
+            'End If
             If IsNumeric(basicSalary.Value) Then
                 obj.BASICSALARY = basicSalary.Value
             End If
-            If IsNumeric(cboAllowance_Total.Value) Then
-                obj.ALLOWANCE_TOTAL = cboAllowance_Total.Value
+            If IsNumeric(rntxtAllowance_Total.Value) Then
+                obj.ALLOWANCE_TOTAL = rntxtAllowance_Total.Value
             End If
             If IsNumeric(rnPercentSalary.Value) Then
                 obj.PERCENT_SALARY = rnPercentSalary.Value
@@ -1422,15 +1422,15 @@ Public Class ctrlHU_WageNewEdit
             If IsNumeric(cbSalaryLevel.SelectedValue) Then
                 obj.LEVEL_SALARY = cbSalaryLevel.SelectedValue
             End If
-            If IsNumeric(rnOtherSalary1.Value) Then
-                obj.OTHERSALARY1 = rnOtherSalary1.Value
-            End If
-            If IsNumeric(rnOtherSalary2.Value) Then
-                obj.OTHERSALARY2 = rnOtherSalary2.Value
-            End If
-            If IsNumeric(rnOtherSalary3.Value) Then
-                obj.OTHERSALARY3 = rnOtherSalary3.Value
-            End If
+            'If IsNumeric(rnOtherSalary1.Value) Then
+            '    obj.OTHERSALARY1 = rnOtherSalary1.Value
+            'End If
+            'If IsNumeric(rnOtherSalary2.Value) Then
+            '    obj.OTHERSALARY2 = rnOtherSalary2.Value
+            'End If
+            'If IsNumeric(rnOtherSalary3.Value) Then
+            '    obj.OTHERSALARY3 = rnOtherSalary3.Value
+            'End If
             If IsNumeric(rnOtherSalary4.Value) Then
                 obj.OTHERSALARY4 = rnOtherSalary4.Value
             End If
@@ -1494,7 +1494,7 @@ Public Class ctrlHU_WageNewEdit
             '                If(rnOtherSalary3.Value.HasValue, rnOtherSalary3.Value, 0) + _
             '                If(rnOtherSalary4.Value.HasValue, rnOtherSalary4.Value, 0) + _
             '                If(rnOtherSalary5.Value.HasValue, rnOtherSalary5.Value, 0) + _
-            '                If(cboAllowance_Total.Value.HasValue, cboAllowance_Total.Value, 0)
+            '                If(rntxtAllowance_Total.Value.HasValue, rntxtAllowance_Total.Value, 0)
             '        End If
             '    End If
             '    Salary_Total.Value = total
@@ -1508,12 +1508,12 @@ Public Class ctrlHU_WageNewEdit
             If rdEffectDate.SelectedDate IsNot Nothing Then
                 LoadMinAreaSalary()
             End If
-            If rnFactorSalary.Text.Contains(".") Then
-                factorSal = rnFactorSalary.Text.Replace(".", ",").ToString
-                rnFactorSal = If(IsNumeric(factorSal), Decimal.Parse(factorSal), Nothing)
-            Else
-                rnFactorSal = If(IsNumeric(rnFactorSalary.Text), Decimal.Parse(rnFactorSalary.Text), Nothing)
-            End If
+            'If rnFactorSalary.Text.Contains(".") Then
+            '    factorSal = rnFactorSalary.Text.Replace(".", ",").ToString
+            '    rnFactorSal = If(IsNumeric(factorSal), Decimal.Parse(factorSal), Nothing)
+            'Else
+            '    rnFactorSal = If(IsNumeric(rnFactorSalary.Text), Decimal.Parse(rnFactorSalary.Text), Nothing)
+            'End If
             If IsNumeric(rnFactorSal) AndAlso rnFactorSal > 0 Then
                 basicSal = rnFactorSal * _lttv
                 basicSalary.Value = basicSal
@@ -1521,19 +1521,19 @@ Public Class ctrlHU_WageNewEdit
                 basicSalary.Value = 0
             End If
 
-            If rnPercentSalary.Value.HasValue Then
-                If cboSalTYPE.Text = "Kiêm nhiệm" Then
-                    total = (If(basicSalary.Value.HasValue, basicSalary.Value, 0) + _
-                             If(rnOtherSalary1.Value.HasValue, rnOtherSalary1.Value, 0) + _
-                             If(rnOtherSalary2.Value.HasValue, rnOtherSalary2.Value, 0)) * rnPercentSalary.Value / 100
-                    ' basicSalary.Enabled = True
-                Else
-                    total = basicSal * rnPercentSalary.Value / 100 + _
-                        If(rnOtherSalary1.Value.HasValue, rnOtherSalary1.Value, 0)
-                    ' basicSalary.Enabled = False
-                End If
-            End If
-            Salary_Total.Value = total
+            'If rnPercentSalary.Value.HasValue Then
+            '    If cboSalTYPE.Text = "Kiêm nhiệm" Then
+            '        total = (If(basicSalary.Value.HasValue, basicSalary.Value, 0) + _
+            '                 If(rnOtherSalary1.Value.HasValue, rnOtherSalary1.Value, 0) + _
+            '                 If(rnOtherSalary2.Value.HasValue, rnOtherSalary2.Value, 0)) * rnPercentSalary.Value / 100
+            '        ' basicSalary.Enabled = True
+            '    Else
+            '        total = basicSal * rnPercentSalary.Value / 100 + _
+            '            If(rnOtherSalary1.Value.HasValue, rnOtherSalary1.Value, 0)
+            '        ' basicSalary.Enabled = False
+            '    End If
+            'End If
+            'Salary_Total.Value = total
         Catch ex As Exception
             Throw ex
         End Try
@@ -1591,31 +1591,31 @@ Public Class ctrlHU_WageNewEdit
         End Using
         Select Case cboSalTYPE.Text
             Case "Thử việc"
-                EnableControlAll(True, cbSalaryGroup, cbSalaryLevel, cbSalaryRank, rnFactorSalary, rnPercentSalary, Salary_Total, rnOtherSalary1, basicSalary)
+                EnableControlAll(True, cbSalaryGroup, cbSalaryLevel, cbSalaryRank, rnPercentSalary, basicSalary) 'rnFactorSalary, rnOtherSalary1,Salary_Total,
                 rnPercentSalary.Value = _tyLeThuViec
-                ClearControlValue(rnFactorSalary, basicSalary)
+                ClearControlValue(basicSalary) 'rnFactorSalary,
             Case "Chính thức"
-                EnableControlAll(True, cbSalaryGroup, cbSalaryLevel, cbSalaryRank, rnFactorSalary, rnPercentSalary, Salary_Total, rnOtherSalary1, basicSalary)
+                EnableControlAll(True, cbSalaryGroup, cbSalaryLevel, cbSalaryRank, rnPercentSalary, basicSalary) 'rnFactorSalary, rnOtherSalary1,Salary_Total,
                 rnPercentSalary.Value = _tyLeChinhThuc
-                ClearControlValue(rnFactorSalary, basicSalary)
+                ClearControlValue(basicSalary) 'rnFactorSalary,
             Case "Kiêm nhiệm"
-                EnableControlAll(True, rnPercentSalary, rnOtherSalary1, rnOtherSalary2)
-                EnableControlAll(False, cbSalaryGroup, cbSalaryLevel, cbSalaryRank, Salary_Total, rnFactorSalary, basicSalary)
-                rnFactorSalary.Text = 0
+                EnableControlAll(True, rnPercentSalary) ', rnOtherSalary1, rnOtherSalary2
+                EnableControlAll(False, cbSalaryGroup, cbSalaryLevel, cbSalaryRank, basicSalary) 'rnFactorSalary,Salary_Total,
+                'rnFactorSalary.Text = 0
                 basicSalary.Text = 0
-                ClearControlValue(cbSalaryGroup, cbSalaryLevel, cbSalaryRank, Salary_Total)
+                ClearControlValue(cbSalaryGroup, cbSalaryLevel, cbSalaryRank) ', Salary_Total
         End Select
-        If rnPercentSalary.Value.HasValue Then
-            If cboSalTYPE.Text = "Kiêm nhiệm" Then
-                total = (If(basicSalary.Value.HasValue, basicSalary.Value, 0) + _
-                       If(rnOtherSalary1.Value.HasValue, rnOtherSalary1.Value, 0) + _
-                       If(rnOtherSalary2.Value.HasValue, rnOtherSalary2.Value, 0)) * rnPercentSalary.Value / 100
-                Salary_Total.Value = total
-            Else
-                Salary_Total.Value = (basicSalary.Value + _
-                    If(rnOtherSalary1.Value.HasValue, rnOtherSalary1.Value, 0)) * rnPercentSalary.Value / 100
-            End If
-        End If
+        'If rnPercentSalary.Value.HasValue Then
+        '    If cboSalTYPE.Text = "Kiêm nhiệm" Then
+        '        total = (If(basicSalary.Value.HasValue, basicSalary.Value, 0) + _
+        '               If(rnOtherSalary1.Value.HasValue, rnOtherSalary1.Value, 0) + _
+        '               If(rnOtherSalary2.Value.HasValue, rnOtherSalary2.Value, 0)) * rnPercentSalary.Value / 100
+        '        Salary_Total.Value = total
+        '    Else
+        '        Salary_Total.Value = (basicSalary.Value + _
+        '            If(rnOtherSalary1.Value.HasValue, rnOtherSalary1.Value, 0)) * rnPercentSalary.Value / 100
+        '    End If
+        'End If
     End Sub
     Private Sub SetTaxTableByCode(ByVal taxTables As List(Of OtherListDTO), ByVal code As String)
         Dim taxTable = taxTables.FirstOrDefault(Function(f) f.CODE = code)
@@ -1626,13 +1626,13 @@ Public Class ctrlHU_WageNewEdit
     End Sub
 #End Region
 
-  
-  
+
+
 End Class
 Structure DATA_IN
     Public EMPLOYEE_ID As Decimal?
     Public EFFECT_DATE As String
-    Public SALARYINSURANCE As Decimal?
+    Public rntxtSalaryInsurance As Decimal?
     Public FACTORSALARY As Decimal?
     Public MUCLUONGCS As Decimal?
     Public TOTALSALARY As Decimal?

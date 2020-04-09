@@ -10,4 +10,5 @@
     Public Property IS_INSURRANCE As Boolean?
     Public Property EFFECT_DATE As Date?
     Public Property EXPIRE_DATE As Date?
+    Public Property AMOUNT_EX As Decimal?
 End Class
