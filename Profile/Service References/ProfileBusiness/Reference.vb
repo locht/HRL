@@ -19528,6 +19528,9 @@ Namespace ProfileBusiness
         Private CERTIFICATE_NUMField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private COMPANY_WORKField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private CREATED_BYField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -19544,6 +19547,9 @@ Namespace ProfileBusiness
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private DEDUCT_TOField As System.Nullable(Of Date)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private DIE_DATEField As System.Nullable(Of Date)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private EMPLOYEE_CODEField As String
@@ -19574,6 +19580,9 @@ Namespace ProfileBusiness
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private IS_DEDUCTField As System.Nullable(Of Boolean)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private IS_EMPLOYEEField As System.Nullable(Of Decimal)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private IS_OWNERField As Boolean
@@ -19616,6 +19625,9 @@ Namespace ProfileBusiness
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private REMARKField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private SALARY_EARNField As System.Nullable(Of Decimal)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private TAXTATIONField As String
@@ -19944,6 +19956,19 @@ Namespace ProfileBusiness
         End Property
         
         <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property COMPANY_WORK() As String
+            Get
+                Return Me.COMPANY_WORKField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.COMPANY_WORKField, value) <> true) Then
+                    Me.COMPANY_WORKField = value
+                    Me.RaisePropertyChanged("COMPANY_WORK")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
         Public Property CREATED_BY() As String
             Get
                 Return Me.CREATED_BYField
@@ -20017,6 +20042,19 @@ Namespace ProfileBusiness
                 If (Me.DEDUCT_TOField.Equals(value) <> true) Then
                     Me.DEDUCT_TOField = value
                     Me.RaisePropertyChanged("DEDUCT_TO")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property DIE_DATE() As System.Nullable(Of Date)
+            Get
+                Return Me.DIE_DATEField
+            End Get
+            Set
+                If (Me.DIE_DATEField.Equals(value) <> true) Then
+                    Me.DIE_DATEField = value
+                    Me.RaisePropertyChanged("DIE_DATE")
                 End If
             End Set
         End Property
@@ -20147,6 +20185,19 @@ Namespace ProfileBusiness
                 If (Me.IS_DEDUCTField.Equals(value) <> true) Then
                     Me.IS_DEDUCTField = value
                     Me.RaisePropertyChanged("IS_DEDUCT")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property IS_EMPLOYEE() As System.Nullable(Of Decimal)
+            Get
+                Return Me.IS_EMPLOYEEField
+            End Get
+            Set
+                If (Me.IS_EMPLOYEEField.Equals(value) <> true) Then
+                    Me.IS_EMPLOYEEField = value
+                    Me.RaisePropertyChanged("IS_EMPLOYEE")
                 End If
             End Set
         End Property
@@ -20329,6 +20380,19 @@ Namespace ProfileBusiness
                 If (Object.ReferenceEquals(Me.REMARKField, value) <> true) Then
                     Me.REMARKField = value
                     Me.RaisePropertyChanged("REMARK")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property SALARY_EARN() As System.Nullable(Of Decimal)
+            Get
+                Return Me.SALARY_EARNField
+            End Get
+            Set
+                If (Me.SALARY_EARNField.Equals(value) <> true) Then
+                    Me.SALARY_EARNField = value
+                    Me.RaisePropertyChanged("SALARY_EARN")
                 End If
             End Set
         End Property

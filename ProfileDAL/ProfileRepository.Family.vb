@@ -268,7 +268,10 @@ Partial Class ProfileRepository
             objFamilyData.BIRTH_DISTRICT_ID = objFamily.BIRTH_DISTRICT_ID
             objFamilyData.BIRTH_WARD_ID = objFamily.BIRTH_WARD_ID
             objFamilyData.GENDER = objFamily.GENDER
-
+            objFamilyData.DIE_DATE = objFamily.DIE_DATE
+            objFamilyData.SALARY_EARN = objFamily.SALARY_EARN
+            objFamilyData.COMPANY_WORK = objFamily.COMPANY_WORK
+            objFamilyData.IS_EMPLOYEE = objFamily.IS_EMPLOYEE
             Context.HU_FAMILY.AddObject(objFamilyData)
             Context.SaveChanges(log)
             gID = objFamilyData.ID
@@ -326,7 +329,10 @@ Partial Class ProfileRepository
             objFamilyData.BIRTH_DISTRICT_ID = objFamily.BIRTH_DISTRICT_ID
             objFamilyData.BIRTH_WARD_ID = objFamily.BIRTH_WARD_ID
             objFamilyData.GENDER = objFamily.GENDER
-
+            objFamilyData.DIE_DATE = objFamily.DIE_DATE
+            objFamilyData.SALARY_EARN = objFamily.SALARY_EARN
+            objFamilyData.COMPANY_WORK = objFamily.COMPANY_WORK
+            objFamilyData.IS_EMPLOYEE = objFamily.IS_EMPLOYEE
             Context.SaveChanges(log)
             gID = objFamilyData.ID
             Return True
@@ -419,6 +425,10 @@ Partial Class ProfileRepository
                     .BIRTH_DISTRICT_NAME = d_ks.NAME_VN,
                     .BIRTH_WARD_NAME = w_ks.NAME_VN,
                     .GENDER = p.GENDER,
+                    .DIE_DATE = p.DIE_DATE,
+                    .SALARY_EARN = p.SALARY_EARN,
+                    .COMPANY_WORK = p.COMPANY_WORK,
+                    .IS_EMPLOYEE = p.IS_EMPLOYEE,
                     .GENDER_NAME = g.NAME_VN})
             If _filter.EMPLOYEE_ID <> 0 Then
                 query = query.Where(Function(p) p.EMPLOYEE_ID = _filter.EMPLOYEE_ID)

@@ -250,7 +250,7 @@ Public Class ctrlHU_EmpDtlFamily
                                 If Execute() Then
                                     ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), Utilities.NotifyType.Success)
                                     CurrentState = CommonMessage.STATE_NORMAL
-                                    ClearControlValue(txtFullName, cboNguyenQuan, cboRelationship, rdBirthDate, txtIDNO, txtAdress1, txtAdress_TT,
+                                    ClearControlValue(txtFullName, rnCollecttion, cboNguyenQuan, cboRelationship, rdBirthDate, txtIDNO, txtAdress1, txtAdress_TT,
                                                         chkIsDeduct, rdDeductReg, rdDeductFrom, rdDeductTo, txtRemark, txtTax, txtCareer, txtTitle,
                                                          txtSoHoKhau, txtMaHoGiaDinh, cboProvince_City1, cboDistrict1, cboCommune1,
                                                           cboProvince_City2, cboDistrict2, cboCommune2, txtHamlet1, chkHousehold, chkDaMat, chkIsEmployee, rdDieDate, txtCompanyWork)
@@ -263,7 +263,7 @@ Public Class ctrlHU_EmpDtlFamily
                                 If Execute() Then
                                     ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), Utilities.NotifyType.Success)
                                     CurrentState = CommonMessage.STATE_NORMAL
-                                    ClearControlValue(txtFullName, cboNguyenQuan, cboRelationship, rdBirthDate, txtIDNO, txtAdress1, txtAdress_TT,
+                                    ClearControlValue(txtFullName, rnCollecttion, cboNguyenQuan, cboRelationship, rdBirthDate, txtIDNO, txtAdress1, txtAdress_TT,
                                                         chkIsDeduct, rdDeductReg, rdDeductFrom, rdDeductTo, txtRemark, txtTax, txtCareer, txtTitle,
                                                          txtSoHoKhau, txtMaHoGiaDinh, cboProvince_City1, cboDistrict1, cboCommune1,
                                                           cboProvince_City2, cboDistrict2, cboCommune2, txtHamlet1, chkHousehold, chkDaMat, chkIsEmployee, rdDieDate, txtCompanyWork)
@@ -513,7 +513,7 @@ Public Class ctrlHU_EmpDtlFamily
                     CurrentState = CommonMessage.STATE_NORMAL
                     UpdateControlState()
                     ExcuteScript("Clear", "clRadDatePicker()")
-                    ClearControlValue(txtFullName, cboNguyenQuan, cboRelationship, rdBirthDate, txtIDNO, txtAdress1, txtAdress_TT,
+                    ClearControlValue(txtFullName, rnCollecttion, cboNguyenQuan, cboRelationship, rdBirthDate, txtIDNO, txtAdress1, txtAdress_TT,
                                         chkIsDeduct, rdDeductReg, rdDeductFrom, rdDeductTo, txtRemark, txtTax, txtCareer, txtTitle, cboGender, rdIDDate, txtIDPlace, cboNationlity, txtPhone, rdMSTDate, txtBIRTH_CODE, cboNATIONALITYFAMILY, cbTempKtPROVINCE_ID, cbTempKtDISTRICT_ID, cbTempKtWARD_ID, txtQuyen, txt_MSTPLACE,
                                            txtSoHoKhau, txtMaHoGiaDinh, cboProvince_City1, cboDistrict1, cboCommune1,
                                                           cboProvince_City2, cboDistrict2, cboCommune2, txtHamlet1, chkHousehold, chkDaMat, chkIsEmployee, rdDieDate, txtCompanyWork)
@@ -821,6 +821,7 @@ Public Class ctrlHU_EmpDtlFamily
         txtTax.ReadOnly = Not sTrangThai
         txtIDNO.ReadOnly = Not sTrangThai
         txtFullName.ReadOnly = Not sTrangThai
+        rnCollecttion.ReadOnly = Not sTrangThai
         chkIsEmployee.Enabled = sTrangThai
         rdDieDate.Enabled = sTrangThai
         txtCompanyWork.ReadOnly = Not sTrangThai
@@ -861,7 +862,7 @@ Public Class ctrlHU_EmpDtlFamily
     Private Sub ResetControlValue()
         ClearControlValue(txtFullName, txtAdress1, txtAdress_TT, txtIDNO, txtRemark, txtTax, txtCareer, txtTitle,
                           hidFamilyID, chkIsDeduct, cboNguyenQuan, cboRelationship, cboGender, rdIDDate, txtIDPlace, cboNationlity, txtPhone, rdMSTDate, txtBIRTH_CODE, cboNATIONALITYFAMILY, cbTempKtPROVINCE_ID, cbTempKtDISTRICT_ID, cbTempKtWARD_ID, txtQuyen, txt_MSTPLACE,
-                          rdBirthDate, rdDeductFrom, rdDeductReg, rdDeductTo,
+                          rdBirthDate, rdDeductFrom, rdDeductReg, rdDeductTo, rnCollecttion,
                                                          txtSoHoKhau, txtMaHoGiaDinh, cboProvince_City1, cboDistrict1, cboCommune1,
                                                           cboProvince_City2, cboDistrict2, cboCommune2, txtHamlet1, chkHousehold, chkDaMat, chkIsEmployee, rdDieDate, txtCompanyWork)
         rgFamily.SelectedIndexes.Clear()
@@ -906,7 +907,7 @@ Public Class ctrlHU_EmpDtlFamily
         Dim empUniform As UniformSizeDTO
         Try
             IDSelect = Nothing
-            ClearControlValue(txtFullName, txtAdress1, txtAdress_TT, txtIDNO, txtRemark, txtTax, txtCareer, txtTitle, chkIsDeduct, cboNguyenQuan, cboRelationship, cboGender, rdIDDate, cboNationlity, txtPhone, rdMSTDate, txtBIRTH_CODE, cboNATIONALITYFAMILY, cbTempKtPROVINCE_ID, cbTempKtDISTRICT_ID, cbTempKtWARD_ID, txtQuyen, txt_MSTPLACE,
+            ClearControlValue(txtFullName, rnCollecttion, txtAdress1, txtAdress_TT, txtIDNO, txtRemark, txtTax, txtCareer, txtTitle, chkIsDeduct, cboNguyenQuan, cboRelationship, cboGender, rdIDDate, cboNationlity, txtPhone, rdMSTDate, txtBIRTH_CODE, cboNATIONALITYFAMILY, cbTempKtPROVINCE_ID, cbTempKtDISTRICT_ID, cbTempKtWARD_ID, txtQuyen, txt_MSTPLACE,
                           rdBirthDate, rdDeductFrom, rdDeductReg, rdDeductTo,
                                                          txtSoHoKhau, txtMaHoGiaDinh, cboProvince_City1, cboDistrict1, cboCommune1,
                                                           cboProvince_City2, cboDistrict2, cboCommune2, txtHamlet1, chkHousehold, chkDaMat, chkIsEmployee, rdDieDate, txtCompanyWork)
@@ -986,7 +987,7 @@ Public Class ctrlHU_EmpDtlFamily
         End Try
     End Sub
     Private Sub chkIsEmployee_CheckedChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles chkIsEmployee.CheckedChanged
-        ClearControlValue(txtFullName, txtAdress1, txtAdress_TT, txtIDNO, txtRemark, txtTax, txtCareer, txtTitle, chkIsDeduct, cboNguyenQuan, cboRelationship, cboGender, rdIDDate, cboNationlity, txtPhone, rdMSTDate, txtBIRTH_CODE, cboNATIONALITYFAMILY, cbTempKtPROVINCE_ID, cbTempKtDISTRICT_ID, cbTempKtWARD_ID, txtQuyen, txt_MSTPLACE,
+        ClearControlValue(txtFullName, rnCollecttion, txtAdress1, txtAdress_TT, txtIDNO, txtRemark, txtTax, txtCareer, txtTitle, chkIsDeduct, cboNguyenQuan, cboRelationship, cboGender, rdIDDate, cboNationlity, txtPhone, rdMSTDate, txtBIRTH_CODE, cboNATIONALITYFAMILY, cbTempKtPROVINCE_ID, cbTempKtDISTRICT_ID, cbTempKtWARD_ID, txtQuyen, txt_MSTPLACE,
                         rdBirthDate, rdDeductFrom, rdDeductReg, rdDeductTo,
                                                        txtSoHoKhau, txtMaHoGiaDinh, cboProvince_City1, cboDistrict1, cboCommune1,
                                                         cboProvince_City2, cboDistrict2, cboCommune2, txtHamlet1, chkHousehold, chkDaMat, rdDieDate, txtCompanyWork)

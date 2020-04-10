@@ -65,4 +65,8 @@
     Public Property BIRTH_WARD_NAME As String
     Public Property GENDER As Decimal?
     Public Property GENDER_NAME As String
+    Public Property DIE_DATE As Date?
+    Public Property COMPANY_WORK As String
+    Public Property IS_EMPLOYEE As Decimal?
+    Public Property SALARY_EARN As Decimal?
 End Class

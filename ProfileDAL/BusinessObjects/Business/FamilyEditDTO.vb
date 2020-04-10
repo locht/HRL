@@ -72,5 +72,4 @@
     Public Property BIRTH_WARD_NAME As String
     Public Property GENDER As Decimal?
     Public Property GENDER_NAME As String
-
 End Class
