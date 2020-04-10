@@ -155,4 +155,6 @@
     Public Property SAL_BASIC_MIN As Decimal?
     Public Property SAL_BASIC_MAX As Decimal?
     Public Property SAL_RATE As Decimal?
+    Public Property IS_HDLD As Decimal?
+
 End Class

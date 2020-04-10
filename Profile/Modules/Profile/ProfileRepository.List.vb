@@ -2437,6 +2437,17 @@ Partial Public Class ProfileRepository
         End Using
     End Function
 
+    Function CHECK_IS_THHDLD(ByVal P_ID As Decimal) As Integer
+        Using rep As New ProfileBusinessClient
+            Try
+                Return rep.CHECK_IS_THHDLD(P_ID)
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+    End Function
+
 #End Region
 
 End Class

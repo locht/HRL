@@ -6235,6 +6235,9 @@ Namespace ProfileBusiness
         Private IS_3B_SHORTField As System.Nullable(Of Short)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private IS_HDLDField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private IS_HURTFULField As System.Nullable(Of Decimal)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -7050,6 +7053,19 @@ Namespace ProfileBusiness
                 If (Me.IS_3B_SHORTField.Equals(value) <> true) Then
                     Me.IS_3B_SHORTField = value
                     Me.RaisePropertyChanged("IS_3B_SHORT")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property IS_HDLD() As System.Nullable(Of Decimal)
+            Get
+                Return Me.IS_HDLDField
+            End Get
+            Set
+                If (Me.IS_HDLDField.Equals(value) <> true) Then
+                    Me.IS_HDLDField = value
+                    Me.RaisePropertyChanged("IS_HDLD")
                 End If
             End Set
         End Property
@@ -54798,6 +54814,9 @@ Namespace ProfileBusiness
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/INPORT_EMP", ReplyAction:="http://tempuri.org/IProfileBusiness/INPORT_EMPResponse")>  _
         Function INPORT_EMP(ByVal P_DOCXML As String, ByVal P_USER As String) As Boolean
         
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/CHECK_IS_THHDLD", ReplyAction:="http://tempuri.org/IProfileBusiness/CHECK_IS_THHDLDResponse")>  _
+        Function CHECK_IS_THHDLD(ByVal P_ID As Decimal) As Integer
+        
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ValidateCommendLevel", ReplyAction:="http://tempuri.org/IProfileBusiness/ValidateCommendLevelResponse"),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(Common.CommonBusiness.UserLog)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of Decimal))),  _
@@ -57485,6 +57504,10 @@ Namespace ProfileBusiness
         
         Public Function INPORT_EMP(ByVal P_DOCXML As String, ByVal P_USER As String) As Boolean Implements ProfileBusiness.IProfileBusiness.INPORT_EMP
             Return MyBase.Channel.INPORT_EMP(P_DOCXML, P_USER)
+        End Function
+        
+        Public Function CHECK_IS_THHDLD(ByVal P_ID As Decimal) As Integer Implements ProfileBusiness.IProfileBusiness.CHECK_IS_THHDLD
+            Return MyBase.Channel.CHECK_IS_THHDLD(P_ID)
         End Function
         
         Public Function ValidateCommendLevel(ByVal _validate As ProfileBusiness.CommendLevelDTO) As Object Implements ProfileBusiness.IProfileBusiness.ValidateCommendLevel
