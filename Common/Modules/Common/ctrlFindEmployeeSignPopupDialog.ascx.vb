@@ -98,14 +98,14 @@ Public Class ctrlFindEmployeeSignPopupDialog
                 cbTerminate.Visible = False
             End If
             rgEmployeeInfo.AllowMultiRowSelection = MultiSelect
-            ctrlOrganization.AutoPostBack = True
-            ctrlOrganization.OrganizationType = OrganizationType.OrganizationLocation
-            ctrlOrganization.CheckChildNodes = True
-            If is_CheckNode Then 'ThanhNT added load check node in organization (17/05/2016)
-                ctrlOrganization.CheckBoxes = TreeNodeTypes.All
-            End If
-            ctrlOrganization.CurrentValue = CurrentValue
-            ctrlOrganization.LoadAllOrganization = LoadAllOrganization
+            'ctrlOrganization.AutoPostBack = True
+            'ctrlOrganization.OrganizationType = OrganizationType.OrganizationLocation
+            'ctrlOrganization.CheckChildNodes = True
+            'If is_CheckNode Then 'ThanhNT added load check node in organization (17/05/2016)
+            '    ctrlOrganization.CheckBoxes = TreeNodeTypes.All
+            'End If
+            'ctrlOrganization.CurrentValue = CurrentValue
+            'ctrlOrganization.LoadAllOrganization = LoadAllOrganization
 
         Catch ex As Exception
             Throw ex
@@ -116,11 +116,11 @@ Public Class ctrlFindEmployeeSignPopupDialog
 
 #Region "Event"
 
-    Private Sub ctrlOrganization_SelectedNodeChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles ctrlOrganization.SelectedNodeChanged
-        SelectedItem = Nothing
-        rgEmployeeInfo.CurrentPageIndex = 0
-        rgEmployeeInfo.Rebind()
-    End Sub
+    'Private Sub ctrlOrganization_SelectedNodeChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles ctrlOrganization.SelectedNodeChanged
+    '    SelectedItem = Nothing
+    '    rgEmployeeInfo.CurrentPageIndex = 0
+    '    rgEmployeeInfo.Rebind()
+    'End Sub
 
     Private Sub rgEmployeeInfo_ItemDataBound(ByVal sender As Object, ByVal e As Telerik.Web.UI.GridItemEventArgs) Handles rgEmployeeInfo.ItemDataBound
         If e.Item.ItemType = GridItemType.Item Or e.Item.ItemType = GridItemType.AlternatingItem Then
@@ -146,11 +146,10 @@ Public Class ctrlFindEmployeeSignPopupDialog
             Dim Sorts As String
             Dim orgID As Decimal? = 0
             Dim EmployeeList As List(Of EmployeePopupFindListDTO)
-            If ctrlOrganization.CurrentValue <> "" Then
-                orgID = Decimal.Parse(ctrlOrganization.CurrentValue)
-            End If
-            Dim _param = New ParamDTO With {.ORG_ID = orgID, _
-                                            .IS_DISSOLVE = ctrlOrganization.IsDissolve}
+            'If ctrlOrganization.CurrentValue <> "" Then
+            '    orgID = Decimal.Parse(ctrlOrganization.CurrentValue)
+            'End If
+            Dim _param = New ParamDTO With {.ORG_ID = orgID}
 
 
             _filter.EMPLOYEE_CODE = txtEmployee_Code.Text

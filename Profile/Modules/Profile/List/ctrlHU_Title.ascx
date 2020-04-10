@@ -3,9 +3,9 @@
 <%@ Import Namespace="Common" %>
 <asp:HiddenField ID="hidTITLE_GROUP_ID" runat="server" />
 <link href="/Styles/StyleCustom.css" rel="stylesheet" type="text/css" />
-<tlk:RadSplitter ID="RadSplitter3" runat="server" Width="100%" Height="100%" Orientation="Horizontal">
-    <tlk:RadPane ID="RadPane1" runat="server" Height="230px" Scrolling="None">
-        <tlk:RadToolBar ID="tbarMain" runat="server" />
+<tlk:radsplitter id="RadSplitter3" runat="server" width="100%" height="100%" orientation="Horizontal">
+    <tlk:radpane id="RadPane1" runat="server" height="230px" scrolling="None">
+        <tlk:radtoolbar id="tbarMain" runat="server" />
         <asp:ValidationSummary ID="valSum" runat="server" DisplayMode="BulletList" CssClass="validationsummary" />
         <table class="table-form" onkeydown="return (event.keyCode!=13)">
             <tr>
@@ -14,8 +14,8 @@
                         class="lbReq">*</span>
                 </td>
                 <td>
-                    <tlk:RadComboBox ID="cboTitleGroup" runat="server" AutoPostBack="true" CausesValidation="false">
-                    </tlk:RadComboBox>
+                    <tlk:radcombobox id="cboTitleGroup" runat="server" autopostback="true" causesvalidation="false">
+                    </tlk:radcombobox>
                     <asp:CustomValidator ID="cusTitleGroup" runat="server" ErrorMessage="Bạn phải chọn Nhóm chức danh"
                         ToolTip="Bạn phải chọn Nhóm chức danh" ClientValidationFunction="cusTitleGroup">
                     </asp:CustomValidator>
@@ -24,22 +24,12 @@
                     </asp:CustomValidator>
                 </td>
                 <td class="lb">
-                    <asp:Label runat="server" ID="lbOrgLevel" Text="Tên công ty"></asp:Label><span class="lbReq">*</span>
-                </td>
-                <td>
-                    <tlk:RadComboBox ID="cboOrgLevel" runat="server" AutoPostBack="true">
-                    </tlk:RadComboBox>
-                    <asp:CustomValidator ID="cusOrgLevel" runat="server" ErrorMessage="Bạn phải chọn Tên công ty"
-                        ToolTip="Bạn phải chọn Tên công ty" ClientValidationFunction="cusOrgLevel">
-                    </asp:CustomValidator>
-                </td>
-                <td class="lb">
                     <asp:Label runat="server" ID="lbOrgType" Text="Loại tổ chức"></asp:Label>
                     <span class="lbReq">*</span>
                 </td>
                 <td>
-                    <tlk:RadComboBox ID="cboOrgType" AutoPostBack="true" runat="server">
-                    </tlk:RadComboBox>
+                    <tlk:radcombobox id="cboOrgType" autopostback="true" runat="server">
+                    </tlk:radcombobox>
                     <asp:RequiredFieldValidator ID="rqOrgType" ControlToValidate="cboOrgType" runat="server"
                         ErrorMessage="Bạn phải nhập loại tổ chức" ToolTip="Bạn phải nhập loại tổ chức">
                     </asp:RequiredFieldValidator>
@@ -50,8 +40,8 @@
                     <asp:Label runat="server" ID="lbCode" Text="Mã chức danh"></asp:Label>
                 </td>
                 <td>
-                    <tlk:RadTextBox ID="txtCode" runat="server" SkinID="Readonly" ReadOnly="true">
-                    </tlk:RadTextBox>
+                    <tlk:radtextbox id="txtCode" runat="server" skinid="Readonly" readonly="true">
+                    </tlk:radtextbox>
                     <asp:RequiredFieldValidator ID="reqCode" ControlToValidate="txtCode" runat="server"
                         ErrorMessage="Bạn phải nhập Mã chức danh" ToolTip="Bạn phải nhập Mã chức danh">
                     </asp:RequiredFieldValidator>
@@ -65,8 +55,8 @@
                     <asp:Label runat="server" ID="lbNameVN" Text="Tên chức danh"></asp:Label>
                 </td>
                 <td>
-                    <tlk:RadTextBox ID="txtNameVN" runat="server">
-                    </tlk:RadTextBox>
+                    <tlk:radtextbox id="txtNameVN" runat="server">
+                    </tlk:radtextbox>
                     <asp:RequiredFieldValidator ID="reqNamVN" ControlToValidate="txtNameVN" runat="server"
                         ErrorMessage="Bạn phải nhập Tên chức danh" ToolTip="Bạn phải nhập Tên chức danh">
                     </asp:RequiredFieldValidator>
@@ -78,12 +68,17 @@
                     <asp:Label runat="server" ID="lbHurtType" Text="Đối tượng độc hại"></asp:Label>
                 </td>
                 <td>
-                    <tlk:RadComboBox runat="server" AutoPostBack="true" ID="cboHurtType">
-                    </tlk:RadComboBox>
+                    <tlk:radcombobox runat="server" autopostback="true" id="cboHurtType">
+                    </tlk:radcombobox>
                 </td>
+            </tr>
+            <tr>
                 <td>
                     <%--<asp:CheckBox ID="ckSpecDH" runat="server" Text="Đặc biệt độc hại" />--%>
                     <asp:CheckBox ID="ckOVT" runat="server" Text="Tính phụ cấp làm thêm giờ" />
+                </td>
+                <td>
+                    <asp:CheckBox ID="chkSign" runat="server" Text="Ký quyết định" />
                 </td>
             </tr>
             <tr>
@@ -91,15 +86,15 @@
                     <asp:Label runat="server" ID="lbUploadFile" Text="Tập tin đính kèm"></asp:Label>
                 </td>
                 <td>
-                    <tlk:RadTextBox ID="txtUpload" ReadOnly="true" runat="server">
-                    </tlk:RadTextBox>
-                    <tlk:RadTextBox ID="txtUploadFile" runat="server" Visible="false">
-                    </tlk:RadTextBox>
-                    <tlk:RadButton runat="server" ID="btnUploadFile" SkinID="ButtonView" CausesValidation="false"
-                        TabIndex="3" />
-                    <tlk:RadButton ID="btnDownload" runat="server" Text="Tải xuống" CausesValidation="false"
-                        OnClientClicked="rbtClicked" TabIndex="3" EnableViewState="false">
-                    </tlk:RadButton>
+                    <tlk:radtextbox id="txtUpload" readonly="true" runat="server">
+                    </tlk:radtextbox>
+                    <tlk:radtextbox id="txtUploadFile" runat="server" visible="false">
+                    </tlk:radtextbox>
+                    <tlk:radbutton runat="server" id="btnUploadFile" skinid="ButtonView" causesvalidation="false"
+                        tabindex="3" />
+                    <tlk:radbutton id="btnDownload" runat="server" text="Tải xuống" causesvalidation="false"
+                        onclientclicked="rbtClicked" tabindex="3" enableviewstate="false">
+                    </tlk:radbutton>
                 </td>
             </tr>
             <tr>
@@ -107,25 +102,25 @@
                     <asp:Label runat="server" ID="lbRemark" Text="Ghi chú"></asp:Label>
                 </td>
                 <td colspan="5">
-                    <tlk:RadTextBox ID="txtRemark" runat="server" SkinID="Textbox1023" Height="70" Width="100%">
-                    </tlk:RadTextBox>
+                    <tlk:radtextbox id="txtRemark" runat="server" skinid="Textbox1023" height="70" width="100%">
+                    </tlk:radtextbox>
                     <asp:RegularExpressionValidator ID="RegularExpressionValidator3" runat="server" ErrorMessage="Thông tin nhập liệu có chứa mã html"
                         ControlToValidate="txtRemark" ValidationExpression="^(?!.*<[^>]+>).*"></asp:RegularExpressionValidator>
                 </td>
                 <td style="visibility: hidden">
-                    <tlk:RadTextBox ID="txtRemindLink" runat="server">
-                    </tlk:RadTextBox>
+                    <tlk:radtextbox id="txtRemindLink" runat="server">
+                    </tlk:radtextbox>
                 </td>
             </tr>
         </table>
-    </tlk:RadPane>
-    <tlk:RadPane ID="RadPane2" runat="server" Scrolling="None">
-        <tlk:RadGrid PageSize="50" ID="rgMain" runat="server" AutoGenerateColumns="false"
-            AllowPaging="True" Height="100%" AllowSorting="True" AllowMultiRowSelection="true">
-            <ClientSettings EnableRowHoverStyle="true">
+    </tlk:radpane>
+    <tlk:radpane id="RadPane2" runat="server" scrolling="None">
+        <tlk:radgrid pagesize="50" id="rgMain" runat="server" autogeneratecolumns="false"
+            allowpaging="True" height="100%" allowsorting="True" allowmultirowselection="true">
+            <clientsettings enablerowhoverstyle="true">
                 <Selecting AllowRowSelect="true" />
-            </ClientSettings>
-            <MasterTableView DataKeyNames="ID" ClientDataKeyNames="CODE,NAME_VN,TITLE_GROUP_NAME,TITLE_GROUP_ID,REMARK,ORG_ID,ORG_TYPE,FILENAME,HURTFUL,HURTFUL_CHECK,OVT,OVT_CHECK,SPEC_HURFUL,SPEC_HURFUL_CHECK,UPLOAD_FILE,HURT_TYPE_ID,HURT_TYPE_NAME,TITLE_GROUP_ID1">
+            </clientsettings>
+            <mastertableview datakeynames="ID" clientdatakeynames="CODE,NAME_VN,TITLE_GROUP_NAME,TITLE_GROUP_ID,REMARK,ORG_ID,ORG_TYPE,FILENAME,HURTFUL,HURTFUL_CHECK,OVT,OVT_CHECK,SPEC_HURFUL,SPEC_HURFUL_CHECK,UPLOAD_FILE,HURT_TYPE_ID,HURT_TYPE_NAME,TITLE_GROUP_ID1">
                 <Columns>
                     <%--<tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderStyle-HorizontalAlign="Center"
                         HeaderStyle-Width="30px" ItemStyle-HorizontalAlign="Center">
@@ -156,17 +151,17 @@
                     <tlk:GridBoundColumn HeaderText="Tài liệu đính kèm" DataField="FILENAME"
                         HeaderStyle-Width="100px" UniqueName="FILENAME" SortExpression="FILENAME" />--%>
                 </Columns>
-            </MasterTableView>
-            <ClientSettings EnableRowHoverStyle="true">
+            </mastertableview>
+            <clientsettings enablerowhoverstyle="true">
                 <ClientEvents OnGridCreated="GridCreated" />
                 <ClientEvents OnCommand="ValidateFilter" />
-            </ClientSettings>
-        </tlk:RadGrid>
-    </tlk:RadPane>
-</tlk:RadSplitter>
+            </clientsettings>
+        </tlk:radgrid>
+    </tlk:radpane>
+</tlk:radsplitter>
 <Common:ctrlUpload ID="ctrlUpload1" runat="server" />
 <Common:ctrlMessageBox ID="ctrlMessageBox" runat="server" />
-<tlk:RadCodeBlock ID="RadCodeBlock1" runat="server">
+<tlk:radcodeblock id="RadCodeBlock1" runat="server">
     <script type="text/javascript">
 
         var splitterID = 'ctl00_MainContent_ctrlHU_Title_RadSplitter3';
@@ -237,13 +232,9 @@
             args.IsValid = (cbo.get_value().length != 0);
         }
 
-        function cusOrgLevel(oSrc, args) {
-            var cbo = $find("<%# cboOrgLevel.ClientID %>");
-            args.IsValid = (cbo.get_value().length != 0);
-        }
 
         function rbtClicked(sender, eventArgs) {
             enableAjax = false;
         }
     </script>
-</tlk:RadCodeBlock>
+</tlk:radcodeblock>

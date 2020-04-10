@@ -120,6 +120,7 @@ Partial Class ProfileRepository
                                    .OVT_CHECK = If(p.OVT = -1, True, False),
                                    .UPLOAD_FILE = p.UPLOAD_FILE,
                                    .FILENAME = p.FILENAME,
+                                   .IS_SIGN = p.IS_SIGN,
                                    .TITLE_GROUP_ID1 = p.TITLE_GROUP_ID}
 
             Dim lst = query
@@ -207,6 +208,7 @@ Partial Class ProfileRepository
             objTitleData.ORG_TYPE = objTitle.ORG_TYPE
             objTitleData.UPLOAD_FILE = objTitle.UPLOAD_FILE
             objTitleData.FILENAME = objTitle.FILENAME
+            objTitleData.IS_SIGN = objTitle.IS_SIGN
             Context.HU_TITLE.AddObject(objTitleData)
             Context.SaveChanges(log)
             gID = objTitleData.ID
@@ -270,6 +272,7 @@ Partial Class ProfileRepository
             objTitleData.ORG_TYPE = objTitle.ORG_TYPE
             objTitleData.UPLOAD_FILE = objTitle.UPLOAD_FILE
             objTitleData.FILENAME = objTitle.FILENAME
+            objTitleData.IS_SIGN = objTitle.IS_SIGN
             Context.SaveChanges(log)
             gID = objTitleData.ID
             Return True

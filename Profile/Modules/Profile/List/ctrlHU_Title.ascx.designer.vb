@@ -95,33 +95,6 @@ Partial Public Class ctrlHU_Title
     Protected WithEvents cvalTitleGroup As Global.System.Web.UI.WebControls.CustomValidator
 
     '''<summary>
-    '''lbOrgLevel control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lbOrgLevel As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
-    '''cboOrgLevel control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents cboOrgLevel As Global.Telerik.Web.UI.RadComboBox
-
-    '''<summary>
-    '''cusOrgLevel control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents cusOrgLevel As Global.System.Web.UI.WebControls.CustomValidator
-
-    '''<summary>
     '''lbOrgType control.
     '''</summary>
     '''<remarks>
@@ -255,6 +228,15 @@ Partial Public Class ctrlHU_Title
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents ckOVT As Global.System.Web.UI.WebControls.CheckBox
+
+    '''<summary>
+    '''chkSign control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents chkSign As Global.System.Web.UI.WebControls.CheckBox
 
     '''<summary>
     '''lbUploadFile control.

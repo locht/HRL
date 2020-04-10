@@ -3,7 +3,7 @@
  <%@ Import Namespace="Framework.UI.Utilities" %>
     
 <link href="/Styles/StyleCustom.css" rel="stylesheet" type="text/css" />
-<%@ Register Src="ctrlOrganization.ascx" TagName="ctrlOrganization" TagPrefix="Common" %>
+<%--<%@ Register Src="ctrlOrganization.ascx" TagName="ctrlOrganization" TagPrefix="Common" %>--%>
 <tlk:RadSplitter ID="RadSplitter1" runat="server" Width="100%" Height="100%">
     <tlk:RadPane ID="LeftPane" runat="server" MinWidth="280" Width="280px" Scrolling="None">
         <tlk:RadSplitter ID="RadSplitter2" runat="server" Width="100%" Height="100%" Orientation="Horizontal">
@@ -33,9 +33,9 @@
                     </tr>
                 </table>
             </tlk:RadPane>
-            <tlk:RadPane ID="BottomPanel" runat="server" MinWidth="200" Width="250px" Scrolling="None">
+            <%--<tlk:RadPane ID="BottomPanel" runat="server" MinWidth="200" Width="250px" Scrolling="None">
                 <Common:ctrlOrganization ID="ctrlOrganization" runat="server" />
-            </tlk:RadPane>
+            </tlk:RadPane>--%>
         </tlk:RadSplitter>
     </tlk:RadPane>
     <tlk:RadPane ID="MainPane" runat="server" Scrolling="None">

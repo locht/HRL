@@ -24,18 +24,8 @@
                     </asp:CustomValidator>
                 </td>
                 <td class="lb">
-                    <asp:Label runat="server" ID="lbOrgLevel" Text="Tên công ty"></asp:Label><span class="lbReq">*</span>
-                </td>
-                <td>
-                    <tlk:RadComboBox ID="cboOrgLevel" runat="server" AutoPostBack="true">
-                    </tlk:RadComboBox>
-                    <asp:CustomValidator ID="cusOrgLevel" runat="server" ErrorMessage="Bạn phải chọn Tên công ty"
-                        ToolTip="Bạn phải chọn Tên công ty" ClientValidationFunction="cusOrgLevel">
-                    </asp:CustomValidator>
-                </td>
-                <td class="lb">
                     <asp:Label runat="server" ID="lbOrgType" Text="Loại tổ chức"></asp:Label>
-                         <span class="lbReq">*</span>
+                    <span class="lbReq">*</span>
                 </td>
                 <td>
                     <tlk:RadComboBox ID="cboOrgType" AutoPostBack="true" runat="server">
@@ -81,9 +71,16 @@
                     <tlk:RadComboBox runat="server" AutoPostBack="true" ID="cboHurtType">
                     </tlk:RadComboBox>
                 </td>
+            </tr>
+            <tr>
+                <td>
+                </td>
                 <td>
                     <%--<asp:CheckBox ID="ckSpecDH" runat="server" Text="Đặc biệt độc hại" />--%>
                     <asp:CheckBox ID="ckOVT" runat="server" Text="Tính phụ cấp làm thêm giờ" />
+                </td>
+                <td>
+                    <asp:CheckBox ID="chkSign" runat="server" Text="Ký quyết định" />
                 </td>
             </tr>
             <tr>
@@ -121,11 +118,11 @@
     </tlk:RadPane>
     <tlk:RadPane ID="RadPane2" runat="server" Scrolling="None">
         <tlk:RadGrid PageSize="50" ID="rgMain" runat="server" AutoGenerateColumns="false"
-            AllowPaging="True" Height="100%" AllowSorting="True" AllowMultiRowSelection="false">
+            AllowPaging="True" Height="100%" AllowSorting="True" AllowMultiRowSelection="true">
             <ClientSettings EnableRowHoverStyle="true">
                 <Selecting AllowRowSelect="true" />
             </ClientSettings>
-            <MasterTableView DataKeyNames="ID" ClientDataKeyNames="CODE,NAME_VN,TITLE_GROUP_NAME,TITLE_GROUP_ID,REMARK,ORG_ID,ORG_TYPE,FILENAME,HURTFUL,HURTFUL_CHECK,OVT,OVT_CHECK,SPEC_HURFUL,SPEC_HURFUL_CHECK,UPLOAD_FILE,HURT_TYPE_ID,HURT_TYPE_NAME,TITLE_GROUP_ID1">
+            <MasterTableView DataKeyNames="ID" ClientDataKeyNames="CODE,NAME_VN,TITLE_GROUP_NAME,TITLE_GROUP_ID,REMARK,ORG_ID,ORG_TYPE,FILENAME,HURTFUL,HURTFUL_CHECK,OVT,OVT_CHECK,SPEC_HURFUL,SPEC_HURFUL_CHECK,UPLOAD_FILE,HURT_TYPE_ID,HURT_TYPE_NAME,TITLE_GROUP_ID1,IS_SIGN">
                 <Columns>
                     <%--<tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderStyle-HorizontalAlign="Center"
                         HeaderStyle-Width="30px" ItemStyle-HorizontalAlign="Center">
@@ -237,14 +234,9 @@
             args.IsValid = (cbo.get_value().length != 0);
         }
 
-        function cusOrgLevel(oSrc, args) {
-            var cbo = $find("<%# cboOrgLevel.ClientID %>");
-            args.IsValid = (cbo.get_value().length != 0);
-        }
 
         function rbtClicked(sender, eventArgs) {
             enableAjax = false;
         }
-
     </script>
 </tlk:RadCodeBlock>

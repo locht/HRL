@@ -2277,51 +2277,20 @@ Partial Public Class CommonRepository
                                             Optional ByVal _param As ParamDTO = Nothing) As List(Of EmployeePopupFindListDTO)
 
         Try
-            Dim userName As String
             Dim common As String = "Dùng chung"
-            Using cls As New DataAccess.QueryData
-                userName = log.Username
-                If _filter.LoadAllOrganization Then
-                    userName = "ADMIN"
-                End If
-                cls.ExecuteStore("PKG_COMMON_LIST.INSERT_CHOSEN_ORG",
-                                 New With {.P_USERNAME = userName,
-                                           .P_ORGID = _param.ORG_ID,
-                                           .P_ISDISSOLVE = _param.IS_DISSOLVE})
-            End Using
 
-            Dim query = From sign In Context.HU_SIGNER.Where(Function(f) f.ACTFLG = 1)
-                        From p In Context.HU_EMPLOYEE.Where(Function(f) f.ID = sign.SIGNER_ID).DefaultIfEmpty
-                        From cv In Context.HU_EMPLOYEE_CV.Where(Function(f) f.EMPLOYEE_ID = p.ID).DefaultIfEmpty
-                        From o In Context.HU_ORGANIZATION.Where(Function(f) f.ID = sign.ORG_ID).DefaultIfEmpty
+            Dim query = From p In Context.HU_EMPLOYEE
+                        From o In Context.HU_ORGANIZATION.Where(Function(f) f.ID = p.ORG_ID).DefaultIfEmpty
                         From t In Context.HU_TITLE.Where(Function(f) f.ID = p.TITLE_ID).DefaultIfEmpty
-                        From gender In Context.OT_OTHER_LIST.Where(Function(f) f.ID = cv.GENDER And f.TYPE_ID = 34).DefaultIfEmpty
-                        From work_status In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.WORK_STATUS And f.TYPE_ID = 59).DefaultIfEmpty
-                        From k In Context.SE_CHOSEN_ORG.Where(Function(f) sign.ORG_ID = f.ORG_ID And f.USERNAME.ToUpper = userName)
-                        From te In Context.HU_TERMINATE.Where(Function(f) p.ID = f.EMPLOYEE_ID).DefaultIfEmpty
-            'Dim queryCommon = From sign In Context.HU_SIGNER.Where(Function(f) f.ACTFLG = 1 And f.ORG_ID = -1)
-            '                  From p In Context.HU_EMPLOYEE.Where(Function(f) f.EMPLOYEE_CODE = sign.SIGNER_CODE).DefaultIfEmpty
-            '                  From cv In Context.HU_EMPLOYEE_CV.Where(Function(f) f.EMPLOYEE_ID = p.ID).DefaultIfEmpty
-            '                  From o In Context.HU_ORGANIZATION.Where(Function(f) f.ID = sign.ORG_ID).DefaultIfEmpty
-            '                  From t In Context.HU_TITLE.Where(Function(f) f.ID = p.TITLE_ID).DefaultIfEmpty
-            '                  From gender In Context.OT_OTHER_LIST.Where(Function(f) f.ID = cv.GENDER And f.TYPE_ID = 34).DefaultIfEmpty
-            '                  From work_status In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.WORK_STATUS And f.TYPE_ID = 59).DefaultIfEmpty
-            '                  From k In Context.SE_CHOSEN_ORG.Where(Function(f) sign.ORG_ID = f.ORG_ID).DefaultIfEmpty
-            '                  From te In Context.HU_TERMINATE.Where(Function(f) p.ID = f.EMPLOYEE_ID).DefaultIfEmpty
-
-            'If _filter.MustHaveContract Then
-            '    query = query.Where(Function(f) f.p.JOIN_DATE.HasValue)
-            '    'queryCommon = queryCommon.Where(Function(f) f.p.JOIN_DATE.HasValue)
+                        Where t.IS_SIGN = -1
             'End If
             Dim dateNow As Date? = Date.Now.Date
 
             If Not _filter.IsOnlyWorkingWithoutTer Then
                 If _filter.IS_TER Then
                     query = query.Where(Function(f) f.p.WORK_STATUS = 257 And f.p.TER_EFFECT_DATE <= dateNow)
-                    'queryCommon = queryCommon.Where(Function(f) f.p.WORK_STATUS = 257 And f.p.TER_EFFECT_DATE <= dateNow)
                 Else
                     query = query.Where(Function(f) f.p.WORK_STATUS <> 257)
-                    'queryCommon = queryCommon.Where(Function(f) f.p.WORK_STATUS <> 257)
                 End If
             End If
 
@@ -2329,17 +2298,15 @@ Partial Public Class CommonRepository
                 query = query.Where(Function(f) f.p.EMPLOYEE_CODE.ToUpper.Contains(_filter.EMPLOYEE_CODE.ToUpper) Or _
                                         f.p.FULLNAME_VN.ToUpper.Contains(_filter.EMPLOYEE_CODE.ToUpper))
             End If
-            'Dim tempQuery = query.Union(queryCommon)
             Dim tempQuery = query
             Dim lst = tempQuery.Select(Function(f) New EmployeePopupFindListDTO With {
-                            .EMPLOYEE_CODE = f.sign.SIGNER_CODE,
+                            .EMPLOYEE_CODE = f.p.EMPLOYEE_CODE,
                             .ID = f.p.ID,
                             .EMPLOYEE_ID = f.p.ID,
                             .FULLNAME_VN = f.p.FULLNAME_VN,
                             .JOIN_DATE = f.p.JOIN_DATE,
-                            .ORG_NAME = If(f.sign.ORG_ID = -1, common, f.o.NAME_VN),
+                            .ORG_NAME = f.o.NAME_VN,
                             .ORG_DESC = f.o.DESCRIPTION_PATH,
-                            .GENDER = f.gender.NAME_VN,
                             .TITLE_NAME = f.t.NAME_VN})
             lst = lst.OrderBy(Sorts)
             Total = lst.Count

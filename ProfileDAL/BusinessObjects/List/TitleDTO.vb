@@ -35,4 +35,7 @@
     Public Property ORG_TYPE_NAME As String
     Public Property FILENAME As String
     Public Property TITLE_GROUP_ID1 As Decimal?
+
+    'check ky quyet dinh
+    Public Property IS_SIGN As Boolean?
 End Class
