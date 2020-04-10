@@ -283,7 +283,13 @@ Public Class ctrlHU_EmpDtlFamily
                     SelectedItem = Nothing
                     ResetControlValue()
                     CurrentState = CommonMessage.STATE_NORMAL
+                    'bị dính validate nên tạm thời bùa để k hư màn hình,giải pháp bỏ validater sẽ bỏ đoạn dưới đi
+                    Response.Redirect("/Default.aspx?mid=Profile&fid=ctrlHU_EmpDtl&group=Business&emp=" + EmployeeInfo.ID.ToString() + "&Place=ctrlHU_EmpDtlFamily&state=Normal")
                 Case TOOLBARITEM_DELETE
+                    SelectedItem = New List(Of Decimal)
+                    For Each dr As Telerik.Web.UI.GridDataItem In rgFamily.SelectedItems
+                        SelectedItem.Add(dr.GetDataKeyValue("ID"))
+                    Next
                     If SelectedItem Is Nothing Then
                         ShowMessage(Translate(CommonMessage.MESSAGE_NOT_SELECT_ROW), NotifyType.Warning)
                         Exit Sub
@@ -466,7 +472,14 @@ Public Class ctrlHU_EmpDtlFamily
                 End If
 
                 cboGender.SelectedValue = item.GetDataKeyValue("GENDER")
-
+                rdDieDate.SelectedDate = item.GetDataKeyValue("DIE_DATE")
+                txtCompanyWork.Text = item.GetDataKeyValue("COMPANY_WORK")
+                If IsNumeric(item.GetDataKeyValue("SALARY_EARN")) Then
+                    rnCollecttion.Value = Decimal.Parse(item.GetDataKeyValue("SALARY_EARN"))
+                End If
+                If item.GetDataKeyValue("IS_EMPLOYEE") = True Then
+                    chkIsEmployee.Checked = True
+                End If
                 rdIDDate.SelectedDate = item.GetDataKeyValue("ID_NO_DATE")
                 txtIDPlace.Text = item.GetDataKeyValue("ID_NO_PLACE_NAME")
                 txtPhone.Text = item.GetDataKeyValue("PHONE")
@@ -622,6 +635,7 @@ Public Class ctrlHU_EmpDtlFamily
         Else
             txtMaHoGiaDinh.Enabled = False
             txtSoHoKhau.Enabled = False
+            ClearControlValue(txtSoHoKhau)
         End If
     End Sub
 
@@ -728,8 +742,14 @@ Public Class ctrlHU_EmpDtlFamily
             If cbTempKtWARD_ID.SelectedValue <> "" Then
                 objFamily.BIRTH_WARD_ID = cbTempKtWARD_ID.SelectedValue
             End If
-
-
+            If IsNumeric(rnCollecttion.Value) Then
+                objFamily.SALARY_EARN = rnCollecttion.Value
+            End If
+            objFamily.COMPANY_WORK = txtCompanyWork.Text
+            objFamily.DIE_DATE = rdDieDate.SelectedDate
+            If chkIsEmployee.Checked Then
+                objFamily.IS_EMPLOYEE = True
+            End If
 
             Dim gID As Decimal
             If hidFamilyID.Value = "" Then
@@ -910,7 +930,7 @@ Public Class ctrlHU_EmpDtlFamily
             ClearControlValue(txtFullName, rnCollecttion, txtAdress1, txtAdress_TT, txtIDNO, txtRemark, txtTax, txtCareer, txtTitle, chkIsDeduct, cboNguyenQuan, cboRelationship, cboGender, rdIDDate, cboNationlity, txtPhone, rdMSTDate, txtBIRTH_CODE, cboNATIONALITYFAMILY, cbTempKtPROVINCE_ID, cbTempKtDISTRICT_ID, cbTempKtWARD_ID, txtQuyen, txt_MSTPLACE,
                           rdBirthDate, rdDeductFrom, rdDeductReg, rdDeductTo,
                                                          txtSoHoKhau, txtMaHoGiaDinh, cboProvince_City1, cboDistrict1, cboCommune1,
-                                                          cboProvince_City2, cboDistrict2, cboCommune2, txtHamlet1, chkHousehold, chkDaMat, chkIsEmployee, rdDieDate, txtCompanyWork)
+                                                          cboProvince_City2, cboDistrict2, cboCommune2, txtHamlet1, chkHousehold, chkDaMat, rdDieDate, txtCompanyWork)
             lstCommonEmployee = CType(ctrlFindEmployeePopup.SelectedEmployee, List(Of CommonBusiness.EmployeePopupFindDTO))
             If lstCommonEmployee.Count <> 0 Then
                 Dim item = lstCommonEmployee(0)

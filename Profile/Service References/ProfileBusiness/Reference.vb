@@ -8386,9 +8386,6 @@ Namespace ProfileBusiness
         Private IDField As Decimal
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private IS_SIGNField As System.Nullable(Of Boolean)
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private LEVEL_IDField As System.Nullable(Of Decimal)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -8629,19 +8626,6 @@ Namespace ProfileBusiness
                 If (Me.IDField.Equals(value) <> true) Then
                     Me.IDField = value
                     Me.RaisePropertyChanged("ID")
-                End If
-            End Set
-        End Property
-        
-        <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property IS_SIGN() As System.Nullable(Of Boolean)
-            Get
-                Return Me.IS_SIGNField
-            End Get
-            Set
-                If (Me.IS_SIGNField.Equals(value) <> true) Then
-                    Me.IS_SIGNField = value
-                    Me.RaisePropertyChanged("IS_SIGN")
                 End If
             End Set
         End Property
@@ -20637,7 +20621,7 @@ Namespace ProfileBusiness
         Private IS_DEDUCTField As System.Nullable(Of Boolean)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private IS_EMPLOYEEField As System.Nullable(Of Decimal)
+        Private IS_EMPLOYEEField As Boolean
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private IS_OWNERField As Boolean
@@ -21245,7 +21229,7 @@ Namespace ProfileBusiness
         End Property
         
         <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property IS_EMPLOYEE() As System.Nullable(Of Decimal)
+        Public Property IS_EMPLOYEE() As Boolean
             Get
                 Return Me.IS_EMPLOYEEField
             End Get

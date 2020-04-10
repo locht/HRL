@@ -67,6 +67,6 @@
     Public Property GENDER_NAME As String
     Public Property DIE_DATE As Date?
     Public Property COMPANY_WORK As String
-    Public Property IS_EMPLOYEE As Decimal?
+    Public Property IS_EMPLOYEE As Boolean
     Public Property SALARY_EARN As Decimal?
 End Class

@@ -428,7 +428,7 @@ Partial Class ProfileRepository
                     .DIE_DATE = p.DIE_DATE,
                     .SALARY_EARN = p.SALARY_EARN,
                     .COMPANY_WORK = p.COMPANY_WORK,
-                    .IS_EMPLOYEE = p.IS_EMPLOYEE,
+                    .IS_EMPLOYEE = If(p.IS_EMPLOYEE = -1, True, False),
                     .GENDER_NAME = g.NAME_VN})
             If _filter.EMPLOYEE_ID <> 0 Then
                 query = query.Where(Function(p) p.EMPLOYEE_ID = _filter.EMPLOYEE_ID)
