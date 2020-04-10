@@ -9,4 +9,5 @@ End Class
 Public Class OtherTypes
     Public Const TaxTable As String = "TAX_TABLE"
     Public Const DecisionStatus As String = "DECISION_STATUS"
+    Public Const ExchangeRate As String = "FOREIGN_CERRENCY_TYPE"
 End Class

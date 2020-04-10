@@ -79,6 +79,9 @@
     <Reference Include="log4net, Version=1.2.11.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
       <HintPath>..\packages\LinqToExcel.1.6.5\lib\log4net.dll</HintPath>
     </Reference>
+    <Reference Include="Payroll">
+      <HintPath>..\Payroll\obj\Debug\Payroll.dll</HintPath>
+    </Reference>
     <Reference Include="Remotion">
       <HintPath>..\packages\LinqToExcel.1.6.5\lib\Remotion.dll</HintPath>
     </Reference>

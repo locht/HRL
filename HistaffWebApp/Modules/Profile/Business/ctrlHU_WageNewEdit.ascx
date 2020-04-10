@@ -296,8 +296,7 @@
                 </td>--%>
             </tr>
             <tr>
-             </td>
-                  <td class="lb">
+                <td class="lb">
                     <asp:Label ID="lbTaxTable" runat="server" Text="Biểu thuế"></asp:Label>
                     <span class="lbReq">*</span>
                 </td>

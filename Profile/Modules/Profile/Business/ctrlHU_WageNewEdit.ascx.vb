@@ -335,6 +335,21 @@ Public Class ctrlHU_WageNewEdit
                     'rnOtherSalary1.Enabled = False
                     'GetDATA_IN()
                     'CalculatorSalary()
+                    If IsNumeric(Working.EXRATE_ID) Then
+                        cboExRate.SelectedValue = Working.EXRATE_ID
+                    End If
+                    If IsNumeric(Working.SAL_BASIC_MIN) Then
+                        rnmtxtSalBas_Min.Value = Working.SAL_BASIC_MIN
+                    End If
+                    If IsNumeric(Working.SAL_BASIC_MAX) Then
+                        rnmtxtSalBas_Max.Value = Working.SAL_BASIC_MAX
+                    End If
+                    If IsNumeric(Working.SAL_RATE) Then
+                        rnmtxtSalRate.Value = Working.SAL_RATE
+                    End If
+                    If IsNumeric(Working.EXRATE_ID) Then
+                        cboExRate.SelectedValue = Working.EXRATE_ID
+                    End If
                 Case "NormalView"
                     CurrentState = CommonMessage.STATE_NEW
                     cboStatus.SelectedIndex = 1
@@ -437,6 +452,7 @@ Public Class ctrlHU_WageNewEdit
             '        End If
             '    End If
             'End Using
+            EnableControlAll(True, cbSalaryRank)
             CalculatorSalary()
             basicSalary.AutoPostBack = True
             'ClearControlValue(rnOtherSalary1, rnOtherSalary2, rnOtherSalary3, rnOtherSalary4, rnOtherSalary5)
@@ -452,6 +468,7 @@ Public Class ctrlHU_WageNewEdit
                     dtData = rep.GetSalaryLevelCombo(cbSalaryGroup.SelectedValue, True)
                 End If
                 If dtData IsNot Nothing AndAlso dtData.Rows.Count > 0 Then
+                    EnableControlAll(True, cbSalaryLevel, cbSalaryGroup)
                     FillRadCombobox(cbSalaryLevel, dtData, "NAME", "ID", True)
                 End If
             End Using
@@ -470,8 +487,17 @@ Public Class ctrlHU_WageNewEdit
                     dtData = rep.GetSalaryRankCombo(cbSalaryLevel.SelectedValue, True)
                 End If
                 If dtData IsNot Nothing AndAlso dtData.Rows.Count > 0 Then
+                    EnableControlAll(True, cbSalaryRank, cbSalaryLevel)
                     FillRadCombobox(cbSalaryRank, dtData, "NAME", "ID", True)
                 End If
+            End Using
+            Using rep As New Payroll.PayrollRepository
+                Dim _filter As New Payroll.PayrollBusiness.SalaryLevelDTO
+                Dim listSalaryLevel As New List(Of Payroll.PayrollBusiness.SalaryLevelDTO)
+                listSalaryLevel = rep.GetSalaryLevel(_filter)
+                Dim query = (From p In listSalaryLevel Where p.ID = cbSalaryLevel.SelectedValue Order By p.ID Descending).FirstOrDefault
+                rnmtxtSalBas_Min.Value = query.SAL_FR
+                rnmtxtSalBas_Max.Value = query.SAL_TO
             End Using
             'ClearControlValue(rnFactorSalary, cbSalaryRank, rntxtSalaryInsurance, basicSalary, Salary_Total, rnOtherSalary1, _
             '                  rnOtherSalary2, rnOtherSalary3, rnOtherSalary4, rnOtherSalary5)
@@ -846,11 +872,12 @@ Public Class ctrlHU_WageNewEdit
                         dtData = rep.GetSalaryRankList(dValue, True)
                         'Case cboStatus.ID
                         '    dtData = rep.GetOtherList(OtherTypes.DecisionStatus)
-
                     Case cboTaxTable.ID
                         dtData = rep.GetOtherList(OtherTypes.TaxTable)
                     Case cboSaleCommision.ID
                         dtData = rep.GetSaleCommisionList(dateValue, True)
+                    Case cboExRate.ID
+                        dtData = rep.GetOtherList(OtherTypes.ExchangeRate)
                 End Select
 
                 If sText <> "" Then
@@ -1060,24 +1087,30 @@ Public Class ctrlHU_WageNewEdit
                 End If               
             End Using
             dtSalaryGroup = dtData
-            Using rep As New ProfileBusinessClient               
-                'khi chọn ngày hiệu lực kiểm tra trùng trong list hồ sơ lương   
-                If rep.ValEffectdateByEmpCode(txtEmployeeCode.Text, rdEffectDate.SelectedDate) = False Then
-                    ShowMessage(Translate("Ngày hiệu lực bị trùng"), NotifyType.Warning)
-                End If          
+            Using rep As New ProfileBusinessClient                                       
                 Dim _filter As New WorkingDTO
                 If IsNumeric(hidEmp.Value) Then
                     _filter.EMPLOYEE_ID = hidEmp.Value
                 End If
                 If rdEffectDate.SelectedDate IsNot Nothing Then
                     _filter.EFFECT_DATE = rdEffectDate.SelectedDate
+                End If                
+                Dim workingdt = rep.getDtByEmpIDandEffectdate(_filter)
+                If workingdt.Count > 0 Then
+                    'khi chọn ngày hiệu lực kiểm tra trùng trong list hồ sơ lương   
+
+                    Dim query_check_dup = From p In workingdt Where p.IS_WAGE = -1
+                    If query_check_dup.Count > 0 Then
+                        ShowMessage(Translate("Ngày hiệu lực bị trùng"), NotifyType.Warning)
+                    End If
+
+                    Dim query = (From p In workingdt Where p.IS_WAGE = 0).FirstOrDefault
+
+                    txtTitleName.Text = query.TITLE_NAME
+                    hidTitle.Value = query.TITLE_ID
+                    txtOrgName.Text = query.ORG_NAME
+                    hidOrg.Value = query.ORG_ID
                 End If
-                Dim workingdt As New DataTable
-                workingdt = rep.getDtByEmpIDandEffectdate(_filter).ToTable()
-                txtTitleName.Text = workingdt.Columns(0).ColumnName("TITLE_NAME")
-                hidTitle.Value = workingdt.Columns(0).ColumnName("TITLE_ID")
-                txtOrgName.Text = workingdt.Columns(0).ColumnName("ORG_NAME")
-                hidOrg.Value = workingdt.Columns(0).ColumnName("ORG_ID")
             End Using
             'tam thoi khoa ham nay lai,,chua hieu tai s goi o cho nay,khi nao co bug thi xem lai sau
             'CalculatorSalary()
