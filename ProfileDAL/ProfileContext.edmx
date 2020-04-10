@@ -3582,6 +3582,7 @@
             <Property Name="JOB_POSITION" Type="number" Nullable="true" Precision="38" />
             <Property Name="JOB_DESCRIPTION" Type="number" Nullable="true" Precision="38" />
             <Property Name="IS_HURTFUL" Type="number" Nullable="true" Precision="38" />
+            <Property Name="IS_THHDLD" Type="number" Nullable="true" Precision="38" />
         </EntityType>
         <EntityType Name="HUV_TERMINATE_CURRENT">
             <Key>
@@ -8479,6 +8480,7 @@
           <Property Type="Decimal" Name="JOB_POSITION" />
           <Property Type="Decimal" Name="JOB_DESCRIPTION" />
           <Property Type="Decimal" Name="IS_HURTFUL" />
+          <Property Type="Decimal" Name="IS_THHDLD" />
         </EntityType>
         <EntityType Name="HUV_TERMINATE_CURRENT">
           <Key>
@@ -12454,6 +12456,7 @@
                     <ScalarProperty Name="JOB_POSITION" ColumnName="JOB_POSITION" />
                     <ScalarProperty Name="JOB_DESCRIPTION" ColumnName="JOB_DESCRIPTION" />
                     <ScalarProperty Name="IS_HURTFUL" ColumnName="IS_HURTFUL" />
+                    <ScalarProperty Name="IS_THHDLD" ColumnName="IS_THHDLD" />
                 </MappingFragment>
             </EntityTypeMapping>
         </EntitySetMapping>
@@ -13063,7 +13066,7 @@
     </Options>
     <!-- Diagram content (shape and connector positions) -->
     <Diagrams>
-      <Diagram Name="ProfileContext" ZoomLevel="125" ShowGrid="false" DisplayType="true" SnapToGrid="true">
+      <Diagram Name="ProfileContext" ZoomLevel="101" ShowGrid="false" DisplayType="true" SnapToGrid="true">
         <EntityTypeShape EntityType="ProfileModel.HU_PROVINCE" Width="1.5" PointX="3" PointY="9.625" Height="0.39999999999999858" IsExpanded="false" />
         <EntityTypeShape EntityType="ProfileModel.HU_DISTRICT" Width="1.75" PointX="5.25" PointY="9" Height="0.39999999999999858" IsExpanded="false" />
         <EntityTypeShape EntityType="ProfileModel.HU_NATION" Width="1.5" PointX="0.75" PointY="9.625" Height="0.40000000000000213" IsExpanded="false" />
@@ -13341,7 +13344,7 @@
         <EntityTypeShape EntityType="ProfileModel.HU_RELATIONSHIP_GROUP" Width="2.375" PointX="32.75" PointY="11.5" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="ProfileModel.HU_ANNUALLEAVE_PLANS" Width="1.5" PointX="34.375" PointY="15.75" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="ProfileModel.HUV_CURRENT_CONTRACT" Width="1.5" PointX="7.375" PointY="36.25" Height="0.4" IsExpanded="false" />
-        <EntityTypeShape EntityType="ProfileModel.HUV_CURRENT_WORKING" Width="1.5" PointX="34.375" PointY="21.25" Height="3.5186979166666674" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProfileModel.HUV_CURRENT_WORKING" Width="1.5" PointX="34.375" PointY="21.25" Height="3.7109993489583353" IsExpanded="true" />
         <EntityTypeShape EntityType="ProfileModel.HUV_TERMINATE_CURRENT" Width="1.5" PointX="35.375" PointY="25.25" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="ProfileModel.HU_TRANSFER_TERMINATE" Width="1.5" PointX="35.375" PointY="29.5" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="ProfileModel.HU_DEBT" Width="2.625" PointX="41.5" PointY="28.75" Height="3.3263964843750031" IsExpanded="true" />

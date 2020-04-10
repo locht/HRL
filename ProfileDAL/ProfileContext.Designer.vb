@@ -18,7 +18,7 @@ Imports System.Runtime.Serialization
 Imports System.Xml.Serialization
 
 
-<Assembly: EdmSchemaAttribute("63471a91-3e39-4766-aa47-0cfe99673132")>
+<Assembly: EdmSchemaAttribute("f46e0607-aeae-4211-8979-fad298fc71b2")>
 #Region "EDM Relationship Metadata"
 <Assembly: EdmRelationshipAttribute("ProfileModel", "FK_HU_NAT_HU_PRO", "HU_NATION", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_NATION), "HU_PROVINCE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_PROVINCE), True)>
 <Assembly: EdmRelationshipAttribute("ProfileModel", "FK_HU_PRO_HU_DIS", "HU_PROVINCE", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_PROVINCE), "HU_DISTRICT", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_DISTRICT), True)>
@@ -70513,6 +70513,31 @@ Public Partial Class HUV_CURRENT_WORKING
     End Sub
 
     Private Partial Sub OnIS_HURTFULChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property IS_THHDLD() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _IS_THHDLD
+        End Get
+        Set
+            OnIS_THHDLDChanging(value)
+            ReportPropertyChanging("IS_THHDLD")
+            _IS_THHDLD = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("IS_THHDLD")
+            OnIS_THHDLDChanged()
+        End Set
+    End Property
+
+    Private _IS_THHDLD As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnIS_THHDLDChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnIS_THHDLDChanged()
     End Sub
 
     #End Region
