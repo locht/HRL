@@ -157,4 +157,5 @@
     Public Property SAL_RATE As Decimal?
     Public Property IS_HDLD As Decimal?
 
+    Public Property REASON_EDIT_EFDATE As String
 End Class

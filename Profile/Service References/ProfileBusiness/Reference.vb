@@ -6358,6 +6358,9 @@ Namespace ProfileBusiness
         Private PERCENT_SALARYField As System.Nullable(Of Decimal)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private REASON_EDIT_EFDATEField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private REMARKField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -7586,6 +7589,19 @@ Namespace ProfileBusiness
                 If (Me.PERCENT_SALARYField.Equals(value) <> true) Then
                     Me.PERCENT_SALARYField = value
                     Me.RaisePropertyChanged("PERCENT_SALARY")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property REASON_EDIT_EFDATE() As String
+            Get
+                Return Me.REASON_EDIT_EFDATEField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.REASON_EDIT_EFDATEField, value) <> true) Then
+                    Me.REASON_EDIT_EFDATEField = value
+                    Me.RaisePropertyChanged("REASON_EDIT_EFDATE")
                 End If
             End Set
         End Property

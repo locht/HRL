@@ -2,6 +2,7 @@
 Imports Framework.UI.Utilities
 Imports Profile.ProfileBusiness
 Imports Common
+Imports Payroll
 Imports Telerik.Web.UI
 Imports System.IO
 Imports WebAppLog
@@ -350,6 +351,7 @@ Public Class ctrlHU_WageNewEdit
                         cboExRate.SelectedValue = Working.EXRATE_ID
                         cboExRate.Text = Working.EX_RATE_NAME
                     End If
+                    txtREASON_EDIT_EFDATE.Text = Working.REASON_EDIT_EFDATE
                 Case "NormalView"
                     CurrentState = CommonMessage.STATE_NEW
                     cboStatus.SelectedIndex = 1
@@ -454,7 +456,7 @@ Public Class ctrlHU_WageNewEdit
             'End Using
             EnableControlAll(True, cbSalaryRank)           
             CalculatorSalary()
-            basicSalary.AutoPostBack = True
+            basicSalary.AutoPostBack = False
             'ClearControlValue(rnOtherSalary1, rnOtherSalary2, rnOtherSalary3, rnOtherSalary4, rnOtherSalary5)
         Catch ex As Exception
             Throw ex
@@ -489,18 +491,21 @@ Public Class ctrlHU_WageNewEdit
                 If dtData IsNot Nothing AndAlso dtData.Rows.Count > 0 Then
                     EnableControlAll(True, cbSalaryRank, cbSalaryLevel)
                     FillRadCombobox(cbSalaryRank, dtData, "NAME", "ID", True)
+                End If           
+                If IsNumeric(cbSalaryLevel.SelectedValue) Then
+                    Dim listSalaryLevel = rep.GetSalaryLevelComboNotByGroup(False)
+                    If listSalaryLevel IsNot Nothing Then
+                        Dim row As DataRow
+                        For Each row In listSalaryLevel.Rows
+                            If row("ID") = cbSalaryLevel.SelectedValue Then
+                                rnmtxtSalBas_Min.Value = CType(row("SAL_FR"), Decimal?)
+                                rnmtxtSalBas_Max.Value = CType(row("SAL_TO"), Decimal?)
+                                Exit For
+                            End If
+                        Next
+                    End If
                 End If
             End Using
-            'Using rep As New PayrollRepository
-            '    Dim _filter As New SalaryLevelDTO
-            '    Dim listSalaryLevel As New List(Of Payroll.PayrollBusiness.SalaryLevelDTO)
-            '    listSalaryLevel = rep.GetSalaryLevel(_filter)
-            '    Dim query = (From p In listSalaryLevel Where p.ID = cbSalaryLevel.SelectedValue Order By p.ID Descending).FirstOrDefault
-            '    If query IsNot Nothing Then
-            '        rnmtxtSalBas_Min.Value = query.SAL_FR
-            '        rnmtxtSalBas_Max.Value = query.SAL_TO
-            '    End If
-            'End Using
             'ClearControlValue(rnFactorSalary, cbSalaryRank, rntxtSalaryInsurance, basicSalary, Salary_Total, rnOtherSalary1, _
             '                  rnOtherSalary2, rnOtherSalary3, rnOtherSalary4, rnOtherSalary5)
         Catch ex As Exception
@@ -686,6 +691,19 @@ Public Class ctrlHU_WageNewEdit
                             '.SAL_TOTAL = Salary_Total.Value
                             .TAX_TABLE_ID = Decimal.Parse(cboTaxTable.SelectedValue)
                             .SAL_INS = rntxtSalaryInsurance.Value
+                            If IsNumeric(cboExRate.SelectedValue) Then
+                                .EXRATE_ID = cboExRate.SelectedValue
+                            End If
+                            If IsNumeric(rnmtxtSalBas_Min.Value) Then
+                                .SAL_BASIC_MIN = rnmtxtSalBas_Min.Value
+                            End If
+                            If IsNumeric(rnmtxtSalBas_Max.Value) Then
+                                .SAL_BASIC_MAX = rnmtxtSalBas_Max.Value
+                            End If
+                            If IsNumeric(rnmtxtSalRate.Value) Then
+                                .SAL_RATE = rnmtxtSalRate.Value
+                            End If
+                            .REASON_EDIT_EFDATE = txtREASON_EDIT_EFDATE.Text
                         End With
 
                         Select Case CurrentState
@@ -696,7 +714,7 @@ Public Class ctrlHU_WageNewEdit
                                 End If
                                 Using repchk_dup_hsl As New ProfileBusinessClient
                                     'khi chọn ngày hiệu lực kiểm tra trùng trong list hồ sơ lương   
-                                    If repchk_dup_hsl.ValEffectdateByEmpCode(Working.EMPLOYEE_CODE, rdEffectDate.SelectedDate) = False Then
+                                    If repchk_dup_hsl.ValEffectdateByEmpCode(txtEmployeeCode.Text, rdEffectDate.SelectedDate) = False Then
                                         ShowMessage(Translate("Ngày hiệu lực bị trùng"), NotifyType.Warning)
                                         Exit Sub
                                     End If
@@ -706,6 +724,7 @@ Public Class ctrlHU_WageNewEdit
                                     ctrlMessageBox.ActionName = "CHECK_SAL_BAS_MIN_MAX"
                                     ctrlMessageBox.DataBind()
                                     ctrlMessageBox.Show()
+                                    Exit Sub
                                 End If
                                     If rep.InsertWorking(objWorking, gID) Then
                                         ''POPUPTOLINK
@@ -1411,7 +1430,32 @@ Public Class ctrlHU_WageNewEdit
                     hidStaffRank.Value = ""
                     'txtStaffRank.Text = vbNullString
                 End If
-                rntxtSalaryInsurance.Text = obj.SAL_INS
+                rntxtSalaryInsurance.Text = obj.SAL_INS               
+            End Using
+            Using rep As New ProfileBusinessClient
+                Dim _filter As New WorkingDTO
+                If IsNumeric(hidEmp.Value) Then
+                    _filter.EMPLOYEE_ID = hidEmp.Value
+                End If
+                If rdEffectDate.SelectedDate IsNot Nothing Then
+                    _filter.EFFECT_DATE = rdEffectDate.SelectedDate
+                End If
+                Dim workingdt = rep.getDtByEmpIDandEffectdate(_filter)
+                If workingdt.Count > 0 Then
+                    'khi chọn ngày hiệu lực kiểm tra trùng trong list hồ sơ lương   
+
+                    Dim query_check_dup = From p In workingdt Where p.IS_WAGE = -1
+                    If query_check_dup.Count > 0 Then
+                        ShowMessage(Translate("Ngày hiệu lực bị trùng"), NotifyType.Warning)
+                    End If
+
+                    Dim query = (From p In workingdt Where p.IS_WAGE = 0).FirstOrDefault
+
+                    txtTitleName.Text = query.TITLE_NAME
+                    hidTitle.Value = query.TITLE_ID
+                    txtOrgName.Text = query.ORG_NAME
+                    hidOrg.Value = query.ORG_ID
+                End If
             End Using
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception

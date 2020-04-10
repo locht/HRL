@@ -413,7 +413,7 @@ Partial Class ProfileRepository
                                            .P_ORGID = _param.ORG_ID,
                                            .P_ISDISSOLVE = _param.IS_DISSOLVE})
             End Using
-            'thêm vào giao diện From ExRate In Context.PA_SALARY_EXCHANGE_RATE.Where(Function(f) f.id = p.EXRATE_ID).DefaultIfEmpty
+            'thêm vào giao diện 
             Dim query = From p In Context.HU_WORKING
                         From e In Context.HU_EMPLOYEE.Where(Function(f) f.ID = p.EMPLOYEE_ID).DefaultIfEmpty
                         From o In Context.HU_ORGANIZATION.Where(Function(f) f.ID = p.ORG_ID).DefaultIfEmpty
@@ -434,6 +434,7 @@ Partial Class ProfileRepository
                                                            f.USERNAME = log.Username.ToUpper)
                         From objectLabor In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.OBJECT_LABOR And
                                                                         f.TYPE_ID = 6963).DefaultIfEmpty
+                        From CurRate In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.EXRATE_ID).DefaultIfEmpty
             Select New WorkingDTO With {.ID = p.ID,
                                         .DECISION_NO = p.DECISION_NO,
                                         .DECISION_TYPE_ID = p.DECISION_TYPE_ID,
@@ -498,9 +499,11 @@ Partial Class ProfileRepository
                                         .JOB_POSITION = p.JOB_POSITION,
                                         .IS_REPLACE = p.IS_REPLACE,
                                         .EXRATE_ID = p.EXRATE_ID,
+                                        .EX_RATE_NAME = CurRate.NAME_VN,
                                         .SAL_BASIC_MIN = p.SAL_BASIC_MIN,
                                         .SAL_BASIC_MAX = p.SAL_BASIC_MAX,
-                                        .SAL_RATE = p.SAL_RATE
+                                        .SAL_RATE = p.SAL_RATE,
+                                        .REASON_EDIT_EFDATE = p.REASON_EDIT_EFDATE
                                         }
             Dim dateNow = Date.Now.Date
             If Not _filter.IS_TER Then
@@ -619,6 +622,9 @@ Partial Class ProfileRepository
             End If
             If _filter.EX_RATE_NAME IsNot Nothing Then
                 query = query.Where(Function(p) p.EX_RATE_NAME.ToUpper.Contains(_filter.EX_RATE_NAME.ToUpper))
+            End If
+            If _filter.REASON_EDIT_EFDATE IsNot Nothing Then
+                query = query.Where(Function(p) p.REASON_EDIT_EFDATE.ToUpper.Contains(_filter.REASON_EDIT_EFDATE.ToUpper))
             End If
             If _filter.SAL_BASIC_MIN IsNot Nothing Then
                 query = query.Where(Function(p) p.SAL_BASIC_MIN = _filter.SAL_BASIC_MIN)
@@ -959,6 +965,7 @@ Partial Class ProfileRepository
 
     Public Function GetWorkingByID(ByVal _filter As WorkingDTO) As WorkingDTO
         Try
+            'thêm vào giao chi tiết HSL From ExRate In Context.PA_SALARY_EXCHANGE_RATE.Where(Function(f) f.id = p.EXRATE_ID).DefaultIfEmpty
             Dim query = From p In Context.HU_WORKING
                         From e In Context.HU_EMPLOYEE.Where(Function(f) f.ID = p.EMPLOYEE_ID)
                         From o In Context.HU_ORGANIZATION.Where(Function(f) p.ORG_ID = f.ID).DefaultIfEmpty
@@ -1053,7 +1060,12 @@ Partial Class ProfileRepository
                              .IS_HURTFUL = p.IS_HURTFUL,
                              .EFFECT_DH_DATE = p.EFFECT_DH_DATE,
                              .EMP_REPLACE = p.EMP_REPLACE,
-                             .EMP_REPLACE_NAME = er.FULLNAME_VN
+                             .EMP_REPLACE_NAME = er.FULLNAME_VN,
+                              .EXRATE_ID = p.EXRATE_ID,
+                              .SAL_BASIC_MIN = p.SAL_BASIC_MIN,
+                                        .SAL_BASIC_MAX = p.SAL_BASIC_MAX,
+                                        .SAL_RATE = p.SAL_RATE,
+                                        .REASON_EDIT_EFDATE = p.REASON_EDIT_EFDATE
                          }
 
             Dim working = query.FirstOrDefault
@@ -1507,6 +1519,7 @@ Partial Class ProfileRepository
             objWorkingData.SAL_BASIC_MIN = objWorking.SAL_BASIC_MIN
             objWorkingData.SAL_BASIC_MAX = objWorking.SAL_BASIC_MAX
             objWorkingData.SAL_RATE = objWorking.SAL_RATE
+            objWorkingData.REASON_EDIT_EFDATE = objWorking.REASON_EDIT_EFDATE
             Context.HU_WORKING.AddObject(objWorkingData)
 
             ' nếu phê duyệt
@@ -1796,6 +1809,7 @@ Partial Class ProfileRepository
             objWorkingData.SAL_BASIC_MIN = objWorking.SAL_BASIC_MIN
             objWorkingData.SAL_BASIC_MAX = objWorking.SAL_BASIC_MAX
             objWorkingData.SAL_RATE = objWorking.SAL_RATE
+            objWorkingData.REASON_EDIT_EFDATE = objWorking.REASON_EDIT_EFDATE
             If objWorking.STATUS_ID = ProfileCommon.DECISION_STATUS.APPROVE_ID Then
                 ApproveWorking(objWorking)
             End If

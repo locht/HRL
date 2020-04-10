@@ -250,7 +250,6 @@
                 </td>
                 <td>
                     <tlk:RadNumericTextBox ID="rntxtAllowance_Total" runat="server" Enabled="False" SkinID="Money" CausesValidation="false">
-                      <ClientEvents OnValueChanged="OnValueChanged" />
                     </tlk:RadNumericTextBox>
                 </td>
             </tr>
@@ -439,7 +438,7 @@
                                     HeaderStyle-Width="40px" ItemStyle-HorizontalAlign="Center">
                                 </tlk:GridClientSelectColumn>
                                    <tlk:GridNumericColumn HeaderText="<%$ Translate: Số tiền VNĐ %>" DataField="AMOUNT_EX"
-                                    SortExpression="AMOUNT_EX" UniqueName="AMOUNT" DataFormatString="{0:n0}">
+                                    SortExpression="AMOUNT_EX" UniqueName="AMOUNT_EX" DataFormatString="{0:n0}">
                                     <ItemStyle HorizontalAlign="Right" VerticalAlign="Middle" />
                                 </tlk:GridNumericColumn>
                                 <tlk:GridNumericColumn HeaderText="<%$ Translate: Số tiền %>" DataField="AMOUNT"
@@ -718,7 +717,6 @@
         }
 
         function OnValueChanged(sender, args) {
-        debugger;
             var id = sender.get_id();
             var objSalaryInsurance=$find('<%= rntxtSalaryInsurance.ClientID %>');
 
@@ -733,18 +731,18 @@
             var objAllowance_Total = $find('<%= rntxtAllowance_Total.ClientID %>');
 
             if (objSalBasic.get_value()) {
-                valueSalBasic = objSalBasic.get_value();
+                valueSalBasic = objSalBasic.get_value();                
             }
              if (objPercentSalary.get_value()) {
-                valuePercentSalary = objPercentSalary.get_value();
+                valuePercentSalary = objPercentSalary.get_value();                 
             } 
             if (objSalRate.get_value()) {
                 valueSalRate = objSalRate.get_value();
             }
             if (objAllowance_Total.get_value()) {
-                valueAllowance_Total = objAllowance_Total.get_value();
+                valueAllowance_Total = objAllowance_Total.get_value();                  
             }          
-            objSalaryInsurance.value= (objSalBasic*objPercentSalary*objSalRate)+objAllowance_Total;
+            objSalaryInsurance.set_value((objSalBasic*objPercentSalary*objSalRate)+objAllowance_Total);
         }
 
     </script>

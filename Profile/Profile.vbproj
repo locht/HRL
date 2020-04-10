@@ -79,12 +79,9 @@
     <Reference Include="log4net, Version=1.2.11.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
       <HintPath>..\packages\LinqToExcel.1.6.5\lib\log4net.dll</HintPath>
     </Reference>
-	    <Reference Include="Newtonsoft.Json, Version=4.0.3.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+    <Reference Include="Newtonsoft.Json, Version=4.0.3.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\ref\Newtonsoft.Json.dll</HintPath>
-    </Reference>
-    <Reference Include="Payroll">
-      <HintPath>..\Payroll\obj\Debug\Payroll.dll</HintPath>
     </Reference>
     <Reference Include="Remotion">
       <HintPath>..\packages\LinqToExcel.1.6.5\lib\Remotion.dll</HintPath>
@@ -219,7 +216,7 @@
     <Content Include="Modules\Profile\Business\ctrlHU_AssetMngNewEdit.ascx" />
     <Content Include="Modules\Profile\Business\ctrlHU_TrainingForeignNewEdit.ascx" />
     <Content Include="Modules\Profile\Business\ctrlHU_TranningForeign.ascx" />
-	 <Content Include="Modules\Profile\Business\ctrlHU_Health_Mng.ascx" />
+    <Content Include="Modules\Profile\Business\ctrlHU_Health_Mng.ascx" />
     <Content Include="Modules\Profile\Business\ctrlHU_WelfareMngAuto.ascx" />
     <Content Include="Modules\Profile\Business\ctrlHU_AssetMng.ascx" />
     <Content Include="Modules\Profile\Business\ctrlHU_EmpDtlHistory.ascx" />
@@ -1193,13 +1190,13 @@
       <DependentUpon>ctrlHU_TranningForeign.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-	<Compile Include="Modules\Profile\Business\ctrlHU_Health_Mng.ascx.designer.vb">
+    <Compile Include="Modules\Profile\Business\ctrlHU_Health_Mng.ascx.designer.vb">
       <DependentUpon>ctrlHU_Health_Mng.ascx</DependentUpon>
     </Compile>
     <Compile Include="Modules\Profile\Business\ctrlHU_Health_Mng.ascx.vb">
       <DependentUpon>ctrlHU_Health_Mng.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
-    </Compile>	
+    </Compile>
     <Compile Include="Modules\Profile\Business\ctrlHU_WelfareMngAuto.ascx.designer.vb">
       <DependentUpon>ctrlHU_WelfareMngAuto.ascx</DependentUpon>
     </Compile>
