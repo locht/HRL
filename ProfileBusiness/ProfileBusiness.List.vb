@@ -2775,6 +2775,16 @@ Namespace ProfileBusiness.ServiceImplementations
             End Using
         End Function
 
+        Function CHECK_IS_THHDLD(ByVal P_ID As Decimal) As Integer Implements ServiceContracts.IProfileBusiness.CHECK_IS_THHDLD
+            Using rep As New ProfileRepository
+                Try
+                    Return rep.CHECK_IS_THHDLD(P_ID)
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
+
 #End Region
 
 

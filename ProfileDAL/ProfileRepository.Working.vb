@@ -2012,6 +2012,7 @@ Partial Class ProfileRepository
                 item.JOB_POSITION = objWorking.JOB_POSITION
                 item.JOB_DESCRIPTION = objWorking.JOB_DESCRIPTION
                 item.IS_HAZARDOUS = objWorking.IS_HURTFUL
+                item.IS_HDLD = objWorking.IS_HDLD
             End If
 
             Return True

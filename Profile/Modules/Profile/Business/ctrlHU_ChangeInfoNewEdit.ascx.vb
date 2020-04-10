@@ -504,6 +504,7 @@ Public Class ctrlHU_ChangeInfoNewEdit
                             End If
                             .IS_HURTFUL = chkIsHurtful.Checked
                             .EFFECT_DH_DATE = rdEffectHdDate.SelectedDate
+                            .IS_HDLD = rep1.CHECK_IS_THHDLD(cboDecisionType.SelectedValue)
 
                         End With
 
