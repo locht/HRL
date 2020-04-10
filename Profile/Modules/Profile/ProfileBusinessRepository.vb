@@ -738,6 +738,45 @@ Partial Public Class ProfileBusinessRepository
 
 #End Region
 
+#Region "Quan ly suc khoe"
+    Public Function GET_HEALTH_MNG_LIST(ByVal _filter As HealthMngDTO, ByVal PageIndex As Integer,
+                                       ByVal PageSize As Integer,
+                                       ByRef Total As Integer, ByVal _param As ParamDTO,
+                                        Optional ByVal Sorts As String = "CREATED_DATE desc") As DataTable
+        Using rep As New ProfileBusinessClient
+            Try
+                Dim lst = rep.GET_HEALTH_MNG_LIST(_filter, PageIndex, PageSize, Total, Me.Log, _param, Sorts)
+                Return lst
+            Catch ex As Exception
+                Throw ex
+            End Try
+        End Using
+    End Function
+
+    Public Function GET_HEALTH_MNG_LIST(ByVal _filter As HealthMngDTO, ByVal _param As ParamDTO,
+                                        Optional ByVal Sorts As String = "CREATED_DATE desc") As DataTable
+        Using rep As New ProfileBusinessClient
+            Try
+                Dim lst = rep.GET_HEALTH_MNG_LIST(_filter, 0, Integer.MaxValue, 0, Me.Log, _param, Sorts)
+                Return lst
+            Catch ex As Exception
+                Throw ex
+            End Try
+        End Using
+    End Function
+
+    Public Function Import_Health_Mng(ByVal P_DOCXML As String) As Boolean
+        Using rep As New ProfileBusinessClient
+            Try
+                Dim lst = rep.Import_Health_Mng(P_DOCXML, "")
+                Return lst
+            Catch ex As Exception
+                Throw ex
+            End Try
+        End Using
+    End Function
+#End Region
+
 #Region "PLHD"
     Public Function GetContractForm(ByVal formID As Decimal) As OtherListDTO
         Using rep As New ProfileBusinessClient

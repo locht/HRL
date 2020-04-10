@@ -12,6 +12,7 @@
         <Item Value="ctrlHU_SafeLaborMng"  Text="Quản lý tai nạn lao động" PostBack="True" NavigateUrl="Default.aspx?mid=Profile&amp;fid=ctrlHU_SafeLaborMng&amp;group=Business" CheckPermission="true" CausesValidation="False" />
         <Item Value="ctrlHU_TranningForeign"  Text="Quản lý công tác" PostBack="True" NavigateUrl="Default.aspx?mid=Profile&amp;fid=ctrlHU_TranningForeign&amp;group=Business" CheckPermission="true" CausesValidation="False" />
         <Item Value="ctrlHU_Concurrently" Text="Quản lý kiêm nhiệm" PostBack="True" NavigateUrl="Default.aspx?mid=Profile&amp;fid=ctrlHU_Concurrently&amp;group=Business" CheckPermission="true"/>
+        <Item Value="ctrlHU_Health_Mng" Text="Quản lý sức khỏe" PostBack="True" NavigateUrl="Default.aspx?mid=Profile&amp;fid=ctrlHU_Health_Mng&amp;group=Business" CheckPermission="true"/>
         <Item Value="ctrlHU_Commend" Text="Bảng mô tả công việc" PostBack="True" NavigateUrl="Default.aspx?mid=Profile&amp;fid=ctrlHU_JobDescription&amp;group=Business" CheckPermission="true"/>
         <Item Value="ctrlHU_Commend" Text="Quản lý khen thưởng" PostBack="True" NavigateUrl="Default.aspx?mid=Profile&amp;fid=ctrlHU_Commend&amp;group=Business" CheckPermission="true"/>
         <Item Value="ctrlHU_AssetMng" Text="Quản lý tài sản cấp phát" PostBack="True" NavigateUrl="Default.aspx?mid=Profile&amp;fid=ctrlHU_AssetMng&amp;group=Business" CheckPermission="true"/>

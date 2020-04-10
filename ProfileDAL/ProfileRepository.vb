@@ -2146,6 +2146,48 @@ Public Class ProfileRepository
 
 #End Region
 
+#Region "Quản lý sức khỏe"
+    Public Function GET_HEALTH_MNG_LIST(ByVal _filter As HealthMngDTO, ByVal PageIndex As Integer,
+                                       ByVal PageSize As Integer,
+                                       ByRef Total As Integer,
+                                        ByVal log As UserLog, ByVal _param As ParamDTO,
+                                        Optional ByVal Sorts As String = "CREATED_DATE desc") As DataTable
+
+        Try
+            Using cls As New DataAccess.QueryData
+                cls.ExecuteStore("PKG_COMMON_LIST.INSERT_CHOSEN_ORG",
+                                 New With {.P_USERNAME = log.Username,
+                                           .P_ORGID = _param.ORG_ID,
+                                           .P_ISDISSOLVE = _param.IS_DISSOLVE})
+            End Using
+            Using Sql As New DataAccess.NonQueryData
+                Using cls As New DataAccess.QueryData
+                    Dim dtData As DataTable = cls.ExecuteStore("PKG_PROFILE_BUSINESS.GET_HEALTH_MNG_LIST",
+                                               New With {.P_ORGID = _filter.ORG_ID,
+                                                         .P_CUR = cls.OUT_CURSOR})
+                    Return dtData
+                End Using
+            End Using
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iProfile")
+
+        End Try
+    End Function
+
+    Public Function Import_Health_Mng(ByVal P_DOCXML As String, ByVal P_USER As String) As Boolean
+        Try
+            Using cls As New DataAccess.QueryData
+                cls.ExecuteStore("PKG_PROFILE_BUSINESS.IMPORT_HEALTH_MNG",
+                                 New With {.P_DOCXML = P_DOCXML, .P_USER = P_USER})
+            End Using
+            Return True
+        Catch ex As Exception
+            Return False
+        End Try
+
+    End Function
+#End Region
+
 #Region "PLHD"
     Public Function GET_NEXT_APPENDIX_ORDER(ByVal id As Decimal, ByVal contract_id As Decimal, ByVal emp_id As Decimal) As Integer
         Try

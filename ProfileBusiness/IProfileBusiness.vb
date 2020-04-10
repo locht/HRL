@@ -2765,6 +2765,18 @@ Namespace ProfileBusiness.ServiceContracts
         Function DeleteSigner(ByVal lstID As String)
 
 #End Region
+#Region " Quan ly suc khoe"
+        <OperationContract()>
+        Function GET_HEALTH_MNG_LIST(ByVal _filter As HealthMngDTO, ByVal PageIndex As Integer,
+                                       ByVal PageSize As Integer,
+                                       ByRef Total As Integer, ByVal log As UserLog, ByVal _param As ParamDTO,
+                                     Optional ByVal Sorts As String = "CREATED_DATE desc") As DataTable
+
+        <OperationContract()>
+        Function Import_Health_Mng(ByVal P_DOCXML As String, ByVal P_USER As String) As Boolean
+
+#End Region
+
 
 #Region "QL kiêm nhiệm"
         <OperationContract()>

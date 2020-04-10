@@ -116,6 +116,7 @@
     <Compile Include="BusinessObjects\Business\Terminate3BDTO.vb" />
     <Compile Include="BusinessObjects\Business\TrainningForeignDTO.vb" />
     <Compile Include="BusinessObjects\Business\UniformSizeDTO.vb" />
+    <Compile Include="BusinessObjects\Business\HealthMngDTO.vb" />
     <Compile Include="BusinessObjects\Business\Welfatemng_empDTO.vb" />
     <Compile Include="BusinessObjects\Business\WorkingBeforeDTOEdit.vb" />
     <Compile Include="BusinessObjects\Business\HU_PRO_TRAIN_OUT_COMPANYDTOEDIT.vb" />

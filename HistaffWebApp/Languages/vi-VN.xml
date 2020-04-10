@@ -44702,4 +44702,12 @@ Xin cám ơn!
       <string>Số phân bản</string>
     </Value>
   </Item>
+  <Item>
+    <Key>
+      <string>CTRLHU_HEALTH_MNG</string>
+    </Key>
+    <Value>
+      <string>Quản lý sức khỏe</string>
+    </Value>
+  </Item>
 </SerializableDictionaryOfStringString>

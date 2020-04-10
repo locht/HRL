@@ -678,6 +678,33 @@ Implements ServiceContracts.IProfileBusiness.GetHU_DataDynamicContractAppendix
         End Function
 #End Region
 
+#Region "Quan ly suc khoe"
+        Public Function GET_HEALTH_MNG_LIST(ByVal _filter As HealthMngDTO, ByVal PageIndex As Integer,
+                                       ByVal PageSize As Integer,
+                                       ByRef Total As Integer, ByVal log As UserLog, ByVal _param As ParamDTO,
+                                             Optional ByVal Sorts As String = "CREATED_DATE desc") As DataTable Implements ServiceContracts.IProfileBusiness.GET_HEALTH_MNG_LIST
+            Using rep As New ProfileRepository
+                Try
+                    Dim lst = rep.GET_HEALTH_MNG_LIST(_filter, PageIndex, PageSize, Total, log, _param, Sorts)
+                    Return lst
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
+
+        Public Function Import_Health_Mng(ByVal P_DOCXML As String, ByVal P_USER As String) As Boolean Implements ServiceContracts.IProfileBusiness.Import_Health_Mng
+            Using rep As New ProfileRepository
+                Try
+                    Dim lst = rep.Import_Health_Mng(P_DOCXML, P_USER)
+                    Return lst
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
+#End Region
+
 #Region "phu luc hop dong"
         Public Function PrintFileContract(ByVal emp_code As String, ByVal fileContract_ID As String) As DataTable Implements ServiceContracts.IProfileBusiness.PrintFileContract
             Using rep As New ProfileRepository
