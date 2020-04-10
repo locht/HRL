@@ -552,6 +552,16 @@ Implements ServiceContracts.IProfileBusiness.GetCompetencyEmployee
             End Using
         End Function
 
+        'Qua trinh ngach bac
+        Public Function GetSalaryChanged(ByVal _empId As System.Decimal) As DataTable Implements ServiceContracts.IProfileBusiness.GetSalaryChanged
+            Using rep As New ProfileRepository
+                Try
+                    Return rep.GetSalaryChanged(_empId)
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
 #End Region
 
 #Region " Quá trình đào tạo ngoài công ty"

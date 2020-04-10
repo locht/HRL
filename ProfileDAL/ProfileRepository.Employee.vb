@@ -3204,7 +3204,20 @@ Partial Class ProfileRepository
         End Try
     End Function
 
-
+    'QUA TRINH BAC NGACH
+    Public Function GetSalaryChanged(ByVal _empID As Decimal) As DataTable
+        Try
+            Dim dtData As New DataTable
+            Using cls As New DataAccess.QueryData
+                dtData = cls.ExecuteStore("PKG_PROFILE_BUSINESS.GET_SALARY_CHANGED_PROCESS",
+                                           New With {.P_EMP_ID = _empID,
+                                                    .P_OUT = cls.OUT_CURSOR})
+            End Using
+            Return dtData
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
 #End Region
 
 #Region "Qua trinh dao tao trong cong ty"

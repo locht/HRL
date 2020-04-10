@@ -502,7 +502,16 @@ Partial Public Class ProfileBusinessRepository
         End Using
     End Function
 
-
+    'Qua trinh ngach bac
+    Public Function GetSalaryChanged(ByVal _empId As System.Decimal) As DataTable
+        Using rep As New ProfileBusinessClient
+            Try
+                Return rep.GetSalaryChanged(_empId)
+            Catch ex As Exception
+                Throw ex
+            End Try
+        End Using
+    End Function
 
 #End Region
 

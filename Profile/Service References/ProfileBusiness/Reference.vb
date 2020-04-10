@@ -54785,6 +54785,9 @@ Namespace ProfileBusiness
      System.ServiceModel.ServiceContractAttribute(ConfigurationName:="ProfileBusiness.IProfileBusiness")>  _
     Public Interface IProfileBusiness
         
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/INSERT_JOB_POSITION", ReplyAction:="http://tempuri.org/IProfileBusiness/INSERT_JOB_POSITIONResponse")>  _
+        Function INSERT_JOB_POSITION(ByVal p_CODE As String, ByVal p_JOB_NAME As String, ByVal p_ORG_ID As Decimal, ByVal p_TITLE_ID As Decimal, ByVal p_JOB_NOTE As String, ByVal p_COST_CODE As String, ByVal p_IS_LEADER As Decimal, ByVal p_EFFECT_DATE As Date, ByVal log As Common.CommonBusiness.UserLog) As Integer
+        
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/UPDATE_JOB_POSITION", ReplyAction:="http://tempuri.org/IProfileBusiness/UPDATE_JOB_POSITIONResponse")>  _
         Function UPDATE_JOB_POSITION(ByVal p_ID As Decimal, ByVal p_CODE As String, ByVal p_JOB_NAME As String, ByVal p_ORG_ID As Decimal, ByVal p_TITLE_ID As Decimal, ByVal p_JOB_NOTE As String, ByVal p_COST_CODE As String, ByVal p_IS_LEADER As Decimal, ByVal p_EFFECT_DATE As Date, ByVal log As Common.CommonBusiness.UserLog) As Integer
         
@@ -54832,6 +54835,9 @@ Namespace ProfileBusiness
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/CHECK_IS_THHDLD", ReplyAction:="http://tempuri.org/IProfileBusiness/CHECK_IS_THHDLDResponse")>  _
         Function CHECK_IS_THHDLD(ByVal P_ID As Decimal, ByVal P_EMP_ID As Decimal, ByVal P_DATE As System.Nullable(Of Date)) As Integer
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/InsertCommendLevel", ReplyAction:="http://tempuri.org/IProfileBusiness/InsertCommendLevelResponse")>  _
+        Function InsertCommendLevel(ByVal objCommendLevel As ProfileBusiness.CommendLevelDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ValidateCommendLevel", ReplyAction:="http://tempuri.org/IProfileBusiness/ValidateCommendLevelResponse"),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(Common.CommonBusiness.UserLog)),  _
@@ -55694,9 +55700,6 @@ Namespace ProfileBusiness
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GET_JOB_POSITION_DETAIL", ReplyAction:="http://tempuri.org/IProfileBusiness/GET_JOB_POSITION_DETAILResponse")>  _
         Function GET_JOB_POSITION_DETAIL(ByVal P_ID As Decimal) As System.Data.DataSet
         
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/INSERT_JOB_POSITION", ReplyAction:="http://tempuri.org/IProfileBusiness/INSERT_JOB_POSITIONResponse")>  _
-        Function INSERT_JOB_POSITION(ByVal p_CODE As String, ByVal p_JOB_NAME As String, ByVal p_ORG_ID As Decimal, ByVal p_TITLE_ID As Decimal, ByVal p_JOB_NOTE As String, ByVal p_COST_CODE As String, ByVal p_IS_LEADER As Decimal, ByVal p_EFFECT_DATE As Date, ByVal log As Common.CommonBusiness.UserLog) As Integer
-        
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/InsertWorkingBeforeEdit", ReplyAction:="http://tempuri.org/IProfileBusiness/InsertWorkingBeforeEditResponse")>  _
         Function InsertWorkingBeforeEdit(ByVal objWorkingBefore As ProfileBusiness.WorkingBeforeDTOEdit, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
         
@@ -55762,6 +55765,9 @@ Namespace ProfileBusiness
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetCompetencyEmployee", ReplyAction:="http://tempuri.org/IProfileBusiness/GetCompetencyEmployeeResponse")>  _
         Function GetCompetencyEmployee(ByVal _empId As Decimal) As System.Collections.Generic.List(Of ProfileBusiness.EmployeeCompetencyDTO)
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetSalaryChanged", ReplyAction:="http://tempuri.org/IProfileBusiness/GetSalaryChangedResponse")>  _
+        Function GetSalaryChanged(ByVal _empId As Decimal) As System.Data.DataTable
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetProcessTraining", ReplyAction:="http://tempuri.org/IProfileBusiness/GetProcessTrainingResponse")>  _
         Function GetProcessTraining(ByVal _filter As ProfileBusiness.HU_PRO_TRAIN_OUT_COMPANYDTO, ByRef PageIndex As Integer, ByVal PageSize As Integer, ByVal Total As Integer, ByVal Sorts As String) As System.Collections.Generic.List(Of ProfileBusiness.HU_PRO_TRAIN_OUT_COMPANYDTO)
@@ -56151,9 +56157,6 @@ Namespace ProfileBusiness
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetCommendLevelID", ReplyAction:="http://tempuri.org/IProfileBusiness/GetCommendLevelIDResponse")>  _
         Function GetCommendLevelID(ByVal ID As Decimal) As ProfileBusiness.CommendLevelDTO
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/InsertCommendLevel", ReplyAction:="http://tempuri.org/IProfileBusiness/InsertCommendLevelResponse")>  _
-        Function InsertCommendLevel(ByVal objCommendLevel As ProfileBusiness.CommendLevelDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetWorking3B", ReplyAction:="http://tempuri.org/IProfileBusiness/GetWorking3BResponse")>  _
         Function GetWorking3B(ByVal _filter As ProfileBusiness.WorkingDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal _param As ProfileBusiness.ParamDTO, ByVal Sorts As String, ByVal log As Common.CommonBusiness.UserLog) As System.Collections.Generic.List(Of ProfileBusiness.WorkingDTO)
@@ -57462,6 +57465,10 @@ Namespace ProfileBusiness
             MyBase.New(binding, remoteAddress)
         End Sub
         
+        Public Function INSERT_JOB_POSITION(ByVal p_CODE As String, ByVal p_JOB_NAME As String, ByVal p_ORG_ID As Decimal, ByVal p_TITLE_ID As Decimal, ByVal p_JOB_NOTE As String, ByVal p_COST_CODE As String, ByVal p_IS_LEADER As Decimal, ByVal p_EFFECT_DATE As Date, ByVal log As Common.CommonBusiness.UserLog) As Integer Implements ProfileBusiness.IProfileBusiness.INSERT_JOB_POSITION
+            Return MyBase.Channel.INSERT_JOB_POSITION(p_CODE, p_JOB_NAME, p_ORG_ID, p_TITLE_ID, p_JOB_NOTE, p_COST_CODE, p_IS_LEADER, p_EFFECT_DATE, log)
+        End Function
+        
         Public Function UPDATE_JOB_POSITION(ByVal p_ID As Decimal, ByVal p_CODE As String, ByVal p_JOB_NAME As String, ByVal p_ORG_ID As Decimal, ByVal p_TITLE_ID As Decimal, ByVal p_JOB_NOTE As String, ByVal p_COST_CODE As String, ByVal p_IS_LEADER As Decimal, ByVal p_EFFECT_DATE As Date, ByVal log As Common.CommonBusiness.UserLog) As Integer Implements ProfileBusiness.IProfileBusiness.UPDATE_JOB_POSITION
             Return MyBase.Channel.UPDATE_JOB_POSITION(p_ID, p_CODE, p_JOB_NAME, p_ORG_ID, p_TITLE_ID, p_JOB_NOTE, p_COST_CODE, p_IS_LEADER, p_EFFECT_DATE, log)
         End Function
@@ -57524,6 +57531,10 @@ Namespace ProfileBusiness
         
         Public Function CHECK_IS_THHDLD(ByVal P_ID As Decimal, ByVal P_EMP_ID As Decimal, ByVal P_DATE As System.Nullable(Of Date)) As Integer Implements ProfileBusiness.IProfileBusiness.CHECK_IS_THHDLD
             Return MyBase.Channel.CHECK_IS_THHDLD(P_ID, P_EMP_ID, P_DATE)
+        End Function
+        
+        Public Function InsertCommendLevel(ByVal objCommendLevel As ProfileBusiness.CommendLevelDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean Implements ProfileBusiness.IProfileBusiness.InsertCommendLevel
+            Return MyBase.Channel.InsertCommendLevel(objCommendLevel, log, gID)
         End Function
         
         Public Function ValidateCommendLevel(ByVal _validate As ProfileBusiness.CommendLevelDTO) As Object Implements ProfileBusiness.IProfileBusiness.ValidateCommendLevel
@@ -57862,10 +57873,6 @@ Namespace ProfileBusiness
             Return MyBase.Channel.GET_JOB_POSITION_DETAIL(P_ID)
         End Function
         
-        Public Function INSERT_JOB_POSITION(ByVal p_CODE As String, ByVal p_JOB_NAME As String, ByVal p_ORG_ID As Decimal, ByVal p_TITLE_ID As Decimal, ByVal p_JOB_NOTE As String, ByVal p_COST_CODE As String, ByVal p_IS_LEADER As Decimal, ByVal p_EFFECT_DATE As Date, ByVal log As Common.CommonBusiness.UserLog) As Integer Implements ProfileBusiness.IProfileBusiness.INSERT_JOB_POSITION
-            Return MyBase.Channel.INSERT_JOB_POSITION(p_CODE, p_JOB_NAME, p_ORG_ID, p_TITLE_ID, p_JOB_NOTE, p_COST_CODE, p_IS_LEADER, p_EFFECT_DATE, log)
-        End Function
-        
         Public Function InsertWorkingBeforeEdit(ByVal objWorkingBefore As ProfileBusiness.WorkingBeforeDTOEdit, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean Implements ProfileBusiness.IProfileBusiness.InsertWorkingBeforeEdit
             Return MyBase.Channel.InsertWorkingBeforeEdit(objWorkingBefore, log, gID)
         End Function
@@ -57952,6 +57959,10 @@ Namespace ProfileBusiness
         
         Public Function GetCompetencyEmployee(ByVal _empId As Decimal) As System.Collections.Generic.List(Of ProfileBusiness.EmployeeCompetencyDTO) Implements ProfileBusiness.IProfileBusiness.GetCompetencyEmployee
             Return MyBase.Channel.GetCompetencyEmployee(_empId)
+        End Function
+        
+        Public Function GetSalaryChanged(ByVal _empId As Decimal) As System.Data.DataTable Implements ProfileBusiness.IProfileBusiness.GetSalaryChanged
+            Return MyBase.Channel.GetSalaryChanged(_empId)
         End Function
         
         Public Function GetProcessTraining(ByVal _filter As ProfileBusiness.HU_PRO_TRAIN_OUT_COMPANYDTO, ByRef PageIndex As Integer, ByVal PageSize As Integer, ByVal Total As Integer, ByVal Sorts As String) As System.Collections.Generic.List(Of ProfileBusiness.HU_PRO_TRAIN_OUT_COMPANYDTO) Implements ProfileBusiness.IProfileBusiness.GetProcessTraining
@@ -58200,10 +58211,6 @@ Namespace ProfileBusiness
         
         Public Function GetCommendLevelID(ByVal ID As Decimal) As ProfileBusiness.CommendLevelDTO Implements ProfileBusiness.IProfileBusiness.GetCommendLevelID
             Return MyBase.Channel.GetCommendLevelID(ID)
-        End Function
-        
-        Public Function InsertCommendLevel(ByVal objCommendLevel As ProfileBusiness.CommendLevelDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean Implements ProfileBusiness.IProfileBusiness.InsertCommendLevel
-            Return MyBase.Channel.InsertCommendLevel(objCommendLevel, log, gID)
         End Function
         
         Public Function GetWorking3B(ByVal _filter As ProfileBusiness.WorkingDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal _param As ProfileBusiness.ParamDTO, ByVal Sorts As String, ByVal log As Common.CommonBusiness.UserLog) As System.Collections.Generic.List(Of ProfileBusiness.WorkingDTO) Implements ProfileBusiness.IProfileBusiness.GetWorking3B
