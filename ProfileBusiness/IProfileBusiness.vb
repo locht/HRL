@@ -2290,6 +2290,9 @@ Namespace ProfileBusiness.ServiceContracts
         <OperationContract()>
         Function GetCompetencyEmployee(ByVal _empId As Decimal) As List(Of EmployeeCompetencyDTO)
 
+        'qua trinh bac ngach
+        <OperationContract()>
+        Function GetSalaryChanged(ByVal _empId As Decimal) As DataTable
 #End Region
 
 #Region "Quá trình đào tạo ngoài công ty"

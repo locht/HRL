@@ -26,16 +26,16 @@
 
     });
 </script>
-<tlk:RadSplitter ID="RadSplitter2" runat="server" Height="100%" Width="100%">
-    <tlk:RadPane ID="RadPaneLeft" runat="server" MinWidth="230" MaxWidth="230" Width="230px">
+<tlk:radsplitter id="RadSplitter2" runat="server" height="100%" width="100%">
+    <tlk:radpane id="RadPaneLeft" runat="server" minwidth="230" maxwidth="230" width="230px">
         <div class="box_img">
             <asp:PlaceHolder ID="ViewPlaceHoderImage" runat="server"></asp:PlaceHolder>
         </div>
         <div class="fullname">
             <asp:Label ID="lblFullName" runat="server"></asp:Label>
         </div>
-        <tlk:RadPanelBar ID="rpbProfile" runat="server" Width="230px" Enabled="false">
-            <Items>
+        <tlk:radpanelbar id="rpbProfile" runat="server" width="230px" enabled="false">
+            <items>
                 <tlk:RadPanelItem Expanded="True">
                     <Items>
                         <tlk:RadPanelItem Value="ctrlHU_EmpDtlProfile" Text="<%$ Translate:Hồ sơ nhân viên%>"
@@ -74,15 +74,17 @@
                             NavigateUrl='<%# String.Format("/Default.aspx?mid=Profile&fid=ctrlHU_EmpDtl&group=Business&emp={0}&Place=ctrlHU_EmpDtlFile&state=Normal", EmployeeID) %>' />--%>
                   <%--  <tlk:RadPanelItem Value="ctrlHU_EmpDtlFamily" Text="<%$ Translate:Quan hệ nhân thân%>"
                             NavigateUrl='<%# String.Format("/Default.aspx?mid=Profile&fid=ctrlHU_EmpDtl&group=Business&emp={0}&Place=ctrlHU_EmpDtlFamily&state=Normal", EmployeeID)%>' />--%>
+                    <tlk:RadPanelItem Value="ctrlHU_EmpDtlQuantumSal" Text="<%$ Translate:Quá trình ngạch bậc%>"
+                            NavigateUrl='<%# String.Format("/Default.aspx?mid=Profile&fid=ctrlHU_EmpDtl&group=Business&emp={0}&Place=ctrlHU_EmpDtlQuantumSal&state=Normal", EmployeeID) %>' />
                     </Items>
                 </tlk:RadPanelItem>
-            </Items>
-        </tlk:RadPanelBar>
-    </tlk:RadPane>
-    <tlk:RadSplitBar ID="RadSplitBar1" runat="server" CollapseMode="Forward">
-    </tlk:RadSplitBar>
-    <tlk:RadPane ID="RadPane2" runat="server" Scrolling="None">
+            </items>
+        </tlk:radpanelbar>
+    </tlk:radpane>
+    <tlk:radsplitbar id="RadSplitBar1" runat="server" collapsemode="Forward">
+    </tlk:radsplitbar>
+    <tlk:radpane id="RadPane2" runat="server" scrolling="None">
         <asp:PlaceHolder ID="phProfile" runat="server"></asp:PlaceHolder>
-    </tlk:RadPane>
-</tlk:RadSplitter>
+    </tlk:radpane>
+</tlk:radsplitter>
 <Common:ctrlMessageBox ID="ctrlMessageBox" runat="server" />
