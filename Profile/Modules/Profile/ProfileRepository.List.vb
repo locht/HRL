@@ -2437,10 +2437,10 @@ Partial Public Class ProfileRepository
         End Using
     End Function
 
-    Function CHECK_IS_THHDLD(ByVal P_ID As Decimal) As Integer
+    Function CHECK_IS_THHDLD(ByVal P_ID As Decimal, ByVal P_EMP_ID As Decimal, ByVal P_DATE As Date?) As Integer
         Using rep As New ProfileBusinessClient
             Try
-                Return rep.CHECK_IS_THHDLD(P_ID)
+                Return rep.CHECK_IS_THHDLD(P_ID, P_EMP_ID, P_DATE)
             Catch ex As Exception
                 rep.Abort()
                 Throw ex

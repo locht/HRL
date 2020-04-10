@@ -2775,10 +2775,10 @@ Namespace ProfileBusiness.ServiceImplementations
             End Using
         End Function
 
-        Function CHECK_IS_THHDLD(ByVal P_ID As Decimal) As Integer Implements ServiceContracts.IProfileBusiness.CHECK_IS_THHDLD
+        Function CHECK_IS_THHDLD(ByVal P_ID As Decimal, ByVal P_EMP_ID As Decimal, ByVal P_DATE As Date?) As Integer Implements ServiceContracts.IProfileBusiness.CHECK_IS_THHDLD
             Using rep As New ProfileRepository
                 Try
-                    Return rep.CHECK_IS_THHDLD(P_ID)
+                    Return rep.CHECK_IS_THHDLD(P_ID, P_EMP_ID, P_DATE)
                 Catch ex As Exception
                     Throw ex
                 End Try

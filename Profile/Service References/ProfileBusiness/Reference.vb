@@ -54815,7 +54815,7 @@ Namespace ProfileBusiness
         Function INPORT_EMP(ByVal P_DOCXML As String, ByVal P_USER As String) As Boolean
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/CHECK_IS_THHDLD", ReplyAction:="http://tempuri.org/IProfileBusiness/CHECK_IS_THHDLDResponse")>  _
-        Function CHECK_IS_THHDLD(ByVal P_ID As Decimal) As Integer
+        Function CHECK_IS_THHDLD(ByVal P_ID As Decimal, ByVal P_EMP_ID As Decimal, ByVal P_DATE As System.Nullable(Of Date)) As Integer
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ValidateCommendLevel", ReplyAction:="http://tempuri.org/IProfileBusiness/ValidateCommendLevelResponse"),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(Common.CommonBusiness.UserLog)),  _
@@ -57506,8 +57506,8 @@ Namespace ProfileBusiness
             Return MyBase.Channel.INPORT_EMP(P_DOCXML, P_USER)
         End Function
         
-        Public Function CHECK_IS_THHDLD(ByVal P_ID As Decimal) As Integer Implements ProfileBusiness.IProfileBusiness.CHECK_IS_THHDLD
-            Return MyBase.Channel.CHECK_IS_THHDLD(P_ID)
+        Public Function CHECK_IS_THHDLD(ByVal P_ID As Decimal, ByVal P_EMP_ID As Decimal, ByVal P_DATE As System.Nullable(Of Date)) As Integer Implements ProfileBusiness.IProfileBusiness.CHECK_IS_THHDLD
+            Return MyBase.Channel.CHECK_IS_THHDLD(P_ID, P_EMP_ID, P_DATE)
         End Function
         
         Public Function ValidateCommendLevel(ByVal _validate As ProfileBusiness.CommendLevelDTO) As Object Implements ProfileBusiness.IProfileBusiness.ValidateCommendLevel

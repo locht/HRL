@@ -2944,7 +2944,7 @@ Namespace ProfileBusiness.ServiceContracts
         Function INPORT_EMP(ByVal P_DOCXML As String, ByVal P_USER As String) As Boolean
 
         <OperationContract()>
-        Function CHECK_IS_THHDLD(ByVal P_ID As Decimal) As Integer
+        Function CHECK_IS_THHDLD(ByVal P_ID As Decimal, ByVal P_EMP_ID As Decimal, ByVal P_DATE As Date?) As Integer
     End Interface
 
 End Namespace

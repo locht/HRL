@@ -6249,11 +6249,13 @@ Partial Class ProfileRepository
         End Try
     End Function
 
-    Public Function CHECK_IS_THHDLD(ByVal P_ID As Decimal) As Integer
+    Public Function CHECK_IS_THHDLD(ByVal P_ID As Decimal, ByVal P_EMP_ID As Decimal, ByVal P_DATE As Date?) As Integer
         Try
             Using cls As New DataAccess.QueryData
                 Dim dtData As DataTable = cls.ExecuteStore("PKG_HU_IPROFILE_LIST.CHECK_IS_THHDLD",
                                            New With {.P_ID = P_ID,
+                                                     .P_EMP_ID = P_EMP_ID,
+                                                     .P_DATE = P_DATE,
                                                      .P_OUT = cls.OUT_CURSOR})
 
                 Return dtData.Rows(0)("ID")
