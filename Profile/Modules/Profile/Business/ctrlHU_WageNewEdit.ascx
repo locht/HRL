@@ -226,11 +226,12 @@
                     <span class="lbReq">*</span>
                 </td>
                 <td>
-                    <tlk:RadNumericTextBox ID="basicSalary" MinValue="0" runat="server" AutoPostBack="true"
+                    <tlk:RadNumericTextBox ID="basicSalary" MinValue="0" runat="server" AutoPostBack="false" CausesValidation="false"
                         SkinID="Money">
+                        <ClientEvents OnValueChanged="OnValueChanged" />
                     </tlk:RadNumericTextBox>
                     <asp:RequiredFieldValidator ID="reqdBasicSalary" runat="server" ControlToValidate="basicSalary"
-                        ErrorMessage="<%#  GetYouMustChoseMsg(UI.Wage_BasicSalary) %>" ToolTip="<%#  GetYouMustChoseMsg(UI.Wage_BasicSalary)%>"> 
+                        ErrorMessage="Bạn phải nhập Lương cơ bản" ToolTip="Bạn phải nhập Lương cơ bản"> 
                     </asp:RequiredFieldValidator>
                 </td>
                  <td class="lb">
@@ -248,7 +249,8 @@
                     <asp:Label ID="lbAllowance_Total" runat="server" Text="Tổng phụ cấp"></asp:Label>
                 </td>
                 <td>
-                    <tlk:RadNumericTextBox ID="rntxtAllowance_Total" runat="server" Enabled="False" SkinID="Money">
+                    <tlk:RadNumericTextBox ID="rntxtAllowance_Total" runat="server" Enabled="False" SkinID="Money" CausesValidation="false">
+                      <ClientEvents OnValueChanged="OnValueChanged" />
                     </tlk:RadNumericTextBox>
                 </td>
             </tr>
@@ -258,8 +260,9 @@
                     <span class="lbReq">*</span>
                 </td>
                 <td>
-                    <tlk:RadNumericTextBox runat="server" ID="rnPercentSalary" AutoPostBack="true" SkinID="Money"
+                    <tlk:RadNumericTextBox runat="server" ID="rnPercentSalary" AutoPostBack="false" SkinID="Money"
                         MaxValue="100" MinValue="0">
+                          <ClientEvents OnValueChanged="OnValueChanged" />
                     </tlk:RadNumericTextBox>
                       <asp:RequiredFieldValidator ID="reqPercentSalary" runat="server" ControlToValidate="rnPercentSalary"
                         ErrorMessage="Bạn phải nhập % hưởng lương" ToolTip="Bạn phải nhập % hưởng lương"> 
@@ -270,7 +273,8 @@
                     <span class="lbReq">*</span>
                 </td>
                 <td>
-                    <tlk:RadNumericTextBox ID="rnmtxtSalRate" MinValue="0" runat="server" SkinID="Money">
+                    <tlk:RadNumericTextBox ID="rnmtxtSalRate" MinValue="0" runat="server" SkinID="Money" CausesValidation="false">
+                      <ClientEvents OnValueChanged="OnValueChanged" />
                     </tlk:RadNumericTextBox>
                     <asp:RequiredFieldValidator ID="reqSalRate" runat="server" ControlToValidate="rnmtxtSalRate"
                         ErrorMessage="Bạn phải nhập Tỷ giá bảo hiểm" ToolTip="Bạn phải nhập Tỷ giá bảo hiểm"> 
@@ -281,8 +285,8 @@
                     <span class="lbReq">*</span>
                 </td>
                 <td>
-                    <tlk:RadNumericTextBox ID="rntxtSalaryInsurance" runat="server" AutoPostBack="true" Enabled="False"
-                        SkinID="Money">
+                    <tlk:RadNumericTextBox ID="rntxtSalaryInsurance" runat="server" AutoPostBack="true"
+                        SkinID="Money">                          
                     </tlk:RadNumericTextBox>
                     <asp:RequiredFieldValidator ID="reqSalaryInsurance" runat="server" ControlToValidate="rntxtSalaryInsurance"
                         ErrorMessage="Bạn phải nhập Mức lương chính" ToolTip="Bạn phải nhập Mức lương chính"> 
@@ -294,6 +298,7 @@
                     <tlk:RadNumericTextBox ID="Salary_Total" MinValue="0" runat="server" Enabled="False" SkinID="Money">
                     </tlk:RadNumericTextBox>
                 </td>--%>
+                </td>
             </tr>
             <tr>
                 <td class="lb">
@@ -303,9 +308,9 @@
                 <td>
                     <tlk:RadComboBox ID="cboTaxTable" runat="server">
                     </tlk:RadComboBox>
-                    <asp:CustomValidator ID="cusTaxTable" runat="server" ClientValidationFunction="cusTaxTable"
-                        ErrorMessage="<%#  GetYouMustChoseMsg(UI.Wage_TaxTable) %>" ToolTip="<%#  GetYouMustChoseMsg(UI.Wage_TaxTable) %>">
-                    </asp:CustomValidator>
+                     <asp:RequiredFieldValidator ID="reqTaxTable" runat="server" ControlToValidate="cboTaxTable"
+                        ErrorMessage="Bạn phải chọn Biểu thuế" ToolTip="Bạn phải chọn Biểu thuế"> 
+                    </asp:RequiredFieldValidator>
                 </td>
             </tr>
             <%--<tr >
@@ -430,25 +435,20 @@
                                 </div>
                             </CommandItemTemplate>
                             <Columns>
-                                <%-- <tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderStyle-HorizontalAlign="Center"
+                                 <tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderStyle-HorizontalAlign="Center"
                                     HeaderStyle-Width="40px" ItemStyle-HorizontalAlign="Center">
                                 </tlk:GridClientSelectColumn>
-                                <tlk:GridBoundColumn HeaderText="<%$ Translate: Tên phụ cấp %>" DataField="ALLOWANCE_LIST_NAME"
-                                    SortExpression="ALLOWANCE_LIST_NAME" UniqueName="ALLOWANCE_LIST_NAME" />
+                                   <tlk:GridNumericColumn HeaderText="<%$ Translate: Số tiền VNĐ %>" DataField="AMOUNT_EX"
+                                    SortExpression="AMOUNT_EX" UniqueName="AMOUNT" DataFormatString="{0:n0}">
+                                    <ItemStyle HorizontalAlign="Right" VerticalAlign="Middle" />
+                                </tlk:GridNumericColumn>
                                 <tlk:GridNumericColumn HeaderText="<%$ Translate: Số tiền %>" DataField="AMOUNT"
                                     SortExpression="AMOUNT" UniqueName="AMOUNT" DataFormatString="{0:n0}">
                                     <ItemStyle HorizontalAlign="Right" VerticalAlign="Middle" />
                                 </tlk:GridNumericColumn>
                                 <tlk:GridDateTimeColumn HeaderText="<%$ Translate: Ngày hiệu lực %>" DataField="EFFECT_DATE"
                                     ItemStyle-HorizontalAlign="Center" SortExpression="EFFECT_DATE" UniqueName="EFFECT_DATE"
-                                    DataFormatString="{0:dd/MM/yyyy}" />
-                                <tlk:GridDateTimeColumn HeaderText="<%$ Translate: Ngày hết hiệu lực %>" DataField="EXPIRE_DATE"
-                                    ItemStyle-HorizontalAlign="Center" SortExpression="EXPIRE_DATE" UniqueName="EXPIRE_DATE"
-                                    DataFormatString="{0:dd/MM/yyyy}" />
-                                <tlk:GridCheckBoxColumn HeaderText="<%$ Translate: Đóng bảo hiểm %>" DataField="IS_INSURRANCE"
-                                    SortExpression="IS_INSURRANCE" UniqueName="IS_INSURRANCE" HeaderStyle-Width="100px">
-                                    <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
-                                </tlk:GridCheckBoxColumn>--%>
+                                    DataFormatString="{0:dd/MM/yyyy}" />                               
                             </Columns>
                         </MasterTableView>
                     </tlk:RadGrid>
@@ -718,34 +718,33 @@
         }
 
         function OnValueChanged(sender, args) {
+        debugger;
             var id = sender.get_id();
+            var objSalaryInsurance=$find('<%= rntxtSalaryInsurance.ClientID %>');
+
             var valueSalBasic = 0;
-            var valueSalTotal = 0;
-            var valueHSDieuChinh = 0;
-            var valueTGGiuBac = 0;
-            var valueLuongDieuTiet = 0;
-            <%--    var objSalBasic = $find('<%= basicSalary.ClientID %>');
+            var valuePercentSalary = 0;
+            var valueSalRate = 0;
+            var valueAllowance_Total = 0;
+
+            var objSalBasic = $find('<%= basicSalary.ClientID %>');
+            var objPercentSalary = $find('<%= rnPercentSalary.ClientID %>');
+            var objSalRate=$find('<%= rnmtxtSalRate.ClientID %>');
+            var objAllowance_Total = $find('<%= rntxtAllowance_Total.ClientID %>');
+
             if (objSalBasic.get_value()) {
                 valueSalBasic = objSalBasic.get_value();
             }
-             if (objSalTotal.get_value()) {
-                valueSalTotal = objSalTotal.get_value();
+             if (objPercentSalary.get_value()) {
+                valuePercentSalary = objPercentSalary.get_value();
             } 
-            if (objHSDieuChinh.get_value()) {
-                valueHSDieuChinh = objHSDieuChinh.get_value();
-            } --%>
-            <%-- switch (id) {
-                case '<%= basicSalary.ClientID %>':
-                    valueSalBasic = 0;
-                    if (args.get_newValue()) {
-                        valueSalBasic = args.get_newValue();
-                    }
-                    break;
-                default:
-                    break;
-           
-            } 
-        --%>
+            if (objSalRate.get_value()) {
+                valueSalRate = objSalRate.get_value();
+            }
+            if (objAllowance_Total.get_value()) {
+                valueAllowance_Total = objAllowance_Total.get_value();
+            }          
+            objSalaryInsurance.value= (objSalBasic*objPercentSalary*objSalRate)+objAllowance_Total;
         }
 
     </script>

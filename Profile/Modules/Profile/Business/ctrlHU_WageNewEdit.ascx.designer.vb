@@ -635,13 +635,13 @@ Partial Public Class ctrlHU_WageNewEdit
     Protected WithEvents cboTaxTable As Global.Telerik.Web.UI.RadComboBox
 
     '''<summary>
-    '''cusTaxTable control.
+    '''reqTaxTable control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents cusTaxTable As Global.System.Web.UI.WebControls.CustomValidator
+    Protected WithEvents reqTaxTable As Global.System.Web.UI.WebControls.RequiredFieldValidator
 
     '''<summary>
     '''lbOtherSalary4 control.

@@ -413,7 +413,7 @@ Partial Class ProfileRepository
                                            .P_ORGID = _param.ORG_ID,
                                            .P_ISDISSOLVE = _param.IS_DISSOLVE})
             End Using
-
+            'thêm vào giao diện From ExRate In Context.PA_SALARY_EXCHANGE_RATE.Where(Function(f) f.id = p.EXRATE_ID).DefaultIfEmpty
             Dim query = From p In Context.HU_WORKING
                         From e In Context.HU_EMPLOYEE.Where(Function(f) f.ID = p.EMPLOYEE_ID).DefaultIfEmpty
                         From o In Context.HU_ORGANIZATION.Where(Function(f) f.ID = p.ORG_ID).DefaultIfEmpty
@@ -496,7 +496,11 @@ Partial Class ProfileRepository
                                         .OBJECT_LABORNAME = objectLabor.NAME_VN,
                                         .OTHERSALARY3 = p.OTHERSALARY3,
                                         .JOB_POSITION = p.JOB_POSITION,
-                                        .IS_REPLACE = p.IS_REPLACE
+                                        .IS_REPLACE = p.IS_REPLACE,
+                                        .EXRATE_ID = p.EXRATE_ID,
+                                        .SAL_BASIC_MIN = p.SAL_BASIC_MIN,
+                                        .SAL_BASIC_MAX = p.SAL_BASIC_MAX,
+                                        .SAL_RATE = p.SAL_RATE
                                         }
             Dim dateNow = Date.Now.Date
             If Not _filter.IS_TER Then
@@ -609,6 +613,25 @@ Partial Class ProfileRepository
             If _filter.OTHERSALARY2 IsNot Nothing Then
                 query = query.Where(Function(p) p.OTHERSALARY2 = _filter.OTHERSALARY2)
             End If
+
+            If _filter.EXRATE_ID IsNot Nothing Then
+                query = query.Where(Function(p) p.EXRATE_ID = _filter.EXRATE_ID)
+            End If
+            If _filter.EX_RATE_NAME IsNot Nothing Then
+                query = query.Where(Function(p) p.EX_RATE_NAME.ToUpper.Contains(_filter.EX_RATE_NAME.ToUpper))
+            End If
+            If _filter.SAL_BASIC_MIN IsNot Nothing Then
+                query = query.Where(Function(p) p.SAL_BASIC_MIN = _filter.SAL_BASIC_MIN)
+            End If
+            If _filter.SAL_BASIC_MAX IsNot Nothing Then
+                query = query.Where(Function(p) p.SAL_BASIC_MAX = _filter.SAL_BASIC_MAX)
+            End If
+            If _filter.SAL_RATE IsNot Nothing Then
+                query = query.Where(Function(p) p.SAL_RATE = _filter.SAL_RATE)
+            End If
+
+
+
             If _filter.Ids IsNot Nothing Then
                 If _filter.Ids.Any() Then
                     query = query.Where(Function(p) _filter.Ids.Contains(p.ID))
@@ -1489,10 +1512,6 @@ Partial Class ProfileRepository
             ' nếu phê duyệt
             If objWorking.STATUS_ID = ProfileCommon.DECISION_STATUS.APPROVE_ID Then
                 ApproveWorking(objWorking)
-                Dim HSL_old = (From p In Context.HU_WORKING Where p.EMPLOYEE_ID = objWorking.EMPLOYEE_ID Order By p.ID Descending).FirstOrDefault
-                'trừ đi 1 ngày vào ngày hết hiệu lực với HSL cũ gần nhất trước đó khi có trạng thái phê duyệt
-                HSL_old.EXPIRE_DATE = objWorking.EFFECT_DATE.Value.AddDays(-1)
-                Context.HU_WORKING.AddObject(HSL_old)
             End If
 
             If objWorking.lstAllowance IsNot Nothing Then

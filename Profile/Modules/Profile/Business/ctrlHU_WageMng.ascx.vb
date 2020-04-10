@@ -156,6 +156,10 @@ Public Class ctrlHU_WageMng
             CType(Me.MainToolBar.Items(4), RadToolBarButton).Text = Translate("Xuất file mẫu")
             CType(Me.MainToolBar.Items(4), RadToolBarButton).ImageUrl = CType(Me.MainToolBar.Items(2), RadToolBarButton).ImageUrl
             CType(Me.MainToolBar.Items(5), RadToolBarButton).Text = Translate("Nhập file mẫu")
+            Me.MainToolBar.Items.Add(Common.Common.CreateToolbarItem(ToolbarItem.Active,
+                                                                  ToolbarIcons.Active,
+                                                                  ToolbarAuthorize.Special1,
+                                                                  "Mở phê duyệt"))
             CType(Me.Page, AjaxPage).AjaxManager.ClientEvents.OnRequestStart = "onRequestStart"
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
           
@@ -235,6 +239,20 @@ Public Class ctrlHU_WageMng
                         Exit Sub
                     End If
                     CurrentState = CommonMessage.STATE_EDIT
+                Case CommonMessage.ACTION_ACTIVE
+                    If rgWorking.SelectedItems.Count = 0 Then
+                        ShowMessage(Translate(CommonMessage.MESSAGE_NOT_SELECT_ROW), NotifyType.Warning)
+                        Exit Sub
+                    End If
+                    Dim item As GridDataItem = rgWorking.SelectedItems(0)
+                    If item.GetDataKeyValue("STATUS_ID") = ProfileCommon.DECISION_STATUS.NOT_APPROVE_ID Then
+                        ShowMessage(Translate("Bản ghi không phê duyệt. Thao tác thực hiện không thành công"), NotifyType.Warning)
+                        Exit Sub
+                    End If
+                    ctrlMessageBox.MessageText = Translate("Việc thay đổi trạng thái hồ sơ lương sẽ làm ảnh hưởng đến dữ liệu bảo hiểm, công, lương. Anh/chị có muốn mở phê duyệt hồ sơ lương không?")
+                    ctrlMessageBox.ActionName = CommonMessage.MESSAGE_APPROVE
+                    ctrlMessageBox.DataBind()
+                    ctrlMessageBox.Show()
                 Case CommonMessage.TOOLBARITEM_EXPORT
                     Dim dtData As DataTable
                     Using xls As New ExcelCommon
@@ -427,6 +445,10 @@ Public Class ctrlHU_WageMng
             End If
             If e.ActionName = CommonMessage.TOOLBARITEM_APPROVE_BATCH And e.ButtonID = MessageBoxButtonType.ButtonYes Then
                 CurrentState = CommonMessage.TOOLBARITEM_APPROVE_BATCH
+                UpdateControlState()
+            End If
+            If e.ActionName = CommonMessage.MESSAGE_APPROVE AndAlso e.ButtonID = MessageBoxButtonType.ButtonYes Then
+                CurrentState = CommonMessage.MESSAGE_APPROVE
                 UpdateControlState()
             End If
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
@@ -773,7 +795,19 @@ VALIDATE:
                             ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), NotifyType.Error)
                         End If
                     End Using
-
+                Case CommonMessage.MESSAGE_APPROVE
+                    Dim rep As New ProfileBusinessRepository
+                    Dim Working As New WorkingDTO()
+                    Dim gID As Decimal = 0
+                    Working = rep.GetWorkingByID(New WorkingDTO With {.ID = rgWorking.SelectedValue})
+                    Working.STATUS_ID = 446
+                    If rep.ModifyWorking(Working, gID) Then
+                        ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), NotifyType.Success)
+                        CurrentState = CommonMessage.STATE_NORMAL
+                        rgWorking.CurrentPageIndex = 0
+                        rgWorking.MasterTableView.SortExpressions.Clear()
+                        rgWorking.Rebind()
+                    End If
                 Case CommonMessage.TOOLBARITEM_APPROVE_BATCH
                     Using rep As New ProfileBusinessRepository
                         Dim workingIds = New List(Of Decimal)
