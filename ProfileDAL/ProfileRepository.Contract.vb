@@ -2250,4 +2250,18 @@ Partial Class ProfileRepository
 
 
 #End Region
+
+    Public Function INPORT_EMP(ByVal P_DOCXML As String, ByVal P_USER As String) As Boolean
+        Try
+            Using cls As New DataAccess.QueryData
+                cls.ExecuteStore("PKG_HU_IPROFILE_EMPLOYEE.INPORT_EMP",
+                                 New With {.P_DOCXML = P_DOCXML, .P_USER = P_USER})
+            End Using
+            Return True
+        Catch ex As Exception
+            Return False
+        End Try
+
+    End Function
+
 End Class

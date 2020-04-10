@@ -141,6 +141,7 @@
         </tlk:RadWindow>
     </Windows>
 </tlk:RadWindowManager>
+<Common:ctrlUpload ID="ctrlUpload1" runat="server" />
 <tlk:RadScriptBlock ID="scriptBlock" runat="server">
     <script type="text/javascript">
 
@@ -214,7 +215,7 @@
 
             }
 
-            if (item.get_commandName() == "EXPORT") {
+            if (item.get_commandName() == "EXPORT" || item.get_commandName() == "NEXT") {
                 enableAjax = false;
             }
 

@@ -2936,6 +2936,12 @@ Namespace ProfileBusiness.ServiceContracts
 
         <OperationContract()>
         Function CHECK_EXITS_JOB(ByVal P_JOB_ID As Decimal, ByVal P_EMP_ID As Decimal) As Integer
+
+        <OperationContract()>
+        Function EXPORT_EMP(ByVal P_USERNAME As String, ByVal P_ORGID As Decimal, ByVal P_ISDISSOLVE As Boolean, ByVal P_STARTDATE As Date?, ByVal P_TODATE As Date?, ByVal P_IS_ALL As Boolean) As DataSet
+
+        <OperationContract()>
+        Function INPORT_EMP(ByVal P_DOCXML As String, ByVal P_USER As String) As Boolean
     End Interface
 
 End Namespace

@@ -298,7 +298,6 @@ Partial Public Class ProfileBusinessRepository
             End Try
         End Using
     End Function
-
 #End Region
 
 #Region "Employee Proccess"
@@ -895,4 +894,17 @@ Partial Public Class ProfileBusinessRepository
         End Using
     End Function
 #End Region
+
+    Public Function EXPORT_EMP(ByVal P_USERNAME As String, ByVal P_ORGID As Decimal, ByVal P_ISDISSOLVE As Boolean, ByVal P_STARTDATE As Date?, ByVal P_TODATE As Date?, ByVal P_IS_ALL As Boolean) As DataSet
+        Using rep As New ProfileBusinessClient
+            Try
+
+                Dim dtData = rep.EXPORT_EMP(P_USERNAME, P_ORGID, P_ISDISSOLVE, P_STARTDATE, P_TODATE, P_IS_ALL)
+                Return dtData
+            Catch ex As Exception
+
+                Throw ex
+            End Try
+        End Using
+    End Function
 End Class

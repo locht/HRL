@@ -572,4 +572,16 @@ Partial Public Class ProfileBusinessRepository
             End Try
         End Using
     End Function
+
+    Public Function INPORT_EMP(ByVal P_DOCXML As String, ByVal P_USER As String) As Boolean
+        Using rep As New ProfileBusinessClient
+            Try
+                Return rep.INPORT_EMP(P_DOCXML, P_USER)
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+
+    End Function
 End Class

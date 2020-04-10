@@ -4669,4 +4669,28 @@ Partial Class ProfileRepository
         End Try
 
     End Function
+
+    Public Function EXPORT_EMP(ByVal P_USERNAME As String, ByVal P_ORGID As Decimal, ByVal P_ISDISSOLVE As Boolean, ByVal P_STARTDATE As Date?, ByVal P_TODATE As Date?, ByVal P_IS_ALL As Boolean) As DataSet
+        Try
+            Using cls As New DataAccess.QueryData
+                Dim dtData As DataSet = cls.ExecuteStore("PKG_HU_IPROFILE_EMPLOYEE.EXPORT_EMP",
+                                                    New With {.P_USERNAME = P_USERNAME,
+                                                              .P_ORGID = P_ORGID,
+                                                              .P_ISDISSOLVE = P_ISDISSOLVE,
+                                                              .P_STARTDATE = P_STARTDATE,
+                                                              .P_TODATE = P_TODATE,
+                                                              .P_IS_ALL = P_IS_ALL,
+                                                              .P_CUR = cls.OUT_CURSOR,
+                                                              .P_CUR1 = cls.OUT_CURSOR,
+                                                              .P_CUR2 = cls.OUT_CURSOR}, False)
+                Return dtData
+            End Using
+
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iProfile")
+            Throw ex
+        End Try
+    End Function
+
+
 End Class

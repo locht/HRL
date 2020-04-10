@@ -54792,6 +54792,12 @@ Namespace ProfileBusiness
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/CHECK_EXITS_JOB", ReplyAction:="http://tempuri.org/IProfileBusiness/CHECK_EXITS_JOBResponse")>  _
         Function CHECK_EXITS_JOB(ByVal P_JOB_ID As Decimal, ByVal P_EMP_ID As Decimal) As Integer
         
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/EXPORT_EMP", ReplyAction:="http://tempuri.org/IProfileBusiness/EXPORT_EMPResponse")>  _
+        Function EXPORT_EMP(ByVal P_USERNAME As String, ByVal P_ORGID As Decimal, ByVal P_ISDISSOLVE As Boolean, ByVal P_STARTDATE As System.Nullable(Of Date), ByVal P_TODATE As System.Nullable(Of Date), ByVal P_IS_ALL As Boolean) As System.Data.DataSet
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/INPORT_EMP", ReplyAction:="http://tempuri.org/IProfileBusiness/INPORT_EMPResponse")>  _
+        Function INPORT_EMP(ByVal P_DOCXML As String, ByVal P_USER As String) As Boolean
+        
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ValidateCommendLevel", ReplyAction:="http://tempuri.org/IProfileBusiness/ValidateCommendLevelResponse"),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(Common.CommonBusiness.UserLog)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of Decimal))),  _
@@ -57471,6 +57477,14 @@ Namespace ProfileBusiness
         
         Public Function CHECK_EXITS_JOB(ByVal P_JOB_ID As Decimal, ByVal P_EMP_ID As Decimal) As Integer Implements ProfileBusiness.IProfileBusiness.CHECK_EXITS_JOB
             Return MyBase.Channel.CHECK_EXITS_JOB(P_JOB_ID, P_EMP_ID)
+        End Function
+        
+        Public Function EXPORT_EMP(ByVal P_USERNAME As String, ByVal P_ORGID As Decimal, ByVal P_ISDISSOLVE As Boolean, ByVal P_STARTDATE As System.Nullable(Of Date), ByVal P_TODATE As System.Nullable(Of Date), ByVal P_IS_ALL As Boolean) As System.Data.DataSet Implements ProfileBusiness.IProfileBusiness.EXPORT_EMP
+            Return MyBase.Channel.EXPORT_EMP(P_USERNAME, P_ORGID, P_ISDISSOLVE, P_STARTDATE, P_TODATE, P_IS_ALL)
+        End Function
+        
+        Public Function INPORT_EMP(ByVal P_DOCXML As String, ByVal P_USER As String) As Boolean Implements ProfileBusiness.IProfileBusiness.INPORT_EMP
+            Return MyBase.Channel.INPORT_EMP(P_DOCXML, P_USER)
         End Function
         
         Public Function ValidateCommendLevel(ByVal _validate As ProfileBusiness.CommendLevelDTO) As Object Implements ProfileBusiness.IProfileBusiness.ValidateCommendLevel

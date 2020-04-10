@@ -598,5 +598,16 @@ Namespace ProfileBusiness.ServiceImplementations
             End Using
         End Function
 
+        Public Function INPORT_EMP(ByVal P_DOCXML As String, ByVal P_USER As String) As Boolean _
+         Implements ServiceContracts.IProfileBusiness.INPORT_EMP
+            Using rep As New ProfileRepository
+                Try
+                    Return rep.INPORT_EMP(P_DOCXML, P_USER)
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
+
     End Class
 End Namespace
