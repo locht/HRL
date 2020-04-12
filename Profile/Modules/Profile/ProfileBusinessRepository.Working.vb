@@ -19,6 +19,22 @@ Partial Public Class ProfileBusinessRepository
 
         Return Nothing
     End Function
+
+    Public Function getValue_ExRate_F_T(ByVal _filter As WorkingDTO) As WorkingDTO
+        Dim obj As WorkingDTO
+
+        Using rep As New ProfileBusinessClient
+            Try
+                obj = rep.getValue_ExRate_F_T(_filter)
+                Return obj
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+
+        Return Nothing
+    End Function
     Public Function ApproveListChangeInfoMng(ByVal listID As List(Of Decimal)) As Boolean
         Using rep As New ProfileBusinessClient
             Try

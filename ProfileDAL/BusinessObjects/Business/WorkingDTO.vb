@@ -151,6 +151,10 @@
 
     Public Property EXRATE_ID As Decimal?
     Public Property EX_RATE_NAME As String
+    Public Property EXRATE_TYPE_ID_FROM As Decimal?
+    Public Property EXRATE_TYPE_ID_TO As Decimal?
+    Public Property EXRATE_VALUE_FROM As Decimal?
+    Public Property EXRATE_VALUE_TO As Decimal?
 
     Public Property SAL_BASIC_MIN As Double?
     Public Property SAL_BASIC_MAX As Double?
@@ -158,4 +162,5 @@
     Public Property IS_HDLD As Decimal?
 
     Public Property REASON_EDIT_EFDATE As String
+
 End Class

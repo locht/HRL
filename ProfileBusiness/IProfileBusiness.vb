@@ -1732,6 +1732,8 @@ Namespace ProfileBusiness.ServiceContracts
         <OperationContract()>
         Function getDtByEmpIDandEffectdate(ByVal obj As WorkingDTO) As List(Of WorkingDTO)
         <OperationContract()>
+        Function getValue_ExRate_F_T(ByVal _filter As WorkingDTO) As WorkingDTO
+        <OperationContract()>
         Function ApproveListChangeInfoMng(ByVal listID As List(Of Decimal), ByVal log As UserLog) As Boolean
         <OperationContract()>
         Function GetWorking(ByVal _filter As WorkingDTO,

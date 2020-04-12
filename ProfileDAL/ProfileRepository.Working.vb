@@ -30,7 +30,25 @@ Partial Class ProfileRepository
             Throw ex
         End Try
     End Function
+    Public Function getValue_ExRate_F_T(ByVal _filter As WorkingDTO) As WorkingDTO
+        Try
+            Dim Ex_value As New WorkingDTO
+            Using cls As New DataAccess.QueryData
+                Dim obj = New With {.P_EXRATE_TYPE_ID_FROM = _filter.EXRATE_TYPE_ID_FROM,
+                                           .P_EXRATE_TYPE_ID_TO = _filter.EXRATE_TYPE_ID_TO,
+                                           .P_VALUE_EXRATE_FROM = cls.OUT_NUMBER,
+                                    .P_VALUE_EXRATE_TO = cls.OUT_NUMBER}
+                cls.ExecuteStore("PKG_PROFILE_BUSINESS.GET_VALUE_EXRATE_FROM_TO", obj)
 
+                Ex_value.EXRATE_VALUE_FROM = Integer.Parse(obj.P_VALUE_EXRATE_FROM)
+                Ex_value.EXRATE_VALUE_TO = Integer.Parse(obj.P_VALUE_EXRATE_TO)
+            End Using
+            Return Ex_value
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iProfile")
+            Throw ex
+        End Try
+    End Function
     'check phê duyệt và đã có đính kèm file hay chưa
     'yêu cầu nếu phê duyệt thì phải có phải đính kèm
     'màn hinh luong va hop dong

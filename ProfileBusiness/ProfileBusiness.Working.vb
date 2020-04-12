@@ -22,7 +22,19 @@ Namespace ProfileBusiness.ServiceImplementations
                     Throw ex
                 End Try
             End Using
-        End Function        
+        End Function
+        Public Function getValue_ExRate_F_T(ByVal _filter As WorkingDTO) As WorkingDTO Implements ServiceContracts.IProfileBusiness.getValue_ExRate_F_T
+            Using rep As New ProfileRepository
+                Try
+
+                    Dim obj = rep.getValue_ExRate_F_T(_filter)
+                    Return obj
+                Catch ex As Exception
+
+                    Throw ex
+                End Try
+            End Using
+        End Function
         Public Function ApproveListChangeInfoMng(ByVal listID As List(Of Decimal), ByVal log As UserLog) As Boolean Implements ServiceContracts.IProfileBusiness.ApproveListChangeInfoMng
             Using rep As New ProfileRepository
                 Try

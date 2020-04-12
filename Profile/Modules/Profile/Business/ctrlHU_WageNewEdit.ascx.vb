@@ -360,6 +360,7 @@ Public Class ctrlHU_WageNewEdit
                     If IsNumeric(Working.EXRATE_ID) Then
                         cboExRate.SelectedValue = Working.EXRATE_ID
                         cboExRate.Text = Working.EX_RATE_NAME
+                        hidExRate_Type_ID_Old.Value = Working.EXRATE_ID
                     End If
                     txtREASON_EDIT_EFDATE.Text = Working.REASON_EDIT_EFDATE
                 Case "NormalView"
@@ -1017,21 +1018,7 @@ Public Class ctrlHU_WageNewEdit
                         ShowMessage(Translate("Phụ cấp đã tồn tại dưới lưới"), NotifyType.Warning)
                         Exit Sub
                     End If
-                    For Each item As GridDataItem In rgAllow.Items
-                        Dim allow = New WorkingAllowanceDTO
-                        allow.ALLOWANCE_LIST_ID = item.GetDataKeyValue("ALLOWANCE_LIST_ID")
-                        allow.ALLOWANCE_LIST_NAME = item.GetDataKeyValue("ALLOWANCE_LIST_NAME")
-                        allow.AMOUNT = item.GetDataKeyValue("AMOUNT")
-                        If IsNumeric(rnmtxtSalRate.Text) Then
-                            allow.AMOUNT_EX = item.GetDataKeyValue("AMOUNT") * CType(rnmtxtSalRate.Value, Double?)
-                        Else
-                            allow.AMOUNT_EX = item.GetDataKeyValue("AMOUNT")
-                        End If
-                        allow.IS_INSURRANCE = item.GetDataKeyValue("IS_INSURRANCE")
-                        allow.EFFECT_DATE = item.GetDataKeyValue("EFFECT_DATE")
-                        allow.EXPIRE_DATE = item.GetDataKeyValue("EXPIRE_DATE")
-                        lstAllow.Add(allow)
-                    Next                   
+                    Cal_rgAllow()
                     Dim allow1 As WorkingAllowanceDTO
                     allow1 = New WorkingAllowanceDTO
                     allow1.ALLOWANCE_LIST_ID = cboAllowance.SelectedValue
@@ -1049,9 +1036,9 @@ Public Class ctrlHU_WageNewEdit
                         allow1.EFFECT_DATE = rdEffectDate.SelectedDate
                     End If
                     'allow1.EXPIRE_DATE = rdAllowExpireDate.SelectedDate
+                    rntxtAllowance_Total.Value += allow1.AMOUNT_EX
                     lstAllow.Add(allow1)
-                    rntxtAllowance_Total.Value = If(rntxtAllowance_Total.Value Is Nothing, 0, CType(rntxtAllowance_Total.Value, Decimal)) + allow1.AMOUNT_EX
-                    rntxtSalaryInsurance.Value = (CType(basicSalary.Value, Double) * CType(rnPercentSalary.Value, Double) * CType(rnmtxtSalRate.Value, Double)) + CType(rntxtAllowance_Total.Value, Double)
+                    Cal_SalaryInsurrance()
                     ClearControlValue(cboAllowance, rntxtAmount) ', chkIsInsurrance, rdAllowExpireDate
                     'CalculatorSalary()
                     rgAllow.Rebind()
@@ -1077,7 +1064,7 @@ Public Class ctrlHU_WageNewEdit
                             lstAllow.Add(allow)
                         End If
                     Next
-                    rntxtSalaryInsurance.Value = (CType(basicSalary.Value, Double) * CType(rnPercentSalary.Value, Double) * CType(rnmtxtSalRate.Value, Double)) + CType(rntxtAllowance_Total.Value, Double)
+                    Cal_SalaryInsurrance()
                     'CalculatorSalary()
                     rgAllow.Rebind()
             End Select
@@ -1819,6 +1806,114 @@ Public Class ctrlHU_WageNewEdit
                 End If
             End If
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
+        Catch ex As Exception
+            DisplayException(Me.ViewName, Me.ID, ex)
+            _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
+        End Try
+    End Sub
+
+    Private Sub rnmtxtSalRate_TextChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles rnmtxtSalRate.TextChanged
+        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+        Try
+            Cal_rgAllow()
+            Cal_SalaryInsurrance()
+        Catch ex As Exception
+            DisplayException(Me.ViewName, Me.ID, ex)
+            _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
+        End Try
+    End Sub
+    Private Sub Cal_rgAllow(Optional ByVal ValueCurRate_From As Double = 1, Optional ByVal ValueCurRate_to As Double = 1)
+        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+        Try
+            For Each item As GridDataItem In rgAllow.Items
+                Dim allow = New WorkingAllowanceDTO
+                allow.ALLOWANCE_LIST_ID = item.GetDataKeyValue("ALLOWANCE_LIST_ID")
+                allow.ALLOWANCE_LIST_NAME = item.GetDataKeyValue("ALLOWANCE_LIST_NAME")
+                If hidExRate_Type_ID_Old.Value = 7682 Then
+                    allow.AMOUNT = item.GetDataKeyValue("AMOUNT") * 1 / ValueCurRate_to
+                    If IsNumeric(rnmtxtSalRate.Text) Then
+                        allow.AMOUNT_EX = item.GetDataKeyValue("AMOUNT") * CType(rnmtxtSalRate.Value, Double?) * 1 / ValueCurRate_to
+                    Else
+                        allow.AMOUNT_EX = item.GetDataKeyValue("AMOUNT") * 1 / ValueCurRate_to
+                    End If
+                ElseIf cboExRate.SelectedValue = 7682 Then
+                    allow.AMOUNT = item.GetDataKeyValue("AMOUNT") * ValueCurRate_From / 1
+                    If IsNumeric(rnmtxtSalRate.Text) Then
+                        allow.AMOUNT_EX = item.GetDataKeyValue("AMOUNT") * CType(rnmtxtSalRate.Value, Double?) * ValueCurRate_From / 1
+                    Else
+                        allow.AMOUNT_EX = item.GetDataKeyValue("AMOUNT") * ValueCurRate_From / 1
+                    End If
+                Else
+                    allow.AMOUNT = item.GetDataKeyValue("AMOUNT") * ValueCurRate_From / ValueCurRate_to
+                    If IsNumeric(rnmtxtSalRate.Text) Then
+                        allow.AMOUNT_EX = item.GetDataKeyValue("AMOUNT") * CType(rnmtxtSalRate.Value, Double?) * ValueCurRate_From / ValueCurRate_to
+                    Else
+                        allow.AMOUNT_EX = item.GetDataKeyValue("AMOUNT") * ValueCurRate_From / ValueCurRate_to
+                    End If
+                End If
+                allow.IS_INSURRANCE = item.GetDataKeyValue("IS_INSURRANCE")
+                allow.EFFECT_DATE = item.GetDataKeyValue("EFFECT_DATE")
+                allow.EXPIRE_DATE = item.GetDataKeyValue("EXPIRE_DATE")
+                lstAllow.Add(allow)
+            Next
+            rntxtAllowance_Total.Value = (From p In lstAllow Select p.AMOUNT_EX).Sum
+            rgAllow.Rebind()
+        Catch ex As Exception
+            DisplayException(Me.ViewName, Me.ID, ex)
+            _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
+        End Try
+    End Sub
+    Private Sub Cal_SalaryInsurrance()
+        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+        Try
+            rntxtSalaryInsurance.Value = (CType(basicSalary.Value, Double) * CType(rnPercentSalary.Value, Double) * CType(rnmtxtSalRate.Value, Double)) + CType(rntxtAllowance_Total.Value, Double)
+        Catch ex As Exception
+            DisplayException(Me.ViewName, Me.ID, ex)
+            _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
+        End Try
+    End Sub
+
+    Private Sub cboExRate_SelectedIndexChanged(ByVal sender As Object, ByVal e As Telerik.Web.UI.RadComboBoxSelectedIndexChangedEventArgs) Handles cboExRate.SelectedIndexChanged
+        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+        Dim luongtoithieu = CType(rnmtxtSalBas_Min.Value, Double?)
+        Dim luongtoida = CType(rnmtxtSalBas_Max.Value, Double?)
+        Dim luongcoban = CType(basicSalary.Value, Double?)
+        Dim tongphucap = CType(rntxtAllowance_Total.Value, Double?)
+        Dim mucluongchinh = CType(rntxtSalaryInsurance.Value, Double?)
+        Try
+            If cboExRate.SelectedValue = 7682 Then
+                rnmtxtSalRate.Value = 1
+            Else
+                rnmtxtSalRate.Value = 0
+            End If
+            Using rep As New ProfileBusinessClient
+                Dim _filter As New WorkingDTO
+                _filter.EXRATE_TYPE_ID_FROM = hidExRate_Type_ID_Old.Value
+                _filter.EXRATE_TYPE_ID_TO = cboExRate.SelectedValue
+                Dim Value_exrate_f_t = rep.getValue_ExRate_F_T(_filter)
+                If hidExRate_Type_ID_Old.Value = 7682 Then
+                    rnmtxtSalBas_Min.Value = luongtoithieu * 1 / Value_exrate_f_t.EXRATE_VALUE_TO
+                    rnmtxtSalBas_Max.Value = luongtoida * 1 / Value_exrate_f_t.EXRATE_VALUE_TO
+                    basicSalary.Value = luongcoban * 1 / Value_exrate_f_t.EXRATE_VALUE_TO
+                    rntxtAllowance_Total.Value = tongphucap * 1 / Value_exrate_f_t.EXRATE_VALUE_TO
+                    rntxtSalaryInsurance.Value = mucluongchinh * 1 / Value_exrate_f_t.EXRATE_VALUE_TO
+                ElseIf cboExRate.SelectedValue = 7682 Then
+                    rnmtxtSalBas_Min.Value = luongtoithieu * Value_exrate_f_t.EXRATE_VALUE_FROM / 1
+                    rnmtxtSalBas_Max.Value = luongtoida * Value_exrate_f_t.EXRATE_VALUE_FROM / 1
+                    basicSalary.Value = luongcoban * Value_exrate_f_t.EXRATE_VALUE_FROM / 1
+                    rntxtAllowance_Total.Value = tongphucap * Value_exrate_f_t.EXRATE_VALUE_FROM / 1
+                    rntxtSalaryInsurance.Value = mucluongchinh * Value_exrate_f_t.EXRATE_VALUE_FROM / 1
+                Else                   
+                    rnmtxtSalBas_Min.Value = luongtoithieu * Value_exrate_f_t.EXRATE_VALUE_FROM / Value_exrate_f_t.EXRATE_VALUE_TO
+                    rnmtxtSalBas_Max.Value = luongtoida * Value_exrate_f_t.EXRATE_VALUE_FROM / Value_exrate_f_t.EXRATE_VALUE_TO
+                    basicSalary.Value = luongcoban * Value_exrate_f_t.EXRATE_VALUE_FROM / Value_exrate_f_t.EXRATE_VALUE_TO
+                    rntxtAllowance_Total.Value = tongphucap * Value_exrate_f_t.EXRATE_VALUE_FROM / Value_exrate_f_t.EXRATE_VALUE_TO
+                    rntxtSalaryInsurance.Value = mucluongchinh * Value_exrate_f_t.EXRATE_VALUE_FROM / Value_exrate_f_t.EXRATE_VALUE_TO
+                End If               
+                Cal_rgAllow(Value_exrate_f_t.EXRATE_VALUE_FROM, Value_exrate_f_t.EXRATE_VALUE_TO)
+                Cal_SalaryInsurrance()
+                hidExRate_Type_ID_Old.Value = cboExRate.SelectedValue
+            End Using
         Catch ex As Exception
             DisplayException(Me.ViewName, Me.ID, ex)
             _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")

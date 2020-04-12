@@ -68,6 +68,15 @@ Partial Public Class ctrlHU_WageNewEdit
     Protected WithEvents hidID As Global.System.Web.UI.WebControls.HiddenField
 
     '''<summary>
+    '''hidExRate_Type_ID_Old control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents hidExRate_Type_ID_Old As Global.System.Web.UI.WebControls.HiddenField
+
+    '''<summary>
     '''RadSplitter1 control.
     '''</summary>
     '''<remarks>
@@ -491,31 +500,31 @@ Partial Public Class ctrlHU_WageNewEdit
     Protected WithEvents reqdBasicSalary As Global.System.Web.UI.WebControls.RequiredFieldValidator
 
     '''<summary>
-    '''Label4 control.
+    '''lbTaxTable control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents Label4 As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents lbTaxTable As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
-    '''cboExRate control.
+    '''cboTaxTable control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents cboExRate As Global.Telerik.Web.UI.RadComboBox
+    Protected WithEvents cboTaxTable As Global.Telerik.Web.UI.RadComboBox
 
     '''<summary>
-    '''reExRate control.
+    '''reqTaxTable control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents reExRate As Global.System.Web.UI.WebControls.RequiredFieldValidator
+    Protected WithEvents reqTaxTable As Global.System.Web.UI.WebControls.RequiredFieldValidator
 
     '''<summary>
     '''lbAllowance_Total control.
@@ -615,33 +624,6 @@ Partial Public Class ctrlHU_WageNewEdit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents reqSalaryInsurance As Global.System.Web.UI.WebControls.RequiredFieldValidator
-
-    '''<summary>
-    '''lbTaxTable control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lbTaxTable As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
-    '''cboTaxTable control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents cboTaxTable As Global.Telerik.Web.UI.RadComboBox
-
-    '''<summary>
-    '''reqTaxTable control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents reqTaxTable As Global.System.Web.UI.WebControls.RequiredFieldValidator
 
     '''<summary>
     '''lbOtherSalary4 control.
@@ -759,6 +741,33 @@ Partial Public Class ctrlHU_WageNewEdit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents rgAllow As Global.Telerik.Web.UI.RadGrid
+
+    '''<summary>
+    '''Label4 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents Label4 As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''cboExRate control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents cboExRate As Global.Telerik.Web.UI.RadComboBox
+
+    '''<summary>
+    '''reExRate control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents reExRate As Global.System.Web.UI.WebControls.RequiredFieldValidator
 
     '''<summary>
     '''cboStatus control.

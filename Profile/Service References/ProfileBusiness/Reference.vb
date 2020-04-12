@@ -6202,6 +6202,18 @@ Namespace ProfileBusiness
         Private EXRATE_IDField As System.Nullable(Of Decimal)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private EXRATE_TYPE_ID_FROMField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private EXRATE_TYPE_ID_TOField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private EXRATE_VALUE_FROMField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private EXRATE_VALUE_TOField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private EX_RATE_NAMEField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -6913,6 +6925,58 @@ Namespace ProfileBusiness
                 If (Me.EXRATE_IDField.Equals(value) <> true) Then
                     Me.EXRATE_IDField = value
                     Me.RaisePropertyChanged("EXRATE_ID")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property EXRATE_TYPE_ID_FROM() As System.Nullable(Of Decimal)
+            Get
+                Return Me.EXRATE_TYPE_ID_FROMField
+            End Get
+            Set
+                If (Me.EXRATE_TYPE_ID_FROMField.Equals(value) <> true) Then
+                    Me.EXRATE_TYPE_ID_FROMField = value
+                    Me.RaisePropertyChanged("EXRATE_TYPE_ID_FROM")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property EXRATE_TYPE_ID_TO() As System.Nullable(Of Decimal)
+            Get
+                Return Me.EXRATE_TYPE_ID_TOField
+            End Get
+            Set
+                If (Me.EXRATE_TYPE_ID_TOField.Equals(value) <> true) Then
+                    Me.EXRATE_TYPE_ID_TOField = value
+                    Me.RaisePropertyChanged("EXRATE_TYPE_ID_TO")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property EXRATE_VALUE_FROM() As System.Nullable(Of Decimal)
+            Get
+                Return Me.EXRATE_VALUE_FROMField
+            End Get
+            Set
+                If (Me.EXRATE_VALUE_FROMField.Equals(value) <> true) Then
+                    Me.EXRATE_VALUE_FROMField = value
+                    Me.RaisePropertyChanged("EXRATE_VALUE_FROM")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property EXRATE_VALUE_TO() As System.Nullable(Of Decimal)
+            Get
+                Return Me.EXRATE_VALUE_TOField
+            End Get
+            Set
+                If (Me.EXRATE_VALUE_TOField.Equals(value) <> true) Then
+                    Me.EXRATE_VALUE_TOField = value
+                    Me.RaisePropertyChanged("EXRATE_VALUE_TO")
                 End If
             End Set
         End Property
@@ -54785,6 +54849,9 @@ Namespace ProfileBusiness
      System.ServiceModel.ServiceContractAttribute(ConfigurationName:="ProfileBusiness.IProfileBusiness")>  _
     Public Interface IProfileBusiness
         
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GET_JOB_POSITION_DETAIL", ReplyAction:="http://tempuri.org/IProfileBusiness/GET_JOB_POSITION_DETAILResponse")>  _
+        Function GET_JOB_POSITION_DETAIL(ByVal P_ID As Decimal) As System.Data.DataSet
+        
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/INSERT_JOB_POSITION", ReplyAction:="http://tempuri.org/IProfileBusiness/INSERT_JOB_POSITIONResponse")>  _
         Function INSERT_JOB_POSITION(ByVal p_CODE As String, ByVal p_JOB_NAME As String, ByVal p_ORG_ID As Decimal, ByVal p_TITLE_ID As Decimal, ByVal p_JOB_NOTE As String, ByVal p_COST_CODE As String, ByVal p_IS_LEADER As Decimal, ByVal p_EFFECT_DATE As Date, ByVal log As Common.CommonBusiness.UserLog) As Integer
         
@@ -54835,6 +54902,9 @@ Namespace ProfileBusiness
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/CHECK_IS_THHDLD", ReplyAction:="http://tempuri.org/IProfileBusiness/CHECK_IS_THHDLDResponse")>  _
         Function CHECK_IS_THHDLD(ByVal P_ID As Decimal, ByVal P_EMP_ID As Decimal, ByVal P_DATE As System.Nullable(Of Date)) As Integer
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetCommendLevelID", ReplyAction:="http://tempuri.org/IProfileBusiness/GetCommendLevelIDResponse")>  _
+        Function GetCommendLevelID(ByVal ID As Decimal) As ProfileBusiness.CommendLevelDTO
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/InsertCommendLevel", ReplyAction:="http://tempuri.org/IProfileBusiness/InsertCommendLevelResponse")>  _
         Function InsertCommendLevel(ByVal objCommendLevel As ProfileBusiness.CommendLevelDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
@@ -55697,8 +55767,8 @@ Namespace ProfileBusiness
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GET_JOB_POSITION_LIST", ReplyAction:="http://tempuri.org/IProfileBusiness/GET_JOB_POSITION_LISTResponse")>  _
         Function GET_JOB_POSITION_LIST(ByVal P_ORG_ID As Decimal, ByVal P_ID As Decimal) As System.Data.DataTable
         
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GET_JOB_POSITION_DETAIL", ReplyAction:="http://tempuri.org/IProfileBusiness/GET_JOB_POSITION_DETAILResponse")>  _
-        Function GET_JOB_POSITION_DETAIL(ByVal P_ID As Decimal) As System.Data.DataSet
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetWorkingBeforeEdit", ReplyAction:="http://tempuri.org/IProfileBusiness/GetWorkingBeforeEditResponse")>  _
+        Function GetWorkingBeforeEdit(ByVal _filter As ProfileBusiness.WorkingBeforeDTOEdit) As System.Collections.Generic.List(Of ProfileBusiness.WorkingBeforeDTOEdit)
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/InsertWorkingBeforeEdit", ReplyAction:="http://tempuri.org/IProfileBusiness/InsertWorkingBeforeEditResponse")>  _
         Function InsertWorkingBeforeEdit(ByVal objWorkingBefore As ProfileBusiness.WorkingBeforeDTOEdit, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
@@ -56155,8 +56225,8 @@ Namespace ProfileBusiness
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetCommendLevel", ReplyAction:="http://tempuri.org/IProfileBusiness/GetCommendLevelResponse")>  _
         Function GetCommendLevel(ByVal _filter As ProfileBusiness.CommendLevelDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal Sorts As String) As System.Collections.Generic.List(Of ProfileBusiness.CommendLevelDTO)
         
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetCommendLevelID", ReplyAction:="http://tempuri.org/IProfileBusiness/GetCommendLevelIDResponse")>  _
-        Function GetCommendLevelID(ByVal ID As Decimal) As ProfileBusiness.CommendLevelDTO
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetAllowanceByWorkingID", ReplyAction:="http://tempuri.org/IProfileBusiness/GetAllowanceByWorkingIDResponse")>  _
+        Function GetAllowanceByWorkingID(ByVal _filter As ProfileBusiness.WorkingAllowanceDTO) As System.Collections.Generic.List(Of ProfileBusiness.WorkingAllowanceDTO)
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetWorking3B", ReplyAction:="http://tempuri.org/IProfileBusiness/GetWorking3BResponse")>  _
         Function GetWorking3B(ByVal _filter As ProfileBusiness.WorkingDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal _param As ProfileBusiness.ParamDTO, ByVal Sorts As String, ByVal log As Common.CommonBusiness.UserLog) As System.Collections.Generic.List(Of ProfileBusiness.WorkingDTO)
@@ -56410,9 +56480,6 @@ Namespace ProfileBusiness
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetApproveProcessTrainingEdit", ReplyAction:="http://tempuri.org/IProfileBusiness/GetApproveProcessTrainingEditResponse")>  _
         Function GetApproveProcessTrainingEdit(ByVal _filter As ProfileBusiness.HU_PRO_TRAIN_OUT_COMPANYDTOEDIT, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal _param As ProfileBusiness.ParamDTO, ByVal Sorts As String, ByVal log As Common.CommonBusiness.UserLog) As System.Collections.Generic.List(Of ProfileBusiness.HU_PRO_TRAIN_OUT_COMPANYDTOEDIT)
         
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetWorkingBeforeEdit", ReplyAction:="http://tempuri.org/IProfileBusiness/GetWorkingBeforeEditResponse")>  _
-        Function GetWorkingBeforeEdit(ByVal _filter As ProfileBusiness.WorkingBeforeDTOEdit) As System.Collections.Generic.List(Of ProfileBusiness.WorkingBeforeDTOEdit)
-        
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/DeleteEmployeeFamilyEdit", ReplyAction:="http://tempuri.org/IProfileBusiness/DeleteEmployeeFamilyEditResponse")>  _
         Function DeleteEmployeeFamilyEdit(ByVal lstDecimals As System.Collections.Generic.List(Of Decimal), ByVal log As Common.CommonBusiness.UserLog) As Boolean
         
@@ -56602,6 +56669,9 @@ Namespace ProfileBusiness
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/getDtByEmpIDandEffectdate", ReplyAction:="http://tempuri.org/IProfileBusiness/getDtByEmpIDandEffectdateResponse")>  _
         Function getDtByEmpIDandEffectdate(ByVal obj As ProfileBusiness.WorkingDTO) As System.Collections.Generic.List(Of ProfileBusiness.WorkingDTO)
         
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/getValue_ExRate_F_T", ReplyAction:="http://tempuri.org/IProfileBusiness/getValue_ExRate_F_TResponse")>  _
+        Function getValue_ExRate_F_T(ByVal _filter As ProfileBusiness.WorkingDTO) As ProfileBusiness.WorkingDTO
+        
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ApproveListChangeInfoMng", ReplyAction:="http://tempuri.org/IProfileBusiness/ApproveListChangeInfoMngResponse")>  _
         Function ApproveListChangeInfoMng(ByVal listID As System.Collections.Generic.List(Of Decimal), ByVal log As Common.CommonBusiness.UserLog) As Boolean
         
@@ -56664,9 +56734,6 @@ Namespace ProfileBusiness
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetAllowanceByDate", ReplyAction:="http://tempuri.org/IProfileBusiness/GetAllowanceByDateResponse")>  _
         Function GetAllowanceByDate(ByVal _filter As ProfileBusiness.WorkingAllowanceDTO) As System.Collections.Generic.List(Of ProfileBusiness.WorkingAllowanceDTO)
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetAllowanceByWorkingID", ReplyAction:="http://tempuri.org/IProfileBusiness/GetAllowanceByWorkingIDResponse")>  _
-        Function GetAllowanceByWorkingID(ByVal _filter As ProfileBusiness.WorkingAllowanceDTO) As System.Collections.Generic.List(Of ProfileBusiness.WorkingAllowanceDTO)
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ActiveBankBranch", ReplyAction:="http://tempuri.org/IProfileBusiness/ActiveBankBranchResponse")>  _
         Function ActiveBankBranch(ByVal lstID As System.Collections.Generic.List(Of Decimal), ByVal sActive As String, ByVal log As Common.CommonBusiness.UserLog) As Boolean
@@ -57465,6 +57532,10 @@ Namespace ProfileBusiness
             MyBase.New(binding, remoteAddress)
         End Sub
         
+        Public Function GET_JOB_POSITION_DETAIL(ByVal P_ID As Decimal) As System.Data.DataSet Implements ProfileBusiness.IProfileBusiness.GET_JOB_POSITION_DETAIL
+            Return MyBase.Channel.GET_JOB_POSITION_DETAIL(P_ID)
+        End Function
+        
         Public Function INSERT_JOB_POSITION(ByVal p_CODE As String, ByVal p_JOB_NAME As String, ByVal p_ORG_ID As Decimal, ByVal p_TITLE_ID As Decimal, ByVal p_JOB_NOTE As String, ByVal p_COST_CODE As String, ByVal p_IS_LEADER As Decimal, ByVal p_EFFECT_DATE As Date, ByVal log As Common.CommonBusiness.UserLog) As Integer Implements ProfileBusiness.IProfileBusiness.INSERT_JOB_POSITION
             Return MyBase.Channel.INSERT_JOB_POSITION(p_CODE, p_JOB_NAME, p_ORG_ID, p_TITLE_ID, p_JOB_NOTE, p_COST_CODE, p_IS_LEADER, p_EFFECT_DATE, log)
         End Function
@@ -57531,6 +57602,10 @@ Namespace ProfileBusiness
         
         Public Function CHECK_IS_THHDLD(ByVal P_ID As Decimal, ByVal P_EMP_ID As Decimal, ByVal P_DATE As System.Nullable(Of Date)) As Integer Implements ProfileBusiness.IProfileBusiness.CHECK_IS_THHDLD
             Return MyBase.Channel.CHECK_IS_THHDLD(P_ID, P_EMP_ID, P_DATE)
+        End Function
+        
+        Public Function GetCommendLevelID(ByVal ID As Decimal) As ProfileBusiness.CommendLevelDTO Implements ProfileBusiness.IProfileBusiness.GetCommendLevelID
+            Return MyBase.Channel.GetCommendLevelID(ID)
         End Function
         
         Public Function InsertCommendLevel(ByVal objCommendLevel As ProfileBusiness.CommendLevelDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean Implements ProfileBusiness.IProfileBusiness.InsertCommendLevel
@@ -57869,8 +57944,8 @@ Namespace ProfileBusiness
             Return MyBase.Channel.GET_JOB_POSITION_LIST(P_ORG_ID, P_ID)
         End Function
         
-        Public Function GET_JOB_POSITION_DETAIL(ByVal P_ID As Decimal) As System.Data.DataSet Implements ProfileBusiness.IProfileBusiness.GET_JOB_POSITION_DETAIL
-            Return MyBase.Channel.GET_JOB_POSITION_DETAIL(P_ID)
+        Public Function GetWorkingBeforeEdit(ByVal _filter As ProfileBusiness.WorkingBeforeDTOEdit) As System.Collections.Generic.List(Of ProfileBusiness.WorkingBeforeDTOEdit) Implements ProfileBusiness.IProfileBusiness.GetWorkingBeforeEdit
+            Return MyBase.Channel.GetWorkingBeforeEdit(_filter)
         End Function
         
         Public Function InsertWorkingBeforeEdit(ByVal objWorkingBefore As ProfileBusiness.WorkingBeforeDTOEdit, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean Implements ProfileBusiness.IProfileBusiness.InsertWorkingBeforeEdit
@@ -58209,8 +58284,8 @@ Namespace ProfileBusiness
             Return MyBase.Channel.GetCommendLevel(_filter, PageIndex, PageSize, Total, Sorts)
         End Function
         
-        Public Function GetCommendLevelID(ByVal ID As Decimal) As ProfileBusiness.CommendLevelDTO Implements ProfileBusiness.IProfileBusiness.GetCommendLevelID
-            Return MyBase.Channel.GetCommendLevelID(ID)
+        Public Function GetAllowanceByWorkingID(ByVal _filter As ProfileBusiness.WorkingAllowanceDTO) As System.Collections.Generic.List(Of ProfileBusiness.WorkingAllowanceDTO) Implements ProfileBusiness.IProfileBusiness.GetAllowanceByWorkingID
+            Return MyBase.Channel.GetAllowanceByWorkingID(_filter)
         End Function
         
         Public Function GetWorking3B(ByVal _filter As ProfileBusiness.WorkingDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal _param As ProfileBusiness.ParamDTO, ByVal Sorts As String, ByVal log As Common.CommonBusiness.UserLog) As System.Collections.Generic.List(Of ProfileBusiness.WorkingDTO) Implements ProfileBusiness.IProfileBusiness.GetWorking3B
@@ -58549,10 +58624,6 @@ Namespace ProfileBusiness
             Return MyBase.Channel.GetApproveProcessTrainingEdit(_filter, PageIndex, PageSize, Total, _param, Sorts, log)
         End Function
         
-        Public Function GetWorkingBeforeEdit(ByVal _filter As ProfileBusiness.WorkingBeforeDTOEdit) As System.Collections.Generic.List(Of ProfileBusiness.WorkingBeforeDTOEdit) Implements ProfileBusiness.IProfileBusiness.GetWorkingBeforeEdit
-            Return MyBase.Channel.GetWorkingBeforeEdit(_filter)
-        End Function
-        
         Public Function DeleteEmployeeFamilyEdit(ByVal lstDecimals As System.Collections.Generic.List(Of Decimal), ByVal log As Common.CommonBusiness.UserLog) As Boolean Implements ProfileBusiness.IProfileBusiness.DeleteEmployeeFamilyEdit
             Return MyBase.Channel.DeleteEmployeeFamilyEdit(lstDecimals, log)
         End Function
@@ -58805,6 +58876,10 @@ Namespace ProfileBusiness
             Return MyBase.Channel.getDtByEmpIDandEffectdate(obj)
         End Function
         
+        Public Function getValue_ExRate_F_T(ByVal _filter As ProfileBusiness.WorkingDTO) As ProfileBusiness.WorkingDTO Implements ProfileBusiness.IProfileBusiness.getValue_ExRate_F_T
+            Return MyBase.Channel.getValue_ExRate_F_T(_filter)
+        End Function
+        
         Public Function ApproveListChangeInfoMng(ByVal listID As System.Collections.Generic.List(Of Decimal), ByVal log As Common.CommonBusiness.UserLog) As Boolean Implements ProfileBusiness.IProfileBusiness.ApproveListChangeInfoMng
             Return MyBase.Channel.ApproveListChangeInfoMng(listID, log)
         End Function
@@ -58887,10 +58962,6 @@ Namespace ProfileBusiness
         
         Public Function GetAllowanceByDate(ByVal _filter As ProfileBusiness.WorkingAllowanceDTO) As System.Collections.Generic.List(Of ProfileBusiness.WorkingAllowanceDTO) Implements ProfileBusiness.IProfileBusiness.GetAllowanceByDate
             Return MyBase.Channel.GetAllowanceByDate(_filter)
-        End Function
-        
-        Public Function GetAllowanceByWorkingID(ByVal _filter As ProfileBusiness.WorkingAllowanceDTO) As System.Collections.Generic.List(Of ProfileBusiness.WorkingAllowanceDTO) Implements ProfileBusiness.IProfileBusiness.GetAllowanceByWorkingID
-            Return MyBase.Channel.GetAllowanceByWorkingID(_filter)
         End Function
         
         Public Function ActiveBankBranch(ByVal lstID As System.Collections.Generic.List(Of Decimal), ByVal sActive As String, ByVal log As Common.CommonBusiness.UserLog) As Boolean Implements ProfileBusiness.IProfileBusiness.ActiveBankBranch
