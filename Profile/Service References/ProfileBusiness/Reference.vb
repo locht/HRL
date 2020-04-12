@@ -4374,10 +4374,10 @@ Namespace ProfileBusiness
         Private ALLOWANCE_LIST_NAMEField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private AMOUNTField As System.Nullable(Of Decimal)
+        Private AMOUNTField As System.Nullable(Of Double)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private AMOUNT_EXField As System.Nullable(Of Decimal)
+        Private AMOUNT_EXField As System.Nullable(Of Double)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private EFFECT_DATEField As System.Nullable(Of Date)
@@ -4440,7 +4440,7 @@ Namespace ProfileBusiness
         End Property
         
         <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property AMOUNT() As System.Nullable(Of Decimal)
+        Public Property AMOUNT() As System.Nullable(Of Double)
             Get
                 Return Me.AMOUNTField
             End Get
@@ -4453,7 +4453,7 @@ Namespace ProfileBusiness
         End Property
         
         <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property AMOUNT_EX() As System.Nullable(Of Decimal)
+        Public Property AMOUNT_EX() As System.Nullable(Of Double)
             Get
                 Return Me.AMOUNT_EXField
             End Get
@@ -6109,7 +6109,7 @@ Namespace ProfileBusiness
         Private extensionDataField As System.Runtime.Serialization.ExtensionDataObject
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private ALLOWANCE_TOTALField As System.Nullable(Of Decimal)
+        Private ALLOWANCE_TOTALField As System.Nullable(Of Double)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private ATTACH_FILEField As String
@@ -6379,10 +6379,10 @@ Namespace ProfileBusiness
         Private SAL_BASICField As System.Nullable(Of Decimal)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private SAL_BASIC_MAXField As System.Nullable(Of Decimal)
+        Private SAL_BASIC_MAXField As System.Nullable(Of Double)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private SAL_BASIC_MINField As System.Nullable(Of Decimal)
+        Private SAL_BASIC_MINField As System.Nullable(Of Double)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private SAL_GROUP_IDField As System.Nullable(Of Decimal)
@@ -6391,7 +6391,7 @@ Namespace ProfileBusiness
         Private SAL_GROUP_NAMEField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private SAL_INSField As System.Nullable(Of Decimal)
+        Private SAL_INSField As System.Nullable(Of Double)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private SAL_LEVEL_IDField As System.Nullable(Of Decimal)
@@ -6515,7 +6515,7 @@ Namespace ProfileBusiness
         End Property
         
         <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property ALLOWANCE_TOTAL() As System.Nullable(Of Decimal)
+        Public Property ALLOWANCE_TOTAL() As System.Nullable(Of Double)
             Get
                 Return Me.ALLOWANCE_TOTALField
             End Get
@@ -7685,7 +7685,7 @@ Namespace ProfileBusiness
         End Property
         
         <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property SAL_BASIC_MAX() As System.Nullable(Of Decimal)
+        Public Property SAL_BASIC_MAX() As System.Nullable(Of Double)
             Get
                 Return Me.SAL_BASIC_MAXField
             End Get
@@ -7698,7 +7698,7 @@ Namespace ProfileBusiness
         End Property
         
         <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property SAL_BASIC_MIN() As System.Nullable(Of Decimal)
+        Public Property SAL_BASIC_MIN() As System.Nullable(Of Double)
             Get
                 Return Me.SAL_BASIC_MINField
             End Get
@@ -7737,7 +7737,7 @@ Namespace ProfileBusiness
         End Property
         
         <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property SAL_INS() As System.Nullable(Of Decimal)
+        Public Property SAL_INS() As System.Nullable(Of Double)
             Get
                 Return Me.SAL_INSField
             End Get

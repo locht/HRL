@@ -741,8 +741,9 @@
             }
             if (objAllowance_Total.get_value()) {
                 valueAllowance_Total = objAllowance_Total.get_value();                  
-            }          
-            objSalaryInsurance.set_value((objSalBasic*objPercentSalary*objSalRate)+objAllowance_Total);
+            }
+            objSalaryInsurance.clear();       
+           objSalaryInsurance.set_value((valueSalBasic*valuePercentSalary*valueSalRate)+valueAllowance_Total);
         }
 
     </script>

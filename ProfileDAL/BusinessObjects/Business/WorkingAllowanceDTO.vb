@@ -6,9 +6,9 @@
     Public Property HU_WORKING_ID As Decimal
     Public Property ALLOWANCE_LIST_ID As Decimal?
     Public Property ALLOWANCE_LIST_NAME As String
-    Public Property AMOUNT As Decimal?
+    Public Property AMOUNT As Double?
     Public Property IS_INSURRANCE As Boolean?
     Public Property EFFECT_DATE As Date?
     Public Property EXPIRE_DATE As Date?
-    Public Property AMOUNT_EX As Decimal?
+    Public Property AMOUNT_EX As Double?
 End Class

@@ -156,7 +156,7 @@ Public Class ctrlHU_WageMng
             CType(Me.MainToolBar.Items(4), RadToolBarButton).Text = Translate("Xuất file mẫu")
             CType(Me.MainToolBar.Items(4), RadToolBarButton).ImageUrl = CType(Me.MainToolBar.Items(2), RadToolBarButton).ImageUrl
             CType(Me.MainToolBar.Items(5), RadToolBarButton).Text = Translate("Nhập file mẫu")
-            Me.MainToolBar.Items.Add(Common.Common.CreateToolbarItem(ToolbarItem.Active,
+            Me.MainToolBar.Items.Add(Common.Common.CreateToolbarItem("ACTION_ACTIVE",
                                                                   ToolbarIcons.Active,
                                                                   ToolbarAuthorize.Special1,
                                                                   "Mở phê duyệt"))
@@ -239,7 +239,7 @@ Public Class ctrlHU_WageMng
                         Exit Sub
                     End If
                     CurrentState = CommonMessage.STATE_EDIT
-                Case CommonMessage.ACTION_ACTIVE
+                Case "ACTION_ACTIVE"
                     If rgWorking.SelectedItems.Count = 0 Then
                         ShowMessage(Translate(CommonMessage.MESSAGE_NOT_SELECT_ROW), NotifyType.Warning)
                         Exit Sub

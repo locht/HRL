@@ -217,6 +217,9 @@
             if (args.get_item().get_commandName() == "NEXT") {
                 enableAjax = false;
             }
+            if (args.get_item().get_commandName() == "ACTION_ACTIVE") {
+                enableAjax = false;
+            }
         }
 
         function gridRowDblClick(sender, eventArgs) {

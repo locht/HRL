@@ -2,7 +2,6 @@
 Imports Framework.UI.Utilities
 Imports Profile.ProfileBusiness
 Imports Common
-Imports Payroll
 Imports Telerik.Web.UI
 Imports System.IO
 Imports WebAppLog
@@ -34,6 +33,14 @@ Public Class ctrlHU_WageNewEdit
         End Set
     End Property
     Dim _allowDataCache As New List(Of AllowanceListDTO)
+    Property objWorking As WorkingDTO
+        Get
+            Return ViewState(Me.ID & "_objWorking")
+        End Get
+        Set(ByVal value As WorkingDTO)
+            ViewState(Me.ID & "_objWorking") = value
+        End Set
+    End Property
     Property Working As WorkingDTO
         Get
             Return ViewState(Me.ID & "_Working")
@@ -166,6 +173,10 @@ Public Class ctrlHU_WageNewEdit
                 If dtData IsNot Nothing AndAlso dtData.Rows.Count > 0 Then
                     FillRadCombobox(cbSalaryGroup, dtData, "NAME", "ID", True)
                 End If
+                dtSalaryGroup = dtData
+            End Using
+
+            Using rep As New ProfileRepository               
                 dtData = rep.GetOtherList(OtherTypes.TaxTable)
                 FillRadCombobox(cboTaxTable, dtData, "NAME", "ID", True)
                 dtData = rep.GetOtherList(OtherTypes.DecisionStatus, True)
@@ -177,7 +188,6 @@ Public Class ctrlHU_WageNewEdit
                     rnmtxtSalRate.Value = 1
                 End If
             End Using
-            dtSalaryGroup = dtData
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
             DisplayException(Me.ViewName, Me.ID, ex)
@@ -455,7 +465,7 @@ Public Class ctrlHU_WageNewEdit
             '    End If
             'End Using
             EnableControlAll(True, cbSalaryRank)           
-            CalculatorSalary()
+            'CalculatorSalary()
             basicSalary.AutoPostBack = False
             'ClearControlValue(rnOtherSalary1, rnOtherSalary2, rnOtherSalary3, rnOtherSalary4, rnOtherSalary5)
         Catch ex As Exception
@@ -474,7 +484,7 @@ Public Class ctrlHU_WageNewEdit
                     FillRadCombobox(cbSalaryLevel, dtData, "NAME", "ID", True)
                 End If
             End Using
-            CalculatorSalary()
+            'CalculatorSalary()
             'ClearControlValue(cbSalaryLevel, cbSalaryRank, rnFactorSalary, rntxtSalaryInsurance, basicSalary, Salary_Total, rnOtherSalary1, _
             '                  rnOtherSalary2, rnOtherSalary3, rnOtherSalary4, rnOtherSalary5)
         Catch ex As Exception
@@ -523,7 +533,7 @@ Public Class ctrlHU_WageNewEdit
     ''' <param name="e"></param>
     ''' <remarks></remarks>
     Public Sub OnToolbar_Command(ByVal sender As Object, ByVal e As RadToolBarEventArgs) Handles Me.OnMainToolbarClick
-        Dim objWorking As New WorkingDTO
+
         Dim rep As New ProfileBusinessRepository
         Dim startTime As DateTime = DateTime.UtcNow
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
@@ -587,6 +597,7 @@ Public Class ctrlHU_WageNewEdit
                         End If
 
                         Dim gID As Decimal
+                        objWorking = New WorkingDTO
                         With objWorking
                             .EMPLOYEE_ID = hidEmp.Value
                             .TITLE_ID = hidTitle.Value
@@ -680,7 +691,7 @@ Public Class ctrlHU_WageNewEdit
                                     End If
                                 End If
                                 lstAllow.Add(allow)
-                                .ALLOWANCE_TOTAL = .ALLOWANCE_TOTAL + allow.AMOUNT
+
                             Next
                             If isError Then
                                 ShowMessage("Ngày kết thúc phụ cấp phải lớn hơn Ngày hiệu lực tờ trình", NotifyType.Warning)
@@ -704,8 +715,15 @@ Public Class ctrlHU_WageNewEdit
                                 .SAL_RATE = rnmtxtSalRate.Value
                             End If
                             .REASON_EDIT_EFDATE = txtREASON_EDIT_EFDATE.Text
+                            .ALLOWANCE_TOTAL = rntxtAllowance_Total.Value
                         End With
-
+                        If basicSalary.Value <= rnmtxtSalBas_Min.Value Or basicSalary.Value >= rnmtxtSalBas_Max.Value Then
+                            ctrlMessageBox.MessageText = Translate("Mức lương cơ bản không nằm trong giới hạn mức lương min-max, bạn có muốn thực hiện thao tác này không")
+                            ctrlMessageBox.ActionName = "CHECK_SAL_BAS_MIN_MAX"
+                            ctrlMessageBox.DataBind()
+                            ctrlMessageBox.Show()
+                            Exit Sub
+                        End If
                         Select Case CurrentState
                             Case CommonMessage.STATE_NEW
                                 If Not ValidateDecisionNo(objWorking) Then
@@ -719,13 +737,6 @@ Public Class ctrlHU_WageNewEdit
                                         Exit Sub
                                     End If
                                 End Using
-                                If basicSalary.Value <= rnmtxtSalBas_Min.Value Or basicSalary.Value >= rnmtxtSalBas_Max.Value Then
-                                    ctrlMessageBox.MessageText = Translate("Mức lương cơ bản không nằm trong giới hạn mức lương min-max, bạn có muốn thực hiện thao tác này không")
-                                    ctrlMessageBox.ActionName = "CHECK_SAL_BAS_MIN_MAX"
-                                    ctrlMessageBox.DataBind()
-                                    ctrlMessageBox.Show()
-                                    Exit Sub
-                                End If
                                     If rep.InsertWorking(objWorking, gID) Then
                                         ''POPUPTOLINK
                                         Response.Redirect("/Default.aspx?mid=Profile&fid=ctrlHU_WageMng&group=Business")
@@ -1012,7 +1023,7 @@ Public Class ctrlHU_WageNewEdit
                         allow.ALLOWANCE_LIST_NAME = item.GetDataKeyValue("ALLOWANCE_LIST_NAME")
                         allow.AMOUNT = item.GetDataKeyValue("AMOUNT")
                         If IsNumeric(rnmtxtSalRate.Text) Then
-                            allow.AMOUNT_EX = item.GetDataKeyValue("AMOUNT") * CType(rnmtxtSalRate.Value, Decimal)
+                            allow.AMOUNT_EX = item.GetDataKeyValue("AMOUNT") * CType(rnmtxtSalRate.Value, Double?)
                         Else
                             allow.AMOUNT_EX = item.GetDataKeyValue("AMOUNT")
                         End If
@@ -1039,10 +1050,10 @@ Public Class ctrlHU_WageNewEdit
                     End If
                     'allow1.EXPIRE_DATE = rdAllowExpireDate.SelectedDate
                     lstAllow.Add(allow1)
-                    rntxtAllowance_Total.Value = If(rntxtAllowance_Total.Value Is Nothing, 0, CType(rntxtAllowance_Total.Value, Decimal)) + allow1.AMOUNT
-                    rntxtSalaryInsurance.Value = (CType(basicSalary.Value, Decimal) * CType(rnPercentSalary.Value, Decimal) * CType(rnmtxtSalRate.Value, Decimal)) + CType(rntxtAllowance_Total.Value, Decimal)
+                    rntxtAllowance_Total.Value = If(rntxtAllowance_Total.Value Is Nothing, 0, CType(rntxtAllowance_Total.Value, Decimal)) + allow1.AMOUNT_EX
+                    rntxtSalaryInsurance.Value = (CType(basicSalary.Value, Double) * CType(rnPercentSalary.Value, Double) * CType(rnmtxtSalRate.Value, Double)) + CType(rntxtAllowance_Total.Value, Double)
                     ClearControlValue(cboAllowance, rntxtAmount) ', chkIsInsurrance, rdAllowExpireDate
-                    CalculatorSalary()
+                    'CalculatorSalary()
                     rgAllow.Rebind()
                 Case "DeleteAllow"
                     For Each item As GridDataItem In rgAllow.Items
@@ -1050,6 +1061,7 @@ Public Class ctrlHU_WageNewEdit
                         For Each selected As GridDataItem In rgAllow.SelectedItems
                             If item.GetDataKeyValue("ALLOWANCE_LIST_ID") = selected.GetDataKeyValue("ALLOWANCE_LIST_ID") Then
                                 isExist = True
+                                rntxtAllowance_Total.Value = rntxtAllowance_Total.Value - selected.GetDataKeyValue("AMOUNT_EX")
                                 Exit For
                             End If
                         Next
@@ -1065,8 +1077,8 @@ Public Class ctrlHU_WageNewEdit
                             lstAllow.Add(allow)
                         End If
                     Next
-                    ClearControlValue(rntxtAllowance_Total)
-                    CalculatorSalary()
+                    rntxtSalaryInsurance.Value = (CType(basicSalary.Value, Double) * CType(rnPercentSalary.Value, Double) * CType(rnmtxtSalRate.Value, Double)) + CType(rntxtAllowance_Total.Value, Double)
+                    'CalculatorSalary()
                     rgAllow.Rebind()
             End Select
             'RebindValue()
@@ -1119,7 +1131,7 @@ Public Class ctrlHU_WageNewEdit
                 EnableControlAll(False, cbSalaryGroup, cbSalaryLevel, cbSalaryRank)
             End If
             'Ngay hieu luc thay doi => load lai thang luong theo ngay hieu luc
-            ClearControlValue(cbSalaryGroup, cbSalaryLevel, cbSalaryRank, rntxtSalaryInsurance) ', rnFactorSalary
+            ClearControlValue(cbSalaryGroup, cbSalaryLevel, cbSalaryRank) ', rnFactorSalary, rntxtSalaryInsurance
             Dim dtData As DataTable = New DataTable()
             Using rep As New ProfileRepository
                 dtData = rep.GetSalaryGroupCombo(rdEffectDate.SelectedDate, True)
@@ -1528,7 +1540,7 @@ Public Class ctrlHU_WageNewEdit
                 obj.EFFECT_DATE = rdEffectDate.SelectedDate
             End If
             If IsNumeric(rntxtSalaryInsurance.Value) Then
-                obj.rntxtSalaryInsurance = rntxtSalaryInsurance.Value
+                obj.SALARYINSURANCE = rntxtSalaryInsurance.Value
             End If
             'If IsNumeric(rnFactorSalary.Text) Then
             '    obj.FACTORSALARY = CDec(Val(rnFactorSalary.Text))
@@ -1762,10 +1774,49 @@ Public Class ctrlHU_WageNewEdit
     Private Sub ctrlMessageBox_ButtonCommand(ByVal sender As Object, ByVal e As Common.MessageBoxEventArgs) Handles ctrlMessageBox.ButtonCommand
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
         Try
+            Dim rep As New ProfileBusinessRepository
+            Dim gID As Decimal
             Dim startTime As DateTime = DateTime.UtcNow
-            If e.ActionName = "CHECK_SAL_BAS_MIN_MAX" AndAlso e.ButtonID = MessageBoxButtonType.ButtonNo Then
-                ShowMessage(Translate("Mời bạn nhập lại mức lương"), NotifyType.Warning)
-                basicSalary.Focus()
+            If e.ActionName = "CHECK_SAL_BAS_MIN_MAX" Then
+                If e.ButtonID = MessageBoxButtonType.ButtonNo Then
+                    ShowMessage(Translate("Mời bạn nhập lại mức lương"), NotifyType.Warning)
+                    basicSalary.Focus()
+                ElseIf e.ButtonID = MessageBoxButtonType.ButtonYes Then
+                    Select Case CurrentState
+                        Case CommonMessage.STATE_NEW
+                            If Not ValidateDecisionNo(objWorking) Then
+                                ShowMessage(Translate("Số tờ trình bị trùng"), NotifyType.Warning)
+                                Exit Sub
+                            End If
+                            Using repchk_dup_hsl As New ProfileBusinessClient
+                                'khi chọn ngày hiệu lực kiểm tra trùng trong list hồ sơ lương   
+                                If repchk_dup_hsl.ValEffectdateByEmpCode(txtEmployeeCode.Text, rdEffectDate.SelectedDate) = False Then
+                                    ShowMessage(Translate("Ngày hiệu lực bị trùng"), NotifyType.Warning)
+                                    Exit Sub
+                                End If
+                            End Using
+                            If rep.InsertWorking(objWorking, gID) Then
+                                ''POPUPTOLINK
+                                Response.Redirect("/Default.aspx?mid=Profile&fid=ctrlHU_WageMng&group=Business")
+
+                                ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), Utilities.NotifyType.Success)
+                                CType(MainToolBar.Items(0), RadToolBarButton).Enabled = False
+                            Else
+                                ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), Utilities.NotifyType.Error)
+                            End If
+                        Case CommonMessage.STATE_EDIT
+                            objWorking.ID = Decimal.Parse(hidID.Value)
+                            If rep.ModifyWorking(objWorking, gID) Then
+                                ''POPUPTOLINK
+                                Response.Redirect("/Default.aspx?mid=Profile&fid=ctrlHU_WageMng&group=Business")
+
+                                ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), Utilities.NotifyType.Success)
+                                CType(MainToolBar.Items(0), RadToolBarButton).Enabled = False
+                            Else
+                                ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), Utilities.NotifyType.Error)
+                            End If
+                    End Select
+                End If
             End If
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
@@ -1777,12 +1828,12 @@ End Class
 Structure DATA_IN
     Public EMPLOYEE_ID As Decimal?
     Public EFFECT_DATE As String
-    Public rntxtSalaryInsurance As Decimal?
+    Public SALARYINSURANCE As Decimal?
     Public FACTORSALARY As Decimal?
     Public MUCLUONGCS As Decimal?
-    Public TOTALSALARY As Decimal?
-    Public BASICSALARY As Decimal?
-    Public ALLOWANCE_TOTAL As Decimal?
+    Public TOTALSALARY As Double?
+    Public BASICSALARY As Double?
+    Public ALLOWANCE_TOTAL As Double?
     Public PERCENT_SALARY As Decimal?
     Public GROUP_SALARY As Decimal?
     Public RANK_SALARY As Decimal?

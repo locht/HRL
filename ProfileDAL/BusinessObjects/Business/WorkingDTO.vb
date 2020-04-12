@@ -117,8 +117,8 @@
     Public Property SALE_COMMISION_ID As Decimal?
     Public Property SAL_TYPE_NAME As String
     Public Property SALE_COMMISION_NAME As String
-    Public Property SAL_INS As Decimal?
-    Public Property ALLOWANCE_TOTAL As Decimal?
+    Public Property SAL_INS As Double?
+    Public Property ALLOWANCE_TOTAL As Double?
     Public Property TAX_TABLE_ID As Decimal?
     Public Property TAX_TABLE_Name As String
     Public Property ResponsibilityAllowances As Decimal?
@@ -152,8 +152,8 @@
     Public Property EXRATE_ID As Decimal?
     Public Property EX_RATE_NAME As String
 
-    Public Property SAL_BASIC_MIN As Decimal?
-    Public Property SAL_BASIC_MAX As Decimal?
+    Public Property SAL_BASIC_MIN As Double?
+    Public Property SAL_BASIC_MAX As Double?
     Public Property SAL_RATE As Decimal?
     Public Property IS_HDLD As Decimal?
 
