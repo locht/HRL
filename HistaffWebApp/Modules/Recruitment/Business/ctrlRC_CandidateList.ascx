@@ -187,6 +187,9 @@
                     <tlk:GridBoundColumn HeaderText="<%$ Translate: Loại ứng viên %>" DataField="STATUS_NAME"
                         UniqueName="STATUS_NAME" />
 
+                     <tlk:GridBoundColumn HeaderText="<%$ Translate: Nguồn ứng viên %>" DataField="STATUS_US_NAME"
+                        UniqueName="STATUS_US_NAME" />
+
                 </Columns>
             </MasterTableView>
             <HeaderStyle HorizontalAlign="Center" Width="100px" />

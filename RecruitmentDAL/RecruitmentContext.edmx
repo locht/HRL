@@ -504,6 +504,7 @@
             <Property Name="EMPLOYEE_CODE" Type="nvarchar2" Nullable="true" MaxLength="255" />
             <Property Name="CARE_TITLE_NAME" Type="nvarchar2" Nullable="true" MaxLength="225" />
             <Property Name="RECRUIMENT_WEBSITE" Type="nvarchar2" Nullable="true" MaxLength="225" />
+            <Property Name="STATUS_US" Type="nclob" Nullable="true" />
         </EntityType>
         <EntityType Name="RC_CANDIDATE_EDUCATION">
             <Key>
@@ -2480,6 +2481,7 @@
           <Property Type="String" Name="EMPLOYEE_CODE" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="CARE_TITLE_NAME" MaxLength="225" />
           <Property Type="String" Name="RECRUIMENT_WEBSITE" MaxLength="225" />
+          <Property Type="String" Name="STATUS_US" />
         </EntityType>
         <EntityType Name="RC_CANDIDATE_EDUCATION">
           <Key>
@@ -4352,6 +4354,7 @@
                     <ScalarProperty Name="EMPLOYEE_CODE" ColumnName="EMPLOYEE_CODE" />
                     <ScalarProperty Name="CARE_TITLE_NAME" ColumnName="CARE_TITLE_NAME" />
                     <ScalarProperty Name="RECRUIMENT_WEBSITE" ColumnName="RECRUIMENT_WEBSITE" />
+                    <ScalarProperty Name="STATUS_US" ColumnName="STATUS_US" />
                 </MappingFragment>
             </EntityTypeMapping>
         </EntitySetMapping>
@@ -5714,7 +5717,7 @@
     </edmx:Options>
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram Name="RecruitmentContext" ZoomLevel="39" >
+      <Diagram Name="RecruitmentContext" ZoomLevel="74" >
         <EntityTypeShape EntityType="RecruitmentModel.RC_COST_CENTER" Width="1.5" PointX="1" PointY="25.5" IsExpanded="false" Height="0.4" />
         <EntityTypeShape EntityType="RecruitmentModel.SE_CHOSEN_ORG" Width="1.5" PointX="2.75" PointY="0.75" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="RecruitmentModel.HU_FAMILY" Width="1.5" PointX="3.875" PointY="32.625" Height="0.4" IsExpanded="false" />
@@ -5734,7 +5737,7 @@
         <EntityTypeShape EntityType="RecruitmentModel.OT_OTHER_LIST_TYPE" Width="1.5" PointX="9.125" PointY="16.625" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="RecruitmentModel.RC_PLAN_REG" Width="1.875" PointX="16.375" PointY="14.75" Height="6.5955208333333353" IsExpanded="true" />
         <EntityTypeShape EntityType="RecruitmentModel.HU_CONTRACT_TYPE" Width="2" PointX="20" PointY="0.875" Height="0.4" IsExpanded="false" />
-        <EntityTypeShape EntityType="RecruitmentModel.RC_CANDIDATE" Width="4" PointX="32" PointY="3.375" Height="6.21091796875" IsExpanded="true" />
+        <EntityTypeShape EntityType="RecruitmentModel.RC_CANDIDATE" Width="4" PointX="32" PointY="3.375" Height="6.4032194010416656" IsExpanded="true" />
         <EntityTypeShape EntityType="RecruitmentModel.RC_CANDIDATE_EDUCATION" Width="2.625" PointX="18.375" PointY="14.75" Height="10.633850911458332" IsExpanded="true" />
         <EntityTypeShape EntityType="RecruitmentModel.RC_CANDIDATE_HISTORY" Width="1.5" PointX="20.375" PointY="5.75" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="RecruitmentModel.RC_CANDIDATE_OTHER_INFO" Width="2" PointX="22.75" PointY="11.5" Height="10.633850911458332" IsExpanded="true" />
@@ -5775,8 +5778,8 @@
           <ConnectorPoint PointX="30.875" PointY="29.95" />
         </AssociationConnector>
         <AssociationConnector Association="RecruitmentModel.FK_HE_HEE" >
-          <ConnectorPoint PointX="28.135576923076922" PointY="9.9" />
-          <ConnectorPoint PointX="28.135576923076922" PointY="10.45" />
+          <ConnectorPoint PointX="28.114614134615383" PointY="9.9" />
+          <ConnectorPoint PointX="28.114614134615383" PointY="10.45" />
           <ConnectorPoint PointX="28.296858974358972" PointY="10.45" />
           <ConnectorPoint PointX="28.463525641025637" PointY="10.45" />
           <ConnectorPoint PointX="28.554504455128207" PointY="10.45" />

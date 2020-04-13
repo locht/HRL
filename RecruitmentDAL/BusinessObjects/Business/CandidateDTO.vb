@@ -70,4 +70,7 @@
 
     'Trang tuyển dụng
     Public Property RECRUIMENT_WEBSITE As String
+
+    Public Property STATUS_US As String
+    Public Property STATUS_US_NAME As String
 End Class

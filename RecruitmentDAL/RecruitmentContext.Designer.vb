@@ -18,7 +18,7 @@ Imports System.Runtime.Serialization
 Imports System.Xml.Serialization
 
 
-<Assembly: EdmSchemaAttribute("c5213129-3e4b-42cc-9ac1-35f99309b74e")>
+<Assembly: EdmSchemaAttribute("fa036739-84ee-4c50-9292-8e83f15f5fc2")>
 #Region "EDM Relationship Metadata"
 <Assembly: EdmRelationshipAttribute("RecruitmentModel", "FK_FE_HEH", "HU_EMPLOYEE", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_EMPLOYEE), "HU_EMPLOYEE_HEALTH1", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(HU_EMPLOYEE_HEALTH1), True)>
 <Assembly: EdmRelationshipAttribute("RecruitmentModel", "FK_HE_HEC", "HU_EMPLOYEE", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_EMPLOYEE), "HU_EMPLOYEE_CV", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(HU_EMPLOYEE_CV), True)>
@@ -18266,6 +18266,31 @@ Public Partial Class RC_CANDIDATE
     End Sub
 
     Private Partial Sub OnRECRUIMENT_WEBSITEChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property STATUS_US() As Global.System.String
+        Get
+            Return _STATUS_US
+        End Get
+        Set
+            OnSTATUS_USChanging(value)
+            ReportPropertyChanging("STATUS_US")
+            _STATUS_US = StructuralObject.SetValidValue(value, true)
+            ReportPropertyChanged("STATUS_US")
+            OnSTATUS_USChanged()
+        End Set
+    End Property
+
+    Private _STATUS_US As Global.System.String
+    Private Partial Sub OnSTATUS_USChanging(value As Global.System.String)
+    End Sub
+
+    Private Partial Sub OnSTATUS_USChanged()
     End Sub
 
     #End Region

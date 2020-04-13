@@ -7407,6 +7407,12 @@ Namespace RecruitmentBusiness
         Private STATUS_NAMEField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private STATUS_USField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private STATUS_US_NAMEField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private S_ERRORField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -8079,6 +8085,32 @@ Namespace RecruitmentBusiness
                 If (Object.ReferenceEquals(Me.STATUS_NAMEField, value) <> true) Then
                     Me.STATUS_NAMEField = value
                     Me.RaisePropertyChanged("STATUS_NAME")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property STATUS_US() As String
+            Get
+                Return Me.STATUS_USField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.STATUS_USField, value) <> true) Then
+                    Me.STATUS_USField = value
+                    Me.RaisePropertyChanged("STATUS_US")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property STATUS_US_NAME() As String
+            Get
+                Return Me.STATUS_US_NAMEField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.STATUS_US_NAMEField, value) <> true) Then
+                    Me.STATUS_US_NAMEField = value
+                    Me.RaisePropertyChanged("STATUS_US_NAME")
                 End If
             End Set
         End Property

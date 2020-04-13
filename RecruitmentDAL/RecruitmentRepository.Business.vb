@@ -149,6 +149,7 @@ Partial Class RecruitmentRepository
                 checkEMP = (From p In Context.RC_CANDIDATE Where p.CANDIDATE_CODE = EMPCODE Select p.ID).Count
             Loop Until checkEMP = 0
             objRC_CANDIDATE.CANDIDATE_CODE = EMPCODE
+            objRC_CANDIDATE.STATUS_US = "CANDIDATE_TN"
             Context.RC_CANDIDATE.AddObject(objRC_CANDIDATE)
             Context.RC_CANDIDATE_EXPECT.AddObject(objRC_CANDIDATE_EXPECT)
             'Dim objRC_CANDIDATE_TRAINSINGER As New RC_CANDIDATE_TRAINSINGER
@@ -1956,6 +1957,7 @@ Partial Class RecruitmentRepository
                         From cv In Context.RC_CANDIDATE_CV.Where(Function(f) p.ID = f.CANDIDATE_ID).DefaultIfEmpty
                         From status In Context.OT_OTHER_LIST.Where(Function(f) f.CODE = p.STATUS_ID).DefaultIfEmpty
                         From id_place In Context.HU_PROVINCE.Where(Function(f) f.ID = cv.ID_PLACE).DefaultIfEmpty
+                        From s In Context.OT_OTHER_LIST.Where(Function(f) f.CODE = p.STATUS_US).DefaultIfEmpty
                         Order By p.CREATED_DATE Descending
 
             If _filter.RC_PROGRAM_ID IsNot Nothing Then
@@ -1980,6 +1982,8 @@ Partial Class RecruitmentRepository
                          .IS_PONTENTIAL = p.p.IS_PONTENTIAL,
                          .IS_REHIRE = p.p.IS_REHIRE,
                          .MODIFIED_DATE = p.p.MODIFIED_DATE,
+                         .STATUS_US = p.p.STATUS_US,
+                         .STATUS_US_NAME = p.s.NAME_VN,
                          .STATUS_ID = p.p.STATUS_ID,
                          .STATUS_NAME = If(Not p.p.STATUS_ID <> "PONTENTIAL", statusName, p.status.NAME_VN)}) ' p.status.NAME_VN
 
@@ -2347,6 +2351,7 @@ Partial Class RecruitmentRepository
             objEmpData.FILE_NAME = objEmp.FILE_NAME
             objEmpData.CARE_TITLE_NAME = objEmp.CARE_TITLE_NAME
             objEmpData.RECRUIMENT_WEBSITE = objEmp.RECRUIMENT_WEBSITE
+            objEmpData.STATUS_US = "CANDIDATE_TN"
             If objEmp.FILE_SIZE IsNot Nothing Then
                 FileInsert(objEmp.ID, pathCandidate, objEmp.FILE_SIZE)
             End If
@@ -5102,6 +5107,7 @@ Partial Class RecruitmentRepository
                 'objEmpData.WORK = objEmp.WORK
                 'objEmpData.FILE_NAME = objEmp.FILE_NAME
                 objEmpData.STATUS_ID = "DUDK"
+                objEmpData.STATUS_US = "CANDIDATE_TN"
                 If objEmp.FILE_SIZE IsNot Nothing Then
                     FileInsert(objEmp.ID, pathCandidate, objEmp.FILE_SIZE)
                 End If

@@ -1,8 +1,8 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for Oracle database
 -- --------------------------------------------------
--- Date Created: 03/03/2020 9:10:31 AM
--- Generated from EDMX file: F:\WORKING\acv_19\RecruitmentDAL\RecruitmentContext.edmx
+-- Date Created: 4/13/2020 9:14:21 AM
+-- Generated from EDMX file: D:\SOURCE_GIT_NEW\SOURCR_ACV_NEW\RecruitmentDAL\RecruitmentContext.edmx
 -- --------------------------------------------------
 
 -- --------------------------------------------------
@@ -534,7 +534,8 @@ CREATE TABLE "dbo"."RC_CANDIDATE" (
    "STATUS_ID" NCLOB NULL,
    "EMPLOYEE_CODE" NVARCHAR2(255) NULL,
    "CARE_TITLE_NAME" NVARCHAR2(225) NULL,
-   "RECRUIMENT_WEBSITE" NVARCHAR2(225) NULL
+   "RECRUIMENT_WEBSITE" NVARCHAR2(225) NULL,
+   "STATUS_US" NCLOB NULL
 );
 
 -- Creating table 'RC_CANDIDATE_EDUCATION'
