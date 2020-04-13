@@ -77,6 +77,15 @@ Partial Public Class ctrlRC_ProgramUpdateResult
     Protected WithEvents lblCode As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
+    '''lblStatus control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblStatus As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
     '''lblJobName control.
     '''</summary>
     '''<remarks>
@@ -120,6 +129,15 @@ Partial Public Class ctrlRC_ProgramUpdateResult
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblNumberHaveRecruit As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''lblReason control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblReason As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
     '''cmdExportExcel control.

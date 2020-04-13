@@ -142,6 +142,7 @@ Public Class ctrlRC_ProgramInterviewResult
             cbbStatus.SelectedIndex = 0
             txtAssessment.Text = String.Empty
             txtComment.Text = String.Empty
+            lblProctor.Text = String.Empty
         Catch ex As Exception
 
         End Try
@@ -175,6 +176,7 @@ Public Class ctrlRC_ProgramInterviewResult
         dic.Add("IS_PASS", cbbStatus)
         dic.Add("COMMENT_INFO", txtComment)
         dic.Add("ASSESSMENT_INFO", txtAssessment)
+        dic.Add("PV_PERSON", lblProctor)
         Utilities.OnClientRowSelectedChanged(rgDataInterview, dic)
     End Sub
 
@@ -229,6 +231,8 @@ Public Class ctrlRC_ProgramInterviewResult
                             store.UPDATE_CANDIDATE_STATUS(Int32.Parse(dataItem("ID").Text), "KDAT")
                         ElseIf obj.IS_PASS = 1 Then
                             store.UPDATE_CANDIDATE_STATUS(Int32.Parse(dataItem("ID").Text), "DAT")
+                        ElseIf obj.IS_PASS = -1 Then
+                            store.UPDATE_CANDIDATE_STATUS(Int32.Parse(dataItem("ID").Text), "PROCESS")
                         End If
 
                         If IsSaveCompleted Then
@@ -236,6 +240,7 @@ Public Class ctrlRC_ProgramInterviewResult
                             CurrentState = CommonMessage.STATE_NORMAL
                             UpdateControlState()
                             rgDataInterview.Rebind()
+                            gridCadidate.Rebind()
                             ResetText()
                         Else
                             ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), NotifyType.Error)

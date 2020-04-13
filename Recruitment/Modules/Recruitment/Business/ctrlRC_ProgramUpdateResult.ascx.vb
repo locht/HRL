@@ -51,7 +51,8 @@ Public Class ctrlRC_ProgramUpdateResult
             lblRequestNumber.Text = obj.REQUEST_NUMBER
             lblNumberHaveRecruit.Text = obj.CANDIDATE_RECEIVED
             lblRecordreceived.Text = obj.CANDIDATE_COUNT
-
+            lblStatus.Text = obj.STATUS_NAME
+            lblReason.Text = obj.RECRUIT_REASON
             CurrentState = CommonMessage.STATE_NORMAL
 
         Catch ex As Exception
