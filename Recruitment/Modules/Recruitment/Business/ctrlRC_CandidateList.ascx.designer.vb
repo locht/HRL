@@ -347,6 +347,15 @@ Partial Public Class ctrlRC_CandidateList
     Protected WithEvents cmdYCTDKhac As Global.Telerik.Web.UI.RadButton
 
     '''<summary>
+    '''btnCadidateDtlFamily control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btnCadidateDtlFamily As Global.Telerik.Web.UI.RadButton
+
+    '''<summary>
     '''RadWindowManager1 control.
     '''</summary>
     '''<remarks>

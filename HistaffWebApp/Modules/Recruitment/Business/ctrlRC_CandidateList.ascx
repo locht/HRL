@@ -186,7 +186,6 @@
                         UniqueName="IS_PONTENTIAL" SortExpression="IS_PONTENTIAL" ShowFilterIcon="true" />--%>
                     <tlk:GridBoundColumn HeaderText="<%$ Translate: Loại ứng viên %>" DataField="STATUS_NAME"
                         UniqueName="STATUS_NAME" />
-
                      <tlk:GridBoundColumn HeaderText="<%$ Translate: Nguồn ứng viên %>" DataField="STATUS_US_NAME"
                         UniqueName="STATUS_US_NAME" />
 
@@ -229,6 +228,11 @@
                 </td>
                 <td>
                     <tlk:RadButton ID="cmdYCTDKhac" runat="server" Text="<%$ Translate: Chuyển sang vị trí tuyển dụng khác %>">
+                    </tlk:RadButton>
+                </td>
+                 <td>
+                    <tlk:RadButton ID="btnCadidateDtlFamily" runat="server" Text="<%$ Translate: Bổ sung quá trình thân nhân %>"
+                    OnClientClicking="btnCadidateDtlFamilyClick">
                     </tlk:RadButton>
                 </td>
             </tr>
@@ -348,8 +352,9 @@
             oWindow.moveTo(pos.left, pos.top);
             oWindow.setSize($(window).width(), desiredHeight);
         }
- function btnPontentialClick(sender, args) {
-           var orgID = $get("<%=hidOrg.ClientID %>").value;
+
+        function btnPontentialClick(sender, args) {
+            var orgID = $get("<%=hidOrg.ClientID %>").value;
             var titleID = $get("<%=hidTitle.ClientID %>").value;
             var programID = $get("<%=hidProgramID.ClientID %>").value;
             var oWindow = radopen('Dialog.aspx?mid=Recruitment&fid=ctrlRC_FindCandidate&group=Business&ORGID=' +
@@ -400,6 +405,15 @@
         function postBack(url) {
             var ajaxManager = $find("<%# AjaxManagerId %>");
             ajaxManager.ajaxRequest(url); //Making ajax request with the argument
+        }
+        function btnCadidateDtlFamilyClick(sender, eventArgs) {
+            OpenEditWindow("Edit");
+            args.set_cancel(true);
+        }
+
+        function OpenEditWindow(states) {
+            var empId = $find('<%= rgCandidateList.ClientID%>').get_masterTableView().get_selectedItems()[0].getDataKeyValue('ID');
+            window.open('/Default.aspx?mid=Recruitment&fid=ctrlRC_CadidateListDtl&group=Business&emp=' + empId + '&Place=ctrlRC_CadidateListDtlFamily&state=' + states, "_self");
         }
 
     </script>

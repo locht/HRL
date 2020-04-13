@@ -726,13 +726,16 @@ Partial Class ProfileRepository
                 .ORG_NAME5 = huv_org.ORG_NAME5
                      }).FirstOrDefault
                 WriteExceptionLog(Nothing, "Getmployee1", "iProfile")
-                query.ListAttachFiles = (From p In Context.HU_ATTACHFILES.Where(Function(f) f.FK_ID = empID)
+                Dim countAttachfiles As Decimal = (From p In Context.HU_ATTACHFILES.Where(Function(f) f.FK_ID = empID)).Count
+                If countAttachfiles > 0 Then
+                    query.ListAttachFiles = (From p In Context.HU_ATTACHFILES.Where(Function(f) f.FK_ID = empID)
                                       Select New AttachFilesDTO With {.ID = p.ID,
                                                                       .FK_ID = p.FK_ID,
                                                                       .FILE_TYPE = p.FILE_TYPE,
                                                                       .FILE_PATH = p.FILE_PATH,
                                                                       .CONTROL_NAME = p.CONTROL_NAME,
                                                                       .ATTACHFILE_NAME = p.ATTACHFILE_NAME}).ToList()
+                End If
                 Dim emp As New EmployeeDTO
                 emp = query
                 WriteExceptionLog(Nothing, "Getmployee2", "iProfile")

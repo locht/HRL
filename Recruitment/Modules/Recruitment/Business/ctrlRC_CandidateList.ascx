@@ -230,6 +230,11 @@
                     <tlk:RadButton ID="cmdYCTDKhac" runat="server" Text="<%$ Translate: Chuyển sang vị trí tuyển dụng khác %>">
                     </tlk:RadButton>
                 </td>
+                 <td>
+                    <tlk:RadButton ID="btnCadidateDtlFamily" runat="server" Text="<%$ Translate: Bổ sung quá trình thân nhân %>"
+                    OnClientClicking="btnCadidateDtlFamilyClick">
+                    </tlk:RadButton>
+                </td>
             </tr>
         </table>
     </tlk:RadPane>
@@ -400,6 +405,15 @@
         function postBack(url) {
             var ajaxManager = $find("<%# AjaxManagerId %>");
             ajaxManager.ajaxRequest(url); //Making ajax request with the argument
+        }
+        function btnCadidateDtlFamilyClick(sender, eventArgs) {
+            OpenEditWindow("Edit");
+            args.set_cancel(true);
+        }
+
+        function OpenEditWindow(states) {
+            var empId = $find('<%= rgCandidateList.ClientID%>').get_masterTableView().get_selectedItems()[0].getDataKeyValue('ID');
+            window.open('/Default.aspx?mid=Recruitment&fid=ctrlRC_CadidateListDtl&group=Business&emp=' + empId + '&Place=ctrlRC_CadidateListDtlFamily&state=' + states, "_self");
         }
 
     </script>
