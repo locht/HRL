@@ -18,7 +18,7 @@ Imports System.Runtime.Serialization
 Imports System.Xml.Serialization
 
 
-<Assembly: EdmSchemaAttribute("fa036739-84ee-4c50-9292-8e83f15f5fc2")>
+<Assembly: EdmSchemaAttribute("0d70df05-3b78-4841-b143-c6e8039620c8")>
 #Region "EDM Relationship Metadata"
 <Assembly: EdmRelationshipAttribute("RecruitmentModel", "FK_FE_HEH", "HU_EMPLOYEE", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_EMPLOYEE), "HU_EMPLOYEE_HEALTH1", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(HU_EMPLOYEE_HEALTH1), True)>
 <Assembly: EdmRelationshipAttribute("RecruitmentModel", "FK_HE_HEC", "HU_EMPLOYEE", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_EMPLOYEE), "HU_EMPLOYEE_CV", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(HU_EMPLOYEE_CV), True)>
@@ -26813,6 +26813,31 @@ Public Partial Class RC_CANDIDATE_TRAINNING
     End Sub
 
     Private Partial Sub OnTYPE_TRAIN_NAMEChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property COST() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _COST
+        End Get
+        Set
+            OnCOSTChanging(value)
+            ReportPropertyChanging("COST")
+            _COST = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("COST")
+            OnCOSTChanged()
+        End Set
+    End Property
+
+    Private _COST As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnCOSTChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnCOSTChanged()
     End Sub
 
     #End Region

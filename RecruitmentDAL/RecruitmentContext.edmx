@@ -1751,6 +1751,7 @@
             <Property Name="NOTE" Type="nvarchar2" Nullable="true" MaxLength="1000" />
             <Property Name="CERTIFICATE_CODE" Type="nvarchar2" Nullable="true" MaxLength="50" />
             <Property Name="TYPE_TRAIN_NAME" Type="nvarchar2" Nullable="true" MaxLength="50" />
+            <Property Name="COST" Type="number" Nullable="true" Precision="38" />
         </EntityType>
         <EntityType Name="RC_PLAN_YEAR">
             <Key>
@@ -3910,6 +3911,7 @@
           <Property Type="String" Name="NOTE" MaxLength="1000" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="CERTIFICATE_CODE" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="TYPE_TRAIN_NAME" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="Decimal" Name="COST" />
         </EntityType>
         <EntityType Name="RC_PLAN_YEAR">
           <Key>
@@ -5647,6 +5649,7 @@
                     <ScalarProperty Name="NOTE" ColumnName="NOTE" />
                     <ScalarProperty Name="CERTIFICATE_CODE" ColumnName="CERTIFICATE_CODE" />
                     <ScalarProperty Name="TYPE_TRAIN_NAME" ColumnName="TYPE_TRAIN_NAME" />
+                    <ScalarProperty Name="COST" ColumnName="COST" />
                 </MappingFragment>
             </EntityTypeMapping>
         </EntitySetMapping>
@@ -5880,7 +5883,7 @@
         <EntityTypeShape EntityType="RecruitmentModel.SE_USER_REPORT" Width="1.5" PointX="0.75" PointY="3.75" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="RecruitmentModel.HU_WARD" Width="1.5" PointX="8.375" PointY="4.75" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="RecruitmentModel.HU_ORGANIZATION_V" Width="2.625" PointX="3.375" PointY="4" Height="7.1724251302083246" />
-        <EntityTypeShape EntityType="RecruitmentModel.RC_CANDIDATE_TRAINNING" Width="1.5" PointX="10.375" PointY="2.75" Height="6.5955208333333246" />
+        <EntityTypeShape EntityType="RecruitmentModel.RC_CANDIDATE_TRAINNING" Width="1.5" PointX="10.375" PointY="2.75" Height="6.787822265625" />
         <EntityTypeShape EntityType="RecruitmentModel.RC_PLAN_YEAR" Width="1.5" PointX="20.375" PointY="8.75" Height="5.8263151041666674" />
         <EntityTypeShape EntityType="RecruitmentModel.RC_RECRUITMENT_INSTEAD" Width="3.625" PointX="36.625" PointY="3.375" Height="2.7494921874999996" />
         </Diagram>

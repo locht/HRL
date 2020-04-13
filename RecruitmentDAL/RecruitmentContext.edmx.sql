@@ -1,8 +1,8 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for Oracle database
 -- --------------------------------------------------
--- Date Created: 4/13/2020 9:14:21 AM
--- Generated from EDMX file: D:\SOURCE_GIT_NEW\SOURCR_ACV_NEW\RecruitmentDAL\RecruitmentContext.edmx
+-- Date Created: 04/13/2020 3:39:08 PM
+-- Generated from EDMX file: F:\WORKING\acv_19\RecruitmentDAL\RecruitmentContext.edmx
 -- --------------------------------------------------
 
 -- --------------------------------------------------
@@ -1733,7 +1733,8 @@ CREATE TABLE "dbo"."RC_CANDIDATE_TRAINNING" (
    "CONTENT_LEVEL" NVARCHAR2(500) NULL,
    "NOTE" NVARCHAR2(1000) NULL,
    "CERTIFICATE_CODE" NVARCHAR2(50) NULL,
-   "TYPE_TRAIN_NAME" NVARCHAR2(50) NULL
+   "TYPE_TRAIN_NAME" NVARCHAR2(50) NULL,
+   "COST" NUMBER(38,0) NULL
 );
 
 -- Creating table 'RC_PLAN_YEAR'
