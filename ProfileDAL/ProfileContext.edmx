@@ -161,6 +161,7 @@
             <EntitySet Name="HU_SAFELABOR_MNG" EntityType="ProfileModel.Store.HU_SAFELABOR_MNG" store:Type="Tables"  />
             <EntitySet Name="HU_SAFELABOR_MNG_EMP" EntityType="ProfileModel.Store.HU_SAFELABOR_MNG_EMP" store:Type="Tables"  />
             <EntitySet Name="HU_HEALTH_MNG" EntityType="ProfileModel.Store.HU_HEALTH_MNG" store:Type="Tables"  />
+            <EntitySet Name="HU_DEDUCT" EntityType="ProfileModel.Store.HU_DEDUCT" store:Type="Tables"  />
             <EntitySet Name="SE_USER_REPORT" EntityType="ProfileModel.Store.SE_USER_REPORT" store:Type="Tables"  />
             <AssociationSet Name="FK_HUN_HUP" Association="ProfileModel.Store.FK_HU_NAT_HU_PRO">
                 <End Role="HU_NATION" EntitySet="HU_NATION" />
@@ -4130,6 +4131,44 @@
             <Property Name="PP_DIEU_TRI" Type="nvarchar2" Nullable="true" MaxLength="255" />
             <Property Name="KQ_DIEU_TRI" Type="nvarchar2" Nullable="true" MaxLength="255" />
         </EntityType>
+        <EntityType Name="HU_DEDUCT">
+            <Key>
+                <PropertyRef Name="ID" />
+            </Key>
+            <Property Name="ID" Type="number" Nullable="false" Precision="38" />
+            <Property Name="FULLNAME" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="RELATION_ID" Type="number" Nullable="true" Precision="38" />
+            <Property Name="BIRTH_DATE" Type="date" Nullable="true" />
+            <Property Name="GENDER" Type="number" Nullable="true" Precision="38" />
+            <Property Name="DEDUCT_FROM" Type="date" Nullable="true" />
+            <Property Name="DEDUCT_TO" Type="date" Nullable="true" />
+            <Property Name="DEDUCT_REG" Type="date" Nullable="true" />
+            <Property Name="ADDRESS" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="PROVINCE_ID" Type="number" Nullable="true" Precision="38" />
+            <Property Name="DISTRICT_ID" Type="number" Nullable="true" Precision="38" />
+            <Property Name="WARD_ID" Type="number" Nullable="true" Precision="38" />
+            <Property Name="ID_NO" Type="varchar2" Nullable="true" MaxLength="50" />
+            <Property Name="ID_NO_DATE" Type="date" Nullable="true" />
+            <Property Name="ID_NO_PLACE" Type="number" Nullable="true" Precision="38" />
+            <Property Name="TAXTATION" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="TAXTATION_DATE" Type="date" Nullable="true" />
+            <Property Name="TAXTATION_PLACE" Type="nvarchar2" Nullable="true" MaxLength="500" />
+            <Property Name="BIRTH_CODE" Type="varchar2" Nullable="true" MaxLength="50" />
+            <Property Name="QUYEN" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="BIRTH_NATION_ID" Type="number" Nullable="true" Precision="38" />
+            <Property Name="BIRTH_PROVINCE_ID" Type="number" Nullable="true" Precision="38" />
+            <Property Name="BIRTH_DISTRICT_ID" Type="number" Nullable="true" Precision="38" />
+            <Property Name="BIRTH_WARD_ID" Type="number" Nullable="true" Precision="38" />
+            <Property Name="BIRTH_ADDRESS" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="DIE_DATE" Type="date" Nullable="true" />
+            <Property Name="REMARK" Type="nvarchar2" Nullable="true" MaxLength="1023" />
+            <Property Name="MODIFIED_DATE" Type="date" Nullable="true" />
+            <Property Name="CREATED_BY" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="CREATED_LOG" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="CREATED_DATE" Type="date" Nullable="true" />
+            <Property Name="MODIFIED_BY" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="MODIFIED_LOG" Type="nvarchar2" Nullable="true" MaxLength="255" />
+        </EntityType>
         <EntityType Name="SE_USER_REPORT">
             <Key>
                 <PropertyRef Name="SE_REPORT_ID" />
@@ -4776,6 +4815,7 @@
           <EntitySet Name="HU_SAFELABOR_MNG" EntityType="ProfileModel.HU_SAFELABOR_MNG" />
           <EntitySet Name="HU_SAFELABOR_MNG_EMP" EntityType="ProfileModel.HU_SAFELABOR_MNG_EMP" />
           <EntitySet Name="HU_HEALTH_MNG" EntityType="ProfileModel.HU_HEALTH_MNG" />
+          <EntitySet Name="HU_DEDUCT" EntityType="ProfileModel.HU_DEDUCT" />
         </EntityContainer>
         <EntityType Name="HU_PROVINCE">
           <Key>
@@ -9028,6 +9068,44 @@
           <Property Type="String" Name="PP_DIEU_TRI" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="KQ_DIEU_TRI" MaxLength="255" FixedLength="false" Unicode="true" />
         </EntityType>
+        <EntityType Name="HU_DEDUCT">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Decimal" Name="ID" Nullable="false" Precision="38" Scale="0" />
+          <Property Type="String" Name="FULLNAME" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="Decimal" Name="RELATION_ID" Precision="38" Scale="0" />
+          <Property Type="DateTime" Name="BIRTH_DATE" />
+          <Property Type="Decimal" Name="GENDER" Precision="38" Scale="0" />
+          <Property Type="DateTime" Name="DEDUCT_FROM" />
+          <Property Type="DateTime" Name="DEDUCT_TO" />
+          <Property Type="DateTime" Name="DEDUCT_REG" />
+          <Property Type="String" Name="ADDRESS" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="Decimal" Name="PROVINCE_ID" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="DISTRICT_ID" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="WARD_ID" Precision="38" Scale="0" />
+          <Property Type="String" Name="ID_NO" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="ID_NO_DATE" />
+          <Property Type="Decimal" Name="ID_NO_PLACE" Precision="38" Scale="0" />
+          <Property Type="String" Name="TAXTATION" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="TAXTATION_DATE" />
+          <Property Type="String" Name="TAXTATION_PLACE" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="BIRTH_CODE" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="QUYEN" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="Decimal" Name="BIRTH_NATION_ID" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="BIRTH_PROVINCE_ID" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="BIRTH_DISTRICT_ID" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="BIRTH_WARD_ID" Precision="38" Scale="0" />
+          <Property Type="String" Name="BIRTH_ADDRESS" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="DIE_DATE" />
+          <Property Type="String" Name="REMARK" MaxLength="1023" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="MODIFIED_DATE" />
+          <Property Type="String" Name="CREATED_BY" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="CREATED_LOG" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="CREATED_DATE" />
+          <Property Type="String" Name="MODIFIED_BY" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="MODIFIED_LOG" MaxLength="255" FixedLength="false" Unicode="true" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -13027,6 +13105,45 @@
                 </MappingFragment>
             </EntityTypeMapping>
         </EntitySetMapping>
+        <EntitySetMapping Name="HU_DEDUCT">
+            <EntityTypeMapping TypeName="IsTypeOf(ProfileModel.HU_DEDUCT)">
+                <MappingFragment StoreEntitySet="HU_DEDUCT">
+                    <ScalarProperty Name="ID" ColumnName="ID" />
+                    <ScalarProperty Name="FULLNAME" ColumnName="FULLNAME" />
+                    <ScalarProperty Name="RELATION_ID" ColumnName="RELATION_ID" />
+                    <ScalarProperty Name="BIRTH_DATE" ColumnName="BIRTH_DATE" />
+                    <ScalarProperty Name="GENDER" ColumnName="GENDER" />
+                    <ScalarProperty Name="DEDUCT_FROM" ColumnName="DEDUCT_FROM" />
+                    <ScalarProperty Name="DEDUCT_TO" ColumnName="DEDUCT_TO" />
+                    <ScalarProperty Name="DEDUCT_REG" ColumnName="DEDUCT_REG" />
+                    <ScalarProperty Name="ADDRESS" ColumnName="ADDRESS" />
+                    <ScalarProperty Name="PROVINCE_ID" ColumnName="PROVINCE_ID" />
+                    <ScalarProperty Name="DISTRICT_ID" ColumnName="DISTRICT_ID" />
+                    <ScalarProperty Name="WARD_ID" ColumnName="WARD_ID" />
+                    <ScalarProperty Name="ID_NO" ColumnName="ID_NO" />
+                    <ScalarProperty Name="ID_NO_DATE" ColumnName="ID_NO_DATE" />
+                    <ScalarProperty Name="ID_NO_PLACE" ColumnName="ID_NO_PLACE" />
+                    <ScalarProperty Name="TAXTATION" ColumnName="TAXTATION" />
+                    <ScalarProperty Name="TAXTATION_DATE" ColumnName="TAXTATION_DATE" />
+                    <ScalarProperty Name="TAXTATION_PLACE" ColumnName="TAXTATION_PLACE" />
+                    <ScalarProperty Name="BIRTH_CODE" ColumnName="BIRTH_CODE" />
+                    <ScalarProperty Name="QUYEN" ColumnName="QUYEN" />
+                    <ScalarProperty Name="BIRTH_NATION_ID" ColumnName="BIRTH_NATION_ID" />
+                    <ScalarProperty Name="BIRTH_PROVINCE_ID" ColumnName="BIRTH_PROVINCE_ID" />
+                    <ScalarProperty Name="BIRTH_DISTRICT_ID" ColumnName="BIRTH_DISTRICT_ID" />
+                    <ScalarProperty Name="BIRTH_WARD_ID" ColumnName="BIRTH_WARD_ID" />
+                    <ScalarProperty Name="BIRTH_ADDRESS" ColumnName="BIRTH_ADDRESS" />
+                    <ScalarProperty Name="DIE_DATE" ColumnName="DIE_DATE" />
+                    <ScalarProperty Name="REMARK" ColumnName="REMARK" />
+                    <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+                    <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+                    <ScalarProperty Name="CREATED_LOG" ColumnName="CREATED_LOG" />
+                    <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+                    <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+                    <ScalarProperty Name="MODIFIED_LOG" ColumnName="MODIFIED_LOG" />
+                </MappingFragment>
+            </EntityTypeMapping>
+        </EntitySetMapping>
         <AssociationSetMapping Name="SE_USER_REPORT" TypeName="ProfileModel.SE_USER_REPORT" StoreEntitySet="SE_USER_REPORT">
             <EndProperty Name="SE_REPORT">
                 <ScalarProperty Name="ID" ColumnName="SE_REPORT_ID" />
@@ -13366,6 +13483,7 @@
         <EntityTypeShape EntityType="ProfileModel.HU_SAFELABOR_MNG" Width="1.5" PointX="18.375" PointY="32.75" Height="4.6725065104166674" />
         <EntityTypeShape EntityType="ProfileModel.HU_SAFELABOR_MNG_EMP" Width="1.5" PointX="27.375" PointY="32.75" Height="4.864807942708353" />
         <EntityTypeShape EntityType="ProfileModel.HU_HEALTH_MNG" Width="1.5" PointX="14.375" PointY="31.75" Height="12.364563802083353" />
+        <EntityTypeShape EntityType="ProfileModel.HU_DEDUCT" Width="1.5" PointX="0.75" PointY="34.125" Height="7.3647265624999818" />
         </Diagram>
     </Diagrams>
   </Designer>
