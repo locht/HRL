@@ -265,6 +265,7 @@ Partial Class ProfileRepository
                         From emp_stt In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.EMP_STATUS).DefaultIfEmpty
                         From labor In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.OBJECT_LABOR).DefaultIfEmpty
                         From gender In Context.OT_OTHER_LIST.Where(Function(f) f.ID = pv.GENDER).DefaultIfEmpty
+                        From job_pos In Context.HU_JOB_POSITION.Where(Function(f) f.ID = p.JOB_POSITION).DefaultIfEmpty
                         Order By p.EMPLOYEE_CODE
 
             Dim lst = query.Select(Function(p) New EmployeeDTO With {
@@ -302,7 +303,8 @@ Partial Class ProfileRepository
                              .GENDER_NAME = p.gender.NAME_VN,
                              .MODIFIED_DATE = p.p.MODIFIED_DATE,
                              .EMP_STATUS = p.p.EMP_STATUS,
-                             .EMP_STATUS_NAME = If(p.p.IS_KIEM_NHIEM IsNot Nothing, str, p.emp_stt.NAME_VN)})
+                             .EMP_STATUS_NAME = If(p.p.IS_KIEM_NHIEM IsNot Nothing, str, p.emp_stt.NAME_VN),
+                             .JOB_POSITION_NAME = p.job_pos.JOB_NAME})
 
             If _filter.TITLE_ID IsNot Nothing Then
                 lst = lst.Where(Function(p) p.TITLE_ID = _filter.TITLE_ID)
@@ -381,6 +383,10 @@ Partial Class ProfileRepository
 
             If _filter.EMP_STATUS_NAME <> "" Then
                 lst = lst.Where(Function(p) p.EMP_STATUS_NAME.ToUpper().IndexOf(_filter.EMP_STATUS_NAME.ToUpper) >= 0)
+            End If
+
+            If _filter.JOB_POSITION_NAME <> "" Then
+                lst = lst.Where(Function(p) p.JOB_POSITION_NAME.ToUpper().IndexOf(_filter.JOB_POSITION_NAME.ToUpper) >= 0)
             End If
 
             If _filter.MustHaveContract Then

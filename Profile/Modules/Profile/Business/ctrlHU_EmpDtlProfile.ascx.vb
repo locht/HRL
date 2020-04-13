@@ -108,6 +108,15 @@ Public Class ctrlHU_EmpDtlProfile
         End Set
     End Property
 
+    Property dtDirectMng As DataTable
+        Get
+            Return ViewState(Me.ID & "_dtDirectMng")
+        End Get
+        Set(value As DataTable)
+            ViewState(Me.ID & "_dtDirectMng") = value
+        End Set
+    End Property
+
 #End Region
 
 #Region "Page"
@@ -212,10 +221,13 @@ Public Class ctrlHU_EmpDtlProfile
                         End If
                         If IsNumeric(EmployeeInfo.JOB_POSITION) Then
                             cboJobPosition.SelectedValue = EmployeeInfo.JOB_POSITION
-                            dtData = store.GET_DIRECT_MANAGER_BY_JOB_POS(EmployeeInfo.JOB_POSITION)
-                            FillRadCombobox(cboDirectManager, dtData, "FULLNAME_VN", "ID", True)
+                            dtDirectMng = store.GET_DIRECT_MANAGER_BY_JOB_POS(EmployeeInfo.JOB_POSITION)
+                            FillRadCombobox(cboDirectManager, dtDirectMng, "FULLNAME_VN", "ID", True)
                         End If
 
+                        If cboDirectManager.SelectedValue <> "" Then
+                            txtmanager.Text = (From p In dtDirectMng Where p("ID") = cboDirectManager.SelectedValue Select p("TITLE_NAME")).FirstOrDefault
+                        End If
 
                         txtTitleGroup.Text = EmployeeInfo.TITLE_GROUP_NAME
                         rdJoinDate.SelectedDate = EmployeeInfo.JOIN_DATE
@@ -2198,6 +2210,16 @@ Public Class ctrlHU_EmpDtlProfile
             Throw ex
         End Try
     End Sub
+
+    Private Sub cboDirectManager_SelectedIndexChanged(sender As Object, e As Telerik.Web.UI.RadComboBoxSelectedIndexChangedEventArgs) Handles cboDirectManager.SelectedIndexChanged
+        Try
+            If cboDirectManager.SelectedValue <> "" And dtDirectMng IsNot Nothing Then
+                txtmanager.Text = (From p In dtDirectMng Where p("ID") = cboDirectManager.SelectedValue Select p("TITLE_NAME")).FirstOrDefault
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
 #End Region
 
 #Region "Custom"
@@ -2343,9 +2365,9 @@ Public Class ctrlHU_EmpDtlProfile
             If cboEmpStatus.SelectedValue <> "" Then
                 EmployeeInfo.EMP_STATUS = cboEmpStatus.SelectedValue
             End If
-            If cboJobDescription.SelectedValue <> "" Then
-                EmployeeInfo.JOB_DESCRIPTION = cboJobDescription.SelectedValue
-            End If
+            'If cboJobDescription.SelectedValue <> "" Then
+            '    EmployeeInfo.JOB_DESCRIPTION = cboJobDescription.SelectedValue
+            'End If
             'If cboJobPosition.SelectedValue <> "" Then
             '    EmployeeInfo.JOB_POSITION = cboJobPosition.SelectedValue
             'End If
@@ -2907,6 +2929,7 @@ Public Class ctrlHU_EmpDtlProfile
         End Try
     End Sub
 #End Region
+
 
 
 

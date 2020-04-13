@@ -392,7 +392,7 @@
                                             <%--<span class="lbReq">*</span>--%>
                                         </td>
                                         <td>
-                                            <tlk:RadComboBox ID="cboDirectManager" runat="server">
+                                            <tlk:RadComboBox ID="cboDirectManager" runat="server" AutoPostBack="true" CausesValidation="false">
                                             </tlk:RadComboBox>
                                         </td>
                                         <td class="lb3">
