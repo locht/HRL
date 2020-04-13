@@ -1492,10 +1492,10 @@
                             <ContentTemplate>
                                 <table class="table-form" style="width: 99%" onkeydown="return (event.keyCode!=13)">
                                     <tr>
-                                        <td class="lb3">
+                                        <td class="lb3" style="display:none">
                                             <asp:Label runat="server" ID="Label20" Text="Mã số thuế TNCN"></asp:Label>
                                         </td>
-                                        <td>
+                                        <td style="display:none">
                                             <tlk:RadTextBox runat="server" ID="txtTNCN_NO">
                                             </tlk:RadTextBox>
                                         </td>

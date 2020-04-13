@@ -51,10 +51,6 @@ Public Class ctrlRC_ProgramExams
             dic.Add("ID", hidID)
             dic.Add("NAME", txtName)
             dic.Add("EXAMS_ORDER", rntxtExamsOrder)
-            dic.Add("POINT_LADDER", rntxtPointLadder)
-            dic.Add("POINT_PASS", rntxtPointPass)
-            dic.Add("IS_PV", chkIsPV)
-            dic.Add("COEFFICIENT", rntxtCoefficient)
             dic.Add("REMARK", txtRemark)
             Utilities.OnClientRowSelectedChanged(rgData, dic)
         Catch ex As Exception
@@ -71,27 +67,12 @@ Public Class ctrlRC_ProgramExams
                     hidID.Value = slItem.GetDataKeyValue("ID").ToString
                 End If
                 txtName.Text = slItem.GetDataKeyValue("NAME").ToString()
-                If IsNumeric(slItem.GetDataKeyValue("POINT_LADDER")) Then
-                    rntxtPointLadder.Value = slItem.GetDataKeyValue("POINT_LADDER").ToString
-                End If
-                If IsNumeric(slItem.GetDataKeyValue("POINT_PASS")) Then
-                    rntxtPointPass.Value = slItem.GetDataKeyValue("POINT_PASS").ToString
-                End If
+                
+                
                 If IsNumeric(slItem.GetDataKeyValue("EXAMS_ORDER")) Then
                     rntxtExamsOrder.Value = slItem.GetDataKeyValue("EXAMS_ORDER").ToString
                 End If
-                If IsNumeric(slItem.GetDataKeyValue("COEFFICIENT")) Then
-                    rntxtCoefficient.Value = slItem.GetDataKeyValue("COEFFICIENT").ToString
-                End If
-                If slItem.GetDataKeyValue("IS_PV") = True Then
-                    chkIsPV.Checked = True
-                    rntxtPointLadder.Enabled = False
-                    rntxtPointPass.Enabled = False
-                Else
-                    chkIsPV.Checked = False
-                    rntxtPointLadder.Enabled = True
-                    rntxtPointPass.Enabled = True
-                End If
+                
                 If slItem.GetDataKeyValue("REMARK") IsNot Nothing Then
                     txtRemark.Text = slItem.GetDataKeyValue("REMARK").ToString
                 Else
@@ -122,24 +103,11 @@ Public Class ctrlRC_ProgramExams
                 Case CommonMessage.STATE_NORMAL
                     txtName.Enabled = False
                     rntxtExamsOrder.Enabled = False
-                    rntxtPointLadder.Enabled = False
-                    rntxtPointPass.Enabled = False
-                    chkIsPV.Enabled = False
-                    rntxtCoefficient.Enabled = False
                     txtRemark.Enabled = False
                     EnabledGridNotPostback(rgData, True)
                 Case CommonMessage.STATE_NEW, CommonMessage.STATE_EDIT
                     txtName.Enabled = True
                     rntxtExamsOrder.Enabled = True
-                    If chkIsPV.Checked Then
-                        rntxtPointLadder.Enabled = False
-                        rntxtPointPass.Enabled = False
-                    Else
-                        rntxtPointLadder.Enabled = True
-                        rntxtPointPass.Enabled = True
-                    End If
-                    chkIsPV.Enabled = True
-                    rntxtCoefficient.Enabled = True
                     txtRemark.Enabled = True
                     txtName.Focus()
                     EnabledGridNotPostback(rgData, False)
@@ -189,19 +157,7 @@ Public Class ctrlRC_ProgramExams
     End Sub
 
 #End Region
-    Private Sub chkIsPV_CheckedChanged(sender As Object, e As System.EventArgs) Handles chkIsPV.CheckedChanged
-        Try
-            If chkIsPV.Checked Then
-                rntxtPointLadder.Enabled = False
-                rntxtPointPass.Enabled = False
-            Else
-                rntxtPointLadder.Enabled = True
-                rntxtPointPass.Enabled = True
-            End If
-        Catch ex As Exception
-            Throw ex
-        End Try
-    End Sub
+
 #Region "Event"
 
     Protected Sub OnToolbar_Command(ByVal sender As Object, ByVal e As RadToolBarEventArgs) Handles Me.OnMainToolbarClick
@@ -213,10 +169,6 @@ Public Class ctrlRC_ProgramExams
                     CurrentState = CommonMessage.STATE_NEW
                     txtName.Text = ""
                     rntxtExamsOrder.Value = Nothing
-                    rntxtPointLadder.Value = Nothing
-                    rntxtPointPass.Value = Nothing
-                    chkIsPV.Checked = False
-                    rntxtCoefficient.Value = 1
                     txtRemark.Text = ""
                     ClearControlValue(hidID)
                 Case CommonMessage.TOOLBARITEM_EDIT
@@ -227,31 +179,13 @@ Public Class ctrlRC_ProgramExams
                             ShowMessage(Translate("Bạn phải nhập Thứ tự sắp xếp"), Utilities.NotifyType.Warning)
                             Exit Sub
                         End If
-                        If Not chkIsPV.Checked Then
-                            If rntxtPointLadder.Value Is Nothing Then
-                                ShowMessage(Translate("Bạn phải nhập Thang điểm"), Utilities.NotifyType.Warning)
-                                Exit Sub
-                            End If
-                            If rntxtPointPass.Value Is Nothing Then
-                                ShowMessage(Translate("Bạn phải nhập Điểm đạt"), Utilities.NotifyType.Warning)
-                                Exit Sub
-                            End If
-                            If rntxtPointLadder.Value < rntxtPointPass.Value Then
-                                ShowMessage(Translate("Thang điểm phải lớn hơn Điểm đạt"), NotifyType.Warning)
-                                Exit Sub
-                            End If
-                        End If
+                        
                         Dim obj As New ProgramExamsDTO
                         obj.RC_PROGRAM_ID = hidProgramID.Value
                         obj.EXAMS_ORDER = rntxtExamsOrder.Value
                         obj.NAME = txtName.Text
-                        obj.COEFFICIENT = rntxtCoefficient.Value
                         obj.REMARK = txtRemark.Text
-                        If Not chkIsPV.Checked Then
-                            obj.POINT_LADDER = rntxtPointLadder.Value
-                            obj.POINT_PASS = rntxtPointPass.Value
-                        End If
-                        obj.IS_PV = chkIsPV.Checked
+                        obj.IS_PV = -1
                         If hidID.Value <> "" Then
                             obj.ID = hidID.Value
                         End If

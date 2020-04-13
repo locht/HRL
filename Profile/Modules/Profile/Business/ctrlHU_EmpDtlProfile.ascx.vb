@@ -1339,9 +1339,9 @@ Public Class ctrlHU_EmpDtlProfile
                                 If Not checkBank_No Then
                                     message = If(message <> "", message + " Số tài khoản: " + txtBankNo.Text + " đã tồn tại.", "Số tài khoản: " + txtBankNo.Text + " đã tồn tại.")
                                 End If
-                                If hidDirectManager.Value = "" Then
-                                    message = If(message <> "", message + " Nhân viên này không có Quản lý trực tiếp.", "Nhân viên này không có Quản lý trực tiếp.")
-                                End If
+                                'If hidDirectManager.Value = "" Then
+                                '    message = If(message <> "", message + " Nhân viên này không có Quản lý trực tiếp.", "Nhân viên này không có Quản lý trực tiếp.")
+                                'End If
 
                                 'check danh sach nv trong cmnd,nếu có thì xóa đi
                                 If Not checkBlackList Then
@@ -1437,9 +1437,9 @@ Public Class ctrlHU_EmpDtlProfile
                                 If Not checkBlackList Then
                                     blacklist = "Thông tin nhân viên có CMND vừa nhập đã tồn tại trong danh sách đen không tái tuyển dụng."
                                 End If
-                                If hidDirectManager.Value = "" Then
-                                    message = If(message <> "", message + " Nhân viên này không có Quản lý trực tiếp.", "Nhân viên này không có Quản lý trực tiếp.")
-                                End If
+                                'If hidDirectManager.Value = "" Then
+                                '    message = If(message <> "", message + " Nhân viên này không có Quản lý trực tiếp.", "Nhân viên này không có Quản lý trực tiếp.")
+                                'End If
                                 If blacklist <> "" Then
                                     blacklist += "Bạn có muốn tuyển dụng lại nhân viên này không?"
                                     ctrlMessageBox.MessageText = Translate(blacklist)

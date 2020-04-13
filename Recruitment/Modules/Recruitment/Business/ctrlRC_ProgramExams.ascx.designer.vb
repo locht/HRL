@@ -113,24 +113,6 @@ Partial Public Class ctrlRC_ProgramExams
     Protected WithEvents txtName As Global.Telerik.Web.UI.RadTextBox
 
     '''<summary>
-    '''rntxtPointLadder control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents rntxtPointLadder As Global.Telerik.Web.UI.RadNumericTextBox
-
-    '''<summary>
-    '''rntxtPointPass control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents rntxtPointPass As Global.Telerik.Web.UI.RadNumericTextBox
-
-    '''<summary>
     '''rntxtExamsOrder control.
     '''</summary>
     '''<remarks>
@@ -138,24 +120,6 @@ Partial Public Class ctrlRC_ProgramExams
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents rntxtExamsOrder As Global.Telerik.Web.UI.RadNumericTextBox
-
-    '''<summary>
-    '''rntxtCoefficient control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents rntxtCoefficient As Global.Telerik.Web.UI.RadNumericTextBox
-
-    '''<summary>
-    '''chkIsPV control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents chkIsPV As Global.Telerik.Web.UI.RadButton
 
     '''<summary>
     '''txtRemark control.

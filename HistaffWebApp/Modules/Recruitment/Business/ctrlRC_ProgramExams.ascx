@@ -4,12 +4,12 @@
 <asp:HiddenField ID="hidID" runat="server" />
 <asp:HiddenField ID="hidProgramID" runat="server" />
 <tlk:RadSplitter ID="RadSplitter1" runat="server" Width="100%" Height="100%">
-    <tlk:RadPane ID="MainPane" runat="server" Scrolling="None">
+    <tlk:RadPane ID="MainPane" runat="server">
         <tlk:RadSplitter ID="RadSplitter3" runat="server" Width="100%" Height="100%" Orientation="Horizontal">
             <tlk:RadPane ID="RadPane1" runat="server" Height="33px" Scrolling="None">
                 <tlk:RadToolBar ID="tbarMain" runat="server" OnClientButtonClicking="clientButtonClicking" />
             </tlk:RadPane>
-            <tlk:RadPane ID="RadPane3" runat="server" Height="220px" Scrolling="None">
+            <tlk:RadPane ID="RadPane3" runat="server" Height="180px" Scrolling="None">
                 <table class="table-form">
                     <tr>
                         <td class="lb">
@@ -30,34 +30,19 @@
                         </td>
                     </tr>
                     <tr>
-                        <td class="item-head" colspan="4">
-                            <%# Translate("Thiết lập môn thi")%>
+                        <td colspan="4">
+                            <b>
+                                <%# Translate("Thiết lập môn thi")%></b>
                             <hr />
                         </td>
                     </tr>
                     <tr>
                         <td class="lb">
-                            <%# Translate("Tên môn thi")%><span class="lbReq">*</span>
+                            <%# Translate("Tên vòng phỏng vấn")%><span class="lbReq">*</span>
                         </td>
                         <td>
                             <tlk:RadTextBox ID="txtName" runat="server">
                             </tlk:RadTextBox>
-                        </td>
-                        <td class="lb">
-                            <%# Translate("Thang điểm")%><span class="lbReq">*</span>
-                        </td>
-                        <td>
-                            <tlk:RadNumericTextBox ID="rntxtPointLadder" runat="server" SkinID="number">
-                            </tlk:RadNumericTextBox>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="lb">
-                            <%# Translate("Điểm đạt")%><span class="lbReq">*</span>
-                        </td>
-                        <td>
-                            <tlk:RadNumericTextBox ID="rntxtPointPass" runat="server" SkinID="number">
-                            </tlk:RadNumericTextBox>
                         </td>
                         <td class="lb">
                             <%# Translate("Thứ tự sắp xếp")%><span class="lbReq">*</span>
@@ -65,20 +50,6 @@
                         <td>
                             <tlk:RadNumericTextBox ID="rntxtExamsOrder" runat="server" SkinID="number">
                             </tlk:RadNumericTextBox>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="lb">
-                            <%# Translate("Hệ số")%>
-                        </td>
-                        <td>
-                            <tlk:RadNumericTextBox ID="rntxtCoefficient" runat="server" SkinID="number">
-                            </tlk:RadNumericTextBox>
-                        </td>
-                        <td colspan="2">
-                            <tlk:RadButton ButtonType="ToggleButton" ToggleType="CheckBox" runat="server" CausesValidation="false"
-                                ID="chkIsPV" Text="<%$ Translate: Phỏng vấn %>">
-                            </tlk:RadButton>
                         </td>
                     </tr>
                     <tr>
@@ -93,8 +64,7 @@
                 </table>
             </tlk:RadPane>
             <tlk:RadPane ID="RadPane2" runat="server" Scrolling="None">
-                <tlk:RadGrid ID="rgData" runat="server" Height="100%" PageSize="50" AllowPaging="true"
-                    SkinID="GridSingleSelect">
+                <tlk:RadGrid ID="rgData" runat="server" Height="100%" SkinID="GridSingleSelect">
                     <ClientSettings EnableRowHoverStyle="true" EnablePostBackOnRowClick="true">
                         <Selecting AllowRowSelect="true" />
                     </ClientSettings>
@@ -104,18 +74,10 @@
                                 HeaderStyle-Width="30px" ItemStyle-HorizontalAlign="Center">
                             </tlk:GridClientSelectColumn>
                             <tlk:GridBoundColumn DataField="ID" Visible="false" />
-                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Tên môn thi %>" DataField="NAME"
-                                SortExpression="NAME" UniqueName="NAME" HeaderStyle-Width="300px" />
-                            <tlk:GridNumericColumn HeaderText="<%$ Translate: Thang điểm %>" DataField="POINT_LADDER"
-                                SortExpression="POINT_LADDER" UniqueName="POINT_LADDER" />
-                            <tlk:GridNumericColumn HeaderText="<%$ Translate: Điểm đạt %>" DataField="POINT_PASS"
-                                SortExpression="POINT_PASS" UniqueName="POINT_PASS" />
-                            <tlk:GridNumericColumn HeaderText="<%$ Translate: Hệ số %>" DataField="COEFFICIENT"
-                                SortExpression="COEFFICIENT" UniqueName="COEFFICIENT" />
+                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Tên vòng phỏng vấn %>" DataField="NAME"
+                                SortExpression="NAME" UniqueName="NAME" />
                             <tlk:GridNumericColumn HeaderText="<%$ Translate: Thư tự sắp xếp %>" DataField="EXAMS_ORDER"
                                 SortExpression="EXAMS_ORDER" UniqueName="EXAMS_ORDER" />
-                            <tlk:GridCheckBoxColumn HeaderText="<%$ Translate: Phỏng vấn %>" DataField="IS_PV"
-                                UniqueName="IS_PV" SortExpression="IS_PV" ShowFilterIcon="true" AllowFiltering="false" />
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Ghi chú %>" DataField="REMARK" SortExpression="REMARK"
                                 UniqueName="REMARK" />
                         </Columns>
