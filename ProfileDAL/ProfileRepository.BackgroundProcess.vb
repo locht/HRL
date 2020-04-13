@@ -112,9 +112,10 @@ Partial Class ProfileRepository
                       .DIRECT_MANAGER = e.DIRECT_MANAGER,
                       .SIGNER_NAME = p.SIGNER_NAME
                                             }).FirstOrDefault
-                        If IsFirstContract(objContract) Then
-                            InsertDecision(objContract)
-                        End If
+                        '	ACVUSA-291 k tu dong tao quyet dinh nua
+                        'If IsFirstContract(objContract) Then
+                        '    InsertDecision(objContract)
+                        'End If
                     End If
                 Catch ex As Exception
                     Continue For
