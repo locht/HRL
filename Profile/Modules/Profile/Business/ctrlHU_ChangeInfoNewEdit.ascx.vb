@@ -1303,7 +1303,7 @@ Public Class ctrlHU_ChangeInfoNewEdit
                         phFindEmp.Controls.Add(ctrlFindEmployeePopup)
                         ctrlFindEmployeePopup.MultiSelect = False
                         ctrlFindEmployeePopup.LoadAllOrganization = False
-                        ctrlFindEmployeePopup.MustHaveContract = True
+                        ctrlFindEmployeePopup.MustHaveContract = False
                     End If
 
                 Case 2

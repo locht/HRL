@@ -975,9 +975,10 @@ Partial Class ProfileRepository
                     'objContractData.STATUS_ID = ProfileCommon.DECISION_STATUS.APPROVE_ID
                     'objContract.STATUS_ID = ProfileCommon.DECISION_STATUS.APPROVE_ID
                     ApproveContract(objContractData)
-                    If IsFirstContract(objContractData) Then
-                        InsertDecision(objContractData)
-                    End If
+                    'ACVUSA-291 k tu dong tao quyet dinh nua
+                    'If IsFirstContract(objContractData) Then
+                    '    InsertDecision(objContractData)
+                    'End If
                 End If
             Next
             Context.SaveChanges(log)
@@ -1326,9 +1327,10 @@ Partial Class ProfileRepository
             ' Phê duyệt
             If objContract.STATUS_ID = ProfileCommon.DECISION_STATUS.APPROVE_ID Then
                 ApproveContract(objContract)
-                If IsFirstContract(objContract) Then
-                    InsertDecision(objContract)
-                End If
+                '	ACVUSA-291 k tu dong tao quyet dinh nua
+                'If IsFirstContract(objContract) Then
+                '    InsertDecision(objContract)
+                'End If
                 Dim conType = Context.HU_CONTRACT_TYPE.Where(Function(f) f.ID = objContractData.CONTRACT_TYPE_ID).FirstOrDefault()
                 'check hop dong chinh thuc moi insert filecontract
                 Dim typeIdHDCT As Decimal = 6359
@@ -1507,9 +1509,10 @@ Partial Class ProfileRepository
             ' Phê duyệt
             If objContract.STATUS_ID = ProfileCommon.DECISION_STATUS.APPROVE_ID Then
                 ApproveContract(objContract)
-                If IsFirstContract(objContract) Then
-                    InsertDecision(objContract)
-                End If
+                '	ACVUSA-291 k tu dong tao quyet dinh nua
+                'If IsFirstContract(objContract) Then
+                '    InsertDecision(objContract)
+                'End If
             End If
             'xoa nhung file attach cu
             Dim lstAtt = (From p In Context.HU_ATTACHFILES Where p.FK_ID = objContractData.ID).ToList()
