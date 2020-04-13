@@ -136,6 +136,7 @@ Public Class ctrlRC_CanDtlTraining
             Common.Common.BuildToolbar(Me.MainToolBar, ToolbarItem.Create,
                                        ToolbarItem.Edit,
                                        ToolbarItem.Save, ToolbarItem.Cancel,
+                                       ToolbarItem.Export,
                                        ToolbarItem.Delete)
             CType(MainToolBar.Items(2), RadToolBarButton).CausesValidation = True
             CType(Me.MainToolBar.Items(2), RadToolBarButton).Enabled = False
@@ -313,7 +314,9 @@ Public Class ctrlRC_CanDtlTraining
             Select Case CType(e.Item, RadToolBarButton).CommandName
                 Case CommonMessage.TOOLBARITEM_CREATE
                     ClearControlValue(rdToiThang, rdTuThang, cboTrainingForm, txtTrainingType, rntGraduateYear, txtRemark, txtTrainingSchool,
-                                    cboRemark, txtChuyenNganh, txtKetQua, rdFrom, rdTo, rdReceiveDegree, cboLevelId, rtxtPointLevel, rtxtContentLevel, txtCertificateCode, txtNote)
+                                    cboRemark, txtChuyenNganh, txtKetQua, rdFrom, rdTo, rdReceiveDegree, cboLevelId, rtxtPointLevel, rtxtContentLevel, txtCertificateCode, txtNote, rntxtCost)
+                    rdTuThang.SelectedDate = Nothing
+                    rdToiThang.SelectedDate = Nothing
                     chkTerminate.Checked = False
                     checkCRUD = 1
                     'If EmployeeInfo.WORK_STATUS Is Nothing Then 'Or
@@ -403,7 +406,7 @@ Public Class ctrlRC_CanDtlTraining
                         objTrain.EFFECTIVE_DATE_TO = rdTo.SelectedDate
                         objTrain.FILE_NAME = txtRemark.Text.Trim
                         objTrain.IS_RENEWED = chkTerminate.Checked
-
+                        objTrain.COST = rntxtCost.Value
                         If cboLevelId.SelectedValue = "" Then
                             objTrain.LEVEL_ID = Nothing
                         Else
@@ -652,6 +655,11 @@ Public Class ctrlRC_CanDtlTraining
             rtxtContentLevel.Text = r.Field(Of String)("CONTENT_LEVEL") 'dataItem.GetDataKeyValue("CONTENT_LEVEL")
             txtNote.Text = r.Field(Of String)("NOTE")
             txtCertificateCode.Text = r.Field(Of String)("CERTIFICATE_CODE") 'dataItem.GetDataKeyValue("CERTIFICATE_CODE")
+            If IsNumeric(r("COST")) Then
+                rntxtCost.Value = r.Field(Of Decimal)("COST")
+            Else
+                rntxtCost.Value = Nothing
+            End If
             EnableControlAll(False, rdFrom, rdTo)
         End If
     End Sub

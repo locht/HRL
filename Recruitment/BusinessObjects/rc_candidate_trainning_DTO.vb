@@ -28,4 +28,5 @@
     Public Property NOTE As String
     Public Property CERTIFICATE_CODE As String
     Public Property TYPE_TRAIN_NAME As String
+    Public Property COST As Decimal?
 End Class

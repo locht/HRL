@@ -410,15 +410,6 @@ Partial Public Class ctrlRC_CanDtlTraining
     Protected WithEvents txtKetQua As Global.Telerik.Web.UI.RadTextBox
 
     '''<summary>
-    '''Label3 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents Label3 As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
     '''chkTerminate control.
     '''</summary>
     '''<remarks>
@@ -498,6 +489,24 @@ Partial Public Class ctrlRC_CanDtlTraining
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents btnDownload As Global.Telerik.Web.UI.RadButton
+
+    '''<summary>
+    '''lbCost control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbCost As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''rntxtCost control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents rntxtCost As Global.Telerik.Web.UI.RadNumericTextBox
 
     '''<summary>
     '''Label6 control.
