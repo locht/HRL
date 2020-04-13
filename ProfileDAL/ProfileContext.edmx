@@ -162,6 +162,7 @@
             <EntitySet Name="HU_SAFELABOR_MNG_EMP" EntityType="ProfileModel.Store.HU_SAFELABOR_MNG_EMP" store:Type="Tables"  />
             <EntitySet Name="HU_HEALTH_MNG" EntityType="ProfileModel.Store.HU_HEALTH_MNG" store:Type="Tables"  />
             <EntitySet Name="HU_DEDUCT" EntityType="ProfileModel.Store.HU_DEDUCT" store:Type="Tables"  />
+            <EntitySet Name="HU_EMPLOYEE_BACKGROUND" EntityType="ProfileModel.Store.HU_EMPLOYEE_BACKGROUND" store:Type="Tables"  />
             <EntitySet Name="SE_USER_REPORT" EntityType="ProfileModel.Store.SE_USER_REPORT" store:Type="Tables"  />
             <AssociationSet Name="FK_HUN_HUP" Association="ProfileModel.Store.FK_HU_NAT_HU_PRO">
                 <End Role="HU_NATION" EntitySet="HU_NATION" />
@@ -4176,6 +4177,34 @@
             <Property Name="MODIFIED_LOG" Type="nvarchar2" Nullable="true" MaxLength="255" />
             <Property Name="EMPLOYEE_ID" Type="number" Nullable="true" Precision="38" />
         </EntityType>
+        <EntityType Name="HU_EMPLOYEE_BACKGROUND">
+            <Key>
+                <PropertyRef Name="EMPLOYEE_ID" />
+            </Key>
+            <Property Name="EMPLOYEE_ID" Type="number" Nullable="false" Precision="38" />
+            <Property Name="EFFECTIVE_DATE" Type="date" Nullable="true" />
+            <Property Name="ID_NO" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="LICENSE_DATE" Type="date" Nullable="true" />
+            <Property Name="LICENSE_PLACE" Type="number" Nullable="true" Precision="38" />
+            <Property Name="CREATED_DATE" Type="date" Nullable="false" />
+            <Property Name="CREATED_BY" Type="nvarchar2" Nullable="false" MaxLength="255" />
+            <Property Name="CREATED_LOG" Type="nvarchar2" Nullable="false" MaxLength="255" />
+            <Property Name="MODIFIED_DATE" Type="date" Nullable="false" />
+            <Property Name="MODIFIED_BY" Type="nvarchar2" Nullable="false" MaxLength="255" />
+            <Property Name="MODIFIED_LOG" Type="nvarchar2" Nullable="false" MaxLength="255" />
+            <Property Name="MOBILE_PHONE" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="FIXED_PHONE" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="PERMANENT_ADDRESS" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="PERMANNET_NATION_ID" Type="number" Nullable="true" Precision="38" />
+            <Property Name="PERMANENT_PROVINCE_ID" Type="number" Nullable="true" Precision="38" />
+            <Property Name="PERMANENT_DISTRICT_ID" Type="number" Nullable="true" Precision="38" />
+            <Property Name="PERMANENT_WARD_ID" Type="number" Nullable="true" Precision="38" />
+            <Property Name="CURRENT_ADDRESS" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="CURRENT_NATION_ID" Type="number" Nullable="true" Precision="38" />
+            <Property Name="CURRENTN_PROVINCE_ID" Type="number" Nullable="true" Precision="38" />
+            <Property Name="CURRENT_DISTRICT_ID" Type="number" Nullable="true" Precision="38" />
+            <Property Name="CURRENT_WARD_ID" Type="number" Nullable="true" Precision="38" />
+        </EntityType>
         <EntityType Name="SE_USER_REPORT">
             <Key>
                 <PropertyRef Name="SE_REPORT_ID" />
@@ -4823,6 +4852,7 @@
           <EntitySet Name="HU_SAFELABOR_MNG_EMP" EntityType="ProfileModel.HU_SAFELABOR_MNG_EMP" />
           <EntitySet Name="HU_HEALTH_MNG" EntityType="ProfileModel.HU_HEALTH_MNG" />
           <EntitySet Name="HU_DEDUCT" EntityType="ProfileModel.HU_DEDUCT" />
+          <EntitySet Name="HU_EMPLOYEE_BACKGROUND" EntityType="ProfileModel.HU_EMPLOYEE_BACKGROUND" />
         </EntityContainer>
         <EntityType Name="HU_PROVINCE">
           <Key>
@@ -9120,6 +9150,34 @@
           <Property Type="String" Name="MODIFIED_LOG" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Type="Decimal" Name="EMPLOYEE_ID" />
         </EntityType>
+        <EntityType Name="HU_EMPLOYEE_BACKGROUND">
+          <Key>
+            <PropertyRef Name="EMPLOYEE_ID" />
+          </Key>
+          <Property Type="Decimal" Name="EMPLOYEE_ID" Nullable="false" />
+          <Property Type="DateTime" Name="EFFECTIVE_DATE" Nullable="true" />
+          <Property Type="String" Name="ID_NO" Nullable="true" MaxLength="255" FixedLength="false" />
+          <Property Type="DateTime" Name="LICENSE_DATE" Nullable="true" />
+          <Property Type="Decimal" Name="LICENSE_PLACE" Nullable="true" />
+          <Property Type="DateTime" Name="CREATED_DATE" Nullable="false" />
+          <Property Type="String" Name="CREATED_BY" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="CREATED_LOG" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="MODIFIED_DATE" Nullable="false" />
+          <Property Type="String" Name="MODIFIED_BY" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="MODIFIED_LOG" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="MOBILE_PHONE" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="FIXED_PHONE" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="PERMANENT_ADDRESS" Nullable="true" MaxLength="255" />
+          <Property Type="Decimal" Name="PERMANNET_NATION_ID" Nullable="true" />
+          <Property Type="Decimal" Name="PERMANENT_PROVINCE_ID" Nullable="true" />
+          <Property Type="Decimal" Name="PERMANENT_DISTRICT_ID" Nullable="true" />
+          <Property Type="Decimal" Name="PERMANENT_WARD_ID" Nullable="true" />
+          <Property Type="String" Name="CURRENT_ADDRESS" Nullable="true" MaxLength="255" />
+          <Property Type="Decimal" Name="CURRENT_NATION_ID" Nullable="true" />
+          <Property Type="Decimal" Name="CURRENTN_PROVINCE_ID" Nullable="true" />
+          <Property Type="Decimal" Name="CURRENT_DISTRICT_ID" Nullable="true" />
+          <Property Type="Decimal" Name="CURRENT_WARD_ID" Nullable="true" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -13165,6 +13223,35 @@
                 </MappingFragment>
             </EntityTypeMapping>
         </EntitySetMapping>
+        <EntitySetMapping Name="HU_EMPLOYEE_BACKGROUND">
+            <EntityTypeMapping TypeName="IsTypeOf(ProfileModel.HU_EMPLOYEE_BACKGROUND)">
+                <MappingFragment StoreEntitySet="HU_EMPLOYEE_BACKGROUND">
+                    <ScalarProperty Name="EMPLOYEE_ID" ColumnName="EMPLOYEE_ID" />
+                    <ScalarProperty Name="EFFECTIVE_DATE" ColumnName="EFFECTIVE_DATE" />
+                    <ScalarProperty Name="ID_NO" ColumnName="ID_NO" />
+                    <ScalarProperty Name="LICENSE_DATE" ColumnName="LICENSE_DATE" />
+                    <ScalarProperty Name="LICENSE_PLACE" ColumnName="LICENSE_PLACE" />
+                    <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+                    <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+                    <ScalarProperty Name="CREATED_LOG" ColumnName="CREATED_LOG" />
+                    <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+                    <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+                    <ScalarProperty Name="MODIFIED_LOG" ColumnName="MODIFIED_LOG" />
+                    <ScalarProperty Name="MOBILE_PHONE" ColumnName="MOBILE_PHONE" />
+                    <ScalarProperty Name="FIXED_PHONE" ColumnName="FIXED_PHONE" />
+                    <ScalarProperty Name="PERMANENT_ADDRESS" ColumnName="PERMANENT_ADDRESS" />
+                    <ScalarProperty Name="PERMANNET_NATION_ID" ColumnName="PERMANNET_NATION_ID" />
+                    <ScalarProperty Name="PERMANENT_PROVINCE_ID" ColumnName="PERMANENT_PROVINCE_ID" />
+                    <ScalarProperty Name="PERMANENT_DISTRICT_ID" ColumnName="PERMANENT_DISTRICT_ID" />
+                    <ScalarProperty Name="PERMANENT_WARD_ID" ColumnName="PERMANENT_WARD_ID" />
+                    <ScalarProperty Name="CURRENT_ADDRESS" ColumnName="CURRENT_ADDRESS" />
+                    <ScalarProperty Name="CURRENT_NATION_ID" ColumnName="CURRENT_NATION_ID" />
+                    <ScalarProperty Name="CURRENTN_PROVINCE_ID" ColumnName="CURRENTN_PROVINCE_ID" />
+                    <ScalarProperty Name="CURRENT_DISTRICT_ID" ColumnName="CURRENT_DISTRICT_ID" />
+                    <ScalarProperty Name="CURRENT_WARD_ID" ColumnName="CURRENT_WARD_ID" />
+                </MappingFragment>
+            </EntityTypeMapping>
+        </EntitySetMapping>
         <AssociationSetMapping Name="SE_USER_REPORT" TypeName="ProfileModel.SE_USER_REPORT" StoreEntitySet="SE_USER_REPORT">
             <EndProperty Name="SE_REPORT">
                 <ScalarProperty Name="ID" ColumnName="SE_REPORT_ID" />
@@ -13505,6 +13592,7 @@
         <EntityTypeShape EntityType="ProfileModel.HU_SAFELABOR_MNG_EMP" Width="1.5" PointX="27.375" PointY="32.75" Height="4.864807942708353" />
         <EntityTypeShape EntityType="ProfileModel.HU_HEALTH_MNG" Width="1.5" PointX="14.375" PointY="31.75" Height="12.364563802083353" />
         <EntityTypeShape EntityType="ProfileModel.HU_DEDUCT" Width="1.5" PointX="0.75" PointY="34.125" Height="7.5570279947916674" />
+        <EntityTypeShape EntityType="ProfileModel.HU_EMPLOYEE_BACKGROUND" Width="3" PointX="42.25" PointY="0.75" Height="5.4417122395833246" />
         </Diagram>
     </Diagrams>
   </Designer>
