@@ -423,14 +423,15 @@
                                 <tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderStyle-HorizontalAlign="Center"
                                     HeaderStyle-Width="40px" ItemStyle-HorizontalAlign="Center">
                                 </tlk:GridClientSelectColumn>
-                                <tlk:GridNumericColumn HeaderText="<%$ Translate: Số tiền VNĐ %>" DataField="AMOUNT_EX"
-                                    SortExpression="AMOUNT_EX" UniqueName="AMOUNT_EX" DataFormatString="{0:n0}">
-                                    <ItemStyle HorizontalAlign="Right" VerticalAlign="Middle" />
-                                </tlk:GridNumericColumn>
-                                <tlk:GridNumericColumn HeaderText="<%$ Translate: Số tiền %>" DataField="AMOUNT"
+                                 <tlk:GridNumericColumn HeaderText="<%$ Translate: Số tiền chưa quy đổi %>" DataField="AMOUNT"
                                     SortExpression="AMOUNT" UniqueName="AMOUNT" DataFormatString="{0:n0}">
                                     <ItemStyle HorizontalAlign="Right" VerticalAlign="Middle" />
                                 </tlk:GridNumericColumn>
+                                <tlk:GridNumericColumn HeaderText="<%$ Translate: Số tiền đã quy đổi (VNĐ) %>" DataField="AMOUNT_EX"
+                                    SortExpression="AMOUNT_EX" UniqueName="AMOUNT_EX" DataFormatString="{0:n0}">
+                                    <ItemStyle HorizontalAlign="Right" VerticalAlign="Middle" />
+                                </tlk:GridNumericColumn>
+                               
                                 <tlk:GridDateTimeColumn HeaderText="<%$ Translate: Ngày hiệu lực %>" DataField="EFFECT_DATE"
                                     ItemStyle-HorizontalAlign="Center" SortExpression="EFFECT_DATE" UniqueName="EFFECT_DATE"
                                     DataFormatString="{0:dd/MM/yyyy}" />
@@ -445,7 +446,7 @@
                     <span class="lbReq">*</span>
                 </td>
                 <td colspan="4">
-                    <tlk:RadComboBox ID="cboExRate" runat="server" AutoPostBack="true" CausesValidation="false">
+                    <tlk:RadComboBox ID="cboExRate" runat="server" CausesValidation="false" OnClientSelectedIndexChanged="OnClientSelectedIndexChanged">
                     </tlk:RadComboBox>
                     <%# Translate("(Lưu ý: loại tiền tệ sử dụng cho cả thông tin lương và thông tin phụ cấp)")%>
                     <asp:RequiredFieldValidator ID="reExRate" runat="server" ControlToValidate="cboExRate"
@@ -617,6 +618,7 @@
 
 
         function OnClientSelectedIndexChanged(sender, eventArgs) {
+        debugger;
             var id = sender.get_id();
             var cbo;
             switch (id) {
@@ -636,13 +638,23 @@
                 clearSelectRadnumeric(cbo);
                 
                 break; 
-                case '<%= cbSalaryRank.ClientID %>':
+            case '<%= cbSalaryRank.ClientID %>':
                     cbo = $find('<%= basicSalary.ClientID %>');
                     clearSelectRadnumeric(cbo);
                     var item = eventArgs.get_item();
                     if (item) {
                         cbo.set_value(item.get_attributes().getAttribute("SALARY_BASIC"));
                     }
+                    break;
+            case '<%= cboExRate.ClientID %>':
+                    cbo = $find('<%= cboExRate.ClientID %>');
+                    var SalRate = $find('<%= rnmtxtSalRate.ClientID %>');
+                    if (cbo._value=="7682") {
+                    SalRate.set_value(1);
+                    }
+                    else{
+                    SalRate.set_value('');
+                    }                    
                     break;
                 default:
                     break;
@@ -743,7 +755,7 @@
                 valueAllowance_Total = objAllowance_Total.get_value();                  
             }
             objSalaryInsurance.clear();       
-           objSalaryInsurance.set_value((valueSalBasic*valuePercentSalary*valueSalRate)+valueAllowance_Total);
+           objSalaryInsurance.set_value((valueSalBasic*valuePercentSalary/100*valueSalRate)+valueAllowance_Total);
         }      
     </script>
 </tlk:RadCodeBlock>

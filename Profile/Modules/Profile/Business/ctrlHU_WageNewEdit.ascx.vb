@@ -22,6 +22,7 @@ Public Class ctrlHU_WageNewEdit
     Dim _lttv As Decimal
     Dim _tyLeThuViec As Decimal
     Dim _tyLeChinhThuc As Decimal
+    Dim check_effect_date As Boolean
 #Region "Property"
     Dim lstAllow As New List(Of WorkingAllowanceDTO)
     Property dtSalaryGroup As DataTable
@@ -725,19 +726,16 @@ Public Class ctrlHU_WageNewEdit
                             ctrlMessageBox.Show()
                             Exit Sub
                         End If
+                        If check_effect_date Then
+                            ShowMessage(Translate("Ngày hiệu lực bị trùng"), NotifyType.Warning)
+                            Exit Sub
+                        End If
                         Select Case CurrentState
                             Case CommonMessage.STATE_NEW
                                 If Not ValidateDecisionNo(objWorking) Then
                                     ShowMessage(Translate("Số tờ trình bị trùng"), NotifyType.Warning)
                                     Exit Sub
                                 End If
-                                Using repchk_dup_hsl As New ProfileBusinessClient
-                                    'khi chọn ngày hiệu lực kiểm tra trùng trong list hồ sơ lương   
-                                    If repchk_dup_hsl.ValEffectdateByEmpCode(txtEmployeeCode.Text, rdEffectDate.SelectedDate) = False Then
-                                        ShowMessage(Translate("Ngày hiệu lực bị trùng"), NotifyType.Warning)
-                                        Exit Sub
-                                    End If
-                                End Using
                                     If rep.InsertWorking(objWorking, gID) Then
                                         ''POPUPTOLINK
                                         Response.Redirect("/Default.aspx?mid=Profile&fid=ctrlHU_WageMng&group=Business")
@@ -1142,6 +1140,9 @@ Public Class ctrlHU_WageNewEdit
                     Dim query_check_dup = From p In workingdt Where p.IS_WAGE = -1
                     If query_check_dup.Count > 0 Then
                         ShowMessage(Translate("Ngày hiệu lực bị trùng"), NotifyType.Warning)
+                        check_effect_date = True
+                    Else
+                        check_effect_date = False
                     End If
 
                     Dim query = (From p In workingdt Where p.IS_WAGE = 0).FirstOrDefault
@@ -1150,6 +1151,8 @@ Public Class ctrlHU_WageNewEdit
                     hidTitle.Value = query.TITLE_ID
                     txtOrgName.Text = query.ORG_NAME
                     hidOrg.Value = query.ORG_ID
+                Else
+                    check_effect_date = False
                 End If
             End Using
             'tam thoi khoa ham nay lai,,chua hieu tai s goi o cho nay,khi nao co bug thi xem lai sau
@@ -1380,8 +1383,8 @@ Public Class ctrlHU_WageNewEdit
                     ShowMessage(Translate("Nhân viên trạng thái nghỉ việc. Không được phép chỉnh sửa thông tin."), Utilities.NotifyType.Warning)
                     Exit Sub
                 End If
-                If obj.OBJECT_ATTENDANCE Is Nothing Or obj.OBJECT_LABOR Is Nothing Then
-                    ShowMessage(Translate(" Nhân viên chưa có dữ liệuĐối tượng chấm công, Đối tượng lao động. Vui lòng kiểm tra và bổ sung trước khi tạo hồ sơ lương."), NotifyType.Warning)
+                If obj.OBJECT_LABOR Is Nothing Then
+                    ShowMessage(Translate(" Nhân viên chưa có dữ liệu Đối tượng lao động. Vui lòng kiểm tra và bổ sung trước khi tạo hồ sơ lương."), NotifyType.Warning)
                     Exit Sub
                 End If
                 ClearControlValue(cbSalaryGroup, cbSalaryLevel, cbSalaryRank, cboTaxTable, cboSalTYPE, rntxtSalaryInsurance, rntxtAllowance_Total, basicSalary,
@@ -1429,32 +1432,33 @@ Public Class ctrlHU_WageNewEdit
                     hidStaffRank.Value = ""
                     'txtStaffRank.Text = vbNullString
                 End If
-                rntxtSalaryInsurance.Text = obj.SAL_INS               
-            End Using
-            Using rep As New ProfileBusinessClient
-                Dim _filter As New WorkingDTO
-                If IsNumeric(hidEmp.Value) Then
-                    _filter.EMPLOYEE_ID = hidEmp.Value
-                End If
-                If rdEffectDate.SelectedDate IsNot Nothing Then
-                    _filter.EFFECT_DATE = rdEffectDate.SelectedDate
-                End If
-                Dim workingdt = rep.getDtByEmpIDandEffectdate(_filter)
-                If workingdt.Count > 0 Then
-                    'khi chọn ngày hiệu lực kiểm tra trùng trong list hồ sơ lương   
-
-                    Dim query_check_dup = From p In workingdt Where p.IS_WAGE = -1
-                    If query_check_dup.Count > 0 Then
-                        ShowMessage(Translate("Ngày hiệu lực bị trùng"), NotifyType.Warning)
+                rntxtSalaryInsurance.Text = obj.SAL_INS
+                Using repcheck As New ProfileBusinessClient
+                    Dim _filter As New WorkingDTO
+                    If IsNumeric(hidEmp.Value) Then
+                        _filter.EMPLOYEE_ID = hidEmp.Value
                     End If
+                    If rdEffectDate.SelectedDate IsNot Nothing Then
+                        _filter.EFFECT_DATE = rdEffectDate.SelectedDate
+                    End If
+                    Dim workingdt = repcheck.getDtByEmpIDandEffectdate(_filter)
+                    If workingdt.Count > 0 Then
+                        'khi chọn ngày hiệu lực kiểm tra trùng trong list hồ sơ lương   
 
-                    Dim query = (From p In workingdt Where p.IS_WAGE = 0).FirstOrDefault
+                        Dim query_check_dup = From p In workingdt Where p.IS_WAGE = -1
+                        If query_check_dup.Count > 0 Then
+                            ShowMessage(Translate("Ngày hiệu lực bị trùng"), NotifyType.Warning)
+                            check_effect_date = True
+                        End If
 
-                    txtTitleName.Text = query.TITLE_NAME
-                    hidTitle.Value = query.TITLE_ID
-                    txtOrgName.Text = query.ORG_NAME
-                    hidOrg.Value = query.ORG_ID
-                End If
+                        Dim query = (From p In workingdt Where p.IS_WAGE = 0).FirstOrDefault
+
+                        txtTitleName.Text = query.TITLE_NAME
+                        hidTitle.Value = query.TITLE_ID
+                        txtOrgName.Text = query.ORG_NAME
+                        hidOrg.Value = query.ORG_ID
+                    End If
+                End Using
             End Using
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
@@ -1769,19 +1773,16 @@ Public Class ctrlHU_WageNewEdit
                     ShowMessage(Translate("Mời bạn nhập lại mức lương"), NotifyType.Warning)
                     basicSalary.Focus()
                 ElseIf e.ButtonID = MessageBoxButtonType.ButtonYes Then
+                    If check_effect_date Then
+                        ShowMessage(Translate("Ngày hiệu lực bị trùng"), NotifyType.Warning)
+                        Exit Sub
+                    End If
                     Select Case CurrentState
                         Case CommonMessage.STATE_NEW
                             If Not ValidateDecisionNo(objWorking) Then
                                 ShowMessage(Translate("Số tờ trình bị trùng"), NotifyType.Warning)
                                 Exit Sub
                             End If
-                            Using repchk_dup_hsl As New ProfileBusinessClient
-                                'khi chọn ngày hiệu lực kiểm tra trùng trong list hồ sơ lương   
-                                If repchk_dup_hsl.ValEffectdateByEmpCode(txtEmployeeCode.Text, rdEffectDate.SelectedDate) = False Then
-                                    ShowMessage(Translate("Ngày hiệu lực bị trùng"), NotifyType.Warning)
-                                    Exit Sub
-                                End If
-                            End Using
                             If rep.InsertWorking(objWorking, gID) Then
                                 ''POPUPTOLINK
                                 Response.Redirect("/Default.aspx?mid=Profile&fid=ctrlHU_WageMng&group=Business")
@@ -1822,41 +1823,24 @@ Public Class ctrlHU_WageNewEdit
             _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
         End Try
     End Sub
-    Private Sub Cal_rgAllow(Optional ByVal ValueCurRate_From As Double = 1, Optional ByVal ValueCurRate_to As Double = 1)
+    Private Sub Cal_rgAllow()
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
         Try
             For Each item As GridDataItem In rgAllow.Items
                 Dim allow = New WorkingAllowanceDTO
                 allow.ALLOWANCE_LIST_ID = item.GetDataKeyValue("ALLOWANCE_LIST_ID")
                 allow.ALLOWANCE_LIST_NAME = item.GetDataKeyValue("ALLOWANCE_LIST_NAME")
-                If hidExRate_Type_ID_Old.Value = 7682 Then
-                    allow.AMOUNT = item.GetDataKeyValue("AMOUNT") * 1 / ValueCurRate_to
-                    If IsNumeric(rnmtxtSalRate.Text) Then
-                        allow.AMOUNT_EX = item.GetDataKeyValue("AMOUNT") * CType(rnmtxtSalRate.Value, Double?) * 1 / ValueCurRate_to
-                    Else
-                        allow.AMOUNT_EX = item.GetDataKeyValue("AMOUNT") * 1 / ValueCurRate_to
-                    End If
-                ElseIf cboExRate.SelectedValue = 7682 Then
-                    allow.AMOUNT = item.GetDataKeyValue("AMOUNT") * ValueCurRate_From / 1
-                    If IsNumeric(rnmtxtSalRate.Text) Then
-                        allow.AMOUNT_EX = item.GetDataKeyValue("AMOUNT") * CType(rnmtxtSalRate.Value, Double?) * ValueCurRate_From / 1
-                    Else
-                        allow.AMOUNT_EX = item.GetDataKeyValue("AMOUNT") * ValueCurRate_From / 1
-                    End If
+                allow.AMOUNT = item.GetDataKeyValue("AMOUNT")
+                If IsNumeric(rnmtxtSalRate.Value) Then
+                    allow.AMOUNT_EX = item.GetDataKeyValue("AMOUNT") * CType(rnmtxtSalRate.Value, Double?)
                 Else
-                    allow.AMOUNT = item.GetDataKeyValue("AMOUNT") * ValueCurRate_From / ValueCurRate_to
-                    If IsNumeric(rnmtxtSalRate.Text) Then
-                        allow.AMOUNT_EX = item.GetDataKeyValue("AMOUNT") * CType(rnmtxtSalRate.Value, Double?) * ValueCurRate_From / ValueCurRate_to
-                    Else
-                        allow.AMOUNT_EX = item.GetDataKeyValue("AMOUNT") * ValueCurRate_From / ValueCurRate_to
-                    End If
+                    allow.AMOUNT_EX = item.GetDataKeyValue("AMOUNT")
                 End If
                 allow.IS_INSURRANCE = item.GetDataKeyValue("IS_INSURRANCE")
                 allow.EFFECT_DATE = item.GetDataKeyValue("EFFECT_DATE")
                 allow.EXPIRE_DATE = item.GetDataKeyValue("EXPIRE_DATE")
                 lstAllow.Add(allow)
             Next
-            rntxtAllowance_Total.Value = (From p In lstAllow Select p.AMOUNT_EX).Sum
             rgAllow.Rebind()
         Catch ex As Exception
             DisplayException(Me.ViewName, Me.ID, ex)
@@ -1866,60 +1850,31 @@ Public Class ctrlHU_WageNewEdit
     Private Sub Cal_SalaryInsurrance()
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
         Try
-            rntxtSalaryInsurance.Value = (CType(basicSalary.Value, Double) * CType(rnPercentSalary.Value, Double) * CType(rnmtxtSalRate.Value, Double)) + CType(rntxtAllowance_Total.Value, Double)
+            rntxtAllowance_Total.Value = (From p In lstAllow Select p.AMOUNT_EX).Sum
+            If Not IsNumeric(basicSalary.Value) Then
+                ShowMessage(Translate("Mời nhập lương cơ bản"), NotifyType.Warning)
+                Exit Sub
+            End If
+            If Not IsNumeric(rnPercentSalary.Value) Then
+                ShowMessage(Translate("Mời nhập % hưởng lương"), NotifyType.Warning)
+                Exit Sub
+            End If
+            If Not IsNumeric(rnmtxtSalRate.Value) Then
+                ShowMessage(Translate("Mời chọn tỷ giá bảo hiẻm"), NotifyType.Warning)
+                Exit Sub
+            End If
+            If Not IsNumeric(rntxtAllowance_Total.Value) Then
+                ShowMessage(Translate("Mời nhập thông tin phụ cấp"), NotifyType.Warning)
+                Exit Sub
+            End If
+            rntxtSalaryInsurance.Value = (CType(basicSalary.Value, Double) * CType(rnPercentSalary.Value, Double) / 100 * CType(rnmtxtSalRate.Value, Double)) + CType(rntxtAllowance_Total.Value, Double)
+
         Catch ex As Exception
             DisplayException(Me.ViewName, Me.ID, ex)
             _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
         End Try
     End Sub
 
-    Private Sub cboExRate_SelectedIndexChanged(ByVal sender As Object, ByVal e As Telerik.Web.UI.RadComboBoxSelectedIndexChangedEventArgs) Handles cboExRate.SelectedIndexChanged
-        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
-        Dim luongtoithieu = CType(rnmtxtSalBas_Min.Value, Double?)
-        Dim luongtoida = CType(rnmtxtSalBas_Max.Value, Double?)
-        Dim luongcoban = CType(basicSalary.Value, Double?)
-        Dim tongphucap = CType(rntxtAllowance_Total.Value, Double?)
-        Dim mucluongchinh = CType(rntxtSalaryInsurance.Value, Double?)
-        Try
-            If cboExRate.SelectedValue = 7682 Then
-                rnmtxtSalRate.Value = 1
-            Else
-                rnmtxtSalRate.Value = 0
-            End If
-            Using rep As New ProfileBusinessClient
-                Dim _filter As New WorkingDTO
-                _filter.EXRATE_TYPE_ID_FROM = hidExRate_Type_ID_Old.Value
-                _filter.EXRATE_TYPE_ID_TO = cboExRate.SelectedValue
-                Dim Value_exrate_f_t = rep.getValue_ExRate_F_T(_filter)
-                If hidExRate_Type_ID_Old.Value = 7682 Then
-                    rnmtxtSalBas_Min.Value = luongtoithieu * 1 / Value_exrate_f_t.EXRATE_VALUE_TO
-                    rnmtxtSalBas_Max.Value = luongtoida * 1 / Value_exrate_f_t.EXRATE_VALUE_TO
-                    basicSalary.Value = luongcoban * 1 / Value_exrate_f_t.EXRATE_VALUE_TO
-                    rntxtAllowance_Total.Value = tongphucap * 1 / Value_exrate_f_t.EXRATE_VALUE_TO
-                    rntxtSalaryInsurance.Value = mucluongchinh * 1 / Value_exrate_f_t.EXRATE_VALUE_TO
-                ElseIf cboExRate.SelectedValue = 7682 Then
-                    rnmtxtSalBas_Min.Value = luongtoithieu * Value_exrate_f_t.EXRATE_VALUE_FROM / 1
-                    rnmtxtSalBas_Max.Value = luongtoida * Value_exrate_f_t.EXRATE_VALUE_FROM / 1
-                    basicSalary.Value = luongcoban * Value_exrate_f_t.EXRATE_VALUE_FROM / 1
-                    rntxtAllowance_Total.Value = tongphucap * Value_exrate_f_t.EXRATE_VALUE_FROM / 1
-                    rntxtSalaryInsurance.Value = mucluongchinh * Value_exrate_f_t.EXRATE_VALUE_FROM / 1
-                Else                   
-                    rnmtxtSalBas_Min.Value = luongtoithieu * Value_exrate_f_t.EXRATE_VALUE_FROM / Value_exrate_f_t.EXRATE_VALUE_TO
-                    rnmtxtSalBas_Max.Value = luongtoida * Value_exrate_f_t.EXRATE_VALUE_FROM / Value_exrate_f_t.EXRATE_VALUE_TO
-                    basicSalary.Value = luongcoban * Value_exrate_f_t.EXRATE_VALUE_FROM / Value_exrate_f_t.EXRATE_VALUE_TO
-                    rntxtAllowance_Total.Value = tongphucap * Value_exrate_f_t.EXRATE_VALUE_FROM / Value_exrate_f_t.EXRATE_VALUE_TO
-                    rntxtSalaryInsurance.Value = mucluongchinh * Value_exrate_f_t.EXRATE_VALUE_FROM / Value_exrate_f_t.EXRATE_VALUE_TO
-                End If               
-                Cal_rgAllow(Value_exrate_f_t.EXRATE_VALUE_FROM, Value_exrate_f_t.EXRATE_VALUE_TO)
-                Cal_SalaryInsurrance()
-                hidExRate_Type_ID_Old.Value = cboExRate.SelectedValue
-            End Using
-        Catch ex As Exception
-            DisplayException(Me.ViewName, Me.ID, ex)
-            _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
-        End Try
-    End Sub
-End Class
 Structure DATA_IN
     Public EMPLOYEE_ID As Decimal?
     Public EFFECT_DATE As String
@@ -1939,4 +1894,5 @@ Structure DATA_IN
     Public OTHERSALARY4 As Decimal?
     Public OTHERSALARY5 As Decimal?
     Public CODE_CASE As String
-End Structure
+    End Structure
+End Class
