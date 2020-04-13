@@ -1867,6 +1867,12 @@
             <Property Name="IS_TAXION" Type="number" Nullable="true" Precision="38" />
             <Property Name="MONEY" Type="number" Nullable="true" Precision="38" />
             <Property Name="PERIOD_ID" Type="number" Nullable="true" Precision="38" />
+            <Property Name="AC_DATE" Type="date" Nullable="true" />
+            <Property Name="IS_TAXABLE" Type="number" Nullable="true" Precision="38" />
+            <Property Name="IS_NOT_TAXABLE" Type="number" Nullable="true" Precision="38" />
+            <Property Name="YEAR_NAME" Type="nclob" Nullable="true" />
+            <Property Name="PAY_STAGE_NAME" Type="nclob" Nullable="true" />
+            <Property Name="INF_MORE" Type="nclob" Nullable="true" />
         </EntityType>
         <EntityType Name="HU_TERMINATE_3B">
             <Key>
@@ -6775,6 +6781,12 @@
           <Property Type="Decimal" Name="IS_TAXION" Precision="38" Scale="0" />
           <Property Type="Decimal" Name="MONEY" Precision="38" Scale="0" />
           <Property Type="Decimal" Name="PERIOD_ID" Precision="38" Scale="0" />
+          <Property Type="DateTime" Name="AC_DATE" />
+          <Property Type="Decimal" Name="IS_TAXABLE" />
+          <Property Type="Decimal" Name="IS_NOT_TAXABLE" />
+          <Property Type="String" Name="YEAR_NAME" />
+          <Property Type="String" Name="PAY_STAGE_NAME" />
+          <Property Type="String" Name="INF_MORE" />
         </EntityType>
         <EntityType Name="HU_TERMINATE_3B">
           <Key>
@@ -10760,6 +10772,12 @@
                     <ScalarProperty Name="IS_TAXION" ColumnName="IS_TAXION" />
                     <ScalarProperty Name="MONEY" ColumnName="MONEY" />
                     <ScalarProperty Name="PERIOD_ID" ColumnName="PERIOD_ID" />
+                    <ScalarProperty Name="AC_DATE" ColumnName="AC_DATE" />
+                    <ScalarProperty Name="IS_TAXABLE" ColumnName="IS_TAXABLE" />
+                    <ScalarProperty Name="IS_NOT_TAXABLE" ColumnName="IS_NOT_TAXABLE" />
+                    <ScalarProperty Name="YEAR_NAME" ColumnName="YEAR_NAME" />
+                    <ScalarProperty Name="PAY_STAGE_NAME" ColumnName="PAY_STAGE_NAME" />
+                    <ScalarProperty Name="INF_MORE" ColumnName="INF_MORE" />
                 </MappingFragment>
             </EntityTypeMapping>
         </EntitySetMapping>
@@ -13186,7 +13204,7 @@
     </Options>
     <!-- Diagram content (shape and connector positions) -->
     <Diagrams>
-      <Diagram Name="ProfileContext" ZoomLevel="124" ShowGrid="false" DisplayType="true" SnapToGrid="true">
+      <Diagram Name="ProfileContext" ZoomLevel="78" ShowGrid="false" DisplayType="true" SnapToGrid="true">
         <EntityTypeShape EntityType="ProfileModel.HU_PROVINCE" Width="1.5" PointX="3" PointY="9.625" Height="0.39999999999999858" IsExpanded="false" />
         <EntityTypeShape EntityType="ProfileModel.HU_DISTRICT" Width="1.75" PointX="5.25" PointY="9" Height="0.39999999999999858" IsExpanded="false" />
         <EntityTypeShape EntityType="ProfileModel.HU_NATION" Width="1.5" PointX="0.75" PointY="9.625" Height="0.40000000000000213" IsExpanded="false" />
@@ -13375,7 +13393,7 @@
         <EntityTypeShape EntityType="ProfileModel.HU_EMPLOYEE_EDIT" Width="2.125" PointX="22.875" PointY="16" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="ProfileModel.HU_PRO_TRAIN_OUT_COMPANY_EDIT" Width="2.875" PointX="2.375" PointY="31.875" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="ProfileModel.HU_WORKING_BEFORE_EDIT" Width="2.125" PointX="23.125" PointY="0.5" Height="0.4" IsExpanded="false" />
-        <EntityTypeShape EntityType="ProfileModel.HU_WELFARE_MNG" Width="1.5" PointX="2.75" PointY="20.875" Height="0.39999999999999147" IsExpanded="false" />
+        <EntityTypeShape EntityType="ProfileModel.HU_WELFARE_MNG" Width="1.5" PointX="2.75" PointY="20.875" Height="5.0571093750000031" IsExpanded="true" />
         <EntityTypeShape EntityType="ProfileModel.HU_TERMINATE_3B" Width="1.5" PointX="20.75" PointY="4.875" Height="0.39999999999999147" IsExpanded="false" />
         <EntityTypeShape EntityType="ProfileModel.HU_MERGE_FIELD" Width="1.5" PointX="4.75" PointY="20.875" Height="0.39999999999999147" IsExpanded="false" />
         <EntityTypeShape EntityType="ProfileModel.AT_ORG_PERIOD" Width="1.5" PointX="6.75" PointY="20.875" Height="0.40000000000000568" IsExpanded="false" />

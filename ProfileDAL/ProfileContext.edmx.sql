@@ -1,8 +1,8 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for Oracle database
 -- --------------------------------------------------
--- Date Created: 4/13/2020 4:58:56 PM
--- Generated from EDMX file: D:\SOURCE_GIT_NEW\SOURCR_ACV_NEW\ProfileDAL\ProfileContext.edmx
+-- Date Created: 4/13/2020 6:35:58 PM
+-- Generated from EDMX file: D:\ACE\acv_19\ProfileDAL\ProfileContext.edmx
 -- --------------------------------------------------
 
 -- --------------------------------------------------
@@ -1905,7 +1905,13 @@ CREATE TABLE "dbo"."HU_WELFARE_MNG" (
    "SDESC" NVARCHAR2(255) NULL,
    "IS_TAXION" NUMBER(38,0) NULL,
    "MONEY" NUMBER(38,0) NULL,
-   "PERIOD_ID" NUMBER(38,0) NULL
+   "PERIOD_ID" NUMBER(38,0) NULL,
+   "AC_DATE" DATE NULL,
+   "IS_TAXABLE" NUMBER(38,0) NULL,
+   "IS_NOT_TAXABLE" NUMBER(38,0) NULL,
+   "YEAR_NAME" NCLOB NULL,
+   "PAY_STAGE_NAME" NCLOB NULL,
+   "INF_MORE" NCLOB NULL
 );
 
 -- Creating table 'HU_TERMINATE_3B'
