@@ -3424,7 +3424,15 @@ Public Class ProfileRepository
             If _filter.ALLOW_MONEY_NUMBER IsNot Nothing Then
                 queryEmp = queryEmp.Where(Function(p) p.p.ALLOW_MONEY = _filter.ALLOW_MONEY_NUMBER)
             End If
-
+            If _filter.CON_NO IsNot Nothing Then
+                queryEmp = queryEmp.Where(Function(p) p.p.CON_NO.ToUpper.Contains(_filter.CON_NO.ToUpper))
+            End If
+            If _filter.REMARK IsNot Nothing Then
+                queryEmp = queryEmp.Where(Function(p) p.p.REMARK.ToUpper.Contains(_filter.REMARK.ToUpper))
+            End If
+            If _filter.SIGN_NAME IsNot Nothing Then
+                queryEmp = queryEmp.Where(Function(p) p.sign.FULLNAME_VN.ToUpper.Contains(_filter.SIGN_NAME.ToUpper))
+            End If
             ' danh sách thông tin khen thưởng nhân viên
             Dim lstEmp = queryEmp.Select(Function(p) New Temp_ConcurrentlyDTO With {
                                                        .ID = p.p.ID,
@@ -3453,7 +3461,10 @@ Public Class ProfileRepository
                                                        .SIGN_NAME_STOP = p.sign_stop.FULLNAME_VN,
                                                        .SIGN_TITLE_NAME_STOP = p.sign_stop_title.NAME_VN,
                                                        .SIGN_NAME_STOP2 = p.sign_stop2.FULLNAME_VN,
-                                                       .SIGN_TITLE_NAME_STOP2 = p.sign_stop_title2.NAME_VN
+                                                       .SIGN_TITLE_NAME_STOP2 = p.sign_stop_title2.NAME_VN,
+                                                       .SIGN_DATE = p.p.SIGN_DATE,
+                                                       .REMARK = p.p.REMARK,
+                                                       .CON_NO = p.p.CON_NO
                                                        })
 
             lstEmp = lstEmp.OrderBy(Sorts)

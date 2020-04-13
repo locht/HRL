@@ -5,31 +5,45 @@
 <tlk:RadSplitter ID="RadSplitter2" runat="server" Height="100%" Width="100%" Orientation="Horizontal"
     SkinID="Demo">
     <tlk:RadPane ID="RadPane2" runat="server" Height="40px" Scrolling="None">
-        <Profile:ctrlEmpBasicInfo runat="server" ID="ctrlEmpBasicInfo" />
+        <profile:ctrlempbasicinfo runat="server" id="ctrlEmpBasicInfo" />
     </tlk:RadPane>
     <tlk:RadPane ID="RadPane1" runat="server" Scrolling="None">
         <tlk:RadGrid PageSize="50" ID="rgGrid" runat="server" AllowFilteringByColumn="true"
             Height="100%">
             <ClientSettings EnableRowHoverStyle="true">
-                        <Selecting AllowRowSelect="true" />
-                    </ClientSettings>
-                    <MasterTableView DataKeyNames="ID,STATUS,EXPIRE_DATE_CON" ClientDataKeyNames="ID,EMPLOYEE_ID,STATUS,EXPIRE_DATE_CON,ORG_ID_DESC,ORG_CON,TITLE_CON">
-                        <Columns>
-                            <tlk:GridBoundColumn DataField="ID" Visible="false" />
-                            <tlk:GridBoundColumn DataField="EMPLOYEE_ID" Visible="false" />
-                            <tlk:GridBoundColumn HeaderText="Đơn vị kiêm nhiệm" DataField="ORG_CON_NAME"
-                                SortExpression="ORG_CON_NAME" UniqueName="ORG_CON_NAME" HeaderStyle-Width="150px" />
-                            <tlk:GridBoundColumn HeaderText="Chức danh kiêm nhiệm" DataField="TITLE_CON_NAME"
-                                SortExpression="TITLE_CON_NAME" UniqueName="TITLE_CON_NAME" HeaderStyle-Width="150px" />
-                            <tlk:GridDateTimeColumn HeaderText="Ngày hiệu lực" DataField="EFFECT_DATE_CON"  HeaderStyle-Width="150px"
-                                ItemStyle-HorizontalAlign="Center" SortExpression="EFFECT_DATE_CON" UniqueName="EFFECT_DATE_CON"
-                                DataFormatString="{0:dd/MM/yyyy}">
-                            </tlk:GridDateTimeColumn>
-                            <tlk:GridDateTimeColumn HeaderText="Ngày hết hiệu lực" DataField="EXPIRE_DATE_CON"  HeaderStyle-Width="150px"
-                                ItemStyle-HorizontalAlign="Center" SortExpression="EXPIRE_DATE_CON" UniqueName="EXPIRE_DATE_CON"
-                                DataFormatString="{0:dd/MM/yyyy}">
-                            </tlk:GridDateTimeColumn>
-                            <tlk:GridBoundColumn HeaderText="Phụ cấp kiêm nhiệm" DataField="ALLOW_MONEY_NUMBER"  HeaderStyle-Width="150px"
+                <Selecting AllowRowSelect="true" />
+            </ClientSettings>
+            <MasterTableView DataKeyNames="ID,STATUS,EXPIRE_DATE_CON" ClientDataKeyNames="ID,EMPLOYEE_ID,STATUS,EXPIRE_DATE_CON,ORG_ID_DESC,ORG_CON,TITLE_CON">
+                <Columns>
+                    <tlk:GridBoundColumn DataField="ID" Visible="false" />
+                    <tlk:GridBoundColumn DataField="EMPLOYEE_ID" Visible="false" />
+                    <tlk:GridBoundColumn HeaderText="Đơn vị kiêm nhiệm" DataField="ORG_CON_NAME" SortExpression="ORG_CON_NAME"
+                        UniqueName="ORG_CON_NAME" HeaderStyle-Width="150px" />
+                    <tlk:GridBoundColumn HeaderText="Chức danh kiêm nhiệm" DataField="TITLE_CON_NAME"
+                        SortExpression="TITLE_CON_NAME" UniqueName="TITLE_CON_NAME" HeaderStyle-Width="150px" />
+                    <%-- <tlk:GridBoundColumn HeaderText="Vị trí công việc kiêm nhiệm" DataField="WORK_POSITION_NAME"
+                        SortExpression="WORK_POSITION_NAME" UniqueName="WORK_POSITION_NAME" HeaderStyle-Width="150px" />--%>
+                    <tlk:GridBoundColumn HeaderText="Số quyết định" DataField="CON_NO" SortExpression="CON_NO"
+                        UniqueName="CON_NO" HeaderStyle-Width="150px" />
+                    <tlk:GridDateTimeColumn HeaderText="Ngày hiệu lực" DataField="EFFECT_DATE_CON" HeaderStyle-Width="150px"
+                        ItemStyle-HorizontalAlign="Center" SortExpression="EFFECT_DATE_CON" UniqueName="EFFECT_DATE_CON"
+                        DataFormatString="{0:dd/MM/yyyy}">
+                    </tlk:GridDateTimeColumn>
+                    <tlk:GridDateTimeColumn HeaderText="Ngày hết hiệu lực" DataField="EXPIRE_DATE_CON"
+                        HeaderStyle-Width="150px" ItemStyle-HorizontalAlign="Center" SortExpression="EXPIRE_DATE_CON"
+                        UniqueName="EXPIRE_DATE_CON" DataFormatString="{0:dd/MM/yyyy}">
+                    </tlk:GridDateTimeColumn>
+                    <tlk:GridBoundColumn HeaderText="Người ký" DataField="SIGN_NAME" SortExpression="SIGN_NAME"
+                        UniqueName="SIGN_NAME" HeaderStyle-Width="150px" />
+                    <tlk:GridBoundColumn HeaderText="Chức danh người ký" DataField="SIGN_TITLE_NAME"
+                        SortExpression="SIGN_TITLE_NAME" UniqueName="SIGN_TITLE_NAME" HeaderStyle-Width="150px" />
+                    <tlk:GridDateTimeColumn HeaderText="Ngày ký" DataField="SIGN_DATE" HeaderStyle-Width="150px"
+                        ItemStyle-HorizontalAlign="Center" SortExpression="SIGN_DATE" UniqueName="SIGN_DATE"
+                        DataFormatString="{0:dd/MM/yyyy}">
+                    </tlk:GridDateTimeColumn>
+                    <tlk:GridBoundColumn HeaderText="Ghi chú" DataField="REMARK" SortExpression="REMARK"
+                        UniqueName="REMARK" HeaderStyle-Width="150px" />
+                    <%-- <tlk:GridBoundColumn HeaderText="Phụ cấp kiêm nhiệm" DataField="ALLOW_MONEY_NUMBER"  HeaderStyle-Width="150px"
                                 SortExpression="ALLOW_MONEY_NUMBER" UniqueName="ALLOW_MONEY_NUMBER" DataFormatString="{0:N0}" />
                             <tlk:GridBoundColumn HeaderText="Người ký quyết định kiêm nhiệm 1" DataField="SIGN_NAME"
                                 SortExpression="SIGN_NAME" UniqueName="SIGN_NAME" HeaderStyle-Width="120px" />
@@ -50,9 +64,9 @@
                             <tlk:GridBoundColumn HeaderText="Người ký quyết định thôi kiêm nhiệm 2" DataField="SIGN_NAME_STOP2"
                                 SortExpression="SIGN_NAME_STOP2" UniqueName="SIGN_NAME_STOP2" HeaderStyle-Width="120px" />  
                             <tlk:GridBoundColumn HeaderText="Chức danh quyết định thôi kiêm nhiệm 2" DataField="SIGN_TITLE_NAME_STOP2"
-                                SortExpression="SIGN_TITLE_NAME_STOP2" UniqueName="SIGN_TITLE_NAME_STOP2" HeaderStyle-Width="120px" /> 
-                        </Columns>
-                    </MasterTableView>
+                                SortExpression="SIGN_TITLE_NAME_STOP2" UniqueName="SIGN_TITLE_NAME_STOP2" HeaderStyle-Width="120px" /> --%>
+                </Columns>
+            </MasterTableView>
         </tlk:RadGrid>
     </tlk:RadPane>
 </tlk:RadSplitter>
