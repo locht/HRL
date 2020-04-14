@@ -1526,7 +1526,6 @@ Partial Class ProfileRepository
             objWorkingData.TAX_TABLE_ID = objWorking.TAX_TABLE_ID
             objWorkingData.SAL_TOTAL = objWorking.SAL_TOTAL
             objWorkingData.SAL_INS = objWorking.SAL_INS            
-            objWorkingData.SAL_INS = objWorking.SAL_BASIC
             objWorkingData.ATTACH_FILE = objWorking.ATTACH_FILE
             objWorkingData.PERCENTSALARY = objWorking.PERCENTSALARY
             objWorkingData.FACTORSALARY = objWorking.FACTORSALARY
@@ -1548,7 +1547,7 @@ Partial Class ProfileRepository
             End If
 
             If objWorking.lstAllowance IsNot Nothing Then
-                objWorking.ALLOWANCE_TOTAL = objWorking.lstAllowance.Sum(Function(f) f.AMOUNT_EX)
+                objWorkingData.ALLOWANCE_TOTAL = objWorking.lstAllowance.Sum(Function(f) f.AMOUNT_EX)
                 For Each item In objWorking.lstAllowance
                     If objWorking.STATUS_ID = ProfileCommon.DECISION_STATUS.APPROVE_ID Then
                         Dim objALlow = (From p In Context.HU_WORKING_ALLOW
@@ -1840,7 +1839,7 @@ Partial Class ProfileRepository
             End If
 
             If objWorking.lstAllowance IsNot Nothing Then
-                objWorking.ALLOWANCE_TOTAL = objWorking.lstAllowance.Sum(Function(f) f.AMOUNT_EX)
+                objWorkingData.ALLOWANCE_TOTAL = objWorking.lstAllowance.Sum(Function(f) f.AMOUNT_EX)
                 Dim lstAll = (From p In Context.HU_WORKING_ALLOW Where p.HU_WORKING_ID = objWorking.ID).ToList
                 For Each item In lstAll
                     Context.HU_WORKING_ALLOW.DeleteObject(item)
