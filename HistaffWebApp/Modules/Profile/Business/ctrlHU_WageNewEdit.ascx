@@ -423,6 +423,10 @@
                                 <tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderStyle-HorizontalAlign="Center"
                                     HeaderStyle-Width="40px" ItemStyle-HorizontalAlign="Center">
                                 </tlk:GridClientSelectColumn>
+                                <tlk:GridNumericColumn HeaderText="<%$ Translate: Tên phụ cấp %>" DataField="ALLOWANCE_LIST_NAME"
+                                    SortExpression="ALLOWANCE_LIST_NAME" UniqueName="ALLOWANCE_LIST_NAME">
+                                    <ItemStyle HorizontalAlign="Left" VerticalAlign="Middle" />
+                                </tlk:GridNumericColumn>
                                  <tlk:GridNumericColumn HeaderText="<%$ Translate: Số tiền chưa quy đổi %>" DataField="AMOUNT"
                                     SortExpression="AMOUNT" UniqueName="AMOUNT" DataFormatString="{0:n0}">
                                     <ItemStyle HorizontalAlign="Right" VerticalAlign="Middle" />
@@ -618,7 +622,6 @@
 
 
         function OnClientSelectedIndexChanged(sender, eventArgs) {
-        debugger;
             var id = sender.get_id();
             var cbo;
             switch (id) {
