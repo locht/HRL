@@ -48,15 +48,16 @@ Partial Class ProfileRepository
                         From o In Context.HU_ORGANIZATION.Where(Function(o) e.ORG_ID = o.ID).DefaultIfEmpty
                         From ot In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.WELFARE_ID).DefaultIfEmpty
                         From t In Context.HU_TITLE.Where(Function(t) e.TITLE_ID = t.ID).DefaultIfEmpty
-                        From se In Context.SE_CHOSEN_ORG.Where(Function(se) se.ORG_ID = o.ID And _
+                        From se In Context.SE_CHOSEN_ORG.Where(Function(se) se.ORG_ID = o.ID And
                                                                    se.USERNAME = UserLog.Username.ToUpper)
+                        From j In Context.HU_JOB_POSITION.Where(Function(j) j.ID = e.JOB_POSITION)
 
             Dim dateNow = Date.Now.Date
             Dim terID = ProfileCommon.OT_WORK_STATUS.TERMINATE_ID
             'bo loc nhan vien nghỉ viec
             If Not _filter.IS_TER Then
-                query = query.Where(Function(p) Not p.e.WORK_STATUS.HasValue Or _
-                                        (p.e.WORK_STATUS.HasValue And _
+                query = query.Where(Function(p) Not p.e.WORK_STATUS.HasValue Or
+                                        (p.e.WORK_STATUS.HasValue And
                                          ((p.e.WORK_STATUS <> terID) Or (p.e.WORK_STATUS = terID And p.e.TER_EFFECT_DATE > dateNow))))
             End If
 
@@ -116,7 +117,14 @@ Partial Class ProfileRepository
                                        .WELFARE_NAME = p.ot.NAME_VN,
                                        .WORK_STATUS = p.e.WORK_STATUS,
                                        .TER_LAST_DATE = p.e.TER_EFFECT_DATE,
-                                       .CREATED_DATE = p.p.CREATED_DATE})
+                                       .CREATED_DATE = p.p.CREATED_DATE,
+                                       .JOB_NAME = p.j.JOB_NAME,
+                                       .AC_DATE = p.p.AC_DATE,
+                                       .IS_TAXABLE = p.p.IS_TAXABLE,
+                                       .IS_NOT_TAXABLE = p.p.IS_NOT_TAXABLE,
+                                       .YEAR_NAME = p.p.YEAR_NAME,
+                                       .PAY_STAGE_NAME = p.p.PAY_STAGE_NAME,
+                                       .INF_MORE = p.p.INF_MORE})
             wel = wel.OrderBy(Sorts)
             Total = wel.Count
             wel = wel.Skip(PageIndex * PageSize).Take(PageSize)
@@ -131,16 +139,16 @@ Partial Class ProfileRepository
             Dim query = From p In Context.HU_WELFARE_MNG
                         From ce In Context.HU_WELFARE_MNG_EMP.Where(Function(f) f.GROUP_ID = p.ID).DefaultIfEmpty
                         From cttype In Context.HU_CONTRACT_TYPE.Where(Function(f) f.ID = ce.CONTRACT_TYPE).DefaultIfEmpty
-                      From e In Context.HU_EMPLOYEE.Where(Function(e) e.ID = ce.EMPLOYEE_ID).DefaultIfEmpty
-                      From t In Context.HU_TITLE.Where(Function(t) t.ID = e.TITLE_ID).DefaultIfEmpty
-                      From gender In Context.OT_OTHER_LIST.Where(Function(f) f.ID = ce.GENDER_ID).DefaultIfEmpty
-                      From o In Context.HU_ORGANIZATION.Where(Function(o) o.ID = ce.ORG_ID).DefaultIfEmpty
-                      From ov In Context.HU_ORGANIZATION_V.Where(Function(f) f.ID = o.ID).DefaultIfEmpty
-            From w In Context.HU_WELFARE_LIST.Where(Function(w) w.ID = p.WELFARE_ID).DefaultIfEmpty
-            From pe In Context.AT_PERIOD.Where(Function(pe) pe.ID = p.PERIOD_ID).DefaultIfEmpty
-            From e_cv In Context.HU_EMPLOYEE_CV.Where(Function(e_cv) e_cv.EMPLOYEE_ID = e.ID).DefaultIfEmpty
-            Where p.ID = Id
-         Order By p.EMPLOYEE_ID()
+                        From e In Context.HU_EMPLOYEE.Where(Function(e) e.ID = ce.EMPLOYEE_ID).DefaultIfEmpty
+                        From t In Context.HU_TITLE.Where(Function(t) t.ID = e.TITLE_ID).DefaultIfEmpty
+                        From gender In Context.OT_OTHER_LIST.Where(Function(f) f.ID = ce.GENDER_ID).DefaultIfEmpty
+                        From o In Context.HU_ORGANIZATION.Where(Function(o) o.ID = ce.ORG_ID).DefaultIfEmpty
+                        From ov In Context.HU_ORGANIZATION_V.Where(Function(f) f.ID = o.ID).DefaultIfEmpty
+                        From w In Context.HU_WELFARE_LIST.Where(Function(w) w.ID = p.WELFARE_ID).DefaultIfEmpty
+                        From pe In Context.AT_PERIOD.Where(Function(pe) pe.ID = p.PERIOD_ID).DefaultIfEmpty
+                        From e_cv In Context.HU_EMPLOYEE_CV.Where(Function(e_cv) e_cv.EMPLOYEE_ID = e.ID).DefaultIfEmpty
+                        Where p.ID = Id
+                        Order By p.EMPLOYEE_ID()
 
             Dim lst = query.Select(Function(p) New Welfatemng_empDTO With {
                                        .ID = p.ce.ID,
@@ -180,7 +188,7 @@ Partial Class ProfileRepository
                         From w In Context.HU_WELFARE_LIST.Where(Function(w) w.ID = p.WELFARE_ID).DefaultIfEmpty
                         From pe In Context.AT_PERIOD.Where(Function(pe) pe.ID = p.PERIOD_ID).DefaultIfEmpty
                         Where p.ID = Id
-                     Order By p.EMPLOYEE_ID
+                        Order By p.EMPLOYEE_ID
 
             ' select thuộc tính
             Dim wel = query.Select(Function(p) New WelfareMngDTO With {
@@ -207,6 +215,22 @@ Partial Class ProfileRepository
             Throw ex
         End Try
     End Function
+    ' get combobox : năm và kỳ lương 
+    Public Function GetComboboxPeriod() As List(Of ATPeriodDTO)
+        Try
+            Dim query = From p In Context.AT_PERIOD
+            ' select thuộc tính
+            Dim wel = query.Select(Function(p) New ATPeriodDTO With {
+                                       .ID = p.ID,
+                                       .YEAR = p.YEAR,
+                                       .PERIOD_NAME = p.PERIOD_NAME
+                                       })
+            Return wel.ToList
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iProfile")
+            Throw ex
+        End Try
+    End Function
 
     Public Function CheckWelfareMngEffect(ByVal _filter As List(Of WelfareMngDTO)) As Boolean
         Dim lst As List(Of WelfareMngDTO)
@@ -228,15 +252,15 @@ Partial Class ProfileRepository
                 'Logger.LogInfo(welfare)
                 ' danh sách thông tin quản lý phúc lợi mới nhất
                 Dim query = (From p In Context.HU_WELFARE_MNG
-                         Join u In welfare
-                         On p.WELFARE_ID Equals u.WELFARE_ID _
-                         And p.EMPLOYEE_ID Equals u.EMPLOYEE_ID _
-                         And p.EFFECT_DATE Equals u.EFFECT_DATE
-                         Where Not lstID.Contains(p.ID)
-                         Select New WelfareMngDTO With {
-                             .EMPLOYEE_ID = p.EMPLOYEE_ID,
-                             .EFFECT_DATE = p.EFFECT_DATE,
-                             .EXPIRE_DATE = p.EXPIRE_DATE})
+                             Join u In welfare
+                             On p.WELFARE_ID Equals u.WELFARE_ID _
+                             And p.EMPLOYEE_ID Equals u.EMPLOYEE_ID _
+                             And p.EFFECT_DATE Equals u.EFFECT_DATE
+                             Where Not lstID.Contains(p.ID)
+                             Select New WelfareMngDTO With {
+                                 .EMPLOYEE_ID = p.EMPLOYEE_ID,
+                                 .EFFECT_DATE = p.EFFECT_DATE,
+                                 .EXPIRE_DATE = p.EXPIRE_DATE})
                 ''Logger.LogError(ex)
                 lst = query.ToList
             Else
@@ -253,14 +277,14 @@ Partial Class ProfileRepository
                                   Key .EFFECT_DATE = pGroup.Max(Function(p) p.EFFECT_DATE)})
                 ' danh sách thông tin quản lý phúc lợi mới nhất
                 Dim query = (From p In Context.HU_WELFARE_MNG
-                         Join u In welfare
-                         On p.WELFARE_ID Equals u.WELFARE_ID _
-                         And p.EMPLOYEE_ID Equals u.EMPLOYEE_ID _
-                         And p.EFFECT_DATE Equals u.EFFECT_DATE
-                         Select New WelfareMngDTO With {
-                             .EMPLOYEE_ID = p.EMPLOYEE_ID,
-                             .EFFECT_DATE = p.EFFECT_DATE,
-                             .EXPIRE_DATE = p.EXPIRE_DATE})
+                             Join u In welfare
+                             On p.WELFARE_ID Equals u.WELFARE_ID _
+                             And p.EMPLOYEE_ID Equals u.EMPLOYEE_ID _
+                             And p.EFFECT_DATE Equals u.EFFECT_DATE
+                             Select New WelfareMngDTO With {
+                                 .EMPLOYEE_ID = p.EMPLOYEE_ID,
+                                 .EFFECT_DATE = p.EFFECT_DATE,
+                                 .EXPIRE_DATE = p.EXPIRE_DATE})
                 lst = query.ToList
             End If
             If lst.Count > 0 Then
@@ -308,8 +332,14 @@ Partial Class ProfileRepository
             objWelfareMngData.MODIFIED_DATE = DateTime.Now
             objWelfareMngData.MODIFIED_BY = log.Username
             objWelfareMngData.MODIFIED_LOG = log.ComputerName
-            Context.HU_WELFARE_MNG.AddObject(objWelfareMngData)
+            objWelfareMngData.AC_DATE = lstWelfareMng.AC_DATE
+            objWelfareMngData.INF_MORE = lstWelfareMng.INF_MORE
+            objWelfareMngData.IS_NOT_TAXABLE = lstWelfareMng.IS_NOT_TAXABLE
+            objWelfareMngData.IS_TAXABLE = lstWelfareMng.IS_TAXABLE
+            objWelfareMngData.YEAR_NAME = lstWelfareMng.YEAR_NAME
+            objWelfareMngData.PAY_STAGE_NAME = lstWelfareMng.PAY_STAGE_NAME
 
+            Context.HU_WELFARE_MNG.AddObject(objWelfareMngData)
             InsertObjectLstEmp(lstWelfareMng)
             Context.SaveChanges(log)
             Return True
@@ -602,7 +632,7 @@ Partial Class ProfileRepository
                         From o In Context.HU_ORGANIZATION.Where(Function(o) o.ID = p.ORG_ID).DefaultIfEmpty
                         From type In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.TYPE_ACCIDENT).DefaultIfEmpty
                         From reason In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.REASON_ACCIDENT).DefaultIfEmpty
-                        From se In Context.SE_CHOSEN_ORG.Where(Function(se) se.ORG_ID = o.ID And _
+                        From se In Context.SE_CHOSEN_ORG.Where(Function(se) se.ORG_ID = o.ID And
                                                                    se.USERNAME = UserLog.Username.ToUpper)
 
 
@@ -670,7 +700,7 @@ Partial Class ProfileRepository
     Public Function CheckCodeSafe(ByVal code As String, ByVal id As Decimal) As Boolean
         Try
             Dim check = (From p In Context.HU_SAFELABOR_MNG
-                       Where p.CODE.ToUpper = code.ToUpper And p.ID <> id).ToList.Count
+                         Where p.CODE.ToUpper = code.ToUpper And p.ID <> id).ToList.Count
             If check > 0 Then
                 Return False
             End If

@@ -425,6 +425,19 @@ Partial Public Class ProfileBusinessRepository
 
         Return Nothing
     End Function
+
+    Public Function GetComboboxPeriod() As List(Of ATPeriodDTO)
+        Using rep As New ProfileBusinessClient
+            Try
+                Return rep.GetComboboxPeriod()
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+
+        Return Nothing
+    End Function
     Public Function CheckWelfareMngEffect(ByVal _filter As List(Of WelfareMngDTO)) As Boolean
         Using rep As New ProfileBusinessClient
             Try

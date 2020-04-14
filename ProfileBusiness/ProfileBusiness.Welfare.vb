@@ -94,6 +94,19 @@ Namespace ProfileBusiness.ServiceImplementations
                 End Try
             End Using
         End Function
+
+        Public Function GetComboboxPeriod() As List(Of ATPeriodDTO) Implements ServiceContracts.IProfileBusiness.GetComboboxPeriod
+            Using rep As New ProfileRepository
+                Try
+
+                    Dim lst = rep.GetComboboxPeriod()
+                    Return lst
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
+
         Public Function CheckWelfareMngEffect(ByVal _filter As List(Of WelfareMngDTO)) As Boolean Implements ServiceContracts.IProfileBusiness.CheckWelfareMngEffect
             Using rep As New ProfileRepository
                 Try

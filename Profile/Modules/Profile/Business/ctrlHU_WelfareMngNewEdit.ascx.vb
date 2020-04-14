@@ -302,8 +302,6 @@ Public Class ctrlHU_WelfareMngNewEdit
         End Try
     End Sub
 
-
-
     Private Sub ctrlFindEmployeePopup_EmployeeSelected(ByVal sender As Object, ByVal e As System.EventArgs) Handles ctrlFindEmployeePopup.EmployeeSelected
         Dim lstCommonEmployee As New List(Of CommonBusiness.EmployeePopupFindDTO)
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
@@ -324,6 +322,7 @@ Public Class ctrlHU_WelfareMngNewEdit
                     employee.TITLE_NAME = emp.TITLE_NAME
                     employee.ORG_ID = emp.ORG_ID
                     employee.TITLE_ID = emp.TITLE_ID
+
                     Using rep As New ProfileBusinessRepository
                         Dim dtdata = rep.GET_DETAILS_EMP(emp.ID, cboWELFARE_ID.SelectedValue, dpEFFECT_DATE.SelectedDate)
                         If dtdata.Rows.Count > 0 Then
@@ -338,6 +337,7 @@ Public Class ctrlHU_WelfareMngNewEdit
                             Dim seniority = dtdata(0)("SENIORITY").ToString()
                             Dim gender_name = dtdata(0)("GENDER_NAME").ToString()
                             Dim wel_id = dtdata(0)("WELFARE_ID").ToString()
+                            employee.JOB_NAME = dtdata(0)("JOB_NAME").ToString()
                             If total_child <> "" Then
                                 employee.TOTAL_CHILD = Decimal.Parse(total_child)
                             End If
@@ -418,32 +418,6 @@ Public Class ctrlHU_WelfareMngNewEdit
         isLoadPopup = 0
     End Sub
 
-
-
-    ''' <lastupdate>
-    ''' 10/07/2017 10:10
-    ''' </lastupdate>
-    ''' <summary>
-    ''' Xu ly su kien click cho button btnFindEmployee
-    ''' Hien thi popup co isLoadPopup = 1 khi click vao button
-    ''' Cap nhat lai trang thai của cac control tren page
-    ''' </summary>
-    ''' <param name="sender"></param>
-    ''' <param name="e"></param>
-    ''' <remarks></remarks>
-    'Private Sub btnFindEmployee_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnFindEmployee.Click
-    '    Dim startTime As DateTime = DateTime.UtcNow
-    '    Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
-    '    Try
-    '        LoadControlPopup()
-    '        ctrlFindEmployeePopup.Show()
-    '        _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
-    '    Catch ex As Exception
-    '        _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
-    '    End Try
-
-    'End Sub
-
     ''' <lastupdate>
     ''' 10/07/2017 10:10
     ''' </lastupdate>
@@ -467,6 +441,21 @@ Public Class ctrlHU_WelfareMngNewEdit
                     objdata = New WelfareMngDTO
                     objdata.WELFARE_ID = cboWELFARE_ID.SelectedValue
                     objdata.EFFECT_DATE = dpEFFECT_DATE.SelectedDate
+                    objdata.AC_DATE = dpAC_DATE.SelectedDate
+                    objdata.YEAR_NAME = cboYear.Text
+                    objdata.PAY_STAGE_NAME = cboPayStage.Text
+                    objdata.INF_MORE = txtINF_MORE.Text
+                    If chkIS_TAXABLE.Checked Then
+                        objdata.IS_TAXABLE = True
+                    Else
+                        objdata.IS_TAXABLE = False
+                    End If
+                    If chkIS_NOT_TAXABLE.Checked Then
+                        objdata.IS_NOT_TAXABLE = True
+                    Else
+                        objdata.IS_NOT_TAXABLE = False
+                    End If
+
                     objdata.SDESC = txtSDESC.Text
                     Dim ValidGrid As Tuple(Of Boolean, String)
                     ValidGrid = ValidateGrid_Emp()
@@ -483,7 +472,9 @@ Public Class ctrlHU_WelfareMngNewEdit
                         Dim contract_type
                         Dim contract_name
                         Dim gender_name
-                        Dim welfare_id
+                        Dim job_name
+                        Dim Don_vi
+
                         Using rep As New ProfileBusinessRepository
                             Dim infoEmp = rep.GET_INFO_EMPLOYEE(row("EMPLOYEE_CODE").ToString)
                             If infoEmp.Rows.Count > 0 Then
@@ -494,6 +485,8 @@ Public Class ctrlHU_WelfareMngNewEdit
                                 contract_type = infoEmp(0)("CONTRACT_TYPE")
                                 contract_name = infoEmp(0)("CONTRACT_NAME")
                                 gender_name = infoEmp(0)("GENDER_NAME")
+                                job_name = IIf(IsDBNull(infoEmp(0)("JOB_NAME")), Nothing, infoEmp(0)("JOB_NAME"))
+                                Don_vi = infoEmp(0)("DON_VI")
                             End If
                         End Using
                         Dim o As New Welfatemng_empDTO
@@ -503,14 +496,16 @@ Public Class ctrlHU_WelfareMngNewEdit
                         o.GENDER_NAME = gender_name
                         o.TITLE_ID = If(title_id IsNot Nothing, title_id, Nothing)
                         o.ORG_ID = If(org_id IsNot Nothing, org_id, Nothing)
-                        o.TOTAL_CHILD = If(row("TOTAL_CHILD") <> "", Decimal.Parse(row("TOTAL_CHILD")), Nothing)
+                        'o.TOTAL_CHILD = If(row("TOTAL_CHILD") <> "", Decimal.Parse(row("TOTAL_CHILD")), Nothing)
                         o.MONEY_TOTAL = If(row("MONEY_TOTAL") <> "", Decimal.Parse(row("MONEY_TOTAL")), Nothing)
                         o.MONEY_PL = If(row("MONEY_PL") <> "", Decimal.Parse(row("MONEY_PL")), Nothing)
                         o.CONTRACT_TYPE = If(contract_type IsNot Nothing, contract_type, Nothing)
                         o.CONTRACT_NAME = contract_name
                         o.WELFARE_ID = If(row("WELFARE_ID") <> "", Decimal.Parse(row("WELFARE_ID")), Nothing)
-                        o.SENIORITY = row("SENIORITY").ToString
+                        'o.SENIORITY = row("SENIORITY").ToString
                         o.REMARK = row("REMARK").ToString
+                        ' o.JOB_NAME = If(job_name IsNot Nothing, job_name, Nothing)
+                        o.ORG_NAME2 = If(Don_vi IsNot Nothing, Don_vi, Nothing)
                         objdata.EMPLOYEE_ID = If(employee_id IsNot Nothing, employee_id, Nothing)
                         lstemp.Add(o)
                     Next
@@ -764,27 +759,6 @@ Public Class ctrlHU_WelfareMngNewEdit
 
         End Try
     End Sub
-    ''' <lastupdate>
-    ''' 10/07/2017 10:10
-    ''' </lastupdate>
-    ''' <summary>
-    ''' Xử lý sự kiện selectedIndexChanged cho combobox cboIS_TAXION
-    ''' </summary>
-    ''' <param name="sender"></param>
-    ''' <param name="e"></param>
-    ''' <remarks></remarks>
-
-
-    ''' <lastupdate>
-    ''' 10/07/2017 10:10
-    ''' </lastupdate>
-    ''' <summary>
-    ''' Xử lý sự kiện TextChanged cho textbox nmYear
-    ''' </summary>
-    ''' <param name="sender"></param>
-    ''' <param name="e"></param>
-    ''' <remarks></remarks>
-
 
     ''' <lastupdate>
     ''' 10/07/2017 10:10
@@ -826,58 +800,6 @@ Public Class ctrlHU_WelfareMngNewEdit
     ''' 10/07/2017 10:20
     ''' </lastupdate>
     ''' <summary>
-    ''' Phương thức xử lý việc load các control cho popup ctrlFindEmployeePopup
-    ''' </summary>
-    ''' <remarks></remarks>
-    'Sub LoadControlPopup()
-    '    Dim startTime As DateTime = DateTime.UtcNow
-    '    Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
-    '    Try
-    '        If Not phFindSign.Controls.Contains(ctrlFindEmployeePopup) Then
-    '            ctrlFindEmployeePopup = Me.Register("ctrlFindEmployeePopup", "Common", "ctrlFindEmployeePopup")
-    '            phFindSign.Controls.Add(ctrlFindEmployeePopup)
-    '            ctrlFindEmployeePopup.MultiSelect = False
-    '            ctrlFindEmployeePopup.LoadAllOrganization = False
-    '            ctrlFindEmployeePopup.MustHaveContract = True
-    '        End If
-    '        _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
-    '    Catch ex As Exception
-    '        _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
-    '    End Try
-
-    'End Sub
-
-    ''' <lastupdate>
-    ''' 10/07/2017 10:20
-    ''' </lastupdate>
-    ''' <summary>
-    ''' Phương thức xử lý việc lấy về parameter "gUID"
-    ''' Làm mới View hiện thời
-    ''' Fill du lieu cho View nếu parameter là "gUID"
-    ''' </summary>
-    ''' <remarks></remarks>
-    'Private Sub GetParams()
-    '    Dim startTime As DateTime = DateTime.UtcNow
-    '    Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
-    '    Try
-    '        If Request.Params("gUID") IsNot Nothing Then
-    '            _Id = Integer.Parse(Request.Params("gUID"))
-    '            CurrentState = CommonMessage.STATE_EDIT
-    '            LoadData()
-    '        Else
-    '            CurrentState = CommonMessage.STATE_NEW
-    '        End If
-    '        _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
-    '    Catch ex As Exception
-    '        Throw ex
-    '        _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
-    '    End Try
-    'End Sub
-
-    ''' <lastupdate>
-    ''' 10/07/2017 10:20
-    ''' </lastupdate>
-    ''' <summary>
     ''' Phương thức xử lý việc load dữ liệu cho các combobox
     ''' </summary>
     ''' <remarks></remarks>
@@ -885,6 +807,7 @@ Public Class ctrlHU_WelfareMngNewEdit
         Dim startTime As DateTime = DateTime.UtcNow
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
         Dim rep As New ProfileRepository
+        Dim re As New ProfileBusinessRepository
         Try
             'ListComboData = New ComboBoxDataDTO
             'ListComboData.GET_WELFARE = True
@@ -893,6 +816,12 @@ Public Class ctrlHU_WelfareMngNewEdit
             'FillRadCombobox(cboWELFARE_ID, ListComboData.LIST_WELFARE, "NAME", "ID")
             Dim dtData = rep.GetOtherList("WELFARE", False)
             FillRadCombobox(cboWELFARE_ID, dtData, "NAME", "ID", True)
+
+            Dim dt = re.GetComboboxPeriod()
+            FillRadCombobox(cboYear, dt, "YEAR", "ID", True)
+
+            FillRadCombobox(cboPayStage, dt, "PERIOD_NAME", "ID", True)
+
             rep.Dispose()
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
@@ -965,7 +894,7 @@ Public Class ctrlHU_WelfareMngNewEdit
                     dtbImport = Employee_PL.ToTable()
                 End If
             End If
-            rgEmployee.VirtualItemCount = dtbImport.Rows.Count'Employee_PL.Count
+            rgEmployee.VirtualItemCount = dtbImport.Rows.Count 'Employee_PL.Count
             rgEmployee.DataSource = dtbImport
 
         Catch ex As Exception
