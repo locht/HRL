@@ -1355,4 +1355,189 @@ Partial Class ProfileRepository
 
 #End Region
 
+#Region "Deduct"
+    Public Function GetEmployeeDeduct(ByVal _filter As DeductDTO) As List(Of DeductDTO)
+        Dim query As ObjectQuery(Of DeductDTO)
+        Try
+            query = (From p In Context.HU_DEDUCT
+                     Group Join m In Context.OT_OTHER_LIST On p.RELATION_ID Equals m.ID Into gGroup = Group
+                     From p_g In gGroup.DefaultIfEmpty
+                     Group Join n In Context.HU_PROVINCE On p.PROVINCE_ID Equals n.ID Into nGroup = Group
+                     From n_g In nGroup.DefaultIfEmpty
+                    Group Join d In Context.HU_DISTRICT On p.DISTRICT_ID Equals d.ID Into dGroup = Group
+                     From d_g In dGroup.DefaultIfEmpty
+                    Group Join w In Context.HU_WARD On p.WARD_ID Equals w.ID Into wGroup = Group
+                     From w_g In wGroup.DefaultIfEmpty
+                     From n_ks In Context.HU_NATION.Where(Function(F) F.ID = p.BIRTH_NATION_ID).DefaultIfEmpty
+                     From p_ks In Context.HU_PROVINCE.Where(Function(F) F.ID = p.BIRTH_PROVINCE_ID).DefaultIfEmpty
+                     From d_ks In Context.HU_DISTRICT.Where(Function(F) F.ID = p.BIRTH_DISTRICT_ID).DefaultIfEmpty
+                     From w_ks In Context.HU_WARD.Where(Function(F) F.ID = p.BIRTH_WARD_ID).DefaultIfEmpty
+                     From g In Context.OT_OTHER_LIST.Where(Function(F) F.ID = p.GENDER).DefaultIfEmpty
+                   Select New DeductDTO With {
+                    .ID = p.ID,
+                    .ADDRESS = p.ADDRESS,
+                    .FULLNAME = p.FULLNAME,
+                    .RELATION_ID = p.RELATION_ID,
+                    .RELATION_NAME = p_g.NAME_VN,
+                    .PROVINCE_ID = p.PROVINCE_ID,
+                    .DISTRICT_ID = p.DISTRICT_ID,
+                    .WARD_ID = p.WARD_ID,
+                    .BIRTH_DATE = p.BIRTH_DATE,
+                    .TAXTATION = p.TAXTATION,
+                    .DEDUCT_REG = p.DEDUCT_REG,
+                    .ID_NO = p.ID_NO,
+                    .DEDUCT_FROM = p.DEDUCT_FROM,
+                    .DEDUCT_TO = p.DEDUCT_TO,
+                    .REMARK = p.REMARK,
+                    .ID_NO_DATE = p.ID_NO_DATE,
+                    .ID_NO_PLACE = p.ID_NO_PLACE,
+                    .TAXTATION_DATE = p.TAXTATION_DATE,
+                    .TAXTATION_PLACE = p.TAXTATION_PLACE,
+                    .BIRTH_CODE = p.BIRTH_CODE,
+                    .QUYEN = p.QUYEN,
+                    .BIRTH_NATION_ID = p.BIRTH_NATION_ID,
+                    .BIRTH_PROVINCE_ID = p.BIRTH_PROVINCE_ID,
+                    .BIRTH_DISTRICT_ID = p.BIRTH_DISTRICT_ID,
+                    .BIRTH_WARD_ID = p.BIRTH_WARD_ID,
+                    .BIRTH_NATION_NAME = n_ks.NAME_VN,
+                    .BIRTH_PROVINCE_NAME = p_ks.NAME_VN,
+                    .BIRTH_DISTRICT_NAME = d_ks.NAME_VN,
+                    .BIRTH_WARD_NAME = w_ks.NAME_VN,
+                    .GENDER = p.GENDER,
+                    .DIE_DATE = p.DIE_DATE,
+                    .GENDER_NAME = g.NAME_VN,
+                    .BIRTH_ADDRESS = p.BIRTH_ADDRESS})
+
+            If _filter.ID <> 0 Then
+                query = query.Where(Function(p) p.ID = _filter.ID)
+            End If
+            If _filter.RELATION_NAME <> "" Then
+                query = query.Where(Function(p) p.RELATION_NAME.ToLower().Contains(_filter.RELATION_NAME.ToLower))
+            End If
+            If _filter.FULLNAME <> "" Then
+                query = query.Where(Function(p) p.FULLNAME.ToLower().Contains(_filter.FULLNAME.ToLower))
+            End If
+            If _filter.BIRTH_DATE IsNot Nothing Then
+                query = query.Where(Function(p) p.BIRTH_DATE = _filter.BIRTH_DATE)
+            End If
+            If _filter.ID_NO <> "" Then
+                query = query.Where(Function(p) p.ID_NO.ToUpper().IndexOf(_filter.ID_NO.ToUpper) >= 0)
+            End If
+            If _filter.DEDUCT_REG IsNot Nothing Then
+                query = query.Where(Function(p) p.DEDUCT_REG = _filter.DEDUCT_REG)
+            End If
+            If _filter.DEDUCT_FROM IsNot Nothing Then
+                query = query.Where(Function(p) p.DEDUCT_FROM >= _filter.DEDUCT_FROM)
+            End If
+            If _filter.DEDUCT_TO IsNot Nothing Then
+                query = query.Where(Function(p) p.DEDUCT_TO <= _filter.DEDUCT_TO)
+            End If
+            Return query.ToList
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iProfile")
+            Throw ex
+        End Try
+    End Function
+
+    Public Function InsertEmployeeDeduct(ByVal objFamily As DeductDTO, ByVal log As UserLog, ByRef gID As Decimal) As Boolean
+        Try
+
+            Dim objFamilyData As New HU_DEDUCT
+            objFamilyData.ID = Utilities.GetNextSequence(Context, Context.HU_DEDUCT.EntitySet.Name)
+            objFamilyData.EMPLOYEE_ID = objFamily.EMPLOYEE_ID
+            objFamilyData.FULLNAME = objFamily.FULLNAME
+            objFamilyData.RELATION_ID = objFamily.RELATION_ID
+            objFamilyData.PROVINCE_ID = objFamily.PROVINCE_ID
+            objFamilyData.BIRTH_DATE = objFamily.BIRTH_DATE
+            objFamilyData.DEDUCT_REG = objFamily.DEDUCT_REG
+            objFamilyData.ID_NO = objFamily.ID_NO
+            objFamilyData.TAXTATION = objFamily.TAXTATION
+            objFamilyData.DEDUCT_FROM = objFamily.DEDUCT_FROM
+            objFamilyData.DEDUCT_TO = objFamily.DEDUCT_TO
+            objFamilyData.REMARK = objFamily.REMARK
+            objFamilyData.ADDRESS = objFamily.ADDRESS
+            objFamilyData.DISTRICT_ID = objFamily.DISTRICT_ID
+            objFamilyData.WARD_ID = objFamily.WARD_ID
+            objFamilyData.ID_NO_DATE = objFamily.ID_NO_DATE
+            objFamilyData.ID_NO_PLACE = objFamily.ID_NO_PLACE
+            objFamilyData.TAXTATION_DATE = objFamily.TAXTATION_DATE
+            objFamilyData.TAXTATION_PLACE = objFamily.TAXTATION_PLACE
+            objFamilyData.BIRTH_CODE = objFamily.BIRTH_CODE
+            objFamilyData.QUYEN = objFamily.QUYEN
+            objFamilyData.BIRTH_NATION_ID = objFamily.BIRTH_NATION_ID
+            objFamilyData.BIRTH_PROVINCE_ID = objFamily.BIRTH_PROVINCE_ID
+            objFamilyData.BIRTH_DISTRICT_ID = objFamily.BIRTH_DISTRICT_ID
+            objFamilyData.BIRTH_WARD_ID = objFamily.BIRTH_WARD_ID
+            objFamilyData.GENDER = objFamily.GENDER
+            objFamilyData.DIE_DATE = objFamily.DIE_DATE
+            objFamilyData.BIRTH_ADDRESS = objFamily.BIRTH_ADDRESS
+            Context.HU_DEDUCT.AddObject(objFamilyData)
+            Context.SaveChanges(log)
+            gID = objFamilyData.ID
+            Return True
+
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iProfile")
+            Throw ex
+        End Try
+    End Function
+
+    Public Function ModifyEmployeeDeduct(ByVal objFamily As DeductDTO,
+                                    ByVal log As UserLog, ByRef gID As Decimal) As Boolean
+        Dim objFamilyData As New HU_DEDUCT With {.ID = objFamily.ID}
+        Try
+            objFamilyData = (From p In Context.HU_DEDUCT Where p.ID = objFamily.ID).FirstOrDefault
+            objFamilyData.FULLNAME = objFamily.FULLNAME
+            objFamilyData.RELATION_ID = objFamily.RELATION_ID
+            objFamilyData.PROVINCE_ID = objFamily.PROVINCE_ID
+            objFamilyData.BIRTH_DATE = objFamily.BIRTH_DATE
+            objFamilyData.DEDUCT_REG = objFamily.DEDUCT_REG
+            objFamilyData.ID_NO = objFamily.ID_NO
+            objFamilyData.TAXTATION = objFamily.TAXTATION
+            objFamilyData.DEDUCT_FROM = objFamily.DEDUCT_FROM
+            objFamilyData.DEDUCT_TO = objFamily.DEDUCT_TO
+            objFamilyData.REMARK = objFamily.REMARK
+            objFamilyData.ADDRESS = objFamily.ADDRESS
+            objFamilyData.DISTRICT_ID = objFamily.DISTRICT_ID
+            objFamilyData.WARD_ID = objFamily.WARD_ID
+            objFamilyData.ID_NO_DATE = objFamily.ID_NO_DATE
+            objFamilyData.ID_NO_PLACE = objFamily.ID_NO_PLACE
+            objFamilyData.TAXTATION_DATE = objFamily.TAXTATION_DATE
+            objFamilyData.TAXTATION_PLACE = objFamily.TAXTATION_PLACE
+            objFamilyData.BIRTH_CODE = objFamily.BIRTH_CODE
+            objFamilyData.QUYEN = objFamily.QUYEN
+            objFamilyData.BIRTH_NATION_ID = objFamily.BIRTH_NATION_ID
+            objFamilyData.BIRTH_PROVINCE_ID = objFamily.BIRTH_PROVINCE_ID
+            objFamilyData.BIRTH_DISTRICT_ID = objFamily.BIRTH_DISTRICT_ID
+            objFamilyData.BIRTH_WARD_ID = objFamily.BIRTH_WARD_ID
+            objFamilyData.GENDER = objFamily.GENDER
+            objFamilyData.DIE_DATE = objFamily.DIE_DATE
+            objFamilyData.BIRTH_ADDRESS = objFamily.BIRTH_ADDRESS
+            Context.SaveChanges(log)
+            gID = objFamilyData.ID
+            Return True
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iProfile")
+            Throw ex
+        End Try
+
+    End Function
+
+    Public Function DeleteEmployeeDeduct(ByVal lstDecimals As List(Of Decimal), ByVal log As UserLog) As Boolean
+        Dim lst As List(Of HU_DEDUCT)
+        Try
+            lst = (From p In Context.HU_DEDUCT Where lstDecimals.Contains(p.ID)).ToList
+            For i As Int16 = 0 To lst.Count - 1
+                Context.HU_DEDUCT.DeleteObject(lst(i))
+            Next
+            Context.SaveChanges(log)
+            Return True
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iProfile")
+            Throw ex
+        End Try
+
+    End Function
+#End Region
+
 End Class

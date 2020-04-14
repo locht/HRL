@@ -300,5 +300,52 @@ Partial Public Class ProfileBusinessRepository
 
 #End Region
 
+#Region "Deduct"
+    Public Function GetEmployeeDeduct(ByVal _filter As DeductDTO) As List(Of DeductDTO)
+        Using rep As New ProfileBusinessClient
+            Try
+                Return rep.GetEmployeeDeduct(_filter)
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
 
+    End Function
+
+    Public Function InsertEmployeeDeduct(ByVal objFamily As DeductDTO, ByRef gID As Decimal) As Boolean
+        Using rep As New ProfileBusinessClient
+            Try
+                Return rep.InsertEmployeeDeduct(objFamily, Me.Log, gID)
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+
+    End Function
+    Public Function ModifyEmployeeDeduct(ByVal objFamily As DeductDTO, ByRef gID As Decimal) As Boolean
+        Using rep As New ProfileBusinessClient
+            Try
+                Return rep.ModifyEmployeeDeduct(objFamily, Me.Log, gID)
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+
+    End Function
+
+    Public Function DeleteEmployeeDeduct(ByVal lstDecimal As List(Of Decimal)) As Boolean
+        Using rep As New ProfileBusinessClient
+            Try
+                Return rep.DeleteEmployeeDeduct(lstDecimal, Me.Log)
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+
+    End Function
+#End Region
 End Class

@@ -86,6 +86,7 @@
     <Compile Include="BusinessObjects\Business\CETIFICATEDTO.vb" />
     <Compile Include="BusinessObjects\Business\CETIFICATE_EDITDTO.vb" />
     <Compile Include="BusinessObjects\Business\CommandResult.vb" />
+    <Compile Include="BusinessObjects\Business\DeductDTO.vb" />
     <Compile Include="BusinessObjects\Business\JobDescriptionDTO.vb" />
     <Compile Include="BusinessObjects\Business\SAFELABOR_MNGDTO.vb" />
     <Compile Include="BusinessObjects\Business\SAFELABOR_MNG_EMPDTO.vb" />

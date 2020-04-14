@@ -2953,6 +2953,18 @@ Namespace ProfileBusiness.ServiceContracts
 
         <OperationContract()>
         Function CHECK_IS_THHDLD(ByVal P_ID As Decimal, ByVal P_EMP_ID As Decimal, ByVal P_DATE As Date?) As Integer
+
+        <OperationContract()>
+        Function GetEmployeeDeduct(ByVal _filter As DeductDTO) As List(Of DeductDTO)
+
+        <OperationContract()>
+        Function InsertEmployeeDeduct(ByVal objFamily As DeductDTO, ByVal log As UserLog, ByRef gID As Decimal) As Boolean
+
+        <OperationContract()>
+        Function ModifyEmployeeDeduct(ByVal objFamily As DeductDTO, ByVal log As UserLog, ByRef gID As Decimal) As Boolean
+
+        <OperationContract()>
+        Function DeleteEmployeeDeduct(ByVal lstDecimals As List(Of Decimal), ByVal log As UserLog) As Boolean
     End Interface
 
 End Namespace

@@ -268,5 +268,51 @@ Namespace ProfileBusiness.ServiceImplementations
 
 #End Region
 
+#Region "Deduct"
+        Public Function GetEmployeeDeduct(ByVal _filter As DeductDTO) As List(Of DeductDTO) _
+           Implements ServiceContracts.IProfileBusiness.GetEmployeeDeduct
+            Using rep As New ProfileRepository
+                Try
+                    Return rep.GetEmployeeDeduct(_filter)
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
+
+        Public Function InsertEmployeeDeduct(ByVal objFamily As DeductDTO, ByVal log As UserLog, ByRef gID As Decimal) As Boolean _
+            Implements ServiceContracts.IProfileBusiness.InsertEmployeeDeduct
+            Using rep As New ProfileRepository
+                Try
+                    Return rep.InsertEmployeeDeduct(objFamily, log, gID)
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
+
+        Public Function ModifyEmployeeDeduct(ByVal objFamily As DeductDTO, ByVal log As UserLog, ByRef gID As Decimal) As Boolean _
+            Implements ServiceContracts.IProfileBusiness.ModifyEmployeeDeduct
+            Using rep As New ProfileRepository
+                Try
+                    Return rep.ModifyEmployeeDeduct(objFamily, log, gID)
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
+
+        Public Function DeleteEmployeeDeduct(ByVal lstDecimals As List(Of Decimal), ByVal log As UserLog) As Boolean _
+           Implements ServiceContracts.IProfileBusiness.DeleteEmployeeDeduct
+            Using rep As New ProfileRepository
+                Try
+                    Return rep.DeleteEmployeeDeduct(lstDecimals, log)
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
+#End Region
+
     End Class
 End Namespace
