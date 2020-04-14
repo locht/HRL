@@ -11,19 +11,21 @@ Partial Class ProfileRepository
     Public Function getDtByEmpIDandEffectdate(ByVal obj As WorkingDTO) As List(Of WorkingDTO)
         Try
             Dim query = From p In Context.HU_WORKING
-                    From emp In Context.HU_EMPLOYEE.Where(Function(f) f.ID = p.EMPLOYEE_ID).DefaultIfEmpty
-                    From title In Context.HU_TITLE.Where(Function(f) f.ID = p.TITLE_ID).DefaultIfEmpty
-                    From org In Context.HU_ORGANIZATION.Where(Function(f) f.ID = p.ORG_ID).DefaultIfEmpty
-                    Where p.EMPLOYEE_ID = obj.EMPLOYEE_ID And p.EFFECT_DATE = obj.EFFECT_DATE
-                    Select New WorkingDTO With {.ID = p.ID,
-                                                .EMPLOYEE_ID = p.EMPLOYEE_ID,
-                                                .EMPLOYEE_CODE = emp.EMPLOYEE_CODE,
-                                                .TITLE_ID = p.TITLE_ID,
-                                                .TITLE_NAME = title.NAME_VN,
-                                                .ORG_ID = p.ORG_ID,
-                                                .ORG_NAME = org.NAME_VN,
-                                                .IS_WAGE = p.IS_WAGE}
-            Dim list = query.OrderBy("ID DESC")
+                       From emp In Context.HU_EMPLOYEE.Where(Function(f) f.ID = p.EMPLOYEE_ID).DefaultIfEmpty
+                       From title In Context.HU_TITLE.Where(Function(f) f.ID = p.TITLE_ID).DefaultIfEmpty
+                       From org In Context.HU_ORGANIZATION.Where(Function(f) f.ID = p.ORG_ID).DefaultIfEmpty
+                       Where p.EMPLOYEE_ID = obj.EMPLOYEE_ID And p.EFFECT_DATE <= obj.EFFECT_DATE
+                       Select New WorkingDTO With {.ID = p.ID,
+                                                   .EMPLOYEE_ID = p.EMPLOYEE_ID,
+                                                   .EMPLOYEE_CODE = emp.EMPLOYEE_CODE,
+                                                   .TITLE_ID = p.TITLE_ID,
+                                                   .TITLE_NAME = title.NAME_VN,
+                                                   .ORG_ID = p.ORG_ID,
+                                                   .ORG_NAME = org.NAME_VN,
+                                                   .IS_WAGE = p.IS_WAGE,
+                                                   .STATUS_ID = p.STATUS_ID,
+                                                   .EFFECT_DATE = p.EFFECT_DATE}
+            Dim list = query
             Return list.ToList
         Catch ex As Exception
             WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iProfile")
