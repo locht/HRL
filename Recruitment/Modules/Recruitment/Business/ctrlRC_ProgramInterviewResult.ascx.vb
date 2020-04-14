@@ -151,9 +151,9 @@ Public Class ctrlRC_ProgramInterviewResult
     Public Overrides Sub Refresh(Optional ByVal Message As String = "")
         Dim rep As New RecruitmentRepository
         Try
+            hdProgramID.Value = Request.Params("PROGRAM_ID")
             If Not IsPostBack Then
                 CurrentState = CommonMessage.STATE_NORMAL
-                hdProgramID.Value = Request.Params("PROGRAM_ID")
             Else
                 Select Case Message
                     Case "UpdateView"
@@ -408,26 +408,24 @@ Public Class ctrlRC_ProgramInterviewResult
             If gridCadidate.Items.Count > 0 Then
                 If hdProgramID.Value IsNot Nothing Then
 
-                    If Not IsPostBack Then
                         ' set default first row selected
                         gridCadidate.MasterTableView.Items(0).Selected = True
-                    End If
 
-                    Dim dataItem = TryCast(gridCadidate.SelectedItems(0), GridDataItem)
+                        Dim dataItem = TryCast(gridCadidate.SelectedItems(0), GridDataItem)
 
-                    If dataItem IsNot Nothing Then
-                        tabSource = store.EXAMS_GETBYCANDIDATE(hdProgramID.Value, Int32.Parse(dataItem("ID").Text), -1)
-                        If tabSource IsNot Nothing And tabSource.Rows.Count > 0 Then
-                            rgDataInterview.VirtualItemCount = tabSource.Rows.Count
-                            rgDataInterview.DataSource = tabSource
-                        Else
-                            rgDataInterview.DataSource = New List(Of PROGRAM_SCHEDULE_CAN_DTO)
+                        If dataItem IsNot Nothing Then
+                            tabSource = store.EXAMS_GETBYCANDIDATE(hdProgramID.Value, Int32.Parse(dataItem("ID").Text), -1)
+                            If tabSource IsNot Nothing And tabSource.Rows.Count > 0 Then
+                                rgDataInterview.VirtualItemCount = tabSource.Rows.Count
+                                rgDataInterview.DataSource = tabSource
+                            Else
+                                rgDataInterview.DataSource = New List(Of PROGRAM_SCHEDULE_CAN_DTO)
+                            End If
                         End If
+                    Else
+                        rgDataInterview.DataSource = New List(Of PROGRAM_SCHEDULE_CAN_DTO)
                     End If
-                Else
-                    rgDataInterview.DataSource = New List(Of PROGRAM_SCHEDULE_CAN_DTO)
                 End If
-            End If
         Catch ex As Exception
             DisplayException(Me.ViewName, Me.ID, ex)
         End Try

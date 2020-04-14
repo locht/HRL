@@ -44710,4 +44710,12 @@ Xin cám ơn!
       <string>Quản lý sức khỏe</string>
     </Value>
   </Item>
+  <Item>
+    <Key>
+      <string>CTRLRC_PROGRAMDECLARE</string>
+    </Key>
+    <Value>
+      <string>Khai báo tuyển dụng</string>
+    </Value>
+  </Item>
 </SerializableDictionaryOfStringString>

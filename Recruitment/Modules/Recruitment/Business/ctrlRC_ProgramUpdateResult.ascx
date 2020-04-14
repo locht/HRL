@@ -1,8 +1,6 @@
 ﻿<%@ Control Language="vb" AutoEventWireup="false" CodeBehind="ctrlRC_ProgramUpdateResult.ascx.vb"
     Inherits="Recruitment.ctrlRC_ProgramUpdateResult" %>
 <%@ Import Namespace="Common" %>
-<%@ Register Src="ctrlRC_ProgramExamsResult.ascx" TagName="ctrlRC_ProgramExamsResult"
-    TagPrefix="Recruitment" %>
 <%@ Register Src="ctrlRC_ProgramInterviewResult.ascx" TagName="ctrlRC_ProgramInterviewResult"
     TagPrefix="Recruitment" %>
 <asp:HiddenField ID="hidProgramID" runat="server" />
@@ -94,22 +92,8 @@
         </table>
     </tlk:RadPane>
     <tlk:RadPane ID="DetailPane" runat="server" Height="480px">
-        <tlk:RadTabStrip ID="rtabProfileInfo" runat="server" CausesValidation="false" MultiPageID="RadMultiPage1"
-            AutoPostBack="false">
-            <Tabs>
-                <tlk:RadTab runat="server" ID="tabExamsResult" PageViewID="tabExamsResult" Text="<%$ Translate: Kết quả thi tuyển %>"
-                    Selected="True">
-                </tlk:RadTab>
-                <tlk:RadTab runat="server" ID="tabInterviewResult" PageViewID="tabInterviewResult"
-                    Text="<%$ Translate: Kết quả phỏng vấn %>">
-                </tlk:RadTab>
-            </Tabs>
-        </tlk:RadTabStrip>
         <tlk:RadMultiPage ID="RadMultiPage1" SelectedIndex="0" runat="server" Width="100%"
             ScrollBars="Auto" Height="100%">
-            <tlk:RadPageView ID="RadPageView1" runat="server" Width="100%">
-                <Recruitment:ctrlRC_ProgramExamsResult runat="server" ID="ctrlRC_ProgramExamsResult" />
-            </tlk:RadPageView>
             <tlk:RadPageView ID="rpvEmpTitleConcurrent" runat="server" Width="100%">
                 <Recruitment:ctrlRC_ProgramInterviewResult runat="server" ID="ctrlRC_ProgramInterviewResult" />
             </tlk:RadPageView>

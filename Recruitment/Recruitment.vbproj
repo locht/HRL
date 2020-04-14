@@ -222,6 +222,7 @@
     <Content Include="Modules\Common\ctrlMessageBox.ascx" />
     <Content Include="Modules\Common\ctrlOrganization.ascx" />
     <Content Include="Modules\Common\ctrlUpload.ascx" />
+    <Content Include="Modules\Recruitment\Business\ctrlRC_ProgramDeclare.ascx" />
     <Content Include="Modules\Recruitment\Business\ctrlRC_ImportCV.ascx" />
     <Content Include="Modules\Recruitment\Business\ctrlRC_PlanYear.ascx" />
     <Content Include="Modules\Recruitment\Business\ctrlRC_RequestNewEditV.ascx" />
@@ -295,6 +296,13 @@
     <Compile Include="BusinessObjects\PROGRAM_SCHEDULE_CAN_DTO.vb" />
     <Compile Include="BusinessObjects\RC_CANDIDATE_TRAINNING_DTO.vb" />
     <Compile Include="Modules\Recruitment\ATConstant.vb" />
+    <Compile Include="Modules\Recruitment\Business\ctrlRC_ProgramDeclare.ascx.designer.vb">
+      <DependentUpon>ctrlRC_ProgramDeclare.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Recruitment\Business\ctrlRC_ProgramDeclare.ascx.vb">
+      <DependentUpon>ctrlRC_ProgramDeclare.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
     <Compile Include="Modules\Recruitment\Business\ctrlRC_ImportCV.ascx.designer.vb">
       <DependentUpon>ctrlRC_ImportCV.ascx</DependentUpon>
     </Compile>

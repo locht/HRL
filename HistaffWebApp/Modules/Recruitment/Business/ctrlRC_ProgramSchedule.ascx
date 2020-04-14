@@ -2,7 +2,7 @@
     Inherits="Recruitment.ctrlRC_ProgramSchedule" %>
 <%@ Import Namespace="Common" %>
 <Common:ctrlMessageBox ID="ctrlMessageBox" runat="server" />
-<tlk:RadSplitter ID="RadSplitter3" runat="server" Width="100%" Height="100%" Orientation="Horizontal">
+<tlk:RadSplitter ID="RadSplitter3" runat="server" Width="100%"  Orientation="Horizontal">
     <tlk:RadPane ID="RadPane1" runat="server" Height="150px" Scrolling="None">
         <tlk:RadToolBar ID="tbarMainToolBar" runat="server" OnClientButtonClicking="clientButtonClicking" />
         <asp:HiddenField ID="hidOrg" runat="server" />
@@ -114,7 +114,7 @@
 
             var programID = $get("<%=hidProgramID.ClientID %>").value;
 
-            window.open('/Default.aspx?mid=Recruitment&fid=ctrlRC_ProgramScheduleNewEdit&group=Business&PROGRAM_ID='
+            OpenInNewTab('/Default.aspx?mid=Recruitment&fid=ctrlRC_ProgramScheduleNewEdit&group=Business&PROGRAM_ID='
             + programID + '&SCHEDULE_ID=' + gUId + '', "_self"); /*
             var pos = $("html").offset();
             oWindow.moveTo(pos.left, pos.top);
@@ -134,7 +134,7 @@
 
         function OpenInsertWindow() {
             var programID = $get("<%=hidProgramID.ClientID %>").value;
-            window.open('/Default.aspx?mid=Recruitment&fid=ctrlRC_ProgramScheduleNewEdit&group=Business&PROGRAM_ID='
+            OpenInNewTab('/Default.aspx?mid=Recruitment&fid=ctrlRC_ProgramScheduleNewEdit&group=Business&PROGRAM_ID='
             + programID + '', "_self"); /*
             var pos = $("html").offset();
             oWindow.moveTo(pos.left, pos.top);
@@ -176,6 +176,9 @@
             var ajaxManager = $find("<%# AjaxManagerId %>");
             ajaxManager.ajaxRequest(url); //Making ajax request with the argument
         }
-
+        function OpenInNewTab(url) {
+            var win = window.open(url, '_blank');
+            win.focus();
+        }
     </script>
 </tlk:RadScriptBlock>

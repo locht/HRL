@@ -31,10 +31,10 @@
                                 ToolTip="<%$ Translate: Đến ngày phải lớn hơn Từ ngày %>"></asp:CompareValidator>
                         </td>
                         <td class="lb">
-                            <%# Translate("Đợt tuyển dụng")%>
+                            <%# Translate("Vị trí tuyển dụng")%>
                         </td>
                         <td>
-                            <tlk:RadComboBox ID="cboRecPeriod" runat="server">
+                            <tlk:RadComboBox ID="cboTitle" runat="server">
                             </tlk:RadComboBox>
                         </td>
                     </tr>
@@ -93,10 +93,6 @@
                                 HeaderStyle-Width="90px" />
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Lý do tuyển dụng %>" DataField="RECRUIT_REASON"
                                 SortExpression="RECRUIT_REASON" UniqueName="RECRUIT_REASON" />
-                           <%-- <tlk:GridCheckBoxColumn HeaderText="<%$ Translate: TNG Hỗ trợ %>" DataField="IS_SUPPORT"
-                                UniqueName="IS_SUPPORT" SortExpression="IS_SUPPORT" HeaderStyle-Width="70px" />--%>
-                             <tlk:GridBoundColumn HeaderText="<%$ Translate: TNG Hỗ trợ %>" DataField="SUPPORT_NAME"
-                                SortExpression="SUPPORT_NAME" UniqueName="SUPPORT_NAME" />
                             <tlk:GridNumericColumn HeaderText="<%$ Translate: Hồ sơ đã nhận %>" DataField="CANDIDATE_COUNT"
                                 SortExpression="CANDIDATE_COUNT" UniqueName="CANDIDATE_COUNT" AllowFiltering="false"
                                 HeaderStyle-Width="90px" />
@@ -135,18 +131,8 @@
                             </tlk:RadButton>
                         </td>
                         <td>
-                            <tlk:RadButton ID="btnExams" runat="server" Text="<%$ Translate: Thiết lập các môn thi %>"
-                                OnClientClicking="btnExamsClick" AutoPostBack="false">
-                            </tlk:RadButton>
-                        </td>
-                        <td>
-                            <tlk:RadButton ID="btnSchedule" runat="server" Text="<%$ Translate: Lên lịch thi %>"
-                                OnClientClicking="btnScheduleClick" AutoPostBack="false">
-                            </tlk:RadButton>
-                        </td>
-                        <td>
-                            <tlk:RadButton ID="btnResult" runat="server" Text="<%$ Translate: Cập nhật kết quả %>"
-                                OnClientClicking="btnResultClick" AutoPostBack="false">
+                            <tlk:RadButton ID="btnDeclare" runat="server" Text="<%$ Translate: Khai báo tuyển dụng %>"
+                                OnClientClicking="btnDeclareClick" AutoPostBack="false">
                             </tlk:RadButton>
                         </td>
                         <td>
@@ -256,8 +242,8 @@
             var id = $find('<%# rgData.ClientID%>').get_masterTableView().get_selectedItems()[0].getDataKeyValue('ID');
             OpenInNewTab('Default.aspx?mid=Recruitment&fid=ctrlRC_CandidateList&group=Business&PROGRAM_ID=' + id)
         }
-        function btnExamsClick(sender, args) {
 
+        function btnDeclareClick(sender, args) {
             var bCheck = $find('<%# rgData.ClientID %>').get_masterTableView().get_selectedItems().length;
             if (bCheck == 0) {
                 m = '<%# Translate(CommonMessage.MESSAGE_NOT_SELECT_ROW) %>';
@@ -272,49 +258,10 @@
                 return;
             }
             var id = $find('<%# rgData.ClientID%>').get_masterTableView().get_selectedItems()[0].getDataKeyValue('ID');
-            window.open('/Default.aspx?mid=Recruitment&fid=ctrlRC_ProgramExams&group=Business&PROGRAM_ID=' + id); /*
-            var pos = $("html").offset();
-            oWindow.moveTo(pos.left, pos.top);
-            oWindow.setSize($(window).width() - 30, $(window).height() - 30); oWindow.center(); */
+            OpenInNewTab('Default.aspx?mid=Recruitment&fid=ctrlRC_ProgramDeclare&group=Business&PROGRAM_ID=' + id)
         }
 
-        function btnScheduleClick(sender, args) {
-            var bCheck = $find('<%# rgData.ClientID %>').get_masterTableView().get_selectedItems().length;
-            if (bCheck == 0) {
-                m = '<%# Translate(CommonMessage.MESSAGE_NOT_SELECT_ROW) %>';
-                n = noty({ text: m, dismissQueue: true, type: 'warning' });
-                setTimeout(function () { $.noty.close(n.options.id); }, 5000);
-                return;
-            }
-            if (bCheck > 1) {
-                m = '<%# Translate(CommonMessage.MESSAGE_NOT_SELECT_MULTI_ROW) %>';
-                n = noty({ text: m, dismissQueue: true, type: 'warning' });
-                setTimeout(function () { $.noty.close(n.options.id); }, 5000);
-                return;
-            }
-            var id = $find('<%# rgData.ClientID%>').get_masterTableView().get_selectedItems()[0].getDataKeyValue('ID');
-            OpenInNewTab('Default.aspx?mid=Recruitment&fid=ctrlRC_ProgramSchedule&group=Business&PROGRAM_ID=' + id)
-        }
-        function btnResultClick(sender, args) {
-            var bCheck = $find('<%# rgData.ClientID %>').get_masterTableView().get_selectedItems().length;
-            if (bCheck == 0) {
-                m = '<%# Translate(CommonMessage.MESSAGE_NOT_SELECT_ROW) %>';
-                n = noty({ text: m, dismissQueue: true, type: 'warning' });
-                setTimeout(function () { $.noty.close(n.options.id); }, 5000);
-                return;
-            }
-            if (bCheck > 1) {
-                m = '<%# Translate(CommonMessage.MESSAGE_NOT_SELECT_MULTI_ROW) %>';
-                n = noty({ text: m, dismissQueue: true, type: 'warning' });
-                setTimeout(function () { $.noty.close(n.options.id); }, 5000);
-                return;
-            }
-            var id = $find('<%# rgData.ClientID%>').get_masterTableView().get_selectedItems()[0].getDataKeyValue('ID');
-            window.open('/Default.aspx?mid=Recruitment&fid=ctrlRC_ProgramUpdateResult&group=Business&PROGRAM_ID=' + id); /*
-            var pos = $("html").offset();
-            oWindow.moveTo(pos.left, pos.top);
-            oWindow.setSize($(window).width() - 30, $(window).height() - 30); oWindow.center(); */
-        }
+       
         function btnTransferClick(sender, args) {
             var bCheck = $find('<%# rgData.ClientID %>').get_masterTableView().get_selectedItems().length;
             if (bCheck == 0) {

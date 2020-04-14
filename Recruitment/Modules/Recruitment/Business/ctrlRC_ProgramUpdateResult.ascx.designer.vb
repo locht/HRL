@@ -158,33 +158,6 @@ Partial Public Class ctrlRC_ProgramUpdateResult
     Protected WithEvents DetailPane As Global.Telerik.Web.UI.RadPane
 
     '''<summary>
-    '''rtabProfileInfo control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents rtabProfileInfo As Global.Telerik.Web.UI.RadTabStrip
-
-    '''<summary>
-    '''tabExamsResult control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents tabExamsResult As Global.Telerik.Web.UI.RadTab
-
-    '''<summary>
-    '''tabInterviewResult control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents tabInterviewResult As Global.Telerik.Web.UI.RadTab
-
-    '''<summary>
     '''RadMultiPage1 control.
     '''</summary>
     '''<remarks>
@@ -192,24 +165,6 @@ Partial Public Class ctrlRC_ProgramUpdateResult
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents RadMultiPage1 As Global.Telerik.Web.UI.RadMultiPage
-
-    '''<summary>
-    '''RadPageView1 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents RadPageView1 As Global.Telerik.Web.UI.RadPageView
-
-    '''<summary>
-    '''ctrlRC_ProgramExamsResult control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents ctrlRC_ProgramExamsResult As Global.Recruitment.ctrlRC_ProgramExamsResult
 
     '''<summary>
     '''rpvEmpTitleConcurrent control.

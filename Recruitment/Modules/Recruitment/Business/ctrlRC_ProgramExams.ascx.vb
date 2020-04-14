@@ -244,7 +244,13 @@ Public Class ctrlRC_ProgramExams
         Dim bCheck As Boolean = False
         Try
             SetValueObjectByRadGrid(rgData, _filter)
-            _filter.RC_PROGRAM_ID = Decimal.Parse(hidProgramID.Value)
+            hidProgramID.Value = Request.Params("PROGRAM_ID")
+            If IsNumeric(hidProgramID.Value) Then
+                _filter.RC_PROGRAM_ID = Decimal.Parse(hidProgramID.Value)
+            Else
+                _filter.RC_PROGRAM_ID = 0
+            End If
+
             Dim MaximumRows As Integer
             Dim Sorts As String = rgData.MasterTableView.SortExpressions.GetSortString()
             Dim lstData As List(Of ProgramExamsDTO)

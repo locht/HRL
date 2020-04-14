@@ -178,7 +178,7 @@ Public Class ctrlRC_Program
 
                         Dim tempPath As String = ConfigurationManager.AppSettings("WordFileFolder") & "\\Recruitment"
                         ExportWordMailMerge(System.IO.Path.Combine(Server.MapPath(tempPath), "BM04_TT Ke hoach TD theo dot.doc"),
-                                              "BM04_TT Ke hoach TD " & cboRecPeriod.SelectedItem.Text & ".doc",
+                                              "BM04_TT Ke hoach TD " & cboTitle.SelectedItem.Text & ".doc",
                                               dtData,
                                               Response)
                     Else
@@ -214,13 +214,13 @@ Public Class ctrlRC_Program
     End Sub
 
     Private Sub ctrlOrg_SelectedNodeChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles ctrlOrg.SelectedNodeChanged
-
+        Dim rep As New RecruitmentRepository
         Try
-            cboRecPeriod.Text = String.Empty
-            Dim tab As DataTable = store.STAGE_GetList(Decimal.Parse(ctrlOrg.CurrentValue), 0)
-            FillRadCombobox(cboRecPeriod, tab, "TITLE", "ID")
-            cboRecPeriod.Items.Insert(0, New RadComboBoxItem("-- Tất cả -- ", 0))
-            cboRecPeriod.SelectedIndex = 0
+            cboTitle.Text = String.Empty
+            Dim tab As DataTable = rep.GetTitleByOrgList(ctrlOrg.CurrentValue, False)
+            FillRadCombobox(cboTitle, tab, "NAME", "ID")
+            cboTitle.Items.Insert(0, New RadComboBoxItem("-- Tất cả -- ", 0))
+            cboTitle.SelectedIndex = 0
 
 
             rgData.CurrentPageIndex = 0
@@ -271,8 +271,8 @@ Public Class ctrlRC_Program
                                                .IS_DISSOLVE = ctrlOrg.IsDissolve}
             _filter.FROM_DATE = rdFromDate.SelectedDate
             _filter.TO_DATE = rdToDate.SelectedDate
-            If cboRecPeriod.SelectedValue <> "" AndAlso cboRecPeriod.SelectedValue <> 0 Then
-                _filter.STAGE_ID = Decimal.Parse(cboRecPeriod.SelectedValue)
+            If cboTitle.SelectedValue <> "" AndAlso cboTitle.SelectedValue <> 0 Then
+                _filter.TITLE_ID = Decimal.Parse(cboTitle.SelectedValue)
             End If
 
                 Select Case cboRecType.SelectedValue
@@ -297,27 +297,6 @@ Public Class ctrlRC_Program
                     lstData = rep.GetProgram(_filter, rgData.CurrentPageIndex, rgData.PageSize, MaximumRows, _param)
                 End If
 
-                'Dim lst = (From p In lstData).ToList
-
-                'If cboRecType.SelectedIndex <> 0 Then
-                '    lst = (From p In lst Where p.IS_IN_PLAN = cboRecType.SelectedValue).ToList
-                'End If
-
-                'If rdFromDate.SelectedDate IsNot Nothing Then
-                '    lst = (From p In lst Where p.SEND_DATE >= rdFromDate.SelectedDate).ToList
-                'End If
-
-                'If rdToDate.SelectedDate IsNot Nothing Then
-                '    lst = (From p In lst Where p.SEND_DATE <= rdToDate.SelectedDate).ToList
-                'End If
-
-                'If cboRecPeriod.SelectedIndex <> 0 Then
-                '    lst = (From p In lst Where p.STAGE_ID = cboRecPeriod.SelectedValue).ToList
-                'End If
-
-                'If cboStatus.SelectedValue <> String.Empty Then
-                '    lst = (From p In lst Where p.STATUS_ID = cboStatus.SelectedValue).ToList
-                'End If
                 rgData.DataSource = Nothing
 
                 rgData.DataSource = lstData.ToList

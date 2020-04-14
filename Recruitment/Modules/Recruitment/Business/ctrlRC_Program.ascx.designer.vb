@@ -113,13 +113,13 @@ Partial Public Class ctrlRC_Program
     Protected WithEvents CompareValidator2 As Global.System.Web.UI.WebControls.CompareValidator
 
     '''<summary>
-    '''cboRecPeriod control.
+    '''cboTitle control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents cboRecPeriod As Global.Telerik.Web.UI.RadComboBox
+    Protected WithEvents cboTitle As Global.Telerik.Web.UI.RadComboBox
 
     '''<summary>
     '''cboStatus control.
@@ -185,31 +185,13 @@ Partial Public Class ctrlRC_Program
     Protected WithEvents btnCandidate As Global.Telerik.Web.UI.RadButton
 
     '''<summary>
-    '''btnExams control.
+    '''btnDeclare control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents btnExams As Global.Telerik.Web.UI.RadButton
-
-    '''<summary>
-    '''btnSchedule control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents btnSchedule As Global.Telerik.Web.UI.RadButton
-
-    '''<summary>
-    '''btnResult control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents btnResult As Global.Telerik.Web.UI.RadButton
+    Protected WithEvents btnDeclare As Global.Telerik.Web.UI.RadButton
 
     '''<summary>
     '''btnTransfer control.

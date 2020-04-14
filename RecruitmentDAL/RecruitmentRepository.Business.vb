@@ -1149,6 +1149,7 @@ Partial Class RecruitmentRepository
                                            .ORG_ID = p.ORG_ID,
                                            .ORG_NAME = org.NAME_VN,
                                            .ORG_DESC = org.DESCRIPTION_PATH,
+                                           .TITLE_ID = p.TITLE_ID,
                                            .TITLE_NAME = title.NAME_VN,
                                            .IS_IN_PLAN = If(p.IS_IN_PLAN Is Nothing Or p.IS_IN_PLAN = 0, False, True),
                                            .SEND_DATE = p.SEND_DATE,
@@ -1236,6 +1237,9 @@ Partial Class RecruitmentRepository
             'End If
             If _filter.STAGE_ID IsNot Nothing Then
                 lst = lst.Where(Function(p) p.STAGE_ID = _filter.STAGE_ID)
+            End If
+            If _filter.TITLE_ID IsNot Nothing Then
+                lst = lst.Where(Function(p) p.TITLE_ID = _filter.TITLE_ID)
             End If
             'If _filter.RECRUIT_TYPE_ID <> "" Then
             '    lst = lst.Where(Function(p) p.RECRUIT_TYPE_ID = _filter.RECRUIT_TYPE_ID)

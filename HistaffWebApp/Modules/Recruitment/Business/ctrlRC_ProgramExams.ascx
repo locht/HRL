@@ -3,9 +3,9 @@
 <%@ Import Namespace="Common" %>
 <asp:HiddenField ID="hidID" runat="server" />
 <asp:HiddenField ID="hidProgramID" runat="server" />
-<tlk:RadSplitter ID="RadSplitter1" runat="server" Width="100%" Height="100%">
+<tlk:RadSplitter ID="RadSplitter1" runat="server" Width="100%" >
     <tlk:RadPane ID="MainPane" runat="server">
-        <tlk:RadSplitter ID="RadSplitter3" runat="server" Width="100%" Height="100%" Orientation="Horizontal">
+        <tlk:RadSplitter ID="RadSplitter3" runat="server" Orientation="Horizontal">
             <tlk:RadPane ID="RadPane1" runat="server" Height="33px" Scrolling="None">
                 <tlk:RadToolBar ID="tbarMain" runat="server" OnClientButtonClicking="clientButtonClicking" />
             </tlk:RadPane>
