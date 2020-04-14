@@ -60,6 +60,15 @@ Partial Public Class ProfileRepository
         End Using
 
     End Function
+    Public Function GET_HU_TITLE_IMPORT() As DataSet
+        Using rep As New ProfileBusinessClient
+            Try
+                Return rep.GET_HU_TITLE_IMPORT()
+            Catch ex As Exception
+
+            End Try
+        End Using
+    End Function
 
 #Region "RelationshipList"
     Function GetRelationshipGroupList() As DataTable

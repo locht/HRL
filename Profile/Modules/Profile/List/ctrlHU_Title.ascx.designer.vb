@@ -239,24 +239,6 @@ Partial Public Class ctrlHU_Title
     Protected WithEvents cboGroupWork As Global.Telerik.Web.UI.RadComboBox
 
     '''<summary>
-    '''Label3 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents Label3 As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
-    '''txtFuncWork control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents txtFuncWork As Global.Telerik.Web.UI.RadTextBox
-
-    '''<summary>
     '''lbHurtType control.
     '''</summary>
     '''<remarks>
@@ -273,6 +255,24 @@ Partial Public Class ctrlHU_Title
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents cboHurtType As Global.Telerik.Web.UI.RadComboBox
+
+    '''<summary>
+    '''Label3 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents Label3 As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''txtFuncWork control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtFuncWork As Global.Telerik.Web.UI.RadTextBox
 
     '''<summary>
     '''Label4 control.

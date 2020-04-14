@@ -72,7 +72,15 @@ Namespace ProfileBusiness.ServiceImplementations
 #Region "Hoadm"
 
 #Region "Title"
+        Public Function GET_HU_TITLE_IMPORT() As DataSet Implements ServiceContracts.IProfileBusiness.GET_HU_TITLE_IMPORT
+            Using rep As New ProfileRepository
+                Try
+                    Return rep.GET_HU_TITLE_IMPORT()
+                Catch ex As Exception
 
+                End Try
+            End Using
+        End Function
         Public Function GetTitle(ByVal _filter As TitleDTO,
                                         ByVal PageIndex As Integer,
                                         ByVal PageSize As Integer,

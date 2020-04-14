@@ -237,7 +237,8 @@ Namespace ProfileBusiness.ServiceContracts
                                       Optional ByVal Sorts As String = "EMPLOYEE_CODE desc",
                                       Optional ByVal log As UserLog = Nothing) As List(Of EmployeeDTO)
 #Region "Title"
-
+        <OperationContract()>
+        Function GET_HU_TITLE_IMPORT() As DataSet
         <OperationContract()>
         Function GetTitle(ByVal _filter As TitleDTO,
                                         ByVal PageIndex As Integer,

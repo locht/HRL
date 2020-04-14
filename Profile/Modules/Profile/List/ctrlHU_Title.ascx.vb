@@ -6,6 +6,7 @@ Imports Telerik.Web.UI
 Imports WebAppLog
 Imports System.IO
 Imports Ionic.Crc
+Imports Aspose.Cells
 
 Public Class ctrlHU_Title
     Inherits Common.CommonView
@@ -132,7 +133,10 @@ Public Class ctrlHU_Title
             Common.Common.BuildToolbar(Me.MainToolBar, ToolbarItem.Create,
                                        ToolbarItem.Edit, ToolbarItem.Save, ToolbarItem.Cancel,
                                        ToolbarItem.Delete,
-                                       ToolbarItem.Active, ToolbarItem.Deactive, ToolbarItem.Export)
+                                       ToolbarItem.Active, ToolbarItem.Deactive, ToolbarItem.Export, ToolbarItem.Next, ToolbarItem.Import)
+            CType(Me.MainToolBar.Items(8), RadToolBarButton).Text = Translate("Xuất file mẫu")
+            CType(Me.MainToolBar.Items(8), RadToolBarButton).ImageUrl = CType(Me.MainToolBar.Items(7), RadToolBarButton).ImageUrl
+            CType(Me.MainToolBar.Items(9), RadToolBarButton).Text = Translate("Nhập file mẫu")
 
             CType(MainToolBar.Items(2), RadToolBarButton).CausesValidation = True
             CType(Me.MainToolBar.Items(3), RadToolBarButton).Enabled = False
@@ -178,7 +182,7 @@ Public Class ctrlHU_Title
                     Case ""
                         cboTitleGroup.AutoPostBack = False
                         cboOrgType.AutoPostBack = False
-                        cboHurtType.AutoPostBack=False
+                        cboHurtType.AutoPostBack = False
                 End Select
             End If
             rep.Dispose()
@@ -338,14 +342,14 @@ dontrefresh:
             Using rep As New ProfileRepository
                 dataTable = rep.GetOtherList("HU_TITLE_GROUP", True)
                 FillRadCombobox(cboTitleGroup, dataTable, "NAME", "ID")
-                'dtData = rep.GetOtherList("HURT_TYPE", True)
-                'FillRadCombobox(cboHurtType, dtData, "NAME", "ID")
+                dtData = rep.GetOtherList("HURT_TYPE", True)
+                FillRadCombobox(cboHurtType, dtData, "NAME", "ID")
                 dataTable = rep.GetOtherList("GROUP_WORK", True)
                 FillRadCombobox(cboGroupWork, dataTable, "NAME", "ID")
             End Using
             dataTable = repS.GET_NGACH_LUONG_ACV()
             FillRadCombobox(cboNgachLuong, dataTable, "NAME_VN", "ID")
-         
+
             'Dim dtOrgType As DataTable
             ' dtOrgType = repS.GET_ORG_TYPE()
             'FillRadCombobox(cboOrgType, dtOrgType, "TYPE_NAME_VN", "ORG_ID_TYPE", True)
@@ -363,7 +367,7 @@ dontrefresh:
             dic.Add("REQUEST_WORK", txtRequestWork)
             dic.Add("PURPOSE_WORK", txtPurpose)
             'dic.Add("ORG_TYPE", cboOrgType)
-            'dic.Add("HURT_TYPE_ID", cboHurtType)
+            dic.Add("HURT_TYPE_ID", cboHurtType)
             dic.Add("OVT_CHECK", ckOVT)
             dic.Add("FILENAME", txtUpload)
             dic.Add("UPLOAD_FILE", txtRemindLink)
@@ -490,6 +494,8 @@ dontrefresh:
                             ShowMessage(Translate(CommonMessage.MESSAGE_WARNING_EXPORT_EMPTY), NotifyType.Warning)
                         End If
                     End Using
+                Case CommonMessage.TOOLBARITEM_NEXT
+                    Template_ImportHU_TITLE()
 
                 Case CommonMessage.TOOLBARITEM_ACTIVE
                     If rgMain.SelectedItems.Count = 0 Then
@@ -918,5 +924,70 @@ dontrefresh:
     End Sub
 
 #End Region
+
+    Private Sub Template_ImportHU_TITLE()
+        Dim rep As New ProfileRepository
+        Try
+            Dim configPath As String = Server.MapPath("ReportTemplates\Profile\TMP_HU_TITLE.xls")
+            Dim dsData As DataSet = rep.GET_HU_TITLE_IMPORT()
+            dsData.Tables(0).TableName = "Table"
+            dsData.Tables(1).TableName = "Table1"
+            dsData.Tables(2).TableName = "Table2"
+            dsData.Tables(3).TableName = "Table3"
+            rep.Dispose()
+            If File.Exists(configPath) Then
+                ExportTemplate(configPath,
+                                      dsData, Nothing, "Template_HU_TITLE_" & Format(Date.Now, "yyyyMMdd"))
+            Else
+                ShowMessage(Translate("Template không tồn tại"), Utilities.NotifyType.Error)
+                Exit Sub
+            End If
+
+
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+    Public Function ExportTemplate(ByVal sReportFileName As String,
+                                                    ByVal dsData As DataSet,
+                                                    ByVal dtVariable As DataTable,
+                                                    ByVal filename As String) As Boolean
+
+        Dim filePath As String
+        'Dim templatefolder As String
+
+        Dim designer As WorkbookDesigner
+        Try
+
+            'templatefolder = ConfigurationManager.AppSettings("ReportTemplatesFolder")
+            'filePath = AppDomain.CurrentDomain.BaseDirectory & templatefolder & "\" & sReportFileName
+
+            'cau hinh lai duong dan tren server
+            filePath = sReportFileName
+
+            If Not File.Exists(filePath) Then
+                ScriptManager.RegisterStartupScript(Page, Page.GetType(), "javascriptfunction", "goBack()", True)
+                Return False
+            End If
+
+            designer = New WorkbookDesigner
+            designer.Open(filePath)
+            designer.SetDataSource(dsData)
+
+            If dtVariable IsNot Nothing Then
+                Dim intCols As Integer = dtVariable.Columns.Count
+                For i As Integer = 0 To intCols - 1
+                    designer.SetDataSource(dtVariable.Columns(i).ColumnName.ToString(), dtVariable.Rows(0).ItemArray(i).ToString())
+                Next
+            End If
+            designer.Process()
+            designer.Workbook.CalculateFormula()
+            designer.Workbook.Save(HttpContext.Current.Response, filename & ".xls", ContentDisposition.Attachment, New XlsSaveOptions())
+
+        Catch ex As Exception
+            Return False
+        End Try
+        Return True
+    End Function
 
 End Class

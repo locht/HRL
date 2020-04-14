@@ -81,13 +81,6 @@
                     </tlk:RadComboBox>
                 </td>
                 <td class="lb">
-                    <asp:Label runat="server" ID="Label3" Text="Chức năng công việc"></asp:Label>
-                </td>
-                <td>
-                    <tlk:RadTextBox runat="server" ID="txtFuncWork" SkinID="Textbox1023">
-                    </tlk:RadTextBox>
-                </td>
-                <td class="lb">
                     <%--<asp:CheckBox ID="ckDH" runat="server" Text="Độc hại" />--%>
                     <asp:Label runat="server" ID="lbHurtType" Text="Đối tượng độc hại"></asp:Label>
                 </td>
@@ -97,6 +90,13 @@
                 </td>
             </tr>
             <tr>
+                <td class="lb">
+                    <asp:Label runat="server" ID="Label3" Text="Chức năng công việc"></asp:Label>
+                </td>
+                <td>
+                    <tlk:RadTextBox runat="server" ID="txtFuncWork" SkinID="Textbox1023">
+                    </tlk:RadTextBox>
+                </td>
                 <td class="lb">
                     <asp:Label runat="server" ID="Label4" Text="Yêu cầu công việc"></asp:Label>
                 </td>
@@ -237,6 +237,9 @@
                     args.set_cancel(true);
                     return;
                 }
+                enableAjax = false;
+            }
+            if (args.get_item().get_commandName() == "NEXT") {
                 enableAjax = false;
             } else if (args.get_item().get_commandName() == "SAVE") {
                 // Nếu nhấn nút SAVE thì resize
