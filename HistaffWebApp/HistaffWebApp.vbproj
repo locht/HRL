@@ -476,8 +476,6 @@
     <Content Include="Modules\Profile\Business\ctrlHU_JobDescriptionNewEdit.ascx" />
     <Content Include="Modules\Profile\Shared\ctrlDashboardHome.ascx" />
     <Content Include="Modules\Profile\Shared\ctrlHomeDashboard.ascx" />
-    <Content Include="Modules\Recruitment\Business\ctrlRC_CadidateListDtl.ascx" />
-    <Content Include="Modules\Recruitment\Business\ctrlRC_CadidateListDtlFamily.ascx" />
     <Content Include="Modules\Recruitment\Business\ctrlRC_ImportCV.ascx" />
     <Content Include="Modules\Recruitment\Business\ctrlRC_PlanYear.ascx" />
     <Content Include="Modules\Recruitment\Business\ctrlRC_RequestNewEditV.ascx" />
