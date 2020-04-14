@@ -2483,6 +2483,11 @@
             <Property Name="FILENAME" Type="nclob" Nullable="true" />
             <Property Name="HURT_TYPE_ID" Type="number" Nullable="true" Precision="38" />
             <Property Name="IS_SIGN" Type="number" Nullable="true" Precision="38" />
+            <Property Name="GR_GLONE_ID" Type="number" Nullable="true" Precision="38" />
+            <Property Name="GR_WORK_ID" Type="number" Nullable="true" Precision="38" />
+            <Property Name="FUNCTION_WORK" Type="nclob" Nullable="true" />
+            <Property Name="REQUEST_WORK" Type="nclob" Nullable="true" />
+            <Property Name="PURPOSE_WORK" Type="nclob" Nullable="true" />
         </EntityType>
         <EntityType Name="PA_PAYMENTSOURCES">
             <Key>
@@ -7435,6 +7440,11 @@
           <Property Type="String" Name="FILENAME" />
           <Property Type="Decimal" Name="HURT_TYPE_ID" Nullable="true" />
           <Property Type="Decimal" Name="IS_SIGN" />
+          <Property Type="Decimal" Name="GR_GLONE_ID" />
+          <Property Type="Decimal" Name="GR_WORK_ID" />
+          <Property Type="String" Name="FUNCTION_WORK" />
+          <Property Type="String" Name="REQUEST_WORK" />
+          <Property Type="String" Name="PURPOSE_WORK" />
         </EntityType>
         <EntityType Name="PA_PAYMENTSOURCES">
           <Key>
@@ -11474,6 +11484,11 @@
                     <ScalarProperty Name="FILENAME" ColumnName="FILENAME" />
                     <ScalarProperty Name="HURT_TYPE_ID" ColumnName="HURT_TYPE_ID" />
                     <ScalarProperty Name="IS_SIGN" ColumnName="IS_SIGN" />
+                    <ScalarProperty Name="GR_GLONE_ID" ColumnName="GR_GLONE_ID" />
+                    <ScalarProperty Name="GR_WORK_ID" ColumnName="GR_WORK_ID" />
+                    <ScalarProperty Name="FUNCTION_WORK" ColumnName="FUNCTION_WORK" />
+                    <ScalarProperty Name="REQUEST_WORK" ColumnName="REQUEST_WORK" />
+                    <ScalarProperty Name="PURPOSE_WORK" ColumnName="PURPOSE_WORK" />
                 </MappingFragment>
             </EntityTypeMapping>
         </EntitySetMapping>
@@ -13516,7 +13531,7 @@
         <EntityTypeShape EntityType="ProfileModel.OT_OTHER_LIST1" Width="1.5" PointX="25.375" PointY="25.75" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="ProfileModel.HU_COMMEND_EMP" Width="2.625" PointX="0.75" PointY="26.75" Height="3.7109993489583353" IsExpanded="true" />
         <EntityTypeShape EntityType="ProfileModel.HU_TITLE1" Width="1.5" PointX="3.375" PointY="26.75" Height="0.4" IsExpanded="false" />
-        <EntityTypeShape EntityType="ProfileModel.HU_TITLE" Width="2.125" PointX="9.25" PointY="23.875" Height="6.2109179687500031" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProfileModel.HU_TITLE" Width="2.125" PointX="9.25" PointY="23.875" Height="7.1724251302083353" IsExpanded="true" />
         <EntityTypeShape EntityType="ProfileModel.PA_PAYMENTSOURCES" Width="1.5" PointX="26.375" PointY="5.75" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="ProfileModel.HU_COMMEND_LEVEL" Width="1.5" PointX="11.375" PointY="26.75" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="ProfileModel.HU_COMMEND" Width="4.25" PointX="10.375" PointY="28.625" Height="0.4" IsExpanded="false" />

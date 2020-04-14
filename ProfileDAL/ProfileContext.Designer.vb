@@ -18,7 +18,7 @@ Imports System.Runtime.Serialization
 Imports System.Xml.Serialization
 
 
-<Assembly: EdmSchemaAttribute("9c6ed414-3f3f-41e8-8a9e-4591a1aaf0e1")>
+<Assembly: EdmSchemaAttribute("a89f86aa-15cf-4835-8858-a023fe2d822e")>
 #Region "EDM Relationship Metadata"
 <Assembly: EdmRelationshipAttribute("ProfileModel", "FK_HU_NAT_HU_PRO", "HU_NATION", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_NATION), "HU_PROVINCE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_PROVINCE), True)>
 <Assembly: EdmRelationshipAttribute("ProfileModel", "FK_HU_PRO_HU_DIS", "HU_PROVINCE", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_PROVINCE), "HU_DISTRICT", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_DISTRICT), True)>
@@ -61514,6 +61514,131 @@ Public Partial Class HU_TITLE
     End Sub
 
     Private Partial Sub OnIS_SIGNChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property GR_GLONE_ID() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _GR_GLONE_ID
+        End Get
+        Set
+            OnGR_GLONE_IDChanging(value)
+            ReportPropertyChanging("GR_GLONE_ID")
+            _GR_GLONE_ID = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("GR_GLONE_ID")
+            OnGR_GLONE_IDChanged()
+        End Set
+    End Property
+
+    Private _GR_GLONE_ID As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnGR_GLONE_IDChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnGR_GLONE_IDChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property GR_WORK_ID() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _GR_WORK_ID
+        End Get
+        Set
+            OnGR_WORK_IDChanging(value)
+            ReportPropertyChanging("GR_WORK_ID")
+            _GR_WORK_ID = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("GR_WORK_ID")
+            OnGR_WORK_IDChanged()
+        End Set
+    End Property
+
+    Private _GR_WORK_ID As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnGR_WORK_IDChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnGR_WORK_IDChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property FUNCTION_WORK() As Global.System.String
+        Get
+            Return _FUNCTION_WORK
+        End Get
+        Set
+            OnFUNCTION_WORKChanging(value)
+            ReportPropertyChanging("FUNCTION_WORK")
+            _FUNCTION_WORK = StructuralObject.SetValidValue(value, true)
+            ReportPropertyChanged("FUNCTION_WORK")
+            OnFUNCTION_WORKChanged()
+        End Set
+    End Property
+
+    Private _FUNCTION_WORK As Global.System.String
+    Private Partial Sub OnFUNCTION_WORKChanging(value As Global.System.String)
+    End Sub
+
+    Private Partial Sub OnFUNCTION_WORKChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property REQUEST_WORK() As Global.System.String
+        Get
+            Return _REQUEST_WORK
+        End Get
+        Set
+            OnREQUEST_WORKChanging(value)
+            ReportPropertyChanging("REQUEST_WORK")
+            _REQUEST_WORK = StructuralObject.SetValidValue(value, true)
+            ReportPropertyChanged("REQUEST_WORK")
+            OnREQUEST_WORKChanged()
+        End Set
+    End Property
+
+    Private _REQUEST_WORK As Global.System.String
+    Private Partial Sub OnREQUEST_WORKChanging(value As Global.System.String)
+    End Sub
+
+    Private Partial Sub OnREQUEST_WORKChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property PURPOSE_WORK() As Global.System.String
+        Get
+            Return _PURPOSE_WORK
+        End Get
+        Set
+            OnPURPOSE_WORKChanging(value)
+            ReportPropertyChanging("PURPOSE_WORK")
+            _PURPOSE_WORK = StructuralObject.SetValidValue(value, true)
+            ReportPropertyChanged("PURPOSE_WORK")
+            OnPURPOSE_WORKChanged()
+        End Set
+    End Property
+
+    Private _PURPOSE_WORK As Global.System.String
+    Private Partial Sub OnPURPOSE_WORKChanging(value As Global.System.String)
+    End Sub
+
+    Private Partial Sub OnPURPOSE_WORKChanged()
     End Sub
 
     #End Region

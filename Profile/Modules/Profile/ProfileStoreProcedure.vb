@@ -438,6 +438,15 @@ Public Class ProfileStoreProcedure
         End If
         Return dt
     End Function
+
+    Public Function GET_NGACH_LUONG_ACV() As DataTable
+        Dim dt As New DataTable
+        Dim ds As DataSet = hfr.ExecuteToDataSet("PKG_HU_IPROFILE.GET_NGACH_LUONG_ACV", New List(Of Object)(New Object() {}))
+        If Not ds Is Nothing Or Not ds.Tables(0) Is Nothing Then
+            dt = ds.Tables(0)
+        End If
+        Return dt
+    End Function
 #Region "baolc"
 
     Public Function GetAllDistrict() As DataTable

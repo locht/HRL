@@ -38,4 +38,12 @@
 
     'check ky quyet dinh
     Public Property IS_SIGN As Boolean?
+    'ACV302
+    Public Property GR_GLONE_ID As Decimal?
+    Public Property GR_WORK_ID As Decimal?
+    Public Property FUNCTION_WORK As String
+    Public Property REQUEST_WORK As String
+    Public Property PURPOSE_WORK As String
+
+
 End Class
