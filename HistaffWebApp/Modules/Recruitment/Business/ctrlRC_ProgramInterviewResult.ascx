@@ -135,6 +135,16 @@
                 </MasterTableView></tlk:RadGrid></fieldset>
     </tlk:RadPane>
 </tlk:RadSplitter>
+<style type="text/css">
+    #ctl00_MainContent_ctrlRC_ProgramUpdateResult_ctrlRC_ProgramInterviewResult_tbarMain
+    {
+     width: 95% !important;
+    }
+    #ctl00_MainContent_ctrlRC_ProgramUpdateResult_ctrlRC_ProgramInterviewResult_rgDataInterview
+    {
+           width: 95% !important;
+    }
+<</style>
 <Common:ctrlMessageBox ID="ctrlMessageBox" runat="server" />
 <tlk:RadCodeBlock ID="RadCodeBlock1" runat="server">
     <script type="text/javascript">
