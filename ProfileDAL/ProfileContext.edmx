@@ -163,6 +163,7 @@
             <EntitySet Name="HU_HEALTH_MNG" EntityType="ProfileModel.Store.HU_HEALTH_MNG" store:Type="Tables"  />
             <EntitySet Name="HU_DEDUCT" EntityType="ProfileModel.Store.HU_DEDUCT" store:Type="Tables"  />
             <EntitySet Name="HU_EMPLOYEE_BACKGROUND" EntityType="ProfileModel.Store.HU_EMPLOYEE_BACKGROUND" store:Type="Tables"  />
+            <EntitySet Name="PA_SALARY_LEVEL_GROUP" EntityType="ProfileModel.Store.PA_SALARY_LEVEL_GROUP" store:Type="Tables"  />
             <EntitySet Name="SE_USER_REPORT" EntityType="ProfileModel.Store.SE_USER_REPORT" store:Type="Tables"  />
             <AssociationSet Name="FK_HUN_HUP" Association="ProfileModel.Store.FK_HU_NAT_HU_PRO">
                 <End Role="HU_NATION" EntitySet="HU_NATION" />
@@ -4210,6 +4211,25 @@
             <Property Name="CURRENT_DISTRICT_ID" Type="number" Nullable="true" Precision="38" />
             <Property Name="CURRENT_WARD_ID" Type="number" Nullable="true" Precision="38" />
         </EntityType>
+        <EntityType Name="PA_SALARY_LEVEL_GROUP">
+            <Key>
+                <PropertyRef Name="ID" />
+            </Key>
+            <Property Name="ID" Type="number" Nullable="false" Precision="38" />
+            <Property Name="CODE" Type="nvarchar2" Nullable="false" MaxLength="50" />
+            <Property Name="NAME_VN" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="NAME_EN" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="CREATED_DATE" Type="date" Nullable="false" />
+            <Property Name="CREATED_BY" Type="nvarchar2" Nullable="false" MaxLength="255" />
+            <Property Name="CREATED_LOG" Type="nvarchar2" Nullable="false" MaxLength="255" />
+            <Property Name="MODIFIED_DATE" Type="date" Nullable="false" />
+            <Property Name="MODIFIED_BY" Type="nvarchar2" Nullable="false" MaxLength="255" />
+            <Property Name="MODIFIED_LOG" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="REMARK" Type="nvarchar2" Nullable="true" MaxLength="1023" />
+            <Property Name="ACTFLG" Type="nvarchar2" Nullable="true" MaxLength="1" />
+            <Property Name="ORDERS" Type="number" Nullable="true" Precision="38" />
+            <Property Name="OTHER_USE" Type="nvarchar2" Nullable="true" MaxLength="100" />
+        </EntityType>
         <EntityType Name="SE_USER_REPORT">
             <Key>
                 <PropertyRef Name="SE_REPORT_ID" />
@@ -4858,6 +4878,7 @@
           <EntitySet Name="HU_HEALTH_MNG" EntityType="ProfileModel.HU_HEALTH_MNG" />
           <EntitySet Name="HU_DEDUCT" EntityType="ProfileModel.HU_DEDUCT" />
           <EntitySet Name="HU_EMPLOYEE_BACKGROUND" EntityType="ProfileModel.HU_EMPLOYEE_BACKGROUND" />
+          <EntitySet Name="PA_SALARY_LEVEL_GROUP" EntityType="ProfileModel.PA_SALARY_LEVEL_GROUP" />
         </EntityContainer>
         <EntityType Name="HU_PROVINCE">
           <Key>
@@ -9188,6 +9209,25 @@
           <Property Type="Decimal" Name="CURRENT_DISTRICT_ID" Nullable="true" />
           <Property Type="Decimal" Name="CURRENT_WARD_ID" Nullable="true" />
         </EntityType>
+        <EntityType Name="PA_SALARY_LEVEL_GROUP">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Decimal" Name="ID" Nullable="false" Precision="38" Scale="0" />
+          <Property Type="String" Name="CODE" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="NAME_VN" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="NAME_EN" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="CREATED_DATE" Nullable="false" />
+          <Property Type="String" Name="CREATED_BY" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="CREATED_LOG" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="MODIFIED_DATE" Nullable="false" />
+          <Property Type="String" Name="MODIFIED_BY" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="MODIFIED_LOG" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="REMARK" MaxLength="1023" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ACTFLG" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Type="Decimal" Name="ORDERS" Precision="38" Scale="0" />
+          <Property Type="String" Name="OTHER_USE" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -13267,6 +13307,26 @@
                 </MappingFragment>
             </EntityTypeMapping>
         </EntitySetMapping>
+        <EntitySetMapping Name="PA_SALARY_LEVEL_GROUP">
+            <EntityTypeMapping TypeName="IsTypeOf(ProfileModel.PA_SALARY_LEVEL_GROUP)">
+                <MappingFragment StoreEntitySet="PA_SALARY_LEVEL_GROUP">
+                    <ScalarProperty Name="ID" ColumnName="ID" />
+                    <ScalarProperty Name="CODE" ColumnName="CODE" />
+                    <ScalarProperty Name="NAME_VN" ColumnName="NAME_VN" />
+                    <ScalarProperty Name="NAME_EN" ColumnName="NAME_EN" />
+                    <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+                    <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+                    <ScalarProperty Name="CREATED_LOG" ColumnName="CREATED_LOG" />
+                    <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+                    <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+                    <ScalarProperty Name="MODIFIED_LOG" ColumnName="MODIFIED_LOG" />
+                    <ScalarProperty Name="REMARK" ColumnName="REMARK" />
+                    <ScalarProperty Name="ACTFLG" ColumnName="ACTFLG" />
+                    <ScalarProperty Name="ORDERS" ColumnName="ORDERS" />
+                    <ScalarProperty Name="OTHER_USE" ColumnName="OTHER_USE" />
+                </MappingFragment>
+            </EntityTypeMapping>
+        </EntitySetMapping>
         <AssociationSetMapping Name="SE_USER_REPORT" TypeName="ProfileModel.SE_USER_REPORT" StoreEntitySet="SE_USER_REPORT">
             <EndProperty Name="SE_REPORT">
                 <ScalarProperty Name="ID" ColumnName="SE_REPORT_ID" />
@@ -13608,6 +13668,7 @@
         <EntityTypeShape EntityType="ProfileModel.HU_HEALTH_MNG" Width="1.5" PointX="14.375" PointY="31.75" Height="12.364563802083353" />
         <EntityTypeShape EntityType="ProfileModel.HU_DEDUCT" Width="1.5" PointX="0.75" PointY="34.125" Height="7.5570279947916674" />
         <EntityTypeShape EntityType="ProfileModel.HU_EMPLOYEE_BACKGROUND" Width="3" PointX="42.25" PointY="0.75" Height="5.4417122395833246" />
+        <EntityTypeShape EntityType="ProfileModel.PA_SALARY_LEVEL_GROUP" Width="1.5" PointX="29.375" PointY="33.75" Height="3.710999348958353" />
         </Diagram>
     </Diagrams>
   </Designer>

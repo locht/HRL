@@ -14,7 +14,7 @@
                         class="lbReq">*</span>
                 </td>
                 <td>
-                    <tlk:RadComboBox ID="cboTitleGroup" runat="server" AutoPostBack="true" CausesValidation="false">
+                    <tlk:RadComboBox ID="cboTitleGroup" runat="server">
                     </tlk:RadComboBox>
                     <asp:CustomValidator ID="cusTitleGroup" runat="server" ErrorMessage="Bạn phải chọn Nhóm chức danh"
                         ToolTip="Bạn phải chọn Nhóm chức danh" ClientValidationFunction="cusTitleGroup">
@@ -24,15 +24,25 @@
                     </asp:CustomValidator>
                 </td>
                 <td class="lb">
+                    <asp:Label runat="server" ID="Label1" Text="Nhóm ngạch lương"></asp:Label><span class="lbReq">*</span>
+                </td>
+                <td>
+                    <tlk:RadComboBox ID="cboNgachLuong" runat="server">
+                    </tlk:RadComboBox>
+                    <asp:RequiredFieldValidator ID="rqNgachLuong" ControlToValidate="cboNgachLuong" runat="server"
+                        ErrorMessage="Bạn phải nhập ngạch lương" ToolTip="Bạn phải nhập ngạch lương">
+                    </asp:RequiredFieldValidator>
+                </td>
+                <td class="lb" style="display: none">
                     <asp:Label runat="server" ID="lbOrgType" Text="Loại tổ chức"></asp:Label>
                     <span class="lbReq">*</span>
                 </td>
-                <td>
+                <td style="display: none">
                     <tlk:RadComboBox ID="cboOrgType" AutoPostBack="true" runat="server">
                     </tlk:RadComboBox>
-                    <asp:RequiredFieldValidator ID="rqOrgType" ControlToValidate="cboOrgType" runat="server"
+                    <%--<asp:RequiredFieldValidator ID="rqOrgType" ControlToValidate="cboOrgType" runat="server"
                         ErrorMessage="Bạn phải nhập loại tổ chức" ToolTip="Bạn phải nhập loại tổ chức">
-                    </asp:RequiredFieldValidator>
+                    </asp:RequiredFieldValidator>--%>
                 </td>
             </tr>
             <tr>
@@ -40,7 +50,7 @@
                     <asp:Label runat="server" ID="lbCode" Text="Mã chức danh"></asp:Label>
                 </td>
                 <td>
-                    <tlk:RadTextBox ID="txtCode" runat="server" SkinID="Readonly" ReadOnly="true">
+                    <tlk:RadTextBox ID="txtCode" runat="server">
                     </tlk:RadTextBox>
                     <asp:RequiredFieldValidator ID="reqCode" ControlToValidate="txtCode" runat="server"
                         ErrorMessage="Bạn phải nhập Mã chức danh" ToolTip="Bạn phải nhập Mã chức danh">
@@ -64,6 +74,20 @@
                         ControlToValidate="txtNameVN" ValidationExpression="^(?!.*<[^>]+>).*"></asp:RegularExpressionValidator>
                 </td>
                 <td class="lb">
+                    <asp:Label runat="server" ID="Label2" Text="Nhóm công việc"></asp:Label>
+                </td>
+                <td>
+                    <tlk:RadComboBox ID="cboGroupWork" runat="server">
+                    </tlk:RadComboBox>
+                </td>
+                <td class="lb">
+                    <asp:Label runat="server" ID="Label3" Text="Chức năng công việc"></asp:Label>
+                </td>
+                <td>
+                    <tlk:RadTextBox runat="server" ID="txtFuncWork" SkinID="Textbox1023">
+                    </tlk:RadTextBox>
+                </td>
+                <td class="lb">
                     <%--<asp:CheckBox ID="ckDH" runat="server" Text="Độc hại" />--%>
                     <asp:Label runat="server" ID="lbHurtType" Text="Đối tượng độc hại"></asp:Label>
                 </td>
@@ -73,9 +97,23 @@
                 </td>
             </tr>
             <tr>
-                <td>
+                <td class="lb">
+                    <asp:Label runat="server" ID="Label4" Text="Yêu cầu công việc"></asp:Label>
                 </td>
                 <td>
+                    <tlk:RadTextBox runat="server" ID="txtRequestWork" SkinID="Textbox1023">
+                    </tlk:RadTextBox>
+                </td>
+                <td class="lb">
+                    <asp:Label runat="server" ID="Label5" Text="Mục đích"></asp:Label>
+                </td>
+                <td>
+                    <tlk:RadTextBox runat="server" ID="txtPurpose" SkinID="Textbox1023">
+                    </tlk:RadTextBox>
+                </td>
+                <td>
+                </td>
+                <td style="display: none">
                     <%--<asp:CheckBox ID="ckSpecDH" runat="server" Text="Đặc biệt độc hại" />--%>
                     <asp:CheckBox ID="ckOVT" runat="server" Text="Tính phụ cấp làm thêm giờ" />
                 </td>
@@ -83,7 +121,7 @@
                     <asp:CheckBox ID="chkSign" runat="server" Text="Ký quyết định" />
                 </td>
             </tr>
-            <tr>
+            <tr style="display: none">
                 <td class="lb">
                     <asp:Label runat="server" ID="lbUploadFile" Text="Tập tin đính kèm"></asp:Label>
                 </td>
@@ -122,7 +160,7 @@
             <ClientSettings EnableRowHoverStyle="true">
                 <Selecting AllowRowSelect="true" />
             </ClientSettings>
-            <MasterTableView DataKeyNames="ID" ClientDataKeyNames="CODE,NAME_VN,TITLE_GROUP_NAME,TITLE_GROUP_ID,REMARK,ORG_ID,ORG_TYPE,FILENAME,HURTFUL,HURTFUL_CHECK,OVT,OVT_CHECK,SPEC_HURFUL,SPEC_HURFUL_CHECK,UPLOAD_FILE,HURT_TYPE_ID,HURT_TYPE_NAME,TITLE_GROUP_ID1,IS_SIGN">
+            <MasterTableView DataKeyNames="ID" ClientDataKeyNames="CODE,NAME_VN,TITLE_GROUP_NAME,TITLE_GROUP_ID,REMARK,ORG_ID,ORG_TYPE,FILENAME,HURTFUL,HURTFUL_CHECK,OVT,OVT_CHECK,SPEC_HURFUL,SPEC_HURFUL_CHECK,UPLOAD_FILE,HURT_TYPE_ID,HURT_TYPE_NAME,TITLE_GROUP_ID1,IS_SIGN,GR_GLONE_ID,GR_GLONE_NAME,GR_WORK_ID,GR_WORK_NAME,FUNCTION_WORK,REQUEST_WORK,PURPOSE_WORK">
                 <Columns>
                     <%--<tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderStyle-HorizontalAlign="Center"
                         HeaderStyle-Width="30px" ItemStyle-HorizontalAlign="Center">

@@ -9186,6 +9186,21 @@ Namespace ProfileBusiness
         Private FILENAMEField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private FUNCTION_WORKField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private GR_GLONE_IDField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private GR_GLONE_NAMEField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private GR_WORK_IDField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private GR_WORK_NAMEField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private HURTFULField As System.Nullable(Of Decimal)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -9243,7 +9258,13 @@ Namespace ProfileBusiness
         Private OVT_CHECKField As Boolean
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private PURPOSE_WORKField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private REMARKField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private REQUEST_WORKField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private SPEC_HURFULField As System.Nullable(Of Decimal)
@@ -9379,6 +9400,71 @@ Namespace ProfileBusiness
                 If (Object.ReferenceEquals(Me.FILENAMEField, value) <> true) Then
                     Me.FILENAMEField = value
                     Me.RaisePropertyChanged("FILENAME")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property FUNCTION_WORK() As String
+            Get
+                Return Me.FUNCTION_WORKField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.FUNCTION_WORKField, value) <> true) Then
+                    Me.FUNCTION_WORKField = value
+                    Me.RaisePropertyChanged("FUNCTION_WORK")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property GR_GLONE_ID() As System.Nullable(Of Decimal)
+            Get
+                Return Me.GR_GLONE_IDField
+            End Get
+            Set
+                If (Me.GR_GLONE_IDField.Equals(value) <> true) Then
+                    Me.GR_GLONE_IDField = value
+                    Me.RaisePropertyChanged("GR_GLONE_ID")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property GR_GLONE_NAME() As String
+            Get
+                Return Me.GR_GLONE_NAMEField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.GR_GLONE_NAMEField, value) <> true) Then
+                    Me.GR_GLONE_NAMEField = value
+                    Me.RaisePropertyChanged("GR_GLONE_NAME")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property GR_WORK_ID() As System.Nullable(Of Decimal)
+            Get
+                Return Me.GR_WORK_IDField
+            End Get
+            Set
+                If (Me.GR_WORK_IDField.Equals(value) <> true) Then
+                    Me.GR_WORK_IDField = value
+                    Me.RaisePropertyChanged("GR_WORK_ID")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property GR_WORK_NAME() As String
+            Get
+                Return Me.GR_WORK_NAMEField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.GR_WORK_NAMEField, value) <> true) Then
+                    Me.GR_WORK_NAMEField = value
+                    Me.RaisePropertyChanged("GR_WORK_NAME")
                 End If
             End Set
         End Property
@@ -9631,6 +9717,19 @@ Namespace ProfileBusiness
         End Property
         
         <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property PURPOSE_WORK() As String
+            Get
+                Return Me.PURPOSE_WORKField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.PURPOSE_WORKField, value) <> true) Then
+                    Me.PURPOSE_WORKField = value
+                    Me.RaisePropertyChanged("PURPOSE_WORK")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
         Public Property REMARK() As String
             Get
                 Return Me.REMARKField
@@ -9639,6 +9738,19 @@ Namespace ProfileBusiness
                 If (Object.ReferenceEquals(Me.REMARKField, value) <> true) Then
                     Me.REMARKField = value
                     Me.RaisePropertyChanged("REMARK")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property REQUEST_WORK() As String
+            Get
+                Return Me.REQUEST_WORKField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.REQUEST_WORKField, value) <> true) Then
+                    Me.REQUEST_WORKField = value
+                    Me.RaisePropertyChanged("REQUEST_WORK")
                 End If
             End Set
         End Property

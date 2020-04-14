@@ -163,18 +163,18 @@ Public Class ctrlHU_Title
                     Case "UpdateView"
                         ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), NotifyType.Success)
                         rgMain.Rebind()
-                        ClearControlValue(txtCode, txtNameVN, txtRemark, cboTitleGroup, chkSign, cboOrgType, cboHurtType, ckOVT, txtRemindLink, txtUpload, txtUploadFile)
+                        ClearControlValue(txtCode, txtNameVN, txtRemark, cboTitleGroup, chkSign, cboOrgType, cboHurtType, ckOVT, txtRemindLink, txtUpload, txtUploadFile, cboNgachLuong, cboGroupWork, txtFuncWork, txtRequestWork, txtPurpose)
                         CurrentState = CommonMessage.STATE_NORMAL
                     Case "InsertView"
                         ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), NotifyType.Success)
                         rgMain.CurrentPageIndex = 0
                         rgMain.MasterTableView.SortExpressions.Clear()
                         rgMain.Rebind()
-                        ClearControlValue(txtCode, txtNameVN, txtRemark, cboTitleGroup, chkSign, cboOrgType, cboHurtType, ckOVT, txtRemindLink, txtUpload, txtUploadFile)
+                        ClearControlValue(txtCode, txtNameVN, txtRemark, cboTitleGroup, chkSign, cboOrgType, cboHurtType, ckOVT, txtRemindLink, txtUpload, txtUploadFile, cboNgachLuong, cboGroupWork, txtFuncWork, txtRequestWork, txtPurpose)
                         CurrentState = CommonMessage.STATE_NORMAL
                     Case "Cancel"
                         rgMain.MasterTableView.ClearSelectedItems()
-                        ClearControlValue(txtNameVN, txtRemark, cboOrgType, cboHurtType, ckOVT, txtRemindLink, txtUpload, txtUploadFile, chkSign)
+                        ClearControlValue(txtNameVN, txtRemark, cboOrgType, cboHurtType, ckOVT, txtRemindLink, txtUpload, txtUploadFile, chkSign, cboNgachLuong, cboGroupWork, txtFuncWork, txtRequestWork, txtPurpose)
                     Case ""
                         cboTitleGroup.AutoPostBack = False
                         cboOrgType.AutoPostBack = False
@@ -246,7 +246,7 @@ Public Class ctrlHU_Title
             Select Case CurrentState
                 Case CommonMessage.STATE_NEW
                     EnabledGridNotPostback(rgMain, False)
-                    EnableControlAll(True, cboTitleGroup, txtNameVN, txtRemark, chkSign, cboOrgType, cboHurtType, ckOVT, btnDownload, btnUploadFile)
+                    EnableControlAll(True, cboTitleGroup, txtNameVN, txtRemark, chkSign, cboOrgType, cboHurtType, ckOVT, btnDownload, btnUploadFile, cboNgachLuong, cboGroupWork, txtFuncWork, txtRequestWork, txtPurpose, txtCode)
                     If cboHurtType.SelectedItem IsNot Nothing Or txtRemark.Text IsNot Nothing Then
                         GoTo dontrefresh
                     End If
@@ -255,11 +255,11 @@ Public Class ctrlHU_Title
 dontrefresh:
                 Case CommonMessage.STATE_NORMAL
                     EnabledGridNotPostback(rgMain, True)
-                    EnableControlAll(False, cboTitleGroup, txtNameVN, txtRemark, chkSign, cboOrgType, cboHurtType, ckOVT, btnUploadFile)
+                    EnableControlAll(False, cboTitleGroup, txtNameVN, txtRemark, chkSign, cboOrgType, cboHurtType, ckOVT, btnUploadFile, cboNgachLuong, cboGroupWork, txtFuncWork, txtRequestWork, txtPurpose, txtCode)
                 Case CommonMessage.STATE_EDIT
                     EnabledGridNotPostback(rgMain, False)
                     Utilities.EnableRadCombo(cboTitleGroup, True)
-                    EnableControlAll(True, cboTitleGroup, txtNameVN, txtRemark, chkSign, cboOrgType, cboHurtType, ckOVT, btnDownload, btnUploadFile)
+                    EnableControlAll(True, cboTitleGroup, txtNameVN, txtRemark, chkSign, cboOrgType, cboHurtType, ckOVT, btnDownload, btnUploadFile, cboNgachLuong, cboGroupWork, txtFuncWork, txtRequestWork, txtPurpose, txtCode)
                     If txtUpload.Text <> "" Then
                         btnDownload.Enabled = True
                     Else
@@ -334,18 +334,21 @@ dontrefresh:
         Dim startTime As DateTime = DateTime.UtcNow
         Dim repS As New ProfileStoreProcedure
         Try
-            Dim dtData As DataTable
+            Dim dtData As New DataTable
             Using rep As New ProfileRepository
                 dataTable = rep.GetOtherList("HU_TITLE_GROUP", True)
                 FillRadCombobox(cboTitleGroup, dataTable, "NAME", "ID")
-                dtData = rep.GetOtherList("HURT_TYPE", True)
-                FillRadCombobox(cboHurtType, dtData, "NAME", "ID")
+                'dtData = rep.GetOtherList("HURT_TYPE", True)
+                'FillRadCombobox(cboHurtType, dtData, "NAME", "ID")
+                dataTable = rep.GetOtherList("GROUP_WORK", True)
+                FillRadCombobox(cboGroupWork, dataTable, "NAME", "ID")
             End Using
-
-
-            Dim dtOrgType As DataTable
-            dtOrgType = repS.GET_ORG_TYPE()
-            FillRadCombobox(cboOrgType, dtOrgType, "TYPE_NAME_VN", "ORG_ID_TYPE", True)
+            dataTable = repS.GET_NGACH_LUONG_ACV()
+            FillRadCombobox(cboNgachLuong, dataTable, "NAME_VN", "ID")
+         
+            'Dim dtOrgType As DataTable
+            ' dtOrgType = repS.GET_ORG_TYPE()
+            'FillRadCombobox(cboOrgType, dtOrgType, "TYPE_NAME_VN", "ORG_ID_TYPE", True)
 
             Dim dic As New Dictionary(Of String, Control)
             dic.Add("CODE", txtCode)
@@ -354,8 +357,13 @@ dontrefresh:
             dic.Add("TITLE_GROUP_ID", cboTitleGroup)
             dic.Add("TITLE_GROUP_ID1", hidTITLE_GROUP_ID)
             dic.Add("IS_SIGN", chkSign)
-            dic.Add("ORG_TYPE", cboOrgType)
-            dic.Add("HURT_TYPE_ID", cboHurtType)
+            dic.Add("GR_GLONE_ID", cboNgachLuong)
+            dic.Add("GR_WORK_ID", cboGroupWork)
+            dic.Add("FUNCTION_WORK", txtFuncWork)
+            dic.Add("REQUEST_WORK", txtRequestWork)
+            dic.Add("PURPOSE_WORK", txtPurpose)
+            'dic.Add("ORG_TYPE", cboOrgType)
+            'dic.Add("HURT_TYPE_ID", cboHurtType)
             dic.Add("OVT_CHECK", ckOVT)
             dic.Add("FILENAME", txtUpload)
             dic.Add("UPLOAD_FILE", txtRemindLink)
@@ -370,43 +378,43 @@ dontrefresh:
 #End Region
 
 #Region "Event"
-    Private Sub cboTitleGroup_SelectedIndexChanged(sender As Object, e As RadComboBoxSelectedIndexChangedEventArgs) Handles cboTitleGroup.SelectedIndexChanged
-        Dim repS As New ProfileStoreProcedure
-        Dim dtOrgLevel As New DataTable()
-        Try
-            Dim ORG_CODE As String = String.Empty
-            Dim TITLE_GROUP As String = String.Empty
-            If hidTITLE_GROUP_ID.Value <> cboTitleGroup.SelectedValue Then
-                GenerateTitleCode()
-            End If
+    'Private Sub cboTitleGroup_SelectedIndexChanged(sender As Object, e As RadComboBoxSelectedIndexChangedEventArgs) Handles cboTitleGroup.SelectedIndexChanged
+    '    Dim repS As New ProfileStoreProcedure
+    '    Dim dtOrgLevel As New DataTable()
+    '    Try
+    '        Dim ORG_CODE As String = String.Empty
+    '        Dim TITLE_GROUP As String = String.Empty
+    '        If hidTITLE_GROUP_ID.Value <> cboTitleGroup.SelectedValue Then
+    '            GenerateTitleCode()
+    '        End If
 
-        Catch ex As Exception
-            Throw ex
-        Finally
-            dtOrgLevel.Dispose()
-        End Try
-    End Sub
+    '    Catch ex As Exception
+    '        Throw ex
+    '    Finally
+    '        dtOrgLevel.Dispose()
+    '    End Try
+    'End Sub
 
-    Private Sub GenerateTitleCode()
-        Dim rep As New ProfileRepository
-        Dim dtData As New DataTable()
-        Try
-            Dim TITLE_GROUP As String = String.Empty
-            If IsNumeric(cboTitleGroup.SelectedValue) Then
-                dtData = rep.GetOtherList("HU_TITLE_GROUP", True)
-                TITLE_GROUP = dtData.Select("ID='" + cboTitleGroup.SelectedValue + "'")(0)("CODE").ToString
-                txtCode.Text = rep.AutoGenCode(TITLE_GROUP, "HU_TITLE", "CODE")
-            End If
-            If rgMain.SelectedValue IsNot Nothing Then
-                txtCode.Text = rep.AutoGenCode(TITLE_GROUP, "HU_TITLE", "CODE")
-            End If
-        Catch ex As Exception
-            Throw ex
-        Finally
-            dtData.Dispose()
-            rep.Dispose()
-        End Try
-    End Sub
+    'Private Sub GenerateTitleCode()
+    '    Dim rep As New ProfileRepository
+    '    Dim dtData As New DataTable()
+    '    Try
+    '        Dim TITLE_GROUP As String = String.Empty
+    '        If IsNumeric(cboTitleGroup.SelectedValue) Then
+    '            dtData = rep.GetOtherList("HU_TITLE_GROUP", True)
+    '            TITLE_GROUP = dtData.Select("ID='" + cboTitleGroup.SelectedValue + "'")(0)("CODE").ToString
+    '            txtCode.Text = rep.AutoGenCode(TITLE_GROUP, "HU_TITLE", "CODE")
+    '        End If
+    '        If rgMain.SelectedValue IsNot Nothing Then
+    '            txtCode.Text = rep.AutoGenCode(TITLE_GROUP, "HU_TITLE", "CODE")
+    '        End If
+    '    Catch ex As Exception
+    '        Throw ex
+    '    Finally
+    '        dtData.Dispose()
+    '        rep.Dispose()
+    '    End Try
+    'End Sub
 
     ''' <lastupdate>24/07/2017</lastupdate>
     ''' <summary> 
@@ -428,7 +436,7 @@ dontrefresh:
             Select Case CType(e.Item, RadToolBarButton).CommandName
                 Case CommonMessage.TOOLBARITEM_CREATE
                     CurrentState = CommonMessage.STATE_NEW
-                    ClearControlValue(txtCode, txtNameVN, cboOrgType, txtRemark, cboTitleGroup, chkSign, ckOVT, cboHurtType, txtUpload)
+                    ClearControlValue(txtCode, txtNameVN, cboOrgType, txtRemark, cboTitleGroup, chkSign, ckOVT, cboHurtType, txtUpload, cboNgachLuong, cboGroupWork, txtFuncWork, txtRequestWork, txtPurpose)
                     ' txtCode.Text = rep.AutoGenCode("CD", "HU_TITLE", "CODE")
 
                     UpdateControlState()
@@ -470,7 +478,7 @@ dontrefresh:
                     ctrlMessageBox.DataBind()
                     ctrlMessageBox.Show()
 
-                    ClearControlValue(cboTitleGroup, txtCode, txtNameVN, txtRemark)
+                    ClearControlValue(cboTitleGroup, txtCode, txtNameVN, txtRemark, cboNgachLuong, cboGroupWork, txtFuncWork, txtRequestWork, txtPurpose)
 
                 Case CommonMessage.TOOLBARITEM_EXPORT
                     Dim dtData As DataTable
@@ -519,6 +527,15 @@ dontrefresh:
                         If cboTitleGroup.SelectedValue <> "" Then
                             objTitle.TITLE_GROUP_ID = cboTitleGroup.SelectedValue
                         End If
+                        If cboNgachLuong.SelectedValue <> "" Then
+                            objTitle.GR_GLONE_ID = cboNgachLuong.SelectedValue
+                        End If
+                        If cboGroupWork.SelectedValue <> "" Then
+                            objTitle.GR_WORK_ID = cboGroupWork.SelectedValue
+                        End If
+                        objTitle.FUNCTION_WORK = txtFuncWork.Text
+                        objTitle.REQUEST_WORK = txtRequestWork.Text
+                        objTitle.PURPOSE_WORK = txtPurpose.Text
 
                         objTitle.IS_SIGN = chkSign.Checked
 
@@ -576,7 +593,7 @@ dontrefresh:
                         ExcuteScript("Resize", "ResizeSplitter(splitterID, pane1ID, pane2ID, validateID, oldSize, 'rgMain')")
                     End If
                 Case CommonMessage.TOOLBARITEM_CANCEL
-                    ClearControlValue(txtCode, txtNameVN, txtRemark, cboTitleGroup)
+                    ClearControlValue(txtCode, txtNameVN, txtRemark, cboTitleGroup, cboNgachLuong, cboGroupWork, txtFuncWork, txtRequestWork, txtPurpose)
                     CurrentState = CommonMessage.STATE_NORMAL
                     Refresh("Cancel")
                     UpdateControlState()
@@ -601,19 +618,19 @@ dontrefresh:
             If e.ActionName = CommonMessage.TOOLBARITEM_ACTIVE And e.ButtonID = MessageBoxButtonType.ButtonYes Then
                 CurrentState = CommonMessage.STATE_ACTIVE
                 UpdateControlState()
-                ClearControlValue(txtCode, txtNameVN, txtRemark, cboTitleGroup)
+                ClearControlValue(txtCode, txtNameVN, txtRemark, cboTitleGroup, cboNgachLuong, cboGroupWork, txtFuncWork, txtRequestWork, txtPurpose)
             End If
 
             If e.ActionName = CommonMessage.TOOLBARITEM_DEACTIVE And e.ButtonID = MessageBoxButtonType.ButtonYes Then
                 CurrentState = CommonMessage.STATE_DEACTIVE
                 UpdateControlState()
-                ClearControlValue(txtCode, txtNameVN, txtRemark, cboTitleGroup)
+                ClearControlValue(txtCode, txtNameVN, txtRemark, cboTitleGroup, cboNgachLuong, cboGroupWork, txtFuncWork, txtRequestWork, txtPurpose)
             End If
 
             If e.ActionName = CommonMessage.TOOLBARITEM_DELETE And e.ButtonID = MessageBoxButtonType.ButtonYes Then
                 CurrentState = CommonMessage.STATE_DELETE
                 UpdateControlState()
-                ClearControlValue(txtCode, txtNameVN, txtRemark, cboTitleGroup)
+                ClearControlValue(txtCode, txtNameVN, txtRemark, cboTitleGroup, cboNgachLuong, cboGroupWork, txtFuncWork, txtRequestWork, txtPurpose)
             End If
 
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
@@ -818,6 +835,11 @@ dontrefresh:
                 dic.Add("REMARK", txtRemark)
                 dic.Add("TITLE_GROUP_ID", cboTitleGroup)
                 dic.Add("IS_SIGN", chkSign)
+                dic.Add("GR_GLONE_ID", cboNgachLuong)
+                dic.Add("GR_WORK_ID", cboGroupWork)
+                dic.Add("FUNCTION_WORK", txtFuncWork)
+                dic.Add("REQUEST_WORK", txtRequestWork)
+                dic.Add("PURPOSE_WORK", txtPurpose)
                 dic.Add("ORG_TYPE", cboOrgType)
                 dic.Add("HURT_TYPE_ID", cboHurtType)
                 dic.Add("OVT_CHECK", ckOVT)

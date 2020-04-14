@@ -101,6 +101,8 @@ Partial Class ProfileRepository
                         From orgLv In Context.HU_ORGANIZATION.Where(Function(f) f.ID = p.ORG_ID).DefaultIfEmpty
                         From orgType In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.ORG_TYPE).DefaultIfEmpty
                         From hurtType In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.HURT_TYPE_ID).DefaultIfEmpty
+                        From ngach In Context.PA_SALARY_LEVEL_GROUP.Where(Function(f) f.ID = p.GR_GLONE_ID).DefaultIfEmpty
+                        From nhom_cv In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.GR_WORK_ID).DefaultIfEmpty
                         Select New TitleDTO With {
                                    .ID = p.ID,
                                    .CODE = p.CODE,
@@ -121,6 +123,13 @@ Partial Class ProfileRepository
                                    .UPLOAD_FILE = p.UPLOAD_FILE,
                                    .FILENAME = p.FILENAME,
                                    .IS_SIGN = p.IS_SIGN,
+                                   .GR_GLONE_ID = p.GR_GLONE_ID,
+                                   .GR_GLONE_NAME = ngach.NAME_VN,
+                                   .GR_WORK_ID = p.GR_WORK_ID,
+                                   .GR_WORK_NAME = nhom_cv.NAME_VN,
+                                   .FUNCTION_WORK = p.FUNCTION_WORK,
+                                   .REQUEST_WORK = p.REQUEST_WORK,
+                                   .PURPOSE_WORK = p.PURPOSE_WORK,
                                    .TITLE_GROUP_ID1 = p.TITLE_GROUP_ID}
 
             Dim lst = query
@@ -209,6 +218,11 @@ Partial Class ProfileRepository
             objTitleData.UPLOAD_FILE = objTitle.UPLOAD_FILE
             objTitleData.FILENAME = objTitle.FILENAME
             objTitleData.IS_SIGN = objTitle.IS_SIGN
+            objTitleData.GR_GLONE_ID = objTitle.GR_GLONE_ID
+            objTitleData.GR_WORK_ID = objTitle.GR_WORK_ID
+            objTitleData.FUNCTION_WORK = objTitle.FUNCTION_WORK
+            objTitleData.REQUEST_WORK = objTitle.REQUEST_WORK
+            objTitleData.PURPOSE_WORK = objTitle.PURPOSE_WORK
             Context.HU_TITLE.AddObject(objTitleData)
             Context.SaveChanges(log)
             gID = objTitleData.ID
@@ -273,6 +287,11 @@ Partial Class ProfileRepository
             objTitleData.UPLOAD_FILE = objTitle.UPLOAD_FILE
             objTitleData.FILENAME = objTitle.FILENAME
             objTitleData.IS_SIGN = objTitle.IS_SIGN
+            objTitleData.GR_GLONE_ID = objTitle.GR_GLONE_ID
+            objTitleData.GR_WORK_ID = objTitle.GR_WORK_ID
+            objTitleData.FUNCTION_WORK = objTitle.FUNCTION_WORK
+            objTitleData.REQUEST_WORK = objTitle.REQUEST_WORK
+            objTitleData.PURPOSE_WORK = objTitle.PURPOSE_WORK
             Context.SaveChanges(log)
             gID = objTitleData.ID
             Return True
