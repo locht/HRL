@@ -6,13 +6,13 @@
     <tlk:RadPane ID="TopPane" runat="server" Scrolling="None" Height="35px">
         <tlk:RadToolBar ID="tbarMenu" runat="server" OnClientButtonClicking="clientButtonClicking" />
     </tlk:RadPane>
-    <tlk:RadPane ID="LeftPane" runat="server" Height="110px">
+    <tlk:RadPane ID="LeftPane" runat="server" Height="170px">
         <asp:ValidationSummary ID="valSum" runat="server" DisplayMode="BulletList" CssClass="validationsummary"
             ValidationGroup="" />
-        <table class="table-form">
-            <tr>
-                <td class="lb" style="width: 150px">
-                    <%# Translate("Tên loại phúc lợi")%><span class="lbReq">*</span></b>
+        <table class="table-form">           
+                <tr>
+                <td class="lb" >
+                    <%# Translate("Tên loại phúc lợi")%><span class="lbReq">*</span>
                 </td>
                 <td>
                     <tlk:RadComboBox ID="cboWELFARE_ID" runat="server" OnClientSelectedIndexChanged="OnClientSelectedIndexChanged">
@@ -31,14 +31,60 @@
                 <td>
                     <tlk:RadDatePicker ID="dpEFFECT_DATE" runat="server">
                     </tlk:RadDatePicker>
-                </td>
+                </td>              
             </tr>
             <tr>
+                <td class="lb">
+                    <%# Translate("Ngày xảy ra")%>
+                </td>
+                <td>
+                    <tlk:RadDatePicker ID="dpAC_DATE" runat="server">
+                    </tlk:RadDatePicker>
+                </td>
+                <td class="lb" >
+                    <%# Translate("Năm")%>
+                </td>
+                <td>
+                    <tlk:RadComboBox ID="cboYear" runat="server" OnClientSelectedIndexChanged="OnClientSelectedIndexChanged" >
+                    </tlk:RadComboBox>
+                <td>                   
+            </tr>
+            <tr>
+                  <td class="lb" >
+                    <%# Translate("Kỳ lương thanh toán")%>
+                </td>
+                <td>
+                    <tlk:RadComboBox ID="cboPayStage" runat="server" >
+                    </tlk:RadComboBox>
+                <td>
+                <td>
+                     <tlk:RadButton runat="server" ID="chkIS_TAXABLE" ToggleType="CheckBox" ButtonType="ToggleButton"
+                        Enabled="true" CausesValidation="false" Text=" <%$ Translate: Có tính vào lương (Chịu thuế ) %>"
+                        AutoPostBack="false">
+                    </tlk:RadButton>
+                </td>
+                <td>
+                     <tlk:RadButton runat="server" ID="chkIS_NOT_TAXABLE" ToggleType="CheckBox" ButtonType="ToggleButton"
+                        Enabled="True" CausesValidation="false" Text=" <%$ Translate: Có tính vào lương (Không chịu thuế ) %>"
+                        AutoPostBack="false">
+                    </tlk:RadButton>
+                </td>
+            </tr>
+            <tr>                
                 <td class="lb">
                     <%# Translate("Ghi Chú")%>
                 </td>
                 <td colspan="3">
-                    <tlk:RadTextBox ID="txtSDESC" runat="server" SkinID="Textbox1023" Width="100%">
+                    <tlk:RadTextBox ID="txtSDESC" runat="server" SkinID="Textbox1023" width="100%" >
+                    </tlk:RadTextBox>
+                </td>                
+            </tr>
+            <tr>
+                <td class="lb">
+                    <%# Translate("Thông tin thêm")%>
+                </td>
+                <td colspan="3">
+                    <tlk:RadTextBox ID="txtINF_MORE" runat="server" SkinID="Textbox1023" width="100%" >
                     </tlk:RadTextBox>
                 </td>
             </tr>
@@ -94,27 +140,27 @@
                         UniqueName="EMPLOYEE_CODE" SortExpression="EMPLOYEE_CODE" />
                     <tlk:GridBoundColumn HeaderText="Họ tên nhân viên" DataField="EMPLOYEE_NAME" UniqueName="EMPLOYEE_NAME"
                         ReadOnly="true" SortExpression="EMPLOYEE_NAME" />
-                    <tlk:GridBoundColumn HeaderText="Phòng ban" DataField="ORG_NAME" UniqueName="ORG_NAME"
+             <%--       <tlk:GridBoundColumn HeaderText="Phòng ban" DataField="ORG_NAME" UniqueName="ORG_NAME"
                         ReadOnly="true" SortExpression="ORG_NAME" />
                     <tlk:GridBoundColumn HeaderText="Chức danh" DataField="TITLE_NAME" UniqueName="TITLE_NAME"
-                        ReadOnly="true" SortExpression="TITLE_NAME" />
-                    <tlk:GridBoundColumn HeaderText="Công ty" DataField="org_code2" UniqueName="org_code2"
-                        ReadOnly="true" SortExpression="org_code2" />
-                           <tlk:GridBoundColumn HeaderText="Ngày sinh" DataField="BIRTH_DATE" UniqueName="BIRTH_DATE"
+                        ReadOnly="true" SortExpression="TITLE_NAME" />--%>
+                         <tlk:GridBoundColumn HeaderText="Vị trí công việc" DataField="JOB_NAME" UniqueName="JOB_NAME"
+                        ReadOnly="true" SortExpression="JOB_NAME" />
+                    <tlk:GridBoundColumn HeaderText="Đơn vị" DataField="ORG_NAME2" UniqueName="ORG_NAME2"
+                        ReadOnly="true" SortExpression="ORG_NAME2" />
+                      <%--     <tlk:GridBoundColumn HeaderText="Ngày sinh" DataField="BIRTH_DATE" UniqueName="BIRTH_DATE"
                         ReadOnly="true" SortExpression="BIRTH_DATE" DataFormatString="{0:dd/MM/yyyy}" />
                     <tlk:GridBoundColumn HeaderText="Giới tính" DataField="GENDER_NAME" UniqueName="GENDER_NAME"
                         ReadOnly="true" SortExpression="GENDER_NAME" />
-                    <%--<tlk:GridBoundColumn HeaderText="Loại hợp đồng gần nhất" DataField="CONTRACT_NAME"
-                        UniqueName="CONTRACT_NAME" ReadOnly="true" SortExpression="CONTRACT_NAME" />--%>
                     <tlk:GridBoundColumn HeaderText="Thâm niên" DataField="SENIORITY" UniqueName="SENIORITY"
                         ReadOnly="true" SortExpression="SENIORITY" />
                     <tlk:GridBoundColumn HeaderText="Tổng số con" DataField="TOTAL_CHILD" UniqueName="TOTAL_CHILD"
-                        ReadOnly="true" SortExpression="TOTAL_CHILD" />
+                        ReadOnly="true" SortExpression="TOTAL_CHILD" />--%>
                     <tlk:GridNumericColumn HeaderText="<%$ Translate: Số tiền phúc lợi %>" DataField="MONEY_PL"
                                 ItemStyle-HorizontalAlign="Right" DataFormatString="{0:N0}" UniqueName="MONEY_PL"
                                 DataType="System.UInt64" HeaderStyle-Width="100px" ReadOnly="true"/>
-                    <%--<tlk:GridBoundColumn HeaderText="Số tiền phúc lợi" DataField="MONEY_PL" UniqueName="MONEY_PL"
-                        ReadOnly="true" SortExpression="MONEY_PL" />--%>
+                  <%-- <tlk:GridBoundColumn HeaderText="Ngày thanh toán" DataField="BIRTH_DATE" UniqueName="BIRTH_DATE"
+                        ReadOnly="true" SortExpression="BIRTH_DATE" DataFormatString="{0:dd/MM/yyyy}" />--%>
                     <tlk:GridTemplateColumn HeaderText="Tổng số tiền" HeaderStyle-Width="100px" DataField="MONEY_TOTAL"
                         UniqueName="MONEY_TOTAL">
                         <EditItemTemplate>
@@ -150,7 +196,7 @@
             </ClientSettings>
         </tlk:RadGrid>
     </tlk:RadPane>
-    </tlk:RadPane>
+  
 </tlk:RadSplitter>
 <Common:ctrlMessageBox ID="ctrlMessageBox" runat="server" />
 <Common:ctrlUpload ID="ctrlUpload" runat="server" />

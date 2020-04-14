@@ -1716,6 +1716,9 @@ Namespace ProfileBusiness.ServiceContracts
         Function GetWelfareMngById(ByVal Id As Integer) As WelfareMngDTO
 
         <OperationContract()>
+        Function GetComboboxPeriod() As List(Of ATPeriodDTO)
+
+        <OperationContract()>
         Function CheckWelfareMngEffect(ByVal _filter As List(Of WelfareMngDTO)) As Boolean
 
         <OperationContract()>

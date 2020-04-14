@@ -49,7 +49,8 @@
                 </table>
             </tlk:RadPane>
             <tlk:RadPane ID="RadPane2" runat="server" Scrolling="None" Height="100%">
-                <tlk:RadGrid PageSize="50" ID="rgWelfareMng" runat="server" Height="100%">
+                <tlk:RadGrid  ID="rgWelfareMng" runat="server"  Height="100%" AllowPaging="True" CssClass="MyCustomClass"
+                    AllowSorting="True" AllowMultiRowSelection="True">
                     <MasterTableView DataKeyNames="ID,WORK_STATUS,EFFECT_DATE" EditMode="InPlace" ClientDataKeyNames="ID,EFFECT_DATE">
                         <Columns>
                             <tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderStyle-HorizontalAlign="Center"
@@ -62,13 +63,38 @@
                                 ReadOnly="true" UniqueName="EMPLOYEE_CODE" HeaderStyle-Width="60px" />
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Họ tên nhân viên %>" DataField="EMPLOYEE_NAME"
                                 ReadOnly="true" UniqueName="EMPLOYEE_NAME" HeaderStyle-Width="150px" />
-                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Bộ phận %>" DataField="ORG_NAME"
+                             <tlk:GridBoundColumn HeaderText="Vị trí công việc" DataField="JOB_NAME" UniqueName="JOB_NAME"
+                                   ReadOnly="true" SortExpression="JOB_NAME" />
+                             <tlk:GridBoundColumn HeaderText="Đơn vị" DataField="ORG_NAME" UniqueName="ORG_NAME"
+                               ReadOnly="true" SortExpression="ORG_NAME" />
+                             <tlk:GridNumericColumn HeaderText="<%$ Translate: Số tiền phúc lợi %>" DataField="MONEY_PL"
+                                ItemStyle-HorizontalAlign="Right" DataFormatString="{0:N0}" UniqueName="MONEY_PL"
+                                DataType="System.UInt64" HeaderStyle-Width="100px" />
+                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Ngày thanh toán %>" DataField="EFFECT_DATE"
+                                ReadOnly="true" UniqueName="EFFECT_DATE" HeaderStyle-Width="150px" DataFormatString="{0:dd/MM/yyyy}" />
+                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Ngày xảy ra %>" DataField="AC_DATE"
+                                ReadOnly="true" UniqueName="AC_DATE" HeaderStyle-Width="150px" DataFormatString="{0:dd/MM/yyyy}" />
+                            <tlk:GridCheckBoxColumn UniqueName="IS_TAXABLE" DataField="IS_TAXABLE" HeaderText="<%$ Translate: Có tính vào lương( Chịu thuế ) %>"
+                             SortExpression="IS_TAXABLE" ItemStyle-HorizontalAlign="Center" AllowFiltering="false" HeaderStyle-Width="150px">
+                             </tlk:GridCheckBoxColumn>
+                          <tlk:GridCheckBoxColumn UniqueName="IS_NOT_TAXABLE" DataField="IS_NOT_TAXABLE" HeaderText="<%$ Translate: Có tính vào lương( Không chịu thuế ) %>"
+                             SortExpression="IS_NOT_TAXABLE" ItemStyle-HorizontalAlign="Center" AllowFiltering="false" HeaderStyle-Width="150px">
+                         </tlk:GridCheckBoxColumn>
+                              <tlk:GridBoundColumn HeaderText="<%$ Translate: Năm %>" DataField="YEAR_NAME" ReadOnly="true"
+                                UniqueName="YEAR_NAME" SortExpression="YEAR_NAME" HeaderStyle-Width="100px" />
+                              <tlk:GridBoundColumn HeaderText="<%$ Translate: Kỳ lương thanh toán %>" DataField="PAY_STAGE_NAME" ReadOnly="true"
+                                UniqueName="PAY_STAGE_NAME" SortExpression="PAY_STAGE_NAME" HeaderStyle-Width="100px" />
+                              <tlk:GridBoundColumn HeaderText="<%$ Translate: Ghi chú %>" DataField="SDESC" ReadOnly="true"
+                                UniqueName="SDESC" SortExpression="SDESC" HeaderStyle-Width="250px" />
+                              <tlk:GridBoundColumn HeaderText="<%$ Translate: Thông tin thêm %>" DataField="INF_MORE" ReadOnly="true"
+                                UniqueName="INF_MORE" SortExpression="INF_MORE" HeaderStyle-Width="150px" />
+                           <%-- <tlk:GridBoundColumn HeaderText="<%$ Translate: Bộ phận %>" DataField="ORG_NAME"
                                 ReadOnly="true" UniqueName="ORG_NAME" HeaderStyle-Width="200px" />
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Chức danh %>" DataField="TITLE_NAME"
                                 ReadOnly="true" UniqueName="TITLE_NAME" HeaderStyle-Width="200px" />
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Thâm niên %>" DataField="SENIORITY"
-                                ReadOnly="true" UniqueName="SENIORITY" HeaderStyle-Width="200px" />
-                            <tlk:GridNumericColumn HeaderText="<%$ Translate: Số tiền được hưởng %>" DataField="MONEY"
+                                ReadOnly="true" UniqueName="SENIORITY" HeaderStyle-Width="200px" />--%>
+                       <%--     <tlk:GridNumericColumn HeaderText="<%$ Translate: Số tiền được hưởng %>" DataField="MONEY"
                                 ItemStyle-HorizontalAlign="Right" DataFormatString="{0:N0}" UniqueName="MONEY"
                                 DataType="System.UInt64" HeaderStyle-Width="100px" />
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Ngày hiệu lực %>" DataField="EFFECT_DATE"
@@ -80,13 +106,9 @@
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Tổng số con %>" DataField="TOTAL_CHILD"
                                 ReadOnly="true" UniqueName="TOTAL_CHILD" HeaderStyle-Width="65px" />
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Mã công ty %>" DataField="org_code2"
-                                ReadOnly="true" UniqueName="org_code2" HeaderStyle-Width="100px" />
-                        
-                            <%--<tlk:GridNumericColumn HeaderText="<%$ Translate: Số tiền phúc lợi %>" DataField="MONEY_PL"
-                                ItemStyle-HorizontalAlign="Right" DataFormatString="{0:N0}" UniqueName="MONEY_PL"
-                                DataType="System.UInt64" HeaderStyle-Width="100px" />--%>
-                            <%--<tlk:GridBoundColumn HeaderText="<%$ Translate: Ghi chú %>" DataField="SDESC" ReadOnly="true"
-                                UniqueName="SDESC" SortExpression="SDESC" HeaderStyle-Width="250px" />--%>
+                                ReadOnly="true" UniqueName="org_code2" HeaderStyle-Width="100px" />                        --%>
+                           
+                          
                             <%--<tlk:GridBoundColumn HeaderText="ORG_DESC" DataField="ORG_DESC" UniqueName="ORG_DESC"
                                 SortExpression="ORG_DESC" Visible="false" />--%>
                         </Columns>

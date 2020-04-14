@@ -38,4 +38,15 @@
     Public Property CONTRACT_NAME As String
     Public Property SENIORITY As String
     'Public Property REMARK As String
+
+    Public Property AC_DATE As Date? 'NGAY XAY RA
+    Public Property JOB_NAME As String ' vị trí công việc
+    Public Property IS_TAXABLE As Boolean? ' Có tính vào lương( Chịu thuế )
+    Public Property IS_NOT_TAXABLE As Boolean? ' tính vào lương(Không chịu thuế )
+    'Public Property YEAR_ID As Decimal? ' năm thanh toán id
+    Public Property YEAR_NAME As String ' Nam thanh toan phuc loi
+    'Public Property PAY_STAGE_ID As Decimal? ' KỲ THANH TOÁN
+    Public Property PAY_STAGE_NAME As String
+    Public Property REMARK As String
+    Public Property INF_MORE As String ' THÔNG TIN THÊM
 End Class

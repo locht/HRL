@@ -22,4 +22,5 @@
     Public Property GROUP_ID As Decimal?
     Public Property REMARK As String
     Public Property BIRTH_DATE As Date?
+    Public Property JOB_NAME As String
 End Class
