@@ -1408,6 +1408,11 @@ Partial Class ProfileRepository
             ' nếu phê duyệt
             If objWorking.STATUS_ID = ProfileCommon.DECISION_STATUS.APPROVE_ID Then
                 ApproveWorking1(objWorking)
+                If isFistWorking(objWorking) Then
+                    'cập nhật ngày bắt đầu làm việt vào hồ sơ nhân viên
+                    'LUONG MƠI CUA ACV
+                    updateToHSNV(objWorking)
+                End If
             End If
 
             If objWorking.lstAllowance IsNot Nothing Then
@@ -1474,7 +1479,25 @@ Partial Class ProfileRepository
         End Try
 
     End Function
+    Private Function isFistWorking(ByVal workingDto As WorkingDTO) As Boolean
+        'dong nhat loai phe duyet là 447 nen sua lai
+        Return Context.HU_WORKING.Count(Function(p) p.STATUS_ID = ProfileCommon.DECISION_STATUS.APPROVE_ID And p.EMPLOYEE_ID = workingDto.EMPLOYEE_ID) = 0
+    End Function
+    Public Function updateToHSNV(objWorking As WorkingDTO) As Boolean
+        Try
 
+            Dim item = (From p In Context.HU_EMPLOYEE Where objWorking.EMPLOYEE_ID = p.ID).FirstOrDefault
+            If item IsNot Nothing Then
+                item.JOIN_DATE = objWorking.EFFECT_DATE
+                item.SENIORITY_DATE = objWorking.EFFECT_DATE
+                item.JOIN_DATE_STATE = objWorking.EFFECT_DATE
+                item.WORK_STATUS = ProfileCommon.OT_WORK_STATUS.WORKING_ID
+            End If
+            Return True
+        Catch ex As Exception
+
+        End Try
+    End Function
     Public Function InsertWorking(ByVal objWorking As WorkingDTO,
                                    ByVal log As UserLog,
                                    ByRef gID As Decimal) As Boolean
@@ -1691,6 +1714,11 @@ Partial Class ProfileRepository
 
             If objWorking.STATUS_ID = ProfileCommon.DECISION_STATUS.APPROVE_ID Then
                 ApproveWorking1(objWorking)
+                If isFistWorking(objWorking) Then
+                    'cập nhật ngày bắt đầu làm việt vào hồ sơ nhân viên
+                    'LUONG MƠI CUA ACV
+                    updateToHSNV(objWorking)
+                End If
             End If
 
             If objWorking.lstAllowance IsNot Nothing Then

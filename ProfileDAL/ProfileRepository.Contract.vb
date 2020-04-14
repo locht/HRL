@@ -1567,8 +1567,9 @@ Partial Class ProfileRepository
                 End If
             End If
 
-            ' Update trạng thái Đang làm việc
-            Employee.WORK_STATUS = ProfileCommon.OT_WORK_STATUS.WORKING_ID
+            ' Update trạng thái Đang làm việc\
+            'ACV CAP NHAT BEN QUYET DINH
+            'Employee.WORK_STATUS = ProfileCommon.OT_WORK_STATUS.WORKING_ID
 
             Dim STR As ContractTypeDTO = (From p In Context.HU_CONTRACT_TYPE
                                           From ot In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.TYPE_ID).DefaultIfEmpty
@@ -1578,25 +1579,26 @@ Partial Class ProfileRepository
                                      }).FirstOrDefault
             'neu hop dong phe duyet la thu viec thi up date vao join_date_state con neu chinh thuc thi 
             'update vào join_date_state và join_date cua hu_employee
+            'CAP NHAT THEO QUYET DINH
             If STR.CODE = "HDTV" Then
                 Employee.EMP_STATUS = 8
-                If Employee.JOIN_DATE Is Nothing Then
-                    Employee.JOIN_DATE = objContract.START_DATE
-                End If
-                If Employee.SENIORITY_DATE Is Nothing Then
-                    Employee.SENIORITY_DATE = objContract.START_DATE
-                End If
+                'If Employee.JOIN_DATE Is Nothing Then
+                '    Employee.JOIN_DATE = objContract.START_DATE
+                'End If
+                'If Employee.SENIORITY_DATE Is Nothing Then
+                '    Employee.SENIORITY_DATE = objContract.START_DATE
+                'End If
             Else
                 Employee.EMP_STATUS = 9
-                If Employee.JOIN_DATE Is Nothing Then
-                    Employee.JOIN_DATE = objContract.START_DATE
-                End If
-                If Employee.SENIORITY_DATE Is Nothing Then
-                    Employee.SENIORITY_DATE = objContract.START_DATE
-                End If
-                If Employee.JOIN_DATE_STATE Is Nothing Then
-                    Employee.JOIN_DATE_STATE = objContract.START_DATE
-                End If
+                'If Employee.JOIN_DATE Is Nothing Then
+                '    Employee.JOIN_DATE = objContract.START_DATE
+                'End If
+                'If Employee.SENIORITY_DATE Is Nothing Then
+                '    Employee.SENIORITY_DATE = objContract.START_DATE
+                'End If
+                'If Employee.JOIN_DATE_STATE Is Nothing Then
+                '    Employee.JOIN_DATE_STATE = objContract.START_DATE
+                'End If
             End If
             ' update  bảo hiểm
             'Dim wokingSalary As WorkingDTO = (From w In Context.HU_WORKING
