@@ -17,6 +17,8 @@
                             NavigateUrl='<%# String.Format("/Dialog.aspx?mid=Recruitment&fid=ctrlRC_CanDtl&group=Business&Can={0}&PROGRAM_ID={1}&Place=ctrlRC_CanDtlTraining&noscroll=1&state=Normal", CandidateCode, ProgramID) %>' />
                         <tlk:RadPanelItem Value="ctrlRC_CadidateReference" Text="<%$ Translate:Người tham chiếu%>"
                             NavigateUrl='<%# String.Format("/Dialog.aspx?mid=Recruitment&fid=ctrlRC_CanDtl&group=Business&Can={0}&PROGRAM_ID={1}&Place=ctrlRC_CadidateReference&noscroll=1&state=Normal", CandidateCode, ProgramID) %>' />
+                            <tlk:RadPanelItem Value="ctrlRC_CanDtlFamily" Text="<%$ Translate:Quá trình thân nhân%>"
+                            NavigateUrl='<%# String.Format("/Dialog.aspx?mid=Recruitment&fid=ctrlRC_CanDtl&group=Business&Can={0}&PROGRAM_ID={1}&Place=ctrlRC_CanDtlFamily&noscroll=1&state=Normal", CandidateCode, ProgramID) %>' />
                     </Items>
                 </tlk:RadPanelItem>
             </Items>

@@ -222,8 +222,6 @@
     <Content Include="Modules\Common\ctrlMessageBox.ascx" />
     <Content Include="Modules\Common\ctrlOrganization.ascx" />
     <Content Include="Modules\Common\ctrlUpload.ascx" />
-    <Content Include="Modules\Recruitment\Business\ctrlRC_CadidateListDtlFamily.ascx" />
-    <Content Include="Modules\Recruitment\Business\ctrlRC_CadidateListDtl.ascx" />
     <Content Include="Modules\Recruitment\Business\ctrlRC_ImportCV.ascx" />
     <Content Include="Modules\Recruitment\Business\ctrlRC_PlanYear.ascx" />
     <Content Include="Modules\Recruitment\Business\ctrlRC_RequestNewEditV.ascx" />
@@ -297,20 +295,6 @@
     <Compile Include="BusinessObjects\PROGRAM_SCHEDULE_CAN_DTO.vb" />
     <Compile Include="BusinessObjects\RC_CANDIDATE_TRAINNING_DTO.vb" />
     <Compile Include="Modules\Recruitment\ATConstant.vb" />
-    <Compile Include="Modules\Recruitment\Business\ctrlRC_CadidateListDtlFamily.ascx.designer.vb">
-      <DependentUpon>ctrlRC_CadidateListDtlFamily.ascx</DependentUpon>
-    </Compile>
-    <Compile Include="Modules\Recruitment\Business\ctrlRC_CadidateListDtlFamily.ascx.vb">
-      <DependentUpon>ctrlRC_CadidateListDtlFamily.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Modules\Recruitment\Business\ctrlRC_CadidateListDtl.ascx.designer.vb">
-      <DependentUpon>ctrlRC_CadidateListDtl.ascx</DependentUpon>
-    </Compile>
-    <Compile Include="Modules\Recruitment\Business\ctrlRC_CadidateListDtl.ascx.vb">
-      <DependentUpon>ctrlRC_CadidateListDtl.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
     <Compile Include="Modules\Recruitment\Business\ctrlRC_ImportCV.ascx.designer.vb">
       <DependentUpon>ctrlRC_ImportCV.ascx</DependentUpon>
     </Compile>
