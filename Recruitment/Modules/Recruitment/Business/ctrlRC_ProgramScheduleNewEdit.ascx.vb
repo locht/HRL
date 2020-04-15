@@ -147,6 +147,7 @@ Public Class ctrlRC_ProgramScheduleNewEdit
                     lblJobName.Text = objPro.ORG_NAME
                     lblTitleName.Text = objPro.TITLE_NAME
                     lblRequestNo.Text = objPro.REQUEST_NUMBER
+                    lbRecruited.Text = objPro.CANDIDATE_RECEIVED
 
                     If hidID.Value <> "" And Decimal.Parse(hidID.Value) > 0 Then
 
@@ -276,6 +277,7 @@ Public Class ctrlRC_ProgramScheduleNewEdit
         rlbExams.DataTextField = "NAME"
         rlbExams.DataValueField = "ID"
         rlbExams.DataBind()
+        rlbExams.Items(0).Selected = True
 
         If hidID.Value <> 0 Then
             rlbExams.Enabled = False
@@ -358,7 +360,7 @@ Public Class ctrlRC_ProgramScheduleNewEdit
                             rgCanSchedule.Rebind()
                             ''POPUPTOLINK
                             Dim PROGRAM_ID As String = Request.QueryString("PROGRAM_ID")
-                            Response.Redirect("/Default.aspx?mid=Recruitment&fid=ctrlRC_ProgramSchedule&group=Business&PROGRAM_ID=" & PROGRAM_ID)
+                            'Response.Redirect("/Default.aspx?mid=Recruitment&fid=ctrlRC_ProgramSchedule&group=Business&PROGRAM_ID=" & PROGRAM_ID)
 
                         Else
                             ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), NotifyType.Error)
@@ -414,7 +416,9 @@ Public Class ctrlRC_ProgramScheduleNewEdit
                     Case CommonMessage.TOOLBARITEM_CANCEL
                         ''POPUPTOLINK_CANCEL
                         Dim PROGRAM_ID As String = Request.QueryString("PROGRAM_ID")
-                        Response.Redirect("/Default.aspx?mid=Recruitment&fid=ctrlRC_ProgramSchedule&group=Business&PROGRAM_ID=" & PROGRAM_ID)
+                        ScriptManager.RegisterClientScriptBlock(Page, GetType(Page), "close", "window.close();", True)
+                        'Response.Write("<script>window.close();</script>")
+                        'Response.Redirect("/Default.aspx?mid=Recruitment&fid=ctrlRC_ProgramSchedule&group=Business&PROGRAM_ID=" & PROGRAM_ID)
                         ' Response.Redirect("/Default.aspx?mid=Recruitment&fid=ctrlRC_ProgramSchedule&group=Business")
                 End Select
 
@@ -643,7 +647,7 @@ Public Class ctrlRC_ProgramScheduleNewEdit
 
     Protected Function getCanNotSchedule(Optional ByVal isFull As Boolean = False) As DataTable
         Try
-            rgCanNotSchedule.DataSource = store.GET_CANDIDATE_NOT_SCHEDULE(Decimal.Parse(hidProgramID.Value), hidID.Value)
+            rgCanNotSchedule.DataSource = store.GET_CANDIDATE_NOT_SCHEDULE(Decimal.Parse(hidProgramID.Value), hidID.Value, chkFillter.Checked, rlbExams.SelectedValue)
 
         Catch ex As Exception
             DisplayException(Me.ViewName, Me.ID, ex)
@@ -721,14 +725,6 @@ Public Class ctrlRC_ProgramScheduleNewEdit
 
 #End Region
 
-    Protected Sub rlbExams_ItemDataBound(ByVal sender As Object, ByVal e As Telerik.Web.UI.RadListBoxItemEventArgs) Handles rlbExams.ItemDataBound
-        For Each item As RadListBoxItem In rlbExams.Items
-            'item.Checked = If(store.Check_Exams_IsExist(Decimal.Parse(item.Value)) > 0, True, False)
-            item.Checked = True
-
-        Next
-    End Sub
-
     Protected Sub RadAjaxPanel1_AjaxRequest(ByVal sender As Object, ByVal e As AjaxRequestEventArgs)
         userlog = LogHelper.GetUserLog
         Dim check As Integer = 0
@@ -749,15 +745,18 @@ Public Class ctrlRC_ProgramScheduleNewEdit
                     Dim item As GridDataItem = rgCanNotSchedule.SelectedItems(idx)
                     'insert candidate --> program schedule candidate
                     Dim idCandidate As Int32 = Int32.Parse(item.GetDataKeyValue("ID").ToString())
-                    For Each itemExams As RadListBoxItem In rlbExams.Items
-                        If itemExams.Checked = True Then
-                            Dim idPro_Exams As Int32 = Decimal.Parse(itemExams.Value)
-                            store.ADDNEW_CAN_PRO_SCHEDULE(idCandidate, Decimal.Parse(hidID.Value), idPro_Exams)
-                            check = 2
-                        Else
-                            Continue For
-                        End If
-                    Next
+                    'For Each itemExams As RadListBoxItem In rlbExams.Items
+                    '    If itemExams.Checked = True Then
+                    '        Dim idPro_Exams As Int32 = Decimal.Parse(itemExams.Value)
+                    '        store.ADDNEW_CAN_PRO_SCHEDULE(idCandidate, Decimal.Parse(hidID.Value), idPro_Exams)
+                    '        check = 2
+                    '    Else
+                    '        Continue For
+                    '    End If
+                    'Next
+                    Dim idPro_Exams As Int32 = Decimal.Parse(rlbExams.SelectedValue)
+                    store.ADDNEW_CAN_PRO_SCHEDULE(idCandidate, Decimal.Parse(hidID.Value), idPro_Exams)
+                    check = 2
                     If check = 2 Then
                         store.UPDATE_CANDIDATE_STATUS(idCandidate, "PROCESS")
                     End If
@@ -788,4 +787,13 @@ Public Class ctrlRC_ProgramScheduleNewEdit
 
     End Sub
 
+    Private Sub rlbExams_SelectedIndexChanged(sender As Object, e As System.EventArgs) Handles rlbExams.SelectedIndexChanged
+        getCanNotSchedule()
+        rgCanNotSchedule.Rebind()
+    End Sub
+
+    Private Sub chkFillter_CheckedChanged(sender As Object, e As System.EventArgs) Handles chkFillter.CheckedChanged
+        getCanNotSchedule()
+        rgCanNotSchedule.Rebind()
+    End Sub
 End Class

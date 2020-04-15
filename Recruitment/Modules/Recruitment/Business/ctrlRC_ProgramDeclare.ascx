@@ -8,7 +8,7 @@
             <tlk:RadPane ID="RadPane1" runat="server" MinHeight="26" Height="26px">
                 <tlk:RadTabStrip runat="server" ID="rtabTab" Orientation="HorizontalTop" SelectedIndex="0">
                     <Tabs>
-                        <tlk:RadTab Text="<%$ Translate: Thiết lập các môn thi %>">
+                        <tlk:RadTab Text="<%$ Translate: Thiết lập vòng phỏng vấn %>">
                         </tlk:RadTab>
                         <tlk:RadTab Text="<%$ Translate: Lên lịch thi %>">
                         </tlk:RadTab>

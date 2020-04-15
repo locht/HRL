@@ -32,7 +32,7 @@
                     <tr>
                         <td colspan="4">
                             <b>
-                                <%# Translate("Thiết lập môn thi")%></b>
+                                <%# Translate("Thiết lập vòng phỏng vấn")%></b>
                             <hr />
                         </td>
                     </tr>

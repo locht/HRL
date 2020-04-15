@@ -9,21 +9,23 @@
     <tlk:RadPane ID="RadPane5" runat="server" Height="33px" Scrolling="None">
         <tlk:RadToolBar ID="tbarMain" runat="server" OnClientButtonClicking="clientButtonClicking" />
     </tlk:RadPane>
-    <tlk:RadPane ID="LeftPane" runat="server" Height="210px">
+    <tlk:RadPane ID="LeftPane" runat="server" Height="200px">
         <asp:ValidationSummary ID="valSum" runat="server" />
         <table>
             <tr>
                 <td valign="top">
                     <table class="table-form">
                         <tr>
-                            <td class="item-head" colspan="6">
-                                <%# Translate("Thông tin lịch phỏng vấn/thi tuyển")%>
+                            <td colspan="6">
+                                <b>
+                                    <%# Translate("Thông tin lịch phỏng vấn/thi tuyển ")%>
+                                </b>
                                 <hr />
                             </td>
                         </tr>
                         <tr>
                             <td class="lb">
-                                <%# Translate("Ban/Phòng")%>
+                                <%# Translate("Phòng ban yêu cầu")%>
                             </td>
                             <td>
                                 <asp:Label ID="lblJobName" runat="server" Font-Bold="true"></asp:Label>
@@ -40,10 +42,22 @@
                             <td>
                                 <asp:Label ID="lblRequestNo" runat="server" Font-Bold="true"></asp:Label>
                             </td>
+                            <td class="lb">
+                                <%# Translate("Số lượng đã tuyển")%>
+                            </td>
+                            <td>
+                                <asp:Label ID="lbRecruited" runat="server" Font-Bold="true"></asp:Label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="lb" style="padding: 20px 0 5px 0; border-bottom: 1.5px solid #bfdbff;
+                                font-weight: 700; color: #bfdbff">
+                                <%# Translate("Thông tin lên lịch phỏng vấn")%>
+                            </td>
                         </tr>
                         <tr>
                             <td class="lb">
-                                <%# Translate("Ngày thi")%><span class="lbReq">*</span>
+                                <%# Translate("Ngày phỏng vấn")%><span class="lbReq">*</span>
                             </td>
                             <td>
                                 <tlk:RadDatePicker ID="rdScheduleDate" runat="server">
@@ -53,7 +67,7 @@
                                 </asp:RequiredFieldValidator>
                             </td>
                             <td class="lb">
-                                <%# Translate("Người coi thi/phỏng vấn")%>
+                                <%# Translate("Người phỏng vấn")%>
                             </td>
                             <td>
                                 <tlk:RadComboBox ID="cboUsher" runat="server">
@@ -65,9 +79,9 @@
                         </tr>
                         <tr>
                             <td class="lb">
-                                <%# Translate("Địa điểm thi")%>
+                                <%# Translate("Địa điểm")%>
                             </td>
-                            <td colspan="5">
+                            <td colspan="4">
                                 <tlk:RadTextBox ID="txtExamsPlace" runat="server" Width="100%">
                                 </tlk:RadTextBox>
                             </td>
@@ -76,42 +90,35 @@
                             <td class="lb">
                                 <%# Translate("Ghi chú")%>
                             </td>
-                            <td colspan="5">
+                            <td colspan="4">
                                 <tlk:RadTextBox ID="txtNote" runat="server" SkinID="Textbox1023" Width="100%">
                                 </tlk:RadTextBox>
                             </td>
                         </tr>
+                        <tr>
+                            <td>
+                                <asp:CheckBox ID="chkFillter" AutoPostBack="true" CausesValidation="false" runat="server" Text="<%$ Translate: Lọc ứng viên đã đạt ở phỏng vấn trước %>" Checked="true" />
+                            </td>
+                        </tr>
                     </table>
-                </td>
-                <td style="min-width: 40px">
                 </td>
                 <td valign="top">
                     <table class="table-form">
                         <tr>
-                            <td class="item-head" colspan="6">
-                                <%# Translate("Danh sách môn thi tuyển/phỏng vấn")%>
+                            <td>
+                                <b>
+                                    <%# Translate("Danh sách vòng phỏng vấn")%>
+                                </b>
                                 <hr />
                             </td>
                         </tr>
-                        <tr>
+                        <tr style="border: 1px solid #8fb3e6;border: 1px solid #8fb3e6;">
                             <td>
-                                <tlk:RadListBox runat="server" ID="rlbExams" CheckBoxes="true" Width="300px" Height="120px">
-                                </tlk:RadListBox>
+                                <asp:RadioButtonList runat="server" ID="rlbExams" CausesValidation="false" AutoPostBack = "true">
+                                </asp:RadioButtonList>
                             </td>
                         </tr>
                     </table>
-                </td>
-            </tr>
-        </table>
-        <table class="table-form">
-            <tr>
-                <td class="item-head" colspan="6" valign="top" style="width: 50%">
-                    <%# Translate("Danh sách ứng viên chưa đặt lịch")%>
-                </td>
-                <td style="min-width: 50px">
-                </td>
-                <td class="item-head" colspan="6" valign="top" style="width: 50%">
-                    <%# Translate("Danh sách ứng viên đã đặt lịch")%>
                 </td>
             </tr>
         </table>
@@ -120,7 +127,7 @@
         <tlk:RadSplitter ID="RadSplitter2" runat="server" Width="100%" Height="100%">
             <tlk:RadPane ID="RadPane4" runat="server" Scrolling="None">
                 <tlk:RadGrid ID="rgCanNotSchedule" runat="server" Height="100%" AllowSorting="false">
-                    <MasterTableView DataKeyNames="ID">
+                    <MasterTableView DataKeyNames="ID" Caption="<%$ Translate: Danh sách ứng viên chưa đặt lịch %>">
                         <Columns>
                             <tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderStyle-HorizontalAlign="Center"
                                 HeaderStyle-Width="30px" ItemStyle-HorizontalAlign="Center">
@@ -131,8 +138,8 @@
                                 SortExpression="FULLNAME" HeaderStyle-Width="90px" />
                             <tlk:GridDateTimeColumn HeaderText="<%$ Translate: Ngày sinh %>" DataField="DOB"
                                 DataFormatString="{0:dd/MM/yyyy}" HeaderStyle-Width="90px" />
-                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Số CMND %>" DataField="IDNO" UniqueName="IDNO"
-                                SortExpression="IDNO" HeaderStyle-Width="90px" />
+                            <%--<tlk:GridBoundColumn HeaderText="<%$ Translate: Số CMND %>" DataField="IDNO" UniqueName="IDNO"
+                                SortExpression="IDNO" HeaderStyle-Width="90px" />--%>
                         </Columns>
                     </MasterTableView>
                     <HeaderStyle HorizontalAlign="Center" Width="150px" />
@@ -169,7 +176,7 @@
             </tlk:RadPane>
             <tlk:RadPane ID="RadPane3" runat="server" Scrolling="None">
                 <tlk:RadGrid ID="rgCanSchedule" runat="server" Height="100%" AllowSorting="false">
-                    <MasterTableView DataKeyNames="ID">
+                    <MasterTableView DataKeyNames="ID" Caption="<%$ Translate: Danh sách ứng viên đã đặt lịch %>">
                         <Columns>
                             <tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderStyle-HorizontalAlign="Center"
                                 HeaderStyle-Width="30px" ItemStyle-HorizontalAlign="Center">
@@ -180,6 +187,10 @@
                                 UniqueName="FULLNAME_VN" SortExpression="FULLNAME_VN" HeaderStyle-Width="90px" />
                             <tlk:GridDateTimeColumn HeaderText="<%$ Translate: Ngày sinh %>" DataField="BIRTH_DATE"
                                 DataFormatString="{0:dd/MM/yyyy}" HeaderStyle-Width="90px" />
+                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Nơi sinh %>" DataField="BIRTH_PROVINCE_NAME" UniqueName="BIRTH_PROVINCE_NAME"
+                                SortExpression="BIRTH_PROVINCE_NAME" HeaderStyle-Width="90px" />
+                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Email cá nhân %>" DataField="PER_EMAIL" UniqueName="PER_EMAIL"
+                                SortExpression="PER_EMAIL" HeaderStyle-Width="90px" />
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Số CMND %>" DataField="ID_NO" UniqueName="ID_NO"
                                 SortExpression="ID_NO" HeaderStyle-Width="90px" />
                         </Columns>
@@ -204,12 +215,12 @@
                 </td>
                 <td>
                     <tlk:RadButton CausesValidation="false" OnClientClicked="OpenEditTransfer" ID="btnRecLetter"
-                        runat="server" Text="<%$ Translate: Thư mời tuyển dụng %>" Visible="false">
+                        runat="server" Text="<%$ Translate: Thư mời tuyển dụng %>">
                     </tlk:RadButton>
                 </td>
                 <td>
                     <tlk:RadButton CausesValidation="false" OnClientClicked="OpenEditTransfer" ID="btnRecInterviewLetter"
-                        runat="server" Text="<%$ Translate: Phiếu phỏng vấn tuyển dụng %>" Visible="false">
+                        runat="server" Text="<%$ Translate: Phiếu phỏng vấn tuyển dụng %>">
                     </tlk:RadButton>
                 </td>
             </tr>

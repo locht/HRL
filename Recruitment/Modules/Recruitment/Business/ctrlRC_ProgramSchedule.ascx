@@ -20,7 +20,7 @@
                 </tr>
                 <tr>
                     <td class="lb">
-                        <%# Translate("Phòng ban")%>:
+                        <%# Translate("Phòng ban yêu cầu")%>:
                     </td>
                     <td>
                         <asp:Label ID="lblOrgName" runat="server" Font-Bold="true"></asp:Label>
@@ -82,12 +82,12 @@
                         HeaderStyle-Width="40px" ItemStyle-HorizontalAlign="Center">
                     </tlk:GridClientSelectColumn>
                     <tlk:GridBoundColumn DataField="ID" Visible="false" />
-                    <tlk:GridDateTimeColumn HeaderText="<%$ Translate: Ngày thi %>" DataField="SCHEDULE_DATE" HeaderStyle-Width="120px"
+                    <tlk:GridDateTimeColumn HeaderText="<%$ Translate: Ngày phỏng vấn %>" DataField="SCHEDULE_DATE" HeaderStyle-Width="120px"
                         UniqueName="SCHEDULE_DATE" SortExpression="SCHEDULE_DATE" DataFormatString="{0:dd/MM/yyyy}">
                     </tlk:GridDateTimeColumn>
-                    <tlk:GridBoundColumn HeaderText="<%$ Translate: Các môn thi tuyển%>" DataField="EXAMS_NAME"
+                    <tlk:GridBoundColumn HeaderText="<%$ Translate: Vòng phỏng vấn%>" DataField="EXAMS_NAME"
                         UniqueName="EXAMS_NAME" SortExpression="EXAMS_NAME" />
-                    <tlk:GridBoundColumn HeaderText="<%$ Translate: SL ứng viên đã lên lịch thi tuyển %>" DataField="CANDIDATE_COUNT" HeaderStyle-Width="200px"
+                    <tlk:GridBoundColumn HeaderText="<%$ Translate: SL ứng viên đã lên lịch phỏng vấn %>" DataField="CANDIDATE_COUNT" HeaderStyle-Width="200px"
                         UniqueName="CANDIDATE_COUNT" SortExpression="CANDIDATE_COUNT" ItemStyle-HorizontalAlign="Center" />
                 </Columns>
             </MasterTableView>

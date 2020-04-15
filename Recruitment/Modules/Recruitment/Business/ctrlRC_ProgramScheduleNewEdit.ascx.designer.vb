@@ -122,6 +122,15 @@ Partial Public Class ctrlRC_ProgramScheduleNewEdit
     Protected WithEvents lblRequestNo As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
+    '''lbRecruited control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbRecruited As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
     '''rdScheduleDate control.
     '''</summary>
     '''<remarks>
@@ -176,13 +185,22 @@ Partial Public Class ctrlRC_ProgramScheduleNewEdit
     Protected WithEvents txtNote As Global.Telerik.Web.UI.RadTextBox
 
     '''<summary>
+    '''chkFillter control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents chkFillter As Global.System.Web.UI.WebControls.CheckBox
+
+    '''<summary>
     '''rlbExams control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents rlbExams As Global.Telerik.Web.UI.RadListBox
+    Protected WithEvents rlbExams As Global.System.Web.UI.WebControls.RadioButtonList
 
     '''<summary>
     '''RadPane1 control.
