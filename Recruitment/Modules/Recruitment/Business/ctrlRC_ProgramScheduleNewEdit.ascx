@@ -193,6 +193,12 @@
                                 SortExpression="PER_EMAIL" HeaderStyle-Width="90px" />
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Số CMND %>" DataField="ID_NO" UniqueName="ID_NO"
                                 SortExpression="ID_NO" HeaderStyle-Width="90px" />
+                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Ngày phỏng vấn %>" DataField="SCHEDULE_DATE" UniqueName="SCHEDULE_DATE"
+                                SortExpression="SCHEDULE_DATE" HeaderStyle-Width="90px" />
+                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Người phỏng vấn %>" DataField="SCHEDULE_BY" UniqueName="SCHEDULE_BY"
+                                SortExpression="SCHEDULE_BY" HeaderStyle-Width="90px" />
+                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Vòng phỏng vấn %>" DataField="EXAM_NAME" UniqueName="EXAM_NAME"
+                                SortExpression="EXAM_NAME" HeaderStyle-Width="90px" />
                         </Columns>
                     </MasterTableView>
                     <HeaderStyle HorizontalAlign="Center" Width="150px" />
