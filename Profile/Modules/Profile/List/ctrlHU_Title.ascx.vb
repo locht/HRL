@@ -1130,15 +1130,22 @@ dontrefresh:
                 sError = "Chưa nhập mã nhân viên"
                 ImportValidate.EmptyValue("GR_NGACH_LUONG", row, rowError, isError, sError)
 
-
+                If row("GR_NGACH_LUONG") Is DBNull.Value OrElse row("GR_NGACH_LUONG_ID") = "" Then
+                    sError = "Chưa chọn nhóm ngạch lương"
+                    ImportValidate.EmptyValue("GR_NGACH_LUONG", row, rowError, isError, sError)
+                End If
                 If row("GR_TITLE_ID") Is DBNull.Value OrElse row("GR_TITLE") = "" Then
+                    row("GR_TITLE_ID") = ""
                     sError = "Chưa chọn phân loại nhân viên"
                     ImportValidate.EmptyValue("GR_TITLE_ID", row, rowError, isError, sError)
                 End If
+                Dim str = ""
                 If row("CODE_TITLE") = "" Then
+                    str = row("CODE_TITLE")
                     sError = "Chưa chọn Mã chức danh"
                     ImportValidate.EmptyValue("CODE_TITLE", row, rowError, isError, sError)
                 Else
+                    str = row("CODE_TITLE")
                     Dim rep1 As New ProfileStoreProcedure()
                     If rep1.CHECK_EXIT_HU_TITLE(row("CODE_TITLE")) Then
                         sError = "Mã chức danh đã tồn tại,xin kiểm tra lại"
@@ -1152,7 +1159,7 @@ dontrefresh:
                     ImportValidate.EmptyValue("NAME_TITLE", row, rowError, isError, sError)
                 End If
                 If isError Then
-                    rowError("GR_NGACH_LUONG") = row("GR_NGACH_LUONG").ToString
+                    rowError("GR_NGACH_LUONG") = str
                     If rowError("GR_NGACH_LUONG").ToString = "" Then
                         rowError("GR_NGACH_LUONG") = row("GR_NGACH_LUONG").ToString
                     End If
