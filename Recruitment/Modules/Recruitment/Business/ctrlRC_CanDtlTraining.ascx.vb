@@ -217,19 +217,13 @@ Public Class ctrlRC_CanDtlTraining
                     EnabledGrid(rgEmployeeTrain, False)
                 Case CommonMessage.STATE_NORMAL
                     EnabledGridNotPostback(rgEmployeeTrain, True)
-                    EnableControlAll(False, rdTuThang, cboRemark, rdToiThang, rntGraduateYear, rdFrom, rdTo, txtRemark, cboTrainingForm, txtChuyenNganh, txtKetQua, txtTrainingSchool, txtTrainingType, rdReceiveDegree, chkTerminate, cboLevelId, rtxtPointLevel, rtxtContentLevel, txtCertificateCode, txtNote)
+                    EnableControlAll(False, rdTuThang, cboRemark, rdToiThang, rntGraduateYear, txtRemark, cboTrainingForm, txtChuyenNganh, txtKetQua, txtTrainingSchool, txtTrainingType, rdReceiveDegree, chkTerminate, cboLevelId, rtxtPointLevel, rtxtContentLevel, txtCertificateCode, txtNote)
                     EnabledGrid(rgEmployeeTrain, True)
                 Case CommonMessage.STATE_EDIT
                     EnabledGridNotPostback(rgEmployeeTrain, False)
                     EnableControlAll(True, rdTuThang, rdToiThang, rntGraduateYear, txtRemark, cboTrainingForm, cboRemark, txtChuyenNganh, txtKetQua, txtTrainingSchool, txtTrainingType, rdReceiveDegree, chkTerminate, cboLevelId, rtxtPointLevel, rtxtContentLevel, txtCertificateCode, txtNote)
                     EnabledGrid(rgEmployeeTrain, False)
                     If cboRemark.SelectedValue <> "" Then
-                        If cboRemark.SelectedValue = 7086 Then
-                            EnableControlAll(True, rdFrom, rdTo)
-                            RequiredFieldValidator3.Visible = True
-                            CompareValidator1.Visible = True
-                            RequiredFieldValidator4.Visible = True
-                        End If
                     End If
                 Case CommonMessage.STATE_DELETE
                     Dim rep As New RecruitmentStoreProcedure
@@ -268,8 +262,6 @@ Public Class ctrlRC_CanDtlTraining
         dic.Add("SPECIALIZED_TRAIN", txtChuyenNganh)
         dic.Add("RESULT_TRAIN", txtKetQua)
         dic.Add("CERTIFICATE", cboRemark)
-        dic.Add("EFFECTIVE_DATE_FROM", rdFrom)
-        dic.Add("EFFECTIVE_DATE_TO", rdTo)
         dic.Add("UPLOAD_FILE", txtUploadFile)
         dic.Add("FILE_NAME", txtRemark)
         dic.Add("TYPE_TRAIN_NAME", txtTrainingType)
@@ -314,7 +306,7 @@ Public Class ctrlRC_CanDtlTraining
             Select Case CType(e.Item, RadToolBarButton).CommandName
                 Case CommonMessage.TOOLBARITEM_CREATE
                     ClearControlValue(rdToiThang, rdTuThang, cboTrainingForm, txtTrainingType, rntGraduateYear, txtRemark, txtTrainingSchool,
-                                    cboRemark, txtChuyenNganh, txtKetQua, rdFrom, rdTo, rdReceiveDegree, cboLevelId, rtxtPointLevel, rtxtContentLevel, txtCertificateCode, txtNote, rntxtCost)
+                                    cboRemark, txtChuyenNganh, txtKetQua, rdReceiveDegree, cboLevelId, rtxtPointLevel, rtxtContentLevel, txtCertificateCode, txtNote, rntxtCost)
                     rdTuThang.SelectedDate = Nothing
                     rdToiThang.SelectedDate = Nothing
                     chkTerminate.Checked = False
@@ -381,7 +373,6 @@ Public Class ctrlRC_CanDtlTraining
                         Dim objTrain As New RC_CANDIDATE_TRAINNING_DTO
 
                         'Dim rep As New ProfileBusinessRepository
-                        EnableControlAll(False, rdFrom, rdTo)
                         'objTrain.EMPLOYEE_ID = EmployeeInfo.ID
                         objTrain.CANDIDATE_ID = CandidateInfo.ID
                         objTrain.FROM_DATE = rdTuThang.SelectedDate
@@ -402,8 +393,6 @@ Public Class ctrlRC_CanDtlTraining
                         objTrain.YEAR_GRA = rntGraduateYear.Value
                         objTrain.SPECIALIZED_TRAIN = txtChuyenNganh.Text.Trim
                         objTrain.RESULT_TRAIN = txtKetQua.Text.Trim
-                        objTrain.EFFECTIVE_DATE_FROM = rdFrom.SelectedDate
-                        objTrain.EFFECTIVE_DATE_TO = rdTo.SelectedDate
                         objTrain.FILE_NAME = txtRemark.Text.Trim
                         objTrain.IS_RENEWED = chkTerminate.Checked
                         objTrain.COST = rntxtCost.Value
@@ -457,7 +446,7 @@ Public Class ctrlRC_CanDtlTraining
                 Case CommonMessage.TOOLBARITEM_CANCEL
                     CurrentState = CommonMessage.STATE_NORMAL
                     ClearControlValue(rdToiThang, rdTuThang, cboTrainingForm, txtTrainingType, rntGraduateYear, txtRemark, txtTrainingSchool,
-                                    cboRemark, txtChuyenNganh, txtKetQua, rdFrom, rdTo, rdReceiveDegree, cboLevelId, rtxtPointLevel, rtxtContentLevel, txtCertificateCode, txtNote)
+                                    cboRemark, txtChuyenNganh, txtKetQua, rdReceiveDegree, cboLevelId, rtxtPointLevel, rtxtContentLevel, txtCertificateCode, txtNote)
                     Refresh("Cancel")
             End Select
 
@@ -642,8 +631,6 @@ Public Class ctrlRC_CanDtlTraining
                 rdReceiveDegree.SelectedDate = Nothing
             End If
 
-            rdFrom.SelectedDate = r.Field(Of Date?)("EFFECTIVE_DATE_FROM")
-            rdTo.SelectedDate = r.Field(Of Date?)("EFFECTIVE_DATE_TO")
             txtRemindLink.Text = r.Field(Of String)("UPLOAD_FILE") 'dataItem.GetDataKeyValue("UPLOAD_FILE")
             txtRemark.Text = r.Field(Of String)("FILE_NAME") 'dataItem.GetDataKeyValue("FILE_NAME")
             chkTerminate.Checked = r.Field(Of Decimal?)("IS_RENEWED")
@@ -660,41 +647,7 @@ Public Class ctrlRC_CanDtlTraining
             Else
                 rntxtCost.Value = Nothing
             End If
-            EnableControlAll(False, rdFrom, rdTo)
         End If
     End Sub
 
-    Protected Sub cboRemark_SelectedIndexChanged(sender As Object, e As Telerik.Web.UI.RadComboBoxSelectedIndexChangedEventArgs) Handles cboRemark.SelectedIndexChanged
-        Dim startTime As DateTime = DateTime.UtcNow
-        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
-        
-        Try
-            If CurrentState = CommonMessage.STATE_NEW Or CurrentState = CommonMessage.STATE_EDIT Then
-                rdFrom.SelectedDate = Nothing
-                rdTo.SelectedDate = Nothing
-                If cboRemark.SelectedItem.Text = "Chứng chỉ" Then
-                    EnableControlAll(True, rdFrom, rdTo)
-                    RequiredFieldValidator3.Visible = True
-                    CompareValidator1.Visible = True
-                    RequiredFieldValidator4.Visible = True
-                Else
-                    EnableControlAll(False, rdFrom, rdTo)
-                    RequiredFieldValidator3.Visible = False
-                    CompareValidator1.Visible = False
-                    RequiredFieldValidator4.Visible = False
-                    rdFrom.ClearValue()
-                    rdTo.ClearValue()
-                End If
-            End If
-            '_mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
-        Catch ex As Exception
-            '_mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
-        End Try
-    End Sub
-
-    Private Sub rdFrom_SelectedDateChanged(sender As Object, e As Telerik.Web.UI.Calendar.SelectedDateChangedEventArgs) Handles rdFrom.SelectedDateChanged
-        If CurrentState = CommonMessage.STATE_NEW Or CurrentState = CommonMessage.STATE_EDIT Then
-            cboRemark.SelectedValue = 7086
-        End If
-    End Sub
 End Class

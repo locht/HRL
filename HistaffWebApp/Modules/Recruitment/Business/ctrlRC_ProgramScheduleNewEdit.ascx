@@ -1,6 +1,12 @@
 ﻿<%@ Control Language="vb" AutoEventWireup="false" CodeBehind="ctrlRC_ProgramScheduleNewEdit.ascx.vb"
     Inherits="Recruitment.ctrlRC_ProgramScheduleNewEdit" %>
 <%@ Import Namespace="Common" %>
+<style type="text/css">
+    .ButtonView
+    {
+        margin-top: -3px;
+    }
+</style>
 <asp:HiddenField ID="hidID" runat="server" />
 <asp:HiddenField ID="hidOrg" runat="server" />
 <asp:HiddenField ID="hidProgramID" runat="server" />
@@ -9,7 +15,7 @@
     <tlk:RadPane ID="RadPane5" runat="server" Height="33px" Scrolling="None">
         <tlk:RadToolBar ID="tbarMain" runat="server" OnClientButtonClicking="clientButtonClicking" />
     </tlk:RadPane>
-    <tlk:RadPane ID="LeftPane" runat="server" Height="200px">
+    <tlk:RadPane ID="LeftPane" runat="server" Height="250px">
         <asp:ValidationSummary ID="valSum" runat="server" />
         <table>
             <tr>
@@ -50,9 +56,9 @@
                             </td>
                         </tr>
                         <tr>
-                            <td class="lb" style="padding: 20px 0 5px 0; border-bottom: 1.5px solid #bfdbff;
-                                font-weight: 700; color: #bfdbff">
+                            <td style="padding: 20px 0 5px 0; font-weight: 700;" colspan="6">
                                 <%# Translate("Thông tin lên lịch phỏng vấn")%>
+                                <hr />
                             </td>
                         </tr>
                         <tr>
@@ -76,6 +82,12 @@
                                     CausesValidation="false">
                                 </tlk:RadButton>
                             </td>
+                            <td>
+                            </td>
+                            <td>
+                                <asp:CheckBox ID="chkFillter" AutoPostBack="true" CausesValidation="false" runat="server"
+                                    Text="<%$ Translate: Lọc ứng viên đã đạt ở phỏng vấn trước %>" Checked="true" />
+                            </td>
                         </tr>
                         <tr>
                             <td class="lb">
@@ -95,11 +107,6 @@
                                 </tlk:RadTextBox>
                             </td>
                         </tr>
-                        <tr>
-                            <td>
-                                <asp:CheckBox ID="chkFillter" AutoPostBack="true" CausesValidation="false" runat="server" Text="<%$ Translate: Lọc ứng viên đã đạt ở phỏng vấn trước %>" Checked="true" />
-                            </td>
-                        </tr>
                     </table>
                 </td>
                 <td valign="top">
@@ -112,9 +119,9 @@
                                 <hr />
                             </td>
                         </tr>
-                        <tr style="border: 1px solid #8fb3e6;border: 1px solid #8fb3e6;">
+                        <tr style="border: 1px solid #8fb3e6; border: 1px solid #8fb3e6;">
                             <td>
-                                <asp:RadioButtonList runat="server" ID="rlbExams" CausesValidation="false" AutoPostBack = "true">
+                                <asp:RadioButtonList runat="server" ID="rlbExams" CausesValidation="false" AutoPostBack="true">
                                 </asp:RadioButtonList>
                             </td>
                         </tr>
@@ -187,10 +194,10 @@
                                 UniqueName="FULLNAME_VN" SortExpression="FULLNAME_VN" HeaderStyle-Width="90px" />
                             <tlk:GridDateTimeColumn HeaderText="<%$ Translate: Ngày sinh %>" DataField="BIRTH_DATE"
                                 DataFormatString="{0:dd/MM/yyyy}" HeaderStyle-Width="90px" />
-                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Nơi sinh %>" DataField="BIRTH_PROVINCE_NAME" UniqueName="BIRTH_PROVINCE_NAME"
-                                SortExpression="BIRTH_PROVINCE_NAME" HeaderStyle-Width="90px" />
-                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Email cá nhân %>" DataField="PER_EMAIL" UniqueName="PER_EMAIL"
-                                SortExpression="PER_EMAIL" HeaderStyle-Width="90px" />
+                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Nơi sinh %>" DataField="BIRTH_PROVINCE_NAME"
+                                UniqueName="BIRTH_PROVINCE_NAME" SortExpression="BIRTH_PROVINCE_NAME" HeaderStyle-Width="90px" />
+                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Email cá nhân %>" DataField="PER_EMAIL"
+                                UniqueName="PER_EMAIL" SortExpression="PER_EMAIL" HeaderStyle-Width="90px" />
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Số CMND %>" DataField="ID_NO" UniqueName="ID_NO"
                                 SortExpression="ID_NO" HeaderStyle-Width="90px" />
                         </Columns>

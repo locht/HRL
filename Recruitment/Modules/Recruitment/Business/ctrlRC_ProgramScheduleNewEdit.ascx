@@ -50,9 +50,9 @@
                             </td>
                         </tr>
                         <tr>
-                            <td class="lb" style="padding: 20px 0 5px 0; border-bottom: 1.5px solid #bfdbff;
-                                font-weight: 700; color: #bfdbff">
+                            <td style="padding: 20px 0 5px 0;font-weight: 700;" colspan="6">
                                 <%# Translate("Thông tin lên lịch phỏng vấn")%>
+                                <hr />
                             </td>
                         </tr>
                         <tr>
