@@ -54,10 +54,10 @@
                         ItemStyle-HorizontalAlign="Center" SortExpression="EFFECT_DATE" UniqueName="EFFECT_DATE" />
                     <tlk:GridDateTimeColumn HeaderText="<%$ Translate: Ngày hết hiệu lực %>" DataField="EXPIRE_DATE"
                         ItemStyle-HorizontalAlign="Center" SortExpression="EXPIRE_DATE" UniqueName="EXPIRE_DATE" />
-                    <tlk:GridCheckBoxColumn HeaderText="<%$ Translate: Đóng bảo hiểm %>" DataField="IS_INSURRANCE"
+                   <%-- <tlk:GridCheckBoxColumn HeaderText="<%$ Translate: Đóng bảo hiểm %>" DataField="IS_INSURRANCE"
                         SortExpression="IS_INSURRANCE" UniqueName="IS_INSURRANCE" HeaderStyle-Width="100px">
                         <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
-                    </tlk:GridCheckBoxColumn>
+                    </tlk:GridCheckBoxColumn>--%>
                 </Columns>
             </MasterTableView>
         </tlk:RadGrid>
