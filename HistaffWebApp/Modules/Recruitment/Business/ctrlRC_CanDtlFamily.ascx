@@ -6,11 +6,11 @@
 <asp:HiddenField ID="hidCanID" runat="server" />
 <Common:ctrlMessageBox ID="ctrlMessageBox" runat="server" />
 <tlk:RadSplitter ID="RadSplitter2" runat="server" Height="100%" Width="100%" Orientation="Horizontal">
+    <tlk:RadPane ID="RadPane1" runat="server" Height="34px">
+        <tlk:RadToolBar ID="tbarMainToolBar" runat="server" OnClientButtonClicking="OnClientButtonClicking" />
+    </tlk:RadPane>
     <tlk:RadPane ID="RadPane2" runat="server" Height="33px" Scrolling="None">
         <Recruitment:ctrlRC_CanBasicInfo runat="server" ID="ctrlRC_CanBasicInfo" />
-    </tlk:RadPane>
-    <tlk:RadPane ID="RadPane1" runat="server" Height="40px">
-        <tlk:RadToolBar ID="tbarMainToolBar" runat="server" OnClientButtonClicking="OnClientButtonClicking" />
     </tlk:RadPane>
     <tlk:RadPane ID="RadPaneLeft" runat="server" Height="290px">
         <asp:ValidationSummary ID="valSum" runat="server" DisplayMode="BulletList" CssClass="validationsummary" />
@@ -59,7 +59,7 @@
                     <%# Translate("Địa chỉ thường trú")%>
                 </td>
                 <td colspan="3">
-                    <tlk:RadTextBox runat="server" ID="txtPER_ADDRESS" Width="100%" />
+                    <tlk:RadTextBox runat="server" ID="txtPER_ADDRESS" Width="100%" ></tlk:RadTextBox>
                 </td>
                 <td class="lb">
                     <asp:CheckBox runat="server" ID="cbIsDied" Text="<%$ Translate : Đã mất  %>" />
@@ -71,18 +71,19 @@
                     </tlk:RadDatePicker>
                 </td>
             </tr>
-            <tr >
+            <tr style="border-top: 1px solid #CCC">
                 <td class="lb">
                     <%# Translate("Số khai sinh")%>
                 </td>
                 <td>
-                    <tlk:RadNumericTextBox runat="server" ID="txtBIRTH_NO" />
+                    <tlk:RadTextBox runat="server" ID="txtBIRTH_NO">
+                    </tlk:RadTextBox>
                 </td>
                 <td class="lb">
                     <%# Translate("Quyển")%>
                 </td>
                 <td>
-                    <tlk:RadNumericTextBox runat="server" ID="txtBIRTH_BOOK" />
+                    <tlk:RadTextBox runat="server" ID="txtBIRTH_BOOK" ></tlk:RadTextBox>
                 </td>
                 <td class="lb">
                     <%# Translate("Quốc tịch")%>

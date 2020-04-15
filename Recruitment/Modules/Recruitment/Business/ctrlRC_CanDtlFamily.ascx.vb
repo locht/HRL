@@ -199,6 +199,7 @@ Public Class ctrlRC_CanDtlFamily
                     ResetControlValue()
                     'End If
                     CurrentState = CommonMessage.STATE_NORMAL
+                    rgFamily.Rebind()
                 Case TOOLBARITEM_DELETE
                     If SelectedItem Is Nothing Then
                         ShowMessage(Translate(CommonMessage.MESSAGE_NOT_SELECT_ROW), NotifyType.Warning)
@@ -212,28 +213,39 @@ Public Class ctrlRC_CanDtlFamily
                     ctrlMessageBox.ActionName = CommonMessage.TOOLBARITEM_DELETE
                     ctrlMessageBox.Show()
                 Case TOOLBARITEM_EXPORT
-                    Dim _error As String = ""
+                    'Dim _error As String = ""
+                    'Using xls As New ExcelCommon
+                    '    Dim dtData = lstFamily.ToTable
+                    '    dtData.Columns.Add("DEDUCT")
+                    '    dtData.TableName = "Data"
+                    '    For Each dr As DataRow In dtData.Rows
+                    '        If dr("IS_DEDUCT").ToString() = "1" Then
+                    '            dr("DEDUCT") = "Có"
+                    '        Else
+                    '            dr("DEDUCT") = "Không"
+                    '        End If
+                    '    Next
+                    '    Dim bCheck = xls.ExportExcelTemplate(
+                    '        Server.MapPath("~/ReportTemplates/" & Request.Params("mid") & "/ctrlRC_CanDtlFamily.xls"),
+                    '        "CandidateFamily_" & CandidateInfo.CANDIDATE_CODE, dtData, Response, _error)
+                    '    If Not bCheck Then
+                    '        Select Case _error
+                    '            Case 1
+                    '                ShowMessage(Translate("Mẫu báo cáo không tồn tại"), NotifyType.Warning)
+                    '            Case 2
+                    '                ShowMessage(Translate("Dữ liệu không tồn tại"), NotifyType.Warning)
+                    '        End Select
+                    '        Exit Sub
+                    '    End If
+                    'End Using
+                    Dim dtData As DataTable
                     Using xls As New ExcelCommon
-                        Dim dtData = lstFamily.ToTable
-                        dtData.Columns.Add("DEDUCT")
-                        dtData.TableName = "Data"
-                        For Each dr As DataRow In dtData.Rows
-                            If dr("IS_DEDUCT").ToString() = "1" Then
-                                dr("DEDUCT") = "Có"
-                            Else
-                                dr("DEDUCT") = "Không"
-                            End If
-                        Next
-                        Dim bCheck = xls.ExportExcelTemplate(
-                            Server.MapPath("~/ReportTemplates/" & Request.Params("mid") & "/ctrlRC_CanDtlFamily.xls"),
-                            "CandidateFamily_" & CandidateInfo.CANDIDATE_CODE, dtData, Response, _error)
-                        If Not bCheck Then
-                            Select Case _error
-                                Case 1
-                                    ShowMessage(Translate("Mẫu báo cáo không tồn tại"), NotifyType.Warning)
-                                Case 2
-                                    ShowMessage(Translate("Dữ liệu không tồn tại"), NotifyType.Warning)
-                            End Select
+                        dtData = lstFamily.ToTable()
+                        If dtData.Rows.Count = 0 Then
+                            ShowMessage(Translate(CommonMessage.MESSAGE_WARNING_EXPORT_EMPTY), NotifyType.Warning)
+                            Exit Sub
+                        ElseIf dtData.Rows.Count > 0 Then
+                            rgFamily.ExportExcel(Server, Response, dtData, "Cadidate_Family")
                             Exit Sub
                         End If
                     End Using
@@ -241,6 +253,7 @@ Public Class ctrlRC_CanDtlFamily
             ctrlRC_CanBasicInfo.SetProperty("CurrentState", Me.CurrentState)
             ctrlRC_CanBasicInfo.Refresh()
             UpdateControlState()
+            ChangeToolbarState()
         Catch ex As Exception
             DisplayException(Me.ViewName, Me.ID, ex)
         End Try
@@ -323,9 +336,11 @@ Public Class ctrlRC_CanDtlFamily
 
     End Sub
 
+
     Private Sub rgFamily_SelectedIndexChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles rgFamily.SelectedIndexChanged
         Try
             If rgFamily.SelectedItems.Count = 0 Then Exit Sub
+            ResetControlValue()
             'Lưu vào viewStates để giữ những item được select phục vụ cho phương thức delete.
             SelectedItem = New List(Of Decimal)
             For Each dr As Telerik.Web.UI.GridDataItem In rgFamily.SelectedItems
@@ -399,17 +414,9 @@ Public Class ctrlRC_CanDtlFamily
 
             txtPER_ADDRESS.Text = HttpUtility.HtmlDecode(item("PER_ADDRESS").Text).Trim()
 
-            If HttpUtility.HtmlDecode(item("BIRTH_NO").Text).Trim() <> "" Then
-                txtBIRTH_NO.Value = HttpUtility.HtmlDecode(item("BIRTH_NO").Text).Trim()
-            Else
-                txtBIRTH_NO.Value = Nothing
-            End If
+            txtBIRTH_NO.Text = HttpUtility.HtmlDecode(item("BIRTH_NO").Text).Trim()
 
-            If HttpUtility.HtmlDecode(item("BIRTH_BOOK").Text).Trim() <> "" Then
-                txtBIRTH_BOOK.Value = HttpUtility.HtmlDecode(item("BIRTH_BOOK").Text).Trim()
-            Else
-                txtBIRTH_BOOK.Value = Nothing
-            End If
+            txtBIRTH_BOOK.Text = HttpUtility.HtmlDecode(item("BIRTH_BOOK").Text).Trim()
 
             If HttpUtility.HtmlDecode(item("BIRTH_NAT").Text).Trim() <> "" Then
                 cboBIRTH_NAT.SelectedValue = HttpUtility.HtmlDecode(item("BIRTH_NAT").Text).Trim()
@@ -470,7 +477,7 @@ Public Class ctrlRC_CanDtlFamily
                     GetFamily() 'Load lại data cho lưới.
                     'Hủy selectedItem của grid.
                     SelectedItem = Nothing
-                    CurrentState = CommonMessage.STATE_NEW
+                    CurrentState = CommonMessage.STATE_NORMAL
                     isClear = False
                     UpdateControlState()
                 Else
@@ -546,8 +553,8 @@ Public Class ctrlRC_CanDtlFamily
                 objFamily.ID_PLACE = cboID_PLACE.SelectedValue
             End If
             objFamily.PER_ADDRESS = txtPER_ADDRESS.Text
-            objFamily.BIRTH_NO = txtBIRTH_NO.Value
-            objFamily.BIRTH_BOOK = txtBIRTH_BOOK.Value
+            objFamily.BIRTH_NO = txtBIRTH_NO.Text
+            objFamily.BIRTH_BOOK = txtBIRTH_BOOK.Text
             If cboBIRTH_NAT.SelectedValue <> "" Then
                 objFamily.BIRTH_NAT = cboBIRTH_NAT.SelectedValue
             End If
@@ -596,8 +603,10 @@ Public Class ctrlRC_CanDtlFamily
                 Case STATE_NORMAL
                     EnabledGrid(rgFamily, True)
                     SetStatusControl(False)
+                    ResetControlValue()
             End Select
             Me.Send(CurrentState)
+            ChangeToolbarState()
         Catch ex As Exception
             Throw ex
         End Try
@@ -686,7 +695,7 @@ Public Class ctrlRC_CanDtlFamily
         cboBIRTH_NAT.SelectedIndex = 0
         cboBIRTH_PRO.SelectedIndex = 0
         cboBIRTH_DIS.SelectedIndex = 0
-        cboBIRTH_NAT2.SelectedIndex = 0
+        cboBIRTH_NAT2.SelectedIndex = 0        
     End Sub
 
     Private Sub GetFamily()
@@ -694,15 +703,15 @@ Public Class ctrlRC_CanDtlFamily
             If CandidateInfo IsNot Nothing Then
                 Dim rep As New RecruitmentRepository
                 Dim objFamily As New CandidateFamilyDTO
-                objFamily.Candidate_ID = CandidateInfo.ID
+                objFamily.CANDIDATE_ID = CandidateInfo.ID
                 lstFamily = rep.GetCandidateFamily(objFamily)
                 rgFamily.DataSource = lstFamily
                 rgFamily.DataBind()
-                If IDSelect <> 0 Then
-                    If rgFamily.Items.Count > 0 Then
-                        SelectedItemDataGridByKey(rgFamily, IDSelect)
-                    End If
-                End If
+                'If IDSelect <> 0 Then
+                '    If rgFamily.Items.Count > 0 Then
+                '        SelectedItemDataGridByKey(rgFamily, IDSelect)
+                '    End If
+                'End If
             End If
         Catch ex As Exception
             Throw ex

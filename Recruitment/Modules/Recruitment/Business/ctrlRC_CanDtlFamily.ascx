@@ -59,7 +59,7 @@
                     <%# Translate("Địa chỉ thường trú")%>
                 </td>
                 <td colspan="3">
-                    <tlk:RadTextBox runat="server" ID="txtPER_ADDRESS" Width="100%" />
+                    <tlk:RadTextBox runat="server" ID="txtPER_ADDRESS" Width="100%" ></tlk:RadTextBox>
                 </td>
                 <td class="lb">
                     <asp:CheckBox runat="server" ID="cbIsDied" Text="<%$ Translate : Đã mất  %>" />
@@ -76,13 +76,14 @@
                     <%# Translate("Số khai sinh")%>
                 </td>
                 <td>
-                    <tlk:RadNumericTextBox runat="server" ID="txtBIRTH_NO" />
+                    <tlk:RadTextBox runat="server" ID="txtBIRTH_NO">
+                    </tlk:RadTextBox>
                 </td>
                 <td class="lb">
                     <%# Translate("Quyển")%>
                 </td>
                 <td>
-                    <tlk:RadNumericTextBox runat="server" ID="txtBIRTH_BOOK" />
+                    <tlk:RadTextBox runat="server" ID="txtBIRTH_BOOK" ></tlk:RadTextBox>
                 </td>
                 <td class="lb">
                     <%# Translate("Quốc tịch")%>

@@ -209,7 +209,7 @@ Partial Public Class ctrlRC_CanDtlFamily
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents txtBIRTH_NO As Global.Telerik.Web.UI.RadNumericTextBox
+    Protected WithEvents txtBIRTH_NO As Global.Telerik.Web.UI.RadTextBox
 
     '''<summary>
     '''txtBIRTH_BOOK control.
@@ -218,7 +218,7 @@ Partial Public Class ctrlRC_CanDtlFamily
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents txtBIRTH_BOOK As Global.Telerik.Web.UI.RadNumericTextBox
+    Protected WithEvents txtBIRTH_BOOK As Global.Telerik.Web.UI.RadTextBox
 
     '''<summary>
     '''cboBIRTH_NAT2 control.
