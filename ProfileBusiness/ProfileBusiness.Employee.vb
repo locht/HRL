@@ -405,6 +405,54 @@ Namespace ProfileBusiness.ServiceImplementations
         End Function
 #End Region
 
+#Region "thong tin li lich ca nhan"
+        Public Function GetEmpBackGround(ByVal _filter As EmployeeBackgroundDTO) As List(Of EmployeeBackgroundDTO) _
+            Implements ServiceContracts.IProfileBusiness.GetEmpBackGround
+            Using rep As New ProfileRepository
+                Try
+                    Return rep.GetEmpBackGround(_filter)
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
+
+        Public Function InsertBackGround(ByVal objBackGround As EmployeeBackgroundDTO, _
+                                            ByVal log As UserLog, ByRef gID As Decimal) As Boolean _
+            Implements ServiceContracts.IProfileBusiness.InsertBackGround
+            Using rep As New ProfileRepository
+                Try
+                    Return rep.InsertBackGround(objBackGround, log, gID)
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
+
+        Public Function ModifyBackGround(ByVal objBackGround As EmployeeBackgroundDTO, _
+                                            ByVal log As UserLog, ByRef gID As Decimal) As Boolean _
+                                        Implements ServiceContracts.IProfileBusiness.ModifyBackGround
+            Using rep As New ProfileRepository
+                Try
+                    Return rep.ModifyBackGround(objBackGround, log, gID)
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
+
+        Public Function DeleteBackGround(ByVal lstDecimals As List(Of Decimal), ByVal log As UserLog) As Boolean _
+            Implements ServiceContracts.IProfileBusiness.DeleteBackGround
+            Using rep As New ProfileRepository
+                Try
+                    Return rep.DeleteBackGround(lstDecimals, log)
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
+#End Region
+
 #Region "Employee Proccess"
 
         Public Function GetCommendProccess(ByVal _empId As System.Decimal) As List(Of ProfileDAL.CommendDTO) _

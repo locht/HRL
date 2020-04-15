@@ -4211,6 +4211,7 @@
             <Property Name="CURRENTN_PROVINCE_ID" Type="number" Nullable="true" Precision="38" />
             <Property Name="CURRENT_DISTRICT_ID" Type="number" Nullable="true" Precision="38" />
             <Property Name="CURRENT_WARD_ID" Type="number" Nullable="true" Precision="38" />
+            <Property Name="ID" Type="number" Nullable="false" Precision="38" />
         </EntityType>
         <EntityType Name="PA_SALARY_LEVEL_GROUP">
             <Key>
@@ -9210,6 +9211,7 @@
           <Property Type="Decimal" Name="CURRENTN_PROVINCE_ID" Nullable="true" />
           <Property Type="Decimal" Name="CURRENT_DISTRICT_ID" Nullable="true" />
           <Property Type="Decimal" Name="CURRENT_WARD_ID" Nullable="true" />
+          <Property Type="Decimal" Name="ID" Nullable="false" />
         </EntityType>
         <EntityType Name="PA_SALARY_LEVEL_GROUP">
           <Key>
@@ -13307,6 +13309,7 @@
                     <ScalarProperty Name="CURRENTN_PROVINCE_ID" ColumnName="CURRENTN_PROVINCE_ID" />
                     <ScalarProperty Name="CURRENT_DISTRICT_ID" ColumnName="CURRENT_DISTRICT_ID" />
                     <ScalarProperty Name="CURRENT_WARD_ID" ColumnName="CURRENT_WARD_ID" />
+                    <ScalarProperty Name="ID" ColumnName="ID" />
                 </MappingFragment>
             </EntityTypeMapping>
         </EntitySetMapping>
@@ -13670,7 +13673,7 @@
         <EntityTypeShape EntityType="ProfileModel.HU_SAFELABOR_MNG_EMP" Width="1.5" PointX="27.375" PointY="32.75" Height="4.864807942708353" />
         <EntityTypeShape EntityType="ProfileModel.HU_HEALTH_MNG" Width="1.5" PointX="14.375" PointY="31.75" Height="12.364563802083353" />
         <EntityTypeShape EntityType="ProfileModel.HU_DEDUCT" Width="1.5" PointX="0.75" PointY="34.125" Height="7.5570279947916674" />
-        <EntityTypeShape EntityType="ProfileModel.HU_EMPLOYEE_BACKGROUND" Width="3" PointX="42.25" PointY="0.75" Height="5.4417122395833246" />
+        <EntityTypeShape EntityType="ProfileModel.HU_EMPLOYEE_BACKGROUND" Width="3" PointX="45.75" PointY="0.5" Height="5.634013671875" />
         <EntityTypeShape EntityType="ProfileModel.PA_SALARY_LEVEL_GROUP" Width="1.5" PointX="29.375" PointY="33.75" Height="3.710999348958353" />
         </Diagram>
     </Diagrams>

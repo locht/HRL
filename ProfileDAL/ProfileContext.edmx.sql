@@ -1,7 +1,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for Oracle database
 -- --------------------------------------------------
--- Date Created: 4/15/2020 11:22:29 AM
+-- Date Created: 4/15/2020 12:04:54 PM
 -- Generated from EDMX file: D:\ACV\acv_19\ProfileDAL\ProfileContext.edmx
 -- --------------------------------------------------
 
@@ -4147,7 +4147,8 @@ CREATE TABLE "dbo"."HU_EMPLOYEE_BACKGROUND" (
    "CURRENT_NATION_ID" NUMBER(38,0) NULL,
    "CURRENTN_PROVINCE_ID" NUMBER(38,0) NULL,
    "CURRENT_DISTRICT_ID" NUMBER(38,0) NULL,
-   "CURRENT_WARD_ID" NUMBER(38,0) NULL
+   "CURRENT_WARD_ID" NUMBER(38,0) NULL,
+   "ID" NUMBER(38,0) NOT NULL
 );
 
 -- Creating table 'PA_SALARY_LEVEL_GROUP'

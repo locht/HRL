@@ -244,6 +244,54 @@ Partial Public Class ProfileBusinessRepository
     End Function
 #End Region
 
+#Region "thong tin li lich ca nhan"
+    Public Function InsertBackGround(ByVal objBackGround As EmployeeBackgroundDTO, ByRef gID As Decimal) As Boolean
+        Using rep As New ProfileBusinessClient
+            Try
+                Return rep.InsertBackGround(objBackGround, Me.Log, gID)
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+
+    End Function
+    Public Function ModifyBackGround(ByVal objBackGround As EmployeeBackgroundDTO, ByRef gID As Decimal) As Boolean
+        Using rep As New ProfileBusinessClient
+            Try
+                Return rep.ModifyBackGround(objBackGround, Me.Log, gID)
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+
+    End Function
+    Public Function DeleteBackGround(ByVal lstDecimal As List(Of Decimal)) As Boolean
+        Using rep As New ProfileBusinessClient
+            Try
+                Return rep.DeleteBackGround(lstDecimal, Me.Log)
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+
+    End Function
+    Public Function GetEmpBackGround(ByVal _filter As EmployeeBackgroundDTO) As List(Of EmployeeBackgroundDTO)
+        Using rep As New ProfileBusinessClient
+            Try
+                Return rep.GetEmpBackGround(_filter)
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+
+    End Function
+#End Region
+
+
 #Region "Hoadm"
 
 #Region "AssetMng"

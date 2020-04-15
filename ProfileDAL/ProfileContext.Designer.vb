@@ -18,7 +18,7 @@ Imports System.Runtime.Serialization
 Imports System.Xml.Serialization
 
 
-<Assembly: EdmSchemaAttribute("c0ece142-b216-40dc-9bd6-cc91015fe4eb")>
+<Assembly: EdmSchemaAttribute("f76ff61c-8bad-4998-b42a-f454c85a3bfc")>
 #Region "EDM Relationship Metadata"
 <Assembly: EdmRelationshipAttribute("ProfileModel", "FK_HU_NAT_HU_PRO", "HU_NATION", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_NATION), "HU_PROVINCE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_PROVINCE), True)>
 <Assembly: EdmRelationshipAttribute("ProfileModel", "FK_HU_PRO_HU_DIS", "HU_PROVINCE", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_PROVINCE), "HU_DISTRICT", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_DISTRICT), True)>
@@ -25681,7 +25681,8 @@ Public Partial Class HU_EMPLOYEE_BACKGROUND
     ''' <param name="mODIFIED_DATE">Initial value of the MODIFIED_DATE property.</param>
     ''' <param name="mODIFIED_BY">Initial value of the MODIFIED_BY property.</param>
     ''' <param name="mODIFIED_LOG">Initial value of the MODIFIED_LOG property.</param>
-    Public Shared Function CreateHU_EMPLOYEE_BACKGROUND(eMPLOYEE_ID As Global.System.Decimal, cREATED_DATE As Global.System.DateTime, cREATED_BY As Global.System.String, cREATED_LOG As Global.System.String, mODIFIED_DATE As Global.System.DateTime, mODIFIED_BY As Global.System.String, mODIFIED_LOG As Global.System.String) As HU_EMPLOYEE_BACKGROUND
+    ''' <param name="id">Initial value of the ID property.</param>
+    Public Shared Function CreateHU_EMPLOYEE_BACKGROUND(eMPLOYEE_ID As Global.System.Decimal, cREATED_DATE As Global.System.DateTime, cREATED_BY As Global.System.String, cREATED_LOG As Global.System.String, mODIFIED_DATE As Global.System.DateTime, mODIFIED_BY As Global.System.String, mODIFIED_LOG As Global.System.String, id As Global.System.Decimal) As HU_EMPLOYEE_BACKGROUND
         Dim hU_EMPLOYEE_BACKGROUND as HU_EMPLOYEE_BACKGROUND = New HU_EMPLOYEE_BACKGROUND
         hU_EMPLOYEE_BACKGROUND.EMPLOYEE_ID = eMPLOYEE_ID
         hU_EMPLOYEE_BACKGROUND.CREATED_DATE = cREATED_DATE
@@ -25690,6 +25691,7 @@ Public Partial Class HU_EMPLOYEE_BACKGROUND
         hU_EMPLOYEE_BACKGROUND.MODIFIED_DATE = mODIFIED_DATE
         hU_EMPLOYEE_BACKGROUND.MODIFIED_BY = mODIFIED_BY
         hU_EMPLOYEE_BACKGROUND.MODIFIED_LOG = mODIFIED_LOG
+        hU_EMPLOYEE_BACKGROUND.ID = id
         Return hU_EMPLOYEE_BACKGROUND
     End Function
 
@@ -26272,6 +26274,31 @@ Public Partial Class HU_EMPLOYEE_BACKGROUND
     End Sub
 
     Private Partial Sub OnCURRENT_WARD_IDChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=false)>
+    <DataMemberAttribute()>
+    Public Property ID() As Global.System.Decimal
+        Get
+            Return _ID
+        End Get
+        Set
+            OnIDChanging(value)
+            ReportPropertyChanging("ID")
+            _ID = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("ID")
+            OnIDChanged()
+        End Set
+    End Property
+
+    Private _ID As Global.System.Decimal
+    Private Partial Sub OnIDChanging(value As Global.System.Decimal)
+    End Sub
+
+    Private Partial Sub OnIDChanged()
     End Sub
 
     #End Region

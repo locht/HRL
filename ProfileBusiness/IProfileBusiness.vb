@@ -1571,6 +1571,22 @@ Namespace ProfileBusiness.ServiceContracts
         Function DeleteWorkingBefore(ByVal lstDecimals As List(Of Decimal), ByVal log As UserLog) As Boolean
 #End Region
 
+#Region "thong tin li lich ca nhan"
+
+        <OperationContract()>
+        Function GetEmpBackGround(ByVal _filter As EmployeeBackgroundDTO) As List(Of EmployeeBackgroundDTO)
+
+        <OperationContract()>
+        Function InsertBackGround(ByVal objBackGround As EmployeeBackgroundDTO, ByVal log As UserLog, ByRef gID As Decimal) As Boolean
+
+        <OperationContract()>
+        Function ModifyBackGround(ByVal objBackGround As EmployeeBackgroundDTO,
+                                   ByVal log As UserLog, ByRef gID As Decimal) As Boolean
+
+        <OperationContract()>
+        Function DeleteBackGround(ByVal lstDecimals As List(Of Decimal), ByVal log As UserLog) As Boolean
+#End Region
+
 #Region "AssetMng"
 
         <OperationContract()>

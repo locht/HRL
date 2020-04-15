@@ -3476,6 +3476,163 @@ Partial Class ProfileRepository
     End Function
 #End Region
 
+#Region "thông tin lí lịch cá nhân"
+    Public Function GetEmpBackGround(ByVal _filter As EmployeeBackgroundDTO) As List(Of EmployeeBackgroundDTO)
+        Dim query As ObjectQuery(Of EmployeeBackgroundDTO)
+        Try
+            query = (From p In Context.HU_EMPLOYEE_BACKGROUND
+                     From lp In Context.HU_PROVINCE.Where(Function(f) p.LICENSE_PLACE = f.ID).DefaultIfEmpty
+                     From cn In Context.HU_NATION.Where(Function(f) p.CURRENT_NATION_ID = f.ID).DefaultIfEmpty
+                     From cp In Context.HU_PROVINCE.Where(Function(f) p.CURRENTN_PROVINCE_ID = f.ID).DefaultIfEmpty
+                     From cd In Context.HU_DISTRICT.Where(Function(f) p.CURRENT_DISTRICT_ID = f.ID).DefaultIfEmpty
+                     From cw In Context.HU_WARD.Where(Function(f) p.CURRENT_WARD_ID = f.ID).DefaultIfEmpty
+                     From pn In Context.HU_NATION.Where(Function(f) p.PERMANNET_NATION_ID = f.ID).DefaultIfEmpty
+                     From pp In Context.HU_PROVINCE.Where(Function(f) p.PERMANENT_PROVINCE_ID = f.ID).DefaultIfEmpty
+                     From pd In Context.HU_DISTRICT.Where(Function(f) p.PERMANENT_DISTRICT_ID = f.ID).DefaultIfEmpty
+                     From pw In Context.HU_WARD.Where(Function(f) p.PERMANENT_WARD_ID = f.ID).DefaultIfEmpty
+                   Select New EmployeeBackgroundDTO With {
+                    .ID = p.ID,
+                    .EMPLOYEE_ID = p.EMPLOYEE_ID,
+                    .ID_NO = p.ID_NO,
+                    .EFFECTIVE_DATE = p.EFFECTIVE_DATE,
+                    .LICENSE_DATE = p.LICENSE_DATE,
+                    .MOBILE_PHONE = p.MOBILE_PHONE,
+                    .FIXED_PHONE = p.FIXED_PHONE,
+                    .LICENSE_PLACE = lp.NAME_VN,
+                    .LICENSE_PLACE_ID = p.LICENSE_PLACE,
+                    .CURRENT_ADDRESS_F = p.CURRENT_ADDRESS,
+                    .CURRENT_NATION_ID = p.CURRENT_NATION_ID,
+                    .CURRENT_NATION_NAME = cn.NAME_VN,
+                    .CURRENT_PROVINCE_ID = p.CURRENTN_PROVINCE_ID,
+                    .CURRENT_PROVINCE_NAME = cp.NAME_VN,
+                    .CURRENT_DISTRICT_ID = p.CURRENT_DISTRICT_ID,
+                    .CURRENT_DISTRICT_NAME = cd.NAME_VN,
+                    .CURRENT_WARD_ID = p.CURRENT_WARD_ID,
+                    .CURRENT_WARD_NAME = cw.NAME_VN,
+                    .PERMANENT_ADDRESS_F = p.PERMANENT_ADDRESS,
+                    .PERMANENT_NATION_ID = p.PERMANNET_NATION_ID,
+                    .PERMANENT_NATION_NAME = pn.NAME_VN,
+                    .PERMANENT_PROVINCE_ID = p.PERMANENT_PROVINCE_ID,
+                    .PERMANENT_PROVINCE_NAME = pp.NAME_VN,
+                    .PERMANENT_DISTRICT_ID = p.PERMANENT_DISTRICT_ID,
+                    .PERMANENT_DISTRICT_NAME = pd.NAME_VN,
+                    .PERMANENT_WARD_ID = p.PERMANENT_WARD_ID,
+                    .PERMANENT_WARD_NAME = pw.NAME_VN,
+                    .CURRENT_ADDRESS = p.CURRENT_ADDRESS,
+                    .PERMANENT_ADDRESS = p.PERMANENT_ADDRESS
+                    })
+
+            '.CURRENT_ADDRESS = p.CURRENT_ADDRESS.ToString + "," + cw.NAME_VN.ToString + "," + cd.NAME_VN + "," + cp.NAME_VN,
+            '.PERMANENT_ADDRESS = p.PERMANENT_ADDRESS.ToString + "," + pw.NAME_VN.ToString + "," + pd.NAME_VN.ToString + "," + pp.NAME_VN.ToString
+
+            If _filter.EMPLOYEE_ID <> 0 Then
+                query = query.Where(Function(p) p.EMPLOYEE_ID = _filter.EMPLOYEE_ID)
+                End If
+            If _filter.ID <> 0 Then
+                query = query.Where(Function(p) p.ID = _filter.ID)
+                End If
+            Return query.ToList
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iProfile")
+            Throw ex
+        End Try
+    End Function
+
+    Public Function InsertBackGround(ByVal objBackGround As EmployeeBackgroundDTO, ByVal log As UserLog, ByRef gID As Decimal) As Boolean
+        Try
+
+            Dim objBackGroundData As New HU_EMPLOYEE_BACKGROUND
+            objBackGroundData.ID = Utilities.GetNextSequence(Context, Context.HU_EMPLOYEE_BACKGROUND.EntitySet.Name)
+            objBackGroundData.EMPLOYEE_ID = objBackGround.EMPLOYEE_ID
+            objBackGroundData.EFFECTIVE_DATE = objBackGround.EFFECTIVE_DATE
+
+            objBackGroundData.ID_NO = objBackGround.ID_NO
+            objBackGroundData.LICENSE_DATE = objBackGround.LICENSE_DATE
+            objBackGroundData.LICENSE_PLACE = objBackGround.LICENSE_PLACE_ID
+
+            objBackGroundData.MOBILE_PHONE = objBackGround.MOBILE_PHONE
+            objBackGroundData.FIXED_PHONE = objBackGround.FIXED_PHONE
+
+            objBackGroundData.CURRENT_NATION_ID = objBackGround.CURRENT_NATION_ID
+            objBackGroundData.CURRENT_ADDRESS = objBackGround.CURRENT_ADDRESS_F
+            objBackGroundData.CURRENTN_PROVINCE_ID = objBackGround.CURRENT_PROVINCE_ID
+            objBackGroundData.CURRENT_DISTRICT_ID = objBackGround.CURRENT_DISTRICT_ID
+            objBackGroundData.CURRENT_WARD_ID = objBackGround.CURRENT_WARD_ID
+
+            objBackGroundData.PERMANNET_NATION_ID = objBackGround.PERMANENT_NATION_ID
+            objBackGroundData.PERMANENT_ADDRESS = objBackGround.PERMANENT_ADDRESS_F
+            objBackGroundData.PERMANENT_PROVINCE_ID = objBackGround.PERMANENT_PROVINCE_ID
+            objBackGroundData.PERMANENT_DISTRICT_ID = objBackGround.PERMANENT_DISTRICT_ID
+            objBackGroundData.PERMANENT_WARD_ID = objBackGround.PERMANENT_WARD_ID
+
+
+            Context.HU_EMPLOYEE_BACKGROUND.AddObject(objBackGroundData)
+            Context.SaveChanges(log)
+            gID = objBackGroundData.ID
+            Return True
+
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iProfile")
+            Throw ex
+        End Try
+    End Function
+
+    Public Function ModifyBackGround(ByVal objBackGround As EmployeeBackgroundDTO,
+                                   ByVal log As UserLog, ByRef gID As Decimal) As Boolean
+        Dim objBackGroundData As New HU_EMPLOYEE_BACKGROUND With {.ID = objBackGround.ID}
+        Try
+            objBackGroundData = (From p In Context.HU_EMPLOYEE_BACKGROUND Where p.ID = objBackGround.ID).FirstOrDefault
+            objBackGroundData.EMPLOYEE_ID = objBackGround.EMPLOYEE_ID
+            objBackGroundData.EFFECTIVE_DATE = objBackGround.EFFECTIVE_DATE
+
+            objBackGroundData.ID_NO = objBackGround.ID_NO
+            objBackGroundData.LICENSE_DATE = objBackGround.LICENSE_DATE
+            objBackGroundData.LICENSE_PLACE = objBackGround.LICENSE_PLACE_ID
+
+            objBackGroundData.MOBILE_PHONE = objBackGround.MOBILE_PHONE
+            objBackGroundData.FIXED_PHONE = objBackGround.FIXED_PHONE
+
+            objBackGroundData.CURRENT_NATION_ID = objBackGround.CURRENT_NATION_ID
+            objBackGroundData.CURRENT_ADDRESS = objBackGround.CURRENT_ADDRESS_F
+            objBackGroundData.CURRENTN_PROVINCE_ID = objBackGround.CURRENT_PROVINCE_ID
+            objBackGroundData.CURRENT_DISTRICT_ID = objBackGround.CURRENT_DISTRICT_ID
+            objBackGroundData.CURRENT_WARD_ID = objBackGround.CURRENT_WARD_ID
+
+            objBackGroundData.PERMANNET_NATION_ID = objBackGround.PERMANENT_NATION_ID
+            objBackGroundData.PERMANENT_ADDRESS = objBackGround.PERMANENT_ADDRESS_F
+            objBackGroundData.PERMANENT_PROVINCE_ID = objBackGround.PERMANENT_PROVINCE_ID
+            objBackGroundData.PERMANENT_DISTRICT_ID = objBackGround.PERMANENT_DISTRICT_ID
+            objBackGroundData.PERMANENT_WARD_ID = objBackGround.PERMANENT_WARD_ID
+
+            objBackGroundData.MODIFIED_DATE = DateTime.Now
+            objBackGroundData.MODIFIED_BY = log.Username
+            objBackGroundData.MODIFIED_LOG = log.ComputerName
+            Context.SaveChanges(log)
+            gID = objBackGroundData.ID
+            Return True
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iProfile")
+            Throw ex
+        End Try
+
+    End Function
+
+    Public Function DeleteBackGround(ByVal lstDecimals As List(Of Decimal), ByVal log As UserLog) As Boolean
+        Dim lst As List(Of HU_EMPLOYEE_BACKGROUND)
+        Try
+            lst = (From p In Context.HU_EMPLOYEE_BACKGROUND Where lstDecimals.Contains(p.ID)).ToList
+            For i As Int16 = 0 To lst.Count - 1
+                Context.HU_EMPLOYEE_BACKGROUND.DeleteObject(lst(i))
+            Next
+            Context.SaveChanges()
+            Return True
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iProfile")
+            Throw ex
+        End Try
+    End Function
+#End Region
+
 #Region "EmployeeEdit"
 
     Public Function GetChangedCVList(ByVal lstEmpEdit As List(Of EmployeeEditDTO)) As Dictionary(Of String, String)
