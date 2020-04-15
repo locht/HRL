@@ -107,6 +107,18 @@ Namespace ProfileBusiness.ServiceImplementations
             End Using
         End Function
 
+        Public Function GetYearPeriod() As List(Of ATPeriodDTO) Implements ServiceContracts.IProfileBusiness.GetYearPeriod
+            Using rep As New ProfileRepository
+                Try
+
+                    Dim lst = rep.GetYearPeriod()
+                    Return lst
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
+
         Public Function CheckWelfareMngEffect(ByVal _filter As List(Of WelfareMngDTO)) As Boolean Implements ServiceContracts.IProfileBusiness.CheckWelfareMngEffect
             Using rep As New ProfileRepository
                 Try

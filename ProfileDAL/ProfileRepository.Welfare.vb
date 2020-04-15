@@ -50,7 +50,7 @@ Partial Class ProfileRepository
                         From t In Context.HU_TITLE.Where(Function(t) e.TITLE_ID = t.ID).DefaultIfEmpty
                         From se In Context.SE_CHOSEN_ORG.Where(Function(se) se.ORG_ID = o.ID And
                                                                    se.USERNAME = UserLog.Username.ToUpper)
-                        From j In Context.HU_JOB_POSITION.Where(Function(j) j.ID = e.JOB_POSITION)
+            ' From j In Context.HU_JOB_POSITION.Where(Function(j) j.ID = e.JOB_POSITION)
 
             Dim dateNow = Date.Now.Date
             Dim terID = ProfileCommon.OT_WORK_STATUS.TERMINATE_ID
@@ -118,13 +118,14 @@ Partial Class ProfileRepository
                                        .WORK_STATUS = p.e.WORK_STATUS,
                                        .TER_LAST_DATE = p.e.TER_EFFECT_DATE,
                                        .CREATED_DATE = p.p.CREATED_DATE,
-                                       .JOB_NAME = p.j.JOB_NAME,
                                        .AC_DATE = p.p.AC_DATE,
-                                       .IS_TAXABLE = p.p.IS_TAXABLE,
+                                      .JOB_NAME = p.ce.JOB_NAME,
+                                        .IS_TAXABLE = p.p.IS_TAXABLE,
                                        .IS_NOT_TAXABLE = p.p.IS_NOT_TAXABLE,
                                        .YEAR_NAME = p.p.YEAR_NAME,
                                        .PAY_STAGE_NAME = p.p.PAY_STAGE_NAME,
                                        .INF_MORE = p.p.INF_MORE})
+
             wel = wel.OrderBy(Sorts)
             Total = wel.Count
             wel = wel.Skip(PageIndex * PageSize).Take(PageSize)
@@ -226,6 +227,22 @@ Partial Class ProfileRepository
                                        .PERIOD_NAME = p.PERIOD_NAME
                                        })
             Return wel.ToList
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iProfile")
+            Throw ex
+        End Try
+    End Function
+
+    Public Function GetYearPeriod() As List(Of ATPeriodDTO)
+        Try
+
+            Using cls As New DataAccess.QueryData
+                Dim dtData As DataTable = cls.ExecuteStore("PKG_HU_IPROFILE_LIST.GET_YEAR_PERIOD",
+                                           New With {.P_CUR = cls.OUT_CURSOR})
+
+                Return dtData.ToList(Of ATPeriodDTO)
+            End Using
+
         Catch ex As Exception
             WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iProfile")
             Throw ex
@@ -338,7 +355,6 @@ Partial Class ProfileRepository
             objWelfareMngData.IS_TAXABLE = lstWelfareMng.IS_TAXABLE
             objWelfareMngData.YEAR_NAME = lstWelfareMng.YEAR_NAME
             objWelfareMngData.PAY_STAGE_NAME = lstWelfareMng.PAY_STAGE_NAME
-
             Context.HU_WELFARE_MNG.AddObject(objWelfareMngData)
             InsertObjectLstEmp(lstWelfareMng)
             Context.SaveChanges(log)
@@ -375,6 +391,7 @@ Partial Class ProfileRepository
                     objDataEmp.SENIORITY = obj.SENIORITY
                     objDataEmp.WELFARE_ID = obj.WELFARE_ID
                     objDataEmp.REMARK = obj.REMARK
+                    objDataEmp.JOB_NAME = obj.JOB_NAME
                     Context.HU_WELFARE_MNG_EMP.AddObject(objDataEmp)
                 Next
             End If

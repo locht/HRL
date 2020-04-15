@@ -426,6 +426,19 @@ Partial Public Class ProfileBusinessRepository
         Return Nothing
     End Function
 
+    Public Function GetYearPeriod() As List(Of ATPeriodDTO)
+        Using rep As New ProfileBusinessClient
+            Try
+                Return rep.GetYearPeriod()
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+
+        Return Nothing
+    End Function
+
     Public Function GetComboboxPeriod() As List(Of ATPeriodDTO)
         Using rep As New ProfileBusinessClient
             Try

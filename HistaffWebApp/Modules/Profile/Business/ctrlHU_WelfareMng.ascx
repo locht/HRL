@@ -64,9 +64,9 @@
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Họ tên nhân viên %>" DataField="EMPLOYEE_NAME"
                                 ReadOnly="true" UniqueName="EMPLOYEE_NAME" HeaderStyle-Width="150px" />
                              <tlk:GridBoundColumn HeaderText="Vị trí công việc" DataField="JOB_NAME" UniqueName="JOB_NAME"
-                                   ReadOnly="true" SortExpression="JOB_NAME" />
+                                   ReadOnly="true" SortExpression="JOB_NAME" HeaderStyle-Width="150px" />
                              <tlk:GridBoundColumn HeaderText="Đơn vị" DataField="ORG_NAME" UniqueName="ORG_NAME"
-                               ReadOnly="true" SortExpression="ORG_NAME" />
+                               ReadOnly="true" SortExpression="ORG_NAME" HeaderStyle-Width="150px"/>
                              <tlk:GridNumericColumn HeaderText="<%$ Translate: Số tiền phúc lợi %>" DataField="MONEY_PL"
                                 ItemStyle-HorizontalAlign="Right" DataFormatString="{0:N0}" UniqueName="MONEY_PL"
                                 DataType="System.UInt64" HeaderStyle-Width="100px" />
@@ -85,7 +85,7 @@
                               <tlk:GridBoundColumn HeaderText="<%$ Translate: Kỳ lương thanh toán %>" DataField="PAY_STAGE_NAME" ReadOnly="true"
                                 UniqueName="PAY_STAGE_NAME" SortExpression="PAY_STAGE_NAME" HeaderStyle-Width="100px" />
                               <tlk:GridBoundColumn HeaderText="<%$ Translate: Ghi chú %>" DataField="SDESC" ReadOnly="true"
-                                UniqueName="SDESC" SortExpression="SDESC" HeaderStyle-Width="250px" />
+                                UniqueName="SDESC" SortExpression="SDESC" HeaderStyle-Width="150px" />
                               <tlk:GridBoundColumn HeaderText="<%$ Translate: Thông tin thêm %>" DataField="INF_MORE" ReadOnly="true"
                                 UniqueName="INF_MORE" SortExpression="INF_MORE" HeaderStyle-Width="150px" />
                            <%-- <tlk:GridBoundColumn HeaderText="<%$ Translate: Bộ phận %>" DataField="ORG_NAME"

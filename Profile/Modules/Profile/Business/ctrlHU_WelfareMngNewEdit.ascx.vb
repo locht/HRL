@@ -504,7 +504,7 @@ Public Class ctrlHU_WelfareMngNewEdit
                         o.WELFARE_ID = If(row("WELFARE_ID") <> "", Decimal.Parse(row("WELFARE_ID")), Nothing)
                         'o.SENIORITY = row("SENIORITY").ToString
                         o.REMARK = row("REMARK").ToString
-                        ' o.JOB_NAME = If(job_name IsNot Nothing, job_name, Nothing)
+                        o.JOB_NAME = If(job_name IsNot Nothing, job_name, Nothing)
                         o.ORG_NAME2 = If(Don_vi IsNot Nothing, Don_vi, Nothing)
                         objdata.EMPLOYEE_ID = If(employee_id IsNot Nothing, employee_id, Nothing)
                         lstemp.Add(o)
@@ -817,9 +817,9 @@ Public Class ctrlHU_WelfareMngNewEdit
             Dim dtData = rep.GetOtherList("WELFARE", False)
             FillRadCombobox(cboWELFARE_ID, dtData, "NAME", "ID", True)
 
+            Dim dty = re.GetYearPeriod()
+            FillRadCombobox(cboYear, dty, "YEAR", "ID", True)
             Dim dt = re.GetComboboxPeriod()
-            FillRadCombobox(cboYear, dt, "YEAR", "ID", True)
-
             FillRadCombobox(cboPayStage, dt, "PERIOD_NAME", "ID", True)
 
             rep.Dispose()

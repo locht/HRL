@@ -3856,6 +3856,7 @@
             <Property Name="CONTRACT_NAME" Type="nclob" Nullable="true" />
             <Property Name="GENDER_NAME" Type="nclob" Nullable="true" />
             <Property Name="REMARK" Type="nclob" Nullable="true" />
+            <Property Name="JOB_NAME" Type="nclob" Nullable="true" />
         </EntityType>
         <EntityType Name="HU_ORGANIZATION_V">
             <Key>
@@ -8854,6 +8855,7 @@
           <Property Type="String" Name="CONTRACT_NAME" />
           <Property Type="String" Name="GENDER_NAME" />
           <Property Type="String" Name="REMARK" />
+          <Property Type="String" Name="JOB_NAME" />
         </EntityType>
         <EntityType Name="HU_ORGANIZATION_V">
           <Key>
@@ -12937,6 +12939,7 @@
                     <ScalarProperty Name="CONTRACT_NAME" ColumnName="CONTRACT_NAME" />
                     <ScalarProperty Name="GENDER_NAME" ColumnName="GENDER_NAME" />
                     <ScalarProperty Name="REMARK" ColumnName="REMARK" />
+                    <ScalarProperty Name="JOB_NAME" ColumnName="JOB_NAME" />
                 </MappingFragment>
             </EntityTypeMapping>
         </EntitySetMapping>
@@ -13654,7 +13657,7 @@
         <EntityTypeShape EntityType="ProfileModel.HU_CERTIFICATE_EDIT" Width="3.125" PointX="9.375" PointY="31.375" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="ProfileModel.HU_SIGNER" Width="1.5" PointX="30" PointY="7.25" Height="3.9033007812499996" IsExpanded="true" />
         <EntityTypeShape EntityType="ProfileModel.SE_USER_ORG_ACCESS" Width="1.5" PointX="33.5" PointY="7" Height="0.4" IsExpanded="false" />
-        <EntityTypeShape EntityType="ProfileModel.HU_WELFARE_MNG_EMP" Width="2.5" PointX="7.375" PointY="26.25" Height="0.4" IsExpanded="false" />
+        <EntityTypeShape EntityType="ProfileModel.HU_WELFARE_MNG_EMP" Width="2.5" PointX="7.375" PointY="26.25" Height="5.2494108072916674" IsExpanded="true" />
         <EntityTypeShape EntityType="ProfileModel.HU_ORGANIZATION_V" Width="1.5" PointX="25.375" PointY="32.75" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="ProfileModel.AT_WORKSIGN" Width="1.5" PointX="15.625" PointY="4.75" Height="3.3263964843749818" />
         <EntityTypeShape EntityType="ProfileModel.HU_DIRECT_MANAGER" Width="1.5" PointX="10.375" PointY="3.75" Height="1.403382161458353" />

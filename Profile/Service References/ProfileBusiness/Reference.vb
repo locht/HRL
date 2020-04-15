@@ -55824,6 +55824,9 @@ Namespace ProfileBusiness
      System.ServiceModel.ServiceContractAttribute(ConfigurationName:="ProfileBusiness.IProfileBusiness")>  _
     Public Interface IProfileBusiness
         
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/CHECK_LOCATION_EXITS", ReplyAction:="http://tempuri.org/IProfileBusiness/CHECK_LOCATION_EXITSResponse")>  _
+        Function CHECK_LOCATION_EXITS(ByVal P_ID As System.Nullable(Of Decimal), ByVal ORG_ID As Decimal) As Boolean
+        
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetJobPosition", ReplyAction:="http://tempuri.org/IProfileBusiness/GetJobPositionResponse")>  _
         Function GetJobPosition(ByVal _filter As ProfileBusiness.Job_PositionDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal _param As ProfileBusiness.ParamDTO, ByVal Sorts As String, ByVal log As Common.CommonBusiness.UserLog) As System.Collections.Generic.List(Of ProfileBusiness.Job_PositionDTO)
         
@@ -55896,6 +55899,9 @@ Namespace ProfileBusiness
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/DeleteEmployeeDeduct", ReplyAction:="http://tempuri.org/IProfileBusiness/DeleteEmployeeDeductResponse")>  _
         Function DeleteEmployeeDeduct(ByVal lstDecimals As System.Collections.Generic.List(Of Decimal), ByVal log As Common.CommonBusiness.UserLog) As Boolean
         
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/InsertImportCommend", ReplyAction:="http://tempuri.org/IProfileBusiness/InsertImportCommendResponse")>  _
+        Function InsertImportCommend(ByVal lstImport As System.Collections.Generic.List(Of ProfileBusiness.ImportCommendDTO), ByVal log As Common.CommonBusiness.UserLog) As Boolean
+        
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetImportCommend", ReplyAction:="http://tempuri.org/IProfileBusiness/GetImportCommendResponse")>  _
         Function GetImportCommend(ByVal _filter As ProfileBusiness.ImportCommendDTO) As System.Collections.Generic.List(Of ProfileBusiness.ImportCommendDTO)
         
@@ -55914,8 +55920,8 @@ Namespace ProfileBusiness
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.Job_PositionDTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.DeductDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.DeductDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.ImportCommendDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.ImportCommendDTO))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.ImportCommendDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.CommendLevelDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.CommendLevelDTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.CommendFormulaDTO)),  _
@@ -56269,8 +56275,8 @@ Namespace ProfileBusiness
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.Job_PositionDTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.DeductDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.DeductDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.ImportCommendDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.ImportCommendDTO))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.ImportCommendDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.CommendLevelDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.CommendLevelDTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.CommendFormulaDTO)),  _
@@ -56477,8 +56483,8 @@ Namespace ProfileBusiness
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.Job_PositionDTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.DeductDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.DeductDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.ImportCommendDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.ImportCommendDTO))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.ImportCommendDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.CommendLevelDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.CommendLevelDTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.CommendFormulaDTO)),  _
@@ -56763,8 +56769,8 @@ Namespace ProfileBusiness
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GET_PROCESS_PLCONTRACT_PORTAL", ReplyAction:="http://tempuri.org/IProfileBusiness/GET_PROCESS_PLCONTRACT_PORTALResponse")>  _
         Function GET_PROCESS_PLCONTRACT_PORTAL(ByVal P_EMP_ID As Decimal) As System.Data.DataTable
         
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/CHECK_LOCATION_EXITS", ReplyAction:="http://tempuri.org/IProfileBusiness/CHECK_LOCATION_EXITSResponse")>  _
-        Function CHECK_LOCATION_EXITS(ByVal P_ID As System.Nullable(Of Decimal), ByVal ORG_ID As Decimal) As Boolean
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/SendProcessTrainingEdit", ReplyAction:="http://tempuri.org/IProfileBusiness/SendProcessTrainingEditResponse")>  _
+        Function SendProcessTrainingEdit(ByVal lstID As System.Collections.Generic.List(Of Decimal), ByVal log As Common.CommonBusiness.UserLog) As Boolean
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/UpdateStatusProcessTrainingEdit", ReplyAction:="http://tempuri.org/IProfileBusiness/UpdateStatusProcessTrainingEditResponse")>  _
         Function UpdateStatusProcessTrainingEdit(ByVal lstID As System.Collections.Generic.List(Of Decimal), ByVal status As String, ByVal log As Common.CommonBusiness.UserLog) As Boolean
@@ -57021,8 +57027,8 @@ Namespace ProfileBusiness
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.Job_PositionDTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.DeductDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.DeductDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.ImportCommendDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.ImportCommendDTO))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.ImportCommendDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.CommendLevelDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.CommendLevelDTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.CommendFormulaDTO)),  _
@@ -57223,8 +57229,8 @@ Namespace ProfileBusiness
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Exception))>  _
         Function ValidateCommendList(ByVal _validate As ProfileBusiness.CommendListDTO) As Object
         
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/InsertImportCommend", ReplyAction:="http://tempuri.org/IProfileBusiness/InsertImportCommendResponse")>  _
-        Function InsertImportCommend(ByVal lstImport As System.Collections.Generic.List(Of ProfileBusiness.ImportCommendDTO), ByVal log As Common.CommonBusiness.UserLog) As Boolean
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ValEffectdateByEmpCode", ReplyAction:="http://tempuri.org/IProfileBusiness/ValEffectdateByEmpCodeResponse")>  _
+        Function ValEffectdateByEmpCode(ByVal emp_code As String, ByVal effect_date As Date) As Boolean
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetLastWorkingSalary", ReplyAction:="http://tempuri.org/IProfileBusiness/GetLastWorkingSalaryResponse")>  _
         Function GetLastWorkingSalary(ByVal _filter As ProfileBusiness.WorkingDTO) As ProfileBusiness.WorkingDTO
@@ -57478,9 +57484,6 @@ Namespace ProfileBusiness
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/CheckExistProcessTrainingEdit", ReplyAction:="http://tempuri.org/IProfileBusiness/CheckExistProcessTrainingEditResponse")>  _
         Function CheckExistProcessTrainingEdit(ByVal pk_key As Decimal) As ProfileBusiness.HU_PRO_TRAIN_OUT_COMPANYDTOEDIT
         
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/SendProcessTrainingEdit", ReplyAction:="http://tempuri.org/IProfileBusiness/SendProcessTrainingEditResponse")>  _
-        Function SendProcessTrainingEdit(ByVal lstID As System.Collections.Generic.List(Of Decimal), ByVal log As Common.CommonBusiness.UserLog) As Boolean
-        
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ModifyEmployeeFamilyEdit", ReplyAction:="http://tempuri.org/IProfileBusiness/ModifyEmployeeFamilyEditResponse")>  _
         Function ModifyEmployeeFamilyEdit(ByVal objFamilyEdit As ProfileBusiness.FamilyEditDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
         
@@ -57661,6 +57664,9 @@ Namespace ProfileBusiness
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetComboboxPeriod", ReplyAction:="http://tempuri.org/IProfileBusiness/GetComboboxPeriodResponse")>  _
         Function GetComboboxPeriod() As System.Collections.Generic.List(Of ProfileBusiness.ATPeriodDTO)
         
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetYearPeriod", ReplyAction:="http://tempuri.org/IProfileBusiness/GetYearPeriodResponse")>  _
+        Function GetYearPeriod() As System.Collections.Generic.List(Of ProfileBusiness.ATPeriodDTO)
+        
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/CheckWelfareMngEffect", ReplyAction:="http://tempuri.org/IProfileBusiness/CheckWelfareMngEffectResponse")>  _
         Function CheckWelfareMngEffect(ByVal _filter As System.Collections.Generic.List(Of ProfileBusiness.WelfareMngDTO)) As Boolean
         
@@ -57732,9 +57738,6 @@ Namespace ProfileBusiness
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ValidateWorking", ReplyAction:="http://tempuri.org/IProfileBusiness/ValidateWorkingResponse")>  _
         Function ValidateWorking(ByVal sType As String, ByVal obj As ProfileBusiness.WorkingDTO) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ValEffectdateByEmpCode", ReplyAction:="http://tempuri.org/IProfileBusiness/ValEffectdateByEmpCodeResponse")>  _
-        Function ValEffectdateByEmpCode(ByVal emp_code As String, ByVal effect_date As Date) As Boolean
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ValidateBankBranch", ReplyAction:="http://tempuri.org/IProfileBusiness/ValidateBankBranchResponse")>  _
         Function ValidateBankBranch(ByVal objBankBranch As ProfileBusiness.BankBranchDTO) As Boolean
@@ -58533,6 +58536,10 @@ Namespace ProfileBusiness
             MyBase.New(binding, remoteAddress)
         End Sub
         
+        Public Function CHECK_LOCATION_EXITS(ByVal P_ID As System.Nullable(Of Decimal), ByVal ORG_ID As Decimal) As Boolean Implements ProfileBusiness.IProfileBusiness.CHECK_LOCATION_EXITS
+            Return MyBase.Channel.CHECK_LOCATION_EXITS(P_ID, ORG_ID)
+        End Function
+        
         Public Function GetJobPosition(ByVal _filter As ProfileBusiness.Job_PositionDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal _param As ProfileBusiness.ParamDTO, ByVal Sorts As String, ByVal log As Common.CommonBusiness.UserLog) As System.Collections.Generic.List(Of ProfileBusiness.Job_PositionDTO) Implements ProfileBusiness.IProfileBusiness.GetJobPosition
             Return MyBase.Channel.GetJobPosition(_filter, PageIndex, PageSize, Total, _param, Sorts, log)
         End Function
@@ -58627,6 +58634,10 @@ Namespace ProfileBusiness
         
         Public Function DeleteEmployeeDeduct(ByVal lstDecimals As System.Collections.Generic.List(Of Decimal), ByVal log As Common.CommonBusiness.UserLog) As Boolean Implements ProfileBusiness.IProfileBusiness.DeleteEmployeeDeduct
             Return MyBase.Channel.DeleteEmployeeDeduct(lstDecimals, log)
+        End Function
+        
+        Public Function InsertImportCommend(ByVal lstImport As System.Collections.Generic.List(Of ProfileBusiness.ImportCommendDTO), ByVal log As Common.CommonBusiness.UserLog) As Boolean Implements ProfileBusiness.IProfileBusiness.InsertImportCommend
+            Return MyBase.Channel.InsertImportCommend(lstImport, log)
         End Function
         
         Public Function GetImportCommend(ByVal _filter As ProfileBusiness.ImportCommendDTO) As System.Collections.Generic.List(Of ProfileBusiness.ImportCommendDTO) Implements ProfileBusiness.IProfileBusiness.GetImportCommend
@@ -58965,8 +58976,8 @@ Namespace ProfileBusiness
             Return MyBase.Channel.GET_PROCESS_PLCONTRACT_PORTAL(P_EMP_ID)
         End Function
         
-        Public Function CHECK_LOCATION_EXITS(ByVal P_ID As System.Nullable(Of Decimal), ByVal ORG_ID As Decimal) As Boolean Implements ProfileBusiness.IProfileBusiness.CHECK_LOCATION_EXITS
-            Return MyBase.Channel.CHECK_LOCATION_EXITS(P_ID, ORG_ID)
+        Public Function SendProcessTrainingEdit(ByVal lstID As System.Collections.Generic.List(Of Decimal), ByVal log As Common.CommonBusiness.UserLog) As Boolean Implements ProfileBusiness.IProfileBusiness.SendProcessTrainingEdit
+            Return MyBase.Channel.SendProcessTrainingEdit(lstID, log)
         End Function
         
         Public Function UpdateStatusProcessTrainingEdit(ByVal lstID As System.Collections.Generic.List(Of Decimal), ByVal status As String, ByVal log As Common.CommonBusiness.UserLog) As Boolean Implements ProfileBusiness.IProfileBusiness.UpdateStatusProcessTrainingEdit
@@ -59305,8 +59316,8 @@ Namespace ProfileBusiness
             Return MyBase.Channel.ValidateCommendList(_validate)
         End Function
         
-        Public Function InsertImportCommend(ByVal lstImport As System.Collections.Generic.List(Of ProfileBusiness.ImportCommendDTO), ByVal log As Common.CommonBusiness.UserLog) As Boolean Implements ProfileBusiness.IProfileBusiness.InsertImportCommend
-            Return MyBase.Channel.InsertImportCommend(lstImport, log)
+        Public Function ValEffectdateByEmpCode(ByVal emp_code As String, ByVal effect_date As Date) As Boolean Implements ProfileBusiness.IProfileBusiness.ValEffectdateByEmpCode
+            Return MyBase.Channel.ValEffectdateByEmpCode(emp_code, effect_date)
         End Function
         
         Public Function GetLastWorkingSalary(ByVal _filter As ProfileBusiness.WorkingDTO) As ProfileBusiness.WorkingDTO Implements ProfileBusiness.IProfileBusiness.GetLastWorkingSalary
@@ -59645,10 +59656,6 @@ Namespace ProfileBusiness
             Return MyBase.Channel.CheckExistProcessTrainingEdit(pk_key)
         End Function
         
-        Public Function SendProcessTrainingEdit(ByVal lstID As System.Collections.Generic.List(Of Decimal), ByVal log As Common.CommonBusiness.UserLog) As Boolean Implements ProfileBusiness.IProfileBusiness.SendProcessTrainingEdit
-            Return MyBase.Channel.SendProcessTrainingEdit(lstID, log)
-        End Function
-        
         Public Function ModifyEmployeeFamilyEdit(ByVal objFamilyEdit As ProfileBusiness.FamilyEditDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean Implements ProfileBusiness.IProfileBusiness.ModifyEmployeeFamilyEdit
             Return MyBase.Channel.ModifyEmployeeFamilyEdit(objFamilyEdit, log, gID)
         End Function
@@ -59889,6 +59896,10 @@ Namespace ProfileBusiness
             Return MyBase.Channel.GetComboboxPeriod
         End Function
         
+        Public Function GetYearPeriod() As System.Collections.Generic.List(Of ProfileBusiness.ATPeriodDTO) Implements ProfileBusiness.IProfileBusiness.GetYearPeriod
+            Return MyBase.Channel.GetYearPeriod
+        End Function
+        
         Public Function CheckWelfareMngEffect(ByVal _filter As System.Collections.Generic.List(Of ProfileBusiness.WelfareMngDTO)) As Boolean Implements ProfileBusiness.IProfileBusiness.CheckWelfareMngEffect
             Return MyBase.Channel.CheckWelfareMngEffect(_filter)
         End Function
@@ -59983,10 +59994,6 @@ Namespace ProfileBusiness
         
         Public Function ValidateWorking(ByVal sType As String, ByVal obj As ProfileBusiness.WorkingDTO) As Boolean Implements ProfileBusiness.IProfileBusiness.ValidateWorking
             Return MyBase.Channel.ValidateWorking(sType, obj)
-        End Function
-        
-        Public Function ValEffectdateByEmpCode(ByVal emp_code As String, ByVal effect_date As Date) As Boolean Implements ProfileBusiness.IProfileBusiness.ValEffectdateByEmpCode
-            Return MyBase.Channel.ValEffectdateByEmpCode(emp_code, effect_date)
         End Function
         
         Public Function ValidateBankBranch(ByVal objBankBranch As ProfileBusiness.BankBranchDTO) As Boolean Implements ProfileBusiness.IProfileBusiness.ValidateBankBranch
