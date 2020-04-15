@@ -447,6 +447,17 @@ Public Class ProfileStoreProcedure
         End If
         Return dt
     End Function
+    Public Function Import_HU_TITLE(ByVal P_USER As String, ByVal P_DOCXML As String) As Boolean
+        Dim ds As DataSet = hfr.ExecuteToDataSet("PKG_HU_IPROFILE.Import_HU_TITLE", New List(Of Object)(New Object() {P_USER, P_DOCXML}))
+        If ds IsNot Nothing AndAlso ds.Tables(0) IsNot Nothing AndAlso ds.Tables(0).Rows.Count > 0 Then
+            Return CBool(ds.Tables(0)(0)(0))
+        End If
+    End Function
+    Public Function CHECK_EXIT_HU_TITLE(ByVal P_CODE As String) As Int32
+        Dim objects = hfr.ExecuteStoreScalar("PKG_HU_IPROFILE.CHECK_EXIT_HU_TITLE",
+                                             New List(Of Object)(New Object() {P_CODE, OUT_NUMBER}))
+        Return Int32.Parse(objects(0).ToString())
+    End Function
 #Region "baolc"
 
     Public Function GetAllDistrict() As DataTable

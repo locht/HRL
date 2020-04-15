@@ -20,7 +20,41 @@ Public Class ctrlHU_Title
     Dim _classPath As String = "Profile\Modules\Profile\List" + Me.GetType().Name.ToString()
 
 #Region "Property"
-
+    Property dtDataImportWorking As DataTable
+        Get
+            Return ViewState(Me.ID & "_dtDataImportWorking")
+        End Get
+        Set(ByVal value As DataTable)
+            ViewState(Me.ID & "_dtDataImportWorking") = value
+        End Set
+    End Property
+    Property dtData As DataTable
+        Get
+            If ViewState(Me.ID & "_dtData") Is Nothing Then
+                Dim dt As New DataTable("DATA")
+                dt.Columns.Add("GR_NGACH_LUONG", GetType(String))
+                dt.Columns.Add("GR_NGACH_LUONG_ID", GetType(String))
+                dt.Columns.Add("GR_TITLE", GetType(String))
+                dt.Columns.Add("GR_TITLE_ID", GetType(String))
+                dt.Columns.Add("CODE_TITLE", GetType(String))
+                dt.Columns.Add("NAME_TITLE", GetType(String))
+                dt.Columns.Add("GROUP_WORK", GetType(String))
+                dt.Columns.Add("GROUP_WORK_ID", GetType(String))
+                dt.Columns.Add("FUNCTION_WORK", GetType(String))
+                dt.Columns.Add("REQUEST_WORK", GetType(String))
+                dt.Columns.Add("PURPOSE_WORK", GetType(String))
+                dt.Columns.Add("IS_SIGN", GetType(String))
+                dt.Columns.Add("IS_SIGN_ID", GetType(String))
+                dt.Columns.Add("HURT_FULL", GetType(String))
+                dt.Columns.Add("HURT_FULL_ID", GetType(String))
+                ViewState(Me.ID & "_dtData") = dt
+            End If
+            Return ViewState(Me.ID & "_dtData")
+        End Get
+        Set(ByVal value As DataTable)
+            ViewState(Me.ID & "_dtData") = value
+        End Set
+    End Property
     ''' <summary>
     ''' IDSelect
     ''' </summary>
@@ -109,6 +143,7 @@ Public Class ctrlHU_Title
         Try
             rgMain.AllowCustomPaging = True
             InitControl()
+            ctrlUpload2.isMultiple = False
             If Not IsPostBack Then
                 ViewConfig(RadPane1)
                 GirdConfig(rgMain)
@@ -496,7 +531,8 @@ dontrefresh:
                     End Using
                 Case CommonMessage.TOOLBARITEM_NEXT
                     Template_ImportHU_TITLE()
-
+                Case CommonMessage.TOOLBARITEM_IMPORT
+                    ctrlUpload2.Show()
                 Case CommonMessage.TOOLBARITEM_ACTIVE
                     If rgMain.SelectedItems.Count = 0 Then
                         ShowMessage(Translate(CommonMessage.MESSAGE_NOT_SELECT_ROW), NotifyType.Warning)
@@ -989,5 +1025,178 @@ dontrefresh:
         End Try
         Return True
     End Function
+#Region "import"
+    Private Sub ctrlUpload2_OkClicked(ByVal sender As Object, ByVal e As System.EventArgs) Handles ctrlUpload2.OkClicked
+        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+        Dim startTime As DateTime = DateTime.UtcNow
+        Dim fileName As String
+        Dim dsDataPrepare As New DataSet
+        Dim workbook As Aspose.Cells.Workbook
+        Dim worksheet As Aspose.Cells.Worksheet
 
+        Try
+            Dim tempPath As String = ConfigurationManager.AppSettings("ExcelFileFolder")
+            Dim savepath = Context.Server.MapPath(tempPath)
+
+            For Each file As UploadedFile In ctrlUpload2.UploadedFiles
+                fileName = System.IO.Path.Combine(savepath, Guid.NewGuid().ToString() & ".xls")
+                file.SaveAs(fileName, True)
+                workbook = New Aspose.Cells.Workbook(fileName)
+                worksheet = workbook.Worksheets(0)
+                dsDataPrepare.Tables.Add(worksheet.Cells.ExportDataTableAsString(0, 0, worksheet.Cells.MaxRow + 1, worksheet.Cells.MaxColumn + 1, True))
+                If System.IO.File.Exists(fileName) Then System.IO.File.Delete(fileName)
+            Next
+            dtData = dtData.Clone()
+            TableMapping(dsDataPrepare.Tables(0))
+            For Each rows As DataRow In dsDataPrepare.Tables(0).Select("GR_NGACH_LUONG<>'""'").CopyToDataTable.Rows
+                If IsDBNull(rows("GR_NGACH_LUONG")) OrElse rows("GR_NGACH_LUONG") = "" Then Continue For
+                Dim newRow As DataRow = dtData.NewRow
+                newRow("GR_NGACH_LUONG") = rows("GR_NGACH_LUONG")
+                newRow("GR_NGACH_LUONG_ID") = If(IsNumeric(rows("GR_NGACH_LUONG_ID")), rows("GR_NGACH_LUONG_ID"), 0)
+                newRow("GR_TITLE") = rows("GR_TITLE")
+                newRow("GR_TITLE_ID") = If(IsNumeric(rows("GR_TITLE_ID")), rows("GR_TITLE_ID"), 0)
+                newRow("CODE_TITLE") = rows("CODE_TITLE")
+                newRow("NAME_TITLE") = rows("NAME_TITLE")
+                newRow("GROUP_WORK") = rows("GROUP_WORK")
+                newRow("GROUP_WORK_ID") = If(IsNumeric(rows("GROUP_WORK_ID")), rows("GROUP_WORK_ID"), 0)
+                newRow("FUNCTION_WORK") = rows("FUNCTION_WORK")
+                newRow("REQUEST_WORK") = rows("REQUEST_WORK")
+                newRow("PURPOSE_WORK") = rows("PURPOSE_WORK")
+                newRow("IS_SIGN") = rows("IS_SIGN")
+                newRow("IS_SIGN_ID") = If(IsNumeric(rows("IS_SIGN_ID")), rows("IS_SIGN_ID"), 0)
+                newRow("HURT_FULL") = rows("HURT_FULL")
+                newRow("HURT_FULL_ID") = If(IsNumeric(rows("HURT_FULL_ID")), rows("HURT_FULL_ID"), 0)
+                dtData.Rows.Add(newRow)
+            Next
+            dtData.TableName = "DATA"
+            If loadToGrid() Then
+                Dim sw As New StringWriter()
+                Dim DocXml As String = String.Empty
+                dtData.WriteXml(sw, False)
+                DocXml = sw.ToString
+                Dim sp As New ProfileStoreProcedure()
+                If sp.Import_HU_TITLE(LogHelper.GetUserLog().Username.ToUpper, DocXml) Then
+                    ShowMessage(Translate("Import thành công"), NotifyType.Success)
+                Else
+                    ShowMessage(Translate("Import bị lỗi. Kiểm tra lại biểu mẫu Import"), NotifyType.Error)
+                End If
+                'End edit;
+                rgMain.Rebind()
+            End If
+
+            _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
+        Catch ex As Exception
+            ShowMessage(Translate("Import bị lỗi. Kiểm tra lại biểu mẫu Import"), NotifyType.Error)
+            _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
+        End Try
+    End Sub
+    Private Sub TableMapping(ByVal dtdata As DataTable)
+        Dim row As DataRow = dtdata.Rows(1)
+        Dim index As Integer = 0
+        For Each cols As DataColumn In dtdata.Columns
+            Try
+                cols.ColumnName = row(index)
+                index += 1
+                If index > row.ItemArray.Length - 1 Then Exit For
+            Catch ex As Exception
+                Exit For
+            End Try
+        Next
+        dtdata.Rows(0).Delete()
+        dtdata.Rows(0).Delete()
+        dtdata.AcceptChanges()
+    End Sub
+    Function loadToGrid() As Boolean
+        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+        Dim startTime As DateTime = DateTime.UtcNow
+        Dim dtError As New DataTable("ERROR")
+        Try
+            If dtData.Rows.Count = 0 Then
+                ShowMessage(Translate("Chưa chọn nhóm ngạch lương"), NotifyType.Warning)
+                Return False
+            End If
+            Dim rowError As DataRow
+            Dim isError As Boolean = False
+            Dim sError As String = String.Empty
+            dtDataImportWorking = dtData.Clone
+            dtError = dtData.Clone
+            Dim iRow = 1
+            Dim _filter As New WorkingDTO
+            Dim rep As New ProfileBusinessRepository
+            Dim IBusiness As IProfileBusiness = New ProfileBusinessClient()
+            For Each row As DataRow In dtData.Rows
+                rowError = dtError.NewRow
+                isError = False
+                sError = "Chưa nhập mã nhân viên"
+                ImportValidate.EmptyValue("GR_NGACH_LUONG", row, rowError, isError, sError)
+
+
+                If row("GR_TITLE_ID") Is DBNull.Value OrElse row("GR_TITLE") = "" Then
+                    sError = "Chưa chọn phân loại nhân viên"
+                    ImportValidate.EmptyValue("GR_TITLE_ID", row, rowError, isError, sError)
+                End If
+                If row("CODE_TITLE") = "" Then
+                    sError = "Chưa chọn Mã chức danh"
+                    ImportValidate.EmptyValue("CODE_TITLE", row, rowError, isError, sError)
+                Else
+                    Dim rep1 As New ProfileStoreProcedure()
+                    If rep1.CHECK_EXIT_HU_TITLE(row("CODE_TITLE")) Then
+                        sError = "Mã chức danh đã tồn tại,xin kiểm tra lại"
+                        row("CODE_TITLE") = ""
+                        ImportValidate.EmptyValue("CODE_TITLE", row, rowError, True, sError)
+                        isError = True
+                    End If
+                End If
+                If row("NAME_TITLE") = "" Then
+                    sError = "Chưa chọn Tên chức danh"
+                    ImportValidate.EmptyValue("NAME_TITLE", row, rowError, isError, sError)
+                End If
+                If isError Then
+                    rowError("GR_NGACH_LUONG") = row("GR_NGACH_LUONG").ToString
+                    If rowError("GR_NGACH_LUONG").ToString = "" Then
+                        rowError("GR_NGACH_LUONG") = row("GR_NGACH_LUONG").ToString
+                    End If
+                    dtError.Rows.Add(rowError)
+                Else
+                    dtDataImportWorking.ImportRow(row)
+                End If
+                iRow = iRow + 1
+            Next
+            If dtError.Rows.Count > 0 Then
+                dtError.TableName = "DATA"
+                ' gộp các lỗi vào 1 cột ghi chú 
+                Dim dtErrorGroup As New DataTable
+                Dim RowErrorGroup As DataRow
+                dtErrorGroup.Columns.Add("STT")
+                dtErrorGroup.Columns.Add("NOTE")
+                For j As Integer = 0 To dtError.Rows.Count - 1
+                    Dim strNote As String = String.Empty
+                    RowErrorGroup = dtErrorGroup.NewRow
+                    For k As Integer = 1 To dtError.Columns.Count - 1
+                        If Not dtError.Rows(j)(k) Is DBNull.Value Then
+                            strNote &= dtError.Rows(j)(k) & "\"
+                        End If
+                    Next
+                    RowErrorGroup("STT") = dtError.Rows(j)("GR_NGACH_LUONG")
+                    RowErrorGroup("NOTE") = strNote
+                    dtErrorGroup.Rows.Add(RowErrorGroup)
+                Next
+                dtErrorGroup.TableName = "DATA"
+                Session("EXPORTREPORT") = dtErrorGroup
+                rep.Dispose()
+                ScriptManager.RegisterStartupScript(Me.Page, Me.Page.GetType(), "javascriptfunction", "ExportReport('Template_importIO_error');", True)
+                ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), Utilities.NotifyType.Error)
+            End If
+            If isError OrElse (dtError IsNot Nothing AndAlso dtError.Rows.Count > 0) Then
+                Return False
+            Else
+                Return True
+            End If
+            rep.Dispose()
+            _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
+        Catch ex As Exception
+            _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
+        End Try
+    End Function
+#End Region
 End Class

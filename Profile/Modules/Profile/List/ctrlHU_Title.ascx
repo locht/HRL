@@ -198,6 +198,7 @@
     </tlk:RadPane>
 </tlk:RadSplitter>
 <Common:ctrlUpload ID="ctrlUpload1" runat="server" />
+<Common:ctrlUpload ID="ctrlUpload2" runat="server" />
 <Common:ctrlMessageBox ID="ctrlMessageBox" runat="server" />
 <tlk:RadCodeBlock ID="RadCodeBlock1" runat="server">
     <script type="text/javascript">

@@ -437,6 +437,15 @@ Partial Public Class ctrlHU_Title
     Protected WithEvents ctrlUpload1 As Global.Common.ctrlUpload
 
     '''<summary>
+    '''ctrlUpload2 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents ctrlUpload2 As Global.Common.ctrlUpload
+
+    '''<summary>
     '''ctrlMessageBox control.
     '''</summary>
     '''<remarks>
