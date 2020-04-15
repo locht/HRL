@@ -179,6 +179,7 @@
     <Content Include="Modules\Portal\Dashboard\ctrlDashboardPortalSixCell.ascx" />
     <Content Include="Modules\Portal\Dashboard\ctrlDBEmployeeReg.ascx" />
     <Content Include="Modules\Portal\Dashboard\ctrlDBCertificateExpires.ascx" />
+    <Content Include="Modules\Profile\Business\ctrlHU_EmpDtlBackGround.ascx" />
     <Content Include="Modules\Profile\Business\ctrlHU_EmpDtlDeduct.ascx" />
     <Content Include="Modules\Profile\Business\ctrlHU_EmpDtlQuantumSal.ascx" />
     <Content Include="Modules\Profile\Business\ctrlHU_JobDescription.ascx" />
@@ -931,6 +932,13 @@
     </Compile>
     <Compile Include="Modules\Competency\Business\ctrlHU_CompetencyAss.ascx.vb">
       <DependentUpon>ctrlHU_CompetencyAss.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Modules\Profile\Business\ctrlHU_EmpDtlBackGround.ascx.designer.vb">
+      <DependentUpon>ctrlHU_EmpDtlBackGround.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Profile\Business\ctrlHU_EmpDtlBackGround.ascx.vb">
+      <DependentUpon>ctrlHU_EmpDtlBackGround.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Modules\Profile\Business\ctrlHU_EmpDtlDeduct.ascx.designer.vb">
