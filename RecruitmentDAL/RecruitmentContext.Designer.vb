@@ -18,7 +18,7 @@ Imports System.Runtime.Serialization
 Imports System.Xml.Serialization
 
 
-<Assembly: EdmSchemaAttribute("0d70df05-3b78-4841-b143-c6e8039620c8")>
+<Assembly: EdmSchemaAttribute("4a3afcb4-2891-417b-b9a8-9b4dc9ba141a")>
 #Region "EDM Relationship Metadata"
 <Assembly: EdmRelationshipAttribute("RecruitmentModel", "FK_FE_HEH", "HU_EMPLOYEE", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_EMPLOYEE), "HU_EMPLOYEE_HEALTH1", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(HU_EMPLOYEE_HEALTH1), True)>
 <Assembly: EdmRelationshipAttribute("RecruitmentModel", "FK_HE_HEC", "HU_EMPLOYEE", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_EMPLOYEE), "HU_EMPLOYEE_CV", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(HU_EMPLOYEE_CV), True)>
@@ -23373,21 +23373,21 @@ Public Partial Class RC_CANDIDATE_FAMILY
     ''' </summary>
     <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
     <DataMemberAttribute()>
-    Public Property BIRTH_NO() As Nullable(Of Global.System.Decimal)
+    Public Property BIRTH_NO() As Global.System.String
         Get
             Return _BIRTH_NO
         End Get
         Set
             OnBIRTH_NOChanging(value)
             ReportPropertyChanging("BIRTH_NO")
-            _BIRTH_NO = StructuralObject.SetValidValue(value)
+            _BIRTH_NO = StructuralObject.SetValidValue(value, true)
             ReportPropertyChanged("BIRTH_NO")
             OnBIRTH_NOChanged()
         End Set
     End Property
 
-    Private _BIRTH_NO As Nullable(Of Global.System.Decimal)
-    Private Partial Sub OnBIRTH_NOChanging(value As Nullable(Of Global.System.Decimal))
+    Private _BIRTH_NO As Global.System.String
+    Private Partial Sub OnBIRTH_NOChanging(value As Global.System.String)
     End Sub
 
     Private Partial Sub OnBIRTH_NOChanged()
@@ -23398,21 +23398,21 @@ Public Partial Class RC_CANDIDATE_FAMILY
     ''' </summary>
     <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
     <DataMemberAttribute()>
-    Public Property BIRTH_BOOK() As Nullable(Of Global.System.Decimal)
+    Public Property BIRTH_BOOK() As Global.System.String
         Get
             Return _BIRTH_BOOK
         End Get
         Set
             OnBIRTH_BOOKChanging(value)
             ReportPropertyChanging("BIRTH_BOOK")
-            _BIRTH_BOOK = StructuralObject.SetValidValue(value)
+            _BIRTH_BOOK = StructuralObject.SetValidValue(value, true)
             ReportPropertyChanged("BIRTH_BOOK")
             OnBIRTH_BOOKChanged()
         End Set
     End Property
 
-    Private _BIRTH_BOOK As Nullable(Of Global.System.Decimal)
-    Private Partial Sub OnBIRTH_BOOKChanging(value As Nullable(Of Global.System.Decimal))
+    Private _BIRTH_BOOK As Global.System.String
+    Private Partial Sub OnBIRTH_BOOKChanging(value As Global.System.String)
     End Sub
 
     Private Partial Sub OnBIRTH_BOOKChanged()

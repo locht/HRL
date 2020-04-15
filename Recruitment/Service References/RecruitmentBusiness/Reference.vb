@@ -17598,7 +17598,7 @@ Namespace RecruitmentBusiness
         Private ADDRESSField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private BIRTH_BOOKField As System.Nullable(Of Decimal)
+        Private BIRTH_BOOKField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private BIRTH_DATEField As String
@@ -17619,7 +17619,7 @@ Namespace RecruitmentBusiness
         Private BIRTH_NAT2Field As System.Nullable(Of Decimal)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private BIRTH_NOField As System.Nullable(Of Decimal)
+        Private BIRTH_NOField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private BIRTH_PROField As System.Nullable(Of Decimal)
@@ -17738,12 +17738,12 @@ Namespace RecruitmentBusiness
         End Property
         
         <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property BIRTH_BOOK() As System.Nullable(Of Decimal)
+        Public Property BIRTH_BOOK() As String
             Get
                 Return Me.BIRTH_BOOKField
             End Get
             Set
-                If (Me.BIRTH_BOOKField.Equals(value) <> true) Then
+                If (Object.ReferenceEquals(Me.BIRTH_BOOKField, value) <> true) Then
                     Me.BIRTH_BOOKField = value
                     Me.RaisePropertyChanged("BIRTH_BOOK")
                 End If
@@ -17829,12 +17829,12 @@ Namespace RecruitmentBusiness
         End Property
         
         <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property BIRTH_NO() As System.Nullable(Of Decimal)
+        Public Property BIRTH_NO() As String
             Get
                 Return Me.BIRTH_NOField
             End Get
             Set
-                If (Me.BIRTH_NOField.Equals(value) <> true) Then
+                If (Object.ReferenceEquals(Me.BIRTH_NOField, value) <> true) Then
                     Me.BIRTH_NOField = value
                     Me.RaisePropertyChanged("BIRTH_NO")
                 End If

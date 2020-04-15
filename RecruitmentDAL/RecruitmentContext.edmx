@@ -6,75 +6,75 @@
     <edmx:StorageModels>
     <Schema Namespace="RecruitmentModel.Store" Alias="Self" Provider="Oracle.DataAccess.Client" ProviderManifestToken="12.2" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator">
         <EntityContainer Name="RecruitmentModelStoreContainer">
-            <EntitySet Name="RC_COST_CENTER" EntityType="RecruitmentModel.Store.RC_COST_CENTER" store:Type="Tables"  />
-            <EntitySet Name="SE_CHOSEN_ORG" EntityType="RecruitmentModel.Store.SE_CHOSEN_ORG" store:Type="Tables"  />
-            <EntitySet Name="HU_FAMILY" EntityType="RecruitmentModel.Store.HU_FAMILY" store:Type="Tables"  />
-            <EntitySet Name="HU_TERMINATE" EntityType="RecruitmentModel.Store.HU_TERMINATE" store:Type="Tables"  />
-            <EntitySet Name="RC_EXAMS" EntityType="RecruitmentModel.Store.RC_EXAMS" store:Type="Tables"  />
-            <EntitySet Name="RC_EXAMS_DTL" EntityType="RecruitmentModel.Store.RC_EXAMS_DTL" store:Type="Tables"  />
-            <EntitySet Name="RC_PLAN_REG_EMP" EntityType="RecruitmentModel.Store.RC_PLAN_REG_EMP" store:Type="Tables"  />
-            <EntitySet Name="RC_PROGRAM_CHARACTER" EntityType="RecruitmentModel.Store.RC_PROGRAM_CHARACTER" store:Type="Tables"  />
-            <EntitySet Name="RC_PROGRAM_EMP" EntityType="RecruitmentModel.Store.RC_PROGRAM_EMP" store:Type="Tables"  />
-            <EntitySet Name="RC_PROGRAM_EXAMS" EntityType="RecruitmentModel.Store.RC_PROGRAM_EXAMS" store:Type="Tables"  />
-            <EntitySet Name="RC_PROGRAM_SCOPE" EntityType="RecruitmentModel.Store.RC_PROGRAM_SCOPE" store:Type="Tables"  />
-            <EntitySet Name="RC_PROGRAM_SOFT_SKILL" EntityType="RecruitmentModel.Store.RC_PROGRAM_SOFT_SKILL" store:Type="Tables"  />
-            <EntitySet Name="RC_REQUEST" EntityType="RecruitmentModel.Store.RC_REQUEST" store:Type="Tables"  />
-            <EntitySet Name="RC_REQUEST_EMP" EntityType="RecruitmentModel.Store.RC_REQUEST_EMP" store:Type="Tables"  />
-            <EntitySet Name="OT_OTHER_LIST" EntityType="RecruitmentModel.Store.OT_OTHER_LIST" store:Type="Tables"  />
-            <EntitySet Name="OT_OTHER_LIST_GROUP" EntityType="RecruitmentModel.Store.OT_OTHER_LIST_GROUP" store:Type="Tables"  />
-            <EntitySet Name="OT_OTHER_LIST_TYPE" EntityType="RecruitmentModel.Store.OT_OTHER_LIST_TYPE" store:Type="Tables"  />
-            <EntitySet Name="RC_PLAN_REG" EntityType="RecruitmentModel.Store.RC_PLAN_REG" store:Type="Tables"  />
-            <EntitySet Name="HU_CONTRACT_TYPE" EntityType="RecruitmentModel.Store.HU_CONTRACT_TYPE" store:Type="Tables"  />
-            <EntitySet Name="RC_CANDIDATE" EntityType="RecruitmentModel.Store.RC_CANDIDATE" store:Type="Tables"  />
-            <EntitySet Name="RC_CANDIDATE_EDUCATION" EntityType="RecruitmentModel.Store.RC_CANDIDATE_EDUCATION" store:Type="Tables"  />
-            <EntitySet Name="RC_CANDIDATE_HISTORY" EntityType="RecruitmentModel.Store.RC_CANDIDATE_HISTORY" store:Type="Tables"  />
-            <EntitySet Name="RC_CANDIDATE_OTHER_INFO" EntityType="RecruitmentModel.Store.RC_CANDIDATE_OTHER_INFO" store:Type="Tables"  />
-            <EntitySet Name="RC_CANDIDATE_CV" EntityType="RecruitmentModel.Store.RC_CANDIDATE_CV" store:Type="Tables"  />
-            <EntitySet Name="RC_PROGRAM_SCHEDULE" EntityType="RecruitmentModel.Store.RC_PROGRAM_SCHEDULE" store:Type="Tables"  />
-            <EntitySet Name="RC_PROGRAM_SCHEDULE_CAN" EntityType="RecruitmentModel.Store.RC_PROGRAM_SCHEDULE_CAN" store:Type="Tables"  />
-            <EntitySet Name="RC_PROGRAM_SCHEDULE_USHER" EntityType="RecruitmentModel.Store.RC_PROGRAM_SCHEDULE_USHER" store:Type="Tables"  />
-            <EntitySet Name="RC_CANDIDATE_FAMILY" EntityType="RecruitmentModel.Store.RC_CANDIDATE_FAMILY" store:Type="Tables"  />
-            <EntitySet Name="RC_CANDIDATE_TRAINSINGER" EntityType="RecruitmentModel.Store.RC_CANDIDATE_TRAINSINGER" store:Type="Tables"  />
-            <EntitySet Name="RC_CANDIDATE_BEFOREWT" EntityType="RecruitmentModel.Store.RC_CANDIDATE_BEFOREWT" store:Type="Tables"  />
-            <EntitySet Name="RC_COST" EntityType="RecruitmentModel.Store.RC_COST" store:Type="Tables"  />
-            <EntitySet Name="RC_COST_FORM" EntityType="RecruitmentModel.Store.RC_COST_FORM" store:Type="Tables"  />
-            <EntitySet Name="HU_EMPLOYEE_BANK" EntityType="RecruitmentModel.Store.HU_EMPLOYEE_BANK" store:Type="Tables"  />
-            <EntitySet Name="HU_EMPLOYEE_BEFOREWT" EntityType="RecruitmentModel.Store.HU_EMPLOYEE_BEFOREWT" store:Type="Tables"  />
-            <EntitySet Name="HU_EMPLOYEE_EDUCATION" EntityType="RecruitmentModel.Store.HU_EMPLOYEE_EDUCATION" store:Type="Tables"  />
-            <EntitySet Name="HU_EMPLOYEE_HEALTH" EntityType="RecruitmentModel.Store.HU_EMPLOYEE_HEALTH" store:Type="Tables"  />
-            <EntitySet Name="HU_EMPLOYEE_OTHER_INFO" EntityType="RecruitmentModel.Store.HU_EMPLOYEE_OTHER_INFO" store:Type="Tables"  />
-            <EntitySet Name="HU_EMPLOYEE_TRAIN" EntityType="RecruitmentModel.Store.HU_EMPLOYEE_TRAIN" store:Type="Tables"  />
-            <EntitySet Name="HU_EMPLOYEE_TRAINSINGER" EntityType="RecruitmentModel.Store.HU_EMPLOYEE_TRAINSINGER" store:Type="Tables"  />
-            <EntitySet Name="HU_EMPLOYEE" EntityType="RecruitmentModel.Store.HU_EMPLOYEE" store:Type="Tables"  />
-            <EntitySet Name="HU_EMPLOYEE_CV" EntityType="RecruitmentModel.Store.HU_EMPLOYEE_CV" store:Type="Tables"  />
-            <EntitySet Name="HU_EMPLOYEE_EDUCATION1" EntityType="RecruitmentModel.Store.HU_EMPLOYEE_EDUCATION1" store:Type="Tables"  />
-            <EntitySet Name="HU_EMPLOYEE_HEALTH1" EntityType="RecruitmentModel.Store.HU_EMPLOYEE_HEALTH1" store:Type="Tables"  />
-            <EntitySet Name="HU_EMPLOYEE_OTHER_INFO1" EntityType="RecruitmentModel.Store.HU_EMPLOYEE_OTHER_INFO1" store:Type="Tables"  />
-            <EntitySet Name="HU_ORG_TITLE" EntityType="RecruitmentModel.Store.HU_ORG_TITLE" store:Type="Tables"  />
-            <EntitySet Name="HU_ORGANIZATION" EntityType="RecruitmentModel.Store.HU_ORGANIZATION" store:Type="Tables"  />
-            <EntitySet Name="HU_TITLE" EntityType="RecruitmentModel.Store.HU_TITLE" store:Type="Tables"  />
-            <EntitySet Name="HU_BANK" EntityType="RecruitmentModel.Store.HU_BANK" store:Type="Tables"  />
-            <EntitySet Name="HU_BANK_BRANCH" EntityType="RecruitmentModel.Store.HU_BANK_BRANCH" store:Type="Tables"  />
-            <EntitySet Name="HU_DISTRICT" EntityType="RecruitmentModel.Store.HU_DISTRICT" store:Type="Tables"  />
-            <EntitySet Name="HU_NATION" EntityType="RecruitmentModel.Store.HU_NATION" store:Type="Tables"  />
-            <EntitySet Name="HU_PROVINCE" EntityType="RecruitmentModel.Store.HU_PROVINCE" store:Type="Tables"  />
-            <EntitySet Name="RC_STAGE" EntityType="RecruitmentModel.Store.RC_STAGE" store:Type="Tables"  />
-            <EntitySet Name="RC_COSTALLOCATE" EntityType="RecruitmentModel.Store.RC_COSTALLOCATE" store:Type="Tables"  />
-            <EntitySet Name="RC_COST_COSTALLOCATE" EntityType="RecruitmentModel.Store.RC_COST_COSTALLOCATE" store:Type="Tables"  />
-            <EntitySet Name="RC_MANNING_ORG" EntityType="RecruitmentModel.Store.RC_MANNING_ORG" store:Type="Tables"  />
-            <EntitySet Name="RC_MANNING_TITLE" EntityType="RecruitmentModel.Store.RC_MANNING_TITLE" store:Type="Tables"  />
-            <EntitySet Name="RC_CANDIDATE_EXPECT" EntityType="RecruitmentModel.Store.RC_CANDIDATE_EXPECT" store:Type="Tables"  />
-            <EntitySet Name="RC_CANDIDATE_HEALTH" EntityType="RecruitmentModel.Store.RC_CANDIDATE_HEALTH" store:Type="Tables"  />
-            <EntitySet Name="RC_CANDIDATE_REFERENCE" EntityType="RecruitmentModel.Store.RC_CANDIDATE_REFERENCE" store:Type="Tables"  />
-            <EntitySet Name="RC_PROGRAM" EntityType="RecruitmentModel.Store.RC_PROGRAM" store:Type="Tables"  />
-            <EntitySet Name="SE_USER" EntityType="RecruitmentModel.Store.SE_USER" store:Type="Tables"  />
-            <EntitySet Name="SE_REPORT" EntityType="RecruitmentModel.Store.SE_REPORT" store:Type="Tables"  />
-            <EntitySet Name="SE_USER_REPORT" EntityType="RecruitmentModel.Store.SE_USER_REPORT" store:Type="Tables"  />
-            <EntitySet Name="HU_WARD" EntityType="RecruitmentModel.Store.HU_WARD" store:Type="Tables"  />
-            <EntitySet Name="HU_ORGANIZATION_V" EntityType="RecruitmentModel.Store.HU_ORGANIZATION_V" store:Type="Tables"  />
-            <EntitySet Name="RC_CANDIDATE_TRAINNING" EntityType="RecruitmentModel.Store.RC_CANDIDATE_TRAINNING" store:Type="Tables"  />
-            <EntitySet Name="RC_PLAN_YEAR" EntityType="RecruitmentModel.Store.RC_PLAN_YEAR" store:Type="Tables"  />
-            <EntitySet Name="RC_RECRUITMENT_INSTEAD" EntityType="RecruitmentModel.Store.RC_RECRUITMENT_INSTEAD" store:Type="Tables"  />
+            <EntitySet Name="RC_COST_CENTER" EntityType="RecruitmentModel.Store.RC_COST_CENTER" store:Type="Tables" />
+            <EntitySet Name="SE_CHOSEN_ORG" EntityType="RecruitmentModel.Store.SE_CHOSEN_ORG" store:Type="Tables" />
+            <EntitySet Name="HU_FAMILY" EntityType="RecruitmentModel.Store.HU_FAMILY" store:Type="Tables" />
+            <EntitySet Name="HU_TERMINATE" EntityType="RecruitmentModel.Store.HU_TERMINATE" store:Type="Tables" />
+            <EntitySet Name="RC_EXAMS" EntityType="RecruitmentModel.Store.RC_EXAMS" store:Type="Tables" />
+            <EntitySet Name="RC_EXAMS_DTL" EntityType="RecruitmentModel.Store.RC_EXAMS_DTL" store:Type="Tables" />
+            <EntitySet Name="RC_PLAN_REG_EMP" EntityType="RecruitmentModel.Store.RC_PLAN_REG_EMP" store:Type="Tables" />
+            <EntitySet Name="RC_PROGRAM_CHARACTER" EntityType="RecruitmentModel.Store.RC_PROGRAM_CHARACTER" store:Type="Tables" />
+            <EntitySet Name="RC_PROGRAM_EMP" EntityType="RecruitmentModel.Store.RC_PROGRAM_EMP" store:Type="Tables" />
+            <EntitySet Name="RC_PROGRAM_EXAMS" EntityType="RecruitmentModel.Store.RC_PROGRAM_EXAMS" store:Type="Tables" />
+            <EntitySet Name="RC_PROGRAM_SCOPE" EntityType="RecruitmentModel.Store.RC_PROGRAM_SCOPE" store:Type="Tables" />
+            <EntitySet Name="RC_PROGRAM_SOFT_SKILL" EntityType="RecruitmentModel.Store.RC_PROGRAM_SOFT_SKILL" store:Type="Tables" />
+            <EntitySet Name="RC_REQUEST" EntityType="RecruitmentModel.Store.RC_REQUEST" store:Type="Tables" />
+            <EntitySet Name="RC_REQUEST_EMP" EntityType="RecruitmentModel.Store.RC_REQUEST_EMP" store:Type="Tables" />
+            <EntitySet Name="OT_OTHER_LIST" EntityType="RecruitmentModel.Store.OT_OTHER_LIST" store:Type="Tables" />
+            <EntitySet Name="OT_OTHER_LIST_GROUP" EntityType="RecruitmentModel.Store.OT_OTHER_LIST_GROUP" store:Type="Tables" />
+            <EntitySet Name="OT_OTHER_LIST_TYPE" EntityType="RecruitmentModel.Store.OT_OTHER_LIST_TYPE" store:Type="Tables" />
+            <EntitySet Name="RC_PLAN_REG" EntityType="RecruitmentModel.Store.RC_PLAN_REG" store:Type="Tables" />
+            <EntitySet Name="HU_CONTRACT_TYPE" EntityType="RecruitmentModel.Store.HU_CONTRACT_TYPE" store:Type="Tables" />
+            <EntitySet Name="RC_CANDIDATE" EntityType="RecruitmentModel.Store.RC_CANDIDATE" store:Type="Tables" />
+            <EntitySet Name="RC_CANDIDATE_EDUCATION" EntityType="RecruitmentModel.Store.RC_CANDIDATE_EDUCATION" store:Type="Tables" />
+            <EntitySet Name="RC_CANDIDATE_HISTORY" EntityType="RecruitmentModel.Store.RC_CANDIDATE_HISTORY" store:Type="Tables" />
+            <EntitySet Name="RC_CANDIDATE_OTHER_INFO" EntityType="RecruitmentModel.Store.RC_CANDIDATE_OTHER_INFO" store:Type="Tables" />
+            <EntitySet Name="RC_CANDIDATE_CV" EntityType="RecruitmentModel.Store.RC_CANDIDATE_CV" store:Type="Tables" />
+            <EntitySet Name="RC_PROGRAM_SCHEDULE" EntityType="RecruitmentModel.Store.RC_PROGRAM_SCHEDULE" store:Type="Tables" />
+            <EntitySet Name="RC_PROGRAM_SCHEDULE_CAN" EntityType="RecruitmentModel.Store.RC_PROGRAM_SCHEDULE_CAN" store:Type="Tables" />
+            <EntitySet Name="RC_PROGRAM_SCHEDULE_USHER" EntityType="RecruitmentModel.Store.RC_PROGRAM_SCHEDULE_USHER" store:Type="Tables" />
+            <EntitySet Name="RC_CANDIDATE_FAMILY" EntityType="RecruitmentModel.Store.RC_CANDIDATE_FAMILY" store:Type="Tables" />
+            <EntitySet Name="RC_CANDIDATE_TRAINSINGER" EntityType="RecruitmentModel.Store.RC_CANDIDATE_TRAINSINGER" store:Type="Tables" />
+            <EntitySet Name="RC_CANDIDATE_BEFOREWT" EntityType="RecruitmentModel.Store.RC_CANDIDATE_BEFOREWT" store:Type="Tables" />
+            <EntitySet Name="RC_COST" EntityType="RecruitmentModel.Store.RC_COST" store:Type="Tables" />
+            <EntitySet Name="RC_COST_FORM" EntityType="RecruitmentModel.Store.RC_COST_FORM" store:Type="Tables" />
+            <EntitySet Name="HU_EMPLOYEE_BANK" EntityType="RecruitmentModel.Store.HU_EMPLOYEE_BANK" store:Type="Tables" />
+            <EntitySet Name="HU_EMPLOYEE_BEFOREWT" EntityType="RecruitmentModel.Store.HU_EMPLOYEE_BEFOREWT" store:Type="Tables" />
+            <EntitySet Name="HU_EMPLOYEE_EDUCATION" EntityType="RecruitmentModel.Store.HU_EMPLOYEE_EDUCATION" store:Type="Tables" />
+            <EntitySet Name="HU_EMPLOYEE_HEALTH" EntityType="RecruitmentModel.Store.HU_EMPLOYEE_HEALTH" store:Type="Tables" />
+            <EntitySet Name="HU_EMPLOYEE_OTHER_INFO" EntityType="RecruitmentModel.Store.HU_EMPLOYEE_OTHER_INFO" store:Type="Tables" />
+            <EntitySet Name="HU_EMPLOYEE_TRAIN" EntityType="RecruitmentModel.Store.HU_EMPLOYEE_TRAIN" store:Type="Tables" />
+            <EntitySet Name="HU_EMPLOYEE_TRAINSINGER" EntityType="RecruitmentModel.Store.HU_EMPLOYEE_TRAINSINGER" store:Type="Tables" />
+            <EntitySet Name="HU_EMPLOYEE" EntityType="RecruitmentModel.Store.HU_EMPLOYEE" store:Type="Tables" />
+            <EntitySet Name="HU_EMPLOYEE_CV" EntityType="RecruitmentModel.Store.HU_EMPLOYEE_CV" store:Type="Tables" />
+            <EntitySet Name="HU_EMPLOYEE_EDUCATION1" EntityType="RecruitmentModel.Store.HU_EMPLOYEE_EDUCATION1" store:Type="Tables" />
+            <EntitySet Name="HU_EMPLOYEE_HEALTH1" EntityType="RecruitmentModel.Store.HU_EMPLOYEE_HEALTH1" store:Type="Tables" />
+            <EntitySet Name="HU_EMPLOYEE_OTHER_INFO1" EntityType="RecruitmentModel.Store.HU_EMPLOYEE_OTHER_INFO1" store:Type="Tables" />
+            <EntitySet Name="HU_ORG_TITLE" EntityType="RecruitmentModel.Store.HU_ORG_TITLE" store:Type="Tables" />
+            <EntitySet Name="HU_ORGANIZATION" EntityType="RecruitmentModel.Store.HU_ORGANIZATION" store:Type="Tables" />
+            <EntitySet Name="HU_TITLE" EntityType="RecruitmentModel.Store.HU_TITLE" store:Type="Tables" />
+            <EntitySet Name="HU_BANK" EntityType="RecruitmentModel.Store.HU_BANK" store:Type="Tables" />
+            <EntitySet Name="HU_BANK_BRANCH" EntityType="RecruitmentModel.Store.HU_BANK_BRANCH" store:Type="Tables" />
+            <EntitySet Name="HU_DISTRICT" EntityType="RecruitmentModel.Store.HU_DISTRICT" store:Type="Tables" />
+            <EntitySet Name="HU_NATION" EntityType="RecruitmentModel.Store.HU_NATION" store:Type="Tables" />
+            <EntitySet Name="HU_PROVINCE" EntityType="RecruitmentModel.Store.HU_PROVINCE" store:Type="Tables" />
+            <EntitySet Name="RC_STAGE" EntityType="RecruitmentModel.Store.RC_STAGE" store:Type="Tables" />
+            <EntitySet Name="RC_COSTALLOCATE" EntityType="RecruitmentModel.Store.RC_COSTALLOCATE" store:Type="Tables" />
+            <EntitySet Name="RC_COST_COSTALLOCATE" EntityType="RecruitmentModel.Store.RC_COST_COSTALLOCATE" store:Type="Tables" />
+            <EntitySet Name="RC_MANNING_ORG" EntityType="RecruitmentModel.Store.RC_MANNING_ORG" store:Type="Tables" />
+            <EntitySet Name="RC_MANNING_TITLE" EntityType="RecruitmentModel.Store.RC_MANNING_TITLE" store:Type="Tables" />
+            <EntitySet Name="RC_CANDIDATE_EXPECT" EntityType="RecruitmentModel.Store.RC_CANDIDATE_EXPECT" store:Type="Tables" />
+            <EntitySet Name="RC_CANDIDATE_HEALTH" EntityType="RecruitmentModel.Store.RC_CANDIDATE_HEALTH" store:Type="Tables" />
+            <EntitySet Name="RC_CANDIDATE_REFERENCE" EntityType="RecruitmentModel.Store.RC_CANDIDATE_REFERENCE" store:Type="Tables" />
+            <EntitySet Name="RC_PROGRAM" EntityType="RecruitmentModel.Store.RC_PROGRAM" store:Type="Tables" />
+            <EntitySet Name="SE_USER" EntityType="RecruitmentModel.Store.SE_USER" store:Type="Tables" />
+            <EntitySet Name="SE_REPORT" EntityType="RecruitmentModel.Store.SE_REPORT" store:Type="Tables" />
+            <EntitySet Name="SE_USER_REPORT" EntityType="RecruitmentModel.Store.SE_USER_REPORT" store:Type="Tables" />
+            <EntitySet Name="HU_WARD" EntityType="RecruitmentModel.Store.HU_WARD" store:Type="Tables" />
+            <EntitySet Name="HU_ORGANIZATION_V" EntityType="RecruitmentModel.Store.HU_ORGANIZATION_V" store:Type="Tables" />
+            <EntitySet Name="RC_CANDIDATE_TRAINNING" EntityType="RecruitmentModel.Store.RC_CANDIDATE_TRAINNING" store:Type="Tables" />
+            <EntitySet Name="RC_PLAN_YEAR" EntityType="RecruitmentModel.Store.RC_PLAN_YEAR" store:Type="Tables" />
+            <EntitySet Name="RC_RECRUITMENT_INSTEAD" EntityType="RecruitmentModel.Store.RC_RECRUITMENT_INSTEAD" store:Type="Tables" />
             <AssociationSet Name="FK_FE_HEH" Association="RecruitmentModel.Store.FK_FE_HEH">
                 <End Role="HU_EMPLOYEE" EntitySet="HU_EMPLOYEE" />
                 <End Role="HU_EMPLOYEE_HEALTH1" EntitySet="HU_EMPLOYEE_HEALTH1" />
@@ -807,8 +807,8 @@
             <Property Name="ID_DATE" Type="date" Nullable="true" />
             <Property Name="ID_PLACE" Type="number" Nullable="true" Precision="38" />
             <Property Name="PER_ADDRESS" Type="nvarchar2" Nullable="true" MaxLength="255" />
-            <Property Name="BIRTH_NO" Type="number" Nullable="true" Precision="38" />
-            <Property Name="BIRTH_BOOK" Type="number" Nullable="true" Precision="38" />
+            <Property Name="BIRTH_NO" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="BIRTH_BOOK" Type="nvarchar2" Nullable="true" MaxLength="255" />
             <Property Name="BIRTH_NAT" Type="number" Nullable="true" Precision="38" />
             <Property Name="BIRTH_PRO" Type="number" Nullable="true" Precision="38" />
             <Property Name="BIRTH_DIS" Type="number" Nullable="true" Precision="38" />
@@ -2785,8 +2785,8 @@
           <Property Type="DateTime" Name="ID_DATE" />
           <Property Type="Decimal" Name="ID_PLACE" Precision="38" Scale="0" />
           <Property Type="String" Name="PER_ADDRESS" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Type="Decimal" Name="BIRTH_NO" Precision="38" Scale="0" />
-          <Property Type="Decimal" Name="BIRTH_BOOK" Precision="38" Scale="0" />
+          <Property Type="String" Name="BIRTH_NO" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Type="String" Name="BIRTH_BOOK" Unicode="true" MaxLength="255" FixedLength="false" />
           <Property Type="Decimal" Name="BIRTH_NAT" Precision="38" Scale="0" />
           <Property Type="Decimal" Name="BIRTH_PRO" Precision="38" Scale="0" />
           <Property Type="Decimal" Name="BIRTH_DIS" Precision="38" Scale="0" />
@@ -5748,7 +5748,7 @@
         <EntityTypeShape EntityType="RecruitmentModel.RC_PROGRAM_SCHEDULE" Width="2.625" PointX="7" PointY="22.75" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="RecruitmentModel.RC_PROGRAM_SCHEDULE_CAN" Width="2.5" PointX="12.375" PointY="21.75" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="RecruitmentModel.RC_PROGRAM_SCHEDULE_USHER" Width="3.625" PointX="15.125" PointY="21.75" Height="0.4" IsExpanded="false" />
-        <EntityTypeShape EntityType="RecruitmentModel.RC_CANDIDATE_FAMILY" Width="1.5" PointX="8.75" PointY="29" Height="0.4" IsExpanded="false" />
+        <EntityTypeShape EntityType="RecruitmentModel.RC_CANDIDATE_FAMILY" Width="2.5" PointX="8.75" PointY="29" Height="7.3647265625000031" IsExpanded="true" />
         <EntityTypeShape EntityType="RecruitmentModel.RC_CANDIDATE_TRAINSINGER" Width="1.5" PointX="2.875" PointY="6.5" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="RecruitmentModel.RC_CANDIDATE_BEFOREWT" Width="1.5" PointX="3.375" PointY="26.375" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="RecruitmentModel.RC_COST" Width="2" PointX="22.25" PointY="6.75" Height="0.4" IsExpanded="false" />

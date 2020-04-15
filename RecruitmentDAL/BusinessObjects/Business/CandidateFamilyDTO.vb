@@ -27,8 +27,8 @@
     Public Property ID_DATE As DateTime?
     Public Property ID_PLACE As Decimal?
     Public Property PER_ADDRESS As String
-    Public Property BIRTH_NO As Decimal?
-    Public Property BIRTH_BOOK As Decimal?
+    Public Property BIRTH_NO As String
+    Public Property BIRTH_BOOK As String
     Public Property BIRTH_NAT As Decimal?
     Public Property BIRTH_PRO As Decimal?
     Public Property BIRTH_DIS As Decimal?
