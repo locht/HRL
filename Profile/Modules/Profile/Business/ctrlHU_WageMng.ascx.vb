@@ -31,27 +31,37 @@ Public Class ctrlHU_WageMng
                 dt.Columns.Add("EMPLOYEE_CODE", GetType(String))
                 dt.Columns.Add("FULLNAME_VN", GetType(String))
                 dt.Columns.Add("EFFECT_DATE", GetType(String))
+                dt.Columns.Add("DECISION_NO", GetType(String))
                 dt.Columns.Add("SAL_TYPE_NAME", GetType(String))
                 dt.Columns.Add("TAX_NAME", GetType(String))
                 dt.Columns.Add("SAL_GROUP_NAME", GetType(String))
                 dt.Columns.Add("SAL_LEVEL_NAME", GetType(String))
                 dt.Columns.Add("SAL_RANK_NAME", GetType(String))
-                dt.Columns.Add("FACTORSALARY", GetType(String))
+                dt.Columns.Add("SAL_BASIC_MIN", GetType(String))
+                dt.Columns.Add("SAL_BASIC_MAX", GetType(String))
                 dt.Columns.Add("SAL_BASIC", GetType(String))
+                'dt.Columns.Add("FACTORSALARY", GetType(String))
                 dt.Columns.Add("PERCENTSALARY", GetType(String))
-                dt.Columns.Add("OTHERSALARY1", GetType(String))
-                dt.Columns.Add("OTHERSALARY2", GetType(String))
-                dt.Columns.Add("COST_SUPPORT", GetType(String))
-                dt.Columns.Add("STATUS_NAME", GetType(String))
+                dt.Columns.Add("EXRATE_NAME", GetType(String))
+                dt.Columns.Add("SAL_RATE", GetType(String))
+                dt.Columns.Add("AMOUNT", GetType(String))
+                dt.Columns.Add("AMOUNT_EX", GetType(String))
+                dt.Columns.Add("ALLOWANCE_TOTAL", GetType(String))
+                dt.Columns.Add("SAL_INS", GetType(String))
+                'dt.Columns.Add("OTHERSALARY1", GetType(String))
+                'dt.Columns.Add("OTHERSALARY2", GetType(String))
+                'dt.Columns.Add("COST_SUPPORT", GetType(String))
+                'dt.Columns.Add("STATUS_NAME", GetType(String))
                 'dt.Columns.Add("OTHERSALARY4", GetType(String))
                 'dt.Columns.Add("OTHERSALARY5", GetType(String))
-                dt.Columns.Add("LTT_V1", GetType(String))
+                'dt.Columns.Add("LTT_V1", GetType(String))
                 dt.Columns.Add("SAL_TYPE_ID", GetType(String))
                 dt.Columns.Add("TAX_ID", GetType(String))
                 dt.Columns.Add("SAL_GROUP_ID", GetType(String))
                 dt.Columns.Add("SAL_LEVEL_ID", GetType(String))
                 dt.Columns.Add("SAL_RANK_ID", GetType(String))
-                dt.Columns.Add("STATUS_ID", GetType(String))
+                dt.Columns.Add("EXRATE_ID", GetType(String))
+                'dt.Columns.Add("STATUS_ID", GetType(String))
                 ViewState(Me.ID & "_dtData") = dt
             End If
             Return ViewState(Me.ID & "_dtData")
@@ -562,7 +572,8 @@ Public Class ctrlHU_WageMng
     Private Sub Template_ImportHoSoLuong()
         Dim rep As New Profile.ProfileBusinessRepository
         Try
-            Dim configPath As String = ConfigurationManager.AppSettings("PathImportFolder")
+            'Dim configPath As String = ConfigurationManager.AppSettings("PathImportFolder")
+            Dim configPath As String = Server.MapPath("ReportTemplates\")
             Dim dsData As DataSet = rep.GetHoSoLuongImport()
             dsData.Tables(0).TableName = "Table"
             dsData.Tables(1).TableName = "Table1"
@@ -570,9 +581,12 @@ Public Class ctrlHU_WageMng
             dsData.Tables(3).TableName = "Table3"
             dsData.Tables(4).TableName = "Table4"
             dsData.Tables(5).TableName = "Table5"
+            dsData.Tables(6).TableName = "Table6"
+            dsData.Tables(7).TableName = "Table7"
+            dsData.Tables(8).TableName = "Table8"
             rep.Dispose()
-            If File.Exists(configPath + "Payroll\TEMP_IMPORT_HOSOLUONG.xls") Then
-                ExportTemplate(configPath + "Payroll\TEMP_IMPORT_HOSOLUONG.xls",
+            If File.Exists(configPath + "Payroll\Business\TEMP_IMPORT_HOSOLUONG.xls") Then
+                ExportTemplate(configPath + "Payroll\Business\TEMP_IMPORT_HOSOLUONG.xls",
                                       dsData, Nothing, "Template_HoSoLuong_" & Format(Date.Now, "yyyyMMdd"))
             Else
                 ShowMessage(Translate("Template không tồn tại"), Utilities.NotifyType.Error)

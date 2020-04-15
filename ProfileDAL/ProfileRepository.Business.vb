@@ -141,7 +141,10 @@ Partial Class ProfileRepository
                                                                    .P_CUR2 = cls.OUT_CURSOR,
                                                                    .P_CUR3 = cls.OUT_CURSOR,
                                                                    .P_CUR4 = cls.OUT_CURSOR,
-                                                                   .P_CUR5 = cls.OUT_CURSOR}, False)
+                                                                   .P_CUR5 = cls.OUT_CURSOR,
+                                                                   .P_CUR6 = cls.OUT_CURSOR,
+                                                                   .P_CUR7 = cls.OUT_CURSOR,
+                                                                   .P_CUR8 = cls.OUT_CURSOR}, False)
                 Return dsdata
             End Using
         Catch ex As Exception
