@@ -493,31 +493,6 @@ Public Class ctrlHU_Health_Mng
                 dtTemp.Rows(i).Delete()
             End If
         Next
-
-
-        ''For Each rows As DataRow In dtTemp.Rows
-        ''    If rows.RowState = DataRowState.Deleted OrElse rows.RowState = DataRowState.Detached Then Continue For
-
-        ''    newRow = dtLogs.NewRow
-        ''    newRow("ID") = count + 1
-        ''    newRow("EMPLOYEE_CODE") = rows("EMPLOYEE_CODE")
-
-        ''    empId = rep.CheckEmployee_Exits(rows("EMPLOYEE_CODE"))
-
-        ''    If empId = 0 Then
-        ''        newRow("DISCIPTION") = "Mã nhân viên - Không tồn tại,"
-        ''        _error = False
-        ''    Else
-        ''        rows("EMPLOYEE_CODE") = empId
-        ''    End If
-
-
-
-        ''    If _error = False Then
-        ''        dtLogs.Rows.Add(newRow)
-        ''        _error = True
-        ''    End If
-        ''Next
         dtTemp.AcceptChanges()
     End Sub
 
