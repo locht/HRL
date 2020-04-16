@@ -219,6 +219,7 @@ Public Class ctrlRC_ProgramInterviewResult
 
                     CurrentState = CommonMessage.STATE_EDIT
                     UpdateControlState()
+                    IsRight = 1
                 Case CommonMessage.TOOLBARITEM_SAVE
                     If Page.IsValid Then
                         obj = New PROGRAM_SCHEDULE_CAN_DTO
