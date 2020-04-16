@@ -1373,6 +1373,7 @@ Partial Class ProfileRepository
                      From d_ks In Context.HU_DISTRICT.Where(Function(F) F.ID = p.BIRTH_DISTRICT_ID).DefaultIfEmpty
                      From w_ks In Context.HU_WARD.Where(Function(F) F.ID = p.BIRTH_WARD_ID).DefaultIfEmpty
                      From g In Context.OT_OTHER_LIST.Where(Function(F) F.ID = p.GENDER).DefaultIfEmpty
+                     Where p.EMPLOYEE_ID = _filter.EMPLOYEE_ID
                    Select New DeductDTO With {
                     .ID = p.ID,
                     .ADDRESS = p.ADDRESS,

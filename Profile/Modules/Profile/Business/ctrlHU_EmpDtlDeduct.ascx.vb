@@ -336,6 +336,8 @@ Public Class ctrlHU_EmpDtlDeduct
     Private Sub rgDeduct_SelectedIndexChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles rgdeduct.SelectedIndexChanged
         Try
             If rgDeduct.SelectedItems.Count = 0 Then Exit Sub
+
+            ClearControlValue(txtFullName, cboRelationship, rdBirthDate, txtIDNO, txtAdress, rdDeductReg, rdDeductFrom, rdDeductTo, txtRemark, txtTax, cboProvince_City1, cboDistrict1, cboCommune1, txtHamlet1, rdDieDate, cboGender, rdIDDate, cboIDPlace, txtBIRTH_CODE, rdMSTDate, txtQuyen, cboNATIONALITYFAMILY, cbTempKtPROVINCE_ID, cbTempKtDISTRICT_ID, cbTempKtWARD_ID, txt_MSTPLACE)
             'Lưu vào viewStates để giữ những item được select phục vụ cho phương thức delete.
             Dim itemSelected = New List(Of Decimal)
             For Each dr As Telerik.Web.UI.GridDataItem In rgDeduct.SelectedItems
