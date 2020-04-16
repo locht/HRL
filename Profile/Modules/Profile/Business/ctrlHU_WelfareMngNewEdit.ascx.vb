@@ -817,11 +817,7 @@ Public Class ctrlHU_WelfareMngNewEdit
         Dim rep As New ProfileRepository
         Dim re As New ProfileBusinessRepository
         Try
-            'ListComboData = New ComboBoxDataDTO
-            'ListComboData.GET_WELFARE = True
-            'rep.GetComboList(ListComboData)
-            'Dim dtData = rep.GetOtherList("WELFARE", True)
-            'FillRadCombobox(cboWELFARE_ID, ListComboData.LIST_WELFARE, "NAME", "ID")
+
             Dim dtData = rep.GetOtherList("WELFARE", False)
             FillRadCombobox(cboWELFARE_ID, dtData, "NAME", "ID", True)
 
