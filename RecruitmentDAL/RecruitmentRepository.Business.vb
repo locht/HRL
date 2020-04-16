@@ -4832,10 +4832,9 @@ Partial Class RecruitmentRepository
                         From cv In Context.RC_CANDIDATE_CV.Where(Function(f) f.CANDIDATE_ID = p.ID).DefaultIfEmpty
                         From ed In Context.RC_CANDIDATE_EDUCATION.Where(Function(f) f.CANDIDATE_ID = p.ID).DefaultIfEmpty
                         From hea In Context.RC_CANDIDATE_HEALTH.Where(Function(f) f.CANDIDATE_ID = p.ID).DefaultIfEmpty
-                        From gender In Context.OT_OTHER_LIST.Where(Function(f) f.ID = cv.GENDER).DefaultIfEmpty
                         From marital In Context.OT_OTHER_LIST.Where(Function(f) f.ID = cv.MARITAL_STATUS).DefaultIfEmpty
                         From country In Context.HU_NATION.Where(Function(f) f.ID = cv.PER_NATION).DefaultIfEmpty
-                        From provin In Context.HU_PROVINCE.Where(Function(f) f.ID = cv.BIRTH_PROVINCE).DefaultIfEmpty
+                        From provin In Context.HU_PROVINCE.Where(Function(f) f.ID = cv.NAV_PROVINCE).DefaultIfEmpty
                         From acede In Context.OT_OTHER_LIST.Where(Function(f) f.ID = ed.ACADEMY).DefaultIfEmpty
                         From lear In Context.OT_OTHER_LIST.Where(Function(f) f.ID = ed.LEARNING_LEVEL).DefaultIfEmpty
                         From major In Context.OT_OTHER_LIST.Where(Function(f) f.ID = ed.MAJOR).DefaultIfEmpty
@@ -4854,7 +4853,6 @@ Partial Class RecruitmentRepository
                             .CANDIDATE_CODE = p.CANDIDATE_CODE,
                             .FULL_NAME_VN = p.FULLNAME_VN,
                             .GENDER = cv.GENDER,
-                            .GENDER_NAME = gender.NAME_VN,
                             .MARITAL_STATUS = cv.MARITAL_STATUS,
                             .MARITAL_STATUS_NAME = marital.NAME_VN,
                             .PER_COUNTRY = cv.PER_NATION,
