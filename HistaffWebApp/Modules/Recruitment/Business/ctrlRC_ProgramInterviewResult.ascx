@@ -35,8 +35,9 @@
                         <tlk:GridBoundColumn HeaderText="<%$ Translate: Trạng thái %>" DataField="Status"
                             UniqueName="Status" SortExpression="Status" ReadOnly="true" HeaderStyle-Width="60px" />
                     </Columns>
-                </MasterTableView><ClientSettings>
+                </MasterTableView><ClientSettings EnablePostBackOnRowClick="true">
                     <Selecting AllowRowSelect="True" />
+                    <ClientEvents OnCellSelected="true" />
                 </ClientSettings>
                 <HeaderStyle HorizontalAlign="Center" Width="150px" />
             </tlk:RadGrid></fieldset>
@@ -99,7 +100,7 @@
                     <Selecting AllowRowSelect="true" />
                     <Scrolling AllowScroll="true" UseStaticHeaders="true" FrozenColumnsCount="3" />
                 </ClientSettings>--%>
-                <MasterTableView DataKeyNames="ID" SkinID="GridSingleSelect" ClientDataKeyNames="ID,EXAM_NAME,ISPASS,IS_PASS,COMMENT_INFO,ASSESSMENT_INFO,PV_PERSON">
+                <MasterTableView DataKeyNames="ID" SkinID="GridSingleSelect" ClientDataKeyNames="ID,EXAM_NAME,ISPASS,IS_PASS,COMMENT_INFO,ASSESSMENT_INFO,PV_PERSON,EXAMS_ORDER">
                     <Columns>
                         <tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderStyle-HorizontalAlign="Center"
                             HeaderStyle-Width="30px" ItemStyle-HorizontalAlign="Center">

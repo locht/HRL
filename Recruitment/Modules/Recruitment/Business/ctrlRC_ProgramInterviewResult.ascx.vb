@@ -22,6 +22,14 @@ Public Class ctrlRC_ProgramInterviewResult
             ViewState(Me.ID & "_IsLoad") = value
         End Set
     End Property
+    Property IsRight As Decimal
+        Get
+            Return ViewState(Me.ID & "_IsRight")
+        End Get
+        Set(ByVal value As Decimal)
+            ViewState(Me.ID & "_IsRight") = value
+        End Set
+    End Property
 
     Public Property tabSource As DataTable
         Get
@@ -151,9 +159,11 @@ Public Class ctrlRC_ProgramInterviewResult
     Public Overrides Sub Refresh(Optional ByVal Message As String = "")
         Dim rep As New RecruitmentRepository
         Try
-            hdProgramID.Value = Request.Params("PROGRAM_ID")
-            If Not IsPostBack Then
+            If IsRight = 0 Then
+                hdProgramID.Value = Request.Params("PROGRAM_ID")
                 CurrentState = CommonMessage.STATE_NORMAL
+            End If
+            If Not IsPostBack Then
             Else
                 Select Case Message
                     Case "UpdateView"
@@ -198,6 +208,15 @@ Public Class ctrlRC_ProgramInterviewResult
                         ShowMessage(Translate(CommonMessage.MESSAGE_NOT_SELECT_MULTI_ROW), NotifyType.Warning)
                         Exit Sub
                     End If
+                    For Each item As GridDataItem In rgDataInterview.SelectedItems
+                        lblExamName_Interview.Text = item.GetDataKeyValue("EXAM_NAME").ToString
+                        lblProctor.Text = item.GetDataKeyValue("PV_PERSON").ToString
+                        If item.GetDataKeyValue("IS_PASS").ToString <> "" Then
+                            cbbStatus.SelectedValue = item.GetDataKeyValue("IS_PASS")
+                        End If
+                        txtComment.Text = item.GetDataKeyValue("COMMENT_INFO").ToString
+                    Next
+
                     CurrentState = CommonMessage.STATE_EDIT
                     UpdateControlState()
                 Case CommonMessage.TOOLBARITEM_SAVE
@@ -227,14 +246,28 @@ Public Class ctrlRC_ProgramInterviewResult
                         'End If
 
                         'Ràng buộc khi thay đổi status chỗ này ?
-                        If obj.IS_PASS = 0 Then
-                            store.UPDATE_CANDIDATE_STATUS(Int32.Parse(dataItem("ID").Text), "KDAT")
-                        ElseIf obj.IS_PASS = 1 Then
-                            store.UPDATE_CANDIDATE_STATUS(Int32.Parse(dataItem("ID").Text), "DAT")
-                        ElseIf obj.IS_PASS = -1 Then
-                            store.UPDATE_CANDIDATE_STATUS(Int32.Parse(dataItem("ID").Text), "PROCESS")
+                        Dim giatri As New Decimal
+                        Dim max As Decimal = 0
+                        For Each item As GridDataItem In rgDataInterview.SelectedItems
+                            giatri = Decimal.Parse(item.GetDataKeyValue("EXAMS_ORDER"))
+                        Next
+                        For Each item As GridDataItem In rgDataInterview.Items
+                            If giatri >= Decimal.Parse(item.GetDataKeyValue("EXAMS_ORDER")) Then
+                                max = 1
+                            Else
+                                max = 0
+                                Exit For
+                            End If
+                        Next
+                        If max = 1 Then
+                            If obj.IS_PASS = 0 Then
+                                store.UPDATE_CANDIDATE_STATUS(Int32.Parse(dataItem("ID").Text), "KDAT")
+                            ElseIf obj.IS_PASS = 1 Then
+                                store.UPDATE_CANDIDATE_STATUS(Int32.Parse(dataItem("ID").Text), "DAT")
+                            ElseIf obj.IS_PASS = -1 Then
+                                store.UPDATE_CANDIDATE_STATUS(Int32.Parse(dataItem("ID").Text), "PROCESS")
+                            End If
                         End If
-
                         If IsSaveCompleted Then
                             ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), NotifyType.Success)
                             CurrentState = CommonMessage.STATE_NORMAL
@@ -286,6 +319,7 @@ Public Class ctrlRC_ProgramInterviewResult
     Protected Sub gridCadidate_SelectedIndexChanged(ByVal sender As Object, ByVal e As EventArgs) Handles gridCadidate.SelectedIndexChanged
         Dim dataItem = TryCast(gridCadidate.SelectedItems(0), GridDataItem)
         If dataItem IsNot Nothing Then
+            IsRight = 1
             CreateDataFilter()
             rgDataInterview.Rebind()
             ResetText()
@@ -408,24 +442,25 @@ Public Class ctrlRC_ProgramInterviewResult
             If gridCadidate.Items.Count > 0 Then
                 If hdProgramID.Value IsNot Nothing Then
 
-                        ' set default first row selected
+                    ' set default first row selected
+                    If IsRight = 0 Then
                         gridCadidate.MasterTableView.Items(0).Selected = True
-
-                        Dim dataItem = TryCast(gridCadidate.SelectedItems(0), GridDataItem)
-
-                        If dataItem IsNot Nothing Then
-                            tabSource = store.EXAMS_GETBYCANDIDATE(hdProgramID.Value, Int32.Parse(dataItem("ID").Text), -1)
-                            If tabSource IsNot Nothing And tabSource.Rows.Count > 0 Then
-                                rgDataInterview.VirtualItemCount = tabSource.Rows.Count
-                                rgDataInterview.DataSource = tabSource
-                            Else
-                                rgDataInterview.DataSource = New List(Of PROGRAM_SCHEDULE_CAN_DTO)
-                            End If
-                        End If
-                    Else
-                        rgDataInterview.DataSource = New List(Of PROGRAM_SCHEDULE_CAN_DTO)
                     End If
+                    Dim dataItem = TryCast(gridCadidate.SelectedItems(0), GridDataItem)
+
+                    If dataItem IsNot Nothing Then
+                        tabSource = store.EXAMS_GETBYCANDIDATE(hdProgramID.Value, Int32.Parse(dataItem("ID").Text), -1)
+                        If tabSource IsNot Nothing And tabSource.Rows.Count > 0 Then
+                            rgDataInterview.VirtualItemCount = tabSource.Rows.Count
+                            rgDataInterview.DataSource = tabSource
+                        Else
+                            rgDataInterview.DataSource = New List(Of PROGRAM_SCHEDULE_CAN_DTO)
+                        End If
+                    End If
+                Else
+                    rgDataInterview.DataSource = New List(Of PROGRAM_SCHEDULE_CAN_DTO)
                 End If
+            End If
         Catch ex As Exception
             DisplayException(Me.ViewName, Me.ID, ex)
         End Try
