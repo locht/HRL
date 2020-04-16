@@ -7,6 +7,7 @@ Imports System.IO
 Imports HistaffWebAppResources.My.Resources
 Imports WebAppLog
 Imports Aspose.Cells
+Imports System.Globalization
 
 Public Class ctrlHU_WageMng
     Inherits Common.CommonView
@@ -172,7 +173,7 @@ Public Class ctrlHU_WageMng
                                                                   "Mở phê duyệt"))
             CType(Me.Page, AjaxPage).AjaxManager.ClientEvents.OnRequestStart = "onRequestStart"
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
-          
+
         Catch ex As Exception
             _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
             Throw ex
@@ -361,7 +362,7 @@ Public Class ctrlHU_WageMng
                             Exit Sub
                         End If
                     Next
-                  
+
                     Dim workingIds = New List(Of Decimal)
                     For Each selectedItem As GridDataItem In rgWorking.SelectedItems
                         workingIds.Add(selectedItem.GetDataKeyValue("ID"))
@@ -524,24 +525,34 @@ Public Class ctrlHU_WageMng
                 newRow("EMPLOYEE_CODE") = rows("EMPLOYEE_CODE")
                 newRow("FULLNAME_VN") = rows("FULLNAME_VN")
                 newRow("EFFECT_DATE") = rows("EFFECT_DATE")
+                newRow("DECISION_NO") = rows("DECISION_NO")
                 newRow("SAL_TYPE_NAME") = rows("SAL_TYPE_NAME")
                 newRow("TAX_NAME") = rows("TAX_NAME")
                 newRow("SAL_GROUP_NAME") = rows("SAL_GROUP_NAME")
                 newRow("SAL_LEVEL_NAME") = rows("SAL_LEVEL_NAME")
                 newRow("SAL_RANK_NAME") = rows("SAL_RANK_NAME")
-                newRow("FACTORSALARY") = If(IsNumeric(rows("FACTORSALARY")), repFactor, 0)
+                newRow("SAL_BASIC_MIN") = If(IsNumeric(rows("SAL_BASIC_MIN")), Decimal.Parse(rows("SAL_BASIC_MIN")), 0)
+                newRow("SAL_BASIC_MAX") = If(IsNumeric(rows("SAL_BASIC_MAX")), Decimal.Parse(rows("SAL_BASIC_MAX")), 0)
+                'newRow("FACTORSALARY") = If(IsNumeric(rows("FACTORSALARY")), repFactor, 0)
                 newRow("SAL_BASIC") = If(IsNumeric(rows("SAL_BASIC")), Decimal.Parse(rows("SAL_BASIC")), 0)
                 newRow("PERCENTSALARY") = If(IsNumeric(rows("PERCENTSALARY")), Decimal.Parse(rows("PERCENTSALARY")), 0)
-                newRow("OTHERSALARY1") = If(IsNumeric(rows("OTHERSALARY1")), Decimal.Parse(rows("OTHERSALARY1")), 0)
-                newRow("OTHERSALARY2") = If(IsNumeric(rows("OTHERSALARY2")), Decimal.Parse(rows("OTHERSALARY2")), 0)
-                newRow("COST_SUPPORT") = If(IsNumeric(rows("COST_SUPPORT")), Decimal.Parse(rows("COST_SUPPORT")), 0)
-                newRow("STATUS_NAME") = rows("STATUS_NAME")
+                newRow("EXRATE_NAME") = rows("EXRATE_NAME")
+                newRow("SAL_RATE") = If(IsNumeric(rows("SAL_RATE")), Decimal.Parse(rows("SAL_RATE")), 0)
+                newRow("AMOUNT") = If(IsNumeric(rows("AMOUNT")), Decimal.Parse(rows("AMOUNT")), 0)
+                newRow("AMOUNT_EX") = If(IsNumeric(rows("AMOUNT_EX")), Decimal.Parse(rows("AMOUNT_EX")), 0)
+                newRow("ALLOWANCE_TOTAL") = If(IsNumeric(rows("ALLOWANCE_TOTAL")), Decimal.Parse(rows("ALLOWANCE_TOTAL")), 0)
+                newRow("SAL_INS") = If(IsNumeric(rows("SAL_INS")), Decimal.Parse(rows("SAL_INS")), 0)
+                'newRow("OTHERSALARY1") = If(IsNumeric(rows("OTHERSALARY1")), Decimal.Parse(rows("OTHERSALARY1")), 0)
+                'newRow("OTHERSALARY2") = If(IsNumeric(rows("OTHERSALARY2")), Decimal.Parse(rows("OTHERSALARY2")), 0)
+                'newRow("COST_SUPPORT") = If(IsNumeric(rows("COST_SUPPORT")), Decimal.Parse(rows("COST_SUPPORT")), 0)
+                'newRow("STATUS_NAME") = rows("STATUS_NAME")
                 newRow("SAL_TYPE_ID") = If(IsNumeric(rows("SAL_TYPE_ID")), rows("SAL_TYPE_ID"), 0)
                 newRow("TAX_ID") = If(IsNumeric(rows("TAX_ID")), rows("TAX_ID"), 0)
                 newRow("SAL_GROUP_ID") = If(IsNumeric(rows("SAL_GROUP_ID")), rows("SAL_GROUP_ID"), 0)
                 newRow("SAL_LEVEL_ID") = If(IsNumeric(rows("SAL_LEVEL_ID")), rows("SAL_LEVEL_ID"), 0)
                 newRow("SAL_RANK_ID") = If(IsNumeric(rows("SAL_RANK_ID")), rows("SAL_RANK_ID"), 0)
-                newRow("STATUS_ID") = If(IsNumeric(rows("STATUS_ID")), rows("STATUS_ID"), 0)
+                newRow("EXRATE_ID") = If(IsNumeric(rows("EXRATE_ID")), rows("EXRATE_ID"), 0)
+                'newRow("STATUS_ID") = If(IsNumeric(rows("STATUS_ID")), rows("STATUS_ID"), 0)
                 dtData.Rows.Add(newRow)
             Next
             dtData.TableName = "DATA"
@@ -592,7 +603,7 @@ Public Class ctrlHU_WageMng
                 ShowMessage(Translate("Template không tồn tại"), Utilities.NotifyType.Error)
                 Exit Sub
             End If
-            
+
 
         Catch ex As Exception
             Throw ex
@@ -665,13 +676,25 @@ Public Class ctrlHU_WageMng
             Dim _filter As New WorkingDTO
             Dim rep As New ProfileBusinessRepository
             Dim IBusiness As IProfileBusiness = New ProfileBusinessClient()
+            Dim empId As Integer
             For Each row As DataRow In dtData.Rows
                 rowError = dtError.NewRow
                 isError = False
                 sError = "Chưa nhập mã nhân viên"
                 ImportValidate.EmptyValue("EMPLOYEE_CODE", row, rowError, isError, sError)
+
+                empId = rep.CheckEmployee_Exits(row("EMPLOYEE_CODE"))
+
+                If empId = 0 Then
+                    sError = "Mã nhân viên - Không tồn tại"
+                    ImportValidate.IsValidTime("EMPLOYEE_CODE", row, rowError, isError, sError)
+                End If
+
                 If row("EFFECT_DATE") Is DBNull.Value OrElse row("EFFECT_DATE") = "" Then
                     sError = "Chưa nhập ngày hiệu lực"
+                    ImportValidate.IsValidTime("EFFECT_DATE", row, rowError, isError, sError)
+                ElseIf CheckDate(row("EFFECT_DATE")) = False Then
+                    sError = "Ngày hiệu lực - không đúng định dạng"
                     ImportValidate.IsValidTime("EFFECT_DATE", row, rowError, isError, sError)
                 Else
                     Try
@@ -684,18 +707,25 @@ Public Class ctrlHU_WageMng
                     End Try
                 End If
 VALIDATE:
-                If row("FACTORSALARY") Is DBNull.Value OrElse row("FACTORSALARY") = "" Then
-                    sError = "Chưa nhập hệ số/mức tiền"
-                    ImportValidate.IsValidTime("FACTORSALARY", row, rowError, isError, sError)
+                'If row("FACTORSALARY") Is DBNull.Value OrElse row("FACTORSALARY") = "" Then
+                '    sError = "Chưa nhập hệ số/mức tiền"
+                '    ImportValidate.IsValidTime("FACTORSALARY", row, rowError, isError, sError)
+                'End If
+                If row("DECISION_NO") Is DBNull.Value OrElse row("DECISION_NO") = "" Then
+                    sError = "Chưa nhập Số quyết định"
+                    ImportValidate.IsValidTime("DECISION_NO", row, rowError, isError, sError)
                 End If
                 If row("PERCENTSALARY") Is DBNull.Value OrElse row("PERCENTSALARY") = "" Then
                     sError = "Chưa nhập % hưởng lương"
                     ImportValidate.IsValidTime("PERCENTSALARY", row, rowError, isError, sError)
+                ElseIf IsNumeric(row("PERCENTSALARY")) Then
+                    sError = "Chỉ được nhập số"
+                    ImportValidate.IsValidTime("PERCENTSALARY", row, rowError, isError, sError)
                 End If
-                If row("STATUS_ID") Is DBNull.Value OrElse row("STATUS_NAME") = "" Then
-                    sError = "Chưa chọn trạng thái"
-                    ImportValidate.IsValidTime("STATUS_ID", row, rowError, isError, sError)
-                End If
+                'If row("STATUS_ID") Is DBNull.Value OrElse row("STATUS_NAME") = "" Then
+                '    sError = "Chưa chọn trạng thái"
+                '    ImportValidate.IsValidTime("STATUS_ID", row, rowError, isError, sError)
+                'End If
                 If row("SAL_TYPE_ID") Is DBNull.Value OrElse row("SAL_TYPE_ID") = "" Then
                     sError = "Chưa nhập nhóm lương"
                     ImportValidate.IsValidTime("SAL_TYPE_ID", row, rowError, isError, sError)
@@ -703,6 +733,43 @@ VALIDATE:
                 If row("TAX_ID") Is DBNull.Value OrElse row("TAX_ID") = "" Then
                     sError = "Chưa nhập biểu thuế"
                     ImportValidate.IsValidTime("TAX_ID", row, rowError, isError, sError)
+                End If
+                If row("SAL_GROUP_ID") Is DBNull.Value OrElse row("SAL_GROUP_ID") = "" Then
+                    sError = "Chưa chọn thang lương"
+                    ImportValidate.IsValidTime("SAL_GROUP_ID", row, rowError, isError, sError)
+                End If
+                If row("SAL_LEVEL_ID") Is DBNull.Value OrElse row("SAL_LEVEL_ID") = "" Then
+                    sError = "Chưa nhập ngạch lương"
+                    ImportValidate.IsValidTime("SAL_LEVEL_ID", row, rowError, isError, sError)
+                End If
+                If row("SAL_RANK_ID") Is DBNull.Value OrElse row("SAL_RANK_ID") = "" Then
+                    sError = "Chưa nhập bậc lương"
+                    ImportValidate.IsValidTime("SAL_RANK_ID", row, rowError, isError, sError)
+                End If
+                If row("SAL_BASIC") Is DBNull.Value OrElse row("SAL_BASIC") = "" Then
+                    sError = "Chưa nhập Lương cơ bản"
+                    ImportValidate.IsValidTime("SAL_BASIC", row, rowError, isError, sError)
+                ElseIf IsNumeric(row("SAL_BASIC")) Then
+                    sError = "Chỉ được nhập số"
+                    ImportValidate.IsValidTime("SAL_BASIC", row, rowError, isError, sError)
+                End If
+                If row("EXRATE_ID") Is DBNull.Value OrElse row("EXRATE_ID") = "" Then
+                    sError = "Chưa chọn loại tiền tệ"
+                    ImportValidate.IsValidTime("EXRATE_ID", row, rowError, isError, sError)
+                End If
+                If row("SAL_RATE") Is DBNull.Value OrElse row("SAL_RATE") = "" Then
+                    sError = "Chưa nhập tỷ giá bảo hiểm"
+                    ImportValidate.IsValidTime("SAL_RATE", row, rowError, isError, sError)
+                ElseIf IsNumeric(row("SAL_RATE")) Then
+                    sError = "Chỉ được nhập số"
+                    ImportValidate.IsValidTime("SAL_RATE", row, rowError, isError, sError)
+                End If
+                If row("SAL_INS") Is DBNull.Value OrElse row("SAL_INS") = "" Then
+                    sError = "Chưa nhập mức lương chính"
+                    ImportValidate.IsValidTime("SAL_INS", row, rowError, isError, sError)
+                ElseIf IsNumeric(row("SAL_INS")) Then
+                    sError = "Chỉ được nhập số"
+                    ImportValidate.IsValidTime("SAL_INS", row, rowError, isError, sError)
                 End If
                 If Not row("PERCENTSALARY") Is DBNull.Value OrElse Not row("PERCENTSALARY") = "" Then
                     If row("SAL_TYPE_NAME").ToString = "Thử việc" Then
@@ -781,6 +848,22 @@ VALIDATE:
         dtdata.Rows(0).Delete()
         dtdata.AcceptChanges()
     End Sub
+    Private Function CheckDate(ByVal value As String) As Boolean
+        Dim dateCheck As Boolean
+        Dim result As Date
+
+        If value = "" Or value = "&nbsp;" Then
+            value = ""
+            Return True
+        End If
+
+        Try
+            dateCheck = DateTime.TryParseExact(value, "dd/MM/yyyy", New CultureInfo("en-US"), DateTimeStyles.None, result)
+            Return dateCheck
+        Catch ex As Exception
+            Return False
+        End Try
+    End Function
     ''' <summary>
     ''' Thiet lap lai trang thai control
     ''' process event xoa du lieu
