@@ -35,14 +35,6 @@
                     <asp:RequiredFieldValidator ID="RequiredFieldValidator3" ControlToValidate="txtTitlename"
                         runat="server" ErrorMessage="<%$ Translate: Bạn phải nhập chức danh %>" ToolTip="<%$ Translate: Bạn phải nhập chức danh %>"> </asp:RequiredFieldValidator>
                 </td>
-                <%--<td style="text-align: left" class="lb">
-                    <%# Translate("Số điện thoại")%>
-                </td>
-                <td>
-                    <tlk:RadTextBox runat="server" ID="txtPhone">
-                    </tlk:RadTextBox>
-                </td>
-                --%>
             </tr>
             <tr>
                 <td style="text-align: left" class="lb">
@@ -114,6 +106,14 @@
                 </td>
             </tr>
             <tr>
+                <td style="text-align: left" class="lb">
+                    <%# Translate("Số điện thoại người tham khảo")%>
+                </td>
+                <td>
+                    <tlk:RadTextBox runat="server" ID="txtPhone">
+                    </tlk:RadTextBox>
+                </td>
+                
                 <td class="lb" style="text-align: left">
                     <%# Translate("Mức lương")%>
                 </td>
@@ -151,10 +151,6 @@
                         UniqueName="ORG_NAME" Visible="True">
                         <HeaderStyle Width="200px" HorizontalAlign="Center" />
                     </tlk:GridBoundColumn>
-                    <%--<tlk:GridBoundColumn DataField="ORG_PHONE" HeaderText="<%$ Translate : Điện thoại công ty %>"
-                        UniqueName="ORG_PHONE" Visible="True">
-                        <HeaderStyle Width="200px" HorizontalAlign="Center" />
-                    </tlk:GridBoundColumn>--%>
                     <tlk:GridBoundColumn DataField="ORG_ADDRESS" HeaderText="<%$ Translate : Địa chỉ công ty %>"
                         UniqueName="ORG_ADDRESS" Visible="false">
                         <HeaderStyle Width="200px" HorizontalAlign="Center" />
@@ -185,6 +181,10 @@
                     </tlk:GridBoundColumn>
                     <tlk:GridBoundColumn DataField="REMARK" HeaderText="<%$ Translate : Ghi chú %>" UniqueName="REMARK"
                         Visible="True">
+                        <HeaderStyle Width="200px" HorizontalAlign="Center" />
+                    </tlk:GridBoundColumn>
+                     <tlk:GridBoundColumn DataField="ORG_PHONE" HeaderText="<%$ Translate : Số điện thoại người tham khảo %>"
+                        UniqueName="ORG_PHONE" Visible="True">
                         <HeaderStyle Width="200px" HorizontalAlign="Center" />
                     </tlk:GridBoundColumn>
                     <tlk:GridBoundColumn DataField="SALARY" HeaderText="<%$ Translate : Mức lương %>"

@@ -239,6 +239,15 @@ Partial Public Class ctrlRC_CanDtlBeforeWT
     Protected WithEvents txtRemark As Global.Telerik.Web.UI.RadTextBox
 
     '''<summary>
+    '''txtPhone control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtPhone As Global.Telerik.Web.UI.RadTextBox
+
+    '''<summary>
     '''rnSalary control.
     '''</summary>
     '''<remarks>

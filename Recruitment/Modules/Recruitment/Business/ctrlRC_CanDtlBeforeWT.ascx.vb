@@ -246,7 +246,7 @@ Public Class ctrlRC_CanDtlBeforeWT
                 rdTodate.Clear()
             End If
             txtOrgname.Text = HttpUtility.HtmlDecode(item("ORG_NAME").Text)
-            'txtPhone.Text = HttpUtility.HtmlDecode(item("ORG_PHONE").Text)
+            txtPhone.Text = HttpUtility.HtmlDecode(item("ORG_PHONE").Text)
             txtOrgAddress.Text = HttpUtility.HtmlDecode(item("ORG_ADDRESS").Text)
             txtTitlename.Text = HttpUtility.HtmlDecode(item("TITLE_NAME").Text)
             txtWork.Text = HttpUtility.HtmlDecode(item("WORK").Text)
@@ -325,7 +325,7 @@ Public Class ctrlRC_CanDtlBeforeWT
             objCandidateBeforeWT.WORK = txtWork.Text             
             objCandidateBeforeWT.SALARY = rnSalary.Value
             objCandidateBeforeWT.REMARK = txtRemark.Text
-            objCandidateBeforeWT.ORG_PHONE = txtOrgname.Text
+            objCandidateBeforeWT.ORG_PHONE = txtPhone.Text
             objCandidateBeforeWT.ORG_ADDRESS = txtOrgAddress.Text
             objCandidateBeforeWT.DIRECT_MANAGER = txtDirectManager.Text
             objCandidateBeforeWT.REASON_LEAVE = txtReasonLeave.Text
