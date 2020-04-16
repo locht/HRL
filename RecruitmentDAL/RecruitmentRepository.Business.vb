@@ -2948,12 +2948,14 @@ Partial Class RecruitmentRepository
                               Where p.CANDIDATE_ID = canID And sche.RC_PROGRAM_ID = programId).Count
                 If isExam > 0 Then
                     sError = sError & "," & objDelete.CANDIDATE_CODE
+                ElseIf objDelete.STATUS_US = "CANDIDATE_PONTENTIAL" Then
+                    objDelete.STATUS_ID = "PONTENTIAL"
+                    objDelete.RC_PROGRAM_ID = Nothing
                 Else
+                    
                     '1. Xóa Candidate_CV.
-                    Dim lstEmpCVDelete = (From p In Context.RC_CANDIDATE_CV Where p.CANDIDATE_ID = canID).ToList
-                    For idx As Int16 = 0 To lstEmpCVDelete.Count - 1
-                        Context.RC_CANDIDATE_CV.DeleteObject(lstEmpCVDelete(idx))
-                    Next
+                    Dim objCV = (From p In Context.RC_CANDIDATE_CV Where p.CANDIDATE_ID = canID).FirstOrDefault
+                    Context.RC_CANDIDATE_CV.DeleteObject(objCV)
 
                     '2. Xóa RC_Candidate_OTHER_INFO
                     Dim lstEmpOtherInfoDelete = (From p In Context.RC_CANDIDATE_OTHER_INFO Where p.CANDIDATE_ID = canID).ToList
@@ -2972,14 +2974,15 @@ Partial Class RecruitmentRepository
                     For idx As Int16 = 0 To lstEmpHistoryDelete.Count - 1
                         Context.RC_CANDIDATE_HISTORY.DeleteObject(lstEmpHistoryDelete(idx))
                     Next
-                    Context.RC_CANDIDATE.DeleteObject(lstEmpDelete(i))
 
                     '5. Xóa RC_CANDIDATE_FAMILY
                     Dim lstEmpFamilyDelete = (From p In Context.RC_CANDIDATE_FAMILY Where p.CANDIDATE_ID = canID).ToList
                     For idx As Int16 = 0 To lstEmpHistoryDelete.Count - 1
                         Context.RC_CANDIDATE_FAMILY.DeleteObject(lstEmpFamilyDelete(idx))
                     Next
-                    Context.RC_CANDIDATE.DeleteObject(lstEmpDelete(i))
+
+                    Context.RC_CANDIDATE.DeleteObject(objDelete)
+                    
                 End If
             Next
             If sError = "" Then

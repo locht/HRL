@@ -169,7 +169,8 @@
         }
 
         function OnClientClose(oWnd, args) {
-            window.location.reload(true);
+            //window.location.reload(true);
+            $find("<%= rgData.ClientID %>").get_masterTableView().rebind();
         }
 
         function postBack(url) {

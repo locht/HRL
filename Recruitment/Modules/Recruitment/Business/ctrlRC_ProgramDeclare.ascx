@@ -10,7 +10,7 @@
                     <Tabs>
                         <tlk:RadTab Text="<%$ Translate: Thiết lập vòng phỏng vấn %>">
                         </tlk:RadTab>
-                        <tlk:RadTab Text="<%$ Translate: Lên lịch thi %>">
+                        <tlk:RadTab Text="<%$ Translate: Lên lịch phỏng vấn %>">
                         </tlk:RadTab>
                         <tlk:RadTab Text="<%$ Translate: Cập nhật kết quả %>">
                         </tlk:RadTab>

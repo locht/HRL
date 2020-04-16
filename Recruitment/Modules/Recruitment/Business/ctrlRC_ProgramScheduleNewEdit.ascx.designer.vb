@@ -167,6 +167,15 @@ Partial Public Class ctrlRC_ProgramScheduleNewEdit
     Protected WithEvents btnFindUsher As Global.Telerik.Web.UI.RadButton
 
     '''<summary>
+    '''chkFillter control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents chkFillter As Global.System.Web.UI.WebControls.CheckBox
+
+    '''<summary>
     '''txtExamsPlace control.
     '''</summary>
     '''<remarks>
@@ -183,15 +192,6 @@ Partial Public Class ctrlRC_ProgramScheduleNewEdit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtNote As Global.Telerik.Web.UI.RadTextBox
-
-    '''<summary>
-    '''chkFillter control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents chkFillter As Global.System.Web.UI.WebControls.CheckBox
 
     '''<summary>
     '''rlbExams control.

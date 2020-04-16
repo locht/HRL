@@ -1,6 +1,12 @@
 ﻿<%@ Control Language="vb" AutoEventWireup="false" CodeBehind="ctrlRC_ProgramScheduleNewEdit.ascx.vb"
     Inherits="Recruitment.ctrlRC_ProgramScheduleNewEdit" %>
 <%@ Import Namespace="Common" %>
+<style>
+    .ButtonView
+    {
+        margin-top:-3px;
+    }
+</style>
 <asp:HiddenField ID="hidID" runat="server" />
 <asp:HiddenField ID="hidOrg" runat="server" />
 <asp:HiddenField ID="hidProgramID" runat="server" />
@@ -9,7 +15,7 @@
     <tlk:RadPane ID="RadPane5" runat="server" Height="33px" Scrolling="None">
         <tlk:RadToolBar ID="tbarMain" runat="server" OnClientButtonClicking="clientButtonClicking" />
     </tlk:RadPane>
-    <tlk:RadPane ID="LeftPane" runat="server" Height="200px">
+    <tlk:RadPane ID="LeftPane" runat="server" Height="250px">
         <asp:ValidationSummary ID="valSum" runat="server" />
         <table>
             <tr>
@@ -76,6 +82,11 @@
                                     CausesValidation="false">
                                 </tlk:RadButton>
                             </td>
+                            <td>
+                            </td>
+                            <td>
+                                <asp:CheckBox ID="chkFillter" AutoPostBack="true" CausesValidation="false" runat="server" Text="<%$ Translate: Lọc ứng viên đã đạt ở phỏng vấn trước %>" Checked="true" />
+                            </td>
                         </tr>
                         <tr>
                             <td class="lb">
@@ -93,11 +104,6 @@
                             <td colspan="4">
                                 <tlk:RadTextBox ID="txtNote" runat="server" SkinID="Textbox1023" Width="100%">
                                 </tlk:RadTextBox>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <asp:CheckBox ID="chkFillter" AutoPostBack="true" CausesValidation="false" runat="server" Text="<%$ Translate: Lọc ứng viên đã đạt ở phỏng vấn trước %>" Checked="true" />
                             </td>
                         </tr>
                     </table>

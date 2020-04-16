@@ -415,8 +415,10 @@ Public Class ctrlRC_ProgramScheduleNewEdit
                         'End If
                     Case CommonMessage.TOOLBARITEM_CANCEL
                         ''POPUPTOLINK_CANCEL
-                        Dim PROGRAM_ID As String = Request.QueryString("PROGRAM_ID")
-                        ScriptManager.RegisterClientScriptBlock(Page, GetType(Page), "close", "window.close();", True)
+                        Refresh()
+                        CurrentState = CommonMessage.STATE_NORMAL
+                        'Dim PROGRAM_ID As String = Request.QueryString("PROGRAM_ID")
+                        'ScriptManager.RegisterClientScriptBlock(Page, GetType(Page), "close", "window.close();", True)
                         'Response.Write("<script>window.close();</script>")
                         'Response.Redirect("/Default.aspx?mid=Recruitment&fid=ctrlRC_ProgramSchedule&group=Business&PROGRAM_ID=" & PROGRAM_ID)
                         ' Response.Redirect("/Default.aspx?mid=Recruitment&fid=ctrlRC_ProgramSchedule&group=Business")
