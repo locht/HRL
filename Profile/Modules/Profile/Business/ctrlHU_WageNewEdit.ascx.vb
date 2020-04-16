@@ -1445,18 +1445,22 @@ Public Class ctrlHU_WageNewEdit
                     If workingdt.Count > 0 Then
                         'khi chọn ngày hiệu lực kiểm tra trùng trong list hồ sơ lương   
 
-                        Dim query_check_dup = From p In workingdt Where p.IS_WAGE = -1
+                        Dim query_check_dup = From p In workingdt Where p.IS_WAGE = -1 And p.EFFECT_DATE = rdEffectDate.SelectedDate
                         If query_check_dup.Count > 0 Then
                             ShowMessage(Translate("Ngày hiệu lực bị trùng"), NotifyType.Warning)
                             check_effect_date = True
+                        Else
+                            check_effect_date = False
                         End If
 
-                        Dim query = (From p In workingdt Where p.IS_WAGE = 0).FirstOrDefault
+                        Dim query = (From p In workingdt Where p.IS_WAGE = 0 And p.STATUS_ID = 447 Order By p.EFFECT_DATE Descending).FirstOrDefault
 
                         txtTitleName.Text = query.TITLE_NAME
                         hidTitle.Value = query.TITLE_ID
                         txtOrgName.Text = query.ORG_NAME
                         hidOrg.Value = query.ORG_ID
+                    Else
+                        check_effect_date = False
                     End If
                 End Using
             End Using

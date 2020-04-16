@@ -38,17 +38,17 @@ Public Class ctrlHU_WageMng
                 dt.Columns.Add("SAL_GROUP_NAME", GetType(String))
                 dt.Columns.Add("SAL_LEVEL_NAME", GetType(String))
                 dt.Columns.Add("SAL_RANK_NAME", GetType(String))
-                dt.Columns.Add("SAL_BASIC_MIN", GetType(String))
-                dt.Columns.Add("SAL_BASIC_MAX", GetType(String))
-                dt.Columns.Add("SAL_BASIC", GetType(String))
+                dt.Columns.Add("SAL_BASIC_MIN", GetType(Decimal))
+                dt.Columns.Add("SAL_BASIC_MAX", GetType(Decimal))
+                dt.Columns.Add("SAL_BASIC", GetType(Decimal))
                 'dt.Columns.Add("FACTORSALARY", GetType(String))
-                dt.Columns.Add("PERCENTSALARY", GetType(String))
+                dt.Columns.Add("PERCENTSALARY", GetType(Decimal))
                 dt.Columns.Add("EXRATE_NAME", GetType(String))
-                dt.Columns.Add("SAL_RATE", GetType(String))
+                dt.Columns.Add("SAL_RATE", GetType(Decimal))
                 dt.Columns.Add("AMOUNT", GetType(String))
                 dt.Columns.Add("AMOUNT_EX", GetType(String))
                 dt.Columns.Add("ALLOWANCE_TOTAL", GetType(String))
-                dt.Columns.Add("SAL_INS", GetType(String))
+                dt.Columns.Add("SAL_INS", GetType(Decimal))
                 'dt.Columns.Add("OTHERSALARY1", GetType(String))
                 'dt.Columns.Add("OTHERSALARY2", GetType(String))
                 'dt.Columns.Add("COST_SUPPORT", GetType(String))
@@ -56,13 +56,14 @@ Public Class ctrlHU_WageMng
                 'dt.Columns.Add("OTHERSALARY4", GetType(String))
                 'dt.Columns.Add("OTHERSALARY5", GetType(String))
                 'dt.Columns.Add("LTT_V1", GetType(String))
-                dt.Columns.Add("SAL_TYPE_ID", GetType(String))
-                dt.Columns.Add("TAX_ID", GetType(String))
-                dt.Columns.Add("SAL_GROUP_ID", GetType(String))
-                dt.Columns.Add("SAL_LEVEL_ID", GetType(String))
-                dt.Columns.Add("SAL_RANK_ID", GetType(String))
-                dt.Columns.Add("EXRATE_ID", GetType(String))
+                dt.Columns.Add("SAL_TYPE_ID", GetType(Decimal))
+                dt.Columns.Add("TAX_ID", GetType(Decimal))
+                dt.Columns.Add("SAL_GROUP_ID", GetType(Decimal))
+                dt.Columns.Add("SAL_LEVEL_ID", GetType(Decimal))
+                dt.Columns.Add("SAL_RANK_ID", GetType(Decimal))
+                dt.Columns.Add("EXRATE_ID", GetType(Decimal))
                 'dt.Columns.Add("STATUS_ID", GetType(String))
+                dt.Columns.Add("ALLOWANCE_LIST_ID", GetType(String))
                 ViewState(Me.ID & "_dtData") = dt
             End If
             Return ViewState(Me.ID & "_dtData")
@@ -503,7 +504,10 @@ Public Class ctrlHU_WageMng
         Dim dsDataPrepare As New DataSet
         Dim workbook As Aspose.Cells.Workbook
         Dim worksheet As Aspose.Cells.Worksheet
-
+        Dim dtDataALL As DataTable
+        Using rep As New ProfileRepository
+            dtDataALL = rep.GetHU_AllowanceList()          
+        End Using
         Try
             Dim tempPath As String = ConfigurationManager.AppSettings("ExcelFileFolder")
             Dim savepath = Context.Server.MapPath(tempPath)
@@ -520,7 +524,7 @@ Public Class ctrlHU_WageMng
             TableMapping(dsDataPrepare.Tables(0))
             For Each rows As DataRow In dsDataPrepare.Tables(0).Select("EMPLOYEE_CODE<>'""'").CopyToDataTable.Rows
                 If IsDBNull(rows("EMPLOYEE_CODE")) OrElse rows("EMPLOYEE_CODE") = "" Then Continue For
-                Dim repFactor As String = rows("FACTORSALARY").ToString.Trim.Replace(",", ".")
+                'Dim repFactor As String = rows("FACTORSALARY").ToString.Trim.Replace(",", ".")
                 Dim newRow As DataRow = dtData.NewRow
                 newRow("EMPLOYEE_CODE") = rows("EMPLOYEE_CODE")
                 newRow("FULLNAME_VN") = rows("FULLNAME_VN")
@@ -538,8 +542,13 @@ Public Class ctrlHU_WageMng
                 newRow("PERCENTSALARY") = If(IsNumeric(rows("PERCENTSALARY")), Decimal.Parse(rows("PERCENTSALARY")), 0)
                 newRow("EXRATE_NAME") = rows("EXRATE_NAME")
                 newRow("SAL_RATE") = If(IsNumeric(rows("SAL_RATE")), Decimal.Parse(rows("SAL_RATE")), 0)
-                newRow("AMOUNT") = If(IsNumeric(rows("AMOUNT")), Decimal.Parse(rows("AMOUNT")), 0)
-                newRow("AMOUNT_EX") = If(IsNumeric(rows("AMOUNT_EX")), Decimal.Parse(rows("AMOUNT_EX")), 0)
+
+                For Each item As DataRow In dtDataALL.Rows
+                    newRow("AMOUNT") += If(IsNumeric(rows("AMOUNT_" + item("ID").ToString)), Decimal.Parse(rows("AMOUNT_" + item("ID").ToString)), 0).ToString + (",")
+                    newRow("AMOUNT_EX") += If(IsNumeric(rows("AMOUNT_EX_" + item("ID").ToString)), Decimal.Parse(rows("AMOUNT_EX_" + item("ID").ToString)), 0).ToString + (",")
+                    newRow("ALLOWANCE_LIST_ID") += If(IsNumeric(item("ID").ToString), Decimal.Parse(item("ID").ToString), 0).ToString + (",")
+                Next
+
                 newRow("ALLOWANCE_TOTAL") = If(IsNumeric(rows("ALLOWANCE_TOTAL")), Decimal.Parse(rows("ALLOWANCE_TOTAL")), 0)
                 newRow("SAL_INS") = If(IsNumeric(rows("SAL_INS")), Decimal.Parse(rows("SAL_INS")), 0)
                 'newRow("OTHERSALARY1") = If(IsNumeric(rows("OTHERSALARY1")), Decimal.Parse(rows("OTHERSALARY1")), 0)
@@ -715,60 +724,48 @@ VALIDATE:
                     sError = "Chưa nhập Số quyết định"
                     ImportValidate.IsValidTime("DECISION_NO", row, rowError, isError, sError)
                 End If
-                If row("PERCENTSALARY") Is DBNull.Value OrElse row("PERCENTSALARY") = "" Then
-                    sError = "Chưa nhập % hưởng lương"
-                    ImportValidate.IsValidTime("PERCENTSALARY", row, rowError, isError, sError)
-                ElseIf IsNumeric(row("PERCENTSALARY")) Then
-                    sError = "Chỉ được nhập số"
+                If Not IsNumeric(row("PERCENTSALARY")) Then
+                    sError = "Chưa nhập % hưởng lương - Chỉ được nhập số"
                     ImportValidate.IsValidTime("PERCENTSALARY", row, rowError, isError, sError)
                 End If
                 'If row("STATUS_ID") Is DBNull.Value OrElse row("STATUS_NAME") = "" Then
                 '    sError = "Chưa chọn trạng thái"
                 '    ImportValidate.IsValidTime("STATUS_ID", row, rowError, isError, sError)
                 'End If
-                If row("SAL_TYPE_ID") Is DBNull.Value OrElse row("SAL_TYPE_ID") = "" Then
+                If Not IsNumeric(row("SAL_TYPE_ID")) Then
                     sError = "Chưa nhập nhóm lương"
                     ImportValidate.IsValidTime("SAL_TYPE_ID", row, rowError, isError, sError)
                 End If
-                If row("TAX_ID") Is DBNull.Value OrElse row("TAX_ID") = "" Then
+                If Not IsNumeric(row("TAX_ID")) Then
                     sError = "Chưa nhập biểu thuế"
                     ImportValidate.IsValidTime("TAX_ID", row, rowError, isError, sError)
                 End If
-                If row("SAL_GROUP_ID") Is DBNull.Value OrElse row("SAL_GROUP_ID") = "" Then
+                If Not IsNumeric(row("SAL_GROUP_ID")) Then
                     sError = "Chưa chọn thang lương"
                     ImportValidate.IsValidTime("SAL_GROUP_ID", row, rowError, isError, sError)
                 End If
-                If row("SAL_LEVEL_ID") Is DBNull.Value OrElse row("SAL_LEVEL_ID") = "" Then
+                If Not IsNumeric(row("SAL_LEVEL_ID")) Then
                     sError = "Chưa nhập ngạch lương"
                     ImportValidate.IsValidTime("SAL_LEVEL_ID", row, rowError, isError, sError)
                 End If
-                If row("SAL_RANK_ID") Is DBNull.Value OrElse row("SAL_RANK_ID") = "" Then
+                If Not IsNumeric(row("SAL_RANK_ID")) Then
                     sError = "Chưa nhập bậc lương"
                     ImportValidate.IsValidTime("SAL_RANK_ID", row, rowError, isError, sError)
                 End If
-                If row("SAL_BASIC") Is DBNull.Value OrElse row("SAL_BASIC") = "" Then
-                    sError = "Chưa nhập Lương cơ bản"
-                    ImportValidate.IsValidTime("SAL_BASIC", row, rowError, isError, sError)
-                ElseIf IsNumeric(row("SAL_BASIC")) Then
-                    sError = "Chỉ được nhập số"
+                If Not IsNumeric(row("SAL_BASIC")) Then
+                    sError = "Chưa nhập Lương cơ bản - Chỉ được nhập số"
                     ImportValidate.IsValidTime("SAL_BASIC", row, rowError, isError, sError)
                 End If
-                If row("EXRATE_ID") Is DBNull.Value OrElse row("EXRATE_ID") = "" Then
+                If Not IsNumeric(row("EXRATE_ID")) Then
                     sError = "Chưa chọn loại tiền tệ"
                     ImportValidate.IsValidTime("EXRATE_ID", row, rowError, isError, sError)
                 End If
-                If row("SAL_RATE") Is DBNull.Value OrElse row("SAL_RATE") = "" Then
+                If Not IsNumeric(row("SAL_RATE")) Then
                     sError = "Chưa nhập tỷ giá bảo hiểm"
                     ImportValidate.IsValidTime("SAL_RATE", row, rowError, isError, sError)
-                ElseIf IsNumeric(row("SAL_RATE")) Then
-                    sError = "Chỉ được nhập số"
-                    ImportValidate.IsValidTime("SAL_RATE", row, rowError, isError, sError)
                 End If
-                If row("SAL_INS") Is DBNull.Value OrElse row("SAL_INS") = "" Then
-                    sError = "Chưa nhập mức lương chính"
-                    ImportValidate.IsValidTime("SAL_INS", row, rowError, isError, sError)
-                ElseIf IsNumeric(row("SAL_INS")) Then
-                    sError = "Chỉ được nhập số"
+                If Not IsNumeric(row("SAL_INS")) Then
+                    sError = "Chưa nhập Mức lương chính - Chỉ được nhập số"
                     ImportValidate.IsValidTime("SAL_INS", row, rowError, isError, sError)
                 End If
                 If Not row("PERCENTSALARY") Is DBNull.Value OrElse Not row("PERCENTSALARY") = "" Then
