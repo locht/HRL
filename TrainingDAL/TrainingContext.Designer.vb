@@ -18,7 +18,7 @@ Imports System.Runtime.Serialization
 Imports System.Xml.Serialization
 
 
-<Assembly: EdmSchemaAttribute("4645c2d6-d5dc-4be8-8cb1-290dd3a67f4b")>
+<Assembly: EdmSchemaAttribute("116bd2dc-ead3-45d7-a617-0b95a7beb61b")>
 #Region "EDM Relationship Metadata"
 <Assembly: EdmRelationshipAttribute("TrainingModel", "FK_HU_PRO_HU_DIS", "HU_PROVINCE", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(HU_PROVINCE), "HU_DISTRICT", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_DISTRICT), True)>
 <Assembly: EdmRelationshipAttribute("TrainingModel", "FK_HU_NAT_HU_PRO", "HU_NATION", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(HU_NATION), "HU_PROVINCE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_PROVINCE), True)>
@@ -15189,6 +15189,56 @@ Public Partial Class TR_LECTURE
     End Sub
 
     Private Partial Sub OnLECTURE_IDChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property IS_JOINED() As Nullable(Of Global.System.Int16)
+        Get
+            Return _IS_JOINED
+        End Get
+        Set
+            OnIS_JOINEDChanging(value)
+            ReportPropertyChanging("IS_JOINED")
+            _IS_JOINED = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("IS_JOINED")
+            OnIS_JOINEDChanged()
+        End Set
+    End Property
+
+    Private _IS_JOINED As Nullable(Of Global.System.Int16)
+    Private Partial Sub OnIS_JOINEDChanging(value As Nullable(Of Global.System.Int16))
+    End Sub
+
+    Private Partial Sub OnIS_JOINEDChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property FIELD_TRAIN_ID() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _FIELD_TRAIN_ID
+        End Get
+        Set
+            OnFIELD_TRAIN_IDChanging(value)
+            ReportPropertyChanging("FIELD_TRAIN_ID")
+            _FIELD_TRAIN_ID = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("FIELD_TRAIN_ID")
+            OnFIELD_TRAIN_IDChanged()
+        End Set
+    End Property
+
+    Private _FIELD_TRAIN_ID As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnFIELD_TRAIN_IDChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnFIELD_TRAIN_IDChanged()
     End Sub
 
     #End Region

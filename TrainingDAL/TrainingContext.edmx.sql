@@ -1,8 +1,8 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for Oracle database
 -- --------------------------------------------------
--- Date Created: 3/19/2020 10:46:31 AM
--- Generated from EDMX file: D:\HiStaffWebApp\acv_19\TrainingDAL\TrainingContext.edmx
+-- Date Created: 4/16/2020 11:12:55 PM
+-- Generated from EDMX file: D:\ACV\acv_19\TrainingDAL\TrainingContext.edmx
 -- --------------------------------------------------
 
 -- --------------------------------------------------
@@ -277,7 +277,9 @@ CREATE TABLE "dbo"."TR_LECTURE" (
    "MODIFIED_BY" NVARCHAR2(50) NULL,
    "MODIFIED_DATE" DATE NULL,
    "MODIFIED_LOG" NVARCHAR2(1023) NULL,
-   "LECTURE_ID" NUMBER(38,0) NULL
+   "LECTURE_ID" NUMBER(38,0) NULL,
+   "IS_JOINED" NUMBER(5,0) NULL,
+   "FIELD_TRAIN_ID" NUMBER(38,0) NULL
 );
 
 -- Creating table 'TR_PLAN_JOBGRADE'

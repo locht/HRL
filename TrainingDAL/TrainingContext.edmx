@@ -235,6 +235,8 @@
             <Property Name="MODIFIED_DATE" Type="date" Nullable="true" />
             <Property Name="MODIFIED_LOG" Type="nvarchar2" Nullable="true" MaxLength="1023" />
             <Property Name="LECTURE_ID" Type="number" Nullable="true" Precision="38" />
+            <Property Name="IS_JOINED" Type="number" Nullable="true" Precision="5" />
+            <Property Name="FIELD_TRAIN_ID" Type="number" Nullable="true" Precision="38" />
         </EntityType>
         <EntityType Name="TR_PLAN_JOBGRADE">
             <Key>
@@ -1562,6 +1564,8 @@
           <Property Type="DateTime" Name="MODIFIED_DATE" />
           <Property Type="String" Name="MODIFIED_LOG" MaxLength="1023" FixedLength="false" Unicode="true" />
           <Property Type="Decimal" Name="LECTURE_ID" Precision="38" Scale="0" />
+          <Property Type="Int16" Name="IS_JOINED" />
+          <Property Type="Decimal" Name="FIELD_TRAIN_ID" />
         </EntityType>
         <EntityType Name="TR_PLAN_JOBGRADE">
           <Key>
@@ -2797,6 +2801,8 @@
                     <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
                     <ScalarProperty Name="MODIFIED_LOG" ColumnName="MODIFIED_LOG" />
                     <ScalarProperty Name="LECTURE_ID" ColumnName="LECTURE_ID" />
+                    <ScalarProperty Name="IS_JOINED" ColumnName="IS_JOINED" />
+                    <ScalarProperty Name="FIELD_TRAIN_ID" ColumnName="FIELD_TRAIN_ID" />
                 </MappingFragment>
             </EntityTypeMapping>
         </EntitySetMapping>
@@ -3846,7 +3852,7 @@
         <EntityTypeShape EntityType="TrainingModel.TR_CERTIFICATE" Width="1.5" PointX="5.75" PointY="9.75" Height="3.9033007812499996" />
         <EntityTypeShape EntityType="TrainingModel.TR_CLASS" Width="1.5" PointX="10.75" PointY="6.75" Height="3.7109993489583317" />
         <EntityTypeShape EntityType="TrainingModel.TR_COURSE" Width="2.125" PointX="2.625" PointY="9.25" Height="4.2879036458333335" />
-        <EntityTypeShape EntityType="TrainingModel.TR_LECTURE" Width="1.5" PointX="10.75" PointY="11.75" Height="4.0956022135416674" />
+        <EntityTypeShape EntityType="TrainingModel.TR_LECTURE" Width="1.5" PointX="10.75" PointY="11.75" Height="4.4802050781250031" />
         <EntityTypeShape EntityType="TrainingModel.TR_PLAN_JOBGRADE" Width="1.5" PointX="12.75" PointY="6.75" Height="1.5956835937500031" />
         <EntityTypeShape EntityType="TrainingModel.TR_PLAN_TITLE" Width="1.5" PointX="7.75" PointY="12.75" Height="1.5956835937500031" />
         <EntityTypeShape EntityType="TrainingModel.TR_PLAN_UNIT" Width="1.5" PointX="12.75" PointY="9.75" Height="1.5956835937500031" />
