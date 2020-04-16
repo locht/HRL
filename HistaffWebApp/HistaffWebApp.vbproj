@@ -1028,6 +1028,7 @@
     <Content Include="ReportTemplates\Profile\RPT_HU_EMP_QUALITY.xlsx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+	<Content Include="ReportTemplates\Profile\RPT_HU_HEALTH_MNG.xls" />
     <Content Include="ReportTemplates\Profile\RPT_HU_TER_EMP.xlsx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -1471,7 +1472,6 @@
     </None>
     <Content Include="ReportTemplates\Payroll\IPAY_REPORT_07_OUT.xls" />
     <Content Include="ReportTemplates\Payroll\IPAY_REPORT_08.xlsx" />
-	<Content Include="ReportTemplates\Profile\RPT_HU_HEALTH_MNG.xls" />
     <Content Include="ReportTemplates\Profile\TMP_HU_TITLE.xls" />
     <None Include="ReportTemplates\Recruitment\Import\Candidate_Error.xlsx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
