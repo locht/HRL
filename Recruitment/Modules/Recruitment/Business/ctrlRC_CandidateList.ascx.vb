@@ -9,15 +9,16 @@ Imports System.IO
 Imports Aspose.Cells
 Imports Newtonsoft.Json
 Imports Newtonsoft.Json.Linq
+Imports Common.CommonBusiness
 
 Public Class ctrlRC_CandidateList
 
     Inherits Common.CommonView
 
     Protected WithEvents ctrlFindEmployeePopup As ctrlFindEmployeePopup
-
     Public Property AjaxManagerId As String
     Protected WithEvents ctrlFindProgramDialog As New ctrlFindProgramPopupDialog
+    Private Property psp As New RecruitmentRepository
 #Region "Properties"
     ' Không dùng nên khóa lại
     'Private Property CandidateList As List(Of CandidateDTO)
@@ -59,11 +60,11 @@ Public Class ctrlRC_CandidateList
         End Set
     End Property
 
-    Property ListComboData As ComboBoxDataDTO
+    Property ListComboData As Recruitment.RecruitmentBusiness.ComboBoxDataDTO
         Get
             Return ViewState(Me.ID & "_ListComboData")
         End Get
-        Set(ByVal value As ComboBoxDataDTO)
+        Set(ByVal value As Recruitment.RecruitmentBusiness.ComboBoxDataDTO)
             ViewState(Me.ID & "_ListComboData") = value
         End Set
     End Property
@@ -159,6 +160,16 @@ Public Class ctrlRC_CandidateList
         End Try
     End Sub
 
+    Protected Sub btnHSNVTransfer_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnHSNVTransfer.Click
+        Try
+            isLoadPopup = 1
+            UpdateControlState()
+            ctrlFindEmployeePopup.Show()
+        Catch ex As Exception
+            DisplayException(Me.ViewName, Me.ID, ex)
+        End Try
+
+    End Sub
 
     Public Overrides Sub UpdateControlState()
         Try
@@ -882,15 +893,24 @@ Public Class ctrlRC_CandidateList
 
     Private Sub ctrlFindEmployeePopup_EmployeeSelected(ByVal sender As Object, ByVal e As System.EventArgs) Handles ctrlFindEmployeePopup.EmployeeSelected
         Dim lstCommonEmployee As New List(Of CommonBusiness.EmployeePopupFindDTO)
+        Dim log As New UserLog
+        log = LogHelper.GetUserLog
         Try
             lstCommonEmployee = CType(ctrlFindEmployeePopup.SelectedEmployee, List(Of CommonBusiness.EmployeePopupFindDTO))
             If lstCommonEmployee.Count > 0 Then
-                Using rep As New RecruitmentRepository
-                    If rep.TransferHSNVToCandidate(lstCommonEmployee(0).EMPLOYEE_ID, hidOrg.Value, hidTitle.Value, hidProgramID.Value) Then
-                        ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), Utilities.NotifyType.Success)
-                        rgCandidateList.Rebind()
-                    End If
-                End Using
+                If psp.INSERT_EMPLOYEE_CADIDATE(lstCommonEmployee(0).EMPLOYEE_ID, hidOrg.Value, hidTitle.Value, hidProgramID.Value, log.Username, log.Ip + log.ComputerName) Then
+                    ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), Utilities.NotifyType.Success)
+                    rgCandidateList.Rebind()
+                Else
+                    ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), Utilities.NotifyType.Success)
+                End If
+
+                'Using rep As New RecruitmentRepository
+                '    If rep.TransferHSNVToCandidate(lstCommonEmployee(0).EMPLOYEE_ID, hidOrg.Value, hidTitle.Value, hidProgramID.Value) Then
+                '        ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), Utilities.NotifyType.Success)
+                '        rgCandidateList.Rebind()
+                '    End If
+                'End Using
 
             End If
             isLoadPopup = 0

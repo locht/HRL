@@ -105,6 +105,14 @@ Partial Class RecruitmentRepository
         Dim obj As Object = rep.ExecuteStoreScalar("PKG_RECRUITMENT_NEW.INSERT_CADIDATE_EMPLOYEE", New List(Of Object)(New Object() {P_CADIDATE_LST, P_USER, P_LOG, OUT_NUMBER}))
         Return Int32.Parse(obj(0).ToString())
     End Function
+
+    Public Function INSERT_EMPLOYEE_CADIDATE(ByVal empID As Decimal,
+                                            ByVal orgID As Decimal,
+                                            ByVal titleID As Decimal,
+                                            ByVal programID As Decimal, ByVal P_USER As String, ByVal P_LOG As String) As Int32
+        Dim obj As Object = rep.ExecuteStoreScalar("PKG_RECRUITMENT_NEW.INSERT_EMPLOYEE_CADIDATE", New List(Of Object)(New Object() {empID, orgID, titleID, programID, P_USER, P_LOG, OUT_NUMBER}))
+        Return Int32.Parse(obj(0).ToString())
+    End Function
 #End Region
 
 
