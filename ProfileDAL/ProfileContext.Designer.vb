@@ -18,7 +18,7 @@ Imports System.Runtime.Serialization
 Imports System.Xml.Serialization
 
 
-<Assembly: EdmSchemaAttribute("f76ff61c-8bad-4998-b42a-f454c85a3bfc")>
+<Assembly: EdmSchemaAttribute("16858a1e-4757-4bb2-bd85-5b2f31a44318")>
 #Region "EDM Relationship Metadata"
 <Assembly: EdmRelationshipAttribute("ProfileModel", "FK_HU_NAT_HU_PRO", "HU_NATION", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_NATION), "HU_PROVINCE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_PROVINCE), True)>
 <Assembly: EdmRelationshipAttribute("ProfileModel", "FK_HU_PRO_HU_DIS", "HU_PROVINCE", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_PROVINCE), "HU_DISTRICT", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_DISTRICT), True)>
@@ -25702,20 +25702,18 @@ Public Partial Class HU_EMPLOYEE_BACKGROUND
     ''' <summary>
     ''' No Metadata Documentation available.
     ''' </summary>
-    <EdmScalarPropertyAttribute(EntityKeyProperty:=true, IsNullable:=false)>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=false)>
     <DataMemberAttribute()>
     Public Property EMPLOYEE_ID() As Global.System.Decimal
         Get
             Return _EMPLOYEE_ID
         End Get
         Set
-            If (_EMPLOYEE_ID <> Value) Then
-                OnEMPLOYEE_IDChanging(value)
-                ReportPropertyChanging("EMPLOYEE_ID")
-                _EMPLOYEE_ID = StructuralObject.SetValidValue(value)
-                ReportPropertyChanged("EMPLOYEE_ID")
-                OnEMPLOYEE_IDChanged()
-            End If
+            OnEMPLOYEE_IDChanging(value)
+            ReportPropertyChanging("EMPLOYEE_ID")
+            _EMPLOYEE_ID = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("EMPLOYEE_ID")
+            OnEMPLOYEE_IDChanged()
         End Set
     End Property
 
@@ -26279,18 +26277,20 @@ Public Partial Class HU_EMPLOYEE_BACKGROUND
     ''' <summary>
     ''' No Metadata Documentation available.
     ''' </summary>
-    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=false)>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=true, IsNullable:=false)>
     <DataMemberAttribute()>
     Public Property ID() As Global.System.Decimal
         Get
             Return _ID
         End Get
         Set
-            OnIDChanging(value)
-            ReportPropertyChanging("ID")
-            _ID = StructuralObject.SetValidValue(value)
-            ReportPropertyChanged("ID")
-            OnIDChanged()
+            If (_ID <> Value) Then
+                OnIDChanging(value)
+                ReportPropertyChanging("ID")
+                _ID = StructuralObject.SetValidValue(value)
+                ReportPropertyChanged("ID")
+                OnIDChanged()
+            End If
         End Set
     End Property
 

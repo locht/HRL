@@ -4186,7 +4186,7 @@
         </EntityType>
         <EntityType Name="HU_EMPLOYEE_BACKGROUND">
             <Key>
-                <PropertyRef Name="EMPLOYEE_ID" />
+                <PropertyRef Name="ID" />
             </Key>
             <Property Name="EMPLOYEE_ID" Type="number" Nullable="false" Precision="38" />
             <Property Name="EFFECTIVE_DATE" Type="date" Nullable="true" />
@@ -9186,7 +9186,7 @@
         </EntityType>
         <EntityType Name="HU_EMPLOYEE_BACKGROUND">
           <Key>
-            <PropertyRef Name="EMPLOYEE_ID" />
+            <PropertyRef Name="ID" />
           </Key>
           <Property Type="Decimal" Name="EMPLOYEE_ID" Nullable="false" />
           <Property Type="DateTime" Name="EFFECTIVE_DATE" Nullable="true" />
@@ -13286,6 +13286,7 @@
         <EntitySetMapping Name="HU_EMPLOYEE_BACKGROUND">
             <EntityTypeMapping TypeName="IsTypeOf(ProfileModel.HU_EMPLOYEE_BACKGROUND)">
                 <MappingFragment StoreEntitySet="HU_EMPLOYEE_BACKGROUND">
+                    <ScalarProperty Name="ID" ColumnName="ID" />
                     <ScalarProperty Name="EMPLOYEE_ID" ColumnName="EMPLOYEE_ID" />
                     <ScalarProperty Name="EFFECTIVE_DATE" ColumnName="EFFECTIVE_DATE" />
                     <ScalarProperty Name="ID_NO" ColumnName="ID_NO" />
@@ -13309,7 +13310,6 @@
                     <ScalarProperty Name="CURRENTN_PROVINCE_ID" ColumnName="CURRENTN_PROVINCE_ID" />
                     <ScalarProperty Name="CURRENT_DISTRICT_ID" ColumnName="CURRENT_DISTRICT_ID" />
                     <ScalarProperty Name="CURRENT_WARD_ID" ColumnName="CURRENT_WARD_ID" />
-                    <ScalarProperty Name="ID" ColumnName="ID" />
                 </MappingFragment>
             </EntityTypeMapping>
         </EntitySetMapping>

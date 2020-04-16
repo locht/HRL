@@ -1,7 +1,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for Oracle database
 -- --------------------------------------------------
--- Date Created: 4/15/2020 12:04:54 PM
+-- Date Created: 4/16/2020 6:10:57 PM
 -- Generated from EDMX file: D:\ACV\acv_19\ProfileDAL\ProfileContext.edmx
 -- --------------------------------------------------
 
@@ -5428,10 +5428,10 @@ ADD CONSTRAINT "PK_HU_DEDUCT"
    VALIDATE;
 
 
--- Creating primary key on "EMPLOYEE_ID"in table 'HU_EMPLOYEE_BACKGROUND'
+-- Creating primary key on "ID"in table 'HU_EMPLOYEE_BACKGROUND'
 ALTER TABLE "dbo"."HU_EMPLOYEE_BACKGROUND"
 ADD CONSTRAINT "PK_HU_EMPLOYEE_BACKGROUND"
-   PRIMARY KEY ("EMPLOYEE_ID" )
+   PRIMARY KEY ("ID" )
    ENABLE
    VALIDATE;
 
