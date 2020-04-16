@@ -3579,9 +3579,9 @@ Partial Class ProfileRepository
 
     Public Function ModifyBackGround(ByVal objBackGround As EmployeeBackgroundDTO,
                                    ByVal log As UserLog, ByRef gID As Decimal) As Boolean
-        Dim objBackGroundData As New HU_EMPLOYEE_BACKGROUND With {.ID = objBackGround.ID}
+        ' Dim objBackGroundData As New HU_EMPLOYEE_BACKGROUND With {.ID = objBackGround.ID}
         Try
-            objBackGroundData = (From p In Context.HU_EMPLOYEE_BACKGROUND Where p.ID = objBackGround.ID).FirstOrDefault
+            Dim objBackGroundData = (From p In Context.HU_EMPLOYEE_BACKGROUND Where p.ID = objBackGround.ID).FirstOrDefault
             objBackGroundData.EMPLOYEE_ID = objBackGround.EMPLOYEE_ID
             objBackGroundData.EFFECTIVE_DATE = objBackGround.EFFECTIVE_DATE
 
@@ -3620,7 +3620,9 @@ Partial Class ProfileRepository
     Public Function DeleteBackGround(ByVal lstDecimals As List(Of Decimal), ByVal log As UserLog) As Boolean
         Dim lst As List(Of HU_EMPLOYEE_BACKGROUND)
         Try
-            lst = (From p In Context.HU_EMPLOYEE_BACKGROUND Where lstDecimals.Contains(p.ID)).ToList
+            lst = (From p In Context.HU_EMPLOYEE_BACKGROUND Where lstDecimals.Contains(p.ID)).ToList '' cai nay sai ne, xem lại di -- lstDecimals.Contains(p.ID) cai nay luon tra ve la true thi no xoa het bang luon, em tim theo id thoi, where true thì cha xoa het =))
+            '' ham contains tra ve true false
+            '' debug cho ma xem
             For i As Int16 = 0 To lst.Count - 1
                 Context.HU_EMPLOYEE_BACKGROUND.DeleteObject(lst(i))
             Next

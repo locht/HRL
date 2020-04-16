@@ -462,7 +462,9 @@ Public Class ctrlHU_EmpDtlBackGround
         Try
             Dim objBackGround As New EmployeeBackgroundDTO
             Dim rep As New ProfileBusinessRepository
-            objBackGround.ID = Decimal.Parse(hidBackGroundID.Value)
+
+            'objBackGround.ID = CDec(Val(hidBackGroundID.Value))
+            'Decimal.Parse(hidBackGroundID.Value)
             objBackGround.EMPLOYEE_ID = Decimal.Parse(hidEmployeeID.Value)
 
             objBackGround.EFFECTIVE_DATE = rdEffectiveDate.SelectedDate()
@@ -519,7 +521,7 @@ Public Class ctrlHU_EmpDtlBackGround
 
 
             Dim gID As Decimal
-            If hidBackGroundID.Value = "" Then
+            If Not IsNumeric(hidBackGroundID.Value) Then
                 rep.InsertBackGround(objBackGround, gID)
             Else
                 objBackGround.ID = Decimal.Parse(hidBackGroundID.Value)
