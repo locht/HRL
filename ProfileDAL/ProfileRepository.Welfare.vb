@@ -119,7 +119,7 @@ Partial Class ProfileRepository
                                        .TER_LAST_DATE = p.e.TER_EFFECT_DATE,
                                        .CREATED_DATE = p.p.CREATED_DATE,
                                        .AC_DATE = p.p.AC_DATE,
-                                      .JOB_NAME = p.ce.JOB_NAME,
+                                      .JOB_NAME = p.t.NAME_VN,
                                         .IS_TAXABLE = p.p.IS_TAXABLE,
                                        .IS_NOT_TAXABLE = p.p.IS_NOT_TAXABLE,
                                        .YEAR_NAME = p.p.YEAR_NAME,

@@ -1472,6 +1472,7 @@
     <Content Include="ReportTemplates\Payroll\IPAY_REPORT_07_OUT.xls" />
     <Content Include="ReportTemplates\Payroll\IPAY_REPORT_08.xlsx" />
     <Content Include="ReportTemplates\Profile\TMP_HU_TITLE.xls" />
+	<Content Include="ReportTemplates\Profile\TEMP_IMPORT_HOSOLUONG.xls" />
     <None Include="ReportTemplates\Recruitment\Import\Candidate_Error.xlsx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

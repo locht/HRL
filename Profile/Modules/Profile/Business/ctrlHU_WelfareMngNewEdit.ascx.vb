@@ -436,8 +436,10 @@ Public Class ctrlHU_WelfareMngNewEdit
             Dim objdata As WelfareMngDTO
             Dim objList As New List(Of WelfareMngDTO)
             Dim lstemp As New List(Of Welfatemng_empDTO)
+            Dim check As String
             Select Case CType(e.Item, RadToolBarButton).CommandName
                 Case CommonMessage.TOOLBARITEM_SAVE
+               
                     objdata = New WelfareMngDTO
                     objdata.WELFARE_ID = cboWELFARE_ID.SelectedValue
                     objdata.EFFECT_DATE = dpEFFECT_DATE.SelectedDate
@@ -492,6 +494,7 @@ Public Class ctrlHU_WelfareMngNewEdit
                         Dim o As New Welfatemng_empDTO
                         o.EMPLOYEE_ID = If(employee_id IsNot Nothing, employee_id, Nothing)
                         o.EMPLOYEE_CODE = row("EMPLOYEE_CODE").ToString
+                        check = row("EMPLOYEE_CODE").ToString
                         o.GENDER_ID = If(gender_id IsNot Nothing, gender_id, Nothing)
                         o.GENDER_NAME = gender_name
                         o.TITLE_ID = If(title_id IsNot Nothing, title_id, Nothing)
@@ -511,6 +514,11 @@ Public Class ctrlHU_WelfareMngNewEdit
                     Next
                     objdata.LST_WELFATE_EMP = lstemp
                     'objList.Add(objdata)
+                    If check Is Nothing Then
+                        ShowMessage(Translate("Bạn phải chọn nhân viên"), Utilities.NotifyType.Warning)
+                        Exit Sub
+                    End If
+
                     If CurrentState = CommonMessage.STATE_NEW Then
                         Dim rep As New ProfileBusinessRepository
                         If rep.InsertWelfareMng(objdata) Then
@@ -949,6 +957,7 @@ Public Class ctrlHU_WelfareMngNewEdit
     Private Function ValidateGrid_Emp() As Object
         Dim flag As Boolean = True
         Dim msgError As String = "Bạn chưa nhập đầy đủ thông tin. Vui lòng xem vị trí tô màu đỏ và gợi nhắc ở lưới."
+
         Try
             For Each items In rgEmployee.Items
                 Dim txtMoney = CType(items.FindControl("rnMONEY"), RadNumericTextBox)
@@ -958,6 +967,7 @@ Public Class ctrlHU_WelfareMngNewEdit
                     flag = False
                 End If
                 Total_money = txtMoney.Value
+
             Next
         Catch ex As Exception
         End Try

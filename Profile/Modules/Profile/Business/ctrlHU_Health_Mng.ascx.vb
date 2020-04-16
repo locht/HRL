@@ -719,12 +719,7 @@ Public Class ctrlHU_Health_Mng
         Try
             Dim configPath As String = ConfigurationManager.AppSettings("PathImportFolder")
             Dim dsData As DataSet = rep.GetHoSoLuongImport()
-            dsData.Tables(0).TableName = "Table"
-            dsData.Tables(1).TableName = "Table1"
-            dsData.Tables(2).TableName = "Table2"
-            dsData.Tables(3).TableName = "Table3"
-            dsData.Tables(4).TableName = "Table4"
-            dsData.Tables(5).TableName = "Table5"
+
             rep.Dispose()
             If File.Exists(configPath + "Profile\RPT_HU_HEALTH_MNG.xls") Then
                 ExportTemplate(configPath + "Profile\RPT_HU_HEALTH_MNG.xls",
@@ -733,8 +728,6 @@ Public Class ctrlHU_Health_Mng
                 ShowMessage(Translate("Template không tồn tại"), Utilities.NotifyType.Error)
                 Exit Sub
             End If
-
-
         Catch ex As Exception
             Throw ex
         End Try
@@ -746,13 +739,13 @@ Public Class ctrlHU_Health_Mng
                                                     ByVal filename As String) As Boolean
 
         Dim filePath As String
-        'Dim templatefolder As String
+        Dim templatefolder As String
 
         Dim designer As WorkbookDesigner
         Try
 
-            'templatefolder = ConfigurationManager.AppSettings("ReportTemplatesFolder")
-            'filePath = AppDomain.CurrentDomain.BaseDirectory & templatefolder & "\" & sReportFileName
+            templatefolder = ConfigurationManager.AppSettings("ReportTemplatesFolder")
+            filePath = AppDomain.CurrentDomain.BaseDirectory & templatefolder & "\" & sReportFileName
 
             'cau hinh lai duong dan tren server
             filePath = sReportFileName
