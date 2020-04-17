@@ -58189,7 +58189,7 @@ Namespace ProfileBusiness
         Function GetWelfareMngById(ByVal Id As Integer) As ProfileBusiness.WelfareMngDTO
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetComboboxPeriod", ReplyAction:="http://tempuri.org/IProfileBusiness/GetComboboxPeriodResponse")>  _
-        Function GetComboboxPeriod() As System.Collections.Generic.List(Of ProfileBusiness.ATPeriodDTO)
+        Function GetComboboxPeriod(ByVal year As Decimal) As System.Collections.Generic.List(Of ProfileBusiness.ATPeriodDTO)
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetYearPeriod", ReplyAction:="http://tempuri.org/IProfileBusiness/GetYearPeriodResponse")>  _
         Function GetYearPeriod() As System.Collections.Generic.List(Of ProfileBusiness.ATPeriodDTO)
@@ -60439,8 +60439,8 @@ Namespace ProfileBusiness
             Return MyBase.Channel.GetWelfareMngById(Id)
         End Function
         
-        Public Function GetComboboxPeriod() As System.Collections.Generic.List(Of ProfileBusiness.ATPeriodDTO) Implements ProfileBusiness.IProfileBusiness.GetComboboxPeriod
-            Return MyBase.Channel.GetComboboxPeriod
+        Public Function GetComboboxPeriod(ByVal year As Decimal) As System.Collections.Generic.List(Of ProfileBusiness.ATPeriodDTO) Implements ProfileBusiness.IProfileBusiness.GetComboboxPeriod
+            Return MyBase.Channel.GetComboboxPeriod(year)
         End Function
         
         Public Function GetYearPeriod() As System.Collections.Generic.List(Of ProfileBusiness.ATPeriodDTO) Implements ProfileBusiness.IProfileBusiness.GetYearPeriod
