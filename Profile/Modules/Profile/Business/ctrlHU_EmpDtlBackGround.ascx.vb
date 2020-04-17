@@ -83,6 +83,7 @@ Public Class ctrlHU_EmpDtlBackGround
             CType(Me.Page, AjaxPage).AjaxManager.ClientEvents.OnRequestStart = "onRequestStart"
             rgGrid.SetFilter()
             rgGrid.AllowCustomPaging = True
+            rgGrid.PageSize = Common.Common.DefaultPageSize
             InitControl()
             If Not IsPostBack Then
                 ViewConfig(RadPane1)
@@ -333,6 +334,7 @@ Public Class ctrlHU_EmpDtlBackGround
             If rgGrid.SelectedItems.Count = 0 Then Exit Sub
             'Lưu vào viewStates để giữ những item được select phục vụ cho phương thức delete.
             SelectedItem = New List(Of Decimal)
+            
             For Each dr As Telerik.Web.UI.GridDataItem In rgGrid.SelectedItems
                 SelectedItem.Add(Decimal.Parse(dr("ID").Text))
             Next
@@ -545,12 +547,15 @@ Public Class ctrlHU_EmpDtlBackGround
                 Case STATE_NEW
                     SetStatusControl(True)
                     EnabledGrid(rgGrid, False)
+                    'EnabledGridNotPostback(rgGrid, False)
                     hidBackGroundID.Value = ""
                 Case STATE_EDIT
                     EnabledGrid(rgGrid, False)
+                    'EnabledGridNotPostback(rgGrid, False)
                     SetStatusControl(True)
                 Case STATE_NORMAL
                     EnabledGrid(rgGrid, True)
+                    'EnabledGridNotPostback(rgGrid, True)
                     SetStatusControl(False)
                     rgGrid.Rebind()
                     ResetControlValue()
@@ -572,14 +577,23 @@ Public Class ctrlHU_EmpDtlBackGround
     Private Sub SetStatusControl(ByVal sTrangThai As Boolean)
         Try
             txtIdNo.ReadOnly = Not sTrangThai
-            'cboLicensePlace.Enabled = Not sTrangThai
+
+            cboLicensePlace.Enabled = sTrangThai
+            cboNation_Cur.Enabled = sTrangThai
+            cboProvince_Cur.Enabled = sTrangThai
+            cboDistrict_Cur.Enabled = sTrangThai
+            cboWard_Cur.Enabled = sTrangThai
+
+            cboNation_Per.Enabled = sTrangThai
+            cboProvince_Per.Enabled = sTrangThai
+            cboDistrict_Per.Enabled = sTrangThai
+            cboWard_Per.Enabled = sTrangThai
+
             txtCurrentAddress.ReadOnly = Not sTrangThai
             txtPermanentAddress.ReadOnly = Not sTrangThai
-            txtIdNo.ReadOnly = Not sTrangThai
+            txtMobilePhone.ReadOnly = Not sTrangThai
+            txtFixedPhone.ReadOnly = Not sTrangThai
 
-            'txtsalary.readonly = Not sTrangThai
-            'txttelephone.readonly = Not sTrangThai
-            'txtterreason.readonly = Not sTrangThai
 
             rdEffectiveDate.Enabled = sTrangThai
             rdLicenseDate.Enabled = sTrangThai

@@ -271,7 +271,7 @@ Public Class ctrlHU_ChangeInfoNewEdit
                                 txtFileAttach_Link.Text = Working.WORKING_OLD.FILENAME
                                 txtFileAttach_Link1.Text = Working.WORKING_OLD.ATTACH_FILE
                             End If
-                            
+
                             txtDecisionold.Text = .DECISION_NO
                             txtOrgNameOld.Text = .ORG_NAME
 
@@ -282,7 +282,7 @@ Public Class ctrlHU_ChangeInfoNewEdit
                             txtSignNameOld.Text = .SIGN_NAME
                             txtSignTitleOld.Text = .SIGN_TITLE
                             txtRemarkOld.Text = .REMARK
-                            
+
                         End With
                     End If
                     txtEmployeeCode.Text = Working.EMPLOYEE_CODE
@@ -291,18 +291,23 @@ Public Class ctrlHU_ChangeInfoNewEdit
                     hidOrg.Value = Working.ORG_ID
                     txtOrgName.Text = Working.ORG_NAME
 
-                        If IsNumeric(hidOrg.Value) Then
+                    If IsNumeric(hidOrg.Value) Then
                         Dim dtdata = (New ProfileRepository).GetTitleByOrgID(Decimal.Parse(hidOrg.Value), True)
-                            cboTitle.ClearValue()
-                            cboTitle.Items.Clear()
-                            For Each item As DataRow In dtdata.Rows
-                                Dim radItem As RadComboBoxItem = New RadComboBoxItem(item("NAME").ToString(), item("ID").ToString())
-                                radItem.Attributes("GROUP_NAME") = item("GROUP_NAME").ToString()
-                                cboTitle.Items.Add(radItem)
-                            Next
-                        End If
+                        cboTitle.ClearValue()
+                        cboTitle.Items.Clear()
+                        For Each item As DataRow In dtdata.Rows
+                            Dim radItem As RadComboBoxItem = New RadComboBoxItem(item("NAME").ToString(), item("ID").ToString())
+                            radItem.Attributes("GROUP_NAME") = item("GROUP_NAME").ToString()
+                            cboTitle.Items.Add(radItem)
+                        Next
+                    End If
 
                     cboTitle.SelectedValue = Working.TITLE_ID
+                    If Working.TITLE_ID IsNot Nothing Then
+                        cboTitle.SelectedValue = Working.TITLE_ID
+                        cboTitle.Text = Working.TITLE_NAME
+                    End If
+
 
                     txtDecision.Text = Working.DECISION_NO
                     If Working.STATUS_ID IsNot Nothing Then
@@ -323,7 +328,7 @@ Public Class ctrlHU_ChangeInfoNewEdit
                     If Working.IS_PROCESS IsNot Nothing Then
                         chkIsProcess.Checked = Working.IS_PROCESS
                     End If
-                    
+
                     rdSignDate.SelectedDate = Working.SIGN_DATE
 
                     If Working.SIGN_ID IsNot Nothing Then
@@ -356,6 +361,7 @@ Public Class ctrlHU_ChangeInfoNewEdit
 
                     If Working.JOB_DESCRIPTION IsNot Nothing Then
                         cboJobDescription.SelectedValue = Working.JOB_DESCRIPTION
+                        cboJobDescription.Text = Working.JOB_DESCRIPTION_NAME
                     End If
 
                     rdEffectHdDate.SelectedDate = Working.EFFECT_DH_DATE
@@ -1430,7 +1436,12 @@ Public Class ctrlHU_ChangeInfoNewEdit
                 loadDatasource(txtUploadFile.Text)
                 FileOldName = If(FileOldName = "", txtUpload.Text, FileOldName)
 
-                chkIsHurtful.Checked = obj.IS_HURTFUL
+                If obj.IS_HURTFUL IsNot Nothing Then
+                    chkIsHurtful.Checked = obj.IS_HURTFUL
+                Else
+                    chkIsHurtful.Checked = False
+                End If
+
                 If IsDate(obj.EFFECT_DH_DATE) Then
                     rdEffectHdDate.SelectedDate = obj.EFFECT_DH_DATE
                 End If
@@ -1453,12 +1464,31 @@ Public Class ctrlHU_ChangeInfoNewEdit
                 If obj.TITLE_ID IsNot Nothing Then
                     cboTitle.SelectedValue = obj.TITLE_ID
                     cboTitle.Text = obj.TITLE_NAME
+                Else
+                    cboTitle.SelectedValue = Nothing
+                    cboTitle.Text = ""
                 End If
                 If obj.DECISION_TYPE_ID IsNot Nothing Then
                     cboDecisionType.SelectedValue = obj.DECISION_TYPE_ID
                     cboDecisionType.Text = obj.DECISION_TYPE_NAME
+                Else
+                    cboDecisionType.SelectedValue = Nothing
+                    cboDecisionType.Text = ""
                 End If
-
+                If obj.JOB_POSITION IsNot Nothing Then
+                    cboJobPosition.SelectedValue = obj.JOB_POSITION
+                    cboJobPosition.Text = obj.JOB_POSITION_NAME
+                Else
+                    cboJobPosition.SelectedValue = Nothing
+                    cboJobPosition.Text = ""
+                End If
+                If obj.JOB_DESCRIPTION IsNot Nothing Then
+                    cboJobDescription.SelectedValue = obj.JOB_DESCRIPTION
+                    cboJobDescription.Text = obj.JOB_DESCRIPTION_NAME
+                Else
+                    cboJobDescription.SelectedValue = Nothing
+                    cboJobDescription.Text = ""
+                End If
                 ' them moi cac thong tin dieu chinh
                 Dim DSdata As DataSet
                 Using rep1 As New ProfileRepository
