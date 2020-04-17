@@ -2075,8 +2075,9 @@ Partial Class ProfileRepository
                 item.DIRECT_MANAGER = objWorking.DIRECT_MANAGER
                 item.LAST_WORKING_ID = objWorking.ID
                 item.MODIFIED_DATE = Date.Now
-                item.OBJECTTIMEKEEPING = objWorking.OBJECT_ATTENDANCE
-                item.OBJECT_LABOR = objWorking.OBJECT_LABOR
+                'acv 304
+                ' item.OBJECTTIMEKEEPING = objWorking.OBJECT_ATTENDANCE
+                'item.OBJECT_LABOR = objWorking.OBJECT_LABOR
                 item.JOB_POSITION = objWorking.JOB_POSITION
                 item.JOB_DESCRIPTION = objWorking.JOB_DESCRIPTION
                 item.IS_HAZARDOUS = objWorking.IS_HURTFUL

@@ -1075,16 +1075,17 @@ Public Class ctrlHU_EmpDtlProfile
                     End If
                     cboObject.SelectedIndex = 3
                 Case CommonMessage.STATE_EDIT
+                    'cho chỉnh sửa đối tượng chấm công và đối tượng lao động
                     rtIdTitleConcurrent.Visible = False
                     'RadPane4.Visible = False
                     If EmployeeInfo.WORK_STATUS IsNot Nothing Then
                         EnableControlAll(False, txtOrgName2, btnFindOrg,
                                    cboTitle, txtTitleGroup, cboStaffRank,
-                                   txtmanager, cboObject, cboObjectLabor, txtTimeID, cbObjectBook)
+                                   txtmanager, txtTimeID, cbObjectBook)
 
 
                         EnableControlAll(False, cboWorkStatus, txtEmpCODE, cboEmpStatus, rtBookNo, cboInsRegion)
-                        EnableControlAll(True, rtCHUC_VU_DANG, rdNGAY_VAO_DANG_DB, rdNGAY_VAO_DANG, cboJobDescription, cboProductionProcess, btnUpload)
+                        EnableControlAll(True, rtCHUC_VU_DANG, rdNGAY_VAO_DANG_DB, rdNGAY_VAO_DANG, cboJobDescription, cboProductionProcess, btnUpload, cboObject, cboObjectLabor)
                         EnableControlAll(True, ckDOAN_PHI, rtCHUC_VU_DOAN, rdNGAY_VAO_DOAN)
                         EnableControlAll(True, rtCV_BANTT, rdNgay_TG_BanTT)
                         EnableControlAll(True, rtCV_Ban_Nu_Cong, rdNgay_TG_Ban_Nu_Cong)
@@ -1175,7 +1176,7 @@ Public Class ctrlHU_EmpDtlProfile
                         txtTimeID.ReadOnly = True
                     End If
                     If EmployeeInfo.LAST_WORKING_ID IsNot Nothing Then
-                        EnableControlAll(False, cboTitle, cboStaffRank, cboObject, btnFindOrg, cboObjectLabor)
+                        EnableControlAll(False, cboTitle, cboStaffRank, btnFindOrg)
                     End If
                     cboObject.SelectedIndex = 3
                 Case Else
