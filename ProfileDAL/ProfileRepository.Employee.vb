@@ -3477,10 +3477,13 @@ Partial Class ProfileRepository
 #End Region
 
 #Region "thông tin lí lịch cá nhân"
-    Public Function GetEmpBackGround(ByVal _filter As EmployeeBackgroundDTO) As List(Of EmployeeBackgroundDTO)
-        Dim query As ObjectQuery(Of EmployeeBackgroundDTO)
+    Public Function GetEmpBackGround(ByVal _filter As EmployeeBackgroundDTO, ByVal PageIndex As Integer,
+                                        ByVal PageSize As Integer,
+                                        ByRef Total As Integer,
+                                        Optional ByVal Sorts As String = "EFFECTIVE_DATE desc") As List(Of EmployeeBackgroundDTO)
+        'Dim query As ObjectQuery(Of EmployeeBackgroundDTO)
         Try
-            query = (From p In Context.HU_EMPLOYEE_BACKGROUND
+            Dim query = (From p In Context.HU_EMPLOYEE_BACKGROUND
                      From lp In Context.HU_PROVINCE.Where(Function(f) p.LICENSE_PLACE = f.ID).DefaultIfEmpty
                      From cn In Context.HU_NATION.Where(Function(f) p.CURRENT_NATION_ID = f.ID).DefaultIfEmpty
                      From cp In Context.HU_PROVINCE.Where(Function(f) p.CURRENTN_PROVINCE_ID = f.ID).DefaultIfEmpty
@@ -3524,14 +3527,18 @@ Partial Class ProfileRepository
 
             '.CURRENT_ADDRESS = p.CURRENT_ADDRESS.ToString + "," + cw.NAME_VN.ToString + "," + cd.NAME_VN + "," + cp.NAME_VN,
             '.PERMANENT_ADDRESS = p.PERMANENT_ADDRESS.ToString + "," + pw.NAME_VN.ToString + "," + pd.NAME_VN.ToString + "," + pp.NAME_VN.ToString
-
+            Dim lst = query
             If _filter.EMPLOYEE_ID <> 0 Then
-                query = query.Where(Function(p) p.EMPLOYEE_ID = _filter.EMPLOYEE_ID)
-                End If
+                lst = lst.Where(Function(p) p.EMPLOYEE_ID = _filter.EMPLOYEE_ID)
+            End If
             If _filter.ID <> 0 Then
-                query = query.Where(Function(p) p.ID = _filter.ID)
-                End If
-            Return query.ToList
+                lst = lst.Where(Function(p) p.ID = _filter.ID)
+            End If
+
+            lst = lst.OrderBy(Sorts)
+            Total = lst.Count
+            lst = lst.Skip(PageIndex * PageSize).Take(PageSize)
+            Return lst.ToList
         Catch ex As Exception
             WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iProfile")
             Throw ex

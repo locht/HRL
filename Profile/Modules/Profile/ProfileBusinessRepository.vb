@@ -278,10 +278,14 @@ Partial Public Class ProfileBusinessRepository
         End Using
 
     End Function
-    Public Function GetEmpBackGround(ByVal _filter As EmployeeBackgroundDTO) As List(Of EmployeeBackgroundDTO)
+    Public Function GetEmpBackGround(ByVal _filter As EmployeeBackgroundDTO,
+                                     ByVal PageIndex As Integer,
+                                        ByVal PageSize As Integer,
+                                        ByRef Total As Integer,
+                                        Optional ByVal Sorts As String = "EFFECTIVE_DATE desc") As List(Of EmployeeBackgroundDTO)
         Using rep As New ProfileBusinessClient
             Try
-                Return rep.GetEmpBackGround(_filter)
+                Return rep.GetEmpBackGround(_filter, PageIndex, PageSize, Total, Sorts)
             Catch ex As Exception
                 rep.Abort()
                 Throw ex

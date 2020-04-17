@@ -160,6 +160,7 @@ Public Class ctrlHU_EmpDtlBackGround
                         Exit Sub
                     End If
                 Case TOOLBARITEM_EDIT
+                    'EnabledGridNotPostback(rgGrid, False)
                     ' gọi lại hàm này để lấy những row được select sau khi sửa xong và click sửa thêm 1 lần nữa 
                     rgGrid_SelectedIndexChanged(Nothing, Nothing)
                     If SelectedItem Is Nothing Then
@@ -202,6 +203,7 @@ Public Class ctrlHU_EmpDtlBackGround
                                     ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), Utilities.NotifyType.Error)
                                 End If
                             Case STATE_EDIT
+                                'EnabledGridNotPostback(rgGrid, False)
                                 If Not String.IsNullOrEmpty(hidBackGroundID.Value) Then
                                     Dim cmRep As New CommonRepository
                                     Dim lstID As New List(Of Decimal)
@@ -316,10 +318,18 @@ Public Class ctrlHU_EmpDtlBackGround
         If EmployeeInfo IsNot Nothing Then
             Dim rep As New ProfileBusinessRepository
             Dim MaximumRows As Integer
+
             Dim objBackGround As New EmployeeBackgroundDTO
+            SetValueObjectByRadGrid(rgGrid, objBackGround)
+            Dim Sorts As String = rgGrid.MasterTableView.SortExpressions.GetSortString()
             objBackGround.EMPLOYEE_ID = EmployeeInfo.ID
             hidEmployeeID.Value = EmployeeInfo.ID.ToString()
-            lstBackGround = rep.GetEmpBackGround(objBackGround)
+            If Sorts IsNot Nothing Then
+                lstBackGround = rep.GetEmpBackGround(objBackGround, 0, rgGrid.PageSize, MaximumRows, Sorts)
+            Else
+                lstBackGround = rep.GetEmpBackGround(objBackGround, 0, rgGrid.PageSize, MaximumRows)
+            End If
+
             'lstWorkingBefore = rep.GetEmpWorkingBefore(objBackGround)
             rgGrid.VirtualItemCount = MaximumRows
             rgGrid.DataSource = lstBackGround
@@ -550,8 +560,8 @@ Public Class ctrlHU_EmpDtlBackGround
                     'EnabledGridNotPostback(rgGrid, False)
                     hidBackGroundID.Value = ""
                 Case STATE_EDIT
-                    EnabledGrid(rgGrid, False)
-                    'EnabledGridNotPostback(rgGrid, False)
+                    'EnabledGrid(rgGrid, False)
+                    EnabledGridNotPostback(rgGrid, False)
                     SetStatusControl(True)
                 Case STATE_NORMAL
                     EnabledGrid(rgGrid, True)

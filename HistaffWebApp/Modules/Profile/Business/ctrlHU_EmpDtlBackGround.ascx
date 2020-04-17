@@ -161,7 +161,7 @@
         </table>
     </tlk:RadPane>
     <tlk:RadPane ID="RadPane4" runat="server" Scrolling="None">
-        <tlk:RadGrid PageSize="50" ID="rgGrid" runat="server" AllowMultiRowSelection="true"
+        <tlk:RadGrid PageSize="50" ID="rgGrid" runat="server" AllowMultiRowSelection="false"
             Height="100%">
             <%--COMPANY_NAME,JOIN_DATE,END_DATE,COMPANY_ADDRESS,TELEPHONE,SALARY,TITLE_NAME,LEVEL_NAME,TER_REASON--%>
             <MasterTableView DataKeyNames="ID,EMPLOYEE_ID,EFFECTIVE_DATE,ID_NO,LICENSE_DATE,LICENSE_PLACE,LICENSE_PLACE_ID,MOBILE_PHONE,FIXED_PHONE,PERMANENT_ADDRESS_F,PERMANENT_NATION_NAME,PERMANENT_PROVINCE_NAME,PERMANENT_DISTRICT_NAME,PERMANENT_WARD_NAME,CURRENT_ADDRESS_F,CURRENT_NATION_NAME,CURRENT_PROVINCE_NAME,CURRENT_DISTRICT_NAME,CURRENT_WARD_NAME,

@@ -1575,7 +1575,11 @@ Namespace ProfileBusiness.ServiceContracts
 #Region "thong tin li lich ca nhan"
 
         <OperationContract()>
-        Function GetEmpBackGround(ByVal _filter As EmployeeBackgroundDTO) As List(Of EmployeeBackgroundDTO)
+        Function GetEmpBackGround(ByVal _filter As EmployeeBackgroundDTO,
+                                  ByVal PageIndex As Integer,
+                                        ByVal PageSize As Integer,
+                                        ByRef Total As Integer,
+                                        Optional ByVal Sorts As String = "EFFECTIVE_DATE desc") As List(Of EmployeeBackgroundDTO)
 
         <OperationContract()>
         Function InsertBackGround(ByVal objBackGround As EmployeeBackgroundDTO, ByVal log As UserLog, ByRef gID As Decimal) As Boolean
