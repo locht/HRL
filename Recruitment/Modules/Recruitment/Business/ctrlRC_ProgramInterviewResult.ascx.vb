@@ -222,6 +222,10 @@ Public Class ctrlRC_ProgramInterviewResult
                     IsRight = 1
                 Case CommonMessage.TOOLBARITEM_SAVE
                     If Page.IsValid Then
+                        If gridCadidate.SelectedItems.Count = 0 Then
+                            ShowMessage(Translate("Chưa chọn nhân viên,Xin kiểm tra lại"), NotifyType.Warning)
+                            Exit Sub
+                        End If
                         obj = New PROGRAM_SCHEDULE_CAN_DTO
                         obj.COMMENT_INFO = txtComment.Text
                         obj.ASSESSMENT_INFO = txtAssessment.Text
@@ -242,6 +246,8 @@ Public Class ctrlRC_ProgramInterviewResult
                         End Select
 
                         Dim dataItem = TryCast(gridCadidate.SelectedItems(0), GridDataItem)
+
+
                         'If obj.ISPASS = 1 And dataItem("STATUS").Text = "Đủ điều kiện" Then
                         '    store.UPDATE_CANDIDATE_STATUS(Int32.Parse(dataItem("ID").Text), "DAT")
                         'End If
