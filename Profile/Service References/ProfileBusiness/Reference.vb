@@ -56319,6 +56319,9 @@ Namespace ProfileBusiness
      System.ServiceModel.ServiceContractAttribute(ConfigurationName:="ProfileBusiness.IProfileBusiness")>  _
     Public Interface IProfileBusiness
         
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/CHECK_SIGN", ReplyAction:="http://tempuri.org/IProfileBusiness/CHECK_SIGNResponse")>  _
+        Function CHECK_SIGN(ByVal P_EMP_CODE As String) As Integer
+        
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/INPORT_PLHD", ReplyAction:="http://tempuri.org/IProfileBusiness/INPORT_PLHDResponse")>  _
         Function INPORT_PLHD(ByVal P_DOCXML As String, ByVal log As Common.CommonBusiness.UserLog) As Boolean
         
@@ -56405,6 +56408,9 @@ Namespace ProfileBusiness
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/DeleteEmployeeDeduct", ReplyAction:="http://tempuri.org/IProfileBusiness/DeleteEmployeeDeductResponse")>  _
         Function DeleteEmployeeDeduct(ByVal lstDecimals As System.Collections.Generic.List(Of Decimal), ByVal log As Common.CommonBusiness.UserLog) As Boolean
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/InsertCommendList", ReplyAction:="http://tempuri.org/IProfileBusiness/InsertCommendListResponse")>  _
+        Function InsertCommendList(ByVal objCommendList As ProfileBusiness.CommendListDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ModifyCommendList", ReplyAction:="http://tempuri.org/IProfileBusiness/ModifyCommendListResponse")>  _
         Function ModifyCommendList(ByVal objCommendList As ProfileBusiness.CommendListDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
@@ -57486,8 +57492,8 @@ Namespace ProfileBusiness
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/CHECK_CONTRACT_EXITS", ReplyAction:="http://tempuri.org/IProfileBusiness/CHECK_CONTRACT_EXITSResponse")>  _
         Function CHECK_CONTRACT_EXITS(ByVal P_CONTRACT As Decimal, ByVal P_EMP_CODE As String, ByVal P_DATE As Date) As Integer
         
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/CHECK_SIGN", ReplyAction:="http://tempuri.org/IProfileBusiness/CHECK_SIGNResponse")>  _
-        Function CHECK_SIGN(ByVal P_EMP_CODE As String) As Integer
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetProcessTrainingEdit", ReplyAction:="http://tempuri.org/IProfileBusiness/GetProcessTrainingEditResponse")>  _
+        Function GetProcessTrainingEdit(ByVal _filter As ProfileBusiness.HU_PRO_TRAIN_OUT_COMPANYDTOEDIT) As System.Collections.Generic.List(Of ProfileBusiness.HU_PRO_TRAIN_OUT_COMPANYDTOEDIT)
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/InsertProcessTrainingEdit", ReplyAction:="http://tempuri.org/IProfileBusiness/InsertProcessTrainingEditResponse")>  _
         Function InsertProcessTrainingEdit(ByVal objTitle As ProfileBusiness.HU_PRO_TRAIN_OUT_COMPANYDTOEDIT, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
@@ -57741,8 +57747,8 @@ Namespace ProfileBusiness
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetListCommendList", ReplyAction:="http://tempuri.org/IProfileBusiness/GetListCommendListResponse")>  _
         Function GetListCommendList(ByVal actflg As String) As System.Collections.Generic.List(Of ProfileBusiness.CommendListDTO)
         
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/InsertCommendList", ReplyAction:="http://tempuri.org/IProfileBusiness/InsertCommendListResponse")>  _
-        Function InsertCommendList(ByVal objCommendList As ProfileBusiness.CommendListDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/InsertWorking", ReplyAction:="http://tempuri.org/IProfileBusiness/InsertWorkingResponse")>  _
+        Function InsertWorking(ByVal objWorking As ProfileBusiness.WorkingDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ModifyWorking", ReplyAction:="http://tempuri.org/IProfileBusiness/ModifyWorkingResponse")>  _
         Function ModifyWorking(ByVal objWorking As ProfileBusiness.WorkingDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
@@ -57996,8 +58002,8 @@ Namespace ProfileBusiness
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetCertificateType", ReplyAction:="http://tempuri.org/IProfileBusiness/GetCertificateTypeResponse")>  _
         Function GetCertificateType() As System.Collections.Generic.List(Of ProfileBusiness.OtherListDTO)
         
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetProcessTrainingEdit", ReplyAction:="http://tempuri.org/IProfileBusiness/GetProcessTrainingEditResponse")>  _
-        Function GetProcessTrainingEdit(ByVal _filter As ProfileBusiness.HU_PRO_TRAIN_OUT_COMPANYDTOEDIT) As System.Collections.Generic.List(Of ProfileBusiness.HU_PRO_TRAIN_OUT_COMPANYDTOEDIT)
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/InsertEmployeeFamilyEdit", ReplyAction:="http://tempuri.org/IProfileBusiness/InsertEmployeeFamilyEditResponse")>  _
+        Function InsertEmployeeFamilyEdit(ByVal objFamilyEdit As ProfileBusiness.FamilyEditDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ModifyEmployeeFamilyEdit", ReplyAction:="http://tempuri.org/IProfileBusiness/ModifyEmployeeFamilyEditResponse")>  _
         Function ModifyEmployeeFamilyEdit(ByVal objFamilyEdit As ProfileBusiness.FamilyEditDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
@@ -58251,8 +58257,8 @@ Namespace ProfileBusiness
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ModifyWorking1", ReplyAction:="http://tempuri.org/IProfileBusiness/ModifyWorking1Response")>  _
         Function ModifyWorking1(ByVal objWorking As ProfileBusiness.WorkingDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
         
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/InsertWorking", ReplyAction:="http://tempuri.org/IProfileBusiness/InsertWorkingResponse")>  _
-        Function InsertWorking(ByVal objWorking As ProfileBusiness.WorkingDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ModifyBankBranch", ReplyAction:="http://tempuri.org/IProfileBusiness/ModifyBankBranchResponse")>  _
+        Function ModifyBankBranch(ByVal objBankBranch As ProfileBusiness.BankBranchDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ValidateBankBranch", ReplyAction:="http://tempuri.org/IProfileBusiness/ValidateBankBranchResponse")>  _
         Function ValidateBankBranch(ByVal objBankBranch As ProfileBusiness.BankBranchDTO) As Boolean
@@ -58506,9 +58512,6 @@ Namespace ProfileBusiness
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetEmployeeFamilyEdit", ReplyAction:="http://tempuri.org/IProfileBusiness/GetEmployeeFamilyEditResponse")>  _
         Function GetEmployeeFamilyEdit(ByVal _filter As ProfileBusiness.FamilyEditDTO) As System.Collections.Generic.List(Of ProfileBusiness.FamilyEditDTO)
         
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/InsertEmployeeFamilyEdit", ReplyAction:="http://tempuri.org/IProfileBusiness/InsertEmployeeFamilyEditResponse")>  _
-        Function InsertEmployeeFamilyEdit(ByVal objFamilyEdit As ProfileBusiness.FamilyEditDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
-        
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ActiveContractType", ReplyAction:="http://tempuri.org/IProfileBusiness/ActiveContractTypeResponse")>  _
         Function ActiveContractType(ByVal lstID As System.Collections.Generic.List(Of Decimal), ByVal sActive As String, ByVal log As Common.CommonBusiness.UserLog) As Boolean
         
@@ -58641,6 +58644,9 @@ Namespace ProfileBusiness
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/CheckTitleInEmployee", ReplyAction:="http://tempuri.org/IProfileBusiness/CheckTitleInEmployeeResponse")>  _
         Function CheckTitleInEmployee(ByVal lstID As System.Collections.Generic.List(Of Decimal), ByVal orgID As Decimal) As Boolean
         
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/CheckHasInWorking", ReplyAction:="http://tempuri.org/IProfileBusiness/CheckHasInWorkingResponse")>  _
+        Function CheckHasInWorking(ByVal lstID As System.Collections.Generic.List(Of Decimal)) As Boolean
+        
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/DeleteOrgTitle", ReplyAction:="http://tempuri.org/IProfileBusiness/DeleteOrgTitleResponse")>  _
         Function DeleteOrgTitle(ByVal objOrgTitle As System.Collections.Generic.List(Of Decimal), ByVal log As Common.CommonBusiness.UserLog) As Boolean
         
@@ -58760,9 +58766,6 @@ Namespace ProfileBusiness
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/InsertBankBranch", ReplyAction:="http://tempuri.org/IProfileBusiness/InsertBankBranchResponse")>  _
         Function InsertBankBranch(ByVal objBankBranch As ProfileBusiness.BankBranchDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ModifyBankBranch", ReplyAction:="http://tempuri.org/IProfileBusiness/ModifyBankBranchResponse")>  _
-        Function ModifyBankBranch(ByVal objBankBranch As ProfileBusiness.BankBranchDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetCertificateEdit", ReplyAction:="http://tempuri.org/IProfileBusiness/GetCertificateEditResponse")>  _
         Function GetCertificateEdit(ByVal _filter As ProfileBusiness.HU_PRO_TRAIN_OUT_COMPANYDTOEDIT) As System.Collections.Generic.List(Of ProfileBusiness.HU_PRO_TRAIN_OUT_COMPANYDTOEDIT)
@@ -59051,6 +59054,10 @@ Namespace ProfileBusiness
             MyBase.New(binding, remoteAddress)
         End Sub
         
+        Public Function CHECK_SIGN(ByVal P_EMP_CODE As String) As Integer Implements ProfileBusiness.IProfileBusiness.CHECK_SIGN
+            Return MyBase.Channel.CHECK_SIGN(P_EMP_CODE)
+        End Function
+        
         Public Function INPORT_PLHD(ByVal P_DOCXML As String, ByVal log As Common.CommonBusiness.UserLog) As Boolean Implements ProfileBusiness.IProfileBusiness.INPORT_PLHD
             Return MyBase.Channel.INPORT_PLHD(P_DOCXML, log)
         End Function
@@ -59165,6 +59172,10 @@ Namespace ProfileBusiness
         
         Public Function DeleteEmployeeDeduct(ByVal lstDecimals As System.Collections.Generic.List(Of Decimal), ByVal log As Common.CommonBusiness.UserLog) As Boolean Implements ProfileBusiness.IProfileBusiness.DeleteEmployeeDeduct
             Return MyBase.Channel.DeleteEmployeeDeduct(lstDecimals, log)
+        End Function
+        
+        Public Function InsertCommendList(ByVal objCommendList As ProfileBusiness.CommendListDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean Implements ProfileBusiness.IProfileBusiness.InsertCommendList
+            Return MyBase.Channel.InsertCommendList(objCommendList, log, gID)
         End Function
         
         Public Function ModifyCommendList(ByVal objCommendList As ProfileBusiness.CommendListDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean Implements ProfileBusiness.IProfileBusiness.ModifyCommendList
@@ -59503,8 +59514,8 @@ Namespace ProfileBusiness
             Return MyBase.Channel.CHECK_CONTRACT_EXITS(P_CONTRACT, P_EMP_CODE, P_DATE)
         End Function
         
-        Public Function CHECK_SIGN(ByVal P_EMP_CODE As String) As Integer Implements ProfileBusiness.IProfileBusiness.CHECK_SIGN
-            Return MyBase.Channel.CHECK_SIGN(P_EMP_CODE)
+        Public Function GetProcessTrainingEdit(ByVal _filter As ProfileBusiness.HU_PRO_TRAIN_OUT_COMPANYDTOEDIT) As System.Collections.Generic.List(Of ProfileBusiness.HU_PRO_TRAIN_OUT_COMPANYDTOEDIT) Implements ProfileBusiness.IProfileBusiness.GetProcessTrainingEdit
+            Return MyBase.Channel.GetProcessTrainingEdit(_filter)
         End Function
         
         Public Function InsertProcessTrainingEdit(ByVal objTitle As ProfileBusiness.HU_PRO_TRAIN_OUT_COMPANYDTOEDIT, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean Implements ProfileBusiness.IProfileBusiness.InsertProcessTrainingEdit
@@ -59843,8 +59854,8 @@ Namespace ProfileBusiness
             Return MyBase.Channel.GetListCommendList(actflg)
         End Function
         
-        Public Function InsertCommendList(ByVal objCommendList As ProfileBusiness.CommendListDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean Implements ProfileBusiness.IProfileBusiness.InsertCommendList
-            Return MyBase.Channel.InsertCommendList(objCommendList, log, gID)
+        Public Function InsertWorking(ByVal objWorking As ProfileBusiness.WorkingDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean Implements ProfileBusiness.IProfileBusiness.InsertWorking
+            Return MyBase.Channel.InsertWorking(objWorking, log, gID)
         End Function
         
         Public Function ModifyWorking(ByVal objWorking As ProfileBusiness.WorkingDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean Implements ProfileBusiness.IProfileBusiness.ModifyWorking
@@ -60183,8 +60194,8 @@ Namespace ProfileBusiness
             Return MyBase.Channel.GetCertificateType
         End Function
         
-        Public Function GetProcessTrainingEdit(ByVal _filter As ProfileBusiness.HU_PRO_TRAIN_OUT_COMPANYDTOEDIT) As System.Collections.Generic.List(Of ProfileBusiness.HU_PRO_TRAIN_OUT_COMPANYDTOEDIT) Implements ProfileBusiness.IProfileBusiness.GetProcessTrainingEdit
-            Return MyBase.Channel.GetProcessTrainingEdit(_filter)
+        Public Function InsertEmployeeFamilyEdit(ByVal objFamilyEdit As ProfileBusiness.FamilyEditDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean Implements ProfileBusiness.IProfileBusiness.InsertEmployeeFamilyEdit
+            Return MyBase.Channel.InsertEmployeeFamilyEdit(objFamilyEdit, log, gID)
         End Function
         
         Public Function ModifyEmployeeFamilyEdit(ByVal objFamilyEdit As ProfileBusiness.FamilyEditDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean Implements ProfileBusiness.IProfileBusiness.ModifyEmployeeFamilyEdit
@@ -60523,8 +60534,8 @@ Namespace ProfileBusiness
             Return MyBase.Channel.ModifyWorking1(objWorking, log, gID)
         End Function
         
-        Public Function InsertWorking(ByVal objWorking As ProfileBusiness.WorkingDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean Implements ProfileBusiness.IProfileBusiness.InsertWorking
-            Return MyBase.Channel.InsertWorking(objWorking, log, gID)
+        Public Function ModifyBankBranch(ByVal objBankBranch As ProfileBusiness.BankBranchDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean Implements ProfileBusiness.IProfileBusiness.ModifyBankBranch
+            Return MyBase.Channel.ModifyBankBranch(objBankBranch, log, gID)
         End Function
         
         Public Function ValidateBankBranch(ByVal objBankBranch As ProfileBusiness.BankBranchDTO) As Boolean Implements ProfileBusiness.IProfileBusiness.ValidateBankBranch
@@ -60863,10 +60874,6 @@ Namespace ProfileBusiness
             Return MyBase.Channel.GetEmployeeFamilyEdit(_filter)
         End Function
         
-        Public Function InsertEmployeeFamilyEdit(ByVal objFamilyEdit As ProfileBusiness.FamilyEditDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean Implements ProfileBusiness.IProfileBusiness.InsertEmployeeFamilyEdit
-            Return MyBase.Channel.InsertEmployeeFamilyEdit(objFamilyEdit, log, gID)
-        End Function
-        
         Public Function ActiveContractType(ByVal lstID As System.Collections.Generic.List(Of Decimal), ByVal sActive As String, ByVal log As Common.CommonBusiness.UserLog) As Boolean Implements ProfileBusiness.IProfileBusiness.ActiveContractType
             Return MyBase.Channel.ActiveContractType(lstID, sActive, log)
         End Function
@@ -61043,6 +61050,10 @@ Namespace ProfileBusiness
             Return MyBase.Channel.CheckTitleInEmployee(lstID, orgID)
         End Function
         
+        Public Function CheckHasInWorking(ByVal lstID As System.Collections.Generic.List(Of Decimal)) As Boolean Implements ProfileBusiness.IProfileBusiness.CheckHasInWorking
+            Return MyBase.Channel.CheckHasInWorking(lstID)
+        End Function
+        
         Public Function DeleteOrgTitle(ByVal objOrgTitle As System.Collections.Generic.List(Of Decimal), ByVal log As Common.CommonBusiness.UserLog) As Boolean Implements ProfileBusiness.IProfileBusiness.DeleteOrgTitle
             Return MyBase.Channel.DeleteOrgTitle(objOrgTitle, log)
         End Function
@@ -61201,10 +61212,6 @@ Namespace ProfileBusiness
         
         Public Function InsertBankBranch(ByVal objBankBranch As ProfileBusiness.BankBranchDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean Implements ProfileBusiness.IProfileBusiness.InsertBankBranch
             Return MyBase.Channel.InsertBankBranch(objBankBranch, log, gID)
-        End Function
-        
-        Public Function ModifyBankBranch(ByVal objBankBranch As ProfileBusiness.BankBranchDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean Implements ProfileBusiness.IProfileBusiness.ModifyBankBranch
-            Return MyBase.Channel.ModifyBankBranch(objBankBranch, log, gID)
         End Function
         
         Public Function GetCertificateEdit(ByVal _filter As ProfileBusiness.HU_PRO_TRAIN_OUT_COMPANYDTOEDIT) As System.Collections.Generic.List(Of ProfileBusiness.HU_PRO_TRAIN_OUT_COMPANYDTOEDIT) Implements ProfileBusiness.IProfileBusiness.GetCertificateEdit

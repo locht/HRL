@@ -1016,6 +1016,17 @@ Partial Public Class ProfileRepository
         End Using
 
     End Function
+    Public Function CheckHasInWorking(ByVal lstID As List(Of Decimal)) As Boolean
+        Using rep As New ProfileBusinessClient
+            Try
+                Return rep.CheckHasInWorking(lstID)
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+
+    End Function
 
     Public Function DeleteOrgTitle(ByVal lstOrgTitle As List(Of Decimal)) As Boolean
         Using rep As New ProfileBusinessClient

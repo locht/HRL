@@ -788,6 +788,15 @@ Namespace ProfileBusiness.ServiceImplementations
                 End Try
             End Using
         End Function
+        Public Function CheckHasInWorking(ByVal lstID As List(Of Decimal)) As Boolean Implements ServiceContracts.IProfileBusiness.CheckHasInWorking
+            Using rep As New ProfileRepository
+                Try
+                    Return rep.CheckHasInWorking(lstID)
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
 
         Public Function DeleteOrgTitle(ByVal objOrgTitle As List(Of Decimal), ByVal log As UserLog) As Boolean _
             Implements ServiceContracts.IProfileBusiness.DeleteOrgTitle

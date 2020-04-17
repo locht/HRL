@@ -1878,6 +1878,19 @@ Partial Class ProfileRepository
             Throw ex
         End Try
     End Function
+    Public Function CheckHasInWorking(ByVal lstID As List(Of Decimal)) As Boolean
+        Try
+            Dim i As Integer = (From p In Context.HU_WORKING
+                                Where lstID.Contains(p.JOB_POSITION)).Count
+            If i > 0 Then
+                Return False
+            End If
+            Return True
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iProfile")
+            Throw ex
+        End Try
+    End Function
 
     Public Function ActiveOrgTitle(ByVal lstOrgTitle As List(Of Decimal), ByVal sActive As String,
                                ByVal log As UserLog) As Boolean

@@ -481,7 +481,8 @@ Namespace ProfileBusiness.ServiceContracts
 
         <OperationContract()>
         Function CheckTitleInEmployee(ByVal lstID As List(Of Decimal), ByVal orgID As Decimal) As Boolean
-
+        <OperationContract()>
+        Function CheckHasInWorking(ByVal lstID As List(Of Decimal)) As Boolean
         <OperationContract()>
         Function DeleteOrgTitle(ByVal objOrgTitle As List(Of Decimal), ByVal log As UserLog) As Boolean
 

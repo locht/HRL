@@ -318,6 +318,11 @@ Public Class ctrlHU_JobPosition
                         ShowMessage(Translate("Tồn tại nhân viên đang sử dụng chức danh, không thể thực hiện thao tác này."), NotifyType.Warning)
                         Exit Sub
                     End If
+                    'k cho xóa khi có quyết định bất kì đang xử dụng
+                    If Not rep.CheckHasInWorking(lstDeletes) Then
+                        ShowMessage(Translate("Tồn tại vị trí nhân viên đang sử dụng, không thể thực hiện thao tác này."), NotifyType.Warning)
+                        Exit Sub
+                    End If
                     ctrlMessageBox.MessageText = Translate(CommonMessage.MESSAGE_CONFIRM_DELETE)
                     ctrlMessageBox.ActionName = CommonMessage.TOOLBARITEM_DELETE
                     ctrlMessageBox.DataBind()
