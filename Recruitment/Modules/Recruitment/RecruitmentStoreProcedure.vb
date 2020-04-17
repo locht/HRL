@@ -580,9 +580,9 @@ Public Class RecruitmentStoreProcedure
     End Function
 
     'Lấy danh sách ứng viên chưa có lịch thi tuyển
-    Public Function GET_CANDIDATE_NOT_SCHEDULE(ByVal P_PROGRAM_ID As Int32, ByVal P_PROGRAM_SCHEDULE_ID As Int32, ByVal P_ISPASS As Boolean, ByVal P_EXAM As Decimal) As DataTable
+    Public Function GET_CANDIDATE_NOT_SCHEDULE(ByVal P_PROGRAM_ID As Int32, ByVal P_PROGRAM_SCHEDULE_ID As Int32, ByVal P_ISPASS As Boolean, ByVal P_EXAM As Decimal, ByVal P_LST_ID As String) As DataTable
         Dim dt As New DataTable
-        Dim ds As DataSet = rep.ExecuteToDataSet("PKG_RECRUITMENT.GET_CANDIDATE_NOT_SCHEDULE", New List(Of Object)(New Object() {P_PROGRAM_ID, P_PROGRAM_SCHEDULE_ID, P_ISPASS, P_EXAM}))
+        Dim ds As DataSet = rep.ExecuteToDataSet("PKG_RECRUITMENT.GET_CANDIDATE_NOT_SCHEDULE", New List(Of Object)(New Object() {P_PROGRAM_ID, P_PROGRAM_SCHEDULE_ID, P_ISPASS, P_EXAM, P_LST_ID}))
         If Not ds Is Nothing Or Not ds.Tables(0) Is Nothing Then
             dt = ds.Tables(0)
         End If

@@ -79,6 +79,48 @@ Public Class ctrlRC_ProgramScheduleNewEdit
         End Set
     End Property
 
+    Public Property dtCan As DataTable
+        Get
+            If ViewState(Me.ID & "_dtCan") Is Nothing Then
+                Dim dt As New DataTable
+                dt.Columns.Add("ID", GetType(String))
+                dt.Columns.Add("CANDIDATE_CODE", GetType(String))
+                dt.Columns.Add("FULLNAME_VN", GetType(String))
+                dt.Columns.Add("BIRTH_DATE", GetType(String))
+                dt.Columns.Add("BIRTH_PROVINCE_NAME", GetType(String))
+                dt.Columns.Add("PER_EMAIL", GetType(String))
+                dt.Columns.Add("ID_NO", GetType(String))
+                dt.Columns.Add("SCHEDULE_DATE", GetType(String))
+                dt.Columns.Add("SCHEDULE_BY", GetType(String))
+                dt.Columns.Add("EXAM_NAME", GetType(String))
+                ViewState(Me.ID & "_dtData") = dt
+            End If
+            Return ViewState(Me.ID & "_dtCan")
+        End Get
+        Set(value As DataTable)
+            ViewState(Me.ID & "_dtCan") = value
+        End Set
+    End Property
+
+    Public Property dtCanNot As DataTable
+        Get
+            If ViewState(Me.ID & "_dtCanNot") Is Nothing Then
+                Dim dt As New DataTable
+                dt.Columns.Add("ID", GetType(String))
+                dt.Columns.Add("CANDIDATE_CODE", GetType(String))
+                dt.Columns.Add("FULLNAME_VN", GetType(String))
+                dt.Columns.Add("BIRTH_DATE", GetType(String))
+                dt.Columns.Add("BIRTH_PROVINCE_NAME", GetType(String))
+                dt.Columns.Add("PER_EMAIL", GetType(String))
+                dt.Columns.Add("ID_NO", GetType(String))
+                ViewState(Me.ID & "_dtCanNot") = dt
+            End If
+            Return ViewState(Me.ID & "_dtCanNot")
+        End Get
+        Set(value As DataTable)
+            ViewState(Me.ID & "_dtCanNot") = value
+        End Set
+    End Property
 #End Region
 
 #Region "Page"
@@ -324,33 +366,30 @@ Public Class ctrlRC_ProgramScheduleNewEdit
                             obj.EMPLOYEE_ID = Nothing
                         End If
                         If hidID.Value <> Nothing And Decimal.Parse(hidID.Value) > 0 Then
-                            'update program schedule
-                            'IsSaveCompleted = store.UPDATE_PRO_SCHEDULE(Decimal.Parse(hidID.Value), obj.SCHEDULE_DATE, obj.EXAMS_PLACE, obj.NOTE, userlog.Username,
-                            '                                String.Format("{0}-{1}", userlog.ComputerName, userlog.Ip))
-
                             IsSaveCompleted = store.UPDATE_PRO_SCHEDULE(Decimal.Parse(hidID.Value), obj.EMPLOYEE_ID, obj.SCHEDULE_DATE, obj.EXAMS_PLACE, obj.NOTE, String.Empty,
                                                              String.Empty)
 
                         Else
-                            'addnew program schedule
-                            'IsSaveCompleted = store.ADDNEW_PRO_SCHEDULE(obj.RC_PROGRAM_ID, obj.SCHEDULE_DATE, obj.EXAMS_PLACE, obj.NOTE, userlog.Username,
-                            '                                String.Format("{0}-{1}", userlog.ComputerName, userlog.Ip))
                             IsSaveCompleted = store.ADDNEW_PRO_SCHEDULE(obj.RC_PROGRAM_ID, obj.EMPLOYEE_ID, obj.SCHEDULE_DATE, obj.EXAMS_PLACE, obj.NOTE, String.Empty,
                                                             String.Empty)
 
-                            If IsSaveCompleted > 0 Then
+                            If IsSaveCompleted Then
                                 'update Pro_Shedule_Can
                                 Dim idProSchedule As Int32
                                 idProSchedule = store.GET_TOPID_PRO_SCHEDULE(obj.RC_PROGRAM_ID)
                                 hidID.Value = idProSchedule
-                                If idProSchedule > 0 Then
-                                    store.UPDATE_PRO_SCHEDULE_ID(idProSchedule)
-                                End If
+                                'If idProSchedule > 0 Then
+                                '    store.UPDATE_PRO_SCHEDULE_ID(idProSchedule)
+                                'End If
                             End If
                         End If
 
-
-
+                        store.DELETE_PRO_SCHEDULE_CAN(Decimal.Parse(hidID.Value), 0)
+                        For Each item As GridDataItem In rgCanSchedule.Items
+                            store.ADDNEW_CAN_PRO_SCHEDULE(item.GetDataKeyValue("ID"), Decimal.Parse(hidID.Value), rlbExams.SelectedValue)
+                            store.UPDATE_CANDIDATE_STATUS(item.GetDataKeyValue("ID"), "PROCESS")
+                        Next
+                        
 
                         If IsSaveCompleted Then
                             ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), NotifyType.Success)
@@ -365,61 +404,12 @@ Public Class ctrlRC_ProgramScheduleNewEdit
                         Else
                             ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), NotifyType.Error)
                         End If
-                        'Dim lstCan As New List(Of ProgramScheduleCanDTO)
-                        'For Each item As GridDataItem In rgCanSchedule.Items
-                        '    If Not (From p In lstCan Where p.CANDIDATE_ID = item.Item("CANDIDATE_ID").Text).Any Then
-                        '        Dim objCan As New ProgramScheduleCanDTO
-                        '        If item.Item("CANDIDATE_ID").Text <> "" Then
-                        '            objCan.CANDIDATE_ID = item.Item("CANDIDATE_ID").Text
-                        '        End If
-                        '        If item.Item("CANDIDATE_CODE").Text <> "" Then
-                        '            objCan.CANDIDATE_CODE = item.Item("CANDIDATE_CODE").Text
-                        '        End If
-                        '        Dim dateSave As Date = item.GetDataKeyValue("START_HOUR")
-                        '        Dim startHour As New Date(rdScheduleDate.SelectedDate.Value.Year,
-                        '                                rdScheduleDate.SelectedDate.Value.Month,
-                        '                                rdScheduleDate.SelectedDate.Value.Day,
-                        '                                dateSave.Hour,
-                        '                                dateSave.Minute,
-                        '                                dateSave.Second)
-                        '        dateSave = item.GetDataKeyValue("END_HOUR")
-                        '        Dim endHour As New Date(rdScheduleDate.SelectedDate.Value.Year,
-                        '                                rdScheduleDate.SelectedDate.Value.Month,
-                        '                                rdScheduleDate.SelectedDate.Value.Day,
-                        '                                dateSave.Hour,
-                        '                                dateSave.Minute,
-                        '                                dateSave.Second)
-                        '        objCan.START_HOUR = startHour
-                        '        objCan.END_HOUR = endHour
-                        '        objCan.STATUS_ID = "DATLICH"
-                        '        lstCan.Add(objCan)
-                        '    End If
-                        'Next
-                        'Dim lstUsher As New List(Of ProgramScheduleUsherDTO)
-                        'For Each item As RadComboBoxItem In cboUsher.Items
-                        '    Dim objUsher As New ProgramScheduleUsherDTO
-                        '    objUsher.EMPLOYEE_ID = item.Value
-                        '    lstUsher.Add(objUsher)
-                        'Next
-
-                        'obj.lstScheduleCan = lstCan
-                        'obj.lstScheduleUsher = lstUsher
-                        'If hidID.Value <> "" Then
-                        '    obj.ID = Decimal.Parse(hidID.Value)
-                        'End If
-                        'If rep.UpdateProgramSchedule(obj) Then
-                        '    Dim str As String = "getRadWindow().close('1');"
-                        '    ScriptManager.RegisterStartupScript(Me.Page, Me.Page.GetType, "clientButtonClicking", str, True)
-                        'Else
-                        '    ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), Utilities.NotifyType.Error)
-                        'End If
+                        
                     Case CommonMessage.TOOLBARITEM_CANCEL
                         ''POPUPTOLINK_CANCEL
-                        Refresh()
-                        CurrentState = CommonMessage.STATE_NORMAL
+                        
                         'Dim PROGRAM_ID As String = Request.QueryString("PROGRAM_ID")
-                        'ScriptManager.RegisterClientScriptBlock(Page, GetType(Page), "close", "window.close();", True)
-                        'Response.Write("<script>window.close();</script>")
+                        ScriptManager.RegisterClientScriptBlock(Page, GetType(Page), "close", "window.close();", True)
                         'Response.Redirect("/Default.aspx?mid=Recruitment&fid=ctrlRC_ProgramSchedule&group=Business&PROGRAM_ID=" & PROGRAM_ID)
                         ' Response.Redirect("/Default.aspx?mid=Recruitment&fid=ctrlRC_ProgramSchedule&group=Business")
                 End Select
@@ -649,8 +639,12 @@ Public Class ctrlRC_ProgramScheduleNewEdit
 
     Protected Function getCanNotSchedule(Optional ByVal isFull As Boolean = False) As DataTable
         Try
-            rgCanNotSchedule.DataSource = store.GET_CANDIDATE_NOT_SCHEDULE(Decimal.Parse(hidProgramID.Value), hidID.Value, chkFillter.Checked, rlbExams.SelectedValue)
-
+            Dim lstID As String = ","
+            For Each item As GridDataItem In rgCanSchedule.Items
+                lstID = lstID & item.GetDataKeyValue("ID") & ","
+            Next
+            dtCanNot = store.GET_CANDIDATE_NOT_SCHEDULE(Decimal.Parse(hidProgramID.Value), hidID.Value, chkFillter.Checked, rlbExams.SelectedValue, lstID)
+            rgCanNotSchedule.DataSource = dtCanNot
         Catch ex As Exception
             DisplayException(Me.ViewName, Me.ID, ex)
         End Try
@@ -660,10 +654,10 @@ Public Class ctrlRC_ProgramScheduleNewEdit
     Protected Function getCanSchedule(Optional ByVal isFull As Boolean = False) As DataTable
         Try
 
-            tabCandidateSchedule = store.GET_PROGRAM_SCHCEDULE_LIST(Decimal.Parse(hidProgramID.Value), Decimal.Parse(hidID.Value))
-            rgCanSchedule.DataSource = tabCandidateSchedule
+            dtCan = store.GET_PROGRAM_SCHCEDULE_LIST(Decimal.Parse(hidProgramID.Value), Decimal.Parse(hidID.Value))
+            rgCanSchedule.DataSource = dtCan
 
-            If tabCandidateSchedule.Rows.Count = 0 Then
+            If dtCan.Rows.Count = 0 Then
                 rlbExams.Enabled = True
             End If
         Catch ex As Exception
@@ -735,51 +729,79 @@ Public Class ctrlRC_ProgramScheduleNewEdit
         arr = e.Argument.Split("_")
         str = arr(arr.Count - 1)
 
-        If hidID.Value = 0 Then
-            store.ADDNEW_PRO_SCHEDULE(hidProgramID.Value, If(cboUsher.SelectedValue = "", Nothing, cboUsher.SelectedValue), rdScheduleDate.SelectedDate, txtExamsPlace.Text, txtNote.Text, userlog.Username, String.Format("{0}-{1}", userlog.ComputerName, userlog.Ip))
-            'store.ADDNEW_PRO_SCHEDULE(hidProgramID.Value, rdScheduleDate.SelectedDate, txtExamsPlace.Text, txtNote.Text, String.Empty, String.Empty)
-            hidID.Value = store.GET_TOPID_PRO_SCHEDULE(hidProgramID.Value)
-        End If
+        'If hidID.Value = 0 Then
+        '    store.ADDNEW_PRO_SCHEDULE(hidProgramID.Value, If(cboUsher.SelectedValue = "", Nothing, cboUsher.SelectedValue), rdScheduleDate.SelectedDate, txtExamsPlace.Text, txtNote.Text, userlog.Username, String.Format("{0}-{1}", userlog.ComputerName, userlog.Ip))
+        '    'store.ADDNEW_PRO_SCHEDULE(hidProgramID.Value, rdScheduleDate.SelectedDate, txtExamsPlace.Text, txtNote.Text, String.Empty, String.Empty)
+        '    hidID.Value = store.GET_TOPID_PRO_SCHEDULE(hidProgramID.Value)
+        'End If
 
         Select Case str
             Case "btnInsert"
+
                 For idx = 0 To rgCanNotSchedule.SelectedItems.Count - 1
                     Dim item As GridDataItem = rgCanNotSchedule.SelectedItems(idx)
+                    Dim newRow1 As DataRow = dtCan.NewRow
+                    newRow1("ID") = item.GetDataKeyValue("ID")
+                    newRow1("CANDIDATE_CODE") = item.GetDataKeyValue("CANDIDATE_CODE")
+                    newRow1("FULLNAME_VN") = item.GetDataKeyValue("FULLNAME_VN")
+                    newRow1("BIRTH_DATE") = String.Format(ToDate(item.GetDataKeyValue("BIRTH_DATE")), "DD/MM/YYYY")
+                    newRow1("BIRTH_PROVINCE_NAME") = item.GetDataKeyValue("BIRTH_PROVINCE_NAME")
+                    newRow1("PER_EMAIL") = item.GetDataKeyValue("PER_EMAIL")
+                    newRow1("ID_NO") = item.GetDataKeyValue("ID_NO")
+                    newRow1("SCHEDULE_DATE") = Nothing
+                    newRow1("SCHEDULE_BY") = Nothing
+                    newRow1("EXAM_NAME") = Nothing
+                    dtCan.Rows.Add(newRow1)
                     'insert candidate --> program schedule candidate
-                    Dim idCandidate As Int32 = Int32.Parse(item.GetDataKeyValue("ID").ToString())
-                    'For Each itemExams As RadListBoxItem In rlbExams.Items
-                    '    If itemExams.Checked = True Then
-                    '        Dim idPro_Exams As Int32 = Decimal.Parse(itemExams.Value)
-                    '        store.ADDNEW_CAN_PRO_SCHEDULE(idCandidate, Decimal.Parse(hidID.Value), idPro_Exams)
-                    '        check = 2
-                    '    Else
-                    '        Continue For
-                    '    End If
-                    'Next
-                    Dim idPro_Exams As Int32 = Decimal.Parse(rlbExams.SelectedValue)
-                    store.ADDNEW_CAN_PRO_SCHEDULE(idCandidate, Decimal.Parse(hidID.Value), idPro_Exams)
-                    check = 2
-                    If check = 2 Then
-                        store.UPDATE_CANDIDATE_STATUS(idCandidate, "PROCESS")
-                    End If
+                    'Dim idCandidate As Int32 = Int32.Parse(item.GetDataKeyValue("ID").ToString())
+                    ''For Each itemExams As RadListBoxItem In rlbExams.Items
+                    ''    If itemExams.Checked = True Then
+                    ''        Dim idPro_Exams As Int32 = Decimal.Parse(itemExams.Value)
+                    ''        store.ADDNEW_CAN_PRO_SCHEDULE(idCandidate, Decimal.Parse(hidID.Value), idPro_Exams)
+                    ''        check = 2
+                    ''    Else
+                    ''        Continue For
+                    ''    End If
+                    ''Next
+                    'Dim idPro_Exams As Int32 = Decimal.Parse(rlbExams.SelectedValue)
+                    'store.ADDNEW_CAN_PRO_SCHEDULE(idCandidate, Decimal.Parse(hidID.Value), idPro_Exams)
+                    'check = 2
+                    'If check = 2 Then
+                    '    store.UPDATE_CANDIDATE_STATUS(idCandidate, "PROCESS")
+                    'End If
+                    Dim s = (From q In dtCanNot Where q("ID") = item.GetDataKeyValue("ID")).FirstOrDefault
+                    dtCanNot.Rows.Remove(s)
                 Next
-
+                
             Case "btnDelete"
                 For idx = 0 To rgCanSchedule.SelectedItems.Count - 1
                     Dim item As GridDataItem = rgCanSchedule.SelectedItems(idx)
-                    Dim idCandidate As Int32 = Int32.Parse(item.GetDataKeyValue("ID").ToString())
-                    If store.Check_Exams_IsExist(Decimal.Parse(hidID.Value), idCandidate) > 0 Then
-                        ShowMessage("Thông tin kết quả điểm thi/pv của ứng viên đã tồn tại. Vui lòng kiểm tra lại!", NotifyType.Warning)
-                        Exit Sub
-                    End If
+                    Dim newRow1 As DataRow = dtCanNot.NewRow
+                    newRow1("ID") = item.GetDataKeyValue("ID")
+                    newRow1("CANDIDATE_CODE") = item.GetDataKeyValue("CANDIDATE_CODE")
+                    newRow1("FULLNAME_VN") = item.GetDataKeyValue("FULLNAME_VN")
+                    newRow1("BIRTH_DATE") = String.Format(ToDate(item.GetDataKeyValue("BIRTH_DATE")), "DD/MM/YYYY")
+                    newRow1("BIRTH_PROVINCE_NAME") = item.GetDataKeyValue("BIRTH_PROVINCE_NAME")
+                    newRow1("PER_EMAIL") = item.GetDataKeyValue("PER_EMAIL")
+                    newRow1("ID_NO") = item.GetDataKeyValue("ID_NO")
+                    dtCanNot.Rows.Add(newRow1)
 
-                    'delete candidate --> program schedule candidate
-                    store.DELETE_PRO_SCHEDULE_CAN(Decimal.Parse(hidID.Value), idCandidate)
+                    'Dim idCandidate As Int32 = Int32.Parse(item.GetDataKeyValue("ID").ToString())
+                    'If store.Check_Exams_IsExist(Decimal.Parse(hidID.Value), idCandidate) > 0 Then
+                    '    ShowMessage("Thông tin kết quả điểm thi/pv của ứng viên đã tồn tại. Vui lòng kiểm tra lại!", NotifyType.Warning)
+                    '    Exit Sub
+                    'End If
+
+                    ''delete candidate --> program schedule candidate
+                    'store.DELETE_PRO_SCHEDULE_CAN(Decimal.Parse(hidID.Value), idCandidate)
+                    Dim s = (From q In dtCan Where q("ID") = item.GetDataKeyValue("ID")).FirstOrDefault
+                    dtCan.Rows.Remove(s)
                 Next
         End Select
-        rgCanNotSchedule.Rebind()
+        rgCanNotSchedule.DataSource = dtCanNot
+        rgCanSchedule.DataSource = dtCan
         rgCanSchedule.Rebind()
-
+        rgCanNotSchedule.Rebind()
         If rgCanSchedule.Items.Count = 0 Then
             LoadExamsList()
             rlbExams.Enabled = True

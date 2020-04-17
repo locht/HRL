@@ -85,7 +85,7 @@
                             <td>
                             </td>
                             <td>
-                                <asp:CheckBox ID="chkFillter" AutoPostBack="true" CausesValidation="false" runat="server" Text="<%$ Translate: Lọc ứng viên đã đạt ở phỏng vấn trước %>" Checked="true" />
+                                <asp:CheckBox ID="chkFillter" AutoPostBack="true" CausesValidation="false" runat="server" Text="<%$ Translate: Lọc ứng viên đã đạt ở vòng phỏng vấn trước %>" Checked="true" />
                             </td>
                         </tr>
                         <tr>
@@ -133,19 +133,23 @@
         <tlk:RadSplitter ID="RadSplitter2" runat="server" Width="100%" Height="100%">
             <tlk:RadPane ID="RadPane4" runat="server" Scrolling="None">
                 <tlk:RadGrid ID="rgCanNotSchedule" runat="server" Height="100%" AllowSorting="false">
-                    <MasterTableView DataKeyNames="ID" Caption="<%$ Translate: Danh sách ứng viên chưa đặt lịch %>">
+                    <MasterTableView DataKeyNames="ID,CANDIDATE_CODE,FULLNAME_VN,BIRTH_DATE,ID_NO,BIRTH_PROVINCE_NAME,PER_EMAIL" Caption="<%$ Translate: Danh sách ứng viên chưa đặt lịch %>">
                         <Columns>
                             <tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderStyle-HorizontalAlign="Center"
                                 HeaderStyle-Width="30px" ItemStyle-HorizontalAlign="Center">
                             </tlk:GridClientSelectColumn>
-                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Mã ứng viên %>" DataField="CODE"
-                                UniqueName="CODE" SortExpression="CODE" HeaderStyle-Width="60px" />
-                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Họ tên %>" DataField="FULLNAME" UniqueName="FULLNAME"
-                                SortExpression="FULLNAME" HeaderStyle-Width="90px" />
-                            <tlk:GridDateTimeColumn HeaderText="<%$ Translate: Ngày sinh %>" DataField="DOB"
+                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Mã ứng viên %>" DataField="CANDIDATE_CODE"
+                                UniqueName="CANDIDATE_CODE" SortExpression="CANDIDATE_CODE" HeaderStyle-Width="60px" />
+                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Họ tên %>" DataField="FULLNAME_VN" UniqueName="FULLNAME_VN"
+                                SortExpression="FULLNAME_VN" HeaderStyle-Width="90px" />
+                            <tlk:GridDateTimeColumn HeaderText="<%$ Translate: Ngày sinh %>" DataField="BIRTH_DATE"
                                 DataFormatString="{0:dd/MM/yyyy}" HeaderStyle-Width="90px" />
-                            <%--<tlk:GridBoundColumn HeaderText="<%$ Translate: Số CMND %>" DataField="IDNO" UniqueName="IDNO"
-                                SortExpression="IDNO" HeaderStyle-Width="90px" />--%>
+                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Số CMND %>" Visible="false" DataField="ID_NO" UniqueName="ID_NO"
+                                SortExpression="ID_NO" HeaderStyle-Width="90px" />
+                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Nơi sinh %>" Visible="false" DataField="BIRTH_PROVINCE_NAME" UniqueName="BIRTH_PROVINCE_NAME"
+                                SortExpression="BIRTH_PROVINCE_NAME" HeaderStyle-Width="90px" />
+                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Email cá nhân %>" Visible="false" DataField="PER_EMAIL" UniqueName="PER_EMAIL"
+                                SortExpression="PER_EMAIL" HeaderStyle-Width="90px" />
                         </Columns>
                     </MasterTableView>
                     <HeaderStyle HorizontalAlign="Center" Width="150px" />
@@ -182,7 +186,8 @@
             </tlk:RadPane>
             <tlk:RadPane ID="RadPane3" runat="server" Scrolling="None">
                 <tlk:RadGrid ID="rgCanSchedule" runat="server" Height="100%" AllowSorting="false">
-                    <MasterTableView DataKeyNames="ID" Caption="<%$ Translate: Danh sách ứng viên đã đặt lịch %>">
+                    <MasterTableView DataKeyNames="ID,CANDIDATE_CODE,CANDIDATE_CODE,BIRTH_DATE,BIRTH_PROVINCE_NAME,PER_EMAIL,ID_NO,SCHEDULE_DATE,SCHEDULE_BY,EXAM_NAME" 
+                    Caption="<%$ Translate: Danh sách ứng viên đã đặt lịch %>">
                         <Columns>
                             <tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderStyle-HorizontalAlign="Center"
                                 HeaderStyle-Width="30px" ItemStyle-HorizontalAlign="Center">
