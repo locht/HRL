@@ -62,6 +62,16 @@ Public Class ctrlHU_WelfareMngNewEdit
             ViewState(Me.ID & "_dem") = value
         End Set
     End Property
+
+    Public Property year As Integer
+        Get
+            Return ViewState(Me.ID & "_year")
+        End Get
+        Set(ByVal value As Integer)
+            ViewState(Me.ID & "_year") = value
+        End Set
+    End Property
+
     Private Property dtAllowList As DataTable
         Get
             Return PageViewState(Me.ID & "_dtAllowList")
@@ -816,6 +826,7 @@ Public Class ctrlHU_WelfareMngNewEdit
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
         Dim rep As New ProfileRepository
         Dim re As New ProfileBusinessRepository
+
         Try
 
             Dim dtData = rep.GetOtherList("WELFARE", False)
@@ -823,14 +834,28 @@ Public Class ctrlHU_WelfareMngNewEdit
 
             Dim dty = re.GetYearPeriod()
             FillRadCombobox(cboYear, dty, "YEAR", "ID", True)
-            Dim dt = re.GetComboboxPeriod()
-            FillRadCombobox(cboPayStage, dt, "PERIOD_NAME", "ID", True)
+
+
 
             rep.Dispose()
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
             Throw ex
             _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
+        End Try
+    End Sub
+
+    Private Sub cboYear_SelectedIndexChanged(ByVal sender As Object, ByVal e As Telerik.Web.UI.RadComboBoxSelectedIndexChangedEventArgs) Handles cboYear.SelectedIndexChanged
+        Try
+            Dim re As New ProfileBusinessRepository
+            If cboYear.SelectedValue IsNot Nothing Then
+
+                year = Decimal.Parse(cboYear.Text)
+                Dim dt = re.GetComboboxPeriod(year)
+                FillRadCombobox(cboPayStage, dt, "PERIOD_NAME", "ID", True)
+            End If
+        Catch ex As Exception
+            DisplayException(Me.ViewName, Me.ID, ex)
         End Try
     End Sub
 

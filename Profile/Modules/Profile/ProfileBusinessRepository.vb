@@ -487,10 +487,10 @@ Partial Public Class ProfileBusinessRepository
         Return Nothing
     End Function
 
-    Public Function GetComboboxPeriod() As List(Of ATPeriodDTO)
+    Public Function GetComboboxPeriod(ByVal year As Decimal) As List(Of ATPeriodDTO)
         Using rep As New ProfileBusinessClient
             Try
-                Return rep.GetComboboxPeriod()
+                Return rep.GetComboboxPeriod(year)
             Catch ex As Exception
                 rep.Abort()
                 Throw ex

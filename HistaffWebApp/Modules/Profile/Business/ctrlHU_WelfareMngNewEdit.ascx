@@ -45,7 +45,7 @@
                     <%# Translate("Năm")%>
                 </td>
                 <td>
-                    <tlk:RadComboBox ID="cboYear" runat="server" OnClientSelectedIndexChanged="OnClientSelectedIndexChanged" >
+                    <tlk:RadComboBox ID="cboYear" runat="server" AutoPostBack="true" OnClientSelectedIndexChanged="OnClientSelectedIndexChanged" >
                     </tlk:RadComboBox>
                 <td>                   
             </tr>

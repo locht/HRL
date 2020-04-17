@@ -1733,7 +1733,7 @@ Namespace ProfileBusiness.ServiceContracts
         Function GetWelfareMngById(ByVal Id As Integer) As WelfareMngDTO
 
         <OperationContract()>
-        Function GetComboboxPeriod() As List(Of ATPeriodDTO)
+        Function GetComboboxPeriod(ByVal year As Decimal) As List(Of ATPeriodDTO)
 
         <OperationContract()>
         Function GetYearPeriod() As List(Of ATPeriodDTO)

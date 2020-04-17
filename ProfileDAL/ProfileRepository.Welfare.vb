@@ -217,9 +217,10 @@ Partial Class ProfileRepository
         End Try
     End Function
     ' get combobox : năm và kỳ lương 
-    Public Function GetComboboxPeriod() As List(Of ATPeriodDTO)
+    Public Function GetComboboxPeriod(ByVal year As Decimal) As List(Of ATPeriodDTO)
         Try
             Dim query = From p In Context.AT_PERIOD
+                        Where p.YEAR = year
             ' select thuộc tính
             Dim wel = query.Select(Function(p) New ATPeriodDTO With {
                                        .ID = p.ID,

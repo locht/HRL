@@ -95,11 +95,11 @@ Namespace ProfileBusiness.ServiceImplementations
             End Using
         End Function
 
-        Public Function GetComboboxPeriod() As List(Of ATPeriodDTO) Implements ServiceContracts.IProfileBusiness.GetComboboxPeriod
+        Public Function GetComboboxPeriod(ByVal year As Decimal) As List(Of ATPeriodDTO) Implements ServiceContracts.IProfileBusiness.GetComboboxPeriod
             Using rep As New ProfileRepository
                 Try
 
-                    Dim lst = rep.GetComboboxPeriod()
+                    Dim lst = rep.GetComboboxPeriod(year)
                     Return lst
                 Catch ex As Exception
                     Throw ex
