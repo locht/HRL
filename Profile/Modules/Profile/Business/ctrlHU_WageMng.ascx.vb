@@ -545,9 +545,13 @@ Public Class ctrlHU_WageMng
 
                 For Each item As DataRow In dtDataALL.Rows
                     newRow("AMOUNT") += If(IsNumeric(rows("AMOUNT_" + item("ID").ToString)), Decimal.Parse(rows("AMOUNT_" + item("ID").ToString)), 0).ToString + (",")
+                    
                     newRow("AMOUNT_EX") += If(IsNumeric(rows("AMOUNT_EX_" + item("ID").ToString)), Decimal.Parse(rows("AMOUNT_EX_" + item("ID").ToString)), 0).ToString + (",")
                     newRow("ALLOWANCE_LIST_ID") += If(IsNumeric(item("ID").ToString), Decimal.Parse(item("ID").ToString), 0).ToString + (",")
                 Next
+                newRow("AMOUNT") = newRow("AMOUNT").ToString.TrimEnd(",")
+                newRow("AMOUNT_EX") = newRow("AMOUNT_EX").ToString.TrimEnd(",")
+                newRow("ALLOWANCE_LIST_ID") = newRow("ALLOWANCE_LIST_ID").ToString.TrimEnd(",")
 
                 newRow("ALLOWANCE_TOTAL") = If(IsNumeric(rows("ALLOWANCE_TOTAL")), Decimal.Parse(rows("ALLOWANCE_TOTAL")), 0)
                 newRow("SAL_INS") = If(IsNumeric(rows("SAL_INS")), Decimal.Parse(rows("SAL_INS")), 0)
