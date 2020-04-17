@@ -23,6 +23,9 @@ Namespace TrainingBusiness.ServiceContracts
         Function GetTrCenterList(ByVal sLang As String, ByVal isBlank As Boolean) As DataTable
 
         <OperationContract()>
+        Function GetFiedlTrainList() As List(Of LectureDTO)
+
+        <OperationContract()>
         Function GetTrPlanByYearOrg(ByVal isBlank As Boolean, ByVal dYear As Decimal, ByVal dOrg As Decimal, ByVal log As UserLog) As DataTable
 
         <OperationContract()>

@@ -16,4 +16,7 @@
     Public Property MODIFIED_DATE As Date?
     Public Property MODIFIED_BY As String
     Public Property MODIFIED_LOG As String
+    Public Property IS_JOINED As Boolean?
+    Public Property FIELD_TRAIN_ID As Decimal?
+    Public Property FIELD_TRAIN_NAME As String
 End Class

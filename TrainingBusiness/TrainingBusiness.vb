@@ -41,6 +41,16 @@ Namespace TrainingBusiness.ServiceImplementations
             End Try
         End Function
 
+        Public Function GetFiedlTrainList() As List(Of LectureDTO) Implements ServiceContracts.ITrainingBusiness.GetFiedlTrainList
+            Try
+                Dim rep As New TrainingRepository
+                Dim lst = rep.GetFiedlTrainList()
+                Return lst
+            Catch ex As Exception
+                Throw ex
+            End Try
+        End Function
+
         Public Function GetTrCenterList(ByVal sLang As String, ByVal isBlank As Boolean) As DataTable Implements ServiceContracts.ITrainingBusiness.GetTrCenterList
             Try
                 Dim rep As New TrainingRepository

@@ -586,6 +586,7 @@ Partial Class TrainingRepository
             Dim query = From p In Context.TR_LECTURE
                         From center In Context.TR_CENTER.Where(Function(f) f.ID = p.TR_CENTER_ID).DefaultIfEmpty
                         From emp In Context.HU_EMPLOYEE.Where(Function(f) f.ID = p.LECTURE_ID).DefaultIfEmpty
+                        From fi In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.FIELD_TRAIN_ID).DefaultIfEmpty
                         Select New LectureDTO With {
                             .ID = p.ID,
                             .LECTURE_CODE = If(p.LECTURE_ID IsNot Nothing, emp.EMPLOYEE_CODE, p.CODE),
@@ -598,6 +599,9 @@ Partial Class TrainingRepository
                             .TR_CENTER_ID = p.TR_CENTER_ID,
                             .TR_CENTER_NAME = center.NAME_VN,
                             .ACTFLG = If(p.ACTFLG <> 0, "Áp dụng", "Ngừng áp dụng"),
+                            .IS_JOINED = p.IS_JOINED,
+                            .FIELD_TRAIN_ID = p.FIELD_TRAIN_ID,
+                            .FIELD_TRAIN_NAME = fi.NAME_VN,
                             .CREATED_DATE = p.CREATED_DATE}
 
             Dim lst = query
@@ -649,6 +653,8 @@ Partial Class TrainingRepository
             objLectureData.REMARK = objLecture.REMARK
             objLectureData.TR_CENTER_ID = objLecture.TR_CENTER_ID
             objLectureData.LECTURE_ID = objLecture.LECTURE_ID
+            objLectureData.IS_JOINED = objLecture.IS_JOINED
+            objLectureData.FIELD_TRAIN_ID = objLecture.FIELD_TRAIN_ID
             objLectureData.ACTFLG = If(objLecture.ACTFLG = "True", True, False)
             Context.TR_LECTURE.AddObject(objLectureData)
             Context.SaveChanges(log)
@@ -691,6 +697,8 @@ Partial Class TrainingRepository
             objLectureData.PHONE = objLecture.PHONE
             objLectureData.EMAIL = objLecture.EMAIL
             objLectureData.IS_LOCAL = objLecture.IS_LOCAL
+            objLectureData.IS_JOINED = objLecture.IS_JOINED
+            objLectureData.FIELD_TRAIN_ID = objLecture.FIELD_TRAIN_ID
             objLectureData.REMARK = objLecture.REMARK
             objLectureData.TR_CENTER_ID = objLecture.TR_CENTER_ID
             objLectureData.LECTURE_ID = objLecture.LECTURE_ID
