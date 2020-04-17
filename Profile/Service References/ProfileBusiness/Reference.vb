@@ -58063,7 +58063,7 @@ Namespace ProfileBusiness
         Function DeleteWorkingBefore(ByVal lstDecimals As System.Collections.Generic.List(Of Decimal), ByVal log As Common.CommonBusiness.UserLog) As Boolean
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetEmpBackGround", ReplyAction:="http://tempuri.org/IProfileBusiness/GetEmpBackGroundResponse")>  _
-        Function GetEmpBackGround(ByVal _filter As ProfileBusiness.EmployeeBackgroundDTO) As System.Collections.Generic.List(Of ProfileBusiness.EmployeeBackgroundDTO)
+        Function GetEmpBackGround(ByVal _filter As ProfileBusiness.EmployeeBackgroundDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal Sorts As String) As System.Collections.Generic.List(Of ProfileBusiness.EmployeeBackgroundDTO)
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/InsertBackGround", ReplyAction:="http://tempuri.org/IProfileBusiness/InsertBackGroundResponse")>  _
         Function InsertBackGround(ByVal objBackGround As ProfileBusiness.EmployeeBackgroundDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
@@ -60274,8 +60274,8 @@ Namespace ProfileBusiness
             Return MyBase.Channel.DeleteWorkingBefore(lstDecimals, log)
         End Function
         
-        Public Function GetEmpBackGround(ByVal _filter As ProfileBusiness.EmployeeBackgroundDTO) As System.Collections.Generic.List(Of ProfileBusiness.EmployeeBackgroundDTO) Implements ProfileBusiness.IProfileBusiness.GetEmpBackGround
-            Return MyBase.Channel.GetEmpBackGround(_filter)
+        Public Function GetEmpBackGround(ByVal _filter As ProfileBusiness.EmployeeBackgroundDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal Sorts As String) As System.Collections.Generic.List(Of ProfileBusiness.EmployeeBackgroundDTO) Implements ProfileBusiness.IProfileBusiness.GetEmpBackGround
+            Return MyBase.Channel.GetEmpBackGround(_filter, PageIndex, PageSize, Total, Sorts)
         End Function
         
         Public Function InsertBackGround(ByVal objBackGround As ProfileBusiness.EmployeeBackgroundDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean Implements ProfileBusiness.IProfileBusiness.InsertBackGround

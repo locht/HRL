@@ -1479,8 +1479,9 @@ Public Class ctrlHU_ChangeInfoNewEdit
                     cboJobPosition.SelectedValue = obj.JOB_POSITION
                     cboJobPosition.Text = obj.JOB_POSITION_NAME
                 Else
-                    cboJobPosition.SelectedValue = Nothing
-                    cboJobPosition.Text = ""
+                    cboJobPosition.ClearSelection()
+                    'cboJobPosition.SelectedValue = Nothing
+                    'cboJobPosition.Text = ""
                 End If
                 If obj.JOB_DESCRIPTION IsNot Nothing Then
                     cboJobDescription.SelectedValue = obj.JOB_DESCRIPTION
@@ -1490,16 +1491,32 @@ Public Class ctrlHU_ChangeInfoNewEdit
                     cboJobDescription.Text = ""
                 End If
                 ' them moi cac thong tin dieu chinh
-                Dim DSdata As DataSet
-                Using rep1 As New ProfileRepository
-                    DSdata = rep1.GET_JP_TO_TITLE(hidOrg.Value, cboTitle.SelectedValue, chkIsReplace.Checked, obj.JOB_POSITION)
-                End Using
+                Dim DSdata As New DataSet
+                If obj.JOB_POSITION IsNot Nothing Then
+                    Using rep1 As New ProfileRepository
+                        DSdata = rep1.GET_JP_TO_TITLE(hidOrg.Value, cboTitle.SelectedValue, chkIsReplace.Checked, obj.JOB_POSITION)
+                    End Using
+                    cboJobPosition.DataSource = DSdata.Tables(0)
+                    cboJobPosition.DataTextField = "NAME"
+                    cboJobPosition.DataValueField = "ID"
+                    cboJobPosition.DataBind()
+                    cboJobPosition.SelectedValue = obj.JOB_POSITION
+                Else
+                    Using rep1 As New ProfileRepository
+                        DSdata = rep1.GET_JP_TO_TITLE(hidOrg.Value, cboTitle.SelectedValue, chkIsReplace.Checked, 0)
+                    End Using
+                    cboJobPosition.DataSource = DSdata.Tables(0)
+                    cboJobPosition.DataTextField = "NAME"
+                    cboJobPosition.DataValueField = "ID"
+                    cboJobPosition.DataBind()
+                    cboJobPosition.SelectedValue = obj.JOB_POSITION
+                End If
 
-                cboJobPosition.DataSource = DSdata.Tables(0)
-                cboJobPosition.DataTextField = "NAME"
-                cboJobPosition.DataValueField = "ID"
-                cboJobPosition.DataBind()
-                cboJobPosition.SelectedValue = obj.JOB_POSITION
+                'cboJobPosition.DataSource = DSdata.Tables(0)
+                'cboJobPosition.DataTextField = "NAME"
+                'cboJobPosition.DataValueField = "ID"
+                'cboJobPosition.DataBind()
+                'cboJobPosition.SelectedValue = obj.JOB_POSITION
 
                 cboJobDescription.DataSource = DSdata.Tables(1)
                 cboJobDescription.DataTextField = "NAME"
