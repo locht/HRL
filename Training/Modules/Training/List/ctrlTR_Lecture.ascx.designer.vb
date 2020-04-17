@@ -68,6 +68,15 @@ Partial Public Class ctrlTR_Lecture
     Protected WithEvents chkIsLocal As Global.Telerik.Web.UI.RadButton
 
     '''<summary>
+    '''chkJoined control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents chkJoined As Global.System.Web.UI.WebControls.CheckBox
+
+    '''<summary>
     '''cboCenter control.
     '''</summary>
     '''<remarks>
@@ -147,6 +156,15 @@ Partial Public Class ctrlTR_Lecture
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtEmail As Global.Telerik.Web.UI.RadTextBox
+
+    '''<summary>
+    '''cboFieldTrain control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents cboFieldTrain As Global.Telerik.Web.UI.RadComboBox
 
     '''<summary>
     '''txtRemark control.

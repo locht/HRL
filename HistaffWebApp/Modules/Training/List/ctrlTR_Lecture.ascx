@@ -14,6 +14,9 @@
                         CausesValidation="false" ID="chkIsLocal" Text="<%$ Translate: Giảng viên nội bộ %>">
                     </tlk:RadButton>
                 </td>
+                <td class="lb">
+                    <asp:CheckBox ID="chkJoined" runat="server" Text="<%$ Translate: Đã từng tham gia đào tạo ở ACV %>" />
+                </td>
             </tr>
             <tr>
                 <td class="lb">
@@ -67,6 +70,13 @@
                     <tlk:RadTextBox ID="txtEmail" runat="server">
                     </tlk:RadTextBox>
                 </td>
+                <td class="lb">
+                    <%# Translate("Lĩnh vực đào tạo")%>
+                </td>
+                <td>
+                    <tlk:RadComboBox runat="server" ID="cboFieldTrain">
+                    </tlk:RadComboBox>          
+                </td>
             </tr>
             <tr>
                 <td class="lb">
@@ -85,7 +95,7 @@
             <ClientSettings EnableRowHoverStyle="true">
                 <Selecting AllowRowSelect="true" />
             </ClientSettings>
-            <MasterTableView DataKeyNames="ID" ClientDataKeyNames="LECTURE_CODE,LECTURE_NAME,TR_CENTER_ID,LECTURE_ID,PHONE,EMAIL,REMARK,IS_LOCAL">
+            <MasterTableView DataKeyNames="ID" ClientDataKeyNames="LECTURE_CODE,LECTURE_NAME,TR_CENTER_ID,LECTURE_ID,PHONE,EMAIL,REMARK,IS_LOCAL,FIELD_TRAIN_ID,IS_JOINED">
                 <Columns>
                     <tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderStyle-HorizontalAlign="Center"
                         HeaderStyle-Width="30px" ItemStyle-HorizontalAlign="Center">
@@ -95,6 +105,10 @@
                         UniqueName="LECTURE_CODE" SortExpression="LECTURE_CODE" />
                     <tlk:GridBoundColumn HeaderText="<%$ Translate: Tên giảng viên %>" DataField="LECTURE_NAME"
                         UniqueName="LECTURE_NAME" SortExpression="LECTURE_NAME" />
+                    <tlk:GridCheckBoxColumn HeaderText="<%$ Translate: Đã từng tham gia đào tạo ở ACV %>" DataField="IS_JOINED"
+                        UniqueName="IS_JOINED" SortExpression="IS_JOINED" AllowFiltering ="false"/>
+                    <tlk:GridBoundColumn HeaderText="<%$ Translate: Lĩnh vực đào tạo %>" DataField="FIELD_TRAIN_NAME"
+                        UniqueName="FIELD_TRAIN_NAME" SortExpression="FIELD_TRAIN_NAME" />
                     <tlk:GridBoundColumn HeaderText="<%$ Translate: Trung tâm đào tạo %>" DataField="TR_CENTER_NAME"
                         UniqueName="TR_CENTER_NAME" SortExpression="TR_CENTER_NAME" />
                     <tlk:GridBoundColumn HeaderText="<%$ Translate: Số điện thoại %>" DataField="PHONE"

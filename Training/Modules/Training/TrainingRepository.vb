@@ -78,6 +78,22 @@ Public Class TrainingRepository
         Return Nothing
     End Function
 
+    Public Function GetFiedlTrainList() As List(Of LectureDTO)
+        Dim dtData As List(Of LectureDTO)
+
+        Using rep As New TrainingBusinessClient
+            Try
+                dtData = rep.GetFiedlTrainList()
+                Return dtData
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+
+        Return Nothing
+    End Function
+
     Public Function GetTrPlanByYearOrg(ByVal isBlank As Boolean, ByVal dYear As Decimal, ByVal dOrg As Decimal) As DataTable
         Dim dtData As DataTable
 

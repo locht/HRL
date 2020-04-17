@@ -152,23 +152,27 @@ Public Class ctrlTR_Lecture
                 Case CommonMessage.STATE_NEW
                     EnabledGridNotPostback(rgMain, False)
                     Utilities.EnableRadCombo(cboCenter, True)
+                    Utilities.EnableRadCombo(cboFieldTrain, True)
                     txtCode.ReadOnly = False
                     txtEmail.ReadOnly = False
                     txtName.ReadOnly = False
                     txtPhone.ReadOnly = False
                     txtRemark.ReadOnly = False
                     chkIsLocal.Enabled = True
+                    chkJoined.Enabled = True
                     chkIsLocal.AutoPostBack = True
 
                 Case CommonMessage.STATE_NORMAL
                     EnabledGridNotPostback(rgMain, True)
                     Utilities.EnableRadCombo(cboCenter, False)
+                    Utilities.EnableRadCombo(cboFieldTrain, False)
                     txtCode.ReadOnly = True
                     txtEmail.ReadOnly = True
                     txtName.ReadOnly = True
                     txtPhone.ReadOnly = True
                     txtRemark.ReadOnly = True
                     chkIsLocal.Enabled = False
+                    chkJoined.Enabled = False
                     btnFindLecture.Enabled = False
 
                     txtCode.Text = ""
@@ -178,18 +182,23 @@ Public Class ctrlTR_Lecture
                     txtRemark.Text = ""
                     cboCenter.ClearSelection()
                     cboCenter.Text = ""
+                    cboFieldTrain.ClearSelection()
+                    cboFieldTrain.Text = ""
                     chkIsLocal.Checked = False
+                    chkJoined.Checked = False
                     chkIsLocal.AutoPostBack = False
                 Case CommonMessage.STATE_EDIT
 
                     EnabledGridNotPostback(rgMain, False)
                     Utilities.EnableRadCombo(cboCenter, True)
+                    Utilities.EnableRadCombo(cboFieldTrain, True)
                     txtCode.ReadOnly = False
                     txtEmail.ReadOnly = False
                     txtName.ReadOnly = False
                     txtPhone.ReadOnly = False
                     txtRemark.ReadOnly = False
                     chkIsLocal.Enabled = True
+                    chkJoined.Enabled = True
                     chkIsLocal.AutoPostBack = True
                     btnFindLecture.Enabled = True
 
@@ -248,9 +257,12 @@ Public Class ctrlTR_Lecture
     Public Overrides Sub BindData()
         Try
             Dim dtData As DataTable
+            Dim dt As List(Of LectureDTO)
             Using rep As New TrainingRepository
                 dtData = rep.GetTrCenterList(True)
+                dt = rep.GetFiedlTrainList()
                 FillRadCombobox(cboCenter, dtData, "NAME", "ID")
+                FillRadCombobox(cboFieldTrain, dt, "FIELD_TRAIN_NAME", "FIELD_TRAIN_ID")
             End Using
 
             Dim dic As New Dictionary(Of String, Control)
@@ -262,6 +274,8 @@ Public Class ctrlTR_Lecture
             dic.Add("LECTURE_ID", hidLectureID)
             dic.Add("IS_LOCAL", chkIsLocal)
             dic.Add("TR_CENTER_ID", cboCenter)
+            dic.Add("IS_JOINED", chkJoined)
+            dic.Add("FIELD_TRAIN_ID", cboFieldTrain)
             Utilities.OnClientRowSelectedChanged(rgMain, dic)
         Catch ex As Exception
             Throw ex
@@ -286,7 +300,10 @@ Public Class ctrlTR_Lecture
                     txtRemark.Text = ""
                     cboCenter.ClearSelection()
                     cboCenter.Text = ""
+                    cboFieldTrain.ClearSelection()
+                    cboFieldTrain.Text = ""
                     chkIsLocal.Checked = False
+                    chkJoined.Checked = False
                     chkIsLocal.AutoPostBack = True
                     chkIsLocal_CheckedChanged(Nothing, Nothing)
                     UpdateControlState()
@@ -353,6 +370,7 @@ Public Class ctrlTR_Lecture
                     If Page.IsValid Then
                         objLecture.EMAIL = txtEmail.Text
                         objLecture.IS_LOCAL = chkIsLocal.Checked
+                        objLecture.IS_JOINED = chkJoined.Checked
                         If chkIsLocal.Checked Then
                             objLecture.LECTURE_ID = hidLectureID.Value
 
@@ -363,6 +381,9 @@ Public Class ctrlTR_Lecture
                         objLecture.REMARK = txtRemark.Text
                         If cboCenter.SelectedValue <> "" Then
                             objLecture.TR_CENTER_ID = cboCenter.SelectedValue
+                        End If
+                        If cboFieldTrain.SelectedValue <> "" Then
+                            objLecture.FIELD_TRAIN_ID = cboFieldTrain.SelectedValue
                         End If
                         Select Case CurrentState
                             Case CommonMessage.STATE_NEW
@@ -447,6 +468,8 @@ Public Class ctrlTR_Lecture
             hidLectureID.Value = itm.ID
             txtCode.Text = itm.EMPLOYEE_CODE
             txtName.Text = itm.FULLNAME_VN
+            txtEmail.Text = itm.PER_EMAIL
+            txtPhone.Text = itm.MOBILE_PHONE
             isLoadPopup = 0
         Catch ex As Exception
             DisplayException(Me.ViewName, Me.ID, ex)
@@ -459,17 +482,25 @@ Public Class ctrlTR_Lecture
             hidLectureID.Value = ""
             txtCode.Text = ""
             txtName.Text = ""
+            txtEmail.Text = ""
+            txtPhone.Text = ""
             If chkIsLocal.Checked Then
                 cboCenter.Enabled = False
+                'cboFieldTrain.Enabled = False
                 cusCenter.Enabled = False
                 txtCode.ReadOnly = True
                 txtName.ReadOnly = True
+                txtEmail.ReadOnly = True
+                txtPhone.ReadOnly = True
                 btnFindLecture.Enabled = True
             Else
                 cboCenter.Enabled = True
+                'cboFieldTrain.Enabled = True
                 cusCenter.Enabled = True
                 txtCode.ReadOnly = False
                 txtName.ReadOnly = False
+                txtEmail.ReadOnly = False
+                txtPhone.ReadOnly = False
                 btnFindLecture.Enabled = False
             End If
         Catch ex As Exception

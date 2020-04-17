@@ -73,6 +73,25 @@ Partial Public Class TrainingRepository
         End Try
     End Function
 
+    Public Function GetFiedlTrainList() As List(Of LectureDTO)
+        Try
+            Dim lst As New List(Of LectureDTO)
+            Dim a As New LectureDTO
+            lst.Add(a)
+            Dim query = (From p In Context.OT_OTHER_LIST
+                     Where p.TYPE_ID = 2043
+                     Select New LectureDTO With {
+                         .FIELD_TRAIN_ID = p.ID,
+                         .FIELD_TRAIN_NAME = p.NAME_VN}).ToList()
+            For Each item In query
+                lst.Add(item)
+            Next
+            Return lst
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+
     Public Function GetTrPlanByYearOrg(ByVal isBlank As Boolean, ByVal dYear As Decimal, ByVal dOrg As Decimal, ByVal log As UserLog) As DataTable
         Try
             Using cls As New DataAccess.QueryData
