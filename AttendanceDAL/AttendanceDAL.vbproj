@@ -162,6 +162,7 @@
     <Compile Include="BusinessObjects\LEAVEINOUTKHDTO.vb" />
     <Compile Include="BusinessObjects\LEAVE_DETAIL_EMP_DTO.vb" />
     <Compile Include="BusinessObjects\HistoryLeaveDTO.vb" />
+    <Compile Include="BusinessObjects\Setting\AT_ObjectEmpployeeCompensatoryDTO.vb" />
     <Compile Include="BusinessObjects\SetUpCodeAttDTO.vb" />
     <Compile Include="BusinessObjects\SHIFT_DTO.vb" />
     <Compile Include="BusinessObjects\SIGNDEFAULTDTO.vb" />
@@ -177,6 +178,7 @@
     <Compile Include="AttendanceRepository.Reports.vb" />
     <Compile Include="BusinessObjects\Se_ReportDTO.vb" />
     <Compile Include="AttendanceRepository.Dashboard.vb" />
+    <Compile Include="AttendanceRepository.Setting.vb" />
     <Compile Include="Database.vb" />
     <Compile Include="AttendanceRepository.Business.vb" />
     <Compile Include="AttendanceRepository.vb" />

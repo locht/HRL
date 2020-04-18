@@ -677,7 +677,7 @@ Public Class ctrlHU_WageMng
         Dim dtError As New DataTable("ERROR")
         Try
             If dtData.Rows.Count = 0 Then
-                ShowMessage(Translate(CommonMessage.MESSAGE_NOT_ROW), NotifyType.Warning)
+                ShowMessage(Translate("File không có dữ liệu <br/> Vui lòng kiểm tra lại"), NotifyType.Warning)
                 Return False
             End If
             Dim rowError As DataRow
@@ -693,16 +693,14 @@ Public Class ctrlHU_WageMng
             For Each row As DataRow In dtData.Rows
                 rowError = dtError.NewRow
                 isError = False
-                sError = "Chưa nhập mã nhân viên"
-                ImportValidate.EmptyValue("EMPLOYEE_CODE", row, rowError, isError, sError)
-
+                'sError = "Chưa nhập mã nhân viên"
+                'ImportValidate.EmptyValue("EMPLOYEE_CODE", row, rowError, isError, sError)
                 empId = rep.CheckEmployee_Exits(row("EMPLOYEE_CODE"))
 
                 If empId = 0 Then
                     sError = "Mã nhân viên - Không tồn tại"
                     ImportValidate.IsValidTime("EMPLOYEE_CODE", row, rowError, isError, sError)
                 End If
-
                 If row("EFFECT_DATE") Is DBNull.Value OrElse row("EFFECT_DATE") = "" Then
                     sError = "Chưa nhập ngày hiệu lực"
                     ImportValidate.IsValidTime("EFFECT_DATE", row, rowError, isError, sError)
@@ -720,6 +718,8 @@ Public Class ctrlHU_WageMng
                     End Try
                 End If
 VALIDATE:
+
+                
                 'If row("FACTORSALARY") Is DBNull.Value OrElse row("FACTORSALARY") = "" Then
                 '    sError = "Chưa nhập hệ số/mức tiền"
                 '    ImportValidate.IsValidTime("FACTORSALARY", row, rowError, isError, sError)
@@ -787,7 +787,7 @@ VALIDATE:
                     End If
                 End If
                 If isError Then
-                    rowError("EMPLOYEE_CODE") = row("EMPLOYEE_CODE").ToString
+                    rowError("STT") = row("EMPLOYEE_CODE").ToString
                     If rowError("EMPLOYEE_CODE").ToString = "" Then
                         rowError("EMPLOYEE_CODE") = row("EMPLOYEE_CODE").ToString
                     End If
@@ -812,7 +812,7 @@ VALIDATE:
                             strNote &= dtError.Rows(j)(k) & "\"
                         End If
                     Next
-                    RowErrorGroup("STT") = dtError.Rows(j)("EMPLOYEE_CODE")
+                    RowErrorGroup("STT") = dtError.Rows(j)("STT")
                     RowErrorGroup("NOTE") = strNote
                     dtErrorGroup.Rows.Add(RowErrorGroup)
                 Next

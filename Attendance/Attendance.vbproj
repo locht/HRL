@@ -193,6 +193,7 @@
     <Content Include="Modules\Attendance\Dashboard\ctrlAT_DBTimeOff.ascx" />
     <Content Include="Modules\Attendance\Dashboard\ctrlAT_DBTimeOtByOrg.ascx" />
     <Content Include="Modules\Attendance\Dashboard\ctrlDashboardSixCell.ascx" />
+    <Content Include="Modules\Attendance\Setting\ctrlAT_OBJECT_EMP_CSL.ascx" />
     <Content Include="Modules\Attendance\List\ctrlAT_PROJECT_WORK.ascx" />
     <Content Include="Modules\Attendance\List\ctrlAT_PROJECT.ascx" />
     <Content Include="Modules\Attendance\List\ctrlAT_PROJECT_TITLE.ascx" />
@@ -279,6 +280,9 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\AttendanceBusiness\Attendance.AttendanceBusiness.AT_LISTPARAM_SYSTEAMDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\AttendanceBusiness\Attendance.AttendanceBusiness.AT_ObjectEmpployeeCompensatoryDTO.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\AttendanceBusiness\Attendance.AttendanceBusiness.AT_OFFFSETTINGDTO.datasource">
@@ -466,6 +470,7 @@
     <Compile Include="AttendanceRepository.Common.vb" />
     <Compile Include="AttendanceRepository.Report.vb" />
     <Compile Include="AttendanceRepository.Dashboard.vb" />
+    <Compile Include="AttendanceRepository.Setting.vb" />
     <Compile Include="Modules\Attendance\Business\ctrlOffSettingTimeKeepingNewEdit.ascx.designer.vb">
       <DependentUpon>ctrlOffSettingTimeKeepingNewEdit.ascx</DependentUpon>
     </Compile>
@@ -657,6 +662,13 @@
     </Compile>
     <Compile Include="Modules\Attendance\Dashboard\ctrlDashboardSixCell.ascx.vb">
       <DependentUpon>ctrlDashboardSixCell.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Modules\Attendance\Setting\ctrlAT_OBJECT_EMP_CSL.ascx.designer.vb">
+      <DependentUpon>ctrlAT_OBJECT_EMP_CSL.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Attendance\Setting\ctrlAT_OBJECT_EMP_CSL.ascx.vb">
+      <DependentUpon>ctrlAT_OBJECT_EMP_CSL.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Modules\Attendance\List\ctrlAT_PROJECT_WORK.ascx.designer.vb">

@@ -185,6 +185,7 @@
     <Content Include="Modules\Attendance\List\ctrlAT_PROJECT_WORK.ascx" />
     <Content Include="Modules\Attendance\List\ctrlListParamSystem.ascx" />
     <Content Include="Modules\Attendance\Report\ctrlAT_ReportList.ascx" />
+    <Content Include="Modules\Attendance\Setting\ctrlAT_OBJECT_EMP_CSL.ascx" />
     <Content Include="Modules\Attendance\Setting\crtlSetUpExchange.ascx" />
     <Content Include="Modules\Attendance\Setting\ctrlSetUpCodeAttEmp.ascx" />
     <Content Include="Modules\Attendance\Setting\ctrlATTimeManual.ascx" />
@@ -1028,7 +1029,7 @@
     <Content Include="ReportTemplates\Profile\RPT_HU_EMP_QUALITY.xlsx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-	<Content Include="ReportTemplates\Profile\RPT_HU_HEALTH_MNG.xls" />
+    <Content Include="ReportTemplates\Profile\RPT_HU_HEALTH_MNG.xls" />
     <Content Include="ReportTemplates\Profile\RPT_HU_TER_EMP.xlsx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

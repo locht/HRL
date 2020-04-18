@@ -89,6 +89,7 @@
     <Compile Include="AttendanceBusiness.Report.vb" />
     <Compile Include="AttendanceBusiness.Dashboard.vb" />
     <Compile Include="AttendanceBusiness.LeaveSheet.vb" />
+    <Compile Include="AttendanceRepository.Setting.vb" />
     <Compile Include="IAttendanceBusiness.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Resources.Designer.vb">
