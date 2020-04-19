@@ -23,13 +23,103 @@ Partial Public Class ctrlAT_OBJECT_EMP_CSL
     Protected WithEvents RadSplitter1 As Global.Telerik.Web.UI.RadSplitter
 
     '''<summary>
-    '''LeftPane control.
+    '''RadPane3 control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents LeftPane As Global.Telerik.Web.UI.RadPane
+    Protected WithEvents RadPane3 As Global.Telerik.Web.UI.RadPane
+
+    '''<summary>
+    '''RadSplitter2 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents RadSplitter2 As Global.Telerik.Web.UI.RadSplitter
+
+    '''<summary>
+    '''RadPane4 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents RadPane4 As Global.Telerik.Web.UI.RadPane
+
+    '''<summary>
+    '''Panel1 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents Panel1 As Global.System.Web.UI.WebControls.Panel
+
+    '''<summary>
+    '''txtEMPLOYEEID_SEARCH control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtEMPLOYEEID_SEARCH As Global.Telerik.Web.UI.RadTextBox
+
+    '''<summary>
+    '''cbo_OBJ_EMP_Search control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents cbo_OBJ_EMP_Search As Global.Telerik.Web.UI.RadComboBox
+
+    '''<summary>
+    '''cbo_OBJ_CSL_Search control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents cbo_OBJ_CSL_Search As Global.Telerik.Web.UI.RadComboBox
+
+    '''<summary>
+    '''chkSTATUS control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents chkSTATUS As Global.System.Web.UI.WebControls.CheckBox
+
+    '''<summary>
+    '''btnFind control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btnFind As Global.Telerik.Web.UI.RadButton
+
+    '''<summary>
+    '''RadSplitBar3 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents RadSplitBar3 As Global.Telerik.Web.UI.RadSplitBar
+
+    '''<summary>
+    '''RadPane5 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents RadPane5 As Global.Telerik.Web.UI.RadPane
 
     '''<summary>
     '''ctrlOrg control.
@@ -75,6 +165,42 @@ Partial Public Class ctrlAT_OBJECT_EMP_CSL
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents tbarMain As Global.Telerik.Web.UI.RadToolBar
+
+    '''<summary>
+    '''RadPane6 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents RadPane6 As Global.Telerik.Web.UI.RadPane
+
+    '''<summary>
+    '''Panel2 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents Panel2 As Global.System.Web.UI.WebControls.Panel
+
+    '''<summary>
+    '''cbo_OBJ_EMP_updateAll control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents cbo_OBJ_EMP_updateAll As Global.Telerik.Web.UI.RadComboBox
+
+    '''<summary>
+    '''cbo_OBJ_CSL_updateAll control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents cbo_OBJ_CSL_updateAll As Global.Telerik.Web.UI.RadComboBox
 
     '''<summary>
     '''RadPane2 control.

@@ -16,6 +16,9 @@ Imports Attendance.AttendanceBusiness
 
 Public Class ctrlAT_OBJECT_EMP_CSL
     Inherits Common.CommonView
+    Dim _myLog As New MyLog()
+    Dim _pathLog As String = _myLog._pathLog
+    Dim _classPath As String = "Attendance/Module/Attendance/Setting/" + Me.GetType().Name.ToString()
     Protected WithEvents RequestView As ViewBase
 
 #Region "Property"
@@ -80,6 +83,11 @@ Public Class ctrlAT_OBJECT_EMP_CSL
         Try
             Refresh()
             UpdateControlState()
+
+            ctrlOrg.AutoPostBack = True
+            ctrlOrg.LoadDataAfterLoaded = True
+            ctrlOrg.OrganizationType = OrganizationType.OrganizationLocation
+            ctrlOrg.CheckBoxes = TreeNodeTypes.None
         Catch ex As Exception
             DisplayException(Me.ViewName, Me.ID, ex)
         End Try
@@ -128,7 +136,35 @@ Public Class ctrlAT_OBJECT_EMP_CSL
             Throw ex
         End Try
     End Sub
+    '''
+    ''' <summary>
+    ''' Đổ dữ liệu được chọn từ grid lên control input
+    ''' </summary>
+    ''' <remarks></remarks>
+    Public Overrides Sub BindData()
+        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+        Dim startTime As DateTime = DateTime.UtcNow
+        Try
+            Using rep As New ProfileRepository
+                Dim dtData As New DataTable
+                dtData = rep.GetOtherList("EMPLOYEE_OBJECT")
+                FillRadCombobox(cbo_OBJ_EMP_Search, dtData, "NAME", "ID", False)
+                dtData = rep.GetOtherList("EMPLOYEE_OBJECT")
+                FillRadCombobox(cbo_OBJ_EMP_updateAll, dtData, "NAME", "ID", False)
+                dtData = rep.GetOtherList("COMPENSATORY_OBJECT")
+                FillRadCombobox(cbo_OBJ_CSL_Search, dtData, "NAME", "ID", False)
+                dtData = rep.GetOtherList("COMPENSATORY_OBJECT")
+                FillRadCombobox(cbo_OBJ_CSL_updateAll, dtData, "NAME", "ID", False)
+            End Using
 
+            _myLog.WriteLog(_myLog._info, _classPath, method,
+                                         CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
+        Catch ex As Exception
+            _myLog.WriteLog(_myLog._error, _classPath, method, 0, ex, "")
+            DisplayException(Me.ViewName, Me.ID, ex)
+        End Try
+
+    End Sub
 #End Region
 
 #Region "Event"
@@ -284,4 +320,31 @@ Public Class ctrlAT_OBJECT_EMP_CSL
 #Region "Custom"
 
 #End Region
+
+    Private Sub ctrlOrg_SelectedNodeChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles ctrlOrg.SelectedNodeChanged
+        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+        Dim startTime As DateTime = DateTime.UtcNow
+        Try
+
+            rgData.CurrentPageIndex = 0
+            rgData.MasterTableView.SortExpressions.Clear()
+            rgData.Rebind()
+            _myLog.WriteLog(_myLog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
+        Catch ex As Exception
+            _myLog.WriteLog(_myLog._error, _classPath, method, 0, ex, "")
+            DisplayException(Me.ViewName, Me.ID, ex)
+        End Try
+    End Sub
+
+    Private Sub btnFind_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnFind.Click
+        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+        Dim startTime As DateTime = DateTime.UtcNow
+        Try
+            rgData.Rebind()
+            _myLog.WriteLog(_myLog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
+        Catch ex As Exception
+            _myLog.WriteLog(_myLog._error, _classPath, method, 0, ex, "")
+            DisplayException(Me.ViewName, Me.ID, ex)
+        End Try
+    End Sub
 End Class

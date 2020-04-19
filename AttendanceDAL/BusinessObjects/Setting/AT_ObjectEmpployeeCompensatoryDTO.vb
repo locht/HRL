@@ -6,7 +6,7 @@
     Public Property EMPLOYEE_ID As Decimal?
     Public Property FULLNAME_VN As String
     Public Property EMPLOYEE_CODE_NAME As String ' DÙNG ĐỂ TÌM KIẾM
-    Public Property CREATED_DATE As DateTime
+    Public Property CREATED_DATE As Date?
     'trạng thái làm việc
     Public Property WORK_STATUS As Decimal?
     Public Property WORK_STATUS_NAME As String

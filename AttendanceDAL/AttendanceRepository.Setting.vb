@@ -40,27 +40,26 @@ Partial Public Class AttendanceRepository
                                                     .P_CUR = cls.OUT_CURSOR})
                 If dtData IsNot Nothing Then
                     lst = (From row As DataRow In dtData.Rows
-                       Select New AT_ObjectEmpployeeCompensatoryDTO With {.STT = row("STT").ToString(),
-                                                   .ID = row("ID").ToString(),
-                                                   .EMPLOYEE_ID = row("EMPLOYEE_ID").ToString(),
-                                                   .EMPLOYEE_CODE = row("EMPLOYEE_CODE").ToString(),
-                                                   .FULLNAME_VN = row("FULLNAME_VN").ToString(),
-                                                   .TITLE_ID = row("TITLE_ID").ToString(),
-                                                   .TITLE_NAME = row("TITLE_NAME").ToString(),
-                                                    .ORG_ID = row("ORG_ID").ToString(),
-                                                   .ORG_NAME = row("ORG_NAME").ToString(),
-                                                   .SAL_LEVEL_ID = row("SAL_LEVEL_ID").ToString(),
-                                                   .SAL_LEVEL_NAME = row("SAL_LEVEL_NAME").ToString(),
-                                                   .SAL_RANK_ID = row("SAL_RANK_ID").ToString(),
-                                                   .SAL_RANK_NAME = row("SAL_RANK_NAME").ToString(),
-                                                   .OBJ_EMP_ID = row("OBJ_EMP_ID").ToString(),
-                                                    .OBJ_EMP_NAME = row("OBJ_EMP_NAME").ToString(),
-                                                   .OBJ_CSL_ID = row("OBJ_CSL_ID").ToString(),
-                                                   .OBJ_CSL_NAME = row("OBJ_CSL_NAME").ToString(),
-                                                   .WORK_STATUS = row("WORK_STATUS").ToString(),
-                                                    .WORK_STATUS_NAME = row("WORK_STATUS_NAME").ToString(),
-                                                     .CREATED_DATE = ToDate(row("CREATED_DATE"))
-                                                  })
+                       Select New AT_ObjectEmpployeeCompensatoryDTO With {.STT = Decimal.Parse(row("STT")),
+                                                   .ID = Decimal.Parse(row("ID")),
+                                                   .EMPLOYEE_ID = Decimal.Parse(row("EMPLOYEE_ID")),
+                                                   .EMPLOYEE_CODE = row("EMPLOYEE_CODE").ToString,
+                                                   .FULLNAME_VN = row("FULLNAME_VN").ToString,
+                                                   .TITLE_ID = Decimal.Parse(row("TITLE_ID")),
+                                                   .TITLE_NAME = row("TITLE_NAME").ToString,
+                                                    .ORG_ID = Decimal.Parse(row("ORG_ID")),
+                                                   .ORG_NAME = row("ORG_NAME").ToString,
+                                                   .SAL_LEVEL_ID = If(row("SAL_LEVEL_ID").ToString = "", 0, Decimal.Parse(row("SAL_LEVEL_ID"))),
+                                                   .SAL_LEVEL_NAME = row("SAL_LEVEL_NAME").ToString,
+                                                   .SAL_RANK_ID = If(row("SAL_RANK_ID").ToString = "", 0, Decimal.Parse(row("SAL_RANK_ID"))),
+                                                   .SAL_RANK_NAME = row("SAL_RANK_NAME").ToString,
+                                                   .OBJ_EMP_ID = If(row("OBJ_EMP_ID").ToString = "", 0, Decimal.Parse(row("OBJ_EMP_ID"))),
+                                                    .OBJ_EMP_NAME = row("OBJ_EMP_NAME").ToString,
+                                                   .OBJ_CSL_ID = If(row("OBJ_CSL_ID").ToString = "", 0, Decimal.Parse(row("OBJ_CSL_ID"))),
+                                                   .OBJ_CSL_NAME = row("OBJ_CSL_NAME").ToString,
+                                                   .WORK_STATUS = If(row("WORK_STATUS").ToString = "", 0, Decimal.Parse(row("WORK_STATUS"))),
+                                                    .WORK_STATUS_NAME = row("WORK_STATUS_NAME").ToString
+                                                  }).ToList
                     'TÌM KIẾM BÊN KHUNG TÌM KIẾM
                     If _filter.WORK_STATUS Then
                         lst = lst.Where(Function(f) f.WORK_STATUS = 257)                       
@@ -104,15 +103,18 @@ Partial Public Class AttendanceRepository
                         lst = lst.Where(Function(f) f.EMPLOYEE_CODE.ToLower().Contains(_filter.EMPLOYEE_CODE.ToLower()))
                     End If
 
-                    lst = lst.OrderBy(Function(f) Sorts)
+
+                    lst = (From l In lst
+                  Select l).ToList()
                     Total = lst.Count
-                    lst = lst.Skip(PageIndex * PageSize).Take(PageSize)
+                    lst = (From l In lst.Skip(PageIndex * PageSize).Take(PageSize)
+                          Select l).ToList()
                 End If
             End Using
 
             Return lst.ToList
         Catch ex As Exception
-            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iProfile")
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iTime")
             Throw ex
         End Try
     End Function
