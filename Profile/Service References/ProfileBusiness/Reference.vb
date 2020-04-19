@@ -56319,6 +56319,9 @@ Namespace ProfileBusiness
      System.ServiceModel.ServiceContractAttribute(ConfigurationName:="ProfileBusiness.IProfileBusiness")>  _
     Public Interface IProfileBusiness
         
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/CHECK_CONTRACT_EXITS", ReplyAction:="http://tempuri.org/IProfileBusiness/CHECK_CONTRACT_EXITSResponse")>  _
+        Function CHECK_CONTRACT_EXITS(ByVal P_CONTRACT As Decimal, ByVal P_EMP_CODE As String, ByVal P_DATE As Date) As Integer
+        
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/CHECK_SIGN", ReplyAction:="http://tempuri.org/IProfileBusiness/CHECK_SIGNResponse")>  _
         Function CHECK_SIGN(ByVal P_EMP_CODE As String) As Integer
         
@@ -57429,6 +57432,9 @@ Namespace ProfileBusiness
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/Import_Health_Mng", ReplyAction:="http://tempuri.org/IProfileBusiness/Import_Health_MngResponse")>  _
         Function Import_Health_Mng(ByVal P_DOCXML As String, ByVal P_USER As String) As Boolean
         
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/EXPORT_HEALTH_MNG", ReplyAction:="http://tempuri.org/IProfileBusiness/EXPORT_HEALTH_MNGResponse")>  _
+        Function EXPORT_HEALTH_MNG() As System.Data.DataTable
+        
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GET_LIST_CONCURRENTLY", ReplyAction:="http://tempuri.org/IProfileBusiness/GET_LIST_CONCURRENTLYResponse")>  _
         Function GET_LIST_CONCURRENTLY(ByVal _filter As ProfileBusiness.Temp_ConcurrentlyDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal log As Common.CommonBusiness.UserLog, ByVal Sorts As String) As System.Collections.Generic.List(Of ProfileBusiness.Temp_ConcurrentlyDTO)
         
@@ -57488,9 +57494,6 @@ Namespace ProfileBusiness
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/CHECK_SALARY", ReplyAction:="http://tempuri.org/IProfileBusiness/CHECK_SALARYResponse")>  _
         Function CHECK_SALARY(ByVal P_ID As Decimal) As Integer
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/CHECK_CONTRACT_EXITS", ReplyAction:="http://tempuri.org/IProfileBusiness/CHECK_CONTRACT_EXITSResponse")>  _
-        Function CHECK_CONTRACT_EXITS(ByVal P_CONTRACT As Decimal, ByVal P_EMP_CODE As String, ByVal P_DATE As Date) As Integer
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetProcessTrainingEdit", ReplyAction:="http://tempuri.org/IProfileBusiness/GetProcessTrainingEditResponse")>  _
         Function GetProcessTrainingEdit(ByVal _filter As ProfileBusiness.HU_PRO_TRAIN_OUT_COMPANYDTOEDIT) As System.Collections.Generic.List(Of ProfileBusiness.HU_PRO_TRAIN_OUT_COMPANYDTOEDIT)
@@ -59054,6 +59057,10 @@ Namespace ProfileBusiness
             MyBase.New(binding, remoteAddress)
         End Sub
         
+        Public Function CHECK_CONTRACT_EXITS(ByVal P_CONTRACT As Decimal, ByVal P_EMP_CODE As String, ByVal P_DATE As Date) As Integer Implements ProfileBusiness.IProfileBusiness.CHECK_CONTRACT_EXITS
+            Return MyBase.Channel.CHECK_CONTRACT_EXITS(P_CONTRACT, P_EMP_CODE, P_DATE)
+        End Function
+        
         Public Function CHECK_SIGN(ByVal P_EMP_CODE As String) As Integer Implements ProfileBusiness.IProfileBusiness.CHECK_SIGN
             Return MyBase.Channel.CHECK_SIGN(P_EMP_CODE)
         End Function
@@ -59430,6 +59437,10 @@ Namespace ProfileBusiness
             Return MyBase.Channel.Import_Health_Mng(P_DOCXML, P_USER)
         End Function
         
+        Public Function EXPORT_HEALTH_MNG() As System.Data.DataTable Implements ProfileBusiness.IProfileBusiness.EXPORT_HEALTH_MNG
+            Return MyBase.Channel.EXPORT_HEALTH_MNG
+        End Function
+        
         Public Function GET_LIST_CONCURRENTLY(ByVal _filter As ProfileBusiness.Temp_ConcurrentlyDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal log As Common.CommonBusiness.UserLog, ByVal Sorts As String) As System.Collections.Generic.List(Of ProfileBusiness.Temp_ConcurrentlyDTO) Implements ProfileBusiness.IProfileBusiness.GET_LIST_CONCURRENTLY
             Return MyBase.Channel.GET_LIST_CONCURRENTLY(_filter, PageIndex, PageSize, Total, log, Sorts)
         End Function
@@ -59508,10 +59519,6 @@ Namespace ProfileBusiness
         
         Public Function CHECK_SALARY(ByVal P_ID As Decimal) As Integer Implements ProfileBusiness.IProfileBusiness.CHECK_SALARY
             Return MyBase.Channel.CHECK_SALARY(P_ID)
-        End Function
-        
-        Public Function CHECK_CONTRACT_EXITS(ByVal P_CONTRACT As Decimal, ByVal P_EMP_CODE As String, ByVal P_DATE As Date) As Integer Implements ProfileBusiness.IProfileBusiness.CHECK_CONTRACT_EXITS
-            Return MyBase.Channel.CHECK_CONTRACT_EXITS(P_CONTRACT, P_EMP_CODE, P_DATE)
         End Function
         
         Public Function GetProcessTrainingEdit(ByVal _filter As ProfileBusiness.HU_PRO_TRAIN_OUT_COMPANYDTOEDIT) As System.Collections.Generic.List(Of ProfileBusiness.HU_PRO_TRAIN_OUT_COMPANYDTOEDIT) Implements ProfileBusiness.IProfileBusiness.GetProcessTrainingEdit

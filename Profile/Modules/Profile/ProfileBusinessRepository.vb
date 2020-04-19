@@ -853,6 +853,17 @@ Partial Public Class ProfileBusinessRepository
             End Try
         End Using
     End Function
+
+    Public Function EXPORT_HEALTH_MNG() As DataTable
+        Using rep As New ProfileBusinessClient
+            Try
+                Dim lst = rep.EXPORT_HEALTH_MNG()
+                Return lst
+            Catch ex As Exception
+                Throw ex
+            End Try
+        End Using
+    End Function
 #End Region
 
 #Region "PLHD"

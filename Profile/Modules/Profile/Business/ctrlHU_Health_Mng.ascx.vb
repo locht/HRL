@@ -691,14 +691,16 @@ Public Class ctrlHU_Health_Mng
 
     Private Sub Template_ImportHealth_Mng()
         Dim rep As New Profile.ProfileBusinessRepository
+
         Try
             Dim configPath As String = ConfigurationManager.AppSettings("PathImportFolder")
-            Dim dsData As DataSet = rep.GetHoSoLuongImport()
+            'Dim configPath As String = "D:\acv_19\HistaffWebApp\ReportTemplates"
+            Dim dsData As DataTable = rep.EXPORT_HEALTH_MNG()
 
             rep.Dispose()
-            If File.Exists(configPath + "Profile\RPT_HU_HEALTH_MNG.xls") Then
-                ExportTemplate(configPath + "Profile\RPT_HU_HEALTH_MNG.xls",
-                                      dsData, Nothing, "Template_QUANLYSUCKHOE_" & Format(Date.Now, "yyyyMMdd"))
+            If File.Exists(configPath + "\Profile\RPT_HU_HEALTH_MNG.xls") Then
+                ExportTemplate(configPath + "\Profile\RPT_HU_HEALTH_MNG.xls",
+                                    Nothing, dsData, "Template_QUANLYSUCKHOE_" & Format(Date.Now, "yyyyMMdd"))
             Else
                 ShowMessage(Translate("Template không tồn tại"), Utilities.NotifyType.Error)
                 Exit Sub
@@ -709,7 +711,7 @@ Public Class ctrlHU_Health_Mng
     End Sub
 
     Public Function ExportTemplate(ByVal sReportFileName As String,
-                                                    ByVal dsData As DataSet,
+                                                    ByVal dsData As DataTable,
                                                     ByVal dtVariable As DataTable,
                                                     ByVal filename As String) As Boolean
 
@@ -722,9 +724,6 @@ Public Class ctrlHU_Health_Mng
             templatefolder = ConfigurationManager.AppSettings("ReportTemplatesFolder")
             filePath = AppDomain.CurrentDomain.BaseDirectory & templatefolder & "\" & sReportFileName
 
-            'cau hinh lai duong dan tren server
-            filePath = sReportFileName
-
             If Not File.Exists(filePath) Then
                 ScriptManager.RegisterStartupScript(Page, Page.GetType(), "javascriptfunction", "goBack()", True)
                 Return False
@@ -732,7 +731,8 @@ Public Class ctrlHU_Health_Mng
 
             designer = New WorkbookDesigner
             designer.Open(filePath)
-            designer.SetDataSource(dsData)
+
+            'designer.SetDataSource(dsData)
 
             If dtVariable IsNot Nothing Then
                 Dim intCols As Integer = dtVariable.Columns.Count

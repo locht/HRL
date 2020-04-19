@@ -2174,6 +2174,20 @@ Public Class ProfileRepository
         End Try
     End Function
 
+    Public Function EXPORT_HEALTH_MNG() As DataTable
+        Try
+            Using cls As New DataAccess.QueryData
+                Dim dtData As DataTable = cls.ExecuteStore("PKG_PROFILE_BUSINESS.EXPORT_HEALTH_MNG",
+                                          New With {.P_OUT = cls.OUT_CURSOR})
+
+                Return dtData
+            End Using
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iProfile")
+            Throw ex
+        End Try
+    End Function
+
     Public Function Import_Health_Mng(ByVal P_DOCXML As String, ByVal P_USER As String) As Boolean
         Try
             Using cls As New DataAccess.QueryData

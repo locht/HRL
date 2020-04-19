@@ -66,9 +66,9 @@
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Chức danh %>" DataField="TITLE_NAME"
                                 ReadOnly="true" UniqueName="TITLE_NAME" HeaderStyle-Width="200px" />
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Năm %>" DataField="YEAR_KHAMBENH"
-                                ReadOnly="true" UniqueName="YEAR_KHAMBENH" HeaderStyle-Width="200px" />
+                                ReadOnly="true" UniqueName="YEAR_KHAMBENH" HeaderStyle-Width="100px" DataFormatString="{0:yyyy}" />
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Đợt khám %>" DataField="DATE_KHAMBENH"
-                                ReadOnly="true" UniqueName="DATE_KHAMBENH" HeaderStyle-Width="100px" />
+                                ReadOnly="true" UniqueName="DATE_KHAMBENH" HeaderStyle-Width="100px" DataFormatString="{0:dd/MM/yyyy}"/>
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Cân nặng %>" DataField="CAN_NANG"
                                 ReadOnly="true" UniqueName="CAN_NANG" HeaderStyle-Width="100px" />
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Huyết áp %>" DataField="HUYET_AP"
@@ -235,9 +235,8 @@
             var m;
             var bCheck;
             var n;
-            if (args.get_item().get_commandName() == 'CREATE') {
-                //OpenNew();
-                //args.set_cancel(true);
+            if (args.get_item().get_commandName() == 'EXPORT_TEMPLATE') {
+                  enableAjax = false;
             }
             if (args.get_item().get_commandName() == 'EXPORT') {
                 enableAjax = false;
@@ -275,7 +274,7 @@
             eventArgs.set_enableAjax(enableAjax);
             enableAjax = true;
         }
-
+                     
         function gridRowDblClick(sender, eventArgs) {
             OpenEdit();
         }

@@ -2808,6 +2808,8 @@ Namespace ProfileBusiness.ServiceContracts
         <OperationContract()>
         Function Import_Health_Mng(ByVal P_DOCXML As String, ByVal P_USER As String) As Boolean
 
+        <OperationContract()>
+        Function EXPORT_HEALTH_MNG() As DataTable
 #End Region
 
 

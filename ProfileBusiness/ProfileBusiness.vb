@@ -703,6 +703,17 @@ Implements ServiceContracts.IProfileBusiness.GetHU_DataDynamicContractAppendix
                 End Try
             End Using
         End Function
+
+        Public Function EXPORT_HEALTH_MNG() As DataTable Implements ServiceContracts.IProfileBusiness.EXPORT_HEALTH_MNG
+            Using rep As New ProfileRepository
+                Try
+                    Dim lst = rep.EXPORT_HEALTH_MNG()
+                    Return lst
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
 #End Region
 
 #Region "phu luc hop dong"
