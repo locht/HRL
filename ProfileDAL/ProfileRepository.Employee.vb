@@ -1444,7 +1444,7 @@ Partial Class ProfileRepository
             objEmpData.PA_OBJECT_SALARY_ID = 1 'objEmp.PA_OBJECT_SALARY_ID
 
             objEmpData.OBJECT_LABOR = objEmp.OBJECT_LABOR
-            objEmpData.EMPLOYEE_OBJECT = objEmp.EMPLOYEE_OBJECT
+            objEmpData.EMPLOYEE_OBJECT = objEmp.EMPLOYEE_OBJECT            
             objEmpData.IS_HAZARDOUS = objEmp.IS_HAZARDOUS
             objEmpData.IS_HDLD = objEmp.IS_HDLD
             objEmpData.PRODUCTION_PROCESS = objEmp.PRODUCTION_PROCESS

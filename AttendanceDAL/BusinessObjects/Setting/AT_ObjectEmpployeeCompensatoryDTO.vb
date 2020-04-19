@@ -34,4 +34,7 @@
     ' BẬC LƯƠNG HSL
     Public Property SAL_RANK_ID As Decimal?
     Public Property SAL_RANK_NAME As String
+
+    ' LIST ID EDIT ALL
+    Public Property LIST_ID As String
 End Class

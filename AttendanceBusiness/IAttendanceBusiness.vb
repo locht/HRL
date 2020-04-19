@@ -1263,7 +1263,6 @@ Namespace AttendanceBusiness.ServiceContracts
 
         <OperationContract()>
         Function INPORT_NB_PREV(ByVal P_DOCXML As String, ByVal log As UserLog, ByVal P_YEAR As Integer) As Boolean
-#Region "Setting"
 #Region "Setting - Object Employee and Compensatory"
         <OperationContract()>
         Function GetObjEmpCompe(ByVal _filter As AT_ObjectEmpployeeCompensatoryDTO,
@@ -1273,7 +1272,10 @@ Namespace AttendanceBusiness.ServiceContracts
                                               Optional ByVal PageSize As Integer = Integer.MaxValue,
                                                Optional ByVal Sorts As String = "CREATED_DATE desc",
                                              Optional ByVal log As UserLog = Nothing) As List(Of AT_ObjectEmpployeeCompensatoryDTO)
-#End Region
+        <OperationContract()>
+        Function Update_ObjectEandC(ByVal list As List(Of AT_ObjectEmpployeeCompensatoryDTO),
+                                       ByVal objEdit As AT_ObjectEmpployeeCompensatoryDTO,
+                                        ByVal code_func As String) As Boolean
 #End Region
     End Interface
 End Namespace

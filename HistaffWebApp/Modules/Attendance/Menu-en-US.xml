@@ -53,6 +53,7 @@
         <Item Value="ctrlGetSignDefault" Text="Registetr default shift" PostBack="True" NavigateUrl="Default.aspx?mid=Attendance&amp;fid=ctrlGetSignDefault&amp;group=Setting" CheckPermission="true" />
         <Item Value="ctrlATTimeManual" Text="Time Type" PostBack="True" NavigateUrl="Default.aspx?mid=Attendance&amp;fid=ctrlATTimeManual&amp;group=Setting" CheckPermission="true" />
         <Item Value="ctrlAT_PROJECT_EMP" Text="Employee of project" NavigateUrl="Default.aspx?mid=Attendance&amp;fid=ctrlAT_PROJECT_EMP&amp;group=Business" CheckPermission="true"/>
+        <Item Value="ctrlAT_OBJECT_EMP_CSL" Text="Thiết lập đối tượng nhân viên và nghỉ bù" PostBack="True" NavigateUrl="Default.aspx?mid=Attendance&amp;fid=AT_OBJECT_EMP_CSL&amp;group=Setting" CheckPermission="true" />
       </Group>
     </Item>
     <Item Text="Category"  PostBack="False">

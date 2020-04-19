@@ -4,7 +4,7 @@
 <tlk:RadSplitter ID="RadSplitter1" runat="server" Width="100%" Height="100%">
     <tlk:RadPane ID="RadPane3" runat="server" MinWidth="300" Width="300px" Scrolling="None">
         <tlk:RadSplitter ID="RadSplitter2" runat="server" Width="100%" Height="100%" Orientation="Horizontal">
-            <tlk:RadPane ID="RadPane4" runat="server" Height="160px" Scrolling="None" MinHeight="400">
+            <tlk:RadPane ID="RadPane4" runat="server" Height="200px" Scrolling="None" MinHeight="400">
                 <asp:Panel ID="Panel1" runat="server" DefaultButton="btnFind">
                     <div>
                         <fieldset style="width: auto; height: auto">
@@ -43,7 +43,7 @@
                                     <td class="lb">
                                     </td>
                                     <td>
-                                        <asp:CheckBox ID="chkSTATUS" runat="server" Text='<%# Translate("Đã nghỉ việc")%>' />
+                                        <asp:CheckBox ID="chkSTATUS" runat="server" Text='<%# Translate("liệt kê cả nhân viên đã nghỉ việc")%>' />
                                     </td>
                                 </tr>
                                 <tr>

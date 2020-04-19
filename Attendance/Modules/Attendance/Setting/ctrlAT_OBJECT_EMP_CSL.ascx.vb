@@ -71,7 +71,7 @@ Public Class ctrlAT_OBJECT_EMP_CSL
         Try
             Me.ctrlMessageBox.Listener = Me
             Me.MainToolBar = tbarMain
-            Common.Common.BuildToolbar(Me.MainToolBar, ToolbarItem.Edit, ToolbarItem.Save, ToolbarItem.Cancel, ToolbarItem.Submit, ToolbarItem.Export)
+            Common.Common.BuildToolbar(Me.MainToolBar, ToolbarItem.Edit, ToolbarItem.Save, ToolbarItem.Cancel, ToolbarItem.Sync, ToolbarItem.Export)
             CType(MainToolBar.Items(3), RadToolBarButton).Text = "Cập nhật hàng loạt"
             'CType(MainToolBar.Items(4), RadToolBarButton)
         Catch ex As Exception
@@ -147,13 +147,13 @@ Public Class ctrlAT_OBJECT_EMP_CSL
         Try
             Using rep As New ProfileRepository
                 Dim dtData As New DataTable
-                dtData = rep.GetOtherList("EMPLOYEE_OBJECT")
+                dtData = rep.GetOtherList("EMPLOYEE_OBJECT", True)
                 FillRadCombobox(cbo_OBJ_EMP_Search, dtData, "NAME", "ID", False)
-                dtData = rep.GetOtherList("EMPLOYEE_OBJECT")
+                dtData = rep.GetOtherList("EMPLOYEE_OBJECT", True)
                 FillRadCombobox(cbo_OBJ_EMP_updateAll, dtData, "NAME", "ID", False)
-                dtData = rep.GetOtherList("COMPENSATORY_OBJECT")
+                dtData = rep.GetOtherList("COMPENSATORY_OBJECT", True)
                 FillRadCombobox(cbo_OBJ_CSL_Search, dtData, "NAME", "ID", False)
-                dtData = rep.GetOtherList("COMPENSATORY_OBJECT")
+                dtData = rep.GetOtherList("COMPENSATORY_OBJECT", True)
                 FillRadCombobox(cbo_OBJ_CSL_updateAll, dtData, "NAME", "ID", False)
             End Using
 
@@ -196,36 +196,59 @@ Public Class ctrlAT_OBJECT_EMP_CSL
                     UpdateControlState()
                     rgData.MasterTableView.Rebind()
                 Case CommonMessage.TOOLBARITEM_SAVE
+                    Dim lst As New List(Of AT_ObjectEmpployeeCompensatoryDTO)
+                    Dim objEdit As New AT_ObjectEmpployeeCompensatoryDTO
                     For Each item As GridDataItem In rgData.EditItems
                         If item.Edit = True Then
-                            Dim lst As New List(Of AT_ObjectEmpployeeCompensatoryDTO)
                             Dim edit = CType(item, GridEditableItem)
-                            Dim cbo_OBJ_EMP_NAME As RadComboBox
-                            Dim cbo_OBJ_CSL_NAME As RadComboBox
+                            Dim cbo_OBJ_EMP_ID As RadComboBox
+                            Dim cbo_OBJ_CSL_ID As RadComboBox
 
-                            cbo_OBJ_EMP_NAME = CType(edit.FindControl("cbo_OBJ_EMP_NAME"), RadComboBox)
-                            cbo_OBJ_CSL_NAME = CType(edit.FindControl("cbo_OBJ_CSL_NAME"), RadComboBox)
+                            cbo_OBJ_EMP_ID = CType(edit.FindControl("cbo_OBJ_EMP_NAME"), RadComboBox)
+                            cbo_OBJ_CSL_ID = CType(edit.FindControl("cbo_OBJ_CSL_NAME"), RadComboBox)
                             Dim obj As New AT_ObjectEmpployeeCompensatoryDTO
                             With obj
                                 .ID = item.GetDataKeyValue("ID")
-                                .OBJ_EMP_NAME = cbo_OBJ_EMP_NAME.SelectedValue
-                                .OBJ_CSL_NAME = cbo_OBJ_CSL_NAME.SelectedValue
+                                .OBJ_EMP_ID = cbo_OBJ_EMP_ID.SelectedValue
+                                .OBJ_CSL_ID = cbo_OBJ_CSL_ID.SelectedValue
                             End With
                             lst.Add(obj)
                         End If
                     Next
-                    'Using repUpdate As New AttendanceRepository
-                    '    If repUpdate.Update_ObjectEandC(lst) Then
-                    '        CurrentState = CommonMessage.STATE_NORMAL
-                    '        For Each item As GridDataItem In rgData.MasterTableView.Items
-                    '            item.Edit = False
-                    '        Next
-                    '        rgData.Rebind()
-                    '        UpdateControlState()
-                    '        ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), NotifyType.Success)
-                    '    End If
-                    'End Using
-
+                    Using repUpdate As New AttendanceRepository
+                        If repUpdate.Update_ObjectEandC(lst, objEdit, "Update_ObjectEandC_EachOne") Then
+                            CurrentState = CommonMessage.STATE_NORMAL
+                            For Each item As GridDataItem In rgData.MasterTableView.Items
+                                item.Edit = False
+                            Next
+                            rgData.Rebind()
+                            UpdateControlState()
+                            ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), NotifyType.Success)
+                        End If
+                    End Using
+                Case CommonMessage.TOOLBARITEM_SYNC
+                    If rgData.SelectedItems.Count = 0 Then
+                        ShowMessage(Translate("Vui lòng chọn các nhân viên cần cập nhật"), NotifyType.Warning)
+                        Exit Sub
+                    End If
+                    Dim lst As New List(Of AT_ObjectEmpployeeCompensatoryDTO)
+                    Dim objEdit As New AT_ObjectEmpployeeCompensatoryDTO
+                    objEdit.OBJ_EMP_ID = cbo_OBJ_EMP_updateAll.SelectedValue
+                    objEdit.OBJ_CSL_ID = cbo_OBJ_CSL_updateAll.SelectedValue
+                    For Each item As GridDataItem In rgData.SelectedItems
+                        objEdit.LIST_ID &= "|" & item.GetDataKeyValue("ID").ToString() & "|"
+                    Next
+                    Using repUpdate As New AttendanceRepository
+                        If repUpdate.Update_ObjectEandC(lst, objEdit, "Update_ObjectEandC_All") Then
+                            CurrentState = CommonMessage.STATE_NORMAL
+                            For Each item As GridDataItem In rgData.MasterTableView.Items
+                                item.Edit = False
+                            Next
+                            rgData.Rebind()
+                            UpdateControlState()
+                            ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), NotifyType.Success)
+                        End If
+                    End Using
                 Case CommonMessage.TOOLBARITEM_EXPORT
                     Dim dtData As DataTable
                     Using xls As New ExcelCommon
@@ -263,7 +286,7 @@ Public Class ctrlAT_OBJECT_EMP_CSL
             If cbo_OBJ_CSL_NAME IsNot Nothing Then
                 Dim dtData As DataTable
                 Using rep As New ProfileRepository
-                    dtData = rep.GetOtherList("COMPENSATORY_OBJECT", True)
+                    dtData = rep.GetOtherList("COMPENSATORY_OBJECT", False)
                     FillRadCombobox(cbo_OBJ_CSL_NAME, dtData, "NAME", "ID", False)
                     If edit.GetDataKeyValue("OBJ_CSL_NAME") IsNot Nothing Then
                         cbo_OBJ_CSL_NAME.SelectedValue = edit.GetDataKeyValue("OBJ_CSL_NAME")
@@ -290,7 +313,18 @@ Public Class ctrlAT_OBJECT_EMP_CSL
                 rgData.DataSource = New List(Of AT_ObjectEmpployeeCompensatoryDTO)
                 Exit Function
             End If
-
+            If txtEMPLOYEEID_SEARCH.Text <> "" Then
+                _filter.EMPLOYEE_CODE_NAME = txtEMPLOYEEID_SEARCH.Text
+            End If
+            If cbo_OBJ_EMP_Search.SelectedValue <> "" Then
+                _filter.OBJ_EMP_ID = cbo_OBJ_EMP_Search.SelectedValue
+            End If
+            If cbo_OBJ_CSL_Search.SelectedValue <> "" Then
+                _filter.OBJ_CSL_ID = cbo_OBJ_CSL_Search.SelectedValue
+            End If
+            If chkSTATUS.Checked Then
+                _filter.WORK_STATUS = chkSTATUS.Checked
+            End If
             Dim _param = New Attendance.AttendanceBusiness.ParamDTO With {.ORG_ID = Decimal.Parse(ctrlOrg.CurrentValue), _
                                             .IS_DISSOLVE = ctrlOrg.IsDissolve}
             Dim MaximumRows As Integer

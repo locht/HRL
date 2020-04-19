@@ -44718,4 +44718,52 @@ Xin cám ơn!
       <string>Khai báo tuyển dụng</string>
     </Value>
   </Item>
+  <Item>
+    <Key>
+      <string>CTRLAT_OBJECT_EMP_CSL</string>
+    </Key>
+    <Value>
+      <string>Thiết lập đối tượng nhân viên và nghỉ bù</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>CÔNG VIỆC</string>
+    </Key>
+    <Value>
+      <string>Công việc</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>VỊ TRÍ CÔNG VIỆC</string>
+    </Key>
+    <Value>
+      <string>Vị trí công việc</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>ĐỐI TƯỢNG NHÂN VIÊN</string>
+    </Key>
+    <Value>
+      <string>Đối tượng nhân viên</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>ĐỐI TƯỢNG NGHỈ BÙ</string>
+    </Key>
+    <Value>
+      <string>Đối tượng nghỉ bù</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>LIỆT KÊ CẢ NHÂN VIÊN ĐÃ NGHỈ VIỆC</string>
+    </Key>
+    <Value>
+      <string>liệt kê cả nhân viên đã nghỉ việc</string>
+    </Value>
+  </Item>
 </SerializableDictionaryOfStringString>

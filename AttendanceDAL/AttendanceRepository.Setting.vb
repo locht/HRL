@@ -62,45 +62,50 @@ Partial Public Class AttendanceRepository
                                                   }).ToList
                     'TÌM KIẾM BÊN KHUNG TÌM KIẾM
                     If _filter.WORK_STATUS Then
-                        lst = lst.Where(Function(f) f.WORK_STATUS = 257)                       
+                        lst = lst.Where(Function(f) f.WORK_STATUS = 257 Or f.WORK_STATUS = 258).ToList
+                    Else
+                        lst = lst.Where(Function(f) f.WORK_STATUS = 258).ToList
                     End If
                     If Not String.IsNullOrEmpty(_filter.EMPLOYEE_CODE_NAME) Then
-                        lst = lst.Where(Function(f) f.EMPLOYEE_CODE.ToLower().Contains(_filter.EMPLOYEE_CODE_NAME.ToLower()) Or f.FULLNAME_VN.ToLower().Contains(_filter.EMPLOYEE_CODE_NAME.ToLower()))
+                        lst = lst.Where(Function(f) f.EMPLOYEE_CODE.ToLower().Contains(_filter.EMPLOYEE_CODE_NAME.ToLower()) Or f.FULLNAME_VN.ToLower().Contains(_filter.EMPLOYEE_CODE_NAME.ToLower())).ToList
                     End If
                     If _filter.OBJ_EMP_ID Then
-                        lst = lst.Where(Function(f) f.OBJ_EMP_ID = _filter.OBJ_EMP_ID)
+                        lst = lst.Where(Function(f) f.OBJ_EMP_ID = _filter.OBJ_EMP_ID).ToList
                     End If
                     If _filter.OBJ_CSL_ID Then
-                        lst = lst.Where(Function(f) f.OBJ_CSL_ID = _filter.OBJ_CSL_ID)
+                        lst = lst.Where(Function(f) f.OBJ_CSL_ID = _filter.OBJ_CSL_ID).ToList
                     End If
 
                     'TÌM KIẾM TRÊN GRID
+                    If _filter.STT Then
+                        lst = lst.Where(Function(f) f.STT = _filter.STT).ToList
+                    End If
                     If Not String.IsNullOrEmpty(_filter.OBJ_EMP_NAME) Then
-                        lst = lst.Where(Function(f) f.OBJ_EMP_NAME.ToLower().Contains(_filter.OBJ_EMP_NAME.ToLower()))
+                        lst = lst.Where(Function(f) f.OBJ_EMP_NAME.ToLower().Contains(_filter.OBJ_EMP_NAME.ToLower())).ToList
                     End If
                     If Not String.IsNullOrEmpty(_filter.OBJ_CSL_NAME) Then
-                        lst = lst.Where(Function(f) f.OBJ_CSL_NAME.ToLower().Contains(_filter.OBJ_CSL_NAME.ToLower()))
+                        lst = lst.Where(Function(f) f.OBJ_CSL_NAME.ToLower().Contains(_filter.OBJ_CSL_NAME.ToLower())).ToList
                     End If
                     If Not String.IsNullOrEmpty(_filter.SAL_LEVEL_NAME) Then
-                        lst = lst.Where(Function(f) f.SAL_LEVEL_NAME.ToLower().Contains(_filter.SAL_LEVEL_NAME.ToLower()))
+                        lst = lst.Where(Function(f) f.SAL_LEVEL_NAME.ToLower().Contains(_filter.SAL_LEVEL_NAME.ToLower())).ToList
                     End If
                     If Not String.IsNullOrEmpty(_filter.SAL_RANK_NAME) Then
-                        lst = lst.Where(Function(f) f.SAL_RANK_NAME.ToLower().Contains(_filter.SAL_RANK_NAME.ToLower()))
+                        lst = lst.Where(Function(f) f.SAL_RANK_NAME.ToLower().Contains(_filter.SAL_RANK_NAME.ToLower())).ToList
                     End If
                     If Not String.IsNullOrEmpty(_filter.WORK_STATUS_NAME) Then
-                        lst = lst.Where(Function(f) f.WORK_STATUS_NAME.ToLower().Contains(_filter.WORK_STATUS_NAME.ToLower()))
+                        lst = lst.Where(Function(f) f.WORK_STATUS_NAME.ToLower().Contains(_filter.WORK_STATUS_NAME.ToLower())).ToList
                     End If
                     If Not String.IsNullOrEmpty(_filter.ORG_NAME) Then
-                        lst = lst.Where(Function(f) f.ORG_NAME.ToLower().Contains(_filter.ORG_NAME.ToLower()))
+                        lst = lst.Where(Function(f) f.ORG_NAME.ToLower().Contains(_filter.ORG_NAME.ToLower())).ToList
                     End If
                     If Not String.IsNullOrEmpty(_filter.TITLE_NAME) Then
-                        lst = lst.Where(Function(f) f.TITLE_NAME.ToLower().Contains(_filter.TITLE_NAME.ToLower()))
+                        lst = lst.Where(Function(f) f.TITLE_NAME.ToLower().Contains(_filter.TITLE_NAME.ToLower())).ToList
                     End If
                     If Not String.IsNullOrEmpty(_filter.FULLNAME_VN) Then
-                        lst = lst.Where(Function(f) f.FULLNAME_VN.ToLower().Contains(_filter.FULLNAME_VN.ToLower()))
+                        lst = lst.Where(Function(f) f.FULLNAME_VN.ToLower().Contains(_filter.FULLNAME_VN.ToLower())).ToList
                     End If
                     If Not String.IsNullOrEmpty(_filter.EMPLOYEE_CODE) Then
-                        lst = lst.Where(Function(f) f.EMPLOYEE_CODE.ToLower().Contains(_filter.EMPLOYEE_CODE.ToLower()))
+                        lst = lst.Where(Function(f) f.EMPLOYEE_CODE.ToLower().Contains(_filter.EMPLOYEE_CODE.ToLower())).ToList
                     End If
 
 
@@ -115,6 +120,44 @@ Partial Public Class AttendanceRepository
             Return lst.ToList
         Catch ex As Exception
             WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iTime")
+            Throw ex
+        End Try
+    End Function
+
+    ''' <summary>
+    ''' Cập nhật đối tượng nhân viên và đối tượng nghỉ bù
+    ''' </summary>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
+    Public Function Update_ObjectEandC(ByVal list As List(Of AT_ObjectEmpployeeCompensatoryDTO),
+                                       ByVal objEdit As AT_ObjectEmpployeeCompensatoryDTO,
+                                        ByVal code_func As String) As Boolean
+        Try
+            Dim obj
+            If code_func = "Update_ObjectEandC_EachOne" Then
+                For Each item In list
+                    Using cls As New DataAccess.QueryData
+                        obj = New With {.P_EMP_ID = "|" + item.ID.ToString + "|",
+                                        .P_OBJ_EMP_ID = item.OBJ_EMP_ID,
+                                        .P_OBJ_COM_ID = item.OBJ_CSL_ID,
+                                        .P_OUT = cls.OUT_NUMBER}
+                        cls.ExecuteStore("PKG_ATTENDANCE_BUSINESS.UPDATE_OBJECT_EMPLOYEE_COMPENSATORY", obj)
+                    End Using
+                Next
+            End If
+            If code_func = "Update_ObjectEandC_All" Then
+                Using cls As New DataAccess.QueryData
+                    obj = New With {.P_EMP_ID = objEdit.LIST_ID,
+                                    .P_OBJ_EMP_ID = objEdit.OBJ_EMP_ID,
+                                    .P_OBJ_COM_ID = objEdit.OBJ_CSL_ID,
+                                    .P_OUT = cls.OUT_NUMBER}
+                    cls.ExecuteStore("PKG_ATTENDANCE_BUSINESS.UPDATE_OBJECT_EMPLOYEE_COMPENSATORY", obj)
+                End Using
+            End If
+            Return True
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iTime")
+            Return False
             Throw ex
         End Try
     End Function

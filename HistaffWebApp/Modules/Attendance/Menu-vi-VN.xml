@@ -24,6 +24,7 @@
         <Item Value="ctrlSwipeMachineStatus" Text="Tình trạng máy chấm công" PostBack="True" NavigateUrl="Default.aspx?mid=Attendance&amp;fid=ctrlSwipeMachineStatus&amp;group=Setting" CheckPermission="true" />
         <Item Value="ctrlATTimeManual" Text="Kiểu công" PostBack="True" NavigateUrl="Default.aspx?mid=Attendance&amp;fid=ctrlATTimeManual&amp;group=Setting" CheckPermission="true" />
         <Item Value="ctrlSetUpCodeAttEmp" Text="Thiết lập mã chấm công" PostBack="True" NavigateUrl="Default.aspx?mid=Attendance&amp;fid=ctrlSetUpCodeAttEmp&amp;group=Setting" CheckPermission="true" />
+        <Item Value="ctrlAT_OBJECT_EMP_CSL" Text="Thiết lập đối tượng nhân viên và nghỉ bù" PostBack="True" NavigateUrl="Default.aspx?mid=Attendance&amp;fid=ctrlAT_OBJECT_EMP_CSL&amp;group=Setting" CheckPermission="true" />
       </Group>
     </Item>
     

@@ -3971,6 +3971,9 @@ Namespace AttendanceBusiness
         Private IDField As Decimal
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private LIST_IDField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private OBJ_CSL_IDField As System.Nullable(Of Decimal)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -4099,6 +4102,19 @@ Namespace AttendanceBusiness
                 If (Me.IDField.Equals(value) <> true) Then
                     Me.IDField = value
                     Me.RaisePropertyChanged("ID")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property LIST_ID() As String
+            Get
+                Return Me.LIST_IDField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.LIST_IDField, value) <> true) Then
+                    Me.LIST_IDField = value
+                    Me.RaisePropertyChanged("LIST_ID")
                 End If
             End Set
         End Property
@@ -31980,6 +31996,9 @@ Namespace AttendanceBusiness
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IAttendanceBusiness/GetObjEmpCompe", ReplyAction:="http://tempuri.org/IAttendanceBusiness/GetObjEmpCompeResponse")>  _
         Function GetObjEmpCompe(ByVal _filter As AttendanceBusiness.AT_ObjectEmpployeeCompensatoryDTO, ByVal _param As AttendanceBusiness.ParamDTO, ByRef Total As Integer, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByVal Sorts As String, ByVal log As Common.CommonBusiness.UserLog) As System.Collections.Generic.List(Of AttendanceBusiness.AT_ObjectEmpployeeCompensatoryDTO)
         
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IAttendanceBusiness/Update_ObjectEandC", ReplyAction:="http://tempuri.org/IAttendanceBusiness/Update_ObjectEandCResponse")>  _
+        Function Update_ObjectEandC(ByVal list As System.Collections.Generic.List(Of AttendanceBusiness.AT_ObjectEmpployeeCompensatoryDTO), ByVal objEdit As AttendanceBusiness.AT_ObjectEmpployeeCompensatoryDTO, ByVal code_func As String) As Boolean
+        
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IAttendanceBusiness/GET_REG_PORTAL", ReplyAction:="http://tempuri.org/IAttendanceBusiness/GET_REG_PORTALResponse")>  _
         Function GET_REG_PORTAL(ByVal empid As Decimal, ByVal startdate As Date, ByVal enddate As Date, ByVal strId As String, ByVal type As String) As System.Collections.Generic.List(Of AttendanceBusiness.APPOINTMENT_DTO)
         
@@ -33636,6 +33655,10 @@ Namespace AttendanceBusiness
         
         Public Function GetObjEmpCompe(ByVal _filter As AttendanceBusiness.AT_ObjectEmpployeeCompensatoryDTO, ByVal _param As AttendanceBusiness.ParamDTO, ByRef Total As Integer, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByVal Sorts As String, ByVal log As Common.CommonBusiness.UserLog) As System.Collections.Generic.List(Of AttendanceBusiness.AT_ObjectEmpployeeCompensatoryDTO) Implements AttendanceBusiness.IAttendanceBusiness.GetObjEmpCompe
             Return MyBase.Channel.GetObjEmpCompe(_filter, _param, Total, PageIndex, PageSize, Sorts, log)
+        End Function
+        
+        Public Function Update_ObjectEandC(ByVal list As System.Collections.Generic.List(Of AttendanceBusiness.AT_ObjectEmpployeeCompensatoryDTO), ByVal objEdit As AttendanceBusiness.AT_ObjectEmpployeeCompensatoryDTO, ByVal code_func As String) As Boolean Implements AttendanceBusiness.IAttendanceBusiness.Update_ObjectEandC
+            Return MyBase.Channel.Update_ObjectEandC(list, objEdit, code_func)
         End Function
         
         Public Function GET_REG_PORTAL(ByVal empid As Decimal, ByVal startdate As Date, ByVal enddate As Date, ByVal strId As String, ByVal type As String) As System.Collections.Generic.List(Of AttendanceBusiness.APPOINTMENT_DTO) Implements AttendanceBusiness.IAttendanceBusiness.GET_REG_PORTAL
