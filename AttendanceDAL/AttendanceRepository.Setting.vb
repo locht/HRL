@@ -49,31 +49,33 @@ Partial Public Class AttendanceRepository
                                                    .TITLE_NAME = row("TITLE_NAME").ToString,
                                                     .ORG_ID = Decimal.Parse(row("ORG_ID")),
                                                    .ORG_NAME = row("ORG_NAME").ToString,
-                                                   .SAL_LEVEL_ID = If(row("SAL_LEVEL_ID").ToString = "", 0, Decimal.Parse(row("SAL_LEVEL_ID"))),
+                                                   .SAL_LEVEL_ID = Decimal.Parse(row("SAL_LEVEL_ID")),
                                                    .SAL_LEVEL_NAME = row("SAL_LEVEL_NAME").ToString,
-                                                   .SAL_RANK_ID = If(row("SAL_RANK_ID").ToString = "", 0, Decimal.Parse(row("SAL_RANK_ID"))),
+                                                   .SAL_RANK_ID = Decimal.Parse(row("SAL_RANK_ID")),
                                                    .SAL_RANK_NAME = row("SAL_RANK_NAME").ToString,
-                                                   .OBJ_EMP_ID = If(row("OBJ_EMP_ID").ToString = "", 0, Decimal.Parse(row("OBJ_EMP_ID"))),
+                                                   .OBJ_EMP_ID = Decimal.Parse(row("OBJ_EMP_ID")),
                                                     .OBJ_EMP_NAME = row("OBJ_EMP_NAME").ToString,
-                                                   .OBJ_CSL_ID = If(row("OBJ_CSL_ID").ToString = "", 0, Decimal.Parse(row("OBJ_CSL_ID"))),
+                                                   .OBJ_CSL_ID = Decimal.Parse(row("OBJ_CSL_ID")),
                                                    .OBJ_CSL_NAME = row("OBJ_CSL_NAME").ToString,
-                                                   .WORK_STATUS = If(row("WORK_STATUS").ToString = "", 0, Decimal.Parse(row("WORK_STATUS"))),
+                                                   .WORK_STATUS = Decimal.Parse(row("WORK_STATUS")),
                                                     .WORK_STATUS_NAME = row("WORK_STATUS_NAME").ToString
                                                   }).ToList
                     'TÌM KIẾM BÊN KHUNG TÌM KIẾM
                     If _filter.WORK_STATUS Then
-                        lst = lst.Where(Function(f) f.WORK_STATUS = 257 Or f.WORK_STATUS = 258).ToList
+                        If _filter.WORK_STATUS = 9999 Then
+                            _filter.WORK_STATUS = 0
+                        Else
+                            _filter.WORK_STATUS = _filter.WORK_STATUS
+                        End If
+                        lst = lst.Where(Function(f) f.WORK_STATUS = _filter.WORK_STATUS Or If(_filter.CHECK_WORK_STATUS_LEAVE, f.WORK_STATUS = 257, f.WORK_STATUS = _filter.WORK_STATUS)).ToList
                     Else
-                        lst = lst.Where(Function(f) f.WORK_STATUS = 258).ToList
+                        lst = lst.Where(Function(f) f.WORK_STATUS >= 0 Or If(_filter.CHECK_WORK_STATUS_LEAVE, f.WORK_STATUS = 257, f.WORK_STATUS >= 0)).ToList
                     End If
                     If Not String.IsNullOrEmpty(_filter.EMPLOYEE_CODE_NAME) Then
                         lst = lst.Where(Function(f) f.EMPLOYEE_CODE.ToLower().Contains(_filter.EMPLOYEE_CODE_NAME.ToLower()) Or f.FULLNAME_VN.ToLower().Contains(_filter.EMPLOYEE_CODE_NAME.ToLower())).ToList
                     End If
-                    If _filter.OBJ_EMP_ID Then
-                        lst = lst.Where(Function(f) f.OBJ_EMP_ID = _filter.OBJ_EMP_ID).ToList
-                    End If
-                    If _filter.OBJ_CSL_ID Then
-                        lst = lst.Where(Function(f) f.OBJ_CSL_ID = _filter.OBJ_CSL_ID).ToList
+                    If _filter.OBJ_EMP_ID Or _filter.OBJ_CSL_ID Then
+                        lst = lst.Where(Function(f) f.OBJ_EMP_ID = _filter.OBJ_EMP_ID Or f.OBJ_CSL_ID = _filter.OBJ_CSL_ID).ToList
                     End If
 
                     'TÌM KIẾM TRÊN GRID

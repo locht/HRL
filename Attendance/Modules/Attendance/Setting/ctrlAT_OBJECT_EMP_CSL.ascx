@@ -4,7 +4,7 @@
 <tlk:RadSplitter ID="RadSplitter1" runat="server" Width="100%" Height="100%">
     <tlk:RadPane ID="RadPane3" runat="server" MinWidth="300" Width="300px" Scrolling="None">
         <tlk:RadSplitter ID="RadSplitter2" runat="server" Width="100%" Height="100%" Orientation="Horizontal">
-            <tlk:RadPane ID="RadPane4" runat="server" Height="200px" Scrolling="None" MinHeight="400">
+            <tlk:RadPane ID="RadPane4" runat="server" Height="185px" Scrolling="None" MinHeight="400">
                 <asp:Panel ID="Panel1" runat="server" DefaultButton="btnFind">
                     <div>
                         <fieldset style="width: auto; height: auto">
@@ -41,8 +41,15 @@
                                 </tr>
                                 <tr>
                                     <td class="lb">
+                                        <%# Translate("Trạng thái làm việc")%>
                                     </td>
                                     <td>
+                                        <tlk:RadComboBox runat="server" ID="cboStatus" Width="100%">
+                                        </tlk:RadComboBox>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2">
                                         <asp:CheckBox ID="chkSTATUS" runat="server" Text='<%# Translate("liệt kê cả nhân viên đã nghỉ việc")%>' />
                                     </td>
                                 </tr>
@@ -73,23 +80,23 @@
             <tlk:RadPane ID="RadPane6" runat="server" Height="80px" Scrolling="None">
                 <asp:Panel ID="Panel2" runat="server" DefaultButton="btnFind">
                     <div>
-                        <fieldset style="width: auto; height: auto">
+                        <fieldset style="max-width:570px; width: auto; height: auto">
                             <legend>
-                                <%# Translate("Thông tin tìm kiếm")%>
+                                <%# Translate("Thông tin chỉnh sửa hàng loạt")%>
                             </legend>
                             <table width="100%" class="td-padding">
                                 <tr>
-                                    <td class="lb">
+                                    <td class="lb" style="width:120px">
                                         <%# Translate("Đối tượng nhân viên")%>
                                     </td>
-                                    <td>
+                                    <td style="width:160px">
                                         <tlk:RadComboBox runat="server" ID="cbo_OBJ_EMP_updateAll" Width="100%">
                                         </tlk:RadComboBox>
                                     </td>
-                                    <td class="lb">
+                                    <td class="lb" style="width:120px">
                                         <%# Translate("Đối tượng nghỉ bù")%>
                                     </td>
-                                    <td>
+                                    <td style="width:160px">
                                         <tlk:RadComboBox runat="server" ID="cbo_OBJ_CSL_updateAll" Width="100%">
                                         </tlk:RadComboBox>
                                     </td>
@@ -113,23 +120,19 @@
                             <tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderStyle-HorizontalAlign="Center"
                                 HeaderStyle-Width="30px" ItemStyle-HorizontalAlign="Center">
                             </tlk:GridClientSelectColumn>
-                            <tlk:GridBoundColumn DataField="ID" Visible="false" />
-                            <tlk:GridBoundColumn HeaderText="<%$ Translate: STT %>" DataField="STT" SortExpression="STT"
-                                UniqueName="STT" ReadOnly="true" />
+                            <tlk:GridBoundColumn DataField="ID" Visible="false" />                            
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Mã nhân viên %>" DataField="EMPLOYEE_CODE"
-                                SortExpression="EMPLOYEE_CODE" UniqueName="EMPLOYEE_CODE" ReadOnly="true" />
+                                SortExpression="EMPLOYEE_CODE" UniqueName="EMPLOYEE_CODE" ReadOnly="true" HeaderStyle-Width="60"/>
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Tên nhân viên %>" DataField="FULLNAME_VN"
-                                SortExpression="FULLNAME_VN" UniqueName="FULLNAME_VN" ReadOnly="true" />
+                                SortExpression="FULLNAME_VN" UniqueName="FULLNAME_VN" ReadOnly="true"/>
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Công việc %>" DataField="TITLE_NAME"
-                                SortExpression="TITLE_NAME" UniqueName="TITLE_NAME" ReadOnly="true" />
+                                SortExpression="TITLE_NAME" UniqueName="TITLE_NAME" ReadOnly="true"/>
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Phòng ban %>" DataField="ORG_NAME"
                                 SortExpression="ORG_NAME" UniqueName="ORG_NAME" ReadOnly="true" />
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Ngạch Lương %>" DataField="SAL_LEVEL_NAME"
                                 SortExpression="SAL_LEVEL_NAME" UniqueName="SAL_LEVEL_NAME" ReadOnly="true" />
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Bậc lương %>" DataField="SAL_RANK_NAME"
                                 SortExpression="SAL_RANK_NAME" UniqueName="SAL_RANK_NAME" ReadOnly="true" />
-                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Vị trí công việc %>" DataField="TITLE_NAME_EMP"
-                                SortExpression="TITLE_NAME_EMP" UniqueName="TITLE_NAME_EMP" ReadOnly="true" />
                             <tlk:GridTemplateColumn UniqueName="OBJ_EMP_NAME" HeaderText="<%$ Translate: Đối tượng nhân viên %>"
                                 SortExpression="OBJ_EMP_NAME" HeaderStyle-Width="110px" ItemStyle-HorizontalAlign="Center">
                                 <ItemTemplate>

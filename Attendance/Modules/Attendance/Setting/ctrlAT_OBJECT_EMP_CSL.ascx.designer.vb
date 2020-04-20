@@ -86,6 +86,15 @@ Partial Public Class ctrlAT_OBJECT_EMP_CSL
     Protected WithEvents cbo_OBJ_CSL_Search As Global.Telerik.Web.UI.RadComboBox
 
     '''<summary>
+    '''cboStatus control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents cboStatus As Global.Telerik.Web.UI.RadComboBox
+
+    '''<summary>
     '''chkSTATUS control.
     '''</summary>
     '''<remarks>
