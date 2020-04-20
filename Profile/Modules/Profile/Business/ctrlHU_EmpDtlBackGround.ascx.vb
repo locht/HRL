@@ -560,8 +560,8 @@ Public Class ctrlHU_EmpDtlBackGround
                     'EnabledGridNotPostback(rgGrid, False)
                     hidBackGroundID.Value = ""
                 Case STATE_EDIT
-                    'EnabledGrid(rgGrid, False)
-                    EnabledGridNotPostback(rgGrid, False)
+                    EnabledGrid(rgGrid, False)
+                    'EnabledGridNotPostback(rgGrid, False)
                     SetStatusControl(True)
                 Case STATE_NORMAL
                     EnabledGrid(rgGrid, True)
