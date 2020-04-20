@@ -1929,6 +1929,59 @@ Partial Class ProfileRepository
         End Try
         Return True
     End Function
+    Public Function GetEmployeeBG(ByVal emp_id As Decimal, ByRef empBG As EmployeeBackgroundDTO) As Boolean
+        Try
+            Dim query = (From p In Context.HU_EMPLOYEE_BACKGROUND
+                     From lp In Context.HU_PROVINCE.Where(Function(f) p.LICENSE_PLACE = f.ID).DefaultIfEmpty
+                     From cn In Context.HU_NATION.Where(Function(f) p.CURRENT_NATION_ID = f.ID).DefaultIfEmpty
+                     From cp In Context.HU_PROVINCE.Where(Function(f) p.CURRENTN_PROVINCE_ID = f.ID).DefaultIfEmpty
+                     From cd In Context.HU_DISTRICT.Where(Function(f) p.CURRENT_DISTRICT_ID = f.ID).DefaultIfEmpty
+                     From cw In Context.HU_WARD.Where(Function(f) p.CURRENT_WARD_ID = f.ID).DefaultIfEmpty
+                     From pn In Context.HU_NATION.Where(Function(f) p.PERMANNET_NATION_ID = f.ID).DefaultIfEmpty
+                     From pp In Context.HU_PROVINCE.Where(Function(f) p.PERMANENT_PROVINCE_ID = f.ID).DefaultIfEmpty
+                     From pd In Context.HU_DISTRICT.Where(Function(f) p.PERMANENT_DISTRICT_ID = f.ID).DefaultIfEmpty
+                     From pw In Context.HU_WARD.Where(Function(f) p.PERMANENT_WARD_ID = f.ID).DefaultIfEmpty
+                   Select New EmployeeBackgroundDTO With {
+                    .ID = p.ID,
+                    .EMPLOYEE_ID = p.EMPLOYEE_ID,
+                    .ID_NO = p.ID_NO,
+                    .EFFECTIVE_DATE = p.EFFECTIVE_DATE,
+                    .LICENSE_DATE = p.LICENSE_DATE,
+                    .MOBILE_PHONE = p.MOBILE_PHONE,
+                    .FIXED_PHONE = p.FIXED_PHONE,
+                    .LICENSE_PLACE = lp.NAME_VN,
+                    .LICENSE_PLACE_ID = p.LICENSE_PLACE,
+                    .CURRENT_ADDRESS_F = p.CURRENT_ADDRESS,
+                    .CURRENT_NATION_ID = p.CURRENT_NATION_ID,
+                    .CURRENT_NATION_NAME = cn.NAME_VN,
+                    .CURRENT_PROVINCE_ID = p.CURRENTN_PROVINCE_ID,
+                    .CURRENT_PROVINCE_NAME = cp.NAME_VN,
+                    .CURRENT_DISTRICT_ID = p.CURRENT_DISTRICT_ID,
+                    .CURRENT_DISTRICT_NAME = cd.NAME_VN,
+                    .CURRENT_WARD_ID = p.CURRENT_WARD_ID,
+                    .CURRENT_WARD_NAME = cw.NAME_VN,
+                    .PERMANENT_ADDRESS_F = p.PERMANENT_ADDRESS,
+                    .PERMANENT_NATION_ID = p.PERMANNET_NATION_ID,
+                    .PERMANENT_NATION_NAME = pn.NAME_VN,
+                    .PERMANENT_PROVINCE_ID = p.PERMANENT_PROVINCE_ID,
+                    .PERMANENT_PROVINCE_NAME = pp.NAME_VN,
+                    .PERMANENT_DISTRICT_ID = p.PERMANENT_DISTRICT_ID,
+                    .PERMANENT_DISTRICT_NAME = pd.NAME_VN,
+                    .PERMANENT_WARD_ID = p.PERMANENT_WARD_ID,
+                    .PERMANENT_WARD_NAME = pw.NAME_VN,
+                    .CURRENT_ADDRESS = p.CURRENT_ADDRESS,
+                    .PERMANENT_ADDRESS = p.PERMANENT_ADDRESS
+                    })
+
+            Dim lst = query
+            lst = lst.OrderBy(Function(p) p.EFFECTIVE_DATE).Reverse
+            empBG = lst.FirstOrDefault
+            Return True
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iProfile")
+            Throw ex
+        End Try
+    End Function
 
     Public Function GetEmployeeAllByID(ByVal sEmployeeID As Decimal,
                                   ByRef empCV As EmployeeCVDTO,

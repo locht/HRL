@@ -148,6 +148,17 @@ Partial Public Class ProfileBusinessRepository
         End Using
 
     End Sub
+    Public Sub GetEmployeeBG(ByVal sEmployeeID As Decimal, ByRef empBG As EmployeeBackgroundDTO)
+        Using rep As New ProfileBusinessClient
+            Try
+                rep.GetEmployeeBG(sEmployeeID, empBG)
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+
+    End Sub
 
     Public Function GetListEmployee(ByVal _orgIds As List(Of Decimal), ByVal _filter As EmployeeDTO) As List(Of EmployeeDTO)
         Using rep As New ProfileBusinessClient

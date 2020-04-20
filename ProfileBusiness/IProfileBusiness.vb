@@ -1344,6 +1344,9 @@ Namespace ProfileBusiness.ServiceContracts
                                   ByRef empHealth As EmployeeHealthDTO,
                                   ByRef empUniform As UniformSizeDTO) As Boolean
 
+        <OperationContract()>
+        Function GetEmployeeBG(ByVal sEmployeeID As Decimal, ByRef empBG As EmployeeBackgroundDTO) As Boolean
+
         ''' <summary>
         ''' Xóa nhân viên
         ''' </summary>

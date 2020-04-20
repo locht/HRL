@@ -305,8 +305,10 @@ Public Class ctrlHU_EmpDtlProfile
                         Dim empEdu As EmployeeEduDTO
                         Dim empHealth As EmployeeHealthDTO
                         Dim empUniform As UniformSizeDTO
+                        Dim empBG As EmployeeBackgroundDTO
 
                         rep.GetEmployeeAllByID(EmployeeInfo.ID, empCV, empEdu, empHealth, empUniform)
+                        rep.GetEmployeeBG(EmployeeInfo.ID, empBG)
                         If empCV IsNot Nothing Then
                             If empCV.IS_PAY_BANK IsNot Nothing Then
                                 chkIs_pay_bank.Checked = empCV.IS_PAY_BANK

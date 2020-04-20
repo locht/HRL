@@ -269,6 +269,16 @@ Namespace ProfileBusiness.ServiceImplementations
                 End Try
             End Using
         End Function
+        Public Function GetEmployeeBG(ByVal sEmployeeID As Decimal, ByRef empBG As EmployeeBackgroundDTO) As Boolean _
+                                            Implements ServiceContracts.IProfileBusiness.GetEmployeeBG
+            Using rep As New ProfileRepository
+                Try
+                    Return rep.GetEmployeeBG(sEmployeeID, empBG)
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
 #End Region
 
 #Region "EmployeeTrain"
