@@ -365,6 +365,11 @@ Public Class ctrlHU_EmpDtlFamily
 
     Private Sub rgFamily_SelectedIndexChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles rgFamily.SelectedIndexChanged
         Try
+            ClearControlValue(txtFullName, rnCollecttion, cboNguyenQuan, cboRelationship, rdBirthDate, txtIDNO, txtAdress1, txtAdress_TT,
+                                                        chkIsDeduct, rdDeductReg, rdDeductFrom, rdDeductTo, txtRemark, txtTax, txtCareer, txtTitle,
+                                                         txtSoHoKhau, txtMaHoGiaDinh, cboProvince_City1, cboDistrict1, cboCommune1,
+                                                          cboProvince_City2, cboDistrict2, cboCommune2, txtHamlet1, chkHousehold, chkDaMat, chkIsEmployee, rdDieDate, txtCompanyWork)
+
             If rgFamily.SelectedItems.Count = 0 Then Exit Sub
             'Lưu vào viewStates để giữ những item được select phục vụ cho phương thức delete.
             Dim itemSelected = New List(Of Decimal)
