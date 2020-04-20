@@ -1,181 +1,19 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for Oracle database
 -- --------------------------------------------------
--- Date Created: 15/4/2020 11:54:32 AM
--- Generated from EDMX file: G:\Cty TVC\Source\acv_19\RecruitmentDAL\RecruitmentContext.edmx
+-- Date Created: 04/20/2020 11:15:05 AM
+-- Generated from EDMX file: F:\WORKING\acv_19\RecruitmentDAL\RecruitmentContext.edmx
 -- --------------------------------------------------
 
 -- --------------------------------------------------
 -- Dropping existing FOREIGN KEY constraints
 -- --------------------------------------------------
 
--- ALTER TABLE "RecruitmentModelStoreContainer"."HU_EMPLOYEE_HEALTH1" DROP CONSTRAINT "FK_FE_HEH" CASCADE;
-
--- ALTER TABLE "RecruitmentModelStoreContainer"."HU_EMPLOYEE_CV" DROP CONSTRAINT "FK_HE_HEC" CASCADE;
-
--- ALTER TABLE "RecruitmentModelStoreContainer"."HU_EMPLOYEE_EDUCATION1" DROP CONSTRAINT "FK_HE_HEE" CASCADE;
-
--- ALTER TABLE "RecruitmentModelStoreContainer"."HU_EMPLOYEE_OTHER_INFO1" DROP CONSTRAINT "FK_HE_HEO" CASCADE;
-
--- ALTER TABLE "RecruitmentModelStoreContainer"."HU_EMPLOYEE" DROP CONSTRAINT "FK_HE_HT" CASCADE;
-
--- ALTER TABLE "RecruitmentModelStoreContainer"."HU_EMPLOYEE" DROP CONSTRAINT "FK_HU_ORG_HU_EMP" CASCADE;
-
--- ALTER TABLE "RecruitmentModelStoreContainer"."HU_EMPLOYEE" DROP CONSTRAINT "FK_HUEMD_HUEM" CASCADE;
-
--- ALTER TABLE "RecruitmentModelStoreContainer"."HU_ORG_TITLE" DROP CONSTRAINT "FK_HUOG_HUOT" CASCADE;
-
--- ALTER TABLE "RecruitmentModelStoreContainer"."HU_ORG_TITLE" DROP CONSTRAINT "FK_HUTL_HUOT" CASCADE;
-
--- ALTER TABLE "RecruitmentModelStoreContainer"."HU_ORGANIZATION" DROP CONSTRAINT "FK_HU_ORG_HU_ORG" CASCADE;
-
--- ALTER TABLE "RecruitmentModelStoreContainer"."HU_BANK_BRANCH" DROP CONSTRAINT "FK_BANKBANK_BRANCH" CASCADE;
-
--- ALTER TABLE "RecruitmentModelStoreContainer"."HU_DISTRICT" DROP CONSTRAINT "FK_HU_PRO_HU_DIS" CASCADE;
-
--- ALTER TABLE "RecruitmentModelStoreContainer"."HU_PROVINCE" DROP CONSTRAINT "FK_HU_NAT_HU_PRO" CASCADE;
-
 -- --------------------------------------------------
 -- Dropping existing tables
 -- --------------------------------------------------
 
--- DROP TABLE "RecruitmentModelStoreContainer"."RC_COST_CENTER";
-
--- DROP TABLE "RecruitmentModelStoreContainer"."SE_CHOSEN_ORG";
-
--- DROP TABLE "RecruitmentModelStoreContainer"."HU_FAMILY";
-
--- DROP TABLE "RecruitmentModelStoreContainer"."HU_TERMINATE";
-
--- DROP TABLE "RecruitmentModelStoreContainer"."RC_EXAMS";
-
--- DROP TABLE "RecruitmentModelStoreContainer"."RC_EXAMS_DTL";
-
--- DROP TABLE "RecruitmentModelStoreContainer"."RC_PLAN_REG_EMP";
-
--- DROP TABLE "RecruitmentModelStoreContainer"."RC_PROGRAM_CHARACTER";
-
--- DROP TABLE "RecruitmentModelStoreContainer"."RC_PROGRAM_EMP";
-
--- DROP TABLE "RecruitmentModelStoreContainer"."RC_PROGRAM_EXAMS";
-
--- DROP TABLE "RecruitmentModelStoreContainer"."RC_PROGRAM_SCOPE";
-
--- DROP TABLE "RecruitmentModelStoreContainer"."RC_PROGRAM_SOFT_SKILL";
-
--- DROP TABLE "RecruitmentModelStoreContainer"."RC_REQUEST";
-
--- DROP TABLE "RecruitmentModelStoreContainer"."RC_REQUEST_EMP";
-
--- DROP TABLE "RecruitmentModelStoreContainer"."OT_OTHER_LIST";
-
--- DROP TABLE "RecruitmentModelStoreContainer"."OT_OTHER_LIST_GROUP";
-
--- DROP TABLE "RecruitmentModelStoreContainer"."OT_OTHER_LIST_TYPE";
-
--- DROP TABLE "RecruitmentModelStoreContainer"."RC_PLAN_REG";
-
--- DROP TABLE "RecruitmentModelStoreContainer"."HU_CONTRACT_TYPE";
-
--- DROP TABLE "RecruitmentModelStoreContainer"."RC_CANDIDATE";
-
--- DROP TABLE "RecruitmentModelStoreContainer"."RC_CANDIDATE_EDUCATION";
-
--- DROP TABLE "RecruitmentModelStoreContainer"."RC_CANDIDATE_HISTORY";
-
--- DROP TABLE "RecruitmentModelStoreContainer"."RC_CANDIDATE_OTHER_INFO";
-
--- DROP TABLE "RecruitmentModelStoreContainer"."RC_CANDIDATE_CV";
-
--- DROP TABLE "RecruitmentModelStoreContainer"."RC_PROGRAM_SCHEDULE";
-
--- DROP TABLE "RecruitmentModelStoreContainer"."RC_PROGRAM_SCHEDULE_CAN";
-
--- DROP TABLE "RecruitmentModelStoreContainer"."RC_PROGRAM_SCHEDULE_USHER";
-
--- DROP TABLE "RecruitmentModelStoreContainer"."RC_CANDIDATE_FAMILY";
-
--- DROP TABLE "RecruitmentModelStoreContainer"."RC_CANDIDATE_TRAINSINGER";
-
--- DROP TABLE "RecruitmentModelStoreContainer"."RC_CANDIDATE_BEFOREWT";
-
--- DROP TABLE "RecruitmentModelStoreContainer"."RC_COST";
-
--- DROP TABLE "RecruitmentModelStoreContainer"."RC_COST_FORM";
-
--- DROP TABLE "RecruitmentModelStoreContainer"."HU_EMPLOYEE_BANK";
-
--- DROP TABLE "RecruitmentModelStoreContainer"."HU_EMPLOYEE_BEFOREWT";
-
--- DROP TABLE "RecruitmentModelStoreContainer"."HU_EMPLOYEE_EDUCATION";
-
--- DROP TABLE "RecruitmentModelStoreContainer"."HU_EMPLOYEE_HEALTH";
-
--- DROP TABLE "RecruitmentModelStoreContainer"."HU_EMPLOYEE_OTHER_INFO";
-
--- DROP TABLE "RecruitmentModelStoreContainer"."HU_EMPLOYEE_TRAIN";
-
--- DROP TABLE "RecruitmentModelStoreContainer"."HU_EMPLOYEE_TRAINSINGER";
-
--- DROP TABLE "RecruitmentModelStoreContainer"."HU_EMPLOYEE";
-
--- DROP TABLE "RecruitmentModelStoreContainer"."HU_EMPLOYEE_CV";
-
--- DROP TABLE "RecruitmentModelStoreContainer"."HU_EMPLOYEE_EDUCATION1";
-
--- DROP TABLE "RecruitmentModelStoreContainer"."HU_EMPLOYEE_HEALTH1";
-
--- DROP TABLE "RecruitmentModelStoreContainer"."HU_EMPLOYEE_OTHER_INFO1";
-
--- DROP TABLE "RecruitmentModelStoreContainer"."HU_ORG_TITLE";
-
--- DROP TABLE "RecruitmentModelStoreContainer"."HU_ORGANIZATION";
-
--- DROP TABLE "RecruitmentModelStoreContainer"."HU_TITLE";
-
--- DROP TABLE "RecruitmentModelStoreContainer"."HU_BANK";
-
--- DROP TABLE "RecruitmentModelStoreContainer"."HU_BANK_BRANCH";
-
--- DROP TABLE "RecruitmentModelStoreContainer"."HU_DISTRICT";
-
--- DROP TABLE "RecruitmentModelStoreContainer"."HU_NATION";
-
--- DROP TABLE "RecruitmentModelStoreContainer"."HU_PROVINCE";
-
--- DROP TABLE "RecruitmentModelStoreContainer"."RC_STAGE";
-
--- DROP TABLE "RecruitmentModelStoreContainer"."RC_COSTALLOCATE";
-
--- DROP TABLE "RecruitmentModelStoreContainer"."RC_COST_COSTALLOCATE";
-
--- DROP TABLE "RecruitmentModelStoreContainer"."RC_MANNING_ORG";
-
--- DROP TABLE "RecruitmentModelStoreContainer"."RC_MANNING_TITLE";
-
--- DROP TABLE "RecruitmentModelStoreContainer"."RC_CANDIDATE_EXPECT";
-
--- DROP TABLE "RecruitmentModelStoreContainer"."RC_CANDIDATE_HEALTH";
-
--- DROP TABLE "RecruitmentModelStoreContainer"."RC_CANDIDATE_REFERENCE";
-
--- DROP TABLE "RecruitmentModelStoreContainer"."RC_PROGRAM";
-
--- DROP TABLE "RecruitmentModelStoreContainer"."SE_USER";
-
--- DROP TABLE "RecruitmentModelStoreContainer"."SE_REPORT";
-
--- DROP TABLE "RecruitmentModelStoreContainer"."SE_USER_REPORT";
-
--- DROP TABLE "RecruitmentModelStoreContainer"."HU_WARD";
-
--- DROP TABLE "RecruitmentModelStoreContainer"."HU_ORGANIZATION_V";
-
--- DROP TABLE "RecruitmentModelStoreContainer"."RC_CANDIDATE_TRAINNING";
-
--- DROP TABLE "RecruitmentModelStoreContainer"."RC_PLAN_YEAR";
-
--- DROP TABLE "RecruitmentModelStoreContainer"."RC_RECRUITMENT_INSTEAD";
+-- DROP TABLE "ACV_19_DEV"."RC_RECRUITMENT_COST";
 
 -- --------------------------------------------------
 -- Creating all tables
@@ -1779,6 +1617,23 @@ CREATE TABLE "dbo"."RC_RECRUITMENT_INSTEAD" (
    "MODIFIED_LOG" NVARCHAR2(255) NULL
 );
 
+-- Creating table 'RC_RECRUITMENT_COST'
+CREATE TABLE "dbo"."RC_RECRUITMENT_COST" (
+   "ID" NUMBER(38,0) NOT NULL,
+   "ORG_ID" NUMBER(38,0) NULL,
+   "YEAR" NUMBER(38,0) NULL,
+   "MONTH" NUMBER(38,0) NULL,
+   "HEADHUNT_COST" NUMBER(38,3) NULL,
+   "RECRUIT_COST" NUMBER(38,3) NULL,
+   "RC_TRADEMARK" NUMBER(38,3) NULL,
+   "RC_TOOL_COST" NUMBER(38,3) NULL,
+   "JOIN_COST" NUMBER(38,3) NULL,
+   "PRINT_COST" NUMBER(38,3) NULL,
+   "OTHER_COST" NUMBER(38,3) NULL,
+   "TOTAL_COST" NUMBER(38,3) NULL,
+   "REMARK" NVARCHAR2(255) NULL
+);
+
 
 -- --------------------------------------------------
 -- Creating all PRIMARY KEY constraints
@@ -2331,6 +2186,14 @@ ADD CONSTRAINT "PK_RC_PLAN_YEAR"
 -- Creating primary key on "ID"in table 'RC_RECRUITMENT_INSTEAD'
 ALTER TABLE "dbo"."RC_RECRUITMENT_INSTEAD"
 ADD CONSTRAINT "PK_RC_RECRUITMENT_INSTEAD"
+   PRIMARY KEY ("ID" )
+   ENABLE
+   VALIDATE;
+
+
+-- Creating primary key on "ID"in table 'RC_RECRUITMENT_COST'
+ALTER TABLE "dbo"."RC_RECRUITMENT_COST"
+ADD CONSTRAINT "PK_RC_RECRUITMENT_COST"
    PRIMARY KEY ("ID" )
    ENABLE
    VALIDATE;

@@ -18,7 +18,7 @@ Imports System.Runtime.Serialization
 Imports System.Xml.Serialization
 
 
-<Assembly: EdmSchemaAttribute("4a3afcb4-2891-417b-b9a8-9b4dc9ba141a")>
+<Assembly: EdmSchemaAttribute("6efedffe-8c1b-4c02-bab2-22737bdc63fb")>
 #Region "EDM Relationship Metadata"
 <Assembly: EdmRelationshipAttribute("RecruitmentModel", "FK_FE_HEH", "HU_EMPLOYEE", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_EMPLOYEE), "HU_EMPLOYEE_HEALTH1", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(HU_EMPLOYEE_HEALTH1), True)>
 <Assembly: EdmRelationshipAttribute("RecruitmentModel", "FK_HE_HEC", "HU_EMPLOYEE", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_EMPLOYEE), "HU_EMPLOYEE_CV", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(HU_EMPLOYEE_CV), True)>
@@ -1050,6 +1050,20 @@ Public Partial Class RecruitmentContext
 
     Private _RC_RECRUITMENT_INSTEAD As ObjectSet(Of RC_RECRUITMENT_INSTEAD)
 
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    Public ReadOnly Property RC_RECRUITMENT_COST() As ObjectSet(Of RC_RECRUITMENT_COST)
+        Get
+            If (_RC_RECRUITMENT_COST Is Nothing) Then
+                _RC_RECRUITMENT_COST = MyBase.CreateObjectSet(Of RC_RECRUITMENT_COST)("RC_RECRUITMENT_COST")
+            End If
+            Return _RC_RECRUITMENT_COST
+        End Get
+    End Property
+
+    Private _RC_RECRUITMENT_COST As ObjectSet(Of RC_RECRUITMENT_COST)
+
     #End Region
 
     #Region "AddTo Methods"
@@ -1535,6 +1549,13 @@ Public Partial Class RecruitmentContext
     ''' </summary>
     Public Sub AddToRC_RECRUITMENT_INSTEAD(ByVal rC_RECRUITMENT_INSTEAD As RC_RECRUITMENT_INSTEAD)
         MyBase.AddObject("RC_RECRUITMENT_INSTEAD", rC_RECRUITMENT_INSTEAD)
+    End Sub
+
+    ''' <summary>
+    ''' Deprecated Method for adding a new object to the RC_RECRUITMENT_COST EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+    ''' </summary>
+    Public Sub AddToRC_RECRUITMENT_COST(ByVal rC_RECRUITMENT_COST As RC_RECRUITMENT_COST)
+        MyBase.AddObject("RC_RECRUITMENT_COST", rC_RECRUITMENT_COST)
     End Sub
 
     #End Region
@@ -34496,6 +34517,361 @@ Public Partial Class RC_PROGRAM_SOFT_SKILL
     End Sub
 
     Private Partial Sub OnSOFT_SKILL_IDChanged()
+    End Sub
+
+    #End Region
+
+End Class
+
+''' <summary>
+''' No Metadata Documentation available.
+''' </summary>
+<EdmEntityTypeAttribute(NamespaceName:="RecruitmentModel", Name:="RC_RECRUITMENT_COST")>
+<Serializable()>
+<DataContractAttribute(IsReference:=True)>
+Public Partial Class RC_RECRUITMENT_COST
+    Inherits EntityObject
+    #Region "Factory Method"
+
+    ''' <summary>
+    ''' Create a new RC_RECRUITMENT_COST object.
+    ''' </summary>
+    ''' <param name="id">Initial value of the ID property.</param>
+    Public Shared Function CreateRC_RECRUITMENT_COST(id As Global.System.Decimal) As RC_RECRUITMENT_COST
+        Dim rC_RECRUITMENT_COST as RC_RECRUITMENT_COST = New RC_RECRUITMENT_COST
+        rC_RECRUITMENT_COST.ID = id
+        Return rC_RECRUITMENT_COST
+    End Function
+
+    #End Region
+
+    #Region "Primitive Properties"
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=true, IsNullable:=false)>
+    <DataMemberAttribute()>
+    Public Property ID() As Global.System.Decimal
+        Get
+            Return _ID
+        End Get
+        Set
+            If (_ID <> Value) Then
+                OnIDChanging(value)
+                ReportPropertyChanging("ID")
+                _ID = StructuralObject.SetValidValue(value)
+                ReportPropertyChanged("ID")
+                OnIDChanged()
+            End If
+        End Set
+    End Property
+
+    Private _ID As Global.System.Decimal
+    Private Partial Sub OnIDChanging(value As Global.System.Decimal)
+    End Sub
+
+    Private Partial Sub OnIDChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property ORG_ID() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _ORG_ID
+        End Get
+        Set
+            OnORG_IDChanging(value)
+            ReportPropertyChanging("ORG_ID")
+            _ORG_ID = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("ORG_ID")
+            OnORG_IDChanged()
+        End Set
+    End Property
+
+    Private _ORG_ID As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnORG_IDChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnORG_IDChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property YEAR() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _YEAR
+        End Get
+        Set
+            OnYEARChanging(value)
+            ReportPropertyChanging("YEAR")
+            _YEAR = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("YEAR")
+            OnYEARChanged()
+        End Set
+    End Property
+
+    Private _YEAR As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnYEARChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnYEARChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property MONTH() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _MONTH
+        End Get
+        Set
+            OnMONTHChanging(value)
+            ReportPropertyChanging("MONTH")
+            _MONTH = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("MONTH")
+            OnMONTHChanged()
+        End Set
+    End Property
+
+    Private _MONTH As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnMONTHChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnMONTHChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property HEADHUNT_COST() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _HEADHUNT_COST
+        End Get
+        Set
+            OnHEADHUNT_COSTChanging(value)
+            ReportPropertyChanging("HEADHUNT_COST")
+            _HEADHUNT_COST = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("HEADHUNT_COST")
+            OnHEADHUNT_COSTChanged()
+        End Set
+    End Property
+
+    Private _HEADHUNT_COST As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnHEADHUNT_COSTChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnHEADHUNT_COSTChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property RECRUIT_COST() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _RECRUIT_COST
+        End Get
+        Set
+            OnRECRUIT_COSTChanging(value)
+            ReportPropertyChanging("RECRUIT_COST")
+            _RECRUIT_COST = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("RECRUIT_COST")
+            OnRECRUIT_COSTChanged()
+        End Set
+    End Property
+
+    Private _RECRUIT_COST As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnRECRUIT_COSTChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnRECRUIT_COSTChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property RC_TRADEMARK() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _RC_TRADEMARK
+        End Get
+        Set
+            OnRC_TRADEMARKChanging(value)
+            ReportPropertyChanging("RC_TRADEMARK")
+            _RC_TRADEMARK = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("RC_TRADEMARK")
+            OnRC_TRADEMARKChanged()
+        End Set
+    End Property
+
+    Private _RC_TRADEMARK As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnRC_TRADEMARKChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnRC_TRADEMARKChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property RC_TOOL_COST() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _RC_TOOL_COST
+        End Get
+        Set
+            OnRC_TOOL_COSTChanging(value)
+            ReportPropertyChanging("RC_TOOL_COST")
+            _RC_TOOL_COST = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("RC_TOOL_COST")
+            OnRC_TOOL_COSTChanged()
+        End Set
+    End Property
+
+    Private _RC_TOOL_COST As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnRC_TOOL_COSTChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnRC_TOOL_COSTChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property JOIN_COST() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _JOIN_COST
+        End Get
+        Set
+            OnJOIN_COSTChanging(value)
+            ReportPropertyChanging("JOIN_COST")
+            _JOIN_COST = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("JOIN_COST")
+            OnJOIN_COSTChanged()
+        End Set
+    End Property
+
+    Private _JOIN_COST As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnJOIN_COSTChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnJOIN_COSTChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property PRINT_COST() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _PRINT_COST
+        End Get
+        Set
+            OnPRINT_COSTChanging(value)
+            ReportPropertyChanging("PRINT_COST")
+            _PRINT_COST = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("PRINT_COST")
+            OnPRINT_COSTChanged()
+        End Set
+    End Property
+
+    Private _PRINT_COST As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnPRINT_COSTChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnPRINT_COSTChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property OTHER_COST() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _OTHER_COST
+        End Get
+        Set
+            OnOTHER_COSTChanging(value)
+            ReportPropertyChanging("OTHER_COST")
+            _OTHER_COST = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("OTHER_COST")
+            OnOTHER_COSTChanged()
+        End Set
+    End Property
+
+    Private _OTHER_COST As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnOTHER_COSTChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnOTHER_COSTChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property TOTAL_COST() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _TOTAL_COST
+        End Get
+        Set
+            OnTOTAL_COSTChanging(value)
+            ReportPropertyChanging("TOTAL_COST")
+            _TOTAL_COST = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("TOTAL_COST")
+            OnTOTAL_COSTChanged()
+        End Set
+    End Property
+
+    Private _TOTAL_COST As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnTOTAL_COSTChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnTOTAL_COSTChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property REMARK() As Global.System.String
+        Get
+            Return _REMARK
+        End Get
+        Set
+            OnREMARKChanging(value)
+            ReportPropertyChanging("REMARK")
+            _REMARK = StructuralObject.SetValidValue(value, true)
+            ReportPropertyChanged("REMARK")
+            OnREMARKChanged()
+        End Set
+    End Property
+
+    Private _REMARK As Global.System.String
+    Private Partial Sub OnREMARKChanging(value As Global.System.String)
+    End Sub
+
+    Private Partial Sub OnREMARKChanged()
     End Sub
 
     #End Region
