@@ -263,6 +263,10 @@ Public Class ctrlHU_EmpDtlProfile
                             cboEMPLOYEE_OBJECT.SelectedValue = EmployeeInfo.EMPLOYEE_OBJECT
                             cboEMPLOYEE_OBJECT.Text = EmployeeInfo.EMPLOYEE_OBJECT_NAME
                         End If
+                        If EmployeeInfo.COMPENSATORY_OBJECT IsNot Nothing Then
+                            cboCOMPENSATORY_OBJECT.SelectedValue = EmployeeInfo.COMPENSATORY_OBJECT
+                            cboCOMPENSATORY_OBJECT.Text = EmployeeInfo.COMPENSATORY_OBJECT_NAME
+                        End If
                         chkIs_Hazardous.Checked = EmployeeInfo.IS_HAZARDOUS
                         chkIS_HDLD.Checked = EmployeeInfo.IS_HDLD
                         dtData = rep.GetOrgtree(EmployeeInfo.ORG_ID)
@@ -954,7 +958,8 @@ Public Class ctrlHU_EmpDtlProfile
                 End If
                 dtData = rep.GetOtherList("RC_PRODUCTION_PROCESS", True)
                 FillRadCombobox(cboProductionProcess, dtData, "NAME", "ID", True)
-
+                dtData = rep.GetOtherList("COMPENSATORY_OBJECT", True)
+                FillRadCombobox(cboCOMPENSATORY_OBJECT, dtData, "NAME", "ID", True)
             End Using
 
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
@@ -2512,6 +2517,9 @@ Public Class ctrlHU_EmpDtlProfile
             End If
             If cboEMPLOYEE_OBJECT.SelectedValue <> "" Then
                 EmployeeInfo.EMPLOYEE_OBJECT = Decimal.Parse(cboEMPLOYEE_OBJECT.SelectedValue)
+            End If
+            If cboCOMPENSATORY_OBJECT.SelectedValue <> "" Then
+                EmployeeInfo.COMPENSATORY_OBJECT = Decimal.Parse(cboCOMPENSATORY_OBJECT.SelectedValue)
             End If
             EmployeeInfo.IS_HAZARDOUS = CType(chkIs_Hazardous.Checked, Decimal)
             EmployeeInfo.IS_HDLD = CType(chkIS_HDLD.Checked, Decimal)

@@ -206,6 +206,14 @@
                             <tlk:RadComboBox runat="server" ID="cboEMPLOYEE_OBJECT" Enabled="false" SkinID="LoadDemand">
                             </tlk:RadComboBox>
                         </td>
+                          <td class="lb">
+                            <asp:Label runat="server" ID="Label46" Text="Đối tượng nghỉ bù"></asp:Label>
+                            <span class="lbReq"></span>
+                        </td>
+                        <td>
+                            <tlk:RadComboBox runat="server" ID="cboCOMPENSATORY_OBJECT" Enabled="false" SkinID="LoadDemand">
+                            </tlk:RadComboBox>
+                        </td>
                         <td class="lb">
                             <asp:Label runat="server" ID="lbObject" Text="Đối tượng chấm công"></asp:Label>
                         </td>
@@ -1099,7 +1107,7 @@
                                             <asp:Label runat="server" ID="Label18" Text="Bằng lái xe mô tô"></asp:Label>
                                         </td>
                                         <td>
-                                            <tlk:RadTextBox ID="txtDriverType" runat="server" SkinID="LoadDemand" Visible"false">
+                                            <tlk:RadTextBox ID="txtDriverType" runat="server" SkinID="LoadDemand" Visible="false">
                                             </tlk:RadTextBox>
                                             <tlk:RadComboBox ID="cboMotoDrivingLicense" runat="server" >
                                             </tlk:RadComboBox>
@@ -1368,19 +1376,19 @@
                                             <tlk:RadTextBox ID="txtNoiVaoDang" runat="server">
                                             </tlk:RadTextBox>
                                         </td>
-                                        
                                         <td class="lb3">
                                             <asp:Label runat="server" ID="lbCHUC_VU_DANG" Text="Chức vụ Đảng"></asp:Label>
                                         </td>
-                                        <td class="lb3">
+                                        <td>
                                             <tlk:RadTextBox runat="server" ID="rtCHUC_VU_DANG">
                                             </tlk:RadTextBox>
                                         </td>
-                                        <td class="lb3">
-                                            <asp:CheckBox ID="chkDangPhi" Text="Đảng phí" runat="server" />
-                                        </td>
+                                        
                                         <td>
                                             <asp:CheckBox ID="ckDANG" Text="Cán bộ đảng" runat="server" />
+                                        </td>
+                                        <td>
+                                            <asp:CheckBox ID="chkDangPhi" Text="Đảng phí" runat="server" />
                                         </td>
                                     </tr>
                                     <tr>
@@ -2288,12 +2296,12 @@
                     cbo = $find('<%= cboPer_Province.ClientID %>');
                     value = cbo.get_value();
                     break;
-                case '<%= cboDISTRICTEMP_BRITH.ClientID %>':
-                    cbo = $find('<%= cboPROVINCEEMP_BRITH.ClientID %>');
-                    value = cbo.get_value();
-                    break;
                 case '<%= cbPROVINCEEMP_ID.ClientID %>':
                     cbo = $find('<%= cboNationlity_NQ.ClientID %>');
+                    value = cbo.get_value();
+                    break;
+                case '<%= cboDISTRICTEMP_BRITH.ClientID %>':
+                    cbo = $find('<%= cboPROVINCEEMP_BRITH.ClientID %>');
                     value = cbo.get_value();
                     break;
                 case '<%= cbDISTRICTEMP_ID.ClientID %>':

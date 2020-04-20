@@ -206,6 +206,14 @@
                             <tlk:RadComboBox runat="server" ID="cboEMPLOYEE_OBJECT" Enabled="false" SkinID="LoadDemand">
                             </tlk:RadComboBox>
                         </td>
+                          <td class="lb">
+                            <asp:Label runat="server" ID="Label46" Text="Đối tượng nghỉ bù"></asp:Label>
+                            <span class="lbReq"></span>
+                        </td>
+                        <td>
+                            <tlk:RadComboBox runat="server" ID="cboCOMPENSATORY_OBJECT" Enabled="false" SkinID="LoadDemand">
+                            </tlk:RadComboBox>
+                        </td>
                         <td class="lb">
                             <asp:Label runat="server" ID="lbObject" Text="Đối tượng chấm công"></asp:Label>
                         </td>

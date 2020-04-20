@@ -428,6 +428,24 @@ Partial Public Class ctrlHU_EmpDtlProfile
     Protected WithEvents cboEMPLOYEE_OBJECT As Global.Telerik.Web.UI.RadComboBox
 
     '''<summary>
+    '''Label46 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents Label46 As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''cboCOMPENSATORY_OBJECT control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents cboCOMPENSATORY_OBJECT As Global.Telerik.Web.UI.RadComboBox
+
+    '''<summary>
     '''lbObject control.
     '''</summary>
     '''<remarks>
@@ -2273,6 +2291,15 @@ Partial Public Class ctrlHU_EmpDtlProfile
     Protected WithEvents Label18 As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
+    '''txtDriverType control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtDriverType As Global.Telerik.Web.UI.RadTextBox
+
+    '''<summary>
     '''cboMotoDrivingLicense control.
     '''</summary>
     '''<remarks>
@@ -2867,15 +2894,6 @@ Partial Public Class ctrlHU_EmpDtlProfile
     Protected WithEvents rtCHUC_VU_DANG As Global.Telerik.Web.UI.RadTextBox
 
     '''<summary>
-    '''chkDangPhi control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents chkDangPhi As Global.System.Web.UI.WebControls.CheckBox
-
-    '''<summary>
     '''ckDANG control.
     '''</summary>
     '''<remarks>
@@ -2883,6 +2901,15 @@ Partial Public Class ctrlHU_EmpDtlProfile
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents ckDANG As Global.System.Web.UI.WebControls.CheckBox
+
+    '''<summary>
+    '''chkDangPhi control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents chkDangPhi As Global.System.Web.UI.WebControls.CheckBox
 
     '''<summary>
     '''Label3 control.
