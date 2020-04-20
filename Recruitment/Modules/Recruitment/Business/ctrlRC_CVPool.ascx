@@ -302,12 +302,12 @@
                     </tlk:GridBoundColumn>
                     <tlk:GridBoundColumn HeaderText="<%$ Translate: Tên ứng viên %>" DataField="FULL_NAME_VN"
                         SortExpression="FULL_NAME_VN" UniqueName="FULL_NAME_VN" />
-                    <tlk:GridBoundColumn HeaderText="<%$ Translate: Tên công ty %>" DataField="ORG_NAME"
+<%--                    <tlk:GridBoundColumn HeaderText="<%$ Translate: Tên công ty %>" DataField="ORG_NAME"
                         SortExpression="ORG_NAME" UniqueName="ORG_NAME" />
                     <tlk:GridBoundColumn HeaderText="<%$ Translate: Chức danh %>" DataField="TITLE_NAME_VN"
                         SortExpression="TITLE_NAME_VN" UniqueName="TITLE_NAME_VN" />
                     <tlk:GridBoundColumn HeaderText="<%$ Translate: Ngày chỉnh sửa %>" DataField="MODIFIED_DATE"
-                        SortExpression="MODIFIED_DATE" UniqueName="MODIFIED_DATE" DataFormatString="{0:dd/MM/yyyy}" />
+                        SortExpression="MODIFIED_DATE" UniqueName="MODIFIED_DATE" DataFormatString="{0:dd/MM/yyyy}" />--%>
                     <tlk:GridBoundColumn HeaderText="<%$ Translate: Trạng thái tuyển dụng %>" DataField="CANDIDATE_STATUS_NAME"
                         SortExpression="CANDIDATE_STATUS_NAME" UniqueName="CANDIDATE_STATUS_NAME" />
                 </Columns>

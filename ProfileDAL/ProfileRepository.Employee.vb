@@ -1453,20 +1453,24 @@ Partial Class ProfileRepository
             objEmpData.JOB_ATTACH_FILE = objEmp.JOB_ATTACH_FILE
             objEmpData.JOB_FILENAME = objEmp.JOB_FILENAME
             Dim lstAtt = (From p In Context.HU_ATTACHFILES Where p.FK_ID = objEmpData.ID).ToList()
-            For index = 0 To lstAtt.Count - 1
-                Context.HU_ATTACHFILES.DeleteObject(lstAtt(index))
-            Next
+            If lstAtt.Count() > 0 Then
+                For index = 0 To lstAtt.Count - 1
+                    Context.HU_ATTACHFILES.DeleteObject(lstAtt(index))
+                Next
+            End If
 
-            For Each File As AttachFilesDTO In objEmp.ListAttachFiles
-                Dim objFile As New HU_ATTACHFILES
-                objFile.ID = Utilities.GetNextSequence(Context, Context.HU_ATTACHFILES.EntitySet.Name)
-                objFile.FK_ID = objEmpData.ID
-                objFile.FILE_PATH = File.FILE_PATH
-                objFile.ATTACHFILE_NAME = File.ATTACHFILE_NAME
-                objFile.CONTROL_NAME = File.CONTROL_NAME
-                objFile.FILE_TYPE = File.FILE_TYPE
-                Context.HU_ATTACHFILES.AddObject(objFile)
-            Next
+            If objEmp.ListAttachFiles IsNot Nothing Then
+                For Each File As AttachFilesDTO In objEmp.ListAttachFiles
+                    Dim objFile As New HU_ATTACHFILES
+                    objFile.ID = Utilities.GetNextSequence(Context, Context.HU_ATTACHFILES.EntitySet.Name)
+                    objFile.FK_ID = objEmpData.ID
+                    objFile.FILE_PATH = File.FILE_PATH
+                    objFile.ATTACHFILE_NAME = File.ATTACHFILE_NAME
+                    objFile.CONTROL_NAME = File.CONTROL_NAME
+                    objFile.FILE_TYPE = File.FILE_TYPE
+                    Context.HU_ATTACHFILES.AddObject(objFile)
+                Next
+            End If
             Dim lstPaperDelete = (From p In Context.HU_EMPLOYEE_PAPER Where p.EMPLOYEE_ID = objEmpData.ID).ToList
             For Each item In lstPaperDelete
                 Context.HU_EMPLOYEE_PAPER.DeleteObject(item)
