@@ -5,6 +5,12 @@ Imports Common
 Imports Telerik.Web.UI
 Imports System.IO
 Imports WebAppLog
+Imports Aspose.Cells
+Imports System.Drawing
+Imports HistaffFrameworkPublic
+Imports Common.CommonBusiness
+Imports System.Globalization
+
 Public Class ctrlHU_Discipline
     Inherits Common.CommonView
     'author: hongdx
@@ -14,6 +20,7 @@ Public Class ctrlHU_Discipline
     Dim _mylog As New MyLog()
     Dim _pathLog As String = _mylog._pathLog
     Dim _classPath As String = "Profile\Modules\Profile\Business" + Me.GetType().Name.ToString()
+    Dim log As New UserLog
 
 #Region "Property"
     ''' <summary>
@@ -50,11 +57,11 @@ Public Class ctrlHU_Discipline
     ''' <value></value>
     ''' <returns></returns>
     ''' <remarks></remarks>
-    Property ListComboData As ComboBoxDataDTO
+    Property ListComboData As Profile.ProfileBusiness.ComboBoxDataDTO
         Get
             Return ViewState(Me.ID & "_ListComboData")
         End Get
-        Set(ByVal value As ComboBoxDataDTO)
+        Set(ByVal value As Profile.ProfileBusiness.ComboBoxDataDTO)
             ViewState(Me.ID & "_ListComboData") = value
         End Set
     End Property
@@ -98,6 +105,15 @@ Public Class ctrlHU_Discipline
         End Get
         Set(ByVal value As DisciplineDTO)
             ViewState(Me.ID & "_ApproveDiscipline") = value
+        End Set
+    End Property
+
+    Private Property dtLogs As DataTable
+        Get
+            Return PageViewState(Me.ID & "_dtLogs")
+        End Get
+        Set(ByVal value As DataTable)
+            PageViewState(Me.ID & "_dtLogs") = value
         End Set
     End Property
 
@@ -331,6 +347,7 @@ Public Class ctrlHU_Discipline
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
         Try
             Dim startTime As DateTime = DateTime.UtcNow
+            log = LogHelper.GetUserLog
             Select Case CType(e.Item, RadToolBarButton).CommandName
                 Case CommonMessage.TOOLBARITEM_CREATE
                     CurrentState = CommonMessage.STATE_NEW
@@ -553,6 +570,15 @@ Public Class ctrlHU_Discipline
                     BatchApproveDiscipline()
                 Case CommonMessage.TOOLBARITEM_APPROVE_OPEN
                     Open_ApproveDiscipline()
+                Case CommonMessage.TOOLBARITEM_NEXT
+                    Dim rep As New ProfileBusinessRepository
+                    Dim dtDATA As DataSet = rep.EXPORT_DISCIPLINE()
+
+                    ExportTemplate("Profile\Import\Template_Import_Discipline.xls",
+                                   dtDATA, Nothing, "Template_Import_Discipline" & Format(Date.Now, "yyyyMMdd"))
+                    rep.Dispose()
+                Case CommonMessage.TOOLBARITEM_IMPORT
+                    ctrlUpload1.Show()
             End Select
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
@@ -560,6 +586,185 @@ Public Class ctrlHU_Discipline
             _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
         End Try
     End Sub
+
+    ''' <lastupdate>17/08/2017</lastupdate>
+    ''' <summary>
+    ''' Event xu ly upload file khi click button [OK] o popup ctrlUpload
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
+    ''' <remarks></remarks>
+    Private Sub ctrlUpload1_OkClicked(ByVal sender As Object, ByVal e As System.EventArgs) Handles ctrlUpload1.OkClicked
+        Dim fileName As String
+        Try
+            Dim tempPath As String = ConfigurationManager.AppSettings("ExcelFileFolder")
+            Dim rep As New ProfileBusinessRepository
+            Dim savepath = Context.Server.MapPath(tempPath)
+            Dim countFile As Integer = ctrlUpload1.UploadedFiles.Count
+            Dim ds As New DataSet
+            If countFile > 0 Then
+                Dim file As UploadedFile = ctrlUpload1.UploadedFiles(countFile - 1)
+                fileName = System.IO.Path.Combine(savepath, file.FileName)
+                file.SaveAs(fileName, True)
+                Using ep As New ExcelPackage
+                    ds = ep.ReadExcelToDataSet(fileName, False)
+                End Using
+            End If
+            If ds Is Nothing Then
+                Exit Sub
+            End If
+            TableMapping(ds.Tables(0))
+            If dtLogs Is Nothing Or dtLogs.Rows.Count <= 0 Then
+
+                Dim DocXml As String = String.Empty
+                Dim sw As New StringWriter()
+                If ds.Tables(0) IsNot Nothing AndAlso ds.Tables(0).Rows.Count > 0 Then
+                    ds.Tables(0).WriteXml(sw, False)
+                    DocXml = sw.ToString
+                    If rep.INPORT_DISCIPLINE(DocXml, log.Username) Then
+                        ShowMessage(Translate(Common.CommonMessage.MESSAGE_TRANSACTION_SUCCESS), Framework.UI.Utilities.NotifyType.Success)
+                        rgDiscipline.Rebind()
+                    Else
+                        ShowMessage(Translate(Common.CommonMessage.MESSAGE_TRANSACTION_FAIL), Framework.UI.Utilities.NotifyType.Warning)
+                    End If
+                End If
+            Else
+                Session("EXPORTREPORT") = dtLogs
+                ScriptManager.RegisterStartupScript(Me.Page, Me.Page.GetType(), "javascriptfunction", "ExportReport('HU_ANNUALLEAVE_PLANS_ERROR')", True)
+                ShowMessage(Translate("Có lỗi trong quá trình import. Lưu file lỗi chi tiết"), Utilities.NotifyType.Error)
+            End If
+
+        Catch ex As Exception
+            ShowMessage(Translate("Import bị lỗi. Kiểm tra lại biểu mẫu Import"), NotifyType.Error)
+        End Try
+    End Sub
+
+    Private Sub TableMapping(ByVal dtTemp As System.Data.DataTable)
+        ' lấy dữ liệu thô từ excel vào và tinh chỉnh dữ liệu
+        dtTemp.Columns(0).ColumnName = "EMPLOYEE_CODE"
+        dtTemp.Columns(4).ColumnName = "EFFECT_DATE"
+        dtTemp.Columns(5).ColumnName = "SIGN_DATE"
+        dtTemp.Columns(6).ColumnName = "SIGN_CODE"
+        dtTemp.Columns(7).ColumnName = "DISCIPLINE_LEVEL_NAME"
+        dtTemp.Columns(8).ColumnName = "DISCIPLINE_TYPE_NAME"
+        dtTemp.Columns(9).ColumnName = "INDEMNIFY_MONEY"
+        dtTemp.Columns(10).ColumnName = "PAIDMONEY"
+        dtTemp.Columns(11).ColumnName = "DISCIPLINE_REASON"
+        dtTemp.Columns(12).ColumnName = "EXPLAIN"
+        dtTemp.Columns(13).ColumnName = "VIOLATION_DATE"
+        dtTemp.Columns(14).ColumnName = "DISCIPLINE_REASON_DETAIL"
+        dtTemp.Columns(15).ColumnName = "DEDUCT_FROM_SALARY"
+        dtTemp.Columns(16).ColumnName = "YEAR"
+        dtTemp.Columns(17).ColumnName = "PERIOD_NAME"
+        dtTemp.Columns(18).ColumnName = "REMARK"
+
+        'XOA DONG TIEU DE VA HEADER
+        dtTemp.Rows(0).Delete()
+        dtTemp.Rows(1).Delete()
+
+        ' add Log
+        Dim _error As Boolean = True
+        Dim count As Integer
+        Dim newRow As DataRow
+        Dim dsEMP As DataTable
+        Dim rep As New ProfileBusinessRepository
+        Dim empId As Integer
+        Dim startDate As Date
+        If dtLogs Is Nothing Then
+            dtLogs = New DataTable("data")
+            dtLogs.Columns.Add("STT", GetType(Integer))
+            dtLogs.Columns.Add("EMPLOYEE_CODE", GetType(String))
+            dtLogs.Columns.Add("DISCIPTION", GetType(String))
+        End If
+        dtLogs.Clear()
+        'XOA NHUNG DONG DU LIEU NULL STT
+        Dim rowDel As DataRow
+        For i As Integer = 0 To dtTemp.Rows.Count - 1
+            If dtTemp.Rows(i).RowState = DataRowState.Deleted OrElse dtTemp.Rows(i).RowState = DataRowState.Detached Then Continue For
+            rowDel = dtTemp.Rows(i)
+            If rowDel("EMPLOYEE_CODE").ToString.Trim = "" Then
+                dtTemp.Rows(i).Delete()
+            End If
+        Next
+        For Each rows As DataRow In dtTemp.Rows
+            If rows.RowState = DataRowState.Deleted OrElse rows.RowState = DataRowState.Detached Then Continue For
+            newRow = dtLogs.NewRow
+            newRow("STT") = count + 1
+            newRow("EMPLOYEE_CODE") = rows("EMPLOYEE_CODE")
+
+            empId = rep.CheckEmployee_Exits(rows("EMPLOYEE_CODE"))
+
+            If empId = 0 Then
+                newRow("DISCIPTION") = "Mã nhân viên - Không tồn tại,"
+                _error = False
+            Else
+                rows("EMPLOYEE_CODE") = empId
+            End If
+
+            If rows("DEDUCT_FROM_SALARY") = "Có" Then
+                rows("DEDUCT_FROM_SALARY") = -1
+            Else
+                rows("DEDUCT_FROM_SALARY") = 0
+            End If
+
+            If IsDBNull(rows("EFFECT_DATE")) OrElse rows("EFFECT_DATE") = "" OrElse CheckDate(rows("EFFECT_DATE"), startDate) = False Then
+                rows("EFFECT_DATE") = "NULL"
+                newRow("DISCIPTION") = newRow("DISCIPTION") + "Ngày hiệu lực - Không đúng định dạng,"
+                _error = False
+            End If
+
+            If IsDBNull(rows("SIGN_DATE")) OrElse rows("SIGN_DATE") = "" OrElse CheckDate(rows("SIGN_DATE"), startDate) = False Then
+                rows("SIGN_DATE") = "NULL"
+                newRow("DISCIPTION") = newRow("DISCIPTION") + "Ngày ký - Không đúng định dạng,"
+                _error = False
+            End If
+
+            If IsDBNull(rows("DISCIPLINE_LEVEL_NAME")) OrElse rows("DISCIPLINE_LEVEL_NAME") = "" Then
+                rows("DISCIPLINE_LEVEL_NAME") = "NULL"
+                newRow("DISCIPTION") = newRow("DISCIPTION") + "Cấp kỷ luật - bắt buộc nhập,"
+                _error = False
+            End If
+
+            If IsDBNull(rows("DISCIPLINE_TYPE_NAME")) OrElse rows("DISCIPLINE_TYPE_NAME") = "" Then
+                rows("DISCIPLINE_TYPE_NAME") = "NULL"
+                newRow("DISCIPTION") = newRow("DISCIPTION") + "Hình thức kỷ luật - bắt buộc nhập,"
+                _error = False
+            End If
+
+            If IsDBNull(rows("VIOLATION_DATE")) OrElse rows("VIOLATION_DATE") = "" Then
+            Else
+                If CheckDate(rows("VIOLATION_DATE"), startDate) = False Then
+                    rows("VIOLATION_DATE") = "NULL"
+                    newRow("DISCIPTION") = newRow("DISCIPTION") + "Ngày vi phạm - Không đúng định dạng,"
+                    _error = False
+                End If
+            End If
+
+            If IsDBNull(rows("INDEMNIFY_MONEY")) Then
+            Else
+                If IsNumeric(rows("INDEMNIFY_MONEY")) = False Then
+                    newRow("DISCIPTION") = newRow("DISCIPTION") + "Số tiền - Không đúng định dạng,"
+                    _error = False
+                End If
+            End If
+
+            If IsDBNull(rows("PAIDMONEY")) Then
+            Else
+                If IsNumeric(rows("PAIDMONEY")) = False Then
+                    newRow("DISCIPTION") = newRow("DISCIPTION") + "Số tiền bồi thường - Không đúng định dạng,"
+                    _error = False
+                End If
+            End If
+
+            If _error = False Then
+                dtLogs.Rows.Add(newRow)
+                _error = True
+            End If
+            count += 1
+        Next
+        dtTemp.AcceptChanges()
+    End Sub
+
     ''' <lastupdate>
     ''' 11/07/2017 13:40
     ''' </lastupdate>
@@ -745,6 +950,45 @@ Public Class ctrlHU_Discipline
         End Try
     End Sub
 
+    Public Function ExportTemplate(ByVal sReportFileName As String,
+                                                    ByVal dsData As DataSet,
+                                                    ByVal dtVariable As DataTable,
+                                                    ByVal filename As String) As Boolean
+
+        Dim filePath As String
+        Dim templatefolder As String
+
+        Dim designer As WorkbookDesigner
+        Try
+
+            templatefolder = ConfigurationManager.AppSettings("ReportTemplatesFolder")
+            filePath = AppDomain.CurrentDomain.BaseDirectory & templatefolder & "\" & sReportFileName
+
+            If Not File.Exists(filePath) Then
+                ScriptManager.RegisterStartupScript(Page, Page.GetType(), "javascriptfunction", "goBack()", True)
+                Return False
+            End If
+
+            designer = New WorkbookDesigner
+            designer.Open(filePath)
+            designer.SetDataSource(dsData)
+
+            If dtVariable IsNot Nothing Then
+                Dim intCols As Integer = dtVariable.Columns.Count
+                For i As Integer = 0 To intCols - 1
+                    designer.SetDataSource(dtVariable.Columns(i).ColumnName.ToString(), dtVariable.Rows(0).ItemArray(i).ToString())
+                Next
+            End If
+            designer.Process()
+            designer.Workbook.CalculateFormula()
+            designer.Workbook.Save(HttpContext.Current.Response, filename & ".xls", ContentDisposition.Attachment, New XlsSaveOptions())
+
+        Catch ex As Exception
+            Return False
+        End Try
+        Return True
+    End Function
+
 
 #End Region
 
@@ -900,7 +1144,7 @@ Public Class ctrlHU_Discipline
     ''' <remarks></remarks>
     Protected Function CreateDataFilter(Optional ByVal isFull As Boolean = False) As DataTable
         Dim _filter As New DisciplineDTO
-        _filter.param = New ParamDTO
+        _filter.param = New Profile.ProfileBusiness.ParamDTO
         Dim rep As New ProfileBusinessRepository
         Dim bCheck As Boolean = False
         Dim startTime As DateTime = DateTime.UtcNow
@@ -942,6 +1186,22 @@ Public Class ctrlHU_Discipline
         End Try
 
     End Function
+
+    Private Function CheckDate(ByVal value As String, ByRef result As Date) As Boolean
+        Dim dateCheck As Boolean
+        If value = "" Or value = "&nbsp;" Then
+            value = ""
+            Return True
+        End If
+
+        Try
+            dateCheck = DateTime.TryParseExact(value, "dd/MM/yyyy", New CultureInfo("en-US"), DateTimeStyles.None, result)
+            Return dateCheck
+        Catch ex As Exception
+            Return False
+        End Try
+    End Function
+
 
 #End Region
 

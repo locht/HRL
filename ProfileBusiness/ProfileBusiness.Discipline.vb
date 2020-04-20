@@ -207,5 +207,28 @@ Namespace ProfileBusiness.ServiceImplementations
         End Function
 
 #End Region
+
+        Public Function EXPORT_DISCIPLINE() As DataSet Implements ServiceContracts.IProfileBusiness.EXPORT_DISCIPLINE
+            Try
+                Dim rep As New ProfileRepository
+                Dim lst = rep.EXPORT_DISCIPLINE()
+                Return lst
+            Catch ex As Exception
+
+                Throw ex
+            End Try
+        End Function
+
+        Public Function INPORT_DISCIPLINE(ByVal P_DOCXML As String, ByVal P_USER As String) As Boolean _
+         Implements ServiceContracts.IProfileBusiness.INPORT_DISCIPLINE
+            Using rep As New ProfileRepository
+                Try
+                    Return rep.INPORT_DISCIPLINE(P_DOCXML, P_USER)
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
+
     End Class
 End Namespace

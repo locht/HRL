@@ -249,4 +249,32 @@ Partial Public Class ProfileBusinessRepository
         Return Nothing
     End Function
 
+    Public Function EXPORT_DISCIPLINE() As DataSet
+        Dim lstDiscipline As DataSet
+
+        Using rep As New ProfileBusinessClient
+            Try
+                lstDiscipline = rep.EXPORT_DISCIPLINE()
+                Return lstDiscipline
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+
+        Return Nothing
+    End Function
+
+    Public Function INPORT_DISCIPLINE(ByVal P_DOCXML As String, ByVal P_USER As String) As Boolean
+        Using rep As New ProfileBusinessClient
+            Try
+                Return rep.INPORT_DISCIPLINE(P_DOCXML, P_USER)
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+
+    End Function
+
 End Class

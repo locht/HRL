@@ -56447,6 +56447,12 @@ Namespace ProfileBusiness
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/DeleteEmployeeDeduct", ReplyAction:="http://tempuri.org/IProfileBusiness/DeleteEmployeeDeductResponse")>  _
         Function DeleteEmployeeDeduct(ByVal lstDecimals As System.Collections.Generic.List(Of Decimal), ByVal log As Common.CommonBusiness.UserLog) As Boolean
         
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/EXPORT_DISCIPLINE", ReplyAction:="http://tempuri.org/IProfileBusiness/EXPORT_DISCIPLINEResponse")>  _
+        Function EXPORT_DISCIPLINE() As System.Data.DataSet
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/INPORT_DISCIPLINE", ReplyAction:="http://tempuri.org/IProfileBusiness/INPORT_DISCIPLINEResponse")>  _
+        Function INPORT_DISCIPLINE(ByVal P_DOCXML As String, ByVal P_USER As String) As Boolean
+        
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetListCommendList", ReplyAction:="http://tempuri.org/IProfileBusiness/GetListCommendListResponse")>  _
         Function GetListCommendList(ByVal actflg As String) As System.Collections.Generic.List(Of ProfileBusiness.CommendListDTO)
         
@@ -59218,6 +59224,14 @@ Namespace ProfileBusiness
         
         Public Function DeleteEmployeeDeduct(ByVal lstDecimals As System.Collections.Generic.List(Of Decimal), ByVal log As Common.CommonBusiness.UserLog) As Boolean Implements ProfileBusiness.IProfileBusiness.DeleteEmployeeDeduct
             Return MyBase.Channel.DeleteEmployeeDeduct(lstDecimals, log)
+        End Function
+        
+        Public Function EXPORT_DISCIPLINE() As System.Data.DataSet Implements ProfileBusiness.IProfileBusiness.EXPORT_DISCIPLINE
+            Return MyBase.Channel.EXPORT_DISCIPLINE
+        End Function
+        
+        Public Function INPORT_DISCIPLINE(ByVal P_DOCXML As String, ByVal P_USER As String) As Boolean Implements ProfileBusiness.IProfileBusiness.INPORT_DISCIPLINE
+            Return MyBase.Channel.INPORT_DISCIPLINE(P_DOCXML, P_USER)
         End Function
         
         Public Function GetListCommendList(ByVal actflg As String) As System.Collections.Generic.List(Of ProfileBusiness.CommendListDTO) Implements ProfileBusiness.IProfileBusiness.GetListCommendList

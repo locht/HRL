@@ -1101,4 +1101,34 @@ Partial Class ProfileRepository
 
 #End Region
 
+    Public Function EXPORT_DISCIPLINE() As DataSet
+        Try
+            Using cls As New DataAccess.QueryData
+                Dim dtData As DataSet = cls.ExecuteStore("PKG_HU_IPROFILE_LIST.EXPORT_DISCIPLINE",
+                                                    New With {.P_CUR = cls.OUT_CURSOR,
+                                                              .P_CUR1 = cls.OUT_CURSOR,
+                                                              .P_CUR2 = cls.OUT_CURSOR,
+                                                              .P_CUR3 = cls.OUT_CURSOR}, False)
+                Return dtData
+            End Using
+
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iProfile")
+            Throw ex
+        End Try
+    End Function
+
+    Public Function INPORT_DISCIPLINE(ByVal P_DOCXML As String, ByVal P_USER As String) As Boolean
+        Try
+            Using cls As New DataAccess.QueryData
+                cls.ExecuteStore("PKG_HU_IPROFILE_LIST.INPORT_DISCIPLINE",
+                                 New With {.P_DOCXML = P_DOCXML, .P_USER = P_USER})
+            End Using
+            Return True
+        Catch ex As Exception
+            Return False
+        End Try
+
+    End Function
+
 End Class

@@ -2995,6 +2995,12 @@ Namespace ProfileBusiness.ServiceContracts
 
         <OperationContract()>
         Function DeleteEmployeeDeduct(ByVal lstDecimals As List(Of Decimal), ByVal log As UserLog) As Boolean
+
+        <OperationContract()>
+        Function EXPORT_DISCIPLINE() As DataSet
+
+        <OperationContract()>
+        Function INPORT_DISCIPLINE(ByVal P_DOCXML As String, ByVal P_USER As String) As Boolean
     End Interface
 
 End Namespace
