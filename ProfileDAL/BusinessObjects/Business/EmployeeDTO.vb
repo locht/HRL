@@ -98,6 +98,11 @@
     ' ĐỐI TƯỢNG NHÂN VIÊN
     Public Property EMPLOYEE_OBJECT As Decimal?
     Public Property EMPLOYEE_OBJECT_NAME As String
+
+    ' ĐỐI TƯỢNG NHÂN VIÊN
+    Public Property COMPENSATORY_OBJECT As Decimal?
+    Public Property COMPENSATORY_OBJECT_NAME As String
+
     'MÔI TRƯỜNG ĐỘC HẠI
     Public Property IS_HAZARDOUS As Boolean
     'TẠM HOÃN HDLD

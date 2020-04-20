@@ -18,7 +18,7 @@ Imports System.Runtime.Serialization
 Imports System.Xml.Serialization
 
 
-<Assembly: EdmSchemaAttribute("16858a1e-4757-4bb2-bd85-5b2f31a44318")>
+<Assembly: EdmSchemaAttribute("3cac453d-4502-4417-8400-2a38a43471ad")>
 #Region "EDM Relationship Metadata"
 <Assembly: EdmRelationshipAttribute("ProfileModel", "FK_HU_NAT_HU_PRO", "HU_NATION", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_NATION), "HU_PROVINCE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_PROVINCE), True)>
 <Assembly: EdmRelationshipAttribute("ProfileModel", "FK_HU_PRO_HU_DIS", "HU_PROVINCE", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_PROVINCE), "HU_DISTRICT", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_DISTRICT), True)>
@@ -25411,6 +25411,31 @@ Public Partial Class HU_EMPLOYEE
     End Sub
 
     Private Partial Sub OnJOB_FILENAMEChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property COMPENSATORY_OBJECT() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _COMPENSATORY_OBJECT
+        End Get
+        Set
+            OnCOMPENSATORY_OBJECTChanging(value)
+            ReportPropertyChanging("COMPENSATORY_OBJECT")
+            _COMPENSATORY_OBJECT = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("COMPENSATORY_OBJECT")
+            OnCOMPENSATORY_OBJECTChanged()
+        End Set
+    End Property
+
+    Private _COMPENSATORY_OBJECT As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnCOMPENSATORY_OBJECTChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnCOMPENSATORY_OBJECTChanged()
     End Sub
 
     #End Region

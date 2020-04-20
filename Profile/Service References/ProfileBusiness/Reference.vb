@@ -31498,6 +31498,12 @@ Namespace ProfileBusiness
         Private BOOKNOField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private COMPENSATORY_OBJECTField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private COMPENSATORY_OBJECT_NAMEField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private CONTRACT_EFFECT_DATEField As System.Nullable(Of Date)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -31839,6 +31845,32 @@ Namespace ProfileBusiness
                 If (Object.ReferenceEquals(Me.BOOKNOField, value) <> true) Then
                     Me.BOOKNOField = value
                     Me.RaisePropertyChanged("BOOKNO")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property COMPENSATORY_OBJECT() As System.Nullable(Of Decimal)
+            Get
+                Return Me.COMPENSATORY_OBJECTField
+            End Get
+            Set
+                If (Me.COMPENSATORY_OBJECTField.Equals(value) <> true) Then
+                    Me.COMPENSATORY_OBJECTField = value
+                    Me.RaisePropertyChanged("COMPENSATORY_OBJECT")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property COMPENSATORY_OBJECT_NAME() As String
+            Get
+                Return Me.COMPENSATORY_OBJECT_NAMEField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.COMPENSATORY_OBJECT_NAMEField, value) <> true) Then
+                    Me.COMPENSATORY_OBJECT_NAMEField = value
+                    Me.RaisePropertyChanged("COMPENSATORY_OBJECT_NAME")
                 End If
             End Set
         End Property

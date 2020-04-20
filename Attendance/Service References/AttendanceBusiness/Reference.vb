@@ -3953,6 +3953,9 @@ Namespace AttendanceBusiness
         Private extensionDataField As System.Runtime.Serialization.ExtensionDataObject
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private CHECK_WORK_STATUS_LEAVEField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private CREATED_DATEField As System.Nullable(Of Date)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -4025,6 +4028,19 @@ Namespace AttendanceBusiness
             End Get
             Set
                 Me.extensionDataField = value
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property CHECK_WORK_STATUS_LEAVE() As System.Nullable(Of Decimal)
+            Get
+                Return Me.CHECK_WORK_STATUS_LEAVEField
+            End Get
+            Set
+                If (Me.CHECK_WORK_STATUS_LEAVEField.Equals(value) <> true) Then
+                    Me.CHECK_WORK_STATUS_LEAVEField = value
+                    Me.RaisePropertyChanged("CHECK_WORK_STATUS_LEAVE")
+                End If
             End Set
         End Property
         

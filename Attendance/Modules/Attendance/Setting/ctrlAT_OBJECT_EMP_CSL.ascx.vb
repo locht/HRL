@@ -155,6 +155,13 @@ Public Class ctrlAT_OBJECT_EMP_CSL
                 FillRadCombobox(cbo_OBJ_CSL_Search, dtData, "NAME", "ID", False)
                 dtData = rep.GetOtherList("COMPENSATORY_OBJECT", True)
                 FillRadCombobox(cbo_OBJ_CSL_updateAll, dtData, "NAME", "ID", False)
+                dtData = rep.GetOtherList("WORK_STATUS", True)
+                Dim dr As DataRow = dtData.NewRow
+                dr("NAME") = "Chưa thiết lập trạng thái"
+                dr("ID") = 9999
+                dtData.Rows.Add(dr)
+                FillRadCombobox(cboStatus, dtData, "NAME", "ID", False)
+
             End Using
 
             _myLog.WriteLog(_myLog._info, _classPath, method,
@@ -318,12 +325,19 @@ Public Class ctrlAT_OBJECT_EMP_CSL
             End If
             If cbo_OBJ_EMP_Search.SelectedValue <> "" Then
                 _filter.OBJ_EMP_ID = cbo_OBJ_EMP_Search.SelectedValue
+            Else
+                _filter.OBJ_EMP_ID = 0
             End If
             If cbo_OBJ_CSL_Search.SelectedValue <> "" Then
                 _filter.OBJ_CSL_ID = cbo_OBJ_CSL_Search.SelectedValue
+            Else
+                _filter.OBJ_CSL_ID = 0
+            End If
+            If cboStatus.SelectedValue <> "" Then
+                _filter.WORK_STATUS = cboStatus.SelectedValue
             End If
             If chkSTATUS.Checked Then
-                _filter.WORK_STATUS = chkSTATUS.Checked
+                _filter.CHECK_WORK_STATUS_LEAVE = chkSTATUS.Checked
             End If
             Dim _param = New Attendance.AttendanceBusiness.ParamDTO With {.ORG_ID = Decimal.Parse(ctrlOrg.CurrentValue), _
                                             .IS_DISSOLVE = ctrlOrg.IsDissolve}

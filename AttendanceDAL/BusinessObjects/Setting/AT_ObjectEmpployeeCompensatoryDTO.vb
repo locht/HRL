@@ -11,6 +11,9 @@
     Public Property WORK_STATUS As Decimal?
     Public Property WORK_STATUS_NAME As String
 
+    'trạng thái làm việc
+    Public Property CHECK_WORK_STATUS_LEAVE As Decimal?
+
     'PHÒNG BAN
     Public Property ORG_ID As Decimal?
     Public Property ORG_NAME As String

@@ -635,6 +635,7 @@ Partial Class ProfileRepository
                 Dim str As String = "Kiêm nhiệm"
                 If empID = 0 Then Return Nothing
                 Dim query As New EmployeeDTO
+
                 query =
                     (From e In Context.HU_EMPLOYEE
                      From title In Context.HU_TITLE.Where(Function(f) f.ID = e.TITLE_ID)
@@ -650,6 +651,8 @@ Partial Class ProfileRepository
                      From ce In Context.OT_OTHER_LIST.Where(Function(f) f.ID = e.OBJECTTIMEKEEPING).DefaultIfEmpty
                      From titlegroup In Context.OT_OTHER_LIST.Where(Function(f) f.ID = title.TITLE_GROUP_ID And
                                                                         f.TYPE_ID = 2000).DefaultIfEmpty
+                     From empObj In Context.OT_OTHER_LIST.Where(Function(f) f.ID = e.EMPLOYEE_OBJECT).DefaultIfEmpty
+                     From comObj In Context.OT_OTHER_LIST.Where(Function(f) f.ID = e.COMPENSATORY_OBJECT).DefaultIfEmpty
                      From workstatus In Context.OT_OTHER_LIST.Where(Function(f) f.ID = e.WORK_STATUS And
                                                                         f.TYPE_ID = 59).DefaultIfEmpty
                      From empstatus In Context.OT_OTHER_LIST.Where(Function(f) f.ID = e.EMP_STATUS And
@@ -711,7 +714,9 @@ Partial Class ProfileRepository
                          .OBJECT_LABOR = e.OBJECT_LABOR,
                         .OBJECT_LABOR_NAME = objectLabor.NAME_VN,
                          .EMPLOYEE_OBJECT = e.EMPLOYEE_OBJECT,
-                         .EMPLOYEE_OBJECT_NAME = titlegroup.NAME_VN,
+                         .EMPLOYEE_OBJECT_NAME = empObj.NAME_VN,
+                         .COMPENSATORY_OBJECT = e.COMPENSATORY_OBJECT,
+                         .COMPENSATORY_OBJECT_NAME = comObj.NAME_VN,
                          .IS_HAZARDOUS = e.IS_HAZARDOUS,
                         .IS_HDLD = e.IS_HDLD,
                           .ORG_NAME2 = huv_org.ORG_NAME2,
@@ -966,6 +971,7 @@ Partial Class ProfileRepository
             objEmpData.SENIORITY_DATE = objEmp.SENIORITY_DATE
             objEmpData.ITIME_ID = empCodeDB
             objEmpData.EMPLOYEE_OBJECT = objEmp.EMPLOYEE_OBJECT
+            objEmpData.COMPENSATORY_OBJECT = objEmp.COMPENSATORY_OBJECT
             objEmpData.IS_HAZARDOUS = objEmp.IS_HAZARDOUS
             objEmpData.IS_HDLD = objEmp.IS_HDLD
             objEmpData.PRODUCTION_PROCESS = objEmp.PRODUCTION_PROCESS
@@ -1444,7 +1450,8 @@ Partial Class ProfileRepository
             objEmpData.PA_OBJECT_SALARY_ID = 1 'objEmp.PA_OBJECT_SALARY_ID
 
             objEmpData.OBJECT_LABOR = objEmp.OBJECT_LABOR
-            objEmpData.EMPLOYEE_OBJECT = objEmp.EMPLOYEE_OBJECT            
+            objEmpData.EMPLOYEE_OBJECT = objEmp.EMPLOYEE_OBJECT
+            objEmpData.COMPENSATORY_OBJECT = objEmp.COMPENSATORY_OBJECT
             objEmpData.IS_HAZARDOUS = objEmp.IS_HAZARDOUS
             objEmpData.IS_HDLD = objEmp.IS_HDLD
             objEmpData.PRODUCTION_PROCESS = objEmp.PRODUCTION_PROCESS
