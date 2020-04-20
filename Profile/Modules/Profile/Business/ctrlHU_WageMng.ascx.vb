@@ -38,17 +38,21 @@ Public Class ctrlHU_WageMng
                 dt.Columns.Add("SAL_GROUP_NAME", GetType(String))
                 dt.Columns.Add("SAL_LEVEL_NAME", GetType(String))
                 dt.Columns.Add("SAL_RANK_NAME", GetType(String))
-                dt.Columns.Add("SAL_BASIC_MIN", GetType(Decimal))
-                dt.Columns.Add("SAL_BASIC_MAX", GetType(Decimal))
-                dt.Columns.Add("SAL_BASIC", GetType(Decimal))
+                dt.Columns.Add("SAL_BASIC_MIN", GetType(String))
+                dt.Columns.Add("SAL_BASIC_MAX", GetType(String))
+                dt.Columns.Add("SAL_BASIC", GetType(String))
                 'dt.Columns.Add("FACTORSALARY", GetType(String))
-                dt.Columns.Add("PERCENTSALARY", GetType(Decimal))
+                dt.Columns.Add("PERCENTSALARY", GetType(String))
                 dt.Columns.Add("EXRATE_NAME", GetType(String))
-                dt.Columns.Add("SAL_RATE", GetType(Decimal))
+                dt.Columns.Add("SAL_RATE", GetType(String))
                 dt.Columns.Add("AMOUNT", GetType(String))
                 dt.Columns.Add("AMOUNT_EX", GetType(String))
                 dt.Columns.Add("ALLOWANCE_TOTAL", GetType(String))
-                dt.Columns.Add("SAL_INS", GetType(Decimal))
+                dt.Columns.Add("SAL_INS", GetType(String))
+                dt.Columns.Add("REASON_EDIT_EFDATE", GetType(String))
+                dt.Columns.Add("SIGN_NAME", GetType(String))
+                dt.Columns.Add("SIGN_DATE", GetType(String))
+                dt.Columns.Add("REMARK", GetType(String))
                 'dt.Columns.Add("OTHERSALARY1", GetType(String))
                 'dt.Columns.Add("OTHERSALARY2", GetType(String))
                 'dt.Columns.Add("COST_SUPPORT", GetType(String))
@@ -56,14 +60,16 @@ Public Class ctrlHU_WageMng
                 'dt.Columns.Add("OTHERSALARY4", GetType(String))
                 'dt.Columns.Add("OTHERSALARY5", GetType(String))
                 'dt.Columns.Add("LTT_V1", GetType(String))
-                dt.Columns.Add("SAL_TYPE_ID", GetType(Decimal))
-                dt.Columns.Add("TAX_ID", GetType(Decimal))
-                dt.Columns.Add("SAL_GROUP_ID", GetType(Decimal))
-                dt.Columns.Add("SAL_LEVEL_ID", GetType(Decimal))
-                dt.Columns.Add("SAL_RANK_ID", GetType(Decimal))
-                dt.Columns.Add("EXRATE_ID", GetType(Decimal))
+                dt.Columns.Add("SAL_TYPE_ID", GetType(String))
+                dt.Columns.Add("TAX_ID", GetType(String))
+                dt.Columns.Add("SAL_GROUP_ID", GetType(String))
+                dt.Columns.Add("SAL_LEVEL_ID", GetType(String))
+                dt.Columns.Add("SAL_RANK_ID", GetType(String))
+                dt.Columns.Add("EXRATE_ID", GetType(String))
                 'dt.Columns.Add("STATUS_ID", GetType(String))
                 dt.Columns.Add("ALLOWANCE_LIST_ID", GetType(String))
+                dt.Columns.Add("SIGN_ID", GetType(String))
+              
                 ViewState(Me.ID & "_dtData") = dt
             End If
             Return ViewState(Me.ID & "_dtData")
@@ -535,13 +541,13 @@ Public Class ctrlHU_WageMng
                 newRow("SAL_GROUP_NAME") = rows("SAL_GROUP_NAME")
                 newRow("SAL_LEVEL_NAME") = rows("SAL_LEVEL_NAME")
                 newRow("SAL_RANK_NAME") = rows("SAL_RANK_NAME")
-                newRow("SAL_BASIC_MIN") = If(IsNumeric(rows("SAL_BASIC_MIN")), Decimal.Parse(rows("SAL_BASIC_MIN")), 0)
-                newRow("SAL_BASIC_MAX") = If(IsNumeric(rows("SAL_BASIC_MAX")), Decimal.Parse(rows("SAL_BASIC_MAX")), 0)
+                newRow("SAL_BASIC_MIN") = rows("SAL_BASIC_MIN")
+                newRow("SAL_BASIC_MAX") = rows("SAL_BASIC_MAX")
                 'newRow("FACTORSALARY") = If(IsNumeric(rows("FACTORSALARY")), repFactor, 0)
-                newRow("SAL_BASIC") = If(IsNumeric(rows("SAL_BASIC")), Decimal.Parse(rows("SAL_BASIC")), 0)
-                newRow("PERCENTSALARY") = If(IsNumeric(rows("PERCENTSALARY")), Decimal.Parse(rows("PERCENTSALARY")), 0)
+                newRow("SAL_BASIC") = rows("SAL_BASIC")
+                newRow("PERCENTSALARY") = rows("PERCENTSALARY")
                 newRow("EXRATE_NAME") = rows("EXRATE_NAME")
-                newRow("SAL_RATE") = If(IsNumeric(rows("SAL_RATE")), Decimal.Parse(rows("SAL_RATE")), 0)
+                newRow("SAL_RATE") = rows("SAL_RATE")
 
                 For Each item As DataRow In dtDataALL.Rows
                     newRow("AMOUNT") += If(IsNumeric(rows("AMOUNT_" + item("ID").ToString)), Decimal.Parse(rows("AMOUNT_" + item("ID").ToString)), 0).ToString + (",")
@@ -553,19 +559,24 @@ Public Class ctrlHU_WageMng
                 newRow("AMOUNT_EX") = newRow("AMOUNT_EX").ToString.TrimEnd(",")
                 newRow("ALLOWANCE_LIST_ID") = newRow("ALLOWANCE_LIST_ID").ToString.TrimEnd(",")
 
-                newRow("ALLOWANCE_TOTAL") = If(IsNumeric(rows("ALLOWANCE_TOTAL")), Decimal.Parse(rows("ALLOWANCE_TOTAL")), 0)
-                newRow("SAL_INS") = If(IsNumeric(rows("SAL_INS")), Decimal.Parse(rows("SAL_INS")), 0)
+                newRow("ALLOWANCE_TOTAL") = rows("ALLOWANCE_TOTAL")
+                newRow("SAL_INS") = rows("SAL_INS")
+                newRow("REASON_EDIT_EFDATE") = rows("REASON_EDIT_EFDATE")
+                newRow("SIGN_NAME") = rows("SIGN_NAME")
+                newRow("SIGN_DATE") = rows("SIGN_DATE")
+                newRow("REMARK") = rows("REMARK")
                 'newRow("OTHERSALARY1") = If(IsNumeric(rows("OTHERSALARY1")), Decimal.Parse(rows("OTHERSALARY1")), 0)
                 'newRow("OTHERSALARY2") = If(IsNumeric(rows("OTHERSALARY2")), Decimal.Parse(rows("OTHERSALARY2")), 0)
                 'newRow("COST_SUPPORT") = If(IsNumeric(rows("COST_SUPPORT")), Decimal.Parse(rows("COST_SUPPORT")), 0)
                 'newRow("STATUS_NAME") = rows("STATUS_NAME")
-                newRow("SAL_TYPE_ID") = If(IsNumeric(rows("SAL_TYPE_ID")), rows("SAL_TYPE_ID"), 0)
-                newRow("TAX_ID") = If(IsNumeric(rows("TAX_ID")), rows("TAX_ID"), 0)
-                newRow("SAL_GROUP_ID") = If(IsNumeric(rows("SAL_GROUP_ID")), rows("SAL_GROUP_ID"), 0)
-                newRow("SAL_LEVEL_ID") = If(IsNumeric(rows("SAL_LEVEL_ID")), rows("SAL_LEVEL_ID"), 0)
-                newRow("SAL_RANK_ID") = If(IsNumeric(rows("SAL_RANK_ID")), rows("SAL_RANK_ID"), 0)
-                newRow("EXRATE_ID") = If(IsNumeric(rows("EXRATE_ID")), rows("EXRATE_ID"), 0)
+                newRow("SAL_TYPE_ID") = rows("SAL_TYPE_ID")
+                newRow("TAX_ID") = rows("TAX_ID")
+                newRow("SAL_GROUP_ID") = rows("SAL_GROUP_ID")
+                newRow("SAL_LEVEL_ID") = rows("SAL_LEVEL_ID")
+                newRow("SAL_RANK_ID") = rows("SAL_RANK_ID")
+                newRow("EXRATE_ID") = rows("EXRATE_ID")
                 'newRow("STATUS_ID") = If(IsNumeric(rows("STATUS_ID")), rows("STATUS_ID"), 0)
+                newRow("SIGN_ID") = rows("SIGN_ID")
                 dtData.Rows.Add(newRow)
             Next
             dtData.TableName = "DATA"
@@ -608,6 +619,7 @@ Public Class ctrlHU_WageMng
             dsData.Tables(6).TableName = "Table6"
             dsData.Tables(7).TableName = "Table7"
             dsData.Tables(8).TableName = "Table8"
+            dsData.Tables(9).TableName = "Table9"
             rep.Dispose()
             If File.Exists(configPath + "Payroll\Business\TEMP_IMPORT_HOSOLUONG.xls") Then
                 ExportTemplate(configPath + "Payroll\Business\TEMP_IMPORT_HOSOLUONG.xls",
@@ -718,8 +730,11 @@ Public Class ctrlHU_WageMng
                     End Try
                 End If
 VALIDATE:
+                If CheckDate(row("SIGN_DATE")) = False Then
+                    sError = "Ngày ký - không đúng định dạng"
+                    ImportValidate.IsValidTime("SIGN_DATE", row, rowError, isError, sError)
+                End If
 
-                
                 'If row("FACTORSALARY") Is DBNull.Value OrElse row("FACTORSALARY") = "" Then
                 '    sError = "Chưa nhập hệ số/mức tiền"
                 '    ImportValidate.IsValidTime("FACTORSALARY", row, rowError, isError, sError)
